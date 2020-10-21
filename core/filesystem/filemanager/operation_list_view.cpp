@@ -94,7 +94,7 @@ namespace filemanager
    void operation_list_view::_001OnTimer(::timer * ptimer)
    {
       BASE::_001OnTimer(ptimer);
-      if(ptimer->m_nIDEvent == 123)
+      if(ptimer->m_uEvent == 123)
       {
          /*if(m_tickLast123Update.elapsed() > 500)
          {

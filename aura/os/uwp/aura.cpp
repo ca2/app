@@ -434,7 +434,7 @@ ulong_ptr                        g_gdiplusHookToken         = nullptr;
 //bool defer_co_initialize_ex(bool bMultiThread)
 //{
 //
-//   auto pthread = ::get_thread();
+//   auto pthread = ::get_task();
 //
 //   if(!pthread)
 //   {

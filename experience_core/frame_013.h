@@ -21,6 +21,9 @@
                virtual ~frame_013();
 
 
+               virtual void finalize() override;
+
+
             };
 
 

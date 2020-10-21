@@ -82,7 +82,7 @@ namespace acme
 
    auto posmessagebox = __new(::acme::os_message_box(pszText, pszTitle, emessagebox));
 
-   return __launch(posmessagebox, future);
+   return __realize(posmessagebox, future);
 
 }
 
@@ -100,7 +100,7 @@ CLASS_DECL_ACME int __cpp_assert_failed_line(const char * pszFileName, int iLine
 
    //__throw(todo("thread"));
 
-   //thread * pthread = get_thread();
+   //thread * pthread = get_task();
 
    //if(pthread != nullptr)
    //{

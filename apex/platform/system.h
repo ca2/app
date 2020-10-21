@@ -15,13 +15,13 @@ namespace apex
    public:
 
 
-      ::aqua::system *        m_paquasystem;
-      ::aura::system *        m_paurasystem;
-      ::axis::system *        m_paxissystem;
-      ::base::system *        m_pbasesystem;
-      ::bred::system *        m_pbredsystem;
-      ::core::system *        m_pcoresystem;
-      __pointer(::apex::application)                     m_papplicationStartup;
+      ::aqua::system *                                   m_paquasystem;
+      ::aura::system *                                   m_paurasystem;
+      ::axis::system *                                   m_paxissystem;
+      ::base::system *                                   m_pbasesystem;
+      ::bred::system *                                   m_pbredsystem;
+      ::core::system *                                   m_pcoresystem;
+      __reference(::apex::application)                   m_papplicationStartup;
 
       __composite(::apex::system)                        m_psystemParent;
 
@@ -71,7 +71,7 @@ namespace apex
       __composite(::crypto::crypto)                      m_pcrypto;
       //__composite(class ::account::user_set)             m_puserset;
 
-      __pointer_array(service_base)                      m_serviceptra;
+      __composite_array(service_base)                    m_serviceptra;
       __composite(class ::xml::department)               m_pxml;
       __composite(class ::apex::log)                     m_ptrace;
 
@@ -87,9 +87,9 @@ namespace apex
       //__composite(::gpu::approach)                       m_pgpu;
 
       ::mutex                                            m_mutexLibrary;
-      string_map < __pointer(::apex::library) >          m_mapLibrary;
+      string_map < __composite(::apex::library) >        m_mapLibrary;
       string_map < PFN_NEW_APEX_LIBRARY >                m_mapNewApexLibrary;
-      string_map < __pointer(::apex::library) >          m_mapLibCall;
+      string_map < __composite(::apex::library) >        m_mapLibCall;
 
 
 
@@ -242,7 +242,7 @@ namespace apex
 
       //strid_map < ::apex::library* >              m_idmapCreateViewLibrary;
 
-      __pointer_array(::apex::library)                         m_libraryspa;
+      //__pointer_array(::apex::library)                         m_libraryspa;
 
 #ifdef _UWP
 
@@ -273,7 +273,7 @@ namespace apex
 
       //::url::department                           & url()     { return m_urldepartment; }
 
-      ::thread * get_thread(ITHREAD ithread);
+      ::thread * get_task(ITHREAD ithread);
       ITHREAD get_thread_id(::thread * pthread);
       void set_thread(ITHREAD ithread, ::thread * pthread);
       void unset_thread(ITHREAD ithread, ::thread * pthread);

@@ -1724,9 +1724,6 @@
     <ClInclude Include="multithreading\file_change_event.h">
       <Filter>Header Files\multithreading</Filter>
     </ClInclude>
-    <ClInclude Include="multithreading\fork.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
     <ClInclude Include="multithreading\handler.h">
       <Filter>Header Files\multithreading</Filter>
     </ClInclude>
@@ -1785,9 +1782,6 @@
       <Filter>Header Files\multithreading</Filter>
     </ClInclude>
     <ClInclude Include="multithreading\sync_task.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\thread.h">
       <Filter>Header Files\multithreading</Filter>
     </ClInclude>
     <ClInclude Include="multithreading\thread_impl.h">
@@ -2272,6 +2266,15 @@
     </ClInclude>
     <ClInclude Include="primitive\primitive\action.h">
       <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\obj_ref_dbg_impl.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\work.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\task.h">
+      <Filter>Header Files\multithreading</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -3345,6 +3348,12 @@
     </ClCompile>
     <ClCompile Include="primitive\primitive\task.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\obj_ref_dbg.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\task.cpp">
+      <Filter>Source Files\multithreading</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

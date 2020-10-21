@@ -148,7 +148,14 @@ namespace user
       catch (exception_pointer pe)
       {
 
-         ::get_thread()->handle_exception(pe);
+         auto pthread = ::get_thread();
+
+         if (pthread)
+         {
+
+            pthread->handle_exception(pe);
+
+         }
 
          return nullptr;
 

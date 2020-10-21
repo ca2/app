@@ -64,7 +64,7 @@ namespace apex
       bool                                                  m_bSystemSynchronizedCursor;
       point                                                 m_pointCursor;
 
-      comparable_array < __reference(::layered) > m_uiptraToolWindow;
+      //comparable_array < __reference(::layered) > m_uiptraToolWindow;
 
       // apex commented
       //::user::interaction_impl *                            m_pimplPendingFocus2;
@@ -78,7 +78,7 @@ namespace apex
       //::layered *                                 m_puiCapture;
       //bool                                                  m_bDrawCursor;
 
-      __pointer(::object)                                   m_pobjectCoreUser;
+      //__pointer(::object)                                   m_pobjectCoreUser;
 
       // apex commented
       //__composite(::user::copydesk)                         m_pcopydesk;

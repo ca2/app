@@ -5,7 +5,6 @@
 #include "apex/os/_.h"
 #include "apex/os/_os.h"
 #include "acme/multithreading/mq.h"
-#include "acme/id.h"
 
 
 
@@ -119,7 +118,7 @@ thread::thread()
 
    m_epriority = priority_normal;
 
-   m_bFork = false;
+   //m_bFork = false;
 
    m_pmutexThreadUiPtra = nullptr;
 
@@ -137,7 +136,7 @@ thread::thread()
 
    m_bReady = false;
 
-   m_bRunThisThread = false;
+   //m_bitRunThisThread = false;
 
    m_pevReady = nullptr;
 
@@ -149,9 +148,9 @@ thread::thread()
 
    m_bDupHandle = false;
 
-   m_hthread1 = (HTHREAD) nullptr;
+   //m_hthread = (HTHREAD) nullptr;
 
-   m_ithread1 = 0;
+   //m_ithread = 0;
 
    m_nDisablePumpCount = 0;
 
@@ -168,7 +167,7 @@ thread::thread()
 }
 
 
-CLASS_DECL_APEX ::thread * get_thread_raw();
+//CLASS_DECL_APEX ::thread * get_thread_raw();
 
 
 void thread::thread_common_construct()
@@ -183,16 +182,16 @@ void thread::thread_common_construct()
 
    }
 
-   if (::get_thread_raw() != nullptr)
+   if (::get_thread() != nullptr)
    {
 
-      m_bAvoidProcFork = ::get_thread_raw()->m_bAvoidProcFork;
+      m_bitAvoidProcFork = ::get_thread()->m_bitAvoidProcFork;
 
    }
    else
    {
 
-      m_bAvoidProcFork = false;
+      m_bitAvoidProcFork = false;
 
    }
 
@@ -265,6 +264,25 @@ void thread::on_pos_run_thread()
 }
 
 
+
+
+
+bool thread::set_thread_name(const char* pszThreadName)
+{
+
+   m_strThreadName = pszThreadName;
+
+   if (m_strThreadTag.is_empty() && m_strThreadName.has_char())
+   {
+
+      m_strThreadTag = m_strThreadName;
+
+   }
+
+   return true;
+
+}
+
 void thread::term_thread()
 {
 
@@ -275,31 +293,63 @@ void thread::term_thread()
 
    }
 
+   {
+
+      sync_lock sl(mutex());
+
+      auto elementaNotify = m_elementaNotify;
+
+      for (auto& pelement : elementaNotify)
+      {
+
+         pelement->thread_remove(this);
+
+         pelement->thread_on_term(this);
+
+      }
+
+   }
+
+
    if (get_context_object())
    {
 
-      get_context_object()->release_reference(this);
+      get_context_object()->release_reference(this OBJ_REF_DBG_ADD_THIS);
 
    }
 
    if (get_context_application())
    {
 
-      get_context_application()->release_reference(this);
+      get_context_application()->release_reference(this OBJ_REF_DBG_ADD_THIS);
 
    }
 
    if (get_context_session())
    {
 
-      get_context_session()->release_reference(this);
+      get_context_session()->release_reference(this OBJ_REF_DBG_ADD_THIS);
 
    }
 
    if (get_context_system())
    {
 
-      get_context_system()->release_reference(this);
+      get_context_system()->release_reference(this OBJ_REF_DBG_ADD_THIS);
+
+   }
+
+   if (get_context_thread())
+   {
+
+      get_context_thread()->release_reference(this OBJ_REF_DBG_ADD_THIS);
+
+   }
+
+   if (m_pthreadParent)
+   {
+
+      m_pthreadParent->thread_remove(this);
 
    }
 
@@ -341,24 +391,26 @@ void thread::term_thread()
 
    }
 
+   try
+   {
+
+      finalize();
+
+   }
+   catch (...)
+   {
+
+   }
+
    __os_finalize();
 
    __set_thread_off();
 
-   ::thread_release();
+   ::thread_release(OBJ_REF_DBG_THIS);
 
    ::__term_thread();
 
-   if (m_pthreadParent)
-   {
-
-      m_pthreadParent->thread_remove(this);
-
-   }
-
    ::estatus estatus = m_result.m_estatus;
-
-   finalize();
 
    return estatus;
 
@@ -369,6 +421,26 @@ void thread::on_keep_alive()
 {
 
    m_tickHeartBeat.Now();
+
+}
+
+
+void thread::add_notify(::matter* pmatter)
+{
+
+   sync_lock sl(mutex());
+
+   m_elementaNotify.add_item(pmatter OBJ_REF_DBG_ADD_THIS_FUNCTION_LINE);
+
+}
+
+
+void thread::remove_notify(::matter* pmatter)
+{
+
+   sync_lock sl(mutex());
+
+   m_elementaNotify.remove_item(pmatter OBJ_REF_DBG_ADD_THIS);
 
 }
 
@@ -1082,10 +1154,10 @@ bool thread::defer_pump_message()
 }
 
 
-bool thread::on_thread_on_idle(thread *pimpl, LONG lCount)
+::estatus thread::on_thread_on_idle(thread *pimpl, LONG lCount)
 {
 
-   return true;
+   return ::success;
 
 }
 
@@ -1140,42 +1212,18 @@ void thread::Delete()
 bool thread::set_run()
 {
 
-   m_bRunThisThread = true;
+   m_bitAvoidProcFork = true;
 
    return true;
 
 }
 
-
-bool thread::set_thread_name(const char * pszThreadName)
-{
-
-   m_strThreadName = pszThreadName;
-
-   if (m_strThreadTag.is_empty() && m_strThreadName.has_char())
-   {
-
-      m_strThreadTag = m_strThreadName;
-
-   }
-
-   return true;
-
-}
-
-
-void thread::set_thread_run(bool bRun)
-{
-
-   m_bRunThisThread = bRun;
-
-}
 
 
 bool thread::is_set_finish() const
 {
 
-   return !m_bRunThisThread;
+   return !m_bitAvoidProcFork;
 
 }
 
@@ -1198,7 +1246,7 @@ void thread::set_finish()
       try
       {
 
-         m_bRunThisThread = false;
+         m_bitAvoidProcFork = false;
 
       }
       catch (...)
@@ -1299,7 +1347,7 @@ void thread::kick_idle()
 
 #ifdef WINDOWS_DESKTOP
 
-         ::PostThreadMessage(m_ithread1, WM_KICKIDLE, 0, 0);
+         ::PostThreadMessage(m_ithread, WM_KICKIDLE, 0, 0);
 
 #else
 
@@ -1388,26 +1436,26 @@ void thread::post_quit()
 
 #endif
 
-   try
-   {
+   // try
+   // {
 
-      /// this is quite dangerous
-      sync_lock sl(mutex());
+   //    /// this is quite dangerous
+   //    sync_lock sl(mutex());
 
-      __pointer(manual_reset_event) pev = m_pevSync;
+   //    __pointer(manual_reset_event) pev = m_pevSync;
 
-      if (pev.is_set())
-      {
+   //    if (pev.is_set())
+   //    {
 
-         pev->SetEvent();
+   //       pev->SetEvent();
 
-      }
+   //    }
 
-   }
-   catch (...)
-   {
+   // }
+   // catch (...)
+   // {
 
-   }
+   // }
 
    try
    {
@@ -1433,7 +1481,7 @@ void thread::post_quit()
 }
 
 
-bool thread::thread_add(::thread * pthread)
+::index thread::thread_add(::thread * pthread)
 {
 
    try
@@ -1447,7 +1495,6 @@ bool thread::thread_add(::thread * pthread)
          ::output_debug_string("user::shell::thread");
 
       }
-
 
       sync_lock sl(mutex());
 
@@ -1540,8 +1587,8 @@ void thread::thread_remove(::thread * pthread)
 
          }
 
-         post_quit();
 
+         post_quit();
       }
       else
       {
@@ -1665,7 +1712,7 @@ bool thread::thread_get_run() const
 
    }
 
-   return m_bRunThisThread || m_threada.has_element();
+   return m_bitAvoidProcFork || m_threada.has_element();
 
 }
 
@@ -1768,6 +1815,72 @@ u32 __thread_entry(void * p);
 
 }
 
+
+::estatus thread::on_task()
+{
+
+   ::u32 u = -1;
+
+   ::estatus estatus = error_failed;
+
+   ::estatus estatusOs = error_failed;
+
+   ::estatus estatusStart = error_failed;
+
+   {
+
+      estatusOs = osthread_init();
+
+      if (::succeeded(estatusOs))
+      {
+
+         estatusStart = __thread_init();
+
+      }
+
+   }
+
+   if (::succeeded(estatusStart))
+   {
+
+      estatus = __thread_main();
+
+   }
+
+   if (::succeeded(estatusOs))
+   {
+
+      __thread_term();
+
+      osthread_term();
+
+   }
+
+#if OBJ_REF_DBG
+
+   //release(OBJ_REF_DBG_P_NOTE(this, nullptr));
+
+   try
+   {
+
+      if (m_countReference > 1)
+      {
+
+         __check_pending_releases(this);
+
+      }
+
+   }
+   catch (...)
+   {
+
+   }
+
+#endif
+
+   return estatus;
+
+}
 
 
 //void thread::construct(thread_procedure procedure, thread_parameter parameter)
@@ -1877,7 +1990,7 @@ void thread::wait()
 sync_result thread::wait(const duration & duration)
 {
 
-   ITHREAD ithread = m_ithread1;
+   ITHREAD ithread = m_ithread;
 
    try
    {
@@ -1886,7 +1999,7 @@ sync_result thread::wait(const duration & duration)
 
       DWORD timeout = duration.is_pos_infinity() ? INFINITE : static_cast<DWORD>(duration.total_milliseconds());
 
-      HTHREAD hthread = m_hthread1;
+      HTHREAD hthread = m_hthread;
 
       if (hthread == NULL || hthread == INVALID_HANDLE_VALUE)
       {
@@ -2145,9 +2258,9 @@ size_t engine_symbol(char * sz, int n, DWORD_PTR * pdisplacement, DWORD_PTR dwAd
 bool thread::begin_thread(bool bSynchInitialization, ::e_priority epriority, UINT nStackSize, u32 uiCreateFlags, LPSECURITY_ATTRIBUTES psa)
 {
 
-   m_bRunThisThread = true;
+   m_bitAvoidProcFork = true;
 
-   ENSURE(m_hthread1 == (HTHREAD) nullptr);
+   ENSURE(m_hthread == (HTHREAD) nullptr);
 
    if(m_id.is_empty())
    {
@@ -2211,7 +2324,7 @@ bool thread::begin_thread(bool bSynchInitialization, ::e_priority epriority, UIN
    if (::is_set(get_context_object()) && get_context_object() != this)
    {
 
-      get_context_object()->add_reference(this);
+      get_context_object()->add_reference(this OBJ_REF_DBG_ADD_THIS_FUNCTION_LINE);
 
    }
 
@@ -2222,13 +2335,13 @@ bool thread::begin_thread(bool bSynchInitialization, ::e_priority epriority, UIN
 
    }
 
-   ITHREAD ithread = 0;
+   //ITHREAD ithread = 0;
 
-   HTHREAD hthread = 0;
+   //HTHREAD hthread = 0;
 
-   auto estatus = fork_run(epriority, nStackSize, uiCreateFlags, &ithread, &hthread);
+   auto estatus = _start(this, epriority, nStackSize, uiCreateFlags);
 
-   if(hthread == 0)
+   if(m_hthread == 0)
    {
 
       if (::is_set(get_context_object()))
@@ -2361,7 +2474,7 @@ bool thread::begin_synch(::e_priority epriority, UINT nStackSize, u32 uiCreateFl
 HTHREAD thread::get_hthread() const
 {
 
-   return m_hthread1;
+   return m_hthread;
 
 }
 
@@ -2369,7 +2482,7 @@ HTHREAD thread::get_hthread() const
 ITHREAD thread::get_ithread() const
 {
 
-   return m_ithread1;
+   return m_ithread;
 
 }
 
@@ -2379,15 +2492,15 @@ void thread::set_current_handles()
 
 #ifdef WINDOWS_DESKTOP
 
-   m_hthread1 = dup_handle(::get_current_hthread());
+   m_hthread = dup_handle(::get_current_hthread());
 
 #else
 
-   m_hthread1 = ::get_current_hthread();
+   m_hthread = ::get_current_hthread();
 
 #endif
 
-   m_ithread1 = ::get_current_ithread();
+   m_ithread = ::get_current_ithread();
 
 }
 
@@ -2395,7 +2508,7 @@ void thread::set_current_handles()
 iptr thread::item() const
 {
 
-   return (iptr)m_hthread1;
+   return (iptr)m_hthread;
 
 }
 
@@ -2408,7 +2521,7 @@ void thread::__priority_and_affinity()
 
 #if defined(WINDOWS_DESKTOP) || defined(LINUX)
 
-      int_bool bOk = ::SetThreadAffinityMask(m_hthread1, m_dwThreadAffinityMask) != 0;
+      int_bool bOk = ::SetThreadAffinityMask(m_hthread, m_dwThreadAffinityMask) != 0;
 
       if (bOk)
       {
@@ -2492,10 +2605,10 @@ void thread::__os_finalize()
 
    m_bDedicated = true;
 
-   if (!m_bRunThisThread)
+   if (!m_bitAvoidProcFork)
    {
 
-      m_bRunThisThread = true;
+      m_bitAvoidProcFork = true;
 
    }
 
@@ -2563,7 +2676,7 @@ void thread::__os_finalize()
 
    {
 
-      ::set_thread(this);
+      ::set_task(this OBJ_REF_DBG_ADD_THIS_FUNCTION_LINE);
 
       processor_cache_oriented_set_thread_memory_pool(0); // set default handler cache oriented thread memory pool index to 0 ("zero") (The First One)
 
@@ -2615,7 +2728,7 @@ void thread::__set_thread_on()
 
    //auto id = ::get_current_ithread();
 
-   ::multithreading::thread_register(m_ithread1, this);
+   ::multithreading::thread_register(m_ithread, this);
 
 
    // apex commented
@@ -2663,13 +2776,13 @@ void thread::__set_thread_off()
 
    ::thread * pthread = this;
 
-   ::multithreading::thread_unregister(m_ithread1, pthread);
+   ::multithreading::thread_unregister(m_ithread, pthread);
 
    auto id = ::get_current_ithread();
 
    set_thread_off(::get_current_ithread());
 
-   ::set_thread(nullptr);
+   ::set_task(nullptr);
 
 }
 
@@ -2827,10 +2940,10 @@ bool thread::post_message(UINT message,WPARAM wParam,lparam lParam)
 
 #ifdef WINDOWS_DESKTOP
 
-   if (m_hthread1 && !m_bAuraMessageQueue && (m_bMessageThread || message != WM_QUIT))
+   if (m_hthread && !m_bAuraMessageQueue && (m_bMessageThread || message != WM_QUIT))
    {
 
-      int_bool bOk = ::PostThreadMessage(m_ithread1, message, wParam, lParam) != FALSE;
+      int_bool bOk = ::PostThreadMessage(m_ithread, message, wParam, lParam) != FALSE;
 
       if (bOk)
       {
@@ -2885,7 +2998,7 @@ bool thread::send_object(UINT message, WPARAM wParam, lparam lParam, ::duration 
 
    }
 
-   if (m_hthread1 == (HTHREAD)nullptr || !thread_get_run())
+   if (m_hthread == (HTHREAD)nullptr || !thread_get_run())
    {
 
       if (lParam != 0)
@@ -3233,7 +3346,7 @@ error:;
    try
    {
 
-      m_bRunThisThread = false;
+      m_bitAvoidProcFork = false;
 
    }
    catch (...)
@@ -3251,7 +3364,7 @@ mq* thread::_get_mq()
 
    sync_lock sl(mutex());
 
-   if(!m_bRunThisThread || m_bThreadClosed)
+   if(!m_bitAvoidProcFork || m_bThreadClosed)
    {
 
       if (m_pmq)
@@ -3272,7 +3385,7 @@ mq* thread::_get_mq()
 
    }
 
-   auto pmq = ::get_mq(m_ithread1, true);
+   auto pmq = ::get_mq(m_ithread, true);
 
    auto estatus = __compose(m_pmq, pmq);
 
@@ -3304,7 +3417,7 @@ int_bool thread::peek_message(LPMESSAGE pMsg, oswindow oswindow, UINT wMsgFilter
 
 #ifdef WINDOWS_DESKTOP
 
-   if (m_hthread1 && !m_bAuraMessageQueue)
+   if (m_hthread && !m_bAuraMessageQueue)
    {
 
       if (::PeekMessage(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax, wRemoveMsg))
@@ -3357,7 +3470,7 @@ int_bool thread::get_message(LPMESSAGE pMsg, oswindow oswindow, UINT wMsgFilterM
       if (m_pmq->peek_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax, true))
       {
 
-         m_bRunThisThread = false;
+         m_bitAvoidProcFork = false;
 
          bQuit = pMsg->message == WM_QUIT;
 
@@ -3374,7 +3487,7 @@ int_bool thread::get_message(LPMESSAGE pMsg, oswindow oswindow, UINT wMsgFilterM
 
    }
 
-   if (m_hthread1)
+   if (m_hthread)
    {
 
       int iRet = ::GetMessage(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax);
@@ -3445,7 +3558,7 @@ int_bool thread::post_message(oswindow oswindow, UINT uMessage, WPARAM wParam, L
 
 #ifdef WINDOWS_DESKTOP
 
-   if (m_hthread1 && !m_bAuraMessageQueue)
+   if (m_hthread && !m_bAuraMessageQueue)
    {
 
       if (::PostMessage(oswindow, uMessage, wParam, lParam))
@@ -3538,7 +3651,7 @@ void thread::dump(dump_context & dumpcontext) const
 thread::operator HTHREAD() const
 {
 
-   return is_null(this) ? (HTHREAD) nullptr : m_hthread1;
+   return is_null(this) ? (HTHREAD) nullptr : m_hthread;
 
 }
 
@@ -3626,7 +3739,7 @@ void thread::message_handler(::message::base * pbase)
 }
 
 
-bool thread::process_message()
+::estatus thread::process_message()
 {
 
    try
@@ -3781,7 +3894,7 @@ bool thread::process_message()
 }
 
 
-bool thread::process_base_message(::message::base * pbase)
+::estatus thread::process_base_message(::message::base * pbase)
 {
 
    message_handler(pbase);
@@ -3791,7 +3904,7 @@ bool thread::process_base_message(::message::base * pbase)
 }
 
 
-bool thread::raw_process_message()
+::estatus thread::raw_process_message()
 {
 
    try
@@ -3838,7 +3951,7 @@ bool thread::set_thread_priority(::e_priority epriority)
 
    i32 nPriority = get_os_thread_priority(epriority);
 
-   bool bOk = ::SetThreadPriority(m_hthread1, nPriority) != FALSE;
+   bool bOk = ::SetThreadPriority(m_hthread, nPriority) != FALSE;
 
    if (!bOk)
    {
@@ -3859,9 +3972,9 @@ bool thread::set_thread_priority(::e_priority epriority)
 ::e_priority thread::thread_priority()
 {
 
-   ASSERT(m_hthread1 != NULL_HTHREAD);
+   ASSERT(m_hthread != NULL_HTHREAD);
 
-   i32 nPriority = ::GetThreadPriority(m_hthread1);
+   i32 nPriority = ::GetThreadPriority(m_hthread);
 
    ::e_priority epriority = ::get_os_thread_scheduling_priority(nPriority);
 
@@ -3902,7 +4015,7 @@ void thread::start()
 
 #if defined (WINDOWS_DESKTOP)
 
-   ::ResumeThread(m_hthread1);
+   ::ResumeThread(m_hthread);
 
 #endif
 
@@ -3912,11 +4025,11 @@ void thread::start()
 u32 thread::ResumeThread()
 {
 
-   ASSERT(m_hthread1 != NULL_HTHREAD);
+   ASSERT(m_hthread != NULL_HTHREAD);
 
 #if defined (WINDOWS_DESKTOP)
 
-   return ::ResumeThread(m_hthread1);
+   return ::ResumeThread(m_hthread);
 
 #else
 
@@ -4061,7 +4174,7 @@ CLASS_DECL_APEX bool is_active(::thread * pthread)
 
    }
 
-   return is_thread_on(pthread->m_ithread1);
+   return is_thread_on(pthread->m_ithread);
 
 }
 
@@ -4610,7 +4723,7 @@ CLASS_DECL_APEX bool app_sleep(tick tick)
 CLASS_DECL_APEX void defer_create_thread(::layered* pobjectContext)
 {
 
-   auto pthread = ::get_thread();
+   auto pthread = ::get_task();
 
    if (::is_null(pthread))
    {
@@ -4621,7 +4734,7 @@ CLASS_DECL_APEX void defer_create_thread(::layered* pobjectContext)
 
       pthreadNew->set_thread_run();
 
-      set_thread(pthreadNew);
+      set_task(pthreadNew);
 
       sync_lock sl(g_pmutexThreadDeferredCreation);
 

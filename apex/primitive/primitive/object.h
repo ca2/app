@@ -78,7 +78,7 @@ public:
    virtual void send(const ::id & idFuture, const ::var & var);
 
 
-   template < typename PRED >
+   //template < typename METHOD >
    inline object & operator +=(const ::method & method)
    {
 
@@ -88,7 +88,7 @@ public:
 
    }
 
-   template < typename PRED >
+   //template < typename FUTURE >
    inline object& operator +=(const ::future & future)
    {
 
@@ -99,39 +99,69 @@ public:
    }
 
 
-   template < typename PRED >
-   inline void add_method(const ::id & id, PRED pred, ::matter* pobjectHold = nullptr)
+
+
+
+   template < typename METHOD >
+   inline void add_method(const ::id & id, METHOD method, ::matter* pobjectHold = nullptr)
    {
 
-      add(::method(id, pred, pobjectHold));
+      add(::method(id, method, pobjectHold));
 
    }
 
-   template < typename PRED >
-   inline void add_future(const ::id & id, PRED pred, ::matter * pobjectHold = nullptr)
+   template < typename FUTURE >
+   inline void add_future(const ::id & id, FUTURE future, ::matter * pobjectHold = nullptr)
    {
 
-      add(::future(id, pred, pobjectHold));
+      add(::future(id, future, pobjectHold));
 
    }
 
-   template < typename PRED >
-   inline void add(enum_method emethod, PRED pred)
+   template < typename METHOD >
+   inline void add(enum_method emethod, METHOD method)
    {
 
-      add(::method((::i64) emethod, pred));
+      add(::method((::i64) emethod, method));
 
    }
 
-   template < typename PRED >
-   inline void add(enum_future efuture, PRED pred)
+   template < typename FUTURE >
+   inline void add(enum_future efuture, FUTURE future)
    {
 
-      add(::future((::i64) efuture, pred));
+      add(::future((::i64) efuture, future));
 
    }
 
    inline var context_value(const var& var);
+
+
+   virtual ::index thread_add(::thread* pthread) override;
+   virtual void thread_remove(::thread* pthread) override;
+   virtual void thread_remove_all();
+   virtual bool thread_is_empty() const;
+   virtual const __pointer_array(::thread) * thread_array_get() const;
+   virtual __pointer_array(::thread)* thread_array_get();
+
+   
+
+   template < typename THREAD >
+   inline __pointer(THREAD) start(
+      ::matter* pmatter,
+      ::e_priority epriority = priority_normal,
+      u32 nStackSize = 0,
+      u32 dwCreateFlags = 0)
+   {
+
+      auto pthread = __create_new < THREAD >();
+
+      ::task::start(pthread);
+
+      return pthread;
+
+   }
+
 
    template < typename BASE_TYPE >
    void save_to(const var & varFile, BASE_TYPE * pobject);
@@ -170,11 +200,11 @@ public:
    virtual string get_text(const var& var, const ::id& id) override;
 
 #ifdef DEBUG
-   virtual void set_context(::context* pcontext);
-   virtual void set_context_thread(::thread* pthread);
-   virtual void set_context_app(::apex::application* pappContext);
-   virtual void set_context_session(::apex::session* psessionContext);
-   virtual void set_context_system(::apex::system* psystemContext);
+   virtual void set_context(::context* pcontext OBJ_REF_DBG_ADD_PARAMS);
+   virtual void set_context_thread(::thread* pthread OBJ_REF_DBG_ADD_PARAMS);
+   virtual void set_context_app(::apex::application* pappContext OBJ_REF_DBG_ADD_PARAMS);
+   virtual void set_context_session(::apex::session* psessionContext OBJ_REF_DBG_ADD_PARAMS);
+   virtual void set_context_system(::apex::system* psystemContext OBJ_REF_DBG_ADD_PARAMS);
    //virtual void set_context_user(::object * puserContext);
 #else
    inline void set_context(::context* pcontext);
@@ -244,10 +274,10 @@ public:
    inline ::estatus __compose(__composite(BASE_TYPE) & pbase);
 
    template < typename BASE_TYPE, typename SOURCE >
-   inline ::estatus __compose(__composite(BASE_TYPE) & pbase, const SOURCE * psource);
+   inline ::estatus __compose(__composite(BASE_TYPE) & pbase, const SOURCE * psource OBJ_REF_DBG_ADD_PARAMS);
 
    template < typename BASE_TYPE, typename SOURCE >
-   inline ::estatus __compose(__composite(BASE_TYPE) & pbase, const __pointer(SOURCE) & psource);
+   inline ::estatus __compose(__composite(BASE_TYPE) & pbase, const __pointer(SOURCE) & psource OBJ_REF_DBG_ADD_PARAMS);
 
    template < typename BASE_TYPE >
    inline ::estatus __id_compose(__composite(BASE_TYPE) & pbase, const ::id & id);
@@ -295,45 +325,43 @@ public:
    inline ::estatus __construct_new(__pointer(TYPE) & pbase);
 
    template < typename BASE_TYPE >
-   inline ::estatus __release(__composite(BASE_TYPE) & pcomposite);
+   inline ::estatus __release(__composite(BASE_TYPE) & pcomposite OBJ_REF_DBG_ADD_PARAMS);
 
    template < typename BASE_TYPE >
-   inline ::estatus __release(__reference(BASE_TYPE) & preference);
+   inline ::estatus __release(__reference(BASE_TYPE) & preference OBJ_REF_DBG_ADD_PARAMS);
 
    template < typename SOURCE >
-   inline ::estatus release_reference(__pointer(SOURCE) & psource);
+   inline ::estatus release_reference(__pointer(SOURCE) & psource OBJ_REF_DBG_ADD_PARAMS);
 
 
-   virtual ::estatus add_composite(::matter* pobject) override;
-   virtual ::estatus add_reference(::matter* pobject) override;
+   virtual ::estatus add_composite(::matter * pobject OBJ_REF_DBG_ADD_PARAMS) override;
+   virtual ::estatus add_reference(::matter * pobject OBJ_REF_DBG_ADD_PARAMS) override;
 
 
-   virtual ::estatus release_composite(::matter* pobject) override;
-   virtual ::estatus release_reference(::matter* pobject) override;
-
-
+   virtual ::estatus release_composite(::matter * pobject OBJ_REF_DBG_ADD_PARAMS) override;
+   virtual ::estatus release_reference(::matter * pobject OBJ_REF_DBG_ADD_PARAMS) override;
 
 
    template < typename BASE_TYPE >
-   inline ::estatus add_composite(__composite(BASE_TYPE) & p);
+   inline ::estatus add_composite(__composite(BASE_TYPE) & pcomposite OBJ_REF_DBG_ADD_PARAMS);
 
    template < typename BASE_TYPE, typename SOURCE >
-   inline ::estatus __refer(__reference(BASE_TYPE) & p, const SOURCE * psource, const char * pszObjRefDbg = nullptr);
+   inline ::estatus __refer(__reference(BASE_TYPE) & preference, const SOURCE * psource OBJ_REF_DBG_ADD_PARAMS);
 
    template < typename BASE_TYPE, typename SOURCE >
-   inline ::estatus __refer(__reference(BASE_TYPE) & p, const __pointer(SOURCE) & psource, const char* pszObjRefDbg = nullptr);
+   inline ::estatus __refer(__reference(BASE_TYPE) & preference, const __pointer(SOURCE) & psource OBJ_REF_DBG_ADD_PARAMS);
 
    template < typename BASE_TYPE, typename SOURCE >
-   inline ::estatus __refer(__reference(BASE_TYPE) & p, const ::primitive::member < SOURCE > & psource, const char* pszObjRefDbg = nullptr);
+   inline ::estatus __refer(__reference(BASE_TYPE) & preference, const ::primitive::member < SOURCE > & psource OBJ_REF_DBG_ADD_PARAMS);
 
    template < typename SOURCE >
-   inline ::estatus add_reference(SOURCE* psource);
+   inline ::estatus add_reference(SOURCE* psource OBJ_REF_DBG_ADD_PARAMS);
 
    template < typename SOURCE >
-   inline ::estatus add_reference(__pointer(SOURCE)& psource);
+   inline ::estatus add_reference(__pointer(SOURCE)& psource OBJ_REF_DBG_ADD_PARAMS);
 
    template < typename SOURCE >
-   inline ::estatus add_reference(__reference(SOURCE)& psource);
+   inline ::estatus add_reference(__reference(SOURCE)& psource OBJ_REF_DBG_ADD_PARAMS);
 
    virtual void delete_this() override;
 
@@ -341,13 +369,13 @@ public:
 
    static void system(const char * pszProjectName);
 
-   virtual bool enable_application_events(bool bEnable = true);
+   virtual ::estatus enable_application_events(bool bEnable = true);
 
-   virtual bool handle_exception(::exception_pointer pe);
+   virtual ::estatus handle_exception(::exception_pointer pe);
 
-   virtual bool top_handle_exception(::exception_pointer pe);
+   virtual ::estatus top_handle_exception(::exception_pointer pe);
 
-   virtual bool process_exception(::exception_pointer pe);
+   virtual ::estatus process_exception(::exception_pointer pe);
 
 
    ::object * parent_property_set_holder() const override;
@@ -438,9 +466,6 @@ public:
    //virtual ::image_result load_dib(const ::file::path & pathDib);
 
 
-   virtual void start_clock(e_clock eclock, duration duration);
-   virtual void _task_clock(e_clock eclock, duration duration);
-   virtual void on_clock(e_clock eclock);
 
    bool IsSerializable() const;
 
@@ -451,37 +476,120 @@ public:
    void single_fork(const runnable_array & runnablea);
    void multiple_fork(const runnable_array & runnablea);
 
-   template < typename PRED >
-   inline ::thread_pointer defer_fork(const char * pszTag, PRED pred);
 
-   template < typename PRED >
-   inline ::thread_pointer & defer_fork(::thread_pointer & pthread, PRED pred);
-
-   inline ::thread_pointer & defer_fork(::thread_pointer & pthread)
+   template < typename THREAD, typename METHOD >
+   inline __pointer(THREAD)& defer_start(__pointer(THREAD)& pthread, METHOD method)
    {
 
-      return defer_fork(pthread,
-         [this]()
-         {
+      if (pthread && pthread->is_running())
+      {
 
-            this->call();
+         return pthread;
 
-         });
+      }
+
+      start(pthread, method);
+
+      return pthread;
 
    }
 
 
-   template < typename PRED >
-   inline ::thread_pointer & fork(::thread_pointer & pthread, PRED pred, const char * pszTag = nullptr, int iCallStackAddUp = 0);
+   template < typename THREAD >
+   inline __pointer(THREAD)& defer_start(__pointer(THREAD)& pthread)
+   {
 
-   template < typename PRED >
-   inline auto fork(PRED pred, const char * pszTag, int iCallStackAddUp = 0, e_priority = priority_normal);
+      if (pthread && pthread->is_running())
+      {
 
-   template < typename PRED >
-   inline auto opt_fork(PRED pred);
+         return pthread;
 
-   template < typename PRED >
-   inline auto fork(PRED pred);
+      }
+
+      start(pthread);
+
+      return pthread;
+
+   }
+
+
+   //::thread_pointer get_thread(const string& strThread)
+   //{
+
+   //   auto 
+
+
+   //}
+
+   //template < typename METHOD >
+   //inline ::thread_pointer start(const string & strThread, METHOD method)
+   //{
+
+   //   auto pthread = get_thread(strThread);
+
+   //   start(pthread);
+
+   //   return pthread;
+
+   //}
+
+   template < typename THREAD, typename METHOD >
+   inline __pointer(THREAD) & start(__pointer(THREAD) & pthread, METHOD method)
+   {
+
+      pthread->m_pmatter = __pred_method(method);
+
+      start(pthread);
+
+      return pthread;
+
+   }
+
+
+   template < typename THREAD >
+   inline __pointer(THREAD)& start(__pointer(THREAD) & pthread)
+   {
+
+      ::task::start(pthread);
+
+      return pthread;
+
+   }
+
+
+   template < typename METHOD >
+   inline ::thread_pointer fork(METHOD method);
+
+
+   template < typename METHOD >
+   inline ::thread_pointer opt_fork(METHOD method)
+   {
+
+      {
+
+         auto ptask = ::get_task();
+
+         sync_lock sl(ptask->mutex());
+
+         if (ptask && ptask->m_bitIsRunning)
+         {
+
+            ptask->m_pmatter = ptask;
+
+            return ptask;
+
+         }
+
+      }
+
+      return fork(method);
+
+   }
+
+
+   //template < typename METHOD >
+   //inline ::thread_pointer fork(METHOD method);
+
 
    template < typename PRED >
    inline auto new_pred_thread(PRED pred);
@@ -510,7 +618,7 @@ public:
       u32 dwCreateFlags = 0,
       LPSECURITY_ATTRIBUTES pSecurityAttrs = nullptr);
 
-   ::thread_pointer defer_fork(string strThread = "");
+   //::thread_pointer defer_fork(string strThread = "");
 
 //#ifdef __APPLE__
 //   virtual void ns_main_async(dispatch_block_t block);
@@ -555,20 +663,20 @@ public:
    }
 
 
-   template < typename TYPE >
-   auto member_fork(::estatus (TYPE:: * pfn)(), ::e_priority epriority = ::priority_normal)
-   {
+   //template < typename TYPE >
+   //auto member_fork(::estatus (TYPE:: * pfn)(), ::e_priority epriority = ::priority_normal)
+   //{
 
-      TYPE * ptype = dynamic_cast <TYPE *>(this);
+   //   TYPE * ptype = dynamic_cast <TYPE *>(this);
 
-      return ptype->fork([ptype, pfn]()
-         {
+   //   return ptype->fork([ptype, pfn]()
+   //      {
 
-            return (ptype->*pfn)();
+   //         return (ptype->*pfn)();
 
-         }, NULL, 0, epriority);
+   //      }, NULL, 0, epriority);
 
-   }
+   //}
 
 
    template < typename TYPE >

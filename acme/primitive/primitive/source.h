@@ -25,6 +25,10 @@ public:
 
    ::update * update(const ::id& id);
 
+   virtual void notify_update(const ::id& id);
+
+   virtual void notify_update(const ::id& id, const ::action_context& actioncontext);
+
    virtual void apply_update(const ::id& id);
 
    virtual void apply_update(const ::id& id, const ::action_context & actioncontext);

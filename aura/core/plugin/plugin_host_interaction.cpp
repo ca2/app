@@ -102,7 +102,7 @@ namespace plugin
    void host_interaction::_001OnTimer(::timer * ptimer)
    {
       ::user::box::_001OnTimer(ptimer);;
-      if(ptimer->m_nIDEvent == 88881115)
+      if(ptimer->m_uEvent == 88881115)
       {
          KillTimer(19841115);
          m_pplugin->ready_on_main_thread();

@@ -41,7 +41,7 @@ CLASS_DECL_ACME i32 __cdecl _memory_type(const void * p);
 // bool defer_co_initialize_ex(bool bMultiThread, bool bDisableOleDDE)
 // {
 
-//    auto pthread = ::get_thread();
+//    auto pthread = ::get_task();
 
 //    if(!pthread)
 //    {

@@ -282,8 +282,8 @@ namespace uwp
 
 
       // Timer Functions
-      virtual bool SetTimer(UINT_PTR nIDEvent, UINT nElapse, PFN_TIMER pfnTimer);
-      virtual bool KillTimer(uptr nIDEvent);
+      virtual bool SetTimer(UINT_PTR uEvent, UINT nElapse, PFN_TIMER pfnTimer);
+      virtual bool KillTimer(uptr uEvent);
 
       // Window State Functions
       virtual bool IsWindowEnabled();
@@ -543,7 +543,7 @@ namespace uwp
       void OnRButtonDown(UINT nFlags, const ::point & point);
       void OnRButtonUp(UINT nFlags, const ::point & point);
       DECL_GEN_SIGNAL(_001OnSetCursor);
-      void OnTimer(uptr nIDEvent);
+      void OnTimer(uptr uEvent);
 
       // Initialization message handler member functions
       void OnInitMenu(::user::menu* pMenu);

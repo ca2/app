@@ -1493,7 +1493,7 @@ namespace experience
       //if(m_pframe != nullptr)
       //{
 
-      //   if(!m_pframe->_001OnTimer((UINT) ptimer->m_nIDEvent))
+      //   if(!m_pframe->_001OnTimer((UINT) ptimer->m_uEvent))
       //   {
 
       //      ptimer->finalize();

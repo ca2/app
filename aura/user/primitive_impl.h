@@ -13,7 +13,7 @@ namespace user
 
       ::user::interaction_impl *          m_pinteractionimpl;
       ::user::interaction_child *         m_pinteractionchild;
-      __reference(::thread)               m_pthreadUserImpl;
+      //__reference(::thread)               m_pthreadUserImpl;
 
       bool                                m_bDrawFlagsReady;
       bool                                m_bDestroyImplOnly;
@@ -263,8 +263,8 @@ virtual bool setWMClass(const char * psz);
       virtual bool get_rect_normal(RECT * prect);
 
 
-      virtual bool SetTimer(uptr nIDEvent, UINT nElapse, PFN_TIMER pfnTimer = nullptr) override;
-      virtual bool KillTimer(uptr nIDEvent) override;
+      virtual bool SetTimer(uptr uEvent, UINT nElapse, PFN_TIMER pfnTimer = nullptr) override;
+      virtual bool KillTimer(uptr uEvent) override;
 
       virtual void _001OnTimer(::timer * ptimer) override;
 

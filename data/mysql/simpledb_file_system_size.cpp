@@ -479,7 +479,7 @@ void FileSystemSizeWnd::_001OnTimer(::timer * ptimer)
 #ifdef WINDOWS_DESKTOP
 
    super::_001OnTimer(ptimer);;
-   if(ptimer->m_nIDEvent == 100)
+   if(ptimer->m_uEvent == 100)
    {
       //::PostMessage(pbase->m_wparam, WM_COPYDATA, (WPARAM) get_handle(), (LPARAM) &data);
       if(m_sizea.get_size() > 0)

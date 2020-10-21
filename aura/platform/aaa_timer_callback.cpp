@@ -9,7 +9,7 @@ bool timer_callback::on_timer(timer * ptimer)
 }
 
 
-bool timer_callback::timer_is_ok()
+bool timer_callback::e_timer_is_ok()
 {
 
    return true;

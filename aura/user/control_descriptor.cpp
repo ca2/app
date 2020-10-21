@@ -169,9 +169,6 @@ namespace user
    void control_descriptor::control_descriptor_common_construct()
    {
 
-      m_playout = nullptr;
-      m_puserinteractionParent = nullptr;
-      m_playout = nullptr;
       m_id.is_empty();
       m_iItem = 0;
       m_econtroltype = control_type_none;

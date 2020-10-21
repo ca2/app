@@ -75,7 +75,7 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 
    ::count nMoveCount = (::count_cast) m_nSize - (nUpperBound);
 
-   ALLOCATOR::destruct(m_pData + nIndex, nCount);
+   ALLOCATOR::destruct_count(m_pData + nIndex, nCount OBJ_REF_DBG_ADD_THIS);
 
    if(nMoveCount)
    {
@@ -115,11 +115,11 @@ void array_base < TYPE, ARG_TYPE, ALLOCATOR >::free_extra()
          TYPE * pNewData;
 #if defined(__MCRTDBG) || MEMDLEAK
 #ifdef __MCRTDBG
-         if (::get_thread() != nullptr)
+         if (::get_task() != nullptr)
          {
-            if (::get_thread()->m_strFile.has_char())
+            if (::get_task()->m_strFile.has_char())
             {
-               pNewData = (TYPE *)ALLOCATOR::alloc(m_nSize * sizeof(TYPE), ::get_thread()->m_strFile, ::get_thread()->m_iLine);
+               pNewData = (TYPE *)ALLOCATOR::alloc(m_nSize * sizeof(TYPE), ::get_task()->m_strFile, ::get_task()->m_iLine);
             }
             else
             {
@@ -131,9 +131,9 @@ void array_base < TYPE, ARG_TYPE, ALLOCATOR >::free_extra()
             pNewData = (TYPE *)ALLOCATOR::alloc(m_nSize * sizeof(TYPE), __FILE__, __LINE__);
          }
 #else
-         if (::get_thread()->m_strDebug.has_char())
+         if (::get_task()->m_strDebug.has_char())
          {
-            pNewData = (TYPE *)ALLOCATOR::alloc(m_nSize * sizeof(TYPE), ::get_thread()->m_strDebug, 0);
+            pNewData = (TYPE *)ALLOCATOR::alloc(m_nSize * sizeof(TYPE), ::get_task()->m_strDebug, 0);
          }
          else
          {
@@ -165,7 +165,7 @@ void array_base < TYPE, ARG_TYPE, ALLOCATOR >::destroy()
    if(m_pData != nullptr)
    {
 
-      ALLOCATOR::destruct(m_pData, (::count_cast) m_nSize);
+      ALLOCATOR::destruct_count(m_pData, (::count_cast) m_nSize OBJ_REF_DBG_ADD_THIS);
 
       ALLOCATOR::_free(m_pData);
 
@@ -210,7 +210,7 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 
       ::zero(m_pData + nIndex, nCount* sizeof(TYPE));
 
-      ALLOCATOR::construct(m_pData + nIndex,nCount);
+      ALLOCATOR::construct_count(m_pData + nIndex,nCount);
 
    }
 
@@ -243,7 +243,7 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 
    allocate(nOldSize + nSrcSize);
 
-   ALLOCATOR::copy(m_pData + nOldSize, src.m_pData, nSrcSize);
+   ALLOCATOR::copy_count(m_pData + nOldSize, src.m_pData, nSrcSize);
 
    return nOldSize;
 
@@ -265,7 +265,7 @@ void array_base < TYPE, ARG_TYPE, ALLOCATOR >::copy(const array_base < TYPE, ARG
 
    allocate(nSrcSize);
 
-   ALLOCATOR::copy(m_pData,src.m_pData, nSrcSize);
+   ALLOCATOR::copy_count(m_pData,src.m_pData, nSrcSize);
 
 }
 
@@ -386,7 +386,7 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 
       ::zero(m_pData + nIndex, nCount* sizeof(TYPE));
 
-      ALLOCATOR::construct(m_pData + nIndex, nCount);
+      ALLOCATOR::construct_count(m_pData + nIndex, nCount);
 
    }
 
@@ -447,21 +447,21 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 #endif
       ::count nAllocSize = (::count) max(nNewSize, m_nGrowBy);
 #if defined(__MCRTDBG) || MEMDLEAK
-      if (::get_thread() != nullptr)
+      if (::get_task() != nullptr)
       {
 #if defined(MEMDLEAK)
-         if (::get_thread()->m_strFile.has_char())
+         if (::get_task()->m_strFile.has_char())
          {
-            m_pData = (TYPE *)ALLOCATOR::alloc(nAllocSize * sizeof(TYPE), ::get_thread()->m_strFile, 0);
+            m_pData = (TYPE *)ALLOCATOR::alloc(nAllocSize * sizeof(TYPE), ::get_task()->m_strFile, 0);
          }
          else
          {
             m_pData = (TYPE *)ALLOCATOR::alloc(nAllocSize * sizeof(TYPE), __FILE__, __LINE__);
          }
 #else
-         if (::get_thread()->m_strDebug.has_char())
+         if (::get_task()->m_strDebug.has_char())
          {
-            m_pData = (TYPE *)ALLOCATOR::alloc(nAllocSize * sizeof(TYPE), ::get_thread()->m_strDebug, ::get_thread()->m_iLine);
+            m_pData = (TYPE *)ALLOCATOR::alloc(nAllocSize * sizeof(TYPE), ::get_task()->m_strDebug, ::get_task()->m_iLine);
          }
          else
          {
@@ -511,11 +511,11 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
       TYPE * pNewData;
 #if defined(__MCRTDBG) || MEMDLEAK
 #ifdef __MCRTDBG
-      if (::get_thread() != nullptr)
+      if (::get_task() != nullptr)
       {
-         if (::get_thread()->m_strFile.has_char())
+         if (::get_task()->m_strFile.has_char())
          {
-            pNewData = (TYPE *)ALLOCATOR::alloc(nNewMax * sizeof(TYPE), ::get_thread()->m_strFile, ::get_thread()->m_iLine);
+            pNewData = (TYPE *)ALLOCATOR::alloc(nNewMax * sizeof(TYPE), ::get_task()->m_strFile, ::get_task()->m_iLine);
          }
          else
          {
@@ -527,9 +527,9 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
          pNewData = (TYPE *)ALLOCATOR::alloc(nNewMax * sizeof(TYPE), __FILE__, __LINE__);
       }
 #else
-      if (::get_thread()->m_strDebug.has_char())
+      if (::get_task()->m_strDebug.has_char())
       {
-         pNewData = (TYPE *)ALLOCATOR::alloc(nNewMax * sizeof(TYPE), ::get_thread()->m_strDebug, ::get_thread()->m_iLine);
+         pNewData = (TYPE *)ALLOCATOR::alloc(nNewMax * sizeof(TYPE), ::get_task()->m_strDebug, ::get_task()->m_iLine);
       }
       else
       {
@@ -591,7 +591,7 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
       if(m_pData != nullptr)
       {
 
-         ALLOCATOR::destruct(m_pData, __count(m_nSize));
+         ALLOCATOR::destruct_count(m_pData, __count(m_nSize)  OBJ_REF_DBG_ADD_THIS);
 
          ALLOCATOR::_free(m_pData);
 
@@ -617,15 +617,15 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 
 #if MEMDLEAK  || defined(__MCRTDBG)
 
-      if(::get_thread() != nullptr)
+      if(::get_task() != nullptr)
       {
 
 #if defined(__MCRTDBG)
 
-         if(::get_thread()->m_strFile.has_char())
+         if(::get_task()->m_strFile.has_char())
          {
 
-            m_pData = ALLOCATOR::alloc(nAllocSize, ::get_thread()->m_strFile, ::get_thread()->m_iLine);
+            m_pData = ALLOCATOR::alloc(nAllocSize, ::get_task()->m_strFile, ::get_task()->m_iLine);
 
          }
          else
@@ -637,16 +637,16 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 
 #else
 
-         if (::get_thread()->m_strDebug.has_char())
+         if (::get_task()->m_strDebug.has_char())
          {
 
-            m_pData = ALLOCATOR::alloc(nAllocSize, "thread://" + demangle(typeid(*::get_thread()).name()) + ", " + ::get_thread()->m_strDebug + ", " + string(__FILE__), __LINE__);
+            m_pData = ALLOCATOR::alloc(nAllocSize, "thread://" + demangle(typeid(*::get_task()).name()) + ", " + ::get_task()->m_strDebug + ", " + string(__FILE__), __LINE__);
 
          }
          else
          {
 
-            m_pData = ALLOCATOR::alloc(nAllocSize, "thread://" + demangle(typeid(*::get_thread()).name()) + ", " + string(__FILE__), __LINE__);
+            m_pData = ALLOCATOR::alloc(nAllocSize, "thread://" + demangle(typeid(*::get_task()).name()) + ", " + string(__FILE__), __LINE__);
 
          }
 
@@ -667,7 +667,7 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 
 #endif
 
-      ALLOCATOR::construct(m_pData,nNewSize);
+      ALLOCATOR::construct_count(m_pData,nNewSize);
 
       m_nSize = nNewSize;
 
@@ -680,13 +680,13 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
       if(nNewSize > m_nSize)
       {
 
-         ALLOCATOR::construct(m_pData + m_nSize,nNewSize - __count(m_nSize));
+         ALLOCATOR::construct_count(m_pData + m_nSize,nNewSize - __count(m_nSize));
 
       }
       else if(m_nSize > nNewSize)
       {
 
-         ALLOCATOR::destruct(m_pData + nNewSize,__count(m_nSize) - nNewSize);
+         ALLOCATOR::destruct_count(m_pData + nNewSize,__count(m_nSize) - nNewSize OBJ_REF_DBG_ADD_THIS);
 
       }
 
@@ -743,15 +743,15 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 
       TYPE* pNewData =  nullptr;
 
-      if(::get_thread() != nullptr)
+      if(::get_task() != nullptr)
       {
 
 #if defined(__MCRTDBG)
 
-         if(::get_thread()->m_strFile.has_char())
+         if(::get_task()->m_strFile.has_char())
          {
 
-            pNewData = ALLOCATOR::alloc(nNewMax * sizeof(TYPE), ::get_thread()->m_strFile,::get_thread()->m_iLine);
+            pNewData = ALLOCATOR::alloc(nNewMax * sizeof(TYPE), ::get_task()->m_strFile,::get_task()->m_iLine);
 
          }
          else
@@ -763,16 +763,16 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 
 #else
 
-         if (::get_thread()->m_strDebug.has_char())
+         if (::get_task()->m_strDebug.has_char())
          {
 
-            pNewData = ALLOCATOR::alloc(nNewMax * sizeof(TYPE), "thread://" + demangle(typeid(*::get_thread()).name()) + ", " + ::get_thread()->m_strDebug + ", " + string(__FILE__), __LINE__);
+            pNewData = ALLOCATOR::alloc(nNewMax * sizeof(TYPE), "thread://" + demangle(typeid(*::get_task()).name()) + ", " + ::get_task()->m_strDebug + ", " + string(__FILE__), __LINE__);
 
          }
          else
          {
 
-            pNewData = ALLOCATOR::alloc(nNewMax * sizeof(TYPE), "thread://" + demangle(typeid(*::get_thread()).name()) + ", " + string(__FILE__), __LINE__);
+            pNewData = ALLOCATOR::alloc(nNewMax * sizeof(TYPE), "thread://" + demangle(typeid(*::get_task()).name()) + ", " + string(__FILE__), __LINE__);
 
          }
 
@@ -802,7 +802,7 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
       if (nNewSize > m_nSize)
       {
 
-         ALLOCATOR::construct(pNewData + m_nSize, nNewSize - __count(m_nSize));
+         ALLOCATOR::construct_count(pNewData + m_nSize, nNewSize - __count(m_nSize));
 
       }
 

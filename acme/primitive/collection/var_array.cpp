@@ -414,7 +414,7 @@ void var_array::parse_json(const char * & pszJson, const char * pszEnd)
          if((g_iRandomNumberGenerator % 25) == 0)
          {
 
-            pthread = ::get_thread();
+            pthread = ::get_task();
 
          }
 

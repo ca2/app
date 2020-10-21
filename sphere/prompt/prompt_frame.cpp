@@ -48,17 +48,17 @@ namespace prompt
 
       simple_frame_window::_001OnTimer(ptimer);;
 
-      auto nIDEvent = ptimer->m_nIDEvent;
+      auto uEvent = ptimer->m_uEvent;
 
       static float theta;
 
-      if(nIDEvent == 3)
+      if(uEvent == 3)
       {
 
       }
-      else if(nIDEvent == 1000)
+      else if(uEvent == 1000)
       {
-         KillTimer(nIDEvent);
+         KillTimer(uEvent);
          m_bTimerOn = false;
 
 #ifdef WINDOWS_DESKTOP
@@ -81,20 +81,20 @@ namespace prompt
 #endif
 
       }
-      else if(nIDEvent == 1001)
+      else if(uEvent == 1001)
       {
-         KillTimer(nIDEvent);
+         KillTimer(uEvent);
          //
          //hide();
          
          display();
          
       }
-      else if(nIDEvent == 8913)
+      else if(uEvent == 8913)
       {
       }
       // every 100 ms approximately
-      else if(nIDEvent == 4033)
+      else if(uEvent == 4033)
       {
          /*      ::rect rectWindow;
                get_window_rect(rectWindow);
@@ -148,7 +148,7 @@ namespace prompt
          theta += 2.0f;
 
       }
-      // simple_frame_window::OnTimer(nIDEvent);
+      // simple_frame_window::OnTimer(uEvent);
    }
 
 

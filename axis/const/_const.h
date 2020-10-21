@@ -338,7 +338,7 @@ enum e_thread
 };
 
 
-enum e_timer : i64;
+enum enum_timer : i64;
 
 enum e_set
 {

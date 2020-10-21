@@ -275,7 +275,7 @@ namespace filemanager
 
       ::userfs::list::_001OnTimer(ptimer);
 
-      if (ptimer->m_nIDEvent == 888888)
+      if (ptimer->m_uEvent == 888888)
       {
 
          if (filemanager_data()->m_bSetBergedgeTopicFile)
@@ -959,7 +959,7 @@ namespace filemanager
 
          sync_lock lock(fs_list()->mutex());
 
-         fs_list()->m_itema.m_parray->remove_all();
+         fs_list()->m_itema.remove_all();
 
          for (i32 i = 0; i < stra.get_size(); i++)
          {

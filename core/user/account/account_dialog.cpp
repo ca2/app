@@ -158,7 +158,7 @@ namespace account
 
       ::user::interaction::_001OnTimer(ptimer);
 
-      if(ptimer->m_nIDEvent == timer_check_cached_credentials)
+      if(ptimer->m_uEvent == e_timer_check_cached_credentials)
       {
 
          try
@@ -167,7 +167,7 @@ namespace account
             if (m_plogin->m_bSubmitted)
             {
 
-               KillTimer(timer_check_cached_credentials);
+               KillTimer(e_timer_check_cached_credentials);
 
             }
             else
@@ -191,7 +191,7 @@ namespace account
 
                   pcredentials->m_estatus = ::success_credentials;
 
-                  KillTimer(timer_check_cached_credentials);
+                  KillTimer(e_timer_check_cached_credentials);
 
                   m_plogin->on_action("submit_timer");
 
@@ -377,7 +377,7 @@ namespace account
 
       set_window_text("account Auth Windows");
 
-      set_timer(timer_check_cached_credentials, millis(300));
+      set_timer(e_timer_check_cached_credentials, millis(300));
 
       auto result = RunModalLoop();
 

@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "acme/platform/obj_ref_dbg.h"
 
 
 action::action()
@@ -33,11 +34,23 @@ action::action(const ::id& id, ::matter* pmatter) :
 }
 
 
+action::action(::update* pupdate, const ::action_context& actioncontext) :
+   m_pupdate(pupdate)
+{
+
+   action_common_construct();
+
+   m_actioncontext = actioncontext;
+
+}
+
+
 action::action(::update* pupdate, ::matter* pmatter) :
    m_pupdate(pupdate),
-   m_pchange(pupdate ? pupdate->change(pmatter) : nullptr),
-   m_pmatter(pmatter)
+   m_pchange(pmatter ? pupdate->change(pmatter) : nullptr)
 {
+
+   m_pmatter.reset(pmatter OBJ_REF_DBG_ADD_THIS_FUNCTION_LINE);
 
    action_common_construct();
 
@@ -53,9 +66,10 @@ action::action(::update* pupdate, ::matter* pmatter) :
 
 action::action(::update* pupdate, ::change * pchange, ::matter* pmatter) :
    m_pupdate(pupdate),
-   m_pchange(pchange),
-   m_pmatter(pmatter)
+   m_pchange(pchange)
 { 
+
+   m_pmatter.reset(pmatter OBJ_REF_DBG_ADD_THIS_FUNCTION_LINE);
 
    action_common_construct();
 
@@ -71,6 +85,8 @@ action::action(::update* pupdate, ::change * pchange, ::matter* pmatter) :
 
 action::~action()
 {
+
+   m_pmatter.release(OBJ_REF_DBG_THIS_FUNCTION_LINE);
 
 }
 
@@ -104,38 +120,23 @@ void action::reset_update(const ::id& id)
 }
 
 
-::estatus action::__thread_proc()
+::estatus action::on_task()
 {
 
-
-   try
+   if (m_pupdate)
    {
 
-      if(m_pmatter)
-      {
+      m_pmatter->apply(this);
 
-         if (m_pupdate)
-         {
-
-            m_pmatter->apply(this);
-
-         }
-         else
-         {
-
-            return m_pmatter->__thread_proc();
-
-         }
-
-      }
+      return ::success;
 
    }
-   catch (...)
+   else
    {
 
-   }
+      return m_pmatter->run();
 
-   return ::success;
+   }
 
 }
 
@@ -144,6 +145,20 @@ bool action::is_up_to_date() const
 {
 
    if (::is_null(m_pchange))
+   {
+
+      return false;
+
+   }
+
+   if (m_pchange->m_iUpdateSerial < 0)
+   {
+
+      return false;
+
+   }
+
+   if (m_pupdate->m_iUpdateSerial < 0)
    {
 
       return false;

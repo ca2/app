@@ -110,6 +110,15 @@ simple_frame_window::~simple_frame_window()
 
 }
 
+::thread_pool < ::task_pointer >* simple_frame_window::taskpool()
+{
+
+   __defer_construct(m_ptaskpool);
+
+   return m_ptaskpool;
+
+}
+
 
 ::user::e_translucency simple_frame_window::get_translucency(::user::style* pstyle) const
 {
@@ -190,7 +199,7 @@ void simple_frame_window::defer_save_window_placement()
 
    m_tickLastSaveWindowRectRequest.Now();
 
-   defer_fork("save_window_rect", [this]()
+   taskpool()->start("save_window_rect", __pred_method([this]()
    {
 
          while (::thread_get_run()
@@ -235,7 +244,7 @@ void simple_frame_window::defer_save_window_placement()
          }
 
       }
-   );
+   ));
 
 }
 
@@ -443,6 +452,15 @@ void simple_frame_window::_001OnDestroy(::message::message * pmessage)
 
    pmessage->previous();
 
+   if (m_ptaskpool)
+   {
+
+      m_ptaskpool->finalize();
+
+      m_ptaskpool.release();
+
+   }
+
    {
 
       sync_lock sl(mutex());
@@ -550,7 +568,7 @@ bool simple_frame_window::initialize_frame_window_experience()
    try
    {
 
-      pexperienceframe = experience_get_frame();
+      pexperienceframe = ::move_transfer(experience_get_frame());
 
    }
    catch (::exception::exception_pointer e)

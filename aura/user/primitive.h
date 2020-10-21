@@ -370,8 +370,8 @@ namespace user
       //virtual void SetWindowDisplayChanged();
 
       // timer Functions
-      virtual bool SetTimer(uptr nIDEvent,UINT nElapse,PFN_TIMER pfnTimer);
-      virtual bool KillTimer(uptr nIDEvent);
+      virtual bool SetTimer(uptr uEvent,UINT nElapse,PFN_TIMER pfnTimer);
+      virtual bool KillTimer(uptr uEvent);
 
       virtual void _001PrintBuffer(::draw2d::graphics_pointer & pgraphics);
       virtual void _001Print(::draw2d::graphics_pointer & pgraphics);
@@ -444,7 +444,7 @@ namespace user
       virtual ::user::interaction * get_wnd() const;
       virtual ::user::interaction * get_wnd(UINT nCmd) const;
       virtual ::user::interaction_impl * get_impl() const;
-      virtual ::thread * get_thread() const;
+      virtual ::thread * get_task() const;
 
       virtual ::user::interaction * SetParent(::user::interaction * pinteraction);
       virtual ::user::interaction * SetOwner(::user::interaction * pinteraction);

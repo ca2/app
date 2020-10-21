@@ -32,7 +32,14 @@ namespace datetime
          virtual public ::object
       {
       public:
-         international(::layered * pobjectContext);
+
+         
+         international();
+
+
+         virtual ::estatus initialize(::layered* pobjectContext) override;
+
+
          void parse_str(const char * psz,property_set & set);
 
 
@@ -62,9 +69,18 @@ namespace datetime
          virtual public ::object
       {
       public:
-         str(::layered * pobjectContext);
-         department * m_pdatetime;
+
+
+         department* m_pdatetime;
+         
+         
+         str();
+
+         virtual ::estatus initialize(::layered * pobjectContext) override;
+         
          string get_gmt_date_time();
+
+
       };
 
       class CLASS_DECL_APEX time_zone
@@ -80,13 +96,17 @@ namespace datetime
 
 
 
-      class ::datetime::department::international  m_international;
-      class ::datetime::department::str            m_str;
+      __pointer(::datetime::department::international)   m_pinternational;
+      __pointer(::datetime::department::str)             m_pstr;
 
 
 
 
       department();
+
+
+      virtual ::estatus initialize(::layered* pobjectContext) override;
+      virtual void finalize() override;
 
       i32 get_month_day_count(i32 year,i32 month);
       i32 get_weekday(i32 year,i32 month,i32 day);
@@ -110,8 +130,8 @@ namespace datetime
 
       ::datetime::time from_gmt_date_time(i32 iYear,i32 iMonth,i32 iDay,i32 iHour,i32 iMinute,i32 iSecond);
 
-      class international & international();
-      class str & str();
+      inline class  international& international() { return *m_pinternational; }
+      inline class str& str() { return* m_pstr; }
 
       string strftime(const char * psz,time_t timeParam);
       string strftime(const char * psz);

@@ -1302,6 +1302,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="multithreading\critical_section.cpp" />
     <ClCompile Include="multithreading\event.cpp" />
     <ClCompile Include="multithreading\file_change_event.cpp" />
+    <ClCompile Include="multithreading\task.cpp" />
     <ClCompile Include="multithreading\manual_reset_event.cpp" />
     <ClCompile Include="multithreading\mq.cpp" />
     <ClCompile Include="multithreading\multi_lock.cpp" />
@@ -1415,6 +1416,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="platform\message_box.cpp" />
     <ClCompile Include="platform\muldiv64.cpp" />
     <ClCompile Include="platform\net.cpp" />
+    <ClCompile Include="platform\obj_ref_dbg.cpp" />
     <ClCompile Include="platform\obj_typ_ctr.cpp" />
     <ClCompile Include="platform\profiler.cpp" />
     <ClCompile Include="platform\regex.cpp" />
@@ -1567,7 +1569,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="multithreading\delay_thread.h" />
     <ClInclude Include="multithreading\event.h" />
     <ClInclude Include="multithreading\file_change_event.h" />
-    <ClInclude Include="multithreading\fork.h" />
+    <ClInclude Include="multithreading\task.h" />
     <ClInclude Include="multithreading\handler.h" />
     <ClInclude Include="multithreading\initial_single_lock.h" />
     <ClInclude Include="multithreading\manual_reset_event.h" />
@@ -1590,7 +1592,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="multithreading\sync_lock.h" />
     <ClInclude Include="multithreading\sync_result.h" />
     <ClInclude Include="multithreading\sync_task.h" />
-    <ClInclude Include="multithreading\thread.h" />
     <ClInclude Include="multithreading\threading.h" />
     <ClInclude Include="multithreading\thread_impl.h" />
     <ClInclude Include="multithreading\thread_os.h" />
@@ -1718,6 +1719,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="platform\net.h" />
     <ClInclude Include="platform\number.h" />
     <ClInclude Include="platform\obj_ref_dbg.h" />
+    <ClInclude Include="platform\obj_ref_dbg_impl.h" />
     <ClInclude Include="platform\obj_typ_ctr.h" />
     <ClInclude Include="platform\process_data.h" />
     <ClInclude Include="platform\profiler.h" />
@@ -1806,6 +1808,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="primitive\primitive\change.h" />
     <ClInclude Include="primitive\primitive\aaa_update.h" />
     <ClInclude Include="primitive\primitive\source.h" />
+    <ClInclude Include="primitive\primitive\work.h" />
     <ClInclude Include="primitive\primitive\update.h" />
     <ClInclude Include="primitive\primitive\_context_object_impl.h" />
     <ClInclude Include="primitive\primitive\_id_impl.h" />

@@ -268,14 +268,14 @@ inline ___pointer < T > & ___pointer < T > ::operator = (___pointer && t)
 
 
 template < class T >
-inline __pointer(T) ___pointer < T > ::detach()
+inline T * ___pointer < T > ::detach()
 {
 
-   auto p = m_p;
+   auto pointer = m_p;
 
    m_p = nullptr;
 
-   return __move_transfer(p);
+   return pointer;
 
 }
 

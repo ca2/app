@@ -497,7 +497,7 @@ namespace http
 //
 //      }
 //
-//      while(::get_thread() == nullptr || thread_get_run())
+//      while(::get_task() == nullptr || thread_get_run())
 //      {
 //
 //         {

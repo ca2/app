@@ -45,7 +45,7 @@ public:
 
 
    inline ::object * get_context_object() const { return __object(m_pobjectContext); }
-   virtual void set_context_object(::layered * pobjectContext);
+   virtual void set_context_object(::layered * pobjectContext OBJ_REF_DBG_ADD_PARAMS);
 
 
 

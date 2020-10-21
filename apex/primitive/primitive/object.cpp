@@ -1,6 +1,9 @@
 #include "framework.h"
 #include "apex/message.h"
 #include "apex/update.h"
+#if OBJ_REF_DBG
+#include "acme/platform/obj_ref_dbg_impl.h"
+#endif
 
 
 #ifdef DEBUG
@@ -43,7 +46,7 @@ i64 object::add_ref(OBJ_REF_DBG_PARAMS_DEF)
 
 #if OBJ_REF_DBG
 
-   add_ref_history(p, pszObjRefDbg);
+   add_ref_history(pReferer, pszObjRefDbg);
 
 #endif
 
@@ -62,7 +65,7 @@ i64 object::dec_ref(OBJ_REF_DBG_PARAMS_DEF)
    if (c > 0)
    {
 
-      dec_ref_history(p, pszObjRefDbg);
+      dec_ref_history(pReferer, pszObjRefDbg);
 
    }
 
@@ -113,7 +116,7 @@ void object::to_string(const class string_exchange & str) const
 }
 
 
-::estatus object::add_composite(::matter* pobject)
+::estatus object::add_composite(::matter* pobject OBJ_REF_DBG_ADD_PARAMS_DEF)
 {
 
    sync_lock sl(mutex());
@@ -123,7 +126,7 @@ void object::to_string(const class string_exchange & str) const
    if (m_pcompositea->add_unique(pobject))
    {
 
-      pobject->add_ref(OBJ_REF_DBG_P_NOTE(this, debug_note()));
+      pobject->add_ref(OBJ_REF_DBG_ARGS);
 
 #ifdef DEBUG
 
@@ -138,7 +141,7 @@ void object::to_string(const class string_exchange & str) const
 }
 
 
-::estatus object::add_reference(::matter* pobject)
+::estatus object::add_reference(::matter* pobject OBJ_REF_DBG_ADD_PARAMS_DEF)
 {
 
    sync_lock sl(mutex());
@@ -148,7 +151,7 @@ void object::to_string(const class string_exchange & str) const
    if (m_preferencea->add_unique(pobject))
    {
 
-      pobject->add_ref(OBJ_REF_DBG_P_NOTE(this, debug_note()));
+      pobject->add_ref(OBJ_REF_DBG_ARGS);
 
    }
 
@@ -157,7 +160,7 @@ void object::to_string(const class string_exchange & str) const
 }
 
 
-::estatus object::release_composite(::matter* pobject)
+::estatus object::release_composite(::matter* pobject OBJ_REF_DBG_ADD_PARAMS_DEF)
 {
 
    if (::is_null(pobject))
@@ -175,6 +178,8 @@ void object::to_string(const class string_exchange & str) const
       if (m_pcompositea->remove(pobject) > 0)
       {
 
+         pobject->finalize();
+
          pobject->release(OBJ_REF_DBG_THIS);
 
          return ::success;
@@ -188,7 +193,7 @@ void object::to_string(const class string_exchange & str) const
 }
 
 
-::estatus object::release_reference(::matter* pobject)
+::estatus object::release_reference(::matter* pobject  OBJ_REF_DBG_ADD_PARAMS_DEF)
 {
 
    if (::is_null(pobject))
@@ -206,7 +211,7 @@ void object::to_string(const class string_exchange & str) const
       if (m_preferencea->remove(pobject) > 0)
       {
 
-         pobject->release(OBJ_REF_DBG_THIS);
+         pobject->release(OBJ_REF_DBG_ARGS);
 
          return ::success;
 
@@ -448,41 +453,75 @@ void object::set_topic_text(const ::string & strTopicText)
 
 #endif
 
-   set_context_object(pobjectContext);
+//#if OBJ_REF_DBG
+//
+//   string strType = type_name();
+//
+//   if (strType.contains_ci("session"))
+//   {
+//
+//      if (m_pobjrefdbg->m_iStep == 39)
+//      {
+//
+//         output_debug_string("session");
+//
+//      }
+//
+//   }
+//
+//#endif
 
-   set_context_app(::get_context_application(pobjectContext));
-
-   set_context_session(::get_context_session(pobjectContext));
-
-   set_context_system(::get_context_system(pobjectContext));
-
-   auto pcontext = ::get_context(pobjectContext);
-
-   if (pcontext)
+   if (!get_context_object())
    {
-
-      set_context(pcontext);
-
-   }
-   else if (m_pappContext)
-   {
-
-      set_context(m_pappContext.get());
-
-   }
-   else if (m_psessionContext)
-   {
-
-      set_context(m_psessionContext.get());
-
-   }
-   else if (m_psystemContext)
-   {
-
-      set_context(m_psystemContext.get());
+    
+      set_context_object(pobjectContext OBJ_REF_DBG_ADD_THIS_FUNCTION_LINE);
 
    }
 
+   if (!get_context_application())
+   {
+
+      set_context_app(::get_context_application(pobjectContext) OBJ_REF_DBG_ADD_THIS_FUNCTION_LINE);
+
+   }
+
+   if (!get_context_session())
+   {
+
+      set_context_session(::get_context_session(pobjectContext) OBJ_REF_DBG_ADD_THIS_FUNCTION_LINE);
+
+   }
+
+   if (!get_context_system())
+   {
+
+      set_context_system(::get_context_system(pobjectContext) OBJ_REF_DBG_ADD_THIS_FUNCTION_LINE);
+
+   }
+
+   if (!get_context())
+   {
+
+      if (m_pappContext)
+      {
+
+         set_context(m_pappContext.get() OBJ_REF_DBG_ADD_THIS_FUNCTION_LINE);
+
+      }
+      else if (m_psessionContext)
+      {
+
+         set_context(m_psessionContext.get() OBJ_REF_DBG_ADD_THIS_FUNCTION_LINE);
+
+      }
+      else if (m_psystemContext)
+      {
+
+         set_context(m_psystemContext.get() OBJ_REF_DBG_ADD_THIS_FUNCTION_LINE);
+
+      }
+
+   }
 
    return estatus;
 
@@ -609,7 +648,7 @@ void object::defer_update_object_id()
 
 
 
-bool object::enable_application_events(bool bEnable)
+::estatus object::enable_application_events(bool bEnable)
 {
 
    if(::is_null(get_context_application()))
@@ -642,7 +681,7 @@ bool object::enable_application_events(bool bEnable)
 ::estatus     object::request_file(const ::var& varFile,var varQuery)
 {
 
-   auto pcommandline = __new(command_line(this));
+   auto pcommandline = __create_new< command_line >();
 
    pcommandline->m_varFile = varFile;
 
@@ -656,7 +695,25 @@ bool object::enable_application_events(bool bEnable)
 ::estatus     object::request(arguments arguments)
 {
 
-   auto pcreate = __new(::create(this, arguments));
+   __pointer(::create) pcreate;
+
+   auto estatus = __construct_new(pcreate);
+
+   if (!estatus)
+   {
+
+      return estatus;
+
+   }
+
+   estatus = pcreate->initialize_create(arguments);
+
+   if (!estatus)
+   {
+
+      return estatus;
+
+   }
 
    return do_request(pcreate);
 
@@ -715,73 +772,37 @@ bool object::enable_application_events(bool bEnable)
 //}
 
 
-void object::on_request(::create* pcreate)
+void object::on_request(::create* pcreateParam)
 {
 
-   __pointer(::create) cc(__new(::create(this, Application.m_strAppId, ::type_empty, true)));
-
-   if (pcreate == nullptr)
+   __pointer(::create) pcreate(pcreateParam);
+   
+   if (!pcreate)
    {
 
-      pcreate = cc;
+      auto estatus = __construct(pcreate);
+
+      if (!estatus)
+      {
+
+         __throw(::exception::exception(estatus));
+
+      }
+
+      estatus = pcreate->initialize_create(Application.m_strAppId, ::type_empty, true);
+
+      if (!estatus)
+      {
+
+         __throw(::exception::exception(estatus));
+
+      }
 
    }
 
    do_request(pcreate);
 
-   //      return pcreate->m_pcommandline->m_varQuery["document"].cast < ::user::document >();
-
 }
-
-
-//::user::document* object::open_document_file(::apex::application* pappOnBehalfOf)
-//{
-//
-//   return open_document_file(pappOnBehalfOf, ::type_empty_argument);
-//
-//}
-
-
-//::user::document* object::open_document_file(::apex::application* pappOnBehalfOf, const var& varFile, const ::var & varOptions, ::user::interaction* puiParent, ewindowflag eflag, ::id id)
-//{
-//
-//   auto pcreate = __new(::create(pappOnBehalfOf, pappOnBehalfOf->m_strAppId, varFile, varOptions, puiParent, eflag, id));
-//
-//   do_request(pcreate);
-//
-//   return ::user::__document(pcreate);
-//
-//}
-
-
-//::user::document* object::open_document_file(::apex::application* pappOnBehalfOf, const var& varFile)
-//{
-//
-//   return open_document_file(pappOnBehalfOf, varFile, ::type_empty_argument);
-//
-//}
-
-
-//::user::document* object::create_subdocument(::user::impact_data* pimpactdata)
-//{
-//
-//   auto pdocument = open_document_file(
-//      pimpactdata->m_pplaceholder->get_context_application(),
-//      ::type_null,
-//      __visible(true),
-//      pimpactdata->m_pplaceholder);
-//
-//   pimpactdata->m_pdocument = pdocument;
-//
-//   return pdocument;
-//
-//}
-
-
-
-
-
-
 
 
 void object::destruct()
@@ -824,6 +845,13 @@ void object::on_finalize()
 
 void object::finalize()
 {
+
+   if (m_pmeta)
+   {
+
+      m_pmeta->finalize(this);
+
+   }
 
    source::finalize();
 
@@ -1129,74 +1157,6 @@ string object::__get_text(string str)
 }
 
 
-void object::start_clock(e_clock eclock, duration duration)
-{
-
-   string strName;
-
-   switch(eclock)
-   {
-   case clock_none:
-      throw invalid_argument_exception();
-      return;
-   case clock_slow:
-      strName="clock_slow";
-      break;
-   case clock_fast:
-      strName="clock_fast";
-      break;
-   default:
-      throw invalid_argument_exception();
-      return;
-
-   }
-
-   defer_fork(strName, [&, eclock, duration]()
-   {
-
-      _task_clock(eclock, duration);
-
-   });
-
-}
-
-void object::_task_clock(e_clock eclock, duration duration)
-{
-
-   auto timeout = duration.get_total_milliseconds();
-
-   while(true)
-   {
-
-      if(!thread_sleep((u32) timeout))
-      {
-
-         break;
-
-      }
-
-      try
-      {
-
-         on_clock(eclock);
-
-      }
-      catch (...)
-      {
-
-      }
-
-   }
-
-}
-
-
-void object::on_clock(e_clock eclock)
-{
-
-
-
-}
 
 
 //#ifdef __APPLE__
@@ -1233,7 +1193,7 @@ void object::start()
    else
    {
 
-      member_fork(&::object::call);
+      fork([this] {call(); });
 
    }
 
@@ -1284,27 +1244,27 @@ void object::multiple_fork(const runnable_array & runnablea)
 
 }
 
-thread_pointer object::defer_fork(string strThread)
-{
+//thread_pointer object::defer_fork(string strThread)
+//{
+//
+//   if (strThread.is_empty())
+//   {
+//
+//      strThread = string(type_name()) + "::run";
+//
+//   }
+//
+//   return defer_fork(strThread, [this]()
+//   {
+//
+//      call();
+//
+//   });
+//
+//}
 
-   if (strThread.is_empty())
-   {
 
-      strThread = string(type_name()) + "::run";
-
-   }
-
-   return defer_fork(strThread, [this]()
-   {
-
-      call();
-
-   });
-
-}
-
-
-bool object::handle_exception(::exception_pointer pe)
+::estatus object::handle_exception(::exception_pointer pe)
 {
 
    if(pe.is < exit_exception > ())
@@ -1319,7 +1279,7 @@ bool object::handle_exception(::exception_pointer pe)
 }
 
 
-bool object::top_handle_exception(::exception_pointer pe)
+::estatus object::top_handle_exception(::exception_pointer pe)
 {
 
    __pointer(exit_exception) pexitexception = pe;
@@ -1338,7 +1298,7 @@ bool object::top_handle_exception(::exception_pointer pe)
 }
 
 
-bool object::process_exception(::exception_pointer pe)
+::estatus object::process_exception(::exception_pointer pe)
 {
 
    if (pe->m_bHandled)
@@ -1358,17 +1318,112 @@ bool object::process_exception(::exception_pointer pe)
 }
 
 
-//__pointer(thread) object::fork(::e_priority epriority, UINT nStackSize, u32 dwCreateFlags, LPSECURITY_ATTRIBUTES pSecurityAttrs)
+::index object::thread_add(::thread * pthread)
+{
+
+   sync_lock sl(mutex());
+
+   return meta()->thread_add(this, pthread);
+
+}
+
+
+void object::thread_remove(::thread* pthread)
+{
+
+   sync_lock sl(mutex());
+
+   if (m_pmeta)
+   {
+
+      m_pmeta->thread_remove(this, pthread);
+
+   }
+
+}
+
+
+void object::thread_remove_all()
+{
+
+   sync_lock sl(mutex());
+
+   if (m_pmeta)
+   {
+
+      m_pmeta->thread_remove_all(this);
+
+   }
+
+}
+
+__pointer_array(::thread)* object::thread_array_get()
+{
+
+   sync_lock sl(mutex());
+
+   if (!m_pmeta)
+   {
+
+      return nullptr;
+
+   }
+
+   return &m_pmeta->m_threada;
+
+}
+
+
+const __pointer_array(::thread)* object::thread_array_get() const
+{
+
+   sync_lock sl(mutex());
+
+   if (!m_pmeta)
+   {
+
+      return nullptr;
+
+   }
+
+   return &m_pmeta->m_threada;
+
+}
+
+bool object::thread_is_empty() const
+{
+
+   sync_lock sl(mutex());
+
+   auto pthreada = thread_array_get();
+
+   if (!pthreada)
+   {
+
+      return true;
+
+   }
+
+   return pthreada->isEmpty();
+
+}
+
+
+//__pointer(thread) object::start(
+//   ::matter* pmatter,
+//   ::e_priority epriority = priority_normal,
+//   u32 nStackSize = 0,
+//   u32 dwCreateFlags = 0)
 //{
 //
-//   return fork([this]()
-//   {
+//   auto pthread = __create_new< ::thread >();
 //
-//      call();
+//   ::task::start(pthread);
 //
-//   });
+//   return pthread;
 //
 //}
+
 
 
 void object::message_receiver_destruct()
@@ -1776,42 +1831,42 @@ string object::get_text(const var& var, const ::id& id)
 #ifdef DEBUG
 
 
-void object::set_context(::context* pcontext)
+void object::set_context(::context* pcontext OBJ_REF_DBG_ADD_PARAMS_DEF)
 {
 
-   m_pcontextContext.reset(pcontext, this, "object::set_context");;
+   m_pcontextContext.reset(pcontext OBJ_REF_DBG_ADD_ARGS);
 
 }
 
 
-void object::set_context_thread(::thread* pthread)
+void object::set_context_thread(::thread* pthread OBJ_REF_DBG_ADD_PARAMS_DEF)
 {
 
-   m_pthreadContext.reset(pthread, this, "object::set_context_thread");
+   m_pthreadContext.reset(pthread OBJ_REF_DBG_ADD_ARGS);
 
 }
 
 
-void object::set_context_app(::apex::application* pappContext)
+void object::set_context_app(::apex::application* pappContext OBJ_REF_DBG_ADD_PARAMS_DEF)
 {
 
-   m_pappContext.reset(pappContext, this, "object::set_context_app");
+   m_pappContext.reset(pappContext OBJ_REF_DBG_ADD_ARGS);
 
 }
 
 
-void object::set_context_session(::apex::session* psessionContext)
+void object::set_context_session(::apex::session* psessionContext OBJ_REF_DBG_ADD_PARAMS_DEF)
 {
 
-   m_psessionContext.reset(psessionContext, this, "object::set_context_session");
+   m_psessionContext.reset(psessionContext OBJ_REF_DBG_ADD_ARGS);
 
 }
 
 
-void object::set_context_system(::apex::system* psystemContext)
+void object::set_context_system(::apex::system* psystemContext OBJ_REF_DBG_ADD_PARAMS_DEF)
 {
 
-   m_psystemContext.reset(psystemContext, this, "object::set_context_system");
+   m_psystemContext.reset(psystemContext OBJ_REF_DBG_ADD_ARGS);
 
 }
 

@@ -47,7 +47,7 @@ namespace multithreading
 
       //return s_piaThread2->contains(id);
 
-      return ::get_context_system()->get_thread(id) != nullptr;
+      return ::get_context_system()->get_task(id) != nullptr;
 
    }
 
@@ -253,7 +253,7 @@ namespace multithreading
 //CLASS_DECL_APEX ::thread * get_thread_raw()
 //{
 //
-//   return ::get_thread();
+//   return ::get_task();
 //
 //}
 
@@ -264,7 +264,7 @@ bool apex_thread_get_run()
    try
    {
 
-      if(::is_null(::get_thread()) || !::get_thread()->is_thread()) // system threads don't have generally associated ca2 thread object
+      if(::is_null(::get_task()) || !::get_task()->is_thread()) // system threads don't have generally associated ca2 thread object
       {
          ////////// and have short life, so it is safe to keep it running
          //return true;
@@ -272,7 +272,7 @@ bool apex_thread_get_run()
 
       }
 
-      return ::get_thread()->thread_get_run();
+      return ::get_task()->thread_get_run();
 
    }
    catch (...)
@@ -292,7 +292,7 @@ namespace multithreading
    CLASS_DECL_APEX void set_finish()
    {
 
-      set_finish(::get_thread());
+      set_finish(::get_task());
 
    }
 
@@ -305,10 +305,10 @@ namespace multithreading
    }
 
 
-   void set_finish(::thread * pthread)
+   void set_finish(::task * ptask)
    {
 
-      if (pthread == nullptr)
+      if (::is_null(ptask))
       {
 
          return;
@@ -318,7 +318,7 @@ namespace multithreading
       try
       {
 
-         pthread->finalize();
+         ptask->set_thread_run(false);
 
       }
       catch (...)
@@ -457,16 +457,50 @@ void set_global_application(::apex::application* papp)
 ::apex::application * get_context_application()
 {
 
-   thread * pthread = get_thread();
+   task* ptask = get_task();
 
-   if (pthread == nullptr)
+   if (ptask == nullptr)
    {
 
       return get_global_application();
 
    }
 
-   return pthread->get_context_application();
+   ::thread* pthread = ___thread(ptask);
+
+   if (pthread != nullptr)
+   {
+
+      auto papp = pthread->get_context_application();
+
+      if (papp)
+      {
+
+         return papp;
+
+      }
+
+   }
+
+   auto pobject = ptask->get_context_object();
+
+   if (!pobject)
+   {
+
+      return get_global_application();
+
+   }
+
+   auto papp = pobject->get_context_application();
+
+   if (!pobject)
+   {
+
+      return get_global_application();
+
+   }
+
+   return papp;
 
 }
 
@@ -604,7 +638,7 @@ bool do_events()
 //bool do_events(const duration & duration)
 //{
 //
-//   ::thread * pthread = ::get_thread();
+//   ::thread * pthread = ::get_task();
 //
 //   if(pthread == nullptr)
 //      return;

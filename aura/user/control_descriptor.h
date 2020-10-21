@@ -17,8 +17,8 @@ namespace user
       index                                     m_iListItem;
       index                                     m_iColumn;
       __pointer(::user::interaction)            m_pinteraction;
-      ::user::interaction *                     m_puserinteractionParent;
-      ::user::interaction_layout *              m_playout;
+      __pointer(::user::interaction)            m_puserinteractionParent;
+      __pointer(::user::interaction_layout)     m_playout;
       index_map < __pointer(interaction) >      m_controlmap;
       id                                        m_id;
       id                                        m_uiText;

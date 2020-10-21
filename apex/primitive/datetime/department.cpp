@@ -31,31 +31,109 @@ namespace datetime
    }
 
 
-   department::department() :
-      m_international(this),
-      m_str(this)
+   department::department()
    {
 
       defer_create_mutex();
 
-      m_str.m_pdatetime = this;
-
-      
    }
 
 
-   class department::international & department::international()
+   ::estatus department::initialize(::layered * pobjectContext)
+   {
+    
+      auto estatus = ::apex::department::initialize(pobjectContext);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+         
+      estatus = __construct_new(m_pinternational);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = __construct_new(m_pstr);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      m_pstr->m_pdatetime = this;
+
+      return estatus;
+
+   }
+
+
+   ::estatus department::international::initialize(::layered* pobjectContext)
    {
 
-      return m_international;
+      auto estatus = ::object::initialize(pobjectContext);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
+
+
+   ::estatus department::str::initialize(::layered* pobjectContext)
+   {
+
+      auto estatus = ::object::initialize(pobjectContext);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
+
+
+   void department::finalize()
+   {
+
+      m_pinternational.release();
+
+      m_pstr.release();
+
+      ::apex::department::finalize();
+
+   }
+
+
+   /*class department::international & department::international()
+   {
+
+      return *m_pinternational;
 
    }
 
 
    class department::str & department::str()
    {
-      return m_str;
-   }
+      return *m_str;
+   }*/
 
    i32 department::get_month_day_count(i32 year, i32 month)
    {
@@ -164,10 +242,13 @@ namespace datetime
       return time.get_time();
    }
 
-   department::international::international(::layered * pobjectContext) :
-      ::object(pobjectContext)
+
+   department::international::international()
    {
+
+
    }
+
 
    void department::international::parse_str(const char * psz, property_set & set)
    {
@@ -283,11 +364,13 @@ namespace datetime
    }
 
 
-   department::str::str(::layered * pobjectContext)
+   department::str::str()
    {
-      UNREFERENCED_PARAMETER(pobjectContext);
+      
       m_pdatetime = nullptr;
+
    }
+
 
    string department::str::get_gmt_date_time()
    {

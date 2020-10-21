@@ -90,7 +90,7 @@ namespace user
       void relay_event(tool_tip_tool * pwnd, ::message::message * pmessage);
 
       void OnPaint();
-      void OnTimer(UINT nIDEvent);
+      void OnTimer(UINT uEvent);
       void OnSize(UINT nType, i32 cx, i32 cy);
       void OnDestroy();
 

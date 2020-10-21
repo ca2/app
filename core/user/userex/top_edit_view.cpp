@@ -111,7 +111,7 @@ namespace userex
       if (ptimer->m_etimer == 5544)
       {
 
-         KillTimer(ptimer->m_nIDEvent);
+         KillTimer(ptimer->m_uEvent);
 
          bool bEnterKeyPressed = m_bEnterKeyPressed;
 

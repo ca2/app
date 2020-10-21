@@ -8,7 +8,7 @@
 #endif
 
 class CLASS_DECL_APEX create :
-   virtual public ::object
+   virtual public ::context_object
 {
 public:
 
@@ -31,22 +31,26 @@ public:
    ::user::primitive *                                         m_puserinteractionParent;
    ::user::primitive *                                         m_puiAlloc;
    __pointer(command_line)                                     m_pcommandline;
-   // ::user::create
    __pointer(::layered)                                        m_pusercreate;
    ewindowflag                                                 m_ewindowflag;
    ::id                                                        m_id;
 
+
    create();
-   create(::object * pobject, arguments arguments);
-   create(::layered * pobjectContext);
-   create(::object * pobject, string strAppId, var varFile, const var & varOptions = __visible(true), ::user::primitive * puiParent = nullptr, ewindowflag eflag = window_flag_none, ::id = ::id());
    virtual ~create();
+
+
+   
+   virtual ::estatus initialize_create(arguments arguments);
+   virtual ::estatus initialize_create(string strAppId, var varFile, const var& varOptions = __visible(true), ::user::primitive* puiParent = nullptr, ewindowflag eflag = window_flag_none, ::id = ::id());
 
 
    void create_common_construct(const var & varOptions, ::user::primitive * puiParent);
 
 
-   void defer_initialize();
+   ::apex::application* create_get_application(::apex::application* pappFallback = nullptr);
+
+   ::estatus finish_initialization();
 
    virtual string get_description();
    virtual void set_description(string strDescription);

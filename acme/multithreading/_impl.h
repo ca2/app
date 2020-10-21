@@ -218,7 +218,7 @@ auto sync_pred(void (* pfnBranch )(::matter * pobjectTask, e_priority), PRED pre
 //::thread * fork(PRED pred)
 //{
 //
-//   return ::fork(::get_thread(), pred);
+//   return ::fork(::get_task(), pred);
 //
 //}
 
@@ -237,10 +237,10 @@ void async_pred(void (* pfnBranch )(::matter * pobjectTask, e_priority), PRED pr
 }
 
 //
-//inline ::thread* get_thread(ITHREAD idthread)
+//inline ::thread* get_task(ITHREAD idthread)
 //{
 //
-//   return (::thread*) ::get_context_system()->get_thread(idthread);
+//   return (::thread*) ::get_context_system()->get_task(idthread);
 //
 //}
 //

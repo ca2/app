@@ -161,13 +161,13 @@ namespace userex
 //
 //            }
 //
-//            ::get_thread()->m_bSimpleMessageLoop = false;
+//            ::get_task()->m_bSimpleMessageLoop = false;
 //
-//            ::get_thread()->::thread::run();
+//            ::get_task()->::thread::run();
 //
 //         }
 //
-//         children_remove(::get_thread());
+//         children_remove(::get_task());
 //
 //         close_progress();
 //
@@ -244,7 +244,7 @@ namespace userex
 
       }
 
-      SetTimer(timer_update_current_area, 300);
+      SetTimer(e_timer_update_current_area, 300);
 
 
    }
@@ -253,10 +253,10 @@ namespace userex
    void progress_view::_001OnTimer(::timer* ptimer)
    {
 
-      if (ptimer->m_nIDEvent == timer_update_current_area)
+      if (ptimer->m_uEvent == e_timer_update_current_area)
       {
 
-         KillTimer(ptimer->m_nIDEvent);
+         KillTimer(ptimer->m_uEvent);
 
          ::rect rect;
 

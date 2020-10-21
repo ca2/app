@@ -109,7 +109,7 @@
 //
 //   }
 //
-//   //   puiimpl->m_puserinteraction->m_pthread = ::get_thread();
+//   //   puiimpl->m_puserinteraction->m_pthread = ::get_task();
 //
 //   pimpl->send_message(WM_CREATE, 0, (LPARAM) &cs);
 //

@@ -367,7 +367,7 @@ namespace android
 
       install_message_routing(m_puserinteraction);
 
-      m_puserinteraction->__refer(m_puserinteraction->m_pthreadUserInteraction, ::get_thread());
+      m_puserinteraction->__refer(m_puserinteraction->m_pthreadUserInteraction, ::get_task());
 
       if (m_puserinteraction->m_pthreadUserInteraction != nullptr)
       {
@@ -619,7 +619,7 @@ namespace android
 
       ::user::interaction_impl * pwindow;
 
-      ::thread* pThread = ::get_thread();
+      ::thread* pThread = ::get_task();
 
       if (pThread != nullptr)
       {
@@ -2847,7 +2847,7 @@ namespace android
    LRESULT interaction_impl::send_message(UINT message, WPARAM wparam, lparam lparam)
    {
 
-      if (::get_thread() == nullptr)
+      if (::get_task() == nullptr)
       {
 
          ::set_thread(m_puserinteraction->get_context_application());
@@ -3371,38 +3371,38 @@ namespace android
 
    //}
 
-   //bool interaction_impl::SetTimer(uptr nIDEvent, UINT nElapse, PFN_TIMER pfnTimer)
+   //bool interaction_impl::SetTimer(uptr uEvent, UINT nElapse, PFN_TIMER pfnTimer)
    //{
 
-   //   return ::user::interaction_impl::SetTimer(nIDEvent, nElapse, pfnTimer);
+   //   return ::user::interaction_impl::SetTimer(uEvent, nElapse, pfnTimer);
 
-   //   //return ::user::interaction_impl::SetTimer(nIDEvent, nElapse, lpfnTimer);
+   //   //return ::user::interaction_impl::SetTimer(uEvent, nElapse, lpfnTimer);
 
 
    //   //UNREFERENCED_PARAMETER(lpfnTimer);
 
-   //   //m_puserinteraction->get_context_application()->set_timer(m_puserinteraction, nIDEvent, nElapse);
+   //   //m_puserinteraction->get_context_application()->set_timer(m_puserinteraction, uEvent, nElapse);
 
-   //   //return nIDEvent;
+   //   //return uEvent;
 
    //   //__throw(not_implemented());
    //   //ASSERT(::is_window((oswindow) get_handle()));
-   //   //return ::SetTimer(get_handle(), nIDEvent, nElapse, lpfnTimer);
+   //   //return ::SetTimer(get_handle(), uEvent, nElapse, lpfnTimer);
 
    //}
 
 
-   //bool interaction_impl::KillTimer(uptr nIDEvent)
+   //bool interaction_impl::KillTimer(uptr uEvent)
    //{
 
-   //   return ::user::interaction_impl::KillTimer(nIDEvent);
+   //   return ::user::interaction_impl::KillTimer(uEvent);
 
-   //   //m_puserinteraction->get_context_application()->unset_timer(m_puserinteraction, nIDEvent);
+   //   //m_puserinteraction->get_context_application()->unset_timer(m_puserinteraction, uEvent);
 
    //   //return TRUE;
 
    //   //ASSERT(::is_window((oswindow) get_handle()));
-   //   //return ::KillTimer(get_handle(), nIDEvent)  != FALSE;
+   //   //return ::KillTimer(get_handle(), uEvent)  != FALSE;
 
    //}
 

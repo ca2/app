@@ -47,6 +47,8 @@ void	sync_array::clear()
 
    m_synca.clear();
 
+   m_hsyncaCache.clear();
+
 }
 
 

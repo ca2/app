@@ -1031,7 +1031,7 @@ namespace apex
 //CLASS_DECL_APEX void set_last_status(const ::estatus & estatus)
 //{
 //
-//   ::get_thread()->m_estatus = estatus;
+//   ::get_task()->m_estatus = estatus;
 //
 //}
 
@@ -1039,7 +1039,7 @@ namespace apex
 //CLASS_DECL_APEX ::estatus  get_last_status()
 //{
 //
-//   return ::get_thread()->m_estatus;
+//   return ::get_task()->m_estatus;
 //
 //}
 

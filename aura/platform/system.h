@@ -236,7 +236,7 @@ namespace aura
 
       strid_map < ::apex::library* >              m_idmapCreateViewLibrary;
 
-      //__pointer_array(::apex::library)                         m_libraryspa;
+      __pointer_array(::apex::library)                         m_libraryspa;
 
 #ifdef _UWP
 
@@ -269,7 +269,7 @@ namespace aura
 
       //::url::department                           & url()     { return m_urldepartment; }
 
-      ::thread * get_thread(ITHREAD ithread);
+      ::thread * get_task(ITHREAD ithread);
       ITHREAD get_thread_id(::thread * pthread);
       void set_thread(ITHREAD ithread, ::thread * pthread);
       void unset_thread(ITHREAD ithread, ::thread * pthread);

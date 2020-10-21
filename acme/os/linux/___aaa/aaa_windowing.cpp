@@ -3750,7 +3750,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 
          Window window = msg.hwnd->m_window;
 
-         auto & setThread = ::get_thread()->get_property_set();
+         auto & setThread = ::get_task()->get_property_set();
 
          XIC xic = msg.hwnd->m_xic;
 
@@ -3789,7 +3789,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
                if(xim)
                {
 
-                  ::get_thread()->value("xim") = (iptr) xim;
+                  ::get_task()->value("xim") = (iptr) xim;
 
                   XIMStyles * pximstyles = nullptr;
 
@@ -3825,7 +3825,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
                      if(best_style != 0)
                      {
 
-                        ::get_thread()->set("xim_flag", ::get_thread()->value("xim_flag").i32() | 2);
+                        ::get_task()->set("xim_flag", ::get_task()->value("xim_flag").i32() | 2);
 
                      }
 

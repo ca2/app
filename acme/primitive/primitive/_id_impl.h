@@ -210,3 +210,16 @@ inline id& id::operator = (const ::enum_thread_tool& ethreadtool)
 }
 
 
+inline id& id::operator = (const ::enum_clock& eclock)
+{
+
+   m_etype = type_clock;
+
+   m_eclock = eclock;
+
+   return *this;
+
+}
+
+
+

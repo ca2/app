@@ -37,7 +37,7 @@ namespace aura
 
       //bool                                            m_bReadStringTable;
 
-      __pointer(::apex::application_menu)             m_papplicationmenu;
+      //__pointer(::apex::application_menu)             m_papplicationmenu;
 
       //__composite(::game::game)                       m_pgame;
 
@@ -54,7 +54,7 @@ namespace aura
 
       //bool                                            m_bAppHasInstallerProtected;
       //bool                                            m_bAppHasInstallerChangedProtected;
-      ::install::installer *                          m_pinstaller;
+      //::install::installer *                          m_pinstaller;
 
       reference_addressa                              m_objectptraEventHook;
 
@@ -79,18 +79,18 @@ namespace aura
 
       //bool                                            m_bUpdateMatterOnInstall;
 
-      ::user::interaction *                           m_puiMainContainer;
+      ::user::interaction *                              m_puiMainContainer;
 
-      ::mutex                                         m_mutexMatterLocator;
+      ::mutex                                           m_mutexMatterLocator;
 
       //::mutex                                         m_mutexStr;
       //string_table                                    m_stringtable;
       //string_table                                    m_stringtableStd;
       //map < id, id, string, string >                  m_stringmap;
 
-      id_map < __pointer(::channel) >                 m_mapNotify;
+      //id_map < __pointer(::channel) >                 m_mapNotify;
 
-      __pointer(context_image)                        m_pcontextimage;
+      __composite(context_image)                        m_pcontextimage;
 
       //bool                                            m_bInitializeDataCentral;
 
@@ -171,18 +171,18 @@ namespace aura
 
       //virtual string load_podata(string strLang, bool bOnlyHeader);
 
-      virtual string load_string(const ::id & id) override;
-      virtual bool load_string(string & str, const ::id & id) override;
-      virtual void load_string_table() override;
-      virtual bool load_cached_string(string & str, const ::id & id, bool bLoadStringTable) override;
-      virtual bool load_cached_string_by_id(string & str, const ::id & id, bool bLoadStringTable) override;
-      virtual void load_string_table(const string & pszApp, const string & pszId) override;
+      //virtual string load_string(const ::id & id) override;
+      //virtual bool load_string(string & str, const ::id & id) override;
+      //virtual void load_string_table() override;
+      //virtual bool load_cached_string(string & str, const ::id & id, bool bLoadStringTable) override;
+      //virtual bool load_cached_string_by_id(string & str, const ::id & id, bool bLoadStringTable) override;
+      //virtual void load_string_table(const string & pszApp, const string & pszId) override;
 
 
 
-      virtual bool is_system() const override;
-      virtual bool is_session() const override;
-      virtual bool is_serviceable() const override;
+      //virtual bool is_system() const override;
+      //virtual bool is_session() const override;
+      //virtual bool is_serviceable() const override;
 
 
       //virtual ::simpledb::server * simpledb();
@@ -250,7 +250,7 @@ namespace aura
       //virtual void SetCurrentHandles() override;
 
 
-      virtual bool process_exception(::exception_pointer pe) override;
+      //virtual ::estatus process_exception(::exception_pointer pe) override;
 
 
       //virtual __pointer(::aura::application) assert_running(const char * pszAppId) override;
@@ -318,7 +318,7 @@ namespace aura
 
       virtual ::draw2d::icon * get_icon(object * pobject, bool bBigIcon) const;
 
-      virtual void on_service_request(::create * pcreate) override;
+      //virtual void on_service_request(::create * pcreate) override;
 
       virtual string get_mutex_name_gen() override;
 
@@ -372,7 +372,7 @@ namespace aura
       //::apex::application_menu & applicationmenu();
 
 
-      virtual ::file::path appconfig_folder() override;
+      //virtual ::file::path appconfig_folder() override;
 
 
       //virtual void assert_valid() const override;
@@ -393,7 +393,7 @@ namespace aura
 
       virtual string dialog_box(const char * pszMatter, property_set & propertyset) override;
 
-      virtual void application_menu_update() override;
+      //virtual void application_menu_update() override;
 
 
       //virtual string calc_data_key();
@@ -403,9 +403,9 @@ namespace aura
       //virtual void notify_changed(const ::id & id, const ::action_context & action_context);
 
 
-      virtual ::file::path local_application_path() override;
+      //virtual ::file::path local_application_path() override;
 
-      virtual ::file::path local_application_home_path() override;
+      //virtual ::file::path local_application_home_path() override;
 
 
       virtual void finalize() override;
@@ -422,8 +422,8 @@ namespace aura
       virtual string get_theme() override;
 
 
-      virtual __pointer(::acme::exclusive) get_exclusive(string str, LPSECURITY_ATTRIBUTES psa) override;
-      virtual bool exclusive_fails(string str, LPSECURITY_ATTRIBUTES psa) override;
+      //virtual __pointer(::acme::exclusive) get_exclusive(string str, LPSECURITY_ATTRIBUTES psa) override;
+      //virtual bool exclusive_fails(string str, LPSECURITY_ATTRIBUTES psa) override;
 
 
       virtual bool start_application(bool bSynch, ::create * pcreate) override;
@@ -457,7 +457,7 @@ namespace aura
       //virtual ::estatus message_box_timeout(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, const ::duration& durationTimeOut = duration::infinite(), ::emessagebox emessagebox = message_box_ok, ::callback callback = ::callback());
 
 
-      virtual void on_file_new() override;
+      //virtual void on_file_new() override;
 
 
       //virtual string get_title() override;
@@ -467,9 +467,9 @@ namespace aura
       //virtual bool set_keyboard_layout(const char * pszPath, const ::action_context & action_context);
 
 
-      virtual bool enable_application_events(::object * pobject, bool bEnable) override;
+      //virtual bool enable_application_events(::object * pobject, bool bEnable) override;
 
-      virtual bool is_equal_file_path(const ::file::path & path1, const ::file::path & path2) override;
+      //virtual bool is_equal_file_path(const ::file::path & path1, const ::file::path & path2) override;
 
 
       //virtual bool process_exception(::exception_pointer pe) override;
@@ -478,7 +478,7 @@ namespace aura
       //virtual bool is_system() const override;
       //virtual bool is_session() const override;
       //virtual bool is_serviceable() const;
-      virtual bool is_user_service() const override;
+      //virtual bool is_user_service() const override;
 
       //void set_has_installer(bool bSet);
 
@@ -494,11 +494,11 @@ namespace aura
 
       //virtual void process_message_filter(i32 code,::message::message * pmessage) override;
 
-      virtual bool on_thread_on_idle(::thread * pthread,LONG lCount) override;
+      virtual ::estatus on_thread_on_idle(::thread * pthread,LONG lCount) override;
 
 
-      virtual bool app_set(string strPath, string strValue) override;
-      virtual string app_get(string strPath, string strDefault = "") override;
+      //virtual bool app_set(string strPath, string strValue) override;
+      //virtual string app_get(string strPath, string strDefault = "") override;
 
 
       //virtual bool Ex2OnAppInstall();
@@ -509,7 +509,7 @@ namespace aura
 
       //virtual string get_license_id();
 
-      virtual string get_version() override;
+      //virtual string get_version() override;
 
 //      virtual __pointer(::interprocess_intercommunication) create_interprocess_intercommunication() override;
 
@@ -574,12 +574,12 @@ namespace aura
       virtual void application_pos_run() override;
 
       //virtual bool InitApplication();
-      virtual void TermApplication() override;
+      //virtual void TermApplication() override;
 
       //virtual bool on_install();
       //virtual bool on_uninstall();
 
-      virtual bool system_add_app_install(const char * pszId, const char * pszBuild) override;
+      //virtual bool system_add_app_install(const char * pszId, const char * pszBuild) override;
 
       //virtual void TermThread(HINSTANCE hInstTerm);
 
@@ -589,29 +589,29 @@ namespace aura
       //virtual ITHREAD get_thread_id();
 
 
-      virtual bool _001OnDDECommand(const char * pcsz) override;
+      //virtual bool _001OnDDECommand(const char * pcsz) override;
 
       virtual void _001EnableShellOpen() override;
       virtual void _001OnFileNew(::message::message * pmessage) override;
 
 
-      virtual string multimedia_audio_get_default_library_name() override;
-      virtual string multimedia_audio_mixer_get_default_library_name() override;
-      virtual string veriwell_multimedia_music_midi_get_default_library_name() override;
+      //virtual string multimedia_audio_get_default_library_name() override;
+      //virtual string multimedia_audio_mixer_get_default_library_name() override;
+      //virtual string veriwell_multimedia_music_midi_get_default_library_name() override;
 
-      virtual bool get_temp_file_name_template(string & str,const char * lpszName,const char * pszExtension,const char * pszTemplate) override;
+      //virtual bool get_temp_file_name_template(string & str,const char * lpszName,const char * pszExtension,const char * pszTemplate) override;
 
-      virtual bool get_temp_file_name(string & str,const char * lpszName,const char * pszExtension) override;
+      //virtual bool get_temp_file_name(string & str,const char * lpszName,const char * pszExtension) override;
 
-      service_base * get_service();
-      virtual service_base * allocate_new_service() override;
-      virtual bool init_service() override;
+      //service_base * get_service();
+      //virtual service_base * allocate_new_service() override;
+      //virtual bool init_service() override;
 
-      virtual bool os_create_service() override;
-      virtual bool os_remove_service() override;
+      //virtual bool os_create_service() override;
+      //virtual bool os_remove_service() override;
 
-      virtual bool os_start_service() override;
-      virtual bool os_stop_service() override;
+      //virtual bool os_start_service() override;
+      //virtual bool os_stop_service() override;
 
       //virtual void on_service_request(::create * pcreate);
 
@@ -621,55 +621,55 @@ namespace aura
 
       /// return true if this instance might continue execution
       /// bHandled true if some action was done in response to this new additional instance creation
-      virtual bool on_exclusive_instance_conflict(bool & bHandled, EExclusiveInstance eexclusive, string strId) override;
+      //virtual ::estatus on_exclusive_instance_conflict(bool & bHandled, EExclusiveInstance eexclusive, string strId) override;
 
       /// return true if this instance might continue execution
       /// bHandled true if some action was done in response to this new additional instance creation
-      virtual bool on_exclusive_instance_local_conflict(bool & bHandled) override;
+//      virtual bool on_exclusive_instance_local_conflict(bool & bHandled) override;
 
             /// return true if this instance might continue execution
       /// bHandled true if some action was done in response to this new additional instance creation
-      virtual bool on_exclusive_instance_local_conflict_id(bool & bHandled, string strId) override;
+      //virtual bool on_exclusive_instance_local_conflict_id(bool & bHandled, string strId) override;
 
       /// return true if the external additional instance might continue execution
       /// bHandled true if some action was done in response to the external new additional instance creation
-      virtual bool on_additional_local_instance(bool & bHandled, string strModule, int iPid, string strCommandLine) override;
+      //virtual ::estatus on_additional_local_instance(bool & bHandled, string strModule, int iPid, string strCommandLine) override;
 
-      virtual void on_new_instance(string strModule, const ::id & idPid) override;
+      //virtual void on_new_instance(string strModule, const ::id & idPid) override;
 
-      virtual string get_local_mutex_id() override;
-      virtual string get_global_mutex_id() override;
+      //virtual string get_local_mutex_id() override;
+      //virtual string get_global_mutex_id() override;
 
       //virtual ::mutex * get_local_mutex();
       //virtual ::mutex * get_global_mutex();
 
-      virtual string get_local_mutex_name() override;
-      virtual string get_local_id_mutex_name() override;
-      virtual string get_global_mutex_name() override;
-      virtual string get_global_id_mutex_name() override;
+      //virtual string get_local_mutex_name() override;
+      //virtual string get_local_id_mutex_name() override;
+      //virtual string get_global_mutex_name() override;
+      //virtual string get_global_id_mutex_name() override;
 
-      virtual bool check_exclusive(bool & bHandled) override;
-      virtual bool release_exclusive() override;
+      //virtual bool check_exclusive(bool & bHandled) override;
+      //virtual bool release_exclusive() override;
 
-      virtual void on_set_scalar(e_scalar escalar,i64 iValue,int iFlags) override;
-      virtual void get_scalar_minimum(e_scalar escalar,i64 & i) override;
-      virtual void get_scalar(e_scalar escalar,i64 & i) override;
-      virtual void get_scalar_maximum(e_scalar escalar,i64 & i) override;
+      //virtual void on_set_scalar(e_scalar escalar,i64 iValue,int iFlags) override;
+      //virtual void get_scalar_minimum(e_scalar escalar,i64 & i) override;
+      //virtual void get_scalar(e_scalar escalar,i64 & i) override;
+      //virtual void get_scalar_maximum(e_scalar escalar,i64 & i) override;
 
 
 
-      bool safe_is_running();
+      //bool safe_is_running();
 
 
       //virtual void on_request(::create * pcreate) override;
 
-      // name by Mummi (Japanese -> Guddo : from English : Good, ca2 interpretation : Goods).
-      // get/set serializables to user directory
-      template < typename TYPE >
-      bool gudo_get(const string & strKey, TYPE & t);
+      //// name by Mummi (Japanese -> Guddo : from English : Good, ca2 interpretation : Goods).
+      //// get/set serializables to user directory
+      //template < typename TYPE >
+      //bool gudo_get(const string & strKey, TYPE & t);
 
-      template < typename TYPE >
-      bool gudo_set(const string & strKey, const TYPE & t);
+      //template < typename TYPE >
+      //bool gudo_set(const string & strKey, const TYPE & t);
 
 
       //virtual bool assert_user_logged_in();
@@ -684,48 +684,48 @@ namespace aura
 
 
 
-      virtual string http_get_locale_schema(const char * pszUrl, const char * pszLocale, const char * pszSchema) override;
+      //virtual string http_get_locale_schema(const char * pszUrl, const char * pszLocale, const char * pszSchema) override;
 
       //virtual void on_update_matter_locator() override;
 
-      virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const string & strLocale, const string & strSchema) override;
-      virtual void matter_locator_locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const string & strLocale, const string & strSchema) override;
+      //virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const string & strLocale, const string & strSchema) override;
+      //virtual void matter_locator_locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const string & strLocale, const string & strSchema) override;
 
-      virtual string get_locale_schema_dir(const string & strLocale, const string & strSchema) override;
-      virtual string get_locale_schema_dir(const string & strLocale) override;
-      virtual string get_locale_schema_dir() override;
+      //virtual string get_locale_schema_dir(const string & strLocale, const string & strSchema) override;
+      //virtual string get_locale_schema_dir(const string & strLocale) override;
+      //virtual string get_locale_schema_dir() override;
 
-      virtual void set_locale(const string & pcsz, const ::action_context & action_context) override;
+      //virtual void set_locale(const string & pcsz, const ::action_context & action_context) override;
 
-      virtual void set_schema(const string & pcsz, const ::action_context & action_context) override;
+      //virtual void set_schema(const string & pcsz, const ::action_context & action_context) override;
 
-      virtual void on_set_locale(const string & pcsz, const ::action_context & action_context) override;
+      //virtual void on_set_locale(const string & pcsz, const ::action_context & action_context) override;
 
-      virtual void on_set_schema(const string & pcsz, const ::action_context & action_context) override;
-
-
-
-      virtual void fill_locale_schema(::str::international::locale_schema & localeschema) override;
-      virtual void fill_locale_schema(::str::international::locale_schema & localeschema,const string & pszLocale,const string & pszSchema) override;
-
-      virtual bool platform_open_by_file_extension(index iEdge, const char * pszPathName, ::create * pcreate = nullptr) override;
-      virtual bool platform_open_by_file_extension(index iEdge,::create * pcc) override;
+      //virtual void on_set_schema(const string & pcsz, const ::action_context & action_context) override;
 
 
-      virtual bool on_start_application() override;
 
-      virtual bool os_on_start_application() override;
+      //virtual void fill_locale_schema(::str::international::locale_schema & localeschema) override;
+      //virtual void fill_locale_schema(::str::international::locale_schema & localeschema,const string & pszLocale,const string & pszSchema) override;
 
-      virtual bool is_application() const override;
-
-
-      DECL_GEN_SIGNAL(_001OnAppExit);
-      virtual bool _001OnAgreeExit() override;
-      virtual void _001OnFranceExit() override;
-      virtual void _001FranceExit() override;
+      //virtual bool platform_open_by_file_extension(index iEdge, const char * pszPathName, ::create * pcreate = nullptr) override;
+      //virtual bool platform_open_by_file_extension(index iEdge,::create * pcc) override;
 
 
-      virtual string lstr(const ::id & id, string strDefault = "") override;
+      //virtual bool on_start_application() override;
+
+      //virtual bool os_on_start_application() override;
+
+      //virtual bool is_application() const override;
+
+
+      //DECL_GEN_SIGNAL(_001OnAppExit);
+      //virtual bool _001OnAgreeExit() override;
+      //virtual void _001OnFranceExit() override;
+      //virtual void _001FranceExit() override;
+
+
+      //virtual string lstr(const ::id & id, string strDefault = "") override;
 
 
 
@@ -743,13 +743,13 @@ namespace aura
 
       //virtual void play_audio(var varFile, bool bSynch = false);
 
-      virtual void post_critical_error_message(const char * pszMessage, bool bShowLog = true) override;
+      //virtual void post_critical_error_message(const char * pszMessage, bool bShowLog = true) override;
 
-      virtual void show_critical_error_log() override;
+      //virtual void show_critical_error_log() override;
 
-      virtual string get_app_user_friendly_task_bar_name() override;
+      //virtual string get_app_user_friendly_task_bar_name() override;
 
-      virtual void on_apply(::action * paction) override;
+      //virtual void on_apply(::action * paction) override;
 
       //virtual bool compress_ungz(::file::file * pfileUncompressed, ::file::file * pfileCompressed);
 
@@ -757,25 +757,25 @@ namespace aura
 
       //virtual void interactive_credentials(::account::credentials * pcredentials) override;
 
-      virtual ::file::path get_executable_path() override;
-      virtual string get_executable_extension() override;
-      virtual string get_executable_title() override;
-      virtual string get_executable_appid() override;
+      //virtual ::file::path get_executable_path() override;
+      //virtual string get_executable_extension() override;
+      //virtual string get_executable_title() override;
+      //virtual string get_executable_appid() override;
 
 
 
-      virtual bool on_open_document_file(var varFile) override;
+      //virtual bool on_open_document_file(var varFile) override;
 
-      virtual string get_app_id(string wstr) override;
+      //virtual string get_app_id(string wstr) override;
 
 
-      virtual void install_trace(const string & str) override;
-      virtual void install_trace(double dRate) override;
-      virtual bool register_spa_file_type() override;
+      //virtual void install_trace(const string & str) override;
+      //virtual void install_trace(double dRate) override;
+      //virtual bool register_spa_file_type() override;
 
-      virtual bool low_is_app_app_admin_running(string strPlatform, string strConfiguration) override;
-      virtual void defer_start_program_files_app_app_admin(string strPlatform, string strConfiguration) override;
-      virtual void start_program_files_app_app_admin(string strPlatform, string strConfiguration) override;
+      //virtual bool low_is_app_app_admin_running(string strPlatform, string strConfiguration) override;
+      //virtual void defer_start_program_files_app_app_admin(string strPlatform, string strConfiguration) override;
+      //virtual void start_program_files_app_app_admin(string strPlatform, string strConfiguration) override;
 
 
 
@@ -1363,7 +1363,7 @@ namespace aura
 
 
 
-      virtual bool process_message() override;
+      ///virtual bool process_message() override;
 
       //i32 hotplugin_host_host_starter_start_sync(const char* pszCommandLine, ::aura::application* papp, ::hotplugin::host* phost, ::hotplugin::plugin* pplugin) override;
 

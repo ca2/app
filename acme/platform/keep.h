@@ -28,7 +28,7 @@ inline bool default_keep_value < bool >()
 //inline ::thread * default_keep_value < ::thread * >()
 //{
 //
-//   return ::get_thread();
+//   return ::get_task();
 //
 //}
 
@@ -312,7 +312,7 @@ ___keep < TYPE > keep(TYPE & kept, const TYPE_KEEP & keepValue, const TYPE_KEEP_
 #define __keep_true(...) auto TOKEN_AT_LINE(__keep_true) = keep(__VA_ARGS__, true)
 #define __keep_false(...) auto TOKEN_AT_LINE(__keep_false) = keep(__VA_ARGS__, false)
 #define __keep_thread_flag(...) auto TOKEN_AT_LINE(__keep_thread_flag) = keep_thread_flag(__VA_ARGS__)
-#define __keep_current_thread(...) auto TOKEN_AT_LINE(__keep_current_thread) = keep(__VA_ARGS__, ::get_thread())
+#define __keep_current_thread(...) auto TOKEN_AT_LINE(__keep_current_thread) = keep(__VA_ARGS__, ::get_task())
 
 
 #define __task_guard_ret(flag, ret) \

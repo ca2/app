@@ -55,11 +55,13 @@ namespace filemanager
 
       }
 
-      auto pcreate = __new(create(this));
+      auto pcreate = __create_new< ::create >();
 
       pcreate->m_bMakeVisible = false;
 
       pcreate->m_puserinteractionParent = puieParent;
+
+      pcreate->finish_initialization();
 
       m_ptemplatePane->do_request(pcreate);
 

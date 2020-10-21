@@ -229,7 +229,7 @@ namespace user
    void control_bar::_001OnTimer(::timer * ptimer)
    {
       UNREFERENCED_PARAMETER(ptimer);
-//      UINT nIDEvent = ptimer->m_nIDEvent;
+//      UINT uEvent = ptimer->m_uEvent;
 #ifdef WINDOWS_DESKTOP
       if (Session.is_key_pressed(::user::key_lbutton))
          return;

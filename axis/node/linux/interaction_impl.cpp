@@ -268,7 +268,7 @@ namespace linux
 
       }
 
-      __refer(m_puserinteraction->m_pthreadUserInteraction, ::get_thread());
+      __refer(m_puserinteraction->m_pthreadUserInteraction, ::get_task());
 
       m_pthreadUserImpl = m_puserinteraction->m_pthreadUserInteraction;
 
@@ -989,7 +989,7 @@ namespace linux
 
          single_lock sl(get_context_application() == nullptr ? nullptr : get_context_application()->mutex(), TRUE);
 
-         ::thread* pThread = ::get_thread();
+         ::thread* pThread = ::get_task();
 
          if (pThread != nullptr)
          {
@@ -3713,40 +3713,40 @@ namespace linux
 //   }
 //
 //
-//   bool interaction_impl::SetTimer(uptr nIDEvent, UINT nElapse, PFN_TIMER pfnTimer)
+//   bool interaction_impl::SetTimer(uptr uEvent, UINT nElapse, PFN_TIMER pfnTimer)
 //   {
 //
-//      return ::user::interaction_impl::SetTimer(nIDEvent, nElapse, pfnTimer);
+//      return ::user::interaction_impl::SetTimer(uEvent, nElapse, pfnTimer);
 //
 //
 ////        UNREFERENCED_PARAMETER(pfnTimer);
 //
 ////
-////        m_puserinteraction->get_context_application()->set_timer(m_puserinteraction, nIDEvent, nElapse);
+////        m_puserinteraction->get_context_application()->set_timer(m_puserinteraction, uEvent, nElapse);
 ////
-////        return nIDEvent;
+////        return uEvent;
 //
 //      //__throw(not_implemented());
 //      //ASSERT(::is_window((oswindow) get_handle()));
-//      //return ::SetTimer(get_handle(), nIDEvent, nElapse, pfnTimer);
+//      //return ::SetTimer(get_handle(), uEvent, nElapse, pfnTimer);
 //
 //
 //   }
 //
 //
-//   bool interaction_impl::KillTimer(uptr nIDEvent)
+//   bool interaction_impl::KillTimer(uptr uEvent)
 //   {
 //
-//      return ::user::interaction_impl::KillTimer(nIDEvent);
+//      return ::user::interaction_impl::KillTimer(uEvent);
 //
-////       m_puserinteraction->get_context_application()->unset_timer(m_puserinteraction, nIDEvent);
+////       m_puserinteraction->get_context_application()->unset_timer(m_puserinteraction, uEvent);
 //
 //      //     return TRUE;
 //
 //      //return ::user::int
 //
 //      //ASSERT(::is_window((oswindow) get_handle()));
-//      //return ::KillTimer(get_handle(), nIDEvent)  != FALSE;
+//      //return ::KillTimer(get_handle(), uEvent)  != FALSE;
 //
 //   }
 

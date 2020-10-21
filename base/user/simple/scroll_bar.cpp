@@ -765,26 +765,26 @@ void simple_scroll_bar::_001OnTimer(::timer * ptimer)
 
    _001ScreenToClient(point);
 
-   if(ptimer->m_nIDEvent == (uptr) this)
+   if(ptimer->m_uEvent == (uptr) this)
    {
 
-      KillTimer(ptimer->m_nIDEvent);
+      KillTimer(ptimer->m_uEvent);
 
       SetTimer(((uptr) this) + 1,10,nullptr);
 
    }
-   else if(ptimer->m_nIDEvent == ((uptr) this) + 1)
+   else if(ptimer->m_uEvent == ((uptr) this) + 1)
    {
 
       if(!scrollbar_action(m_itemCurrent))
       {
 
-         KillTimer(ptimer->m_nIDEvent);
+         KillTimer(ptimer->m_uEvent);
 
       }
 
    }
-   //else if (ptimer->m_nIDEvent == 43212345)
+   //else if (ptimer->m_uEvent == 43212345)
    //{
 
    //   set_need_redraw();

@@ -170,7 +170,7 @@ namespace windows
       DWORD dwWaitSharingViolation = 84;
       auto tickStart = ::tick::now();
 
-      //DWORD dwFileSharingViolationRetryTimeout = ::get_thread() != nullptr ? ::get_thread()->get_file_sharing_violation_timeout_total_milliseconds() : 0;
+      //DWORD dwFileSharingViolationRetryTimeout = ::get_task() != nullptr ? ::get_task()->get_file_sharing_violation_timeout_total_milliseconds() : 0;
 
    retry:
 

@@ -102,7 +102,7 @@
 //thread_local __pointer(::thread) t_pthread;
 //
 //
-//::thread* get_thread()
+//::thread* get_task()
 //{
 //   
 //   return t_pthread; 

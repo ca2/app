@@ -132,7 +132,7 @@ namespace user
          m_iActiveThreadCount = 0;
          m_iMaxThreadCount = 1;
 
-         m_pevNewImageKey = new manual_reset_event();
+         m_pevNewImageKey = __new(manual_reset_event);
 
          m_pevNewImageKey->m_eobject += e_object_alertable_wait;
 
@@ -142,14 +142,14 @@ namespace user
          m_iaSize.add(48);
          m_iaSize.add(256);
 
-         m_imagemap.InitHashTable(16384);
+         m_imagemap.InitHashTable(16383);
 
       }
 
 
       shell::~shell()
       {
-
+         
       }
 
 
@@ -195,9 +195,7 @@ namespace user
 
          auto pthread  = __new(thread(this));
 
-         m_threadptra.add(pthread);
-
-         m_iThread = m_threadptra.get_upper_bound();
+         m_iThread = thread_add(pthread);
 
       }
 
@@ -914,21 +912,7 @@ namespace user
 
       ::object::set_finish();
 
-      for (auto& pthread : m_threadptra)
-      {
-
-         try
-         {
-
-            pthread->set_finish();
-
-         }
-         catch (...)
-         {
-
-         }
-
-      }
+      thread_remove_all();
 
    }
 

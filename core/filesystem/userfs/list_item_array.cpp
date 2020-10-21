@@ -13,18 +13,18 @@ namespace userfs
    //}
 
 
-   __pointer(list_item) list_item_array::get_item(index i, const ::id & id)
-   {
+   //__pointer(list_item) list_item_array::get_item(index i, const ::id & id)
+   //{
 
-      return this->element_at(i, id);
+   //   return this->element_at(i, id);
 
-   }
+   //}
 
 
    list_item_array::list_item_array()
    {
 
-      add_sort((::i64) ::fs::arrange_by_name, [](auto & pitem1, auto & pitem2)
+  /*    add_sort((::i64) ::fs::arrange_by_name, [](auto & pitem1, auto & pitem2)
          {
 
             int iCompareType = pitem1->get_type_weight() - pitem2->get_type_weight();
@@ -33,7 +33,7 @@ namespace userfs
 
             return pitem1->m_strName.compare_ci(pitem2->m_strName);
 
-         });
+         });*/
 
    }
 
@@ -90,7 +90,7 @@ namespace userfs
    void list_item_array::arrange(::fs::e_arrange earrange)
    {
 
-      sort((::i64) earrange);
+      //sort((::i64) earrange);
 
    }
 

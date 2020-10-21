@@ -1,19 +1,64 @@
-/////////////////////////////////////////////////////////////////////////////////////////
-//
-//  ca2
-//
-//  ca2 is an all-purpose multi-platform framework and set of libraries written in
-//  C++ language with the aim to help developers create awesome apps for users.
-//
-//  ca2/./acme/C++/C/Assembly/Huffman Machine/Hardware/Universe/Multiverse stack
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //
 //
 //
 //
-//  c(s)t(s)<tb(s)!!
+//        ------------------ - --/ ------------------------ - ----/ -------------------------------------- - --
+//        DOMAS_89 > ThomasBS_ / ------ - ---/ aura.dll Release(Win32) / aura.lib Static Release(Win32) / helloaura.exe Static Release(Win32)---- - --
+//        2020 - 08 - 18 01:38 / 17, 180kb---- - ---/ 189, 893kb-------- - ---/ 12, 187kb------------------ - --
+//        2020 - 08 - 20 07:41 / 13, 915kb / 137, 668kb / 9, 715kb------------------ - --
+//        rebuild mark / ---------------- - ------------------------- - ------------------------------------ - --
+//        ------------------ - --
 //
-
-
+//
+//
+//
+//        ------------------------------------------------------------------------
+//        |                                                                      |
+//        |                                                                      |
+//        |                                                                      |
+//        |                                                                      |
+//        |                                                                      |
+//        |                                                                      |
+//        |                                                                      |
+//        |                                                                      |
+//        |                                                                      |
+//        |                                                                      |
+//        |                                                                      |
+//        |                                                                      |
+//        |                                                                      |
+//        |                                                                      |
+//        |    |---------------|    |---------------| |    |---------------|     |
+//        |    | |-------------|    |---------------| |    |-------------| |     |
+//        |    | |                                  | |                  | |     |
+//        |    | |                  |-----| |-| |---| |    |-------------| |     |
+//        |    | |                  | |---| |-| |---| |    | |-------------|     |
+//        |    | |                  | |             | |    | |                   |
+//        |    | |-------------|    | |-------------| |    | |-------------|     |
+//        |    |---------------|    |---------------| |    |---------------|     |
+//        |                                                                      |
+//        ------------------------------------------------------------------------
+//
+//
+//
+//        ca2 is an all-purpose multi-platform framework
+//        and set of libraries written in C++ language with 
+//        the aim to help developers create awesome apps for users.
+//
+//
+//        ca2/./acme/C++/C/Assembly/Huffman Machine/...
+//        ...Hardware/Universe/Multiverse stack
+//
+//
+//
+//
+//        c(s)t(s)<tb(s)!!
+//
+//
+//
+//
+//
+//---------------------------------------------------------------------------------------
 #pragma once
 
 
@@ -2201,6 +2246,12 @@ class type;
 
 #include "acme/platform/auto_pointer.h"
 
+#define __m_own(owner, member_reference, ...) (owner)->__compose(member_reference, __VA_ARGS__ )
+#define __own(owner, member, ...) __m_own(owner, (owner)->member, __VA_ARGS__ )
+#define __m_bind(referer, member_reference, ...) (referer)->__refer(member_reference, __VA_ARGS__ )
+#define __bind(referer, referee, ...) __m_bind(referer, (referer)->referee, __VA_ARGS__)
+#define __unbind(holder, ...) (holder)->__release((holder)-> __VA_ARGS__ )
+
 
 // C-includes
 //#include "acme/os/os.h"
@@ -2313,6 +2364,8 @@ inline bool is_set_ref(const TYPE & t)
 #include "acme/primitive/primitive/pointer.h"
 #include "acme/primitive/primitive/pointer2.h"
 
+
+//#include "acme/platform/_.h"
 
 template < class POINTER_TYPE >
 inline auto & __typed(__pointer(POINTER_TYPE) & p) { return *p; }
@@ -2471,6 +2524,7 @@ using emessagebox = cflag < enum_message_box >;
 
 #include "acme/primitive/primitive/function_base.h"
 
+using matter_pointer = __pointer(::matter);
 
 namespace user
 {
@@ -2487,9 +2541,11 @@ namespace user
 #include "acme/primitive/primitive/layered.h"
 
 
+#include "acme/primitive/primitive/work.h"
 
 
-#include "acme/primitive/primitive/task.h"
+
+
 
 
 
@@ -2681,9 +2737,17 @@ namespace core
 } // namespace core
 
 
+class task;
+
+
+using task_pointer = __pointer(::task);
+
+
 #include "acme/exception/_.h"
 
 #include "acme/primitive/primitive/context_object.h"
+
+#include "acme/multithreading/task.h"
 
 #include "acme/primitive/comparison/var_strict.h"
 
@@ -3051,7 +3115,6 @@ class mq_base;
 //#include "acme/platform/live_signal.h"
 #include "acme/multithreading/pred_holder.h"
 //#include "acme/primitive/primitive/command.h"
-//#include "acme/multithreading/thread.h"
 //#include "acme/multithreading/handler.h"
 //#include "acme/multithreading/service_base.h"
 //#include "acme/multithreading/service/plain_service.h"
@@ -3059,11 +3122,6 @@ class mq_base;
 //#include "acme/multithreading/fork.h"
 //#include "acme/multithreading/delay_thread.h"
 //#include "acme/multithreading/tools.h"
-//#include "acme/platform/timer_future.h"
-//#include "acme/platform/timer_item.h"
-//#include "acme/platform/timer_array.h"
-//#include "acme/platform/timer.h"
-//#include "acme/platform/timer_event.h"
 
 #include "acme/multithreading/thread_impl.h"
 //#include "acme/multithreading/simple_thread.h"

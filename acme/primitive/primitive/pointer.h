@@ -316,7 +316,7 @@ public:
 
    inline i64 release(OBJ_REF_DBG_PARAMS);
 
-   inline __pointer(T) detach();
+   inline T * detach();
 
 
    template < class T2 >
@@ -655,4 +655,16 @@ inline __pointer(TYPE) & __defer_fork(__pointer(TYPE) & p)
    return p = p->clone();
 
 }
+
+
+template < class TYPE >
+inline ::i64 release(__pointer(TYPE)& pointer OBJ_REF_DBG_ADD_PARAMS);
+
+template < class TYPE >
+inline ::i64 __finalize(__pointer(TYPE)& pointer OBJ_REF_DBG_ADD_PARAMS);
+
+template < class REFERENCE >
+inline ::i64 release(__reference(REFERENCE)& preference OBJ_REF_DBG_ADD_PARAMS);
+
+
 

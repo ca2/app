@@ -177,7 +177,9 @@ namespace apex
 
       }
 
-      m_createaHistory.add(m_pcreate);
+      auto & pcreateNew = m_createaHistory.add_new();
+
+      __m_bind(this, pcreateNew, m_pcreate OBJ_REF_DBG_ADD_THIS_FUNCTION_LINE);
 
       m_pcreate->m_bNew = false;
 

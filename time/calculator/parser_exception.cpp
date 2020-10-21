@@ -18,7 +18,7 @@ datetime_parser_exception::~datetime_parser_exception()
 CLASS_DECL_CA2_TIME bool get_avoid_datetime_parser_exception()
 {
 
-   return ::get_thread()->value(id_thread_avoid_datetime_parser_exception);
+   return ::get_task()->value(id_thread_avoid_datetime_parser_exception);
 
 }
 
@@ -45,14 +45,14 @@ avoid_datetime_parser_exception::avoid_datetime_parser_exception()
 
    m_bBefore = get_avoid_datetime_parser_exception();
 
-   ::get_thread()->value(id_thread_avoid_datetime_parser_exception) = true;
+   ::get_task()->value(id_thread_avoid_datetime_parser_exception) = true;
 
 }
 
 avoid_datetime_parser_exception::~avoid_datetime_parser_exception()
 {
 
-   ::get_thread()->value(id_thread_avoid_datetime_parser_exception) = m_bBefore;
+   ::get_task()->value(id_thread_avoid_datetime_parser_exception) = m_bBefore;
 
 }
 

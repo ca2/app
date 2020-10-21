@@ -15,22 +15,28 @@ namespace account
    public:
 
 
-      __pointer(user_array)             m_pusera;
-      __pointer(product_array)          m_pproducta;
-      __pointer(class storage)          m_pstorage;
-      __pointer(class authenticator)    m_pauthenticator;
+      __pointer(user_array)                        m_pusera;
+      __pointer(product_array)                     m_pproducta;
+      __pointer(class storage)                     m_pstorage;
+      __pointer(class authenticator)               m_pauthenticator;
+      __pointer(::thread_pool < ::task_pointer >)  m_ptaskpool;
 
 #if !MOBILE_PLATFORM
       
-      semaphore                  m_semaphoreDialog;
+      semaphore                                    m_semaphoreDialog;
 
 #endif
 
 //      duration                   m_durationSessionTimeout;
 //
 //
+      
+      
       department();
       virtual ~department();
+
+
+      virtual ::estatus initialize(::layered * pobjectContext) override;
 
 
       class __pointer(class authenticator) authenticator();
@@ -68,8 +74,7 @@ namespace account
 
       ::file::path get_default_url();
 
-
-      virtual void on_clock(e_clock eclock) override;
+      void on_clock(enum_clock eclock);
 
 
    };

@@ -236,10 +236,10 @@ namespace account
    }
 
 
-   void user_array::on_clock(e_clock eclock)
+   void user_array::on_clock(enum_clock eclock)
    {
 
-      if(eclock == clock_slow)
+      if(eclock == e_clock_slow)
       {
 
          sync_lock sl(mutex());

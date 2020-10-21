@@ -740,7 +740,7 @@ namespace ios
 
       //pmessage->m_bRet = true;
 
-      ::thread* pThread = ::get_thread();
+      ::thread* pThread = ::get_task();
 
       if (pThread != nullptr)
       {
@@ -2246,7 +2246,7 @@ namespace ios
 
       ::user::interaction_impl::_001OnTimer(ptimer);;
 
-//      if(ptimer->m_nIDEvent == 2049)
+//      if(ptimer->m_uEvent == 2049)
 //      {
 //
 //         set_need_redraw();
@@ -3563,33 +3563,33 @@ namespace ios
 //
 //   }
 
-   bool interaction_impl::SetTimer(uptr nIDEvent, UINT nElapse, PFN_TIMER pfnTimer)
+   bool interaction_impl::SetTimer(uptr uEvent, UINT nElapse, PFN_TIMER pfnTimer)
    {
-      return ::user::interaction_impl::SetTimer(nIDEvent, nElapse, pfnTimer);
+      return ::user::interaction_impl::SetTimer(uEvent, nElapse, pfnTimer);
       /*
        UNREFERENCED_PARAMETER(lpfnTimer);
 
-       m_puserinteraction->get_context_application()->set_timer(m_puserinteraction, nIDEvent, nElapse);
+       m_puserinteraction->get_context_application()->set_timer(m_puserinteraction, uEvent, nElapse);
 
-       return nIDEvent;
+       return uEvent;
 
        //__throw(not_implemented());
        //ASSERT(::is_window(get_handle()));
-       //return ::SetTimer(get_handle(), nIDEvent, nElapse, lpfnTimer);
+       //return ::SetTimer(get_handle(), uEvent, nElapse, lpfnTimer);
        //return true;*/
 
    }
 
-   bool interaction_impl::KillTimer(uptr nIDEvent)
+   bool interaction_impl::KillTimer(uptr uEvent)
    {
-      return ::user::interaction_impl::KillTimer(nIDEvent);
+      return ::user::interaction_impl::KillTimer(uEvent);
 
       /*
        //__throw(not_implemented());
        //ASSERT(::is_window(get_handle()));
-       //return ::KillTimer(get_handle(), nIDEvent)  != FALSE;
+       //return ::KillTimer(get_handle(), uEvent)  != FALSE;
 
-       m_puserinteraction->get_context_application()->unset_timer(m_puserinteraction, nIDEvent);
+       m_puserinteraction->get_context_application()->unset_timer(m_puserinteraction, uEvent);
 
 
        return true;*/

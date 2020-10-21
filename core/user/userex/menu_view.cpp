@@ -80,7 +80,7 @@ void menu_view::_001OnTimer(::timer * ptimer)
 
       ev.m_eevent = ::user::event_timer;
 
-      ev.m_uiEvent = ptimer->m_nIDEvent;
+      ev.m_uiEvent = ptimer->m_uEvent;
       
       ev.m_etimer = ptimer->m_etimer;
 
@@ -99,7 +99,7 @@ void menu_view::_001OnTimer(::timer * ptimer)
 
    }
 
-   if(ptimer->m_nIDEvent == 24)
+   if(ptimer->m_uEvent == 24)
    {
 
       KillTimer(24);

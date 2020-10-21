@@ -92,44 +92,44 @@ void __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers);
 //}
 
 
-namespace aura
-{
-
-
-   bool application::os_on_start_application()
-   {
-
-      if (!::is_debugger_attached())
-      {
-
-         ::file::path pathObj;
-
-         ::file::path pathLnk;
-
-         pathObj = Context.file().module();
-
-         string strLinkTitle;
-
-         strLinkTitle = m_strAppName;
-
-         strLinkTitle.replace("/", "_");
-         strLinkTitle.replace("\\", "_");
-         strLinkTitle.replace("-", "_");
-
-         pathLnk = ::dir::localconfig() / "desk/monitor-0/2desk" / strLinkTitle + ".lnk";
-
-         ::dir::mk(pathLnk.folder());
-
-         os_create_link(pathObj, pathLnk, "app=" + m_strAppName);
-
-      }
-
-      return true;
-
-   }
-
-
-} // namespace aura
+//namespace aura
+//{
+//
+//
+//   bool application::os_on_start_application()
+//   {
+//
+//      if (!::is_debugger_attached())
+//      {
+//
+//         ::file::path pathObj;
+//
+//         ::file::path pathLnk;
+//
+//         pathObj = Context.file().module();
+//
+//         string strLinkTitle;
+//
+//         strLinkTitle = m_strAppName;
+//
+//         strLinkTitle.replace("/", "_");
+//         strLinkTitle.replace("\\", "_");
+//         strLinkTitle.replace("-", "_");
+//
+//         pathLnk = ::dir::localconfig() / "desk/monitor-0/2desk" / strLinkTitle + ".lnk";
+//
+//         ::dir::mk(pathLnk.folder());
+//
+//         os_create_link(pathObj, pathLnk, "app=" + m_strAppName);
+//
+//      }
+//
+//      return true;
+//
+//   }
+//
+//
+//} // namespace aura
 
 
 

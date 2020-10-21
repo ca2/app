@@ -131,7 +131,7 @@ namespace message
 
    //   base::set(pwnd,uiMessage,wparam,lparam);
 
-   //   m_nIDEvent = static_cast<UINT>(wparam);
+   //   m_uEvent = static_cast<UINT>(wparam);
 
    //}
 

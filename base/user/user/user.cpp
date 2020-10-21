@@ -246,6 +246,23 @@ namespace base
    }
 
 
+   void user::finalize()
+   {
+
+      for (auto& style : m_mapUserStyle.values())
+      {
+
+         __finalize(style);
+
+      }
+
+      m_mapUserStyle.remove_all();
+
+      ::axis::user::finalize();
+
+   }
+
+
    ::user::primitive * user::get_mouse_focus_LButtonDown()
    {
 
@@ -1319,9 +1336,9 @@ namespace base
 
          }
 
-         sync_lock sl(&::get_context_system()->m_mutexLibrary);
+         //sync_lock sl(&::get_context_system()->m_mutexLibrary);
 
-         ::get_context_system()->m_mapLibrary[strLibrary] = plibrary;
+         //::get_context_system()->m_mapLibrary[strLibrary] = plibrary;
 
          pstyle->m_plibrary = plibrary;
 

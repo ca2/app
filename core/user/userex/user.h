@@ -62,7 +62,7 @@ namespace core
       //bool                                       m_bSystemSynchronizedCursor;
       //point                                      m_pointCursor;
 
-      //comparable_array < __reference(::user::interaction) > m_uiptraToolWindow;
+      //__pointer_array(::user::interaction)         m_uiptraToolWindow;
 
       //::user::interaction_impl *                            m_pimplPendingFocus2;
       //::user::interaction *                                 m_puiLastUserInputPopup;

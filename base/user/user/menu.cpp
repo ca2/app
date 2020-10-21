@@ -567,7 +567,7 @@ namespace user
 
       set_need_redraw();
 
-      SetTimer(::timer_command_probe, 300, nullptr);
+      SetTimer(::e_timer_command_probe, 300, nullptr);
 
       return true;
 
@@ -831,7 +831,7 @@ namespace user
 
       post_redraw();
 
-      SetTimer(::timer_command_probe, 100, nullptr);
+      SetTimer(::e_timer_command_probe, 100, nullptr);
 
    }
 
@@ -1055,7 +1055,7 @@ namespace user
       {
          if (pevent->m_puie->m_id == m_idTimerMenu)
          {
-            KillTimer(timer_menu);
+            KillTimer(e_timer_menu);
             m_idTimerMenu.is_empty();
          }
 
@@ -1086,9 +1086,9 @@ namespace user
 
       __pointer(::user::menu_item_ptra) pmenuitema = pitemThis->m_pmenuitema;
 
-      if (ptimer->m_nIDEvent == timer_menu)
+      if (ptimer->m_uEvent == e_timer_menu)
       {
-         KillTimer(timer_menu);
+         KillTimer(e_timer_menu);
          if (m_idSubMenu.has_char())
          {
             m_psubmenu->send_message(WM_CLOSE);
@@ -1117,7 +1117,7 @@ namespace user
          m_idTimerMenu.is_empty();
 
       }
-      else if (ptimer->m_nIDEvent == ::timer_command_probe)
+      else if (ptimer->m_uEvent == ::e_timer_command_probe)
       {
 
          {

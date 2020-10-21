@@ -1,6 +1,7 @@
 #pragma once
 
 
+
 class CLASS_DECL_ACME action :
    virtual public context_object
 {
@@ -24,6 +25,7 @@ public:
    action();
    action(const ::id & id, ::matter* pmatter = nullptr);
    action(const ::id& id, const ::action_context& actioncontext);
+   action(::update * pupdate, const ::action_context& actioncontext);
    action(::update * pupdate, ::matter * pmatter = nullptr);
    action(::update * pupdate, ::change * pchange, ::matter* pmatter);
    virtual ~action();
@@ -32,12 +34,13 @@ public:
    void action_common_construct();
 
 
+
    virtual ::estatus start_task();
 
    void reset_update(const ::id& id);
 
 
-   virtual ::estatus __thread_proc() override;
+   virtual ::estatus on_task() override;
 
 
    operator action* () { return this; }

@@ -258,7 +258,7 @@ public:
 #include "create_thread.h"
 
 
-#include "service/thread_pool.h"
+#include "service/pool.h"
 
 
 
@@ -288,8 +288,8 @@ public:
 // } // namespace multithreading
 
 
-//CLASS_DECL_APEX ::thread* get_thread();
-//CLASS_DECL_APEX ::thread * get_thread(ITHREAD idthread);
+//CLASS_DECL_APEX ::thread* get_task();
+//CLASS_DECL_APEX ::thread * get_task(ITHREAD idthread);
 //CLASS_DECL_APEX void set_thread(thread * pthread);
 
 

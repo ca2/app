@@ -1188,7 +1188,7 @@ namespace core
 
       }
 
-      auto pcreate = __new(::create(pobject));
+      auto pcreate = __create_new< ::create >();
 
       pcreate->m_bMakeVisible = false;
 
@@ -1203,7 +1203,7 @@ namespace core
       if (var.get_file_path().has_char())
       {
 
-         pcreate->m_pcommandline.create(this);
+         pcreate->m_pcommandline.defer_create(this);
 
          pcreate->m_pcommandline->m_varFile = var.get_file_path();
 
@@ -1215,6 +1215,8 @@ namespace core
          pcreate->m_bHold = false;
 
       }
+
+      pcreate->finish_initialization();
 
       m_ptemplateChildForm->do_request(pcreate);
 

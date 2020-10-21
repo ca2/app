@@ -347,7 +347,7 @@ namespace axis
 
       }
 
-      thread * pthread = ::get_thread();
+      thread * pthread = ::get_task();
 
       install_message_routing(pthread);
 

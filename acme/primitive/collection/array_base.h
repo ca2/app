@@ -494,10 +494,10 @@ public:
    inline void clear();
 
 
-   void on_construct_element(TYPE * point) { ALLOCATOR::construct(point); }
-   void on_construct_element(TYPE * point, ::count c) { ALLOCATOR::construct(point, c); }
-   void on_destruct_element(TYPE * point) { ALLOCATOR::destruct(point); }
-   void on_copy_element(::index i, const TYPE * point) { ALLOCATOR::copy(&m_pData[i], point); }
+   void on_construct_element(TYPE * p) { ALLOCATOR::construct(p); }
+   void on_construct_element(TYPE * p, ::count c) { ALLOCATOR::construct_count(p, c); }
+   void on_destruct_element(TYPE * p OBJ_REF_DBG_ADD_PARAMS) { ALLOCATOR::destruct(p  OBJ_REF_DBG_ADD_ARGS); }
+   void on_copy_element(::index i, const TYPE * p) { ALLOCATOR::copy(&m_pData[i], p); }
 
 
    inline const TYPE& operator[](::index i) const;

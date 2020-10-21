@@ -127,7 +127,7 @@ namespace user
       index                                              m_iActiveThreadCount;
       index                                              m_iThread;
       ::mutex                                            m_mutexImage;
-      __pointer_array(thread)                            m_threadptra;
+      //__pointer_array(thread)                            m_threadptra;
       tick                                               m_tickLastMax;
       DWORD                                              m_bMax;
       bool                                               m_bInitialized;

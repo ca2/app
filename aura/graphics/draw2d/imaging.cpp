@@ -5023,7 +5023,7 @@ bool imaging::spread__32CC(::image * pimageDst, ::image * pimageSrc,i32 iRadius,
    i32 iRadius2 = iRadius * iRadius;
    i32 r2;
 
-   auto & memory = get_thread()->get_cast < ::memory >("m_alpha_spread__32CC_filterMap(" + __str(iRadius) + ")");
+   auto & memory = get_task()->get_cast < ::memory >("m_alpha_spread__32CC_filterMap(" + __str(iRadius) + ")");
 
    if (memory.size() != iFilterArea)
    {

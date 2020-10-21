@@ -110,16 +110,10 @@ namespace draw2d
 
       }
 
-      ////if(Context.dir().is(Context.dir().commonappdata("")))
-      //{
-
-      //   begin_thread(get_context_application(), &draw2d::thread_proc_parallel_initialize, this, ::priority_highest);
-
-      //}
-
       return true;
 
    }
+
 
    double draw2d::font_similarity(const char* pszSystem, const char* pszUser)
    {
@@ -245,13 +239,13 @@ namespace draw2d
    void draw2d::finalize()
    {
 
-      ::apex::department::finalize();
-
       m_papi.release();
 
       m_pfontdepartment.release();
 
       m_pcursorset.release();
+
+      ::apex::department::finalize();
 
    }
 
@@ -278,10 +272,6 @@ namespace draw2d
       return *m_pfontdepartment;
 
    }
-
-
-
-
 
 
    __pointer(cursor) draw2d::get_cursor(e_cursor ecursor)
@@ -312,7 +302,6 @@ namespace draw2d
 
    bool draw2d::set_cursor_set_from_matter(const ::file::path& pathDir)
    {
-
 
       sync_lock sl(mutex());
 
@@ -1029,37 +1018,37 @@ breakFilter2:
    }
 
 
-
-
 } // namespace draw2d
 
 
-   e_rotate_flip exif_orientation_rotate_flip(int orientation)
+e_rotate_flip exif_orientation_rotate_flip(int orientation)
+{
+
+
+   switch (orientation)
    {
-      switch (orientation)
-      {
-      case 1:
-      default:
-         return rotate_none_flip_none;
-      case 2:
-         return rotate_none_flip_x;
-      case 3:
-         return rotate_180_flip_none;
-      case 4:
-         return rotate_180_flip_x;
-      case 5:
-         return rotate_90_flip_x;
-      case 6:
-         return rotate_90_flip_none;
-      case 7:
-         return rotate_270_flip_x;
-      case 8:
-         return rotate_270_flip_none;
-      }
+   case 1:
+      return rotate_none_flip_none;
+   case 2:
+      return rotate_none_flip_x;
+   case 3:
+      return rotate_180_flip_none;
+   case 4:
+      return rotate_180_flip_x;
+   case 5:
+      return rotate_90_flip_x;
+   case 6:
+      return rotate_90_flip_none;
+   case 7:
+      return rotate_270_flip_x;
+   case 8:
+      return rotate_270_flip_none;
+   default:
+      return rotate_none_flip_none;
    }
+   
 
-
-
+}
 
 
 

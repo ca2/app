@@ -2617,10 +2617,10 @@ namespace aura
       thread::assert_valid();
 
 
-      if (::get_thread() != (thread*)this)
+      if (::get_task() != (thread*)this)
          return;     // only do subset if called from different thread
 
-      ASSERT(::get_thread() == this);
+      ASSERT(::get_task() == this);
       //ASSERT(afxCurrentInstanceHandle == m_hInstance);
 
       /*      if (m_pdocmanager != nullptr)

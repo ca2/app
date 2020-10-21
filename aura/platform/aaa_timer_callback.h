@@ -8,7 +8,7 @@ public:
 
 
    virtual bool on_timer(timer * ptimer);
-   virtual bool timer_is_ok();
+   virtual bool e_timer_is_ok();
 
 };
 

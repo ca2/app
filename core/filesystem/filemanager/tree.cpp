@@ -647,7 +647,7 @@ namespace filemanager
 
       ::userfs::tree::_001OnTimer(ptimer);
 
-      if (ptimer->m_nIDEvent == 1234567)
+      if (ptimer->m_uEvent == 1234567)
       {
 
          m_iAnimate += 2;
@@ -657,21 +657,21 @@ namespace filemanager
 
             m_iAnimate = 0;
 
-            ptimer->m_puserinteraction->KillTimer(ptimer->m_nIDEvent);
+            ptimer->m_ptimercallback->remove(ptimer);
 
          }
 
-         ptimer->m_puserinteraction->set_need_redraw();
+         ptimer->m_ptimercallback->user_interaction()->set_need_redraw();
 
       }
-      else if (ptimer->m_nIDEvent == 123)
+      else if (ptimer->m_uEvent == 123)
       {
 
-         ptimer->m_puserinteraction->set_need_redraw();
+         ptimer->m_ptimercallback->user_interaction()->set_need_redraw();
 
          m_bTimer123 = false;
 
-         ptimer->m_puserinteraction->KillTimer(123);
+         ptimer->m_ptimercallback->user_interaction()->KillTimer(123);
 
       }
 

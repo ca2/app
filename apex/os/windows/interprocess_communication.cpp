@@ -331,7 +331,7 @@
          else
          {
 
-            ::fork(get_context_application(), [=]()
+            get_context_application()->fork([=]()
             {
 
                if (m_preceiver != nullptr)

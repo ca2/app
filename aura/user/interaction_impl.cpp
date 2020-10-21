@@ -627,7 +627,7 @@ namespace user
 
          m_puserthread->initialize_user_thread(this, createstruct);
 
-         __refer(m_puserinteraction->m_pthreadUserInteraction, m_puserthread);
+         __bind(m_puserinteraction, m_pthreadUserInteraction, m_puserthread OBJ_REF_DBG_ADD_THIS_NOTE(__FUNCTION__));
 
          peventStartedUser = __new(manual_reset_event());
 
@@ -3704,7 +3704,7 @@ namespace user
 
       auto pprodevian = m_pprodevian;
 
-      if (::is_set(pprodevian))
+      if (::is_set(pprodevian) && ::is_set(m_pgraphics))
       {
 
          {

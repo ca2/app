@@ -47,7 +47,7 @@ namespace multithreading
 
    //   //return s_piaThread2->contains(id);
 
-   //   return ::get_context_system()->get_thread(id) != nullptr;
+   //   return ::get_context_system()->get_task(id) != nullptr;
 
    //}
 
@@ -249,13 +249,13 @@ namespace multithreading
 
 } // namespace multithreading
 
-
-CLASS_DECL_ACME ::thread * get_thread_raw()
-{
-
-   return ::get_thread();
-
-}
+//
+//CLASS_DECL_ACME ::task * get_thread_raw()
+//{
+//
+//   return ::get_task();
+//
+//}
 
 
 typedef bool THREAD_GET_RUN();
@@ -294,7 +294,7 @@ CLASS_DECL_ACME void set_thread_get_run(PFN_THREAD_GET_RUN pthreadrun)
 //   try
 //   {
 //
-//      if(::is_null(::get_thread()) || !::get_thread()->is_thread()) // system threads don't have generally associated ca2 thread matter
+//      if(::is_null(::get_task()) || !::get_task()->is_thread()) // system threads don't have generally associated ca2 thread matter
 //      {
 //         ////////// and have short life, so it is safe to keep it running
 //         //return true;
@@ -302,7 +302,7 @@ CLASS_DECL_ACME void set_thread_get_run(PFN_THREAD_GET_RUN pthreadrun)
 //
 //      }
 //
-//      return ::get_thread()->thread_get_run();
+//      return ::get_task()->thread_get_run();
 //
 //   }
 //   catch (...)
@@ -322,7 +322,7 @@ namespace multithreading
    //CLASS_DECL_ACME void set_finish()
    //{
 
-   //   set_finish(::get_thread());
+   //   set_finish(::get_task());
 
    //}
 
@@ -330,7 +330,7 @@ namespace multithreading
    //CLASS_DECL_ACME bool post_quit_and_wait(const duration & duration)
    //{
 
-   //   return post_quit_and_wait(::get_thread(), duration);
+   //   return post_quit_and_wait(::get_task(), duration);
 
    //}
 
@@ -710,37 +710,38 @@ void thread_name_abbreviate(string & strName, int len)
 }
 
 
-thread_local __pointer(layered) t_pthread;
+thread_local __pointer(task) t_ptask;
 
 
-CLASS_DECL_ACME ::layered * get_layered_thread()
+
+CLASS_DECL_ACME ::task * get_task()
 {
 
-   return t_pthread;
+   return t_ptask;
 
 }
 
 
-CLASS_DECL_ACME ::thread* get_thread()
+
+CLASS_DECL_ACME ::thread * get_thread()
 {
 
-   return ___thread(get_layered_thread());
+   return ___thread((layered *) t_ptask.m_p);
+
+}
+
+CLASS_DECL_ACME void set_task(task * ptask OBJ_REF_DBG_ADD_PARAMS_DEF)
+{
+
+   t_ptask.reset(ptask OBJ_REF_DBG_ADD_ARGS);
 
 }
 
 
-CLASS_DECL_ACME void set_thread(layered * pthread)
+CLASS_DECL_ACME void thread_release(OBJ_REF_DBG_PARAMS_DEF)
 {
 
-    t_pthread = pthread;
-
-}
-
-
-CLASS_DECL_ACME void thread_release()
-{
-
-   t_pthread.release();
+   t_ptask.release(OBJ_REF_DBG_ARGS);
 
 }
 

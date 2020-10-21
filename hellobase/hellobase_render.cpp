@@ -387,7 +387,7 @@ namespace hellobase
 //      if (m_pimageWork->area() <= 0)
 //         return;
 //
-//      ::get_thread()->m_bThreadToolsForIncreasedFps = true;
+//      ::get_task()->m_bThreadToolsForIncreasedFps = true;
 //
 //      ::rect rectClient;
 //

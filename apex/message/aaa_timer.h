@@ -11,7 +11,7 @@ namespace message
    public:
 
 
-      UINT m_nIDEvent;
+      UINT m_uEvent;
 
 
       timer() { }

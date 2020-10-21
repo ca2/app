@@ -592,7 +592,7 @@ namespace experience
    }
 
 
-   bool dock_manager::_001OnTimer(UINT nIDEvent)
+   bool dock_manager::_001OnTimer(UINT uEvent)
    {
 
       return false;

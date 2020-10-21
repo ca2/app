@@ -201,7 +201,7 @@ bool __os_init_thread()
 bool __os_term_thread()
 {
 
-   auto pthread = ::get_thread();
+   auto pthread = ::get_task();
 
    if(pthread)
    {

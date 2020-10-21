@@ -64,7 +64,7 @@ namespace account
       
       virtual bool is_authenticated();
       
-      virtual void on_clock(e_clock eclock) override;
+      void on_clock(enum_clock eclock);
       
    };
    

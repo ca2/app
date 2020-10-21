@@ -515,7 +515,7 @@ CLASS_DECL_APEX void set_debug_pointer(void * p);
 
 //   get_context_system()->common_construct();
 
-   ::set_thread(get_context_system());
+   ::set_task(get_context_system());
 
    debug_context_object(get_context_system());
 
@@ -523,13 +523,17 @@ CLASS_DECL_APEX void set_debug_pointer(void * p);
 
    //set_context_object(get_context_system());
 
-   auto pcreate = __new(::create(get_context_system()));
+   auto papp = get_context_system()->m_papplicationStartup;
+
+   auto pcreate = papp->__create_new< ::create> ();
 
    pcreate->m_strAppId = strAppId;
 
-   pcreate->m_pcommandline = __new(command_line(get_context_system(), strCommandLine));
+   pcreate->m_pcommandline = __create_new < command_line > ();
 
-   //get_context_system()->get_command()->add_create(pcreate);
+   pcreate->m_pcommandline->initialize_command_line(strCommandLine);
+
+   pcreate->finish_initialization();
 
    get_context_system()->add_create(pcreate);
 
@@ -1731,7 +1735,7 @@ bool app_core::has_apex_application_factory() const
 //::u32 app_core::system_main()
 //{
 //
-//   ::estatus estatus = get_context_system()->__thread_proc();
+//   ::estatus estatus = get_context_system()->__thread_procedure();
 //
 //   return estatus;
 //
@@ -1783,155 +1787,19 @@ __result(::apex::application) app_core::get_new_application(::object* pobjectCon
 
    string strAppId = pszAppId;
 
-   sync_lock sl(&::get_context_system()->m_mutexLibrary);
+   auto psetup = static_setup::get_first(::static_setup::flag_application, strAppId);
 
-   __pointer(::apex::library)& plibrary = ::get_context_system()->m_mapLibrary[strAppId];
-
-   if (papp)
+   if (psetup)
    {
 
-      if (!plibrary)
+      papp.reset(psetup->create_new_application() OBJ_REF_DBG_ADD_THIS_FUNCTION_LINE);
+
+      if (papp)
       {
 
-         plibrary = new ::apex::library();
+         papp->initialize(pobjectContext);
 
-         plibrary->m_strName = "";
-
-      }
-
-   }
-   else
-   {
-
-      auto psetup = static_setup::get_first(::static_setup::flag_application, strAppId);
-
-      if (psetup)
-      {
-
-         papp = psetup->create_new_application();
-
-         if (papp)
-         {
-
-            papp->initialize(get_context_system());
-
-            strAppId = papp->m_strAppId;
-
-         }
-
-      }
-
-      if (!papp)
-      {
-
-         if (!plibrary)
-         {
-
-            if (strAppId.is_empty())
-            {
-
-               papp = get_context_system()->__create < ::apex::application > ();
-
-               *((::apex_main_struct*)papp) = *((::apex_main_struct*)this);
-
-            }
-
-         }
-
-      }
-
-      if (!papp)
-      {
-
-         if (plibrary)
-         {
-
-            plibrary->initialize_apex_library(pobjectContext, 0, nullptr);
-
-         }
-         else
-         {
-
-            //plibrary = __new(::apex::library);
-
-            //plibrary->initialize_apex_library(pobjectContext, 0, nullptr);
-
-            string strLibrary = strAppId;
-
-            strLibrary.replace("/", "_");
-
-            strLibrary.replace("-", "_");
-
-            if (is_verbose())
-            {
-
-               ::output_debug_string("\n\n::apex::session::get_new_application assembled library path " + strLibrary + "\n\n");
-
-            }
-
-            plibrary = get_context_system()->get_library(strLibrary);
-
-            if (!plibrary)
-            {
-
-#ifndef _UWP
-
-               message_box("Application \"" + strAppId + "\" cannot be created.\n\nThe library \"" + strLibrary + "\" could not be loaded. " + plibrary->m_strMessage, "ca2", message_box_icon_error);
-
-#endif
-
-               return nullptr;
-
-            }
-
-            if (is_verbose())
-            {
-
-               ::output_debug_string("\n\n::apex::session::get_new_application Found library : " + strLibrary + "\n\n");
-
-            }
-
-            // error anticipation is not perfect prediction and may affect results
-            // so anticipation may be counter-self-healing
-            // specially if what it would avoid on error is exactly we want if successful
-            // who doesn't try it, won't taste it neither possibly enjoy it
-//          if (!plibrary->is_opened())
-//          {
-//
-//             ::output_debug_string("\n\n::apex::session::get_new_application Failed to load library : " + strLibrary + "\n\n");
-//
-//             return nullptr;
-//
-//          }
-
-            if (is_verbose())
-            {
-
-               ::output_debug_string("\n\n::apex::session::get_new_application Opened library : " + strLibrary + "\n\n");
-
-            }
-
-            //if (!plibrary->open_ca2_library())
-            //{
-
-            //::output_debug_string("\n\n::apex::session::get_new_application open_ca2_library failed(2) : " + strLibrary + "\n\n");
-
-            //return nullptr;
-
-            //}
-
-            //if (is_verbose())
-            //{
-
-            //   ::output_debug_string("\n\n\n|(5)----");
-            //   ::output_debug_string("| app : " + strAppId + "\n");
-            //   ::output_debug_string("|\n");
-            //   ::output_debug_string("|\n");
-            //   ::output_debug_string("|----");
-
-            //}
-
-         }
+         strAppId = papp->m_strAppId;
 
       }
 
@@ -1940,15 +1808,79 @@ __result(::apex::application) app_core::get_new_application(::object* pobjectCon
    if (!papp)
    {
 
-      ::apex::library& library = *plibrary;
+      if (strAppId.is_empty())
+      {
 
-      papp = library.get_new_application(get_context_system()->get_context_session(), strAppId);
+         papp = __create < ::apex::application >();
 
-      ::output_debug_string("\n\n\n|(4)----");
-      ::output_debug_string("| app : " + strAppId + "(papp=0x" + ::hex::upper_from((uptr)papp.m_p) + ")\n");
-      ::output_debug_string("|\n");
-      ::output_debug_string("|\n");
-      ::output_debug_string("|----");
+      }
+      else
+      {
+
+         string strLibrary = strAppId;
+
+         strLibrary.replace("/", "_");
+
+         strLibrary.replace("-", "_");
+
+         if (is_verbose())
+         {
+
+            ::output_debug_string("\n\n::apex::session::get_new_application assembled library path " + strLibrary + "\n\n");
+
+         }
+
+         auto plibrary = get_context_system()->get_library(strLibrary);
+
+         if (!plibrary)
+         {
+
+#ifndef _UWP
+
+            message_box("Application \"" + strAppId + "\" cannot be created.\n\nThe library \"" + strLibrary + "\" could not be loaded. " + plibrary->m_strMessage, "ca2", message_box_icon_error);
+
+#endif
+
+            return nullptr;
+
+         }
+
+         if (is_verbose())
+         {
+
+            ::output_debug_string("\n\n::apex::session::get_new_application Found library : " + strLibrary + "\n\n");
+
+         }
+
+         // error anticipation is not perfect prediction and may affect results
+         // so anticipation may be counter-self-healing
+         // specially if what it would avoid on error is exactly we want if successful
+         // who doesn't try it, won't taste it neither possibly enjoy it
+   //          if (!plibrary->is_opened())
+   //          {
+   //
+   //             ::output_debug_string("\n\n::apex::session::get_new_application Failed to load library : " + strLibrary + "\n\n");
+   //
+   //             return nullptr;
+   //
+   //          }
+
+         if (is_verbose())
+         {
+
+            ::output_debug_string("\n\n::apex::session::get_new_application Opened library : " + strLibrary + "\n\n");
+
+         }
+
+         papp = plibrary->get_new_application(pobjectContext, strAppId);
+
+         ::output_debug_string("\n\n\n|(4)----");
+         ::output_debug_string("| app : " + strAppId + "(papp=0x" + ::hex::upper_from((uptr)papp.m_p) + ")\n");
+         ::output_debug_string("|\n");
+         ::output_debug_string("|\n");
+         ::output_debug_string("|----");
+
+      }
 
    }
 
@@ -1992,13 +1924,6 @@ __result(::apex::application) app_core::get_new_application(::object* pobjectCon
       ::output_debug_string("|----");
 
    }
-
-   //if (m_pmaindata)
-   //{
-
-   //   m_pmainstruct = papp;
-
-   //}
 
 #if !defined(ANDROID)
 

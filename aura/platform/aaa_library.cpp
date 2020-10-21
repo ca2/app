@@ -985,7 +985,7 @@ namespace aura
       
       plibrary = __new(::apex::library);
 
-      plibrary->initialize(::get_thread());
+      plibrary->initialize(::get_task());
 
       plibrary->open(psz);
 

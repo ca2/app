@@ -48,7 +48,10 @@ namespace user
 
    }
 
+   thread::~thread()
+   {
 
+   }
    ::estatus     thread::initialize_user_thread(interaction_impl * pimpl, ::user::create_struct & createstruct)
    {
 
@@ -77,10 +80,31 @@ namespace user
    }
 
 
-   thread::~thread()
+
+
+   i64 thread::add_ref(OBJ_REF_DBG_PARAMS_DEF)
    {
 
+      return ::thread::add_ref(OBJ_REF_DBG_ARGS);
+
    }
+
+
+   i64 thread::dec_ref(OBJ_REF_DBG_PARAMS_DEF)
+   {
+
+      return ::thread::dec_ref(OBJ_REF_DBG_ARGS);
+
+   }
+
+
+   i64 thread::release(OBJ_REF_DBG_PARAMS_DEF)
+   {
+
+      return ::thread::release(OBJ_REF_DBG_ARGS);
+
+   }
+
 
 #ifdef ENABLE_TEXT_SERVICES_FRAMEWORK
 
@@ -151,8 +175,6 @@ namespace user
       HRESULT hr = CoInitialize(NULL);
 
 #endif
-
-      m_pimpl->m_puserinteraction->m_threada.add(this);
 
       set_topic_text("window_thread_" + ::str::demangle(m_pimpl->m_puserinteraction->type_name()) + "> ");
 
@@ -365,7 +387,7 @@ namespace user
    }
 
 
-   bool thread::process_message()
+   ::estatus thread::process_message()
    {
 
    try
@@ -443,7 +465,7 @@ catch(...)
    }
 
 
-   bool thread::process_base_message(::message::base * pbase)
+   ::estatus thread::process_base_message(::message::base * pbase)
    {
 
       if(::is_set(pbase->userinteraction()))

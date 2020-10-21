@@ -46,16 +46,16 @@ string get_thread_name(HTHREAD hthread)
 
    }
 
-   ::thread* pthread = ::get_thread();
+   ::task* ptask = ::get_task();
 
-   if (::is_null(pthread))
+   if (::is_null(ptask))
    {
 
       return "";
 
    }
 
-   return ::get_thread_name(pthread);
+   return ::get_thread_name(ptask);
 
 }
 

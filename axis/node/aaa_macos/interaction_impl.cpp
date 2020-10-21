@@ -392,7 +392,7 @@ namespace macos
 
          m_puserinteraction->m_stateWindow3.m_size = ::size(rectParam);
 
-         __refer(m_puserinteraction->m_pthreadUserInteraction, ::get_thread());
+         __refer(m_puserinteraction->m_pthreadUserInteraction, ::get_task());
 
          //m_puserinteraction->place(rectParam);
 
@@ -2004,7 +2004,7 @@ namespace macos
 
       ::user::interaction_impl::_001OnTimer(ptimer);;
 
-//      if (ptimer->m_nIDEvent == 2049)
+//      if (ptimer->m_uEvent == 2049)
       //    {
 //
       //       set_need_redraw();
@@ -3198,18 +3198,18 @@ namespace macos
    }
 
 
-   bool interaction_impl::SetTimer(uptr nIDEvent, UINT nElapse, PFN_TIMER pfnTimer)
+   bool interaction_impl::SetTimer(uptr uEvent, UINT nElapse, PFN_TIMER pfnTimer)
    {
 
-      return ::user::interaction_impl::SetTimer(nIDEvent, nElapse, pfnTimer);
+      return ::user::interaction_impl::SetTimer(uEvent, nElapse, pfnTimer);
 
    }
 
 
-   bool interaction_impl::KillTimer(uptr nIDEvent)
+   bool interaction_impl::KillTimer(uptr uEvent)
    {
 
-      return ::user::interaction_impl::KillTimer(nIDEvent);
+      return ::user::interaction_impl::KillTimer(uEvent);
 
    }
 

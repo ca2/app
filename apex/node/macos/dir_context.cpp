@@ -961,7 +961,7 @@ try1:
 //        }
 //
 //
-//        if(::get_thread() != nullptr && ::get_thread()->m_bZipIsDir && iLast >= 3 && !ansi_count_compare_ci(&((const char *)str)[iLast - 3],".zip",4))
+//        if(::get_task() != nullptr && ::get_task()->m_bZipIsDir && iLast >= 3 && !ansi_count_compare_ci(&((const char *)str)[iLast - 3],".zip",4))
 //        {
 //            m_isdirmap.set(str.Left(iLast + 1), true, 0);
 //            return true;

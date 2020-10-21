@@ -8,14 +8,14 @@ inline bool thread_is_set(const ::id & id);
 
 
 template  < >
-inline ::thread * default_keep_value < ::thread * >()
+inline ::task * default_keep_value < ::task * >()
 {
 
-   return ::get_thread();
+   return ::get_task();
 
 }
 #define __keep_thread_flag(...) auto TOKEN_AT_LINE(__keep_thread_flag) = keep_thread_flag(__VA_ARGS__)
-#define __keep_current_thread(...) auto TOKEN_AT_LINE(__keep_current_thread) = keep(__VA_ARGS__, ::get_thread())
+#define __keep_current_thread(...) auto TOKEN_AT_LINE(__keep_current_thread) = keep(__VA_ARGS__, ::get_task())
 
 
 class CLASS_DECL_APEX ___keep_thread_flag

@@ -44,14 +44,14 @@ namespace draw2d_opengl
    graphics * thread_graphics()
    {
 
-      return ::get_thread()->value("draw2d_opengl::graphics").cast < graphics >();
+      return ::get_task()->value("draw2d_opengl::graphics").cast < graphics >();
 
    }
 
    void thread_graphics(graphics * pgraphics)
    {
 
-      ::get_thread()->value("draw2d_opengl::graphics") = pgraphics;
+      ::get_task()->value("draw2d_opengl::graphics") = pgraphics;
 
    }
 

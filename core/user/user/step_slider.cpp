@@ -49,7 +49,7 @@ namespace user
    void step_slider::_001OnTimer(::timer * ptimer)
    {
       ::user::interaction::_001OnTimer(ptimer);;
-      if(ptimer->m_nIDEvent == 1)
+      if(ptimer->m_uEvent == 1)
       {
          if(m_itemHover.is_set())
          {

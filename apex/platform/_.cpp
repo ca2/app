@@ -203,7 +203,7 @@ CLASS_DECL_APEX string_map < PFN_NEW_APEX_LIBRARY >& __get_new_apex_library()
 }
 
 
-CLASS_DECL_APEX string_map < __pointer(::apex::library) >& __library()
+CLASS_DECL_APEX string_map < __composite(::apex::library) >& __library()
 {
 
    return ::get_context_system()->m_mapLibrary;
@@ -256,7 +256,7 @@ CLASS_DECL_APEX void register_library(const char* psz, ::apex::library* plibrary
 
    sync_lock sl(&::get_context_system()->m_mutexLibrary);
 
-   __library()[psz] = plibrary;
+   __own(&System, m_mapLibrary[psz], plibrary);
 
 }
 
@@ -489,12 +489,12 @@ CLASS_DECL_APEX ::estatus load_factory_library(string strLibrary)
 
    sync_lock sl(&::get_context_system()->m_mutexLibrary);
 
-   __pointer(::apex::library)& plibrary = ::get_context_system()->m_mapLibrary[strLibrary];
+   auto & plibrary = ::get_context_system()->m_mapLibrary[strLibrary];
 
    if (!plibrary)
    {
 
-      plibrary = new ::apex::library();
+      __own(::get_context_system(), m_mapLibrary[strLibrary], __new(::apex::library));
 
    }
 

@@ -155,7 +155,7 @@ namespace uwp
    bool interaction_impl::_native_create_window_ex(::user::create_struct& cs)
    {
 
-      __refer(m_puserinteraction->m_pthreadUserInteraction, ::get_thread());
+      __refer(m_puserinteraction->m_pthreadUserInteraction, ::get_task());
 
       m_puserinteraction->m_pthreadUserInteraction->uiptra().add(m_puserinteraction);
 
@@ -2671,10 +2671,10 @@ return TRUE;
       oswindow hWndParent = oswindow_get(GetParent()->m_pimpl.cast < ::user::interaction_impl >());
 //      m_puserinteraction->m_iModal = m_puserinteraction->m_iModalCount;
       //    int iLevel = m_puserinteraction->m_iModal;
-      //prop(string("RunModalLoop.thread(") + __str(iLevel) + ")") = ::get_thread();
+      //prop(string("RunModalLoop.thread(") + __str(iLevel) + ")") = ::get_task();
       //  m_puserinteraction->m_iModalCount++;
 
-      //m_puserinteraction->m_threadptraModal.add(::get_thread());
+      //m_puserinteraction->m_threadptraModal.add(::get_task());
       ::aura::application * pappThis1 = dynamic_cast <::aura::application *> (get_context_application());
       ::aura::application * pappThis2 = dynamic_cast <::aura::application *> (get_context_application());
       // acquire and dispatch messages until the modal state is done
@@ -2721,19 +2721,19 @@ return TRUE;
             //   bIdle = FALSE;
             //}
 
-            //get_thread()->m_dwAlive = get_thread()->m_dwAlive = ::get_tick();
+            //get_task()->m_dwAlive = get_task()->m_dwAlive = ::get_tick();
 
             //if(pappThis1 != nullptr)
             //{
 
-            //   pappThis1->m_dwAlive = get_thread()->m_dwAlive;
+            //   pappThis1->m_dwAlive = get_task()->m_dwAlive;
 
             //}
 
             //if(pappThis2 != nullptr)
             //{
 
-            //   pappThis1->m_dwAlive = get_thread()->m_dwAlive;
+            //   pappThis1->m_dwAlive = get_task()->m_dwAlive;
 
             //}
 
@@ -2751,7 +2751,7 @@ return TRUE;
 
             }
 
-            if(!get_thread()->pump_message())
+            if(!get_task()->pump_message())
             {
 
                __post_quit_message(0);
@@ -2779,14 +2779,14 @@ return TRUE;
             //   lIdleCount = 0;
             //}
 
-            //get_thread()->m_dwAlive = ::get_tick();
+            //get_task()->m_dwAlive = ::get_tick();
             //if(pappThis1 != nullptr)
             //{
-            //   pappThis1->m_dwAlive = get_thread()->m_dwAlive;
+            //   pappThis1->m_dwAlive = get_task()->m_dwAlive;
             //}
             //if(pappThis2 != nullptr)
             //{
-            //   pappThis2->m_dwAlive = get_thread()->m_dwAlive;
+            //   pappThis2->m_dwAlive = get_task()->m_dwAlive;
             //}
 
          }
@@ -2839,7 +2839,7 @@ ExitModal:
    //      int iLevel = m_puserinteraction->m_iModalCount - 1;
    //      m_puserinteraction->m_iModalCount = 0;
    //      m_puserinteraction->kick_queue();
-   //      ::get_thread()->kick_thread();
+   //      ::get_task()->kick_thread();
    //      for(int i = iLevel; i >= 0; i--)
    //      {
    //         ::thread * pthread = prop(string("RunModalLoop.thread(") + __str(i) + ")").cast < ::thread >();
@@ -3924,19 +3924,19 @@ ExitModal:
 
    }
 
-   bool interaction_impl::SetTimer(uptr nIDEvent,UINT nElapse,PFN_TIMER pfnTimer)
+   bool interaction_impl::SetTimer(uptr uEvent,UINT nElapse,PFN_TIMER pfnTimer)
    {
 
 
-      return ::user::interaction_impl::SetTimer(nIDEvent,nElapse,pfnTimer);
+      return ::user::interaction_impl::SetTimer(uEvent,nElapse,pfnTimer);
 
 
    }
 
-   bool interaction_impl::KillTimer(uptr nIDEvent)
+   bool interaction_impl::KillTimer(uptr uEvent)
    {
 
-      return ::user::interaction_impl::KillTimer(nIDEvent);
+      return ::user::interaction_impl::KillTimer(uEvent);
 
    }
 
@@ -5238,7 +5238,7 @@ run:
             // the interaction_impl should not be in the permanent ::map at this time
             ASSERT(::uwp::interaction_impl::FromHandlePermanent(hWnd) == nullptr);
 
-            pWndInit->m_pthread = dynamic_cast < ::thread * > (::uwp::get_thread());
+            pWndInit->m_pthread = dynamic_cast < ::thread * > (::uwp::get_task());
             pWndInit->m_pthread->add(pWndInit);
             pWndInit->m_puserinteraction->m_pthread = pWndInit->m_pthread;
             pWndInit->m_puserinteraction->m_pthread->add(pWndInit->m_puserinteraction);
@@ -5484,7 +5484,7 @@ CLASS_DECL_BASE const char * __register_window_class(UINT nClassStyle,
    LPTSTR lpszName = __get_thread_state()->m_szTempClassName;
 
    // generate a synthetic name for this class
-   HINSTANCE hInst = Sys(::uwp::get_thread()->get_context_application()).m_hInstance;
+   HINSTANCE hInst = Sys(::uwp::get_task()->get_context_application()).m_hInstance;
 
    if (hCursor == nullptr && hbrBackground == nullptr && hIcon == nullptr)
    {
@@ -5634,7 +5634,7 @@ bool CLASS_DECL_BASE __end_defer_register_class(LONG fToRegisterParam, const cha
    WNDCLASS wndcls;
    __memset(&wndcls, 0, sizeof(WNDCLASS));   // start with nullptr defaults
    wndcls.lpfnWndProc = DefWindowProc;
-   wndcls.hInstance = Sys(::uwp::get_thread()->get_context_application()).m_hInstance;
+   wndcls.hInstance = Sys(::uwp::get_task()->get_context_application()).m_hInstance;
    //wndcls.hCursor = afxData.hcurArrow;
 
    INITCOMMONCONTROLSEX init;

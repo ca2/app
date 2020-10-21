@@ -33,6 +33,36 @@ namespace user
    }
 
 
+   prodevian::~prodevian()
+   {
+
+   }
+
+
+   i64 prodevian::add_ref(OBJ_REF_DBG_PARAMS_DEF)
+   {
+
+      return ::thread::add_ref(OBJ_REF_DBG_ARGS);
+
+   }
+
+
+   i64 prodevian::dec_ref(OBJ_REF_DBG_PARAMS_DEF)
+   {
+
+      return ::thread::dec_ref(OBJ_REF_DBG_ARGS);
+
+   }
+
+
+   i64 prodevian::release(OBJ_REF_DBG_PARAMS_DEF)
+   {
+
+      return ::thread::release(OBJ_REF_DBG_ARGS);
+
+   }
+
+
    ::estatus prodevian::initialize_prodevian(interaction_impl * pimpl)
    {
 
@@ -45,33 +75,22 @@ namespace user
 
       }
 
-      __pointer(prodevian) pholdThis = this;
-
-      m_ptaskUpdateScreen = __pred_method([pholdThis]()
+      m_ptaskUpdateScreen = __pred_method([this]()
          {
 
-            auto phold = pholdThis;
+            update_screen();
 
-            if (phold)
-            {
-
-               phold->update_screen();
-
-               phold->m_bUpdatingScreen = false;
-
-            }
+            m_bUpdatingScreen = false;
 
          });
 
-      m_ptaskWindowShow = __pred_method([pholdThis]()
+      m_ptaskWindowShow = __pred_method([this]()
          {
 
-            auto phold = pholdThis;
-
-            if (phold && phold->m_pimpl)
+            if (m_pimpl)
             {
 
-               phold->m_pimpl->window_show();
+               m_pimpl->window_show();
 
             }
 
@@ -99,16 +118,12 @@ namespace user
    }
 
 
-   prodevian::~prodevian()
-   {
-
-   }
 
 
    ::estatus prodevian::run()
    {
 
-      m_pimpl->m_puserinteraction->m_threada.add(this);
+      m_pimpl->m_puserinteraction->thread_add(this);
 
       m_synca.add(&m_evUpdateScreen);
 
@@ -118,18 +133,12 @@ namespace user
 
    #endif
 
-
       if (m_bAuraMessageQueue)
       {
 
          m_synca.add(&get_mq()->m_eventNewMessage);
 
       }
-
-      //__pointer(mq) pmq = __get_mq(get_current_ithread(), true);
-
-      //m_synca.add(&pmq->m_eventNewMessage);
-
 
       ::thread_set_name("prodevian," + ::str::demangle(m_puserinteraction->type_name()));
 
@@ -219,19 +228,6 @@ void prodevian::term_thread()
 
    m_puserinteraction.release();
 
-}
-
-
-void prodevian::finalize()
-{
-
-   if (m_bRunThisThread)
-   {
-
-      m_evUpdateScreen.SetEvent();
-
-   }
-
    if (m_ptaskUpdateScreen)
    {
 
@@ -250,14 +246,25 @@ void prodevian::finalize()
 
    m_ptaskWindowShow.release(OBJ_REF_DBG_THIS);
 
+}
+
+
+void prodevian::finalize()
+{
+
+   if (m_bitRunThisThread)
+   {
+
+      m_evUpdateScreen.SetEvent();
+
+   }
+
    m_puserinteraction.release(OBJ_REF_DBG_THIS);
 
    m_pimpl.release(OBJ_REF_DBG_THIS);
 
-   m_synca.m_synca.remove_all();
+   m_synca.clear();
    
-   m_synca.m_hsyncaCache.remove_all();
-
    ::thread::finalize();
 
 }

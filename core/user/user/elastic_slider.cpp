@@ -45,7 +45,7 @@ namespace user
 
       ::user::interaction::_001OnTimer(ptimer);;
 
-      if(ptimer->m_nIDEvent == 84 + 77 + 51 + 33 + 23 + 49)
+      if(ptimer->m_uEvent == 84 + 77 + 51 + 33 + 23 + 49)
       {
          double dScalar = CalcScalar();
 

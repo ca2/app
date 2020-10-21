@@ -643,9 +643,9 @@ namespace user
                rectFocus.bottom++;
                rectFocus.right++;
 
-               m_pshapeaClip->add_item({__new(rect_shape(rectIntersect))});
+               m_pshapeaClip->add_item(__new(rect_shape(rectIntersect)));
 
-               m_pshapeaClip->add_item({__new(intersect_clip_shape)});
+               m_pshapeaClip->add_item(__new(intersect_clip_shape));
 
                i++;
 

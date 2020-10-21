@@ -420,11 +420,11 @@ namespace windows
    bool interaction_impl::_native_create_window_ex(::user::create_struct & cs)
    {
 
-      __refer(m_puserinteraction->m_pthreadUserInteraction, ::get_thread());
+      //__refer(m_puserinteraction->m_pthreadUserInteraction, ::get_task() OBJ_REF_DBG_ADD_THIS_FUNCTION_LINE);
 
-      m_puserinteraction->m_pthreadUserInteraction->uiptra().add(m_puserinteraction);
+      //m_puserinteraction->m_pthreadUserInteraction->uiptra().add(m_puserinteraction);
 
-      __refer(m_pthreadUserImpl, m_puserinteraction->m_pthreadUserInteraction);
+      //__refer(m_pthreadUserImpl, m_puserinteraction->m_pthreadUserInteraction OBJ_REF_DBG_ADD_THIS_FUNCTION_LINE);
 
       m_strDebug += ::str::demangle(m_puserinteraction->type_name()) +  ";";
 
@@ -913,6 +913,8 @@ namespace windows
    {
 
       UNREFERENCED_PARAMETER(pmessage);
+
+      //__release(m_pthreadUserImpl OBJ_REF_DBG_ADD_THIS);
 
    }
 
@@ -1985,10 +1987,10 @@ namespace windows
    public:
 
 
-
       manual_reset_event m_event;
       oswindow m_oswindow;
       HDC m_hdc;
+
 
       print_window(::object * pobject, oswindow oswindow, HDC hdc, tick tickTimeout) :
          ::object(pobject)
@@ -1998,7 +2000,7 @@ namespace windows
 
          m_hdc = hdc;
 
-         fork_run();
+         start();
 
          if (m_event.wait(tickTimeout).timeout())
          {
@@ -5138,7 +5140,7 @@ LRESULT CALLBACK __window_procedure(HWND oswindow, UINT message, WPARAM wparam, 
    else if (message == WM_TIMER)
    {
 
-      if (wparam == timer_transparent_mouse_event)
+      if (wparam == e_timer_transparent_mouse_event)
       {
 
          ::point pointCursor;

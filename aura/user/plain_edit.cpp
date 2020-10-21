@@ -1000,9 +1000,9 @@ namespace user
 
       interaction::_001OnTimer(ptimer);
 
-      e_timer etimer = (e_timer) ptimer->m_nIDEvent;
+      enum_timer etimer = (enum_timer) ptimer->m_uEvent;
 
-      if (etimer == timer_overflow_scrolling)
+      if (etimer == e_timer_overflow_scrolling)
       {
 
          if (m_bLMouseDown)
@@ -1050,20 +1050,20 @@ namespace user
 
 
       }
-      else if (ptimer->m_nIDEvent >= 100
-               && ptimer->m_nIDEvent <= 200)
+      else if (ptimer->m_uEvent >= 100
+               && ptimer->m_uEvent <= 200)
       {
          if (has_focus())
          {
 
-            _001OnKeyboardFocusTimer(ptimer->m_nIDEvent - 100);
+            _001OnKeyboardFocusTimer(ptimer->m_uEvent - 100);
 
          }
       }
-      else if (ptimer->m_nIDEvent == 500 || ptimer->m_nIDEvent == 501)
+      else if (ptimer->m_uEvent == 500 || ptimer->m_uEvent == 501)
       {
 
-         if (ptimer->m_nIDEvent == 500)
+         if (ptimer->m_uEvent == 500)
          {
 
             KillTimer(500);
@@ -1842,7 +1842,7 @@ namespace user
 
             m_bLMouseDown = true;
 
-            SetTimer(timer_overflow_scrolling, 50, nullptr);
+            SetTimer(e_timer_overflow_scrolling, 50, nullptr);
 
             SetCapture();
 

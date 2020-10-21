@@ -22,7 +22,7 @@ CLASS_DECL_AURA int __assert_failed_line(const char * pszFileName, int iLineNumb
 //CLASS_DECL_AURA int __cpp_assert_failed_line(const char * pszFileName, int iLineNumber)
 //{
 //
-//   thread * pthread = get_thread();
+//   thread * pthread = get_task();
 //
 //   if(pthread != nullptr)
 //   {

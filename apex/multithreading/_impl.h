@@ -376,7 +376,7 @@ _AFXMT_INLINE int_bool critical_section::Unlock()
 //::thread * fork(PRED pred)
 //{
 //
-//   return ::fork(::get_thread(), pred);
+//   return ::fork(::get_task(), pred);
 //
 //}
 //
@@ -395,10 +395,10 @@ _AFXMT_INLINE int_bool critical_section::Unlock()
 //}
 //
 //
-//inline ::thread* get_thread(ITHREAD idthread)
+//inline ::thread* get_task(ITHREAD idthread)
 //{
 //
-//   return (::thread*) ::get_context_system()->get_thread(idthread);
+//   return (::thread*) ::get_context_system()->get_task(idthread);
 //
 //}
 //
@@ -512,6 +512,23 @@ public:
    }
 
 };
+
+
+template < typename METHOD >
+inline ::thread_pointer object::fork(METHOD method)
+{
+
+   auto ppred = __pred_method(method);
+
+   auto pthread = __create_new < ::thread >();
+
+   pthread->m_pmatter = ppred;
+
+   start(pthread);
+
+   return pthread;
+
+}
 
 
 

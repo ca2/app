@@ -162,13 +162,14 @@ namespace file
    {
    public:
 
+
       typedef isomap < watch_id, __pointer(watch)> watch_map;
 
       watch_map            m_watchmap;
 
       watch_id             m_idLast;
 
-      __pointer(::thread)         m_pthread;
+      __pointer(thread)    m_pthread;
 
       bool                 m_bCreateWatchThread;
       

@@ -123,9 +123,9 @@ namespace experience
 
                _001ScreenToClient(rectFocus);
 
-               m_pshapeaClip->add_item({__new(rect_shape(rectFocus))});
+               m_pshapeaClip->add_item(__new(rect_shape(rectFocus)));
                
-               m_pshapeaClip->add_item({__new(intersect_clip_shape)});
+               m_pshapeaClip->add_item(__new(intersect_clip_shape));
 
                i++;
 

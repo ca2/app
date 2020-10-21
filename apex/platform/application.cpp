@@ -124,7 +124,7 @@ namespace apex
       m_bSnLauncheeSetup = false;
 #endif
 
-      m_pappParent = nullptr;
+      //m_pappParent = nullptr;
 
       m_bSimpleMessageLoop = false;
       m_ethreadClose = thread_none;
@@ -134,7 +134,7 @@ namespace apex
       m_bRequiresInstallation = false;
       m_bReadStringTable = true;
 
-      m_puiCurrent = nullptr;
+      //m_puiCurrent = nullptr;
 
       //m_bInitializeDataCentral = true;
 
@@ -236,11 +236,11 @@ namespace apex
 
       }
 
-      set_context_object(this);
+      set_context_object(this OBJ_REF_DBG_ADD_THIS_FUNCTION_LINE);
 
-      set_context_app(this);
+      set_context_app(this OBJ_REF_DBG_ADD_THIS_FUNCTION_LINE);
 
-      set_context(this);
+      set_context(this OBJ_REF_DBG_ADD_THIS_FUNCTION_LINE);
 
       if (::is_set(m_pappParent))
       {
@@ -285,7 +285,7 @@ namespace apex
       if(m_papplicationmenu.is_null())
       {
 
-         m_papplicationmenu = __new(application_menu);
+         __own(this, m_papplicationmenu, __new(application_menu));
 
       }
 
@@ -334,9 +334,9 @@ namespace apex
 
       ::application_container::m_applicationa.remove_all();
 
-      m_puserlanguagemap.release(OBJ_REF_DBG_THIS);
+      __unbind(this, m_puserlanguagemap OBJ_REF_DBG_ADD_THIS);
 
-      ::thread::finalize();
+      ::apex::context_thread::finalize();
 
    }
 
@@ -647,10 +647,8 @@ namespace apex
    }
 
 
-   ::estatus     application::call_request(::create * pcreate)
+   ::estatus application::call_request(::create * pcreate)
    {
-
-      pcreate->set_context_object(this);
 
       if (pcreate->m_ecommand == ::command_protocol)
       {
@@ -762,8 +760,6 @@ namespace apex
 
    void application::on_request(::create * pcreate)
    {
-
-      pcreate->set_context_object(this);
 
       if (is_serviceable())
       {
@@ -1470,7 +1466,7 @@ namespace apex
 
 
 
-   bool application::get_temp_file_name_template(string & strRet, const char * lpszName, const char * pszExtension, const char * pszTemplate)
+   ::estatus application::get_temp_file_name_template(string & strRet, const char * lpszName, const char * pszExtension, const char * pszTemplate)
    {
 
       __throw(not_implemented());
@@ -1480,7 +1476,7 @@ namespace apex
    }
 
 
-   bool application::get_temp_file_name(string & strRet, const char * lpszName, const char * pszExtension)
+   ::estatus application::get_temp_file_name(string & strRet, const char * lpszName, const char * pszExtension)
    {
 
       return get_temp_file_name_template(strRet, lpszName, pszExtension, nullptr);
@@ -1488,7 +1484,7 @@ namespace apex
    }
 
 
-   bool application::process_exception(::exception_pointer pe)
+   ::estatus application::process_exception(::exception_pointer pe)
    {
 
       return ::thread::process_exception(pe);
@@ -1722,7 +1718,7 @@ namespace apex
 //
 //      //thisstart << m_iErrorCode;
 //
-//      thread * pthread = ::get_thread();
+//      thread * pthread = ::get_task();
 //
 //      install_message_routing(pthread);
 //
@@ -1928,7 +1924,7 @@ namespace apex
          try
          {
 
-            m_pinterprocessintercommunication = create_interprocess_intercommunication();
+            __own(this, m_pinterprocessintercommunication, create_interprocess_intercommunication() OBJ_REF_DBG_ADD_THIS_NOTE("::apex::application::init_instance"));
 
          }
          catch (...)
@@ -2927,18 +2923,23 @@ retry_license:
    }
 
 
+   service_base* application::get_service()
+   {
+
+      return m_pservice;
+
+   }
 
 
+   service_base* application::allocate_new_service()
+   {
+
+      return nullptr;
+
+   }
 
 
-
-
-
-
-
-
-
-   bool application::init_service()
+   ::estatus application::init_service()
    {
 
       if (!is_serviceable())
@@ -2955,7 +2956,7 @@ retry_license:
 
       }
 
-      m_pservice = allocate_new_service();
+      __own(this, m_pservice, allocate_new_service() OBJ_REF_DBG_ADD_THIS_NOTE("::apex::application::int_service") );
 
       if (!m_pservice)
       {
@@ -2979,9 +2980,7 @@ retry_license:
 
    }
 
-
-
-   bool application::os_create_service()
+   ::estatus application::os_create_service()
    {
 
       return Context.os().create_service();
@@ -2989,7 +2988,7 @@ retry_license:
    }
 
 
-   bool application::os_remove_service()
+   ::estatus application::os_remove_service()
    {
 
       return Context.os().remove_service();
@@ -2997,7 +2996,7 @@ retry_license:
    }
 
 
-   bool application::os_start_service()
+   ::estatus application::os_start_service()
    {
 
       return Context.os().start_service();
@@ -3005,7 +3004,7 @@ retry_license:
    }
 
 
-   bool application::os_stop_service()
+   ::estatus application::os_stop_service()
    {
 
       return Context.os().stop_service();
@@ -3177,10 +3176,10 @@ retry_license:
 
       //}
 
-      if (::get_thread() == nullptr)
+      if (::get_task() == nullptr)
       {
 
-         ::set_thread(dynamic_cast <thread *> (this));
+         ::set_task(dynamic_cast <task *> (this));
 
       }
 
@@ -3437,7 +3436,7 @@ retry_license:
    ::estatus application::init1()
    {
 
-      ::estatus estatus = __construct_new(m_puserlanguagemap);
+      ::estatus estatus = __own(this, m_puserlanguagemap, __new(::user::language_map) OBJ_REF_DBG_ADD_THIS_NOTE("::apex::application::init1") );
 
       if (!estatus)
       {
@@ -3770,7 +3769,7 @@ retry_license:
          try
          {
 
-            m_pinterprocessintercommunication.release(OBJ_REF_DBG_THIS);
+            __unbind(this, m_pinterprocessintercommunication OBJ_REF_DBG_ADD_THIS);
 
          }
          catch (...)
@@ -3837,12 +3836,6 @@ retry_license:
    }
 
 
-   service_base * application::allocate_new_service()
-   {
-
-      return nullptr;
-
-   }
 
 
    __pointer(::acme::exclusive) application::get_exclusive(string strId, LPSECURITY_ATTRIBUTES psa)
@@ -3853,7 +3846,9 @@ retry_license:
       if(!pexclusive)
       {
 
-         pexclusive = __new(::acme::exclusive(strId, psa));
+         auto pexclusiveNew = __new(::acme::exclusive(strId, psa));
+
+         __m_own(this, pexclusive, pexclusiveNew OBJ_REF_DBG_ADD_THIS_NOTE("::apex::application::get_exclusive") );
 
       }
 
@@ -4210,7 +4205,7 @@ retry_license:
 
 
 
-   bool application::on_exclusive_instance_conflict(bool & bHandled, EExclusiveInstance eexclusive, string strId)
+   ::estatus application::on_exclusive_instance_conflict(bool & bHandled, EExclusiveInstance eexclusive, string strId)
    {
 
       if (eexclusive == ExclusiveInstanceLocal)
@@ -4231,7 +4226,7 @@ retry_license:
    }
 
 
-   bool application::on_exclusive_instance_local_conflict(bool & bHandled)
+   ::estatus application::on_exclusive_instance_local_conflict(bool & bHandled)
    {
 
       bool bContinue = false;
@@ -4292,7 +4287,7 @@ retry_license:
    }
 
 
-   bool application::on_exclusive_instance_local_conflict_id(bool & bHandled, string strId)
+   ::estatus application::on_exclusive_instance_local_conflict_id(bool & bHandled, string strId)
    {
 
       bool bContinue = false;
@@ -4345,10 +4340,12 @@ retry_license:
    }
 
 
-   bool application::on_additional_local_instance(bool & bHandled, string strModule, int iPid, string strCommandLine)
+   ::estatus application::on_additional_local_instance(bool & bHandled, string strModule, int iPid, string strCommandLine)
    {
 
-      auto pcommandline = __new(command_line(this, strCommandLine));
+      auto pcommandline = __create_new < command_line >();
+
+      pcommandline->initialize_command_line(strCommandLine);
 
       request({pcommandline});
 
@@ -4533,15 +4530,6 @@ retry_license:
    //   return sync_message_box(pwndOwner, var, pszTitle, fuStyle);
 
    //}
-
-
-
-   service_base * application::get_service()
-   {
-
-      return m_pservice;
-
-   }
 
 
 
@@ -5058,9 +5046,7 @@ retry_license:
    }
 
 
-
-
-   bool application::app_set(string strPath, string strValue)
+   ::estatus application::app_set(string strPath, string strValue)
    {
 
       return Context.sys_set(::file::path(m_strAppName) / strPath, strValue);
@@ -9385,10 +9371,10 @@ namespace apex
    //   thread::assert_valid();
 
 
-   //   if (::get_thread() != (thread*)this)
+   //   if (::get_task() != (thread*)this)
    //      return;     // only do subset if called from different thread
 
-   //   ASSERT(::get_thread() == this);
+   //   ASSERT(::get_task() == this);
    //   //ASSERT(afxCurrentInstanceHandle == m_hInstance);
 
    //   /*      if (m_pdocmanager != nullptr)
@@ -10636,7 +10622,7 @@ namespace apex
    //}
 
 
-   bool application::on_thread_on_idle(::thread* pthread, LONG lCount)
+   ::estatus application::on_thread_on_idle(::thread* pthread, LONG lCount)
    {
 
       __throw(todo("interaction"));
@@ -10717,7 +10703,7 @@ namespace apex
    //}
 
 
-   bool application::process_message()
+   ::estatus application::process_message()
    {
 
       return ::thread::process_message();

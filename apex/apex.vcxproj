@@ -1152,6 +1152,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="multithreading\thread.cpp" />
     <ClCompile Include="multithreading\threading.cpp" />
     <ClCompile Include="multithreading\thread_os.cpp" />
+    <ClCompile Include="multithreading\thread_pool.cpp" />
     <ClCompile Include="multithreading\tools.cpp" />
     <ClCompile Include="multithreading\_.cpp" />
     <ClCompile Include="net\sockets\http\http_base_socket.cpp" />
@@ -1227,7 +1228,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="platform\machine_event_central.cpp" />
     <ClCompile Include="platform\machine_event_data.cpp" />
     <ClCompile Include="platform\net.cpp" />
-    <ClCompile Include="platform\obj_typ_ctr.cpp" />
     <ClCompile Include="platform\os_context.cpp" />
     <ClCompile Include="platform\os_history.cpp" />
     <ClCompile Include="platform\progress.cpp" />
@@ -1248,6 +1248,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="platform\timer_callback.cpp" />
     <ClCompile Include="platform\timer_event.cpp" />
     <ClCompile Include="platform\timer_item.cpp" />
+    <ClCompile Include="platform\timer_threaded.cpp" />
     <ClCompile Include="platform\trace.cpp" />
     <ClCompile Include="platform\_.cpp" />
     <ClCompile Include="primitive\data\container.cpp" />
@@ -1351,7 +1352,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="multithreading\retry_multi_lock.h" />
     <ClInclude Include="multithreading\retry_single_lock.h" />
     <ClInclude Include="multithreading\service\plain_service.h" />
-    <ClInclude Include="multithreading\service\thread_pool.h" />
+    <ClInclude Include="multithreading\service\pool.h" />
     <ClInclude Include="multithreading\service_base.h" />
     <ClInclude Include="multithreading\service_status.h" />
     <ClInclude Include="multithreading\socket_event.h" />
@@ -1360,6 +1361,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="multithreading\thread_impl.h" />
     <ClInclude Include="multithreading\thread_os.h" />
     <ClInclude Include="multithreading\thread_parameter.h" />
+    <ClInclude Include="multithreading\pool.h" />
     <ClInclude Include="multithreading\tools.h" />
     <ClInclude Include="multithreading\_.h" />
     <ClInclude Include="multithreading\_impl.h" />
@@ -1467,6 +1469,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="platform\machine_event_central.h" />
     <ClInclude Include="platform\machine_event_data.h" />
     <ClInclude Include="platform\main.h" />
+    <ClInclude Include="platform\nano_timer.h" />
     <ClInclude Include="platform\net.h" />
     <ClInclude Include="platform\number.h" />
     <ClInclude Include="platform\obj_ref_dbg.h" />
@@ -1493,6 +1496,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="platform\timer_callback.h" />
     <ClInclude Include="platform\timer_event.h" />
     <ClInclude Include="platform\timer_item.h" />
+    <ClInclude Include="platform\timer_threaded.h" />
     <ClInclude Include="platform\trace.h" />
     <ClInclude Include="platform\trace_category.h" />
     <ClInclude Include="platform\version.h" />

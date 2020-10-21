@@ -117,8 +117,8 @@ public:
 
    union
    {
-      uptr                 m_nIDEvent;
-      e_timer              m_etimer;
+      uptr                 m_uEvent;
+      enum_timer              m_etimer;
    };
 
    __reference(::aura::timer_array)    m_ptimera;
@@ -153,7 +153,7 @@ public:
 //#else
 
    bool                 m_bInit;
-   //timer_t              m_timerid;
+   //e_timer_t              m_timerid;
    //struct sigevent      m_sev;
    //struct itimerspec    m_its;
 

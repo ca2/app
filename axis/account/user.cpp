@@ -393,7 +393,7 @@ namespace account
    bool user::is_authenticated()
    {
 
-      on_clock(clock_slow);
+      on_clock(e_clock_slow);
 
       if(m_estatusAuthentication != ::success_authenticated)
       {
@@ -425,10 +425,10 @@ namespace account
    }
 
 
-   void user::on_clock(e_clock eclock)
+   void user::on_clock(enum_clock eclock)
    {
 
-      if(eclock == clock_slow)
+      if(eclock == e_clock_slow)
       {
 
          if(m_estatusAuthentication == ::success_authenticated)

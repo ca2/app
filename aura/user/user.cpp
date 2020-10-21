@@ -829,6 +829,74 @@ namespace user
    }
 
 
+   bool user::on_ui_mouse_message(::message::mouse * pmouse)
+   {
+
+      if (pmouse->m_point == pmouse->m_pointDesired)
+      {
+
+         Session.m_pointCursor = pmouse->m_point;
+
+      }
+
+      i64 iMessage = pmouse->m_id;
+
+      if(iMessage == WM_LBUTTONDOWN
+       //|| iMessage == WM_LBUTTONUP
+       || iMessage == WM_RBUTTONDOWN
+       //|| iMessage == WM_RBUTTONUP
+       || iMessage == WM_MBUTTONDOWN
+       //|| iMessage == WM_MBUTTONUP
+       )
+       {
+
+         if(m_uiptraToolWindow.has_element())
+         {
+
+            __pointer_array(::user::interaction) uiptraToolWindow;
+
+            {
+
+               sync_lock sl(mutex());
+
+               ::papaya::array::copy(uiptraToolWindow, m_uiptraToolWindow);
+
+            }
+
+            for(auto & pinteraction : uiptraToolWindow.ptra())
+            {
+
+               if(pinteraction != pmouse->userinteraction())
+               {
+
+                  if(pinteraction->m_bFocus)
+                  {
+
+                     pinteraction->post_message(WM_KILLFOCUS);
+
+                  }
+
+               }
+
+            }
+
+         }
+
+       }
+
+      //if (m_puserpresence.is_set())
+      //{
+
+      //   m_puserpresence->on_ui_mouse_message(pmouse);
+
+      //}
+      return true;
+
+   }
+
+
+
+
    __namespace_object_factory(user, ::static_setup::flag_object_user);
 
 

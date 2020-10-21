@@ -549,7 +549,9 @@ namespace userex
          if(pfilemanagerdata->m_pcreate.is_null())
          {
 
-            pfilemanagerdata->m_pcreate = __new(::create(this));
+            pfilemanagerdata->m_pcreate = __create_new< ::create>();
+
+            pfilemanagerdata->m_pcreate->finish_initialization();
 
          }
 

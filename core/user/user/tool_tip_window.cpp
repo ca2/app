@@ -47,9 +47,9 @@ namespace user
                m_point = point;
                m_iEventTool = ptool->BaseToolTipGetIndex();
                //ptool->BaseToolTipGetWnd()->_001ScreenToClient(&m_point);
-               KillTimer(timer_show_delayed);
+               KillTimer(e_timer_show_delayed);
                HideTip();
-               SetTimer(timer_show_delayed, 500, nullptr);
+               SetTimer(e_timer_show_delayed, 500, nullptr);
             }
          }
       }
@@ -297,21 +297,21 @@ namespace user
    //
    //
    ///////////////////////////////////////////////////////////
-   void tool_tip_window::OnTimer(UINT nIDEvent)
+   void tool_tip_window::OnTimer(UINT uEvent)
    {
-      switch(nIDEvent)
+      switch(uEvent)
       {
-      case timer_hide_window:
+      case e_timer_hide_window:
       {
          display(display_none);
-         KillTimer(nIDEvent);
+         KillTimer(uEvent);
       }
       break;
-      case timer_show_delayed:
+      case e_timer_show_delayed:
       {
          m_iTool = m_iEventTool;
          ShowTip();
-         KillTimer(nIDEvent);
+         KillTimer(uEvent);
       }
       default:
          break;

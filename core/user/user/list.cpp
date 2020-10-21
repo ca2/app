@@ -3777,7 +3777,7 @@ namespace user
 
                   }
 
-                  SetTimer(timer_drag_start, 1200);
+                  SetTimer(e_timer_drag_start, 1200);
 
                   item_range itemrange;
 
@@ -3893,7 +3893,7 @@ namespace user
 
       ReleaseCapture();
 
-      KillTimer(timer_drag_start);
+      KillTimer(e_timer_drag_start);
 
       KillTimer(224455);
 

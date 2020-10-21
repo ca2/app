@@ -375,7 +375,7 @@ namespace experience
       }
 
 
-      bool move_manager::_001OnTimer(UINT nIDEvent)
+      bool move_manager::_001OnTimer(UINT uEvent)
       {
 
          return false;

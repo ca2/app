@@ -9,24 +9,6 @@ command_line::command_line()
 }
 
 
-command_line::command_line(::layered * pobjectContext) :
-   ::object(pobjectContext)
-{
-
-   common_construct();
-
-}
-
-
-command_line::command_line(::object * pobject, const string & strCommandLine) :
-   ::object(pobject)
-{
-
-   common_construct();
-
-   _001ParseCommandFork(strCommandLine);
-
-}
 
 
 void command_line::common_construct()
@@ -42,6 +24,18 @@ void command_line::common_construct()
 
 command_line::~command_line()
 {
+}
+
+
+::estatus command_line::initialize_command_line(const string& strCommandLine)
+{
+
+   common_construct();
+
+   _001ParseCommandFork(strCommandLine);
+
+   return ::success;
+
 }
 
 

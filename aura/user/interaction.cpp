@@ -52,6 +52,10 @@ namespace user
 
       set_layer(LAYERED_USER_INTERACTION, this);
 
+      //m_playout = nullptr;
+
+      //m_puserinteractionParent = nullptr;
+
       m_bDerivedHeight = false;
 
       m_bLayoutModified = false;
@@ -171,7 +175,7 @@ namespace user
       // Control Member Variables BEGIN
       m_puiLabel = nullptr;
       m_pdrawcontext = nullptr;
-      m_pdescriptor = nullptr;
+//      m_pdescriptor = nullptr;
       m_bControlExCommandEnabled = true;
       m_pform = nullptr;
       m_bDefaultWalkPreTranslateParentTree = true;
@@ -877,14 +881,19 @@ namespace user
 
       }
 
-      if (m_pthreadUserInteraction.is_set() && ::is_set(m_pthreadUserInteraction->m_puiptraThread))
+      if (m_pthreadUserInteraction)
       {
 
-         m_pthreadUserInteraction->m_puiptraThread->remove(this);
+         if (::is_set(m_pthreadUserInteraction->m_puiptraThread))
+         {
+
+            m_pthreadUserInteraction->m_puiptraThread->remove(this);
+
+         }
+
+         __release(m_pthreadUserInteraction OBJ_REF_DBG_ADD_THIS);
 
       }
-
-      __release(m_pthreadUserInteraction);
 
       auto pimplOld = m_pimpl;
 
@@ -1287,8 +1296,33 @@ namespace user
          post_pred([this]() { on_set_finish(); });
 
       }
+      else
+      {
+
+         DestroyWindow();
+
+      }
 
    }
+
+
+   void interaction::thread_on_term(::thread* pthread)
+   {
+
+      if (m_ewindowflag & window_flag_destroying)
+      {
+
+         if (thread_is_empty())
+         {
+
+            DestroyWindow();
+
+         }
+
+      }
+
+   }
+
 
 
    void interaction::on_set_finish()
@@ -1296,31 +1330,7 @@ namespace user
 
       sync_lock sl(mutex());
 
-      if (m_pcompositea)
-      {
-
-         for (auto& pcomposite : *m_pcompositea)
-         {
-
-            if (pcomposite)
-            {
-
-               auto pthread = dynamic_cast < ::thread * > (pcomposite);
-
-               if (pthread)
-               {
-
-                  m_threada.add(pthread);
-
-               }
-
-            }
-
-         }
-
-      }
-
-      if(m_threada.is_empty())
+      if(thread_is_empty())
       {
 
          sl.unlock();
@@ -1333,70 +1343,43 @@ namespace user
 
       string strWaiting;
 
-      for (auto& pthread : m_threada)
+      auto pthreada = thread_array_get();
+
+      if (pthreada)
       {
 
-         try
+         for (auto& pthread : *pthreada)
          {
 
-            strWaiting += pthread->type_name();
-
-            strWaiting += "\r\n";
-
-            pthread->add(method(DESTROY_METHOD, [this, pthread]()
+            try
             {
 
-               m_threada.remove(pthread);
+               pthread->set_finish();
 
-               if (m_threada.is_empty())
-               {
+            }
+            catch (...)
+            {
 
-                  DestroyWindow();
-
-               }
-
-            }));
+            }
 
          }
-         catch (...)
+
+         if (strWaiting.has_char())
          {
+
+            TRACE("The thread %s is waiting for the following threads to finish:\r\n%s", type_name(), strWaiting.c_str());
 
          }
 
       }
-
-      for (auto& pthread : m_threada)
-      {
-
-         try
-         {
-
-            pthread->set_finish();
-
-         }
-         catch (...)
-         {
-
-         }
-
-      }
-
-      if (strWaiting.has_char())
-      {
-
-         TRACE("The thread %s is waiting for the following threads to finish:\r\n%s", type_name(), strWaiting.c_str());
-
-      }
-
-      //::output_debug_string("set_finish DestroyWindow\n");
-
-      //::output_debug_string("set_finish DestroyWindow\n");
 
    }
 
 
    void interaction::_001OnDestroy(::message::message * pmessage)
    {
+
+      m_ewindowflag += window_flag_destroying;
 
       try
       {
@@ -1436,6 +1419,13 @@ namespace user
 
    void interaction::user_interaction_on_hide()
    {
+
+      if (!m_pdescriptor)
+      {
+
+         return;
+
+      }
 
       m_pimpl->user_interaction_on_hide();
 
@@ -1789,7 +1779,7 @@ namespace user
       if (pwnd == this)
       {
 
-         ::KillTimer(get_handle(), timer_transparent_mouse_event);
+         ::KillTimer(get_handle(), e_timer_transparent_mouse_event);
 
       }
 
@@ -1822,7 +1812,7 @@ namespace user
 
          sync_lock sl(mutex());
 
-         ::thread* pthread = ::get_thread();
+         ::thread * pthread = ::get_thread();
 
          if (pthread != nullptr)
          {
@@ -1869,7 +1859,7 @@ namespace user
 
          }
 
-         m_pdescriptor->m_puserinteractionParent = nullptr;
+         //m_pdescriptor->m_puserinteractionParent = nullptr;
 
       }
 
@@ -1914,33 +1904,35 @@ namespace user
 
       m_ewindowflag -= window_flag_is_window;
 
-      if (m_pthreadUserInteraction != nullptr
-            && m_pthreadUserInteraction->m_puiptraThread != nullptr)
+      string strType = type_name();
+
+      if (strType.contains_ci("simple_scroll_bar"))
       {
 
-         m_pthreadUserInteraction->m_puiptraThread->remove(this);
+         output_debug_string("simple_scroll_bar::user_interaction_on_destroy");
 
       }
+
+      if (::is_set(m_pthreadUserInteraction))
+      {
+         
+         if(::is_set(m_pthreadUserInteraction->m_puiptraThread))
+         {
+
+            m_pthreadUserInteraction->m_puiptraThread->remove(this);
+
+         }
+
+         __release(m_pthreadUserInteraction OBJ_REF_DBG_ADD_THIS);
+
+      }
+
+      thread_remove_all();
 
       single_lock slDraw(get_wnd() == nullptr || get_wnd()->m_pimpl.is_null()
                          || get_wnd()->m_pimpl.cast < ::user::interaction_impl >() == nullptr ? nullptr : get_wnd()->m_pimpl.cast < ::user::interaction_impl >()->draw_mutex(), true);
 
-      try
-      {
-
-         if (m_pimpl != nullptr)
-         {
-
-            m_pimpl->m_ptimerarray.release();
-
-         }
-
-      }
-      catch (...)
-      {
-
-      }
-
+    
       try
       {
 
@@ -1979,6 +1971,8 @@ namespace user
          }
 
       }
+
+      m_pdescriptor.release();
 
    }
 
@@ -3379,7 +3373,7 @@ namespace user
 
       UNREFERENCED_PARAMETER(pmessage);
 
-      System.apply_update(id_dark_mode);
+      System.add_update(id_dark_mode, this);
 
       on_create_user_interaction();
 
@@ -4577,53 +4571,10 @@ namespace user
    }
 
 
-   //bool interaction::create_native_window(::user::native_window_initialize* pinitialize)
-   //{
-
-   //   // UWP Removed
-   //   throw "trying to remove this create native window, it does anything or do less?";
-
-   //   if (is_window())
-   //   {
-
-   //      DestroyWindow();
-
-   //   }
-
-   //   if (m_pdescriptor.is_null())
-   //   {
-
-   //      m_pdescriptor.create(this);
-
-   //   }
-
-   //   m_pimpl = __create < interaction_impl >();
-
-   //   m_pimpl->m_puserinteraction = this;
-
-   //   if (!m_pimpl->create_native_window(pinitialize))
-   //   {
-
-   //      m_pimpl.release();
-
-   //      return false;
-
-   //   }
-
-   //   return true;
-
-   //}
-
-
    bool interaction::create_window(::user::interaction * puiParent, const ::id & id)
    {
 
-      if (m_pdescriptor.is_null())
-      {
-
-         m_pdescriptor.create(this);
-
-      }
+      m_pdescriptor.defer_create(this);
 
       if (!create_window(
             nullptr,
@@ -4654,14 +4605,9 @@ namespace user
 
       }
 
-      if (m_pdescriptor.is_null())
-      {
+      m_pdescriptor.defer_create(this);
 
-         m_pdescriptor.create(this);
-
-      }
-
-      __refer(m_pthreadUserInteraction, ::get_thread());
+      __refer(m_pthreadUserInteraction, ::get_task() OBJ_REF_DBG_ADD_THIS_FUNCTION_LINE);
 
       if (m_pthreadUserInteraction)
       {
@@ -4738,25 +4684,28 @@ namespace user
 
             pimplNew = __create_new < ::user::interaction_child >();
 
-            m_pdescriptor.create(this);
+            m_pdescriptor.defer_create(this);
 
             if (!pimplNew->create_window(this, pszClassName, pszWindowName, uStyle, rect, puiParent, id, pcreate))
-
             {
 
                pimplNew.release();
 
                m_bUserPrimitiveOk = false;
 
-               if (m_pthreadUserInteraction.is_set()
-                     && ::is_set(m_pthreadUserInteraction->m_puiptraThread))
+               if (m_pthreadUserInteraction)
                {
 
-                  m_pthreadUserInteraction->m_puiptraThread->remove(this);
+                  if (::is_set(m_pthreadUserInteraction->m_puiptraThread))
+                  {
+
+                     m_pthreadUserInteraction->m_puiptraThread->remove(this);
+
+                  }
+
+                  __release(m_pthreadUserInteraction OBJ_REF_DBG_ADD_THIS);
 
                }
-
-               __release(m_pthreadUserInteraction);
 
                return false;
 
@@ -4770,15 +4719,19 @@ namespace user
 
          m_bUserPrimitiveOk = false;
 
-         if (m_pthreadUserInteraction.is_set()
-               && ::is_set(m_pthreadUserInteraction->m_puiptraThread))
+         if (m_pthreadUserInteraction)
          {
 
-            m_pthreadUserInteraction->m_puiptraThread->remove(this);
+            if (::is_set(m_pthreadUserInteraction->m_puiptraThread))
+            {
+
+               m_pthreadUserInteraction->m_puiptraThread->remove(this);
+
+            }
+
+            __release(m_pthreadUserInteraction OBJ_REF_DBG_ADD_THIS);
 
          }
-
-         __release(m_pthreadUserInteraction);
 
          return false;
 
@@ -4822,17 +4775,6 @@ namespace user
 
          m_bUserPrimitiveOk = true;
 
-         //remove_all_routes();
-
-         //::thread * pthread = ::get_thread();
-
-         //if(pthread != nullptr)
-         //{
-
-         //   m_threadptra.add(pthread);
-
-         //}
-
          auto puiHost = Session.m_puiHost;
 
          if (puiParent == nullptr && this != puiHost && ::is_set(puiHost))
@@ -4849,12 +4791,7 @@ namespace user
 
             //uStyle &= ~WS_CHILD;
 
-            if (m_pdescriptor.is_null())
-            {
-
-               m_pdescriptor.create(this);
-
-            }
+            m_pdescriptor.defer_create(this);
 
             if (!m_pimpl->create_window_ex(this, createstruct, puiParent, id))
             {
@@ -4863,15 +4800,19 @@ namespace user
 
                m_pimpl.release();
 
-               if (m_pthreadUserInteraction.is_set()
-                     && ::is_set(m_pthreadUserInteraction->m_puiptraThread))
+               if (m_pthreadUserInteraction)
                {
 
-                  m_pthreadUserInteraction->m_puiptraThread->remove(this);
+                  if (::is_set(m_pthreadUserInteraction->m_puiptraThread))
+                  {
+
+                     m_pthreadUserInteraction->m_puiptraThread->remove(this);
+
+                  }
+
+                  __release(m_pthreadUserInteraction OBJ_REF_DBG_ADD_THIS);
 
                }
-
-               __release(m_pthreadUserInteraction);
 
                return false;
 
@@ -4920,7 +4861,7 @@ namespace user
 
             m_pimpl->m_puserinteraction = this;
 
-            m_pdescriptor.create(this);
+            m_pdescriptor.defer_create(this);
 
             if (!m_pimpl->create_window_ex(this, createstruct, puiParent, id))
             {
@@ -4929,15 +4870,19 @@ namespace user
 
                m_pimpl.release();
 
-               if (m_pthreadUserInteraction.is_set()
-                     && ::is_set(m_pthreadUserInteraction->m_puiptraThread))
+               if (m_pthreadUserInteraction)
                {
 
-                  m_pthreadUserInteraction->m_puiptraThread->remove(this);
+                  if (::is_set(m_pthreadUserInteraction->m_puiptraThread))
+                  {
+
+                     m_pthreadUserInteraction->m_puiptraThread->remove(this);
+
+                  }
+
+                  __release(m_pthreadUserInteraction OBJ_REF_DBG_ADD_THIS);
 
                }
-
-               __release(m_pthreadUserInteraction);
 
                return false;
 
@@ -4951,15 +4896,19 @@ namespace user
 
          m_bUserPrimitiveOk = false;
 
-         if (m_pthreadUserInteraction.is_set()
-               && ::is_set(m_pthreadUserInteraction->m_puiptraThread))
+         if (m_pthreadUserInteraction)
          {
 
-            m_pthreadUserInteraction->m_puiptraThread->remove(this);
+            if (::is_set(m_pthreadUserInteraction->m_puiptraThread))
+            {
+
+               m_pthreadUserInteraction->m_puiptraThread->remove(this);
+
+            }
+
+            __release(m_pthreadUserInteraction OBJ_REF_DBG_ADD_THIS);
 
          }
-
-         __release(m_pthreadUserInteraction);
 
          return false;
 
@@ -5825,8 +5774,6 @@ namespace user
          }
 
       }
-
-      m_pdescriptor.release();
 
       string strType;
 
@@ -7438,7 +7385,7 @@ namespace user
          }
 
 
-         if(::is_null(get_thread()))
+         if(::is_null(get_task()))
          {
 
             break;
@@ -7671,42 +7618,27 @@ namespace user
    }
 
 
-   bool interaction::call_and_set_timer(uptr nIDEvent, ::duration durationElapse, PFN_TIMER pfnTimer)
+   bool interaction::call_and_set_timer(uptr uEvent, ::duration durationElapse, PFN_TIMER pfnTimer)
    {
 
-      ::timer timer(nullptr, nIDEvent);
+      ::timer timer(uEvent);
 
       _001OnTimer(&timer);
 
-      return SetTimer(nIDEvent, (UINT) durationElapse.get_total_milliseconds(), pfnTimer);
+      return SetTimer(uEvent, (UINT) durationElapse.get_total_milliseconds(), pfnTimer);
 
    }
 
 
-   bool interaction::set_timer(uptr nIDEvent, ::duration durationElapse, PFN_TIMER pfnTimer)
+   bool interaction::set_timer(uptr uEvent, ::duration durationElapse, PFN_TIMER pfnTimer)
    {
 
-      return SetTimer(nIDEvent, (UINT) durationElapse.get_total_milliseconds(), pfnTimer);
+      return SetTimer(uEvent, (UINT) durationElapse.get_total_milliseconds(), pfnTimer);
 
    }
 
 
-   bool interaction::SetTimer(uptr nIDEvent, UINT nElapse, PFN_TIMER pfnTimer)
-   {
-
-      if (m_pimpl == nullptr)
-      {
-
-         return false;
-
-      }
-
-      return m_pimpl->SetTimer(nIDEvent, nElapse, pfnTimer);
-
-   }
-
-
-   bool interaction::KillTimer(uptr nIDEvent)
+   bool interaction::SetTimer(uptr uEvent, UINT nElapse, PFN_TIMER pfnTimer)
    {
 
       if (m_pimpl == nullptr)
@@ -7716,7 +7648,22 @@ namespace user
 
       }
 
-      return m_pimpl->KillTimer(nIDEvent);
+      return m_pimpl->SetTimer(uEvent, nElapse, pfnTimer);
+
+   }
+
+
+   bool interaction::KillTimer(uptr uEvent)
+   {
+
+      if (m_pimpl == nullptr)
+      {
+
+         return false;
+
+      }
+
+      return m_pimpl->KillTimer(uEvent);
 
    }
 
@@ -8409,24 +8356,26 @@ namespace user
             INFO("");
             INFO("");
 
-            if (m_pthreadUserInteraction.is_set() && ::is_set(m_pthreadUserInteraction->m_puiptraThread))
+            if (m_pthreadUserInteraction != puiParent->get_wnd()->m_pthreadUserInteraction)
             {
 
-               m_pthreadUserInteraction->m_puiptraThread->remove(this);
+               if (m_pthreadUserInteraction)
+               {
+
+                  if (::is_set(m_pthreadUserInteraction->m_puiptraThread))
+                  {
+
+                     m_pthreadUserInteraction->m_puiptraThread->remove(this);
+
+                  }
+
+                  __release(m_pthreadUserInteraction OBJ_REF_DBG_ADD_THIS);
+
+               }
+
+               __refer(m_pthreadUserInteraction, puiParent->get_wnd()->m_pthreadUserInteraction OBJ_REF_DBG_ADD_THIS_FUNCTION_LINE);
 
             }
-
-            __release(m_pthreadUserInteraction);
-
-//#ifdef _UWP
-//
-//            __refer(m_pthreadUserInteraction, Session.m_puihost->m_pthreadUserInteraction);
-//
-//#else
-
-            __refer(m_pthreadUserInteraction, puiParent->get_wnd()->m_pthreadUserInteraction);
-
-//#endif
 
             puiParent->m_uiptraChild.add_unique_interaction(this);
 
@@ -8487,22 +8436,7 @@ namespace user
 
          m_pimpl->m_puserinteraction = this;
 
-         m_pdescriptor.create(this);
-         //::thread * pthread = ::get_thread();
-
-         //if(pthread != nullptr)
-         //{
-
-         //   m_threadptra.add(pthread);
-
-         //}
-
-         //if(m_threadptra.get_count() <= 0)
-         //{
-
-         //   m_threadptra.add(get_object());
-
-         //}
+         m_pdescriptor.defer_create(this);
 
          if (!m_pimpl->create_message_queue(this, lpszName))
          {
@@ -9441,7 +9375,7 @@ restart:
             value("transparent_mouse_event_thread") = fork([this]()
                {
 
-                  auto pthread = ::get_thread();
+                  auto pthread = ::get_task();
                   ::point pointCursor;
 
                   auto pimpl = m_pimpl.cast < interaction_impl>();
@@ -9481,9 +9415,9 @@ restart:
                }
          }
          );
-            //::SetTimer(get_handle(), timer_transparent_mouse_event, 5, NULL);
+            //::SetTimer(get_handle(), e_timer_transparent_mouse_event, 5, NULL);
 
-            //SetTimer(timer_transparent_mouse_event, 100);
+            //SetTimer(e_timer_transparent_mouse_event, 100);
 
          }
          else
@@ -9500,9 +9434,9 @@ restart:
 
             }
 
-            //::KillTimer(get_handle(), timer_transparent_mouse_event);
+            //::KillTimer(get_handle(), e_timer_transparent_mouse_event);
 
-            //KillTimer(timer_transparent_mouse_event);
+            //KillTimer(e_timer_transparent_mouse_event);
 
          }
 
@@ -9894,10 +9828,10 @@ restart:
 
       get_context_application()->keep_alive();
 
-      if (::get_thread() != nullptr)
+      if (::get_task() != nullptr)
       {
 
-         ::get_thread()->keep_alive();
+         ::get_task()->keep_alive();
 
       }
 
@@ -13201,6 +13135,14 @@ restart:
          post_redraw();
 
       }
+      else if (paction->id() == id_dark_mode)
+      {
+
+         set_need_redraw();
+
+         post_redraw();
+
+      }
 
    }
 
@@ -13728,7 +13670,7 @@ restart:
 
          string strStyle;
 
-         if (m_pdescriptor->m_puserinteractionParent != NULL)
+         if (m_pdescriptor->m_puserinteractionParent)
          {
 
             strStyle += m_pdescriptor->m_puserinteractionParent->get_class_style(strClass);

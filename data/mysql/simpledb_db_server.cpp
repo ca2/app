@@ -190,7 +190,7 @@ void db_server::_001OnTimer(::timer * ptimer)
 
    super::_001OnTimer(ptimer);;
 
-   if(ptimer->m_nIDEvent == 1258477)
+   if(ptimer->m_uEvent == 1258477)
    {
 
    }

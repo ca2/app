@@ -25,7 +25,7 @@ namespace aura
    }
 
 
-   bool timer_array::create_timer(uptr nIDEvent,UINT nEllapse, PFN_TIMER pfnTimer, bool bPeriodic, void * pvoidData)
+   bool timer_array::create_timer(uptr uEvent,UINT nEllapse, PFN_TIMER pfnTimer, bool bPeriodic, void * pvoidData)
    {
 
       if(nEllapse < 800)
@@ -48,15 +48,15 @@ namespace aura
 
       }
 
-      delete_timer(nIDEvent);
+      delete_timer(uEvent);
 
-      auto ptimer = __new(timer(this, nIDEvent, pfnTimer, pvoidData, mutex()));
+      auto ptimer = __new(timer(this, uEvent, pfnTimer, pvoidData, mutex()));
 
       ptimer->set_context_thread(get_context_thread());
 
       ptimer->m_pcallback = this;
 
-      m_map.set_at(nIDEvent, ptimer);
+      m_map.set_at(uEvent, ptimer);
 
       //sl.unlock();
 
@@ -83,7 +83,7 @@ namespace aura
       if(!bOk)
       {
 
-         delete_timer(nIDEvent);
+         delete_timer(uEvent);
 
       }
 
@@ -92,10 +92,10 @@ namespace aura
    }
 
 
-   bool timer_array::set_timer(uptr nIDEvent, UINT nEllapse, PFN_TIMER pfnTimer, bool bPeriodic, void * pvoidData)
+   bool timer_array::set_timer(uptr uEvent, UINT nEllapse, PFN_TIMER pfnTimer, bool bPeriodic, void * pvoidData)
    {
 
-      if (!create_timer(nIDEvent, nEllapse, pfnTimer, bPeriodic, pvoidData))
+      if (!create_timer(uEvent, nEllapse, pfnTimer, bPeriodic, pvoidData))
       {
 
          return false;
@@ -107,12 +107,12 @@ namespace aura
    }
 
 
-   bool timer_array::delete_timer(uptr nIDEvent)
+   bool timer_array::delete_timer(uptr uEvent)
    {
 
       sync_lock sl(mutex());
 
-      auto * ppair = m_map.plookup(nIDEvent);
+      auto * ppair = m_map.plookup(uEvent);
 
       if (ppair == nullptr)
       {
@@ -123,7 +123,7 @@ namespace aura
 
       auto ptimer = ppair->element2();
 
-      m_map.remove_key(nIDEvent);
+      m_map.remove_key(uEvent);
 
       ptimer->set_finish();
 
@@ -140,9 +140,9 @@ namespace aura
       try
       {
 
-         uptr nIDEvent = ptimer->m_nIDEvent;
+         uptr uEvent = ptimer->m_uEvent;
 
-         auto * ppair = m_map.plookup(nIDEvent);
+         auto * ppair = m_map.plookup(uEvent);
 
          if (ppair == nullptr)
          {
@@ -156,7 +156,7 @@ namespace aura
          if(ptimerMapped == ptimer)
          {
 
-            m_map.remove_key(nIDEvent);
+            m_map.remove_key(uEvent);
 
          }
 
@@ -171,7 +171,7 @@ namespace aura
    }
 
 
-   bool timer_array::timer_is_ok()
+   bool timer_array::e_timer_is_ok()
    {
 
       return m_bOk;
@@ -185,7 +185,7 @@ namespace aura
       if (!m_bOk)
       {
 
-         delete_timer(ptimer->m_nIDEvent);
+         delete_timer(ptimer->m_uEvent);
 
          return false;
 
@@ -196,7 +196,7 @@ namespace aura
       if(!ptimer->m_bPeriodic)
       {
 
-         delete_timer(ptimer->m_nIDEvent);
+         delete_timer(ptimer->m_uEvent);
 
          return false;
 

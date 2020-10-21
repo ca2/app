@@ -2766,7 +2766,7 @@ namespace user
 
                   m_pointLButtonDown1 = point;
 
-                  SetTimer(timer_drag_start, 1200, nullptr);
+                  SetTimer(e_timer_drag_start, 1200, nullptr);
 
                   item_range itemrange;
 
@@ -3446,7 +3446,7 @@ namespace user
 
       ::user::interaction::_001OnTimer(ptimer);
 
-      if (ptimer->m_nIDEvent == timer_hover_select)
+      if (ptimer->m_uEvent == e_timer_hover_select)
       {
 
          int iHoverSelectTimeout = 3;
@@ -3469,7 +3469,7 @@ namespace user
          
 
       }
-      else if(ptimer->m_nIDEvent == 12345679) // left click
+      else if(ptimer->m_uEvent == 12345679) // left click
       {
 
          KillTimer(12345679);
@@ -3485,7 +3485,7 @@ namespace user
          }
 
       }
-      else if(ptimer->m_nIDEvent == 8477) // right click
+      else if(ptimer->m_uEvent == 8477) // right click
       {
 
          KillTimer(8477);
@@ -3519,21 +3519,21 @@ namespace user
             }*/
          }
       }
-      else if(ptimer->m_nIDEvent == 0xfffffffe)
+      else if(ptimer->m_uEvent == 0xfffffffe)
       {
 
          if(!Filter1Step())
          {
 
-            KillTimer(ptimer->m_nIDEvent);
+            KillTimer(ptimer->m_uEvent);
 
          }
 
       }
-      else if (ptimer->m_nIDEvent == 224455)
+      else if (ptimer->m_uEvent == 224455)
       {
 
-         KillTimer(ptimer->m_nIDEvent);
+         KillTimer(ptimer->m_uEvent);
 
          if (m_iItemLButtonDown >= 0)
          {
@@ -3555,10 +3555,10 @@ namespace user
          }
 
       }
-      else if(ptimer->m_nIDEvent == timer_drag_start) // 12345678
+      else if(ptimer->m_uEvent == e_timer_drag_start) // 12345678
       {
 
-         KillTimer(ptimer->m_nIDEvent);
+         KillTimer(ptimer->m_uEvent);
 
          if(!m_bHoverSelect2)
          {
@@ -3572,7 +3572,7 @@ namespace user
          }
 
       }
-      //else if(ptimer->m_nIDEvent == 12321)
+      //else if(ptimer->m_uEvent == 12321)
       //{
 
 
@@ -3600,13 +3600,13 @@ namespace user
       if (m_bHoverSelect2)
       {
 
-         SetTimer(timer_hover_select, 200);
+         SetTimer(e_timer_hover_select, 200);
 
       }
       else
       {
 
-         KillTimer(timer_hover_select);
+         KillTimer(e_timer_hover_select);
 
       }
 

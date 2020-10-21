@@ -104,11 +104,13 @@ void handler_manager::async(::layered * pobjectContext)
       m_pthread = fork([this]()
       {
 
-         ::get_thread()->m_pevSync = m_pev;
+         // ::get_task()->m_pevSync = m_pev;
 
-         ::get_thread()->set_thread_name(m_strThreadName);
+         ::get_task()->set_thread_name(m_strThreadName);
 
          loop();
+
+         m_pev->SetEvent();
 
       });
 

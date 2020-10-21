@@ -36,9 +36,9 @@ namespace apex
 
       // 2020-01-25: removing from ::apex::system, placing here (at ::context)
       // 2020-07-23: now at ::apex::application
-      __pointer(::user::language_map)                 m_puserlanguagemap;
+      __composite(::user::language_map)               m_puserlanguagemap;
 
-      ::apex::application *                           m_pappParent;
+      __reference(::apex::application)                m_pappParent;
       string                                          m_strAppName;
       string                                          m_strAppTitle;
       string                                          m_strAppId;
@@ -59,11 +59,11 @@ namespace apex
 
       bool                                            m_bReadStringTable;
 
-      __pointer(application_menu)                     m_papplicationmenu;
+      __composite(application_menu)                   m_papplicationmenu;
 
       //__composite(::game::game)                       m_pgame;
 
-      ::user::primitive *                             m_puiCurrent;
+      __reference(::user::primitive)                  m_puiCurrent;
       bool                                            m_bContextTheme;
 
 #ifdef LINUX
@@ -76,7 +76,7 @@ namespace apex
 
       bool                                            m_bAppHasInstallerProtected;
       bool                                            m_bAppHasInstallerChangedProtected;
-      ::install::installer *                          m_pinstaller;
+      __composite(::install::installer)               m_pinstaller;
 
       reference_addressa                              m_objectptraEventHook;
 
@@ -85,8 +85,8 @@ namespace apex
       bool                                            m_bFranceExit;
 
       bool                                            m_bInterprocessIntercommunication;
-      __pointer(interprocess_intercommunication)      m_pinterprocessintercommunication;
-      __pointer(service_base)                         m_pservice;
+      __composite(interprocess_intercommunication)    m_pinterprocessintercommunication;
+      __composite(service_base)                       m_pservice;
 
       // apex commented
       //::mutex                                         m_mutexFrame;
@@ -96,7 +96,7 @@ namespace apex
 
       EExclusiveInstance                              m_eexclusiveinstance;
 
-      string_map < __pointer(::acme::exclusive) >     m_mapExclusive;
+      string_map < __composite(::acme::exclusive) >   m_mapExclusive;
 
       bool                                            m_bService;
 
@@ -111,7 +111,7 @@ namespace apex
       string_table                                    m_stringtableStd;
       id_map < string >                               m_stringmap;
 
-      id_map < __pointer(::channel) >                 m_mapNotify;
+      id_map < __composite(::channel) >               m_mapNotify;
 
       bool                                            m_bInitializeDataCentral;
 
@@ -202,6 +202,8 @@ namespace apex
       virtual bool is_system() const override;
       virtual bool is_session() const override;
       virtual bool is_serviceable() const;
+      virtual bool is_user_service() const;
+
 
 
       //virtual ::simpledb::server * simpledb();
@@ -268,7 +270,7 @@ namespace apex
       //virtual void SetCurrentHandles() override;
 
 
-      virtual bool process_exception(::exception_pointer pe) override;
+      virtual ::estatus process_exception(::exception_pointer pe) override;
 
 
       //virtual __pointer(::apex::application) assert_running(const char * pszAppId) override;
@@ -495,10 +497,6 @@ namespace apex
       //virtual bool process_exception(::exception_pointer pe) override;
 
 
-      //virtual bool is_system() const override;
-      //virtual bool is_session() const override;
-      //virtual bool is_serviceable() const;
-      virtual bool is_user_service() const;
 
       void set_has_installer(bool bSet);
 
@@ -514,10 +512,10 @@ namespace apex
 
       //virtual void process_message_filter(i32 code,::message::message * pmessage) override;
 
-      virtual bool on_thread_on_idle(::thread * pthread,LONG lCount) override;
+      virtual ::estatus on_thread_on_idle(::thread * pthread,LONG lCount) override;
 
 
-      virtual bool app_set(string strPath, string strValue);
+      virtual ::estatus app_set(string strPath, string strValue);
       virtual string app_get(string strPath, string strDefault = "");
 
 
@@ -619,19 +617,19 @@ namespace apex
       virtual string multimedia_audio_mixer_get_default_library_name();
       virtual string veriwell_multimedia_music_midi_get_default_library_name();
 
-      virtual bool get_temp_file_name_template(string & str,const char * lpszName,const char * pszExtension,const char * pszTemplate);
+      virtual ::estatus get_temp_file_name_template(string & str,const char * lpszName,const char * pszExtension,const char * pszTemplate);
 
-      virtual bool get_temp_file_name(string & str,const char * lpszName,const char * pszExtension);
+      virtual ::estatus get_temp_file_name(string & str,const char * lpszName,const char * pszExtension);
 
       service_base * get_service();
       virtual service_base * allocate_new_service();
-      virtual bool init_service();
+      virtual ::estatus init_service();
 
-      virtual bool os_create_service();
-      virtual bool os_remove_service();
+      virtual ::estatus os_create_service();
+      virtual ::estatus os_remove_service();
 
-      virtual bool os_start_service();
-      virtual bool os_stop_service();
+      virtual ::estatus os_start_service();
+      virtual ::estatus os_stop_service();
 
       //virtual void on_service_request(::create * pcreate);
 
@@ -641,19 +639,19 @@ namespace apex
 
       /// return true if this instance might continue execution
       /// bHandled true if some action was done in response to this new additional instance creation
-      virtual bool on_exclusive_instance_conflict(bool & bHandled, EExclusiveInstance eexclusive, string strId);
+      virtual ::estatus on_exclusive_instance_conflict(bool & bHandled, EExclusiveInstance eexclusive, string strId);
 
       /// return true if this instance might continue execution
       /// bHandled true if some action was done in response to this new additional instance creation
-      virtual bool on_exclusive_instance_local_conflict(bool & bHandled);
+      virtual ::estatus on_exclusive_instance_local_conflict(bool & bHandled);
 
             /// return true if this instance might continue execution
       /// bHandled true if some action was done in response to this new additional instance creation
-      virtual bool on_exclusive_instance_local_conflict_id(bool & bHandled, string strId);
+      virtual ::estatus on_exclusive_instance_local_conflict_id(bool & bHandled, string strId);
 
       /// return true if the external additional instance might continue execution
       /// bHandled true if some action was done in response to the external new additional instance creation
-      virtual bool on_additional_local_instance(bool & bHandled, string strModule, int iPid, string strCommandLine);
+      virtual ::estatus on_additional_local_instance(bool & bHandled, string strModule, int iPid, string strCommandLine);
 
       virtual void on_new_instance(string strModule, const ::id & idPid);
 
@@ -891,14 +889,10 @@ namespace apex
 
       //virtual ::apex::application * get_context_application() const override;
 
-      //virtual bool is_system() const override;
-      //virtual bool is_session() const override;
 
       virtual u32 guess_code_page(const string& str);
 
       //virtual i32 _sync_message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, UINT fuStyle) override;
-
-      //virtual bool is_serviceable() const override;
 
 
       virtual void pre_translate_message(::message::message* pmessage) override;
@@ -986,8 +980,6 @@ namespace apex
       //virtual bool process_exception(::exception_pointer pe) override;
 
       //virtual bool on_uninstall() override;
-
-      //virtual bool is_serviceable() const override;
 
       //virtual bool on_install() override;
 
@@ -1390,7 +1382,7 @@ namespace apex
 
 
 
-      virtual bool process_message() override;
+      virtual ::estatus process_message() override;
 
       //i32 hotplugin_host_host_starter_start_sync(const char* pszCommandLine, ::apex::application* papp, ::hotplugin::host* phost, ::hotplugin::plugin* pplugin) override;
 

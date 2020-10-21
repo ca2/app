@@ -817,7 +817,7 @@ namespace axis
 
       ////}
 
-      //if (::get_thread() == nullptr)
+      //if (::get_task() == nullptr)
       //{
 
       //   ::set_thread(dynamic_cast <thread *> (this));
@@ -1494,16 +1494,16 @@ namespace axis
 
          //}
 
-         try
-         {
+         //try
+         //{
 
-            m_pinterprocessintercommunication.release();
+         //   m_pinterprocessintercommunication.release();
 
-         }
-         catch (...)
-         {
+         //}
+         //catch (...)
+         //{
 
-         }
+         //}
 
          try
          {
@@ -1748,7 +1748,7 @@ namespace axis
 
       //}
 
-      thread * pthread = ::get_thread();
+      ::thread * pthread = ::get_thread();
 
       install_message_routing(pthread);
 

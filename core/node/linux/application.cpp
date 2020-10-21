@@ -323,10 +323,10 @@ namespace aura
 
 //   ::thread * application::GetThread()
 //   {
-//      if(::get_thread() == nullptr)
+//      if(::get_task() == nullptr)
 //         return nullptr;
 //      else
-//         return ::get_thread();
+//         return ::get_task();
 //   }
 
 //   void application::set_thread(::thread * pthread)

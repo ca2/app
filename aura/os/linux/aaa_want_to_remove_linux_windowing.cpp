@@ -3095,7 +3095,7 @@ bool x11_process_message(Display * pdisplay)
 ////
 ////   int iArrayPos = 0;
 ////
-////   ::thread * pthread = ::get_thread();
+////   ::thread * pthread = ::get_task();
 ////
 ////   while(::get_context_system() != nullptr
 ////   && pthread->thread_get_run())

@@ -244,8 +244,8 @@ namespace ios
 
 
       // Timer Functions
-      virtual bool SetTimer(uptr nIDEvent, UINT nElapse, PFN_TIMER pfnTimer) override;
-      virtual bool KillTimer(uptr nIDEvent) override;
+      virtual bool SetTimer(uptr uEvent, UINT nElapse, PFN_TIMER pfnTimer) override;
+      virtual bool KillTimer(uptr uEvent) override;
 
       // oswindow State Functions
       virtual bool IsWindowEnabled();
@@ -488,7 +488,7 @@ namespace ios
       void OnRButtonDblClk(UINT nFlags, const ::point & point);
       void OnRButtonDown(UINT nFlags, const ::point & point);
       void OnRButtonUp(UINT nFlags, const ::point & point);
-      void OnTimer(uptr nIDEvent);
+      void OnTimer(uptr uEvent);
 
       // Initialization message handler member functions
       //void OnInitMenu(::user::menu* pMenu);

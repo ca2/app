@@ -6,7 +6,7 @@ promise::promise(::matter * pmatter, ::future future) :
    m_future(future)
 {
 
-   fork_run();
+   task::start(this);
 
 }
 
@@ -17,19 +17,19 @@ promise::~promise()
 }
 
 
-::estatus promise::run()
+::estatus promise::on_task()
 {
 
    m_future.send(m_pelement->realize());
 
-   delete this;
+   //delete this;
 
    return ::success;
 
 }
 
 
-CLASS_DECL_ACME var __launch(::matter * pmatter, ::future future)
+CLASS_DECL_ACME var __realize(::matter * pmatter, ::future future)
 {
 
    if(future)

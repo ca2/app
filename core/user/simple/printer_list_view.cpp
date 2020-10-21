@@ -96,7 +96,7 @@ bool simple_printer_list_view::on_click(const ::user::item & itemClick)
    pprinttask->add_ref(OBJ_REF_DBG_THIS);
    pprinttask->m_pprinter = Application.get_printer(item.m_strText);
    pprinttask->m_pinteraction = m_pview;
-   pprinttask->start_task();
+   ::task::start(pprinttask);
    
    return true;
 

@@ -232,7 +232,7 @@ namespace constructor
       {
          ::new(p) TYPE;
       }
-      inline static void construct(void * p, ::count c)
+      inline static void construct_count(void * p, ::count c)
       {
          while (c > 0)
          {
@@ -259,7 +259,7 @@ namespace constructor
 
       }
 
-      inline static void construct(void * p, ::count c)
+      inline static void construct_count(void * p, ::count c)
       {
 
          while (c > 0)
@@ -289,7 +289,7 @@ namespace constructor
       {
          UNREFERENCED_PARAMETER(p);
       }
-      inline static void construct(void * p, ::count c)
+      inline static void construct_count(void * p, ::count c)
       {
          UNREFERENCED_PARAMETER(p);
          UNREFERENCED_PARAMETER(c);
@@ -300,6 +300,23 @@ namespace constructor
 
 } // namespace constructor
 
+
+template < typename TYPE >
+inline void def_destruct(TYPE* pointer OBJ_REF_DBG_ADD_PARAMS)
+{
+
+   pointer->~TYPE();
+
+}
+
+template < typename TYPE >
+inline void def_destruct(__pointer(TYPE)* pointer OBJ_REF_DBG_ADD_PARAMS)
+{
+
+   pointer->release(OBJ_REF_DBG_ARGS);
+
+}
+
 namespace destructor
 {
 
@@ -309,16 +326,17 @@ namespace destructor
    {
    public:
 
-      inline static void destruct(TYPE * p)
+      inline static void destruct(TYPE * pointer OBJ_REF_DBG_ADD_PARAMS)
       {
-         p->~TYPE();
+
+         def_destruct(pointer OBJ_REF_DBG_ADD_ARGS);
       }
-      inline static void destruct(TYPE * p, ::count c)
+      inline static void destruct_count(TYPE * pointer, ::count c OBJ_REF_DBG_ADD_PARAMS)
       {
          while (c > 0)
          {
-            p->~TYPE();
-            p++;
+            def_destruct(pointer OBJ_REF_DBG_ADD_ARGS);
+            pointer++;
             c--;
          }
       }
@@ -329,18 +347,16 @@ namespace destructor
 
 
 
-
-
    template < class TYPE >
    class nodef
    {
    public:
 
-      inline static void destruct(TYPE * p)
+      inline static void destruct(TYPE * p OBJ_REF_DBG_ADD_PARAMS)
       {
          UNREFERENCED_PARAMETER(p);
       }
-      inline static void destruct(TYPE * p, ::count c)
+      inline static void destruct_count(TYPE * p, ::count c OBJ_REF_DBG_ADD_PARAMS)
       {
          UNREFERENCED_PARAMETER(p);
          UNREFERENCED_PARAMETER(c);
@@ -369,7 +385,7 @@ namespace copier
       }
 
 
-      inline static void copy(TYPE *pdst, const TYPE * psrc, ::count c)
+      inline static void copy_count(TYPE *pdst, const TYPE * psrc, ::count c)
       {
 
          while (c > 0)
@@ -470,19 +486,19 @@ namespace allocator
          constructor::nodef< TYPE >::construct(p);
       }
 
-      inline static void construct(TYPE * p, ::count c)
+      inline static void construct_count(TYPE * p, ::count c)
       {
-         constructor::nodef< TYPE >::construct(p, c);
+         constructor::nodef< TYPE >::construct_count(p, c);
 
       }
 
-      inline static void destruct(TYPE * p)
+      inline static void destruct(TYPE * p OBJ_REF_DBG_ADD_PARAMS)
       {
-         destructor::nodef < TYPE >::destruct(p);
+         destructor::nodef < TYPE >::destruct(p OBJ_REF_DBG_ADD_ARGS);
       }
-      inline static void destruct(TYPE * p, ::count c)
+      inline static void destruct_count(TYPE * p, ::count c OBJ_REF_DBG_ADD_PARAMS)
       {
-         destructor::nodef < TYPE >::destruct(p, c);
+         destructor::nodef < TYPE >::destruct_count(p, c OBJ_REF_DBG_ADD_ARGS);
       }
 
 
@@ -494,10 +510,10 @@ namespace allocator
       }
 
 
-      inline static void copy(TYPE *pdst, const TYPE * psrc, ::count c)
+      inline static void copy_count(TYPE *pdst, const TYPE * psrc, ::count c)
       {
 
-         copier::def< TYPE >::copy(pdst, psrc, c);
+         copier::def< TYPE >::copy_count(pdst, psrc, c);
 
       }
 
@@ -530,19 +546,18 @@ namespace allocator
          constructor::def< TYPE >::construct(p);
       }
 
-      inline static void construct(TYPE * p, ::count c)
+      inline static void construct_count(TYPE * p, ::count c)
       {
-         constructor::def< TYPE >::construct(p, c);
-
+         constructor::def< TYPE >::construct_count(p, c);
       }
 
-      inline static void destruct(TYPE * p)
+      inline static void destruct(TYPE * pointer OBJ_REF_DBG_ADD_PARAMS)
       {
-         destructor::def< TYPE>::destruct(p);
+         destructor::def< TYPE>::destruct(pointer OBJ_REF_DBG_ADD_ARGS);
       }
-      inline static void destruct(TYPE * p, ::count c)
+      inline static void destruct_count(TYPE * pointer, ::count c OBJ_REF_DBG_ADD_PARAMS)
       {
-         destructor::def< TYPE>::destruct(p, c);
+         destructor::def< TYPE>::destruct_count(pointer, c OBJ_REF_DBG_ADD_ARGS);
       }
 
 
@@ -554,10 +569,10 @@ namespace allocator
       }
 
 
-      inline static void copy(TYPE *pdst, const TYPE * psrc, ::count c)
+      inline static void copy_count(TYPE *pdst, const TYPE * psrc, ::count c)
       {
 
-         copier::def< TYPE >::copy(pdst, psrc, c);
+         copier::def< TYPE >::copy_count(pdst, psrc, c);
 
       }
 
@@ -600,19 +615,19 @@ namespace allocator
          constructor::nodef< TYPE >::construct(p);
       }
 
-      inline static void construct(TYPE * p, ::count c)
+      inline static void construct_count(TYPE * p, ::count c)
       {
-         constructor::nodef< TYPE >::construct(p, c);
+         constructor::nodef< TYPE >::construct_count(p, c);
 
       }
 
-      inline static void destruct(TYPE * p)
+      inline static void destruct(TYPE * pointer OBJ_REF_DBG_ADD_PARAMS)
       {
-         destructor::nodef< TYPE>::destruct(p);
+         destructor::nodef< TYPE>::destruct(pointer OBJ_REF_DBG_ADD_ARGS);
       }
-      inline static void destruct(TYPE * p, ::count c)
+      inline static void destruct_count(TYPE * pointer, ::count c OBJ_REF_DBG_ADD_PARAMS)
       {
-         destructor::nodef< TYPE>::destruct(p, c);
+         destructor::nodef< TYPE>::destruct_count(pointer, c OBJ_REF_DBG_ADD_ARGS);
       }
 
 
@@ -624,10 +639,10 @@ namespace allocator
       }
 
 
-      inline static void copy(TYPE *pdst, const TYPE * psrc, ::count c)
+      inline static void copy_count(TYPE *pdst, const TYPE * psrc, ::count c)
       {
 
-         copier::def< TYPE >::copy(pdst, psrc, c);
+         copier::def< TYPE >::copy_count(pdst, psrc, c);
 
       }
 
@@ -670,19 +685,19 @@ namespace allocator
          constructor::zero< TYPE >::construct(p);
       }
 
-      inline static void construct(TYPE * p, ::count c)
+      inline static void construct_count(TYPE * p, ::count c)
       {
-         constructor::zero< TYPE >::construct(p, c);
+         constructor::zero< TYPE >::construct_count(p, c);
 
       }
 
-      inline static void destruct(TYPE * p)
+      inline static void destruct(TYPE * p OBJ_REF_DBG_ADD_PARAMS)
       {
-         destructor::nodef< TYPE>::destruct(p);
+         destructor::nodef< TYPE>::destruct(p  OBJ_REF_DBG_ADD_ARGS);
       }
-      inline static void destruct(TYPE * p, ::count c)
+      inline static void destruct_count(TYPE * p, ::count c OBJ_REF_DBG_ADD_PARAMS)
       {
-         destructor::nodef< TYPE>::destruct(p, c);
+         destructor::nodef< TYPE>::destruct_count(p, c  OBJ_REF_DBG_ADD_ARGS);
       }
 
 
@@ -694,10 +709,10 @@ namespace allocator
       }
 
 
-      inline static void copy(TYPE *pdst, const TYPE * psrc, ::count c)
+      inline static void copy_count(TYPE *pdst, const TYPE * psrc, ::count c)
       {
 
-         copier::def< TYPE >::copy(pdst, psrc, c);
+         copier::def< TYPE >::copy_count(pdst, psrc, c);
 
       }
 
@@ -739,19 +754,19 @@ namespace allocator
          constructor::def< TYPE >::construct(p);
       }
 
-      inline static void construct(TYPE * p, ::count c)
+      inline static void construct_count(TYPE * p, ::count c)
       {
-         constructor::def< TYPE >::construct(p, c);
+         constructor::def< TYPE >::construct_count(p, c);
 
       }
 
-      inline static void destruct(TYPE * p)
+      inline static void destruct(TYPE * p OBJ_REF_DBG_ADD_PARAMS)
       {
-         destructor::def< TYPE>::destruct(p);
+         destructor::def< TYPE>::destruct(p OBJ_REF_DBG_ADD_ARGS);
       }
-      inline static void destruct(TYPE * p, ::count c)
+      inline static void destruct_count(TYPE * p, ::count c OBJ_REF_DBG_ADD_PARAMS)
       {
-         destructor::def< TYPE>::destruct(p, c);
+         destructor::def< TYPE>::destruct_count(p, c  OBJ_REF_DBG_ADD_ARGS);
       }
 
 
@@ -763,10 +778,10 @@ namespace allocator
       }
 
 
-      inline static void copy(TYPE *pdst, const TYPE * psrc, ::count c)
+      inline static void copy_count(TYPE *pdst, const TYPE * psrc, ::count c)
       {
 
-         copier::def< TYPE >::copy(pdst, psrc, c);
+         copier::def< TYPE >::copy_count(pdst, psrc, c);
 
       }
 

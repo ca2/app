@@ -104,32 +104,32 @@
 //
 //
 
-//inline var & thread_value(const ::id & id) { return ::get_thread()->value(id); }
+//inline var & thread_value(const ::id & id) { return ::get_task()->value(id); }
 //
 //inline bool thread_is_set(const ::id & id)
 //{
-//   if (!::get_thread())
+//   if (!::get_task())
 //   {
 //
 //      return false;
 //
 //   }
 //
-//   if (is_null(::get_thread()->m_pset))
+//   if (is_null(::get_task()->m_pset))
 //   {
 //
 //      return false;
 //
 //   }
 //
-//   if (!::get_thread()->has_property(id))
+//   if (!::get_task()->has_property(id))
 //   {
 //
 //      return false;
 //
 //   }
 //
-//   return ::get_thread()->value(id);
+//   return ::get_task()->value(id);
 //
 //}
 

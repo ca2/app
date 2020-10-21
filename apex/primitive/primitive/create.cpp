@@ -1,28 +1,17 @@
 #include "framework.h"
 
 
-create::create(::layered * pobjectContext) :
-   ::object(pobjectContext)
-{
-
-   create_common_construct(::type_empty_argument, nullptr);
-
-   defer_initialize();
-
-}
-
-
 create::create()
 {
 
-   create_common_construct(::type_empty_argument, nullptr);
-
-   defer_initialize();
+   m_bMakeVisible = true;
 
 }
 
-create::create(::object * pobject, arguments arguments) :
-   ::object(pobject)
+
+
+
+::estatus create::initialize_create(arguments arguments) 
 {
 
    create_common_construct(::type_empty_argument, nullptr);
@@ -39,7 +28,23 @@ create::create(::object * pobject, arguments arguments) :
       else if(arg.get_type() == type_string)
       {
 
-         m_pcommandline = __new(command_line(pobject, arg.get_string()));
+         auto estatus = __construct(m_pcommandline);
+
+         if (!estatus)
+         {
+
+            return estatus;
+
+         }
+         
+         estatus = m_pcommandline->initialize_command_line(arg.get_string());
+
+         if (!estatus)
+         {
+
+            return estatus;
+
+         }
 
       }
       else if(auto pcommandline = arg.cast<command_line>())
@@ -58,19 +63,17 @@ create::create(::object * pobject, arguments arguments) :
 
    }
 
-   defer_initialize();
+   return finish_initialization();
 
 }
 
 
-
-
-
-create::create(::object * pobject, string strAppId, var varFile, const var & varOptions, ::user::primitive * puiParent, ewindowflag ewindowflag, ::id id) :
-   ::object(pobject),
-   m_ewindowflag(ewindowflag),
-   m_id(id)
+::estatus create::initialize_create(string strAppId, var varFile, const var & varOptions, ::user::primitive * puiParent, ewindowflag ewindowflag, ::id id)
 {
+
+   m_ewindowflag = ewindowflag;
+      
+   m_id = id;
 
    create_common_construct(varOptions, puiParent);
 
@@ -81,9 +84,18 @@ create::create(::object * pobject, string strAppId, var varFile, const var & var
 
    }
 
-   defer_initialize();
+   auto estatus = finish_initialization();
 
-   m_pcommandline->m_varFile          = varFile;
+   if (!estatus)
+   {
+      
+      return estatus;
+
+   }
+   
+   m_pcommandline->m_varFile = varFile;
+
+   return estatus;
 
 }
 
@@ -111,13 +123,46 @@ void create::create_common_construct(const ::var & varOptions, ::user::primitive
 }
 
 
-void create::defer_initialize()
+::apex::application* create::create_get_application(::apex::application* pappFallback)
 {
+
+   auto pobject = get_context_object();
+
+   if (pobject)
+   {
+
+      auto papp = pobject->get_context_application();
+
+      if (papp)
+      {
+
+         return papp;
+
+      }
+
+   }
+
+   return pappFallback;
+
+}
+
+
+::estatus create::finish_initialization()
+{
+
+   ::estatus estatus = ::success;
 
    if(!m_pcommandline)
    {
 
-      m_pcommandline = __new(command_line(get_context_object()));
+      estatus = __construct(m_pcommandline);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
 
    }
 
@@ -133,8 +178,9 @@ void create::defer_initialize()
 
    }
 
-}
+   return estatus;
 
+}
 
 
 string create::get_description()

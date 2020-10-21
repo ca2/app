@@ -28,15 +28,31 @@ namespace user
    }
 
 
-   void server::on_request(::create* pcreate)
+   void server::on_request(::create* pcreateParam)
    {
 
-      __pointer(::create) cc(__new(::create(this, Application.m_strAppId, ::type_empty, true)));
-
+      __pointer(::create) pcreate(pcreateParam);
+      
       if (pcreate == nullptr)
       {
 
-         pcreate = cc;
+         auto estatus = __construct_new(pcreate);
+
+         if (!estatus)
+         {
+
+            __throw(exception::exception(estatus));
+
+         }
+
+         pcreate->initialize_create(Application.m_strAppId, ::type_empty, true);
+
+         if (!estatus)
+         {
+
+            __throw(exception::exception(estatus));
+
+         }
 
       }
 
@@ -50,7 +66,9 @@ namespace user
    ::user::document* server::open_document_file(::apex::application* pappOnBehalfOf, var varFile, bool bMakeVisible, ::user::interaction* puiParent, ewindowflag eflag, ::id id)
    {
 
-      auto pcreate = __new(::create(pappOnBehalfOf, pappOnBehalfOf->m_strAppId, varFile, bMakeVisible, puiParent, eflag, id));
+      auto pcreate = pappOnBehalfOf->__create_new< ::create>();
+      
+      pcreate->initialize_create(pappOnBehalfOf->m_strAppId, varFile, bMakeVisible, puiParent, eflag, id);
 
       do_request(pcreate);
 

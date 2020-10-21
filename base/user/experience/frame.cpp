@@ -476,10 +476,10 @@ namespace experience
    }
 
 
-   bool frame::_001OnTimer(UINT nIDEvent)
+   bool frame::_001OnTimer(UINT uEvent)
    {
 
-      UNREFERENCED_PARAMETER(nIDEvent);
+      UNREFERENCED_PARAMETER(uEvent);
 
       return false;
 

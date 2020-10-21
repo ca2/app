@@ -763,7 +763,11 @@ namespace filemanager
    void document::_001OnNewManager(::message::message * pmessage)
    {
 
-      User.add_filemanager("", __new(::create(this)));
+      auto pcreate = __create_new <::create>();
+
+      pcreate->finish_initialization();
+
+      User.add_filemanager("", pcreate);
 
       pmessage->m_bRet = true;
 

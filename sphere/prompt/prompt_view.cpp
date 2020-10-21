@@ -102,7 +102,7 @@ namespace prompt
       if(paction->id() == id_update_current_area)
       {
 
-         SetTimer(::timer_update_current_area, 100, nullptr);
+         SetTimer(::e_timer_update_current_area, 100, nullptr);
 
       }
 

@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "acme/const/timer.h"
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/user/user/_user.h"
 #endif
@@ -157,15 +158,15 @@ void XfplayerViewLineSelection::relay_event(xfplayer_view_line & viewline, ::mes
    }
    else if(message == WM_TIMER)
    {
-      uptr nIDEvent = pbase->m_wparam;
-      if(nIDEvent == ::timer::hover)
+      uptr uEvent = pbase->m_wparam;
+      if(uEvent == ::e_timer_hover)
       {
          auto point = Session.get_cursor_pos();
          viewline.update_hover(point);
          if(!viewline.is_hover())
          {
             __pointer(::user::interaction) pwnd = viewline.get_interaction();
-            pwnd->KillTimer(::timer::hover);
+            pwnd->KillTimer(::e_timer_hover);
          }
       }
    }
@@ -647,8 +648,8 @@ bool XfplayerViewLineSelection::OnLButtonUp(xfplayer_view_line & viewline, UINT 
 
 bool XfplayerViewLineSelection::OnTimer(xfplayer_view_line & viewline, UINT user)
 {
-   UINT nIDEvent = user;
-   if(nIDEvent == ::timer::hover)
+   UINT uEvent = user;
+   if(uEvent == ::e_timer_hover)
    {
       if(viewline.is_hover())
       {

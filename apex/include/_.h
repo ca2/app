@@ -108,7 +108,7 @@ CLASS_DECL_APEX void apex_ref();
 
 
 
-#include "apex/platform/obj_ref_dbg.h"
+//#include "apex/platform/obj_ref_dbg.h"
 
 
 namespace opengl
@@ -2969,6 +2969,7 @@ class mq;
 //#include "apex/multithreading/pred_holder.h"
 //#include "apex/primitive/primitive/command.h"
 #include "apex/multithreading/thread.h"
+#include "apex/multithreading/pool.h"
 #include "apex/multithreading/handler.h"
 #include "apex/multithreading/service_base.h"
 #include "apex/multithreading/service/plain_service.h"
@@ -2979,7 +2980,9 @@ class mq;
 #include "apex/platform/timer_callback.h"
 #include "apex/platform/timer_item.h"
 #include "apex/platform/timer_array.h"
+#include "apex/platform/nano_timer.h"
 #include "apex/platform/timer.h"
+#include "apex/platform/timer_threaded.h"
 #include "apex/platform/timer_event.h"
 
 #include "apex/multithreading/thread_impl.h"

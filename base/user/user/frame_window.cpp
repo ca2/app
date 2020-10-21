@@ -1712,7 +1712,7 @@ namespace user
 
 
       // deactivate current active ::user::impact
-      //thread *pThread = get_thread();
+      //thread *pThread = get_task();
       //ASSERT(pThread);
       __pointer(::user::impact) pActiveView = GetActiveView();
       if (pActiveView == nullptr)

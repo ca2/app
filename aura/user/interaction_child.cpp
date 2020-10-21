@@ -59,7 +59,6 @@ namespace user
          INFO("");
          INFO("");
 
-
          DestroyWindow();
 
       }
@@ -71,19 +70,7 @@ namespace user
 
          m_puserinteraction = pinteraction;
 
-         if (m_puserinteraction->m_pthreadUserInteraction.is_set()
-            && ::is_set(m_puserinteraction->m_pthreadUserInteraction->m_puiptraThread))
-         {
-
-            m_puserinteraction->m_pthreadUserInteraction->m_puiptraThread->remove(m_puserinteraction);
-
-         }
-
-         //m_pthreadUserInteraction.release();
-
-         m_puserinteraction->m_pthreadUserInteraction = puiParent->m_pthreadUserInteraction;
-
-         m_pthreadUserImpl = m_puserinteraction->m_pthreadUserInteraction;
+         //__refer(m_pthreadUserImpl,  m_puserinteraction->m_pthreadUserInteraction  OBJ_REF_DBG_ADD_THIS_FUNCTION_LINE);
 
          m_puserinteraction->m_pimpl = this;
 
@@ -546,6 +533,7 @@ namespace user
 
       pmessage->previous();
 
+//      __release(m_pthreadUserImpl OBJ_REF_DBG_ADD_THIS);
 
 
    }

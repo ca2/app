@@ -120,7 +120,7 @@ namespace apex
          if (m_strCa2Name.has_char())
          {
 
-            ::get_context_system()->m_mapLibrary[m_strCa2Name] = this;
+            __own(::get_context_system(), m_mapLibrary[m_strCa2Name], this);
 
          }
 
@@ -170,7 +170,7 @@ namespace apex
       if (m_strCa2Name.has_char())
       {
 
-         ::get_context_system()->m_mapLibrary.set_at(m_strCa2Name, this);
+         __own(::get_context_system(), m_mapLibrary[m_strCa2Name], this);
 
       }
 
@@ -333,7 +333,7 @@ namespace apex
       if (m_strCa2Name.has_char())
       {
 
-         ::get_context_system()->m_mapLibrary.set_at(m_strCa2Name, this);
+         __own(::get_context_system(), m_mapLibrary[m_strCa2Name], this);
 
       }
 
@@ -758,9 +758,9 @@ namespace apex
 
       }
 
-      auto pobject = ::move(p);
+      auto pobject = ::move_transfer(p);
       
-      if (::is_null(pobject))
+      if (!pobject)
       {
 
          return nullptr;
@@ -973,14 +973,14 @@ namespace apex
 
    //}
 
-   __pointer(::apex::library) & plibrary = ::get_context_system()->m_mapLibCall[psz];
+   auto & plibrary = ::get_context_system()->m_mapLibCall[psz];
 
    if(!plibrary)
    {
       
-      plibrary = __new(::apex::library);
+      __own(::get_context_system(), m_mapLibCall[psz], __new(::apex::library));
 
-      plibrary->initialize(::get_thread());
+      plibrary->initialize(::get_task());
 
       plibrary->open(psz);
 

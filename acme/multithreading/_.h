@@ -292,10 +292,11 @@ class thread;
 //#define Thrd(pcontext)
 //#define Thread
 
+CLASS_DECL_ACME::task* get_task();
 CLASS_DECL_ACME ::thread* get_thread();
-//CLASS_DECL_ACME ::thread* get_thread(ITHREAD idthread);
-CLASS_DECL_ACME void set_thread(layered * pthread);
-CLASS_DECL_ACME void thread_release();
+//CLASS_DECL_ACME ::thread* get_task(ITHREAD idthread);
+CLASS_DECL_ACME void set_task(task * ptask OBJ_REF_DBG_ADD_PARAMS);
+CLASS_DECL_ACME void thread_release(OBJ_REF_DBG_PARAMS);
 
 
 typedef bool THREAD_SLEEP(tick tick, ::sync* psync);
@@ -316,7 +317,7 @@ CLASS_DECL_ACME void set_thread_sleep(PFN_THREAD_SLEEP pfnThreadSleep);
 #endif
 
 
-string get_thread_name(HTHREAD hthread);
+string get_task_name(HTHREAD hthread);
 
 #include "acme/primitive/collection/runnable_array.h"
 

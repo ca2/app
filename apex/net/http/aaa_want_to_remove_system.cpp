@@ -953,7 +953,7 @@ retry:
 
          TRACE("Higher Level Diagnosis : iNTERTIMe system::request time(%d) = " __prtick __prtick __prtick, iIteration, __pr(tick1), __pr(tick2), __pr(tick2 - tick1));
 
-         while((handler.get_count() > 0 && !psession->m_bRequestComplete) && (::get_thread() == nullptr || ::thread_get_run()))
+         while((handler.get_count() > 0 && !psession->m_bRequestComplete) && (::get_task() == nullptr || ::thread_get_run()))
             //while(psession->get_count() > 0 && !psession->m_bRequestComplete) // should only exit in case of process exit signal
          {
 
@@ -1214,7 +1214,7 @@ retry:
    bool system::http_get(::sockets::socket_handler & handler, __pointer(::sockets::http_client_socket) & psocket, const char * pszUrl, property_set & set)
    {
 
-      __keep(get_thread()->m_strWorkUrl, pszUrl);
+      __keep(get_task()->m_strWorkUrl, pszUrl);
 
       i64 iHttpGetSerial = ++g_lHttpGetSerial;
 
@@ -1605,7 +1605,7 @@ retry_session:
 
       tick1 = ::tick::now();
 
-      while(handler.get_count() > 0 && (::get_thread() == nullptr || ::thread_get_run()))
+      while(handler.get_count() > 0 && (::get_task() == nullptr || ::thread_get_run()))
       {
 
          if (tickStart.elapsed() > tickTotalTimeout)

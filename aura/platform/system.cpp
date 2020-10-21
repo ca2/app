@@ -119,8 +119,6 @@ namespace aura
 
       m_bMessageThread = true;
 
-      set_context_system(this);
-
       common_construct();
 
    }
@@ -308,7 +306,7 @@ namespace aura
       strLibrary.ends_eat_ci(".dylib");
       strLibrary.begins_eat_ci("lib");
 
-      __pointer(::apex::library) & plibrary = ::get_context_system()->m_mapLibrary[strLibrary];
+      __pointer(::apex::library) plibrary = ::get_context_system()->m_mapLibrary[strLibrary];
 
       bool bLibraryOk = true;
 
@@ -1433,41 +1431,45 @@ namespace aura
    ::estatus system::init_thread()
    {
 
-      if (m_psystemParent)
-      {
+      
+      return ::aqua::system::init_thread();
 
-         m_psystemParent->add_reference(this);
 
-      }
+      //if (m_psystemParent)
+      //{
 
-      auto estatus = process_init();
+      //   m_psystemParent->add_reference(this);
 
-      if (!estatus)
-      {
+      //}
 
-         return estatus;
+      //auto estatus = process_init();
 
-      }
+      //if (!estatus)
+      //{
 
-      estatus = init_system();
+      //   return estatus;
 
-      if (!estatus)
-      {
+      //}
 
-         return estatus;
+      //estatus = init_system();
 
-      }
+      //if (!estatus)
+      //{
 
-      estatus = initial_check_directrix();
+      //   return estatus;
 
-      if (!estatus)
-      {
+      //}
 
-         return estatus;
+      //estatus = initial_check_directrix();
 
-      }
+      //if (!estatus)
+      //{
 
-      return true;
+      //   return estatus;
+
+      //}
+
+      //return true;
 
    }
 
@@ -4543,7 +4545,7 @@ namespace aura
    }
 
 
-   ::thread* system::get_thread(ITHREAD ithread)
+   ::thread* system::get_task(ITHREAD ithread)
    {
 
       sync_lock sl(&m_mutexThread);
@@ -4665,7 +4667,7 @@ namespace aura
 
       //return nullptr;
 
-      if (m_bAvoidProcFork)
+      if (m_bitAvoidProcFork)
       {
 
          return nullptr;

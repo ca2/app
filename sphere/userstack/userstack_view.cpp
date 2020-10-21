@@ -153,7 +153,7 @@ namespace userstack
 
 
 
-      SetTimer(timer_backview, 83, nullptr);  // max. 12 fps
+      SetTimer(e_timer_backview, 83, nullptr);  // max. 12 fps
       SetTimer(21977, 20 * 1000, nullptr);  // max. 12 fps
 
       check_apps();
@@ -220,20 +220,20 @@ namespace userstack
 
       BASE::_001OnTimer(ptimer);
 
-      switch(ptimer->m_nIDEvent)
+      switch(ptimer->m_uEvent)
       {
-      case timer_backview:
+      case e_timer_backview:
       {
          //gcom::backview::Interface::ImageChangePostEvent(gcom::backview::event_timer);
       }
       break;
       }
 
-      if(ptimer->m_nIDEvent == 21977)
+      if(ptimer->m_uEvent == 21977)
       {
          check_apps();
       }
-      else if(ptimer->m_nIDEvent == 888888)
+      else if(ptimer->m_uEvent == 888888)
       {
          Session.check_topic_file_change();
       }

@@ -156,7 +156,7 @@ namespace account
 
       ::user::interaction::_001OnTimer(ptimer);
 
-      if(ptimer->m_nIDEvent == timer_check_cached_credentials && !m_plogin->m_bCred)
+      if(ptimer->m_uEvent == e_timer_check_cached_credentials && !m_plogin->m_bCred)
       {
 
          try
@@ -165,7 +165,7 @@ namespace account
             if(m_pcredentials->m_estatus == ::success_credentials)
             {
 
-               KillTimer(timer_check_cached_credentials);
+               KillTimer(e_timer_check_cached_credentials);
 
                m_plogin->on_action("submit");
 

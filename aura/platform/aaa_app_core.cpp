@@ -1764,7 +1764,7 @@ bool app_core::has_aura_application_factory() const
 //::u32 app_core::system_main()
 //{
 //
-//   ::estatus estatus = get_context_system()->__thread_proc();
+//   ::estatus estatus = get_context_system()->__thread_procedure();
 //
 //   return estatus;
 //

@@ -74,7 +74,7 @@ CLASS_DECL_ACME HTHREAD get_current_hthread();
 //CLASS_DECL_ACME bool __wait_threading_count_except(::thread * pthread,::duration dur);
 
 
-//CLASS_DECL_ACME ::thread * get_thread();
+//CLASS_DECL_ACME ::thread * get_task();
 //CLASS_DECL_ACME void set_thread(thread * pthread);
 //CLASS_DECL_ACME void thread_release();
 

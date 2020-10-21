@@ -17,7 +17,6 @@ CLASS_DECL_ACME bool __initialize();
 //#include "folder_watch.h"
 //#include "factory_exchange.h"
 //#include "uac_tools.h"
-//#include "thread.h"
 //#include "file.h"
 //#include "crypto.h"
 //#include "ip_enum.h"

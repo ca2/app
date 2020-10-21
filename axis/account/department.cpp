@@ -235,6 +235,32 @@ namespace account
 //   }
 
 
+   ::estatus department::initialize(::layered * pobjectContext)
+   {
+
+      auto estatus = ::apex::department::initialize(pobjectContext);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = __construct_new(m_ptaskpool);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
+
+
    __pointer(authenticator) department::authenticator()
    {
 
@@ -280,11 +306,9 @@ namespace account
 
       }
 
-      start_clock(clock_slow, one_minute());
+      m_ptaskpool->start_clock(e_clock_slow, one_minute());
 
       Session.on_user_logon(puser);
-
-
 
    }
 
@@ -307,10 +331,10 @@ namespace account
    }
 
 
-   void department::on_clock(e_clock eclock)
+   void department::on_clock(enum_clock eclock)
    {
 
-      if(eclock == clock_slow)
+      if(eclock == e_clock_slow)
       {
 
          m_pusera->on_clock(eclock);

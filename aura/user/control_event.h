@@ -20,7 +20,7 @@ namespace user
       ::user::interaction *            m_pform;
       id                               m_id;
       u64                              m_uiEvent;
-      e_timer                          m_etimer;
+      enum_timer                       m_etimer;
       ::action_context                 m_actioncontext;
       u32                              m_uiVKey;
       u32                              m_uiFlags;

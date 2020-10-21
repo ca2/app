@@ -44,7 +44,7 @@ string get_thread_name(HTHREAD hthread)
 
    }
 
-   ::thread* pthread = ::get_thread();
+   ::thread* pthread = ::get_task();
 
    if (::is_null(pthread))
    {
@@ -108,7 +108,7 @@ CLASS_DECL_AURA bool set_thread_name(HTHREAD hthread, const char* pszName)
 
    bool bOk2 = true;
 
-   ::thread* pthread = ::get_thread();
+   ::thread* pthread = ::get_task();
 
    if (pthread != NULL)
    {

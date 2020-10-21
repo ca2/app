@@ -1,19 +1,19 @@
 #include "framework.h"
 
 
-task::task()
+work::work()
 {
 
 }
 
 
-task::~task()
+work::~work()
 {
 
 }
 
 
-::estatus task::start_task()
+::estatus work::start_work()
 {
 
    return ::success_none;

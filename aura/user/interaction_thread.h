@@ -52,6 +52,14 @@ namespace user
       thread();
       virtual ~thread();
 
+
+#ifdef DEBUG
+      virtual i64 add_ref(OBJ_REF_DBG_PARAMS);
+      virtual i64 dec_ref(OBJ_REF_DBG_PARAMS);
+      virtual i64 release(OBJ_REF_DBG_PARAMS);
+#endif
+
+
       virtual ::estatus     initialize_user_thread(interaction_impl * pimpl, ::user::create_struct & cs);
 
 
@@ -74,9 +82,9 @@ namespace user
 
       virtual bool pump_runnable() override;
 
-      virtual bool process_message() override;
+      virtual ::estatus process_message() override;
 
-      virtual bool process_base_message(::message::base * pbase) override;
+      virtual ::estatus process_base_message(::message::base * pbase) override;
 
       virtual ::estatus     run() override;
 

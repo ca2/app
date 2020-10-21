@@ -67,6 +67,7 @@ namespace base
 
       virtual ::estatus initialize1_experience();
 
+      virtual void finalize() override;
 
       virtual void SendMessageToWindows(UINT message, WPARAM wParam, LPARAM lParam) override;
 

@@ -14,6 +14,7 @@ namespace user { class frame;  }
 /// a thread must be always allocated in the heap
 ///
 class CLASS_DECL_APEX thread :
+   virtual public task,
    virtual public channel
    , virtual public change
 #ifdef WINDOWS
@@ -48,15 +49,14 @@ public:
    bool                                               m_bMessageThread;
    string                                             m_strThreadName;
    string                                             m_strThreadTag;
-   bool                                               m_bFork;
    bool                                               m_bDedicated;
-   bool                                               m_bAvoidProcFork;
    bool                                               m_bThreadToolsForIncreasedFps;
    ::estatus                                          m_estatus;
    user_interaction_ptr_array *                       m_puiptraThread;
    ::mutex *                                          m_pmutexThreadUiPtra;
    single_lock *                                      m_pslUser;
    static bool                                        s_bAllocReady;
+   element_array                                      m_elementaNotify;
 
 #ifdef __DEBUG
    char *                                             m_pszDebug;
@@ -81,8 +81,6 @@ public:
    __pointer(counter)                                 m_pcounter;
 
    bool                                               m_bDupHandle;
-   HTHREAD                                            m_hthread1;
-   ITHREAD                                            m_ithread1;
 
    string                                             m_strDebugType;
 
@@ -126,10 +124,6 @@ public:
 #endif
 
    __pointer_array(event)                             m_eventaWait;
-
-protected:
-
-   bool                                               m_bRunThisThread;
 
 public:
 
@@ -187,6 +181,14 @@ public:
    //virtual void set_os_int(ITHREAD iData);
 
 
+   //static __pointer(thread) start(
+   //   ::matter* pmatter,
+   //   ::e_priority epriority = priority_normal,
+   //   u32 nStackSize = 0,
+   //   u32 dwCreateFlags = 0);
+
+
+
    friend bool __internal_pre_translate_message(MESSAGE * pMsg);
 
 
@@ -194,6 +196,10 @@ public:
 
    virtual void on_keep_alive() override;
    virtual bool is_alive() override;
+
+
+   virtual void add_notify(::matter* pmatter);
+   virtual void remove_notify(::matter* pmatter);
 
 
    virtual int get_x_window_count() const;
@@ -206,7 +212,7 @@ public:
 
    virtual bool set_thread_name(const char * pszName);
 
-   virtual void set_thread_run(bool bRun = true);
+   //virtual void set_thread_run(bool bRun = true);
 
    //inline ::command::command * command() { return m_pcommand; }
    //inline ::command::command * command() const { return ((thread *)this)->m_pcommand; }
@@ -257,7 +263,7 @@ public:
    template < typename PRED >
    bool synch_pred(PRED pred, ::duration durationTimeout = ::duration::infinite())
    {
-      if (this == ::get_thread())
+      if (this == ::get_task())
       {
          pred();
          return true;
@@ -289,14 +295,14 @@ public:
    virtual bool raw_pump_message();     // low level message pump
    virtual bool defer_pump_message();     // deferred message pump
    virtual void process_message(::message::base * pbase);
-   virtual bool process_base_message(::message::base * pbase);
+   virtual ::estatus process_base_message(::message::base * pbase);
    virtual void process_thread_message(::message::base * pbase);
    // apex commented
    //virtual void process_window_message(::message::base * pbase);
-   virtual bool process_message();     // route message
-   virtual bool raw_process_message();     // route message
+   virtual ::estatus process_message();     // route message
+   virtual ::estatus raw_process_message();     // route message
    // virtual bool on_idle(LONG lCount); // return TRUE if more idle processing
-   virtual bool on_thread_on_idle(::thread * pthread, LONG lCount);
+   virtual ::estatus on_thread_on_idle(::thread * pthread, LONG lCount);
    virtual bool is_idle_message(::message::message * pmessage);  // checks for special messages
    virtual bool is_idle_message();  // checks for special messages
 
@@ -316,8 +322,8 @@ public:
    //virtual void remove(::user::primitive * pinteraction);
    //virtual ::count get_ui_count();
    //virtual ::user::primitive * get_ui(index iIndex);
-   //virtual void set_timer(::user::primitive * pinteraction, uptr nIDEvent, UINT nEllapse);
-   //virtual void unset_timer(::user::primitive * pinteraction, uptr nIDEvent);
+   //virtual void set_timer(::user::primitive * pinteraction, uptr uEvent, UINT nEllapse);
+   //virtual void unset_timer(::user::primitive * pinteraction, uptr uEvent);
    //virtual void set_auto_delete(bool bAutoDelete = true);
    virtual ::user::primitive * get_active_ui();
    virtual ::user::primitive * set_active_ui(::layered * pinteraction);
@@ -371,8 +377,8 @@ public:
    virtual void kick_idle();
    virtual void post_quit();
 
-   virtual bool thread_add(::thread * pthread);
-   virtual void thread_remove(::thread * pthread);
+   virtual ::index thread_add(::thread * pthread) override;
+   virtual void thread_remove(::thread * pthread) override;
    //virtual void wait_quit(::duration durationTimeout) override;
 
    virtual bool kick_thread();
@@ -408,7 +414,7 @@ public:
    virtual ::estatus initialize(::layered * pobjectContext) override;
 
 
-   //virtual ::estatus __thread_proc() override;
+   virtual ::estatus on_task() override;
 
 
    virtual ::estatus osthread_init() override;
@@ -483,7 +489,7 @@ namespace multithreading
    CLASS_DECL_APEX bool post_quit_and_wait(const duration & duration);
 
 
-   CLASS_DECL_APEX void set_finish(::thread * pthread);
+   CLASS_DECL_APEX void set_finish(::task * ptask);
    CLASS_DECL_APEX bool post_quit_and_wait(::thread * pthread, const duration & duration);
 
 

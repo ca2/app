@@ -5,7 +5,7 @@
 bool defer_co_initialize_ex(bool bMultiThread, bool bDisableOleDDE)
 {
 
-   auto pthread = ::get_thread();
+   auto pthread = ::get_task();
 
    if (!pthread)
    {

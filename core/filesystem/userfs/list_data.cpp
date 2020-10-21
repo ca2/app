@@ -171,14 +171,14 @@ namespace userfs
 
             //::file::path path = Context.defer_process_path(m_itema.get_item(pitem->m_iItem)->m_filepathUser);
 
-            if (!m_itema.m_parray->contains_index(pitem->m_iItem) || m_itema[pitem->m_iItem].is_null())
-            {
+            //if (!m_itema.m_parray->contains_index(pitem->m_iItem) || m_itema[pitem->m_iItem].is_null())
+            //{
 
-               pitem->m_bOk = false;
+            //   pitem->m_bOk = false;
 
-               return;
+            //   return;
 
-            }
+            //}
 
             ::file::path & path = m_itema[pitem->m_iItem]->m_filepathFinal;
 

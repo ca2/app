@@ -180,7 +180,7 @@ namespace experience
 
       ::experience::button::_001OnTimer(ptimer);
       // TODO: add your message handler code here and/or call default
-      if (ptimer->m_nIDEvent == timer_check_focus)
+      if (ptimer->m_uEvent == e_timer_check_focus)
       {
          /*if(m_bFocus)
          {
@@ -192,14 +192,14 @@ namespace experience
 
          if(rectClient.is_empty().contains(pointCursor))
          {
-         KillTimer(ptimer->m_nIDEvent);
+         KillTimer(ptimer->m_uEvent);
          m_bFocus = false;
          set_need_redraw();
          }
          }
          else
          {
-         KillTimer(ptimer->m_nIDEvent);
+         KillTimer(ptimer->m_uEvent);
          }*/
       }
       else

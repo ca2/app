@@ -37,7 +37,7 @@ namespace account
       
       //virtual ::file::path get_default_url();
 
-      virtual void on_clock(e_clock eclock);
+      virtual void on_clock(enum_clock eclock);
       
       virtual void cleanup_users();
       

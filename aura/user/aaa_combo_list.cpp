@@ -415,7 +415,7 @@ namespace user
    void combo_list::_001OnTimer(::timer* ptimer)
    {
    
-      if (ptimer->m_etimer == timer_kill_focus)
+      if (ptimer->m_etimer == e_timer_kill_focus)
       {
 
          if (m_bPendingKillFocusHiding)
@@ -432,7 +432,7 @@ namespace user
 
          }
 
-         KillTimer(timer_kill_focus);
+         KillTimer(e_timer_kill_focus);
 
       }
 
@@ -529,7 +529,7 @@ namespace user
 
          m_bPendingKillFocusHiding = true;
 
-         set_timer(timer_kill_focus, 300_ms);
+         set_timer(e_timer_kill_focus, 300_ms);
 
          //SCAST_PTR(::message::kill_focus, pkillfocus, pmessage);
 

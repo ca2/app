@@ -1137,7 +1137,7 @@ namespace user
    }
 
 
-   bool primitive_impl::SetTimer(uptr nIDEvent, UINT nEllapse, PFN_TIMER pfnTimer)
+   bool primitive_impl::SetTimer(uptr uEvent, UINT nEllapse, PFN_TIMER pfnTimer)
    {
 
       if (nEllapse < 500)
@@ -1162,12 +1162,12 @@ namespace user
 
       }
 
-      return m_ptimerarray->create_timer(nIDEvent, nEllapse, pfnTimer, true);
+      return m_ptimerarray->create_timer(uEvent, nEllapse, pfnTimer, true);
 
    }
 
 
-   bool primitive_impl::KillTimer(uptr nIDEvent)
+   bool primitive_impl::KillTimer(uptr uEvent)
    {
 
       if (m_ptimerarray.is_null())
@@ -1177,7 +1177,7 @@ namespace user
 
       }
 
-      return m_ptimerarray->delete_timer(nIDEvent);
+      return m_ptimerarray->delete_timer(uEvent);
 
    }
 
@@ -1271,17 +1271,6 @@ namespace user
       {
 
          return false;
-
-      }
-
-      try
-      {
-
-         m_ptimerarray.release();
-
-      }
-      catch (...)
-      {
 
       }
 
@@ -1491,7 +1480,14 @@ namespace user
       try
       {
 
-         m_ptimerarray.release();
+         if (m_ptimerarray)
+         {
+
+            m_ptimerarray->finalize();
+
+            m_ptimerarray.release(OBJ_REF_DBG_THIS_NOTE(""));
+
+         }
 
       }
       catch (...)

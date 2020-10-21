@@ -1481,73 +1481,81 @@ the file README-colorramp for more information. */
    }
 
 
-   bool session::on_ui_mouse_message(::message::mouse * pmouse)
+   bool session::on_ui_mouse_message(::message::mouse* pmouse)
    {
 
-
-      //::axis::session::on_ui_mouse_message(pmouse);
-
-      if (pmouse->m_point == pmouse->m_pointDesired)
-      {
-
-         m_pointCursor = pmouse->m_point;
-
-      }
-
-      i64 iMessage = pmouse->m_id;
-
-      if(iMessage == WM_LBUTTONDOWN
-       //|| iMessage == WM_LBUTTONUP
-       || iMessage == WM_RBUTTONDOWN
-       //|| iMessage == WM_RBUTTONUP
-       || iMessage == WM_MBUTTONDOWN
-       //|| iMessage == WM_MBUTTONUP
-       )
-       {
-
-         if(m_uiptraToolWindow.has_element())
-         {
-
-            __pointer_array(::user::interaction) uiptraToolWindow;
-
-            {
-
-               sync_lock sl(mutex());
-
-               ::papaya::array::copy(uiptraToolWindow, m_uiptraToolWindow);
-
-            }
-
-            for(auto & pinteraction : uiptraToolWindow.ptra())
-            {
-
-               if(pinteraction != pmouse->userinteraction())
-               {
-
-                  if(pinteraction->m_bFocus)
-                  {
-
-                     pinteraction->post_message(WM_KILLFOCUS);
-
-                  }
-
-               }
-
-            }
-
-         }
-
-       }
-
-      //if (m_puserpresence.is_set())
-      //{
-
-      //   m_puserpresence->on_ui_mouse_message(pmouse);
-
-      //}
-      return true;
+      return User.on_ui_mouse_message(pmouse);
 
    }
+
+
+   //bool session::on_ui_mouse_message(::message::mouse * pmouse)
+   //{
+
+
+   //   //::axis::session::on_ui_mouse_message(pmouse);
+
+   //   if (pmouse->m_point == pmouse->m_pointDesired)
+   //   {
+
+   //      m_pointCursor = pmouse->m_point;
+
+   //   }
+
+   //   i64 iMessage = pmouse->m_id;
+
+   //   if(iMessage == WM_LBUTTONDOWN
+   //    //|| iMessage == WM_LBUTTONUP
+   //    || iMessage == WM_RBUTTONDOWN
+   //    //|| iMessage == WM_RBUTTONUP
+   //    || iMessage == WM_MBUTTONDOWN
+   //    //|| iMessage == WM_MBUTTONUP
+   //    )
+   //    {
+
+   //      if(m_uiptraToolWindow.has_element())
+   //      {
+
+   //         __pointer_array(::user::interaction) uiptraToolWindow;
+
+   //         {
+
+   //            sync_lock sl(mutex());
+
+   //            ::papaya::array::copy(uiptraToolWindow, m_uiptraToolWindow);
+
+   //         }
+
+   //         for(auto & pinteraction : uiptraToolWindow.ptra())
+   //         {
+
+   //            if(pinteraction != pmouse->userinteraction())
+   //            {
+
+   //               if(pinteraction->m_bFocus)
+   //               {
+
+   //                  pinteraction->post_message(WM_KILLFOCUS);
+
+   //               }
+
+   //            }
+
+   //         }
+
+   //      }
+
+   //    }
+
+   //   //if (m_puserpresence.is_set())
+   //   //{
+
+   //   //   m_puserpresence->on_ui_mouse_message(pmouse);
+
+   //   //}
+   //   return true;
+
+   //}
 
 
    ::draw2d::cursor * session::get_cursor()

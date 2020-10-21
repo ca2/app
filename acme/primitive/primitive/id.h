@@ -32,6 +32,7 @@ public:
       type_property = 4,
       type_factory = 5,
       type_thread_tool = 6,
+      type_clock = 7,
 
    };
 
@@ -54,6 +55,7 @@ public:
             enum_property        m_eproperty;
             enum_factory         m_efactory;
             enum_thread_tool     m_ethreadtool;
+            enum_clock           m_eclock;
          };
 
          e_type                  m_etype;
@@ -88,6 +90,7 @@ public:
    inline id(enum_property eproperty);
    inline id(enum_factory efactory);
    inline id(enum_thread_tool ethreadtool);
+   inline id(enum_clock eclock);
    inline id(const id & id);
    id(const char * psz);
    id(::i32 i);
@@ -165,6 +168,7 @@ public:
    id & operator = (const enum_property & eproperty);
    id & operator = (const enum_factory & efactory);
    id & operator = (const enum_thread_tool & ethreadtool);
+   id & operator = (const enum_clock & eclock);
 
 
    inline ansistring to_string_base() const { return to_string(); }
@@ -268,6 +272,14 @@ inline id::id(enum_factory efactory) :
 inline id::id(enum_thread_tool ethreadtool) :
    m_etype(type_thread_tool),
    m_i(ethreadtool) // used m_i to reset 64-bit field
+{
+
+}
+
+
+inline id::id(enum_clock eclock) :
+   m_etype(type_clock),
+   m_i(eclock)
 {
 
 }

@@ -340,7 +340,7 @@ enum e_thread
 };
 
 
-enum e_timer : i64;
+enum enum_timer : i64;
 
 enum e_set
 {
@@ -364,12 +364,12 @@ enum e_set
 
 
 
-enum e_clock
+enum enum_clock
 {
 
-   clock_none,
-   clock_slow, // indicative usage: few minutes
-   clock_fast, // indicative usage: few seconds or big second fraction
+   e_clock_none,
+   e_clock_slow, // indicative usage: few minutes
+   e_clock_fast, // indicative usage: few seconds or big second fraction
 
 };
 
@@ -587,6 +587,7 @@ enum e_window_flag
    window_flag_pending_save_window_rect = 1 << 23,
    window_flag_loading_window_rect = 1 << 24,
    window_flag_main_frame = 1 << 25,
+   window_flag_destroying = 1 << 26,
 
 };
 

@@ -12,7 +12,7 @@ namespace fs
 
 
 class CLASS_DECL_APEX command_line :
-   virtual public ::object
+   virtual public ::context_object
 {
 public:
 
@@ -32,41 +32,41 @@ public:
 
 
    enum_command                     m_ecommand;
-   bool                          m_bShowSplash;
-   bool                          m_bRunEmbedded;
-   bool                          m_bRunAutomated;
-   i32                       m_nCmdShow;
+   bool                             m_bShowSplash;
+   bool                             m_bRunEmbedded;
+   bool                             m_bRunAutomated;
+   i32                              m_nCmdShow;
 
    // not valid for file_new
-   var                           m_varFile;
+   var                              m_varFile;
 
    // valid only for file_print_to
-   string                        m_strPrinterName;
-   string                        m_strDriverName;
-   string                        m_strPortName;
+   string                           m_strPrinterName;
+   string                           m_strDriverName;
+   string                           m_strPortName;
 
-   var                           m_varQuery;
-   ::file::item_array *            m_pitema;
+   var                              m_varQuery;
+   ::file::item_array *             m_pitema;
 
-   __pointer(::apex::application)       m_pappFork;
-   string                        m_strExe;
-   string                        m_strApp;
-   string                        m_strAppType;
-   ::user::primitive *           m_puserinteractionParent;
-   index                         m_iEdge;
-   manual_reset_event            m_eventReady;
-   //application_bias *            m_papplicationbias;
-   __reference(::create)         m_pcreate;
-   string                        m_strCommandLine;
+   __pointer(::apex::application)   m_pappFork;
+   string                           m_strExe;
+   string                           m_strApp;
+   string                           m_strAppType;
+   ::user::primitive *              m_puserinteractionParent;
+   index                            m_iEdge;
+   manual_reset_event               m_eventReady;
+   ::create *                       m_pcreate;
+   string                           m_strCommandLine;
 
 
    command_line();
-   command_line(::layered * pobjectContext);
-   command_line(::object * pobject, const string & strCommandLine);
-   ~command_line();
+   virtual ~command_line();
 
 
    void common_construct();
+
+
+   virtual ::estatus initialize_command_line(const string& strCommandLine);
 
 
    //command_line & operator = (const command_line & commandline);

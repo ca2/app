@@ -147,7 +147,7 @@ namespace browser
 
       }
 
-      SetTimer(::timer_update_current_area, 300);
+      SetTimer(::e_timer_update_current_area, 300);
 
    }
 
@@ -155,7 +155,7 @@ namespace browser
    void view::_001OnTimer(::timer * ptimer)
    {
 
-      if (ptimer->m_nIDEvent == ::timer_update_current_area)
+      if (ptimer->m_uEvent == ::e_timer_update_current_area)
       {
 
          {

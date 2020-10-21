@@ -16,7 +16,7 @@ plain_service::~plain_service()
 void plain_service::Start(u32)
 {
 
-   thread_pool::QueueUserWorkItem(this, &plain_service::CallServiceThread);
+   service_pool::QueueUserWorkItem(this, &plain_service::CallServiceThread);
 
 }
 

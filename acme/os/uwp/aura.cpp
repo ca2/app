@@ -445,7 +445,7 @@ string key_to_char(WPARAM wparam, LPARAM lparam)
 //bool defer_co_initialize_ex(bool bMultiThread)
 //{
 //
-//   auto pthread = ::get_thread();
+//   auto pthread = ::get_task();
 //
 //   if(!pthread)
 //   {

@@ -275,31 +275,31 @@ namespace aura
    //}
 
 
-   ::file::path application::local_application_path()
-   {
+   //::file::path application::local_application_path()
+   //{
 
-      return ::dir::localconfig() / "application" / m_strAppName ;
-
-
-   }
+   //   return ::dir::localconfig() / "application" / m_strAppName ;
 
 
-   ::file::path application::local_application_home_path()
-   {
-
-      return local_application_path() / "home";
+   //}
 
 
-   }
+   //::file::path application::local_application_home_path()
+   //{
+
+   //   return local_application_path() / "home";
 
 
-   void application::application_menu_update()
+   //}
+
+
+   /*void application::application_menu_update()
    {
 
       ::apex::application::application_menu_update();
 
    }
-
+*/
 
    void application::finalize()
    {
@@ -374,192 +374,8 @@ namespace aura
    }
 
 
-   bool application::enable_application_events(::object * pobject, bool bEnable)
-   {
-
-      sync_lock sl(mutex());
-
-      if(bEnable)
-      {
-
-         if(pobject == this)
-         {
-
-            return true;
-
-         }
-
-         m_objectptraEventHook.add_unique(pobject);
-
-      }
-      else
-      {
-
-         m_objectptraEventHook.remove(pobject);
-
-      }
-
-      return true;
-
-   }
-
-
-   //string application::get_title()
-   //{
-
-   //   if(m_strAppTitle.has_char())
-   //   {
-
-   //      return m_strAppTitle;
-
-   //   }
-
-   //   string_array stra;
-
-   //   stra.explode("/", m_strAppName);
-
-   //   string strTitle;
-
-   //   if(stra.get_count() > 1)
-   //   {
-
-   //      strTitle = stra.implode("/", 1);
-
-   //      if(strTitle.length() > 0)
-   //      {
-
-   //         return strTitle;
-
-   //      }
-
-   //   }
-
-   //   if(m_strAppName.has_char())
-   //   {
-
-   //      return m_strAppName;
-
-   //   }
-
-   //   stra.explode("/", m_strAppId);
-
-   //   if(stra.get_count() > 1)
-   //   {
-
-   //      strTitle = stra.implode("/", 1);
-
-   //      if(strTitle.length() > 0)
-   //      {
-
-   //         return strTitle;
-
-   //      }
-
-   //   }
-
-   //   if(m_strAppId.has_char())
-   //   {
-
-   //      return m_strAppId;
-
-   //   }
-
-   //   return Context.file().module().title();
-
-   //}
-
-
-   //string_array application::get_categories()
-   //{
-
-   //   return m_straAppCategory;
-
-   //}
-
-
-   //::file::path application::get_app_localconfig_folder()
-   //{
-
-   //   ::file::path pathFolder = ::dir::localconfig() / m_strAppName;
-
-   //   return pathFolder;
-
-   //}
-
-
-   //::handle::ini application::get_ini()
-   //{
-
-   //   ::handle::ini ini;
-
-   //   auto pathFolder = get_app_localconfig_folder();
-
-   //   auto preader = Context.file().get_reader(pathFolder / "this.ini");
-
-   //   if (preader)
-   //   {
-
-   //      string str;
-
-   //      preader->full_read_string(str);
-
-   //      ini.parse_ini(str);
-
-   //   }
-
-   //   return ini;
-
-   //}
-
-
-   //bool application::app_data_set(const ::id & id, stream & os)
-   //{
-
-   //   return false;
-
-   //}
-
-
-   //bool application::app_data_get(const ::id & id, stream & is)
-   //{
-
-   //   return false;
-
-   //}
-
-
-   //bool application::app_data_set(const ::id & id, ::object & obj)
-   //{
-
-   //   return false;
-
-   //}
-
-
-   //bool application::app_data_get(const ::id & id, ::object & obj)
-   //{
-
-   //   return false;
-
-   //}
-
-
-   //::estatus     application::do_request(::create * pcreate)
-   //{
-
-   //   return ::apex::app::do_request(pcreate);
-
-   //}
-
-
    ::estatus     application::call_request(::create * pcreate)
    {
-
-      pcreate->set_context_object(this);
-
-      pcreate->set_context(this);
-
-      pcreate->set_context_app(this);
 
       if (pcreate->m_ecommand == ::command_protocol)
       {
@@ -668,8 +484,6 @@ namespace aura
 
    void application::on_request(::create * pcreate)
    {
-
-      pcreate->set_context_object(this);
 
       if (is_serviceable())
       {
@@ -856,34 +670,34 @@ namespace aura
    //}
 
 
-   // lang string
-   // load string
-   string application::lstr(const ::id & id, string strDefault)
-   {
+   //// lang string
+   //// load string
+   //string application::lstr(const ::id & id, string strDefault)
+   //{
 
-      string str;
+   //   string str;
 
-      if (!load_string(str, id))
-      {
+   //   if (!load_string(str, id))
+   //   {
 
-         if (strDefault.has_char())
-            return strDefault;
+   //      if (strDefault.has_char())
+   //         return strDefault;
 
-         return "";
+   //      return "";
 
-      }
+   //   }
 
-      return str;
+   //   return str;
 
-   }
-
-
+   //}
 
 
-   void application::on_file_new()
-   {
 
-   }
+
+   //void application::on_file_new()
+   //{
+
+   //}
 
 
    //string application::load_string(const ::id & id)
@@ -944,74 +758,74 @@ namespace aura
    }*/
 
 
-   bool application::load_cached_string_by_id(string & str, const ::id & id, bool bLoadStringTable)
-   {
+   //bool application::load_cached_string_by_id(string & str, const ::id & id, bool bLoadStringTable)
+   //{
 
-      string strId(id.str());
+   //   string strId(id.str());
 
-      string strTable;
+   //   string strTable;
 
-      string strString;
+   //   string strString;
 
-      __pointer(string_to_string) pmap;
+   //   __pointer(string_to_string) pmap;
 
-      index iFind = 0;
+   //   index iFind = 0;
 
-      if ((iFind = strId.find(':')) <= 0)
-      {
+   //   if ((iFind = strId.find(':')) <= 0)
+   //   {
 
-         strTable = "";
+   //      strTable = "";
 
-         strString = strId;
+   //      strString = strId;
 
-      }
-      else
-      {
+   //   }
+   //   else
+   //   {
 
-         strTable = strId.Mid(0, iFind);
+   //      strTable = strId.Mid(0, iFind);
 
-         strString = strId.Mid(iFind + 1);
+   //      strString = strId.Mid(iFind + 1);
 
-      }
+   //   }
 
-      sync_lock sl(&m_mutexStr);
+   //   sync_lock sl(&m_mutexStr);
 
-      if (m_stringtableStd.lookup(strTable, pmap))
-      {
+   //   if (m_stringtableStd.lookup(strTable, pmap))
+   //   {
 
-         if (pmap->lookup(strString, str))
-         {
+   //      if (pmap->lookup(strString, str))
+   //      {
 
-            return true;
+   //         return true;
 
-         }
+   //      }
 
-      }
-      else if (m_stringtable.lookup(strTable, pmap))
-      {
+   //   }
+   //   else if (m_stringtable.lookup(strTable, pmap))
+   //   {
 
-         if (pmap->lookup(strString, str))
-         {
+   //      if (pmap->lookup(strString, str))
+   //      {
 
-            return true;
+   //         return true;
 
-         }
+   //      }
 
-      }
-      else if (bLoadStringTable)
-      {
+   //   }
+   //   else if (bLoadStringTable)
+   //   {
 
-         sl.unlock();
+   //      sl.unlock();
 
-         load_string_table(strTable, "");
+   //      load_string_table(strTable, "");
 
-         return load_cached_string_by_id(str, id, false);
+   //      return load_cached_string_by_id(str, id, false);
 
-      }
+   //   }
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
 
    //void application::load_string_table(const string & pszApp, const string & pszId)
@@ -1022,10 +836,10 @@ namespace aura
 
 
 
-   void application::load_string_table()
-   {
-      load_string_table("", "");
-   }
+   //void application::load_string_table()
+   //{
+   //   load_string_table("", "");
+   //}
 
 
 
@@ -1047,158 +861,158 @@ namespace aura
    //}
 
 
-   bool application::is_system() const
+   //bool application::is_system() const
+   //{
+
+   //   return false;
+
+   //}
+
+
+ /*  bool application::is_session() const
    {
 
       return false;
 
-   }
-
-
-   bool application::is_session() const
-   {
-
-      return false;
-
-   }
-
-
-   bool application::is_serviceable() const
-   {
-
-      return false;
-
-   }
-
-
-   bool application::is_user_service() const
-   {
-
-      bool bIsUserService = true;
-
-      bool bIsService = is_serviceable();
-
-      return bIsUserService && bIsService;
-
-   }
-
-
-
-   ::file::path command_find_path(const char * pszCommand)
-   {
-
-#ifdef _UWP
-
-      return "";
-
-#else
-
-      string strPath = getenv("PATH");
-
-      string_array straPath;
-
-      straPath.explode(":", strPath);
-
-      for (auto & str : straPath)
-      {
-
-         ::file::path path;
-
-         path = str;
-
-         path /= pszCommand;
-
-         if (file_exists(path))
-         {
-
-            return path;
-
-         }
-
-      }
-
-      return pszCommand;
-
-#endif
-
-   }
-#ifdef WINDOWS_DESKTOP
-
-
-   class open_browser_enum
-   {
-   public:
-
-      string                           m_strWindowEnd;
-      string                           m_strTopic;
-      string                           m_strCounterTopic;
-      oswindow                         m_hwnd;
-      comparable_array < oswindow >    m_hwndaTopic;
-      comparable_array < oswindow >    m_hwndaCounterTopic;
-
-   };
-
-
-   int_bool CALLBACK enum_proc(oswindow hwnd, LPARAM lparam)
-   {
-
-      open_browser_enum * penum = (open_browser_enum *)lparam;
-
-      string str = ::str::get_window_text_timeout(hwnd, 1000);
-
-      if (::str::ends_ci(str, penum->m_strWindowEnd))
-      {
-
-         penum->m_hwnd = hwnd;
-
-         return FALSE;
-
-      }
-
-      return TRUE;
-
-   }
-
-
-   int_bool CALLBACK enum_proc_ff_topic(oswindow hwnd, LPARAM lparam)
-   {
-
-      open_browser_enum * penum = (open_browser_enum *)lparam;
-
-      string str = ::str::get_window_text_timeout(hwnd);
-
-      if (::str::ends_ci(str, penum->m_strTopic))
-      {
-
-         penum->m_hwndaTopic.add(hwnd);
-
-      }
-
-      return TRUE;
-
-   }
-
-   int_bool CALLBACK enum_proc_ff_counter_topic(oswindow hwnd, LPARAM lparam)
-
-   {
-
-      open_browser_enum * penum = (open_browser_enum *)lparam;
-
-
-      string str = ::str::get_window_text_timeout(hwnd, 1000);
-
-      if (::str::ends_ci(str, penum->m_strCounterTopic))
-      {
-
-         penum->m_hwndaCounterTopic.add(hwnd);
-
-      }
-
-      return TRUE;
-
-   }
-
-#endif
+   }*/
+
+
+   //bool application::is_serviceable() const
+   //{
+
+   //   return false;
+
+   //}
+
+
+   //bool application::is_user_service() const
+   //{
+
+   //   bool bIsUserService = true;
+
+   //   bool bIsService = is_serviceable();
+
+   //   return bIsUserService && bIsService;
+
+   //}
+
+
+
+//   ::file::path command_find_path(const char * pszCommand)
+//   {
+//
+//#ifdef _UWP
+//
+//      return "";
+//
+//#else
+//
+//      string strPath = getenv("PATH");
+//
+//      string_array straPath;
+//
+//      straPath.explode(":", strPath);
+//
+//      for (auto & str : straPath)
+//      {
+//
+//         ::file::path path;
+//
+//         path = str;
+//
+//         path /= pszCommand;
+//
+//         if (file_exists(path))
+//         {
+//
+//            return path;
+//
+//         }
+//
+//      }
+//
+//      return pszCommand;
+//
+//#endif
+//
+//   }
+//#ifdef WINDOWS_DESKTOP
+//
+//
+//   class open_browser_enum
+//   {
+//   public:
+//
+//      string                           m_strWindowEnd;
+//      string                           m_strTopic;
+//      string                           m_strCounterTopic;
+//      oswindow                         m_hwnd;
+//      comparable_array < oswindow >    m_hwndaTopic;
+//      comparable_array < oswindow >    m_hwndaCounterTopic;
+//
+//   };
+//
+//
+//   int_bool CALLBACK enum_proc(oswindow hwnd, LPARAM lparam)
+//   {
+//
+//      open_browser_enum * penum = (open_browser_enum *)lparam;
+//
+//      string str = ::str::get_window_text_timeout(hwnd, 1000);
+//
+//      if (::str::ends_ci(str, penum->m_strWindowEnd))
+//      {
+//
+//         penum->m_hwnd = hwnd;
+//
+//         return FALSE;
+//
+//      }
+//
+//      return TRUE;
+//
+//   }
+//
+//
+//   int_bool CALLBACK enum_proc_ff_topic(oswindow hwnd, LPARAM lparam)
+//   {
+//
+//      open_browser_enum * penum = (open_browser_enum *)lparam;
+//
+//      string str = ::str::get_window_text_timeout(hwnd);
+//
+//      if (::str::ends_ci(str, penum->m_strTopic))
+//      {
+//
+//         penum->m_hwndaTopic.add(hwnd);
+//
+//      }
+//
+//      return TRUE;
+//
+//   }
+//
+//   int_bool CALLBACK enum_proc_ff_counter_topic(oswindow hwnd, LPARAM lparam)
+//
+//   {
+//
+//      open_browser_enum * penum = (open_browser_enum *)lparam;
+//
+//
+//      string str = ::str::get_window_text_timeout(hwnd, 1000);
+//
+//      if (::str::ends_ci(str, penum->m_strCounterTopic))
+//      {
+//
+//         penum->m_hwndaCounterTopic.add(hwnd);
+//
+//      }
+//
+//      return TRUE;
+//
+//   }
+//
+//#endif
 
 
 
@@ -1275,15 +1089,15 @@ namespace aura
 
 
 
-   bool application::_001OnDDECommand(const char * pcsz)
+   //bool application::_001OnDDECommand(const char * pcsz)
 
-   {
+   //{
 
-      ::exception::throw_interface_only();
+   //   ::exception::throw_interface_only();
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
 
 
@@ -1376,30 +1190,30 @@ namespace aura
 
 
 
-   bool application::get_temp_file_name_template(string & strRet, const char * lpszName, const char * pszExtension, const char * pszTemplate)
-   {
+   //bool application::get_temp_file_name_template(string & strRet, const char * lpszName, const char * pszExtension, const char * pszTemplate)
+   //{
 
-      __throw(not_implemented());
+   //   __throw(not_implemented());
 
-      return false;
+   //   return false;
 
-   }
-
-
-   bool application::get_temp_file_name(string & strRet, const char * lpszName, const char * pszExtension)
-   {
-
-      return get_temp_file_name_template(strRet, lpszName, pszExtension, nullptr);
-
-   }
+   //}
 
 
-   bool application::process_exception(::exception_pointer pe)
-   {
+   //bool application::get_temp_file_name(string & strRet, const char * lpszName, const char * pszExtension)
+   //{
 
-      return ::thread::process_exception(pe);
+   //   return get_temp_file_name_template(strRet, lpszName, pszExtension, nullptr);
 
-   }
+   //}
+
+
+   //bool application::process_exception(::exception_pointer pe)
+   //{
+
+   //   return ::thread::process_exception(pe);
+
+   //}
 
 
    //::estatus application::init_thread()
@@ -1574,7 +1388,7 @@ namespace aura
 //
 //      //thisstart << m_iErrorCode;
 //
-//      thread * pthread = ::get_thread();
+//      thread * pthread = ::get_task();
 //
 //      install_message_routing(pthread);
 //
@@ -1757,11 +1571,11 @@ namespace aura
    //}
 
 
-   void application::TermApplication()
-   {
+   //void application::TermApplication()
+   //{
 
 
-   }
+   //}
 
 
 //   ::estatus application::application_pre_run()
@@ -2178,106 +1992,106 @@ retry_license:
    }
 
 
-   bool application::system_add_app_install(const char * pszId, const char * pszBuild)
-   {
+   //bool application::system_add_app_install(const char * pszId, const char * pszBuild)
+   //{
 
-      // cool install
+   //   // cool install
 
-      string strBuild(pszBuild);
+   //   string strBuild(pszBuild);
 
-      if (strBuild.is_empty())
-      {
+   //   if (strBuild.is_empty())
+   //   {
 
-         strBuild = "0000-00-00 00:00:00";
+   //      strBuild = "0000-00-00 00:00:00";
 
-      }
+   //   }
 
-      sync_lock sl(System.m_spmutexSystemAppData);
+   //   sync_lock sl(System.m_spmutexSystemAppData);
 
-      string strId(pszId);
-      string strSystemLocale = System.m_strLocale;
-      string strSystemSchema = System.m_strSchema;
-      string_array straLocale;
-      string_array straSchema;
+   //   string strId(pszId);
+   //   string strSystemLocale = System.m_strLocale;
+   //   string strSystemSchema = System.m_strSchema;
+   //   string_array straLocale;
+   //   string_array straSchema;
 
-      straLocale = value("locale");
-      straSchema = value("schema");
+   //   straLocale = value("locale");
+   //   straSchema = value("schema");
 
-      ::file::path pathExe = ::file::app_module();
+   //   ::file::path pathExe = ::file::app_module();
 
-      straLocale.insert_at(0, strSystemLocale);
-      straSchema.insert_at(0, strSystemSchema);
-      straLocale.insert_at(0, "_std");
-      straSchema.insert_at(0, "_std");
+   //   straLocale.insert_at(0, strSystemLocale);
+   //   straSchema.insert_at(0, strSystemSchema);
+   //   straLocale.insert_at(0, "_std");
+   //   straSchema.insert_at(0, "_std");
 
 
-      for (index i = 0; i < straLocale.get_count() && i < straSchema.get_count(); i++)
-      {
+   //   for (index i = 0; i < straLocale.get_count() && i < straSchema.get_count(); i++)
+   //   {
 
-         string strLocale = straLocale[i];
+   //      string strLocale = straLocale[i];
 
-         string strSchema = straSchema[i];
+   //      string strSchema = straSchema[i];
 
-         set_application_installed(pathExe, strId, strBuild, System.get_system_platform(), System.get_system_configuration(), strLocale, strSchema);
+   //      set_application_installed(pathExe, strId, strBuild, System.get_system_platform(), System.get_system_configuration(), strLocale, strSchema);
 
-      }
+   //   }
 
-      //System.install().remove_spa_start(strId);
-      //System.install().add_app_install(strId, strBuild, strSystemLocale, m_strSchema);
-      //System.install().add_app_install(strId, strBuild, strSystemLocale, strSystemSchema);
-      //System.install().add_app_install(strId, strBuild, m_strLocale, m_strSchema);
+   //   //System.install().remove_spa_start(strId);
+   //   //System.install().add_app_install(strId, strBuild, strSystemLocale, m_strSchema);
+   //   //System.install().add_app_install(strId, strBuild, strSystemLocale, strSystemSchema);
+   //   //System.install().add_app_install(strId, strBuild, m_strLocale, m_strSchema);
 
-      //for (index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
-      //{
+   //   //for (index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
+   //   //{
 
-      //   System.install().add_app_install(strId, strBuild, straLocale[iLocale], m_strSchema);
+   //   //   System.install().add_app_install(strId, strBuild, straLocale[iLocale], m_strSchema);
 
-      //}
+   //   //}
 
-      //for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
-      //{
+   //   //for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
+   //   //{
 
-      //   System.install().add_app_install(strId, strBuild, m_strLocale, straSchema[iSchema]);
+   //   //   System.install().add_app_install(strId, strBuild, m_strLocale, straSchema[iSchema]);
 
-      //}
+   //   //}
 
-      //for (index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
-      //{
+   //   //for (index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
+   //   //{
 
-      //   for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
-      //   {
+   //   //   for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
+   //   //   {
 
-      //      System.install().add_app_install(strId, strBuild, straLocale[iLocale], straSchema[iSchema]);
+   //   //      System.install().add_app_install(strId, strBuild, straLocale[iLocale], straSchema[iSchema]);
 
-      //   }
+   //   //   }
 
-      //}
+   //   //}
 
-      //System.install().add_app_install(strId, strBuild, strSystemLocale, "");
-      //System.install().add_app_install(strId, strBuild, m_strLocale, "");
+   //   //System.install().add_app_install(strId, strBuild, strSystemLocale, "");
+   //   //System.install().add_app_install(strId, strBuild, m_strLocale, "");
 
-      //for (index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
-      //{
+   //   //for (index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
+   //   //{
 
-      //   System.install().add_app_install(strId, strBuild, straLocale[iLocale], "");
+   //   //   System.install().add_app_install(strId, strBuild, straLocale[iLocale], "");
 
-      //}
+   //   //}
 
-      //System.install().add_app_install(strId, strBuild, "", m_strSchema);
-      //System.install().add_app_install(strId, strBuild, "", strSystemSchema);
+   //   //System.install().add_app_install(strId, strBuild, "", m_strSchema);
+   //   //System.install().add_app_install(strId, strBuild, "", strSystemSchema);
 
-      //for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
-      //{
+   //   //for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
+   //   //{
 
-      //   System.install().add_app_install(strId, strBuild, "", straSchema[iSchema]);
+   //   //   System.install().add_app_install(strId, strBuild, "", straSchema[iSchema]);
 
-      //}
+   //   //}
 
-      //System.install().add_app_install(strId, strBuild, "", "");
+   //   //System.install().add_app_install(strId, strBuild, "", "");
 
-      return true;
+   //   return true;
 
-   }
+   //}
 
 
    //::estatus application::os_native_bergedge_start()
@@ -2303,181 +2117,42 @@ retry_license:
    //}
 
 
-   bool application::safe_is_running()
-   {
-
-      bool bRunning = false;
-
-      try
-      {
-
-         if (is_running())
-         {
-
-            bRunning = true;
-
-         }
-
-      }
-      catch (...)
-      {
-
-         bRunning = false;
-
-      }
-
-
-      return bRunning;
-
-   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-   bool application::init_service()
-   {
-
-      if (!is_serviceable())
-      {
-
-         __throw(::exception::exception(error_unsupported_function));
-
-      }
-
-      if (m_pservice)
-      {
-
-         return false;
-
-      }
-
-      m_pservice = allocate_new_service();
-
-      if (!m_pservice)
-      {
-
-         return false;
-
-      }
-
-      auto estatus = m_pservice->initialize(this);
-
-      if (!estatus)
-      {
-
-         return false;
-
-      }
-
-      System.m_serviceptra.add(m_pservice);
-
-      return true;
-
-   }
-
-
-
-   bool application::os_create_service()
-   {
-
-      return Context.os().create_service();
-
-   }
-
-
-   bool application::os_remove_service()
-   {
-
-      return Context.os().remove_service();
-
-   }
-
-
-   bool application::os_start_service()
-   {
-
-      return Context.os().start_service();
-
-   }
-
-
-   bool application::os_stop_service()
-   {
-
-      return Context.os().stop_service();
-
-   }
-
-
-   void application::on_service_request(::create * pcreate)
-   {
-
-      if (!is_serviceable())
-      {
-
-         return;
-
-      }
-
-      if (pcreate->m_pcommandline->m_varQuery.has_property("create_service"))
-      {
-
-         os_create_service();
-
-      }
-      else if (pcreate->m_pcommandline->m_varQuery.has_property("start_service"))
-      {
-
-         os_start_service();
-
-      }
-      else if (pcreate->m_pcommandline->m_varQuery.has_property("stop_service"))
-      {
-
-         os_stop_service();
-
-      }
-      else if (pcreate->m_pcommandline->m_varQuery.has_property("remove_service"))
-      {
-
-         os_remove_service();
-
-      }
-      else if (has_property("service"))
-      {
-
-         init_service();
-
-         ::service_base::serve(*m_pservice);
-
-      }
-      else if (has_property("run"))
-      {
-
-         init_service();
-
-         m_pservice->Start(0);
-
-      }
-
-   }
-
-
-   //void application::on_update_matter_locator()
+   //bool application::safe_is_running()
    //{
 
+   //   bool bRunning = false;
 
+   //   try
+   //   {
+
+   //      if (is_running())
+   //      {
+
+   //         bRunning = true;
+
+   //      }
+
+   //   }
+   //   catch (...)
+   //   {
+
+   //      bRunning = false;
+
+   //   }
+
+
+   //   return bRunning;
 
    //}
+
+
+
+
+
+
+
+
+
 
    ::estatus application::process_init()
    {
@@ -2590,7 +2265,7 @@ retry_license:
 
       //}
 
-      //if (::get_thread() == nullptr)
+      //if (::get_task() == nullptr)
       //{
 
       //   ::set_thread(dynamic_cast <thread *> (this));
@@ -2825,7 +2500,9 @@ retry_license:
       if (System.m_bImaging)
       {
 
-         estatus = __construct(m_pcontextimage);
+         auto pcontextimageNew = __create < ::context_image > ();
+
+         estatus = __own(this, m_pcontextimage, pcontextimageNew OBJ_REF_DBG_ADD_THIS_NOTE("aura::application::init1"));
 
          if (!estatus)
          {
@@ -3067,12 +2744,6 @@ retry_license:
    }
 
 
-   service_base * application::allocate_new_service()
-   {
-
-      return nullptr;
-
-   }
 
 
 //   ::estatus application::notify_init2()
@@ -3110,416 +2781,421 @@ retry_license:
 //
 //   }
 
-   __pointer(::acme::exclusive) application::get_exclusive(string strId, LPSECURITY_ATTRIBUTES psa)
-   {
+   //__pointer(::acme::exclusive) application::get_exclusive(string strId, LPSECURITY_ATTRIBUTES psa)
+   //{
+
+   //   auto & pexclusive = m_mapExclusive[strId];
+
+   //   if(!pexclusive)
+   //   {
+
+   //      pexclusive = __new(::acme::exclusive(strId, psa));
+
+   //   }
+
+   //   return pexclusive;
+
+   //}
+
+
+   //bool application::exclusive_fails(string strId, LPSECURITY_ATTRIBUTES psa)
+   //{
+
+   //   auto pexclusive = get_exclusive(strId, psa);
+
+   //   if(!pexclusive)
+   //   {
+
+   //      return false;
+
+   //   }
+
+   //   return pexclusive->exclusive_fails();
+
+   //}
+
+//
+//   ::estatus application::check_exclusive(bool & bHandled)
+//   {
+//
+//#ifdef _UWP
+//
+//      return true;
+//
+//#endif
+//
+//      bool bSetOk;
+//
+//      LPSECURITY_ATTRIBUTES psa = nullptr;
+//
+//      bool bResourceException = false;
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//      bSetOk = false;
+//
+//      SECURITY_ATTRIBUTES MutexAttributes;
+//      ZeroMemory(&MutexAttributes, sizeof(MutexAttributes));
+//      MutexAttributes.nLength = sizeof(MutexAttributes);
+//      MutexAttributes.bInheritHandle = FALSE; // object uninheritable
+//      // declare and initialize a security descriptor
+//      SECURITY_DESCRIPTOR SD;
+//      bool bInitOk = InitializeSecurityDescriptor(&SD, SECURITY_DESCRIPTOR_REVISION) != FALSE;
+//      if (bInitOk)
+//      {
+//         // give the security descriptor a Null Dacl
+//         // done using the  "TRUE, (PACL)nullptr" here
+//         bSetOk = SetSecurityDescriptorDacl(&SD,
+//                                            TRUE,
+//                                            (PACL)nullptr,
+//                                            FALSE) != FALSE;
+//      }
+//
+//      if (bSetOk)
+//      {
+//
+//         MutexAttributes.lpSecurityDescriptor = &SD;
+//
+//
+//         psa = &MutexAttributes;
+//
+//
+//      }
+//
+//#else
+//
+//      bSetOk = true;
+//
+//#endif
+//
+//
+//      if (bSetOk)
+//      {
+//
+//         bool bGlobalExclusiveFail = exclusive_fails(get_global_mutex_name(), psa);
+//
+//         if(bGlobalExclusiveFail && m_eexclusiveinstance == ExclusiveInstanceGlobal)
+//         {
+//
+//            TRACE("A instance of the application:<br><br> - " + string(m_strAppName) + "<br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine.<br><br>Exiting this new instance.");
+//
+//            try
+//            {
+//
+//               if(!on_exclusive_instance_conflict(bHandled, ExclusiveInstanceGlobal, ""))
+//               {
+//
+//                  return false;
+//
+//               }
+//
+//            }
+//            catch(...)
+//            {
+//
+//               return false;
+//
+//            }
+//
+//         }
+//
+//         if (m_eexclusiveinstance == ExclusiveInstanceGlobalId)
+//         {
+//
+//            bool bGlobalIdExclusiveFail = exclusive_fails(get_global_id_mutex_name(), psa);
+//
+//            if (bGlobalIdExclusiveFail)
+//            {
+//
+//               TRACE("A instance of the application:<br><br>-" + string(m_strAppName) + "with the id \"" + get_local_mutex_id() + "\" <br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine with the same id.<br><br>Exiting this new instance.");
+//
+//               try
+//               {
+//
+//                  if(!on_exclusive_instance_conflict(bHandled, ExclusiveInstanceGlobalId, get_global_mutex_id()))
+//                  {
+//
+//                     return false;
+//
+//                  }
+//
+//               }
+//               catch(...)
+//               {
+//
+//                  return false;
+//
+//               }
+//
+//            }
+//
+//         }
+//
+//         bool bLocalExclusiveFail = exclusive_fails(get_local_mutex_name(), psa);
+//
+//         if (bLocalExclusiveFail && m_eexclusiveinstance == ExclusiveInstanceLocal)
+//         {
+//
+//            try
+//            {
+//
+//               TRACE("A instance of the application:<br><br>-" + string(m_strAppName) + "<br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account.<br><br>Exiting this new instance.");
+//
+//               if(!on_exclusive_instance_conflict(bHandled, ExclusiveInstanceLocal, ""))
+//               {
+//
+//                  return false;
+//
+//               }
+//
+//            }
+//            catch (...)
+//            {
+//
+//               return false;
+//
+//            }
+//
+//         }
+//
+//         if (m_eexclusiveinstance == ExclusiveInstanceLocalId)
+//         {
+//
+//            bool bLocalIdExclusiveFail = exclusive_fails(get_local_id_mutex_name(), psa);
+//
+//            if (bLocalIdExclusiveFail)
+//            {
+//
+//               try
+//               {
+//
+//                  // Should in some way activate the other instance
+//                  TRACE("A instance of the application:<br><br>           - " + string(m_strAppName) + "with the id \"" + get_local_mutex_id() + "\" <br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same ac::count with the same id.<br><br>Exiting this new instance.");
+//
+//                  if(!on_exclusive_instance_conflict(bHandled, ExclusiveInstanceLocalId, get_local_mutex_id()))
+//                  {
+//
+//                     return false;
+//
+//                  }
+//
+//               }
+//               catch (...)
+//               {
+//
+//                  return false;
+//
+//               }
+//
+//            }
+//
+//         }
+//
+//      }
+//
+//      return true;
+//
+//   }
+//
+//
+//   ::estatus application::release_exclusive()
+//   {
+//
+//      m_mapExclusive.remove_all();
+//
+//      return true;
+//
+//   }
+//
+//
+//
+
+
+   //string application::get_local_mutex_name()
+   //{
+   //   return System.get_local_mutex_name(get_mutex_name_gen());
+   //}
+
+
+   //string application::get_local_id_mutex_name()
+   //{
+
+   //   return System.get_local_id_mutex_name(get_mutex_name_gen(), get_local_mutex_id());
+
+   //}
+
+
+   //string application::get_global_mutex_name()
+   //{
+   //   return System.get_global_mutex_name(get_mutex_name_gen());
+   //}
+
+   //string application::get_global_id_mutex_name()
+   //{
+   //   return System.get_global_id_mutex_name(get_mutex_name_gen(), get_global_mutex_id());
+   //}
+
+
+
+
+   //bool application::on_exclusive_instance_conflict(bool & bHandled, EExclusiveInstance eexclusive, string strId)
+   //{
+
+   //   if (eexclusive == ExclusiveInstanceLocal)
+   //   {
+
+   //      return on_exclusive_instance_local_conflict(bHandled);
+
+   //   }
+   //   else if (eexclusive == ExclusiveInstanceLocalId)
+   //   {
+
+   //      return on_exclusive_instance_local_conflict_id(bHandled, strId);
+
+   //   }
+
+   //   return false;
+
+   //}
+
+
+   //bool application::on_exclusive_instance_local_conflict(bool & bHandled)
+   //{
+
+   //   bool bContinue = false;
+
+   //   try
+   //   {
+
+   //      if (m_pinterprocessintercommunication)
+   //      {
+
+   //         auto pcall = m_pinterprocessintercommunication->create_call("application", "on_additional_local_instance");
+
+   //         pcall->add_arg(Context.file().module());
+
+   //         pcall->add_arg(Context.os().get_pid());
+
+   //         pcall->add_arg(System.command_line_text());
+
+   //         string strId;
+
+   //         pcall->add_arg(strId);
 
-      auto & pexclusive = m_mapExclusive[strId];
+   //         pcall->announce();
 
-      if(!pexclusive)
-      {
+   //         pcall->wait();
 
-         pexclusive = __new(::acme::exclusive(strId, psa));
+   //         for(auto & pair : pcall->m_mapTask)
+   //         {
 
-      }
+   //            auto & pobjectTask = pair.element2();
 
-      return pexclusive;
+   //            if(bContinue && pobjectTask->has_property("continue"))
+   //            {
 
-   }
+   //               bContinue = pobjectTask->m_var["continue"];
 
+   //            }
 
-   bool application::exclusive_fails(string strId, LPSECURITY_ATTRIBUTES psa)
-   {
+   //            if(!bHandled && pobjectTask->has_property("handled"))
+   //            {
 
-      auto pexclusive = get_exclusive(strId, psa);
+   //               bHandled = pobjectTask->m_var["handled"];
 
-      if(!pexclusive)
-      {
+   //            }
 
-         return false;
+   //         }
 
-      }
+   //      }
 
-      return pexclusive->exclusive_fails();
+   //   }
+   //   catch (...)
+   //   {
 
-   }
+   //   }
 
+   //   return bContinue;
 
-   bool application::check_exclusive(bool & bHandled)
-   {
+   //}
 
-#ifdef _UWP
 
-      return true;
+   //bool application::on_exclusive_instance_local_conflict_id(bool & bHandled, string strId)
+   //{
 
-#endif
+   //   bool bContinue = false;
 
-      bool bSetOk;
+   //   try
+   //   {
 
-      LPSECURITY_ATTRIBUTES psa = nullptr;
+   //      if (m_pinterprocessintercommunication)
+   //      {
 
-      bool bResourceException = false;
+   //         auto pcall = m_pinterprocessintercommunication->create_call("application", "on_additional_local_instance");
 
-#ifdef WINDOWS_DESKTOP
+   //         pcall->add_arg(Context.file().module());
 
-      bSetOk = false;
+   //         pcall->add_arg(Context.os().get_pid());
 
-      SECURITY_ATTRIBUTES MutexAttributes;
-      ZeroMemory(&MutexAttributes, sizeof(MutexAttributes));
-      MutexAttributes.nLength = sizeof(MutexAttributes);
-      MutexAttributes.bInheritHandle = FALSE; // object uninheritable
-      // declare and initialize a security descriptor
-      SECURITY_DESCRIPTOR SD;
-      bool bInitOk = InitializeSecurityDescriptor(&SD, SECURITY_DESCRIPTOR_REVISION) != FALSE;
-      if (bInitOk)
-      {
-         // give the security descriptor a Null Dacl
-         // done using the  "TRUE, (PACL)nullptr" here
-         bSetOk = SetSecurityDescriptorDacl(&SD,
-                                            TRUE,
-                                            (PACL)nullptr,
-                                            FALSE) != FALSE;
-      }
+   //         pcall->add_arg(System.command_line_text());
 
-      if (bSetOk)
-      {
+   //         pcall->add_arg(strId);
 
-         MutexAttributes.lpSecurityDescriptor = &SD;
+   //         for(auto & ptask : pcall->m_mapTask.values())
+   //         {
 
+   //            if(!bHandled)
+   //            {
 
-         psa = &MutexAttributes;
+   //               bHandled = ptask->is_true("handled");
 
+   //               if(bHandled)
+   //               {
 
-      }
+   //                  bContinue = ptask->is_true("continue");
 
-#else
+   //               }
 
-      bSetOk = true;
+   //            }
 
-#endif
+   //         }
 
+   //      }
 
-      if (bSetOk)
-      {
+   //   }
+   //   catch (...)
+   //   {
 
-         bool bGlobalExclusiveFail = exclusive_fails(get_global_mutex_name(), psa);
+   //   }
 
-         if(bGlobalExclusiveFail && m_eexclusiveinstance == ExclusiveInstanceGlobal)
-         {
+   //   return bContinue;
 
-            TRACE("A instance of the application:<br><br> - " + string(m_strAppName) + "<br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine.<br><br>Exiting this new instance.");
+   //}
 
-            try
-            {
 
-               if(!on_exclusive_instance_conflict(bHandled, ExclusiveInstanceGlobal, ""))
-               {
+   //bool application::on_additional_local_instance(bool & bHandled, string strModule, int iPid, string strCommandLine)
+   //{
 
-                  return false;
+   //   __pointer(::command_line) pcommandline;
 
-               }
+   //   auto estatus = __construct_new(pcommandline);
 
-            }
-            catch(...)
-            {
 
-               return false;
+   //   auto pcommandline = __new(command_line(this, strCommandLine));
 
-            }
+   //   request({pcommandline});
 
-         }
+   //   bHandled = true;
 
-         if (m_eexclusiveinstance == ExclusiveInstanceGlobalId)
-         {
+   //   return false;
 
-            bool bGlobalIdExclusiveFail = exclusive_fails(get_global_id_mutex_name(), psa);
+   //}
 
-            if (bGlobalIdExclusiveFail)
-            {
 
-               TRACE("A instance of the application:<br><br>-" + string(m_strAppName) + "with the id \"" + get_local_mutex_id() + "\" <br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine with the same id.<br><br>Exiting this new instance.");
+   //void application::on_new_instance(string strModule, const ::id & iPid)
+   //{
 
-               try
-               {
-
-                  if(!on_exclusive_instance_conflict(bHandled, ExclusiveInstanceGlobalId, get_global_mutex_id()))
-                  {
-
-                     return false;
-
-                  }
-
-               }
-               catch(...)
-               {
-
-                  return false;
-
-               }
-
-            }
-
-         }
-
-         bool bLocalExclusiveFail = exclusive_fails(get_local_mutex_name(), psa);
-
-         if (bLocalExclusiveFail && m_eexclusiveinstance == ExclusiveInstanceLocal)
-         {
-
-            try
-            {
-
-               TRACE("A instance of the application:<br><br>-" + string(m_strAppName) + "<br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account.<br><br>Exiting this new instance.");
-
-               if(!on_exclusive_instance_conflict(bHandled, ExclusiveInstanceLocal, ""))
-               {
-
-                  return false;
-
-               }
-
-            }
-            catch (...)
-            {
-
-               return false;
-
-            }
-
-         }
-
-         if (m_eexclusiveinstance == ExclusiveInstanceLocalId)
-         {
-
-            bool bLocalIdExclusiveFail = exclusive_fails(get_local_id_mutex_name(), psa);
-
-            if (bLocalIdExclusiveFail)
-            {
-
-               try
-               {
-
-                  // Should in some way activate the other instance
-                  TRACE("A instance of the application:<br><br>           - " + string(m_strAppName) + "with the id \"" + get_local_mutex_id() + "\" <br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same ac::count with the same id.<br><br>Exiting this new instance.");
-
-                  if(!on_exclusive_instance_conflict(bHandled, ExclusiveInstanceLocalId, get_local_mutex_id()))
-                  {
-
-                     return false;
-
-                  }
-
-               }
-               catch (...)
-               {
-
-                  return false;
-
-               }
-
-            }
-
-         }
-
-      }
-
-      return true;
-
-   }
-
-
-   bool application::release_exclusive()
-   {
-
-      m_mapExclusive.remove_all();
-
-      return true;
-
-   }
-
-
-
-
-
-   string application::get_local_mutex_name()
-   {
-      return System.get_local_mutex_name(get_mutex_name_gen());
-   }
-
-
-   string application::get_local_id_mutex_name()
-   {
-
-      return System.get_local_id_mutex_name(get_mutex_name_gen(), get_local_mutex_id());
-
-   }
-
-
-   string application::get_global_mutex_name()
-   {
-      return System.get_global_mutex_name(get_mutex_name_gen());
-   }
-
-   string application::get_global_id_mutex_name()
-   {
-      return System.get_global_id_mutex_name(get_mutex_name_gen(), get_global_mutex_id());
-   }
-
-
-
-
-   bool application::on_exclusive_instance_conflict(bool & bHandled, EExclusiveInstance eexclusive, string strId)
-   {
-
-      if (eexclusive == ExclusiveInstanceLocal)
-      {
-
-         return on_exclusive_instance_local_conflict(bHandled);
-
-      }
-      else if (eexclusive == ExclusiveInstanceLocalId)
-      {
-
-         return on_exclusive_instance_local_conflict_id(bHandled, strId);
-
-      }
-
-      return false;
-
-   }
-
-
-   bool application::on_exclusive_instance_local_conflict(bool & bHandled)
-   {
-
-      bool bContinue = false;
-
-      try
-      {
-
-         if (m_pinterprocessintercommunication)
-         {
-
-            auto pcall = m_pinterprocessintercommunication->create_call("application", "on_additional_local_instance");
-
-            pcall->add_arg(Context.file().module());
-
-            pcall->add_arg(Context.os().get_pid());
-
-            pcall->add_arg(System.command_line_text());
-
-            string strId;
-
-            pcall->add_arg(strId);
-
-            pcall->announce();
-
-            pcall->wait();
-
-            for(auto & pair : pcall->m_mapTask)
-            {
-
-               auto & pobjectTask = pair.element2();
-
-               if(bContinue && pobjectTask->has_property("continue"))
-               {
-
-                  bContinue = pobjectTask->m_var["continue"];
-
-               }
-
-               if(!bHandled && pobjectTask->has_property("handled"))
-               {
-
-                  bHandled = pobjectTask->m_var["handled"];
-
-               }
-
-            }
-
-         }
-
-      }
-      catch (...)
-      {
-
-      }
-
-      return bContinue;
-
-   }
-
-
-   bool application::on_exclusive_instance_local_conflict_id(bool & bHandled, string strId)
-   {
-
-      bool bContinue = false;
-
-      try
-      {
-
-         if (m_pinterprocessintercommunication)
-         {
-
-            auto pcall = m_pinterprocessintercommunication->create_call("application", "on_additional_local_instance");
-
-            pcall->add_arg(Context.file().module());
-
-            pcall->add_arg(Context.os().get_pid());
-
-            pcall->add_arg(System.command_line_text());
-
-            pcall->add_arg(strId);
-
-            for(auto & ptask : pcall->m_mapTask.values())
-            {
-
-               if(!bHandled)
-               {
-
-                  bHandled = ptask->is_true("handled");
-
-                  if(bHandled)
-                  {
-
-                     bContinue = ptask->is_true("continue");
-
-                  }
-
-               }
-
-            }
-
-         }
-
-      }
-      catch (...)
-      {
-
-      }
-
-      return bContinue;
-
-   }
-
-
-   bool application::on_additional_local_instance(bool & bHandled, string strModule, int iPid, string strCommandLine)
-   {
-
-      auto pcommandline = __new(command_line(this, strCommandLine));
-
-      request({pcommandline});
-
-      bHandled = true;
-
-      return false;
-
-   }
-
-
-   void application::on_new_instance(string strModule, const ::id & iPid)
-   {
-
-   }
+   //}
 
 
    //string application::get_mutex_name_gen()
@@ -3528,20 +3204,20 @@ retry_license:
    //}
 
 
-   string application::get_local_mutex_id()
-   {
+   //string application::get_local_mutex_id()
+   //{
 
-      return value("local_mutex_id");
+   //   return value("local_mutex_id");
 
-   }
+   //}
 
 
-   string application::get_global_mutex_id()
-   {
+   //string application::get_global_mutex_id()
+   //{
 
-      return value("global_mutex_id");
+   //   return value("global_mutex_id");
 
-   }
+   //}
 
 
    bool application::Ex2OnAppInstall()
@@ -3560,159 +3236,153 @@ retry_license:
    }
 
 
-   void application::on_set_scalar(e_scalar escalar, i64 iValue, int iFlags)
-   {
-
-      //if (escalar == scalar_app_install_progress)
-      //{
-
-      //   m_iProgressInstallStep = iValue;
-
-      //}
-      //else if (escalar == scalar_app_install_progress_min)
-      //{
-
-      //   m_iProgressInstallStart = iValue;
-
-      //}
-      //else if (escalar == scalar_app_install_progress_max)
-      //{
-
-      //   m_iProgressInstallEnd = iValue;
-
-      //}
-      //else
-      {
-
-         return ::int_scalar_source::on_set_scalar(escalar, iValue, iFlags);
-
-      }
-
-   }
-
-
-   void application::get_scalar_minimum(e_scalar escalar, i64 & i)
-   {
-
-      //if (escalar == scalar_app_install_progress)
-      //{
-
-      //   i = m_iProgressInstallStart;
-
-      //}
-      //else if (escalar == scalar_app_install_progress_min)
-      //{
-
-      //   i = 0;
-
-      //}
-      //else if (escalar == scalar_app_install_progress_max)
-      //{
-
-      //   i = 0;
-
-      //}
-      //else
-      {
-
-         ::int_scalar_source::get_scalar_minimum(escalar, i);
-
-      }
-
-   }
-
-   void application::get_scalar(e_scalar escalar, i64 & i)
-   {
-
-      //if (escalar == scalar_app_install_progress)
-      //{
-
-      //   i = m_iProgressInstallStep;
-
-      //}
-      //else if (escalar == scalar_app_install_progress_min)
-      //{
-
-      //   i = m_iProgressInstallStart;
-
-      //}
-      //else if (escalar == scalar_app_install_progress_max)
-      //{
-
-      //   i = m_iProgressInstallEnd;
-
-      //}
-      //else
-      {
-
-         ::int_scalar_source::get_scalar(escalar, i);
-
-      }
-
-   }
-
-   void application::get_scalar_maximum(e_scalar escalar, i64 & i)
-   {
-
-      //if (escalar == scalar_download_size)
-      //{
-
-      //   i = m_iProgressInstallEnd;
-
-      //}
-      //else if (escalar == scalar_app_install_progress_min)
-      //{
-
-      //   i = 0x7fffffff;
-
-      //}
-      //else if (escalar == scalar_app_install_progress_max)
-      //{
-
-      //   i = 0x7fffffff;
-
-      //}
-      //else
-      {
-
-         ::int_scalar_source::get_scalar_minimum(escalar, i);
-
-      }
-
-   }
-
-
-   //i32 application::sync_message_box_timeout(::user::primitive * pwndOwner, var var, const char * pszTitle, ::duration durationTimeOut, UINT fuStyle)
+   //void application::on_set_scalar(e_scalar escalar, i64 iValue, int iFlags)
    //{
 
-   //   UNREFERENCED_PARAMETER(durationTimeOut);
+   //   //if (escalar == scalar_app_install_progress)
+   //   //{
 
-   //   return sync_message_box(pwndOwner, var, pszTitle, fuStyle);
+   //   //   m_iProgressInstallStep = iValue;
+
+   //   //}
+   //   //else if (escalar == scalar_app_install_progress_min)
+   //   //{
+
+   //   //   m_iProgressInstallStart = iValue;
+
+   //   //}
+   //   //else if (escalar == scalar_app_install_progress_max)
+   //   //{
+
+   //   //   m_iProgressInstallEnd = iValue;
+
+   //   //}
+   //   //else
+   //   {
+
+   //      return ::int_scalar_source::on_set_scalar(escalar, iValue, iFlags);
+
+   //   }
 
    //}
 
 
+   //void application::get_scalar_minimum(e_scalar escalar, i64 & i)
+   //{
 
-   service_base * application::get_service()
-   {
+   //   //if (escalar == scalar_app_install_progress)
+   //   //{
 
-      return m_pservice;
+   //   //   i = m_iProgressInstallStart;
 
-   }
+   //   //}
+   //   //else if (escalar == scalar_app_install_progress_min)
+   //   //{
+
+   //   //   i = 0;
+
+   //   //}
+   //   //else if (escalar == scalar_app_install_progress_max)
+   //   //{
+
+   //   //   i = 0;
+
+   //   //}
+   //   //else
+   //   {
+
+   //      ::int_scalar_source::get_scalar_minimum(escalar, i);
+
+   //   }
+
+   //}
+
+   //void application::get_scalar(e_scalar escalar, i64 & i)
+   //{
+
+   //   //if (escalar == scalar_app_install_progress)
+   //   //{
+
+   //   //   i = m_iProgressInstallStep;
+
+   //   //}
+   //   //else if (escalar == scalar_app_install_progress_min)
+   //   //{
+
+   //   //   i = m_iProgressInstallStart;
+
+   //   //}
+   //   //else if (escalar == scalar_app_install_progress_max)
+   //   //{
+
+   //   //   i = m_iProgressInstallEnd;
+
+   //   //}
+   //   //else
+   //   {
+
+   //      ::int_scalar_source::get_scalar(escalar, i);
+
+   //   }
+
+   //}
+
+   //void application::get_scalar_maximum(e_scalar escalar, i64 & i)
+   //{
+
+   //   //if (escalar == scalar_download_size)
+   //   //{
+
+   //   //   i = m_iProgressInstallEnd;
+
+   //   //}
+   //   //else if (escalar == scalar_app_install_progress_min)
+   //   //{
+
+   //   //   i = 0x7fffffff;
+
+   //   //}
+   //   //else if (escalar == scalar_app_install_progress_max)
+   //   //{
+
+   //   //   i = 0x7fffffff;
+
+   //   //}
+   //   //else
+   //   {
+
+   //      ::int_scalar_source::get_scalar_minimum(escalar, i);
+
+   //   }
+
+   //}
+
+
+   ////i32 application::sync_message_box_timeout(::user::primitive * pwndOwner, var var, const char * pszTitle, ::duration durationTimeOut, UINT fuStyle)
+   ////{
+
+   ////   UNREFERENCED_PARAMETER(durationTimeOut);
+
+   ////   return sync_message_box(pwndOwner, var, pszTitle, fuStyle);
+
+   ////}
 
 
 
 
 
 
-   string application::http_get_locale_schema(const char * pszUrl, const char * pszLocale, const char * pszSchema)
-   {
 
-      ::exception::throw_interface_only();
 
-      return "";
 
-   }
+   //string application::http_get_locale_schema(const char * pszUrl, const char * pszLocale, const char * pszSchema)
+   //{
+
+   //   ::exception::throw_interface_only();
+
+   //   return "";
+
+   //}
 
 
 
@@ -3725,249 +3395,249 @@ retry_license:
    //}
 
 
-   void application::set_locale(const string & pcsz, const ::action_context & context)
+   //void application::set_locale(const string & pcsz, const ::action_context & context)
 
-   {
+   //{
 
-      string strLocale(pcsz);
+   //   string strLocale(pcsz);
 
 
-      strLocale.trim();
+   //   strLocale.trim();
 
-      m_strLocale = strLocale;
+   //   m_strLocale = strLocale;
 
-      on_set_locale(m_strLocale, context);
+   //   on_set_locale(m_strLocale, context);
 
-   }
+   //}
 
 
-   void application::set_schema(const string & pcsz, const ::action_context & context)
+   //void application::set_schema(const string & pcsz, const ::action_context & context)
 
-   {
+   //{
 
-      string strSchema(pcsz);
+   //   string strSchema(pcsz);
 
 
-      strSchema.trim();
+   //   strSchema.trim();
 
-      m_strSchema = strSchema;
+   //   m_strSchema = strSchema;
 
-      on_set_schema(m_strSchema, context);
+   //   on_set_schema(m_strSchema, context);
 
-   }
+   //}
 
 
-   void application::on_set_locale(const string & pcsz, const ::action_context & context)
+   //void application::on_set_locale(const string & pcsz, const ::action_context & context)
 
-   {
-      UNREFERENCED_PARAMETER(context);
-      UNREFERENCED_PARAMETER(pcsz);
+   //{
+   //   UNREFERENCED_PARAMETER(context);
+   //   UNREFERENCED_PARAMETER(pcsz);
 
-      //System.appa_load_string_table();
-   }
+   //   //System.appa_load_string_table();
+   //}
 
 
-   void application::on_set_schema(const string & pcsz, const ::action_context & context)
+   //void application::on_set_schema(const string & pcsz, const ::action_context & context)
 
-   {
-      UNREFERENCED_PARAMETER(context);
-      UNREFERENCED_PARAMETER(pcsz);
+   //{
+   //   UNREFERENCED_PARAMETER(context);
+   //   UNREFERENCED_PARAMETER(pcsz);
 
-      //System.appa_load_string_table();
-   }
+   //   //System.appa_load_string_table();
+   //}
 
 
 
 
 
-   string application::get_locale_schema_dir()
-   {
+   //string application::get_locale_schema_dir()
+   //{
 
-      return ::str::_001Concat(get_locale(), "/", get_schema());
+   //   return ::str::_001Concat(get_locale(), "/", get_schema());
 
-   }
+   //}
 
 
-   string application::get_locale_schema_dir(const string & strLocale)
-   {
+   //string application::get_locale_schema_dir(const string & strLocale)
+   //{
 
-      return ::str::_001Concat(strLocale.is_empty() ? get_locale() : strLocale, "/", get_schema());
+   //   return ::str::_001Concat(strLocale.is_empty() ? get_locale() : strLocale, "/", get_schema());
 
-   }
+   //}
 
 
-   void application::matter_locator_locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const string & strLocale, const string & strSchema)
-   {
+   //void application::matter_locator_locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const string & strLocale, const string & strSchema)
+   //{
 
-      if (strLocale.is_empty() || strSchema.is_empty())
-      {
+   //   if (strLocale.is_empty() || strSchema.is_empty())
+   //   {
 
-         return;
+   //      return;
 
-      }
+   //   }
 
-      for (auto & strMatterLocator : straMatterLocator)
-      {
+   //   for (auto & strMatterLocator : straMatterLocator)
+   //   {
 
-         string strLs = get_locale_schema_dir(strLocale, strSchema);
+   //      string strLs = get_locale_schema_dir(strLocale, strSchema);
 
-         stra.add_unique(::file::path(strMatterLocator) / strLs);
+   //      stra.add_unique(::file::path(strMatterLocator) / strLs);
 
-      }
+   //   }
 
-   }
+   //}
 
 
-   void application::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const string & strLocale, const string & strSchema)
-   {
+   //void application::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const string & strLocale, const string & strSchema)
+   //{
 
-     if (straMatterLocator.has_elements())
-     {
+   //  if (straMatterLocator.has_elements())
+   //  {
 
-        stra.add_unique(::file::path(straMatterLocator.first()) / get_locale_schema_dir("map", "map"));
+   //     stra.add_unique(::file::path(straMatterLocator.first()) / get_locale_schema_dir("map", "map"));
 
-     }
+   //  }
 
-     matter_locator_locale_schema_matter(stra, straMatterLocator, strLocale, strSchema);
+   //  matter_locator_locale_schema_matter(stra, straMatterLocator, strLocale, strSchema);
 
-     ::apex::str_context * pcontext = Session.str_context();
+   //  ::apex::str_context * pcontext = Session.str_context();
 
-     for (i32 i = 0; i < pcontext->localeschema().m_idaLocale.get_count(); i++)
-     {
+   //  for (i32 i = 0; i < pcontext->localeschema().m_idaLocale.get_count(); i++)
+   //  {
 
-        string strLocale = pcontext->localeschema().m_idaLocale[i];
+   //     string strLocale = pcontext->localeschema().m_idaLocale[i];
 
-        string strSchema = pcontext->localeschema().m_idaSchema[i];
+   //     string strSchema = pcontext->localeschema().m_idaSchema[i];
 
-        matter_locator_locale_schema_matter(stra, straMatterLocator, strLocale, strSchema);
+   //     matter_locator_locale_schema_matter(stra, straMatterLocator, strLocale, strSchema);
 
-     }
+   //  }
 
-     matter_locator_locale_schema_matter(stra, straMatterLocator, "en", "en");
+   //  matter_locator_locale_schema_matter(stra, straMatterLocator, "en", "en");
 
-     matter_locator_locale_schema_matter(stra, straMatterLocator, "_std", "_std");
+   //  matter_locator_locale_schema_matter(stra, straMatterLocator, "_std", "_std");
 
-     if (straMatterLocator.has_elements())
-     {
+   //  if (straMatterLocator.has_elements())
+   //  {
 
-        stra.add_unique(::file::path(straMatterLocator.first()) / get_locale_schema_dir("404", "404"));
+   //     stra.add_unique(::file::path(straMatterLocator.first()) / get_locale_schema_dir("404", "404"));
 
-     }
+   //  }
 
-   }
+   //}
 
 
-   string application::get_locale_schema_dir(const string & strLocale, const string & strSchema)
-   {
+   //string application::get_locale_schema_dir(const string & strLocale, const string & strSchema)
+   //{
 
-     return ::str::_001Concat(strLocale, "/", strSchema);
+   //  return ::str::_001Concat(strLocale, "/", strSchema);
 
-   }
+   //}
 
 
-   void application::fill_locale_schema(::str::international::locale_schema & localeschema, const string & pszLocale, const string & pszSchema)
-   {
+   //void application::fill_locale_schema(::str::international::locale_schema & localeschema, const string & pszLocale, const string & pszSchema)
+   //{
 
 
-     localeschema.m_idaLocale.remove_all();
-     localeschema.m_idaSchema.remove_all();
+   //  localeschema.m_idaLocale.remove_all();
+   //  localeschema.m_idaSchema.remove_all();
 
 
-     string strLocale(pszLocale);
-     string strSchema(pszSchema);
+   //  string strLocale(pszLocale);
+   //  string strSchema(pszSchema);
 
 
-     localeschema.m_idLocale = pszLocale;
-     localeschema.m_idSchema = pszSchema;
+   //  localeschema.m_idLocale = pszLocale;
+   //  localeschema.m_idSchema = pszSchema;
 
 
-     localeschema.add_locale_variant(strLocale, strSchema);
-     localeschema.add_locale_variant(get_locale(), strSchema);
-     localeschema.add_locale_variant(__id(std), strSchema);
-     localeschema.add_locale_variant(__id(en), strSchema);
+   //  localeschema.add_locale_variant(strLocale, strSchema);
+   //  localeschema.add_locale_variant(get_locale(), strSchema);
+   //  localeschema.add_locale_variant(__id(std), strSchema);
+   //  localeschema.add_locale_variant(__id(en), strSchema);
 
 
-     localeschema.finalize();
+   //  localeschema.finalize();
 
 
-   }
+   //}
 
 
-   void application::fill_locale_schema(::str::international::locale_schema & localeschema)
-   {
+   //void application::fill_locale_schema(::str::international::locale_schema & localeschema)
+   //{
 
 
-     localeschema.m_idaLocale.remove_all();
-     localeschema.m_idaSchema.remove_all();
+   //  localeschema.m_idaLocale.remove_all();
+   //  localeschema.m_idaSchema.remove_all();
 
 
-     //localeschema.m_bAddAlternateStyle = true;
+   //  //localeschema.m_bAddAlternateStyle = true;
 
 
-     string_array straLocale;
-     string_array straSchema;
+   //  string_array straLocale;
+   //  string_array straSchema;
 
-     straLocale.add(get_locale());
-     straSchema.add(get_schema());
+   //  straLocale.add(get_locale());
+   //  straSchema.add(get_schema());
 
 
-     string_array stra;
+   //  string_array stra;
 
-     stra = value("locale").stra();
+   //  stra = value("locale").stra();
 
-     stra.remove_ci("_std");
+   //  stra.remove_ci("_std");
 
-     straLocale.add_unique(value("locale").stra());
+   //  straLocale.add_unique(value("locale").stra());
 
-     stra.empty();
+   //  stra.empty();
 
-     stra = value("schema").stra();
+   //  stra = value("schema").stra();
 
-     stra.remove_ci("_std");
+   //  stra.remove_ci("_std");
 
-     straSchema.add_unique(value("schema").stra());
+   //  straSchema.add_unique(value("schema").stra());
 
-     localeschema.m_idLocale = straLocale[0];
-     localeschema.m_idSchema = straSchema[0];
+   //  localeschema.m_idLocale = straLocale[0];
+   //  localeschema.m_idSchema = straSchema[0];
 
-     for (index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
-     {
+   //  for (index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
+   //  {
 
-        for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
-        {
+   //     for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
+   //     {
 
-           localeschema.add_locale_variant(straLocale[iLocale], straSchema[iSchema]);
+   //        localeschema.add_locale_variant(straLocale[iLocale], straSchema[iSchema]);
 
-        }
+   //     }
 
-     }
+   //  }
 
-     for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
-     {
+   //  for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
+   //  {
 
-        localeschema.add_locale_variant(get_locale(), straSchema[iSchema]);
+   //     localeschema.add_locale_variant(get_locale(), straSchema[iSchema]);
 
-     }
+   //  }
 
-     for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
-     {
+   //  for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
+   //  {
 
-        localeschema.add_locale_variant(__id(std), straSchema[iSchema]);
+   //     localeschema.add_locale_variant(__id(std), straSchema[iSchema]);
 
-     }
+   //  }
 
 
-     for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
-     {
+   //  for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
+   //  {
 
-        localeschema.add_locale_variant(__id(en), straSchema[iSchema]);
+   //     localeschema.add_locale_variant(__id(en), straSchema[iSchema]);
 
-     }
+   //  }
 
-     localeschema.finalize();
+   //  localeschema.finalize();
 
 
-   }
+   //}
 
 
 //  void application::defer_add_thread_run_wait(sync_array & soa)
@@ -3978,38 +3648,38 @@ retry_license:
 //  }
 
 
-   bool application::platform_open_by_file_extension(index iEdge, const char * pszPathName, ::create * pcreate)
-   {
-
-      return false;
-
-   }
-
-
-   bool application::platform_open_by_file_extension(index iEdge, ::create * pcc)
-   {
-
-      return false;
-
-   }
-
-
-
-
-   //i32 application::hotplugin_host_starter_start_sync(const char * pszCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin)
+   //bool application::platform_open_by_file_extension(index iEdge, const char * pszPathName, ::create * pcreate)
    //{
+
+   //   return false;
+
+   //}
+
+
+   //bool application::platform_open_by_file_extension(index iEdge, ::create * pcc)
+   //{
+
+   //   return false;
+
+   //}
+
+
+
+
+   ////i32 application::hotplugin_host_starter_start_sync(const char * pszCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin)
+   ////{
 
    //   return -1;
 
    //}
 
 
-   bool application::is_application() const
-   {
+   //bool application::is_application() const
+   //{
 
-      return !is_session() && !is_system();
+   //   return !is_session() && !is_system();
 
-   }
+   //}
 
 
 
@@ -4021,32 +3691,32 @@ retry_license:
    //}
 
 
-   void application::_001OnFranceExit()
-   {
+   //void application::_001OnFranceExit()
+   //{
 
-      //if (System.m_pmultimedia)
-      //{
+   //   //if (System.m_pmultimedia)
+   //   //{
 
-      //   System.m_pmultimedia->_001OnFranceExit();
+   //   //   System.m_pmultimedia->_001OnFranceExit();
 
-      //}
-
-
-      HideApplication();
-
-      close(::apex::e_end_app);
-
-   }
+   //   //}
 
 
-   void application::_001FranceExit()
-   {
+   //   HideApplication();
 
-      _001OnFranceExit();
+   //   close(::apex::e_end_app);
 
-      m_bFranceExit = true;
+   //}
 
-   }
+
+   //void application::_001FranceExit()
+   //{
+
+   //   _001OnFranceExit();
+
+   //   m_bFranceExit = true;
+
+   //}
 
 
    //void application::dispatch_user_message(::user::message * pusermessage)
@@ -4064,100 +3734,100 @@ retry_license:
    //   UNREFERENCED_PARAMETER(bSynch);
 
    //}
-
-   void application::post_critical_error_message(const char * pszMessage, bool bShowLog)
-   {
-
-      string strMessage;
-
-      strMessage = System.datetime().international().get_gmt_date_time();
-      strMessage += " ";
-      strMessage += pszMessage;
-      strMessage += "\n";
-
-      {
-
-         sync_lock sl(mutex());
-
-         Context.file().add_contents(Context.dir().appdata() / (Context.file().module().name() + "_log_error.txt"), strMessage);
-
-      }
-
-      if (bShowLog)
-      {
-
-         show_critical_error_log();
-
-      }
-
-   }
-
-
-   string application::get_app_user_friendly_task_bar_name()
-   {
-
-      ::file::path path = m_strAppName;
-
-      string strTitle = path.title();
-
-      return strTitle;
-
-   }
-
-
-
-   void application::show_critical_error_log()
-   {
-
-      static int g_iCount = 0;
-
-      string strFile = Context.dir().appdata() / (Context.file().module().name() + "_log_error.txt");
-
-      g_iCount++;
-
-      if (g_iCount == 1)
-      {
-
-         Context.os().file_open(strFile);
-
-      }
-
-//#ifdef _UWP
 //
-//      output_debug_string(strFile);
+//   void application::post_critical_error_message(const char * pszMessage, bool bShowLog)
+//   {
 //
-//#elif defined(WINDOWS)
+//      string strMessage;
 //
-//      call_async("C:\\Program Files (x86)\\Notepad++\\Notepad++.exe", "\"" + strFile + "\"", "", display_normal, false);
+//      strMessage = System.datetime().international().get_gmt_date_time();
+//      strMessage += " ";
+//      strMessage += pszMessage;
+//      strMessage += "\n";
 //
-//#elif defined(LINUX)
-//
-//      call_async("gedit", "\"" + strFile + "\"", "", display_normal, false);
-//
-//#else
-//
-//      ::fork(this, [=]()
 //      {
 //
-//         system("open \"" + strFile + "\"");
+//         sync_lock sl(mutex());
 //
-//      });
+//         Context.file().add_contents(Context.dir().appdata() / (Context.file().module().name() + "_log_error.txt"), strMessage);
+//
+//      }
+//
+//      if (bShowLog)
+//      {
+//
+//         show_critical_error_log();
+//
+//      }
+//
+//   }
 //
 //
-//#endif
-
-
-
-
-   }
-
-
-   void application::on_apply(::action * paction)
-   {
-
-
-   }
-
+//   string application::get_app_user_friendly_task_bar_name()
+//   {
+//
+//      ::file::path path = m_strAppName;
+//
+//      string strTitle = path.title();
+//
+//      return strTitle;
+//
+//   }
+//
+//
+//
+//   void application::show_critical_error_log()
+//   {
+//
+//      static int g_iCount = 0;
+//
+//      string strFile = Context.dir().appdata() / (Context.file().module().name() + "_log_error.txt");
+//
+//      g_iCount++;
+//
+//      if (g_iCount == 1)
+//      {
+//
+//         Context.os().file_open(strFile);
+//
+//      }
+//
+////#ifdef _UWP
+////
+////      output_debug_string(strFile);
+////
+////#elif defined(WINDOWS)
+////
+////      call_async("C:\\Program Files (x86)\\Notepad++\\Notepad++.exe", "\"" + strFile + "\"", "", display_normal, false);
+////
+////#elif defined(LINUX)
+////
+////      call_async("gedit", "\"" + strFile + "\"", "", display_normal, false);
+////
+////#else
+////
+////      ::fork(this, [=]()
+////      {
+////
+////         system("open \"" + strFile + "\"");
+////
+////      });
+////
+////
+////#endif
+//
+//
+//
+//
+//   }
+//
+//
+//   void application::on_apply(::action * paction)
+//   {
+//
+//
+//   }
+//
 
 
 
@@ -4185,290 +3855,290 @@ retry_license:
    //}
 
 
-   ::file::path application::get_executable_path()
-   {
+   //::file::path application::get_executable_path()
+   //{
 
-      return ::dir::module() / (get_executable_title() + get_executable_extension());
+   //   return ::dir::module() / (get_executable_title() + get_executable_extension());
 
 
-   }
+   //}
 
+//
+//   string application::get_executable_extension()
+//   {
+//
+//#ifdef WINDOWS
+//
+//      return ".exe";
+//
+//#else
+//
+//      return "";
+//
+//#endif
+//
+//   }
+//
+//
+//   string application::get_executable_title()
+//   {
+//
+//      return executable_title_from_appid(get_executable_appid());
+//
+//   }
+//
 
-   string application::get_executable_extension()
-   {
+   //string application::get_executable_appid()
+   //{
 
-#ifdef WINDOWS
-
-      return ".exe";
-
-#else
-
-      return "";
-
-#endif
-
-   }
-
-
-   string application::get_executable_title()
-   {
-
-      return executable_title_from_appid(get_executable_appid());
-
-   }
-
-
-   string application::get_executable_appid()
-   {
-
-      return m_strAppId;
-
-   }
-
-
-
-
-   bool application::app_set(string strPath, string strValue)
-   {
-
-      return Context.sys_set(::file::path(m_strAppName) / strPath, strValue);
-
-   }
-
-
-   string application::app_get(string strPath, string strDefault)
-   {
-
-      return Context.sys_get(::file::path(m_strAppName) / strPath, strDefault);
-
-   }
-
-
-   bool application::on_open_document_file(var varFile)
-   {
-
-      request_file(varFile);
-
-      return varFile["document"].cast < ::object > () != nullptr;
-
-   }
-
-
-
-   void application::install_trace(const string & str)
-   {
-
-      sync_lock sl(mutex());
-
-      //::install::trace_file(this, m_strInstallTraceLabel).print(str);
-
-   }
-
-
-   void application::install_trace(double dRate)
-   {
-
-      sync_lock sl(mutex());
-
-      //::install::trace_file(this, m_strInstallTraceLabel).print(dRate);
-
-   }
-
-
-   bool application::register_spa_file_type()
-   {
-
-#ifdef WINDOWS_DESKTOP
-
-      HKEY hkey;
-
-      wstring extension = L".spa";                     // file extension
-      wstring desc = L"spafile";          // file type description
-      wstring content_type = L"application/x-spa";
-
-      wstring app(::dir::stage(m_strAppId, process_platform_dir_name(), process_configuration_dir_name()));
-
-      wstring icon(app);
-
-      app = L"\"" + app + L"\"" + L" \"%1\"";
-      icon = L"\"" + icon + L"\",107";
-
-      wstring action = L"Open";
-
-      wstring sub = L"\\shell\\";
-
-      wstring path = L"spafile\\shell\\open\\command";
-
-
-      // 1: Create subkey for extension -> HKEY_CLASSES_ROOT\.002
-      if (RegCreateKeyExW(HKEY_CLASSES_ROOT, extension.c_str(), 0, 0, 0, KEY_ALL_ACCESS, 0, &hkey, 0) != ERROR_SUCCESS)
-      {
-         output_debug_string("Could not create or open a registrty key\n");
-         return 0;
-      }
-      RegSetValueExW(hkey, L"", 0, REG_SZ, (BYTE*)desc.c_str(), DWORD (desc.length() * sizeof(wchar_t))); // default vlaue is description of file extension
-      RegSetValueExW(hkey, L"ContentType", 0, REG_SZ, (BYTE*)content_type.c_str(), DWORD (content_type.length() * sizeof(wchar_t))); // default vlaue is description of file extension
-      RegCloseKey(hkey);
-
-
-
-      // 2: Create Subkeys for action ( "Open with my program" )
-      // HKEY_CLASSES_ROOT\.002\Shell\\open with my program\\command
-      if (RegCreateKeyExW(HKEY_CLASSES_ROOT, path.c_str(), 0, 0, 0, KEY_ALL_ACCESS, 0, &hkey, 0) != ERROR_SUCCESS)
-      {
-         output_debug_string("Could not create or open a registrty key\n");
-         return 0;
-      }
-      RegSetValueExW(hkey, L"", 0, REG_SZ, (BYTE*)app.c_str(), DWORD(app.length() * sizeof(wchar_t)));
-      RegCloseKey(hkey);
-
-
-      path = L"spafile\\DefaultIcon";
-
-      if (RegCreateKeyExW(HKEY_CLASSES_ROOT, path.c_str(), 0, 0, 0, KEY_ALL_ACCESS, 0, &hkey, 0) != ERROR_SUCCESS)
-      {
-         output_debug_string("Could not create or open a registrty key\n");
-         return 0;
-      }
-      RegSetValueExW(hkey, L"", 0, REG_SZ, (BYTE*)icon.c_str(), DWORD (icon.length() * sizeof(wchar_t)));
-      RegCloseKey(hkey);
-
-      wstring wstr(dir::stage(m_strAppId, process_platform_dir_name(), process_configuration_dir_name()) / "spa_register.txt");
-
-      int iRetry = 9;
-
-      while (!file_exists(utf8(wstr.c_str())) && iRetry > 0)
-      {
-
-         dir::mk(dir::name(utf8(wstr.c_str())).c_str());
-
-         file_put_contents(utf8(wstr.c_str()).c_str(), "");
-
-         iRetry--;
-
-         Sleep(100);
-
-      }
-
-#endif
-
-      return true;
-
-   }
-
-
-   bool application::low_is_app_app_admin_running(string strPlatform, string strConfiguration)
-   {
-
-      ::install::admin_mutex smutex(strPlatform);
-
-      return smutex.already_exists();
-
-   }
-
-
-   void application::defer_start_program_files_app_app_admin(string strPlatform, string strConfiguration)
-   {
-
-      if (low_is_app_app_admin_running(strPlatform, strConfiguration))
-      {
-
-         return;
-
-      }
-
-      start_program_files_app_app_admin(strPlatform, strConfiguration);
-
-   }
-
-
-   void application::start_program_files_app_app_admin(string strPlatform, string strConfiguration)
-   {
-
-#ifdef WINDOWS_DESKTOP
-
-      SHELLEXECUTEINFOW sei = {};
-
-      string str = ::path::app_app_admin(strPlatform, strConfiguration);
-
-      if (!::file_exists(str))
-      {
-
-         return;
-
-      }
-
-      ::install::admin_mutex mutexStartup("-startup");
-
-      wstring wstr(str);
-
-      sei.cbSize = sizeof(SHELLEXECUTEINFOW);
-      sei.fMask = SEE_MASK_NOASYNC | SEE_MASK_NOCLOSEPROCESS;
-      sei.lpVerb = L"RunAs";
-
-      sei.lpFile = wstr.c_str();
-
-      ::ShellExecuteExW(&sei);
-      DWORD dwGetLastError = get_last_error();
-
-#endif
-
-   }
-
-
-   string application::get_app_id(string wstr)
-   {
-
-      if (wstr.length() <= 0)
-      {
-
-         return "";
-
-      }
-
-      wstr.trim();
-
-      ::str::trim_any_quotes(wstr);
-
-      wstr.trim();
-
-      if (wstr.length() <= 0)
-      {
-
-         return "";
-
-      }
-
-
-      ::string strPath = wstr.c_str();
-
-      ::string strContents = file_as_string(strPath.c_str());
-
-      __throw(todo("xml"));
-
-      //::xml::document doc;
-
-      //if (!doc.load(strContents.c_str()))
-      //{
-
-      //   return "";
-
-      //}
-
-      //const char * psz = doc.GetChildAttrValue("launch", "app");
-
-      //if (psz == nullptr || *psz == '\0')
-      //{
-
-      //   return "";
-
-      //}
-
-      //return psz;
-
-      return nullptr;
-
-   }
+   //   return m_strAppId;
+
+   //}
+
+
+
+
+   //bool application::app_set(string strPath, string strValue)
+   //{
+
+   //   return Context.sys_set(::file::path(m_strAppName) / strPath, strValue);
+
+   //}
+
+
+   //string application::app_get(string strPath, string strDefault)
+   //{
+
+   //   return Context.sys_get(::file::path(m_strAppName) / strPath, strDefault);
+
+   //}
+
+
+   //bool application::on_open_document_file(var varFile)
+   //{
+
+   //   request_file(varFile);
+
+   //   return varFile["document"].cast < ::object > () != nullptr;
+
+   //}
+
+
+
+   //void application::install_trace(const string & str)
+   //{
+
+   //   sync_lock sl(mutex());
+
+   //   //::install::trace_file(this, m_strInstallTraceLabel).print(str);
+
+   ////}
+
+
+   //void application::install_trace(double dRate)
+   //{
+
+   //   sync_lock sl(mutex());
+
+   //   //::install::trace_file(this, m_strInstallTraceLabel).print(dRate);
+
+   //}
+
+//
+//   bool application::register_spa_file_type()
+//   {
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//      HKEY hkey;
+//
+//      wstring extension = L".spa";                     // file extension
+//      wstring desc = L"spafile";          // file type description
+//      wstring content_type = L"application/x-spa";
+//
+//      wstring app(::dir::stage(m_strAppId, process_platform_dir_name(), process_configuration_dir_name()));
+//
+//      wstring icon(app);
+//
+//      app = L"\"" + app + L"\"" + L" \"%1\"";
+//      icon = L"\"" + icon + L"\",107";
+//
+//      wstring action = L"Open";
+//
+//      wstring sub = L"\\shell\\";
+//
+//      wstring path = L"spafile\\shell\\open\\command";
+//
+//
+//      // 1: Create subkey for extension -> HKEY_CLASSES_ROOT\.002
+//      if (RegCreateKeyExW(HKEY_CLASSES_ROOT, extension.c_str(), 0, 0, 0, KEY_ALL_ACCESS, 0, &hkey, 0) != ERROR_SUCCESS)
+//      {
+//         output_debug_string("Could not create or open a registrty key\n");
+//         return 0;
+//      }
+//      RegSetValueExW(hkey, L"", 0, REG_SZ, (BYTE*)desc.c_str(), DWORD (desc.length() * sizeof(wchar_t))); // default vlaue is description of file extension
+//      RegSetValueExW(hkey, L"ContentType", 0, REG_SZ, (BYTE*)content_type.c_str(), DWORD (content_type.length() * sizeof(wchar_t))); // default vlaue is description of file extension
+//      RegCloseKey(hkey);
+//
+//
+//
+//      // 2: Create Subkeys for action ( "Open with my program" )
+//      // HKEY_CLASSES_ROOT\.002\Shell\\open with my program\\command
+//      if (RegCreateKeyExW(HKEY_CLASSES_ROOT, path.c_str(), 0, 0, 0, KEY_ALL_ACCESS, 0, &hkey, 0) != ERROR_SUCCESS)
+//      {
+//         output_debug_string("Could not create or open a registrty key\n");
+//         return 0;
+//      }
+//      RegSetValueExW(hkey, L"", 0, REG_SZ, (BYTE*)app.c_str(), DWORD(app.length() * sizeof(wchar_t)));
+//      RegCloseKey(hkey);
+//
+//
+//      path = L"spafile\\DefaultIcon";
+//
+//      if (RegCreateKeyExW(HKEY_CLASSES_ROOT, path.c_str(), 0, 0, 0, KEY_ALL_ACCESS, 0, &hkey, 0) != ERROR_SUCCESS)
+//      {
+//         output_debug_string("Could not create or open a registrty key\n");
+//         return 0;
+//      }
+//      RegSetValueExW(hkey, L"", 0, REG_SZ, (BYTE*)icon.c_str(), DWORD (icon.length() * sizeof(wchar_t)));
+//      RegCloseKey(hkey);
+//
+//      wstring wstr(dir::stage(m_strAppId, process_platform_dir_name(), process_configuration_dir_name()) / "spa_register.txt");
+//
+//      int iRetry = 9;
+//
+//      while (!file_exists(utf8(wstr.c_str())) && iRetry > 0)
+//      {
+//
+//         dir::mk(dir::name(utf8(wstr.c_str())).c_str());
+//
+//         file_put_contents(utf8(wstr.c_str()).c_str(), "");
+//
+//         iRetry--;
+//
+//         Sleep(100);
+//
+//      }
+//
+//#endif
+//
+//      return true;
+//
+//   }
+//
+//
+//   bool application::low_is_app_app_admin_running(string strPlatform, string strConfiguration)
+//   {
+//
+//      ::install::admin_mutex smutex(strPlatform);
+//
+//      return smutex.already_exists();
+//
+//   }
+//
+//
+//   void application::defer_start_program_files_app_app_admin(string strPlatform, string strConfiguration)
+//   {
+//
+//      if (low_is_app_app_admin_running(strPlatform, strConfiguration))
+//      {
+//
+//         return;
+//
+//      }
+//
+//      start_program_files_app_app_admin(strPlatform, strConfiguration);
+//
+//   }
+//
+//
+//   void application::start_program_files_app_app_admin(string strPlatform, string strConfiguration)
+//   {
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//      SHELLEXECUTEINFOW sei = {};
+//
+//      string str = ::path::app_app_admin(strPlatform, strConfiguration);
+//
+//      if (!::file_exists(str))
+//      {
+//
+//         return;
+//
+//      }
+//
+//      ::install::admin_mutex mutexStartup("-startup");
+//
+//      wstring wstr(str);
+//
+//      sei.cbSize = sizeof(SHELLEXECUTEINFOW);
+//      sei.fMask = SEE_MASK_NOASYNC | SEE_MASK_NOCLOSEPROCESS;
+//      sei.lpVerb = L"RunAs";
+//
+//      sei.lpFile = wstr.c_str();
+//
+//      ::ShellExecuteExW(&sei);
+//      DWORD dwGetLastError = get_last_error();
+//
+//#endif
+//
+//   }
+//
+//
+//   string application::get_app_id(string wstr)
+//   {
+//
+//      if (wstr.length() <= 0)
+//      {
+//
+//         return "";
+//
+//      }
+//
+//      wstr.trim();
+//
+//      ::str::trim_any_quotes(wstr);
+//
+//      wstr.trim();
+//
+//      if (wstr.length() <= 0)
+//      {
+//
+//         return "";
+//
+//      }
+//
+//
+//      ::string strPath = wstr.c_str();
+//
+//      ::string strContents = file_as_string(strPath.c_str());
+//
+//      __throw(todo("xml"));
+//
+//      //::xml::document doc;
+//
+//      //if (!doc.load(strContents.c_str()))
+//      //{
+//
+//      //   return "";
+//
+//      //}
+//
+//      //const char * psz = doc.GetChildAttrValue("launch", "app");
+//
+//      //if (psz == nullptr || *psz == '\0')
+//      //{
+//
+//      //   return "";
+//
+//      //}
+//
+//      //return psz;
+//
+//      return nullptr;
+//
+//   }
 
 
 
@@ -4983,66 +4653,66 @@ retry_license:
    //}
 
 
-   void application::_001OnAppExit(::message::message * pmessage)
-   {
+   //void application::_001OnAppExit(::message::message * pmessage)
+   //{
 
-      pmessage->m_bRet = true;
+   //   pmessage->m_bRet = true;
 
-      _001CloseApplication();
+   //   _001CloseApplication();
 
-   }
+   //}
 
-
-   bool application::is_equal_file_path(const ::file::path & path1Param, const ::file::path & path2Param)
-   {
-
-      ::file::path path1;
-
-      ::file::path path2;
-
-      path1 = Context.defer_process_path(path1Param);
-
-      path2 = Context.defer_process_path(path2Param);
-
-      path1 = node_full_file_path(path1);
-
-      path2 = node_full_file_path(path2);
-
-      return strcmp(path1, path2) == 0;
-
-   }
-
-
-//   void application::on_event(::u64 u, ::object * pobject)
+//
+//   bool application::is_equal_file_path(const ::file::path & path1Param, const ::file::path & path2Param)
 //   {
 //
-//      object_ptra ptra;
+//      ::file::path path1;
 //
-//      {
+//      ::file::path path2;
 //
-//         sync_lock sl(mutex());
+//      path1 = Context.defer_process_path(path1Param);
 //
-//         ptra = m_objectptraEventHook;
+//      path2 = Context.defer_process_path(path2Param);
 //
-//      }
+//      path1 = node_full_file_path(path1);
 //
-//      for(auto & pobject : ptra)
-//      {
+//      path2 = node_full_file_path(path2);
 //
-//         pobject->on_event(u, pobject);
-//
-//      }
-//
+//      return strcmp(path1, path2) == 0;
 //
 //   }
+//
+//
+////   void application::on_event(::u64 u, ::object * pobject)
+////   {
+////
+////      object_ptra ptra;
+////
+////      {
+////
+////         sync_lock sl(mutex());
+////
+////         ptra = m_objectptraEventHook;
+////
+////      }
+////
+////      for(auto & pobject : ptra)
+////      {
+////
+////         pobject->on_event(u, pobject);
+////
+////      }
+////
+////
+////   }
 
 
-   ::file::path application::appconfig_folder()
-   {
+   //::file::path application::appconfig_folder()
+   //{
 
-      return ::dir::config() / m_strAppName;
+   //   return ::dir::config() / m_strAppName;
 
-   }
+   //}
 
 
    //::account::user * application::get_user(::file::path pathUrl, bool bFetch, bool bInteractive)
@@ -5188,43 +4858,43 @@ retry_license:
    //}
 
 
-   bool application::on_start_application()
-   {
+   //bool application::on_start_application()
+   //{
 
-      string strAppId = m_strAppId;
+   //   string strAppId = m_strAppId;
 
-      auto& file = System.file();
+   //   auto& file = System.file();
 
-      string strJson = file.as_string(::dir::config() / strAppId / +"http.json");
+   //   string strJson = file.as_string(::dir::config() / strAppId / +"http.json");
 
-      if (strJson.has_char())
-      {
+   //   if (strJson.has_char())
+   //   {
 
-         try
-         {
+   //      try
+   //      {
 
-            System.http().m_setHttp.parse_json(strJson);
+   //         System.http().m_setHttp.parse_json(strJson);
 
-         }
-         catch (...)
-         {
+   //      }
+   //      catch (...)
+   //      {
 
-         }
+   //      }
 
-      }
+   //   }
 
-      set_last_run_application_path(strAppId);
+   //   set_last_run_application_path(strAppId);
 
-      if (!os_on_start_application())
-      {
+   //   if (!os_on_start_application())
+   //   {
 
-         return false;
+   //      return false;
 
-      }
+   //   }
 
-      return true;
+   //   return true;
 
-   }
+   //}
 
 
    bool application::start_application(bool bSynch, ::create * pcreate)
@@ -5315,87 +4985,87 @@ retry_license:
    }
 
 
-   string application::load_string(const ::id & id)
-   {
+   //string application::load_string(const ::id & id)
+   //{
 
-      sync_lock sl(&m_mutexStr);
+   //   sync_lock sl(&m_mutexStr);
 
-      string str;
+   //   string str;
 
-      if (m_stringmap.lookup(id, str))
-      {
+   //   if (m_stringmap.lookup(id, str))
+   //   {
 
-         return str;
+   //      return str;
 
-      }
+   //   }
 
-      if (!load_string(str, id))
-      {
+   //   if (!load_string(str, id))
+   //   {
 
-         id.to_string(str);
+   //      id.to_string(str);
 
-         return str;
+   //      return str;
 
-      }
+   //   }
 
-      m_stringmap.set_at(id, str);
+   //   m_stringmap.set_at(id, str);
 
-      return str;
+   //   return str;
 
-   }
-
-
-   bool application::load_string(string & str, const ::id & id)
-   {
-
-      if (!load_cached_string(str, id, true))
-      {
-
-         return false;
-
-      }
-
-      return true;
-
-   }
+   //}
 
 
-   bool application::load_cached_string(string & str, const ::id & id, bool bLoadStringTable)
-   {
+   //bool application::load_string(string & str, const ::id & id)
+   //{
+
+   //   if (!load_cached_string(str, id, true))
+   //   {
+
+   //      return false;
+
+   //   }
+
+   //   return true;
+
+   //}
 
 
-      //__throw(todo("xml"));
+   //bool application::load_cached_string(string & str, const ::id & id, bool bLoadStringTable)
+   //{
 
-      //auto pdocument = __new(::xml::document);
 
-      //if (!pdocument->load(id) || !*pdocument)
-      //{
+   //   //__throw(todo("xml"));
 
-      //   return load_cached_string_by_id(str, id, bLoadStringTable);
+   //   //auto pdocument = __new(::xml::document);
 
-      //}
+   //   //if (!pdocument->load(id) || !*pdocument)
+   //   //{
 
-      //auto pnodeRoot = pdocument->root();
+   //   //   return load_cached_string_by_id(str, id, bLoadStringTable);
 
-      //if (pnodeRoot->get_name() == "string")
-      //{
+   //   //}
 
-      //   string strId = pnodeRoot->attribute("id");
+   //   //auto pnodeRoot = pdocument->root();
 
-      //   if (!load_cached_string_by_id(str, strId, bLoadStringTable))
-      //   {
+   //   //if (pnodeRoot->get_name() == "string")
+   //   //{
 
-      //      str = pnodeRoot->get_value();
+   //   //   string strId = pnodeRoot->attribute("id");
 
-      //   }
+   //   //   if (!load_cached_string_by_id(str, strId, bLoadStringTable))
+   //   //   {
 
-      //   return true;
+   //   //      str = pnodeRoot->get_value();
 
-      //}
+   //   //   }
 
-      return false;
+   //   //   return true;
 
-   }
+   //   //}
+
+   //   return false;
+
+   //}
 
 
    //bool application::load_cached_string_by_id(string & str, const ::id & id, bool bLoadStringTable)
@@ -5466,11 +5136,11 @@ retry_license:
    //}
 
 
-   void application::load_string_table(const string & pszApp, const string & pszId)
-   {
+   //void application::load_string_table(const string & pszApp, const string & pszId)
+   //{
 
 
-   }
+   //}
 
 
 
@@ -5581,7 +5251,7 @@ retry_license:
 
    //   //}
 
-   //   thread * pthread = ::get_thread();
+   //   thread * pthread = ::get_task();
 
    //   install_message_routing(pthread);
 
@@ -8508,10 +8178,10 @@ namespace aura
    //   thread::assert_valid();
 
 
-   //   if (::get_thread() != (thread*)this)
+   //   if (::get_task() != (thread*)this)
    //      return;     // only do subset if called from different thread
 
-   //   ASSERT(::get_thread() == this);
+   //   ASSERT(::get_task() == this);
    //   //ASSERT(afxCurrentInstanceHandle == m_hInstance);
 
    //   /*      if (m_pdocmanager != nullptr)
@@ -9156,19 +8826,19 @@ namespace aura
    //}
 
 
-   bool application::_001OnAgreeExit()
-   {
+   //bool application::_001OnAgreeExit()
+   //{
 
-      if (!save_all_modified())
-      {
+   //   if (!save_all_modified())
+   //   {
 
-         return false;
+   //      return false;
 
-      }
+   //   }
 
-      return true;
+   //   return true;
 
-   }
+   //}
 
 
    //void application::_001OnFranceExit()
@@ -9596,72 +9266,72 @@ namespace aura
    //}
 
 
-   bool application::on_thread_on_idle(::thread* pthread, LONG lCount)
+   ::estatus application::on_thread_on_idle(::thread* pthread, LONG lCount)
    {
 
-      if (lCount <= 0)
-      {
+     if (lCount <= 0)
+     {
 
-         __pointer(::user::interaction) pinteraction;
+        __pointer(::user::interaction) pinteraction;
 
-         while (get_frame(pinteraction))
-         {
-            //::user::interaction * pinteraction = (::user::interaction *) pimpl->m_spuiptra->element_at(i)->m_pvoidUserInteraction;
-            bool bOk = false;
-            try
-            {
+        while (get_frame(pinteraction))
+        {
+           //::user::interaction * pinteraction = (::user::interaction *) pimpl->m_spuiptra->element_at(i)->m_pvoidUserInteraction;
+           bool bOk = false;
+           try
+           {
 
-               bOk = pinteraction != nullptr && pinteraction->is_window_visible(::user::layout_sketch);
-            }
-            catch (...)
-            {
-            }
-            if (!bOk)
-            {
-               //   try
-               //   {
-               //      Application.remove_frame(pinteraction);
-               //   }
-               //   catch(...)
-               //   {
-               //   }
-               //   try
-               //   {
-               //      Session.remove_frame(pinteraction);
-               //   }
-               //   catch(...)
-               //   {
-               //   }
-               //   try
-               //   {
-               //      System.remove_frame(pinteraction);
-               //   }
-               //   catch(...)
-               //   {
-               //   }
-            }
-            else
-            {
-               //               sl.unlock();
-               try
-               {
-                  pinteraction->send_message(WM_IDLEUPDATECMDUI, (WPARAM)TRUE);
-               }
-               catch (...)
-               {
+              bOk = pinteraction != nullptr && pinteraction->is_window_visible(::user::layout_sketch);
+           }
+           catch (...)
+           {
+           }
+           if (!bOk)
+           {
+              //   try
+              //   {
+              //      Application.remove_frame(pinteraction);
+              //   }
+              //   catch(...)
+              //   {
+              //   }
+              //   try
+              //   {
+              //      Session.remove_frame(pinteraction);
+              //   }
+              //   catch(...)
+              //   {
+              //   }
+              //   try
+              //   {
+              //      System.remove_frame(pinteraction);
+              //   }
+              //   catch(...)
+              //   {
+              //   }
+           }
+           else
+           {
+              //               sl.unlock();
+              try
+              {
+                 pinteraction->send_message(WM_IDLEUPDATECMDUI, (WPARAM)TRUE);
+              }
+              catch (...)
+              {
 
-               }
-               //             sl.lock();
-            }
-         }
+              }
+              //             sl.lock();
+           }
+        }
 
 
-      }
-      else if (lCount >= 0)
-      {
-      }
+     }
+     else if (lCount >= 0)
+     {
+     }
 
-      return lCount < 0;  // nothing more to do if lCount >= 0
+     return lCount < 0;  // nothing more to do if lCount >= 0
 
    }
 
@@ -9669,19 +9339,19 @@ namespace aura
 
 
 
-   //void application::on_create_impact(::user::impact_data* pimpactdata)
+   ////void application::on_create_impact(::user::impact_data* pimpactdata)
+   ////{
+
+
+   ////}
+
+
+   //bool application::process_message()
    //{
 
+   //   return ::thread::process_message();
 
    //}
-
-
-   bool application::process_message()
-   {
-
-      return ::thread::process_message();
-
-   }
 
 
    //void application::SetCurrentHandles()
@@ -9902,26 +9572,26 @@ namespace aura
 
 
 
-//   int_bool application::window_set_mouse_cursor(oswindow window, HCURSOR hcursor)
-//   {
-//
-//#ifdef WINDOWS_DESKTOP
-//
-//      UNREFERENCED_PARAMETER(window);
-//
-//      if (!::SetCursor(hcursor))
-//      {
-//
-//         return FALSE;
-//
-//      }
-//
-//#endif
-//
-//      return true;
-//
-//   }
-//
+   int_bool application::window_set_mouse_cursor(oswindow window, HCURSOR hcursor)
+   {
+
+#ifdef WINDOWS_DESKTOP
+
+      UNREFERENCED_PARAMETER(window);
+
+      if (!::SetCursor(hcursor))
+      {
+
+         return FALSE;
+
+      }
+
+#endif
+
+      return true;
+
+   }
+
 
    icon_result application::load_icon(const ::var& varFile)
    {

@@ -678,7 +678,7 @@ inline i64 release(c_derived *& pca OBJ_REF_DBG_ADD_PARAMS_DEF)
 
 
 template < class COMPOSITE >
-inline i64 release(__composite(COMPOSITE) & pcomposite OBJ_REF_DBG_ADD_PARAMS)
+inline i64 release(__composite(COMPOSITE) & pcomposite OBJ_REF_DBG_ADD_PARAMS_DEF)
 {
 
    return release(pcomposite.m_p OBJ_REF_DBG_ADD_ARGS);
@@ -687,7 +687,7 @@ inline i64 release(__composite(COMPOSITE) & pcomposite OBJ_REF_DBG_ADD_PARAMS)
 
 
 template < class TYPE >
-inline i64 release(__pointer(TYPE) & pointer OBJ_REF_DBG_ADD_PARAMS)
+inline i64 release(__pointer(TYPE) & pointer OBJ_REF_DBG_ADD_PARAMS_DEF)
 {
 
    return release(pointer.m_p OBJ_REF_DBG_ADD_ARGS);
@@ -695,8 +695,22 @@ inline i64 release(__pointer(TYPE) & pointer OBJ_REF_DBG_ADD_PARAMS)
 }
 
 
+template < class TYPE >
+inline i64 __finalize(__pointer(TYPE)& pointer OBJ_REF_DBG_ADD_PARAMS_DEF)
+{
+   
+   if (!pointer) return -1;
+   
+   pointer->finalize();
+   
+   return release(pointer.m_p OBJ_REF_DBG_ADD_ARGS);
+
+}
+
+
+
 template < class REFERENCE >
-inline i64 release(__reference(REFERENCE) & preference OBJ_REF_DBG_ADD_PARAMS)
+inline i64 release(__reference(REFERENCE) & preference OBJ_REF_DBG_ADD_PARAMS_DEF)
 {
 
    return release(preference.m_p OBJ_REF_DBG_ADD_ARGS);

@@ -63,27 +63,27 @@ namespace calculator
 
 
 
-   void frame::OnTimer(UINT nIDEvent)
+   void frame::OnTimer(UINT uEvent)
    {
       static float theta;
-      if(nIDEvent == 3)
+      if(uEvent == 3)
       {
 
       }
-      else if(nIDEvent == 1000)
+      else if(uEvent == 1000)
       {
 
          display();
          
-         KillTimer(nIDEvent);
+         KillTimer(uEvent);
 
          m_bTimerOn = false;
 
       }
-      else if(nIDEvent == 8913)
+      else if(uEvent == 8913)
       {
       }
-      else if(nIDEvent == 4033)
+      else if(uEvent == 4033)
       {
          // OpenGL animation code goes here
 
@@ -104,7 +104,7 @@ namespace calculator
          theta += 2.0f;
 
       }
-      //   simple_frame_window::OnTimer(nIDEvent);
+      //   simple_frame_window::OnTimer(uEvent);
    }
 
 

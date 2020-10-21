@@ -224,7 +224,7 @@ namespace user
       else
       {
 
-         wait_cursor wait(pcreate);
+         wait_cursor wait(pcreate->get_context_object());
 
          // open an existing ::user::document
          bWasModified = pdocument->is_modified();
@@ -265,7 +265,7 @@ namespace user
 
       }
 
-//      thread* pThread = ::get_thread();
+//      thread* pThread = ::get_task();
 
       if(!pcreate->m_bHold)
       {

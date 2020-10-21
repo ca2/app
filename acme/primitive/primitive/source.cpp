@@ -19,16 +19,6 @@ source::~source()
 }
 
 
-//void source::apply(const ::__id& id)
-//{
-//
-//   auto ptask = get_update(id, this));
-//
-//   apply(paction);
-//
-//}
-
-
 ::update_pointer source::fork_update(const ::id& id)
 {
 
@@ -64,7 +54,29 @@ update * source::update(const ::id& id)
 
    }
 
+   if (is_null(&pupdate))
+   {
+
+      output_debug_string("teste");
+
+   }
+
    return pupdate;
+
+}
+
+void source::notify_update(const ::id& id)
+{
+
+   update(id)->notify();
+
+}
+
+
+void source::notify_update(const ::id& id, const ::action_context& actioncontext)
+{
+
+   update(id)->notify(actioncontext);
 
 }
 
@@ -88,7 +100,14 @@ void source::apply_update(const ::id& id, const ::action_context& actioncontext)
 void source::set_modified(const ::id& id)
 {
 
-   update(id)->set_modified();
+   auto pupdate = update(id);
+
+   if (::is_set(pupdate))
+   {
+
+      pupdate->set_modified();
+
+   }
 
 }
 
@@ -96,7 +115,14 @@ void source::set_modified(const ::id& id)
 void source::add_update(const ::id& id, ::matter * pmatter, bool bForkWhenNotify)
 {
 
-   update(id)->add(pmatter, bForkWhenNotify);
+   auto pupdate = update(id);
+
+   if (::is_set(pupdate))
+   {
+
+      pupdate->add(pmatter, bForkWhenNotify);
+
+   }
 
 }
 
@@ -119,7 +145,6 @@ action_pointer source::fork_action(const ::id& id, ::matter* pmatter)
 }
 
 
-
 action_pointer source::action(const ::id& id, ::matter* pmatter)
 {
 
@@ -127,7 +152,7 @@ action_pointer source::action(const ::id& id, ::matter* pmatter)
 
    auto paction = ::new_action(pupdate, pmatter);
 
-   return pupdate;
+   return paction;
 
 }
 

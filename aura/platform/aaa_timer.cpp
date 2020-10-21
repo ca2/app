@@ -27,7 +27,7 @@ timer::timer(::aura::timer_array * ptimera, uptr uiTimer, PFN_TIMER pfnTimer, vo
 
    m_bHandling = false;
 
-   m_nIDEvent = uiTimer;
+   m_uEvent = uiTimer;
 
    m_pfnTimer = pfnTimer;
 
@@ -53,7 +53,7 @@ bool timer::start(int millis, bool bPeriodic)
 
    sync_lock sl(mutex());
 
-   if (::is_set(m_pcallback) && !m_pcallback->timer_is_ok())
+   if (::is_set(m_pcallback) && !m_pcallback->e_timer_is_ok())
    {
 
       return false;
@@ -419,12 +419,12 @@ void timer::impl_init()
 
    // m_sev.sigev_notify_function = aura_timer_handler;
 
-   //m_bInit = !timer_create(CLOCK_REALTIME, &m_sev, &m_timerid);
+   //m_bInit = !e_timer_create(CLOCK_REALTIME, &m_sev, &m_timerid);
 
-   //if (timer_create(CLOCK_REALTIME, &m_sev, &m_timerid) == -1)
+   //if (e_timer_create(CLOCK_REALTIME, &m_sev, &m_timerid) == -1)
    //{
 
-   //   __throw(::exception::exception("timer_create failed"));
+   //   __throw(::exception::exception("e_timer_create failed"));
 
    //}
 
@@ -457,7 +457,7 @@ bool timer::impl_start()
    //
    //      its.it_interval = its.it_value;
    //
-   //      if (timer_settime(m_timerid, 0, &its, nullptr) == -1)
+   //      if (e_timer_settime(m_timerid, 0, &its, nullptr) == -1)
    //      {
    //
    //         return false;
@@ -471,7 +471,7 @@ bool timer::impl_start()
    //      its.it_interval.tv_nsec = 0;
    //      its.it_interval.tv_sec = 0;
    //
-   //      if (timer_settime(m_timerid, 0, &its, nullptr) == -1)
+   //      if (e_timer_settime(m_timerid, 0, &its, nullptr) == -1)
    //      {
    //
    //         return false;
@@ -494,7 +494,7 @@ void timer::impl_term()
 
       m_bInit = false;
       //
-      //      timer_delete(m_timerid);
+      //      e_timer_delete(m_timerid);
 
             //m_timerid = nullptr;
 
@@ -518,7 +518,7 @@ void timer::impl_stop()
    //      its.it_interval.tv_nsec = 0;
    //      its.it_interval.tv_sec = 0;
    //
-   //      if(timer_settime(m_timerid, 0, &its, nullptr) == -1)
+   //      if(e_timer_settime(m_timerid, 0, &its, nullptr) == -1)
    //      {
    //
    //         printf("Failed to stop the timer.");
@@ -549,7 +549,7 @@ bool timer::impl_restart()
    //
    //   impl_stop();
    //
-   //   if (timer_settime(m_timerid, 0, &m_its, nullptr) == -1)
+   //   if (e_timer_settime(m_timerid, 0, &m_its, nullptr) == -1)
    //   {
    //
    //      return false;

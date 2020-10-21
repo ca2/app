@@ -34,6 +34,18 @@
 //#include "acme/platform/update.h"
 
 
+//CLASS_DECL_ACME ::estatus __fork(
+//   matter* pmatter,
+//   ::e_priority epriority = priority_normal,
+//   u32 nStackSize = 0,
+//   u32 dwCreateFlags = 0,
+//   ITHREAD* pithread = nullptr,
+//   HTHREAD* phthread = nullptr);
+
+
+//CLASS_DECL_ACME void launch_action(action* paction);
+
+
 #include "acme/primitive/primitive/action.h"
 
 

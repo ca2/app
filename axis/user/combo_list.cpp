@@ -415,7 +415,7 @@ namespace user
    void combo_list::_001OnTimer(::timer* ptimer)
    {
    
-      if (ptimer->m_etimer == timer_kill_focus)
+      if (ptimer->m_etimer == e_timer_kill_focus)
       {
 
          if (m_bPendingKillFocusHiding)
@@ -432,7 +432,7 @@ namespace user
 
          }
 
-         KillTimer(timer_kill_focus);
+         KillTimer(e_timer_kill_focus);
 
       }
 
@@ -534,7 +534,7 @@ namespace user
 
             m_bPendingKillFocusHiding = true;
 
-            set_timer(timer_kill_focus, 300_ms);
+            set_timer(e_timer_kill_focus, 300_ms);
 
             //SCAST_PTR(::message::kill_focus, pkillfocus, pmessage);
 
@@ -1106,9 +1106,9 @@ namespace user
 
             sync_lock sl(Session.mutex());
 
-            auto & preference = Session.m_uiptraToolWindow.add_new();
+            auto pinteraction = __create_new < ::user::interaction >();
 
-            Session.__refer(preference, this);
+            User.m_uiptraToolWindow.add(pinteraction);
 
          }
 
@@ -1122,14 +1122,12 @@ namespace user
 
             sync_lock sl(Session.mutex());
 
-            ::index iFind = Session.m_uiptraToolWindow.pred_find_first([this](auto& p) {return p.get() == this; });
+            ::index iFind = User.m_uiptraToolWindow.pred_find_first([this](auto& p) {return p.get() == this; });
 
             if (__found(iFind))
             {
 
-               Session.__release(Session.m_uiptraToolWindow[iFind]);
-
-               Session.m_uiptraToolWindow.remove_at(iFind);
+               User.m_uiptraToolWindow.remove_at(iFind);
 
             }
 

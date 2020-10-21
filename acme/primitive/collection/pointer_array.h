@@ -3,11 +3,11 @@
 
 template < class T >
 class pointer_array :
-   public pointer_array_process < comparable_array < ___pointer < T > >, T >
+   public pointer_array_process < comparable_array < ___pointer < T >, const T * >, T >
 {
 public:
 
-   using BASE_ARRAY = pointer_array_process < comparable_array < ___pointer < T > >, T >;
+   using BASE_ARRAY = pointer_array_process < comparable_array < ___pointer < T >, const T * >, T >;
 
    using ARRAY_BASE = typename BASE_ARRAY::ARRAY_BASE;
 
@@ -15,12 +15,12 @@ public:
    //using ref_iterator = typename ARRAY_BASE::ref_iterator;
    ///using ref_iterator_range = typename ARRAY_BASE::ref_iterator_range;
 
-   using comparable_array < ___pointer < T > >::operator &=;
-   using comparable_array < ___pointer < T > >::operator -=;
-   using comparable_array < ___pointer < T > >::operator |=;
-   using comparable_array < ___pointer < T > >::operator -;
-   using comparable_array < ___pointer < T > >::operator ==;
-   using comparable_array < ___pointer < T > >::operator !=;
+   using comparable_array < ___pointer < T >, const T * >::operator &=;
+   using comparable_array < ___pointer < T >, const T * >::operator -=;
+   using comparable_array < ___pointer < T >, const T * >::operator |=;
+   using comparable_array < ___pointer < T >, const T * >::operator -;
+   using comparable_array < ___pointer < T >, const T * >::operator ==;
+   using comparable_array < ___pointer < T >, const T * >::operator !=;
 
    pointer_array()
    {
@@ -50,10 +50,10 @@ public:
    pointer_array(const std::initializer_list < T * > & list)
    {
 
-      for(auto & point : list)
+      for(auto & p : list)
       {
 
-         add(point);
+         add(p);
 
       }
 
@@ -64,7 +64,7 @@ public:
    __pointer(T) & add_new(OBJECT * pobjectContext)
    {
 
-      __pointer(T) & p = comparable_array < ___pointer < T > >::add_new();
+      __pointer(T) & p = comparable_array < ___pointer < T >, const T* >::add_new();
 
       p.create();
 
@@ -83,7 +83,7 @@ public:
    ::count set_size(::count nNewSize, ::count nGrowBy = -1)
    {
 
-      return comparable_array < ___pointer < T > > :: set_size(nNewSize);
+      return comparable_array < ___pointer < T >, const T* > :: set_size(nNewSize);
 
    }
 
@@ -93,7 +93,7 @@ public:
 
       ::index i = this->get_size();
 
-      comparable_array < ___pointer < T > > :: set_size(nNewSize);
+      comparable_array < ___pointer < T >, const T* > :: set_size(nNewSize);
 
       ::count c = this->get_size();
 
@@ -142,6 +142,7 @@ public:
 
    }
 
+
    template < class DERIVED >
    __pointer(DERIVED) typed_ptr_at(::index iIndex)
    {
@@ -151,10 +152,24 @@ public:
    }
 
 
-   ::index add(const comparable_array < ___pointer < T > > & a)
+   inline ::index add_item(T * p OBJ_REF_DBG_ADD_PARAMS)
    {
 
-      return comparable_array < ___pointer < T > >::add(a);
+      ::index nIndex = (::index_cast) __count(this->m_nSize);
+
+      this->allocate(nIndex + 1);
+
+      this->last().reset(p OBJ_REF_DBG_ADD_THIS);
+
+      return nIndex;
+
+   }
+
+
+   ::index add(const comparable_array < ___pointer < T >, const T* > & a)
+   {
+
+      return comparable_array < ___pointer < T >, const T* >::add(a);
 
    }
 
@@ -162,7 +177,7 @@ public:
    ::index add(T * p)
    {
 
-      return comparable_array < ___pointer < T > >::add(p);
+      return this->add_item(p);
 
    }
 
@@ -170,10 +185,14 @@ public:
    bool add_unique(T * p)
    {
 
-      if(contains(p))
+      if (contains(p))
+      {
+
          return false;
 
-      this->add(p);
+      }
+
+      this->add_item(p);
 
       return true;
 
@@ -235,15 +254,15 @@ public:
 
    }
 
-   bool contains(const T * point, ::index iStart = 0, ::count nCount = -1) const
+   bool contains(const T * p, ::index iStart = 0, ::count nCount = -1) const
    {
 
-      return find_first(point, iStart, nCount) >= 0;
+      return find_first(p, iStart, nCount) >= 0;
 
    }
 
 
-   ::index find_first(const T * point, ::index iStart = 0, ::count inCountLastOut = -1) const
+   ::index find_first(const T * p, ::index iStart = 0, ::count inCountLastOut = -1) const
    {
 
       this->prepare_first_in_count_last_out(iStart, inCountLastOut);
@@ -251,7 +270,7 @@ public:
       for(::index i = iStart; i <= inCountLastOut; i++)
       {
 
-         if (this->operator[]((iptr_cast) i).m_p == point)
+         if (this->operator[]((iptr_cast) i).m_p == p)
          {
 
             return i;
@@ -273,7 +292,7 @@ public:
    }
 
 
-   ::index comp_find_first(const T * point, ::index (* pfnCompare)(const T *, const T *), ::index iStart = 0, ::count inCountLastOut = -1) const
+   ::index comp_find_first(const T * p, ::index (* pfnCompare)(const T *, const T *), ::index iStart = 0, ::count inCountLastOut = -1) const
    {
 
       this->prepare_first_in_count_last_out(iStart, inCountLastOut);
@@ -281,7 +300,7 @@ public:
       for(::index i = iStart; i <= inCountLastOut; i++)
       {
 
-         if (pfnCompare(this->operator[](i).m_p, point) == 0)
+         if (pfnCompare(this->operator[](i).m_p, p) == 0)
          {
 
             return i;
@@ -296,23 +315,32 @@ public:
 
 
    template < class DERIVED >
-   pointer_array & operator -= (DERIVED * point)
+   pointer_array & operator -= (DERIVED * p)
    {
 
-      this->remove(dynamic_cast < T * > (point));
+      this->remove(dynamic_cast < T * > (p));
 
       return *this;
 
    }
 
-   ::count remove(T * point)
+   
+   ::count remove(T* p OBJ_REF_DBG_ADD_PARAMS)
+   {
+
+      return this->remove_item(p OBJ_REF_DBG_ADD_ARGS);
+
+   }
+
+
+   ::count remove_item(T * p OBJ_REF_DBG_ADD_PARAMS)
    {
 
       ::count ca = 0;
 
       ::index iFind = 0;
 
-      while((iFind = this->find_first(point, iFind)) >= 0)
+      while((iFind = this->find_first(p, iFind)) >= 0)
       {
 
          ca++;
@@ -436,7 +464,7 @@ public:
    const ___pointer < T > & sp_at(::index nIndex) const
    {
 
-      return this->comparable_array < ___pointer < T > >::element_at(nIndex);
+      return this->comparable_array < ___pointer < T >, const T* >::element_at(nIndex);
 
    }
 
@@ -444,7 +472,7 @@ public:
    ___pointer < T > & sp_at(::index nIndex)
    {
 
-      return this->comparable_array < ___pointer < T > >::element_at(nIndex);
+      return this->comparable_array < ___pointer < T >, const T* >::element_at(nIndex);
 
    }
 
@@ -483,7 +511,7 @@ public:
    T * get_first_pointer(::index n = 0) const
    {
 
-      return this->is_empty() ? nullptr : this->comparable_array < ___pointer < T > >::first(n);
+      return this->is_empty() ? nullptr : this->comparable_array < ___pointer < T >, const T* >::first(n);
 
    }
 
@@ -491,7 +519,7 @@ public:
    ___pointer < T > & first_pointer(::index n = 0)
    {
 
-      return this->comparable_array < ___pointer < T > >::first(n);
+      return this->comparable_array < ___pointer < T >, const T * >::first(n);
 
    }
 
@@ -522,7 +550,7 @@ public:
    T * get_last_pointer(::index n = -1) const
    {
 
-      return this->is_empty() ? nullptr : this->comparable_array < ___pointer < T > >::last(n);
+      return this->is_empty() ? nullptr : this->comparable_array < ___pointer < T >, const T * >::last(n);
 
    }
 
@@ -530,7 +558,7 @@ public:
    ___pointer < T > & last_pointer(::index n = -1)
    {
 
-      return this->comparable_array < ___pointer < T > >::last(n);
+      return this->comparable_array < ___pointer < T >, const T * >::last(n);
 
    }
 
@@ -691,6 +719,21 @@ public:
 
    }
 
+
+   ::count remove_all(OBJ_REF_DBG_PARAMS)
+   {
+
+      for (auto& p : *this)
+      {
+
+         p.release(OBJ_REF_DBG_ARGS);
+
+      }
+
+      return comparable_array < ___pointer < T >, const T* >::remove_all();
+
+   }
+
    template < class ARRAY >
    pointer_array & copy(const ARRAY & a)
    {
@@ -754,7 +797,7 @@ public:
    inline pointer_array & operator = (pointer_array && a)
    {
 
-      comparable_array < ___pointer < T > >::operator = (::move(a));
+      comparable_array < ___pointer < T >, const T* >::operator = (::move(a));
 
       return *this;
 
@@ -1069,21 +1112,21 @@ public:
 //
 //   }
 //
-//   pointer < T > & add(T * point)
+//   pointer < T > & add(T * p)
 //   {
 //
-//      return comparable_array < pointer < T > >::add_new() = point;
+//      return comparable_array < pointer < T > >::add_new() = p;
 //
 //   }
 //
 //
-//   bool add_unique(T * point)
+//   bool add_unique(T * p)
 //   {
 //
-//      if(contains(point))
+//      if(contains(p))
 //         return false;
 //
-//      this->add(point);
+//      this->add(p);
 //
 //      return true;
 //
@@ -1106,14 +1149,14 @@ public:
 //
 //   }
 //
-//   bool contains(const T * point,::index iStart = 0,::count nCount = -1) const
+//   bool contains(const T * p,::index iStart = 0,::count nCount = -1) const
 //   {
 //
-//      return find_first(point,iStart,nCount) >= 0;
+//      return find_first(p,iStart,nCount) >= 0;
 //
 //   }
 //
-//   ::index find_first(const T * point,::index iStart = 0,::count nCount = -1) const
+//   ::index find_first(const T * p,::index iStart = 0,::count nCount = -1) const
 //   {
 //
 //      ::index iEnd;
@@ -1126,7 +1169,7 @@ public:
 //      for(::index i = iStart; i <= iEnd; i++)
 //      {
 //
-//         if(this->operator[](i).m_p == point)
+//         if(this->operator[](i).m_p == p)
 //            return i;
 //
 //      }
@@ -1146,7 +1189,7 @@ public:
 //   }
 //
 //
-//   ::index find_first(const T * point,::index(* pfnCompare)(const T *,const T *),::index iStart = 0,::count nCount = -1) const
+//   ::index find_first(const T * p,::index(* pfnCompare)(const T *,const T *),::index iStart = 0,::count nCount = -1) const
 //
 //   {
 //
@@ -1160,7 +1203,7 @@ public:
 //      for(::index i = iStart; i <= iEnd; i++)
 //      {
 //
-//         if(pfnCompare(this->operator[](i).m_p,point) == 0)
+//         if(pfnCompare(this->operator[](i).m_p,p) == 0)
 //
 //            return i;
 //
@@ -1171,23 +1214,23 @@ public:
 //   }
 //
 //   template < class DERIVED >
-//   smart_pointer_array2 & operator -= (DERIVED * point)
+//   smart_pointer_array2 & operator -= (DERIVED * p)
 //   {
 //
-//      this->remove(dynamic_cast < T * > (point));
+//      this->remove(dynamic_cast < T * > (p));
 //
 //      return *this;
 //
 //   }
 //
-//   ::count remove(T * point)
+//   ::count remove(T * p)
 //   {
 //
 //      ::count ca = 0;
 //
 //      ::index iFind = 0;
 //
-//      while((iFind = this->find_first(point,iFind)) >= 0)
+//      while((iFind = this->find_first(p,iFind)) >= 0)
 //      {
 //
 //         ca++;

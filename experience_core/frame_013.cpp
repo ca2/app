@@ -23,6 +23,14 @@
             }
 
 
+            void frame_013::finalize()
+            {
+
+               frame_008::finalize();
+
+            }
+
+
 
 
          } // namespace aura

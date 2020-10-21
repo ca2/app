@@ -80,94 +80,94 @@ namespace aura
 
    //}
 
-   string application::get_version()
-   {
+   //string application::get_version()
+   //{
 
-      unichar pszModuleFilePath[MAX_PATH + 1];
+   //   unichar pszModuleFilePath[MAX_PATH + 1];
 
-      GetModuleFileNameW(nullptr, pszModuleFilePath, MAX_PATH + 1);
-
-
-      DWORD dw;
-
-      DWORD dwResSize = GetFileVersionInfoSizeW(
-                        pszModuleFilePath,
-
-                        &dw);
+   //   GetModuleFileNameW(nullptr, pszModuleFilePath, MAX_PATH + 1);
 
 
-      if (dwResSize > 0)
-      {
-       
-         memory memory;
-         
-         memory.set_size(dwResSize);
+   //   DWORD dw;
 
-         if (GetFileVersionInfoW(
-               pszModuleFilePath,
+   //   DWORD dwResSize = GetFileVersionInfoSizeW(
+   //                     pszModuleFilePath,
 
-               0,
-               dwResSize,
-            memory.get_data()))
-
-         {
-            UINT cbTranslate;
-            struct LANGANDCODEPAGE
-            {
-               WORD wLanguage;
-               WORD wCodePage;
-            } *pTranslate;
+   //                     &dw);
 
 
-            // read the list of languages and code pages.
+   //   if (dwResSize > 0)
+   //   {
+   //    
+   //      memory memory;
+   //      
+   //      memory.set_size(dwResSize);
 
-            VerQueryValue(memory.get_data(),
-                          TEXT("\\VarFileInfo\\Translation"),
-                          (LPVOID*)&pTranslate,
-                          &cbTranslate);
+   //      if (GetFileVersionInfoW(
+   //            pszModuleFilePath,
 
-            string strKey;
+   //            0,
+   //            dwResSize,
+   //         memory.get_data()))
 
-            for( UINT u = 0; u < (cbTranslate/sizeof(struct LANGANDCODEPAGE)); u++ )
-            {
-
-               LPTSTR psz;
-
-               UINT uiSize;
-
-               //strKey.Format(
-               //"\\StringFileInfo\\%04x%04x\\FileDescription",
-               //pTranslate[u].wLanguage,
-               //pTranslate[u].wCodePage);
-
-               strKey.Format(
-               "\\StringFileInfo\\%04x%04x\\FileVersion",
-               pTranslate[u].wLanguage,
-               pTranslate[u].wCodePage);
+   //      {
+   //         UINT cbTranslate;
+   //         struct LANGANDCODEPAGE
+   //         {
+   //            WORD wLanguage;
+   //            WORD wCodePage;
+   //         } *pTranslate;
 
 
-               // Retrieve file description for language and code page "i".
-               if (VerQueryValue(memory.get_data(),
-                  (LPTSTR)(const char*)strKey,
-                  (LPVOID*)&psz,
-                  &uiSize))
-               {
+   //         // read the list of languages and code pages.
 
-                  string strVersion(psz, uiSize);
+   //         VerQueryValue(memory.get_data(),
+   //                       TEXT("\\VarFileInfo\\Translation"),
+   //                       (LPVOID*)&pTranslate,
+   //                       &cbTranslate);
 
-                  return strVersion;
+   //         string strKey;
 
-               }
+   //         for( UINT u = 0; u < (cbTranslate/sizeof(struct LANGANDCODEPAGE)); u++ )
+   //         {
 
-            }
+   //            LPTSTR psz;
 
-         }
+   //            UINT uiSize;
 
-      }
+   //            //strKey.Format(
+   //            //"\\StringFileInfo\\%04x%04x\\FileDescription",
+   //            //pTranslate[u].wLanguage,
+   //            //pTranslate[u].wCodePage);
 
-      return "";
+   //            strKey.Format(
+   //            "\\StringFileInfo\\%04x%04x\\FileVersion",
+   //            pTranslate[u].wLanguage,
+   //            pTranslate[u].wCodePage);
 
-   }
+
+   //            // Retrieve file description for language and code page "i".
+   //            if (VerQueryValue(memory.get_data(),
+   //               (LPTSTR)(const char*)strKey,
+   //               (LPVOID*)&psz,
+   //               &uiSize))
+   //            {
+
+   //               string strVersion(psz, uiSize);
+
+   //               return strVersion;
+
+   //            }
+
+   //         }
+
+   //      }
+
+   //   }
+
+   //   return "";
+
+   //}
 
 
    void application::ShowWaitCursor(bool bShow)
@@ -193,59 +193,59 @@ namespace aura
    }
 
 
-   string application::veriwell_multimedia_music_midi_get_default_library_name()
-   {
-      return "music_midi_mmsystem";
-   }
+   //string application::veriwell_multimedia_music_midi_get_default_library_name()
+   //{
+   //   return "music_midi_mmsystem";
+   //}
 
-   string application::multimedia_audio_mixer_get_default_library_name()
-   {
-      return "audio_mixer_mmsystem";
-   }
+   //string application::multimedia_audio_mixer_get_default_library_name()
+   //{
+   //   return "audio_mixer_mmsystem";
+   //}
 
-   string application::multimedia_audio_get_default_library_name()
-   {
+   //string application::multimedia_audio_get_default_library_name()
+   //{
 
-      string str;
+   //   string str;
 
-      if (file_exists(::dir::system() / "config\\system\\audio.txt"))
-      {
+   //   if (file_exists(::dir::system() / "config\\system\\audio.txt"))
+   //   {
 
-         str = file_as_string(::dir::system() / "config\\system\\audio.txt");
+   //      str = file_as_string(::dir::system() / "config\\system\\audio.txt");
 
-      }
-      else
-      {
+   //   }
+   //   else
+   //   {
 
-         ::file::path strPath;
+   //      ::file::path strPath;
 
-         strPath = ::dir::appdata() / "audio.txt";
+   //      strPath = ::dir::appdata() / "audio.txt";
 
-         str = file_as_string(strPath);
+   //      str = file_as_string(strPath);
 
-      }
+   //   }
 
-      if (str.has_char())
-         return "audio_" + str;
-      else
-         return "audio_mmsystem";
+   //   if (str.has_char())
+   //      return "audio_" + str;
+   //   else
+   //      return "audio_mmsystem";
 
-   }
+   //}
 
 
-   int_bool application::window_set_mouse_cursor(oswindow oswindow, HCURSOR hcursor)
-   {
+   //int_bool application::window_set_mouse_cursor(oswindow oswindow, HCURSOR hcursor)
+   //{
 
-      if (!::SetCursor(hcursor))
-      {
+   //   if (!::SetCursor(hcursor))
+   //   {
 
-         return FALSE;
+   //      return FALSE;
 
-      }
+   //   }
 
-      return TRUE;
+   //   return TRUE;
 
-   }
+   //}
 
    HCURSOR application::load_default_cursor(e_cursor ecursor)
    {

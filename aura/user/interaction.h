@@ -63,6 +63,8 @@ namespace user
 
       ::user::interaction_layout                m_layout;
 
+      //bool                                      m_bOnSetFinish;
+
       //class draw_select
       //{
       //public:
@@ -200,7 +202,7 @@ namespace user
       __pointer(object)                         m_pmenuitem;
       __pointer_array(interaction)              m_menua;
       bool                                      m_bWfiUpDownTarget;
-      __pointer_array(::thread)                 m_threada;
+      
 
 
 
@@ -222,6 +224,9 @@ namespace user
 
       const class ::user::interaction_layout& layout() const { return m_layout; }
       class ::user::interaction_layout& layout() { return m_layout; }
+
+
+      virtual void thread_on_term(::thread* pthread) override;
 
 
       inline void auto_prodevian_on_show() { m_ewindowflag |= window_flag_auto_prodevian_on_show; }
@@ -786,10 +791,10 @@ namespace user
       //virtual void SetWindowDisplayChanged() override;
 
 
-      virtual bool call_and_set_timer(uptr nIDEvent, ::duration durationElapse, PFN_TIMER pfnTimer = nullptr);
-      virtual bool set_timer(uptr nIDEvent, ::duration durationElapse, PFN_TIMER pfnTimer = nullptr);
-      virtual bool SetTimer(uptr nIDEvent, UINT nElapse, PFN_TIMER pfnTimer = nullptr) override;
-      virtual bool KillTimer(uptr nIDEvent) override;
+      virtual bool call_and_set_timer(uptr uEvent, ::duration durationElapse, PFN_TIMER pfnTimer = nullptr);
+      virtual bool set_timer(uptr uEvent, ::duration durationElapse, PFN_TIMER pfnTimer = nullptr);
+      virtual bool SetTimer(uptr uEvent, UINT nElapse, PFN_TIMER pfnTimer = nullptr) override;
+      virtual bool KillTimer(uptr uEvent) override;
 
       virtual bool is_this_enabled() const override;
       virtual bool enable_window(bool bEnable = TRUE) override;
@@ -1581,8 +1586,8 @@ namespace user
 } // namespace user
 
 
-// timer_ui works correctly when timer is originated from SetTimer call
-//inline ::user::interaction * timer_ui(::timer * ptimer)
+// e_timer_ui works correctly when timer is originated from SetTimer call
+//inline ::user::interaction * e_timer_ui(::timer * ptimer)
 //{
 //
 //   return (::user::interaction *) ptimer->m_pvoidData;

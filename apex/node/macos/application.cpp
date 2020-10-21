@@ -150,7 +150,7 @@ namespace apex
 //   ::thread * application::GetThread()
 //   {
 //
-//      return ::get_thread();
+//      return ::get_task();
 //
 //   }
 //

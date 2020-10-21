@@ -44,7 +44,7 @@ CLASS_DECL_CORE memory_file_pointer create_memory_file(::Windows::Storage::Strea
 
    auto pfile = create_memory_file();
 
-   auto pthread = ::get_thread();
+   auto pthread = ::get_task();
 
    while (pthread && pthread->thread_get_run())
    {

@@ -96,8 +96,6 @@ namespace apex
 {
 
 
-
-
    system::system()
    {
 
@@ -111,7 +109,7 @@ namespace apex
       m_bSystemSynchronizedCursor = true;
       m_bSystemSynchronizedScreen = true;
 
-      set_context_system(this);
+      set_context_system(this OBJ_REF_DBG_ADD_THIS_FUNCTION_LINE);
 
       if (g_papexsystem == nullptr)
       {
@@ -601,7 +599,7 @@ namespace apex
 
       sync_lock sl(&::get_context_system()->m_mutexLibrary);
 
-      __pointer(::apex::library)& plibrary = ::get_context_system()->m_mapLibrary[pszComponent];
+      __pointer(::apex::library) plibrary = ::get_context_system()->m_mapLibrary[pszComponent];
 
       if (plibrary && plibrary->is_opened())
       {
@@ -885,7 +883,7 @@ namespace apex
       strLibrary.ends_eat_ci(".dylib");
       strLibrary.begins_eat_ci("lib");
 
-      __pointer(::apex::library) & plibrary = ::get_context_system()->m_mapLibrary[strLibrary];
+      __pointer(::apex::library) plibrary = ::get_context_system()->m_mapLibrary[strLibrary].get();
 
       bool bLibraryOk = true;
 
@@ -1170,7 +1168,9 @@ namespace apex
 
       }
 
-      m_papplicationStartup = get_new_application(get_context_session(), m_strAppId);
+      auto papplicationNew = get_new_application(get_context_session(), m_strAppId);
+
+      __bind(this, m_papplicationStartup, papplicationNew OBJ_REF_DBG_ADD_THIS_FUNCTION_LINE);
 
       if (!m_papplicationStartup)
       {
@@ -1260,25 +1260,9 @@ namespace apex
 
       ::apex::idpool::init();
 
-      //auto pcommand = get_command();
-
-      //auto pcreate = pcommand->m_pcreate;
-
-      //TRACE("m_pcreate WARNING");
-      //TRACE("m_pcreate WARNING");
-      //TRACE("m_pcreate WARNING");
-      //TRACE("m_pcreate WARNING");
-      //TRACE("m_pcreate WARNING");
-      //TRACE("m_pcreate WARNING");
-      //TRACE("m_pcreate WARNING");
-      //TRACE("m_pcreate COMMENT BEGIN");
       auto pcreate = m_pcreate;
 
       pcreate->m_strAppId = strAppId;
-      //TRACE("m_pcreate COMMENT END");
-
-      //create_factory < ::database::field >();
-
 
       if (is_true("show_application_information"))
       {
@@ -1878,7 +1862,7 @@ namespace apex
 
       get_context_application()->get_property_set().merge(get_property_set());
 
-      m_papplicationStartup.release();
+      __unbind(this, m_papplicationStartup OBJ_REF_DBG_ADD_THIS);
 
       return estatus;
 
@@ -1896,6 +1880,29 @@ namespace apex
          return estatus;
 
       }
+
+#if OBJ_REF_DBG
+
+      release(OBJ_REF_DBG_P_NOTE(this, nullptr));
+
+      try
+      {
+
+         if (m_countReference > 1)
+         {
+
+            __check_pending_releases(this);
+
+         }
+
+      }
+      catch (...)
+      {
+
+      }
+
+#endif
+
 
       return estatus;
 
@@ -4566,7 +4573,7 @@ namespace apex
    }
 
 
-   ::thread* system::get_thread(ITHREAD ithread)
+   ::thread* system::get_task(ITHREAD ithread)
    {
 
       sync_lock sl(&m_mutexThread);
@@ -4628,7 +4635,7 @@ namespace apex
    ::thread_group * system::thread_group(::e_priority epriority)
    {
 
-      if (m_bAvoidProcFork)
+      if (m_bitAvoidProcFork)
       {
 
          return nullptr;
@@ -5138,158 +5145,7 @@ namespace apex
    //   return m_bInitApplicationResult;
    //}
 
-//
-//   ::estatus system::process_init()
-//   {
-//
-//      //if (m_bProcessInitialize)
-//      //{
-//
-//      //   return m_bProcessInitializeResult;
-//
-//      //}
-//
-//      INFO("start");
-//
-//      //m_bProcessInitializeResult    = false;
-//
-//      //m_bProcessInitialize          = true;
-//
-//#ifdef WINDOWS_DESKTOP
-//
-//      if (m_uiWindowsTaskbarCreatedMessage == 0)
-//      {
-//
-//         m_uiWindowsTaskbarCreatedMessage = RegisterWindowMessageW(L"TaskbarCreated");
-//
-//      }
-//
-//#endif
-//
-//      //if (!::apex::application::process_init())
-//      //{
-//
-//      //   ERR(".1");
-//
-//      //   return false;
-//
-//      //}
-//
-//      if (!::apex::system::process_init())
-//      {
-//
-//         ERR(".2");
-//
-//         return false;
-//
-//      }
-//
-//      ::apex::profiler::initialize();
-//
-//
-//#ifdef LINUX
-//
-//      ::user::g_defer_init();
-//
-//#endif // LINUX
-//
-//
-//      //m_phtml = create_html();
-//
-//      //m_phtml->add_ref(OBJ_REF_DBG_ARGS);
-//
-//      //if(m_phtml == nullptr)
-//      //   return false;
-//
-//      //m_phtml->construct(this);
-//
-//      //m_bProcessInitializeResult = true;
-//
-//      INFO("success");
-//
-//      return true;
-//
-//   }
 
-
-   //::estatus system::init()
-   //{
-   //   //
-   //   //#ifndef APPLEOS
-   //   //
-   //   //      if(m_pparserfactory == nullptr)
-   //   //      {
-   //   //
-   //   //      }
-   //   //
-   //   //#endif
-
-   //         //if (!::apex::application::init())
-   //         //{
-
-   //         //   return false;
-
-   //         //}
-
-   //   return true;
-
-   //}
-
-
-//   ::estatus system::init1()
-//   {
-//
-//      m_pfilehandler = __new(::filehandler::handler(this));
-//
-//      //if (!::apex::application::init1())
-//      //{
-//
-//      //   return false;
-//
-//      //}
-//
-//      if (!::apex::system::init1())
-//      {
-//
-//         return false;
-//
-//      }
-//
-//      //if(Session.account()->create_system_user("system") == nullptr)
-//      // return false;
-//
-//#if !defined(CUBE) && !defined(ANDROID)
-//
-//#if !defined(_DEBUG) || defined(WINDOWS)
-//      try
-//      {
-//#endif
-//         find_applications_from_cache();
-//#if !defined(_DEBUG) || defined(WINDOWS)
-//      }
-//      catch (...)
-//      {
-//      }
-//#endif
-//
-//#endif
-//
-//      //if(!m_phtml->initialize())
-//      //   return false;
-//
-//      return true;
-//
-//   }
-//
-
-
-
-   //::filehandler::handler& system::filehandler()
-   //{
-   //    __throw(todo("filehandler"));
-   //    return *m_pfilehandler;
-
-   //}
 
 
    void system::on_start_find_applications_from_cache()
@@ -5732,57 +5588,6 @@ namespace apex
    }
 
 
-   //::type system::get_pane_tab_view_type_info()
-   //{
-
-   //   return __type(userex::pane_tab_view);
-
-   //}
-
-
-
-
-//
-//   ::estatus system::initialize_system(::object* pobjectContext, ::app_core* pappcore)
-//   {
-//
-//      auto estatus = ::apex::system::initialize_system(pobjectContext, pappcore);
-//
-//      if (!estatus)
-//      {
-//
-//         return estatus;
-//
-//      }
-//
-//      //estatus = ::apex::application::initialize(pobjectContext);
-//
-//      //if (!estatus)
-//      //{
-//
-//      //   return estatus;
-//
-//      //}
-//
-//      //m_strAppId = "base_system";
-//      //m_strAppName = "base_system";
-//      //m_strBaseSupportId = "base_system";
-//      //m_strInstallToken = "base_system";
-//
-//      create_factory < ::draw2d::icon >();
-//
-//      g_pszCooperativeLevel = "apex";
-//
-//#if defined(_UWP) || defined(APPLE_IOS) || defined(ANDROID)
-//
-//      m_possystemwindow = new os_system_window();
-//
-//#endif
-//
-//      return estatus;
-//
-//   }
-
    void system::on_apply(::action * paction)
    {
 
@@ -5875,7 +5680,6 @@ namespace apex
 
    void system::finalize()
    {
-
 
       ::app_core::finalize();
 

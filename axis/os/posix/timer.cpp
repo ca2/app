@@ -25,12 +25,12 @@
 //
 //   // m_sev.sigev_notify_function = aura_timer_handler;
 //
-//   //m_bInit = !timer_create(CLOCK_REALTIME, &m_sev, &m_timerid);
+//   //m_bInit = !e_timer_create(CLOCK_REALTIME, &m_sev, &m_timerid);
 //
-//   //if (timer_create(CLOCK_REALTIME, &m_sev, &m_timerid) == -1)
+//   //if (e_timer_create(CLOCK_REALTIME, &m_sev, &m_timerid) == -1)
 //   //{
 //
-//   //   __throw(::exception::exception("timer_create failed"));
+//   //   __throw(::exception::exception("e_timer_create failed"));
 //
 //   //}
 //
@@ -63,7 +63,7 @@
 ////
 ////      its.it_interval = its.it_value;
 ////
-////      if (timer_settime(m_timerid, 0, &its, nullptr) == -1)
+////      if (e_timer_settime(m_timerid, 0, &its, nullptr) == -1)
 ////      {
 ////
 ////         return false;
@@ -77,7 +77,7 @@
 ////      its.it_interval.tv_nsec = 0;
 ////      its.it_interval.tv_sec = 0;
 ////
-////      if (timer_settime(m_timerid, 0, &its, nullptr) == -1)
+////      if (e_timer_settime(m_timerid, 0, &its, nullptr) == -1)
 ////      {
 ////
 ////         return false;
@@ -100,7 +100,7 @@
 //
 //      m_bInit = false;
 ////
-////      timer_delete(m_timerid);
+////      e_timer_delete(m_timerid);
 //
 //      //m_timerid = nullptr;
 //
@@ -124,7 +124,7 @@
 ////      its.it_interval.tv_nsec = 0;
 ////      its.it_interval.tv_sec = 0;
 ////
-////      if(timer_settime(m_timerid, 0, &its, nullptr) == -1)
+////      if(e_timer_settime(m_timerid, 0, &its, nullptr) == -1)
 ////      {
 ////
 ////         printf("Failed to stop the timer.");
@@ -155,7 +155,7 @@
 ////
 ////   impl_stop();
 ////
-////   if (timer_settime(m_timerid, 0, &m_its, nullptr) == -1)
+////   if (e_timer_settime(m_timerid, 0, &m_its, nullptr) == -1)
 ////   {
 ////
 ////      return false;

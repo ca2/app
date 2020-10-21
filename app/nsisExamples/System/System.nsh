@@ -106,7 +106,7 @@
 ; BOOL SystemParametersInfo(UINT uiAction, UINT uiParam, PVOID pvParam, UINT fWinIni);
 !define sysSystemParametersInfo "user32::SystemParametersInfo(i, i, p, i) i"
 
-; UINT_PTR SetTimer(HWND hWnd, UINT_PTR nIDEvent, UINT uElapse, TIMERPROC lpTimerFunc);
+; UINT_PTR SetTimer(HWND hWnd, UINT_PTR uEvent, UINT uElapse, TIMERPROC lpTimerFunc);
 !define sysSetTimer "user32::SetTimer(p, p, i, k) i"
 
 ; DWORD GetLogicalDriveStrings(DWORD nBufferLength, LPTSTR LpBuffer);

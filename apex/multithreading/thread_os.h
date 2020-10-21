@@ -74,7 +74,7 @@ CLASS_DECL_APEX void __dec_threading_count();
 //CLASS_DECL_APEX bool __wait_threading_count_except(::thread * pthread,::duration dur);
 
 
-//CLASS_DECL_APEX ::thread * get_thread();
+//CLASS_DECL_APEX ::thread * get_task();
 //CLASS_DECL_APEX void set_thread(thread * pthread);
 //CLASS_DECL_APEX void thread_release();
 

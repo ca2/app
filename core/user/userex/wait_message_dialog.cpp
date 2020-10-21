@@ -49,7 +49,7 @@ namespace userex
             if(m_tickDelay > 0)
             {
                
-               m_pform->set_timer(timer_reload, 50_ms);
+               m_pform->set_timer(e_timer_reload, 50_ms);
                
                value("wait_message_dialog_timeout") = m_tickDelay.seconds();
                
@@ -61,7 +61,7 @@ namespace userex
          else if(pevent->m_eevent == ::user::event_timer)
          {
             
-            if(pevent->m_etimer == timer_reload)
+            if(pevent->m_etimer == e_timer_reload)
             {
 
                on_timeout_check();

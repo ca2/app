@@ -120,7 +120,7 @@ namespace user
 
          SetTimer(100, 100, nullptr);
 
-         SetTimer(timer_redraw, 200, nullptr); // Caret
+         SetTimer(e_timer_redraw, 200, nullptr); // Caret
 
       }
 
@@ -688,14 +688,14 @@ namespace user
 
          ::user::interaction::_001OnTimer(ptimer);
 
-         if (ptimer->m_nIDEvent >= 100 && ptimer->m_nIDEvent <= 200)
+         if (ptimer->m_uEvent >= 100 && ptimer->m_uEvent <= 200)
          {
 
          }
-         else if (ptimer->m_nIDEvent == 500 || ptimer->m_nIDEvent == 501)
+         else if (ptimer->m_uEvent == 500 || ptimer->m_uEvent == 501)
          {
 
-            if (ptimer->m_nIDEvent == 500)
+            if (ptimer->m_uEvent == 500)
             {
 
                KillTimer(500);
@@ -705,7 +705,7 @@ namespace user
             }
 
          }
-         else if (ptimer->m_nIDEvent == timer_redraw)
+         else if (ptimer->m_uEvent == e_timer_redraw)
          {
 
             // Caret

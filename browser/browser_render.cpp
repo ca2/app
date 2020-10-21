@@ -419,7 +419,7 @@ namespace browser
 
       }
 
-      ::get_thread()->m_bThreadToolsForIncreasedFps = true;
+      ::get_task()->m_bThreadToolsForIncreasedFps = true;
 
       ::rect rectClient;
 

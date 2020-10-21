@@ -42,7 +42,7 @@ void clock_getrealtime(struct timespec * pts)
 #endif
 
 
-CLASS_DECL_ACME::layered* get_layered_thread();
+//CLASS_DECL_ACME::layered* get_layered_thread();
 
 
 event::event(char * sz, bool bInitiallyOwn, bool bManualReset, const char * pstrName,LPSECURITY_ATTRIBUTES psaAttribute)
@@ -388,7 +388,7 @@ sync_result event::wait ()
    //if(m_eobject & e_object_alertable_wait)
    //{
 
-   //   auto pthread = ::get_thread();
+   //   auto pthread = ::get_task();
 
    //   if(pthread)
    //   {
@@ -418,7 +418,7 @@ sync_result event::wait ()
          if (!thread_get_run())
          {
 
-            __throw(exit_exception(::get_layered_thread()));
+            __throw(exit_exception(::get_task()));
 
          }
 
@@ -496,7 +496,7 @@ sync_result event::wait ()
    //if(m_eobject & e_object_alertable_wait)
    //{
 
-   //   auto pthread = ::get_thread();
+   //   auto pthread = ::get_task();
 
    //   if(pthread)
    //   {
@@ -523,7 +523,7 @@ sync_result event::wait (const duration & durationTimeout)
    //if(durationTimeout > 1_s && m_eobject & e_object_alertable_wait)
    //{
 
-   //   auto pthread = ::get_thread();
+   //   auto pthread = ::get_task();
 
    //   if(pthread)
    //   {
@@ -728,7 +728,7 @@ sync_result event::wait (const duration & durationTimeout)
    //if(durationTimeout > 1_s && m_eobject & e_object_alertable_wait)
    //{
 
-   //   auto pthread = ::get_thread();
+   //   auto pthread = ::get_task();
 
    //   if(pthread)
    //   {

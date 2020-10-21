@@ -176,7 +176,7 @@ inline __pointer(BASE_TYPE) __create()
 
 
 template < typename BASE_TYPE >
-inline __pointer(BASE_TYPE) __create(::matter * pobject)
+inline __pointer(BASE_TYPE) __create(::layered * pobjectContext)
 {
 
    auto p = __create < BASE_TYPE >();
@@ -188,12 +188,12 @@ inline __pointer(BASE_TYPE) __create(::matter * pobject)
 
    }
 
-   auto estatus = p->initialize(pobject);
+   auto estatus = p->initialize(pobjectContext);
 
    if (!estatus)
    {
 
-      return estatus;
+      return nullptr;
 
    }
 

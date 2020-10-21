@@ -30,7 +30,7 @@ namespace userfs
 
 #if OBJ_REF_DBG
 
-      add_ref_history(p, pszObjRefDbg);
+      add_ref_history(pReferer, pszObjRefDbg);
 
 #endif
 
@@ -49,7 +49,7 @@ namespace userfs
       if (c > 0)
       {
 
-         dec_ref_history(p, pszObjRefDbg);
+         dec_ref_history(pReferer, pszObjRefDbg);
 
       }
 
@@ -174,22 +174,22 @@ namespace userfs
    void tree::_001OnTimer(::timer * ptimer)
    {
 
-      if (ptimer->m_nIDEvent == 1234567)
+      if (ptimer->m_uEvent == 1234567)
       {
          m_iAnimate += 2;
          if (m_iAnimate >= 11)
          {
             m_iAnimate = 0;
-            dynamic_cast < ::user::interaction * > (ptimer->m_pcallback)->KillTimer(ptimer->m_nIDEvent);
+            ptimer->m_ptimercallback->remove(ptimer);
 
          }
-         dynamic_cast < ::user::interaction * > (ptimer->m_pcallback)->set_need_redraw();
+         ptimer->m_ptimercallback->user_interaction()->set_need_redraw();
       }
-      else if (ptimer->m_nIDEvent == 123)
+      else if (ptimer->m_uEvent == 123)
       {
-         dynamic_cast < ::user::interaction * > (ptimer->m_pcallback)->set_need_redraw();
+         ptimer->m_ptimercallback->user_interaction()->set_need_redraw();
          m_bTimer123 = false;
-         dynamic_cast < ::user::interaction * > (ptimer->m_pcallback)->KillTimer(123);
+         ptimer->m_ptimercallback->remove(ptimer);
       }
    }
 

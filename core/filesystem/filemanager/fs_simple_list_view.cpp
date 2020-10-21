@@ -394,19 +394,19 @@ namespace filemanager
          void list_view::_001OnTimer(::timer * ptimer)
          {
             simple_list_view::_001OnTimer(ptimer);
-            if(ptimer->m_nIDEvent == 123654)
+            if(ptimer->m_uEvent == 123654)
             {
                KillTimer(123654);
                m_bKickActive = false;
 
             }
-            /*   if(nIDEvent == 1123)
+            /*   if(uEvent == 1123)
             {
             KillTimer(1123);
             MediaLibraryDoc * pdocument = get_document();
             if(pdocument->m_bBuilt == true)
             {
-            KillTimer(nIDEvent);
+            KillTimer(uEvent);
             }
             else
             {
@@ -447,12 +447,12 @@ namespace filemanager
             i32 iFind;
             if((iFind = pdocument->m_fileinfo.m_wstraAdd.FindFirst(wstrPath)) >= 0)
             {
-            PostFillTask(wstrPath, nIDEvent);
+            PostFillTask(wstrPath, uEvent);
             break;
             }
             else if((iFind = pdocument->m_fileinfo.m_wstraUpdate.FindFirst(wstrPath)) >= 0)
             {
-            PostFillTask(wstrPath, nIDEvent);
+            PostFillTask(wstrPath, uEvent);
             break;
             }
             else if((iFind = pdocument->m_fileinfo.m_wstraRemove.FindFirst(wstrPath)) >= 0)
@@ -471,7 +471,7 @@ namespace filemanager
             }
 
             }
-            else if(nIDEvent == 1124)
+            else if(uEvent == 1124)
             {
             KillTimer(1124);
             MediaLibraryDoc * pdocument = get_document();
@@ -489,7 +489,7 @@ namespace filemanager
             fv = pdocument->m_fileinfo.m_iaUpdate[iFind];
             if(pds->find_first("id", fv))
             {
-            PostFillTask(pds->fv("filepath").get_asString(), nIDEvent);
+            PostFillTask(pds->fv("filepath").get_asString(), uEvent);
             break;
             }
             else

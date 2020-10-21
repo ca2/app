@@ -38,7 +38,7 @@ namespace user
       ::type                                 m_typeHtmlDocument;
       ::type                                 m_typeHtmlView;
       
-      
+      __pointer_array(::user::interaction)   m_uiptraToolWindow;
 
       user();
       virtual ~user();
@@ -70,7 +70,7 @@ namespace user
       virtual ::user::primitive * get_mouse_focus_RButtonDown();
       virtual void set_mouse_focus_RButtonDown(::user::primitive * pmousefocus);
 
-
+      virtual bool on_ui_mouse_message(::message::mouse* pmouse);
 
       virtual void SendMessageToWindows(UINT message, WPARAM wParam, LPARAM lParam);
 

@@ -32,10 +32,14 @@ public:
    __pointer(::draw2d::icon)                       m_piconNotify;
    __pointer(::user::notify_icon)                  m_pnotifyicon;
    var                                             m_varFrame;
+   __pointer(::thread_pool < ::task_pointer >)     m_ptaskpool;
 
 
    simple_frame_window();
    virtual ~simple_frame_window();
+
+
+   ::thread_pool < ::task_pointer >* taskpool();
 
 
    virtual ::estatus initialize(::layered * pobjectContext) override;

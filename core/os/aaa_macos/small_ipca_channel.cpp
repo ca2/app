@@ -372,7 +372,7 @@ namespace aura
 
          CFRunLoopRef runloop = CFRunLoopGetCurrent();
 
-         ::get_thread()->m_runloop = runloop;
+         ::get_task()->m_runloop = runloop;
 
          CFRunLoopAddSource(CFRunLoopGetCurrent(),
                             runLoopSource,

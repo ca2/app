@@ -55,6 +55,18 @@ namespace user
       if (pbase != nullptr)
       {
 
+         WPARAM wparam = pbase->m_wparam;
+         LPARAM lparam = pbase->m_lparam;
+
+         string strLparamString;
+
+         if (pbase->m_id == WM_SETTINGCHANGE && wparam == 0)
+         {
+
+            strLparamString = (LPCTSTR(lparam));
+
+         }
+
          if (pbase->m_id == WM_FONTCHANGE)
          {
 
@@ -68,10 +80,22 @@ namespace user
 
                //});
 
-         } else if (pbase->m_id == WM_DISPLAYCHANGE ||
+         //}
+      }
+      else if (
+         pbase->m_id == WM_SETTINGCHANGE &&
+            strLparamString == "ImmersiveColorSet")
+      {
+
+         system_update(id_dark_mode);
+
+      }
+         else if (pbase->m_id == WM_DISPLAYCHANGE ||
                (pbase->m_id == WM_SETTINGCHANGE &&
                 (pbase->m_wparam == SPI_SETWORKAREA)))
          {
+
+            output_debug_string("test");
 
             //throw_todo();
 

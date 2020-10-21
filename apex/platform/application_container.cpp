@@ -238,9 +238,9 @@ __pointer(::apex::application) application_container::instantiate_application(co
 
          }
 
-         papp = System.m_papplicationStartup;
+         papp = (System).m_papplicationStartup;
 
-         System.m_papplicationStartup.release();
+         __unbind(&System, m_papplicationStartup OBJ_REF_DBG_ADD_P_NOTE(&System, ""));
 
       }
       else

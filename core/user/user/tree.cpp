@@ -72,7 +72,7 @@ namespace user
 
             thread_set_name(string(type_name()) + "::Expand");
 
-            auto pthread = ::get_thread();
+            auto pthread = ::get_task();
 
             while (pthread->thread_get_run())
             {
@@ -101,7 +101,7 @@ namespace user
 
             thread_set_name(string(type_name()) + "::Open");
 
-            auto pthread = ::get_thread();
+            auto pthread = ::get_task();
 
             while (pthread->thread_get_run())
             {

@@ -31,7 +31,7 @@ namespace calculator
    
 
       DECL_GEN_SIGNAL(_001OnCreate);
-      void OnTimer(UINT nIDEvent);
+      void OnTimer(UINT uEvent);
 
    };
 

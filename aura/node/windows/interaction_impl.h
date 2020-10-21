@@ -353,8 +353,8 @@ namespace windows
 
 
       // timer Functions
-//      virtual bool SetTimer(uptr nIDEvent, UINT nElapse, PFN_TIMER pfnTimer);
-      //    virtual bool KillTimer(uptr nIDEvent);
+//      virtual bool SetTimer(uptr uEvent, UINT nElapse, PFN_TIMER pfnTimer);
+      //    virtual bool KillTimer(uptr uEvent);
 
       // Window State Functions
       virtual bool is_this_enabled();
@@ -630,7 +630,7 @@ namespace windows
       //void OnRButtonDblClk(UINT nFlags, const ::point & point);
       //void OnRButtonDown(UINT nFlags, const ::point & point);
       //void OnRButtonUp(UINT nFlags, const ::point & point);
-      //void OnTimer(uptr nIDEvent);
+      //void OnTimer(uptr uEvent);
 
       //// Initialization message handler member functions
       //void OnInitMenu(::user::menu* pMenu);

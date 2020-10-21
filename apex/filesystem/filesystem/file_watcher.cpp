@@ -213,7 +213,7 @@ namespace file
          if (m_bCreateWatchThread)
          {
 
-            defer_fork(m_pthread);
+            start(m_pthread);
 
          }
 
@@ -270,7 +270,7 @@ namespace file
    ::estatus     watcher::run()
    {
       
-      m_pthread = ::get_thread();
+      m_pthread = ::get_task();
 
       while (::thread_get_run())
       {

@@ -169,10 +169,10 @@ namespace filemanager
                pappOnBehalfOf = puiParent->get_context_application();
 
             }
-            else if (::is_set(m_pcreate) && ::is_set(m_pcreate->get_context_application()))
+            else if (::is_set(m_pcreate) && ::is_set(m_pcreate->create_get_application(get_context_application())))
             {
 
-               pappOnBehalfOf = m_pcreate->get_context_application();
+               pappOnBehalfOf = m_pcreate->create_get_application(get_context_application());
 
             }
             else if (::is_set(m_pdocumentTopic) && ::is_set(m_pdocumentTopic->get_context_application()))

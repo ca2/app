@@ -150,7 +150,7 @@ namespace user
    }
 
 
-   ::thread * primitive::get_thread() const
+   ::thread * primitive::get_task() const
    {
 
       auto pwnd = get_wnd();
@@ -2088,8 +2088,6 @@ namespace user
    oswindow primitive::detach()
    {
 
-      ::exception::throw_interface_only();
-
       return nullptr;
 
    }
@@ -2161,7 +2159,7 @@ namespace user
    }
 
 
-   bool primitive::SetTimer(uptr nIDEvent,UINT nElapse, PFN_TIMER pfnTimer)
+   bool primitive::SetTimer(uptr uEvent,UINT nElapse, PFN_TIMER pfnTimer)
    {
 
       ::exception::throw_interface_only();
@@ -2171,7 +2169,7 @@ namespace user
    }
 
 
-   bool primitive::KillTimer(uptr nIDEvent)
+   bool primitive::KillTimer(uptr uEvent)
    {
 
       ::exception::throw_interface_only();

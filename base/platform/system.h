@@ -269,7 +269,7 @@ namespace base
 //
 //      //::url::department                           & url()     { return m_urldepartment; }
 //
-//      ::thread * get_thread(ITHREAD ithread);
+//      ::thread * get_task(ITHREAD ithread);
 //      ITHREAD get_thread_id(::thread * pthread);
 //      void set_thread(ITHREAD ithread, ::thread * pthread);
 //      void unset_thread(ITHREAD ithread, ::thread * pthread);

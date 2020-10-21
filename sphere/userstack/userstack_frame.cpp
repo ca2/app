@@ -98,28 +98,28 @@ namespace userstack
 
       simple_frame_window::_001OnTimer(ptimer);;
 
-      auto nIDEvent = ptimer->m_nIDEvent;
+      auto uEvent = ptimer->m_uEvent;
 
       static float theta;
 
-      if(nIDEvent == 3)
+      if(uEvent == 3)
       {
 
       }
-      else if(nIDEvent == 1000)
+      else if(uEvent == 1000)
       {
          
          display();
          
-         KillTimer(nIDEvent);
+         KillTimer(uEvent);
          
          m_bTimerOn = false;
 
       }
-      else if(nIDEvent == 8913)
+      else if(uEvent == 8913)
       {
       }
-      else if(nIDEvent == 4033)
+      else if(uEvent == 4033)
       {
          ::point point;
          if(m_bHoverMouse && ::get_tick() > m_tickLastHover + 300)

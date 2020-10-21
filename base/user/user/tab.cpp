@@ -1699,7 +1699,7 @@ namespace user
 
             SetCapture();
 
-            //SetTimer(timer_drag_start, 300, nullptr);
+            //SetTimer(e_timer_drag_start, 300, nullptr);
 
             g_tickDragStart.Now();
 
@@ -1741,7 +1741,7 @@ namespace user
 
          ReleaseCapture();
 
-         KillTimer(timer_drag_start);
+         KillTimer(e_timer_drag_start);
 
       }
 
@@ -2458,7 +2458,7 @@ namespace user
 
       pbase->m_lresult = 0;
 
-      SetTimer(timer_defer_handle_auto_hide_tabs, 300);
+      SetTimer(e_timer_defer_handle_auto_hide_tabs, 300);
 
       //post_message(WM_USER + 1342);
 
@@ -3501,7 +3501,7 @@ namespace user
 
       ::user::interaction::_001OnTimer(ptimer);
 
-      if (ptimer->m_nIDEvent == timer_defer_handle_auto_hide_tabs)
+      if (ptimer->m_uEvent == e_timer_defer_handle_auto_hide_tabs)
       {
 
          if (defer_handle_auto_hide_tabs(false))
@@ -3515,10 +3515,10 @@ namespace user
 
       }
 
-      if(ptimer->m_nIDEvent == timer_drag_start)
+      if(ptimer->m_uEvent == e_timer_drag_start)
       {
          //auto elapsed = g_tickDragStart.elapsed();
-         KillTimer(timer_drag_start);
+         KillTimer(e_timer_drag_start);
 
          ReleaseCapture();
 

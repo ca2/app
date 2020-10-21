@@ -468,7 +468,7 @@ namespace http
       //
       //      }
       //
-      //      while(::get_thread() == nullptr || thread_get_run())
+      //      while(::get_task() == nullptr || thread_get_run())
       //      {
       //
       //         {
@@ -1438,7 +1438,7 @@ namespace http
 
          TRACE("Higher Level Diagnosis : iNTERTIMe context::request time(%d) = " __prtick __prtick __prtick, iIteration, __pr(tick1), __pr(tick2), __pr(tick2 - tick1));
 
-         while ((handler.get_count() > 0 && !psession->m_bRequestComplete) && (::get_thread() == nullptr || ::thread_get_run()))
+         while ((handler.get_count() > 0 && !psession->m_bRequestComplete) && (::get_task() == nullptr || ::thread_get_run()))
             //while(psession->get_count() > 0 && !psession->m_bRequestComplete) // should only exit in case of process exit signal
          {
 
@@ -2113,7 +2113,7 @@ namespace http
 
       tick1 = ::tick::now();
 
-      while (handler.get_count() > 0 && (::get_thread() == nullptr || ::thread_get_run()))
+      while (handler.get_count() > 0 && (::get_task() == nullptr || ::thread_get_run()))
       {
 
          if (tickStart.elapsed() > tickTotalTimeout)

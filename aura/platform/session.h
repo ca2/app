@@ -33,6 +33,8 @@ namespace aura
       ::user::interaction *                                 m_puiCapture;
       bool                                                  m_bDrawCursor;
 
+      //__pointer_array(::user::interaction)                  m_uiptraToolWindow;
+
       __composite(::user::copydesk)                         m_pcopydesk;
 
       ::user::interaction *                                 m_puiMouseMoveCapture;

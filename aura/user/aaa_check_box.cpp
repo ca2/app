@@ -550,7 +550,7 @@ namespace user
    void check_box::_001OnTimer(::timer * ptimer)
    {
 
-      if (ptimer->m_nIDEvent == timer_check_toggle_animation)
+      if (ptimer->m_uEvent == e_timer_check_toggle_animation)
       {
 
          set_need_redraw();
@@ -560,12 +560,12 @@ namespace user
          if (m_tickAnimationStart.elapsed() > m_tickAnimationPeriod)
          {
 
-            KillTimer(ptimer->m_nIDEvent);
+            KillTimer(ptimer->m_uEvent);
 
          }
 
       }
-//      else if (ptimer->m_nIDEvent == timer_command_probe)
+//      else if (ptimer->m_uEvent == e_timer_command_probe)
 //      {
 //
 //         ::user::menu_command command(this);
@@ -621,7 +621,7 @@ namespace user
 
       m_tickAnimationStart.Now();
 
-      SetTimer(timer_check_toggle_animation, 12);
+      SetTimer(e_timer_check_toggle_animation, 12);
 
       _001ToggleCheck(::source_user);
 

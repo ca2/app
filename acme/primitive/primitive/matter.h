@@ -74,6 +74,11 @@ public:
    void defer_create_mutex();
 
 
+   virtual ::index thread_add(::thread* pthread);
+   virtual void thread_remove(::thread* pthread);
+   virtual void thread_on_term(::thread* pthread);
+
+
    //::estatus add_update(const ::id & id);
    //::estatus remove_update(const ::id& id);
    void remove_from_any_source();
@@ -133,17 +138,8 @@ public:
    virtual void finalize();
 
 
-#ifdef WINDOWS
 
-   static DWORD WINAPI s_os_thread_proc(void* p);
-
-#else
-
-   static void* s_os_thread_proc(void* p);
-
-#endif
-
-   virtual ::estatus __thread_proc();
+   virtual ::estatus on_task();
 
 
    virtual ::estatus osthread_init();
@@ -153,13 +149,7 @@ public:
    virtual ::estatus osthread_term();
 
 
-   ::estatus start_action(
-      const action_pointer & paction,
-      ::e_priority epriority = priority_normal,
-      u32 nStackSize = 0,
-      u32 dwCreateFlags = 0,
-      ITHREAD* pithread = nullptr,
-      HTHREAD* phthread = nullptr);
+
 
    //virtual ::estatus fork_update(
    //   ::i64 iUpdate,
@@ -169,21 +159,21 @@ public:
    //   ITHREAD* pithread = nullptr,
    //   HTHREAD* phthread = nullptr);
 
-   virtual ::estatus fork_run(
-      ::e_priority epriority = priority_normal,
-      u32 nStackSize = 0,
-      u32 dwCreateFlags = 0,
-      ITHREAD* pithread = nullptr,
-      HTHREAD* phthread = nullptr);
+   //virtual ::estatus fork_run(
+   //   ::e_priority epriority = priority_normal,
+   //   u32 nStackSize = 0,
+   //   u32 dwCreateFlags = 0,
+   //   ITHREAD* pithread = nullptr,
+   //   HTHREAD* phthread = nullptr);
 
 
 
-   virtual ::estatus add_composite(::matter* pobject);
-   virtual ::estatus add_reference(::matter* pobject);
+   virtual ::estatus add_composite(::matter* pobject OBJ_REF_DBG_ADD_PARAMS);
+   virtual ::estatus add_reference(::matter* pobject OBJ_REF_DBG_ADD_PARAMS);
 
 
-   virtual ::estatus release_composite(::matter* pobject);
-   virtual ::estatus release_reference(::matter* pobject);
+   virtual ::estatus release_composite(::matter* pobject OBJ_REF_DBG_ADD_PARAMS);
+   virtual ::estatus release_reference(::matter* pobject OBJ_REF_DBG_ADD_PARAMS);
 
    virtual ::estatus set_generic_object_name(const char* pszName);
 
@@ -261,6 +251,9 @@ public:
    virtual strsize sz_len() const;
    virtual void to_sz(char* sz, strsize len) const;
 
+
+
+   //virtual ::estatus __thread_procedure() override;
 
 
 };

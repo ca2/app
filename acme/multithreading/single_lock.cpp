@@ -151,12 +151,12 @@ single_lock::~single_lock()
 
    unlock();
 
-   /*if(::get_thread() != nullptr)
+   /*if(::get_task() != nullptr)
    {
 
-      if(::get_thread()->m_pslUser == this)
+      if(::get_task()->m_pslUser == this)
       {
-         ::get_thread()->m_pslUser = nullptr;
+         ::get_task()->m_pslUser = nullptr;
       }
 
    }*/

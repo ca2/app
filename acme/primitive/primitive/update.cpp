@@ -1,15 +1,8 @@
 #include "framework.h"
-
-#include "framework.h"
 #include "acme/platform/static_start.h"
 
 
 #undef new
-
-
-//critical_section* update::g_pcs = nullptr;
-//::id_map < __pointer(update) >* update::g_pmap = nullptr;
-//bool update::g_bDestroyAll = false;
 
 
 update::update(const ::id& id)
@@ -28,22 +21,9 @@ update::update(::source* psource, const ::id& id) :
 
    m_id = id;
 
-   m_iUpdateSerial = 0;
+   m_iUpdateSerial = -1;
 
 }
-
-
-//update::update(const ::id& id) :
-//   m_id(id)
-//{
-//
-//
-//   m_iUpdateSerial = 0;
-//
-//}
-
-
-
 
 
 update::~update()
@@ -52,6 +32,28 @@ update::~update()
 }
 
 
+i64 update::add_ref(OBJ_REF_DBG_PARAMS_DEF)
+{
+
+   return ::context_object::add_ref(OBJ_REF_DBG_ARGS);
+
+}
+
+
+i64 update::dec_ref(OBJ_REF_DBG_PARAMS_DEF)
+{
+
+   return ::context_object::dec_ref(OBJ_REF_DBG_ARGS);
+
+}
+
+
+i64 update::release(OBJ_REF_DBG_PARAMS_DEF)
+{
+
+   return ::context_object::release(OBJ_REF_DBG_ARGS);
+
+}
 
 
 
@@ -61,6 +63,13 @@ update::~update()
    while (!::source::g_bDestroyAll)
    {
 
+      if (m_iUpdateSerial < 0)
+      {
+
+         m_psource->apply_update(m_id);
+
+      }
+
       if (m_bModified)
       {
 
@@ -69,7 +78,7 @@ update::~update()
          try
          {
 
-            apply();
+            notify();
 
          }
          catch (...)
@@ -117,16 +126,23 @@ update::~update()
 ::change* update::change(::matter* pmatter)
 {
 
-   auto pchange = __new(::change);
+   sync_lock sl(mutex());
 
-   m_matterchange[pmatter] = pchange;
+   auto & pchange = m_matterchange[pmatter];
+
+   if (!pchange)
+   {
+      
+      pchange = __new(::change);
+
+   }
 
    return pchange;
 
 }
 
 
-void update::apply()
+void update::notify()
 {
 
    sync_lock sl(mutex());
@@ -148,7 +164,7 @@ void update::apply()
       if (pchange->m_bFork)
       {
 
-         start_action(__new(action(this, pchange, pmatter)));
+         task::start(__new(action(this, pchange, pmatter)));
 
       }
       else
@@ -167,19 +183,24 @@ void update::apply()
 }
 
 
-//void update::call_update(::change * pchange)
-//{
-//
-//   if (ptask->is_modified())
-//   {
-//
-//      ptask->set_up_to_date();
-//
-//      this->update(ptask);
-//
-//   }
-//
-//}
+void update::apply(const ::action_context& actioncontext)
+{
+
+   ::action action(m_id, actioncontext);
+
+   m_psource->apply(&action);
+
+}
+
+
+void update::apply()
+{
+
+   ::action action(this);
+
+   m_psource->apply(&action);
+
+}
 
 
 void update::apply(const ::var& var)
@@ -201,7 +222,7 @@ void update::apply(const ::var& var)
 }
 
 
-void update::apply(const ::action_context& actioncontext)
+void update::notify(const ::action_context& actioncontext)
 {
 
    for (auto& matterchange : m_matterchange)
@@ -218,6 +239,7 @@ void update::apply(const ::action_context& actioncontext)
       pchange->apply(&action);
 
    }
+
 }
 
 
@@ -226,40 +248,46 @@ void update::add(::matter* pmatter, bool bForkWhenNotify)
 
    sync_lock sl(mutex());
 
-   bool bShouldFork = false;
+   //bool bShouldFork = false;
 
-   if (m_matterchange.is_empty())
+   //if (m_matterchange.is_empty())
+   //{
+
+   //   if (should_poll(poll_millis()))
+   //   {
+
+   //      bShouldFork = true;
+
+   //   }
+
+   //}
+
+   //if(m_iUpdateSerial < || >>= 0)
+   //{
+
+   //   bShouldFork = true;
+
+   //}
+
+   auto& pchange = m_matterchange[pmatter];
+
+   if (!pchange)
    {
 
-      if (should_poll(poll_millis()))
-      {
-
-         bShouldFork = true;
-
-      }
+      pchange = __new(::change);
 
    }
-   if(m_iUpdateSerial >= 0)
-   {
-
-      bShouldFork = true;
-
-   }
-
-   auto pchange = __new(::change);
 
    pchange->m_bFork = bForkWhenNotify;
 
-   m_matterchange.set_at(pmatter, pchange);
+   //if (bShouldFork)
+   //{
 
-   if (bShouldFork)
-   {
+      //m_bModified = true;
 
-      m_bModified = true;
+      ::task::start(this);
 
-      fork_run();
-
-   }
+   //}
 
 }
 
@@ -286,7 +314,7 @@ void update::set_modified()
    if (!should_poll(poll_millis()))
    {
 
-      fork_run();
+      ::task::start(this);
 
    }
 
@@ -303,20 +331,4 @@ void update::post_destroy_all()
 }
 
 
-
-
-
-
-//update::update()
-//{
-//
-//
-//
-//}
-//
-
-//update::~update()
-//{
-//
-//}
 

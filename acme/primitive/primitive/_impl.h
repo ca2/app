@@ -2393,6 +2393,20 @@ inline bool property_set::get_string(string& strResult, const id& idKey) const
 
 inline bool change::is_up_to_date(::update * pupdate) const
 { 
+
+   if (m_iUpdateSerial < 0)
+   {
+
+      return false;
+
+   }
+
+   if (pupdate->m_iUpdateSerial < 0)
+   {
+
+      return false;
+
+   }
    
    return m_iUpdateSerial == pupdate->m_iUpdateSerial;
 

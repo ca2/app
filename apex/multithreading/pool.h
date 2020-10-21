@@ -58,7 +58,16 @@ THREAD_POINTER & thread_pool < THREAD_POINTER >::start(const ::id& id, const mat
 
    auto & pthread = thread(id);
 
-   start(pthread);
+   auto estatus = __construct(pthread);
+
+   if (!estatus)
+   {
+
+      pthread = __create_new < ::thread >();
+
+   }
+
+   pthread->_start(pmatter);
 
    return pthread;
 

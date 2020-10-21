@@ -97,6 +97,14 @@ void source::apply_update(const ::id& id, const ::action_context& actioncontext)
 }
 
 
+void source::apply_update(const ::id& id, const ::var& var)
+{
+
+   update(id)->apply(var);
+
+}
+
+
 void source::set_modified(const ::id& id)
 {
 

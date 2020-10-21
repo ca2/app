@@ -33,6 +33,8 @@ public:
 
    virtual void apply_update(const ::id& id, const ::action_context & actioncontext);
 
+   virtual void apply_update(const ::id& id, const ::var & var);
+
    virtual void set_modified(const ::id& id);
 
    virtual void add_update(const ::id& id, ::matter * pmatter, bool bForkWhenNotify = false);

@@ -129,6 +129,18 @@ namespace user
 
          }
 
+      }
+
+      if (iSel < 0)
+      {
+
+         iSel = 0;
+
+      }
+
+      for (int i = 0; i < m_straLang.get_size(); i++)
+      {
+
          auto planguage = m_languagemap[m_straLang[i]];
 
          planguage->defer_load_resource_pofile(!bFull && iSel != i);

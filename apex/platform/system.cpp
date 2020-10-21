@@ -5833,7 +5833,7 @@ namespace apex
 void apex_system_update(const ::id & id, const ::var& var)
 {
 
-   System.apply_update(id);
+   System.apply_update(id, var);
 
 }
 

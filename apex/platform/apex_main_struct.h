@@ -88,6 +88,7 @@ struct CLASS_DECL_APEX apex_main_struct
       if(this != &mainstruct)
       {
          
+         m_bLocalization = mainstruct.m_bLocalization;
          m_bConsole = mainstruct.m_bConsole;
          m_bDraw2d= mainstruct.m_bDraw2d;
          m_bUser= mainstruct.m_bUser;

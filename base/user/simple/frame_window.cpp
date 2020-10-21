@@ -113,7 +113,7 @@ simple_frame_window::~simple_frame_window()
 ::thread_pool < ::task_pointer >* simple_frame_window::taskpool()
 {
 
-   __defer_construct(m_ptaskpool);
+   __defer_construct_new(m_ptaskpool);
 
    return m_ptaskpool;
 

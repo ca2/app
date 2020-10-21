@@ -206,18 +206,25 @@ void update::apply()
 void update::apply(const ::var& var)
 {
 
-   for (auto& matterchange : m_matterchange)
-   {
+   ::action action(this);
 
-      auto& pmatter = matterchange.m_element1;
-      
-      auto& pchange = matterchange.m_element2;
+   action.m_var = var;
 
-      ::action action(this, pchange, pmatter);
+   m_psource->apply(&action);
 
-      pchange->apply(&action);
 
-   }
+   //for (auto& matterchange : m_matterchange)
+   //{
+
+   //   auto& pmatter = matterchange.m_element1;
+   //   
+   //   auto& pchange = matterchange.m_element2;
+
+   //   ::action action(this, pchange, pmatter);
+
+   //   pchange->apply(&action);
+
+   //}
 
 }
 
@@ -283,7 +290,7 @@ void update::add(::matter* pmatter, bool bForkWhenNotify)
    //if (bShouldFork)
    //{
 
-      //m_bModified = true;
+      m_bModified = pchange->is_up_to_date(this);
 
       ::task::start(this);
 

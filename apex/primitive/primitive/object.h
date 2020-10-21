@@ -506,7 +506,7 @@ public:
 
       }
 
-      start(pthread);
+      pthread->_start();
 
       return pthread;
 
@@ -537,9 +537,18 @@ public:
    inline __pointer(THREAD) & start(__pointer(THREAD) & pthread, METHOD method)
    {
 
-      pthread->m_pmatter = __pred_method(method);
+      auto estatus = __defer_construct(pthread);
 
-      start(pthread);
+      if (!estatus)
+      {
+
+         pthread = __create_new < thread > ();
+
+      }
+
+      auto pmatter = __pred_method(method);
+
+      pthread->_start(pmatter);
 
       return pthread;
 
@@ -550,7 +559,7 @@ public:
    inline __pointer(THREAD)& start(__pointer(THREAD) & pthread)
    {
 
-      ::task::start(pthread);
+      pthread->_start(pthread);
 
       return pthread;
 

@@ -10,6 +10,10 @@
 
 class obj_ref_dbg;
 
+#define _STRINGFY(identifier) #identifier
+#define STRINGFY(identifier) _STRINGFY(identifier)
+//#define STRINGFY(x, y) TOKENPASTE(x, y)
+//#define UNIQUE static void TOKENPASTE2(Unique_, __LINE__)(void) {}
 
 #if OBJ_REF_DBG
 //#define OBJ_REF_DBG_MAX_COUNT 256
@@ -25,7 +29,11 @@ class obj_ref_dbg;
 #define OBJ_REF_DBG_ADD_NOTE(note) , note
 #define OBJ_REF_DBG_PTR(ptr) ptr
 #define OBJ_REF_DBG_THIS ((::matter *) this)
+#define OBJ_REF_DBG_ADD_THIS , OBJ_REF_DBG_THIS
 #define OBJ_REF_DBG_THIS_NOTE(note) ((::matter *) this), note
+#define OBJ_REF_DBG_THIS_FUNCTION_LINE OBJ_REF_DBG_THIS_NOTE( __FUNCTION__ " (" STRINGFY(__LINE__) ")" )
+#define OBJ_REF_DBG_ADD_THIS_NOTE(note) , OBJ_REF_DBG_THIS_NOTE(note)
+#define OBJ_REF_DBG_ADD_THIS_FUNCTION_LINE , OBJ_REF_DBG_THIS_FUNCTION_LINE
 #define OBJ_REF_DBG_P_NOTE(p, note) p, note
 #define OBJ_REF_DBG_ADD_P_NOTE(p, note) , OBJ_REF_DBG_P_NOTE(p, note)
 #define __assign(target, source) ___assign(target, source)

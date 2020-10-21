@@ -51,7 +51,7 @@ void simple_signal < T > ::emit()
    (m_p->*m_pmethod)();
 }
 
-class thread_pool
+class service_pool
 {
 public:
 
@@ -115,5 +115,7 @@ private:
       return 0;
    }
 
-   thread_pool();
+   service_pool();
+
+
 };

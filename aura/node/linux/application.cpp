@@ -70,101 +70,101 @@ namespace aura
 //      return nullptr;
 //   }
 
-   string application::get_version()
-   {
-      return "";
-
-      __throw(todo());
-
-      /*      char pszModuleFilePath[MAX_PATH + 1];
-
-            GetModuleFileName(nullptr, pszModuleFilePath, MAX_PATH + 1);
-
-
-            DWORD dw;
-
-            DWORD dwResSize = GetFileVersionInfoSize(
-               pszModuleFilePath,
-
-               &dw);
-
-
-            if(dwResSize > 0)
-            {
-               LPVOID pdata = new BYTE[dwResSize];
-
-               if(GetFileVersionInfo(
-                  pszModuleFilePath,
-
-                  0,
-                  dwResSize,
-                  pdata))
-
-               {
-                  UINT cbTranslate;
-                  struct LANGANDCODEPAGE {
-                     WORD wLanguage;
-                     WORD wCodePage;
-                  } *pTranslate;
-
-
-                  // read the list of languages and code pages.
-
-                  VerQueryValue(pdata,
-
-                     TEXT("\\VarFileInfo\\Translation"),
-                     (LPVOID*)&pTranslate,
-
-                     &cbTranslate);
-
-                  string strKey;
-                  //for( i=0; i < (cbTranslate/sizeof(struct LANGANDCODEPAGE)); i++ )
-                  for(i32 i=0; i < 1; i++ )
-                  {
-                     LPTSTR psz;
-
-                     UINT uiSize;
-
-                     strKey.Format(
-                        TEXT("\\StringFileInfo\\%04x%04x\\FileDescription"),
-                        pTranslate[i].wLanguage,
-
-                        pTranslate[i].wCodePage);
-
-
-
-
-
-                     strKey.Format(
-                        TEXT("\\StringFileInfo\\%04x%04x\\FileVersion"),
-                        pTranslate[i].wLanguage,
-
-                        pTranslate[i].wCodePage);
-
-
-                     // Retrieve file description for language and code page "i".
-                     VerQueryValue(pdata,
-
-                        (LPTSTR) (const char *) strKey,
-                        (LPVOID *)&psz,
-
-                        &uiSize);
-
-
-                     string strVersion(psz, uiSize);
-
-
-                     return strVersion;
-                  }
-               }
-               delete [] (byte *) pdata;
-
-            }
-      */
-
-      return "";
-
-   }
+//   string application::get_version()
+//   {
+//      return "";
+//
+//      __throw(todo());
+//
+//      /*      char pszModuleFilePath[MAX_PATH + 1];
+//
+//            GetModuleFileName(nullptr, pszModuleFilePath, MAX_PATH + 1);
+//
+//
+//            DWORD dw;
+//
+//            DWORD dwResSize = GetFileVersionInfoSize(
+//               pszModuleFilePath,
+//
+//               &dw);
+//
+//
+//            if(dwResSize > 0)
+//            {
+//               LPVOID pdata = new BYTE[dwResSize];
+//
+//               if(GetFileVersionInfo(
+//                  pszModuleFilePath,
+//
+//                  0,
+//                  dwResSize,
+//                  pdata))
+//
+//               {
+//                  UINT cbTranslate;
+//                  struct LANGANDCODEPAGE {
+//                     WORD wLanguage;
+//                     WORD wCodePage;
+//                  } *pTranslate;
+//
+//
+//                  // read the list of languages and code pages.
+//
+//                  VerQueryValue(pdata,
+//
+//                     TEXT("\\VarFileInfo\\Translation"),
+//                     (LPVOID*)&pTranslate,
+//
+//                     &cbTranslate);
+//
+//                  string strKey;
+//                  //for( i=0; i < (cbTranslate/sizeof(struct LANGANDCODEPAGE)); i++ )
+//                  for(i32 i=0; i < 1; i++ )
+//                  {
+//                     LPTSTR psz;
+//
+//                     UINT uiSize;
+//
+//                     strKey.Format(
+//                        TEXT("\\StringFileInfo\\%04x%04x\\FileDescription"),
+//                        pTranslate[i].wLanguage,
+//
+//                        pTranslate[i].wCodePage);
+//
+//
+//
+//
+//
+//                     strKey.Format(
+//                        TEXT("\\StringFileInfo\\%04x%04x\\FileVersion"),
+//                        pTranslate[i].wLanguage,
+//
+//                        pTranslate[i].wCodePage);
+//
+//
+//                     // Retrieve file description for language and code page "i".
+//                     VerQueryValue(pdata,
+//
+//                        (LPTSTR) (const char *) strKey,
+//                        (LPVOID *)&psz,
+//
+//                        &uiSize);
+//
+//
+//                     string strVersion(psz, uiSize);
+//
+//
+//                     return strVersion;
+//                  }
+//               }
+//               delete [] (byte *) pdata;
+//
+//            }
+//      */
+//
+//      return "";
+//
+//   }
 
 
 
@@ -471,28 +471,28 @@ namespace aura
 //   }
 
 
-   string application::multimedia_audio_get_default_library_name()
-   {
-
-      return "audio_alsa";
-
-   }
-
-
-   string application::multimedia_audio_mixer_get_default_library_name()
-   {
-
-      return "audio_mixer_alsa";
-
-   }
-
-
-   string application::veriwell_multimedia_music_midi_get_default_library_name()
-   {
-
-      return "music_midi_alsa";
-
-   }
+//   string application::multimedia_audio_get_default_library_name()
+//   {
+//
+//      return "audio_alsa";
+//
+//   }
+//
+//
+//   string application::multimedia_audio_mixer_get_default_library_name()
+//   {
+//
+//      return "audio_mixer_alsa";
+//
+//   }
+//
+//
+//   string application::veriwell_multimedia_music_midi_get_default_library_name()
+//   {
+//
+//      return "music_midi_alsa";
+//
+//   }
 
 
    bool application::os_on_start_application()

@@ -385,7 +385,7 @@ namespace aura
 
       //virtual bool app_data_set(const ::id & id, stream & os) override;
       //virtual bool app_data_get(const ::id & id, stream & is) override;
-      
+
       //virtual bool app_data_set(const ::id & id, ::object & obj) override;
       //virtual bool app_data_get(const ::id & id, ::object & obj) override;
 
@@ -1413,6 +1413,11 @@ namespace aura
 #ifdef WINDOWS_DESKTOP
       virtual LPTSTR windows_get_system_cursor(e_cursor ecursor);
 #endif
+
+#ifdef LINUX
+      virtual bool os_on_start_application() override;
+#endif
+
 
    };
 

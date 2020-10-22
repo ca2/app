@@ -281,7 +281,7 @@ void enum_display_monitors(::aura::session * psession)
 
       ::count iMonitorCount = gdk_display_get_n_monitors(pdisplay);
 
-      psession->m_rectaWork.set_size(iMonitorCount);
+      psession->m_rectaWkspace.set_size(iMonitorCount);
 
       psession->m_rectaMonitor.set_size(iMonitorCount);
 

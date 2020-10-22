@@ -1,8 +1,8 @@
 #pragma once
 
 
-class CLASS_DECL_APEX timer_event:
-   virtual public threaded_timer
+class CLASS_DECL_ACME timer_event:
+   virtual public timer_task
 {
 public:
 
@@ -10,7 +10,7 @@ public:
    manual_reset_event         m_ev;
 
 
-   timer_event(::apex::timer_array * ptimera, int iTimer);
+   timer_event();
    virtual ~timer_event();
 
 

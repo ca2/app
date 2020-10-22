@@ -3136,6 +3136,14 @@ class mq_base;
 //#include "acme/multithreading/delay_thread.h"
 //#include "acme/multithreading/tools.h"
 
+#include "acme/platform/timer_callback.h"
+#include "acme/platform/timer_item.h"
+#include "acme/platform/timer_array.h"
+#include "acme/platform/nano_timer.h"
+#include "acme/platform/timer.h"
+#include "acme/platform/timer_task.h"
+#include "acme/platform/timer_event.h"
+
 #include "acme/multithreading/thread_impl.h"
 //#include "acme/multithreading/simple_thread.h"
 //#include "acme/multithreading/go_thread.h"

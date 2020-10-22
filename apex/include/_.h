@@ -2976,13 +2976,6 @@ class mq;
 #include "apex/multithreading/fork.h"
 #include "apex/multithreading/delay_thread.h"
 #include "apex/multithreading/tools.h"
-#include "apex/platform/timer_callback.h"
-#include "apex/platform/timer_item.h"
-#include "apex/platform/timer_array.h"
-#include "apex/platform/nano_timer.h"
-#include "apex/platform/timer.h"
-#include "apex/platform/timer_threaded.h"
-#include "apex/platform/timer_event.h"
 
 #include "apex/multithreading/thread_impl.h"
 //#include "apex/multithreading/simple_thread.h"

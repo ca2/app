@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_APEX timer :
+class CLASS_DECL_ACME timer :
    virtual public ::matter
 {
 public:

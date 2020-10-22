@@ -174,10 +174,10 @@ public:
 
    virtual HTHREAD get_os_handle() const;
 
-   virtual bool thread_active() const;
+   //virtual bool thread_active() const;
    virtual bool is_dedicated_thread() const;
    virtual bool is_thread() const override;
-   virtual bool is_running() const override;
+   //virtual bool is_running() const override;
 
    //virtual void set_os_data(void * pvoidOsData);
    //virtual void set_os_int(ITHREAD iData);

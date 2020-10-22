@@ -97,6 +97,9 @@ public:
    virtual bool is_thread() const;
    virtual bool thread_get_run() const;
 
+   virtual bool task_active() const;
+   virtual bool is_running() const;
+
    //virtual bool set_thread_name(const char* pszThreadName);
 
    virtual bool is_pred() const { return !m_pobjectContext || m_pobjectContext.get() == this; }

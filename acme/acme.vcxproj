@@ -1431,6 +1431,12 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="platform\regex.cpp" />
     <ClCompile Include="platform\static_start.cpp" />
     <ClCompile Include="platform\text.cpp" />
+    <ClCompile Include="platform\timer.cpp" />
+    <ClCompile Include="platform\timer_array.cpp" />
+    <ClCompile Include="platform\timer_callback.cpp" />
+    <ClCompile Include="platform\timer_event.cpp" />
+    <ClCompile Include="platform\timer_item.cpp" />
+    <ClCompile Include="platform\timer_task.cpp" />
     <ClCompile Include="platform\trace_category.cpp" />
     <ClCompile Include="platform\version.cpp" />
     <ClCompile Include="platform\_.cpp" />
@@ -1726,6 +1732,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="platform\main.h" />
     <ClInclude Include="platform\muldiv32.h" />
     <ClInclude Include="platform\muldiv64.h" />
+    <ClInclude Include="platform\nano_timer.h" />
     <ClInclude Include="platform\net.h" />
     <ClInclude Include="platform\number.h" />
     <ClInclude Include="platform\obj_ref_dbg.h" />
@@ -1744,6 +1751,12 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="platform\static_start.h" />
     <ClInclude Include="platform\status.h" />
     <ClInclude Include="platform\tick.h" />
+    <ClInclude Include="platform\timer.h" />
+    <ClInclude Include="platform\timer_array.h" />
+    <ClInclude Include="platform\timer_callback.h" />
+    <ClInclude Include="platform\timer_event.h" />
+    <ClInclude Include="platform\timer_item.h" />
+    <ClInclude Include="platform\timer_task.h" />
     <ClInclude Include="platform\trace_category.h" />
     <ClInclude Include="platform\version.h" />
     <ClInclude Include="platform\_generic_object_constructor_impl.h" />

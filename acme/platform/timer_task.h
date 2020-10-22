@@ -1,14 +1,14 @@
 #pragma once
 
 
-class CLASS_DECL_APEX threaded_timer :
+class CLASS_DECL_ACME timer_task :
    public timer,
-   virtual public thread
+   virtual public task
 {
 public:
 
 
-   __reference(::apex::timer_array)    m_ptimera;
+   __pointer(::apex::timer_array)      m_ptimera;
    PFN_TIMER                           m_pfnTimer;
    void *                              m_pvoidData;
    bool                                m_bRunning;
@@ -41,8 +41,8 @@ public:
 
 
 
-   threaded_timer();
-   virtual ~threaded_timer();
+   timer_task();
+   virtual ~timer_task();
 
 
    virtual i64 add_ref(OBJ_REF_DBG_PARAMS);
@@ -70,12 +70,12 @@ public:
    //bool impl_start();
    //bool impl_restart();
    //void impl_stop();
-   virtual void term_thread() override;
+   virtual void term_task() override;
 
    inline bool is_timer_ok() const { return is_ok(); }
 
 
-   virtual bool thread_active() const override;
+   virtual bool task_active() const override;
 
 
    

@@ -39,7 +39,7 @@ namespace apex
 
       delete_timer(uEvent);
 
-      auto ptimer = __new(threaded_timer);
+      auto ptimer = __new(timer_task);
 
       ptimer->initialize_timer(this, uEvent, pfnTimer, pvoidData, mutex());
 

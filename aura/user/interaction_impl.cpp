@@ -753,7 +753,7 @@ namespace user
 
             peventStartedProdevian.release();
 
-            if (m_pprodevian->thread_active())
+            if (m_pprodevian->task_active())
             {
 
                m_pprodevian->release();
@@ -773,7 +773,7 @@ namespace user
 
             peventStartedProdevian.release();
 
-            if (m_pprodevian->thread_active())
+            if (m_pprodevian->task_active())
             {
 
                m_pprodevian->release();

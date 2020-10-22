@@ -2,44 +2,44 @@
 #include "apex/const/id.h"
 
 
-threaded_timer::threaded_timer()
+timer_task::timer_task()
 {
 
 }
 
 
-threaded_timer::~threaded_timer()
+timer_task::~timer_task()
 {
 
 }
 
 
 
-i64 threaded_timer::add_ref(OBJ_REF_DBG_PARAMS_DEF)
+i64 timer_task::add_ref(OBJ_REF_DBG_PARAMS_DEF)
 {
 
-   return thread::add_ref(OBJ_REF_DBG_ARGS);
+   return task::add_ref(OBJ_REF_DBG_ARGS);
 
 }
 
 
-i64 threaded_timer::dec_ref(OBJ_REF_DBG_PARAMS_DEF)
+i64 timer_task::dec_ref(OBJ_REF_DBG_PARAMS_DEF)
 {
 
-   return thread::dec_ref(OBJ_REF_DBG_ARGS);
+   return task::dec_ref(OBJ_REF_DBG_ARGS);
 
 }
 
 
-i64 threaded_timer::release(OBJ_REF_DBG_PARAMS_DEF)
+i64 timer_task::release(OBJ_REF_DBG_PARAMS_DEF)
 {
 
-   return thread::release(OBJ_REF_DBG_ARGS);
+   return task::release(OBJ_REF_DBG_ARGS);
 
 }
 
 
-::estatus threaded_timer::initialize_timer(::apex::timer_array* ptimera, uptr uiTimer, PFN_TIMER pfnTimer, void* pvoidData, class sync* pmutex)
+::estatus timer_task::initialize_timer(::apex::timer_array* ptimera, uptr uiTimer, PFN_TIMER pfnTimer, void* pvoidData, class sync* pmutex)
 {
 
    auto estatus = initialize(ptimera);
@@ -55,7 +55,7 @@ i64 threaded_timer::release(OBJ_REF_DBG_PARAMS_DEF)
 
    initialize(ptimera);
 
-   __refer(m_ptimera, ptimera);
+   m_ptimera.reset(ptimera OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
 
    if (m_ptimera)
    {
@@ -77,7 +77,7 @@ i64 threaded_timer::release(OBJ_REF_DBG_PARAMS_DEF)
 }
 
 
-bool threaded_timer::start(const ::duration& duration, bool bPeriodic)
+bool timer_task::start(const ::duration& duration, bool bPeriodic)
 {
 
    sync_lock sl(mutex());
@@ -100,14 +100,58 @@ bool threaded_timer::start(const ::duration& duration, bool bPeriodic)
 
       m_bRunning = true;
 
-      if (!begin())
+      if (!fork())
       {
 
          return false;
 
       }
 
-      m_strDebugNote.Format("uEvent=%d,container:[%s,id=%s])", m_uEvent, typeid(*m_ptimera->get_context_object()->get_context_object()).name(), __str(m_ptimera->get_context_object()->get_context_object()->m_id).c_str());
+
+
+      m_strDebugNote.Format("uEvent=%d", m_uEvent);
+
+      auto pparent = m_ptimera->m_pobjectContext;
+
+      if (pparent)
+      {
+
+         auto pcontextobjectParent = pparent.cast < ::context_object>();
+
+         if (pcontextobjectParent)
+         {
+
+            auto playeredContainer = pcontextobjectParent->m_pobjectContext;
+
+            string strFormat;
+
+            strFormat.Format(",container: [% s", typeid(*playeredContainer).name());
+
+            m_strDebugNote += strFormat;
+
+            auto pcontextobjectContainer = playeredContainer.cast < ::context_object> ();
+
+            if (pcontextobjectContainer)
+            {
+
+               strFormat.Format(", id = % s]", __str(pcontextobjectContainer->m_id).c_str());
+               
+               m_strDebugNote += strFormat;
+
+            }
+            else
+            {
+
+               m_strDebugNote += "]";
+
+            }
+
+
+         }
+
+      }
+
+      
 
       //if(!impl_start())
       //{
@@ -131,7 +175,7 @@ bool threaded_timer::start(const ::duration& duration, bool bPeriodic)
 }
 
 
-//void threaded_timer::call_on_timer()
+//void timer_task::call_on_timer()
 //{
 //
 //   sync_lock sl(mutex());
@@ -253,7 +297,7 @@ bool threaded_timer::start(const ::duration& duration, bool bPeriodic)
 //}
 
 
-bool threaded_timer::on_timer()
+bool timer_task::on_timer()
 {
 
    m_bRet = false;
@@ -279,23 +323,23 @@ bool threaded_timer::on_timer()
 }
 
 
-void threaded_timer::term_thread()
+void timer_task::term_task()
 {
 
-   ::thread::term_thread();
+   ::task::term_task();
 
 }
 
 
-bool threaded_timer::thread_active() const
+bool timer_task::task_active() const
 {
 
-   return m_bRunning && ::thread::thread_active();
+   return m_bRunning && ::task::task_active();
 
 }
 
 
-::estatus threaded_timer::run()
+::estatus timer_task::run()
 {
 
    while (thread_sleep(m_duration))
@@ -327,7 +371,7 @@ bool threaded_timer::thread_active() const
 
 
 
-void threaded_timer::finalize()
+void timer_task::finalize()
 {
 
    {
@@ -342,7 +386,7 @@ void threaded_timer::finalize()
 
             m_ptimera->remove_timer(this);
 
-            __release(m_ptimera OBJ_REF_DBG_COMMA_THIS);
+            m_ptimera.release(OBJ_REF_DBG_THIS);
 
          }
 
@@ -356,7 +400,7 @@ void threaded_timer::finalize()
 
    ::timer::finalize();
 
-   ::thread::finalize();
+   ::task::finalize();
 
 }
 

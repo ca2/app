@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_APEX nano_timer
+class CLASS_DECL_ACME nano_timer
 {
 public:
 

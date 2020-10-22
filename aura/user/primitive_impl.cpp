@@ -1158,7 +1158,7 @@ namespace user
 
          m_ptimerarray->m_pcallback = m_puserinteraction;
 
-         m_ptimerarray->set_context_thread(m_puserinteraction->m_pthreadUserInteraction);
+         //m_ptimerarray->set_context_thread(m_puserinteraction->m_pthreadUserInteraction);
 
       }
 

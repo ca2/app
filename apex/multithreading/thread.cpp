@@ -221,12 +221,12 @@ HTHREAD thread::get_os_handle() const
 
 
 
-bool thread::thread_active() const
-{
-
-   return get_os_handle() != 0;
-
-}
+//bool thread::task_active() const
+//{
+//
+//   return get_os_handle() != 0;
+//
+//}
 
 
 bool thread::is_thread() const
@@ -245,12 +245,6 @@ bool thread::is_dedicated_thread() const
 }
 
 
-bool thread::is_running() const
-{
-
-   return thread_active() && thread_get_run();
-
-}
 
 
 void thread::on_pos_run_thread()
@@ -1301,7 +1295,7 @@ void thread::kick_idle()
    try
    {
 
-      if (thread_active())
+      if (task_active())
       {
 
 #ifdef WINDOWS_DESKTOP
@@ -1375,7 +1369,7 @@ void thread::post_quit()
    try
    {
 
-      if (thread_active() && !m_bAuraMessageQueue)
+      if (task_active() && !m_bAuraMessageQueue)
       {
 
          if (m_bMessageThread)

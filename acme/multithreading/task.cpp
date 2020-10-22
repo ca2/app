@@ -78,6 +78,23 @@ bool task::thread_get_run() const
 }
 
 
+bool task::task_active() const
+{
+
+   return m_hthread != (HTHREAD) 0;
+
+}
+
+
+bool task::is_running() const
+{
+
+   return m_bitIsRunning;
+
+}
+
+
+
 void task::set_thread_run(bool bRun)
 {
 

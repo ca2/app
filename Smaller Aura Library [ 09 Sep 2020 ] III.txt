@@ -13,17 +13,17 @@ update Status
 Last status from August
 2020-08-21 06:08        13,691kb                        135,398kb                            9,617kb
 
-Sep2020           Oct2020
-       27-20      22
+Sep2020              Oct2020
+       27-20         22 01-30      22 02-30
       
-acme   4,124KB    
-apex   5,342KB
-aqua     387KB
-aura   4,660KB
-axis   1,489KB
-base   3,427KB
-         177KB
-core   7,764KB
+acme   4,124KB       4,442KB       
+apex   5,342KB       5,260KB
+aqua     387KB         433KB
+aura   4,660KB       4,408KB
+axis   1,489KB       1,526KB
+base   3,427KB       3,483KB
+bred     177KB         184KB
+core   7,764KB       7,858KB
       
 
 

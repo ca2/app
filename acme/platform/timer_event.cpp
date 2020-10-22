@@ -1,9 +1,8 @@
 #include "framework.h"
 
 
-timer_event::timer_event(::apex::timer_array * ptimera, int iTimer) :
-   ::object(ptimera)
-{
+timer_event::timer_event()
+ {
 
 }
 

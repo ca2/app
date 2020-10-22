@@ -1,6 +1,8 @@
 #include "framework.h"
 #include "task.h"
+#ifdef LINUX
 #include <pthread.h>
+#endif
 
 
 task::task()

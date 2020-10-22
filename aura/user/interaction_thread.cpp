@@ -322,6 +322,21 @@ namespace user
 
          }
 
+         if (m_message.message == WM_QUIT)
+         {
+
+            if (m_pimpl 
+               && m_pimpl->m_puserinteraction->m_ewindowflag & window_flag_is_window
+               && ::thread::is_set_finish())
+            {
+
+               m_pimpl->m_puserinteraction->DestroyWindow();
+
+            }
+
+         }
+
+
          if(m_message.message == WM_LBUTTONDOWN)
          {
 

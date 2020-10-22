@@ -1184,7 +1184,9 @@ bool thread::is_set_finish() const
 void thread::set_finish()
 {
 
-   if (strstr(type_name(), "audio::out"))
+   string strType = type_name();
+
+   if (strstr(strType, "audio::out"))
    {
 
       output_debug_string("out ::thread::set_finish");
@@ -1194,40 +1196,48 @@ void thread::set_finish()
    try
    {
 
-      sync_lock sl(mutex());
+      ::task_array taska;
 
-      try
       {
 
-         m_bitRunThisThread = false;
-
-      }
-      catch (...)
-      {
-
-      }
-
-      set_finish_composites();
-
-      for(auto & pmanualresetevent : m_eventaWait)
-      {
+         sync_lock sl(mutex());
 
          try
          {
 
-            pmanualresetevent->set_event();
+            m_bitRunThisThread = false;
 
          }
-         catch(...)
+         catch (...)
          {
 
          }
+
+         set_finish_composites();
+
+         for (auto& pmanualresetevent : m_eventaWait)
+         {
+
+            try
+            {
+
+               pmanualresetevent->set_event();
+
+            }
+            catch (...)
+            {
+
+            }
+
+         }
+
+         taska = m_taska;
 
       }
 
       string strWaiting;
 
-      for (auto & ptask : m_taska)
+      for (auto& ptask : taska)
       {
 
          try
@@ -1258,18 +1268,24 @@ void thread::set_finish()
 
       }
 
-      //__finalize_composites();
-
-      if (m_taska.has_element())
       {
 
-         kick_idle();
+         sync_lock sl(mutex());
 
-      }
-      else
-      {
+         //__finalize_composites();
 
-         post_quit();
+         if (m_taska.has_element())
+         {
+
+            kick_idle();
+
+         }
+         else
+         {
+
+            post_quit();
+
+         }
 
       }
 
@@ -3468,7 +3484,13 @@ int_bool thread::get_message(LPMESSAGE pMsg, oswindow oswindow, UINT wMsgFilterM
 
          bQuit = !iRet || pMsg->message == WM_QUIT;
 
-         if (!bQuit)
+         if (bQuit)
+         {
+
+            ::output_debug_string("received WM_QUIT");
+
+         }
+         else
          {
 
             return TRUE;
@@ -3504,7 +3526,7 @@ int_bool thread::get_message(LPMESSAGE pMsg, oswindow oswindow, UINT wMsgFilterM
 
    }
 
-   return bQuit;
+   return thread_get_run();
 
 }
 

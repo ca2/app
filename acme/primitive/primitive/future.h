@@ -9,6 +9,7 @@ public:
 
    future(const ::id & id = ::id(), ::matter* p = nullptr) : function_base(id, p) {}
    future(const ::future& future) : function_base((const ::function_base &) future) { }
+   future(::future * pfuture) : function_base((const ::function_base&) *pfuture) { }
    future(const ::function_base& function) : function_base(function) { }
    template < typename PRED >
    future(const ::id & id, PRED pred, ::matter * pobjectHold = nullptr) : function_base(id, __future < PRED >(pred, pobjectHold)) { }

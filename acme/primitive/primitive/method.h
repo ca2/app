@@ -9,6 +9,7 @@ public:
 
    method(const ::id& id = ::id()) : function_base(id) {}
    method(const ::method& method) : function_base((const ::function_base&) method) { }
+   method(::method * pmethod) : function_base((const ::function_base&)*pmethod) { }
    method(const ::function_base& function) : function_base(function) { }
    template < typename PRED >
    method(const ::id& id, PRED pred);

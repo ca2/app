@@ -282,7 +282,7 @@ namespace linux
 
       __refer(m_puserinteraction->m_pthreadUserInteraction, ::get_task());
 
-      m_pthreadUserImpl = m_puserinteraction->m_pthreadUserInteraction;
+      //m_pthreadUserImpl = m_puserinteraction->m_pthreadUserInteraction;
 
       install_message_routing(m_puserinteraction);
 
@@ -752,12 +752,12 @@ namespace linux
          if(m_bMoveEvent || m_bSizeEvent)
          {
 
-            defer_fork("delayed_placement", [this]()
+            defer_fork("delayed_placement", __pred_method([this]()
             {
 
                _thread_delayed_placement();
 
-            });
+            }));
 
          }
 
@@ -997,15 +997,15 @@ namespace linux
 
          single_lock sl(get_context_application() == nullptr ? nullptr : get_context_application()->mutex(), TRUE);
 
-         ::thread* pThread = ::get_task();
+         ::thread* pthread = ::get_thread();
 
-         if (pThread != nullptr)
+         if (pthread != nullptr)
          {
 
-            if (pThread->get_active_ui() == m_puserinteraction)
+            if (pthread->get_active_ui() == m_puserinteraction)
             {
 
-               pThread->set_active_ui(nullptr);
+               pthread->set_active_ui(nullptr);
 
             }
 

@@ -3169,7 +3169,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
          if(g_pobjectaExtendedEventListener && g_pobjectaExtendedEventListener->get_count() > 0)
          {
 
-            auto pupdate = new_update();
+            ::action action;
 
             e_id eid;
 
@@ -3191,16 +3191,16 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 
             }
 
-            paction->id() = eid;
+            action.m_id = eid;
 
-            pupdate->value("return") = is_return_key((XIRawEvent*)cookie->data);
+            action.value("return") = is_return_key((XIRawEvent*)cookie->data);
 
-            pupdate->value("space") = is_space_key((XIRawEvent*)cookie->data);
+            action.value("space") = is_space_key((XIRawEvent*)cookie->data);
 
             for(auto & p : *g_pobjectaExtendedEventListener)
             {
 
-               p->apply(paction);
+               p->apply(&action);
 
             }
 
@@ -5252,12 +5252,6 @@ bool post_ui_message(const MESSAGE & message)
    {
 
       pthread = pinteraction->m_pthreadUserInteraction;
-
-   }
-   else
-   {
-
-      pthread = oswindow->m_pimpl->m_pthreadUserImpl;
 
    }
 

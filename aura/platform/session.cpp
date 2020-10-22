@@ -1817,12 +1817,18 @@ the file README-colorramp for more information. */
    void session::set_finish()
    {
 
+
+#ifdef WINDOWS
+
+
       if (m_puiSession)
       {
 
          __user_interaction(m_puiSession)->DestroyWindow();
 
       }
+
+#endif
 
       ::aqua::session::set_finish();
 
@@ -2119,7 +2125,7 @@ the file README-colorramp for more information. */
 
       }
 
-      *prect = m_rectaWork[iWkspace];
+      *prect = m_rectaWkspace[iWkspace];
 
 
       return true;
@@ -4005,7 +4011,7 @@ ret:
       //   if(System.m_bDraw2d)
       //   {
 
-      //      
+      //
 
       //   }
 

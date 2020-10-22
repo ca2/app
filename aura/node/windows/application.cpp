@@ -192,6 +192,26 @@ namespace aura
 
    }
 
+   int_bool application::window_set_mouse_cursor(oswindow window, HCURSOR hcursor)
+   {
+
+#ifdef WINDOWS_DESKTOP
+
+      UNREFERENCED_PARAMETER(window);
+
+      if (!::SetCursor(hcursor))
+      {
+
+         return FALSE;
+
+      }
+
+#endif
+
+      return true;
+
+   }
+
 
    //string application::veriwell_multimedia_music_midi_get_default_library_name()
    //{

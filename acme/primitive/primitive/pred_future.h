@@ -48,10 +48,18 @@ public:
 };
 
 
+template < typename PRED >
+inline __pointer(::matter) __future(PRED pred)
+{
+
+   return __new(___future < PRED >(pred));
+
+}
+
 
 
 template < typename PRED >
-inline __pointer(::matter) __future(PRED pred, ::matter* pobjectHold = nullptr)
+inline __pointer(::matter) __future(PRED pred, ::matter* pobjectHold)
 {
 
    return __new(___future < PRED >(pred, pobjectHold));

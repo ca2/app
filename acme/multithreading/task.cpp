@@ -2,7 +2,6 @@
 #include "task.h"
 
 
-
 task::task()
 {
 
@@ -94,7 +93,6 @@ bool task::is_running() const
 }
 
 
-
 void task::set_thread_run(bool bRun)
 {
 
@@ -183,20 +181,29 @@ void task::remove_notify(::matter* pmatter)
 void task::term_task()
 {
 
+   sync_lock sl(mutex());
+
+   auto elementaNotify = m_elementaNotify;
+
+   for (auto& pelement : elementaNotify)
    {
 
-      sync_lock sl(mutex());
+      pelement->task_remove(this);
 
-      auto elementaNotify = m_elementaNotify;
+      pelement->task_on_term(this);
 
-      for (auto& pelement : elementaNotify)
-      {
+   }
 
-         pelement->task_remove(this);
+   if (m_pthreadParent)
+   {
 
-         pelement->task_on_term(this);
+      ::task* ptaskParent = m_pthreadParent.cast < task>();
 
-      }
+      ptaskParent->task_remove(this);
+
+      ptaskParent->task_on_term(this);
+
+      ptaskParent->kick_idle();
 
    }
 
@@ -359,3 +366,13 @@ __pointer(task) task::start(::matter * pmatter, ::e_priority epriority, UINT nSt
 //   m_bRunThisThread = bRun;
 //
 //}
+
+
+void task::kick_idle()
+{
+
+
+}
+
+
+

@@ -373,7 +373,7 @@ public:
    virtual void finalize() override;
    virtual bool is_set_finish() const;
    virtual void set_finish() override;
-   virtual void kick_idle();
+   virtual void kick_idle() override;
    virtual void post_quit();
 
    virtual ::index task_add(::task * ptask) override;

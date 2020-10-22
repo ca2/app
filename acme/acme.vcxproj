@@ -1454,7 +1454,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="primitive\primitive\promise.cpp" />
     <ClCompile Include="primitive\primitive\source.cpp" />
     <ClCompile Include="primitive\primitive\action.cpp" />
-    <ClCompile Include="primitive\primitive\task.cpp" />
+    <ClCompile Include="primitive\primitive\work.cpp" />
     <ClCompile Include="primitive\primitive\update.cpp" />
     <ClCompile Include="process\exit_status.cpp" />
     <ClCompile Include="process\bidi_pipe.cpp" />

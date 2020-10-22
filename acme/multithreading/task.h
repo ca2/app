@@ -108,6 +108,8 @@ public:
 
    virtual void set_finish() override;
 
+   virtual void kick_idle();
+
 
 };
 

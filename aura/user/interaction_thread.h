@@ -88,6 +88,8 @@ namespace user
 
       virtual ::estatus     run() override;
 
+      virtual void set_finish() override;
+
       virtual void finalize() override;
 
       virtual bool thread_get_run() const override;

@@ -769,6 +769,13 @@ catch(...)
    }
 
 
+   void thread::set_finish()
+   {
+
+      ::thread::set_finish();
+
+   }
+
 
    void thread::finalize()
    {

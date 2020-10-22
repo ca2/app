@@ -1138,7 +1138,6 @@
 		<Unit filename="platform/net.cpp" />
 		<Unit filename="platform/net.h" />
 		<Unit filename="platform/obj_ref_dbg.h" />
-		<Unit filename="platform/obj_typ_ctr.cpp" />
 		<Unit filename="platform/obj_typ_ctr.h" />
 		<Unit filename="platform/os_context.cpp" />
 		<Unit filename="platform/os_context.h" />
@@ -1168,15 +1167,10 @@
 		<Unit filename="platform/system.h" />
 		<Unit filename="platform/system_trace.cpp" />
 		<Unit filename="platform/text.cpp" />
-		<Unit filename="platform/timer.cpp" />
 		<Unit filename="platform/timer.h" />
-		<Unit filename="platform/timer_array.cpp" />
 		<Unit filename="platform/timer_array.h" />
-		<Unit filename="platform/timer_callback.cpp" />
 		<Unit filename="platform/timer_callback.h" />
-		<Unit filename="platform/timer_event.cpp" />
 		<Unit filename="platform/timer_event.h" />
-		<Unit filename="platform/timer_item.cpp" />
 		<Unit filename="platform/timer_item.h" />
 		<Unit filename="platform/trace.cpp" />
 		<Unit filename="platform/trace.h" />

@@ -1372,7 +1372,6 @@
 		<Unit filename="primitive/primitive/source.h" />
 		<Unit filename="primitive/primitive/stick.h" />
 		<Unit filename="primitive/primitive/str.h" />
-		<Unit filename="primitive/primitive/task.cpp" />
 		<Unit filename="primitive/primitive/task.h" />
 		<Unit filename="primitive/primitive/trait.h" />
 		<Unit filename="primitive/primitive/trait_pred.h" />
@@ -1391,6 +1390,7 @@
 		<Unit filename="primitive/primitive/var_element.cpp" />
 		<Unit filename="primitive/primitive/virtual_memory.cpp" />
 		<Unit filename="primitive/primitive/virtual_memory.h" />
+		<Unit filename="primitive/primitive/work.cpp" />
 		<Unit filename="primitive/string/_.cpp" />
 		<Unit filename="primitive/string/_.h" />
 		<Unit filename="primitive/string/___ch_impl.h" />

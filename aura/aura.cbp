@@ -659,8 +659,6 @@
 		<Unit filename="os/linux/cross_win_gdi_internal.h" />
 		<Unit filename="os/linux/debug.cpp" />
 		<Unit filename="os/linux/debug.h" />
-		<Unit filename="os/linux/desktop_file.cpp" />
-		<Unit filename="os/linux/desktop_file.h" />
 		<Unit filename="os/linux/exception_engine.cpp" />
 		<Unit filename="os/linux/exception_engine.h" />
 		<Unit filename="os/linux/file.cpp" />

@@ -596,7 +596,7 @@ inline ::sync_result while_pred_Sleep(int iTime, PRED pred)
 CLASS_DECL_APEX void defer_create_thread(::layered * pobjectContext);
 
 
-CLASS_DECL_APEX void thread_name_abbreviate(string & strName, int len);
+
 
 
 

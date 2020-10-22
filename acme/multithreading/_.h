@@ -330,6 +330,7 @@ using LPFN_GET_THREAD_NAME = GET_THREAD_NAME*;
 CLASS_DECL_ACME void set_get_thread_name(LPFN_GET_THREAD_NAME);
 string get_thread_name(::thread* pthread);
 
+CLASS_DECL_ACME void thread_name_abbreviate(string & strName, int len);
 
 //#include "update_task_item_array.h"
 

@@ -643,6 +643,8 @@
 		<Unit filename="multithreading/sync_result.h" />
 		<Unit filename="multithreading/sync_task.cpp" />
 		<Unit filename="multithreading/sync_task.h" />
+		<Unit filename="multithreading/task.cpp" />
+		<Unit filename="multithreading/task.h" />
 		<Unit filename="multithreading/thread.cpp" />
 		<Unit filename="multithreading/thread_impl.h" />
 		<Unit filename="multithreading/thread_os.cpp" />
@@ -836,6 +838,7 @@
 		<Unit filename="os/linux/linux_linux.h" />
 		<Unit filename="os/linux/list_serial_ports.cpp" />
 		<Unit filename="os/linux/lock.cpp" />
+		<Unit filename="os/linux/multithreading.cpp" />
 		<Unit filename="os/linux/os.cpp" />
 		<Unit filename="os/linux/process.cpp" />
 		<Unit filename="os/linux/process.h" />
@@ -969,6 +972,7 @@
 		<Unit filename="platform/net.cpp" />
 		<Unit filename="platform/net.h" />
 		<Unit filename="platform/number.h" />
+		<Unit filename="platform/obj_ref_dbg.cpp" />
 		<Unit filename="platform/obj_ref_dbg.h" />
 		<Unit filename="platform/obj_typ_ctr.cpp" />
 		<Unit filename="platform/obj_typ_ctr.h" />
@@ -999,11 +1003,20 @@
 		<Unit filename="platform/text.cpp" />
 		<Unit filename="platform/theme.h" />
 		<Unit filename="platform/tick.h" />
+		<Unit filename="platform/timeout.h" />
+		<Unit filename="platform/timer.cpp" />
 		<Unit filename="platform/timer.h" />
+		<Unit filename="platform/timer_array.cpp" />
 		<Unit filename="platform/timer_array.h" />
+		<Unit filename="platform/timer_callback.cpp" />
 		<Unit filename="platform/timer_callback.h" />
+		<Unit filename="platform/timer_event.cpp" />
 		<Unit filename="platform/timer_event.h" />
+		<Unit filename="platform/timer_item.cpp" />
 		<Unit filename="platform/timer_item.h" />
+		<Unit filename="platform/timer_task.cpp" />
+		<Unit filename="platform/timer_task.h" />
+		<Unit filename="platform/title.h" />
 		<Unit filename="platform/trace.h" />
 		<Unit filename="platform/trace_category.cpp" />
 		<Unit filename="platform/trace_category.h" />

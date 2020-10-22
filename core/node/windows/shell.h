@@ -14,8 +14,8 @@ namespace windows
 
 
    class CLASS_DECL_CORE shell :
-      virtual public ::user::shell,
-      virtual public ::user::message_queue_listener
+      virtual public ::user::shell
+      //, virtual public ::user::message_queue_listener
    {
    public:
 
@@ -26,7 +26,7 @@ namespace windows
       comptr < IImageList >                           m_pilLarge;
       comptr < IImageList >                           m_pilExtraLarge;
       comptr < IImageList >                           m_pilJumbo;
-      __composite(::user::message_queue)              m_pmessagequeue;
+      //__composite(::user::message_queue)              m_pmessagequeue;
 
 
 

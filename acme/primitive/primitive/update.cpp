@@ -105,7 +105,7 @@ i64 update::release(OBJ_REF_DBG_PARAMS_DEF)
 
       }
 
-      system_update(m_id);
+      m_psource->apply_update(m_id);
 
       if (m_bModified)
       {

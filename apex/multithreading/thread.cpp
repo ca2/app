@@ -636,6 +636,13 @@ bool thread::thread_step()
 
    }
 
+   if (m_pmatter)
+   {
+
+      return m_pmatter->run();
+    
+   }
+
    if (m_bSimpleMessageLoop)
    {
 
@@ -1220,7 +1227,7 @@ void thread::Delete()
 bool thread::set_run()
 {
 
-   m_bitAvoidProcFork = true;
+   m_bitRunThisThread = true;
 
    return true;
 
@@ -1231,7 +1238,7 @@ bool thread::set_run()
 bool thread::is_set_finish() const
 {
 
-   return !m_bitAvoidProcFork;
+   return !m_bitRunThisThread;
 
 }
 
@@ -1254,7 +1261,7 @@ void thread::set_finish()
       try
       {
 
-         m_bitAvoidProcFork = false;
+         m_bitRunThisThread = false;
 
       }
       catch (...)
@@ -1720,7 +1727,9 @@ bool thread::thread_get_run() const
 
    }
 
-   return m_bitAvoidProcFork || m_threada.has_element();
+   //return m_bitAvoidProcFork || m_threada.has_element();
+
+   return m_bitRunThisThread || m_threada.has_element();
 
 }
 
@@ -2266,7 +2275,7 @@ size_t engine_symbol(char * sz, int n, DWORD_PTR * pdisplacement, DWORD_PTR dwAd
 bool thread::begin_thread(bool bSynchInitialization, ::e_priority epriority, UINT nStackSize, u32 uiCreateFlags, LPSECURITY_ATTRIBUTES psa)
 {
 
-   m_bitAvoidProcFork = true;
+   m_bitRunThisThread = true;
 
    ENSURE(m_hthread == (HTHREAD) nullptr);
 
@@ -2343,11 +2352,7 @@ bool thread::begin_thread(bool bSynchInitialization, ::e_priority epriority, UIN
 
    }
 
-   //ITHREAD ithread = 0;
-
-   //HTHREAD hthread = 0;
-
-   auto estatus = _start(this, epriority, nStackSize, uiCreateFlags);
+   auto estatus = fork(epriority, nStackSize, uiCreateFlags);
 
    if(m_hthread == 0)
    {
@@ -2613,10 +2618,10 @@ void thread::__os_finalize()
 
    m_bDedicated = true;
 
-   if (!m_bitAvoidProcFork)
+   if (!m_bitRunThisThread)
    {
 
-      m_bitAvoidProcFork = true;
+      m_bitRunThisThread = true;
 
    }
 
@@ -3354,7 +3359,7 @@ error:;
    try
    {
 
-      m_bitAvoidProcFork = false;
+      m_bitRunThisThread = false;
 
    }
    catch (...)
@@ -3372,7 +3377,7 @@ mq* thread::_get_mq()
 
    sync_lock sl(mutex());
 
-   if(!m_bitAvoidProcFork || m_bThreadClosed)
+   if(!m_bitRunThisThread || m_bThreadClosed)
    {
 
       if (m_pmq)
@@ -3478,7 +3483,7 @@ int_bool thread::get_message(LPMESSAGE pMsg, oswindow oswindow, UINT wMsgFilterM
       if (m_pmq->peek_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax, true))
       {
 
-         m_bitAvoidProcFork = false;
+         m_bitRunThisThread = false;
 
          bQuit = pMsg->message == WM_QUIT;
 

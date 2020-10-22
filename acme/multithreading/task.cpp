@@ -107,33 +107,7 @@ void* task::s_os_task(void* p)
 
       ptask->release();
 
-      while (ptask->m_bitRunThisThread)
-      {
-
-         ::matter* pmatter;
-
-         {
-
-            sync_lock sl(ptask->mutex());
-
-            pmatter = ptask->m_pmatter.m_p;
-
-            ptask->m_bitIsRunning = pmatter != nullptr;
-
-            if (!ptask->m_bitIsRunning)
-            {
-
-               break;
-
-            }
-
-            ptask->m_pmatter.m_p = nullptr;
-
-         }
-
-         pmatter->on_task();
-
-      }
+      ptask->on_task();
 
       ::thread_release(OBJ_REF_DBG_P_NOTE(ptask, ""));
 
@@ -148,6 +122,44 @@ void* task::s_os_task(void* p)
 }
 
 
+::estatus task::on_task()
+{
+
+   ::estatus estatus = ::success;
+
+   while (m_bitRunThisThread)
+   {
+
+      ::matter* pmatter;
+
+      {
+
+         sync_lock sl(mutex());
+
+         pmatter = m_pmatter.m_p;
+
+         m_bitIsRunning = pmatter != nullptr;
+
+         if (!m_bitIsRunning)
+         {
+
+            break;
+
+         }
+
+         m_pmatter.m_p = nullptr;
+
+      }
+
+      pmatter->on_task();
+
+   }
+
+   return estatus;
+
+}
+
+
 ::estatus task::_start(
    ::matter* pmatter,
    ::e_priority epriority,
@@ -155,10 +167,22 @@ void* task::s_os_task(void* p)
    u32 uCreateFlags)
 {
 
+   m_pmatter = pmatter;
+
+   return fork(epriority, nStackSize, uCreateFlags);
+
+}
+
+
+
+::estatus task::fork(
+   ::e_priority epriority,
+   u32 nStackSize,
+   u32 uCreateFlags)
+{
+
    // __thread_procedure() should release this (pmatter)
    add_ref(OBJ_REF_DBG_THIS_FUNCTION_LINE);
-
-   m_pmatter = pmatter;
 
 #ifdef WINDOWS
 

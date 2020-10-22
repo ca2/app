@@ -136,6 +136,8 @@ public:
    virtual void assert_valid() const override;
    virtual void dump(dump_context & dumpcontext) const override;
 
+   using task::fork;
+   using channel::fork;
 
    inline mq* get_mq() { return m_pmq ? m_pmq : _get_mq(); }
    mq* _get_mq();

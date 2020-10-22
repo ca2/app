@@ -69,6 +69,8 @@ namespace aura
 
       void monitor_enum(HMONITOR hmonitor, HDC hdcMonitor, RECT* prcMonitor);
 
+      inline ::user::interaction* system_window() { return __user_interaction(m_puiSession); }
+
 #endif
 
       virtual void set_finish() override;

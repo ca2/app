@@ -38,6 +38,13 @@ public:
 
 #endif
 
+   virtual ::estatus on_task() override;
+
+   ::estatus fork(
+      ::e_priority epriority = priority_normal,
+      u32 nStackSize = 0,
+      u32 dwCreateFlags = 0);
+
 
    ::estatus _start(
       ::matter* pmatter,

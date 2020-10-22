@@ -522,7 +522,9 @@ inline ::thread_pointer object::fork(METHOD method)
 
    auto pthread = __create_new < ::thread >();
 
-   pthread->_start(ppred);
+   pthread->m_pmatter = ppred;
+
+   pthread->begin_thread();
 
    return pthread;
 

@@ -177,7 +177,7 @@ namespace windows
 
       //}
       if (SUCCEEDED(hrExtractIconUI = psf->GetUIObjectOf(
-                                       m_pmessagequeue->get_handle(),
+                                       Session.system_window()->get_handle(),
                                        1,
                                        (LPCITEMIDLIST *)&pidlChild.m_pidl,
                                        IID_IExtractIconW,
@@ -228,7 +228,7 @@ namespace windows
       {
 
          if (SUCCEEDED(psf->GetUIObjectOf(
-            m_pmessagequeue->get_safe_handle(),
+            Session.system_window()->get_safe_handle(),
                         1,
                         (LPCITEMIDLIST *)&pidlChild.m_pidl,
                         IID_IShellIconOverlayIdentifier,
@@ -277,7 +277,7 @@ namespace windows
          {
 
             if (SUCCEEDED(psf->GetUIObjectOf(
-               m_pmessagequeue->get_safe_handle(),
+               Session.system_window()->get_safe_handle(),
                            1,
                            (LPCITEMIDLIST *)&pidlChild.m_pidl,
                            IID_IExtractImage,
@@ -1076,17 +1076,17 @@ namespace windows
 
       }
 
-      estatus = __compose_new(m_pmessagequeue);
+      //estatus = __compose_new(m_pmessagequeue);
 
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      m_pmessagequeue->create_message_queue("user::shell", this);
+      //m_pmessagequeue->create_message_queue("user::shell", this);
 
       return estatus;
 

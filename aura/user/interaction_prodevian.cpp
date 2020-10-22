@@ -146,7 +146,7 @@ namespace user
 
       }
 
-      ::thread_set_name("prodevian," + ::str::demangle(m_puserinteraction->type_name()));
+      ::set_thread_name("prodevian," + ::str::demangle(m_puserinteraction->type_name()));
 
       while (thread_get_run())
       {

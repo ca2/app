@@ -894,7 +894,7 @@ bool net::reverse_schedule(reverse_cache_item * pitem)
       m_pthreadReverse = System.fork([this]()
          {
 
-            ::thread_set_name("reverse_dns");
+            ::set_thread_name("reverse_dns");
 
             single_lock sl(mutex());
 

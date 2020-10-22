@@ -413,7 +413,7 @@ namespace windows
                           cs.x, cs.y, cs.cx, cs.cy,
                           cs.hwndParent, cs.hMenu, cs.hInstance, cs.lpCreateParams);
 
-      ::thread_set_name(m_puserinteraction->type_name());
+      ::set_thread_name(m_puserinteraction->type_name());
       u32 dwLastError = get_last_error();
 
       if (!unhook_window_create())

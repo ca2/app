@@ -182,7 +182,7 @@ namespace user
 
       set_topic_text("window_thread_" + ::str::demangle(m_pimpl->m_puserinteraction->type_name()) + "> ");
 
-      ::thread_set_name(::str::demangle(m_pimpl->m_puserinteraction->type_name()));
+      ::set_thread_name(::str::demangle(m_pimpl->m_puserinteraction->type_name()));
 
 #ifdef WINDOWS_DESKTOP
 

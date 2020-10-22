@@ -3081,7 +3081,7 @@ bool thread::on_get_thread_name(string& strThreadName)
    if (m_strTaskTag.has_char())
    {
 
-      //::thread_set_name(m_strTaskTag);
+      //::set_thread_name(m_strTaskTag);
 
       strThreadName = m_strTaskTag;
 
@@ -3089,7 +3089,7 @@ bool thread::on_get_thread_name(string& strThreadName)
    else
    {
 
-      //::thread_set_name(type_name());
+      //::set_thread_name(type_name());
 
       strThreadName = type_name();
 

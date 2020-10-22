@@ -122,7 +122,7 @@ CLASS_DECL_ACME ::estatus __call(::matter * pobject);
 
 
 
-CLASS_DECL_ACME bool thread_set_name(const char * psz);
+CLASS_DECL_ACME bool set_thread_name(const char * psz);
 CLASS_DECL_ACME bool set_thread_name(HTHREAD hthread, const char* pszName);
 
 

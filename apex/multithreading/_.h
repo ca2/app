@@ -123,7 +123,7 @@ namespace multithreading
 
 
 
-//CLASS_DECL_APEX bool thread_set_name(const char * psz);
+//CLASS_DECL_APEX bool set_thread_name(const char * psz);
 //CLASS_DECL_APEX bool set_thread_name(HTHREAD hthread, const char* pszName);
 
 // Use instead of PostQuitMessage in OLE server applications

@@ -2370,7 +2370,7 @@ void x11_thread(osdisplay_data * pdisplaydata)
 
    }
 
-   ::thread_set_name("x11_thread");
+   ::set_thread_name("x11_thread");
 
    fd_set fdset;
 

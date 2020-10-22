@@ -332,6 +332,9 @@ string get_thread_name(::thread* pthread);
 
 CLASS_DECL_ACME void thread_name_abbreviate(string & strName, int len);
 
+CLASS_DECL_ACME bool set_thread_name(HTHREAD hthread, const char * psz);
+CLASS_DECL_ACME bool set_thread_name(const char * psz);
+
 //#include "update_task_item_array.h"
 
 

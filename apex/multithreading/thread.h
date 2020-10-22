@@ -198,9 +198,6 @@ public:
    virtual void on_keep_alive() override;
    virtual bool is_alive() override;
 
-
-
-
    virtual ::task_pool* taskpool() override;
 
    virtual int get_x_window_count() const;

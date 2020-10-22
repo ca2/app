@@ -578,7 +578,7 @@ bool thread::thread_step()
    {
 
       return m_pmatter->run();
-    
+
    }
 
    if (m_bSimpleMessageLoop)
@@ -2310,7 +2310,7 @@ bool thread::begin_thread(bool bSynchInitialization, ::e_priority epriority, UIN
 
 #ifndef WINDOWS
 
-   if(hthread == ithread)
+   if(m_hthread == m_ithread)
    {
 
       INFO("create_thread success");

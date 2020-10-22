@@ -962,11 +962,11 @@ bool file_context::put_contents_utf8(const var & varFile, const char * pcszConte
 
    if (Context.dir().is(varSource.get_file_path()) && (eextract == extract_first || eextract == extract_all || !(::str::ends_ci(varSource.get_file_path(), ".zip"))))
    {
-      
+
       ::file::listing patha;
-      
+
       Context.dir().rls(patha, varSource);
-      
+
       ::file::path strDst;
       ::file::path strSrc;
       ::file::path strDirSrc(varSource.get_file_path());
@@ -1349,7 +1349,7 @@ bool file_context::put_contents_utf8(const var & varFile, const char * pcszConte
 
 #else
 
-   if (remove(psz) != 0)
+   if (unlink(psz) != 0)
    {
       i32 err = errno;
       if (err != ENOENT) // already does not exist - consider removal successful - does not issue an exception

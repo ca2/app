@@ -796,7 +796,7 @@ __pointer_array(::thread) fork_proc(::object * pobjectParent, PRED pred, index i
 
       pthread->m_bThreadToolsForIncreasedFps = false;
 
-      pthread->m_bAvoidProcFork = true;
+      //pthread->m_bAvoidProcFork = true;
 
       threadptra.add(pthread);
 

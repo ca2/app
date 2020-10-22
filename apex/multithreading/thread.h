@@ -198,8 +198,6 @@ public:
    virtual void on_keep_alive() override;
    virtual bool is_alive() override;
 
-   virtual ::task_pool* taskpool() override;
-
    virtual int get_x_window_count() const;
 
    virtual sync_result wait(const duration & duration);
@@ -213,6 +211,8 @@ public:
    //inline ::command::command * command() { return m_pcommand; }
    //inline ::command::command * command() const { return ((thread *)this)->m_pcommand; }
    //virtual ::command::command * get_command();
+
+   virtual ::task_pool* taskpool() override;
 
    //inline bool has_property(const ::id& id) const;
    //inline var command_value(const ::id& id) const;

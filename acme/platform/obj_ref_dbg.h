@@ -9,7 +9,7 @@
 
 #define _STRINGFY(identifier) #identifier
 #define STRINGFY(identifier) _STRINGFY(identifier)
-#define __FUNCTION_LINE__  __FUNCTION__ " (" STRINGFY(__LINE__) ")"
+#define __FUNCTION_LINE_STRING__  string(__FUNCTION__) + (" (" STRINGFY(__LINE__) ")")
 
 class obj_ref_dbg;
 
@@ -32,13 +32,13 @@ class obj_ref_dbg;
 #define OBJ_REF_DBG_THIS ((::matter *) this)
 #define OBJ_REF_DBG_COMMA_THIS , OBJ_REF_DBG_THIS
 #define OBJ_REF_DBG_THIS_NOTE(note) ((::matter *) this), note
-#define OBJ_REF_DBG_THIS_FUNCTION_LINE OBJ_REF_DBG_THIS_NOTE(__FUNCTION_LINE__ )
+#define OBJ_REF_DBG_THIS_FUNCTION_LINE OBJ_REF_DBG_THIS_NOTE( __FUNCTION_LINE_STRING__ )
 #define OBJ_REF_DBG_COMMA_THIS_NOTE(note) , OBJ_REF_DBG_THIS_NOTE(note)
 #define OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE , OBJ_REF_DBG_THIS_FUNCTION_LINE
 #define OBJ_REF_DBG_P_NOTE(pReferer, note) pReferer, note
-#define OBJ_REF_DBG_P_FUNCTION_LINE(pReferer) OBJ_REF_DBG_P_NOTE(pReferer, __FUNCTION_LINE__)
+#define OBJ_REF_DBG_P_FUNCTION_LINE(pReferer) OBJ_REF_DBG_P_NOTE(pReferer, __FUNCTION_LINE_STRING__ )
 #define OBJ_REF_DBG_COMMA_P_NOTE(pReferer, note) , OBJ_REF_DBG_P_NOTE(pReferer, note)
-#define OBJ_REF_DBG_COMMA_P_FUNCTION_LINE(pReferer) OBJ_REF_DBG_COMMA_P_NOTE(pReferer, __FUNCTION_LINE__)
+#define OBJ_REF_DBG_COMMA_P_FUNCTION_LINE(pReferer) OBJ_REF_DBG_COMMA_P_NOTE(pReferer, __FUNCTION_LINE_STRING__ )
 #define __assign(target, source) ___assign(target, source)
 #define __note_assign(target, source, note) ___assign(target, source, note)
 #define __named_release(x) ___release(x)
@@ -57,12 +57,12 @@ class obj_ref_dbg;
 #define OBJ_REF_DBG_COMMA_NOTE(note)
 #define OBJ_REF_DBG_THIS_NOTE(note)
 #define OBJ_REF_DBG_THIS_FUNCTION_LINE
-#define OBJ_REF_DBG_COMMA_THIS_NOTE(note) 
-#define OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE 
+#define OBJ_REF_DBG_COMMA_THIS_NOTE(note)
+#define OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE
 #define REF_DBG_COMMA_POINTER
-#define OBJ_REF_DBG_P_NOTE(pReferer, note) 
-#define OBJ_REF_DBG_P_FUNCTION_LINE(pReferer) 
-#define OBJ_REF_DBG_COMMA_P_NOTE(pReferer, note) 
+#define OBJ_REF_DBG_P_NOTE(pReferer, note)
+#define OBJ_REF_DBG_P_FUNCTION_LINE(pReferer)
+#define OBJ_REF_DBG_COMMA_P_NOTE(pReferer, note)
 #define OBJ_REF_DBG_COMMA_P_FUNCTION_LINE(pReferer)
 #define __assign(target, source) target = source
 #define __note_assign(target, source, note) target = source

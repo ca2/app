@@ -51,7 +51,7 @@ public:
 
 
 template < typename PRED >
-inline auto __future(PRED pred, ::matter* pobjectHold = nullptr)
+inline __pointer(::matter) __future(PRED pred, ::matter* pobjectHold = nullptr)
 {
 
    return __new(___future < PRED >(pred, pobjectHold));

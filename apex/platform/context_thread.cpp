@@ -190,7 +190,7 @@ namespace apex
 
       auto & pcreateNew = m_createaHistory.add_new();
 
-      __m_bind(this, pcreateNew, m_pcreate OBJ_REF_DBG_ADD_THIS_FUNCTION_LINE);
+      __m_bind(this, pcreateNew, m_pcreate OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
 
       m_pcreate->m_bNew = false;
 

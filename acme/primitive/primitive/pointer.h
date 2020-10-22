@@ -19,10 +19,10 @@ namespace factory
 
 
 template < class root_derived >
-inline i64 add_ref(root_derived * pca OBJ_REF_DBG_ADD_PARAMS);
+inline i64 add_ref(root_derived * pca OBJ_REF_DBG_COMMA_PARAMS);
 
 template < class root_derived >
-inline i64 release(root_derived * & pca OBJ_REF_DBG_ADD_PARAMS);
+inline i64 release(root_derived * & pca OBJ_REF_DBG_COMMA_PARAMS);
 
 // ::ca::null_class back link to operational system oswindow.h
 //
@@ -414,7 +414,7 @@ public:
    }
 
 
-   inline ___pointer & reset(T * ptr OBJ_REF_DBG_ADD_PARAMS);
+   inline ___pointer & reset(T * ptr OBJ_REF_DBG_COMMA_PARAMS);
 
    inline bool operator ==(std::nullptr_t) const { return is_null(); }
 
@@ -658,13 +658,13 @@ inline __pointer(TYPE) & __defer_fork(__pointer(TYPE) & p)
 
 
 template < class TYPE >
-inline ::i64 release(__pointer(TYPE)& pointer OBJ_REF_DBG_ADD_PARAMS);
+inline ::i64 release(__pointer(TYPE)& pointer OBJ_REF_DBG_COMMA_PARAMS);
 
 template < class TYPE >
-inline ::i64 __finalize(__pointer(TYPE)& pointer OBJ_REF_DBG_ADD_PARAMS);
+inline ::i64 __finalize(__pointer(TYPE)& pointer OBJ_REF_DBG_COMMA_PARAMS);
 
 template < class REFERENCE >
-inline ::i64 release(__reference(REFERENCE)& preference OBJ_REF_DBG_ADD_PARAMS);
+inline ::i64 release(__reference(REFERENCE)& preference OBJ_REF_DBG_COMMA_PARAMS);
 
 
 

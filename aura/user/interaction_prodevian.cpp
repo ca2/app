@@ -39,6 +39,9 @@ namespace user
    }
 
 
+#ifdef DEBUG
+
+
    i64 prodevian::add_ref(OBJ_REF_DBG_PARAMS_DEF)
    {
 
@@ -61,6 +64,9 @@ namespace user
       return ::thread::release(OBJ_REF_DBG_ARGS);
 
    }
+
+
+#endif
 
 
    ::estatus prodevian::initialize_prodevian(interaction_impl * pimpl)
@@ -123,7 +129,7 @@ namespace user
    ::estatus prodevian::run()
    {
 
-      m_pimpl->m_puserinteraction->thread_add(this);
+      m_pimpl->m_puserinteraction->task_add(this);
 
       m_synca.add(&m_evUpdateScreen);
 

@@ -137,12 +137,12 @@ public:
    inline var context_value(const var& var);
 
 
-   virtual ::index thread_add(::thread* pthread) override;
-   virtual void thread_remove(::thread* pthread) override;
-   virtual void thread_remove_all();
-   virtual bool thread_is_empty() const;
-   virtual const __pointer_array(::thread) * thread_array_get() const;
-   virtual __pointer_array(::thread)* thread_array_get();
+   virtual ::index task_add(::task* ptask) override;
+   virtual void task_remove(::task* ptask) override;
+   virtual void task_remove_all();
+   virtual bool task_is_empty() const;
+   virtual const ::task_array * task_array_get() const;
+   virtual ::task_array* task_array_get();
 
    
 
@@ -200,11 +200,11 @@ public:
    virtual string get_text(const var& var, const ::id& id) override;
 
 #ifdef DEBUG
-   virtual void set_context(::context* pcontext OBJ_REF_DBG_ADD_PARAMS);
-   virtual void set_context_thread(::thread* pthread OBJ_REF_DBG_ADD_PARAMS);
-   virtual void set_context_app(::apex::application* pappContext OBJ_REF_DBG_ADD_PARAMS);
-   virtual void set_context_session(::apex::session* psessionContext OBJ_REF_DBG_ADD_PARAMS);
-   virtual void set_context_system(::apex::system* psystemContext OBJ_REF_DBG_ADD_PARAMS);
+   virtual void set_context(::context* pcontext OBJ_REF_DBG_COMMA_PARAMS);
+   virtual void set_context_thread(::thread* pthread OBJ_REF_DBG_COMMA_PARAMS);
+   virtual void set_context_app(::apex::application* pappContext OBJ_REF_DBG_COMMA_PARAMS);
+   virtual void set_context_session(::apex::session* psessionContext OBJ_REF_DBG_COMMA_PARAMS);
+   virtual void set_context_system(::apex::system* psystemContext OBJ_REF_DBG_COMMA_PARAMS);
    //virtual void set_context_user(::object * puserContext);
 #else
    inline void set_context(::context* pcontext);
@@ -274,10 +274,10 @@ public:
    inline ::estatus __compose(__composite(BASE_TYPE) & pbase);
 
    template < typename BASE_TYPE, typename SOURCE >
-   inline ::estatus __compose(__composite(BASE_TYPE) & pbase, const SOURCE * psource OBJ_REF_DBG_ADD_PARAMS);
+   inline ::estatus __compose(__composite(BASE_TYPE) & pbase, const SOURCE * psource OBJ_REF_DBG_COMMA_PARAMS);
 
    template < typename BASE_TYPE, typename SOURCE >
-   inline ::estatus __compose(__composite(BASE_TYPE) & pbase, const __pointer(SOURCE) & psource OBJ_REF_DBG_ADD_PARAMS);
+   inline ::estatus __compose(__composite(BASE_TYPE) & pbase, const __pointer(SOURCE) & psource OBJ_REF_DBG_COMMA_PARAMS);
 
    template < typename BASE_TYPE >
    inline ::estatus __id_compose(__composite(BASE_TYPE) & pbase, const ::id & id);
@@ -325,43 +325,43 @@ public:
    inline ::estatus __construct_new(__pointer(TYPE) & pbase);
 
    template < typename BASE_TYPE >
-   inline ::estatus __release(__composite(BASE_TYPE) & pcomposite OBJ_REF_DBG_ADD_PARAMS);
+   inline ::estatus __release(__composite(BASE_TYPE) & pcomposite OBJ_REF_DBG_COMMA_PARAMS);
 
    template < typename BASE_TYPE >
-   inline ::estatus __release(__reference(BASE_TYPE) & preference OBJ_REF_DBG_ADD_PARAMS);
+   inline ::estatus __release(__reference(BASE_TYPE) & preference OBJ_REF_DBG_COMMA_PARAMS);
 
    template < typename SOURCE >
-   inline ::estatus release_reference(__pointer(SOURCE) & psource OBJ_REF_DBG_ADD_PARAMS);
+   inline ::estatus release_reference(__pointer(SOURCE) & psource OBJ_REF_DBG_COMMA_PARAMS);
 
 
-   virtual ::estatus add_composite(::matter * pobject OBJ_REF_DBG_ADD_PARAMS) override;
-   virtual ::estatus add_reference(::matter * pobject OBJ_REF_DBG_ADD_PARAMS) override;
+   virtual ::estatus add_composite(::matter * pobject OBJ_REF_DBG_COMMA_PARAMS) override;
+   virtual ::estatus add_reference(::matter * pobject OBJ_REF_DBG_COMMA_PARAMS) override;
 
 
-   virtual ::estatus release_composite(::matter * pobject OBJ_REF_DBG_ADD_PARAMS) override;
-   virtual ::estatus release_reference(::matter * pobject OBJ_REF_DBG_ADD_PARAMS) override;
+   virtual ::estatus release_composite(::matter * pobject OBJ_REF_DBG_COMMA_PARAMS) override;
+   virtual ::estatus release_reference(::matter * pobject OBJ_REF_DBG_COMMA_PARAMS) override;
 
 
    template < typename BASE_TYPE >
-   inline ::estatus add_composite(__composite(BASE_TYPE) & pcomposite OBJ_REF_DBG_ADD_PARAMS);
+   inline ::estatus add_composite(__composite(BASE_TYPE) & pcomposite OBJ_REF_DBG_COMMA_PARAMS);
 
    template < typename BASE_TYPE, typename SOURCE >
-   inline ::estatus __refer(__reference(BASE_TYPE) & preference, const SOURCE * psource OBJ_REF_DBG_ADD_PARAMS);
+   inline ::estatus __refer(__reference(BASE_TYPE) & preference, const SOURCE * psource OBJ_REF_DBG_COMMA_PARAMS);
 
    template < typename BASE_TYPE, typename SOURCE >
-   inline ::estatus __refer(__reference(BASE_TYPE) & preference, const __pointer(SOURCE) & psource OBJ_REF_DBG_ADD_PARAMS);
+   inline ::estatus __refer(__reference(BASE_TYPE) & preference, const __pointer(SOURCE) & psource OBJ_REF_DBG_COMMA_PARAMS);
 
    template < typename BASE_TYPE, typename SOURCE >
-   inline ::estatus __refer(__reference(BASE_TYPE) & preference, const ::primitive::member < SOURCE > & psource OBJ_REF_DBG_ADD_PARAMS);
+   inline ::estatus __refer(__reference(BASE_TYPE) & preference, const ::primitive::member < SOURCE > & psource OBJ_REF_DBG_COMMA_PARAMS);
 
    template < typename SOURCE >
-   inline ::estatus add_reference(SOURCE* psource OBJ_REF_DBG_ADD_PARAMS);
+   inline ::estatus add_reference(SOURCE* psource OBJ_REF_DBG_COMMA_PARAMS);
 
    template < typename SOURCE >
-   inline ::estatus add_reference(__pointer(SOURCE)& psource OBJ_REF_DBG_ADD_PARAMS);
+   inline ::estatus add_reference(__pointer(SOURCE)& psource OBJ_REF_DBG_COMMA_PARAMS);
 
    template < typename SOURCE >
-   inline ::estatus add_reference(__reference(SOURCE)& psource OBJ_REF_DBG_ADD_PARAMS);
+   inline ::estatus add_reference(__reference(SOURCE)& psource OBJ_REF_DBG_COMMA_PARAMS);
 
    virtual void delete_this() override;
 
@@ -430,7 +430,7 @@ public:
 
    virtual void release_references();
 
-   virtual __pointer(::object) running(const char * pszTag) const;
+   virtual __pointer(::matter) running(const char * pszTag) const;
 
    virtual bool ___is_reference(::matter * pobject) const;
 

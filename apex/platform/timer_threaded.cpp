@@ -342,7 +342,7 @@ void threaded_timer::finalize()
 
             m_ptimera->remove_timer(this);
 
-            __release(m_ptimera, OBJ_REF_DBG_THIS);
+            __release(m_ptimera OBJ_REF_DBG_COMMA_THIS);
 
          }
 

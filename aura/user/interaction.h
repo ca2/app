@@ -226,7 +226,7 @@ namespace user
       class ::user::interaction_layout& layout() { return m_layout; }
 
 
-      virtual void thread_on_term(::thread* pthread) override;
+      virtual void task_on_term(::task* pthread) override;
 
 
       inline void auto_prodevian_on_show() { m_ewindowflag |= window_flag_auto_prodevian_on_show; }

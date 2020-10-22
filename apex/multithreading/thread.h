@@ -42,13 +42,10 @@ public:
    bool                                               m_bClosedMq;
 
 
-   __pointer(::thread)                                m_pthreadParent;
-   __pointer_array(::thread)                          m_threada;
+   ::task_array                                       m_taska;
    MESSAGE                                            m_message;
    bool                                               m_bLastingThread;
    bool                                               m_bMessageThread;
-   string                                             m_strThreadName;
-   string                                             m_strThreadTag;
    bool                                               m_bDedicated;
    bool                                               m_bThreadToolsForIncreasedFps;
    ::estatus                                          m_estatus;
@@ -56,7 +53,6 @@ public:
    ::mutex *                                          m_pmutexThreadUiPtra;
    single_lock *                                      m_pslUser;
    static bool                                        s_bAllocReady;
-   element_array                                      m_elementaNotify;
 
 #ifdef __DEBUG
    char *                                             m_pszDebug;
@@ -149,7 +145,7 @@ public:
    user_interaction_ptr_array & uiptra();
 
 
-
+   virtual context_object* calc_parent_thread() override;
 
 //#ifdef WINDOWS_DESKTOP
 //
@@ -204,8 +200,6 @@ public:
    virtual bool is_alive() override;
 
 
-   virtual void add_notify(::matter* pmatter);
-   virtual void remove_notify(::matter* pmatter);
 
 
    virtual ::task_pool* taskpool() override;
@@ -217,8 +211,6 @@ public:
    bool set_thread_priority(::e_priority epriority);
 
    ::e_priority thread_priority();
-
-   virtual bool set_thread_name(const char * pszName);
 
    //virtual void set_thread_run(bool bRun = true);
 
@@ -281,7 +273,7 @@ public:
 
 
    //virtual bool final_handle_exception(::exception_pointer e);
-   __pointer(::object) running(const char * pszTag) const override;
+   __pointer(::matter) running(const char * pszTag) const override;
 
    ///virtual void relay_exception(::exception_pointer e, e_thread ethreadSource = thread_none);
    virtual int _GetMessage(LPMESSAGE lpMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax);
@@ -376,7 +368,6 @@ public:
    virtual bool do_events();
    // virtual bool do_events(const duration& duration);
 
-   virtual string get_tag() const override;
    virtual bool thread_get_run() const override;
    virtual bool set_run();
    virtual void finalize() override;
@@ -385,8 +376,8 @@ public:
    virtual void kick_idle();
    virtual void post_quit();
 
-   virtual ::index thread_add(::thread * pthread) override;
-   virtual void thread_remove(::thread * pthread) override;
+   virtual ::index task_add(::task * ptask) override;
+   virtual void task_remove(::task * ptask) override;
    //virtual void wait_quit(::duration durationTimeout) override;
 
    virtual bool kick_thread();

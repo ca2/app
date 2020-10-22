@@ -629,7 +629,7 @@ namespace user
 
          m_puserthread->initialize_user_thread(this, createstruct);
 
-         __bind(m_puserinteraction, m_pthreadUserInteraction, m_puserthread OBJ_REF_DBG_ADD_THIS_NOTE(__FUNCTION__));
+         __bind(m_puserinteraction, m_pthreadUserInteraction, m_puserthread OBJ_REF_DBG_COMMA_THIS_NOTE(__FUNCTION__));
 
          peventStartedUser = __new(manual_reset_event());
 

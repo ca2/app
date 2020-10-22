@@ -1792,7 +1792,7 @@ __result(::apex::application) app_core::get_new_application(::object* pobjectCon
    if (psetup)
    {
 
-      papp.reset(psetup->create_new_application() OBJ_REF_DBG_ADD_THIS_FUNCTION_LINE);
+      papp.reset(psetup->create_new_application() OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
 
       if (papp)
       {

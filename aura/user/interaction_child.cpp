@@ -70,7 +70,7 @@ namespace user
 
          m_puserinteraction = pinteraction;
 
-         //__refer(m_pthreadUserImpl,  m_puserinteraction->m_pthreadUserInteraction  OBJ_REF_DBG_ADD_THIS_FUNCTION_LINE);
+         //__refer(m_pthreadUserImpl,  m_puserinteraction->m_pthreadUserInteraction  OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
 
          m_puserinteraction->m_pimpl = this;
 
@@ -533,7 +533,7 @@ namespace user
 
       pmessage->previous();
 
-//      __release(m_pthreadUserImpl OBJ_REF_DBG_ADD_THIS);
+//      __release(m_pthreadUserImpl OBJ_REF_DBG_COMMA_THIS);
 
 
    }

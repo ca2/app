@@ -730,10 +730,10 @@ CLASS_DECL_ACME ::thread * get_thread()
 
 }
 
-CLASS_DECL_ACME void set_task(task * ptask OBJ_REF_DBG_ADD_PARAMS_DEF)
+CLASS_DECL_ACME void set_task(task * ptask OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
-   t_ptask.reset(ptask OBJ_REF_DBG_ADD_ARGS);
+   t_ptask.reset(ptask OBJ_REF_DBG_COMMA_ARGS);
 
 }
 

@@ -420,11 +420,11 @@ namespace windows
    bool interaction_impl::_native_create_window_ex(::user::create_struct & cs)
    {
 
-      //__refer(m_puserinteraction->m_pthreadUserInteraction, ::get_task() OBJ_REF_DBG_ADD_THIS_FUNCTION_LINE);
+      //__refer(m_puserinteraction->m_pthreadUserInteraction, ::get_task() OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
 
       //m_puserinteraction->m_pthreadUserInteraction->uiptra().add(m_puserinteraction);
 
-      //__refer(m_pthreadUserImpl, m_puserinteraction->m_pthreadUserInteraction OBJ_REF_DBG_ADD_THIS_FUNCTION_LINE);
+      //__refer(m_pthreadUserImpl, m_puserinteraction->m_pthreadUserInteraction OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
 
       m_strDebug += ::str::demangle(m_puserinteraction->type_name()) +  ";";
 
@@ -914,7 +914,7 @@ namespace windows
 
       UNREFERENCED_PARAMETER(pmessage);
 
-      //__release(m_pthreadUserImpl OBJ_REF_DBG_ADD_THIS);
+      //__release(m_pthreadUserImpl OBJ_REF_DBG_COMMA_THIS);
 
    }
 

@@ -89,23 +89,23 @@ extern thread_data_index g_tlsindexLastError;
 
 
 
-string apex_get_thread_name(::thread* pthread)
+string apex_get_task_name(::task* ptask)
 {
 
-   if (pthread->m_strThreadName.has_char())
+   if (ptask->m_strTaskName.has_char())
    {
 
-      return pthread->m_strThreadName;
+      return ptask->m_strTaskName;
 
    }
 
-   if (pthread->m_strThreadTag.has_char())
+   if (ptask->m_strTaskTag.has_char())
    {
 
-      return pthread->m_strThreadTag;
+      return ptask->m_strTaskTag;
 
    }
 
-   return pthread->type_name();
+   return ptask->type_name();
 
 }

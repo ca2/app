@@ -75,7 +75,7 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 
    ::count nMoveCount = (::count_cast) m_nSize - (nUpperBound);
 
-   ALLOCATOR::destruct_count(m_pData + nIndex, nCount OBJ_REF_DBG_ADD_THIS);
+   ALLOCATOR::destruct_count(m_pData + nIndex, nCount OBJ_REF_DBG_COMMA_THIS);
 
    if(nMoveCount)
    {
@@ -165,7 +165,7 @@ void array_base < TYPE, ARG_TYPE, ALLOCATOR >::destroy()
    if(m_pData != nullptr)
    {
 
-      ALLOCATOR::destruct_count(m_pData, (::count_cast) m_nSize OBJ_REF_DBG_ADD_THIS);
+      ALLOCATOR::destruct_count(m_pData, (::count_cast) m_nSize OBJ_REF_DBG_COMMA_THIS);
 
       ALLOCATOR::_free(m_pData);
 
@@ -591,7 +591,7 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
       if(m_pData != nullptr)
       {
 
-         ALLOCATOR::destruct_count(m_pData, __count(m_nSize)  OBJ_REF_DBG_ADD_THIS);
+         ALLOCATOR::destruct_count(m_pData, __count(m_nSize)  OBJ_REF_DBG_COMMA_THIS);
 
          ALLOCATOR::_free(m_pData);
 
@@ -686,7 +686,7 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
       else if(m_nSize > nNewSize)
       {
 
-         ALLOCATOR::destruct_count(m_pData + nNewSize,__count(m_nSize) - nNewSize OBJ_REF_DBG_ADD_THIS);
+         ALLOCATOR::destruct_count(m_pData + nNewSize,__count(m_nSize) - nNewSize OBJ_REF_DBG_COMMA_THIS);
 
       }
 

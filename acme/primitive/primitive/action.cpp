@@ -50,7 +50,7 @@ action::action(::update* pupdate, ::matter* pmatter) :
    m_pchange(pmatter ? pupdate->change(pmatter) : nullptr)
 {
 
-   m_pmatter.reset(pmatter OBJ_REF_DBG_ADD_THIS_FUNCTION_LINE);
+   m_pmatter.reset(pmatter OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
 
    action_common_construct();
 
@@ -69,7 +69,7 @@ action::action(::update* pupdate, ::change * pchange, ::matter* pmatter) :
    m_pchange(pchange)
 { 
 
-   m_pmatter.reset(pmatter OBJ_REF_DBG_ADD_THIS_FUNCTION_LINE);
+   m_pmatter.reset(pmatter OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
 
    action_common_construct();
 

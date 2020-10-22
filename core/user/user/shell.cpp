@@ -195,7 +195,7 @@ namespace user
 
          auto pthread  = __new(thread(this));
 
-         m_iThread = thread_add(pthread);
+         m_iThread = task_add(pthread);
 
       }
 
@@ -912,7 +912,7 @@ namespace user
 
       ::object::set_finish();
 
-      thread_remove_all();
+      task_remove_all();
 
    }
 

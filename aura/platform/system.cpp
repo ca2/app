@@ -4579,7 +4579,7 @@ namespace aura
 
       sync_lock sl(&m_mutexThread);
 
-      m_threadmap[ithread].reset(pthread OBJ_REF_DBG_ADD_P_NOTE(this, "thread::thread_set"));
+      m_threadmap[ithread].reset(pthread OBJ_REF_DBG_COMMA_P_NOTE(this, "thread::thread_set"));
 
       m_threadidmap[pthread] = ithread;
 

@@ -32,6 +32,9 @@ update::~update()
 }
 
 
+#ifdef DEBUG
+
+
 i64 update::add_ref(OBJ_REF_DBG_PARAMS_DEF)
 {
 
@@ -56,11 +59,15 @@ i64 update::release(OBJ_REF_DBG_PARAMS_DEF)
 }
 
 
+#endif
+
 
 ::estatus update::run()
 {
 
-   while (!::source::g_bDestroyAll)
+   auto ptask = ::get_task();
+
+   while (!::source::g_bDestroyAll && ptask->thread_get_run())
    {
 
       if (m_iUpdateSerial < 0)

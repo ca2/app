@@ -236,11 +236,11 @@ namespace apex
 
       }
 
-      set_context_object(this OBJ_REF_DBG_ADD_THIS_FUNCTION_LINE);
+      set_context_object(this OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
 
-      set_context_app(this OBJ_REF_DBG_ADD_THIS_FUNCTION_LINE);
+      set_context_app(this OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
 
-      set_context(this OBJ_REF_DBG_ADD_THIS_FUNCTION_LINE);
+      set_context(this OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
 
       if (::is_set(m_pappParent))
       {
@@ -334,7 +334,7 @@ namespace apex
 
       ::application_container::m_applicationa.remove_all();
 
-      __unbind(this, m_puserlanguagemap OBJ_REF_DBG_ADD_THIS);
+      __unbind(this, m_puserlanguagemap OBJ_REF_DBG_COMMA_THIS);
 
       ::apex::context_thread::finalize();
 
@@ -1924,7 +1924,7 @@ namespace apex
          try
          {
 
-            __own(this, m_pinterprocessintercommunication, create_interprocess_intercommunication() OBJ_REF_DBG_ADD_THIS_NOTE("::apex::application::init_instance"));
+            __own(this, m_pinterprocessintercommunication, create_interprocess_intercommunication() OBJ_REF_DBG_COMMA_THIS_NOTE("::apex::application::init_instance"));
 
          }
          catch (...)
@@ -2956,7 +2956,7 @@ retry_license:
 
       }
 
-      __own(this, m_pservice, allocate_new_service() OBJ_REF_DBG_ADD_THIS_NOTE("::apex::application::int_service") );
+      __own(this, m_pservice, allocate_new_service() OBJ_REF_DBG_COMMA_THIS_NOTE("::apex::application::int_service") );
 
       if (!m_pservice)
       {
@@ -3436,7 +3436,7 @@ retry_license:
    ::estatus application::init1()
    {
 
-      ::estatus estatus = __own(this, m_puserlanguagemap, __new(::user::language_map) OBJ_REF_DBG_ADD_THIS_NOTE("::apex::application::init1") );
+      ::estatus estatus = __own(this, m_puserlanguagemap, __new(::user::language_map) OBJ_REF_DBG_COMMA_THIS_NOTE("::apex::application::init1") );
 
       if (!estatus)
       {
@@ -3769,7 +3769,7 @@ retry_license:
          try
          {
 
-            __unbind(this, m_pinterprocessintercommunication OBJ_REF_DBG_ADD_THIS);
+            __unbind(this, m_pinterprocessintercommunication OBJ_REF_DBG_COMMA_THIS);
 
          }
          catch (...)
@@ -3848,7 +3848,7 @@ retry_license:
 
          auto pexclusiveNew = __new(::acme::exclusive(strId, psa));
 
-         __m_own(this, pexclusive, pexclusiveNew OBJ_REF_DBG_ADD_THIS_NOTE("::apex::application::get_exclusive") );
+         __m_own(this, pexclusive, pexclusiveNew OBJ_REF_DBG_COMMA_THIS_NOTE("::apex::application::get_exclusive") );
 
       }
 

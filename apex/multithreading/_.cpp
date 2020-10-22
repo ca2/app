@@ -78,17 +78,17 @@ namespace multithreading
    }
 
 
-   bool is_child(::thread * pthreadChildCandidate)
+   bool is_child(::task * ptaskChildCandidate)
    {
 
-      if (::is_null(pthreadChildCandidate))
+      if (::is_null(ptaskChildCandidate))
       {
 
          return false;
 
       }
 
-      if (pthreadChildCandidate->m_pthreadParent)
+      if (ptaskChildCandidate->m_pthreadParent)
       {
 
          return true;
@@ -103,7 +103,7 @@ namespace multithreading
          try
          {
 
-            if (pair.element1()->m_threada.contains(pthreadChildCandidate))
+            if (pair.element1()->m_taska.contains(ptaskChildCandidate))
             {
 
                return true;

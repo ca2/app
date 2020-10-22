@@ -8,6 +8,7 @@ task::task()
 
    m_bitRunThisThread = true;
    m_bitIsRunning = false;
+   m_bitIsPred = true;
    m_hthread = nullptr;
    m_ithread = 0;
 
@@ -20,20 +21,54 @@ task::~task()
 
 }
 
-//
-//__pointer(task) task::fork(
-//   ::matter* pmatter,
-//   ::e_priority epriority,
-//   u32 nStackSize,
-//   u32 dwCreateFlags,
-//   ITHREAD* pithread,
-//   HTHREAD* phthread)
-//{
-//
-//
-//
-//}
 
+string task::get_tag() const
+{
+
+   return m_strTaskTag;
+
+}
+
+
+
+string task::thread_get_name() const
+{
+
+   return m_strTaskName;
+
+}
+
+
+::context_object * task::calc_parent_thread()
+{
+
+   return ::get_task();
+
+}
+
+
+bool task::set_thread_name(const char* pszThreadName)
+{
+
+   m_strTaskName = pszThreadName;
+
+   if (m_strTaskTag.is_empty() && m_strTaskName.has_char())
+   {
+
+      m_strTaskTag = m_strTaskName;
+
+   }
+
+   if (!::set_thread_name(m_hthread, pszThreadName))
+   {
+
+      return false;
+
+   }
+
+   return true;
+
+}
 
 bool task::thread_get_run() const
 {
@@ -51,44 +86,28 @@ void task::set_thread_run(bool bRun)
 }
 
 
+void task::set_finish()
+{
+
+   m_bitRunThisThread = false;
+
+}
+
+
+::thread* task::parent_thread()
+{
+
+   return ___thread(m_pthreadParent);
+
+}
+
+
 bool task::is_thread() const
 {
 
    return false;
 
 }
-
-
-
-//m::___fork(::matter* pmatter)
-//{
-//
-//   m_pmatter.reset(pmatter OBJ_REF_DBG_ADD_THIS_FUNCTION_LINE);
-//
-//}
-//
-//
-//___fork::~___fork()
-//{
-//
-//   m_pmatter.release(OBJ_REF_DBG_THIS_FUNCTION_LINE);
-//
-//}
-
-
-//CLASS_DECL_ACME::estatus __fork(
-//   matter* pmatter,
-//   ::e_priority epriority,
-//   u32 nStackSize,
-//   u32 dwCreateFlags,
-//   ITHREAD* pithread,
-//   HTHREAD* phthread)
-//{
-//
-//   return pmatter->fork(epriority, nStackSize, dwCreateFlags, pithread, phthread);
-//
-//}
-
 
 
 #ifdef WINDOWS
@@ -103,11 +122,13 @@ void* task::s_os_task(void* p)
 
       ::task* ptask = (::task*) p;
 
-      ::set_task(ptask OBJ_REF_DBG_ADD_P_FUNCTION_LINE(ptask));
+      ::set_task(ptask OBJ_REF_DBG_COMMA_P_FUNCTION_LINE(ptask));
 
       ptask->release();
 
       ptask->on_task();
+
+      ptask->term_task();
 
       ::thread_release(OBJ_REF_DBG_P_NOTE(ptask, ""));
 
@@ -118,6 +139,49 @@ void* task::s_os_task(void* p)
    }
 
    return 0;
+
+}
+
+
+void task::add_notify(::matter* pmatter)
+{
+
+   sync_lock sl(mutex());
+
+   m_elementaNotify.add_item(pmatter OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
+
+}
+
+
+void task::remove_notify(::matter* pmatter)
+{
+
+   sync_lock sl(mutex());
+
+   m_elementaNotify.remove_item(pmatter OBJ_REF_DBG_COMMA_THIS);
+
+}
+
+
+void task::term_task()
+{
+
+   {
+
+      sync_lock sl(mutex());
+
+      auto elementaNotify = m_elementaNotify;
+
+      for (auto& pelement : elementaNotify)
+      {
+
+         pelement->task_remove(this);
+
+         pelement->task_on_term(this);
+
+      }
+
+   }
 
 }
 
@@ -174,12 +238,25 @@ void* task::s_os_task(void* p)
 }
 
 
-
 ::estatus task::fork(
    ::e_priority epriority,
    u32 nStackSize,
    u32 uCreateFlags)
 {
+
+   if (!m_pthreadParent && m_bitIsPred)
+   {
+
+      auto pthreadParent = calc_parent_thread();
+
+      if (pthreadParent)
+      {
+
+         pthreadParent->task_add(this);
+
+      }
+
+   }
 
    // __thread_procedure() should release this (pmatter)
    add_ref(OBJ_REF_DBG_THIS_FUNCTION_LINE);
@@ -243,20 +320,20 @@ __pointer(task) task::start(::matter * pmatter, ::e_priority epriority, UINT nSt
 
 
 
-
-bool task::set_thread_name(const char* pszThreadName)
-{
-
-   if (!::set_thread_name(m_hthread, pszThreadName))
-   {
-
-      return false;
-
-   }
-
-   return true;
-
-}
+//
+//bool task::set_thread_name(const char* pszThreadName)
+//{
+//
+//   if (!::set_thread_name(m_hthread, pszThreadName))
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   return true;
+//
+//}
 
 //
 //void task::set_thread_run(bool bRun)

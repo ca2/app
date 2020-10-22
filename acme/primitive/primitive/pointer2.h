@@ -97,7 +97,7 @@ inline ___pointer < T > ::___pointer(const lparam& lparam)
    if (::is_null(m_p))
    {
 
-      ::release(p OBJ_REF_DBG_ADD_P_NOTE(nullptr, "pointer::pointer(LPARAM)"));
+      ::release(p OBJ_REF_DBG_COMMA_P_NOTE(nullptr, "pointer::pointer(LPARAM)"));
 
    }
 
@@ -204,7 +204,7 @@ inline bool ___pointer < T > ::is_set() const
 
 
 template < class T >
-inline ___pointer < T > & ___pointer < T > ::reset (T * pNew OBJ_REF_DBG_ADD_PARAMS_DEF)
+inline ___pointer < T > & ___pointer < T > ::reset (T * pNew OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
    if(m_p != pNew)
@@ -227,7 +227,7 @@ inline ___pointer < T > & ___pointer < T > ::reset (T * pNew OBJ_REF_DBG_ADD_PAR
 
       }
 
-      ::release(pOld OBJ_REF_DBG_ADD_ARGS);
+      ::release(pOld OBJ_REF_DBG_COMMA_ARGS);
 
    }
 
@@ -258,7 +258,7 @@ inline ___pointer < T > & ___pointer < T > ::operator = (___pointer && t)
 
       t.m_p    = nullptr;
 
-      ::release(pOld REF_DBG_ADD_POINTER);
+      ::release(pOld REF_DBG_COMMA_POINTER);
 
    }
 
@@ -286,7 +286,7 @@ template < class T >
 inline i64 ___pointer <T>::release(OBJ_REF_DBG_PARAMS_DEF)
 {
 
-   return ::release(m_p OBJ_REF_DBG_ADD_ARGS);
+   return ::release(m_p OBJ_REF_DBG_COMMA_ARGS);
 
 }
 

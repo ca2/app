@@ -152,14 +152,14 @@ public:
    }
 
 
-   inline ::index add_item(T * p OBJ_REF_DBG_ADD_PARAMS)
+   inline ::index add_item(T * p OBJ_REF_DBG_COMMA_PARAMS)
    {
 
       ::index nIndex = (::index_cast) __count(this->m_nSize);
 
       this->allocate(nIndex + 1);
 
-      this->last().reset(p OBJ_REF_DBG_ADD_THIS);
+      this->last().reset(p OBJ_REF_DBG_COMMA_THIS);
 
       return nIndex;
 
@@ -325,15 +325,15 @@ public:
    }
 
    
-   ::count remove(T* p OBJ_REF_DBG_ADD_PARAMS)
+   ::count remove(T* p OBJ_REF_DBG_COMMA_PARAMS)
    {
 
-      return this->remove_item(p OBJ_REF_DBG_ADD_ARGS);
+      return this->remove_item(p OBJ_REF_DBG_COMMA_ARGS);
 
    }
 
 
-   ::count remove_item(T * p OBJ_REF_DBG_ADD_PARAMS)
+   ::count remove_item(T * p OBJ_REF_DBG_COMMA_PARAMS)
    {
 
       ::count ca = 0;

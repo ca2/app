@@ -9,7 +9,7 @@ public:
    string                           m_strTopicText;
    id_map < array < method > >      m_methodmap;
    id_map < array < future > >      m_futuremap;
-   __pointer_array(::thread)        m_threada;
+   __pointer_array(::task)        m_taska;
 
 
    object_meta() { }
@@ -23,9 +23,9 @@ public:
    void finalize(::object* pReferer);
 
 
-   ::index thread_add(::object * pReferer, ::thread* pthread);
-   void thread_remove(::object* pReferer, ::thread* pthread);
-   void thread_remove_all(::object* pReferer);
+   ::index task_add(::object * pReferer, ::task* ptask);
+   void task_remove(::object* pReferer, ::task* ptask);
+   void task_remove_all(::object* pReferer);
 
 
 };

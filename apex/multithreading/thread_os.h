@@ -105,7 +105,7 @@ namespace multithreading
 
    CLASS_DECL_APEX void thread_unregister(ITHREAD ithread, ::thread * pthread);
 
-   CLASS_DECL_APEX bool is_child(::thread * pthread);
+   CLASS_DECL_APEX bool is_child(::task * ptask);
 
    CLASS_DECL_APEX void post_quit_to_all_threads();
 

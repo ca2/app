@@ -899,7 +899,7 @@ namespace user
 
          }
 
-         __release(m_pthreadUserInteraction OBJ_REF_DBG_ADD_THIS);
+         __release(m_pthreadUserInteraction OBJ_REF_DBG_COMMA_THIS);
 
       }
 
@@ -1314,13 +1314,13 @@ namespace user
    }
 
 
-   void interaction::thread_on_term(::thread* pthread)
+   void interaction::task_on_term(::task * ptask)
    {
 
       if (m_ewindowflag & window_flag_destroying)
       {
 
-         if (thread_is_empty())
+         if (task_is_empty())
          {
 
             DestroyWindow();
@@ -1338,7 +1338,7 @@ namespace user
 
       sync_lock sl(mutex());
 
-      if(thread_is_empty())
+      if(task_is_empty())
       {
 
          sl.unlock();
@@ -1351,18 +1351,18 @@ namespace user
 
       string strWaiting;
 
-      auto pthreada = thread_array_get();
+      auto ptaska = task_array_get();
 
-      if (pthreada)
+      if (ptaska)
       {
 
-         for (auto& pthread : *pthreada)
+         for (auto& ptask : *ptaska)
          {
 
             try
             {
 
-               pthread->set_finish();
+               ptask->set_finish();
 
             }
             catch (...)
@@ -1931,11 +1931,11 @@ namespace user
 
          }
 
-         __release(m_pthreadUserInteraction OBJ_REF_DBG_ADD_THIS);
+         __release(m_pthreadUserInteraction OBJ_REF_DBG_COMMA_THIS);
 
       }
 
-      thread_remove_all();
+      task_remove_all();
 
       single_lock slDraw(get_wnd() == nullptr || get_wnd()->m_pimpl.is_null()
                          || get_wnd()->m_pimpl.cast < ::user::interaction_impl >() == nullptr ? nullptr : get_wnd()->m_pimpl.cast < ::user::interaction_impl >()->draw_mutex(), true);
@@ -4615,7 +4615,7 @@ namespace user
 
       m_pdescriptor.defer_create(this);
 
-      __refer(m_pthreadUserInteraction, ::get_task() OBJ_REF_DBG_ADD_THIS_FUNCTION_LINE);
+      __refer(m_pthreadUserInteraction, ::get_task() OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
 
       if (m_pthreadUserInteraction)
       {
@@ -4711,7 +4711,7 @@ namespace user
 
                   }
 
-                  __release(m_pthreadUserInteraction OBJ_REF_DBG_ADD_THIS);
+                  __release(m_pthreadUserInteraction OBJ_REF_DBG_COMMA_THIS);
 
                }
 
@@ -4737,7 +4737,7 @@ namespace user
 
             }
 
-            __release(m_pthreadUserInteraction OBJ_REF_DBG_ADD_THIS);
+            __release(m_pthreadUserInteraction OBJ_REF_DBG_COMMA_THIS);
 
          }
 
@@ -4818,7 +4818,7 @@ namespace user
 
                   }
 
-                  __release(m_pthreadUserInteraction OBJ_REF_DBG_ADD_THIS);
+                  __release(m_pthreadUserInteraction OBJ_REF_DBG_COMMA_THIS);
 
                }
 
@@ -4888,7 +4888,7 @@ namespace user
 
                   }
 
-                  __release(m_pthreadUserInteraction OBJ_REF_DBG_ADD_THIS);
+                  __release(m_pthreadUserInteraction OBJ_REF_DBG_COMMA_THIS);
 
                }
 
@@ -4914,7 +4914,7 @@ namespace user
 
             }
 
-            __release(m_pthreadUserInteraction OBJ_REF_DBG_ADD_THIS);
+            __release(m_pthreadUserInteraction OBJ_REF_DBG_COMMA_THIS);
 
          }
 
@@ -5868,7 +5868,7 @@ namespace user
       if (m_ewindowflag & window_flag_satellite_window)
       {
 
-         __bind(this, m_pthreadUserInteraction, m_puiOwner->m_pthreadUserInteraction OBJ_REF_DBG_ADD_THIS_FUNCTION_LINE);
+         __bind(this, m_pthreadUserInteraction, m_puiOwner->m_pthreadUserInteraction OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
 
       }
 
@@ -8384,11 +8384,11 @@ namespace user
 
                   }
 
-                  __release(m_pthreadUserInteraction OBJ_REF_DBG_ADD_THIS);
+                  __release(m_pthreadUserInteraction OBJ_REF_DBG_COMMA_THIS);
 
                }
 
-               __refer(m_pthreadUserInteraction, puiParent->get_wnd()->m_pthreadUserInteraction OBJ_REF_DBG_ADD_THIS_FUNCTION_LINE);
+               __refer(m_pthreadUserInteraction, puiParent->get_wnd()->m_pthreadUserInteraction OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
 
             }
 
@@ -12213,7 +12213,14 @@ restart:
       else
       {
 
-         get_host_wnd()->show_software_keyboard(bShow, str, iBeg, iEnd);
+         auto pwindow = get_host_wnd();
+
+         if (pwindow)
+         {
+
+            pwindow->show_software_keyboard(bShow, str, iBeg, iEnd);
+
+         }
 
       }
 

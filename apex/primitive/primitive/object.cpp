@@ -116,7 +116,7 @@ void object::to_string(const class string_exchange & str) const
 }
 
 
-::estatus object::add_composite(::matter* pobject OBJ_REF_DBG_ADD_PARAMS_DEF)
+::estatus object::add_composite(::matter* pobject OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
    sync_lock sl(mutex());
@@ -141,7 +141,7 @@ void object::to_string(const class string_exchange & str) const
 }
 
 
-::estatus object::add_reference(::matter* pobject OBJ_REF_DBG_ADD_PARAMS_DEF)
+::estatus object::add_reference(::matter* pobject OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
    sync_lock sl(mutex());
@@ -160,7 +160,7 @@ void object::to_string(const class string_exchange & str) const
 }
 
 
-::estatus object::release_composite(::matter* pobject OBJ_REF_DBG_ADD_PARAMS_DEF)
+::estatus object::release_composite(::matter* pobject OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
    if (::is_null(pobject))
@@ -193,7 +193,7 @@ void object::to_string(const class string_exchange & str) const
 }
 
 
-::estatus object::release_reference(::matter* pobject  OBJ_REF_DBG_ADD_PARAMS_DEF)
+::estatus object::release_reference(::matter* pobject  OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
    if (::is_null(pobject))
@@ -474,28 +474,28 @@ void object::set_topic_text(const ::string & strTopicText)
    if (!get_context_object())
    {
     
-      set_context_object(pobjectContext OBJ_REF_DBG_ADD_THIS_FUNCTION_LINE);
+      set_context_object(pobjectContext OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
 
    }
 
    if (!get_context_application())
    {
 
-      set_context_app(::get_context_application(pobjectContext) OBJ_REF_DBG_ADD_THIS_FUNCTION_LINE);
+      set_context_app(::get_context_application(pobjectContext) OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
 
    }
 
    if (!get_context_session())
    {
 
-      set_context_session(::get_context_session(pobjectContext) OBJ_REF_DBG_ADD_THIS_FUNCTION_LINE);
+      set_context_session(::get_context_session(pobjectContext) OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
 
    }
 
    if (!get_context_system())
    {
 
-      set_context_system(::get_context_system(pobjectContext) OBJ_REF_DBG_ADD_THIS_FUNCTION_LINE);
+      set_context_system(::get_context_system(pobjectContext) OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
 
    }
 
@@ -505,19 +505,19 @@ void object::set_topic_text(const ::string & strTopicText)
       if (m_pappContext)
       {
 
-         set_context(m_pappContext.get() OBJ_REF_DBG_ADD_THIS_FUNCTION_LINE);
+         set_context(m_pappContext.get() OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
 
       }
       else if (m_psessionContext)
       {
 
-         set_context(m_psessionContext.get() OBJ_REF_DBG_ADD_THIS_FUNCTION_LINE);
+         set_context(m_psessionContext.get() OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
 
       }
       else if (m_psystemContext)
       {
 
-         set_context(m_psystemContext.get() OBJ_REF_DBG_ADD_THIS_FUNCTION_LINE);
+         set_context(m_psystemContext.get() OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
 
       }
 
@@ -1318,32 +1318,17 @@ void object::multiple_fork(const runnable_array & runnablea)
 }
 
 
-::index object::thread_add(::thread * pthread)
+::index object::task_add(::task * ptask)
 {
 
    sync_lock sl(mutex());
 
-   return meta()->thread_add(this, pthread);
+   return meta()->task_add(this, ptask);
 
 }
 
 
-void object::thread_remove(::thread* pthread)
-{
-
-   sync_lock sl(mutex());
-
-   if (m_pmeta)
-   {
-
-      m_pmeta->thread_remove(this, pthread);
-
-   }
-
-}
-
-
-void object::thread_remove_all()
+void object::task_remove(::task* ptask)
 {
 
    sync_lock sl(mutex());
@@ -1351,13 +1336,28 @@ void object::thread_remove_all()
    if (m_pmeta)
    {
 
-      m_pmeta->thread_remove_all(this);
+      m_pmeta->task_remove(this, ptask);
 
    }
 
 }
 
-__pointer_array(::thread)* object::thread_array_get()
+
+void object::task_remove_all()
+{
+
+   sync_lock sl(mutex());
+
+   if (m_pmeta)
+   {
+
+      m_pmeta->task_remove_all(this);
+
+   }
+
+}
+
+::task_array * object::task_array_get()
 {
 
    sync_lock sl(mutex());
@@ -1369,12 +1369,12 @@ __pointer_array(::thread)* object::thread_array_get()
 
    }
 
-   return &m_pmeta->m_threada;
+   return &m_pmeta->m_taska;
 
 }
 
 
-const __pointer_array(::thread)* object::thread_array_get() const
+const ::task_array* object::task_array_get() const
 {
 
    sync_lock sl(mutex());
@@ -1386,16 +1386,16 @@ const __pointer_array(::thread)* object::thread_array_get() const
 
    }
 
-   return &m_pmeta->m_threada;
+   return &m_pmeta->m_taska;
 
 }
 
-bool object::thread_is_empty() const
+bool object::task_is_empty() const
 {
 
    sync_lock sl(mutex());
 
-   auto pthreada = thread_array_get();
+   auto pthreada = task_array_get();
 
    if (!pthreada)
    {
@@ -1454,7 +1454,7 @@ void object::install_message_routing(::channel * pchannel)
 }
 
 
-__pointer(::object) object::running(const char * pszTag) const
+__pointer(::matter) object::running(const char * pszTag) const
 {
 
    if (m_pcompositea)
@@ -1831,42 +1831,42 @@ string object::get_text(const var& var, const ::id& id)
 #ifdef DEBUG
 
 
-void object::set_context(::context* pcontext OBJ_REF_DBG_ADD_PARAMS_DEF)
+void object::set_context(::context* pcontext OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
-   m_pcontextContext.reset(pcontext OBJ_REF_DBG_ADD_ARGS);
+   m_pcontextContext.reset(pcontext OBJ_REF_DBG_COMMA_ARGS);
 
 }
 
 
-void object::set_context_thread(::thread* pthread OBJ_REF_DBG_ADD_PARAMS_DEF)
+void object::set_context_thread(::thread* pthread OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
-   m_pthreadContext.reset(pthread OBJ_REF_DBG_ADD_ARGS);
+   m_pthreadContext.reset(pthread OBJ_REF_DBG_COMMA_ARGS);
 
 }
 
 
-void object::set_context_app(::apex::application* pappContext OBJ_REF_DBG_ADD_PARAMS_DEF)
+void object::set_context_app(::apex::application* pappContext OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
-   m_pappContext.reset(pappContext OBJ_REF_DBG_ADD_ARGS);
+   m_pappContext.reset(pappContext OBJ_REF_DBG_COMMA_ARGS);
 
 }
 
 
-void object::set_context_session(::apex::session* psessionContext OBJ_REF_DBG_ADD_PARAMS_DEF)
+void object::set_context_session(::apex::session* psessionContext OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
-   m_psessionContext.reset(psessionContext OBJ_REF_DBG_ADD_ARGS);
+   m_psessionContext.reset(psessionContext OBJ_REF_DBG_COMMA_ARGS);
 
 }
 
 
-void object::set_context_system(::apex::system* psystemContext OBJ_REF_DBG_ADD_PARAMS_DEF)
+void object::set_context_system(::apex::system* psystemContext OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
-   m_psystemContext.reset(psystemContext OBJ_REF_DBG_ADD_ARGS);
+   m_psystemContext.reset(psystemContext OBJ_REF_DBG_COMMA_ARGS);
 
 }
 

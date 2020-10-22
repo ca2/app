@@ -109,7 +109,7 @@ namespace apex
       m_bSystemSynchronizedCursor = true;
       m_bSystemSynchronizedScreen = true;
 
-      set_context_system(this OBJ_REF_DBG_ADD_THIS_FUNCTION_LINE);
+      set_context_system(this OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
 
       if (g_papexsystem == nullptr)
       {
@@ -1170,7 +1170,7 @@ namespace apex
 
       auto papplicationNew = get_new_application(get_context_session(), m_strAppId);
 
-      __bind(this, m_papplicationStartup, papplicationNew OBJ_REF_DBG_ADD_THIS_FUNCTION_LINE);
+      __bind(this, m_papplicationStartup, papplicationNew OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
 
       if (!m_papplicationStartup)
       {
@@ -1862,7 +1862,7 @@ namespace apex
 
       get_context_application()->get_property_set().merge(get_property_set());
 
-      __unbind(this, m_papplicationStartup OBJ_REF_DBG_ADD_THIS);
+      __unbind(this, m_papplicationStartup OBJ_REF_DBG_COMMA_THIS);
 
       return estatus;
 
@@ -4607,7 +4607,7 @@ namespace apex
 
       sync_lock sl(&m_mutexThread);
 
-      m_threadmap[ithread].reset(pthread OBJ_REF_DBG_ADD_P_NOTE(this, "thread::thread_set"));
+      m_threadmap[ithread].reset(pthread OBJ_REF_DBG_COMMA_P_NOTE(this, "thread::thread_set"));
 
       m_threadidmap[pthread] = ithread;
 

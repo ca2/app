@@ -295,7 +295,7 @@ class thread;
 CLASS_DECL_ACME::task* get_task();
 CLASS_DECL_ACME ::thread* get_thread();
 //CLASS_DECL_ACME ::thread* get_task(ITHREAD idthread);
-CLASS_DECL_ACME void set_task(task * ptask OBJ_REF_DBG_ADD_PARAMS);
+CLASS_DECL_ACME void set_task(task * ptask OBJ_REF_DBG_COMMA_PARAMS);
 CLASS_DECL_ACME void thread_release(OBJ_REF_DBG_PARAMS);
 
 

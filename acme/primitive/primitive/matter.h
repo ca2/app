@@ -38,15 +38,15 @@ public:
 
 
 #if OBJ_REF_DBG
-   inline matter() : m_pmutex(nullptr), m_pobjrefdbg(nullptr), m_countReference(0) { add_ref(OBJ_REF_DBG_THIS OBJ_REF_DBG_ADD_NOTE("Initial Reference")); }
-   inline matter(const eobject& eobject) : m_pmutex(nullptr), m_pobjrefdbg(nullptr), m_countReference(0), m_eobject(eobject) { add_ref(OBJ_REF_DBG_THIS OBJ_REF_DBG_ADD_NOTE("Initial Reference (2)")); }
-   inline matter(const matter& matter) : m_pmutex(nullptr), m_pobjrefdbg(nullptr), m_countReference(0), m_eobject(matter.m_eobject) { if (matter.m_pmutex) defer_create_mutex(); add_ref(OBJ_REF_DBG_THIS OBJ_REF_DBG_ADD_NOTE("Initial Reference (3)")); }
+   inline matter() : m_pmutex(nullptr), m_pobjrefdbg(nullptr), m_countReference(0) { add_ref(OBJ_REF_DBG_THIS OBJ_REF_DBG_COMMA_NOTE("Initial Reference")); }
+   inline matter(const eobject& eobject) : m_pmutex(nullptr), m_pobjrefdbg(nullptr), m_countReference(0), m_eobject(eobject) { add_ref(OBJ_REF_DBG_THIS OBJ_REF_DBG_COMMA_NOTE("Initial Reference (2)")); }
+   inline matter(const matter& matter) : m_pmutex(nullptr), m_pobjrefdbg(nullptr), m_countReference(0), m_eobject(matter.m_eobject) { if (matter.m_pmutex) defer_create_mutex(); add_ref(OBJ_REF_DBG_THIS OBJ_REF_DBG_COMMA_NOTE("Initial Reference (3)")); }
    inline matter(matter&& matter) : m_pmutex(matter.m_pmutex), m_pobjrefdbg(matter.m_pobjrefdbg), m_countReference(matter.m_countReference), m_eobject(matter.m_eobject) { matter.m_pmutex = nullptr; matter.m_pobjrefdbg = nullptr; }
 #else
    inline matter() : m_pmutex(nullptr), m_countReference(1) { }
    inline matter(const eobject& eobject) : m_pmutex(nullptr), m_countReference(1), m_eobject(eobject) { }
-   inline matter(const matter& matter) : m_pmutex(nullptr), m_pobjrefdbg(nullptr), m_countReference(1), m_eobject(matter.m_eobject) { if (matter.m_pmutex) defer_create_mutex(); }
-   inline matter(matter&& matter) : m_pmutex(matter.m_pmutex), m_pobjrefdbg(matter.m_pobjrefdbg), m_countReference(matter.m_countReference), m_eobject(matter.m_eobject) { matter.m_pmutex = nullptr; matter.m_pobjectContext = nullptr; }
+   inline matter(const matter& matter) : m_pmutex(nullptr), m_countReference(1), m_eobject(matter.m_eobject) { if (matter.m_pmutex) defer_create_mutex(); }
+   inline matter(matter&& matter) : m_pmutex(matter.m_pmutex), m_countReference(matter.m_countReference), m_eobject(matter.m_eobject) { matter.m_pmutex = nullptr; }
 #endif
 
    virtual ~matter();
@@ -74,9 +74,9 @@ public:
    void defer_create_mutex();
 
 
-   virtual ::index thread_add(::thread* pthread);
-   virtual void thread_remove(::thread* pthread);
-   virtual void thread_on_term(::thread* pthread);
+   virtual ::index task_add(::task* pthread);
+   virtual void task_remove(::task* pthread);
+   virtual void task_on_term(::task* pthread);
 
 
    //::estatus add_update(const ::id & id);
@@ -168,12 +168,12 @@ public:
 
 
 
-   virtual ::estatus add_composite(::matter* pobject OBJ_REF_DBG_ADD_PARAMS);
-   virtual ::estatus add_reference(::matter* pobject OBJ_REF_DBG_ADD_PARAMS);
+   virtual ::estatus add_composite(::matter* pobject OBJ_REF_DBG_COMMA_PARAMS);
+   virtual ::estatus add_reference(::matter* pobject OBJ_REF_DBG_COMMA_PARAMS);
 
 
-   virtual ::estatus release_composite(::matter* pobject OBJ_REF_DBG_ADD_PARAMS);
-   virtual ::estatus release_reference(::matter* pobject OBJ_REF_DBG_ADD_PARAMS);
+   virtual ::estatus release_composite(::matter* pobject OBJ_REF_DBG_COMMA_PARAMS);
+   virtual ::estatus release_reference(::matter* pobject OBJ_REF_DBG_COMMA_PARAMS);
 
    virtual ::estatus set_generic_object_name(const char* pszName);
 

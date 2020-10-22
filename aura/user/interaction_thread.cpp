@@ -80,6 +80,7 @@ namespace user
    }
 
 
+#ifdef DEBUG
 
 
    i64 thread::add_ref(OBJ_REF_DBG_PARAMS_DEF)
@@ -104,6 +105,9 @@ namespace user
       return ::thread::release(OBJ_REF_DBG_ARGS);
 
    }
+
+
+#endif
 
 
 #ifdef ENABLE_TEXT_SERVICES_FRAMEWORK

@@ -1019,7 +1019,7 @@ template < typename TYPE >
 
 
 template < class c_derived >
-inline i64 add_ref(c_derived * pca OBJ_REF_DBG_ADD_PARAMS_DEF)
+inline i64 add_ref(c_derived * pca OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
    if (::is_null(pca))
@@ -1064,7 +1064,7 @@ inline i64 add_ref(c_derived *& pderived, const __pointer(SOURCE) & psource)
 
 
 template < class c_derived >
-inline i64 release(c_derived *& pca OBJ_REF_DBG_ADD_PARAMS_DEF)
+inline i64 release(c_derived *& pca OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
    if (::is_null(pca))
@@ -1147,28 +1147,28 @@ inline i64 release(c_derived *& pca OBJ_REF_DBG_ADD_PARAMS_DEF)
 
 
 template < class COMPOSITE >
-inline i64 release(__composite(COMPOSITE) & pcomposite OBJ_REF_DBG_ADD_PARAMS)
+inline i64 release(__composite(COMPOSITE) & pcomposite OBJ_REF_DBG_COMMA_PARAMS)
 {
 
-   return release(pcomposite.m_p OBJ_REF_DBG_ADD_ARGS);
+   return release(pcomposite.m_p OBJ_REF_DBG_COMMA_ARGS);
 
 }
 
 
 template < class TYPE >
-inline i64 release(__pointer(TYPE) & pointer OBJ_REF_DBG_ADD_PARAMS)
+inline i64 release(__pointer(TYPE) & pointer OBJ_REF_DBG_COMMA_PARAMS)
 {
 
-   return release(pointer.m_p OBJ_REF_DBG_ADD_ARGS);
+   return release(pointer.m_p OBJ_REF_DBG_COMMA_ARGS);
 
 }
 
 
 template < class REFERENCE >
-inline i64 release(__reference(REFERENCE) & preference OBJ_REF_DBG_ADD_PARAMS)
+inline i64 release(__reference(REFERENCE) & preference OBJ_REF_DBG_COMMA_PARAMS)
 {
 
-   return release(preference.m_p OBJ_REF_DBG_ADD_ARGS);
+   return release(preference.m_p OBJ_REF_DBG_COMMA_ARGS);
 
 }
 

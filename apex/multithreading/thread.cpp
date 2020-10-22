@@ -96,6 +96,8 @@ thread::thread()
 
    m_bThreadClosed = false;
 
+   m_bitIsPred = false;
+
    m_bAuraMessageQueue = false;
 
 #ifdef APEX_MESSAGE_QUEUE
@@ -218,13 +220,6 @@ HTHREAD thread::get_os_handle() const
 }
 
 
-string thread::get_tag() const
-{
-
-   return m_strThreadTag;
-
-}
-
 
 bool thread::thread_active() const
 {
@@ -267,21 +262,7 @@ void thread::on_pos_run_thread()
 
 
 
-bool thread::set_thread_name(const char* pszThreadName)
-{
 
-   m_strThreadName = pszThreadName;
-
-   if (m_strThreadTag.is_empty() && m_strThreadName.has_char())
-   {
-
-      m_strThreadTag = m_strThreadName;
-
-   }
-
-   return true;
-
-}
 
 void thread::term_thread()
 {
@@ -293,71 +274,51 @@ void thread::term_thread()
 
    }
 
-   {
-
-      sync_lock sl(mutex());
-
-      auto elementaNotify = m_elementaNotify;
-
-      for (auto& pelement : elementaNotify)
-      {
-
-         pelement->thread_remove(this);
-
-         pelement->thread_on_term(this);
-
-      }
-
-   }
-
+   term_task();
 
    if (get_context_object())
    {
 
-      get_context_object()->release_reference(this OBJ_REF_DBG_ADD_THIS);
+      get_context_object()->release_reference(this OBJ_REF_DBG_COMMA_THIS);
 
    }
 
    if (get_context_application())
    {
 
-      get_context_application()->release_reference(this OBJ_REF_DBG_ADD_THIS);
+      get_context_application()->release_reference(this OBJ_REF_DBG_COMMA_THIS);
 
    }
 
    if (get_context_session())
    {
 
-      get_context_session()->release_reference(this OBJ_REF_DBG_ADD_THIS);
+      get_context_session()->release_reference(this OBJ_REF_DBG_COMMA_THIS);
 
    }
 
    if (get_context_system())
    {
 
-      get_context_system()->release_reference(this OBJ_REF_DBG_ADD_THIS);
+      get_context_system()->release_reference(this OBJ_REF_DBG_COMMA_THIS);
 
    }
 
    if (get_context_thread())
    {
 
-      get_context_thread()->release_reference(this OBJ_REF_DBG_ADD_THIS);
+      get_context_thread()->release_reference(this OBJ_REF_DBG_COMMA_THIS);
 
    }
 
-   if (m_pthreadParent)
-   {
-
-      m_pthreadParent->thread_remove(this);
-
-   }
 
 }
 
 
 ::estatus thread::osthread_term()
 {
+
+   ::task::osthread_term();
 
 #ifndef WINDOWS_DESKTOP
 
@@ -423,24 +384,7 @@ void thread::on_keep_alive()
 }
 
 
-void thread::add_notify(::matter* pmatter)
-{
 
-   sync_lock sl(mutex());
-
-   m_elementaNotify.add_item(pmatter OBJ_REF_DBG_ADD_THIS_FUNCTION_LINE);
-
-}
-
-
-void thread::remove_notify(::matter* pmatter)
-{
-
-   sync_lock sl(mutex());
-
-   m_elementaNotify.remove_item(pmatter OBJ_REF_DBG_ADD_THIS);
-
-}
 
 
 ::task_pool* thread::taskpool()
@@ -742,30 +686,30 @@ bool thread::pump_runnable()
 }
 
 
-__pointer(::object) thread::running(const char * pszTag) const
+__pointer(::matter) thread::running(const char * pszTag) const
 {
 
-   auto pobject = ::channel::running(pszTag);
+   auto pmatter = ::channel::running(pszTag);
 
-   if (pobject)
+   if (pmatter)
    {
 
-      return pobject;
+      return pmatter;
 
    }
 
    sync_lock sl(mutex());
 
-   for(auto pthread : m_threada)
+   for(auto ptask : m_taska)
    {
 
       try
       {
 
-         if (pthread->m_strThreadTag == pszTag)
+         if (ptask->m_strTaskTag == pszTag)
          {
 
-            return pthread;
+            return ptask;
 
          }
 
@@ -1289,7 +1233,7 @@ void thread::set_finish()
 
       string strWaiting;
 
-      for (auto & pthread : m_threada)
+      for (auto & ptask : m_taska)
       {
 
          try
@@ -1297,13 +1241,13 @@ void thread::set_finish()
 
             string strThreadType;
 
-            strThreadType = pthread->type_name();
+            strThreadType = ptask->type_name();
 
             strWaiting += strThreadType;
 
             strWaiting += "\r\n";
 
-            pthread->set_finish();
+            ptask->set_finish();
 
          }
          catch (...)
@@ -1322,7 +1266,7 @@ void thread::set_finish()
 
       //__finalize_composites();
 
-      if (m_threada.has_element())
+      if (m_taska.has_element())
       {
 
          kick_idle();
@@ -1496,13 +1440,13 @@ void thread::post_quit()
 }
 
 
-::index thread::thread_add(::thread * pthread)
+::index thread::task_add(::task * ptask)
 {
 
    try
    {
 
-      string strType = pthread->type_name();
+      string strType = ptask->type_name();
 
       if(strType == "user::shell::thread")
       {
@@ -1513,23 +1457,23 @@ void thread::post_quit()
 
       sync_lock sl(mutex());
 
-      if (pthread == this)
+      if (ptask == this)
       {
 
          return false;
 
       }
 
-      if (::is_null(pthread))
+      if (::is_null(ptask))
       {
 
          return false;
 
       }
 
-      sync_lock slChild(pthread->mutex());
+      sync_lock slChild(ptask->mutex());
 
-      if (::multithreading::is_child(pthread) || pthread->m_pthreadParent)
+      if (::multithreading::is_child(ptask) || ptask->m_pthreadParent)
       {
 
          return false;
@@ -1543,9 +1487,9 @@ void thread::post_quit()
 
       }
 
-      m_threada.add(pthread);
+      m_taska.add(ptask);
 
-      pthread->m_pthreadParent.reset(this OBJ_REF_DBG_ADD_P_NOTE(pthread, "thread::thread_add"));
+      ptask->m_pthreadParent.reset(this OBJ_REF_DBG_COMMA_P_NOTE(ptask, "thread::thread_add"));
 
       return true;
 
@@ -1560,7 +1504,7 @@ void thread::post_quit()
 }
 
 
-void thread::thread_remove(::thread * pthread)
+void thread::task_remove(::task * ptask)
 {
 
    try
@@ -1568,31 +1512,31 @@ void thread::thread_remove(::thread * pthread)
 
       string strThreadThis = type_name();
 
-      string strThreadChild = pthread->type_name();
+      string strThreadChild = ptask->type_name();
 
       sync_lock sl(mutex());
 
-      if (::is_null(pthread))
+      if (::is_null(ptask))
       {
 
          __throw(invalid_argument_exception());
 
       }
 
-      sync_lock slChild(pthread->mutex());
+      sync_lock slChild(ptask->mutex());
 
-      if (!m_threada.contains(pthread) && pthread->m_pthreadParent != this)
+      if (!m_taska.contains(ptask) && ptask->parent_thread() != this)
       {
 
          __throw(invalid_argument_exception("thread is no parent-child releationship between the threads"));
 
       }
 
-      pthread->m_pthreadParent.release();
+      ptask->m_pthreadParent.release();
 
-      m_threada.remove(pthread);
+      m_taska.remove(ptask);
 
-      if (is_set_finish() && m_threada.is_empty())
+      if (is_set_finish() && m_taska.is_empty())
       {
 
          if (strThreadThis == "veriwell_keyboard::application")
@@ -1602,8 +1546,8 @@ void thread::thread_remove(::thread * pthread)
 
          }
 
-
          post_quit();
+
       }
       else
       {
@@ -1631,7 +1575,7 @@ void thread::finalize()
 
    string strType = type_name();
 
-   if(m_strThreadName.contains("main_frame"))
+   if(m_strTaskName.contains("main_frame"))
    {
 
       output_debug_string("I am main_frame xxpost_quit at " + strType + "\n");
@@ -1729,7 +1673,7 @@ bool thread::thread_get_run() const
 
    //return m_bitAvoidProcFork || m_threada.has_element();
 
-   return m_bitRunThisThread || m_threada.has_element();
+   return m_bitRunThisThread || m_taska.has_element();
 
 }
 
@@ -2341,7 +2285,7 @@ bool thread::begin_thread(bool bSynchInitialization, ::e_priority epriority, UIN
    if (::is_set(get_context_object()) && get_context_object() != this)
    {
 
-      get_context_object()->add_reference(this OBJ_REF_DBG_ADD_THIS_FUNCTION_LINE);
+      get_context_object()->add_reference(this OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
 
    }
 
@@ -2611,6 +2555,14 @@ void thread::__os_finalize()
 }
 
 
+::context_object* thread::calc_parent_thread()
+{
+
+   return ::multithreading::calc_parent(this);
+
+}
+
+
 ::estatus thread::osthread_init()
 {
 
@@ -2656,17 +2608,17 @@ void thread::__os_finalize()
       if (pthreadParent)
       {
 
-         if (!pthreadParent->thread_add(this))
+         if (!pthreadParent->task_add(this))
          {
 
             if (pthreadParent->m_id.begins_ci("pred_thread") && m_id.begins_ci("pred_thread"))
             {
 
-               pthreadParent->thread_remove(this);
+               pthreadParent->task_remove(this);
 
                pthreadParent = ::multithreading::calc_parent(pthreadParent);
 
-               if (!pthreadParent->thread_add(this))
+               if (!pthreadParent->task_add(this))
                {
 
                   return ::error_failed;
@@ -2689,7 +2641,7 @@ void thread::__os_finalize()
 
    {
 
-      ::set_task(this OBJ_REF_DBG_ADD_THIS_FUNCTION_LINE);
+      ::set_task(this OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
 
       processor_cache_oriented_set_thread_memory_pool(0); // set default handler cache oriented thread memory pool index to 0 ("zero") (The First One)
 
@@ -3132,16 +3084,20 @@ bool thread::send_message(UINT message, WPARAM wParam, lparam lParam, ::duration
 bool thread::on_get_thread_name(string& strThreadName)
 {
 
-   if (m_strThreadTag.has_char())
+   if (m_strTaskTag.has_char())
    {
 
-      ::thread_set_name(m_strThreadTag);
+      //::thread_set_name(m_strTaskTag);
+
+      strThreadName = m_strTaskTag;
 
    }
    else
    {
 
-      ::thread_set_name(type_name());
+      //::thread_set_name(type_name());
+
+      strThreadName = type_name();
 
    }
 

@@ -182,14 +182,22 @@ void matter::defer_create_mutex()
 }
 
 
-void matter::thread_remove(::thread* pthread)
+::index matter::task_add(::task* ptask)
+{
+
+   return -1;
+
+}
+
+
+void matter::task_remove(::task* ptask)
 {
 
 
 }
 
 
-void matter::thread_on_term(::thread* pthread)
+void matter::task_on_term(::task* ptask)
 {
 
 
@@ -253,7 +261,7 @@ void matter::receive_response(const ::var& var)
 }
 
 
-::estatus matter::add_composite(::matter* pobject OBJ_REF_DBG_ADD_PARAMS_DEF)
+::estatus matter::add_composite(::matter* pobject OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
    return ::success_none;
@@ -283,7 +291,7 @@ void matter::receive_response(const ::var& var)
 //}
 
 
-::estatus matter::add_reference(::matter* pobject OBJ_REF_DBG_ADD_PARAMS_DEF)
+::estatus matter::add_reference(::matter* pobject OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
    return ::success_none;
@@ -291,7 +299,7 @@ void matter::receive_response(const ::var& var)
 }
 
 
-::estatus matter::release_composite(::matter* pobject OBJ_REF_DBG_ADD_PARAMS_DEF)
+::estatus matter::release_composite(::matter* pobject OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
    return ::success_none;
@@ -299,7 +307,7 @@ void matter::receive_response(const ::var& var)
 }
 
 
-::estatus matter::release_reference(::matter* pobject OBJ_REF_DBG_ADD_PARAMS_DEF)
+::estatus matter::release_reference(::matter* pobject OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
    return ::success_none;
@@ -484,12 +492,6 @@ void matter::to_sz(char * sz, strsize len) const
 }
 
 
-::index matter::thread_add(::thread* pthread)
-{
-
-   return -1;
-
-}
 
 
 //::estatus matter::__thread_procedure()

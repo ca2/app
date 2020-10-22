@@ -43,10 +43,10 @@ void context_object::finalize()
 }
 
 
-void context_object::set_context_object(::layered * pobjectContext  OBJ_REF_DBG_ADD_PARAMS_DEF)
+void context_object::set_context_object(::layered * pobjectContext  OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
-   m_pobjectContext.reset(pobjectContext OBJ_REF_DBG_ADD_ARGS);
+   m_pobjectContext.reset(pobjectContext OBJ_REF_DBG_COMMA_ARGS);
 
 }
 

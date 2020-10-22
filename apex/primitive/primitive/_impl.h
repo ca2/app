@@ -1098,7 +1098,7 @@ inline ::estatus object::__raw_compose(__composite(BASE_TYPE) & pbase)
 
 
 template < typename BASE_TYPE, typename SOURCE >
-inline ::estatus object::__compose(__composite(BASE_TYPE) & pbase, const SOURCE * psource OBJ_REF_DBG_ADD_PARAMS_DEF)
+inline ::estatus object::__compose(__composite(BASE_TYPE) & pbase, const SOURCE * psource OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
   pbase = psource;
@@ -1119,7 +1119,7 @@ inline ::estatus object::__compose(__composite(BASE_TYPE) & pbase, const SOURCE 
 
   }
 
-  m_estatus = add_composite(pbase OBJ_REF_DBG_ADD_ARGS);
+  m_estatus = add_composite(pbase OBJ_REF_DBG_COMMA_ARGS);
 
   return m_estatus;
 
@@ -1145,10 +1145,10 @@ inline ::estatus object::__raw_compose(__composite(BASE_TYPE) & pbase, const SOU
 }
 
 template < typename BASE_TYPE, typename SOURCE >
-inline ::estatus object::__compose(__composite(BASE_TYPE) & pbase, const __pointer(SOURCE) & psource OBJ_REF_DBG_ADD_PARAMS_DEF)
+inline ::estatus object::__compose(__composite(BASE_TYPE) & pbase, const __pointer(SOURCE) & psource OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
-  return __compose(pbase, psource.get() OBJ_REF_DBG_ADD_ARGS);
+  return __compose(pbase, psource.get() OBJ_REF_DBG_COMMA_ARGS);
 
 }
 
@@ -1343,7 +1343,7 @@ inline ::estatus object::__construct_new(__pointer(TYPE) & p)
 
 
 template < typename BASE_TYPE >
-inline ::estatus object::__release(__composite(BASE_TYPE) & pcomposite OBJ_REF_DBG_ADD_PARAMS_DEF)
+inline ::estatus object::__release(__composite(BASE_TYPE) & pcomposite OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
   if (pcomposite)
@@ -1373,7 +1373,7 @@ inline ::estatus object::__release(__composite(BASE_TYPE) & pcomposite OBJ_REF_D
 
 
 template < typename BASE_TYPE >
-inline ::estatus object::__release(__reference(BASE_TYPE) & preference OBJ_REF_DBG_ADD_PARAMS_DEF)
+inline ::estatus object::__release(__reference(BASE_TYPE) & preference OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
   if (preference)
@@ -1409,7 +1409,7 @@ inline ::estatus object::__release(__reference(BASE_TYPE) & preference OBJ_REF_D
 
 
 template < typename SOURCE >
-inline ::estatus object::release_reference(__pointer(SOURCE) & psource OBJ_REF_DBG_ADD_PARAMS_DEF)
+inline ::estatus object::release_reference(__pointer(SOURCE) & psource OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
   return release_reference(psource.m_p);
@@ -1421,34 +1421,34 @@ CLASS_DECL_APEX void object_on_add_composite(const matter * pbase);
 
 
 template < typename BASE_TYPE >
-inline ::estatus object::add_composite(__composite(BASE_TYPE) & pcomposite OBJ_REF_DBG_ADD_PARAMS_DEF)
+inline ::estatus object::add_composite(__composite(BASE_TYPE) & pcomposite OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
-  return add_composite(pcomposite.get() OBJ_REF_DBG_ADD_ARGS);
+  return add_composite(pcomposite.get() OBJ_REF_DBG_COMMA_ARGS);
 
 }
 
 
 template < typename BASE_TYPE, typename SOURCE >
-inline ::estatus object::__refer(__reference(BASE_TYPE) & preference, const __pointer(SOURCE) & psource  OBJ_REF_DBG_ADD_PARAMS_DEF)
+inline ::estatus object::__refer(__reference(BASE_TYPE) & preference, const __pointer(SOURCE) & psource  OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
-  return __refer(preference, psource.get()  OBJ_REF_DBG_ADD_ARGS);
+  return __refer(preference, psource.get()  OBJ_REF_DBG_COMMA_ARGS);
 
 }
 
 
 template < typename BASE_TYPE, typename SOURCE >
-inline ::estatus object::__refer(__reference(BASE_TYPE) & preference, const ::primitive::member < SOURCE > & pmember OBJ_REF_DBG_ADD_PARAMS_DEF)
+inline ::estatus object::__refer(__reference(BASE_TYPE) & preference, const ::primitive::member < SOURCE > & pmember OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
-  return __refer(preference, pmember.get()  OBJ_REF_DBG_ADD_ARGS);
+  return __refer(preference, pmember.get()  OBJ_REF_DBG_COMMA_ARGS);
 
 }
 
 
 template < typename BASE_TYPE, typename SOURCE >
-inline ::estatus object::__refer(__reference(BASE_TYPE) & preference, const SOURCE * psource OBJ_REF_DBG_ADD_PARAMS_DEF)
+inline ::estatus object::__refer(__reference(BASE_TYPE) & preference, const SOURCE * psource OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
   preference = psource;
@@ -1460,31 +1460,31 @@ inline ::estatus object::__refer(__reference(BASE_TYPE) & preference, const SOUR
 
   }
 
-  return add_reference(preference OBJ_REF_DBG_ADD_ARGS);
+  return add_reference(preference OBJ_REF_DBG_COMMA_ARGS);
 
 }
 
 
 template < typename SOURCE >
-inline ::estatus object::add_reference(__pointer(SOURCE) & psource  OBJ_REF_DBG_ADD_PARAMS_DEF)
+inline ::estatus object::add_reference(__pointer(SOURCE) & psource  OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
-  return add_reference(psource.get() OBJ_REF_DBG_ADD_ARGS);
+  return add_reference(psource.get() OBJ_REF_DBG_COMMA_ARGS);
 
 }
 
 
 template < typename SOURCE >
-inline ::estatus object::add_reference(__reference(SOURCE) & preference OBJ_REF_DBG_ADD_PARAMS_DEF)
+inline ::estatus object::add_reference(__reference(SOURCE) & preference OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
-  return add_reference(preference.get() OBJ_REF_DBG_ADD_ARGS);
+  return add_reference(preference.get() OBJ_REF_DBG_COMMA_ARGS);
 
 }
 
 
 template < typename SOURCE >
-inline ::estatus object::add_reference(SOURCE * psource OBJ_REF_DBG_ADD_PARAMS_DEF)
+inline ::estatus object::add_reference(SOURCE * psource OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
   ::matter * pmatter = psource;
@@ -1496,7 +1496,7 @@ inline ::estatus object::add_reference(SOURCE * psource OBJ_REF_DBG_ADD_PARAMS_D
 
   }
 
-  return add_reference(pmatter OBJ_REF_DBG_ADD_ARGS);
+  return add_reference(pmatter OBJ_REF_DBG_COMMA_ARGS);
 
 }
 

@@ -169,16 +169,5 @@ CLASS_DECL_APEX void main_async_runnable(::context_object * prunnableParam)
 
 
 
-bool set_thread_name(const char * psz)
-{
-
-   string strName(psz);
-
-   thread_name_abbreviate(strName, 15);
-
-   return !pthread_setname_np(pthread_self(), strName);
-
-}
-
 
 

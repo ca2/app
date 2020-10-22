@@ -25,13 +25,13 @@ public:
 
 
 
-template < typename PRED >
-inline auto __future(PRED pred)
-{
-
-   return ::future(::id(), pred);
-
-}
+//template < typename PRED >
+//inline auto __future(PRED pred)
+//{
+//
+//   return ::future(::id(), pred);
+//
+//}
 
 
 inline auto __async_future()

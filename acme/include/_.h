@@ -2695,9 +2695,9 @@ namespace http
 
 } // namespace http
 
-template < typename PRED > inline __pointer(::matter) __pred_method(PRED pred);
+template < typename PRED > inline __pointer(::matter) __method(PRED pred);
 
-template < typename PRED > inline __pointer(::matter) __pred_future(PRED pred);
+template < typename PRED > inline __pointer(::matter) __future(PRED pred);
 
 //class context;
 

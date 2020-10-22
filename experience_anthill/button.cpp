@@ -208,7 +208,7 @@ namespace experience
       if (m_spregion.is_null())
       {
 
-         item= element_none;
+         item= ::user::element_none;
          return;
 
       }
@@ -224,12 +224,12 @@ namespace experience
       if (!m_spregion->contains(item.m_pointHitTest))
       {
 
-         item = element_none;
+         item = ::user::element_none;
          return;
 
       }
 
-      item= element_client;
+      item= ::user::element_client;
 
    }
 

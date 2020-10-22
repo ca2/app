@@ -657,7 +657,7 @@ namespace filemanager
 
             m_iAnimate = 0;
 
-            ptimer->m_ptimercallback->remove(ptimer);
+            ptimer->m_ptimercallback->remove_timer(ptimer);
 
          }
 

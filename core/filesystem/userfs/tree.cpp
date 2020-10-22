@@ -180,7 +180,7 @@ namespace userfs
          if (m_iAnimate >= 11)
          {
             m_iAnimate = 0;
-            ptimer->m_ptimercallback->remove(ptimer);
+            ptimer->m_ptimercallback->remove_timer(ptimer);
 
          }
          ptimer->m_ptimercallback->user_interaction()->set_need_redraw();
@@ -189,7 +189,7 @@ namespace userfs
       {
          ptimer->m_ptimercallback->user_interaction()->set_need_redraw();
          m_bTimer123 = false;
-         ptimer->m_ptimercallback->remove(ptimer);
+         ptimer->m_ptimercallback->remove_timer(ptimer);
       }
    }
 

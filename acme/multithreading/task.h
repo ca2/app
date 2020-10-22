@@ -7,25 +7,27 @@ class CLASS_DECL_ACME task :
 protected:
 
 
-   bool                          m_bitRunThisThread : 1;
+   bool                             m_bitRunThisThread : 1;
 
 
 public:
 
 
-   int                           m_bitAvoidProcFork : 1;
-   int                           m_bitIsRunning : 1;
-   int                           m_bitIsPred : 1; // Is helper thread (as opposite to a "main" thread)
+   int                              m_bitAvoidProcFork : 1;
+   int                              m_bitIsRunning : 1;
+   int                              m_bitIsPred : 1; // Is helper thread (as opposite to a "main" thread)
 
 
-   HTHREAD                       m_hthread;
-   ITHREAD                       m_ithread;
-   string                        m_strTaskName;
-   string                        m_strTaskTag;
-   __pointer(::context_object)   m_pthreadParent;
+   HTHREAD                          m_hthread;
+   ITHREAD                          m_ithread;
+   string                           m_strTaskName;
+   string                           m_strTaskTag;
+   __pointer(::context_object)      m_pthreadParent;
 
-   __pointer(::matter)           m_pmatter;
-   element_array                 m_elementaNotify;
+   __pointer(::matter)              m_pmatter;
+   element_array                    m_elementaNotify;
+   __pointer(manual_reset_event)    m_pevSleep;
+
 
 
    task();

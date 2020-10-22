@@ -56,7 +56,7 @@ public:
 
    virtual ::estatus initialize_timer(::apex::timer_array* ptimera, uptr uiTimer = 0, PFN_TIMER pfnTimer = nullptr, void* pvoidData = nullptr, class sync* pmutex = nullptr);
 
-   virtual ::estatus run() override;
+   virtual ::estatus on_task() override;
 
 
    bool start(const ::duration& duration, bool bPeriodic);

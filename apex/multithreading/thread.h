@@ -102,7 +102,6 @@ public:
 
    DWORD_PTR                                          m_dwThreadAffinityMask;
    bool                                               m_bTemporary;
-   __pointer(manual_reset_event)                      m_pevSleep;
    __pointer(::object)                                m_pobjectScript;
 
 
@@ -553,7 +552,7 @@ CLASS_DECL_APEX void set_thread_off(ITHREAD id);
 
 
 
-CLASS_DECL_APEX bool apex_thread_sleep(tick tick, sync* psync = nullptr);
+//CLASS_DECL_APEX bool apex_task_sleep(tick tick, sync* psync = nullptr);
 CLASS_DECL_APEX bool thread_pump_sleep(tick tick, sync* psync = nullptr);
 CLASS_DECL_APEX bool app_sleep(tick tick);
 

@@ -764,7 +764,7 @@ namespace linux
       while(m_tickLastPlacementEvent.elapsed() < 40 || m_puserinteraction->is_layout_experience_active())
       {
 
-         if(!thread_sleep(10))
+         if(!task_sleep(10))
          {
 
             return;

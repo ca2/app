@@ -169,7 +169,7 @@
 //::estatus timer::run()
 //{
 //
-//   while(thread_sleep(::millis(m_dwMillis)))
+//   while(task_sleep(::millis(m_dwMillis)))
 //   {
 //
 //      try

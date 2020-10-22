@@ -366,7 +366,7 @@ void simple_frame_window::_thread_save_window_placement()
    while (::thread_get_run())
    {
 
-      if (!thread_sleep(300))
+      if (!task_sleep(300))
       {
 
          break;

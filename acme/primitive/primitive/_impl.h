@@ -2432,7 +2432,7 @@ void ___task_pool < THREAD_POINTER >::_task_clock(enum_clock eclock, duration du
    while (true)
    {
 
-      if (!thread_sleep((u32)timeout))
+      if (!task_sleep((u32)timeout))
       {
 
          break;

@@ -33,7 +33,7 @@ bool pred_retry(duration durationRetry, ::duration durationTimeout, PRED pred)
 
       }
 
-      if (!thread_sleep(tickRetry))
+      if (!task_sleep(tickRetry))
       {
 
          return false;

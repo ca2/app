@@ -760,7 +760,7 @@ namespace linux
       while(m_tickLastPlacementEvent.elapsed() < 40 || m_puserinteraction->layout().is_changing())
       {
 
-         if(!thread_sleep(10))
+         if(!task_sleep(10))
          {
 
             return;

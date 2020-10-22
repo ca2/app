@@ -920,7 +920,7 @@ bool net::reverse_schedule(reverse_cache_item * pitem)
 
                   sl.unlock();
 
-                  if (!thread_sleep(100_ms))
+                  if (!task_sleep(100_ms))
                   {
 
                      break;

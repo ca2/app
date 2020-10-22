@@ -248,7 +248,7 @@ namespace apex
    {
 
       ::set_thread_get_run(&apex_thread_get_run);
-      ::set_thread_sleep(&apex_thread_sleep);
+      //::set_task_sleep(&acme_task_sleep);
 
       g_bApex = 0;
 

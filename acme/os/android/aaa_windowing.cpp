@@ -1474,7 +1474,7 @@ CLASS_DECL_ACME ::estatus os_message_box(oswindow oswindow, const char * pText, 
    while (System.oslocal().m_iMessageBoxResult > 0)
    {
 
-      if (!thread_sleep(100_ms))
+      if (!task_sleep(100_ms))
       {
 
          return -1;
@@ -1532,7 +1532,7 @@ CLASS_DECL_ACME ::estatus os_message_box(oswindow oswindow, const char * pText, 
    while (System.oslocal().m_iMessageBoxResult <= 0)
    {
 
-      if (!thread_sleep(100_ms))
+      if (!task_sleep(100_ms))
       {
 
          return -1;

@@ -271,18 +271,18 @@ void task::term_task()
    if (!m_pthreadParent && m_bitIsPred)
    {
 
-      auto pthreadParent = calc_parent_thread();
+      auto ptaskParent = calc_parent_thread();
 
-      if (pthreadParent)
+      if (ptaskParent)
       {
 
-         pthreadParent->task_add(this);
+         ptaskParent->task_add(this);
 
       }
 
    }
 
-   // __thread_procedure() should release this (pmatter)
+   // __task_procedure() should release this (pmatter)
    add_ref(OBJ_REF_DBG_THIS_FUNCTION_LINE);
 
 #ifdef WINDOWS
@@ -295,22 +295,22 @@ void task::term_task()
 
 #else
 
-   pthread_attr_t threadAttr;
+   ptask_attr_t taskAttr;
 
-   pthread_attr_init(&threadAttr);
+   ptask_attr_init(&taskAttr);
 
    if (nStackSize > 0)
    {
 
-      pthread_attr_setstacksize(&threadAttr, nStackSize); // Set the stack size of the thread
+      ptask_attr_setstacksize(&taskAttr, nStackSize); // Set the stack size of the task
 
    }
 
-   pthread_attr_setdetachstate(&threadAttr, PTHREAD_CREATE_DETACHED); // Set thread to detached state. No need for pthread_join
+   ptask_attr_setdetachstate(&taskAttr, PTHREAD_CREATE_DETACHED); // Set task to detached state. No need for ptask_join
 
-   pthread_create(
+   ptask_create(
       &m_hthread,
-      &threadAttr,
+      &taskAttr,
       &task::s_os_task,
       (LPVOID)(::task*) this);
 
@@ -345,10 +345,10 @@ __pointer(task) task::start(::matter * pmatter, ::e_priority epriority, UINT nSt
 
 
 //
-//bool task::set_thread_name(const char* pszThreadName)
+//bool task::set_task_name(const char* pszThreadName)
 //{
 //
-//   if (!::set_thread_name(m_hthread, pszThreadName))
+//   if (!::set_task_name(m_hthread, pszThreadName))
 //   {
 //
 //      return false;
@@ -360,7 +360,7 @@ __pointer(task) task::start(::matter * pmatter, ::e_priority epriority, UINT nSt
 //}
 
 //
-//void task::set_thread_run(bool bRun)
+//void task::set_task_run(bool bRun)
 //{
 //
 //   m_bRunThisThread = bRun;
@@ -372,6 +372,268 @@ void task::kick_idle()
 {
 
 
+}
+
+
+
+
+
+
+
+CLASS_DECL_ACME bool __task_sleep(task* task)
+{
+
+   while (task->thread_get_run())
+   {
+
+      Sleep(100);
+
+   }
+
+   return false;
+
+}
+
+
+CLASS_DECL_ACME bool __task_sleep(task* ptask, tick tick)
+{
+
+   if (tick.m_i < 1000)
+   {
+
+      if (!ptask->thread_get_run())
+      {
+
+         return false;
+
+      }
+
+      Sleep(tick);
+
+      return ptask->thread_get_run();
+
+   }
+
+   auto iTenths = tick.m_i / 10;
+
+   auto iMillis = tick.m_i % 10;
+
+   try
+   {
+
+      __pointer(manual_reset_event) spev;
+
+      {
+
+         sync_lock sl(ptask->mutex());
+
+         if (ptask->m_pevSleep.is_null())
+         {
+
+            ptask->m_pevSleep = __new(manual_reset_event());
+
+            ptask->m_pevSleep->ResetEvent();
+
+         }
+
+         spev = ptask->m_pevSleep;
+
+      }
+
+      if (!ptask->thread_get_run())
+      {
+
+         return false;
+
+      }
+
+      //while(iTenths > 0)
+      //{
+
+      ptask->m_pevSleep->wait(tick);
+
+      if (!ptask->thread_get_run())
+      {
+
+         return false;
+
+      }
+
+      //iTenths--;
+
+   //}
+
+   }
+   catch (...)
+   {
+
+   }
+
+   return ptask->thread_get_run();
+
+}
+
+
+CLASS_DECL_ACME bool __task_sleep(::task* ptask, sync* psync)
+{
+
+   try
+   {
+
+      while (ptask->thread_get_run())
+      {
+
+         if (psync->wait(100).succeeded())
+         {
+
+            break;
+
+         }
+
+      }
+
+   }
+   catch (...)
+   {
+
+   }
+
+   return ptask->thread_get_run();
+
+}
+
+
+CLASS_DECL_ACME bool __task_sleep(task* ptask, tick tick, sync* psync)
+{
+
+   if (tick.m_i < 1000)
+   {
+
+      if (!ptask->thread_get_run())
+      {
+
+         return false;
+
+      }
+
+      psync->wait(tick);
+
+      return ptask->thread_get_run();
+
+   }
+
+   auto iTenths = tick.m_i / 100;
+
+   auto iMillis = tick.m_i % 100;
+
+   try
+   {
+
+      {
+
+         ptask->m_pevSleep->wait(100);
+
+         if (!ptask->thread_get_run())
+         {
+
+            return false;
+
+         }
+
+         iTenths--;
+
+      }
+
+   }
+   catch (...)
+   {
+
+   }
+
+   return ptask->thread_get_run();
+
+}
+
+
+CLASS_DECL_ACME bool task_sleep(tick tick, sync* psync)
+{
+
+   auto ptask = ::get_task();
+
+   if (::is_null(ptask))
+   {
+
+      if (::is_null(psync))
+      {
+
+         if (__os(tick) == INFINITE)
+         {
+
+         }
+         else
+         {
+
+            ::Sleep(tick);
+
+         }
+
+      }
+      else
+      {
+
+         if (__os(tick) == INFINITE)
+         {
+
+            return psync->lock();
+
+         }
+         else
+         {
+
+            return psync->lock(tick);
+
+         }
+
+      }
+
+      return true;
+
+   }
+
+   if (::is_null(psync))
+   {
+
+      if (__os(tick) == INFINITE)
+      {
+
+         return __task_sleep(ptask);
+
+      }
+      else
+      {
+
+         return __task_sleep(ptask, tick);
+
+      }
+
+   }
+   else
+   {
+
+      if (__os(tick) == INFINITE)
+      {
+
+         return __task_sleep(ptask, psync);
+
+      }
+      else
+      {
+
+         return __task_sleep(ptask, tick, psync);
+
+      }
+
+   }
 }
 
 

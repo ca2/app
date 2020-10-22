@@ -107,8 +107,6 @@ bool timer_task::start(const ::duration& duration, bool bPeriodic)
 
       }
 
-
-
       m_strDebugNote.Format("uEvent=%d", m_uEvent);
 
       auto pparent = m_ptimera->m_pobjectContext;
@@ -146,19 +144,9 @@ bool timer_task::start(const ::duration& duration, bool bPeriodic)
 
             }
 
-
          }
 
       }
-
-      
-
-      //if(!impl_start())
-      //{
-
-      //   return false;
-
-      //}
 
    }
    catch (...)
@@ -173,128 +161,6 @@ bool timer_task::start(const ::duration& duration, bool bPeriodic)
    return true;
 
 }
-
-
-//void timer_task::call_on_timer()
-//{
-//
-//   sync_lock sl(mutex());
-//
-//   __keep_true(m_bHandling);
-//
-//   if (!is_timer_ok())
-//   {
-//
-//      return;
-//
-//   }
-//
-//   m_bDupHandle = false;
-//
-//   set_current_handles();
-//
-//   ::set_thread(this);
-//
-//   bool bRepeat = true;
-//
-//   ::thread_set(id_thread_is_timer);
-//
-//   try
-//   {
-//
-//      if(!thread_get_run())
-//      {
-//
-//         bRepeat = false;
-//
-//      }
-//
-//   }
-//   catch(...)
-//   {
-//
-//      bRepeat = false;
-//
-//   }
-//
-//   if(bRepeat)
-//   {
-//
-//      m_bTemporary = true;
-//
-//      sl.unlock();
-//
-//      try
-//      {
-//
-//         if(!on_timer())
-//         {
-//
-//            bRepeat = false;
-//
-//         }
-//
-//      }
-//      catch(...)
-//      {
-//
-//      }
-//
-//      sl.lock();
-//
-//   }
-//
-//   if(bRepeat)
-//   {
-//
-//      try
-//      {
-//
-//         if (m_bPeriodic)
-//         {
-//
-//            if(!impl_restart())
-//            {
-//
-//               bRepeat = false;
-//
-//            }
-//
-//         }
-//         else
-//         {
-//
-//             bRepeat = false;
-//
-//         }
-//
-//      }
-//      catch (...)
-//      {
-//
-//         bRepeat = false;
-//
-//      }
-//
-//   }
-//
-//   if(!bRepeat)
-//   {
-//
-//      try
-//      {
-//
-//         m_bRunning = false;
-//
-//      }
-//      catch (...)
-//      {
-//
-//      }
-//
-//   }
-//
-//}
 
 
 bool timer_task::on_timer()
@@ -339,10 +205,10 @@ bool timer_task::task_active() const
 }
 
 
-::estatus timer_task::run()
+::estatus timer_task::on_task()
 {
 
-   while (thread_sleep(m_duration))
+   while (task_sleep(m_duration))
    {
 
       try

@@ -61,7 +61,7 @@ public:
    T wait(unsigned int dwMillis = INFINITE, ::Windows::Foundation::AsyncStatus * pstatus = nullptr)
    {
 
-      thread_sleep(dwMillis, &m_event);
+      task_sleep(dwMillis, &m_event);
 
       if (pstatus != nullptr)
       {

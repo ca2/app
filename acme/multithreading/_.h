@@ -232,6 +232,9 @@ class sync_lock;
 #include "acme/multithreading/wait_future.h"
 
 
+#include "acme/multithreading/task.h"
+
+
 #include "sync_task.h"
 
 
@@ -299,16 +302,16 @@ CLASS_DECL_ACME void set_task(task * ptask OBJ_REF_DBG_COMMA_PARAMS);
 CLASS_DECL_ACME void thread_release(OBJ_REF_DBG_PARAMS);
 
 
-typedef bool THREAD_SLEEP(tick tick, ::sync* psync);
-using PFN_THREAD_SLEEP = THREAD_SLEEP*;
+//typedef bool task_sleep(tick tick, ::sync* psync);
+//using PFN_task_sleep = task_sleep*;
 
-CLASS_DECL_ACME bool __simple_thread_sleep();
-CLASS_DECL_ACME bool __simple_thread_sleep(tick tick);
-CLASS_DECL_ACME bool __simple_thread_sleep(::sync* psync);
-CLASS_DECL_ACME bool __simple_thread_sleep(tick tick, ::sync* psync);
-CLASS_DECL_ACME bool thread_sleep(tick tick = INFINITE, ::sync * psync = nullptr);
-CLASS_DECL_ACME bool acme_thread_sleep(tick tick = INFINITE, ::sync* psync = nullptr);
-CLASS_DECL_ACME void set_thread_sleep(PFN_THREAD_SLEEP pfnThreadSleep);
+CLASS_DECL_ACME bool __simple_task_sleep();
+CLASS_DECL_ACME bool __simple_task_sleep(tick tick);
+CLASS_DECL_ACME bool __simple_task_sleep(::sync* psync);
+CLASS_DECL_ACME bool __simple_task_sleep(tick tick, ::sync* psync);
+CLASS_DECL_ACME bool task_sleep(tick tick = INFINITE, ::sync * psync = nullptr);
+//CLASS_DECL_ACME bool acme_task_sleep(tick tick = INFINITE, ::sync* psync = nullptr);
+//CLASS_DECL_ACME void set_taskhread_sleep(PFN_task_sleep pfnThreadSleep);
 
 #ifdef _UWP
 
@@ -339,3 +342,15 @@ CLASS_DECL_ACME bool set_thread_name(const char * psz);
 
 
 
+
+
+
+CLASS_DECL_ACME bool __task_sleep(task* task);
+
+CLASS_DECL_ACME bool __task_sleep(task* ptask, tick tick);
+
+CLASS_DECL_ACME bool __task_sleep(::task* ptask, sync* psync);
+
+CLASS_DECL_ACME bool __task_sleep(task* ptask, tick tick, sync* psync);
+
+CLASS_DECL_ACME bool task_sleep(tick tick, sync* psync);

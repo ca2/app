@@ -2279,7 +2279,7 @@ namespace http
          if (iTry < iTryCount && tickElapse < tickTotalTimeout)
          {
 
-            thread_sleep(300);
+            task_sleep(300);
 
             if (::thread_get_run())
             {

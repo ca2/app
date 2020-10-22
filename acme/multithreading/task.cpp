@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "task.h"
+#include <pthread.h>
 
 
 task::task()
@@ -135,17 +136,17 @@ void* task::s_os_task(void* p)
    try
    {
 
-      ::task* ptask = (::task*) p;
+      ::task* pthread = (::task*) p;
 
-      ::set_task(ptask OBJ_REF_DBG_COMMA_P_FUNCTION_LINE(ptask));
+      ::set_task(pthread OBJ_REF_DBG_COMMA_P_FUNCTION_LINE(pthread));
 
-      ptask->release();
+      pthread->release();
 
-      ptask->on_task();
+      pthread->on_task();
 
-      ptask->term_task();
+      pthread->term_task();
 
-      ::thread_release(OBJ_REF_DBG_P_NOTE(ptask, ""));
+      ::thread_release(OBJ_REF_DBG_P_NOTE(pthread, ""));
 
    }
    catch (...)
@@ -197,13 +198,13 @@ void task::term_task()
    if (m_pthreadParent)
    {
 
-      ::task* ptaskParent = m_pthreadParent.cast < task>();
+      ::task* pthreadParent = m_pthreadParent.cast < task>();
 
-      ptaskParent->task_remove(this);
+      pthreadParent->task_remove(this);
 
-      ptaskParent->task_on_term(this);
+      pthreadParent->task_on_term(this);
 
-      ptaskParent->kick_idle();
+      pthreadParent->kick_idle();
 
    }
 
@@ -271,12 +272,12 @@ void task::term_task()
    if (!m_pthreadParent && m_bitIsPred)
    {
 
-      auto ptaskParent = calc_parent_thread();
+      auto pthreadParent = calc_parent_thread();
 
-      if (ptaskParent)
+      if (pthreadParent)
       {
 
-         ptaskParent->task_add(this);
+         pthreadParent->task_add(this);
 
       }
 
@@ -295,20 +296,20 @@ void task::term_task()
 
 #else
 
-   ptask_attr_t taskAttr;
+   pthread_attr_t taskAttr;
 
-   ptask_attr_init(&taskAttr);
+   pthread_attr_init(&taskAttr);
 
    if (nStackSize > 0)
    {
 
-      ptask_attr_setstacksize(&taskAttr, nStackSize); // Set the stack size of the task
+      pthread_attr_setstacksize(&taskAttr, nStackSize); // Set the stack size of the task
 
    }
 
-   ptask_attr_setdetachstate(&taskAttr, PTHREAD_CREATE_DETACHED); // Set task to detached state. No need for ptask_join
+   pthread_attr_setdetachstate(&taskAttr, PTHREAD_CREATE_DETACHED); // Set task to detached state. No need for pthread_join
 
-   ptask_create(
+   pthread_create(
       &m_hthread,
       &taskAttr,
       &task::s_os_task,
@@ -331,11 +332,11 @@ void task::term_task()
 __pointer(task) task::start(::matter * pmatter, ::e_priority epriority, UINT nStackSize, u32 uiCreateFlags)
 {
 
-   auto ptask = __new(task);
+   auto pthread = __new(task);
 
-   ptask->_start(pmatter, epriority, nStackSize, uiCreateFlags);
+   pthread->_start(pmatter, epriority, nStackSize, uiCreateFlags);
 
-   return ptask;
+   return pthread;
 
 
 }
@@ -395,13 +396,13 @@ CLASS_DECL_ACME bool __task_sleep(task* task)
 }
 
 
-CLASS_DECL_ACME bool __task_sleep(task* ptask, tick tick)
+CLASS_DECL_ACME bool __task_sleep(task* pthread, tick tick)
 {
 
    if (tick.m_i < 1000)
    {
 
-      if (!ptask->thread_get_run())
+      if (!pthread->thread_get_run())
       {
 
          return false;
@@ -410,7 +411,7 @@ CLASS_DECL_ACME bool __task_sleep(task* ptask, tick tick)
 
       Sleep(tick);
 
-      return ptask->thread_get_run();
+      return pthread->thread_get_run();
 
    }
 
@@ -425,22 +426,22 @@ CLASS_DECL_ACME bool __task_sleep(task* ptask, tick tick)
 
       {
 
-         sync_lock sl(ptask->mutex());
+         sync_lock sl(pthread->mutex());
 
-         if (ptask->m_pevSleep.is_null())
+         if (pthread->m_pevSleep.is_null())
          {
 
-            ptask->m_pevSleep = __new(manual_reset_event());
+            pthread->m_pevSleep = __new(manual_reset_event());
 
-            ptask->m_pevSleep->ResetEvent();
+            pthread->m_pevSleep->ResetEvent();
 
          }
 
-         spev = ptask->m_pevSleep;
+         spev = pthread->m_pevSleep;
 
       }
 
-      if (!ptask->thread_get_run())
+      if (!pthread->thread_get_run())
       {
 
          return false;
@@ -450,9 +451,9 @@ CLASS_DECL_ACME bool __task_sleep(task* ptask, tick tick)
       //while(iTenths > 0)
       //{
 
-      ptask->m_pevSleep->wait(tick);
+      pthread->m_pevSleep->wait(tick);
 
-      if (!ptask->thread_get_run())
+      if (!pthread->thread_get_run())
       {
 
          return false;
@@ -469,18 +470,18 @@ CLASS_DECL_ACME bool __task_sleep(task* ptask, tick tick)
 
    }
 
-   return ptask->thread_get_run();
+   return pthread->thread_get_run();
 
 }
 
 
-CLASS_DECL_ACME bool __task_sleep(::task* ptask, sync* psync)
+CLASS_DECL_ACME bool __task_sleep(::task* pthread, sync* psync)
 {
 
    try
    {
 
-      while (ptask->thread_get_run())
+      while (pthread->thread_get_run())
       {
 
          if (psync->wait(100).succeeded())
@@ -498,18 +499,18 @@ CLASS_DECL_ACME bool __task_sleep(::task* ptask, sync* psync)
 
    }
 
-   return ptask->thread_get_run();
+   return pthread->thread_get_run();
 
 }
 
 
-CLASS_DECL_ACME bool __task_sleep(task* ptask, tick tick, sync* psync)
+CLASS_DECL_ACME bool __task_sleep(task* pthread, tick tick, sync* psync)
 {
 
    if (tick.m_i < 1000)
    {
 
-      if (!ptask->thread_get_run())
+      if (!pthread->thread_get_run())
       {
 
          return false;
@@ -518,7 +519,7 @@ CLASS_DECL_ACME bool __task_sleep(task* ptask, tick tick, sync* psync)
 
       psync->wait(tick);
 
-      return ptask->thread_get_run();
+      return pthread->thread_get_run();
 
    }
 
@@ -531,9 +532,9 @@ CLASS_DECL_ACME bool __task_sleep(task* ptask, tick tick, sync* psync)
 
       {
 
-         ptask->m_pevSleep->wait(100);
+         pthread->m_pevSleep->wait(100);
 
-         if (!ptask->thread_get_run())
+         if (!pthread->thread_get_run())
          {
 
             return false;
@@ -550,7 +551,7 @@ CLASS_DECL_ACME bool __task_sleep(task* ptask, tick tick, sync* psync)
 
    }
 
-   return ptask->thread_get_run();
+   return pthread->thread_get_run();
 
 }
 
@@ -558,9 +559,9 @@ CLASS_DECL_ACME bool __task_sleep(task* ptask, tick tick, sync* psync)
 CLASS_DECL_ACME bool task_sleep(tick tick, sync* psync)
 {
 
-   auto ptask = ::get_task();
+   auto pthread = ::get_task();
 
-   if (::is_null(ptask))
+   if (::is_null(pthread))
    {
 
       if (::is_null(psync))
@@ -606,13 +607,13 @@ CLASS_DECL_ACME bool task_sleep(tick tick, sync* psync)
       if (__os(tick) == INFINITE)
       {
 
-         return __task_sleep(ptask);
+         return __task_sleep(pthread);
 
       }
       else
       {
 
-         return __task_sleep(ptask, tick);
+         return __task_sleep(pthread, tick);
 
       }
 
@@ -623,13 +624,13 @@ CLASS_DECL_ACME bool task_sleep(tick tick, sync* psync)
       if (__os(tick) == INFINITE)
       {
 
-         return __task_sleep(ptask, psync);
+         return __task_sleep(pthread, psync);
 
       }
       else
       {
 
-         return __task_sleep(ptask, tick, psync);
+         return __task_sleep(pthread, tick, psync);
 
       }
 

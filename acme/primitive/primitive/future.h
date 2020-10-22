@@ -11,7 +11,7 @@ public:
    future(const ::future& future) : function_base((const ::function_base &) future) { }
    future(const ::function_base& function) : function_base(function) { }
    template < typename PRED >
-   future(const ::id & id, PRED pred, ::matter * pobjectHold = nullptr) : function_base(id, __pred_future < PRED >(pred, pobjectHold)) { }
+   future(const ::id & id, PRED pred, ::matter * pobjectHold = nullptr) : function_base(id, __future < PRED >(pred, pobjectHold)) { }
 
 
    void send(const var& var) const;

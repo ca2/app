@@ -46,7 +46,7 @@ public:
    operator action* () { return this; }
    operator const action* () const { return this; }
 
-   inline bool is_up_to_date() const;
+   virtual bool is_up_to_date() const;
 
    virtual void set_up_to_date();
 

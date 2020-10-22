@@ -151,6 +151,31 @@ void matter::set_mutex(sync* psync)
 }
 
 
+<<<<<<< Updated upstream
+=======
+//::estatus matter::add_update(const ::id& id)
+//{
+//
+//   ::update::_add(id, this);
+//
+//   set(e_object_any_update);
+//
+//   return ::success;
+//
+//}
+//
+//
+//::estatus matter::remove_update(const ::id& id)
+//{
+//
+//   ::update::_remove(id, this);
+//
+//   return ::success;
+//
+//}
+
+
+>>>>>>> Stashed changes
 void matter::remove_from_any_source()
 {
 
@@ -318,7 +343,15 @@ void matter::receive_response(const ::var& var)
 ::matter* matter::get_taskpool_container()
 {
 
+<<<<<<< Updated upstream
    return nullptr;
+=======
+   pthread_create(
+      &hthread,
+      &threadAttr,
+      &matter::s_os_thread_proc,
+      (LPVOID)(::action *)paction);
+>>>>>>> Stashed changes
 
 }
 

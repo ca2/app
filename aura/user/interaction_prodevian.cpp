@@ -81,7 +81,7 @@ namespace user
 
       }
 
-      m_ptaskUpdateScreen = __pred_method([this]()
+      m_ptaskUpdateScreen = __method([this]()
          {
 
             update_screen();
@@ -90,7 +90,7 @@ namespace user
 
          });
 
-      m_ptaskWindowShow = __pred_method([this]()
+      m_ptaskWindowShow = __method([this]()
          {
 
             if (m_pimpl)

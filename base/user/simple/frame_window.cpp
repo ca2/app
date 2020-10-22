@@ -190,7 +190,7 @@ void simple_frame_window::defer_save_window_placement()
 
    m_tickLastSaveWindowRectRequest.Now();
 
-   taskpool()->start("save_window_rect", __pred_method([this]()
+   taskpool()->start("save_window_rect", __method([this]()
    {
 
          while (::thread_get_run()

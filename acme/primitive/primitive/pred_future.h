@@ -2,7 +2,7 @@
 
 
 template < typename PRED >
-class ___pred_future :
+class ___future :
    virtual public ::matter
 {
 public:
@@ -12,7 +12,7 @@ public:
    __pointer(::matter)      m_pobjectHold;
 
 
-   ___pred_future(PRED pred, ::matter* pobjectHold = nullptr) :
+   ___future(PRED pred, ::matter* pobjectHold = nullptr) :
       m_pred(pred),
       m_pobjectHold(pobjectHold)
    {
@@ -20,7 +20,7 @@ public:
    }
 
 
-   virtual ~___pred_future()
+   virtual ~___future()
    {
 
 
@@ -51,9 +51,9 @@ public:
 
 
 template < typename PRED >
-inline auto __pred_future(PRED pred, ::matter* pobjectHold = nullptr)
+inline auto __future(PRED pred, ::matter* pobjectHold = nullptr)
 {
 
-   return __new(___pred_future < PRED >(pred, pobjectHold));
+   return __new(___future < PRED >(pred, pobjectHold));
 
 }

@@ -63,15 +63,22 @@ public:
 using create_method = method_template < CREATE_METHOD >;
 using destroy_method = method_template < DESTROY_METHOD >;
 
-
-
-template < typename PRED >
-inline auto __method(PRED pred)
-{
-
-   return ::method(::id(), pred);
-
-}
-
-
-
+//
+//
+//template < typename PRED >
+//inline auto __method(PRED pred)
+//{
+//
+//   return ::method(::id(), pred);
+//
+//}
+//
+//
+//
+//template < typename PRED >
+//inline auto __method(PRED pred)
+//{
+//
+//   return ::method(::id(), pred);
+//
+//}

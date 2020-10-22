@@ -9,7 +9,7 @@
 
 
 template < typename PRED >
-class ___pred_method :
+class ___method :
    virtual public ::matter
 {
 public:
@@ -19,7 +19,7 @@ public:
    __pointer(::matter)         m_pobjectHold;
 
 
-   ___pred_method(PRED pred, ::matter * pobjectHold = nullptr) :
+   ___method(PRED pred, ::matter * pobjectHold = nullptr) :
       m_pred(pred),
       m_pobjectHold(pobjectHold)
    {
@@ -27,7 +27,7 @@ public:
    }
 
 
-   virtual ~___pred_method()
+   virtual ~___method()
    {
 
 
@@ -64,26 +64,26 @@ public:
 
 
 template < typename PRED >
-inline __pointer(matter) __pred_method(PRED pred)
+inline __pointer(matter) __method(PRED pred)
 {
 
-   return __new(___pred_method < PRED >(pred));
+   return __new(___method < PRED >(pred));
 
 }
 
 
 template < typename PRED >
-inline __pointer(matter) __pred_method(PRED pred, ::matter * pobjectHold)
+inline __pointer(matter) __method(PRED pred, ::matter * pobjectHold)
 {
 
-   return __new(___pred_method < PRED >(pred, pobjectHold));
+   return __new(___method < PRED >(pred, pobjectHold));
 
 }
 
 
 
 template < >
-inline __pointer(matter) __pred_method(nullptr_t, ::matter * pobjectHold)
+inline __pointer(matter) __method(nullptr_t, ::matter * pobjectHold)
 {
 
    return nullptr;

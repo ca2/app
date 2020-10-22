@@ -25,7 +25,7 @@ template < typename PRED >
 inline auto __sync_pred(PRED pred)
 {
 
-   return __new(sync_task(__pred_method(pred)));
+   return __new(sync_task(__method(pred)));
 
 }
 

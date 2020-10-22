@@ -106,7 +106,7 @@ void ___task_pool < THREAD_POINTER >::start_clock(enum_clock eclock, duration du
 
    //}
 
-   start(eclock, __pred_method([&, eclock, duration]()
+   start(eclock, __method([&, eclock, duration]()
       {
 
          _task_clock(eclock, duration);

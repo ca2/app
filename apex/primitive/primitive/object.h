@@ -546,7 +546,7 @@ public:
 
       }
 
-      auto pmatter = __pred_method(method);
+      auto pmatter = __method(method);
 
       pthread->_start(pmatter);
 

@@ -518,7 +518,7 @@ template < typename METHOD >
 inline ::thread_pointer object::fork(METHOD method)
 {
 
-   auto ppred = __pred_method(method);
+   auto ppred = __method(method);
 
    auto pthread = __create_new < ::thread >();
 

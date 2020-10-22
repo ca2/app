@@ -2176,7 +2176,7 @@ template < typename PRED >
 void method::pred(PRED pred)
 {
 
-   m_pobjectTask = __pred_method(pred);
+   m_pobjectTask = __method(pred);
 
 }
 
@@ -2185,7 +2185,7 @@ template < typename PRED >
 inline void future::pred(PRED pred)
 {
 
-   m_pobjectTask = __pred_future(pred);
+   m_pobjectTask = __future(pred);
 
 }
 
@@ -2320,7 +2320,7 @@ inline void future::send(const var & var) const
 
 
 template < typename PRED >
-method::method(const ::id& id, PRED pred) : function_base(id, __pred_method(pred)) { }
+method::method(const ::id& id, PRED pred) : function_base(id, __method(pred)) { }
 template < typename PRED >
 method::method(PRED pred) : method(::id(), pred) { }
 

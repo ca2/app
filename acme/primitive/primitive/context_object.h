@@ -8,7 +8,7 @@
 
 
 class object;
-class runnable_array;
+//class runnable_array;
 
 
 class CLASS_DECL_ACME context_object :
@@ -62,7 +62,7 @@ public:
    virtual bool is_alive();
 
 
-   virtual ::estatus call() override;
+   virtual ::estatus operator()() override;
 
 
    inline ::i64_array & idarray() const;
@@ -106,8 +106,6 @@ public:
    inline __pointer(TYPE) cast(const ::id & id);
 
 
-   template < typename PRED >
-   void add_pred(runnable_array & array, PRED pred);
 
    inline bool has_property(const id & id) const;
    inline property * lookup_property(const id & id) const;

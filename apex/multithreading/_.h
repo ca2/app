@@ -308,22 +308,30 @@ string get_thread_name(HTHREAD hthread);
 // Use instead of PostQuitMessage in OLE server applications
 CLASS_DECL_APEX void __post_quit_message(i32 nExitCode);
 
+
 #if !defined(_UWP)
-template < typename PRED >
-inline void main_async(PRED pred, e_priority epriority = priority_normal)
+
+
+
+inline void main_async(const ::method & method, e_priority epriority = priority_normal)
 {
 
-   async_pred(&main_branch, pred, epriority);
+   main_branch(method, epriority);
 
 }
+
+
 #endif
 
 
-template < typename PRED >
-inline void main_sync(PRED pred, ::duration durationTimeout = one_minute(), e_priority epriority = priority_normal)
+inline void main_sync(const method & method, ::duration durationTimeout = one_minute(), e_priority epriority = priority_normal)
 {
 
-   sync_pred(&main_branch, pred, durationTimeout, epriority);
+   method_event event(method);
+
+   main_branch(method, epriority);
+
+   event.lock(durationTimeout);
 
 }
 

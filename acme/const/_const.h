@@ -612,8 +612,9 @@ enum e_system_message
    system_message_none,
    system_message_create,
    system_message_meta,
-   system_message_pred,
-   system_message_runnable,
+   system_message_method,
+   //system_message_pred,
+   //system_message_runnable,
 
 };
 

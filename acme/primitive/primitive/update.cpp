@@ -171,7 +171,7 @@ void update::notify()
       if (pchange->m_bFork)
       {
 
-         task::start(__new(action(this, pchange, pmatter)));
+         ::task::launch(__new(action(this, pchange, pmatter)));
 
       }
       else
@@ -299,7 +299,7 @@ void update::add(::matter* pmatter, bool bForkWhenNotify)
 
       m_bModified = !pchange->is_up_to_date(this);
 
-      ::task::start(this);
+      ::task::launch(this);
 
    //}
 
@@ -328,7 +328,7 @@ void update::set_modified()
    if (!should_poll(poll_millis()))
    {
 
-      ::task::start(this);
+      ::task::launch(this);
 
    }
 

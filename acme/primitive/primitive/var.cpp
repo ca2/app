@@ -308,7 +308,7 @@ var::var(const method & method)
     m_etype = type_new;
     xxf_zero(m_all);
     set_type(type_method);
-    m_functionbase = method;
+    m_method = method;
 
 }
 
@@ -319,7 +319,7 @@ var::var(const ::future & future)
    m_etype = type_new;
    xxf_zero(m_all);
    set_type(type_future);
-   m_functionbase = future;
+   m_future = future;
 
 }
 
@@ -2370,8 +2370,7 @@ method var::get_method() const
 
    }
 
-   return m_functionbase;
-
+   return m_method;
 
 }
 
@@ -2386,7 +2385,7 @@ future var::get_future() const
 
    }
 
-   return m_functionbase;
+   return m_future;
 
 }
 
@@ -5780,9 +5779,9 @@ bool var::is_false() const
    case type_prop:
       return m_pprop || !*m_pprop;
    case type_method:
-         return ::is_null(m_functionbase.m_pobjectTask);
+         return !m_method;
    case type_future:
-         return ::is_null(m_functionbase.m_pobjectTask);
+         return !m_future;
 
    // matter classes
    case type_element:
@@ -5905,9 +5904,9 @@ bool var::is_set_false() const
    case type_prop:
       return m_pprop || !*m_pprop;
    case type_method:
-      return ::is_null(m_functionbase.m_pobjectTask);
+      return !m_method;
    case type_future:
-      return ::is_null(m_functionbase.m_pobjectTask);
+      return !m_future;
 
       // matter classes
    case type_element:
@@ -6170,7 +6169,7 @@ IMPL_VAR_ENUM(check);
    else if (get_type() == type_method)
    {
 
-      return get_method().call();
+      return m_method();
 
    }
    else if (get_type() == type_vara)
@@ -6184,7 +6183,7 @@ IMPL_VAR_ENUM(check);
          if (varFunction.get_type() == type_method)
          {
 
-            result.add(varFunction.get_method().call());
+            result.add(varFunction.m_method());
 
          }
 
@@ -6221,7 +6220,7 @@ void var::receive_response(const ::var & var)
    else if (get_type() == type_future)
    {
 
-      get_future().send(var);
+      m_future(var);
 
    }
    else if (get_type() == type_vara)
@@ -6233,7 +6232,7 @@ void var::receive_response(const ::var & var)
          if (varFunction.get_type() == type_future)
          {
             
-            varFunction.get_future().send(var);
+            varFunction.m_future(var);
 
          }
 
@@ -6244,25 +6243,24 @@ void var::receive_response(const ::var & var)
 }
 
 
-
-
 var& var::operator = (const ::method & method)
 {
 
    set_type(type_method);
 
-   m_functionbase = method;
+   m_method = method;
 
    return *this;
 
 }
 
- var& var::operator = (const ::future & future)
+
+var& var::operator = (const ::future & future)
 {
 
    set_type(type_future);
 
-   m_functionbase = future;
+   m_future = future;
 
    return *this;
 

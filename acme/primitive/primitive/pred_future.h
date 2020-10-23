@@ -1,43 +1,70 @@
 #pragma once
 
 
+//template < typename PRED >
+//class pred_future :
+//   virtual public ::matter
+//{
+//public:
+//
+//
+//   PRED     m_pred;
+//
+//
+//   pred_future(PRED pred) :
+//      m_pred(pred)
+//   {
+//
+//   }
+//
+//
+//   virtual ~pred_future()
+//   {
+//
+//
+//   }
+//
+//
+//   virtual ::estatus run() override
+//   {
+//
+//      __throw(interface_only_exception());
+//
+//      return ::error_interface_only;
+//
+//   }
+//
+//
+//   void receive_response(const ::var& var) override
+//   {
+//
+//      m_pred(var);
+//
+//   }
+//
+//
+//};
+//
+
+
 template < typename PRED >
-class ___future :
-   virtual public ::matter
+class pred_future :
+   virtual public matter
 {
 public:
 
+   PRED m_pred;
+   //future() {}
 
-   PRED                             m_pred;
-   __pointer(::matter)      m_pobjectHold;
-
-
-   ___future(PRED pred, ::matter* pobjectHold = nullptr) :
-      m_pred(pred),
-      m_pobjectHold(pobjectHold)
-   {
-
-   }
+   //future(const ::future& future) : function((const ::function &) future) { }
+   //future(::future * pfuture) : function((const ::function &) *pfuture) { }
+   template < typename PRED >
+   pred_future(PRED pred) : m_pred(pred) { }
 
 
-   virtual ~___future()
-   {
+   virtual void operator()(const var& var)  override
 
-
-   }
-
-
-   virtual ::estatus run() override
-   {
-
-      __throw(interface_only_exception());
-
-      return ::error_interface_only;
-
-   }
-
-
-   void receive_response(const ::var& var) override
+   //virtual void send(const var& var)
    {
 
       m_pred(var);
@@ -45,23 +72,22 @@ public:
    }
 
 
+   //template < typename PRED > 
+   //void pred(PRED pred);
+
+
+   //inline future& operator = (const ::future& future) { m_pmatter = future.m_pmatter; return *this; }
+   //future& operator = (const ::var& var);
+
 };
 
 
 template < typename PRED >
-inline __pointer(::matter) __future(PRED pred)
+future __future(PRED pred)
 {
 
-   return __new(___future < PRED >(pred));
+   return __new(pred_future<PRED>(pred));
 
 }
 
 
-
-template < typename PRED >
-inline __pointer(::matter) __future(PRED pred, ::matter* pobjectHold)
-{
-
-   return __new(___future < PRED >(pred, pobjectHold));
-
-}

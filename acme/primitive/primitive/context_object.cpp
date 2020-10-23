@@ -234,7 +234,7 @@ bool context_object::is_alive()
 }
 
 
-::estatus context_object::call()
+::estatus context_object::operator()()
 {
 
    ::estatus estatus;

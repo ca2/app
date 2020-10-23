@@ -1432,7 +1432,7 @@ namespace http
 
          TRACE("opening preparation context::request time(%d) = " __prtick, __pr(tickBegA.elapsed()));
 
-         tick1 = (*this)("dw").tick();
+         tick1 = value("dw").tick();
 
          tick2.Now();
 

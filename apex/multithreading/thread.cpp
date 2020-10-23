@@ -651,23 +651,23 @@ bool thread::pump_runnable()
    while(thread_get_run())
    {
 
-      if (m_objectaTask.isEmpty())
+      if (m_methoda.isEmpty())
       {
 
          return false;
 
       }
 
-      auto pobjectTask = m_objectaTask.first_pointer();
+      auto method = m_methoda.first();
 
-      m_objectaTask.remove_at(0);
+      m_methoda.remove_at(0);
 
-      if (pobjectTask)
+      if (method)
       {
 
          sl.unlock();
 
-         pobjectTask->call();
+         method();
 
          return true;
 
@@ -1579,7 +1579,7 @@ void thread::task_remove(::task * ptask)
 void thread::finalize()
 {
 
-   call(DESTROY_METHOD);
+   call_method(DESTROY_METHOD);
 
    ::channel::finalize();
 
@@ -2832,22 +2832,10 @@ void thread::post_to_all_threads(UINT message,WPARAM wparam,LPARAM lparam)
 }
 
 
-//thread* thread::thread_get(ITHREAD idthread)
-//{
-//
-//   sync_lock sl(g_pmutex);
-//
-//   return g_pthreadmap->operator[](idthread);
-//
-//}
-
-
-
-
-bool thread::post_task(::matter * pobjectTask)
+bool thread::post_task(const ::method& method)
 {
 
-   if (::is_null(pobjectTask))
+   if (!method)
    {
 
       return false;
@@ -2856,7 +2844,7 @@ bool thread::post_task(::matter * pobjectTask)
 
    sync_lock sl(mutex());
 
-   m_objectaTask.add(pobjectTask);
+   m_methoda.add(method);
 
    kick_idle();
 
@@ -2865,10 +2853,10 @@ bool thread::post_task(::matter * pobjectTask)
 }
 
 
-bool thread::send_task(::matter * pobjectTask, ::duration durationTimeout)
+bool thread::send_task(const ::method & method, ::duration durationTimeout)
 {
 
-   return send_object(message_system, system_message_runnable, pobjectTask, durationTimeout);
+   return send_object(message_system, system_message_method, method, durationTimeout);
 
 }
 
@@ -3782,22 +3770,22 @@ void thread::message_handler(::message::base * pbase)
             }
 
          }
-         else if (msg.wParam == system_message_pred)
+         else if (msg.wParam == system_message_method)
          {
 
-            __pointer(::pred_holder_base) ppred(msg.lParam);
+            ::method method(msg.lParam);
 
-            ppred->call();
-
-         }
-         else if (msg.wParam == system_message_runnable)
-         {
-
-            __pointer(::context_object) pobjectTask((lparam)msg.lParam);
-
-            pobjectTask->call();
+            method();
 
          }
+         //else if (msg.wParam == system_message_runnable)
+         //{
+
+         //   __pointer(::context_object) pobjectTask((lparam)msg.lParam);
+
+         //   pobjectTask->call();
+
+         //}
          else if (msg.wParam == system_message_meta)
          {
 
@@ -3995,34 +3983,34 @@ bool thread::set_thread_priority(::e_priority epriority)
 
 
 
-void thread::start()
-{
+//void thread::start()
+//{
+//
+//#if defined (WINDOWS_DESKTOP)
+//
+//   ::ResumeThread(m_hthread);
+//
+//#endif
+//
+//}
 
-#if defined (WINDOWS_DESKTOP)
 
-   ::ResumeThread(m_hthread);
-
-#endif
-
-}
-
-
-u32 thread::ResumeThread()
-{
-
-   ASSERT(m_hthread != NULL_HTHREAD);
-
-#if defined (WINDOWS_DESKTOP)
-
-   return ::ResumeThread(m_hthread);
-
-#else
-
-   return 0;
-
-#endif
-
-}
+//u32 thread::ResumeThread()
+//{
+//
+//   ASSERT(m_hthread != NULL_HTHREAD);
+//
+//#if defined (WINDOWS_DESKTOP)
+//
+//   return ::ResumeThread(m_hthread);
+//
+//#else
+//
+//   return 0;
+//
+//#endif
+//
+//}
 
 
 int thread::get_x_window_count() const

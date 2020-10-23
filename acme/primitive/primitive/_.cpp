@@ -95,10 +95,10 @@ void __assert_valid_object(const ::matter * pOb, const char * pszFileName, i32 n
 
 
 
-CLASS_DECL_ACME void call(__pointer(::matter) pobjectRunnable)
+CLASS_DECL_ACME void call(const ::method & method)
 {
 
-   pobjectRunnable->call();
+   method();
 
 }
 

@@ -11,7 +11,7 @@ public:
    bool                             m_bSingleThread;
    bool                             m_bUseDedicatedThread;
    __pointer(::thread)              m_pthread;
-   object_ptra                      m_objecta;
+   method_array                     m_methoda;
    __pointer(manual_reset_event)    m_pev;
    int                              m_iAliveCount;
    int                              m_iAlive;
@@ -22,8 +22,8 @@ public:
    virtual ~handler_manager();
 
 
-   void sync(::layered * pobjectContext);
-   void async(::layered * pobjectContext);
+   void sync(const ::method & method);
+   void async(const ::method & method);
 
 
    ::estatus handle(::object * pboject, bool bSync);

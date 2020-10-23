@@ -89,7 +89,8 @@ public:
    UINT                                               m_dwFinishTimeout;
    bool                                               m_bThreadClosed;
 
-   object_array                                       m_objectaTask;
+   
+   method_array                                       m_methoda;
 
 
    __pointer(manual_reset_event)                      m_pevent1;
@@ -164,7 +165,7 @@ public:
    //virtual void dependant_add(::layered * pobjectContext) override;
 
    ///  \brief    starts thread on first call
-   virtual void start();
+   //virtual void re();
 
    virtual HTHREAD get_hthread() const;
    virtual ITHREAD get_ithread() const;
@@ -219,7 +220,7 @@ public:
    //inline bool command_value_is_true(const ::id& id) const;
 
 
-   virtual u32 ResumeThread();
+   ///virtual u32 ResumeThread();
    virtual bool post_message(UINT message, WPARAM wParam = 0, lparam lParam = 0);
 
    virtual bool send_message(UINT message,WPARAM wParam = 0,lparam lParam = 0, ::duration durationTimeout = ::duration::infinite());
@@ -228,8 +229,8 @@ public:
 
    virtual bool send_object(UINT message, WPARAM wParam, lparam lParam, ::duration durationTimeout = ::duration::infinite());
 
-   virtual bool post_task(::matter * pobjectTask);
-   virtual bool send_task(::matter * pobjectTask, ::duration durationTimeout = ::duration::infinite());
+   virtual bool post_task(const ::method & method);
+   virtual bool send_task(const ::method & method, ::duration durationTimeout = ::duration::infinite());
 
    template < typename PRED >
    bool pred(PRED pred)
@@ -240,13 +241,15 @@ public:
    template < typename PRED >
    bool post_pred(PRED pred)
    {
-      return post_object(SYSTEM_MESSAGE, system_message_pred, __new(pred_holder < PRED >(pred)));
+      return post_object(SYSTEM_MESSAGE, system_message_method, __method(pred));
    }
 
-   template < typename PRED >
-   bool send_pred(PRED pred, ::duration durationTimeout = ::duration::infinite())
+
+   bool send_method(const ::method & method, ::duration durationTimeout = ::duration::infinite())
    {
-      return send_object(SYSTEM_MESSAGE, system_message_pred, __new(pred_holder < PRED >(pred)), durationTimeout);
+
+      return send_object(SYSTEM_MESSAGE, system_message_method, method, durationTimeout);
+
    }
 
 
@@ -256,15 +259,21 @@ public:
       return post_pred(pred);
    }
 
-   template < typename PRED >
-   bool synch_pred(PRED pred, ::duration durationTimeout = ::duration::infinite())
+
+   bool sync_pred(const ::method & method, ::duration durationTimeout = ::duration::infinite())
    {
+
       if (this == ::get_task())
       {
-         pred();
+
+         method();
+
          return true;
+
       }
-      return send_pred(pred, durationTimeout);
+
+      return send_method(method, durationTimeout);
+
    }
 
 

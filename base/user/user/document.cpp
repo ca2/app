@@ -303,7 +303,7 @@ namespace user
 
       run_property("on_create");
 
-      call(CREATE_METHOD);
+      call_method(CREATE_METHOD);
 
       //::database::client::initialize_data_client(Application.dataserver());
 

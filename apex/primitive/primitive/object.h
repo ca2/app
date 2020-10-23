@@ -65,74 +65,78 @@ public:
    __pointer(BASE_TYPE) file_as(const var & varFile);
 
 
-   virtual void add(const ::method & method);
-   virtual void add(const ::future & future);
+   virtual void add_method(const ::id & id, const ::method & method);
+   virtual void add_future(const ::id & id, const ::future & future);
 
    virtual void add_methods_from(const ::id & id, ::object * pobjectSource);
    virtual void add_futures_from(const ::id & id, ::object * pobjectSource);
 
-   virtual array < ::method > * methods(const ::id & idMethod);
-   virtual array < ::future > * futures(const ::id & idFuture);
+   virtual array < ::method > * methods(const ::id & id);
+   virtual array < ::future > * futures(const ::id & id);
 
-   virtual void call(const ::id & idMethod);
-   virtual void send(const ::id & idFuture, const ::var & var);
+   virtual void call_method(const ::id & id);
+   virtual void send_future(const ::id & id, const ::var & var);
 
 
    //template < typename METHOD >
-   inline object & operator +=(const ::method & method)
-   {
+   //inline object & operator +=(const ::method & method)
+   //{
 
-      add(method);
+   //   add(method);
 
-      return *this;
+   //   return *this;
 
-   }
+   //}
 
    //template < typename FUTURE >
-   inline object& operator +=(const ::future & future)
-   {
+   //inline object& operator +=(const ::future & future)
+   //{
 
-      add(future);
+   //   add(future);
 
-      return *this;
+   //   return *this;
 
-   }
-
-
+   //}
 
 
 
-   template < typename METHOD >
-   inline void add_method(const ::id & id, METHOD method, ::matter* pobjectHold = nullptr)
-   {
+   //void add_method(const ::id& id, const ::method& method);
 
-      add(::method(id, method, pobjectHold));
 
-   }
+   //void add_future(const ::id& id, const ::future& future);
 
-   template < typename FUTURE >
-   inline void add_future(const ::id & id, FUTURE future, ::matter * pobjectHold = nullptr)
-   {
 
-      add(::future(id, future, pobjectHold));
+   //template < typename METHOD >
+   //inline void add_method(const ::id & id, METHOD method, ::matter* pobjectHold = nullptr)
+   //{
 
-   }
+   //   add(::method(id, method, pobjectHold));
 
-   template < typename METHOD >
-   inline void add(enum_method emethod, METHOD method)
-   {
+   //}
 
-      add(::method((::i64) emethod, method));
+   //template < typename FUTURE >
+   //inline void add_future(const ::id & id, const ::future & future, ::matter * pobjectHold = nullptr)
+   //{
 
-   }
+   //   add(::future(id, future, pobjectHold));
 
-   template < typename FUTURE >
-   inline void add(enum_future efuture, FUTURE future)
-   {
+   //}
 
-      add(::future((::i64) efuture, future));
+   //template < typename METHOD >
+   //inline void add(enum_method emethod, METHOD method)
+   //{
 
-   }
+   //   add(::method((::i64) emethod, method));
+
+   //}
+
+   //template < typename FUTURE >
+   //inline void add(enum_future efuture, FUTURE future)
+   //{
+
+   //   add(::future((::i64) efuture, future));
+
+   //}
 
    inline var context_value(const var& var);
 
@@ -221,7 +225,7 @@ public:
 
    inline void defer_set_context_object(::layered * pobjectContext);
 
-   virtual ::estatus call() override;
+   virtual ::estatus operator()() override;
 
 
    inline i64 get_ref_count()
@@ -473,8 +477,8 @@ public:
    void start();
 
 
-   void single_fork(const runnable_array & runnablea);
-   void multiple_fork(const runnable_array & runnablea);
+   void single_fork(const method_array & methoda);
+   void multiple_fork(const method_array & methoda);
 
 
    template < typename THREAD, typename METHOD >
@@ -513,85 +517,45 @@ public:
    }
 
 
-   //::thread_pointer get_thread(const string& strThread)
+   inline ::estatus defer_start(::thread_pointer& pthread, const ::method& method);
+
+
+   //template < typename THREAD >
+   //inline __pointer(THREAD)& start(__pointer(THREAD) & pthread)
    //{
 
-   //   auto 
-
-
-   //}
-
-   //template < typename METHOD >
-   //inline ::thread_pointer start(const string & strThread, METHOD method)
-   //{
-
-   //   auto pthread = get_thread(strThread);
-
-   //   start(pthread);
+   //   pthread->_start(pthread);
 
    //   return pthread;
 
    //}
 
-   template < typename THREAD, typename METHOD >
-   inline __pointer(THREAD) & start(__pointer(THREAD) & pthread, METHOD method)
+
+   template < typename PRED >
+   inline ::thread_pointer fork(PRED pred);
+
+
+   inline ::thread_pointer launch(const ::method & method);
+
+
+   //template < typename METHOD >
+   inline ::task_pointer opt_fork(const ::method& method)
    {
 
-      auto estatus = __defer_construct(pthread);
+      auto ptask = ::get_task();
 
-      if (!estatus)
+      sync_lock sl(ptask->mutex());
+
+      if (ptask && ptask->m_bitIsPred)
       {
 
-         pthread = __create_new < thread > ();
+         method();
+
+         return ptask;
 
       }
 
-      auto pmatter = __method(method);
-
-      pthread->_start(pmatter);
-
-      return pthread;
-
-   }
-
-
-   template < typename THREAD >
-   inline __pointer(THREAD)& start(__pointer(THREAD) & pthread)
-   {
-
-      pthread->_start(pthread);
-
-      return pthread;
-
-   }
-
-
-   template < typename METHOD >
-   inline ::thread_pointer fork(METHOD method);
-
-
-   template < typename METHOD >
-   inline ::thread_pointer opt_fork(METHOD method)
-   {
-
-      {
-
-         auto ptask = ::get_task();
-
-         sync_lock sl(ptask->mutex());
-
-         if (ptask && ptask->m_bitIsPred)
-         {
-
-            method();
-
-            return ptask;
-
-         }
-
-      }
-
-      return fork(method);
+      return launch(method);
 
    }
 
@@ -722,7 +686,7 @@ public:
 
 
 
-CLASS_DECL_APEX ::estatus call_sync(const runnable_array & runnablea);
+CLASS_DECL_APEX ::estatus call_sync(const method_array & methoda);
 
 
 

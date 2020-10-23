@@ -1398,7 +1398,7 @@ namespace user
    bool primitive_impl::post_message(UINT message, WPARAM wparam, lparam lparam)
    {
 
-      m_puserinteraction->post_task(__new(call_message_handler_task(m_puserinteraction, message, wparam, lparam)));
+      m_puserinteraction->post_method(__new(call_message_handler_task(m_puserinteraction, message, wparam, lparam)));
 
       return true;
 
@@ -1467,7 +1467,7 @@ namespace user
       }
 
       m_puserinteraction->run_property("on_create");
-      m_puserinteraction->call(CREATE_METHOD);
+      m_puserinteraction->call_method(CREATE_METHOD);
 
    }
 

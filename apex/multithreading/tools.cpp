@@ -176,7 +176,7 @@ bool thread_group::start()
    for (index i = 0; i < m_cCount; i++)
    {
 
-      m_threada[i]->start();
+      m_threada[i]->set_ready();
 
    }
 
@@ -206,10 +206,11 @@ bool thread_group::wait()
 }
 
 
-bool thread_group::operator()()
+bool thread_group::process()
 {
 
    start();
+
    wait();
 
    return true;
@@ -348,7 +349,7 @@ void tool_thread::reset()
 }
 
 
-void tool_thread::start()
+void tool_thread::set_ready()
 {
 
    m_pevStart->SetEvent();

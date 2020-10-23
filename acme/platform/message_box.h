@@ -63,30 +63,7 @@ inline var operator + (const char* psz, const ::enum_message_box& emessagebox)
 }
 
 
-
-
-CLASS_DECL_ACME ::estatus os_message_box(const char* pszText, const char* pszTitle = nullptr, ::emessagebox emessagebox = message_box_ok, ::future future = ::future());
-//CLASS_DECL_ACME ::estatus message_box(::user::primitive * puiOwner, const char* pszText, const char* pszTitle = nullptr, ::emessagebox emessagebox = message_box_ok, ::future future = ::future());
-
-
-//::estatus os_message_box(const char* pszText, const char* pszTitle = nullptr, ::emessagebox emessagebox = message_box_ok, ::future future = ::future())
-//{
-//
-//   return os_message_box(nullptr, pszText, pszTitle, emessagebox, future);
-//
-//}
-
-
-//inline ::estatus message_box(const char* pszText, const char* pszTitle = nullptr, ::emessagebox emessagebox = message_box_ok, ::future future = ::future())
-//{
-//
-//   //return message_box(nullptr, pszText, pszTitle, emessagebox, future);
-//
-//   __throw(todo("message_box"));
-//
-//   return ::error_failed;
-//
-//}
+CLASS_DECL_ACME ::estatus os_message_box(const char* pszText, const char* pszTitle = nullptr, ::emessagebox emessagebox = message_box_ok, const ::future & future = ::future());
 
 
 

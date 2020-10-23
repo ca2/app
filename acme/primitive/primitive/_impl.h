@@ -106,6 +106,12 @@ inline string ___pointer < T >::type_str()
 //}
 //
 
+
+inline ::estatus method::operator()() const { return (*m_p)(); }
+
+inline void future::operator()(const var& var) const { (*m_p)(var); }
+
+
 inline type::type(const ::matter * pobject)
 {
 
@@ -2172,25 +2178,25 @@ if(m_etype == ENUM_TYPE) { return dynamic_cast < T * >(P); }
 
 
 
-template < typename PRED >
-void method::pred(PRED pred)
-{
+//template < typename PRED >
+//void method::pred(PRED pred)
+//{
+//
+//   m_pmatter = method(pred);
+//
+//}
+//
 
-   m_pobjectTask = __method(pred);
-
-}
-
-
-template < typename PRED >
-inline void future::pred(PRED pred)
-{
-
-   m_pobjectTask = __future(pred);
-
-}
-
-
-
+//template < typename PRED >
+//inline void future::pred(PRED pred)
+//{
+//
+//   m_pmatter = __new(pred_future < PRED > (pred));
+//
+//}
+//
+//
+//
 
 //template < typename TYPE >
 //inline __pointer(TYPE) matter::cast(const ::id & id)
@@ -2304,72 +2310,64 @@ inline var __visible(var varOptions, bool bVisible)
 //}
 //
 
-inline void future::send(const var & var) const
+//inline void future::operator()(const var & var) const
+//{
+//
+//   if (!m_pmatter)
+//   {
+//
+//      return;
+//
+//   }
+//
+//   return m_pmatter->receive_response(var);
+//
+//}
+//
+
+
+//template < typename PRED >
+//method::method(PRED pred) : function(__new(pred_method < PRED >(pred))) { }
+//
+//
+//template < typename PRED >
+//future::future(PRED pred) : function(__new(pred_future < PRED >(pred))) { }
+
+
+inline message_box::message_box(const var& var)
 {
 
-   if (!m_pobjectTask)
+   if (var.get_type() == type_string)
    {
 
-      return;
+      m_strMessage = var;
+
+   }
+   else if (var.has_property("message") && var["message"].has_char())
+   {
+
+      m_strMessage = var["message"];
+
+   }
+   else if (var.has_property("format") && var["format"].has_char())
+   {
+
+      m_strMessage = var.propset().format(var["format"]);
 
    }
 
-   return m_pobjectTask->receive_response(var);
+   m_puserprimitive = var["parent"].cast < ::layered >();
+   m_strTitle = var["title"];
+   m_emessagebox = (::emessagebox) var["flags"].i64();
+
+   //if (m_puserprimitive)
+   //{
+
+   //   //m_oswindow = m_puserinteractionParent->get_safe_handle();
+
+   //}
 
 }
-
-
-template < typename PRED >
-method::method(const ::id& id, PRED pred) : function_base(id, __method(pred)) { }
-template < typename PRED >
-method::method(PRED pred) : method(::id(), pred) { }
-
-
-
-//namespace user
-//{
-
-
-   inline message_box::message_box(const var& var)
-   {
-
-      if (var.get_type() == type_string)
-      {
-
-         m_strMessage = var;
-
-      }
-      else if (var.has_property("message") && var["message"].has_char())
-      {
-
-         m_strMessage = var["message"];
-
-      }
-      else if (var.has_property("format") && var["format"].has_char())
-      {
-
-         m_strMessage = var.propset().format(var["format"]);
-
-      }
-
-      m_puserprimitive = var["parent"].cast < ::layered >();
-      m_strTitle = var["title"];
-      m_emessagebox = (::emessagebox) var["flags"].i64();
-
-      //if (m_puserprimitive)
-      //{
-
-      //   //m_oswindow = m_puserinteractionParent->get_safe_handle();
-
-      //}
-
-   }
-
-
-//} // namespace user
-//
-//
-//
 
 
 inline bool property_set::get_string(string& strResult, const id& idKey) const
@@ -2413,46 +2411,61 @@ inline bool change::is_up_to_date(::update * pupdate) const
 }
 
 
-
-
-
-
-//inline ::id& action::id() { return m_pupdate->id(); }
-//inline const ::id& action::id() const { return m_pupdate->id(); }
 inline ::id& update::id() { return m_psource->m_id; }
 inline const ::id& update::id() const { return m_psource->m_id; }
 
 
-template < typename THREAD_POINTER >
-void ___task_pool < THREAD_POINTER >::_task_clock(enum_clock eclock, duration duration)
+
+
+//inline ::estatus method::operator()() const
+//{ 
+//   
+//   return ::is_set(m_pmatter) ? m_pmatter->call() : (::estatus) ::success_none; 
+//
+//}
+
+
+
+
+
+inline ::var operator + (::var var, const ::method& method)
 {
 
-   auto timeout = duration.get_total_milliseconds();
-
-   while (true)
+   if (var.get_type() != type_propset)
    {
 
-      if (!task_sleep((u32)timeout))
-      {
-
-         break;
-
-      }
-
-      try
-      {
-
-         on_clock(eclock);
-
-      }
-      catch (...)
-      {
-
-      }
+      var["message"] = var.get_string();
 
    }
 
+   var["method"] = method;
+
+   return var;
+
 }
+
+
+
+inline var operator + (var var, const ::future& future)
+{
+
+   if (var.get_type() != type_propset)
+   {
+
+      var["message"] = var.get_string();
+
+   }
+
+   var["future"] = future;
+
+   return var;
+
+}
+
+
+
+
+
 
 
 

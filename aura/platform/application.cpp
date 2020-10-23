@@ -6298,7 +6298,7 @@ namespace aura
          if(pinteraction)
          {
 
-            pinteraction->post_pred([pinteraction, idCommand]()
+            pinteraction->post_method(__method([pinteraction, idCommand]()
             {
 
                ::user::command command;
@@ -6307,7 +6307,7 @@ namespace aura
 
                pinteraction->route_command_message(&command);
 
-            });
+            }));
 
             return true;
 

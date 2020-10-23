@@ -6,33 +6,70 @@
 
 
 #define new ACME_NEW
+//
+//
+//template < typename PRED >
+//class pred_method :
+//   virtual public ::matter
+//{
+//public:
+//
+//
+//   PRED   m_pred;
+//
+//
+//   pred_method(PRED pred) :
+//      m_pred(pred)
+//   {
+//
+//   }
+//
+//
+//   virtual ~pred_method()
+//   {
+//
+//
+//   }
+//
+//
+//   virtual ::estatus run() override
+//   {
+//
+//      m_pred();
+//
+//      return ::success;
+//
+//   }
+//
+//
+//   void receive_response(const ::var&) override
+//   {
+//
+//      __throw(interface_only_exception());
+//
+//   }
+//
+//
+//
+//};
+//
 
 
 template < typename PRED >
-class ___method :
+class pred_method :
    virtual public ::matter
 {
 public:
 
+   PRED m_pred;
 
-   PRED                                m_pred;
-   __pointer(::matter)         m_pobjectHold;
-
-
-   ___method(PRED pred, ::matter * pobjectHold = nullptr) :
-      m_pred(pred),
-      m_pobjectHold(pobjectHold)
-   {
-
-   }
+   pred_method(PRED pred) : m_pred(pred) { }
+   virtual ~pred_method() {}
+   //method(const ::matter_pointer & pmatter) : matter_pointer(pmatter) { }
+   //method(const ::method & method) : matter_pointer(method) { }
 
 
-   virtual ~___method()
-   {
-
-
-   }
-
+   //inline ::estatus operator()() const;
 
    virtual ::estatus run() override
    {
@@ -43,14 +80,11 @@ public:
 
    }
 
+   //template < typename PRED >
+   //void pred(PRED pred);
 
-   void receive_response(const ::var&) override
-   {
-
-      __throw(interface_only_exception());
-
-   }
-
+   //inline method & operator = (const ::method & method) { m_pmatter = method.m_pmatter; return *this; }
+   //method & operator = (const ::var & var);
 
 
 };
@@ -58,37 +92,17 @@ public:
 
 
 
+template < typename PRED >
+method __method(PRED pred)
+{
+
+   return __new(pred_method<PRED>(pred));
+
+}
 
 
 ::estatus run_task(::matter * pobjectTask);
 
-
-template < typename PRED >
-inline __pointer(matter) __method(PRED pred)
-{
-
-   return __new(___method < PRED >(pred));
-
-}
-
-
-template < typename PRED >
-inline __pointer(matter) __method(PRED pred, ::matter * pobjectHold)
-{
-
-   return __new(___method < PRED >(pred, pobjectHold));
-
-}
-
-
-
-template < >
-inline __pointer(matter) __method(nullptr_t, ::matter * pobjectHold)
-{
-
-   return nullptr;
-
-}
 
 class processor
 {

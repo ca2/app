@@ -1456,47 +1456,47 @@ namespace user
       virtual e_stock_icon get_stock_icon();
 
 
-      virtual void post_task(::matter * pobjectTask);
-      virtual void prodevian_schedule(::matter* pobjectTask);
+      virtual void post_method(const ::method & method);
+      virtual void prodevian_post_method(const ::method & method);
 
 
-      virtual void send_task(::matter * pobjectTask, ::duration durationTimeout = ::duration::infinite());
+      virtual void send_method(const ::method& method, ::duration durationTimeout = ::duration::infinite());
 
 
-      template < typename PRED >
+   /*   template < typename PRED >
       void post_pred(PRED pred)
       {
 
-         post_task(__method(pred));
+         post_method(__method(pred));
 
-      }
+      }*/
 
 
-      template < typename PRED >
-      void prodevian_pred(PRED pred)
+ /*     template < typename PRED >
+      void prodevian_post_pred(PRED pred)
       {
 
-         prodevian_schedule(__task_procedure(pred, this));
+         prodevian_schedule(__method(pred));
 
-      }
-
-
-      template < typename PRED >
-      void pred(PRED pred)
-      {
-
-         post_pred(pred);
-
-      }
+      }*/
 
 
-      template < typename PRED >
+      //template < typename PRED >
+      //void pred(PRED pred)
+      //{
+
+      //   post_pred(pred);
+
+      //}
+
+
+   /*   template < typename PRED >
       void send_pred(PRED pred, ::duration durationTimeout = ::duration::infinite())
       {
 
-         send_task(__task_procedure(pred, this), durationTimeout);
+         send_method(__method(pred), durationTimeout);
 
-      }
+      }*/
 
       bool _001InitialFramePosition();
 

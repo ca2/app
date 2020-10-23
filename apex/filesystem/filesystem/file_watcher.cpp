@@ -222,7 +222,7 @@ namespace file
 
             }
 
-            m_pthread->start();
+            m_pthread->fork();
 
          }
 

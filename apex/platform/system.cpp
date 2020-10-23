@@ -5749,9 +5749,13 @@ string get_bundle_app_library_name();
 
          {
 
-            wait_future future;
+            sync_future future;
 
-            os_message_box(strMessage, "Could not open required library.", MB_ICONEXCLAMATION, future);
+            os_message_box(strMessage, "Could not open required library. Want to give an yes/no answer insted of pression cancel?", MB_ICONEXCLAMATION | MB_YESNOCANCEL, future);
+
+            int iDialogResult = future.m_var;
+
+            ::output_debug_string("result " + __str(iDialogResult));
 
          }
 

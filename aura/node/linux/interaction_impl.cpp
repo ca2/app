@@ -752,7 +752,7 @@ namespace linux
          if(m_bMoveEvent || m_bSizeEvent)
          {
 
-            defer_fork("delayed_placement", __method([this]()
+            defer_fork("delayed_placement", method([this]()
             {
 
                _thread_delayed_placement();

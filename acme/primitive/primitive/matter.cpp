@@ -210,7 +210,7 @@ void matter::set_finish()
 }
 
 
-::estatus matter::call()
+::estatus matter::operator()()
 {
 
    ::estatus estatus;
@@ -233,13 +233,13 @@ void matter::set_finish()
 }
 
 
-void matter::call(const ::var & var)
+void matter::operator()(const ::var & var)
 {
 
 }
 
 
-void matter::receive_response(const ::var& var)
+void matter::on_future(const ::var& var)
 {
 
 }
@@ -325,7 +325,7 @@ void matter::receive_response(const ::var& var)
 }
 
 
-::task* matter::defer_fork(const ::id& id, const matter* pmatter)
+::task* matter::defer_start_task(const ::id& id, const ::method & method)
 {
 
    auto ptasktool = __task_pool(taskpool());
@@ -333,7 +333,7 @@ void matter::receive_response(const ::var& var)
    if (ptasktool)
    {
 
-      return ptasktool->start(id, pmatter);
+      return ptasktool->defer_start(id, method);
 
    }
 
@@ -463,7 +463,7 @@ void matter::to_sz(char * sz, strsize len) const
 ::estatus matter::__thread_main()
 {
 
-   ::estatus estatus = call();
+   ::estatus estatus = operator()();
 
    return estatus;
 
@@ -601,10 +601,10 @@ void matter::to_string(const class string_exchange & str) const
 }
 
 
-CLASS_DECL_ACME ::estatus __call(::matter* pobjectTask)
+CLASS_DECL_ACME ::estatus __call(const ::method & method)
 {
 
-   return pobjectTask->call();
+   return method();
 
 }
 

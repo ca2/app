@@ -47,7 +47,7 @@ handler_manager::~handler_manager()
 }
 
 
-void handler_manager::sync(::layered * pobjectContext)
+void handler_manager::sync(const ::method & method)
 {
 
    if (m_bUseDedicatedThread)
@@ -55,15 +55,19 @@ void handler_manager::sync(::layered * pobjectContext)
 
       //__throw(todo("thread"));
       //__throw(todo("dedicated_thread"));
-      auto pevReady = __new(::manual_reset_event);
+      //auto pevReady = __new(::manual_reset_event);
 
-      pevReady->ResetEvent();
+      //pevReady->ResetEvent();
 
-      __object(pobjectContext)->value("ready_event") = pevReady;
+      //method->value("ready_event") = pevReady;
 
-      async(pobjectContext);
+      method_event event(method);
 
-      pevReady->wait();
+      async(method);
+
+      event.lock();
+
+      //pevReady->wait();
 
    }
    else
@@ -72,7 +76,7 @@ void handler_manager::sync(::layered * pobjectContext)
       try
       {
 
-         pobjectContext->call();
+         method();
 
       }
       catch (...)
@@ -85,14 +89,14 @@ void handler_manager::sync(::layered * pobjectContext)
 }
 
 
-void handler_manager::async(::layered * pobjectContext)
+void handler_manager::async(const ::method & method)
 {
 
    {
 
       sync_lock sl(mutex());
 
-      m_objecta.add(pobjectContext);
+      m_methoda.add(method);
 
       m_pev->SetEvent();
 
@@ -179,13 +183,13 @@ void handler_manager::loop()
 
       }
 
-      __pointer(::context_object) pobject;
+      method method;
 
       {
 
          sync_lock sl(mutex());
 
-         if (m_objecta.isEmpty())
+         if (m_methoda.isEmpty())
          {
 
             m_pev->ResetEvent();
@@ -196,31 +200,31 @@ void handler_manager::loop()
          else
          {
 
-            pobject = m_objecta.first_pointer();
+            method = m_methoda.first();
 
-            m_objecta.remove_at(0);
+            m_methoda.remove_at(0);
 
          }
 
       }
 
-      if (!pobject)
+      if (!method)
       {
 
          continue;
 
       }
 
-      pobject->m_estatus = pobject->call();
+      //pobject->m_estatus = pobject->call();
 
-      auto pevReady = pobject->value("ready_event").cast < ::manual_reset_event>();
+      //auto pevReady = pobject->value("ready_event").cast < ::manual_reset_event>();
 
-      if (pevReady)
-      {
+      //if (pevReady)
+      //{
 
-         pevReady->SetEvent();
+        // pevReady->SetEvent();
 
-      }
+      //}
 
    }
 

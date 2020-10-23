@@ -41,9 +41,6 @@ public:
 
    virtual bool set_thread_name(const char* pszName);
 
-//   virtual ::estatus osthread_init() override;
-  // virtual ::estatus osthread_term() override;
-
 #ifdef WINDOWS
 
    static DWORD WINAPI s_os_task(void* p);
@@ -60,37 +57,40 @@ public:
    virtual void term_task();
    virtual ::estatus on_task() override;
 
+
    ::estatus fork(
       ::e_priority epriority = priority_normal,
       u32 nStackSize = 0,
       u32 dwCreateFlags = 0);
 
 
-   ::estatus _start(
+   ::estatus start(
       ::matter* pmatter,
       ::e_priority epriority = priority_normal,
       u32 nStackSize = 0,
       u32 dwCreateFlags = 0);
 
 
-   static ::task_pointer start(
-      ::matter * pmatter,
+
+
+   //template < typename METHOD >
+   //inline static ::task_pointer __task(METHOD method)
+   //{
+
+   //   auto pmethod = method(method);
+
+   //   auto ptask = start(pmethod);
+
+   //   return ptask;
+
+   //}
+
+
+   static ::task_pointer launch(
+      ::matter* pmatter,
       ::e_priority epriority = priority_normal,
       u32 nStackSize = 0,
       u32 dwCreateFlags = 0);
-
-
-   template < typename METHOD >
-   inline static ::task_pointer __task(METHOD method)
-   {
-
-      auto pmethod = __method(method);
-
-      auto ptask = start(pmethod);
-
-      return ptask;
-
-   }
 
 
    virtual ::thread* parent_thread();

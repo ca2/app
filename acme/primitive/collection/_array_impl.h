@@ -773,12 +773,12 @@ inline array_base < TYPE, ARG_TYPE, ALLOCATOR > & array_base < TYPE, ARG_TYPE, A
 
 
 
-template < typename PRED >
-inline runnable_array & runnable_array::operator +=(PRED pred)
-{
-
-   add(__new(pred_holder < PRED>(pred)));
-
-   return *this;
-
-}
+//template < typename PRED >
+//inline runnable_array & runnable_array::operator +=(PRED pred)
+//{
+//
+//   add(__new(pred_holder < PRED>(pred)));
+//
+//   return *this;
+//
+//}

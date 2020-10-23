@@ -513,7 +513,7 @@ namespace userex
                && value("filemanager_toolbar").m_etype == ::type_propset)
          {
 
-            auto & set = (*this)("filemanager_toolbar").propset();
+            auto & set = value("filemanager_toolbar").propset();
 
             if (set[::userfs::mode_normal].is_set())
                pfilemanagerdata->m_setToolbar[::userfs::mode_normal] = set[::userfs::mode_normal];

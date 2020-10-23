@@ -7,9 +7,9 @@ public:
 
 
    string                           m_strTopicText;
-   id_map < array < method > >      m_methodmap;
-   id_map < array < future > >      m_futuremap;
-   __pointer_array(::task)        m_taska;
+   id_map < method_array >          m_mapMethod;
+   id_map < future_array >          m_mapFuture;
+   __pointer_array(::task)          m_taska;
 
 
    object_meta() { }

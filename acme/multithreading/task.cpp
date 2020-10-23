@@ -251,7 +251,7 @@ void task::term_task()
 }
 
 
-::estatus task::_start(
+::estatus task::start(
    ::matter* pmatter,
    ::e_priority epriority,
    u32 nStackSize,
@@ -331,15 +331,14 @@ void task::term_task()
 }
 
 
-__pointer(task) task::start(::matter * pmatter, ::e_priority epriority, UINT nStackSize, u32 uiCreateFlags)
+::task_pointer task::launch(::matter * pmatter, ::e_priority epriority, UINT nStackSize, u32 uCreateFlags)
 {
 
-   auto pthread = __new(task);
+   auto ptask = __new(task);
 
-   pthread->_start(pmatter, epriority, nStackSize, uiCreateFlags);
+   ptask->start(pmatter, epriority, nStackSize, uCreateFlags);
 
-   return pthread;
-
+   return ptask;
 
 }
 

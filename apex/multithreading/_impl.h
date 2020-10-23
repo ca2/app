@@ -514,15 +514,29 @@ public:
 };
 
 
-template < typename METHOD >
-inline ::thread_pointer object::fork(METHOD method)
+template < typename PRED >
+inline ::thread_pointer object::fork(PRED pred)
 {
 
-   auto ppred = __method(method);
+   auto pmethod = __method(pred);
 
    auto pthread = __create_new < ::thread >();
 
-   pthread->m_pmatter = ppred;
+   pthread->m_pmatter = pmethod;
+
+   pthread->begin_thread();
+
+   return pthread;
+
+}
+
+
+inline ::thread_pointer object::launch(const ::method& method)
+{
+
+   auto pthread = __create_new < ::thread >();
+
+   pthread->m_pmatter = method;
 
    pthread->begin_thread();
 

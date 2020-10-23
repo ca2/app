@@ -1302,6 +1302,8 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="multithreading\critical_section.cpp" />
     <ClCompile Include="multithreading\event.cpp" />
     <ClCompile Include="multithreading\file_change_event.cpp" />
+    <ClCompile Include="multithreading\pool.cpp" />
+    <ClCompile Include="multithreading\sync_method.cpp" />
     <ClCompile Include="multithreading\task.cpp" />
     <ClCompile Include="multithreading\manual_reset_event.cpp" />
     <ClCompile Include="multithreading\mq.cpp" />
@@ -1319,7 +1321,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="multithreading\thread.cpp" />
     <ClCompile Include="multithreading\thread_os.cpp" />
     <ClCompile Include="multithreading\waitable.cpp" />
-    <ClCompile Include="multithreading\wait_future.cpp" />
+    <ClCompile Include="multithreading\sync_future.cpp" />
     <ClCompile Include="multithreading\zaa_update.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
@@ -1585,6 +1587,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="multithreading\event.h" />
     <ClInclude Include="multithreading\file_change_event.h" />
     <ClInclude Include="multithreading\pool.h" />
+    <ClInclude Include="multithreading\sync_method.h" />
     <ClInclude Include="multithreading\task.h" />
     <ClInclude Include="multithreading\handler.h" />
     <ClInclude Include="multithreading\initial_single_lock.h" />
@@ -1616,7 +1619,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="multithreading\zaa_update_task.h" />
     <ClInclude Include="multithreading\zaa_update_task_item.h" />
     <ClInclude Include="multithreading\zaa_update_task_item_array.h" />
-    <ClInclude Include="multithreading\wait_future.h" />
+    <ClInclude Include="multithreading\sync_future.h" />
     <ClInclude Include="multithreading\_.h" />
     <ClInclude Include="multithreading\_impl.h" />
     <ClInclude Include="multithreading\_thread_os_create_impl.h" />
@@ -1826,7 +1829,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="primitive\primitive\promise.h" />
     <ClInclude Include="primitive\primitive\promise1.h" />
     <ClInclude Include="primitive\primitive\future.h" />
-    <ClInclude Include="primitive\primitive\function_base.h" />
+    <ClInclude Include="primitive\primitive\function.h" />
     <ClInclude Include="primitive\primitive\member.h" />
     <ClInclude Include="primitive\primitive\change.h" />
     <ClInclude Include="primitive\primitive\aaa_update.h" />

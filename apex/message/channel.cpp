@@ -314,16 +314,16 @@ void channel::finalize()
 
    m_idrouteNew.remove_all();
 
-   for (auto& a : m_mapRunnable.values())
+   for (auto& methoda : m_mapMethod.values())
    {
 
-      a.finalize();
+      methoda.finalize();
 
-      a.remove_all();
+      methoda.remove_all();
 
    }
 
-   m_mapRunnable.remove_all();
+   m_mapMethod.remove_all();
 
    ::object::finalize();
 

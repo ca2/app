@@ -4126,12 +4126,12 @@ namespace user
 
       }
 
-      m_puserinteraction->post_pred([this, pbase]()
+      m_puserinteraction->post_method(__method([this, pbase]()
       {
 
          return m_puserinteraction->message_handler(pbase);
 
-      });
+      }));
 
       return true;
 

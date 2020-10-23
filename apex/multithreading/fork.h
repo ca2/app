@@ -65,81 +65,82 @@ inline auto new_pred_thread(::layered * pobjectContext, PRED pred)
 
 }
 
-class CLASS_DECL_APEX runner :
-   virtual public ::object
-{
-public:
-
-
-   __pointer(::thread)                          m_pthread;
-   bool                                         m_bExecuting;
-   bool                                         m_bPending;
-   ::tick                                       m_tickStart;
-
-   runner()
-   {
-
-      m_bExecuting = false;
-
-      m_bPending = false;
-
-   }
-
-   virtual ~runner()
-   {
-
-   }
-
-   template < typename PRED >
-   void operator()(::duration duration, PRED pred)
-   {
-
-      m_tickStart = ::tick::now() + duration;
-
-      m_bPending = true;
-
-      auto predDelayed = [this, pred]()
-             {
-
-                while(true)
-                {
-
-                   Sleep(100);
-
-                   if(!::thread_get_run())
-                   {
-
-                      break;
-
-                   }
-
-                   if(m_tickStart.elapsed() >= 0 && !m_bExecuting)
-                   {
-
-                      m_bPending = false;
-
-                      __keep(m_bExecuting);
-
-                      pred();
-
-                      if(!m_bPending)
-                      {
-
-                         break;
-
-                      }
-
-                   }
-
-                }
-
-             };
-
-      __object(get_context_object())->start(m_pthread, predDelayed);
-
-   }
-
-};
+//class CLASS_DECL_APEX runner :
+//   virtual public ::object
+//{
+//public:
+//
+//
+//   ::thread_pointer                          m_pthread;
+//   bool                                         m_bExecuting;
+//   bool                                         m_bPending;
+//   ::tick                                       m_tickStart;
+//
+//   runner()
+//   {
+//
+//      m_bExecuting = false;
+//
+//      m_bPending = false;
+//
+//   }
+//
+//   virtual ~runner()
+//   {
+//
+//   }
+//
+//
+//   template < typename PRED >
+//   void operator()(::duration duration, PRED pred)
+//   {
+//
+//      m_tickStart = ::tick::now() + duration;
+//
+//      m_bPending = true;
+//
+//      auto predDelayed = [this, pred]()
+//             {
+//
+//                while(true)
+//                {
+//
+//                   Sleep(100);
+//
+//                   if(!::thread_get_run())
+//                   {
+//
+//                      break;
+//
+//                   }
+//
+//                   if(m_tickStart.elapsed() >= 0 && !m_bExecuting)
+//                   {
+//
+//                      m_bPending = false;
+//
+//                      __keep(m_bExecuting);
+//
+//                      pred();
+//
+//                      if(!m_bPending)
+//                      {
+//
+//                         break;
+//
+//                      }
+//
+//                   }
+//
+//                }
+//
+//             };
+//
+//      __object(get_context_object())->start(m_pthread, predDelayed);
+//
+//   }
+//
+//};
 
 
 template < typename PRED >

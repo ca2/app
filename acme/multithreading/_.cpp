@@ -429,7 +429,7 @@ namespace multithreading
 
 
 
-CLASS_DECL_ACME ::estatus call(::matter * pobject)
+CLASS_DECL_ACME ::estatus call(const ::method & method)
 {
 
    ::estatus estatus;
@@ -437,7 +437,7 @@ CLASS_DECL_ACME ::estatus call(::matter * pobject)
    try
    {
 
-      estatus = pobject->call();
+      estatus = method();
 
    }
    catch (...)
@@ -678,7 +678,7 @@ void thread_name_abbreviate(string & strName, int len)
 
 
 
-::estatus     run_runnable(::matter* pobjectTask)
+::estatus     run_runnable(const ::method & method)
 {
 
    ::estatus     estatus = error_exception;
@@ -686,12 +686,12 @@ void thread_name_abbreviate(string & strName, int len)
    try
    {
 
-      __pointer(matter) pobject(e_move_transfer, pobjectTask);
+      //__pointer(matter) pobject(e_move_transfer, pobjectTask);
 
       try
       {
 
-         estatus = pobject->call();
+         estatus = method();
 
       }
       catch (...)

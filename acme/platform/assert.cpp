@@ -77,7 +77,7 @@ namespace acme
 } // namespace acme
 
 
-::estatus os_message_box(const char * pszText, const char * pszTitle, ::emessagebox emessagebox, ::future future)
+::estatus os_message_box(const char * pszText, const char * pszTitle, ::emessagebox emessagebox, const ::future & future)
 {
 
    auto posmessagebox = __new(::acme::os_message_box(pszText, pszTitle, emessagebox));

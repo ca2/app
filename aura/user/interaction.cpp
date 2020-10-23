@@ -1301,7 +1301,7 @@ namespace user
 
          post_redraw();
 
-         post_pred([this]() { on_set_finish(); });
+         post_method(__method([this]() { on_set_finish(); }));
 
       }
       else
@@ -1568,7 +1568,7 @@ namespace user
          else
          {
 
-            post_pred([this]()
+            post_method(__method([this]()
                {
 
                   if (get_context_application() != nullptr && get_context_application()->get_context_session() != nullptr && has_focus())
@@ -1589,7 +1589,7 @@ namespace user
 
                   }
 
-               });
+               }));
 
          }
 
@@ -3387,7 +3387,7 @@ namespace user
 
       run_property("on_create");
 
-      call(CREATE_METHOD);
+      call_method(CREATE_METHOD);
 
       sync_style();
 
@@ -7446,7 +7446,7 @@ namespace user
       // make sure a message goes through to exit the modal loop
       m_bModal = false;
 
-      send(DIALOG_RESULT_FUTURE, idResult);
+      send_future(DIALOG_RESULT_FUTURE, idResult);
 
       post_message(WM_CLOSE);
 
@@ -12227,13 +12227,13 @@ restart:
    }
 
 
-   void interaction::post_task(::matter * pobjectTask)
+   void interaction::post_method(const ::method & method)
    {
 
       if (::is_set(m_pthreadUserInteraction))
       {
 
-         m_pthreadUserInteraction->post_task(pobjectTask);
+         m_pthreadUserInteraction->post_task(method);
 
       }
 
@@ -12294,7 +12294,7 @@ restart:
 #endif
 
 
-   void interaction::send_task(::matter * pobjectTask, ::duration durationTimeout)
+   void interaction::send_method(const ::method & method, ::duration durationTimeout)
    {
 
       ::thread * pthread = get_wnd() == nullptr ? (::thread *) nullptr : get_wnd()->m_pthreadUserInteraction;
@@ -12304,13 +12304,13 @@ restart:
       if (pthread == nullptr || pthread == pthreadCurrent)
       {
 
-         ::__call(pobjectTask);
+         method();
 
       }
       else
       {
 
-         pthread->send_task(pobjectTask, durationTimeout);
+         pthread->send_method(method, durationTimeout);
 
       }
 

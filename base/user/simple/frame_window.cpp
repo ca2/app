@@ -190,7 +190,7 @@ void simple_frame_window::defer_save_window_placement()
 
    m_tickLastSaveWindowRectRequest.Now();
 
-   taskpool()->start("save_window_rect", __method([this]()
+   defer_start_task("save_window_rect", __method([this]()
    {
 
          while (::thread_get_run()
@@ -3982,12 +3982,12 @@ void simple_frame_window::call_notification_area_action(const char * pszId)
 
    string strId(pszId);
 
-   post_pred([this, strId]()
+   post_method(__method([this, strId]()
    {
 
       notification_area_action(strId);
 
-   });
+   }));
 
 }
 

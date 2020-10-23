@@ -142,32 +142,25 @@ namespace apex
 //}
 
 
-CLASS_DECL_APEX void main_async_runnable(::context_object * pobjectTaskParam)
+CLASS_DECL_APEX void main_async_runnable(const ::method & method)
 {
 
-   __pointer(::object) pobjectTask = pobjectTaskParam;
+   //__pointer(::object) pobjectTask = pobjectTaskParam;
    
-   ::get_context_system()->post_pred([pobjectTask]()
+   ::get_context_system()->post_pred([method]()
    {
 
-      pobjectTask->call();
+      method();
 
    });
 
 }
 
 
-CLASS_DECL_APEX void main_sync_runnable(::context_object * pobjectTaskParam, ::duration durationTimeout)
+CLASS_DECL_APEX void main_sync_runnable(const ::method & method, ::duration durationTimeout)
 {
    
-   __pointer(::object) pobjectTask = pobjectTaskParam;
-   
-   ::get_context_system()->send_pred([pobjectTask]()
-   {
-
-      pobjectTask->call();
-
-   });
+   ::get_context_system()->send_method(method, durationTimeout);
 
 }
 

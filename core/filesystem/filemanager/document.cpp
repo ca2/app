@@ -636,12 +636,12 @@ namespace filemanager
       }
 
 
-      opt_fork([=]()
+      opt_fork(__method([=]()
       {
 
          full_browse(pitem, context);
 
-      });
+      }));
 
 
    }

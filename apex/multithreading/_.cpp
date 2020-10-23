@@ -757,7 +757,7 @@ void thread_ptra::wait(const duration & duration, sync_lock & sl)
 }
 
 
-CLASS_DECL_APEX ::estatus call(::layered * pobjectContext)
+CLASS_DECL_APEX ::estatus call(const ::method & method)
 {
 
    ::estatus estatus;
@@ -765,7 +765,7 @@ CLASS_DECL_APEX ::estatus call(::layered * pobjectContext)
    try
    {
 
-      estatus = pobjectContext->call();
+      estatus = method();
 
    }
    catch (...)

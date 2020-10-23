@@ -1118,7 +1118,8 @@ class ___task_pool;
 
 using task_pointer = __pointer(::task);
 
-using task_pool = ___task_pool<::task_pointer>;
+class task_pool;
+//using task_pool = ___task_pool<::task_pointer>;
 
 
 
@@ -2533,9 +2534,18 @@ class action_context;
 
 using emessagebox = cflag < enum_message_box >;
 
-#include "acme/primitive/primitive/function_base.h"
 
 using matter_pointer = __pointer(::matter);
+
+
+#include "acme/primitive/primitive/function.h"
+
+
+#include "acme/primitive/primitive/method.h"
+
+
+#include "acme/primitive/primitive/future.h"
+
 
 namespace user
 {
@@ -2589,7 +2599,7 @@ inline bool failed(const ::property & set) { return !::succeeded(set); }
 #define __inner_release(outer, inner) ::release(outer, outer->inner)
 
 
-#include "acme/primitive/primitive/function_base.h"
+//#include "acme/primitive/primitive/function.h"
 
 
 #include "acme/primitive/primitive/member.h"
@@ -2688,6 +2698,8 @@ class object_meta;
 #define __composite_array(TYPE) ::array < __composite(TYPE) >
 #define __reference_array(TYPE) ::array < __reference(TYPE) >
 
+
+
 namespace http
 {
 
@@ -2695,9 +2707,8 @@ namespace http
 
 } // namespace http
 
-template < typename PRED > inline __pointer(::matter) __method(PRED pred);
 
-template < typename PRED > inline __pointer(::matter) __future(PRED pred);
+
 
 //class context;
 
@@ -2756,6 +2767,17 @@ class task;
 
 #include "acme/exception/_.h"
 
+using method_array = ::array < ::method >;
+
+using future_array = ::array < ::future >;
+
+
+template < typename PRED >
+void add_method(method_array& array, PRED pred);
+
+template < typename PRED >
+void add_future(future_array& array, PRED pred);
+
 #include "acme/primitive/primitive/context_object.h"
 
 #include "acme/primitive/comparison/var_strict.h"
@@ -2766,9 +2788,10 @@ class task;
 
 #include "acme/primitive/collection/_.h"
 
-#include "acme/primitive/primitive/method.h"
+//#include "acme/primitive/primitive/method.h"
 
-#include "acme/primitive/primitive/future.h"
+//#include "acme/primitive/primitive/future.h"
+
 
 #include "acme/primitive/primitive/pred_method.h"
 

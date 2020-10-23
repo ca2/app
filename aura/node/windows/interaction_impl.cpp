@@ -3380,7 +3380,7 @@ namespace windows
 
       }
 
-      m_puserinteraction->post_pred([this]()
+      m_puserinteraction->post_method(__method([this]()
       {
 
          HWND hwnd = ::SetFocus(get_handle());
@@ -3389,7 +3389,7 @@ namespace windows
 
          return ::success;
 
-      });
+      }));
 
       return true;
 

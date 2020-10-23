@@ -591,7 +591,7 @@ namespace core
 
       }
 
-      future.send(pbox->m_idResponse);
+      future(pbox->m_idResponse);
 
       return ::success;
 
@@ -607,7 +607,7 @@ namespace core
 
       propertyset["message"] = pszMessage;
 
-      pbox->add(future);
+      pbox->add_future(DIALOG_RESULT_FUTURE, future);
 
       if (::is_set(puiOwner))
       {
@@ -728,7 +728,7 @@ namespace core
 
       pbox->value("message") = pszMessage;
 
-      pbox->add(future);
+      pbox->add_future(DIALOG_RESULT_FUTURE, future);
 
       string strTitle = App(__object(pobjectContext)).get_title();
 

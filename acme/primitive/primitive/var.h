@@ -72,7 +72,7 @@ public:
       ::enum_command             m_ecommand;
       ::enum_check               m_echeck;
 
-      ::matter *         m_p;
+      ::matter *                 m_p;
       ::string_array *           m_pstra;
       ::int_array *              m_pia;
       ::var_array *              m_pvara;
@@ -80,8 +80,8 @@ public:
       ::i64_array *              m_pi64a;
       ::memory *                 m_pmemory;
       ::file::path_object *      m_ppath;
-      //::image *                  m_pimage;
-      ::function_base            m_functionbase;
+      ::method                   m_method;
+      ::future                   m_future;
       ::i64                      m_all[2];
 
 

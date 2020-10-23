@@ -1953,12 +1953,20 @@ inline ::thread_pointer object::__start_thread(const ::id & id, void(TYPE:: * pf
 //}
 //
 //
+
+
 template < typename PRED >
-inline void context_object::add_pred(runnable_array & array, PRED pred)
+inline void add_method(method_array & array, PRED pred)
 {
-  array.add(__new(pred_holder<PRED>(pred)));
+  array.add(__method(pred));
 }
 
+
+template < typename PRED >
+inline void add_future(future_array& array, PRED pred)
+{
+   array.add(__future(pred));
+}
 
 
 //inline var::operator ::memory & ()
@@ -2385,6 +2393,21 @@ inline ::estatus context_object::__construct_new(__pointer(TYPE)& pbase)
 
 
 
+inline ::estatus object::defer_start(::thread_pointer& pthread, const ::method& method)
+{
+
+   auto estatus = __defer_construct(pthread);
+
+   if (!estatus)
+   {
+
+      return estatus;
+
+   }
+
+   return pthread->fork();
+
+}
 
 
 

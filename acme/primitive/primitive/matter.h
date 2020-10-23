@@ -149,25 +149,6 @@ public:
    virtual ::estatus osthread_term();
 
 
-
-
-   //virtual ::estatus fork_update(
-   //   ::i64 iUpdate,
-   //   ::e_priority epriority = priority_normal,
-   //   u32 nStackSize = 0,
-   //   u32 dwCreateFlags = 0,
-   //   ITHREAD* pithread = nullptr,
-   //   HTHREAD* phthread = nullptr);
-
-   //virtual ::estatus fork_run(
-   //   ::e_priority epriority = priority_normal,
-   //   u32 nStackSize = 0,
-   //   u32 dwCreateFlags = 0,
-   //   ITHREAD* pithread = nullptr,
-   //   HTHREAD* phthread = nullptr);
-
-
-
    virtual ::estatus add_composite(::matter* pobject OBJ_REF_DBG_COMMA_PARAMS);
    virtual ::estatus add_reference(::matter* pobject OBJ_REF_DBG_COMMA_PARAMS);
 
@@ -181,7 +162,8 @@ public:
 
    virtual ::layered * taskpool();
 
-   virtual ::task* defer_fork(const ::id& id, const matter* pmatter);
+   virtual ::task* defer_start_task(const ::id& id, const ::method & method);
+//   virtual ::thread* defer_start_thread(const ::id& id, matter* pmatter);
 
    virtual void delete_this();
 
@@ -232,17 +214,15 @@ public:
    virtual const char * topic_text() const;
 
 
-   //virtual void apply_update(const ::id & id, const ::action_context & context);
-   //virtual void apply_update(const ::id & id);
    virtual void apply(::action * paction);
    virtual void on_apply(::action * paction);
-   //virtual bool already_handled(::update * pupdate) const;
 
-   virtual ::estatus call();
-   virtual void call(const ::var & var);
+
+   virtual ::estatus operator()();
+   virtual void operator()(const ::var & var);
    virtual ::estatus run();
    virtual ::var realize();
-   virtual void receive_response(const ::var& var);
+   virtual void on_future(const ::var& var);
 
    virtual void clear_member() { }
 

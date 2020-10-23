@@ -35,7 +35,7 @@ public:
 
    virtual void on_set_scalar(int_scalar_source * psource,e_scalar escalar,i64 iValue,int iFlags);
 
-   int_scalar & operator ()(){ return m_scalar;  }
+   int_scalar & get_scalar(){ return m_scalar;  }
 
 };
 

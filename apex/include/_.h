@@ -1988,8 +1988,8 @@ class thread;
 class thread;
 
 
-typedef ___pointer < thread > thread_pointer;
-typedef pointer_array < thread > thread_spa;
+using thread_pointer = __pointer(::thread);
+using thread_array = __pointer_array(thread);
 
 
 //class thread_impl;

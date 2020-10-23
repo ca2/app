@@ -69,7 +69,7 @@ class single_lock;
 class multi_lock;
 
 
-CLASS_DECL_ACME ::estatus __call(::matter * pobject);
+CLASS_DECL_ACME ::estatus __call(const ::method & method);
 
 
 
@@ -229,7 +229,10 @@ class sync_lock;
 #include "manual_reset_event.h"
 
 
-#include "acme/multithreading/wait_future.h"
+#include "acme/multithreading/sync_method.h"
+
+
+#include "acme/multithreading/sync_future.h"
 
 
 #include "acme/multithreading/task.h"

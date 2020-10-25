@@ -824,7 +824,7 @@ template < typename PRED >
    else
    {
 
-      return ::fork(pobject, pred);
+      return pobject->fork(pred);
 
    }
 

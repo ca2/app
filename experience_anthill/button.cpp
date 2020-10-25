@@ -163,7 +163,7 @@ namespace experience
 
       ::user::button::install_message_routing(pchannel);
 
-      IGUI_MSG_LINK(WM_SHOWWINDOW, pchannel, this, &button::_001OnShowWindow);
+      MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &button::_001OnShowWindow);
 
    }
 

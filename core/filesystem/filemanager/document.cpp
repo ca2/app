@@ -753,7 +753,7 @@ namespace filemanager
 
       SCAST_PTR(::user::command, pcommand, pmessage);
 
-      pcommand->Enable(TRUE);
+      pcommand->enable(TRUE);
 
       pmessage->m_bRet = true;
 
@@ -779,7 +779,7 @@ namespace filemanager
 
       SCAST_PTR(::user::command, pcommand, pmessage);
 
-      pcommand->Enable(TRUE);
+      pcommand->enable(TRUE);
 
       pmessage->m_bRet = true;
 
@@ -822,13 +822,13 @@ namespace filemanager
       if (m_pitem.is_null() || m_pitem->m_filepathUser.is_empty())
       {
 
-         pcommand->Enable(FALSE);
+         pcommand->enable(FALSE);
 
       }
       else
       {
 
-         pcommand->Enable(TRUE);
+         pcommand->enable(TRUE);
 
       }
 
@@ -849,7 +849,7 @@ namespace filemanager
 
       SCAST_PTR(::user::command, pcommand, pmessage);
 
-      pcommand->Enable(TRUE);
+      pcommand->enable(TRUE);
 
       pmessage->m_bRet = true;
 
@@ -871,7 +871,7 @@ namespace filemanager
 
       SCAST_PTR(::user::command, pcommand, pmessage);
 
-      pcommand->Enable(TRUE);
+      pcommand->enable(TRUE);
 
       pmessage->m_bRet = true;
 
@@ -895,7 +895,7 @@ namespace filemanager
 
       SCAST_PTR(::user::command, pcommand, pmessage);
 
-      pcommand->Enable(TRUE);
+      pcommand->enable(TRUE);
 
       pmessage->m_bRet = true;
 
@@ -918,7 +918,7 @@ namespace filemanager
    {
       //      SCAST_PTR(::user::command, pcommand, pmessage);
 
-      //         pcommand->Enable(System.m_strCopy.is_empty());
+      //         pcommand->enable(System.m_strCopy.is_empty());
       pmessage->m_bRet = true;
    }
 
@@ -933,19 +933,19 @@ namespace filemanager
    void document::_001OnUpdateFileSaveAs(::message::message * pmessage)
    {
       SCAST_PTR(::user::command, pcommand, pmessage);
-      pcommand->Enable(TRUE);
+      pcommand->enable(TRUE);
    }
 
    void document::_001OnUpdateFileImport(::message::message * pmessage)
    {
       SCAST_PTR(::user::command, pcommand, pmessage);
-      pcommand->Enable(TRUE);
+      pcommand->enable(TRUE);
    }
 
    void document::_001OnUpdateFileExport(::message::message * pmessage)
    {
       SCAST_PTR(::user::command, pcommand, pmessage);
-      pcommand->Enable(TRUE);
+      pcommand->enable(TRUE);
    }
 
 
@@ -1178,7 +1178,7 @@ namespace filemanager
    bool document::HandleDefaultFileManagerItemCmdMsg(::user::command * pcommand, ::file::item_array & itema)
    {
 
-      if (pcommand->m_id.m_emessagetype == ::message::type_command_probe)
+      if (pcommand->is_command_probe())
       {
 
          if (filemanager_data() != nullptr)
@@ -1201,7 +1201,7 @@ namespace filemanager
          }
 
       }
-      else if (pcommand->m_id.m_emessagetype == ::message::type_command)
+      else if (pcommand->is_command())
       {
 
          if (filemanager_data() != nullptr)

@@ -160,7 +160,7 @@ namespace user
 
 
 
-   //bool style::on_ui_event(e_event eevent, e_object eobject, ::user::interaction * pinteraction)
+   //bool style::on_ui_event(enum_event eevent, e_object eobject, ::user::interaction * pinteraction)
    //{
 
    //   return false;

@@ -100,7 +100,7 @@ int_bool mq::get_message(LPMESSAGE pMsg, oswindow oswindow, UINT wMsgFilterMin, 
 
          MESSAGE & msg = m_messagea[i];
 
-         if (msg.message == WM_QUIT)
+         if (msg.message == e_message_quit)
          {
 
             m_bQuit = true;
@@ -352,7 +352,7 @@ CLASS_DECL_AURA int_bool post_ui_message(const MESSAGE & message)
 //
 //   ITHREAD idthread = pinteraction->m_pthreadUserInteraction->get_os_int();
 //
-//   auto pmq = ::get_mq(idthread, message.message != WM_QUIT);
+//   auto pmq = ::get_mq(idthread, message.message != e_message_quit);
 //
 //   if(pmq == nullptr)
 //   {
@@ -429,7 +429,7 @@ CLASS_DECL_AURA void mq_clear(ITHREAD idthread)
 }
 
 
-int_bool mq_post_thread_message(ITHREAD idthread, UINT message, WPARAM wparam, LPARAM lparam)
+int_bool mq_post_thread_message(ITHREAD idthread, const ::id & id, WPARAM wparam, LPARAM lparam)
 {
 
    auto pmq = get_mq(idthread, true);
@@ -446,7 +446,7 @@ int_bool mq_post_thread_message(ITHREAD idthread, UINT message, WPARAM wparam, L
 }
 
 
-CLASS_DECL_AURA int_bool mq_post_message(oswindow oswindow, UINT message, WPARAM wparam, LPARAM lparam)
+CLASS_DECL_AURA int_bool mq_post_message(oswindow oswindow, const ::id & id, WPARAM wparam, LPARAM lparam)
 {
 
    ::user::interaction* pinteraction = oswindow_interaction(oswindow);

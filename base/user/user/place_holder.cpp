@@ -28,7 +28,7 @@ namespace user
 
       ::user::interaction::install_message_routing(pchannel);
 
-      IGUI_MSG_LINK(WM_SHOWWINDOW, pchannel, this, &place_holder::_001OnShowWindow);
+      MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &place_holder::_001OnShowWindow);
 
    }
 

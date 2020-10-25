@@ -2075,7 +2075,7 @@ retry_session:
    bool system::exists(const char * pszUrl, ::property_set & set)
    {
 
-      ::file::e_type etype = ::file::type_none;
+      ::file::enum_type etype = ::file::type_none;
 
       bool bExists = is_file_or_dir(pszUrl, set, &etype);
 
@@ -2084,7 +2084,7 @@ retry_session:
    }
 
 
-   bool system::is_file_or_dir(const char * pszUrl, ::property_set & set, ::file::e_type * petype)
+   bool system::is_file_or_dir(const char * pszUrl, ::property_set & set, ::file::enum_type * petype)
    {
 
       single_lock sl(m_pmutexDownload, true);
@@ -2221,7 +2221,7 @@ retry_session:
       else
       {
 
-         return var(::type_null);
+         return var(::e_type_null);
 
       }
 

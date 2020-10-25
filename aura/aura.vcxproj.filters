@@ -1130,12 +1130,6 @@
     <ClInclude Include="const\aaa_context.h">
       <Filter>Header Files\const</Filter>
     </ClInclude>
-    <ClInclude Include="const\aaa_message.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\aaa_simple_command.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
     <ClInclude Include="const\aaa_source.h">
       <Filter>Header Files\const</Filter>
     </ClInclude>
@@ -1186,6 +1180,9 @@
     </ClInclude>
     <ClInclude Include="graphics\draw2d\_draw2d.h">
       <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="message\user.h">
+      <Filter>Header Files\message</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

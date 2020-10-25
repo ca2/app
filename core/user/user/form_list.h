@@ -68,7 +68,7 @@ namespace user
       virtual void _001UpdateEdit(::user::interaction * pinteraction) override;
       virtual bool _001SaveEdit(::user::interaction * pinteraction) override;
 
-      virtual bool _001OnMouseActivate(::user::interaction_impl * pDesktopWnd,UINT nHitTest,UINT message,LRESULT & iResult) override;
+      virtual bool _001OnMouseActivate(::user::interaction_impl * pDesktopWnd,UINT nHitTest,const ::id & id,LRESULT & iResult) override;
 
 
       virtual void install_message_routing(::channel * pchannel) override;

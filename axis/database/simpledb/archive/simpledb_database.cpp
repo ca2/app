@@ -75,7 +75,7 @@ namespace simpledb
    var database::query_item(const char * pszSql,var varDefault)
    {
 
-      return ::var(::type_null);
+      return ::var(::e_type_null);
 
    }
 
@@ -91,7 +91,7 @@ namespace simpledb
    var database::query_items(const char * pszSql)
    {
 
-      return ::var(::type_null);
+      return ::var(::e_type_null);
 
    }
 
@@ -99,7 +99,7 @@ namespace simpledb
    var database::query_row(const char * pszSql)
    {
 
-      return ::var(::type_null);
+      return ::var(::e_type_null);
 
    }
 
@@ -107,7 +107,7 @@ namespace simpledb
    var database::query_rows(const char * pszSql)
    {
 
-      return ::var(::type_null);
+      return ::var(::e_type_null);
 
    }
 
@@ -115,7 +115,7 @@ namespace simpledb
    var database::query_table_item(const char * table,const char * item,const char *where,var notfound)
    {
 
-      return ::var(::type_null);
+      return ::var(::e_type_null);
 
    }
 
@@ -123,7 +123,7 @@ namespace simpledb
    var database::get_agent(const char * pszTable,const char * psz,const char * pszUser)
    {
 
-      return ::var(::type_null);
+      return ::var(::e_type_null);
 
    }
 

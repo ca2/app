@@ -24,7 +24,7 @@
 //    probe_::user::command(::layered * pobjectContext);
 
 
-//    virtual void Enable(bool bOn, const ::action_context & action_context = ::source_system);
+//    virtual void enable(bool bOn, const ::action_context & action_context = ::source_system);
 //    virtual void _001SetCheck(bool bCheck, const ::action_context & action_context = ::source_system);   // 0, 1 or 2 (indeterminate)
 //    virtual void _001SetCheck(enum_check echeck, const ::action_context & action_context = ::source_system);   // 0, 1 or 2 (indeterminate)
 //    virtual void SetRadio(bool bOn = TRUE, const ::action_context & action_context = ::source_system);

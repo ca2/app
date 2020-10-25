@@ -2,7 +2,7 @@
 
 
 template < typename ENUM_TYPE >
-class enum_type
+class enumeration
 {
 public:
 
@@ -10,8 +10,8 @@ public:
    ENUM_TYPE   m_eflag;
 
 
-   enum_type() { m_eflag = (ENUM_TYPE)0; }
-   enum_type(const ENUM_TYPE & eflag) : m_eflag(eflag) {}
+   enumeration() { m_eflag = (ENUM_TYPE)0; }
+   enumeration(const ENUM_TYPE & eflag) : m_eflag(eflag) {}
 
 
    operator ENUM_TYPE & () { return m_eflag; }

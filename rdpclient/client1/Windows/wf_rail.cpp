@@ -384,7 +384,7 @@ static void PrintRailIconInfo(WINDOW_ORDER_INFO* orderInfo, ICON_INFO* iconInfo)
 //			}
 //			break;
 //
-//		case WM_MOUSEMOVE:
+//		case e_message_mouse_move:
 //			{
 //				if (!railWindow || !input)
 //					return 0;
@@ -405,7 +405,7 @@ static void PrintRailIconInfo(WINDOW_ORDER_INFO* orderInfo, ICON_INFO* iconInfo)
 //			DestroyWindow(hWnd);
 //			break;
 //
-//		case WM_DESTROY:
+//		case e_message_destroy:
 //			PostQuitMessage(0);
 //			break;
 //

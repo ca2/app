@@ -1,16 +1,23 @@
 #pragma once
 
 
+
+
+
+
 class CLASS_DECL_ACME method :
-   public ::matter_pointer
+   public ::function_pointer
 {
 public:
 
 
-   using ::matter_pointer::matter_pointer;
+   using ::function_pointer::function_pointer;
 
 
    inline ::estatus operator()() const;
+
+   inline bool should_run_async() const;
+
 
 };
 

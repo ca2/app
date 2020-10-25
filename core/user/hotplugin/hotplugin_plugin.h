@@ -82,7 +82,7 @@ namespace hotplugin
 
 
       virtual void         redraw();
-      virtual void         post_message(UINT uiMessage, WPARAM wparam, LPARAM lparam);
+      virtual void         post_message(const ::id & id, WPARAM wparam, LPARAM lparam);
 
       virtual oswindow         get_host_window();
 
@@ -140,7 +140,7 @@ namespace hotplugin
       virtual i32 x11_message_handler(void * pevent);
 #endif
       virtual void message_handler(::message::base * pbase) override;
-      virtual void plugin_message_handler(UINT message, WPARAM wparam, LPARAM lparam, bool bEnsureTx);
+      virtual void plugin_message_handler(const ::id & id, WPARAM wparam, LPARAM lparam, bool bEnsureTx);
 
       virtual void plugin_message_handler(MESSAGE * pmsg,bool bEnsureTx);
 

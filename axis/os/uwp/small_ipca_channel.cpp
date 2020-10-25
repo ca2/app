@@ -15,7 +15,7 @@ namespace axis
 
 
       // extern bool (WINAPI * g_pfnChangeWindowMessageFilter)(
-      // _In_ UINT message,
+      // _In_ const ::id & id,
       // _In_ DWORD dwFlag);
 
 

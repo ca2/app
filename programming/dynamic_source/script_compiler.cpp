@@ -2120,17 +2120,17 @@ auto tickStart = ::tick::now();
    }
 
 
-   void script_compiler::cppize(const ::file::path & lpcszSource,const ::file::path & lpcszDest,ecpptype e_type)
+   void script_compiler::cppize(const ::file::path & lpcszSource,const ::file::path & lpcszDest,ecpptype enum_type)
    {
 
       Context.dir().mk(lpcszDest.folder());
 
-      cppize1(lpcszSource, lpcszDest, e_type);
+      cppize1(lpcszSource, lpcszDest, enum_type);
 
    }
 
 
-   void script_compiler::cppize1(const ::file::path & lpcszSource,const ::file::path & lpcszDest,ecpptype e_type)
+   void script_compiler::cppize1(const ::file::path & lpcszSource,const ::file::path & lpcszDest,ecpptype enum_type)
    {
 
       string strSource = Context.file().as_string(lpcszSource);
@@ -2140,7 +2140,7 @@ auto tickStart = ::tick::now();
       string strDest;
       strDest = "";
       strDest = "";
-      if(e_type == cpptype_source || e_type == cpptype_ds)
+      if(enum_type == cpptype_source || enum_type == cpptype_ds)
       {
          strDest += "#include \"netnode_dynamic_source_script.h\"\r\n";
          //strDest += "#include \"11ca2_account.h\"\r\n";

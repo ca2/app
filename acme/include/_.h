@@ -1365,15 +1365,6 @@ inline bool is_impact_group(::u64 u, ::u64 uGroup) { return u >= uGroup && u < u
 inline bool is_impact_subgroup(::u64 u, ::u64 uGroup) { return u >= uGroup && u < uGroup + 100; }
 
 
-//class image;
-//namespace draw2d{class icon;}
-//
-//using image_pointer = __pointer(::image);
-//using icon_pointer = __pointer(::draw2d::icon);
-//
-//
-//using image_result = __result(::image);
-//using icon_result=__result(::draw2d::icon);
 
 
 class command_line;
@@ -1590,7 +1581,7 @@ namespace file
    typedef CLASS_DECL_ACME ::string_array_base < ::file::path,string > patha;
    class file;
 
-   enum e_type
+   enum enum_type
    {
 
       type_none,
@@ -2270,7 +2261,7 @@ class type;
 
 class thread_parameter;
 
-#include "acme/primitive/primitive/enum.h"
+//#include "acme/primitive/primitive/enum.h"
 
 
 #include "acme/primitive/primitive/interlocked_long.h"
@@ -2538,13 +2529,7 @@ using emessagebox = cflag < enum_message_box >;
 using matter_pointer = __pointer(::matter);
 
 
-#include "acme/primitive/primitive/function.h"
 
-
-#include "acme/primitive/primitive/method.h"
-
-
-#include "acme/primitive/primitive/future.h"
 
 
 namespace user
@@ -2557,9 +2542,35 @@ namespace user
 
 #include "acme/platform/_global.h"
 
+class function;
+class method;
+class future;
+
+
+namespace factory
+{
+
+   
+   class factory_interface;
+
+
+} // namespace factory
+
+
 
 #include "acme/primitive/primitive/matter.h"
 #include "acme/primitive/primitive/layered.h"
+
+
+class manual_reset_event;
+
+#include "acme/primitive/primitive/function_pointer.h"
+
+
+#include "acme/primitive/primitive/method.h"
+
+
+#include "acme/primitive/primitive/future.h"
 
 
 #include "acme/primitive/primitive/work.h"
@@ -2575,15 +2586,15 @@ namespace user
 
 
 #include "acme/platform/status.h"
-#include "acme/primitive/primitive/enum_type.h"
+#include "acme/primitive/primitive/enumeration.h"
 
 using efileopen = cflag < ::file::e_open >;
 
 using eiostate = ::cflag < ::file::e_iostate >;
 
-using ecommand = ::enum_type < enum_command >;
+using ecommand = ::enumeration < enum_command >;
 
-using echeck = ::enum_type < enum_check >;
+using echeck = ::enumeration < enum_check >;
 
 
 typedef ::estatus THREAD_PROCEDURE(thread_parameter parameter);
@@ -2994,6 +3005,12 @@ inline void dump_elements(dump_context & dumpcontext, const TYPE* pElements, ::c
 #include "acme/platform/enum.h"
 
 
+#include "acme/multithreading/critical_section.h"
+
+
+#include "acme/primitive/primitive/factory.h"
+
+
 #include "acme/multithreading/_.h"
 
 
@@ -3215,7 +3232,7 @@ class mq_base;
 //#endif
 
 
-#include "acme/primitive/primitive/factory.h"
+
 
 
 

@@ -25,7 +25,7 @@ namespace experience
 
       ::user::button::install_message_routing(pchannel);
 
-      IGUI_MSG_LINK(WM_LBUTTONDOWN, pchannel, this, &button::_001OnLButtonDown);
+      MESSAGE_LINK(WM_LBUTTONDOWN, pchannel, this, &button::_001OnLButtonDown);
 
 
    }

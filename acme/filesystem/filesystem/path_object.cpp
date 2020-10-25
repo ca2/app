@@ -14,7 +14,7 @@ namespace file
    void path_object::exchange(::stream& s)
    {
 
-      s.exchange(id::type_null, (::file::path&) * this);
+      s.exchange(id::e_type_null, (::file::path&) * this);
 
    }
 

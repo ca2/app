@@ -67,7 +67,7 @@ namespace draw2d
 
       m_color.set_argb(0);
 
-      m_etype     = type_null;
+      m_etype     = e_type_null;
 
       set_modified();
 

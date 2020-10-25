@@ -99,7 +99,7 @@ namespace simpledb
             if (reslt[i] == nullptr)
             {
                v = "";
-               v.set_type(::type_null);
+               v.set_type(::e_type_null);
             }
             else
             {
@@ -182,7 +182,7 @@ namespace simpledb
             if (reslt[i] == nullptr)
             {
                v = "";
-               v.set_type(::type_null);
+               v.set_type(::e_type_null);
             }
             else
             {
@@ -981,7 +981,7 @@ namespace simpledb
             if (reslt[i] == nullptr)
             {
                v = "";
-               v.set_type(::type_null);
+               v.set_type(::e_type_null);
             }
             else
             {

@@ -297,8 +297,8 @@ public:
    //virtual void read(RECT & rect) { raw_read(rect); }
    virtual void read(id & id) override;
    virtual void read(var & var) override;
-   virtual void read_var_type(e_type & etype) override;
-   virtual void read_var_body(var & var, e_type etype) override;
+   virtual void read_var_type(enum_type & etype) override;
+   virtual void read_var_body(var & var, enum_type etype) override;
    virtual void read(property & property) override;
    virtual void read(string & str) override;
    //virtual void read(matter * pobject);
@@ -306,7 +306,7 @@ public:
    virtual void read(property_set& set) override;
    virtual void read(block & block) override;
 
-   virtual void save_var_type(::e_type etype) override;
+   virtual void save_var_type(::enum_type etype) override;
 
    virtual void getline(char * sz, strsize n) override;
    int get();

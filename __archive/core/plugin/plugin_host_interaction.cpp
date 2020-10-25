@@ -34,18 +34,18 @@ namespace plugin
 
       ::user::interaction::install_message_routing(pchannel);
 
-      IGUI_MSG_LINK(WM_MOUSEMOVE, pchannel, this, &host_interaction::_001OnMouseMove);
-      IGUI_MSG_LINK(message_check, pchannel, this, &host_interaction::_001OnCheck);
-      IGUI_MSG_LINK(WM_CREATE, pchannel, this, &host_interaction::_001OnCreate);
+      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &host_interaction::_001OnMouseMove);
+      MESSAGE_LINK(message_check, pchannel, this, &host_interaction::_001OnCheck);
+      MESSAGE_LINK(e_message_create, pchannel, this, &host_interaction::_001OnCreate);
 
       /*
-      IGUI_MSG_LINK(WM_WINDOWPOSCHANGED  , pchannel, this, &host_interaction::on_ignore_message);
-      IGUI_MSG_LINK(WM_SIZE              , pchannel, this, &host_interaction::on_ignore_message);
-      IGUI_MSG_LINK(WM_MOVE              , pchannel, this, &host_interaction::on_ignore_message);
-      //IGUI_MSG_LINK(WM_TIMER             , pchannel, this, &host_interaction::on_ignore_message);
-      IGUI_MSG_LINK(WM_IME_SETCONTEXT    , pchannel, this, &host_interaction::on_ignore_message);
-      IGUI_MSG_LINK(WM_WINDOWPOSCHANGING , pchannel, this, &host_interaction::on_ignore_message);
-      IGUI_MSG_LINK(WM_CHILDACTIVATE     , pchannel, this, &host_interaction::on_ignore_message);
+      MESSAGE_LINK(WM_WINDOWPOSCHANGED  , pchannel, this, &host_interaction::on_ignore_message);
+      MESSAGE_LINK(e_message_size              , pchannel, this, &host_interaction::on_ignore_message);
+      MESSAGE_LINK(e_message_move              , pchannel, this, &host_interaction::on_ignore_message);
+      //MESSAGE_LINK(WM_TIMER             , pchannel, this, &host_interaction::on_ignore_message);
+      MESSAGE_LINK(WM_IME_SETCONTEXT    , pchannel, this, &host_interaction::on_ignore_message);
+      MESSAGE_LINK(WM_WINDOWPOSCHANGING , pchannel, this, &host_interaction::on_ignore_message);
+      MESSAGE_LINK(WM_CHILDACTIVATE     , pchannel, this, &host_interaction::on_ignore_message);
       */
 
    }
@@ -326,18 +326,18 @@ namespace plugin
    }
 
 
-   LRESULT host_interaction::DefWindowProc(UINT uiMessage, WPARAM wparam, lparam lparam)
+   LRESULT host_interaction::DefWindowProc(const ::id & id, WPARAM wparam, lparam lparam)
 
    {
 
-      if (uiMessage == WM_NCCREATE || uiMessage == WM_CREATE)
-         /*      || uiMessage == WM_SIZE
-               || uiMessage == WM_MOVE
-               || uiMessage == WM_WINDOWPOSCHANGING
-               || uiMessage == WM_WINDOWPOSCHANGED)*/
+      if (emessage == WM_NCCREATE || emessage == e_message_create)
+         /*      || emessage == e_message_size
+               || emessage == e_message_move
+               || emessage == WM_WINDOWPOSCHANGING
+               || emessage == WM_WINDOWPOSCHANGED)*/
       {
 
-         //return ::user::interaction::default_window_procedure(uiMessage, wparam, lparam);
+         //return ::user::interaction::default_window_procedure(emessage, wparam, lparam);
          return 0;
 
       }

@@ -27,14 +27,14 @@ class CLASS_DECL_ACME matter
 private:
 
 
-   mutable sync* m_pmutex;
+   mutable sync *                      m_pmutex;
 
 
 public:
 
 
-   i64                     m_countReference;
-   ::eobject               m_eobject;
+   i64                                 m_countReference;
+   ::eobject                           m_eobject;
 
 
 #if OBJ_REF_DBG
@@ -77,6 +77,9 @@ public:
    virtual ::index task_add(::task* pthread);
    virtual void task_remove(::task* pthread);
    virtual void task_on_term(::task* pthread);
+
+
+   virtual void kick_idle();
 
 
    //::estatus add_update(const ::id & id);
@@ -236,10 +239,7 @@ public:
    virtual strsize sz_len() const;
    virtual void to_sz(char* sz, strsize len) const;
 
-
-
-   //virtual ::estatus __thread_procedure() override;
-
+   virtual bool should_run_async() const;
 
 };
 

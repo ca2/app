@@ -44,9 +44,9 @@ namespace graphics
 
 // WM_ACTIVATETOPLEVEL is like WM_ACTIVATEAPP but works with hierarchies
 //   of mixed processes (as is the case with OLE in-place activation)
-#define WM_ACTIVATETOPLEVEL 0x036E  // wParam = nState (like WM_ACTIVATE)
+#define WM_ACTIVATETOPLEVEL 0x036E  // wParam = nState (like e_message_activate)
 // lParam = pointer to oswindow[2]
-//  lParam[0] = oswindow getting WM_ACTIVATE
+//  lParam[0] = oswindow getting e_message_activate
 //  lParam[1] = oswindow_Other
 
 #define WM_RESERVED_036F   0x036F  // was WM_QUERY3DCONTROLS (now not used)

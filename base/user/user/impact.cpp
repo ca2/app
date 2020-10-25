@@ -25,20 +25,20 @@ namespace user
 
       ::user::box::install_message_routing(pchannel);
 
-      //IGUI_MSG_LINK(WM_VIEW, pchannel, this, &impact::_001OnView);
-      IGUI_MSG_LINK(WM_LBUTTONDOWN, pchannel, this, &impact::_001OnLButtonDown);
-      IGUI_MSG_LINK(WM_LBUTTONUP, pchannel, this, &impact::_001OnLButtonUp);
-      IGUI_MSG_LINK(WM_MOUSEMOVE, pchannel, this, &impact::_001OnMouseMove);
-      IGUI_MSG_LINK(WM_CREATE, pchannel, this, &impact::_001OnCreate);
-      IGUI_MSG_LINK(WM_DESTROY, pchannel, this, &impact::_001OnDestroy);
-      //      IGUI_MSG_LINK(WM_LBUTTONDOWN    , pchannel, this, &impact::_001OnRButtonDown);
-      IGUI_MSG_LINK(WM_MBUTTONDOWN, pchannel, this, &impact::_001OnMButtonDown);
-      IGUI_MSG_LINK(WM_RBUTTONDOWN, pchannel, this, &impact::_001OnRButtonDown);
+      //MESSAGE_LINK(WM_VIEW, pchannel, this, &impact::_001OnView);
+      MESSAGE_LINK(WM_LBUTTONDOWN, pchannel, this, &impact::_001OnLButtonDown);
+      MESSAGE_LINK(WM_LBUTTONUP, pchannel, this, &impact::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &impact::_001OnMouseMove);
+      MESSAGE_LINK(e_message_create, pchannel, this, &impact::_001OnCreate);
+      MESSAGE_LINK(e_message_destroy, pchannel, this, &impact::_001OnDestroy);
+      //      MESSAGE_LINK(WM_LBUTTONDOWN    , pchannel, this, &impact::_001OnRButtonDown);
+      MESSAGE_LINK(WM_MBUTTONDOWN, pchannel, this, &impact::_001OnMButtonDown);
+      MESSAGE_LINK(WM_RBUTTONDOWN, pchannel, this, &impact::_001OnRButtonDown);
 
 
-      IGUI_MSG_LINK(WM_MOUSEACTIVATE, pchannel, this, &impact::_001OnMouseActivate);
-      //      IGUI_MSG_LINK(WM_DESTROY        , pchannel, this, &impact::_001OnDestroy);
-      //    IGUI_MSG_LINK(WM_CREATE        , pchannel, this, &impact::_001OnCreate);
+      MESSAGE_LINK(WM_MOUSEACTIVATE, pchannel, this, &impact::_001OnMouseActivate);
+      //      MESSAGE_LINK(e_message_destroy        , pchannel, this, &impact::_001OnDestroy);
+      //    MESSAGE_LINK(e_message_create        , pchannel, this, &impact::_001OnCreate);
 
       // Standard commands for split pane
       //  //      connect_command(ID_WINDOW_SPLIT , &impact::_001OnSplitCmd);
@@ -203,7 +203,7 @@ namespace user
 
       }
 
-      //   ::user::interaction::OnDestroy();
+      //   ::user::interaction::on_destroy();
    }
 
 
@@ -477,7 +477,7 @@ namespace user
    }
 
    /* trans
-   i32 impact::OnMouseActivate(::user::interaction_impl * pDesktopWnd, UINT nHitTest, UINT message)
+   i32 impact::OnMouseActivate(::user::interaction_impl * pDesktopWnd, UINT nHitTest, const ::id & id)
    {
    i32 nResult = ::user::interaction::OnMouseActivate(pDesktopWnd, nHitTest, message);
    if (nResult == MA_NOACTIVATE || nResult == MA_NOACTIVATEANDEAT)
@@ -601,7 +601,7 @@ namespace user
       UNREFERENCED_PARAMETER(pCmdUI);
       /*ENSURE_ARG(pCmdUI != nullptr);
       CSplitterWnd* pSplitter = GetParentSplitter(this, FALSE);
-      pCmdUI->Enable(pSplitter != nullptr && !pSplitter->IsTracking());*/
+      pCmdUI->enable(pSplitter != nullptr && !pSplitter->IsTracking());*/
    }
 
    bool impact::OnSplitCmd(UINT)
@@ -621,7 +621,7 @@ namespace user
       /*ASSERT(pCmdUI->m_nID == ID_NEXT_PANE ||
       pCmdUI->m_nID == ID_PREV_PANE);
       CSplitterWnd* pSplitter = GetParentSplitter(this, FALSE);
-      pCmdUI->Enable(pSplitter != nullptr &&
+      pCmdUI->enable(pSplitter != nullptr &&
       pSplitter->CanActivateNext(pCmdUI->m_nID == ID_PREV_PANE));*/
    }
 
@@ -957,7 +957,7 @@ namespace user
    }
 
 
-   ::user::interaction::e_type impact::get_window_type()
+   ::user::interaction::enum_type impact::get_window_type()
    {
       return type_view;
    }

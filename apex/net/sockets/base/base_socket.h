@@ -125,7 +125,7 @@ namespace sockets
       manual_reset_event      m_event;
 #endif
 
-      bool                    m_bEnableSsl; ///< Enable SSL for this tcp_socket
+      bool                    m_bEnableSsl; ///< enable SSL for this tcp_socket
       bool                    m_bSsl; ///< ssl negotiation mode (tcp_socket)
       bool                    m_bSslServer; ///< True if this is an incoming ssl tcp_socket connection
 
@@ -178,7 +178,7 @@ namespace sockets
 
       SOCK_ERASED_BY_HANDLER =    0x10, ///< Set by handler before delete
       // HAVE_OPENSSL
-      SOCK_ENABLE_SSL =       0x20, ///< Enable SSL for this tcp_socket
+      SOCK_ENABLE_SSL =       0x20, ///< enable SSL for this tcp_socket
       SOCK_SSL =          0x40, ///< ssl negotiation mode (tcp_socket)
       SOCK_SSL_SERVER =       0x80, ///< True if this is an incoming ssl tcp_socket connection
 
@@ -308,7 +308,7 @@ namespace sockets
 
       // LIST_TIMEOUT
 
-      /** Enable timeout control. 0=disable timeout check. */
+      /** enable timeout control. 0=disable timeout check. */
       void SetTimeout(time_t secs);
 
       /** Check timeout. \return true if time limit reached */
@@ -567,7 +567,7 @@ namespace sockets
 
       /** Called after OnRead if base_socket is in line protocol mode.
       \sa SetLineProtocol */
-      /** Enable the OnLine callback. Do not create your own OnRead
+      /** enable the OnLine callback. Do not create your own OnRead
       * callback when using this. */
       virtual void SetLineProtocol(bool = true);
 
@@ -595,7 +595,7 @@ namespace sockets
       /** Check if SSL is Enabled for this tcp_socket.
       \return true if this is a tcp_socket with SSL enabled */
       bool IsSSL();
-      /** Enable SSL operation for a tcp_socket. */
+      /** enable SSL operation for a tcp_socket. */
       void EnableSSL(bool x = true);
       /** Still negotiating ssl connection.
       \return true if ssl negotiating is still in progress */
@@ -612,7 +612,7 @@ namespace sockets
       /** SSL; get pointer to ssl structure. */
       //       virtual SSL *GetSsl() { return nullptr; }
       //@}
-      /** Enable ipv6 for this base_socket. */
+      /** enable ipv6 for this base_socket. */
       void SetIpv6(bool x = true);
       /** Check ipv6 base_socket.
       \return true if this is an ipv6 base_socket */

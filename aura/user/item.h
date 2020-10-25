@@ -67,7 +67,7 @@ namespace user
       ::point                       m_pointClient;
       ::point                       m_pointHitTest;
       ::rect                        m_rect;
-      ::user::e_event               m_eevent;
+      ::user::enum_event               m_eevent;
       u64                           m_uFlags;
 
       item_data & operator = (const item_data& item) { if (this != &item) memcpy(this, &item, sizeof(item_data)); return *this; }
@@ -93,16 +93,16 @@ namespace user
       //item(e_element eelement, ::index iItem = -1, ::index iSubItem = -1, ::index iListItem = -1, const ::u64 uFlags = flag_none) :
       //   item(eelement, iItem, iSubItem, iListItem, uFlags) {}
 
-      item(const ::u64 uFlags, e_element eelement, ::index iItem = -1, ::index iSubItem = -1, ::index iListItem = -1, ::user::e_event eevent = ::user::event_none) :
+      item(const ::u64 uFlags, e_element eelement, ::index iItem = -1, ::index iSubItem = -1, ::index iListItem = -1, ::user::enum_event eevent = ::user::event_none) :
          item(eelement, iItem, iSubItem, iListItem, eevent, uFlags) {}
 
-      item(e_element eelement, ::user::e_event eevent)
+      item(e_element eelement, ::user::enum_event eevent)
          : item(eelement, -1, -1, -1, eevent)
       {
 
       }
 
-      item(e_element eelement = ::user::element_none, ::index iItem = -1, ::index iSubItem = -1, ::index iListItem = -1, ::user::e_event eevent = event_none, const ::u64 uFlags = flag_none)
+      item(e_element eelement = ::user::element_none, ::index iItem = -1, ::index iSubItem = -1, ::index iListItem = -1, ::user::enum_event eevent = event_none, const ::u64 uFlags = flag_none)
       {
 
          m_eevent = eevent;

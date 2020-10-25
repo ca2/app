@@ -24,10 +24,10 @@ namespace user
    //}
 
 
-   void menu_command::Enable(bool bOn, const ::action_context & context)
+   void menu_command::enable(bool bOn, const ::action_context & context)
    {
 
-      ::user::command::Enable(bOn, context);
+      ::user::command::enable(bOn, context);
 
       if (m_puiOther != nullptr)
       {

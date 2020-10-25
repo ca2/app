@@ -34,12 +34,12 @@ namespace userfs
    {
 
       ::user::form_list_view::install_message_routing(pchannel);
-      IGUI_MSG_LINK(WM_HSCROLL, pchannel, this, &list::_001OnHScroll);
-      IGUI_MSG_LINK(WM_VSCROLL, pchannel, this, &list::_001OnVScroll);
-      IGUI_MSG_LINK(WM_SHOWWINDOW, pchannel, this, &list::_001OnShowWindow);
-      IGUI_MSG_LINK(WM_CREATE, pchannel, this, &list::_001OnCreate);
-      IGUI_MSG_LINK(WM_LBUTTONDBLCLK, pchannel, this, &list::_001OnLButtonDblClk);
-      IGUI_MSG_LINK(WM_CANCELMODE, pchannel, this, &list::_001OnCancelMode);
+      MESSAGE_LINK(WM_HSCROLL, pchannel, this, &list::_001OnHScroll);
+      MESSAGE_LINK(WM_VSCROLL, pchannel, this, &list::_001OnVScroll);
+      MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &list::_001OnShowWindow);
+      MESSAGE_LINK(e_message_create, pchannel, this, &list::_001OnCreate);
+      MESSAGE_LINK(WM_LBUTTONDBLCLK, pchannel, this, &list::_001OnLButtonDblClk);
+      MESSAGE_LINK(WM_CANCELMODE, pchannel, this, &list::_001OnCancelMode);
 
    }
 
@@ -704,7 +704,7 @@ namespace userfs
       SCAST_PTR(::user::command, pcommand, pmessage);
       ::user::range range;
       _001GetSelection(range);
-      pcommand->Enable(
+      pcommand->enable(
       range.get_item_count() == 1
       && range.ItemAt(0).get_lower_bound() == range.ItemAt(0).get_upper_bound());
       pmessage->m_bRet = true;

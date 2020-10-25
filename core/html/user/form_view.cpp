@@ -19,25 +19,25 @@ void html_form_view::install_message_routing(::channel * pchannel)
 
    ::user::form_view::install_message_routing(pchannel);
 
-   //IGUI_MSG_LINK(WM_DESTROY, pchannel, this, &html_form_view::_001OnDestroy);
-   //IGUI_MSG_LINK(WM_SIZE, pchannel, this, &html_form_view::_001OnSize);
+   //MESSAGE_LINK(e_message_destroy, pchannel, this, &html_form_view::_001OnDestroy);
+   //MESSAGE_LINK(e_message_size, pchannel, this, &html_form_view::_001OnSize);
 
-   //IGUI_MSG_LINK(WM_USER + 177     , this, this, &html_form_view::_001OnTabClick);
+   //MESSAGE_LINK(WM_USER + 177     , this, this, &html_form_view::_001OnTabClick);
    //connect_command(ID_FILE_PRINT, ::user::form_view::OnFilePrint)
    //connect_command(ID_FILE_PRINT_DIRECT, ::user::form_view::OnFilePrint)
    //connect_command(ID_FILE_PRINT_PREVIEW, ::user::form_view::OnFilePrintPreview)
-   //IGUI_MSG_LINK(WM_LBUTTONDOWN, pchannel, this, &::user::interaction::_001OnLButtonDown);
-   //IGUI_MSG_LINK(WM_LBUTTONUP, pchannel, this, &::user::interaction::_001OnLButtonUp);
-   //IGUI_MSG_LINK(WM_KEYDOWN, pchannel, this, &::user::interaction::_001OnKeyDown);
-   //IGUI_MSG_LINK(WM_KEYUP, pchannel, this, &::user::interaction::_001OnKeyUp);
+   //MESSAGE_LINK(WM_LBUTTONDOWN, pchannel, this, &::user::interaction::_001OnLButtonDown);
+   //MESSAGE_LINK(WM_LBUTTONUP, pchannel, this, &::user::interaction::_001OnLButtonUp);
+   //MESSAGE_LINK(WM_KEYDOWN, pchannel, this, &::user::interaction::_001OnKeyDown);
+   //MESSAGE_LINK(WM_KEYUP, pchannel, this, &::user::interaction::_001OnKeyUp);
 
-   //IGUI_MSG_LINK(WM_LBUTTONDOWN, pchannel, this, &html_form_view::_001OnLButtonDown);
-   //IGUI_MSG_LINK(WM_MOUSEMOVE, pchannel, this, &html_form_view::_001OnMouseMove);
-   //IGUI_MSG_LINK(WM_LBUTTONUP, pchannel, this, &html_form_view::_001OnLButtonUp);
-   //IGUI_MSG_LINK(WM_KEYDOWN, pchannel, this, &html_form_view::_001OnKeyDown);
-   IGUI_MSG_LINK(WM_SETFOCUS, pchannel, this, &html_form_view::_001OnSetFocus);
-   IGUI_MSG_LINK(WM_KILLFOCUS, pchannel, this, &html_form_view::_001OnKillFocus);
-   //IGUI_MSG_LINK(WM_CREATE, pchannel, this, &html_form_view::_001OnCreate);
+   //MESSAGE_LINK(WM_LBUTTONDOWN, pchannel, this, &html_form_view::_001OnLButtonDown);
+   //MESSAGE_LINK(e_message_mouse_move, pchannel, this, &html_form_view::_001OnMouseMove);
+   //MESSAGE_LINK(WM_LBUTTONUP, pchannel, this, &html_form_view::_001OnLButtonUp);
+   //MESSAGE_LINK(WM_KEYDOWN, pchannel, this, &html_form_view::_001OnKeyDown);
+   MESSAGE_LINK(e_message_set_focus, pchannel, this, &html_form_view::_001OnSetFocus);
+   MESSAGE_LINK(e_message_kill_focus, pchannel, this, &html_form_view::_001OnKillFocus);
+   //MESSAGE_LINK(e_message_create, pchannel, this, &html_form_view::_001OnCreate);
 
 }
 

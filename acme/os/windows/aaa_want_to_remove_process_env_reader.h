@@ -74,7 +74,7 @@ public:
       IN ULONG ProcessInformationLength,
       OUT PULONG ReturnLength OPTIONAL);
 
-   /* Process Helper functions */
+   /* Process helper functions */
    static BOOL ReadEnvironmentBlock(HANDLE hProcess,_ENVSTRING_t& stEnvData);
    static HANDLE OpenProcessToRead(DWORD dwPID);
    static void ReleaseHandle(HANDLE hHandle);
@@ -83,7 +83,7 @@ public:
    static string GetProcessNameFromHandle(HANDLE hProcess);
    static string GetProcessNameFromID(DWORD dwPID);
 
-   /* GDI Helper functions */
+   /* GDI helper functions */
    static void LoadIconFromProcess(HANDLE hProcess,HICON& hIconSmall,HICON& hIconLarge);
 
    /* String helper functions */

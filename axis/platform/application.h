@@ -57,7 +57,7 @@ namespace axis
       virtual bool Ex2OnAppInstall() override;
       virtual bool Ex2OnAppUninstall() override;
 
-      virtual ::estatus init_application() override;
+      //virtual ::estatus init_application() override;
 
       virtual ::estatus init1() override;
       virtual ::estatus init2() override;

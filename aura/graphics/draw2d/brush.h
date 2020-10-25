@@ -11,10 +11,10 @@ namespace draw2d
    public:
 
 
-      enum e_type
+      enum enum_type
       {
 
-         type_null,
+         e_type_null,
          type_solid,
          type_linear_gradient_point_color,
          type_radial_gradient_color,
@@ -24,7 +24,7 @@ namespace draw2d
 
 
       color                m_color;
-      e_type               m_etype;
+      enum_type               m_etype;
       pointd               m_point1;
       pointd               m_point2;
       color                m_color1;

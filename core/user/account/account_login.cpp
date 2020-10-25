@@ -56,7 +56,7 @@ namespace account
 
       ::user::interaction::install_message_routing(pchannel);
 
-      IGUI_MSG_LINK(WM_CREATE, pchannel, this, &login::_001OnCreate);
+      MESSAGE_LINK(e_message_create, pchannel, this, &login::_001OnCreate);
 
    }
 

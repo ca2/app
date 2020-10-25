@@ -821,7 +821,7 @@ namespace draw2d
       virtual bool fill_path(::draw2d::path * ppath);
       virtual bool path(::draw2d::path * ppath);
 
-      // Misc Helper Functions
+      // Misc helper Functions
       virtual ::draw2d::brush * GetHalftoneBrush();
       //virtual void DrawDragRect(const ::rect & rect, const ::size & size,
 

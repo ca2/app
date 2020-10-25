@@ -43,7 +43,7 @@ namespace filemanager
    };
 
 
-   enum e_state
+   enum enum_state
    {
       state_initial,
       state_start,

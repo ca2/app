@@ -1337,6 +1337,7 @@
     <ClInclude Include="memory\os_alloc.h" />
     <ClInclude Include="message.h" />
     <ClInclude Include="message\timer.h" />
+    <ClInclude Include="message\user.h" />
     <ClInclude Include="message\_.h" />
     <ClInclude Include="message\_impl.h" />
     <ClInclude Include="message\_message.h" />
@@ -1568,8 +1569,6 @@
     <ClInclude Include="const\aaa_context.h" />
     <ClInclude Include="const\aaa_id.h" />
     <ClInclude Include="const\idpool.h" />
-    <ClInclude Include="const\aaa_message.h" />
-    <ClInclude Include="const\aaa_simple_command.h" />
     <ClInclude Include="const\aaa_source.h" />
     <ClInclude Include="const\aaa_status.h" />
     <ClInclude Include="const\aaa_status_range_authentication.h" />

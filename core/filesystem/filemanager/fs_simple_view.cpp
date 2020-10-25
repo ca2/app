@@ -39,7 +39,7 @@ namespace filemanager
 
             ::user::split_view::install_message_routing(pchannel);
 
-            IGUI_MSG_LINK(WM_DESTROY, pchannel, this, &::filemanager::fs::simple::view::_001OnDestroy);
+            MESSAGE_LINK(e_message_destroy, pchannel, this, &::filemanager::fs::simple::view::_001OnDestroy);
 
          }
 

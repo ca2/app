@@ -2,7 +2,7 @@
 #include "apex/platform/app_core.h"
 
 
-// typedef int (WINAPI * LPFN_ChangeWindowMessageFilter)(UINT message, DWORD dwFlag);
+// typedef int (WINAPI * LPFN_ChangeWindowMessageFilter)(const ::id & id, DWORD dwFlag);
 
 
 //extern LPFN_ChangeWindowMessageFilter g_pfnChangeWindowMessageFilter;
@@ -17,7 +17,7 @@
 
 
       ATOM rx_register_class(HINSTANCE hInstance);
-      LRESULT CALLBACK s_rx_message_queue_proc(oswindow oswindow,UINT message,WPARAM wparam,LPARAM lparam);
+      LRESULT CALLBACK s_rx_message_queue_proc(oswindow oswindow,const ::id & id,WPARAM wparam,LPARAM lparam);
 
 
 
@@ -386,7 +386,7 @@
       }
 
 
-      LRESULT CALLBACK s_rx_message_queue_proc(oswindow oswindow,UINT message,WPARAM wparam,LPARAM lparam)
+      LRESULT CALLBACK s_rx_message_queue_proc(oswindow oswindow, UINT message,WPARAM wparam,LPARAM lparam)
       {
 
          int iRet = 0;
@@ -403,7 +403,7 @@
          else
          {
 
-            return pchannel->message_queue_proc(message,wparam,lparam);
+            return pchannel->message_queue_proc((enum_message) message,wparam,lparam);
 
 
          }

@@ -195,22 +195,22 @@ LRESULT CALLBACK CTSFMainWnd::_WndProc( HWND hWnd,
         }
         break;
 
-    case WM_CREATE:
+    case e_message_create:
         return pThis->_OnCreate();
 
-    case WM_SIZE:
+    case e_message_size:
         return pThis->_OnSize(LOWORD(lParam), HIWORD(lParam));
 
-    case WM_DESTROY:
+    case e_message_destroy:
         return pThis->_OnDestroy();
 
-    case WM_SETFOCUS:
+    case e_message_set_focus:
         return pThis->_OnSetFocus();
 
-    case WM_KILLFOCUS:
+    case e_message_kill_focus:
         return pThis->_OnKillFocus();
 
-    case WM_ACTIVATE:
+    case e_message_activate:
         return pThis->_OnActivate(wParam);
 
     case WM_INITMENUPOPUP:

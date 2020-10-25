@@ -30,12 +30,12 @@ namespace user
 
       ::user::interaction::install_message_routing(psender);
 
-      IGUI_MSG_LINK(WM_CREATE, psender, this, &::user::color_combo_box::_001OnCreate);
-      IGUI_MSG_LINK(WM_LBUTTONDOWN, psender, this, &::user::color_combo_box::_001OnLButtonDown);
-      IGUI_MSG_LINK(WM_LBUTTONUP, psender, this, &::user::color_combo_box::_001OnLButtonUp);
-      IGUI_MSG_LINK(WM_MOUSEMOVE, psender, this, &::user::color_combo_box::_001OnMouseMove);
-      IGUI_MSG_LINK(WM_MOUSELEAVE, psender, this, &::user::color_combo_box::_001OnMouseLeave);
-      IGUI_MSG_LINK(WM_SHOWWINDOW, psender, this, &::user::color_combo_box::_001OnShowWindow);
+      MESSAGE_LINK(e_message_create, psender, this, &::user::color_combo_box::_001OnCreate);
+      MESSAGE_LINK(WM_LBUTTONDOWN, psender, this, &::user::color_combo_box::_001OnLButtonDown);
+      MESSAGE_LINK(WM_LBUTTONUP, psender, this, &::user::color_combo_box::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_mouse_move, psender, this, &::user::color_combo_box::_001OnMouseMove);
+      MESSAGE_LINK(WM_MOUSELEAVE, psender, this, &::user::color_combo_box::_001OnMouseLeave);
+      MESSAGE_LINK(WM_SHOWWINDOW, psender, this, &::user::color_combo_box::_001OnShowWindow);
 
    }
 
@@ -100,7 +100,7 @@ namespace user
 
                User.will_use_view_hint(COLORSEL_IMPACT);
 
-               m_pdocument = User.m_mapimpactsystem[COLORSEL_IMPACT]->open_document_file(get_context_application(), ::type_null, __visible(false));
+               m_pdocument = User.m_mapimpactsystem[COLORSEL_IMPACT]->open_document_file(get_context_application(), ::e_type_null, __visible(false));
 
                m_pview = m_pdocument->get_typed_view < ::userex::color_view >();
 

@@ -539,7 +539,7 @@ void ns_main_async(dispatch_block_t block);
 //   if(!w->m_pimpl->m_bDestroyImplOnly)
 //   {
 //
-//      w->m_pimpl->m_puserinteraction->post_message(WM_DESTROY);
+//      w->m_pimpl->m_puserinteraction->post_message(e_message_destroy);
 //
 //      w->m_pimpl->m_puserinteraction->post_message(WM_NCDESTROY);
 //
@@ -550,7 +550,7 @@ void ns_main_async(dispatch_block_t block);
 //      ns_main_async(^()
 //      {
 //
-//         w->m_pimpl->call_message_handler(WM_DESTROY, 0, 0);
+//         w->m_pimpl->call_message_handler(e_message_destroy, 0, 0);
 //
 //         w->m_pimpl->call_message_handler(WM_NCDESTROY, 0, 0);
 //

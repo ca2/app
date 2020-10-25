@@ -8,7 +8,7 @@ struct CLASS_DECL_AXIS_RDPCLIENT rdp_event_item
    int bKey;
    int down;
    UINT scancode;
-   UINT uiMessage;
+   const ::id & id;
    POINT pt;
    void send();
 };
@@ -20,7 +20,7 @@ typedef array < rdp_event_item > rdp_event_itema;
 
 map < void *,void *,rdp_event_itema> g_eventmap;
 
-CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_send_event(void * input,int bKey,int down,UINT scancode,UINT uiMessage,POINT pt);
+CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_send_event(void * input,int bKey,int down,UINT scancode,const ::id & id,POINT pt);
 
 ::mutex * ca2rdp_get_event_queue_mutex()
 {
@@ -37,7 +37,7 @@ CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_send_event(void * input,int bKey,int down,
 
 }
 
-CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_queue_event(void * input,int bKey,int down,UINT scancode,UINT uiMessage,POINT pt)
+CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_queue_event(void * input,int bKey,int down,UINT scancode,const ::id & id,POINT pt)
 {
 
    sync_lock sl(ca2rdp_get_event_queue_mutex());
@@ -47,7 +47,7 @@ CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_queue_event(void * input,int bKey,int down
    item.bKey = bKey;
    item.down = down;
    item.scancode = scancode;
-   item.uiMessage = uiMessage;
+   item.emessage = emessage;
    item.pt = point;
 
    g_eventmap[input].add(item);
@@ -72,6 +72,6 @@ CLASS_DECL_AXIS_RDPCLIENT int  ca2rdp_get_event(rdp_event_item & item,void* inpu
 void rdp_event_item::send()
 {
 
-   ca2rdp_send_event(input,bKey,down,scancode,uiMessage, point);
+   ca2rdp_send_event(input,bKey,down,scancode,emessage, point);
 
 }

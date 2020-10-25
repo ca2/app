@@ -32,9 +32,9 @@ namespace user
 
       ::user::interaction::install_message_routing(pchannel);
 
-      IGUI_MSG_LINK(WM_SETTINGCHANGE, pchannel,this,&system_interaction_impl::_001OnMessage);
-      IGUI_MSG_LINK(WM_DISPLAYCHANGE, pchannel,this,&system_interaction_impl::_001OnMessage);
-      IGUI_MSG_LINK(WM_FONTCHANGE, pchannel, this, &system_interaction_impl::_001OnMessage);
+      MESSAGE_LINK(WM_SETTINGCHANGE, pchannel,this,&system_interaction_impl::_001OnMessage);
+      MESSAGE_LINK(WM_DISPLAYCHANGE, pchannel,this,&system_interaction_impl::_001OnMessage);
+      MESSAGE_LINK(WM_FONTCHANGE, pchannel, this, &system_interaction_impl::_001OnMessage);
 
    }
 
@@ -109,7 +109,7 @@ namespace user
             //   try
             //   {
 
-            //      pinteraction->post_message(message_display_change);
+            //      pinteraction->post_message(e_message_display_change);
 
             //   }
             //   catch(...)

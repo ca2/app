@@ -115,7 +115,7 @@ static int button_hit(Button* button)
 			break;
 
 		case BUTTON_CLOSE:
-			SendMessage(floatbar->parent, WM_DESTROY, 0 , 0);
+			SendMessage(floatbar->parent, e_message_destroy, 0 , 0);
 			break;
 
 		default:
@@ -231,7 +231,7 @@ LRESULT CALLBACK floatbar_proc(HWND hWnd, UINT Msg, WPARAM wParam,
 
 	switch (Msg)
 	{
-		case WM_CREATE:
+		case e_message_create:
 			floatbar = (FloatBar*)((CREATESTRUCT*)lParam)->lpCreateParams;
 			floatbar->hwnd = hWnd;
 			floatbar->parent = GetParent(hWnd);
@@ -288,7 +288,7 @@ LRESULT CALLBACK floatbar_proc(HWND hWnd, UINT Msg, WPARAM wParam,
 
 			break;
 
-		case WM_MOUSEMOVE:
+		case e_message_mouse_move:
 			KillTimer(hWnd, TIMER_HIDE);
 			pos_x = lParam & 0xffff;
 			pos_y = (lParam >> 16) & 0xffff;
@@ -393,7 +393,7 @@ LRESULT CALLBACK floatbar_proc(HWND hWnd, UINT Msg, WPARAM wParam,
 
 			break;
 
-		case WM_DESTROY:
+		case e_message_destroy:
 			DeleteDC(floatbar->hdcmem);
 			PostQuitMessage(0);
 			break;

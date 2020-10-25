@@ -104,7 +104,7 @@ namespace ios
       if(::stat(path, &stat)  == -1)
       {
          
-         varRet.set_type(::type_null);
+         varRet.set_type(::e_type_null);
          
       }
       else

@@ -1068,8 +1068,8 @@ void wf_destroy_file_obj(IDataObject* instance);
 //
 //	switch (Msg)
 //	{
-//		case WM_CREATE:
-//			DEBUG_CLIPRDR("info: WM_CREATE");
+//		case e_message_create:
+//			DEBUG_CLIPRDR("info: e_message_create");
 //			clipboard = (wfClipboard*)((CREATESTRUCT*) lParam)->lpCreateParams;
 //			if (!AddClipboardFormatListener(hWnd)) {
 //				DEBUG_CLIPRDR("error: AddClipboardFormatListener failed with %#x.", get_last_error());
@@ -2034,7 +2034,7 @@ void wf_destroy_file_obj(IDataObject* instance);
 //		return;
 //
 //	if (clipboard->hwnd)
-//		PostMessage(clipboard->hwnd, WM_QUIT, 0, 0);
+//		PostMessage(clipboard->hwnd, e_message_quit, 0, 0);
 //
 //	if (clipboard->thread)
 //	{

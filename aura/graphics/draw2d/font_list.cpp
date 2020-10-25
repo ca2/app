@@ -664,7 +664,7 @@ namespace draw2d
    }
 
    
-   void font_list::set_font_list_type(e_type etype)
+   void font_list::set_font_list_type(enum_type etype)
    {
 
       m_etype = etype;
@@ -693,7 +693,7 @@ namespace draw2d
    }
 
 
-   font_list::e_type font_list::get_font_list_type() const
+   font_list::enum_type font_list::get_font_list_type() const
    {
 
       return m_etype;

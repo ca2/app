@@ -37,14 +37,14 @@ namespace user
 
       ::user::interaction::install_message_routing(pchannel);
 
-      IGUI_MSG_LINK(WM_CREATE, pchannel, this, &still::_001OnCreate);
-      //IGUI_MSG_LINK(WM_LBUTTONDOWN, pchannel, this, &still::_001OnLButtonDown);
-      //IGUI_MSG_LINK(WM_LBUTTONUP, pchannel, this, &still::_001OnLButtonUp);
-      //IGUI_MSG_LINK(WM_MBUTTONDOWN, pchannel, this, &still::_001OnMButtonDown);
-      //IGUI_MSG_LINK(WM_MBUTTONUP, pchannel, this, &still::_001OnMButtonUp);
-      //IGUI_MSG_LINK(WM_MOUSEMOVE, pchannel, this, &still::_001OnMouseMove);
-      //IGUI_MSG_LINK(WM_MOUSELEAVE, pchannel, this, &still::_001OnMouseLeave);
-      IGUI_MSG_LINK(WM_KEYDOWN, pchannel, this, &still::_001OnKeyDown);
+      MESSAGE_LINK(e_message_create, pchannel, this, &still::_001OnCreate);
+      //MESSAGE_LINK(WM_LBUTTONDOWN, pchannel, this, &still::_001OnLButtonDown);
+      //MESSAGE_LINK(WM_LBUTTONUP, pchannel, this, &still::_001OnLButtonUp);
+      //MESSAGE_LINK(WM_MBUTTONDOWN, pchannel, this, &still::_001OnMButtonDown);
+      //MESSAGE_LINK(WM_MBUTTONUP, pchannel, this, &still::_001OnMButtonUp);
+      //MESSAGE_LINK(e_message_mouse_move, pchannel, this, &still::_001OnMouseMove);
+      //MESSAGE_LINK(WM_MOUSELEAVE, pchannel, this, &still::_001OnMouseLeave);
+      MESSAGE_LINK(WM_KEYDOWN, pchannel, this, &still::_001OnKeyDown);
 
    }
 
@@ -376,7 +376,7 @@ namespace user
    //   //      ev.m_puie = this;
    //   //      ev.m_eevent = ::user::event_mouse_enter;
    //   //      GetParent()->send_message(
-   //   //      EVENT_MESSAGE, 0, (LPARAM)&ev);
+   //   //      e_message_event, 0, (LPARAM)&ev);
    //   //      //               m_bActionHover = true;
    //   //   }
    //   //   else if (iHover == -1)
@@ -385,7 +385,7 @@ namespace user
    //   //      ev.m_puie = this;
    //   //      ev.m_eevent = ::user::event_mouse_leave;
    //   //      GetParent()->send_message(
-   //   //      EVENT_MESSAGE, 0, (LPARAM)&ev);
+   //   //      e_message_event, 0, (LPARAM)&ev);
    //   //      //             m_bActionHover = false;
    //   //   }
    //   //}
@@ -408,7 +408,7 @@ namespace user
    //   //   ev.m_eevent = ::user::event_mouse_leave;
    //   //   if (GetParent() != nullptr)
    //   //   {
-   //   //      GetParent()->send_message(EVENT_MESSAGE, 0, (LPARAM)&ev);
+   //   //      GetParent()->send_message(e_message_event, 0, (LPARAM)&ev);
    //   //   }
    //   //}
 

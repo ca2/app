@@ -25,6 +25,7 @@ public:
 
 
    context_object() { }
+   context_object(const ::id& id) : m_id(id) {}
    context_object(const context_object & object);
    context_object(context_object && object) :
       matter(::move(object)),

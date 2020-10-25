@@ -215,7 +215,7 @@ public:
    virtual void _001OnTimer(::timer * ptimer);
    DECL_GEN_SIGNAL(OnSetCursor);
 
-   XfplayerViewLineSelection::e_state GetSelectionState();
+   XfplayerViewLineSelection::enum_state GetSelectionState();
    XfplayerViewLineSelection & GetSelection();
    ::user::interaction * get_interaction();
 

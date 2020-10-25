@@ -12,7 +12,7 @@ public:
    bool                             m_bUseDedicatedThread;
    __pointer(::thread)              m_pthread;
    method_array                     m_methoda;
-   __pointer(manual_reset_event)    m_pev;
+   __pointer(manual_reset_event)    m_pevTaskOnQueue;
    int                              m_iAliveCount;
    int                              m_iAlive;
    string                           m_strThreadName;
@@ -22,14 +22,14 @@ public:
    virtual ~handler_manager();
 
 
-   void sync(const ::method & method);
-   void async(const ::method & method);
+   ::estatus async(const ::method & method);
+   ::estatus sync(const ::method & method);
 
 
-   ::estatus handle(::object * pboject, bool bSync);
+   ::estatus handle(const ::method & method, bool bSync);
 
 
-   bool wait();
+   method pick_new_task();
 
    
    void loop();

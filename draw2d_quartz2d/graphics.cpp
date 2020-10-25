@@ -4940,7 +4940,7 @@ namespace draw2d_quartz2d
    bool graphics::_set_pen(::draw2d::brush * pbrush, double dWidth)
    {
 
-      if(pbrush == nullptr || pbrush->m_etype == ::draw2d::brush::type_null)
+      if(pbrush == nullptr || pbrush->m_etype == ::draw2d::brush::e_type_null)
       {
 
          return false;
@@ -4998,7 +4998,7 @@ namespace draw2d_quartz2d
    bool graphics::_fill(::draw2d::brush * pbrush, bool bContextClip)
    {
 
-      if(pbrush == nullptr || pbrush->m_etype == ::draw2d::brush::type_null)
+      if(pbrush == nullptr || pbrush->m_etype == ::draw2d::brush::e_type_null)
          return true;
 
       CGContextRef pgraphics = m_pdc;
@@ -5205,7 +5205,7 @@ namespace draw2d_quartz2d
    bool graphics::_draw(::draw2d::brush * pbrush)
    {
 
-      if(pbrush == nullptr || pbrush->m_etype == ::draw2d::brush::type_null)
+      if(pbrush == nullptr || pbrush->m_etype == ::draw2d::brush::e_type_null)
          return true;
 
       //if(ppen->m_etype == ::draw2d::e_pen_solid)

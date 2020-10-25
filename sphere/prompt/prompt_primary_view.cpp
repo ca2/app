@@ -37,7 +37,7 @@ namespace prompt
    {
 
       BASE::install_message_routing(pchannel);
-      IGUI_MSG_LINK(WM_CONTEXTMENU, pchannel, this, &primary_view::_001OnContextMenu);
+      MESSAGE_LINK(WM_CONTEXTMENU, pchannel, this, &primary_view::_001OnContextMenu);
 
    }
 
@@ -224,7 +224,7 @@ namespace prompt
    void primary_view::_001OnUpdateEditCopy(::message::message * pmessage)
    {
       SCAST_PTR(::user::command, pcommand, pmessage);
-      pcommand->Enable(TRUE);
+      pcommand->enable(TRUE);
    }
 
    void primary_view::_001OnEditCopy(::message::message * pmessage)
@@ -236,7 +236,7 @@ namespace prompt
    void primary_view::_001OnUpdateEditPaste(::message::message * pmessage)
    {
       SCAST_PTR(::user::command, pcommand, pmessage);
-      pcommand->Enable(TRUE);
+      pcommand->enable(TRUE);
    }
 
 

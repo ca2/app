@@ -11,7 +11,7 @@ namespace database
    public:
 
       
-      enum e_type
+      enum enum_type
       {
          
          type_none,
@@ -22,7 +22,7 @@ namespace database
 
       string      m_strName;
       i32         m_iSize;
-      e_type      m_etype;
+      enum_type      m_etype;
 
       
       field_definition_item();
@@ -32,7 +32,7 @@ namespace database
       //field_definition_item & operator = (const xml::node & node);
 
 
-      e_type field_str_to_type(const char * pszType);
+      enum_type field_str_to_type(const char * pszType);
 
       
    };

@@ -12,7 +12,7 @@ namespace browser
    public:
 
 
-      enum e_type
+      enum enum_type
       {
 
          type_normal,
@@ -20,7 +20,7 @@ namespace browser
 
       };
 
-      e_type                                 m_etype;
+      enum_type                                 m_etype;
       string                                 m_strHelloBrowser;
       string                                 m_strHelloBrowserDefault;
       string                                 m_strAlternateHelloBrowser;

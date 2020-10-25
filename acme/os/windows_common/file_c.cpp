@@ -208,7 +208,7 @@ CLASS_DECL_ACME bool __node_further_file_is_equal(const ::file::path & path1, co
 }
 
 
-int_bool is_file_or_dir_dup(const char * path, ::file::e_type * petype)
+int_bool is_file_or_dir_dup(const char * path, ::file::enum_type * petype)
 {
 
    auto dwFileAttributes = windows_get_file_attributes(path);

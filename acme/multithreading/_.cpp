@@ -147,7 +147,7 @@ namespace multithreading
    //}
 
 
-   //CLASS_DECL_ACME void post_to_all_threads(UINT message, WPARAM wparam, LPARAM lparam)
+   //CLASS_DECL_ACME void post_to_all_threads(const ::id & id, WPARAM wparam, LPARAM lparam)
    //{
 
    //   sync_lock sl(&::get_context_system()->m_mutexThread);
@@ -258,34 +258,20 @@ namespace multithreading
 //}
 
 
-typedef bool THREAD_GET_RUN();
-using PFN_THREAD_GET_RUN = THREAD_GET_RUN*;
+//typedef bool THREAD_GET_RUN();
+//using PFN_THREAD_GET_RUN = THREAD_GET_RUN*;
 
 
-PFN_THREAD_GET_RUN g_pthreadgetrun = nullptr;
+//PFN_THREAD_GET_RUN g_pthreadgetrun = nullptr;
 
 
-bool thread_get_run()
-{
-
-   if (!g_pthreadgetrun)
-   {
-
-      return true;
-
-   }
-
-   return g_pthreadgetrun();
-
-}
-
-
-CLASS_DECL_ACME void set_thread_get_run(PFN_THREAD_GET_RUN pthreadrun)
-{
-
-   g_pthreadgetrun = pthreadrun;
-
-}
+//
+//CLASS_DECL_ACME void set_thread_get_run(PFN_THREAD_GET_RUN pthreadrun)
+//{
+//
+//   g_pthreadgetrun = pthreadrun;
+//
+//}
 
 
 //bool thread_get_run()
@@ -746,4 +732,20 @@ CLASS_DECL_ACME void thread_release(OBJ_REF_DBG_PARAMS_DEF)
 }
 
 
+
+bool thread_get_run()
+{
+
+   auto ptask = t_ptask;
+
+   if (::is_null(ptask))
+   {
+
+      return true;
+
+   }
+
+   return ptask->thread_get_run();
+
+}
 

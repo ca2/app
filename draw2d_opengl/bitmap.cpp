@@ -403,12 +403,12 @@ namespace draw2d_opengl
 
       switch (msg)
       {
-      case WM_CREATE:
+      case e_message_create:
          //         timeBeginPeriod(1);
          //SetTimer(hWnd, 1, 1000, 0);
          return 0;
 
-      case WM_DESTROY:
+      case e_message_destroy:
          //KillTimer(hWnd, 1);
          //       timeEndPeriod(1);
          //PostQuitMessage(0);

@@ -1163,7 +1163,7 @@ typedef struct tagTOOLINFOW {
 #define TTM_DELTOOLW            (WM_USER + 51)
 #define TTM_NEWTOOLRECTA        (WM_USER + 6)
 #define TTM_NEWTOOLRECTW        (WM_USER + 52)
-#define TTM_RELAYEVENT          (WM_USER + 7) // Win7: wParam = GetMessageExtraInfo() when relaying WM_MOUSEMOVE
+#define TTM_RELAYEVENT          (WM_USER + 7) // Win7: wParam = GetMessageExtraInfo() when relaying e_message_mouse_move
 
 #define TTM_GETTOOLINFOA        (WM_USER + 8)
 #define TTM_GETTOOLINFOW        (WM_USER + 53)

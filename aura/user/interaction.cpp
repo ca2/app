@@ -606,7 +606,7 @@ namespace user
 
       m_bNeedLoadFormData = true;
 
-      post_message(message_need_load_form_data);
+      post_message(e_message_need_load_form_data);
 
    }
 
@@ -616,7 +616,7 @@ namespace user
 
       m_bNeedSaveFormData = true;
 
-      post_message(message_need_save_form_data);
+      post_message(e_message_need_save_form_data);
 
    }
 
@@ -1009,37 +1009,37 @@ namespace user
    void interaction::install_message_routing(::channel * pchannel)
    {
 
-      IGUI_MSG_LINK(WM_CREATE, pchannel, this, &interaction::_001OnCreate);
-      IGUI_MSG_LINK(WM_DESTROY, pchannel, this, &interaction::_001OnDestroy);
-      IGUI_MSG_LINK(message_text_composition, pchannel, this, &interaction::_001OnTextComposition);
+      MESSAGE_LINK(e_message_create, pchannel, this, &interaction::_001OnCreate);
+      MESSAGE_LINK(e_message_destroy, pchannel, this, &interaction::_001OnDestroy);
+      MESSAGE_LINK(e_message_text_composition, pchannel, this, &interaction::_001OnTextComposition);
 
       primitive::install_message_routing(pchannel);
 
       if (m_bMessageWindow)
       {
 
-         //IGUI_MSG_LINK(WM_DESTROY              , pchannel, this, &interaction::_001OnDestroyMessageWindow);
+         //MESSAGE_LINK(e_message_destroy              , pchannel, this, &interaction::_001OnDestroyMessageWindow);
 
       }
       else
       {
 
-         IGUI_MSG_LINK(WM_CLOSE, pchannel, this, &interaction::_001OnClose);
-         IGUI_MSG_LINK(WM_SIZE, pchannel, this, &interaction::_001OnSize);
-         IGUI_MSG_LINK(WM_MOVE, pchannel, this, &interaction::_001OnMove);
-         IGUI_MSG_LINK(WM_NCCALCSIZE, pchannel, this, &interaction::_001OnNcCalcSize);
-         IGUI_MSG_LINK(WM_SHOWWINDOW, pchannel, this, &interaction::_001OnShowWindow);
-         IGUI_MSG_LINK(WM_KILLFOCUS, pchannel, this, &interaction::_001OnKillFocus);
-         IGUI_MSG_LINK(WM_SETFOCUS, pchannel, this, &interaction::_001OnSetFocus);
-         IGUI_MSG_LINK(WM_DISPLAYCHANGE, pchannel, this, &interaction::_001OnDisplayChange);
-         IGUI_MSG_LINK(WM_LBUTTONDOWN, pchannel, this, &interaction::_001OnLButtonDown);
-         IGUI_MSG_LINK(WM_KEYDOWN, pchannel, this, &::user::interaction::_001OnKeyDown);
-         IGUI_MSG_LINK(WM_ENABLE, pchannel, this, &::user::interaction::_001OnEnable);
+         MESSAGE_LINK(WM_CLOSE, pchannel, this, &interaction::_001OnClose);
+         MESSAGE_LINK(e_message_size, pchannel, this, &interaction::_001OnSize);
+         MESSAGE_LINK(e_message_move, pchannel, this, &interaction::_001OnMove);
+         MESSAGE_LINK(WM_NCCALCSIZE, pchannel, this, &interaction::_001OnNcCalcSize);
+         MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &interaction::_001OnShowWindow);
+         MESSAGE_LINK(e_message_kill_focus, pchannel, this, &interaction::_001OnKillFocus);
+         MESSAGE_LINK(e_message_set_focus, pchannel, this, &interaction::_001OnSetFocus);
+         MESSAGE_LINK(WM_DISPLAYCHANGE, pchannel, this, &interaction::_001OnDisplayChange);
+         MESSAGE_LINK(WM_LBUTTONDOWN, pchannel, this, &interaction::_001OnLButtonDown);
+         MESSAGE_LINK(WM_KEYDOWN, pchannel, this, &::user::interaction::_001OnKeyDown);
+         MESSAGE_LINK(WM_ENABLE, pchannel, this, &::user::interaction::_001OnEnable);
 
       }
 
-      IGUI_MSG_LINK(WM_COMMAND, pchannel, this, &interaction::_001OnCommand);
-      IGUI_MSG_LINK(message_simple_command, pchannel, this, &interaction::_001OnSimpleCommand);
+      MESSAGE_LINK(WM_COMMAND, pchannel, this, &interaction::_001OnCommand);
+      MESSAGE_LINK(e_message_simple_command, pchannel, this, &interaction::_001OnSimpleCommand);
 
       if (m_bSimpleUIDefaultMouseHandling)
       {
@@ -3487,7 +3487,7 @@ namespace user
 
       }
 
-      send_message(message_change_experience);
+      send_message(e_message_change_experience);
 
    }
 
@@ -4150,12 +4150,12 @@ namespace user
 
       }
 
-      return post_message(message_post_user, 1, pbase);
+      return post_message(e_message_post_user, 1, pbase);
 
    }
 
 
-   LRESULT interaction::send_message(UINT uiMessage, WPARAM wparam, lparam lparam)
+   LRESULT interaction::send_message(const ::id & id, WPARAM wparam, lparam lparam)
    {
 
       if (m_pimpl == nullptr)
@@ -4165,12 +4165,12 @@ namespace user
 
       }
 
-      return m_pimpl->send_message(uiMessage, wparam, lparam);
+      return m_pimpl->send_message(id, wparam, lparam);
 
    }
 
 
-   LRESULT interaction::message_call(UINT uiMessage, WPARAM wparam, lparam lparam)
+   LRESULT interaction::message_call(const ::id & id, WPARAM wparam, lparam lparam)
    {
 
       if (m_pimpl == nullptr)
@@ -4180,7 +4180,7 @@ namespace user
 
       }
 
-      return m_pimpl->message_call(uiMessage, wparam, lparam);
+      return m_pimpl->message_call(id, wparam, lparam);
 
    }
 
@@ -4270,7 +4270,7 @@ namespace user
    }
 
 
-   void interaction::send_message_to_descendants(UINT message, WPARAM wparam, lparam lparam, bool bDeep, bool bOnlyPerm)
+   void interaction::send_message_to_descendants(const ::id & id, WPARAM wparam, lparam lparam, bool bDeep, bool bOnlyPerm)
 
    {
 
@@ -4293,7 +4293,7 @@ namespace user
          try
          {
 
-            pinteraction->send_message(message, wparam, lparam);
+            pinteraction->send_message(id, wparam, lparam);
 
 
          }
@@ -4317,7 +4317,7 @@ namespace user
          try
          {
 
-            pinteraction->send_message_to_descendants(message, wparam, lparam, true, bOnlyPerm);
+            pinteraction->send_message_to_descendants(id, wparam, lparam, true, bOnlyPerm);
 
 
          }
@@ -6746,7 +6746,7 @@ namespace user
    LRESULT interaction::message_handler(LPMESSAGE pmessage)
    {
 
-      return send_message(pmessage->message, pmessage->wParam, pmessage->lParam);
+      return send_message((enum_message) pmessage->message, pmessage->wParam, pmessage->lParam);
 
    }
 
@@ -7102,6 +7102,8 @@ namespace user
 
    void interaction::on_reposition()
    {
+
+      m_pshapeaClip.release();
 
       layout_tooltip();
 
@@ -7570,7 +7572,7 @@ namespace user
 
 
 
-   bool interaction::post_message(UINT uiMessage, WPARAM wparam, lparam lparam)
+   bool interaction::post_message(const ::id & id, WPARAM wparam, lparam lparam)
 
    {
 
@@ -7581,31 +7583,24 @@ namespace user
 
       }
 
-      if(uiMessage == WM_KEYDOWN)
+      if(id == WM_KEYDOWN)
       {
 
          output_debug_string("::user::interaction::post_message WM_KEYDOWN");
 
       }
 
-      if(uiMessage == message_redraw)
-      {
-
-         //output_debug_string("message_redraw\n");
-
-      }
-
-      return m_pimpl->post_message(uiMessage, wparam, lparam);
+      return m_pimpl->post_message(id, wparam, lparam);
 
    }
 
 
-   bool interaction::post_object(UINT uiMessage, WPARAM wparam, lparam lparam)
+   bool interaction::post_object(const ::id & id, WPARAM wparam, lparam lparam)
    {
 
       bool bIsWindow = m_pimpl.is_set() && is_window();
 
-      if (uiMessage == WM_QUIT || !bIsWindow)
+      if (id == e_message_quit || !bIsWindow)
       {
 
          {
@@ -7623,11 +7618,11 @@ namespace user
 
          }
 
-         return m_pimpl->post_message(uiMessage);
+         return m_pimpl->post_message(id);
 
       }
 
-      return m_pimpl->post_message(uiMessage, wparam, lparam);
+      return m_pimpl->post_message(id, wparam, lparam);
 
 
    }
@@ -8959,7 +8954,7 @@ restart:
    bool interaction::keyboard_focus_OnKillFocus(oswindow oswindowNew)
    {
 
-      send_message(WM_KILLFOCUS, (WPARAM) oswindowNew);
+      send_message(e_message_kill_focus, (WPARAM) oswindowNew);
 
       if (m_pimpl == nullptr)
       {
@@ -9243,7 +9238,7 @@ restart:
       return 0;
    }
 
-   ::user::interaction::e_type interaction::get_window_type()
+   ::user::interaction::enum_type interaction::get_window_type()
    {
       return type_window;
    }
@@ -9253,7 +9248,7 @@ restart:
 
 //{
 
-//   post_message(message_simple_command,(WPARAM)ecommand,lparam);
+//   post_message(e_message_simple_command,(WPARAM)ecommand,lparam);
 
 
 //   return true;
@@ -9425,7 +9420,7 @@ restart:
          }
          lparam = MAKELPARAM(pointCursor.x, pointCursor.y);
          output_debug_string("transparent_mouse_event:x="+__str(pointCursor.x) +",y="+__str(pointCursor.y)+"\n");
-         pimpl->call_message_handler(WM_MOUSEMOVE, 0, lparam);
+         pimpl->call_message_handler(e_message_mouse_move, 0, lparam);
 
                }
          }
@@ -11408,7 +11403,7 @@ restart:
    bool interaction::kick_queue()
    {
 
-      post_message(::message_null);
+      post_message(e_message_null);
 
       return true;
 
@@ -11749,7 +11744,7 @@ restart:
 
       }
 
-      pwnd->post_message(message_simple_command, simple_command_check_transparent_mouse_events);
+      pwnd->post_message(e_message_simple_command, simple_command_check_transparent_mouse_events);
 
 #endif
 
@@ -11839,7 +11834,7 @@ restart:
 
                   pmouse->m_eflagMessage += ::message::flag_synthesized;
 
-                  pmouse->m_id = WM_MOUSEMOVE;
+                  pmouse->m_id = e_message_mouse_move;
                   pmouse->m_playeredUserPrimitive = pinteraction;
                   pmouse->m_point = pointCurrent;
                   pmouse->m_bTranslated = true;
@@ -11914,7 +11909,7 @@ restart:
 
 #endif
 
-      get_wnd()->send_message(WM_MOUSEMOVE, 0, pointCurrent);
+      get_wnd()->send_message(e_message_mouse_move, 0, pointCurrent);
 
    }
 
@@ -12388,26 +12383,26 @@ restart:
 
       m_bSimpleUIDefaultMouseHandling = true;
 
-      IGUI_MSG_LINK(WM_LBUTTONDOWN, pchannel, this, &interaction::_001OnLButtonDown);
-      IGUI_MSG_LINK(WM_LBUTTONUP, pchannel, this, &interaction::_001OnLButtonUp);
-      IGUI_MSG_LINK(WM_MBUTTONDOWN, pchannel, this, &interaction::_001OnMButtonDown);
-      IGUI_MSG_LINK(WM_MBUTTONUP, pchannel, this, &interaction::_001OnMButtonUp);
-      IGUI_MSG_LINK(WM_MOUSEMOVE, pchannel, this, &interaction::_001OnMouseMove);
-      IGUI_MSG_LINK(WM_MOUSELEAVE, pchannel, this, &interaction::_001OnMouseLeave);
+      MESSAGE_LINK(WM_LBUTTONDOWN, pchannel, this, &interaction::_001OnLButtonDown);
+      MESSAGE_LINK(WM_LBUTTONUP, pchannel, this, &interaction::_001OnLButtonUp);
+      MESSAGE_LINK(WM_MBUTTONDOWN, pchannel, this, &interaction::_001OnMButtonDown);
+      MESSAGE_LINK(WM_MBUTTONUP, pchannel, this, &interaction::_001OnMButtonUp);
+      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &interaction::_001OnMouseMove);
+      MESSAGE_LINK(WM_MOUSELEAVE, pchannel, this, &interaction::_001OnMouseLeave);
 
    }
 
    void interaction::install_update_data_message_routing(::channel * pchannel)
    {
 
-      IGUI_MSG_LINK(::message_need_load_form_data, pchannel, this, &interaction::_001OnNeedLoadFormData);
-      IGUI_MSG_LINK(::message_need_save_form_data, pchannel, this, &interaction::_001OnNeedSaveFormData);
+      MESSAGE_LINK(e_message_need_load_form_data, pchannel, this, &interaction::_001OnNeedLoadFormData);
+      MESSAGE_LINK(e_message_need_save_form_data, pchannel, this, &interaction::_001OnNeedSaveFormData);
 
    }
 
 
 
-   bool interaction::simple_on_control_event(::message::message* pmessage, ::user::e_event eevent)
+   bool interaction::simple_on_control_event(::message::message* pmessage, ::user::enum_event eevent)
    {
 
       SCAST_PTR(::message::base, pbase, pmessage);
@@ -13556,7 +13551,7 @@ restart:
    }
 
 
-   void control_cmd_ui::Enable(bool bOn)
+   void control_cmd_ui::enable(bool bOn)
    {
 
       m_bEnableChanged = TRUE;

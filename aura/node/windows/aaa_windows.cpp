@@ -154,7 +154,7 @@ namespace windows
 
 
 
-LRESULT CALLBACK __window_procedure(HWND oswindow, UINT message, WPARAM wparam, LPARAM lparam);
+LRESULT CALLBACK __window_procedure(HWND oswindow, const ::id & id, WPARAM wparam, LPARAM lparam);
 
 WNDPROC get_window_procedure()
 {

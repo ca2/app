@@ -230,7 +230,7 @@ void menu_shared_idle(::user::frame * pframe)
       if(pitem)
       {
 
-         ::message::id id(pmenushared->m_ppszId[i],::message::type_command_probe);
+         const ::id & id(pmenushared->m_ppszId[i],::message::type_command_probe);
 
          menu_shared_command command(&pmenushared->m_statusa[i]);
 

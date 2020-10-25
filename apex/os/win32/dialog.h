@@ -25,7 +25,7 @@ namespace win32
       bool create_dialog(window * pwindow = nullptr);
 
       static INT_PTR CALLBACK DialogProc(HWND h, UINT u, WPARAM, LPARAM);
-      virtual INT_PTR on_dialog_message(UINT uiMessage, WPARAM wparam, LPARAM lparam);
+      virtual INT_PTR on_dialog_message(const ::id & id, WPARAM wparam, LPARAM lparam);
 
       virtual bool on_init_dialog();
       virtual void on_close();

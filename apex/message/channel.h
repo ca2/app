@@ -37,26 +37,26 @@ public:
    virtual void remove_all_routes();
 
    template < typename RECEIVER, typename MESSAGE >
-   ::message::typed_route < MESSAGE > & get_typed_route(::message::id id, RECEIVER * preceiverDerived);
+   ::message::typed_route < MESSAGE > & get_typed_route(const ::id & id, RECEIVER * preceiverDerived);
 
    template < typename RECEIVER, typename MESSAGE >
-   void add_receiver_route(::message::id id, RECEIVER * preceiver, void (RECEIVER:: * phandler)(MESSAGE * pmessage));
+   void add_receiver_route(const ::id & id, RECEIVER * preceiver, void (RECEIVER:: * phandler)(MESSAGE * pmessage));
 
    template < typename RECEIVER >
-   ::message::route & add_route(::message::id id, RECEIVER * preceiver);
+   ::message::route & add_route(const ::id & id, RECEIVER * preceiver);
 
    template < typename RECEIVER, typename MESSAGE_PRED >
-   void add_route(::message::id id, RECEIVER * preceiverDerived, MESSAGE_PRED pred);
+   void add_route(const ::id & id, RECEIVER * preceiverDerived, MESSAGE_PRED pred);
 
    template < typename RECEIVER >
-   void add_route(RECEIVER * preceiverDerived, void (RECEIVER:: * phandler)(::message::message * pmessage), ::message::id id = ::message::id());
+   void add_route(RECEIVER * preceiverDerived, void (RECEIVER:: * phandler)(::message::message * pmessage), const ::id & id = ::id());
 
    virtual void route_message(::message::message * pmessage);
 
 
    virtual __pointer(::message::base) get_message_base(LPMESSAGE pmsg);
 
-   virtual __pointer(::message::base) get_message_base(UINT message, WPARAM wparam, lparam lparam);
+   virtual __pointer(::message::base) get_message_base(const ::id & id, WPARAM wparam, lparam lparam);
 
 
 #ifdef LINUX
@@ -84,17 +84,12 @@ public:
 
    }
 
+
    template < class T >
    void connect_command_probe(const ::id & id, T * p, void (T:: * pfn)(::message::message *))
    {
 
-      ::message::id messageid;
-
-      messageid = ::message::type_command_probe;
-
-      messageid.::id::operator=(id);
-
-      add_route(p, pfn, messageid);
+      add_route(p, pfn, id.compounded(::id::e_type_command_probe));
 
    }
 
@@ -103,13 +98,7 @@ public:
    void connect_command(const ::id & id, T * p, void (T:: * pfn)(::message::message *))
    {
 
-      ::message::id messageid;
-
-      messageid = ::message::type_command;
-
-      messageid.::id::operator=(id);
-
-      add_route(p, pfn, messageid);
+      add_route(p, pfn, id.compounded(::id::e_type_command));
 
    }
 
@@ -118,13 +107,7 @@ public:
    void connect_command_pred(const ::id & id, MESSAGE_PRED pred)
    {
 
-      ::message::id messageid;
-
-      messageid = ::message::type_command;
-
-      messageid.::id::operator=(id);
-
-      add_route(messageid, this) = pred;
+      add_route(id.compounded(::id::e_type_command), this) = pred;
 
    }
 
@@ -133,13 +116,7 @@ public:
    void add_update_route_pred(RECEIVER * preceiver, const ::id & id, MESSAGE_PRED pred)
    {
 
-      ::message::id messageid;
-
-      messageid = ::message::type_update;
-
-      messageid.::id::operator=(id);
-
-      add_route(messageid, preceiver) = pred;
+      add_route(id.compounded(::id::e_type_update), preceiver) = pred;
 
    }
 

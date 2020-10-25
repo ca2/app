@@ -92,7 +92,7 @@ namespace user
       void OnPaint();
       void OnTimer(UINT uEvent);
       void OnSize(UINT nType, i32 cx, i32 cy);
-      void OnDestroy();
+      void on_destroy();
 
 
    };

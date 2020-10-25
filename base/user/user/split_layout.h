@@ -68,7 +68,7 @@ namespace user
       virtual i32 get_normal_dimension();
       virtual i32 get_ortogonal_dimension();
 
-      void RelayEventSplitBar(index iSplitBar, UINT message, WPARAM wParam, LPARAM lParam);
+      void RelayEventSplitBar(index iSplitBar, const ::id & id, WPARAM wParam, LPARAM lParam);
       e_orientation GetSplitOrientation();
       i32 GetMaxPos(index iPane);
       i32 GetMinPos(index iPane);

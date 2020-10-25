@@ -13,7 +13,7 @@ namespace helloworld
    public:
 
 
-      enum e_type
+      enum enum_type
       {
 
          type_normal,
@@ -21,7 +21,7 @@ namespace helloworld
 
       };
 
-      e_type                                 m_etype;
+      enum_type                                 m_etype;
       string                                 m_strHelloWorld;
       string                                 m_strHelloWorldDefault;
       string                                 m_strAlternateHelloWorld;

@@ -239,7 +239,7 @@ namespace user
    void scroll_x_base::install_message_routing(::channel * pchannel)
    {
 
-      IGUI_MSG_LINK(WM_HSCROLL, pchannel, this, &scroll_x_base::_001OnHScroll);
+      MESSAGE_LINK(WM_HSCROLL, pchannel, this, &scroll_x_base::_001OnHScroll);
 
    }
 
@@ -615,8 +615,8 @@ namespace user
 
       interaction::install_message_routing(pchannel);
 
-      IGUI_MSG_LINK(WM_VSCROLL, pchannel, this, &scroll_y_base::_001OnVScroll);
-      IGUI_MSG_LINK(WM_MOUSEWHEEL, pchannel, this, &scroll_y_base::_001OnMouseWheel);
+      MESSAGE_LINK(WM_VSCROLL, pchannel, this, &scroll_y_base::_001OnVScroll);
+      MESSAGE_LINK(WM_MOUSEWHEEL, pchannel, this, &scroll_y_base::_001OnMouseWheel);
 
    }
 

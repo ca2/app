@@ -37,7 +37,7 @@ void simple_main_frame::install_message_routing(::channel * pchannel)
 
    simple_frame_window::install_message_routing(pchannel);
 
-   IGUI_MSG_LINK(WM_CREATE,pchannel,this,&simple_main_frame::_001OnCreate);
+   MESSAGE_LINK(e_message_create,pchannel,this,&simple_main_frame::_001OnCreate);
 
 }
 

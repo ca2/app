@@ -6,10 +6,10 @@ namespace message
 {
 
 
-   void timer::set(::user::primitive* pwnd, UINT uiMessage, WPARAM wparam, ::lparam lparam)
+   void timer::set(::user::primitive* pwnd, const ::id & id, WPARAM wparam, ::lparam lparam)
    {
 
-      base::set(pwnd, uiMessage, wparam, lparam);
+      base::set(pwnd, id, wparam, lparam);
 
       m_uEvent = static_cast<UINT>(wparam);
 

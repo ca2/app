@@ -80,24 +80,24 @@ namespace win32
    }
 
 
-   iptr window::send_message(UINT uiMessage, WPARAM wparam, LPARAM lparam)
+   iptr window::send_message(const ::id & id, WPARAM wparam, LPARAM lparam)
    {
 
-      return ::SendMessage(m_hwnd, uiMessage, wparam, lparam);
+      return ::SendMessage(m_hwnd, emessage, wparam, lparam);
 
    }
 
 
-   iptr window::send_message_w(UINT uiMessage, WPARAM wparam, LPARAM lparam)
+   iptr window::send_message_w(const ::id & id, WPARAM wparam, LPARAM lparam)
    {
 
-      return ::SendMessageW(m_hwnd, uiMessage, wparam, lparam);
+      return ::SendMessageW(m_hwnd, emessage, wparam, lparam);
 
    }
 
-   void window::post_message(UINT uiMessage, WPARAM wparam, LPARAM lparam)
+   void window::post_message(const ::id & id, WPARAM wparam, LPARAM lparam)
    {
-      ::PostMessageW(m_hwnd, uiMessage, wparam, lparam);
+      ::PostMessageW(m_hwnd, emessage, wparam, lparam);
    }
 
    void window::enable_window(bool bEnable)

@@ -267,7 +267,7 @@ public:
 //CLASS_DECL_APEX u32 random_processor_index_generator();
 
 
-//CLASS_DECL_APEX int_bool post_message(oswindow oswindow, UINT message, WPARAM wparam, LPARAM lparam);
+//CLASS_DECL_APEX int_bool post_message(oswindow oswindow, const ::id & id, WPARAM wparam, LPARAM lparam);
 
 
 
@@ -324,17 +324,16 @@ inline void main_async(const ::method & method, e_priority epriority = priority_
 #endif
 
 
-inline void main_sync(const method & method, ::duration durationTimeout = one_minute(), e_priority epriority = priority_normal)
+inline void main_sync(const method & method, const ::duration & duration = one_minute(), e_priority epriority = priority_normal)
 {
 
-   method_event event(method);
+   auto pmethod = ___sync_method(method);
 
-   main_branch(method, epriority);
+   main_branch(pmethod, epriority);
 
-   event.lock(durationTimeout);
+   pmethod->wait(duration);
 
 }
-
 
 
 

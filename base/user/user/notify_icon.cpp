@@ -60,8 +60,8 @@ namespace user
 
       ::user::interaction::install_message_routing(pchannel);
 
-      IGUI_MSG_LINK(MessageNotifyIcon, pchannel, this, &notify_icon::_001OnNotifyIconMessage);
-      IGUI_MSG_LINK(WM_DESTROY, pchannel, this, &notify_icon::_001OnDestroy);
+      MESSAGE_LINK(MessageNotifyIcon, pchannel, this, &notify_icon::_001OnNotifyIconMessage);
+      MESSAGE_LINK(e_message_destroy, pchannel, this, &notify_icon::_001OnDestroy);
 
 #endif
 

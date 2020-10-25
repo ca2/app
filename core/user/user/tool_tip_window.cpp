@@ -33,7 +33,7 @@ namespace user
       SCAST_PTR(::message::base, pbase, pmessage);
       switch(pbase->m_id)
       {
-      case WM_MOUSEMOVE:
+      case e_message_mouse_move:
       {
          
          if(ptool->BaseToolTipGetWnd()->GetTopLevel() == pbase->userinteraction())
@@ -377,7 +377,7 @@ namespace user
    // Function Name: EnableTip()
    //
    // Purpose:
-   // Enable the tip.
+   // enable the tip.
    //
    // Output:
    // None.
@@ -413,7 +413,7 @@ namespace user
 
    ///////////////////////////////////////////////////////////
    //
-   // Function Name: OnDestroy()
+   // Function Name: on_destroy()
    //
    // Purpose:
    // Destroy the tip.
@@ -423,9 +423,9 @@ namespace user
    //
    //
    ///////////////////////////////////////////////////////////
-   void tool_tip_window::OnDestroy()
+   void tool_tip_window::on_destroy()
    {
-      //    window::OnDestroy();
+      //    window::on_destroy();
    }
 
    ///////////////////////////////////////////////////////////

@@ -198,7 +198,7 @@ CLASS_DECL_APEX ::Windows::Storage::StorageFolder^ winrt_folder(string& strPath,
 //}
 
 
-//CLASS_DECL_APEX int_bool is_file_or_dir_dup(const char* path, ::file::e_type* petype)
+//CLASS_DECL_APEX int_bool is_file_or_dir_dup(const char* path, ::file::enum_type* petype)
 //{
 //
 //   auto dwFileAttributes = windows_get_file_attributes(path);

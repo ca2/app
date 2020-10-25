@@ -3249,7 +3249,7 @@ namespace apex
          return;
 
       }
-      //else if (pmessage->m_id == WM_MOUSEMOVE)
+      //else if (pmessage->m_id == e_message_mouse_move)
       //{
 
       //   pmessage->m_uiMessageFlags |= 0; // message considered pre translated

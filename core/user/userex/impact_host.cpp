@@ -57,7 +57,7 @@ namespace userex
 
       ::user::impact::install_message_routing(pchannel);
 
-      IGUI_MSG_LINK(WM_CREATE, pchannel, this, &impact_host::_001OnCreate);
+      MESSAGE_LINK(e_message_create, pchannel, this, &impact_host::_001OnCreate);
 
    }
 
@@ -200,7 +200,7 @@ namespace userex
       if (pdocTab == nullptr)
       {
 
-         pdocTab = m_ptemplateTab->open_document_file(get_context_application(), ::type_null, __visible(false), this);
+         pdocTab = m_ptemplateTab->open_document_file(get_context_application(), ::e_type_null, __visible(false), this);
 
       }
 

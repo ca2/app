@@ -92,9 +92,9 @@ namespace userfs
    void tree::install_message_routing(::channel * pchannel)
    {
 
-      IGUI_MSG_LINK(WM_CREATE, pchannel, this, &tree::_001OnCreate);
-      IGUI_MSG_LINK(WM_LBUTTONDBLCLK, pchannel, this, &tree::_001OnLButtonDblClk);
-      IGUI_MSG_LINK(WM_CONTEXTMENU, pchannel, this, &tree::_001OnContextMenu);
+      MESSAGE_LINK(e_message_create, pchannel, this, &tree::_001OnCreate);
+      MESSAGE_LINK(WM_LBUTTONDBLCLK, pchannel, this, &tree::_001OnLButtonDblClk);
+      MESSAGE_LINK(WM_CONTEXTMENU, pchannel, this, &tree::_001OnContextMenu);
 
    }
 

@@ -38,15 +38,15 @@ namespace user
    void form_list::install_message_routing(::channel *pchannel)
    {
 
-      IGUI_MSG_LINK(WM_KEYDOWN,pchannel,this,&form_list::_001OnKeyDown);
+      MESSAGE_LINK(WM_KEYDOWN,pchannel,this,&form_list::_001OnKeyDown);
 
       form_mesh::install_message_routing(pchannel);
 
       list::install_message_routing(pchannel);
 
-      IGUI_MSG_LINK(WM_VSCROLL, pchannel, this, &form_list::_001OnVScroll);
+      MESSAGE_LINK(WM_VSCROLL, pchannel, this, &form_list::_001OnVScroll);
 
-      IGUI_MSG_LINK(WM_HSCROLL, pchannel, this, &form_list::_001OnHScroll);
+      MESSAGE_LINK(WM_HSCROLL, pchannel, this, &form_list::_001OnHScroll);
 
    }
 
@@ -85,7 +85,7 @@ namespace user
 
                m_itemControl = item;
 
-               send_message(EVENT_MESSAGE, 0, (LPARAM)&ev);
+               send_message(e_message_event, 0, (LPARAM)&ev);
 
             }
 
@@ -174,7 +174,7 @@ namespace user
 
                m_itemControl = item;
 
-               send_message(EVENT_MESSAGE, 0, (LPARAM)& ev);
+               send_message(e_message_event, 0, (LPARAM)& ev);
 
             }
 
@@ -1084,11 +1084,11 @@ break_click:;
    }
 
 
-   bool form_list::_001OnMouseActivate(::user::interaction_impl * pDesktopWnd,UINT nHitTest,UINT message,LRESULT & iResult)
+   bool form_list::_001OnMouseActivate(::user::interaction_impl * pDesktopWnd,UINT nHitTest,const ::id & id,LRESULT & iResult)
    {
       UNREFERENCED_PARAMETER(pDesktopWnd);
       UNREFERENCED_PARAMETER(nHitTest);
-      UNREFERENCED_PARAMETER(message);
+      UNREFERENCED_PARAMETER(id);
       UNREFERENCED_PARAMETER(iResult);
       return false;
    }
@@ -1418,7 +1418,7 @@ break_click:;
 
       }
 
-      //else if(uiMessage == WM_LBUTTONUP)
+      //else if(emessage == WM_LBUTTONUP)
       //{
       //i32 iItem;
       //i32 iSubItem;
@@ -1489,7 +1489,7 @@ break_click:;
 
       //::point point = pmouse->m_point;
       //_001ScreenToClient(point);
-      ///*      if(uiMessage == WM_LBUTTONDOWN)
+      ///*      if(emessage == WM_LBUTTONDOWN)
       //      {
       //      i32 iItem;
       //      i32 iSubItem;
@@ -1509,7 +1509,7 @@ break_click:;
       //      }
       //      }
       //      }
-      //      else if(uiMessage == WM_LBUTTONUP)
+      //      else if(emessage == WM_LBUTTONUP)
       //      {
       //      i32 iItem;
       //      i32 iSubItem;

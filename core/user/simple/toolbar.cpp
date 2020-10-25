@@ -11,7 +11,7 @@ class simple_tool_command : public ::user::command        // class private to th
 public: // re-implementations only
 
    simple_tool_command(::layered * pobjectContext);
-   virtual void Enable(bool bOn = TRUE, const ::action_context & context = ::source_system);
+   virtual void enable(bool bOn = TRUE, const ::action_context & context = ::source_system);
    //   virtual void _001SetCheck(bool bCheck, const ::action_context & context = ::source_system);   // 0, 1 or 2 (indeterminate)
    virtual void _001SetCheck(enum_check echeck, const ::action_context & context = ::source_system);   // 0, 1 or 2 (indeterminate)
 //   virtual void SetRadio(bool bOn = TRUE, const ::action_context & context = ::source_system);
@@ -100,12 +100,12 @@ void simple_toolbar::install_message_routing(::channel * pchannel)
 
    ::user::toolbar::install_message_routing(pchannel);
 
-   IGUI_MSG_LINK(WM_CREATE       , pchannel, this, &simple_toolbar::_001OnCreate);
-   //IGUI_MSG_LINK(WM_MOUSEMOVE    , pchannel, this, &simple_toolbar::_001OnMouseMove);
-   //IGUI_MSG_LINK(WM_LBUTTONDOWN  , pchannel, this, &simple_toolbar::_001OnLButtonDown);
-   //IGUI_MSG_LINK(WM_LBUTTONUP    , pchannel, this, &simple_toolbar::_001OnLButtonUp);
-   //IGUI_MSG_LINK(WM_NCHITTEST    , pchannel, this, &simple_toolbar::_001OnNcHitTest);
-   //IGUI_MSG_LINK(WM_MOUSELEAVE   , pchannel, this, &simple_toolbar::_001OnMouseLeave);
+   MESSAGE_LINK(e_message_create       , pchannel, this, &simple_toolbar::_001OnCreate);
+   //MESSAGE_LINK(e_message_mouse_move    , pchannel, this, &simple_toolbar::_001OnMouseMove);
+   //MESSAGE_LINK(WM_LBUTTONDOWN  , pchannel, this, &simple_toolbar::_001OnLButtonDown);
+   //MESSAGE_LINK(WM_LBUTTONUP    , pchannel, this, &simple_toolbar::_001OnLButtonUp);
+   //MESSAGE_LINK(WM_NCHITTEST    , pchannel, this, &simple_toolbar::_001OnNcHitTest);
+   //MESSAGE_LINK(WM_MOUSELEAVE   , pchannel, this, &simple_toolbar::_001OnMouseLeave);
 
    install_simple_ui_default_mouse_handling(pchannel);
    
@@ -1686,7 +1686,7 @@ simple_tool_command::simple_tool_command(::layered * pobjectContext) :
 }
 
 
-void simple_tool_command::Enable(bool bOn, const ::action_context & context)
+void simple_tool_command::enable(bool bOn, const ::action_context & context)
 {
 
    m_bEnableChanged = TRUE;

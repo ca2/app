@@ -78,16 +78,16 @@ namespace user
 
       ::user::interaction::install_message_routing(pchannel);
 
-      IGUI_MSG_LINK(WM_CREATE, pchannel, this, &menu::_001OnCreate);
-      IGUI_MSG_LINK(WM_DESTROY, pchannel, this, &menu::_001OnDestroy);
-      IGUI_MSG_LINK(WM_NCACTIVATE, pchannel, this, &menu::_001OnNcActivate);
-      IGUI_MSG_LINK(WM_NCCALCSIZE, pchannel, this, &menu::_001OnNcCalcSize);
-      IGUI_MSG_LINK(WM_ENABLE, pchannel, this, &menu::_001OnEnable);
-      IGUI_MSG_LINK(WM_SHOWWINDOW, pchannel, this, &menu::_001OnShowWindow);
-      IGUI_MSG_LINK(WM_CLOSE, pchannel, this, &menu::_001OnClose);
-      IGUI_MSG_LINK(WM_MOUSEACTIVATE, pchannel, this, &menu::_001OnMouseActivate);
-      IGUI_MSG_LINK(WM_ACTIVATE, pchannel, this, &menu::_001OnActivate);
-      IGUI_MSG_LINK(WM_NCCREATE, pchannel, this, &menu::_001OnNcCreate);
+      MESSAGE_LINK(e_message_create, pchannel, this, &menu::_001OnCreate);
+      MESSAGE_LINK(e_message_destroy, pchannel, this, &menu::_001OnDestroy);
+      MESSAGE_LINK(WM_NCACTIVATE, pchannel, this, &menu::_001OnNcActivate);
+      MESSAGE_LINK(WM_NCCALCSIZE, pchannel, this, &menu::_001OnNcCalcSize);
+      MESSAGE_LINK(WM_ENABLE, pchannel, this, &menu::_001OnEnable);
+      MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &menu::_001OnShowWindow);
+      MESSAGE_LINK(WM_CLOSE, pchannel, this, &menu::_001OnClose);
+      MESSAGE_LINK(WM_MOUSEACTIVATE, pchannel, this, &menu::_001OnMouseActivate);
+      MESSAGE_LINK(e_message_activate, pchannel, this, &menu::_001OnActivate);
+      MESSAGE_LINK(WM_NCCREATE, pchannel, this, &menu::_001OnNcCreate);
 
    }
 

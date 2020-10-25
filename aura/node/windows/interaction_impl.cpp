@@ -705,34 +705,34 @@ namespace windows
 
       if (!m_puserinteraction->m_bMessageWindow)
       {
-         IGUI_MSG_LINK(WM_PAINT, pchannel, this, &interaction_impl::_001OnPaint);
-         IGUI_MSG_LINK(WM_PRINT, pchannel, this, &interaction_impl::_001OnPrint);
+         MESSAGE_LINK(WM_PAINT, pchannel, this, &interaction_impl::_001OnPaint);
+         MESSAGE_LINK(WM_PRINT, pchannel, this, &interaction_impl::_001OnPrint);
       }
       m_puserinteraction->install_message_routing(pchannel);
-      IGUI_MSG_LINK(WM_CREATE, pchannel, this, &interaction_impl::_001OnCreate);
+      MESSAGE_LINK(e_message_create, pchannel, this, &interaction_impl::_001OnCreate);
       if (!m_puserinteraction->m_bMessageWindow)
       {
-         IGUI_MSG_LINK(WM_SETCURSOR, pchannel, this, &interaction_impl::_001OnSetCursor);
-         IGUI_MSG_LINK(WM_ERASEBKGND, pchannel, this, &interaction_impl::_001OnEraseBkgnd);
-         IGUI_MSG_LINK(WM_NCCALCSIZE, pchannel, this, &interaction_impl::_001OnNcCalcSize);
-         IGUI_MSG_LINK(WM_SHOWWINDOW, pchannel, this, &interaction_impl::_001OnShowWindow);
-         IGUI_MSG_LINK(WM_ACTIVATE, pchannel, this, &interaction_impl::_001OnActivate);
-         IGUI_MSG_LINK(WM_DWMNCRENDERINGCHANGED, pchannel, this, &interaction_impl::_001OnDwmNcRenderingChanged);
-         IGUI_MSG_LINK(WM_MOVE, pchannel, this, &interaction_impl::_001OnMove);
-         IGUI_MSG_LINK(WM_SIZE, pchannel, this, &interaction_impl::_001OnSize);
-         IGUI_MSG_LINK(WM_WINDOWPOSCHANGING,pchannel,this,&interaction_impl::_001OnWindowPosChanging);
-         IGUI_MSG_LINK(WM_WINDOWPOSCHANGED,pchannel,this,&interaction_impl::_001OnWindowPosChanged);
-         IGUI_MSG_LINK(WM_GETMINMAXINFO,pchannel,this,&interaction_impl::_001OnGetMinMaxInfo);
+         MESSAGE_LINK(WM_SETCURSOR, pchannel, this, &interaction_impl::_001OnSetCursor);
+         MESSAGE_LINK(WM_ERASEBKGND, pchannel, this, &interaction_impl::_001OnEraseBkgnd);
+         MESSAGE_LINK(WM_NCCALCSIZE, pchannel, this, &interaction_impl::_001OnNcCalcSize);
+         MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &interaction_impl::_001OnShowWindow);
+         MESSAGE_LINK(e_message_activate, pchannel, this, &interaction_impl::_001OnActivate);
+         MESSAGE_LINK(WM_DWMNCRENDERINGCHANGED, pchannel, this, &interaction_impl::_001OnDwmNcRenderingChanged);
+         MESSAGE_LINK(e_message_move, pchannel, this, &interaction_impl::_001OnMove);
+         MESSAGE_LINK(e_message_size, pchannel, this, &interaction_impl::_001OnSize);
+         MESSAGE_LINK(WM_WINDOWPOSCHANGING,pchannel,this,&interaction_impl::_001OnWindowPosChanging);
+         MESSAGE_LINK(WM_WINDOWPOSCHANGED,pchannel,this,&interaction_impl::_001OnWindowPosChanged);
+         MESSAGE_LINK(WM_GETMINMAXINFO,pchannel,this,&interaction_impl::_001OnGetMinMaxInfo);
 
 
       }
 
       prio_install_message_routing(pchannel);
 
-      IGUI_MSG_LINK(WM_DESTROY, pchannel, this, &interaction_impl::_001OnDestroy);
-      IGUI_MSG_LINK(WM_ENABLE, pchannel, this, &interaction_impl::_001OnEnable);
-      IGUI_MSG_LINK(WM_SETFOCUS, pchannel, this, &interaction_impl::_001OnSetFocus);
-      IGUI_MSG_LINK(WM_KILLFOCUS, pchannel, this, &interaction_impl::_001OnKillFocus);
+      MESSAGE_LINK(e_message_destroy, pchannel, this, &interaction_impl::_001OnDestroy);
+      MESSAGE_LINK(WM_ENABLE, pchannel, this, &interaction_impl::_001OnEnable);
+      MESSAGE_LINK(e_message_set_focus, pchannel, this, &interaction_impl::_001OnSetFocus);
+      MESSAGE_LINK(e_message_kill_focus, pchannel, this, &interaction_impl::_001OnKillFocus);
 
    }
 
@@ -1694,11 +1694,11 @@ namespace windows
       //  and interaction_impl::_001OnCommand for speed and because these messages are not
       //  routed by normal _001OnCommand routing (they are only dispatched)
 
-      UINT uiMessage;
+      UINT message;
 
-      uiMessage = UINT(pbase->m_id.i64());
+      message = ::message::translate_to_os_message(pbase->m_id);
 
-      switch (uiMessage)
+      switch (message)
       {
       // normal messages (just wParam, lParam through OnWndMsg)
       case WM_HSCROLL:
@@ -1742,7 +1742,7 @@ namespace windows
 
       // other special cases (WM_CTLCOLOR family)
       default:
-         if (uiMessage >= WM_CTLCOLORMSGBOX && uiMessage <= WM_CTLCOLORSTATIC)
+         if (message >= WM_CTLCOLORMSGBOX && message <= WM_CTLCOLORSTATIC)
          {
             // fill in special struct for compatiblity with 16-bit WM_CTLCOLOR
             /*__CTLCOLOR ctl;
@@ -1764,9 +1764,9 @@ namespace windows
       return false;   // let the parent handle it
    }
 
-//   void interaction_impl::OnParentNotify(UINT message, LPARAM lParam)
+//   void interaction_impl::OnParentNotify(const ::id & id, LPARAM lParam)
 //   {
-//      if ((LOWORD(message) == WM_CREATE || LOWORD(message) == WM_DESTROY))
+//      if ((LOWORD(message) == e_message_create || LOWORD(message) == e_message_destroy))
 //      {
 //         //if (ReflectMessage((oswindow) lParam))
 //         // return;     // eat it
@@ -2733,20 +2733,26 @@ namespace windows
    }
 
 
-   LRESULT interaction_impl::send_message(UINT message, WPARAM wParam, lparam lParam)
-
+   LRESULT interaction_impl::send_message(const ::id & id, WPARAM wParam, lparam lParam)
    {
-      //ASSERT(::is_window(get_handle()));
-      return ::SendMessage(get_handle(), message, wParam, lParam);
+
+      return ::SendMessage(get_handle(), id.umessage(), wParam, lParam);
 
    }
 
 
-   bool interaction_impl::post_message(UINT message, WPARAM wParam, lparam lParam)
-
+   bool interaction_impl::post_message(const ::id & id, WPARAM wParam, lparam lParam)
    {
 
-      return ::PostMessage(get_handle(), message, wParam, lParam) != FALSE;
+      oswindow oswindow = get_handle();
+
+      UINT message = id.umessage();
+
+      WPARAM wparam = wParam;
+
+      LPARAM lparam = lParam;
+
+      return ::PostMessage(oswindow, message, wparam, lparam) != FALSE;
 
    }
 
@@ -2768,13 +2774,16 @@ namespace windows
 
       m_puserinteraction->m_strWindowText = pszString;
 
-
       wstring wstrText(m_puserinteraction->m_strWindowText);
 
       const unichar * pwszText = wstrText;
 
       if (!::SendMessageTimeoutW(get_handle(), WM_SETTEXT, 0, (LPARAM)pwszText, SMTO_ABORTIFHUNG, 500, &lresult))
+      {
+
          return;
+
+      }
 
       string str;
 
@@ -3404,7 +3413,7 @@ namespace windows
    }
 
 
-// Helper for radio buttons
+// helper for radio buttons
    i32 interaction_impl::GetCheckedRadioButton(i32 nIDFirstButton, i32 nIDLastButton)
    {
       for (i32 nID = nIDFirstButton; nID <= nIDLastButton; nID++)
@@ -3545,11 +3554,18 @@ namespace windows
       ASSERT(::is_window(((interaction_impl *)this)->get_handle()));
       return ::IsDlgButtonChecked(((interaction_impl *)this)->get_handle(), nIDButton);
    }
+
+
    LPARAM interaction_impl::SendDlgItemMessage(i32 nID, UINT message, WPARAM wParam, LPARAM lParam)
    {
+
       ASSERT(::is_window(((interaction_impl *)this)->get_handle()));
-      return ::SendDlgItemMessage(((interaction_impl *)this)->get_handle(), nID, message, wParam, lParam);
+
+      return ::SendDlgItemMessage(((interaction_impl *)this)->get_handle(), message, message, wParam, lParam);
+
    }
+
+
    void interaction_impl::SetDlgItemInt(i32 nID, UINT nValue, bool bSigned)
    {
       ASSERT(::is_window(get_handle()));
@@ -3752,8 +3768,8 @@ namespace windows
 
    }
 
-   bool interaction_impl::SendNotifyMessage(UINT message, WPARAM wParam, lparam lParam)
 
+   bool interaction_impl::SendNotifyMessage(UINT message, WPARAM wParam, lparam lParam)
    {
 
       return ::SendNotifyMessage(get_handle(), message, wParam, lParam) != FALSE;
@@ -5052,7 +5068,6 @@ bool is_registered_windows_message(UINT message)
 }
 
 
-
 LRESULT CALLBACK WndProc(HWND oswindow, UINT message, WPARAM wparam, LPARAM lparam);
 
 int g_iCol = 0;
@@ -5104,14 +5119,14 @@ LRESULT CALLBACK __window_procedure(HWND oswindow, UINT message, WPARAM wparam, 
 
    ::user::interaction * pinteraction = pimpl->m_puserinteraction;
 
-   if (message == WM_ACTIVATE)
+   if (message == e_message_activate)
    {
 
       output_debug_string("test");
 
    }
 
-   if (message == WM_MOUSEMOVE)
+   if (message == e_message_mouse_move)
    {
 
       if (lparam == pimpl->m_lparamLastMouseMove)
@@ -5162,7 +5177,7 @@ LRESULT CALLBACK __window_procedure(HWND oswindow, UINT message, WPARAM wparam, 
 
          lparam = MAKELPARAM(pointCursor.x, pointCursor.y);
 
-         pimpl->call_message_handler(WM_MOUSEMOVE, 0, lparam);
+         pimpl->call_message_handler(e_message_mouse_move, 0, lparam);
 
       }
       else
@@ -5181,7 +5196,7 @@ LRESULT CALLBACK __window_procedure(HWND oswindow, UINT message, WPARAM wparam, 
    if (pimpl->m_bDestroyImplOnly || ::is_null(pinteraction))
    {
 
-      auto pbase = pimpl->get_message_base(message, wparam, lparam);
+      auto pbase = pimpl->get_message_base((enum_message) message, wparam, lparam);
 
       try
       {
@@ -5226,7 +5241,7 @@ LRESULT CALLBACK __window_procedure(HWND oswindow, UINT message, WPARAM wparam, 
 
       }
 
-      auto pbase = pinteraction->get_message_base(message, wparam, lparam);
+      auto pbase = pinteraction->get_message_base((enum_message) message, wparam, lparam);
 
       try
       {
@@ -5352,8 +5367,8 @@ void CLASS_DECL_AURA _handle_activate(::user::interaction_impl * pwindow, WPARAM
       __pointer(::user::interaction) pTopLevel = (pwindow)->GetTopLevel();
       if (pTopLevel && (!pWndOther || !::is_window((pWndOther)->get_handle()) || pTopLevel != (pWndOther)->GetTopLevel()))
       {
-         // lParam points to interaction_impl getting the WM_ACTIVATE message and
-         //  oswindow_Other from the WM_ACTIVATE.
+         // lParam points to interaction_impl getting the e_message_activate message and
+         //  oswindow_Other from the e_message_activate.
          oswindow oswindow_2[2];
          oswindow_2[0] = (pwindow)->get_handle();
          if (!pWndOther)
@@ -5487,17 +5502,17 @@ namespace windows
 
       }
 
-      UINT uiMessage;
+      ::u32 message;
 
-      uiMessage = UINT(pbase->m_id.i64());
+      message = pbase->m_id.umessage();
 
-      m_uiMessage = uiMessage;
+      m_uiMessage = message;
 
       m_wparam = pbase->m_wparam;
 
       m_lparam = pbase->m_lparam;
 
-      if (uiMessage == WM_IME_SETCONTEXT)
+      if (message == WM_IME_SETCONTEXT)
       {
 
          if (m_wparam == 1)
@@ -5517,34 +5532,34 @@ namespace windows
 
       bool bUserElementalOk = !m_bDestroyImplOnly && m_puserinteraction && m_puserinteraction->m_bUserPrimitiveOk;
 
-      if (uiMessage == WM_KEYDOWN ||
-         uiMessage == WM_KEYUP ||
-         uiMessage == WM_CHAR ||
-         uiMessage == WM_SYSKEYDOWN ||
-         uiMessage == WM_SYSKEYUP ||
-         uiMessage == WM_SYSCHAR ||
-         uiMessage == WM_IME_KEYDOWN ||
-         uiMessage == WM_IME_SETCONTEXT ||
-         uiMessage == WM_IME_SELECT ||
-         uiMessage == WM_IME_KEYUP ||
-         uiMessage == WM_IME_CHAR ||
-         uiMessage == WM_IME_STARTCOMPOSITION ||
-         uiMessage == WM_IME_COMPOSITION ||
-         uiMessage == WM_IME_COMPOSITIONFULL ||
-         uiMessage == WM_IME_NOTIFY ||
-         uiMessage == WM_IME_ENDCOMPOSITION)
+      if (message == WM_KEYDOWN ||
+         message == WM_KEYUP ||
+         message == WM_CHAR ||
+         message == WM_SYSKEYDOWN ||
+         message == WM_SYSKEYUP ||
+         message == WM_SYSCHAR ||
+         message == WM_IME_KEYDOWN ||
+         message == WM_IME_SETCONTEXT ||
+         message == WM_IME_SELECT ||
+         message == WM_IME_KEYUP ||
+         message == WM_IME_CHAR ||
+         message == WM_IME_STARTCOMPOSITION ||
+         message == WM_IME_COMPOSITION ||
+         message == WM_IME_COMPOSITIONFULL ||
+         message == WM_IME_NOTIFY ||
+         message == WM_IME_ENDCOMPOSITION)
       {
 
          SCAST_PTR(::message::key, pkey, pbase);
 
-         if (uiMessage == WM_KEYDOWN)
+         if (message == WM_KEYDOWN)
          {
 
             output_debug_string("\n Key Down Event ");
 
          }
 
-         if (uiMessage == WM_KEYDOWN || uiMessage == WM_SYSKEYDOWN)
+         if (message == WM_KEYDOWN || message == WM_SYSKEYDOWN)
          {
             try
             {
@@ -5554,7 +5569,7 @@ namespace windows
             {
             }
          }
-         else if (uiMessage == WM_KEYUP || uiMessage == WM_SYSKEYUP)
+         else if (message == WM_KEYUP || message == WM_SYSKEYUP)
          {
 
             try
@@ -5572,11 +5587,11 @@ namespace windows
 
       }
 
-      if (uiMessage == WM_TIMER)
+      if (message == WM_TIMER)
       {
          //         m_puserinteraction->get_context_application()->step_timer();
       }
-      else if (uiMessage == WM_LBUTTONDOWN)
+      else if (message == WM_LBUTTONDOWN)
       {
          ::rect rectClient;
          ::GetClientRect(get_handle(), rectClient);
@@ -5597,8 +5612,8 @@ namespace windows
          bool bZoomed = ::IsZoomed(get_handle()) != FALSE;
          bool bIconic = ::IsIconic(get_handle()) != FALSE;
       }
-      else if (uiMessage == WM_SETCURSOR
-         || uiMessage == WM_NCMOUSEMOVE)
+      else if (message == WM_SETCURSOR
+         || message == e_message_non_client_mouse_move)
       {
          //output_debug_string(".");
       }
@@ -5609,10 +5624,10 @@ namespace windows
 
          if (0)
          {
-            switch (uiMessage)
+            switch (message)
             {
-            case WM_CREATE:
-               TRACE("WM_CREATE wparam=%08x lparam=%08x", pbase->m_wparam, pbase->m_lparam);
+            case e_message_create:
+               TRACE("e_message_create wparam=%08x lparam=%08x", pbase->m_wparam, pbase->m_lparam);
 
                break;
             case WM_WINDOWPOSCHANGING:
@@ -5623,8 +5638,8 @@ namespace windows
                TRACE("WM_WINDOWPOSCHANGED wparam=%08x lparam=%08x", pbase->m_wparam, pbase->m_lparam);
 
                break;
-            case WM_ACTIVATE:
-               TRACE("WM_ACTIVATE wparam=%08x lparam=%08x", pbase->m_wparam, pbase->m_lparam);
+            case e_message_activate:
+               TRACE("e_message_activate wparam=%08x lparam=%08x", pbase->m_wparam, pbase->m_lparam);
 
                break;
             case WM_ACTIVATEAPP:
@@ -5639,24 +5654,24 @@ namespace windows
                TRACE("WM_NCACTIVATE wparam=%08x lparam=%08x", pbase->m_wparam, pbase->m_lparam);
 
                break;
-            case WM_SETFOCUS:
-               TRACE("WM_SETFOCUS wparam=%08x lparam=%08x", pbase->m_wparam, pbase->m_lparam);
+            case e_message_set_focus:
+               TRACE("e_message_set_focus wparam=%08x lparam=%08x", pbase->m_wparam, pbase->m_lparam);
 
                break;
-            case WM_KILLFOCUS:
-               TRACE("WM_KILLFOCUS wparam=%08x lparam=%08x", pbase->m_wparam, pbase->m_lparam);
+            case e_message_kill_focus:
+               TRACE("e_message_kill_focus wparam=%08x lparam=%08x", pbase->m_wparam, pbase->m_lparam);
 
                break;
-            case WM_MOVE:
-               TRACE("WM_MOVE wparam=%08x lparam=%08x", pbase->m_wparam, pbase->m_lparam);
+            case e_message_move:
+               TRACE("e_message_move wparam=%08x lparam=%08x", pbase->m_wparam, pbase->m_lparam);
 
                break;
-            case WM_SIZE:
-               TRACE("WM_SIZE wparam=%08x lparam=%08x", pbase->m_wparam, pbase->m_lparam);
+            case e_message_size:
+               TRACE("e_message_size wparam=%08x lparam=%08x", pbase->m_wparam, pbase->m_lparam);
 
                break;
             default:
-               TRACE("MESSAGE %08x wparam=%08x lparam=%08x", uiMessage, pbase->m_wparam, pbase->m_lparam);
+               TRACE("MESSAGE %08x wparam=%08x lparam=%08x", message, pbase->m_wparam, pbase->m_lparam);
 
                break;
             }
@@ -5668,7 +5683,7 @@ namespace windows
       }
       
 
-      /*      else if(uiMessage == CA2M_BERGEDGE)
+      /*      else if(message == CA2M_BERGEDGE)
       {
       if(pbase->m_wparam == BERGEDGE_GETAPP)
       {
@@ -5680,7 +5695,7 @@ namespace windows
       }*/
       //pbase->set_lresult(0);
 
-      if (uiMessage == WM_MOUSELEAVE)
+      if (message == WM_MOUSELEAVE)
       {
 
          if (Session.m_puiCapture)
@@ -5700,22 +5715,22 @@ namespace windows
 
       }
 
-      if (uiMessage == WM_LBUTTONDOWN ||
-         uiMessage == WM_LBUTTONUP ||
-         uiMessage == WM_MBUTTONDOWN ||
-         uiMessage == WM_MBUTTONUP ||
-         uiMessage == WM_RBUTTONDOWN ||
-         uiMessage == WM_RBUTTONUP ||
-         uiMessage == WM_LBUTTONDBLCLK ||
-         uiMessage == WM_MOUSEMOVE ||
-         uiMessage == WM_NCMOUSEMOVE ||
-         uiMessage == WM_MOUSEWHEEL)
+      if (message == WM_LBUTTONDOWN ||
+         message == WM_LBUTTONUP ||
+         message == WM_MBUTTONDOWN ||
+         message == WM_MBUTTONUP ||
+         message == WM_RBUTTONDOWN ||
+         message == WM_RBUTTONUP ||
+         message == WM_LBUTTONDBLCLK ||
+         message == e_message_mouse_move ||
+         message == e_message_non_client_mouse_move ||
+         message == WM_MOUSEWHEEL)
       {
 
          message::mouse * pmouse = dynamic_cast <::message::mouse *> (pbase);
 
-         if (uiMessage >= WM_MOUSEFIRST
-            && uiMessage <= WM_MOUSELAST
+         if (message >= WM_MOUSEFIRST
+            && message <= WM_MOUSELAST
             && m_bTranslateMouseMessageCursor
             && !pmouse->m_bTranslated)
          {
@@ -5726,7 +5741,7 @@ namespace windows
 
          }
 
-         if (uiMessage == WM_LBUTTONDOWN)
+         if (message == WM_LBUTTONDOWN)
          {
 
             TRACE("WM_LBUTTONDOWN");
@@ -5741,19 +5756,19 @@ namespace windows
             }
 
          }
-         else if (uiMessage == WM_LBUTTONUP)
+         else if (message == WM_LBUTTONUP)
          {
 
             TRACE("WM_LBUTTONUP");
 
          }
-         else if (uiMessage == WM_NCLBUTTONUP)
+         else if (message == WM_NCLBUTTONUP)
          {
 
             TRACE("WM_NCLBUTTONUP");
 
          }
-         else if (uiMessage == WM_NCLBUTTONDOWN)
+         else if (message == WM_NCLBUTTONDOWN)
          {
 
             TRACE("WM_NCLBUTTONDOWN");
@@ -5772,7 +5787,7 @@ namespace windows
          Session.on_ui_mouse_message(pmouse);
 
 
-         if (uiMessage == WM_MOUSEMOVE)
+         if (message == e_message_mouse_move)
          {
             // We are at the message handler procedure.
             // mouse messages originated from message handler and that are mouse move events should end up with the correct cursor.
@@ -5781,7 +5796,7 @@ namespace windows
             // handler has set it to another one.
             pmouse->m_ecursor = cursor_default;
 
-            //INFO("windows::WM_MOUSEMOVE(%d,%d)", pmouse->m_point.x, pmouse->m_point.y);
+            //INFO("windows::e_message_mouse_move(%d,%d)", pmouse->m_point.x, pmouse->m_point.y);
 
             string strType;
 
@@ -5793,14 +5808,14 @@ namespace windows
                if (strType.contains_ci("combo_list"))
                {
 
-                  //::output_debug_string("combo_list WM_MOUSEMOVE");
+                  //::output_debug_string("combo_list e_message_mouse_move");
 
                }
 
             }
 
          }
-         else if (uiMessage == WM_NCMOUSEMOVE)
+         else if (message == e_message_non_client_mouse_move)
          {
             // We are at the message handler procedure.
             // mouse messages originated from message handler and that are mouse move events should end up with the correct cursor.
@@ -5827,10 +5842,10 @@ namespace windows
 
       }
 
-      if (uiMessage == MESSAGE_OLE_DRAGENTER ||
-         uiMessage == MESSAGE_OLE_DRAGOVER ||
-         uiMessage == MESSAGE_OLE_DRAGLEAVE ||
-         uiMessage == MESSAGE_OLE_DRAGDROP)
+      if (message == MESSAGE_OLE_DRAGENTER ||
+         message == MESSAGE_OLE_DRAGOVER ||
+         message == MESSAGE_OLE_DRAGLEAVE ||
+         message == MESSAGE_OLE_DRAGDROP)
       {
 
          message::drag_and_drop * pdrag = (::message::drag_and_drop *) pbase;
@@ -5859,23 +5874,23 @@ namespace windows
          }*/
          return;
       }
-      if (uiMessage == WM_KEYDOWN ||
-         uiMessage == WM_KEYUP ||
-         uiMessage == WM_CHAR ||
-         uiMessage == WM_SYSKEYDOWN ||
-         uiMessage == WM_SYSKEYUP ||
-         uiMessage == WM_SYSCHAR ||
-         uiMessage == WM_IME_KEYDOWN ||
-         uiMessage == WM_IME_KEYUP ||
-         uiMessage == WM_IME_CHAR ||
-         uiMessage == WM_IME_SELECT ||
-         uiMessage == WM_IME_SETCONTEXT ||
-         uiMessage == WM_IME_STARTCOMPOSITION ||
-         uiMessage == WM_IME_COMPOSITION ||
-         uiMessage == WM_IME_COMPOSITIONFULL ||
-         uiMessage == WM_IME_NOTIFY ||
-         uiMessage == WM_IME_ENDCOMPOSITION ||
-         uiMessage == WM_INPUTLANGCHANGE)
+      if (message == WM_KEYDOWN ||
+         message == WM_KEYUP ||
+         message == WM_CHAR ||
+         message == WM_SYSKEYDOWN ||
+         message == WM_SYSKEYUP ||
+         message == WM_SYSCHAR ||
+         message == WM_IME_KEYDOWN ||
+         message == WM_IME_KEYUP ||
+         message == WM_IME_CHAR ||
+         message == WM_IME_SELECT ||
+         message == WM_IME_SETCONTEXT ||
+         message == WM_IME_STARTCOMPOSITION ||
+         message == WM_IME_COMPOSITION ||
+         message == WM_IME_COMPOSITIONFULL ||
+         message == WM_IME_NOTIFY ||
+         message == WM_IME_ENDCOMPOSITION ||
+         message == WM_INPUTLANGCHANGE)
       {
 
      
@@ -5911,13 +5926,13 @@ namespace windows
 
          //m_lparam = pbase->m_lparam;
 
-         //pbase->set_lresult(::default_window_procedure(uiMessage, pbase->m_wparam, pbase->m_lparam));
+         //pbase->set_lresult(::default_window_procedure(message, pbase->m_wparam, pbase->m_lparam));
 
          //return;
 
       }
 
-      if (uiMessage == EVENT_MESSAGE)
+      if (message == e_message_event)
       {
 
          m_puserinteraction->on_control_event(pbase);
@@ -5937,13 +5952,13 @@ namespace windows
 
       }
 
-      if(uiMessage == WM_IME_STARTCOMPOSITION ||
-         uiMessage == WM_IME_COMPOSITION ||
-         uiMessage == WM_IME_COMPOSITIONFULL ||
-         uiMessage == WM_IME_NOTIFY ||
-         uiMessage == WM_IME_ENDCOMPOSITION ||
-         uiMessage == WM_IME_SELECT ||
-         uiMessage == WM_IME_SETCONTEXT)
+      if(message == WM_IME_STARTCOMPOSITION ||
+         message == WM_IME_COMPOSITION ||
+         message == WM_IME_COMPOSITIONFULL ||
+         message == WM_IME_NOTIFY ||
+         message == WM_IME_ENDCOMPOSITION ||
+         message == WM_IME_SELECT ||
+         message == WM_IME_SETCONTEXT)
       {
 
          //return;
@@ -6060,7 +6075,7 @@ wstring windows_calc_icon_window_class(::user::interaction * pinteraction, u32 d
 wstring CLASS_DECL_AURA windows_get_user_interaction_window_class(::user::interaction * pinteraction)
 {
 
-   ::user::interaction::e_type etype = pinteraction->get_window_type();
+   ::user::interaction::enum_type etype = pinteraction->get_window_type();
 
    WNDCLASSEXW wndcls;
    
@@ -6181,7 +6196,7 @@ CLASS_DECL_AURA wstring windows_register_window_class(::layered * pobjectContext
 
 
 
-LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
+LRESULT CALLBACK WndProc(HWND hWnd, const ::id & id, WPARAM wParam, LPARAM lParam);
 
 //bool windows_register_class(HINSTANCE hinstance)
 //{

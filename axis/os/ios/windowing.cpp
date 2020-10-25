@@ -350,7 +350,7 @@ oswindow set_focus(oswindow window)
          if(windowOld->m_pimpl->m_bFocus)
          {
             
-            windowOld->m_pimpl->m_puserinteraction->send_message(WM_KILLFOCUS);
+            windowOld->m_pimpl->m_puserinteraction->send_message(e_message_kill_focus);
 
          }
 
@@ -372,7 +372,7 @@ oswindow set_focus(oswindow window)
          if(!window->m_pimpl->m_puserinteraction->m_bFocus)
          {
 
-            window->m_pimpl->m_puserinteraction->send_message(WM_SETFOCUS);
+            window->m_pimpl->m_puserinteraction->send_message(e_message_set_focus);
 
          }
 

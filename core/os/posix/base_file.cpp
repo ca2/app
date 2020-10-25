@@ -95,7 +95,7 @@ int_bool file_exists(const char * path1)
 }
 
 
-int_bool is_file_or_dir_dup(const char * path1, ::file::e_type * petype)
+int_bool is_file_or_dir_dup(const char * path1, ::file::enum_type * petype)
 {
 
    struct stat st;

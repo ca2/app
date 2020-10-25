@@ -209,12 +209,12 @@ namespace prompt
    void frame::install_message_routing(::channel * pchannel)
    {
       simple_frame_window::install_message_routing(pchannel);
-      IGUI_MSG_LINK(WM_CREATE, pchannel, this, &frame::_001OnCreate);
-      IGUI_MSG_LINK(WM_CLOSE, pchannel, this, &frame::_001OnClose);
+      MESSAGE_LINK(e_message_create, pchannel, this, &frame::_001OnCreate);
+      MESSAGE_LINK(WM_CLOSE, pchannel, this, &frame::_001OnClose);
 //
-      IGUI_MSG_LINK(WM_MOVE, pchannel, this, &frame::_001OnMove);
-      IGUI_MSG_LINK(WM_SHOWWINDOW, pchannel, this, &frame::_001OnShowWindow);
-      IGUI_MSG_LINK(WM_APP + 2000, pchannel, this, &frame::_001OnApp2000);
+      MESSAGE_LINK(e_message_move, pchannel, this, &frame::_001OnMove);
+      MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &frame::_001OnShowWindow);
+      MESSAGE_LINK(WM_APP + 2000, pchannel, this, &frame::_001OnApp2000);
    }
 
    void frame::_001OnCreate(::message::message * pmessage)
@@ -456,7 +456,7 @@ namespace prompt
       if(pcommand->m_id == "app_exit")
       {
 
-         pcommand->Enable();
+         pcommand->enable();
 
          pcommand->m_bRet = true;
 

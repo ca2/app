@@ -60,9 +60,9 @@ namespace filemanager
    void operation_view::install_message_routing(::channel * pchannel)
    {
       ::user::split_view::install_message_routing(pchannel);
-      IGUI_MSG_LINK(WM_CREATE,pchannel,this,&operation_view::_001OnCreate);
-      IGUI_MSG_LINK(MessageMainPost,pchannel,this,&operation_view::_001OnMainPostMessage);
-      IGUI_MSG_LINK(WM_DESTROY,pchannel,this,&operation_view::_001OnDestroy);
+      MESSAGE_LINK(e_message_create,pchannel,this,&operation_view::_001OnCreate);
+      MESSAGE_LINK(MessageMainPost,pchannel,this,&operation_view::_001OnMainPostMessage);
+      MESSAGE_LINK(e_message_destroy,pchannel,this,&operation_view::_001OnDestroy);
    }
 
    __pointer(operation_document) operation_view::get_document()

@@ -1300,7 +1300,7 @@
 ////
 ////      }
 ////
-////      if(msg.message == WM_QUIT)
+////      if(msg.message == e_message_quit)
 ////         break;
 ////
 ////

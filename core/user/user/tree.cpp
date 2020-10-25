@@ -833,18 +833,18 @@ namespace user
 
       ::user::scroll_base::install_message_routing(pchannel);
 
-      IGUI_MSG_LINK(WM_CREATE, pchannel, this, &tree::_001OnCreate);
-      IGUI_MSG_LINK(WM_LBUTTONDBLCLK, pchannel, this, &tree::_001OnLButtonDblClk);
-      IGUI_MSG_LINK(WM_LBUTTONUP, pchannel, this, &tree::_001OnLButtonUp);
-      IGUI_MSG_LINK(WM_LBUTTONDOWN, pchannel, this, &tree::_001OnLButtonDown);
-      IGUI_MSG_LINK(WM_RBUTTONUP, pchannel, this, &tree::_001OnRButtonUp);
-      IGUI_MSG_LINK(WM_RBUTTONDOWN, pchannel, this, &tree::_001OnRButtonDown);
-      IGUI_MSG_LINK(WM_MOUSEMOVE, pchannel, this, &tree::_001OnMouseMove);
-      IGUI_MSG_LINK(WM_MOUSELEAVE, pchannel, this, &tree::_001OnMouseLeave);
-      IGUI_MSG_LINK(WM_HSCROLL, pchannel, this, &tree::_001OnHScroll);
-      IGUI_MSG_LINK(WM_VSCROLL, pchannel, this, &tree::_001OnVScroll);
-      IGUI_MSG_LINK(message_change_experience, pchannel, this, &tree::_001OnChangeExperience);
-//      //IGUI_MSG_LINK(WM_TIMER         , pchannel, this, &tree::_001OnTimer);
+      MESSAGE_LINK(e_message_create, pchannel, this, &tree::_001OnCreate);
+      MESSAGE_LINK(WM_LBUTTONDBLCLK, pchannel, this, &tree::_001OnLButtonDblClk);
+      MESSAGE_LINK(WM_LBUTTONUP, pchannel, this, &tree::_001OnLButtonUp);
+      MESSAGE_LINK(WM_LBUTTONDOWN, pchannel, this, &tree::_001OnLButtonDown);
+      MESSAGE_LINK(WM_RBUTTONUP, pchannel, this, &tree::_001OnRButtonUp);
+      MESSAGE_LINK(WM_RBUTTONDOWN, pchannel, this, &tree::_001OnRButtonDown);
+      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &tree::_001OnMouseMove);
+      MESSAGE_LINK(WM_MOUSELEAVE, pchannel, this, &tree::_001OnMouseLeave);
+      MESSAGE_LINK(WM_HSCROLL, pchannel, this, &tree::_001OnHScroll);
+      MESSAGE_LINK(WM_VSCROLL, pchannel, this, &tree::_001OnVScroll);
+      MESSAGE_LINK(e_message_change_experience, pchannel, this, &tree::_001OnChangeExperience);
+//      //MESSAGE_LINK(WM_TIMER         , pchannel, this, &tree::_001OnTimer);
 
    }
 

@@ -541,7 +541,7 @@ namespace base
 //      virtual ::apex::library * get_library(const char * pszLibrary, bool bOpenCa2 = false);
 //
 //
-//      virtual UINT os_post_to_all_threads(UINT uiMessage,WPARAM wparam = 0,lparam lparam = 0);
+//      virtual UINT os_post_to_all_threads(const ::id & id,WPARAM wparam = 0,lparam lparam = 0);
 //
 //
 //      virtual void session_add(index iEdge, ::aura::session * psession);

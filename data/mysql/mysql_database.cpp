@@ -541,7 +541,7 @@ namespace mysql
             if (row[iField] == nullptr)
             {
 
-               prow->set_at_grow(iField, ::type_null);
+               prow->set_at_grow(iField, ::e_type_null);
 
             }
             else
@@ -596,7 +596,7 @@ namespace mysql
       else if (row[0] == nullptr)
       {
 
-         return ::var(::type_null);
+         return ::var(::e_type_null);
 
       }
       else
@@ -693,7 +693,7 @@ namespace mysql
          if (row[0] == nullptr)
          {
 
-            pvara->set_at_grow(iRow, ::type_null);
+            pvara->set_at_grow(iRow, ::e_type_null);
 
          }
          else
@@ -745,7 +745,7 @@ namespace mysql
          if (row[iField] == nullptr)
          {
 
-            prow->set_at_grow(iField, ::type_null);
+            prow->set_at_grow(iField, ::e_type_null);
 
          }
          else

@@ -536,8 +536,8 @@ public:
    //virtual void read(RECT & rect);
    virtual void read(id & id);
    virtual void read(var & var);
-   virtual void read_var_type(e_type & etype);
-   virtual void read_var_body(var & var, e_type etype);
+   virtual void read_var_type(enum_type & etype);
+   virtual void read_var_body(var & var, enum_type etype);
    virtual void read(property & property);
    virtual void read(string & str);
    //virtual void read(::matter * pobject);
@@ -545,7 +545,7 @@ public:
    virtual void read(::property_set & set);
    virtual void read(block & block);
 
-   virtual void save_var_type(::e_type etype);
+   virtual void save_var_type(::enum_type etype);
 
 
 

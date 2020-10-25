@@ -31,7 +31,7 @@ namespace filemanager
 
       connect_command("edit_paste",&impact::_001OnEditPaste);
 
-      IGUI_MSG_LINK(WM_APP + 1024,pchannel,this,&impact::_001OnOperationDocMessage);
+      MESSAGE_LINK(WM_APP + 1024,pchannel,this,&impact::_001OnOperationDocMessage);
 
    }
 
@@ -124,7 +124,7 @@ namespace filemanager
 
       SCAST_PTR(::user::command,pcommand,pmessage);
 
-      pcommand->Enable(Session.copydesk().has_filea());
+      pcommand->enable(Session.copydesk().has_filea());
 
       pmessage->m_bRet = true;
 

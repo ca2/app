@@ -345,7 +345,7 @@ namespace calculator
 
       m_scanner.peek();
 
-      if (m_scanner.m_ptoken->m_etype == (::calculator::token::e_type) value)
+      if (m_scanner.m_ptoken->m_etype == (::calculator::token::enum_type) value)
       {
        
          m_scanner.next();

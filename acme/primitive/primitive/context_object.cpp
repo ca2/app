@@ -100,11 +100,11 @@ public:
 
 };
 
-string get_message_text(UINT message, bool bWithNumbers);
+string get_message_text(const ::id & id, bool bWithNumbers);
 
 CLASS_DECL_ACME void debug_debug_reference()
 {
-   auto message = WM_CREATE;
+   auto message = e_message_create;
 #if OSBIT == 64
    WPARAM wparam = 0x12345678901234;
    LPARAM lparam = 0x56781234567890;

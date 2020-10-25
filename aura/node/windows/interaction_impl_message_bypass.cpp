@@ -7,11 +7,11 @@
 
 UINT g_puiaMessageTrace[] =
 {
-   WM_MOVE,
-   WM_SIZE,
-   WM_ACTIVATE,
-   WM_SETFOCUS,
-   WM_KILLFOCUS,
+   e_message_move,
+   e_message_size,
+   e_message_activate,
+   e_message_set_focus,
+   e_message_kill_focus,
    (UINT)-1
 };
 
@@ -28,15 +28,15 @@ bool __windows_message_bypass(HWND oswindow, UINT message, WPARAM wparam, LPARAM
       return false;
 
    }
-   else if (message == WM_CREATE)
+   else if (message == e_message_create)
    {
 
-      output_debug_string("WM_CREATE");
+      output_debug_string("e_message_create");
 
       return false;
 
    }
-   else if (message == WM_MOUSEMOVE)
+   else if (message == e_message_mouse_move)
    {
 
       output_debug_string("mm.");
@@ -119,7 +119,7 @@ namespace windows
    bool interaction_impl::__windows_message_bypass(HWND oswindow, UINT message, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
    {
 
-      //if (message == WM_MOUSEMOVE)
+      //if (message == e_message_mouse_move)
       //{
 
       //   //output_debug_string("mm.");
@@ -259,7 +259,7 @@ namespace windows
          if (__windows_message_bypass(oswindow, message, wparam, lparam, lresult, g_puiaMessageWindowActivating))
          {
 
-            if (message == WM_SETFOCUS)
+            if (message == e_message_set_focus)
             {
 
                pimpl->m_iState1 = STATE_WINDOW_CREATED;
@@ -295,7 +295,7 @@ namespace windows
 
       str.Format("%s", get_message_text(message, true).c_str(), wparam, lparam);
 
-      if (message == WM_ACTIVATE)
+      if (message == e_message_activate)
       {
 
          if (LOWORD(wparam) == WA_ACTIVE)

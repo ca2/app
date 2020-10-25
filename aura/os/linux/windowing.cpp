@@ -737,7 +737,7 @@ void oswindow_set_active_window(oswindow oswindow)
 
                g_oswindowActive->m_pimpl->m_puserinteraction->m_ewindowflag -= ::window_flag_active;
 
-               g_oswindowActive->m_pimpl->m_puserinteraction->post_message(WM_ACTIVATE, 0);
+               g_oswindowActive->m_pimpl->m_puserinteraction->post_message(e_message_activate, 0);
 
             }
 
@@ -767,7 +767,7 @@ void oswindow_set_active_window(oswindow oswindow)
 
                g_oswindowActive->m_pimpl->m_puserinteraction->m_ewindowflag += ::window_flag_active;
 
-               g_oswindowActive->m_pimpl->m_puserinteraction->post_message(WM_ACTIVATE, 1);
+               g_oswindowActive->m_pimpl->m_puserinteraction->post_message(e_message_activate, 1);
 
             }
 
@@ -1684,7 +1684,7 @@ int_bool destroy_window(oswindow window)
       if(pinteraction.is_set())
       {
 
-         pinteraction->send_message(WM_DESTROY, 0, 0);
+         pinteraction->send_message(e_message_destroy, 0, 0);
 
          mq_remove_window_from_all_queues(window);
 
@@ -3351,7 +3351,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 
       }
 
-      msg.message       = WM_MOUSEMOVE;
+      msg.message       = e_message_mouse_move;
       msg.wParam        = wparam;
       msg.lParam        = MAKELONG(e.xmotion.x_root, e.xmotion.y_root);
       msg.time          = e.xmotion.time;
@@ -3577,7 +3577,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
                   if(pointWindow != point)
                   {
 
-                     msg.message       = WM_MOVE;
+                     msg.message       = e_message_move;
                      msg.wParam        = 0;
                      msg.lParam        = point.lparam();
 
@@ -3588,7 +3588,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
                   if(sizeWindow != size)
                   {
 
-                     msg.message       = WM_SIZE;
+                     msg.message       = e_message_size;
                      msg.wParam        = 0;
                      msg.lParam        = size.lparam();
 
@@ -4013,7 +4013,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 
          MESSAGE msgText(msg);
 
-         msgText.message = message_text_composition;
+         msgText.message = e_message_text_composition;
 
          msgText.wParam = 0;
 
@@ -4021,7 +4021,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 
          msgText.lParam = (LPARAM) (iptr) (string *) (pstringText);
 
-         printf("x11_process_message message_text_composition\n");
+         printf("x11_process_message e_message_text_composition\n");
 
          post_ui_message(msgText);
 
@@ -4034,7 +4034,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 
       ::output_debug_string("FocusIn\n");
 
-      msg.message       = WM_SETFOCUS;
+      msg.message       = e_message_set_focus;
 
       if(msg.hwnd->m_pimpl != nullptr && msg.hwnd->m_pimpl->m_puserinteraction != nullptr)
       {
@@ -4098,7 +4098,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
    {
 
       msg.hwnd          = oswindow_get(pdisplay, e.xdestroywindow.window);
-      msg.message       = WM_DESTROY;
+      msg.message       = e_message_destroy;
 
       post_ui_message(msg);
 
@@ -4126,7 +4126,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
             if(::is_set(pinteraction))
             {
 
-               msg.message       = WM_KILLFOCUS;
+               msg.message       = e_message_kill_focus;
 
                pinteraction->m_ewindowflag -= window_flag_focus;
 
@@ -5267,7 +5267,7 @@ bool post_ui_message(const MESSAGE & message)
    if(pmq == nullptr)
    {
 
-      if(message.message == WM_QUIT)
+      if(message.message == e_message_quit)
       {
 
          return false;
@@ -5287,10 +5287,10 @@ bool post_ui_message(const MESSAGE & message)
 
    sync_lock ml(pmq->mutex());
 
-   if(message.message == WM_QUIT)
+   if(message.message == e_message_quit)
    {
 
-      output_debug_string("WM_QUIT thread");
+      output_debug_string("e_message_quit thread");
 
    }
 

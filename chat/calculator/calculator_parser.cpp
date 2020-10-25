@@ -215,7 +215,7 @@ namespace calculator
       error_msg[9] = value;
       error_msg[10] = '\0';
       m_scanner.peek();
-      if(m_scanner.m_ptoken->m_etype == (::calculator::token::e_type) value)
+      if(m_scanner.m_ptoken->m_etype == (::calculator::token::enum_type) value)
          m_scanner.next();
       else
          syntax_error(error_msg);

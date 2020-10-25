@@ -204,6 +204,13 @@ void matter::task_on_term(::task* ptask)
 }
 
 
+void matter::kick_idle()
+{
+
+
+}
+
+
 void matter::set_finish()
 {
 
@@ -456,6 +463,14 @@ void matter::to_sz(char * sz, strsize len) const
 {
 
    strncpy(sz, typeid(*this).name(), len);
+
+}
+
+
+bool matter::should_run_async() const
+{
+
+   return false;
 
 }
 

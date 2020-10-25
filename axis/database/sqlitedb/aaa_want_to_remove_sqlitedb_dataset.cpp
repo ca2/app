@@ -728,7 +728,7 @@
 //         if (reslt[i] == nullptr)
 //         {
 //
-//            var.set_type(::type_null);
+//            var.set_type(::e_type_null);
 //
 //         }
 //         else

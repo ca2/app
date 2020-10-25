@@ -117,10 +117,10 @@ namespace android
       virtual ::user::interaction * SetActiveWindow() override;
 
 
-      LRESULT send_message(UINT message,WPARAM wParam = 0,lparam lParam = 0) override;
-      bool post_message(UINT message,WPARAM wParam = 0,lparam lParam = 0) override;
+      LRESULT send_message(const ::id & id,WPARAM wParam = 0,lparam lParam = 0) override;
+      bool post_message(const ::id & id,WPARAM wParam = 0,lparam lParam = 0) override;
 
-      bool SendNotifyMessage(UINT message,WPARAM wParam,lparam lParam) override;
+      bool SendNotifyMessage(const ::id & id,WPARAM wParam,lparam lParam) override;
       //bool SendChildNotifyLastMsg(LRESULT* pResult = nullptr);
 
       //bool DragDetect(POINT pt) const;
@@ -248,7 +248,7 @@ namespace android
       //virtual ::user::interaction * GetNextDlgGroupItem(::user::interaction * pWndCtl, bool bPrevious = FALSE) const;
       //virtual ::user::interaction * GetNextDlgTabItem(::user::interaction * pWndCtl, bool bPrevious = FALSE) const;
       virtual UINT IsDlgButtonChecked(i32 nIDButton) const override;
-      virtual LRESULT SendDlgItemMessage(i32 nID, UINT message, WPARAM wParam = 0, LPARAM lParam = 0) override;
+      virtual LRESULT SendDlgItemMessage(i32 nID, const ::id & id, WPARAM wParam = 0, LPARAM lParam = 0) override;
       virtual void SetDlgItemInt(i32 nID, UINT nValue, bool bSigned = TRUE) override;
       virtual void SetDlgItemText(i32 nID, const char * lpszString) override;
 
@@ -373,7 +373,7 @@ namespace android
       void OnMove(i32 x,i32 y);
       DECL_GEN_SIGNAL(_001OnPaint);
       DECL_GEN_SIGNAL(_001OnPrint);
-      void OnParentNotify(UINT message,LPARAM lParam);
+      void OnParentNotify(const ::id & id,LPARAM lParam);
       HCURSOR OnQueryDragIcon();
       bool OnQueryEndSession();
       bool OnQueryNewPalette();
@@ -437,7 +437,7 @@ namespace android
       void OnMButtonDblClk(UINT nFlags, const ::point & point);
       void OnMButtonDown(UINT nFlags, const ::point & point);
       void OnMButtonUp(UINT nFlags, const ::point & point);
-      i32 OnMouseActivate(::user::interaction * pDesktopWnd,UINT nHitTest,UINT message);
+      i32 OnMouseActivate(::user::interaction * pDesktopWnd,UINT nHitTest,const ::id & id);
       void OnMouseMove(UINT nFlags, const ::point & point);
       bool OnMouseWheel(UINT nFlags,i16 zDelta, const ::point & point);
       LRESULT OnRegisteredMouseWheel(WPARAM wParam,LPARAM lParam);
@@ -507,7 +507,7 @@ namespace android
 
       // for handling default processing
       LRESULT Default();
-      virtual LRESULT DefWindowProc(UINT message,WPARAM wParam,lparam lParam);
+      virtual LRESULT DefWindowProc(const ::id & id,WPARAM wParam,lparam lParam);
 
       virtual void PostNcDestroy() override;
 

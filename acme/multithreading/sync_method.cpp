@@ -2,24 +2,24 @@
 #include "acme/id.h"
 
 
-method_event::method_event(const ::method & method) :
-   m_method(__method([this, method]()
-      {
-
-         m_method->run();
-
-         set_event();
-
-      }))
-{
-
-}
-
-
-method_event::~method_event()
-{
-
-}
-
-
-
+//method_event::method_event(const ::method & method) :
+//   m_method(__method([this, method]()
+//      {
+//
+//         m_method->run();
+//
+//         set_event();
+//
+//      }))
+//{
+//
+//}
+//
+//
+//method_event::~method_event()
+//{
+//
+//}
+//
+//
+//

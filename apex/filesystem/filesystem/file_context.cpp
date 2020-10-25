@@ -71,7 +71,7 @@ bool file_context::exists(const ::file::path & pathParam)
 
    }
 
-   ::file::e_type etype = ::file::type_none;
+   ::file::enum_type etype = ::file::type_none;
 
    bool bExists = is_file_or_dir(path, nullptr, &etype);
 
@@ -80,7 +80,7 @@ bool file_context::exists(const ::file::path & pathParam)
 }
 
 
-//bool file_context::is_file_or_dir(const ::file::path & path, ::file::e_type * petype)
+//bool file_context::is_file_or_dir(const ::file::path & path, ::file::enum_type * petype)
 //{
 //
 //   path = Context.defer_process_matter_path(path, papp, bOptional, bNoCache);
@@ -97,7 +97,7 @@ bool file_context::exists(const ::file::path & pathParam)
 //}
 
 
-bool file_context::is_file_or_dir(const ::file::path & path, var * pvarQuery, ::file::e_type * petype)
+bool file_context::is_file_or_dir(const ::file::path & path, var * pvarQuery, ::file::enum_type * petype)
 {
 
    if (::str::begins(path, "http://") || ::str::begins(path, "https://"))
@@ -193,7 +193,7 @@ var file_context::length(const ::file::path & path, var * pvarQuery)
    if (!GetFileAttributesExW(::str::international::utf8_to_unicode(path), GetFileExInfoStandard, &data))
    {
 
-      varRet.set_type(::type_null);
+      varRet.set_type(::e_type_null);
 
       ((::file::path &) path).m_iSize = -2;
 
@@ -214,7 +214,7 @@ var file_context::length(const ::file::path & path, var * pvarQuery)
    if (::stat(path, &stat) == -1)
    {
 
-      varRet.set_type(::type_null);
+      varRet.set_type(::e_type_null);
 
       ((::file::path &) path).m_iSize = -2;
 
@@ -3015,7 +3015,7 @@ bool file_context::is_link(string strPath)
 //}
 
 
-bool file_context::is_file_or_dir(const ::file::path & pszPath, ::file::e_type * petype)
+bool file_context::is_file_or_dir(const ::file::path & pszPath, ::file::enum_type * petype)
 {
 
    return is_file_or_dir(pszPath, nullptr, petype);

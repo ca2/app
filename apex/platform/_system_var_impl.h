@@ -11,7 +11,7 @@
 //}
 //
 //
-//inline var::var(e_type etype)
+//inline var::var(enum_type etype)
 //{
 //
 //   m_etype = etype;
@@ -53,7 +53,7 @@
 //inline var::var(std::nullptr_t)
 //{
 //
-//   m_etype = type_null;
+//   m_etype = e_type_null;
 //
 //}
 //
@@ -73,7 +73,7 @@
 //   case type_propset:
 //      return ::is_null(m_pset) ? 0 : m_pset->get_count();
 //   case type_empty:
-//   case type_null:
+//   case e_type_null:
 //   case type_new:
 //   case type_empty_argument:
 //      return 0;
@@ -86,7 +86,7 @@
 //inline ::count var::array_get_count() const
 //{
 //   if(m_etype == type_new
-//         || m_etype == type_null
+//         || m_etype == e_type_null
 //         || m_etype == type_empty
 //         || m_etype == type_empty_argument)
 //   {
@@ -103,7 +103,7 @@
 //inline index var::array_get_upper_bound() const
 //{
 //   if(m_etype == type_new
-//         || m_etype == type_null
+//         || m_etype == e_type_null
 //         || m_etype == type_empty
 //         || m_etype == type_empty_argument)
 //   {

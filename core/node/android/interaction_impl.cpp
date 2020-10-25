@@ -383,11 +383,11 @@ namespace android
 
       }
 
-      output_debug_string("android_interaction_impl send WM_CREATE");
+      output_debug_string("android_interaction_impl send e_message_create");
 
-      m_puserinteraction->send_message(WM_CREATE, 0, (LPARAM)&cs);
+      m_puserinteraction->send_message(e_message_create, 0, (LPARAM)&cs);
 
-      m_puserinteraction->send_message(WM_SIZE);
+      m_puserinteraction->send_message(e_message_size);
 
       if(m_oswindow != get_handle())
       {
@@ -426,11 +426,11 @@ namespace android
 
    //   m_puserinteraction->ModifyStyle(0, WS_VISIBLE);
 
-   //   m_puserinteraction->send_message(WM_CREATE);
+   //   m_puserinteraction->send_message(e_message_create);
 
-   //   m_puserinteraction->send_message(WM_SIZE);
+   //   m_puserinteraction->send_message(e_message_size);
 
-   //   m_puserinteraction->send_message(WM_MOVE);
+   //   m_puserinteraction->send_message(e_message_move);
 
    //   m_puserinteraction->send_message(WM_SHOWWINDOW, 1);
 
@@ -511,35 +511,35 @@ namespace android
 
       if(!m_puserinteraction->m_bMessageWindow)
       {
-         IGUI_MSG_LINK(WM_PAINT, pchannel, this,&interaction_impl::_001OnPaint);
-         IGUI_MSG_LINK(WM_PRINT, pchannel, this,&interaction_impl::_001OnPrint);
+         MESSAGE_LINK(WM_PAINT, pchannel, this,&interaction_impl::_001OnPaint);
+         MESSAGE_LINK(WM_PRINT, pchannel, this,&interaction_impl::_001OnPrint);
       }
       m_puserinteraction->install_message_routing(pchannel);
-      IGUI_MSG_LINK(WM_CREATE, pchannel, this,&interaction_impl::_001OnCreate);
+      MESSAGE_LINK(e_message_create, pchannel, this,&interaction_impl::_001OnCreate);
       if(!m_puserinteraction->m_bMessageWindow)
       {
 
-         IGUI_MSG_LINK(WM_SETCURSOR, pchannel, this,&interaction_impl::_001OnSetCursor);
+         MESSAGE_LINK(WM_SETCURSOR, pchannel, this,&interaction_impl::_001OnSetCursor);
 
-         //IGUI_MSG_LINK(WM_ERASEBKGND, pchannel, this,&interaction_impl::_001OnEraseBkgnd);
+         //MESSAGE_LINK(WM_ERASEBKGND, pchannel, this,&interaction_impl::_001OnEraseBkgnd);
 
-         IGUI_MSG_LINK(WM_SIZE, pchannel, this,&interaction_impl::_001OnSize);
+         MESSAGE_LINK(e_message_size, pchannel, this,&interaction_impl::_001OnSize);
 
-         //IGUI_MSG_LINK(WM_WINDOWPOSCHANGING, pchannel, this,&interaction_impl::_001OnWindowPosChanging);
-         //IGUI_MSG_LINK(WM_WINDOWPOSCHANGED, pchannel, this,&interaction_impl::_001OnWindowPosChanged);
-         //IGUI_MSG_LINK(WM_GETMINMAXINFO, pchannel, this,&interaction_impl::_001OnGetMinMaxInfo);
+         //MESSAGE_LINK(WM_WINDOWPOSCHANGING, pchannel, this,&interaction_impl::_001OnWindowPosChanging);
+         //MESSAGE_LINK(WM_WINDOWPOSCHANGED, pchannel, this,&interaction_impl::_001OnWindowPosChanged);
+         //MESSAGE_LINK(WM_GETMINMAXINFO, pchannel, this,&interaction_impl::_001OnGetMinMaxInfo);
 
-//         IGUI_MSG_LINK(WM_SHOWWINDOW, pchannel, this,&interaction_impl::_001OnShowWindow);
+//         MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this,&interaction_impl::_001OnShowWindow);
 
-         //IGUI_MSG_LINK(ca2m_PRODEVIAN_SYNCH, pchannel, this,&interaction_impl::_001OnProdevianSynch);
+         //MESSAGE_LINK(ca2m_PRODEVIAN_SYNCH, pchannel, this,&interaction_impl::_001OnProdevianSynch);
 
          prio_install_message_routing(pchannel);
 
       }
 
-      IGUI_MSG_LINK(WM_DESTROY, pchannel, this,&interaction_impl::_001OnDestroy);
+      MESSAGE_LINK(e_message_destroy, pchannel, this,&interaction_impl::_001OnDestroy);
 
-      IGUI_MSG_LINK(WM_NCCALCSIZE, pchannel, this,&interaction_impl::_001OnNcCalcSize);
+      MESSAGE_LINK(WM_NCCALCSIZE, pchannel, this,&interaction_impl::_001OnNcCalcSize);
 
    }
 
@@ -1056,7 +1056,7 @@ namespace android
    {
 
 
-      if(pmessage->m_id == WM_SIZE || pmessage->m_id == WM_MOVE)
+      if(pmessage->m_id == e_message_size || pmessage->m_id == e_message_move)
       {
 
          //win_update_graphics();
@@ -1170,8 +1170,8 @@ namespace android
             pmessage->m_id == WM_RBUTTONDOWN ||
             pmessage->m_id == WM_RBUTTONUP ||
             pmessage->m_id == WM_LBUTTONDBLCLK ||
-            pmessage->m_id == WM_MOUSEMOVE ||
-            pmessage->m_id == WM_NCMOUSEMOVE ||
+            pmessage->m_id == e_message_mouse_move ||
+            pmessage->m_id == e_message_non_client_mouse_move ||
             pmessage->m_id == WM_MOUSEWHEEL)
       {
 
@@ -1210,7 +1210,7 @@ namespace android
             pmouse->m_point.y += (LONG)rectWindow.top;
          }
 
-         if(pmessage->m_id == WM_MOUSEMOVE)
+         if(pmessage->m_id == e_message_mouse_move)
          {
             // We are at the message handler procedure.
             // mouse messages originated from message handler and that are mouse move events should end up with the correct cursor.
@@ -1219,7 +1219,7 @@ namespace android
             // handler has set it to another one.
             pmouse->m_ecursor = cursor_default;
          }
-         else if(pmessage->m_id == WM_NCMOUSEMOVE)
+         else if(pmessage->m_id == e_message_non_client_mouse_move)
          {
             // We are at the message handler procedure.
             // mouse messages originated from message handler and that are mouse move events should end up with the correct cursor.
@@ -1302,7 +1302,7 @@ namespace android
          return;
 
       }
-      if(pmessage->m_id == EVENT_MESSAGE)
+      if(pmessage->m_id == e_message_event)
       {
          if(m_puserinteraction != nullptr)
          {
@@ -1698,9 +1698,9 @@ namespace android
 //   return false;   // let the parent handle it
 //}
 
-   void interaction_impl::OnParentNotify(UINT message, LPARAM lparam)
+   void interaction_impl::OnParentNotify(const ::id & id, LPARAM lparam)
    {
-      //if ((LOWORD(message) == WM_CREATE || LOWORD(message) == WM_DESTROY))
+      //if ((LOWORD(message) == e_message_create || LOWORD(message) == e_message_destroy))
       //{
       //   if (ReflectLastMsg((oswindow)lparam))
       //      return;     // eat it
@@ -2844,7 +2844,7 @@ namespace android
       m_puserinteraction->SetOwner((pOwnerWnd));
    }
 
-   LRESULT interaction_impl::send_message(UINT message, WPARAM wparam, lparam lparam)
+   LRESULT interaction_impl::send_message(const ::id & id, WPARAM wparam, lparam lparam)
    {
 
       if (::get_task() == nullptr)
@@ -2859,7 +2859,7 @@ namespace android
    }
 
 
-   bool interaction_impl::post_message(UINT message, WPARAM wparam, lparam lparam)
+   bool interaction_impl::post_message(const ::id & id, WPARAM wparam, lparam lparam)
    {
 
       return ::user::interaction_impl::post_message(message, wparam, lparam);
@@ -3246,7 +3246,7 @@ namespace android
 
    }
 
-   //void interaction_impl::send_message_to_descendants(UINT message, WPARAM wparam, lparam lparam, bool bDeep, bool bOnlyPerm)
+   //void interaction_impl::send_message_to_descendants(const ::id & id, WPARAM wparam, lparam lparam, bool bDeep, bool bOnlyPerm)
    //{
    //   ASSERT(::is_window((oswindow)get_handle()));
    //   //interaction_impl::send_message_to_descendants(get_handle(), message, wparam, lparam, bDeep, bOnlyPerm);
@@ -3629,7 +3629,7 @@ namespace android
 
    }
 
-   LPARAM interaction_impl::SendDlgItemMessage(i32 nID, UINT message, WPARAM wparam, LPARAM lparam)
+   LPARAM interaction_impl::SendDlgItemMessage(i32 nID, const ::id & id, WPARAM wparam, LPARAM lparam)
    {
 
       __throw(not_implemented());
@@ -3866,7 +3866,7 @@ namespace android
 
    }
 
-   bool interaction_impl::SendNotifyMessage(UINT message, WPARAM wparam, lparam lparam)
+   bool interaction_impl::SendNotifyMessage(const ::id & id, WPARAM wparam, lparam lparam)
    {
 
       __throw(not_implemented());

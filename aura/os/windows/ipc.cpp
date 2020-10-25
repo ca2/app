@@ -2,7 +2,7 @@
 #include "aura/platform/app_core.h"
 
 
-typedef int (WINAPI * LPFN_ChangeWindowMessageFilter)(UINT message, DWORD dwFlag);
+typedef int (WINAPI * LPFN_ChangeWindowMessageFilter)(const ::id & id, DWORD dwFlag);
 
 
 
@@ -17,7 +17,7 @@ namespace aura
 
 
       ATOM rx_register_class(HINSTANCE hInstance);
-      LRESULT CALLBACK s_rx_message_queue_proc(oswindow oswindow,UINT message,WPARAM wparam,LPARAM lparam);
+      LRESULT CALLBACK s_rx_message_queue_proc(oswindow oswindow,const ::id & id,WPARAM wparam,LPARAM lparam);
 
 
 
@@ -378,7 +378,7 @@ namespace aura
       }
 
 
-      LRESULT CALLBACK s_rx_message_queue_proc(oswindow oswindow,UINT message,WPARAM wparam,LPARAM lparam)
+      LRESULT CALLBACK s_rx_message_queue_proc(oswindow oswindow,const ::id & id,WPARAM wparam,LPARAM lparam)
       {
 
          int iRet = 0;
@@ -430,7 +430,7 @@ namespace aura
       }
 
 
-      LRESULT rx::message_queue_proc(UINT message,WPARAM wparam,LPARAM lparam)
+      LRESULT rx::message_queue_proc(const ::id & id,WPARAM wparam,LPARAM lparam)
       {
 
          if(message == WM_USER + 100)

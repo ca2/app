@@ -952,7 +952,7 @@ namespace core
 
       User.will_use_view_hint(COLORSEL_IMPACT);
 
-      auto pdocument = m_mapimpactsystem[COLORSEL_IMPACT]->open_document_file(puiOwner->get_context_application(), ::type_null, __visible(true));
+      auto pdocument = m_mapimpactsystem[COLORSEL_IMPACT]->open_document_file(puiOwner->get_context_application(), ::e_type_null, __visible(true));
 
       __pointer(::userex::color_view) pview = pdocument->get_typed_view < ::userex::color_view >();
 

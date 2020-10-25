@@ -27,7 +27,7 @@ namespace user
 
       ::user::interaction::install_message_routing(pchannel);
 
-      IGUI_MSG_LINK(WM_CREATE, pchannel, this, &menu_interaction::_001OnCreate);
+      MESSAGE_LINK(e_message_create, pchannel, this, &menu_interaction::_001OnCreate);
 
    }
 

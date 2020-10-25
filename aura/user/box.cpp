@@ -65,9 +65,9 @@ namespace user
       ::user::interaction::install_message_routing(pchannel);
       //scroll::install_message_routing(pchannel);
 
-      IGUI_MSG_LINK(WM_CREATE, pchannel, this, &box::_001OnCreate);
-      IGUI_MSG_LINK(WM_SIZE, pchannel, this, &box::_001OnSize);
-      IGUI_MSG_LINK(WM_SHOWWINDOW, pchannel, this, &box::_001OnShowWindow);
+      MESSAGE_LINK(e_message_create, pchannel, this, &box::_001OnCreate);
+      MESSAGE_LINK(e_message_size, pchannel, this, &box::_001OnSize);
+      MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &box::_001OnShowWindow);
 
    }
 

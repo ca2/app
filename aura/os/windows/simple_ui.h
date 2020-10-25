@@ -48,7 +48,7 @@ namespace os
 
       virtual ~simple_ui();
 
-      static LRESULT CALLBACK s_window_prodecure(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
+      static LRESULT CALLBACK s_window_prodecure(HWND hWnd, const ::id & id, WPARAM wParam, LPARAM lParam);
 
 
       virtual bool create_window(LPCRECT lprect);
@@ -65,7 +65,7 @@ namespace os
 
       virtual void _001ScreenToClient(POINT * ppt);
 
-      virtual LRESULT message_handler(UINT message, WPARAM wParam, LPARAM lParam);
+      virtual LRESULT message_handler(const ::id & id, WPARAM wParam, LPARAM lParam);
 
       virtual void get_window_rect(RECT * prect);
       virtual void get_client_rect(RECT * prect);

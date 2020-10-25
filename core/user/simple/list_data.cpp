@@ -67,7 +67,7 @@ void simple_list_data::set_item_text(::user::mesh * pmesh,index iItem,index iSub
 
 }
 
-void simple_list_data::Enable(bool bEnable)
+void simple_list_data::enable(bool bEnable)
 {
    m_bEnable = bEnable;
 }

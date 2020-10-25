@@ -1,7 +1,7 @@
 #pragma once
 
 
-enum e_image
+enum enum_image
 {
 
    image_none,

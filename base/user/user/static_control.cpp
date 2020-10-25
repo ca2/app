@@ -69,11 +69,11 @@ namespace user
 
       ::user::interaction::install_message_routing(pchannel);
 
-      IGUI_MSG_LINK(WM_CREATE, pchannel, this, &static_control::_001OnCreate);
-      IGUI_MSG_LINK(WM_LBUTTONDOWN, pchannel, this, &static_control::_001OnLButtonDown);
-      IGUI_MSG_LINK(WM_LBUTTONUP, pchannel, this, &static_control::_001OnLButtonUp);
-      IGUI_MSG_LINK(WM_MOUSEMOVE, pchannel, this, &static_control::_001OnMouseLeave);
-      IGUI_MSG_LINK(WM_MOUSELEAVE, pchannel, this, &static_control::_001OnMouseMove);
+      MESSAGE_LINK(e_message_create, pchannel, this, &static_control::_001OnCreate);
+      MESSAGE_LINK(WM_LBUTTONDOWN, pchannel, this, &static_control::_001OnLButtonDown);
+      MESSAGE_LINK(WM_LBUTTONUP, pchannel, this, &static_control::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &static_control::_001OnMouseLeave);
+      MESSAGE_LINK(WM_MOUSELEAVE, pchannel, this, &static_control::_001OnMouseMove);
 
    }
 
@@ -292,7 +292,7 @@ namespace user
 
    }
 
-   ::user::static_control::e_type static_control::get_type()
+   ::user::static_control::enum_type static_control::get_type()
    {
 
       return m_etype;

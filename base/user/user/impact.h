@@ -139,7 +139,7 @@ namespace user
       virtual i32  get_total_page_count(::change * pchange) override;
 
 
-      virtual ::user::interaction::e_type get_window_type() override;
+      virtual ::user::interaction::enum_type get_window_type() override;
 
       //virtual void on_simple_view_update_hint(__pointer(::user::impact) pviewSender, e_hint ehint, object * pupdate);
 

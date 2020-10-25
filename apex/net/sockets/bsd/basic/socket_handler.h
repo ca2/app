@@ -104,7 +104,7 @@ namespace sockets
       // Connection pool
       /** find available open connection (used by connection pool). */
       __pointer(pool_socket) FindConnection(i32 type,const string & protocol, const ::net::address & address) override;
-      /** Enable connection pool (by default disabled). */
+      /** enable connection pool (by default disabled). */
       void EnablePool(bool x = true) override;
       /** Check pool status.
       \return true if connection pool is enabled */
@@ -135,7 +135,7 @@ namespace sockets
       bool Socks4TryDirect() override;
 
       // DNS resolve server
-      /** Enable asynchronous DNS.
+      /** enable asynchronous DNS.
       \lparam port Listen port of asynchronous dns server */
       void EnableResolver(port_t port = 16667) override;
       /** Check resolver status.

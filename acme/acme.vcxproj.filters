@@ -1280,9 +1280,6 @@
     <ClInclude Include="os\windows\simple_hold_handle.h">
       <Filter>Header Files\os\windows</Filter>
     </ClInclude>
-    <ClInclude Include="os\windows\simple_ui.h">
-      <Filter>Header Files\os\windows</Filter>
-    </ClInclude>
     <ClInclude Include="os\windows\utils.h">
       <Filter>Header Files\os\windows</Filter>
     </ClInclude>
@@ -2294,13 +2291,13 @@
     <ClInclude Include="platform\timer_task.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\function.h">
+    <ClInclude Include="multithreading\sync_future.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\function_pointer.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
     <ClInclude Include="multithreading\sync_method.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\sync_future.h">
       <Filter>Header Files\multithreading</Filter>
     </ClInclude>
   </ItemGroup>
@@ -3405,6 +3402,9 @@
     </ClCompile>
     <ClCompile Include="multithreading\pool.cpp">
       <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive\function.cpp">
+      <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -352,7 +352,7 @@ namespace user
    }
 
 
-   bool toolbar_control::SetState(i32 nID, UINT nState)
+   bool toolbar_control::set_state(i32 nID, UINT nState)
    {
 #ifdef WINDOWS_DESKTOP
       ASSERT(is_window()); 

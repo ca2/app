@@ -33,7 +33,7 @@ namespace user
       bool IsButtonPressed(i32 nID);
       bool IsButtonHidden(i32 nID);
       bool IsButtonIndeterminate(i32 nID);
-      bool SetState(i32 nID, UINT nState);
+      bool set_state(i32 nID, UINT nState);
       i32 GetState(i32 nID);
 #ifdef WINDOWS_DESKTOP
       bool GetButton(i32 nIndex, LPTBBUTTON pButton);

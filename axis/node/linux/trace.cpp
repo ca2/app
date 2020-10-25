@@ -93,7 +93,7 @@ static void TraceDDE(const char * pszPrefix, const MESSAGE* pMsg)
 //   ENSURE_ARG(pmessage != nullptr);
 //   SCAST_PTR(::message::base, pbase, pmessage);
 //
-//   if (pbase->m_id == WM_MOUSEMOVE || pbase->m_id == WM_NCMOUSEMOVE ||
+//   if (pbase->m_id == e_message_mouse_move || pbase->m_id == e_message_non_client_mouse_move ||
 //      pbase->m_id == WM_NCHITTEST || pbase->m_id == WM_SETCURSOR ||
 //      pbase->m_id == WM_CTLCOLORBTN ||
 //      pbase->m_id == WM_CTLCOLORDLG ||
@@ -190,7 +190,7 @@ static void TraceDDE(const char * pszPrefix, const MESSAGE* pMsg)
 //   ENSURE_ARG(pmsg != nullptr);
 
 //
-//   if (pmsg->message == WM_MOUSEMOVE || lpmsg->message == WM_NCMOUSEMOVE ||
+//   if (pmsg->message == e_message_mouse_move || lpmsg->message == e_message_non_client_mouse_move ||
 
 //      pmsg->message == WM_NCHITTEST || lpmsg->message == WM_SETCURSOR ||
 

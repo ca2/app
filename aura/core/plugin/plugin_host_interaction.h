@@ -68,7 +68,7 @@ namespace plugin
       void _001OnTimer(::timer * ptimer);
 
 
-      virtual LRESULT DefWindowProc(UINT uiMessage, WPARAM wparam, lparam lparam);
+      virtual LRESULT DefWindowProc(const ::id & id, WPARAM wparam, lparam lparam);
 
 
 

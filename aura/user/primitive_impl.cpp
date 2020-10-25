@@ -110,7 +110,7 @@ namespace user
    void primitive_impl::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      //m_puserinteraction->message_call(WM_SIZE, 0, process_state().m_size.lparam());
+      //m_puserinteraction->message_call(e_message_size, 0, process_state().m_size.lparam());
 
       //m_puserinteraction->m_tickLastVisualChange.Now();
 
@@ -567,7 +567,7 @@ namespace user
       if (!m_puserinteraction)
       {
 
-         return ::id::type_null;
+         return ::id::e_type_null;
 
       }
 
@@ -582,7 +582,7 @@ namespace user
       if (!m_puserinteraction)
       {
 
-         return id::type_null;
+         return id::e_type_null;
 
       }
 
@@ -1005,7 +1005,7 @@ namespace user
    }
 
 
-   LRESULT primitive_impl::message_call(UINT uiMessage, WPARAM wparam, lparam lparam)
+   LRESULT primitive_impl::message_call(const ::id & id, WPARAM wparam, lparam lparam)
    {
 
       ___pointer < ::message::base > spbase;
@@ -1013,14 +1013,13 @@ namespace user
       if (m_puserinteraction == nullptr)
       {
 
-         spbase = get_message_base(uiMessage, wparam, lparam);
-
+         spbase = get_message_base(id, wparam, lparam);
 
       }
       else
       {
 
-         spbase = m_puserinteraction->get_message_base(uiMessage, wparam, lparam);
+         spbase = m_puserinteraction->get_message_base(id, wparam, lparam);
 
       }
 
@@ -1070,10 +1069,10 @@ namespace user
    }
 
 
-   void primitive_impl::send_message_to_descendants(UINT message, WPARAM wparam, lparam lparam, bool bDeep, bool bOnlyPerm)
+   void primitive_impl::send_message_to_descendants(const ::id & id, WPARAM wparam, lparam lparam, bool bDeep, bool bOnlyPerm)
    {
 
-      return m_puserinteraction->send_message_to_descendants(message, wparam, lparam, bDeep, bOnlyPerm);
+      return m_puserinteraction->send_message_to_descendants(id, wparam, lparam, bDeep, bOnlyPerm);
 
    }
 
@@ -1281,7 +1280,7 @@ namespace user
       try
       {
 
-         send_message(WM_DESTROY);
+         send_message(e_message_destroy);
 
       }
       catch (...)
@@ -1364,14 +1363,16 @@ namespace user
    {
    public:
 
-      __pointer(interaction) m_pinteraction;
-      UINT m_message;
-      WPARAM m_wparam;
-      LPARAM m_lparam;
 
-      call_message_handler_task(interaction * pinteraction, UINT message, WPARAM wparam, LPARAM lparam):
+      __pointer(interaction)        m_pinteraction;
+      ::id                          m_id;
+      WPARAM                        m_wparam;
+      LPARAM                        m_lparam;
+
+
+      call_message_handler_task(interaction * pinteraction, const ::id & id, WPARAM wparam, LPARAM lparam):
+         m_id(id),
          m_pinteraction(pinteraction),
-         m_message(message),
          m_wparam(wparam),
          m_lparam(lparam)
       {
@@ -1386,7 +1387,7 @@ namespace user
       virtual ::estatus run()
       {
 
-         m_pinteraction->call_message_handler(m_message, m_wparam, m_lparam);
+         m_pinteraction->call_message_handler(m_id, m_wparam, m_lparam);
 
          return ::success;
 
@@ -1395,10 +1396,10 @@ namespace user
    };
 
 
-   bool primitive_impl::post_message(UINT message, WPARAM wparam, lparam lparam)
+   bool primitive_impl::post_message(const ::id & id, WPARAM wparam, lparam lparam)
    {
 
-      m_puserinteraction->post_method(__new(call_message_handler_task(m_puserinteraction, message, wparam, lparam)));
+      m_puserinteraction->post_method(__method(call_message_handler_task(m_puserinteraction, id, wparam, lparam)));
 
       return true;
 
@@ -1524,10 +1525,10 @@ namespace user
       }
 
       g_p->set_at((iptr)this, ::str::demangle(m_puserinteraction->type_name()) + "xxx" + type_name());
-      IGUI_MSG_LINK(WM_SHOWWINDOW, pchannel, this, &primitive_impl::_001OnShowWindow);
-      IGUI_MSG_LINK(WM_DESTROY, pchannel, this, &primitive_impl::_001OnDestroy);
-      IGUI_MSG_LINK(WM_NCDESTROY, pchannel, this, &primitive_impl::_001OnNcDestroy);
-      IGUI_MSG_LINK(WM_CREATE, pchannel, this, &primitive_impl::_001OnPrioCreate);
+      MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &primitive_impl::_001OnShowWindow);
+      MESSAGE_LINK(e_message_destroy, pchannel, this, &primitive_impl::_001OnDestroy);
+      MESSAGE_LINK(WM_NCDESTROY, pchannel, this, &primitive_impl::_001OnNcDestroy);
+      MESSAGE_LINK(e_message_create, pchannel, this, &primitive_impl::_001OnPrioCreate);
 
       if (m_puserinteraction && ::str::demangle(m_puserinteraction->type_name()).contains("notify_icon"))
       {

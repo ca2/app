@@ -46,11 +46,11 @@ namespace user
 
       ::user::combo_list::install_message_routing(pchannel);
 
-      IGUI_MSG_LINK(WM_CREATE, pchannel, this, &font_list::_001OnCreate);
-      IGUI_MSG_LINK(WM_LBUTTONDOWN, pchannel, this, &font_list::_001OnLButtonDown);
-      IGUI_MSG_LINK(WM_MOUSEMOVE, pchannel, this, &font_list::_001OnMouseMove);
-      IGUI_MSG_LINK(WM_CLOSE, pchannel, this, &font_list::_001OnClose);
-      IGUI_MSG_LINK(WM_SHOWWINDOW, pchannel, this, &font_list::_001OnShowWindow);
+      MESSAGE_LINK(e_message_create, pchannel, this, &font_list::_001OnCreate);
+      MESSAGE_LINK(WM_LBUTTONDOWN, pchannel, this, &font_list::_001OnLButtonDown);
+      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &font_list::_001OnMouseMove);
+      MESSAGE_LINK(WM_CLOSE, pchannel, this, &font_list::_001OnClose);
+      MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &font_list::_001OnShowWindow);
 
    }
 
@@ -97,7 +97,7 @@ namespace user
    // }
 
 
-   void font_list::set_font_list_type(::draw2d::font_list::e_type etype)
+   void font_list::set_font_list_type(::draw2d::font_list::enum_type etype)
    {
 
       if (etype == ::draw2d::font_list::type_single_column)

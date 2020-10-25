@@ -200,13 +200,11 @@ void task::term_task()
    if (m_pthreadParent)
    {
 
-      ::task* pthreadParent = m_pthreadParent.cast < task>();
+      m_pthreadParent->task_remove(this);
 
-      pthreadParent->task_remove(this);
+      //m_pthreadParent->task_on_term(this);
 
-      pthreadParent->task_on_term(this);
-
-      pthreadParent->kick_idle();
+      //m_pthreadParent->kick_idle();
 
    }
 

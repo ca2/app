@@ -495,7 +495,7 @@ namespace ios
 
       }
 
-      m_puserinteraction->send_message(WM_CREATE, 0, (LPARAM) &cs);
+      m_puserinteraction->send_message(e_message_create, 0, (LPARAM) &cs);
 
       m_puserinteraction->m_ewindowflag |= window_flag_window_created;
       
@@ -569,11 +569,11 @@ namespace ios
 //
 //      m_puserinteraction->ModifyStyle(0, WS_VISIBLE);
 //
-//      m_puserinteraction->send_message(WM_CREATE);
+//      m_puserinteraction->send_message(e_message_create);
 //
-//      m_puserinteraction->send_message(WM_SIZE);
+//      m_puserinteraction->send_message(e_message_size);
 //
-//      m_puserinteraction->send_message(WM_MOVE);
+//      m_puserinteraction->send_message(e_message_move);
 //
 //      m_puserinteraction->send_message(WM_SHOWWINDOW, 1);
 //
@@ -621,57 +621,57 @@ namespace ios
             if (!m_puserinteraction->m_bMessageWindow)
             {
 
-               IGUI_MSG_LINK(WM_PAINT, pchannel, this, &interaction_impl::_001OnPaint);
-               IGUI_MSG_LINK(WM_PRINT, pchannel, this, &interaction_impl::_001OnPrint);
+               MESSAGE_LINK(WM_PAINT, pchannel, this, &interaction_impl::_001OnPaint);
+               MESSAGE_LINK(WM_PRINT, pchannel, this, &interaction_impl::_001OnPrint);
 
             }
 
             m_puserinteraction->install_message_routing(pchannel);
 
-            IGUI_MSG_LINK(WM_CREATE, pchannel, this, &interaction_impl::_001OnCreate);
+            MESSAGE_LINK(e_message_create, pchannel, this, &interaction_impl::_001OnCreate);
 
             if (!m_puserinteraction->m_bMessageWindow)
             {
 
-      //         IGUI_MSG_LINK(WM_SETCURSOR, pchannel, this, &interaction_impl::_001OnSetCursor);
-      //         IGUI_MSG_LINK(WM_ERASEBKGND, pchannel, this,&interaction_impl::_001OnEraseBkgnd);
-               //         IGUI_MSG_LINK(WM_NCCALCSIZE, pchannel, this,&interaction_impl::_001OnNcCalcSize);
-      //         IGUI_MSG_LINK(WM_SIZE, pchannel, this, &interaction_impl::_001OnSize);
-               //         IGUI_MSG_LINK(WM_WINDOWPOSCHANGING, pchannel, this,&interaction_impl::_001OnWindowPosChanging);
-               //         IGUI_MSG_LINK(WM_WINDOWPOSCHANGED, pchannel, this,&interaction_impl::_001OnWindowPosChanged);
-               //         IGUI_MSG_LINK(WM_GETMINMAXINFO, pchannel, this,&interaction_impl::_001OnGetMinMaxInfo);
-               //         IGUI_MSG_LINK(WM_SETFOCUS, pchannel, this,&interaction_impl::_001OnSetFocus);
-               //         IGUI_MSG_LINK(WM_KILLFOCUS, pchannel, this,&interaction_impl::_001OnKillFocus);
-               //IGUI_MSG_LINK(ca2m_PRODEVIAN_SYNCH, pchannel, this,&interaction_impl::_001OnProdevianSynch);
+      //         MESSAGE_LINK(WM_SETCURSOR, pchannel, this, &interaction_impl::_001OnSetCursor);
+      //         MESSAGE_LINK(WM_ERASEBKGND, pchannel, this,&interaction_impl::_001OnEraseBkgnd);
+               //         MESSAGE_LINK(WM_NCCALCSIZE, pchannel, this,&interaction_impl::_001OnNcCalcSize);
+      //         MESSAGE_LINK(e_message_size, pchannel, this, &interaction_impl::_001OnSize);
+               //         MESSAGE_LINK(WM_WINDOWPOSCHANGING, pchannel, this,&interaction_impl::_001OnWindowPosChanging);
+               //         MESSAGE_LINK(WM_WINDOWPOSCHANGED, pchannel, this,&interaction_impl::_001OnWindowPosChanged);
+               //         MESSAGE_LINK(WM_GETMINMAXINFO, pchannel, this,&interaction_impl::_001OnGetMinMaxInfo);
+               //         MESSAGE_LINK(e_message_set_focus, pchannel, this,&interaction_impl::_001OnSetFocus);
+               //         MESSAGE_LINK(e_message_kill_focus, pchannel, this,&interaction_impl::_001OnKillFocus);
+               //MESSAGE_LINK(ca2m_PRODEVIAN_SYNCH, pchannel, this,&interaction_impl::_001OnProdevianSynch);
             }
             prio_install_message_routing(pchannel);
-            IGUI_MSG_LINK(WM_DESTROY, pchannel, this, &interaction_impl::_001OnDestroy);
+            MESSAGE_LINK(e_message_destroy, pchannel, this, &interaction_impl::_001OnDestroy);
 
             //      ::user::interaction_impl::install_message_routing(pchannel);
             //      //m_pbuffer->InstallMessageHandling(pinterface);
-            //      IGUI_MSG_LINK(WM_DESTROY           , pchannel, this, &interaction_impl::_001OnDestroy);
-            //      IGUI_MSG_LINK(WM_PAINT             , pchannel, this, &interaction_impl::_001OnPaint);
-            //      IGUI_MSG_LINK(WM_PRINT             , pchannel, this, &interaction_impl::_001OnPrint);
+            //      MESSAGE_LINK(e_message_destroy           , pchannel, this, &interaction_impl::_001OnDestroy);
+            //      MESSAGE_LINK(WM_PAINT             , pchannel, this, &interaction_impl::_001OnPaint);
+            //      MESSAGE_LINK(WM_PRINT             , pchannel, this, &interaction_impl::_001OnPrint);
             //      if(m_puserinteraction != nullptr)
             //      {
             //         m_puserinteraction->install_message_routing(pchannel);
             //      }
-            //      IGUI_MSG_LINK(WM_CREATE            , pchannel, this, &interaction_impl::_001OnCreate);
-            //      IGUI_MSG_LINK(WM_SETCURSOR         , pchannel, this, &interaction_impl::_001OnSetCursor);
-            //      IGUI_MSG_LINK(WM_ERASEBKGND        , pchannel, this, &interaction_impl::_001OnEraseBkgnd);
-            //      IGUI_MSG_LINK(WM_MOVE              , pchannel, this, &interaction_impl::_001OnMove);
-            //      IGUI_MSG_LINK(WM_SIZE              , pchannel, this, &interaction_impl::_001OnSize);
-            IGUI_MSG_LINK(WM_SHOWWINDOW, pchannel, this, &interaction_impl::_001OnShowWindow);
-            //      IGUI_MSG_LINK(ca2m_PRODEVIAN_SYNCH , pchannel, this, &interaction_impl::_001OnProdevianSynch);
-            ////      //IGUI_MSG_LINK(WM_TIMER             , pchannel, this, &interaction_impl::_001OnTimer);
+            //      MESSAGE_LINK(e_message_create            , pchannel, this, &interaction_impl::_001OnCreate);
+            //      MESSAGE_LINK(WM_SETCURSOR         , pchannel, this, &interaction_impl::_001OnSetCursor);
+            //      MESSAGE_LINK(WM_ERASEBKGND        , pchannel, this, &interaction_impl::_001OnEraseBkgnd);
+            //      MESSAGE_LINK(e_message_move              , pchannel, this, &interaction_impl::_001OnMove);
+            //      MESSAGE_LINK(e_message_size              , pchannel, this, &interaction_impl::_001OnSize);
+            MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &interaction_impl::_001OnShowWindow);
+            //      MESSAGE_LINK(ca2m_PRODEVIAN_SYNCH , pchannel, this, &interaction_impl::_001OnProdevianSynch);
+            ////      //MESSAGE_LINK(WM_TIMER             , pchannel, this, &interaction_impl::_001OnTimer);
 
       last_install_message_routing(pchannel);
 
 //      ::user::interaction_impl::install_message_routing(pchannel);
 //      //m_pbuffer->InstallMessageHandling(pinterface);
-//      IGUI_MSG_LINK(WM_DESTROY, pchannel, this, &interaction_impl::_001OnDestroy);
-//      IGUI_MSG_LINK(WM_PAINT, pchannel, this, &interaction_impl::_001OnPaint);
-//      IGUI_MSG_LINK(WM_PRINT, pchannel, this, &interaction_impl::_001OnPrint);
+//      MESSAGE_LINK(e_message_destroy, pchannel, this, &interaction_impl::_001OnDestroy);
+//      MESSAGE_LINK(WM_PAINT, pchannel, this, &interaction_impl::_001OnPaint);
+//      MESSAGE_LINK(WM_PRINT, pchannel, this, &interaction_impl::_001OnPrint);
 //
 //      if(m_puserinteraction != nullptr)
 //      {
@@ -680,16 +680,16 @@ namespace ios
 //
 //      }
 //
-//      IGUI_MSG_LINK(WM_CREATE, pchannel, this, &interaction_impl::_001OnCreate);
-//      IGUI_MSG_LINK(WM_SETCURSOR, pchannel, this, &interaction_impl::_001OnSetCursor);
-//      IGUI_MSG_LINK(WM_ERASEBKGND, pchannel, this, &interaction_impl::_001OnEraseBkgnd);
-//      IGUI_MSG_LINK(WM_MOVE, pchannel, this, &interaction_impl::_001OnMove);
-//      IGUI_MSG_LINK(WM_SIZE, pchannel, this, &interaction_impl::_001OnSize);
-//      IGUI_MSG_LINK(WM_SETFOCUS, pchannel, this, &interaction_impl::_001OnSetFocus);
-//      IGUI_MSG_LINK(WM_KILLFOCUS, pchannel, this, &interaction_impl::_001OnKillFocus);
-////      IGUI_MSG_LINK(WM_SHOWWINDOW        , pchannel, this, &interaction_impl::_001OnShowWindow);
-////      IGUI_MSG_LINK(ca2m_PRODEVIAN_SYNCH , pchannel, this, &interaction_impl::_001OnProdevianSynch);
-//      //      //IGUI_MSG_LINK(WM_TIMER             , pchannel, this, &interaction_impl::_001OnTimer);
+//      MESSAGE_LINK(e_message_create, pchannel, this, &interaction_impl::_001OnCreate);
+//      MESSAGE_LINK(WM_SETCURSOR, pchannel, this, &interaction_impl::_001OnSetCursor);
+//      MESSAGE_LINK(WM_ERASEBKGND, pchannel, this, &interaction_impl::_001OnEraseBkgnd);
+//      MESSAGE_LINK(e_message_move, pchannel, this, &interaction_impl::_001OnMove);
+//      MESSAGE_LINK(e_message_size, pchannel, this, &interaction_impl::_001OnSize);
+//      MESSAGE_LINK(e_message_set_focus, pchannel, this, &interaction_impl::_001OnSetFocus);
+//      MESSAGE_LINK(e_message_kill_focus, pchannel, this, &interaction_impl::_001OnKillFocus);
+////      MESSAGE_LINK(WM_SHOWWINDOW        , pchannel, this, &interaction_impl::_001OnShowWindow);
+////      MESSAGE_LINK(ca2m_PRODEVIAN_SYNCH , pchannel, this, &interaction_impl::_001OnProdevianSynch);
+//      //      //MESSAGE_LINK(WM_TIMER             , pchannel, this, &interaction_impl::_001OnTimer);
 //
 //      prio_install_message_routing(pchannel);
 
@@ -1091,7 +1091,7 @@ namespace ios
    {
 
 
-      if(pbase->m_id == WM_SIZE || pbase->m_id == WM_MOVE)
+      if(pbase->m_id == e_message_size || pbase->m_id == e_message_move)
       {
 
          //         win_update_graphics();
@@ -1156,7 +1156,7 @@ namespace ios
       {
          //  g_pwndLastLButtonDown = this;
       }
-      else if(pbase->m_id == WM_SIZE)
+      else if(pbase->m_id == e_message_size)
       {
          m_bUpdateGraphics = true;
       }
@@ -1187,8 +1187,8 @@ namespace ios
             pbase->m_id == WM_MBUTTONUP ||
             pbase->m_id == WM_RBUTTONDOWN ||
             pbase->m_id == WM_RBUTTONUP ||
-            pbase->m_id == WM_MOUSEMOVE ||
-            pbase->m_id == WM_MOUSEMOVE)
+            pbase->m_id == e_message_mouse_move ||
+            pbase->m_id == e_message_mouse_move)
          //         pbase->m_id == WM_MOUSEWHEEL)
       {
          if(pbase->m_id == WM_LBUTTONDOWN)
@@ -1248,7 +1248,7 @@ namespace ios
             }
          }
 
-         if(pbase->m_id == WM_MOUSEMOVE)
+         if(pbase->m_id == e_message_mouse_move)
          {
             // We are at the message handler procedure.
             // mouse messages originated from message handler and that are mouse move events should end up with the correct cursor.
@@ -1320,7 +1320,7 @@ namespace ios
 
       }
 
-      if(pbase->m_id == EVENT_MESSAGE)
+      if(pbase->m_id == e_message_event)
       {
 
          if(m_puserinteraction != nullptr)
@@ -1853,9 +1853,9 @@ namespace ios
       return false;   // let the parent handle it
    }
 
-   void interaction_impl::OnParentNotify(UINT message, LPARAM lparam)
+   void interaction_impl::OnParentNotify(const ::id & id, LPARAM lparam)
    {
-      if ((LOWORD(message) == WM_CREATE || LOWORD(message) == WM_DESTROY))
+      if ((LOWORD(message) == e_message_create || LOWORD(message) == e_message_destroy))
       {
          if (ReflectLastMsg((oswindow)lparam))
             return;     // eat it
@@ -3020,7 +3020,7 @@ namespace ios
       return nullptr;
    }
 
-//   LRESULT interaction_impl::send_message(UINT message, WPARAM wparam, lparam lparam)
+//   LRESULT interaction_impl::send_message(const ::id & id, WPARAM wparam, lparam lparam)
 //   {
 //
 //      return ::user::interaction_impl::send_message(message, wparam, lparam);
@@ -3066,7 +3066,7 @@ namespace ios
 //      //return ::SendMessage(get_handle(), message, wParam, lParam);
 //   }
 
-//   bool interaction_impl::post_message(UINT message, WPARAM wparam, lparam lparam)
+//   bool interaction_impl::post_message(const ::id & id, WPARAM wparam, lparam lparam)
 //   {
 //      if(get_context_application() != nullptr)
 //      {
@@ -3389,7 +3389,7 @@ namespace ios
 
    }
 
-//   void interaction_impl::send_message_to_descendants(UINT message, WPARAM wparam, lparam lparam, bool bDeep, bool bOnlyPerm)
+//   void interaction_impl::send_message_to_descendants(const ::id & id, WPARAM wparam, lparam lparam, bool bDeep, bool bOnlyPerm)
 //   {
 //      ASSERT(::is_window(get_handle()));
 //      //interaction_impl::send_message_to_descendants(get_handle(), message, wparam, lparam, bDeep, bOnlyPerm);
@@ -3862,7 +3862,7 @@ namespace ios
 
    }
 
-   LPARAM interaction_impl::SendDlgItemMessage(i32 nID, UINT message, WPARAM wparam, LPARAM lparam)
+   LPARAM interaction_impl::SendDlgItemMessage(i32 nID, const ::id & id, WPARAM wparam, LPARAM lparam)
    {
 
       __throw(not_implemented());
@@ -4095,7 +4095,7 @@ namespace ios
 
    }
 
-   bool interaction_impl::SendNotifyMessage(UINT message, WPARAM wparam, LPARAM lparam)
+   bool interaction_impl::SendNotifyMessage(const ::id & id, WPARAM wparam, LPARAM lparam)
    {
 
       __throw(not_implemented());
@@ -5523,7 +5523,7 @@ namespace ios
 
                auto pactivate  = __new(::message::activate());
 
-               pactivate->m_id = WM_ACTIVATE;
+               pactivate->m_id = e_message_activate;
                pactivate->m_wparam = WA_CLICKACTIVE;
                pactivate->m_nState = WA_CLICKACTIVE;
                pactivate->m_bMinimized = false;
@@ -5587,7 +5587,7 @@ namespace ios
 
       auto pmouse = __new(::message::mouse());
 
-      pmouse->m_id = WM_MOUSEMOVE;
+      pmouse->m_id = e_message_mouse_move;
       pmouse->m_point.x = (LONG) x;
       pmouse->m_point.y = (LONG) y;
       pmouse->m_bTranslated = true;
@@ -5607,7 +5607,7 @@ namespace ios
 
       auto pmouse = __new(::message::mouse());
 
-      pmouse->m_id = WM_MOUSEMOVE;
+      pmouse->m_id = e_message_mouse_move;
       pmouse->m_point.x = (LONG) x;
       pmouse->m_point.y = (LONG) y;
       pmouse->m_bTranslated = true;
@@ -5690,7 +5690,7 @@ namespace ios
 
       }
 
-      m_puserinteraction->send_message(WM_MOVE, 0, pointMove.lparam());
+      m_puserinteraction->send_message(e_message_move, 0, pointMove.lparam());
 
    }
 

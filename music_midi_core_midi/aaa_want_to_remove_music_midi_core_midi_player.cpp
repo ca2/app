@@ -74,8 +74,8 @@ namespace music
          void player::install_message_routing(::channel * pchannel)
          {
             ::music::midi::player::player::install_message_routing(pchannel);
-            //IGUI_MSG_LINK(MM_MOM_DONE, pchannel, this, &player::OnMultimediaMidiOutputMessageDone);
-            //IGUI_MSG_LINK(MM_MOM_POSITIONCB, pchannel, this, &player::OnMultimediaMidiOutputMessagePositionCB);
+            //MESSAGE_LINK(MM_MOM_DONE, pchannel, this, &player::OnMultimediaMidiOutputMessageDone);
+            //MESSAGE_LINK(MM_MOM_POSITIONCB, pchannel, this, &player::OnMultimediaMidiOutputMessagePositionCB);
          }
 
 //         bool player::Play(imedia_time tkStart, u32 dwEllapse)

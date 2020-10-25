@@ -131,25 +131,25 @@ void simple_frame_window::install_message_routing(::channel * pchannel)
 
    ::experience::frame_window::install_message_routing(pchannel);
 
-   IGUI_MSG_LINK(WM_CREATE, pchannel, this, &simple_frame_window::_001OnCreate);
+   MESSAGE_LINK(e_message_create, pchannel, this, &simple_frame_window::_001OnCreate);
 #ifdef WINDOWS_DESKTOP
-   IGUI_MSG_LINK(WM_DDE_INITIATE, pchannel, this, &simple_frame_window::_001OnDdeInitiate);
+   MESSAGE_LINK(WM_DDE_INITIATE, pchannel, this, &simple_frame_window::_001OnDdeInitiate);
 #endif
-   IGUI_MSG_LINK(WM_DESTROY, pchannel, this, &simple_frame_window::_001OnDestroy);
-   IGUI_MSG_LINK(WM_CLOSE, pchannel, this, &simple_frame_window::_001OnClose);
-   IGUI_MSG_LINK(WM_SIZE, pchannel, this, &simple_frame_window::_001OnSize);
-   IGUI_MSG_LINK(WM_MOVE, pchannel, this, &simple_frame_window::_001OnMove);
-   IGUI_MSG_LINK(WM_GETMINMAXINFO, pchannel, this, &simple_frame_window::_001OnGetMinMaxInfo);
-   IGUI_MSG_LINK(WM_MOUSEMOVE, pchannel, this, &simple_frame_window::_001OnMouseMove);
-   IGUI_MSG_LINK(WM_DISPLAYCHANGE, pchannel, this, &simple_frame_window::_001OnDisplayChange);
-   IGUI_MSG_LINK(WM_SHOWWINDOW, pchannel, this, &simple_frame_window::_001OnShowWindow);
-   IGUI_MSG_LINK(WM_MOUSEACTIVATE, pchannel, this, &simple_frame_window::_001OnMouseActivate);
-   IGUI_MSG_LINK(WM_NCHITTEST, pchannel, this, &simple_frame_window::_001OnNcHitTest);
+   MESSAGE_LINK(e_message_destroy, pchannel, this, &simple_frame_window::_001OnDestroy);
+   MESSAGE_LINK(WM_CLOSE, pchannel, this, &simple_frame_window::_001OnClose);
+   MESSAGE_LINK(e_message_size, pchannel, this, &simple_frame_window::_001OnSize);
+   MESSAGE_LINK(e_message_move, pchannel, this, &simple_frame_window::_001OnMove);
+   MESSAGE_LINK(WM_GETMINMAXINFO, pchannel, this, &simple_frame_window::_001OnGetMinMaxInfo);
+   MESSAGE_LINK(e_message_mouse_move, pchannel, this, &simple_frame_window::_001OnMouseMove);
+   MESSAGE_LINK(WM_DISPLAYCHANGE, pchannel, this, &simple_frame_window::_001OnDisplayChange);
+   MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &simple_frame_window::_001OnShowWindow);
+   MESSAGE_LINK(WM_MOUSEACTIVATE, pchannel, this, &simple_frame_window::_001OnMouseActivate);
+   MESSAGE_LINK(WM_NCHITTEST, pchannel, this, &simple_frame_window::_001OnNcHitTest);
 
-   IGUI_MSG_LINK(WM_KEYDOWN, pchannel, this, &simple_frame_window::_001OnKey);
-   IGUI_MSG_LINK(WM_SYSKEYDOWN, pchannel, this, &simple_frame_window::_001OnKey);
-   IGUI_MSG_LINK(WM_KEYUP, pchannel, this, &simple_frame_window::_001OnKey);
-   IGUI_MSG_LINK(WM_SYSKEYUP, pchannel, this, &simple_frame_window::_001OnKey);
+   MESSAGE_LINK(WM_KEYDOWN, pchannel, this, &simple_frame_window::_001OnKey);
+   MESSAGE_LINK(WM_SYSKEYDOWN, pchannel, this, &simple_frame_window::_001OnKey);
+   MESSAGE_LINK(WM_KEYUP, pchannel, this, &simple_frame_window::_001OnKey);
+   MESSAGE_LINK(WM_SYSKEYUP, pchannel, this, &simple_frame_window::_001OnKey);
 
    connect_command_probe("transparent_frame", &simple_frame_window::_001OnUpdateToggleTransparentFrame);
    connect_command("transparent_frame", &simple_frame_window::_001OnToggleTransparentFrame);
@@ -160,14 +160,14 @@ void simple_frame_window::install_message_routing(::channel * pchannel)
    connect_command("notify_icon_topic", &simple_frame_window::_001OnNotifyIconTopic);
    connect_command("app_exit", &simple_frame_window::_001OnAppExit);
 
-   IGUI_MSG_LINK(WM_APPEXIT, pchannel, this, &simple_frame_window::_001OnAppExit);
-   IGUI_MSG_LINK(WM_ACTIVATEAPP, pchannel, this, &simple_frame_window::_001OnActivateApp);
-   IGUI_MSG_LINK(WM_ACTIVATE, pchannel, this, &simple_frame_window::_001OnActivate);
-   IGUI_MSG_LINK(message_update_notify_icon, pchannel, this, &simple_frame_window::_001OnUpdateNotifyIcon);
+   MESSAGE_LINK(WM_APPEXIT, pchannel, this, &simple_frame_window::_001OnAppExit);
+   MESSAGE_LINK(WM_ACTIVATEAPP, pchannel, this, &simple_frame_window::_001OnActivateApp);
+   MESSAGE_LINK(e_message_activate, pchannel, this, &simple_frame_window::_001OnActivate);
+   MESSAGE_LINK(e_message_update_notify_icon, pchannel, this, &simple_frame_window::_001OnUpdateNotifyIcon);
 
 #ifdef WINDOWS_DESKTOP
 
-   IGUI_MSG_LINK(System.m_uiWindowsTaskbarCreatedMessage, pchannel, this, &simple_frame_window::_001OnTaskbarCreated);
+   MESSAGE_LINK(System.m_emessageWindowsTaskbarCreatedMessage, pchannel, this, &simple_frame_window::_001OnTaskbarCreated);
 
 #endif
 
@@ -201,6 +201,7 @@ void simple_frame_window::defer_save_window_placement()
 
             if (m_tickLastSaveWindowRectRequest.elapsed() < 200_ms)
             {
+
             }
             else if (m_bPendingSaveWindowRect)
             {
@@ -844,7 +845,7 @@ void simple_frame_window::_001OnCreate(::message::message * pmessage)
 
          notify_icon_insert_item(iNotifyIconItem, _("Exit"), "app_exit");
 
-         post_message(message_update_notify_icon);
+         post_message(e_message_update_notify_icon);
 
       }
 
@@ -877,7 +878,7 @@ void simple_frame_window::_on_show_window()
       if (GetActiveView())
       {
 
-         GetActiveView()->post_message(message_simple_command, simple_command_defer_initialize_handled_views);
+         GetActiveView()->post_message(e_message_simple_command, simple_command_defer_initialize_handled_views);
 
       }
 
@@ -1297,7 +1298,7 @@ void simple_frame_window::_001OnMouseActivate(::message::message * pmessage)
 void simple_frame_window::_001OnUpdateViewFullScreen(::message::message * pmessage)
 {
    SCAST_PTR(::user::command, pcommand, pmessage);
-   pcommand->Enable();
+   pcommand->enable();
    pcommand->_001SetCheck(layout().is_full_screen());
    pcommand->m_bRet = true;
 }
@@ -1341,7 +1342,7 @@ void simple_frame_window::_001OnToggleCustomFrame(::message::message * pmessage)
 void simple_frame_window::_001OnUpdateToggleCustomFrame(::message::message * pmessage)
 {
    SCAST_PTR(::user::command, pcommand, pmessage);
-   pcommand->Enable();
+   pcommand->enable();
    pcommand->_001SetCheck(m_bWindowFrame);
 }
 
@@ -1371,7 +1372,7 @@ void simple_frame_window::_001OnUpdateToggleTransparentFrame(::message::message 
 
    SCAST_PTR(::user::command, pcommand, pmessage);
 
-   pcommand->Enable();
+   pcommand->enable();
 
    //if (GetTopLevelFrame()->frame_is_transparent())
    //{
@@ -2034,7 +2035,7 @@ bool simple_frame_window::LoadFrame(const char * pszMatter, u32 dwDefaultStyle, 
    if (pcreate == nullptr)   // send initial update
    {
 
-      send_message_to_descendants(message_update, INITIAL_UPDATE, (LPARAM)0, TRUE, TRUE);
+      send_message_to_descendants(e_message_system_update, INITIAL_UPDATE, (LPARAM)0, TRUE, TRUE);
 
    }
 
@@ -2063,13 +2064,13 @@ void simple_frame_window::_001OnKey(::message::message * pmessage)
 void simple_frame_window::pre_translate_message(::message::message * pmessage)
 {
 
-   if(pmessage->m_id == message_display_change)
+   if(pmessage->m_id == e_message_display_change)
    {
 
       display();
 
    }
-   else if (pmessage->m_id == WM_MOUSEMOVE)
+   else if (pmessage->m_id == e_message_mouse_move)
    {
 
    }

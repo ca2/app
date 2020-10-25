@@ -550,7 +550,7 @@ public:
 ////
 ////   property & operator =(std::nullptr_t)
 ////   {
-////      set_type(::type_null);
+////      set_type(::e_type_null);
 ////      return *this;
 ////   }
 ////

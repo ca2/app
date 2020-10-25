@@ -55,6 +55,7 @@
 //
 
 
+
 template < typename PRED >
 class pred_method :
    virtual public ::matter

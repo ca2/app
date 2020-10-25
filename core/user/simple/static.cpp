@@ -12,7 +12,7 @@ simple_static::simple_static() :
    
    m_bTransparent = false;
    
-   m_brushBkg->m_etype = ::draw2d::brush::type_null;
+   m_brushBkg->m_etype = ::draw2d::brush::e_type_null;
 
 }
 

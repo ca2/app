@@ -115,15 +115,15 @@ BOOL InitInstance(::helloaura::render * prender, HINSTANCE hInstance, int nCmdSh
 //
 //  WM_COMMAND  - process the application menu
 //  WM_PAINT    - Paint the main window
-//  WM_DESTROY  - post a quit message and return
+//  e_message_destroy  - post a quit message and return
 //
 //
-LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
+LRESULT CALLBACK WndProc(HWND hWnd, const ::id & id, WPARAM wParam, LPARAM lParam)
 {
 
    ::helloaura::render * prender;
 
-   if (message == WM_CREATE)
+   if (message == e_message_create)
    {
 
       prender = (::helloaura::render *)((LPCREATESTRUCT)lParam)->lpCreateParams;
@@ -201,7 +201,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
    }
    break;
-   case WM_SIZE:
+   case e_message_size:
    {
 
       ::get_client_rect(hWnd, prender->m_rectClient);
@@ -220,7 +220,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
       prender->m_bFast = true;
 
    } break;
-   case WM_DESTROY:
+   case e_message_destroy:
       PostQuitMessage(0);
       break;
    default:
@@ -230,7 +230,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 }
 
 // Message handler for about box.
-INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
+INT_PTR CALLBACK About(HWND hDlg, const ::id & id, WPARAM wParam, LPARAM lParam)
 {
    UNREFERENCED_PARAMETER(lParam);
    switch (message)

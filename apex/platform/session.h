@@ -419,7 +419,7 @@ namespace apex
 
 
 
-      bool InitializeLocalDataCentral();
+      virtual bool InitializeLocalDataCentral();
 
       //virtual ::estatus bergedge_start() override;
 

@@ -380,7 +380,7 @@ CLASS_DECL_AXIS int_bool WINAPI PostThreadMessage(ITHREAD iThreadId,UINT Msg,WPA
 
    MESSAGE msg;
 
-   if(Msg == WM_QUIT)
+   if(Msg == e_message_quit)
    {
 
       ::output_debug_string("\n\n\nWM_QUIT posted to thread " + __str((uint64_t)iThreadId) + "\n\n\n");

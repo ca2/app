@@ -196,7 +196,7 @@ JNIEXPORT void JNICALL Java_com_android_1app_impact_mouseMove(JNIEnv * env, jobj
 
    set_context(env);
 
-   android_mouse(WM_MOUSEMOVE, x, y);
+   android_mouse(e_message_mouse_move, x, y);
 
 }
 

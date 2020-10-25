@@ -106,7 +106,7 @@ namespace user
    }
 
 
-   ::user::interaction::e_type frame_window::get_window_type()
+   ::user::interaction::enum_type frame_window::get_window_type()
    {
 
       return type_frame;
@@ -166,14 +166,14 @@ namespace user
 
       ::user::box::install_message_routing(pchannel);
 
-      IGUI_MSG_LINK(WM_DESTROY, pchannel, this, &frame_window::_001OnDestroy);
-      IGUI_MSG_LINK(WM_CREATE, pchannel, this, &frame_window::_001OnCreate);
-      IGUI_MSG_LINK(WM_SIZE, pchannel, this, &frame_window::_001OnSize);
-      IGUI_MSG_LINK(WM_SETFOCUS, pchannel, this, &frame_window::_001OnSetFocus);
-      IGUI_MSG_LINK(WM_ACTIVATE, pchannel, this, &frame_window::_001OnActivate);
-      IGUI_MSG_LINK(WM_NCACTIVATE, pchannel, this, &frame_window::_001OnNcActivate);
-      IGUI_MSG_LINK(WM_SYSCOMMAND, pchannel, this, &frame_window::_001OnSysCommand);
-      IGUI_MSG_LINK(WM_QUERYENDSESSION, pchannel, this, &frame_window::_001OnQueryEndSession);
+      MESSAGE_LINK(e_message_destroy, pchannel, this, &frame_window::_001OnDestroy);
+      MESSAGE_LINK(e_message_create, pchannel, this, &frame_window::_001OnCreate);
+      MESSAGE_LINK(e_message_size, pchannel, this, &frame_window::_001OnSize);
+      MESSAGE_LINK(e_message_set_focus, pchannel, this, &frame_window::_001OnSetFocus);
+      MESSAGE_LINK(e_message_activate, pchannel, this, &frame_window::_001OnActivate);
+      MESSAGE_LINK(WM_NCACTIVATE, pchannel, this, &frame_window::_001OnNcActivate);
+      MESSAGE_LINK(WM_SYSCOMMAND, pchannel, this, &frame_window::_001OnSysCommand);
+      MESSAGE_LINK(WM_QUERYENDSESSION, pchannel, this, &frame_window::_001OnQueryEndSession);
 
    }
 
@@ -594,11 +594,11 @@ namespace user
       */
    }
 
-   bool frame_window::OnSetCursor(__pointer(::user::interaction) pwindow, UINT nHitTest, UINT message)
+   bool frame_window::OnSetCursor(__pointer(::user::interaction) pwindow, UINT nHitTest, const ::id & id)
    {
       UNREFERENCED_PARAMETER(pwindow);
       UNREFERENCED_PARAMETER(nHitTest);
-      UNREFERENCED_PARAMETER(message);
+      UNREFERENCED_PARAMETER(id);
       __pointer(::user::frame_window) pFrameWnd = GetTopLevelFrame();
       ENSURE_VALID(pFrameWnd);
       if (pFrameWnd->m_bHelpMode)
@@ -793,7 +793,7 @@ namespace user
 
       //   // cause normal focus logic to kick in
       //   if (System.get_active_ui() == this)
-      //      send_message(WM_ACTIVATE, WA_ACTIVE);
+      //      send_message(e_message_activate, WA_ACTIVE);
       //}
 
       //// force WM_NCACTIVATE because Windows may think it is unecessary
@@ -1048,7 +1048,7 @@ namespace user
       //   LoadAccelTable(MAKEINTRESOURCE(nIDResource));
 
       if (pcreate == nullptr)   // send initial update
-         send_message_to_descendants(message_update, INITIAL_UPDATE, (LPARAM)0, TRUE, TRUE);
+         send_message_to_descendants(e_message_system_update, INITIAL_UPDATE, (LPARAM)0, TRUE, TRUE);
 
       return TRUE;
 
@@ -1143,7 +1143,7 @@ namespace user
          m_bLayoutEnable = true;
 
          // send initial update to all views (and other controls) in the frame
-         send_message_to_descendants(message_update, INITIAL_UPDATE, (LPARAM)0, TRUE, TRUE);
+         send_message_to_descendants(e_message_system_update, INITIAL_UPDATE, (LPARAM)0, TRUE, TRUE);
 
          // give ::user::impact a chance to save the focus (CFormView needs this)
          if (pview != nullptr)

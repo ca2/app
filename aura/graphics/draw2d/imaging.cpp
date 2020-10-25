@@ -2055,7 +2055,7 @@ bool imaging::clip_color_blend(::draw2d::graphics * pgraphics,const ::point & po
 ::estatus imaging::trait(::image * pimage, ::i64 iTrait)
 {
 
-   return pimage->transform((e_image)iTrait);
+   return pimage->transform((enum_image)iTrait);
 
 }
 

@@ -13,7 +13,7 @@ namespace user
       tool_command();
       virtual ~tool_command();
 
-      virtual void Enable(bool bOn);
+      virtual void enable(bool bOn);
       virtual void SetCheck(i32 nCheck);
       virtual void SetText(const char * pszText);
 

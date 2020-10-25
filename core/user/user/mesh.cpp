@@ -119,25 +119,25 @@ namespace user
 
       bool bList = dynamic_cast <list *> (this) != nullptr;
 
-      IGUI_MSG_LINK(WM_SIZE, pchannel, this,&mesh::_001OnSize);
-      IGUI_MSG_LINK(WM_VSCROLL, pchannel, this,&mesh::_001OnVScroll);
-      IGUI_MSG_LINK(WM_HSCROLL, pchannel, this,&mesh::_001OnHScroll);
-      IGUI_MSG_LINK(WM_MOUSELEAVE, pchannel, this,&mesh::_001OnMouseLeave);
+      MESSAGE_LINK(e_message_size, pchannel, this,&mesh::_001OnSize);
+      MESSAGE_LINK(WM_VSCROLL, pchannel, this,&mesh::_001OnVScroll);
+      MESSAGE_LINK(WM_HSCROLL, pchannel, this,&mesh::_001OnHScroll);
+      MESSAGE_LINK(WM_MOUSELEAVE, pchannel, this,&mesh::_001OnMouseLeave);
 
       if (!bList)
       {
-         IGUI_MSG_LINK(WM_LBUTTONDOWN, pchannel, this, &mesh::_001OnLButtonDown);
-         IGUI_MSG_LINK(WM_LBUTTONUP, pchannel, this, &mesh::_001OnLButtonUp);
-         IGUI_MSG_LINK(WM_LBUTTONDBLCLK, pchannel, this, &mesh::_001OnLButtonDblClk);
+         MESSAGE_LINK(WM_LBUTTONDOWN, pchannel, this, &mesh::_001OnLButtonDown);
+         MESSAGE_LINK(WM_LBUTTONUP, pchannel, this, &mesh::_001OnLButtonUp);
+         MESSAGE_LINK(WM_LBUTTONDBLCLK, pchannel, this, &mesh::_001OnLButtonDblClk);
       }
-      IGUI_MSG_LINK(WM_RBUTTONDOWN, pchannel, this,&mesh::_001OnRButtonDown);
-      IGUI_MSG_LINK(WM_RBUTTONDOWN, pchannel, this, &mesh::_001OnRButtonUp);
+      MESSAGE_LINK(WM_RBUTTONDOWN, pchannel, this,&mesh::_001OnRButtonDown);
+      MESSAGE_LINK(WM_RBUTTONDOWN, pchannel, this, &mesh::_001OnRButtonUp);
 
-      IGUI_MSG_LINK(WM_MOUSEMOVE, pchannel, this,&mesh::_001OnMouseMove);
+      MESSAGE_LINK(e_message_mouse_move, pchannel, this,&mesh::_001OnMouseMove);
 
-      IGUI_MSG_LINK(WM_KEYDOWN, pchannel, this,&mesh::_001OnKeyDown);
+      MESSAGE_LINK(WM_KEYDOWN, pchannel, this,&mesh::_001OnKeyDown);
 
-      IGUI_MSG_LINK(WM_CREATE, pchannel, this,&mesh::_001OnCreate);
+      MESSAGE_LINK(e_message_create, pchannel, this,&mesh::_001OnCreate);
 
       connect_command("mesh_view_auto_arrange",&mesh::_001OnMeshViewAutoArrange);
 
@@ -2983,13 +2983,13 @@ namespace user
       else if(get_form() != nullptr)
       {
 
-         get_form()->send_message(EVENT_MESSAGE,0,(LPARAM)&ev);
+         get_form()->send_message(e_message_event,0,(LPARAM)&ev);
 
       }
       else
       {
 
-         GetParent()->send_message(EVENT_MESSAGE,0,(LPARAM)&ev);
+         GetParent()->send_message(e_message_event,0,(LPARAM)&ev);
 
       }*/
       return true;
@@ -5185,7 +5185,7 @@ namespace user
    {
       SCAST_PTR(::user::command,pcommand,pmessage);
       pcommand->_001SetCheck(get_auto_arrange());
-      pcommand->Enable();
+      pcommand->enable();
    }
 
    bool mesh::is_valid_display_item(index iDisplayItem)

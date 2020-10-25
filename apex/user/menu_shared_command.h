@@ -20,7 +20,7 @@ public: // re-implementations only
    menu_shared_command(int* pestatus);
 
 
-   virtual void Enable(bool bOn = TRUE, const ::action_context& context = ::source_system);
+   virtual void enable(bool bOn = TRUE, const ::action_context& context = ::source_system);
 
    //   virtual void _001SetCheck(bool bCheck, const ::action_context & context = ::source_system);   // 0, 1 or 2 (indeterminate)
    virtual void _001SetCheck(enum_check echeck, const ::action_context& context = ::source_system);  // 0, 1 or 2 (indeterminate)

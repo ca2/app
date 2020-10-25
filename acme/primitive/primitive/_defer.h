@@ -39,6 +39,21 @@ inline __pointer(::factory::factory_base < BASE_TYPE >) create_factory()
 }
 
 
+template < typename TYPE, typename BASE_TYPE>
+inline __pointer(::factory::factory_base < BASE_TYPE >) create_reusable_factory()
+{
+
+   cslock lock(::factory::g_pcsFactory);
+
+   auto pfactory = __new(::factory::reusable_factory< TYPE, BASE_TYPE >());
+
+   ::factory::get_factory < BASE_TYPE >() = pfactory;
+
+   return pfactory;
+
+}
+
+
 
 
 template < typename TYPE1, typename TYPE2 >

@@ -133,8 +133,8 @@ namespace filemanager
    void operation_info_view::install_message_routing(::channel * pchannel)
    {
       ::user::impact::install_message_routing(pchannel);
-      IGUI_MSG_LINK(WM_CREATE,pchannel,this,&operation_info_view::_001OnCreate);
-//      //IGUI_MSG_LINK(WM_TIMER,pchannel,this,&operation_info_view::_001OnTimer);
+      MESSAGE_LINK(e_message_create,pchannel,this,&operation_info_view::_001OnCreate);
+//      //MESSAGE_LINK(WM_TIMER,pchannel,this,&operation_info_view::_001OnTimer);
    }
 
    void operation_info_view::assert_valid() const

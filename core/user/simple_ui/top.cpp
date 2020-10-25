@@ -27,14 +27,14 @@ namespace simple_ui
 
       ::user::interaction::install_message_routing(pchannel);
 
-      IGUI_MSG_LINK(WM_CREATE, pchannel, this, &top::_001OnCreate);
-      IGUI_MSG_LINK(WM_LBUTTONDOWN,pchannel,this,&top::_001OnLButtonDown);
-      IGUI_MSG_LINK(WM_LBUTTONUP,pchannel,this,&top::_001OnLButtonUp);
-      IGUI_MSG_LINK(WM_MOUSEMOVE,pchannel,this,&top::_001OnMouseMove);
+      MESSAGE_LINK(e_message_create, pchannel, this, &top::_001OnCreate);
+      MESSAGE_LINK(WM_LBUTTONDOWN,pchannel,this,&top::_001OnLButtonDown);
+      MESSAGE_LINK(WM_LBUTTONUP,pchannel,this,&top::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_mouse_move,pchannel,this,&top::_001OnMouseMove);
 
-      IGUI_MSG_LINK(WM_ACTIVATE, pchannel, this, &top::_001OnActivate);
-      IGUI_MSG_LINK(WM_NCACTIVATE, pchannel, this, &top::_001OnNcActivate);
-      IGUI_MSG_LINK(WM_SYSCOMMAND, pchannel, this, &top::_001OnSysCommand);
+      MESSAGE_LINK(e_message_activate, pchannel, this, &top::_001OnActivate);
+      MESSAGE_LINK(WM_NCACTIVATE, pchannel, this, &top::_001OnNcActivate);
+      MESSAGE_LINK(WM_SYSCOMMAND, pchannel, this, &top::_001OnSysCommand);
 
 
    }

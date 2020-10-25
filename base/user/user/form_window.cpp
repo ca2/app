@@ -1352,11 +1352,11 @@ namespace user
    void form_window::install_message_routing(::channel * pchannel)
    {
       ::user::form_control::install_message_routing(pchannel);
-      IGUI_MSG_LINK(WM_CREATE, pchannel, this, &form_window::_001OnCreate);
-      IGUI_MSG_LINK(::message_pos_create, pchannel, this, &form_window::_000OnPosCreate);
-      MSG_TYPE_LINK(::message::type_language, pchannel, this, &form_window::_001OnAppLanguage);
-      //IGUI_MSG_LINK(WM_KEYDOWN, pchannel, this, &::user::interaction::_001OnKeyDown);
-      //IGUI_MSG_LINK(WM_KEYUP, pchannel, this, &::user::interaction::_001OnKeyUp);
+      MESSAGE_LINK(e_message_create, pchannel, this, &form_window::_001OnCreate);
+      MESSAGE_LINK(e_message_pos_create, pchannel, this, &form_window::_000OnPosCreate);
+      MESSAGE_LINK(e_message_language, pchannel, this, &form_window::_001OnAppLanguage);
+      //MESSAGE_LINK(WM_KEYDOWN, pchannel, this, &::user::interaction::_001OnKeyDown);
+      //MESSAGE_LINK(WM_KEYUP, pchannel, this, &::user::interaction::_001OnKeyUp);
 
    }
 

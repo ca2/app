@@ -159,7 +159,7 @@ namespace ios
 //
 //         if(!GetFileAttributesExW(::str::international::utf8_to_unicode(pszPath), GetFileExInfoStandard, &data))
 //         {
-//            varRet.set_type(::type_null);
+//            varRet.set_type(::e_type_null);
 //         }
 //         else
 //         {
@@ -172,7 +172,7 @@ namespace ios
 //
 //         if(::stat(pszPath, &stat)  == -1)
 //         {
-//            varRet.set_type(::type_null);
+//            varRet.set_type(::e_type_null);
 //         }
 //         else
 //         {

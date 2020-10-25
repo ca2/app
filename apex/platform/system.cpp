@@ -1401,7 +1401,7 @@ namespace apex
       //create_factory < application_bias >();
       create_factory < command_line >();
       create_factory < http::context >();
-//      create_factory < manual_reset_event >();
+
       //create_factory < ::mutex >();
       //create_factory < event >();
 
@@ -2210,39 +2210,14 @@ namespace apex
    }
 
 
-   UINT system::os_post_to_all_threads(UINT uiMessage,WPARAM wparam,lparam lparam)
-
+   UINT system::os_post_to_all_threads(const ::id & id,WPARAM wparam,lparam lparam)
    {
 
-      post_to_all_threads(uiMessage,wparam,lparam);
-
+      post_to_all_threads(id,wparam,lparam);
 
       return 0;
 
    }
-
-
-   //os_local & system::oslocal()
-   //{
-
-   //   return *m_poslocal;
-
-   //}
-
-
-//void system::discard_to_factory(object * pca)
-//{
-
-//   //if (m_pfactory == nullptr)
-//   //{
-
-//   //   return;
-
-//   //}
-
-//   //m_pfactory->discard(pca);
-
-//}
 
 
    bool system::is_system() const
@@ -3338,7 +3313,7 @@ namespace apex
 
          merge_accumulated_on_open_file(pcreate);
 
-         papp->post_object(SYSTEM_MESSAGE, system_message_create, pcreate);
+         papp->post_object(e_message_system, system_message_create, pcreate);
 
       }
 
@@ -3597,135 +3572,6 @@ namespace apex
 ////#endif
 //
 //   }
-
-
-//#ifdef WINDOWS_DESKTOP
-//
-//   BOOL CALLBACK system::monitor_enum_proc(HMONITOR hmonitor, HDC hdcMonitor, RECT * prcMonitor, LPARAM dwData)
-//
-//   {
-//
-//      ::apex::system * psystem = (::apex::system *) dwData;
-//
-//      psystem->monitor_enum(hmonitor, hdcMonitor, prcMonitor);
-//
-//
-//      return TRUE; // to enumerate all
-//
-//   }
-//
-//   void system::monitor_enum(HMONITOR hmonitor, HDC hdcMonitor, RECT * prcMonitor)
-//
-//   {
-//
-//      UNREFERENCED_PARAMETER(hdcMonitor);
-//      UNREFERENCED_PARAMETER(prcMonitor);
-//
-//
-//      m_monitorinfoa.allocate(m_monitorinfoa.get_size() + 1);
-//
-//      xxf_zero(m_monitorinfoa.last());
-//
-//      m_hmonitora.add(hmonitor);
-//
-//      m_monitorinfoa.last().cbSize = sizeof(MONITORINFO);
-//
-//      ::GetMonitorInfo(hmonitor, &m_monitorinfoa.last());
-//
-//      MONITORINFO mi = m_monitorinfoa.last();
-//
-//      TRACE("session::monitor_enum\n");
-//      TRACE("upper_bound %d\n", m_monitorinfoa.get_upper_bound());
-//      TRACE("rcMonitor(left, top, right, bottom) %d, %d, %d, %d\n", mi.rcMonitor.left, mi.rcMonitor.top, mi.rcMonitor.right, mi.rcMonitor.bottom);
-//      TRACE("rcWork(left, top, right, bottom) %d, %d, %d, %d\n", mi.rcWork.left, mi.rcWork.top, mi.rcWork.right, mi.rcWork.bottom);
-//
-//   }
-//
-//
-//#endif
-
-
-
-   //::image_pointer system::matter_cache_image(::layered * pobjectContext, const string & strMatter)
-   //{
-
-   //   string str(strMatter);
-
-   //   if (!str.begins_ci("matter://"))
-   //   {
-
-   //      str = "matter://" + str;
-
-   //   }
-
-   //   return get_cache_image(pobjectContext, str);
-
-   //}
-
-
-
-   //::image_pointer system::get_cache_image(::layered * pobjectContext, const ::var & varFile)
-   //{
-
-   //   ::file::path path = varFile.get_file_path();
-
-   //   if (path.is_empty())
-   //   {
-
-   //      return nullptr;
-
-   //   }
-
-   //   sync_lock sl(get_image_mutex());
-
-   //   auto & pimage = m_mapImage[path];
-
-   //   if (!pimage)
-   //   {
-
-   //      pobjectContext->__construct(pimage);
-
-   //      pimage->set_nok();
-
-   //   }
-
-   //   return pimage;
-
-   //}
-
-
-   //::image_pointer system::get_image(::layered * pobjectContext, const ::var & varFile, bool bCache, bool bSync)
-   //{
-
-   //   auto pimage = get_cache_image(pobjectContext, varFile);
-
-   //   if (!::is_ok(pimage))
-   //   {
-
-   //      Ctx(pobjectContext)._load_image(pimage, varFile, bSync);
-
-   //   }
-
-   //   return pimage;
-
-   //}
-
-
-   //::image_pointer system::matter_image(::layered * pobjectContext, const string & strMatter, bool bCache, bool bSync)
-   //{
-
-   //   string str(strMatter);
-
-   //   if (!str.begins_ci("matter://"))
-   //   {
-
-   //      str = "matter://" + str;
-
-   //   }
-
-   //   return get_image(pobjectContext, str, bSync);
-
-   //}
 
 
    string system::standalone_setting(string str)
@@ -5749,11 +5595,13 @@ string get_bundle_app_library_name();
 
          {
 
-            sync_future future;
+            auto pfuture = __sync_future();
 
-            os_message_box(strMessage, "Could not open required library. Want to give an yes/no answer insted of pression cancel?", MB_ICONEXCLAMATION | MB_YESNOCANCEL, future);
+            os_message_box(strMessage, "Could not open required library. Want to give an yes/no answer insted of pression cancel?", MB_ICONEXCLAMATION | MB_YESNOCANCEL, pfuture);
 
-            int iDialogResult = future.m_var;
+            pfuture->wait(10_s);
+
+            int iDialogResult = pfuture->m_var;
 
             ::output_debug_string("result " + __str(iDialogResult));
 

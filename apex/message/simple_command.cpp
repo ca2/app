@@ -9,16 +9,16 @@ namespace message
    simple_command::simple_command()
    {
 
-      m_id.m_emessagetype = ::message::type_user_simple_command;
+      m_id = ::e_message_simple_command;
       m_esimplecommand = simple_command_none;
 
    }
 
 
-   void simple_command::set(::layered * playeredUserPrimitive, UINT uiMessage, WPARAM wparam, ::lparam lparam)
+   void simple_command::set(::layered * playeredUserPrimitive, const ::id & id, WPARAM wparam, ::lparam lparam)
    {
 
-      ::message::base::set(playeredUserPrimitive, uiMessage, wparam, lparam);
+      ::message::base::set(playeredUserPrimitive, id, wparam, lparam);
 
       m_esimplecommand = (e_simple_command)wparam;
 

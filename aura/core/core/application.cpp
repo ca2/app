@@ -924,7 +924,7 @@ namespace aura
 
       switch (pbase->m_id)
       {
-      case WM_CREATE:
+      case e_message_create:
       case WM_PAINT:
 
          return thread::process_window_procedure_exception(pexception, pmessage);

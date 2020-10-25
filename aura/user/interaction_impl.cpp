@@ -862,30 +862,30 @@ namespace user
    void interaction_impl::last_install_message_routing(::channel * pchannel)
    {
 
-      IGUI_MSG_LINK(WM_CREATE, pchannel, this, &interaction_impl::_001OnCreate);
+      MESSAGE_LINK(e_message_create, pchannel, this, &interaction_impl::_001OnCreate);
 
       ::user::primitive_impl::last_install_message_routing(pchannel);
 
       if (!m_puserinteraction->m_bMessageWindow)
       {
 
-         IGUI_MSG_LINK(message_redraw, pchannel, this, &interaction_impl::_001OnRedraw);
-         IGUI_MSG_LINK(message_apply_visual, pchannel, this, &interaction_impl::_001OnApplyVisual);
+         MESSAGE_LINK(e_message_redraw, pchannel, this, &interaction_impl::_001OnRedraw);
+         MESSAGE_LINK(e_message_apply_visual, pchannel, this, &interaction_impl::_001OnApplyVisual);
 
 
 //#ifndef LINUX
-         IGUI_MSG_LINK(WM_MOVE, pchannel, this, &interaction_impl::_001OnMove);
-         IGUI_MSG_LINK(WM_SIZE, pchannel, this, &interaction_impl::_001OnSize);
+         MESSAGE_LINK(e_message_move, pchannel, this, &interaction_impl::_001OnMove);
+         MESSAGE_LINK(e_message_size, pchannel, this, &interaction_impl::_001OnSize);
 //#endif
 
 
-         IGUI_MSG_LINK(WM_SHOWWINDOW, pchannel, this, &interaction_impl::_001OnShowWindow);
-         IGUI_MSG_LINK(WM_KILLFOCUS, pchannel, this, &interaction_impl::_001OnKillFocus);
-         IGUI_MSG_LINK(WM_SETFOCUS, pchannel, this, &interaction_impl::_001OnSetFocus);
+         MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &interaction_impl::_001OnShowWindow);
+         MESSAGE_LINK(e_message_kill_focus, pchannel, this, &interaction_impl::_001OnKillFocus);
+         MESSAGE_LINK(e_message_set_focus, pchannel, this, &interaction_impl::_001OnSetFocus);
 
       }
 
-      IGUI_MSG_LINK(message_destroy_window, pchannel, this, &interaction_impl::_001OnDestroyWindow);
+      MESSAGE_LINK(e_message_destroy_window, pchannel, this, &interaction_impl::_001OnDestroyWindow);
 
    }
 
@@ -1143,7 +1143,7 @@ namespace user
       if(m_ptraProdevian.add_unique(pobject))
       {
 
-         m_puserinteraction->post_message(message_redraw, 1);
+         m_puserinteraction->post_message(e_message_redraw, 1);
 
          return true;
 
@@ -1171,7 +1171,7 @@ namespace user
       if (bRemove)
       {
 
-         m_puserinteraction->post_message(message_redraw, 1);
+         m_puserinteraction->post_message(e_message_redraw, 1);
 
       }
 
@@ -1277,11 +1277,11 @@ namespace user
       if (!m_puserinteraction->m_bMessageWindow)
       {
 
-         IGUI_MSG_LINK(WM_CAPTURECHANGED, pchannel, this, &interaction_impl::_001OnCaptureChanged);
+         MESSAGE_LINK(WM_CAPTURECHANGED, pchannel, this, &interaction_impl::_001OnCaptureChanged);
 
       }
 
-      IGUI_MSG_LINK(WM_DESTROY, pchannel, this, &interaction_impl::_001OnDestroy);
+      MESSAGE_LINK(e_message_destroy, pchannel, this, &interaction_impl::_001OnDestroy);
 
    }
 
@@ -1403,7 +1403,7 @@ namespace user
 
          oswindow oswindow = get_handle();
 
-         mq_post_message(oswindow, message_destroy_window, 0, 0);
+         mq_post_message(oswindow, e_message_destroy_window, 0, 0);
 
          return true;
 
@@ -1448,7 +1448,7 @@ namespace user
 
          m_bDestroying = true;
 
-         m_puserinteraction->post_message(message_destroy_window);
+         m_puserinteraction->post_message(e_message_destroy_window);
 
          return true;
 
@@ -1805,7 +1805,7 @@ namespace user
    }
 
 
-//   void interaction_impl::OnParentNotify(UINT message,LPARAM lParam)
+//   void interaction_impl::OnParentNotify(const ::id & id,LPARAM lParam)
 //   {
 //      UNREFERENCED_PARAMETER(message);
 //      UNREFERENCED_PARAMETER(lParam);
@@ -2303,12 +2303,12 @@ namespace user
    }
 
 
-   LRESULT interaction_impl::send_message(UINT message, WPARAM wparam, lparam lparam)
+   LRESULT interaction_impl::send_message(const ::id & id, WPARAM wparam, lparam lparam)
    {
 
       ::___pointer < ::message::base > pbase;
 
-      pbase = m_puserinteraction->get_message_base(message, wparam, lparam);
+      pbase = m_puserinteraction->get_message_base(id, wparam, lparam);
 
       if(m_puserinteraction->layout().is_moving())
       {
@@ -2357,7 +2357,7 @@ namespace user
 #endif
 
 
-   bool interaction_impl::post_message(UINT message,WPARAM wParam,lparam lParam)
+   bool interaction_impl::post_message(const ::id & id,WPARAM wParam,lparam lParam)
    {
 
       if(!m_puserinteraction)
@@ -2374,8 +2374,7 @@ namespace user
 
       }
 
-      return m_puserinteraction->m_pthreadUserInteraction->post_message(m_oswindow,
-                                                                        message, wParam, lParam);
+      return m_puserinteraction->m_pthreadUserInteraction->post_message(m_oswindow, id, wParam, lParam);
 
    }
 
@@ -2632,7 +2631,7 @@ namespace user
 
       }
 
-      m_puserinteraction->post_message(::message_redraw, 1);
+      m_puserinteraction->post_message(::e_message_redraw, 1);
 
    }
 
@@ -2858,8 +2857,10 @@ namespace user
       return 0;
    }
 
-   LPARAM interaction_impl::SendDlgItemMessage(i32 nID,UINT message,WPARAM wParam,LPARAM lParam)
+
+   LPARAM interaction_impl::SendDlgItemMessage(i32 nID, UINT message, WPARAM wParam,LPARAM lParam)
    {
+
       UNREFERENCED_PARAMETER(nID);
       UNREFERENCED_PARAMETER(message);
       UNREFERENCED_PARAMETER(wParam);
@@ -2867,7 +2868,9 @@ namespace user
       ::exception::throw_interface_only();
 
       return 0;
+
    }
+
 
    void interaction_impl::SetDlgItemInt(i32 nID,UINT nValue,bool bSigned)
    {
@@ -3069,7 +3072,6 @@ namespace user
 
 
    bool interaction_impl::SendNotifyMessage(UINT message,WPARAM wParam,lparam lParam)
-
    {
 
       UNREFERENCED_PARAMETER(message);
@@ -3557,7 +3559,7 @@ namespace user
       else
       {
 
-         m_puserinteraction->post_message(message_apply_visual);
+         m_puserinteraction->post_message(e_message_apply_visual);
 
       }
 
@@ -3694,7 +3696,7 @@ namespace user
       else
       {
 
-         m_pprodevian->post_message(message_redraw, bUpdateBuffer ? 1 : 0);
+         m_pprodevian->post_message(e_message_redraw, bUpdateBuffer ? 1 : 0);
 
       }
 
@@ -3883,7 +3885,7 @@ namespace user
          if(!m_pprimitiveFocus->m_puiThis->m_bFocus)
          {
 
-            m_pprimitiveFocus->m_puiThis->send_message(WM_SETFOCUS);
+            m_pprimitiveFocus->m_puiThis->send_message(e_message_set_focus);
 
          }
 
@@ -3944,7 +3946,7 @@ namespace user
                if(pprimitiveFocus->m_puiThis->m_bFocus)
                {
 
-                  pprimitiveFocus->m_puiThis->send_message(WM_KILLFOCUS, pkillfocus->m_wparam, pkillfocus->m_lparam);
+                  pprimitiveFocus->m_puiThis->send_message(e_message_kill_focus, pkillfocus->m_wparam, pkillfocus->m_lparam);
 
                }
 
@@ -3978,7 +3980,7 @@ namespace user
 
       //   m_pprimitiveFocus = nullptr;
 
-      //   pprimitiveFocusPrev->send_message(WM_KILLFOCUS);
+      //   pprimitiveFocusPrev->send_message(e_message_kill_focus);
 
       //   pprimitiveFocusPrev->set_need_redraw();
 
@@ -4015,7 +4017,7 @@ namespace user
                if(pprimitiveFocusOld->m_bFocus)
                {
 
-                  pprimitiveFocusOld->send_message(WM_KILLFOCUS);
+                  pprimitiveFocusOld->send_message(e_message_kill_focus);
 
                }
 
@@ -4035,7 +4037,7 @@ namespace user
             if (::is_set(pprimitiveFocusNew))
             {
 
-               pprimitiveFocusNew->send_message(WM_SETFOCUS);
+               pprimitiveFocusNew->send_message(e_message_set_focus);
 
                pprimitiveFocusNew->set_need_redraw();
 

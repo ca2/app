@@ -111,8 +111,8 @@ namespace user
 
       install_simple_ui_default_mouse_handling(pchannel);
 
-      IGUI_MSG_LINK(WM_CREATE, pchannel, this, &image_list::_001OnCreate);
-      IGUI_MSG_LINK(WM_DESTROY, pchannel, this, &image_list::_001OnDestroy);
+      MESSAGE_LINK(e_message_create, pchannel, this, &image_list::_001OnCreate);
+      MESSAGE_LINK(e_message_destroy, pchannel, this, &image_list::_001OnDestroy);
 
    }
 
@@ -674,8 +674,8 @@ namespace user
       ::user::impact::install_message_routing(pchannel);
       ::user::image_list::install_message_routing(pchannel);
 
-      IGUI_MSG_LINK(WM_CREATE, pchannel, this, &image_list_view::_001OnCreate);
-      IGUI_MSG_LINK(WM_DESTROY, pchannel, this, &image_list_view::_001OnDestroy);
+      MESSAGE_LINK(e_message_create, pchannel, this, &image_list_view::_001OnCreate);
+      MESSAGE_LINK(e_message_destroy, pchannel, this, &image_list_view::_001OnDestroy);
 
    }
 

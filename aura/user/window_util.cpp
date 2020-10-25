@@ -628,7 +628,7 @@ namespace user
 
    }
 
-   /*void window_util::send_message_to_descendants(oswindow oswindow, UINT message,
+   /*void window_util::send_message_to_descendants(oswindow oswindow, const ::id & id,
    WPARAM wParam, LPARAM lParam, bool bDeep, bool bOnlyPerm)
    {
    // walk through HWNDs to avoid creating temporary interaction_impl objects
@@ -670,13 +670,17 @@ namespace user
       // unless we need to call this function recursively
       for (::oswindow oswindow_Child = ::GetTopWindow(oswindow); oswindow_Child != nullptr; oswindow_Child = ::GetNextWindow(oswindow_Child, GW_HWNDNEXT))
       {
+
          // send message with Windows SendMessage API
          try
          {
+
             ::SendMessage(oswindow_Child, message, wParam, lParam);
+
          }
          catch (...)
          {
+
          }
 
          if (bDeep && ::GetTopWindow(oswindow_Child) != nullptr)
@@ -1256,7 +1260,7 @@ namespace user
    }
 
 
-   void interaction_array::send_message(UINT uiMessage, WPARAM wparam, LPARAM lparam)
+   void interaction_array::send_message(const ::id & id, WPARAM wparam, LPARAM lparam)
 
    {
       for (i32 i = 0; i < this->interaction_count(); i++)
@@ -1265,7 +1269,7 @@ namespace user
          try
          {
 
-            this->interaction_at(i)->send_message(uiMessage, wparam, lparam);
+            this->interaction_at(i)->send_message(id, wparam, lparam);
 
          }
          catch (...)
@@ -1278,7 +1282,7 @@ namespace user
    }
 
 
-   void interaction_array::send_message_to_descendants(UINT uiMessage, WPARAM wparam, LPARAM lparam, bool bRecursive)
+   void interaction_array::send_message_to_descendants(const ::id & id, WPARAM wparam, LPARAM lparam, bool bRecursive)
    {
 
       for (i32 i = 0; i < this->interaction_count(); i++)
@@ -1287,7 +1291,7 @@ namespace user
          try
          {
 
-            this->interaction_at(i)->send_message_to_descendants(uiMessage, wparam, lparam, bRecursive);
+            this->interaction_at(i)->send_message_to_descendants(id, wparam, lparam, bRecursive);
 
          }
          catch (...)

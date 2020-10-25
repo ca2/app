@@ -4,8 +4,6 @@
 #endif
 #include "_data.h"
 #include "aura/update.h"
-//#include "aura/printer2.h"
-//#include "aura/user/print_task.h"
 #include "aura/message.h"
 #include "aura/user/interaction_thread.h"
 #ifdef WINDOWS_DESKTOP
@@ -241,25 +239,25 @@ namespace user
       //, virtual public imm_client
 #endif
 #endif
-      IGUI_MSG_LINK(WM_CREATE, pchannel, this, &plain_edit::_001OnCreate);
-      IGUI_MSG_LINK(WM_LBUTTONDOWN, pchannel, this, &plain_edit::_001OnLButtonDown);
-      IGUI_MSG_LINK(WM_LBUTTONUP, pchannel, this, &plain_edit::_001OnLButtonUp);
-      IGUI_MSG_LINK(WM_RBUTTONDOWN, pchannel, this, &plain_edit::_001OnRButtonDown);
-      IGUI_MSG_LINK(WM_RBUTTONUP, pchannel, this, &plain_edit::_001OnRButtonUp);
-      IGUI_MSG_LINK(WM_MOUSEMOVE, pchannel, this, &plain_edit::_001OnMouseMove);
-      IGUI_MSG_LINK(WM_MOUSELEAVE, pchannel, this, &plain_edit::_001OnMouseLeave);
-      IGUI_MSG_LINK(WM_KEYDOWN, pchannel, this, &plain_edit::_001OnKeyDown);
-      IGUI_MSG_LINK(WM_KEYUP, pchannel, this, &plain_edit::_001OnKeyUp);
-      IGUI_MSG_LINK(WM_UNICHAR, pchannel, this, &plain_edit::_001OnUniChar);
+      MESSAGE_LINK(e_message_create, pchannel, this, &plain_edit::_001OnCreate);
+      MESSAGE_LINK(WM_LBUTTONDOWN, pchannel, this, &plain_edit::_001OnLButtonDown);
+      MESSAGE_LINK(WM_LBUTTONUP, pchannel, this, &plain_edit::_001OnLButtonUp);
+      MESSAGE_LINK(WM_RBUTTONDOWN, pchannel, this, &plain_edit::_001OnRButtonDown);
+      MESSAGE_LINK(WM_RBUTTONUP, pchannel, this, &plain_edit::_001OnRButtonUp);
+      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &plain_edit::_001OnMouseMove);
+      MESSAGE_LINK(WM_MOUSELEAVE, pchannel, this, &plain_edit::_001OnMouseLeave);
+      MESSAGE_LINK(WM_KEYDOWN, pchannel, this, &plain_edit::_001OnKeyDown);
+      MESSAGE_LINK(WM_KEYUP, pchannel, this, &plain_edit::_001OnKeyUp);
+      MESSAGE_LINK(WM_UNICHAR, pchannel, this, &plain_edit::_001OnUniChar);
 
-      IGUI_MSG_LINK(WM_SIZE, pchannel, this, &::user::plain_edit::_001OnSize);
+      MESSAGE_LINK(e_message_size, pchannel, this, &::user::plain_edit::_001OnSize);
 
-      IGUI_MSG_LINK(WM_SETFOCUS, pchannel, this, &::user::plain_edit::_001OnSetFocus);
-      IGUI_MSG_LINK(WM_KILLFOCUS, pchannel, this, &::user::plain_edit::_001OnKillFocus);
+      MESSAGE_LINK(e_message_set_focus, pchannel, this, &::user::plain_edit::_001OnSetFocus);
+      MESSAGE_LINK(e_message_kill_focus, pchannel, this, &::user::plain_edit::_001OnKillFocus);
 
 
-      IGUI_MSG_LINK(WM_VSCROLL, pchannel, this, &::user::plain_edit::_001OnVScroll);
-      IGUI_MSG_LINK(WM_HSCROLL, pchannel, this, &::user::plain_edit::_001OnHScroll);
+      MESSAGE_LINK(WM_VSCROLL, pchannel, this, &::user::plain_edit::_001OnVScroll);
+      MESSAGE_LINK(WM_HSCROLL, pchannel, this, &::user::plain_edit::_001OnHScroll);
 
 
 
@@ -5756,6 +5754,7 @@ finished_update:
 
    }
 
+
    void plain_edit::clipboard_paste()
    {
 
@@ -6108,7 +6107,7 @@ finished_update:
 
       _001GetSelText(str);
 
-      pcommand->Enable(str.has_char());
+      pcommand->enable(str.has_char());
 
    }
 
@@ -6143,7 +6142,7 @@ finished_update:
 
       _001GetSelText(str);
 
-      pcommand->Enable(str.has_char());
+      pcommand->enable(str.has_char());
 
    }
 
@@ -6164,9 +6163,10 @@ finished_update:
 
       SCAST_PTR(::user::command, pcommand, pmessage);
 
-      pcommand->Enable(Session.copydesk().has_plain_text());
+      pcommand->enable(Session.copydesk().has_plain_text());
 
    }
+
 
    void plain_edit::_001OnEditPaste(::message::message * pmessage)
    {
@@ -6194,7 +6194,7 @@ finished_update:
 
       _001GetSelText(str);
 
-      pcommand->Enable(str.has_char());
+      pcommand->enable(str.has_char());
 
    }
 

@@ -214,7 +214,7 @@ namespace aura
       m_strLocale = "_std";
       m_strSchema = "_std";
 
-      m_iGcomBackgroundUpdateMillis = -1;
+      //m_iGcomBackgroundUpdateMillis = -1;
    }
 
 
@@ -4356,7 +4356,7 @@ retry_license:
 
 
 
-   bool application::send_message_to_windows(UINT message, WPARAM wparam, LPARAM lparam) // with tbs in <3
+   bool application::send_message_to_windows(const ::id & id, WPARAM wparam, LPARAM lparam) // with tbs in <3
 
    {
 
@@ -4377,8 +4377,7 @@ retry_license:
                   try
                   {
 
-                     pwnd->send_message(message, wparam, lparam);
-
+                     pwnd->send_message(id, wparam, lparam);
 
                   }
                   catch (...)
@@ -4389,8 +4388,7 @@ retry_license:
                   try
                   {
 
-                     pwnd->send_message_to_descendants(message, wparam, lparam);
-
+                     pwnd->send_message_to_descendants(id, wparam, lparam);
 
                   }
                   catch (...)
@@ -4482,7 +4480,7 @@ retry_license:
    }
 
 
-   void application::send_language_change_message()
+   /*void application::send_language_change_message()
    {
 
       ::message::message message(::message::type_language);
@@ -4490,7 +4488,7 @@ retry_license:
       route_message_to_windows(&message);
 
    }
-
+*/
 
    ::user::interaction * application::main_window()
    {
@@ -4554,7 +4552,7 @@ retry_license:
       if (pinteraction != nullptr)
       {
 
-         return pinteraction->get_message_base(pmsg->message, pmsg->wParam, pmsg->lParam);
+         return pinteraction->get_message_base((enum_message) pmsg->message, pmsg->wParam, pmsg->lParam);
 
       }
 
@@ -4567,7 +4565,7 @@ retry_license:
 
       }
 
-      pbase->set(pinteraction, pmsg->message, pmsg->wParam, pmsg->lParam);
+      pbase->set(pinteraction, (enum_message) pmsg->message, pmsg->wParam, pmsg->lParam);
 
 
       return pbase;
@@ -4603,10 +4601,10 @@ retry_license:
    //}
 
 
-   bool application::post_message(UINT message, WPARAM wparam, lparam lparam )
+   bool application::post_message(const ::id & id, WPARAM wparam, lparam lparam )
    {
 
-      return ::thread::post_message(message, wparam, lparam);
+      return ::thread::post_message(id, wparam, lparam);
 
    }
 
@@ -6513,7 +6511,7 @@ namespace aura
 
       switch (pbase->m_id)
       {
-      case WM_CREATE:
+      case e_message_create:
       case WM_PAINT:
 
          return thread::process_window_procedure_exception(pe, pmessage);
@@ -7096,7 +7094,7 @@ namespace aura
    //
    //
    //   /////////////////////////////////////////////////////////////////////////////
-   //   // WinHelp Helper
+   //   // WinHelp helper
    //
    //
    //   void application::WinHelp(uptr dwData, UINT nCmd)
@@ -7112,7 +7110,7 @@ namespace aura
    //   }
    //
    //   /////////////////////////////////////////////////////////////////////////////
-   //   // HtmlHelp Helper
+   //   // HtmlHelp helper
    //
    //   void application::HtmlHelp(uptr dwData, UINT nCmd)
    //   {

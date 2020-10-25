@@ -272,7 +272,7 @@ LRESULT CALLBACK wf_event_proc(HWND hWnd, UINT Msg, WPARAM wParam,
 
 		switch (Msg)
 		{
-			case WM_MOVE:
+			case e_message_move:
 				if (!wfc->disablewindowtracking)
 				{
 					int x = (int)(short) LOWORD(lParam);
@@ -311,7 +311,7 @@ LRESULT CALLBACK wf_event_proc(HWND hWnd, UINT Msg, WPARAM wParam,
 				wf_sizing(wfc, lParam, wParam);
 				break;
 
-			case WM_SIZE:
+			case e_message_size:
 				get_window_rect(wfc->hwnd, &windowRect);
 
 				if (!wfc->fullscreen)
@@ -374,7 +374,7 @@ LRESULT CALLBACK wf_event_proc(HWND hWnd, UINT Msg, WPARAM wParam,
 				                     X_POS(lParam) - wfc->offset_x, Y_POS(lParam) - wfc->offset_y);
 				break;
 
-			case WM_MOUSEMOVE:
+			case e_message_mouse_move:
 				wf_scale_mouse_event(wfc, input, PTR_FLAGS_MOVE, X_POS(lParam) - wfc->offset_x,
 				                     Y_POS(lParam) - wfc->offset_y);
 				break;
@@ -562,8 +562,8 @@ LRESULT CALLBACK wf_event_proc(HWND hWnd, UINT Msg, WPARAM wParam,
 
 	switch (Msg)
 	{
-		case WM_DESTROY:
-			PostQuitMessage(WM_QUIT);
+		case e_message_destroy:
+			PostQuitMessage(e_message_quit);
 			break;
 
 		case WM_SETCURSOR:
@@ -574,7 +574,7 @@ LRESULT CALLBACK wf_event_proc(HWND hWnd, UINT Msg, WPARAM wParam,
 
 			break;
 
-		case WM_SETFOCUS:
+		case e_message_set_focus:
 			DEBUG_KBD("getting focus %X", hWnd);
 
 			if (alt_ctrl_down())
@@ -584,7 +584,7 @@ LRESULT CALLBACK wf_event_proc(HWND hWnd, UINT Msg, WPARAM wParam,
 			freerdp_set_focus(wfc->context.instance);
 			break;
 
-		case WM_KILLFOCUS:
+		case e_message_kill_focus:
 			if (g_focus_hWnd == hWnd && wfc && !wfc->fullscreen)
 			{
 				DEBUG_KBD("loosing focus %X", hWnd);
@@ -597,7 +597,7 @@ LRESULT CALLBACK wf_event_proc(HWND hWnd, UINT Msg, WPARAM wParam,
 
 			break;
 
-		case WM_ACTIVATE:
+		case e_message_activate:
 			{
 				int activate = (int)(short) LOWORD(wParam);
 

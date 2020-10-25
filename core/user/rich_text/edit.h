@@ -23,7 +23,7 @@ namespace user
          virtual ~edit();
 
 
-         virtual void on_after_change(::user::e_event eevent);
+         virtual void on_after_change(::user::enum_event eevent);
          virtual double get_rotate() override;
 
 

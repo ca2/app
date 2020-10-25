@@ -774,9 +774,9 @@ bool thread::pump_message()
 
          }
 
-         TRACE(trace_category_appmsg, trace_level_information, string(type_name()) + " thread::pump_message - Received WM_QUIT.\n");
+         TRACE(trace_category_appmsg, trace_level_information, string(type_name()) + " thread::pump_message - Received e_message_quit.\n");
 
-         INFO("%s thread::pump_message - Received WM_QUIT.\n", type_name());
+         INFO("%s thread::pump_message - Received e_message_quit.\n", type_name());
 
          m_nDisablePumpCount++; // application must die
          // Note: prevents calling message loop things in 'exit_thread'
@@ -786,7 +786,7 @@ bool thread::pump_message()
       }
 
 
-      if (m_message.message == message_destroy_window && m_strDebugType.contains("notify_icon"))
+      if (m_message.message == e_message_destroy_window && m_strDebugType.contains("notify_icon"))
       {
 
          INFO("notify_icon");
@@ -919,9 +919,9 @@ bool thread::raw_pump_message()
 
          }
 
-         TRACE(trace_category_appmsg, trace_level_information, "xx" + strType + " thread::raw_pump_message - Received WM_QUIT");
+         TRACE(trace_category_appmsg, trace_level_information, "xx" + strType + " thread::raw_pump_message - Received e_message_quit");
 
-         ::output_debug_string("xx" + strType + " thread::raw_pump_message - Received WM_QUIT.\n");
+         ::output_debug_string("xx" + strType + " thread::raw_pump_message - Received e_message_quit.\n");
 
          m_nDisablePumpCount++; // application must die
          // Note: prevents calling message loop things in 'exit_thread'
@@ -1087,10 +1087,10 @@ bool thread::defer_pump_message()
    if (peek_message(&m_message, nullptr, 0, 0, PM_REMOVE))
    {
 
-      if(m_message.message == WM_QUIT)
+      if(m_message.message == e_message_quit)
       {
 
-         ::output_debug_string("\n\n\nthread::defer_pump_message (1) quitting (wm_quit? {PeekMessage->message : " + __str(m_message.message == WM_QUIT ? 1 : 0) + "!}) : " + string(type_name()) + " (" + __str((u64)::get_current_ithread()) + ")\n\n\n");
+         ::output_debug_string("\n\n\nthread::defer_pump_message (1) quitting (wm_quit? {PeekMessage->message : " + __str(m_message.message == e_message_quit ? 1 : 0) + "!}) : " + string(type_name()) + " (" + __str((u64)::get_current_ithread()) + ")\n\n\n");
 
          return false;
 
@@ -1376,7 +1376,7 @@ void thread::post_quit()
    if (m_pmq)
    {
 
-      m_pmq->post_message(nullptr, WM_QUIT, 0, 0);
+      m_pmq->post_message(nullptr, (enum_message) e_message_quit, 0, 0);
 
    }
 
@@ -1391,7 +1391,7 @@ void thread::post_quit()
          if (m_bMessageThread)
          {
 
-            post_message(WM_QUIT, 0, 0);
+            post_message((enum_message) e_message_quit, 0, 0);
 
          }
 
@@ -2135,7 +2135,7 @@ void thread::process_window_procedure_exception(::exception_pointer pe,::message
 
    SCAST_PTR(::message::base,pbase,pmessage);
 
-   if(pbase->m_id == WM_CREATE)
+   if(pbase->m_id == e_message_create)
    {
 
       pbase->m_lresult = -1;
@@ -2815,19 +2815,40 @@ bool thread::is_idle_message()
 }
 
 
-void thread::post_to_all_threads(UINT message,WPARAM wparam,LPARAM lparam)
+void thread::post_quit_to_all_threads()
 {
 
-   if(message == WM_QUIT)
+   ::multithreading::post_quit_to_all_threads();
+
+}
+
+
+void thread::post_to_all_threads(const ::id & id, WPARAM wparam, LPARAM lparam)
+{
+
+#ifdef DEBUG
+
+   if (id == e_message_quit)
    {
 
-      ::multithreading::post_quit_to_all_threads();
-
-      return;
+      //!!for e_message_quit please use post_quit_to_all_threads;
+      __throw(invalid_argument_exception);
 
    }
 
-   ::multithreading::post_to_all_threads(message, wparam, lparam);
+#endif
+
+   //for e_message_quit please use post_quit_to_all_threads;
+   //if(id == e_message_quit)
+   //{
+
+   //   ::multithreading::post_quit_to_all_threads();
+
+   //   return;
+
+   //}
+
+   ::multithreading::post_to_all_threads(id, wparam, lparam);
 
 }
 
@@ -2856,75 +2877,30 @@ bool thread::post_task(const ::method& method)
 bool thread::send_task(const ::method & method, ::duration durationTimeout)
 {
 
-   return send_object(message_system, system_message_method, method, durationTimeout);
+   return send_object(e_message_system, system_message_method, method, durationTimeout);
 
 }
 
 
-bool thread::post_object(UINT message, WPARAM wParam, lparam lParam)
+bool thread::post_object(const ::id & id, WPARAM wParam, lparam lParam)
 {
 
-   if (message == WM_QUIT)
-   {
-
-      return true;
-
-   }
-
-   if (!thread_get_run())
-   {
-
-      if (lParam != 0)
-      {
-
-         __pointer(object) spo((lparam)lParam);
-
-
-      }
-
-      return false;
-
-   }
-
-   return post_message(message, wParam, lParam);
+   return post_message(id, wParam, lParam);
 
 }
 
 
-bool thread::post_message(UINT message,WPARAM wParam,lparam lParam)
+bool thread::post_message(const ::id & id, WPARAM wParam, lparam lParam)
 {
-
-   if(m_bThreadClosed)
-   {
-
-      return false;
-
-   }
 
 #ifdef WINDOWS_DESKTOP
 
-   if (m_hthread && !m_bAuraMessageQueue && (m_bMessageThread || message != WM_QUIT))
+   if (m_hthread && !m_bAuraMessageQueue && m_bMessageThread)
    {
 
-      int_bool bOk = ::PostThreadMessage(m_ithread, message, wParam, lParam) != FALSE;
+      int_bool bOk = ::PostThreadMessage(m_ithread, id.umessage(), wParam, lParam) != FALSE;
 
-      if (bOk)
-      {
-
-         if (message != WM_QUIT)
-         {
-
-            if (!m_bMessageThread)
-            {
-
-               m_bMessageThread = true;
-
-            }
-
-         }
-
-      }
-      else
+      if (!bOk)
       {
 
          TRACELASTERROR();
@@ -2937,13 +2913,20 @@ bool thread::post_message(UINT message,WPARAM wParam,lparam lParam)
 
 #endif
 
-   return get_mq()->post_message(nullptr, message, wParam, lParam);
+   return get_mq()->post_message(nullptr, id, wParam, lParam);
 
 }
 
 
-bool thread::send_object(UINT message, WPARAM wParam, lparam lParam, ::duration durWaitStep)
+bool thread::send_object(const ::id & id, WPARAM wParam, lparam lParam, ::duration durWaitStep)
 {
+
+   if (!id.is_message())
+   {
+
+      __throw(invalid_argument_exception);
+
+   }
 
    if(m_bThreadClosed)
    {
@@ -2952,7 +2935,7 @@ bool thread::send_object(UINT message, WPARAM wParam, lparam lParam, ::duration 
 
    }
 
-   if (message == WM_QUIT)
+   if (id == e_message_quit)
    {
 
       wait(durWaitStep);
@@ -2976,15 +2959,22 @@ bool thread::send_object(UINT message, WPARAM wParam, lparam lParam, ::duration 
 
    }
 
-   send_message(message, wParam, lParam, durWaitStep);
+   send_message(id, wParam, lParam, durWaitStep);
 
    return true;
 
 }
 
 
-bool thread::send_message(UINT message, WPARAM wParam, lparam lParam, ::duration durWaitStep)
+bool thread::send_message(const ::id & id, WPARAM wParam, lparam lParam, ::duration durWaitStep)
 {
+
+   if (!id.is_message())
+   {
+
+      __throw(invalid_argument_exception);
+
+   }
 
    if(m_bThreadClosed)
    {
@@ -2993,7 +2983,7 @@ bool thread::send_message(UINT message, WPARAM wParam, lparam lParam, ::duration
 
    }
 
-   if (message == WM_QUIT)
+   if (id == e_message_quit)
    {
 
       wait(durWaitStep);
@@ -3004,11 +2994,11 @@ bool thread::send_message(UINT message, WPARAM wParam, lparam lParam, ::duration
 
    auto pmessage = __new(::send_thread_message(get_context_object()));
 
-   pmessage->m_message.message = message;
+   pmessage->m_message.message = id.u32();
    pmessage->m_message.wParam = wParam;
    pmessage->m_message.lParam = lParam;
 
-   post_message(message_system, system_message_meta, pmessage);
+   post_message(e_message_system, system_message_meta, pmessage);
 
    pmessage->m_ev.wait(durWaitStep);
 
@@ -3439,7 +3429,7 @@ int_bool thread::get_message(LPMESSAGE pMsg, oswindow oswindow, UINT wMsgFilterM
 
          m_bitRunThisThread = false;
 
-         bQuit = pMsg->message == WM_QUIT;
+         bQuit = pMsg->message == e_message_quit;
 
          if (!bQuit)
          {
@@ -3470,12 +3460,12 @@ int_bool thread::get_message(LPMESSAGE pMsg, oswindow oswindow, UINT wMsgFilterM
       else
       {
 
-         bQuit = !iRet || pMsg->message == WM_QUIT;
+         bQuit = !iRet || pMsg->message == e_message_quit;
 
          if (bQuit)
          {
 
-            ::output_debug_string("received WM_QUIT");
+            ::output_debug_string("received e_message_quit");
 
          }
          else
@@ -3519,8 +3509,15 @@ int_bool thread::get_message(LPMESSAGE pMsg, oswindow oswindow, UINT wMsgFilterM
 }
 
 
-int_bool thread::post_message(oswindow oswindow, UINT uMessage, WPARAM wParam, LPARAM lParam)
+int_bool thread::post_message(oswindow oswindow, const ::id & id, WPARAM wParam, LPARAM lParam)
 {
+
+   if (!id.is_message())
+   {
+
+      __throw(invalid_argument_exception);
+
+   }
 
    if(m_bThreadClosed)
    {
@@ -3534,7 +3531,7 @@ int_bool thread::post_message(oswindow oswindow, UINT uMessage, WPARAM wParam, L
    if (m_hthread && !m_bAuraMessageQueue)
    {
 
-      if (::PostMessage(oswindow, uMessage, wParam, lParam))
+      if (::PostMessage(oswindow, id.u32(), wParam, lParam))
       {
 
          return TRUE;
@@ -3545,7 +3542,7 @@ int_bool thread::post_message(oswindow oswindow, UINT uMessage, WPARAM wParam, L
 
 #endif
 
-   return get_mq()->post_message(oswindow, uMessage, wParam, lParam);
+   return get_mq()->post_message(oswindow, id, wParam, lParam);
 
 }
 
@@ -3735,7 +3732,7 @@ void thread::message_handler(::message::base * pbase)
 
 #endif
 
-      if (msg.message == message_event2)
+      if (msg.message == e_message_event2)
       {
 
          //if(msg.lParam)
@@ -3754,7 +3751,7 @@ void thread::message_handler(::message::base * pbase)
          //}
 
       }
-      else if (msg.message == message_system)
+      else if (msg.message == e_message_system)
       {
 
          if (msg.wParam == system_message_create)
@@ -4031,7 +4028,7 @@ bool thread::do_events()
    while(peek_message(&msg,nullptr,0,0,PM_NOREMOVE) != FALSE)
    {
 
-      if (msg.message == WM_QUIT) // do not pump, otherwise main loop will not process the message
+      if (msg.message == e_message_quit) // do not pump, otherwise main loop will not process the message
       {
 
          break;
@@ -4070,7 +4067,7 @@ bool thread::kick_thread()
 
    }
 
-   if (!post_message(::message_null))
+   if (!post_message(e_message_null))
    {
 
       return false;
@@ -4116,7 +4113,7 @@ bool thread::kick_thread()
 ::estatus thread::do_request(::create * pcreate)
 {
 
-   post_object(message_system, system_message_create, pcreate);
+   post_object(e_message_system, system_message_create, pcreate);
 
    return ::success;
 

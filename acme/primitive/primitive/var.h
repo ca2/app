@@ -29,7 +29,7 @@ class CLASS_DECL_ACME var :
 public:
 
 
-   e_type                        m_etype;
+   enum_type                        m_etype;
 
 
    union
@@ -92,7 +92,7 @@ public:
 
 
    inline var();
-   inline var(e_type etype);
+   inline var(enum_type etype);
    inline var(std::nullptr_t);
    var(bool b);
    var(::i32 i);
@@ -176,8 +176,8 @@ public:
 
    void clear_data() { m_all[0] = 0; m_all[1] = 0; }
 
-   void set_type(e_type e_type,bool bConvert = true);
-   e_type get_type() const;
+   void set_type(enum_type enum_type,bool bConvert = true);
+   enum_type get_type() const;
 
 
    void set_type(const ::type & type);
@@ -214,7 +214,7 @@ public:
 
    ::i64 release();
 
-   ::e_type set_element(::matter * pobject);
+   ::enum_type set_element(::matter * pobject);
 
    bool is_element() const { return m_etype >= type_element && m_etype < __type_last_element; }
 
@@ -348,7 +348,7 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
    bool is_true(const ::var & var = false, bool bDefault = false) const;
 
 
-   bool casts_to(::e_type etype) const;
+   bool casts_to(::enum_type etype) const;
 
 
    ///property * defer_get_property(const ::id & id) const;
@@ -437,7 +437,7 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
    var& operator = (const ::method& method);
    var& operator = (const ::future& future);
 
-   inline var & operator = (nullptr_t) { set_type(type_null, false); return *this; }
+   inline var & operator = (nullptr_t) { set_type(e_type_null, false); return *this; }
 
    inline var & operator = (::matter * p)
    {
@@ -848,9 +848,9 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
    void parse_json(const char * & pszJson);
    void parse_json(const char * & pszJson, const char * pszEnd);
    const char * parse_json(const string & strJson);
-   ::e_type find_json_child(const char * & pszJson, const var & var);
-   ::e_type find_json_child(const char * & pszJson, const char * pszEnd, const var & var);
-   ::e_type find_json_id(const char * & pszJson, const char * pszEnd, const var & var);
+   ::enum_type find_json_child(const char * & pszJson, const var & var);
+   ::enum_type find_json_child(const char * & pszJson, const char * pszEnd, const var & var);
+   ::enum_type find_json_id(const char * & pszJson, const char * pszEnd, const var & var);
    bool parse_json_step(const char * & pszJson);
    bool parse_json_step(const char * & pszJson, const char * pszEnd);
 

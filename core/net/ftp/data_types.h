@@ -43,19 +43,19 @@ namespace ftp
    class CLASS_DECL_CORE structure
    {
    public:
-      enum e_type { type_file, type_record, type_page };
+      enum enum_type { type_file, type_record, type_page };
 
       structure(const structure& structure) :
          m_enStructure(structure.AsEnum()) {}
 
-      bool operator==(const e_type& rhs) const { return m_enStructure==rhs; }
-      bool operator!=(const e_type& rhs) const { return !operator==(rhs); }
+      bool operator==(const enum_type& rhs) const { return m_enStructure==rhs; }
+      bool operator!=(const enum_type& rhs) const { return !operator==(rhs); }
       bool operator==(const structure& rhs) const { return m_enStructure==rhs.m_enStructure; }
       bool operator!=(const structure& rhs) const { return !operator==(rhs); }
 
       structure& operator=(const structure& rhs) { m_enStructure = rhs.AsEnum(); return *this; }
 
-      e_type AsEnum() const { return m_enStructure; }
+      enum_type AsEnum() const { return m_enStructure; }
       string AsString() const;
 
       static const structure File()   { return type_file;   }
@@ -63,8 +63,8 @@ namespace ftp
       static const structure Page()   { return type_page;   }
 
    private:
-      structure(e_type enStructure) : m_enStructure(enStructure) {}
-      e_type m_enStructure;
+      structure(enum_type enStructure) : m_enStructure(enStructure) {}
+      enum_type m_enStructure;
    };
 
    /// Transmission Modes
@@ -102,7 +102,7 @@ namespace ftp
    {
    public:
       // don't change order of enumeration
-      enum e_type
+      enum enum_type
       {
          type_none, type_host_name, type_user_after_logon, type_proxy_open, type_transparent,
          type_user_with_no_logon, type_user_fire_id_at_remote_host, type_user_remote_id_at_remote_host_fire_id,
@@ -110,22 +110,22 @@ namespace ftp
       };
 
 
-      e_type m_etype;
+      enum_type m_etype;
 
 
       firewall_type() : m_etype(type_none) {}
-      firewall_type(e_type enFirewallType) : m_etype(enFirewallType) {}
+      firewall_type(enum_type enFirewallType) : m_etype(enFirewallType) {}
       firewall_type(const firewall_type& firewallType) :
          m_etype(firewallType.AsEnum()) {}
 
-      bool operator==(const e_type& rhs) const { return m_etype==rhs; }
-      bool operator!=(const e_type& rhs) const { return !operator==(rhs); }
+      bool operator==(const enum_type& rhs) const { return m_etype==rhs; }
+      bool operator!=(const enum_type& rhs) const { return !operator==(rhs); }
       bool operator==(const firewall_type& rhs) const { return m_etype==rhs.m_etype; }
       bool operator!=(const firewall_type& rhs) const { return !operator==(rhs); }
 
       firewall_type& operator=(const firewall_type& rhs) { m_etype = rhs.AsEnum(); return *this; }
 
-      e_type AsEnum() const { return m_etype; }
+      enum_type AsEnum() const { return m_etype; }
 
       string AsDisplayString() const;
       string AsStorageString() const;
@@ -147,19 +147,19 @@ namespace ftp
    class CLASS_DECL_CORE type
    {
    public:
-      enum e_type { tyASCII, tyEBCDIC, tyImage, tyLocalByte };
+      enum enum_type { tyASCII, tyEBCDIC, tyImage, tyLocalByte };
 
       type(const type& type) :
          m_etype(type.AsEnum()) {}
 
-      bool operator==(const e_type& rhs) const { return m_etype==rhs; }
-      bool operator!=(const e_type& rhs) const { return !operator==(rhs); }
+      bool operator==(const enum_type& rhs) const { return m_etype==rhs; }
+      bool operator!=(const enum_type& rhs) const { return !operator==(rhs); }
       bool operator==(const type& rhs) const { return m_etype==rhs.m_etype; }
       bool operator!=(const type& rhs) const { return !operator==(rhs); }
 
       type& operator=(const type& rhs) { m_etype = rhs.AsEnum(); return *this; }
 
-      e_type AsEnum() const { return m_etype; }
+      enum_type AsEnum() const { return m_etype; }
       string AsString() const;
 
       static const type ASCII()     { return tyASCII;     }
@@ -167,8 +167,8 @@ namespace ftp
       static const type Image()     { return tyImage;     }
       static const type LocalByte() { return tyLocalByte; }
 
-      type(e_type enType) : m_etype(enType) {}
-      e_type m_etype;
+      type(enum_type enType) : m_etype(enType) {}
+      enum_type m_etype;
    };
 
    /// @brief Representation Type - 2nd lparam (see representation)
@@ -238,7 +238,7 @@ namespace ftp
    public:
       enum enum_command { cmdABOR, cmdACCT, cmdALLO, cmdAPPE, cmdCDUP, cmdCWD, cmdDELE, cmdHELP, cmdLIST, cmdMDTM, cmdMKD, cmdMODE, cmdNLST, cmdNOOP, cmdOPEN, cmdPASS, cmdPASV, cmdPORT, cmdPWD, cmdQUIT, cmdREIN, cmdREST, cmdRETR, cmdRMD, cmdRNFR, cmdRNTO, cmdSITE, cmdSIZE, cmdSMNT, cmdSTAT, cmdSTOR, cmdSTOU, cmdSTRU, cmdSYST, cmdTYPE, cmdUSER, cmdPROT};
       enum TSpecificationEnum { Unknown, RFC959, RFC3659, };
-      enum e_type { DatachannelRead, DatachannelWrite, NonDatachannel, };
+      enum enum_type { DatachannelRead, DatachannelWrite, NonDatachannel, };
 
       class iextended_info : public iinterface
       {
@@ -249,7 +249,7 @@ namespace ftp
          virtual UINT GetNumberOfParameters() const = 0;
          virtual UINT GetNumberOfOptionalParameters() const = 0;
          virtual TSpecificationEnum GetSpecification() const = 0;
-         virtual e_type GetType() const = 0;
+         virtual enum_type GetType() const = 0;
       };
 
       command(const command& datachannelCmd) :
@@ -324,10 +324,10 @@ namespace ftp
    class command::extended_info : public command::iextended_info
    {
       typedef command::TSpecificationEnum TSpecificationEnum;
-      typedef command::e_type e_type;
+      typedef command::enum_type enum_type;
    public:
       extended_info(const string& strServerString, const string& strCompleteServerStringSyntax, UINT uiNumberOfParameters,
-                    UINT uiNumberOfOptionalParameters, TSpecificationEnum enSpecification, e_type enType) :
+                    UINT uiNumberOfOptionalParameters, TSpecificationEnum enSpecification, enum_type enType) :
          m_strServerString(strServerString),
          m_strCompleteServerStringSyntax(strCompleteServerStringSyntax),
          m_uiNumberOfParameters(uiNumberOfParameters),
@@ -351,14 +351,14 @@ namespace ftp
       virtual UINT GetNumberOfParameters() const override { return m_uiNumberOfParameters; }
       virtual UINT GetNumberOfOptionalParameters() const override { return m_uiNumberOfOptionalParameters; }
       virtual TSpecificationEnum GetSpecification() const override { return m_enSpecification; }
-      virtual e_type GetType() const override { return m_etype; }
+      virtual enum_type GetType() const override { return m_etype; }
 
       const string            m_strServerString;
       const string            m_strCompleteServerStringSyntax;
       const UINT               m_uiNumberOfParameters;
       const UINT               m_uiNumberOfOptionalParameters;
       const TSpecificationEnum m_enSpecification;
-      const e_type          m_etype;
+      const enum_type          m_etype;
 
    };
 
@@ -372,7 +372,7 @@ namespace ftp
       info2();
 
       void insert(enum_command enCommand, const string& strServerString, const string& strCompleteServerStringSyntax, UINT uiNumberOfParameters,
-                  UINT uiNumberOfOptionalParameters, TSpecificationEnum enSpecification, e_type enType);
+                  UINT uiNumberOfOptionalParameters, TSpecificationEnum enSpecification, enum_type enType);
 
       static info2& GetInstance() { if (g_pTheOneAndOnly == nullptr) g_pTheOneAndOnly = new info2(); return *g_pTheOneAndOnly; }
 

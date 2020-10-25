@@ -240,12 +240,12 @@ virtual bool setWMClass(const char * psz);
       virtual ::user::frame * EnsureParentFrame() override;
 
 
-      virtual LRESULT message_call(UINT uiMessage, WPARAM wparam, lparam lparam) override;
+      virtual LRESULT message_call(const ::id & id, WPARAM wparam, lparam lparam) override;
       virtual LRESULT message_call(::message::base * pbase) override;
 
 
 
-      virtual void send_message_to_descendants(UINT message,WPARAM wParam = 0,lparam lParam = 0,bool bDeep = TRUE,bool bOnlyPerm = FALSE) override;
+      virtual void send_message_to_descendants(const ::id & id,WPARAM wParam = 0,lparam lParam = 0,bool bDeep = TRUE,bool bOnlyPerm = FALSE) override;
 
 
 
@@ -286,7 +286,7 @@ virtual bool setWMClass(const char * psz);
       virtual ::user::primitive * get_focus_primitive();
       virtual bool set_focus_primitive(::user::primitive * pprimitive);
 
-      virtual bool post_message(UINT uiMessage, WPARAM wparam = 0, lparam lparam = 0) override;
+      virtual bool post_message(const ::id & id, WPARAM wparam = 0, lparam lparam = 0) override;
 
       virtual void PostNcDestroy() override;
 

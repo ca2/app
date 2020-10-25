@@ -111,7 +111,7 @@
 //
 //   //   puiimpl->m_puserinteraction->m_pthread = ::get_task();
 //
-//   pimpl->send_message(WM_CREATE, 0, (LPARAM) &cs);
+//   pimpl->send_message(e_message_create, 0, (LPARAM) &cs);
 //
 //   ::rect rectMainScreen;
 //

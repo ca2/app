@@ -227,7 +227,7 @@ namespace fs
       index iFind = listing.find_first_ci(path.name());
 
       if (iFind < 0)
-         return var(::type_null);
+         return var(::e_type_null);
 
       return listing[iFind].m_iSize;
 

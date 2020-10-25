@@ -449,7 +449,7 @@ namespace imaging_wic
 
    /******************************************************************
    *                                                                 *
-   *  DemoApp::GetBackgroundColor()                                  *
+   *  DemoApp::get_background_color()                                  *
    *                                                                 *
    *  Reads and stores the background color for gif.                 *
    *                                                                 *

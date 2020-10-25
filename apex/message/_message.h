@@ -30,7 +30,7 @@ namespace message
    class message;
    class id_route;
    template < typename MESSAGE > class typed_route;
-   class id;
+   //class id;
    class route;
 
 } // namespace status

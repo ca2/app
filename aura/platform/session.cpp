@@ -665,16 +665,16 @@ the file README-colorramp for more information. */
       }
 
 
-      estatus = __compose_new(m_puserstrcontext);
+      //estatus = __compose_new(m_puserstrcontext);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         INFO("apex::str_context Failed to Allocate!!");
+      //   INFO("apex::str_context Failed to Allocate!!");
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       auto& system = System;
 
@@ -1312,7 +1312,7 @@ the file README-colorramp for more information. */
       //         if (pinteraction.is_set())
       //         {
 
-      //            pinteraction->send_message(WM_KILLFOCUS, (WPARAM) ( (pkeyboardfocus != nullptr &&
+      //            pinteraction->send_message(e_message_kill_focus, (WPARAM) ( (pkeyboardfocus != nullptr &&
       //                              pkeyboardfocus != (::user::primitive *) (ulong_ptr) 1 )?
       //                              pkeyboardfocus->get_safe_handle() : nullptr));
 
@@ -1535,7 +1535,7 @@ the file README-colorramp for more information. */
    //               if(pinteraction->m_bFocus)
    //               {
 
-   //                  pinteraction->post_message(WM_KILLFOCUS);
+   //                  pinteraction->post_message(e_message_kill_focus);
 
    //               }
 
@@ -2582,7 +2582,7 @@ the file README-colorramp for more information. */
       }
 
 
-      /* Helper macro used in the fill functions */
+      /* helper macro used in the fill functions */
 //#define F(Y, C)  pow(dBrightness * C, 1.0 / dGamma)
 #define F(C)  pow(dBrightness * C, 1.0 / dGamma)
 
@@ -3765,16 +3765,25 @@ ret:
    ::estatus session::init1()
    {
 
-      auto estatus = __compose_new(m_pfs);
+      auto estatus = ::apex::session::init1();
 
       if (!estatus)
       {
 
-         m_result.add(estatus);
-
-         return false;
+         return estatus;
 
       }
+
+      //auto estatus = __compose_new(m_pfs);
+
+      //if (!estatus)
+      //{
+
+      //   m_result.add(estatus);
+
+      //   return false;
+
+      //}
 
       if (System.m_bUser)
       {
@@ -3790,63 +3799,63 @@ ret:
 
       }
 
-      if (!m_pifs)
-      {
+      //if (!m_pifs)
+      //{
 
-         estatus = __compose(m_pifs, __new(ifs("")));
+      //   estatus = __compose(m_pifs, __new(ifs("")));
 
-         if (!estatus)
-         {
+      //   if (!estatus)
+      //   {
 
-            m_result.add(estatus);
+      //      m_result.add(estatus);
 
-            TRACE("Failed to create ifs");
+      //      TRACE("Failed to create ifs");
 
-         }
+      //   }
 
-      }
+      //}
 
-      if (!m_premotefs)
-      {
+      //if (!m_premotefs)
+      //{
 
-         estatus = __compose(m_premotefs, __new(::fs::remote_native("")));
+      //   estatus = __compose(m_premotefs, __new(::fs::remote_native("")));
 
-         if (!estatus)
-         {
+      //   if (!estatus)
+      //   {
 
-            m_result.add(estatus);
+      //      m_result.add(estatus);
 
-            TRACE("Failed to create remotefs");
+      //      TRACE("Failed to create remotefs");
 
-         }
+      //   }
 
-      }
+      //}
 
-      if (!m_pfsdata)
-      {
+      //if (!m_pfsdata)
+      //{
 
-         auto pset = __create_new<::fs::set>();
+      //   auto pset = __create_new<::fs::set>();
 
-         auto plink = __create_new < ::fs::link>();
+      //   auto plink = __create_new < ::fs::link>();
 
-         plink->fill_os_user();
+      //   plink->fill_os_user();
 
-         pset->m_spafsdata.add(plink);
+      //   pset->m_spafsdata.add(plink);
 
-         pset->m_spafsdata.add(__create_new < ::fs::native>());
+      //   pset->m_spafsdata.add(__create_new < ::fs::native>());
 
-         estatus = __compose(m_pfsdata, pset);
+      //   estatus = __compose(m_pfsdata, pset);
 
-         if (!estatus)
-         {
+      //   if (!estatus)
+      //   {
 
-            m_result.add(estatus);
+      //      m_result.add(estatus);
 
-            TRACE("Failed to create fsdata");
+      //      TRACE("Failed to create fsdata");
 
-         }
+      //   }
 
-      }
+      //}
 
       INFO(".2");
 
@@ -4001,7 +4010,14 @@ ret:
    ::estatus session::init2()
    {
 
-      ::estatus estatus = ::success;
+      ::estatus estatus = ::apex::session::init2();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
 
       INFO("aura::session::init2 .1");
 
@@ -4017,14 +4033,14 @@ ret:
 
       //}
 
-      if (!InitializeLocalDataCentral())
+     /* if (!InitializeLocalDataCentral())
       {
 
          message_box("Could not initialize Local data central");
 
          return false;
 
-      }
+      }*/
 
       estatus = __compose_new(m_psavings);
 
@@ -4036,36 +4052,36 @@ ret:
    ::estatus session::init()
    {
 
-      ::estatus estatus = ::success;
+      ::estatus estatus = ::apex::session::init();
 
-      __pointer(::fs::set) pfsset = m_pfsdata;
+      //__pointer(::fs::set) pfsset = m_pfsdata;
 
-      if (m_bIfs)
-      {
+      //if (m_bIfs)
+      //{
 
-         if (m_pfsdata.is_null())
-         {
+      //   if (m_pfsdata.is_null())
+      //   {
 
-            __compose(m_pfsdata, __new(::fs::set));
+      //      __compose(m_pfsdata, __new(::fs::set));
 
-         }
+      //   }
 
-         pfsset = m_pfsdata;
+      //   pfsset = m_pfsdata;
 
-         if (pfsset.is_null())
-         {
+      //   if (pfsset.is_null())
+      //   {
 
-            pfsset->m_spafsdata.add_unique(m_pifs);
+      //      pfsset->m_spafsdata.add_unique(m_pifs);
 
-            pfsset->m_spafsdata.add_unique(m_premotefs);
+      //      pfsset->m_spafsdata.add_unique(m_premotefs);
 
-         }
+      //   }
 
-         ::file::listing patha;
+      //   ::file::listing patha;
 
-         m_pfsdata->root_ones(patha);
+      //   m_pfsdata->root_ones(patha);
 
-      }
+      //}
 
       if (m_puser)
       {
@@ -4563,7 +4579,7 @@ namespace aura
          return;
 
       }
-      //else if (pmessage->m_id == WM_MOUSEMOVE)
+      //else if (pmessage->m_id == e_message_mouse_move)
       //{
 
       //   pmessage->m_uiMessageFlags |= 0; // message considered pre translated

@@ -121,7 +121,7 @@ CLASS_DECL_ACME ATOM MyRegisterClass(HINSTANCE hInstance)
 //
 //  WM_COMMAND  - process the application menu
 //  WM_PAINT    - Paint the main window
-//  WM_DESTROY  - post a quit message and return
+//  e_message_destroy  - post a quit message and return
 //
 //
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
@@ -137,7 +137,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
    //   EndPaint(hWnd, &ps);
    //}
    break;
-   case WM_DESTROY:
+   case e_message_destroy:
       PostQuitMessage(0);
       break;
    default:
@@ -149,7 +149,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 // Message handler for about box.
 INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 {
+   
    UNREFERENCED_PARAMETER(lParam);
+
    switch (message)
    {
    case WM_INITDIALOG:

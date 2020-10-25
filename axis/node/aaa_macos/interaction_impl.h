@@ -150,10 +150,10 @@ namespace macos
 
 #endif   // WINVER >= 0x0500
 
-      LRESULT send_message(UINT message, WPARAM wParam = 0, lparam lParam = 0) override;
-      bool post_message(UINT message, WPARAM wParam = 0, lparam lParam = 0) override;
+      LRESULT send_message(const ::id & id, WPARAM wParam = 0, lparam lParam = 0) override;
+      bool post_message(const ::id & id, WPARAM wParam = 0, lparam lParam = 0) override;
 
-//      bool SendNotifyMessage(UINT message, WPARAM wParam, LPARAM lParam);
+//      bool SendNotifyMessage(const ::id & id, WPARAM wParam, LPARAM lParam);
 //      bool SendChildNotifyLastMsg(LRESULT* pResult = nullptr);
 //
 //      bool DragDetect(const ::point & point) const override;
@@ -352,7 +352,7 @@ namespace macos
       virtual ::user::interaction * GetNextDlgGroupItem(::user::interaction * pWndCtl, bool bPrevious = FALSE) const;
       virtual ::user::interaction * GetNextDlgTabItem(::user::interaction * pWndCtl, bool bPrevious = FALSE) const;
       virtual UINT IsDlgButtonChecked(i32 nIDButton) const override;
-      virtual LRESULT SendDlgItemMessage(i32 nID, UINT message, WPARAM wParam = 0, LPARAM lParam = 0) override;
+      virtual LRESULT SendDlgItemMessage(i32 nID, const ::id & id, WPARAM wParam = 0, LPARAM lParam = 0) override;
       virtual void SetDlgItemInt(i32 nID, UINT nValue, bool bSigned = TRUE) override;
       virtual void SetDlgItemText(i32 nID, const char * lpszString) override;
 
@@ -483,7 +483,7 @@ namespace macos
 //      void OnMove(i32 x, i32 y);
       DECL_GEN_SIGNAL(_001OnPaint);
       DECL_GEN_SIGNAL(_001OnPrint);
-//      void OnParentNotify(UINT message, LPARAM lParam);
+//      void OnParentNotify(const ::id & id, LPARAM lParam);
 //      HCURSOR OnQueryDragIcon();
 //      bool OnQueryEndSession();
 //      bool OnQueryNewPalette();
@@ -548,7 +548,7 @@ namespace macos
 //      void OnMButtonDblClk(UINT nFlags, const ::point & point);
 //      void OnMButtonDown(UINT nFlags, const ::point & point);
 //      void OnMButtonUp(UINT nFlags, const ::point & point);
-//      i32 OnMouseActivate(::user::interaction * pDesktopWnd, UINT nHitTest, UINT message);
+//      i32 OnMouseActivate(::user::interaction * pDesktopWnd, UINT nHitTest, const ::id & id);
 //      void OnMouseMove(UINT nFlags, const ::point & point);
 //      bool OnMouseWheel(UINT nFlags, short zDelta, const ::point & point);
 //      LRESULT OnRegisteredMouseWheel(WPARAM wParam, LPARAM lParam);
@@ -615,18 +615,18 @@ namespace macos
 
       // for processing oswindows messages
       virtual void message_handler(::message::base * pbase) override;
-      //virtual bool OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* pResult);
+      //virtual bool OnWndMsg(const ::id & id, WPARAM wParam, LPARAM lParam, LRESULT* pResult);
 
       // for handling default processing
 //      LRESULT Default() override;
-//      virtual LRESULT DefWindowProc(UINT message, WPARAM wParam, LPARAM lParam);
+//      virtual LRESULT DefWindowProc(const ::id & id, WPARAM wParam, LPARAM lParam);
 
       virtual void PostNcDestroy() override;
 
       // for notifications from parent
-//      virtual bool OnChildNotify(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* pResult);
+//      virtual bool OnChildNotify(const ::id & id, WPARAM wParam, LPARAM lParam, LRESULT* pResult);
 //      // return TRUE if parent should not process this message
-//      bool ReflectChildNotify(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* pResult);
+//      bool ReflectChildNotify(const ::id & id, WPARAM wParam, LPARAM lParam, LRESULT* pResult);
 //      static bool PASCAL ReflectLastMsg(oswindow hWndChild, LRESULT* pResult = nullptr);
 
 //      virtual bool CheckAutoCenter() override;

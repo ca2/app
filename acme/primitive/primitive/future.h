@@ -11,6 +11,8 @@ public:
 
    inline void operator()(const var& var) const;
 
+   inline bool should_run_async() const;
+
 
 };
 

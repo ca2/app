@@ -283,7 +283,7 @@ namespace linux
 
          m_puserinteraction->m_bMessageWindow = true;
 
-         //send_message(WM_CREATE, 0, (LPARAM) &cs);
+         //send_message(e_message_create, 0, (LPARAM) &cs);
 
       }
       else
@@ -669,7 +669,7 @@ namespace linux
       if(bOk)
       {
 
-         m_puserinteraction->send_message(WM_CREATE, 0, (LPARAM) &cs);
+         m_puserinteraction->send_message(e_message_create, 0, (LPARAM) &cs);
 
          m_puserinteraction->m_ewindowflag |= window_flag_window_created;
 
@@ -700,37 +700,37 @@ namespace linux
 
       if(!m_puserinteraction->m_bMessageWindow)
       {
-         IGUI_MSG_LINK(WM_PAINT, pchannel, this,&interaction_impl::_001OnPaint);
-         IGUI_MSG_LINK(WM_PRINT, pchannel, this,&interaction_impl::_001OnPrint);
+         MESSAGE_LINK(WM_PAINT, pchannel, this,&interaction_impl::_001OnPaint);
+         MESSAGE_LINK(WM_PRINT, pchannel, this,&interaction_impl::_001OnPrint);
       }
 
       m_puserinteraction->install_message_routing(pchannel);
-      IGUI_MSG_LINK(WM_CREATE, pchannel, this,&interaction_impl::_001OnCreate);
+      MESSAGE_LINK(e_message_create, pchannel, this,&interaction_impl::_001OnCreate);
 
 
 
       if(!m_puserinteraction->m_bMessageWindow)
       {
-         IGUI_MSG_LINK(WM_SETCURSOR, pchannel, this,&interaction_impl::_001OnSetCursor);
-         //IGUI_MSG_LINK(WM_ERASEBKGND, pchannel, this,&interaction_impl::_001OnEraseBkgnd);
-         //IGUI_MSG_LINK(WM_SIZE, pchannel, this,&interaction_impl::_001OnSize);
-         //IGUI_MSG_LINK(WM_NCCALCSIZE, pchannel, this,&interaction_impl::_001OnNcCalcSize);
+         MESSAGE_LINK(WM_SETCURSOR, pchannel, this,&interaction_impl::_001OnSetCursor);
+         //MESSAGE_LINK(WM_ERASEBKGND, pchannel, this,&interaction_impl::_001OnEraseBkgnd);
+         //MESSAGE_LINK(e_message_size, pchannel, this,&interaction_impl::_001OnSize);
+         //MESSAGE_LINK(WM_NCCALCSIZE, pchannel, this,&interaction_impl::_001OnNcCalcSize);
 
          // linux
-         IGUI_MSG_LINK(WM_MOVE, pchannel, this, &interaction_impl::_001OnMove);
-         IGUI_MSG_LINK(WM_SIZE, pchannel, this, &interaction_impl::_001OnSize);
-         IGUI_MSG_LINK(WM_SHOWWINDOW, pchannel, this, &interaction_impl::_001OnShowWindow);
+         MESSAGE_LINK(e_message_move, pchannel, this, &interaction_impl::_001OnMove);
+         MESSAGE_LINK(e_message_size, pchannel, this, &interaction_impl::_001OnSize);
+         MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &interaction_impl::_001OnShowWindow);
 
-         //IGUI_MSG_LINK(WM_WINDOWPOSCHANGING, pchannel, this,&interaction_impl::_001OnWindowPosChanging);
-         //IGUI_MSG_LINK(WM_WINDOWPOSCHANGED, pchannel, this,&interaction_impl::_001OnWindowPosChanged);
-         //IGUI_MSG_LINK(WM_GETMINMAXINFO, pchannel, this,&interaction_impl::_001OnGetMinMaxInfo);
-         //IGUI_MSG_LINK(WM_SETFOCUS, pchannel, this,&interaction_impl::_001OnSetFocus);
-         //IGUI_MSG_LINK(WM_KILLFOCUS, pchannel, this,&interaction_impl::_001OnKillFocus);
-//         IGUI_MSG_LINK(ca2m_PRODEVIAN_SYNCH, pchannel, this,&interaction_impl::_001OnProdevianSynch);
+         //MESSAGE_LINK(WM_WINDOWPOSCHANGING, pchannel, this,&interaction_impl::_001OnWindowPosChanging);
+         //MESSAGE_LINK(WM_WINDOWPOSCHANGED, pchannel, this,&interaction_impl::_001OnWindowPosChanged);
+         //MESSAGE_LINK(WM_GETMINMAXINFO, pchannel, this,&interaction_impl::_001OnGetMinMaxInfo);
+         //MESSAGE_LINK(e_message_set_focus, pchannel, this,&interaction_impl::_001OnSetFocus);
+         //MESSAGE_LINK(e_message_kill_focus, pchannel, this,&interaction_impl::_001OnKillFocus);
+//         MESSAGE_LINK(ca2m_PRODEVIAN_SYNCH, pchannel, this,&interaction_impl::_001OnProdevianSynch);
          ::user::interaction_impl::prio_install_message_routing(pchannel);
       }
 
-      IGUI_MSG_LINK(WM_DESTROY, pchannel, this,&interaction_impl::_001OnDestroy);
+      MESSAGE_LINK(e_message_destroy, pchannel, this,&interaction_impl::_001OnDestroy);
 
    }
 
@@ -1143,7 +1143,7 @@ namespace linux
 
          ::user::interaction * pinteraction = m_puserinteraction;
 
-         send_message(WM_DESTROY, 0, 0);
+         send_message(e_message_destroy, 0, 0);
 
          send_message(WM_NCDESTROY, 0, 0);
 
@@ -1363,12 +1363,12 @@ namespace linux
          TRACE("WM_LBUTTONDOWN (0)");
 
       }
-      else if(pbase->m_id == WM_MOUSEMOVE)
+      else if(pbase->m_id == e_message_mouse_move)
       {
 
          g_iMouseMove++;
 
-         //TRACE("linux::interaction_impl::message_handler WM_MOUSEMOVE");
+         //TRACE("linux::interaction_impl::message_handler e_message_mouse_move");
          //printf("g_iMouseMove = %d\n", g_iMouseMove);
 
       }
@@ -1500,8 +1500,8 @@ namespace linux
             pbase->m_id == WM_MBUTTONUP ||
             pbase->m_id == WM_RBUTTONDOWN ||
             pbase->m_id == WM_RBUTTONUP ||
-            pbase->m_id == WM_MOUSEMOVE ||
-            pbase->m_id == WM_MOUSEMOVE)
+            pbase->m_id == e_message_mouse_move ||
+            pbase->m_id == e_message_mouse_move)
 //         pbase->m_id == WM_MOUSEWHEEL)
       {
 
@@ -1571,7 +1571,7 @@ namespace linux
             }
          }
 
-         if(pbase->m_id == WM_MOUSEMOVE)
+         if(pbase->m_id == e_message_mouse_move)
          {
             // We are at the message handler procedure.
             // mouse messages originated from message handler and that are mouse move events should end up with the correct cursor.
@@ -1636,7 +1636,7 @@ namespace linux
 
       }
 
-      if(pbase->m_id == EVENT_MESSAGE)
+      if(pbase->m_id == e_message_event)
       {
 
          if(m_puserinteraction != nullptr)
@@ -2181,10 +2181,10 @@ namespace linux
 //      return false;   // let the parent handle it
 //   }
 //
-//   void interaction_impl::OnParentNotify(UINT message, LPARAM lparam)
+//   void interaction_impl::OnParentNotify(const ::id & id, LPARAM lparam)
 //
 //   {
-//      if ((LOWORD(message) == WM_CREATE || LOWORD(message) == WM_DESTROY))
+//      if ((LOWORD(message) == e_message_create || LOWORD(message) == e_message_destroy))
 //      {
 //         if (ReflectLastMsg((oswindow)lparam))
 //
@@ -3175,7 +3175,7 @@ namespace linux
    }
 
 
-   LRESULT interaction_impl::send_message(UINT message, WPARAM wparam, lparam lparam)
+   LRESULT interaction_impl::send_message(const ::id & id, WPARAM wparam, lparam lparam)
 
    {
 
@@ -3185,7 +3185,7 @@ namespace linux
    }
 
 
-   bool interaction_impl::post_message(UINT message, WPARAM wparam, lparam lparam)
+   bool interaction_impl::post_message(const ::id & id, WPARAM wparam, lparam lparam)
    {
 
 //      if(::is_set(m_pwindowthread))
@@ -3582,7 +3582,7 @@ namespace linux
 //
 //   }
 //
-////   void interaction_impl::send_message_to_descendants(UINT message, WPARAM wparam, lparam lparam, bool bDeep, bool bOnlyPerm)
+////   void interaction_impl::send_message_to_descendants(const ::id & id, WPARAM wparam, lparam lparam, bool bDeep, bool bOnlyPerm)
 //
 ////   {
 ////      ASSERT(::is_window((oswindow) get_handle()));
@@ -3991,7 +3991,7 @@ namespace linux
 //
 //   }
 //
-//   LPARAM interaction_impl::SendDlgItemMessage(i32 nID, UINT message, WPARAM wparam, LPARAM lparam)
+//   LPARAM interaction_impl::SendDlgItemMessage(i32 nID, const ::id & id, WPARAM wparam, LPARAM lparam)
 //
 //   {
 //
@@ -4242,7 +4242,7 @@ namespace linux
 //   }
 //
 //
-//   bool interaction_impl::SendNotifyMessage(UINT message, WPARAM wparam, lparam lparam)
+//   bool interaction_impl::SendNotifyMessage(const ::id & id, WPARAM wparam, lparam lparam)
 //
 //   {
 //

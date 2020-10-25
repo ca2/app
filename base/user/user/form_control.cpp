@@ -683,12 +683,12 @@ namespace user
 
       ::user::interaction::install_message_routing(pchannel);
 
-      IGUI_MSG_LINK(WM_CREATE, pchannel,this,&form_control::_001OnCreate);
-      IGUI_MSG_LINK(::message_pos_create, pchannel,this,&form_control::_000OnPosCreate);
-      MSG_TYPE_LINK(::message::type_language, pchannel,this,&form_control::_001OnAppLanguage);
-      //IGUI_MSG_LINK(WM_KEYDOWN                     , pchannel,this,&form_control::_001OnKeyDown);
-      //IGUI_MSG_LINK(WM_KEYUP                       , pchannel,this,&form_control::_001OnKeyUp);
-      IGUI_MSG_LINK(WM_USER + 123, pchannel,this,&form_control::_001OnUser123);
+      MESSAGE_LINK(e_message_create, pchannel,this,&form_control::_001OnCreate);
+      MESSAGE_LINK(e_message_pos_create, pchannel,this,&form_control::_000OnPosCreate);
+      MESSAGE_LINK(e_message_language, pchannel,this,&form_control::_001OnAppLanguage);
+      //MESSAGE_LINK(WM_KEYDOWN                     , pchannel,this,&form_control::_001OnKeyDown);
+      //MESSAGE_LINK(WM_KEYUP                       , pchannel,this,&form_control::_001OnKeyUp);
+      MESSAGE_LINK(WM_USER + 123, pchannel,this,&form_control::_001OnUser123);
 
       install_update_data_message_routing(pchannel);
 
@@ -1492,7 +1492,7 @@ namespace user
 
          ev.m_puie = this;
 
-         ev.m_eevent = ::user::event_timer;
+         ev.m_eevent = ::user::e_event_timer;
 
          ev.m_uiEvent = ptimer->m_uEvent;
 

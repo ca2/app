@@ -534,7 +534,7 @@ int_bool destroy_window(oswindow w)
    if(!w->m_pimpl->m_bDestroyImplOnly)
    {
       
-      w->m_pimpl->m_puserinteraction->post_message(WM_DESTROY);
+      w->m_pimpl->m_puserinteraction->post_message(e_message_destroy);
       
       w->m_pimpl->m_puserinteraction->post_message(WM_NCDESTROY);
       
@@ -545,7 +545,7 @@ int_bool destroy_window(oswindow w)
       ns_main_async(^()
       {
 
-         w->m_pimpl->call_message_handler(WM_DESTROY, 0, 0);
+         w->m_pimpl->call_message_handler(e_message_destroy, 0, 0);
                       
          w->m_pimpl->call_message_handler(WM_NCDESTROY, 0, 0);
                    

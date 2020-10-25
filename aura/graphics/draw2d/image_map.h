@@ -3,7 +3,7 @@
 
 
 class image_map :
-   virtual public isomap < e_image, ::image_pointer >
+   virtual public isomap < enum_image, ::image_pointer >
 {
 public:
 

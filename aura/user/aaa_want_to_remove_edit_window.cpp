@@ -22,10 +22,10 @@ namespace user
    void edit_window::install_edit_window_message_routing(channel * pchannel)
    {
 
-      IGUI_MSG_LINK(WM_CREATE, pchannel, this, &edit_window::_001OnCreate);
-      IGUI_MSG_LINK(WM_DESTROY, pchannel, this, &edit_window::_001OnDestroy);
-      IGUI_MSG_LINK(WM_SETFOCUS, pchannel, this, &edit_window::_001OnSetFocus);
-      IGUI_MSG_LINK(WM_KILLFOCUS, pchannel, this, &edit_window::_001OnKillFocus);
+      MESSAGE_LINK(e_message_create, pchannel, this, &edit_window::_001OnCreate);
+      MESSAGE_LINK(e_message_destroy, pchannel, this, &edit_window::_001OnDestroy);
+      MESSAGE_LINK(e_message_set_focus, pchannel, this, &edit_window::_001OnSetFocus);
+      MESSAGE_LINK(e_message_kill_focus, pchannel, this, &edit_window::_001OnKillFocus);
 
    }
 

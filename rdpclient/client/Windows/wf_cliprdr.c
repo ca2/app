@@ -1384,8 +1384,8 @@ static LRESULT CALLBACK cliprdr_proc(HWND hWnd, UINT Msg, WPARAM wParam,
 
 	switch (Msg)
 	{
-		case WM_CREATE:
-			DEBUG_CLIPRDR("info: WM_CREATE");
+		case e_message_create:
+			DEBUG_CLIPRDR("info: e_message_create");
 			clipboard = (wfClipboard*)((CREATESTRUCT*) lParam)->lpCreateParams;
 			clipboard->hwnd = hWnd;
 
@@ -1404,7 +1404,7 @@ static LRESULT CALLBACK cliprdr_proc(HWND hWnd, UINT Msg, WPARAM wParam,
 
 			break;
 
-		case WM_DESTROY:
+		case e_message_destroy:
 			if (clipboard->legacyApi)
 				ChangeClipboardChain(hWnd, clipboard->hWndNextViewer);
 
@@ -2559,7 +2559,7 @@ BOOL wf_cliprdr_uninit(wfContext* wfc, CliprdrClientContext* cliprdr)
 		return FALSE;
 
 	if (clipboard->hwnd)
-		PostMessage(clipboard->hwnd, WM_QUIT, 0, 0);
+		PostMessage(clipboard->hwnd, e_message_quit, 0, 0);
 
 	if (clipboard->thread)
 	{

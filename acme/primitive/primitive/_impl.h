@@ -109,7 +109,11 @@ inline string ___pointer < T >::type_str()
 
 inline ::estatus method::operator()() const { return (*m_p)(); }
 
+inline bool method::should_run_async() const { return m_p->should_run_async(); }
+
 inline void future::operator()(const var& var) const { (*m_p)(var); }
+
+inline bool future::should_run_async() const { return m_p->should_run_async(); }
 
 
 inline type::type(const ::matter * pobject)
@@ -2468,4 +2472,23 @@ inline var operator + (var var, const ::future& future)
 
 
 
+//template < typename METHOD >
+//inline sync_method < METHOD >::sync_method()
+//{
+//
+//   __defer_construct_new(m_peventCompleted);
+//
+//}
+
+
+
+//template < typename METHOD >
+//inline ::estatus sync_method < METHOD >::operator ()()
+//{
+//
+//   METHOD::operator()();
+//
+//   m_peventCompleted->SetEvent();
+//
+//}
 

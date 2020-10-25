@@ -17,7 +17,7 @@ namespace factory
 
       virtual __pointer(::matter) call_new() = 0;
 
-      
+      virtual void return_back(::matter* pmatter) = 0;
 
 
    };
@@ -36,6 +36,13 @@ namespace factory
       {
 
          return _call_new();
+
+      }
+
+      virtual void return_back(::matter* pmatter)
+      {
+
+         delete pmatter;
 
       }
 
@@ -60,6 +67,90 @@ namespace factory
 
    };
 
+
+   template < typename TYPE, typename BASE_TYPE >
+   class reusable_factory :
+      public factory < TYPE, BASE_TYPE >
+   {
+   public:
+
+      critical_section m_cs;
+
+      BASE_TYPE* m_pfree;
+
+      ~reusable_factory()
+      {
+
+         free_all();
+
+      }
+
+      
+
+      virtual __pointer(BASE_TYPE) _call_new()
+      {
+
+         {
+
+            cslock lock(&m_cs);
+
+            if (m_pfree)
+            {
+
+               auto pNew = m_pfree;
+
+               m_pfree = pNew->m_pnext;
+
+               pNew->reuse();
+
+               return pNew;
+
+            }
+
+         }
+
+         return factory < TYPE, BASE_TYPE >::_call_new();
+
+      }
+
+
+      void return_back(BASE_TYPE* p)
+      {
+
+         cslock lock(&m_cs);
+
+         p->m_pnext = m_pfree;
+
+         m_pfree = p;
+
+      }
+
+      void free_all()
+      {
+
+         while (m_pfree)
+         {
+
+            auto p = m_pfree;
+
+            m_pfree = m_pfree->m_pnext;
+
+            try
+            {
+
+               delete p;
+
+            }
+            catch (...)
+            {
+
+            }
+
+         }
+
+      }
+
+   };
 
    using factory_map = id_map < __pointer(factory_interface) >;
 
@@ -108,5 +199,8 @@ inline __pointer(::factory::factory_base < BASE_TYPE >) create_factory(const ::i
 template < typename TYPE, typename BASE_TYPE = TYPE >
 inline __pointer(::factory::factory_base < BASE_TYPE >) create_factory();
 
+
+template < typename TYPE, typename BASE_TYPE = TYPE >
+inline __pointer(::factory::factory_base < BASE_TYPE >) create_reusable_factory();
 
 

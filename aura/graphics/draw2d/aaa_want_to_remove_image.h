@@ -42,9 +42,9 @@ public:
    //virtual void defer_save_to_cache() override;
 
 
-   virtual ::image_pointer get_image(e_image eimage);
+   virtual ::image_pointer get_image(enum_image eimage);
 
-   inline ::image_pointer operator + (e_image eimage)
+   inline ::image_pointer operator + (enum_image eimage)
    {
 
       return get_image(eimage);

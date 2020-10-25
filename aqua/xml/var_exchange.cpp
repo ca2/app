@@ -53,7 +53,7 @@ namespace xml
       
       i32 i = pnode->attribute("type");
       
-      m_pvar->m_etype = (::e_type) i;
+      m_pvar->m_etype = (::enum_type) i;
 
       m_pvar->set_string(pnode->get_value());
 

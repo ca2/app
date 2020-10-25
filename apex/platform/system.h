@@ -163,14 +163,6 @@ namespace apex
 
 
 
-      //factory_map                                      m_factorymap;
-
-      // acme commented
-      //keymap < ::file::path, ::image_pointer >           m_mapImage;
-
-      // apex commented
-      //__composite(::user::window_map)                    m_pwindowmap;
-
 
       critical_section                                   m_csEnumText;
       string_map < i64_map < string > >                  m_mapEnumToText;
@@ -546,11 +538,6 @@ namespace apex
 
       virtual ::estatus initialize_sockets();
 
-      //::image_pointer get_cache_image(::layered * pobjectContext, const ::var & varFile);
-      //::image_pointer matter_cache_image(::layered * pobjectContext, const ::string & strMatter);
-
-      //::image_pointer get_image(::layered * pobjectContext, const ::var & varFile, bool bCache = true, bool bSync = false);
-      //::image_pointer matter_image(::layered * pobjectContext, const string & strMatter, bool bCache = true, bool bSync = false);
 
       virtual bool on_get_thread_name(string& strThreadName) override;
 
@@ -559,7 +546,7 @@ namespace apex
       virtual ::apex::library * get_library(const char * pszLibrary, bool bOpenCa2 = false);
 
 
-      virtual UINT os_post_to_all_threads(UINT uiMessage,WPARAM wparam = 0,lparam lparam = 0);
+      virtual UINT os_post_to_all_threads(const ::id & id,WPARAM wparam = 0,lparam lparam = 0);
 
 
       virtual void session_add(index iEdge, ::apex::session * psession);

@@ -58,8 +58,8 @@ namespace user
 
       ::user::interaction::install_message_routing(pchannel);
 
-      IGUI_MSG_LINK(WM_CREATE, pchannel, this, &impact_host::_001OnCreate);
-      IGUI_MSG_LINK(WM_DESTROY, pchannel, this, &impact_host::_001OnDestroy);
+      MESSAGE_LINK(e_message_create, pchannel, this, &impact_host::_001OnCreate);
+      MESSAGE_LINK(e_message_destroy, pchannel, this, &impact_host::_001OnDestroy);
 
    }
 

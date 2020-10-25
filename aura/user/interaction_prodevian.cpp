@@ -358,7 +358,7 @@ bool prodevian::prodevian_iteration()
          while (peek_message(&m_message, NULL, 0, 0, PM_NOREMOVE))
          {
 
-            if (m_message.message == message_redraw ||
+            if (m_message.message == e_message_redraw ||
                m_message.message == WM_KICKIDLE)
             {
 
@@ -378,7 +378,7 @@ bool prodevian::prodevian_iteration()
 
 #ifdef EXTRA_PRODEVIAN_ITERATION_LOG
 
-         INFO("Skipped message_redraw count "+ ::str::from(iSkipped) + "\n");
+         INFO("Skipped e_message_redraw count "+ ::str::from(iSkipped) + "\n");
 
 #endif
 
@@ -388,7 +388,7 @@ bool prodevian::prodevian_iteration()
             return true;
 
          }
-         else if (m_message.message != message_redraw)
+         else if (m_message.message != e_message_redraw)
          {
 
             return true;
@@ -416,7 +416,7 @@ bool prodevian::prodevian_iteration()
                return true;
 
             }
-            else if (m_message.message != message_redraw)
+            else if (m_message.message != e_message_redraw)
             {
 
                return true;
@@ -457,7 +457,7 @@ bool prodevian::prodevian_iteration()
 
    }
 
-   // message_redraw
+   // e_message_redraw
 
    if(strType.contains_ci("filemanager"))
    {
@@ -1104,7 +1104,7 @@ bool prodevian::prodevian_iteration()
       if ((get_nanos() - m_nanosLastFrame) > (m_nanosFrame * 3 / 4))
       {
 
-         post_message(message_redraw);
+         post_message(e_message_redraw);
 
       }
 

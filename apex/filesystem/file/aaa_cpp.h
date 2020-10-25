@@ -13,7 +13,7 @@
 
 
 
-//CLASS_DECL_APEX int_bool is_file_or_dir_dup(const char * path, ::file::e_type * petype);
+//CLASS_DECL_APEX int_bool is_file_or_dir_dup(const char * path, ::file::enum_type * petype);
 
 
 

@@ -126,31 +126,31 @@ void binary_stream::write(const id & id)
 
    raw_write(id.m_etype);
 
-   if(id.m_etype == ::id::type_text)
+   if(id.m_etype == ::id::e_type_text)
    {
 
       write(id.m_psz);
 
    }
-   else if(id.m_etype == ::id::type_integer)
+   else if(id.m_etype == ::id::e_type_integer)
    {
 
       write(id.m_i);
 
    }
-   else if (id.m_etype >= ::id::type_property)
+   else if (id.m_etype >= ::id::e_type_property)
    {
 
       raw_write(id.m_eproperty);
 
    }
-   else if (id.m_etype >= ::id::type_factory)
+   else if (id.m_etype >= ::id::e_type_factory)
    {
 
       raw_write(id.m_efactory);
 
    }
-   else if (id.m_etype >= ::id::type_thread_tool)
+   else if (id.m_etype >= ::id::e_type_thread_tool)
    {
 
       raw_write(id.m_ethreadtool);
@@ -163,7 +163,7 @@ void binary_stream::write(const id & id)
 void binary_stream::write(const var & var)
 {
 
-   e_type etype = var.get_type();
+   enum_type etype = var.get_type();
 
    ::i32 i = etype;
 
@@ -173,7 +173,7 @@ void binary_stream::write(const var & var)
    {
    case type_parareturn:
    case type_new:
-   case type_null:
+   case e_type_null:
    case type_key_exists:
    case type_empty:
    case type_empty_argument:
@@ -436,7 +436,7 @@ void binary_stream::read(id & id)
 
    raw_read(id.m_etype);
 
-   if (id.m_etype == ::id::type_text)
+   if (id.m_etype == ::id::e_type_text)
    {
 
       string str;
@@ -446,7 +446,7 @@ void binary_stream::read(id & id)
       id = str;
 
    }
-   else if (id.m_etype == ::id::type_integer)
+   else if (id.m_etype == ::id::e_type_integer)
    {
 
       i64 i;
@@ -456,19 +456,19 @@ void binary_stream::read(id & id)
       id = i;
 
    }
-   else if (id.m_etype == ::id::type_property)
+   else if (id.m_etype == ::id::e_type_property)
    {
 
       raw_read(id.m_eproperty);
 
    }
-   else if (id.m_etype == ::id::type_factory)
+   else if (id.m_etype == ::id::e_type_factory)
    {
 
       raw_read(id.m_efactory);
 
    }
-   else if (id.m_etype == ::id::type_thread_tool)
+   else if (id.m_etype == ::id::e_type_thread_tool)
    {
 
       raw_read(id.m_ethreadtool);
@@ -788,7 +788,7 @@ void binary_stream::read(id & id)
 void binary_stream::read(var & var)
 {
 
-   e_type etype = type_new;
+   enum_type etype = type_new;
 
    read_var_type(etype);
    
@@ -797,7 +797,7 @@ void binary_stream::read(var & var)
 }
 
 
-void binary_stream::read_var_type(e_type & etype)
+void binary_stream::read_var_type(enum_type & etype)
 {
 
    ::i32 i;
@@ -807,7 +807,7 @@ void binary_stream::read_var_type(e_type & etype)
    if (!fail())
    {
 
-      etype = (e_type)i;
+      etype = (enum_type)i;
 
    }
 
@@ -815,7 +815,7 @@ void binary_stream::read_var_type(e_type & etype)
 
 }
 
-void binary_stream::save_var_type(e_type etype)
+void binary_stream::save_var_type(enum_type etype)
 {
 
    ::i32 i((::i32) etype);
@@ -827,14 +827,14 @@ void binary_stream::save_var_type(e_type etype)
 }
 
 
-void binary_stream::read_var_body(var & var, e_type etype)
+void binary_stream::read_var_body(var & var, enum_type etype)
 {
 
    switch (etype)
    {
    case type_parareturn:
    case type_new:
-   case type_null:
+   case e_type_null:
    case type_key_exists:
    case type_empty:
    case type_empty_argument:

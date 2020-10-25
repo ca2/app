@@ -61,7 +61,7 @@ namespace userex
       if (m_pdocument == nullptr)
       {
 
-         m_pdocument = User.m_ptemplateProgress2->open_document_file(get_context_application(), ::type_null, __visible(false));
+         m_pdocument = User.m_ptemplateProgress2->open_document_file(get_context_application(), ::e_type_null, __visible(false));
 
          m_pview = m_pdocument->get_typed_view<::userex::progress_view>();
 
@@ -213,7 +213,7 @@ namespace userex
 
       ::user::impact::install_message_routing(pchannel);
 
-      IGUI_MSG_LINK(WM_CREATE, pchannel, this, &progress_view::_001OnCreate);
+      MESSAGE_LINK(e_message_create, pchannel, this, &progress_view::_001OnCreate);
 
 
    }

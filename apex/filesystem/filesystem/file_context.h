@@ -39,8 +39,8 @@ public:
 
    //virtual bool exists(::file::path path);
 
-   virtual bool is_file_or_dir(const ::file::path & path, var * pvarQuery, ::file::e_type * petype);
-   virtual bool is_file_or_dir(const ::file::path & pszPath, ::file::e_type * petype = nullptr);
+   virtual bool is_file_or_dir(const ::file::path & path, var * pvarQuery, ::file::enum_type * petype);
+   virtual bool is_file_or_dir(const ::file::path & pszPath, ::file::enum_type * petype = nullptr);
 
 
    virtual var length(const ::file::path & path);
@@ -99,7 +99,7 @@ public:
 
       stream.defer_set_loading();
 
-      stream.exchange(::id::type_null, t);
+      stream.exchange(::id::e_type_null, t);
 
       return stream.fail() ? ::error_failed : ::success;
 
@@ -122,7 +122,7 @@ public:
 
       stream.defer_set_storing();
 
-      stream.exchange(::id::type_null, t);
+      stream.exchange(::id::e_type_null, t);
 
       return stream.fail() ? ::error_failed : ::success;
 

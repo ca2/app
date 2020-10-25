@@ -43,7 +43,7 @@ namespace turboc
 
       view::install_message_handling(pdispatch);
 
-      IGUI_WIN_MSG_LINK(WM_CREATE,pdispatch,this,&full_view::_001OnCreate);
+      IGUI_WIN_MSG_LINK(e_message_create,pdispatch,this,&full_view::_001OnCreate);
 
    }
 

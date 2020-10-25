@@ -46,7 +46,7 @@ namespace user
 
       };
 
-      enum e_type
+      enum enum_type
       {
 
          type_window,
@@ -95,7 +95,7 @@ namespace user
 
       //virtual bool create_native_window(::user::native_window_initialize * pinitialize);
 
-      __pointer(::message::base) get_message_base(UINT uiMessage, WPARAM wparam, lparam lparam) override;
+      __pointer(::message::base) get_message_base(const ::id & id, WPARAM wparam, lparam lparam) override;
 
 
       virtual ::user::interaction* get_host_wnd();
@@ -347,9 +347,9 @@ namespace user
       virtual LRESULT send(::message::base * pbase);
       virtual bool post(::message::base * pbase);
 
-      virtual LRESULT send_message(UINT uiMessage, WPARAM wparam = 0, lparam lparam = 0);
+      virtual LRESULT send_message(const ::id & id, WPARAM wparam = 0, lparam lparam = 0);
 
-      virtual LRESULT message_call(UINT uiMessage, WPARAM wparam = 0, lparam lparam = 0);
+      virtual LRESULT message_call(const ::id & id, WPARAM wparam = 0, lparam lparam = 0);
       virtual LRESULT message_call(::message::base * pbase);
 
 
@@ -359,7 +359,7 @@ namespace user
 
 #endif
 
-      virtual bool post_message(UINT message,WPARAM wParam = 0,lparam lParam = 0);
+      virtual bool post_message(const ::id & id,WPARAM wParam = 0,lparam lParam = 0);
 
       virtual bool post_simple_command(const e_simple_command & ecommand,lparam lParam = 0);
 
@@ -469,7 +469,7 @@ namespace user
 
       virtual bool is_top_level_window() const;
 
-      virtual void send_message_to_descendants(UINT message,WPARAM wParam = 0,lparam lParam = 0,bool bDeep = TRUE,bool bOnlyPerm = FALSE);
+      virtual void send_message_to_descendants(const ::id & id,WPARAM wParam = 0,lparam lParam = 0,bool bDeep = TRUE,bool bOnlyPerm = FALSE);
 
       virtual void route_message_to_descendants(::message::message * pmessage);
       virtual void pre_translate_message(::message::message * pmessage);
@@ -506,7 +506,7 @@ namespace user
       //virtual void default_window_procedure(::message::message * pbase);
 
 
-      virtual bool call_message_handler(UINT uiMessage, WPARAM wparam = 0, lparam lparam = 0, LRESULT * presult = nullptr);
+      virtual bool call_message_handler(const ::id & id, WPARAM wparam = 0, lparam lparam = 0, LRESULT * presult = nullptr);
 
 
       virtual void GuieProc(::message::message * pmessage);
@@ -546,7 +546,7 @@ namespace user
       virtual string get_window_default_matter();
       virtual string get_window_icon_matter();
       virtual u32 get_window_default_style();
-      virtual e_type get_window_type();
+      virtual enum_type get_window_type();
 
 
       virtual void on_simple_command(::message::simple_command * psimplecommand);
@@ -642,8 +642,8 @@ namespace user
       virtual void _001OnExitFullScreen();
       virtual void _001OnExitZoomed();
 
-      //virtual LRESULT send_message(UINT uiMessage, WPARAM wparam = 0, lparam lparam = 0);
-      //virtual bool post_message(UINT message, WPARAM wParam = 0, lparam lParam = 0);
+      //virtual LRESULT send_message(const ::id & id, WPARAM wparam = 0, lparam lparam = 0);
+      //virtual bool post_message(const ::id & id, WPARAM wParam = 0, lparam lParam = 0);
       //virtual void message_handler(::message::base * pbase);
       //virtual void pre_translate_message(::message::base * pbase);
 

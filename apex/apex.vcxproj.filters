@@ -674,12 +674,6 @@
     <ClInclude Include="const\impact.h">
       <Filter>Header Files\const</Filter>
     </ClInclude>
-    <ClInclude Include="const\message.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\simple_command.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
     <ClInclude Include="const\status.h">
       <Filter>Header Files\const</Filter>
     </ClInclude>
@@ -1519,6 +1513,9 @@
     </ClInclude>
     <ClInclude Include="multithreading\service\pool.h">
       <Filter>Header Files\multithreading\service</Filter>
+    </ClInclude>
+    <ClInclude Include="const\aaa_simple_command.h">
+      <Filter>Header Files\const</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

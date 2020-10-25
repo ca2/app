@@ -660,10 +660,6 @@ public:
 
    }
 
-   //::estatus __construct(::image_pointer & p, const ::size & size, ::eobject eobjectCreate = OK, int iGoodStride = -1, bool bPreserve = false);
-
-   //::estatus __preserve(::image_pointer & p, const ::size & size, ::eobject eobjectCreate = OK, int iGoodStride = -1);
-
 
    template < typename TYPE >
    ::estatus __construct(::thread_pointer & p, void (TYPE:: * pfn)(), e_priority epriority);

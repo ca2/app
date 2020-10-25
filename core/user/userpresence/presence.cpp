@@ -92,7 +92,7 @@ namespace userpresence
       if (pmouse->get_message() == WM_LBUTTONDOWN
           || pmouse->get_message() == WM_RBUTTONDOWN
           || pmouse->get_message() == WM_MBUTTONDOWN
-          || pmouse->get_message() == WM_MOUSEMOVE)
+          || pmouse->get_message() == e_message_mouse_move)
       {
 
          if (Session.account() != nullptr && Session.account()->get_user() != nullptr)

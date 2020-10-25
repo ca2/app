@@ -11,7 +11,7 @@ namespace user
    public:
 
 
-      enum e_type
+      enum enum_type
       {
          type_text,
          type_icon,
@@ -28,7 +28,7 @@ namespace user
       };
 
 
-      e_type                              m_etype;
+      enum_type                              m_etype;
 
       bool                                m_bLButtonDown;
       bool                                m_bHover;
@@ -56,7 +56,7 @@ namespace user
       ::draw2d::cursor * static_get_cursor();
 
 
-      e_type get_type();
+      enum_type get_type();
 
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;

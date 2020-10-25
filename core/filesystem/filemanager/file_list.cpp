@@ -35,12 +35,12 @@ namespace filemanager
 
       ::userfs::list::install_message_routing(pchannel);
 
-      IGUI_MSG_LINK(WM_HSCROLL, pchannel, this, &file_list::_001OnHScroll);
-      IGUI_MSG_LINK(WM_VSCROLL, pchannel, this, &file_list::_001OnVScroll);
-      IGUI_MSG_LINK(WM_RBUTTONUP, pchannel, this, &file_list::_001OnContextMenu);
-      IGUI_MSG_LINK(WM_SHOWWINDOW, pchannel, this, &file_list::_001OnShowWindow);
-      IGUI_MSG_LINK(WM_SETFOCUS, pchannel, this, &file_list::_001OnSetFocus);
-      IGUI_MSG_LINK(WM_KILLFOCUS, pchannel, this, &file_list::_001OnKillFocus);
+      MESSAGE_LINK(WM_HSCROLL, pchannel, this, &file_list::_001OnHScroll);
+      MESSAGE_LINK(WM_VSCROLL, pchannel, this, &file_list::_001OnVScroll);
+      MESSAGE_LINK(WM_RBUTTONUP, pchannel, this, &file_list::_001OnContextMenu);
+      MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &file_list::_001OnShowWindow);
+      MESSAGE_LINK(e_message_set_focus, pchannel, this, &file_list::_001OnSetFocus);
+      MESSAGE_LINK(e_message_kill_focus, pchannel, this, &file_list::_001OnKillFocus);
 
       connect_command_probe("edit_copy", &file_list::_001OnUpdateEditCopy);
       connect_command("edit_copy", &file_list::_001OnEditCopy);
@@ -490,13 +490,13 @@ namespace filemanager
    void file_list::_001OnUpdateFileRename(::message::message * pmessage)
    {
       //      SCAST_PTR(::user::command, pcommand, pmessage);
-      //    pcommand->Enable(_001GetSelectedItemCount() == 1);
+      //    pcommand->enable(_001GetSelectedItemCount() == 1);
       //  pmessage->m_bRet = true;
 
       SCAST_PTR(::user::command, pcommand, pmessage);
       ::user::range range;
       _001GetSelection(range);
-      pcommand->Enable(
+      pcommand->enable(
       range.get_item_count() == 1
       && range.ItemAt(0).get_lower_bound() == range.ItemAt(0).get_upper_bound());
       pmessage->m_bRet = true;
@@ -513,7 +513,7 @@ namespace filemanager
 
       _001GetSelection(range);
 
-      pcommand->Enable(range.get_item_count() > 0);
+      pcommand->enable(range.get_item_count() > 0);
 
       pmessage->m_bRet = true;
 
@@ -543,7 +543,7 @@ namespace filemanager
 
       _001GetSelection(range);
 
-      pcommand->Enable(range.get_item_count() > 0);
+      pcommand->enable(range.get_item_count() > 0);
 
       pmessage->m_bRet = true;
 
@@ -661,7 +661,7 @@ namespace filemanager
       if (iPos >= 0)
       {
 
-         pcommand->Enable(TRUE);
+         pcommand->enable(TRUE);
 
          pcommand->m_bRet = true;
 
@@ -731,7 +731,7 @@ namespace filemanager
    //   SCAST_PTR(::user::command, pcommand, pmessage);
    //   ::user::range range;
    //   _001GetSelection(range);
-   //   pcommand->Enable(range.get_item_count() > 0);
+   //   pcommand->enable(range.get_item_count() > 0);
    //   pmessage->m_bRet = true;
    //}
 
@@ -802,7 +802,7 @@ namespace filemanager
    //void file_list::_001OnUpdateSpafy2(::message::message * pmessage)
    //{
    //   SCAST_PTR(::user::command, pcommand, pmessage);
-   //   pcommand->Enable(TRUE);
+   //   pcommand->enable(TRUE);
    //   pmessage->m_bRet = true;
    //}
 

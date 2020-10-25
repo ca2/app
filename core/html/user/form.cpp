@@ -150,21 +150,21 @@ void html_form::install_message_routing(::channel * pchannel)
 
    ::user::form_view::install_message_routing(pchannel);
 
-   IGUI_MSG_LINK(WM_CREATE, pchannel, this, &html_form::_001OnCreate);
+   MESSAGE_LINK(e_message_create, pchannel, this, &html_form::_001OnCreate);
 
-   //IGUI_MSG_LINK(WM_LBUTTONDOWN, pchannel, this, &::user::interaction::_001OnLButtonDown);
-   //IGUI_MSG_LINK(WM_LBUTTONUP, pchannel, this, &::user::interaction::_001OnLButtonUp);
-   IGUI_MSG_LINK(WM_KEYDOWN, pchannel, this, &::html_form::_001OnKeyDown);
-   //IGUI_MSG_LINK(WM_KEYUP, pchannel, this, &::user::interaction::_001OnKeyUp);
+   //MESSAGE_LINK(WM_LBUTTONDOWN, pchannel, this, &::user::interaction::_001OnLButtonDown);
+   //MESSAGE_LINK(WM_LBUTTONUP, pchannel, this, &::user::interaction::_001OnLButtonUp);
+   MESSAGE_LINK(WM_KEYDOWN, pchannel, this, &::html_form::_001OnKeyDown);
+   //MESSAGE_LINK(WM_KEYUP, pchannel, this, &::user::interaction::_001OnKeyUp);
 
-   IGUI_MSG_LINK(WM_LBUTTONDOWN, pchannel, this, &html_form::_001OnLButtonDown);
-   IGUI_MSG_LINK(WM_MOUSEMOVE, pchannel, this, &html_form::_001OnMouseMove);
-   IGUI_MSG_LINK(WM_MOUSELEAVE, pchannel, this, &html_form::_001OnMouseLeave);
-   IGUI_MSG_LINK(WM_LBUTTONUP, pchannel, this, &html_form::_001OnLButtonUp);
+   MESSAGE_LINK(WM_LBUTTONDOWN, pchannel, this, &html_form::_001OnLButtonDown);
+   MESSAGE_LINK(e_message_mouse_move, pchannel, this, &html_form::_001OnMouseMove);
+   MESSAGE_LINK(WM_MOUSELEAVE, pchannel, this, &html_form::_001OnMouseLeave);
+   MESSAGE_LINK(WM_LBUTTONUP, pchannel, this, &html_form::_001OnLButtonUp);
 
-   IGUI_MSG_LINK(html::message_on_image_loaded, pchannel, this, &html_form::_001OnImageLoaded);
+   MESSAGE_LINK(html::message_on_image_loaded, pchannel, this, &html_form::_001OnImageLoaded);
 
-   IGUI_MSG_LINK(WM_CREATE, pchannel, this, &html_form::_001OnDestroy);
+   MESSAGE_LINK(e_message_create, pchannel, this, &html_form::_001OnDestroy);
 
 }
 

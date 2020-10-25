@@ -257,9 +257,9 @@ namespace userstack
    void pane_view::install_message_routing(::channel * pchannel)
    {
       ::userex::pane_tab_view::install_message_routing(pchannel);
-      IGUI_MSG_LINK(WM_CREATE, pchannel, this, &pane_view::_001OnCreate);
-      IGUI_MSG_LINK(WM_USER + 1122, this, this, &pane_view::_001OnMenuMessage);
-      IGUI_MSG_LINK(WM_RBUTTONUP, pchannel, this, &pane_view::_001OnRButtonUp);
+      MESSAGE_LINK(e_message_create, pchannel, this, &pane_view::_001OnCreate);
+      MESSAGE_LINK(WM_USER + 1122, this, this, &pane_view::_001OnMenuMessage);
+      MESSAGE_LINK(WM_RBUTTONUP, pchannel, this, &pane_view::_001OnRButtonUp);
       connect_command("properties", &pane_view::_001OnProperties);
    }
 

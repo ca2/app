@@ -60,7 +60,7 @@ namespace experience
          return;
 
       }
-      else if (pmessage->m_id == WM_MOUSEMOVE)
+      else if (pmessage->m_id == e_message_mouse_move)
       {
 
          return;
@@ -754,7 +754,7 @@ namespace experience
    void frame_window::on_command_message(::user::command * pcommand)
    {
 
-      if (pcommand->m_id.m_emessagetype == ::message::type_command && m_pframe != nullptr)
+      if (pcommand->m_id == ::e_message_system_command && m_pframe != nullptr)
       {
 
          ::experience::e_button ebutton = m_pframe->get_control_box()->get_control_box_button_type(pcommand->m_id);
@@ -1247,17 +1247,17 @@ namespace experience
 
       ::user::frame_window::install_message_routing(pchannel);
 
-      IGUI_MSG_LINK(WM_LBUTTONDOWN,pchannel,this,&frame_window::_001OnLButtonDown);
-      IGUI_MSG_LINK(WM_LBUTTONUP,pchannel,this,&frame_window::_001OnLButtonUp);
-      IGUI_MSG_LINK(WM_MOUSEMOVE,pchannel,this,&frame_window::_001OnMouseMove);
-      IGUI_MSG_LINK(WM_NCLBUTTONDOWN,pchannel,this,&frame_window::_001OnNcLButtonDown);
-      IGUI_MSG_LINK(WM_NCLBUTTONUP,pchannel,this,&frame_window::_001OnNcLButtonUp);
-      IGUI_MSG_LINK(WM_NCMOUSEMOVE,pchannel,this,&frame_window::_001OnNcMouseMove);
-      IGUI_MSG_LINK(WM_NCHITTEST,pchannel,this,&frame_window::_001OnNcHitTest);
-      IGUI_MSG_LINK(WM_ACTIVATE,pchannel,this,&frame_window::_001OnActivate);
-      IGUI_MSG_LINK(WM_COMMAND,pchannel,this,&frame_window::_001OnCommand);
-      IGUI_MSG_LINK(WM_SYSCOMMAND, pchannel, this, &frame_window::_001OnSysCommand);
-      IGUI_MSG_LINK(WM_SIZE, pchannel, this, &frame_window::_001OnSize);
+      MESSAGE_LINK(WM_LBUTTONDOWN,pchannel,this,&frame_window::_001OnLButtonDown);
+      MESSAGE_LINK(WM_LBUTTONUP,pchannel,this,&frame_window::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_mouse_move,pchannel,this,&frame_window::_001OnMouseMove);
+      MESSAGE_LINK(WM_NCLBUTTONDOWN,pchannel,this,&frame_window::_001OnNcLButtonDown);
+      MESSAGE_LINK(WM_NCLBUTTONUP,pchannel,this,&frame_window::_001OnNcLButtonUp);
+      MESSAGE_LINK(e_message_non_client_mouse_move,pchannel,this,&frame_window::_001OnNcMouseMove);
+      MESSAGE_LINK(WM_NCHITTEST,pchannel,this,&frame_window::_001OnNcHitTest);
+      MESSAGE_LINK(e_message_activate,pchannel,this,&frame_window::_001OnActivate);
+      MESSAGE_LINK(WM_COMMAND,pchannel,this,&frame_window::_001OnCommand);
+      MESSAGE_LINK(WM_SYSCOMMAND, pchannel, this, &frame_window::_001OnSysCommand);
+      MESSAGE_LINK(e_message_size, pchannel, this, &frame_window::_001OnSize);
 
    }
 
@@ -1333,19 +1333,19 @@ namespace experience
          if (layout().m_eflag & ::user::interaction_layout::flag_apply_visual)
          {
 
-            INFO("WM_MOUSEMOVE during window move ignored!!");
+            INFO("e_message_mouse_move during window move ignored!!");
 
          }
          else if (pmouse->m_eflagMessage & ::message::flag_synthesized)
          {
 
-            INFO("synthesized WM_MOUSEMOVE ignored!!");
+            INFO("synthesized e_message_mouse_move ignored!!");
 
          }
          else
          {
 
-            //INFO("WM_MOUSEMOVE for experience::frame");
+            //INFO("e_message_mouse_move for experience::frame");
 
             if (m_pframe->_001OnMouseMove(pmouse))
             {

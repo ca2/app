@@ -1101,7 +1101,7 @@ void android_mouse(unsigned int message, float x, float y)
 // void android_mouse_move(float x, float y)
 // {
 
-//    android_mouse(WM_MOUSEMOVE, x, y);
+//    android_mouse(e_message_mouse_move, x, y);
 
 // }
 

@@ -139,14 +139,7 @@ namespace user
       virtual double get_config_fps() override;
       virtual double get_output_fps() override;
 
-      //virtual void SetWindowDisplayChanged() override;
-
       void user_common_construct();
-
-
-      //virtual ::user::style* get_style() const;
-
-
 
       virtual bool __windows_message_bypass(oswindow oswindow, UINT message, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
 
@@ -289,7 +282,7 @@ namespace user
 
 #endif   // WINVER >= 0x0500
 
-      virtual LRESULT send_message(UINT message, WPARAM wParam = 0, lparam lParam = 0) override;
+      virtual LRESULT send_message(const ::id & id, WPARAM wParam = 0, lparam lParam = 0) override;
 
 
 #ifdef LINUX
@@ -299,7 +292,7 @@ namespace user
 #endif
 
 
-      virtual bool post_message(UINT message,WPARAM wParam = 0,lparam lParam = 0) override;
+      virtual bool post_message(const ::id & id,WPARAM wParam = 0,lparam lParam = 0) override;
 
 
       virtual bool SendNotifyMessage(UINT message,WPARAM wParam,lparam lParam);

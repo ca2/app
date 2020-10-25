@@ -37,7 +37,7 @@ namespace user
 //      virtual bool get_translucency(::user::e_translucency & etranslucency, ::user::e_element eelement, style_context * pcontext) override;
 
 
-      virtual ::user::interaction::e_type get_window_type() override;
+      virtual ::user::interaction::enum_type get_window_type() override;
 
 
    };

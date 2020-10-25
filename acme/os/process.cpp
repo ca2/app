@@ -372,7 +372,7 @@ void prepare_argc_argv(int & argc, char ** argv, char * cmd_line)
 
    char * psz = cmd_line;
 
-   enum e_state
+   enum enum_state
    {
 
       state_initial,
@@ -383,7 +383,7 @@ void prepare_argc_argv(int & argc, char ** argv, char * cmd_line)
 
    };
 
-   e_state e = state_initial;
+   enum_state e = state_initial;
 
    char quote = '\0';
 

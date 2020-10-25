@@ -174,7 +174,7 @@ namespace user
             // prepare aura for async operations and also async failures
             // ::account::user has be alerted to what failed in on_open_document
             TRACE(trace_category_appmsg, trace_level_warning, "::user::document::on_open_document returned FALSE.\n");
-            pFrame->post_message(message_destroy_window);
+            pFrame->post_message(e_message_destroy_window);
             return;
 
          }

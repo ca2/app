@@ -30,10 +30,10 @@ namespace music
             void window::install_message_routing(::channel * pchannel)
             {
                ::user::interaction::install_message_routing(pchannel);
-               IGUI_MSG_LINK(MMSG_DONE, pchannel, this, &window::_001OnMmsgDone);
-               IGUI_MSG_LINK(::music::midi::player::message_notify_event, pchannel, this, &window::_001OnNotifyEvent);
-               IGUI_MSG_LINK(WM_USER, pchannel, this, &window::_001OnUserMessage);
-               IGUI_MSG_LINK(WM_APP + 3388, pchannel, this, &window::_001OnApp3388Message);
+               MESSAGE_LINK(MMSG_DONE, pchannel, this, &window::_001OnMmsgDone);
+               MESSAGE_LINK(::music::midi::player::message_notify_event, pchannel, this, &window::_001OnNotifyEvent);
+               MESSAGE_LINK(WM_USER, pchannel, this, &window::_001OnUserMessage);
+               MESSAGE_LINK(WM_APP + 3388, pchannel, this, &window::_001OnApp3388Message);
             }
 
             void window::_001OnMmsgDone(::message::message * pmessage)

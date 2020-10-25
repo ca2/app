@@ -25,11 +25,11 @@ namespace user
    void slider::install_message_routing(::channel * pchannel)
    {
       ::user::interaction::install_message_routing(pchannel);
-      IGUI_MSG_LINK(WM_CREATE,pchannel,this,&slider::_001OnCreate);
-//      //IGUI_MSG_LINK(WM_TIMER,pchannel,this,&slider::_001OnTimer);
-      IGUI_MSG_LINK(WM_LBUTTONDOWN,pchannel,this,&slider::_001OnLButtonDown);
-      IGUI_MSG_LINK(WM_LBUTTONUP,pchannel,this,&slider::_001OnLButtonUp);
-      IGUI_MSG_LINK(WM_MOUSEMOVE,pchannel,this,&slider::_001OnMouseMove);
+      MESSAGE_LINK(e_message_create,pchannel,this,&slider::_001OnCreate);
+//      //MESSAGE_LINK(WM_TIMER,pchannel,this,&slider::_001OnTimer);
+      MESSAGE_LINK(WM_LBUTTONDOWN,pchannel,this,&slider::_001OnLButtonDown);
+      MESSAGE_LINK(WM_LBUTTONUP,pchannel,this,&slider::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_mouse_move,pchannel,this,&slider::_001OnMouseMove);
    }
 
    void slider::_001OnCreate(::message::message * pmessage)

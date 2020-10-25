@@ -945,7 +945,7 @@ unz_file_pos* file_pos)
 }
 
 /*
-// Unzip Helper Functions - should be here?
+// Unzip helper Functions - should be here?
 ///////////////////////////////////////////
 */
 

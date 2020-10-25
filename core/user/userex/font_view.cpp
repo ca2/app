@@ -50,8 +50,8 @@ namespace userex
 
       ::user::split_view::install_message_routing(pchannel);
 
-      IGUI_MSG_LINK(WM_CREATE, pchannel, this, &font_view::_001OnCreate);
-      IGUI_MSG_LINK(WM_SHOWWINDOW, pchannel, this, &font_view::_001OnShowWindow);
+      MESSAGE_LINK(e_message_create, pchannel, this, &font_view::_001OnCreate);
+      MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &font_view::_001OnShowWindow);
 
    }
 

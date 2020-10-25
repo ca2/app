@@ -1,7 +1,6 @@
 #pragma once
 
 
-//#include "apex/platform/pred_procedure.h"
 
 
 class prodevian;
@@ -775,9 +774,9 @@ namespace user
       using ::user::primitive::send;
       virtual LRESULT send(::message::base* pbase) override;
       virtual bool post(::message::base* pbase) override;
-      virtual LRESULT send_message(UINT uiMessage, WPARAM wparam = 0, lparam lparam = 0) override;
+      virtual LRESULT send_message(const ::id & id, WPARAM wparam = 0, lparam lparam = 0) override;
 
-      virtual LRESULT message_call(UINT uiMessage, WPARAM wparam = 0, lparam lparam = 0) override;
+      virtual LRESULT message_call(const ::id & id, WPARAM wparam = 0, lparam lparam = 0) override;
       virtual LRESULT message_call(message::base* base) override;
 
 
@@ -787,9 +786,9 @@ namespace user
 
 #endif
 
-      virtual bool post_message(UINT message, WPARAM wParam = 0, lparam lParam = 0) override;
+      virtual bool post_message(const ::id & id, WPARAM wParam = 0, lparam lParam = 0) override;
 
-      virtual bool post_object(UINT message, WPARAM wParam, lparam lParam);
+      virtual bool post_object(const ::id & id, WPARAM wParam, lparam lParam);
 
 
       //virtual void SetWindowDisplayChanged() override;
@@ -975,7 +974,7 @@ namespace user
       virtual ::user::frame* EnsureParentFrame() override;
       virtual ::user::frame* GetOwnerFrame() const override;
 
-      virtual void send_message_to_descendants(UINT message, WPARAM wParam = 0, lparam lParam = 0, bool bDeep = TRUE, bool bOnlyPerm = FALSE) override;
+      virtual void send_message_to_descendants(const ::id & id, WPARAM wParam = 0, lparam lParam = 0, bool bDeep = TRUE, bool bOnlyPerm = FALSE) override;
 
       virtual void route_message_to_descendants(::message::message* pmessage) override;
 
@@ -1052,7 +1051,7 @@ namespace user
       virtual string get_window_default_matter() override;
       virtual string get_window_icon_matter() override;
       virtual u32 get_window_default_style() override;
-      virtual e_type get_window_type() override;
+      virtual enum_type get_window_type() override;
 
 
       virtual void on_simple_command(::message::simple_command* psimplecommand) override;
@@ -1345,7 +1344,7 @@ namespace user
 
       virtual bool keyboard_focus_is_focusable() override;
 
-      virtual bool simple_on_control_event(::message::message* pmessage, ::user::e_event eevent);
+      virtual bool simple_on_control_event(::message::message* pmessage, ::user::enum_event eevent);
 
       using ::aura::drawable::hit_test;
       virtual void hit_test(::user::item& item, const ::point & point) override;
@@ -1385,7 +1384,7 @@ namespace user
       virtual bool has_function(e_control_function econtrolfunction) const;
       virtual e_control_type get_control_type() const;
       //virtual void _003CallCustomDraw(::draw2d::graphics_pointer& pgraphics, ::aura::draw_context* pitem);
-      //virtual bool _003CallCustomWindowProc(__pointer(::user::interaction) pwnd, UINT message, WPARAM wparam, LPARAM lparam, LRESULT& lresult);
+      //virtual bool _003CallCustomWindowProc(__pointer(::user::interaction) pwnd, const ::id & id, WPARAM wparam, LPARAM lparam, LRESULT& lresult);
       //virtual void _003OnCustomDraw(::draw2d::graphics_pointer& pgraphics, ::aura::draw_context* pitem);
       //virtual void _003CustomWindowProc(::message::message* pmessage);
       //virtual form_list * get_form_list();
@@ -1418,7 +1417,7 @@ namespace user
       //virtual void route_control_event(::user::control_event* pevent) override;
       //virtual void on_notify_control_event(control_event* pevent) override;
       //virtual void on_control_event(::user::control_event* pevent) override;
-      //virtual bool simple_on_control_event(::message::message * pmessage, ::user::e_event eevent) override;
+      //virtual bool simple_on_control_event(::message::message * pmessage, ::user::enum_event eevent) override;
       //virtual void walk_pre_translate_tree(::message::message * pmessage,__pointer(::user::interaction) puiStop);
       //virtual bool get_element_rect(RECT* prect, e_element eelement);
       virtual void get_simple_drop_down_open_arrow_polygon(point_array& pointa);
@@ -1578,7 +1577,7 @@ namespace user
       control_cmd_ui();
 
 
-      virtual void Enable(bool bOn);
+      virtual void enable(bool bOn);
       virtual void SetCheck(i32 nCheck);
       virtual void SetText(const char* pszText);
 

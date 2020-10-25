@@ -306,8 +306,8 @@ Agile < Windows::UI::Core::CoreWindow > oswindow_core_window(oswindow window)
 //   g_oswindowFocus = __oswindow;
 //
 //   // todo
-//   //SendMessage(__oswindow, WM_SETFOCUS, WPARAM, (LPARAM) (void *) oswindowOldFocus)
-//   //SendMessage(oswindowOldFocus, WM_KILLFOCUS, WPARAM, (LPARAM) (void *) __oswindow)
+//   //SendMessage(__oswindow, e_message_set_focus, WPARAM, (LPARAM) (void *) oswindowOldFocus)
+//   //SendMessage(oswindowOldFocus, e_message_kill_focus, WPARAM, (LPARAM) (void *) __oswindow)
 //
 //   return oswindowOldFocus;
 //
@@ -333,8 +333,8 @@ oswindow set_capture(oswindow __oswindow)
    g_oswindowCapture = __oswindow;
 
    // todo
-   //SendMessage(__oswindow, WM_SETFOCUS, WPARAM, (LPARAM) (void *) oswindowOldFocus)
-   //SendMessage(oswindowOldFocus, WM_KILLFOCUS, WPARAM, (LPARAM) (void *) __oswindow)
+   //SendMessage(__oswindow, e_message_set_focus, WPARAM, (LPARAM) (void *) oswindowOldFocus)
+   //SendMessage(oswindowOldFocus, e_message_kill_focus, WPARAM, (LPARAM) (void *) __oswindow)
 
    return oswindowOldCapture;
 
@@ -349,8 +349,8 @@ int_bool release_capture()
    g_oswindowCapture = nullptr;
 
    // todo
-   //SendMessage(__oswindow, WM_SETFOCUS, WPARAM, (LPARAM) (void *) oswindowOldFocus)
-   //SendMessage(oswindowOldFocus, WM_KILLFOCUS, WPARAM, (LPARAM) (void *) __oswindow)
+   //SendMessage(__oswindow, e_message_set_focus, WPARAM, (LPARAM) (void *) oswindowOldFocus)
+   //SendMessage(oswindowOldFocus, e_message_kill_focus, WPARAM, (LPARAM) (void *) __oswindow)
 
    return true;
 
@@ -375,8 +375,8 @@ oswindow  set_active_window(oswindow __oswindow)
    g_oswindowActive = __oswindow;
 
    // todo
-   //SendMessage(__oswindow, WM_SETFOCUS, WPARAM, (LPARAM) (void *) oswindowOldFocus)
-   //SendMessage(oswindowOldFocus, WM_KILLFOCUS, WPARAM, (LPARAM) (void *) __oswindow)
+   //SendMessage(__oswindow, e_message_set_focus, WPARAM, (LPARAM) (void *) oswindowOldFocus)
+   //SendMessage(oswindowOldFocus, e_message_kill_focus, WPARAM, (LPARAM) (void *) __oswindow)
 
    return oswindowOldActive;
 
@@ -512,7 +512,7 @@ CLASS_DECL_AXIS oswindow set_focus(oswindow oswindow)
          if(oswindowPrevious->m_pimpl->m_puserinteraction->m_bFocus)
          {
 
-            oswindowPrevious->m_pimpl->m_puserinteraction->send_message(WM_KILLFOCUS);
+            oswindowPrevious->m_pimpl->m_puserinteraction->send_message(e_message_kill_focus);
 
          }
 
@@ -526,7 +526,7 @@ CLASS_DECL_AXIS oswindow set_focus(oswindow oswindow)
          if (!oswindow->m_pimpl->m_puserinteraction->m_bFocus)
          {
 
-            oswindow->m_pimpl->m_puserinteraction->send_message(WM_SETFOCUS);
+            oswindow->m_pimpl->m_puserinteraction->send_message(e_message_set_focus);
 
          }
 

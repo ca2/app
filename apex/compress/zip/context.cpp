@@ -289,7 +289,7 @@ namespace str
    }
 
 
-   bool zip_context::is_file_or_dir(::file::file * pfile, const string_array & straPath, ::file::e_type * petype)
+   bool zip_context::is_file_or_dir(::file::file * pfile, const string_array & straPath, ::file::enum_type * petype)
    {
 
       auto pinfile = get_in_file(pfile, straPath, petype);
@@ -299,7 +299,7 @@ namespace str
    }
 
 
-   __result(::zip::in_file) zip_context::get_in_file(::file::file * pfile, const string_array & straPath, ::file::e_type * petype)
+   __result(::zip::in_file) zip_context::get_in_file(::file::file * pfile, const string_array & straPath, ::file::enum_type * petype)
    {
 
       __pointer(::zip::in_file) pinfile;
@@ -318,7 +318,7 @@ namespace str
    }
 
 
-   bool zip_context::extract(memory & m, ::file::file * pfile, const string_array & straPath, ::file::e_type * petype)
+   bool zip_context::extract(memory & m, ::file::file * pfile, const string_array & straPath, ::file::enum_type * petype)
    {
 
       auto pinfile = get_in_file(pfile, straPath, petype);

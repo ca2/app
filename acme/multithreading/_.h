@@ -207,7 +207,6 @@ class sync_lock;
 #include "condition.h"
 #include "file_change_event.h"
 #include "socket_event.h"
-#include "critical_section.h"
 #include "single_lock.h"
 //#include "retry_single_lock.h"
 #include "initial_single_lock.h"
@@ -229,10 +228,10 @@ class sync_lock;
 #include "manual_reset_event.h"
 
 
-#include "acme/multithreading/sync_method.h"
+//#include "acme/multithreading/sync_method.h"
 
 
-#include "acme/multithreading/sync_future.h"
+//#include "acme/multithreading/sync_future.h"
 
 
 #include "acme/multithreading/task.h"
@@ -261,7 +260,7 @@ class sync_lock;
 //CLASS_DECL_ACME u32 random_processor_index_generator();
 
 
-CLASS_DECL_ACME int_bool post_message(oswindow oswindow, UINT message, WPARAM wparam, LPARAM lparam);
+CLASS_DECL_ACME int_bool post_message(oswindow oswindow, const ::id & id, WPARAM wparam, LPARAM lparam);
 
 
 
@@ -357,3 +356,12 @@ CLASS_DECL_ACME bool __task_sleep(::task* ptask, sync* psync);
 CLASS_DECL_ACME bool __task_sleep(task* ptask, tick tick, sync* psync);
 
 CLASS_DECL_ACME bool task_sleep(tick tick, sync* psync);
+
+
+#include "sync_method.h"
+
+
+#include "sync_future.h"
+
+
+

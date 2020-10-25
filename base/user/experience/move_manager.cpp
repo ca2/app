@@ -95,7 +95,7 @@ namespace experience
 
          }
 
-         ASSERT(pmouse->m_id == WM_MOUSEMOVE || pmouse->m_id == WM_NCMOUSEMOVE);
+         ASSERT(pmouse->m_id == e_message_mouse_move || pmouse->m_id == e_message_non_client_mouse_move);
 
          if (!window_is_moving())
          {

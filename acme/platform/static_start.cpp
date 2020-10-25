@@ -1,12 +1,11 @@
 #include "framework.h"
 #include "static_start.h"
-//#include "acme/net/sockets/_.h"
 #include "acme/memory/plex_heap1.h"
 #include "acme/memory/plex_heap_impl1.h"
-//#include "acme/platform/app_core.h"
 #include "acme/primitive/primitive/malloc.h"
 #include "acme/astr.h"
 #include "acme/os/_os.h"
+
 
 #ifdef ANDROID
 
@@ -14,9 +13,8 @@ os_local * g_poslocal;
 
 #endif
 
+
 static void delete_all_release_on_end();
-
-
 
 
 enum_platform_level g_eplatformlevel = ::e_platform_level_acme;
@@ -40,20 +38,21 @@ CLASS_DECL_ACME enum_platform_level get_platform_level()
 
 void __node_acme_factory_exchange();
 
+
 CLASS_DECL_ACME void __seed_srand();
+
 
 void init_global_mq();
 void term_global_mq();
 
+
 #undef new
 
-
-
-//#include <sqlite3.h>
 
 #ifdef RASPBIAN
 #define PLATFORM_NAMESPACE linux
 #endif
+
 
 #if defined(__APPLE__)
 #include <xlocale.h>
@@ -61,11 +60,10 @@ void term_global_mq();
 #include <locale.h>
 #endif
 
+
 #ifdef LINUX
 #include <glib.h> // sudo apt-get install libglib2.0-dev
 #endif
-
-
 
 
 CLASS_DECL_ACME void trace_category_static_init();
@@ -73,25 +71,6 @@ CLASS_DECL_ACME void trace_category_static_term();
 
 
 extern thread_local __pointer(::thread) t_pthread;
-
-//
-//#undef new
-//
-//
-//#ifdef LINUX
-//static void
-//log_handler (const gchar   *log_domain,
-//             GLogLevelFlags log_level,
-//             const gchar   *message,
-//             gpointer       user_data)
-//{
-//   g_log_default_handler (log_domain, log_level, message, user_data);
-//
-//   g_on_error_query (nullptr);
-//}
-//
-//
-//#endif
 
 
 namespace acme
@@ -101,7 +80,6 @@ namespace acme
    static element_address_array* g_pelementaddraReleaseOnEnd;
 
 
-
 #if OBJ_TYP_CTR
 
    map < const char*, const char*, ::i64, ::i64 >* g_pmapObjTypCtr;
@@ -109,7 +87,6 @@ namespace acme
 #endif
 
 
-   //critical_section* g_pcsRefDbg;
    bool g_bAcme;
 
 
@@ -125,8 +102,6 @@ namespace acme
 
    ::mutex* g_pmutexChildren;
    ::mutex* g_pmutexThreadWaitClose;
-   //string_map < __pointer(::acme::library) >* g_pmapLibrary;
-   //string_map < PFN_NEW_ACME_LIBRARY >* g_pmapNewAuraLibrary;
 
 
 #if !defined(WINDOWS)
@@ -688,6 +663,8 @@ namespace acme
 
       init();
 
+
+      create_reusable_factory < manual_reset_event >();
 
 
    }

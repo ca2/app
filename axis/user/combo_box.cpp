@@ -62,17 +62,17 @@ namespace user
 
       }
 
-      IGUI_MSG_LINK(WM_MOUSEMOVE, pchannel, this, &combo_box::_001OnMouseMove);
-      IGUI_MSG_LINK(WM_MOUSELEAVE, pchannel, this, &combo_box::_001OnMouseLeave);
-      IGUI_MSG_LINK(WM_LBUTTONDOWN, pchannel, this, &combo_box::_001OnLButtonDown);
-      IGUI_MSG_LINK(WM_LBUTTONUP, pchannel, this, &combo_box::_001OnLButtonUp);
-      IGUI_MSG_LINK(WM_LBUTTONDBLCLK, pchannel, this, &combo_box::_001OnLButtonDblClk);
-      IGUI_MSG_LINK(WM_KEYDOWN,pchannel,this,&combo_box::_001OnKeyDown);
-      IGUI_MSG_LINK(WM_KEYUP,pchannel,this,&combo_box::_001OnKeyUp);
-      IGUI_MSG_LINK(WM_SETFOCUS,pchannel,this,&combo_box::_001OnSetFocus);
-      IGUI_MSG_LINK(WM_KILLFOCUS, pchannel, this, &combo_box::_001OnKillFocus);
-      IGUI_MSG_LINK(WM_SHOWWINDOW, pchannel, this, &combo_box::_001OnShowWindow);
-      IGUI_MSG_LINK(WM_MOVE, pchannel, this, &combo_box::_001OnMove);
+      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &combo_box::_001OnMouseMove);
+      MESSAGE_LINK(WM_MOUSELEAVE, pchannel, this, &combo_box::_001OnMouseLeave);
+      MESSAGE_LINK(WM_LBUTTONDOWN, pchannel, this, &combo_box::_001OnLButtonDown);
+      MESSAGE_LINK(WM_LBUTTONUP, pchannel, this, &combo_box::_001OnLButtonUp);
+      MESSAGE_LINK(WM_LBUTTONDBLCLK, pchannel, this, &combo_box::_001OnLButtonDblClk);
+      MESSAGE_LINK(WM_KEYDOWN,pchannel,this,&combo_box::_001OnKeyDown);
+      MESSAGE_LINK(WM_KEYUP,pchannel,this,&combo_box::_001OnKeyUp);
+      MESSAGE_LINK(e_message_set_focus,pchannel,this,&combo_box::_001OnSetFocus);
+      MESSAGE_LINK(e_message_kill_focus, pchannel, this, &combo_box::_001OnKillFocus);
+      MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &combo_box::_001OnShowWindow);
+      MESSAGE_LINK(e_message_move, pchannel, this, &combo_box::_001OnMove);
 
    }
 

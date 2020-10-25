@@ -25,9 +25,9 @@ void XfplayerViewLineSelection::relay_event(xfplayer_view_line & viewline, ::mes
 
    UINT message;
 
-   message = (UINT) (pbase->m_id.i64());
+   message = pbase->m_id.umessage();
 
-   if(message != WM_MOUSEMOVE
+   if(message != e_message_mouse_move
          || message != WM_TIMER
          || message != WM_LBUTTONDOWN
          || message != WM_LBUTTONUP)
@@ -37,7 +37,7 @@ void XfplayerViewLineSelection::relay_event(xfplayer_view_line & viewline, ::mes
 
    index iLine;
    strsize iChar;
-   if((message == WM_MOUSEMOVE && GetState() == StateTracking)
+   if((message == e_message_mouse_move && GetState() == StateTracking)
          || message == WM_LBUTTONDOWN
          || message == WM_LBUTTONUP)
    {
@@ -55,7 +55,7 @@ void XfplayerViewLineSelection::relay_event(xfplayer_view_line & viewline, ::mes
       if(!bInside && GetState() == StateTracking)
       {
          if(message == WM_LBUTTONUP
-               || message == WM_MOUSEMOVE)
+               || message == e_message_mouse_move)
          {
             if(pointCursor.y < rectPlacement.top
                   ||
@@ -105,7 +105,7 @@ void XfplayerViewLineSelection::relay_event(xfplayer_view_line & viewline, ::mes
          }
          else if(
          (message == WM_LBUTTONUP
-          || message == WM_MOUSEMOVE)
+          || message == e_message_mouse_move)
          && GetState() == StateTracking)
          {
             if(viewline.CalcChar(pointCursor, iChar))
@@ -149,7 +149,7 @@ void XfplayerViewLineSelection::relay_event(xfplayer_view_line & viewline, ::mes
             pbase->m_bRet = true;
             return;
          }
-         else if(message == WM_MOUSEMOVE)
+         else if(message == e_message_mouse_move)
          {
             auto point = Session.get_cursor_pos();
             viewline.update_hover(point);
@@ -172,7 +172,7 @@ void XfplayerViewLineSelection::relay_event(xfplayer_view_line & viewline, ::mes
    }
 }
 
-void XfplayerViewLineSelection::OnSelEvent(xfplayer_view_line & viewline, XfplayerViewLineSelection::e_event eevent)
+void XfplayerViewLineSelection::OnSelEvent(xfplayer_view_line & viewline, XfplayerViewLineSelection::enum_event eevent)
 {
    UNREFERENCED_PARAMETER(viewline);
    switch(eevent)
@@ -774,7 +774,7 @@ bool XfplayerViewLineSelectionItem::Intersect(xfplayer_view_line &viewline)
 
 
 
-XfplayerViewLineSelection::e_state XfplayerViewLineSelection::GetState()
+XfplayerViewLineSelection::enum_state XfplayerViewLineSelection::GetState()
 {
    return m_estate;
 }

@@ -17,12 +17,12 @@ extern ::array < __pointer(thread) >* g_pthreadaDeferredCreate;
 
 
 
-typedef bool THREAD_GET_RUN();
-using PFN_THREAD_GET_RUN = THREAD_GET_RUN*;
+//typedef bool THREAD_GET_RUN();
+//using PFN_THREAD_GET_RUN = THREAD_GET_RUN*;
 
-CLASS_DECL_ACME void set_thread_get_run(PFN_THREAD_GET_RUN pthreadrun);
+//CLASS_DECL_ACME void set_thread_get_run(PFN_THREAD_GET_RUN pthreadrun);
 
-bool apex_thread_get_run();
+//bool apex_thread_get_run();
 
 #ifdef RASPBIAN
 #define PLATFORM_NAMESPACE linux
@@ -247,7 +247,7 @@ namespace apex
    void apex::construct()
    {
 
-      ::set_thread_get_run(&apex_thread_get_run);
+      //::set_thread_get_run(&apex_thread_get_run);
       //::set_task_sleep(&acme_task_sleep);
 
       g_bApex = 0;

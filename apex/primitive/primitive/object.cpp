@@ -1449,7 +1449,7 @@ void object::_001OnUpdate(::message::message * pmessage)
 void object::install_message_routing(::channel * pchannel)
 {
 
-   IGUI_MSG_LINK(message_update, pchannel, this, &::object::_001OnUpdate);
+   MESSAGE_LINK(e_message_system_update, pchannel, this, &::object::_001OnUpdate);
 
 }
 

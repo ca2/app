@@ -340,7 +340,7 @@ public:
 
 
 
-   virtual ::estatus transform(e_image eimage);
+   virtual ::estatus transform(enum_image eimage);
 
 
    double pi() const;

@@ -374,7 +374,7 @@ LRESULT CALLBACK wf_RailWndProc(HWND hWnd, UINT msg, WPARAM wParam,
 			}
 			break;
 
-		case WM_MOUSEMOVE:
+		case e_message_mouse_move:
 			{
 				if (!railWindow || !input)
 					return 0;
@@ -395,7 +395,7 @@ LRESULT CALLBACK wf_RailWndProc(HWND hWnd, UINT msg, WPARAM wParam,
 			DestroyWindow(hWnd);
 			break;
 
-		case WM_DESTROY:
+		case e_message_destroy:
 			PostQuitMessage(0);
 			break;
 

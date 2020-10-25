@@ -38,7 +38,7 @@ namespace hotplugin
 
       ::draw2d::brush_pointer brush(e_create);
 
-      brush->m_etype = ::draw2d::brush::type_null;
+      brush->m_etype = ::draw2d::brush::e_type_null;
 
 
 

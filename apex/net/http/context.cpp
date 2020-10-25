@@ -163,7 +163,7 @@ namespace http
    }
 
 
-   bool context::is_file_or_dir(const char * pszUrl, var * pvarQuery, ::file::e_type * petype, property_set & set)
+   bool context::is_file_or_dir(const char * pszUrl, var * pvarQuery, ::file::enum_type * petype, property_set & set)
    {
 
       string strUrl(pszUrl);
@@ -249,7 +249,7 @@ namespace http
 
       }
 
-      ::file::e_type etype = ::file::type_none;
+      ::file::enum_type etype = ::file::type_none;
 
       bool bExists = is_file_or_dir(strUrl, process_set(set, pszUrl), &etype);
 
@@ -2601,7 +2601,7 @@ namespace http
    bool context::exists(const char * pszUrl, ::property_set & set)
    {
 
-      ::file::e_type etype = ::file::type_none;
+      ::file::enum_type etype = ::file::type_none;
 
       bool bExists = is_file_or_dir(pszUrl, set, &etype);
 
@@ -2610,7 +2610,7 @@ namespace http
    }
 
 
-   bool context::is_file_or_dir(const char * pszUrl, ::property_set & set, ::file::e_type * petype)
+   bool context::is_file_or_dir(const char * pszUrl, ::property_set & set, ::file::enum_type * petype)
    {
 
       single_lock sl(m_pmutexDownload, true);
@@ -2747,7 +2747,7 @@ namespace http
       else
       {
 
-         return var(::type_null);
+         return var(::e_type_null);
 
       }
 

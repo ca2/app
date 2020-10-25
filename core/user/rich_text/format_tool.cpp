@@ -48,7 +48,7 @@ namespace user
 
       ::user::tool_window::install_message_routing(psender);
 
-      IGUI_MSG_LINK(WM_CREATE, psender, this, &format_tool::_001OnCreate);
+      MESSAGE_LINK(e_message_create, psender, this, &format_tool::_001OnCreate);
 
    }
 

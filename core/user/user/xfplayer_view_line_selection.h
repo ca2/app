@@ -46,13 +46,13 @@ class CLASS_DECL_CORE XfplayerViewLineSelection :
    virtual object
 {
 public:
-   enum e_state
+   enum enum_state
    {
       state_initial = 1,
       StateTracking = 2
    };
       
-   enum e_event
+   enum enum_event
    {
       EventStart = 1,
       EventEnd = 2
@@ -75,16 +75,16 @@ public:
    strsize               m_iCharEndSource;
 
    i32               m_etype; 
-   e_state            m_estate;
+   enum_state            m_estate;
 
    XfplayerViewLineSelection();
    virtual ~XfplayerViewLineSelection();
 
    bool get_item(XfplayerViewLineSelectionItem & item, xfplayer_view_line & viewline);
-   e_state GetState();
+   enum_state GetState();
 
    virtual void relay_event(xfplayer_view_line & viewline, ::message::message * pmessage);
-   virtual void OnSelEvent(xfplayer_view_line & viewline, e_event eselevent);
+   virtual void OnSelEvent(xfplayer_view_line & viewline, enum_event eselevent);
    bool SetSelBefore(xfplayer_view_line & viewline);
    bool SetSelAfter(xfplayer_view_line & viewline);
    void NormalizeSel(xfplayer_view_line & viewline);

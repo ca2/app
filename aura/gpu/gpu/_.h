@@ -2,7 +2,7 @@
 //
 //#ifdef _UWP
 //
-//// Enable function definitions in the GL headers below
+//// enable function definitions in the GL headers below
 //#define GL_GLEXT_PROTOTYPES
 //
 //// OpenGL ES includes
@@ -17,7 +17,7 @@
 //#elif defined(LINUX)
 //
 //
-//// Enable function definitions in the GL headers below
+//// enable function definitions in the GL headers below
 //#define GL_GLEXT_PROTOTYPES 1
 //
 //// Ubuntu : libglew-dev

@@ -486,7 +486,7 @@ void __post_quit_message(i32 nExitCode)
 //   LPARAM lparam = (LPARAM)pparam;
 //
 //
-//   ::get_context_system()->post_message(message_event2, (WPARAM)u, lparam);
+//   ::get_context_system()->post_message(e_message_event2, (WPARAM)u, lparam);
 //
 //
 //}

@@ -140,7 +140,7 @@ public:
 
    int_bool peek_message(LPMESSAGE pMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg);
    int_bool get_message(LPMESSAGE pMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax);
-   int_bool post_message(oswindow oswindow, UINT uMessage, WPARAM wParam, LPARAM lParam);
+   int_bool post_message(oswindow oswindow, const ::id & id, WPARAM wParam, LPARAM lParam);
 
    user_interaction_ptr_array & uiptra();
 
@@ -221,13 +221,13 @@ public:
 
 
    ///virtual u32 ResumeThread();
-   virtual bool post_message(UINT message, WPARAM wParam = 0, lparam lParam = 0);
+   virtual bool post_message(const ::id & id, WPARAM wParam = 0, lparam lParam = 0);
 
-   virtual bool send_message(UINT message,WPARAM wParam = 0,lparam lParam = 0, ::duration durationTimeout = ::duration::infinite());
+   virtual bool send_message(const ::id & id,WPARAM wParam = 0,lparam lParam = 0, ::duration durationTimeout = ::duration::infinite());
 
-   virtual bool post_object(UINT message, WPARAM wParam, lparam lParam);
+   virtual bool post_object(const ::id & id, WPARAM wParam, lparam lParam);
 
-   virtual bool send_object(UINT message, WPARAM wParam, lparam lParam, ::duration durationTimeout = ::duration::infinite());
+   virtual bool send_object(const ::id & id, WPARAM wParam, lparam lParam, ::duration durationTimeout = ::duration::infinite());
 
    virtual bool post_task(const ::method & method);
    virtual bool send_task(const ::method & method, ::duration durationTimeout = ::duration::infinite());
@@ -241,14 +241,14 @@ public:
    template < typename PRED >
    bool post_pred(PRED pred)
    {
-      return post_object(SYSTEM_MESSAGE, system_message_method, __method(pred));
+      return post_object(e_message_system, system_message_method, __method(pred));
    }
 
 
    bool send_method(const ::method & method, ::duration durationTimeout = ::duration::infinite())
    {
 
-      return send_object(SYSTEM_MESSAGE, system_message_method, method, durationTimeout);
+      return send_object(e_message_system, system_message_method, method, durationTimeout);
 
    }
 
@@ -355,7 +355,8 @@ public:
    virtual ::estatus verb();
 
 
-   virtual void post_to_all_threads(UINT message,WPARAM wparam,LPARAM lparam);
+   static void post_quit_to_all_threads();
+   static void post_to_all_threads(const ::id & id, WPARAM wparam, LPARAM lparam);
 
 
 

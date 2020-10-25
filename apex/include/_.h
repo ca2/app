@@ -1179,16 +1179,6 @@ namespace install
 //inline bool is_impact_subgroup(::u64 u, ::u64 uGroup) { return u >= uGroup && u < uGroup + 100; }
 
 
-//class image;
-//namespace draw2d{class icon;}
-
-//using image_pointer = __pointer(::image);
-//using icon_pointer = __pointer(::draw2d::icon);
-
-
-//using image_result = __result(::image);
-//using icon_result=__result(::draw2d::icon);
-
 
 class command_line;
 
@@ -1442,7 +1432,7 @@ namespace datetime
 //   typedef CLASS_DECL_APEX ::string_array_base < ::file::path,string > patha;
 //   class file;
 //
-//   enum e_type
+//   enum enum_type
 //   {
 //
 //      type_none,
@@ -2461,9 +2451,9 @@ namespace primitive
 //
 //using eiostate = ::cflag < ::file::e_iostate >;
 //
-//using ecommand = ::enum_type < enum_command >;
+//using ecommand = ::enumeration < enum_command >;
 //
-//using echeck = ::enum_type < enum_check >;
+//using echeck = ::enumeration < enum_check >;
 //
 
 typedef ::estatus THREAD_PROCEDURE(thread_parameter parameter);

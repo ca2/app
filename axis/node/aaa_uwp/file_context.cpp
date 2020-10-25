@@ -106,7 +106,7 @@ namespace uwp
       if (!GetFileAttributesExW(::str::international::utf8_to_unicode(path), GetFileExInfoStandard, &data))
       {
 
-         varRet.set_type(::type_null);
+         varRet.set_type(::e_type_null);
 
       }
       else

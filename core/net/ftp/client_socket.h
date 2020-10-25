@@ -79,7 +79,7 @@ namespace ftp
 
       };
 
-      enum e_state
+      enum enum_state
       {
 
          state_initial,
@@ -107,7 +107,7 @@ namespace ftp
       observer_array             m_setObserver;              ///< list of observers, which are notified about particular actions
       __pointer(logon)           m_plogon;            ///< logon-info, which was used at the last call of login
 
-      e_state                    m_estate;
+      enum_state                    m_estate;
 
 
 

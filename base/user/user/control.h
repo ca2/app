@@ -51,7 +51,7 @@ namespace user
    //   virtual e_control_type get_control_type() const override;
 
    //   virtual void _003CallCustomDraw(::draw2d::graphics_pointer & pgraphics, ::aura::draw_context * pitem);
-   //   virtual bool _003CallCustomWindowProc(__pointer(::user::interaction) pwnd, UINT message, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
+   //   virtual bool _003CallCustomWindowProc(__pointer(::user::interaction) pwnd, const ::id & id, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
 
    //   virtual void _003OnCustomDraw(::draw2d::graphics_pointer & pgraphics, ::aura::draw_context * pitem);
    //   virtual void _003CustomWindowProc(::message::message * pmessage);
@@ -101,7 +101,7 @@ namespace user
 
    //   virtual void on_control_event(::user::control_event * pevent) override;
 
-   //   //virtual bool simple_on_control_event(::message::message * pmessage, ::user::e_event eevent) override;
+   //   //virtual bool simple_on_control_event(::message::message * pmessage, ::user::enum_event eevent) override;
 
    //   //virtual void walk_pre_translate_tree(::message::message * pmessage,__pointer(::user::interaction) puiStop);
 
@@ -127,7 +127,7 @@ namespace user
    //   control_cmd_ui();
 
 
-   //   virtual void Enable(bool bOn);
+   //   virtual void enable(bool bOn);
    //   virtual void SetCheck(i32 nCheck);
    //   virtual void SetText(const char * pszText);
 

@@ -164,7 +164,7 @@ namespace user
 
          }
 
-         m_puserinteraction->send_message(WM_CREATE, 0, (lparam)(LPARAM)& createstruct);
+         m_puserinteraction->send_message(e_message_create, 0, (lparam)(LPARAM)& createstruct);
 
       }
       catch (...)
@@ -244,9 +244,9 @@ namespace user
 
       last_install_message_routing(pchannel);
 
-      IGUI_MSG_LINK(WM_DESTROY, pchannel, this, &interaction_child::_001OnDestroy);
+      MESSAGE_LINK(e_message_destroy, pchannel, this, &interaction_child::_001OnDestroy);
 
-      IGUI_MSG_LINK(WM_SHOWWINDOW, pchannel, this, &interaction_child::_001OnShowWindow);
+      MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &interaction_child::_001OnShowWindow);
 
       m_puserinteraction->install_message_routing(pchannel);
 
@@ -362,9 +362,9 @@ namespace user
    void interaction_child::message_handler(::message::base * pbase)
    {
 
-      UINT uiMessage;
+      UINT message;
 
-      uiMessage = (UINT)(pbase->m_id.i64());
+      message = pbase->m_id.umessage();
 
       if (m_puserinteraction != nullptr)
       {
@@ -380,7 +380,7 @@ namespace user
 
       }
 
-      if (uiMessage == EVENT_MESSAGE)
+      if (message == e_message_event)
       {
 
          ::user::control_event * pevent = pbase->m_lparam.cast < ::user::control_event >();
@@ -539,7 +539,7 @@ namespace user
    }
 
 
-   void interaction_child::send_message_to_descendants(UINT message, WPARAM wParam, lparam lParam, bool bDeep, bool bOnlyPerm)
+   void interaction_child::send_message_to_descendants(const ::id & id, WPARAM wParam, lparam lParam, bool bDeep, bool bOnlyPerm)
    {
 
       if (m_puserinteraction == nullptr)
@@ -557,7 +557,7 @@ namespace user
          try
          {
 
-            pinteraction->send_message(message, wParam, lParam);
+            pinteraction->send_message(id, wParam, lParam);
 
          }
          catch (...)
@@ -571,7 +571,7 @@ namespace user
             try
             {
 
-               pinteraction->send_message_to_descendants(message, wParam, lParam, bDeep, bOnlyPerm);
+               pinteraction->send_message_to_descendants(id, wParam, lParam, bDeep, bOnlyPerm);
 
             }
             catch (...)

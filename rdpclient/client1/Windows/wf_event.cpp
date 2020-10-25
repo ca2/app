@@ -271,7 +271,7 @@ void wf_sizing(wfContext* wfc, WPARAM wParam, LPARAM lParam)
 //
 //		switch (Msg)
 //		{
-//			case WM_MOVE:
+//			case e_message_move:
 //				if (!wfc->disablewindowtracking)
 //				{
 //					int x = (int)(short) LOWORD(lParam);
@@ -309,7 +309,7 @@ void wf_sizing(wfContext* wfc, WPARAM wParam, LPARAM lParam)
 //				wf_sizing(wfc, lParam, wParam);
 //				break;
 //			
-//			case WM_SIZE:
+//			case e_message_size:
 //				get_window_rect(wfc->hwnd, &windowRect);
 //				
 //				if (!wfc->fullscreen)
@@ -368,7 +368,7 @@ void wf_sizing(wfContext* wfc, WPARAM wParam, LPARAM lParam)
 //				wf_scale_mouse_event(wfc, input, PTR_FLAGS_BUTTON2, X_POS(lParam) - wfc->offset_x, Y_POS(lParam) - wfc->offset_y);
 //				break;
 //
-//			case WM_MOUSEMOVE:
+//			case e_message_mouse_move:
 //				wf_scale_mouse_event(wfc, input, PTR_FLAGS_MOVE, X_POS(lParam) - wfc->offset_x, Y_POS(lParam) - wfc->offset_y);
 //				break;
 //
@@ -559,8 +559,8 @@ void wf_sizing(wfContext* wfc, WPARAM wParam, LPARAM lParam)
 //
 //	switch (Msg)
 //	{
-//		case WM_DESTROY:
-//			PostQuitMessage(WM_QUIT);
+//		case e_message_destroy:
+//			PostQuitMessage(e_message_quit);
 //			break;
 //
 //		case WM_SETCURSOR:
@@ -570,7 +570,7 @@ void wf_sizing(wfContext* wfc, WPARAM wParam, LPARAM lParam)
 //				DefWindowProc(hWnd, Msg, wParam, lParam);
 //			break;
 //
-//		case WM_SETFOCUS:
+//		case e_message_set_focus:
 //			DEBUG_KBD("getting focus %X", hWnd);
 //			if (alt_ctrl_down())
 //				g_flipping_in = TRUE;
@@ -578,7 +578,7 @@ void wf_sizing(wfContext* wfc, WPARAM wParam, LPARAM lParam)
 //			freerdp_set_focus(wfc->instance);
 //			break;
 //
-//		case WM_KILLFOCUS:
+//		case e_message_kill_focus:
 //			if (g_focus_hWnd == hWnd && wfc && !wfc->fullscreen)
 //			{
 //				DEBUG_KBD("loosing focus %X", hWnd);
@@ -589,7 +589,7 @@ void wf_sizing(wfContext* wfc, WPARAM wParam, LPARAM lParam)
 //			}
 //			break;
 //
-//		case WM_ACTIVATE:
+//		case e_message_activate:
 //			{
 //				int activate = (int)(short) LOWORD(wParam);
 //				if (activate != WA_INACTIVE)

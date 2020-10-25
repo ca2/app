@@ -1453,6 +1453,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="primitive\primitive\match.cpp" />
     <ClCompile Include="primitive\primitive\method.cpp" />
     <ClCompile Include="primitive\primitive\future.cpp" />
+    <ClCompile Include="primitive\primitive\function.cpp" />
     <ClCompile Include="primitive\primitive\promise.cpp" />
     <ClCompile Include="primitive\primitive\source.cpp" />
     <ClCompile Include="primitive\primitive\action.cpp" />
@@ -1678,7 +1679,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="os\windows\registry.h" />
     <ClInclude Include="os\windows\shell1.h" />
     <ClInclude Include="os\windows\simple_hold_handle.h" />
-    <ClInclude Include="os\windows\simple_ui.h" />
     <ClInclude Include="os\windows\utils.h" />
     <ClInclude Include="os\windows\windowing.h" />
     <ClInclude Include="os\windows\_.h" />
@@ -1829,7 +1829,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="primitive\primitive\promise.h" />
     <ClInclude Include="primitive\primitive\promise1.h" />
     <ClInclude Include="primitive\primitive\future.h" />
-    <ClInclude Include="primitive\primitive\function.h" />
+    <ClInclude Include="primitive\primitive\function_pointer.h" />
     <ClInclude Include="primitive\primitive\member.h" />
     <ClInclude Include="primitive\primitive\change.h" />
     <ClInclude Include="primitive\primitive\aaa_update.h" />

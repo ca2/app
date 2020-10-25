@@ -39,7 +39,7 @@ namespace user
 
       ::user::combo_box::install_message_routing(psender);
 
-      IGUI_MSG_LINK(WM_CREATE, psender, this, &::user::font_combo_box::_001OnCreate);
+      MESSAGE_LINK(e_message_create, psender, this, &::user::font_combo_box::_001OnCreate);
 
    }
 

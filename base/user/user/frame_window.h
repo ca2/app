@@ -115,7 +115,7 @@ namespace user
       virtual void NotifyFloatingWindows(u32 dwFlags);
 
       virtual string get_window_default_matter() override;
-      virtual ::user::interaction::e_type get_window_type() override;
+      virtual ::user::interaction::enum_type get_window_type() override;
 
 
       virtual void on_simple_command(::message::simple_command * psimplecommand) override;
@@ -250,7 +250,7 @@ namespace user
 #ifdef WINDOWS_DESKTOP
       virtual void OnDropFiles(HDROP hDropInfo);
 #endif
-      bool OnSetCursor(__pointer(::user::interaction) pwindow, UINT nHitTest, UINT message);
+      bool OnSetCursor(__pointer(::user::interaction) pwindow, UINT nHitTest, const ::id & id);
       //LRESULT OnCommandHelp(WPARAM wParam, LPARAM lParam);
       //LRESULT OnHelpHitTest(WPARAM wParam, LPARAM lParam);
       LRESULT OnActivateTopLevel(WPARAM wParam, LPARAM lParam);

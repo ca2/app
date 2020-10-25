@@ -26,7 +26,7 @@ namespace user
    {
 
       common_construct();
-      m_id.m_emessagetype           = ::message::type_command;
+      m_emessage           = ::e_message_system_command;
       m_id                          = id;
       m_bRadioChanged               = false;
 

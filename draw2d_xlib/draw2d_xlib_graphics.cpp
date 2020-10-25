@@ -5470,7 +5470,7 @@ ok:
 
       xlib_keep keep(this);
 
-      if(m_pbrush->m_etype != ::draw2d::brush::type_null)
+      if(m_pbrush->m_etype != ::draw2d::brush::e_type_null)
       {
 
          set(m_pbrush);
@@ -5514,7 +5514,7 @@ ok:
    bool graphics::fill(::draw2d::brush * pbrush)
    {
 
-      /*if(pbrush == nullptr || pbrush->m_etype == ::draw2d::brush::type_null)
+      /*if(pbrush == nullptr || pbrush->m_etype == ::draw2d::brush::e_type_null)
          return true;
 
       xlib_keep keep(m_pdc);

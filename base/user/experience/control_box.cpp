@@ -372,13 +372,13 @@ namespace experience
 
       ::user::interaction::install_message_routing(pframewindow);
 
-      IGUI_MSG_LINK(WM_SHOWWINDOW, pframewindow, this, &control_box::_001OnShowWindow);
-      IGUI_MSG_LINK(WM_CREATE, pframewindow, this, &control_box::_001OnCreate);
-      IGUI_MSG_LINK(WM_MOUSEMOVE, pframewindow, this, &control_box::_001OnMouseMove);
-      IGUI_MSG_LINK(WM_LBUTTONDOWN, pframewindow, this, &control_box::_001OnLButtonDown);
-      IGUI_MSG_LINK(WM_LBUTTONUP, pframewindow, this, &control_box::_001OnLButtonUp);
-      IGUI_MSG_LINK(WM_MOVE, pframewindow, this, &control_box::_001OnMove);
-      IGUI_MSG_LINK(WM_SIZE, pframewindow, this, &control_box::_001OnSize);
+      MESSAGE_LINK(WM_SHOWWINDOW, pframewindow, this, &control_box::_001OnShowWindow);
+      MESSAGE_LINK(e_message_create, pframewindow, this, &control_box::_001OnCreate);
+      MESSAGE_LINK(e_message_mouse_move, pframewindow, this, &control_box::_001OnMouseMove);
+      MESSAGE_LINK(WM_LBUTTONDOWN, pframewindow, this, &control_box::_001OnLButtonDown);
+      MESSAGE_LINK(WM_LBUTTONUP, pframewindow, this, &control_box::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_move, pframewindow, this, &control_box::_001OnMove);
+      MESSAGE_LINK(e_message_size, pframewindow, this, &control_box::_001OnSize);
 
    }
 

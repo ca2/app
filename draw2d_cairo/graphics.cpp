@@ -5133,7 +5133,7 @@ bool graphics::fill_and_draw()
 
    cairo_keep keep(m_pdc);
 
-   if (m_pbrush->m_etype != ::draw2d::brush::type_null)
+   if (m_pbrush->m_etype != ::draw2d::brush::e_type_null)
    {
 
       _set(m_pbrush);
@@ -5178,7 +5178,7 @@ bool graphics::fill(::draw2d::brush * pbrush, double xOrg, double yOrg)
 
    sync_lock ml(cairo_mutex());
 
-   if (pbrush == nullptr || pbrush->m_etype == ::draw2d::brush::type_null)
+   if (pbrush == nullptr || pbrush->m_etype == ::draw2d::brush::e_type_null)
    {
 
       return true;
@@ -5199,7 +5199,7 @@ bool graphics::fill(::draw2d::brush * pbrush, double xOrg, double yOrg)
 bool graphics::_fill1(::draw2d::brush* pbrush, double xOrg, double yOrg)
 {
 
-   if (pbrush == nullptr || pbrush->m_etype == ::draw2d::brush::type_null)
+   if (pbrush == nullptr || pbrush->m_etype == ::draw2d::brush::e_type_null)
    {
 
       return true;
@@ -5231,7 +5231,7 @@ bool graphics::_fill1(::draw2d::brush* pbrush, double xOrg, double yOrg)
 bool graphics::_fill2(::draw2d::brush* pbrush, double xOrg, double yOrg)
 {
 
-   if (pbrush == nullptr || pbrush->m_etype == ::draw2d::brush::type_null)
+   if (pbrush == nullptr || pbrush->m_etype == ::draw2d::brush::e_type_null)
    {
 
       return true;

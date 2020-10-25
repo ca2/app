@@ -99,6 +99,8 @@ namespace apex
    system::system()
    {
 
+      create_factory < ::thread >();
+
       m_paurasystem = nullptr;
       m_paxissystem = nullptr;
       m_pbasesystem = nullptr;
@@ -310,8 +312,8 @@ namespace apex
 
       }
 
-      create_factory < ::stdio_file, ::file::text_file >();
-      create_factory < ::stdio_file, ::file::file >();
+      //create_factory < ::stdio_file, ::file::text_file >();
+      //create_factory < ::stdio_file, ::file::file >();
       create_factory < ::i64_array >();
       create_factory < ::double_array >();
       create_factory < ::apex::library >();

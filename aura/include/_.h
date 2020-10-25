@@ -3131,6 +3131,8 @@ namespace uwp
 
 #include "aura/filesystem/filemanager/callback.h"
 
+#include "aura/platform/shell_open.h"
+
 #include "aura/platform/application.h"
 //
 ////#include "aura/platform/app.h"

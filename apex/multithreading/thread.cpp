@@ -4508,6 +4508,26 @@ DWORD thread::get_file_sharing_violation_timeout_total_milliseconds()
 }
 
 
+bool thread::is_running() const
+{
+
+   return ::task::is_running();
+
+}
+
+
+::estatus thread::start(
+   ::matter * pmatter,
+   ::e_priority epriority,
+   u32 nStackSize,
+   u32 dwCreateFlags)
+{
+
+   return ::task::start(pmatter, epriority, nStackSize, dwCreateFlags);
+
+}
+
+
 ::duration thread::set_file_sharing_violation_timeout(::duration duration)
 {
 

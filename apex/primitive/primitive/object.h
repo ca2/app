@@ -492,7 +492,7 @@ public:
 
       }
 
-      start(pthread, method);
+      pthread->start(method);
 
       return pthread;
 

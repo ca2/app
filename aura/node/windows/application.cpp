@@ -49,16 +49,6 @@ namespace aura
    //}
 
 
-   void application::_001EnableShellOpen()
-   {
-
-      //ASSERT(m_atomApp == nullptr && m_atomSystemTopic == nullptr); // do once
-
-      //m_atomApp            = ::GlobalAddAtomW(::str::international::utf8_to_unicode(m_strAppName));
-
-      //m_atomSystemTopic    = ::GlobalAddAtomW(L"system");
-
-   }
 
 
    //bool application::_001OnDDECommand(const char * pcsz)
@@ -168,7 +158,6 @@ namespace aura
    //   return "";
 
    //}
-
 
    void application::ShowWaitCursor(bool bShow)
    {

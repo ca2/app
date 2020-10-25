@@ -1184,6 +1184,12 @@
     <ClInclude Include="message\user.h">
       <Filter>Header Files\message</Filter>
     </ClInclude>
+    <ClInclude Include="node\windows\shell_open.h">
+      <Filter>Header Files\node\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\shell_open.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="graphics\draw2d\apple\image_gif.cpp">
@@ -1643,6 +1649,12 @@
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
     <ClCompile Include="platform\aura_mq.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="node\windows\shell_open.cpp">
+      <Filter>Source Files\node\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\shell_open.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
   </ItemGroup>

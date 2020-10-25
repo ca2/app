@@ -609,7 +609,7 @@ namespace apex
 
       virtual bool _001OnDDECommand(const char * pcsz);
 
-      virtual void _001EnableShellOpen();
+      virtual ::estatus _001InitializeShellOpen();
       virtual void _001OnFileNew(::message::message * pmessage);
 
 

@@ -58,13 +58,13 @@ public:
    virtual ::estatus on_task() override;
 
 
-   ::estatus fork(
+   virtual ::estatus fork(
       ::e_priority epriority = priority_normal,
       u32 nStackSize = 0,
       u32 dwCreateFlags = 0);
 
 
-   ::estatus start(
+   virtual ::estatus start(
       ::matter* pmatter,
       ::e_priority epriority = priority_normal,
       u32 nStackSize = 0,

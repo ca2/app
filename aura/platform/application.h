@@ -41,6 +41,10 @@ namespace aura
 
       //__composite(::game::game)                       m_pgame;
 
+
+      __composite(shell_open)                         m_pshellopen;
+
+
       ::user::primitive *                             m_puiCurrent;
       //bool                                            m_bContextTheme;
 
@@ -154,6 +158,7 @@ namespace aura
 
 
       inline ::aura::game* game() { return m_pgame->m_pauragame; }
+
 
 
 
@@ -591,7 +596,7 @@ namespace aura
 
       //virtual bool _001OnDDECommand(const char * pcsz) override;
 
-      virtual void _001EnableShellOpen() override;
+      virtual ::estatus _001InitializeShellOpen() override;
       virtual void _001OnFileNew(::message::message * pmessage) override;
 
 
@@ -1417,6 +1422,7 @@ namespace aura
 #ifdef LINUX
       virtual bool os_on_start_application() override;
 #endif
+
 
 
    };

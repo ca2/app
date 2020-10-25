@@ -1107,6 +1107,7 @@
     <ClCompile Include="include\_.cpp" />
     <ClCompile Include="message\timer.cpp" />
     <ClCompile Include="message\user.cpp" />
+    <ClCompile Include="node\windows\shell_open.cpp" />
     <ClCompile Include="node\windows\windows_desktop.cpp" />
     <ClCompile Include="node\windows\application.cpp" />
     <ClCompile Include="node\windows\copydesk.cpp" />
@@ -1131,6 +1132,7 @@
     <ClCompile Include="platform\drawable.cpp" />
     <ClCompile Include="platform\draw_context.cpp" />
     <ClCompile Include="platform\session.cpp" />
+    <ClCompile Include="platform\shell_open.cpp" />
     <ClCompile Include="platform\static_start.cpp" />
     <ClCompile Include="platform\system.cpp" />
     <ClCompile Include="platform\static_start_aura.cpp" />
@@ -1351,6 +1353,7 @@
     <ClInclude Include="node\windows\copydesk.h" />
     <ClInclude Include="node\windows\factory_exchange.h" />
     <ClInclude Include="node\windows\interaction_impl.h" />
+    <ClInclude Include="node\windows\shell_open.h" />
     <ClInclude Include="node\windows\system_interaction_impl.h" />
     <ClInclude Include="node\windows\user.h" />
     <ClInclude Include="node\windows\_.h" />
@@ -1372,6 +1375,7 @@
     <ClInclude Include="platform\draw_context2.h" />
     <ClInclude Include="platform\mq.h" />
     <ClInclude Include="platform\session.h" />
+    <ClInclude Include="platform\shell_open.h" />
     <ClInclude Include="platform\static_start.h" />
     <ClInclude Include="platform\system.h" />
     <ClInclude Include="platform\theme.h" />

@@ -161,11 +161,17 @@ public:
    DWORD get_file_sharing_violation_timeout_total_milliseconds();
    ::duration set_file_sharing_violation_timeout(::duration duration);
 
-
+   virtual bool is_running() const;
    //virtual void dependant_add(::layered * pobjectContext) override;
 
-   ///  \brief    starts thread on first call
-   //virtual void re();
+ 
+
+   virtual ::estatus start(
+      ::matter * pmatter,
+      ::e_priority epriority = priority_normal,
+      u32 nStackSize = 0,
+      u32 dwCreateFlags = 0) override;
+
 
    virtual HTHREAD get_hthread() const;
    virtual ITHREAD get_ithread() const;

@@ -224,7 +224,7 @@ namespace userstack
       {
       case e_timer_backview:
       {
-         //gcom::backview::Interface::ImageChangePostEvent(gcom::backview::event_timer);
+         //gcom::backview::user_interaction::image_change_post_event(gcom::backview::event_timer);
       }
       break;
       }

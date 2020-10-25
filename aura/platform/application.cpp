@@ -1559,210 +1559,36 @@ namespace aura
    //}
 
 
-   //void application::notify_process_term()
-   //{
+   ::estatus application::_001InitializeShellOpen()
+   {
 
-   //   ::message::application message(::message::application_process_term);
+      //ASSERT(m_atomApp == nullptr && m_atomSystemTopic == nullptr); // do once
 
-   //   route_message(&message);
+      //m_atomApp            = ::GlobalAddAtomW(::str::international::utf8_to_unicode(m_strAppName));
 
-   //   //return message.m_bOk;
+      //m_atomSystemTopic    = ::GlobalAddAtomW(L"system");
 
-   //}
+      auto estatus = __compose(m_pshellopen);
 
+      if (!estatus)
+      {
 
-   //void application::TermApplication()
-   //{
+         return estatus;
 
+      }
 
-   //}
+      estatus = m_pshellopen->initialize_shell_open();
 
+      if (!estatus)
+      {
 
-//   ::estatus application::application_pre_run()
-//   {
-//
-//      INFO("aura::application::application_pre_run");
-//
-//#ifdef WINDOWS_DESKTOP
-//
-//      MESSAGE msg;
-//
-//      // Create Windows Message Queue
-//      ::PeekMessageA(&msg, nullptr, 0, 0xffff, 0);
-//
-//      if (!is_system() && is_true("SessionSynchronizedInput"))
-//      {
-//
-//         ::AttachThreadInput(GetCurrentThreadId(), (u32)System.get_ithread(), TRUE);
-//
-//      }
-//
-//#endif
-//
-//      m_tickHeartBeat.Now();
-//
-//      try
-//      {
-//
-//         if (!InitApplication())
-//         {
-//
-//            return false;
-//
-//         }
-//
-//      }
-//      catch (::exit_exception * pe)
-//      {
-//
-//         throw pe;
-//
-//      }
-//      catch (const ::exception::exception * pe)
-//      {
-//
-//         //thisexc << 1 << m_iErrorCode;
-//
-//         ::acme::del(pe);
-//
-//         return false;
-//
-//      }
-//      catch (...)
-//      {
-//
-//         //thisexcall << 1 << m_iErrorCode;
-//
-//         return false;
-//
-//      }
-//
-//      m_tickHeartBeat.Now();
-//
-//      try
-//      {
-//
-//         if (!process_init())
-//         {
-//
-//            return false;
-//
-//         }
-//
-//      }
-//      catch (::exit_exception * pe)
-//      {
-//
-//         throw pe;
-//
-//      }
-//      catch (const ::exception::exception * pe)
-//      {
-//
-//         ::acme::del(pe);
-//
-//         return false;
-//
-//      }
-//      catch (...)
-//      {
-//
-//         return false;
-//
-//      }
-//
-//      System.install_progress_add_up();
-//
-//      m_tickHeartBeat.Now();
-//
-//      try
-//      {
-//
-//         if (!init_application())
-//         {
-//
-//            return false;
-//
-//         }
-//
-//      }
-//      catch (::exception_pointer pe)
-//      {
-//
-//         handle_exception(pe);
-//
-//         return false;
-//
-//      }
-//      catch (...)
-//      {
-//
-//         return false;
-//
-//      }
-//
-//      m_tickHeartBeat.Now();
-//
-//      try
-//      {
-//
-//         if (!is_system() && !is_session())
-//         {
-//
-//            if (System.is_true("uninstall"))
-//            {
-//
-//               do_uninstall();
-//
-//               return false;
-//
-//            }
-//            else if (System.is_true("install"))
-//            {
-//
-//               do_install();
-//
-//               return false;
-//
-//            }
-//
-//         }
-//
-//         if (!init_instance())
-//         {
-//
-//            return false;
-//
-//         }
-//
-//         on_update_matter_locator();
-//
-//      }
-//      catch (exit_exception * pexception)
-//      {
-//
-//         __rethrow(pexception);
-//
-//      }
-//      catch(::exception::exception * pexception)
-//      {
-//
-//         ::exception_pointer esp(pexception);
-//
-//         return false;
-//
-//      }
-//      catch (...)
-//      {
-//
-//         return false;
-//
-//      }
-//
-//      return true;
-//
-//   }
+         return estatus;
 
+      }
+
+      return estatus;
+
+   }
 
    void application::application_pos_run()
    {

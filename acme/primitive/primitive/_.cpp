@@ -95,11 +95,11 @@ void __assert_valid_object(const ::matter * pOb, const char * pszFileName, i32 n
 
 
 
-CLASS_DECL_ACME void call(const ::method & method)
-{
-
-   method();
-
-}
-
+//CLASS_DECL_ACME void call(const ::method & method)
+//{
+//
+//   method();
+//
+//}
+//
 

@@ -95,11 +95,11 @@ void __assert_valid_object(const ::context_object * pOb, const char * pszFileNam
 
 
 
-CLASS_DECL_APEX void call(const ::method & method)
-{
-
-   method();
-
-}
-
+//CLASS_DECL_APEX void call(const ::method & method)
+//{
+//
+//   method();
+//
+//}
+//
 

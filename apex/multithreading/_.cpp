@@ -757,27 +757,27 @@ void thread_ptra::wait(const duration & duration, sync_lock & sl)
 }
 
 
-CLASS_DECL_APEX ::estatus call(const ::method & method)
-{
-
-   ::estatus estatus;
-
-   try
-   {
-
-      estatus = method();
-
-   }
-   catch (...)
-   {
-
-      estatus = ::error_exception;
-
-   }
-
-   return estatus;
-
-}
+//CLASS_DECL_APEX ::estatus call(const ::method & method)
+//{
+//
+//   ::estatus estatus;
+//
+//   try
+//   {
+//
+//      estatus = method();
+//
+//   }
+//   catch (...)
+//   {
+//
+//      estatus = ::error_exception;
+//
+//   }
+//
+//   return estatus;
+//
+//}
 //
 //
 //bool isvowel_dup(int i)

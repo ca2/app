@@ -74,8 +74,8 @@ namespace helloworld
 
       impact_base::install_message_routing(pchannel);
 
-      IGUI_MSG_LINK(WM_CREATE,pchannel,this,&view::_001OnCreate);
-      IGUI_MSG_LINK(WM_DESTROY, pchannel, this, &view::_001OnDestroy);
+      MESSAGE_LINK(e_message_create,pchannel,this,&view::_001OnCreate);
+      MESSAGE_LINK(e_message_destroy, pchannel, this, &view::_001OnDestroy);
 
    }
 

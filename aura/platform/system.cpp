@@ -306,20 +306,19 @@ namespace aura
       strLibrary.ends_eat_ci(".dylib");
       strLibrary.begins_eat_ci("lib");
 
-      __pointer(::apex::library) plibrary = ::get_context_system()->m_mapLibrary[strLibrary];
+      auto & plibrary = ::get_context_system()->m_mapLibrary[strLibrary];
 
       bool bLibraryOk = true;
 
       if (plibrary.is_null())
       {
 
-         plibrary = on_get_library(strLibrary);
+         __compose(plibrary, on_get_library(strLibrary));
 
          if (plibrary.is_null())
-
          {
 
-            plibrary.create();
+            __compose_new(plibrary);
 
             if (!plibrary->open(strLibrary))
             {
@@ -712,7 +711,6 @@ namespace aura
 //      //create_factory < application_bias >();
 //      create_factory < command_line >();
 //      create_factory < http::context >();
-////      create_factory < manual_reset_event >();
 //      //create_factory < ::mutex >();
 //      //create_factory < event >();
 //
@@ -1936,47 +1934,23 @@ namespace aura
    }
 
 
-   UINT system::os_post_to_all_threads(UINT uiMessage,WPARAM wparam,lparam lparam)
-
+   UINT system::os_post_to_all_threads(const ::id & id,WPARAM wparam,lparam lparam)
    {
 
-      post_to_all_threads(uiMessage,wparam,lparam);
-
+      post_to_all_threads(id, wparam, lparam);
 
       return 0;
 
    }
 
 
-   //os_local & system::oslocal()
+
+   //bool system::is_system() const
    //{
 
-   //   return *m_poslocal;
+   //   return true;
 
    //}
-
-
-//void system::discard_to_factory(object * pca)
-//{
-
-//   //if (m_pfactory == nullptr)
-//   //{
-
-//   //   return;
-
-//   //}
-
-//   //m_pfactory->discard(pca);
-
-//}
-
-
-   bool system::is_system() const
-   {
-
-      return true;
-
-   }
 
 
    i32 system::_001OnDebugReport(i32 i1,const char * psz1,i32 i2,const char * psz2,const char * psz3,va_list args)
@@ -3047,7 +3021,7 @@ namespace aura
 
          merge_accumulated_on_open_file(pcreate);
 
-         papp->post_object(SYSTEM_MESSAGE, system_message_create, pcreate);
+         papp->post_object(e_message_system, system_message_create, pcreate);
 
       }
 
@@ -5680,7 +5654,7 @@ namespace aura
 
    //   }
 
-   //   /*set_enum_name(::type_null      , "null");
+   //   /*set_enum_name(::e_type_null      , "null");
    //   set_enum_name(::type_empty     , "is_empty");
    //   set_enum_name(::type_string    , "string");
    //   set_enum_name(::type_int32   , "integer");

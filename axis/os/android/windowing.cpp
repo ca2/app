@@ -1101,7 +1101,7 @@ void android_mouse(unsigned int message, float x, float y)
 // void android_mouse_move(float x, float y)
 // {
 
-//    android_mouse(WM_MOUSEMOVE, x, y);
+//    android_mouse(e_message_mouse_move, x, y);
 
 // }
 
@@ -1474,7 +1474,7 @@ CLASS_DECL_AXIS ::estatus os_message_box(oswindow oswindow, const char * pText, 
    while (System.oslocal().m_iMessageBoxResult > 0)
    {
 
-      if (!thread_sleep(100_ms))
+      if (!task_sleep(100_ms))
       {
 
          return -1;
@@ -1532,7 +1532,7 @@ CLASS_DECL_AXIS ::estatus os_message_box(oswindow oswindow, const char * pText, 
    while (System.oslocal().m_iMessageBoxResult <= 0)
    {
 
-      if (!thread_sleep(100_ms))
+      if (!task_sleep(100_ms))
       {
 
          return -1;

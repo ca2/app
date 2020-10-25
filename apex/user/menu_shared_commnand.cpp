@@ -10,7 +10,7 @@ menu_shared_command::menu_shared_command(int* pestatus) :
 }
 
 
-void menu_shared_command::Enable(bool bOn, const ::action_context& context)
+void menu_shared_command::enable(bool bOn, const ::action_context& context)
 {
 
    if (bOn)

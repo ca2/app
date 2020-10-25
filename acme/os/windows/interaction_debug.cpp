@@ -7,7 +7,7 @@
 #define STATE_WINDOW_DEACTIVATING 3
 #define STATE_WINDOW_ACTIVATING 4
 
-bool __windows_message_bypass(oswindow oswindow, UINT message, WPARAM wparam, LPARAM lparam, LRESULT & lresult, UINT * puia)
+bool __windows_message_bypass(oswindow oswindow, const ::id & id, WPARAM wparam, LPARAM lparam, LRESULT & lresult, UINT * puia)
 {
 
    for (int i = 0; puia[i] != -1; i++)
@@ -43,10 +43,10 @@ namespace windows
 {
 
 
-   bool interaction_impl::__windows_message_bypass(oswindow oswindow, UINT message, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
+   bool interaction_impl::__windows_message_bypass(oswindow oswindow, const ::id & id, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
    {
 
-      //if (message == WM_MOUSEMOVE)
+      //if (message == e_message_mouse_move)
       //{
 
       //   //output_debug_string("mm.");
@@ -186,7 +186,7 @@ namespace windows
          if (__windows_message_bypass(oswindow, message, wparam, lparam, lresult, g_puiaMessageWindowActivating))
          {
 
-            if (message == WM_SETFOCUS)
+            if (message == e_message_set_focus)
             {
 
                pimpl->m_iState1 = STATE_WINDOW_CREATED;
@@ -222,7 +222,7 @@ namespace windows
 
       str.Format("%s", get_message_text(message, true).c_str(), wparam, lparam);
 
-      if (message == WM_ACTIVATE)
+      if (message == e_message_activate)
       {
 
          if (LOWORD(wparam) == WA_ACTIVE)

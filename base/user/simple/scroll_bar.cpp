@@ -41,13 +41,13 @@ simple_scroll_bar::~simple_scroll_bar()
 void simple_scroll_bar::install_message_routing(::channel * pchannel)
 {
    ::user::interaction::install_message_routing(pchannel);
-   IGUI_MSG_LINK(WM_CREATE, pchannel, this, &simple_scroll_bar::_001OnCreate);
-   IGUI_MSG_LINK(WM_DESTROY, pchannel, this, &simple_scroll_bar::_001OnDestroy);
-   IGUI_MSG_LINK(WM_SHOWWINDOW, pchannel, this, &simple_scroll_bar::_001OnShowWindow);
-   IGUI_MSG_LINK(WM_MOUSEMOVE, pchannel, this, &simple_scroll_bar::_001OnMouseMove);
-   IGUI_MSG_LINK(WM_LBUTTONDOWN, pchannel, this, &simple_scroll_bar::_001OnLButtonDown);
-   IGUI_MSG_LINK(WM_LBUTTONUP, pchannel, this, &simple_scroll_bar::_001OnLButtonUp);
-   IGUI_MSG_LINK(WM_HSCROLL, pchannel, this, &simple_scroll_bar::_001OnHScroll);
+   MESSAGE_LINK(e_message_create, pchannel, this, &simple_scroll_bar::_001OnCreate);
+   MESSAGE_LINK(e_message_destroy, pchannel, this, &simple_scroll_bar::_001OnDestroy);
+   MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &simple_scroll_bar::_001OnShowWindow);
+   MESSAGE_LINK(e_message_mouse_move, pchannel, this, &simple_scroll_bar::_001OnMouseMove);
+   MESSAGE_LINK(WM_LBUTTONDOWN, pchannel, this, &simple_scroll_bar::_001OnLButtonDown);
+   MESSAGE_LINK(WM_LBUTTONUP, pchannel, this, &simple_scroll_bar::_001OnLButtonUp);
+   MESSAGE_LINK(WM_HSCROLL, pchannel, this, &simple_scroll_bar::_001OnHScroll);
 
 }
 

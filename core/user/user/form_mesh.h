@@ -89,7 +89,7 @@ namespace user
       DECL_GEN_SIGNAL(_001OnHScroll);
       DECL_GEN_SIGNAL(_001OnKeyDown);
 
-      virtual bool _001OnMouseActivate(::user::interaction_impl * pDesktopWnd,UINT nHitTest,UINT message,LRESULT & iResult);
+      virtual bool _001OnMouseActivate(::user::interaction_impl * pDesktopWnd,UINT nHitTest,const ::id & id,LRESULT & iResult);
 
 
       virtual void install_message_routing(::channel * pchannel) override;

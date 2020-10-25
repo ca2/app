@@ -1,12 +1,12 @@
 #include "framework.h"
 
 
-promise::promise(::matter * pmatter, ::future future) :
-   m_pelement(pmatter),
+promise::promise(::matter * pmatter, const ::future & future) :
+   m_pmatter(pmatter),
    m_future(future)
 {
 
-   task::start(this);
+   ::task::launch(this);
 
 }
 
@@ -20,9 +20,7 @@ promise::~promise()
 ::estatus promise::on_task()
 {
 
-   m_future.send(m_pelement->realize());
-
-   //delete this;
+   m_future(m_pmatter->realize());
 
    return ::success;
 

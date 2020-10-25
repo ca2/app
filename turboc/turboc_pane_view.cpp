@@ -44,7 +44,7 @@ namespace turboc
 
       ::userex::pane_tab_view::install_message_handling(pchannel);
 
-	   IGUI_WIN_MSG_LINK(WM_CREATE, pchannel, this, &pane_view::_001OnCreate);
+	   IGUI_WIN_MSG_LINK(e_message_create, pchannel, this, &pane_view::_001OnCreate);
 
    }
 

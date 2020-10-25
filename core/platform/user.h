@@ -800,7 +800,7 @@
 //      virtual void add_frame(::user::interaction * pwnd);
 //      virtual void remove_frame(::user::interaction * pwnd);
 //
-//      virtual bool send_message_to_windows(UINT message, WPARAM wparam, LPARAM lparam); // with tbs in <3
+//      virtual bool send_message_to_windows(const ::id & id, WPARAM wparam, LPARAM lparam); // with tbs in <3
 //
 //      virtual bool route_message_to_windows(::message::message * pmessage); // with tbs in <3
 //
@@ -817,7 +817,7 @@
 //      virtual ::user::document * place_hold(::user::interaction * pinteraction);
 //
 //
-//      virtual bool post_message(UINT message, WPARAM wParam = 0, lparam lParam = 0) override;
+//      virtual bool post_message(const ::id & id, WPARAM wParam = 0, lparam lParam = 0) override;
 //
 //
 //      //virtual ::draw2d::icon * set_icon(object * pobject, ::draw2d::icon * picon, bool bBigIcon);

@@ -185,7 +185,7 @@ Function _systemSplashWndCB
    IntCmp $5 ${WM_CLOSE} m_Close
    IntCmp $5 ${WM_TIMER} m_Timer
    IntCmp $5 ${WM_LBUTTONDOWN} m_Lbtn
-   IntCmp $5 ${WM_CREATE} m_Create
+   IntCmp $5 ${e_message_create} m_Create
    IntCmp $5 ${WM_PAINT} m_Paint
    goto default
 

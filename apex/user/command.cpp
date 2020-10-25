@@ -20,12 +20,13 @@ namespace user
    }
 
 
-   command::command(const ::id & id)
+   command::command(const ::id & id) : 
+      context_object(id)
    {
 
       common_construct();
-      m_id.m_emessagetype           = ::message::type_command;
-      m_id                          = id;
+
+      m_id.set_compounded_type(::id::e_type_command);
       m_bRadioChanged               = false;
 
    }
@@ -148,7 +149,7 @@ namespace user
 
    //}
 
-   void command::Enable(bool bOn, const ::action_context & context)
+   void command::enable(bool bOn, const ::action_context & context)
    {
 
       if(m_pmenu != nullptr)

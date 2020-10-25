@@ -23,14 +23,14 @@ void simple_list_header_control::install_message_routing(::channel * pchannel)
 {
    ::user::list_header::install_message_routing(pchannel);
 #ifdef WINDOWS_DESKTOP
-   IGUI_MSG_LINK(HDN_ENDTRACK, pchannel, this, &simple_list_header_control::_001OnEndTrack);
-   IGUI_MSG_LINK(HDN_TRACK, pchannel, this, &simple_list_header_control::_001OnTrack);
-   IGUI_MSG_LINK(HDN_ENDDRAG, pchannel, this, &simple_list_header_control::_001OnEndDrag);
+   MESSAGE_LINK(HDN_ENDTRACK, pchannel, this, &simple_list_header_control::_001OnEndTrack);
+   MESSAGE_LINK(HDN_TRACK, pchannel, this, &simple_list_header_control::_001OnTrack);
+   MESSAGE_LINK(HDN_ENDDRAG, pchannel, this, &simple_list_header_control::_001OnEndDrag);
 #endif
-   IGUI_MSG_LINK(WM_CREATE, pchannel, this, &simple_list_header_control::_001OnCreate);
-   //IGUI_MSG_LINK(WM_LBUTTONDOWN, pchannel, this, &simple_list_header_control::_001OnLButtonDown);
-   //IGUI_MSG_LINK(WM_LBUTTONUP, pchannel, this, &simple_list_header_control::_001OnLButtonUp);
-   //IGUI_MSG_LINK(WM_MOUSEMOVE, pchannel, this, &simple_list_header_control::_001OnMouseMove);
+   MESSAGE_LINK(e_message_create, pchannel, this, &simple_list_header_control::_001OnCreate);
+   //MESSAGE_LINK(WM_LBUTTONDOWN, pchannel, this, &simple_list_header_control::_001OnLButtonDown);
+   //MESSAGE_LINK(WM_LBUTTONUP, pchannel, this, &simple_list_header_control::_001OnLButtonUp);
+   //MESSAGE_LINK(e_message_mouse_move, pchannel, this, &simple_list_header_control::_001OnMouseMove);
 }
 
 /*i32 simple_list_header_control::GetItemWidth(i32 iItem)

@@ -791,7 +791,7 @@ struct win_handle;
 struct win_handle
 {
 
-   enum e_type
+   enum enum_type
    {
 
       type_file,
@@ -799,7 +799,7 @@ struct win_handle
 
    };
 
-   e_type m_etype;
+   enum_type m_etype;
 
 
    struct file

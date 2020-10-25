@@ -258,13 +258,13 @@ void object::dev_log(string strMessage) const
 }
 
 
-array < ::method >* object::methods(const ::id & idMethod)
+array < ::method >* object::methods(const ::id & id)
 {
 
    if (m_pmeta)
    {
 
-      auto p = m_pmeta->m_methodmap.plookup(idMethod);
+      auto p = m_pmeta->m_mapMethod.plookup(id);
 
       if (p)
       {
@@ -286,7 +286,7 @@ array < ::future >* object::futures(const ::id & idFuture)
    if (m_pmeta)
    {
 
-      auto p = m_pmeta->m_futuremap.plookup(idFuture);
+      auto p = m_pmeta->m_mapFuture.plookup(idFuture);
 
       if (p)
       {
@@ -302,21 +302,21 @@ array < ::future >* object::futures(const ::id & idFuture)
 }
 
 
-void object::call(const ::id & idMethod)
+void object::call_method(const ::id & id)
 {
 
-   auto pprocedures = methods(idMethod);
+   auto pmethoda = methods(id);
 
-   if(pprocedures)
+   if(pmethoda)
    {
 
-      pprocedures->pred_each([](auto& f) {f.call(); });
+      pmethoda->pred_each([](auto& method) {method(); });
 
    }
 
 }
 
-void object::send(const ::id & idFuture, const ::var& var)
+void object::send_future(const ::id & idFuture, const ::var& var)
 {
 
    auto pcallbacks = futures(idFuture);
@@ -324,41 +324,41 @@ void object::send(const ::id & idFuture, const ::var& var)
    if(pcallbacks)
    {
 
-      pcallbacks->pred_each([&var](auto& f) {f.send(var); });
+      pcallbacks->pred_each([&var](auto& f) {f(var); });
 
    }
 
 }
 
 
-void object::add(const ::method & method)
+void object::add_method(const ::id & id, const ::method & method)
 {
 
-   meta()->m_methodmap[method.m_id].add(method);
+   meta()->m_mapMethod[id].add(method);
 
 }
 
 
-void object::add(const ::future & future)
+void object::add_future(const ::id & id, const ::future & future)
 {
 
-   meta()->m_futuremap[future.m_id].add(future);
+   meta()->m_mapFuture[id].add(future);
 
 }
 
 
-void object::add_methods_from(const ::id &idMethod, ::object* pobjectSource)
+void object::add_methods_from(const ::id &id, ::object* pobjectSource)
 {
 
    if (pobjectSource)
    {
 
-      auto pprocedures = pobjectSource->methods(idMethod);
+      auto pprocedures = pobjectSource->methods(id);
 
       if (pprocedures)
       {
 
-         meta()->m_methodmap[idMethod].add(*pprocedures);
+         meta()->m_mapMethod[id].add(*pprocedures);
 
       }
 
@@ -367,18 +367,18 @@ void object::add_methods_from(const ::id &idMethod, ::object* pobjectSource)
 }
 
 
-void object::add_futures_from(const ::id & idFuture, ::object * pobjectSource)
+void object::add_futures_from(const ::id & id, ::object * pobjectSource)
 {
 
    if (pobjectSource)
    {
 
-      auto pcallbacks = pobjectSource->futures(idFuture);
+      auto pcallbacks = pobjectSource->futures(id);
 
       if (pcallbacks)
       {
 
-         meta()->m_futuremap[idFuture].add(*pcallbacks);
+         meta()->m_mapFuture[id].add(*pcallbacks);
 
       }
 
@@ -829,10 +829,10 @@ void object::system(const char * pszProjectName)
 }
 
 
-::estatus object::call()
+::estatus object::operator()()
 {
 
-   return ::context_object::call();
+   return ::context_object::operator()();
 
 }
 
@@ -1187,32 +1187,32 @@ void object::start()
    if (has(e_object_synchro))
    {
 
-      call();
+      operator()();
 
    }
    else
    {
 
-      fork([this] {call(); });
+      ::task::launch(this);
 
    }
 
 }
 
 
-void object::single_fork(const runnable_array & runnablea)
+void object::single_fork(const method_array & methoda)
 {
 
-   fork([runnablea]()
+   fork([methoda]()
    {
 
-      for(auto & pobjectTask : runnablea)
+      for(auto & method : methoda)
       {
 
          try
          {
 
-            pobjectTask->call();
+            method();
 
          }
          catch (...)
@@ -1227,16 +1227,16 @@ void object::single_fork(const runnable_array & runnablea)
 }
 
 
-void object::multiple_fork(const runnable_array & runnablea)
+void object::multiple_fork(const method_array & methoda)
 {
 
-   for (auto & pobjectTask : runnablea)
+   for (auto & method : methoda)
    {
 
-      fork([pobjectTask]()
+      fork([method]()
          {
 
-            pobjectTask->call();
+            method();
 
          });
 
@@ -1449,7 +1449,7 @@ void object::_001OnUpdate(::message::message * pmessage)
 void object::install_message_routing(::channel * pchannel)
 {
 
-   IGUI_MSG_LINK(message_update, pchannel, this, &::object::_001OnUpdate);
+   MESSAGE_LINK(e_message_system_update, pchannel, this, &::object::_001OnUpdate);
 
 }
 
@@ -1660,19 +1660,19 @@ bool __no_continue(::estatus estatus)
 }
 
 
-::estatus call_sync(const runnable_array & runnablea)
+::estatus call_sync(const method_array & methoda)
 {
 
    try
    {
 
-      for (auto & pobjectTask : runnablea)
+      for (auto & method : methoda)
       {
 
          try
          {
 
-            auto estatus = pobjectTask->call();
+            auto estatus = method();
 
             if (__no_continue(estatus))
             {
@@ -1758,7 +1758,7 @@ string object::get_text(const var& var, const ::id& id)
 
    auto psession = get_context_session();
 
-   future.m_id = DIALOG_RESULT_FUTURE;
+   //future.m_id = DIALOG_RESULT_FUTURE;
 
    if (::is_set(psession))
    {

@@ -198,7 +198,7 @@ namespace aura
 
 #ifdef WINDOWS_DESKTOP
 
-      UINT                                         m_uiWindowsTaskbarCreatedMessage;
+      enum_message                                 m_emessageWindowsTaskbarCreatedMessage;
 
 #endif
 
@@ -319,7 +319,7 @@ namespace aura
       virtual ::estatus verb() override; // ambigous inheritance from ::aura::system/::axis::application
 
 
-      virtual bool is_system() const override;
+      //virtual bool is_system() const override;
 
 
       virtual string crypto_md5_text(const string & str) override;
@@ -544,7 +544,7 @@ namespace aura
       virtual ::apex::library * get_library(const char * pszLibrary, bool bOpenCa2 = false) override;
 
 
-      virtual UINT os_post_to_all_threads(UINT uiMessage,WPARAM wparam = 0,lparam lparam = 0) override;
+      virtual UINT os_post_to_all_threads(const ::id & id,WPARAM wparam = 0,lparam lparam = 0) override;
 
 
       //virtual void session_add(index iEdge, ::apex::session * psession) overr;

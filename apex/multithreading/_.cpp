@@ -134,7 +134,7 @@ namespace multithreading
          try
          {
 
-            pair.element1()->finalize();
+            pair.element1()->set_finish();
 
          }
          catch (...)
@@ -147,7 +147,7 @@ namespace multithreading
    }
 
 
-   CLASS_DECL_APEX void post_to_all_threads(UINT message, WPARAM wparam, LPARAM lparam)
+   CLASS_DECL_APEX void post_to_all_threads(const ::id & id, WPARAM wparam, LPARAM lparam)
    {
 
       sync_lock sl(&::get_context_system()->m_mutexThread);
@@ -158,7 +158,7 @@ namespace multithreading
          try
          {
 
-            pair.element1()->post_message(message, wparam, lparam);
+            pair.element1()->post_message(id, wparam, lparam);
 
          }
          catch (...)
@@ -757,7 +757,7 @@ void thread_ptra::wait(const duration & duration, sync_lock & sl)
 }
 
 
-CLASS_DECL_APEX ::estatus call(::layered * pobjectContext)
+CLASS_DECL_APEX ::estatus call(const ::method & method)
 {
 
    ::estatus estatus;
@@ -765,7 +765,7 @@ CLASS_DECL_APEX ::estatus call(::layered * pobjectContext)
    try
    {
 
-      estatus = pobjectContext->call();
+      estatus = method();
 
    }
    catch (...)

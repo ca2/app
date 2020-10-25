@@ -58,7 +58,7 @@ namespace userex
             m_tickStart.Now();
 
          }
-         else if(pevent->m_eevent == ::user::event_timer)
+         else if(pevent->m_eevent == ::user::e_event_timer)
          {
             
             if(pevent->m_etimer == e_timer_reload)

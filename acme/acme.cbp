@@ -643,12 +643,13 @@
 		<Unit filename="multithreading/sync_result.h" />
 		<Unit filename="multithreading/sync_task.cpp" />
 		<Unit filename="multithreading/sync_task.h" />
+		<Unit filename="multithreading/task.cpp" />
+		<Unit filename="multithreading/task.h" />
 		<Unit filename="multithreading/thread.cpp" />
 		<Unit filename="multithreading/thread_impl.h" />
 		<Unit filename="multithreading/thread_os.cpp" />
 		<Unit filename="multithreading/thread_os.h" />
 		<Unit filename="multithreading/thread_parameter.h" />
-		<Unit filename="multithreading/update_task.cpp" />
 		<Unit filename="multithreading/update_task.h" />
 		<Unit filename="multithreading/wait_future.cpp" />
 		<Unit filename="node/_.h" />
@@ -837,6 +838,7 @@
 		<Unit filename="os/linux/linux_linux.h" />
 		<Unit filename="os/linux/list_serial_ports.cpp" />
 		<Unit filename="os/linux/lock.cpp" />
+		<Unit filename="os/linux/multithreading.cpp" />
 		<Unit filename="os/linux/os.cpp" />
 		<Unit filename="os/linux/process.cpp" />
 		<Unit filename="os/linux/process.h" />
@@ -970,6 +972,7 @@
 		<Unit filename="platform/net.cpp" />
 		<Unit filename="platform/net.h" />
 		<Unit filename="platform/number.h" />
+		<Unit filename="platform/obj_ref_dbg.cpp" />
 		<Unit filename="platform/obj_ref_dbg.h" />
 		<Unit filename="platform/obj_typ_ctr.cpp" />
 		<Unit filename="platform/obj_typ_ctr.h" />
@@ -1000,11 +1003,20 @@
 		<Unit filename="platform/text.cpp" />
 		<Unit filename="platform/theme.h" />
 		<Unit filename="platform/tick.h" />
+		<Unit filename="platform/timeout.h" />
+		<Unit filename="platform/timer.cpp" />
 		<Unit filename="platform/timer.h" />
+		<Unit filename="platform/timer_array.cpp" />
 		<Unit filename="platform/timer_array.h" />
+		<Unit filename="platform/timer_callback.cpp" />
 		<Unit filename="platform/timer_callback.h" />
+		<Unit filename="platform/timer_event.cpp" />
 		<Unit filename="platform/timer_event.h" />
+		<Unit filename="platform/timer_item.cpp" />
 		<Unit filename="platform/timer_item.h" />
+		<Unit filename="platform/timer_task.cpp" />
+		<Unit filename="platform/timer_task.h" />
+		<Unit filename="platform/title.h" />
 		<Unit filename="platform/trace.h" />
 		<Unit filename="platform/trace_category.cpp" />
 		<Unit filename="platform/trace_category.h" />
@@ -1269,6 +1281,8 @@
 		<Unit filename="primitive/primitive/aaa_want_to_remove_stick.h" />
 		<Unit filename="primitive/primitive/aaa_want_to_remove_topic_text_string.h" />
 		<Unit filename="primitive/primitive/aaa_want_to_remove_transport_object.h" />
+		<Unit filename="primitive/primitive/action.cpp" />
+		<Unit filename="primitive/primitive/action.h" />
 		<Unit filename="primitive/primitive/action_context.h" />
 		<Unit filename="primitive/primitive/application_bias.cpp" />
 		<Unit filename="primitive/primitive/application_bias.h" />
@@ -1278,6 +1292,8 @@
 		<Unit filename="primitive/primitive/block.cpp" />
 		<Unit filename="primitive/primitive/block.h" />
 		<Unit filename="primitive/primitive/cflag.h" />
+		<Unit filename="primitive/primitive/change.cpp" />
+		<Unit filename="primitive/primitive/change.h" />
 		<Unit filename="primitive/primitive/collection.h" />
 		<Unit filename="primitive/primitive/collection_file.h" />
 		<Unit filename="primitive/primitive/command.cpp" />
@@ -1288,8 +1304,6 @@
 		<Unit filename="primitive/primitive/context_object_traits.cpp" />
 		<Unit filename="primitive/primitive/edit.cpp" />
 		<Unit filename="primitive/primitive/edit.h" />
-		<Unit filename="primitive/primitive/matter.cpp" />
-		<Unit filename="primitive/primitive/matter.h" />
 		<Unit filename="primitive/primitive/element_array.cpp" />
 		<Unit filename="primitive/primitive/element_array.h" />
 		<Unit filename="primitive/primitive/enum.h" />
@@ -1320,6 +1334,8 @@
 		<Unit filename="primitive/primitive/match.cpp" />
 		<Unit filename="primitive/primitive/match.h" />
 		<Unit filename="primitive/primitive/math_math.h" />
+		<Unit filename="primitive/primitive/matter.cpp" />
+		<Unit filename="primitive/primitive/matter.h" />
 		<Unit filename="primitive/primitive/member.h" />
 		<Unit filename="primitive/primitive/memory.cpp" />
 		<Unit filename="primitive/primitive/memory.h" />
@@ -1352,9 +1368,10 @@
 		<Unit filename="primitive/primitive/shared_memory.cpp" />
 		<Unit filename="primitive/primitive/shared_memory.h" />
 		<Unit filename="primitive/primitive/simple_object.h" />
+		<Unit filename="primitive/primitive/source.cpp" />
+		<Unit filename="primitive/primitive/source.h" />
 		<Unit filename="primitive/primitive/stick.h" />
 		<Unit filename="primitive/primitive/str.h" />
-		<Unit filename="primitive/primitive/task.cpp" />
 		<Unit filename="primitive/primitive/task.h" />
 		<Unit filename="primitive/primitive/trait.h" />
 		<Unit filename="primitive/primitive/trait_pred.h" />
@@ -1373,6 +1390,7 @@
 		<Unit filename="primitive/primitive/var_element.cpp" />
 		<Unit filename="primitive/primitive/virtual_memory.cpp" />
 		<Unit filename="primitive/primitive/virtual_memory.h" />
+		<Unit filename="primitive/primitive/work.cpp" />
 		<Unit filename="primitive/string/_.cpp" />
 		<Unit filename="primitive/string/_.h" />
 		<Unit filename="primitive/string/___ch_impl.h" />
@@ -1513,10 +1531,6 @@
 		<Unit filename="user/os_colors.h" />
 		<Unit filename="version/version.config.h" />
 		<Unit filename="version/version.h" />
-		<Extensions>
-			<code_completion />
-			<envvars />
-			<debugger />
-		</Extensions>
+		<Extensions />
 	</Project>
 </CodeBlocks_project_file>

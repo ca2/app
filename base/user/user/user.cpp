@@ -295,7 +295,7 @@ namespace base
    }
 
 
-   void user::SendMessageToWindows(UINT message,WPARAM wparam,LPARAM lparam)
+   void user::SendMessageToWindows(const ::id & id,WPARAM wparam,LPARAM lparam)
    {
 
 
@@ -314,9 +314,9 @@ namespace base
             if (pinteraction != nullptr && pinteraction->is_window())
             {
 
-               pinteraction->send_message(message, wparam, lparam);
+               pinteraction->send_message(id, wparam, lparam);
 
-               pinteraction->send_message_to_descendants(message, wparam, lparam);
+               pinteraction->send_message_to_descendants(id, wparam, lparam);
 
             }
 
@@ -398,7 +398,7 @@ namespace base
 
          pinteraction->set_button_style(::user::button::style_image_and_text);
 
-         e_image eimage = (e_image)pitem->m_pmenu->value("image_transform").i32();
+         enum_image eimage = (enum_image)pitem->m_pmenu->value("image_transform").i32();
 
          ::image_pointer pimage = pitem->m_pimage + eimage;
 

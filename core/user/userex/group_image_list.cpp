@@ -53,7 +53,7 @@ namespace userex
 
       ::user::impact::install_message_routing(pchannel);
 
-      IGUI_MSG_LINK(WM_CREATE, pchannel, this, &group_image_list_view::_001OnCreate);
+      MESSAGE_LINK(e_message_create, pchannel, this, &group_image_list_view::_001OnCreate);
 
 
    }

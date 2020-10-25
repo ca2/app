@@ -21,7 +21,7 @@ public:
    void get_column_data(string_array & stra,index iColumn);
    void set_data(::user::mesh * pmesh,string_array & stra);
    void set_column_data(::user::mesh * pmesh,string_array & stra,index iColumn);
-   void Enable(bool bEnable);
+   void enable(bool bEnable);
    void set_item_text(::user::mesh * pmesh,index iItem,index iSubItem,const char * pcsz);
 
 

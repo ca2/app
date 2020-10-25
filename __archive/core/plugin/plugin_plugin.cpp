@@ -1125,9 +1125,9 @@ namespace plugin
 
          m_puiHost->place(rectWindow);
 
-         m_puiHost->send_message(WM_SIZE);
+         m_puiHost->send_message(e_message_size);
 
-         m_puiHost->send_message(WM_MOVE);
+         m_puiHost->send_message(e_message_move);
 
          m_puiHost->on_layout(::draw2d::graphics_pointer & pgraphics);
 

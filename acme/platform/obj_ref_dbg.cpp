@@ -126,7 +126,7 @@ void matter::dec_ref_history(matter* p, const char* /*pszObjRefDbgNotUsedCurrent
 
    cslock sl(&::acme::g_csRefDbg);
 
-   if (m_pobjrefdbg == nullptr || m_countReference <= 0 || m_pobjrefdbg->m_itema.isEmpty())
+   if (::is_null(m_pobjrefdbg) || m_countReference <= 0 || m_pobjrefdbg->m_itema.isEmpty())
    {
 
       return;

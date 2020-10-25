@@ -96,7 +96,7 @@ namespace user
 
       virtual bool update_data(bool bSaveAndValidate) override;
 
-      virtual void set_font_list_type(::draw2d::font_list::e_type etype);
+      virtual void set_font_list_type(::draw2d::font_list::enum_type etype);
 
 
    };

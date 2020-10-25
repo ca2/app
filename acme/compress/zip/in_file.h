@@ -62,10 +62,10 @@ namespace zip
       virtual bool zip_open(::zip::file * pzfile,const char * pcszFileName);
 
 
-      virtual bool unzip_open(::file::file * pfile, const string_array & = {}, int iBufferLevel = 2, ::file::e_type * petype = nullptr);
+      virtual bool unzip_open(::file::file * pfile, const string_array & = {}, int iBufferLevel = 2, ::file::enum_type * petype = nullptr);
       virtual bool unzip_open(::zip::file * pzfile,const char * pcszFileName);
 
-      //virtual bool unzip_open(const char *, ::file::e_type * petype = nullptr);
+      //virtual bool unzip_open(const char *, ::file::enum_type * petype = nullptr);
 
       virtual bool locate(const char * pszFileName);
 

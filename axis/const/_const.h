@@ -38,9 +38,9 @@ enum enum_factory
 #define OK SUCCESS
 
 
-#define UPDATE_MESSAGE WM_APP + 256
-#define SYSTEM_MESSAGE WM_APP + 257
-#define EVENT_MESSAGE WM_APP + 258
+#define e_message_update WM_APP + 256
+#define e_message_system WM_APP + 257
+#define e_message_event WM_APP + 258
 
 
 
@@ -114,12 +114,12 @@ enum e_default_init
 };
 
 
-enum e_type
+enum enum_type
 {
    /// special meaning
    type_parareturn = 0,
    type_new,
-   type_null,
+   e_type_null,
    type_key_exists,
    type_empty,
    type_empty_argument,

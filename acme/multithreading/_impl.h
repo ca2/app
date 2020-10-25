@@ -199,20 +199,20 @@ inline bool pred_Sleep(int iTime, PRED pred)
 
 
 
-template < typename PRED >
-auto sync_pred(void (* pfnBranch )(::matter * pobjectTask, e_priority), PRED pred, ::duration durationTimeout, e_priority epriority)
-{
-
-   auto pobjectTask = __sync_pred(pred);
-
-   pfnBranch(pobjectTask, epriority);
-
-   pobjectTask->m_event.wait(durationTimeout);
-
-   return pobjectTask;
-
-}
-
+//template < typename PRED >
+//auto sync_pred(void (* pfnBranch )(::matter * pobjectTask, e_priority), PRED pred, ::duration durationTimeout, e_priority epriority)
+//{
+//
+//   auto pobjectTask = __sync_pred(pred);
+//
+//   pfnBranch(pobjectTask, epriority);
+//
+//   pobjectTask->m_event.wait(durationTimeout);
+//
+//   return pobjectTask;
+//
+//}
+//
 
 //template < typename PRED >
 //::thread * fork(PRED pred)
@@ -230,7 +230,7 @@ template < typename PRED >
 void async_pred(void (* pfnBranch )(::matter * pobjectTask, e_priority), PRED pred, e_priority epriority)
 {
 
-   auto pobjectTask = __pred_method(pred);
+   auto pobjectTask = method(pred);
 
    pfnBranch(pobjectTask, epriority);
 

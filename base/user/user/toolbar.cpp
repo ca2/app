@@ -68,15 +68,15 @@ namespace user
 
       ::user::control_bar::install_message_routing(pchannel);
 
-      IGUI_MSG_LINK(WM_NCHITTEST, pchannel, this, &toolbar::_001OnNcHitTest);
-      IGUI_MSG_LINK(WM_NCCALCSIZE, pchannel, this, &toolbar::_001OnNcCalcSize);
+      MESSAGE_LINK(WM_NCHITTEST, pchannel, this, &toolbar::_001OnNcHitTest);
+      MESSAGE_LINK(WM_NCCALCSIZE, pchannel, this, &toolbar::_001OnNcCalcSize);
 #ifdef WINDOWS_DESKTOP
-      IGUI_MSG_LINK(TB_SETBITMAPSIZE, pchannel, this, &toolbar::_001OnSetBitmapSize);
-      IGUI_MSG_LINK(TB_SETBUTTONSIZE, pchannel, this, &toolbar::_001OnSetButtonSize);
+      MESSAGE_LINK(TB_SETBITMAPSIZE, pchannel, this, &toolbar::_001OnSetBitmapSize);
+      MESSAGE_LINK(TB_SETBUTTONSIZE, pchannel, this, &toolbar::_001OnSetButtonSize);
 #endif
-      IGUI_MSG_LINK(WM_SETTINGCHANGE, pchannel, this, &toolbar::_001OnPreserveZeroBorderHelper);
-      IGUI_MSG_LINK(WM_SETFONT, pchannel, this, &toolbar::_001OnPreserveZeroBorderHelper);
-      IGUI_MSG_LINK(WM_SYSCOLORCHANGE, pchannel, this, &toolbar::_001OnSysColorChange);
+      MESSAGE_LINK(WM_SETTINGCHANGE, pchannel, this, &toolbar::_001OnPreserveZeroBorderHelper);
+      MESSAGE_LINK(WM_SETFONT, pchannel, this, &toolbar::_001OnPreserveZeroBorderHelper);
+      MESSAGE_LINK(WM_SYSCOLORCHANGE, pchannel, this, &toolbar::_001OnSysColorChange);
 
    }
 

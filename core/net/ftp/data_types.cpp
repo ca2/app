@@ -192,7 +192,7 @@ namespace ftp
    command::info2 * command::info2::g_pTheOneAndOnly = nullptr;
 
    void command::info2::insert(enum_command enCommand, const string& strServerString, const string& strCompleteServerStringSyntax, UINT uiNumberOfParameters,
-                               UINT uiNumberOfOptionalParameters, TSpecificationEnum enSpecification, e_type enType)
+                               UINT uiNumberOfOptionalParameters, TSpecificationEnum enSpecification, enum_type enType)
    {
       set_at(enCommand, __new(extended_info(strServerString, strCompleteServerStringSyntax, uiNumberOfParameters,
                                 uiNumberOfOptionalParameters, enSpecification, enType)));

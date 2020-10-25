@@ -96,9 +96,9 @@ namespace user
       DECL_GEN_SIGNAL(_001OnDestroy);
       DECL_GEN_SIGNAL(_001OnShowWindow);
 
-      void send_message_to_descendants(UINT message,WPARAM wParam = 0,lparam lParam = 0,bool bDeep = true,bool bOnlyPerm = 0) override;
+      void send_message_to_descendants(const ::id & id,WPARAM wParam = 0,lparam lParam = 0,bool bDeep = true,bool bOnlyPerm = 0) override;
 
-      //virtual bool post_message(UINT uiMessage,WPARAM wparam,lparam lparam) override;
+      //virtual bool post_message(const ::id & id,WPARAM wparam,lparam lparam) override;
 
       virtual void set_viewport_org(::draw2d::graphics_pointer & pgraphics) override;
 

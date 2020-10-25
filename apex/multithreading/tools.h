@@ -42,13 +42,14 @@ public:
    virtual ::estatus initialize_tool_thread(::thread_group* pgroup);
 
 
-   virtual ::estatus     run() override;
+   virtual ::estatus run() override;
 
 
    bool set_pred(::pred_holder_base * ppred);
 
    void reset();
-   void start() override;
+   void set_ready();
+
 
 };
 
@@ -124,7 +125,7 @@ public:
    bool prepare(::enum_thread_op eop, ::count cIteration = 0);
    bool start();
    bool wait();
-   bool operator()();
+   bool process();
 
    bool add_pred(::pred_holder_base * ppred);
 

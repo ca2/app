@@ -589,7 +589,7 @@ i32 axis_sqlite_callback(void * res_ptr,i32 ncol, char** reslt,char** cols)
          if (reslt[i] == nullptr)
          {
 
-            var.set_type(::type_null);
+            var.set_type(::e_type_null);
 
          }
          else

@@ -60,11 +60,11 @@ namespace userex
 
       ::user::impact::install_message_routing(pchannel);
 
-      IGUI_MSG_LINK(WM_CREATE, pchannel, this, &home_view::_001OnCreate);
-      IGUI_MSG_LINK(WM_MOUSEMOVE, pchannel, this, &home_view::_001OnMouseMove);
-      IGUI_MSG_LINK(WM_LBUTTONDOWN, pchannel, this, &home_view::_001OnLButtonDown);
-      IGUI_MSG_LINK(WM_LBUTTONUP, pchannel, this, &home_view::_001OnLButtonUp);
-      IGUI_MSG_LINK(WM_SHOWWINDOW, pchannel, this, &home_view::_001OnShowWindow);
+      MESSAGE_LINK(e_message_create, pchannel, this, &home_view::_001OnCreate);
+      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &home_view::_001OnMouseMove);
+      MESSAGE_LINK(WM_LBUTTONDOWN, pchannel, this, &home_view::_001OnLButtonDown);
+      MESSAGE_LINK(WM_LBUTTONUP, pchannel, this, &home_view::_001OnLButtonUp);
+      MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &home_view::_001OnShowWindow);
 
    }
 

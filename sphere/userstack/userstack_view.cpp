@@ -38,12 +38,12 @@ namespace userstack
 
       ::user::impact::install_message_routing(pchannel);
 
-      IGUI_MSG_LINK(WM_DESTROY, pchannel, this, &view::_001OnDestroy);
-      IGUI_MSG_LINK(WM_PAINT, pchannel, this, &view::_001OnPaint);
-      IGUI_MSG_LINK(WM_CREATE, pchannel, this, &view::_001OnCreate);
-      IGUI_MSG_LINK(WM_CONTEXTMENU, pchannel, this, &view::_001OnContextMenu);
-      IGUI_MSG_LINK(WM_SETCURSOR, pchannel, this, &view::_001OnSetCursor);
-      IGUI_MSG_LINK(WM_LBUTTONUP, pchannel, this, &view::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_destroy, pchannel, this, &view::_001OnDestroy);
+      MESSAGE_LINK(WM_PAINT, pchannel, this, &view::_001OnPaint);
+      MESSAGE_LINK(e_message_create, pchannel, this, &view::_001OnCreate);
+      MESSAGE_LINK(WM_CONTEXTMENU, pchannel, this, &view::_001OnContextMenu);
+      MESSAGE_LINK(WM_SETCURSOR, pchannel, this, &view::_001OnSetCursor);
+      MESSAGE_LINK(WM_LBUTTONUP, pchannel, this, &view::_001OnLButtonUp);
 
 //
 
@@ -224,7 +224,7 @@ namespace userstack
       {
       case e_timer_backview:
       {
-         //gcom::backview::Interface::ImageChangePostEvent(gcom::backview::event_timer);
+         //gcom::backview::user_interaction::image_change_post_event(gcom::backview::event_timer);
       }
       break;
       }

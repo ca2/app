@@ -182,7 +182,7 @@ namespace user
 
       set_topic_text("window_thread_" + ::str::demangle(m_pimpl->m_puserinteraction->type_name()) + "> ");
 
-      ::thread_set_name(::str::demangle(m_pimpl->m_puserinteraction->type_name()));
+      ::set_thread_name(::str::demangle(m_pimpl->m_puserinteraction->type_name()));
 
 #ifdef WINDOWS_DESKTOP
 
@@ -311,9 +311,9 @@ namespace user
 
             }
 
-            TRACE(trace_category_appmsg, trace_level_information, string(type_name()) + " thread::pump_message - Received WM_QUIT.\n");
+            TRACE(trace_category_appmsg, trace_level_information, string(type_name()) + " thread::pump_message - Received e_message_quit.\n");
 
-            ::output_debug_string(string(type_name()) + " thread::pump_message - Received WM_QUIT.\n");
+            ::output_debug_string(string(type_name()) + " thread::pump_message - Received e_message_quit.\n");
 
             m_nDisablePumpCount++; // application must die
             // Note: prevents calling message loop things in 'exit_thread'
@@ -321,6 +321,21 @@ namespace user
             return false;
 
          }
+
+         if (m_message.message == e_message_quit)
+         {
+
+            if (m_pimpl 
+               && m_pimpl->m_puserinteraction->m_ewindowflag & window_flag_is_window
+               && ::thread::is_set_finish())
+            {
+
+               m_pimpl->m_puserinteraction->DestroyWindow();
+
+            }
+
+         }
+
 
          if(m_message.message == WM_LBUTTONDOWN)
          {
@@ -336,10 +351,10 @@ namespace user
          }
 
          if (m_message.message != WM_KICKIDLE
-            && m_message.message != WM_QUIT)
+            && m_message.message != e_message_quit)
          {
 
-            if (m_message.message == message_destroy_window && m_strDebugType.contains("notify_icon"))
+            if (m_message.message == e_message_destroy_window && m_strDebugType.contains("notify_icon"))
             {
 
                INFO("notify_icon");
@@ -399,7 +414,7 @@ namespace user
 
       MESSAGE & msg = m_message;
 
-      if (msg.message == ::message_redraw)
+      if (msg.message == ::e_message_redraw)
       {
 
          auto pinteraction = System.ui_from_handle(msg.hwnd);
@@ -422,7 +437,7 @@ namespace user
          else
          {
 
-         //   INFO("message_redraw pinteraction == nullptr");
+         //   INFO("e_message_redraw pinteraction == nullptr");
 
          }
 
@@ -480,7 +495,7 @@ catch(...)
             //__throw(todo("thread"));
 
              //short circuit for frequent messages
-         if (iMessage == message_apply_visual)
+         if (iMessage == e_message_apply_visual)
          {
 
                //__throw(todo("interaction"));
@@ -498,7 +513,7 @@ catch(...)
             }
 
          }
-         else if (iMessage == message_update_notify_icon)
+         else if (iMessage == e_message_update_notify_icon)
          {
 
             pbase->userinteraction()->route_message(pbase);
@@ -506,7 +521,7 @@ catch(...)
             return true;
 
          }
-         else if (iMessage == message_simple_command)
+         else if (iMessage == e_message_simple_command)
          {
 
             auto pinteraction = pbase->userinteraction();
@@ -517,7 +532,7 @@ catch(...)
 
          }
 
-         //if (iMessage > message_midi_sequence_event)
+         //if (iMessage > e_message_midi_sequence_event)
          //{
 
          //   return true;
@@ -578,7 +593,7 @@ catch(...)
             //   BOOL    fEaten;
 
                /*
-               Get the next message in the queue. fResult receives FALSE if WM_QUIT is encountered
+               Get the next message in the queue. fResult receives FALSE if e_message_quit is encountered
                */
 //            }
 
@@ -613,7 +628,7 @@ catch(...)
             //   DispatchMessage(&msg);
             //}
 
-            //if (WM_QUIT == msg.message)
+            //if (e_message_quit == msg.message)
             //{
             //   nReturn = (int)msg.wParam;
             //}
@@ -764,10 +779,17 @@ catch(...)
 
       m_evApplyVisual.ResetEvent();
 
-      m_pimpl->m_puserinteraction->post_message(message_apply_visual);
+      m_pimpl->m_puserinteraction->post_message(e_message_apply_visual);
 
    }
 
+
+   void thread::set_finish()
+   {
+
+      ::thread::set_finish();
+
+   }
 
 
    void thread::finalize()

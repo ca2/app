@@ -606,7 +606,7 @@ inline stream & __save_object(stream & stream, BASE_TYPE * p)
 //inline void __io(::stream & s, ::var & var) { s.io(var); }
 //
 //
-//inline void __io(::stream & s, const e_type & etype) { s.io(etype); }
+//inline void __io(::stream & s, const enum_type & etype) { s.io(etype); }
 //
 //
 //inline void __io(::stream & s, const char * psz) { s.io(psz); }
@@ -896,7 +896,7 @@ template < typename TYPE >
 inline var_stream & operator >> (var_stream & stream, TYPE & t)
 {
 
-   stream.defer_set_loading(); stream.exchange(::id::type_null, t);
+   stream.defer_set_loading(); stream.exchange(::id::e_type_null, t);
 
    return stream;
 
@@ -907,7 +907,7 @@ template < typename TYPE >
 inline var_stream & operator << (var_stream & stream, const TYPE & t)
 {
 
-   stream.defer_set_storing(); stream.exchange(::id::type_null, (TYPE &)t);
+   stream.defer_set_storing(); stream.exchange(::id::e_type_null, (TYPE &)t);
 
    return stream;
 
@@ -919,7 +919,7 @@ template < typename TYPE >
 inline text_stream & operator >> (text_stream & stream, TYPE & t)
 {
 
-   stream.defer_set_loading(); stream.exchange(::id::type_null, t);
+   stream.defer_set_loading(); stream.exchange(::id::e_type_null, t);
 
    return stream;
 
@@ -930,7 +930,7 @@ template < typename TYPE >
 inline text_stream & operator << (text_stream & stream, const TYPE & t)
 {
 
-   stream.defer_set_storing(); stream.exchange(::id::type_null, (TYPE &)t); return stream;
+   stream.defer_set_storing(); stream.exchange(::id::e_type_null, (TYPE &)t); return stream;
 
 }
 
@@ -1051,7 +1051,7 @@ inline binary_stream & operator >> (binary_stream & stream, TYPE & t)
 
    stream.defer_set_loading();
 
-   stream.stream_exchange(::id::type_null, t);
+   stream.stream_exchange(::id::e_type_null, t);
 
    return stream;
 
@@ -1064,7 +1064,7 @@ inline binary_stream & operator << (binary_stream & stream, const TYPE & t)
 
    stream.defer_set_storing();
 
-   stream.stream_exchange(::id::type_null, (TYPE &)t);
+   stream.stream_exchange(::id::e_type_null, (TYPE &)t);
 
    return stream;
 
@@ -1175,7 +1175,7 @@ inline void var_stream::var_exchange(const ::id & id, TYPE & t)
 
   ::var * pvar = m_pvar;
 
-  if (id.m_etype != id::type_null)
+  if (id.m_etype != id::e_type_null)
   {
 
      m_pvar = &m_pvar->operator[](id);

@@ -123,7 +123,7 @@ namespace multithreading
 
 
 
-//CLASS_DECL_APEX bool thread_set_name(const char * psz);
+//CLASS_DECL_APEX bool set_thread_name(const char * psz);
 //CLASS_DECL_APEX bool set_thread_name(HTHREAD hthread, const char* pszName);
 
 // Use instead of PostQuitMessage in OLE server applications
@@ -267,7 +267,7 @@ public:
 //CLASS_DECL_APEX u32 random_processor_index_generator();
 
 
-//CLASS_DECL_APEX int_bool post_message(oswindow oswindow, UINT message, WPARAM wparam, LPARAM lparam);
+//CLASS_DECL_APEX int_bool post_message(oswindow oswindow, const ::id & id, WPARAM wparam, LPARAM lparam);
 
 
 
@@ -308,25 +308,32 @@ string get_thread_name(HTHREAD hthread);
 // Use instead of PostQuitMessage in OLE server applications
 CLASS_DECL_APEX void __post_quit_message(i32 nExitCode);
 
+
 #if !defined(_UWP)
-template < typename PRED >
-inline void main_async(PRED pred, e_priority epriority = priority_normal)
+
+
+
+inline void main_async(const ::method & method, e_priority epriority = priority_normal)
 {
 
-   async_pred(&main_branch, pred, epriority);
+   main_branch(method, epriority);
 
 }
+
+
 #endif
 
 
-template < typename PRED >
-inline void main_sync(PRED pred, ::duration durationTimeout = one_minute(), e_priority epriority = priority_normal)
+inline void main_sync(const method & method, const ::duration & duration = one_minute(), e_priority epriority = priority_normal)
 {
 
-   sync_pred(&main_branch, pred, durationTimeout, epriority);
+   auto pmethod = ___sync_method(method);
+
+   main_branch(pmethod, epriority);
+
+   pmethod->wait(duration);
 
 }
-
 
 
 

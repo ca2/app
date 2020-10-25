@@ -167,10 +167,10 @@ namespace uwp
 
 #endif   // WINVER >= 0x0500
 
-      LRESULT send_message(UINT message, WPARAM wParam = 0, lparam lParam = nullptr);
-      bool post_message(UINT message, WPARAM wParam = 0, lparam lParam = nullptr);
+      LRESULT send_message(const ::id & id, WPARAM wParam = 0, lparam lParam = nullptr);
+      bool post_message(const ::id & id, WPARAM wParam = 0, lparam lParam = nullptr);
 
-      bool SendNotifyMessage(UINT message, WPARAM wParam, LPARAM lParam);
+      bool SendNotifyMessage(const ::id & id, WPARAM wParam, LPARAM lParam);
       bool SendChildNotifyLastMsg(LRESULT* pResult = nullptr);
 
       bool DragDetect(POINT pt) const;
@@ -335,7 +335,7 @@ namespace uwp
       virtual ::user::interaction_impl * GetNextDlgGroupItem(::user::interaction_impl * pWndCtl, bool bPrevious = FALSE) const;
       virtual ::user::interaction_impl * GetNextDlgTabItem(::user::interaction_impl * pWndCtl, bool bPrevious = FALSE) const;
       virtual UINT IsDlgButtonChecked(int nIDButton) const;
-      virtual LRESULT SendDlgItemMessage(int nID, UINT message, WPARAM wParam = 0, LPARAM lParam = 0);
+      virtual LRESULT SendDlgItemMessage(int nID, const ::id & id, WPARAM wParam = 0, LPARAM lParam = 0);
       virtual void SetDlgItemInt(int nID, UINT nValue, bool bSigned = TRUE);
       virtual void SetDlgItemText(int nID, const char * lpszString);
 
@@ -470,7 +470,7 @@ namespace uwp
       void OnMove(int x, int y);
       DECL_GEN_SIGNAL(_001OnPaint);
       DECL_GEN_SIGNAL(_001OnPrint);
-      void OnParentNotify(UINT message, LPARAM lParam);
+      void OnParentNotify(const ::id & id, LPARAM lParam);
       HCURSOR OnQueryDragIcon();
       bool OnQueryEndSession();
       bool OnQueryNewPalette();
@@ -535,7 +535,7 @@ namespace uwp
       void OnMButtonDblClk(UINT nFlags, const ::point & point);
       void OnMButtonDown(UINT nFlags, const ::point & point);
       void OnMButtonUp(UINT nFlags, const ::point & point);
-      int OnMouseActivate(::user::interaction_impl * pDesktopWnd, UINT nHitTest, UINT message);
+      int OnMouseActivate(::user::interaction_impl * pDesktopWnd, UINT nHitTest, const ::id & id);
       void OnMouseMove(UINT nFlags, const ::point & point);
       bool OnMouseWheel(UINT nFlags, short zDelta, const ::point & point);
       LRESULT OnRegisteredMouseWheel(WPARAM wParam, LPARAM lParam);
@@ -601,19 +601,19 @@ namespace uwp
 
       // for processing Windows messages
       virtual void message_handler(::message::base * pbase);
-      //virtual bool OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* pResult);
+      //virtual bool OnWndMsg(const ::id & id, WPARAM wParam, LPARAM lParam, LRESULT* pResult);
 
       // for handling default processing
       LRESULT Default();
-      virtual LRESULT DefWindowProc(UINT message, WPARAM wParam, lparam lParam);
+      virtual LRESULT DefWindowProc(const ::id & id, WPARAM wParam, lparam lParam);
 
       // for custom cleanup after WM_NCDESTROY
       virtual void PostNcDestroy();
 
       // for notifications from parent
-      virtual bool OnChildNotify(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* pResult);
+      virtual bool OnChildNotify(const ::id & id, WPARAM wParam, LPARAM lParam, LRESULT* pResult);
       // return TRUE if parent should not process this message
-      bool ReflectChildNotify(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* pResult);
+      bool ReflectChildNotify(const ::id & id, WPARAM wParam, LPARAM lParam, LRESULT* pResult);
       static bool ReflectLastMsg(oswindow hWndChild, LRESULT* pResult = nullptr);
 
       virtual bool CheckAutoCenter();

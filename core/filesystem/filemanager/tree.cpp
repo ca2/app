@@ -503,9 +503,9 @@ namespace filemanager
 
       ::userfs::tree::install_message_routing(pchannel);
 
-      IGUI_MSG_LINK(MessageMainPost, pchannel,  this,  &tree::_001OnMainPostMessage);
-      IGUI_MSG_LINK(WM_CONTEXTMENU, pchannel, this, &tree::_001OnContextMenu);
-      IGUI_MSG_LINK(WM_CREATE, pchannel, this, &tree::_001OnCreate);
+      MESSAGE_LINK(MessageMainPost, pchannel,  this,  &tree::_001OnMainPostMessage);
+      MESSAGE_LINK(WM_CONTEXTMENU, pchannel, this, &tree::_001OnContextMenu);
+      MESSAGE_LINK(e_message_create, pchannel, this, &tree::_001OnCreate);
 
    }
 
@@ -657,7 +657,7 @@ namespace filemanager
 
             m_iAnimate = 0;
 
-            ptimer->m_ptimercallback->remove(ptimer);
+            ptimer->m_ptimercallback->remove_timer(ptimer);
 
          }
 

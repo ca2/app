@@ -177,7 +177,7 @@ bool defer_process_x_message(HTHREAD hthread, LPMESSAGE lpMsg, oswindow interact
             {
 
                lpMsg->hwnd          = oswindow_get(display, e.xbutton.interaction_impl);
-               lpMsg->message       = WM_MOUSEMOVE;
+               lpMsg->message       = e_message_mouse_move;
                lpMsg->wParam        = 0;
                lpMsg->lParam        = MAKELONG(e.xmotion.x_root, e.xmotion.y_root);
 
@@ -188,7 +188,7 @@ bool defer_process_x_message(HTHREAD hthread, LPMESSAGE lpMsg, oswindow interact
             {
 
                lpMsg->hwnd          = oswindow_get(display, e.xdestroywindow.interaction_impl);
-               lpMsg->message       = WM_DESTROY;
+               lpMsg->message       = e_message_destroy;
 
                bRet                 = true;
 
@@ -510,7 +510,7 @@ int get_current_process_affinity_order()
 
 
 
-bool thread_set_name(const char * psz)
+bool set_thread_name(const char * psz)
 {
 
    string strName(psz);

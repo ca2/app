@@ -4,7 +4,7 @@
 //{
 //
 //
-//   enum e_type
+//   enum enum_type
 //   {
 //      type_undefined,
 //      type_pen,
@@ -13,9 +13,9 @@
 //      type_font,
 //   };
 //
-//   enum e_type      m_etype;
+//   enum enum_type      m_etype;
 //
-///*   gdi_object(e_type etype = type_undefined) :
+///*   gdi_object(enum_type etype = type_undefined) :
 //      m_etype(etype)
 //   {
 //   }*/

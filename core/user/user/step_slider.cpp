@@ -32,11 +32,11 @@ namespace user
    void step_slider::install_message_routing(::channel * pchannel)
    {
       ::user::interaction::install_message_routing(pchannel);
-      IGUI_MSG_LINK(WM_CREATE, pchannel, this, &step_slider::_001OnCreate);
-//      //IGUI_MSG_LINK(WM_TIMER, pchannel, this, &step_slider::_001OnTimer);
-      IGUI_MSG_LINK(WM_LBUTTONDOWN, pchannel, this, &step_slider::_001OnLButtonDown);
-      IGUI_MSG_LINK(WM_LBUTTONUP, pchannel, this, &step_slider::_001OnLButtonUp);
-      IGUI_MSG_LINK(WM_MOUSEMOVE, pchannel, this, &step_slider::_001OnMouseMove);
+      MESSAGE_LINK(e_message_create, pchannel, this, &step_slider::_001OnCreate);
+//      //MESSAGE_LINK(WM_TIMER, pchannel, this, &step_slider::_001OnTimer);
+      MESSAGE_LINK(WM_LBUTTONDOWN, pchannel, this, &step_slider::_001OnLButtonDown);
+      MESSAGE_LINK(WM_LBUTTONUP, pchannel, this, &step_slider::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &step_slider::_001OnMouseMove);
    }
 
    void step_slider::_001OnCreate(::message::message * pmessage)

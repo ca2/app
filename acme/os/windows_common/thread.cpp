@@ -271,7 +271,7 @@ CLASS_DECL_ACME int get_processor_count()
 }
 
 
-bool thread_set_name(const char * pszThreadName)
+bool set_thread_name(const char * pszThreadName)
 {
 
    return set_thread_name(::GetCurrentThread(), pszThreadName);

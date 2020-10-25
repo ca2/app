@@ -20,7 +20,6 @@ namespace message
    public:
 
 
-      id                         m_id;
       __pointer(route_array)     m_proutea;
       __pointer(channel)         m_pchannel;
       wparam                     m_wparam;
@@ -36,15 +35,30 @@ namespace message
       ::action_context           m_actioncontext;
 
 
-      message();
-      message(::message::e_type etype);
+      message(const ::id& id = ::id()) : context_object(id) { common_construct(); }
       virtual ~message();
 
 
-      void common_construct(::message::e_type etype = ::message::type_null);
+      inline void common_construct()
+      {
+
+         m_pchannel = nullptr;
+         m_wparam = 0;
+         m_iRouteIndex = -1;
+         m_iParam = 0;
+         m_bRet = false;
+         m_uiMessageFlags = 0;
+         m_estatus = ::success;
+         m_lresult = 0;
+
+      }
 
 
-      inline bool is_message() { return m_id.m_emessagetype == ::message::type_message; }
+
+      //void common_construct(enum_message emessage = ::e_message_null);
+
+
+      //inline bool is_message() { return m_emessage == ::message::e_type_message; }
 
 
       inline auto route_message() { m_proutea.m_p->m_pData[m_iRouteIndex].m_p->m_pmessageable.m_p->on_message(this); return m_bRet; }
@@ -54,7 +68,7 @@ namespace message
       bool previous(); // returns bRet
 
       virtual void set_lresult(LRESULT lresult);
-      virtual void set(::layered * playeredUserPrimitive, UINT uiMessage, WPARAM wparam, ::lparam lparam);
+      virtual void set(::layered * playeredUserPrimitive, const ::id & id, WPARAM wparam, ::lparam lparam);
 
 
    };

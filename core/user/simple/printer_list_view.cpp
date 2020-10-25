@@ -25,7 +25,7 @@ void simple_printer_list_view::install_message_routing(::channel * pchannel)
 {
 
    simple_list_view::install_message_routing(pchannel);
-   IGUI_MSG_LINK(WM_CREATE, pchannel, this, &simple_printer_list_view::_001OnCreate);
+   MESSAGE_LINK(e_message_create, pchannel, this, &simple_printer_list_view::_001OnCreate);
 
 }
 
@@ -96,7 +96,8 @@ bool simple_printer_list_view::on_click(const ::user::item & itemClick)
    pprinttask->add_ref(OBJ_REF_DBG_THIS);
    pprinttask->m_pprinter = Application.get_printer(item.m_strText);
    pprinttask->m_pinteraction = m_pview;
-   ::task::start(pprinttask);
+
+   ::task::launch(pprinttask);
    
    return true;
 

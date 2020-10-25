@@ -82,7 +82,7 @@ namespace user
 
       auto pdocument = open_document_file(
          pimpactdata->m_pplaceholder->get_context_application(),
-         ::type_null,
+         ::e_type_null,
          true,
          pimpactdata->m_pplaceholder);
 

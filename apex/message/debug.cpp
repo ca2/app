@@ -14,13 +14,13 @@ CLASS_DECL_APEX string get_message_text(UINT uMessage, bool bWithNumbers)
       str = "-1";
    }
    else __msg_entry(WM_NULL)
-else __msg_entry(WM_CREATE)
-else __msg_entry(WM_DESTROY)
-else __msg_entry(WM_MOVE)
-else __msg_entry(WM_SIZE)
-else __msg_entry(WM_ACTIVATE)
-else __msg_entry(WM_SETFOCUS)
-else __msg_entry(WM_KILLFOCUS)
+else __msg_entry(e_message_create)
+else __msg_entry(e_message_destroy)
+else __msg_entry(e_message_move)
+else __msg_entry(e_message_size)
+else __msg_entry(e_message_activate)
+else __msg_entry(e_message_set_focus)
+else __msg_entry(e_message_kill_focus)
 else __msg_entry(WM_ENABLE)
 else __msg_entry(WM_SETREDRAW)
 else __msg_entry(WM_SETTEXT)
@@ -31,7 +31,7 @@ else __msg_entry(WM_CLOSE)
 else __msg_entry(WM_QUERYENDSESSION)
 else __msg_entry(WM_QUERYOPEN)
 else __msg_entry(WM_ENDSESSION)
-else __msg_entry(WM_QUIT)
+else __msg_entry(e_message_quit)
 else __msg_entry(WM_ERASEBKGND)
 else __msg_entry(WM_SYSCOLORCHANGE)
 else __msg_entry(WM_SHOWWINDOW)
@@ -105,7 +105,7 @@ else __msg_entry(WM_GETDLGCODE)
 
 else __msg_entry(WM_SYNCPAINT)//)//      0x0088
 
-else __msg_entry(WM_NCMOUSEMOVE)//)//      0x00A0
+else __msg_entry(e_message_non_client_mouse_move)//)//      0x00A0
 else __msg_entry(WM_NCLBUTTONDOWN)//)//      0x00A1
 else __msg_entry(WM_NCLBUTTONUP)//)//      0x00A2
 else __msg_entry(WM_NCLBUTTONDBLCLK)//)//      0x00A3
@@ -187,10 +187,10 @@ return str;
 UINT g_puiaMessageMouseMove[] =
 {
 
-   WM_MOUSEMOVE,
+   e_message_mouse_move,
    WM_SETCURSOR,
    WM_NCHITTEST,
-   WM_NCMOUSEMOVE,
+   e_message_non_client_mouse_move,
    (UINT)-1
 };
 
@@ -198,9 +198,9 @@ UINT g_puiaMessageWindowDeactivating[] =
 {
    // 2019-06-28-00-28
    WM_NCACTIVATE,
-   WM_ACTIVATE,
+   e_message_activate,
    WM_ACTIVATEAPP,
-   WM_KILLFOCUS,
+   e_message_kill_focus,
    WM_IME_SETCONTEXT,
    WM_IME_NOTIFY,
    (UINT)-1
@@ -214,10 +214,10 @@ UINT g_puiaMessageWindowActivating[] =
    WM_ACTIVATEAPP,
    WM_NCACTIVATE,
    WM_SYSCOMMAND,
-   WM_ACTIVATE,
+   e_message_activate,
    WM_IME_SETCONTEXT,
    WM_IME_NOTIFY,
-   WM_SETFOCUS,
+   e_message_set_focus,
 
 
    (UINT)-1
@@ -231,26 +231,26 @@ UINT f[] =
    WM_GETMINMAXINFO,
    WM_NCCREATE,
    WM_NCCALCSIZE,
-   WM_CREATE,
+   e_message_create,
    WM_SETICON,
    WM_SETTEXT,
-   WM_SIZE,
-   WM_MOVE,
+   e_message_size,
+   e_message_move,
    WM_SHOWWINDOW,
    WM_WINDOWPOSCHANGING,
    WM_ACTIVATEAPP,
    WM_NCACTIVATE,
-   WM_ACTIVATE,
+   e_message_activate,
    WM_IME_SETCONTEXT,
    WM_IME_NOTIFY,
-   WM_SETFOCUS,
+   e_message_set_focus,
    WM_NCPAINT,
    WM_ERASEBKGND,
    WM_WINDOWPOSCHANGED,
    WM_GETICON,
    WM_DWMNCRENDERINGCHANGED,
    WM_PAINT,
-   message_redraw,
+   e_message_redraw,
    (UINT)-1
 };
 

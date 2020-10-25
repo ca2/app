@@ -37,12 +37,12 @@
 //      //      ::user::impact::install_message_routing(pchannel);
 //      ::user::box::install_message_routing(pchannel);
 //
-//      IGUI_MSG_LINK(WM_CREATE, pchannel, this, &::user::interaction::_001OnCreate);
-//      //      IGUI_MSG_LINK(WM_MOUSEMOVE, pchannel, this, &::user::interaction::_001OnMouseMove);
+//      MESSAGE_LINK(e_message_create, pchannel, this, &::user::interaction::_001OnCreate);
+//      //      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &::user::interaction::_001OnMouseMove);
 //      //
 //      //#ifdef WINDOWS
 //      //
-//      //      IGUI_MSG_LINK(WM_MOUSELEAVE, pchannel, this, &::user::interaction::_001OnMouseLeave);
+//      //      MESSAGE_LINK(WM_MOUSELEAVE, pchannel, this, &::user::interaction::_001OnMouseLeave);
 //      //
 //      //#else
 //      //
@@ -50,11 +50,11 @@
 //      //
 //      //#endif
 //      //
-//      IGUI_MSG_LINK(WM_KEYDOWN, pchannel, this, &::user::interaction::_001OnKeyDown);
+//      MESSAGE_LINK(WM_KEYDOWN, pchannel, this, &::user::interaction::_001OnKeyDown);
 //
-//      IGUI_MSG_LINK(WM_ENABLE, pchannel, this, &::user::interaction::_001OnEnable);
-//      IGUI_MSG_LINK(WM_SETFOCUS, pchannel, this, &::user::interaction::_001OnSetFocus);
-//      IGUI_MSG_LINK(WM_KILLFOCUS, pchannel, this, &::user::interaction::_001OnKillFocus);
+//      MESSAGE_LINK(WM_ENABLE, pchannel, this, &::user::interaction::_001OnEnable);
+//      MESSAGE_LINK(e_message_set_focus, pchannel, this, &::user::interaction::_001OnSetFocus);
+//      MESSAGE_LINK(e_message_kill_focus, pchannel, this, &::user::interaction::_001OnKillFocus);
 //
 //
 //
@@ -116,7 +116,7 @@
 //   }
 //
 //
-//   bool control::_003CallCustomWindowProc(__pointer(::user::interaction) pwnd, UINT message, WPARAM wparam, LPARAM lparam, LRESULT& lresult)
+//   bool control::_003CallCustomWindowProc(__pointer(::user::interaction) pwnd, const ::id & id, WPARAM wparam, LPARAM lparam, LRESULT& lresult)
 //
 //   {
 //
@@ -512,7 +512,7 @@
 //   }
 //
 //
-//   void control_cmd_ui::Enable(bool bOn)
+//   void control_cmd_ui::enable(bool bOn)
 //   {
 //
 //      m_bEnableChanged = TRUE;
@@ -730,10 +730,10 @@
 ////
 ////#ifdef WINDOWS
 ////
-////         UINT uiMessage = ((wParam >> 16) & 0xffff);
+////         const ::id & id = ((wParam >> 16) & 0xffff);
 ////
 ////
-////         if (uiMessage == BN_CLICKED)
+////         if (emessage == BN_CLICKED)
 ////         {
 ////            //xxx id idCommand = m_commandui.GetControlCommand(wParam & 0xffff);
 ////            //::user::command command(idCommand);

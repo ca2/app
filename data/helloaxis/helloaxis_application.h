@@ -12,7 +12,7 @@ namespace helloaxis
       public:
 
 
-         enum e_type
+         enum enum_type
          {
 
             type_normal,
@@ -20,7 +20,7 @@ namespace helloaxis
 
          };
 
-         e_type                                 m_etype;
+         enum_type                                 m_etype;
          string                                 m_strHelloAxis;
          string                                 m_strHelloAxisDefault;
          string                                 m_strAlternateHelloAxis;

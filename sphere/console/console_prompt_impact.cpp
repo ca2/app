@@ -34,10 +34,10 @@ namespace console
 
       ::user::impact::install_message_routing(pchannel);
 
-      IGUI_MSG_LINK(WM_CREATE,pchannel,this,&prompt_impact::_001OnCreate);
-      IGUI_MSG_LINK(WM_KEYDOWN,pchannel,this,&prompt_impact::_001OnKeyDown);
-      IGUI_MSG_LINK(WM_KEYUP,pchannel,this,&prompt_impact::_001OnKeyUp);
-      IGUI_MSG_LINK(WM_SHOWWINDOW,pchannel,this,&prompt_impact::_001OnShowWindow);
+      MESSAGE_LINK(e_message_create,pchannel,this,&prompt_impact::_001OnCreate);
+      MESSAGE_LINK(WM_KEYDOWN,pchannel,this,&prompt_impact::_001OnKeyDown);
+      MESSAGE_LINK(WM_KEYUP,pchannel,this,&prompt_impact::_001OnKeyUp);
+      MESSAGE_LINK(WM_SHOWWINDOW,pchannel,this,&prompt_impact::_001OnShowWindow);
 
    }
 

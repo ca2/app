@@ -19,18 +19,18 @@ namespace simple_shader
    }
 
 
-   bool ::update::is_type_of(e_type e_type)
+   bool ::update::is_type_of(enum_type enum_type)
    {
 
-      return m_etype == e_type;
+      return m_etype == enum_type;
 
    }
 
 
-   void ::update::set_type(e_type e_type)
+   void ::update::set_type(enum_type enum_type)
    {
 
-      m_etype = e_type;
+      m_etype = enum_type;
 
    }
 

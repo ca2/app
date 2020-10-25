@@ -31,7 +31,7 @@ namespace user
       bool                                m_bAutoSaveModified;
 
       string                              m_strSaveFileExtension;
-      id_map < runnable_array >           m_mapRunnablea;
+      id_map < method_array >             m_mapMethod;
 
 
       document();

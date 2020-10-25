@@ -591,7 +591,7 @@ namespace core
 
       }
 
-      future.send(pbox->m_idResponse);
+      future(pbox->m_idResponse);
 
       return ::success;
 
@@ -607,7 +607,7 @@ namespace core
 
       propertyset["message"] = pszMessage;
 
-      pbox->add(future);
+      pbox->add_future(DIALOG_RESULT_FUTURE, future);
 
       if (::is_set(puiOwner))
       {
@@ -728,7 +728,7 @@ namespace core
 
       pbox->value("message") = pszMessage;
 
-      pbox->add(future);
+      pbox->add_future(DIALOG_RESULT_FUTURE, future);
 
       string strTitle = App(__object(pobjectContext)).get_title();
 
@@ -952,7 +952,7 @@ namespace core
 
       User.will_use_view_hint(COLORSEL_IMPACT);
 
-      auto pdocument = m_mapimpactsystem[COLORSEL_IMPACT]->open_document_file(puiOwner->get_context_application(), ::type_null, __visible(true));
+      auto pdocument = m_mapimpactsystem[COLORSEL_IMPACT]->open_document_file(puiOwner->get_context_application(), ::e_type_null, __visible(true));
 
       __pointer(::userex::color_view) pview = pdocument->get_typed_view < ::userex::color_view >();
 

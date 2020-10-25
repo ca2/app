@@ -1005,17 +1005,15 @@ namespace user
    }
 
 
-   LRESULT primitive::send_message(UINT uiMessage,WPARAM wparam,lparam lparam)
-
+   LRESULT primitive::send_message(const ::id & id,WPARAM wparam,lparam lparam)
    {
 
-      return message_call(uiMessage, wparam, lparam);
-
+      return message_call(id, wparam, lparam);
 
    }
 
 
-   LRESULT primitive::message_call(UINT uiMessage, WPARAM wparam, lparam lparam)
+   LRESULT primitive::message_call(const ::id & id, WPARAM wparam, lparam lparam)
    {
 
       return 0;
@@ -1110,7 +1108,7 @@ namespace user
    }
 
 
-   void primitive::send_message_to_descendants(UINT message,WPARAM wparam,lparam lparam,bool bDeep,bool bOnlyPerm)
+   void primitive::send_message_to_descendants(const ::id & id,WPARAM wparam,lparam lparam,bool bDeep,bool bOnlyPerm)
 
    {
 
@@ -2149,7 +2147,7 @@ namespace user
    }
 
 
-   bool primitive::post_message(UINT uiMessage,WPARAM wparam,lparam lparam)
+   bool primitive::post_message(const ::id & id,WPARAM wparam,lparam lparam)
    {
 
       ::exception::throw_interface_only();
@@ -2715,7 +2713,7 @@ namespace user
    }
 
 
-   ::user::primitive::e_type primitive::get_window_type()
+   ::user::primitive::enum_type primitive::get_window_type()
    {
 
       return type_window;
@@ -3189,7 +3187,7 @@ namespace user
    bool primitive::post_simple_command(const e_simple_command & ecommand, lparam lparam)
    {
 
-      post_message(message_simple_command, (WPARAM)ecommand, lparam);
+      post_message(e_message_simple_command, (WPARAM)ecommand, lparam);
 
       return true;
 
@@ -3211,12 +3209,12 @@ namespace user
    }
 
 
-   __pointer(::message::base) primitive::get_message_base(UINT uiMessage, WPARAM wparam, lparam lparam)
+   __pointer(::message::base) primitive::get_message_base(const ::id & id, WPARAM wparam, lparam lparam)
    {
 
       __pointer(::message::base) pbase;
 
-      auto eprototype = ::message::get_message_prototype(uiMessage, 0);
+      auto eprototype = ::message::get_message_prototype(id, 0);
 
       switch (eprototype)
       {
@@ -3352,18 +3350,17 @@ namespace user
 
       }
 
-      pbase->set(this, uiMessage, wparam, lparam);
-
+      pbase->set(this, id, wparam, lparam);
 
       return pbase;
 
    }
 
 
-   bool primitive::call_message_handler(UINT message, WPARAM wparam, lparam lparam, LRESULT * plresult)
+   bool primitive::call_message_handler(const ::id & id, WPARAM wparam, lparam lparam, LRESULT * plresult)
    {
 
-      auto pbase = get_message_base(message, wparam, lparam);
+      auto pbase = get_message_base(id, wparam, lparam);
 
       try
       {

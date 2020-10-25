@@ -20,7 +20,7 @@ void simple_tree_view::install_message_routing(::channel * pchannel)
 
    ::user::impact::install_message_routing(pchannel);
    ::user::tree::install_message_routing(pchannel);
-   IGUI_MSG_LINK(WM_CREATE, pchannel, this, &simple_tree_view::_001OnCreate);
+   MESSAGE_LINK(e_message_create, pchannel, this, &simple_tree_view::_001OnCreate);
 
 }
 

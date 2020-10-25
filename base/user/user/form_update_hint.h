@@ -11,7 +11,7 @@ namespace user
    public:
 
 
-      enum e_type
+      enum enum_type
       {
          type_browse,
          type_after_browse,
@@ -20,7 +20,7 @@ namespace user
 
 
       __pointer(::user::form)           m_pform;
-      e_type                     m_etype;
+      enum_type                     m_etype;
       string                     m_strForm;
       ::action::action_context          m_actioncontext;
 

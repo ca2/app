@@ -418,10 +418,10 @@ namespace user
    void list_header::install_message_routing(::channel * pchannel)
    {
       ::user::box::install_message_routing(pchannel);
-      IGUI_MSG_LINK(WM_LBUTTONDOWN, pchannel, this, &list_header::_001OnLButtonDown);
-      IGUI_MSG_LINK(WM_LBUTTONUP, pchannel, this, &list_header::_001OnLButtonUp);
-      IGUI_MSG_LINK(WM_LBUTTONDBLCLK, pchannel, this, &list_header::_001OnLButtonDblClk);
-      IGUI_MSG_LINK(WM_MOUSEMOVE, pchannel, this, &list_header::_001OnMouseMove);
+      MESSAGE_LINK(WM_LBUTTONDOWN, pchannel, this, &list_header::_001OnLButtonDown);
+      MESSAGE_LINK(WM_LBUTTONUP, pchannel, this, &list_header::_001OnLButtonUp);
+      MESSAGE_LINK(WM_LBUTTONDBLCLK, pchannel, this, &list_header::_001OnLButtonDblClk);
+      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &list_header::_001OnMouseMove);
    }
 
    void list_header::_001OnLButtonDown(::message::message * pmessage)

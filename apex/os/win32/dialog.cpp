@@ -79,12 +79,12 @@ namespace win32
 
 #ifdef WINDOWS
 
-   INT_PTR CALLBACK dialog::DialogProc(HWND hwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam)
+   INT_PTR CALLBACK dialog::DialogProc(HWND hwnd, UINT message, WPARAM wparam, LPARAM lparam)
    {
 
       dialog * pdialog;
 
-      if (uiMessage == WM_INITDIALOG)
+      if (message == WM_INITDIALOG)
       {
 
          SetWindowLongPtr(hwnd, GWLP_USERDATA, lparam);
@@ -104,7 +104,7 @@ namespace win32
       if (pdialog != nullptr)
       {
 
-         return pdialog->on_dialog_message(uiMessage, wparam, lparam);
+         return pdialog->on_dialog_message((enum_message) message, wparam, lparam);
 
       }
 
@@ -112,10 +112,18 @@ namespace win32
 
    }
 
-   INT_PTR dialog::on_dialog_message(UINT uiMessage, WPARAM wparam, LPARAM lparam)
+
+   INT_PTR dialog::on_dialog_message(const ::id & id, WPARAM wparam, LPARAM lparam)
    {
 
-      if (uiMessage == WM_INITDIALOG)
+      if (!id.is_message())
+      {
+
+         __throw(invalid_argument_exception);
+
+      }
+
+      if (id == WM_INITDIALOG)
       {
 
          if (!on_init_dialog())
@@ -128,8 +136,9 @@ namespace win32
          return true;
 
       }
-      else if (uiMessage == WM_COMMAND)
+      else if (id == WM_COMMAND)
       {
+
          if (m_bCreated)
          {
 
@@ -146,16 +155,16 @@ namespace win32
          }
 
       }
-      else if (uiMessage == WM_NOTIFY)
+      else if (id == WM_NOTIFY)
       {
 
          on_notify((NMHDR *)lparam);
+
       }
-      else if (uiMessage == WM_CLOSE)
+      else if (id == WM_CLOSE)
       {
 
          on_close();
-
 
          return 1;
 

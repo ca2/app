@@ -4,7 +4,7 @@
 #endif
 
 
-CLASS_DECL_AURA int_bool mq_post_message(oswindow oswindow, UINT message, WPARAM wparam, LPARAM lparam)
+CLASS_DECL_AURA int_bool mq_post_message(oswindow oswindow, const ::id & id, WPARAM wparam, LPARAM lparam)
 {
 
    ::user::interaction* pinteraction = oswindow_interaction(oswindow);
@@ -25,7 +25,7 @@ CLASS_DECL_AURA int_bool mq_post_message(oswindow oswindow, UINT message, WPARAM
 
    }
 
-   if (!pmq->post_message(oswindow, message, wparam, lparam))
+   if (!pmq->post_message(oswindow, id, wparam, lparam))
    {
 
       return FALSE;
@@ -70,10 +70,10 @@ CLASS_DECL_AURA int_bool mq_remove_window_from_all_queues(oswindow oswindow)
 
    sync_lock ml(pmq->mutex());
 
-   pmq->m_messagea.pred_remove([=](MESSAGE & item)
+   pmq->m_messagea.pred_remove([=](mq_message & item)
    {
 
-      return item.hwnd == oswindow;
+      return item.m_message.hwnd == oswindow;
 
    });
 

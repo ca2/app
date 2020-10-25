@@ -147,7 +147,7 @@ namespace userex
 
       ::user::tab_view::install_message_routing(pchannel);
 
-      IGUI_MSG_LINK(WM_CREATE, pchannel, this, &pane_tab_view::_001OnCreate);
+      MESSAGE_LINK(e_message_create, pchannel, this, &pane_tab_view::_001OnCreate);
 
       connect_command("file_save_as", &pane_tab_view::_001OnFileSaveAs);
       connect_command_probe("file_save_as", &pane_tab_view::_001OnUpdateFileSaveAs);
@@ -230,7 +230,7 @@ namespace userex
 
       auto pdocument = m_pimpactdata->m_pdocument;
 
-      pcommand->Enable(::is_set(pdocument));
+      pcommand->enable(::is_set(pdocument));
 
    }
 
@@ -452,8 +452,8 @@ namespace userex
 
          //pcreate->m_pusercreate
 
-//         auto pdocument = User.m_mapimpactsystem[FONTSEL_IMPACT]->do_request(get_context_application(), ::type_null, false, pimpactdata->m_pplaceholder);
-         auto pdocument = User.m_mapimpactsystem[FONTSEL_IMPACT]->open_document_file(get_context_application(), ::type_null, __visible(true), pimpactdata->m_pplaceholder);
+//         auto pdocument = User.m_mapimpactsystem[FONTSEL_IMPACT]->do_request(get_context_application(), ::e_type_null, false, pimpactdata->m_pplaceholder);
+         auto pdocument = User.m_mapimpactsystem[FONTSEL_IMPACT]->open_document_file(get_context_application(), ::e_type_null, __visible(true), pimpactdata->m_pplaceholder);
 
          m_pfontview = pdocument->get_typed_view < font_view >();
 
@@ -475,7 +475,7 @@ namespace userex
 
          auto pimpactsystem = userex.m_mapimpactsystem[COLORSEL_IMPACT];
 
-         auto pdocument = pimpactsystem->open_document_file(get_context_application(), ::type_null, __visible(false), pimpactdata->m_pplaceholder);
+         auto pdocument = pimpactsystem->open_document_file(get_context_application(), ::e_type_null, __visible(false), pimpactdata->m_pplaceholder);
 
          m_pcolorview = pdocument->get_typed_view < color_view >();
 
@@ -513,7 +513,7 @@ namespace userex
                && value("filemanager_toolbar").m_etype == ::type_propset)
          {
 
-            auto & set = (*this)("filemanager_toolbar").propset();
+            auto & set = value("filemanager_toolbar").propset();
 
             if (set[::userfs::mode_normal].is_set())
                pfilemanagerdata->m_setToolbar[::userfs::mode_normal] = set[::userfs::mode_normal];

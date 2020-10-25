@@ -34,7 +34,7 @@ namespace user
 
       connect_command("app_exit", &frame::_001OnAppExit);
 
-      IGUI_MSG_LINK(WM_APPEXIT, pchannel, this, &frame::_001OnAppExit);
+      MESSAGE_LINK(WM_APPEXIT, pchannel, this, &frame::_001OnAppExit);
 
    }
 
@@ -235,7 +235,7 @@ void menu_shared_idle(::user::frame * pframe)
       if(pitem)
       {
 
-         ::message::id id(pmenushared->m_ppszId[i],::message::type_command_probe);
+         ::id id(::id::e_type_command_probe, pmenushared->m_ppszId[i]);
 
          menu_shared_command command(&pmenushared->m_statusa[i]);
 

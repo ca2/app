@@ -705,14 +705,14 @@ namespace axis
 
       }
 
-      if (!InitializeLocalDataCentral())
-      {
+      //if (!InitializeLocalDataCentral())
+      //{
 
-         message_box("Could not initialize Local data central");
+      //   message_box("Could not initialize Local data central");
 
-         return ::error_failed;
+      //   return ::error_failed;
 
-      }
+      //}
 
       return estatus;
 

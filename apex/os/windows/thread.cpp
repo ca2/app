@@ -209,17 +209,10 @@ bool __os_term_thread()
 }
 
 
-
-
-CLASS_DECL_APEX void main_branch(::matter* pobjectTask, e_priority epriority)
+CLASS_DECL_APEX void main_branch(matter * pmatter, e_priority epriority)
 {
 
-   ::get_context_system()->synch_pred([pobjectTask]()
-      {
-
-         pobjectTask->call();
-
-      });
+   ::get_context_system()->sync_pred(pmatter);
 
 }
 

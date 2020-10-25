@@ -19,7 +19,7 @@ namespace userex
 //   public:
 //
 //
-//      enum e_type
+//      enum enum_type
 //      {
 //
 //         type_none,
@@ -31,7 +31,7 @@ namespace userex
 //
 //
 //      string         m_strView;
-//      e_type         m_etype;
+//      enum_type         m_etype;
 //
 //
 //      ::update();

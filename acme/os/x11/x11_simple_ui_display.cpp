@@ -660,11 +660,11 @@ int simple_ui_display::show()
 
          m_pdraw = XftDrawCreate(pdisplay, m_window, m_pvisual, m_colormap);
 
-         system_call_update(id_dark_mode);
+         system_update(id_dark_mode);
 
          on_alloc_colors(pdisplay);
 
-         ::update_task::add(id_dark_mode, this);
+         system_update(id_dark_mode, this);
 
          on_layout(pdisplay);
 
@@ -893,7 +893,7 @@ void simple_ui_display::close_window()
 
    unhook();
 
-   ::update_task::remove(id_dark_mode, this);
+   //::update_task::remove(id_dark_mode, this);
 
 }
 

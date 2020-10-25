@@ -1243,12 +1243,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="platform\system.cpp" />
     <ClCompile Include="platform\system_trace.cpp" />
     <ClCompile Include="platform\text.cpp" />
-    <ClCompile Include="platform\timer.cpp" />
-    <ClCompile Include="platform\timer_array.cpp" />
-    <ClCompile Include="platform\timer_callback.cpp" />
-    <ClCompile Include="platform\timer_event.cpp" />
-    <ClCompile Include="platform\timer_item.cpp" />
-    <ClCompile Include="platform\timer_threaded.cpp" />
     <ClCompile Include="platform\trace.cpp" />
     <ClCompile Include="platform\_.cpp" />
     <ClCompile Include="primitive\data\container.cpp" />
@@ -1468,7 +1462,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="platform\machine_event_central.h" />
     <ClInclude Include="platform\machine_event_data.h" />
     <ClInclude Include="platform\main.h" />
-    <ClInclude Include="platform\nano_timer.h" />
     <ClInclude Include="platform\net.h" />
     <ClInclude Include="platform\number.h" />
     <ClInclude Include="platform\obj_ref_dbg.h" />
@@ -1490,12 +1483,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="platform\status.h" />
     <ClInclude Include="platform\str_context.h" />
     <ClInclude Include="platform\system.h" />
-    <ClInclude Include="platform\timer.h" />
-    <ClInclude Include="platform\timer_array.h" />
-    <ClInclude Include="platform\timer_callback.h" />
-    <ClInclude Include="platform\timer_event.h" />
-    <ClInclude Include="platform\timer_item.h" />
-    <ClInclude Include="platform\timer_threaded.h" />
     <ClInclude Include="platform\trace.h" />
     <ClInclude Include="platform\trace_category.h" />
     <ClInclude Include="platform\version.h" />
@@ -1632,8 +1619,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="const\id.h" />
     <ClInclude Include="const\idpool.h" />
     <ClInclude Include="const\impact.h" />
-    <ClInclude Include="const\message.h" />
-    <ClInclude Include="const\simple_command.h" />
+    <ClInclude Include="const\aaa_simple_command.h" />
     <ClInclude Include="const\status.h" />
     <ClInclude Include="const\status_range_authentication.h" />
     <ClInclude Include="const\timer.h" />

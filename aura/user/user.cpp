@@ -214,7 +214,7 @@ namespace user
    }
 
 
-   void user::SendMessageToWindows(UINT message,WPARAM wparam,LPARAM lparam)
+   void user::SendMessageToWindows(const ::id & id,WPARAM wparam,LPARAM lparam)
    {
 
 
@@ -231,9 +231,9 @@ namespace user
             if (pinteraction != nullptr && pinteraction->is_window())
             {
 
-               pinteraction->send_message(message, wparam, lparam);
+               pinteraction->send_message(id, wparam, lparam);
 
-               pinteraction->send_message_to_descendants(message, wparam, lparam);
+               pinteraction->send_message_to_descendants(id, wparam, lparam);
 
             }
 
@@ -872,7 +872,7 @@ namespace user
                   if(pinteraction->m_bFocus)
                   {
 
-                     pinteraction->post_message(WM_KILLFOCUS);
+                     pinteraction->post_message(e_message_kill_focus);
 
                   }
 

@@ -34,8 +34,8 @@ namespace user
 
       place_holder_container::install_message_routing(pchannel);
 
-      IGUI_MSG_LINK(WM_CREATE, pchannel, this, &split_layout::_001OnCreate);
-      IGUI_MSG_LINK(WM_SHOWWINDOW, pchannel, this, &split_layout::_001OnShowWindow);
+      MESSAGE_LINK(e_message_create, pchannel, this, &split_layout::_001OnCreate);
+      MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &split_layout::_001OnShowWindow);
 
    }
 
@@ -274,7 +274,7 @@ namespace user
       {
 
       }
-      else if(pMsg->message == WM_MOUSEMOVE)
+      else if(pMsg->message == e_message_mouse_move)
 
       {
 
@@ -1134,7 +1134,7 @@ namespace user
    }
 
 
-   void split_layout::RelayEventSplitBar(index iSplitBar, UINT uiMessage, WPARAM wParam, LPARAM lParam)
+   void split_layout::RelayEventSplitBar(index iSplitBar, const ::id & id, WPARAM wParam, LPARAM lParam)
    {
 
       ASSERT(FALSE);
@@ -1146,7 +1146,7 @@ namespace user
 
       CalcSplitBarRect(iSplitBar, &splitRect);
 
-      if(uiMessage == WM_LBUTTONDOWN)
+      if(emessage == WM_LBUTTONDOWN)
       {
 
          i32   fwKeys = (i32) wParam;        // key flags
@@ -1160,7 +1160,7 @@ namespace user
             m_iState = stateDragging;
          }
       }
-      else if(uiMessage == WM_LBUTTONUP)
+      else if(emessage == WM_LBUTTONUP)
       {
 //         i32   fwKeys = wParam;        // key flags
 //         i32 xPos = splitRect.left + (i16) LOWORD(lParam);  // horizontal position of cursor
@@ -1171,10 +1171,10 @@ namespace user
             m_iState = stateInitial;
          }
       }
-      else if(uiMessage == WM_CAPTURECHANGED)
+      else if(emessage == WM_CAPTURECHANGED)
       {
       }
-      else if(uiMessage == WM_MOUSEMOVE)
+      else if(emessage == e_message_mouse_move)
       {
          i32   fwKeys = (i32) wParam;        // key flags
          i32 xPos = splitRect.left + (i16) LOWORD(lParam);  // horizontal position of cursor

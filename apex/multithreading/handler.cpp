@@ -5,7 +5,7 @@ handler_manager::handler_manager(const string& strThreadName, bool bSingleThread
    m_strThreadName(strThreadName),
    m_bSingleThread(bSingleThread),
    m_iAliveCount(iAliveCount),
-   m_pev(e_create_new),
+   m_pevTaskOnQueue(e_create_new),
    m_iAlive(0),
    m_bUseDedicatedThread(false)
 {
@@ -22,79 +22,60 @@ handler_manager::~handler_manager()
 }
 
 
-::estatus handler_manager::handle(::object * pobject, bool bSync)
+::estatus handler_manager::handle(const ::method& method, bool bSync)
 {
 
    if (bSync)
    {
 
-      sync(pobject);
+      return sync(method);
 
    }
    else
    {
 
-      pobject->m_estatus = ::success_not_ready;
-
-      pobject->m_eobject = NOK_IMAGE_OBJECT;
-
-      async(pobject);
+      return async(method);
 
    }
-
-   return pobject->m_estatus;
 
 }
 
 
-void handler_manager::sync(::layered * pobjectContext)
+::estatus handler_manager::sync(const ::method& method)
 {
 
    if (m_bUseDedicatedThread)
    {
 
-      //__throw(todo("thread"));
-      //__throw(todo("dedicated_thread"));
-      auto pevReady = __new(::manual_reset_event);
+      auto pmethod = ___sync_method(method);
 
-      pevReady->ResetEvent();
+      async(pmethod);
 
-      __object(pobjectContext)->value("ready_event") = pevReady;
+      pmethod->wait(one_minute());
 
-      async(pobjectContext);
-
-      pevReady->wait();
+      return ::success;
 
    }
    else
    {
 
-      try
-      {
-
-         pobjectContext->call();
-
-      }
-      catch (...)
-      {
-
-      }
+      return method();
 
    }
 
 }
 
 
-void handler_manager::async(::layered * pobjectContext)
+::estatus handler_manager::async(const ::method & method)
 {
 
    {
 
       sync_lock sl(mutex());
 
-      m_objecta.add(pobjectContext);
+      m_methoda.add(method);
 
-      m_pev->SetEvent();
+      m_pevTaskOnQueue->SetEvent();
 
    }
 
@@ -104,54 +85,50 @@ void handler_manager::async(::layered * pobjectContext)
       m_pthread = fork([this]()
       {
 
-         // ::get_task()->m_pevSync = m_pev;
-
          ::get_task()->set_thread_name(m_strThreadName);
 
          loop();
 
-         m_pev->SetEvent();
-
       });
-
+      
    }
 
+   return ::success;
 
 }
 
 
-bool handler_manager::wait()
+method handler_manager::pick_new_task()
 {
 
-   if (m_iAliveCount < 0)
+   sync_lock sl(mutex());
+
+   if (m_methoda.is_empty())
    {
 
-      m_pev->wait();
+      sl.unlock();
 
-   }
-   else
-   {
+      m_pevTaskOnQueue->wait(1_s);
 
-      if (!m_pev->wait(1_s).succeeded())
-      {
-
-         m_iAlive++;
-
-         if (m_iAlive > m_iAliveCount)
-         {
-
-            return false;
-
-         }
-
-      }
+      sl.lock();
 
    }
 
-   return true;
+   if (m_methoda.is_empty())
+   {
 
+      return nullptr;
+
+   }
+
+   auto method = m_methoda.first();
+
+   m_methoda.remove_at(0);
+
+   return method;
 
 }
+
 
 void handler_manager::loop()
 {
@@ -172,55 +149,16 @@ void handler_manager::loop()
    while (::thread_get_run())
    {
 
-      if (!wait())
-      {
+      auto method = pick_new_task();
 
-         break;
-
-      }
-
-      __pointer(::context_object) pobject;
-
-      {
-
-         sync_lock sl(mutex());
-
-         if (m_objecta.isEmpty())
-         {
-
-            m_pev->ResetEvent();
-
-            continue;
-
-         }
-         else
-         {
-
-            pobject = m_objecta.first_pointer();
-
-            m_objecta.remove_at(0);
-
-         }
-
-      }
-
-      if (!pobject)
+      if(!method)
       {
 
          continue;
 
       }
 
-      pobject->m_estatus = pobject->call();
-
-      auto pevReady = pobject->value("ready_event").cast < ::manual_reset_event>();
-
-      if (pevReady)
-      {
-
-         pevReady->SetEvent();
-
-      }
+      method();
 
    }
 

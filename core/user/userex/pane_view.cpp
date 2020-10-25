@@ -26,10 +26,10 @@ namespace userex
       for(i32 i = 0; i < m_menua.get_size(); i++)
       {
 
-         if(pcommand->m_id == ::message::id(m_menua[i]->m_id, ::message::type_command_probe))
+         if(pcommand->m_id == m_menua[i]->m_id.compounded(::id::e_type_command_probe))
          {
 
-            pcommand->Enable(TRUE);
+            pcommand->enable(TRUE);
 
             pcommand->m_bRet = true;
 
@@ -50,7 +50,7 @@ namespace userex
       for(i32 i = 0; i < m_menua.get_size(); i++)
       {
 
-         if(pcommand->m_id == ::message::id(m_menua[i]->m_id, ::message::type_command))
+         if(pcommand->m_id == m_menua[i]->m_id.compounded(::id::e_type_command))
          {
             
             // show_view where??

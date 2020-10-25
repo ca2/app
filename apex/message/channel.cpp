@@ -55,9 +55,9 @@ void channel::remove_receiver(::object * preceiver)
 
    }
 
-   //preceiver->m_sendera.remove(this);
 
 }
+
 
 void channel::transfer_receiver(::message::id_route & router, ::object * preceiver)
 {
@@ -123,14 +123,21 @@ void channel::route_message(::message::message * pmessage)
 }
 
 
-__pointer(::message::base) channel::get_message_base(UINT message, WPARAM wparam, lparam lparam)
+__pointer(::message::base) channel::get_message_base(const ::id & id, WPARAM wparam, lparam lparam)
 {
+
+   if (id.m_etype != ::id::e_type_message)
+   {
+
+      __throw(invalid_argument_exception);
+
+   }
 
    MESSAGE msg;
 
    xxf_zero(msg);
 
-   msg.message = message;
+   msg.message = (UINT) id.m_emessage;
    msg.wParam = wparam;
    msg.lParam = lparam;
 
@@ -217,12 +224,9 @@ __pointer(::message::base) channel::get_message_base(LPMESSAGE pmsg)
 
    }
 
-   pbase->set(playeredUserPrimitive, pmsg->message, pmsg->wParam, pmsg->lParam);
-
+   pbase->set(playeredUserPrimitive, (enum_message)pmsg->message, pmsg->wParam, pmsg->lParam);
 
    return pbase;
-
-
 
 }
 
@@ -314,16 +318,16 @@ void channel::finalize()
 
    m_idrouteNew.remove_all();
 
-   for (auto& a : m_mapRunnable.values())
+   for (auto& methoda : m_mapMethod.values())
    {
 
-      a.finalize();
+      methoda.finalize();
 
-      a.remove_all();
+      methoda.remove_all();
 
    }
 
-   m_mapRunnable.remove_all();
+   m_mapMethod.remove_all();
 
    ::object::finalize();
 
@@ -386,16 +390,18 @@ void channel::default_toggle_check_handling(const ::id & id)
 }
 
 
-void channel::_001SendCommand(::user::command * pbase)
+void channel::_001SendCommand(::user::command * pcommand)
 {
 
-   pbase->m_pchannel = this;
+   pcommand->m_pchannel = this;
 
    {
 
-      __set_restore(pbase->m_id.m_emessagetype, ::message::type_command);
+      __restore(pcommand->m_id.m_etype);
+      
+      pcommand->m_id.set_compounded_type(::id::e_type_command);
 
-      route_command_message(pbase);
+      route_command_message(pcommand);
 
    }
 
@@ -409,38 +415,15 @@ void channel::_001SendCommandProbe(::user::command * pcommand)
 
    {
 
-      __set_restore(pcommand->m_id.m_emessagetype, ::message::type_command_probe);
+      __restore(pcommand->m_id.m_etype);
+      
+      pcommand->m_id.set_compounded_type(::id::e_type_command_probe);
 
       route_command_message(pcommand);
 
    }
 
 }
-
-
-//void channel::apply(const ::id & id, const ::action_context & context)
-//{
-
-//   auto & notifya = m_mapUpdate[id];
-
-//   for (auto & pnotify : notifya)
-//   {
-
-//      pnotify->call_update((const ::__id & ) id, context);
-
-//   }
-
-//   if(context.is_user_source())
-//   {
-
-//      auto& runnablea = m_mapRunnable[id];
-
-//      ::call_sync(runnablea);
-
-//   }
-
-//}
-
 
 
 void channel::route_command_message(::user::command * pcommand)
@@ -454,7 +437,7 @@ void channel::route_command_message(::user::command * pcommand)
 void channel::on_command_message(::user::command* pcommand)
 {
 
-   if (pcommand->m_id.m_emessagetype == ::message::type_command)
+   if (pcommand->is_command())
    {
 
       pcommand->m_bHasCommandHandler = has_command_handler(pcommand);
@@ -474,7 +457,7 @@ void channel::on_command_message(::user::command* pcommand)
       on_command(pcommand);
 
    }
-   else if (pcommand->m_id.m_emessagetype == ::message::type_command_probe)
+   else if (pcommand->m_id.is_compounded(::id::e_type_command_probe))
    {
 
       pcommand->m_bHasCommandHandler = has_command_handler(pcommand);
@@ -482,7 +465,7 @@ void channel::on_command_message(::user::command* pcommand)
       on_command_probe(pcommand);
 
    }
-   else if (pcommand->m_id.m_emessagetype == ::message::type_has_command_handler)
+   else if (pcommand->m_id.is_compounded(::id::e_type_command))
    {
 
       pcommand->m_bHasCommandHandler = has_command_handler(pcommand);
@@ -503,7 +486,9 @@ void channel::on_command(::user::command * pcommand)
 
    {
 
-      __set_restore(pcommand->m_id.m_emessagetype, ::message::type_command);
+      __restore(pcommand->m_id.m_etype);
+      
+      pcommand->m_id.set_compounded_type(::id::e_type_command);
 
       route_message(pcommand);
 
@@ -517,7 +502,9 @@ bool channel::has_command_handler(::user::command * pcommand)
 
    sync_lock sl(channel_mutex());
 
-   __set_restore(pcommand->m_id.m_emessagetype, ::message::type_command);
+   __restore(pcommand->m_id.m_etype);
+   
+   pcommand->m_id.set_compounded_type(::id::e_type_command);
 
    if (m_idaHandledCommands.contains(pcommand->m_id))
    {
@@ -552,7 +539,9 @@ void channel::on_command_probe(::user::command * pcommand)
 
    {
 
-      __set_restore(pcommand->m_id.m_emessagetype, ::message::type_command_probe);
+      __restore(pcommand->m_id.m_etype);
+      
+      pcommand->m_id.set_compounded_type(::id::e_type_command_probe);
 
       route_message(pcommand);
 

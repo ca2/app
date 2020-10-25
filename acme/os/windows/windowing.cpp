@@ -358,7 +358,9 @@ CLASS_DECL_ACME int_bool is_window(oswindow oswindow)
 CLASS_DECL_ACME string message_box_result_to_string(int iResult);
 //
 //
-CLASS_DECL_ACME ::estatus _os_message_box(oswindow oswindow, const char* pszMessage, const char* pszTitle, ::emessagebox emessagebox, ::future future)
+
+
+CLASS_DECL_ACME ::estatus _os_message_box(oswindow oswindow, const char* pszMessage, const char* pszTitle, ::emessagebox emessagebox, const ::future & future)
 {
 
    string strMessage(pszMessage);
@@ -373,14 +375,14 @@ CLASS_DECL_ACME ::estatus _os_message_box(oswindow oswindow, const char* pszMess
 
    string strResult = message_box_result_to_string(iResult);
 
-   future.send(strResult);
+   future(strResult);
 
    return ::success;
 
 }
 //
 //
-CLASS_DECL_ACME ::estatus os_message_box(oswindow oswindow, const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox, ::future future)
+CLASS_DECL_ACME ::estatus os_message_box(oswindow oswindow, const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox, const ::future & future)
 {
 
    //if (::get_context_system()->is_dedicated_thread())

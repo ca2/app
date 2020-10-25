@@ -728,7 +728,7 @@ namespace core
 
 
 
-      //virtual void SendMessageToWindows(UINT message, WPARAM wParam, LPARAM lParam);
+      //virtual void SendMessageToWindows(const ::id & id, WPARAM wParam, LPARAM lParam);
 
       virtual void term() override;
 

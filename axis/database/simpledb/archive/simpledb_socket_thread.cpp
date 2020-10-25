@@ -31,7 +31,7 @@ namespace simpledb
    void socket_thread::install_message_routing(::channel * pchannel)
    {
 
-      IGUI_MSG_LINK(WM_APP, pchannel, this, &socket_thread::OnApp);
+      MESSAGE_LINK(WM_APP, pchannel, this, &socket_thread::OnApp);
 
    }
 

@@ -93,9 +93,9 @@ namespace user
       __pointer(::user::interaction) find_first(oswindow oswindow);
 
       ::user::oswindow_array get_hwnda();
-      void send_message(UINT uiMessage, WPARAM wparam = 0, LPARAM lparam = 0);
+      void send_message(const ::id & id, WPARAM wparam = 0, LPARAM lparam = 0);
 
-      void send_message_to_descendants(UINT uiMessage, WPARAM wparam = 0, LPARAM lparam = 0, bool bRecursive = true);
+      void send_message_to_descendants(const ::id & id, WPARAM wparam = 0, LPARAM lparam = 0, bool bRecursive = true);
 
 
       interaction_array & operator = (const __pointer_array(::user::interaction) & a);
@@ -191,10 +191,9 @@ namespace user
       virtual ~window_util();
 
 
-      /*static void send_message_to_descendants(oswindow oswindow, UINT message,
+      /*static void send_message_to_descendants(oswindow oswindow, const ::id & id,
       WPARAM wParam, LPARAM lParam, bool bDeep, bool bOnlyPerm);*/
-      static void send_message_to_descendants(oswindow oswindow, UINT message,
-                                              WPARAM wParam, LPARAM lParam, bool bDeep);
+      static void send_message_to_descendants(oswindow oswindow, UINT message, WPARAM wParam, LPARAM lParam, bool bDeep);
       static bool IsAscendant(oswindow oswindowAscendant, oswindow oswindowDescendant);
 
       static i32 GetZOrder(oswindow oswindow);

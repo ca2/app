@@ -125,13 +125,13 @@ namespace filemanager
    }
 
 
-   void operation_thread::queue_copy(::file::listing & stra,const ::file::path & pszDstBase,const ::file::path & pszSrcBase,bool bExpand,bool bReplaceAll, bool bDeleteOriginOnSuccessfulCopy, __pointer(::user::interaction) oswindowCallback,UINT uiCallbackMessage,WPARAM wparamCallback)
+   void operation_thread::queue_copy(::file::listing & stra,const ::file::path & pszDstBase,const ::file::path & pszSrcBase,bool bExpand,bool bReplaceAll, bool bDeleteOriginOnSuccessfulCopy, __pointer(::user::interaction) oswindowCallback,const ::id & id,WPARAM wparamCallback)
    {
 
       auto poperation  = __new(::filemanager::operation);
 
       poperation->m_oswindowCallback = oswindowCallback;
-      poperation->m_uiCallbackMessage = uiCallbackMessage;
+      poperation->m_id = id;
       poperation->m_wparamCallback = wparamCallback;
       poperation->m_bReplaceAll = bReplaceAll;
       poperation->set_context_object(this);

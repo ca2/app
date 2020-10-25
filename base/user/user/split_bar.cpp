@@ -84,11 +84,11 @@ namespace user
    void split_bar::install_message_routing(::channel * pchannel)
    {
       ::user::interaction::install_message_routing(pchannel);
-      //IGUI_MSG_LINK(WM_CREATE, pchannel, this, &split_bar::_001OnCreate);
-      //IGUI_MSG_LINK(WM_SIZE, pchannel, this, &split_bar::_001OnSize);
-      IGUI_MSG_LINK(WM_LBUTTONDOWN, pchannel, this, &split_bar::_001OnLButtonDown);
-      IGUI_MSG_LINK(WM_LBUTTONUP, pchannel, this, &split_bar::_001OnLButtonUp);
-      IGUI_MSG_LINK(WM_MOUSEMOVE, pchannel, this, &split_bar::_001OnMouseMove);
+      //MESSAGE_LINK(e_message_create, pchannel, this, &split_bar::_001OnCreate);
+      //MESSAGE_LINK(e_message_size, pchannel, this, &split_bar::_001OnSize);
+      MESSAGE_LINK(WM_LBUTTONDOWN, pchannel, this, &split_bar::_001OnLButtonDown);
+      MESSAGE_LINK(WM_LBUTTONUP, pchannel, this, &split_bar::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &split_bar::_001OnMouseMove);
    }
 
 

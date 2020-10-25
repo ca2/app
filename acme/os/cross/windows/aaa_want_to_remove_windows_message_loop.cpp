@@ -188,7 +188,7 @@ LRESULT DispatchMessage(const MESSAGE * pmessage)
 
 //       return false;
 //    //
-//    //   if(pmessage->message == WM_MOUSEMOVE)
+//    //   if(pmessage->message == e_message_mouse_move)
 
 //    //   {
 //    //

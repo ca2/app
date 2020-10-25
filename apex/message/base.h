@@ -20,7 +20,7 @@ namespace message
 
 
       base();
-      base(::layered * playeredUserPrimitive, UINT uiMessage, WPARAM wparam, ::lparam lparam);
+      base(::layered * playeredUserPrimitive, const ::id & id, WPARAM wparam, ::lparam lparam);
 
       base(const base & base);
       virtual ~base();
@@ -39,9 +39,9 @@ namespace message
          
       }
 
-      virtual void set(::layered * playeredUserPrimitive, UINT uiMessage, WPARAM wparam, ::lparam lparam) override;
+      virtual void set(::layered * playeredUserPrimitive, const ::id & id, WPARAM wparam, ::lparam lparam) override;
 
-      inline void change(WPARAM wparam, ::lparam lparam) { set(m_playeredUserPrimitive, m_id.u32(), wparam, lparam); }
+      inline void change(WPARAM wparam, ::lparam lparam) { set(m_playeredUserPrimitive, m_id, wparam, lparam); }
 
       //base & operator = (const base & base);
 

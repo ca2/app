@@ -77,7 +77,7 @@ bool ns_set_thread_name(const char * psz);
 char * ns_get_thread_name();
 
 
-bool thread_set_name(const char * psz)
+bool set_thread_name(const char * psz)
 {
    
    return ns_set_thread_name(psz);

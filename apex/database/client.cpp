@@ -31,14 +31,14 @@ namespace database
 
       auto idRunnable = translate_property_id(id);
 
-      Application.m_mapRunnable[idRunnable] += [this, id]()
+      ::add_method(Application.m_mapMethod[idRunnable], [this, id]()
          {
 
             auto pproperty = fetch_property(id);
 
             data_set(id, (const ::var &) *pproperty);
 
-         };
+         });
 
    }
 

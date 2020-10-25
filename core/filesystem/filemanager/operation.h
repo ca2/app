@@ -26,7 +26,7 @@ namespace filemanager
       char *                     m_pchBuffer;
       i32                    m_iBufferSize;
       ::user::interaction *    m_oswindowCallback;
-      UINT                       m_uiCallbackMessage;
+      id                       m_id;
       WPARAM                     m_wparamCallback;
 
 

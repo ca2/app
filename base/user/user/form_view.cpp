@@ -293,7 +293,8 @@ namespace user
          if (get_document())
          {
 
-            call_sync(get_document()->m_mapRunnablea["load"]);
+            //call_sync(get_document()->m_mapMethod["load"]);
+            get_document()->call_method("load");
 
          }
 

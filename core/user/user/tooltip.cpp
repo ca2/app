@@ -40,7 +40,7 @@ namespace user
    {
       ::user::interaction::install_message_routing(pchannel);
 
-      IGUI_MSG_LINK(WM_CREATE,pchannel,this,&tooltip::_001OnCreate);
+      MESSAGE_LINK(e_message_create,pchannel,this,&tooltip::_001OnCreate);
       //
 
    }
@@ -179,7 +179,7 @@ namespace user
    }
 
 
-   ::user::interaction::e_type tooltip::get_window_type()
+   ::user::interaction::enum_type tooltip::get_window_type()
    {
 
       return type_frame;

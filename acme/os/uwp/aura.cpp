@@ -87,7 +87,7 @@ VOID WINAPI Sleep(DWORD dwMilliseconds)
 
 // typedef bool
 // (WINAPI * LPFN_ChangeWindowMessageFilter)(
-// _In_ UINT message,
+// _In_ const ::id & id,
 // _In_ DWORD dwFlag);
 
 

@@ -10,7 +10,7 @@ namespace calculator
    public:
 
 
-      enum e_type
+      enum enum_type
       {
          type_none,
          type_identifier,
@@ -36,7 +36,7 @@ namespace calculator
       token();
       ~token();
       /* Tokens */
-      e_type         m_etype;
+      enum_type         m_etype;
       string         m_str;
       i32        m_iType;
       bool           m_bKeyword;

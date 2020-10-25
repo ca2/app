@@ -69,7 +69,7 @@ namespace base
 
       virtual void finalize() override;
 
-      virtual void SendMessageToWindows(UINT message, WPARAM wParam, LPARAM lParam) override;
+      virtual void SendMessageToWindows(const ::id & id, WPARAM wParam, LPARAM lParam) override;
 
       virtual void term() override;
 

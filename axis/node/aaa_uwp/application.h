@@ -141,7 +141,7 @@
 //   // Operations
 //      DWORD SuspendThread();
 //      DWORD ResumeThread();
-//      bool post_message(::user::interaction * pguie, UINT message, WPARAM wParam, LPARAM lParam);
+//      bool post_message(::user::interaction * pguie, const ::id & id, WPARAM wParam, LPARAM lParam);
 //
 //      virtual bool PreInitInstance();
 //
@@ -153,7 +153,7 @@
 //      // thread initialization
 //      virtual bool init_application();
 //
-//      virtual ::message::e_prototype GetMessagePrototype(UINT uiMessage, UINT uiCode);
+//      virtual ::message::e_prototype GetMessagePrototype(const ::id & id, UINT uiCode);
 //
 //      // running and idle processing
 //      virtual int run();

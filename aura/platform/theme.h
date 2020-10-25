@@ -39,7 +39,7 @@ namespace aura
       };
 
 
-      __composite(runner)        m_prunnerChangeWeatherState;
+      //__composite(runner)        m_prunnerChangeWeatherState;
       ::file::watch_id           m_watchidWeather;
 
 

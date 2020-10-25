@@ -11,6 +11,10 @@
 
 #pragma once
 
+#define DECLARE_REUSABLE(TYPE) \
+TYPE * m_pnext; \
+::factory::reusable_factory < TYPE, TYPE > * m_pfactory; \
+virtual void delete_this() { if(m_pfactory) m_pfactory->return_back(this); else delete this;}
 
 class CLASS_DECL_ACME manual_reset_event :
    public event
@@ -18,8 +22,13 @@ class CLASS_DECL_ACME manual_reset_event :
 public:
 
 
-      manual_reset_event(char * sz = nullptr, bool bInitiallyOwn = false);
+   DECLARE_REUSABLE(manual_reset_event);
 
+
+   manual_reset_event(char * sz = nullptr, bool bInitiallyOwn = false);
+
+
+   void reuse() { ResetEvent(); }
 
 };
 

@@ -27,7 +27,7 @@ namespace sockets
 
       m_port = port;
 
-      start();
+      fork();
 
       return estatus;
 

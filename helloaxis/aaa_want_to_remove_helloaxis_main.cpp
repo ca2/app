@@ -111,13 +111,13 @@ BOOL InitInstance(::object * pobject, HINSTANCE hInstance, int nCmdShow)
 //
 //  WM_COMMAND  - process the application menu
 //  WM_PAINT    - Paint the main window
-//  WM_DESTROY  - post a quit message and return
+//  e_message_destroy  - post a quit message and return
 //
 //
-LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
+LRESULT CALLBACK WndProc(HWND hWnd, const ::id & id, WPARAM wParam, LPARAM lParam)
 {
    ::aura::application * papp;
-   if (message == WM_CREATE)
+   if (message == e_message_create)
    {
       papp = (::aura::application *)((LPCREATESTRUCT)lParam)->lpCreateParams;
       SetWindowLongPtr(hWnd, GWL_USERDATA, (LONG_PTR)papp);
@@ -154,7 +154,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
       EndPaint(hWnd, &ps);
    }
    break;
-   case WM_DESTROY:
+   case e_message_destroy:
       PostQuitMessage(0);
       break;
    default:
@@ -164,7 +164,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 }
 
 // Message handler for about box.
-INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
+INT_PTR CALLBACK About(HWND hDlg, const ::id & id, WPARAM wParam, LPARAM lParam)
 {
    UNREFERENCED_PARAMETER(lParam);
    switch (message)

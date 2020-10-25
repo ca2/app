@@ -130,7 +130,7 @@ namespace sockets
       /** find available open connection (used by connection pool). */
       virtual __pointer(pool_socket) FindConnection(int type,const string & protocol, const ::net::address & address) = 0;
 
-      /** Enable connection pool (by default disabled). */
+      /** enable connection pool (by default disabled). */
       virtual void EnablePool(bool = true) = 0;
       /** Check pool status.
       \return true if connection pool is enabled */
@@ -166,7 +166,7 @@ namespace sockets
       // -------------------------------------------------------------------------
       // DNS resolve server
       // -------------------------------------------------------------------------
-      /** Enable asynchronous DNS.
+      /** enable asynchronous DNS.
       \lparam port Listen port of asynchronous dns server */
       virtual void EnableResolver(port_t = 16667) = 0;
       /** Check resolver status.

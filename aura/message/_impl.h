@@ -2,10 +2,10 @@
 
 
 #define MSG_TYPE_LINK(emessagetype, pchannel, preceiver, phandler) \
-   pchannel->add_route(preceiver, phandler, ::message::id((::message::e_type)(emessagetype)))
+   pchannel->add_route(preceiver, phandler, ::id((::message::enum_type)(emessagetype)))
 
-#define IGUI_MSG_LINK(int_message, pchannel, preceiver, phandler) \
-   pchannel->add_route(preceiver, phandler, ::message::id(::id((index) (int_message)), ::message::type_message))
+#define MESSAGE_LINK(int_message, pchannel, preceiver, phandler) \
+   pchannel->add_route(preceiver, phandler, ::id(::id((index) (int_message)), ::message::e_type_message))
 
 #define ON_TYPED_MESSAGE(id, MESSAGE, name) \
    this->get_typed_route < typename ::remove_reference < decltype(*this) >::TYPE, MESSAGE >(id, this) = [this](MESSAGE * p ## name)
@@ -35,12 +35,12 @@
    ON_TYPED_MESSAGE(WM_RBUTTONUP, ::message::mouse, mouse)
 
 #define ON_WM_MOUSEMOVE \
-   ON_TYPED_MESSAGE(WM_MOUSEMOVE, ::message::mouse, mouse)
+   ON_TYPED_MESSAGE(e_message_mouse_move, ::message::mouse, mouse)
 
 /*
 
 #define USER_MESSAGE_LINK(emessageenum, pchannel, preceiver, phandler) \
-   IGUI_MSG_LINK(::message::emessageenum, pchannel, preceiver, phandler)
+   MESSAGE_LINK(::message::emessageenum, pchannel, preceiver, phandler)
 
 */
 

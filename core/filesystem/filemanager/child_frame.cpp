@@ -24,9 +24,9 @@ namespace filemanager
 
       simple_child_frame::install_message_routing(pchannel);
 
-      MSG_TYPE_LINK(::message::type_language, pchannel, this, &child_frame::_001OnAppLanguage);
-      IGUI_MSG_LINK(WM_SHOWWINDOW, pchannel, this, &child_frame::_001OnShowWindow);
-      IGUI_MSG_LINK(WM_CREATE, pchannel, this, &child_frame::_001OnCreate);
+      MESSAGE_LINK(e_message_language, pchannel, this, &child_frame::_001OnAppLanguage);
+      MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &child_frame::_001OnShowWindow);
+      MESSAGE_LINK(e_message_create, pchannel, this, &child_frame::_001OnCreate);
 
    }
 

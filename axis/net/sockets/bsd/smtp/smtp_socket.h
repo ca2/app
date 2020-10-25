@@ -22,7 +22,7 @@ namespace sockets
       } reason_t;
 
 
-      enum e_state
+      enum enum_state
       {
          state_initial,
          state_hello,
@@ -39,7 +39,7 @@ namespace sockets
          state_end
       };
 
-      e_state m_estate;
+      enum_state m_estate;
 
       __pointer(::net::email)    m_pemail;
 

@@ -18,7 +18,7 @@ namespace user
 
 
 
-   void tool_command::Enable(bool bOn)
+   void tool_command::enable(bool bOn)
    {
 
       m_bEnableChanged = TRUE;

@@ -125,7 +125,7 @@ namespace apex
 #endif
 
       //m_pappParent = nullptr;
-
+      m_bMessageThread = true;
       m_bSimpleMessageLoop = false;
       m_ethreadClose = thread_none;
 
@@ -220,7 +220,8 @@ namespace apex
       m_strLocale = "_std";
       m_strSchema = "_std";
 
-      m_iGcomBackgroundUpdateMillis = -1;
+      m_durationGcomBackgroundUpdate = 30_s;
+
    }
 
 
@@ -2486,7 +2487,7 @@ namespace apex
       try
       {
 
-         if (!is_system() && !is_session())
+         //if (!is_system() && !is_session())
          {
 
             if (System.is_true("uninstall"))
@@ -2882,12 +2883,12 @@ retry_license:
    ::estatus     application::run()
    {
 
-      if (is_system())
-      {
+      //if (is_system())
+      //{
 
 
 
-      }
+      //}
 
       return ::thread::run();
 
@@ -5378,7 +5379,7 @@ retry_license:
    }
 
 
-   bool application::send_message_to_windows(UINT message, WPARAM wparam, LPARAM lparam) // with tbs in <3
+   bool application::send_message_to_windows(const ::id & id, WPARAM wparam, LPARAM lparam) // with tbs in <3
    {
 
       //__pointer(::user::interaction) pwnd;
@@ -5510,7 +5511,7 @@ retry_license:
    void application::send_language_change_message()
    {
 
-      ::message::message message(::message::type_language);
+      ::message::message message(e_message_language);
 
       route_message_to_windows(&message);
 
@@ -5558,10 +5559,10 @@ retry_license:
    //}
 
 
-   bool application::post_message(UINT message, WPARAM wparam, lparam lparam )
+   bool application::post_message(const ::id & id, WPARAM wparam, lparam lparam )
    {
 
-      return ::thread::post_message(message, wparam, lparam);
+      return ::thread::post_message(id, wparam, lparam);
 
    }
 
@@ -7710,7 +7711,7 @@ namespace apex
 
       switch (pbase->m_id)
       {
-      case WM_CREATE:
+      case e_message_create:
       case WM_PAINT:
 
          return thread::process_window_procedure_exception(pe, pmessage);
@@ -8293,7 +8294,7 @@ namespace apex
    //
    //
    //   /////////////////////////////////////////////////////////////////////////////
-   //   // WinHelp Helper
+   //   // WinHelp helper
    //
    //
    //   void application::WinHelp(uptr dwData, UINT nCmd)
@@ -8309,7 +8310,7 @@ namespace apex
    //   }
    //
    //   /////////////////////////////////////////////////////////////////////////////
-   //   // HtmlHelp Helper
+   //   // HtmlHelp helper
    //
    //   void application::HtmlHelp(uptr dwData, UINT nCmd)
    //   {

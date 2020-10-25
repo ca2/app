@@ -38,15 +38,15 @@ namespace user
 
    void status_bar::install_message_routing(::channel * pchannel)
    {
-      IGUI_MSG_LINK(WM_NCHITTEST, pchannel, this, &status_bar::_001OnNcHitTest);
-      IGUI_MSG_LINK(WM_NCCALCSIZE, pchannel, this, &status_bar::_001OnNcCalcSize);
-      IGUI_MSG_LINK(WM_SIZE, pchannel, this, &status_bar::_001OnSize);
-      IGUI_MSG_LINK(WM_WINDOWPOSCHANGING, pchannel, this, &status_bar::_001OnWindowPosChanging);
-      IGUI_MSG_LINK(WM_SETTEXT, pchannel, this, &status_bar::_001OnSetText);
-      IGUI_MSG_LINK(WM_GETTEXT, pchannel, this, &status_bar::_001OnGetText);
-      IGUI_MSG_LINK(WM_GETTEXTLENGTH, pchannel, this, &status_bar::_001OnGetTextLength);
+      MESSAGE_LINK(WM_NCHITTEST, pchannel, this, &status_bar::_001OnNcHitTest);
+      MESSAGE_LINK(WM_NCCALCSIZE, pchannel, this, &status_bar::_001OnNcCalcSize);
+      MESSAGE_LINK(e_message_size, pchannel, this, &status_bar::_001OnSize);
+      MESSAGE_LINK(WM_WINDOWPOSCHANGING, pchannel, this, &status_bar::_001OnWindowPosChanging);
+      MESSAGE_LINK(WM_SETTEXT, pchannel, this, &status_bar::_001OnSetText);
+      MESSAGE_LINK(WM_GETTEXT, pchannel, this, &status_bar::_001OnGetText);
+      MESSAGE_LINK(WM_GETTEXTLENGTH, pchannel, this, &status_bar::_001OnGetTextLength);
 #ifdef WINDOWS_DESKTOP
-      IGUI_MSG_LINK(SB_SETMINHEIGHT, pchannel, this, &status_bar::_001OnSetMinHeight);
+      MESSAGE_LINK(SB_SETMINHEIGHT, pchannel, this, &status_bar::_001OnSetMinHeight);
 #endif
    }
 
@@ -795,7 +795,7 @@ namespace user
 
       status_command(::layered * pobjectContext);
 
-      virtual void Enable(bool bOn);
+      virtual void enable(bool bOn);
       virtual void _001SetCheck(::enum_check echeck, const ::action_context & context) override;
       virtual void _001SetText(const string & strText, const ::action_context & context) override;
 
@@ -812,7 +812,7 @@ namespace user
    }
 
 
-   void status_command::Enable(bool bOn)
+   void status_command::enable(bool bOn)
    {
       m_bEnableChanged = TRUE;
       __pointer(status_bar) pStatusBar = m_puiOther;

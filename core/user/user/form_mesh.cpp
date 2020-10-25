@@ -31,7 +31,7 @@ namespace user
 
    void form_mesh::install_message_routing(::channel * pchannel)
    {
-      IGUI_MSG_LINK(WM_KEYDOWN, pchannel, this,&form_mesh::_001OnKeyDown);
+      MESSAGE_LINK(WM_KEYDOWN, pchannel, this,&form_mesh::_001OnKeyDown);
 
       form::install_message_routing(pchannel);
       mesh::install_message_routing(pchannel);
@@ -72,7 +72,7 @@ namespace user
 
                m_itemControl              = item;
 
-               send_message(EVENT_MESSAGE,0,(LPARAM)&ev);
+               send_message(e_message_event,0,(LPARAM)&ev);
 
             }
          }
@@ -210,11 +210,11 @@ namespace user
    }
 
 
-   bool form_mesh::_001OnMouseActivate(::user::interaction_impl * pDesktopWnd,UINT nHitTest,UINT message,LRESULT & iResult)
+   bool form_mesh::_001OnMouseActivate(::user::interaction_impl * pDesktopWnd,UINT nHitTest,const ::id & id,LRESULT & iResult)
    {
       UNREFERENCED_PARAMETER(pDesktopWnd);
       UNREFERENCED_PARAMETER(nHitTest);
-      UNREFERENCED_PARAMETER(message);
+      UNREFERENCED_PARAMETER(id);
       UNREFERENCED_PARAMETER(iResult);
       return false;
    }
@@ -515,7 +515,7 @@ namespace user
       //}
       //}
       //}
-      //else if(uiMessage == WM_LBUTTONUP)
+      //else if(emessage == WM_LBUTTONUP)
       //{
       //i32 iItem;
       //i32 iSubItem;

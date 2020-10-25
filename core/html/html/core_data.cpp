@@ -284,7 +284,7 @@ namespace html
 
       m_element.implement(this);
 
-      IGUI_MSG_LINK(WM_KEYDOWN, m_puserinteraction, this, &core_data::_001OnKeyDown);
+      MESSAGE_LINK(WM_KEYDOWN, m_puserinteraction, this, &core_data::_001OnKeyDown);
 
       m_bImplemented = true;
 

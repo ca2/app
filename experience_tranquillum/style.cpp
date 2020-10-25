@@ -895,7 +895,7 @@ namespace tranquillum
 
 
 
-//   bool style::on_ui_event(::user::e_event eevent, ::user::e_object eobject, ::user::interaction * pframewindow)
+//   bool style::on_ui_event(::user::enum_event eevent, ::user::e_object eobject, ::user::interaction * pframewindow)
 //   {
 //
 //      if (eevent == ::user::event_calc_item_height)

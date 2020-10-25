@@ -102,11 +102,11 @@ void MetaControlBox::install_message_routing(::channel * pchannel)
 
    ::experience::control_box::install_message_routing(pchannel);
 
-   IGUI_MSG_LINK(WM_SHOWWINDOW, pchannel, this, &MetaControlBox::_001OnShowWindow);
-   IGUI_MSG_LINK(WM_LBUTTONDOWN, pchannel, this, &MetaControlBox::_001OnLButtonDown);
-   IGUI_MSG_LINK(WM_LBUTTONUP, pchannel, this, &MetaControlBox::_001OnLButtonUp);
-//   IGUI_MSG_LINK(WM_SIZE, pchannel, this, &MetaControlBox::_001OnSize);
-//   //IGUI_MSG_LINK(WM_TIMER, pchannel, this, &MetaControlBox::_001OnTimer);
+   MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &MetaControlBox::_001OnShowWindow);
+   MESSAGE_LINK(WM_LBUTTONDOWN, pchannel, this, &MetaControlBox::_001OnLButtonDown);
+   MESSAGE_LINK(WM_LBUTTONUP, pchannel, this, &MetaControlBox::_001OnLButtonUp);
+//   MESSAGE_LINK(e_message_size, pchannel, this, &MetaControlBox::_001OnSize);
+//   //MESSAGE_LINK(WM_TIMER, pchannel, this, &MetaControlBox::_001OnTimer);
 
 }
 

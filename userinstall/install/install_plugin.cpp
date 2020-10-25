@@ -871,7 +871,7 @@ run_install:
 
                   LRESULT lresult;
 
-                  __pointer(message::base) paxis = __new(message::base(get_context_application(),this,WM_ACTIVATE,MAKEWPARAM(WA_INACTIVE,0),0,lresult));
+                  __pointer(message::base) paxis = __new(message::base(get_context_application(),this,e_message_activate,MAKEWPARAM(WA_INACTIVE,0),0,lresult));
 
                   m_phost->::hotplugin::host::message_handler(paxis);
 
@@ -888,7 +888,7 @@ run_install:
 
                   LRESULT lresult;
 
-                  __pointer(message::base) paxis = __new(message::base(get_context_application(),this,WM_ACTIVATE,MAKEWPARAM(WA_ACTIVE,0),0,lresult));
+                  __pointer(message::base) paxis = __new(message::base(get_context_application(),this,e_message_activate,MAKEWPARAM(WA_ACTIVE,0),0,lresult));
 
                   m_phost->::hotplugin::host::message_handler(paxis);
 
@@ -906,7 +906,7 @@ run_install:
 
                   LRESULT lresult;
 
-                  __pointer(message::base) paxis = __new(message::base(get_context_application(),this,WM_KILLFOCUS,0,0,lresult));
+                  __pointer(message::base) paxis = __new(message::base(get_context_application(),this,e_message_kill_focus,0,0,lresult));
 
                   m_phost->::hotplugin::host::message_handler(paxis);
 
@@ -923,7 +923,7 @@ run_install:
 
                   LRESULT lresult;
 
-                  __pointer(message::base) paxis = __new(message::base(get_context_application(),this,WM_SETFOCUS,0,0,lresult));
+                  __pointer(message::base) paxis = __new(message::base(get_context_application(),this,e_message_set_focus,0,0,lresult));
 
                   m_phost->::hotplugin::host::message_handler(paxis);
 

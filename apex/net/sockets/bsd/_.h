@@ -71,7 +71,7 @@ the "getaddrinfo" and "getnameinfo" function calls. */
 
 
 
-/* Enable TCP reconnect on lost connection.
+/* enable TCP reconnect on lost connection.
 socket::OnReconnect
 socket::OnDisconnect
 */
@@ -80,7 +80,7 @@ socket::OnDisconnect
 
 
 
-/* Enable socket to socket triggers. Not yet in use. */
+/* enable socket to socket triggers. Not yet in use. */
 //#define ENABLE_TRIGGERS
 
 

@@ -82,7 +82,7 @@ namespace hotplugin
    }
 
 
-   void host::post_message(UINT uiMessage, WPARAM wparam, LPARAM lparam)
+   void host::post_message(const ::id & id, WPARAM wparam, LPARAM lparam)
 
    {
 
@@ -625,7 +625,7 @@ namespace hotplugin
    }
 
 
-   void host::plugin_message_handler(UINT message,WPARAM wparam,LPARAM lparam, bool bEnsureTx)
+   void host::plugin_message_handler(const ::id & id,WPARAM wparam,LPARAM lparam, bool bEnsureTx)
 
    {
 

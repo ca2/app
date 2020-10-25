@@ -19,7 +19,7 @@ namespace simple_drawing
    public:
 
 
-      enum e_type
+      enum enum_type
       {
 
          TypeNone,
@@ -31,16 +31,16 @@ namespace simple_drawing
       };
 
       EPaneView m_eview;
-      e_type m_etype;
+      enum_type m_etype;
 
 
       ::update();
       virtual ~::update();
 
 
-      void set_type(e_type e_type);
+      void set_type(enum_type enum_type);
 
-      bool is_type_of(e_type e_type);
+      bool is_type_of(enum_type enum_type);
 
 
    };

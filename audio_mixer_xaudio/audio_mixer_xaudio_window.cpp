@@ -22,8 +22,8 @@ namespace multimedia
       void window::install_message_routing(::channel * pchannel)
       {
          ::user::interaction::install_message_routing(pchannel);
-         IGUI_MSG_LINK(MM_MIXM_CONTROL_CHANGE, pchannel, this, &window::_001OnMixerControlChange);
-         IGUI_MSG_LINK(MM_MIXM_LINE_CHANGE, pchannel, this, &window::_001OnMixerLineChange);
+         MESSAGE_LINK(MM_MIXM_CONTROL_CHANGE, pchannel, this, &window::_001OnMixerControlChange);
+         MESSAGE_LINK(MM_MIXM_LINE_CHANGE, pchannel, this, &window::_001OnMixerLineChange);
       }
 
       void window::_001OnMixerControlChange(::message::message * pmessage)

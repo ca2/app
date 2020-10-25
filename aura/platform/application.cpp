@@ -214,7 +214,7 @@ namespace aura
       m_strLocale = "_std";
       m_strSchema = "_std";
 
-      m_iGcomBackgroundUpdateMillis = -1;
+      //m_iGcomBackgroundUpdateMillis = -1;
    }
 
 
@@ -1559,210 +1559,36 @@ namespace aura
    //}
 
 
-   //void application::notify_process_term()
-   //{
+   ::estatus application::_001InitializeShellOpen()
+   {
 
-   //   ::message::application message(::message::application_process_term);
+      //ASSERT(m_atomApp == nullptr && m_atomSystemTopic == nullptr); // do once
 
-   //   route_message(&message);
+      //m_atomApp            = ::GlobalAddAtomW(::str::international::utf8_to_unicode(m_strAppName));
 
-   //   //return message.m_bOk;
+      //m_atomSystemTopic    = ::GlobalAddAtomW(L"system");
 
-   //}
+      auto estatus = __compose(m_pshellopen);
 
+      if (!estatus)
+      {
 
-   //void application::TermApplication()
-   //{
+         return estatus;
 
+      }
 
-   //}
+      estatus = m_pshellopen->initialize_shell_open();
 
+      if (!estatus)
+      {
 
-//   ::estatus application::application_pre_run()
-//   {
-//
-//      INFO("aura::application::application_pre_run");
-//
-//#ifdef WINDOWS_DESKTOP
-//
-//      MESSAGE msg;
-//
-//      // Create Windows Message Queue
-//      ::PeekMessageA(&msg, nullptr, 0, 0xffff, 0);
-//
-//      if (!is_system() && is_true("SessionSynchronizedInput"))
-//      {
-//
-//         ::AttachThreadInput(GetCurrentThreadId(), (u32)System.get_ithread(), TRUE);
-//
-//      }
-//
-//#endif
-//
-//      m_tickHeartBeat.Now();
-//
-//      try
-//      {
-//
-//         if (!InitApplication())
-//         {
-//
-//            return false;
-//
-//         }
-//
-//      }
-//      catch (::exit_exception * pe)
-//      {
-//
-//         throw pe;
-//
-//      }
-//      catch (const ::exception::exception * pe)
-//      {
-//
-//         //thisexc << 1 << m_iErrorCode;
-//
-//         ::acme::del(pe);
-//
-//         return false;
-//
-//      }
-//      catch (...)
-//      {
-//
-//         //thisexcall << 1 << m_iErrorCode;
-//
-//         return false;
-//
-//      }
-//
-//      m_tickHeartBeat.Now();
-//
-//      try
-//      {
-//
-//         if (!process_init())
-//         {
-//
-//            return false;
-//
-//         }
-//
-//      }
-//      catch (::exit_exception * pe)
-//      {
-//
-//         throw pe;
-//
-//      }
-//      catch (const ::exception::exception * pe)
-//      {
-//
-//         ::acme::del(pe);
-//
-//         return false;
-//
-//      }
-//      catch (...)
-//      {
-//
-//         return false;
-//
-//      }
-//
-//      System.install_progress_add_up();
-//
-//      m_tickHeartBeat.Now();
-//
-//      try
-//      {
-//
-//         if (!init_application())
-//         {
-//
-//            return false;
-//
-//         }
-//
-//      }
-//      catch (::exception_pointer pe)
-//      {
-//
-//         handle_exception(pe);
-//
-//         return false;
-//
-//      }
-//      catch (...)
-//      {
-//
-//         return false;
-//
-//      }
-//
-//      m_tickHeartBeat.Now();
-//
-//      try
-//      {
-//
-//         if (!is_system() && !is_session())
-//         {
-//
-//            if (System.is_true("uninstall"))
-//            {
-//
-//               do_uninstall();
-//
-//               return false;
-//
-//            }
-//            else if (System.is_true("install"))
-//            {
-//
-//               do_install();
-//
-//               return false;
-//
-//            }
-//
-//         }
-//
-//         if (!init_instance())
-//         {
-//
-//            return false;
-//
-//         }
-//
-//         on_update_matter_locator();
-//
-//      }
-//      catch (exit_exception * pexception)
-//      {
-//
-//         __rethrow(pexception);
-//
-//      }
-//      catch(::exception::exception * pexception)
-//      {
-//
-//         ::exception_pointer esp(pexception);
-//
-//         return false;
-//
-//      }
-//      catch (...)
-//      {
-//
-//         return false;
-//
-//      }
-//
-//      return true;
-//
-//   }
+         return estatus;
 
+      }
+
+      return estatus;
+
+   }
 
    void application::application_pos_run()
    {
@@ -2359,7 +2185,7 @@ retry_license:
    //   apex::application::process_term();
 
 
-   // 
+   //
    //}
 
 
@@ -4356,7 +4182,7 @@ retry_license:
 
 
 
-   bool application::send_message_to_windows(UINT message, WPARAM wparam, LPARAM lparam) // with tbs in <3
+   bool application::send_message_to_windows(const ::id & id, WPARAM wparam, LPARAM lparam) // with tbs in <3
 
    {
 
@@ -4377,8 +4203,7 @@ retry_license:
                   try
                   {
 
-                     pwnd->send_message(message, wparam, lparam);
-
+                     pwnd->send_message(id, wparam, lparam);
 
                   }
                   catch (...)
@@ -4389,8 +4214,7 @@ retry_license:
                   try
                   {
 
-                     pwnd->send_message_to_descendants(message, wparam, lparam);
-
+                     pwnd->send_message_to_descendants(id, wparam, lparam);
 
                   }
                   catch (...)
@@ -4482,7 +4306,7 @@ retry_license:
    }
 
 
-   void application::send_language_change_message()
+   /*void application::send_language_change_message()
    {
 
       ::message::message message(::message::type_language);
@@ -4490,7 +4314,7 @@ retry_license:
       route_message_to_windows(&message);
 
    }
-
+*/
 
    ::user::interaction * application::main_window()
    {
@@ -4554,7 +4378,7 @@ retry_license:
       if (pinteraction != nullptr)
       {
 
-         return pinteraction->get_message_base(pmsg->message, pmsg->wParam, pmsg->lParam);
+         return pinteraction->get_message_base((enum_message) pmsg->message, pmsg->wParam, pmsg->lParam);
 
       }
 
@@ -4567,7 +4391,7 @@ retry_license:
 
       }
 
-      pbase->set(pinteraction, pmsg->message, pmsg->wParam, pmsg->lParam);
+      pbase->set(pinteraction, (enum_message) pmsg->message, pmsg->wParam, pmsg->lParam);
 
 
       return pbase;
@@ -4603,10 +4427,10 @@ retry_license:
    //}
 
 
-   bool application::post_message(UINT message, WPARAM wparam, lparam lparam )
+   bool application::post_message(const ::id & id, WPARAM wparam, lparam lparam )
    {
 
-      return ::thread::post_message(message, wparam, lparam);
+      return ::thread::post_message(id, wparam, lparam);
 
    }
 
@@ -6298,7 +6122,7 @@ namespace aura
          if(pinteraction)
          {
 
-            pinteraction->post_pred([pinteraction, idCommand]()
+            pinteraction->post_method(__method([pinteraction, idCommand]()
             {
 
                ::user::command command;
@@ -6307,7 +6131,7 @@ namespace aura
 
                pinteraction->route_command_message(&command);
 
-            });
+            }));
 
             return true;
 
@@ -6513,7 +6337,7 @@ namespace aura
 
       switch (pbase->m_id)
       {
-      case WM_CREATE:
+      case e_message_create:
       case WM_PAINT:
 
          return thread::process_window_procedure_exception(pe, pmessage);
@@ -7096,7 +6920,7 @@ namespace aura
    //
    //
    //   /////////////////////////////////////////////////////////////////////////////
-   //   // WinHelp Helper
+   //   // WinHelp helper
    //
    //
    //   void application::WinHelp(uptr dwData, UINT nCmd)
@@ -7112,7 +6936,7 @@ namespace aura
    //   }
    //
    //   /////////////////////////////////////////////////////////////////////////////
-   //   // HtmlHelp Helper
+   //   // HtmlHelp helper
    //
    //   void application::HtmlHelp(uptr dwData, UINT nCmd)
    //   {
@@ -9572,25 +9396,6 @@ namespace aura
 
 
 
-   int_bool application::window_set_mouse_cursor(oswindow window, HCURSOR hcursor)
-   {
-
-#ifdef WINDOWS_DESKTOP
-
-      UNREFERENCED_PARAMETER(window);
-
-      if (!::SetCursor(hcursor))
-      {
-
-         return FALSE;
-
-      }
-
-#endif
-
-      return true;
-
-   }
 
 
    icon_result application::load_icon(const ::var& varFile)

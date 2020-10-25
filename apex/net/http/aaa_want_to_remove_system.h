@@ -94,7 +94,7 @@ namespace http
       virtual bool request(::sockets::socket_handler & handler, __pointer(::sockets::http_session) & spsession,const char * pszUrl,property_set & set);
 
       virtual bool exists(const char * pszUrl, property_set & set);
-      virtual bool is_file_or_dir(const char * pszUrl, property_set & set, ::file::e_type * petype = nullptr);
+      virtual bool is_file_or_dir(const char * pszUrl, property_set & set, ::file::enum_type * petype = nullptr);
 
       virtual var length(const char * pszUrl, property_set & set);
 

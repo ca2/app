@@ -37,16 +37,16 @@ void simple_menu_bar::install_message_routing(::channel * pchannel)
 
    simple_toolbar::install_message_routing(pchannel);
 
-   //IGUI_MSG_LINK(WM_MOUSEMOVE, pchannel, this, &simple_menu_bar::_001OnMouseMove);
-   //IGUI_MSG_LINK(WM_NCMOUSEMOVE, pchannel, this, &simple_menu_bar::_001OnNcMouseMove);
-   IGUI_MSG_LINK(WM_CREATE, pchannel, this, &simple_menu_bar::_001OnCreate);
-   IGUI_MSG_LINK(WM_KEYDOWN, pchannel, this, &simple_menu_bar::_001OnKeyDown);
-   IGUI_MSG_LINK(WM_DESTROY, pchannel, this, &simple_menu_bar::_001OnDestroy);
-   IGUI_MSG_LINK(WM_MENUCHAR, pchannel, this, &simple_menu_bar::_001OnMenuChar);
-   //IGUI_MSG_LINK(WM_LBUTTONDOWN, pchannel, this, &simple_menu_bar::_001OnLButtonDown);
-   //MSG_TYPE_LINK(::message::type_language, pchannel, this, &simple_menu_bar::_001OnAppLanguage);
+   //MESSAGE_LINK(e_message_mouse_move, pchannel, this, &simple_menu_bar::_001OnMouseMove);
+   //MESSAGE_LINK(e_message_non_client_mouse_move, pchannel, this, &simple_menu_bar::_001OnNcMouseMove);
+   MESSAGE_LINK(e_message_create, pchannel, this, &simple_menu_bar::_001OnCreate);
+   MESSAGE_LINK(WM_KEYDOWN, pchannel, this, &simple_menu_bar::_001OnKeyDown);
+   MESSAGE_LINK(e_message_destroy, pchannel, this, &simple_menu_bar::_001OnDestroy);
+   MESSAGE_LINK(WM_MENUCHAR, pchannel, this, &simple_menu_bar::_001OnMenuChar);
+   //MESSAGE_LINK(WM_LBUTTONDOWN, pchannel, this, &simple_menu_bar::_001OnLButtonDown);
+   //MESSAGE_LINK(e_message_language, pchannel, this, &simple_menu_bar::_001OnAppLanguage);
 
-   //IGUI_MSG_LINK(WM_ERASEBKGND               , pchannel, this, *simple_menu_bar::_001On);
+   //MESSAGE_LINK(WM_ERASEBKGND               , pchannel, this, *simple_menu_bar::_001On);
 
 }
 
@@ -259,7 +259,7 @@ LRESULT CALLBACK simple_menu_bar::MessageProc(index code, WPARAM wParam, LPARAM 
 
    if (code == MSGF_MENU)
    {
-      if (pmsg->message == WM_MOUSEMOVE)
+      if (pmsg->message == e_message_mouse_move)
       {
 
          u32 fwKeys = (u32)pmsg->wParam; // key flags

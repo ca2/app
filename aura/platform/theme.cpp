@@ -32,14 +32,14 @@ namespace aura
 
       }
 
-      estatus = __compose_new(m_prunnerChangeWeatherState);
+      //estatus = __compose_new(m_prunnerChangeWeatherState);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       return estatus;
 
@@ -471,17 +471,17 @@ namespace aura
    void theme::handle_file_action(::file::action* paction)
    {
 
-      if (paction->m_pathFile.ends_ci("weather_state.txt"))
-      {
+      //if (paction->m_pathFile.ends_ci("weather_state.txt"))
+      //{
 
-         (*m_prunnerChangeWeatherState)(millis(300), [this]()
-            {
+      //   (*m_prunnerChangeWeatherState)(millis(300), [this]()
+      //      {
 
-               on_change_weather_state();
+      //         on_change_weather_state();
 
-            });
+      //      });
 
-      }
+      //}
 
    }
 

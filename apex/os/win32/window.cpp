@@ -80,25 +80,50 @@ namespace win32
    }
 
 
-   iptr window::send_message(UINT uiMessage, WPARAM wparam, LPARAM lparam)
+   iptr window::send_message(const ::id & id, WPARAM wparam, LPARAM lparam)
    {
 
-      return ::SendMessage(m_hwnd, uiMessage, wparam, lparam);
+      if (!id.is_message())
+      {
+
+         __throw(invalid_argument_exception);
+
+      }
+
+      return ::SendMessage(m_hwnd, id.u32(), wparam, lparam);
 
    }
 
 
-   iptr window::send_message_w(UINT uiMessage, WPARAM wparam, LPARAM lparam)
+   iptr window::send_message_w(const ::id & id, WPARAM wparam, LPARAM lparam)
    {
 
-      return ::SendMessageW(m_hwnd, uiMessage, wparam, lparam);
+      if (!id.is_message())
+      {
+
+         __throw(invalid_argument_exception);
+
+      }
+
+      return ::SendMessageW(m_hwnd, id.u32(), wparam, lparam);
 
    }
 
-   void window::post_message(UINT uiMessage, WPARAM wparam, LPARAM lparam)
+
+   void window::post_message(const ::id & id, WPARAM wparam, LPARAM lparam)
    {
-      ::PostMessageW(m_hwnd, uiMessage, wparam, lparam);
+
+      if (!id.is_message())
+      {
+
+         __throw(invalid_argument_exception);
+
+      }
+
+      ::PostMessageW(m_hwnd, id.u32(), wparam, lparam);
+
    }
+
 
    void window::enable_window(bool bEnable)
    {
@@ -107,6 +132,7 @@ namespace win32
 
 
    }
+
 
    void window::enable_children(bool bEnable)
    {
@@ -124,8 +150,8 @@ namespace win32
 
       }
 
-
    }
+
 
    void window::_set_window_text(const char * psz)
    {

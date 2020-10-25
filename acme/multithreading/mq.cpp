@@ -32,31 +32,30 @@ mq::~mq()
 }
 
 
-int_bool mq::post_message(oswindow oswindow, UINT uMessage, WPARAM wParam, LPARAM lParam)
+int_bool mq::post_message(oswindow oswindow, const ::id & id, WPARAM wParam, LPARAM lParam)
 {
 
-   if(m_bQuit)
+   if (m_bQuit)
    {
 
       return FALSE;
 
    }
 
-   MESSAGE message;
+   mq_message message(id);
 
-   message.hwnd = oswindow;
-   message.message = uMessage;
-   message.wParam = wParam;
-   message.lParam = lParam;
-   message.pt.x = 0x80000000;
-   message.pt.y = 0x80000000;
+   message.m_message.hwnd = oswindow;
+   message.m_message.wParam = wParam;
+   message.m_message.lParam = lParam;
+   message.m_message.pt.x = 0x80000000;
+   message.m_message.pt.y = 0x80000000;
 
    return post_message(message);
 
 }
 
 
-int_bool mq::post_message(const MESSAGE & message)
+int_bool mq::post_message(const mq_message & message)
 {
 
    if(m_bQuit)
@@ -77,6 +76,7 @@ int_bool mq::post_message(const MESSAGE & message)
 }
 
 
+
 int_bool mq::get_message(LPMESSAGE pMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax)
 {
 
@@ -95,9 +95,9 @@ int_bool mq::get_message(LPMESSAGE pMsg, oswindow oswindow, UINT wMsgFilterMin, 
       for (i32 i = 0; i < m_messagea.get_count();)
       {
 
-         MESSAGE & msg = m_messagea[i];
+         auto & msg = m_messagea[i];
 
-         if (msg.message == WM_QUIT)
+         if (msg.m_message.message == e_message_quit)
          {
 
             m_bQuit = true;
@@ -108,10 +108,10 @@ int_bool mq::get_message(LPMESSAGE pMsg, oswindow oswindow, UINT wMsgFilterMin, 
 
          }
 
-         if ((oswindow == nullptr || msg.hwnd == oswindow) && msg.message >= wMsgFilterMin && msg.message <= wMsgFilterMax)
+         if ((oswindow == nullptr || msg.m_message.hwnd == oswindow) && msg.m_message.message >= wMsgFilterMin && msg.m_message.message <= wMsgFilterMax)
          {
 
-            *pMsg = msg;
+            *pMsg = msg.m_message;
 
             m_messagea.remove_at(i);
 
@@ -181,7 +181,7 @@ int_bool mq::peek_message(LPMESSAGE pMsg,oswindow oswindow,UINT wMsgFilterMin,UI
    for(i32 i = 0; i < count; i++)
    {
 
-      MESSAGE & msg = m_messagea[i];
+      MESSAGE & msg = m_messagea[i].m_message;
 
       if((oswindow == nullptr || msg.hwnd == oswindow) && msg.message >= wMsgFilterMin && msg.message <= wMsgFilterMax)
       {
@@ -289,7 +289,7 @@ void clear_mq(ITHREAD idthread)
 ////
 ////   ITHREAD idthread = pinteraction->m_pthreadUserInteraction->get_os_int();
 ////
-////   auto pmq = ::get_mq(idthread, message.message != WM_QUIT);
+////   auto pmq = ::get_mq(idthread, message.message != e_message_quit);
 ////
 ////   if(pmq == nullptr)
 ////   {
@@ -366,8 +366,15 @@ CLASS_DECL_ACME void mq_clear(ITHREAD idthread)
 }
 
 
-int_bool mq_post_thread_message(ITHREAD idthread, UINT message, WPARAM wparam, LPARAM lparam)
+int_bool mq_post_thread_message(ITHREAD idthread, const ::id & id, WPARAM wparam, LPARAM lparam)
 {
+
+   if (id.m_etype != ::id::e_type_message)
+   {
+
+      __throw(invalid_argument_exception);
+
+   }
 
    auto pmq = get_mq(idthread, true);
 
@@ -378,7 +385,7 @@ int_bool mq_post_thread_message(ITHREAD idthread, UINT message, WPARAM wparam, L
 
    }
 
-   return pmq->post_message(nullptr, message, wparam, lparam);
+   return pmq->post_message(nullptr, id.m_emessage, wparam, lparam);
 
 }
 

@@ -79,11 +79,11 @@ namespace account
 
       ::user::interaction::install_message_routing(pchannel);
 
-      IGUI_MSG_LINK(WM_CREATE,pchannel,this,&dialog::_001OnCreate);
-      IGUI_MSG_LINK(WM_CHAR,pchannel,this,&dialog::_001OnChar);
-      IGUI_MSG_LINK(WM_LBUTTONDOWN,pchannel,this,&dialog::_001OnLButtonDown);
-      IGUI_MSG_LINK(WM_LBUTTONUP,pchannel,this,&dialog::_001OnLButtonUp);
-      IGUI_MSG_LINK(WM_MOUSEMOVE,pchannel,this,&dialog::_001OnMouseMove);
+      MESSAGE_LINK(e_message_create,pchannel,this,&dialog::_001OnCreate);
+      MESSAGE_LINK(WM_CHAR,pchannel,this,&dialog::_001OnChar);
+      MESSAGE_LINK(WM_LBUTTONDOWN,pchannel,this,&dialog::_001OnLButtonDown);
+      MESSAGE_LINK(WM_LBUTTONUP,pchannel,this,&dialog::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_mouse_move,pchannel,this,&dialog::_001OnMouseMove);
 
    }
 
@@ -353,7 +353,7 @@ namespace account
       if (bWasWaiting)
       {
 
-         if (!thread_sleep(5000))
+         if (!task_sleep(5000))
          {
 
             return;

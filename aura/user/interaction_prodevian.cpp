@@ -81,7 +81,7 @@ namespace user
 
       }
 
-      m_ptaskUpdateScreen = __pred_method([this]()
+      m_methodUpdateScreen = __method([this]()
          {
 
             update_screen();
@@ -90,7 +90,7 @@ namespace user
 
          });
 
-      m_ptaskWindowShow = __pred_method([this]()
+      m_methodWindowShow = __method([this]()
          {
 
             if (m_pimpl)
@@ -146,7 +146,7 @@ namespace user
 
       }
 
-      ::thread_set_name("prodevian," + ::str::demangle(m_puserinteraction->type_name()));
+      ::set_thread_name("prodevian," + ::str::demangle(m_puserinteraction->type_name()));
 
       while (thread_get_run())
       {
@@ -234,23 +234,23 @@ void prodevian::term_thread()
 
    m_puserinteraction.release();
 
-   if (m_ptaskUpdateScreen)
+   if (m_methodUpdateScreen)
    {
 
-      m_ptaskUpdateScreen->finalize();
+      m_methodUpdateScreen->finalize();
 
    }
 
-   m_ptaskUpdateScreen.release(OBJ_REF_DBG_THIS);
+   m_methodUpdateScreen.release(OBJ_REF_DBG_THIS);
 
-   if (m_ptaskWindowShow)
+   if (m_methodWindowShow)
    {
 
-      m_ptaskWindowShow->finalize();
+      m_methodWindowShow->finalize();
 
    }
 
-   m_ptaskWindowShow.release(OBJ_REF_DBG_THIS);
+   m_methodWindowShow.release(OBJ_REF_DBG_THIS);
 
 }
 
@@ -358,7 +358,7 @@ bool prodevian::prodevian_iteration()
          while (peek_message(&m_message, NULL, 0, 0, PM_NOREMOVE))
          {
 
-            if (m_message.message == message_redraw ||
+            if (m_message.message == e_message_redraw ||
                m_message.message == WM_KICKIDLE)
             {
 
@@ -378,7 +378,7 @@ bool prodevian::prodevian_iteration()
 
 #ifdef EXTRA_PRODEVIAN_ITERATION_LOG
 
-         INFO("Skipped message_redraw count "+ ::str::from(iSkipped) + "\n");
+         INFO("Skipped e_message_redraw count "+ ::str::from(iSkipped) + "\n");
 
 #endif
 
@@ -388,7 +388,7 @@ bool prodevian::prodevian_iteration()
             return true;
 
          }
-         else if (m_message.message != message_redraw)
+         else if (m_message.message != e_message_redraw)
          {
 
             return true;
@@ -416,7 +416,7 @@ bool prodevian::prodevian_iteration()
                return true;
 
             }
-            else if (m_message.message != message_redraw)
+            else if (m_message.message != e_message_redraw)
             {
 
                return true;
@@ -457,7 +457,7 @@ bool prodevian::prodevian_iteration()
 
    }
 
-   // message_redraw
+   // e_message_redraw
 
    if(strType.contains_ci("filemanager"))
    {
@@ -720,7 +720,7 @@ bool prodevian::prodevian_iteration()
             if(m_puserinteraction)
             {
 
-               m_puserinteraction->post_task(m_ptaskUpdateScreen);
+               m_puserinteraction->post_method(m_methodUpdateScreen);
 
             }
 
@@ -743,7 +743,7 @@ bool prodevian::prodevian_iteration()
       if (bStartWindowVisual)
       {
 
-         m_puserinteraction->post_task(m_ptaskWindowShow);
+         m_puserinteraction->post_method(m_methodWindowShow);
 
       }
       // ENDIF WINDOWS
@@ -1104,7 +1104,7 @@ bool prodevian::prodevian_iteration()
       if ((get_nanos() - m_nanosLastFrame) > (m_nanosFrame * 3 / 4))
       {
 
-         post_message(message_redraw);
+         post_message(e_message_redraw);
 
       }
 
@@ -1124,13 +1124,13 @@ bool prodevian::prodevian_iteration()
    }
 
 
-   void interaction::prodevian_schedule(::matter * pobjectTask)
+   void interaction::prodevian_post_method(const ::method& method)
    {
 
       if (is_graphical())
       {
 
-         m_pimpl2->m_pprodevian->post_task(pobjectTask);
+         m_pimpl2->m_pprodevian->post_task(method);
 
       }
 

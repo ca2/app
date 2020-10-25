@@ -68,7 +68,7 @@ namespace apex
 
 
 template < typename RECEIVER >
-void channel::add_route (RECEIVER * preceiver, void (RECEIVER::* phandler)(::message::message * pmessage), ::message::id id)
+void channel::add_route (RECEIVER * preceiver, void (RECEIVER::* phandler)(::message::message * pmessage), const ::id & id)
 {
 
   add_receiver_route(id, preceiver, phandler);
@@ -77,7 +77,7 @@ void channel::add_route (RECEIVER * preceiver, void (RECEIVER::* phandler)(::mes
 
 
 template < typename RECEIVER, typename MESSAGE_PRED >
-void channel::add_route (::message::id id, RECEIVER * preceiverDerived, MESSAGE_PRED message_pred)
+void channel::add_route (const ::id & id, RECEIVER * preceiverDerived, MESSAGE_PRED message_pred)
 {
 
   get_typed_route < typename ::remove_reference < decltype(*preceiverDerived) >::TYPE, ::message::message >(id, preceiverDerived) = message_pred;
@@ -86,7 +86,7 @@ void channel::add_route (::message::id id, RECEIVER * preceiverDerived, MESSAGE_
 
 
 template < typename RECEIVER, typename MESSAGE_TYPE >
-void channel::add_receiver_route(::message::id id, RECEIVER* preceiver, void (RECEIVER::* phandler)(MESSAGE_TYPE* pmessage))
+void channel::add_receiver_route(const ::id & id, RECEIVER* preceiver, void (RECEIVER::* phandler)(MESSAGE_TYPE* pmessage))
 {
 
   add_route(id, preceiver).m_pmessageable = __new(::message::receiver_route<RECEIVER, MESSAGE_TYPE>(preceiver, phandler));
@@ -95,8 +95,17 @@ void channel::add_receiver_route(::message::id id, RECEIVER* preceiver, void (RE
 
 
 template < typename RECEIVER >
-::message::route & channel::add_route(::message::id id, RECEIVER * preceiverDerived)
+::message::route & channel::add_route(const ::id & idParam, RECEIVER * preceiverDerived)
 {
+
+   ::id id(idParam);
+
+   if (id.m_etype == ::id::e_type_integer)
+   {
+
+      id.m_etype = ::id::e_type_message;
+
+   }
 
   sync_lock sl(channel_mutex());
 
@@ -183,7 +192,7 @@ template < typename RECEIVER >
 
 
 template < typename RECEIVER, typename MESSAGE >
-::message::typed_route < MESSAGE > & channel::get_typed_route (::message::id id, RECEIVER * preceiverDerived)
+::message::typed_route < MESSAGE > & channel::get_typed_route (const ::id & id, RECEIVER * preceiverDerived)
 {
 
   sync_lock sl(s_pmutexChannel);
@@ -294,268 +303,6 @@ CLASS_DECL_APEX inline ::apex::system * get_context_system(::apex::system * psys
   return psystem;
 
 }
-
-//
-//template < typename T >
-//inline __pointer(T) & pointer < T >::clone(::layered * pobjectContext)
-//{
-//
-//   if (::is_null(pobjectContext))
-//   {
-//
-//      release();
-//
-//      return *this;
-//
-//   }
-//
-//   return operator = (pobjectContext->clone());
-//
-//}
-//
-//
-//template < typename PRED >
-//::image_pointer get_image(::object * pobject, const var & varFile, bool bAsync = false)
-//{
-//
-//   ::file::path path = varFile.get_file_path();
-//
-//   if (path.is_empty())
-//   {
-//
-//      return nullptr;
-//
-//   }
-//
-//   sync_lock sl(::apex::get_image_mutex());
-//
-//   ::image_pointer & pimage = ::get_context_system()->m_mapImage[path];
-//
-//   if (!pimage)
-//   {
-//
-//      pimage = pobject->create_image();
-//
-//      pimage->set_nok();
-//
-//      sl.unlock();
-//
-//      System.m_pimaging->_load_image(pobject->get_context(), pimage, varFile, !bAsync, false);
-//
-//   }
-//
-//   return pimage;
-//
-//}
-//
-//
-//#ifndef __DEBUG
-//
-//#include "apex/primitive/primitive/block.inl"
-//
-//#endif // !__DEBUG
-//
-//
-//namespace str
-//{
-//
-//
-//   inline void from(string & str, const tick & tick)
-//   {
-//
-//      str.Format(__prtick, tick.m_i);
-//
-//   }
-//
-//
-//   inline void from(string & str, const bool & b)
-//   {
-//
-//      if(b)
-//      {
-//
-//         str = "{[(true)]}";
-//
-//      }
-//      else
-//      {
-//
-//         str = "{[(false)]}";
-//
-//      }
-//
-//   }
-//
-//
-//} // namespace str
-//
-//
-//inline void copy(void *, const void *) /* = 0 */ {__throw(interface_only_exception()); }
-//
-//
-//namespace papaya
-//{
-//
-//
-//   namespace chill
-//   {
-//
-//
-//      template < typename TYPE >
-//      inline TYPE default_value()
-//      {
-//
-//         __throw(::exception::exception("template only exception"));
-//
-//      }
-//
-//
-//   } // namespace chill
-//
-//
-//} // namespace papaya
-//
-//
-//inline float i32muldiv(float f, i32 iNum, i32 iDen)
-//{
-//
-//   return (float) (f * iNum / iDen);
-//
-//}
-//
-//
-//inline double i32muldiv(double d, i32 iNum, i32 iDen)
-//{
-//
-//   return (double) (d * iNum / iDen);
-//
-//}
-//
-//
-//inline i32 i32muldiv(i32 i, i32 iNum, i32 iDen)
-//{
-//
-//   return (i32) ::MulDiv(i, iNum, iDen);
-//
-//}
-//
-//
-//#ifndef WINDOWS
-//
-//
-//inline i64 MulDiv(i64 nNumber, i32 iNum, i32 iDen)
-//{
-//
-//   return nNumber * iNum / iDen;
-//
-//}
-//
-//#endif
-//
-//
-//inline ::i64 i32muldiv(::i64 i, i32 iNum, i32 iDen)
-//{
-//
-//   return i * iNum / iDen;
-//
-//}
-//
-//
-//inline string __str(const ::edisplay & edisplay) { return __str((::e_display) edisplay); }
-//
-//
-//namespace apex
-//{
-//
-//
-//   template < typename TYPE >
-//   bool application::gudo_get(const string & strKey, TYPE & obj)
-//   {
-//
-//      ::file::path strPath(strKey);
-//
-//      strPath.replace("::", "/");
-//
-//      sync_lock sl(System.m_spmutexUserAppData);
-//
-//      {
-//
-//         file_pointer file = this->file().get_file(Context.dir().appdata() / "gudo" / strPath, ::file::mode_read);
-//
-//         if (file.is_null())
-//         {
-//
-//            return false;
-//
-//         }
-//
-//         ::file::buffered_file buffer(this, file);
-//
-//         ::binary_stream reader(&buffer);
-//
-//         try
-//         {
-//
-//            reader >> obj;
-//
-//         }
-//         catch (...)
-//         {
-//
-//         }
-//
-//      }
-//
-//      return true;
-//
-//   }
-//
-//
-//   template < typename TYPE >
-//   bool application::gudo_set(const string & strKey, const TYPE & obj)
-//   {
-//
-//      string strPath(strKey);
-//
-//      strPath.replace("::", "/");
-//
-//      sync_lock sl(System.m_spmutexUserAppData);
-//
-//      {
-//
-//         file_pointer file = this->file().get_file(Context.dir().appdata() / "gudo" / strPath, ::file::mode_write | ::file::mode_create | ::file::defer_create_directory);
-//
-//         if (file.is_null())
-//         {
-//
-//            return false;
-//
-//         }
-//
-//         ::file::buffered_file buffer(this, file);
-//
-//         ::binary_stream writer(&buffer);
-//
-//         try
-//         {
-//
-//            writer << obj;
-//
-//         }
-//         catch (...)
-//         {
-//
-//         }
-//
-//      }
-//
-//      return true;
-//
-//   }
-//
-//
-//} // namespace apex
-//
 //
 //template < typename TYPE >
 //::stream & read_container_as_parent(::stream & stream, __pointer_array(TYPE) & a)

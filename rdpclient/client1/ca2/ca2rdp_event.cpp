@@ -24,10 +24,10 @@
 
 #include <freerdp/locale/keyboard.h>
 
-CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_send_mouse_button_event(rdpInput* input,UINT uiMessage,POINT pt);
+CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_send_mouse_button_event(rdpInput* input,const ::id & id,POINT pt);
 CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_send_keyboard_event(rdpInput* input,BOOL down,UINT scancode);
 
-CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_send_event(void* vinput,int bKey,int down,UINT scancode,UINT uiMessage,POINT pt)
+CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_send_event(void* vinput,int bKey,int down,UINT scancode,const ::id & id,POINT pt)
 {
 rdpInput * input = (rdpInput *) vinput;
    if(bKey)
@@ -36,7 +36,7 @@ rdpInput * input = (rdpInput *) vinput;
    }
    else
    {
-      ca2rdp_send_mouse_button_event(input,uiMessage, point);
+      ca2rdp_send_mouse_button_event(input,emessage, point);
    }
 }
 //static BYTE keymap[256];
@@ -171,14 +171,14 @@ rdpInput * input = (rdpInput *) vinput;
 //
 //}
 
-void ca2rdp_send_mouse_button_event(rdpInput* input, UINT uiMessage, POINT pt)
+void ca2rdp_send_mouse_button_event(rdpInput* input, const ::id & id, POINT pt)
 {
 
 	UINT16 flags = 0;
 
-   switch(uiMessage)
+   switch(emessage)
    {
-   case WM_MOUSEMOVE:
+   case e_message_mouse_move:
       flags = PTR_FLAGS_MOVE;
       break;
    case WM_LBUTTONDOWN:

@@ -225,7 +225,7 @@ namespace filemanager
             if (filemanager_document()->fs_data()->file_exists(strPath))
             {
 
-               auto future = __future([this, strPath](const ::var& var)
+               auto pfuture = __future([this, strPath](const ::var& var)
                   {
 
                      if (var == "yes")
@@ -243,7 +243,7 @@ namespace filemanager
 
                   });
 
-               message_box("Do you want to replace the existing file " + strPath + "?", nullptr, message_box_yes_no, future);
+               message_box("Do you want to replace the existing file " + strPath + "?", nullptr, message_box_yes_no, pfuture);
 
             }
             else

@@ -58,8 +58,8 @@ namespace multimedia
 
       void thread::install_message_routing(::channel * pchannel)
       {
-         IGUI_MSG_LINK(thread::MessageMixerThread, pchannel, this, &thread::OnMixerMessage);
-         IGUI_MSG_LINK(WM_USER, pchannel, this, &thread::OnUserMessage);
+         MESSAGE_LINK(thread::MessageMixerThread, pchannel, this, &thread::OnMixerMessage);
+         MESSAGE_LINK(WM_USER, pchannel, this, &thread::OnUserMessage);
       }
 
       // BEGIN_MESSAGE_MAP(thread, thread)

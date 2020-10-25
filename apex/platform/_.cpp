@@ -465,7 +465,7 @@ void c_post_system_event(::u64 u, void* pparam)
    LPARAM lparam = (LPARAM)pparam;
 
 
-   ::get_context_system()->post_message(message_event2, (WPARAM)u, lparam);
+   ::get_context_system()->post_message(e_message_event2, (WPARAM)u, lparam);
 
 
 }

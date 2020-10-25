@@ -178,11 +178,11 @@ namespace uwp
 
       install_message_routing(m_puserinteraction);
 
-      send_message(WM_CREATE,0,(LPARAM)&cs);
+      send_message(e_message_create,0,(LPARAM)&cs);
 
       m_puserinteraction->set_dim(cs.x,cs.cy,cs.cx,cs.cy);
 
-      send_message(WM_SIZE);
+      send_message(e_message_size);
 
       m_puserinteraction->add_ref(OBJ_REF_DBG_ARGS);
 
@@ -315,22 +315,22 @@ namespace uwp
    {
       last_install_message_routing(pchannel);
       //m_pbuffer->InstallMessageHandling(pinterface);
-      IGUI_MSG_LINK(WM_DESTROY, pchannel, this,&interaction_impl::_001OnDestroy);
-      IGUI_MSG_LINK(WM_PAINT, pchannel, this,&interaction_impl::_001OnPaint);
-      IGUI_MSG_LINK(WM_PRINT, pchannel, this,&interaction_impl::_001OnPrint);
+      MESSAGE_LINK(e_message_destroy, pchannel, this,&interaction_impl::_001OnDestroy);
+      MESSAGE_LINK(WM_PAINT, pchannel, this,&interaction_impl::_001OnPaint);
+      MESSAGE_LINK(WM_PRINT, pchannel, this,&interaction_impl::_001OnPrint);
       if(m_puserinteraction != nullptr)
       {
          m_puserinteraction->install_message_routing(pchannel);
       }
-      IGUI_MSG_LINK(WM_CREATE, pchannel, this,&interaction_impl::_001OnCreate);
-      IGUI_MSG_LINK(WM_SETCURSOR, pchannel, this,&interaction_impl::_001OnSetCursor);
-      IGUI_MSG_LINK(WM_ERASEBKGND, pchannel, this,&interaction_impl::_001OnEraseBkgnd);
-      IGUI_MSG_LINK(WM_MOVE, pchannel, this,&interaction_impl::_001OnMove);
-      IGUI_MSG_LINK(WM_SIZE, pchannel, this,&interaction_impl::_001OnSize);
-      IGUI_MSG_LINK(WM_SETFOCUS, pchannel, this, &interaction_impl::_001OnSetFocus);
-      IGUI_MSG_LINK(WM_KILLFOCUS, pchannel, this, &interaction_impl::_001OnKillFocus);
-      //IGUI_MSG_LINK(WM_SHOWWINDOW, pchannel, this,&interaction_impl::_001OnShowWindow);
-//      IGUI_MSG_LINK(ca2m_PRODEVIAN_SYNCH, pchannel, this,&interaction_impl::_001OnProdevianSynch);
+      MESSAGE_LINK(e_message_create, pchannel, this,&interaction_impl::_001OnCreate);
+      MESSAGE_LINK(WM_SETCURSOR, pchannel, this,&interaction_impl::_001OnSetCursor);
+      MESSAGE_LINK(WM_ERASEBKGND, pchannel, this,&interaction_impl::_001OnEraseBkgnd);
+      MESSAGE_LINK(e_message_move, pchannel, this,&interaction_impl::_001OnMove);
+      MESSAGE_LINK(e_message_size, pchannel, this,&interaction_impl::_001OnSize);
+      MESSAGE_LINK(e_message_set_focus, pchannel, this, &interaction_impl::_001OnSetFocus);
+      MESSAGE_LINK(e_message_kill_focus, pchannel, this, &interaction_impl::_001OnKillFocus);
+      //MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this,&interaction_impl::_001OnShowWindow);
+//      MESSAGE_LINK(ca2m_PRODEVIAN_SYNCH, pchannel, this,&interaction_impl::_001OnProdevianSynch);
       prio_install_message_routing(pchannel);
    }
 
@@ -965,7 +965,7 @@ namespace uwp
             pbase->m_id == WM_MBUTTONUP ||
             pbase->m_id == WM_RBUTTONDOWN ||
             pbase->m_id == WM_RBUTTONUP ||
-            pbase->m_id == WM_MOUSEMOVE ||
+            pbase->m_id == e_message_mouse_move ||
             pbase->m_id == WM_MOUSEWHEEL)
       {
 
@@ -1043,7 +1043,7 @@ namespace uwp
             }
          }
 
-         if(pbase->m_id == WM_MOUSEMOVE)
+         if(pbase->m_id == e_message_mouse_move)
          {
             // We are at the message handler procedure.
             // mouse messages originated from message handler and that are mouse move events should end up with the correct cursor.
@@ -1087,7 +1087,7 @@ namespace uwp
          pbase->set_lresult(DefWindowProc((UINT) pbase->m_id.i64(),pbase->m_wparam,pbase->m_lparam));
          return;
       }
-      if(pbase->m_id == EVENT_MESSAGE)
+      if(pbase->m_id == e_message_event)
       {
          if(m_puserinteraction != nullptr)
          {
@@ -1122,7 +1122,7 @@ namespace uwp
    }
 
    /*
-   bool interaction_impl::OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* pResult)
+   bool interaction_impl::OnWndMsg(const ::id & id, WPARAM wParam, LPARAM lParam, LRESULT* pResult)
    {
    LRESULT lResult = 0;
    union MessageMapFunctions mmf;
@@ -1149,7 +1149,7 @@ namespace uwp
    }
 
    // special case for activation
-   if (message == WM_ACTIVATE)
+   if (message == e_message_activate)
    __handle_activate(this, wParam, ::uwp::interaction_impl::from_handle((oswindow)lParam));
 
    // special case for set cursor HTERROR
@@ -2063,9 +2063,9 @@ return TRUE;
       return false;   // let the parent handle it
    }
 
-   void interaction_impl::OnParentNotify(UINT message,LPARAM lParam)
+   void interaction_impl::OnParentNotify(const ::id & id,LPARAM lParam)
    {
-      if((LOWORD(message) == WM_CREATE || LOWORD(message) == WM_DESTROY))
+      if((LOWORD(message) == e_message_create || LOWORD(message) == e_message_destroy))
       {
          if(ReflectLastMsg((oswindow)lParam))
             return;     // eat it
@@ -3403,12 +3403,12 @@ return TRUE;
    //   m_pguieOwner = pOwnerWnd;
    //}
 
-   LRESULT interaction_impl::send_message(UINT uiMessage,WPARAM wparam,lparam lparam)
+   LRESULT interaction_impl::send_message(const ::id & id,WPARAM wparam,lparam lparam)
    {
 
       ___pointer < ::message::base > spbase;
 
-      spbase = m_puserinteraction->get_message_base(uiMessage,wparam,lparam);
+      spbase = m_puserinteraction->get_message_base(emessage,wparam,lparam);
 
       /*      try
             {
@@ -3448,7 +3448,7 @@ return TRUE;
    }
 
 
-   bool interaction_impl::post_message(UINT message,WPARAM wParam,lparam lParam)
+   bool interaction_impl::post_message(const ::id & id,WPARAM wParam,lparam lParam)
    {
 
 //      return ::PostMessageW(get_handle(),message,wParam,lParam) != FALSE;
@@ -3791,7 +3791,7 @@ return TRUE;
 
    }
 
-   //void interaction_impl::send_message_to_descendants(UINT message,WPARAM wParam,lparam lParam,bool bDeep,bool bOnlyPerm)
+   //void interaction_impl::send_message_to_descendants(const ::id & id,WPARAM wParam,lparam lParam,bool bDeep,bool bOnlyPerm)
    //{
    //   ASSERT(::is_window(get_handle()));
    //   //interaction_impl::send_message_to_descendants(get_handle(), message, wParam, lParam, bDeep, bOnlyPerm);
@@ -4155,7 +4155,7 @@ return TRUE;
       //return ::IsDlgButtonChecked(get_handle(), nIDButton);
 
    }
-   LPARAM interaction_impl::SendDlgItemMessage(int nID,UINT message,WPARAM wParam,LPARAM lParam)
+   LPARAM interaction_impl::SendDlgItemMessage(int nID,const ::id & id,WPARAM wParam,LPARAM lParam)
    {
 
       __throw(todo());
@@ -4418,7 +4418,7 @@ return TRUE;
    }
 
 
-   bool interaction_impl::SendNotifyMessage(UINT message,WPARAM wParam,LPARAM lParam)
+   bool interaction_impl::SendNotifyMessage(const ::id & id,WPARAM wParam,LPARAM lParam)
    {
 
       __throw(todo());
@@ -5543,8 +5543,8 @@ __handle_activate(::user::interaction_impl * pWnd, WPARAM nState, ::user::intera
       ::user::interaction * pTopLevel= WIN_WINDOW(pWnd)->GetTopLevel();
       if (pTopLevel && (pWndOther == nullptr || !::is_window(WIN_WINDOW(pWndOther)->get_handle()) || pTopLevel != WIN_WINDOW(pWndOther)->GetTopLevel()))
       {
-         // lParam points to interaction_impl getting the WM_ACTIVATE message and
-         //  hWndOther from the WM_ACTIVATE.
+         // lParam points to interaction_impl getting the e_message_activate message and
+         //  hWndOther from the e_message_activate.
          oswindow hWnd2[2];
          hWnd2[0] = WIN_WINDOW(pWnd)->get_handle();
          if(pWndOther == nullptr || WIN_WINDOW(pWndOther) == nullptr)
@@ -5759,7 +5759,7 @@ __activation_window_procedure(oswindow hWnd, UINT nMsg, WPARAM wParam, LPARAM lP
       }
       break;
 
-      case WM_ACTIVATE:
+      case e_message_activate:
          __handle_activate(::uwp::interaction_impl::from_handle(hWnd), wParam,
                            ::uwp::interaction_impl::from_handle((oswindow)lParam));
          break;
@@ -5979,7 +5979,7 @@ namespace uwp
          //if (pmouse)
          //{
 
-         //   if (pmouse->m_id == WM_MOUSEMOVE)
+         //   if (pmouse->m_id == e_message_mouse_move)
          //   {
 
          //      pointd pointNow(pmouse->m_point);

@@ -156,7 +156,7 @@ namespace tranquillum
 
       ::experience::button::install_message_routing(pchannel);
 
-      IGUI_MSG_LINK(WM_SHOWWINDOW, pchannel, this, &button::_001OnShowWindow);
+      MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &button::_001OnShowWindow);
 
    }
 

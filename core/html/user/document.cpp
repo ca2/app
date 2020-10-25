@@ -323,7 +323,7 @@ void html_document::on_command_probe(::user::command * pcommand)
    if(pcommand->m_id == "viewindefaultbrowser")
    {
 
-      pcommand->Enable();
+      pcommand->enable();
 
       pcommand->m_bRet = true;
 

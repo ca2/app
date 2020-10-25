@@ -1179,16 +1179,6 @@ namespace install
 //inline bool is_impact_subgroup(::u64 u, ::u64 uGroup) { return u >= uGroup && u < uGroup + 100; }
 
 
-//class image;
-//namespace draw2d{class icon;}
-
-//using image_pointer = __pointer(::image);
-//using icon_pointer = __pointer(::draw2d::icon);
-
-
-//using image_result = __result(::image);
-//using icon_result=__result(::draw2d::icon);
-
 
 class command_line;
 
@@ -1442,7 +1432,7 @@ namespace datetime
 //   typedef CLASS_DECL_APEX ::string_array_base < ::file::path,string > patha;
 //   class file;
 //
-//   enum e_type
+//   enum enum_type
 //   {
 //
 //      type_none,
@@ -1988,8 +1978,8 @@ class thread;
 class thread;
 
 
-typedef ___pointer < thread > thread_pointer;
-typedef pointer_array < thread > thread_spa;
+using thread_pointer = __pointer(::thread);
+using thread_array = __pointer_array(thread);
 
 
 //class thread_impl;
@@ -2461,9 +2451,9 @@ namespace primitive
 //
 //using eiostate = ::cflag < ::file::e_iostate >;
 //
-//using ecommand = ::enum_type < enum_command >;
+//using ecommand = ::enumeration < enum_command >;
 //
-//using echeck = ::enum_type < enum_check >;
+//using echeck = ::enumeration < enum_check >;
 //
 
 typedef ::estatus THREAD_PROCEDURE(thread_parameter parameter);
@@ -2976,13 +2966,6 @@ class mq;
 #include "apex/multithreading/fork.h"
 #include "apex/multithreading/delay_thread.h"
 #include "apex/multithreading/tools.h"
-#include "apex/platform/timer_callback.h"
-#include "apex/platform/timer_item.h"
-#include "apex/platform/timer_array.h"
-#include "apex/platform/nano_timer.h"
-#include "apex/platform/timer.h"
-#include "apex/platform/timer_threaded.h"
-#include "apex/platform/timer_event.h"
 
 #include "apex/multithreading/thread_impl.h"
 //#include "apex/multithreading/simple_thread.h"

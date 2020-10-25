@@ -2520,16 +2520,16 @@ namespace user
 
       install_simple_ui_default_mouse_handling(pchannel);
 
-      IGUI_MSG_LINK(WM_LBUTTONDOWN, pchannel, this, &tab::_001OnLButtonDown);
-      IGUI_MSG_LINK(WM_LBUTTONUP, pchannel, this, &tab::_001OnLButtonUp);
-      IGUI_MSG_LINK(WM_MOUSEMOVE, pchannel, this, &tab::_001OnMouseMove);
-      IGUI_MSG_LINK(WM_MOUSELEAVE, pchannel, this, &tab::_001OnMouseLeave);
-      IGUI_MSG_LINK(WM_CREATE, pchannel, this, &tab::_001OnCreate);
-      IGUI_MSG_LINK(WM_SHOWWINDOW, pchannel, this, &tab::_001OnShowWindow);
-      MSG_TYPE_LINK(::message::type_language, pchannel, this, &tab::_001OnAppLanguage);
-      IGUI_MSG_LINK(message_start_tab_drag, pchannel, this,&tab::_001OnStartTabDrag);
+      MESSAGE_LINK(WM_LBUTTONDOWN, pchannel, this, &tab::_001OnLButtonDown);
+      MESSAGE_LINK(WM_LBUTTONUP, pchannel, this, &tab::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &tab::_001OnMouseMove);
+      MESSAGE_LINK(WM_MOUSELEAVE, pchannel, this, &tab::_001OnMouseLeave);
+      MESSAGE_LINK(e_message_create, pchannel, this, &tab::_001OnCreate);
+      MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &tab::_001OnShowWindow);
+      MESSAGE_LINK(e_message_language, pchannel, this, &tab::_001OnAppLanguage);
+      MESSAGE_LINK(message_start_tab_drag, pchannel, this,&tab::_001OnStartTabDrag);
 
-      ////IGUI_MSG_LINK(WM_TIMER, pchannel, this, &tab::_001OnTimer);
+      ////MESSAGE_LINK(WM_TIMER, pchannel, this, &tab::_001OnTimer);
 
    }
 
@@ -3600,7 +3600,7 @@ namespace user
                }
 
             }
-            else if (pmouse->m_id == WM_MOUSEMOVE)
+            else if (pmouse->m_id == e_message_mouse_move)
             {
 
                route_message(pmouse);
@@ -3621,7 +3621,7 @@ namespace user
          }
 
       }
-      else if(pmouse->m_id == WM_MOUSEMOVE)
+      else if(pmouse->m_id == e_message_mouse_move)
       {
 
       }

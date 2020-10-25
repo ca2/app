@@ -339,7 +339,7 @@
 //      }
 //
 //
-//      //LRESULT CALLBACK rx::s_message_queue_proc(oswindow oswindow,UINT message,WPARAM wparam,LPARAM lparam)
+//      //LRESULT CALLBACK rx::s_message_queue_proc(oswindow oswindow,const ::id & id,WPARAM wparam,LPARAM lparam)
 //      //{
 //
 //      //   //int iRet = 0;
@@ -389,7 +389,7 @@
 //      //}
 //
 //
-//      //LRESULT rx::message_queue_proc(UINT message,WPARAM wparam,LPARAM lparam)
+//      //LRESULT rx::message_queue_proc(const ::id & id,WPARAM wparam,LPARAM lparam)
 //      //{
 //
 //      //   //if(message == WM_USER + 100)

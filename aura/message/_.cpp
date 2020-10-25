@@ -27,8 +27,8 @@ namespace message
       if(pbase == nullptr)
          return FALSE;
 
-      // redundant WM_MOUSEMOVE and WM_NCMOUSEMOVE
-      if(pbase->is_message() && (pbase->m_id == WM_MOUSEMOVE || pbase->m_id == WM_NCMOUSEMOVE))
+      // redundant e_message_mouse_move and e_message_non_client_mouse_move
+      if(pbase->is_message() && (pbase->m_id == e_message_mouse_move || pbase->m_id == e_message_non_client_mouse_move))
       {
          return TRUE;
       }
@@ -53,8 +53,8 @@ namespace message
 
          return false;
 
-      // redundant WM_MOUSEMOVE and WM_NCMOUSEMOVE
-      if(pmsg->message == WM_MOUSEMOVE || pmsg->message == WM_NCMOUSEMOVE)
+      // redundant e_message_mouse_move and e_message_non_client_mouse_move
+      if(pmsg->message == e_message_mouse_move || pmsg->message == e_message_non_client_mouse_move)
 
       {
          return true;
@@ -86,53 +86,53 @@ namespace message
 {
 
 
-   UINT translate_to_os_message(UINT uiMessage)
+   UINT translate_to_os_message(const ::id & id)
    {
 
 #ifdef WINDOWS
 
-      switch (uiMessage)
+      switch (emessage)
       {
-      case message_create:
-         return WM_CREATE;
+      case e_message_create:
+         return e_message_create;
       default:
-         return uiMessage;
+         return emessage;
       };
 #elif defined(LINUX) ||  defined(__APPLE__) || defined(ANDROID)
-      switch (uiMessage)
+      switch (emessage)
       {
-      case message_create:
-         return WM_CREATE;
+      case e_message_create:
+         return e_message_create;
       default:
-         return uiMessage;
+         return emessage;
       };
 
 #else
-      switch (uiMessage)
+      switch (emessage)
       {
       default:
-         return uiMessage;
+         return emessage;
       };
 #endif
 
    }
 
 
-   e_prototype get_message_prototype(UINT_PTR uiMessage, UINT uiCode)
+   e_prototype get_message_prototype(UINT_PTR emessage, UINT uiCode)
    {
-      switch (uiMessage)
+      switch (emessage)
       {
-      case WM_SIZE:
+      case e_message_size:
          return PrototypeSize;
       case WM_HSCROLL:
       case WM_VSCROLL:
          return PrototypeScroll;
-      case WM_CREATE:
+      case e_message_create:
       case WM_NCCREATE:
          return PrototypeCreate;
-      case WM_MOVE:
+      case e_message_move:
          return PrototypeMove;
-      case WM_ACTIVATE:
+      case e_message_activate:
          return PrototypeActivate;
       case WM_MOUSEACTIVATE:
          return PrototypeMouseActivate;
@@ -153,7 +153,7 @@ namespace message
          //return PrototypeCommand;
          //}
          //}
-      case WM_MOUSEMOVE:
+      case e_message_mouse_move:
       case WM_LBUTTONDOWN:
       case WM_LBUTTONUP:
       case WM_LBUTTONDBLCLK:
@@ -163,7 +163,7 @@ namespace message
       case WM_MBUTTONDOWN:
       case WM_MBUTTONUP:
       case WM_MBUTTONDBLCLK:
-      case WM_NCMOUSEMOVE:
+      case e_message_non_client_mouse_move:
       case WM_NCLBUTTONDOWN:
       case WM_NCLBUTTONUP:
          return PrototypeMouse;
@@ -206,16 +206,16 @@ namespace message
          case WM_CTLCOLOR + WM_REFLECT_AXIS:
          return PrototypeCtlColorReflect;
          #endif*/
-      case WM_KILLFOCUS:
+      case e_message_kill_focus:
          return PrototypeKillFocus;
-      case WM_SETFOCUS:
+      case e_message_set_focus:
          return PrototypeSetFocus;
       case WM_WINDOWPOSCHANGING:
       case WM_WINDOWPOSCHANGED:
          return PrototypeWindowPos;
       case WM_NCCALCSIZE:
          return PrototypeNcCalcSize;
-      case message_simple_command:
+      case e_message_simple_command:
          return PrototypeSimpleCommand;
       case WM_PAINT:
          return PrototypeNone;

@@ -28,7 +28,7 @@ namespace music
             virtual ::estatus     open();
             virtual ::estatus     close();
 
-            ::estatus     send_short_message(::music::midi::e_type etype, int iChannel, int iData1, int iData2);
+            ::estatus     send_short_message(::music::midi::enum_type etype, int iChannel, int iData1, int iData2);
 
          };
 

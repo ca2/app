@@ -138,10 +138,11 @@ inline id::id(const type& type) :
 
 }
 
+
 inline id& id::operator = (::i32 i)
 {
 
-   m_etype = type_integer;
+   m_etype = e_type_integer;
 
    m_i = i;
 
@@ -153,7 +154,7 @@ inline id& id::operator = (::i32 i)
 inline id& id::operator = (::i64 i)
 {
 
-   m_etype = type_integer;
+   m_etype = e_type_integer;
 
    m_i = i;
 
@@ -165,7 +166,7 @@ inline id& id::operator = (::i64 i)
 inline id& id::operator = (::u64 u)
 {
 
-   m_etype = type_integer;
+   m_etype = e_type_integer;
 
    m_u = u;
 
@@ -177,7 +178,7 @@ inline id& id::operator = (::u64 u)
 inline id& id::operator = (const ::enum_property& eproperty)
 {
 
-   m_etype = type_property;
+   m_etype = e_type_property;
 
    m_eproperty = eproperty;
 
@@ -189,7 +190,7 @@ inline id& id::operator = (const ::enum_property& eproperty)
 inline id& id::operator = (const ::enum_factory& efactory)
 {
 
-   m_etype = type_factory;
+   m_etype = e_type_factory;
 
    m_efactory = efactory;
 
@@ -201,7 +202,7 @@ inline id& id::operator = (const ::enum_factory& efactory)
 inline id& id::operator = (const ::enum_thread_tool& ethreadtool)
 {
 
-   m_etype = type_thread_tool;
+   m_etype = e_type_thread_tool;
 
    m_ethreadtool = ethreadtool;
 
@@ -213,13 +214,27 @@ inline id& id::operator = (const ::enum_thread_tool& ethreadtool)
 inline id& id::operator = (const ::enum_clock& eclock)
 {
 
-   m_etype = type_clock;
+   m_etype = e_type_clock;
 
    m_eclock = eclock;
 
    return *this;
 
 }
+
+
+
+inline id& id::operator = (const ::enum_message & emessage)
+{
+
+   m_etype = e_type_message;
+
+   m_emessage = emessage;
+
+   return *this;
+
+}
+
 
 
 

@@ -16,13 +16,13 @@ struct CLASS_DECL_AXIS __MAP_MESSAGE
 
 static const __MAP_MESSAGE allMessages[] =
 {
-   DEFINE_MESSAGE(WM_CREATE),
-   DEFINE_MESSAGE(WM_DESTROY),
-   DEFINE_MESSAGE(WM_MOVE),
-   DEFINE_MESSAGE(WM_SIZE),
-   DEFINE_MESSAGE(WM_ACTIVATE),
-   DEFINE_MESSAGE(WM_SETFOCUS),
-   DEFINE_MESSAGE(WM_KILLFOCUS),
+   DEFINE_MESSAGE(e_message_create),
+   DEFINE_MESSAGE(e_message_destroy),
+   DEFINE_MESSAGE(e_message_move),
+   DEFINE_MESSAGE(e_message_size),
+   DEFINE_MESSAGE(e_message_activate),
+   DEFINE_MESSAGE(e_message_set_focus),
+   DEFINE_MESSAGE(e_message_kill_focus),
    DEFINE_MESSAGE(WM_ENABLE),
    DEFINE_MESSAGE(WM_SETREDRAW),
    DEFINE_MESSAGE(WM_SETTEXT),
@@ -31,7 +31,7 @@ static const __MAP_MESSAGE allMessages[] =
    DEFINE_MESSAGE(WM_PAINT),
    DEFINE_MESSAGE(WM_CLOSE),
    DEFINE_MESSAGE(WM_QUERYENDSESSION),
-   DEFINE_MESSAGE(WM_QUIT),
+   DEFINE_MESSAGE(e_message_quit),
    DEFINE_MESSAGE(WM_QUERYOPEN),
    DEFINE_MESSAGE(WM_ERASEBKGND),
    DEFINE_MESSAGE(WM_SYSCOLORCHANGE),
@@ -76,7 +76,7 @@ static const __MAP_MESSAGE allMessages[] =
    DEFINE_MESSAGE(WM_NCPAINT),
    DEFINE_MESSAGE(WM_NCACTIVATE),
    DEFINE_MESSAGE(WM_GETDLGCODE),
-   DEFINE_MESSAGE(WM_NCMOUSEMOVE),
+   DEFINE_MESSAGE(e_message_non_client_mouse_move),
    DEFINE_MESSAGE(WM_NCLBUTTONDOWN),
    DEFINE_MESSAGE(WM_NCLBUTTONUP),
    DEFINE_MESSAGE(WM_NCLBUTTONDBLCLK),
@@ -107,7 +107,7 @@ static const __MAP_MESSAGE allMessages[] =
    DEFINE_MESSAGE(WM_MENUCHAR),
    DEFINE_MESSAGE(WM_ENTERIDLE),
    DEFINE_MESSAGE(WM_MOUSEWHEEL),
-   DEFINE_MESSAGE(WM_MOUSEMOVE),
+   DEFINE_MESSAGE(e_message_mouse_move),
    DEFINE_MESSAGE(WM_LBUTTONDOWN),
    DEFINE_MESSAGE(WM_LBUTTONUP),
    DEFINE_MESSAGE(WM_LBUTTONDBLCLK),
@@ -279,7 +279,7 @@ void __trace_message(const char * lpszPrefix, ::message::message * pmessage)
    ENSURE_ARG(pmessage != nullptr);
    SCAST_PTR(::message::base, pbase, pmessage);
 
-   if (pbase->m_id == WM_MOUSEMOVE || pbase->m_id == WM_NCMOUSEMOVE ||
+   if (pbase->m_id == e_message_mouse_move || pbase->m_id == e_message_non_client_mouse_move ||
          pbase->m_id == WM_NCHITTEST || pbase->m_id == WM_SETCURSOR ||
          pbase->m_id == WM_CTLCOLORBTN ||
          pbase->m_id == WM_CTLCOLORDLG ||
@@ -362,7 +362,7 @@ void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg)
    //ENSURE_ARG(AfxIsValidString(lpszPrefix));
    ENSURE_ARG(lpmsg != nullptr);
 
-   if (lpmsg->message == WM_MOUSEMOVE || lpmsg->message == WM_NCMOUSEMOVE ||
+   if (lpmsg->message == e_message_mouse_move || lpmsg->message == e_message_non_client_mouse_move ||
          lpmsg->message == WM_NCHITTEST || lpmsg->message == WM_SETCURSOR ||
          lpmsg->message == WM_CTLCOLORBTN ||
          lpmsg->message == WM_CTLCOLORDLG ||

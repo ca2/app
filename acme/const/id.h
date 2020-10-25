@@ -4,6 +4,7 @@
 enum e_id : u64
 {
 
+
    id_none,
 
 

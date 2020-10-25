@@ -47,8 +47,8 @@ namespace browser
       impact_base::install_message_routing(pchannel);
       ::backview::user::impact::install_message_routing(pchannel);
 
-      IGUI_MSG_LINK(WM_CREATE, pchannel, this, &gcom::_001OnCreate);
-      IGUI_MSG_LINK(WM_DESTROY, pchannel, this, &gcom::_001OnDestroy);
+      MESSAGE_LINK(e_message_create, pchannel, this, &gcom::_001OnCreate);
+      MESSAGE_LINK(e_message_destroy, pchannel, this, &gcom::_001OnDestroy);
 
    }
 

@@ -308,7 +308,7 @@ var::var(const method & method)
     m_etype = type_new;
     xxf_zero(m_all);
     set_type(type_method);
-    m_functionbase = method;
+    m_method = method;
 
 }
 
@@ -319,7 +319,7 @@ var::var(const ::future & future)
    m_etype = type_new;
    xxf_zero(m_all);
    set_type(type_future);
-   m_functionbase = future;
+   m_future = future;
 
 }
 
@@ -477,7 +477,7 @@ void var::get_string(char * psz) const
 }
 
 
-::e_type var::get_type() const
+::enum_type var::get_type() const
 {
 
    return m_etype;
@@ -491,7 +491,7 @@ class var & var::operator ++(::i32)
    switch(get_type())
    {
    case type_new:
-   case type_null:
+   case e_type_null:
    case type_stra:
    case type_inta:
    case type_empty:
@@ -565,7 +565,7 @@ bool var::get_type(::type & type) const
 }
 
 
-void var::set_type(e_type etype, bool bConvert)
+void var::set_type(enum_type etype, bool bConvert)
 {
 
    if (m_etype == type_pvar)
@@ -945,7 +945,7 @@ class var & var::operator = (const property * pproperty)
    if (::is_null(pproperty))
    {
 
-      set_type(type_null, false);
+      set_type(e_type_null, false);
 
    }
    else
@@ -1226,7 +1226,7 @@ var::operator const char *() const
 }
 
 
-bool var::casts_to(::e_type etype) const
+bool var::casts_to(::enum_type etype) const
 {
 
    if (m_etype == etype)
@@ -1274,7 +1274,7 @@ bool var::is_true(const ::var & var, bool bDefault) const
       {
          switch (m_etype)
          {
-         case type_null:
+         case e_type_null:
             return bDefault;
          case type_empty:
             return bDefault;
@@ -1335,7 +1335,7 @@ bool var::is_empty() const
 
    switch(m_etype)
    {
-   case type_null:
+   case e_type_null:
       return true;
    case type_empty:
       return true;
@@ -1429,7 +1429,7 @@ bool var::is_new() const
 
 bool var::is_null() const
 {
-   if(m_etype == type_null)
+   if(m_etype == e_type_null)
       return true;
    else
       return false;
@@ -1955,7 +1955,7 @@ string var::get_string(const char * pszOnNull) const
    {
       string str;
 
-      if(m_etype == ::type_null)
+      if(m_etype == ::e_type_null)
       {
          str = pszOnNull;
       }
@@ -2079,7 +2079,7 @@ id var::get_id(const char * pszOnNull) const
 
       ::id id;
 
-      if(m_etype == ::type_null)
+      if(m_etype == ::e_type_null)
       {
          id = pszOnNull;
       }
@@ -2152,7 +2152,7 @@ id & var::get_ref_id(const char * pszOnNull)
 {
    switch(m_etype)
    {
-   case type_null:
+   case e_type_null:
       return iDefault;
    case type_empty:
       return iDefault;
@@ -2222,7 +2222,7 @@ id & var::get_ref_id(const char * pszOnNull)
 {
    switch(m_etype)
    {
-   case type_null:
+   case e_type_null:
       return uiDefault;
    case type_empty:
       return uiDefault;
@@ -2256,7 +2256,7 @@ id & var::get_ref_id(const char * pszOnNull)
 
       switch (m_etype)
       {
-      case type_null:
+      case e_type_null:
          return iDefault;
       case type_empty:
          return iDefault;
@@ -2328,7 +2328,7 @@ id & var::get_ref_id(const char * pszOnNull)
 {
    switch(m_etype)
    {
-   case type_null:
+   case e_type_null:
       return uiDefault;
    case type_empty:
       return uiDefault;
@@ -2370,8 +2370,7 @@ method var::get_method() const
 
    }
 
-   return m_functionbase;
-
+   return m_method;
 
 }
 
@@ -2386,7 +2385,7 @@ future var::get_future() const
 
    }
 
-   return m_functionbase;
+   return m_future;
 
 }
 
@@ -2395,7 +2394,7 @@ float var::get_float(float fDefault) const
 {
    switch(m_etype)
    {
-   case type_null:
+   case e_type_null:
       return fDefault;
    case type_empty:
       return fDefault;
@@ -2446,7 +2445,7 @@ float var::get_float(float fDefault) const
 double var::get_double(double dDefault) const
 {
    double d;
-   if(m_etype == type_null)
+   if(m_etype == e_type_null)
    {
       return dDefault;
    }
@@ -3454,8 +3453,8 @@ var var::operator / (::u64 ul) const
 
    switch(m_etype)
    {
-   case ::type_null:
-      return var(type_null);
+   case ::e_type_null:
+      return var(e_type_null);
    case ::type_empty:
       return 0.0 / ul; // throws division by zero exception if ul stream zero
    case ::type_i32:
@@ -3511,7 +3510,7 @@ var operator / (::u64 ul, const class var & var)
 {
    switch(var.m_etype)
    {
-   case ::type_null:
+   case ::e_type_null:
       __throw(::exception::exception("division by zero"));
    case ::type_empty:
       __throw(::exception::exception("division by zero"));
@@ -3630,8 +3629,8 @@ var var::operator * (::u64 ul) const
 {
    switch(m_etype)
    {
-   case ::type_null:
-      return var(type_null);
+   case ::e_type_null:
+      return var(e_type_null);
    case ::type_empty:
       return 0.0;
    case ::type_i32:
@@ -3688,8 +3687,8 @@ var operator * (::u64 ul, const class var & var)
 
    switch(var.m_etype)
    {
-   case ::type_null:
-      return ::var(::type_null);
+   case ::e_type_null:
+      return ::var(::e_type_null);
    case ::type_empty:
       return 0;
    case ::type_i32:
@@ -4047,7 +4046,7 @@ class var & var::operator *= (const class var & var)
 bool var::is_scalar() const
 {
    if(m_etype == type_new
-         || m_etype == type_null
+         || m_etype == e_type_null
          || m_etype == type_empty)
    {
       return false;
@@ -4433,7 +4432,7 @@ var::operator bool() const
 
    }
    else if (m_etype == type_new
-         || m_etype == type_null
+         || m_etype == e_type_null
          || m_etype == type_empty
          || m_etype == type_empty_argument
          || m_etype == type_not_found)
@@ -4778,7 +4777,7 @@ void var::consume_identifier(const char * & psz, const char * pszEnd)
    }
    else if (str.compare_ci("null") == 0)
    {
-      set_type(::type_null);
+      set_type(::e_type_null);
    }
    else
    {
@@ -5141,7 +5140,7 @@ void var::parse_json(const char *& pszJson, const char * pszEnd)
    }
 }
 
-::e_type var::find_json_child(const char *& pszJson, const char * pszEnd, const var & varChild)
+::enum_type var::find_json_child(const char *& pszJson, const char * pszEnd, const var & varChild)
 {
 
    ::str::consume_spaces(pszJson, 0, pszEnd);
@@ -5245,7 +5244,7 @@ void var::parse_json(const char *& pszJson, const char * pszEnd)
    {
       ::str::consume_spaces(pszJson, 0, pszEnd);
       ::str::consume(pszJson, "[", 1, pszEnd);
-      ::e_type etype = find_json_id(pszJson, pszEnd, varChild);
+      ::enum_type etype = find_json_id(pszJson, pszEnd, varChild);
       if (etype == ::type_new)
       {
 
@@ -5292,7 +5291,7 @@ void var::parse_json(const char *& pszJson, const char * pszEnd)
 }
 
 
-::e_type var::find_json_id(const char * & pszJson, const char * pszEnd, const var & varChild)
+::enum_type var::find_json_id(const char * & pszJson, const char * pszEnd, const var & varChild)
 {
 
    ::str::consume_spaces(pszJson, 0, pszEnd);
@@ -5364,7 +5363,7 @@ bool var::is_numeric() const
    {
    case type_parareturn:
    case type_new:
-   case type_null:
+   case e_type_null:
    case type_empty:
    case type_empty_argument:
       return false;
@@ -5551,7 +5550,7 @@ string & var::get_json(string & str, bool bNewLine) const
 void var::null()
 {
 
-   set_type(::type_null);
+   set_type(::e_type_null);
 
 }
 
@@ -5700,7 +5699,7 @@ bool var::is_false() const
    /// special meaning
    case type_parareturn:
    case type_new:
-   case type_null:
+   case e_type_null:
    case type_empty:
    case type_empty_argument:
    case type_not_found:
@@ -5780,9 +5779,9 @@ bool var::is_false() const
    case type_prop:
       return m_pprop || !*m_pprop;
    case type_method:
-         return ::is_null(m_functionbase.m_pobjectTask);
+         return !m_method;
    case type_future:
-         return ::is_null(m_functionbase.m_pobjectTask);
+         return !m_future;
 
    // matter classes
    case type_element:
@@ -5827,7 +5826,7 @@ bool var::is_set_false() const
    /// special meaning
    case type_parareturn:
    case type_new:
-   case type_null:
+   case e_type_null:
    case type_empty:
    case type_empty_argument:
    case type_not_found:
@@ -5905,9 +5904,9 @@ bool var::is_set_false() const
    case type_prop:
       return m_pprop || !*m_pprop;
    case type_method:
-      return ::is_null(m_functionbase.m_pobjectTask);
+      return !m_method;
    case type_future:
-      return ::is_null(m_functionbase.m_pobjectTask);
+      return !m_future;
 
       // matter classes
    case type_element:
@@ -6170,7 +6169,7 @@ IMPL_VAR_ENUM(check);
    else if (get_type() == type_method)
    {
 
-      return get_method().call();
+      return m_method();
 
    }
    else if (get_type() == type_vara)
@@ -6184,7 +6183,7 @@ IMPL_VAR_ENUM(check);
          if (varFunction.get_type() == type_method)
          {
 
-            result.add(varFunction.get_method().call());
+            result.add(varFunction.m_method());
 
          }
 
@@ -6221,7 +6220,7 @@ void var::receive_response(const ::var & var)
    else if (get_type() == type_future)
    {
 
-      get_future().send(var);
+      m_future(var);
 
    }
    else if (get_type() == type_vara)
@@ -6233,7 +6232,7 @@ void var::receive_response(const ::var & var)
          if (varFunction.get_type() == type_future)
          {
             
-            varFunction.get_future().send(var);
+            varFunction.m_future(var);
 
          }
 
@@ -6244,25 +6243,24 @@ void var::receive_response(const ::var & var)
 }
 
 
-
-
 var& var::operator = (const ::method & method)
 {
 
    set_type(type_method);
 
-   m_functionbase = method;
+   m_method = method;
 
    return *this;
 
 }
 
- var& var::operator = (const ::future & future)
+
+var& var::operator = (const ::future & future)
 {
 
    set_type(type_future);
 
-   m_functionbase = future;
+   m_future = future;
 
    return *this;
 

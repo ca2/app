@@ -39,7 +39,6 @@ namespace windows
 
 
    LRESULT WINAPI copydesk::WindowProc(HWND hwnd, UINT message, WPARAM wparam, LPARAM lparam)
-
    {
 
       if(message == WM_CLIPBOARDUPDATE)

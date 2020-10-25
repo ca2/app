@@ -37,8 +37,8 @@ namespace music
 
          void sequence_thread::install_message_routing(::channel * pchannel)
          {
-            IGUI_MSG_LINK(::music::midi::player::message_command, pchannel, this, &sequence_thread::OnCommand);
-            IGUI_MSG_LINK(message_midi_sequence_event, pchannel, this, &sequence_thread::OnMidiSequenceEvent);
+            MESSAGE_LINK(::music::midi::player::message_command, pchannel, this, &sequence_thread::OnCommand);
+            MESSAGE_LINK(e_message_midi_sequence_event, pchannel, this, &sequence_thread::OnMidiSequenceEvent);
          }
 
          void sequence_thread::Stop(imedia_time msEllapse)

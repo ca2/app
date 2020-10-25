@@ -24,8 +24,8 @@ public:
 
    action();
    action(const ::id & id, ::matter* pmatter = nullptr);
-   action(const ::id& id, const ::action_context& actioncontext);
-   action(::update * pupdate, const ::action_context& actioncontext);
+   action(const ::id & id, const ::action_context & actioncontext);
+   action(::update * pupdate, const ::action_context & actioncontext);
    action(::update * pupdate, ::matter * pmatter = nullptr);
    action(::update * pupdate, ::change * pchange, ::matter* pmatter);
    virtual ~action();
@@ -46,7 +46,7 @@ public:
    operator action* () { return this; }
    operator const action* () const { return this; }
 
-   inline bool is_up_to_date() const;
+   virtual bool is_up_to_date() const;
 
    virtual void set_up_to_date();
 
@@ -55,6 +55,22 @@ public:
 
 
 };
+
+
+inline ::action_pointer new_action(const ::id & id, ::matter * pmatter = nullptr)
+{
+
+   return __new(action(id, pmatter));
+
+}
+
+
+inline ::action_pointer new_action(const ::id & id, const ::action_context & actioncontext)
+{
+
+   return __new(action(id, actioncontext));
+
+}
 
 
 

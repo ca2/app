@@ -9,7 +9,7 @@ namespace turboc
       virtual public ::sphere::application
    {
    public:
-      enum e_type
+      enum enum_type
       {
 
          type_normal,
@@ -18,7 +18,7 @@ namespace turboc
       };
 
 
-      e_type                                 m_etype;
+      enum_type                                 m_etype;
 
 
       string                                 m_strTurboC;

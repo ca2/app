@@ -143,7 +143,7 @@ namespace zip
    }
 
 
-   bool in_file::unzip_open(::file::file * pfile, const string_array & straPath, int iBufferLevel, ::file::e_type * petype)
+   bool in_file::unzip_open(::file::file * pfile, const string_array & straPath, int iBufferLevel, ::file::enum_type * petype)
    {
 
       m_filea.remove_all();

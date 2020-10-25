@@ -41,6 +41,10 @@ namespace aura
 
       //__composite(::game::game)                       m_pgame;
 
+
+      __composite(shell_open)                         m_pshellopen;
+
+
       ::user::primitive *                             m_puiCurrent;
       //bool                                            m_bContextTheme;
 
@@ -154,6 +158,7 @@ namespace aura
 
 
       inline ::aura::game* game() { return m_pgame->m_pauragame; }
+
 
 
 
@@ -385,7 +390,7 @@ namespace aura
 
       //virtual bool app_data_set(const ::id & id, stream & os) override;
       //virtual bool app_data_get(const ::id & id, stream & is) override;
-      
+
       //virtual bool app_data_set(const ::id & id, ::object & obj) override;
       //virtual bool app_data_get(const ::id & id, ::object & obj) override;
 
@@ -591,7 +596,7 @@ namespace aura
 
       //virtual bool _001OnDDECommand(const char * pcsz) override;
 
-      virtual void _001EnableShellOpen() override;
+      virtual ::estatus _001InitializeShellOpen() override;
       virtual void _001OnFileNew(::message::message * pmessage) override;
 
 
@@ -790,12 +795,12 @@ namespace aura
       virtual void add_frame(::user::interaction * pwnd);
       virtual void remove_frame(::user::interaction * pwnd);
 
-      virtual bool send_message_to_windows(UINT message, WPARAM wparam, LPARAM lparam) override; // with tbs in <3
+      virtual bool send_message_to_windows(const ::id & id, WPARAM wparam, LPARAM lparam) override; // with tbs in <3
 
       virtual bool route_message_to_windows(::message::message * pmessage) override; // with tbs in <3
 
 
-      virtual void send_language_change_message() override;
+      //virtual void send_language_change_message() override;
 
 
 
@@ -805,7 +810,7 @@ namespace aura
       // user virtual ::user::document * place_hold(::user::interaction * pinteraction);
 
 
-      virtual bool post_message(UINT message, WPARAM wParam = 0, lparam lParam = 0) override;
+      virtual bool post_message(const ::id & id, WPARAM wParam = 0, lparam lParam = 0) override;
 
 
       //virtual ::draw2d::icon * set_icon(object * pobject, ::draw2d::icon * picon, bool bBigIcon);
@@ -1068,7 +1073,7 @@ namespace aura
       void EnableModeless(bool bEnable); // to disable OLE in-place dialogs
 
 
-      // Helper for message boxes; can work when no application can be found
+      // helper for message boxes; can work when no application can be found
       //static i32 ShowAppMessageBox(__pointer(application)pApp,const char * pszPrompt,UINT nType,UINT nIDPrompt);
 
       static void DoEnableModeless(bool bEnable); // to disable OLE in-place dialogs
@@ -1413,6 +1418,12 @@ namespace aura
 #ifdef WINDOWS_DESKTOP
       virtual LPTSTR windows_get_system_cursor(e_cursor ecursor);
 #endif
+
+#ifdef LINUX
+      virtual bool os_on_start_application() override;
+#endif
+
+
 
    };
 

@@ -163,7 +163,7 @@ namespace experience
 
       ::user::button::install_message_routing(pchannel);
 
-      IGUI_MSG_LINK(WM_SHOWWINDOW, pchannel, this, &button::_001OnShowWindow);
+      MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &button::_001OnShowWindow);
 
    }
 
@@ -208,7 +208,7 @@ namespace experience
       if (m_spregion.is_null())
       {
 
-         item= element_none;
+         item= ::user::element_none;
          return;
 
       }
@@ -224,12 +224,12 @@ namespace experience
       if (!m_spregion->contains(item.m_pointHitTest))
       {
 
-         item = element_none;
+         item = ::user::element_none;
          return;
 
       }
 
-      item= element_client;
+      item= ::user::element_client;
 
    }
 

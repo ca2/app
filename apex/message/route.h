@@ -73,11 +73,12 @@ namespace message
    {
    public:
 
-      id                   m_id;
-      ::object *           m_preceiver;
-      object *             m_pobjectReceiver;
-      ::type               m_typeReceiver;
-      __pointer(messageable)      m_pmessageable;
+
+      enum_message                  m_emessage;
+      ::object *                    m_preceiver;
+      object *                      m_pobjectReceiver;
+      ::type                        m_typeReceiver;
+      __pointer(messageable)        m_pmessageable;
 
 
       route(::object * preceiver, ::object * pobjectReceiver, const ::type & typeReceiver) :
@@ -169,9 +170,9 @@ namespace message
 
    using route_array = __pointer_array(route);
 
-   __class(CLASS_DECL_APEX, id_route, ::map < ::message::id, const ::message::id &, __pointer(route_array) >);
+   __class(CLASS_DECL_APEX, id_route, ::id_map < __pointer(route_array) >);
 
-   using type_id_route = ::map < e_type, e_type, id_route >;
+   //using type_id_route = ::map < enum_type, enum_type, id_route >;
 
 
 } // namespace message

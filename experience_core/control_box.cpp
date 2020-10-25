@@ -107,11 +107,11 @@ namespace experience
 
          ::experience::control_box::install_message_routing(pframewindow);
 
-         IGUI_MSG_LINK(WM_SHOWWINDOW, pframewindow, this, &control_box::_001OnShowWindow);
-         IGUI_MSG_LINK(WM_LBUTTONDOWN, pframewindow, this, &control_box::_001OnLButtonDown);
-         IGUI_MSG_LINK(WM_LBUTTONUP, pframewindow, this, &control_box::_001OnLButtonUp);
-         //IGUI_MSG_LINK(WM_SIZE, pframewindow, this, &control_box::_001OnSize);
-      //   //IGUI_MSG_LINK(WM_TIMER, pframewindow, this, &control_box::_001OnTimer);
+         MESSAGE_LINK(WM_SHOWWINDOW, pframewindow, this, &control_box::_001OnShowWindow);
+         MESSAGE_LINK(WM_LBUTTONDOWN, pframewindow, this, &control_box::_001OnLButtonDown);
+         MESSAGE_LINK(WM_LBUTTONUP, pframewindow, this, &control_box::_001OnLButtonUp);
+         //MESSAGE_LINK(e_message_size, pframewindow, this, &control_box::_001OnSize);
+      //   //MESSAGE_LINK(WM_TIMER, pframewindow, this, &control_box::_001OnTimer);
 
       }
 

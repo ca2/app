@@ -367,14 +367,16 @@ voidpf filestream)
       if (ZREAD(*pzlib_filefunc_def,filestream,buf,uReadSize)!=uReadSize)
          break;
 
-      for (i=(i32)uReadSize-3; (i--)>0;)
-//            if (((*(buf+i))==0x50) && ((*(buf+i+1))==0x4b) &&
-         //              ((*(buf+i+2))==0x05) && ((*(buf+i+3))==0x06))
-         if(isEndOfCentralDir(&buf[i]))
+      for (i = (i32)uReadSize - 3; (i--) > 0;)
+      {
+         //if (((*(buf+i))==0x50) && ((*(buf+i+1))==0x4b) &&
+         //           ((*(buf+i+2))==0x05) && ((*(buf+i+3))==0x06))
+         if (isEndOfCentralDir(&buf[i]))
          {
-            uPosFound = uReadPos+i;
+            uPosFound = uReadPos + i;
             break;
          }
+      }
 
       if (uPosFound!=0)
          break;
@@ -604,7 +606,8 @@ uptr commentBufferSize)
          err=UNZ_ERRNO;
       }
       else if (uMagic!=0x02014b50
-               && uMagic != 0x2b5fa067)
+               && uMagic != 0x2b5fa067
+         && uMagic != 0x2b5fa067)
       {
          err=UNZ_BADZIPFILE;
       }
@@ -945,7 +948,7 @@ unz_file_pos* file_pos)
 }
 
 /*
-// Unzip Helper Functions - should be here?
+// Unzip helper Functions - should be here?
 ///////////////////////////////////////////
 */
 

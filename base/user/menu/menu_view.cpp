@@ -64,8 +64,8 @@ namespace user
 
       install_simple_ui_default_mouse_handling(pchannel);
 
-      IGUI_MSG_LINK(WM_CREATE, pchannel, this, &menu_view::_001OnCreate);
-      IGUI_MSG_LINK(WM_DESTROY, pchannel, this, &menu_view::_001OnDestroy);
+      MESSAGE_LINK(e_message_create, pchannel, this, &menu_view::_001OnCreate);
+      MESSAGE_LINK(e_message_destroy, pchannel, this, &menu_view::_001OnDestroy);
 
    }
 

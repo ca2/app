@@ -1029,105 +1029,105 @@ namespace axis
    }
 
 
-   ::estatus application::init_application()
-   {
-
-      //if (m_bAuraInitializeInstance)
-      //{
-
-      //   return m_bAuraInitializeInstanceResult;
-
-      //}
-
-      INFO("aura::application::init_application");
-
-      //m_bAuraInitializeInstance = true;
-
-      //m_bAuraInitializeInstanceResult = false;
-
-      m_tickHeartBeat.Now();
-
-      if (!init1())
-      {
-
-         //dappy(string(typeid(*this).name()) + " : init1 failure : " + __str(m_iErrorCode));
-
-         return false;
-
-      }
-
-      System.install_progress_add_up(); // 2
-
-      //xxdebug_box("init1 ok", "init1 ok", MB_ICONINFORMATION);
-
-      m_tickHeartBeat.Now();
-
-      if (!init2())
-      {
-
-         //dappy(string(typeid(*this).name()) + " : init2 failure : " + __str(m_iErrorCode));
-
-         return false;
-
-      }
-
-      System.install_progress_add_up(); // 3
-
-      //xxdebug_box("init2 ok", "init2 ok", MB_ICONINFORMATION);
-
-      m_tickHeartBeat.Now();
-
-      if (!init3())
-      {
-
-         //dappy(string(typeid(*this).name()) + " : init3 failure : " + __str(m_iErrorCode));
-
-         return false;
-
-      }
-
-      System.install_progress_add_up(); // 4
-
-      //xxdebug_box("init3 ok", "init3 ok", MB_ICONINFORMATION);
-
-      m_tickHeartBeat.Now();
-
-      //dappy(string(typeid(*this).name()) + " : init3 ok : " + __str(m_iErrorCode));
-
-      try
-      {
-
-         if (!init())
-         {
-
-            //dappy(string(typeid(*this).name()) + " : initialize failure : " + __str(m_iErrorCode));
-
-            return false;
-
-         }
-
-      }
-      catch (const char * psz)
-      {
-
-         if (!strcmp(psz, "You have not logged in! Exiting!"))
-         {
-
-            return false;
-
-         }
-
-         return false;
-
-      }
-
-      System.install_progress_add_up(); // 5
-
-//      m_bAuraInitializeInstanceResult = true;
-
-      return true;
-
-   }
+//   ::estatus application::init_application()
+//   {
+//
+//      //if (m_bAuraInitializeInstance)
+//      //{
+//
+//      //   return m_bAuraInitializeInstanceResult;
+//
+//      //}
+//
+//      INFO("aura::application::init_application");
+//
+//      //m_bAuraInitializeInstance = true;
+//
+//      //m_bAuraInitializeInstanceResult = false;
+//
+//      m_tickHeartBeat.Now();
+//
+//      if (!init1())
+//      {
+//
+//         //dappy(string(typeid(*this).name()) + " : init1 failure : " + __str(m_iErrorCode));
+//
+//         return false;
+//
+//      }
+//
+//      System.install_progress_add_up(); // 2
+//
+//      //xxdebug_box("init1 ok", "init1 ok", MB_ICONINFORMATION);
+//
+//      m_tickHeartBeat.Now();
+//
+//      if (!init2())
+//      {
+//
+//         //dappy(string(typeid(*this).name()) + " : init2 failure : " + __str(m_iErrorCode));
+//
+//         return false;
+//
+//      }
+//
+//      System.install_progress_add_up(); // 3
+//
+//      //xxdebug_box("init2 ok", "init2 ok", MB_ICONINFORMATION);
+//
+//      m_tickHeartBeat.Now();
+//
+//      if (!init3())
+//      {
+//
+//         //dappy(string(typeid(*this).name()) + " : init3 failure : " + __str(m_iErrorCode));
+//
+//         return false;
+//
+//      }
+//
+//      System.install_progress_add_up(); // 4
+//
+//      //xxdebug_box("init3 ok", "init3 ok", MB_ICONINFORMATION);
+//
+//      m_tickHeartBeat.Now();
+//
+//      //dappy(string(typeid(*this).name()) + " : init3 ok : " + __str(m_iErrorCode));
+//
+//      try
+//      {
+//
+//         if (!init())
+//         {
+//
+//            //dappy(string(typeid(*this).name()) + " : initialize failure : " + __str(m_iErrorCode));
+//
+//            return false;
+//
+//         }
+//
+//      }
+//      catch (const char * psz)
+//      {
+//
+//         if (!strcmp(psz, "You have not logged in! Exiting!"))
+//         {
+//
+//            return false;
+//
+//         }
+//
+//         return false;
+//
+//      }
+//
+//      System.install_progress_add_up(); // 5
+//
+////      m_bAuraInitializeInstanceResult = true;
+//
+//      return true;
+//
+//   }
 
 
 
@@ -1834,12 +1834,7 @@ namespace axis
    }
 
 
-   //::estatus application::init_application()
-   //{
 
-   //   return ::aura::application::init_application();
-
-   //}
 
 
    //::estatus application::application_pre_run()

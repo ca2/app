@@ -1469,7 +1469,7 @@ namespace draw2d_direct2d
 
       }
 
-      if (pbrush->m_etype == ::draw2d::brush::type_null)
+      if (pbrush->m_etype == ::draw2d::brush::e_type_null)
       {
 
          return true;
@@ -1500,7 +1500,7 @@ namespace draw2d_direct2d
 
       __copy(rect.radiusX, point);
 
-      if (m_pbrush.is_set() && m_pbrush->m_etype != ::draw2d::brush::type_null)
+      if (m_pbrush.is_set() && m_pbrush->m_etype != ::draw2d::brush::e_type_null)
       {
 
          auto pbrush = m_pbrush.cast <::draw2d_direct2d::brush > ();
@@ -1511,7 +1511,7 @@ namespace draw2d_direct2d
 
       }
 
-      if (m_pbrush.is_set() && m_pbrush->m_etype != ::draw2d::brush::type_null)
+      if (m_pbrush.is_set() && m_pbrush->m_etype != ::draw2d::brush::e_type_null)
       {
 
          auto ppen = m_ppen.cast <::draw2d_direct2d::pen >();

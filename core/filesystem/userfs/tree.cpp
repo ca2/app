@@ -92,9 +92,9 @@ namespace userfs
    void tree::install_message_routing(::channel * pchannel)
    {
 
-      IGUI_MSG_LINK(WM_CREATE, pchannel, this, &tree::_001OnCreate);
-      IGUI_MSG_LINK(WM_LBUTTONDBLCLK, pchannel, this, &tree::_001OnLButtonDblClk);
-      IGUI_MSG_LINK(WM_CONTEXTMENU, pchannel, this, &tree::_001OnContextMenu);
+      MESSAGE_LINK(e_message_create, pchannel, this, &tree::_001OnCreate);
+      MESSAGE_LINK(WM_LBUTTONDBLCLK, pchannel, this, &tree::_001OnLButtonDblClk);
+      MESSAGE_LINK(WM_CONTEXTMENU, pchannel, this, &tree::_001OnContextMenu);
 
    }
 
@@ -180,7 +180,7 @@ namespace userfs
          if (m_iAnimate >= 11)
          {
             m_iAnimate = 0;
-            ptimer->m_ptimercallback->remove(ptimer);
+            ptimer->m_ptimercallback->remove_timer(ptimer);
 
          }
          ptimer->m_ptimercallback->user_interaction()->set_need_redraw();
@@ -189,7 +189,7 @@ namespace userfs
       {
          ptimer->m_ptimercallback->user_interaction()->set_need_redraw();
          m_bTimer123 = false;
-         ptimer->m_ptimercallback->remove(ptimer);
+         ptimer->m_ptimercallback->remove_timer(ptimer);
       }
    }
 

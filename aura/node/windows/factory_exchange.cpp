@@ -1,7 +1,7 @@
 ﻿#include "framework.h"
 #include "aura/node/windows/_windows.h"
 #include "aura/node/windows/buffer.h"
-
+#include "shell_open.h"
 
 
 //namespace aura
@@ -50,7 +50,7 @@ void __node_aura_factory_exchange()
    //create_factory < ::file::os_watch, ::file::watch >();
 
    create_factory < ::windows::copydesk, ::user::copydesk >();
-   //create_factory < ::windows::shell, ::user::shell >();
+   create_factory < ::windows::shell_open, ::shell_open >();
 
 
 }

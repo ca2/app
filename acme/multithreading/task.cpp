@@ -1,6 +1,8 @@
 #include "framework.h"
 #include "task.h"
-
+#ifdef LINUX
+#include <pthread.h>
+#endif
 
 
 task::task()
@@ -9,7 +11,7 @@ task::task()
    m_bitRunThisThread = true;
    m_bitIsRunning = false;
    m_bitIsPred = true;
-   m_hthread = nullptr;
+   m_hthread = NULL_HTHREAD;
    m_ithread = 0;
 
 }
@@ -78,6 +80,22 @@ bool task::thread_get_run() const
 }
 
 
+bool task::task_active() const
+{
+
+   return m_hthread != (HTHREAD) 0;
+
+}
+
+
+bool task::is_running() const
+{
+
+   return m_bitIsRunning;
+
+}
+
+
 void task::set_thread_run(bool bRun)
 {
 
@@ -120,17 +138,17 @@ void* task::s_os_task(void* p)
    try
    {
 
-      ::task* ptask = (::task*) p;
+      ::task* pthread = (::task*) p;
 
-      ::set_task(ptask OBJ_REF_DBG_COMMA_P_FUNCTION_LINE(ptask));
+      ::set_task(pthread OBJ_REF_DBG_COMMA_P_FUNCTION_LINE(pthread));
 
-      ptask->release();
+      pthread->release();
 
-      ptask->on_task();
+      pthread->on_task();
 
-      ptask->term_task();
+      pthread->term_task();
 
-      ::thread_release(OBJ_REF_DBG_P_NOTE(ptask, ""));
+      ::thread_release(OBJ_REF_DBG_P_NOTE(pthread, ""));
 
    }
    catch (...)
@@ -166,20 +184,27 @@ void task::remove_notify(::matter* pmatter)
 void task::term_task()
 {
 
+   sync_lock sl(mutex());
+
+   auto elementaNotify = m_elementaNotify;
+
+   for (auto& pelement : elementaNotify)
    {
 
-      sync_lock sl(mutex());
+      pelement->task_remove(this);
 
-      auto elementaNotify = m_elementaNotify;
+      pelement->task_on_term(this);
 
-      for (auto& pelement : elementaNotify)
-      {
+   }
 
-         pelement->task_remove(this);
+   if (m_pthreadParent)
+   {
 
-         pelement->task_on_term(this);
+      m_pthreadParent->task_remove(this);
 
-      }
+      //m_pthreadParent->task_on_term(this);
+
+      //m_pthreadParent->kick_idle();
 
    }
 
@@ -224,7 +249,7 @@ void task::term_task()
 }
 
 
-::estatus task::_start(
+::estatus task::start(
    ::matter* pmatter,
    ::e_priority epriority,
    u32 nStackSize,
@@ -258,7 +283,7 @@ void task::term_task()
 
    }
 
-   // __thread_procedure() should release this (pmatter)
+   // __task_procedure() should release this (pmatter)
    add_ref(OBJ_REF_DBG_THIS_FUNCTION_LINE);
 
 #ifdef WINDOWS
@@ -271,24 +296,24 @@ void task::term_task()
 
 #else
 
-   pthread_attr_t threadAttr;
+   pthread_attr_t taskAttr;
 
-   pthread_attr_init(&threadAttr);
+   pthread_attr_init(&taskAttr);
 
    if (nStackSize > 0)
    {
 
-      pthread_attr_setstacksize(&threadAttr, nStackSize); // Set the stack size of the thread
+      pthread_attr_setstacksize(&taskAttr, nStackSize); // Set the stack size of the task
 
    }
 
-   pthread_attr_setdetachstate(&threadAttr, PTHREAD_CREATE_DETACHED); // Set thread to detached state. No need for pthread_join
+   pthread_attr_setdetachstate(&taskAttr, PTHREAD_CREATE_DETACHED); // Set task to detached state. No need for pthread_join
 
    pthread_create(
-      &ptask->m_hthread,
-      &threadAttr,
-      &matter::s_os_thread_procedure,
-      (LPVOID)(::matter*) this);
+      &m_hthread,
+      &taskAttr,
+      &task::s_os_task,
+      (LPVOID)(::task*) this);
 
 #endif
 
@@ -304,15 +329,14 @@ void task::term_task()
 }
 
 
-__pointer(task) task::start(::matter * pmatter, ::e_priority epriority, UINT nStackSize, u32 uiCreateFlags)
+::task_pointer task::launch(::matter * pmatter, ::e_priority epriority, UINT nStackSize, u32 uCreateFlags)
 {
 
    auto ptask = __new(task);
 
-   ptask->_start(pmatter, epriority, nStackSize, uiCreateFlags);
+   ptask->start(pmatter, epriority, nStackSize, uCreateFlags);
 
    return ptask;
-
 
 }
 
@@ -321,10 +345,10 @@ __pointer(task) task::start(::matter * pmatter, ::e_priority epriority, UINT nSt
 
 
 //
-//bool task::set_thread_name(const char* pszThreadName)
+//bool task::set_task_name(const char* pszThreadName)
 //{
 //
-//   if (!::set_thread_name(m_hthread, pszThreadName))
+//   if (!::set_task_name(m_hthread, pszThreadName))
 //   {
 //
 //      return false;
@@ -336,9 +360,281 @@ __pointer(task) task::start(::matter * pmatter, ::e_priority epriority, UINT nSt
 //}
 
 //
-//void task::set_thread_run(bool bRun)
+//void task::set_task_run(bool bRun)
 //{
 //
 //   m_bRunThisThread = bRun;
 //
 //}
+
+
+void task::kick_idle()
+{
+
+
+}
+
+
+
+
+
+
+
+CLASS_DECL_ACME bool __task_sleep(task* task)
+{
+
+   while (task->thread_get_run())
+   {
+
+      Sleep(100);
+
+   }
+
+   return false;
+
+}
+
+
+CLASS_DECL_ACME bool __task_sleep(task* pthread, tick tick)
+{
+
+   if (tick.m_i < 1000)
+   {
+
+      if (!pthread->thread_get_run())
+      {
+
+         return false;
+
+      }
+
+      Sleep(tick);
+
+      return pthread->thread_get_run();
+
+   }
+
+   auto iTenths = tick.m_i / 10;
+
+   auto iMillis = tick.m_i % 10;
+
+   try
+   {
+
+      __pointer(manual_reset_event) spev;
+
+      {
+
+         sync_lock sl(pthread->mutex());
+
+         if (pthread->m_pevSleep.is_null())
+         {
+
+            pthread->m_pevSleep = __new(manual_reset_event());
+
+            pthread->m_pevSleep->ResetEvent();
+
+         }
+
+         spev = pthread->m_pevSleep;
+
+      }
+
+      if (!pthread->thread_get_run())
+      {
+
+         return false;
+
+      }
+
+      //while(iTenths > 0)
+      //{
+
+      pthread->m_pevSleep->wait(tick);
+
+      if (!pthread->thread_get_run())
+      {
+
+         return false;
+
+      }
+
+      //iTenths--;
+
+   //}
+
+   }
+   catch (...)
+   {
+
+   }
+
+   return pthread->thread_get_run();
+
+}
+
+
+CLASS_DECL_ACME bool __task_sleep(::task* pthread, sync* psync)
+{
+
+   try
+   {
+
+      while (pthread->thread_get_run())
+      {
+
+         if (psync->wait(100).succeeded())
+         {
+
+            break;
+
+         }
+
+      }
+
+   }
+   catch (...)
+   {
+
+   }
+
+   return pthread->thread_get_run();
+
+}
+
+
+CLASS_DECL_ACME bool __task_sleep(task* pthread, tick tick, sync* psync)
+{
+
+   if (tick.m_i < 1000)
+   {
+
+      if (!pthread->thread_get_run())
+      {
+
+         return false;
+
+      }
+
+      psync->wait(tick);
+
+      return pthread->thread_get_run();
+
+   }
+
+   auto iTenths = tick.m_i / 100;
+
+   auto iMillis = tick.m_i % 100;
+
+   try
+   {
+
+      {
+
+         pthread->m_pevSleep->wait(100);
+
+         if (!pthread->thread_get_run())
+         {
+
+            return false;
+
+         }
+
+         iTenths--;
+
+      }
+
+   }
+   catch (...)
+   {
+
+   }
+
+   return pthread->thread_get_run();
+
+}
+
+
+CLASS_DECL_ACME bool task_sleep(tick tick, sync* psync)
+{
+
+   auto pthread = ::get_task();
+
+   if (::is_null(pthread))
+   {
+
+      if (::is_null(psync))
+      {
+
+         if (__os(tick) == INFINITE)
+         {
+
+         }
+         else
+         {
+
+            ::Sleep(tick);
+
+         }
+
+      }
+      else
+      {
+
+         if (__os(tick) == INFINITE)
+         {
+
+            return psync->lock();
+
+         }
+         else
+         {
+
+            return psync->lock(tick);
+
+         }
+
+      }
+
+      return true;
+
+   }
+
+   if (::is_null(psync))
+   {
+
+      if (__os(tick) == INFINITE)
+      {
+
+         return __task_sleep(pthread);
+
+      }
+      else
+      {
+
+         return __task_sleep(pthread, tick);
+
+      }
+
+   }
+   else
+   {
+
+      if (__os(tick) == INFINITE)
+      {
+
+         return __task_sleep(pthread, psync);
+
+      }
+      else
+      {
+
+         return __task_sleep(pthread, tick, psync);
+
+      }
+
+   }
+}
+
+
+

@@ -642,7 +642,7 @@ namespace android
    }
 
 
-   //void os_context::post_to_all_threads(UINT message, WPARAM wparam, LPARAM lparam)
+   //void os_context::post_to_all_threads(const ::id & id, WPARAM wparam, LPARAM lparam)
    //{
 
    //   ::exception::throw_not_implemented();

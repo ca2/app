@@ -179,12 +179,12 @@ namespace linux
 
 #endif   // WINVER >= 0x0500
 
-      LRESULT send_message(UINT message, WPARAM wParam = 0, lparam lparam = 0) override;
+      LRESULT send_message(const ::id & id, WPARAM wParam = 0, lparam lparam = 0) override;
 
-      bool post_message(UINT message, WPARAM wParam = 0, lparam lparam = 0) override;
+      bool post_message(const ::id & id, WPARAM wParam = 0, lparam lparam = 0) override;
 
 
-//      bool SendNotifyMessage(UINT message, WPARAM wParam, lparam lParam);
+//      bool SendNotifyMessage(const ::id & id, WPARAM wParam, lparam lParam);
 //
 //      bool SendChildNotifyLastMsg(LRESULT* pResult = nullptr);
 //
@@ -408,7 +408,7 @@ namespace linux
 //      virtual ::user::interaction * GetNextDlgGroupItem(::user::interaction * pWndCtl, bool bPrevious = FALSE) const;
 //      virtual ::user::interaction * GetNextDlgTabItem(::user::interaction * pWndCtl, bool bPrevious = FALSE) const;
 //      virtual UINT IsDlgButtonChecked(i32 nIDButton) const;
-//      virtual LRESULT SendDlgItemMessage(i32 nID, UINT message, WPARAM wParam = 0, LPARAM lParam = 0);
+//      virtual LRESULT SendDlgItemMessage(i32 nID, const ::id & id, WPARAM wParam = 0, LPARAM lParam = 0);
 //      virtual void SetDlgItemInt(i32 nID, UINT nValue, bool bSigned = TRUE);
 //      virtual void SetDlgItemText(i32 nID, const char * pszString);
 

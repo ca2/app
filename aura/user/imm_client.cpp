@@ -28,22 +28,22 @@ imm_client::~imm_client()
 void imm_client::install_message_routing(::channel * pchannel)
 {
 
-   IGUI_MSG_LINK(WM_SETFOCUS, pchannel, this, &::imm_client::_001OnSetFocus);
-   IGUI_MSG_LINK(WM_KILLFOCUS, pchannel, this, &::imm_client::_001OnKillFocus);
-   IGUI_MSG_LINK(WM_IME_SETCONTEXT, pchannel, this, &::imm_client::_001OnIme);
-   IGUI_MSG_LINK(WM_IME_STARTCOMPOSITION, pchannel, this, &::imm_client::_001OnIme);
-   IGUI_MSG_LINK(WM_IME_COMPOSITION, pchannel, this, &::imm_client::_001OnIme);
-   IGUI_MSG_LINK(WM_IME_ENDCOMPOSITION, pchannel, this, &::imm_client::_001OnIme);
-   IGUI_MSG_LINK(WM_IME_NOTIFY, pchannel, this, &::imm_client::_001OnIme);
-   IGUI_MSG_LINK(WM_IME_KEYDOWN, pchannel, this, &::imm_client::_001OnIme);
-   IGUI_MSG_LINK(WM_IME_KEYUP, pchannel, this, &::imm_client::_001OnIme);
-   IGUI_MSG_LINK(WM_IME_SELECT, pchannel, this, &::imm_client::_001OnIme);
-   IGUI_MSG_LINK(WM_INPUTLANGCHANGE, pchannel, this, &::imm_client::_001OnIme);
+   MESSAGE_LINK(e_message_set_focus, pchannel, this, &::imm_client::_001OnSetFocus);
+   MESSAGE_LINK(e_message_kill_focus, pchannel, this, &::imm_client::_001OnKillFocus);
+   MESSAGE_LINK(WM_IME_SETCONTEXT, pchannel, this, &::imm_client::_001OnIme);
+   MESSAGE_LINK(WM_IME_STARTCOMPOSITION, pchannel, this, &::imm_client::_001OnIme);
+   MESSAGE_LINK(WM_IME_COMPOSITION, pchannel, this, &::imm_client::_001OnIme);
+   MESSAGE_LINK(WM_IME_ENDCOMPOSITION, pchannel, this, &::imm_client::_001OnIme);
+   MESSAGE_LINK(WM_IME_NOTIFY, pchannel, this, &::imm_client::_001OnIme);
+   MESSAGE_LINK(WM_IME_KEYDOWN, pchannel, this, &::imm_client::_001OnIme);
+   MESSAGE_LINK(WM_IME_KEYUP, pchannel, this, &::imm_client::_001OnIme);
+   MESSAGE_LINK(WM_IME_SELECT, pchannel, this, &::imm_client::_001OnIme);
+   MESSAGE_LINK(WM_INPUTLANGCHANGE, pchannel, this, &::imm_client::_001OnIme);
 
-   IGUI_MSG_LINK(WM_CHAR, pchannel, this, &::imm_client::_011OnChar);
-   IGUI_MSG_LINK(WM_IME_CHAR, pchannel, this, &::imm_client::_011OnChar);
+   MESSAGE_LINK(WM_CHAR, pchannel, this, &::imm_client::_011OnChar);
+   MESSAGE_LINK(WM_IME_CHAR, pchannel, this, &::imm_client::_011OnChar);
 
-   IGUI_MSG_LINK(WM_KEYDOWN, pchannel, this, &::imm_client::_001OnKeyDown);
+   MESSAGE_LINK(WM_KEYDOWN, pchannel, this, &::imm_client::_001OnKeyDown);
 
 
 }

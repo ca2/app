@@ -76,7 +76,7 @@ namespace user
    {
    public:
 
-      enum e_state
+      enum enum_state
       {
 
          state_initial,
@@ -162,7 +162,7 @@ namespace user
       };
 
 
-      e_state                          m_estate;
+      enum_state                          m_estate;
       __pointer(data)                         m_spdata;
       ::draw2d::graphics_extension     m_dcextension;
       bool                             m_bDisableSavingRestorableTabs;

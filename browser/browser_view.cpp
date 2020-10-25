@@ -70,12 +70,12 @@ namespace browser
 
       impact_base::install_message_routing(pchannel);
 
-      IGUI_MSG_LINK(WM_CREATE,pchannel,this,&view::_001OnCreate);
-      IGUI_MSG_LINK(WM_DESTROY, pchannel, this, &view::_001OnDestroy);
-      //IGUI_MSG_LINK(WM_LBUTTONDOWN, pchannel, this, &view::_001OnLButtonDown);
-      IGUI_MSG_LINK(WM_LBUTTONDOWN, pchannel, this, &view::_001OnMouse);
-      IGUI_MSG_LINK(WM_LBUTTONUP, pchannel, this, &view::_001OnMouse);
-      IGUI_MSG_LINK(WM_MOUSEMOVE, pchannel, this, &view::_001OnMouse);
+      MESSAGE_LINK(e_message_create,pchannel,this,&view::_001OnCreate);
+      MESSAGE_LINK(e_message_destroy, pchannel, this, &view::_001OnDestroy);
+      //MESSAGE_LINK(WM_LBUTTONDOWN, pchannel, this, &view::_001OnLButtonDown);
+      MESSAGE_LINK(WM_LBUTTONDOWN, pchannel, this, &view::_001OnMouse);
+      MESSAGE_LINK(WM_LBUTTONUP, pchannel, this, &view::_001OnMouse);
+      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &view::_001OnMouse);
 
    }
 
@@ -342,7 +342,7 @@ namespace browser
          m_pbrowser->GetHost()->SendMouseClickEvent(event, cef_mouse_button_type_t::MBT_LEFT, true, 1);
 
       }
-      else if (pmouse->m_id == WM_MOUSEMOVE)
+      else if (pmouse->m_id == e_message_mouse_move)
       {
 
          m_pbrowser->GetHost()->SendMouseMoveEvent(event, false);

@@ -91,17 +91,18 @@ namespace user
 
    }
 
-   bool message_queue::message_queue_post_message(u32 uiMessage,WPARAM wparam,lparam lparam)
+   bool message_queue::message_queue_post_message(const ::id & id,WPARAM wparam,lparam lparam)
    {
 
-      return post_message(uiMessage,wparam,lparam);
+      return post_message(id, wparam, lparam);
 
    }
 
-   LRESULT message_queue::message_queue_send_message(u32 uiMessage,WPARAM wparam,lparam lparam)
+
+   LRESULT message_queue::message_queue_send_message(const ::id& id,WPARAM wparam,lparam lparam)
    {
 
-      return send_message(uiMessage,wparam,lparam);
+      return send_message(id, wparam, lparam);
 
    }
 

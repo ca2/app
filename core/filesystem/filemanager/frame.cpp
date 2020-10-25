@@ -43,9 +43,9 @@ namespace filemanager
 
       simple_frame_window::install_message_routing(pchannel);
 
-      IGUI_MSG_LINK(WM_SETTEXT, pchannel, this, &frame::_001OnSetText);
+      MESSAGE_LINK(WM_SETTEXT, pchannel, this, &frame::_001OnSetText);
 
-      IGUI_MSG_LINK(WM_CREATE, pchannel, this, &frame::_001OnCreate);
+      MESSAGE_LINK(e_message_create, pchannel, this, &frame::_001OnCreate);
 
    }
 

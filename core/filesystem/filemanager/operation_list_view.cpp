@@ -18,8 +18,8 @@ namespace filemanager
    {
       ::user::impact::install_message_routing(pchannel);
       ::user::list::install_message_routing(pchannel);
-//      //IGUI_MSG_LINK(WM_TIMER,pchannel,this,&operation_list_view::_001OnTimer);
-      IGUI_MSG_LINK(WM_CREATE,pchannel,this,&operation_list_view::_001OnCreate);
+//      //MESSAGE_LINK(WM_TIMER,pchannel,this,&operation_list_view::_001OnTimer);
+      MESSAGE_LINK(e_message_create,pchannel,this,&operation_list_view::_001OnCreate);
    }
 
 

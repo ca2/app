@@ -781,17 +781,17 @@ CLASS_DECL_EXPORT BOOL wf_pre_connect(freerdp* instance)
 //
 //			if (instance->settings->EmbeddedWindow)
 //			{
-//				if ((msg.message == WM_SETFOCUS) && (msg.lParam == 1))
+//				if ((msg.message == e_message_set_focus) && (msg.lParam == 1))
 //				{
-//					PostMessage(wfc->hwnd, WM_SETFOCUS, 0, 0);
+//					PostMessage(wfc->hwnd, e_message_set_focus, 0, 0);
 //				}
-//				else if ((msg.message == WM_KILLFOCUS) && (msg.lParam == 1))
+//				else if ((msg.message == e_message_kill_focus) && (msg.lParam == 1))
 //				{
-//					PostMessage(wfc->hwnd, WM_KILLFOCUS, 0, 0);
+//					PostMessage(wfc->hwnd, e_message_kill_focus, 0, 0);
 //				}
 //			}
 //
-//			if (msg.message == WM_SIZE)
+//			if (msg.message == e_message_size)
 //			{
 //				width = LOWORD(msg.lParam);
 //				height = HIWORD(msg.lParam);
@@ -880,13 +880,13 @@ rdpSettings* freerdp_client_get_settings(wfContext* wfc)
 
 int freerdp_client_focus_in(wfContext* wfc)
 {
-   postthreadmessage(wfc->mainThreadId, WM_SETFOCUS, 0, 1);
+   postthreadmessage(wfc->mainThreadId, e_message_set_focus, 0, 1);
 	return 0;
 }
 
 int freerdp_client_focus_out(wfContext* wfc)
 {
-   postthreadmessage(wfc->mainThreadId, WM_KILLFOCUS, 0, 1);
+   postthreadmessage(wfc->mainThreadId, e_message_kill_focus, 0, 1);
 	return 0;
 }
 
@@ -896,7 +896,7 @@ int freerdp_client_set_window_size(wfContext* wfc, int width, int height)
 
 	if ((width != wfc->client_width) || (height != wfc->client_height))
 	{
-      postthreadmessage(wfc->mainThreadId, WM_SIZE, SIZE_RESTORED, ((UINT) height << 16) | (UINT) width);
+      postthreadmessage(wfc->mainThreadId, e_message_size, SIZE_RESTORED, ((UINT) height << 16) | (UINT) width);
 	}
 
 	return 0;
@@ -1164,7 +1164,7 @@ int wfreerdp_client_stop(rdpContext* context)
 
 	if (wfc->thread)
 	{
-      postthreadmessage(wfc->mainThreadId, WM_QUIT, 0, 0);
+      postthreadmessage(wfc->mainThreadId, e_message_quit, 0, 0);
 
 		WaitForSingleObject(wfc->thread, INFINITE);
 		CloseHandle(wfc->thread);
@@ -1174,7 +1174,7 @@ int wfreerdp_client_stop(rdpContext* context)
 
 	if (wfc->keyboardThread)
 	{
-      postthreadmessage(wfc->keyboardThreadId, WM_QUIT, 0, 0);
+      postthreadmessage(wfc->keyboardThreadId, e_message_quit, 0, 0);
 
 		WaitForSingleObject(wfc->keyboardThread, INFINITE);
 		CloseHandle(wfc->keyboardThread);

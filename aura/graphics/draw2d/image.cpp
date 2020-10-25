@@ -9223,7 +9223,7 @@ var jpeg2 = new byte[]{ 255, 216, 255, 225 }; // jpeg canon
 
 
 
-::estatus image::transform(e_image eimage)
+::estatus image::transform(enum_image eimage)
 {
 
    if (eimage == image_grayscale)

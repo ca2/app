@@ -3766,7 +3766,7 @@
     <frame>
       <ip>0x5ADFF2E</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>void channel::add_receiver_route&lt;object, message::message&gt;(message::id, object*, void (object::*)(message::message*))</fn>
+      <fn>void channel::add_receiver_route&lt;object, message::message&gt;(id, object*, void (object::*)(message::message*))</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura.inl</file>
       <line>505</line>
@@ -3774,7 +3774,7 @@
     <frame>
       <ip>0x5ADBA73</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>void channel::add_route&lt;object&gt;(object*, void (object::*)(message::message*), message::id)</fn>
+      <fn>void channel::add_route&lt;object&gt;(object*, void (object::*)(message::message*), id)</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura.inl</file>
       <line>488</line>
@@ -4878,7 +4878,7 @@
     <frame>
       <ip>0x11E1AEE4</ip>
       <obj>/xcore/time/x64/basis/libcore.so</obj>
-      <fn>void channel::add_receiver_route&lt;aura::application, message::message&gt;(message::id, aura::application*, void (aura::application::*)(message::message*))</fn>
+      <fn>void channel::add_receiver_route&lt;aura::application, message::message&gt;(id, aura::application*, void (aura::application::*)(message::message*))</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura.inl</file>
       <line>505</line>
@@ -4886,7 +4886,7 @@
     <frame>
       <ip>0x11E19E65</ip>
       <obj>/xcore/time/x64/basis/libcore.so</obj>
-      <fn>void channel::add_route&lt;aura::application&gt;(aura::application*, void (aura::application::*)(message::message*), message::id)</fn>
+      <fn>void channel::add_route&lt;aura::application&gt;(aura::application*, void (aura::application::*)(message::message*), id)</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura.inl</file>
       <line>488</line>
@@ -6622,7 +6622,7 @@
     <frame>
       <ip>0x5C8E596</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>var::set_type(e_type, bool)</fn>
+      <fn>var::set_type(enum_type, bool)</fn>
       <dir>/xcore/app/aura/primitive</dir>
       <file>var.cpp</file>
       <line>335</line>
@@ -8249,7 +8249,7 @@
     <frame>
       <ip>0x5866ADE</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>void channel::add_receiver_route&lt;aura::application, message::message&gt;(message::id, aura::application*, void (aura::application::*)(message::message*))</fn>
+      <fn>void channel::add_receiver_route&lt;aura::application, message::message&gt;(id, aura::application*, void (aura::application::*)(message::message*))</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura.inl</file>
       <line>505</line>
@@ -8257,7 +8257,7 @@
     <frame>
       <ip>0x585D89F</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>void channel::add_route&lt;aura::application&gt;(aura::application*, void (aura::application::*)(message::message*), message::id)</fn>
+      <fn>void channel::add_route&lt;aura::application&gt;(aura::application*, void (aura::application::*)(message::message*), id)</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura.inl</file>
       <line>488</line>
@@ -8862,7 +8862,7 @@
     <frame>
       <ip>0x5867DAB</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>pair&lt;message::id, pointer&lt;pointer_array&lt;message::route&gt; &gt;, message::id const&amp;, pointer&lt;pointer_array&lt;message::route&gt; &gt; const&amp;&gt;::~pair()</fn>
+      <fn>pair&lt;id, pointer&lt;pointer_array&lt;message::route&gt; &gt;, id const&amp;, pointer&lt;pointer_array&lt;message::route&gt; &gt; const&amp;&gt;::~pair()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_pair.h</file>
       <line>47</line>
@@ -8870,7 +8870,7 @@
     <frame>
       <ip>0x5867DC7</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;message::id, pointer&lt;pointer_array&lt;message::route&gt; &gt;, message::id const&amp;, pointer&lt;pointer_array&lt;message::route&gt; &gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>map_association&lt;pair&lt;id, pointer&lt;pointer_array&lt;message::route&gt; &gt;, id const&amp;, pointer&lt;pointer_array&lt;message::route&gt; &gt; const&amp;&gt; &gt;::~map_association()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -8878,7 +8878,7 @@
     <frame>
       <ip>0x5867E4F</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;message::id, message::id const&amp;, pointer&lt;pointer_array&lt;message::route&gt; &gt;, pointer&lt;pointer_array&lt;message::route&gt; &gt; const&amp;, pair&lt;message::id, pointer&lt;pointer_array&lt;message::route&gt; &gt;, message::id const&amp;, pointer&lt;pointer_array&lt;message::route&gt; &gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;id, id const&amp;, pointer&lt;pointer_array&lt;message::route&gt; &gt;, pointer&lt;pointer_array&lt;message::route&gt; &gt; const&amp;, pair&lt;id, pointer&lt;pointer_array&lt;message::route&gt; &gt;, id const&amp;, pointer&lt;pointer_array&lt;message::route&gt; &gt; const&amp;&gt; &gt;::remove_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -9005,7 +9005,7 @@
     <frame>
       <ip>0x5867E5C</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;message::id, message::id const&amp;, pointer&lt;pointer_array&lt;message::route&gt; &gt;, pointer&lt;pointer_array&lt;message::route&gt; &gt; const&amp;, pair&lt;message::id, pointer&lt;pointer_array&lt;message::route&gt; &gt;, message::id const&amp;, pointer&lt;pointer_array&lt;message::route&gt; &gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;id, id const&amp;, pointer&lt;pointer_array&lt;message::route&gt; &gt;, pointer&lt;pointer_array&lt;message::route&gt; &gt; const&amp;, pair&lt;id, pointer&lt;pointer_array&lt;message::route&gt; &gt;, id const&amp;, pointer&lt;pointer_array&lt;message::route&gt; &gt; const&amp;&gt; &gt;::remove_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -9403,7 +9403,7 @@
     <frame>
       <ip>0x5D176F2</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>void channel::add_receiver_route&lt;user::interaction, message::message&gt;(message::id, user::interaction*, void (user::interaction::*)(message::message*))</fn>
+      <fn>void channel::add_receiver_route&lt;user::interaction, message::message&gt;(id, user::interaction*, void (user::interaction::*)(message::message*))</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura.inl</file>
       <line>505</line>
@@ -9411,7 +9411,7 @@
     <frame>
       <ip>0x5D15EEB</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>void channel::add_route&lt;user::interaction&gt;(user::interaction*, void (user::interaction::*)(message::message*), message::id)</fn>
+      <fn>void channel::add_route&lt;user::interaction&gt;(user::interaction*, void (user::interaction::*)(message::message*), id)</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura.inl</file>
       <line>488</line>
@@ -10392,7 +10392,7 @@
     <frame>
       <ip>0xE5D9442</ip>
       <obj>/xcore/time/x64/basis/libbase.so</obj>
-      <fn>void channel::add_receiver_route&lt;user::interaction, message::message&gt;(message::id, user::interaction*, void (user::interaction::*)(message::message*))</fn>
+      <fn>void channel::add_receiver_route&lt;user::interaction, message::message&gt;(id, user::interaction*, void (user::interaction::*)(message::message*))</fn>
       <dir>/xcore/app/base/../aura/</dir>
       <file>aura.inl</file>
       <line>505</line>
@@ -10400,7 +10400,7 @@
     <frame>
       <ip>0xE5D90AB</ip>
       <obj>/xcore/time/x64/basis/libbase.so</obj>
-      <fn>void channel::add_route&lt;user::interaction&gt;(user::interaction*, void (user::interaction::*)(message::message*), message::id)</fn>
+      <fn>void channel::add_route&lt;user::interaction&gt;(user::interaction*, void (user::interaction::*)(message::message*), id)</fn>
       <dir>/xcore/app/base/../aura/</dir>
       <file>aura.inl</file>
       <line>488</line>
@@ -10591,7 +10591,7 @@
     <frame>
       <ip>0xE687A1A</ip>
       <obj>/xcore/time/x64/basis/libbase.so</obj>
-      <fn>void channel::add_receiver_route&lt;user::scroll_x, message::message&gt;(message::id, user::scroll_x*, void (user::scroll_x::*)(message::message*))</fn>
+      <fn>void channel::add_receiver_route&lt;user::scroll_x, message::message&gt;(id, user::scroll_x*, void (user::scroll_x::*)(message::message*))</fn>
       <dir>/xcore/app/base/../aura/</dir>
       <file>aura.inl</file>
       <line>505</line>
@@ -10599,7 +10599,7 @@
     <frame>
       <ip>0xE68777D</ip>
       <obj>/xcore/time/x64/basis/libbase.so</obj>
-      <fn>void channel::add_route&lt;user::scroll_x&gt;(user::scroll_x*, void (user::scroll_x::*)(message::message*), message::id)</fn>
+      <fn>void channel::add_route&lt;user::scroll_x&gt;(user::scroll_x*, void (user::scroll_x::*)(message::message*), id)</fn>
       <dir>/xcore/app/base/../aura/</dir>
       <file>aura.inl</file>
       <line>488</line>
@@ -10790,7 +10790,7 @@
     <frame>
       <ip>0xE687B1A</ip>
       <obj>/xcore/time/x64/basis/libbase.so</obj>
-      <fn>void channel::add_receiver_route&lt;user::scroll_y, message::message&gt;(message::id, user::scroll_y*, void (user::scroll_y::*)(message::message*))</fn>
+      <fn>void channel::add_receiver_route&lt;user::scroll_y, message::message&gt;(id, user::scroll_y*, void (user::scroll_y::*)(message::message*))</fn>
       <dir>/xcore/app/base/../aura/</dir>
       <file>aura.inl</file>
       <line>505</line>
@@ -10798,7 +10798,7 @@
     <frame>
       <ip>0xE6877D5</ip>
       <obj>/xcore/time/x64/basis/libbase.so</obj>
-      <fn>void channel::add_route&lt;user::scroll_y&gt;(user::scroll_y*, void (user::scroll_y::*)(message::message*), message::id)</fn>
+      <fn>void channel::add_route&lt;user::scroll_y&gt;(user::scroll_y*, void (user::scroll_y::*)(message::message*), id)</fn>
       <dir>/xcore/app/base/../aura/</dir>
       <file>aura.inl</file>
       <line>488</line>
@@ -10989,7 +10989,7 @@
     <frame>
       <ip>0xE5F5350</ip>
       <obj>/xcore/time/x64/basis/libbase.so</obj>
-      <fn>void channel::add_receiver_route&lt;user::box, message::message&gt;(message::id, user::box*, void (user::box::*)(message::message*))</fn>
+      <fn>void channel::add_receiver_route&lt;user::box, message::message&gt;(id, user::box*, void (user::box::*)(message::message*))</fn>
       <dir>/xcore/app/base/../aura/</dir>
       <file>aura.inl</file>
       <line>505</line>
@@ -10997,7 +10997,7 @@
     <frame>
       <ip>0xE5F4F3B</ip>
       <obj>/xcore/time/x64/basis/libbase.so</obj>
-      <fn>void channel::add_route&lt;user::box&gt;(user::box*, void (user::box::*)(message::message*), message::id)</fn>
+      <fn>void channel::add_route&lt;user::box&gt;(user::box*, void (user::box::*)(message::message*), id)</fn>
       <dir>/xcore/app/base/../aura/</dir>
       <file>aura.inl</file>
       <line>488</line>
@@ -13124,7 +13124,7 @@
       <obj>/xcore/time/x64/basis/libaura.so</obj>
       <fn>message::simple_command::~simple_command()</fn>
       <dir>/xcore/app/aura/../aura/message</dir>
-      <file>message_simple_command.h</file>
+      <file>e_message_simple_command.h</file>
       <line>7</line>
     </frame>
     <frame>
@@ -14003,7 +14003,7 @@
     <frame>
       <ip>0x5C8E596</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>var::set_type(e_type, bool)</fn>
+      <fn>var::set_type(enum_type, bool)</fn>
       <dir>/xcore/app/aura/primitive</dir>
       <file>var.cpp</file>
       <line>335</line>
@@ -14523,7 +14523,7 @@
     <frame>
       <ip>0x5867E5C</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;message::id, message::id const&amp;, pointer&lt;pointer_array&lt;message::route&gt; &gt;, pointer&lt;pointer_array&lt;message::route&gt; &gt; const&amp;, pair&lt;message::id, pointer&lt;pointer_array&lt;message::route&gt; &gt;, message::id const&amp;, pointer&lt;pointer_array&lt;message::route&gt; &gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;id, id const&amp;, pointer&lt;pointer_array&lt;message::route&gt; &gt;, pointer&lt;pointer_array&lt;message::route&gt; &gt; const&amp;, pair&lt;id, pointer&lt;pointer_array&lt;message::route&gt; &gt;, id const&amp;, pointer&lt;pointer_array&lt;message::route&gt; &gt; const&amp;&gt; &gt;::remove_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -19687,7 +19687,7 @@
     <frame>
       <ip>0x5C8E596</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>var::set_type(e_type, bool)</fn>
+      <fn>var::set_type(enum_type, bool)</fn>
       <dir>/xcore/app/aura/primitive</dir>
       <file>var.cpp</file>
       <line>335</line>
@@ -60184,7 +60184,7 @@
     <frame>
       <ip>0x5867E5C</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;message::id, message::id const&amp;, pointer&lt;pointer_array&lt;message::route&gt; &gt;, pointer&lt;pointer_array&lt;message::route&gt; &gt; const&amp;, pair&lt;message::id, pointer&lt;pointer_array&lt;message::route&gt; &gt;, message::id const&amp;, pointer&lt;pointer_array&lt;message::route&gt; &gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;id, id const&amp;, pointer&lt;pointer_array&lt;message::route&gt; &gt;, pointer&lt;pointer_array&lt;message::route&gt; &gt; const&amp;, pair&lt;id, pointer&lt;pointer_array&lt;message::route&gt; &gt;, id const&amp;, pointer&lt;pointer_array&lt;message::route&gt; &gt; const&amp;&gt; &gt;::remove_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -60382,7 +60382,7 @@
     <frame>
       <ip>0x5867E5C</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;message::id, message::id const&amp;, pointer&lt;pointer_array&lt;message::route&gt; &gt;, pointer&lt;pointer_array&lt;message::route&gt; &gt; const&amp;, pair&lt;message::id, pointer&lt;pointer_array&lt;message::route&gt; &gt;, message::id const&amp;, pointer&lt;pointer_array&lt;message::route&gt; &gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;id, id const&amp;, pointer&lt;pointer_array&lt;message::route&gt; &gt;, pointer&lt;pointer_array&lt;message::route&gt; &gt; const&amp;, pair&lt;id, pointer&lt;pointer_array&lt;message::route&gt; &gt;, id const&amp;, pointer&lt;pointer_array&lt;message::route&gt; &gt; const&amp;&gt; &gt;::remove_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -60390,7 +60390,7 @@
     <frame>
       <ip>0x58D2C16</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;message::id, message::id const&amp;, pointer&lt;pointer_array&lt;message::route&gt; &gt;, pointer&lt;pointer_array&lt;message::route&gt; &gt; const&amp;, pair&lt;message::id, pointer&lt;pointer_array&lt;message::route&gt; &gt;, message::id const&amp;, pointer&lt;pointer_array&lt;message::route&gt; &gt; const&amp;&gt; &gt;::~map()</fn>
+      <fn>map&lt;id, id const&amp;, pointer&lt;pointer_array&lt;message::route&gt; &gt;, pointer&lt;pointer_array&lt;message::route&gt; &gt; const&amp;, pair&lt;id, pointer&lt;pointer_array&lt;message::route&gt; &gt;, id const&amp;, pointer&lt;pointer_array&lt;message::route&gt; &gt; const&amp;&gt; &gt;::~map()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1207</line>

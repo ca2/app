@@ -292,7 +292,7 @@
 //   };
 //
 //
-//   enum e_event
+//   enum enum_event
 //   {
 //
 //      event_none,
@@ -306,7 +306,7 @@
 //      event_mouse_enter,
 //      event_mouse_leave,
 //      event_set_check,
-//      event_timer,
+//      e_event_timer,
 //      event_enter_key,
 //      event_escape,
 //      event_tab_key,

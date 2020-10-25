@@ -439,7 +439,7 @@ namespace os
                      {
 
                         //lpMsg->hwnd          = oswindow_get(display, e.xbutton.window);
-                        //lpMsg->message       = WM_MOUSEMOVE;
+                        //lpMsg->message       = e_message_mouse_move;
                         //lpMsg->wParam        = 0;
                         //lpMsg->lParam        = MAKELONG(e.xmotion.x_root, e.xmotion.y_root);
 
@@ -452,7 +452,7 @@ namespace os
                      {
 
                         //lpMsg->hwnd          = oswindow_get(display, e.xdestroywindow.window);
-                        //lpMsg->message       = WM_DESTROY;
+                        //lpMsg->message       = e_message_destroy;
 
                         m_bRunLoop = false;
 

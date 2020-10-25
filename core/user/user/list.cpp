@@ -78,22 +78,22 @@ namespace user
 
       ::user::mesh::install_message_routing(pchannel);
 
-      IGUI_MSG_LINK(WM_SIZE, pchannel, this, &list::_001OnSize);
-      IGUI_MSG_LINK(WM_VSCROLL, pchannel, this, &list::_001OnVScroll);
-      IGUI_MSG_LINK(WM_HSCROLL, pchannel, this, &list::_001OnHScroll);
-      IGUI_MSG_LINK(WM_MOUSELEAVE, pchannel, this, &list::_001OnMouseLeave);
+      MESSAGE_LINK(e_message_size, pchannel, this, &list::_001OnSize);
+      MESSAGE_LINK(WM_VSCROLL, pchannel, this, &list::_001OnVScroll);
+      MESSAGE_LINK(WM_HSCROLL, pchannel, this, &list::_001OnHScroll);
+      MESSAGE_LINK(WM_MOUSELEAVE, pchannel, this, &list::_001OnMouseLeave);
 
-      IGUI_MSG_LINK(WM_LBUTTONDOWN, pchannel, this, &list::_001OnLButtonDown);
-      IGUI_MSG_LINK(WM_LBUTTONUP, pchannel, this, &list::_001OnLButtonUp);
-      IGUI_MSG_LINK(WM_LBUTTONDBLCLK, pchannel, this, &list::_001OnLButtonDblClk);
-      IGUI_MSG_LINK(WM_RBUTTONDOWN, pchannel, this, &list::_001OnRButtonDown);
+      MESSAGE_LINK(WM_LBUTTONDOWN, pchannel, this, &list::_001OnLButtonDown);
+      MESSAGE_LINK(WM_LBUTTONUP, pchannel, this, &list::_001OnLButtonUp);
+      MESSAGE_LINK(WM_LBUTTONDBLCLK, pchannel, this, &list::_001OnLButtonDblClk);
+      MESSAGE_LINK(WM_RBUTTONDOWN, pchannel, this, &list::_001OnRButtonDown);
 
-      IGUI_MSG_LINK(WM_MOUSEMOVE, pchannel, this, &list::_001OnMouseMove);
+      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &list::_001OnMouseMove);
 
-      IGUI_MSG_LINK(WM_KEYDOWN, pchannel, this, &list::_001OnKeyDown);
+      MESSAGE_LINK(WM_KEYDOWN, pchannel, this, &list::_001OnKeyDown);
 
-      IGUI_MSG_LINK(WM_CREATE, pchannel, this, &list::_001OnCreate);
-      //      //IGUI_MSG_LINK(WM_TIMER,           pchannel, this, &list::_001OnTimer);
+      MESSAGE_LINK(e_message_create, pchannel, this, &list::_001OnCreate);
+      //      //MESSAGE_LINK(WM_TIMER,           pchannel, this, &list::_001OnTimer);
       connect_command("list_view_auto_arrange", &list::_001OnListViewAutoArrange);
       connect_command_probe("list_view_auto_arrange", &list::_001OnUpdateListViewAutoArrange);
    }
@@ -4149,13 +4149,13 @@ namespace user
       //else if (get_form() != nullptr)
       //{
 
-      //   get_form()->send_message(EVENT_MESSAGE, 0, (LPARAM)&ev);
+      //   get_form()->send_message(e_message_event, 0, (LPARAM)&ev);
 
       //}
       //else
       //{
 
-      //   GetParent()->send_message(EVENT_MESSAGE, 0, (LPARAM)&ev);
+      //   GetParent()->send_message(e_message_event, 0, (LPARAM)&ev);
 
       //}
 
@@ -7089,7 +7089,7 @@ namespace user
    {
       SCAST_PTR(::user::command, pcommand, pmessage);
       pcommand->_001SetCheck(get_auto_arrange());
-      pcommand->Enable();
+      pcommand->enable();
    }
 
    bool list::is_valid_display_item(index iDisplayItem)

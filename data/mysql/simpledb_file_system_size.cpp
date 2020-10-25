@@ -337,8 +337,8 @@ FileSystemSizeWnd::FileSystemSizeWnd(::layered * pobjectContext) :
 void FileSystemSizeWnd::install_message_routing(::channel * pchannel)
 {
    m_p->install_message_routing(pchannel);
-   IGUI_MSG_LINK(WM_COPYDATA, pchannel, this, &FileSystemSizeWnd::_001OnCopyData);
-   //IGUI_MSG_LINK(WM_TIMER, pchannel, this, &FileSystemSizeWnd::_001OnTimer);
+   MESSAGE_LINK(WM_COPYDATA, pchannel, this, &FileSystemSizeWnd::_001OnCopyData);
+   //MESSAGE_LINK(WM_TIMER, pchannel, this, &FileSystemSizeWnd::_001OnTimer);
 }
 
 bool FileSystemSizeWnd::CreateClient()

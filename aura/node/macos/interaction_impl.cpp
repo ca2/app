@@ -406,7 +406,7 @@ namespace macos
 
       }
 
-      LRESULT lresult = m_puserinteraction->send_message(WM_CREATE, 0, (LPARAM)&cs);
+      LRESULT lresult = m_puserinteraction->send_message(e_message_create, 0, (LPARAM)&cs);
 
       bool bOk = true;
 
@@ -522,49 +522,49 @@ namespace macos
       if (!m_puserinteraction->m_bMessageWindow)
       {
 
-         IGUI_MSG_LINK(WM_PAINT, pchannel, this, &interaction_impl::_001OnPaint);
-         IGUI_MSG_LINK(WM_PRINT, pchannel, this, &interaction_impl::_001OnPrint);
+         MESSAGE_LINK(WM_PAINT, pchannel, this, &interaction_impl::_001OnPaint);
+         MESSAGE_LINK(WM_PRINT, pchannel, this, &interaction_impl::_001OnPrint);
 
       }
 
       m_puserinteraction->install_message_routing(pchannel);
 
-      IGUI_MSG_LINK(WM_CREATE, pchannel, this, &interaction_impl::_001OnCreate);
+      MESSAGE_LINK(e_message_create, pchannel, this, &interaction_impl::_001OnCreate);
 
       if (!m_puserinteraction->m_bMessageWindow)
       {
 
-//         IGUI_MSG_LINK(WM_SETCURSOR, pchannel, this, &interaction_impl::_001OnSetCursor);
-//         IGUI_MSG_LINK(WM_ERASEBKGND, pchannel, this,&interaction_impl::_001OnEraseBkgnd);
-         //         IGUI_MSG_LINK(WM_NCCALCSIZE, pchannel, this,&interaction_impl::_001OnNcCalcSize);
-//         IGUI_MSG_LINK(WM_SIZE, pchannel, this, &interaction_impl::_001OnSize);
-         //         IGUI_MSG_LINK(WM_WINDOWPOSCHANGING, pchannel, this,&interaction_impl::_001OnWindowPosChanging);
-         //         IGUI_MSG_LINK(WM_WINDOWPOSCHANGED, pchannel, this,&interaction_impl::_001OnWindowPosChanged);
-         //         IGUI_MSG_LINK(WM_GETMINMAXINFO, pchannel, this,&interaction_impl::_001OnGetMinMaxInfo);
-         //         IGUI_MSG_LINK(WM_SETFOCUS, pchannel, this,&interaction_impl::_001OnSetFocus);
-         //         IGUI_MSG_LINK(WM_KILLFOCUS, pchannel, this,&interaction_impl::_001OnKillFocus);
-         //IGUI_MSG_LINK(ca2m_PRODEVIAN_SYNCH, pchannel, this,&interaction_impl::_001OnProdevianSynch);
+//         MESSAGE_LINK(WM_SETCURSOR, pchannel, this, &interaction_impl::_001OnSetCursor);
+//         MESSAGE_LINK(WM_ERASEBKGND, pchannel, this,&interaction_impl::_001OnEraseBkgnd);
+         //         MESSAGE_LINK(WM_NCCALCSIZE, pchannel, this,&interaction_impl::_001OnNcCalcSize);
+//         MESSAGE_LINK(e_message_size, pchannel, this, &interaction_impl::_001OnSize);
+         //         MESSAGE_LINK(WM_WINDOWPOSCHANGING, pchannel, this,&interaction_impl::_001OnWindowPosChanging);
+         //         MESSAGE_LINK(WM_WINDOWPOSCHANGED, pchannel, this,&interaction_impl::_001OnWindowPosChanged);
+         //         MESSAGE_LINK(WM_GETMINMAXINFO, pchannel, this,&interaction_impl::_001OnGetMinMaxInfo);
+         //         MESSAGE_LINK(e_message_set_focus, pchannel, this,&interaction_impl::_001OnSetFocus);
+         //         MESSAGE_LINK(e_message_kill_focus, pchannel, this,&interaction_impl::_001OnKillFocus);
+         //MESSAGE_LINK(ca2m_PRODEVIAN_SYNCH, pchannel, this,&interaction_impl::_001OnProdevianSynch);
       }
       prio_install_message_routing(pchannel);
-      IGUI_MSG_LINK(WM_DESTROY, pchannel, this, &interaction_impl::_001OnDestroy);
+      MESSAGE_LINK(e_message_destroy, pchannel, this, &interaction_impl::_001OnDestroy);
 
       //      ::user::interaction_impl::install_message_routing(pchannel);
       //      //m_pbuffer->InstallMessageHandling(pinterface);
-      //      IGUI_MSG_LINK(WM_DESTROY           , pchannel, this, &interaction_impl::_001OnDestroy);
-      //      IGUI_MSG_LINK(WM_PAINT             , pchannel, this, &interaction_impl::_001OnPaint);
-      //      IGUI_MSG_LINK(WM_PRINT             , pchannel, this, &interaction_impl::_001OnPrint);
+      //      MESSAGE_LINK(e_message_destroy           , pchannel, this, &interaction_impl::_001OnDestroy);
+      //      MESSAGE_LINK(WM_PAINT             , pchannel, this, &interaction_impl::_001OnPaint);
+      //      MESSAGE_LINK(WM_PRINT             , pchannel, this, &interaction_impl::_001OnPrint);
       //      if(m_puserinteraction != nullptr)
       //      {
       //         m_puserinteraction->install_message_routing(pchannel);
       //      }
-      //      IGUI_MSG_LINK(WM_CREATE            , pchannel, this, &interaction_impl::_001OnCreate);
-      //      IGUI_MSG_LINK(WM_SETCURSOR         , pchannel, this, &interaction_impl::_001OnSetCursor);
-      //      IGUI_MSG_LINK(WM_ERASEBKGND        , pchannel, this, &interaction_impl::_001OnEraseBkgnd);
-      //      IGUI_MSG_LINK(WM_MOVE              , pchannel, this, &interaction_impl::_001OnMove);
-      //      IGUI_MSG_LINK(WM_SIZE              , pchannel, this, &interaction_impl::_001OnSize);
-      IGUI_MSG_LINK(WM_SHOWWINDOW, pchannel, this, &interaction_impl::_001OnShowWindow);
-      //      IGUI_MSG_LINK(ca2m_PRODEVIAN_SYNCH , pchannel, this, &interaction_impl::_001OnProdevianSynch);
-      ////      //IGUI_MSG_LINK(WM_TIMER             , pchannel, this, &interaction_impl::_001OnTimer);
+      //      MESSAGE_LINK(e_message_create            , pchannel, this, &interaction_impl::_001OnCreate);
+      //      MESSAGE_LINK(WM_SETCURSOR         , pchannel, this, &interaction_impl::_001OnSetCursor);
+      //      MESSAGE_LINK(WM_ERASEBKGND        , pchannel, this, &interaction_impl::_001OnEraseBkgnd);
+      //      MESSAGE_LINK(e_message_move              , pchannel, this, &interaction_impl::_001OnMove);
+      //      MESSAGE_LINK(e_message_size              , pchannel, this, &interaction_impl::_001OnSize);
+      MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &interaction_impl::_001OnShowWindow);
+      //      MESSAGE_LINK(ca2m_PRODEVIAN_SYNCH , pchannel, this, &interaction_impl::_001OnProdevianSynch);
+      ////      //MESSAGE_LINK(WM_TIMER             , pchannel, this, &interaction_impl::_001OnTimer);
    }
 
 
@@ -1079,7 +1079,7 @@ namespace macos
    void interaction_impl::message_handler(::message::base * pbase)
    {
 
-      if (pbase->m_id == WM_SIZE || pbase->m_id == WM_MOVE)
+      if (pbase->m_id == e_message_size || pbase->m_id == e_message_move)
       {
 
          //         win_update_graqhics();
@@ -1173,7 +1173,7 @@ namespace macos
       {
          //  g_pwndLastLButtonDown = this;
       }
-      else if (pbase->m_id == WM_SIZE)
+      else if (pbase->m_id == e_message_size)
       {
          m_bUpdateGraphics = true;
       }
@@ -1198,8 +1198,8 @@ namespace macos
             pbase->m_id == WM_RBUTTONUP ||
             pbase->m_id == WM_RBUTTONDBLCLK ||
             pbase->m_id == WM_LBUTTONDBLCLK ||
-            pbase->m_id == WM_MOUSEMOVE ||
-            pbase->m_id == WM_MOUSEMOVE ||
+            pbase->m_id == e_message_mouse_move ||
+            pbase->m_id == e_message_mouse_move ||
             pbase->m_id == WM_MOUSEWHEEL)
       {
 
@@ -1209,7 +1209,7 @@ namespace macos
             //output_debug_string("\nWM_LBUTTONDOWN");
 
          }
-         else if(pbase->m_id == WM_MOUSEMOVE)
+         else if(pbase->m_id == e_message_mouse_move)
          {
             
             //output_debug_string("\nWM_MOUSEMOVE");
@@ -1287,7 +1287,7 @@ namespace macos
 
          }
 
-         if (pbase->m_id == WM_MOUSEMOVE)
+         if (pbase->m_id == e_message_mouse_move)
          {
             // We are at the message handler procedure.
             // mouse messages originated from message handler and that are mouse move events should end up with the correct cursor.
@@ -1353,7 +1353,7 @@ namespace macos
 
       }
 
-      if (pbase->m_id == EVENT_MESSAGE)
+      if (pbase->m_id == e_message_event)
       {
 
          if (m_puserinteraction != nullptr)
@@ -1726,9 +1726,9 @@ namespace macos
 //      return false;   // let the parent handle it
 //   }
 
-//   void interaction_impl::OnParentNotify(UINT message, LPARAM lparam)
+//   void interaction_impl::OnParentNotify(const ::id & id, LPARAM lparam)
 //   {
-//      if ((LOWORD(message) == WM_CREATE || LOWORD(message) == WM_DESTROY))
+//      if ((LOWORD(message) == e_message_create || LOWORD(message) == e_message_destroy))
 //      {
 //         if (ReflectLastMsg((oswindow)lparam))
 //            return;     // eat it
@@ -2695,7 +2695,7 @@ namespace macos
    }
 
 
-   LRESULT interaction_impl::send_message(UINT message, WPARAM wparam, lparam lparam)
+   LRESULT interaction_impl::send_message(const ::id & id, WPARAM wparam, lparam lparam)
    {
 
       return ::user::interaction_impl::send_message(message, wparam, lparam);
@@ -2703,7 +2703,7 @@ namespace macos
    }
 
 
-   bool interaction_impl::post_message(UINT message, WPARAM wparam, lparam lparam)
+   bool interaction_impl::post_message(const ::id & id, WPARAM wparam, lparam lparam)
    {
 
       if (m_puserinteraction->m_pthreadUserInteraction == nullptr)
@@ -2979,7 +2979,7 @@ namespace macos
    }
 
 
-//   void interaction_impl::send_message_to_descendants(UINT message, WPARAM wparam, lparam lparam, bool bDeep, bool bOnlyPerm)
+//   void interaction_impl::send_message_to_descendants(const ::id & id, WPARAM wparam, lparam lparam, bool bDeep, bool bOnlyPerm)
 //   {
 //
 //      ASSERT(::is_window(get_handle()));
@@ -3420,7 +3420,7 @@ namespace macos
    }
 
 
-   LPARAM interaction_impl::SendDlgItemMessage(i32 nID, UINT message, WPARAM wparam, LPARAM lparam)
+   LPARAM interaction_impl::SendDlgItemMessage(i32 nID, const ::id & id, WPARAM wparam, LPARAM lparam)
    {
 
       __throw(not_implemented());
@@ -3661,7 +3661,7 @@ namespace macos
 
    }
 
-//   bool interaction_impl::SendNotifyMessage(UINT message, WPARAM wparam, LPARAM lparam)
+//   bool interaction_impl::SendNotifyMessage(const ::id & id, WPARAM wparam, LPARAM lparam)
 //   {
 //
 //      __throw(not_implemented());
@@ -4486,9 +4486,9 @@ namespace macos
 
          auto lparam = (LPARAM) (iptr) (string *) (pstringText);
 
-         printf("x11_process_message message_text_composition\n");
+         printf("x11_process_message e_message_text_composition\n");
 
-         m_puserinteraction->post_message(message_text_composition, 0, lparam);
+         m_puserinteraction->post_message(e_message_text_composition, 0, lparam);
          
          
 //         pkey->m_strText = pszUtf8;
@@ -4566,7 +4566,7 @@ namespace macos
             {
 
 
-               m_puserinteraction->post_message(WM_ACTIVATE, MAKELONG(WA_CLICKACTIVE, 0), 0);
+               m_puserinteraction->post_message(e_message_activate, MAKELONG(WA_CLICKACTIVE, 0), 0);
 
             }
 
@@ -4804,7 +4804,7 @@ namespace macos
       
       //printf("mouse_move_\"posted\" %f, %f\n", x, y);
       
-      m_puserinteraction->post_message(WM_MOUSEMOVE, wparam, lparam);
+      m_puserinteraction->post_message(e_message_mouse_move, wparam, lparam);
       
    }
 
@@ -4844,7 +4844,7 @@ namespace macos
 
       }
 
-      m_puserinteraction->post_message(WM_MOUSEMOVE, wparam, lparam);
+      m_puserinteraction->post_message(e_message_mouse_move, wparam, lparam);
 
    }
 
@@ -4915,9 +4915,9 @@ namespace macos
          
       }
 
-      m_puserinteraction->post_message(WM_MOVE,0, MAKELPARAM(rect.origin.x, rect.origin.y));
+      m_puserinteraction->post_message(e_message_move,0, MAKELPARAM(rect.origin.x, rect.origin.y));
 
-      m_puserinteraction->post_message(WM_SIZE,0, MAKELPARAM(rect.size.width, rect.size.height));
+      m_puserinteraction->post_message(e_message_size,0, MAKELPARAM(rect.size.width, rect.size.height));
 
       return;
 
@@ -4936,7 +4936,7 @@ namespace macos
 //
 //         TRACE("interaction_impl::round_window_resized effective position is different from requested position");
 //
-//         m_puserinteraction->post_message(WM_MOVE, 0, m_puserinteraction->window_state().m_point.lparam());
+//         m_puserinteraction->post_message(e_message_move, 0, m_puserinteraction->window_state().m_point.lparam());
 //
 //      }
 //
@@ -4947,7 +4947,7 @@ namespace macos
 //
 //         TRACE("interaction_impl::round_window_resized effective position is different from requested position");
 //
-//         m_puserinteraction->post_message(WM_SIZE, 0, m_puserinteraction->m_sizeRequest.lparam());
+//         m_puserinteraction->post_message(e_message_size, 0, m_puserinteraction->m_sizeRequest.lparam());
 //
 //      }
 //
@@ -4987,12 +4987,12 @@ namespace macos
 ////
 ////      }
 ////
-////      m_puserinteraction->post_message(WM_SIZE, 0, sz.lparam());
+////      m_puserinteraction->post_message(e_message_size, 0, sz.lparam());
 ////
 ////      if (bMove)
 ////      {
 ////
-////         m_puserinteraction->post_message(WM_MOVE, 0, pt.lparam());
+////         m_puserinteraction->post_message(e_message_move, 0, pt.lparam());
 ////
 ////      }
 
@@ -5059,7 +5059,7 @@ namespace macos
          
       }
 
-      m_puserinteraction->post_message(WM_MOVE,0, MAKELPARAM(point.x, point.y));
+      m_puserinteraction->post_message(e_message_move,0, MAKELPARAM(point.x, point.y));
 
       return;
 
@@ -5425,8 +5425,8 @@ namespace macos
       //      ::user::interaction * pTopLevel= MAC_WINDOW(pWnd)->GetTopLevelParent();
       //      if (pTopLevel && (pWndOther == nullptr || !::is_window(MAC_WINDOW(pWndOther)->get_handle()) || pTopLevel != MAC_WINDOW(pWndOther)->GetTopLevelParent()))
       //      {
-      //         // lparam points to user::interaction getting the WM_ACTIVATE message and
-      //         //  hWndOther from the WM_ACTIVATE.
+      //         // lparam points to user::interaction getting the e_message_activate message and
+      //         //  hWndOther from the e_message_activate.
       //         oswindow hWnd2[2];
       //         hWnd2[0] = MAC_WINDOW(pWnd)->get_handle();
       //         if(pWndOther == nullptr || MAC_WINDOW(pWndOther) == nullptr)
@@ -5497,7 +5497,7 @@ namespace macos
       //         }
       //         break;
       //
-      //      case WM_ACTIVATE:
+      //      case e_message_activate:
       //         __handle_activate(::macos::interaction_impl::from_handle(hWnd), wparam,
       //            ::macos::interaction_impl::from_handle((oswindow)lparam));
       //         break;

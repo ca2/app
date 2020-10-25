@@ -75,7 +75,7 @@ int WINAPI WinMain( HINSTANCE hInstance,
                     BOOL    fEaten;
 
                     /*
-                    Get the next message in the queue. fResult receives FALSE if WM_QUIT is encountered
+                    Get the next message in the queue. fResult receives FALSE if e_message_quit is encountered
                     */
                     if(FAILED(pMsgPump->GetMessage(&msg, NULL, 0, 0, &fResult)))
                     {
@@ -106,7 +106,7 @@ int WINAPI WinMain( HINSTANCE hInstance,
                         DispatchMessage(&msg);
                     }
 
-                    if(WM_QUIT == msg.message)
+                    if(e_message_quit == msg.message)
                     {
                         nReturn = (int)msg.wParam;
                     }

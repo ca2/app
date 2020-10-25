@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-CLASS_DECL_ACME bool __simple_thread_sleep()
+CLASS_DECL_ACME bool __simple_task_sleep()
 {
 
    while (thread_get_run())
@@ -16,7 +16,7 @@ CLASS_DECL_ACME bool __simple_thread_sleep()
 }
 
 
-CLASS_DECL_ACME bool __simple_thread_sleep(tick tick)
+CLASS_DECL_ACME bool __simple_task_sleep(tick tick)
 {
 
    auto i = tick.m_i;
@@ -51,7 +51,7 @@ CLASS_DECL_ACME bool __simple_thread_sleep(tick tick)
 }
 
 
-CLASS_DECL_ACME bool __simple_thread_sleep(sync* psync)
+CLASS_DECL_ACME bool __simple_task_sleep(sync* psync)
 {
 
    while (thread_get_run())
@@ -71,7 +71,7 @@ CLASS_DECL_ACME bool __simple_thread_sleep(sync* psync)
 }
 
 
-CLASS_DECL_ACME bool __simple_thread_sleep(tick tick, sync* psync)
+CLASS_DECL_ACME bool __simple_task_sleep(tick tick, sync* psync)
 {
 
    auto i = tick.m_i;
@@ -116,7 +116,7 @@ CLASS_DECL_ACME bool __simple_thread_sleep(tick tick, sync* psync)
 }
 
 
-CLASS_DECL_ACME bool acme_thread_sleep(tick tick, sync* psync)
+CLASS_DECL_ACME bool acme_task_sleep(tick tick, sync* psync)
 {
 
    if (::is_null(psync))
@@ -125,13 +125,13 @@ CLASS_DECL_ACME bool acme_thread_sleep(tick tick, sync* psync)
       if (__os(tick) == INFINITE)
       {
 
-         return __simple_thread_sleep();
+         return __simple_task_sleep();
 
       }
       else
       {
 
-         return __simple_thread_sleep(tick);
+         return __simple_task_sleep(tick);
 
       }
 
@@ -142,13 +142,13 @@ CLASS_DECL_ACME bool acme_thread_sleep(tick tick, sync* psync)
       if (__os(tick) == INFINITE)
       {
 
-         return __simple_thread_sleep(psync);
+         return __simple_task_sleep(psync);
 
       }
       else
       {
 
-         return __simple_thread_sleep(tick, psync);
+         return __simple_task_sleep(tick, psync);
 
       }
 
@@ -156,20 +156,20 @@ CLASS_DECL_ACME bool acme_thread_sleep(tick tick, sync* psync)
 }
 
 
-PFN_THREAD_SLEEP g_pfnThreadSleep = acme_thread_sleep;
+//PFN_task_sleep g_pfnThreadSleep = acme_task_sleep;
 
-CLASS_DECL_ACME bool thread_sleep(tick tick, sync* psync)
-{
+//CLASS_DECL_ACME bool tas_sleep(tick tick, sync* psync)
+//{
+//
+//   return g_pfnThreadSleep(tick, psync);
+//
+//}
 
-   return g_pfnThreadSleep(tick, psync);
-
-}
-
-
-CLASS_DECL_ACME void set_thread_sleep(PFN_THREAD_SLEEP pfnThreadSleep)
-{
-
-   g_pfnThreadSleep = pfnThreadSleep;
-
-}
-
+//
+//CLASS_DECL_ACME void set_task_sleep(PFN_task_sleep pfnThreadSleep)
+//{
+//
+//   g_pfnThreadSleep = pfnThreadSleep;
+//
+//}
+//

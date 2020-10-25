@@ -211,9 +211,9 @@ namespace windows
 //
 //#endif   // WINVER >= 0x0500
 
-      LRESULT send_message(UINT message, WPARAM wParam = 0, lparam lParam = nullptr);
+      LRESULT send_message(const ::id & id, WPARAM wParam = 0, lparam lParam = nullptr);
 
-      bool post_message(UINT message, WPARAM wParam = 0, lparam lParam = nullptr);
+      bool post_message(const ::id & id, WPARAM wParam = 0, lparam lParam = nullptr);
 
 
       bool SendNotifyMessage(UINT message, WPARAM wParam, lparam lParam);
@@ -557,7 +557,7 @@ namespace windows
       //LRESULT OnMenuChar(UINT nChar, UINT nFlags, ::user::menu* pMenu);
       //void OnMenuSelect(UINT nItemID, UINT nFlags, HMENU hSysMenu);
       //void OnMove(i32 x, i32 y);
-      //void OnParentNotify(UINT message, LPARAM lParam);
+      //void OnParentNotify(const ::id & id, LPARAM lParam);
       //HCURSOR OnQueryDragIcon();
       //bool OnQueryEndSession();
       //bool OnQueryNewPalette();
@@ -623,7 +623,7 @@ namespace windows
       //void OnMButtonDblClk(UINT nFlags, const ::point & point);
       //void OnMButtonDown(UINT nFlags, const ::point & point);
       //void OnMButtonUp(UINT nFlags, const ::point & point);
-      //i32 OnMouseActivate(::user::interaction_impl * pDesktopWnd, UINT nHitTest, UINT message);
+      //i32 OnMouseActivate(::user::interaction_impl * pDesktopWnd, UINT nHitTest, const ::id & id);
       //void OnMouseMove(UINT nFlags, const ::point & point);
       //bool OnMouseWheel(UINT nFlags, i16 zDelta, const ::point & point);
       //LRESULT OnRegisteredMouseWheel(WPARAM wParam, LPARAM lParam);
@@ -697,7 +697,7 @@ namespace windows
       virtual void message_handler(::message::base * pbase);
 
 
-      //virtual bool OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* pResult);
+      //virtual bool OnWndMsg(const ::id & id, WPARAM wParam, LPARAM lParam, LRESULT* pResult);
 
       // for handling default processing
       //LRESULT Default();

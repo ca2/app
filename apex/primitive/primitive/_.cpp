@@ -95,10 +95,10 @@ void __assert_valid_object(const ::context_object * pOb, const char * pszFileNam
 
 
 
-CLASS_DECL_APEX void call(__pointer(::object) pobjectRunnable)
+CLASS_DECL_APEX void call(const ::method & method)
 {
 
-   pobjectRunnable->call();
+   method();
 
 }
 

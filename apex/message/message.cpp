@@ -5,40 +5,24 @@ namespace message
 {
 
 
-   message::message()
-   {
+   //message::message(const ::id & id) :
+   //{
 
-      common_construct();
+   //   //common_construct();
 
-   }
+   //}
 
 
-   message::message(::message::e_type etype)
-   {
+   //message::message(enum_message emessage)
+   //{
 
-      common_construct(etype);
+   //   common_construct(emessage);
 
-   }
+   //}
 
 
    message::~message()
    {
-
-   }
-
-
-   void message::common_construct(::message::e_type etype)
-   {
-
-      m_id = etype;
-      m_pchannel = nullptr;
-      m_wparam = 0;
-      m_iRouteIndex = -1;
-      m_iParam = 0;
-      m_bRet = false;
-      m_uiMessageFlags = 0;
-      m_estatus = ::success;
-      m_lresult = 0;
 
    }
 
@@ -85,12 +69,12 @@ namespace message
    }
 
 
-   void message::set(::layered * playeredUserPrimitive, UINT uiMessage, WPARAM wparam, ::lparam lparam)
+   void message::set(::layered * playeredUserPrimitive, const ::id & id, WPARAM wparam, ::lparam lparam)
    {
       
       initialize(playeredUserPrimitive);
 
-      m_id = ::message::id(::id((iptr) uiMessage), ::message::type_message);
+      m_id = id;
 
       m_wparam = wparam;
 

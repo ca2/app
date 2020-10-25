@@ -50,7 +50,7 @@ namespace draw2d
    public:
 
 
-      enum e_type
+      enum enum_type
       {
 
          type_wide,
@@ -63,7 +63,7 @@ namespace draw2d
 
 
       ::rect                                          m_rectClient;
-      e_type                                          m_etype;
+      enum_type                                          m_etype;
 
 
    public:
@@ -152,8 +152,8 @@ namespace draw2d
 
       virtual void set_client_rect(LPCRECT lpcrect);
 
-      virtual void set_font_list_type(e_type etype);
-      virtual e_type get_font_list_type() const;
+      virtual void set_font_list_type(enum_type etype);
+      virtual enum_type get_font_list_type() const;
 
 
    };

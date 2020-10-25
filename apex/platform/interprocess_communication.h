@@ -151,7 +151,7 @@ namespace interprocess_communication
 
 #ifdef WINDOWS_DESKTOP
       //ATOM register_class(HINSTANCE hInstance);
-      //static LRESULT CALLBACK s_message_queue_proc(oswindow oswindow,UINT message,WPARAM wParam,LPARAM lParam);
+      //static LRESULT CALLBACK s_message_queue_proc(oswindow oswindow,const ::id & id,WPARAM wParam,LPARAM lParam);
       LRESULT message_queue_proc(UINT message,WPARAM wParam,LPARAM lParam);
 #else
 

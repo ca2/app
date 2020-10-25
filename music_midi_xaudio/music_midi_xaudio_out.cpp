@@ -64,7 +64,7 @@ namespace music
 
          }
 
-         ::estatus     out::send_short_message(::music::midi::e_type etype, int iChannel, int iData1, int iData2)
+         ::estatus     out::send_short_message(::music::midi::enum_type etype, int iChannel, int iData1, int iData2)
          {
 
             return midiOutShortMsg(m_hmidiout, MIDIMSG(((int) etype) >> 4, iChannel, iData1, iData2));

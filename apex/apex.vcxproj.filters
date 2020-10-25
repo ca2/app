@@ -674,12 +674,6 @@
     <ClInclude Include="const\impact.h">
       <Filter>Header Files\const</Filter>
     </ClInclude>
-    <ClInclude Include="const\message.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\simple_command.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
     <ClInclude Include="const\status.h">
       <Filter>Header Files\const</Filter>
     </ClInclude>
@@ -1002,21 +996,6 @@
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\str_context.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\timer.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\timer_array.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\timer_callback.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\timer_event.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\timer_item.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\trace.h">
@@ -1532,14 +1511,11 @@
     <ClInclude Include="net\sockets\http\http_base_socket.h">
       <Filter>Header Files\net\sockets\http</Filter>
     </ClInclude>
-    <ClInclude Include="platform\nano_timer.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\timer_threaded.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
     <ClInclude Include="multithreading\service\pool.h">
       <Filter>Header Files\multithreading\service</Filter>
+    </ClInclude>
+    <ClInclude Include="const\aaa_simple_command.h">
+      <Filter>Header Files\const</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1990,21 +1966,6 @@
     <ClCompile Include="platform\system_trace.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="platform\timer.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\timer_array.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\timer_callback.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\timer_event.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\timer_item.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
     <ClCompile Include="platform\trace.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
@@ -2265,9 +2226,6 @@
     </ClCompile>
     <ClCompile Include="net\sockets\http\http_base_socket.cpp">
       <Filter>Source Files\net\sockets\http</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\timer_threaded.cpp">
-      <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="multithreading\thread_pool.cpp">
       <Filter>Source Files\multithreading</Filter>

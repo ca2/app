@@ -77,17 +77,17 @@ namespace user
 
          ::user::interaction::install_message_routing(pchannel);
 
-         IGUI_MSG_LINK(WM_CREATE, pchannel, this, &edit::_001OnCreate);
-         IGUI_MSG_LINK(WM_DESTROY, pchannel, this, &edit::_001OnDestroy);
-         IGUI_MSG_LINK(WM_SHOWWINDOW, pchannel, this, &edit::_001OnShowWindow);
-         IGUI_MSG_LINK(WM_LBUTTONDOWN, pchannel, this, &edit::_001OnLButtonDown);
-         IGUI_MSG_LINK(WM_LBUTTONUP, pchannel, this, &edit::_001OnLButtonUp);
-         IGUI_MSG_LINK(WM_MOUSEMOVE, pchannel, this, &edit::_001OnMouseMove);
-         IGUI_MSG_LINK(WM_MOUSELEAVE, pchannel, this, &edit::_001OnMouseLeave);
-         IGUI_MSG_LINK(WM_KEYDOWN, pchannel, this, &edit::_001OnKeyDown);
-         IGUI_MSG_LINK(WM_KEYUP, pchannel, this, &edit::_001OnKeyUp);
-         IGUI_MSG_LINK(WM_SETFOCUS, pchannel, this, &edit::_001OnSetFocus);
-         IGUI_MSG_LINK(WM_KILLFOCUS, pchannel, this, &edit::_001OnKillFocus);
+         MESSAGE_LINK(e_message_create, pchannel, this, &edit::_001OnCreate);
+         MESSAGE_LINK(e_message_destroy, pchannel, this, &edit::_001OnDestroy);
+         MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &edit::_001OnShowWindow);
+         MESSAGE_LINK(WM_LBUTTONDOWN, pchannel, this, &edit::_001OnLButtonDown);
+         MESSAGE_LINK(WM_LBUTTONUP, pchannel, this, &edit::_001OnLButtonUp);
+         MESSAGE_LINK(e_message_mouse_move, pchannel, this, &edit::_001OnMouseMove);
+         MESSAGE_LINK(WM_MOUSELEAVE, pchannel, this, &edit::_001OnMouseLeave);
+         MESSAGE_LINK(WM_KEYDOWN, pchannel, this, &edit::_001OnKeyDown);
+         MESSAGE_LINK(WM_KEYUP, pchannel, this, &edit::_001OnKeyUp);
+         MESSAGE_LINK(e_message_set_focus, pchannel, this, &edit::_001OnSetFocus);
+         MESSAGE_LINK(e_message_kill_focus, pchannel, this, &edit::_001OnKillFocus);
          
 #ifdef WINDOWS_DESKTOP
 
@@ -786,7 +786,7 @@ namespace user
       }
 
 
-      void edit::on_after_change(::user::e_event eevent)
+      void edit::on_after_change(::user::enum_event eevent)
       {
 
       }

@@ -467,7 +467,7 @@ namespace sphere
 
          m_pconsole = __new(::console::department(this));
 
-         IGUI_MSG_LINK(WM_APP + 3243, this, m_pconsole.m_p, &console::department::_001OnImpact);
+         MESSAGE_LINK(WM_APP + 3243, this, m_pconsole.m_p, &console::department::_001OnImpact);
 
 
       }

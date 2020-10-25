@@ -35,7 +35,7 @@ public:
 
          m_dwSleep = 0;
 
-         if (!thread_sleep(dwSleep))
+         if (!task_sleep(dwSleep))
          {
 
             return success_exit_thread;

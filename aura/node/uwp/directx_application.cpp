@@ -360,7 +360,7 @@ namespace uwp
 
             //}
 
-            m_psystem->post_object(SYSTEM_MESSAGE, system_message_create, pcreate);
+            m_psystem->post_object(e_message_system, system_message_create, pcreate);
 
          }
 
@@ -653,7 +653,7 @@ namespace uwp
 
       pmouse->m_point.x             = (LONG) pointerPoint->RawPosition.X;
       pmouse->m_point.y             = (LONG) pointerPoint->RawPosition.Y;
-      pmouse->m_id                  = WM_MOUSEMOVE;
+      pmouse->m_id                  = e_message_mouse_move;
       pmouse->m_playeredUserPrimitive = puiHost;
 
       m_pointLastCursor = pointerPoint->RawPosition;

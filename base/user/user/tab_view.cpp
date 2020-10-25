@@ -167,9 +167,9 @@ namespace user
    {
       impact::install_message_routing(pchannel);
       ::user::tab::install_message_routing(pchannel);
-      IGUI_MSG_LINK(WM_CREATE, pchannel, this, &tab_view::_001OnCreate);
-      IGUI_MSG_LINK(WM_USER + 1122, pchannel, this, &tab_view::_001OnMenuMessage);
-      IGUI_MSG_LINK(WM_SETFOCUS, pchannel, this, &tab_view::_001OnSetFocus);
+      MESSAGE_LINK(e_message_create, pchannel, this, &tab_view::_001OnCreate);
+      MESSAGE_LINK(WM_USER + 1122, pchannel, this, &tab_view::_001OnMenuMessage);
+      MESSAGE_LINK(e_message_set_focus, pchannel, this, &tab_view::_001OnSetFocus);
    }
 
 
@@ -1036,7 +1036,7 @@ namespace user
 
       ::user::interaction::install_message_routing(pchannel);
 
-      IGUI_MSG_LINK(WM_LBUTTONUP, pchannel, this, &tab_drop_target_window::_001OnLButtonUp);
+      MESSAGE_LINK(WM_LBUTTONUP, pchannel, this, &tab_drop_target_window::_001OnLButtonUp);
 
    }
 

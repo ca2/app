@@ -147,7 +147,7 @@ namespace experience
    {
       LPMESSAGE pmsg = (LPMESSAGE)lParam;
 
-      if (wParam == WM_MOUSEMOVE)
+      if (wParam == e_message_mouse_move)
       {
          ::point pointCursor = pmsg->pt;
 
@@ -230,11 +230,11 @@ namespace experience
    void orto_button::install_message_routing(::channel * pchannel)
    {
       ::user::button::install_message_routing(pchannel);
-      IGUI_MSG_LINK(WM_SHOWWINDOW, pchannel, this, &orto_button::_001OnShowWindow);
-      IGUI_MSG_LINK(WM_LBUTTONDOWN, pchannel, this, &orto_button::_001OnLButtonDown);
-      IGUI_MSG_LINK(WM_LBUTTONUP, pchannel, this, &orto_button::_001OnLButtonUp);
-      //IGUI_MSG_LINK(WM_SIZE, pchannel, this, &orto_button::_001OnSize);
-      //   //IGUI_MSG_LINK(WM_TIMER, pchannel, this,&orto_button::_001OnTimer);
+      MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &orto_button::_001OnShowWindow);
+      MESSAGE_LINK(WM_LBUTTONDOWN, pchannel, this, &orto_button::_001OnLButtonDown);
+      MESSAGE_LINK(WM_LBUTTONUP, pchannel, this, &orto_button::_001OnLButtonUp);
+      //MESSAGE_LINK(e_message_size, pchannel, this, &orto_button::_001OnSize);
+      //   //MESSAGE_LINK(WM_TIMER, pchannel, this,&orto_button::_001OnTimer);
    }
 
 

@@ -1118,7 +1118,8 @@ class ___task_pool;
 
 using task_pointer = __pointer(::task);
 
-using task_pool = ___task_pool<::task_pointer>;
+class task_pool;
+//using task_pool = ___task_pool<::task_pointer>;
 
 
 
@@ -1364,15 +1365,6 @@ inline bool is_impact_group(::u64 u, ::u64 uGroup) { return u >= uGroup && u < u
 inline bool is_impact_subgroup(::u64 u, ::u64 uGroup) { return u >= uGroup && u < uGroup + 100; }
 
 
-//class image;
-//namespace draw2d{class icon;}
-//
-//using image_pointer = __pointer(::image);
-//using icon_pointer = __pointer(::draw2d::icon);
-//
-//
-//using image_result = __result(::image);
-//using icon_result=__result(::draw2d::icon);
 
 
 class command_line;
@@ -1589,7 +1581,7 @@ namespace file
    typedef CLASS_DECL_ACME ::string_array_base < ::file::path,string > patha;
    class file;
 
-   enum e_type
+   enum enum_type
    {
 
       type_none,
@@ -2269,7 +2261,7 @@ class type;
 
 class thread_parameter;
 
-#include "acme/primitive/primitive/enum.h"
+//#include "acme/primitive/primitive/enum.h"
 
 
 #include "acme/primitive/primitive/interlocked_long.h"
@@ -2533,9 +2525,12 @@ class action_context;
 
 using emessagebox = cflag < enum_message_box >;
 
-#include "acme/primitive/primitive/function_base.h"
 
 using matter_pointer = __pointer(::matter);
+
+
+
+
 
 namespace user
 {
@@ -2547,9 +2542,35 @@ namespace user
 
 #include "acme/platform/_global.h"
 
+class function;
+class method;
+class future;
+
+
+namespace factory
+{
+
+   
+   class factory_interface;
+
+
+} // namespace factory
+
+
 
 #include "acme/primitive/primitive/matter.h"
 #include "acme/primitive/primitive/layered.h"
+
+
+class manual_reset_event;
+
+#include "acme/primitive/primitive/function_pointer.h"
+
+
+#include "acme/primitive/primitive/method.h"
+
+
+#include "acme/primitive/primitive/future.h"
 
 
 #include "acme/primitive/primitive/work.h"
@@ -2565,15 +2586,15 @@ namespace user
 
 
 #include "acme/platform/status.h"
-#include "acme/primitive/primitive/enum_type.h"
+#include "acme/primitive/primitive/enumeration.h"
 
 using efileopen = cflag < ::file::e_open >;
 
 using eiostate = ::cflag < ::file::e_iostate >;
 
-using ecommand = ::enum_type < enum_command >;
+using ecommand = ::enumeration < enum_command >;
 
-using echeck = ::enum_type < enum_check >;
+using echeck = ::enumeration < enum_check >;
 
 
 typedef ::estatus THREAD_PROCEDURE(thread_parameter parameter);
@@ -2589,7 +2610,7 @@ inline bool failed(const ::property & set) { return !::succeeded(set); }
 #define __inner_release(outer, inner) ::release(outer, outer->inner)
 
 
-#include "acme/primitive/primitive/function_base.h"
+//#include "acme/primitive/primitive/function.h"
 
 
 #include "acme/primitive/primitive/member.h"
@@ -2688,6 +2709,8 @@ class object_meta;
 #define __composite_array(TYPE) ::array < __composite(TYPE) >
 #define __reference_array(TYPE) ::array < __reference(TYPE) >
 
+
+
 namespace http
 {
 
@@ -2695,9 +2718,8 @@ namespace http
 
 } // namespace http
 
-template < typename PRED > inline __pointer(::matter) __pred_method(PRED pred);
 
-template < typename PRED > inline __pointer(::matter) __pred_future(PRED pred);
+
 
 //class context;
 
@@ -2756,9 +2778,18 @@ class task;
 
 #include "acme/exception/_.h"
 
-#include "acme/primitive/primitive/context_object.h"
+using method_array = ::array < ::method >;
 
-#include "acme/multithreading/task.h"
+using future_array = ::array < ::future >;
+
+
+template < typename PRED >
+void add_method(method_array& array, PRED pred);
+
+template < typename PRED >
+void add_future(future_array& array, PRED pred);
+
+#include "acme/primitive/primitive/context_object.h"
 
 #include "acme/primitive/comparison/var_strict.h"
 
@@ -2768,9 +2799,10 @@ class task;
 
 #include "acme/primitive/collection/_.h"
 
-#include "acme/primitive/primitive/method.h"
+//#include "acme/primitive/primitive/method.h"
 
-#include "acme/primitive/primitive/future.h"
+//#include "acme/primitive/primitive/future.h"
+
 
 #include "acme/primitive/primitive/pred_method.h"
 
@@ -2973,6 +3005,12 @@ inline void dump_elements(dump_context & dumpcontext, const TYPE* pElements, ::c
 #include "acme/platform/enum.h"
 
 
+#include "acme/multithreading/critical_section.h"
+
+
+#include "acme/primitive/primitive/factory.h"
+
+
 #include "acme/multithreading/_.h"
 
 
@@ -3136,6 +3174,14 @@ class mq_base;
 //#include "acme/multithreading/delay_thread.h"
 //#include "acme/multithreading/tools.h"
 
+#include "acme/platform/timer_callback.h"
+#include "acme/platform/timer_item.h"
+#include "acme/platform/timer_array.h"
+#include "acme/platform/nano_timer.h"
+#include "acme/platform/timer.h"
+#include "acme/platform/timer_task.h"
+#include "acme/platform/timer_event.h"
+
 #include "acme/multithreading/thread_impl.h"
 //#include "acme/multithreading/simple_thread.h"
 //#include "acme/multithreading/go_thread.h"
@@ -3186,7 +3232,7 @@ class mq_base;
 //#endif
 
 
-#include "acme/primitive/primitive/factory.h"
+
 
 
 

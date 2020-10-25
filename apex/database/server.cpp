@@ -147,7 +147,7 @@ namespace database
          if (!_data_server_load(pclient, id, is->memory(), paction))
          {
 
-            return ::type_null;
+            return ::e_type_null;
 
          }
 

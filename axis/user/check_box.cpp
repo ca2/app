@@ -648,7 +648,7 @@ namespace user
 
       install_simple_ui_default_mouse_handling(pchannel);
 
-      IGUI_MSG_LINK(WM_CREATE, pchannel, this, &check_box::_001OnCreate);
+      MESSAGE_LINK(e_message_create, pchannel, this, &check_box::_001OnCreate);
 
    }
 

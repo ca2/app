@@ -372,17 +372,17 @@ bool stream::is_version(index i)
 void stream::write(const id & id)
 {
 
-   ::id::e_type etype = id.m_etype;
+   ::id::enum_type etype = id.m_etype;
 
    write(i8(etype));
 
-   if (etype == ::id::type_text)
+   if (etype == ::id::e_type_text)
    {
 
       write(id.m_psz);
 
    }
-   else if (etype == ::id::type_integer)
+   else if (etype == ::id::e_type_integer)
    {
 
       write(id.m_i);
@@ -395,7 +395,7 @@ void stream::write(const id & id)
 void stream::write(const var & var)
 {
 
-   e_type etype = var.get_type();
+   enum_type etype = var.get_type();
 
    ::i32 i = etype;
 
@@ -405,7 +405,7 @@ void stream::write(const var & var)
    {
    case type_parareturn:
    case type_new:
-   case type_null:
+   case e_type_null:
    case type_key_exists:
    case type_empty:
    case type_empty_argument:
@@ -860,7 +860,7 @@ void stream::read(var & var)
 }
 
 
-void stream::read_var_type(e_type & etype)
+void stream::read_var_type(enum_type & etype)
 {
 
    set_fail_bit();
@@ -868,7 +868,7 @@ void stream::read_var_type(e_type & etype)
 }
 
 
-void stream::read_var_body(var & var, e_type etype)
+void stream::read_var_body(var & var, enum_type etype)
 {
 
    set_fail_bit();
@@ -919,7 +919,7 @@ void stream::read(block & block)
 
 
 
-void stream::save_var_type(e_type etype)
+void stream::save_var_type(enum_type etype)
 {
 
    ::i32 i((::i32) etype);

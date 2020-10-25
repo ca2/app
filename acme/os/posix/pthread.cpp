@@ -437,10 +437,10 @@ int g_iDebug_post_thread_msg_time;
 //   msg.pt.y = 0x80000000;
 //   msg.hwnd = nullptr;
 //
-//   if (msg.message == WM_QUIT)
+//   if (msg.message == e_message_quit)
 //   {
 //
-//      output_debug_string("WM_QUIT thread");
+//      output_debug_string("e_message_quit thread");
 //
 //   }
 //

@@ -183,7 +183,7 @@ namespace http
    bool application::exists(const char * pszUrl, property_set & set)
    {
 
-      ::file::e_type etype = ::file::type_none;
+      ::file::enum_type etype = ::file::type_none;
 
       bool bExists = is_file_or_dir(pszUrl, nullptr, &etype, set);
 
@@ -192,7 +192,7 @@ namespace http
    }
 
 
-   bool application::is_file_or_dir(const char * pszUrl, var * pvarQuery, ::file::e_type * petype, property_set & set)
+   bool application::is_file_or_dir(const char * pszUrl, var * pvarQuery, ::file::enum_type * petype, property_set & set)
    {
 
       string strUrl(pszUrl);
@@ -278,7 +278,7 @@ namespace http
 
       }
 
-      ::file::e_type etype = ::file::type_none;
+      ::file::enum_type etype = ::file::type_none;
 
       bool bExists = Context.http().is_file_or_dir(strUrl, process_set(set, pszUrl), &etype);
 

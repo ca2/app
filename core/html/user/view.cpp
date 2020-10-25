@@ -23,10 +23,10 @@ void html_view::install_message_routing(::channel * pchannel)
 
    html_form::install_message_routing(pchannel);
 
-   IGUI_MSG_LINK(WM_DESTROY, pchannel, this, &html_view::_001OnDestroy);
-   IGUI_MSG_LINK(WM_CREATE, pchannel, this, &html_view::_001OnCreate);
-   IGUI_MSG_LINK(WM_CONTEXTMENU, pchannel, this, &html_view::_001OnContextMenu);
-   IGUI_MSG_LINK(WM_SETCURSOR, pchannel, this, &html_view::_001OnSetCursor);
+   MESSAGE_LINK(e_message_destroy, pchannel, this, &html_view::_001OnDestroy);
+   MESSAGE_LINK(e_message_create, pchannel, this, &html_view::_001OnCreate);
+   MESSAGE_LINK(WM_CONTEXTMENU, pchannel, this, &html_view::_001OnContextMenu);
+   MESSAGE_LINK(WM_SETCURSOR, pchannel, this, &html_view::_001OnSetCursor);
 
 }
 

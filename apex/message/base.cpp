@@ -30,14 +30,14 @@ namespace message
    }
 
 
-   base::base(::layered * playeredUserPrimitive, UINT uiMessage, WPARAM wparam, ::lparam lparam)
+   base::base(::layered * playeredUserPrimitive, const ::id & id, WPARAM wparam, ::lparam lparam)
    {
 
       m_uiMessageFlags     = 0;
       m_lresult            = 0;
       m_bDestroyed         = false;
       m_bDoSystemDefault   = true;
-      set(playeredUserPrimitive,uiMessage,wparam,lparam);
+      set(playeredUserPrimitive, id, wparam, lparam);
 
 
       //Application.tellme_destroyed(pwnd, &m_bDestroyed);
@@ -88,12 +88,12 @@ namespace message
    }
 
 
-   void base::set(::layered * playeredUserPrimitive, UINT uiMessage, WPARAM wparam, ::lparam lparam)
+   void base::set(::layered * playeredUserPrimitive, const ::id & id, WPARAM wparam, ::lparam lparam)
    {
       
       m_playeredUserPrimitive = playeredUserPrimitive;
 
-      ::message::message::set(playeredUserPrimitive, uiMessage, wparam, lparam);
+      ::message::message::set(playeredUserPrimitive, id, wparam, lparam);
 
    }
 
@@ -126,10 +126,10 @@ namespace message
 
    //}
 
-   //void timer::set(::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,::lparam lparam)
+   //void timer::set(::user::primitive * pwnd,const ::id & id,WPARAM wparam,::lparam lparam)
    //{
 
-   //   base::set(pwnd,uiMessage,wparam,lparam);
+   //   base::set(pwnd,id,wparam,lparam);
 
    //   m_uEvent = static_cast<UINT>(wparam);
 

@@ -278,7 +278,7 @@ sync_result semaphore::wait(const duration & durationTimeout)
       if(errno == EAGAIN)
       {
 
-         //thread_sleep(100);
+         //task_sleep(100);
 
          Sleep(100);
 

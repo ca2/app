@@ -137,12 +137,12 @@ namespace hotplugin
       }
    }
 
-   void plugin::post_message(UINT uiMessage, WPARAM wparam, LPARAM lparam)
+   void plugin::post_message(const ::id & id, WPARAM wparam, LPARAM lparam)
 
    {
       if(m_phost != nullptr)
       {
-         m_phost->post_message(uiMessage, wparam, lparam);
+         m_phost->post_message(emessage, wparam, lparam);
 
       }
    }
@@ -232,7 +232,7 @@ namespace hotplugin
 
 #ifdef WINDOWS
 
-   /*   LRESULT plugin::message_handler(UINT uiMessage, WPARAM wparam, LPARAM lparam)
+   /*   LRESULT plugin::message_handler(const ::id & id, WPARAM wparam, LPARAM lparam)
 
       {
          return 0;
@@ -1069,7 +1069,7 @@ namespace hotplugin
    void plugin::message_handler(::message::base * pbase)
    {
 
-      UINT message;
+      const ::id & id;
 
       WPARAM wparam;
 
@@ -1103,7 +1103,7 @@ namespace hotplugin
    }
 
 
-   void plugin::plugin_message_handler(UINT message, WPARAM wparam, LPARAM lparam, bool bEnsureTx)
+   void plugin::plugin_message_handler(const ::id & id, WPARAM wparam, LPARAM lparam, bool bEnsureTx)
 
    {
 

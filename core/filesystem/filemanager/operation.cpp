@@ -457,7 +457,7 @@ namespace filemanager
       }
       if(m_oswindowCallback != nullptr)
       {
-         m_oswindowCallback->send_message(m_uiCallbackMessage,m_wparamCallback);
+         m_oswindowCallback->send_message(m_id,m_wparamCallback);
       }
       return true;
    }

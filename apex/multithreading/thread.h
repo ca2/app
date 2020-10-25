@@ -89,7 +89,8 @@ public:
    UINT                                               m_dwFinishTimeout;
    bool                                               m_bThreadClosed;
 
-   object_array                                       m_objectaTask;
+   
+   method_array                                       m_methoda;
 
 
    __pointer(manual_reset_event)                      m_pevent1;
@@ -102,7 +103,6 @@ public:
 
    DWORD_PTR                                          m_dwThreadAffinityMask;
    bool                                               m_bTemporary;
-   __pointer(manual_reset_event)                      m_pevSleep;
    __pointer(::object)                                m_pobjectScript;
 
 
@@ -140,7 +140,7 @@ public:
 
    int_bool peek_message(LPMESSAGE pMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg);
    int_bool get_message(LPMESSAGE pMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax);
-   int_bool post_message(oswindow oswindow, UINT uMessage, WPARAM wParam, LPARAM lParam);
+   int_bool post_message(oswindow oswindow, const ::id & id, WPARAM wParam, LPARAM lParam);
 
    user_interaction_ptr_array & uiptra();
 
@@ -161,11 +161,17 @@ public:
    DWORD get_file_sharing_violation_timeout_total_milliseconds();
    ::duration set_file_sharing_violation_timeout(::duration duration);
 
-
+   virtual bool is_running() const;
    //virtual void dependant_add(::layered * pobjectContext) override;
 
-   ///  \brief    starts thread on first call
-   virtual void start();
+ 
+
+   virtual ::estatus start(
+      ::matter * pmatter,
+      ::e_priority epriority = priority_normal,
+      u32 nStackSize = 0,
+      u32 dwCreateFlags = 0) override;
+
 
    virtual HTHREAD get_hthread() const;
    virtual ITHREAD get_ithread() const;
@@ -174,10 +180,10 @@ public:
 
    virtual HTHREAD get_os_handle() const;
 
-   virtual bool thread_active() const;
+   //virtual bool thread_active() const;
    virtual bool is_dedicated_thread() const;
    virtual bool is_thread() const override;
-   virtual bool is_running() const override;
+   //virtual bool is_running() const override;
 
    //virtual void set_os_data(void * pvoidOsData);
    //virtual void set_os_int(ITHREAD iData);
@@ -199,11 +205,6 @@ public:
    virtual void on_keep_alive() override;
    virtual bool is_alive() override;
 
-
-
-
-   virtual ::task_pool* taskpool() override;
-
    virtual int get_x_window_count() const;
 
    virtual sync_result wait(const duration & duration);
@@ -218,22 +219,24 @@ public:
    //inline ::command::command * command() const { return ((thread *)this)->m_pcommand; }
    //virtual ::command::command * get_command();
 
+   virtual ::task_pool* taskpool() override;
+
    //inline bool has_property(const ::id& id) const;
    //inline var command_value(const ::id& id) const;
    //inline bool command_value_is_true(const ::id& id) const;
 
 
-   virtual u32 ResumeThread();
-   virtual bool post_message(UINT message, WPARAM wParam = 0, lparam lParam = 0);
+   ///virtual u32 ResumeThread();
+   virtual bool post_message(const ::id & id, WPARAM wParam = 0, lparam lParam = 0);
 
-   virtual bool send_message(UINT message,WPARAM wParam = 0,lparam lParam = 0, ::duration durationTimeout = ::duration::infinite());
+   virtual bool send_message(const ::id & id,WPARAM wParam = 0,lparam lParam = 0, ::duration durationTimeout = ::duration::infinite());
 
-   virtual bool post_object(UINT message, WPARAM wParam, lparam lParam);
+   virtual bool post_object(const ::id & id, WPARAM wParam, lparam lParam);
 
-   virtual bool send_object(UINT message, WPARAM wParam, lparam lParam, ::duration durationTimeout = ::duration::infinite());
+   virtual bool send_object(const ::id & id, WPARAM wParam, lparam lParam, ::duration durationTimeout = ::duration::infinite());
 
-   virtual bool post_task(::matter * pobjectTask);
-   virtual bool send_task(::matter * pobjectTask, ::duration durationTimeout = ::duration::infinite());
+   virtual bool post_task(const ::method & method);
+   virtual bool send_task(const ::method & method, ::duration durationTimeout = ::duration::infinite());
 
    template < typename PRED >
    bool pred(PRED pred)
@@ -244,13 +247,15 @@ public:
    template < typename PRED >
    bool post_pred(PRED pred)
    {
-      return post_object(SYSTEM_MESSAGE, system_message_pred, __new(pred_holder < PRED >(pred)));
+      return post_object(e_message_system, system_message_method, __method(pred));
    }
 
-   template < typename PRED >
-   bool send_pred(PRED pred, ::duration durationTimeout = ::duration::infinite())
+
+   bool send_method(const ::method & method, ::duration durationTimeout = ::duration::infinite())
    {
-      return send_object(SYSTEM_MESSAGE, system_message_pred, __new(pred_holder < PRED >(pred)), durationTimeout);
+
+      return send_object(e_message_system, system_message_method, method, durationTimeout);
+
    }
 
 
@@ -260,15 +265,21 @@ public:
       return post_pred(pred);
    }
 
-   template < typename PRED >
-   bool synch_pred(PRED pred, ::duration durationTimeout = ::duration::infinite())
+
+   bool sync_pred(const ::method & method, ::duration durationTimeout = ::duration::infinite())
    {
+
       if (this == ::get_task())
       {
-         pred();
+
+         method();
+
          return true;
+
       }
-      return send_pred(pred, durationTimeout);
+
+      return send_method(method, durationTimeout);
+
    }
 
 
@@ -350,7 +361,8 @@ public:
    virtual ::estatus verb();
 
 
-   virtual void post_to_all_threads(UINT message,WPARAM wparam,LPARAM lparam);
+   static void post_quit_to_all_threads();
+   static void post_to_all_threads(const ::id & id, WPARAM wparam, LPARAM lparam);
 
 
 
@@ -373,7 +385,7 @@ public:
    virtual void finalize() override;
    virtual bool is_set_finish() const;
    virtual void set_finish() override;
-   virtual void kick_idle();
+   virtual void kick_idle() override;
    virtual void post_quit();
 
    virtual ::index task_add(::task * ptask) override;
@@ -553,7 +565,7 @@ CLASS_DECL_APEX void set_thread_off(ITHREAD id);
 
 
 
-CLASS_DECL_APEX bool apex_thread_sleep(tick tick, sync* psync = nullptr);
+//CLASS_DECL_APEX bool apex_task_sleep(tick tick, sync* psync = nullptr);
 CLASS_DECL_APEX bool thread_pump_sleep(tick tick, sync* psync = nullptr);
 CLASS_DECL_APEX bool app_sleep(tick tick);
 
@@ -596,7 +608,7 @@ inline ::sync_result while_pred_Sleep(int iTime, PRED pred)
 CLASS_DECL_APEX void defer_create_thread(::layered * pobjectContext);
 
 
-CLASS_DECL_APEX void thread_name_abbreviate(string & strName, int len);
+
 
 
 

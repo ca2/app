@@ -257,7 +257,7 @@ void memcnts_dec(T * pthis)
 
 
 template < typename RECEIVER >
-void channel::add_route (RECEIVER * preceiver, void (RECEIVER::* phandler)(::message::message * pmessage), ::message::id id)
+void channel::add_route (RECEIVER * preceiver, void (RECEIVER::* phandler)(::message::message * pmessage), const ::id & id)
 {
 
    add_receiver_route(id, preceiver, phandler);
@@ -266,7 +266,7 @@ void channel::add_route (RECEIVER * preceiver, void (RECEIVER::* phandler)(::mes
 
 
 template < typename RECEIVER, typename MESSAGE_PRED >
-void channel::add_route (::message::id id, RECEIVER * preceiverDerived, MESSAGE_PRED message_pred)
+void channel::add_route (const ::id & id, RECEIVER * preceiverDerived, MESSAGE_PRED message_pred)
 {
 
    get_typed_route < typename ::remove_reference < decltype(*preceiverDerived) >::TYPE, ::message::message >(id, preceiverDerived) = message_pred;
@@ -275,7 +275,7 @@ void channel::add_route (::message::id id, RECEIVER * preceiverDerived, MESSAGE_
 
 
 template < typename RECEIVER, typename MESSAGE_TYPE >
-void channel::add_receiver_route(::message::id id, RECEIVER* preceiver, void (RECEIVER::* phandler)(MESSAGE_TYPE* pmessage))
+void channel::add_receiver_route(const ::id & id, RECEIVER* preceiver, void (RECEIVER::* phandler)(MESSAGE_TYPE* pmessage))
 {
 
    add_route(id, preceiver).m_pmessageable = __new(::message::receiver_route<RECEIVER, MESSAGE_TYPE>(preceiver, phandler));
@@ -284,7 +284,7 @@ void channel::add_receiver_route(::message::id id, RECEIVER* preceiver, void (RE
 
 
 template < typename RECEIVER >
-::message::route & channel::add_route(::message::id id, RECEIVER * preceiverDerived)
+::message::route & channel::add_route(const ::id & id, RECEIVER * preceiverDerived)
 {
 
    sync_lock sl(defer_mutex_channel());
@@ -372,7 +372,7 @@ template < typename RECEIVER >
 
 
 template < typename RECEIVER, typename MESSAGE >
-::message::typed_route < MESSAGE > & channel::get_typed_route (::message::id id, RECEIVER * preceiverDerived)
+::message::typed_route < MESSAGE > & channel::get_typed_route (const ::id & id, RECEIVER * preceiverDerived)
 {
 
    sync_lock sl(s_pmutexChannel);

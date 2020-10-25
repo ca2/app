@@ -281,7 +281,7 @@ void enum_display_monitors(::aura::session * psession)
 
       ::count iMonitorCount = gdk_display_get_n_monitors(pdisplay);
 
-      psession->m_rectaWork.set_size(iMonitorCount);
+      psession->m_rectaWkspace.set_size(iMonitorCount);
 
       psession->m_rectaMonitor.set_size(iMonitorCount);
 
@@ -290,14 +290,14 @@ void enum_display_monitors(::aura::session * psession)
 
          GdkMonitor * pmonitor = gdk_display_get_monitor(pdisplay, iMonitor);
 
-         auto & rectWork = psession->m_rectaWork[iMonitor];
+         auto & rectWkspace = psession->m_rectaWkspace[iMonitor];
 
          auto & rectMonitor = psession->m_rectaMonitor[iMonitor];
 
          if(pmonitor == nullptr)
          {
 
-            rectWork.Null();
+            rectWkspace.Null();
 
             rectMonitor.Null();
 
@@ -311,7 +311,7 @@ void enum_display_monitors(::aura::session * psession)
 
          gdk_monitor_get_workarea(pmonitor, &rect);
 
-         __copy(rectWork, rect);
+         __copy(rectWkspace, rect);
 
          xxf_zero(rect);
 

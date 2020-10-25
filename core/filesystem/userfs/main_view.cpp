@@ -17,7 +17,7 @@ namespace userfs
    void main_view::install_message_routing(::channel * pchannel)
    {
       ::user::split_view::install_message_routing(pchannel);
-      IGUI_MSG_LINK(WM_CREATE, pchannel, this, &main_view::_001OnCreate);
+      MESSAGE_LINK(e_message_create, pchannel, this, &main_view::_001OnCreate);
    }
 
    void main_view::_001OnCreate(::message::message * pmessage)

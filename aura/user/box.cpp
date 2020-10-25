@@ -65,9 +65,9 @@ namespace user
       ::user::interaction::install_message_routing(pchannel);
       //scroll::install_message_routing(pchannel);
 
-      IGUI_MSG_LINK(WM_CREATE, pchannel, this, &box::_001OnCreate);
-      IGUI_MSG_LINK(WM_SIZE, pchannel, this, &box::_001OnSize);
-      IGUI_MSG_LINK(WM_SHOWWINDOW, pchannel, this, &box::_001OnShowWindow);
+      MESSAGE_LINK(e_message_create, pchannel, this, &box::_001OnCreate);
+      MESSAGE_LINK(e_message_size, pchannel, this, &box::_001OnSize);
+      MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &box::_001OnShowWindow);
 
    }
 
@@ -385,12 +385,12 @@ namespace user
          else
          {
             
-            main_sync([this, windowrect]()
-                      {
+            send_method(__method([this, windowrect]()
+            {
 
-            good_restore(nullptr, windowrect.m_rectRestored, true, activation_none, zorder_top, windowrect.m_edisplay);
+               good_restore(nullptr, windowrect.m_rectRestored, true, activation_none, zorder_top, windowrect.m_edisplay);
                
-            });
+            }));
 
          }
 
@@ -512,12 +512,12 @@ namespace user
    void box::sketch_prepare_window_restore(edisplay edisplay)
    {
 
-      main_async([this, edisplay]()
+      main_async(__method([this, edisplay]()
       {
 
          good_restore(NULL, layout().sketch().screen_rect(), true, layout().sketch().activation(), layout().sketch().zorder(), edisplay);
 
-      });
+      }));
 
    }
 

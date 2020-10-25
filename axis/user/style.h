@@ -72,7 +72,7 @@ namespace axis
 
       virtual bool simple_ui_draw_focus_rect(::user::interaction * pinteraction,::draw2d::graphics_pointer & pgraphics) override;
 
-      //virtual bool on_ui_event(e_event eevent, e_object eobject, ::user::interaction * pinteraction) override;
+      //virtual bool on_ui_event(enum_event eevent, e_object eobject, ::user::interaction * pinteraction) override;
 
       //virtual bool _001OnDrawMenuInteraction(::draw2d::graphics_pointer & pgraphics, menu_interaction * pbutton) override;
 

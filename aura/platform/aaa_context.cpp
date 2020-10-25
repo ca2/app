@@ -567,7 +567,7 @@ string context::defer_get_file_title(string strParam)
 
       ::file::path pathSide = side_get_matter_path(path);
 
-      ::file::e_type etype = ::file::type_none;
+      ::file::enum_type etype = ::file::type_none;
 
       if (is_file_or_dir_dup(pathSide, &etype))
       {

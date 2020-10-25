@@ -332,9 +332,6 @@
     <ClInclude Include="const\impact.h">
       <Filter>Header Files\const</Filter>
     </ClInclude>
-    <ClInclude Include="const\message.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
     <ClInclude Include="const\simple_command.h">
       <Filter>Header Files\const</Filter>
     </ClInclude>
@@ -1459,6 +1456,9 @@
     </ClInclude>
     <ClInclude Include="html\impl\element.h">
       <Filter>Header Files\html\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="const\aaa_message.h">
+      <Filter>Header Files\const</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -45,18 +45,18 @@ namespace user
       ::user::interaction::install_message_routing(pchannel);
 
 #ifdef WINDOWS
-      IGUI_MSG_LINK(WM_CTLCOLOR, pchannel, this, &control_bar::_001OnCtlColor);
+      MESSAGE_LINK(WM_CTLCOLOR, pchannel, this, &control_bar::_001OnCtlColor);
 #endif
-      IGUI_MSG_LINK(WM_SIZEPARENT, pchannel, this, &control_bar::_001OnSizeParent);
-      IGUI_MSG_LINK(WM_WINDOWPOSCHANGING, pchannel, this, &control_bar::_001OnWindowPosChanging);
-      IGUI_MSG_LINK(WM_MOUSEMOVE, pchannel, this, &control_bar::_001OnMouseMove);
-      IGUI_MSG_LINK(WM_LBUTTONDOWN, pchannel, this, &control_bar::_001OnLButtonDown);
-      IGUI_MSG_LINK(WM_LBUTTONUP, pchannel, this, &control_bar::_001OnLButtonUp);
-      IGUI_MSG_LINK(WM_LBUTTONDBLCLK, pchannel, this, &control_bar::_001OnLButtonDblClk);
-      IGUI_MSG_LINK(WM_MOUSEACTIVATE, pchannel, this, &control_bar::_001OnMouseActivate);
-      IGUI_MSG_LINK(WM_CREATE, pchannel, this, &control_bar::_001OnCreate);
-      IGUI_MSG_LINK(WM_DESTROY, pchannel, this, &control_bar::_001OnDestroy);
-      IGUI_MSG_LINK(WM_HELPHITTEST, pchannel, this, &control_bar::_001OnHelpHitTest);
+      MESSAGE_LINK(WM_SIZEPARENT, pchannel, this, &control_bar::_001OnSizeParent);
+      MESSAGE_LINK(WM_WINDOWPOSCHANGING, pchannel, this, &control_bar::_001OnWindowPosChanging);
+      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &control_bar::_001OnMouseMove);
+      MESSAGE_LINK(WM_LBUTTONDOWN, pchannel, this, &control_bar::_001OnLButtonDown);
+      MESSAGE_LINK(WM_LBUTTONUP, pchannel, this, &control_bar::_001OnLButtonUp);
+      MESSAGE_LINK(WM_LBUTTONDBLCLK, pchannel, this, &control_bar::_001OnLButtonDblClk);
+      MESSAGE_LINK(WM_MOUSEACTIVATE, pchannel, this, &control_bar::_001OnMouseActivate);
+      MESSAGE_LINK(e_message_create, pchannel, this, &control_bar::_001OnCreate);
+      MESSAGE_LINK(e_message_destroy, pchannel, this, &control_bar::_001OnDestroy);
+      MESSAGE_LINK(WM_HELPHITTEST, pchannel, this, &control_bar::_001OnHelpHitTest);
    }
 
 
@@ -289,7 +289,7 @@ namespace user
 
       UINT message;
 
-      message = UINT(pbase->m_id.i64());
+      message = pbase->m_id.umessage();
 
       // handle CBRS_FLYBY style (status bar flyby help)
       if (((m_dwStyle & CBRS_FLYBY) ||
@@ -342,11 +342,11 @@ namespace user
 
       LRESULT lResult;
 
-      UINT uiMessage;
+      UINT message;
 
-      uiMessage = (UINT)(pbase->m_id.i64());
+      message = pbase->m_id.umessage();
 
-      switch (uiMessage)
+      switch (message)
       {
       case WM_NOTIFY:
       case WM_COMMAND:
@@ -362,7 +362,7 @@ namespace user
          //      else
       {
          // try owner next
-         lResult = GetOwner()->send_message(uiMessage, pbase->m_wparam, pbase->m_lparam);
+         lResult = GetOwner()->send_message((enum_message) message, pbase->m_wparam, pbase->m_lparam);
 
          // special case for TTN_NEEDTEXTA and TTN_NEEDTEXTW
 //#ifdef WINDOWS_DESKTOP

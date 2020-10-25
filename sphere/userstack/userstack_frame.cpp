@@ -59,11 +59,11 @@ namespace userstack
    void frame::install_message_routing(::channel * pchannel)
    {
       simple_frame_window::install_message_routing(pchannel);
-      //IGUI_MSG_LINK(WM_CLOSE,          pchannel, this, &frame::_001OnClose);
-//      //IGUI_MSG_LINK(WM_TIMER,          pchannel, this, &frame::_001OnTimer);
-      IGUI_MSG_LINK(WM_CREATE,         pchannel, this, &frame::_001OnCreate);
-      IGUI_MSG_LINK(WM_APP + 1,        pchannel, this, &frame::_001OnApp1);
-      IGUI_MSG_LINK(WM_MOUSELEAVE,     pchannel, this, &frame::_001OnMouseLeave);
+      //MESSAGE_LINK(WM_CLOSE,          pchannel, this, &frame::_001OnClose);
+//      //MESSAGE_LINK(WM_TIMER,          pchannel, this, &frame::_001OnTimer);
+      MESSAGE_LINK(e_message_create,         pchannel, this, &frame::_001OnCreate);
+      MESSAGE_LINK(WM_APP + 1,        pchannel, this, &frame::_001OnApp1);
+      MESSAGE_LINK(WM_MOUSELEAVE,     pchannel, this, &frame::_001OnMouseLeave);
    }
 
 
@@ -163,7 +163,7 @@ namespace userstack
       Session.m_pointCursor = pmouse->m_point;
 //      ::aspheresp(::aura::application) pappParent = &App(Application.get_context_application()->m_pcoreapp);
 //      ::aspheresp(::aura::application) papp = &Application;
-      /*      if(pmouse->m_uiMessage == WM_MOUSEMOVE
+      /*      if(pmouse->m_uiMessage == e_message_mouse_move
             && m_pdocument != nullptr
             && m_pdocument->m_pplatformdocument != nullptr
             && m_pdocument->m_pplatformdocument->get_platform_frame() != nullptr)

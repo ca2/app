@@ -37,9 +37,9 @@ namespace win32
 
       virtual void on_command(UINT nID);
 
-      iptr send_message(UINT uiMessage, WPARAM wparam = 0, LPARAM lparam = 0);
-      iptr send_message_w(UINT uiMessage, WPARAM wparam = 0, LPARAM lparam = 0);
-      void post_message(UINT uiMessage, WPARAM wparam = 0, LPARAM lparam = 0);
+      iptr send_message(const ::id & id, WPARAM wparam = 0, LPARAM lparam = 0);
+      iptr send_message_w(const ::id & id, WPARAM wparam = 0, LPARAM lparam = 0);
+      void post_message(const ::id & id, WPARAM wparam = 0, LPARAM lparam = 0);
 
 
       void enable_window(bool bEnable = true);

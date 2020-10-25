@@ -1206,7 +1206,7 @@ int_bool destroy_window(oswindow window)
       if(pinteraction.is_set())
       {
 
-         pinteraction->send_message(WM_DESTROY, 0, 0);
+         pinteraction->send_message(e_message_destroy, 0, 0);
 
          mq_remove_window_from_all_queues(window);
 
@@ -2327,7 +2327,7 @@ bool post_ui_message(const MESSAGE & message)
    if(pmq == nullptr)
    {
 
-      pthread->m_pmq = __get_mq(pthread->get_os_int(), message.message != WM_QUIT);
+      pthread->m_pmq = __get_mq(pthread->get_os_int(), message.message != e_message_quit);
 
       pmq = pthread->m_pmq;
 
@@ -2342,10 +2342,10 @@ bool post_ui_message(const MESSAGE & message)
 
    sync_lock ml(&pmq->m_mutex);
 
-   if(message.message == WM_QUIT)
+   if(message.message == e_message_quit)
    {
 
-      output_debug_string("WM_QUIT thread");
+      output_debug_string("e_message_quit thread");
 
    }
 
@@ -2370,7 +2370,7 @@ void x11_thread(osdisplay_data * pdisplaydata)
 
    }
 
-   ::thread_set_name("x11_thread");
+   ::set_thread_name("x11_thread");
 
    fd_set fdset;
 
@@ -2539,7 +2539,7 @@ bool x11_process_message(Display * pdisplay)
 
       }
 
-      msg.message       = WM_MOUSEMOVE;
+      msg.message       = e_message_mouse_move;
       msg.wParam        = wparam;
       msg.lParam        = MAKELONG(e.xmotion.x_root, e.xmotion.y_root);
       msg.time          = e.xmotion.time;
@@ -2713,7 +2713,7 @@ bool x11_process_message(Display * pdisplay)
                if(msg.hwnd->m_rect.origin() != point)
                {
 
-                  msg.message       = WM_MOVE;
+                  msg.message       = e_message_move;
                   msg.wParam        = 0;
                   msg.lParam        = point.lparam();
 
@@ -2724,7 +2724,7 @@ bool x11_process_message(Display * pdisplay)
                if(msg.hwnd->m_rect.size() != size)
                {
 
-                  msg.message       = WM_SIZE;
+                  msg.message       = e_message_size;
                   msg.wParam        = 0;
                   msg.lParam        = size.lparam();
 
@@ -2886,7 +2886,7 @@ bool x11_process_message(Display * pdisplay)
    case FocusIn:
    {
 
-      msg.message       = WM_SETFOCUS;
+      msg.message       = e_message_set_focus;
 
       msg.hwnd->m_pimpl->m_puserinteraction->m_eflagUserLayout |= ::user::interaction::flag_focus;
 
@@ -2945,7 +2945,7 @@ bool x11_process_message(Display * pdisplay)
    {
 
       msg.hwnd          = oswindow_get(pdisplay, e.xdestroywindow.window);
-      msg.message       = WM_DESTROY;
+      msg.message       = e_message_destroy;
 
       post_ui_message(msg);
 
@@ -2971,7 +2971,7 @@ bool x11_process_message(Display * pdisplay)
             if(::is_set(pinteraction))
             {
 
-               msg.message       = WM_KILLFOCUS;
+               msg.message       = e_message_kill_focus;
 
                pinteraction->m_eflagUserLayout -= ::user::interaction::flag_focus;
 
@@ -3117,7 +3117,7 @@ bool x11_process_message(Display * pdisplay)
 ////
 ////            iArrayPos++;
 ////
-////            if(pmsg->message == WM_MOUSEMOVE)
+////            if(pmsg->message == e_message_mouse_move)
 ////            {
 ////
 ////               if(pmsg->time - dwLastMouseMove < 10)

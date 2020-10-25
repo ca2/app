@@ -14,7 +14,7 @@ namespace math
    public:
 
 
-      enum e_type
+      enum enum_type
       {
          type_addition,
          type_subtraction,
@@ -23,7 +23,7 @@ namespace math
       };
 
 
-      e_type m_etype;
+      enum_type m_etype;
 
 
       value * m_pvalue1;

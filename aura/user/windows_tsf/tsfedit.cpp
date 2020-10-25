@@ -458,7 +458,7 @@ HRESULT edit_window::_OnGetPreservedKey()
 //
 //            /*
 //            AddRef() the object. Release() will be called in WM_NCDESTROY. 
-//            Many owners will call Release during their WM_DESTROY, but the 
+//            Many owners will call Release during their e_message_destroy, but the 
 //            child window isn't destroyed until after the parent, so the object 
 //            gets deleted while the window still exists. Calling Release() 
 //            ourselves in WM_NCDESTROY ensures the object exists for the entire 
@@ -468,19 +468,19 @@ HRESULT edit_window::_OnGetPreservedKey()
 //        }
 //        break;
 //
-//    case WM_CREATE:
+//    case e_message_create:
 //        return pThis->_OnCreate();
 //
-//    case WM_SIZE:
+//    case e_message_size:
 //        return pThis->_OnSize(wParam, lParam);
 //
-//    case WM_DESTROY:
+//    case e_message_destroy:
 //        return pThis->_OnDestroy();
 //
-//    case WM_SETFOCUS:
+//    case e_message_set_focus:
 //        return pThis->_OnSetFocus();
 //
-//    case WM_KILLFOCUS:
+//    case e_message_kill_focus:
 //        return pThis->_OnKillFocus();
 //
 //    case WM_COMMAND:
@@ -672,7 +672,7 @@ LRESULT edit_window::_OnEditKillFocus(VOID)
 //LRESULT edit_window::_OnSize(WPARAM wParam, LPARAM lParam)
 //{
 //    //adjust the size and location of the status bar
-//    //SendMessage(m_hwndStatus, WM_SIZE, wParam, lParam);
+//    //SendMessage(m_hwndStatus, e_message_size, wParam, lParam);
 //
 //    RECT    rc;
 //

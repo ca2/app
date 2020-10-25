@@ -35,7 +35,7 @@ CLASS_DECL_AURA i32 __cdecl _memory_type(const void * p);
 
 // typedef int
 // (WINAPI * LPFN_ChangeWindowMessageFilter)(
-// UINT message,
+// const ::id & id,
 // DWORD dwFlag);
 
 

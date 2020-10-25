@@ -22,7 +22,7 @@ namespace user
 
       //void delete_this() override;
 
-      virtual void Enable(bool bOn, const ::action_context & action_context) override;
+      virtual void enable(bool bOn, const ::action_context & action_context) override;
       virtual void _001SetCheck(::enum_check echeck, const ::action_context & action_context) override;
       virtual void _001SetText(const string & pszText, const ::action_context & action_context) override;
 

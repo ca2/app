@@ -36,7 +36,7 @@ typedef struct _AUDIOFORMAT
 #define WAVEOUT_MESSAGE_PACKET
 
 
-typedef void WAVEOUT_CALLBACK(LPWAVEOUT pwaveout, unsigned int uiMessage, void * pdata, unsigned int s);
+typedef void WAVEOUT_CALLBACK(LPWAVEOUT pwaveout, unsigned int emessage, void * pdata, unsigned int s);
 
 typedef WAVEOUT_CALLBACK * LPWAVEOUT_CALLBACK;
 

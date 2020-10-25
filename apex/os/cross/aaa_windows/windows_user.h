@@ -704,7 +704,7 @@ oswindow hWnd);
 //
 //
 ///*
-//* WM_SIZE message wParam values
+//* e_message_size message wParam values
 //*/
 //#define SIZE_RESTORED       0
 //#define SIZE_MINIMIZED      1
@@ -1587,21 +1587,21 @@ oswindow hWnd);
 // */
 //
 //#define WM_NULL                         0x0000
-//#define WM_CREATE                       0x0001
-//#define WM_DESTROY                      0x0002
-//#define WM_MOVE                         0x0003
-//#define WM_SIZE                         0x0005
+//#define e_message_create                       0x0001
+//#define e_message_destroy                      0x0002
+//#define e_message_move                         0x0003
+//#define e_message_size                         0x0005
 //
-//#define WM_ACTIVATE                     0x0006
+//#define e_message_activate                     0x0006
 ///*
-// * WM_ACTIVATE state values
+// * e_message_activate state values
 // */
 //#define     WA_INACTIVE     0
 //#define     WA_ACTIVE       1
 //#define     WA_CLICKACTIVE  2
 //
-//#define WM_SETFOCUS                     0x0007
-//#define WM_KILLFOCUS                    0x0008
+//#define e_message_set_focus                     0x0007
+//#define e_message_kill_focus                    0x0008
 //#define WM_ENABLE                       0x000A
 //#define WM_SETREDRAW                    0x000B
 //#define WM_SETTEXT                      0x000C
@@ -1614,7 +1614,7 @@ oswindow hWnd);
 //#define WM_QUERYOPEN                    0x0013
 //#define WM_ENDSESSION                   0x0016
 ////#endif
-//#define WM_QUIT                         0x0012
+//#define e_message_quit                         0x0012
 //#define WM_ERASEBKGND                   0x0014
 //#define WM_SYSCOLORCHANGE               0x0015
 //#define WM_SHOWWINDOW                   0x0018
@@ -1738,7 +1738,7 @@ oswindow hWnd);
 ////#ifndef _WIN32_WCE
 //#define WM_SYNCPAINT                    0x0088
 ////#endif
-//#define WM_NCMOUSEMOVE                  0x00A0
+//#define e_message_non_client_mouse_move                  0x00A0
 //#define WM_NCLBUTTONDOWN                0x00A1
 //#define WM_NCLBUTTONUP                  0x00A2
 //#define WM_NCLBUTTONDBLCLK              0x00A3
@@ -1850,7 +1850,7 @@ oswindow hWnd);
 //#define MN_GETHMENU                     0x01E1
 //
 //#define WM_MOUSEFIRST                   0x0200
-//#define WM_MOUSEMOVE                    0x0200
+//#define e_message_mouse_move                    0x0200
 //#define WM_LBUTTONDOWN                  0x0201
 //#define WM_LBUTTONUP                    0x0202
 //#define WM_LBUTTONDBLCLK                0x0203
@@ -2242,7 +2242,7 @@ oswindow hWnd);
 //
 //
 ///*
-// * WM_SIZE message wParam values
+// * e_message_size message wParam values
 // */
 //#define SIZE_RESTORED       0
 //#define SIZE_MINIMIZED      1

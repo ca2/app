@@ -5,7 +5,7 @@ namespace apex
 {
 
 
-   class CLASS_DECL_APEX timer_array:
+   class CLASS_DECL_ACME timer_array:
       virtual public timer_callback
    {
    public:
@@ -28,7 +28,7 @@ namespace apex
 
       virtual bool set_timer(uptr uEvent, UINT nEllapse, PFN_TIMER pfnTimer = nullptr, bool bPeriodic = true, void * pvoidData = nullptr);
 
-      virtual bool remove_timer(::timer * ptimer);
+      virtual bool remove_timer(::timer * ptimer) override;
 
 
       virtual void finalize() override;

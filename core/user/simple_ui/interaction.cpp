@@ -38,7 +38,7 @@ namespace simple_ui
 //
 //      ::user::interaction::install_message_routing(pchannel);
 //
-//      IGUI_MSG_LINK(WM_SHOWWINDOW, pchannel, this, &::user::interaction::_001OnShowWindow);
+//      MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &::user::interaction::_001OnShowWindow);
 //
 //   }
 //   
@@ -46,12 +46,12 @@ namespace simple_ui
 //   void interaction::install_simple_ui_default_mouse_handling(::channel * pchannel)
 //   {
 //      
-//      IGUI_MSG_LINK(WM_LBUTTONDOWN  , pchannel, this, &interaction::_001OnLButtonDown);
-//      IGUI_MSG_LINK(WM_LBUTTONUP    , pchannel, this, &interaction::_001OnLButtonUp);
-//      IGUI_MSG_LINK(WM_MBUTTONDOWN  , pchannel, this, &interaction::_001OnMButtonDown);
-//      IGUI_MSG_LINK(WM_MBUTTONUP    , pchannel, this, &interaction::_001OnMButtonUp);
-//      IGUI_MSG_LINK(WM_MOUSEMOVE    , pchannel, this, &interaction::_001OnMouseMove);
-//      IGUI_MSG_LINK(WM_MOUSELEAVE   , pchannel, this, &interaction::_001OnMouseLeave);
+//      MESSAGE_LINK(WM_LBUTTONDOWN  , pchannel, this, &interaction::_001OnLButtonDown);
+//      MESSAGE_LINK(WM_LBUTTONUP    , pchannel, this, &interaction::_001OnLButtonUp);
+//      MESSAGE_LINK(WM_MBUTTONDOWN  , pchannel, this, &interaction::_001OnMButtonDown);
+//      MESSAGE_LINK(WM_MBUTTONUP    , pchannel, this, &interaction::_001OnMButtonUp);
+//      MESSAGE_LINK(e_message_mouse_move    , pchannel, this, &interaction::_001OnMouseMove);
+//      MESSAGE_LINK(WM_MOUSELEAVE   , pchannel, this, &interaction::_001OnMouseLeave);
 //
 //   }
 //
@@ -67,7 +67,7 @@ namespace simple_ui
 //   }
 //
 //
-//   bool interaction::simple_process_system_message(::message::message * pmessage, ::user::e_event eevent)
+//   bool interaction::simple_process_system_message(::message::message * pmessage, ::user::enum_event eevent)
 //   {
 //
 //      SCAST_PTR(::message::base, pbase, pmessage);

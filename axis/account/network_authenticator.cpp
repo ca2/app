@@ -107,7 +107,7 @@ namespace account
 
       //   estatus = ::success_authenticated;
 
-      //   if(puser->m_strHost == System.url().get_server(Session.account()->get_default_url()))
+      //   if(puser->m_strHost == System.url().get_server(psession->account()->get_default_url()))
       //   {
 
       //      Context.file().put_contents(Context.dir().appdata()/"database/text/last_good_known_account_com.txt", puser->m_strAccountServer);
@@ -480,9 +480,9 @@ namespace account
 //
 //   strGetFontopus = "http://ca2.cc/get_account_login";
 //
-//   System.url().set_param(strGetFontopus,strGetFontopus,"lang",Session.get_locale());
+//   System.url().set_param(strGetFontopus,strGetFontopus,"lang",psession->get_locale());
 //
-//   System.url().set_param(strGetFontopus,strGetFontopus,"styl",Session.get_schema());
+//   System.url().set_param(strGetFontopus,strGetFontopus,"styl",psession->get_schema());
 //
 //   __pointer(::sockets::http_session) psession;
 //

@@ -8,7 +8,7 @@
 task::task()
 {
 
-   m_bitRunThisThread = true;
+   //m_bitRunThis = true;
    m_bitIsRunning = false;
    m_bitIsPred = true;
    m_hthread = NULL_HTHREAD;
@@ -41,12 +41,28 @@ string task::thread_get_name() const
 }
 
 
-::context_object * task::calc_parent_thread()
+::task * task::get_task()
 {
 
-   return ::get_task();
+   return this;
 
 }
+
+
+const char * task::get_task_tag()
+{
+
+   return m_strTaskTag;
+
+}
+
+
+//::context_object * task::calc_parent_thread()
+//{
+//
+//   return ::get_task();
+//
+//}
 
 
 bool task::set_thread_name(const char* pszThreadName)
@@ -72,10 +88,11 @@ bool task::set_thread_name(const char* pszThreadName)
 
 }
 
+
 bool task::thread_get_run() const
 {
 
-   return m_bitRunThisThread;
+   return !m_bitSetFinish;
 
 }
 
@@ -96,26 +113,26 @@ bool task::is_running() const
 }
 
 
-void task::set_thread_run(bool bRun)
+//void task::set_thread_run(bool bRun)
+//{
+//
+//   m_bitSetFinish = !bRun;
+//
+//}
+
+
+//void task::finish()
+//{
+//
+//   m_bitSetFinish = true;
+//
+//}
+
+
+::object * task::thread_parent()
 {
 
-   m_bitRunThisThread = bRun;
-
-}
-
-
-void task::set_finish()
-{
-
-   m_bitRunThisThread = false;
-
-}
-
-
-::thread* task::parent_thread()
-{
-
-   return ___thread(m_pthreadParent);
+   return __object(m_pobjectParent);
 
 }
 
@@ -144,9 +161,18 @@ void* task::s_os_task(void* p)
 
       pthread->release();
 
-      pthread->on_task();
+      pthread->do_task();
 
-      pthread->term_task();
+#if OBJ_REF_DBG
+
+      if (pthread->m_countReference > 1)
+      {
+
+         __check_pending_releases(pthread);
+
+      }
+
+#endif
 
       ::thread_release(OBJ_REF_DBG_P_NOTE(pthread, ""));
 
@@ -166,7 +192,7 @@ void task::add_notify(::matter* pmatter)
 
    sync_lock sl(mutex());
 
-   m_elementaNotify.add_item(pmatter OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
+   notify_array().add_item(pmatter OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
 
 }
 
@@ -176,7 +202,65 @@ void task::remove_notify(::matter* pmatter)
 
    sync_lock sl(mutex());
 
-   m_elementaNotify.remove_item(pmatter OBJ_REF_DBG_COMMA_THIS);
+   if (m_pnotifya)
+   {
+
+      m_pnotifya->remove_item(pmatter OBJ_REF_DBG_COMMA_THIS);
+
+   }
+
+}
+
+
+bool task::on_get_thread_name(string & strThreadName)
+{
+
+   if (m_strTaskTag.has_char())
+   {
+
+      //::set_thread_name(m_strTaskTag);
+
+      strThreadName = m_strTaskTag;
+
+   }
+   else
+   {
+
+      //::set_thread_name(type_name());
+
+      strThreadName = type_name();
+
+   }
+
+   return true;
+
+}
+
+
+void task::init_task()
+{
+
+   string strThreadName;
+
+   if (on_get_thread_name(strThreadName))
+   {
+
+      set_thread_name(strThreadName);
+
+   }
+
+   if (string(type_name()).contains("synth_thread"))
+   {
+
+      output_debug_string("synth_thread thread::thread_proc");
+
+   }
+   else if (string(type_name()).ends_ci("out"))
+   {
+
+      output_debug_string("synth_thread thread::out");
+
+   }
 
 }
 
@@ -184,29 +268,63 @@ void task::remove_notify(::matter* pmatter)
 void task::term_task()
 {
 
+   try
+   {
+
+      finalize();
+
+   }
+   catch (...)
+   {
+
+   }
+
    sync_lock sl(mutex());
 
-   auto elementaNotify = m_elementaNotify;
+   //if (m_pnotifya)
+   //{
 
-   for (auto& pelement : elementaNotify)
-   {
+   //   auto notifya = *m_pnotifya;
 
-      pelement->task_remove(this);
+   //   sl.unlock();
 
-      pelement->task_on_term(this);
+   //   for (auto & pmatter : notifya)
+   //   {
 
-   }
+   //      pmatter->task_remove(this);
 
-   if (m_pthreadParent)
-   {
+   //      pmatter->task_on_term(this);
 
-      m_pthreadParent->task_remove(this);
+   //   }
 
-      //m_pthreadParent->task_on_term(this);
+   //   sl.lock();
 
-      //m_pthreadParent->kick_idle();
+   //}
 
-   }
+   //if (m_pthreadParent)
+   //{
+
+   //   m_pthreadParent->task_on_term(this);
+
+   //   m_pthreadParent->task_remove(this);
+
+   //   //m_pthreadParent->kick_idle();
+
+   //}
+
+}
+
+
+::estatus task::do_task()
+{
+
+   init_task();
+
+   auto estatus = on_task();
+
+   term_task();
+
+   return estatus;
 
 }
 
@@ -216,7 +334,7 @@ void task::term_task()
 
    ::estatus estatus = ::success;
 
-   while (m_bitRunThisThread)
+   while (!m_bitSetFinish)
    {
 
       ::matter* pmatter;
@@ -235,6 +353,10 @@ void task::term_task()
             break;
 
          }
+
+         m_id = pmatter->type_name();
+
+         set_thread_name(m_id);
 
          m_pmatter.m_p = nullptr;
 
@@ -258,6 +380,8 @@ void task::term_task()
 
    m_pmatter = pmatter;
 
+   m_id = pmatter->type_name();
+
    return fork(epriority, nStackSize, uCreateFlags);
 
 }
@@ -269,19 +393,49 @@ void task::term_task()
    u32 uCreateFlags)
 {
 
-   if (!m_pthreadParent && m_bitIsPred)
+   if (m_id.is_empty())
    {
 
-      auto pthreadParent = calc_parent_thread();
-
-      if (pthreadParent)
+      if (m_pmatter)
       {
 
-         pthreadParent->task_add(this);
+         m_id = m_pmatter->type_name();
+
+      }
+      else
+      {
+
+         m_id = type_name();
 
       }
 
    }
+
+   if (m_id.is_empty() || m_id == "task" || m_id == "thread")
+   {
+
+      __throw(invalid_argument_exception);
+
+      return ::error_failed;
+
+   }
+
+   //if (m_pobjectParent && m_bitIsPred)
+   //{
+
+   //   //auto pthreadParent = calc_parent_thread();
+
+   //   m_pobjectParent->task_add(this);
+
+
+   //   if (pthreadParent)
+   //   {
+
+   //      
+
+   //   }
+
+   //}
 
    // __task_procedure() should release this (pmatter)
    add_ref(OBJ_REF_DBG_THIS_FUNCTION_LINE);

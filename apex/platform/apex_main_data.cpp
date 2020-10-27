@@ -159,8 +159,6 @@ void apex_main_data::system_construct(HINSTANCE hinstance, HINSTANCE hPrevInstan
 
    m_wargv = __wargv;
 
-   //m_poslocal = nullptr;
-
    xxf_zero(m_mainrunnera);
 
 }

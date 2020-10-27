@@ -114,13 +114,23 @@ void html_data::_001OnKeyDown(::message::message * pmessage)
    if(pkey->m_ekey == ::user::key_tab)
    {
 
-      ::user::primitive * pfocus = Session.get_keyboard_focus();
+      auto psession = Session;
 
-      if(pfocus != nullptr)
+      ::user::primitive * pfocus = psession->get_keyboard_focus();
+
+      if (pfocus != nullptr)
+      {
+
          pfocus = pfocus->keyboard_get_next_focusable();
 
-      if(pfocus != nullptr)
-         Session.set_keyboard_focus(pfocus);
+      }
+
+      if (pfocus != nullptr)
+      {
+
+         psession->set_keyboard_focus(pfocus);
+
+      }
 
       pkey->m_bRet = true;
 

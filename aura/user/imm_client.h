@@ -32,6 +32,8 @@ public:
 
    virtual int on_text_composition_message(int iMessage) override;
 
+   virtual void on_text_composition_done() override;
+
    virtual void insert_text(string str, bool bForceNewStep) override;
 
    virtual bool is_text_composition_active() const;

@@ -3192,7 +3192,7 @@ namespace user
 
       smart_pointer < ::message::base > spbase;
 
-      spbase = Session.get_message_base(pvoidEvent, m_puserinteraction);
+      spbase = psession->get_message_base(pvoidEvent, m_puserinteraction);
 
       try
       {

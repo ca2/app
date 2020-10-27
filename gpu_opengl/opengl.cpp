@@ -54,7 +54,7 @@ namespace opengl
 #ifdef WINDOWS_DESKTOP
 
 
-   LRESULT CALLBACK Draw2OpenGLWndProc(HWND hwnd, const ::id & id, WPARAM wparam, LPARAM lparam)
+   LRESULT CALLBACK Draw2OpenGLWndProc(HWND hwnd, UINT message, WPARAM wparam, LPARAM lparam)
    {
 
       return DefWindowProc(hwnd, message, wparam, lparam);

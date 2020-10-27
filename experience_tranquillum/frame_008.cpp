@@ -212,8 +212,14 @@ SizingNone:
 
                auto pframewindow = m_pframewindow;
 
-               if(pframewindow == nullptr)
+               if (pframewindow == nullptr)
+               {
+
                   return;
+
+               }
+
+               auto psession = Session;
 
                COLORREF    crMoveableBorder;
                COLORREF    crMoveableBorderHilight;
@@ -227,9 +233,9 @@ SizingNone:
                }
                else
                {
-                  crMoveableBorder = Session.get_default_color(COLOR_BTNFACE);
-                  crMoveableBorderHilight = Session.get_default_color(COLOR_BTNHILIGHT);
-                  crMoveableBorderShadow = Session.get_default_color(COLOR_BTNSHADOW);
+                  crMoveableBorder = psession->get_default_color(COLOR_BTNFACE);
+                  crMoveableBorderHilight = psession->get_default_color(COLOR_BTNHILIGHT);
+                  crMoveableBorderShadow = psession->get_default_color(COLOR_BTNSHADOW);
                }
 
                e_dock edock = m_pframewindow->dock_manager()->get_dock_mask();

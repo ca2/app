@@ -280,7 +280,9 @@ namespace userfs
 
             ::file::path & pathFinal = m_itema.get_item((::index) pitem->m_iItem)->m_filepathFinal;
 
-            pitem->m_iImage = User.shell()->get_file_image(
+            auto puser = User;
+
+            pitem->m_iImage = puser->shell()->get_file_image(
                               pathFinal,
                               pathFinal.m_iDir == 1 ? ::user::shell::file_attribute_directory : ::user::shell::file_attribute_normal,
                               ::user::shell::icon_normal);

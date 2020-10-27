@@ -142,10 +142,10 @@ namespace user
    }
 
 
-   //void primitive_impl::set_finish()
+   //void primitive_impl::finish()
    //{
 
-   //   ::user::primitive::set_finish();
+   //   ::user::primitive::finish();
 
    //}
 

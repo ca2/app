@@ -222,7 +222,9 @@ namespace experience
 
          ::point pointCursor;
 
-         Session.get_cursor_pos(pointCursor);
+         auto psession = Session;
+
+         psession->get_cursor_pos(pointCursor);
 
          if (is_window_visible())
          {
@@ -324,7 +326,7 @@ namespace experience
                try
                {
 
-                  point = Session.m_pointCursor;
+                  point = psession->m_pointCursor;
 
                }
                catch (...)

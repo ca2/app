@@ -112,9 +112,11 @@ namespace user
 
          }
 
+         auto psession = Session;
+
 #if !defined(APPLE_IOS) && !defined(ANDROID)
 
-         Session.keyboard(); // trigger keyboard creationg
+         psession->keyboard(); // trigger keyboard creationg
 
 #endif
 
@@ -524,10 +526,12 @@ namespace user
 
          SCAST_PTR(::message::key, pkey, pmessage);
 
+         auto psession = Session;
+
          if (pkey->m_ekey == ::user::key_return)
          {
 
-            if (Session.is_key_pressed(::user::key_control) && Session.is_key_pressed(::user::key_alt))
+            if (psession->is_key_pressed(::user::key_control) && psession->is_key_pressed(::user::key_alt))
             {
 
                pkey->m_bRet = false;
@@ -540,7 +544,7 @@ namespace user
          else if (pkey->m_ekey == ::user::key_tab)
          {
 
-            if (Session.is_key_pressed(::user::key_control) && Session.is_key_pressed(::user::key_alt))
+            if (psession->is_key_pressed(::user::key_control) && psession->is_key_pressed(::user::key_alt))
             {
 
                pkey->m_bRet = false;
@@ -586,7 +590,7 @@ namespace user
          else if (pkey->m_ekey == ::user::key_c)
          {
 
-            if (Session.is_key_pressed(::user::key_control))
+            if (psession->is_key_pressed(::user::key_control))
             {
 
                pkey->m_bRet = true;
@@ -602,7 +606,7 @@ namespace user
 
                }
 
-               Session.copydesk().set_plain_text(str);
+               psession->copydesk().set_plain_text(str);
 
                return;
 
@@ -612,7 +616,7 @@ namespace user
          else if (pkey->m_ekey == ::user::key_v)
          {
 
-            if (Session.is_key_pressed(::user::key_control))
+            if (psession->is_key_pressed(::user::key_control))
             {
 
                pkey->m_bRet = true;
@@ -630,7 +634,7 @@ namespace user
          else if (pkey->m_ekey == ::user::key_x)
          {
 
-            if (Session.is_key_pressed(::user::key_control))
+            if (psession->is_key_pressed(::user::key_control))
             {
 
                pkey->m_bRet = true;
@@ -639,7 +643,7 @@ namespace user
 
                _001GetSelText(str);
 
-               Session.copydesk().set_plain_text(str);
+               psession->copydesk().set_plain_text(str);
 
                if (is_window_enabled())
                {
@@ -664,10 +668,12 @@ namespace user
 
          SCAST_PTR(::message::key, pkey, pmessage);
 
+         auto psession = Session;
+
          if (pkey->m_ekey == ::user::key_return)
          {
 
-            if (Session.is_key_pressed(::user::key_control) && Session.is_key_pressed(::user::key_alt))
+            if (psession->is_key_pressed(::user::key_control) && psession->is_key_pressed(::user::key_alt))
             {
                pkey->m_bRet = false;
                return;
@@ -747,7 +753,9 @@ namespace user
 
          }
 
-         bool bShift = Session.is_key_pressed(::user::key_shift);
+         auto psession = Session;
+
+         bool bShift = psession->is_key_pressed(::user::key_shift);
 
          if (key.m_nChar < 256 && isalpha((i32)key.m_nChar))
          {

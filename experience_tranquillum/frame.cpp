@@ -367,12 +367,14 @@ namespace experience
       void frame::set_frame_color_system_default_001()
       {
 
+         auto psession = Session;
+
          m_penText1->create_solid(1, ARGB(255, 255, 255, 255));
-         m_penFace1->create_solid(1, Session.get_default_color(COLOR_BTNFACE) | 0xff000000);
-         m_penHilight1->create_solid(1, Session.get_default_color(COLOR_BTNHILIGHT) | 0xff000000);
-         m_penShadow1->create_solid(1, Session.get_default_color(COLOR_BTNSHADOW) | 0xff000000);
-         m_penDkShadow1->create_solid(1, Session.get_default_color(COLOR_3DDKSHADOW) | 0xff000000);
-         m_crDkShadow = Session.get_default_color(COLOR_3DDKSHADOW);
+         m_penFace1->create_solid(1, psession->get_default_color(COLOR_BTNFACE) | 0xff000000);
+         m_penHilight1->create_solid(1, psession->get_default_color(COLOR_BTNHILIGHT) | 0xff000000);
+         m_penShadow1->create_solid(1, psession->get_default_color(COLOR_BTNSHADOW) | 0xff000000);
+         m_penDkShadow1->create_solid(1, psession->get_default_color(COLOR_3DDKSHADOW) | 0xff000000);
+         m_crDkShadow = psession->get_default_color(COLOR_3DDKSHADOW);
          m_crFrameBorder = RGB(0, 0, 0) | 0xff000000;
 
 
@@ -546,6 +548,8 @@ namespace experience
             return;
 
          }
+
+         auto psession = Session;
 
          pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
 
@@ -732,11 +736,11 @@ namespace experience
             else
             {
 
-               crMoveableBorder = Session.get_default_color(COLOR_BTNFACE);
+               crMoveableBorder = psession->get_default_color(COLOR_BTNFACE);
 
-               crMoveableBorderHilight = Session.get_default_color(COLOR_BTNHILIGHT);
+               crMoveableBorderHilight = psession->get_default_color(COLOR_BTNHILIGHT);
 
-               crMoveableBorderShadow = Session.get_default_color(COLOR_BTNSHADOW);
+               crMoveableBorderShadow = psession->get_default_color(COLOR_BTNSHADOW);
 
             }
 

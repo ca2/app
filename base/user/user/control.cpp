@@ -369,7 +369,7 @@
 //
 //      }
 //
-//      if (Session.get_focus_ui() == this)
+//      if (psession->get_focus_ui() == this)
 //      {
 //
 //         estate |= e_state_focused;
@@ -757,7 +757,7 @@
 //   //   __pointer(::user::interaction) pwnd = ControlExGetWnd();
 //
 //   //   ::point pointCursor;
-//   //   Session.get_cursor_pos(&pointCursor);
+//   //   psession->get_cursor_pos(&pointCursor);
 //
 //   //   e_element eelement;
 //
@@ -766,7 +766,7 @@
 //   //   if (iHover != -1)
 //   //   {
 //
-//   //      if (m_iHover != iHover || Session.GetCapture() != pwnd)
+//   //      if (m_iHover != iHover || psession->GetCapture() != pwnd)
 //   //      {
 //
 //   //         m_iHover = iHover;
@@ -786,7 +786,7 @@
 //
 //   //         m_iHover = -1;
 //
-//   //         Session.ReleaseCapture();
+//   //         psession->ReleaseCapture();
 //
 //   //         pwnd->set_need_redraw();
 //

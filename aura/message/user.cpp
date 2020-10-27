@@ -235,7 +235,9 @@ namespace message
 
 #endif
 
-      Session.translate_os_key_message(this);
+      auto psession = Session;
+
+      psession->translate_os_key_message(this);
 
    }
 
@@ -307,13 +309,17 @@ namespace message
                if (m_pcursor != nullptr && papplication->get_context_session() != nullptr)
                {
 
-                  Sess(userinteraction()).set_cursor(dynamic_cast <::user::interaction *> (userinteraction()), m_pcursor);
+                  auto psession = Sess(userinteraction()->get_context_session());
+
+                  psession->set_cursor(dynamic_cast <::user::interaction *> (userinteraction()), m_pcursor);
 
                }
                else if (m_ecursor != cursor_unmodified && papplication->get_context_session() != nullptr)
                {
 
-                  Sess(userinteraction()).set_cursor(dynamic_cast <::user::interaction *> (userinteraction()), m_ecursor);
+                  auto psession = Sess(userinteraction()->get_context_session());
+
+                  psession->set_cursor(dynamic_cast <::user::interaction *> (userinteraction()), m_ecursor);
 
                }
 

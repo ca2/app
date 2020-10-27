@@ -372,7 +372,9 @@ namespace userex
 
       pinteraction->get_window_rect(rectWindow);
 
-      m_pmenu = User.track_popup_xml_menu(this, strXml, 0, rectWindow.bottom_left(), ::size(width(), 0));
+      auto puser = User;
+
+      m_pmenu = puser->track_popup_xml_menu(this, strXml, 0, rectWindow.bottom_left(), ::size(width(), 0));
       //m_pmenu->create_color(::user::color_button_background, ARGB(255, 255, 255, 255));
       //m_pmenu->create_color(::user::color_button_text, ARGB(255, 80, 80, 80));
 

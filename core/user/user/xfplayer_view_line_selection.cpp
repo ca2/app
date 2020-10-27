@@ -138,7 +138,9 @@ void XfplayerViewLineSelection::relay_event(xfplayer_view_line & viewline, ::mes
                      && m_iCharEndSource == m_item.GetCharEnd())
                {
                   string str;
-                  auto point =                  Session.get_cursor_pos();
+                  auto psession = Session;
+
+                  auto point =                  psession->get_cursor_pos();
                   if(viewline.get_link(str, point))
                   {
                      //usersp(::user::impact) pview = viewline.get_interaction();
@@ -151,8 +153,13 @@ void XfplayerViewLineSelection::relay_event(xfplayer_view_line & viewline, ::mes
          }
          else if(message == e_message_mouse_move)
          {
-            auto point = Session.get_cursor_pos();
+
+            auto psession = Session;
+
+            auto point = psession->get_cursor_pos();
+
             viewline.update_hover(point);
+
          }
       }
    }
@@ -161,7 +168,11 @@ void XfplayerViewLineSelection::relay_event(xfplayer_view_line & viewline, ::mes
       uptr uEvent = pbase->m_wparam;
       if(uEvent == ::e_timer_hover)
       {
-         auto point = Session.get_cursor_pos();
+
+         auto psession = Session;
+
+         auto point = psession->get_cursor_pos();
+
          viewline.update_hover(point);
          if(!viewline.is_hover())
          {
@@ -654,7 +665,9 @@ bool XfplayerViewLineSelection::OnTimer(xfplayer_view_line & viewline, UINT user
       if(viewline.is_hover())
       {
          
-         ::point point = Session.get_cursor_pos();
+         auto psession = Session;
+
+         ::point point = psession->get_cursor_pos();
          
          viewline.get_interaction()->_001ScreenToClient(point);
          viewline.update_hover(point);

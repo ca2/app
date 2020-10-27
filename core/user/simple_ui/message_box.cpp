@@ -109,7 +109,9 @@ namespace simple_ui
 
       maximum_line_length(m_stra, 100);
 
-      ::user::interaction * puiParent = Session.cast < ::user::interaction > ("plugin_parent");
+      auto psession = Session;
+
+      ::user::interaction * puiParent = psession->cast < ::user::interaction > ("plugin_parent");
 
       if(puiParent != nullptr)
       {
@@ -120,7 +122,7 @@ namespace simple_ui
       else
       {
 
-         Session.get_main_monitor(rectDesktop);
+         psession->get_main_monitor(rectDesktop);
 
       }
 

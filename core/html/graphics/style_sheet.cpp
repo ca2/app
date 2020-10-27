@@ -54,7 +54,9 @@ namespace html
 
             strStyle.make_lower();
 
-            pstyle->m_etag = User.m_phtml->tag_name_to_id(strStyle);
+            auto puser = User;
+
+            pstyle->m_etag = puser->m_phtml->tag_name_to_id(strStyle);
 
             if (pstyle->m_etag == tag_unknown)
                pstyle->m_etag = tag_none;

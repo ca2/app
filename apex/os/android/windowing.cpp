@@ -1373,13 +1373,13 @@ namespace apex
 
          pkey->m_ekey = ::user::key_return;
 
-         //Session.m_puiHost->message_handler(pkey);
+         //psession->m_puiHost->message_handler(pkey);
 
       }
       else
       {
 
-         //Session.m_puiHost->message_handler(pkey);
+         //psession->m_puiHost->message_handler(pkey);
 
       }
 

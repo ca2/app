@@ -368,7 +368,11 @@ namespace user
       {
          ptemplate->load_template();
       }
+      
+      add_composite(ptemplate);
+
    }
+
 
    void document_manager::remove_document_template(::user::impact_system * ptemplate)
    {
@@ -687,7 +691,9 @@ namespace user
       if (!do_prompt_file_name(pcreate->m_pcommandline->m_varFile, "" /*__IDS_OPENFILE */, 0 /*OFN_HIDEREADONLY | OFN_FILEMUSTEXIST*/, TRUE, nullptr, nullptr))
          return; // open cancelled
 
-      Session.do_request(pcreate);
+      auto psession = Session;
+
+      psession->do_request(pcreate);
       // if returns nullptr, the ::account::user has already been alerted
    }
 

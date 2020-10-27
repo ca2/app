@@ -132,7 +132,9 @@ namespace user
 
       }
 
-      auto pointCursor = Session.get_cursor_pos();
+      auto psession = Session;
+
+      auto pointCursor = psession->get_cursor_pos();
 
       _001ScreenToClient(&pointCursor, ::user::layout_design);
 
@@ -607,7 +609,9 @@ namespace user
       if (pactivate->m_nState == WA_INACTIVE)
       {
 
-         auto pointCursor = Session.get_cursor_pos();
+         auto psession = Session;
+
+         auto pointCursor = psession->get_cursor_pos();
 
          m_pcombo->_001ScreenToClient(&pointCursor, ::user::layout_sketch);
 
@@ -641,7 +645,9 @@ namespace user
       else
       {
 
-         Session.set_keyboard_focus(this);
+         auto psession = Session;
+
+         psession->set_keyboard_focus(this);
 
 
       }
@@ -739,7 +745,9 @@ namespace user
 
       auto rectClient = get_client_rect();
 
-      Session.user()->set_mouse_focus_LButtonDown(this);
+      auto psession = Session;
+
+      psession->user()->set_mouse_focus_LButtonDown(this);
 
       m_itemLButtonDown = -1;
 
@@ -766,7 +774,9 @@ namespace user
 
       auto rectClient = get_client_rect();
 
-      Session.user()->set_mouse_focus_LButtonDown(this);
+      auto psession = Session;
+
+      psession->user()->set_mouse_focus_LButtonDown(this);
 
       ReleaseCapture();
 
@@ -993,7 +1003,9 @@ namespace user
 
       ::rect rectMonitor;
 
-      Session.get_best_monitor(rectMonitor, rectWindow);
+      auto psession = Session;
+
+      psession->get_best_monitor(rectMonitor, rectWindow);
 
       ::rect rectList;
 
@@ -1104,11 +1116,15 @@ namespace user
 
          {
 
-            sync_lock sl(Session.mutex());
+            auto psession = Session;
+
+            sync_lock sl(psession->mutex());
 
             auto pinteraction = __create_new < ::user::interaction >();
 
-            User.m_uiptraToolWindow.add(pinteraction);
+            auto puser = User;
+
+            puser->m_uiptraToolWindow.add(pinteraction);
 
          }
 
@@ -1120,14 +1136,20 @@ namespace user
 
          {
 
-            sync_lock sl(Session.mutex());
+            auto psession = Session;
 
-            ::index iFind = User.m_uiptraToolWindow.pred_find_first([this](auto& p) {return p.get() == this; });
+            sync_lock sl(psession->mutex());
+
+            auto puser = User;
+
+            ::index iFind = puser->m_uiptraToolWindow.pred_find_first([this](auto& p) {return p.get() == this; });
 
             if (__found(iFind))
             {
 
-               User.m_uiptraToolWindow.remove_at(iFind);
+               auto puser = User;
+
+               puser->m_uiptraToolWindow.remove_at(iFind);
 
             }
 

@@ -25,8 +25,10 @@ namespace usernet
 
    bool network_configuration::initialize(__pointer(::user::interaction) puiParent)
    {
+      
+      auto puser = User;
 
-      m_pdocument = User.create_form(this, this, puiParent);
+      m_pdocument = puser->create_form(this, this, puiParent);
 
       if(m_pdocument != nullptr)
       {
@@ -47,7 +49,9 @@ namespace usernet
    bool network_configuration::initialize_child(__pointer(::user::interaction) puiParent)
    {
 
-      User.create_child_form(this, this, puiParent);
+      auto puser = User;
+
+      puser->create_child_form(this, this, puiParent);
 
       if(m_pdocument != nullptr)
       {

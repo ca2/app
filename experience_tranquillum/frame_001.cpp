@@ -188,10 +188,11 @@ SizingNone:;
 
 
             void frame_001::draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::rect & rectClient, e_border eside)
-
             {
 
                auto pframewindow = m_pframewindow;
+
+               auto psession = Session;
 
                COLORREF    crMoveableBorder;
 
@@ -212,11 +213,11 @@ SizingNone:;
                else
                {
 
-                  crMoveableBorder = Session.get_default_color(COLOR_BTNFACE);
+                  crMoveableBorder = psession->get_default_color(COLOR_BTNFACE);
 
-                  crMoveableBorderHilight = Session.get_default_color(COLOR_BTNHILIGHT);
+                  crMoveableBorderHilight = psession->get_default_color(COLOR_BTNHILIGHT);
 
-                  crMoveableBorderShadow = Session.get_default_color(COLOR_BTNSHADOW);
+                  crMoveableBorderShadow = psession->get_default_color(COLOR_BTNSHADOW);
 
                }
 
@@ -1140,10 +1141,11 @@ SizingNone:;
 
             }
 
+
             void frame_001::DrawRectGrip(::draw2d::graphics_pointer & pgraphics,const rect & rectParam)
             {
 
-
+               auto psession = Session;
 
                ::rect rect(rectParam);
 
@@ -1151,11 +1153,11 @@ SizingNone:;
 
                //rect.bottom++;
 
-               pgraphics->draw_3drect(rect, Session.get_default_color(COLOR_BTNFACE) | 0xff000000, Session.get_default_color(COLOR_3DDKSHADOW) | 0xff000000);
+               pgraphics->draw_3drect(rect, psession->get_default_color(COLOR_BTNFACE) | 0xff000000, psession->get_default_color(COLOR_3DDKSHADOW) | 0xff000000);
 
                rect.deflate(1, 1);
 
-               pgraphics->draw_3drect(rect, Session.get_default_color(COLOR_BTNHILIGHT) | 0xff000000, Session.get_default_color(COLOR_BTNSHADOW) | 0xff000000);
+               pgraphics->draw_3drect(rect, psession->get_default_color(COLOR_BTNHILIGHT) | 0xff000000, psession->get_default_color(COLOR_BTNSHADOW) | 0xff000000);
 
                rect.deflate(1, 1);
 
@@ -1163,7 +1165,7 @@ SizingNone:;
 
                //rect.bottom--;
 
-               pgraphics->fill_rect(rect, Session.get_default_color(COLOR_BTNFACE) | 0xff000000);
+               pgraphics->fill_rect(rect, psession->get_default_color(COLOR_BTNFACE) | 0xff000000);
 
             }
 

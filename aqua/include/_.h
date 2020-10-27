@@ -26,7 +26,7 @@
 
 
 #define Sys(playered) (*::get_context_system(playered)->m_paquasystem)
-#define Sess(playered) (*::get_context_session(playered)->m_paquasession)
+#define Sess(pcontextsession) (pcontextsession->m_paquasession)
 #define App(playered) (*::get_context_application(playered)->m_paquaapplication)
 
 

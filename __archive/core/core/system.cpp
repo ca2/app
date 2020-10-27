@@ -448,7 +448,7 @@ namespace acme
 
       }
 
-      //if(Session.account()->create_system_user("system") == nullptr)
+      //if(psession->account()->create_system_user("system") == nullptr)
       // return false;
 
 #if !defined(CUBE) && !defined(ANDROID)
@@ -516,10 +516,10 @@ namespace acme
 
       ::acme::system::on_graphics_ready();
 
-      //if (Session.userex()->shell()->m_bPendingUpdate)
+      //if (psession->userex()->shell()->m_bPendingUpdate)
       //{
 
-      //   Session.userex()->shell()->on_update_sizes_interest();
+      //   psession->userex()->shell()->on_update_sizes_interest();
 
       //}
 
@@ -989,14 +989,14 @@ namespace acme
 //      if(m_varTopicQuery["locale"].array_get_count() > 0)
 //      {
 //
-//         Session.set_locale(m_varTopicQuery["locale"].stra()[0],::source_user);
+//         psession->set_locale(m_varTopicQuery["locale"].stra()[0],::source_user);
 //
 //      }
 //
 //      if(m_varTopicQuery["schema"].array_get_count() > 0)
 //      {
 //
-//         Session.set_schema(m_varTopicQuery["schema"].stra()[0],::source_user);
+//         psession->set_schema(m_varTopicQuery["schema"].stra()[0],::source_user);
 //
 //      }
 //

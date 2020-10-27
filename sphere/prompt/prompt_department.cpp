@@ -44,7 +44,7 @@ namespace prompt
 
       }
 
-      User.filemanager()->m_strLevelUp = "levelup";
+      puser->filemanager()->m_strLevelUp = "levelup";
 
 //      if(m_strId == "command")
       {

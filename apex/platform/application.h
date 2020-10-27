@@ -311,7 +311,9 @@ namespace apex
 
       virtual void DoWaitCursor(i32 nCode); // 0 => restore, 1=> begin, -1=> end
 
-      virtual void _001CloseApplication();
+      virtual void _001TryCloseApplication();
+
+      virtual bool _001CanCloseApplication();
 
 
       virtual string get_license_id();
@@ -363,7 +365,7 @@ namespace apex
 
 
 
-      //inline ::html::html * html() { return User.m_phtml; }
+      //inline ::html::html * html() { return puser->m_phtml; }
 
       //virtual ::html::html * create_html();
 
@@ -437,7 +439,7 @@ namespace apex
       virtual ::object * parent_property_set_holder() const override;
 
 
-      virtual bool is_set_finish() const override;
+      //virtual bool is_set_finish() const override;
 
 
       virtual void on_change_theme();

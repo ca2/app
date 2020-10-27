@@ -365,12 +365,12 @@ namespace apex
    //}
 
 
-   bool application::is_set_finish() const
-   {
+   //bool application::is_set_finish() const
+   //{
 
-      return ::thread::is_set_finish() || m_ethreadClose != thread_none;
+   //   return ::thread::is_set_finish() || m_ethreadClose != thread_none;
 
-   }
+   //}
 
 
    void application::set_has_installer(bool bSet)
@@ -837,14 +837,14 @@ namespace apex
    //::estatus application::ui_message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, ::emessagebox emessagebox, ::callback callback)
    //{
 
-   //   if (!Session || !Session.userex())
+   //   if (!Session || !psession->userex())
    //   {
 
    //      return ::error_failed;
 
    //   }
 
-   //   return Session.userex()->ui_message_box(this, puiOwner, pszMessage, pszTitle, emessagebox, callback);
+   //   return psession->userex()->ui_message_box(this, puiOwner, pszMessage, pszTitle, emessagebox, callback);
 
    //}
 
@@ -852,14 +852,14 @@ namespace apex
    //::estatus application::ui_message_box_timeout(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, const ::duration& durationTimeout, ::emessagebox emessagebox, ::callback callback)
    //{
 
-   //   if (!Session || !Session.userex())
+   //   if (!Session || !psession->userex())
    //   {
 
    //      return ::error_failed;
 
    //   }
 
-   //   return Session.userex()->ui_message_box_timeout(this, puiOwner, pszMessage, pszTitle, durationTimeout, emessagebox, callback);
+   //   return psession->userex()->ui_message_box_timeout(this, puiOwner, pszMessage, pszTitle, durationTimeout, emessagebox, callback);
 
    //}
 
@@ -1348,7 +1348,7 @@ namespace apex
    //   else
    //   {
 
-   //      return Session.open_link(strLink, strProfile, strTarget);
+   //      return psession->open_link(strLink, strProfile, strTarget);
 
    //   }
 
@@ -2671,11 +2671,13 @@ namespace apex
 
          i32 iRetry = 1;
 
+         auto psession = Session;
+
 retry_license:
 
          iRetry--;
 
-         if (!Session.is_licensed(strLicense))
+         if (!psession->is_licensed(strLicense))
          {
 
             if (iRetry > 0)
@@ -4662,7 +4664,9 @@ retry_license:
 
       matter_locator_locale_schema_matter(stra, straMatterLocator, strLocale, strSchema);
 
-      ::apex::str_context * pcontext = Session.str_context();
+      auto psession = Session;
+
+      ::apex::str_context * pcontext = psession->str_context();
 
       for (i32 i = 0; i < pcontext->localeschema().m_idaLocale.get_count(); i++)
       {
@@ -4855,7 +4859,9 @@ retry_license:
 
       HideApplication();
 
-      close(::apex::e_end_app);
+      //close(::apex::e_end_app);
+
+      finish();
 
    }
 
@@ -5001,7 +5007,7 @@ retry_license:
    //void application::interactive_credentials(::account::credentials * pcredentials)
    //{
 
-   //   Session.interactive_credentials(pcredentials);
+   //   psession->interactive_credentials(pcredentials);
 
    //}
 
@@ -5308,61 +5314,6 @@ retry_license:
    }
 
 
-   //bool application::set_keyboard_layout(const char * pszPath, const ::action_context & context)
-   //{
-
-   //   if(get_context_application()->get_context_session() == nullptr)
-   //   {
-
-   //      return false;
-
-   //   }
-
-   //   if(pszPath == nullptr)
-   //   {
-
-   //      if(is_set_ref(Session.keyboard().on_layout()))
-   //      {
-
-   //         //            if(Session.account()->m_puser != nullptr
-   //         //             && Session.account()->m_puser->m_strFontopusServerSessId.has_char())
-   //         //        {
-
-   //         // xxx data_set("keyboard_layout", keyboard().on_layout(::draw2d::graphics_pointer & pgraphics).m_strPath);
-
-   //         //      }
-
-   //         return true;
-   //      }
-
-   //      string strCurrentSystemLayout = Session.keyboard().get_current_system_layout();
-
-   //      if(strCurrentSystemLayout.is_empty())
-   //         return false;
-
-   //      if(!set_keyboard_layout(strCurrentSystemLayout,::source_database))
-   //         return false;
-
-   //      //         if(Session.account()->m_puser != nullptr
-   //      //          && Session.account()->m_puser->m_strFontopusServerSessId.has_char())
-   //      //     {
-
-   //      // xxx            data_set("keyboard_layout", keyboard().on_layout(::draw2d::graphics_pointer & pgraphics).m_strPath);
-
-   //      //   }
-
-   //      return true;
-   //   }
-
-   //   if(!Session.keyboard().load_layout(pszPath,context))
-   //      return false;
-
-   //   // xxx Application.simpledb().on_set_keyboard_layout(pszPath, context);
-
-   //   return true;
-   //}
-
-
    bool application::keyboard_focus_is_focusable(::user::primitive * pue)
    {
 
@@ -5614,7 +5565,7 @@ retry_license:
 
       pmessage->m_bRet = true;
 
-      _001CloseApplication();
+      _001TryCloseApplication();
 
    }
 
@@ -5797,7 +5748,7 @@ retry_license:
         // if(!is_session())
          //{
 
-           // return Session.translate_property_id(id);
+           // return psession->translate_property_id(id);
 
          //}
          //else
@@ -6170,10 +6121,23 @@ retry_license:
    //}
 
 
-   void application::_001CloseApplication()
+   void application::_001TryCloseApplication()
    {
 
-      close(::apex::e_end_app);
+      if (_001CanCloseApplication())
+      {
+
+         finish();
+
+      }
+
+   }
+
+
+   bool application::_001CanCloseApplication()
+   {
+
+      return true;
 
    }
 
@@ -6413,14 +6377,14 @@ retry_license:
 
    //   __pointer(::apex::application) papp;
 
-   //   papp = Session.m_applicationa.find_running_defer_try_quit_damaged(pszAppId);
+   //   papp = psession->m_applicationa.find_running_defer_try_quit_damaged(pszAppId);
 
    //   if(papp.is_null())
    //   {
 
    //      __pointer(::create) spcreate(e_create);
 
-   //      papp = Session.start_application(pszAppId,spcreate);
+   //      papp = psession->start_application(pszAppId,spcreate);
 
    //   }
 
@@ -6750,7 +6714,7 @@ retry_license:
 
       auto plocaleschema = __create_new < ::str::international::locale_schema >();
 
-      //Session.fill_locale_schema(localeschema);
+      //psession->fill_locale_schema(localeschema);
 
       bool bIgnoreStdStd = string(pszRoot) == "app" && (string(pszRelative) == "main" || string(pszRelative) == "bergedge");
 
@@ -9270,7 +9234,7 @@ namespace apex
    //         /*if (puiParent == nullptr && m_psession != nullptr && m_psession != nullptr
    //               && !pcreate->m_bOuterPopupAlertLike && m_psession != dynamic_cast < session * > (this))
    //         {
-   //            puiParent = Session.get_request_parent_ui(pinteraction, pcreate);
+   //            puiParent = psession->get_request_parent_ui(pinteraction, pcreate);
    //         }*/
 
    //   return puiParent;
@@ -9510,96 +9474,6 @@ namespace apex
 #endif
 
 
-   //::estatus application::init()
-   //{
-
-   //   if (!::apex::application::init())
-   //   {
-
-   //      return false;
-
-   //   }
-
-   //   xxdebug_box("::apex::application::initialize ok", "::apex::application::initialize ok", MB_ICONINFORMATION);
-
-   //   xxdebug_box("m_pcalculator::initialize ok", "m_pcalculator::initialize ok", MB_ICONINFORMATION);
-
-   //   xxdebug_box("m_pcolorertake5::initialize ok", "m_pcolorertake5::initialize ok", MB_ICONINFORMATION);
-
-   //   m_tickHeartBeat.Now();
-
-   //   if (!initialize_userex())
-   //   {
-
-   //      return false;
-
-   //   }
-
-   //   xxdebug_box("m_pfilemanager::initialize ok", "m_pfilemanager::initialize ok", MB_ICONINFORMATION);
-
-   //   xxdebug_box("m_pusermail::initialize ok", "m_pusermail::initialize ok", MB_ICONINFORMATION);
-   //   m_tickHeartBeat.Now();
-
-   //   xxdebug_box("register_bergedge_application ok", "register_bergedge_application ok", MB_ICONINFORMATION);
-   //   m_tickHeartBeat.Now();
-
-   //   ensure_app_interest();
-
-   //   xxdebug_box("ensure_app_interest ok", "ensure_app_interest ok", MB_ICONINFORMATION);
-
-
-   //   INFO(".2");
-
-   //   if (!is_session() && !is_system())
-   //   {
-
-   //      if (command() && has_property("install"))
-   //      {
-
-   //         if (is_user_service())
-   //         {
-
-   //            //               if (Session.account()->m_puser != nullptr && Session.account()->m_puser->m_strLogin == "system")
-   //            //               {
-   //            //
-   //            //                  Session.account()->m_puser = nullptr;
-   //            //
-   //            //               }
-   //            //
-   //            //               if (!m_strAppId.begins_ci("app-core/netnode") && m_strAppId != "app-core/mydns")
-   //            //               {
-   //            //
-   //            //                  ApplicationUser;
-   //            //
-   //            //               }
-
-   //         }
-
-   //      }
-   //      else
-   //      {
-
-   //         //Session.keyboard();
-
-   //      }
-
-   //      ERR("1.1");
-
-   //      index i = applicationmenu().get_count();
-
-   //      applicationmenu().add_item(i++, _("Transparent Frame"), "transparent_frame");
-
-   //      application_menu_update();
-
-   //   }
-
-   //   INFO("success");
-
-   //   return true;
-
-   //}
-
-
    void application::pre_translate_message(::message::message* pmessage)
    {
 
@@ -9730,7 +9604,7 @@ namespace apex
          if (is_false("session_start"))
          {
 
-            ::multithreading::set_finish(&System);
+            ::multithreading::finish(&System);
 
          }
 
@@ -9738,7 +9612,7 @@ namespace apex
       else
       {
 
-         ::multithreading::set_finish(&System);
+         ::multithreading::finish(&System);
 
       }
 
@@ -9777,7 +9651,7 @@ namespace apex
          if (is_false("session_start"))
          {
 
-            ::multithreading::set_finish(&System);
+            ::multithreading::finish(&System);
 
          }
 
@@ -9785,7 +9659,7 @@ namespace apex
       else
       {
 
-         ::multithreading::set_finish(&System);
+         ::multithreading::finish(&System);
 
       }
 
@@ -9813,7 +9687,7 @@ namespace apex
    //bool application::set_keyboard_layout(const char* pszPath, const ::action_context& context)
    //{
 
-   //   return Session.keyboard().load_layout(pszPath, context);
+   //   return psession->keyboard().load_layout(pszPath, context);
 
    //}
 
@@ -9913,7 +9787,9 @@ namespace apex
    void application::set_title(const char* pszTitle)
    {
 
-      Session.set_app_title(m_strAppName, pszTitle);
+      auto psession = Session;
+
+      psession->set_app_title(m_strAppName, pszTitle);
 
    }
 
@@ -10096,7 +9972,7 @@ namespace apex
 
    __pointer(::create) spcreate(e_create);
 
-   papp = Session.start_application("application", pszAppId, spcreate);
+   papp = psession->start_application("application", pszAppId, spcreate);
 
    }
 
@@ -10655,7 +10531,7 @@ namespace apex
       //         //   }
       //         //   try
       //         //   {
-      //         //      Session.remove_frame(pinteraction);
+      //         //      psession->remove_frame(pinteraction);
       //         //   }
       //         //   catch(...)
       //         //   {
@@ -10983,10 +10859,10 @@ namespace apex
       //if (get_context_session())
       //{
 
-      //   if (Session.m_pdocmanager)
+      //   if (psession->m_pdocmanager)
       //   {
 
-      //      Session.m_pdocmanager->close_all_documents(true);
+      //      psession->m_pdocmanager->close_all_documents(true);
 
       //   }
 
@@ -10995,7 +10871,7 @@ namespace apex
       if (eend == ::apex::e_end_app)
       {
 
-         set_finish();
+         finish();
 
          return;
 
@@ -11010,7 +10886,9 @@ namespace apex
             if (get_context_session())
             {
 
-               Session.set_finish();
+               auto psession = Session;
+
+               psession->finish();
 
             }
 
@@ -11034,7 +10912,7 @@ namespace apex
             if (get_context_system())
             {
 
-               System.set_finish();
+               System.finish();
 
             }
 

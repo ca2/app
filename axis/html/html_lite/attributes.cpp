@@ -464,7 +464,10 @@ COLORREF LiteHTMLElemAttr::getColorValue(::lite_html_reader * preader) const
 
          // is this a system named color value?
          if (color.m_iA == -2)
-            color = Sess(preader->get_context_application()).get_default_color(color.m_iR);
+         {
+            color = Sess(preader->get_context_session())->get_default_color(color.m_iR);
+
+         }
       }
 
    }

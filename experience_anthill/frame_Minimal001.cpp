@@ -196,8 +196,14 @@ namespace experience
                
                ::rect rectClient(rectClientParam);
 
-               if(eside != border_top)
+               if (eside != border_top)
+               {
+
                   return;
+
+               }
+
+               auto psession = Session;
 
                auto pframewindow = m_pframewindow;
 
@@ -220,11 +226,11 @@ namespace experience
                else
                {
 
-                  crMoveableBorder = Session.get_default_color(COLOR_BTNFACE);
+                  crMoveableBorder = psession->get_default_color(COLOR_BTNFACE);
 
-                  crMoveableBorderHilight = Session.get_default_color(COLOR_BTNHILIGHT);
+                  crMoveableBorderHilight = psession->get_default_color(COLOR_BTNHILIGHT);
 
-                  crMoveableBorderShadow = Session.get_default_color(COLOR_BTNSHADOW);
+                  crMoveableBorderShadow = psession->get_default_color(COLOR_BTNSHADOW);
 
                }
 
@@ -1143,11 +1149,11 @@ namespace experience
 //
 //               //rect.bottom++;
 //
-//               pgraphics->Draw3dRect(rect, Session.get_default_color(COLOR_BTNFACE) | 0xff000000, Session.get_default_color(COLOR_3DDKSHADOW) | 0xff000000);
+//               pgraphics->Draw3dRect(rect, psession->get_default_color(COLOR_BTNFACE) | 0xff000000, psession->get_default_color(COLOR_3DDKSHADOW) | 0xff000000);
 //
 //               rect.deflate(1, 1);
 //
-//               pgraphics->Draw3dRect(rect, Session.get_default_color(COLOR_BTNHILIGHT) | 0xff000000, Session.get_default_color(COLOR_BTNSHADOW) | 0xff000000);
+//               pgraphics->Draw3dRect(rect, psession->get_default_color(COLOR_BTNHILIGHT) | 0xff000000, psession->get_default_color(COLOR_BTNSHADOW) | 0xff000000);
 //
 //               rect.deflate(1, 1);
 //
@@ -1155,7 +1161,7 @@ namespace experience
 //
 //               //rect.bottom--;
 //
-//               pgraphics->FillSolidRect(rect, Session.get_default_color(COLOR_BTNFACE) | 0xff000000);
+//               pgraphics->FillSolidRect(rect, psession->get_default_color(COLOR_BTNFACE) | 0xff000000);
 
             }
 

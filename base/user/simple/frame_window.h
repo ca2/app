@@ -46,6 +46,9 @@ public:
    virtual ::user::e_translucency get_translucency(::user::style* pstyle) const override;
 
 
+   virtual void _task_save_window_rect();
+
+
    virtual void defer_save_window_placement() override;
 
    virtual void _thread_save_window_placement();

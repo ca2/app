@@ -454,7 +454,9 @@ namespace user
       if (pkey.is_set())
       {
 
-         if (Session.is_key_pressed(::user::key_alt) && Session.is_key_pressed(::user::key_control))
+         auto psession = Session;
+
+         if (psession->is_key_pressed(::user::key_alt) && psession->is_key_pressed(::user::key_control))
          {
 
             if (pkey->m_ekey == ::user::key_p)
@@ -483,7 +485,7 @@ namespace user
 
                   pimage1->get_graphics()->BitBlt(0, 0, rect.width(), rect.height(), pgraphics, 0, 0, SRCCOPY);
 
-                  Session.copydesk().image_to_desk(pimage1);
+                  psession->copydesk().image_to_desk(pimage1);
 
                   Application.image().save_image(::dir::system() / "control_alt_p.png", pimage1);
 
@@ -584,8 +586,8 @@ namespace user
       }
 
       // release capture if this interaction_impl has it
-      if (Session.GetCapture() == get_handle())
-      Session.ReleaseCapture();
+      if (psession->GetCapture() == get_handle())
+      psession->ReleaseCapture();
 
       __pointer(::user::frame_window) pFrameWnd = GetTopLevelFrame();
       ENSURE_VALID(pFrameWnd);
@@ -1416,7 +1418,9 @@ namespace user
 
       }
 
-      __pointer(channel) ptarget = Session.get_keyboard_focus();
+      auto psession = Session;
+
+      __pointer(channel) ptarget = psession->get_keyboard_focus();
 
       if (ptarget != nullptr && ptarget != this && ptarget != GetActiveView())
       {
@@ -1516,7 +1520,7 @@ namespace user
 
       //}
 
-      //__pointer(channel) ptarget = Session.get_keyboard_focus();
+      //__pointer(channel) ptarget = psession->get_keyboard_focus();
 
       //if (ptarget != nullptr && ptarget != this && ptarget != GetActiveView()
       //   && !m_interactionaCommandHandlers.contains(ptarget))
@@ -1659,7 +1663,7 @@ namespace user
 
       ////}
 
-      ////__pointer(channel) ptarget = Session.get_keyboard_focus();
+      ////__pointer(channel) ptarget = psession->get_keyboard_focus();
 
       ////if (ptarget != nullptr && ptarget != this)
       ////{
@@ -2399,8 +2403,11 @@ namespace user
 #ifdef WINDOWS_DESKTOP
 
       WORD keyState = 0;
-      keyState |= Session.is_key_pressed(::user::key_control) ? MK_CONTROL : 0;
-      keyState |= Session.is_key_pressed(::user::key_shift) ? MK_SHIFT : 0;
+
+      auto psession = Session;
+
+      keyState |= psession->is_key_pressed(::user::key_control) ? MK_CONTROL : 0;
+      keyState |= psession->is_key_pressed(::user::key_shift) ? MK_SHIFT : 0;
 
       oswindow hwFocus = ::GetFocus();
       const oswindow hwDesktop = ::get_desktop_window();
@@ -2778,7 +2785,9 @@ namespace user
    void frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      if (m_bWindowFrame && !Session.savings().is_trying_to_save(::e_resource_display_bandwidth))
+      auto psession = Session;
+
+      if (m_bWindowFrame && !psession->savings().is_trying_to_save(::e_resource_display_bandwidth))
       {
 
       }
@@ -2899,6 +2908,8 @@ namespace user
 
       bool bBlurBackground = get_draw_flags(pstyle) & ::user::flag_blur_background;
 
+      auto psession = Session;
+
       if (bBlurBackground)
       {
 
@@ -2909,9 +2920,9 @@ namespace user
          _008CallOnDraw(pgraphics);
 
       }
-      else if (!Session.savings().is_trying_to_save(::e_resource_processing)
-               && !Session.savings().is_trying_to_save(::e_resource_display_bandwidth)
-               && !Session.savings().is_trying_to_save(::e_resource_memory))
+      else if (!psession->savings().is_trying_to_save(::e_resource_processing)
+               && !psession->savings().is_trying_to_save(::e_resource_display_bandwidth)
+               && !psession->savings().is_trying_to_save(::e_resource_memory))
       {
 
 #if TEST

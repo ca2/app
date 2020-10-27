@@ -100,13 +100,6 @@ bool timer_task::start(const ::duration& duration, bool bPeriodic)
 
       m_bRunning = true;
 
-      if (!fork())
-      {
-
-         return false;
-
-      }
-
       m_strDebugNote.Format("uEvent=%d", m_uEvent);
 
       auto pparent = m_ptimera->m_pobjectContext;
@@ -147,6 +140,17 @@ bool timer_task::start(const ::duration& duration, bool bPeriodic)
          }
 
       }
+
+      m_id = m_strDebugNote;
+
+      if (!fork())
+      {
+
+         return false;
+
+      }
+
+
 
    }
    catch (...)

@@ -151,7 +151,9 @@ namespace user
       if(m_bHover)
       {
 
-         auto point = Session.get_cursor_pos();
+         auto psession = Session;
+
+         auto point = psession->get_cursor_pos();
 
          ::rect rectWindow;
 

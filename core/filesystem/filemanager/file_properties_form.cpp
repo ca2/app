@@ -114,7 +114,11 @@ namespace filemanager
       {
       case 1:
       {
-         m_pdocGeneral = User.create_form(this, this, m_ptabview);
+
+         auto puser = User;
+
+         m_pdocGeneral = puser->create_form(this, this, m_ptabview);
+
          if(m_pdocGeneral != nullptr)
          {
             m_pviewGeneral = m_pdocGeneral->get_typed_view < ::user::form > ();

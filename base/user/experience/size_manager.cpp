@@ -105,6 +105,8 @@ namespace experience
          //   return true;
       }
 
+      auto psession = Session;
+
       if(ehittest != hittest_none)
       {
 
@@ -116,7 +118,7 @@ namespace experience
       else
       {
 
-         Session.ReleaseCapture();
+         psession->ReleaseCapture();
 
       }
 
@@ -235,7 +237,9 @@ namespace experience
 
       m_ehittestSizing = hittest_none;
 
-      Session.ReleaseCapture();
+      auto psession = Session;
+
+      psession->ReleaseCapture();
 
       if(pmouse)
       {

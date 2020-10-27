@@ -625,7 +625,7 @@ namespace axis
    void session::translate_os_key_message(::user::key * pkey)
    {
 
-      Session.keyboard().translate_os_key_message(pkey);
+      psession->keyboard().translate_os_key_message(pkey);
 
    }
 

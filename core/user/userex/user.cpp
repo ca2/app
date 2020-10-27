@@ -278,10 +278,12 @@ namespace core
 
       add_document_template(ptemplate);
 
+      auto puser = User;
+
       ptemplate = __new(::user::multiple_document_template(
          "system/form",
          __type(form_document),
-         User.get_simple_child_frame_type_info(),
+         puser->get_simple_child_frame_type_info(),
          __type(::user::form_view)));
 
       ptemplate->initialize(this);
@@ -393,10 +395,10 @@ namespace core
 //
 //         iRetry--;
 //
-//         if (!Session.is_licensed(strLicense))
+//         if (!psession->is_licensed(strLicense))
 //         {
 //
-//            //Session.licensing().m_mapInfo.remove_key(strLicense);
+//            //psession->licensing().m_mapInfo.remove_key(strLicense);
 //
 //            if (iRetry > 0)
 //            {
@@ -520,7 +522,9 @@ namespace core
 
          m_mapTemplate[type] = psystem;
 
-         User.document_manager()->add_document_template(psystem);
+         auto puser = User;
+
+         puser->document_manager()->add_document_template(psystem);
 
       }
 
@@ -609,16 +613,18 @@ namespace core
 
       pbox->add_future(DIALOG_RESULT_FUTURE, future);
 
+      auto psession = Session;
+
       if (::is_set(puiOwner))
       {
 
          propertyset["application_name"] = App(__object(pobjectContext)).m_strAppName;
 
       }
-      else if (::is_set(Session.m_pappCurrent))
+      else if (::is_set(psession->m_pappCurrent))
       {
 
-         string strAppName = Sess(__object(pobjectContext)).m_pappCurrent->m_strAppName;
+         string strAppName = psession->m_pappCurrent->m_strAppName;
 
          propertyset["application_name"] = strAppName;
 
@@ -904,7 +910,9 @@ namespace core
       if (pchange->m_datakey == "ca2.savings")
       {
 
-         CHANGE_EVENT_DATA_GET(pchange, (::i32 &) Session.savings().m_eresourceflagsShouldSave.m_eenum);
+         auto psession = Session;
+
+         CHANGE_EVENT_DATA_GET(pchange, (::i32 &) psession->savings().m_eresourceflagsShouldSave.m_eenum);
 
       }
 
@@ -950,7 +958,7 @@ namespace core
 
 #else
 
-      User.will_use_view_hint(COLORSEL_IMPACT);
+      puser->will_use_view_hint(COLORSEL_IMPACT);
 
       auto pdocument = m_mapimpactsystem[COLORSEL_IMPACT]->open_document_file(puiOwner->get_context_application(), ::e_type_null, __visible(true));
 
@@ -1531,7 +1539,9 @@ namespace core
    string_array user::get_wallpaper()
    {
 
-      ::count iMonitorCount = Session.get_monitor_count();
+      auto psession = Session;
+
+      ::count iMonitorCount = psession->get_monitor_count();
 
       string_array stra;
 
@@ -1578,7 +1588,9 @@ namespace core
 
       }
 
-      ::count iMonitorCount = Session.get_monitor_count();
+      auto psession = Session;
+
+      ::count iMonitorCount = psession->get_monitor_count();
 
 #ifdef LINUX
 
@@ -2055,10 +2067,10 @@ namespace core
 
    //   ::output_debug_string("\n\napp_message_box: " + string(pszMessage) + "\n\n");
 
-   //   if (&Session == nullptr || Session.user() == nullptr)
+   //   if (&Session == nullptr || psession->user() == nullptr)
    //      return ::base::application::sync_message_box(puiOwner, pszMessage, fuStyle);
 
-   //   return User.message_box(puiOwner, pszMessage, fuStyle);
+   //   return puser->message_box(puiOwner, pszMessage, fuStyle);
 
    //}
 
@@ -2066,7 +2078,7 @@ namespace core
    //i32 application::sync_message_box_timeout(::user::primitive * pwndOwner, var var, ::duration durationTimeOut, UINT fuStyle)
    //{
 
-   //   if (Session.user() == nullptr)
+   //   if (psession->user() == nullptr)
    //   {
 
    //      return ::base::application::sync_message_box_timeout(pwndOwner, var, durationTimeOut, fuStyle);
@@ -2076,7 +2088,7 @@ namespace core
    //   try
    //   {
 
-   //      return User.message_box_timeout(pwndOwner, var, durationTimeOut, fuStyle, this);
+   //      return puser->message_box_timeout(pwndOwner, var, durationTimeOut, fuStyle, this);
 
    //   }
    //   catch (...)
@@ -2195,7 +2207,9 @@ namespace core
 
          }
 
-         m_mapimpactsystem[FILEMANAGER_IMPACT] = User.filemanager(idView)->m_pdocumenttemplate;
+         auto puser = User;
+
+         m_mapimpactsystem[FILEMANAGER_IMPACT] = puser->filemanager(idView)->m_pdocumenttemplate;
 
          //create_factory <::user::color_view >();
 
@@ -2227,7 +2241,9 @@ namespace core
                                __type(::simple_frame_window),
                                __type(::userex::color_view)));
 
-         Session.add_document_template(ptemplate);
+         auto psession = Session;
+
+         psession->add_document_template(ptemplate);
 
          m_mapimpactsystem[COLORSEL_IMPACT] = ptemplate;
 
@@ -2254,7 +2270,9 @@ namespace core
                                __type(::simple_frame_window),
                                __type(::userex::font_view)));
 
-         Session.add_document_template(ptemplate);
+         auto psession = Session;
+
+         psession->add_document_template(ptemplate);
 
          m_mapimpactsystem[FONTSEL_IMPACT] = ptemplate;
 
@@ -2304,14 +2322,18 @@ namespace user
    __pointer(::user::mesh_data) mesh::create_mesh_data()
    {
 
-      return User.default_create_mesh_data(get_context_object());
+      auto puser = User;
+
+      return puser->default_create_mesh_data(get_context_object());
 
    }
 
    __pointer(::user::list_header) list::create_list_header()
    {
 
-      return User.default_create_list_header(get_context_object());
+      auto puser = User;
+
+      return puser->default_create_list_header(get_context_object());
 
    }
 
@@ -2319,7 +2341,9 @@ namespace user
    __pointer(::user::mesh_data) list::create_mesh_data()
    {
 
-      return User.default_create_list_data(get_context_object());
+      auto puser = User;
+
+      return puser->default_create_list_data(get_context_object());
 
    }
 

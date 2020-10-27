@@ -176,8 +176,10 @@ namespace windows
       //   //imagekey.m_strExtension = "";
 
       //}
+      auto psession = Session;
+
       if (SUCCEEDED(hrExtractIconUI = psf->GetUIObjectOf(
-                                       Session.system_window()->get_handle(),
+                                       psession->system_window()->get_handle(),
                                        1,
                                        (LPCITEMIDLIST *)&pidlChild.m_pidl,
                                        IID_IExtractIconW,
@@ -228,7 +230,7 @@ namespace windows
       {
 
          if (SUCCEEDED(psf->GetUIObjectOf(
-            Session.system_window()->get_safe_handle(),
+            psession->system_window()->get_safe_handle(),
                         1,
                         (LPCITEMIDLIST *)&pidlChild.m_pidl,
                         IID_IShellIconOverlayIdentifier,
@@ -277,7 +279,7 @@ namespace windows
          {
 
             if (SUCCEEDED(psf->GetUIObjectOf(
-               Session.system_window()->get_safe_handle(),
+               psession->system_window()->get_safe_handle(),
                            1,
                            (LPCITEMIDLIST *)&pidlChild.m_pidl,
                            IID_IExtractImage,
@@ -1352,10 +1354,10 @@ namespace windows
    }
 
 
-   void shell::set_finish()
+   ::estatus shell::finish()
    {
 
-      ::user::shell::set_finish();
+      return ::user::shell::finish();
 
    }
 

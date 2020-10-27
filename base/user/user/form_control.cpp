@@ -1184,7 +1184,9 @@ namespace user
          if(pfocus != nullptr)
          {
 
-            Session.set_keyboard_focus(pfocus);
+            auto psession = Session;
+
+            psession->set_keyboard_focus(pfocus);
 
          }
 

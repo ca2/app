@@ -163,7 +163,7 @@ namespace user
       __pointer(interaction_impl)               m_pimpl2;
       __pointer(interaction)                    m_puserinteraction;
       interaction_ptra                          m_uiptraOwned;
-      interaction_array                         m_uiptraChild;
+      __pointer(interaction_array)              m_puiptraChild;
       string                                    m_strName;
       __pointer(interaction)                    m_puiOwner;
       u64                                       m_uiUserInteractionFlags;
@@ -225,7 +225,7 @@ namespace user
       class ::user::interaction_layout& layout() { return m_layout; }
 
 
-      virtual void task_on_term(::task* pthread) override;
+      //virtual void task_on_term(::task* pthread) override;
 
 
       inline void auto_prodevian_on_show() { m_ewindowflag |= window_flag_auto_prodevian_on_show; }
@@ -398,6 +398,9 @@ namespace user
       virtual void show_window();
 
 
+      
+
+
       virtual void start_layout();
       virtual void set_layout_ready();
 
@@ -534,7 +537,16 @@ namespace user
       TYPE* typed_descedant(::user::interaction* puiExclude = nullptr)
       {
 
-         for (auto& pinteraction : m_uiptraChild.interactiona())
+         auto puiptraChild = m_puiptraChild;
+
+         if (!puiptraChild)
+         {
+
+            return nullptr;
+
+         }
+
+         for (auto& pinteraction : puiptraChild->interactiona())
          {
 
             if (pinteraction != puiExclude)
@@ -554,7 +566,9 @@ namespace user
 
          }
 
-         for (auto& pinteraction : m_uiptraChild.interactiona())
+         //auto puiptraChild = m_puiptraChild;
+
+         for (auto& pinteraction :puiptraChild->interactiona())
          {
 
             if (pinteraction != puiExclude)
@@ -724,9 +738,13 @@ namespace user
 
       virtual void destroy_window() override;
 
-      virtual void set_finish() override;
+      virtual void on_finish() override;
 
-      virtual void on_set_finish();
+      virtual ::estatus set_finish_composites() override;
+
+      virtual ::estatus finish() override;
+
+      virtual void notify_on_finish(::context_object * pobjectcontext) override;
 
       virtual void finalize() override;
 
@@ -1269,6 +1287,7 @@ namespace user
       virtual double get_alpha();
 
 
+      virtual void _task_transparent_mouse_event();
 
       virtual void destruct() override;
 

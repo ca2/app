@@ -96,6 +96,67 @@ namespace user
    }
 
 
+   ::user::interaction_array document::get_top_level_windows()
+   {
+
+      sync_lock sl(mutex());
+
+      ::user::interaction_array uia;
+
+      for (auto & pview : m_viewa)
+      {
+
+         uia.add_unique_interaction(pview->GetTopLevel());
+
+      }
+
+      return uia;
+
+   }
+
+   
+   ::estatus document::set_finish_composites()
+   {
+
+      bool bStillFinishing = false;
+
+      auto uia = get_top_level_windows();
+
+      for (auto & pui : uia.interactiona())
+      {
+
+         auto estatus = pui->set_finish();
+
+         if (estatus == ::error_pending)
+         {
+
+            bStillFinishing = true;
+
+         }
+
+      }
+
+      auto estatus = ::user::controller::set_finish_composites();
+
+      if (estatus == ::error_pending)
+      {
+
+         bStillFinishing = true;
+
+      }
+
+      if (bStillFinishing)
+      {
+
+         return ::error_pending;
+
+      }
+
+      return ::success;
+
+   }
+
+
    bool document::contains(::user::interaction* pinteraction) const
    {
 
@@ -254,7 +315,7 @@ namespace user
 
    //   }
 
-   //   __pointer(channel) ptarget = Session.get_keyboard_focus();
+   //   __pointer(channel) ptarget = psession->get_keyboard_focus();
 
    //   if (ptarget != nullptr && ptarget != this && ptarget != GetActiveView()
    //      && !m_interactionaCommandHandlers.contains(ptarget))
@@ -1005,7 +1066,7 @@ namespace user
 
          pre_close_frame(pframe);
 
-         pframe->set_finish();
+         pframe->finish();
 
       }
 

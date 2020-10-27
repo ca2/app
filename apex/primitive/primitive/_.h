@@ -52,7 +52,7 @@
 //
 //
 ////    // after posting quit to a child, the PARENT shouldn't context_object it
-////    virtual void set_finish(::object * pobjectParent);
+////    virtual void finish(::object * pobjectParent);
 //
 ////    virtual ::count wait_quit(::object * pobjectParent, const duration & duration);
 ////    virtual ::count _wait_quit(::object * pobjectParent);

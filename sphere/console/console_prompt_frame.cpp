@@ -90,7 +90,7 @@ namespace console
 //   /*      ::rect rectWindow;
 //         get_window_rect(rectWindow);
 //         ::point point;
-//         point = Session.get_cursor_pos();
+//         point = psession->get_cursor_pos();
 //         if(rectWindow.is_empty().contains(point) && !m_bTimerHide)
 //         {
 //            m_bTimerHide = true;
@@ -106,7 +106,7 @@ namespace console
 //         {
 //            OnHoverAction();
 //         }
-//         if(Session.get_cursor_pos(&pt))
+//         if(psession->get_cursor_pos(&pt))
 //         {
 //            if(!m_bHoverMouse && point.x == 0 && point.y == 0)
 //            {

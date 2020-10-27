@@ -228,9 +228,9 @@ SizingNone:
                }
                else
                {
-                  crMoveableBorder = Session.get_default_color(COLOR_BTNFACE);
-                  crMoveableBorderHilight = Session.get_default_color(COLOR_BTNHILIGHT);
-                  crMoveableBorderShadow = Session.get_default_color(COLOR_BTNSHADOW);
+                  crMoveableBorder = psession->get_default_color(COLOR_BTNFACE);
+                  crMoveableBorderHilight = psession->get_default_color(COLOR_BTNHILIGHT);
+                  crMoveableBorderShadow = psession->get_default_color(COLOR_BTNSHADOW);
                }
 
                e_dock edock = m_pframewindow->dock_manager()->GetDockState();
@@ -341,7 +341,7 @@ SizingNone:
                //bool bZoomed = pframewindow->layout().is_zoomed() != 0;
 
                //    CVMSApp * pApp = (CVMSApp *) &System;
-               //::aura::savings & savings = Session.savings();
+               //::aura::savings & savings = psession->savings();
                auto rectClient = pframewindow->get_client_rect();
 
                string str;

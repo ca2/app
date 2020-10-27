@@ -37,7 +37,9 @@ namespace simpledb
 
                }
 
-               if (Session.m_paccount == nullptr)
+               auto psession = Session;
+
+               if (psession->m_paccount == nullptr)
                {
 
                   break;

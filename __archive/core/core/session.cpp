@@ -286,10 +286,10 @@ namespace acme
       if(is_remote_session())
       {
 
-         //Session.savings().save(::acme::resource_display_bandwidth);
-         //Session.savings().save(::acme::resource_blur_background);
-         //Session.savings().save(::acme::resource_blurred_text_embossing);
-         //Session.savings().save(::acme::resource_translucent_background);
+         //psession->savings().save(::acme::resource_display_bandwidth);
+         //psession->savings().save(::acme::resource_blur_background);
+         //psession->savings().save(::acme::resource_blurred_text_embossing);
+         //psession->savings().save(::acme::resource_translucent_background);
 
       }
 
@@ -601,7 +601,7 @@ namespace acme
    void session::request_topic_file(var & varQuery)
    {
 
-      request_file(Session.m_varTopicFile, varQuery);
+      request_file(psession->m_varTopicFile, varQuery);
 
    }
 
@@ -609,7 +609,7 @@ namespace acme
    void session::request_topic_file()
    {
 
-      request_file(Session.m_varTopicFile);
+      request_file(psession->m_varTopicFile);
 
    }
 
@@ -689,7 +689,7 @@ namespace acme
 
    __pointer(::acme::application) session::get_current_application()
    {
-      return Session.m_pappCurrent;
+      return psession->m_pappCurrent;
    }
 
 
@@ -731,15 +731,15 @@ namespace acme
 
       if(emouse == ::user::mouse_left_button)
       {
-         return Session.is_key_pressed(::user::key_lbutton);
+         return psession->is_key_pressed(::user::key_lbutton);
       }
       else if(emouse == ::user::mouse_right_button)
       {
-         return Session.is_key_pressed(::user::key_rbutton);
+         return psession->is_key_pressed(::user::key_rbutton);
       }
       else if(emouse == ::user::mouse_middle_button)
       {
-         return Session.is_key_pressed(::user::key_mbutton);
+         return psession->is_key_pressed(::user::key_mbutton);
       }
       else
       {
@@ -850,10 +850,10 @@ namespace acme
    void session::check_topic_file_change()
    {
 
-      if(Session.m_varCurrentViewFile != Session.m_varTopicFile && !Session.m_varTopicFile.is_empty())
+      if(psession->m_varCurrentViewFile != psession->m_varTopicFile && !psession->m_varTopicFile.is_empty())
       {
 
-         Session.m_varCurrentViewFile = Session.m_varTopicFile;
+         psession->m_varCurrentViewFile = psession->m_varTopicFile;
 
          request_topic_file();
 
@@ -1200,7 +1200,7 @@ namespace acme
 
       string_array stra;
 
-      string_array straSource = Session.userex()->get_wallpaper();
+      string_array straSource = psession->userex()->get_wallpaper();
 
       for(string str : straSource)
       {

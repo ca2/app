@@ -19,7 +19,7 @@
 
 
 #define Sys(playered) (*::get_context_system(playered))
-#define Sess(playered) (*::get_context_session(playered))
+#define Sess(pcontextsession) (pcontextsession)
 #define App(playered) (*::get_context_application(playered))
 
 
@@ -838,8 +838,6 @@ class machine_event_central;
 //#include "apex/graphics/draw2d/_const.h"
 
 
-#define Usr(pobject) (*Sess(pobject).user())
-#define User (Usr(get_context()))
 
 
 //
@@ -2001,7 +1999,7 @@ namespace html
 
 #define System (Sys(get_context_object()))
 
-#define Session (Sess(get_context_object()))
+#define Session (Sess(get_context_session()))
 
 #define Application (App(get_context_object()))
 #define ThisApp (*::application_consumer < application >::get_app())

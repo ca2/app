@@ -53,9 +53,9 @@ namespace user
 
       }
 
-      Application._001CloseApplication();
+      Application._001TryCloseApplication();
 
-      DestroyWindow();
+//      DestroyWindow();
 
       if (pmessage != nullptr)
       {
@@ -202,7 +202,9 @@ namespace user
       else
       {
 
-         return Session.get_window_minimum_size();
+         auto psession = Session;
+
+         return psession->get_window_minimum_size();
 
       }
 

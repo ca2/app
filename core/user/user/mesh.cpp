@@ -587,12 +587,11 @@ namespace user
       if(pdrawitem->m_bListItemSelected)
          pdrawitem->m_iState |= ItemStateSelected;
 
-
-
+      auto psession = Session;
 
       if(pdrawitem->m_bListItemSelected)
       {
-         if(Session.savings().is_trying_to_save(::e_resource_processing))
+         if(psession->savings().is_trying_to_save(::e_resource_processing))
          {
             pdrawitem->m_pgraphics->fill_rect(pdrawitem->m_rectItem,ARGB(255,96,96,96));
          }
@@ -2487,6 +2486,8 @@ namespace user
 
       sync_lock sl(mutex());
 
+      auto psession = Session;
+
       if (m_bDrag)
       {
 
@@ -2538,7 +2539,7 @@ namespace user
 
       {
 
-         update_hover(Session.get_cursor_pos());
+         update_hover(psession->get_cursor_pos());
 
          pmessage->m_bRet = true;
 
@@ -2638,9 +2639,11 @@ namespace user
 
       }
 
-      Session.set_keyboard_focus(this);
+      auto psession = Session;
 
-      Session.user()->set_mouse_focus_LButtonDown(this);
+      psession->set_keyboard_focus(this);
+
+      psession->user()->set_mouse_focus_LButtonDown(this);
 
       if (!_001DisplayHitTest(point, m_iDisplayItemLButtonDown1))
       {
@@ -2700,7 +2703,7 @@ namespace user
          else
          {
 
-            if(m_bMultiSelect && Session.is_key_pressed(::user::key_shift))
+            if(m_bMultiSelect && psession->is_key_pressed(::user::key_shift))
             {
 
                if(_001DisplayHitTest(point,iItem))
@@ -2723,7 +2726,7 @@ namespace user
                }
 
             }
-            else if(m_bMultiSelect && Session.is_key_pressed(::user::key_control))
+            else if(m_bMultiSelect && psession->is_key_pressed(::user::key_control))
             {
 
                if(_001DisplayHitTest(point,iItem))
@@ -2906,11 +2909,13 @@ namespace user
 
       }
 
-      if(Session.is_key_pressed(::user::key_shift))
+      auto psession = Session;
+
+      if(psession->is_key_pressed(::user::key_shift))
       {
 
       }
-      else if(Session.is_key_pressed(::user::key_control))
+      else if(psession->is_key_pressed(::user::key_control))
       {
 
       }
@@ -3306,7 +3311,9 @@ namespace user
 
       index iSubItemSel;
 
-      auto point = Session.get_cursor_pos();
+      auto psession = Session;
+
+      auto point = psession->get_cursor_pos();
 
       _001ScreenToClient(point);
 
@@ -3323,10 +3330,10 @@ namespace user
 
                m_iItemEnter = -1;
 
-               bool bLShiftKeyDown = Session.is_key_pressed(::user::key_lshift);
-               bool bRShiftKeyDown = Session.is_key_pressed(::user::key_rshift);
-               bool bLControlKeyDown = Session.is_key_pressed(::user::key_lcontrol);
-               bool bRControlKeyDown = Session.is_key_pressed(::user::key_rcontrol);
+               bool bLShiftKeyDown = psession->is_key_pressed(::user::key_lshift);
+               bool bRShiftKeyDown = psession->is_key_pressed(::user::key_rshift);
+               bool bLControlKeyDown = psession->is_key_pressed(::user::key_lcontrol);
+               bool bRControlKeyDown = psession->is_key_pressed(::user::key_rcontrol);
                bool bShiftKeyDown = bLShiftKeyDown || bRShiftKeyDown;
                bool bControlKeyDown = bLControlKeyDown || bRControlKeyDown;
 
@@ -4661,7 +4668,9 @@ namespace user
 
       CacheHint();
 
-      update_hover(Session.get_cursor_pos());
+      auto psession = Session;
+
+      update_hover(psession->get_cursor_pos());
 
    }
 

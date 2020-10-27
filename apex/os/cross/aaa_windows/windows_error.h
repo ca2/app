@@ -14818,7 +14818,7 @@
 //
 // MessageText:
 //
-// You do not have the proper encryption level to access this Session.
+// You do not have the proper encryption level to access this psession->
 //
 #define ERROR_CTX_ENCRYPTION_LEVEL_REQUIRED 7061L
 

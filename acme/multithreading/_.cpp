@@ -305,10 +305,10 @@ namespace multithreading
 {
 
 
-   //CLASS_DECL_ACME void set_finish()
+   //CLASS_DECL_ACME void finish()
    //{
 
-   //   set_finish(::get_task());
+   //   finish(::get_task());
 
    //}
 
@@ -321,7 +321,7 @@ namespace multithreading
    //}
 
 
-   //void set_finish(::thread * pthread)
+   //void finish(::thread * pthread)
    //{
 
    //   if (pthread == nullptr)
@@ -736,7 +736,7 @@ CLASS_DECL_ACME void thread_release(OBJ_REF_DBG_PARAMS_DEF)
 bool thread_get_run()
 {
 
-   auto ptask = t_ptask;
+   auto ptask = t_ptask.m_p;
 
    if (::is_null(ptask))
    {

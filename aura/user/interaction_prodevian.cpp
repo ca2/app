@@ -129,7 +129,7 @@ namespace user
    ::estatus prodevian::run()
    {
 
-      m_pimpl->m_puserinteraction->task_add(this);
+      //m_pimpl->m_puserinteraction->task_add(this);
 
       m_synca.add(&m_evUpdateScreen);
 
@@ -258,12 +258,7 @@ void prodevian::term_thread()
 void prodevian::finalize()
 {
 
-   if (m_bitRunThisThread)
-   {
-
-      m_evUpdateScreen.SetEvent();
-
-   }
+   m_evUpdateScreen.SetEvent();
 
    m_puserinteraction.release(OBJ_REF_DBG_THIS);
 

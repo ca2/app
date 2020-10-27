@@ -8,12 +8,8 @@
 #include "apex/platform/str_context.h"
 #include "acme/node/windows/registry.h"
 #include "apex/platform/history.h"
-
-//#ifdef _OPENGL
 #include "aura/gpu/gpu/_.h"
-//#endif
 
-//extern ::aura::system* g_paurasystem;
 
 int GetMainScreenRect(LPRECT lprect);
 
@@ -294,87 +290,87 @@ namespace aura
 
 
 
-   ::apex::library * system::get_library(const char * pszLibrary1, bool bOpenCa2)
-   {
-
-      sync_lock sl(&::get_context_system()->m_mutexLibrary);
-
-      string strLibrary(pszLibrary1);
-
-      strLibrary.ends_eat_ci(".dll");
-      strLibrary.ends_eat_ci(".so");
-      strLibrary.ends_eat_ci(".dylib");
-      strLibrary.begins_eat_ci("lib");
-
-      auto & plibrary = ::get_context_system()->m_mapLibrary[strLibrary];
-
-      bool bLibraryOk = true;
-
-      if (plibrary.is_null())
-      {
-
-         __compose(plibrary, on_get_library(strLibrary));
-
-         if (plibrary.is_null())
-         {
-
-            __compose_new(plibrary);
-
-            if (!plibrary->open(strLibrary))
-            {
-
-//#if !defined(ANDROID)
-//               if (!plibrary->open(Context.dir().ca2module() / pszLibrary))
-//#endif
-//               {
+//   ::apex::library * system::get_library(const char * pszLibrary1, bool bOpenCa2)
+//   {
 //
-//               }
-
-            }
-
-            bLibraryOk = plibrary->is_opened();
-
-         }
-
-#ifndef CUBE
-
-         if (bOpenCa2 && bLibraryOk)
-         {
-
-            plibrary->open_ca2_library();
-
-         }
-
-#endif
-
-      }
-
-      if(!bLibraryOk)
-      {
-
-         return nullptr;
-
-      }
-
-#ifndef CUBE
-
-      if (bOpenCa2)
-      {
-
-         if (plibrary->m_pca2library.is_null())
-         {
-
-            return nullptr;
-
-         }
-
-      }
-
-#endif
-
-      return plibrary;
-
-   }
+//      sync_lock sl(&::get_context_system()->m_mutexLibrary);
+//
+//      string strLibrary(pszLibrary1);
+//
+//      strLibrary.ends_eat_ci(".dll");
+//      strLibrary.ends_eat_ci(".so");
+//      strLibrary.ends_eat_ci(".dylib");
+//      strLibrary.begins_eat_ci("lib");
+//
+//      auto & plibrary = ::get_context_system()->m_mapLibrary[strLibrary];
+//
+//      bool bLibraryOk = true;
+//
+//      if (plibrary.is_null())
+//      {
+//
+//         __compose(plibrary, on_get_library(strLibrary));
+//
+//         if (plibrary.is_null())
+//         {
+//
+//            __compose_new(plibrary);
+//
+//            if (!plibrary->open(strLibrary))
+//            {
+//
+////#if !defined(ANDROID)
+////               if (!plibrary->open(Context.dir().ca2module() / pszLibrary))
+////#endif
+////               {
+////
+////               }
+//
+//            }
+//
+//            bLibraryOk = plibrary->is_opened();
+//
+//         }
+//
+//#ifndef CUBE
+//
+//         if (bOpenCa2 && bLibraryOk)
+//         {
+//
+//            plibrary->open_ca2_library();
+//
+//         }
+//
+//#endif
+//
+//      }
+//
+//      if(!bLibraryOk)
+//      {
+//
+//         return nullptr;
+//
+//      }
+//
+//#ifndef CUBE
+//
+//      if (bOpenCa2)
+//      {
+//
+//         if (plibrary->m_pca2library.is_null())
+//         {
+//
+//            return nullptr;
+//
+//         }
+//
+//      }
+//
+//#endif
+//
+//      return plibrary;
+//
+//   }
 
 
    system::~system()
@@ -1475,30 +1471,30 @@ namespace aura
    ::estatus system::init()
    {
 
-
       m_tickHeartBeat.Now();
+
+      auto psession = Session;
 
       if (has_property("save_processing"))
       {
 
-         Session.savings().save(::e_resource_processing);
+         psession->savings().save(::e_resource_processing);
 
-         }
+      }
 
-         if (has_property("save_blur_back"))
-         {
+      if (has_property("save_blur_back"))
+      {
 
-            Session.savings().save(::e_resource_blur_background);
+         psession->savings().save(::e_resource_blur_background);
 
-         }
+      }
 
-         if (has_property("save_transparent_back"))
-         {
+      if (has_property("save_transparent_back"))
+      {
 
-            Session.savings().save(::e_resource_translucent_background);
+         psession->savings().save(::e_resource_translucent_background);
 
-         }
-
+      }
 
       if (::is_set(m_pdraw2d))
       {
@@ -1549,10 +1545,12 @@ namespace aura
 
       }
 
-      if (Session.m_puserstrcontext)
+      auto psession = Session;
+
+      if (psession->m_puserstrcontext)
       {
 
-         Session.m_puserstrcontext->defer_ok(m_puserstr);
+         psession->m_puserstrcontext->defer_ok(m_puserstr);
 
       }
 
@@ -2748,7 +2746,7 @@ namespace aura
 //      try
 //      {
 //
-//         file = Session.file().get_file(Context.dir().appdata() / "applibcache.bin",::file::defer_create_directory | ::file::type_binary | ::file::mode_create | ::file::mode_write);
+//         file = psession->file().get_file(Context.dir().appdata() / "applibcache.bin",::file::defer_create_directory | ::file::type_binary | ::file::mode_create | ::file::mode_write);
 //
 //      }
 //      catch(::exception::exception &)
@@ -2996,7 +2994,9 @@ namespace aura
 
       }
 
-      auto appptra = Session.get_applicationa();
+      auto psession = Session;
+
+      auto appptra = psession->get_applicationa();
 
       ::apex::application * papp = nullptr;
 
@@ -3035,7 +3035,9 @@ namespace aura
 
       sync_lock sl(mutex());
 
-      auto applicationa = Session.m_applicationa;
+      auto psession = Session;
+
+      auto applicationa = psession->m_applicationa;
 
       sl.unlock();
 
@@ -3133,7 +3135,9 @@ namespace aura
    bool system::on_open_file(var varFile, string strExtra)
    {
 
-      auto applicationa = Session.get_applicationa();
+      auto psession = Session;
+
+      auto applicationa = psession->get_applicationa();
 
       ::apex::application * papp = nullptr;
 
@@ -3178,7 +3182,9 @@ namespace aura
    LPWAVEOUT system::waveout_open(int iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback)
    {
 
-      for (auto & papp : Session.m_applicationa)
+      auto psession = Session;
+
+      for (auto & papp : psession->m_applicationa)
       {
 
          Au(papp).waveout_open(iChannel, pformat, pcallback);
@@ -3818,7 +3824,7 @@ namespace aura
 
 #ifdef _UWP
 
-         auto puiHost = __user_interaction(Session.m_puiHost);
+         auto puiHost = __user_interaction(psession->m_puiHost);
 
          __pointer(::uwp::interaction_impl) pimpl = puiHost->m_pimpl;
 
@@ -5539,7 +5545,7 @@ namespace aura
 //
 //      }
 //
-//      //if(Session.account()->create_system_user("system") == nullptr)
+//      //if(psession->account()->create_system_user("system") == nullptr)
 //      // return false;
 //
 //#if !defined(CUBE) && !defined(ANDROID)
@@ -5614,10 +5620,10 @@ namespace aura
 
       //::aura::system::on_graphics_ready();
 
-      //if (Session.userex()->shell()->m_bPendingUpdate)
+      //if (psession->userex()->shell()->m_bPendingUpdate)
       //{
 
-      //   Session.userex()->shell()->on_update_sizes_interest();
+      //   psession->userex()->shell()->on_update_sizes_interest();
 
       //}
 
@@ -6078,14 +6084,14 @@ namespace aura
    //      if(m_varTopicQuery["locale"].array_get_count() > 0)
    //      {
    //
-   //         Session.set_locale(m_varTopicQuery["locale"].stra()[0],::source_user);
+   //         psession->set_locale(m_varTopicQuery["locale"].stra()[0],::source_user);
    //
    //      }
    //
    //      if(m_varTopicQuery["schema"].array_get_count() > 0)
    //      {
    //
-   //         Session.set_schema(m_varTopicQuery["schema"].stra()[0],::source_user);
+   //         psession->set_schema(m_varTopicQuery["schema"].stra()[0],::source_user);
    //
    //      }
    //

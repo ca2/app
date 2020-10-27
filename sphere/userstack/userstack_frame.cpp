@@ -126,7 +126,7 @@ namespace userstack
          {
             OnHoverAction();
          }
-         point = Session.get_cursor_pos();
+         point = psession->get_cursor_pos();
          if(!m_bHoverMouse && point.x == 0 && point.y == 0)
          {
             m_tickLastHover = ::tick::now();
@@ -160,7 +160,7 @@ namespace userstack
 
    void frame::_000OnMouse(::message::mouse * pmouse)
    {
-      Session.m_pointCursor = pmouse->m_point;
+      psession->m_pointCursor = pmouse->m_point;
 //      ::aspheresp(::aura::application) pappParent = &App(Application.get_context_application()->m_pcoreapp);
 //      ::aspheresp(::aura::application) papp = &Application;
       /*      if(pmouse->m_uiMessage == e_message_mouse_move
@@ -247,7 +247,7 @@ namespace userstack
             ::memory_file file(pstruct->lpData, pstruct->cbData);
             string strPath;
             file.to_string(strPath);
-            Session.open_by_file_extension(strPath);
+            psession->open_by_file_extension(strPath);
          }
 #else
          __throw(todo());

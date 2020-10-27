@@ -32,6 +32,7 @@ namespace user
 
       ::user::interaction::install_message_routing(pchannel);
 
+      MESSAGE_LINK(e_message_destroy, pchannel, this, &system_interaction_impl::_001OnDestroy);
       MESSAGE_LINK(WM_SETTINGCHANGE, pchannel,this,&system_interaction_impl::_001OnMessage);
       MESSAGE_LINK(WM_DISPLAYCHANGE, pchannel,this,&system_interaction_impl::_001OnMessage);
       MESSAGE_LINK(WM_FONTCHANGE, pchannel, this, &system_interaction_impl::_001OnMessage);
@@ -43,6 +44,24 @@ namespace user
    {
 
       return true;
+
+   }
+
+
+   bool system_interaction_impl::DestroyWindow()
+   {
+
+      return ::user::interaction::DestroyWindow();
+
+   }
+
+
+   void system_interaction_impl::_001OnDestroy(::message::message * pmessage)
+   {
+
+      SCAST_PTR(::message::base, pbase, pmessage);
+
+      ::output_debug_string("system_interaction_impl::_001OnDestroy");
 
    }
 
@@ -76,7 +95,7 @@ namespace user
             //fork([this]()
               // {
 
-                 // Session.call(e_method_font_change);
+                 // psession->call(e_method_font_change);
 
                //});
 

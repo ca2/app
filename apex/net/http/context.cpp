@@ -464,7 +464,7 @@ namespace http
       //      else
       //      {
       //
-      //         strFontopusServer = Session.account()->authenticator()->get_account_server(pszUrl);
+      //         strFontopusServer = psession->account()->authenticator()->get_account_server(pszUrl);
       //
       //      }
       //
@@ -1697,9 +1697,9 @@ namespace http
    bool context::http_get(::sockets::socket_handler & handler, __pointer(::sockets::http_client_socket) & psocket, const char * pszUrl, property_set & set)
    {
 
-      auto pthread = get_thread();
+      auto ptask = ::get_task();
 
-      __keep(pthread->m_strWorkUrl, pszUrl);
+      __keep(ptask->value("work_url"), pszUrl);
 
       i64 iHttpGetSerial = ++System.sockets().m_lHttpGetSerial;
 
@@ -1779,11 +1779,11 @@ namespace http
 
       string strUrl(pszUrl);
 
-//      bool bSessionAccount = !set.is_true("raw_http") && ::is_set(get_context_session()) && ::is_set(Session.account());
+//      bool bSessionAccount = !set.is_true("raw_http") && ::is_set(get_context_session()) && ::is_set(psession->account());
 
       bool bSessionAccount = !set.is_true("raw_http") && ::is_set(get_context_session()) ;
 
-//      single_lock slFontopus(bSessionAccount ? Session.account()->mutex() : nullptr);
+//      single_lock slFontopus(bSessionAccount ? psession->account()->mutex() : nullptr);
 
       string strIp;
 
@@ -2364,7 +2364,7 @@ namespace http
          //if (strSessId.has_char() && puser.is_set() && iRetrySession < 3)
          //{
 
-         //   Session.account()->not_auth(pszUrl);
+         //   psession->account()->not_auth(pszUrl);
 
          //   iRetrySession++;
 
@@ -2499,13 +2499,6 @@ namespace http
          set["cookies"] = pmessageMessage->m_pcookies;
 
       }
-
-      //if (pmessageMessage->m_puser != nullptr)
-      //{
-
-      //   set["user"] = pmessageMessage->m_puser;
-
-      //}
 
       if (pmessageMessage->m_strVersion.has_char())
       {
@@ -2842,7 +2835,7 @@ namespace http
    //   else
    //   {
 
-   //      if (Session.get_auth("context/account/proxy_authenticate.xhtml", strUserName, strPassword))
+   //      if (psession->get_auth("context/account/proxy_authenticate.xhtml", strUserName, strPassword))
    //      {
 
    //         System.crypto().file_set(strUserNameFile, strUserName, nullptr, get_context_application());

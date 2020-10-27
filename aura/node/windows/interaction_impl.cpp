@@ -3982,12 +3982,14 @@ namespace windows
 
       SCAST_PTR(::message::base, pbase, pmessage);
 
-      auto pcursor = Session.get_cursor();
+      auto psession = Session;
+
+      auto pcursor = psession->get_cursor();
 
       if (pcursor != nullptr && pcursor->m_ecursor != cursor_system)
       {
 
-         pcursor->set_current(m_puserinteraction, &Session);
+         pcursor->set_current(m_puserinteraction, psession);
 
       }
 
@@ -5088,10 +5090,15 @@ LRESULT CALLBACK __window_procedure(HWND oswindow, UINT message, WPARAM wparam, 
 
    }
 
-   if (pimpl->__windows_message_bypass(oswindow, message, wparam, lparam, lresult))
+   if (pimpl)
    {
 
-      return lresult;
+      if (pimpl->__windows_message_bypass(oswindow, message, wparam, lparam, lresult))
+      {
+
+         return lresult;
+
+      }
 
    }
 
@@ -5559,11 +5566,13 @@ namespace windows
 
          }
 
+         auto psession = Session;
+
          if (message == WM_KEYDOWN || message == WM_SYSKEYDOWN)
          {
             try
             {
-               Session.set_key_pressed(pkey->m_ekey, true);
+               psession->set_key_pressed(pkey->m_ekey, true);
             }
             catch (...)
             {
@@ -5575,7 +5584,7 @@ namespace windows
             try
             {
 
-               Session.set_key_pressed(pkey->m_ekey, false);
+               psession->set_key_pressed(pkey->m_ekey, false);
 
             }
             catch (...)
@@ -5682,6 +5691,9 @@ namespace windows
 
       }
       
+      auto psession = Session;
+
+
 
       /*      else if(message == CA2M_BERGEDGE)
       {
@@ -5698,10 +5710,10 @@ namespace windows
       if (message == WM_MOUSELEAVE)
       {
 
-         if (Session.m_puiCapture)
+         if (psession->m_puiCapture)
          {
 
-            Session.m_puiCapture->_000OnMouseLeave(pbase);
+            psession->m_puiCapture->_000OnMouseLeave(pbase);
 
          }
          else if (m_puserinteraction)
@@ -5784,7 +5796,7 @@ namespace windows
 
          }
 
-         Session.on_ui_mouse_message(pmouse);
+         psession->on_ui_mouse_message(pmouse);
 
 
          if (message == e_message_mouse_move)
@@ -5825,7 +5837,7 @@ namespace windows
             pmouse->m_ecursor = cursor_default;
          }
 
-         auto puiCapture = Session.m_puiCapture;
+         auto puiCapture = psession->m_puiCapture;
 
          if (::is_set(puiCapture))
          {
@@ -5896,7 +5908,7 @@ namespace windows
      
          message::key * pkey = (::message::key *) pbase;
 
-         __pointer(::user::interaction) puiFocus = Session.get_keyboard_focus();
+         __pointer(::user::interaction) puiFocus = psession->get_keyboard_focus();
 
          if (puiFocus && puiFocus->is_window() && puiFocus != m_puserinteraction)
          {

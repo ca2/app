@@ -418,7 +418,7 @@ sync_result event::wait ()
          if (!thread_get_run())
          {
 
-            __throw(exit_exception(::get_task()));
+            return sync_result(sync_result::result_abandon0);
 
          }
 
@@ -426,7 +426,7 @@ sync_result event::wait ()
       else
       {
 
-         throw runtime_error("::acme::pal::Event::wait: failure");
+         return sync_result(sync_result::result_error);
 
       }
 

@@ -261,7 +261,9 @@ namespace user
       //else
       {
 
-         if (Session.get_focus_ui() == this)
+         auto psession = Session;
+
+         if (psession->get_focus_ui() == this)
          {
 
             if (m_itemHover.is_set())
@@ -749,7 +751,9 @@ namespace user
 
          defer_create_combo_list();
 
-         Session.on_show_user_input_popup(m_plist);
+         auto psession = Session;
+
+         psession->on_show_user_input_popup(m_plist);
 
          auto pgraphics = ::draw2d::create_memory_graphics();
 

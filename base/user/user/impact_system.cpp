@@ -61,6 +61,8 @@ namespace user
 
       pdocument->install_message_routing(pdocument);
 
+      add_composite(pdocument);
+
    }
 
 

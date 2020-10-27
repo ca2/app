@@ -96,7 +96,7 @@ namespace sockets
       bool               is_ssl = get_boolean(buf, ptr);
 
       string method_str = __str( method );
-      Session.sockets().m_pajpbasesocketinit->Method.lookup(method, method_str);
+      psession->sockets().m_pajpbasesocketinit->Method.lookup(method, method_str);
       m_request.attr("http_method") = method_str;
       m_request.attr("http_protocol") = protocol;
       m_request.attr("request_uri") = req_uri;
@@ -116,7 +116,7 @@ namespace sockets
          case 0xa0:
             {
                unsigned short x = (unsigned short)get_integer(buf, ptr);
-               if (!Session.sockets().m_pajpbasesocketinit->header.lookup(x, key))
+               if (!psession->sockets().m_pajpbasesocketinit->header.lookup(x, key))
                {
                   TRACE("Unknown header key value: %x\n", x);
                   SetCloseAndDelete();
@@ -149,7 +149,7 @@ namespace sockets
             break;
          default:
             {
-               if(!Session.sockets().m_pajpbasesocketinit->Attribute.lookup(code, key))
+               if(!psession->sockets().m_pajpbasesocketinit->Attribute.lookup(code, key))
                {
                   TRACE("Unknown attribute key: 0x%02x\n", buf[ptr]);
                   SetCloseAndDelete();
@@ -247,7 +247,7 @@ namespace sockets
 
             int iValue;
 
-            if(Session.sockets().m_pajpbasesocketinit->ResponseHeader.lookup(strNameLower, iValue))
+            if(psession->sockets().m_pajpbasesocketinit->ResponseHeader.lookup(strNameLower, iValue))
             {
 
                put_integer(msg, ptr, (short) iValue);

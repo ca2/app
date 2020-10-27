@@ -92,7 +92,9 @@ namespace filemanager
 
          m_pfsset->m_spafsdata.remove_all();
 
-         m_pfsset->m_spafsdata.add(Session.fs());
+         auto psession = Session;
+
+         m_pfsset->m_spafsdata.add(psession->fs());
 
          ::file::listing listing;
 
@@ -492,7 +494,9 @@ namespace filemanager
    void document::defer_check_manager_id(string strManagerId)
    {
 
-      if (User.m_pathFilemanagerProject.has_char())
+      auto puser = User;
+
+      if(puser->m_pathFilemanagerProject.has_char())
       {
 
          if (!is_valid_manager_id(m_strManagerId) || is_valid_manager_id(strManagerId))
@@ -681,7 +685,9 @@ namespace filemanager
       if (context.is_user_source())
       {
 
-         if (User.m_pathFilemanagerProject.is_empty())
+         auto puser = User;
+
+         if (puser->m_pathFilemanagerProject.is_empty())
          {
 
             filemanager_data()->set_last_browse_path(this, m_pitem->m_filepathUser);
@@ -690,7 +696,9 @@ namespace filemanager
          else
          {
 
-            User.filemanager_save_project();
+            auto puser = User;
+
+            puser->filemanager_save_project();
 
          }
 
@@ -767,7 +775,9 @@ namespace filemanager
 
       pcreate->finish_initialization();
 
-      User.add_filemanager("", pcreate);
+      auto puser = User;
+
+      puser->add_filemanager("", pcreate);
 
       pmessage->m_bRet = true;
 
@@ -807,7 +817,9 @@ namespace filemanager
 
       }
 
-      User.remove_filemanager(pdocument.m_p);
+      auto puser = User;
+
+      puser->remove_filemanager(pdocument.m_p);
 
       pmessage->m_bRet = true;
 
@@ -1235,7 +1247,7 @@ namespace filemanager
    operation_document * document::get_operation_doc(bool bSwitch)
    {
 
-      //::filemanager::tab_view * ptabview = Session.m_pdocumenttemplateMain->get_document(0)->get_typed_view < ::filemanager::tab_view >();
+      //::filemanager::tab_view * ptabview = psession->m_pdocumenttemplateMain->get_document(0)->get_typed_view < ::filemanager::tab_view >();
 
       //if (ptabview == nullptr)
       //{
@@ -1354,7 +1366,9 @@ namespace filemanager
       if (m_pfilemanagerdata.is_null())
       {
 
-         m_pfilemanagerdata = User.filemanager(FILEMANAGER_IMPACT);
+         auto puser = User;
+
+         m_pfilemanagerdata = puser->filemanager(FILEMANAGER_IMPACT);
 
       }
       ASSERT(m_pfilemanagerdata.is_set());
@@ -1367,7 +1381,7 @@ namespace filemanager
       //   //if (ptemplate.is_null())
       //   //{
 
-      //   //   ptemplate = User.filemanager().m_ptemplate;
+      //   //   ptemplate = puser->filemanager().m_ptemplate;
 
       //   //}
 

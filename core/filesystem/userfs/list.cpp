@@ -52,7 +52,7 @@ namespace userfs
       if(pmessage->m_bRet)
          return;
 
-      //User.shell()->on_update_sizes_interest();
+      //puser->shell()->on_update_sizes_interest();
 
       set_impact_title("File Manager");
       
@@ -667,7 +667,9 @@ namespace userfs
       if (i == 0)
       {
 
-         return User.shell()->GetImageList(16);
+         auto puser = User;
+
+         return puser->shell()->GetImageList(16);
 
       }
 
@@ -927,7 +929,9 @@ namespace userfs
 
             auto pfsitem = pdata->item((::index) pitem->m_iItem);
 
-            pitem->m_iImage = User.shell()->get_file_image(
+            auto puser = User;
+
+            pitem->m_iImage = puser->shell()->get_file_image(
                               pfsitem->m_filepathFinal,
                               pset->is_dir(pfsitem->m_filepathFinal) ? ::user::shell::file_attribute_directory : ::user::shell::file_attribute_normal,
                               ::user::shell::icon_normal);

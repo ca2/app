@@ -550,14 +550,14 @@ resume_on_exception:
 
    //   __pointer(::aura::application) papp;
 
-   //   papp = Session.m_applicationa.find_running_defer_try_quit_damaged(pszAppId);
+   //   papp = psession->m_applicationa.find_running_defer_try_quit_damaged(pszAppId);
 
    //   if(papp.is_null())
    //   {
 
    //      __pointer(::create) spcreate(e_create);
 
-   //      papp = Session.start_application(pszAppId,spcreate);
+   //      papp = psession->start_application(pszAppId,spcreate);
 
    //   }
 
@@ -790,21 +790,21 @@ m_tickHeartBeat.Now();
          if(has_property("save_processing"))
          {
 
-            Session.savings().save(::e_resource_processing);
+            psession->savings().save(::e_resource_processing);
 
          }
 
          if(has_property("save_blur_back"))
          {
 
-            Session.savings().save(::e_resource_blur_background);
+            psession->savings().save(::e_resource_blur_background);
 
          }
 
          if(has_property("save_transparent_back"))
          {
 
-            Session.savings().save(::e_resource_translucent_background);
+            psession->savings().save(::e_resource_translucent_background);
 
          }
 
@@ -989,7 +989,7 @@ m_tickHeartBeat.Now();
 
       auto plocaleschema = __create_new < ::str::international::locale_schema >();
 
-      //Session.fill_locale_schema(localeschema);
+      //psession->fill_locale_schema(localeschema);
 
       bool bIgnoreStdStd = string(pszRoot) == "app" && (string(pszRelative) == "main" || string(pszRelative) == "bergedge");
 

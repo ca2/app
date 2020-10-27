@@ -206,11 +206,13 @@ SizingNone:;
                else
                {
 
-                  crMoveableBorder = Session.get_default_color(COLOR_BTNFACE);
+                  auto psession = Session;
 
-                  crMoveableBorderHilight = Session.get_default_color(COLOR_BTNHILIGHT);
+                  crMoveableBorder = psession->get_default_color(COLOR_BTNFACE);
 
-                  crMoveableBorderShadow = Session.get_default_color(COLOR_BTNSHADOW);
+                  crMoveableBorderHilight = psession->get_default_color(COLOR_BTNHILIGHT);
+
+                  crMoveableBorderShadow = psession->get_default_color(COLOR_BTNSHADOW);
 
                }
 
@@ -1129,11 +1131,13 @@ SizingNone:;
 
                //rect.bottom++;
 
-               pgraphics->draw_3drect(rect, Session.get_default_color(COLOR_BTNFACE) | 0xff000000, Session.get_default_color(COLOR_3DDKSHADOW) | 0xff000000);
+               auto psession = Session;
+
+               pgraphics->draw_3drect(rect, psession->get_default_color(COLOR_BTNFACE) | 0xff000000, psession->get_default_color(COLOR_3DDKSHADOW) | 0xff000000);
 
                rect.deflate(1, 1);
 
-               pgraphics->draw_3drect(rect, Session.get_default_color(COLOR_BTNHILIGHT) | 0xff000000, Session.get_default_color(COLOR_BTNSHADOW) | 0xff000000);
+               pgraphics->draw_3drect(rect, psession->get_default_color(COLOR_BTNHILIGHT) | 0xff000000, psession->get_default_color(COLOR_BTNSHADOW) | 0xff000000);
 
                rect.deflate(1, 1);
 
@@ -1141,7 +1145,7 @@ SizingNone:;
 
                //rect.bottom--;
 
-               pgraphics->fill_rect(rect, Session.get_default_color(COLOR_BTNFACE) | 0xff000000);
+               pgraphics->fill_rect(rect, psession->get_default_color(COLOR_BTNFACE) | 0xff000000);
 
             }
 

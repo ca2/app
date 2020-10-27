@@ -90,7 +90,7 @@ namespace filehandler
    void pane_view::on_apply(::action * paction)
    {
 
-      UNREFERENCED_PARAMETER(pupdate);
+      UNREFERENCED_PARAMETER(paction);
 
    }
 

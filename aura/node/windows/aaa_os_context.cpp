@@ -1018,7 +1018,7 @@ namespace windows
       ////         szDomain[1] ='\0';
       //if(!LookupAccountSidW(
       //   nullptr,             // Local computer
-      //   ti.tokenUser.User.Sid,             // Security identifier for user
+      //   ti.tokenUser.puser->Sid,             // Security identifier for user
       //   szUsername,       // User name
       //   &cchTmpUsername,  // Size of user name
       //   szDomain,         // Domain name

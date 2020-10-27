@@ -71,7 +71,7 @@ namespace user
 
       }
 
-      //Session.add(method(e_method_font_change, [this]() { on_font_change(); }));
+      //psession->add(method(e_method_font_change, [this]() { on_font_change(); }));
 
    }
 
@@ -100,10 +100,12 @@ namespace user
    void font_list::set_font_list_type(::draw2d::font_list::enum_type etype)
    {
 
+      auto psession = Session;
+
       if (etype == ::draw2d::font_list::type_single_column)
       {
 
-         m_pfontlist = Session.get_single_column_font_list();
+         m_pfontlist = psession->get_single_column_font_list();
 
       }
       else if (etype == ::draw2d::font_list::type_wide)
@@ -170,7 +172,9 @@ namespace user
 
       auto item = hit_test(pmouse);
 
-      Session.user()->set_mouse_focus_LButtonDown(this);
+      auto psession = Session;
+
+      psession->user()->set_mouse_focus_LButtonDown(this);
 
       if (item.m_iItem != m_pfontlist->m_iSel)
       {
@@ -591,7 +595,7 @@ namespace user
             //fork([this]()
   //             {
 //
-    //              Session.call(e_method_font_change);
+    //              psession->call(e_method_font_change);
 
       //         });
 

@@ -75,7 +75,7 @@ namespace simple_ui
 //      if (eevent == ::user::event_button_down)
 //      {
 //
-//         Session.m_puiLastLButtonDown = this;
+//         psession->m_puiLastLButtonDown = this;
 //
 //      }
 //
@@ -127,7 +127,7 @@ namespace simple_ui
 //      if (m_itemLButtonDown)
 //      {
 //
-//         Session.m_puiLastLButtonDown = this;
+//         psession->m_puiLastLButtonDown = this;
 //
 //         pmouse->m_bRet = true;
 //
@@ -225,7 +225,7 @@ namespace simple_ui
 //      if (m_itemLButtonDown == item)
 //      {
 //
-//         Session.m_puiLastLButtonDown = nullptr;
+//         psession->m_puiLastLButtonDown = nullptr;
 //
 //         pmessage->m_bRet = on_click(item);
 //

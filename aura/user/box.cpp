@@ -535,7 +535,9 @@ namespace user
 
       ::rect rectMainMonitor;
 
-      Session.get_main_monitor(rectMainMonitor);
+      auto psession = Session;
+
+      psession->get_main_monitor(rectMainMonitor);
 
       strDisplay.Format("Display(%d, %d)", rectMainMonitor.width(), rectMainMonitor.height());
 

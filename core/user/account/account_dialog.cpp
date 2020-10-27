@@ -238,7 +238,9 @@ namespace account
 
       m_pcredentials->m_estatus = error_credentials;
 
-      ::user::interaction * puiParent = Session.cast < ::user::interaction > ("plugin_parent");
+      auto psession = Session;
+
+      ::user::interaction * puiParent = psession->cast < ::user::interaction > ("plugin_parent");
 
       ::rect rectDesktop;
 
@@ -251,7 +253,7 @@ namespace account
       else if (rect.is_empty())
       {
 
-         Session.get_main_monitor(rectDesktop);
+         psession->get_main_monitor(rectDesktop);
 
       }
       else
@@ -332,7 +334,7 @@ namespace account
 
 #if !MOBILE_PLATFORM
 
-      single_lock sl(&Session.account()->m_semaphoreDialog);
+      single_lock sl(&psession->account()->m_semaphoreDialog);
 
       bool bWasWaiting = false;
 

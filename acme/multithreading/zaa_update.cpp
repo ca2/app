@@ -86,9 +86,7 @@ update::~update()
 void update::notify()
 {
 
-   auto pupdate = new_update();
-
-   paction->id() = m_iUpdate;
+   auto paction = new_action(m_iUpdate);
 
    pupdate->m_pupdatenotificationtask = this;
 

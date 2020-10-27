@@ -3607,7 +3607,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
       if(g_oswindowDesktop != nullptr && e.xconfigure.window == g_oswindowDesktop->window())
       {
 
-         auto applicationa = Session.m_applicationa;
+         auto applicationa = psession->m_applicationa;
 
          try
          {
@@ -4172,7 +4172,7 @@ namespace user
 
       ___pointer < ::message::base > spbase;
 
-      spbase = Session.get_message_base(pvoidEvent, m_puserinteraction);
+      spbase = psession->get_message_base(pvoidEvent, m_puserinteraction);
 
       try
       {

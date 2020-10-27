@@ -39,7 +39,9 @@ namespace user
          if(ptool->BaseToolTipGetWnd()->GetTopLevel() == pbase->userinteraction())
          {
             
-            auto point = Session.get_cursor_pos();
+            auto psession = Session;
+
+            auto point = psession->get_cursor_pos();
             
             if(m_iEventTool != ptool->BaseToolTipGetIndex()
                   || point != m_point)
@@ -71,9 +73,18 @@ namespace user
 
       if(!bForce)
       {
-         auto point = Session.get_cursor_pos();
-         if(point != m_point)
+
+         auto psession = Session;
+
+         auto point = psession->get_cursor_pos();
+
+         if (point != m_point)
+         {
+
             return;
+
+         }
+
       }
 
       if(!GetToolText(iTool, m_strTip))

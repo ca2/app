@@ -68,9 +68,6 @@ CLASS_DECL_APEX void __simple_tracea(::matter * pobjectContext, e_trace_level el
 
 void os_post_quit();
 
-//extern ::mutex * &::get_context_system()->m_mutexLibrary;
-
-
 
 #ifdef UNIT_TEST
 void unit_test_primitive_var_apex_block();
@@ -841,7 +838,7 @@ namespace apex
       if (m_sessionmap.is_empty() && m_bFinalizeIfNoSession)
       {
 
-         set_finish();
+         finish();
 
       }
 
@@ -3042,7 +3039,7 @@ namespace apex
 //      try
 //      {
 //
-//         file = Session.file().get_file(Context.dir().appdata() / "applibcache.bin",::file::defer_create_directory | ::file::type_binary | ::file::mode_create | ::file::mode_write);
+//         file = psession->file().get_file(Context.dir().appdata() / "applibcache.bin",::file::defer_create_directory | ::file::type_binary | ::file::mode_create | ::file::mode_write);
 //
 //      }
 //      catch(::exception::exception &)
@@ -3290,7 +3287,9 @@ namespace apex
 
       }
 
-      auto appptra = Session.get_applicationa();
+      auto psession = Session;
+
+      auto appptra = psession->get_applicationa();
 
       ::apex::application * papp = nullptr;
 
@@ -3329,7 +3328,9 @@ namespace apex
 
       sync_lock sl(mutex());
 
-      auto applicationa = Session.m_applicationa;
+      auto psession = Session;
+
+      auto applicationa = psession->m_applicationa;
 
       sl.unlock();
 
@@ -3427,7 +3428,9 @@ namespace apex
    bool system::on_open_file(var varFile, string strExtra)
    {
 
-      auto applicationa = Session.get_applicationa();
+      auto psession = Session;
+
+      auto applicationa = psession->get_applicationa();
 
       ::apex::application * papp = nullptr;
 
@@ -3472,7 +3475,7 @@ namespace apex
    //LPWAVEOUT system::waveout_open(int iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback)
    //{
 
-   //   for (auto & papp : Session.m_applicationa)
+   //   for (auto & papp : psession->m_applicationa)
    //   {
 
    //      papp->waveout_open(iChannel, pformat, pcallback);
@@ -5034,10 +5037,10 @@ namespace apex
 
       //::apex::system::on_graphics_ready();
 
-      //if (Session.userex()->shell()->m_bPendingUpdate)
+      //if (psession->userex()->shell()->m_bPendingUpdate)
       //{
 
-      //   Session.userex()->shell()->on_update_sizes_interest();
+      //   psession->userex()->shell()->on_update_sizes_interest();
 
       //}
 
@@ -5361,14 +5364,14 @@ namespace apex
    //      if(m_varTopicQuery["locale"].array_get_count() > 0)
    //      {
    //
-   //         Session.set_locale(m_varTopicQuery["locale"].stra()[0],::source_user);
+   //         psession->set_locale(m_varTopicQuery["locale"].stra()[0],::source_user);
    //
    //      }
    //
    //      if(m_varTopicQuery["schema"].array_get_count() > 0)
    //      {
    //
-   //         Session.set_schema(m_varTopicQuery["schema"].stra()[0],::source_user);
+   //         psession->set_schema(m_varTopicQuery["schema"].stra()[0],::source_user);
    //
    //      }
    //

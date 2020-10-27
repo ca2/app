@@ -94,7 +94,12 @@ void interprocess_intercommunication::finalize()
 
    ::object::finalize();
 
-   m_prx->finalize();
+   if(m_prx)
+   {
+
+      m_prx->finalize();
+
+   }
 
 }
 

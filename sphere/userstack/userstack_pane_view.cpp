@@ -101,10 +101,10 @@ namespace userstack
 
          __pointer(::aura::application) pappTab;
 
-         if(Session.appptra().lookup("application:" + strId, pappTab))
+         if(psession->appptra().lookup("application:" + strId, pappTab))
          {
-            Session.m_pappCurrent = pappTab;
-            //Session.m_pappCurrent = pappTab;
+            psession->m_pappCurrent = pappTab;
+            //psession->m_pappCurrent = pappTab;
          }
          /*            __pointer(::simple_frame_window) pframeApp = dynamic_cast < __pointer(::simple_frame_window) > (m_pimpactdata->m_puserinteraction);
                   if(pframeApp != nullptr)
@@ -122,7 +122,7 @@ namespace userstack
       //   {
       ///*      __pointer(::user::interaction) pinteraction = m_pformOptions->ve_display_bandwidth");
       //      matter * pcheck = dynamic_cast < matter * > (puie);
-      //      if(Session.savings().save().has(::ca2::save_display_bandwidth))
+      //      if(psession->savings().save().has(::ca2::save_display_bandwidth))
       //      {
       //         pcheck->_001SetCheck(check_checked, false);
       //      }
@@ -174,7 +174,7 @@ namespace userstack
 
          __pointer(::aura::application) pappTab;
 
-         if(!Session.appptra().lookup("application:" + strId, pappTab))
+         if(!psession->appptra().lookup("application:" + strId, pappTab))
          {
 
             application_bias * papplicationbias = new application_bias;
@@ -205,13 +205,13 @@ namespace userstack
 
             pcreate->m_pcommandline->m_eventReady.ResetEvent();
 
-            Session.on_request(pcreate);
+            psession->on_request(pcreate);
 
             pcreate->m_pcommandline->m_eventReady.wait();
 
          }
 
-         __pointer(::aura::application) pappCurrent = Session.m_pappCurrent;
+         __pointer(::aura::application) pappCurrent = psession->m_pappCurrent;
 
          Application.appptra_add(pappCurrent);
 
@@ -221,7 +221,7 @@ namespace userstack
 
          ::user::tab_pane * ppane = (::user::tab_pane *) get_pane_by_id(pimpactdata->m_id);
 
-         pappCurrent = Session.m_pappCurrent;
+         pappCurrent = psession->m_pappCurrent;
 
          if(Sess(pappCurrent).file().exists(strIcon))
          {

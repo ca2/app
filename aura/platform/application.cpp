@@ -10,15 +10,6 @@
 int windows_desktop1_main(HINSTANCE hInstance, int nCmdShow);
 
 
-//#include "aura/node/_node.h"
-
-//#ifdef WINDOWS_DESKTOP
-//
-//#include "aura/os/windows/_.h"
-//
-//#endif
-
-
 extern ::app_core * g_pappcore;
 
 
@@ -31,29 +22,12 @@ extern "C"
 
 }
 
-//PFN_factory_exchange g_pfnfactoryDraw2d = nullptr;
-//
-//
-//PFN_factory_exchange get_draw2d_factory_exchange()
-//{
-//
-//   return g_pfnfactoryDraw2d;
-//
-//}
-
-
-//void set_draw2d_factory_exchange(PFN_factory_exchange pfnfactoryDraw2d)
-//{
-//
-//   g_pfnfactoryDraw2d = pfnfactoryDraw2d;
-//
-//}
-
-
 
 #ifdef WINDOWS_DESKTOP
 
+
 CLASS_DECL_ACME void windows_install_crash_dump_reporting(const string & strModuleNameWithTheExeExtension);
+
 
 #endif
 
@@ -368,7 +342,7 @@ namespace aura
 
       ::thread::install_message_routing(pchannel);
 
-      connect_command("app_exit", &application::_001OnAppExit);
+      //connect_command("app_exit", &application::_001OnAppExit);
       connect_command("switch_context_theme", &application::_001OnSwitchContextTheme);
 
    }
@@ -560,14 +534,14 @@ namespace aura
    //::estatus application::ui_message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, ::emessagebox emessagebox, ::callback callback)
    //{
 
-   //   if (!Session || !Session.userex())
+   //   if (!Session || !psession->userex())
    //   {
 
    //      return ::error_failed;
 
    //   }
 
-   //   return Session.userex()->ui_message_box(this, puiOwner, pszMessage, pszTitle, emessagebox, callback);
+   //   return psession->userex()->ui_message_box(this, puiOwner, pszMessage, pszTitle, emessagebox, callback);
 
    //}
 
@@ -575,14 +549,14 @@ namespace aura
    //::estatus application::ui_message_box_timeout(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, const ::duration& durationTimeout, ::emessagebox emessagebox, ::callback callback)
    //{
 
-   //   if (!Session || !Session.userex())
+   //   if (!Session || !psession->userex())
    //   {
 
    //      return ::error_failed;
 
    //   }
 
-   //   return Session.userex()->ui_message_box_timeout(this, puiOwner, pszMessage, pszTitle, durationTimeout, emessagebox, callback);
+   //   return psession->userex()->ui_message_box_timeout(this, puiOwner, pszMessage, pszTitle, durationTimeout, emessagebox, callback);
 
    //}
 
@@ -1071,7 +1045,7 @@ namespace aura
    //   else
    //   {
 
-   //      return Session.open_link(strLink, strProfile, strTarget);
+   //      return psession->open_link(strLink, strProfile, strTarget);
 
    //   }
 
@@ -1222,7 +1196,7 @@ namespace aura
    //   try
    //   {
 
-   //      Session.add_reference(this);
+   //      psession->add_reference(this);
 
    //   }
    //   catch (...)
@@ -1690,6 +1664,10 @@ namespace aura
    ::estatus application::initial_check_directrix()
    {
 
+      auto psession = Session;
+
+
+
       string strLicense = get_license_id();
 
       //var & varTopicQuey = System.m_varTopicQuery;
@@ -1720,7 +1698,7 @@ retry_license:
 
          iRetry--;
 
-         if (!Session.is_licensed(strLicense))
+         if (!psession->is_licensed(strLicense))
          {
 
             if (iRetry > 0)
@@ -3326,7 +3304,7 @@ retry_license:
 
    //  matter_locator_locale_schema_matter(stra, straMatterLocator, strLocale, strSchema);
 
-   //  ::apex::str_context * pcontext = Session.str_context();
+   //  ::apex::str_context * pcontext = psession->str_context();
 
    //  for (i32 i = 0; i < pcontext->localeschema().m_idaLocale.get_count(); i++)
    //  {
@@ -3676,7 +3654,7 @@ retry_license:
    //void application::interactive_credentials(::account::credentials * pcredentials)
    //{
 
-   //   Session.interactive_credentials(pcredentials);
+   //   psession->interactive_credentials(pcredentials);
 
    //}
 
@@ -3976,61 +3954,6 @@ retry_license:
    }
 
 
-   //bool application::set_keyboard_layout(const char * pszPath, const ::action_context & context)
-   //{
-
-   //   if(get_context_application()->get_context_session() == nullptr)
-   //   {
-
-   //      return false;
-
-   //   }
-
-   //   if(pszPath == nullptr)
-   //   {
-
-   //      if(is_set_ref(Session.keyboard().on_layout()))
-   //      {
-
-   //         //            if(Session.account()->m_puser != nullptr
-   //         //             && Session.account()->m_puser->m_strFontopusServerSessId.has_char())
-   //         //        {
-
-   //         // xxx data_set("keyboard_layout", keyboard().on_layout(::draw2d::graphics_pointer & pgraphics).m_strPath);
-
-   //         //      }
-
-   //         return true;
-   //      }
-
-   //      string strCurrentSystemLayout = Session.keyboard().get_current_system_layout();
-
-   //      if(strCurrentSystemLayout.is_empty())
-   //         return false;
-
-   //      if(!set_keyboard_layout(strCurrentSystemLayout,::source_database))
-   //         return false;
-
-   //      //         if(Session.account()->m_puser != nullptr
-   //      //          && Session.account()->m_puser->m_strFontopusServerSessId.has_char())
-   //      //     {
-
-   //      // xxx            data_set("keyboard_layout", keyboard().on_layout(::draw2d::graphics_pointer & pgraphics).m_strPath);
-
-   //      //   }
-
-   //      return true;
-   //   }
-
-   //   if(!Session.keyboard().load_layout(pszPath,context))
-   //      return false;
-
-   //   // xxx Application.simpledb().on_set_keyboard_layout(pszPath, context);
-
-   //   return true;
-   //}
-
-
    bool application::keyboard_focus_is_focusable(::user::primitive * pue)
    {
 
@@ -4052,15 +3975,15 @@ retry_license:
 
 #ifdef ANDROID
 
-      if (Session.m_puiHost != nullptr)
+      if (psession->m_puiHost != nullptr)
       {
 
-         if (Session.m_puiHost != nullptr)
+         if (psession->m_puiHost != nullptr)
          {
 
             sync_lock sl(::user::mutex_children());
 
-            return Session.m_puiHost->m_uiptraChild.get_child(pinteraction);
+            return psession->m_puiHost->m_uiptraChild.get_child(pinteraction);
 
          }
 
@@ -4068,11 +3991,13 @@ retry_license:
 
 #endif
 
-      sync_lock sl(&m_mutexFrame);
+      //sync_lock sl(&m_mutexFrame);
 
-      sync_lock slChildren(::user::mutex_children());
+      //sync_lock slChildren(::user::mutex_children2());
 
-      return m_puiptraFrame->get_child(pinteraction);
+      auto puiptraFrame = m_puiptraFrame;
+
+      return puiptraFrame->get_child(pinteraction);
 
    }
 
@@ -4082,7 +4007,11 @@ retry_license:
    void application::add_frame(::user::interaction * pwnd)
    {
 
-      if (pwnd == Session.m_puiHost)
+      auto psession = Session;
+
+
+
+      if (pwnd == psession->m_puiHost)
       {
 
          return;
@@ -4113,7 +4042,7 @@ retry_license:
          if (!(pwnd->m_ewindowflag & window_flag_satellite_window))
          {
 
-            Session.on_create_frame_window();
+            psession->on_create_frame_window();
 
          }
 
@@ -4124,14 +4053,18 @@ retry_license:
 
          }
 
-         if (Session.m_puiHost)
+         if (psession->m_puiHost)
          {
 
-            auto puiHost = __user_interaction(Session.m_puiHost);
+            auto puiHost = __user_interaction(psession->m_puiHost);
 
-            sync_lock sl(::user::mutex_children());
+            //
 
-            puiHost->m_uiptraChild.add_unique_interaction(pwnd);
+            auto puiptraChild = __new(::user::interaction_array(*puiHost->m_puiptraChild));
+
+            puiptraChild->add_unique_interaction(pwnd);
+
+            puiHost->m_puiptraChild = puiptraChild;
 
             //pwnd->set_need_redraw();
 
@@ -4655,7 +4588,7 @@ retry_license:
         // if(!is_session())
          //{
 
-           // return Session.translate_property_id(id);
+           // return psession->translate_property_id(id);
 
          //}
          //else
@@ -5035,12 +4968,12 @@ retry_license:
    //}
 
 
-   void application::_001CloseApplication()
-   {
+   //void application::_001CloseApplication()
+   //{
 
-      close(::apex::e_end_app);
+   //   close(::apex::e_end_app);
 
-   }
+   //}
 
 
    //bool application::process_exception(::exception_pointer pe)
@@ -5278,14 +5211,14 @@ retry_license:
 
    //   __pointer(::aura::application) papp;
 
-   //   papp = Session.m_applicationa.find_running_defer_try_quit_damaged(pszAppId);
+   //   papp = psession->m_applicationa.find_running_defer_try_quit_damaged(pszAppId);
 
    //   if(papp.is_null())
    //   {
 
    //      __pointer(::create) spcreate(e_create);
 
-   //      papp = Session.start_application(pszAppId,spcreate);
+   //      papp = psession->start_application(pszAppId,spcreate);
 
    //   }
 
@@ -5348,7 +5281,7 @@ retry_license:
 
       auto plocaleschema = __create_new < ::str::international::locale_schema >();
 
-      //Session.fill_locale_schema(localeschema);
+      //psession->fill_locale_schema(localeschema);
 
       bool bIgnoreStdStd = string(pszRoot) == "app" && (string(pszRelative) == "main" || string(pszRelative) == "bergedge");
 
@@ -7900,7 +7833,7 @@ namespace aura
             /*if (puiParent == nullptr && m_psession != nullptr && m_psession != nullptr
                   && !pcreate->m_bOuterPopupAlertLike && m_psession != dynamic_cast < session * > (this))
             {
-               puiParent = Session.get_request_parent_ui(pinteraction, pcreate);
+               puiParent = psession->get_request_parent_ui(pinteraction, pcreate);
             }*/
 
       return puiParent;
@@ -8270,7 +8203,7 @@ namespace aura
          if (is_false("session_start"))
          {
 
-            ::multithreading::set_finish(&System);
+            ::multithreading::finish(&System);
 
          }
 
@@ -8278,7 +8211,7 @@ namespace aura
       else
       {
 
-         ::multithreading::set_finish(&System);
+         ::multithreading::finish(&System);
 
       }
 
@@ -8317,7 +8250,7 @@ namespace aura
          if (is_false("session_start"))
          {
 
-            ::multithreading::set_finish(&System);
+            ::multithreading::finish(&System);
 
          }
 
@@ -8325,7 +8258,7 @@ namespace aura
       else
       {
 
-         ::multithreading::set_finish(&System);
+         ::multithreading::finish(&System);
 
       }
 
@@ -8353,7 +8286,7 @@ namespace aura
    //bool application::set_keyboard_layout(const char* pszPath, const ::action_context& context)
    //{
 
-   //   return Session.keyboard().load_layout(pszPath, context);
+   //   return psession->keyboard().load_layout(pszPath, context);
 
    //}
 
@@ -8453,7 +8386,9 @@ namespace aura
    void application::set_title(const char* pszTitle)
    {
 
-      Session.set_app_title(m_strAppName, pszTitle);
+      auto psession = Session;
+
+      psession->set_app_title(m_strAppName, pszTitle);
 
    }
 
@@ -8603,7 +8538,7 @@ namespace aura
    //   // keyboard on_layout
    //   //if(data_get("keyboard_layout",str) && str.has_char())
    //   {
-   //      // Session.set_keyboard_layout(str,::source_database);
+   //      // psession->set_keyboard_layout(str,::source_database);
    //   }
    //   //else
    //   {
@@ -8699,6 +8634,14 @@ namespace aura
    }
 
 
+   bool application::_001CanCloseApplication()
+   {
+
+      return true;
+
+   }
+
+
    bool application::on_close_frame_window(::user::frame* pframe)
    {
 
@@ -8708,9 +8651,7 @@ namespace aura
          if (GetVisibleTopLevelFrameCountExcept(pframe) <= 0)
          {
 
-            pframe->DestroyWindow();
-
-            _001CloseApplication();
+            _001TryCloseApplication();
 
          }
          else
@@ -9121,7 +9062,7 @@ namespace aura
               //   }
               //   try
               //   {
-              //      Session.remove_frame(pinteraction);
+              //      psession->remove_frame(pinteraction);
               //   }
               //   catch(...)
               //   {

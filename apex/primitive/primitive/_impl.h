@@ -1357,8 +1357,6 @@ inline ::estatus object::__release(__composite(BASE_TYPE) & pcomposite OBJ_REF_D
         if (m_pcompositea->remove(pcomposite.get()) >= 0)
         {
 
-           pcomposite->release(OBJ_REF_DBG_THIS);
-
            pcomposite.clear_member();
 
         }
@@ -1387,7 +1385,7 @@ inline ::estatus object::__release(__reference(BASE_TYPE) & preference OBJ_REF_D
         if (m_preferencea->remove(preference.get()) >= 0)
         {
 
-           preference->release(OBJ_REF_DBG_ARGS);
+           //preference->release(OBJ_REF_DBG_ARGS);
 
            preference.clear_member();
 

@@ -1294,7 +1294,7 @@ retry:
 
       string strUrl(pszUrl);
 
-      single_lock slFontopus(Session.account() ? Session.account()->mutex() : nullptr);
+      single_lock slFontopus(psession->account() ? psession->account()->mutex() : nullptr);
 
       string strIp;
 
@@ -1856,7 +1856,7 @@ retry_session:
          if (strSessId.has_char() && puser.is_set() && iRetrySession < 3)
          {
 
-            Session.account()->not_auth(pszUrl);
+            psession->account()->not_auth(pszUrl);
 
             iRetrySession++;
 
@@ -2316,7 +2316,7 @@ retry_session:
       else
       {
 
-         if(Session.get_auth("system/account/proxy_authenticate.xhtml", strUserName, strPassword))
+         if(psession->get_auth("system/account/proxy_authenticate.xhtml", strUserName, strPassword))
          {
             
             System.crypto().file_set(strUserNameFile, strUserName, nullptr, get_context_application());

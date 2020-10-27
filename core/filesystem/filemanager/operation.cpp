@@ -433,8 +433,10 @@ namespace filemanager
       return true;
    }
 
-   bool operation::finish()
+
+   bool operation::end()
    {
+
       switch(m_eoperation)
       {
       case operation_copy:

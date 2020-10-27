@@ -48,7 +48,7 @@ namespace uwp
 
       }
 
-      auto pdirectxapplication = Session.m_directxapplication;
+      auto pdirectxapplication = psession->m_directxapplication;
 
       m_directxapplication = pdirectxapplication;
 

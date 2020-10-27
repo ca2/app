@@ -107,10 +107,12 @@ namespace base
    void application::close(::apex::enum_end eend)
    {
 
-      if (Session.m_puser)
+      if (Session->m_puser)
       {
 
-         auto pdocumentmanager = User.document_manager();
+         auto puser = User;
+
+         auto pdocumentmanager = puser->document_manager();
 
          if (pdocumentmanager)
          {

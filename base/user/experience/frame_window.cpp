@@ -74,6 +74,8 @@ namespace experience
 
          SCAST_PTR(::message::key, pkey, pmessage);
 
+         auto psession = Session;
+
          if (pkey->userinteraction() == this)
          {
 
@@ -98,7 +100,7 @@ namespace experience
                   else if (pkey->m_ekey == ::user::key_return)
                   {
 
-                     if (Session.is_key_pressed(::user::key_control) && Session.is_key_pressed(::user::key_alt))
+                     if (psession->is_key_pressed(::user::key_control) && psession->is_key_pressed(::user::key_alt))
                      {
 
                         m_bFullScreenReturn = true;
@@ -139,7 +141,9 @@ namespace experience
                else if (pkey->m_ekey == ::user::key_alt || pkey->m_ekey == ::user::key_lalt || pkey->m_ekey == ::user::key_ralt)
                {
 
-                  if (layout().is_full_screen() && Session.is_key_pressed(::user::key_control) && !m_bFullScreenAlt && !m_bFullScreenCtrl)
+                  auto psession = Session;
+
+                  if (layout().is_full_screen() && psession->is_key_pressed(::user::key_control) && !m_bFullScreenAlt && !m_bFullScreenCtrl)
                   {
 
                      pkey->m_bRet = true;
@@ -168,7 +172,7 @@ namespace experience
                else if (pkey->m_ekey == ::user::key_control || pkey->m_ekey == ::user::key_lcontrol || pkey->m_ekey == ::user::key_rcontrol)
                {
 
-                  if (layout().is_full_screen() && Session.is_key_pressed(::user::key_alt) && !m_bFullScreenAlt && !m_bFullScreenCtrl)
+                  if (layout().is_full_screen() && psession->is_key_pressed(::user::key_alt) && !m_bFullScreenAlt && !m_bFullScreenCtrl)
                   {
 
                      pkey->m_bRet = true;
@@ -209,7 +213,9 @@ namespace experience
    ::experience::experience* frame_window::get_new_experience(const char* pszExperienceLibrary)
    {
 
-      return User.experience()->get_new_experience2(this, pszExperienceLibrary);
+      auto puser = User;
+
+      return puser->experience()->get_new_experience2(this, pszExperienceLibrary);
 
    }
 
@@ -217,7 +223,9 @@ namespace experience
    ::experience::experience* frame_window::get_experience(const char* pszExperienceLibrary)
    {
 
-      return User.experience()->get_experience2(this, pszExperienceLibrary);
+      auto puser = User;
+
+      return puser->experience()->get_experience2(this, pszExperienceLibrary);
 
    }
 
@@ -225,7 +233,9 @@ namespace experience
    ::experience::frame* frame_window::get_frame_experience(const char* pszExperienceLibrary, const char* pszFrame, const char* pszStyle)
    {
 
-      return User.experience()->experience_get_frame2(this, pszExperienceLibrary, pszFrame, pszStyle);
+      auto puser = User;
+
+      return puser->experience()->experience_get_frame2(this, pszExperienceLibrary, pszFrame, pszStyle);
 
    }
 
@@ -1743,7 +1753,9 @@ namespace experience
          if (bCursorPosition)
          {
 
-            pointCursor = Session.get_cursor_pos();
+            auto psession = Session;
+
+            pointCursor = psession->get_cursor_pos();
 
          }
 

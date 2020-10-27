@@ -23,12 +23,19 @@ task_pointer & task_pool::defer_start(const ::id& id, const ::method & method)
 
    auto& pthread = task(id);
 
-   auto estatus = __construct(pthread);
+   auto estatus = __defer_construct(pthread);
 
    if (!estatus)
    {
 
       pthread = __create_new < ::task >();
+
+   }
+
+   if (pthread->m_bitIsRunning)
+   {
+
+      return pthread;
 
    }
 

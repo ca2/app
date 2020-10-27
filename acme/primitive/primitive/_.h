@@ -28,6 +28,22 @@
 #include "acme/primitive/primitive/context_object.h"
 
 
+#if OBJ_REF_DBG
+
+
+template < typename TYPE, typename T >
+void ___assign(__pointer(TYPE) & ptr, T * p OBJ_REF_DBG_COMMA_PARAMS);
+
+template < typename TYPE >
+void ___release(__pointer(TYPE) & ptr OBJ_REF_DBG_COMMA_PARAMS);
+
+template < typename TYPE >
+void ___release(TYPE *& p OBJ_REF_DBG_COMMA_PARAMS);
+
+
+#endif
+
+
 //#include "acme/platform/update_item.h"
 
 
@@ -91,7 +107,7 @@
 
 
 //    // after posting quit to a child, the PARENT shouldn't matter it
-//    virtual void set_finish(::matter * pobjectParent);
+//    virtual void finish(::matter * pobjectParent);
 
 //    virtual ::count wait_quit(::matter * pobjectParent, const duration & duration);
 //    virtual ::count _wait_quit(::matter * pobjectParent);

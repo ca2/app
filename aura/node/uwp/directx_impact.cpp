@@ -325,7 +325,7 @@ namespace uwp
       if(m_strNewText.has_char())
       {
 
-         auto pfocusui = Session.get_focus_ui();
+         auto pfocusui = psession->get_focus_ui();
 
 
          if (pfocusui)
@@ -343,12 +343,12 @@ namespace uwp
 
             spbase = pkey;
 
-            bool bTextFocus = Session.get_focus_ui() != nullptr;
+            bool bTextFocus = psession->get_focus_ui() != nullptr;
 
             bool bSpecialKey = false;
 
             pkey->m_id = WM_KEYDOWN;
-            pkey->m_playeredUserPrimitive = Session.m_puiHost;
+            pkey->m_playeredUserPrimitive = psession->m_puiHost;
             pkey->m_nChar = 0;
             pkey->m_ekey = ::user::key_refer_to_text_member;
             pkey->m_wparam = pkey->m_nChar;
@@ -484,7 +484,7 @@ namespace uwp
    {
 
       m_bTextCompositionActive = false; 
-      auto pfocusui = Session.get_focus_ui();
+      auto pfocusui = psession->get_focus_ui();
 
       if (pfocusui)
       {

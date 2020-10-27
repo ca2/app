@@ -501,6 +501,9 @@ namespace user
       list * plist = m_plistctrlinterface;
       e_element eelement;
       index iItem;
+
+      auto psession = Session;
+
       if(hit_test(pointCursor, eelement, iItem))
       {
          if(!m_bTrack)
@@ -517,7 +520,7 @@ namespace user
          if(m_bTrack)
          {
             m_bTrack = false;
-            Session.ReleaseCapture();
+            psession->ReleaseCapture();
          }
          if(m_bHover)
          {
@@ -728,7 +731,7 @@ namespace user
 
          pgraphics->line_to(rectDivider.left, rectDivider.bottom);
 
-         //pgraphics->draw3d_rect(rectDivider, Session.get_default_color(COLOR_BTNSHADOW), Session.get_default_color(COLOR_BTNHIGHLIGHT));
+         //pgraphics->draw3d_rect(rectDivider, psession->get_default_color(COLOR_BTNSHADOW), psession->get_default_color(COLOR_BTNHIGHLIGHT));
 
       }
 

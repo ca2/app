@@ -108,12 +108,14 @@ namespace experience
 
       ::rect rectWork;
 
-      int iMonitor = (int)Session.get_best_monitor(screen, rectCursor);
+      auto psession = Session;
+
+      int iMonitor = (int)psession->get_best_monitor(screen, rectCursor);
 
       if (!m_mapWorkspaceRect.lookup(iMonitor, rectWork))
       {
 
-         Session.get_wkspace_rect(iMonitor, rectWork);
+         psession->get_wkspace_rect(iMonitor, rectWork);
 
          m_mapWorkspaceRect.set_at(iMonitor, rectWork);
 
@@ -388,7 +390,9 @@ namespace experience
 
             auto pointCursor = m_pframewindow->layout().sketch().origin() + (dock_button()->layout().parent_client_rect().origin() + m_pointCursorDockOrigin);
 
-            Session.set_cursor_pos(pointCursor);
+            auto psession = Session;
+
+            psession->set_cursor_pos(pointCursor);
 
          }
 
@@ -423,7 +427,9 @@ namespace experience
 
       pmouse->m_bRet = true;
 
-      __pointer(::user::interaction) puieCapture = Session.GetCapture();
+      auto psession = Session;
+
+      __pointer(::user::interaction) puieCapture = psession->GetCapture();
 
       if (puieCapture == nullptr)
       {
@@ -449,9 +455,11 @@ namespace experience
          if (puieCapture != nullptr && puieCapture == m_pframewindow)
          {
 
-            TRACE("dock_manager::message_handler oswindow ReleaseCapture %x\n", Session.GetCapture().m_p);
+            TRACE("dock_manager::message_handler oswindow ReleaseCapture %x\n", psession->GetCapture().m_p);
 
-            Session.ReleaseCapture();
+            auto psession = Session;
+
+            psession->ReleaseCapture();
 
          }
 
@@ -485,15 +493,15 @@ namespace experience
 
       }
 
-      TRACE("dock_manager::message_handler oswindow ReleaseCapture 2 %x\n", Session.GetCapture().m_p);
+      auto psession = Session;
+
+      TRACE("dock_manager::message_handler oswindow ReleaseCapture 2 %x\n", psession->GetCapture().m_p);
 
       m_bDocking = false;
 
       dock_window(pmouse);
 
-
-
-      Session.ReleaseCapture();
+      psession->ReleaseCapture();
 
       m_pframewindow->on_end_layout_experience(layout_experience_docking);
 

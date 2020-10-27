@@ -273,7 +273,7 @@ namespace sockets
                ipv4_address sa(get_context_application(), GetSocks4Host(), GetSocks4Port());
                {
                   string sockshost;
-                  Session.sockets().net().l2ip(GetSocks4Host(), sockshost);
+                  psession->sockets().net().l2ip(GetSocks4Host(), sockshost);
                   INFO(log_this, "open", 0, "Connecting to socks4 server @ " + sockshost + ":" + __str(GetSocks4Port()));
                }
                SetSocks4();
@@ -341,10 +341,10 @@ namespace sockets
 
       /*if (IsIpv6())
       {
-         if (!Handler().ResolverEnabled() || Session.sockets().net().isipv6(host) )
+         if (!Handler().ResolverEnabled() || psession->sockets().net().isipv6(host) )
          {
             in6_addr a;
-            if (!Session.sockets().net().u2ip(host, a))
+            if (!psession->sockets().net().u2ip(host, a))
             {
                SetCloseAndDelete();
                return false;
@@ -360,10 +360,10 @@ namespace sockets
          m_strHost = host;
          return true;
       }
-      if (!Handler().ResolverEnabled() || Session.sockets().net().isipv4(host) )
+      if (!Handler().ResolverEnabled() || psession->sockets().net().isipv4(host) )
       {
          ipaddr_t l;
-         if (!Session.sockets().net().u2ip(host, l))
+         if (!psession->sockets().net().u2ip(host, l))
          {
             SetCloseAndDelete();
             return false;

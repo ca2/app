@@ -621,7 +621,9 @@ namespace userex
 
       ::id id = idView;
 
-      ::user::impact_system * pimpactsystem = User.m_mapimpactsystem[idView];
+      auto puser = User;
+
+      ::user::impact_system * pimpactsystem = puser->m_mapimpactsystem[idView];
 
       if (pimpactsystem != nullptr)
       {
@@ -700,7 +702,9 @@ namespace userex
 
       Application.data_set("frame::" + idView.to_string() + ".visible", bShow);
 
-      User.will_use_view_hint(idView);
+      auto puser = User;
+
+      puser->will_use_view_hint(idView);
 
       if (!defer_create_view(idView))
       {

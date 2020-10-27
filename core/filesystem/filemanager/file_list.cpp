@@ -162,7 +162,9 @@ namespace filemanager
          else
          {
 
-            User.track_popup_xml_menu(this, filemanager_data()->m_strXmlPopup, 0, pcontextmenu->m_point);
+            auto puser = User;
+
+            puser->track_popup_xml_menu(this, filemanager_data()->m_strXmlPopup, 0, pcontextmenu->m_point);
 
          }
 
@@ -170,7 +172,9 @@ namespace filemanager
       else
       {
 
-         User.track_popup_xml_menu(this, filemanager_data()->m_strPopup, 0, pcontextmenu->m_point);
+         auto puser = User;
+
+         puser->track_popup_xml_menu(this, filemanager_data()->m_strPopup, 0, pcontextmenu->m_point);
 
       }
 
@@ -278,6 +282,8 @@ namespace filemanager
       if (ptimer->m_uEvent == 888888)
       {
 
+         auto psession = Session;
+
          if (filemanager_data()->m_bSetBergedgeTopicFile)
          {
 
@@ -286,19 +292,19 @@ namespace filemanager
             if (patha.is_empty())
             {
 
-               Session.m_varTopicFile.unset();
+               psession->m_varTopicFile.unset();
 
             }
             else if (patha.get_count() == 1)
             {
 
-               Session.m_varTopicFile = patha[0];
+               psession->m_varTopicFile = patha[0];
 
             }
             else
             {
 
-               Session.m_varTopicFile = (const string_array &) patha;
+               psession->m_varTopicFile = (const string_array &) patha;
 
             }
 
@@ -527,7 +533,9 @@ namespace filemanager
 
       auto patha = get_selected_final_path();
 
-      Session.copydesk().set_filea(patha, ::user::copydesk::op_copy);
+      auto psession = Session;
+
+      psession->copydesk().set_filea(patha, ::user::copydesk::op_copy);
 
       pmessage->m_bRet = true;
 
@@ -1256,8 +1264,10 @@ namespace filemanager
          pcolumn->m_uiText = "";
          pcolumn->m_datakey = "FILE_MANAGER_ID_FILE_NAME";
          pcolumn->m_bEditOnSecondClick = false;
-         pcolumn->m_pil = User.shell()->GetImageList(filemanager_data()->m_iIconSize);
-         pcolumn->m_pilHover = User.shell()->GetImageListHover(filemanager_data()->m_iIconSize);
+         auto puser = User;
+
+         pcolumn->m_pil = puser->shell()->GetImageList(filemanager_data()->m_iIconSize);
+         pcolumn->m_pilHover = puser->shell()->GetImageListHover(filemanager_data()->m_iIconSize);
          pcolumn->m_iSubItem = m_iSelectionSubItem;
          i++;
       }
@@ -1312,8 +1322,11 @@ namespace filemanager
          pcolumn->m_datakey = "FILE_MANAGER_ID_FILE_NAME";
          pcolumn->m_bEditOnSecondClick = true;
          int iIconSize = filemanager_data()->m_iIconSize;
-         pcolumn->m_pil = User.shell()->GetImageList(iIconSize);
-         pcolumn->m_pilHover = User.shell()->GetImageListHover(iIconSize);
+
+         auto puser = User; 
+
+         pcolumn->m_pil = puser->shell()->GetImageList(iIconSize);
+         pcolumn->m_pilHover = puser->shell()->GetImageListHover(iIconSize);
 
 
       }
@@ -1717,7 +1730,9 @@ namespace filemanager
       if (i == 0)
       {
 
-         return   User.shell()->GetImageList(filemanager_data()->m_iIconSize);
+         auto puser = User;
+
+         return puser->shell()->GetImageList(filemanager_data()->m_iIconSize);
 
       }
 
@@ -1986,10 +2001,10 @@ namespace filemanager
 
                sync_lock sl(mutex_draw());
 
-               if (filemanager_data()->m_pholderFileList->m_uiptraChild.has_interaction())
+               if (filemanager_data()->m_pholderFileList->m_puiptraChild->has_interaction())
                {
 
-                  filemanager_data()->m_pholderFileList->m_uiptraChild.interaction_at(0)->display(display_none);
+                  filemanager_data()->m_pholderFileList->m_puiptraChild->interaction_at(0)->display(display_none);
 
                }
 

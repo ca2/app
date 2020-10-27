@@ -193,7 +193,9 @@ namespace experience
 
          m_bMoving = false;
 
-         Session.ReleaseCapture();
+         auto psession = Session;
+
+         psession->ReleaseCapture();
 
          if (!consider_move())
          {
@@ -220,7 +222,7 @@ namespace experience
 
                   pmouse->m_point = -m_pointWindowOrigin + rectRequest.top_left() + m_pointCursorOrigin;
 
-                  Session.set_cursor_pos(pmouse->m_point);
+                  psession->set_cursor_pos(pmouse->m_point);
 
                }
 

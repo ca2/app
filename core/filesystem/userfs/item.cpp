@@ -91,13 +91,17 @@ namespace userfs
       if(m_ptree->is_selected(this))
       {
 
-         return User.shell()->get_file_image(m_filepathFinal, ::user::shell::file_attribute_directory, ::user::shell::icon_open);
+         auto puser = User;
+
+         return puser->shell()->get_file_image(m_filepathFinal, ::user::shell::file_attribute_directory, ::user::shell::icon_open);
 
       }
       else
       {
 
-         return User.shell()->get_file_image(m_filepathFinal, ::user::shell::file_attribute_directory, ::user::shell::icon_normal);
+         auto puser = User;
+
+         return puser->shell()->get_file_image(m_filepathFinal, ::user::shell::file_attribute_directory, ::user::shell::icon_normal);
 
       }
 

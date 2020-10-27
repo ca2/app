@@ -130,7 +130,7 @@ namespace userpresence
    void department::_001OnTimer(::timer * ptimer)
    {
 
-      if(Session.account()->get_user() != nullptr)
+      if(psession->account()->get_user() != nullptr)
       {
 
          if(m_ppresence.is_set())

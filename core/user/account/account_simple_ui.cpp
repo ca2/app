@@ -187,7 +187,9 @@ namespace account
 
       m_pcredentials->m_iPasswordOriginalLength = -1;
 
-      ::user::interaction * puiParent = Session.value("plugin_parent").cast < ::user::interaction >();
+      auto psession = Session;
+
+      ::user::interaction * puiParent = psession->value("plugin_parent").cast < ::user::interaction >();
 
       ::rect rectDesktop;
 
@@ -200,7 +202,7 @@ namespace account
       else if (IsRectEmpty(&rectParam))
       {
 
-         Session.get_main_monitor(rectDesktop);
+         psession->get_main_monitor(rectDesktop);
 
       }
       else
@@ -382,7 +384,7 @@ namespace account
             else
             {
 
-               Session.get_main_monitor(rectDesktop);
+               psession->get_main_monitor(rectDesktop);
 
             }
 

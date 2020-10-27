@@ -178,9 +178,11 @@ namespace user
 //
       {
 
-         sync_lock sl(mutex_children());
+        // sync_lock sl(mutex_children());
 
-         m_uiptraChild.interactiona().remove_all();
+         // m_uiptraChild.interactiona().remove_all();
+
+         m_puiptraChild.release();
 
       }
 
@@ -588,7 +590,9 @@ namespace user
       if (!m_bPositionHint)
       {
 
-         Session.get_cursor_pos(m_pointPositionHint);
+         auto psession = Session;
+
+         psession->get_cursor_pos(m_pointPositionHint);
 
       }
 
@@ -788,7 +792,9 @@ namespace user
 
       ::rect rectMonitor;
 
-      if (Session.get_best_monitor(rectMonitor, rectWindow) >= 0)
+      auto psession = Session;
+
+      if (psession->get_best_monitor(rectMonitor, rectWindow) >= 0)
       {
 
          rectMonitor.deflate(16, 16);
@@ -1351,7 +1357,8 @@ namespace user
 
          }
 
-         DestroyWindow();
+         //DestroyWindow();
+         finish();
 
       }
 
@@ -1523,7 +1530,9 @@ namespace user
 
       auto pstyle = get_style(pgraphics);
 
-      auto pinteraction = User.create_menu_button(pstyle, pitem);
+      auto puser = User;
+
+      auto pinteraction = puser->create_menu_button(pstyle, pitem);
 
       if (!pinteraction)
       {

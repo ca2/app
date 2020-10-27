@@ -9,7 +9,6 @@ namespace http
    {
 
       m_pcookies     = nullptr;
-      //m_puser        = nullptr;
       m_estatusRet   = ::success_none;
 
    }

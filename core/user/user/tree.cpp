@@ -212,7 +212,9 @@ namespace user
          //pgraphics->fill_rect(rectClient, m_colorTreeBackground);
 
 
-         auto pointCursor=      Session.get_cursor_pos();
+         auto psession = Session;
+
+         auto pointCursor=      psession->get_cursor_pos();
 
          DWORD dwHoverIn = 384;
          DWORD dwHoverOut = 1284;
@@ -418,7 +420,7 @@ namespace user
 
       //TRACE("(1)TreeItemElapsed %d", tick.elapsed());
 
-      //      ::aura::savings & savings = Session.savings();
+      //      ::aura::savings & savings = psession->savings();
 
       if (bHover) // selected
       {
@@ -431,7 +433,7 @@ namespace user
       if(bSelected) // selected
       {
 
-         //if(Session.savings().is_trying_to_save(::e_resource_processing))
+         //if(psession->savings().is_trying_to_save(::e_resource_processing))
          //{
 
             data.m_pdc->fill_rect(data.m_rect, ARGB(127, 96,96,96));
@@ -1146,7 +1148,9 @@ namespace user
 
       m_pitemFirstVisible = CalcFirstVisibleItem(m_iFirstVisibleItemProperIndex);
 
-      update_hover(Session.get_cursor_pos());
+      auto psession = Session;
+
+      update_hover(psession->get_cursor_pos());
 
       set_need_redraw();
 
@@ -1243,7 +1247,9 @@ namespace user
    void tree::update_tree_hover()
    {
 
-      auto point = Session.get_cursor_pos();
+      auto psession = Session;
+
+      auto point = psession->get_cursor_pos();
 
       update_tree_hover(point);
 

@@ -493,7 +493,7 @@ namespace http
 //      else
 //      {
 //
-//         strFontopusServer = Session.account()->authenticator()->get_account_server(pszUrl);
+//         strFontopusServer = psession->account()->authenticator()->get_account_server(pszUrl);
 //
 //      }
 //

@@ -1006,13 +1006,13 @@ namespace axis
 //         try
 //         {
 //
-//            if (Session.appptra().get_count() <= 1)
+//            if (psession->appptra().get_count() <= 1)
 //            {
 //
 //               if (System.thread::get_os_data() != nullptr)
 //               {
 //
-//                  ::multithreading::set_finish(&System);
+//                  ::multithreading::finish(&System);
 //
 //               }
 //
@@ -1671,7 +1671,9 @@ namespace axis
    void application::interactive_credentials(::account::credentials * pcredentials)
    {
 
-      Session.interactive_credentials(pcredentials);
+      auto psession = Session;
+
+      psession->interactive_credentials(pcredentials);
 
    }
 
@@ -1686,7 +1688,9 @@ namespace axis
 
       }
 
-      return Session.get_user(pathUrl, bFetch, bInteractive);
+      auto psession = Session;
+
+      return psession->get_user(pathUrl, bFetch, bInteractive);
 
    }
 
@@ -1946,14 +1950,14 @@ namespace axis
 
    //   __pointer(::aura::application) papp;
 
-   //   papp = Session.m_applicationa.find_running_defer_try_quit_damaged(pszAppId);
+   //   papp = psession->m_applicationa.find_running_defer_try_quit_damaged(pszAppId);
 
    //   if(papp.is_null())
    //   {
 
    //      __pointer(::create) spcreate(e_create);
 
-   //      papp = Session.start_application(pszAppId,spcreate);
+   //      papp = psession->start_application(pszAppId,spcreate);
 
    //   }
 
@@ -2165,7 +2169,9 @@ namespace axis
 
       }
 
-      if (Session.account() == nullptr)
+      auto psession = Session;
+
+      if (psession->account() == nullptr)
       {
 
          return false;

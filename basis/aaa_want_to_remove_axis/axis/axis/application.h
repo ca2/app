@@ -228,7 +228,7 @@ namespace axis
 
 
 
-      //inline ::html::html * html() { return User.m_phtml; }
+      //inline ::html::html * html() { return puser->m_phtml; }
 
       //virtual ::html::html * create_html();
 

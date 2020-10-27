@@ -124,7 +124,9 @@ namespace filemanager
 
       SCAST_PTR(::user::command,pcommand,pmessage);
 
-      pcommand->enable(Session.copydesk().has_filea());
+      auto psession = Session;
+         
+      pcommand->enable(psession->copydesk().has_filea());
 
       pmessage->m_bRet = true;
 
@@ -140,7 +142,9 @@ namespace filemanager
 
       ::user::copydesk::e_op eop;
 
-      if(!Session.copydesk().get_filea(listing, eop) || listing.is_empty())
+      auto psession = Session;
+
+      if(!psession->copydesk().get_filea(listing, eop) || listing.is_empty())
       {
 
          pmessage->m_bRet = true;

@@ -486,7 +486,7 @@ namespace browser
       if (!m_bFirstDone)
       {
 
-         if (Session.savings().is_trying_to_save(::e_resource_display_bandwidth))
+         if (psession->savings().is_trying_to_save(::e_resource_display_bandwidth))
          {
 
             Sleep(47);
@@ -595,7 +595,7 @@ namespace browser
 
       }
 
-      if (!Session.savings().is_trying_to_save(::e_resource_display_bandwidth))
+      if (!psession->savings().is_trying_to_save(::e_resource_display_bandwidth))
       {
 
          //m_pimageTemplate->set_rgb_pre_alpha(ca->m_iR,ca->m_iG,ca->m_iB, 140 + 220 * r);
@@ -620,7 +620,7 @@ namespace browser
 
       pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
 
-      if (Session.savings().is_trying_to_save(::e_resource_display_bandwidth))
+      if (psession->savings().is_trying_to_save(::e_resource_display_bandwidth))
       {
 
          brushText->create_solid(A_RGB(255, ca));
@@ -781,7 +781,7 @@ namespace browser
 
          sync_lock slDib(&m_mutexDib);
 
-         if (!Session.savings().is_trying_to_save(::e_resource_display_bandwidth))
+         if (!psession->savings().is_trying_to_save(::e_resource_display_bandwidth))
          {
 
             int iBlur = 5;
@@ -829,7 +829,7 @@ namespace browser
 
             }
 
-            if (!Session.savings().is_trying_to_save(::e_resource_display_bandwidth))
+            if (!psession->savings().is_trying_to_save(::e_resource_display_bandwidth))
             {
 
 /*               m_pimage->channel_copy(::color::channel_alpha, ::color::channel_green);
@@ -850,7 +850,7 @@ namespace browser
 
       pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
 
-      if (Session.savings().is_trying_to_save(::e_resource_display_bandwidth))
+      if (psession->savings().is_trying_to_save(::e_resource_display_bandwidth))
       {
 
          brushText->create_solid(A_RGB(255, ca));

@@ -309,7 +309,7 @@ namespace uwp
       if(m_strNewText.has_char())
       {
 
-         auto pfocusui = Session.get_focus_ui();
+         auto pfocusui = psession->get_focus_ui();
 
 
          if (pfocusui)
@@ -469,7 +469,7 @@ namespace uwp
    {
 
       m_bTextCompositionActive = false; 
-      auto pfocusui = Session.get_focus_ui();
+      auto pfocusui = psession->get_focus_ui();
 
       if (pfocusui)
       {

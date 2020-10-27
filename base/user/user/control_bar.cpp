@@ -231,7 +231,9 @@ namespace user
       UNREFERENCED_PARAMETER(ptimer);
 //      UINT uEvent = ptimer->m_uEvent;
 #ifdef WINDOWS_DESKTOP
-      if (Session.is_key_pressed(::user::key_lbutton))
+      auto psession = Session;
+
+      if (psession->is_key_pressed(::user::key_lbutton))
          return;
 #else
       __throw(todo());

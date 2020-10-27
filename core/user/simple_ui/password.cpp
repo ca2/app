@@ -71,8 +71,8 @@ namespace simple_ui
 
       }
 
-      /*else if(!Session.savings().is_trying_to_save(::e_resource_processing)
-      && !Session.savings().is_trying_to_save(::e_resource_blur_background))
+      /*else if(!psession->savings().is_trying_to_save(::e_resource_processing)
+      && !psession->savings().is_trying_to_save(::e_resource_blur_background))
       {
 
       pgraphics->blur(true, 4, rectClient);

@@ -133,7 +133,7 @@ namespace user
    };
 
 
-   CLASS_DECL_AURA::mutex* mutex_children();
+   //CLASS_DECL_AURA::mutex* mutex_children2();
 
 
 
@@ -716,8 +716,9 @@ typedef struct _AppIndicator AppIndicator;
 
 #include "user.h"
 
-#define Usr(pobject) (*Sess(pobject).user())
-#define User (Usr(get_context()))
+
+#define Usr(pobject) (Sess(pobject)->user())
+#define User (Usr(get_context_session()))
 
 
 

@@ -1077,7 +1077,7 @@ namespace android
          {
             try
             {
-               Session.set_key_pressed(pkey->m_ekey,true);
+               psession->set_key_pressed(pkey->m_ekey,true);
             }
             catch(...)
             {
@@ -1087,7 +1087,7 @@ namespace android
          {
             try
             {
-               Session.set_key_pressed(pkey->m_ekey,false);
+               psession->set_key_pressed(pkey->m_ekey,false);
             }
             catch(...)
             {
@@ -1140,7 +1140,7 @@ namespace android
          //::GetWindowPlacement(get_handle(),&wp);
          //bool bZoomed = ::IsZoomed(get_handle()) != FALSE;
          //bool bIconic = ::IsIconic(get_handle()) != FALSE;
-         Session.m_puiLastLButtonDown = m_puserinteraction;
+         psession->m_puiLastLButtonDown = m_puserinteraction;
       }
       /*      else if(pbase->m_id == CA2M_BERGEDGE)
       {
@@ -1177,7 +1177,7 @@ namespace android
 
          message::mouse * pmouse = (::message::mouse *) pmessage;
 
-         Session.on_ui_mouse_message(pmouse);
+         psession->on_ui_mouse_message(pmouse);
 
          if(m_bTranslateMouseMessageCursor && !pmouse->m_bTranslated)
          {
@@ -1271,7 +1271,7 @@ namespace android
 
          message::key * pkey = (::message::key *) pmessage;
 
-         __pointer(::user::interaction) puiFocus = Session.get_keyboard_focus();
+         __pointer(::user::interaction) puiFocus = psession->get_keyboard_focus();
 
          if(puiFocus != nullptr && puiFocus->is_window() && puiFocus != m_puserinteraction)
          {
@@ -4009,8 +4009,8 @@ namespace android
    void interaction_impl::_001OnSetCursor(::message::message * pmessage)
    {
       SCAST_PTR(::message::base, pbase, pmessage);
-      if (Session.get_cursor() != nullptr
-            && Session.get_cursor()->m_ecursor != ::cursor_system)
+      if (psession->get_cursor() != nullptr
+            && psession->get_cursor()->m_ecursor != ::cursor_system)
       {
 
          __throw(not_implemented());

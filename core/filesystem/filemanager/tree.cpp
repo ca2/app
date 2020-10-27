@@ -44,7 +44,9 @@ namespace filemanager
 
       m_iAnimate = 0;
 
-      __compose(m_pimagelist, User.shell()->GetImageList(16));
+      auto puser = User;
+
+      __compose(m_pimagelist, puser->shell()->GetImageList(16));
 
       return estatus;
 
@@ -426,7 +428,9 @@ namespace filemanager
 
       set_viewport_offset(pointOffset.x, pointOffset.y);
 
-      __compose(m_pimagelist, User.shell()->GetImageList(filemanager_data()->m_iIconSize));;
+      auto puser = User;
+
+      __compose(m_pimagelist, puser->shell()->GetImageList(filemanager_data()->m_iIconSize));;
 
       m_usertreea.pred_each([](auto & ptree)
       {

@@ -74,8 +74,10 @@ void imm_client::_011OnChar(::message::message * pmessage)
    if (pbase->m_id == WM_CHAR)
    {
 
-      if (Session.is_key_pressed(::user::key_control)
-         || Session.is_key_pressed(::user::key_alt))
+      auto psession = Session;
+
+      if (psession->is_key_pressed(::user::key_control)
+         || psession->is_key_pressed(::user::key_alt))
       {
 
          return;
@@ -486,6 +488,14 @@ void imm_client::_001OnKeyDown(::message::message * pmessage)
    }
 
 #endif
+
+}
+
+
+void imm_client::on_text_composition_done()
+{
+
+   m_bImeCandidateOpened = false;
 
 }
 

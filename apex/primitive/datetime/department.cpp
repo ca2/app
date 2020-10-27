@@ -16,7 +16,9 @@ namespace datetime
 
       int iPathCount;
 
-      return ::datetime::time(strtotime(Session.str_context(), str, 0, iPathCount));
+      auto psession = Session;
+
+      return ::datetime::time(strtotime(psession->str_context(), str, 0, iPathCount));
 
    }
 
@@ -26,7 +28,9 @@ namespace datetime
 
       int iPathCount;
 
-      return ::datetime::time(gmt_strtotime(Session.str_context(), str, 0, iPathCount));
+      auto psession = Session;
+
+      return ::datetime::time(gmt_strtotime(psession->str_context(), str, 0, iPathCount));
 
    }
 

@@ -197,7 +197,30 @@ namespace user
       if(m_pmenuitem != nullptr)
       {
 
-         uiImage = User.menu()->command_image(m_pmenuitem->m_id);
+         auto psession = Sess(get_context_session());
+
+         auto paurauser = psession->user();
+
+         if (paurauser)
+         {
+
+            auto puser = paurauser->m_pbaseuser;
+
+            if (puser)
+            {
+
+               auto pmenu = puser->menu();
+
+               if (pmenu)
+               {
+
+                  uiImage = pmenu->command_image(m_pmenuitem->m_id);
+
+               }
+
+            }
+
+         }
 
       }
 
@@ -211,32 +234,58 @@ namespace user
          rectImageBorder.inflate(2, 2);
          ::image_list::info ii;
          __pointer(image_list) pimagelist;
-         if(!is_window_enabled())
-         {
-            pimagelist = User.menu()->MenuV033GetImageListHueLight();
-         }
-         else
-         {
-            pimagelist = User.menu()->MenuV033GetImageList();
-         }
 
-         pimagelist->get_image_info(uiImage, &ii);
+         auto puser = User;
 
-         ::rect & rectImageInfo(ii.m_rect);
-         rectImage.offset(1, 1);
-         rectImage.top     = rectImage.bottom - rectImageInfo.height();
-         rectImage.right   = rectImage.left + rectImageInfo.width();
-
-         if(echeck() == ::check_checked)
+         if (puser)
          {
 
-            pgraphics->fill_rect(rectImageBorder, RGB(127, 127, 127));
+            auto pmenu = puser->menu();
 
-            pgraphics->draw_3drect(rectImageBorder, Session.get_default_color(COLOR_3DSHADOW), Session.get_default_color(COLOR_3DHILIGHT));
+            if (pmenu)
+            {
+
+               if (!is_window_enabled())
+               {
+
+                  pimagelist = pmenu->MenuV033GetImageListHueLight();
+
+               }
+               else
+               {
+
+                  pimagelist = pmenu->MenuV033GetImageList();
+
+               }
+
+            }
 
          }
 
-         pimagelist->draw(pgraphics, uiImage, rectImage.top_left(), 0);
+         if (pimagelist)
+         {
+
+            pimagelist->get_image_info(uiImage, &ii);
+
+            ::rect & rectImageInfo(ii.m_rect);
+            rectImage.offset(1, 1);
+            rectImage.top = rectImage.bottom - rectImageInfo.height();
+            rectImage.right = rectImage.left + rectImageInfo.width();
+
+            if (echeck() == ::check_checked)
+            {
+
+               pgraphics->fill_rect(rectImageBorder, RGB(127, 127, 127));
+
+               auto psession = Session;
+
+               pgraphics->draw_3drect(rectImageBorder, psession->get_default_color(COLOR_3DSHADOW), psession->get_default_color(COLOR_3DHILIGHT));
+
+            }
+
+            pimagelist->draw(pgraphics, uiImage, rectImage.top_left(), 0);
+
+         }
 
       }
       else
@@ -244,7 +293,12 @@ namespace user
 
          auto pstyle = get_style(pgraphics);
 
-         pstyle->draw_check(get_echeck(), m_rectCheckBox, pgraphics);
+         if (pstyle)
+         {
+
+            pstyle->draw_check(get_echeck(), m_rectCheckBox, pgraphics);
+
+         }
 
       }
 

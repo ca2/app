@@ -43,6 +43,27 @@ void context_object::finalize()
 }
 
 
+::context_object * context_object::_get_context_object()
+{
+
+   return this;
+
+}
+
+
+void context_object::notify_on_finish(::context_object * pcontextobject)
+{
+
+   if (finish_bit())
+   {
+
+      on_finish();
+
+   }
+
+}
+
+
 void context_object::set_context_object(::layered * pobjectContext  OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
@@ -51,10 +72,36 @@ void context_object::set_context_object(::layered * pobjectContext  OBJ_REF_DBG_
 }
 
 
-void context_object::set_finish()
+::estatus context_object::finish()
 {
 
-   finalize();
+   return ::matter::finish();
+
+}
+
+
+void context_object::on_finish()
+{
+
+   sync_lock sl(mutex());
+
+   if (m_pnotifya)
+   {
+
+      auto pnotifya = m_pnotifya;
+
+      m_pnotifya.release();
+
+      for (auto & pmatter : *pnotifya)
+      {
+
+         pmatter->notify_on_finish(this);
+
+      }
+
+   }
+
+   layered::on_finish();
 
 }
 
@@ -67,20 +114,12 @@ void context_object::set_finish()
 }
 
 
-
-
 ::estatus context_object::run()
 {
 
    return ::success;
 
 }
-
-
-
-
-
-
 
 
 class debug_test_reference :

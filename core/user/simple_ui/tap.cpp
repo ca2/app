@@ -179,7 +179,9 @@ namespace simple_ui
 
       ::point pointCursor;
 
-      Session.get_cursor_pos(&pointCursor);
+      auto psession = Session;
+
+      psession->get_cursor_pos(&pointCursor);
 
       bool bHover = rectWindow.contains(pointCursor);
 

@@ -55,7 +55,7 @@ namespace sphere
 
       initialize_bergedge_application_interface();
 
-      //User.filemanager()->m_strLevelUp = "levelup";
+      //puser->filemanager()->m_strLevelUp = "levelup";
 
       SetRegistryKey("ca2core");
 
@@ -786,7 +786,7 @@ namespace sphere
 
       appptra_add(papp);
 
-      Session.appptra_add(papp);
+      psession->appptra_add(papp);
 
       return papp;
 

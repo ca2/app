@@ -94,7 +94,7 @@ namespace userstack
    void view::on_apply(::action * paction)
    {
 
-      UNREFERENCED_PARAMETER(pupdate);
+      UNREFERENCED_PARAMETER(paction);
 
    }
 
@@ -165,7 +165,7 @@ namespace userstack
 /*      m_pimage_veriwell = load_matter_image("veriwell_2008_green_h49.png");
 /*      m_pimage_winactionarea = load_matter_image("winactionarea.png");
 
-      if(!Session.m_bShowPlatform)
+      if(!psession->m_bShowPlatform)
       {
          return;
       }
@@ -235,7 +235,7 @@ namespace userstack
       }
       else if(ptimer->m_uEvent == 888888)
       {
-         Session.check_topic_file_change();
+         psession->check_topic_file_change();
       }
 
    }

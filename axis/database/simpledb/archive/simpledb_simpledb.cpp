@@ -241,7 +241,7 @@ namespace simpledb
       if(context.is_user_source())
       {
 
-         if(Session.get_user() != nullptr)
+         if(psession->get_user() != nullptr)
          {
 
             data_set("keyboard_layout", pszPath);

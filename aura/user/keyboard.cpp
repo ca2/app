@@ -480,11 +480,11 @@ namespace user
 
    //   pkey->m_iCode = (int)(pkey->m_ekey);
 
-   //   if(Session.is_key_pressed(::user::key_shift))
+   //   if(psession->is_key_pressed(::user::key_shift))
    //   {
    //      pkey->m_iCode |= 0x80000000;
    //   }
-   //   if(Session.is_key_pressed(::user::key_ralt))
+   //   if(psession->is_key_pressed(::user::key_ralt))
    //   {
    //      pkey->m_iCode |= 0x40000000;
    //   }
@@ -507,11 +507,11 @@ namespace user
 
    //   int iCode = (int) (ekey);
 
-   //   if(Session.is_key_pressed(::user::key_shift))
+   //   if(psession->is_key_pressed(::user::key_shift))
    //   {
    //      iCode |= 0x80000000;
    //   }
-   //   if(Session.is_key_pressed(::user::key_ralt))
+   //   if(psession->is_key_pressed(::user::key_ralt))
    //   {
    //      iCode |= 0x40000000;
    //   }

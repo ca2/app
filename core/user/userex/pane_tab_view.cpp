@@ -440,7 +440,9 @@ namespace userex
 
          pimpactdata->m_eflag.add(::user::flag_modifier_impact);
 
-         User.will_use_view_hint(FONTSEL_IMPACT);
+         auto puser = User;
+
+         puser->will_use_view_hint(FONTSEL_IMPACT);
 
          //auto pcreate = __new(create(this));
 
@@ -452,8 +454,8 @@ namespace userex
 
          //pcreate->m_pusercreate
 
-//         auto pdocument = User.m_mapimpactsystem[FONTSEL_IMPACT]->do_request(get_context_application(), ::e_type_null, false, pimpactdata->m_pplaceholder);
-         auto pdocument = User.m_mapimpactsystem[FONTSEL_IMPACT]->open_document_file(get_context_application(), ::e_type_null, __visible(true), pimpactdata->m_pplaceholder);
+//         auto pdocument = puser->m_mapimpactsystem[FONTSEL_IMPACT]->do_request(get_context_application(), ::e_type_null, false, pimpactdata->m_pplaceholder);
+         auto pdocument = puser->m_mapimpactsystem[FONTSEL_IMPACT]->open_document_file(get_context_application(), ::e_type_null, __visible(true), pimpactdata->m_pplaceholder);
 
          m_pfontview = pdocument->get_typed_view < font_view >();
 
@@ -469,11 +471,11 @@ namespace userex
 
          pimpactdata->m_eflag.add(::user::flag_modifier_impact);
 
-         User.will_use_view_hint(COLORSEL_IMPACT);
+         auto puser = User;
 
-         auto & userex = User;
+         puser->will_use_view_hint(COLORSEL_IMPACT);
 
-         auto pimpactsystem = userex.m_mapimpactsystem[COLORSEL_IMPACT];
+         auto pimpactsystem = puser->m_mapimpactsystem[COLORSEL_IMPACT];
 
          auto pdocument = pimpactsystem->open_document_file(get_context_application(), ::e_type_null, __visible(false), pimpactdata->m_pplaceholder);
 
@@ -494,7 +496,9 @@ namespace userex
          if (pfilemanagerdata.is_null())
          {
 
-            pfilemanagerdata = User.filemanager(pimpactdata->m_id);
+            auto puser = User;
+
+            pfilemanagerdata = puser->filemanager(pimpactdata->m_id);
 
          }
 
@@ -555,9 +559,11 @@ namespace userex
 
          }
 
-         User.filemanager(pimpactdata->m_id)->open();
+         auto puser = User;
 
-         __pointer(::filemanager::document) pdocument = User.filemanager(pimpactdata->m_id)->m_pdocument;
+         puser->filemanager(pimpactdata->m_id)->open();
+
+         __pointer(::filemanager::document) pdocument = puser->filemanager(pimpactdata->m_id)->m_pdocument;
 
          if(pdocument != nullptr)
          {
@@ -591,7 +597,7 @@ namespace userex
       //   cc->m_bMakeVisible               = true;
       //   cc->m_puserinteractionParent                  = pimpactdata->m_pplaceholder;
 
-      //   __pointer(::filemanager::document) pmanager = User.filemanager()->open(get_context_application(), -1, cc);
+      //   __pointer(::filemanager::document) pmanager = puser->filemanager()->open(get_context_application(), -1, cc);
 
       //   if(pmanager != nullptr)
       //   {
@@ -631,7 +637,9 @@ namespace userex
          if (::str::begins_ci(pimpactdata->m_id.m_psz, "form_"))
          {
 
-            __pointer(form_document) pdocument = User.create_child_form(this, this, pimpactdata->m_pplaceholder);
+            auto puser = User;
+
+            __pointer(form_document) pdocument = puser->create_child_form(this, this, pimpactdata->m_pplaceholder);
 
             if (pdocument.is_set())
             {
@@ -785,7 +793,9 @@ namespace userex
 
       value("app_options_title") = get_pane_by_id(pimpactdata->m_id)->get_title();
 
-      m_pdocAppOptions = User.create_child_form(this, this, pimpactdata->m_pplaceholder, strAppOptions);
+      auto puser = User;
+
+      m_pdocAppOptions = puser->create_child_form(this, this, pimpactdata->m_pplaceholder, strAppOptions);
 
       return true;
 

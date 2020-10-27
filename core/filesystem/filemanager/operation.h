@@ -51,7 +51,7 @@ namespace filemanager
       virtual bool start();
       virtual bool step();
       //   virtual bool mark();
-      virtual bool finish();
+      virtual bool end();
       virtual bool make_duplicate_name(::file::path & str,const ::file::path & psz);
 
 

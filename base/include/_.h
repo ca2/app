@@ -23,7 +23,7 @@
 
 
 #define Sys(pobject) (*pobject->get_context_system()->m_pbasesystem)
-#define Sess(pobject) (*pobject->get_context_session()->m_pbasesession)
+#define Sess(pcontextsession) (pcontextsession->m_pbasesession)
 #define App(pobject) (*pobject->get_app()->m_pbaseapplication)
 
 

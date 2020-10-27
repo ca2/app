@@ -98,15 +98,19 @@ namespace user
             if(bNew)
             {
 
-               User.will_use_view_hint(COLORSEL_IMPACT);
+               auto puser = User;
 
-               m_pdocument = User.m_mapimpactsystem[COLORSEL_IMPACT]->open_document_file(get_context_application(), ::e_type_null, __visible(false));
+               puser->will_use_view_hint(COLORSEL_IMPACT);
+
+               m_pdocument = puser->m_mapimpactsystem[COLORSEL_IMPACT]->open_document_file(get_context_application(), ::e_type_null, __visible(false));
 
                m_pview = m_pdocument->get_typed_view < ::userex::color_view >();
 
                m_pview->m_bCompact = true;
 
-               Session.set_bound_ui(COLORSEL_IMPACT, this);
+               auto psession = Session;
+
+               psession->set_bound_ui(COLORSEL_IMPACT, this);
 
                m_pframewindow = m_pview->GetTopLevelFrame()->cast < ::simple_frame_window >();
 
@@ -301,7 +305,7 @@ namespace user
       //else
       //{
 
-      //   if (Session.get_focus_ui() == this)
+      //   if (psession->get_focus_ui() == this)
       //   {
 
       //      if (m_itemHover)

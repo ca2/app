@@ -365,7 +365,9 @@ namespace user
 
       }
 
-      __pointer(channel) ptarget = Session.get_keyboard_focus();
+      auto psession = Session;
+
+      __pointer(channel) ptarget = psession->get_keyboard_focus();
 
       if (ptarget != nullptr && ptarget != this && ptarget != this)
       {
@@ -1097,7 +1099,11 @@ namespace user
 
          // either re-activate the current ::user::impact, or set this ::user::impact to be active
          __pointer(::user::impact) pview = pParentFrame->GetActiveView();
-         __pointer(::user::interaction) oswindow_Focus = Session.get_focus_ui();
+
+         auto psession = Session;
+
+         __pointer(::user::interaction) oswindow_Focus = psession->get_focus_ui();
+
          if (pview == this &&
                this != oswindow_Focus && !is_child(oswindow_Focus))
          {
@@ -1150,7 +1156,11 @@ namespace user
 
          // either re-activate the current ::user::impact, or set this ::user::impact to be active
          __pointer(::user::impact) pview = pParentFrame->GetActiveView();
-         __pointer(::user::interaction) oswindow_Focus = Session.get_focus_ui();
+
+         auto psession = Session;
+
+         __pointer(::user::interaction) oswindow_Focus = psession->get_focus_ui();
+
          if (pview == this &&
                this != oswindow_Focus && !is_child(oswindow_Focus))
          {

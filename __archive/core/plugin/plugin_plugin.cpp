@@ -387,7 +387,7 @@ namespace plugin
 //
 //      while(puser == nullptr)
 //      {
-//         puser = Session.account()->login(setLogin);
+//         puser = psession->account()->login(setLogin);
 //      }
 //
 //      if(strSessId == puser->m_strFontopusServerSessId || puser->m_strFontopusServerSessId.get_length() < 16)
@@ -412,7 +412,7 @@ namespace plugin
    void plugin::ca2_logout()
    {
 
-//      Session.account()->logout();
+//      psession->account()->logout();
 //
 //      property_set set;
 //

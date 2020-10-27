@@ -41,7 +41,7 @@ bool hyperlink::open_link(string strLink, string strProfile, string strTarget)
    //else
    //{
 
-   //   return Session.open_link(strLink, strProfile, strTarget);
+   //   return psession->open_link(strLink, strProfile, strTarget);
 
    //}
 

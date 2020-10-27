@@ -42,7 +42,16 @@ namespace user
    inline bool interaction::get_typed_child(CHILD*& pchild)
    {
 
-      return m_uiptraChild.get_typed_child(pchild);
+      auto puiptraChild = m_puiptraChild;
+
+      if (!puiptraChild)
+      {
+
+         return false;
+
+      }
+
+      return puiptraChild->get_typed_child(pchild);
 
    }
 
@@ -50,7 +59,16 @@ namespace user
    inline __pointer(CHILD) interaction::get_typed_child()
    {
 
-      return m_uiptraChild.get_typed_child < CHILD >();
+      auto puiptraChild = m_puiptraChild;
+
+      if (!puiptraChild)
+      {
+
+         return nullptr;
+
+      }
+
+      return puiptraChild->get_typed_child < CHILD >();
 
    }
 
@@ -122,6 +140,13 @@ namespace user
 
    inline bool interaction::is_window_screen_visible(e_layout elayout) const
    {
+
+      if (::is_null(m_pdescriptor))
+      {
+
+         return false;
+
+      }
 
       return m_pdescriptor->m_puserinteractionParent && !m_pdescriptor->m_puserinteractionParent->is_window_screen_visible(elayout) ? false : is_screen_visible(layout().state(elayout).display());
 

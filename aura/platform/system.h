@@ -541,7 +541,7 @@ namespace aura
 
       virtual ::apex::library * on_get_library(const char * pszLibrary) override;
 
-      virtual ::apex::library * get_library(const char * pszLibrary, bool bOpenCa2 = false) override;
+      //virtual ::apex::library * get_library(const char * pszLibrary, bool bOpenCa2 = false) override;
 
 
       virtual UINT os_post_to_all_threads(const ::id & id,WPARAM wparam = 0,lparam lparam = 0) override;

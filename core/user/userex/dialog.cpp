@@ -82,7 +82,11 @@ bool dialog::show(const char * pszMatter)
 
    varArgs["window_frame"] = true;
 
-   m_pdocument = User.create_form(this, this, Session.m_puiHost.get(), var, varArgs);
+   auto puser = User;
+
+   auto psession = Session;
+
+   m_pdocument = puser->create_form(this, this, psession->m_puiHost.get(), var, varArgs);
 
    if(m_pdocument == nullptr)
    {

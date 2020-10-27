@@ -130,7 +130,9 @@ namespace user
 
          m_pparent->m_iState = split_layout::stateInitial;
 
-         Session.ReleaseCapture();
+         auto psession = Session;
+
+         psession->ReleaseCapture();
 
          pmouse->m_bRet = true;
 

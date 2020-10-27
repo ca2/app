@@ -122,14 +122,16 @@ namespace user
 
       index_array iaSel = m_iaSel;
 
-      if (!Session.is_key_pressed(::user::key_control) || !m_bMultiSel)
+      auto psession = Session;
+
+      if (!psession->is_key_pressed(::user::key_control) || !m_bMultiSel)
       {
 
          iaSel.remove_all();
 
       }
 
-      if (Session.is_key_pressed(::user::key_shift) && m_bMultiSel)
+      if (psession->is_key_pressed(::user::key_shift) && m_bMultiSel)
       {
 
          if (m_itemCurrent.is_set())

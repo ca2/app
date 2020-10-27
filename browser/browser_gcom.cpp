@@ -79,7 +79,7 @@ namespace browser
    void gcom::on_apply(::action * paction)
    {
 
-      UNREFERENCED_PARAMETER(pupdate);
+      UNREFERENCED_PARAMETER(paction);
 
    }
 

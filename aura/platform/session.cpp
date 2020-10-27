@@ -705,6 +705,17 @@ the file README-colorramp for more information. */
    void session::term1()
    {
 
+#ifdef WINDOWS
+
+      if (m_puiSession)
+      {
+
+         __user_interaction(m_puiSession)->DestroyWindow();
+
+      }
+
+#endif
+
       ::apex::session::term1();
 
    }
@@ -730,7 +741,7 @@ the file README-colorramp for more information. */
 
       }
 
-      ::estatus estatus = __compose(m_puiSession, ::move(create_system_message_window(this)));
+      ::estatus estatus = __compose(m_puiSession, move_transfer(create_system_message_window(this)));
 
       if (!estatus)
       {
@@ -1462,7 +1473,7 @@ the file README-colorramp for more information. */
          main_async([this]()
          {
 
-            __pointer(::ios::interaction_impl) pimpl = Session.m_puiHost->m_pimpl;
+            __pointer(::ios::interaction_impl) pimpl = psession->m_puiHost->m_pimpl;
 
             if (pimpl.is_set())
             {
@@ -1484,7 +1495,16 @@ the file README-colorramp for more information. */
    bool session::on_ui_mouse_message(::message::mouse* pmouse)
    {
 
-      return User.on_ui_mouse_message(pmouse);
+      auto puser = User;
+
+      if (!puser)
+      {
+
+         return false;
+
+      }
+
+      return puser->on_ui_mouse_message(pmouse);
 
    }
 
@@ -1814,23 +1834,10 @@ the file README-colorramp for more information. */
 
 #endif
 
-   void session::set_finish()
+   ::estatus session::finish()
    {
 
-
-#ifdef WINDOWS
-
-
-      if (m_puiSession)
-      {
-
-         __user_interaction(m_puiSession)->DestroyWindow();
-
-      }
-
-#endif
-
-      ::aqua::session::set_finish();
+      return ::aqua::session::finish();
 
    }
 
@@ -4275,7 +4282,9 @@ namespace aura
    void session::request_topic_file(var& varQuery)
    {
 
-      request_file(Session.m_varTopicFile, varQuery);
+      auto psession = Session;
+
+      request_file(psession->m_varTopicFile, varQuery);
 
    }
 
@@ -4283,7 +4292,9 @@ namespace aura
    void session::request_topic_file()
    {
 
-      request_file(Session.m_varTopicFile);
+      auto psession = Session;
+
+      request_file(psession->m_varTopicFile);
 
    }
 
@@ -4291,7 +4302,9 @@ namespace aura
    __pointer(::aura::application) session::get_current_application()
    {
 
-      return Session.m_pappCurrent;
+      auto psession = Session;
+
+      return psession->m_pappCurrent;
 
    }
 
@@ -4308,17 +4321,20 @@ namespace aura
    bool session::is_mouse_button_pressed(::user::e_mouse emouse)
    {
 
+      auto psession = Session;
+
+
       if (emouse == ::user::mouse_left_button)
       {
-         return Session.is_key_pressed(::user::key_lbutton);
+         return psession->is_key_pressed(::user::key_lbutton);
       }
       else if (emouse == ::user::mouse_right_button)
       {
-         return Session.is_key_pressed(::user::key_rbutton);
+         return psession->is_key_pressed(::user::key_rbutton);
       }
       else if (emouse == ::user::mouse_middle_button)
       {
-         return Session.is_key_pressed(::user::key_mbutton);
+         return psession->is_key_pressed(::user::key_mbutton);
       }
       else
       {
@@ -4381,10 +4397,12 @@ namespace aura
    void session::check_topic_file_change()
    {
 
-      if (Session.m_varCurrentViewFile != Session.m_varTopicFile && !Session.m_varTopicFile.is_empty())
+      auto psession = Session;
+
+      if (psession->m_varCurrentViewFile != psession->m_varTopicFile && !psession->m_varTopicFile.is_empty())
       {
 
-         Session.m_varCurrentViewFile = Session.m_varTopicFile;
+         psession->m_varCurrentViewFile = psession->m_varTopicFile;
 
          request_topic_file();
 
@@ -4472,7 +4490,7 @@ namespace aura
 
       string_array stra;
 
-      //string_array straSource = Session.userex()->get_wallpaper();
+      //string_array straSource = psession->userex()->get_wallpaper();
 
       //for (string str : straSource)
       //{

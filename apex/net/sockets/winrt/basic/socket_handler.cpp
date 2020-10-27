@@ -450,7 +450,7 @@ namespace sockets
       resolv -> SetId(++m_resolv_id);
       resolv -> SetDeleteByHandler();
       ::net::address addressLocal("127.0.0.1", m_resolver_port);
-      //Session.sockets().net().convert(local, "127.0.0.1");
+      //psession->sockets().net().convert(local, "127.0.0.1");
       if(!resolv -> open(addressLocal))
       {
          //FATAL(log_this, resolv, "Resolve", -1, "Can't connect to local resolve server");

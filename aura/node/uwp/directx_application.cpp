@@ -450,14 +450,14 @@ namespace uwp
 
       spbase = pkey;
 
-      bool bTextFocus = Session.get_focus_ui() != nullptr;
+      bool bTextFocus = psession->get_focus_ui() != nullptr;
 
       bool bSpecialKey = false;
 
       ::user::e_key ekey = virtualkey_to_userkey(args->VirtualKey, bSpecialKey);
 
-      if(bSpecialKey || !bTextFocus || Session.is_key_pressed(::user::key_control)
-         || Session.is_key_pressed(::user::key_alt))
+      if(bSpecialKey || !bTextFocus || psession->is_key_pressed(::user::key_control)
+         || psession->is_key_pressed(::user::key_alt))
       {
 
          pkey->m_id                 = WM_KEYDOWN;
@@ -508,7 +508,7 @@ namespace uwp
          m_bFontopusShift = false;
       }
       
-      bool bTextFocus = Session.get_focus_ui() != nullptr;
+      bool bTextFocus = psession->get_focus_ui() != nullptr;
 
       bool bSpecialKey = false;
 

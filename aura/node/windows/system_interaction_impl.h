@@ -22,6 +22,10 @@ namespace user
          virtual void install_message_routing(::channel * pchannel) override;
 
          DECL_GEN_SIGNAL(_001OnMessage);
+         DECL_GEN_SIGNAL(_001OnDestroy);
+
+
+         virtual bool DestroyWindow() override;
          
          virtual bool is_system_message_window() override;
    

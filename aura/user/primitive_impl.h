@@ -64,7 +64,7 @@ namespace user
       virtual void on_reposition() override;
       virtual void on_show_window() override;
 
-      //virtual void set_finish() override;
+      //virtual void finish() override;
 
 virtual bool setWMClass(const char * psz);
       virtual void finalize() override;

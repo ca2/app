@@ -483,7 +483,9 @@ namespace user
 
             _001ClientToScreen(rectTab);
 
-            auto pointCursor = Session.get_cursor_pos();
+            auto psession = Session;
+
+            auto pointCursor = psession->get_cursor_pos();
 
             bool bShowTabs = rectTab.contains(pointCursor);
 
@@ -535,7 +537,9 @@ namespace user
 
             bool bShowTabs;
 
-            auto pointCursor = Session.get_cursor_pos();
+            auto psession = Session;
+
+            auto pointCursor = psession->get_cursor_pos();
 
             if(get_data()->m_bVertical)
             {
@@ -3468,7 +3472,9 @@ namespace user
             if (ppane->m_pplaceholder == paction->m_puserinteraction)
             {
 
-               auto pchild = ppane->m_pplaceholder->m_uiptraChild.first_interaction();
+               auto puiptraChild = ppane->m_pplaceholder->m_puiptraChild;
+
+               auto pchild = puiptraChild->first_interaction();
 
                if (pchild)
                {
@@ -3522,7 +3528,9 @@ namespace user
 
          ReleaseCapture();
 
-         ::point point = Session.get_cursor_pos();
+         auto psession = Session;
+
+         ::point point = psession->get_cursor_pos();
 
          auto item = hit_test(point);
 

@@ -294,7 +294,9 @@ namespace draw2d
 
       rectClient += pgraphics->m_puserinteraction->get_viewport_offset();
 
-      auto pointCursor = Session.get_cursor_pos();
+      auto psession = Session;
+
+      auto pointCursor = psession->get_cursor_pos();
 
       pgraphics->m_puserinteraction->_001ScreenToClient(pointCursor);
 
@@ -593,6 +595,13 @@ namespace draw2d
 
    void font_list::set_need_redraw()
    {
+      
+      if (::is_null(m_puserinteraction))
+      {
+
+         return;
+
+      }
 
       m_puserinteraction->set_need_redraw();
 

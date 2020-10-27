@@ -97,13 +97,13 @@ namespace multimedia
          }
          int iSampleRate = XAUDIO2_MIN_SAMPLE_RATE;
          estatus = ::success;
-         m_pwaveformat->wFormatTag = WAVE_FORMAT_PCM;
-         m_pwaveformat->nChannels = uiChannelCount;
-         m_pwaveformat->nSamplesPerSec = uiSamplesPerSec;
-         m_pwaveformat->wBitsPerSample = sizeof(::wave::WAVEBUFFERDATA) * 8 ;
-         m_pwaveformat->nBlockAlign = m_pwaveformat->wBitsPerSample  * uiChannelCount / 8;
-         m_pwaveformat->nAvgBytesPerSec = m_pwaveformat->nSamplesPerSec * m_pwaveformat->nBlockAlign;
-         m_pwaveformat->cbSize = 0;
+         m_pwaveformat->m_waveformat.wFormatTag = WAVE_FORMAT_PCM;
+         m_pwaveformat->m_waveformat.nChannels = uiChannelCount;
+         m_pwaveformat->m_waveformat.nSamplesPerSec = uiSamplesPerSec;
+         m_pwaveformat->m_waveformat.wBitsPerSample = sizeof(::wave::WAVEBUFFERDATA) * 8 ;
+         m_pwaveformat->m_waveformat.nBlockAlign = m_pwaveformat->m_waveformat.wBitsPerSample  * uiChannelCount / 8;
+         m_pwaveformat->m_waveformat.nAvgBytesPerSec = m_pwaveformat->m_waveformat.nSamplesPerSec * m_pwaveformat->m_waveformat.nBlockAlign;
+         //m_pwaveformat->cbSize = 0;
          __pointer(::wave::wave) audiowave = Audio.audiowave();
 
          //if(FAILED(hr = m_pxaudio->CreateSourceVoice(&m_psourcevoice,wave_format(),XAUDIO2_VOICE_NOSRC | XAUDIO2_VOICE_NOPITCH,1.0f,this)))
@@ -149,19 +149,19 @@ namespace multimedia
 
          int iAlign = 2048;
 
-         auto uiBufferSize = iBufferSampleCount * m_pwaveformat->nChannels * 2;
+         auto uiBufferSize = iBufferSampleCount * m_pwaveformat->m_waveformat.nChannels * 2;
 
          uiBufferSize = max(uiBufferSize,2048);
 
          ASSERT((uiBufferSize % 2048) == 0);// Streaming size must be 2K aligned to use for async I/O
 
-         iBufferSampleCount = uiBufferSize / (m_pwaveformat->nChannels * 2);
+         iBufferSampleCount = uiBufferSize / (m_pwaveformat->m_waveformat.nChannels * 2);
 
 
 
          out_get_buffer()->PCMOutOpen(this, uiBufferSize, iBufferCount,iAlign, m_pwaveformat, m_pwaveformat);
 
-         m_pprebuffer->open(m_pwaveformat->nChannels, iBufferCount, iBufferSampleCount);
+         m_pprebuffer->open(m_pwaveformat->m_waveformat.nChannels, iBufferCount, iBufferSampleCount);
 
          m_estate = state_opened;
 
@@ -490,7 +490,7 @@ namespace multimedia
 
             i64 i = s.SamplesPlayed;
             i *= 1000;
-            i /= m_pwaveformat->nSamplesPerSec;
+            i /= m_pwaveformat->m_waveformat.nSamplesPerSec;
             return i;
 
          }

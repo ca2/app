@@ -169,7 +169,9 @@ namespace account
          if(!pair.element2()->is_authenticated())
          {
 
-            Session.on_remove_user(pair.element2());
+            auto psession = Session;
+
+            psession->on_remove_user(pair.element2());
 
             sl.lock();
 
@@ -191,7 +193,9 @@ namespace account
       if(pathUrl.is_empty())
       {
 
-         pathUrl = Session.account()->get_default_url();
+         auto psession = Session;
+
+         pathUrl = psession->account()->get_default_url();
 
       }
 

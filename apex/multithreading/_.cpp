@@ -88,7 +88,7 @@ namespace multithreading
 
       }
 
-      if (ptaskChildCandidate->m_pthreadParent)
+      if (ptaskChildCandidate->m_pobjectParent)
       {
 
          return true;
@@ -103,7 +103,9 @@ namespace multithreading
          try
          {
 
-            if (pair.element1()->m_taska.contains(ptaskChildCandidate))
+            auto pcompositea = pair.element1()->_composite_array();
+
+            if (pcompositea && pcompositea->contains(ptaskChildCandidate))
             {
 
                return true;
@@ -134,7 +136,7 @@ namespace multithreading
          try
          {
 
-            pair.element1()->set_finish();
+            pair.element1()->finish();
 
          }
          catch (...)
@@ -193,7 +195,7 @@ namespace multithreading
       if (::is_set(pthreadContext))
       {
 
-         if (pthreadContext->is_set_finish() || !pthreadContext->m_bLastingThread)
+         if (pthreadContext->finish_bit() || !pthreadContext->m_bLastingThread)
          {
 
             pthreadContext = calc_parent(pthreadContext);
@@ -289,10 +291,10 @@ namespace multithreading
 {
 
 
-   CLASS_DECL_APEX void set_finish()
+   CLASS_DECL_APEX void finish()
    {
 
-      set_finish(::get_task());
+      finish(::get_task());
 
    }
 
@@ -305,7 +307,7 @@ namespace multithreading
    }
 
 
-   void set_finish(::task * ptask)
+   void finish(::task * ptask)
    {
 
       if (::is_null(ptask))
@@ -318,7 +320,7 @@ namespace multithreading
       try
       {
 
-         ptask->set_thread_run(false);
+         ptask->clear_finish_bit();
 
       }
       catch (...)
@@ -649,7 +651,7 @@ bool do_events()
 
 
 
-void thread_ptra::set_finish()
+::estatus thread_ptra::finish()
 {
 
    try
@@ -687,6 +689,9 @@ void thread_ptra::set_finish()
    {
 
    }
+
+
+   return ::success;
 
 }
 
@@ -1052,7 +1057,7 @@ void __post_quit_message(i32 nExitCode)
 
 #else
 
-   ::multithreading::set_finish(::get_context_application());
+   ::multithreading::finish(::get_context_application());
 
 #endif
 

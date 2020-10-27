@@ -282,7 +282,7 @@ namespace sockets
          {
 
             //in_addr l;
-            //Session.sockets().net().convert(l, value); // ip2ipaddr_t
+            //psession->sockets().net().convert(l, value); // ip2ipaddr_t
 
             m_parent -> OnResolved(m_resolv_id, ::net::address(value, m_resolv_port));
 
@@ -312,7 +312,7 @@ namespace sockets
          {
 
             //in6_addr a;
-            //Session.sockets().net().convert(a, value);
+            //psession->sockets().net().convert(a, value);
 
             m_parent -> OnResolved(m_resolv_id, ::net::address(value, m_resolv_port));
 
@@ -378,7 +378,7 @@ namespace sockets
             
             string ip;
             
-            Session.sockets().net().convert(ip, sa);
+            psession->sockets().net().convert(ip, sa);
 
             write("AAAA: " + ip + "\n");
 
@@ -402,12 +402,12 @@ namespace sockets
 
          ::net::address addr(m_data);
 
-         if(Session.sockets().net().isipv4(m_data) || Session.sockets().net().isipv6(m_data))
+         if(psession->sockets().net().isipv4(m_data) || psession->sockets().net().isipv6(m_data))
          {
 
-            string strCanonicalName = Session.sockets().net().canonical_name(addr);
+            string strCanonicalName = psession->sockets().net().canonical_name(addr);
 
-            if(Session.sockets().net().isipv4(strCanonicalName) || Session.sockets().net().isipv6(strCanonicalName))
+            if(psession->sockets().net().isipv4(strCanonicalName) || psession->sockets().net().isipv6(strCanonicalName))
             {
                
                write("Failed: convert to sockaddr_in failed\n");
@@ -482,7 +482,7 @@ namespace sockets
 
          string tmp;
 
-         Session.sockets().net().convert(tmp, m_resolv_address6);
+         psession->sockets().net().convert(tmp, m_resolv_address6);
 
          m_query = "gethostbyaddr";
 

@@ -22,6 +22,8 @@ public:
    __pointer(::i64_array)           m_pia;
    ::estatus                        m_estatus;
    __pointer(property_set)          m_pset;
+   __pointer(matter_array)          m_pnotifya;
+
 
 
    context_object() { }
@@ -37,6 +39,12 @@ public:
    virtual ~context_object();
 
 
+   inline matter_array * _notify_array() { return m_pnotifya; }
+
+
+   inline matter_array & notify_array() { ::__defer_construct_new(m_pnotifya); return *m_pnotifya; }
+
+
    virtual void assert_valid() const override;
    virtual void dump(dump_context & action_context) const override;
 
@@ -45,12 +53,22 @@ public:
    virtual void         finalize() override;
 
 
+   virtual ::context_object * _get_context_object() override;
+
+
+   virtual void notify_on_finish(::context_object * pcontextobject) override;
+
+
    inline ::object * get_context_object() const { return __object(m_pobjectContext); }
    virtual void set_context_object(::layered * pobjectContext OBJ_REF_DBG_COMMA_PARAMS);
 
 
 
-   virtual void set_finish() override;
+   virtual ::estatus finish() override;
+
+
+
+   virtual void on_finish() override;
    
 
 

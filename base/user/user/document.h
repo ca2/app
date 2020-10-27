@@ -45,6 +45,9 @@ namespace user
       virtual ::user::interaction* impact_at(::index iImpact) const override;
       virtual ::count impact_count() const override;
 
+      ::user::interaction_array get_top_level_windows();
+
+      virtual ::estatus set_finish_composites() override;
 
       virtual bool contains(::user::interaction* pinteraction) const;
 

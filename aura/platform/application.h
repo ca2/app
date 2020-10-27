@@ -71,7 +71,7 @@ namespace aura
       __pointer(service_base)                         m_pservice;
 
       ::mutex                                         m_mutexFrame;
-      __composite(::user::interaction_array)          m_puiptraFrame;
+      __composite(::user::interaction_array)            m_puiptraFrame;
 
       //e_thread                                        m_ethreadClose;
 
@@ -296,7 +296,7 @@ namespace aura
 
       virtual void DoWaitCursor(i32 nCode) override; // 0 => restore, 1=> begin, -1=> end
 
-      virtual void _001CloseApplication() override;
+      // virtual void _001TryCloseApplication() override;
 
 
       virtual string get_license_id() override;
@@ -346,7 +346,7 @@ namespace aura
 
 
 
-      //inline ::html::html * html() { return User.m_phtml; }
+      //inline ::html::html * html() { return puser->m_phtml; }
 
       //virtual ::html::html * create_html();
 
@@ -1329,6 +1329,8 @@ namespace aura
 
       virtual void report_error(::exception::exception* pexception, int iMessageFlags, const char* pszTopic) override;
 
+
+      virtual bool _001CanCloseApplication() override;
 
 
       virtual bool on_close_frame_window(::user::frame* pframe) override;

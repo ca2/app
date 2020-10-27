@@ -26,8 +26,10 @@ namespace base
 
    __pointer(::user::menu_interaction) style::create_menu_button(::user::style_pointer& pstyle, ::user::menu_item* pitem)
    {
+      
+      auto puser = User;
 
-      return User.create_menu_button(pstyle, pitem);
+      return puser->create_menu_button(pstyle, pitem);
 
    }
 

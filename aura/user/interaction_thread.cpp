@@ -4,6 +4,7 @@
 #endif
 #include "aura/message.h"
 #include "interaction_thread.h"
+#include "interaction_prodevian.h"
 
 
 int windows_desktop1_main(HINSTANCE hInstance, int       nCmdShow);
@@ -230,7 +231,7 @@ namespace user
 
       //m_himc = ImmGetContext(m_pimpl->get_handle());
 
-      m_pprodevian = m_pimpl->m_pprodevian;
+      __bind(this, m_pprodevian, m_pimpl->m_pprodevian);
 
       m_oswindow = m_pimpl->m_oswindow;
 
@@ -327,7 +328,7 @@ namespace user
 
             if (m_pimpl 
                && m_pimpl->m_puserinteraction->m_ewindowflag & window_flag_is_window
-               && ::thread::is_set_finish())
+               && ::thread::finish_bit())
             {
 
                m_pimpl->m_puserinteraction->DestroyWindow();
@@ -784,10 +785,10 @@ catch(...)
    }
 
 
-   void thread::set_finish()
+   ::estatus thread::finish()
    {
 
-      ::thread::set_finish();
+      return ::thread::finish();
 
    }
 

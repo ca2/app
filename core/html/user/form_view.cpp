@@ -118,7 +118,9 @@ void html_form_view::_001OnSetFocus(::message::message * pmessage)
    if(get_html_data()->m_pcoredata->m_focusptra.get_size() > 0)
    {
 
-      Session.set_keyboard_focus(get_html_data()->m_pcoredata->m_focusptra[0]);
+      auto psession = Session;
+
+      psession->set_keyboard_focus(get_html_data()->m_pcoredata->m_focusptra[0]);
 
    }
 

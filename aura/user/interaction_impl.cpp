@@ -185,7 +185,9 @@ namespace user
 
          ::point pointCursor;
 
-         Session.get_cursor_pos(pointCursor);
+         auto psession = Session;
+
+         psession->get_cursor_pos(pointCursor);
 
          if (m_pointCursor != pointCursor)
          {
@@ -233,7 +235,7 @@ namespace user
    bool interaction_impl::has_pending_focus()
    {
 
-      auto psession = &Session;
+      auto psession = Session;
 
       if (::is_null(psession))
       {
@@ -264,7 +266,7 @@ namespace user
    bool interaction_impl::clear_pending_focus()
    {
 
-      auto psession = &Session;
+      auto psession = Session;
 
       if (::is_null(psession))
       {
@@ -305,7 +307,7 @@ namespace user
    bool interaction_impl::set_pending_focus()
    {
 
-      auto psession = &Session;
+      auto psession = Session;
 
       if (::is_null(psession))
       {
@@ -753,13 +755,6 @@ namespace user
 
             peventStartedProdevian.release();
 
-            if (m_pprodevian->task_active())
-            {
-
-               m_pprodevian->release();
-
-            }
-
          }
 
       }
@@ -772,13 +767,6 @@ namespace user
          {
 
             peventStartedProdevian.release();
-
-            if (m_pprodevian->task_active())
-            {
-
-               m_pprodevian->release();
-
-            }
 
          }
 
@@ -913,7 +901,9 @@ namespace user
 
          ::point pointCursor;
 
-         Session.get_cursor_pos(pointCursor);
+         auto psession = Session;
+
+         psession->get_cursor_pos(pointCursor);
 
          ::user::interaction_array uia;
 
@@ -1025,13 +1015,15 @@ namespace user
          for(auto & pinteraction : uia.interactiona())
          {
 
-            pinteraction->send_message(WM_MOUSELEAVE);
+            pinteraction->send_message((enum_message) WM_MOUSELEAVE);
 
          }
 
       }
 
-      oswindow oswindow = Session.get_capture();
+      auto psession = Session;
+
+      oswindow oswindow = psession->get_capture();
 
       if (oswindow == nullptr || oswindow == get_handle())
       {
@@ -1055,7 +1047,7 @@ namespace user
             ::output_debug_string("lbutton_up");
 
          }
-         ::user::interaction * puiCapture = Session.m_puiCapture;
+         ::user::interaction * puiCapture = psession->m_puiCapture;
 
          if (puiCapture == nullptr)
          {
@@ -1071,7 +1063,7 @@ namespace user
 
          }
 
-         if (m_puserinteraction == Session.m_puiHost.get())
+         if (m_puserinteraction == psession->m_puiHost.get())
          {
             try
             {
@@ -1119,7 +1111,7 @@ namespace user
 
          }
 
-         sync_lock sl(mutex_children());
+         //sync_lock sl(mutex_children());
 
          m_puserinteraction->_000OnMouse(pmouse);
 
@@ -1256,7 +1248,9 @@ namespace user
 
       UNREFERENCED_PARAMETER(pmessage);
 
-      Session.m_puiCapture = nullptr;
+      auto psession = Session;
+
+      psession->m_puiCapture = nullptr;
 
    }
 
@@ -1384,7 +1378,7 @@ namespace user
 
          m_bDestroyImplOnly = true;
 
-         ::multithreading::set_finish(m_pprodevian);
+         ::multithreading::finish(m_pprodevian);
 
          if (::is_set(m_puserinteraction))
          {
@@ -2145,7 +2139,9 @@ namespace user
 
       ::release_capture();
 
-      Session.m_puiCapture = nullptr;
+      auto psession = Session;
+
+      psession->m_puiCapture = nullptr;
 
       return true;
 
@@ -2166,13 +2162,15 @@ namespace user
 
       ::user::interaction * pinteraction = System.ui_from_handle(oswindow);
 
+      auto psession = Session;
+
       if (pinteraction != nullptr)
       {
 
-         if (Session.m_puiCapture != nullptr)
+         if (psession->m_puiCapture != nullptr)
          {
 
-            return Session.m_puiCapture;
+            return psession->m_puiCapture;
 
          }
          else
@@ -2210,7 +2208,9 @@ namespace user
 
       output_debug_string("\nSet Capture: oswindow=0x" + ::hex::lower_from((iptr) w));
 
-      Session.m_puiCapture = pinteraction;
+      auto psession = Session;
+
+      psession->m_puiCapture = pinteraction;
 
       return true;
 
@@ -3242,24 +3242,26 @@ namespace user
 
          {
 
-            ::user::interaction_array uia;
+            auto puiptraChild = m_puserinteraction->m_puiptraChild;
 
-            {
 
-               sync_lock sl(mutex());
 
-               if(!m_puserinteraction)
-               {
+            //{
 
-                  return;
+            //   sync_lock sl(mutex());
 
-               }
+            //   if(!m_puserinteraction)
+            //   {
 
-               uia = m_puserinteraction->m_uiptraChild;
+            //      return;
 
-            }
+            //   }
 
-            for (auto & pinteraction : uia.interactiona())
+            //   uia = m_puserinteraction->m_puiptraChild;
+
+            //}
+
+            for (auto & pinteraction : puiptraChild->interactiona())
             {
 
                try
@@ -3466,7 +3468,18 @@ namespace user
 
             auto r = m_puserinteraction->layout().design().screen_rect();
 
-            m_puserinteraction->_001PrintBuffer(pgraphics);
+            if (m_puserinteraction->m_bitSetFinish)
+            {
+
+               output_debug_string("::user::interaction_impl set_finish");
+
+            }
+            else
+            {
+
+               m_puserinteraction->_001PrintBuffer(pgraphics);
+
+            }
 
             m_rectUpdateBuffer = r;
 
@@ -3721,23 +3734,23 @@ namespace user
 
             slGraphics.unlock();
 
-            pprodevian->m_puserinteraction = nullptr;
+            //pprodevian->m_puserinteraction = nullptr;
 
-            pprodevian->m_pimpl = nullptr;
+            //pprodevian->m_pimpl = nullptr;
 
             pprodevian->set_finish();
 
          }
 
-         {
+         //{
 
-            sync_lock sl(mutex());
+         //   sync_lock sl(mutex());
 
-            sync_lock slGraphics(m_pgraphics->mutex());
+         //   sync_lock slGraphics(m_pgraphics->mutex());
 
-            __release(m_pprodevian);
+         //   m_pprodevian);
 
-         }
+         //}
 
       }
 
@@ -4210,7 +4223,7 @@ namespace user
    void interaction_impl::on_after_graphical_update()
    {
 
-//      windowing_output_debug_string("\non_after_graphical_update before Session.get_cursor_pos");
+//      windowing_output_debug_string("\non_after_graphical_update before psession->get_cursor_pos");
 
       // if(is_set(m_puserinteraction))
       // {
@@ -4219,7 +4232,7 @@ namespace user
 
       // }
 
-//      windowing_output_debug_string("\non_after_graphical_update after Session.get_cursor_pos");
+//      windowing_output_debug_string("\non_after_graphical_update after psession->get_cursor_pos");
 
    }
 
@@ -4542,7 +4555,9 @@ namespace user
       if (has_pending_focus() && m_puserinteraction != nullptr && m_puserinteraction->is_window_visible())
       {
 
-         Session.m_pimplPendingFocus2 = nullptr;
+         auto psession = Session;
+
+         psession->m_pimplPendingFocus2 = nullptr;
 
          oswindowFocus = ::get_focus();
 

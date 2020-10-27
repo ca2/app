@@ -1973,7 +1973,9 @@ break_click:;
 
          bool bOk;
 
-         if (Session.is_key_pressed(::user::key_shift))
+         auto psession = Session;
+
+         if (psession->is_key_pressed(::user::key_shift))
          {
 
             bOk = _001PreviousEditableControl(iItem, iSubItem);
@@ -2160,7 +2162,9 @@ break_click:;
 
          _001ClientToScreen(rScreen);
 
-         if (rScreen.contains(Session.m_pointCursor))
+         auto psession = Session;
+
+         if (rScreen.contains(psession->m_pointCursor))
          {
 
             auto pstyle = get_style(pdrawitem->m_pgraphics);

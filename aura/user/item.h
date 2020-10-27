@@ -67,7 +67,7 @@ namespace user
       ::point                       m_pointClient;
       ::point                       m_pointHitTest;
       ::rect                        m_rect;
-      ::user::enum_event               m_eevent;
+      ::user::enum_event            m_eevent;
       u64                           m_uFlags;
 
       item_data & operator = (const item_data& item) { if (this != &item) memcpy(this, &item, sizeof(item_data)); return *this; }

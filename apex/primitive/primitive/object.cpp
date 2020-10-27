@@ -116,21 +116,19 @@ void object::to_string(const class string_exchange & str) const
 }
 
 
-::estatus object::add_composite(::matter* pobject OBJ_REF_DBG_COMMA_PARAMS_DEF)
+::estatus object::add_composite(::matter* pmatter OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
    sync_lock sl(mutex());
 
    m_pcompositea.defer_create_new();
 
-   if (m_pcompositea->add_unique(pobject))
+   if (m_pcompositea->add_unique(pmatter))
    {
-
-      pobject->add_ref(OBJ_REF_DBG_ARGS);
 
 #ifdef DEBUG
 
-      object_on_add_composite(pobject);
+      object_on_add_composite(pmatter);
 
 #endif
 
@@ -141,17 +139,24 @@ void object::to_string(const class string_exchange & str) const
 }
 
 
-::estatus object::add_reference(::matter* pobject OBJ_REF_DBG_COMMA_PARAMS_DEF)
+::estatus object::add_reference(::matter* pmatter OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
    sync_lock sl(mutex());
 
    m_preferencea.defer_create_new();
 
-   if (m_preferencea->add_unique(pobject))
+   m_preferencea->add_unique(pmatter);
+
+   if (m_preferencea->get_upper_bound() == 8)
    {
 
-      pobject->add_ref(OBJ_REF_DBG_ARGS);
+      if (string(type_name()).contains("application"))
+      {
+
+         string strMessage = "what is this? : " +string( m_preferencea->last()->type_name());
+         output_debug_string(strMessage);
+      }
 
    }
 
@@ -160,10 +165,10 @@ void object::to_string(const class string_exchange & str) const
 }
 
 
-::estatus object::release_composite(::matter* pobject OBJ_REF_DBG_COMMA_PARAMS_DEF)
+::estatus object::finalize_composite(::matter* pmatter OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
-   if (::is_null(pobject))
+   if (::is_null(pmatter))
    {
 
       return ::success_none;
@@ -175,12 +180,21 @@ void object::to_string(const class string_exchange & str) const
    if (m_pcompositea)
    {
 
-      if (m_pcompositea->remove(pobject) > 0)
+      if(m_pcompositea->contains(pmatter))
       {
 
-         pobject->finalize();
+         sl.unlock();
 
-         pobject->release(OBJ_REF_DBG_THIS);
+         pmatter->finalize();
+
+         sl.lock();
+
+         if (m_pcompositea)
+         {
+
+            m_pcompositea->remove(pmatter);
+
+         }
 
          return ::success;
 
@@ -193,10 +207,10 @@ void object::to_string(const class string_exchange & str) const
 }
 
 
-::estatus object::release_reference(::matter* pobject  OBJ_REF_DBG_COMMA_PARAMS_DEF)
+::estatus object::release_reference(::matter* pmatter  OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
-   if (::is_null(pobject))
+   if (::is_null(pmatter))
    {
 
       return ::success_none;
@@ -208,10 +222,8 @@ void object::to_string(const class string_exchange & str) const
    if (m_preferencea)
    {
 
-      if (m_preferencea->remove(pobject) > 0)
+      if (m_preferencea->remove(pmatter) > 0)
       {
-
-         pobject->release(OBJ_REF_DBG_ARGS);
 
          return ::success;
 
@@ -566,16 +578,16 @@ void object::child_post_quit(const char * pszTag)
    try
    {
 
-      auto pobject = running(pszTag);
+      auto pmatter = running(pszTag);
 
-      if (pobject.is_null())
+      if (pmatter.is_null())
       {
 
          return;
 
       }
 
-      pobject->finalize();
+      pmatter->finalize();
 
    }
    catch (...)
@@ -592,16 +604,16 @@ void object::child_post_quit_and_wait(const char * pszTag, const duration & dura
    try
    {
 
-      auto pobject = running(pszTag);
+      auto pmatter = running(pszTag);
 
-      if (pobject.is_null())
+      if (pmatter.is_null())
       {
 
          return;
 
       }
 
-      pobject->finalize();
+      pmatter->finalize();
 
       pred_Sleep((int) duration.get_total_milliseconds(),
                  [=]()
@@ -846,12 +858,12 @@ void object::on_finalize()
 void object::finalize()
 {
 
-   if (m_pmeta)
-   {
+   //if (m_pmeta)
+   //{
 
-      m_pmeta->finalize(this);
+   //   m_pmeta->finalize(this);
 
-   }
+   //}
 
    source::finalize();
 
@@ -899,11 +911,53 @@ void object::finalize()
 }
 
 
-// please refer to object::set_finish verses/documentation
+void object::on_finish()
+{
+
+   sync_lock sl(mutex());
+
+   source::on_finish();
+
+   finalize();
+
+   //if (m_pcompositea)
+   //{
+
+   //   for (auto & pcomposite : *m_pcompositea)
+   //   {
+
+   //      if (pcomposite)
+   //      {
+
+   //         auto pcontextobject = pcomposite->_get_context_object();
+
+   //         if (pcontextobject && pcontextobject->m_pnotifya)
+   //         {
+
+   //            sl.unlock();
+
+   //            pcontextobject->m_pnotifya->remove(this);
+
+   //            sl.lock();
+
+   //         }
+
+   //      }
+
+   //   }
+
+   //   //m_ptaska.release(OBJ_REF_DBG_THIS);
+
+   //}
+
+}
+
+
+// please refer to object::finish verses/documentation
 void object::delete_this()
 {
 
-   set_finish();
+   finalize();
 
    context_object::delete_this();
 
@@ -947,20 +1001,282 @@ void object::copy_from(const object & o)
 }
 
 
-void object::set_finish_composites()
+::estatus object::set_finish_composites()
 {
+
+   ::estatus estatus = ::success;
+
+   sync_lock sl(mutex());
+
+   string strTypeName = type_name();
 
    if (m_pcompositea)
    {
 
-      for (auto & pcomposite : *m_pcompositea)
+   composite_set_finish:
+
+      ::count countComposite = m_pcompositea->get_count();
+
+      for (::index iComposite = 0; iComposite < countComposite; iComposite++)
       {
 
-         pcomposite->set_finish();
+         auto & pcomposite = m_pcompositea->element_at(iComposite);
+
+         string strCompositeType = pcomposite->type_name();
+
+         if (strTypeName.contains("session"))
+         {
+
+            if (strCompositeType.contains("application"))
+            {
+
+               output_debug_string("application composite finish");
+
+            }
+
+         }
+         else if (strTypeName.contains("application"))
+         {
+
+            if (strCompositeType.contains("user::thread"))
+            {
+
+               output_debug_string("user::thread composite finish");
+
+            }
+            else if (strCompositeType.contains("main_frame"))
+            {
+
+               output_debug_string("main_frame thread composite finish");
+
+            }
+         }
+
+         sl.unlock();
+
+         auto estatusComposite = pcomposite->set_finish();
+
+         sl.lock();
+
+
+         if (estatusComposite == ::error_pending)
+         {
+
+            if (strTypeName.contains_ci("application"))
+            {
+
+               output_debug_string("pending at application");
+
+            }
+
+            else if (strTypeName.contains_ci("app_app::window"))
+            {
+
+               output_debug_string("pending at app_window");
+
+            }
+
+            auto pcontextobject = pcomposite->_get_context_object();
+
+            if (pcontextobject)
+            {
+
+               pcontextobject->notify_array().add_unique(this);
+
+            }
+
+            estatus = error_pending;
+
+         }
+
+         if (countComposite != m_pcompositea->get_count())
+         {
+
+            goto composite_set_finish;
+
+         }
 
       }
 
    }
+
+   return estatus;
+
+}
+
+
+::estatus object::set_finish()
+{
+
+   auto estatus = ::success;
+
+   if (!finish_bit())
+   {
+
+      m_bitFinishing = true;
+
+      set_finish_bit();
+
+   }
+
+   if (m_bitFinishing)
+   {
+
+      string strTypeName = type_name();
+
+#ifdef ANDROID
+
+      demangle(strTypeName);
+
+#endif
+
+      if (strTypeName == "user::shell")
+      {
+
+         output_debug_string("user::shell::finish");
+
+      }
+      else if (strTypeName == "apex::system")
+      {
+
+         output_debug_string("apex::system::finish");
+
+      }
+
+      estatus = set_finish_composites();
+
+      if (strTypeName.contains_ci("app_app::window"))
+      {
+
+         output_debug_string("set_finish at app_window");
+
+      }
+
+      //if (m_ptaska)
+      //{
+
+      //task_set_finish:
+
+      //   ::count countTask = m_ptaska->get_count();
+
+      //   for (::index iTask = 0; m_ptaska && iTask < countTask; iTask++)
+      //   {
+
+      //      auto & ptask = m_ptaska->element_at(iTask);
+
+      //      sl.unlock();
+
+      //      auto estatus = ptask->finish();
+
+      //      if (estatus == ::error_pending)
+      //      {
+
+      //         bStillFinishingTasks = true;
+
+      //      }
+
+      //      sl.lock();
+
+      //      if (countTask != m_ptaska->get_count())
+      //      {
+
+      //         goto task_set_finish;
+
+      //      }
+
+      //   }
+
+      //}
+
+      //if (bStillFinishingComposites || bStillFinishingTasks)
+
+      if (estatus == ::error_pending)
+      {
+
+         if (m_pcompositea)
+         {
+
+            auto compositea = *m_pcompositea;
+
+            string strWaiting;
+
+            for (auto & pcomposite : compositea)
+            {
+
+               try
+               {
+
+                  string strThreadType;
+
+                  strThreadType = pcomposite->type_name();
+
+                  strWaiting += strThreadType;
+
+                  strWaiting += "\r\n";
+
+                  pcomposite->finish();
+
+               }
+               catch (...)
+               {
+
+               }
+
+            }
+
+            if (strWaiting.has_char())
+            {
+
+               TRACE("The thread %s is waiting for the following threads to finish:\r\n%s", type_name(), strWaiting.c_str());
+
+            }
+
+         }
+
+         kick_idle();
+
+      }
+      else
+      {
+
+
+         string strType = type_name();
+
+         if (strType.contains_ci("session"))
+         {
+
+            auto bShouldRun = thread_get_run();
+
+            if (!bShouldRun)
+            {
+
+               output_debug_string("session_shouldn't_run?");
+
+            }
+
+         }
+         else if (strType.contains_ci("application"))
+         {
+
+            auto bShouldRun = thread_get_run();
+
+            if (!bShouldRun)
+            {
+
+               output_debug_string("application_shouldn't_run?");
+
+            }
+
+
+         }
+
+         m_bitFinishing = false;
+
+      }
+
+   }
+
+   return estatus;
 
 }
 
@@ -970,24 +1286,28 @@ void object::release_references()
 
    sync_lock sl(mutex());
 
-   if (m_pcompositea)
+   while(m_pcompositea && m_pcompositea->has_element())
    {
 
-      for (auto& p : *m_pcompositea)
+      sl.unlock();
+
+      try
       {
 
-         try
-         {
-
-            release_composite(p);
-
-         }
-         catch (...)
-         {
-
-         }
+         finalize_composite(m_pcompositea->first());
 
       }
+      catch (...)
+      {
+
+      }
+
+      sl.lock();
+
+   }
+
+   if (m_pcompositea)
+   {
 
       m_pcompositea.release(OBJ_REF_DBG_THIS);
 
@@ -995,22 +1315,6 @@ void object::release_references()
 
    if (m_preferencea)
    {
-
-      for (auto& p : *m_preferencea)
-      {
-
-         try
-         {
-
-            release_reference(p);
-
-         }
-         catch (...)
-         {
-
-         }
-
-      }
 
       m_preferencea.release(OBJ_REF_DBG_THIS);
 
@@ -1022,10 +1326,10 @@ CLASS_DECL_ACME mutex* get_children_mutex();
 
 
 /// tells if pobject is dependant of this object or of any dependant objects
-bool object::___is_reference(::matter * pobject) const
+bool object::___is_reference(::matter * pmatter) const
 {
 
-   if (::is_null(pobject))
+   if (::is_null(pmatter))
    {
 
       return false;
@@ -1041,7 +1345,7 @@ bool object::___is_reference(::matter * pobject) const
 
    }
 
-   if (m_preferencea->contains(pobject))
+   if (m_preferencea->contains(pmatter))
    {
 
       return true;
@@ -1053,10 +1357,10 @@ bool object::___is_reference(::matter * pobject) const
 }
 
 
-bool object::__is_composite(::matter * pobject) const
+bool object::__is_composite(::matter * pmatter) const
 {
 
-   if (::is_null(pobject))
+   if (::is_null(pmatter))
    {
 
       return false;
@@ -1070,7 +1374,7 @@ bool object::__is_composite(::matter * pobject) const
 
    }
 
-   if (!m_pcompositea->contains(pobject))
+   if (!m_pcompositea->contains(pmatter))
    {
 
       return true;
@@ -1080,6 +1384,37 @@ bool object::__is_composite(::matter * pobject) const
    return false;
 
 }
+
+
+
+bool object::__is_child_task(::task * ptask) const
+{
+
+   if (::is_null(ptask))
+   {
+
+      return false;
+
+   }
+
+   //if (!m_ptaska)
+   //{
+
+   //   return false;
+
+   //}
+
+   //if (!m_ptaska->contains(ptask))
+   //{
+
+   //   return true;
+
+   //}
+
+   return false;
+
+}
+
 
 
 // message to stop object operations and unbind relations with other objects
@@ -1094,50 +1429,36 @@ bool object::__is_composite(::matter * pobject) const
 // (as in Eternal)
 // Human (as once we imagined it...)
 
-// set_finish (machines...)
+// finish (machines...)
 // "ask" to close object, not cancellable
 
 //
-// ->at simple objects (from set_finish point of view)...
+// ->at simple objects (from finish point of view)...
 // ->for objects that doesn't have custom finalization
-// set_finish calls set_finish_composites and finalize.
+// finish calls set_finish and finalize.
 //
-// ->for complex objects (from set_finish point of view)...
+// ->for complex objects (from finish point of view)...
 // ->for objects that have custom finalization
-// set_finish wouldn't call *finalize*,
-// but only set_finish_composites or custom set_finish_composites.
+// finish wouldn't call *finalize*,
+// but only set_finish or custom set_finish.
 // "Otherwise, *finalize* could release references (that could be deleted)
 // and would be still used during the ideal finalize(-action)."
 // So a flag/timer/message that indicates that things should be destroyed/closed/finalized
 // should be enough (which triggers the full finalization that would end up calling
 // the "final" finalize).
-void object::set_finish()
+::estatus object::finish()
 {
+   
+   auto estatus = set_finish();
 
-   string strTypeName = type_name();
-
-#ifdef ANDROID
-
-   demangle(strTypeName);
-
-#endif
-
-   if (strTypeName == "user::shell")
+   if (estatus == success)
    {
 
-      output_debug_string("user::shell::set_finish");
-
-   }
-   else if (strTypeName == "apex::system")
-   {
-
-      output_debug_string("apex::system::set_finish");
+      on_finish();
 
    }
 
-   set_finish_composites();
-
-   finalize();
+   return estatus;
 
 }
 
@@ -1287,7 +1608,7 @@ void object::multiple_fork(const method_array & methoda)
    if(pexitexception)
    {
 
-      pexitexception->set_finish();
+      pexitexception->finish();
 
       return false;
 
@@ -1318,95 +1639,179 @@ void object::multiple_fork(const method_array & methoda)
 }
 
 
-::index object::task_add(::task * ptask)
-{
-
-   sync_lock sl(mutex());
-
-   return meta()->task_add(this, ptask);
-
-}
+//::index object::task_add(::task * ptask)
+//{
+//
+//   sync_lock sl(mutex());
+//
+//   return meta()->task_add(this, ptask);
+//
+//}
 
 
 void object::task_remove(::task* ptask)
 {
 
-   sync_lock sl(mutex());
+   //sync_lock sl(mutex());
 
-   if (m_pmeta)
-   {
+   //if (m_pmeta)
+   //{
 
-      m_pmeta->task_remove(this, ptask);
+   //   m_pmeta->task_remove(this, ptask);
 
-   }
+   //}
+
+
+   //void object::task_remove(::task * ptask)
+   //{
+
+      try
+      {
+
+         string strThreadThis = type_name();
+
+         string strThreadChild = ptask->type_name();
+
+         sync_lock sl(mutex());
+
+         if (::is_null(ptask))
+         {
+
+            __throw(invalid_argument_exception());
+
+         }
+
+         sync_lock slChild(ptask->mutex());
+
+         if (!m_pcompositea->contains(ptask) && ptask->thread_parent() != this)
+         {
+
+            __throw(invalid_argument_exception("thread is no parent-child releationship between the threads"));
+
+         }
+
+         ptask->m_pobjectParent.release();
+
+         //auto ptaska = _task_array();
+
+         //if (ptaska)
+         //{
+
+            m_pcompositea->remove(ptask);
+
+         //}
+
+         //if (finish_bit() && (!m_ptaska || ptaska->is_empty()))
+            if(finish_bit())
+         {
+
+            if (strThreadThis == "veriwell_keyboard::application")
+            {
+
+               output_debug_string("veriwell_keyboard::application");
+
+            }
+
+            finish();
+
+         }
+         //else
+         //{
+
+         //   kick_idle();
+
+         //}
+
+      }
+      catch (...)
+      {
+
+
+      }
+
+   //}
 
 }
 
 
-void object::task_remove_all()
-{
+//void object::task_remove_all()
+//{
+//
+//   /*sync_lock sl(mutex());
+//
+//   if (m_pmeta)
+//   {
+//
+//      m_pmeta->task_remove_all(this);
+//
+//   }*/
+//
+//}
 
-   sync_lock sl(mutex());
-
-   if (m_pmeta)
-   {
-
-      m_pmeta->task_remove_all(this);
-
-   }
-
-}
-
-::task_array * object::task_array_get()
-{
-
-   sync_lock sl(mutex());
-
-   if (!m_pmeta)
-   {
-
-      return nullptr;
-
-   }
-
-   return &m_pmeta->m_taska;
-
-}
+//::task_array * object::task_array_get()
+//{
+//
+//   sync_lock sl(mutex());
+//
+//   if (!m_pmeta)
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   return &m_pmeta->m_taska;
+//
+//}
 
 
-const ::task_array* object::task_array_get() const
-{
+//const ::task_array* object::task_array_get() const
+//{
+//
+//   sync_lock sl(mutex());
+//
+//   if (!m_pmeta)
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   return &m_pmeta->m_taska;
+//
+//}
 
-   sync_lock sl(mutex());
 
-   if (!m_pmeta)
-   {
+//bool object::task_is_empty() const
+//{
+//
+//   sync_lock sl(mutex());
+//
+//   auto pthreada = task_array_get();
+//
+//   if (!pthreada)
+//   {
+//
+//      return true;
+//
+//   }
+//
+//   return pthreada->isEmpty();
+//
+//}
 
-      return nullptr;
 
-   }
-
-   return &m_pmeta->m_taska;
-
-}
-
-bool object::task_is_empty() const
-{
-
-   sync_lock sl(mutex());
-
-   auto pthreada = task_array_get();
-
-   if (!pthreada)
-   {
-
-      return true;
-
-   }
-
-   return pthreada->isEmpty();
-
-}
+//void object::task_on_term(::task * ptask)
+//{
+//
+//   if (finish_bit())
+//   {
+//
+//      finish();
+//
+//   }
+//
+//}
 
 
 //__pointer(thread) object::start(

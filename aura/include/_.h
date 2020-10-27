@@ -26,7 +26,7 @@
 
 
 #define Sys(playered) (*::get_context_system(playered)->m_paurasystem)
-#define Sess(playered) (*::get_context_session(playered)->m_paurasession)
+#define Sess(pcontextsession) (pcontextsession->m_paurasession)
 #define App(playered) (*::get_context_application(playered)->m_pauraapplication)
 
 

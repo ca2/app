@@ -931,7 +931,9 @@ namespace experience
 
          pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-         if (Session.savings().is_trying_to_save(::e_resource_processing))
+         auto psession = Session;
+
+         if (psession->savings().is_trying_to_save(::e_resource_processing))
          {
 
             colorBackground.m_iA = 255;
@@ -1014,7 +1016,9 @@ namespace experience
 
          ::point point2;
 
-         Session.get_cursor_pos(&point2);
+         auto psession = Session;
+
+         psession->get_cursor_pos(&point2);
 
          pbar->_001ClientToScreen(point1);
 

@@ -93,7 +93,8 @@ namespace user
          if (pinteraction->is_place_holder())
          {
 
-            pview = pinteraction->m_uiptraChild.first_interaction();
+            auto puiptraChild = m_puiptraChild;
+            pview = puiptraChild->first_interaction();
 
          }
          else
@@ -463,7 +464,9 @@ namespace user
             else
             {
 
-               get_data()->m_panea[iPane]->m_pplaceholder->m_uiptraChild.interactiona().remove_all();
+               //sync_lock sl(mutex_children());
+
+               get_data()->m_panea[iPane]->m_pplaceholder->m_puiptraChild.release();
 
                get_data()->m_panea[iPane]->m_pplaceholder->place_hold(pimpactdata->m_puserinteraction);
 
@@ -520,10 +523,16 @@ namespace user
       if (m_pimpactdata->m_puserinteraction == nullptr)
       {
 
-         if (m_pimpactdata->m_pplaceholder->m_uiptraChild.has_interaction())
+//         sync_lock sl(mutex_children());
+
+
+
+         auto puiptraChild = m_pimpactdata->m_pplaceholder->m_puiptraChild;
+
+         if (puiptraChild && puiptraChild->has_interaction())
          {
 
-            m_pimpactdata->m_puserinteraction = m_pimpactdata->m_pplaceholder->m_uiptraChild.first_interaction();
+            m_pimpactdata->m_puserinteraction = puiptraChild->first_interaction();
 
          }
 
@@ -820,10 +829,12 @@ namespace user
 
       }
 
-      if (pimpactdata->m_pplaceholder != nullptr && pimpactdata->m_pplaceholder->m_uiptraChild.interaction_count() == 1)
+      auto puiptraChild = pimpactdata->m_pplaceholder->m_puiptraChild;
+
+      if (pimpactdata->m_pplaceholder != nullptr && puiptraChild->interaction_count() == 1)
       {
 
-         return pimpactdata->m_pplaceholder->m_uiptraChild.first_interaction();
+         return puiptraChild->first_interaction();
 
       }
 
@@ -1056,7 +1067,9 @@ namespace user
 
       COLORREF crBk;
 
-      auto pointCursor=      Session.get_cursor_pos();
+      auto psession = Session;
+
+      auto pointCursor=      psession->get_cursor_pos();
 
       _001ScreenToClient(&pointCursor);
 

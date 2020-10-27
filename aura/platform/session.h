@@ -73,7 +73,7 @@ namespace aura
 
 #endif
 
-      virtual void set_finish() override;
+      virtual ::estatus finish() override;
 
 
       virtual void enum_display_monitors() override;
@@ -473,66 +473,13 @@ namespace aura
 
       virtual bool is_remote_session() override;
 
-      //virtual ::draw2d::cursor * get_cursor() override;
-      //virtual ::draw2d::cursor* get_default_cursor() override;
-
-      //virtual ::count   get_monitor_count() override;
-      //virtual bool      get_monitor_rect(index iMonitor, RECT* prect) override;
-
-
-      //virtual void on_user_logon(::account::user* puser) override;
-
-
-      //virtual void _001OnDefaultTabPaneDrawTitle(::user::tab_pane& pane, ::user::tab* ptab, ::draw2d::graphics_pointer & pgraphics, const ::rect& rect, ::draw2d::brush_pointer& brushText) override;
-
 
       virtual string_array get_user_wallpaper() override;
 
-
-
-      //virtual void interactive_credentials(::account::credentials* pcredentials) override;
-
-
-
-      //session();
-      //virtual ~session();
-
       inline ::user::user* user() { return m_puser; }
-
-      //virtual __pointer(::user::impact)                      get_view();
-
-
-      //virtual ::estatus     initialize(::layered * pobjectContext) override;
-
-
-      //virtual void frame_pre_translate_message(::message::message* pmessage) override;
-
-      //virtual ::estatus process_init() override;
-
-      //virtual ::estatus init1() override;
-
-      //virtual ::estatus init() override;
-
-      //virtual void term_session() override;
-
-      //virtual void interactive_credentials(::account::credentials* pcredentials) override;
-
-      //virtual void on_finally_focus_set(::user::primitive* pelementalFocus) override;
-
-      //virtual ::user::menu_interaction * create_menu_button(::user::style_pointer & pstyle,::user::menu_item * pitem) override;
-
-      //virtual oswindow get_capture() override;
-
-
-      //virtual void _001OnDefaultTabPaneDrawTitle(::user::tab_pane& pane, ::user::tab* ptab, ::draw2d::graphics_pointer & pgraphics, const ::rect& rect, ::draw2d::brush_pointer& brushText) override;
-
-
-      //virtual bool prepare_menu_button(::draw2d::graphics_pointer& pgraphics, ::user::menu_item* pitem);
 
 
       virtual ::color get_color(::user::e_element eelement, ::user::estate estate);
-
-
 
 
    };

@@ -7,8 +7,6 @@ class CLASS_DECL_ACME task :
 protected:
 
 
-   bool                             m_bitRunThisThread : 1;
-
 
 public:
 
@@ -22,10 +20,9 @@ public:
    ITHREAD                          m_ithread;
    string                           m_strTaskName;
    string                           m_strTaskTag;
-   __pointer(::context_object)      m_pthreadParent;
+   __pointer(::context_object)      m_pobjectParent;
 
    __pointer(::matter)              m_pmatter;
-   element_array                    m_elementaNotify;
    __pointer(manual_reset_event)    m_pevSleep;
 
 
@@ -37,9 +34,16 @@ public:
    virtual string get_tag() const;
    virtual string thread_get_name() const;
 
-   virtual context_object * calc_parent_thread();
+   
+   virtual ::task * get_task() override;
+   virtual const char * get_task_tag() override;
+
+
+   //virtual context_object * calc_parent_thread();
 
    virtual bool set_thread_name(const char* pszName);
+
+   
 
 #ifdef WINDOWS
 
@@ -54,7 +58,13 @@ public:
    virtual void add_notify(::matter* pmatter);
    virtual void remove_notify(::matter* pmatter);
 
+
+   virtual bool on_get_thread_name(string & strThreadName);
+
+
+   virtual void init_task();
    virtual void term_task();
+   virtual ::estatus do_task() override;
    virtual ::estatus on_task() override;
 
 
@@ -93,7 +103,7 @@ public:
       u32 dwCreateFlags = 0);
 
 
-   virtual ::thread* parent_thread();
+   virtual ::object * thread_parent();
 
 
    virtual bool is_thread() const;
@@ -106,9 +116,9 @@ public:
 
    virtual bool is_pred() const { return !m_pobjectContext || m_pobjectContext.get() == this; }
    
-   virtual void set_thread_run(bool bRun = true);
+   //virtual void set_thread_run(bool bRun = true);
 
-   virtual void set_finish() override;
+   //virtual void finish() override;
 
    virtual void kick_idle();
 

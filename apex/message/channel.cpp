@@ -383,7 +383,7 @@ void channel::default_toggle_check_handling(const ::id & id)
 
          }
 
-         this->update(pproperty->m_id)->apply(pcommand->m_actioncontext);
+         this->update(pproperty->m_id)->notify(pcommand->m_actioncontext);
 
    });
 
@@ -513,16 +513,23 @@ bool channel::has_command_handler(::user::command * pcommand)
 
    }
 
-   __pointer(::message::route_array) & proutea = m_idroute[pcommand->m_id];
+   auto passoc = m_idroute.plookup(pcommand->m_id);
 
-   if (proutea.is_null())
+   if (::is_null(passoc))
    {
 
       return false;
 
    }
 
-   if (proutea->is_empty())
+   if (passoc->m_element2.is_null())
+   {
+
+      return false;
+
+   }
+
+   if (passoc->element2()->is_empty())
    {
 
       return false;

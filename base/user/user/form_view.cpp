@@ -99,7 +99,9 @@ namespace user
 
          bOk = false;
 
-         m_pform = create_view(Session.user()->get_html_view_type());
+         auto psession = Session;
+
+         m_pform = create_view(psession->user()->get_html_view_type());
 
          if(m_pform)
          {
@@ -187,7 +189,7 @@ namespace user
 
       ::estatus     estatus = error_failed;
 
-      //__pointer(::user::form_view) pformChild = create_view(Session.userex()->get_html_view_type());
+      //__pointer(::user::form_view) pformChild = create_view(psession->userex()->get_html_view_type());
       //
       //if(pformChild)
       //{

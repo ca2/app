@@ -723,10 +723,27 @@ public:
    ::count remove_all(OBJ_REF_DBG_PARAMS)
    {
 
-      for (auto& p : *this)
+      for (::index i = 0; i < this->get_size(); i++)
       {
 
-         p.release(OBJ_REF_DBG_ARGS);
+         try
+         {
+
+            auto & p = this->element_at(i);
+
+#ifdef DEBUG
+
+            string strType = p->type_name();
+
+#endif
+
+            p.release(OBJ_REF_DBG_ARGS);
+
+         }
+         catch (...)
+         {
+
+         }
 
       }
 

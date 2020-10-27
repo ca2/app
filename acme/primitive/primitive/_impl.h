@@ -2468,27 +2468,43 @@ inline var operator + (var var, const ::future& future)
 
 
 
+#if OBJ_REF_DBG
 
 
+template < typename TYPE, typename T >
+void ___assign(__pointer(TYPE) & ptr, T * p OBJ_REF_DBG_COMMA_PARAMS_DEF)
+{
+   
+   auto pold = ptr.m_p;
+
+   ptr.m_p = p;
+
+   p->add_ref(OBJ_REF_DBG_ARGS);
+
+   ___release(pold OBJ_REF_DBG_COMMA_ARGS);
+
+}
 
 
-//template < typename METHOD >
-//inline sync_method < METHOD >::sync_method()
-//{
-//
-//   __defer_construct_new(m_peventCompleted);
-//
-//}
+template < typename TYPE >
+void ___release(__pointer(TYPE) & ptr OBJ_REF_DBG_COMMA_PARAMS_DEF)
+{
+   
+   ___release(ptr.m_p OBJ_REF_DBG_COMMA_ARGS);
+
+}
 
 
+template < typename TYPE >
+void ___release(TYPE * & p OBJ_REF_DBG_COMMA_PARAMS_DEF)
+{
 
-//template < typename METHOD >
-//inline ::estatus sync_method < METHOD >::operator ()()
-//{
-//
-//   METHOD::operator()();
-//
-//   m_peventCompleted->SetEvent();
-//
-//}
+   release(p OBJ_REF_DBG_COMMA_ARGS);
+
+}
+
+
+#endif
+
+
 

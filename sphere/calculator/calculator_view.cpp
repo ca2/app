@@ -70,7 +70,7 @@ namespace calculator
    void view::on_apply(::action * paction)
    {
 
-      UNREFERENCED_PARAMETER(pupdate);
+      UNREFERENCED_PARAMETER(paction);
 
    }
 

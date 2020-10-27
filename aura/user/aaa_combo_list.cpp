@@ -132,7 +132,7 @@ namespace user
 
       }
 
-      auto pointCursor = Session.get_cursor_pos();
+      auto pointCursor = psession->get_cursor_pos();
 
       _001ScreenToClient(&pointCursor, ::user::layout_design);
 
@@ -600,7 +600,7 @@ namespace user
       if (pactivate->m_nState == WA_INACTIVE)
       {
 
-         auto pointCursor = Session.get_cursor_pos();
+         auto pointCursor = psession->get_cursor_pos();
 
          m_pcombo->_001ScreenToClient(&pointCursor, ::user::layout_sketch);
 
@@ -634,7 +634,7 @@ namespace user
       else
       {
 
-         Session.set_keyboard_focus(this);
+         psession->set_keyboard_focus(this);
 
 
       }
@@ -732,7 +732,7 @@ namespace user
 
       auto rectClient = get_client_rect();
 
-      Session.user()->set_mouse_focus_LButtonDown(this);
+      psession->user()->set_mouse_focus_LButtonDown(this);
 
       m_itemLButtonDown = -1;
 
@@ -759,7 +759,7 @@ namespace user
 
       auto rectClient = get_client_rect();
 
-      Session.user()->set_mouse_focus_LButtonDown(this);
+      psession->user()->set_mouse_focus_LButtonDown(this);
 
       ReleaseCapture();
 
@@ -986,7 +986,7 @@ namespace user
 
       ::rect rectMonitor;
 
-      Session.get_best_monitor(rectMonitor, rectWindow);
+      psession->get_best_monitor(rectMonitor, rectWindow);
 
       ::rect rectList;
 
@@ -1097,11 +1097,11 @@ namespace user
 
          {
 
-            sync_lock sl(Session.mutex());
+            sync_lock sl(psession->mutex());
 
-            auto & preference = Session.m_uiptraToolWindow.add_new();
+            auto & preference = psession->m_uiptraToolWindow.add_new();
 
-            Session.__refer(preference, this);
+            psession->__refer(preference, this);
 
          }
 
@@ -1113,16 +1113,16 @@ namespace user
 
          {
 
-            sync_lock sl(Session.mutex());
+            sync_lock sl(psession->mutex());
 
-            ::index iFind = Session.m_uiptraToolWindow.pred_find_first([this](auto& p) {return p.get() == this; });
+            ::index iFind = psession->m_uiptraToolWindow.pred_find_first([this](auto& p) {return p.get() == this; });
 
             if (__found(iFind))
             {
 
-               Session.__release(Session.m_uiptraToolWindow[iFind]);
+               psession->__release(psession->m_uiptraToolWindow[iFind]);
 
-               Session.m_uiptraToolWindow.remove_at(iFind);
+               psession->m_uiptraToolWindow.remove_at(iFind);
 
             }
 

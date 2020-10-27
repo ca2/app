@@ -39,9 +39,9 @@ class obj_ref_dbg;
 #define OBJ_REF_DBG_P_FUNCTION_LINE(pReferer) OBJ_REF_DBG_P_NOTE(pReferer, __FUNCTION_LINE_STRING__ )
 #define OBJ_REF_DBG_COMMA_P_NOTE(pReferer, note) , OBJ_REF_DBG_P_NOTE(pReferer, note)
 #define OBJ_REF_DBG_COMMA_P_FUNCTION_LINE(pReferer) OBJ_REF_DBG_COMMA_P_NOTE(pReferer, __FUNCTION_LINE_STRING__ )
-#define __assign(target, source) ___assign(target, source)
-#define __note_assign(target, source, note) ___assign(target, source, note)
-#define __named_release(x) ___release(x)
+#define __assign(target, ...) ___assign(target, __VA_ARGS__ )
+#define __note_assign(target, source, ... ) ___assign(target, source,  __VA_ARGS__ )
+#define __named_release(...) ___release( __VA_ARGS__ )
 #define __check_pending_releases(x) x->check_pending_releases()
 #else
 #define OBJ_REF_DBG_ARGS

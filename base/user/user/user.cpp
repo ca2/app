@@ -172,10 +172,10 @@ namespace base
       //}
 
       //if(strLangUser.has_char())
-      //   Session.set_locale(strLangUser,::source_database);
+      //   psession->set_locale(strLangUser,::source_database);
 
       //if(strStyleUser.has_char())
-      //   Session.set_schema(strStyleUser,::source_database);
+      //   psession->set_schema(strStyleUser,::source_database);
 
       //string strLicense = Application.get_license_id();
 
@@ -298,8 +298,9 @@ namespace base
    void user::SendMessageToWindows(const ::id & id,WPARAM wparam,LPARAM lparam)
    {
 
+      auto psession = Session;
 
-      for (auto& papp : Session.m_applicationa)
+      for (auto& papp : psession->m_applicationa)
       {
 
          auto & app = App(papp);
@@ -495,10 +496,10 @@ namespace base
    //   if (get_context_session())
    //   {
 
-   //      if (Session.m_pdocmanager)
+   //      if (psession->m_pdocmanager)
    //      {
 
-   //         Session.m_pdocmanager->close_all_documents(true);
+   //         psession->m_pdocmanager->close_all_documents(true);
 
    //      }
 
@@ -507,7 +508,7 @@ namespace base
    //   if (eend == ::aura::end_app)
    //   {
 
-   //      set_finish();
+   //      finish();
 
    //      return;
 
@@ -522,7 +523,7 @@ namespace base
    //         if (get_context_session())
    //         {
 
-   //            Session.set_finish();
+   //            psession->finish();
 
    //         }
 
@@ -546,7 +547,7 @@ namespace base
    //         if (get_context_system())
    //         {
 
-   //            System.set_finish();
+   //            System.finish();
 
    //         }
 
@@ -648,11 +649,11 @@ namespace base
 //      if (&App(pobject) != nullptr)
 //      {
 //
-//         Session.m_pappCurrent = &App(pobject);
+//         psession->m_pappCurrent = &App(pobject);
 //
 //      }
 //
-//      if (Session.m_bShowPlatform)
+//      if (psession->m_bShowPlatform)
 //      {
 //         //__pointer(::simple_frame_window) pframeApp = get_document()->get_typed_view < ::bergedge::pane_view >()->get_view_uie();
 //         //if(pframeApp != nullptr)
@@ -685,11 +686,11 @@ namespace base
 //         //}
 //      }
 //
-////      if (Session.m_pappCurrent != nullptr && Session.m_pappCurrent->m_psession->m_paccount->m_puser != nullptr)
+////      if (psession->m_pappCurrent != nullptr && psession->m_pappCurrent->m_psession->m_paccount->m_puser != nullptr)
 ////      {
 ////         try
 ////         {
-////            get_view()->GetParentFrame()->set_window_text(Session.m_pappCurrent->m_psession->m_paccount->m_puser->m_strLogin);
+////            get_view()->GetParentFrame()->set_window_text(psession->m_pappCurrent->m_psession->m_paccount->m_puser->m_strLogin);
 ////         }
 ////         catch (...)
 ////         {
@@ -819,7 +820,7 @@ namespace base
 //
 //      /*      if(pinteraction == nullptr && m_bShowPlatform && m_pbergedge->get_document() != nullptr)
 //      {
-//      pinteraction = Session.get_document()->get_bergedge_view();
+//      pinteraction = psession->get_document()->get_bergedge_view();
 //      }
 //
 //      return pinteraction;
@@ -940,7 +941,9 @@ namespace base
 
       ::point point;
 
-      Session.get_cursor_pos(point);
+      auto psession = Session;
+
+      psession->get_cursor_pos(point);
 
       return track_popup_menu(pinteraction, pitem, iFlags, point);
 
@@ -950,7 +953,9 @@ namespace base
    __pointer(::user::menu) user::track_popup_xml_menu_text(::user::interaction* pinteraction, string strXml, i32 iFlags)
    {
 
-      auto point = Session.get_cursor_pos();
+      auto psession = Session;
+
+      auto point = psession->get_cursor_pos();
 
       return track_popup_xml_menu(pinteraction, strXml, iFlags, point);
 
@@ -960,7 +965,9 @@ namespace base
    __pointer(::user::menu) user::track_popup_xml_matter_menu(::user::interaction* pinteraction, const char * pszMatter, i32 iFlags)
    {
 
-      auto point = Session.get_cursor_pos();
+      auto psession = Session;
+
+      auto point = psession->get_cursor_pos();
 
       return track_popup_xml_matter_menu(pinteraction, pszMatter, iFlags, point);
 
@@ -1151,7 +1158,9 @@ namespace base
    ::type user::user_default_controltype_to_typeinfo(::user::e_control_type econtroltype)
    {
 
-      return Sess(this).user()->controltype_to_typeinfo(econtroltype);
+      auto psession = Sess(get_context_session());
+
+      return psession->user()->controltype_to_typeinfo(econtroltype);
 
 
    }

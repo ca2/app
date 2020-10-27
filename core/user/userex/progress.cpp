@@ -45,7 +45,7 @@ namespace userex
       //if (i == 1 && m_pthread.is_set())
       //{
 
-      //   m_pthread->set_finish();
+      //   m_pthread->finish();
 
       //}
 
@@ -61,7 +61,9 @@ namespace userex
       if (m_pdocument == nullptr)
       {
 
-         m_pdocument = User.m_ptemplateProgress2->open_document_file(get_context_application(), ::e_type_null, __visible(false));
+         auto puser = User;
+
+         m_pdocument = puser->m_ptemplateProgress2->open_document_file(get_context_application(), ::e_type_null, __visible(false));
 
          m_pview = m_pdocument->get_typed_view<::userex::progress_view>();
 
@@ -260,7 +262,9 @@ namespace userex
 
          ::rect rect;
 
-         Session.get_main_monitor(rect);
+         auto psession = Session;
+
+         psession->get_main_monitor(rect);
 
          rect.deflate(rect.width() / 6, rect.height() / 3, rect.width() / 6, rect.height() / 2);
 

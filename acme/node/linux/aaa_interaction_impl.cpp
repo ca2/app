@@ -1444,7 +1444,7 @@ namespace linux
 
          ::message::key * pkey = (::message::key *) pbase;
 
-         Session.translate_os_key_message(pkey);
+         psession->translate_os_key_message(pkey);
 
          if(pbase->m_id == WM_KEYDOWN)
          {
@@ -1452,7 +1452,7 @@ namespace linux
             try
             {
 
-               Session.set_key_pressed(pkey->m_ekey, true);
+               psession->set_key_pressed(pkey->m_ekey, true);
 
             }
             catch(...)
@@ -1467,7 +1467,7 @@ namespace linux
             try
             {
 
-               Session.set_key_pressed(pkey->m_ekey, false);
+               psession->set_key_pressed(pkey->m_ekey, false);
 
             }
             catch(...)
@@ -1513,9 +1513,9 @@ namespace linux
          if(get_context_session() != nullptr)
          {
 
-            Session.on_ui_mouse_message(pmouse);
+            psession->on_ui_mouse_message(pmouse);
 
-            Session.m_pointCursor = pmouse->m_point;
+            psession->m_pointCursor = pmouse->m_point;
 
          }
 
@@ -4374,8 +4374,8 @@ namespace linux
    void interaction_impl::_001OnSetCursor(::message::message * pmessage)
    {
       SCAST_PTR(::message::base, pbase, pmessage);
-      if(Session.get_cursor() != nullptr
-            && Session.get_cursor()->m_ecursor != cursor_system)
+      if(psession->get_cursor() != nullptr
+            && psession->get_cursor()->m_ecursor != cursor_system)
       {
 
          __throw(not_implemented());

@@ -91,7 +91,7 @@ namespace user
    //   ::user::style::initialize_style();
 
    //   color color;
-   //   color.set_rgb(Session.get_default_color(COLOR_HIGHLIGHT));
+   //   color.set_rgb(psession->get_default_color(COLOR_HIGHLIGHT));
 
    //   class color colorHover(color);
    //   colorHover.hls_rate(0.0, 0.3, 0.0);
@@ -494,7 +494,7 @@ namespace user
    //void style::_001OnTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::rect & rect, ::draw2d::brush_pointer & brushText)
    //{
 
-   //   Session._001OnDefaultTabPaneDrawTitle(pane, ptab, pgraphics, rect, brushText);
+   //   psession->_001OnDefaultTabPaneDrawTitle(pane, ptab, pgraphics, rect, brushText);
 
    //}
 
@@ -558,7 +558,7 @@ namespace user
    //__pointer(::user::menu_interaction) style::create_menu_button(::user::style_pointer & pstyle, menu_item * pitem)
    //{
 
-   //   return Session.create_menu_button(pstyle, pitem);
+   //   return psession->create_menu_button(pstyle, pitem);
 
    //}
 
@@ -583,7 +583,7 @@ namespace user
 
    //   pgraphics->m_puserstyle = this;
 
-   //   Session.prepare_menu_button(pgraphics, pitem);
+   //   psession->prepare_menu_button(pgraphics, pitem);
 
    //   return true;
 
@@ -666,7 +666,7 @@ namespace user
    //bool style::create_session_default_opaque_color(e_color eusercolor, u64 ui)
    //{
 
-   //   if (!create_opaque_color(eusercolor, Session.get_default_color(ui)))
+   //   if (!create_opaque_color(eusercolor, psession->get_default_color(ui)))
    //   {
 
    //      return false;
@@ -681,7 +681,7 @@ namespace user
    //bool style::create_session_default_color(e_color eusercolor, BYTE bAlpha, u64 ui)
    //{
 
-   //   if (!create_color(eusercolor, alpha_color(bAlpha, Session.get_default_color(ui))))
+   //   if (!create_color(eusercolor, alpha_color(bAlpha, psession->get_default_color(ui))))
    //   {
 
    //      return false;

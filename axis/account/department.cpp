@@ -216,7 +216,7 @@ namespace account
 //
 //      url_domain domainFontopus;
 //
-//      string strFontopusServer = Session.account()->get_server(strGetFontopus, 2);
+//      string strFontopusServer = psession->account()->get_server(strGetFontopus, 2);
 //
 //      domainFontopus.create(strFontopusServer);
 //
@@ -308,7 +308,9 @@ namespace account
 
       m_ptaskpool->start_clock(e_clock_slow, one_minute());
 
-      Session.on_user_logon(puser);
+      auto psession = Session;
+
+      psession->on_user_logon(puser);
 
    }
 

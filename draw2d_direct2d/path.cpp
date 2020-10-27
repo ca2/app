@@ -349,7 +349,7 @@ namespace draw2d_direct2d
       arcseg.point.x = (FLOAT)arc.m_pointEnd.x;
       arcseg.point.y = (FLOAT)arc.m_pointEnd.y;
 
-      if(arc.m_angleEnd > arc.m_angleBeg)
+      if(arc.m_angleEnd2 > arc.m_angleBeg)
       {
 
          arcseg.sweepDirection = D2D1_SWEEP_DIRECTION_CLOCKWISE;
@@ -362,7 +362,7 @@ namespace draw2d_direct2d
 
       }
 
-      if(fabs(arc.m_angleEnd - arc.m_angleBeg) < MATH_PI)
+      if(fabs(arc.m_angleEnd2 - arc.m_angleBeg) < MATH_PI)
       {
 
          arcseg.arcSize = D2D1_ARC_SIZE_SMALL;

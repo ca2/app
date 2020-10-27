@@ -1102,7 +1102,7 @@ namespace ios
 
          SCAST_PTR(::message::key, pkey, pbase);
 
-         Session.translate_os_key_message(pkey);
+         psession->translate_os_key_message(pkey);
 
          if(pbase->m_id == WM_KEYDOWN)
          {
@@ -1110,7 +1110,7 @@ namespace ios
             try
             {
 
-               Session.set_key_pressed(pkey->m_ekey, true);
+               psession->set_key_pressed(pkey->m_ekey, true);
 
             }
             catch(...)
@@ -1125,7 +1125,7 @@ namespace ios
             try
             {
 
-               Session.set_key_pressed(pkey->m_ekey, false);
+               psession->set_key_pressed(pkey->m_ekey, false);
 
             }
             catch(...)
@@ -1202,13 +1202,13 @@ namespace ios
 
          // user presence status activity reporting
 
-         Session.on_ui_mouse_message(pmouse);
+         psession->on_ui_mouse_message(pmouse);
 
 
          if(get_context_session() != nullptr)
          {
 
-            Session.m_pointCursor = pmouse->m_point;
+            psession->m_pointCursor = pmouse->m_point;
 
          }
 
@@ -1294,7 +1294,7 @@ namespace ios
           }
           */
 
-         ::user::interaction * puiFocus = dynamic_cast < ::user::interaction * > (Session.get_keyboard_focus());
+         ::user::interaction * puiFocus = dynamic_cast < ::user::interaction * > (psession->get_keyboard_focus());
          if(puiFocus != nullptr
                && puiFocus->is_window()
                && puiFocus->GetTopLevel() != nullptr)
@@ -4277,8 +4277,8 @@ namespace ios
    void interaction_impl::_001OnSetCursor(::message::message * pmessage)
    {
       SCAST_PTR(::message::base, pbase, pmessage);
-      if(Session.get_cursor() != nullptr
-            && Session.get_cursor()->m_ecursor != cursor_system)
+      if(psession->get_cursor() != nullptr
+            && psession->get_cursor()->m_ecursor != cursor_system)
       {
 
          __throw(not_implemented());
@@ -5180,7 +5180,7 @@ namespace ios
    void interaction_impl::defer_update_text_view()
    {
 
-      __pointer(::user::text) ptext = Session.get_keyboard_focus();
+      __pointer(::user::text) ptext = psession->get_keyboard_focus();
 
       if(ptext.is_null())
       {
@@ -5239,9 +5239,9 @@ namespace ios
    bool interaction_impl::round_window_on_text(const char * pszText, long iSelBeg, long iSelEnd)
    {
 
-      __pointer(raw_key) prawkey = Session.get_keyboard_focus();
+      __pointer(raw_key) prawkey = psession->get_keyboard_focus();
 
-      __pointer(::user::plain_edit) pedit = Session.get_keyboard_focus();
+      __pointer(::user::plain_edit) pedit = psession->get_keyboard_focus();
 
       if(pedit.is_set() && !prawkey.is_set())
       {
@@ -5369,9 +5369,9 @@ namespace ios
    long interaction_impl::round_window_edit_hit_test(int x, int y)
    {
 
-      __pointer(raw_key) prawkey = Session.get_keyboard_focus();
+      __pointer(raw_key) prawkey = psession->get_keyboard_focus();
 
-      __pointer(::user::plain_edit) pedit = Session.get_keyboard_focus();
+      __pointer(::user::plain_edit) pedit = psession->get_keyboard_focus();
 
       if(pedit.is_set() && !prawkey.is_set())
       {
@@ -5388,9 +5388,9 @@ namespace ios
    bool interaction_impl::round_window_edit_caret_rect(CGRect * prect, long iSel)
    {
       
-      __pointer(raw_key) prawkey = Session.get_keyboard_focus();
+      __pointer(raw_key) prawkey = psession->get_keyboard_focus();
 
-     __pointer(::user::plain_edit) pedit = Session.get_keyboard_focus();
+     __pointer(::user::plain_edit) pedit = psession->get_keyboard_focus();
 
      if(pedit.is_set() && !prawkey.is_set())
      {
@@ -5421,7 +5421,7 @@ namespace ios
    bool interaction_impl::round_window_on_sel_text(long iBeg, long iEnd)
    {
 
-      __pointer(::user::interaction) pinteraction = Session.get_keyboard_focus();
+      __pointer(::user::interaction) pinteraction = psession->get_keyboard_focus();
 
       __pointer(::user::text) pedit = pinteraction;
 

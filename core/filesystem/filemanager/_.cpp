@@ -42,7 +42,9 @@ namespace core
 
       }
 
-      return User.filemanager(impact_filemanager_main)->do_prompt_file_name(varFile, strTitle, lFlags, bOpenFileDialog, ptemplate, pdocument);
+      auto puser = User;
+
+      return puser->filemanager(impact_filemanager_main)->do_prompt_file_name(varFile, strTitle, lFlags, bOpenFileDialog, ptemplate, pdocument);
 
    }
 

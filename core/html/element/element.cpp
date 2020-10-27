@@ -109,7 +109,9 @@ namespace html
 
       }
 
-      m_etag = User.m_phtml->tag_name_to_id(m_idTagName);
+      auto puser = User;
+
+      m_etag = puser->m_phtml->tag_name_to_id(m_idTagName);
 
       if (m_etag == tag_initial)
       {
@@ -1573,7 +1575,9 @@ namespace html
       if (m_pbase->get_type() == base::type_value)
       {
 
-         str += Usr(pdata->m_pcoredata->get_context_application()).m_phtml->entities(m_strBody);
+         auto puser = Usr(pdata->m_pcoredata->get_context_session());
+
+         str += puser->m_phtml->entities(m_strBody);
 
       }
       else
@@ -1605,7 +1609,9 @@ namespace html
          if (m_elementalptra.get_size() <= 0)
          {
 
-            str += Usr(pdata->m_pcoredata->get_context_application()).m_phtml->entities(m_strBody);
+            auto puser = Usr(pdata->m_pcoredata->get_context_session());
+
+            str += puser->m_phtml->entities(m_strBody);
 
          }
          else

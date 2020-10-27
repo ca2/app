@@ -10,8 +10,8 @@
 //    m_strAppId           = pszAppId;
 //    m_strConfiguration   = pszConfiguration == nullptr ? System.get_system_configuration().c_str() : pszConfiguration;
 //    m_strPlatform        = pszPlatform == nullptr ? System.get_system_platform().c_str() : pszPlatform;
-//    m_strLocale          = pszLocale == nullptr ? Session.m_strLocale.c_str() : pszLocale;
-//    m_strSchema          = pszSchema == nullptr ? Session.m_strSchema.c_str() : pszSchema;
+//    m_strLocale          = pszLocale == nullptr ? psession->m_strLocale.c_str() : pszLocale;
+//    m_strSchema          = pszSchema == nullptr ? psession->m_strSchema.c_str() : pszSchema;
 
 //    string str;
 //    str += "appid=" + m_strAppId + ";";

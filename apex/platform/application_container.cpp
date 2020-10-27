@@ -36,6 +36,8 @@ void application_container::app_add(::apex::application * papp)
 
    m_applicationa.add(papp);
 
+   add_composite(papp);
+
 }
 
 
@@ -47,7 +49,7 @@ void application_container::app_remove(::apex::application * papp)
    if (m_applicationa.isEmpty() && m_bFinalizeIfNoApplication)
    {
 
-      set_finish();
+      finish();
 
    }
 

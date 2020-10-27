@@ -42,7 +42,7 @@ public:
    bool                                               m_bClosedMq;
 
 
-   ::task_array                                       m_taska;
+   //::task_array                                       m_taska;
    MESSAGE                                            m_message;
    bool                                               m_bLastingThread;
    bool                                               m_bMessageThread;
@@ -69,7 +69,7 @@ public:
    ::status::result                                   m_result;
    __pointer(::layered)                               m_puiMain1;           // Main interaction_impl (usually same System.m_puiMain)
    __pointer(::layered)                               m_puiActive;         // Active Main interaction_impl (may not be m_puiMain)
-   string                                             m_strWorkUrl;
+   //string                                             m_strWorkUrl;
    bool                                               m_bSimpleMessageLoop;
    bool                                               m_bZipIsDir2;
 
@@ -145,7 +145,7 @@ public:
    user_interaction_ptr_array & uiptra();
 
 
-   virtual context_object* calc_parent_thread() override;
+   //virtual context_object* calc_parent_thread() override;
 
 //#ifdef WINDOWS_DESKTOP
 //
@@ -183,6 +183,7 @@ public:
    //virtual bool thread_active() const;
    virtual bool is_dedicated_thread() const;
    virtual bool is_thread() const override;
+   virtual ::thread * get_thread() override;
    //virtual bool is_running() const override;
 
    //virtual void set_os_data(void * pvoidOsData);
@@ -231,7 +232,7 @@ public:
 
    virtual bool send_message(const ::id & id,WPARAM wParam = 0,lparam lParam = 0, ::duration durationTimeout = ::duration::infinite());
 
-   virtual bool post_object(const ::id & id, WPARAM wParam, lparam lParam);
+   virtual bool post_object(const ::id & id, WPARAM wParam, ::matter * pmatter);
 
    virtual bool send_object(const ::id & id, WPARAM wParam, lparam lParam, ::duration durationTimeout = ::duration::infinite());
 
@@ -381,14 +382,15 @@ public:
    // virtual bool do_events(const duration& duration);
 
    virtual bool thread_get_run() const override;
-   virtual bool set_run();
+   //virtual bool set_run();
    virtual void finalize() override;
-   virtual bool is_set_finish() const;
-   virtual void set_finish() override;
+   //virtual bool is_set_finish() const;
+   //virtual void finish() override;
    virtual void kick_idle() override;
-   virtual void post_quit();
+   virtual void post_quit() override;
+   virtual void on_finish() override;
 
-   virtual ::index task_add(::task * ptask) override;
+   //virtual ::index task_add(::task * ptask) override;
    virtual void task_remove(::task * ptask) override;
    //virtual void wait_quit(::duration durationTimeout) override;
 
@@ -412,8 +414,6 @@ public:
 
    //virtual void delete_this();
 
-   virtual bool on_get_thread_name(string& strThreadName);
-
    /// thread implementation
    virtual ::estatus on_thread_init();
    virtual ::estatus on_thread_term();
@@ -425,7 +425,7 @@ public:
    virtual ::estatus initialize(::layered * pobjectContext) override;
 
 
-   virtual ::estatus on_task() override;
+   virtual ::estatus do_task() override;
 
 
    virtual ::estatus osthread_init() override;
@@ -496,22 +496,22 @@ namespace multithreading
 {
 
 
-   CLASS_DECL_APEX void set_finish();
+   CLASS_DECL_APEX void finish();
    CLASS_DECL_APEX bool post_quit_and_wait(const duration & duration);
 
 
-   CLASS_DECL_APEX void set_finish(::task * ptask);
+   CLASS_DECL_APEX void finish(::task * ptask);
    CLASS_DECL_APEX bool post_quit_and_wait(::thread * pthread, const duration & duration);
 
 
    template < typename THREAD >
-   void set_finish(__pointer(THREAD) & spthread)
+   void finish(__pointer(THREAD) & spthread)
    {
 
       if (spthread.is_set())
       {
 
-         ::multithreading::set_finish(spthread.m_p);
+         ::multithreading::finish(spthread.m_p);
 
          spthread.release();
 

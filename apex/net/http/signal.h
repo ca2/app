@@ -19,11 +19,7 @@ namespace http
       property_set                     m_setPost;
       property_set                     m_setHeaders;
 
-      // in replacement of object prop
-      //property_set                   m_propset;
-
       __pointer(::http::cookies)       m_pcookies;
-      //__composite(::account::user)     m_puser;
 
 
       string                           m_strVersion;

@@ -494,7 +494,7 @@ namespace user
 
 
 #undef Usr
-#define Usr(pobject) (*Sess(pobject).user()->m_pcoreuser)
+#define Usr(pobject) (Sess(pobject)->user()->m_pcoreuser)
 
 
 

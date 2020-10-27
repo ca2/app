@@ -635,7 +635,7 @@ namespace sockets
       {
       struct ipv6_mreq x;
       struct in6_addr addr;
-      if (Session.sockets().net().u2ip( group, addr ))
+      if (psession->sockets().net().u2ip( group, addr ))
       {
       x.ipv6mr_multiaddr = addr;
       x.ipv6mr_interface = if_index;
@@ -648,10 +648,10 @@ namespace sockets
       }
       struct ip_mreq x; // ip_mreqn
       ipaddr_t addr;
-      if (Session.sockets().net().u2ip( group, addr ))
+      if (psession->sockets().net().u2ip( group, addr ))
       {
       ::memcpy_dup(&x.imr_multiaddr.s_addr, &addr, sizeof(addr));
-      Session.sockets().net().u2ip( local_if, addr);
+      psession->sockets().net().u2ip( local_if, addr);
       ::memcpy_dup(&x.imr_interface.s_addr, &addr, sizeof(addr));
       //      x.imr_ifindex = if_index;
       if (setsockopt(GetSocket(), SOL_IP, IP_ADD_MEMBERSHIP, (char *)&x, sizeof(struct ip_mreq)) == -1)
@@ -674,7 +674,7 @@ namespace sockets
       {
       struct ipv6_mreq x;
       struct in6_addr addr;
-      if (Session.sockets().net().u2ip( group, addr ))
+      if (psession->sockets().net().u2ip( group, addr ))
       {
       x.ipv6mr_multiaddr = addr;
       x.ipv6mr_interface = if_index;
@@ -687,10 +687,10 @@ namespace sockets
       }
       struct ip_mreq x; // ip_mreqn
       ipaddr_t addr;
-      if (Session.sockets().net().u2ip( group, addr ))
+      if (psession->sockets().net().u2ip( group, addr ))
       {
       ::memcpy_dup(&x.imr_multiaddr.s_addr, &addr, sizeof(addr));
-      Session.sockets().net().u2ip( local_if, addr);
+      psession->sockets().net().u2ip( local_if, addr);
       ::memcpy_dup(&x.imr_interface.s_addr, &addr, sizeof(addr));
       //      x.imr_ifindex = if_index;
       if (setsockopt(GetSocket(), SOL_IP, IP_DROP_MEMBERSHIP, (char *)&x, sizeof(struct ip_mreq)) == -1)

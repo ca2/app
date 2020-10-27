@@ -669,11 +669,13 @@ namespace user
       if (pdrawitem->m_bListItemSelected)
       {
 
+         auto psession = Session;
+
          if (pdrawitem->m_plist->m_bMorePlain)
          {
 
          }
-         else if (Session.savings().is_trying_to_save(::e_resource_processing))
+         else if (psession->savings().is_trying_to_save(::e_resource_processing))
          {
 
             pdrawitem->m_pgraphics->fill_rect(pdrawitem->m_rectItem, ARGB(255, 96, 96, 96));
@@ -3547,6 +3549,8 @@ namespace user
 
       sync_lock sl(mutex());
 
+      auto psession = Session;
+
       m_bLButtonDown = true;
 
       auto tickNow = ::tick::now();
@@ -3646,9 +3650,9 @@ namespace user
 
       }
 
-      Session.set_keyboard_focus(this);
+      psession->set_keyboard_focus(this);
 
-      Session.user()->set_mouse_focus_LButtonDown(this);
+      psession->user()->set_mouse_focus_LButtonDown(this);
 
       if (!_001DisplayHitTest(point, m_iDisplayItemLButtonDown1))
       {
@@ -3708,7 +3712,7 @@ namespace user
          else
          {
 
-            if (m_bMultiSelect && Session.is_key_pressed(::user::key_shift))
+            if (m_bMultiSelect && psession->is_key_pressed(::user::key_shift))
             {
 
                if (_001DisplayHitTest(point, iDisplayItem))
@@ -3729,7 +3733,7 @@ namespace user
                }
 
             }
-            else if (m_bMultiSelect && Session.is_key_pressed(::user::key_control))
+            else if (m_bMultiSelect && psession->is_key_pressed(::user::key_control))
             {
 
                if (_001DisplayHitTest(point, iDisplayItem))
@@ -4086,6 +4090,8 @@ namespace user
 
       pmouse->previous();
 
+      auto psession = Session;
+
       auto point = pmouse->m_point;
 
       _001ScreenToClient(point);
@@ -4096,10 +4102,10 @@ namespace user
       {
          SetFocus();
       }
-      if (Session.is_key_pressed(::user::key_shift))
+      if (psession->is_key_pressed(::user::key_shift))
       {
       }
-      else if (Session.is_key_pressed(::user::key_control))
+      else if (psession->is_key_pressed(::user::key_control))
       {
       }
       else
@@ -6588,7 +6594,9 @@ namespace user
 
       CacheHint();
 
-      update_hover(Session.get_cursor_pos());
+      auto psession = Session;
+
+      update_hover(psession->get_cursor_pos());
 
       ::user::scroll_base::on_change_viewport_offset();
 

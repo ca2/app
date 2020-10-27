@@ -185,7 +185,7 @@ namespace experience
          /*if(m_bFocus)
          {
          ::point pointCursor;
-         Session.get_cursor_pos(&pointCursor);
+         psession->get_cursor_pos(&pointCursor);
          ::rect rectClient;
          ::user::interaction::get_client_rect(rectClient);
          ::user::interaction::_001ClientToScreen(rectClient);

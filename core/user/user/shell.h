@@ -98,7 +98,7 @@ namespace user
 
          virtual ::estatus run() override;
 
-         virtual void set_finish() override;
+         virtual ::estatus finish() override;
 
 
       };
@@ -190,7 +190,7 @@ namespace user
       virtual i32 add_icon_path(::file::path path, COLORREF crBk, int iImage);
 
 
-      virtual void set_finish() override;
+      virtual ::estatus finish() override;
 
 
    };

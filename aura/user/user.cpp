@@ -120,10 +120,10 @@ namespace user
       //}
 
       //if(strLangUser.has_char())
-      //   Session.set_locale(strLangUser,::source_database);
+      //   psession->set_locale(strLangUser,::source_database);
 
       //if(strStyleUser.has_char())
-      //   Session.set_schema(strStyleUser,::source_database);
+      //   psession->set_schema(strStyleUser,::source_database);
 
       //string strLicense = Application.get_license_id();
 
@@ -217,8 +217,9 @@ namespace user
    void user::SendMessageToWindows(const ::id & id,WPARAM wparam,LPARAM lparam)
    {
 
+      auto psession = Session;
 
-      for (auto& papp : Session.m_applicationa)
+      for (auto& papp : psession->m_applicationa)
       {
 
          sync_lock sl(&App(papp).m_mutexFrame);
@@ -388,10 +389,10 @@ namespace aura
       //if (get_context_session())
       //{
 
-      //   if (Session.m_pdocmanager)
+      //   if (psession->m_pdocmanager)
       //   {
 
-      //      Session.m_pdocmanager->close_all_documents(true);
+      //      psession->m_pdocmanager->close_all_documents(true);
 
       //   }
 
@@ -400,7 +401,7 @@ namespace aura
       if (eend == ::apex::e_end_app)
       {
 
-         set_finish();
+         finish();
 
          return;
 
@@ -412,10 +413,12 @@ namespace aura
          try
          {
 
-            if (get_context_session())
+            auto psession = Session;
+
+            if (psession)
             {
 
-               Session.set_finish();
+               psession->finish();
 
             }
 
@@ -439,7 +442,7 @@ namespace aura
             if (get_context_system())
             {
 
-               System.set_finish();
+               System.finish();
 
             }
 
@@ -541,11 +544,11 @@ namespace aura
 //      if (&App(pobject) != nullptr)
 //      {
 //
-//         Session.m_pappCurrent = &App(pobject);
+//         psession->m_pappCurrent = &App(pobject);
 //
 //      }
 //
-//      if (Session.m_bShowPlatform)
+//      if (psession->m_bShowPlatform)
 //      {
 //         //__pointer(::simple_frame_window) pframeApp = get_document()->get_typed_view < ::bergedge::pane_view >()->get_view_uie();
 //         //if(pframeApp != nullptr)
@@ -578,11 +581,11 @@ namespace aura
 //         //}
 //      }
 //
-////      if (Session.m_pappCurrent != nullptr && Session.m_pappCurrent->m_psession->m_paccount->m_puser != nullptr)
+////      if (psession->m_pappCurrent != nullptr && psession->m_pappCurrent->m_psession->m_paccount->m_puser != nullptr)
 ////      {
 ////         try
 ////         {
-////            get_view()->GetParentFrame()->set_window_text(Session.m_pappCurrent->m_psession->m_paccount->m_puser->m_strLogin);
+////            get_view()->GetParentFrame()->set_window_text(psession->m_pappCurrent->m_psession->m_paccount->m_puser->m_strLogin);
 ////         }
 ////         catch (...)
 ////         {
@@ -712,7 +715,7 @@ namespace aura
 
       /*      if(pinteraction == nullptr && m_bShowPlatform && m_pbergedge->get_document() != nullptr)
       {
-      pinteraction = Session.get_document()->get_bergedge_view();
+      pinteraction = psession->get_document()->get_bergedge_view();
       }
 
       return pinteraction;
@@ -835,7 +838,9 @@ namespace user
       if (pmouse->m_point == pmouse->m_pointDesired)
       {
 
-         Session.m_pointCursor = pmouse->m_point;
+         auto psession = Session;
+
+         psession->m_pointCursor = pmouse->m_point;
 
       }
 

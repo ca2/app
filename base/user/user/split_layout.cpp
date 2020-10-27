@@ -250,7 +250,9 @@ namespace user
 
 //         i32   fwKeys = (i32) pMsg->wParam;        // key flags
 
-         if(Session.is_mouse_button_pressed(::user::mouse_left_button))
+         auto psession = Session;
+
+         if(psession->is_mouse_button_pressed(::user::mouse_left_button))
          {
             ::user::split_bar & splitbar = *m_splitbara.element_at(iIndex);
             splitbar.SetCapture();
@@ -265,7 +267,9 @@ namespace user
          if(m_iState != stateInitial)
          {
 
-            Session.ReleaseCapture();
+            auto psession = Session;
+
+            psession->ReleaseCapture();
 
             m_iState = stateInitial;
 
@@ -708,14 +712,23 @@ namespace user
 
       }
 
-      if (pholder->m_uiptraChild.has_no_interaction())
+      auto puiptraChild = pholder->m_puiptraChild;
+
+      if (!puiptraChild)
+      {
+
+         return true;
+
+      }
+
+      if (puiptraChild->has_no_interaction())
       {
 
          return true; // assume future child by default is visible
 
       }
 
-      if (!pholder->m_uiptraChild.first_interaction()->layout().sketch().is_visible())
+      if (!puiptraChild->first_interaction()->layout().sketch().is_visible())
       {
 
          return false;
@@ -1170,9 +1183,15 @@ namespace user
 //         i32 yPos = splitRect.top + (i16) HIWORD(lParam);  // vertical position of cursor
          if(m_iState != stateInitial)
          {
-            Session.ReleaseCapture();
+
+            auto psession = Session;
+
+            psession->ReleaseCapture();
+
             m_iState = stateInitial;
+
          }
+
       }
       else if(id == WM_CAPTURECHANGED)
       {

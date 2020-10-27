@@ -53,7 +53,7 @@ namespace console
 
             SCAST_PTR(::message::key,pkey,pmessage);
 
-            if(pkey->m_ekey == ::user::key_semicolon2 && Session.is_key_pressed(::user::key_shift))
+            if(pkey->m_ekey == ::user::key_semicolon2 && psession->is_key_pressed(::user::key_shift))
             {
 
                if (m_spprompt.is_set())

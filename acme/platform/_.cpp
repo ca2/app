@@ -180,7 +180,7 @@ CLASS_DECL_ACME u32 g_tickStartTime = 0;
 //
 //#else
 //
-//   ::multithreading::set_finish(::get_context_application());
+//   ::multithreading::finish(::get_context_application());
 //
 //#endif
 //
@@ -193,71 +193,6 @@ CLASS_DECL_ACME u32 g_tickStartTime = 0;
 
 //::mutex* &::get_context_system()->m_mutexLibrary = nullptr;
 
-
-//CLASS_DECL_ACME string_map < PFN_NEW_ACME_LIBRARY >& __get_new_acme_library()
-//{
-//
-//   return ::get_context_system()->m_mapNewAuraLibrary;
-//
-//}
-//
-//
-//CLASS_DECL_ACME string_map < __pointer(::acme::library) >& __library()
-//{
-//
-//   return ::get_context_system()->m_mapLibrary;
-//
-//}
-//
-//
-//
-//CLASS_DECL_ACME PFN_NEW_ACME_LIBRARY get_get_new_acme_library(const char* psz)
-//{
-//
-//   sync_lock sl(&::get_context_system()->m_mutexLibrary);
-//
-//   auto ppair = ::get_context_system()->m_mapNewAuraLibrary.plookup(psz);
-//
-//   if (::is_null(ppair))
-//   {
-//
-//      return nullptr;
-//
-//   }
-//
-//   return ppair->element2();
-//
-//}
-//
-//
-//CLASS_DECL_ACME::acme::library& get_library(const char* psz)
-//{
-//
-//   sync_lock sl(&::get_context_system()->m_mutexLibrary);
-//
-//   return *::get_context_system()->m_mapLibrary[psz];
-//
-//}
-
-
-//CLASS_DECL_ACME void register_get_new_acme_library(const char* psz, PFN_NEW_ACME_LIBRARY pfnNewAuraLibrary)
-//{
-//
-//   sync_lock sl(&::get_context_system()->m_mutexLibrary);
-//
-//   __get_new_acme_library()[psz] = pfnNewAuraLibrary;
-//
-//}
-//
-//
-//CLASS_DECL_ACME void register_library(const char* psz, ::acme::library* plibrary)
-//{
-//
-//   sync_lock sl(&::get_context_system()->m_mutexLibrary);
-//
-//   __library()[psz] = plibrary;
-//
-//}
 
 
 CLASS_DECL_ACME int get_acme_init()
@@ -480,45 +415,6 @@ extern "C"
 
 } // extern "C"
 
-
-
-//
-//CLASS_DECL_ACME ::estatus load_factory_library(string strLibrary)
-//{
-//
-//
-//   sync_lock sl(&::get_context_system()->m_mutexLibrary);
-//
-//   __pointer(::acme::library)& plibrary = ::get_context_system()->m_mapLibrary[strLibrary];
-//
-//   if (!plibrary)
-//   {
-//
-//      plibrary = new ::acme::library();
-//
-//   }
-//
-//   if (!plibrary->is_opened())
-//   {
-//
-//      plibrary->open(strLibrary);
-//
-//   }
-//
-//   auto pcreatefactory = plibrary->get < PFN_VOID >(strLibrary + "_create_factory");
-//
-//   if (!pcreatefactory)
-//   {
-//
-//      return ::error_failed;
-//
-//   }
-//
-//   (*pcreatefactory)();
-//
-//   return ::success;
-//
-//}
 
 
 PFN_CALL_UPDATE g_pfnCallUpdateSystem = nullptr;

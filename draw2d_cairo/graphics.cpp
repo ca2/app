@@ -6222,7 +6222,7 @@ void graphics::enum_fonts(::draw2d::font_enum_item_array & itema)
 
 #elif defined(ANDROID)
 
-   itema.add(Session.m_fontenumitema);
+   itema.add(psession->m_fontenumitema);
 
 #else
 

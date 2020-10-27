@@ -72,7 +72,7 @@ namespace turboc
 
    void full_view::on_update(::aura::impact * pSender,e_update eupdate,object* pupdate)
    {
-      UNREFERENCED_PARAMETER(pupdate);
+      UNREFERENCED_PARAMETER(paction);
    }
 
 
@@ -176,7 +176,7 @@ namespace turboc
 
       ::size size = pgraphics->GetTextExtent(strHelloMultiverse);
 
-      if(!Session.savings().is_trying_to_save(::e_resource_display_bandwidth))
+      if(!psession->savings().is_trying_to_save(::e_resource_display_bandwidth))
       {
 
          if(m_dMinRadius > 3.0)
@@ -226,7 +226,7 @@ namespace turboc
 
          }
 
-         if(!Session.savings().is_trying_to_save(::e_resource_display_bandwidth))
+         if(!psession->savings().is_trying_to_save(::e_resource_display_bandwidth))
          {
 
 /*            m_pimage->channel_copy(::color::channel_alpha,::color::channel_green);
@@ -245,7 +245,7 @@ namespace turboc
 
       pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
 
-      if(Session.savings().is_trying_to_save(::e_resource_display_bandwidth))
+      if(psession->savings().is_trying_to_save(::e_resource_display_bandwidth))
       {
 
          brushText->create_solid(ARGB(255,ca.m_iR,ca.m_iG,ca.m_iB));

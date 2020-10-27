@@ -1093,7 +1093,7 @@ namespace macos
 
          SCAST_PTR(::message::key, pkey, pbase);
 
-         Session.translate_os_key_message(pkey);
+         psession->translate_os_key_message(pkey);
 
          if(pkey->m_ekey != ::user::key_refer_to_text_member)
          {
@@ -1104,14 +1104,14 @@ namespace macos
                try
                {
                   
-                  if(Session.is_key_pressed(pkey->m_ekey))
+                  if(psession->is_key_pressed(pkey->m_ekey))
                   {
 
                      return;
 
                   }
                   
-                  Session.set_key_pressed(pkey->m_ekey, true);
+                  psession->set_key_pressed(pkey->m_ekey, true);
                   
                }
                catch (...)
@@ -1126,7 +1126,7 @@ namespace macos
                try
                {
                   
-                  Session.set_key_pressed(pkey->m_ekey, false);
+                  psession->set_key_pressed(pkey->m_ekey, false);
                   
                }
                catch (...)
@@ -1221,13 +1221,13 @@ namespace macos
 
          // user presence status activity reporting
 
-         Session.on_ui_mouse_message(pmouse);
+         psession->on_ui_mouse_message(pmouse);
 
 
          if (get_context_session() != nullptr)
          {
 
-            Session.m_pointCursor = pmouse->m_point;
+            psession->m_pointCursor = pmouse->m_point;
 
          }
 
@@ -1241,10 +1241,10 @@ namespace macos
 
                pmouse->m_bTranslated = true;
 
-               if (Session.get_monitor_count() > 0)
+               if (psession->get_monitor_count() > 0)
                {
 
-                  Session.get_monitor_rect(0, &rect);
+                  psession->get_monitor_rect(0, &rect);
 
                }
                else
@@ -1310,7 +1310,7 @@ namespace macos
 
          ::message::key * pkey = (::message::key *) pbase;
 
-         ::user::interaction * puiFocus = dynamic_cast <::user::interaction *> (Session.get_keyboard_focus());
+         ::user::interaction * puiFocus = dynamic_cast <::user::interaction *> (psession->get_keyboard_focus());
 
          if (puiFocus != nullptr
                && puiFocus->is_window()
@@ -3809,8 +3809,8 @@ namespace macos
 //   void interaction_impl::_001OnSetCursor(::message::message * pmessage)
 //   {
 //      SCAST_PTR(::message::base, pbase, pmessage);
-//      if (Session.get_cursor() != nullptr
-//            && Session.get_cursor()->m_ecursor != cursor_system)
+//      if (psession->get_cursor() != nullptr
+//            && psession->get_cursor()->m_ecursor != cursor_system)
 //      {
 //
 //         __throw(not_implemented());

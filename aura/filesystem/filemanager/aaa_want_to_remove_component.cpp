@@ -207,7 +207,7 @@ namespace filemanager
       ////__compose_new(this, m_pmap);
 
       //__throw(todo("core"));
-      ////Session.userex()->shell()->initialize(&Session);
+      ////psession->userex()->shell()->initialize(&Session);
 
       ////auto pmulti = __new(::user::multiple_document_template(
       ////                   "filemanager",
@@ -217,7 +217,7 @@ namespace filemanager
 
       ////__compose(m_pdocumenttemplateForm, pmulti);
 
-      ////Session.add_document_template(pmulti);
+      ////psession->add_document_template(pmulti);
 
       ////auto psingle = __new(::user::single_document_template(
       ////                    "filemanager",
@@ -227,7 +227,7 @@ namespace filemanager
       ////
       ////__compose(m_pdocumenttemplateOperation, psingle);
 
-      ////Session.add_document_template(psingle);
+      ////psession->add_document_template(psingle);
 
       //return true;
 
@@ -1046,11 +1046,11 @@ namespace filemanager
 //   if (pfilemanagerdata->m_pcallback == nullptr || pcallback != nullptr)
 //   {
 
-//      pfilemanagerdata->m_pcallback = pcallback != nullptr ? pcallback : &Session.component();
+//      pfilemanagerdata->m_pcallback = pcallback != nullptr ? pcallback : &psession->component();
 
 //   }
 
-//   pfilemanagerdata->m_pfilemanager = &Session.component();
+//   pfilemanagerdata->m_pfilemanager = &psession->component();
 //   pfilemanagerdata->m_iTemplate = m_iTemplate;
 //   pfilemanagerdata->m_iDocument = m_iNextDocument++;
 //   pfilemanagerdata->m_bTransparentBackground = bTransparentBackground;
@@ -1095,8 +1095,8 @@ namespace filemanager
 
 
 //   pfilemanagerdata->m_pfilemanagertemplate = this;
-//   pfilemanagerdata->m_pcallback = pcallback != nullptr ? pcallback : &Session.component();
-//   pfilemanagerdata->m_pfilemanager = &Session.component();
+//   pfilemanagerdata->m_pcallback = pcallback != nullptr ? pcallback : &psession->component();
+//   pfilemanagerdata->m_pfilemanager = &psession->component();
 //   pfilemanagerdata->m_iTemplate = m_iTemplate;
 //   pfilemanagerdata->m_iDocument = m_iNextDocument++;
 //   pfilemanagerdata->m_bTransparentBackground = bTransparentBackground;
@@ -1119,7 +1119,7 @@ namespace filemanager
 //   {
 
 //      pdocument->filemanager_data()->m_datakey.m_strDataKey.Format("%s(%d)",
-//            Session.component().m_idFileManager.str(),
+//            psession->component().m_idFileManager.str(),
 //            pdocument->filemanager_data()->m_iDocument);
 
 //   }
@@ -1152,8 +1152,8 @@ namespace filemanager
 //   pcreate->prop("filemanager::data") = pfilemanagerdata;
 
 //   pfilemanagerdata->m_pfilemanagertemplate = this;
-//   pfilemanagerdata->m_pcallback = pcallback != nullptr ? pcallback : &Session.component();
-//   pfilemanagerdata->m_pfilemanager = &Session.component();
+//   pfilemanagerdata->m_pcallback = pcallback != nullptr ? pcallback : &psession->component();
+//   pfilemanagerdata->m_pfilemanager = &psession->component();
 //   pfilemanagerdata->m_iTemplate = m_iTemplate;
 //   pfilemanagerdata->m_iDocument = m_iNextDocument++;
 //   pfilemanagerdata->m_bTransparentBackground = bTransparentBackground;

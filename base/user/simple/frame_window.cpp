@@ -173,6 +173,101 @@ void simple_frame_window::install_message_routing(::channel * pchannel)
 
 }
 
+void simple_frame_window::_task_save_window_rect()
+{
+
+   ::output_debug_string("_task_save_window_rect start\n");
+
+   try
+   {
+
+      while (true)
+      {
+
+         bool bThreadRun = ::thread_get_run();
+
+         if (!bThreadRun)
+         {
+
+            break;
+
+         }
+
+         bool bIsWindow = (m_ewindowflag & window_flag_is_window);
+
+         if (!bIsWindow)
+         {
+
+            break;
+
+         }
+
+         bool bImpl = !!m_pimpl;
+
+         if (!bImpl)
+         {
+
+            break;
+
+         }
+
+         bool bDestroying = m_pimpl->m_bDestroying;
+
+         if (bDestroying)
+         {
+
+            break;
+
+         }
+
+         if (m_tickLastSaveWindowRectRequest.elapsed() < 300_ms)
+         {
+
+            Sleep(150_ms);
+
+         }
+         else if (m_bPendingSaveWindowRect)
+         {
+
+            try
+            {
+
+               _thread_save_window_placement();
+
+               m_tickLastSaveWindowRect.Now();
+
+            }
+            catch (...)
+            {
+
+            }
+
+         }
+         else if (m_tickLastSaveWindowRect.elapsed() > 10_s)
+         {
+
+            break;
+
+         }
+         else
+         {
+
+            Sleep(1_s);
+
+         }
+
+      }
+
+   }
+   catch (...)
+   {
+
+   }
+
+   ::output_debug_string("_task_save_window_rect end\n");
+
+}
+
 
 void simple_frame_window::defer_save_window_placement()
 {
@@ -191,52 +286,11 @@ void simple_frame_window::defer_save_window_placement()
    m_tickLastSaveWindowRectRequest.Now();
 
    defer_start_task("save_window_rect", __method([this]()
-   {
+      {
 
-         while (::thread_get_run()
-            && (m_ewindowflag & window_flag_is_window)
-            && m_pimpl
-               && !m_pimpl->m_bDestroying)
-         {
-
-            if (m_tickLastSaveWindowRectRequest.elapsed() < 200_ms)
-            {
-
-            }
-            else if (m_bPendingSaveWindowRect)
-            {
-
-               try
-               {
-
-                  _thread_save_window_placement();
-
-                  m_tickLastSaveWindowRect.Now();
-
-               }
-               catch (...)
-               {
-
-               }
-
-            }
-            else if (m_tickLastSaveWindowRect.elapsed() > 10000)
-            {
-
-               break;
-
-            }
-            else
-            {
-
-               Sleep(1_s);
-
-            }
-
-         }
-
-      }
-   ));
+         _task_save_window_rect();
+      
+      }));
 
 }
 
@@ -483,7 +537,9 @@ void simple_frame_window::_001OnDestroy(::message::message * pmessage)
 ::experience::frame * simple_frame_window::experience_get_frame()
 {
 
-   if(User.experience() == nullptr)
+   auto puser = User;
+
+   if(!puser || puser->experience() == nullptr)
    {
 
       return nullptr;
@@ -1967,7 +2023,7 @@ bool simple_frame_window::LoadFrame(const char * pszMatter, u32 dwDefaultStyle, 
 
             display(display_zoomed);
 
-          //  Session.get_main_wkspace(rectFrame);
+          //  psession->get_main_wkspace(rectFrame);
 
          }
 
@@ -2220,18 +2276,19 @@ void simple_frame_window::on_after_graphical_update()
 void simple_frame_window::_001OnDeferPaintLayeredWindowBackground(::draw2d::graphics_pointer & pgraphics)
 {
 
+   auto psession = Session;
+
    if(get_context_application() == nullptr
          || get_context_application()->get_context_session() == nullptr
-         || Session.m_psavings == nullptr)
+         || psession->m_psavings == nullptr)
    {
 
       return;
 
    }
 
-
-   if (Session.savings().is_trying_to_save(::e_resource_processing)
-         || Session.savings().is_trying_to_save(::e_resource_translucent_background))
+   if (psession->savings().is_trying_to_save(::e_resource_processing)
+         || psession->savings().is_trying_to_save(::e_resource_translucent_background))
    {
 
       ::rect rectClient;
@@ -2461,14 +2518,16 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
       //rectClient.offset(rectClient.top_left());
 
-      if(Session.savings().is_trying_to_save(::e_resource_translucent_background))
+      auto psession = Session;
+
+      if(psession->savings().is_trying_to_save(::e_resource_translucent_background))
       {
 
          //pgraphics->fill_rect(rectClient, RGB(150, 220, 140));
 
       }
-      else if(Session.savings().is_trying_to_save(::e_resource_processing)
-              || Session.savings().is_trying_to_save(::e_resource_blur_background))
+      else if(psession->savings().is_trying_to_save(::e_resource_processing)
+              || psession->savings().is_trying_to_save(::e_resource_blur_background))
       {
 
          imaging.color_blend(pgraphics,rectClient,RGB(150,180,140),150);
@@ -2885,7 +2944,9 @@ void simple_frame_window::OnDropFiles(HDROP hDropInfo)
 
    ::DragFinish(hDropInfo);
 
-   User.on_frame_window_drop_files(this, patha);
+   auto puser = User;
+
+   puser->on_frame_window_drop_files(this, patha);
 
 }
 
@@ -3245,15 +3306,15 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
    }
 
-   ::user::interaction_array uia;
+   auto puiptraChild = m_puiptraChild;
 
-   {
+   //{
 
-      sync_lock sl(mutex());
+   //   sync_lock sl(mutex());
 
-      uia = m_uiptraChild;
+   //   uia = m_uiptraChild;
 
-   }
+   //}
 
    {
 
@@ -3265,7 +3326,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
          try
          {
 
-            for (auto & pinteraction : uia.interactiona())
+            for (auto & pinteraction : puiptraChild->interactiona())
             {
 
                auto pcontrolbox = pinteraction->cast < ::experience::control_box >();
@@ -3359,7 +3420,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
       try
       {
 
-         for (auto & pinteraction : uia.interactiona())
+         for (auto & pinteraction : puiptraChild->interactiona())
          {
 
             if (base_class < ::experience::control_box > ::bases(pinteraction))
@@ -3458,7 +3519,9 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 void simple_frame_window::draw_frame(::draw2d::graphics_pointer & pgraphics)
 {
 
-   if (m_bWindowFrame && !Session.savings().is_trying_to_save(::e_resource_display_bandwidth))
+   auto psession = Session;
+
+   if (m_bWindowFrame && !psession->savings().is_trying_to_save(::e_resource_display_bandwidth))
    {
 
       ::experience::frame_window::_001OnDraw(pgraphics);
@@ -3595,10 +3658,12 @@ bool simple_frame_window::calc_layered()
 
    auto pstyle = get_style(pgraphics);
 
+   auto psession = Session;
+
    if (m_bLayered && get_translucency(pstyle) != ::user::translucency_none)
    {
-      return !Session.savings().is_trying_to_save(::e_resource_processing)
-             && !Session.savings().is_trying_to_save(::e_resource_display_bandwidth);
+      return !psession->savings().is_trying_to_save(::e_resource_processing)
+             && !psession->savings().is_trying_to_save(::e_resource_display_bandwidth);
    }
    else
    {
@@ -3780,11 +3845,15 @@ void simple_frame_window::_001OnTimer(::timer * ptimer)
 void simple_frame_window::OnNotifyIconContextMenu(UINT uiNotifyIcon)
 {
 
-   auto point = Session.get_cursor_pos();
+   auto psession = Session;
+
+   auto point = psession->get_cursor_pos();
 
    string strXml = notification_area_get_xml_menu();
 
-   User.track_popup_xml_menu(this, strXml, 0, point);
+   auto puser = User;
+
+   puser->track_popup_xml_menu(this, strXml, 0, point);
 
 }
 
@@ -3957,8 +4026,10 @@ void simple_frame_window::on_select_user_style()
 
       if (strSchema.has_char() || is_top_level_window())
       {
+         
+         auto puser = User;
 
-         auto pstyle = User.get_user_style(strSchema, get_context_application());
+         auto pstyle = puser->get_user_style(strSchema, get_context_application());
 
          __refer(m_puserstyle, pstyle);
 

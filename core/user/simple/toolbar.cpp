@@ -326,7 +326,7 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 //   else
 //   {
 //#ifdef WINDOWS_DESKTOP
-//      pgraphics->fill_rect(rectWindow, Session.get_default_color(COLOR_3DFACE));
+//      pgraphics->fill_rect(rectWindow, psession->get_default_color(COLOR_3DFACE));
 //#else
 //      pgraphics->fill_rect(rectWindow, ARGB(255, 190, 184, 177));
 //#endif
@@ -684,7 +684,9 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
    //bool bHover = m_itemHover == iItem;
 
-   __pointer(::user::menu_central) pmenucentral = User.menu();
+   auto puser = User;
+
+   __pointer(::user::menu_central) pmenucentral = puser->menu();
 
    UINT uiImage = pmenucentral->command_image(item.m_id);
    
@@ -1451,7 +1453,9 @@ void simple_toolbar::on_hit_test(::user::item & item)
 
    }
 
-   if (Session.GetCapture() == this)
+   auto psession = Session;
+
+   if (psession->GetCapture() == this)
    {
 
       item = ::user::element_none;
@@ -1524,7 +1528,7 @@ void simple_toolbar::on_hit_test(::user::item & item)
 //void simple_toolbar::_001Hover(bool bRedraw)
 //{
 //
-//   auto point = Session.get_cursor_pos();
+//   auto point = psession->get_cursor_pos();
 //
 //   _001ScreenToClient(point);
 //

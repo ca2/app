@@ -2711,7 +2711,7 @@ file_result file_context::get_file(const var & varFile, const efileopen & eopenF
          //      ::status::result = spfile->open(App(papp).dir().matter(strPath), nOpenFlags);
 
          //   }
-         //   else if (&Session != nullptr && Session.appptra().lookup(strApp, pappLookup))
+         //   else if (&Session != nullptr && psession->appptra().lookup(strApp, pappLookup))
          //   {
 
          //      spfile = App(pappLookup).file().get_file("matter://" + strPath, nOpenFlags, &::status::result);

@@ -547,7 +547,7 @@ namespace install
          if(m_phost->m_pbasecomposer->m_strPluginUrl.has_char())
          {
 
-            m_bLogged = Session.account()->get_user(false,m_phost->m_pbasecomposer->m_strPluginUrl) != nullptr;
+            m_bLogged = psession->account()->get_user(false,m_phost->m_pbasecomposer->m_strPluginUrl) != nullptr;
 
          }
 
@@ -592,11 +592,11 @@ namespace install
          if(strUrl.is_empty())
          {
 
-            strUrl = "http://" + Session.account()->get_server(m_phost->m_pbasecomposer->m_strPluginUrl) + "/";
+            strUrl = "http://" + psession->account()->get_server(m_phost->m_pbasecomposer->m_strPluginUrl) + "/";
 
          }
 
-         System.url().set_param(strUrl,strUrl,"sessid",Session.account()->get_user()->get_sessid(System.url().get_server(m_phost->m_pbasecomposer->m_strPluginUrl)));
+         System.url().set_param(strUrl,strUrl,"sessid",psession->account()->get_user()->get_sessid(System.url().get_server(m_phost->m_pbasecomposer->m_strPluginUrl)));
 
          m_phost->open_link(strUrl, "");
 

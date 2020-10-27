@@ -662,7 +662,7 @@ namespace apex
          if (!papp)
          {
 
-            set_finish();
+            finish();
 
          }
 
@@ -779,7 +779,7 @@ namespace apex
                      || System.has_property("uninstall"))
                {
 
-                  ::multithreading::set_finish(&System);
+                  ::multithreading::finish(&System);
 
                }
                else
@@ -792,7 +792,7 @@ namespace apex
                   if (c == 1 && System.value("app").at(0) == strApp)
                   {
 
-                     ::multithreading::set_finish(&System);
+                     ::multithreading::finish(&System);
 
                   }
 
@@ -2571,19 +2571,6 @@ ret:
 
       }
 
-      //if (m_puser)
-      //{
-
-      //   estatus = m_puser->init();
-
-      //   if (!estatus)
-      //   {
-
-      //      return estatus;
-
-      //   }
-
-      //}
 
       return estatus;
 
@@ -2636,7 +2623,7 @@ ret:
 //   void session::translate_os_key_message(::user::key * pkey)
 //   {
 //
-////      Session.keyboard().translate_os_key_message(pkey);
+////      psession->keyboard().translate_os_key_message(pkey);
 //
 //   }
 
@@ -2748,7 +2735,9 @@ namespace apex
    void session::request_topic_file(var& varQuery)
    {
 
-      request_file(Session.m_varTopicFile, varQuery);
+      auto psession = Session;
+
+      request_file(psession->m_varTopicFile, varQuery);
 
    }
 
@@ -2756,7 +2745,9 @@ namespace apex
    void session::request_topic_file()
    {
 
-      request_file(Session.m_varTopicFile);
+      auto psession = Session;
+
+      request_file(psession->m_varTopicFile);
 
    }
 
@@ -2764,7 +2755,9 @@ namespace apex
    __pointer(::apex::application) session::get_current_application()
    {
 
-      return Session.m_pappCurrent;
+      auto psession = Session;
+
+      return psession->m_pappCurrent;
 
    }
 
@@ -2783,15 +2776,15 @@ namespace apex
 
    //   if (emouse == ::user::mouse_left_button)
    //   {
-   //      return Session.is_key_pressed(::user::key_lbutton);
+   //      return psession->is_key_pressed(::user::key_lbutton);
    //   }
    //   else if (emouse == ::user::mouse_right_button)
    //   {
-   //      return Session.is_key_pressed(::user::key_rbutton);
+   //      return psession->is_key_pressed(::user::key_rbutton);
    //   }
    //   else if (emouse == ::user::mouse_middle_button)
    //   {
-   //      return Session.is_key_pressed(::user::key_mbutton);
+   //      return psession->is_key_pressed(::user::key_mbutton);
    //   }
    //   else
    //   {
@@ -2854,10 +2847,12 @@ namespace apex
    void session::check_topic_file_change()
    {
 
-      if (Session.m_varCurrentViewFile != Session.m_varTopicFile && !Session.m_varTopicFile.is_empty())
+      auto psession = Session;
+
+      if (psession->m_varCurrentViewFile != psession->m_varTopicFile && !psession->m_varTopicFile.is_empty())
       {
 
-         Session.m_varCurrentViewFile = Session.m_varTopicFile;
+         psession->m_varCurrentViewFile = psession->m_varTopicFile;
 
          request_topic_file();
 
@@ -3213,7 +3208,7 @@ namespace apex
 
       string_array stra;
 
-      //string_array straSource = Session.userex()->get_wallpaper();
+      //string_array straSource = psession->userex()->get_wallpaper();
 
       //for (string str : straSource)
       //{
@@ -3319,83 +3314,6 @@ namespace apex
 
    }
 
-
-   /*void session::interactive_credentials(::account::credentials* pcredentials)
-   {
-
-      ::apex::session::interactive_credentials(pcredentials);
-
-      if (pcredentials->m_estatus == ::success_credentials)
-      {
-
-         return;
-
-      }
-
-      if (!pcredentials->m_bInteractive)
-      {
-
-         pcredentials->m_estatus = error_credentials_non_interactive;
-
-         return;
-
-      }
-
-      auto puser = pcredentials->m_puser;
-
-      auto pdialog = ::__create_new<::account::dialog>();
-
-      pdialog->initialize_account_dialog(pcredentials);
-
-      pdialog->get_credentials();
-
-      pdialog->DestroyWindow();
-
-   }*/
-
-
-   //__pointer(::user::impact) session::get_view()
-   //{
-
-   //   return nullptr;
-
-   //}
-
-
-   //void session::_001OnDefaultTabPaneDrawTitle(::user::tab_pane& pane, ::user::tab* ptab, ::draw2d::graphics_pointer & pgraphics, const ::rect& rect, ::draw2d::brush_pointer& brushText)
-
-   //{
-
-   //   __throw(interface_only_exception());
-
-   //}
-
-
-   //void session::on_finally_focus_set(::user::primitive* pelementalFocus)
-   //{
-
-   //   user()->set_mouse_focus_LButtonDown(pelementalFocus);
-
-   //   apex::session::on_finally_focus_set(pelementalFocus);
-
-   //}
-
-
-   //bool session::on_ui_mouse_message(::message::mouse* pmouse)
-   //{
-
-   //   ::apex::session::on_ui_mouse_message(pmouse);
-
-   //   if (m_puserpresence.is_set())
-   //   {
-
-   //      m_puserpresence->on_ui_mouse_message(pmouse);
-
-   //   }
-
-   //   return true;
-
-   //}
 
 
    void session::finalize()

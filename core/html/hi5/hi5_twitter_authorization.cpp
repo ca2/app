@@ -218,7 +218,9 @@ namespace hi5
          if (pimpactdata->m_id == "twitter_authorization")
          {
 
-            m_pdocAuth = User.create_child_form(this, this, pimpactdata->m_pplaceholder);
+            auto puser = User;
+
+            m_pdocAuth = puser->create_child_form(this, this, pimpactdata->m_pplaceholder);
 
             if (m_pdocAuth != nullptr)
             {

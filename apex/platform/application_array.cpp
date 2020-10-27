@@ -131,7 +131,7 @@ restart:
    //try
    //{
    //
-   //   papp->set_finish();
+   //   papp->finish();
    //
    //}
    //catch (...)

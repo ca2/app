@@ -181,7 +181,7 @@ int g_iApexRefCount = 0;
 //
 //#else
 //
-//   ::multithreading::set_finish(::get_context_application());
+//   ::multithreading::finish(::get_context_application());
 //
 //#endif
 //

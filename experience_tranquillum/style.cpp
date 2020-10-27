@@ -950,7 +950,7 @@ namespace tranquillum
 
    //   bool bHover = ptoolbar->m_itemHover == iItem;
 
-   //   UINT uiImage = Session.userex()->menu()->command_image(item.m_id);
+   //   UINT uiImage = psession->userex()->menu()->command_image(item.m_id);
 
    //   ::user::toolbar::e_element eelement = ::user::toolbar::element_item;
    //   ::user::toolbar::e_element eelementImage = ::user::toolbar::element_image;
@@ -1049,14 +1049,14 @@ namespace tranquillum
    //               {
 
    //                  // button is enabled
-   //                  Session.userex()->menu()->MenuV033GetImageListBlend()->draw(pgraphics, uiImage, rectImage.top_left(), 0);
+   //                  psession->userex()->menu()->MenuV033GetImageListBlend()->draw(pgraphics, uiImage, rectImage.top_left(), 0);
 
    //               }
    //               else
    //               {
 
    //                  // button is disabled
-   //                  Session.userex()->menu()->MenuV033GetImageListHueLight()->draw(pgraphics, uiImage, rectImage.top_left(), 0);
+   //                  psession->userex()->menu()->MenuV033GetImageListHueLight()->draw(pgraphics, uiImage, rectImage.top_left(), 0);
 
    //               }
 
@@ -1106,9 +1106,9 @@ namespace tranquillum
 
    //               ptoolbar->_001GetElementRect(iItem, rect, ::user::toolbar::element_item_hover);
 
-   //               Session.userex()->menu()->MenuV033GetImageListHue()->draw(pgraphics, uiImage, rect.top_left(), 0);
+   //               psession->userex()->menu()->MenuV033GetImageListHue()->draw(pgraphics, uiImage, rect.top_left(), 0);
 
-   //               Session.userex()->menu()->MenuV033GetImageList()->draw(pgraphics, uiImage, rectImage.top_left(), 0);
+   //               psession->userex()->menu()->MenuV033GetImageList()->draw(pgraphics, uiImage, rectImage.top_left(), 0);
    //            }
 
    //         }
@@ -1147,7 +1147,7 @@ namespace tranquillum
    //         else if (uiImage != 0xffffffff)
    //         {
 
-   //            Session.userex()->menu()->MenuV033GetImageList()->draw(pgraphics, uiImage, rectImage.top_left(), 0);
+   //            psession->userex()->menu()->MenuV033GetImageList()->draw(pgraphics, uiImage, rectImage.top_left(), 0);
 
    //         }
 
@@ -1187,13 +1187,13 @@ namespace tranquillum
    //            if ((nStyle & TBBS_DISABLED) == 0)
    //            {
 
-   //               Session.userex()->menu()->MenuV033GetImageListBlend()->draw(pgraphics, uiImage, rectImage.top_left(), 0);
+   //               psession->userex()->menu()->MenuV033GetImageListBlend()->draw(pgraphics, uiImage, rectImage.top_left(), 0);
 
    //            }
    //            else
    //            {
 
-   //               Session.userex()->menu()->MenuV033GetImageListHueLight()->draw(pgraphics, uiImage, rectImage.top_left(), 0);
+   //               psession->userex()->menu()->MenuV033GetImageListHueLight()->draw(pgraphics, uiImage, rectImage.top_left(), 0);
 
    //            }
 
@@ -1256,7 +1256,7 @@ namespace tranquillum
 
    //   bool bHover = ptoolbar->m_itemHover == iItem;
 
-   //   UINT uiImage = Session.userex()->menu()->command_image(item.m_id);
+   //   UINT uiImage = psession->userex()->menu()->command_image(item.m_id);
 
    //   ::user::toolbar::e_element eelement = ::user::toolbar::element_item;
    //   ::user::toolbar::e_element eelementImage = ::user::toolbar::element_image;
@@ -1355,14 +1355,14 @@ namespace tranquillum
    //               {
 
    //                  // button is enabled
-   //                  Session.userex()->menu()->MenuV033GetImageListBlend()->draw(pgraphics, uiImage, rectImage.top_left(), 0);
+   //                  psession->userex()->menu()->MenuV033GetImageListBlend()->draw(pgraphics, uiImage, rectImage.top_left(), 0);
 
    //               }
    //               else
    //               {
 
    //                  // button is disabled
-   //                  Session.userex()->menu()->MenuV033GetImageListHueLight()->draw(pgraphics, uiImage, rectImage.top_left(), 0);
+   //                  psession->userex()->menu()->MenuV033GetImageListHueLight()->draw(pgraphics, uiImage, rectImage.top_left(), 0);
 
    //               }
 
@@ -1410,9 +1410,9 @@ namespace tranquillum
 
    //               ptoolbar->_001GetElementRect(iItem, rect, ::user::toolbar::element_item_hover);
 
-   //               Session.userex()->menu()->MenuV033GetImageListHue()->draw(pgraphics, uiImage, rect.top_left(), 0);
+   //               psession->userex()->menu()->MenuV033GetImageListHue()->draw(pgraphics, uiImage, rect.top_left(), 0);
 
-   //               Session.userex()->menu()->MenuV033GetImageList()->draw(pgraphics, uiImage, rectImage.top_left(), 0);
+   //               psession->userex()->menu()->MenuV033GetImageList()->draw(pgraphics, uiImage, rectImage.top_left(), 0);
    //            }
 
    //         }
@@ -1451,7 +1451,7 @@ namespace tranquillum
    //         else if (uiImage != 0xffffffff)
    //         {
 
-   //            Session.userex()->menu()->MenuV033GetImageList()->draw(pgraphics, uiImage, rectImage.top_left(), 0);
+   //            psession->userex()->menu()->MenuV033GetImageList()->draw(pgraphics, uiImage, rectImage.top_left(), 0);
 
    //         }
 
@@ -1514,13 +1514,13 @@ namespace tranquillum
    //            if ((nStyle & TBBS_DISABLED) == 0)
    //            {
 
-   //               Session.userex()->menu()->MenuV033GetImageListBlend()->draw(pgraphics, uiImage, rectImage.top_left(), 0);
+   //               psession->userex()->menu()->MenuV033GetImageListBlend()->draw(pgraphics, uiImage, rectImage.top_left(), 0);
 
    //            }
    //            else
    //            {
 
-   //               Session.userex()->menu()->MenuV033GetImageListHueLight()->draw(pgraphics, uiImage, rectImage.top_left(), 0);
+   //               psession->userex()->menu()->MenuV033GetImageListHueLight()->draw(pgraphics, uiImage, rectImage.top_left(), 0);
 
    //            }
 

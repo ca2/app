@@ -1240,9 +1240,9 @@ namespace experience
 
       UINT nStyle = ptoolbar->GetButtonStyle(iItem);
 
-//      bool bHover = ptoolbar->m_itemHover == iItem;
+      auto puser = User;
 
-      __pointer(::user::menu_central) pmenucentral = User.menu();
+      __pointer(::user::menu_central) pmenucentral = puser->menu();
 
       UINT uiImage = pmenucentral->command_image(item.m_id);
       
@@ -1549,7 +1549,9 @@ namespace experience
 
 //      bool bHover = ptoolbar->m_itemHover == iItem;
 
-      __pointer(::user::menu_central) pmenucentral = User.menu();
+      auto puser = User;
+
+      __pointer(::user::menu_central) pmenucentral = puser->menu();
 
       UINT uiImage = pmenucentral->command_image(item.m_id);
 

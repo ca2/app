@@ -50,7 +50,7 @@ namespace filemanager
       break;
       case ::filemanager::state_finish:
       {
-         m_fileoperationa[m_iOperation]->finish();
+         m_fileoperationa[m_iOperation]->end();
          single_lock sl(&m_mutexFileOperationA, TRUE);
          m_estate = ::filemanager::state_start;
          m_fileoperationa.remove_at(m_iOperation);

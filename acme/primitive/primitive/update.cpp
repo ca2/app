@@ -250,7 +250,7 @@ void update::notify(const ::action_context& actioncontext)
 
       action.m_actioncontext = actioncontext;
 
-      pchange->apply(&action);
+      pmatter->apply(&action);
 
    }
 

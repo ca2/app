@@ -139,7 +139,9 @@ namespace app_app
 
          pitem->m_rect.bottom = pitem->m_rect.top + iSize;
 
-         update_hover(Session.get_cursor_pos());
+         auto psession = Session;
+
+         update_hover(psession->get_cursor_pos());
 
       }
 

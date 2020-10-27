@@ -113,7 +113,7 @@ namespace prompt
       case CONTEXT_MENU_IMPACT:
       {
 
-         auto pdata = Session.filemanager("filemanager::list");
+         auto pdata = psession->filemanager("filemanager::list");
 
          pdata->m_puserinteractionParent = pimpactdata->m_pplaceholder;
          pdata->m_iIconSize = 16;
@@ -164,7 +164,7 @@ namespace prompt
       break;
 //      case FILEMANAGER_IMPACT:
 //      {
-//         __pointer(::filemanager::document) pdocument = User.filemanager()->open_child(false, true);
+//         __pointer(::filemanager::document) pdocument = puser->filemanager()->open_child(false, true);
 //         if(pdocument != nullptr)
 //         {
 //            pdocument->filemanager_data()->m_datakey = "winactionarea_filemanager";
@@ -193,7 +193,7 @@ namespace prompt
       case impact_three_action_launch:
       {
 
-         auto pdata = Session.filemanager("filemanager::list");
+         auto pdata = psession->filemanager("filemanager::list");
 
          pdata->m_puserinteractionParent = pimpactdata->m_pplaceholder;
          pdata->m_iIconSize = 48;

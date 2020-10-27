@@ -207,7 +207,9 @@ void simple_scroll_bar::_001OnLButtonUp(::message::message * pmessage)
 
    pmouse->m_bRet = false;
 
-   simple_scroll_bar * pcapture = Session.GetCapture().cast < simple_scroll_bar >();
+   auto psession = Session;
+
+   simple_scroll_bar * pcapture = psession->GetCapture().cast < simple_scroll_bar >();
 
    if((pcapture != nullptr && pcapture == this) || m_bTracking)
    {
@@ -761,7 +763,9 @@ void simple_scroll_bar::_001OnTimer(::timer * ptimer)
 
    ::user::scroll_bar::_001OnTimer(ptimer);
 
-   auto point = Session.get_cursor_pos();
+   auto psession = Session;
+
+   auto point = psession->get_cursor_pos();
 
    _001ScreenToClient(point);
 
@@ -1301,7 +1305,9 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-      if (Session.savings().is_trying_to_save(::e_resource_processing))
+      auto psession = Session;
+
+      if (psession->savings().is_trying_to_save(::e_resource_processing))
       {
 
          pgraphics->fill_rect(rectClient, RGB(255, 255, 255));
@@ -1397,7 +1403,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
    //   ::point point2;
 
-   //   Session.get_cursor_pos(&point2);
+   //   psession->get_cursor_pos(&point2);
 
    //   _001ClientToScreen(point1);
 

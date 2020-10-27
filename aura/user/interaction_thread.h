@@ -43,7 +43,7 @@ namespace user
 
       __pointer(interaction_impl)            m_pimpl;
       ::user::create_struct *                m_pcreatestruct;
-      prodevian *                            m_pprodevian;
+      __reference(prodevian)                 m_pprodevian;
       oswindow                               m_oswindow;
 
       manual_reset_event                     m_evApplyVisual;
@@ -86,9 +86,9 @@ namespace user
 
       virtual ::estatus process_base_message(::message::base * pbase) override;
 
-      virtual ::estatus     run() override;
+      virtual ::estatus run() override;
 
-      virtual void set_finish() override;
+      virtual ::estatus finish() override;
 
       virtual void finalize() override;
 

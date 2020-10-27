@@ -94,11 +94,13 @@ i32                 cy)
    SIZED                   sizeText;
    ::rect                  rectText;
 
+   auto psession = Session;
+
    if(crShadow == (COLORREF)-1)
-      crShadow = Session.get_default_color(COLOR_BTNSHADOW);
+      crShadow = psession->get_default_color(COLOR_BTNSHADOW);
 
    if(crText == (COLORREF)-1)
-      crText = Session.get_default_color(COLOR_BTNTEXT);
+      crText = psession->get_default_color(COLOR_BTNTEXT);
 
    /* setup the DC, saving off the old values
    */
@@ -485,11 +487,11 @@ return pil;
 //   return false;
 //
 ////   UNREFERENCED_PARAMETER(crAlpha);
-////   //COLORREF cr3dface = Session.get_default_color(COLOR_3DFACE);
+////   //COLORREF cr3dface = psession->get_default_color(COLOR_3DFACE);
 ////
 ////#ifdef WINDOWS_DESKTOP
 ////
-////   COLORREF cr3dshadow = Session.get_default_color(COLOR_3DSHADOW);
+////   COLORREF cr3dshadow = psession->get_default_color(COLOR_3DSHADOW);
 ////
 ////#else
 ////
@@ -507,7 +509,7 @@ return pil;
 ////
 ////#ifdef WINDOWS_DESKTOP
 ////
-////   COLORREF cr3dhighlight = Session.get_default_color(COLOR_3DHILIGHT);
+////   COLORREF cr3dhighlight = psession->get_default_color(COLOR_3DHILIGHT);
 ////
 ////#else
 ////
@@ -668,9 +670,9 @@ return pil;
 ////
 ////   BYTE br,bg,bb;
 ////
-////   //   COLORREF crBtnFace = Session.get_default_color(COLOR_BTNFACE);
-////   //   COLORREF crBtnShad = Session.get_default_color(COLOR_BTNSHADOW);
-////   //   COLORREF crWndBack = Session.get_default_color(COLOR_WINDOW);
+////   //   COLORREF crBtnFace = psession->get_default_color(COLOR_BTNFACE);
+////   //   COLORREF crBtnShad = psession->get_default_color(COLOR_BTNSHADOW);
+////   //   COLORREF crWndBack = psession->get_default_color(COLOR_WINDOW);
 ////
 ////   //   BYTE bRBtnFace = ::red(crBtnFace);
 ////   //   BYTE bGBtnFace = ::green(crBtnFace);
@@ -5023,14 +5025,20 @@ bool imaging::spread__32CC(::image * pimageDst, ::image * pimageSrc,i32 iRadius,
    i32 iRadius2 = iRadius * iRadius;
    i32 r2;
 
-   auto & memory = get_task()->get_cast < ::memory >("m_alpha_spread__32CC_filterMap(" + __str(iRadius) + ")");
 
-   if (memory.size() != iFilterArea)
+
+   sync_lock sl(System.draw2d().mutex());
+
+   auto & pmemory = System.draw2d().m_alpha_spread__32CC_filterMap[iRadius];
+
+   pmemory.defer_create_new();
+
+   if (pmemory->size() != iFilterArea)
    {
 
-      memory.set_size(iFilterArea);
+      pmemory->set_size(iFilterArea);
 
-      BYTE * pdata = memory.get_data();
+      BYTE * pdata = pmemory->get_data();
 
       for(y = 0; y < iFilterHalfH; y++)
       {
@@ -5065,7 +5073,9 @@ bool imaging::spread__32CC(::image * pimageDst, ::image * pimageSrc,i32 iRadius,
 
    }
 
-   BYTE * pFilterData = memory.get_data();
+   sl.unlock();
+
+   BYTE * pFilterData = pmemory->get_data();
 
    i32 cx = pimageDst->width();
 

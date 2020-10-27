@@ -82,7 +82,7 @@ namespace user
          //if(pstyle == nullptr)
          //{
 
-         //   if(m_iHover == 0 || Session.m_puiLastLButtonDown == this)
+         //   if(m_iHover == 0 || psession->m_puiLastLButtonDown == this)
          //   {
 
          //      pgraphics->fill_rect(rectClient,ARGB(255,127,127,127));
@@ -110,7 +110,7 @@ namespace user
                pgraphics->set_text_color(ARGB(255, 160, 160, 160));
 
             }
-            else if (should_hover() && (m_itemHover.is_set() || Session.m_puiLastLButtonDown == this))
+            else if (should_hover() && (m_itemHover.is_set() || psession->m_puiLastLButtonDown == this))
             {
 
                pgraphics->fill_rect(rectClient, ARGB(255, 200, 200, 230));
@@ -203,7 +203,7 @@ namespace user
    //      if (!simple_process_system_message(pmessage, ::user::event_button_down))
    //      {
 
-   //         Session.m_puiLastLButtonDown = this;
+   //         psession->m_puiLastLButtonDown = this;
 
    //         pmouse->m_bRet = true;
 
@@ -233,7 +233,7 @@ namespace user
    //      if (!simple_process_system_message(pmessage, ::user::event_m_button_down))
    //      {
 
-   //         //Session.m_puiLastLButtonDown = this;
+   //         //psession->m_puiLastLButtonDown = this;
 
    //         pmouse->m_bRet = true;
 
@@ -263,7 +263,7 @@ namespace user
    //      if (!simple_process_system_message(pmessage, ::user::event_m_button_up))
    //      {
 
-   //         //Session.m_puiLastLButtonDown = this;
+   //         //psession->m_puiLastLButtonDown = this;
 
    //         pmouse->m_bRet = true;
 
@@ -277,7 +277,7 @@ namespace user
 
    ////bool still::is_pressed()
    ////{
-   ////   return Session.m_puiLastLButtonDown == this;
+   ////   return psession->m_puiLastLButtonDown == this;
    ////}
 
    //void still::_001OnLButtonUp(::message::message * pmessage)
@@ -291,10 +291,10 @@ namespace user
 
    //   //_001ScreenToClient(point);
 
-   //   //if (hit_test(point, eelement) >= 0 && Session.m_puiLastLButtonDown == this)
+   //   //if (hit_test(point, eelement) >= 0 && psession->m_puiLastLButtonDown == this)
    //   //{
 
-   //   //   Session.m_puiLastLButtonDown = nullptr;
+   //   //   psession->m_puiLastLButtonDown = nullptr;
 
    //   //   pmessage->m_bRet = on_click(item);
 
@@ -818,7 +818,7 @@ namespace user
       //if (pstyle == nullptr)
       //{
 
-      //   if (m_iHover == 0 || Session.m_puiLastLButtonDown == this)
+      //   if (m_iHover == 0 || psession->m_puiLastLButtonDown == this)
       //   {
 
       //      pgraphics->fill_rect(rectClient, ARGB(255, 127, 127, 127));

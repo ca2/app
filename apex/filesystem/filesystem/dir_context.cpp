@@ -1727,7 +1727,9 @@ void dir_context::matter_ls_file(const ::file::path & str, ::file::listing & str
 
    Context.locale_schema_matter(straLs, straMatterLocator, strLocale, strSchema);
 
-   ::apex::str_context * pcontext = Session.str_context();
+   auto psession = Session;
+      
+   ::apex::str_context * pcontext = psession->str_context();
 
    if (System.m_pdirsystem->m_bMatterFromHttpCache)
    {
@@ -2053,7 +2055,9 @@ ret:
    if (strLocale.is_empty())
    {
 
-      strLocale = Session.m_strLocale;
+      auto psession = Session;
+         
+      strLocale = psession->m_strLocale;
 
    }
 
@@ -2062,7 +2066,9 @@ ret:
    if (strSchema.is_empty())
    {
 
-      strSchema = Session.m_strSchema;
+      auto psession = Session;
+
+      strSchema = psession->m_strSchema;
 
    }
 

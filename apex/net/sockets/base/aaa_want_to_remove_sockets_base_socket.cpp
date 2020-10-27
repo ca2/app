@@ -772,7 +772,7 @@ namespace sockets
    void base_socket::SetSocks4Host(const string & host)
    {
 
-      Session.sockets().net().convert(m_socks4_host, host);
+      psession->sockets().net().convert(m_socks4_host, host);
 
    }
 
@@ -2549,7 +2549,7 @@ namespace sockets
    string base_socket::get_short_description()
    {
 
-      return Session.sockets().net().canonical_name(GetRemoteAddress());
+      return psession->sockets().net().canonical_name(GetRemoteAddress());
 
    }
 

@@ -24,7 +24,7 @@ exit_exception::~exit_exception()
 }
 
 
-void exit_exception::set_finish()
+::estatus exit_exception::finish()
 {
 
    try
@@ -33,11 +33,11 @@ void exit_exception::set_finish()
       if(m_pthreadExit.is_null())
       {
 
-         return;
+         return ::success;
 
       }
 
-      m_pthreadExit->set_finish();
+      m_pthreadExit->finish();
 
       m_pthreadExit.release();
 
@@ -46,6 +46,8 @@ void exit_exception::set_finish()
    {
 
    }
+
+   return ::success;
 
 }
 

@@ -251,7 +251,7 @@ namespace filehandler
 
          varRequest = "app://" + m_list[iItem].m_strApp + "/" + m_strName;
 
-         Session.request(varRequest);
+         psession->request(varRequest);
          */
 
          __pointer(::create) pcreate(e_create);
@@ -260,7 +260,7 @@ namespace filehandler
 
          pcreate->m_pcommandline->m_varFile                = m_strName;
 
-         Session.do_request(pcreate);
+         psession->do_request(pcreate);
 
          //varFile = pcreate->m_pcommandline->m_varFile;
 

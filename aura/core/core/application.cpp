@@ -682,10 +682,10 @@ namespace aura
             if (is_user_service())
             {
 
-//               if (Session.account()->m_puser != nullptr && Session.account()->m_puser->m_strLogin == "system")
+//               if (psession->account()->m_puser != nullptr && psession->account()->m_puser->m_strLogin == "system")
 //               {
 //
-//                  Session.account()->m_puser = nullptr;
+//                  psession->account()->m_puser = nullptr;
 //
 //               }
 //
@@ -702,7 +702,7 @@ namespace aura
          else
          {
 
-            //Session.keyboard();
+            //psession->keyboard();
 
          }
 
@@ -2518,7 +2518,7 @@ namespace aura
       /*if (puiParent == nullptr && m_psession != nullptr && m_psession != nullptr
             && !pcreate->m_bOuterPopupAlertLike && m_psession != dynamic_cast < session * > (this))
       {
-         puiParent = Session.get_request_parent_ui(pinteraction, pcreate);
+         puiParent = psession->get_request_parent_ui(pinteraction, pcreate);
       }*/
 
       return puiParent;
@@ -3017,7 +3017,7 @@ m_tickHeartBeat.Now();
    bool application::set_keyboard_layout(const char * pszPath, const ::action_context & context)
    {
 
-      return Session.keyboard().load_layout(pszPath, context);
+      return psession->keyboard().load_layout(pszPath, context);
 
    }
 
@@ -3117,7 +3117,7 @@ m_tickHeartBeat.Now();
    void application::set_title(const char * pszTitle)
    {
 
-      Session.set_app_title(m_strAppName, pszTitle);
+      psession->set_app_title(m_strAppName, pszTitle);
 
    }
 
@@ -3300,7 +3300,7 @@ m_tickHeartBeat.Now();
 
    __pointer(::create) spcreate(e_create);
 
-   papp = Session.start_application("application", pszAppId, spcreate);
+   papp = psession->start_application("application", pszAppId, spcreate);
 
    }
 
@@ -3429,7 +3429,7 @@ m_tickHeartBeat.Now();
       if (pchange->m_datakey.m_strDataKey == "ca2.savings")
       {
 
-         Session.savings().m_eresourceflagsShouldSave = (::aura::e_resource) pchange->data_get().i32();
+         psession->savings().m_eresourceflagsShouldSave = (::aura::e_resource) pchange->data_get().i32();
 
       }
 
@@ -3489,7 +3489,7 @@ m_tickHeartBeat.Now();
       // keyboard on_layout
       //if(data_get("keyboard_layout",str) && str.has_char())
       {
-         // Session.set_keyboard_layout(str,::source_database);
+         // psession->set_keyboard_layout(str,::source_database);
       }
       //else
       {
@@ -4032,7 +4032,7 @@ m_tickHeartBeat.Now();
                //   }
                //   try
                //   {
-               //      Session.remove_frame(pinteraction);
+               //      psession->remove_frame(pinteraction);
                //   }
                //   catch(...)
                //   {

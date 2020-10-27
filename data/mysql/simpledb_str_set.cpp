@@ -152,7 +152,7 @@ repeat:;
              goto repeat;
           }
 
-          if(Session.account()->m_puser == nullptr)
+          if(psession->account()->m_puser == nullptr)
           {
              sl.unlock();
              Sleep(5000);
@@ -191,7 +191,7 @@ repeat:;
 
              sl.unlock();
 
-             set["user"] = Session.account()->get_user();
+             set["user"] = psession->account()->get_user();
 
              m_phttpsession = Context.http().request(m_phttpsession, strUrl, set);
 
@@ -279,7 +279,7 @@ bool db_str_set::load(const char * lpKey, string & strValue)
       if(m_pcore->m_phttpsession == nullptr)
       {
 
-         m_pcore->m_phttpsession = Session.account()->m_mapFontopusSession[Session.account()->m_strFirstFontopusServer];
+         m_pcore->m_phttpsession = psession->account()->m_mapFontopusSession[psession->account()->m_strFirstFontopusServer];
 
       }
 
@@ -303,7 +303,7 @@ bool db_str_set::load(const char * lpKey, string & strValue)
 
       strUrl += System.url().url_encode(lpKey);
 
-      set["user"] = Session.account()->get_user();
+      set["user"] = psession->account()->get_user();
 
       set["get_response"] = "";
 

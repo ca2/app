@@ -1120,7 +1120,9 @@ namespace user
          if(pfocus != nullptr)
          {
 
-            Session.set_keyboard_focus(pfocus);
+            auto psession = Session;
+
+            psession->set_keyboard_focus(pfocus);
 
          }
 
@@ -1275,7 +1277,9 @@ namespace user
 
       }
 
-      pdescriptor->m_type = Session.user()->controltype_to_typeinfo(pdescriptor->get_control_type());
+      auto psession = Session;
+
+      pdescriptor->m_type = psession->user()->controltype_to_typeinfo(pdescriptor->get_control_type());
 
       if(pdescriptor->m_type)
       {

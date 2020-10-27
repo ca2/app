@@ -648,7 +648,7 @@ namespace experience_core
 
          pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-         if (Session.savings().is_trying_to_save(::e_resource_processing))
+         if (psession->savings().is_trying_to_save(::e_resource_processing))
          {
 
             pgraphics->FillSolidRect(rectClient, RGB(255, 255, 255));
@@ -721,7 +721,7 @@ namespace experience_core
 
          point pt2;
 
-         Session.get_cursor_pos(&pt2);
+         psession->get_cursor_pos(&pt2);
 
          pbar->ClientToScreen(pt1);
 

@@ -247,7 +247,7 @@ namespace user
 
 //         i32   fwKeys = (i32) pMsg->wParam;        // key flags
 
-         if(Session.is_mouse_button_pressed(::user::mouse_left_button))
+         if(psession->is_mouse_button_pressed(::user::mouse_left_button))
          {
             ::user::split_bar & splitbar = *m_splitbara.element_at(iIndex);
             splitbar.SetCapture();
@@ -262,7 +262,7 @@ namespace user
          if(m_iState != stateInitial)
          {
 
-            Session.ReleaseCapture();
+            psession->ReleaseCapture();
 
             m_iState = stateInitial;
 
@@ -1167,7 +1167,7 @@ namespace user
 //         i32 yPos = splitRect.top + (i16) HIWORD(lParam);  // vertical position of cursor
          if(m_iState != stateInitial)
          {
-            Session.ReleaseCapture();
+            psession->ReleaseCapture();
             m_iState = stateInitial;
          }
       }

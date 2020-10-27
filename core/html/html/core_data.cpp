@@ -299,13 +299,23 @@ namespace html
       if (pkey->m_ekey == ::user::key_tab)
       {
 
-         ::user::primitive * pfocus = Session.get_keyboard_focus();
+         auto psession = Session;
+
+         ::user::primitive * pfocus = psession->get_keyboard_focus();
 
          if (pfocus != nullptr)
+         {
+
             pfocus = pfocus->keyboard_get_next_focusable();
 
+         }
+
          if (pfocus != nullptr)
-            Session.set_keyboard_focus(pfocus);
+         {
+
+            psession->set_keyboard_focus(pfocus);
+
+         }
 
          pkey->m_bRet = true;
 

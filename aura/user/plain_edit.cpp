@@ -217,7 +217,6 @@ namespace user
       m_bRMouseDown = false;
       m_tickCaretPeriod = 1000;
 
-      set_cursor(cursor_text_select);
 
 
    }
@@ -845,11 +844,14 @@ namespace user
 
       SCAST_PTR(::message::create, pcreate, pmessage);
 
+      set_cursor(cursor_text_select);
+
+
       pcreate->previous();
 
 #if !defined(APPLE_IOS) && !defined(ANDROID)
 
-      //Session.keyboard(); // trigger keyboard creationg
+      //psession->keyboard(); // trigger keyboard creationg
       Application.defer_create_keyboard();
 
 #endif
@@ -929,9 +931,11 @@ namespace user
 
       set_need_redraw();
 
-      Session.set_keyboard_focus(this);
+      auto psession = Session;
 
-      Session.user()->set_mouse_focus_RButtonDown(this);
+      psession->set_keyboard_focus(this);
+
+      psession->user()->set_mouse_focus_RButtonDown(this);
 
       pmouse->m_bRet = true;
 
@@ -1008,7 +1012,9 @@ namespace user
 
             ::point pointCursor;
 
-            Session.get_cursor_pos(&pointCursor);
+            auto psession = Session;
+
+            psession->get_cursor_pos(&pointCursor);
 
             _001ScreenToClient(pointCursor);
 
@@ -1080,6 +1086,10 @@ namespace user
    void plain_edit::_001OnKeyDown(::message::message * pmessage)
    {
 
+      auto psession = Session;
+
+
+
       INFO("_001OnKeyDown (1)");
 
       {
@@ -1112,7 +1122,9 @@ namespace user
       if (pkey->m_ekey == ::user::key_return)
       {
 
-         if (Session.is_key_pressed(::user::key_control) && Session.is_key_pressed(::user::key_alt))
+         auto psession = Session;
+
+         if (psession->is_key_pressed(::user::key_control) && psession->is_key_pressed(::user::key_alt))
          {
 
             pkey->m_bRet = false;
@@ -1151,7 +1163,9 @@ namespace user
       else if (pkey->m_ekey == ::user::key_tab)
       {
 
-         if (Session.is_key_pressed(::user::key_control) && Session.is_key_pressed(::user::key_alt))
+         auto psession = Session;
+
+         if (psession->is_key_pressed(::user::key_control) && psession->is_key_pressed(::user::key_alt))
          {
 
             pkey->m_bRet = false;
@@ -1225,7 +1239,9 @@ namespace user
       else if (pkey->m_ekey == ::user::key_c)
       {
 
-         if (Session.is_key_pressed(::user::key_control))
+      auto psession = Session;
+
+      if (psession->is_key_pressed(::user::key_control))
          {
 
             pkey->m_bRet = true;
@@ -1243,9 +1259,9 @@ namespace user
       {
 
 #ifdef MACOS
-         if (Session.is_key_pressed(::user::key_command))
+         if (psession->is_key_pressed(::user::key_command))
 #else
-         if (Session.is_key_pressed(::user::key_control))
+         if (psession->is_key_pressed(::user::key_control))
 #endif
          {
 
@@ -1266,7 +1282,7 @@ namespace user
       else if (pkey->m_ekey == ::user::key_x)
       {
 
-         if (Session.is_key_pressed(::user::key_control))
+         if (psession->is_key_pressed(::user::key_control))
          {
 
             pkey->m_bRet = true;
@@ -1304,11 +1320,13 @@ namespace user
 
       SCAST_PTR(::message::key, pkey, pmessage);
 
+      auto psession = Session;
+
       if (pkey->m_ekey == ::user::key_return)
       {
 
-         if (Session.is_key_pressed(::user::key_control)
-               && Session.is_key_pressed(::user::key_alt))
+         if (psession->is_key_pressed(::user::key_control)
+               && psession->is_key_pressed(::user::key_alt))
          {
 
             pkey->m_bRet = false;
@@ -1363,7 +1381,9 @@ namespace user
 
       }
 
-      bool bShift = Session.is_key_pressed(::user::key_shift);
+      auto psession = Session;
+
+      bool bShift = psession->is_key_pressed(::user::key_shift);
 
       if (key.m_nChar < 256 && isalpha((i32)key.m_nChar))
       {
@@ -1866,9 +1886,11 @@ namespace user
 
          set_need_redraw();
 
-         Session.set_keyboard_focus(this);
+         auto psession = Session;
 
-         Session.user()->set_mouse_focus_LButtonDown(this);
+         psession->set_keyboard_focus(this);
+
+         psession->user()->set_mouse_focus_LButtonDown(this);
 
          pmouse->m_bRet = true;
 
@@ -2303,6 +2325,8 @@ namespace user
       if (!m_bMultiLine)
       {
 
+         auto psession = Session;
+
          string strTextPrevious;
 
          _001GetText(strTextPrevious);
@@ -2312,7 +2336,7 @@ namespace user
          if (strText.contains("\n"))
          {
 
-            if(Session.m_bProgrammerMode)
+            if(psession->m_bProgrammerMode)
             {
 
                strText.replace("\n", "\\n");
@@ -2330,7 +2354,7 @@ namespace user
          if (strText.contains("\r"))
          {
 
-            if (Session.m_bProgrammerMode)
+            if (psession->m_bProgrammerMode)
             {
 
                strText.replace("\r", "\\r");
@@ -4199,16 +4223,18 @@ finished_update:
 
          string strChar;
 
+         auto psession = Session;
+
          if (pkey->m_ekey == ::user::key_s)
          {
-            if (Session.is_key_pressed(::user::key_control))
+            if (psession->is_key_pressed(::user::key_control))
             {
                return;
             }
          }
          else if (pkey->m_ekey == ::user::key_a)
          {
-            if (Session.is_key_pressed(::user::key_control))
+            if (psession->is_key_pressed(::user::key_control))
             {
                _001SetSel(0, _001GetTextLength());
                return;
@@ -4216,7 +4242,7 @@ finished_update:
          }
          else if (pkey->m_ekey == ::user::key_z)
          {
-            if (Session.is_key_pressed(::user::key_control))
+            if (psession->is_key_pressed(::user::key_control))
             {
                if (is_window_enabled())
                {
@@ -4227,7 +4253,7 @@ finished_update:
          }
          else if (pkey->m_ekey == ::user::key_y)
          {
-            if (Session.is_key_pressed(::user::key_control))
+            if (psession->is_key_pressed(::user::key_control))
             {
                if (is_window_enabled())
                {
@@ -4236,7 +4262,7 @@ finished_update:
                return;
             }
          }
-         else if (Session.is_key_pressed(::user::key_control))
+         else if (psession->is_key_pressed(::user::key_control))
          {
             if (pkey->m_ekey == ::user::key_home)
             {
@@ -4256,8 +4282,8 @@ finished_update:
 
             sync_lock sl(mutex());
 
-            bool bControl = Session.is_key_pressed(::user::key_control);
-            bool bShift = Session.is_key_pressed(::user::key_shift);
+            bool bControl = psession->is_key_pressed(::user::key_control);
+            bool bShift = psession->is_key_pressed(::user::key_shift);
 
             if (pkey->m_ekey == ::user::key_prior)
             {
@@ -4436,8 +4462,8 @@ finished_update:
 
                         }
 
-                        index i1 = m_ptree->m_iSelEnd;
-                        index i2 = i1 + iMultiByteUtf8DeleteCount;
+                        index i2 = m_ptree->m_iSelEnd;
+                        index i1 = i2 - iMultiByteUtf8DeleteCount;
 
                         string strSel;
 
@@ -4820,7 +4846,7 @@ finished_update:
                      {
                         iCode |= 0x80000000;
                      }
-                     //str = Session.keyboard().process_key(pkey);
+                     //str = psession->keyboard().process_key(pkey);
                      __throw(todo("keyboard"));
                   }
 
@@ -5129,6 +5155,8 @@ finished_update:
 
    void plain_edit::on_text_composition_done()
    {
+
+      imm_client::on_text_composition_done();
 
       __release(m_pitemComposing);
 
@@ -5744,7 +5772,9 @@ finished_update:
       string str;
       _001GetSelText(str);
       str.replace("\r", "\r\n");
-      Session.copydesk().set_plain_text(str);
+      auto psession = Session;
+
+      psession->copydesk().set_plain_text(str);
    }
 
    bool plain_edit::get_line_color(COLORREF & cr, const string & strLine)
@@ -5760,7 +5790,9 @@ finished_update:
 
       string str;
 
-      if(!Session.copydesk().get_plain_text(str))
+      auto psession = Session;
+
+      if(!psession->copydesk().get_plain_text(str))
       {
 
          return;
@@ -5938,10 +5970,12 @@ finished_update:
 
       m_bFocus = true;
 
-      if (Session.m_puiHost)
+      auto psession = Session;
+
+      if (psession->m_puiHost)
       {
 
-         auto puiHost = __user_interaction(Session.m_puiHost);
+         auto puiHost = __user_interaction(psession->m_puiHost);
 
          if (puiHost)
          {
@@ -6005,7 +6039,7 @@ finished_update:
 
       _001GetSel(iBeg, iEnd);
 
-      Session.keyboard().defer_show_software_keyboard(this, true, strText, iBeg, iEnd);
+      psession->keyboard().defer_show_software_keyboard(this, true, strText, iBeg, iEnd);
 
    }
 
@@ -6013,10 +6047,12 @@ finished_update:
    void plain_edit::_001OnKillFocus(::message::message * pmessage)
    {
 
-      if (Session.m_puiHost)
+      auto psession = Session;
+
+      if (psession->m_puiHost)
       {
 
-         auto puiHost = __user_interaction(Session.m_puiHost);
+         auto puiHost = __user_interaction(psession->m_puiHost);
 
          puiHost->edit_on_kill_focus(this);
 
@@ -6053,7 +6089,7 @@ finished_update:
       if (::is_set(pinteraction))
       {
 
-         Session.keyboard().defer_show_software_keyboard(this, false, strText, iBeg, iEnd);
+         psession->keyboard().defer_show_software_keyboard(this, false, strText, iBeg, iEnd);
 
       }
 
@@ -6163,7 +6199,9 @@ finished_update:
 
       SCAST_PTR(::user::command, pcommand, pmessage);
 
-      pcommand->enable(Session.copydesk().has_plain_text());
+      auto psession = Session;
+
+      pcommand->enable(psession->copydesk().has_plain_text());
 
    }
 

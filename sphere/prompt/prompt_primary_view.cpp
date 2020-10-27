@@ -28,7 +28,7 @@ namespace prompt
    void primary_view::on_apply(::action * paction)
    {
 
-      UNREFERENCED_PARAMETER(pupdate);
+      UNREFERENCED_PARAMETER(paction);
 
    }
 

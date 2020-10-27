@@ -1,7 +1,7 @@
 #pragma once
 
 
-//class update;
+class context_object;
 class task;
 class action_context;
 class var;
@@ -32,21 +32,37 @@ private:
 
 public:
 
+   union
+   {
+      
+      ::u64       m_uObject;
+
+      struct
+      {
+      
+         bool     m_bitSetFinish : 1;
+         bool     m_bitFinishing : 1;
+
+      };
+
+   };
 
    i64                                 m_countReference;
    ::eobject                           m_eobject;
 
 
+
+
 #if OBJ_REF_DBG
-   inline matter() : m_pmutex(nullptr), m_pobjrefdbg(nullptr), m_countReference(0) { add_ref(OBJ_REF_DBG_THIS OBJ_REF_DBG_COMMA_NOTE("Initial Reference")); }
-   inline matter(const eobject& eobject) : m_pmutex(nullptr), m_pobjrefdbg(nullptr), m_countReference(0), m_eobject(eobject) { add_ref(OBJ_REF_DBG_THIS OBJ_REF_DBG_COMMA_NOTE("Initial Reference (2)")); }
-   inline matter(const matter& matter) : m_pmutex(nullptr), m_pobjrefdbg(nullptr), m_countReference(0), m_eobject(matter.m_eobject) { if (matter.m_pmutex) defer_create_mutex(); add_ref(OBJ_REF_DBG_THIS OBJ_REF_DBG_COMMA_NOTE("Initial Reference (3)")); }
-   inline matter(matter&& matter) : m_pmutex(matter.m_pmutex), m_pobjrefdbg(matter.m_pobjrefdbg), m_countReference(matter.m_countReference), m_eobject(matter.m_eobject) { matter.m_pmutex = nullptr; matter.m_pobjrefdbg = nullptr; }
+   inline matter() : m_pmutex(nullptr), m_pobjrefdbg(nullptr), m_countReference(0), m_uObject(0) { add_ref(OBJ_REF_DBG_THIS OBJ_REF_DBG_COMMA_NOTE("Initial Reference")); }
+   inline matter(const eobject& eobject) : m_pmutex(nullptr), m_pobjrefdbg(nullptr), m_countReference(0), m_eobject(eobject), m_uObject(0)  { add_ref(OBJ_REF_DBG_THIS OBJ_REF_DBG_COMMA_NOTE("Initial Reference (2)")); }
+   inline matter(const matter& matter) : m_pmutex(nullptr), m_pobjrefdbg(nullptr), m_countReference(0), m_eobject(matter.m_eobject), m_uObject(0) { if (matter.m_pmutex) defer_create_mutex(); add_ref(OBJ_REF_DBG_THIS OBJ_REF_DBG_COMMA_NOTE("Initial Reference (3)")); }
+   inline matter(matter&& matter) : m_pmutex(matter.m_pmutex), m_pobjrefdbg(matter.m_pobjrefdbg), m_countReference(matter.m_countReference), m_eobject(matter.m_eobject), m_uObject(0) { matter.m_pmutex = nullptr; matter.m_pobjrefdbg = nullptr; }
 #else
-   inline matter() : m_pmutex(nullptr), m_countReference(1) { }
-   inline matter(const eobject& eobject) : m_pmutex(nullptr), m_countReference(1), m_eobject(eobject) { }
-   inline matter(const matter& matter) : m_pmutex(nullptr), m_countReference(1), m_eobject(matter.m_eobject) { if (matter.m_pmutex) defer_create_mutex(); }
-   inline matter(matter&& matter) : m_pmutex(matter.m_pmutex), m_countReference(matter.m_countReference), m_eobject(matter.m_eobject) { matter.m_pmutex = nullptr; }
+   inline matter() : m_pmutex(nullptr), m_countReference(1), m_uObject(0) { }
+   inline matter(const eobject& eobject) : m_pmutex(nullptr), m_countReference(1), m_eobject(eobject), m_uObject(0) { }
+   inline matter(const matter& matter) : m_pmutex(nullptr), m_countReference(1), m_eobject(matter.m_eobject), m_uObject(0) { if (matter.m_pmutex) defer_create_mutex(); }
+   inline matter(matter&& matter) : m_pmutex(matter.m_pmutex), m_countReference(matter.m_countReference), m_eobject(matter.m_eobject), m_uObject(0) { matter.m_pmutex = nullptr; }
 #endif
 
    virtual ~matter();
@@ -73,14 +89,25 @@ public:
    void set_mutex(sync* psync);
    void defer_create_mutex();
 
+   
+   virtual ::context_object * _get_context_object();
 
-   virtual ::index task_add(::task* pthread);
+
+   virtual bool is_thread() const;
+   virtual ::thread * get_thread();
+   virtual bool thread_is_running() const;
+   
+
+   virtual ::task * get_task();
+   virtual const char * get_task_tag();
+   //virtual ::index task_add(::task* pthread);
    virtual void task_remove(::task* pthread);
-   virtual void task_on_term(::task* pthread);
+
+
+   virtual void notify_on_finish(::context_object * pcontextobject);
 
 
    virtual void kick_idle();
-
 
    //::estatus add_update(const ::id & id);
    //::estatus remove_update(const ::id& id);
@@ -94,37 +121,6 @@ public:
    inline const char* type_name() const { return type_c_str() + (sizeof("class ") - 1); }
 #else
    inline const char* type_name() const { return type_c_str(); }
-#endif
-
-#if OBJ_REF_DBG
-   template < typename TYPE, typename T >
-   void ___assign(__pointer(TYPE)& ptr, T* p, const char* psz = nullptr)
-   {
-      auto pold = ptr.m_p;
-      ptr.m_p = p;
-      p->add_ref(this, psz);
-      ___release(pold);
-   }
-   template < typename TYPE >
-   void ___release(__pointer(TYPE)& ptr)
-   {
-      ___release(ptr.m_p);
-   }
-   template < typename TYPE >
-   void ___release(TYPE*& p)
-   {
-      if (is_set(p))
-      {
-         try
-         {
-            p->release(this);
-         }
-         catch (...)
-         {
-         }
-         p = nullptr;
-      }
-   }
 #endif
 
 #ifdef DEBUG
@@ -141,7 +137,7 @@ public:
    virtual void finalize();
 
 
-
+   virtual ::estatus do_task();
    virtual ::estatus on_task();
 
 
@@ -156,7 +152,7 @@ public:
    virtual ::estatus add_reference(::matter* pobject OBJ_REF_DBG_COMMA_PARAMS);
 
 
-   virtual ::estatus release_composite(::matter* pobject OBJ_REF_DBG_COMMA_PARAMS);
+   virtual ::estatus finalize_composite(::matter* pobject OBJ_REF_DBG_COMMA_PARAMS);
    virtual ::estatus release_reference(::matter* pobject OBJ_REF_DBG_COMMA_PARAMS);
 
    virtual ::estatus set_generic_object_name(const char* pszName);
@@ -180,7 +176,24 @@ public:
    inline bool has(const ::eobject& eobject) const { return m_eobject.has(eobject); }
    inline ::u64 get_object_flag() { return m_eobject; }
 
-   virtual void set_finish();
+
+   inline void clear_finish_bit() { m_bitSetFinish = false; }
+   inline void set_finish_bit() { m_bitSetFinish = true; }
+   inline bool finish_bit() const { return m_bitSetFinish; }
+
+
+   virtual void on_finish();
+   virtual ::estatus set_finish();
+   virtual ::estatus set_finish_composites();
+
+
+   // returns success when object is ready to have finalize called
+   // returns error_pending if any child or ascendant is still active
+   virtual ::estatus finish();
+
+
+   virtual void post_quit();
+
 
    inline void set_ok() { set(e_object_success); clear(e_object_timeout); clear(e_object_failure); }
    inline void set_nok(enum_object estatusFailure = e_object_failure) { clear(e_object_success); set(estatusFailure); }

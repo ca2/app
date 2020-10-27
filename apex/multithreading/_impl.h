@@ -524,6 +524,8 @@ inline ::thread_pointer object::fork(PRED pred)
 
    pthread->m_pmatter = pmethod;
 
+   pthread->m_id = typeid(pred).name();
+
    pthread->begin_thread();
 
    return pthread;
@@ -537,6 +539,8 @@ inline ::thread_pointer object::launch(const ::method& method)
    auto pthread = __create_new < ::thread >();
 
    pthread->m_pmatter = method;
+
+   pthread->m_id = pthread->m_pmatter->type_name();
 
    pthread->begin_thread();
 

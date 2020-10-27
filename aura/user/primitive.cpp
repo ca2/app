@@ -2621,7 +2621,9 @@ namespace user
    ::user::interaction * primitive::GetFocus()
    {
 
-      ::user::primitive * pprimitive = Session.get_keyboard_focus();
+      auto psession = Session;
+
+      ::user::primitive * pprimitive = psession->get_keyboard_focus();
 
       if(pprimitive == nullptr)
       {
@@ -3667,10 +3669,12 @@ namespace user
 
       primitive * pprimitive = keyboard_get_next_focusable(nullptr, bSkipChild, bSkipSiblings, bSkipParent);
 
+      auto psession = Session;
+
       if (pprimitive == nullptr || pprimitive == this)
       {
 
-         Session.set_keyboard_focus(nullptr);
+         psession->set_keyboard_focus(nullptr);
 
       }
       else
@@ -3680,7 +3684,7 @@ namespace user
 
       }
 
-      return Session.get_keyboard_focus();
+      return psession->get_keyboard_focus();
 
    }
 
@@ -3799,7 +3803,9 @@ namespace user
    bool primitive::keyboard_set_focus()
    {
 
-      Session.set_keyboard_focus(this);
+      auto psession = Session;
+
+      psession->set_keyboard_focus(this);
 
       return true;
 

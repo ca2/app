@@ -129,8 +129,8 @@ namespace draw2d_opengl
       ::draw2d::bitmap_pointer bmpMask(pobject);
       ::draw2d::bitmap *pOldMask, *pOldMem;
       const DWORD   CP_ROP = 0xE20746;
-      ::draw2d::brush_pointer brHighLight(papp, Session.get_default_color(COLOR_3DHIGHLIGHT)),
-         brShadow(papp, Session.get_default_color(COLOR_3DSHADOW)), spbr;
+      ::draw2d::brush_pointer brHighLight(papp, psession->get_default_color(COLOR_3DHIGHLIGHT)),
+         brShadow(papp, psession->get_default_color(COLOR_3DSHADOW)), spbr;
 
       if(graphicsMem->CreateCompatibleDC(nullptr) &&
          graphicsMask->CreateCompatibleDC(nullptr))
@@ -187,8 +187,8 @@ namespace draw2d_opengl
       ::draw2d::bitmap_pointer bmpMask(pobject);
       ::draw2d::bitmap *pOldMask, *pOldMem;
       const DWORD   CP_ROP = 0xE20746;
-      ::draw2d::brush_pointer brHighLight(papp, Session.get_default_color(COLOR_3DHIGHLIGHT)),
-         brShadow(papp, Session.get_default_color(COLOR_3DSHADOW)), spbr;
+      ::draw2d::brush_pointer brHighLight(papp, psession->get_default_color(COLOR_3DHIGHLIGHT)),
+         brShadow(papp, psession->get_default_color(COLOR_3DSHADOW)), spbr;
 
       if(graphicsMem->CreateCompatibleDC(pgraphics) &&
          graphicsMask->CreateCompatibleDC(pgraphics) &&

@@ -138,7 +138,9 @@ namespace user
 
       double dScalar = m_pscalar->get_rate();
 
-      auto point = Session.get_cursor_pos();
+      auto psession = Session;
+
+      auto point = psession->get_cursor_pos();
 
       _001ScreenToClient(point, layout_design);
 
@@ -227,7 +229,7 @@ namespace user
       //if(m_bSlide)
       //{
       //   pgraphics->move_to(rect.center());
-      //   auto point = Session.get_cursor_pos();
+      //   auto point = psession->get_cursor_pos();
       //   _001ScreenToClient(point);
       //   pgraphics->line_to(point);
       //}

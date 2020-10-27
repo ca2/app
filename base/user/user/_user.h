@@ -669,7 +669,7 @@ typedef struct _AppIndicator AppIndicator;
 
 
 #undef Usr
-#define Usr(pobject) (*Sess(pobject).user()->m_pbaseuser)
+#define Usr(pobject) (Sess(pobject)->user()->m_pbaseuser)
 
 
 #include "_impl.h"

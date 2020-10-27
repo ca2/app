@@ -58,6 +58,49 @@ void matter::dump(dump_context & dumpcontext) const
 }
 
 
+void matter::on_finish()
+{
+
+
+}
+
+
+::estatus matter::set_finish_composites()
+{
+
+   return ::success;
+
+}
+
+
+::estatus matter::set_finish()
+{
+
+   set_finish_bit();
+
+   return ::success;
+
+}
+
+
+::estatus matter::finish()
+{
+
+   set_finish_bit();
+
+   return ::success;
+
+}
+
+
+void matter::post_quit()
+{
+
+   set_finish_bit();
+
+}
+
+
 void matter::finalize()
 {
 
@@ -174,20 +217,75 @@ void matter::defer_create_mutex()
 }
 
 
+::estatus matter::do_task()
+{
+
+   return on_task();
+
+}
+
+
 ::estatus matter::on_task()
 {
 
-   return  run();
+   return run();
    
 }
 
 
-::index matter::task_add(::task* ptask)
+bool matter::is_thread() const
 {
 
-   return -1;
+   return false;
 
 }
+
+
+::thread * matter::get_thread()
+{
+
+   return nullptr;
+
+}
+
+
+bool matter::thread_is_running() const
+{
+
+   return true;
+
+}
+
+
+::context_object * matter::_get_context_object()
+{
+
+   return nullptr;
+
+}
+
+
+::task * matter::get_task()
+{
+
+   return nullptr;
+
+}
+
+
+const char * matter::get_task_tag()
+{
+
+   return nullptr;
+
+}
+
+//::index matter::task_add(::task* ptask)
+//{
+//
+//   return -1;
+//
+//}
 
 
 void matter::task_remove(::task* ptask)
@@ -197,9 +295,8 @@ void matter::task_remove(::task* ptask)
 }
 
 
-void matter::task_on_term(::task* ptask)
+void matter::notify_on_finish(::context_object * pcontextobject)
 {
-
 
 }
 
@@ -207,12 +304,6 @@ void matter::task_on_term(::task* ptask)
 void matter::kick_idle()
 {
 
-
-}
-
-
-void matter::set_finish()
-{
 
 }
 
@@ -268,7 +359,7 @@ void matter::on_future(const ::var& var)
 }
 
 
-::estatus matter::add_composite(::matter* pobject OBJ_REF_DBG_COMMA_PARAMS_DEF)
+::estatus matter::add_composite(::matter* pmatter OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
    return ::success_none;
@@ -276,7 +367,7 @@ void matter::on_future(const ::var& var)
 }
 
 
-::estatus matter::add_reference(::matter* pobject OBJ_REF_DBG_COMMA_PARAMS_DEF)
+::estatus matter::add_reference(::matter* pmatter OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
    return ::success_none;
@@ -284,7 +375,7 @@ void matter::on_future(const ::var& var)
 }
 
 
-::estatus matter::release_composite(::matter* pobject OBJ_REF_DBG_COMMA_PARAMS_DEF)
+::estatus matter::finalize_composite(::matter* pmatter OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
    return ::success_none;
@@ -292,7 +383,7 @@ void matter::on_future(const ::var& var)
 }
 
 
-::estatus matter::release_reference(::matter* pobject OBJ_REF_DBG_COMMA_PARAMS_DEF)
+::estatus matter::release_reference(::matter* pmatter OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
    return ::success_none;

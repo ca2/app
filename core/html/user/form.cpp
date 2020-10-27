@@ -267,7 +267,9 @@ void html_form::_001OnLButtonDown(::message::message * pmessage)
    else
    {
 
-      Session.clear_focus();
+      auto psession = Session;
+
+      psession->clear_focus();
 
    }
 
@@ -553,7 +555,9 @@ void html_form::_001GetText(string & str) const
 void html_form::_001SetText(const string & str, const ::action_context & context)
 {
 
-   bool bFocus = has_focus() || is_descendant(dynamic_cast < ::user::interaction * > (Session.get_keyboard_focus()));
+   auto psession = Session;
+
+   bool bFocus = has_focus() || is_descendant(dynamic_cast < ::user::interaction * > (psession->get_keyboard_focus()));
 
    __pointer(::html_data) sphtmldata;
 
@@ -572,7 +576,9 @@ void html_form::_001SetText(const string & str, const ::action_context & context
       __pointer(::user::primitive) pfocus = get_focusable_descendant();
       if(pfocus != nullptr)
       {
-         Session.set_keyboard_focus(pfocus);
+         auto psession = Session;
+
+         psession->set_keyboard_focus(pfocus);
       }
    }
    _001OnInitializeForm();

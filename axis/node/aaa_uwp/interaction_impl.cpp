@@ -350,7 +350,7 @@ namespace uwp
 
       SCAST_PTR(::message::set_focus, psetfocus, pmessage);
 
-      //if (Session.get_focus_ui())
+      //if (psession->get_focus_ui())
       //{
 
          m_directxapplication->SetInternalFocus();
@@ -913,13 +913,13 @@ namespace uwp
 
          SCAST_PTR(::message::key, pkey, pbase);
 
-         //Session.keyboard().translate_os_key_message(pkey);
+         //psession->keyboard().translate_os_key_message(pkey);
 
          if(pbase->m_id == WM_KEYDOWN || pbase->m_id == WM_SYSKEYDOWN)
          {
             try
             {
-               Session.set_key_pressed(pkey->m_ekey,true);
+               psession->set_key_pressed(pkey->m_ekey,true);
             }
             catch(...)
             {
@@ -929,7 +929,7 @@ namespace uwp
          {
             try
             {
-               Session.set_key_pressed(pkey->m_ekey,false);
+               psession->set_key_pressed(pkey->m_ekey,false);
             }
             catch(...)
             {
@@ -983,13 +983,13 @@ namespace uwp
 
          }
 
-         Session.on_ui_mouse_message(pmouse);
+         psession->on_ui_mouse_message(pmouse);
 
 
          //Application.m_pointCursor = pmouse->m_point;
          //if(get_context_application()->m_pcoreapp->m_psession != nullptr)
          //{
-         //   Session.m_pointCursor = pmouse->m_point;
+         //   psession->m_pointCursor = pmouse->m_point;
          //}
          //if(m_puserinteraction != nullptr && m_puserinteraction->get_context_application()->m_pcoreapp->m_psession != nullptr && m_puserinteraction->get_context_application()->m_pcoreapp->m_psession != get_context_application()->m_pcoreapp->m_psession)
          //{
@@ -1066,7 +1066,7 @@ namespace uwp
          ::message::key * pkey = (::message::key *) pbase;
 
 
-         ::user::interaction * puiFocus = dynamic_cast <::user::interaction *> (Session.get_keyboard_focus());
+         ::user::interaction * puiFocus = dynamic_cast <::user::interaction *> (psession->get_keyboard_focus());
          if(puiFocus != nullptr
                && puiFocus->is_window()
                && puiFocus->GetTopLevel() != nullptr)
@@ -6050,7 +6050,7 @@ namespace uwp
    void interaction_impl::show_software_keyboard(bool bShow, string str, strsize iBeg, strsize iEnd)
    {
 
-      Session.m_directxapplication->SetText(str, iBeg, iEnd);
+      psession->m_directxapplication->SetText(str, iBeg, iEnd);
 
    }
 
@@ -6064,7 +6064,7 @@ namespace uwp
 
       strsize sizeLen = strText.get_length();
 
-      Session.m_directxapplication->SetText(strText, 0, sizeLen);
+      psession->m_directxapplication->SetText(strText, 0, sizeLen);
 
    }
 

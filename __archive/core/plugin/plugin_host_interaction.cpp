@@ -64,7 +64,7 @@ namespace plugin
 
       UNREFERENCED_PARAMETER(pmessage);
 
-      Session.m_bSystemSynchronizedCursor = false;
+      psession->m_bSystemSynchronizedCursor = false;
 
    }
 
@@ -127,11 +127,11 @@ namespace plugin
       //pgraphics->SetViewportOrg(pointPreviousViewportOrg);
       //pgraphics->SelectClipRgn(nullptr);
       
-      auto pointCursor = Session.get_cursor_pos();
+      auto pointCursor = psession->get_cursor_pos();
 
       _001ScreenToClient(pointCursor);
 
-      ::draw2d::cursor * pcursor = Session.get_cursor();
+      ::draw2d::cursor * pcursor = psession->get_cursor();
 
       if(pcursor != nullptr)
       {
@@ -306,7 +306,7 @@ namespace plugin
       if(!is_null_ref(Session))
       {
 
-         Session.m_pointCursor = pmouse->m_point;
+         psession->m_pointCursor = pmouse->m_point;
 
       }
       else

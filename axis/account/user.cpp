@@ -65,7 +65,7 @@ namespace account
       //if (get_context_session())
       //{
 
-      //   Session.defer_initialize_user_presence();
+      //   psession->defer_initialize_user_presence();
 
       //}
 
@@ -99,7 +99,7 @@ namespace account
 //      string strSessId;
 //      if (strText == "api.ca2.cc")
 //      {
-//         strSessId = Session.account()->m_mapAccountSessId[Session.account()->m_strFirstFontopusServer];
+//         strSessId = psession->account()->m_mapAccountSessId[psession->account()->m_strFirstFontopusServer];
 //         if (strSessId.has_char())
 //            return strSessId;
 //
@@ -107,11 +107,11 @@ namespace account
 //      strSessId = m_sessionidmap[strText];
 //      if(strSessId.has_char())
 //         return strSessId;
-//      string strFontopusServer = Session.account()->get_server(strText, 2);
+//      string strFontopusServer = psession->account()->get_server(strText, 2);
 //      if(strFontopusServer.has_char())
 //      {
 //
-//         strSessId = Session.account()->m_mapFontopusSessId[strFontopusServer];
+//         strSessId = psession->account()->m_mapFontopusSessId[strFontopusServer];
 //
 //         if(strSessId.has_char())
 //            return strSessId;
@@ -167,7 +167,7 @@ namespace account
 //         for(i32 j = 0; j < straServer.get_size(); j++)
 //         {
 //
-//            string strSessId = Session.account()->get_sessid(straServer[j]);
+//            string strSessId = psession->account()->get_sessid(straServer[j]);
 //
 //            if(strSessId != "not_auth")
 //            {
@@ -249,7 +249,9 @@ namespace account
 
       }
 
-      Session.account()->on_user_logon(this);
+      auto psession = Session;
+
+      psession->account()->on_user_logon(this);
 
       m_timeAuthentication = ::datetime::time::get_current_time();
 
@@ -259,20 +261,22 @@ namespace account
    ::estatus  user::do_logon(::file::path pathUrl, bool bInteractive)
    {
 
+      auto psession = Session;
+
       m_timeAuthenticationRequest = ::datetime::time::get_current_time();
 
       m_bDeferRegistration = bInteractive;
 
       __pointer(credentials) pcredentials = __new(credentials);
 
-      pcredentials->initialize_account_credentials(this, Session.account()->storage());
+      pcredentials->initialize_account_credentials(this, psession->account()->storage());
 
       pcredentials->      m_bInteractive = bInteractive;
 
 
       m_pathUrl = pathUrl;
 
-      m_estatusAuthentication = Session.account()->authenticator()->pre_authenticate(pcredentials);
+      m_estatusAuthentication = psession->account()->authenticator()->pre_authenticate(pcredentials);
 
       if(m_estatusAuthentication != ::success_pre_authenticated)
       {
@@ -311,7 +315,7 @@ namespace account
 
       }
 
-      auto pauthenticator = Session.account()->authenticator();
+      auto pauthenticator = psession->account()->authenticator();
 
       m_estatusAuthentication = pauthenticator->authenticate(pcredentials);
 
@@ -440,7 +444,9 @@ namespace account
 
             auto authenticationElapsed = min(authenticationRequestElapsed, authenticationDoneElapsed);
 
-            auto authenticationTimeout = Session.account()->get_session_timeout();
+            auto psession = Session;
+
+            auto authenticationTimeout = psession->account()->get_session_timeout();
 
             if(authenticationElapsed > authenticationTimeout)
             {

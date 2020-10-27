@@ -15,7 +15,7 @@ public:
    virtual ~exit_exception();
 
 
-   virtual void set_finish();
+   virtual ::estatus finish() override;
 
 
 };

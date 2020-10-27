@@ -139,7 +139,9 @@ namespace user
    void elastic_slider::CalcTension()
    {
       
-      auto point = Session.get_cursor_pos();
+      auto psession = Session;
+
+      auto point = psession->get_cursor_pos();
 
       _001ScreenToClient(point);
 
@@ -240,7 +242,9 @@ namespace user
          
          pgraphics->move_to(rect.center());
          
-         auto point = Session.get_cursor_pos();
+         auto psession = Session;
+
+         auto point = psession->get_cursor_pos();
 
          _001ScreenToClient(point);
 

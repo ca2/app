@@ -11,6 +11,7 @@ namespace user
 
 }
 
+
 class CLASS_DECL_APEX object :
    virtual public source
 {
@@ -22,13 +23,14 @@ protected:
    __pointer(::apex::session)                         m_psessionContext;
    __pointer(::apex::system)                          m_psystemContext;
    __pointer(::context)                               m_pcontextContext;
-   __pointer(object_addra)                            m_pcompositea;
-   __pointer(object_addra)                            m_preferencea;
+   __pointer(matter_array)                            m_pcompositea;
+   __pointer(matter_array)                            m_preferencea;
 
 
 public:
 
 
+   
    ::object_meta *                                    m_pmeta;
    ::i64                                              m_cRun;
 
@@ -56,6 +58,17 @@ public:
 
 
 #endif
+
+
+   inline matter_array * _composite_array() { return m_pcompositea; }
+   inline matter_array * _reference_array() { return m_preferencea; }
+   //inline task_array * _task_array() { return m_ptaska; }
+
+
+   inline matter_array & composite_array() { ::__defer_construct_new(m_pcompositea); return *m_pcompositea; }
+   inline matter_array & reference_array() { ::__defer_construct_new(m_preferencea); return *m_preferencea; }
+   //inline task_array & task_array() { ::__defer_construct_new(m_ptaska); return *m_ptaska; }
+
 
 
    inline ::apex::application * get_context_application() { return m_pappContext.m_p; }
@@ -141,13 +154,15 @@ public:
    inline var context_value(const var& var);
 
 
-   virtual ::index task_add(::task* ptask) override;
+   //virtual ::index task_add(::task* ptask) override;
    virtual void task_remove(::task* ptask) override;
-   virtual void task_remove_all();
-   virtual bool task_is_empty() const;
-   virtual const ::task_array * task_array_get() const;
-   virtual ::task_array* task_array_get();
+   //virtual void task_remove_all();
+   //virtual bool task_is_empty() const;
+   //virtual const ::task_array * task_array_get() const;
+   //virtual ::task_array* task_array_get();
 
+
+   //virtual void notify_on_finish(::context_object * pcontextobject) override;
    
 
    template < typename THREAD >
@@ -342,7 +357,7 @@ public:
    virtual ::estatus add_reference(::matter * pobject OBJ_REF_DBG_COMMA_PARAMS) override;
 
 
-   virtual ::estatus release_composite(::matter * pobject OBJ_REF_DBG_COMMA_PARAMS) override;
+   virtual ::estatus finalize_composite(::matter * pobject OBJ_REF_DBG_COMMA_PARAMS) override;
    virtual ::estatus release_reference(::matter * pobject OBJ_REF_DBG_COMMA_PARAMS) override;
 
 
@@ -393,8 +408,11 @@ public:
    virtual bool is_running() const;
    virtual void child_post_quit(const char * pszTag);
    virtual void child_post_quit_and_wait(const char * pszTag, const duration & duration);
-   virtual void set_finish() override;
-   virtual void set_finish_composites();
+   virtual ::estatus finish() override;
+   virtual ::estatus set_finish() override;
+   virtual ::estatus set_finish_composites() override;
+   virtual void on_finish() override;
+
 
    virtual void defer_update_object_id();
    virtual ::id calc_default_object_id() const;
@@ -439,6 +457,8 @@ public:
    virtual bool ___is_reference(::matter * pobject) const;
 
    virtual bool __is_composite(::matter * pobject) const;
+
+   virtual bool __is_child_task(::task * ptask) const;
 
    virtual void on_finalize();
 

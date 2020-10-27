@@ -63,7 +63,9 @@ namespace filemanager
 
          pcreate->m_puserinteractionParent = pimpactdata->m_pplaceholder;
 
-         User.m_pdocumenttemplateForm->do_request(pcreate);
+         auto puser = User;
+
+         puser->m_pdocumenttemplateForm->do_request(pcreate);
 
          __pointer(::user::document) pdocument = ::user::__document(pcreate);
 
@@ -117,7 +119,9 @@ namespace filemanager
 
          pcreate->m_puserinteractionParent = this;
 
-         User.m_pdocumenttemplateOperation->do_request(pcreate);
+         auto puser = User;
+
+         puser->m_pdocumenttemplateOperation->do_request(pcreate);
 
          __pointer(operation_document) pdocument = ::user::__document(pcreate);
 
@@ -142,7 +146,7 @@ namespace filemanager
 
          pfilemanagerdata->m_pcallback = get_document();
 
-         //pfilemanagerdata->m_pfilemanagertemplate = User.filemanager();
+         //pfilemanagerdata->m_pfilemanagertemplate = puser->filemanager();
 
          pfilemanagerdata->m_bFileSize = true;
 
@@ -173,9 +177,9 @@ namespace filemanager
 
          pcreate->m_pcommandline->m_varFile = strVarFile;
 
-         //User.filemanager()->m_pdocumenttemplateChild->m_bQueueDocumentOpening = false;
+         //puser->filemanager()->m_pdocumenttemplateChild->m_bQueueDocumentOpening = false;
 
-         //User.filemanager()->m_pdocumenttemplateChild->do_request(pcreate);
+         //puser->filemanager()->m_pdocumenttemplateChild->do_request(pcreate);
 
          //__pointer(document) pdocument = ::user::__document(pcreate);
 
@@ -189,9 +193,9 @@ namespace filemanager
 
             m_pfilemanager = pdocument;
 
-//            pdocument->filemanager_data()->m_iTemplate = User.filemanager()->m_iTemplate;
+//            pdocument->filemanager_data()->m_iTemplate = puser->filemanager()->m_iTemplate;
 
-            //          pdocument->filemanager_data()->m_iDocument = User.filemanager()->m_iNextDocument++;
+            //          pdocument->filemanager_data()->m_iDocument = puser->filemanager()->m_iNextDocument++;
 
             __pointer(::user::impact) pview = pdocument->get_view(0);
 

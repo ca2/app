@@ -1,5 +1,4 @@
 #include "framework.h"
-#include "acme/library.h"
 #include "acme/platform/static_start.h"
 #include "obj_ref_dbg_impl.h"
 

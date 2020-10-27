@@ -48,7 +48,7 @@ internal:
    message_box_w();
 
 
-   ::estatus init(String ^ text, String ^ caption, ::emessagebox emessagebox, ::future future);
+   ::estatus init(String ^ text, String ^ caption, ::emessagebox emessagebox, const ::future & future);
 
 
    void CommandInvokedHandler(IUICommand^ cmd);
@@ -71,7 +71,7 @@ message_box_w::message_box_w()
    msg->Commands->Append(ref new UICommand(text,ref new UICommandInvokedHandler(this, &::message_box_w::CommandInvokedHandler),id));
 
 
-::estatus message_box_w::init(String ^ text,String ^ caption, ::emessagebox emessagebox, ::future future)
+::estatus message_box_w::init(String ^ text,String ^ caption, ::emessagebox emessagebox, const ::future & future)
 {
 
    if (!is_core_window_once_visible())
@@ -145,7 +145,7 @@ message_box_w::message_box_w()
 
 }
 
-::estatus _os_message_box(const char* pszMessage, const char* pszTitle, ::emessagebox emessagebox, ::future future)
+::estatus _os_message_box(const char* pszMessage, const char* pszTitle, ::emessagebox emessagebox, const ::future & future)
 {
 
    message_box_w ^ pmessageboxw = ref new message_box_w;
@@ -173,7 +173,7 @@ void message_box_w::CommandInvokedHandler(IUICommand^ cmd)
    if (cmd == nullptr)
    {
 
-      m_future.send(::error_failed);
+      m_future(::error_failed);
 
    }
    else
@@ -183,7 +183,7 @@ void message_box_w::CommandInvokedHandler(IUICommand^ cmd)
 
       string str(wstr);
 
-      m_future.send(str);
+      m_future(str);
 
    }
 

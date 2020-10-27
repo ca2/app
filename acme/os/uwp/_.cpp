@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "_uwp.h"
+#include "acme/id.h"
 
 
 bool __node_acme_pre_init()
@@ -143,4 +144,36 @@ bool __node_acme_pos_term()
    return true;
 
 }
+
+
+
+
+
+int os_get_system_update_poll_time(const ::id & id)
+{
+
+   if (id == id_dark_mode)
+   {
+
+      return 0;
+
+   }
+   else if (id == id_os_font_change)
+   {
+
+      return 0;
+
+   }
+   else if (id == id_font_enumeration)
+   {
+
+      return 0;
+
+   }
+
+   return 500;
+
+}
+
+
 

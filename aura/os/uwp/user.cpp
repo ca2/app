@@ -611,22 +611,7 @@ namespace user
    }
 
 
-   CLASS_DECL_AURA void os_update_dark_mode()
-   {
 
-      set_system_app_luminance(calc_system_app_luminance());
-
-      set_system_app_background_color(calc_system_app_background_color());
-
-      double dLuminance = get_system_app_luminance();
-
-      bool bDarkMode = dLuminance < 0.5;
-
-      set_system_dark_mode(bDarkMode);
-
-      set_app_dark_mode(bDarkMode);
-
-   }
 
 
 } // namespace user

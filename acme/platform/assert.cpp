@@ -15,8 +15,11 @@
 
 //#else
 
-
+#ifdef _UWP
+::estatus _os_message_box(const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox, const ::future & future); 
+#else
 int _os_message_box(const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox);
+#endif
 
 
 //#endif
@@ -27,7 +30,7 @@ CLASS_DECL_ACME int __cpp_assert_failed_line(const char * pszFileName, int iLine
 
 CLASS_DECL_ACME string message_box_result_to_string(int iResult);
 
-
+#ifndef _UWP
 namespace acme
 {
 
@@ -75,8 +78,14 @@ namespace acme
 
 
 } // namespace acme
+#endif
 
-
+#ifdef _UWP
+::estatus os_message_box(const char * pszText, const char * pszTitle, ::emessagebox emessagebox, const ::future & future)
+{
+   return _os_message_box(pszText, pszTitle, emessagebox, future);
+}
+#else
 ::estatus os_message_box(const char * pszText, const char * pszTitle, ::emessagebox emessagebox, const ::future & future)
 {
 
@@ -85,7 +94,7 @@ namespace acme
    return __realize(posmessagebox, future);
 
 }
-
+#endif
 
 CLASS_DECL_ACME int __assert_failed_line(const char * pszFileName, int iLineNumber)
 {

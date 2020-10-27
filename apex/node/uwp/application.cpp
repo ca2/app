@@ -39,12 +39,13 @@ namespace apex
    //   return m_pimpl->_001OpenDocumentFile(varFile);
    //}
 
-   void application::_001EnableShellOpen()
+   ::estatus application::_001InitializeShellOpen()
    {
       //ASSERT(m_atomApp == nullptr && m_atomSystemTopic == nullptr); // do once
       /*
             m_atomApp            = ::GlobalAddAtomW(::str::international::utf8_to_unicode(m_strAppName));
             m_atomSystemTopic    = ::GlobalAddAtomW(L"system");*/
+      return ::success;
    }
 
    //bool application::_001OnDDECommand(const char * pcsz)

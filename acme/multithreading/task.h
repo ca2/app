@@ -14,6 +14,7 @@ public:
    int                              m_bitAvoidProcFork : 1;
    int                              m_bitIsRunning : 1;
    int                              m_bitIsPred : 1; // Is helper thread (as opposite to a "main" thread)
+   int                              m_bitCoInitialize : 1;
 
 
    HTHREAD                          m_hthread;
@@ -24,6 +25,8 @@ public:
 
    __pointer(::matter)              m_pmatter;
    __pointer(manual_reset_event)    m_pevSleep;
+
+   HRESULT                          m_hresultCoInitialize;
 
 
 

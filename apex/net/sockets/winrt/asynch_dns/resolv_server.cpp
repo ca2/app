@@ -13,7 +13,7 @@ namespace sockets
       m_ready(false)
    {
 
-      start();
+      fork();
 
    }
 

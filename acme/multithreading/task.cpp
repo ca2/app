@@ -8,7 +8,7 @@
 task::task()
 {
 
-   //m_bitRunThis = true;
+   m_bitCoInitialize = false;
    m_bitIsRunning = false;
    m_bitIsPred = true;
    m_hthread = NULL_HTHREAD;

@@ -109,7 +109,7 @@ CLASS_DECL_ACME void main_branch(::matter* pobjectTask, e_priority epriority)
       Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::Normal, ref new Windows::UI::Core::DispatchedHandler([pobjectTask]()
    {
 
-            pobjectTask->call();
+            pobjectTask->operator()();
 
    })));
 
@@ -626,7 +626,42 @@ namespace user
 
 } // namespace user
 
+namespace user
+{
 
+
+   CLASS_DECL_ACME void os_calc_dark_mode()
+   {
+
+      double dLuminance = get_system_app_luminance();
+
+      bool bDarkMode = dLuminance < 0.5;
+
+      set_system_dark_mode(bDarkMode);
+
+      set_app_dark_mode(bDarkMode);
+
+   }
+
+
+   //CLASS_DECL_ACME void os_calc_dark_mode()
+   //{
+
+   //   set_system_app_luminance(calc_system_app_luminance());
+
+   //   set_system_app_background_color(calc_system_app_background_color());
+
+   //   double dLuminance = get_system_app_luminance();
+
+   //   bool bDarkMode = dLuminance < 0.5;
+
+   //   set_system_dark_mode(bDarkMode);
+
+   //   set_app_dark_mode(bDarkMode);
+
+   //}
+
+} // namespace user
 
 
 

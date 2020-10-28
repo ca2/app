@@ -88,11 +88,13 @@ namespace user
 
       virtual ::estatus run() override;
 
-      virtual ::estatus finish() override;
+      virtual ::estatus finish(::context_object * pcontextobjectFinish = nullptr) override;
 
       virtual void finalize() override;
 
       virtual bool thread_get_run() const override;
+
+      virtual ::estatus set_finish_composites(::context_object * pcontextobjectFinish) override;
 
       void start_window_visual();
 

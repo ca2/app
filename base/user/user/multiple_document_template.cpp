@@ -13,6 +13,8 @@ namespace user
       ::user::impact_system(pszMatter, pDocClass, pFrameClass, pViewClass)
    {
 
+      defer_create_mutex();
+
       ASSERT(m_docptra.is_empty());
 
       m_nUntitledCount = 0;   // start at 1

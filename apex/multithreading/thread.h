@@ -145,6 +145,10 @@ public:
    user_interaction_ptr_array & uiptra();
 
 
+   virtual ::estatus set_finish(::context_object * pcontextobjectFinish) override;
+   virtual ::estatus set_finish_composites(::context_object * pcontextobjectFinish) override;
+
+
    //virtual context_object* calc_parent_thread() override;
 
 //#ifdef WINDOWS_DESKTOP
@@ -175,6 +179,10 @@ public:
 
    virtual HTHREAD get_hthread() const;
    virtual ITHREAD get_ithread() const;
+
+
+   virtual bool task_active() const;
+
 
    virtual void set_current_handles();
 

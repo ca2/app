@@ -4861,7 +4861,7 @@ retry_license:
 
       //close(::apex::e_end_app);
 
-      finish();
+      finish(get_context());
 
    }
 
@@ -10871,7 +10871,7 @@ namespace apex
       if (eend == ::apex::e_end_app)
       {
 
-         finish();
+         finish(get_context());
 
          return;
 
@@ -10888,7 +10888,7 @@ namespace apex
 
                auto psession = Session;
 
-               psession->finish();
+               psession->finish(get_context());
 
             }
 
@@ -10912,7 +10912,7 @@ namespace apex
             if (get_context_system())
             {
 
-               System.finish();
+               System.finish(get_context());
 
             }
 

@@ -563,6 +563,55 @@ catch(...)
    }
 
 
+   ::estatus thread::set_finish_composites(::context_object * pcontextobjectFinish)
+   {
+
+      auto estatus = channel::set_finish_composites(pcontextobjectFinish);
+
+      if (estatus == error_pending)
+      {
+
+         return estatus;
+
+      }
+
+      if (m_pimpl)
+      {
+
+         auto puserinteraction = m_pimpl->m_puserinteraction;
+
+         if (puserinteraction)
+         {
+
+            if (!m_pimpl->m_bDestroying)
+            {
+
+               puserinteraction->DestroyWindow();
+
+            }
+
+         }
+
+         return error_pending;
+
+      }
+
+      if (task_active())
+      {
+
+         set_finish_bit();
+
+         post_quit();
+
+         return error_pending;
+
+      }
+
+      return ::success;
+
+   }
+
+
    ::estatus thread::run()
    {
 
@@ -785,10 +834,10 @@ catch(...)
    }
 
 
-   ::estatus thread::finish()
+   ::estatus thread::finish(::context_object * pcontextobjectFinish)
    {
 
-      return ::thread::finish();
+      return ::thread::finish(pcontextobjectFinish);
 
    }
 

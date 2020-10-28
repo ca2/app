@@ -65,7 +65,7 @@ void matter::on_finish()
 }
 
 
-::estatus matter::set_finish_composites()
+::estatus matter::set_finish_composites(::context_object * pcontextobjectFinish)
 {
 
    return ::success;
@@ -73,7 +73,10 @@ void matter::on_finish()
 }
 
 
-::estatus matter::set_finish()
+
+
+
+::estatus matter::set_finish(::context_object * pcontextobjectFinish)
 {
 
    set_finish_bit();
@@ -83,7 +86,7 @@ void matter::on_finish()
 }
 
 
-::estatus matter::finish()
+::estatus matter::finish(::context_object * pcontextobjectFinish)
 {
 
    set_finish_bit();
@@ -362,12 +365,22 @@ void matter::on_future(const ::var& var)
 ::estatus matter::add_composite(::matter* pmatter OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
-   return ::success_none;
+   __throw(not_implemented);
+
+   return ::error_not_implemented;
 
 }
 
 
 ::estatus matter::add_reference(::matter* pmatter OBJ_REF_DBG_COMMA_PARAMS_DEF)
+{
+
+   return ::success_none;
+
+}
+
+
+::estatus matter::release_composite2(::matter * pmatter OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
    return ::success_none;

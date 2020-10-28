@@ -175,7 +175,7 @@ namespace user
 //
 
 
-::estatus _os_message_box(const char* pszMessage, const char* pszTitle, ::emessagebox emessagebox, const ::future & future)
+int _os_message_box(const char* pszMessage, const char* pszTitle, ::emessagebox emessagebox)
 {
 
    int iMessageBox = emessagebox.m_eenum & 0x7f;

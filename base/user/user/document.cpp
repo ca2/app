@@ -115,7 +115,7 @@ namespace user
    }
 
    
-   ::estatus document::set_finish_composites()
+   ::estatus document::set_finish_composites(::context_object * pcontextobjectFinish)
    {
 
       bool bStillFinishing = false;
@@ -125,7 +125,7 @@ namespace user
       for (auto & pui : uia.interactiona())
       {
 
-         auto estatus = pui->set_finish();
+         auto estatus = pui->finish(pcontextobjectFinish);
 
          if (estatus == ::error_pending)
          {
@@ -136,7 +136,7 @@ namespace user
 
       }
 
-      auto estatus = ::user::controller::set_finish_composites();
+      auto estatus = ::user::controller::set_finish_composites(pcontextobjectFinish);
 
       if (estatus == ::error_pending)
       {
@@ -1066,7 +1066,7 @@ namespace user
 
          pre_close_frame(pframe);
 
-         pframe->finish();
+         pframe->finish(get_context());
 
       }
 

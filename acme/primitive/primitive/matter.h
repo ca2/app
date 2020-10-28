@@ -152,6 +152,7 @@ public:
    virtual ::estatus add_reference(::matter* pobject OBJ_REF_DBG_COMMA_PARAMS);
 
 
+   virtual ::estatus release_composite2(::matter * pobject OBJ_REF_DBG_COMMA_PARAMS);
    virtual ::estatus finalize_composite(::matter* pobject OBJ_REF_DBG_COMMA_PARAMS);
    virtual ::estatus release_reference(::matter* pobject OBJ_REF_DBG_COMMA_PARAMS);
 
@@ -183,13 +184,13 @@ public:
 
 
    virtual void on_finish();
-   virtual ::estatus set_finish();
-   virtual ::estatus set_finish_composites();
+   virtual ::estatus set_finish(::context_object * pcontextobjectFinish);
+   virtual ::estatus set_finish_composites(::context_object * pcontextobjectFinish);
 
 
    // returns success when object is ready to have finalize called
    // returns error_pending if any child or ascendant is still active
-   virtual ::estatus finish();
+   virtual ::estatus finish(::context_object * pcontextobjectFinish = nullptr);
 
 
    virtual void post_quit();

@@ -212,8 +212,37 @@ bool timer_task::task_active() const
 ::estatus timer_task::on_task()
 {
 
-   while (task_sleep(m_duration))
+   ::i64 iSleepMs = m_duration.get_total_milliseconds();
+
+   ::i64 c100Ms = iSleepMs / 100;
+
+   ::i64 r100Ms = iSleepMs % 100;
+
+   while (true)
    {
+
+      for (::index i = 0; i < c100Ms; i++)
+      {
+
+         Sleep(100);
+
+         if (!thread_get_run())
+         {
+
+            break;
+
+         }
+
+      }
+
+      Sleep(r100Ms);
+
+      if (!thread_get_run())
+      {
+
+         break;
+
+      }
 
       try
       {

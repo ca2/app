@@ -3396,7 +3396,7 @@ namespace user
    void interaction_impl::_001UpdateBuffer()
    {
 
-      if (!m_puserinteraction)
+      if (!m_puserinteraction || m_bitFinishing)
       {
 
          return;
@@ -3433,6 +3433,13 @@ namespace user
          slGraphics.unlock();
 
          windowing_output_debug_string("\n_001UpdateBuffer : after on_begin_draw");
+
+         if (m_bitFinishing)
+         {
+
+            return;
+
+         }
 
          if (pgraphics == nullptr || pgraphics->get_os_data() == nullptr)
          {
@@ -3716,6 +3723,34 @@ namespace user
    }
 
 
+   ::estatus interaction_impl::set_finish(::context_object * pcontextobjectFinish)
+   {
+
+      if(!m_bitFinishing)
+      {
+
+         if (m_pgraphics)
+         {
+
+            sync_lock slGraphics(m_pgraphics->mutex());
+
+            ::sync * psync = m_pgraphics->get_draw_lock();
+
+            sync_lock sl(psync);
+
+            slGraphics.unlock();
+
+            m_bitFinishing = true;
+
+         }
+
+      }
+
+      return ::user::primitive_impl::set_finish(pcontextobjectFinish);
+
+   }
+
+
    void interaction_impl::prodevian_stop()
    {
 
@@ -3738,7 +3773,7 @@ namespace user
 
             //pprodevian->m_pimpl = nullptr;
 
-            pprodevian->set_finish();
+            pprodevian->set_finish(this);
 
          }
 

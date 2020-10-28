@@ -15,7 +15,7 @@ public:
    virtual ~exit_exception();
 
 
-   virtual ::estatus finish() override;
+   virtual ::estatus finish(::context_object * pcontextobjectFinish = nullptr) override;
 
 
 };

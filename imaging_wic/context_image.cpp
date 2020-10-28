@@ -33,7 +33,7 @@ namespace imaging_wic
 
       }
 
-      m_pmanagerImageLoad = __new(handler_manager("imaging_load_image", true));
+      __own(this, m_pmanagerImageLoad, __new(handler_manager("imaging_load_image", true)));
 
       if (!m_pmanagerImageLoad)
       {

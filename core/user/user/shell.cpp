@@ -193,9 +193,9 @@ namespace user
 
          sync_lock sl(mutex());
 
-         //auto pthread  = __new(thread(this));
+         auto pthread  = __new(thread(this));
 
-         //m_iThread = task_add(pthread);
+         add_composite(pthread);
 
       }
 
@@ -899,18 +899,18 @@ namespace user
    }
 
 
-   ::estatus shell::thread::finish()
+   ::estatus shell::thread::finish(::context_object * pcontextobject)
    {
 
-      return ::thread::finish();
+      return ::thread::finish(pcontextobject);
 
    }
 
 
-   ::estatus shell::finish()
+   ::estatus shell::finish(::context_object * pcontextobject)
    {
 
-      ::object::finish();
+      ::object::finish(pcontextobject);
 
       //task_remove_all();
 

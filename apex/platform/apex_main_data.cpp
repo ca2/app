@@ -170,7 +170,7 @@ void apex_main_data::system_construct(HINSTANCE hinstance, HINSTANCE hPrevInstan
 void apex_main_data::system_construct(Array < String^ >^ refstra)
 {
 
-   m_poslocal = nullptr;
+   //m_poslocal = nullptr;
 
    string_array stra(refstra);
 
@@ -184,7 +184,7 @@ void apex_main_data::system_construct(Array < String^ >^ refstra)
 
    //m_pfnNewAuraLibrary = nullptr;
 
-   m_poslocal = nullptr;
+   //m_poslocal = nullptr;
 
    m_edisplay = display_default;
 

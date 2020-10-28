@@ -23,6 +23,7 @@ namespace imaging_wic
 
 
          load_image(context_image* pcontextimage);
+         virtual ~load_image();
 
 
          virtual ::estatus run() override;
@@ -34,7 +35,7 @@ namespace imaging_wic
       };
 
 
-      __pointer(handler_manager)       m_pmanagerImageLoad;
+      __composite(handler_manager)        m_pmanagerImageLoad;
 
 
       context_image();

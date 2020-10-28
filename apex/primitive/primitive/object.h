@@ -357,6 +357,7 @@ public:
    virtual ::estatus add_reference(::matter * pobject OBJ_REF_DBG_COMMA_PARAMS) override;
 
 
+   virtual ::estatus release_composite2(::matter * pobject OBJ_REF_DBG_COMMA_PARAMS) override;
    virtual ::estatus finalize_composite(::matter * pobject OBJ_REF_DBG_COMMA_PARAMS) override;
    virtual ::estatus release_reference(::matter * pobject OBJ_REF_DBG_COMMA_PARAMS) override;
 
@@ -408,9 +409,9 @@ public:
    virtual bool is_running() const;
    virtual void child_post_quit(const char * pszTag);
    virtual void child_post_quit_and_wait(const char * pszTag, const duration & duration);
-   virtual ::estatus finish() override;
-   virtual ::estatus set_finish() override;
-   virtual ::estatus set_finish_composites() override;
+   virtual ::estatus finish(::context_object * pcontextobjectFinish = nullptr) override;
+   virtual ::estatus set_finish(::context_object * pcontextobjectFinish) override;
+   virtual ::estatus set_finish_composites(::context_object * pcontextobjectFinish) override;
    virtual void on_finish() override;
 
 

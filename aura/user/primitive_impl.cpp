@@ -3,6 +3,7 @@
 #include "aura/user/_user.h"
 #endif
 #include "aura/id.h"
+#include "interaction_thread.h"
 
 
 namespace user
@@ -1153,7 +1154,7 @@ namespace user
       if (m_ptimerarray.is_null())
       {
 
-         __construct_new(m_ptimerarray);
+         __compose_new(m_ptimerarray);
 
          m_ptimerarray->m_pcallback = m_puserinteraction;
 
@@ -1428,6 +1429,8 @@ namespace user
 
       }
 
+      ::channel::on_finish();
+
       if (!m_bDestroyImplOnly)
       {
 
@@ -1436,6 +1439,29 @@ namespace user
       }
 
       ::user::primitive::PostNcDestroy();
+
+
+
+      //if (m_puserinteraction->m_pthreadUserInteraction)
+      //{
+
+      //   auto pthread = m_puserinteraction->m_pthreadUserInteraction.cast < thread >();
+      //   
+      //   if (pthread)
+      //   {
+
+      //      if (pthread->m_pimpl == this)
+      //      {
+
+      //         pthread->m_pimpl.release();
+
+      //         pthread->finish();
+
+      //      }
+
+      //   }
+
+      //}
 
       if (!m_bDestroyImplOnly)
       {
@@ -1476,25 +1502,25 @@ namespace user
    void primitive_impl::_001OnDestroy(::message::message * pmessage)
    {
 
-      sync_lock sl(mutex());
+      //sync_lock sl(mutex());
 
-      try
-      {
+      //try
+      //{
 
-         if (m_ptimerarray)
-         {
+      //   if (m_ptimerarray)
+      //   {
 
-            m_ptimerarray->finalize();
+      //      m_ptimerarray->finalize();
 
-            m_ptimerarray.release(OBJ_REF_DBG_THIS_NOTE(""));
+      //      m_ptimerarray.release(OBJ_REF_DBG_THIS_NOTE(""));
 
-         }
+      //   }
 
-      }
-      catch (...)
-      {
+      //}
+      //catch (...)
+      //{
 
-      }
+      //}
 
    }
 

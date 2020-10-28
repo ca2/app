@@ -71,7 +71,7 @@ namespace windows
       virtual void set_image_ico(string strIconLocation, i32 & iImage, COLORREF crBk);
       virtual void set_image_resource(string strIconLocation, i32 & iImage, const image_key & imagekey, COLORREF crBk);
 
-      virtual ::estatus finish() override;
+      virtual ::estatus finish(::context_object * pcontextobject) override;
 
       //int shell::add_hover_image(int iSize, int iImage, COLORREF crBk)
 

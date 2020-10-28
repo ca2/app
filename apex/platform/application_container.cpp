@@ -49,12 +49,11 @@ void application_container::app_remove(::apex::application * papp)
    if (m_applicationa.isEmpty() && m_bFinalizeIfNoApplication)
    {
 
-      finish();
+      finish(this);
 
    }
 
 }
-
 
 
 void application_container::request_exit()

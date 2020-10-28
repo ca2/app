@@ -109,7 +109,7 @@ CLASS_DECL_APEX void main_branch(::matter* pobjectTask, e_priority epriority)
       Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::Normal, ref new Windows::UI::Core::DispatchedHandler([pobjectTask]()
    {
 
-            pobjectTask->call();
+      pobjectTask->operator()();
 
    })));
 

@@ -51,13 +51,13 @@ void context_object::finalize()
 }
 
 
-void context_object::notify_on_finish(::context_object * pcontextobject)
+void context_object::notify_on_finish(::context_object * pcontextobjectFinish)
 {
 
-   if (finish_bit())
+   if (m_bitFinishing)
    {
 
-      on_finish();
+      finish(nullptr);
 
    }
 
@@ -72,16 +72,18 @@ void context_object::set_context_object(::layered * pobjectContext  OBJ_REF_DBG_
 }
 
 
-::estatus context_object::finish()
+::estatus context_object::finish(::context_object * pcontextobjectFinish)
 {
 
-   return ::matter::finish();
+   return ::matter::finish(pcontextobjectFinish);
 
 }
 
 
 void context_object::on_finish()
 {
+
+   layered::on_finish();
 
    sync_lock sl(mutex());
 
@@ -90,19 +92,39 @@ void context_object::on_finish()
 
       auto pnotifya = m_pnotifya;
 
-      m_pnotifya.release();
+      restart_notifya_loop:
 
       for (auto & pmatter : *pnotifya)
       {
 
-         pmatter->notify_on_finish(this);
+         if (pmatter && pmatter->m_bitFinishing)
+         {
+
+            sl.unlock();
+
+            Sleep(10_ms);
+
+            auto estatus = pmatter->finish();
+
+            if (estatus == ::success)
+            {
+
+               sl.lock();
+
+               pnotifya->remove(pmatter);
+
+               goto restart_notifya_loop;
+
+            }
+
+            sl.lock();
+
+         }
 
       }
 
    }
-
-   layered::on_finish();
-
+   
 }
 
 

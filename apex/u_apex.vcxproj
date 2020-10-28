@@ -942,11 +942,6 @@
     <ClInclude Include="platform\status.h" />
     <ClInclude Include="platform\str_context.h" />
     <ClInclude Include="platform\system.h" />
-    <ClInclude Include="platform\timer.h" />
-    <ClInclude Include="platform\timer_array.h" />
-    <ClInclude Include="platform\timer_callback.h" />
-    <ClInclude Include="platform\timer_event.h" />
-    <ClInclude Include="platform\timer_item.h" />
     <ClInclude Include="platform\trace.h" />
     <ClInclude Include="platform\trace_category.h" />
     <ClInclude Include="platform\version.h" />
@@ -1596,7 +1591,6 @@
     <ClCompile Include="platform\machine_event_central.cpp" />
     <ClCompile Include="platform\machine_event_data.cpp" />
     <ClCompile Include="platform\net.cpp" />
-    <ClCompile Include="platform\obj_typ_ctr.cpp" />
     <ClCompile Include="platform\os_context.cpp" />
     <ClCompile Include="platform\os_history.cpp" />
     <ClCompile Include="platform\progress.cpp" />
@@ -1612,11 +1606,6 @@
     <ClCompile Include="platform\system.cpp" />
     <ClCompile Include="platform\system_trace.cpp" />
     <ClCompile Include="platform\text.cpp" />
-    <ClCompile Include="platform\timer.cpp" />
-    <ClCompile Include="platform\timer_array.cpp" />
-    <ClCompile Include="platform\timer_callback.cpp" />
-    <ClCompile Include="platform\timer_event.cpp" />
-    <ClCompile Include="platform\timer_item.cpp" />
     <ClCompile Include="platform\trace.cpp" />
     <ClCompile Include="platform\_.cpp" />
     <ClCompile Include="primitive\data\container.cpp" />

@@ -637,6 +637,9 @@ namespace user
       virtual bool is_composite() override;
 
 
+      virtual ::estatus set_finish(::context_object * pcontextobject) override;
+
+
       virtual ::user::primitive * get_focus_primitive() override;
       virtual bool set_focus_primitive(::user::primitive * pprimitive) override;
       virtual bool impl_set_focus_primitive(::user::primitive * pprimitive, bool bNotify);

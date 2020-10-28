@@ -165,6 +165,35 @@ void object::to_string(const class string_exchange & str) const
 }
 
 
+::estatus object::release_composite2(::matter * pmatter OBJ_REF_DBG_COMMA_PARAMS_DEF)
+{
+
+   if (::is_null(pmatter))
+   {
+
+      return ::success_none;
+
+   }
+
+   sync_lock sl(mutex());
+
+   if (m_pcompositea)
+   {
+
+      if (m_pcompositea->remove(pmatter))
+      {
+
+         return ::success;
+
+      }
+
+   }
+
+   return ::error_failed;
+
+}
+
+
 ::estatus object::finalize_composite(::matter* pmatter OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
@@ -914,11 +943,11 @@ void object::finalize()
 void object::on_finish()
 {
 
-   sync_lock sl(mutex());
-
    source::on_finish();
 
    finalize();
+
+//   sync_lock sl(mutex());
 
    //if (m_pcompositea)
    //{
@@ -1001,7 +1030,7 @@ void object::copy_from(const object & o)
 }
 
 
-::estatus object::set_finish_composites()
+::estatus object::set_finish_composites(::context_object * pcontextobjectFinish)
 {
 
    ::estatus estatus = ::success;
@@ -1020,7 +1049,14 @@ void object::copy_from(const object & o)
       for (::index iComposite = 0; iComposite < countComposite; iComposite++)
       {
 
-         auto & pcomposite = m_pcompositea->element_at(iComposite);
+         auto pcomposite = m_pcompositea->element_at(iComposite);
+
+         if (!pcomposite || pcomposite->m_bitSetFinish)
+         {
+
+            continue;
+
+         }
 
          string strCompositeType = pcomposite->type_name();
 
@@ -1054,10 +1090,9 @@ void object::copy_from(const object & o)
 
          sl.unlock();
 
-         auto estatusComposite = pcomposite->set_finish();
+         auto estatusComposite = pcomposite->finish(pcontextobjectFinish);
 
          sl.lock();
-
 
          if (estatusComposite == ::error_pending)
          {
@@ -1076,16 +1111,23 @@ void object::copy_from(const object & o)
 
             }
 
-            auto pcontextobject = pcomposite->_get_context_object();
+            //auto pcontextobject = pcomposite->_get_context_object();
 
-            if (pcontextobject)
-            {
+            //if (pcontextobject)
+            //{
 
-               pcontextobject->notify_array().add_unique(this);
+            //   pcontextobject->notify_array().add_unique(this);
 
-            }
+            //}
 
             estatus = error_pending;
+
+         }
+
+         if (!m_pcompositea)
+         {
+
+            break;
 
          }
 
@@ -1105,53 +1147,69 @@ void object::copy_from(const object & o)
 }
 
 
-::estatus object::set_finish()
+::estatus object::set_finish(::context_object * pcontextobjectFinish)
 {
 
-   auto estatus = ::success;
+   __pointer(::object) pobjectHold = this;
+
+   m_bitFinishing = true;
+
+   auto estatus = set_finish_composites(pcontextobjectFinish);
+
+   if (estatus == error_pending)
+   {
+
+      if (::is_set(pcontextobjectFinish))
+      {
+
+         notify_array().add_unique(pcontextobjectFinish);
+
+      }
+
+      return estatus;
+
+   }
 
    if (!finish_bit())
    {
 
-      m_bitFinishing = true;
+      //
 
       set_finish_bit();
 
    }
 
-   if (m_bitFinishing)
-   {
-
-      string strTypeName = type_name();
-
-#ifdef ANDROID
-
-      demangle(strTypeName);
-
-#endif
-
-      if (strTypeName == "user::shell")
-      {
-
-         output_debug_string("user::shell::finish");
-
-      }
-      else if (strTypeName == "apex::system")
-      {
-
-         output_debug_string("apex::system::finish");
-
-      }
-
-      estatus = set_finish_composites();
-
-      if (strTypeName.contains_ci("app_app::window"))
-      {
-
-         output_debug_string("set_finish at app_window");
-
-      }
-
+//   if (m_bitFinishing)
+//   {
+//
+//      string strTypeName = type_name();
+//
+//#ifdef ANDROID
+//
+//      demangle(strTypeName);
+//
+//#endif
+//
+//      if (strTypeName == "user::shell")
+//      {
+//
+//         output_debug_string("user::shell::finish");
+//
+//      }
+//      else if (strTypeName == "apex::system")
+//      {
+//
+//         output_debug_string("apex::system::finish");
+//
+//      }
+//
+//      if (strTypeName.contains_ci("app_app::window"))
+//      {
+//
+//         output_debug_string("set_finish at app_window");
+//
+//      }
+//
       //if (m_ptaska)
       //{
 
@@ -1190,91 +1248,91 @@ void object::copy_from(const object & o)
 
       //if (bStillFinishingComposites || bStillFinishingTasks)
 
-      if (estatus == ::error_pending)
-      {
+   //   if (estatus == ::error_pending)
+   //   {
 
-         if (m_pcompositea)
-         {
+   //      if (m_pcompositea)
+   //      {
 
-            auto compositea = *m_pcompositea;
+   //         auto compositea = *m_pcompositea;
 
-            string strWaiting;
+   //         string strWaiting;
 
-            for (auto & pcomposite : compositea)
-            {
+   //         for (auto & pcomposite : compositea)
+   //         {
 
-               try
-               {
+   //            try
+   //            {
 
-                  string strThreadType;
+   //               string strThreadType;
 
-                  strThreadType = pcomposite->type_name();
+   //               strThreadType = pcomposite->type_name();
 
-                  strWaiting += strThreadType;
+   //               strWaiting += strThreadType;
 
-                  strWaiting += "\r\n";
+   //               strWaiting += "\r\n";
 
-                  pcomposite->finish();
+   //               pcomposite->finish();
 
-               }
-               catch (...)
-               {
+   //            }
+   //            catch (...)
+   //            {
 
-               }
+   //            }
 
-            }
+   //         }
 
-            if (strWaiting.has_char())
-            {
+   //         if (strWaiting.has_char())
+   //         {
 
-               TRACE("The thread %s is waiting for the following threads to finish:\r\n%s", type_name(), strWaiting.c_str());
+   //            TRACE("The thread %s is waiting for the following threads to finish:\r\n%s", type_name(), strWaiting.c_str());
 
-            }
+   //         }
 
-         }
+   //      }
 
-         kick_idle();
+   //      kick_idle();
 
-      }
-      else
-      {
-
-
-         string strType = type_name();
-
-         if (strType.contains_ci("session"))
-         {
-
-            auto bShouldRun = thread_get_run();
-
-            if (!bShouldRun)
-            {
-
-               output_debug_string("session_shouldn't_run?");
-
-            }
-
-         }
-         else if (strType.contains_ci("application"))
-         {
-
-            auto bShouldRun = thread_get_run();
-
-            if (!bShouldRun)
-            {
-
-               output_debug_string("application_shouldn't_run?");
-
-            }
+   //   }
+   //   else
+   //   {
 
 
-         }
+   //      string strType = type_name();
 
-         m_bitFinishing = false;
+   //      if (strType.contains_ci("session"))
+   //      {
 
-      }
+   //         auto bShouldRun = thread_get_run();
 
-   }
+   //         if (!bShouldRun)
+   //         {
+
+   //            output_debug_string("session_shouldn't_run?");
+
+   //         }
+
+   //      }
+   //      else if (strType.contains_ci("application"))
+   //      {
+
+   //         auto bShouldRun = thread_get_run();
+
+   //         if (!bShouldRun)
+   //         {
+
+   //            output_debug_string("application_shouldn't_run?");
+
+   //         }
+
+
+   //      }
+
+   //      m_bitFinishing = false;
+
+   //   }
+
+   //}
 
    return estatus;
 
@@ -1289,12 +1347,14 @@ void object::release_references()
    while(m_pcompositea && m_pcompositea->has_element())
    {
 
+      auto composite = m_pcompositea->pop();
+
       sl.unlock();
 
       try
       {
 
-         finalize_composite(m_pcompositea->first());
+         finalize_composite(composite);
 
       }
       catch (...)
@@ -1446,10 +1506,17 @@ bool object::__is_child_task(::task * ptask) const
 // So a flag/timer/message that indicates that things should be destroyed/closed/finalized
 // should be enough (which triggers the full finalization that would end up calling
 // the "final" finalize).
-::estatus object::finish()
+::estatus object::finish(::context_object * pcontextobjectFinish)
 {
+
+   if (!pcontextobjectFinish)
+   {
+
+      pcontextobjectFinish = this;
+
+   }
    
-   auto estatus = set_finish();
+   auto estatus = set_finish(pcontextobjectFinish);
 
    if (estatus == success)
    {
@@ -1608,7 +1675,7 @@ void object::multiple_fork(const method_array & methoda)
    if(pexitexception)
    {
 
-      pexitexception->finish();
+      pexitexception->finish(this);
 
       return false;
 
@@ -1702,7 +1769,7 @@ void object::task_remove(::task* ptask)
          //}
 
          //if (finish_bit() && (!m_ptaska || ptaska->is_empty()))
-            if(finish_bit())
+         if(finish_bit())
          {
 
             if (strThreadThis == "veriwell_keyboard::application")
@@ -1712,7 +1779,7 @@ void object::task_remove(::task* ptask)
 
             }
 
-            finish();
+            finish(this);
 
          }
          //else

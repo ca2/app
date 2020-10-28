@@ -84,7 +84,12 @@ namespace user
       m_methodUpdateScreen = __method([this]()
          {
 
-            update_screen();
+            if (!m_bitFinishing && !m_bitSetFinish)
+            {
+
+               update_screen();
+
+            }
 
             m_bUpdatingScreen = false;
 
@@ -951,6 +956,16 @@ bool prodevian::prodevian_iteration()
                bDraw = false;
 
             }
+
+         }
+
+         if (m_puserinteraction->m_bitFinishing
+            || m_puserinteraction->m_bitSetFinish
+            || m_pimpl->m_bitFinishing
+            || m_pimpl->m_bitSetFinish)
+         {
+
+            bDraw = false;
 
          }
 

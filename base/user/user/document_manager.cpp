@@ -52,7 +52,11 @@ namespace user
 
    document_manager::document_manager()
    {
+
+      defer_create_mutex();
+
    }
+
 
    void document_manager::UnregisterShellFileTypes()
    {

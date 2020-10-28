@@ -445,21 +445,21 @@ string key_to_char(WPARAM wparam, LPARAM lparam)
 bool defer_co_initialize_ex(bool bMultiThread)
 {
 
-   auto pthread = ::get_task();
+   auto ptask = ::get_task();
 
-   if(!pthread)
+   if(!ptask)
    {
 
       return false;
 
    }
 
-   HRESULT hr = pthread->m_hresultCoInitialize;
+   HRESULT hr = ptask->m_hresultCoInitialize;
 
-   if(!pthread->m_bCoInitialize)
+   if(!ptask->m_bitCoInitialize)
    {
 
-      pthread->m_bCoInitialize = true;
+      ptask->m_bitCoInitialize = true;
     
       hr = ::CoInitializeEx(nullptr,COINIT_MULTITHREADED);
 

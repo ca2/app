@@ -261,6 +261,8 @@ void thread::term_thread()
 
    }
 
+   channel::on_finish();
+
    term_task();
 
    //if (get_context_object())
@@ -1479,7 +1481,7 @@ void thread::task_remove(::task * ptask)
 
          }
 
-         finish();
+         finish(this);
 
       }
 
@@ -1498,11 +1500,9 @@ void thread::finalize()
 
    call_method(DESTROY_METHOD);
 
-   ::channel::finalize();
-
    string strType = type_name();
 
-   if(m_strTaskName.contains("main_frame"))
+   if (m_strTaskName.contains("main_frame"))
    {
 
       output_debug_string("I am main_frame xxpost_quit at " + strType + "\n");
@@ -1515,7 +1515,7 @@ void thread::finalize()
       if (strType.contains("shell_thread"))
       {
 
-         output_debug_string("I am shell_thread xxpost_quit at "+strType+"\n");
+         output_debug_string("I am shell_thread xxpost_quit at " + strType + "\n");
 
       }
 
@@ -1580,6 +1580,25 @@ void thread::finalize()
 
    }
 
+   ::channel::finalize();
+
+   auto pcontextobject = get_context_object();
+
+   if(pcontextobject)
+   {
+
+      auto estatus = pcontextobject->release_composite2(this);
+
+      if(!estatus)
+      {
+
+         output_debug_string("release_composite2 failed");
+
+      }
+
+   }
+
+
 }
 
 
@@ -1602,7 +1621,7 @@ bool thread::thread_get_run() const
 
    bool bFinishing = m_bitFinishing;
 
-   return !bSetFinish || bFinishing;
+   return !bSetFinish;
 
 }
 
@@ -2375,6 +2394,14 @@ ITHREAD thread::get_ithread() const
 }
 
 
+bool thread::task_active() const
+{
+
+   return !m_bThreadClosed && m_hthread != (HTHREAD)0;
+
+}
+
+
 void thread::set_current_handles()
 {
 
@@ -2824,9 +2851,19 @@ bool thread::post_message(const ::id & id, WPARAM wParam, lparam lParam)
 
          string strType = type_name();
 
-         if (strType.contains_ci("clockverse::application"))
+         if (strType.contains_ci("::application"))
          {
-            output_debug_string("applciation_shouldn't_run?");
+
+            output_debug_string("application_shouldn't_run?");
+
+            auto bShouldRun = thread_get_run();
+
+            if (!bShouldRun)
+            {
+
+               output_debug_string("application_shouldn't_run?");
+
+            }
 
          }
          else if (strType.contains_ci("session"))
@@ -2842,10 +2879,21 @@ bool thread::post_message(const ::id & id, WPARAM wParam, lparam lParam)
             }
 
          }
+         else if (strType.contains_ci("system"))
+         {
 
-         
+            auto bShouldRun = thread_get_run();
+
+            if (!bShouldRun)
+            {
+
+               output_debug_string("session_shouldn't_run?");
+
+            }
+
+         }
+
       }
-
 
       int_bool bOk = ::PostThreadMessage(m_ithread, id.umessage(), wParam, lParam) != FALSE;
 
@@ -3117,7 +3165,7 @@ error:;
 }
 
 
-::estatus     thread::main()
+::estatus thread::main()
 {
 
    string strType = type_name();
@@ -3161,7 +3209,7 @@ error:;
       if (___thread(pe->m_pthreadExit) != this)
       {
 
-         System.finish();
+         System.finish(::get_context_system());
 
       }
 
@@ -3204,7 +3252,7 @@ error:;
 
    estatus = m_result.status();
 
-   clear_finish_bit();
+   //clear_finish_bit();
 
    return estatus;
 
@@ -3288,6 +3336,256 @@ int_bool thread::peek_message(LPMESSAGE pMsg, oswindow oswindow, UINT wMsgFilter
 }
 
 
+::estatus thread::set_finish(::context_object * pcontextobjectFinish)
+{
+
+   auto estatus = channel::set_finish(pcontextobjectFinish);
+
+   if (estatus == error_pending)
+   {
+
+      return estatus;
+
+   }
+
+   //if (task_active())
+   //{
+
+   //   if (::is_set(pcontextobjectFinish))
+   //   {
+
+   //      notify_array().add_unique(pcontextobjectFinish);
+
+   //   }
+
+   //   post_quit();
+
+   //   return error_pending;
+
+   //}
+
+   return estatus;
+
+//   auto estatus = set_finish_composites();
+//
+//   if (estatus == error_pending)
+//   {
+//
+//      return error_pending;
+//
+//   }
+//
+//   if (!finish_bit())
+//   {
+//
+//      m_bitFinishing = true;
+//
+//      set_finish_bit();
+//
+//   }
+//
+//   if (m_bitFinishing)
+//   {
+//
+//      string strTypeName = type_name();
+//
+//#ifdef ANDROID
+//
+//      demangle(strTypeName);
+//
+//#endif
+//
+//      if (strTypeName == "user::shell")
+//      {
+//
+//         output_debug_string("user::shell::finish");
+//
+//      }
+//      else if (strTypeName == "apex::system")
+//      {
+//
+//         output_debug_string("apex::system::finish");
+//
+//      }
+//
+//      estatus = set_finish_composites();
+//
+//      if (strTypeName.contains_ci("app_app::window"))
+//      {
+//
+//         output_debug_string("set_finish at app_window");
+//
+//      }
+//
+//      //if (m_ptaska)
+//      //{
+//
+//      //task_set_finish:
+//
+//      //   ::count countTask = m_ptaska->get_count();
+//
+//      //   for (::index iTask = 0; m_ptaska && iTask < countTask; iTask++)
+//      //   {
+//
+//      //      auto & ptask = m_ptaska->element_at(iTask);
+//
+//      //      sl.unlock();
+//
+//      //      auto estatus = ptask->finish();
+//
+//      //      if (estatus == ::error_pending)
+//      //      {
+//
+//      //         bStillFinishingTasks = true;
+//
+//      //      }
+//
+//      //      sl.lock();
+//
+//      //      if (countTask != m_ptaska->get_count())
+//      //      {
+//
+//      //         goto task_set_finish;
+//
+//      //      }
+//
+//      //   }
+//
+//      //}
+//
+//      //if (bStillFinishingComposites || bStillFinishingTasks)
+//
+//      if (estatus == ::error_pending)
+//      {
+//
+//         if (m_pcompositea)
+//         {
+//
+//            auto compositea = *m_pcompositea;
+//
+//            string strWaiting;
+//
+//            for (auto & pcomposite : compositea)
+//            {
+//
+//               try
+//               {
+//
+//                  string strThreadType;
+//
+//                  strThreadType = pcomposite->type_name();
+//
+//                  strWaiting += strThreadType;
+//
+//                  strWaiting += "\r\n";
+//
+//                  pcomposite->finish();
+//
+//               }
+//               catch (...)
+//               {
+//
+//               }
+//
+//            }
+//
+//            if (strWaiting.has_char())
+//            {
+//
+//               TRACE("The thread %s is waiting for the following threads to finish:\r\n%s", type_name(), strWaiting.c_str());
+//
+//            }
+//
+//         }
+//
+//         kick_idle();
+//
+//      }
+//      else
+//      {
+//
+//
+//         string strType = type_name();
+//
+//         if (strType.contains_ci("session"))
+//         {
+//
+//            auto bShouldRun = thread_get_run();
+//
+//            if (!bShouldRun)
+//            {
+//
+//               output_debug_string("session_shouldn't_run?");
+//
+//            }
+//
+//         }
+//         else if (strType.contains_ci("application"))
+//         {
+//
+//            auto bShouldRun = thread_get_run();
+//
+//            if (!bShouldRun)
+//            {
+//
+//               output_debug_string("application_shouldn't_run?");
+//
+//            }
+//
+//
+//         }
+//
+//         m_bitFinishing = false;
+//
+//      }
+//
+//}
+//
+//   return estatus;
+//
+
+}
+
+
+::estatus thread::set_finish_composites(::context_object * pcontextobjectFinish)
+{
+
+   auto estatus = channel::set_finish_composites(pcontextobjectFinish);
+
+   if (estatus == error_pending)
+   {
+
+      return estatus;
+
+   }
+
+   if (task_active())
+   {
+
+      set_finish_bit();
+
+      if (m_bMessageThread)
+      {
+
+         post_quit();
+
+         return error_pending;
+
+      }
+      else
+      {
+
+         ::output_debug_string("!m_bMessageThread");
+
+      }
+
+   }
+
+   return ::success;
+
+}
+
+
 int_bool thread::get_message(LPMESSAGE pMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax)
 {
 
@@ -3304,7 +3602,7 @@ int_bool thread::get_message(LPMESSAGE pMsg, oswindow oswindow, UINT wMsgFilterM
          if (!finish_bit())
          {
 
-            finish();
+            finish(::get_context());
 
          }
 
@@ -3393,7 +3691,7 @@ int_bool thread::get_message(LPMESSAGE pMsg, oswindow oswindow, UINT wMsgFilterM
       if (!finish_bit())
       {
 
-         finish();
+         finish(::get_context());
 
       }
 
@@ -4285,29 +4583,6 @@ CLASS_DECL_APEX bool app_sleep(tick tick)
 }
 
 
-
-//int ::status::result::get_exit_code()
-//{
-//
-//   if(m_iaErrorCode2.get_count() <= 0)
-//   {
-//
-//      return 0;
-//
-//   }
-//
-//   if(m_iaErrorCode2.get_count() == 1)
-//   {
-//
-//      return m_iaErrorCode2[0];
-//
-//   }
-//
-//   return -100000 - (int) m_iaErrorCode2.get_count();
-//
-//}
-
-
 ::estatus     thread::get_result_status()
 {
 
@@ -4316,13 +4591,9 @@ CLASS_DECL_APEX bool app_sleep(tick tick)
 }
 
 
-//void thread::on_event(::u64 u, ::object * pobject)
-//{
-//
-//}
-
-
 ::mutex * g_pmutexThreadDeferredCreation = nullptr;
+
+
 ::array < __pointer(thread) > * g_pthreadaDeferredCreate = nullptr;
 
 

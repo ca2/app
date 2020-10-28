@@ -740,11 +740,11 @@ namespace user
 
       virtual void on_finish() override;
 
-      virtual ::estatus set_finish_composites() override;
+      virtual ::estatus set_finish_composites(::context_object * pcontextobjectFinish) override;
 
-      virtual ::estatus finish() override;
+      virtual ::estatus finish(::context_object * pcontextobjectFinish = nullptr) override;
 
-      virtual void notify_on_finish(::context_object * pobjectcontext) override;
+      virtual void notify_on_finish(::context_object * pcontextobjectFinish) override;
 
       virtual void finalize() override;
 

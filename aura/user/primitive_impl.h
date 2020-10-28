@@ -25,7 +25,7 @@ namespace user
       bool                                m_bIgnoreMoveEvent;
       ap(critical_section)                m_pcsDisplay;
 
-      __pointer(::apex::timer_array)      m_ptimerarray;
+      __composite(::apex::timer_array)    m_ptimerarray;
 
       const char *                        m_pszInteractionImplBaseDebug;
 

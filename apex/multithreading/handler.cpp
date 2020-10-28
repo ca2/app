@@ -66,6 +66,15 @@ handler_manager::~handler_manager()
 }
 
 
+::estatus handler_manager::set_finish_composites(::context_object * pcontextobjectFinish)
+{
+
+   return ::object::set_finish_composites(pcontextobjectFinish);
+
+}
+
+
+
 ::estatus handler_manager::async(const ::method & method)
 {
 
@@ -88,6 +97,8 @@ handler_manager::~handler_manager()
          ::get_task()->set_thread_name(m_strThreadName);
 
          loop();
+
+         ::output_debug_string("handler_manager::async fork finished!!");
 
       });
       

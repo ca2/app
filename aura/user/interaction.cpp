@@ -7,6 +7,7 @@
 #include "acme/const/timer.h"
 #include "acme/const/id.h"
 #include "apex/message/simple_command.h"
+#include "interaction_thread.h"
 
 
 #define TEST_PRINT_BUFFER
@@ -1295,28 +1296,28 @@ namespace user
    }
 
 
-   ::estatus interaction::finish()
+   ::estatus interaction::finish(::context_object * pcontextobjectFinish)
    {
 
-      if (!m_bUserInteractionSetFinish)
-      {
+      //if (!m_bUserInteractionSetFinish)
+      //{
 
-         m_bUserInteractionSetFinish = true;
+      //   m_bUserInteractionSetFinish = true;
 
-         display(::display_none);
+      //   display(::display_none);
 
-         set_need_redraw();
+      //   set_need_redraw();
 
-         post_redraw();
+      //   post_redraw();
 
-         post_method(__method([this]() { finish(); }));
+      //   post_method(__method([this]() { finish(); }));
 
-         return error_pending;
+      //   return error_pending;
 
-      }
+      //}
 
-      return ::user::primitive::finish();
-
+      return ::user::primitive::finish(pcontextobjectFinish);
+       
    }
 
 
@@ -1880,19 +1881,6 @@ namespace user
 
       }
 
-      if (::is_set(m_pthreadUserInteraction))
-      {
-         
-         if(::is_set(m_pthreadUserInteraction->m_puiptraThread))
-         {
-
-            m_pthreadUserInteraction->m_puiptraThread->remove(this);
-
-         }
-
-         __release(m_pthreadUserInteraction OBJ_REF_DBG_COMMA_THIS);
-
-      }
 
       //task_remove_all();
 
@@ -1926,7 +1914,7 @@ namespace user
             try
             {
 
-               pinteraction->finish();
+               pinteraction->finish(this);
 
             }
             catch (...)
@@ -2518,86 +2506,91 @@ namespace user
 
          auto puiptraChild = m_puiptraChild;
 
-      for (auto & pinteraction : puiptraChild->interactiona())
-      {
-
-         try
+         if (puiptraChild)
          {
 
-            if(!pinteraction)
+            for (auto & pinteraction : puiptraChild->interactiona())
             {
 
-               continue;
-
-            }
-
-            if (::is_set(pinteraction) && !pinteraction->is_custom_draw())
-            {
-
-               if(!pointScroll.is_null())
+               try
                {
 
-                  if(!bParentScroll && pinteraction->m_bParentScroll)
+                  if (!pinteraction)
                   {
 
-                     pgraphics->OffsetViewportOrg(-pointScroll.x, -pointScroll.y);
-
-                     bParentScroll = true;
+                     continue;
 
                   }
-                  else if(bParentScroll && !pinteraction->m_bParentScroll)
+
+                  if (::is_set(pinteraction) && !pinteraction->is_custom_draw())
                   {
 
-                     pgraphics->OffsetViewportOrg(pointScroll.x, pointScroll.y);
+                     if (!pointScroll.is_null())
+                     {
 
-                     bParentScroll = false;
+                        if (!bParentScroll && pinteraction->m_bParentScroll)
+                        {
+
+                           pgraphics->OffsetViewportOrg(-pointScroll.x, -pointScroll.y);
+
+                           bParentScroll = true;
+
+                        }
+                        else if (bParentScroll && !pinteraction->m_bParentScroll)
+                        {
+
+                           pgraphics->OffsetViewportOrg(pointScroll.x, pointScroll.y);
+
+                           bParentScroll = false;
+
+                        }
+
+                     }
+
+                     pinteraction->_000CallOnDraw(pgraphics);
+
+                     //{
+
+                     //   //tick t1 = tick::now();
+
+                     //   pinteraction->_000OnDraw(pgraphics);
+
+                     //   ///tick d1 = t1.elapsed();
+
+                     //   //if(d1.m_i > 50)
+                     //   //{
+
+                     //   //   string strType = ::str::demangle(pinteraction->type_name());
+
+                     //   //   if(strType.contains("hellomultiverse") && strType.contains("frame"))
+                     //   //   {
+
+                     //   //      output_debug_string(".");
+
+                     //   //   }
+
+                     //   //   CINFO(prodevian)("(more than 50ms) "+strType+"::_000OnDraw took " + __str(d1.m_i) + "millis.\n");
+
+                     //   //   //pinteraction->_000OnDraw(pgraphics);
+
+                     //   //}
+
+                     //}
+
 
                   }
 
                }
+               catch (...)
+               {
 
-               pinteraction->_000CallOnDraw(pgraphics);
+                  TRACE("\n\nException thrown while drawing user::interaction\n\n");
 
-               //{
-
-               //   //tick t1 = tick::now();
-
-               //   pinteraction->_000OnDraw(pgraphics);
-
-               //   ///tick d1 = t1.elapsed();
-
-               //   //if(d1.m_i > 50)
-               //   //{
-
-               //   //   string strType = ::str::demangle(pinteraction->type_name());
-
-               //   //   if(strType.contains("hellomultiverse") && strType.contains("frame"))
-               //   //   {
-
-               //   //      output_debug_string(".");
-
-               //   //   }
-
-               //   //   CINFO(prodevian)("(more than 50ms) "+strType+"::_000OnDraw took " + __str(d1.m_i) + "millis.\n");
-
-               //   //   //pinteraction->_000OnDraw(pgraphics);
-
-               //   //}
-
-               //}
-
+               }
 
             }
 
          }
-         catch (...)
-         {
-
-            TRACE("\n\nException thrown while drawing user::interaction\n\n");
-
-         }
-
-      }
 
       }
       catch(...)
@@ -5720,23 +5713,20 @@ namespace user
    }
 
 
-   ::estatus interaction::set_finish_composites()
+   ::estatus interaction::set_finish_composites(::context_object * pcontextobjectFinish)
    {
 
       bool bStillFinishing = false;
 
-      //sync_lock sl(::user::mutex_children());
-
       auto puiptraChild = m_puiptraChild;
 
-//      sl.unlock();
       if(puiptraChild)
       {
 
          for (auto & pui : puiptraChild->interactiona())
          {
 
-            auto estatus = pui->set_finish();
+            auto estatus = pui->finish(pcontextobjectFinish);
 
             if (estatus == ::error_pending)
             {
@@ -5749,11 +5739,10 @@ namespace user
 
       }
 
-      if (m_pimpl)
+      if (m_pimpl && !m_pimpl->m_bitSetFinish)
       {
 
-
-         auto estatus = m_pimpl->set_finish();
+         auto estatus = m_pimpl->finish(pcontextobjectFinish);
 
          if (estatus == ::error_pending)
          {
@@ -5762,10 +5751,9 @@ namespace user
 
          }
 
-
       }
 
-      auto estatus = ::user::primitive::set_finish_composites();
+      auto estatus = ::user::primitive::set_finish_composites(pcontextobjectFinish);
 
       if (estatus == ::error_pending)
       {
@@ -5873,6 +5861,31 @@ namespace user
 
       }
 
+      if (::is_set(m_pthreadUserInteraction))
+      {
+
+         auto pthread = m_pthreadUserInteraction.cast < thread >();
+
+         if (pthread->m_pimpl == m_pimpl)
+         {
+
+            pthread->m_pimpl.release();
+
+            pthread->finish();
+
+         }
+
+         if (::is_set(m_pthreadUserInteraction->m_puiptraThread))
+         {
+
+            m_pthreadUserInteraction->m_puiptraThread->remove(this);
+
+         }
+
+         __release(m_pthreadUserInteraction OBJ_REF_DBG_COMMA_THIS);
+
+      }
+
       string strType;
 
       strType = type_name();
@@ -5883,6 +5896,8 @@ namespace user
          output_debug_string("main_frame PostNcDestroy");
 
       }
+
+      ::channel::on_finish();
 
       ::user::primitive::PostNcDestroy();
 
@@ -7729,6 +7744,13 @@ namespace user
    bool interaction::call_and_set_timer(uptr uEvent, ::duration durationElapse, PFN_TIMER pfnTimer)
    {
 
+      if (m_bitFinishing)
+      {
+
+         return false;
+
+      }
+
       ::timer timer(uEvent);
 
       _001OnTimer(&timer);
@@ -7741,6 +7763,13 @@ namespace user
    bool interaction::set_timer(uptr uEvent, ::duration durationElapse, PFN_TIMER pfnTimer)
    {
 
+      if (m_bitFinishing)
+      {
+
+         return false;
+
+      }
+
       return SetTimer(uEvent, (UINT) durationElapse.get_total_milliseconds(), pfnTimer);
 
    }
@@ -7750,6 +7779,13 @@ namespace user
    {
 
       if (m_pimpl == nullptr)
+      {
+
+         return false;
+
+      }
+
+      if (m_bitFinishing)
       {
 
          return false;
@@ -8822,7 +8858,7 @@ namespace user
 
          auto puiptraChild = m_puiptraChild;
 
-         if (puiptraChild->has_no_interaction())
+         if (!puiptraChild || puiptraChild->has_no_interaction())
          {
 
             return nullptr;

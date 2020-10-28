@@ -1834,10 +1834,10 @@ the file README-colorramp for more information. */
 
 #endif
 
-   ::estatus session::finish()
+   ::estatus session::finish(::context_object * pcontextobjectFinish)
    {
 
-      return ::aqua::session::finish();
+      return ::aqua::session::finish(pcontextobjectFinish);
 
    }
 

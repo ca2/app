@@ -13,6 +13,8 @@ namespace user
       ::user::impact_system(pszMatter, pDocClass, pFrameClass, pViewClass)
    {
 
+      defer_create_mutex();
+
       m_pdocument = nullptr;
 
    }

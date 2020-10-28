@@ -56,7 +56,7 @@ public:
    virtual ::context_object * _get_context_object() override;
 
 
-   virtual void notify_on_finish(::context_object * pcontextobject) override;
+   virtual void notify_on_finish(::context_object * pcontextobjectFinish) override;
 
 
    inline ::object * get_context_object() const { return __object(m_pobjectContext); }
@@ -64,7 +64,7 @@ public:
 
 
 
-   virtual ::estatus finish() override;
+   virtual ::estatus finish(::context_object * pcontextobjectFinish = nullptr) override;
 
 
 

@@ -359,6 +359,16 @@ namespace windows
    }
 
 
+   //::estatus interaction_impl::finish(::context_object * pcontextobjectFinish)
+   //{
+
+   //   auto estatus = ::user::interaction_impl::finish(pcontextobjectFinish);
+
+   //   return estatus;
+
+   //}
+
+
    __STATIC bool CLASS_DECL_AURA __modify_style(oswindow oswindow, i32 nStyleOffset,
          u32 dwRemove, u32 dwAdd, UINT nFlags)
    {
@@ -5691,7 +5701,7 @@ namespace windows
 
       }
       
-      auto psession = Session;
+      //auto psession = Session;
 
 
 
@@ -5710,7 +5720,18 @@ namespace windows
       if (message == WM_MOUSELEAVE)
       {
 
-         if (psession->m_puiCapture)
+         auto papexsession = get_context_session();
+
+         ::aura::session * psession = nullptr;
+
+         if (papexsession)
+         {
+
+            psession = papexsession->m_paurasession;
+
+         }
+
+         if (psession && psession->m_puiCapture)
          {
 
             psession->m_puiCapture->_000OnMouseLeave(pbase);
@@ -5796,8 +5817,23 @@ namespace windows
 
          }
 
-         psession->on_ui_mouse_message(pmouse);
+         auto papexsession = get_context_session();
 
+         ::aura::session * psession = nullptr;
+
+         if (papexsession)
+         {
+
+            psession = papexsession->m_paurasession;
+
+         }
+
+         if (psession)
+         {
+
+            psession->on_ui_mouse_message(pmouse);
+
+         }
 
          if (message == e_message_mouse_move)
          {
@@ -5837,14 +5873,19 @@ namespace windows
             pmouse->m_ecursor = cursor_default;
          }
 
-         auto puiCapture = psession->m_puiCapture;
-
-         if (::is_set(puiCapture))
+         if (psession)
          {
 
-            puiCapture->_000OnMouse(pmouse);
+            auto puiCapture = psession->m_puiCapture;
 
-            return;
+            if (::is_set(puiCapture))
+            {
+
+               puiCapture->_000OnMouse(pmouse);
+
+               return;
+
+            }
 
          }
 
@@ -5908,7 +5949,25 @@ namespace windows
      
          message::key * pkey = (::message::key *) pbase;
 
-         __pointer(::user::interaction) puiFocus = psession->get_keyboard_focus();
+         __pointer(::user::interaction) puiFocus;
+         
+         auto papexsession = get_context_session();
+
+         ::aura::session * psession = nullptr;
+
+         if (papexsession)
+         {
+
+            psession = papexsession->m_paurasession;
+
+         }
+
+         if (psession)
+         {
+
+            puiFocus = psession->get_keyboard_focus();
+
+         }
 
          if (puiFocus && puiFocus->is_window() && puiFocus != m_puserinteraction)
          {
@@ -5916,7 +5975,11 @@ namespace windows
             puiFocus->send(pkey);
 
             if (pbase->m_bRet)
+            {
+
                return;
+
+            }
 
          }
          else if (!pkey->m_bRet)
@@ -5928,7 +5991,11 @@ namespace windows
                m_puserinteraction->_000OnKey(pkey);
 
                if (pbase->m_bRet)
+               {
+
                   return;
+
+               }
 
             }
 
@@ -6044,6 +6111,22 @@ namespace windows
 
    }
 
+
+   ::estatus interaction_impl::finish(::context_object * pcontextobjectFinish)
+   {
+
+      auto estatus = set_finish(pcontextobjectFinish);
+
+      if (estatus == success)
+      {
+
+         on_finish();
+
+      }
+
+      return estatus;
+
+   }
 
 
 } // namespace windows

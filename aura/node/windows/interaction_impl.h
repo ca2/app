@@ -162,6 +162,10 @@ namespace windows
       //      virtual ::user::interaction * from_os_data(void * pdata);
       virtual void * get_os_data() const;
 
+
+      virtual ::estatus finish(::context_object * pcontextobjectFinish) override;
+
+
       //      virtual ::user::interaction * from_handle(oswindow oswindow);
 
       // subclassing/unsubclassing functions

@@ -731,13 +731,18 @@ public:
 
             auto & p = this->element_at(i);
 
+            if (p)
+            {
+
 #ifdef DEBUG
 
-            string strType = p->type_name();
+               string strType = p->type_name();
 
 #endif
 
-            p.release(OBJ_REF_DBG_ARGS);
+               p.release(OBJ_REF_DBG_ARGS);
+
+            }
 
          }
          catch (...)

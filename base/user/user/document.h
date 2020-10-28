@@ -47,7 +47,7 @@ namespace user
 
       ::user::interaction_array get_top_level_windows();
 
-      virtual ::estatus set_finish_composites() override;
+      virtual ::estatus set_finish_composites(::context_object * pcontextobjectFinish) override;
 
       virtual bool contains(::user::interaction* pinteraction) const;
 

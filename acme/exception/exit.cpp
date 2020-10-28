@@ -24,7 +24,7 @@ exit_exception::~exit_exception()
 }
 
 
-::estatus exit_exception::finish()
+::estatus exit_exception::finish(::context_object * pcontextobjectFinish)
 {
 
    try
@@ -37,7 +37,7 @@ exit_exception::~exit_exception()
 
       }
 
-      m_pthreadExit->finish();
+      m_pthreadExit->finish(pcontextobjectFinish);
 
       m_pthreadExit.release();
 

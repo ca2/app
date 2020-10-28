@@ -1,7 +1,7 @@
 #pragma once
 
 
-// <3ThomasBS_ [THE MAN], [THE ONLY], [THE GOD], [THE ONLY GOD], Mummi the Goddess, and bilbo the ca2 brother :)
+// <3ThomasBS_ [THE MAN], [THE ONLY], [THE GOD], [THE ONLY GOD], Mummi the Goddess, and bilbo my pet mate :)
 class CLASS_DECL_APEX handler_manager :
    virtual public ::object
 {
@@ -20,6 +20,9 @@ public:
 
    handler_manager(const string & strThreadName, bool bSingleThread, int iAliveCount = -1);
    virtual ~handler_manager();
+
+
+   virtual ::estatus set_finish_composites(::context_object * pcontextobjectFinish) override;
 
 
    ::estatus async(const ::method & method);

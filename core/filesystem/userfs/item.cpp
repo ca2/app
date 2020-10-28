@@ -88,22 +88,39 @@ namespace userfs
    index item::data_item_get_image(object * pobject) const
    {
 
-      if(m_ptree->is_selected(this))
+      ::user::shell::e_file_attribute efileattribute;
+
+      if (m_flags & ::file::FlagFolder)
       {
 
-         auto puser = User;
-
-         return puser->shell()->get_file_image(m_filepathFinal, ::user::shell::file_attribute_directory, ::user::shell::icon_open);
+         efileattribute = ::user::shell::file_attribute_directory;
 
       }
       else
       {
 
-         auto puser = User;
-
-         return puser->shell()->get_file_image(m_filepathFinal, ::user::shell::file_attribute_directory, ::user::shell::icon_normal);
+         efileattribute = ::user::shell::file_attribute_normal;
 
       }
+
+      ::user::shell::e_icon eicon;
+
+      if (m_ptree->is_selected(this))
+      {
+
+         eicon = ::user::shell::icon_open;
+
+      }
+      else
+      {
+
+         eicon = ::user::shell::icon_normal;
+
+      }
+
+      auto puser = User;
+
+      return puser->shell()->get_file_image(m_filepathFinal, efileattribute, eicon);
 
    }
 

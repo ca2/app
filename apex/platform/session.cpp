@@ -662,7 +662,7 @@ namespace apex
          if (!papp)
          {
 
-            finish();
+            finish(get_context());
 
          }
 

@@ -44,6 +44,14 @@ namespace imaging_wic
 
    }
 
+   
+   context_image::load_image::~load_image()
+   {
+
+
+   }
+
+
 
    ::estatus context_image::load_image::run()
    {

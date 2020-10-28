@@ -16,6 +16,10 @@ public:
 
    virtual ::estatus initialize(::layered * pobjectContext) override;
 
+
+   virtual ::estatus set_finish_composites(::context_object * pcontextobjectFinish) override;
+
+
    virtual ::image_result get_image(const ::var & varFile, bool bCache = true, bool bSync = true);
    virtual ::image_result matter_image(const string & strMatter, bool bCache = true, bool bSync = true);
 

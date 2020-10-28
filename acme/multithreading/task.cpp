@@ -113,22 +113,6 @@ bool task::is_running() const
 }
 
 
-//void task::set_thread_run(bool bRun)
-//{
-//
-//   m_bitSetFinish = !bRun;
-//
-//}
-
-
-//void task::finish()
-//{
-//
-//   m_bitSetFinish = true;
-//
-//}
-
-
 ::object * task::thread_parent()
 {
 

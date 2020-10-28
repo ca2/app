@@ -1354,10 +1354,10 @@ namespace windows
    }
 
 
-   ::estatus shell::finish()
+   ::estatus shell::finish(::context_object * pcontextobject)
    {
 
-      return ::user::shell::finish();
+      return ::user::shell::finish(pcontextobject);
 
    }
 

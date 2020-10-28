@@ -401,7 +401,7 @@ namespace aura
       if (eend == ::apex::e_end_app)
       {
 
-         finish();
+         finish(get_context());
 
          return;
 
@@ -418,7 +418,7 @@ namespace aura
             if (psession)
             {
 
-               psession->finish();
+               psession->finish(get_context());
 
             }
 
@@ -442,7 +442,7 @@ namespace aura
             if (get_context_system())
             {
 
-               System.finish();
+               System.finish(get_context());
 
             }
 

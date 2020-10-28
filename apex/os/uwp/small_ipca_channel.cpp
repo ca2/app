@@ -97,12 +97,12 @@
 
          ::Windows::Foundation::Uri ^uri = ref new ::Windows::Foundation::Uri(anotherappURI);
 
-         main_sync([uri, durationTimeout]()
+         main_sync(__method([uri, durationTimeout]()
             {
 
                ::wait(Launcher::LaunchUriAsync(uri), durationTimeout);
 
-            });
+            }));
 
          return true;
 

@@ -73,7 +73,7 @@ namespace aura
 
 #endif
 
-      virtual ::estatus finish() override;
+      virtual ::estatus finish(::context_object * pcontextobjectFinish = nullptr) override;
 
 
       virtual void enum_display_monitors() override;

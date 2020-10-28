@@ -483,30 +483,11 @@ namespace user
 
             m_pitemClose->m_pmenu = this;
 
-         }
+            __pointer(::user::interaction) pinteraction = m_pitemClose->m_puserinteraction;
 
-         __pointer(::user::interaction) pinteraction = m_pitemClose->m_puserinteraction;
+            pinteraction = create_menu_button(pgraphics, m_pitemClose);
 
-         if (pinteraction)
-         {
-
-            m_pitemClose->m_puserinteraction->DestroyWindow();
-
-         }
-
-         pinteraction = create_menu_button(pgraphics, m_pitemClose);
-
-         m_pitemClose->m_puserinteraction = pinteraction;
-
-         {
-
-            //control_descriptor descriptor;
-
-            //descriptor.m_puserinteractionParent = this;
-
-            //descriptor.m_id = "close";
-
-            //descriptor.m_iItem = 65536;
+            m_pitemClose->m_puserinteraction = pinteraction;
 
             if (!m_pitemClose->m_puserinteraction->create_window(this, "close_menu"))
             {
@@ -530,9 +511,7 @@ namespace user
 
       }
 
-
       return true;
-
 
    }
 
@@ -1358,7 +1337,7 @@ namespace user
          }
 
          //DestroyWindow();
-         finish();
+         finish(get_context());
 
       }
 

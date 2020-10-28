@@ -33,6 +33,15 @@ context_image::~context_image()
 }
 
 
+::estatus context_image::set_finish_composites(::context_object * pcontextobjectFinish)
+{
+
+   return ::object::set_finish_composites(pcontextobjectFinish);
+
+}
+
+
+
 ::image_result context_image::_load_image_from_file(const ::var & varFile, const var & varOptions)
 {
 

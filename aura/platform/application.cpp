@@ -2304,9 +2304,7 @@ retry_license:
       if (System.m_bImaging)
       {
 
-         auto pcontextimageNew = __create < ::context_image > ();
-
-         estatus = __own(this, m_pcontextimage, pcontextimageNew OBJ_REF_DBG_COMMA_THIS_NOTE("aura::application::init1"));
+         estatus = __compose(m_pcontextimage);
 
          if (!estatus)
          {

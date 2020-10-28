@@ -136,7 +136,7 @@ namespace multithreading
          try
          {
 
-            pair.element1()->finish();
+            pair.element1()->finish(get_context_system());
 
          }
          catch (...)
@@ -651,7 +651,7 @@ bool do_events()
 
 
 
-::estatus thread_ptra::finish()
+::estatus thread_ptra::finish(::context_object * pcontextobjectFinish)
 {
 
    try
@@ -670,7 +670,7 @@ bool do_events()
             /// this is quite dangerous
             //sync_lock slThread(pthread->mutex());
 
-            pthread->finalize();
+            pthread->finish(pcontextobjectFinish);
 
          }
          catch (...)

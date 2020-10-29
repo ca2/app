@@ -659,8 +659,34 @@ void thread_name_abbreviate(string & strName, int len)
 }
 
 
+::estatus run_runnable(::matter * pmatter)
+{
 
+   ::estatus     estatus = error_exception;
 
+   try
+   {
+
+      try
+      {
+
+         estatus = pmatter->operator()();
+
+      }
+      catch (...)
+      {
+
+      }
+
+   }
+   catch (...)
+   {
+
+   }
+
+   return estatus;
+
+}
 
 
 

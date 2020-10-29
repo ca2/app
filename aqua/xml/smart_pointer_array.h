@@ -51,7 +51,7 @@
 namespace xml
 {
 
-   
+
    class output_tree;
    class input_tree;
 
@@ -68,6 +68,8 @@ namespace xml
       pointer_array();
       pointer_array(const pointer_array & xmla);
 
+      using ::pointer_array<TYPE>::operator();
+      using matter::operator();
 
       virtual void xml_export(output_tree & xmlof);
       virtual void xml_import(input_tree & xmlif);
@@ -139,7 +141,7 @@ namespace xml
 //
 //   }
 //
-//   
+//
 //
 //} // namespace xml
 

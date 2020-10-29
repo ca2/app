@@ -674,7 +674,7 @@ public:
          if (m_pobjectTaskEnd->m_cRun == 0)
          {
 
-            m_pobjectTaskEnd->call();
+            m_pobjectTaskEnd->operator()();
 
          }
 

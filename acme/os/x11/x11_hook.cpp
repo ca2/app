@@ -2,7 +2,22 @@
 #include "_x11.h"
 
 
-__pointer_array(x11_hook) g_x11hooka;
+__pointer_array(x11_hook) * g_px11hooka;
+
+void x11_hook_init()
+{
+
+  g_px11hooka = new __pointer_array(x11_hook);
+
+}
+
+
+void x11_hook_term()
+{
+
+   ::acme::del(g_px11hooka);
+
+}
 
 //LPFN_X11_PROCESS_EVENT g_x11processeventa[8];
 
@@ -18,7 +33,7 @@ x11_hook::x11_hook()
 
    sync_lock sl(x11_mutex());
 
-   g_x11hooka.add(this);
+   g_px11hooka->add(this);
 
    return ::success;
 
@@ -30,7 +45,7 @@ x11_hook::x11_hook()
 
    sync_lock sl(x11_mutex());
 
-   g_x11hooka.remove(this);
+   g_px11hooka->remove(this);
 
    return ::success;
 
@@ -45,7 +60,7 @@ void x11_hook::on_idle(Display * pdisplay)
 bool __x11_hook_list_is_empty()
 {
 
-   return g_x11hooka.is_empty();
+   return g_px11hooka->is_empty();
 
 }
 
@@ -53,7 +68,7 @@ bool __x11_hook_list_is_empty()
 bool __x11_hook_process_event(Display * pdisplay, XEvent & e, XGenericEventCookie * cookie)
 {
 
-   for(auto & phook : g_x11hooka)
+   for(auto & phook : *g_px11hooka)
    {
 
       if(phook->process_event(pdisplay, e, cookie))
@@ -73,7 +88,7 @@ bool __x11_hook_process_event(Display * pdisplay, XEvent & e, XGenericEventCooki
 void __x11_hook_on_idle(Display * pdisplay)
 {
 
-   for(auto & phook : g_x11hooka)
+   for(auto & phook : *g_px11hooka)
    {
 
       phook->on_idle(pdisplay);
@@ -118,6 +133,8 @@ bool __x11_hook_process_event(Display * pdisplay, XEvent & e);
 
 bool x11_hook::process_event(Display * pdisplay, XEvent & e, XGenericEventCookie * cookie)
 {
-return false;
+
+   return false;
+
 }
 

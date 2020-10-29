@@ -63,6 +63,12 @@ void term_global_mq();
 
 #ifdef LINUX
 #include <glib.h> // sudo apt-get install libglib2.0-dev
+
+
+void x11_hook_init();
+void x11_hook_term();
+
+
 #endif
 
 
@@ -666,12 +672,23 @@ namespace acme
 
       create_reusable_factory < manual_reset_event >();
 
+#ifdef LINUX
+
+      x11_hook_init();
+
+#endif
 
    }
 
 
    acme::~acme()
    {
+
+#ifdef LINUX
+
+      x11_hook_term();
+
+#endif
 
       term();
 
@@ -1048,6 +1065,8 @@ namespace acme
 
       processor_cache_oriented_destroy_all_memory_pools();
 
+
+
       __node_acme_pos_term();
 
       //::acme::static_start::term();
@@ -1272,172 +1291,6 @@ locale_t get_c_locale()
    return ::acme::g_localeC;
 
 }
-
-
-
-
-// acme_level acmelevelCore(::acme_level::level_core, &defer_acme_init);
-
-
-//#ifdef ANDROID
-//
-//
-//struct lconv* g_plconv = nullptr;
-//
-//
-//#endif
-//
-//
-//namespace acme
-//{
-//
-//
-//
-//   namespace static_start
-//   {
-//
-////
-////      CLASS_DECL_ACME void init()
-////      {
-////
-////         xxdebug_box("acme.dll base_static_start (0)", "box", MB_OK);
-////
-////         //#ifdef ANDROID
-////         //
-////         //
-////         //         g_plconv = new lconv;
-////         //
-////         //         g_plconv->decimal_point = strdup(".");
-////         //
-////         //         //oswindow_data::s_pdataptra = new oswindow_dataptra;
-////         //
-////         //         //oswindow_data::s_pmutex = new ::mutex;
-////         //
-////         //#endif
-////
-////         //#if defined(APPLEOS)
-////         //
-////         //         g_poswindowdataptra = new oswindow_dataptra;
-////         //
-////         //         g_poswindowdataptra->defer_create_mutex();
-////         //
-////         //#endif // defined(APPLEOS)
-////
-////#ifdef LINUX
-////
-////
-////         ::user::initialize_edesktop();
-////
-////
-////#endif
-////
-////
-////      }
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-
-
-
-
-
-
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//      CLASS_DECL_ACME void term()
-//      {
-//
-//
-//         //#if defined(APPLEOS)
-//         //
-//         //         delete g_poswindowdataptra;
-//         //
-//         //         g_poswindowdataptra = nullptr;
-//         //
-//         //#endif // defined(APPLEOS)
-//
-//
-//
-//
-//
-//
-//      }
-//
-//
-//
-//   } // namespace static_start
-//
-//
-//} // namespace base
-//
-//
-//
-//
-//
-
 
 
 void acme_ref()

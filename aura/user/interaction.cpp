@@ -704,7 +704,7 @@ namespace user
 
    }
 
-   
+
    matter* interaction::get_taskpool_container()
    {
 
@@ -1317,7 +1317,7 @@ namespace user
       //}
 
       return ::user::primitive::finish(pcontextobjectFinish);
-       
+
    }
 
 
@@ -1887,7 +1887,7 @@ namespace user
       single_lock slDraw(get_wnd() == nullptr || get_wnd()->m_pimpl.is_null()
                          || get_wnd()->m_pimpl.cast < ::user::interaction_impl >() == nullptr ? nullptr : get_wnd()->m_pimpl.cast < ::user::interaction_impl >()->draw_mutex(), true);
 
-    
+
       try
       {
 
@@ -4338,7 +4338,7 @@ namespace user
 
          //sync_lock slChildren(::user::mutex_children());
 
-         
+
 
       }
 
@@ -8514,7 +8514,7 @@ namespace user
             INFO("");
 
             __pointer(::user::interaction_array) puiptraChildNew;
-            
+
             if (puiParent->m_puiptraChild)
             {
                puiptraChildNew = __new(::user::interaction_array(*puiParent->m_puiptraChild));
@@ -9019,7 +9019,7 @@ restart:
             return nullptr;
 
          }
-         
+
          index i = puiptraChild->find_first_interaction(this);
          if (i < 0)
             return nullptr;
@@ -9528,6 +9528,9 @@ restart:
    }
 
 
+#ifdef WINDOWS_DESKTOP
+
+
    void interaction::_task_transparent_mouse_event()
    {
 
@@ -9583,6 +9586,9 @@ restart:
    }
 
 
+#endif
+
+
    void interaction::on_simple_command(::message::simple_command * psimplecommand)
    {
 
@@ -9627,7 +9633,7 @@ restart:
          if (bStart)
          {
 
-            defer_start_task("transparent_mouse_event_thread", 
+            defer_start_task("transparent_mouse_event_thread",
                __method([this]()
                   {
 
@@ -13372,7 +13378,7 @@ restart:
    void interaction::on_text_composition_done()
    {
 
-      
+
 
    }
 

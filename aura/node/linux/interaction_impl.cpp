@@ -752,7 +752,7 @@ namespace linux
          if(m_bMoveEvent || m_bSizeEvent)
          {
 
-            defer_fork("delayed_placement", __method([this]()
+            defer_start_task("delayed_placement", __method([this]()
             {
 
                _thread_delayed_placement();
@@ -1457,8 +1457,12 @@ namespace linux
 
       }
 
+
+
       if(pbase->m_id == WM_KEYDOWN || pbase->m_id == WM_KEYUP || pbase->m_id == WM_CHAR)
       {
+
+         auto psession = Session;
 
          ::message::key * pkey = (::message::key *) pbase;
 
@@ -1528,7 +1532,9 @@ namespace linux
 
          ::message::mouse * pmouse = (::message::mouse *) pbase;
 
-         if(get_context_session() != nullptr)
+         auto psession = Session;
+
+         if(psession != nullptr)
          {
 
             psession->on_ui_mouse_message(pmouse);
@@ -1540,7 +1546,9 @@ namespace linux
          if(m_puserinteraction != nullptr && m_puserinteraction->get_context_session()  != nullptr && m_puserinteraction->get_context_session() != get_context_session())
          {
 
-            Sess(m_puserinteraction->get_context_session()).m_pointCursor = pmouse->m_point;
+            auto psession = Sess(m_puserinteraction->get_context_session());
+
+            psession->m_pointCursor = pmouse->m_point;
 
          }
 
@@ -3187,11 +3195,9 @@ namespace linux
 
 
    LRESULT interaction_impl::send_message(const ::id & id, WPARAM wparam, lparam lparam)
-
    {
 
-      return ::user::interaction_impl::send_message(message, wparam, lparam);
-
+      return ::user::interaction_impl::send_message(id, wparam, lparam);
 
    }
 
@@ -3206,7 +3212,7 @@ namespace linux
 //
 //      }
 //
-      return ::post_message((oswindow) get_handle(), message, wparam, lparam) != FALSE;
+      return ::post_message((oswindow) get_handle(), id, wparam, lparam) != FALSE;
 
    }
 
@@ -4393,9 +4399,15 @@ namespace linux
 //
 //   }
 //
+
+
    void interaction_impl::_001OnSetCursor(::message::message * pmessage)
    {
+
       SCAST_PTR(::message::base, pbase, pmessage);
+
+      auto psession = Session;
+
       if(psession->get_cursor() != nullptr
             && psession->get_cursor()->m_ecursor != cursor_system)
       {

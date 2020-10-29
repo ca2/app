@@ -367,9 +367,9 @@ auto sync_pred(void (* pfnBranch )(::matter * pobjectTask, e_priority), PRED pre
 
    pfnBranch(pmethod, epriority);
 
-   pobjectTask->m_event.wait(durationTimeout);
+   pmethod->sync_wait(durationTimeout);
 
-   return pobjectTask;
+   return pmethod;
 
 }
 

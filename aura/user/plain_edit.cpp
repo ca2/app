@@ -5156,7 +5156,11 @@ finished_update:
    void plain_edit::on_text_composition_done()
    {
 
+#ifdef WINDOWS
+
       imm_client::on_text_composition_done();
+
+#endif
 
       __release(m_pitemComposing);
 

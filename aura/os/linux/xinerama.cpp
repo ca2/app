@@ -158,9 +158,9 @@ int xinerama_get_screen_size(int& width, int& height)
 
    ::array < ::rect > rectaMonitor;
 
-   ::aura::session & session = Sess(pobjectContext);
+   ::aura::session * psession = Sess(__object(pobjectContext)->get_context_session());
 
-   ::count cMonitor = session.get_monitor_count();
+   ::count cMonitor = psession->get_monitor_count();
 
    ::rect rectMonitor;
 
@@ -169,7 +169,7 @@ int xinerama_get_screen_size(int& width, int& height)
    for(; iMonitor < cMonitor; iMonitor++)
    {
 
-      session.get_monitor_rect(iMonitor, &rectMonitor);
+      psession->get_monitor_rect(iMonitor, &rectMonitor);
 
       rectaMonitor[iMonitor] = rectMonitor;
 
@@ -211,7 +211,6 @@ int xinerama_get_screen_size(int& width, int& height)
 // it doesn't work for final purpose,
 // but it calls function that "sorts" rectangles with stability
 int get_best_ordered_monitor(::user::interaction * pinteraction, RECT * prectRet)
-
 {
 
    auto rectaOrdered = get_ordered_monitor_recta(pinteraction->get_context_application());
@@ -273,11 +272,9 @@ int best_xinerama_monitor(::user::interaction * pinteraction, const ::rect & rec
 
 
 int best_xinerama_monitor(::user::interaction * pinteraction, RECT * prectRet)
-
 {
 
    return best_xinerama_monitor(pinteraction, nullptr, prectRet);
-
 
 }
 

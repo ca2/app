@@ -709,7 +709,7 @@ namespace linux
 
       bool b = false;
 
-      main_sync([&]()
+      main_sync(__method([&]()
       {
 
          GtkClipboard* clipboard = gtk_clipboard_get(GDK_SELECTION_CLIPBOARD);
@@ -717,7 +717,7 @@ namespace linux
          b = gtk_clipboard_wait_is_image_available (clipboard);
 
 
-      });
+      }));
 
       return b;
 

@@ -201,7 +201,7 @@ namespace user
       __pointer(object)                         m_pmenuitem;
       __pointer_array(interaction)              m_menua;
       bool                                      m_bWfiUpDownTarget;
-      
+
 
 
 
@@ -398,7 +398,7 @@ namespace user
       virtual void show_window();
 
 
-      
+
 
 
       virtual void start_layout();
@@ -1286,8 +1286,11 @@ namespace user
 
       virtual double get_alpha();
 
+#ifdef WINDOWS_DESKTOP
 
       virtual void _task_transparent_mouse_event();
+
+#endif
 
       virtual void destruct() override;
 

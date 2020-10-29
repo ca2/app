@@ -209,7 +209,7 @@ CLASS_DECL_AURA void main_sync_runnable(::context_object * pobjectRunnable, ::du
       try
       {
 
-         prunnable->call();
+         prunnable->operator()();
 
       }
       catch(...)
@@ -234,7 +234,7 @@ CLASS_DECL_AURA void main_async_runnable(::context_object * prunnableParam)
    gdk_fork([prunnable]()
    {
 
-      prunnable->call();
+      prunnable->operator()();
 
    });
 

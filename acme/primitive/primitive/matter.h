@@ -34,12 +34,12 @@ public:
 
    union
    {
-      
+
       ::u64       m_uObject;
 
       struct
       {
-      
+
          bool     m_bitSetFinish : 1;
          bool     m_bitFinishing : 1;
 
@@ -89,14 +89,14 @@ public:
    void set_mutex(sync* psync);
    void defer_create_mutex();
 
-   
+
    virtual ::context_object * _get_context_object();
 
 
    virtual bool is_thread() const;
    virtual ::thread * get_thread();
    virtual bool thread_is_running() const;
-   
+
 
    virtual ::task * get_task();
    virtual const char * get_task_tag();
@@ -229,6 +229,9 @@ public:
 
 
    virtual const char * topic_text() const;
+
+   virtual void sync_wait();
+   virtual void sync_wait(const ::duration & duration);
 
 
    virtual void apply(::action * paction);

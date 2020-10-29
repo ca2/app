@@ -101,7 +101,7 @@ sys_thread * sys_thread_pool::get(pthread_t pthread)
 int_bool post_message(oswindow oswindow, const ::id & id, WPARAM wparam, LPARAM lparam)
 {
 
-   return mq_post_message(oswindow, message, wparam, lparam);
+   return mq_post_message(oswindow, id, wparam, lparam);
 
 }
 

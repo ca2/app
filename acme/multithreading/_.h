@@ -364,4 +364,7 @@ CLASS_DECL_ACME bool task_sleep(tick tick, sync* psync);
 #include "sync_future.h"
 
 
+#include "pred_sync_method.h"
+
+
 

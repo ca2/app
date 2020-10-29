@@ -2870,7 +2870,7 @@ bool x11_step()
       if(g_prunnableX11Sync)
       {
 
-         g_prunnableX11Sync->call();
+         g_prunnableX11Sync->operator()();
 
          g_prunnableX11Sync.release();
 
@@ -2893,7 +2893,7 @@ bool x11_step()
 
          sl.unlock();
 
-         prunnable->call();
+         prunnable->operator()();
 
          sl.lock();
 
@@ -3607,7 +3607,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
       if(g_oswindowDesktop != nullptr && e.xconfigure.window == g_oswindowDesktop->window())
       {
 
-         auto applicationa = psession->m_applicationa;
+         auto applicationa = Session->m_applicationa;
 
          try
          {
@@ -4172,7 +4172,7 @@ namespace user
 
       ___pointer < ::message::base > spbase;
 
-      spbase = psession->get_message_base(pvoidEvent, m_puserinteraction);
+      spbase = Session->get_message_base(pvoidEvent, m_puserinteraction);
 
       try
       {

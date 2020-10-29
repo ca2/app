@@ -86,36 +86,36 @@ namespace message
 {
 
 
-   UINT translate_to_os_message(const ::id & id)
-   {
-
-#ifdef WINDOWS
-
-      switch (emessage)
-      {
-      case e_message_create:
-         return e_message_create;
-      default:
-         return emessage;
-      };
-#elif defined(LINUX) ||  defined(__APPLE__) || defined(ANDROID)
-      switch (emessage)
-      {
-      case e_message_create:
-         return e_message_create;
-      default:
-         return emessage;
-      };
-
-#else
-      switch (emessage)
-      {
-      default:
-         return emessage;
-      };
-#endif
-
-   }
+//   UINT translate_to_os_message(const ::id & id)
+//   {
+//
+//#ifdef WINDOWS
+//
+//      switch (emessage)
+//      {
+//      case e_message_create:
+//         return e_message_create;
+//      default:
+//         return emessage;
+//      };
+//#elif defined(LINUX) ||  defined(__APPLE__) || defined(ANDROID)
+//      switch (emessage)
+//      {
+//      case e_message_create:
+//         return e_message_create;
+//      default:
+//         return emessage;
+//      };
+//
+//#else
+//      switch (emessage)
+//      {
+//      default:
+//         return emessage;
+//      };
+//#endif
+//
+//   }
 
 
    e_prototype get_message_prototype(UINT_PTR emessage, UINT uiCode)

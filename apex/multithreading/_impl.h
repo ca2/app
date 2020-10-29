@@ -357,19 +357,22 @@ _AFXMT_INLINE int_bool critical_section::Unlock()
 //
 //
 //
-//template < typename PRED >
-//auto sync_pred(void (* pfnBranch )(::matter * pobjectTask, e_priority), PRED pred, ::duration durationTimeout, e_priority epriority)
-//{
-//
-//   auto pobjectTask = __sync_pred(pred);
-//
-//   pfnBranch(pobjectTask, epriority);
-//
-//   pobjectTask->m_event.wait(durationTimeout);
-//
-//   return pobjectTask;
-//
-//}
+
+
+template < typename PRED >
+auto sync_pred(void (* pfnBranch )(::matter * pobjectTask, e_priority), PRED pred, ::duration durationTimeout, e_priority epriority)
+{
+
+   auto pmethod = __sync_method(pred);
+
+   pfnBranch(pmethod, epriority);
+
+   pobjectTask->m_event.wait(durationTimeout);
+
+   return pobjectTask;
+
+}
+
 //
 //
 //template < typename PRED >

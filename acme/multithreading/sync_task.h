@@ -20,12 +20,12 @@
 //
 //};
 
-//
+
 //template < typename PRED >
-//inline auto __sync_pred(PRED pred)
+//inline auto __sync_method(PRED pred)
 //{
 //
-//   return __new(sync_task(method(pred)));
+//   return __new(sync_method(method(pred)));
 //
 //}
-//
+

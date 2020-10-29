@@ -535,6 +535,21 @@ const char * matter::topic_text() const
 }
 
 
+void matter::sync_wait()
+{
+
+
+}
+
+
+void matter::sync_wait(const ::duration & duration)
+{
+
+
+}
+
+
+
 void matter::apply(::action * paction)
 {
 

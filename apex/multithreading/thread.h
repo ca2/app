@@ -275,6 +275,7 @@ public:
    }
 
 
+
    bool sync_pred(const ::method & method, ::duration durationTimeout = ::duration::infinite())
    {
 
@@ -290,6 +291,9 @@ public:
       return send_method(method, durationTimeout);
 
    }
+
+
+   
 
 
    //virtual bool final_handle_exception(::exception_pointer e);
@@ -618,5 +622,7 @@ CLASS_DECL_APEX void defer_create_thread(::layered * pobjectContext);
 
 
 
+template < typename PRED >
+auto sync_pred(void (* pfnBranch )(::matter * pobjectTask, e_priority), PRED pred, ::duration durationTimeout, e_priority epriority);
 
 

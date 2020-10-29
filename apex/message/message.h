@@ -58,7 +58,7 @@ namespace message
       //void common_construct(enum_message emessage = ::e_message_null);
 
 
-      //inline bool is_message() { return m_emessage == ::message::e_type_message; }
+      inline bool is_message() const { return m_id.is_message(); }
 
 
       inline auto route_message() { m_proutea.m_p->m_pData[m_iRouteIndex].m_p->m_pmessageable.m_p->on_message(this); return m_bRet; }

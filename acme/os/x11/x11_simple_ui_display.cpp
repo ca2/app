@@ -408,28 +408,6 @@ void simple_ui_display::on_expose(Display * pdisplay)
 
          int right = m_size.cx - 10;
 
-         int iMaxButtonWidth = 50;
-
-         for(index iButton = m_buttona.get_upper_bound(); iButton >= 0; iButton--)
-         {
-
-            auto pbutton = m_buttona[iButton];
-
-            XGlyphInfo & infoText = pbutton->m_infoText;
-
-            if(!pbutton->m_bTextRect)
-            {
-
-               pbutton->m_bTextRect = true;
-
-               XftTextExtentsUtf8(pdisplay, m_pfont, (FcChar8 *) pbutton->m_strLabel.c_str(), pbutton->m_strLabel.get_length(), &infoText);
-
-            }
-
-            iMaxButtonWidth = max(iMaxButtonWidth, infoText.width);
-
-         }
-
          XftColor colorFore;
          XftColor colorBack;
          XftColor colorBorder;
@@ -444,7 +422,7 @@ void simple_ui_display::on_expose(Display * pdisplay)
             ::rect & rButtonOuter = pbutton->m_rect;
 
             rButtonOuter.right = right;
-            rButtonOuter.left = right - iMaxButtonWidth - (m_iMarginLine * 6);
+            rButtonOuter.left = right - m_iButtonWidth - (m_iMarginLine * 6);
             rButtonOuter.top = m_iButtonTop;
             rButtonOuter.bottom = m_iButtonTop + m_iButtonHeight;
 
@@ -711,13 +689,42 @@ void simple_ui_display::on_layout(Display * pdisplay)
 
    }
 
+   int iMaxButtonWidth = 50;
+
+   for(index iButton = m_buttona.get_upper_bound(); iButton >= 0; iButton--)
+   {
+
+      auto pbutton = m_buttona[iButton];
+
+      XGlyphInfo & infoText = pbutton->m_infoText;
+
+      if(!pbutton->m_bTextRect)
+      {
+
+         pbutton->m_bTextRect = true;
+
+         XftTextExtentsUtf8(pdisplay, m_pfont, (FcChar8 *) pbutton->m_strLabel.c_str(), pbutton->m_strLabel.get_length(), &infoText);
+
+      }
+
+      iMaxButtonWidth = max(iMaxButtonWidth, infoText.width);
+
+   }
+
+   m_iButtonWidth = iMaxButtonWidth;
+
    size.cy *= (m_stra.get_count() + 2);
 
    m_iButtonHeight = size.cy / (m_stra.get_count() + 2)  + m_iMarginLine;
 
    size.cy += m_iMarginTop + m_iMarginLine;
 
+   int iButtonWidth = 100;
+
+   m_size.cx = max(m_size.cx, m_iButtonWidth * m_buttona.get_count() + (m_iMarginLine * 6) * (m_buttona.get_count() + 1));
+
    m_size = m_size.max(size);
+
 
    m_iButtonTop = m_size.cy - m_iButtonHeight - m_iMarginLine * 2;
 

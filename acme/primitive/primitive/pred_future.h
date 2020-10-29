@@ -58,7 +58,6 @@ public:
 
    //future(const ::future& future) : function((const ::function &) future) { }
    //future(::future * pfuture) : function((const ::function &) *pfuture) { }
-   template < typename PRED >
    pred_future(PRED pred) : m_pred(pred) { }
 
 
@@ -72,7 +71,7 @@ public:
    }
 
 
-   //template < typename PRED > 
+   //template < typename PRED >
    //void pred(PRED pred);
 
 

@@ -23,6 +23,7 @@ public:
 
    int                              m_iButtonTop;
    int                              m_iButtonHeight;
+   int                              m_iButtonWidth;
    int                              m_iMargin;
 
    XftFont *                        m_pfont;

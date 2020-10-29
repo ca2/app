@@ -27,7 +27,7 @@ public:
 
       e_type_null,
       e_type_integer,
-      e_type_text, 
+      e_type_text,
 
 
       e_type_empty = 256,
@@ -186,25 +186,25 @@ public:
    inline bool is_compounded(enum_type etype) const
    {
 
-      return 
-         m_etype >= e_type_compounded 
-         && etype >= e_type_compounded 
+      return
+         m_etype >= e_type_compounded
+         && etype >= e_type_compounded
          && (enum_type) ((::i64)m_etype & (::i64) etype) == etype;
 
    }
 
-   bool is_command() const { return is_compounded(e_type_command); }  
-   bool is_command_probe() const { return is_compounded(e_type_command_probe); } 
+   bool is_command() const { return is_compounded(e_type_command); }
+   bool is_command_probe() const { return is_compounded(e_type_command_probe); }
 
 
    bool is_message() const
    {
-      
+
       return m_etype == e_type_message || m_etype == e_type_integer;
-   
+
    }
 
-   
+
 
    inline bool operator == (const id& id) const;
    inline bool operator != (const id & id) const;
@@ -520,9 +520,9 @@ inline bool id::operator >= (const id & id) const
 
 inline id & id::operator = (const id & id)
 {
-   
+
    m_all         = id.m_all;
-   
+
    return *this;
 
 }
@@ -530,7 +530,7 @@ inline id & id::operator = (const id & id)
 
 inline bool id::operator == (const string & str) const
 {
-   
+
    return primitive_type() == e_type_text && (m_psz == nullptr ? false : str.compare(m_psz) == 0);
 
 }
@@ -538,7 +538,7 @@ inline bool id::operator == (const string & str) const
 
 inline bool id::operator != (const string & str) const
 {
-   
+
    return !operator==(str);
 
 }
@@ -570,7 +570,7 @@ inline bool id::operator > (const string & str) const
 
 inline bool id::operator >= (const string & str) const
 {
-   
+
    return !operator < (str);
 
 }
@@ -578,7 +578,7 @@ inline bool id::operator >= (const string & str) const
 
 inline id::operator const char *() const
 {
-   
+
    return (primitive_type() != e_type_text || m_psz == nullptr) ? nullptr : m_psz;
 
 }
@@ -609,7 +609,7 @@ inline string id::__string() const
 inline bool id::is_empty() const
 {
 
-   return is_null() || m_etype == type_empty || (primitive_type() == e_type_text && *m_psz == '\0');
+   return is_null() || m_etype == e_type_empty || (primitive_type() == e_type_text && *m_psz == '\0');
 
 }
 
@@ -717,7 +717,7 @@ inline bool id::operator >= (const char * psz) const
 
 inline bool id::operator == (::i32 i) const
 {
-   
+
    return primitive_type() == e_type_integer && m_i == i;
 
 }
@@ -725,7 +725,7 @@ inline bool id::operator == (::i32 i) const
 
 inline bool id::operator != (::i32 i) const
 {
-   
+
    return primitive_type() != e_type_integer || m_i != i;
 
 }
@@ -733,7 +733,7 @@ inline bool id::operator != (::i32 i) const
 
 inline bool id::operator < (::i32 i) const
 {
-   
+
    return primitive_type() == e_type_integer && m_i < i;
 
 }
@@ -741,7 +741,7 @@ inline bool id::operator < (::i32 i) const
 
 inline bool id::operator <= (::i32 i) const
 {
-   
+
    return primitive_type() == e_type_integer && m_i <= i;
 
 }
@@ -757,7 +757,7 @@ inline bool id::operator > (::i32 i) const
 
 inline bool id::operator >= (::i32 i) const
 {
-   
+
    return primitive_type() == e_type_integer && m_i >= i;
 
 }
@@ -773,7 +773,7 @@ inline bool id::operator == (::i64 i) const
 
 inline bool id::operator != (::i64 i) const
 {
-   
+
    return primitive_type() != e_type_integer || m_i != i;
 
 }
@@ -989,11 +989,11 @@ namespace acme
 class CLASS_DECL_ACME __id :
 public id
 {
-  
+
 public:
-   
+
    using id::id;
-   
+
 };
 
 

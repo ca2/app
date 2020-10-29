@@ -622,6 +622,7 @@
 		<Unit filename="multithreading/multi_lock.h" />
 		<Unit filename="multithreading/mutex.cpp" />
 		<Unit filename="multithreading/mutex.h" />
+		<Unit filename="multithreading/pool.cpp" />
 		<Unit filename="multithreading/pred_holder.cpp" />
 		<Unit filename="multithreading/pred_holder.h" />
 		<Unit filename="multithreading/procedure_array.cpp" />
@@ -651,7 +652,6 @@
 		<Unit filename="multithreading/thread_os.h" />
 		<Unit filename="multithreading/thread_parameter.h" />
 		<Unit filename="multithreading/update_task.h" />
-		<Unit filename="multithreading/wait_future.cpp" />
 		<Unit filename="node/_.h" />
 		<Unit filename="node/_node.h" />
 		<Unit filename="node/linux/_.h" />
@@ -1268,10 +1268,14 @@
 		<Unit filename="primitive/primitive/_defer.h" />
 		<Unit filename="primitive/primitive/_factory_impl.h" />
 		<Unit filename="primitive/primitive/_factory_prefix.h" />
+		<Unit filename="primitive/primitive/_id_impl.h" />
 		<Unit filename="primitive/primitive/_impl.h" />
 		<Unit filename="primitive/primitive/_memory.h" />
 		<Unit filename="primitive/primitive/_papaya.h" />
 		<Unit filename="primitive/primitive/_papaya_impl.h" />
+		<Unit filename="primitive/primitive/_var_impl.h" />
+		<Unit filename="primitive/primitive/aaa_command_line.h" />
+		<Unit filename="primitive/primitive/aaa_launch.h" />
 		<Unit filename="primitive/primitive/aaa_want_to_remove_app_object.h" />
 		<Unit filename="primitive/primitive/aaa_want_to_remove_array.h" />
 		<Unit filename="primitive/primitive/aaa_want_to_remove_context_object.h" />
@@ -1291,6 +1295,7 @@
 		<Unit filename="primitive/primitive/bit.h" />
 		<Unit filename="primitive/primitive/block.cpp" />
 		<Unit filename="primitive/primitive/block.h" />
+		<Unit filename="primitive/primitive/block.inl" />
 		<Unit filename="primitive/primitive/cflag.h" />
 		<Unit filename="primitive/primitive/change.cpp" />
 		<Unit filename="primitive/primitive/change.h" />
@@ -1308,11 +1313,14 @@
 		<Unit filename="primitive/primitive/element_array.h" />
 		<Unit filename="primitive/primitive/enum.h" />
 		<Unit filename="primitive/primitive/enum_type.h" />
+		<Unit filename="primitive/primitive/enumeration.h" />
 		<Unit filename="primitive/primitive/eobject.h" />
 		<Unit filename="primitive/primitive/estatus.h" />
 		<Unit filename="primitive/primitive/factory.cpp" />
 		<Unit filename="primitive/primitive/factory.h" />
+		<Unit filename="primitive/primitive/function.cpp" />
 		<Unit filename="primitive/primitive/function_base.h" />
+		<Unit filename="primitive/primitive/function_pointer.h" />
 		<Unit filename="primitive/primitive/future.cpp" />
 		<Unit filename="primitive/primitive/future.h" />
 		<Unit filename="primitive/primitive/handler.cpp" />
@@ -1351,9 +1359,12 @@
 		<Unit filename="primitive/primitive/papaya.h" />
 		<Unit filename="primitive/primitive/pointer.h" />
 		<Unit filename="primitive/primitive/pointer2.h" />
+		<Unit filename="primitive/primitive/pred_future.h" />
+		<Unit filename="primitive/primitive/pred_method.h" />
 		<Unit filename="primitive/primitive/primitive_update.h" />
 		<Unit filename="primitive/primitive/promise.cpp" />
 		<Unit filename="primitive/primitive/promise.h" />
+		<Unit filename="primitive/primitive/promise1.h" />
 		<Unit filename="primitive/primitive/property.cpp" />
 		<Unit filename="primitive/primitive/property.h" />
 		<Unit filename="primitive/primitive/property_set.cpp" />
@@ -1391,6 +1402,7 @@
 		<Unit filename="primitive/primitive/virtual_memory.cpp" />
 		<Unit filename="primitive/primitive/virtual_memory.h" />
 		<Unit filename="primitive/primitive/work.cpp" />
+		<Unit filename="primitive/primitive/work.h" />
 		<Unit filename="primitive/string/_.cpp" />
 		<Unit filename="primitive/string/_.h" />
 		<Unit filename="primitive/string/___ch_impl.h" />

@@ -23,7 +23,6 @@ namespace user
       bool                                m_bNew;
       bool                                m_bCustomOpen;
 
-      string                              m_strToolbar;
       __pointer(::user::impact_system)    m_pimpactsystem;
       __pointer_array(::user::impact)     m_viewa;
       ::user::impact *                    m_pviewTopic;

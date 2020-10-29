@@ -152,6 +152,15 @@ namespace user
 
    }
 
+   
+   bool frame::on_create_bars()
+   {
+
+      return true;
+
+   }
+
+
 
    ::user::tool_window * frame::tool_window(enum_tool etool, bool bCreate)
    {

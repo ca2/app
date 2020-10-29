@@ -40,7 +40,7 @@ namespace user
       };
 
 
-
+      string                           m_strToolbar;
       bool                             m_bHiddenOnNotifyIcon;
 
       ::user::interaction *            m_puiOwner;

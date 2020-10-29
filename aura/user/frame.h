@@ -125,6 +125,8 @@ namespace user
       virtual string get_frame_title() const;
 
 
+      virtual bool on_create_bars();
+
       virtual ::color get_border_main_body_color();
 
       ::estatus add_menu_item(const string & strPath, const string & strText, const string & strId);

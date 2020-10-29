@@ -905,8 +905,6 @@ void simple_frame_window::_001OnCreate(::message::message * pmessage)
 
       }
 
-      create_bars();
-
    }
 
    if (pmessage->previous())
@@ -2855,22 +2853,6 @@ void simple_frame_window::WfiToggleShow()
 }
 
 
-//void simple_frame_window::WfiOnAfterDown()
-//{
-//
-//   data_set("wfi_down", true);
-//
-//}
-
-
-//void simple_frame_window::WfiOnAfterUp()
-//{
-//
-//   data_set("wfi_down", false);
-//
-//}
-
-
 void simple_frame_window::design_up()
 {
 
@@ -2897,9 +2879,6 @@ void simple_frame_window::design_up()
 }
 
 
-
-
-
 bool simple_frame_window::create_window(const char * pszClassName, const char * pszWindowName, u32 uStyle, const ::rect & rect, ::user::interaction * puiParent, const char * pszMenuName, u32 dwExStyle, ::create * pcreate)
 {
 
@@ -2917,7 +2896,6 @@ void simple_frame_window::route_command_message(::user::command * pcommand)
 
 
 #ifdef WINDOWS_DESKTOP
-
 
 
 void simple_frame_window::OnDropFiles(HDROP hDropInfo)
@@ -2972,8 +2950,12 @@ bool simple_frame_window::OnQueryEndSession()
 void simple_frame_window::OnEndSession(bool bEnding)
 {
 
-   if(!bEnding)
+   if (!bEnding)
+   {
+
       return;
+
+   }
 
    Application.close(::apex::e_end_system);
 
@@ -3794,6 +3776,25 @@ bool simple_frame_window::on_create_bars()
 
    }
 
+   string strToolbar = m_pdocumenttemplate->m_strToolbar;
+
+   if (strToolbar.ends_ci(".xml"))
+   {
+
+      ::file::path pathToolbar = m_pdocumenttemplate->m_strMatter / strToolbar;
+
+      ::file::path path = Context.dir().matter(pathToolbar);
+
+      if (Context.file().exists(path))
+      {
+
+         LoadToolBar(pathToolbar, pathToolbar);
+
+      }
+
+   }
+
+
    __pointer(::user::document) pdocument = GetActiveDocument();
 
    if (pdocument.is_null())
@@ -3828,6 +3829,8 @@ void simple_frame_window::InitialUpdateFrame(::user::document * pDoc,bool bMakeV
 {
 
    ::user::frame_window::InitialUpdateFrame(pDoc,bMakeVisible);
+
+   create_bars();
 
 }
 

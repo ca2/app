@@ -338,23 +338,7 @@ namespace user
    bool document::on_create_bars(::user::frame_window * pframe)
    {
 
-      if (m_strToolbar.ends_ci(".xml"))
-      {
-
-         ::file::path pathToolbar = m_pimpactsystem->m_strMatter / m_strToolbar;
-
-         ::file::path path = Context.dir().matter(pathToolbar);
-
-         if (Context.file().exists(path))
-         {
-
-            pframe->LoadToolBar(pathToolbar, pathToolbar);
-
-         }
-
-      }
-
-      return true;
+        return true;
 
    }
 

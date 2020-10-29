@@ -94,7 +94,7 @@ void context_object::on_finish()
 
       restart_notifya_loop:
 
-      for (auto & pmatter : *pnotifya)
+      for (auto pmatter : *pnotifya)
       {
 
          if (pmatter && pmatter->m_bitFinishing)

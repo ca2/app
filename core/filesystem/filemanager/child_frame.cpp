@@ -16,6 +16,7 @@ namespace filemanager
 
    child_frame::~child_frame()
    {
+
    }
 
 
@@ -57,9 +58,6 @@ namespace filemanager
       simple_child_frame::route_command_message(pcommand);
 
    }
-
-
-
 
 
    __pointer(document) child_frame::filemanager_document()
@@ -112,48 +110,10 @@ namespace filemanager
 
    void child_frame::_001OnShowWindow(::message::message * pmessage)
    {
+
       UNREFERENCED_PARAMETER(pmessage);
 
    }
-
-
-
-//   void child_frame::OnChangeEditSearch()
-//   {
-//
-////      __pointer(::user::document) pdocument = GetActiveDocument();
-////
-////      if (pdocument != nullptr)
-////      {
-////
-////         auto pupdate = new_update();
-////
-////         paction->id() = id_filter;
-////
-////         string str;
-////
-////      }
-//
-//   }
-
-
-//   void child_frame::OnChangeEditSearch()
-//   {
-//
-//      __pointer(::user::document) pdocument = GetActiveDocument();
-//
-//      if (pdocument != nullptr)
-//      {
-//
-//         auto pupdate = new_update();
-//
-//         paction->id() = id_filter;
-//
-//         string str;
-//
-//      }
-//
-//   }
 
 
 } // namespace filemanager

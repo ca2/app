@@ -81,6 +81,8 @@ enum enum_message : ::i64
 
    e_message_midi_sequence_event,
 
+   e_message_prebuffer_done,
+
    e_message_need_load_form_data,
    e_message_need_save_form_data,
 

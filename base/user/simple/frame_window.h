@@ -64,7 +64,7 @@ public:
    virtual bool keyboard_focus_is_focusable() override;
 
    virtual bool create_bars();
-   virtual bool on_create_bars();
+   virtual bool on_create_bars() override;
 
    virtual void on_visual_applied() override;
 

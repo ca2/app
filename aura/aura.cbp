@@ -744,6 +744,8 @@
 		<Unit filename="platform/drawable.h" />
 		<Unit filename="platform/session.cpp" />
 		<Unit filename="platform/session.h" />
+		<Unit filename="platform/shell_open.cpp" />
+		<Unit filename="platform/shell_open.h" />
 		<Unit filename="platform/static_start.cpp" />
 		<Unit filename="platform/static_start.h" />
 		<Unit filename="platform/static_start_aura.cpp" />

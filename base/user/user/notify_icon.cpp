@@ -162,14 +162,14 @@ namespace user
 
          pathFolder = path.folder();
 
-         main_sync([&]()
+         main_sync(__method([&]()
          {
 
             m_pindicator = ::linux::allocate_appindicator();
 
             m_pindicator->create(m_strId, strNotifyIcon + "_128", pathFolder, this);
 
-         });
+         }));
 
       }
 

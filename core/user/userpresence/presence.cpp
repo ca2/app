@@ -95,6 +95,8 @@ namespace userpresence
           || pmouse->get_message() == e_message_mouse_move)
       {
 
+         auto psession = Session;
+
          if (psession->account() != nullptr && psession->account()->get_user() != nullptr)
          {
 

@@ -79,7 +79,7 @@ namespace core
 
    user::user()
    {
-      
+
       m_pcoreuser = this;
 
       m_ptemplateForm = nullptr;
@@ -154,7 +154,7 @@ namespace core
       //   return false;
 
       //}
-      
+
       //m_phtml->add_ref(OBJ_REF_DBG_ARGS);
 
       //if(m_phtml == nullptr)
@@ -221,7 +221,7 @@ namespace core
 
       }
 
-      
+
       create_factory < ::html::html >();
       create_factory < int_biunique  >();
       create_factory <::user::plain_edit >();
@@ -259,7 +259,7 @@ namespace core
       create_factory <menu_frame >();
       create_factory <menu_view >();
 
-      
+
 
       auto& sys = System;
 
@@ -316,14 +316,14 @@ namespace core
          return estatus;
 
       }
-      
+
       estatus = __compose(m_phtml);
-      
+
       if(!estatus)
       {
-         
+
          return estatus;
-         
+
       }
 
       TRACE("::user::application::initialize");
@@ -957,6 +957,8 @@ namespace core
       return false;
 
 #else
+
+      auto puser = User;
 
       puser->will_use_view_hint(COLORSEL_IMPACT);
 
@@ -2278,7 +2280,7 @@ namespace core
 
          System.draw2d().fonts();
 
-         
+
 
          //fork([&]()
          //{

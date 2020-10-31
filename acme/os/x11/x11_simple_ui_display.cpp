@@ -546,6 +546,8 @@ void simple_ui_display::on_expose(Display * pdisplay)
 }
 
 
+
+
 int simple_ui_display::show()
 {
 
@@ -638,11 +640,13 @@ int simple_ui_display::show()
 
          m_pdraw = XftDrawCreate(pdisplay, m_window, m_pvisual, m_colormap);
 
-         system_update(id_dark_mode);
+         System.add_update(id_dark_mode, this);
+
+         //System.(id_dark_mode);
 
          on_alloc_colors(pdisplay);
 
-         system_update(id_dark_mode, this);
+         //system_update(id_dark_mode, this);
 
          on_layout(pdisplay);
 

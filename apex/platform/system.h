@@ -7,6 +7,7 @@ namespace apex
 
    class CLASS_DECL_APEX system:
       virtual public ::app_core,
+      virtual public ::acme::system,
       virtual public ::apex::context_thread
 #ifndef WINDOWS
       ,virtual public ::exception::translator
@@ -15,12 +16,6 @@ namespace apex
    public:
 
 
-      ::aqua::system *                                   m_paquasystem;
-      ::aura::system *                                   m_paurasystem;
-      ::axis::system *                                   m_paxissystem;
-      ::base::system *                                   m_pbasesystem;
-      ::bred::system *                                   m_pbredsystem;
-      ::core::system *                                   m_pcoresystem;
       __reference(::apex::application)                   m_papplicationStartup;
 
       __composite(::apex::system)                        m_psystemParent;
@@ -58,11 +53,6 @@ namespace apex
       ::file::path                                       m_pathConfig;
       ::file::path                                       m_pathCa2Roaming;
 
-      ::mutex                                            m_mutexThread;
-      thread_map                                         m_threadmap;
-      thread_id_map                                      m_threadidmap;
-      ::mutex                                            m_mutexThreadOn;
-      isomap < ITHREAD, ITHREAD >                        m_mapThreadOn;
 
       ::mutex                                            m_mutexUserChildren;
       //__composite(class imaging)                         m_pimaging;
@@ -913,7 +903,7 @@ namespace apex
       //virtual void hist_hist(const char* psz) override;
 
 
-      virtual void defer_calc_os_dark_mode();
+      //virtual void defer_calc_os_dark_mode();
 
       //virtual ::type get_pane_tab_view_type_info();
       //virtual ::type get_simple_frame_window_type_info();
@@ -1000,13 +990,13 @@ template < typename ENUM >
 inline void set_enum_text(ENUM e, const char * psz)
 {
 
-   auto psystem = ::get_context_system();
+   auto & system = System;
 
-   cslock sl(&psystem->m_csEnumText);
+   cslock sl(&system.m_csEnumText);
 
-   psystem->m_mapEnumToText[typeid(e).name()][(i64)e] = psz;
+   system.m_mapEnumToText[typeid(e).name()][(i64)e] = psz;
 
-   psystem->m_mapTextToEnum[typeid(e).name()][psz] = (i64)e;
+   system.m_mapTextToEnum[typeid(e).name()][psz] = (i64)e;
 
 }
 
@@ -1015,11 +1005,11 @@ template < typename ENUM >
 inline string enum_text(ENUM e)
 {
 
-   auto psystem = ::get_context_system();
+   auto & system = System;
 
-   cslock sl(&psystem->m_csEnumText);
+   cslock sl(&system.m_csEnumText);
 
-   return psystem->m_mapEnumToText[typeid(e).name()][(i64)e];
+   return system.m_mapEnumToText[typeid(e).name()][(i64)e];
 
 }
 
@@ -1028,13 +1018,13 @@ template < class ENUM >
 inline ENUM text_enum(ENUM & e, const char * psz, ENUM eDefault = (ENUM)0)
 {
 
-   auto psystem = ::get_context_system();
+   auto & system = System;
 
-   cslock sl(&psystem->m_csEnumText);
+   cslock sl(&system.m_csEnumText);
 
    i64 iValue;
 
-   if (psystem->m_mapTextToEnum[typeid(e).name()].lookup(psz, iValue))
+   if (system.m_mapTextToEnum[typeid(e).name()].lookup(psz, iValue))
    {
 
       e = (ENUM)iValue;

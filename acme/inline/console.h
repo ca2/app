@@ -1,7 +1,9 @@
 #include "console_common.h"
 
 
-void process_main();
+void stage();
+void acme_system_init();
+void acme_system_term();
 
 
 
@@ -10,7 +12,11 @@ int main(int argc, TCHAR ** argv)
 
    process_set_args(argc, argv);
 
-   process_main();
+   acme_system_init();
+
+   stage();
+
+   acme_system_term();
 
    return process_get_status();
 

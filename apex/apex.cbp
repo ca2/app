@@ -654,7 +654,6 @@
 		<Unit filename="multithreading/_.cpp" />
 		<Unit filename="multithreading/_.h" />
 		<Unit filename="multithreading/_impl.h" />
-		<Unit filename="multithreading/_thread_os_create_impl.h" />
 		<Unit filename="multithreading/common.h" />
 		<Unit filename="multithreading/create_thread.h" />
 		<Unit filename="multithreading/data.h" />
@@ -662,7 +661,6 @@
 		<Unit filename="multithreading/fork.h" />
 		<Unit filename="multithreading/handler.cpp" />
 		<Unit filename="multithreading/handler.h" />
-		<Unit filename="multithreading/procedure_array.h" />
 		<Unit filename="multithreading/retry.h" />
 		<Unit filename="multithreading/retry_multi_lock.cpp" />
 		<Unit filename="multithreading/retry_multi_lock.h" />
@@ -1137,8 +1135,6 @@
 		<Unit filename="platform/machine_event_data.cpp" />
 		<Unit filename="platform/net.cpp" />
 		<Unit filename="platform/net.h" />
-		<Unit filename="platform/obj_ref_dbg.h" />
-		<Unit filename="platform/obj_typ_ctr.h" />
 		<Unit filename="platform/os_context.cpp" />
 		<Unit filename="platform/os_context.h" />
 		<Unit filename="platform/os_history.cpp" />
@@ -1167,14 +1163,8 @@
 		<Unit filename="platform/system.h" />
 		<Unit filename="platform/system_trace.cpp" />
 		<Unit filename="platform/text.cpp" />
-		<Unit filename="platform/timer.h" />
-		<Unit filename="platform/timer_array.h" />
-		<Unit filename="platform/timer_callback.h" />
-		<Unit filename="platform/timer_event.h" />
-		<Unit filename="platform/timer_item.h" />
 		<Unit filename="platform/trace.cpp" />
 		<Unit filename="platform/trace.h" />
-		<Unit filename="platform/trace_category.h" />
 		<Unit filename="primitive/data/_.h" />
 		<Unit filename="primitive/data/_data.h" />
 		<Unit filename="primitive/data/_impl.h" />

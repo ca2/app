@@ -1,6 +1,8 @@
 #pragma once
 
+
 CLASS_DECL_ACME __pointer(::mutex) open_mutex(const char * lpszName);
+
 
 class CLASS_DECL_ACME mutex :
    virtual public sync

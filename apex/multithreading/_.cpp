@@ -52,28 +52,28 @@ namespace multithreading
    }
 
 
-   bool thread_registered(::thread * pthread)
+   bool thread_registered(::task * ptask)
    {
 
-      return ::get_context_system()->get_thread_id(pthread) != 0;
+      return ::get_context_system()->get_task_id(ptask) != 0;
 
    }
 
 
-   void thread_register(ITHREAD ithread, ::thread * pthread)
+   void thread_register(ITHREAD ithread, ::task * ptask)
    {
 
-      ::get_context_system()->set_thread(ithread, pthread);
+      ::get_context_system()->set_task(ithread, ptask);
 
    }
 
 
-   void thread_unregister(ITHREAD ithread, ::thread * pthread)
+   void thread_unregister(ITHREAD ithread, ::task * ptask)
    {
 
       auto psystem = ::get_context_system();
 
-      psystem->unset_thread(ithread, pthread);
+      psystem->unset_task(ithread, ptask);
 
    }
 

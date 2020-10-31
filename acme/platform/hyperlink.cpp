@@ -22,7 +22,7 @@ bool hyperlink::open_link(string strLink, string strProfile, string strTarget)
    plink->m_strProfile = strProfile;
    plink->m_strTarget = strTarget;
 
-   system_update(id_open_hyperlink, plink);
+   System.apply_update(id_open_hyperlink, plink);
    //if (is_system())
    {
 
@@ -59,7 +59,7 @@ void hyperlink::open_profile_link(string strUrl, string strProfile, string strTa
    plink->m_strTarget = strTarget;
    plink->m_bProfile = true;
 
-   system_update(id_open_hyperlink, plink);
+   System.apply_update(id_open_hyperlink, plink);
 
    //__throw(todo("hyperlink"));
    //System.open_profile_link(strUrl, strProfile, strTarget);

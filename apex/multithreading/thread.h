@@ -4,9 +4,6 @@
 
 class mq;
 
-typedef __pointer_array(::matter) object_array;
-typedef isomap < ITHREAD, __pointer(thread) > thread_map;
-typedef isomap < thread *, ITHREAD > thread_id_map;
 
 namespace user { class frame;  }
 

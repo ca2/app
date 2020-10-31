@@ -18,7 +18,7 @@
 #undef App
 
 
-#define Sys(playered) (*::get_context_system(playered))
+#define Sys(psystem) (*psystem->m_papexsystem)
 #define Sess(pcontextsession) (pcontextsession)
 #define App(playered) (*::get_context_application(playered))
 
@@ -1997,7 +1997,6 @@ namespace html
 #define SCAST_PTR(TYPE, ptarget, psource) TYPE * ptarget = dynamic_cast < TYPE * > (psource);
 #define SCAST_REF(TYPE, rtarget, psource) TYPE & rtarget = *(dynamic_cast < TYPE * > (psource))
 
-#define System (Sys(get_context_object()))
 
 #define Session (Sess(get_context_session()))
 
@@ -2091,9 +2090,9 @@ CLASS_DECL_APEX ::apex::session * get_context_session(::layered * pobjectContext
 CLASS_DECL_APEX inline ::apex::session * get_context_session(::apex::session * psession);
 
 
-CLASS_DECL_APEX ::apex::system * get_context_system();
-CLASS_DECL_APEX ::apex::system * get_context_system(::layered * pobjectContext);
-CLASS_DECL_APEX inline ::apex::system * get_context_system(::apex::system * psystem);
+//CLASS_DECL_APEX ::apex::system * get_context_system();
+//CLASS_DECL_APEX ::apex::system * get_context_system(::layered * pobjectContext);
+//CLASS_DECL_APEX inline ::apex::system * get_context_system(::apex::system * psystem);
 
 
 #define BAD_WCHAR ((widechar)(-1))

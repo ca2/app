@@ -417,64 +417,64 @@ extern "C"
 
 
 
-PFN_CALL_UPDATE g_pfnCallUpdateSystem = nullptr;
+//PFN_CALL_UPDATE g_pfnCallUpdateSystem = nullptr;
+//
+//
+//void set_system_update(PFN_CALL_UPDATE pfnCallUpdate)
+//{
+//
+//   g_pfnCallUpdateSystem = pfnCallUpdate;
+//
+//}
+//
+//
+//void system_update(const ::id & id, const var & var)
+//{
+//
+//   if(g_pfnCallUpdateSystem)
+//   {
+//
+//      g_pfnCallUpdateSystem(id, var);
+//
+//   }
+//   else if(id == id_dark_mode)
+//   {
+//
+//      ::user::os_calc_dark_mode();
+//
+//   }
+//
+//}
 
 
-void set_system_update(PFN_CALL_UPDATE pfnCallUpdate)
-{
-
-   g_pfnCallUpdateSystem = pfnCallUpdate;
-
-}
+//PFN_SET_MODIFIED g_pfnSetModifiedSystem = nullptr;
 
 
-void system_update(const ::id & id, const var & var)
-{
-
-   if(g_pfnCallUpdateSystem)
-   {
-
-      g_pfnCallUpdateSystem(id, var);
-
-   }
-   else if(id == id_dark_mode)
-   {
-
-      ::user::os_calc_dark_mode();
-
-   }
-
-}
-
-
-PFN_SET_MODIFIED g_pfnSetModifiedSystem = nullptr;
-
-
-void set_system_set_modified(PFN_SET_MODIFIED pfnSetModified)
-{
-
-   g_pfnSetModifiedSystem = pfnSetModified;
-
-}
-
-
-void system_set_modified(const ::id & id)
-{
-
-   if (g_pfnSetModifiedSystem)
-   {
-
-      g_pfnSetModifiedSystem(id);
-
-   }
-
-}
+//void set_system_set_modified(PFN_SET_MODIFIED pfnSetModified)
+//{
+//
+//   g_pfnSetModifiedSystem = pfnSetModified;
+//
+//}
+//
+//
+//void system_set_modified(const ::id & id)
+//{
+//
+//   if (g_pfnSetModifiedSystem)
+//   {
+//
+//      g_pfnSetModifiedSystem(id);
+//
+//   }
+//
+//}
 
 
 void int_system_call_update(int iUpdate, int iArg)
 {
 
-   system_update(iUpdate, iArg);
+   System.apply_update(iUpdate, iArg);
 
 }
 

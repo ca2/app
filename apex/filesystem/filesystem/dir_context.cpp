@@ -1334,7 +1334,7 @@ bool dir_context::name_is(const ::file::path & strPath)
 
    sync_lock sl(mutex());
 
-   return ::get_context_system()->m_pdirsystem->m_pathInstall;
+   return System.m_pdirsystem->m_pathInstall;
 
 }
 
@@ -1728,7 +1728,7 @@ void dir_context::matter_ls_file(const ::file::path & str, ::file::listing & str
    Context.locale_schema_matter(straLs, straMatterLocator, strLocale, strSchema);
 
    auto psession = Session;
-      
+
    ::apex::str_context * pcontext = psession->str_context();
 
    if (System.m_pdirsystem->m_bMatterFromHttpCache)
@@ -2056,7 +2056,7 @@ ret:
    {
 
       auto psession = Session;
-         
+
       strLocale = psession->m_strLocale;
 
    }

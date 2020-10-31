@@ -276,7 +276,7 @@ namespace user
    void wallpaper_change_notification (GSettings   *settings,             const gchar *key,             gpointer     data)
    {
 
-      system_update(id_wallpaper_change);
+      System.apply_update(id_wallpaper_change);
 
    }
 
@@ -394,7 +394,7 @@ namespace user
 
          g_bLastDarkMode = bDarkMode;
 
-         system_set_modified(id_dark_mode);
+         System.set_modified(id_dark_mode);
 
          x11_kick_idle();
 

@@ -1,6 +1,11 @@
 #pragma once
 
 
+typedef __pointer_array(::matter) object_array;
+typedef isomap < ITHREAD, __pointer(task) > task_map;
+typedef isomap < task *, ITHREAD > task_id_map;
+
+
 class CLASS_DECL_ACME task :
    virtual public context_object
 {
@@ -37,7 +42,7 @@ public:
    virtual string get_tag() const;
    virtual string thread_get_name() const;
 
-   
+
    virtual ::task * get_task() override;
    virtual const char * get_task_tag() override;
 
@@ -46,7 +51,7 @@ public:
 
    virtual bool set_thread_name(const char* pszName);
 
-   
+
 
 #ifdef WINDOWS
 
@@ -118,7 +123,7 @@ public:
    //virtual bool set_thread_name(const char* pszThreadName);
 
    virtual bool is_pred() const { return !m_pobjectContext || m_pobjectContext.get() == this; }
-   
+
    //virtual void set_thread_run(bool bRun = true);
 
    //virtual void finish() override;

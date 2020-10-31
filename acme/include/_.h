@@ -42,7 +42,7 @@
 //
 //
 //        ca2 is an all-purpose multi-platform framework
-//        and set of libraries written in C++ language with 
+//        and set of libraries written in C++ language with
 //        the aim to help developers create awesome apps for users.
 //
 //
@@ -66,14 +66,25 @@
 #define __spin_namespace acme // back bone / four-letter "spin*" namespace name
 
 
-//#undef Sys
+//
+
+
+#pragma once
+
+
+#undef Sys
 //#undef Sess
 //#undef App
-//
-//
-//#define Sys(pobject) (*pobject->get_context_system())
+
+
+#define Sys(psystem) (*psystem)
+//#define Sess(pcontextsession) (pcontextsession)
+//#define App(playered) (*::get_context_application(playered))
+
 //#define Sess(pobject) (*pobject->get_context_session())
 //#define App(pobject) (*pobject->get_app())
+
+#define System (Sys(get_context_system()))
 
 
 #include "acme/primitive/primitive/estatus.h"
@@ -112,6 +123,20 @@ extern CLASS_DECL_ACME __LPFN_MAIN_DEFERRED_RUN __main_deferred_run;
 #define INLINE inline
 
 #endif
+
+namespace acme
+{
+
+   class system;
+
+} // namespace acme
+
+class layered;
+
+CLASS_DECL_ACME ::acme::system * get_context_system();
+CLASS_DECL_ACME ::acme::system * get_context_system(::layered * pobjectContext);
+CLASS_DECL_ACME inline ::acme::system * get_context_system(::acme::system * psystem);
+
 
 
 //#include "acme/platform/cpu_architecture.h"
@@ -198,14 +223,14 @@ CLASS_DECL_ACME void windowing_output_debug_string(const char * pszDebugString);
 //CLASS_DECL_ACME void c_function_call(void * p);
 
 
-namespace acme 
+namespace acme
 {
 
-   class acme;  
-   
-   extern CLASS_DECL_ACME bool g_bAcme; 
+   class acme;
 
-} // namespace acme 
+   extern CLASS_DECL_ACME bool g_bAcme;
+
+} // namespace acme
 
 
 CLASS_DECL_ACME int __assert_failed_line(const char * pszFileName,int iLineNumber);
@@ -627,6 +652,16 @@ namespace apex
 } // namespace apex
 
 
+namespace aqua
+{
+
+   class system;
+   class session;
+   class application;
+
+} // namespace aqua
+
+
 namespace aura
 {
 
@@ -666,6 +701,16 @@ namespace base
 
 
 } // namespace base
+
+
+namespace bred
+{
+
+   class system;
+   class session;
+   class application;
+
+} // namespace bred
 
 
 namespace core
@@ -2550,7 +2595,7 @@ class future;
 namespace factory
 {
 
-   
+
    class factory_interface;
 
 
@@ -3661,20 +3706,20 @@ CLASS_DECL_ACME string get_system_error_message(u32 dwError);
 #include "acme/platform/simple_app.h"
 
 
-typedef void CALL_UPDATE(const ::id & id, const var & var);
-using PFN_CALL_UPDATE = CALL_UPDATE *;
+//typedef void CALL_UPDATE(const ::id & id, const var & var);
+//using PFN_CALL_UPDATE = CALL_UPDATE *;
 
-typedef void SET_MODIFIED(const ::id& id);
-using PFN_SET_MODIFIED = SET_MODIFIED*;
-
-
-CLASS_DECL_ACME void set_system_update(PFN_CALL_UPDATE pfnCallUpdate);
-CLASS_DECL_ACME void system_update(const ::id & id, const var & var = ::type_new);
+//typedef void SET_MODIFIED(const ::id& id);
+//using PFN_SET_MODIFIED = SET_MODIFIED*;
 
 
+//CLASS_DECL_ACME void set_system_update(PFN_CALL_UPDATE pfnCallUpdate);
+//CLASS_DECL_ACME void system_update(const ::id & id, const var & var = ::type_new);
 
-CLASS_DECL_ACME void set_system_set_modified(PFN_SET_MODIFIED pfnSetModified);
-CLASS_DECL_ACME void system_set_modified(const ::id& id);
+
+
+//CLASS_DECL_ACME void set_system_set_modified(PFN_SET_MODIFIED pfnSetModified);
+//CLASS_DECL_ACME void system_set_modified(const ::id& id);
 
 
 
@@ -3965,6 +4010,9 @@ namespace draw2d
 
 #include "acme/user/_.h"
 
+
+
+#include "acme/platform/system.h"
 
 
 //#include "acme/platform/console_application.h"

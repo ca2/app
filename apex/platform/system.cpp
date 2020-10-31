@@ -98,10 +98,7 @@ namespace apex
 
       create_factory < ::thread >();
 
-      m_paurasystem = nullptr;
-      m_paxissystem = nullptr;
-      m_pbasesystem = nullptr;
-      m_pcoresystem = nullptr;
+      m_papexsystem = this;
 
       m_bMessageThread = true;
 
@@ -5466,12 +5463,8 @@ namespace apex
          }
 
       }
-      else if(paction->id() == id_dark_mode)
-      {
 
-         defer_calc_os_dark_mode();
-
-      }
+      acme::system::on_apply(paction);
 
 
       //::update updateSetting(pupdate);
@@ -5509,24 +5502,6 @@ namespace apex
    }
 
 
-   void system::defer_calc_os_dark_mode()
-   {
-
-#ifdef LINUX
-
-      ::user::os_calc_dark_mode();
-
-#elif defined(WINDOWS_DESKTOP)
-
-      ::user::os_calc_dark_mode();
-
-      //::user::set_system_dark_mode(::user::calc_system_dark_mode());
-
-      //::user::set_app_dark_mode(::user::calc_app_dark_mode());
-
-#endif
-
-   }
 
 
    void system::finalize()

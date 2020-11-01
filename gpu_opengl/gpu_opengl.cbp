@@ -108,7 +108,6 @@
 			<Add option="-lapex" />
 			<Add option="-laqua" />
 			<Add option="-laura" />
-			<Add option="-lfreeimage" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
 		</Linker>

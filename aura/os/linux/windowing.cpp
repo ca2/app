@@ -4974,7 +4974,7 @@ void x11_start()
 
    auto psystem = ::get_context_system();
 
-   auto psession = psystem->get_context_session();
+   auto psession = System.get_context_session();
 
    g_pthreadXlib = psession->fork([]()
    {

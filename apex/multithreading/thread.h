@@ -86,7 +86,7 @@ public:
    UINT                                               m_dwFinishTimeout;
    bool                                               m_bThreadClosed;
 
-   
+
    method_array                                       m_methoda;
 
 
@@ -129,8 +129,8 @@ public:
    virtual void assert_valid() const override;
    virtual void dump(dump_context & dumpcontext) const override;
 
-   using task::fork;
-   using channel::fork;
+   //using task::fork;
+   //using channel::fork;
 
    inline mq* get_mq() { return m_pmq ? m_pmq : _get_mq(); }
    mq* _get_mq();
@@ -165,7 +165,7 @@ public:
    virtual bool is_running() const;
    //virtual void dependant_add(::layered * pobjectContext) override;
 
- 
+
 
    virtual ::estatus start(
       ::matter * pmatter,
@@ -290,7 +290,7 @@ public:
    }
 
 
-   
+
 
 
    //virtual bool final_handle_exception(::exception_pointer e);

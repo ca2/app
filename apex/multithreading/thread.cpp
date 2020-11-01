@@ -604,7 +604,7 @@ bool thread::thread_step()
    {
 
       output_debug_string("session");
-    
+
    }
    else if(strType.contains("wave_player"))
    {
@@ -2241,7 +2241,7 @@ bool thread::begin_thread(bool bSynchInitialization, ::e_priority epriority, UIN
 
    }
 
-   auto estatus = fork(epriority, nStackSize, uiCreateFlags);
+   auto estatus = begin_task(epriority, nStackSize, uiCreateFlags);
 
    if(m_hthread == 0)
    {

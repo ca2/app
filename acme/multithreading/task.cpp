@@ -366,12 +366,12 @@ void task::term_task()
 
    m_id = pmatter->type_name();
 
-   return fork(epriority, nStackSize, uCreateFlags);
+   return begin_task(epriority, nStackSize, uCreateFlags);
 
 }
 
 
-::estatus task::fork(
+::estatus task::begin_task(
    ::e_priority epriority,
    u32 nStackSize,
    u32 uCreateFlags)
@@ -415,7 +415,7 @@ void task::term_task()
    //   if (pthreadParent)
    //   {
 
-   //      
+   //
 
    //   }
 

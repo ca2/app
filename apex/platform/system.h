@@ -253,6 +253,10 @@ namespace apex
 
       virtual void term();
 
+
+      virtual bool thread_get_run() const override;
+
+
          //::thread * get_task(ITHREAD ithread);
       //ITHREAD get_thread_id(::thread * pthread);
       //void set_thread(ITHREAD ithread, ::thread * pthread);

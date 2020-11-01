@@ -107,7 +107,7 @@ namespace apex
 
       //set_context_system(this OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
 
-      
+
 
       common_construct();
 
@@ -1978,6 +1978,15 @@ namespace apex
       //::multithreading::wait_threads(1_min, { this });
 
    }
+
+
+   bool system::thread_get_run() const
+   {
+
+      return ::apex::context_thread::thread_get_run();
+
+   }
+
 
 
    void system::term1()
@@ -5313,7 +5322,7 @@ namespace apex
 
    }
 
-   
+
    bool system::is_thread() const
    {
 
@@ -5615,12 +5624,12 @@ string get_bundle_app_library_name();
    auto psystem = dynamic_cast<::apex::system*>(pobject);
 
    if(!psystem)
-   { 
-   
+   {
+
       delete pobject;
 
       return nullptr;
-   
+
    }
 
    return psystem;

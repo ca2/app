@@ -2405,7 +2405,7 @@ inline ::estatus object::defer_start(::thread_pointer& pthread, const ::method& 
 
    pthread->m_pmatter = method;
 
-   return pthread->fork();
+   return pthread->begin_task();
 
 }
 

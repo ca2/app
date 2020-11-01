@@ -61,11 +61,28 @@ namespace acme
    ::task * system::get_task(ITHREAD ithread)
    {
 
+      sync_lock sl(&m_mutexTask);
+
+      return m_taskmap[ithread];
+
    }
 
 
    ITHREAD system::get_task_id(::task * ptask)
    {
+
+      sync_lock sl(&m_mutexTask);
+
+      ITHREAD ithread = NULL_ITHREAD;
+
+      if (!m_taskidmap.lookup(ptask, ithread))
+      {
+
+         return 0;
+
+      }
+
+      return ithread;
 
    }
 
@@ -73,11 +90,11 @@ namespace acme
    void system::set_task(ITHREAD ithread, ::task * ptask)
    {
 
-   }
+      sync_lock sl(&m_mutexTask);
 
+      m_taskmap[ithread].reset(ptask OBJ_REF_DBG_COMMA_P_NOTE(this, "thread::thread_set"));
 
-   void system::unset_task(ITHREAD ithread, ::task * ptask)
-   {
+      m_taskidmap[ptask] = ithread;
 
    }
 

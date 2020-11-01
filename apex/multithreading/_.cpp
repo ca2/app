@@ -95,15 +95,15 @@ namespace multithreading
 
       }
 
-      sync_lock sl(&::get_context_system()->m_mutexThread);
+      sync_lock sl(&::get_context_system()->m_mutexTask);
 
-      for (auto & pair : ::get_context_system()->m_threadidmap)
+      for (auto & pair : ::get_context_system()->m_taskidmap)
       {
 
          try
          {
 
-            auto pcompositea = pair.element1()->_composite_array();
+            auto pcompositea = ___thread(pair.element1())->_composite_array();
 
             if (pcompositea && pcompositea->contains(ptaskChildCandidate))
             {
@@ -128,15 +128,15 @@ namespace multithreading
    void post_quit_to_all_threads()
    {
 
-      sync_lock sl(&::get_context_system()->m_mutexThread);
+      sync_lock sl(&::get_context_system()->m_mutexTask);
 
-      for (auto& pair : ::get_context_system()->m_threadidmap)
+      for (auto& pair : ::get_context_system()->m_taskidmap)
       {
 
          try
          {
 
-            pair.element1()->finish(get_context_system());
+            ___thread(pair.element1())->finish(get_context_system());
 
          }
          catch (...)
@@ -152,15 +152,17 @@ namespace multithreading
    CLASS_DECL_APEX void post_to_all_threads(const ::id & id, WPARAM wparam, LPARAM lparam)
    {
 
-      sync_lock sl(&::get_context_system()->m_mutexThread);
+      sync_lock sl(&::get_context_system()->m_mutexTask);
 
-      for (auto& pair : ::get_context_system()->m_threadidmap)
+      for (auto& pair : ::get_context_system()->m_taskidmap)
       {
 
          try
          {
 
-            pair.element1()->post_message(id, wparam, lparam);
+            auto pthread = ___thread(pair.element1());
+
+            pthread->post_message(id, wparam, lparam);
 
          }
          catch (...)

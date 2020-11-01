@@ -6,7 +6,8 @@ namespace acme
 
 
    class CLASS_DECL_ACME system :
-        virtual public ::source
+      virtual public ::source,
+      virtual public ::task
    {
    public:
 

@@ -114,7 +114,7 @@ namespace user
 
          g_bLastDarkModeSystem = bDarkModeSystem;
 
-         system_set_modified(id_dark_mode);
+         System.set_modified(id_dark_mode);
 
       }
 

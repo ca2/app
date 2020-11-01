@@ -110,19 +110,19 @@ extern os_local* g_poslocal;
    //if (::get_context_system() != nullptr)
    //{
 
-   //   sync_lock sl(::get_context_system()->mutex());
+   //   sync_lock sl(System.mutex());
 
-   //   if (::get_context_system()->m_pathConfig.has_char())
+   //   if (System.m_pathConfig.has_char())
    //   {
 
-   //      return ::get_context_system()->m_pathConfig;
+   //      return System.m_pathConfig;
 
    //   }
 
-   //   if (::get_context_system()->m_pathCacheDir.has_char())
+   //   if (System.m_pathCacheDir.has_char())
    //   {
 
-   //      return ::get_context_system()->m_pathCacheDir;
+   //      return System.m_pathCacheDir;
 
    //   }
 
@@ -167,9 +167,9 @@ extern os_local* g_poslocal;
    //if (::get_context_system() != nullptr)
    //{
 
-   //   sync_lock sl(::get_context_system()->mutex());
+   //   sync_lock sl(System.mutex());
 
-   //  ::get_context_system()->m_pathConfig = path;
+   //  System.m_pathConfig = path;
 
    //}
 

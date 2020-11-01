@@ -22,7 +22,7 @@
 #undef App
 
 
-#define Sys(pobject) (*pobject->get_context_system()->m_pcoresystem)
+#define Sys(pobject) (*pobject->System.m_pcoresystem)
 #define Sess(pcontextsession) (pcontextsession->m_pcoresession)
 #define App(pobject) (*pobject->get_app()->m_pcoreapplication)
 

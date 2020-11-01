@@ -1345,9 +1345,9 @@ namespace base
 
          }
 
-         //sync_lock sl(&::get_context_system()->m_mutexLibrary);
+         //sync_lock sl(&System.m_mutexLibrary);
 
-         //::get_context_system()->m_mapLibrary[strLibrary] = plibrary;
+         //System.m_mapLibrary[strLibrary] = plibrary;
 
          pstyle->m_plibrary = plibrary;
 

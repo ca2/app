@@ -383,10 +383,10 @@ CLASS_DECL_AURA string message_box_result_to_string(int iResult);
 // CLASS_DECL_AURA ::estatus os_message_box(oswindow oswindow, const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox, ::callback callback)
 // {
 
-//    if (::get_context_system()->is_dedicated_thread())
+//    if (System.is_dedicated_thread())
 //    {
 
-//       ::get_context_system()->fork([=]()
+//       System.fork([=]()
 //          {
 
 //             _os_message_box(oswindow, pszMessage, pszTitle, emessagebox, callback);

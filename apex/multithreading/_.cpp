@@ -47,35 +47,11 @@ namespace multithreading
 
       //return s_piaThread2->contains(id);
 
-      return ::get_context_system()->get_task(id) != nullptr;
+      return System.get_task(id) != nullptr;
 
    }
 
 
-   bool thread_registered(::task * ptask)
-   {
-
-      return ::get_context_system()->get_task_id(ptask) != 0;
-
-   }
-
-
-   void thread_register(ITHREAD ithread, ::task * ptask)
-   {
-
-      ::get_context_system()->set_task(ithread, ptask);
-
-   }
-
-
-   void thread_unregister(ITHREAD ithread, ::task * ptask)
-   {
-
-      auto psystem = ::get_context_system();
-
-      psystem->unset_task(ithread, ptask);
-
-   }
 
 
    bool is_child(::task * ptaskChildCandidate)
@@ -95,9 +71,9 @@ namespace multithreading
 
       }
 
-      sync_lock sl(&::get_context_system()->m_mutexThread);
+      sync_lock sl(&System.m_mutexThread);
 
-      for (auto & pair : ::get_context_system()->m_threadidmap)
+      for (auto & pair : System.m_threadidmap)
       {
 
          try
@@ -128,9 +104,9 @@ namespace multithreading
    void post_quit_to_all_threads()
    {
 
-      sync_lock sl(&::get_context_system()->m_mutexThread);
+      sync_lock sl(&System.m_mutexThread);
 
-      for (auto& pair : ::get_context_system()->m_threadidmap)
+      for (auto& pair : System.m_threadidmap)
       {
 
          try
@@ -152,9 +128,9 @@ namespace multithreading
    CLASS_DECL_APEX void post_to_all_threads(const ::id & id, WPARAM wparam, LPARAM lparam)
    {
 
-      sync_lock sl(&::get_context_system()->m_mutexThread);
+      sync_lock sl(&System.m_mutexThread);
 
-      for (auto& pair : ::get_context_system()->m_threadidmap)
+      for (auto& pair : System.m_threadidmap)
       {
 
          try
@@ -270,7 +246,7 @@ bool apex_thread_get_run()
       {
          ////////// and have short life, so it is safe to keep it running
          //return true;
-         return ::get_context_system()->thread_get_run();
+         return System.thread_get_run();
 
       }
 

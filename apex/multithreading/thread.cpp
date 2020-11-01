@@ -289,7 +289,7 @@ void thread::term_thread()
    if (get_context_system())
    {
 
-      get_context_system()->release_reference(this OBJ_REF_DBG_COMMA_THIS);
+      System.release_reference(this OBJ_REF_DBG_COMMA_THIS);
 
    }
 
@@ -1855,7 +1855,7 @@ u32 __thread_entry(void * p);
       try
       {
 
-         get_context_system()->add_reference(this);
+         System.add_reference(this);
 
          bAddReference = true;
 
@@ -2046,7 +2046,7 @@ void thread::system_pre_translate_message(::message::message * pmessage)
          if(get_context_application()->get_context_system() != nullptr)
          {
 
-            get_context_application()->get_context_system()->pre_translate_message(pmessage);
+            System.pre_translate_message(pmessage);
 
             if(pmessage->m_bRet)
             {
@@ -4320,9 +4320,9 @@ bool thread::kick_thread()
 CLASS_DECL_APEX bool is_thread_on(ITHREAD id)
 {
 
-   sync_lock sl(&::get_context_system()->m_mutexThreadOn);
+   sync_lock sl(&System.m_mutexThreadOn);
 
-   return ::get_context_system()->m_mapThreadOn.plookup(id) != nullptr;
+   return System.m_mapThreadOn.plookup(id) != nullptr;
 
 }
 
@@ -4344,9 +4344,9 @@ CLASS_DECL_APEX bool is_active(::thread * pthread)
 CLASS_DECL_APEX void set_thread_on(ITHREAD id)
 {
 
-   sync_lock sl(&::get_context_system()->m_mutexThreadOn);
+   sync_lock sl(&System.m_mutexThreadOn);
 
-   ::get_context_system()->m_mapThreadOn.set_at(id, id);
+   System.m_mapThreadOn.set_at(id, id);
 
 }
 
@@ -4354,9 +4354,9 @@ CLASS_DECL_APEX void set_thread_on(ITHREAD id)
 CLASS_DECL_APEX void set_thread_off(ITHREAD id)
 {
 
-   sync_lock sl(&::get_context_system()->m_mutexThreadOn);
+   sync_lock sl(&System.m_mutexThreadOn);
 
-   ::get_context_system()->m_mapThreadOn.remove_key(id);
+   System.m_mapThreadOn.remove_key(id);
 
 }
 

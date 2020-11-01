@@ -137,7 +137,7 @@ void __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers);
 void os_post_quit()
 {
 
-   ::get_context_system()->exception::translator::detach();
+   System.exception::translator::detach();
 
 }
 
@@ -147,7 +147,7 @@ void os_post_quit()
 //
 //   __pointer(::object) pobjectTask = pobjectTaskParam;
 //   
-//   ::get_context_system()->post_pred([pobjectTask]()
+//   System.post_pred([pobjectTask]()
 //   {
 //
 //      pobjectTask->call();
@@ -162,7 +162,7 @@ void os_post_quit()
 //   
 //   __pointer(::object) pobjectTask = pobjectTaskParam;
 //   
-//   ::get_context_system()->send_pred([pobjectTask]()
+//   System.send_pred([pobjectTask]()
 //   {
 //
 //      pobjectTask->call();

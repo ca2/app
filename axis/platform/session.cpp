@@ -45,7 +45,7 @@ void defer_term_ui();
 //bool is_verbose();
 
 //extern string_map < __pointer(::apex::library) >* g_pmapLibrary;
-//extern ::mutex * &::get_context_system()->m_mutexLibrary;
+//extern ::mutex * &System.m_mutexLibrary;
 //extern string_map < PFN_NEW_AURA_LIBRARY >* g_pmapNewAuraLibrary;
 
 int_bool point_is_window_origin(POINT ptHitTest, oswindow oswindowExclude, int iMargin);
@@ -110,9 +110,9 @@ namespace axis
       if (get_context_system() != nullptr)
       {
 
-         m_bSystemSynchronizedCursor   = get_context_system()->m_bSystemSynchronizedCursor;
+         m_bSystemSynchronizedCursor   = System.m_bSystemSynchronizedCursor;
 
-         m_bSystemSynchronizedScreen   = get_context_system()->m_bSystemSynchronizedScreen;
+         m_bSystemSynchronizedScreen   = System.m_bSystemSynchronizedScreen;
 
       }
 
@@ -327,9 +327,9 @@ namespace axis
 //
 //
 //         }
-//         sync_lock sl(&::get_context_system()->m_mutexLibrary);
+//         sync_lock sl(&System.m_mutexLibrary);
 //
-//         __pointer(::apex::library) & plibrary = &::get_context_system()->m_mapLibrary[pszAppId];
+//         __pointer(::apex::library) & plibrary = &System.m_mapLibrary[pszAppId];
 //
 //         if (!plibrary)
 //         {

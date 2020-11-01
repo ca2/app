@@ -93,7 +93,7 @@
          if (!is_tx_ok())
             return false;
 
-         string anotherappURI = m_strBaseChannel + ":///send?message=" + ::get_context_system()->url_encode(pszMessage);
+         string anotherappURI = m_strBaseChannel + ":///send?message=" + System.url_encode(pszMessage);
 
          ::Windows::Foundation::Uri ^uri = ref new ::Windows::Foundation::Uri(anotherappURI);
 
@@ -128,7 +128,7 @@
 
          memory m;
 
-         string anotherappURI = m_strBaseChannel + "://send?messagebin=" + __str(message) + "," + ::get_context_system()->url_encode(::get_context_system()->base64().encode({ pdata, len }));
+         string anotherappURI = m_strBaseChannel + "://send?messagebin=" + __str(message) + "," + System.url_encode(System.base64().encode({ pdata, len }));
 
          ::Windows::Foundation::Uri ^uri = ref new ::Windows::Foundation::Uri(anotherappURI);
 

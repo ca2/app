@@ -136,7 +136,7 @@ namespace acme
 #endif
 
 
-   //::mutex * &::get_context_system()->g_mutexLibrary;
+   //::mutex * &System.g_mutexLibrary;
 
    __LPFN_MAIN_DEFERRED_RUN g_main_deferred_run;
 
@@ -603,7 +603,7 @@ namespace acme
 
       g_pmapRTL = nullptr;
 
-      //&::get_context_system()->g_mutexLibrary = new ::mutex;
+      //&System.g_mutexLibrary = new ::mutex;
 
       //g_pmapLibrary = new string_map < __pointer(::acme::library) >();
 
@@ -722,7 +722,7 @@ namespace acme
       //try
       //{
 
-      //   sync_lock sl(&::get_context_system()->g_mutexLibrary);
+      //   sync_lock sl(&System.g_mutexLibrary);
 
       //   g_pmapLibCall->remove_all();
 
@@ -736,9 +736,9 @@ namespace acme
       //try
       //{
 
-      //   sync_lock sl(&::get_context_system()->g_mutexLibrary);
+      //   sync_lock sl(&System.g_mutexLibrary);
 
-      //   &::get_context_system()->g_mapLibrary.remove_all();
+      //   &System.g_mapLibrary.remove_all();
 
       //}
       //catch (...)
@@ -859,7 +859,7 @@ namespace acme
 
       //del(g_pmapNewAuraLibrary);
 
-      //del(&::get_context_system()->g_mutexLibrary);
+      //del(&System.g_mutexLibrary);
 
       //trace_category_static_term();
 

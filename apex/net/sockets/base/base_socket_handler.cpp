@@ -50,7 +50,7 @@ namespace sockets
          if(papp != nullptr && papp->get_context_system() != nullptr)
          {
 
-            m_splogger = &papp->get_context_system()->log();
+            m_splogger = &papp->System.log();
 
          }
 

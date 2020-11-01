@@ -59,7 +59,7 @@ CLASS_DECL_AURA void __simple_tracea(::matter * pobjectContext, e_trace_level el
 
 void os_post_quit();
 
-//extern ::mutex * &::get_context_system()->m_mutexLibrary;
+//extern ::mutex * &System.m_mutexLibrary;
 
 
 
@@ -293,7 +293,7 @@ namespace aura
 //   ::apex::library * system::get_library(const char * pszLibrary1, bool bOpenCa2)
 //   {
 //
-//      sync_lock sl(&::get_context_system()->m_mutexLibrary);
+//      sync_lock sl(&System.m_mutexLibrary);
 //
 //      string strLibrary(pszLibrary1);
 //
@@ -302,7 +302,7 @@ namespace aura
 //      strLibrary.ends_eat_ci(".dylib");
 //      strLibrary.begins_eat_ci("lib");
 //
-//      auto & plibrary = ::get_context_system()->m_mapLibrary[strLibrary];
+//      auto & plibrary = System.m_mapLibrary[strLibrary];
 //
 //      bool bLibraryOk = true;
 //
@@ -1058,7 +1058,7 @@ namespace aura
 
       }
 
-      sync_lock sl(&::get_context_system()->m_mutexLibrary);
+      sync_lock sl(&System.m_mutexLibrary);
 
       estatus = __construct_new(m_pdraw2d);
 
@@ -1749,9 +1749,9 @@ namespace aura
       try
       {
 
-         sync_lock sl(&::get_context_system()->m_mutexLibrary);
+         sync_lock sl(&System.m_mutexLibrary);
 
-         if (::get_context_system()->m_mapLibrary["draw2d"].is_set() && ::get_context_system()->m_mapLibrary["draw2d"]->is_opened())
+         if (System.m_mapLibrary["draw2d"].is_set() && System.m_mapLibrary["draw2d"]->is_opened())
          {
 
             if (m_pDraw2dFactoryExchange != nullptr)
@@ -4525,45 +4525,6 @@ namespace aura
    }
 
 
-   ::thread* system::get_task(ITHREAD ithread)
-   {
-
-      sync_lock sl(&m_mutexThread);
-
-      return m_threadmap[ithread];
-
-   }
-
-
-   ITHREAD system::get_thread_id(::thread* pthread)
-   {
-
-      sync_lock sl(&m_mutexThread);
-
-      ITHREAD ithread = NULL_ITHREAD;
-
-      if (!m_threadidmap.lookup(pthread, ithread))
-      {
-
-         return 0;
-
-      }
-
-      return ithread;
-
-   }
-
-
-   void system::set_thread(ITHREAD ithread, ::thread* pthread)
-   {
-
-      sync_lock sl(&m_mutexThread);
-
-      m_threadmap[ithread].reset(pthread OBJ_REF_DBG_COMMA_P_NOTE(this, "thread::thread_set"));
-
-      m_threadidmap[pthread] = ithread;
-
-   }
 
 
    ::aura::estamira& system::estamira()

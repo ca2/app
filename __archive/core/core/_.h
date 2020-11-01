@@ -146,7 +146,7 @@ namespace dynamic_source
 #define APP_TYPE ::base::application
 
 #undef Sys
-#define Sys(pobject) (*(::get_context_system(pobject))->cast < SYSTEM_TYPE >())
+#define Sys(pobject) (*System.cast < SYSTEM_TYPE >())
 
 #undef Sess
 #define Sess(pobject) (*(::get_context_session(pobject))->cast < SESSION_TYPE >())

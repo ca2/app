@@ -244,7 +244,7 @@ namespace uwp
       {
          OnChangeDpi(dpi);
 
-         //         ::get_context_system()->m_psystem->m_possystemwindow->m_bWindowSizeChange = true;
+         //         System.m_psystem->m_possystemwindow->m_bWindowSizeChange = true;
 
       }));
 

@@ -10,7 +10,7 @@
 
 //extern string_map < __pointer(::apex::library) >* g_pmapLibrary ;
 //extern string_map < PFN_NEW_AURA_LIBRARY >* g_pmapNewAuraLibrary;
-//extern ::mutex* &::get_context_system()->m_mutexLibrary;
+//extern ::mutex* &System.m_mutexLibrary;
 
 
 #ifdef RASPBIAN
@@ -41,7 +41,7 @@
 bool is_verbose()
 {
 
-   return get_context_system()->m_bVerbose;
+   return System.m_bVerbose;
 
 }
 
@@ -49,7 +49,7 @@ bool is_verbose()
 void set_verbose(bool bVerbose)
 {
 
-   get_context_system()->m_bVerbose = bVerbose;
+   System.m_bVerbose = bVerbose;
 
 }
 
@@ -492,13 +492,13 @@ CLASS_DECL_AURA void set_debug_pointer(void * p);
 
    }
 
-//   get_context_system()->common_construct();
+//   System.common_construct();
 
    ::set_thread(get_context_system());
 
    debug_context_object(get_context_system());
 
-   get_context_system()->initialize(get_context_system());
+   System.initialize(get_context_system());
 
    //set_context_object(get_context_system());
 
@@ -508,13 +508,13 @@ CLASS_DECL_AURA void set_debug_pointer(void * p);
 
    pcreate->m_pcommandline = __new(command_line(get_context_system(), strCommandLine));
 
-   //get_context_system()->get_command()->add_create(pcreate);
+   //System.get_command()->add_create(pcreate);
 
-   get_context_system()->add_create(pcreate);
+   System.add_create(pcreate);
 
    // what could influence time before Main?
    // cold start (never previously called program and its Dlls...)?
-   get_context_system()->m_tickMainStart = m_tickStart;
+   System.m_tickMainStart = m_tickStart;
 
    //xxdebug_box("box1", "box1", MB_ICONINFORMATION);
 
@@ -1684,7 +1684,7 @@ bool app_core::has_aura_application_factory() const
 //   if (m_pmainstruct && m_pmainstruct->m_bConsole)
 //   {
 //
-//      return get_context_system()->inline_init();
+//      return System.inline_init();
 //
 //   }
 //
@@ -1709,18 +1709,18 @@ bool app_core::has_aura_application_factory() const
 //
 //   }
 //
-//   get_context_system()->add_ref(OBJ_REF_DBG_THIS);
+//   System.add_ref(OBJ_REF_DBG_THIS);
 //
 //   if (m_pmainstruct && m_pmainstruct->m_bConsole)
 //   {
 //
-//      get_context_system()->get_context_session()->set_context_app(get_context_system()->m_papplicationStartup);
+//      System.get_context_session()->set_context_app(System.m_papplicationStartup);
 //
-//      get_context_system()->set_context_app(get_context_system()->m_papplicationStartup);
+//      System.set_context_app(System.m_papplicationStartup);
 //
-//      get_context_system()->get_context_session()->set_context(get_context_system()->m_papplicationStartup);
+//      System.get_context_session()->set_context(System.m_papplicationStartup);
 //
-//      get_context_system()->set_context(get_context_system()->m_papplicationStartup);
+//      System.set_context(System.m_papplicationStartup);
 //
 //   }
 //
@@ -1764,7 +1764,7 @@ bool app_core::has_aura_application_factory() const
 //::u32 app_core::system_main()
 //{
 //
-//   ::estatus estatus = get_context_system()->__thread_procedure();
+//   ::estatus estatus = System.__thread_procedure();
 //
 //   return estatus;
 //
@@ -1816,9 +1816,9 @@ __result(::aura::application) app_core::get_new_application(::object* pobjectCon
 
    string strAppId = pszAppId;
 
-   sync_lock sl(&::get_context_system()->m_mutexLibrary);
+   sync_lock sl(&System.m_mutexLibrary);
 
-   __pointer(::apex::library)& plibrary = ::get_context_system()->m_mapLibrary[strAppId];
+   __pointer(::apex::library)& plibrary = System.m_mapLibrary[strAppId];
 
    if (papp)
    {
@@ -1863,7 +1863,7 @@ __result(::aura::application) app_core::get_new_application(::object* pobjectCon
             if (strAppId.is_empty())
             {
 
-               papp = get_context_system()->__create < ::aura::application > ();
+               papp = System.__create < ::aura::application > ();
 
                *((::aura_main_struct*)papp) = *((::aura_main_struct*)this);
 
@@ -1902,7 +1902,7 @@ __result(::aura::application) app_core::get_new_application(::object* pobjectCon
 
             }
 
-            plibrary = get_context_system()->get_library(strLibrary);
+            plibrary = System.get_library(strLibrary);
 
             if (!plibrary)
             {
@@ -1975,7 +1975,7 @@ __result(::aura::application) app_core::get_new_application(::object* pobjectCon
 
       ::apex::library& library = *plibrary;
 
-      papp = library.get_new_application(get_context_system()->get_context_session(), strAppId);
+      papp = library.get_new_application(System.get_context_session(), strAppId);
 
       ::output_debug_string("\n\n\n|(4)----");
       ::output_debug_string("| app : " + strAppId + "(papp=0x" + ::hex::upper_from((uptr)papp.m_p) + ")\n");
@@ -2038,8 +2038,8 @@ __result(::aura::application) app_core::get_new_application(::object* pobjectCon
    if (!papp->is_serviceable() || papp->is_user_service())
    {
 
-      get_context_system()->m_spmutexUserAppData = __new(::mutex(e_create_new, false, "Local\\ca2.UserAppData"));
-      get_context_system()->m_spmutexSystemAppData = __new(::mutex(e_create_new, false, "Local\\ca2.SystemAppData"));
+      System.m_spmutexUserAppData = __new(::mutex(e_create_new, false, "Local\\ca2.UserAppData"));
+      System.m_spmutexSystemAppData = __new(::mutex(e_create_new, false, "Local\\ca2.SystemAppData"));
 
    }
 
@@ -2058,15 +2058,15 @@ __result(::aura::application) app_core::get_new_application(::object* pobjectCon
 
    papp->m_strAppId = strAppId;
 
-   //papp->set_context_object(get_context_system()->get_context_session());
+   //papp->set_context_object(System.get_context_session());
 
    //papp->set_context_system(get_context_system());
 
-   //papp->set_context_session(get_context_system()->get_context_session());
+   //papp->set_context_session(System.get_context_session());
 
    //papp->set_context_app(papp);
 
-   //papp->set_context_thread(get_context_system()->get_context_session());
+   //papp->set_context_thread(System.get_context_session());
 
    //papp->set_context(papp);
 

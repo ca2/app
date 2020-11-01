@@ -147,7 +147,7 @@ CLASS_DECL_APEX void main_async_runnable(const ::method & method)
 
    //__pointer(::object) pobjectTask = pobjectTaskParam;
    
-   ::get_context_system()->post_pred([method]()
+   System.post_pred([method]()
    {
 
       method();
@@ -160,7 +160,7 @@ CLASS_DECL_APEX void main_async_runnable(const ::method & method)
 CLASS_DECL_APEX void main_sync_runnable(const ::method & method, ::duration durationTimeout)
 {
    
-   ::get_context_system()->send_method(method, durationTimeout);
+   System.send_method(method, durationTimeout);
 
 }
 

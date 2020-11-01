@@ -4,7 +4,7 @@
 CLASS_DECL_ACME string load_podata(string strLang, bool bOnlyHeader)
 {
 
-   ::file::path pathFolder = ::get_context_system()->dir().module();
+   ::file::path pathFolder = System.dir().module();
 
    pathFolder -= 1;
 

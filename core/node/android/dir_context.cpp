@@ -32,7 +32,7 @@ namespace android
 
       }
 
-      estatus = __refer(m_pdirsystem, ::get_context_system()->m_pdirsystem);
+      estatus = __refer(m_pdirsystem, System.m_pdirsystem);
 
       if (!estatus)
       {
@@ -41,7 +41,7 @@ namespace android
 
       }
       
-      estatus = __refer(m_pfilesystem, ::get_context_system()->m_pfilesystem);
+      estatus = __refer(m_pfilesystem, System.m_pfilesystem);
 
       if (!estatus)
       {
@@ -995,7 +995,7 @@ namespace android
 
       doc.load(Context.file().as_string(appdata() / "configuration\\directory.xml"));
 
-      ::file::path pathInstall = get_context_system()->m_pathCacheDir;
+      ::file::path pathInstall = System.m_pathCacheDir;
 
       m_pdirsystem->m_pathInstall = pathInstall;
 

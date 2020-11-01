@@ -155,7 +155,7 @@ mutex::mutex(enum_create_new, bool bInitiallyOwn, const char * pstrName, LPSECUR
 
 #ifdef ANDROID
 
-         strName = ::file::path(::get_context_system()->m_pandroidinitdata->m_pszCacheDir) / "var/tmp" / strName;
+         strName = ::file::path(System.m_pandroidinitdata->m_pszCacheDir) / "var/tmp" / strName;
 
 #else
 

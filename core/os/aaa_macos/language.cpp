@@ -4,7 +4,7 @@
 CLASS_DECL_CORE string load_podata(string strLang, bool bOnlyHeader)
 {
 
-   ::file::path pathFolder = ::get_context_system()->dir().module();
+   ::file::path pathFolder = System.dir().module();
 
    pathFolder -= 1;
 

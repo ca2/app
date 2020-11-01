@@ -40,7 +40,7 @@ CLASS_DECL_APEX void __simple_tracea(matter* pobject, e_trace_level elevel, cons
 //
 //   }
 //
-//   ::get_context_system()->__tracea(pobject, elevel, pszFunction, pszFile, iLine, psz);
+//   System.__tracea(pobject, elevel, pszFunction, pszFile, iLine, psz);
 //
 //}
 //
@@ -79,7 +79,7 @@ CLASS_DECL_APEX void __simple_tracea(matter* pobject, e_trace_level elevel, cons
 //
 //   }
 //
-//   ::get_context_system()->__tracev(pobject, elevel, pszFunction, pszFile, iLine, pszFormat, args);
+//   System.__tracev(pobject, elevel, pszFunction, pszFile, iLine, pszFormat, args);
 //
 //}
 //

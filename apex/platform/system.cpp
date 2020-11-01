@@ -593,9 +593,9 @@ namespace apex
 
       // Ex. "draw2d" (Component) and implementation: either "draw2dcairo", "cairo", "draw2d_cairo"
 
-      sync_lock sl(&::get_context_system()->m_mutexLibrary);
+      sync_lock sl(&System.m_mutexLibrary);
 
-      __pointer(::apex::library) plibrary = ::get_context_system()->m_mapLibrary[pszComponent];
+      __pointer(::apex::library) plibrary = System.m_mapLibrary[pszComponent];
 
       if (plibrary && plibrary->is_opened())
       {
@@ -870,7 +870,7 @@ namespace apex
    ::apex::library * system::get_library(const char * pszLibrary1, bool bOpenCa2)
    {
 
-      sync_lock sl(&::get_context_system()->m_mutexLibrary);
+      sync_lock sl(&System.m_mutexLibrary);
 
       string strLibrary(pszLibrary1);
 
@@ -879,7 +879,7 @@ namespace apex
       strLibrary.ends_eat_ci(".dylib");
       strLibrary.begins_eat_ci("lib");
 
-      __pointer(::apex::library) plibrary = ::get_context_system()->m_mapLibrary[strLibrary].get();
+      __pointer(::apex::library) plibrary = System.m_mapLibrary[strLibrary].get();
 
       bool bLibraryOk = true;
 
@@ -3710,16 +3710,16 @@ namespace apex
    bool system::set_user_language(::apex::application * papp, index iSel)
    {
 
-      if (iSel < 0 || iSel >= get_context_system()->get_context_session()->get_current_application()->m_puserlanguagemap->m_straLang.get_count())
+      if (iSel < 0 || iSel >= System.get_context_session()->get_current_application()->m_puserlanguagemap->m_straLang.get_count())
       {
 
          return false;
 
       }
 
-      string strLang = get_context_system()->get_context_session()->get_current_application()->m_puserlanguagemap->m_straLang[iSel];
+      string strLang = System.get_context_session()->get_current_application()->m_puserlanguagemap->m_straLang[iSel];
 
-      if (strLang == get_context_system()->get_context_session()->get_current_application()->m_puserlanguagemap->m_strLang)
+      if (strLang == System.get_context_session()->get_current_application()->m_puserlanguagemap->m_strLang)
       {
 
          return true;
@@ -3741,7 +3741,7 @@ namespace apex
    bool system::set_user_language(::apex::application * papp, string strLang)
    {
 
-      get_context_system()->get_context_session()->get_current_application()->m_puserlanguagemap->set_language(papp, strLang);
+      System.get_context_session()->get_current_application()->m_puserlanguagemap->set_language(papp, strLang);
 
       return System.set_standalone_setting("current_language", strLang);
 

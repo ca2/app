@@ -151,7 +151,7 @@ void os_post_quit()
 //
 //   __pointer(::matter) pobjectTask = pobjectTaskParam;
 //   
-//   ::get_context_system()->post_pred([pobjectTask]()
+//   System.post_pred([pobjectTask]()
 //   {
 //
 //      pobjectTask->call();
@@ -166,7 +166,7 @@ void os_post_quit()
 //   
 //   __pointer(::matter) pobjectTask = pobjectTaskParam;
 //   
-//   ::get_context_system()->send_pred([pobjectTask]()
+//   System.send_pred([pobjectTask]()
 //   {
 //
 //      pobjectTask->call();

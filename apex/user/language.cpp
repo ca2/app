@@ -117,7 +117,7 @@ namespace user
 
       string strLang = m_strLanguageCode;
 
-      ::file::path pathCa2 = ::get_context_system()->m_pdirsystem->m_pathCa2;
+      ::file::path pathCa2 = System.m_pdirsystem->m_pathCa2;
 
       ::file::path path = pathCa2 / "Resources/po" / (strLang + ".po");
 
@@ -127,7 +127,7 @@ namespace user
 
       string strLang = m_strLanguageCode;
 
-      ::file::path path = ::get_context_system()->dir().module() / "po" / (strLang + ".po");
+      ::file::path path = System.dir().module() / "po" / (strLang + ".po");
 
       return file_as_string(path, bOnlyHeader ? 4096 : -1);
 

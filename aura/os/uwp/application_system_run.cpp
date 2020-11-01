@@ -17,7 +17,7 @@ CLASS_DECL_AURA ::estatus os_application_system_run(::apex::system * psystem)
 
    //}
 
-   auto source = ::uwp::new_directx_application_source(get_context_system()->m_paurasystem, psystem->m_strCommandLine);
+   auto source = ::uwp::new_directx_application_source(System.m_paurasystem, psystem->m_strCommandLine);
 
    ::Windows::ApplicationModel::Core::CoreApplication::Run(source);
 

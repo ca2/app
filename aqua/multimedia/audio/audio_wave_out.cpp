@@ -71,7 +71,7 @@
 //CLASS_DECL_AURA bool out_push_packet(WAVE_OUT_PACKET * ppacket)
 //{
 //
-//   return ::get_context_system()->m_spwaveout->out_push_packet(ppacket);
+//   return System.m_spwaveout->out_push_packet(ppacket);
 //
 //}
 //
@@ -79,7 +79,7 @@
 //CLASS_DECL_AURA WAVE_OUT_PACKET * out_pop_packet(char chChannel)
 //{
 //
-//   return ::get_context_system()->m_spwaveout->out_pop_packet(chChannel);
+//   return System.m_spwaveout->out_pop_packet(chChannel);
 //
 //}
 

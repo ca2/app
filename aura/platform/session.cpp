@@ -760,7 +760,7 @@ the file README-colorramp for more information. */
    bool session::on_get_thread_name(string& strThreadName)
    {
 
-      if (get_context_system()->is_console_app())
+      if (System.is_console_app())
       {
 
          return false;

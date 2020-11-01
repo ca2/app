@@ -27,30 +27,30 @@
 //       {
 // // xxx            C_RUNTIME_ERRORCHECK_SPRINTF(_snprintf_s(sz, _countof(sz), _countof(sz) - 1, "unknown matter at $%p, %u bytes long\n", pvData, nBytes));
 //       }
-//       else if(::get_context_system()->m_pdumpcontext->GetDepth() > 0)
+//       else if(System.m_pdumpcontext->GetDepth() > 0)
 //       {
 //          // long form
-//          pobject->dump(*::get_context_system()->m_pdumpcontext);
-//          *::get_context_system()->m_pdumpcontext << "\n";
+//          pobject->dump(*System.m_pdumpcontext);
+//          *System.m_pdumpcontext << "\n";
 //       }
 //       if(false) // else
 //       {
 //          //::matter & obj = *pobject;
 //          // short form
 // // xxx         C_RUNTIME_ERRORCHECK_SPRINTF(_snprintf_s(sz, _countof(sz), _countof(sz) - 1, "a %hs matter at $%p, %u bytes long\n", typeid(obj).name(), pvData, nBytes));
-//          *::get_context_system()->m_pdumpcontext << sz;
+//          *System.m_pdumpcontext << sz;
 //       }
 //    }
 //    catch(...)
 //    {
-//       *::get_context_system()->m_pdumpcontext << sz;
+//       *System.m_pdumpcontext << sz;
 //    }
 // }
 
 // i32 __cdecl __crt_report_hook(i32 nRptType, char *szMsg, i32* pResult)
 // {
 //    // no hook on asserts or when m_pFile is nullptr
-//    if (nRptType == _CRT_ASSERT || ::get_context_system()->m_pdumpcontext->m_pfile == nullptr)
+//    if (nRptType == _CRT_ASSERT || System.m_pdumpcontext->m_pfile == nullptr)
 //       return FALSE;
 
 //    ASSERT( pResult != nullptr );
@@ -61,9 +61,9 @@
 //    if( szMsg == nullptr )
 //       __throw(invalid_argument_exception());
 
-//    // non-nullptr m_pFile, so go through ::get_context_system()->m_pdumpcontext for the message
+//    // non-nullptr m_pFile, so go through System.m_pdumpcontext for the message
 //    *pResult = FALSE;
-//    *::get_context_system()->m_pdumpcontext << szMsg;
+//    *System.m_pdumpcontext << szMsg;
 //    //Allow other report hooks to be called.
 //    return FALSE;
 // }

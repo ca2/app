@@ -11,7 +11,7 @@
 
 //extern string_map < __pointer(::apex::library) >* g_pmapLibrary;
 
-//extern ::mutex* &::get_context_system()->m_mutexLibrary;
+//extern ::mutex* &System.m_mutexLibrary;
 
 
 //extern "C"
@@ -192,13 +192,13 @@ int g_iApexRefCount = 0;
 //string_map < PFN_NEW_APEX_LIBRARY >* g_pmapNewApexLibrary = nullptr;
 
 
-//::mutex* &::get_context_system()->m_mutexLibrary = nullptr;
+//::mutex* &System.m_mutexLibrary = nullptr;
 
 
 CLASS_DECL_APEX string_map < PFN_NEW_APEX_LIBRARY >& __get_new_apex_library()
 {
 
-   return ::get_context_system()->m_mapNewApexLibrary;
+   return System.m_mapNewApexLibrary;
 
 }
 
@@ -206,7 +206,7 @@ CLASS_DECL_APEX string_map < PFN_NEW_APEX_LIBRARY >& __get_new_apex_library()
 CLASS_DECL_APEX string_map < __composite(::apex::library) >& __library()
 {
 
-   return ::get_context_system()->m_mapLibrary;
+   return System.m_mapLibrary;
 
 }
 
@@ -215,9 +215,9 @@ CLASS_DECL_APEX string_map < __composite(::apex::library) >& __library()
 CLASS_DECL_APEX PFN_NEW_APEX_LIBRARY get_get_new_apex_library(const char* psz)
 {
 
-   sync_lock sl(&::get_context_system()->m_mutexLibrary);
+   sync_lock sl(&System.m_mutexLibrary);
 
-   auto ppair = ::get_context_system()->m_mapNewApexLibrary.plookup(psz);
+   auto ppair = System.m_mapNewApexLibrary.plookup(psz);
 
    if (::is_null(ppair))
    {
@@ -234,9 +234,9 @@ CLASS_DECL_APEX PFN_NEW_APEX_LIBRARY get_get_new_apex_library(const char* psz)
 CLASS_DECL_APEX::apex::library& get_library(const char* psz)
 {
 
-   sync_lock sl(&::get_context_system()->m_mutexLibrary);
+   sync_lock sl(&System.m_mutexLibrary);
 
-   return *::get_context_system()->m_mapLibrary[psz];
+   return *System.m_mapLibrary[psz];
 
 }
 
@@ -244,7 +244,7 @@ CLASS_DECL_APEX::apex::library& get_library(const char* psz)
 CLASS_DECL_APEX void register_get_new_apex_library(const char* psz, PFN_NEW_APEX_LIBRARY pfnNewApexLibrary)
 {
 
-   sync_lock sl(&::get_context_system()->m_mutexLibrary);
+   sync_lock sl(&System.m_mutexLibrary);
 
    __get_new_apex_library()[psz] = pfnNewApexLibrary;
 
@@ -254,7 +254,7 @@ CLASS_DECL_APEX void register_get_new_apex_library(const char* psz, PFN_NEW_APEX
 CLASS_DECL_APEX void register_library(const char* psz, ::apex::library* plibrary)
 {
 
-   sync_lock sl(&::get_context_system()->m_mutexLibrary);
+   sync_lock sl(&System.m_mutexLibrary);
 
    __own(&System, m_mapLibrary[psz], plibrary);
 
@@ -465,7 +465,7 @@ void c_post_system_event(::u64 u, void* pparam)
    LPARAM lparam = (LPARAM)pparam;
 
 
-   ::get_context_system()->post_message(e_message_event2, (WPARAM)u, lparam);
+   System.post_message(e_message_event2, (WPARAM)u, lparam);
 
 
 }
@@ -487,9 +487,9 @@ CLASS_DECL_APEX ::estatus load_factory_library(string strLibrary)
 {
 
 
-   sync_lock sl(&::get_context_system()->m_mutexLibrary);
+   sync_lock sl(&System.m_mutexLibrary);
 
-   auto & plibrary = ::get_context_system()->m_mapLibrary[strLibrary];
+   auto & plibrary = System.m_mapLibrary[strLibrary];
 
    if (!plibrary)
    {

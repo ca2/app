@@ -34,8 +34,8 @@ CLASS_DECL_ACME ::estatus message_box(oswindow oswindow, const char* pszText, co
 {
 
    __throw(todo("message_box"));
-   //::user::primitive* primitive = ::get_context_system()->ui_from_handle(oswindow);
+   //::user::primitive* primitive = System.ui_from_handle(oswindow);
 
-   //return ::get_context_system()->message_box(primitive, pszText, pszTitle, emessagebox, callback);
+   //return System.message_box(primitive, pszText, pszTitle, emessagebox, callback);
 
 }

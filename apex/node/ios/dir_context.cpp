@@ -413,7 +413,7 @@ namespace ios
    ::file::path dir_context::time()
    {
       
-      return ::get_context_system()->m_pdirsystem->m_pathModule;
+      return System.m_pdirsystem->m_pathModule;
       
    }
 
@@ -447,7 +447,7 @@ namespace ios
    ::file::path dir_context::module()
    {
 
-      return ::get_context_system()->m_pdirsystem->m_pathModule;
+      return System.m_pdirsystem->m_pathModule;
 
    }
 
@@ -455,7 +455,7 @@ namespace ios
    ::file::path dir_context::ca2module()
    {
 
-      return ::get_context_system()->m_pdirsystem->m_pathCa2Module;
+      return System.m_pdirsystem->m_pathCa2Module;
 
    }
 
@@ -546,9 +546,9 @@ namespace ios
          
       }
       
-      m_pdirsystem = ::get_context_system()->m_pdirsystem;
+      m_pdirsystem = System.m_pdirsystem;
       
-      m_pfilesystem = ::get_context_system()->m_pfilesystem;
+      m_pfilesystem = System.m_pfilesystem;
 
       
 //      if(!update_module_path())

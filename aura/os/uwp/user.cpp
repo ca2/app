@@ -624,7 +624,7 @@ namespace user
 int GetMainScreenRect(LPRECT lprect)
 {
 
-   auto puiHost = __user_interaction(::get_context_system()->get_context_session()->m_puiHost);
+   auto puiHost = __user_interaction(System.get_context_session()->m_puiHost);
 
    *lprect = puiHost->m_pimpl->cast < ::user::interaction_impl >()->m_rectWindowScreen;
 

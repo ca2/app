@@ -145,7 +145,7 @@ void apex_application_startup (GApplication *application)
 
    GtkApplication * app = GTK_APPLICATION (application);
 
-   if(::get_context_system()->m_bGtkApp)
+   if(System.m_bGtkApp)
    {
 
       G_APPLICATION_CLASS (apex_application_parent_class)->startup (application);

@@ -59,7 +59,7 @@ string ca2_command_line()
 void sn_start_context()
 {
 
-   ::get_context_system()->sn_start_context();
+   System.sn_start_context();
 
 }
 

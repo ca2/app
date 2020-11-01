@@ -994,7 +994,7 @@ namespace aura
    //::file::path application::defer_process_path(::file::path path)
    //{
 
-   //   return get_context_application()->get_context_system()->defer_process_path(path, this);
+   //   return System.defer_process_path(path, this);
 
    //}
 
@@ -1009,7 +1009,7 @@ namespace aura
 
    //   }
 
-   //   return get_context_application()->get_context_system()->full_process_path(path, this);
+   //   return System.full_process_path(path, this);
 
    //}
 
@@ -1389,7 +1389,7 @@ namespace aura
 //      //if(::is_set(get_context_system()))
 //      //{
 //
-//      //   get_context_system()->add_reference(this);
+//      //   System.add_reference(this);
 //
 //      //}
 //
@@ -2002,7 +2002,7 @@ retry_license:
 //
 //#else
 //
-//         //if (get_context_system()->m_pappcore == nullptr)
+//         //if (System.m_pappcore == nullptr)
 //         //{
 //
 //         //   set_has_installer(false);
@@ -2047,7 +2047,7 @@ retry_license:
 //         if (get_context_system() != nullptr)
 //         {
 //
-//            m_bThreadToolsForIncreasedFps = get_context_system()->m_bThreadToolsForIncreasedFps;
+//            m_bThreadToolsForIncreasedFps = System.m_bThreadToolsForIncreasedFps;
 //
 //         }
 //
@@ -4504,7 +4504,7 @@ retry_license:
    void application::on_initial_frame_position(::user::frame * pframe)
    {
 
-      get_context_system()->on_initial_frame_position(pframe);
+      System.on_initial_frame_position(pframe);
 
    }
 

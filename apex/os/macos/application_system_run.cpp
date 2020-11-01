@@ -29,7 +29,7 @@
 void os_system_start()
 {
 
-   ::get_context_system()->begin();
+   System.begin();
    
 }
 

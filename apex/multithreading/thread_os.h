@@ -113,7 +113,7 @@ namespace multithreading
 
    //CLASS_DECL_APEX bool wait_threads(::duration duration, __pointer_array(::thread) threadaExcept = __pointer_array(::thread)());
 
-   CLASS_DECL_APEX __pointer(::thread) calc_parent(::task * ptask);
+   CLASS_DECL_APEX __pointer(::thread) calc_parent(::thread * pthread);
 
    //CLASS_DECL_APEX void __node_on_init_thread(thread * pthread);
    //CLASS_DECL_APEX void __node_on_term_thread(thread * pthread);

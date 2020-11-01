@@ -593,9 +593,9 @@ namespace apex
 
       // Ex. "draw2d" (Component) and implementation: either "draw2dcairo", "cairo", "draw2d_cairo"
 
-      sync_lock sl(&::get_context_system()->m_mutexLibrary);
+      sync_lock sl(&System.m_mutexLibrary);
 
-      __pointer(::apex::library) plibrary = ::get_context_system()->m_mapLibrary[pszComponent];
+      __pointer(::apex::library) plibrary = System.m_mapLibrary[pszComponent];
 
       if (plibrary && plibrary->is_opened())
       {
@@ -870,7 +870,7 @@ namespace apex
    ::apex::library * system::get_library(const char * pszLibrary1, bool bOpenCa2)
    {
 
-      sync_lock sl(&::get_context_system()->m_mutexLibrary);
+      sync_lock sl(&System.m_mutexLibrary);
 
       string strLibrary(pszLibrary1);
 
@@ -879,7 +879,7 @@ namespace apex
       strLibrary.ends_eat_ci(".dylib");
       strLibrary.begins_eat_ci("lib");
 
-      __pointer(::apex::library) plibrary = ::get_context_system()->m_mapLibrary[strLibrary].get();
+      __pointer(::apex::library) plibrary = System.m_mapLibrary[strLibrary].get();
 
       bool bLibraryOk = true;
 
@@ -1142,9 +1142,9 @@ namespace apex
    ::estatus system::process_init()
    {
 
-      set_system_update(&apex_system_update);
+//      set_system_update(&apex_system_update);
 
-      set_system_set_modified(&apex_system_set_modified);
+      //set_system_set_modified(&apex_system_set_modified);
 
       auto estatus = system_prep();
 
@@ -4421,63 +4421,63 @@ namespace apex
    }
 
 
-   ::thread* system::get_task(ITHREAD ithread)
-   {
-
-      sync_lock sl(&m_mutexThread);
-
-      return m_threadmap[ithread];
-
-   }
-
-
-   ITHREAD system::get_thread_id(::thread* pthread)
-   {
-
-      sync_lock sl(&m_mutexThread);
-
-      ITHREAD ithread = NULL_ITHREAD;
-
-      if (!m_threadidmap.lookup(pthread, ithread))
-      {
-
-         return 0;
-
-      }
-
-      return ithread;
-
-   }
-
-
-   void system::set_thread(ITHREAD ithread, ::thread* pthread)
-   {
-
-      sync_lock sl(&m_mutexThread);
-
-      m_threadmap[ithread].reset(pthread OBJ_REF_DBG_COMMA_P_NOTE(this, "thread::thread_set"));
-
-      m_threadidmap[pthread] = ithread;
-
-   }
-
-
-   void system::unset_thread(ITHREAD ithread, ::thread * pthread)
-   {
-
-      sync_lock sl(&m_mutexThread);
-
-#if OBJ_REF_DBG
-
-      m_threadmap[ithread].release(this);
-
-#endif
-
-      m_threadmap.remove_key(ithread);
-
-      m_threadidmap.remove_key(pthread);
-
-   }
+//   ::thread* system::get_task(ITHREAD ithread)
+//   {
+//
+//      sync_lock sl(&m_mutexThread);
+//
+//      return m_threadmap[ithread];
+//
+//   }
+//
+//
+//   ITHREAD system::get_thread_id(::thread* pthread)
+//   {
+//
+//      sync_lock sl(&m_mutexThread);
+//
+//      ITHREAD ithread = NULL_ITHREAD;
+//
+//      if (!m_threadidmap.lookup(pthread, ithread))
+//      {
+//
+//         return 0;
+//
+//      }
+//
+//      return ithread;
+//
+//   }
+//
+//
+//   void system::set_thread(ITHREAD ithread, ::thread* pthread)
+//   {
+//
+//      sync_lock sl(&m_mutexThread);
+//
+//      m_threadmap[ithread].reset(pthread OBJ_REF_DBG_COMMA_P_NOTE(this, "thread::thread_set"));
+//
+//      m_threadidmap[pthread] = ithread;
+//
+//   }
+//
+//
+//   void system::unset_thread(ITHREAD ithread, ::thread * pthread)
+//   {
+//
+//      sync_lock sl(&m_mutexThread);
+//
+//#if OBJ_REF_DBG
+//
+//      m_threadmap[ithread].release(this);
+//
+//#endif
+//
+//      m_threadmap.remove_key(ithread);
+//
+//      m_threadidmap.remove_key(pthread);
+//
+//   }
 
 
    ::thread_group * system::thread_group(::e_priority epriority)
@@ -5321,6 +5321,14 @@ namespace apex
    {
 
       return "";
+
+   }
+
+   
+   bool system::is_thread() const
+   {
+
+      return false;
 
    }
 

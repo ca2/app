@@ -383,10 +383,10 @@ CLASS_DECL_ACME::estatus _os_message_box(oswindow oswindow, const char* pszMessa
 CLASS_DECL_APEX ::estatus apex_os_message_box(oswindow oswindow, const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox, const ::future & future)
 {
 
-   if (::get_context_system()->is_dedicated_thread())
+   if (System.is_dedicated_thread())
    {
 
-      ::get_context_system()->fork([=]()
+      System.fork([=]()
          {
 
             _os_message_box(oswindow, pszMessage, pszTitle, emessagebox, future);

@@ -2091,7 +2091,7 @@ CLASS_DECL_APEX inline ::apex::session * get_context_session(::apex::session * p
 
 
 //CLASS_DECL_APEX ::apex::system * get_context_system();
-//CLASS_DECL_APEX ::apex::system * get_context_system(::layered * pobjectContext);
+CLASS_DECL_APEX ::apex::system * get_context_system(::layered * pobjectContext);
 //CLASS_DECL_APEX inline ::apex::system * get_context_system(::apex::system * psystem);
 
 

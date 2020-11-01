@@ -4320,9 +4320,9 @@ bool thread::kick_thread()
 CLASS_DECL_APEX bool is_thread_on(ITHREAD id)
 {
 
-   sync_lock sl(&::get_context_system()->m_mutexThreadOn);
+   sync_lock sl(&::get_context_system()->m_mutexTaskOn);
 
-   return ::get_context_system()->m_mapThreadOn.plookup(id) != nullptr;
+   return ::get_context_system()->m_mapTaskOn.plookup(id) != nullptr;
 
 }
 
@@ -4344,9 +4344,9 @@ CLASS_DECL_APEX bool is_active(::thread * pthread)
 CLASS_DECL_APEX void set_thread_on(ITHREAD id)
 {
 
-   sync_lock sl(&::get_context_system()->m_mutexThreadOn);
+   sync_lock sl(&::get_context_system()->m_mutexTaskOn);
 
-   ::get_context_system()->m_mapThreadOn.set_at(id, id);
+   ::get_context_system()->m_mapTaskOn.set_at(id, id);
 
 }
 
@@ -4354,9 +4354,9 @@ CLASS_DECL_APEX void set_thread_on(ITHREAD id)
 CLASS_DECL_APEX void set_thread_off(ITHREAD id)
 {
 
-   sync_lock sl(&::get_context_system()->m_mutexThreadOn);
+   sync_lock sl(&::get_context_system()->m_mutexTaskOn);
 
-   ::get_context_system()->m_mapThreadOn.remove_key(id);
+   ::get_context_system()->m_mapTaskOn.remove_key(id);
 
 }
 

@@ -134,7 +134,7 @@ namespace acme
 class layered;
 
 CLASS_DECL_ACME ::acme::system * get_context_system();
-CLASS_DECL_ACME ::acme::system * get_context_system(::layered * pobjectContext);
+//CLASS_DECL_ACME ::acme::system * get_context_system(::layered * pobjectContext);
 CLASS_DECL_ACME inline ::acme::system * get_context_system(::acme::system * psystem);
 
 

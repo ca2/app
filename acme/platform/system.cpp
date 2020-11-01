@@ -99,6 +99,18 @@ namespace acme
    }
 
 
+   void system::unset_task(ITHREAD ithread, ::task * ptask)
+   {
+
+      sync_lock sl(&m_mutexTask);
+
+      m_taskmap.remove_key(ithread);
+
+      m_taskidmap.remove_key(ptask);
+
+   }
+
+
 } // namespace acme
 
 

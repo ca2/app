@@ -185,7 +185,7 @@ namespace multithreading
 
       }
 
-      if (pthread == ::get_context_system())
+      if (pthread == &System)
       {
 
          return nullptr;
@@ -525,32 +525,32 @@ void set_global_application(::apex::application* papp)
 
 }
 
-::apex::system * g_papexsystem = nullptr;
-
-CLASS_DECL_APEX ::apex::system * get_context_system()
-{
-
-   thread * pthread = get_thread();
-
-   if (pthread == nullptr)
-   {
-
-      return g_papexsystem;
-
-   }
-
-   ::apex::system * psystem = pthread->get_context_system();
-
-   if (!psystem)
-   {
-
-      psystem = g_papexsystem;
-
-   }
-
-   return psystem;
-
-}
+//::apex::system * g_papexsystem = nullptr;
+//
+//CLASS_DECL_APEX ::apex::system * get_context_system()
+//{
+//
+//   thread * pthread = get_thread();
+//
+//   if (pthread == nullptr)
+//   {
+//
+//      return g_papexsystem;
+//
+//   }
+//
+//   ::apex::system * psystem = pthread->get_context_system();
+//
+//   if (!psystem)
+//   {
+//
+//      psystem = g_papexsystem;
+//
+//   }
+//
+//   return psystem;
+//
+//}
 
 
 bool do_events()
@@ -590,7 +590,7 @@ bool do_events()
       try
       {
 
-         ::apex::system* psystem = ::get_context_system();
+         auto psystem = &System;
 
          if (::is_set(psystem))
          {

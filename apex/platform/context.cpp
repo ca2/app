@@ -518,7 +518,7 @@ string context::defer_get_file_title(string strParam)
 ::file::path context::side_get_matter_path(string strMatter)
 {
 
-   auto pdirsystem = ::get_context_system()->m_pdirsystem;
+   auto pdirsystem = System.m_pdirsystem;
 
    ::file::path pathResource = pdirsystem->m_pathInstall;
 

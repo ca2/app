@@ -8,6 +8,32 @@ namespace multithreading
 {
 
 
+   bool task_registered(::task * ptask)
+   {
+
+      return ::get_context_system()->get_task_id(ptask) != 0;
+
+   }
+
+
+   void task_register(ITHREAD itask, ::task * ptask)
+   {
+
+      ::get_context_system()->set_task(itask, ptask);
+
+   }
+
+
+   void task_unregister(ITHREAD itask, ::task * ptask)
+   {
+
+      auto psystem = ::get_context_system();
+
+      psystem->unset_task(itask, ptask);
+
+   }
+
+
    //CLASS_DECL_ACME comparable_eq_array<ITHREAD> * s_piaThread2 = nullptr;
    //CLASS_DECL_ACME __pointer_array(thread) * s_pthreadptra2 = nullptr;
    //CLASS_DECL_ACME::critical_section * s_pcs2 = nullptr;

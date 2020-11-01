@@ -131,7 +131,7 @@ CLASS_DECL_AQUA ::aqua::audio * get_new_audio()
 CLASS_DECL_AQUA ::aqua::audio * get_context_audio(::layered * pobjectContext)
 {
 
-   return Sys(pobjectContext).defer_get_audio();
+   return System.defer_get_audio();
 
 }
 

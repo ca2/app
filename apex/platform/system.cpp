@@ -12,7 +12,7 @@
 
 
 
-extern ::apex::system* g_papexsystem;
+//extern ::apex::system* g_papexsystem;
 
 CLASS_DECL_APEX void apex_generate_random_bytes(void* p, memsize s);
 
@@ -105,14 +105,9 @@ namespace apex
       m_bSystemSynchronizedCursor = true;
       m_bSystemSynchronizedScreen = true;
 
-      set_context_system(this OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
+      //set_context_system(this OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
 
-      if (g_papexsystem == nullptr)
-      {
-
-         g_papexsystem = this;
-
-      }
+      
 
       common_construct();
 
@@ -149,7 +144,7 @@ namespace apex
 
       }
 
-      set_context_system(this);
+      //set_context_system(this);
 
       set_context(this);
 
@@ -158,7 +153,7 @@ namespace apex
       if (::is_set(get_context_application()))
       {
 
-         __compose(m_psystemParent, get_context_application()->get_context_system());
+         //__compose(m_psystemParent, get_context_application()->get_context_system());
 
       }
 
@@ -957,12 +952,6 @@ namespace apex
 
       //::acme::del(m_ppatch);
 
-      if (g_papexsystem == this)
-      {
-
-         g_papexsystem = nullptr;
-
-      }
 
       //::acme::del(m_purldepartment);
 
@@ -3710,16 +3699,16 @@ namespace apex
    bool system::set_user_language(::apex::application * papp, index iSel)
    {
 
-      if (iSel < 0 || iSel >= get_context_system()->get_context_session()->get_current_application()->m_puserlanguagemap->m_straLang.get_count())
+      if (iSel < 0 || iSel >= System.get_context_session()->get_current_application()->m_puserlanguagemap->m_straLang.get_count())
       {
 
          return false;
 
       }
 
-      string strLang = get_context_system()->get_context_session()->get_current_application()->m_puserlanguagemap->m_straLang[iSel];
+      string strLang = System.get_context_session()->get_current_application()->m_puserlanguagemap->m_straLang[iSel];
 
-      if (strLang == get_context_system()->get_context_session()->get_current_application()->m_puserlanguagemap->m_strLang)
+      if (strLang == System.get_context_session()->get_current_application()->m_puserlanguagemap->m_strLang)
       {
 
          return true;
@@ -3741,7 +3730,7 @@ namespace apex
    bool system::set_user_language(::apex::application * papp, string strLang)
    {
 
-      get_context_system()->get_context_session()->get_current_application()->m_puserlanguagemap->set_language(papp, strLang);
+      System.get_context_session()->get_current_application()->m_puserlanguagemap->set_language(papp, strLang);
 
       return System.set_standalone_setting("current_language", strLang);
 
@@ -5614,7 +5603,7 @@ string get_bundle_app_library_name();
 
    }
 
-   auto pobject = move_transfer(pstaticsetup->new_object());
+   auto pobject = pstaticsetup->new_object();
 
    if (!pobject)
    {
@@ -5623,7 +5612,18 @@ string get_bundle_app_library_name();
 
    }
 
-   return pobject.cast < ::apex::system >();
+   auto psystem = dynamic_cast<::apex::system*>(pobject);
+
+   if(!psystem)
+   { 
+   
+      delete pobject;
+
+      return nullptr;
+   
+   }
+
+   return psystem;
 
 }
 

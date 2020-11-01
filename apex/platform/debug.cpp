@@ -49,7 +49,7 @@ CLASS_DECL_APEX void __simple_tracea(matter* pobject, e_trace_level elevel, cons
 //void system_call_update_wallpaper_changed()
 //{
 //
-//   ::get_context_system()->call_update(id_wallpaper_changed);
+//   System.call_update(id_wallpaper_changed);
 //
 //}
 
@@ -57,7 +57,7 @@ CLASS_DECL_APEX void __simple_tracea(matter* pobject, e_trace_level elevel, cons
 void system_call_update_app_activated()
 {
 
-   ::get_context_system()->apply_update(id_app_activated);
+   System.apply_update(id_app_activated);
 
 }
 
@@ -65,7 +65,7 @@ void system_call_update_app_activated()
 //void system_call_update_app_changed_occlusion_state()
 //{
 //
-//   ::get_context_system()->call_update(id_app_changed_occlusion_state);
+//   System.call_update(id_app_changed_occlusion_state);
 //
 //}
 //
@@ -103,7 +103,7 @@ CLASS_DECL_APEX void __tracea(::matter * pobject, e_trace_level elevel, const ch
 
    }
 
-   ::get_context_system()->__tracea(pobject, elevel, pszFunction, pszFile, iLine, psz);
+   System.__tracea(pobject, elevel, pszFunction, pszFile, iLine, psz);
 
 }
 
@@ -143,7 +143,7 @@ CLASS_DECL_APEX void __tracev(::matter * pobject, e_trace_level elevel, const ch
 
    }
 
-   ::get_context_system()->__tracev(pobject, elevel, pszFunction, pszFile, iLine, pszFormat, args);
+   System.__tracev(pobject, elevel, pszFunction, pszFile, iLine, pszFormat, args);
 
 }
 

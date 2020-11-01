@@ -12562,7 +12562,7 @@ restart:
    CLASS_DECL_AURA ::mutex *  mutex_children()
    {
 
-      return &::get_context_system()->m_mutexUserChildren;
+      return &System.m_mutexUserChildren;
 
    }
 

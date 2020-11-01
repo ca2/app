@@ -879,7 +879,7 @@ void context::locale_schema_matter(string_array & stra, const string_array & str
    else if (get_context_system())
    {
 
-      get_context_system()->locale_schema_matter(stra, straMatterLocator, strLocale, strSchema);
+      System.locale_schema_matter(stra, straMatterLocator, strLocale, strSchema);
 
    }
 
@@ -904,7 +904,7 @@ string context::get_locale_schema_dir()
    else if (get_context_system())
    {
 
-      return get_context_system()->get_locale_schema_dir();
+      return System.get_locale_schema_dir();
 
    }
    else

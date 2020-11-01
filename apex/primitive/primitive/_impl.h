@@ -136,7 +136,7 @@
 //  else
 //  {
 //
-//     return ::get_context_system()->m_pbase64->decode(m_block, str);
+//     return System.m_pbase64->decode(m_block, str);
 //
 //  }
 //
@@ -147,7 +147,7 @@
 //inline ::image_result object::get_image(const var & varFile, ::u64 uTrait, PRED pred)
 //{
 //
-//  return ::get_context_system()->get_image(this, varFile, uTrait, pred);
+//  return System.get_image(this, varFile, uTrait, pred);
 //
 //}
 //

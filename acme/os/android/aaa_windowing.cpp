@@ -1059,15 +1059,15 @@ void android_mouse(unsigned int message, float x, float y)
    if (::get_context_system() == nullptr)
       return;
 
-   if (::get_context_system()->get_context_session() == nullptr)
+   if (System.get_context_session() == nullptr)
       return;
 
-   if (::get_context_system()->get_context_session()->m_puiHost == nullptr)
+   if (System.get_context_session()->m_puiHost == nullptr)
       return;
 
    MESSAGE msg;
 
-   msg.hwnd = ::get_context_system()->get_context_session()->m_puiHost->get_handle();
+   msg.hwnd = System.get_context_session()->m_puiHost->get_handle();
 
    msg.message = message;
 
@@ -1079,8 +1079,8 @@ void android_mouse(unsigned int message, float x, float y)
 
    msg.pt.y = (long)y;
 
-   //::get_context_system()->get_context_session()->m_puiHost->message_handler(&msg);
-   ::get_context_system()->get_context_session()->m_puiHost->post_message(msg.message, msg.wParam, msg.lParam);
+   //System.get_context_session()->m_puiHost->message_handler(&msg);
+   System.get_context_session()->m_puiHost->post_message(msg.message, msg.wParam, msg.lParam);
 
 }
 
@@ -1139,10 +1139,10 @@ void _android_key(unsigned int message, int keyCode, int iUni)
    if (::get_context_system() == nullptr)
       return;
 
-   if (::get_context_system()->get_context_session() == nullptr)
+   if (System.get_context_session() == nullptr)
       return;
 
-   if (::get_context_system()->get_context_session()->m_puiHost == nullptr)
+   if (System.get_context_session()->m_puiHost == nullptr)
       return;
 
    __pointer(::message::key) pkey = __new(::message::key());
@@ -1156,8 +1156,8 @@ void _android_key(unsigned int message, int keyCode, int iUni)
 
    }
 
-   //::get_context_system()->get_context_session()->m_puiHost->message_handler(pkey);
-   ::get_context_system()->get_context_session()->m_puiHost->post(pkey);
+   //System.get_context_session()->m_puiHost->message_handler(pkey);
+   System.get_context_session()->m_puiHost->post(pkey);
 
 }
 
@@ -1172,13 +1172,13 @@ void _android_size(float xDummy, float yDummy, float cx, float cy)
    if (::get_context_system() == nullptr)
       return;
 
-   if (::get_context_system()->get_context_session() == nullptr)
+   if (System.get_context_session() == nullptr)
       return;
 
-   if (::get_context_system()->get_context_session()->m_puiHost == nullptr)
+   if (System.get_context_session()->m_puiHost == nullptr)
       return;
 
-   ::get_context_system()->get_context_session()->m_puiHost->set_window_pos(zorder_top, 0, 0, cx, cy, SWP_SHOWWINDOW);
+   System.get_context_session()->m_puiHost->set_window_pos(zorder_top, 0, 0, cx, cy, SWP_SHOWWINDOW);
 
 
 }
@@ -1231,7 +1231,7 @@ void android_on_size(float xScreen, float yScreen, float pikachu, float yBitmap)
    //::fork(::get_context_system(), [=]()
    //{
 
-   ::get_context_system()->get_context_session()->m_puiHost->post_pred([=]()
+   System.get_context_session()->m_puiHost->post_pred([=]()
       {
 
          _android_size(xScreen, yScreen, pikachu, yBitmap);
@@ -1334,13 +1334,13 @@ void android_on_text(e_os_text etext, const wchar_t * pwch, size_t len)
 
    string strText(pwch, len);
 
-   //::get_context_system()->fork([=]()
+   //System.fork([=]()
    //{
 
-   ::get_context_system()->get_context_session()->m_puiHost->post_pred([=]()
+   System.get_context_session()->m_puiHost->post_pred([=]()
       {
 
-         ::get_context_system()->on_os_text(etext, strText);
+         System.on_os_text(etext, strText);
 
       });
 
@@ -1383,7 +1383,7 @@ namespace acme
 
       }
 
-      ::get_context_system()->get_context_session()->m_puiHost->post(pkey);
+      System.get_context_session()->m_puiHost->post(pkey);
 
 
    }
@@ -1602,7 +1602,7 @@ double _001GetWindowTopLeftWeightedOccludedOpaqueRate(oswindow oswindow)
 int GetMainScreenRect(LPRECT lprect)
 {
 
-   *lprect = ::get_context_system()->get_context_session()->m_puiHost->m_pimpl->cast < ::user::interaction_impl >()->m_rectWindowScreen;
+   *lprect = System.get_context_session()->m_puiHost->m_pimpl->cast < ::user::interaction_impl >()->m_rectWindowScreen;
 
    return TRUE;
 
@@ -1612,7 +1612,7 @@ int GetMainScreenRect(LPRECT lprect)
 int SetMainScreenRect(LPCRECT lpcrect)
 {
 
-   ::get_context_system()->get_context_session()->m_puiHost->m_pimpl->cast < ::user::interaction_impl >()->m_rectWindowScreen = *lpcrect;
+   System.get_context_session()->m_puiHost->m_pimpl->cast < ::user::interaction_impl >()->m_rectWindowScreen = *lpcrect;
 
    return TRUE;
 

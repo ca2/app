@@ -269,10 +269,10 @@ namespace aura
 
       //::url::department                           & url()     { return m_urldepartment; }
 
-      ::thread * get_task(ITHREAD ithread);
-      ITHREAD get_thread_id(::thread * pthread);
-      void set_thread(ITHREAD ithread, ::thread * pthread);
-      void unset_thread(ITHREAD ithread, ::thread * pthread);
+      //::thread * get_task(ITHREAD ithread);
+      //ITHREAD get_thread_id(::thread * pthread);
+      //void set_thread(ITHREAD ithread, ::thread * pthread);
+      //void unset_thread(ITHREAD ithread, ::thread * pthread);
 
 
       ::aura::estamira& estamira();

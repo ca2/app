@@ -73,7 +73,7 @@ CLASS_DECL_AURA void __tracea(::matter * pobject, e_trace_level elevel, const ch
 
    }
 
-   ::get_context_system()->__tracea(pobject, elevel, pszFunction, pszFile, iLine, psz);
+   System.__tracea(pobject, elevel, pszFunction, pszFile, iLine, psz);
 
 }
 
@@ -112,7 +112,7 @@ CLASS_DECL_AURA void __tracev(::matter * pobject, e_trace_level elevel, const ch
 
    }
 
-   ::get_context_system()->__tracev(pobject, elevel, pszFunction, pszFile, iLine, pszFormat, args);
+   System.__tracev(pobject, elevel, pszFunction, pszFile, iLine, pszFormat, args);
 
 }
 

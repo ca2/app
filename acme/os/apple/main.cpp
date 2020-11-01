@@ -53,7 +53,7 @@
 //
 //         pcreate->m_pcommandline = new command_line(::get_context_system(), get_command_line());
 //
-//         ::get_context_system()->request({ pcreate });
+//         System.request({ pcreate });
 //
 //      }
 //

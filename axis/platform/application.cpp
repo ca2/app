@@ -750,7 +750,7 @@ namespace axis
 //
 //#else
 //
-//         //if (get_context_system()->m_pappcore == nullptr)
+//         //if (System.m_pappcore == nullptr)
 //         //{
 //
 //         //   set_has_installer(false);
@@ -795,7 +795,7 @@ namespace axis
       //   if (get_context_system() != nullptr)
       //   {
 
-      //      m_bThreadToolsForIncreasedFps = get_context_system()->m_bThreadToolsForIncreasedFps;
+      //      m_bThreadToolsForIncreasedFps = System.m_bThreadToolsForIncreasedFps;
 
       //   }
 
@@ -965,7 +965,7 @@ namespace axis
             if (get_context_system() != nullptr)
             {
 
-               get_context_system()->request({::command_check_exit});
+               System.request({::command_check_exit});
 
             }
 
@@ -1490,7 +1490,7 @@ namespace axis
          //if(::is_set(get_context_system()))
          //{
 
-         //   get_context_system()->app_remove(this);
+         //   System.app_remove(this);
 
          //}
 

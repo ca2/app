@@ -11,7 +11,7 @@ namespace multithreading
    bool task_registered(::task * ptask)
    {
 
-      return ::get_context_system()->get_task_id(ptask) != 0;
+      return System.get_task_id(ptask) != 0;
 
    }
 
@@ -19,7 +19,7 @@ namespace multithreading
    void task_register(ITHREAD itask, ::task * ptask)
    {
 
-      ::get_context_system()->set_task(itask, ptask);
+      System.set_task(itask, ptask);
 
    }
 
@@ -73,7 +73,7 @@ namespace multithreading
 
    //   //return s_piaThread2->contains(id);
 
-   //   return ::get_context_system()->get_task(id) != nullptr;
+   //   return System.get_task(id) != nullptr;
 
    //}
 
@@ -81,7 +81,7 @@ namespace multithreading
    //bool thread_registered(::thread * pthread)
    //{
 
-   //   return ::get_context_system()->get_thread_id(pthread) != 0;
+   //   return System.get_thread_id(pthread) != 0;
 
    //}
 
@@ -89,7 +89,7 @@ namespace multithreading
    //void thread_register(ITHREAD ithread, ::thread * pthread)
    //{
 
-   //   ::get_context_system()->set_thread(ithread, pthread);
+   //   System.set_thread(ithread, pthread);
 
    //}
 
@@ -121,9 +121,9 @@ namespace multithreading
 
    //   }
 
-   //   sync_lock sl(&::get_context_system()->m_mutexThread);
+   //   sync_lock sl(&System.m_mutexThread);
 
-   //   for (auto & pair : ::get_context_system()->m_threadidmap)
+   //   for (auto & pair : System.m_threadidmap)
    //   {
 
    //      try
@@ -152,9 +152,9 @@ namespace multithreading
    //void post_quit_to_all_threads()
    //{
 
-   //   sync_lock sl(&::get_context_system()->m_mutexThread);
+   //   sync_lock sl(&System.m_mutexThread);
 
-   //   for (auto& pair : ::get_context_system()->m_threadidmap)
+   //   for (auto& pair : System.m_threadidmap)
    //   {
 
    //      try
@@ -176,9 +176,9 @@ namespace multithreading
    //CLASS_DECL_ACME void post_to_all_threads(const ::id & id, WPARAM wparam, LPARAM lparam)
    //{
 
-   //   sync_lock sl(&::get_context_system()->m_mutexThread);
+   //   sync_lock sl(&System.m_mutexThread);
 
-   //   for (auto& pair : ::get_context_system()->m_threadidmap)
+   //   for (auto& pair : System.m_threadidmap)
    //   {
 
    //      try
@@ -310,7 +310,7 @@ namespace multithreading
 //      {
 //         ////////// and have short life, so it is safe to keep it running
 //         //return true;
-//         return ::get_context_system()->thread_get_run();
+//         return System.thread_get_run();
 //
 //      }
 //

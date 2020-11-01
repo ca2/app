@@ -98,12 +98,12 @@ namespace multithreading
    CLASS_DECL_APEX void init_multithreading();
    CLASS_DECL_APEX void term_multithreading();
 
-   CLASS_DECL_APEX bool thread_registered(::thread * pthread);
-   CLASS_DECL_APEX bool thread_id_registered(ITHREAD id);
+   //CLASS_DECL_APEX bool thread_registered(::thread * pthread);
+   //CLASS_DECL_APEX bool thread_id_registered(ITHREAD id);
 
-   CLASS_DECL_APEX void thread_register(ITHREAD ithread, ::thread * pthread);
+   //CLASS_DECL_APEX void thread_register(ITHREAD ithread, ::thread * pthread);
 
-   CLASS_DECL_APEX void thread_unregister(ITHREAD ithread, ::thread * pthread);
+   //CLASS_DECL_APEX void thread_unregister(ITHREAD ithread, ::thread * pthread);
 
    CLASS_DECL_APEX bool is_child(::task * ptask);
 

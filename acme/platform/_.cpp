@@ -12,7 +12,7 @@
 
 //extern string_map < __pointer(::acme::library) >* g_pmapLibrary;
 
-//extern ::mutex* &::get_context_system()->m_mutexLibrary;
+//extern ::mutex* &System.m_mutexLibrary;
 
 
 //extern "C"
@@ -191,7 +191,7 @@ CLASS_DECL_ACME u32 g_tickStartTime = 0;
 //string_map < PFN_NEW_ACME_LIBRARY >* g_pmapNewAuraLibrary = nullptr;
 
 
-//::mutex* &::get_context_system()->m_mutexLibrary = nullptr;
+//::mutex* &System.m_mutexLibrary = nullptr;
 
 
 
@@ -400,7 +400,7 @@ CLASS_DECL_ACME int is_ptr_null(const void* p, size_t s)
 //   LPARAM lparam = (LPARAM)pparam;
 //
 //
-//   ::get_context_system()->post_message(e_message_event2, (WPARAM)u, lparam);
+//   System.post_message(e_message_event2, (WPARAM)u, lparam);
 //
 //
 //}

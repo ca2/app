@@ -114,7 +114,7 @@ CLASS_DECL_ACME int __cpp_assert_failed_line(const char * pszFileName, int iLine
    //if(pthread != nullptr)
    //{
 
-   //   pthread->get_context_system()->assert_failed_line(pszFileName,iLineNumber);
+   //   pthread->System.assert_failed_line(pszFileName,iLineNumber);
 
    //}
 

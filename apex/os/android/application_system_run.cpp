@@ -72,7 +72,7 @@ string ca2_command_line()
 
    ::set_main_ithread(psystem->m_uThread);
 
-   // get_context_system()->m_strAppId = m_pmaindata->m_strAppId;
+   // System.m_strAppId = m_pmaindata->m_strAppId;
 
    if (!psystem->begin_synch())
    {

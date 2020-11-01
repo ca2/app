@@ -5690,14 +5690,14 @@ LRESULT CALLBACK __window_procedure(oswindow oswindow, const ::id & id, WPARAM w
 
    }
 
-   if (::get_context_system()->m_psystem == nullptr)
+   if (System.m_psystem == nullptr)
    {
 
       return 0;
 
    }
 
-   ::user::interaction_impl * pimpl = ::get_context_system()->m_psystem->impl_from_handle(oswindow);
+   ::user::interaction_impl * pimpl = System.m_psystem->impl_from_handle(oswindow);
 
    pimpl->m_uiMessage = message;
 

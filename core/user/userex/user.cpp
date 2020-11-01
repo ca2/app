@@ -1901,7 +1901,7 @@ namespace core
    bool user::impl_set_wallpaper(index iScreen, string strLocalImagePath)
    {
 
-      return ::get_context_system()->android_set_user_wallpaper(strLocalImagePath);
+      return System.android_set_user_wallpaper(strLocalImagePath);
 
    }
 
@@ -1910,7 +1910,7 @@ namespace core
 
       string strLocalImagePath;
 
-      ::get_context_system()->android_get_user_wallpaper(strLocalImagePath);
+      System.android_get_user_wallpaper(strLocalImagePath);
 
       return strLocalImagePath;
 

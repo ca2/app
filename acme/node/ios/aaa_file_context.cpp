@@ -33,9 +33,9 @@ namespace ios
          
       }
       
-      m_pdirsystem = ::get_context_system()->m_pdirsystem;
+      m_pdirsystem = System.m_pdirsystem;
       
-      m_pfilesystem = ::get_context_system()->m_pfilesystem;
+      m_pfilesystem = System.m_pfilesystem;
 
       string str = getenv("HOME");
 

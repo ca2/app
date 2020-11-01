@@ -149,7 +149,7 @@ namespace user
 
 
 
-inline ::user::primitive* __user_primitive(oswindow oswindow);
+CLASS_DECL_AURA ::user::primitive* __user_primitive(oswindow oswindow);
 
 
 

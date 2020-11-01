@@ -13,12 +13,12 @@
 #pragma once
 
 
-#undef Sys
+#undef System
 #undef Sess
 #undef App
 
 
-#define Sys(psystem) (*psystem->m_papexsystem)
+#define System (*::get_context_system()->m_papexsystem)
 #define Sess(pcontextsession) (pcontextsession)
 #define App(playered) (*::get_context_application(playered))
 

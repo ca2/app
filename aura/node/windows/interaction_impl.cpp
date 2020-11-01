@@ -5121,7 +5121,7 @@ LRESULT CALLBACK __window_procedure(HWND oswindow, UINT message, WPARAM wparam, 
 
    }
 
-   if (::get_context_system()->get_context_system() == nullptr)
+   if (&System == nullptr)
    {
 
       return 0;
@@ -6249,7 +6249,7 @@ CLASS_DECL_AURA wstring windows_register_window_class(::layered * pobjectContext
   // see if the class already exists
   WNDCLASSEXW wndcls = {};
 
-  if (::GetClassInfoExW(papp->get_context_system()->m_hinstance, wstrClassName, &wndcls))
+  if (::GetClassInfoExW(System.m_hinstance, wstrClassName, &wndcls))
   {
      // already registered, assert everything is good
      ASSERT(wndcls.style == nClassStyle);

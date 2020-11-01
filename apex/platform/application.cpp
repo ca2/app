@@ -248,7 +248,7 @@ namespace apex
 
          set_context_session(m_pappParent->get_context_session());
 
-         set_context_system(m_pappParent->get_context_system());
+         //set_context_system(m_pappParent->get_context_system());
 
       }
 
@@ -1297,7 +1297,7 @@ namespace apex
    //::file::path application::defer_process_path(::file::path path)
    //{
 
-   //   return get_context_application()->get_context_system()->defer_process_path(path, this);
+   //   return System.defer_process_path(path, this);
 
    //}
 
@@ -1312,7 +1312,7 @@ namespace apex
 
    //   }
 
-   //   return get_context_application()->get_context_system()->full_process_path(path, this);
+   //   return System.full_process_path(path, this);
 
    //}
 
@@ -1746,7 +1746,7 @@ namespace apex
 //      //if(::is_set(get_context_system()))
 //      //{
 //
-//      //   get_context_system()->add_reference(this);
+//      //   System.add_reference(this);
 //
 //      //}
 //
@@ -3112,7 +3112,7 @@ retry_license:
 
 #else
 
-         //if (get_context_system()->m_pappcore == nullptr)
+         //if (System.m_pappcore == nullptr)
          //{
 
          //   set_has_installer(false);
@@ -3121,7 +3121,7 @@ retry_license:
          //else
          {
 
-            set_has_installer(!get_context_system()->has_apex_application_factory());
+            set_has_installer(!System.has_apex_application_factory());
 
          }
 
@@ -3157,7 +3157,7 @@ retry_license:
          if (get_context_system() != nullptr)
          {
 
-            m_bThreadToolsForIncreasedFps = get_context_system()->m_bThreadToolsForIncreasedFps;
+            m_bThreadToolsForIncreasedFps = System.m_bThreadToolsForIncreasedFps;
 
          }
 
@@ -3300,7 +3300,7 @@ retry_license:
          if (get_context_system() != nullptr)
          {
 
-            get_context_system()->request({::command_check_exit});
+            System.request({::command_check_exit});
 
          }
 
@@ -3451,10 +3451,10 @@ retry_license:
       if (get_context_system())
       {
 
-         if (get_context_system()->m_pintstringLanguageResourceMap != nullptr)
+         if (System.m_pintstringLanguageResourceMap != nullptr)
          {
 
-            m_puserlanguagemap->set_language_resource_map(get_context_system()->m_pintstringLanguageResourceMap);
+            m_puserlanguagemap->set_language_resource_map(System.m_pintstringLanguageResourceMap);
 
          }
 
@@ -5656,7 +5656,7 @@ retry_license:
    void application::on_initial_frame_position(::user::frame * pframe)
    {
 
-      get_context_system()->on_initial_frame_position(pframe);
+      System.on_initial_frame_position(pframe);
 
    }
 

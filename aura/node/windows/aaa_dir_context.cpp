@@ -33,9 +33,9 @@ namespace windows
 
       }
 
-      __refer(m_pfilesystem, get_context_system()->m_pfilesystem);
+      __refer(m_pfilesystem, System.m_pfilesystem);
 
-      __refer(m_pdirsystem, get_context_system()->m_pdirsystem);
+      __refer(m_pdirsystem, System.m_pdirsystem);
 
       return ::success;
 

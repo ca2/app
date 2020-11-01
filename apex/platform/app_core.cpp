@@ -15,7 +15,7 @@ CLASS_DECL_APEX void os_term_windowing();
 
 //extern string_map < __pointer(::apex::library) >* g_pmapLibrary ;
 //extern string_map < PFN_NEW_APEX_LIBRARY >* g_pmapNewAuraLibrary;
-//extern ::mutex* &::get_context_system()->m_mutexLibrary;
+//extern ::mutex* &System.m_mutexLibrary;
 
 
 #ifdef RASPBIAN
@@ -513,17 +513,17 @@ CLASS_DECL_APEX void set_debug_pointer(void * p);
 
    }
 
-//   get_context_system()->common_construct();
+//   System.common_construct();
 
    ::set_task(get_context_system());
 
    debug_context_object(get_context_system());
 
-   get_context_system()->initialize(get_context_system());
+   System.initialize(get_context_system());
 
    //set_context_object(get_context_system());
 
-   auto papp = get_context_system()->m_papplicationStartup;
+   auto papp = System.m_papplicationStartup;
 
    auto pcreate = papp->__create_new< ::create> ();
 
@@ -535,11 +535,11 @@ CLASS_DECL_APEX void set_debug_pointer(void * p);
 
    pcreate->finish_initialization();
 
-   get_context_system()->add_create(pcreate);
+   System.add_create(pcreate);
 
    // what could influence time before Main?
    // cold start (never previously called program and its Dlls...)?
-   get_context_system()->m_tickMainStart = m_tickStart;
+   System.m_tickMainStart = m_tickStart;
 
    //xxdebug_box("box1", "box1", MB_ICONINFORMATION);
 
@@ -1735,7 +1735,7 @@ bool app_core::has_apex_application_factory() const
 //::u32 app_core::system_main()
 //{
 //
-//   ::estatus estatus = get_context_system()->__thread_procedure();
+//   ::estatus estatus = System.__thread_procedure();
 //
 //   return estatus;
 //
@@ -1830,7 +1830,7 @@ __result(::apex::application) app_core::get_new_application(::object* pobjectCon
 
          }
 
-         auto plibrary = get_context_system()->get_library(strLibrary);
+         auto plibrary = System.get_library(strLibrary);
 
          if (!plibrary)
          {
@@ -1930,8 +1930,8 @@ __result(::apex::application) app_core::get_new_application(::object* pobjectCon
    if (!papp->is_serviceable() || papp->is_user_service())
    {
 
-      get_context_system()->m_spmutexUserAppData = __new(::mutex(e_create_new, false, "Local\\ca2.UserAppData"));
-      get_context_system()->m_spmutexSystemAppData = __new(::mutex(e_create_new, false, "Local\\ca2.SystemAppData"));
+      System.m_spmutexUserAppData = __new(::mutex(e_create_new, false, "Local\\ca2.UserAppData"));
+      System.m_spmutexSystemAppData = __new(::mutex(e_create_new, false, "Local\\ca2.SystemAppData"));
 
    }
 

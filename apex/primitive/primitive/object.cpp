@@ -533,12 +533,12 @@ void object::set_topic_text(const ::string & strTopicText)
 
    }
 
-   if (!get_context_system())
-   {
+   //if (!get_context_system())
+   //{
 
-      set_context_system(::get_context_system(pobjectContext) OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
+   //   set_context_system(::get_context_system(pobjectContext) OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
 
-   }
+   //}
 
    if (!get_context())
    {
@@ -555,10 +555,10 @@ void object::set_topic_text(const ::string & strTopicText)
          set_context(m_psessionContext.get() OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
 
       }
-      else if (m_psystemContext)
+      else if (&System)
       {
 
-         set_context(m_psystemContext.get() OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
+         set_context(&System OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
 
       }
 
@@ -917,7 +917,7 @@ void object::finalize()
 
    m_psessionContext.release(OBJ_REF_DBG_THIS);
 
-   m_psystemContext.release(OBJ_REF_DBG_THIS);
+   //m_psystemContext.release(OBJ_REF_DBG_THIS);
 
    on_finalize();
 
@@ -1012,7 +1012,7 @@ void object::copy_from(const object & o)
 
    set_context_session(o.m_psessionContext);
 
-   m_psystemContext = o.m_psystemContext;
+   //m_psystemContext = o.m_psystemContext;
 
    if (!o.m_pset)
    {
@@ -2335,12 +2335,12 @@ void object::set_context_session(::apex::session* psessionContext OBJ_REF_DBG_CO
 }
 
 
-void object::set_context_system(::apex::system* psystemContext OBJ_REF_DBG_COMMA_PARAMS_DEF)
-{
-
-   m_psystemContext.reset(psystemContext OBJ_REF_DBG_COMMA_ARGS);
-
-}
+//void object::set_context_system(::apex::system* psystemContext OBJ_REF_DBG_COMMA_PARAMS_DEF)
+//{
+//
+//   m_psystemContext.reset(psystemContext OBJ_REF_DBG_COMMA_ARGS);
+//
+//}
 
 
 #endif

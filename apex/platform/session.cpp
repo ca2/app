@@ -125,9 +125,9 @@ namespace apex
       if (get_context_system() != nullptr)
       {
 
-         m_bSystemSynchronizedCursor   = get_context_system()->m_bSystemSynchronizedCursor;
+         m_bSystemSynchronizedCursor   = System.m_bSystemSynchronizedCursor;
 
-         m_bSystemSynchronizedScreen   = get_context_system()->m_bSystemSynchronizedScreen;
+         m_bSystemSynchronizedScreen   = System.m_bSystemSynchronizedScreen;
 
       }
 
@@ -614,7 +614,7 @@ namespace apex
    bool session::on_get_thread_name(string& strThreadName)
    {
 
-      if (get_context_system()->is_console_app())
+      if (System.is_console_app())
       {
 
          return false;

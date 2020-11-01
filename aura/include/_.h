@@ -20,12 +20,12 @@
 
 
 
-#undef Sys
+#undef System
 #undef Sess
 #undef App
 
 
-#define Sys(playered) (*::get_context_system(playered)->m_paurasystem)
+#define System (*::get_context_system()->m_paurasystem)
 #define Sess(pcontextsession) (pcontextsession->m_paurasession)
 #define App(playered) (*::get_context_application(playered)->m_pauraapplication)
 

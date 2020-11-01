@@ -640,7 +640,7 @@ CLASS_DECL_APEX ::apex::system * get_context_system(::layered * pobjectContext)
 
   }
 
-  ::apex::system * psystemContext = pobject->get_context_system();
+  ::apex::system * psystemContext = &System;
 
   if (psystemContext != nullptr)
   {

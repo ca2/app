@@ -9,7 +9,7 @@ CLASS_DECL_AURA::estatus message_box(::user::primitive* puiOwner, const char* ps
 
    ::estatus estatus = ::error_failed;
 
-   auto psystem = ::get_context_system();
+   auto psystem = &System;
 
    if(psystem)
    {
@@ -21,6 +21,21 @@ CLASS_DECL_AURA::estatus message_box(::user::primitive* puiOwner, const char* ps
    return estatus;
 
 }
+
+
+
+
+
+
+CLASS_DECL_AURA ::user::primitive * __user_primitive(oswindow oswindow)
+{
+
+   ::user::primitive * pprimitive = System.ui_from_handle(oswindow);
+
+   return pprimitive;
+
+}
+
 
 
 

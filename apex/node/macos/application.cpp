@@ -365,5 +365,5 @@ namespace apex
 
 bool on_application_menu_action(const char * pszCommand)
 {
-   ::get_context_system()->on_application_menu_action(pszCommand);
+   System.on_application_menu_action(pszCommand);
 }

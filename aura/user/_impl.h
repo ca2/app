@@ -264,14 +264,6 @@ inline prodevian::prodevian(::user::interaction* pinteraction) :
 //inline var thread::command_value(const ::id& id) const { return has_property(id) ? (const var&)&command()->m_varQuery[id] : (const var&)type_new; }
 //inline bool thread::command_value_is_true(const ::id& id) const { return has_property(id) ? command()->m_varQuery.is_true(id) : false; }
 
-inline ::user::primitive * __user_primitive(oswindow oswindow)
-{
- 
-   ::user::primitive * pprimitive = System.ui_from_handle(oswindow);
-
-   return pprimitive;
-
-}
 
 
 

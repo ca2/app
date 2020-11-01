@@ -469,6 +469,7 @@
   <ItemGroup>
     <ClInclude Include="const\idpool.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="include\_.h" />
     <ClInclude Include="platform\application.h" />
     <ClInclude Include="platform\session.h" />
     <ClInclude Include="platform\system.h" />

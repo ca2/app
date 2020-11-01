@@ -21,7 +21,7 @@ protected:
    __pointer(::thread)                                m_pthreadContext;
    __pointer(::apex::application)                     m_pappContext;
    __pointer(::apex::session)                         m_psessionContext;
-   __pointer(::apex::system)                          m_psystemContext;
+   //__pointer(::apex::system)                          m_psystemContext;
    __pointer(::context)                               m_pcontextContext;
    __pointer(matter_array)                            m_pcompositea;
    __pointer(matter_array)                            m_preferencea;
@@ -210,7 +210,7 @@ public:
 
    ::apex::session * get_context_session() const { return m_psessionContext; }
 
-   ::apex::system * get_context_system() const { return m_psystemContext; }
+   //::apex::system * get_context_system() const { return m_psystemContext; }
 
    //::object * get_context_user() const { return m_puserContext; }
 
@@ -223,14 +223,14 @@ public:
    virtual void set_context_thread(::thread* pthread OBJ_REF_DBG_COMMA_PARAMS);
    virtual void set_context_app(::apex::application* pappContext OBJ_REF_DBG_COMMA_PARAMS);
    virtual void set_context_session(::apex::session* psessionContext OBJ_REF_DBG_COMMA_PARAMS);
-   virtual void set_context_system(::apex::system* psystemContext OBJ_REF_DBG_COMMA_PARAMS);
+   //virtual void set_context_system(::apex::system* psystemContext OBJ_REF_DBG_COMMA_PARAMS);
    //virtual void set_context_user(::object * puserContext);
 #else
    inline void set_context(::context* pcontext);
    inline void set_context_thread(::thread* pthread);
    inline void set_context_app(::apex::application* pappContext);
    inline void set_context_session(::apex::session* psessionContext);
-   inline void set_context_system(::apex::system* psystemContext);
+   //inline void set_context_system(::apex::system* psystemContext);
    //inline void set_context_user(::object * puserContext);
 #endif
 

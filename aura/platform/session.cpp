@@ -760,7 +760,7 @@ the file README-colorramp for more information. */
    bool session::on_get_thread_name(string& strThreadName)
    {
 
-      if (get_context_system()->is_console_app())
+      if (System.is_console_app())
       {
 
          return false;
@@ -4689,7 +4689,7 @@ void os_on_finish_launching()
 
    auto psystem = ::get_context_system();
 
-   auto psession = psystem->get_context_session();
+   auto psession = System.get_context_session();
 
    auto puiHost = __user_interaction(psession->m_puiHost);
 

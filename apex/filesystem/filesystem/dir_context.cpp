@@ -2428,7 +2428,7 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 //string_array dir_context::locale_schema_matter(string & strLocale, const string & strStyle)
 //{
 
-//   return get_context_application()->get_context_system()->m_spdir->locale_schema_matter(get_context_application(), strLocale, strStyle);
+//   return System.m_spdir->locale_schema_matter(get_context_application(), strLocale, strStyle);
 
 //}
 
@@ -2436,7 +2436,7 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 //string_array dir_context::locale_schema_matter(string & strLocale, const string & strStyle, const string & pathRoot, const ::file::path & pathDomain)
 //{
 
-//   return get_context_application()->get_context_system()->m_spdir->locale_schema_matter(get_context_application(), strLocale, strStyle, pathRoot, pathDomain);
+//   return System.m_spdir->locale_schema_matter(get_context_application(), strLocale, strStyle, pathRoot, pathDomain);
 
 //}
 
@@ -2444,7 +2444,7 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 //string dir_context::matter(const ::file::patha & patha, bool bDir)
 //{
 //
-//   return get_context_application()->get_context_system()->m_spdir->matter(get_context_application(), patha, bDir);
+//   return System.m_spdir->matter(get_context_application(), patha, bDir);
 //
 //}
 
@@ -2452,19 +2452,19 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 //string dir_context::matter(const ::file::path & path, bool bDir)
 //{
 //
-//   return get_context_application()->get_context_system()->m_spdir->matter(get_context_application(), path, bDir);
+//   return System.m_spdir->matter(get_context_application(), path, bDir);
 //
 //}
 ////
 //
 //void dir_context::matter_ls(const ::file::path & str, ::file::patha & stra)
 //{
-//   get_context_application()->get_context_system()->m_spdir->matter_ls(get_context_application(), str, stra);
+//   System.m_spdir->matter_ls(get_context_application(), str, stra);
 //}
 //
 //void dir_context::matter_ls_file(const ::file::path & str, ::file::patha & stra)
 //{
-//   get_context_application()->get_context_system()->m_spdir->matter_ls_file(get_context_application(), str, stra);
+//   System.m_spdir->matter_ls_file(get_context_application(), str, stra);
 //}
 
 
@@ -2472,7 +2472,7 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 //
 //{
 //
-//   string strPath = get_context_application()->get_context_system()->m_spdir->matter(get_context_application(), pcsz, bDir);
+//   string strPath = System.m_spdir->matter(get_context_application(), pcsz, bDir);
 //
 //
 //   return strPath;
@@ -2483,7 +2483,7 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 //::file::path dir_context::userquicklaunch()
 //{
 //
-//   return get_context_application()->get_context_system()->m_spdir->userquicklaunch(get_object());
+//   return System.m_spdir->userquicklaunch(get_object());
 //
 //}
 
@@ -2491,7 +2491,7 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 //::file::path dir_context::userprograms()
 //{
 //
-//   return get_context_application()->get_context_system()->m_spdir->userprograms(get_object());
+//   return System.m_spdir->userprograms(get_object());
 //
 //}
 
@@ -2499,14 +2499,14 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 //::file::listing & dir_context::ls(listing & listing)
 //{
 //
-//   return get_context_application()->get_context_system()->m_spdir.m_p->ls(get_context_application(), listing);
+//   return System.m_spdir.m_p->ls(get_context_application(), listing);
 //
 //}
 
 //::file::listing & dir_context::ls_relative_name(listing & listing)
 //{
 //
-//   return get_context_application()->get_context_system()->m_spdir.m_p->ls_relative_name(get_context_application(), listing);
+//   return System.m_spdir.m_p->ls_relative_name(get_context_application(), listing);
 //
 //}
 //
@@ -2515,7 +2515,7 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 //
 //{
 //
-//   return get_context_application()->get_context_system()->m_spdir.m_p->has_subdir(get_context_application(), pcsz);
+//   return System.m_spdir.m_p->has_subdir(get_context_application(), pcsz);
 //
 //
 //}
@@ -2525,7 +2525,7 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 //
 //{
 //
-//   return get_context_application()->get_context_system()->m_spdir.m_p->is(pcsz, get_context_application());
+//   return System.m_spdir.m_p->is(pcsz, get_context_application());
 //
 //
 //}
@@ -2535,7 +2535,7 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 //
 //{
 //
-//   return get_context_application()->get_context_system()->m_spdir.m_p->is_inside(pcszDir, lpcszPath, get_context_application());
+//   return System.m_spdir.m_p->is_inside(pcszDir, lpcszPath, get_context_application());
 //
 //
 //}
@@ -2544,14 +2544,14 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 //bool dir_context::is_inside_time(const ::file::path & pcsz)
 //
 //{
-//   return get_context_application()->get_context_system()->m_spdir.m_p->is_inside_time(pcsz, get_context_application());
+//   return System.m_spdir.m_p->is_inside_time(pcsz, get_context_application());
 //
 //}
 
 
 //::file::listing & dir_context::root_ones(::file::listing & listing)
 //{
-//   return get_context_application()->get_context_system()->m_spdir.m_p->root_ones(listing, get_context_application());
+//   return System.m_spdir.m_p->root_ones(listing, get_context_application());
 //}
 //
 
@@ -2565,7 +2565,7 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 //
 //   }
 //
-//   return get_context_application()->get_context_system()->m_spdir.m_p->mk(path, get_context_application());
+//   return System.m_spdir.m_p->mk(path, get_context_application());
 //
 //}
 
@@ -2573,7 +2573,7 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 //bool dir_context::rm(const ::file::path & path, bool bRecursive)
 //{
 //
-//   return get_context_application()->get_context_system()->m_spdir.m_p->rm(get_context_application(), path, bRecursive);
+//   return System.m_spdir.m_p->rm(get_context_application(), path, bRecursive);
 //
 //}
 
@@ -2581,7 +2581,7 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 //::file::path dir_context::pathfind(const string & pszEnv, const string & pszTopic, const string & pszMode)
 //{
 //
-//   return get_context_application()->get_context_system()->m_spdir->pathfind(pszEnv, pszTopic, pszMode, get_context_application());
+//   return System.m_spdir->pathfind(pszEnv, pszTopic, pszMode, get_context_application());
 //
 //}
 
@@ -2589,7 +2589,7 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 //::file::path dir_context::dropbox()
 //{
 //
-//   return get_context_application()->get_context_system()->m_spdir->dropbox(get_context_application());
+//   return System.m_spdir->dropbox(get_context_application());
 //
 //}
 
@@ -2597,7 +2597,7 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 //::file::path dir_context::onedrive()
 //{
 //
-//   return get_context_application()->get_context_system()->m_spdir->onedrive(get_context_application());
+//   return System.m_spdir->onedrive(get_context_application());
 //
 //}
 

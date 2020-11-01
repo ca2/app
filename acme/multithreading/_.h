@@ -284,8 +284,21 @@ CLASS_DECL_ACME int_bool post_message(oswindow oswindow, const ::id & id, WPARAM
 class thread;
 
 
-//namespace multithreading
-//{
+namespace multithreading
+{
+
+
+   CLASS_DECL_ACME bool task_registered(::task * ptask);
+   CLASS_DECL_ACME bool task_id_registered(ITHREAD id);
+
+   CLASS_DECL_ACME void task_register(ITHREAD itask, ::task * ptask);
+
+   CLASS_DECL_ACME void task_unregister(ITHREAD itask, ::task * ptask);
+
+
+} // namespace multithreading
+
+
 //
 //
 //   void finish(::thread* pthread);

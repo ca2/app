@@ -25,6 +25,9 @@
     <Filter Include="Source Files\const">
       <UniqueIdentifier>{b64687ba-08b5-4462-a4fb-426514e2f646}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\include">
+      <UniqueIdentifier>{fb21971a-983b-4337-9bf9-838884db6957}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -44,6 +47,9 @@
     </ClInclude>
     <ClInclude Include="const\idpool.h">
       <Filter>Header Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="include\_.h">
+      <Filter>Header Files\include</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

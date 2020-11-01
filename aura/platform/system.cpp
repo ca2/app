@@ -4524,41 +4524,80 @@ namespace aura
       return strMutex;
    }
 
-
-
-
-   ::aura::estamira& system::estamira()
-   {
-
-      if (!m_pestamira)
-      {
-
-         __compose_new(m_pestamira);
-
-         m_pestamira->init_instance();
-
-      }
-
-      return *m_pestamira.get();
-
-   }
-
-   void system::unset_thread(ITHREAD ithread, ::thread * pthread)
-   {
-
-      sync_lock sl(&m_mutexThread);
-
-#if OBJ_REF_DBG
-
-      m_threadmap[ithread].release(this);
-
-#endif
-
-      m_threadmap.remove_key(ithread);
-
-      m_threadidmap.remove_key(pthread);
-
-   }
+//
+//   ::thread* system::get_task(ITHREAD ithread)
+//   {
+//
+//      sync_lock sl(&m_mutexTask);
+//
+//      return m_threadmap[ithread];
+//
+//   }
+//
+//
+//   ITHREAD system::get_thread_id(::thread* pthread)
+//   {
+//
+//      sync_lock sl(&m_mutexTask);
+//
+//      ITHREAD ithread = NULL_ITHREAD;
+//
+//      if (!m_threadidmap.lookup(pthread, ithread))
+//      {
+//
+//         return 0;
+//
+//      }
+//
+//      return ithread;
+//
+//   }
+//
+//
+//   void system::set_thread(ITHREAD ithread, ::thread* pthread)
+//   {
+//
+//      sync_lock sl(&m_mutexTask);
+//
+//      m_threadmap[ithread].reset(pthread OBJ_REF_DBG_COMMA_P_NOTE(this, "thread::thread_set"));
+//
+//      m_threadidmap[pthread] = ithread;
+//
+//   }
+//
+//
+//   ::aura::estamira& system::estamira()
+//   {
+//
+//      if (!m_pestamira)
+//      {
+//
+//         __compose_new(m_pestamira);
+//
+//         m_pestamira->init_instance();
+//
+//      }
+//
+//      return *m_pestamira.get();
+//
+//   }
+//
+//   void system::unset_thread(ITHREAD ithread, ::thread * pthread)
+//   {
+//
+//      sync_lock sl(&m_mutexTask);
+//
+//#if OBJ_REF_DBG
+//
+//      m_threadmap[ithread].release(this);
+//
+//#endif
+//
+//      m_threadmap.remove_key(ithread);
+//
+//      m_threadidmap.remove_key(pthread);
+//
+//   }
 
 
 //#ifdef _OPENGL

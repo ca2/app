@@ -7536,7 +7536,7 @@ namespace user
 
                __defer_construct(pimage2);
 
-               if (Sys(m_plist->get_context_application()).draw2d().embossed_text_out(
+               if (System.draw2d().embossed_text_out(
                      m_pgraphics,
                      m_rectText,
                      m_strText,

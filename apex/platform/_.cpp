@@ -494,7 +494,7 @@ CLASS_DECL_APEX ::estatus load_factory_library(string strLibrary)
    if (!plibrary)
    {
 
-      __own(::get_context_system(), m_mapLibrary[strLibrary], __new(::apex::library));
+      __own(&System, m_mapLibrary[strLibrary], __new(::apex::library));
 
    }
 
@@ -627,7 +627,7 @@ CLASS_DECL_APEX ::apex::system * get_context_system(::layered * pobjectContext)
   if (pobjectContext == nullptr)
   {
 
-     return ::get_context_system();
+     return &System;
 
   }
 
@@ -636,11 +636,11 @@ CLASS_DECL_APEX ::apex::system * get_context_system(::layered * pobjectContext)
   if (::is_null(pobject))
   {
 
-     return ::get_context_system();
+     return &System;
 
   }
 
-  ::apex::system * psystemContext = pobject->get_context_system();
+  ::apex::system * psystemContext = &System;
 
   if (psystemContext != nullptr)
   {
@@ -649,7 +649,7 @@ CLASS_DECL_APEX ::apex::system * get_context_system(::layered * pobjectContext)
 
   }
 
-  return ::get_context_system();
+  return &System;
 
 }
 

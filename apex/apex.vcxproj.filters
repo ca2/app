@@ -275,26 +275,14 @@
     <ClInclude Include="net\sockets\bsd\webserver\httpd_socket.h">
       <Filter>Header Files\net\sockets\bsd\webserver</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\application_bias.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\command.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\primitive\command_line.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive\create.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\update.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\math\department.h">
       <Filter>Header Files\primitive\math</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\_memory.h">
-      <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filesystem\listing.h">
       <Filter>Header Files\filesystem\filesystem</Filter>
@@ -422,9 +410,6 @@
     <ClInclude Include="primitive\primitive\_defer.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\_factory_prefix.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\primitive\object_meta.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
@@ -496,9 +481,6 @@
     </ClInclude>
     <ClInclude Include="filesystem\file\_var_stream_impl.h">
       <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\context_object.h">
-      <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
     <ClInclude Include="net\sockets\http\_.h">
       <Filter>Header Files\net\sockets\http</Filter>
@@ -1016,9 +998,6 @@
     <ClInclude Include="_defer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\compare_pred.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
     <ClInclude Include="inline\application\windows.h">
       <Filter>Header Files\inline\application</Filter>
     </ClInclude>
@@ -1358,14 +1337,8 @@
     <ClInclude Include="user\text.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\property_set_papaya.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
     <ClInclude Include="platform\simple_trace.h">
       <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\_property_set_composite_impl.h">
-      <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
     <ClInclude Include="os\windows\windowing.h">
       <Filter>Header Files\os\windows</Filter>
@@ -2246,9 +2219,6 @@
     </None>
     <None Include="filesystem\_impl.h">
       <Filter>Header Files\filesystem</Filter>
-    </None>
-    <None Include="primitive\primitive\_factory_impl.h">
-      <Filter>Header Files\primitive\primitive</Filter>
     </None>
     <None Include="primitive\math\_impl.h">
       <Filter>Header Files\primitive\math</Filter>

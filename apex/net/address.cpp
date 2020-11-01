@@ -487,9 +487,9 @@ namespace net
 
       ::apex::application * pappThread = get_context_application();
 
-      auto * psystem = pappThread->get_context_system();
+      //auto * psystem = pappThread->get_context_system();
 
-      auto * psockets = &psystem->sockets();
+      auto * psockets = &System.sockets();
 
       auto * pnet = &psockets->net();
 

@@ -253,12 +253,12 @@ namespace apex
 
       virtual void term();
 
-      //::url::department                           & url()     { return m_urldepartment; }
+         //::thread * get_task(ITHREAD ithread);
+      //ITHREAD get_thread_id(::thread * pthread);
+      //void set_thread(ITHREAD ithread, ::thread * pthread);
+      //void unset_thread(ITHREAD ithread, ::thread * pthread);
+   //::url::department                           & url()     { return m_urldepartment; }
 
-      ::thread * get_task(ITHREAD ithread);
-      ITHREAD get_thread_id(::thread * pthread);
-      void set_thread(ITHREAD ithread, ::thread * pthread);
-      void unset_thread(ITHREAD ithread, ::thread * pthread);
 
       //inline ::gpu::approach* get_gpu() { if (!m_pgpu) create_gpu(); return m_pgpu.get(); };
       //inline ::gpu::approach* gpu() { return m_pgpu.get(); };
@@ -889,7 +889,7 @@ namespace apex
 
       //virtual void get_cursor_pos(LPPOINT ppoint);
 
-
+      virtual bool is_thread() const;
 
       //virtual ::estatus do_request(::create* pcommand) override;
 

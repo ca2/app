@@ -36,7 +36,7 @@ namespace filemanager
 
       mem.set_size(get_manager_id_byte_len());
 
-      Sys(__object(pobjectContext)).math().random_bytes(mem.get_data(), mem.get_size());
+      System.math().random_bytes(mem.get_data(), mem.get_size());
 
       return mem.to_hex().uppered();
 

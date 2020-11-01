@@ -120,7 +120,7 @@ namespace apex
          if (m_strCa2Name.has_char())
          {
 
-            __own(::get_context_system(), m_mapLibrary[m_strCa2Name], this);
+            __own(&System, m_mapLibrary[m_strCa2Name], this);
 
          }
 
@@ -170,7 +170,7 @@ namespace apex
       if (m_strCa2Name.has_char())
       {
 
-         __own(::get_context_system(), m_mapLibrary[m_strCa2Name], this);
+         __own(&System, m_mapLibrary[m_strCa2Name], this);
 
       }
 
@@ -333,7 +333,7 @@ namespace apex
       if (m_strCa2Name.has_char())
       {
 
-         __own(::get_context_system(), m_mapLibrary[m_strCa2Name], this);
+         __own(&System, m_mapLibrary[m_strCa2Name], this);
 
       }
 
@@ -978,7 +978,7 @@ namespace apex
    if(!plibrary)
    {
       
-      __own(::get_context_system(), m_mapLibCall[psz], __new(::apex::library));
+      __own(&System, m_mapLibCall[psz], __new(::apex::library));
 
       plibrary->initialize(::get_task());
 

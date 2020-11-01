@@ -4689,7 +4689,7 @@ void os_on_finish_launching()
 
    auto psystem = ::get_context_system();
 
-   auto psession = psystem->get_context_session();
+   auto psession = System.get_context_session();
 
    auto puiHost = __user_interaction(psession->m_puiHost);
 

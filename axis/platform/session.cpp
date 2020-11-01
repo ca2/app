@@ -110,9 +110,11 @@ namespace axis
       if (get_context_system() != nullptr)
       {
 
-         m_bSystemSynchronizedCursor   = System.m_bSystemSynchronizedCursor;
+         auto psystem = &System;
 
-         m_bSystemSynchronizedScreen   = System.m_bSystemSynchronizedScreen;
+         m_bSystemSynchronizedCursor   = psystem->m_bSystemSynchronizedCursor;
+
+         m_bSystemSynchronizedScreen   = psystem->m_bSystemSynchronizedScreen;
 
       }
 

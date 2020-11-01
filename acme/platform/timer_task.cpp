@@ -235,7 +235,7 @@ bool timer_task::task_active() const
 
       }
 
-      Sleep(r100Ms);
+      Sleep((::u32) r100Ms);
 
       if (!thread_get_run())
       {

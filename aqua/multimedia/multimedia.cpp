@@ -143,7 +143,7 @@ CLASS_DECL_AQUA ::aqua::multimedia * get_new_multimedia()
 CLASS_DECL_AQUA ::aqua::multimedia * get_context_multimedia(::layered * pobjectContext)
 {
 
-   return Sys(pobjectContext).defer_get_multimedia();
+   return System.defer_get_multimedia();
 
 }
 

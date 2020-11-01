@@ -77,14 +77,14 @@
 //#undef App
 
 
-#define Sys(psystem) (*psystem)
+//#define Sys(psystem) (*psystem)
 //#define Sess(pcontextsession) (pcontextsession)
 //#define App(playered) (*::get_context_application(playered))
 
 //#define Sess(pobject) (*pobject->get_context_session())
 //#define App(pobject) (*pobject->get_app())
 
-#define System (Sys(get_context_system()))
+#define System (*::get_context_system())
 
 
 #include "acme/primitive/primitive/estatus.h"
@@ -132,6 +132,8 @@ namespace acme
 } // namespace acme
 
 class layered;
+
+
 
 CLASS_DECL_ACME ::acme::system * get_context_system();
 //CLASS_DECL_ACME ::acme::system * get_context_system(::layered * pobjectContext);

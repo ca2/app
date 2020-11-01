@@ -104,6 +104,7 @@ namespace axis
    {
 
       m_paxissystem = this;
+
       create_factory < ::axis::application, ::apex::application >();
       create_factory < ::axis::session, ::apex::session >();
       create_factory < ::geo::department >();

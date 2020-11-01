@@ -12,7 +12,7 @@
 
 
 
-extern ::apex::system* g_papexsystem;
+//extern ::apex::system* g_papexsystem;
 
 CLASS_DECL_APEX void apex_generate_random_bytes(void* p, memsize s);
 
@@ -105,14 +105,9 @@ namespace apex
       m_bSystemSynchronizedCursor = true;
       m_bSystemSynchronizedScreen = true;
 
-      set_context_system(this OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
+      //set_context_system(this OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
 
-      if (g_papexsystem == nullptr)
-      {
-
-         g_papexsystem = this;
-
-      }
+      
 
       common_construct();
 
@@ -149,7 +144,7 @@ namespace apex
 
       }
 
-      set_context_system(this);
+      //set_context_system(this);
 
       set_context(this);
 
@@ -158,7 +153,7 @@ namespace apex
       if (::is_set(get_context_application()))
       {
 
-         __compose(m_psystemParent, get_context_application()->get_context_system());
+         //__compose(m_psystemParent, get_context_application()->get_context_system());
 
       }
 
@@ -957,12 +952,6 @@ namespace apex
 
       //::acme::del(m_ppatch);
 
-      if (g_papexsystem == this)
-      {
-
-         g_papexsystem = nullptr;
-
-      }
 
       //::acme::del(m_purldepartment);
 
@@ -1142,9 +1131,9 @@ namespace apex
    ::estatus system::process_init()
    {
 
-      set_system_update(&apex_system_update);
+//      set_system_update(&apex_system_update);
 
-      set_system_set_modified(&apex_system_set_modified);
+      //set_system_set_modified(&apex_system_set_modified);
 
       auto estatus = system_prep();
 
@@ -4421,63 +4410,63 @@ namespace apex
    }
 
 
-   ::thread* system::get_task(ITHREAD ithread)
-   {
-
-      sync_lock sl(&m_mutexThread);
-
-      return m_threadmap[ithread];
-
-   }
-
-
-   ITHREAD system::get_thread_id(::thread* pthread)
-   {
-
-      sync_lock sl(&m_mutexThread);
-
-      ITHREAD ithread = NULL_ITHREAD;
-
-      if (!m_threadidmap.lookup(pthread, ithread))
-      {
-
-         return 0;
-
-      }
-
-      return ithread;
-
-   }
-
-
-   void system::set_thread(ITHREAD ithread, ::thread* pthread)
-   {
-
-      sync_lock sl(&m_mutexThread);
-
-      m_threadmap[ithread].reset(pthread OBJ_REF_DBG_COMMA_P_NOTE(this, "thread::thread_set"));
-
-      m_threadidmap[pthread] = ithread;
-
-   }
-
-
-   void system::unset_thread(ITHREAD ithread, ::thread * pthread)
-   {
-
-      sync_lock sl(&m_mutexThread);
-
-#if OBJ_REF_DBG
-
-      m_threadmap[ithread].release(this);
-
-#endif
-
-      m_threadmap.remove_key(ithread);
-
-      m_threadidmap.remove_key(pthread);
-
-   }
+//   ::thread* system::get_task(ITHREAD ithread)
+//   {
+//
+//      sync_lock sl(&m_mutexThread);
+//
+//      return m_threadmap[ithread];
+//
+//   }
+//
+//
+//   ITHREAD system::get_thread_id(::thread* pthread)
+//   {
+//
+//      sync_lock sl(&m_mutexThread);
+//
+//      ITHREAD ithread = NULL_ITHREAD;
+//
+//      if (!m_threadidmap.lookup(pthread, ithread))
+//      {
+//
+//         return 0;
+//
+//      }
+//
+//      return ithread;
+//
+//   }
+//
+//
+//   void system::set_thread(ITHREAD ithread, ::thread* pthread)
+//   {
+//
+//      sync_lock sl(&m_mutexThread);
+//
+//      m_threadmap[ithread].reset(pthread OBJ_REF_DBG_COMMA_P_NOTE(this, "thread::thread_set"));
+//
+//      m_threadidmap[pthread] = ithread;
+//
+//   }
+//
+//
+//   void system::unset_thread(ITHREAD ithread, ::thread * pthread)
+//   {
+//
+//      sync_lock sl(&m_mutexThread);
+//
+//#if OBJ_REF_DBG
+//
+//      m_threadmap[ithread].release(this);
+//
+//#endif
+//
+//      m_threadmap.remove_key(ithread);
+//
+//      m_threadidmap.remove_key(pthread);
+//
+//   }
 
 
    ::thread_group * system::thread_group(::e_priority epriority)
@@ -5324,6 +5313,14 @@ namespace apex
 
    }
 
+   
+   bool system::is_thread() const
+   {
+
+      return false;
+
+   }
+
 
    //::estatus system::add_view_library(::apex::library* plibrary)
    //{
@@ -5606,7 +5603,7 @@ string get_bundle_app_library_name();
 
    }
 
-   auto pobject = move_transfer(pstaticsetup->new_object());
+   auto pobject = pstaticsetup->new_object();
 
    if (!pobject)
    {
@@ -5615,7 +5612,18 @@ string get_bundle_app_library_name();
 
    }
 
-   return pobject.cast < ::apex::system >();
+   auto psystem = dynamic_cast<::apex::system*>(pobject);
+
+   if(!psystem)
+   { 
+   
+      delete pobject;
+
+      return nullptr;
+   
+   }
+
+   return psystem;
 
 }
 

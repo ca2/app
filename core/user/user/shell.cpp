@@ -849,7 +849,7 @@ namespace user
          return m_pilHover[iSize]->pred_add_image([&](auto pimage)
             {
 
-               Sys(this).imaging().color_blend(pimage, RGB(255, 255, 240), 64);
+               System.imaging().color_blend(pimage, RGB(255, 255, 240), 64);
 
             }
          , m_pil[iSize], iImage, iImage);

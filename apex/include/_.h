@@ -13,12 +13,12 @@
 #pragma once
 
 
-#undef Sys
+#undef System
 #undef Sess
 #undef App
 
 
-#define Sys(psystem) (*psystem->m_papexsystem)
+#define System (*::get_context_system()->m_papexsystem)
 #define Sess(pcontextsession) (pcontextsession)
 #define App(playered) (*::get_context_application(playered))
 
@@ -2091,7 +2091,7 @@ CLASS_DECL_APEX inline ::apex::session * get_context_session(::apex::session * p
 
 
 //CLASS_DECL_APEX ::apex::system * get_context_system();
-//CLASS_DECL_APEX ::apex::system * get_context_system(::layered * pobjectContext);
+CLASS_DECL_APEX ::apex::system * get_context_system(::layered * pobjectContext);
 //CLASS_DECL_APEX inline ::apex::system * get_context_system(::apex::system * psystem);
 
 

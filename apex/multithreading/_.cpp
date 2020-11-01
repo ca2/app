@@ -52,6 +52,30 @@ namespace multithreading
    }
 
 
+   bool thread_registered(::task * ptask)
+   {
+
+      return System.get_task_id(ptask) != 0;
+
+   }
+
+
+   void thread_register(ITHREAD ithread, ::task * ptask)
+   {
+
+      System.set_task(ithread, ptask);
+
+   }
+
+
+   void thread_unregister(ITHREAD ithread, ::task * ptask)
+   {
+
+      auto psystem = ::get_context_system();
+
+      psystem->unset_task(ithread, ptask);
+
+   }
 
 
    bool is_child(::task * ptaskChildCandidate)
@@ -71,15 +95,15 @@ namespace multithreading
 
       }
 
-      sync_lock sl(&System.m_mutexThread);
+      sync_lock sl(&System.m_mutexTask);
 
-      for (auto & pair : System.m_threadidmap)
+      for (auto & pair : System.m_taskidmap)
       {
 
          try
          {
 
-            auto pcompositea = pair.element1()->_composite_array();
+            auto pcompositea = ___thread(pair.element1())->_composite_array();
 
             if (pcompositea && pcompositea->contains(ptaskChildCandidate))
             {
@@ -104,15 +128,15 @@ namespace multithreading
    void post_quit_to_all_threads()
    {
 
-      sync_lock sl(&System.m_mutexThread);
+      sync_lock sl(&System.m_mutexTask);
 
-      for (auto& pair : System.m_threadidmap)
+      for (auto& pair : System.m_taskidmap)
       {
 
          try
          {
 
-            pair.element1()->finish(get_context_system());
+            ___thread(pair.element1())->finish(get_context_system());
 
          }
          catch (...)
@@ -128,15 +152,17 @@ namespace multithreading
    CLASS_DECL_APEX void post_to_all_threads(const ::id & id, WPARAM wparam, LPARAM lparam)
    {
 
-      sync_lock sl(&System.m_mutexThread);
+      sync_lock sl(&System.m_mutexTask);
 
-      for (auto& pair : System.m_threadidmap)
+      for (auto& pair : System.m_taskidmap)
       {
 
          try
          {
 
-            pair.element1()->post_message(id, wparam, lparam);
+            auto pthread = ___thread(pair.element1());
+
+            pthread->post_message(id, wparam, lparam);
 
          }
          catch (...)
@@ -159,7 +185,7 @@ namespace multithreading
 
       }
 
-      if (pthread == ::get_context_system())
+      if (pthread == &System)
       {
 
          return nullptr;
@@ -211,7 +237,7 @@ namespace multithreading
 
       }
 
-      auto psystemContext = pthread->get_context_system();
+      auto psystemContext = &System;
 
       if (psystemContext != pthread && ::is_set(psystemContext))
       {
@@ -499,32 +525,32 @@ void set_global_application(::apex::application* papp)
 
 }
 
-::apex::system * g_papexsystem = nullptr;
-
-CLASS_DECL_APEX ::apex::system * get_context_system()
-{
-
-   thread * pthread = get_thread();
-
-   if (pthread == nullptr)
-   {
-
-      return g_papexsystem;
-
-   }
-
-   ::apex::system * psystem = pthread->get_context_system();
-
-   if (!psystem)
-   {
-
-      psystem = g_papexsystem;
-
-   }
-
-   return psystem;
-
-}
+//::apex::system * g_papexsystem = nullptr;
+//
+//CLASS_DECL_APEX ::apex::system * get_context_system()
+//{
+//
+//   thread * pthread = get_thread();
+//
+//   if (pthread == nullptr)
+//   {
+//
+//      return g_papexsystem;
+//
+//   }
+//
+//   ::apex::system * psystem = pthread->get_context_system();
+//
+//   if (!psystem)
+//   {
+//
+//      psystem = g_papexsystem;
+//
+//   }
+//
+//   return psystem;
+//
+//}
 
 
 bool do_events()
@@ -564,7 +590,7 @@ bool do_events()
       try
       {
 
-         ::apex::system* psystem = ::get_context_system();
+         auto psystem = &System;
 
          if (::is_set(psystem))
          {

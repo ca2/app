@@ -17,12 +17,12 @@
 #pragma once
 
 
-#undef Sys
+#undef System
 #undef Sess
 #undef App
 
 
-#define Sys(pobject) (*pobject->System.m_paxissystem)
+#define System (*::get_context_system()->m_paxissystem)
 #define Sess(pcontextsession) (pcontextsession->m_paxissession)
 #define App(pobject) (*pobject->get_app()->m_paxisapplication)
 

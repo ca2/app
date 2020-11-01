@@ -1849,7 +1849,7 @@ u32 __thread_entry(void * p);
 
    }
 
-   if (!bAddReference && get_context_system() && get_context_system() != this)
+   if (!bAddReference && get_context_system() && &System != this)
    {
 
       try
@@ -2040,20 +2040,15 @@ void thread::system_pre_translate_message(::message::message * pmessage)
    try
    {
 
-      if(get_context_application() != nullptr)
+      if(get_context_system() != nullptr)
       {
 
-         if(get_context_application()->get_context_system() != nullptr)
+         System.pre_translate_message(pmessage);
+
+         if(pmessage->m_bRet)
          {
 
-            System.pre_translate_message(pmessage);
-
-            if(pmessage->m_bRet)
-            {
-
-               return;
-
-            }
+            return;
 
          }
 
@@ -2651,7 +2646,7 @@ void thread::__set_thread_on()
 
    //auto id = ::get_current_ithread();
 
-   ::multithreading::thread_register(m_ithread, this);
+   ::multithreading::task_register(m_ithread, this);
 
 
    // apex commented
@@ -2699,7 +2694,7 @@ void thread::__set_thread_off()
 
    ::thread * pthread = this;
 
-   ::multithreading::thread_unregister(m_ithread, pthread);
+   ::multithreading::task_unregister(m_ithread, pthread);
 
    auto id = ::get_current_ithread();
 
@@ -4320,9 +4315,9 @@ bool thread::kick_thread()
 CLASS_DECL_APEX bool is_thread_on(ITHREAD id)
 {
 
-   sync_lock sl(&System.m_mutexThreadOn);
+   sync_lock sl(&System.m_mutexTaskOn);
 
-   return System.m_mapThreadOn.plookup(id) != nullptr;
+   return System.m_mapTaskOn.plookup(id) != nullptr;
 
 }
 
@@ -4344,9 +4339,9 @@ CLASS_DECL_APEX bool is_active(::thread * pthread)
 CLASS_DECL_APEX void set_thread_on(ITHREAD id)
 {
 
-   sync_lock sl(&System.m_mutexThreadOn);
+   sync_lock sl(&System.m_mutexTaskOn);
 
-   System.m_mapThreadOn.set_at(id, id);
+   System.m_mapTaskOn.set_at(id, id);
 
 }
 
@@ -4354,9 +4349,9 @@ CLASS_DECL_APEX void set_thread_on(ITHREAD id)
 CLASS_DECL_APEX void set_thread_off(ITHREAD id)
 {
 
-   sync_lock sl(&System.m_mutexThreadOn);
+   sync_lock sl(&System.m_mutexTaskOn);
 
-   System.m_mapThreadOn.remove_key(id);
+   System.m_mapTaskOn.remove_key(id);
 
 }
 

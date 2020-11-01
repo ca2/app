@@ -248,7 +248,7 @@ namespace apex
 
          set_context_session(m_pappParent->get_context_session());
 
-         set_context_system(m_pappParent->get_context_system());
+         //set_context_system(m_pappParent->get_context_system());
 
       }
 

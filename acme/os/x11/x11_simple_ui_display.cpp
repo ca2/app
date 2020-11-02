@@ -685,7 +685,11 @@ void simple_ui_display::on_layout(Display * pdisplay)
    for(auto & str : m_stra)
    {
 
-      XftTextExtentsUtf8(pdisplay, m_pfont, (FcChar8 *) str.c_str(), str.get_length(), &info);
+      string strMeasure;
+
+      strMeasure = "!" + str;
+
+      XftTextExtentsUtf8(pdisplay, m_pfont, (FcChar8 *) strMeasure.c_str(), strMeasure.get_length(), &info);
 
       size.cx = max(size.cx, info.width + m_iMargin * 2);
 

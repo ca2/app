@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "acme/os/console.h"
 #include "console.h"
+// sudo apt install ncurses-dev
 #include <ncurses.h>
 
 

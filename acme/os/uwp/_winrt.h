@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 
-//#undef System
+#undef System
 //#undef Platform
 ////#undef Application
 ////#undef Session

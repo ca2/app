@@ -69,7 +69,12 @@ namespace aura
 
       void monitor_enum(HMONITOR hmonitor, HDC hdcMonitor, RECT* prcMonitor);
 
+#if defined(WINDOWS_DESKTOP)
+      
       inline ::user::interaction* system_window() { return __user_interaction(m_puiSession); }
+
+#endif
+
 
 #endif
 

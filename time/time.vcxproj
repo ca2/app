@@ -580,7 +580,7 @@
     <ClInclude Include="_.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="calculator\matter.cpp" />
+    <ClCompile Include="calculator\element.cpp" />
     <ClCompile Include="calculator\parser.cpp" />
     <ClCompile Include="calculator\parser_exception.cpp" />
     <ClCompile Include="calculator\scanner.cpp" />

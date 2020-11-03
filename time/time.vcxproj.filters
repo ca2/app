@@ -103,9 +103,6 @@
     <ClCompile Include="datetime\datetime_windows_file_time.cpp">
       <Filter>Source Files\datetime</Filter>
     </ClCompile>
-    <ClCompile Include="calculator\matter.cpp">
-      <Filter>Source Files\calculator</Filter>
-    </ClCompile>
     <ClCompile Include="calculator\parser.cpp">
       <Filter>Source Files\calculator</Filter>
     </ClCompile>
@@ -141,6 +138,9 @@
     </ClCompile>
     <ClCompile Include="datetime\_.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="calculator\element.cpp">
+      <Filter>Source Files\calculator</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

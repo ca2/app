@@ -83,7 +83,7 @@ namespace imaging_wic
 
       bool bOk = true;
 
-      main_sync([&]()
+      main_sync(__method([&]()
          {
 
             auto dataPackage = ::Windows::ApplicationModel::DataTransfer::Clipboard::GetContent();
@@ -191,7 +191,7 @@ namespace imaging_wic
 
             //}
 
-         });
+         }));
 
       return bOk;
 

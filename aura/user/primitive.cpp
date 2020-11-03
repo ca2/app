@@ -3216,7 +3216,7 @@ namespace user
 
       __pointer(::message::base) pbase;
 
-      auto eprototype = ::message::get_message_prototype(id, 0);
+      auto eprototype = ::message::get_message_prototype((enum_message) id.i64(), 0);
 
       switch (eprototype)
       {

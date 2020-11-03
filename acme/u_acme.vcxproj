@@ -921,6 +921,7 @@
     <ClInclude Include="platform\simple_app.h" />
     <ClInclude Include="platform\static_start.h" />
     <ClInclude Include="platform\status.h" />
+    <ClInclude Include="platform\system.h" />
     <ClInclude Include="platform\tick.h" />
     <ClInclude Include="platform\timer.h" />
     <ClInclude Include="platform\timer_array.h" />
@@ -2210,6 +2211,7 @@
     <ClCompile Include="platform\regex.cpp" />
     <ClCompile Include="platform\static_start.cpp" />
     <ClCompile Include="platform\static_start_aura.cpp" />
+    <ClCompile Include="platform\system.cpp" />
     <ClCompile Include="platform\text.cpp" />
     <ClCompile Include="platform\timer.cpp" />
     <ClCompile Include="platform\timer_array.cpp" />

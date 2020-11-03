@@ -13,6 +13,7 @@ enum enum_message : ::i64
    e_message_activate = 6,
    e_message_set_focus = 7,
    e_message_kill_focus = 8,
+   e_message_close = 16,
    e_message_quit = 18,
 
 
@@ -20,6 +21,17 @@ enum enum_message : ::i64
 
    e_message_mouse_first = 512,
    e_message_mouse_move = 512,
+   e_message_lbutton_down = 513,
+   e_message_lbutton_up = 514,
+   e_message_lbutton_dbl_clk = 515,
+   e_message_rbutton_down = 516,
+   e_message_rbutton_up = 517,
+   e_message_rbutton_dbl_clk = 518,
+   e_message_mbutton_down = 519,
+   e_message_mbutton_up = 520,
+   e_message_mbutton_dbl_clk = 521,
+   e_message_mouse_wheel = 522,
+
 
 
 

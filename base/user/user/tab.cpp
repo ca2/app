@@ -2524,8 +2524,8 @@ namespace user
 
       install_simple_ui_default_mouse_handling(pchannel);
 
-      MESSAGE_LINK(WM_LBUTTONDOWN, pchannel, this, &tab::_001OnLButtonDown);
-      MESSAGE_LINK(WM_LBUTTONUP, pchannel, this, &tab::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_lbutton_down, pchannel, this, &tab::_001OnLButtonDown);
+      MESSAGE_LINK(e_message_lbutton_up, pchannel, this, &tab::_001OnLButtonUp);
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &tab::_001OnMouseMove);
       MESSAGE_LINK(WM_MOUSELEAVE, pchannel, this, &tab::_001OnMouseLeave);
       MESSAGE_LINK(e_message_create, pchannel, this, &tab::_001OnCreate);
@@ -3595,7 +3595,7 @@ namespace user
 
             _001ClientToScreen(rectTabScreen);
 
-            if ((pmouse->m_id == WM_LBUTTONDOWN || pmouse->m_id == WM_LBUTTONUP) && rectTabScreen.contains(pmouse->m_point))
+            if ((pmouse->m_id == e_message_lbutton_down || pmouse->m_id == e_message_lbutton_up) && rectTabScreen.contains(pmouse->m_point))
             {
 
                route_message(pmouse);

@@ -1716,14 +1716,14 @@ namespace apex
 
       }
 
-      estatus = initial_check_directrix();
+      //estatus = process_creation_requests();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+        // return estatus;
 
-      }
+      //}
 
       return true;
 
@@ -1813,7 +1813,7 @@ namespace apex
    }
 
 
-   ::estatus system::initial_check_directrix()
+   ::estatus system::post_create_requests()
    {
 
       //while(auto pcreate = get_command()->get_create())

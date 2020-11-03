@@ -140,6 +140,9 @@
     <ProjectReference Include="..\aqua\u_aqua.vcxproj">
       <Project>{d6fc3dc0-a19a-4f63-a3f1-3426fe53920b}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\aura\u_aura.vcxproj">
+      <Project>{b3b6a9d8-7776-434e-8e3b-d2696632df39}</Project>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{BA9BFF50-1888-4722-8DEE-73A3B5B32BCB}</ProjectGuid>

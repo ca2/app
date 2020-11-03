@@ -1,6 +1,7 @@
 #pragma once
 
 
+
 namespace aura
 {
 
@@ -104,6 +105,12 @@ namespace aura
 //
 //      bool                                               m_bFinalizeIfNoSessionSetting;
 //      bool                                               m_bFinalizeIfNoSession;
+
+#ifdef _UWP
+
+      ::uwp::directx_application ^                          m_directxapplication;
+
+#endif
 
 //
 ////      __composite(::html::html)                          m_phtml;
@@ -575,7 +582,7 @@ namespace aura
 
       //virtual ::estatus init2();
 
-      virtual ::estatus initial_check_directrix() override;
+      virtual ::estatus post_create_requests() override;
 
       //virtual void term_system();
 

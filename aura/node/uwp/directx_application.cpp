@@ -9,7 +9,10 @@
 CLASS_DECL_ACME void set_core_window_once_visible();
 
 extern int g_iMouse;
+#ifdef _UWP
+ref class directx_application;
 
+#endif
 
 #undef System
 #undef Platform
@@ -133,6 +136,10 @@ namespace uwp
 
       auto puiHost = __user_interaction(psession->m_puiHost);
 
+      cs.cx = m_window->Bounds.Width;
+
+      cs.cy = m_window->Bounds.Height;
+
       if (!puiHost->create_window_ex(cs))
       {
 
@@ -156,6 +163,12 @@ namespace uwp
 
       m_directx->m_pimpl = puwpui;
 
+      auto size = puiHost->layout().sketch().size();
+      
+      m_psystem->post_create_requests();
+
+
+
       //puserinteraction->display(display_normal);
 
       //puserinteraction->set_need_layout();
@@ -163,7 +176,6 @@ namespace uwp
       //puserinteraction->set_need_redraw();
 
       //puserinteraction->post_redraw();
-
 
    }
 
@@ -219,6 +231,8 @@ namespace uwp
    void directx_application::SetWindow(CoreWindow^ window)
    {
 
+      m_psystem->m_paurasystem->m_directxapplication = this;
+
       impact::SetWindow(window);
 
       m_directx = ref new directx_base();
@@ -233,26 +247,6 @@ namespace uwp
 
       initialize_directx_application();
 
-      m_rectLastWindowRect = m_window->Bounds;
-
-      auto psystem = ::get_context_system();
-
-      auto psession = psystem->get_context_session();
-
-      auto phost = psession->m_puiHost;
-
-      auto puiHost = __user_interaction(phost);
-
-      puiHost->m_pimpl->cast < ::user::interaction_impl >()->m_rectWindowScreen.left = 0;
-      puiHost->m_pimpl->cast < ::user::interaction_impl >()->m_rectWindowScreen.top = 0;
-      puiHost->m_pimpl->cast < ::user::interaction_impl >()->m_rectWindowScreen.right = (LONG) m_window->Bounds.Width;
-      puiHost->m_pimpl->cast < ::user::interaction_impl >()->m_rectWindowScreen.bottom = (LONG) m_window->Bounds.Height;
-
-      m_directx->m_bCreated = true;
-
-      ::set_core_window_once_visible();
-
-      on_size({ (LONG)window->Bounds.Width, (LONG)window->Bounds.Height });
 
    }
 
@@ -280,7 +274,7 @@ namespace uwp
    void directx_application::OnUISettingsColorValuesChange(Windows::UI::ViewManagement::UISettings^ uisettings, Platform::Object^)
    {
 
-      ::user::defer_calc_os_dark_mode();
+      ::get_context_system()->defer_calc_os_dark_mode();
 
    }
 
@@ -343,7 +337,7 @@ namespace uwp
 
             string str = eventArgs->Uri->AbsoluteUri;
 
-            auto pcreate = __new(::create(m_psystem));
+            auto pcreate = __new(::create());
 
             pcreate->m_ecommand = ::command_protocol;
 
@@ -450,6 +444,8 @@ namespace uwp
 
       spbase = pkey;
 
+      auto psession = Session;
+
       bool bTextFocus = psession->get_focus_ui() != nullptr;
 
       bool bSpecialKey = false;
@@ -507,6 +503,8 @@ namespace uwp
       {
          m_bFontopusShift = false;
       }
+
+      auto psession = Session;
       
       bool bTextFocus = psession->get_focus_ui() != nullptr;
 
@@ -575,6 +573,8 @@ namespace uwp
          {
 
             g_bCoreWindowOnceVisible = true;
+
+            //m_psystem->post_create_requests();
 
          }
 
@@ -698,7 +698,7 @@ namespace uwp
       if(args->CurrentPoint->Properties->IsLeftButtonPressed && !m_bLeftButton)
       {
 
-         pmouse->m_id     = WM_LBUTTONDOWN;
+         pmouse->m_id     = (enum_message)e_message_lbutton_down;
 
          m_bLeftButton           = true;
          m_bMiddleButton         = false;
@@ -708,7 +708,7 @@ namespace uwp
       else if(args->CurrentPoint->Properties->IsRightButtonPressed && !m_bRightButton)
       {
 
-         pmouse->m_id     = WM_RBUTTONDOWN;
+         pmouse->m_id     = (enum_message) e_message_rbutton_down;
 
          m_bLeftButton           = false;
          m_bMiddleButton         = false;
@@ -718,7 +718,7 @@ namespace uwp
       else if(args->CurrentPoint->Properties->IsMiddleButtonPressed && !m_bMiddleButton)
       {
 
-         pmouse->m_id     = WM_MBUTTONDOWN;
+         pmouse->m_id     = (enum_message) WM_MBUTTONDOWN;
 
          m_bLeftButton           = false;
          m_bMiddleButton         = true;
@@ -762,21 +762,21 @@ namespace uwp
       if(m_bLeftButton && !args->CurrentPoint->Properties->IsLeftButtonPressed)
       {
 
-         pmouse->m_id     = WM_LBUTTONUP;
+         pmouse->m_id     = (enum_message) e_message_lbutton_up;
          m_bLeftButton           = false;
 
       }
       else if(m_bRightButton && !args->CurrentPoint->Properties->IsRightButtonPressed)
       {
 
-         pmouse->m_id     = WM_RBUTTONUP;
+         pmouse->m_id     = (enum_message) e_message_rbutton_up;
          m_bRightButton          = false;
 
       }
       else if(m_bMiddleButton && !args->CurrentPoint->Properties->IsMiddleButtonPressed)
       {
 
-         pmouse->m_id     = WM_MBUTTONUP;
+         pmouse->m_id     = (enum_message) WM_MBUTTONUP;
          m_bMiddleButton         = false;
 
       }
@@ -832,6 +832,10 @@ namespace uwp
    {
 
       string str = strId;
+
+      
+
+
 
       //str += " client_only";
 

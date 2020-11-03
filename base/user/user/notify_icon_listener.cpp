@@ -25,7 +25,7 @@ namespace user
 
       switch(message)
       {
-      case WM_RBUTTONDOWN:
+      case e_message_rbutton_down:
 
          OnNotifyIconContextMenu(uiNotifyIcon);
 
@@ -37,7 +37,7 @@ namespace user
 
          break;
 
-      case WM_LBUTTONDOWN:
+      case e_message_lbutton_down:
 
          OnNotifyIconLButtonDown(uiNotifyIcon);
 

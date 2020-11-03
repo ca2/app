@@ -572,7 +572,7 @@ namespace apex
 
       //virtual ::estatus init2();
 
-      virtual ::estatus initial_check_directrix();
+      virtual ::estatus post_create_requests();
 
       //virtual void term_system();
 

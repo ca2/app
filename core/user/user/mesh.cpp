@@ -126,12 +126,12 @@ namespace user
 
       if (!bList)
       {
-         MESSAGE_LINK(WM_LBUTTONDOWN, pchannel, this, &mesh::_001OnLButtonDown);
-         MESSAGE_LINK(WM_LBUTTONUP, pchannel, this, &mesh::_001OnLButtonUp);
+         MESSAGE_LINK(e_message_lbutton_down, pchannel, this, &mesh::_001OnLButtonDown);
+         MESSAGE_LINK(e_message_lbutton_up, pchannel, this, &mesh::_001OnLButtonUp);
          MESSAGE_LINK(WM_LBUTTONDBLCLK, pchannel, this, &mesh::_001OnLButtonDblClk);
       }
-      MESSAGE_LINK(WM_RBUTTONDOWN, pchannel, this,&mesh::_001OnRButtonDown);
-      MESSAGE_LINK(WM_RBUTTONDOWN, pchannel, this, &mesh::_001OnRButtonUp);
+      MESSAGE_LINK(e_message_rbutton_down, pchannel, this,&mesh::_001OnRButtonDown);
+      MESSAGE_LINK(e_message_rbutton_down, pchannel, this, &mesh::_001OnRButtonUp);
 
       MESSAGE_LINK(e_message_mouse_move, pchannel, this,&mesh::_001OnMouseMove);
 

@@ -1595,7 +1595,7 @@ namespace aura
    }
 
 
-   ::estatus system::initial_check_directrix()
+   ::estatus system::post_create_requests()
    {
 
       //while(auto pcreate = get_command()->get_create())
@@ -3823,6 +3823,8 @@ namespace aura
       {
 
 #ifdef _UWP
+
+         auto psession = Session;
 
          auto puiHost = __user_interaction(psession->m_puiHost);
 

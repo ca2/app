@@ -49,7 +49,7 @@ namespace user
 
       MESSAGE_LINK(e_message_create, pchannel, this, &menu_list_window::_001OnCreate);
       MESSAGE_LINK(e_message_destroy, pchannel, this, &menu_list_window::_001OnDestroy);
-      MESSAGE_LINK(WM_CLOSE, pchannel, this, &menu_list_window::_001OnClose);
+      MESSAGE_LINK(e_message_close, pchannel, this, &menu_list_window::_001OnClose);
 
    }
 

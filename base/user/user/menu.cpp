@@ -84,7 +84,7 @@ namespace user
       MESSAGE_LINK(WM_NCCALCSIZE, pchannel, this, &menu::_001OnNcCalcSize);
       MESSAGE_LINK(WM_ENABLE, pchannel, this, &menu::_001OnEnable);
       MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &menu::_001OnShowWindow);
-      MESSAGE_LINK(WM_CLOSE, pchannel, this, &menu::_001OnClose);
+      MESSAGE_LINK(e_message_close, pchannel, this, &menu::_001OnClose);
       MESSAGE_LINK(WM_MOUSEACTIVATE, pchannel, this, &menu::_001OnMouseActivate);
       MESSAGE_LINK(e_message_activate, pchannel, this, &menu::_001OnActivate);
       MESSAGE_LINK(WM_NCCREATE, pchannel, this, &menu::_001OnNcCreate);
@@ -874,7 +874,7 @@ namespace user
       if (!m_bInline && !ev.m_bRet)
       {
 
-         post_message(WM_CLOSE);
+         post_message(e_message_close);
 
       }
 
@@ -928,7 +928,7 @@ namespace user
 
                   defer_close();
 
-                  // this may be destroyed by WM_CLOSE above
+                  // this may be destroyed by e_message_close above
 
                   if (puiNotify != nullptr)
                   {
@@ -1076,7 +1076,7 @@ namespace user
          KillTimer(e_timer_menu);
          if (m_idSubMenu.has_char())
          {
-            m_psubmenu->send_message(WM_CLOSE);
+            m_psubmenu->send_message(e_message_close);
             m_psubmenu = nullptr;
             m_idSubMenu.is_empty();
          }
@@ -1332,7 +1332,7 @@ namespace user
          if (m_pmenuParent != nullptr)
          {
 
-            m_pmenuParent->post_message(WM_CLOSE);
+            m_pmenuParent->post_message(e_message_close);
 
          }
 

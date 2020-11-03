@@ -46,8 +46,8 @@ namespace simple_ui
 //   void interaction::install_simple_ui_default_mouse_handling(::channel * pchannel)
 //   {
 //      
-//      MESSAGE_LINK(WM_LBUTTONDOWN  , pchannel, this, &interaction::_001OnLButtonDown);
-//      MESSAGE_LINK(WM_LBUTTONUP    , pchannel, this, &interaction::_001OnLButtonUp);
+//      MESSAGE_LINK(e_message_lbutton_down  , pchannel, this, &interaction::_001OnLButtonDown);
+//      MESSAGE_LINK(e_message_lbutton_up    , pchannel, this, &interaction::_001OnLButtonUp);
 //      MESSAGE_LINK(WM_MBUTTONDOWN  , pchannel, this, &interaction::_001OnMButtonDown);
 //      MESSAGE_LINK(WM_MBUTTONUP    , pchannel, this, &interaction::_001OnMButtonUp);
 //      MESSAGE_LINK(e_message_mouse_move    , pchannel, this, &interaction::_001OnMouseMove);

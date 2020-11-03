@@ -136,7 +136,7 @@ void simple_frame_window::install_message_routing(::channel * pchannel)
    MESSAGE_LINK(WM_DDE_INITIATE, pchannel, this, &simple_frame_window::_001OnDdeInitiate);
 #endif
    MESSAGE_LINK(e_message_destroy, pchannel, this, &simple_frame_window::_001OnDestroy);
-   MESSAGE_LINK(WM_CLOSE, pchannel, this, &simple_frame_window::_001OnClose);
+   MESSAGE_LINK(e_message_close, pchannel, this, &simple_frame_window::_001OnClose);
    MESSAGE_LINK(e_message_size, pchannel, this, &simple_frame_window::_001OnSize);
    MESSAGE_LINK(e_message_move, pchannel, this, &simple_frame_window::_001OnMove);
    MESSAGE_LINK(WM_GETMINMAXINFO, pchannel, this, &simple_frame_window::_001OnGetMinMaxInfo);
@@ -3519,7 +3519,7 @@ void simple_frame_window::draw_frame(::draw2d::graphics_pointer & pgraphics)
 //void simple_frame_window::WfiOnClose()
 //{
 //
-//   post_message(WM_CLOSE);
+//   post_message(e_message_close);
 //
 //}
 //

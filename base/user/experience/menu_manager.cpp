@@ -36,11 +36,11 @@ namespace experience
 
       }
 
-      if(pbase->m_id == WM_RBUTTONDOWN)
+      if(pbase->m_id == e_message_rbutton_down)
       {
          m_enumState = StateMBDown;
       }
-      else if(pbase->m_id == WM_RBUTTONUP)
+      else if(pbase->m_id == e_message_rbutton_up)
       {
          if(m_enumState == StateMBDown)
          {
@@ -83,15 +83,15 @@ namespace experience
       }
       }
 
-      if(pbase->m_id == WM_RBUTTONDOWN)
+      if(pbase->m_id == e_message_rbutton_down)
       {
          m_enumState = StateMBDown;
       }
-      if(pbase->m_id == WM_RBUTTONDOWN)
+      if(pbase->m_id == e_message_rbutton_down)
       {
          m_enumState = StateMBDown;
       }
-      else if(pbase->m_id == WM_RBUTTONUP)
+      else if(pbase->m_id == e_message_rbutton_up)
       {
          if(m_enumState == StateMBDown)
          {

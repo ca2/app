@@ -80,8 +80,8 @@ namespace user
          MESSAGE_LINK(e_message_create, pchannel, this, &edit::_001OnCreate);
          MESSAGE_LINK(e_message_destroy, pchannel, this, &edit::_001OnDestroy);
          MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &edit::_001OnShowWindow);
-         MESSAGE_LINK(WM_LBUTTONDOWN, pchannel, this, &edit::_001OnLButtonDown);
-         MESSAGE_LINK(WM_LBUTTONUP, pchannel, this, &edit::_001OnLButtonUp);
+         MESSAGE_LINK(e_message_lbutton_down, pchannel, this, &edit::_001OnLButtonDown);
+         MESSAGE_LINK(e_message_lbutton_up, pchannel, this, &edit::_001OnLButtonUp);
          MESSAGE_LINK(e_message_mouse_move, pchannel, this, &edit::_001OnMouseMove);
          MESSAGE_LINK(WM_MOUSELEAVE, pchannel, this, &edit::_001OnMouseLeave);
          MESSAGE_LINK(WM_KEYDOWN, pchannel, this, &edit::_001OnKeyDown);

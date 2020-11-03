@@ -1089,7 +1089,7 @@ void android_mouse(unsigned int message, float x, float y)
 // void android_l_button_down(float x, float y)
 // {
 
-//    android_mouse(WM_LBUTTONDOWN, x, y);
+//    android_mouse(e_message_lbutton_down, x, y);
 
 // }
 
@@ -1113,7 +1113,7 @@ void android_mouse(unsigned int message, float x, float y)
 // void android_l_button_up(float x, float y)
 // {
 
-//    android_mouse(WM_LBUTTONUP, x, y);
+//    android_mouse(e_message_lbutton_up, x, y);
 
 // }
 

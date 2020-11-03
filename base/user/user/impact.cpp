@@ -26,14 +26,14 @@ namespace user
       ::user::box::install_message_routing(pchannel);
 
       //MESSAGE_LINK(WM_VIEW, pchannel, this, &impact::_001OnView);
-      MESSAGE_LINK(WM_LBUTTONDOWN, pchannel, this, &impact::_001OnLButtonDown);
-      MESSAGE_LINK(WM_LBUTTONUP, pchannel, this, &impact::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_lbutton_down, pchannel, this, &impact::_001OnLButtonDown);
+      MESSAGE_LINK(e_message_lbutton_up, pchannel, this, &impact::_001OnLButtonUp);
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &impact::_001OnMouseMove);
       MESSAGE_LINK(e_message_create, pchannel, this, &impact::_001OnCreate);
       MESSAGE_LINK(e_message_destroy, pchannel, this, &impact::_001OnDestroy);
-      //      MESSAGE_LINK(WM_LBUTTONDOWN    , pchannel, this, &impact::_001OnRButtonDown);
+      //      MESSAGE_LINK(e_message_lbutton_down    , pchannel, this, &impact::_001OnRButtonDown);
       MESSAGE_LINK(WM_MBUTTONDOWN, pchannel, this, &impact::_001OnMButtonDown);
-      MESSAGE_LINK(WM_RBUTTONDOWN, pchannel, this, &impact::_001OnRButtonDown);
+      MESSAGE_LINK(e_message_rbutton_down, pchannel, this, &impact::_001OnRButtonDown);
 
 
       MESSAGE_LINK(WM_MOUSEACTIVATE, pchannel, this, &impact::_001OnMouseActivate);

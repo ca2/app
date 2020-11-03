@@ -583,7 +583,7 @@ namespace apex
       //virtual ::estatus     main() override;
       //virtual ::estatus     on_run();
 
-      virtual ::estatus initial_check_directrix();
+      virtual ::estatus on_before_launching();
       //virtual ::estatus os_native_bergedge_start();
 
       virtual ::estatus pre_run();

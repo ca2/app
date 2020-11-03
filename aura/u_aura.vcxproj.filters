@@ -1734,6 +1734,9 @@
     <ClInclude Include="graphics\draw2d\context_image.h">
       <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
+    <ClInclude Include="platform\shell_open.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="graphics\draw2d\draw2d.inl">
@@ -2211,6 +2214,9 @@
     </ClCompile>
     <ClCompile Include="os\uwp\main.cpp">
       <Filter>Source Files\os\uwp</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\shell_open.cpp">
+      <Filter>Source Files\platform</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

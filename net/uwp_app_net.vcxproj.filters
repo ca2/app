@@ -95,5 +95,6 @@
     <None Include="..\..\..\__archive\storage-uwp\third\binary\Win32\basis\zlib.dll">
       <Filter>Libraries\x86\basis</Filter>
     </None>
+    <None Include="uwp_app_net_TemporaryKey.pfx" />
   </ItemGroup>
 </Project>

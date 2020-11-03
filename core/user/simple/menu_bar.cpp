@@ -43,7 +43,7 @@ void simple_menu_bar::install_message_routing(::channel * pchannel)
    MESSAGE_LINK(WM_KEYDOWN, pchannel, this, &simple_menu_bar::_001OnKeyDown);
    MESSAGE_LINK(e_message_destroy, pchannel, this, &simple_menu_bar::_001OnDestroy);
    MESSAGE_LINK(WM_MENUCHAR, pchannel, this, &simple_menu_bar::_001OnMenuChar);
-   //MESSAGE_LINK(WM_LBUTTONDOWN, pchannel, this, &simple_menu_bar::_001OnLButtonDown);
+   //MESSAGE_LINK(e_message_lbutton_down, pchannel, this, &simple_menu_bar::_001OnLButtonDown);
    //MESSAGE_LINK(e_message_language, pchannel, this, &simple_menu_bar::_001OnAppLanguage);
 
    //MESSAGE_LINK(WM_ERASEBKGND               , pchannel, this, *simple_menu_bar::_001On);

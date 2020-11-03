@@ -875,7 +875,7 @@ namespace user
    void form_control::WfiOnClose()
    {
 
-      post_message(WM_CLOSE);
+      post_message(e_message_close);
 
    }
 

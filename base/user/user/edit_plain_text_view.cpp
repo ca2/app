@@ -27,8 +27,8 @@ namespace user
    //   impact::install_message_routing(pchannel);
    //   //MESSAGE_LINK(e_message_create, pchannel, this, &edit_plain_text_view::_001OnCreate);
    //   MESSAGE_LINK(e_message_mouse_move, pchannel, this, &::user::plain_edit::_002OnMouseMove);
-   //   MESSAGE_LINK(WM_LBUTTONDOWN, pchannel, this, &::user::plain_edit::_002OnLButtonDown);
-   //   MESSAGE_LINK(WM_LBUTTONUP, pchannel, this, &::user::plain_edit::_002OnLButtonUp);
+   //   MESSAGE_LINK(e_message_lbutton_down, pchannel, this, &::user::plain_edit::_002OnLButtonDown);
+   //   MESSAGE_LINK(e_message_lbutton_up, pchannel, this, &::user::plain_edit::_002OnLButtonUp);
    //   MESSAGE_LINK(WM_KEYDOWN, pchannel, this, &::user::plain_edit::_002OnKeyDown);
    //   MESSAGE_LINK(WM_KEYUP, pchannel, this, &::user::plain_edit::_002OnKeyUp);
 

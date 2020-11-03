@@ -189,14 +189,14 @@ namespace user
 
    void notification_area::LeftClick(i32 iItem)
    {
-      PostMessageToTrayIcon(iItem, WM_LBUTTONDOWN);
-      PostMessageToTrayIcon(iItem, WM_LBUTTONUP);
+      PostMessageToTrayIcon(iItem, e_message_lbutton_down);
+      PostMessageToTrayIcon(iItem, e_message_lbutton_up);
    }
 
    void notification_area::RightClick(i32 iItem)
    {
-      PostMessageToTrayIcon(iItem, WM_RBUTTONDOWN);
-      PostMessageToTrayIcon(iItem, WM_RBUTTONUP);
+      PostMessageToTrayIcon(iItem, e_message_rbutton_down);
+      PostMessageToTrayIcon(iItem, e_message_rbutton_up);
    }
 
    void notification_area::PostMessageToTrayIcon(i32 iItem, LPARAM lParam)

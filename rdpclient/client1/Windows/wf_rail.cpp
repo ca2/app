@@ -328,7 +328,7 @@ static void PrintRailIconInfo(WINDOW_ORDER_INFO* orderInfo, ICON_INFO* iconInfo)
 //			}
 //			break;
 //
-//		case WM_LBUTTONDOWN:
+//		case e_message_lbutton_down:
 //			{
 //				if (!railWindow || !input)
 //					return 0;
@@ -342,7 +342,7 @@ static void PrintRailIconInfo(WINDOW_ORDER_INFO* orderInfo, ICON_INFO* iconInfo)
 //			}
 //			break;
 //
-//		case WM_LBUTTONUP:
+//		case e_message_lbutton_up:
 //			{
 //				if (!railWindow || !input)
 //					return 0;
@@ -356,7 +356,7 @@ static void PrintRailIconInfo(WINDOW_ORDER_INFO* orderInfo, ICON_INFO* iconInfo)
 //			}
 //			break;
 //
-//		case WM_RBUTTONDOWN:
+//		case e_message_rbutton_down:
 //			{
 //				if (!railWindow || !input)
 //					return 0;
@@ -370,7 +370,7 @@ static void PrintRailIconInfo(WINDOW_ORDER_INFO* orderInfo, ICON_INFO* iconInfo)
 //			}
 //			break;
 //
-//		case WM_RBUTTONUP:
+//		case e_message_rbutton_up:
 //			{
 //				if (!railWindow || !input)
 //					return 0;
@@ -398,10 +398,10 @@ static void PrintRailIconInfo(WINDOW_ORDER_INFO* orderInfo, ICON_INFO* iconInfo)
 //			}
 //			break;
 //
-//		case WM_MOUSEWHEEL:
+//		case e_message_mouse_wheel:
 //			break;
 //
-//		case WM_CLOSE:
+//		case e_message_close:
 //			DestroyWindow(hWnd);
 //			break;
 //

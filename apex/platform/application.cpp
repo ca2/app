@@ -1656,12 +1656,14 @@ namespace apex
 
          //xxdebug_box("pre_run 1 ok", "pre_run 1 ok", MB_ICONINFORMATION);
 
-         if (!initial_check_directrix())
+         auto estatus = on_before_launching();
+
+         if(!estatus)
          {
 
             m_bReady = true;
 
-            return false;
+            return estatus;
 
          }
 
@@ -2642,7 +2644,7 @@ namespace apex
    }
 
 
-   ::estatus application::initial_check_directrix()
+   ::estatus application::on_before_launching()
    {
 
       string strLicense = get_license_id();
@@ -6127,7 +6129,19 @@ retry_license:
       if (_001CanCloseApplication())
       {
 
+#ifdef _UWP
+         Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(
+            Windows::UI::Core::CoreDispatcherPriority::Normal,
+            ref new Windows::UI::Core::DispatchedHandler([this]()
+               {
+                  Windows::UI::ViewManagement::ApplicationView::GetForCurrentView()->TryConsolidateAsync();
+      }));
+
+#else
+
          finish();
+
+#endif
 
       }
 
@@ -8595,7 +8609,7 @@ namespace apex
 
       //ASSERT(m_puiMain1 != nullptr);
 
-      //m_puiMain1->m_puiThis->send_message(WM_CLOSE);
+      //m_puiMain1->m_puiThis->send_message(e_message_close);
 
    }
 

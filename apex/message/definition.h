@@ -50,7 +50,7 @@ namespace message
    };
 
 
-   CLASS_DECL_APEX e_prototype get_message_prototype(UINT_PTR emessage, UINT uiCode);
+   CLASS_DECL_APEX e_prototype get_message_prototype(enum_message emessage, UINT uiCode);
 
 //   class ::channel * CreateSignal();
 

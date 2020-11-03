@@ -45,8 +45,8 @@ void simple_scroll_bar::install_message_routing(::channel * pchannel)
    MESSAGE_LINK(e_message_destroy, pchannel, this, &simple_scroll_bar::_001OnDestroy);
    MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &simple_scroll_bar::_001OnShowWindow);
    MESSAGE_LINK(e_message_mouse_move, pchannel, this, &simple_scroll_bar::_001OnMouseMove);
-   MESSAGE_LINK(WM_LBUTTONDOWN, pchannel, this, &simple_scroll_bar::_001OnLButtonDown);
-   MESSAGE_LINK(WM_LBUTTONUP, pchannel, this, &simple_scroll_bar::_001OnLButtonUp);
+   MESSAGE_LINK(e_message_lbutton_down, pchannel, this, &simple_scroll_bar::_001OnLButtonDown);
+   MESSAGE_LINK(e_message_lbutton_up, pchannel, this, &simple_scroll_bar::_001OnLButtonUp);
    MESSAGE_LINK(WM_HSCROLL, pchannel, this, &simple_scroll_bar::_001OnHScroll);
 
 }

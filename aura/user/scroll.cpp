@@ -616,7 +616,7 @@ namespace user
       interaction::install_message_routing(pchannel);
 
       MESSAGE_LINK(WM_VSCROLL, pchannel, this, &scroll_y_base::_001OnVScroll);
-      MESSAGE_LINK(WM_MOUSEWHEEL, pchannel, this, &scroll_y_base::_001OnMouseWheel);
+      MESSAGE_LINK(e_message_mouse_wheel, pchannel, this, &scroll_y_base::_001OnMouseWheel);
 
    }
 

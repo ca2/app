@@ -87,6 +87,9 @@ namespace uwp
 
 
       virtual ~directx_application();
+   internal:
+      void on_size(const ::size & size);
+
 
    private:
 
@@ -98,8 +101,6 @@ namespace uwp
       _In_ Windows::UI::Core::CoreWindow^ sender,
       _In_ Windows::UI::Core::WindowSizeChangedEventArgs^ args
       );
-
-      void on_size(const ::size& size);
 
       void DpiChanged(::Windows::Graphics::Display::DisplayInformation ^ sender, Object ^ obj);
 

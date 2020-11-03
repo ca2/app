@@ -148,7 +148,7 @@ JNIEXPORT void JNICALL Java_com_android_1app_impact_lButtonDown(JNIEnv * env, jo
 
    set_context(env);
 
-   android_mouse(WM_LBUTTONDOWN, x, y);
+   android_mouse(e_message_lbutton_down, x, y);
 
 }
 
@@ -207,7 +207,7 @@ JNIEXPORT void JNICALL Java_com_android_1app_impact_lButtonUp(JNIEnv * env, jobj
 
    set_context(env);
 
-   android_mouse(WM_LBUTTONUP, x, y);
+   android_mouse(e_message_lbutton_up, x, y);
 
 }
 

@@ -846,10 +846,10 @@ namespace user
 
       i64 iMessage = pmouse->m_id;
 
-      if(iMessage == WM_LBUTTONDOWN
-       //|| iMessage == WM_LBUTTONUP
-       || iMessage == WM_RBUTTONDOWN
-       //|| iMessage == WM_RBUTTONUP
+      if(iMessage == e_message_lbutton_down
+       //|| iMessage == e_message_lbutton_up
+       || iMessage == e_message_rbutton_down
+       //|| iMessage == e_message_rbutton_up
        || iMessage == WM_MBUTTONDOWN
        //|| iMessage == WM_MBUTTONUP
        )

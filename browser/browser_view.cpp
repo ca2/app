@@ -72,9 +72,9 @@ namespace browser
 
       MESSAGE_LINK(e_message_create,pchannel,this,&view::_001OnCreate);
       MESSAGE_LINK(e_message_destroy, pchannel, this, &view::_001OnDestroy);
-      //MESSAGE_LINK(WM_LBUTTONDOWN, pchannel, this, &view::_001OnLButtonDown);
-      MESSAGE_LINK(WM_LBUTTONDOWN, pchannel, this, &view::_001OnMouse);
-      MESSAGE_LINK(WM_LBUTTONUP, pchannel, this, &view::_001OnMouse);
+      //MESSAGE_LINK(e_message_lbutton_down, pchannel, this, &view::_001OnLButtonDown);
+      MESSAGE_LINK(e_message_lbutton_down, pchannel, this, &view::_001OnMouse);
+      MESSAGE_LINK(e_message_lbutton_up, pchannel, this, &view::_001OnMouse);
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &view::_001OnMouse);
 
    }
@@ -328,7 +328,7 @@ namespace browser
       event.x = point.x;
       event.y = point.y;
 
-      if (pmouse->m_id == WM_LBUTTONDOWN)
+      if (pmouse->m_id == e_message_lbutton_down)
       {
 
          Application.m_ppaneview->m_pviewLastBilbo = this;
@@ -336,7 +336,7 @@ namespace browser
          m_pbrowser->GetHost()->SendMouseClickEvent(event, cef_mouse_button_type_t::MBT_LEFT, false, 1);
 
       }
-      else if (pmouse->m_id == WM_LBUTTONUP)
+      else if (pmouse->m_id == e_message_lbutton_up)
       {
 
          m_pbrowser->GetHost()->SendMouseClickEvent(event, cef_mouse_button_type_t::MBT_LEFT, true, 1);

@@ -73,7 +73,7 @@ __STATIC inline bool IsEnterKey(LPMSG pMsg)
 __STATIC inline bool IsButtonUp(LPMSG pMsg)
 
 {
-   return pMsg->message == WM_LBUTTONUP;
+   return pMsg->message == e_message_lbutton_up;
 
 }
 

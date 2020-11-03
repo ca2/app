@@ -430,6 +430,7 @@
     <ClInclude Include="platform\session_common.h" />
     <ClInclude Include="platform\session_heap.h" />
     <ClInclude Include="platform\shell_launcher.h" />
+    <ClInclude Include="platform\shell_open.h" />
     <ClInclude Include="platform\simple_app.h" />
     <ClInclude Include="platform\simple_log.h" />
     <ClInclude Include="platform\smart_pointer_query.h" />
@@ -723,6 +724,7 @@
     <ClCompile Include="platform\drawable.cpp" />
     <ClCompile Include="platform\draw_context.cpp" />
     <ClCompile Include="platform\session.cpp" />
+    <ClCompile Include="platform\shell_open.cpp" />
     <ClCompile Include="platform\static_start.cpp" />
     <ClCompile Include="platform\static_start_aura.cpp" />
     <ClCompile Include="platform\system.cpp" />

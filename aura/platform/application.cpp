@@ -1258,88 +1258,88 @@ namespace aura
    //}
 
 
-   ::estatus application::pre_run()
-   {
-
-      INFO("aura::application::pre_run");
-
-      try
-      {
-
-         m_tickHeartBeat.Now();
-
-         if(!application_pre_run())
-         {
-
-            m_bReady = true;
-
-            return false;
-
-         }
-
-         //    if(!check_install())
-         //    {
-
-         //       m_bReady = true;
-
-         //       return false;
-
-         //    }
-
-//         if(!is_system() && !is_session())
+//   ::estatus application::pre_run()
+//   {
+//
+//      INFO("aura::application::pre_run");
+//
+//      try
+//      {
+//
+//         m_tickHeartBeat.Now();
+//
+//         if(!application_pre_run())
 //         {
 //
-//            if(!is_installed())
-//            {
+//            m_bReady = true;
 //
-//
-//            }
+//            return false;
 //
 //         }
-
-         //xxdebug_box("pre_run 1 ok", "pre_run 1 ok", MB_ICONINFORMATION);
-
-         if (!initial_check_directrix())
-         {
-
-            m_bReady = true;
-
-            return false;
-
-         }
-
-         m_tickHeartBeat.Now();
-
-         if (!os_native_bergedge_start())
-         {
-
-            m_bReady = true;
-
-            return false;
-
-         }
-
-         INFO("aura::application::pre_run success");
-
-         return true;
-
-      }
-      catch (::exception_pointer pe)
-      {
-
-         handle_exception(pe);
-
-      }
-      catch (...)
-      {
-
-         INFO("aura::application::pre_run exception.4");
-
-      }
-
-      return false;
-
-   }
+//
+//         //    if(!check_install())
+//         //    {
+//
+//         //       m_bReady = true;
+//
+//         //       return false;
+//
+//         //    }
+//
+////         if(!is_system() && !is_session())
+////         {
+////
+////            if(!is_installed())
+////            {
+////
+////
+////            }
+////
+////         }
+//
+//         //xxdebug_box("pre_run 1 ok", "pre_run 1 ok", MB_ICONINFORMATION);
+//
+//         if (!initial_check_directrix())
+//         {
+//
+//            m_bReady = true;
+//
+//            return false;
+//
+//         }
+//
+//         m_tickHeartBeat.Now();
+//
+//         if (!os_native_bergedge_start())
+//         {
+//
+//            m_bReady = true;
+//
+//            return false;
+//
+//         }
+//
+//         INFO("aura::application::pre_run success");
+//
+//         return true;
+//
+//      }
+//      catch (::exception_pointer pe)
+//      {
+//
+//         handle_exception(pe);
+//
+//      }
+//      catch (...)
+//      {
+//
+//         INFO("aura::application::pre_run exception.4");
+//
+//      }
+//
+//      return false;
+//
+//   }
 
 
 //   ::estatus application::on_run()
@@ -1661,7 +1661,7 @@ namespace aura
    }
 
 
-   ::estatus application::initial_check_directrix()
+   ::estatus application::on_before_launching()
    {
 
       auto psession = Session;
@@ -7190,7 +7190,7 @@ namespace aura
 
       auto puiMain1 = __user_interaction(m_puiMain1);
 
-      puiMain1->m_puiThis->send_message(WM_CLOSE);
+      puiMain1->m_puiThis->send_message(e_message_close);
 
    }
 

@@ -708,6 +708,13 @@ namespace user
    bool interaction_child::start_window_visual()
    {
 
+      if (!m_puserinteraction)
+      {
+
+         return false;
+
+      }
+
       if (m_puserinteraction->layout().window().visual() == m_puserinteraction->layout().sketch().visual())
       {
 

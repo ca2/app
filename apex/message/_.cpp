@@ -99,7 +99,7 @@ namespace message
 //   }
 
 
-   e_prototype get_message_prototype(UINT_PTR emessage, UINT uiCode)
+   e_prototype get_message_prototype(enum_message emessage, UINT uiCode)
    {
       switch (emessage)
       {
@@ -135,11 +135,11 @@ namespace message
          //}
          //}
       case e_message_mouse_move:
-      case WM_LBUTTONDOWN:
-      case WM_LBUTTONUP:
+      case e_message_lbutton_down:
+      case e_message_lbutton_up:
       case WM_LBUTTONDBLCLK:
-      case WM_RBUTTONDOWN:
-      case WM_RBUTTONUP:
+      case e_message_rbutton_down:
+      case e_message_rbutton_up:
       case WM_RBUTTONDBLCLK:
       case WM_MBUTTONDOWN:
       case WM_MBUTTONUP:
@@ -149,7 +149,7 @@ namespace message
       case WM_NCLBUTTONUP:
          return PrototypeMouse;
 #ifdef WINDOWS
-      case WM_MOUSEWHEEL:
+      case e_message_mouse_wheel:
          return PrototypeMouseWheel;
 #endif
       case WM_NCACTIVATE:

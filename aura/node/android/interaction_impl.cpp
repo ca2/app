@@ -1120,7 +1120,7 @@ namespace android
       {
 //         m_puserinteraction->get_context_application()->step_timer();
       }
-      else if(pmessage->m_id == WM_LBUTTONDOWN)
+      else if(pmessage->m_id == e_message_lbutton_down)
       {
          //::rect rectClient;
          //::get_client_rect(get_handle(),rectClient);
@@ -1163,16 +1163,16 @@ namespace android
 
       }
 
-      if(pmessage->m_id == WM_LBUTTONDOWN ||
-            pmessage->m_id == WM_LBUTTONUP ||
+      if(pmessage->m_id == e_message_lbutton_down ||
+            pmessage->m_id == e_message_lbutton_up ||
             pmessage->m_id == WM_MBUTTONDOWN ||
             pmessage->m_id == WM_MBUTTONUP ||
-            pmessage->m_id == WM_RBUTTONDOWN ||
-            pmessage->m_id == WM_RBUTTONUP ||
+            pmessage->m_id == e_message_rbutton_down ||
+            pmessage->m_id == e_message_rbutton_up ||
             pmessage->m_id == WM_LBUTTONDBLCLK ||
             pmessage->m_id == e_message_mouse_move ||
             pmessage->m_id == e_message_non_client_mouse_move ||
-            pmessage->m_id == WM_MOUSEWHEEL)
+            pmessage->m_id == e_message_mouse_wheel)
       {
 
          message::mouse * pmouse = (::message::mouse *) pmessage;

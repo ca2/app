@@ -1846,7 +1846,7 @@ namespace aura
 
       ASSERT(m_puiMain1 != nullptr);
 
-      m_puiMain1->m_puiThis->send_message(WM_CLOSE);
+      m_puiMain1->m_puiThis->send_message(e_message_close);
 
    }
 

@@ -47,6 +47,17 @@ namespace user
 
       m_bMessageThread = true;
 
+#ifdef WINDOWS_DESKTOP
+
+      m_bCreateNativeWindowOnInteractionThread = true;
+
+#else
+
+      m_bCreateNativeWindowOnInteractionThread = false;
+
+#endif
+
+
    }
 
    thread::~thread()
@@ -163,6 +174,34 @@ namespace user
 
 #endif
 
+   ::estatus thread::task_caller_on_init()
+   {
+
+      if (!m_bCreateNativeWindowOnInteractionThread)
+      {
+
+         if (!m_pimpl->_native_create_window_ex(*m_pcreatestruct))
+         {
+
+            //delete m_pcreatestruct;
+
+            m_pcreatestruct = nullptr;
+
+            m_estatus = error_failed;
+
+            finish();
+
+            return ::error_failed;
+
+         }
+
+      }
+
+
+      return ::success;
+
+   }
+
    ::estatus thread::init_thread()
    {
 
@@ -217,27 +256,43 @@ namespace user
 
       //  });
 
-      if (!m_pimpl->_native_create_window_ex(*m_pcreatestruct))
+      if (m_bCreateNativeWindowOnInteractionThread)
       {
 
-         //delete m_pcreatestruct;
+         if (!m_pimpl->_native_create_window_ex(*m_pcreatestruct))
+         {
 
-         m_pcreatestruct = nullptr;
+            //delete m_pcreatestruct;
 
-         return false;
+            m_pcreatestruct = nullptr;
+
+            m_estatus = error_failed;
+
+            finish();
+
+            return false;
+
+         }
+
+      }
+      else
+      { 
+      
+         __refer(m_pimpl->m_puserinteraction->m_pthreadUserInteraction, this);
+
+         uiptra().add(m_pimpl->m_puserinteraction);
 
       }
 
+            //m_himc = ImmGetContext(m_pimpl->get_handle());
 
-      //m_himc = ImmGetContext(m_pimpl->get_handle());
+            __bind(this, m_pprodevian, m_pimpl->m_pprodevian);
 
-      __bind(this, m_pprodevian, m_pimpl->m_pprodevian);
+            m_oswindow = m_pimpl->m_oswindow;
 
-      m_oswindow = m_pimpl->m_oswindow;
+            //delete m_pcreatestruct;
 
-      //delete m_pcreatestruct;
-
-      m_pcreatestruct = nullptr;
+            m_pcreatestruct = nullptr;
 
       return true;
 
@@ -338,13 +393,13 @@ namespace user
          }
 
 
-         if(m_message.message == WM_LBUTTONDOWN)
+         if(m_message.message == e_message_lbutton_down)
          {
 
             ::output_debug_string("::user::thread::LBUTTONDOWN\n");
 
          }
-         else if(m_message.message == WM_LBUTTONUP)
+         else if(m_message.message == e_message_lbutton_up)
          {
 
             ::output_debug_string("::user::thread::LBUTTONUP\n");

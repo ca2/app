@@ -139,7 +139,7 @@ namespace account
 //
 //         {
 //
-//            ::PostMessage(get_splash(),WM_CLOSE,0,0);
+//            ::PostMessage(get_splash(),e_message_close,0,0);
 //
 //         }
 //

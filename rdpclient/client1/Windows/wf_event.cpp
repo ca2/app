@@ -352,19 +352,19 @@ void wf_sizing(wfContext* wfc, WPARAM wParam, LPARAM lParam)
 //				EndPaint(hWnd, &ps);
 //				break;
 //
-//			case WM_LBUTTONDOWN:
+//			case e_message_lbutton_down:
 //				wf_scale_mouse_event(wfc, input, PTR_FLAGS_DOWN | PTR_FLAGS_BUTTON1, X_POS(lParam) - wfc->offset_x, Y_POS(lParam) - wfc->offset_y);
 //				break;
 //
-//			case WM_LBUTTONUP:
+//			case e_message_lbutton_up:
 //				wf_scale_mouse_event(wfc, input, PTR_FLAGS_BUTTON1, X_POS(lParam) - wfc->offset_x, Y_POS(lParam) - wfc->offset_y);
 //				break;
 //
-//			case WM_RBUTTONDOWN:
+//			case e_message_rbutton_down:
 //				wf_scale_mouse_event(wfc, input, PTR_FLAGS_DOWN | PTR_FLAGS_BUTTON2, X_POS(lParam) - wfc->offset_x, Y_POS(lParam) - wfc->offset_y);
 //				break;
 //
-//			case WM_RBUTTONUP:
+//			case e_message_rbutton_up:
 //				wf_scale_mouse_event(wfc, input, PTR_FLAGS_BUTTON2, X_POS(lParam) - wfc->offset_x, Y_POS(lParam) - wfc->offset_y);
 //				break;
 //
@@ -372,7 +372,7 @@ void wf_sizing(wfContext* wfc, WPARAM wParam, LPARAM lParam)
 //				wf_scale_mouse_event(wfc, input, PTR_FLAGS_MOVE, X_POS(lParam) - wfc->offset_x, Y_POS(lParam) - wfc->offset_y);
 //				break;
 //
-//			case WM_MOUSEWHEEL:
+//			case e_message_mouse_wheel:
 //				wf_event_process_WM_MOUSEWHEEL(wfc, hWnd, Msg, wParam, lParam);
 //				break;
 //

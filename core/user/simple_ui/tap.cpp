@@ -41,8 +41,8 @@ namespace simple_ui
 
       MESSAGE_LINK(e_message_create, pchannel, this, &tap::_001OnCreate);
       MESSAGE_LINK(WM_KEYDOWN, pchannel, this, &tap::_001OnKeyDown);
-      MESSAGE_LINK(WM_LBUTTONDOWN, pchannel, this, &tap::_001OnLButtonDown);
-      MESSAGE_LINK(WM_LBUTTONUP, pchannel, this, &tap::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_lbutton_down, pchannel, this, &tap::_001OnLButtonDown);
+      MESSAGE_LINK(e_message_lbutton_up, pchannel, this, &tap::_001OnLButtonUp);
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &tap::_001OnMouseMove);
       MESSAGE_LINK(WM_MOUSELEAVE, pchannel, this, &tap::_001OnMouseLeave);
       //MESSAGE_LINK(e_message_create, pchannel, this, &tap::_001OnCreate);

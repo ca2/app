@@ -102,8 +102,8 @@ void simple_toolbar::install_message_routing(::channel * pchannel)
 
    MESSAGE_LINK(e_message_create       , pchannel, this, &simple_toolbar::_001OnCreate);
    //MESSAGE_LINK(e_message_mouse_move    , pchannel, this, &simple_toolbar::_001OnMouseMove);
-   //MESSAGE_LINK(WM_LBUTTONDOWN  , pchannel, this, &simple_toolbar::_001OnLButtonDown);
-   //MESSAGE_LINK(WM_LBUTTONUP    , pchannel, this, &simple_toolbar::_001OnLButtonUp);
+   //MESSAGE_LINK(e_message_lbutton_down  , pchannel, this, &simple_toolbar::_001OnLButtonDown);
+   //MESSAGE_LINK(e_message_lbutton_up    , pchannel, this, &simple_toolbar::_001OnLButtonUp);
    //MESSAGE_LINK(WM_NCHITTEST    , pchannel, this, &simple_toolbar::_001OnNcHitTest);
    //MESSAGE_LINK(WM_MOUSELEAVE   , pchannel, this, &simple_toolbar::_001OnMouseLeave);
 

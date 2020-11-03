@@ -86,7 +86,7 @@ bool defer_process_x_message(HTHREAD hthread, LPMESSAGE lpMsg, oswindow interact
                {
                   if(e.xbutton.button == Button1)
                   {
-                     lpMsg->message = WM_LBUTTONDOWN;
+                     lpMsg->message = e_message_lbutton_down;
                   }
                   else if(e.xbutton.button == Button2)
                   {
@@ -94,7 +94,7 @@ bool defer_process_x_message(HTHREAD hthread, LPMESSAGE lpMsg, oswindow interact
                   }
                   else if(e.xbutton.button == Button3)
                   {
-                     lpMsg->message = WM_RBUTTONDOWN;
+                     lpMsg->message = e_message_rbutton_down;
                   }
                   else
                   {
@@ -106,7 +106,7 @@ bool defer_process_x_message(HTHREAD hthread, LPMESSAGE lpMsg, oswindow interact
                {
                   if(e.xbutton.button == Button1)
                   {
-                     lpMsg->message = WM_LBUTTONUP;
+                     lpMsg->message = e_message_lbutton_up;
                   }
                   else if(e.xbutton.button == Button2)
                   {
@@ -114,7 +114,7 @@ bool defer_process_x_message(HTHREAD hthread, LPMESSAGE lpMsg, oswindow interact
                   }
                   else if(e.xbutton.button == Button3)
                   {
-                     lpMsg->message = WM_RBUTTONUP;
+                     lpMsg->message = e_message_rbutton_up;
                   }
                   else
                   {

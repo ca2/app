@@ -48,7 +48,7 @@ namespace uwp
 
       }
 
-      auto pdirectxapplication = psession->m_directxapplication;
+      auto pdirectxapplication = Session->m_directxapplication;
 
       m_directxapplication = pdirectxapplication;
 
@@ -77,6 +77,14 @@ namespace uwp
    {
 
       auto directxapplication = m_directxapplication;
+
+      if (!directxapplication)
+      {
+
+         return nullptr;
+
+      }
+
 
       auto directx = directxapplication->m_directx;
 

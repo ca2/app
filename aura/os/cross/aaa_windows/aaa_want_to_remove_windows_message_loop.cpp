@@ -206,7 +206,7 @@ LRESULT DispatchMessage(const MESSAGE * pmessage)
 
 //    //
 //    //   }
-//    //   else if(pmessage->message == WM_LBUTTONDOWN)
+//    //   else if(pmessage->message == e_message_lbutton_down)
 
 //    //   {
 //    //

@@ -582,6 +582,8 @@ namespace user
    CLASS_DECL_AURA ::color calc_system_app_background_color()
    {
 
+      auto psession = Session;
+
       auto color = psession->m_directxapplication->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
 
       auto r = color.R;
@@ -597,6 +599,8 @@ namespace user
 
    CLASS_DECL_AURA double calc_system_app_luminance()
    {
+
+      auto psession = Session;
 
       auto color = psession->m_directxapplication->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
 
@@ -624,7 +628,9 @@ namespace user
 int GetMainScreenRect(LPRECT lprect)
 {
 
-   auto puiHost = __user_interaction(System.get_context_session()->m_puiHost);
+   auto psession = Session;
+
+   auto puiHost = __user_interaction(psession->m_puiHost);
 
    *lprect = puiHost->m_pimpl->cast < ::user::interaction_impl >()->m_rectWindowScreen;
 

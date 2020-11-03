@@ -241,7 +241,7 @@ namespace user
       CalcSplitBarRect(iIndex, &splitRect);
       ::point pointCursor = pMsg->pt;
 
-      if(pMsg->message == WM_LBUTTONDOWN)
+      if(pMsg->message == e_message_lbutton_down)
 
       {
 
@@ -255,7 +255,7 @@ namespace user
             m_iState = stateDragging;
          }
       }
-      else if(pMsg->message == WM_LBUTTONUP)
+      else if(pMsg->message == e_message_lbutton_up)
 
       {
 
@@ -1146,7 +1146,7 @@ namespace user
 
       CalcSplitBarRect(iSplitBar, &splitRect);
 
-      if(emessage == WM_LBUTTONDOWN)
+      if(emessage == e_message_lbutton_down)
       {
 
          i32   fwKeys = (i32) wParam;        // key flags
@@ -1160,7 +1160,7 @@ namespace user
             m_iState = stateDragging;
          }
       }
-      else if(emessage == WM_LBUTTONUP)
+      else if(emessage == e_message_lbutton_up)
       {
 //         i32   fwKeys = wParam;        // key flags
 //         i32 xPos = splitRect.left + (i16) LOWORD(lParam);  // horizontal position of cursor

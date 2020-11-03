@@ -298,7 +298,7 @@ namespace hotplugin
    bool plugin::plugin_finalize()
    {
 
-      plugin_message_handler(WM_CLOSE,0,0,false);
+      plugin_message_handler(e_message_close,0,0,false);
 
       finalize();
 

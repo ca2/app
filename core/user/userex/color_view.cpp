@@ -388,8 +388,8 @@ namespace userex
 
       MESSAGE_LINK(e_message_create, pchannel, this, &color_view::_001OnCreate);
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &color_view::_001OnMouseMove);
-      MESSAGE_LINK(WM_LBUTTONDOWN, pchannel, this, &color_view::_001OnLButtonDown);
-      MESSAGE_LINK(WM_LBUTTONUP, pchannel, this, &color_view::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_lbutton_down, pchannel, this, &color_view::_001OnLButtonDown);
+      MESSAGE_LINK(e_message_lbutton_up, pchannel, this, &color_view::_001OnLButtonUp);
       MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &color_view::_001OnShowWindow);
 
       m_pimageTemplate = create_image({2048,  2048});

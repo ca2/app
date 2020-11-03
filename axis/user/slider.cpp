@@ -27,8 +27,8 @@ namespace user
       ::user::interaction::install_message_routing(pchannel);
       MESSAGE_LINK(e_message_create,pchannel,this,&slider::_001OnCreate);
 //      //MESSAGE_LINK(WM_TIMER,pchannel,this,&slider::_001OnTimer);
-      MESSAGE_LINK(WM_LBUTTONDOWN,pchannel,this,&slider::_001OnLButtonDown);
-      MESSAGE_LINK(WM_LBUTTONUP,pchannel,this,&slider::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_lbutton_down,pchannel,this,&slider::_001OnLButtonDown);
+      MESSAGE_LINK(e_message_lbutton_up,pchannel,this,&slider::_001OnLButtonUp);
       MESSAGE_LINK(e_message_mouse_move,pchannel,this,&slider::_001OnMouseMove);
    }
 

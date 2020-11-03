@@ -73,6 +73,7 @@ namespace user
    void interaction_impl::user_common_construct()
    {
 
+
       m_pinteractionimpl = this;
 
       m_iState1 = 0;
@@ -705,7 +706,9 @@ namespace user
 
          synca.wait();
 
-         if (!m_puserinteraction || !m_puserinteraction->is_window())
+         if (!m_puserinteraction || 
+            (m_puserthread->m_bCreateNativeWindowOnInteractionThread
+               && !m_puserinteraction->is_window()))
          {
 
             return false;
@@ -776,6 +779,23 @@ namespace user
             return false;
 
          }
+
+      }
+
+      if (m_puserthread && !m_puserthread->m_bCreateNativeWindowOnInteractionThread)
+      {
+
+         send_message(e_message_create, 0, (LPARAM)&createstruct);
+
+         //m_puserinteraction->set_dim(createstruct.x, createstruct.cy, createstruct.cx, createstruct.cy);
+
+         send_message(e_message_size, 0, MAKELPARAM(createstruct.cx, createstruct.cy));
+
+         m_puserinteraction->add_ref(OBJ_REF_DBG_THIS_FUNCTION_LINE);
+
+         m_puserinteraction->m_ewindowflag |= ::window_flag_is_window;
+
+         m_puserinteraction->m_ewindowflag |= ::window_flag_window_created;
 
       }
 
@@ -972,7 +992,7 @@ namespace user
 
       }
 
-      if (pmouse->m_id == WM_LBUTTONUP)
+      if (pmouse->m_id == e_message_lbutton_up)
       {
 
          ::output_debug_string("lbutton_up");
@@ -1041,7 +1061,7 @@ namespace user
       {
 
 
-         if (pmouse->m_id == WM_LBUTTONUP)
+         if (pmouse->m_id == e_message_lbutton_up)
          {
 
             ::output_debug_string("lbutton_up");
@@ -1104,7 +1124,7 @@ namespace user
       {
 
 
-         if (pmouse->m_id == WM_LBUTTONUP)
+         if (pmouse->m_id == e_message_lbutton_up)
          {
 
             ::output_debug_string("lbutton_up");

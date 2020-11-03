@@ -4,6 +4,9 @@
 #include "aura/platform/mq.h"
 
 
+CLASS_DECL_ACME void set_core_window_once_visible();
+
+
 using namespace Windows::UI::Core;
 using namespace Windows::Foundation;
 using namespace Microsoft::WRL;
@@ -155,11 +158,16 @@ namespace uwp
    bool interaction_impl::_native_create_window_ex(::user::create_struct& cs)
    {
 
-      __refer(m_puserinteraction->m_pthreadUserInteraction, ::get_task());
+      auto & system = System;
 
-      m_puserinteraction->m_pthreadUserInteraction->uiptra().add(m_puserinteraction);
+      auto directxapplication = system.m_directxapplication;
 
-      __refer(m_pthreadUserImpl, m_puserinteraction->m_pthreadUserInteraction);
+      m_window = directxapplication->m_window;
+
+      System.m_directxapplication->m_rectLastWindowRect = m_window->Bounds;
+
+
+      //__refer(m_pthreadUserImpl, m_puserinteraction->m_pthreadUserInteraction);
 
       //m_strDebug += ::str::demangle(m_puserinteraction->type_name()) + ";";
 
@@ -178,17 +186,11 @@ namespace uwp
 
       install_message_routing(m_puserinteraction);
 
-      send_message(e_message_create,0,(LPARAM)&cs);
+      m_rectWindowScreen.left = 0;
+      m_rectWindowScreen.top = 0;
+      m_rectWindowScreen.right = (LONG)m_window->Bounds.Width;
+      m_rectWindowScreen.bottom = (LONG)m_window->Bounds.Height;
 
-      m_puserinteraction->set_dim(cs.x,cs.cy,cs.cx,cs.cy);
-
-      send_message(e_message_size);
-
-      m_puserinteraction->add_ref(OBJ_REF_DBG_ARGS);
-
-      m_puserinteraction->m_ewindowflag |= ::window_flag_is_window;
-
-      m_puserinteraction->m_ewindowflag |= ::window_flag_window_created;
 
       return true;
 
@@ -304,7 +306,7 @@ namespace uwp
       if(get_context_application() != nullptr)
       {
 
-         Sys(get_context_application()).window_map().m_map.remove_key((oswindow)(iptr)(void *)get_handle());
+         System.window_map().m_map.remove_key((oswindow)(iptr)(void *)get_handle());
 
       }
 
@@ -917,6 +919,9 @@ namespace uwp
 
          if(pbase->m_id == WM_KEYDOWN || pbase->m_id == WM_SYSKEYDOWN)
          {
+
+            auto psession = Session;
+
             try
             {
                psession->set_key_pressed(pkey->m_ekey,true);
@@ -927,6 +932,9 @@ namespace uwp
          }
          else if(pbase->m_id == WM_KEYUP || pbase->m_id == WM_SYSKEYUP)
          {
+
+            auto psession = Session;
+
             try
             {
                psession->set_key_pressed(pkey->m_ekey,false);
@@ -941,7 +949,7 @@ namespace uwp
       {
 //         m_puserinteraction->get_context_application()->step_timer();
       }
-      else if(pbase->m_id == WM_LBUTTONDOWN)
+      else if(pbase->m_id == e_message_lbutton_down)
       {
          //g_pwndLastLButtonDown = m_puserinteraction;
       }
@@ -959,14 +967,14 @@ namespace uwp
 
       //_000OnMouseLeave(pbase);
 
-      if(pbase->m_id == WM_LBUTTONDOWN ||
-            pbase->m_id == WM_LBUTTONUP ||
+      if(pbase->m_id == e_message_lbutton_down ||
+            pbase->m_id == e_message_lbutton_up ||
             pbase->m_id == WM_MBUTTONDOWN ||
             pbase->m_id == WM_MBUTTONUP ||
-            pbase->m_id == WM_RBUTTONDOWN ||
-            pbase->m_id == WM_RBUTTONUP ||
+            pbase->m_id == e_message_rbutton_down ||
+            pbase->m_id == e_message_rbutton_up ||
             pbase->m_id == e_message_mouse_move ||
-            pbase->m_id == WM_MOUSEWHEEL)
+            pbase->m_id == e_message_mouse_wheel)
       {
 
          message::mouse * pmouse = (::message::mouse *) pbase;
@@ -974,14 +982,16 @@ namespace uwp
          if (pbase)
          {
 
-            if (pbase->m_id == WM_LBUTTONUP)
+            if (pbase->m_id == e_message_lbutton_up)
             {
 
-               output_debug_string("WM_LBUTTONUP");
+               output_debug_string("e_message_lbutton_up");
 
             }
 
          }
+
+         auto psession = Session;
 
          psession->on_ui_mouse_message(pmouse);
 
@@ -1065,6 +1075,7 @@ namespace uwp
 
          ::message::key * pkey = (::message::key *) pbase;
 
+         auto psession = Session;
 
          ::user::interaction * puiFocus = dynamic_cast <::user::interaction *> (psession->get_keyboard_focus());
          if(puiFocus != nullptr
@@ -2063,7 +2074,7 @@ return TRUE;
       return false;   // let the parent handle it
    }
 
-   void interaction_impl::OnParentNotify(const ::id & id,LPARAM lParam)
+   void interaction_impl::OnParentNotify(UINT message,LPARAM lParam)
    {
       if((LOWORD(message) == e_message_create || LOWORD(message) == e_message_destroy))
       {
@@ -2202,8 +2213,28 @@ return TRUE;
       //return (int)Default();
    }
 
+
    void interaction_impl::_001OnCreate(::message::message * pmessage)
    {
+
+      auto psession = Session;
+
+      auto phost = psession->m_puiHost;
+
+      auto puiHost = __user_interaction(phost);
+
+      //m_rectWindowScreen.left = 0;
+      //m_rectWindowScreen.top = 0;
+      //m_rectWindowScreen.right = (LONG)m_window->Bounds.Width;
+      //m_rectWindowScreen.bottom = (LONG)m_window->Bounds.Height;
+
+      System.m_directxapplication->m_directx->m_bCreated = true;
+
+      ::set_core_window_once_visible();
+
+      System.m_directxapplication->m_directx->m_pimpl = this;
+
+      System.m_directxapplication->on_size({ (LONG)m_window->Bounds.Width, (LONG)m_window->Bounds.Height });
 
       UNREFERENCED_PARAMETER(pmessage);
 
@@ -3408,7 +3439,7 @@ return TRUE;
 
       ___pointer < ::message::base > spbase;
 
-      spbase = m_puserinteraction->get_message_base(emessage,wparam,lparam);
+      spbase = m_puserinteraction->get_message_base(id,wparam,lparam);
 
       /*      try
             {
@@ -3453,7 +3484,7 @@ return TRUE;
 
 //      return ::PostMessageW(get_handle(),message,wParam,lParam) != FALSE;
       //return m_puserinteraction->post_message(message, wParam, lParam);
-      return mq_post_message(get_handle(), message, wParam, lParam) != FALSE;
+      return mq_post_message(get_handle(), id, wParam, lParam) != FALSE;
 
    }
 
@@ -4821,7 +4852,7 @@ return TRUE;
    //{
    //   Default();
    //}
-   int interaction_impl::OnMouseActivate(::user::interaction_impl *,UINT,UINT)
+   int interaction_impl::OnMouseActivate(::user::interaction_impl *,UINT,const ::id & id)
    {
       return (int)Default();
    }
@@ -5335,7 +5366,7 @@ lCallNextHook:
    void interaction_impl::_001BaseWndInterfaceMap()
    {
 
-      Sys(get_context_application()).window_map().set((oswindow)(iptr)(void *)get_handle(),this);
+      System.window_map().set((oswindow)(iptr)(void *)get_handle(),this);
 
    }
 
@@ -5565,8 +5596,8 @@ __STATIC bool CLASS_DECL_AURA
 __handle_set_cursor(::user::interaction_impl * pWnd, UINT nHitTest, UINT nMsg)
 {
    if (nHitTest == HTERROR &&
-         (nMsg == WM_LBUTTONDOWN || nMsg == WM_MBUTTONDOWN ||
-          nMsg == WM_RBUTTONDOWN))
+         (nMsg == e_message_lbutton_down || nMsg == WM_MBUTTONDOWN ||
+          nMsg == e_message_rbutton_down))
    {
       // activate the last active interaction_impl if not active
       ::user::interaction * pLastActive = WIN_WINDOW(pWnd)->GetTopLevel();
@@ -5904,16 +5935,23 @@ namespace uwp
 
       sync_lock sl(m_puserinteraction->mutex());
 
-      for (auto p : m_puserinteraction->m_uiptraChild.m_interactiona)
+      auto puiptraChild = m_puserinteraction->m_puiptraChild;
+
+      if (puiptraChild)
       {
 
-         if (p != nullptr)
+         for (auto p : puiptraChild->m_interactiona)
          {
 
-            if (p->has_pending_graphical_update())
+            if (p != nullptr)
             {
 
-               return true;
+               if (p->has_pending_graphical_update())
+               {
+
+                  return true;
+
+               }
 
             }
 
@@ -5933,10 +5971,17 @@ namespace uwp
 
       sync_lock sl(m_puserinteraction->mutex());
 
-      for (auto p : m_puserinteraction->m_uiptraChild.m_interactiona)
+      auto puiptraChild = m_puserinteraction->m_puiptraChild;
+
+      if (puiptraChild)
       {
 
-         p->on_after_graphical_update();
+         for (auto p : puiptraChild->m_interactiona)
+         {
+
+            p->on_after_graphical_update();
+
+         }
 
       }
 
@@ -6093,6 +6138,8 @@ namespace uwp
    void interaction_impl::show_software_keyboard(bool bShow, string str, strsize iBeg, strsize iEnd)
    {
 
+      auto psession = Session;
+
       psession->m_directxapplication->SetText(str, iBeg, iEnd);
 
    }
@@ -6106,6 +6153,8 @@ namespace uwp
       pinteraction->_001GetText(strText);
 
       strsize sizeLen = strText.get_length();
+
+      auto psession = Session;
 
       psession->m_directxapplication->SetText(strText, 0, sizeLen);
 

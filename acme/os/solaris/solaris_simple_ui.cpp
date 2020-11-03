@@ -317,7 +317,7 @@ namespace os
                            }
                            else if(e.xbutton.button == Button3)
                            {
-                              //       lpMsg->message = WM_RBUTTONDOWN;
+                              //       lpMsg->message = e_message_rbutton_down;
                            }
                            else
                            {
@@ -337,7 +337,7 @@ namespace os
                            }
                            else if(e.xbutton.button == Button3)
                            {
-                              //lpMsg->message = WM_RBUTTONUP;
+                              //lpMsg->message = e_message_rbutton_up;
                            }
                            else
                            {

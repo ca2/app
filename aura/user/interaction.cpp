@@ -1040,15 +1040,15 @@ namespace user
       else
       {
 
-         MESSAGE_LINK(WM_CLOSE, pchannel, this, &interaction::_001OnClose);
+         MESSAGE_LINK(e_message_close, pchannel, this, &interaction::_001OnClose);
          MESSAGE_LINK(e_message_size, pchannel, this, &interaction::_001OnSize);
          MESSAGE_LINK(e_message_move, pchannel, this, &interaction::_001OnMove);
          MESSAGE_LINK(WM_NCCALCSIZE, pchannel, this, &interaction::_001OnNcCalcSize);
          MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &interaction::_001OnShowWindow);
          MESSAGE_LINK(e_message_kill_focus, pchannel, this, &interaction::_001OnKillFocus);
          MESSAGE_LINK(e_message_set_focus, pchannel, this, &interaction::_001OnSetFocus);
-         MESSAGE_LINK(WM_DISPLAYCHANGE, pchannel, this, &interaction::_001OnDisplayChange);
-         MESSAGE_LINK(WM_LBUTTONDOWN, pchannel, this, &interaction::_001OnLButtonDown);
+         MESSAGE_LINK((enum_message)WM_DISPLAYCHANGE, pchannel, this, &interaction::_001OnDisplayChange);
+         MESSAGE_LINK(e_message_lbutton_down, pchannel, this, &interaction::_001OnLButtonDown);
          MESSAGE_LINK(WM_KEYDOWN, pchannel, this, &::user::interaction::_001OnKeyDown);
          MESSAGE_LINK(WM_ENABLE, pchannel, this, &::user::interaction::_001OnEnable);
 
@@ -1960,10 +1960,15 @@ namespace user
 
          auto puiptraChild = m_puiptraChild;
 
-         for (auto& puserinteraction : puiptraChild->interactiona())
+         if (puiptraChild)
          {
 
-            puserinteraction->post_message(WM_DISPLAYCHANGE);
+            for (auto & puserinteraction : puiptraChild->interactiona())
+            {
+
+               puserinteraction->post_message((enum_message)WM_DISPLAYCHANGE);
+
+            }
 
          }
 
@@ -7563,7 +7568,7 @@ namespace user
 
       send_future(DIALOG_RESULT_FUTURE, idResult);
 
-      post_message(WM_CLOSE);
+      post_message(e_message_close);
 
       if(::is_set(m_pthreadModal))
       {
@@ -9392,6 +9397,8 @@ restart:
 
             if (pitem->m_eevent == ::user::event_close_app)
             {
+
+               display(display_hide);
 
                Application._001TryCloseApplication();
 
@@ -12206,7 +12213,7 @@ restart:
          || item == ::user::element_close_icon)
       {
 
-         post_message(WM_CLOSE);
+         post_message(e_message_close);
 
          return true;
 
@@ -12630,8 +12637,8 @@ restart:
 
       m_bSimpleUIDefaultMouseHandling = true;
 
-      MESSAGE_LINK((enum_message) WM_LBUTTONDOWN, pchannel, this, &interaction::_001OnLButtonDown);
-      MESSAGE_LINK((enum_message)WM_LBUTTONUP, pchannel, this, &interaction::_001OnLButtonUp);
+      MESSAGE_LINK((enum_message) e_message_lbutton_down, pchannel, this, &interaction::_001OnLButtonDown);
+      MESSAGE_LINK((enum_message)e_message_lbutton_up, pchannel, this, &interaction::_001OnLButtonUp);
       MESSAGE_LINK((enum_message)WM_MBUTTONDOWN, pchannel, this, &interaction::_001OnMButtonDown);
       MESSAGE_LINK((enum_message)WM_MBUTTONUP, pchannel, this, &interaction::_001OnMButtonUp);
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &interaction::_001OnMouseMove);

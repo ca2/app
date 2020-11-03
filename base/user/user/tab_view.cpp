@@ -1047,7 +1047,7 @@ namespace user
 
       ::user::interaction::install_message_routing(pchannel);
 
-      MESSAGE_LINK(WM_LBUTTONUP, pchannel, this, &tab_drop_target_window::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_lbutton_up, pchannel, this, &tab_drop_target_window::_001OnLButtonUp);
 
    }
 

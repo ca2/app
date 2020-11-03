@@ -929,7 +929,7 @@ DWORD TerminateGuiApp(DWORD dwPID, DWORD tickTimeout)
       return TGA_FAILED;
    }
 
-   // TerminateAppEnum() posts WM_CLOSE to all windows whose PID
+   // TerminateAppEnum() posts e_message_close to all windows whose PID
    // matches your process's.
    EnumWindows((WNDENUMPROC)TerminateGuiAppEnum, (LPARAM)dwPID);
 
@@ -955,7 +955,7 @@ BOOL CALLBACK TerminateGuiAppEnum(HWND hwnd, LPARAM lParam)
 
    if (dwID == (DWORD)lParam)
    {
-      PostMessage(hwnd, WM_CLOSE, 0, 0);
+      PostMessage(hwnd, e_message_close, 0, 0);
    }
 
    return TRUE;

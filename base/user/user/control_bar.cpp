@@ -50,8 +50,8 @@ namespace user
       MESSAGE_LINK(WM_SIZEPARENT, pchannel, this, &control_bar::_001OnSizeParent);
       MESSAGE_LINK(WM_WINDOWPOSCHANGING, pchannel, this, &control_bar::_001OnWindowPosChanging);
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &control_bar::_001OnMouseMove);
-      MESSAGE_LINK(WM_LBUTTONDOWN, pchannel, this, &control_bar::_001OnLButtonDown);
-      MESSAGE_LINK(WM_LBUTTONUP, pchannel, this, &control_bar::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_lbutton_down, pchannel, this, &control_bar::_001OnLButtonDown);
+      MESSAGE_LINK(e_message_lbutton_up, pchannel, this, &control_bar::_001OnLButtonUp);
       MESSAGE_LINK(WM_LBUTTONDBLCLK, pchannel, this, &control_bar::_001OnLButtonDblClk);
       MESSAGE_LINK(WM_MOUSEACTIVATE, pchannel, this, &control_bar::_001OnMouseActivate);
       MESSAGE_LINK(e_message_create, pchannel, this, &control_bar::_001OnCreate);
@@ -295,7 +295,7 @@ namespace user
 
       // handle CBRS_FLYBY style (status bar flyby help)
       if (((m_dwStyle & CBRS_FLYBY) ||
-            message == WM_LBUTTONDOWN || message == WM_LBUTTONUP) &&
+            message == e_message_lbutton_down || message == e_message_lbutton_up) &&
             ((message >= WM_MOUSEFIRST && message <= WM_MOUSELAST)))
 //          (message >= WM_NCMOUSEFIRST && message <= WM_NCMOUSELAST)))
       {

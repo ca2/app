@@ -3611,7 +3611,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
          if(e.xbutton.button == Button1)
          {
 
-            msg.message = WM_LBUTTONDOWN;
+            msg.message = e_message_lbutton_down;
 
          }
          else if(e.xbutton.button == Button2)
@@ -3623,7 +3623,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
          else if(e.xbutton.button == Button3)
          {
 
-            msg.message = WM_RBUTTONDOWN;
+            msg.message = e_message_rbutton_down;
 
          }
          else
@@ -3640,7 +3640,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
          if(e.xbutton.button == Button1)
          {
 
-            msg.message = WM_LBUTTONUP;
+            msg.message = e_message_lbutton_up;
 
          }
          else if(e.xbutton.button == Button2)
@@ -3652,7 +3652,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
          else if(e.xbutton.button == Button3)
          {
 
-            msg.message = WM_RBUTTONUP;
+            msg.message = e_message_rbutton_up;
 
          }
          else

@@ -515,6 +515,7 @@
     <None Include="..\..\..\__archive\storage-uwp\third\binary\Win32\basis\zlib.dll">
       <DeploymentContent>true</DeploymentContent>
     </None>
+    <None Include="uwp_app_net_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\acme\u_acme.vcxproj">

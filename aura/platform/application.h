@@ -568,10 +568,10 @@ namespace aura
       //virtual ::estatus     main() override;
       //virtual ::estatus     on_run();
 
-      virtual ::estatus initial_check_directrix() override;
+      virtual ::estatus on_before_launching() override;
       //virtual ::estatus os_native_bergedge_start();
 
-      virtual ::estatus pre_run() override;
+      //virtual ::estatus pre_run() override;
       //virtual ::estatus application_pre_run();
 
       virtual void on_pos_run_thread() override;

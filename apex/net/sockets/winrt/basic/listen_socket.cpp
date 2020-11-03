@@ -184,7 +184,7 @@ namespace sockets
    i32 listen_socket_base::Bind(const ::net::address& ad, const string& protocol, i32 depth)
    {
 
-      SOCKET s;
+      //SOCKET s;
 
       m_iBindPort = ad.get_service_number();
 

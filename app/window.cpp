@@ -45,13 +45,20 @@ namespace app_app
    void window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
-
-      pgraphics->set_smooth_mode(::draw2d::smooth_mode_none);
-
       ::rect rectClient;
 
       get_client_rect(rectClient);
+
+      if (rectClient.is_empty())
+      {
+
+         return;
+
+      }
+
+      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+
+      pgraphics->set_smooth_mode(::draw2d::smooth_mode_none);
 
       pgraphics->fill_rect(rectClient, ARGB(127, 255, 255, 255));
 

@@ -221,6 +221,14 @@ bool task::on_get_thread_name(string & strThreadName)
 }
 
 
+::estatus task::task_caller_on_init()
+{
+
+   return ::success;
+
+}
+
+
 void task::init_task()
 {
 
@@ -404,6 +412,15 @@ void task::term_task()
 
    }
 
+   auto estatus = task_caller_on_init();
+
+   if (!estatus)
+   {
+
+      return estatus;
+
+   }
+
    //if (m_pobjectParent && m_bitIsPred)
    //{
 
@@ -423,6 +440,8 @@ void task::term_task()
 
    // __task_procedure() should release this (pmatter)
    add_ref(OBJ_REF_DBG_THIS_FUNCTION_LINE);
+
+   
 
 #ifdef WINDOWS
 

@@ -488,7 +488,7 @@ namespace user
 
       //_001ScreenToClient(point);
 
-      //if(pmouse->m_id == WM_LBUTTONDOWN)
+      //if(pmouse->m_id == e_message_lbutton_down)
       //{
       //
       //   i32 iItem;
@@ -515,7 +515,7 @@ namespace user
       //}
       //}
       //}
-      //else if(emessage == WM_LBUTTONUP)
+      //else if(emessage == e_message_lbutton_up)
       //{
       //i32 iItem;
       //i32 iSubItem;

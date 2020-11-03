@@ -446,7 +446,7 @@ namespace user
 
       ENSURE_ARG(pmessage != nullptr);
       // check for special cancel modes for combo interactiones
-      //if (pMsg->message == WM_LBUTTONDOWN || pMsg->message == WM_NCLBUTTONDOWN)
+      //if (pMsg->message == e_message_lbutton_down || pMsg->message == WM_NCLBUTTONDOWN)
       //   __cancel_modes(pMsg->oswindow);    // filter clicks
 
       __pointer(::message::key) pkey = pmessage;
@@ -2398,7 +2398,7 @@ namespace user
 
       LRESULT lResult = 0;
 
-      // convert from MSH_MOUSEWHEEL to WM_MOUSEWHEEL
+      // convert from MSH_MOUSEWHEEL to e_message_mouse_wheel
 
 #ifdef WINDOWS_DESKTOP
 
@@ -2413,12 +2413,12 @@ namespace user
       const oswindow hwDesktop = ::get_desktop_window();
 
       if (hwFocus == nullptr)
-         lResult = send_message(WM_MOUSEWHEEL, (wParam << 16) | keyState, lParam);
+         lResult = send_message(e_message_mouse_wheel, (wParam << 16) | keyState, lParam);
       else
       {
          do
          {
-            lResult = ::SendMessage(hwFocus, WM_MOUSEWHEEL,
+            lResult = ::SendMessage(hwFocus, e_message_mouse_wheel,
                                     (wParam << 16) | keyState, lParam);
             hwFocus = ::GetParent(hwFocus);
          }

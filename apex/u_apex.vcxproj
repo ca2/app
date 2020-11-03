@@ -1620,11 +1620,9 @@
     <ClCompile Include="primitive\datetime\department.cpp" />
     <ClCompile Include="primitive\math\department.cpp" />
     <ClCompile Include="primitive\primitive\command_line.cpp" />
-    <ClCompile Include="primitive\primitive\context_object.cpp" />
     <ClCompile Include="primitive\primitive\create.cpp" />
     <ClCompile Include="primitive\primitive\object.cpp" />
     <ClCompile Include="primitive\primitive\object_meta.cpp" />
-    <ClCompile Include="primitive\primitive\update.cpp" />
     <ClCompile Include="primitive\primitive\_.cpp" />
     <ClCompile Include="process\department.cpp" />
     <ClCompile Include="process\process.cpp" />

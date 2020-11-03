@@ -239,10 +239,10 @@ namespace user
 #endif
 #endif
       MESSAGE_LINK(e_message_create, pchannel, this, &plain_edit::_001OnCreate);
-      MESSAGE_LINK(WM_LBUTTONDOWN, pchannel, this, &plain_edit::_001OnLButtonDown);
-      MESSAGE_LINK(WM_LBUTTONUP, pchannel, this, &plain_edit::_001OnLButtonUp);
-      MESSAGE_LINK(WM_RBUTTONDOWN, pchannel, this, &plain_edit::_001OnRButtonDown);
-      MESSAGE_LINK(WM_RBUTTONUP, pchannel, this, &plain_edit::_001OnRButtonUp);
+      MESSAGE_LINK(e_message_lbutton_down, pchannel, this, &plain_edit::_001OnLButtonDown);
+      MESSAGE_LINK(e_message_lbutton_up, pchannel, this, &plain_edit::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_rbutton_down, pchannel, this, &plain_edit::_001OnRButtonDown);
+      MESSAGE_LINK(e_message_rbutton_up, pchannel, this, &plain_edit::_001OnRButtonUp);
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &plain_edit::_001OnMouseMove);
       MESSAGE_LINK(WM_MOUSELEAVE, pchannel, this, &plain_edit::_001OnMouseLeave);
       MESSAGE_LINK(WM_KEYDOWN, pchannel, this, &plain_edit::_001OnKeyDown);
@@ -5156,7 +5156,7 @@ finished_update:
    void plain_edit::on_text_composition_done()
    {
 
-#ifdef WINDOWS
+#ifdef WINDOWS_DESKTOP
 
       imm_client::on_text_composition_done();
 

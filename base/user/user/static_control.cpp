@@ -70,8 +70,8 @@ namespace user
       ::user::interaction::install_message_routing(pchannel);
 
       MESSAGE_LINK(e_message_create, pchannel, this, &static_control::_001OnCreate);
-      MESSAGE_LINK(WM_LBUTTONDOWN, pchannel, this, &static_control::_001OnLButtonDown);
-      MESSAGE_LINK(WM_LBUTTONUP, pchannel, this, &static_control::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_lbutton_down, pchannel, this, &static_control::_001OnLButtonDown);
+      MESSAGE_LINK(e_message_lbutton_up, pchannel, this, &static_control::_001OnLButtonUp);
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &static_control::_001OnMouseLeave);
       MESSAGE_LINK(WM_MOUSELEAVE, pchannel, this, &static_control::_001OnMouseMove);
 

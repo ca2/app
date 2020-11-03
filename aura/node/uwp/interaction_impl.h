@@ -457,7 +457,7 @@ namespace uwp
       void OnMove(int x, int y);
       DECL_GEN_SIGNAL(_001OnPaint);
       DECL_GEN_SIGNAL(_001OnPrint);
-      void OnParentNotify(const ::id & id, LPARAM lParam);
+      void OnParentNotify(UINT message, LPARAM lParam);
       HCURSOR OnQueryDragIcon();
       bool OnQueryEndSession();
       bool OnQueryNewPalette();
@@ -592,15 +592,15 @@ namespace uwp
 
       // for handling default processing
       LRESULT Default();
-      virtual LRESULT DefWindowProc(const ::id & id, WPARAM wParam, lparam lParam);
+      virtual LRESULT DefWindowProc(UINT message, WPARAM wParam, lparam lParam);
 
       // for custom cleanup after WM_NCDESTROY
       virtual void PostNcDestroy();
 
       // for notifications from parent
-      virtual bool OnChildNotify(const ::id & id, WPARAM wParam, LPARAM lParam, LRESULT* pResult);
+      virtual bool OnChildNotify(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* pResult);
       // return TRUE if parent should not process this message
-      bool ReflectChildNotify(const ::id & id, WPARAM wParam, LPARAM lParam, LRESULT* pResult);
+      bool ReflectChildNotify(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* pResult);
       static bool ReflectLastMsg(oswindow hWndChild, LRESULT* pResult = nullptr);
 
       virtual bool CheckAutoCenter();

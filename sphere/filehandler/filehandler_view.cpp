@@ -30,7 +30,7 @@ namespace filehandler
       ::user::form::install_message_routing(pchannel);
       MESSAGE_LINK(e_message_create, pchannel, this, &view::_001OnCreate);
 //
-      MESSAGE_LINK(WM_LBUTTONUP, pchannel, this, &view::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_lbutton_up, pchannel, this, &view::_001OnLButtonUp);
 
    }
 

@@ -83,10 +83,10 @@ namespace user
       MESSAGE_LINK(WM_HSCROLL, pchannel, this, &list::_001OnHScroll);
       MESSAGE_LINK(WM_MOUSELEAVE, pchannel, this, &list::_001OnMouseLeave);
 
-      MESSAGE_LINK(WM_LBUTTONDOWN, pchannel, this, &list::_001OnLButtonDown);
-      MESSAGE_LINK(WM_LBUTTONUP, pchannel, this, &list::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_lbutton_down, pchannel, this, &list::_001OnLButtonDown);
+      MESSAGE_LINK(e_message_lbutton_up, pchannel, this, &list::_001OnLButtonUp);
       MESSAGE_LINK(WM_LBUTTONDBLCLK, pchannel, this, &list::_001OnLButtonDblClk);
-      MESSAGE_LINK(WM_RBUTTONDOWN, pchannel, this, &list::_001OnRButtonDown);
+      MESSAGE_LINK(e_message_rbutton_down, pchannel, this, &list::_001OnRButtonDown);
 
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &list::_001OnMouseMove);
 

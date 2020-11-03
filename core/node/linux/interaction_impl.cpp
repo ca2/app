@@ -1357,10 +1357,10 @@ namespace linux
          //m_pthread->step_timer();
 
       }
-      else if(pbase->m_id == WM_LBUTTONDOWN)
+      else if(pbase->m_id == e_message_lbutton_down)
       {
 
-         TRACE("WM_LBUTTONDOWN (0)");
+         TRACE("e_message_lbutton_down (0)");
 
       }
       else if(pbase->m_id == e_message_mouse_move)
@@ -1376,10 +1376,10 @@ namespace linux
       {
 
       }
-      else if(pbase->m_id == WM_LBUTTONUP)
+      else if(pbase->m_id == e_message_lbutton_up)
       {
 
-         TRACE("WM_LBUTTONUP (0)");
+         TRACE("e_message_lbutton_up (0)");
 
       }
 
@@ -1494,15 +1494,15 @@ namespace linux
 
       }
 
-      if(pbase->m_id == WM_LBUTTONDOWN ||
-            pbase->m_id == WM_LBUTTONUP ||
+      if(pbase->m_id == e_message_lbutton_down ||
+            pbase->m_id == e_message_lbutton_up ||
             pbase->m_id == WM_MBUTTONDOWN ||
             pbase->m_id == WM_MBUTTONUP ||
-            pbase->m_id == WM_RBUTTONDOWN ||
-            pbase->m_id == WM_RBUTTONUP ||
+            pbase->m_id == e_message_rbutton_down ||
+            pbase->m_id == e_message_rbutton_up ||
             pbase->m_id == e_message_mouse_move ||
             pbase->m_id == e_message_mouse_move)
-//         pbase->m_id == WM_MOUSEWHEEL)
+//         pbase->m_id == e_message_mouse_wheel)
       {
 
          if(::is_set(m_puserinteraction) && !m_puserinteraction->m_bUserPrimitiveOk)
@@ -1512,10 +1512,10 @@ namespace linux
 
          }
 
-         if(pbase->m_id == WM_LBUTTONDOWN)
+         if(pbase->m_id == e_message_lbutton_down)
          {
 
-            TRACE("WM_LBUTTONDOWN");
+            TRACE("e_message_lbutton_down");
 
          }
 
@@ -1581,14 +1581,14 @@ namespace linux
             pmouse->m_ecursor = cursor_default;
          }
 
-         if(pbase->m_id == WM_LBUTTONDOWN)
+         if(pbase->m_id == e_message_lbutton_down)
          {
 
 
-            //message_box(NULL, "WM_LBUTTONDOWN", MB_OK);
+            //message_box(NULL, "e_message_lbutton_down", MB_OK);
 
 
-            TRACE("WM_LBUTTONDOWN");
+            TRACE("e_message_lbutton_down");
 
          }
 

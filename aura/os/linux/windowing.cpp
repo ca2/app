@@ -3672,7 +3672,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 
             ::output_debug_string("ButtonPress::Button1\n");
 
-            msg.message = WM_LBUTTONDOWN;
+            msg.message = e_message_lbutton_down;
 
          }
          else if(e.xbutton.button == Button2)
@@ -3684,7 +3684,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
          else if(e.xbutton.button == Button3)
          {
 
-            msg.message = WM_RBUTTONDOWN;
+            msg.message = e_message_rbutton_down;
 
          }
          else
@@ -3703,7 +3703,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 
             ::output_debug_string("ButtonRelease::Button1\n");
 
-            msg.message = WM_LBUTTONUP;
+            msg.message = e_message_lbutton_up;
 
          }
          else if(e.xbutton.button == Button2)
@@ -3715,7 +3715,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
          else if(e.xbutton.button == Button3)
          {
 
-            msg.message = WM_RBUTTONUP;
+            msg.message = e_message_rbutton_up;
 
          }
          else
@@ -5294,16 +5294,16 @@ bool post_ui_message(const MESSAGE & message)
 
    }
 
-   if(message.message == WM_LBUTTONDOWN)
+   if(message.message == e_message_lbutton_down)
    {
 
-      output_debug_string("post_ui_message::WM_LBUTTONDOWN\n");
+      output_debug_string("post_ui_message::e_message_lbutton_down\n");
 
    }
-   else if(message.message == WM_LBUTTONUP)
+   else if(message.message == e_message_lbutton_up)
    {
 
-      output_debug_string("post_ui_message::WM_LBUTTONUP\n");
+      output_debug_string("post_ui_message::e_message_lbutton_up\n");
 
    }
 

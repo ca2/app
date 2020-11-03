@@ -182,9 +182,9 @@ Function _systemSplashWndCB
    System::Store "s r2r5r7r9"
 
    ; Message branching
-   IntCmp $5 ${WM_CLOSE} m_Close
+   IntCmp $5 ${e_message_close} m_Close
    IntCmp $5 ${WM_TIMER} m_Timer
-   IntCmp $5 ${WM_LBUTTONDOWN} m_Lbtn
+   IntCmp $5 ${e_message_lbutton_down} m_Lbtn
    IntCmp $5 ${e_message_create} m_Create
    IntCmp $5 ${WM_PAINT} m_Paint
    goto default

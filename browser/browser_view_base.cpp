@@ -48,7 +48,7 @@ namespace browser
 
       MESSAGE_LINK(e_message_create, pchannel, this, &impact_base::_001OnCreate);
       MESSAGE_LINK(e_message_destroy, pchannel, this, &impact_base::_001OnDestroy);
-      MESSAGE_LINK(WM_LBUTTONDOWN, pchannel, this, &impact_base::_001OnLButtonDown);
+      MESSAGE_LINK(e_message_lbutton_down, pchannel, this, &impact_base::_001OnLButtonDown);
 
    }
 

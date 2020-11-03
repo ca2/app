@@ -370,23 +370,30 @@ namespace uwp
       if (System.has_property("client_only"))
       {
 
-         auto children = m_pimpl->m_puserinteraction->m_uiptraChild.m_interactiona;
+         auto puiptraChild = m_pimpl->m_puserinteraction->m_puiptraChild;
 
-         for (auto & pinteraction : children)
+         if (puiptraChild)
          {
 
-            if (pinteraction->is_window_visible())
+            auto children = puiptraChild->m_interactiona;
+
+            for (auto & pinteraction : children)
             {
 
-               pinteraction->order_top();
-               
-               pinteraction->set_dim(0, 0, m_size.cx, m_size.cy);
-               
-               pinteraction->display();
+               if (pinteraction->is_window_visible())
+               {
 
-               pinteraction->set_need_layout();
+                  pinteraction->order_top();
 
-               pinteraction->set_need_redraw();
+                  pinteraction->set_dim(0, 0, m_size.cx, m_size.cy);
+
+                  pinteraction->display();
+
+                  pinteraction->set_need_layout();
+
+                  pinteraction->set_need_redraw();
+
+               }
 
             }
 

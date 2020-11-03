@@ -650,7 +650,7 @@ namespace experience
 
             TRACE("button_clicked : button_close");
 
-            post_message(WM_CLOSE);
+            post_message(e_message_close);
 
             set_need_redraw();
 
@@ -773,7 +773,7 @@ namespace experience
          {
          case ::experience::button_close:
 
-            post_message(WM_CLOSE);
+            post_message(e_message_close);
 
             set_need_redraw();
 
@@ -1257,8 +1257,8 @@ namespace experience
 
       ::user::frame_window::install_message_routing(pchannel);
 
-      MESSAGE_LINK(WM_LBUTTONDOWN,pchannel,this,&frame_window::_001OnLButtonDown);
-      MESSAGE_LINK(WM_LBUTTONUP,pchannel,this,&frame_window::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_lbutton_down,pchannel,this,&frame_window::_001OnLButtonDown);
+      MESSAGE_LINK(e_message_lbutton_up,pchannel,this,&frame_window::_001OnLButtonUp);
       MESSAGE_LINK(e_message_mouse_move,pchannel,this,&frame_window::_001OnMouseMove);
       MESSAGE_LINK(WM_NCLBUTTONDOWN,pchannel,this,&frame_window::_001OnNcLButtonDown);
       MESSAGE_LINK(WM_NCLBUTTONUP,pchannel,this,&frame_window::_001OnNcLButtonUp);

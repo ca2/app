@@ -89,8 +89,8 @@ namespace userpresence
    {
 
       // user presence status activity reporting
-      if (pmouse->get_message() == WM_LBUTTONDOWN
-          || pmouse->get_message() == WM_RBUTTONDOWN
+      if (pmouse->get_message() == e_message_lbutton_down
+          || pmouse->get_message() == e_message_rbutton_down
           || pmouse->get_message() == WM_MBUTTONDOWN
           || pmouse->get_message() == e_message_mouse_move)
       {

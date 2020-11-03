@@ -43,7 +43,7 @@ namespace userstack
       MESSAGE_LINK(e_message_create, pchannel, this, &view::_001OnCreate);
       MESSAGE_LINK(WM_CONTEXTMENU, pchannel, this, &view::_001OnContextMenu);
       MESSAGE_LINK(WM_SETCURSOR, pchannel, this, &view::_001OnSetCursor);
-      MESSAGE_LINK(WM_LBUTTONUP, pchannel, this, &view::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_lbutton_up, pchannel, this, &view::_001OnLButtonUp);
 
 //
 

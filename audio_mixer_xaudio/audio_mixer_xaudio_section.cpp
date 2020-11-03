@@ -53,7 +53,7 @@ namespace multimedia
       CALLBACK_WINDOW)))
       {
       System.message_box("Could not open audio_mixer device!");
-      PostMessage(WM_CLOSE);
+      PostMessage(e_message_close);
       return mmrc;
       }
       m_pmixer->m_pdevice->initialize_capabilities();
@@ -70,7 +70,7 @@ namespace multimedia
       &pdestination)))
       {
       System.message_box("Could not open default audio_mixer destination!");
-      PostMessage(WM_CLOSE);
+      PostMessage(e_message_close);
       return mmrc;
       }
 

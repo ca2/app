@@ -29,8 +29,8 @@ void XfplayerViewLineSelection::relay_event(xfplayer_view_line & viewline, ::mes
 
    if(message != e_message_mouse_move
          || message != WM_TIMER
-         || message != WM_LBUTTONDOWN
-         || message != WM_LBUTTONUP)
+         || message != e_message_lbutton_down
+         || message != e_message_lbutton_up)
    {
       return;
    }
@@ -38,8 +38,8 @@ void XfplayerViewLineSelection::relay_event(xfplayer_view_line & viewline, ::mes
    index iLine;
    strsize iChar;
    if((message == e_message_mouse_move && GetState() == StateTracking)
-         || message == WM_LBUTTONDOWN
-         || message == WM_LBUTTONUP)
+         || message == e_message_lbutton_down
+         || message == e_message_lbutton_up)
    {
       
       bool bInside;
@@ -54,7 +54,7 @@ void XfplayerViewLineSelection::relay_event(xfplayer_view_line & viewline, ::mes
       
       if(!bInside && GetState() == StateTracking)
       {
-         if(message == WM_LBUTTONUP
+         if(message == e_message_lbutton_up
                || message == e_message_mouse_move)
          {
             if(pointCursor.y < rectPlacement.top
@@ -70,7 +70,7 @@ void XfplayerViewLineSelection::relay_event(xfplayer_view_line & viewline, ::mes
                SetSelAfter(viewline);
                //                viewline.get_interaction()->set_need_redraw();
             }
-            if(message == WM_LBUTTONUP)
+            if(message == e_message_lbutton_up)
             {
                OnSelEvent(viewline, EventEnd);
             }
@@ -80,7 +80,7 @@ void XfplayerViewLineSelection::relay_event(xfplayer_view_line & viewline, ::mes
       else if(bInside)
       {
          //u32 fwKeys = pbase->m_wparam; // key flags
-         if(message == WM_LBUTTONDOWN)
+         if(message == e_message_lbutton_down)
          {
             if(viewline.CalcChar(pointCursor, iChar))
             {
@@ -104,7 +104,7 @@ void XfplayerViewLineSelection::relay_event(xfplayer_view_line & viewline, ::mes
             return;
          }
          else if(
-         (message == WM_LBUTTONUP
+         (message == e_message_lbutton_up
           || message == e_message_mouse_move)
          && GetState() == StateTracking)
          {
@@ -129,7 +129,7 @@ void XfplayerViewLineSelection::relay_event(xfplayer_view_line & viewline, ::mes
                //viewline.get_interaction()->set_need_redraw();
 
             }
-            if(message == WM_LBUTTONUP)
+            if(message == e_message_lbutton_up)
             {
                OnSelEvent(viewline, EventEnd);
                if(m_iLineStartSource == m_item.GetLineStart()

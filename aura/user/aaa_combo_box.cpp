@@ -61,8 +61,8 @@ namespace user
 
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &combo_box::_001OnMouseMove);
       MESSAGE_LINK(WM_MOUSELEAVE, pchannel, this, &combo_box::_001OnMouseLeave);
-      MESSAGE_LINK(WM_LBUTTONDOWN, pchannel, this, &combo_box::_001OnLButtonDown);
-      MESSAGE_LINK(WM_LBUTTONUP, pchannel, this, &combo_box::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_lbutton_down, pchannel, this, &combo_box::_001OnLButtonDown);
+      MESSAGE_LINK(e_message_lbutton_up, pchannel, this, &combo_box::_001OnLButtonUp);
       MESSAGE_LINK(WM_LBUTTONDBLCLK, pchannel, this, &combo_box::_001OnLButtonDblClk);
       MESSAGE_LINK(WM_KEYDOWN,pchannel,this,&combo_box::_001OnKeyDown);
       MESSAGE_LINK(WM_KEYUP,pchannel,this,&combo_box::_001OnKeyUp);
@@ -499,7 +499,7 @@ namespace user
          if (m_plist.is_set())
          {
 
-            m_plist->post_message(WM_CLOSE);
+            m_plist->post_message(e_message_close);
 
          }
 
@@ -684,7 +684,7 @@ namespace user
          if (m_plist->get_safe_handle() != pkillfocus->m_oswindowNew)
          {
 
-            m_plist->post_message(WM_CLOSE);
+            m_plist->post_message(e_message_close);
 
          }
 

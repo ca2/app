@@ -5610,7 +5610,7 @@ namespace windows
       {
          //         m_puserinteraction->get_context_application()->step_timer();
       }
-      else if (message == WM_LBUTTONDOWN)
+      else if (message == e_message_lbutton_down)
       {
          ::rect rectClient;
          ::GetClientRect(get_handle(), rectClient);
@@ -5748,16 +5748,16 @@ namespace windows
 
       }
 
-      if (message == WM_LBUTTONDOWN ||
-         message == WM_LBUTTONUP ||
+      if (message == e_message_lbutton_down ||
+         message == e_message_lbutton_up ||
          message == WM_MBUTTONDOWN ||
          message == WM_MBUTTONUP ||
-         message == WM_RBUTTONDOWN ||
-         message == WM_RBUTTONUP ||
+         message == e_message_rbutton_down ||
+         message == e_message_rbutton_up ||
          message == WM_LBUTTONDBLCLK ||
          message == e_message_mouse_move ||
          message == e_message_non_client_mouse_move ||
-         message == WM_MOUSEWHEEL)
+         message == e_message_mouse_wheel)
       {
 
          message::mouse * pmouse = dynamic_cast <::message::mouse *> (pbase);
@@ -5774,25 +5774,25 @@ namespace windows
 
          }
 
-         if (message == WM_LBUTTONDOWN)
+         if (message == e_message_lbutton_down)
          {
 
-            TRACE("WM_LBUTTONDOWN");
+            TRACE("e_message_lbutton_down");
 
             string strType = ::str::demangle(m_puserinteraction->type_name());
 
             if (strType.contains_ci("combo_list"))
             {
 
-               ::output_debug_string("combo_list WM_LBUTTONDOWN");
+               ::output_debug_string("combo_list e_message_lbutton_down");
 
             }
 
          }
-         else if (message == WM_LBUTTONUP)
+         else if (message == e_message_lbutton_up)
          {
 
-            TRACE("WM_LBUTTONUP");
+            TRACE("e_message_lbutton_up");
 
          }
          else if (message == WM_NCLBUTTONUP)

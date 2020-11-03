@@ -26,14 +26,14 @@ void html_form_view::install_message_routing(::channel * pchannel)
    //connect_command(ID_FILE_PRINT, ::user::form_view::OnFilePrint)
    //connect_command(ID_FILE_PRINT_DIRECT, ::user::form_view::OnFilePrint)
    //connect_command(ID_FILE_PRINT_PREVIEW, ::user::form_view::OnFilePrintPreview)
-   //MESSAGE_LINK(WM_LBUTTONDOWN, pchannel, this, &::user::interaction::_001OnLButtonDown);
-   //MESSAGE_LINK(WM_LBUTTONUP, pchannel, this, &::user::interaction::_001OnLButtonUp);
+   //MESSAGE_LINK(e_message_lbutton_down, pchannel, this, &::user::interaction::_001OnLButtonDown);
+   //MESSAGE_LINK(e_message_lbutton_up, pchannel, this, &::user::interaction::_001OnLButtonUp);
    //MESSAGE_LINK(WM_KEYDOWN, pchannel, this, &::user::interaction::_001OnKeyDown);
    //MESSAGE_LINK(WM_KEYUP, pchannel, this, &::user::interaction::_001OnKeyUp);
 
-   //MESSAGE_LINK(WM_LBUTTONDOWN, pchannel, this, &html_form_view::_001OnLButtonDown);
+   //MESSAGE_LINK(e_message_lbutton_down, pchannel, this, &html_form_view::_001OnLButtonDown);
    //MESSAGE_LINK(e_message_mouse_move, pchannel, this, &html_form_view::_001OnMouseMove);
-   //MESSAGE_LINK(WM_LBUTTONUP, pchannel, this, &html_form_view::_001OnLButtonUp);
+   //MESSAGE_LINK(e_message_lbutton_up, pchannel, this, &html_form_view::_001OnLButtonUp);
    //MESSAGE_LINK(WM_KEYDOWN, pchannel, this, &html_form_view::_001OnKeyDown);
    MESSAGE_LINK(e_message_set_focus, pchannel, this, &html_form_view::_001OnSetFocus);
    MESSAGE_LINK(e_message_kill_focus, pchannel, this, &html_form_view::_001OnKillFocus);

@@ -69,7 +69,7 @@ namespace uwp
 
 
       
-      inline ::user::interaction* host() { return Sess(m_psystem).host(); }
+      inline ::user::interaction* host() { return Sess(m_psystem->get_context_session())->host(); }
 
 
       void CoreWindow_PointerPressed(::Windows::UI::Core::CoreWindow^ sender, Windows::UI::Core::PointerEventArgs^ args);

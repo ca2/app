@@ -941,7 +941,7 @@ namespace uwp
       {
 //         m_puserinteraction->get_context_application()->step_timer();
       }
-      else if(pbase->m_id == WM_LBUTTONDOWN)
+      else if(pbase->m_id == e_message_lbutton_down)
       {
          //g_pwndLastLButtonDown = m_puserinteraction;
       }
@@ -959,14 +959,14 @@ namespace uwp
 
       //_000OnMouseLeave(pbase);
 
-      if(pbase->m_id == WM_LBUTTONDOWN ||
-            pbase->m_id == WM_LBUTTONUP ||
+      if(pbase->m_id == e_message_lbutton_down ||
+            pbase->m_id == e_message_lbutton_up ||
             pbase->m_id == WM_MBUTTONDOWN ||
             pbase->m_id == WM_MBUTTONUP ||
-            pbase->m_id == WM_RBUTTONDOWN ||
-            pbase->m_id == WM_RBUTTONUP ||
+            pbase->m_id == e_message_rbutton_down ||
+            pbase->m_id == e_message_rbutton_up ||
             pbase->m_id == e_message_mouse_move ||
-            pbase->m_id == WM_MOUSEWHEEL)
+            pbase->m_id == e_message_mouse_wheel)
       {
 
          message::mouse * pmouse = (::message::mouse *) pbase;
@@ -974,10 +974,10 @@ namespace uwp
          if (pbase)
          {
 
-            if (pbase->m_id == WM_LBUTTONUP)
+            if (pbase->m_id == e_message_lbutton_up)
             {
 
-               output_debug_string("WM_LBUTTONUP");
+               output_debug_string("e_message_lbutton_up");
 
             }
 
@@ -5563,8 +5563,8 @@ __STATIC bool CLASS_DECL_BASE
 __handle_set_cursor(::user::interaction_impl * pWnd, UINT nHitTest, UINT nMsg)
 {
    if (nHitTest == HTERROR &&
-         (nMsg == WM_LBUTTONDOWN || nMsg == WM_MBUTTONDOWN ||
-          nMsg == WM_RBUTTONDOWN))
+         (nMsg == e_message_lbutton_down || nMsg == WM_MBUTTONDOWN ||
+          nMsg == e_message_rbutton_down))
    {
       // activate the last active interaction_impl if not active
       ::user::interaction * pLastActive = WIN_WINDOW(pWnd)->GetTopLevel();

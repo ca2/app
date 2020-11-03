@@ -1561,7 +1561,7 @@ namespace windows
       {
          //         m_puserinteraction->m_papp->step_timer();
       }
-      else if (emessage == WM_LBUTTONDOWN)
+      else if (emessage == e_message_lbutton_down)
       {
          ::rect rectClient;
          ::GetClientRect(get_handle(), rectClient);
@@ -1675,16 +1675,16 @@ namespace windows
 
       }
 
-      if (emessage == WM_LBUTTONDOWN ||
-            emessage == WM_LBUTTONUP ||
+      if (emessage == e_message_lbutton_down ||
+            emessage == e_message_lbutton_up ||
             emessage == WM_MBUTTONDOWN ||
             emessage == WM_MBUTTONUP ||
-            emessage == WM_RBUTTONDOWN ||
-            emessage == WM_RBUTTONUP ||
+            emessage == e_message_rbutton_down ||
+            emessage == e_message_rbutton_up ||
             emessage == WM_LBUTTONDBLCLK ||
             emessage == e_message_mouse_move ||
             emessage == e_message_non_client_mouse_move ||
-            emessage == WM_MOUSEWHEEL)
+            emessage == e_message_mouse_wheel)
       {
 
          message::mouse * pmouse = dynamic_cast <::message::mouse * > (pbase);
@@ -1716,10 +1716,10 @@ namespace windows
          }
 
 
-         if (emessage == WM_LBUTTONDOWN)
+         if (emessage == e_message_lbutton_down)
          {
 
-            TRACE("WM_LBUTTONDOWN");
+            TRACE("e_message_lbutton_down");
 
          }
 
@@ -5743,10 +5743,10 @@ LRESULT CALLBACK __window_procedure(oswindow oswindow, const ::id & id, WPARAM w
       output_debug_string("WM_WINDOWPOSCHANGED");
 
    }
-   else if (message == WM_LBUTTONDOWN)
+   else if (message == e_message_lbutton_down)
    {
 
-      output_debug_string("WM_LBUTTONDOWN()");
+      output_debug_string("e_message_lbutton_down()");
 
    }
    else if (message == e_message_destroy)

@@ -67,6 +67,8 @@ public:
    virtual void remove_notify(::matter* pmatter);
 
 
+   virtual ::estatus task_caller_on_init();
+
    virtual bool on_get_thread_name(string & strThreadName);
 
 

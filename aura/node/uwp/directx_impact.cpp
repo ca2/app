@@ -325,8 +325,7 @@ namespace uwp
       if(m_strNewText.has_char())
       {
 
-         auto pfocusui = psession->get_focus_ui();
-
+         auto pfocusui = Session->get_focus_ui();
 
          if (pfocusui)
          {
@@ -342,6 +341,8 @@ namespace uwp
             auto pkey = __new(::message::key);
 
             spbase = pkey;
+
+            auto psession = Session;
 
             bool bTextFocus = psession->get_focus_ui() != nullptr;
 
@@ -483,7 +484,10 @@ namespace uwp
    void impact::EditContext_CompositionCompleted(CoreTextEditContext ^sender, CoreTextCompositionCompletedEventArgs ^ args)
    {
 
-      m_bTextCompositionActive = false; 
+      m_bTextCompositionActive = false;
+
+      auto psession = Session;
+
       auto pfocusui = psession->get_focus_ui();
 
       if (pfocusui)

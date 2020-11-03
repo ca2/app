@@ -1169,7 +1169,7 @@ namespace macos
       {
          //         get_context_application()->get_context_application()->step_timer();
       }
-      else if (pbase->m_id == WM_LBUTTONDOWN)
+      else if (pbase->m_id == e_message_lbutton_down)
       {
          //  g_pwndLastLButtonDown = this;
       }
@@ -1190,20 +1190,20 @@ namespace macos
       pbase->m_lresult = 0;
 
 
-      if (pbase->m_id == WM_LBUTTONDOWN ||
-            pbase->m_id == WM_LBUTTONUP ||
+      if (pbase->m_id == e_message_lbutton_down ||
+            pbase->m_id == e_message_lbutton_up ||
             pbase->m_id == WM_MBUTTONDOWN ||
             pbase->m_id == WM_MBUTTONUP ||
-            pbase->m_id == WM_RBUTTONDOWN ||
-            pbase->m_id == WM_RBUTTONUP ||
+            pbase->m_id == e_message_rbutton_down ||
+            pbase->m_id == e_message_rbutton_up ||
             pbase->m_id == WM_RBUTTONDBLCLK ||
             pbase->m_id == WM_LBUTTONDBLCLK ||
             pbase->m_id == e_message_mouse_move ||
             pbase->m_id == e_message_mouse_move ||
-            pbase->m_id == WM_MOUSEWHEEL)
+            pbase->m_id == e_message_mouse_wheel)
       {
 
-         if (pbase->m_id == WM_LBUTTONDOWN)
+         if (pbase->m_id == e_message_lbutton_down)
          {
 
             //output_debug_string("\nWM_LBUTTONDOWN");
@@ -4585,13 +4585,13 @@ namespace macos
          if (iButton == 1)
          {
 
-            message = WM_RBUTTONDOWN;
+            message = e_message_rbutton_down;
 
          }
          else
          {
 
-            message = WM_LBUTTONDOWN;
+            message = e_message_lbutton_down;
 
          }
 
@@ -4617,13 +4617,13 @@ namespace macos
       if (iButton == 1)
       {
 
-         message = WM_RBUTTONUP;
+         message = e_message_rbutton_up;
 
       }
       else
       {
 
-         message = WM_LBUTTONUP;
+         message = e_message_lbutton_up;
 
       }
 
@@ -4872,7 +4872,7 @@ namespace macos
 
          auto pwheel  = __new(::message::mouse_wheel);
 
-         pwheel->m_id = WM_MOUSEWHEEL;
+         pwheel->m_id = e_message_mouse_wheel;
 
          pwheel->m_point.x = (LONG)x;
          pwheel->m_point.y = (LONG)y;
@@ -5449,8 +5449,8 @@ namespace macos
 
       __throw(not_implemented());
       //   if (nHitTest == HTERROR &&
-      //      (nMsg == WM_LBUTTONDOWN || nMsg == WM_MBUTTONDOWN ||
-      //      nMsg == WM_RBUTTONDOWN))
+      //      (nMsg == e_message_lbutton_down || nMsg == WM_MBUTTONDOWN ||
+      //      nMsg == e_message_rbutton_down))
       //   {
       //      // activate the last active user::interaction if not active
       //      ::user::interaction * pLastActive = MAC_WINDOW(pWnd)->GetTopLevelParent();

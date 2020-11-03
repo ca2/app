@@ -1152,7 +1152,7 @@ namespace ios
       {
          //         get_context_application()->get_context_application()->step_timer();
       }
-      else if(pbase->m_id == WM_LBUTTONDOWN)
+      else if(pbase->m_id == e_message_lbutton_down)
       {
          //  g_pwndLastLButtonDown = this;
       }
@@ -1181,15 +1181,15 @@ namespace ios
 
       }
 
-      if(pbase->m_id == WM_LBUTTONDOWN ||
-            pbase->m_id == WM_LBUTTONUP ||
+      if(pbase->m_id == e_message_lbutton_down ||
+            pbase->m_id == e_message_lbutton_up ||
             pbase->m_id == WM_MBUTTONDOWN ||
             pbase->m_id == WM_MBUTTONUP ||
-            pbase->m_id == WM_RBUTTONDOWN ||
-            pbase->m_id == WM_RBUTTONUP ||
+            pbase->m_id == e_message_rbutton_down ||
+            pbase->m_id == e_message_rbutton_up ||
             pbase->m_id == e_message_mouse_move ||
             pbase->m_id == e_message_mouse_move)
-         //         pbase->m_id == WM_MOUSEWHEEL)
+         //         pbase->m_id == e_message_mouse_wheel)
       {
 
          ::message::mouse * pmouse = (::message::mouse *) pbase;
@@ -5539,7 +5539,7 @@ namespace ios
 
          auto pmouse = __new(::message::mouse());
 
-         pmouse->m_id = WM_LBUTTONDOWN;
+         pmouse->m_id = e_message_lbutton_down;
          pmouse->m_point.x = (LONG) x;
          pmouse->m_point.y = (LONG) y;
          pmouse->m_bTranslated = true;
@@ -5561,7 +5561,7 @@ namespace ios
 
       auto pmouse = __new(::message::mouse());
 
-      pmouse->m_id = WM_LBUTTONUP;
+      pmouse->m_id = e_message_lbutton_up;
       pmouse->m_point.x = (LONG) x;
       pmouse->m_point.y = (LONG) y;
       pmouse->m_bTranslated = true;

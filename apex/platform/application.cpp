@@ -10422,7 +10422,7 @@ namespace apex
       //case MSGF_DIALOGBOX:    // handles message boxes as well.
       //   //pMainWnd = __get_main_window();
       //   if (code == MSGF_DIALOGBOX && m_puiActive != nullptr &&
-      //      pbase->m_id >= WM_KEYFIRST && pbase->m_id <= WM_KEYLAST)
+      //      pbase->m_id >= e_message_key_first && pbase->m_id <= e_message_key_last)
       //   {
       //   }
       //   break;

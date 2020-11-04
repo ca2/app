@@ -2851,7 +2851,7 @@ bool x11_process_message(Display * pdisplay)
       if(e.xkey.type == KeyPress)
       {
 
-         msg.message = WM_KEYDOWN;
+         msg.message = e_message_key_down;
 
          KeySym  keysym = XkbKeycodeToKeySym();
 
@@ -2859,7 +2859,7 @@ bool x11_process_message(Display * pdisplay)
       else if(e.xkey.type == KeyRelease)
       {
 
-         msg.message = WM_KEYUP;
+         msg.message = e_message_key_up;
 
       }
       else

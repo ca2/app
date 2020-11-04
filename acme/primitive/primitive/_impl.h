@@ -111,7 +111,7 @@ inline ::estatus method::operator()() const { return (*m_p)(); }
 
 inline bool method::should_run_async() const { return m_p->should_run_async(); }
 
-inline void future::operator()(const var& var) const { (*m_p)(var); }
+inline void future::operator()(const var& var) const { if(m_p) (*m_p)(var); }
 
 inline bool future::should_run_async() const { return m_p->should_run_async(); }
 

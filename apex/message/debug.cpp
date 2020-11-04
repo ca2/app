@@ -116,20 +116,20 @@ else __msg_entry(WM_NCMBUTTONDOWN)//           0x00A7
 else __msg_entry(WM_NCMBUTTONUP)//           0x00A8
 else __msg_entry(WM_NCMBUTTONDBLCLK)      //           0x00A9
 
-else __msg_entry(WM_KEYFIRST)      //            0x0100
-else __msg_entry(WM_KEYDOWN)      //            0x0100
-else __msg_entry(WM_KEYUP)      //            0x0101
-else __msg_entry(WM_CHAR)      //            0x0102
-else __msg_entry(WM_DEADCHAR)      //            0x0103
-else __msg_entry(WM_SYSKEYDOWN)      //            0x0104
-else __msg_entry(WM_SYSKEYUP)      //            0x0105
-else __msg_entry(WM_SYSCHAR)      //            0x0106
-else __msg_entry(WM_SYSDEADCHAR)      //            0x0107
+else __msg_entry(e_message_key_first)      //            0x0100
+else __msg_entry(e_message_key_down)      //            0x0100
+else __msg_entry(e_message_key_up)      //            0x0101
+else __msg_entry(e_message_char)      //            0x0102
+else __msg_entry(e_message_dead_char)      //            0x0103
+else __msg_entry(e_message_sys_key_down)      //            0x0104
+else __msg_entry(e_message_sys_key_up)      //            0x0105
+else __msg_entry(e_message_sys_char)      //            0x0106
+else __msg_entry(e_message_sys_dead_char)      //            0x0107
 
 
 
-else __msg_entry(WM_UNICHAR)      //            0x0109
-else __msg_entry(WM_KEYLAST)      //            0x0109
+else __msg_entry(e_message_uni_char)      //            0x0109
+else __msg_entry(e_message_key_last)      //            0x0109
 
 
 else __msg_entry(WM_INITDIALOG)      //             0x0110
@@ -271,7 +271,7 @@ UINT g_puiaMessageInputLanguageChange[] =
    // 2019-06-38-00-06 Talk2meGooseman
    WM_INPUTLANGCHANGE,
    WM_IME_NOTIFY,
-   WM_KEYUP,
+   e_message_key_up,
    (UINT)-1
 };
 

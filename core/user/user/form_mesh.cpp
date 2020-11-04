@@ -31,7 +31,7 @@ namespace user
 
    void form_mesh::install_message_routing(::channel * pchannel)
    {
-      MESSAGE_LINK(WM_KEYDOWN, pchannel, this,&form_mesh::_001OnKeyDown);
+      MESSAGE_LINK(e_message_key_down, pchannel, this,&form_mesh::_001OnKeyDown);
 
       form::install_message_routing(pchannel);
       mesh::install_message_routing(pchannel);

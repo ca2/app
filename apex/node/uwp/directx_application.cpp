@@ -349,7 +349,7 @@ namespace uwp
 
       spbase = pkey;
 
-      pkey->m_id = WM_CHAR;
+      pkey->m_id = e_message_char;
       pkey->m_puserinteraction = m_psystem->get_context_session()->m_puiHost;
       pkey->m_nChar = keycode_to_char(args->KeyCode);
 
@@ -390,7 +390,7 @@ namespace uwp
          || m_psystem->get_context_session()->is_key_pressed(::user::key_alt))
       {
 
-         pkey->m_id                 = WM_KEYDOWN;
+         pkey->m_id                 = e_message_key_down;
          pkey->m_puserinteraction       = m_psystem->get_context_session()->m_puiHost;
          pkey->m_nChar              = virtualkey_to_char(args->VirtualKey);
          pkey->m_ekey               = ekey;
@@ -444,7 +444,7 @@ namespace uwp
       if (bSpecialKey || !bTextFocus)
       {
 
-         pkey->m_id = WM_KEYUP;
+         pkey->m_id = e_message_key_up;
          pkey->m_puserinteraction = m_psystem->get_context_session()->m_puiHost;
          pkey->m_nChar = virtualkey_to_char(args->VirtualKey);
          pkey->m_ekey = ekey;

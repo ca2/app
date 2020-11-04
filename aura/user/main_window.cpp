@@ -20,7 +20,7 @@ namespace user
    }
 
 
-   void main_window::install_message_routing(::channel* pchannel)
+   void main_window::install_message_routing(::channel * pchannel)
    {
 
       ::user::interaction::install_message_routing(pchannel);
@@ -38,6 +38,37 @@ namespace user
       add_user_item({ ::user::element_close_button, ::user::event_close_app });
 
    }
+
+
+   ::estatus main_window::create_main_window()
+   {
+
+      ::rect rectWindow;
+
+      bool bInitialFramePosition = _001InitialFramePosition(rectWindow, m_rectInitialRateOrSize);
+
+      ::user::create_struct cs(0, nullptr, Application.m_strAppId, WS_VISIBLE, rectWindow);
+
+      bool bOk = create_window_ex(cs);
+
+      if (!bOk)
+      {
+
+         return false;
+
+      }
+
+      if (bInitialFramePosition)
+      {
+
+         place(rectWindow);
+
+      }
+
+      return ::success;
+
+   }
+
 
 
 } // namespace user

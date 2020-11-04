@@ -146,10 +146,10 @@ void simple_frame_window::install_message_routing(::channel * pchannel)
    MESSAGE_LINK(WM_MOUSEACTIVATE, pchannel, this, &simple_frame_window::_001OnMouseActivate);
    MESSAGE_LINK(WM_NCHITTEST, pchannel, this, &simple_frame_window::_001OnNcHitTest);
 
-   MESSAGE_LINK(WM_KEYDOWN, pchannel, this, &simple_frame_window::_001OnKey);
-   MESSAGE_LINK(WM_SYSKEYDOWN, pchannel, this, &simple_frame_window::_001OnKey);
-   MESSAGE_LINK(WM_KEYUP, pchannel, this, &simple_frame_window::_001OnKey);
-   MESSAGE_LINK(WM_SYSKEYUP, pchannel, this, &simple_frame_window::_001OnKey);
+   MESSAGE_LINK(e_message_key_down, pchannel, this, &simple_frame_window::_001OnKey);
+   MESSAGE_LINK(e_message_sys_key_down, pchannel, this, &simple_frame_window::_001OnKey);
+   MESSAGE_LINK(e_message_key_up, pchannel, this, &simple_frame_window::_001OnKey);
+   MESSAGE_LINK(e_message_sys_key_up, pchannel, this, &simple_frame_window::_001OnKey);
 
    connect_command_probe("transparent_frame", &simple_frame_window::_001OnUpdateToggleTransparentFrame);
    connect_command("transparent_frame", &simple_frame_window::_001OnToggleTransparentFrame);

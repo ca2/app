@@ -53,6 +53,7 @@
   <ItemGroup>
     <ClInclude Include="application.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="window.h" />
     <ClInclude Include="_.h" />
     <ClInclude Include="_user.h" />
   </ItemGroup>

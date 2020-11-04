@@ -1084,9 +1084,9 @@ namespace macos
 
       }
 
-      if (pbase->m_id == WM_KEYDOWN ||
-            pbase->m_id == WM_KEYUP ||
-            pbase->m_id == WM_CHAR)
+      if (pbase->m_id == e_message_key_down ||
+            pbase->m_id == e_message_key_up ||
+            pbase->m_id == e_message_char)
       {
 
          SCAST_PTR(::message::key, pkey, pbase);
@@ -1096,7 +1096,7 @@ namespace macos
          if(pkey->m_ekey != ::user::key_refer_to_text_member)
          {
             
-            if (pbase->m_id == WM_KEYDOWN)
+            if (pbase->m_id == e_message_key_down)
             {
                
                try
@@ -1118,7 +1118,7 @@ namespace macos
                }
                
             }
-            else if (pbase->m_id == WM_KEYUP)
+            else if (pbase->m_id == e_message_key_up)
             {
                
                try
@@ -1297,9 +1297,9 @@ namespace macos
          return;
 
       }
-      else if (pbase->m_id == WM_KEYDOWN ||
-               pbase->m_id == WM_KEYUP ||
-               pbase->m_id == WM_CHAR)
+      else if (pbase->m_id == e_message_key_down ||
+               pbase->m_id == e_message_key_up ||
+               pbase->m_id == e_message_char)
       {
 
          ::message::key * pkey = (::message::key *) pbase;
@@ -4407,7 +4407,7 @@ namespace macos
 
       auto pkey  = __new(::message::key);
 
-      pkey->m_id = WM_KEYDOWN;
+      pkey->m_id = e_message_key_down;
 
       pkey->m_nChar = uiKeyCode;
 
@@ -4434,7 +4434,7 @@ namespace macos
 
       auto pkey  = __new(::message::key);
 
-      pkey->m_id = WM_KEYUP;
+      pkey->m_id = e_message_key_up;
 
       pkey->m_nChar = uiKeyCode;
 
@@ -4461,7 +4461,7 @@ namespace macos
 
       auto pkey  = __new(::message::key);
 
-      pkey->set(m_puserinteraction, WM_KEYDOWN, vk, (LPARAM)(scan << 16));
+      pkey->set(m_puserinteraction, e_message_key_down, vk, (LPARAM)(scan << 16));
 
       if(::is_set(pszUtf8))
       {
@@ -4511,7 +4511,7 @@ namespace macos
 
       auto pkey  = __new(::message::key);
 
-      pkey->set(m_puserinteraction, WM_KEYUP, vk, (LPARAM)(scan << 16));
+      pkey->set(m_puserinteraction, e_message_key_up, vk, (LPARAM)(scan << 16));
 
       spbase = pkey;
 

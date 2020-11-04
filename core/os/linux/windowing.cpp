@@ -3682,7 +3682,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e, XGenericEventC
       if(e.xkey.type == KeyPress)
       {
 
-         msg.message = WM_KEYDOWN;
+         msg.message = e_message_key_down;
 
          Window window = msg.hwnd->m_window;
 
@@ -3883,7 +3883,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e, XGenericEventC
       else if(e.xkey.type == KeyRelease)
       {
 
-         msg.message = WM_KEYUP;
+         msg.message = e_message_key_up;
 
       }
       else

@@ -33,6 +33,8 @@ namespace user
       u32                                 m_uiLastRedraw;
       bool                                m_bUpdatingBuffer;
 
+      ::rect                              m_rect;
+
 
 
       primitive_impl();

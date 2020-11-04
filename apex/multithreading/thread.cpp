@@ -2096,7 +2096,7 @@ namespace thread_util
    inline bool IsEnterKey(::message::message * pmessage)
    {
       SCAST_PTR(::message::base,pbase,pmessage);
-      return pbase->m_id == WM_KEYDOWN && pbase->m_id == VK_RETURN;
+      return pbase->m_id == e_message_key_down && pbase->m_id == VK_RETURN;
    }
 
    inline bool IsButtonUp(::message::message * pmessage)

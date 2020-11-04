@@ -108,7 +108,7 @@ JNIEXPORT void JNICALL Java_com_android_1app_impact_keyPreImeDown(JNIEnv * env, 
 
    set_context(env);
 
-   android_key(WM_KEYDOWN, keyCode, iUni);
+   android_key(e_message_key_down, keyCode, iUni);
 
 }
 
@@ -119,7 +119,7 @@ JNIEXPORT void JNICALL Java_com_android_1app_impact_keyPreImeUp(JNIEnv * env, jo
 
    set_context(env);
 
-   android_key(WM_KEYUP, keyCode, iUni);
+   android_key(e_message_key_up, keyCode, iUni);
 
 }
 

@@ -79,16 +79,18 @@ namespace uwp
 
 //      psystem->get_context_session()->m_directxapplication = this;
 
-      auto estatus = __construct_new(m_pdxinteraction);
+      //auto estatus = __construct_new(m_pdxinteraction);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
+
+      return ::success;
 
    }
 
@@ -106,27 +108,33 @@ namespace uwp
 
       int nReturnCode = 0;
 
-      if (!m_psystem->begin_synch())
+      bool bCreatingSystem = false;
+
+      if (!m_psystem->task_active())
       {
 
-         __throw(::exception::exception("failed to begin_synch the system"));
+         if (!m_psystem->begin_synch())
+         {
+
+            __throw(::exception::exception("failed to begin_synch the system"));
+
+         }
+
+         bCreatingSystem = true;
 
       }
 
-      auto estatus = m_pdxinteraction->initialize(m_psystem);
+      //auto estatus = m_pdxinteraction->initialize(m_psystem);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         __throw(resource_exception());
+      //   __throw(resource_exception());
 
-      }
+      //}
 
-      auto psession = m_psystem->get_context_session()->m_paurasession;
 
-      psession->m_paurasession->m_directxapplication = this;
 
-      psession->m_puiHost = m_pdxinteraction;
 
       m_directx->defer_init();
 
@@ -134,24 +142,68 @@ namespace uwp
 
       ::user::create_struct cs;
 
-      auto puiHost = __user_interaction(psession->m_puiHost);
+      //auto puserinteraction = __user_interaction(m_pdxinteraction);
 
-      cs.cx = m_window->Bounds.Width;
+      cs.cx = (::i32) m_window->Bounds.Width;
 
-      cs.cy = m_window->Bounds.Height;
+      cs.cy = (::i32) m_window->Bounds.Height;
 
-      if (!puiHost->create_window_ex(cs))
+      m_pimpl = __create_new < ::uwp::interaction_impl >();
+
       {
 
-         __throw(resource_exception("Couldn't create Main Window"));
+         auto psession = m_psystem->get_context_session()->m_paurasession;
 
-         return;
+         if (!psession->m_paurasession->m_directxapplication)
+         {
+
+            psession->m_paurasession->m_directxapplication = this;
+
+            psession->m_pimplLastSeed = m_pimpl;
+
+         }
 
       }
 
-      auto puserinteraction = m_pdxinteraction;
+      //uStyle &= ~WS_CHILD;
 
-      auto pimpl = puiHost->m_pimpl;
+      //m_pdescriptor.defer_create(this);
+
+      //if (!m_pimpl->create_window_ex(nullptr, cs, nullptr, ""))
+      //{
+
+      //   //m_bUserPrimitiveOk = false;
+
+      //   //m_pimpl.release();
+
+      //   //if (m_pthreadUserInteraction)
+      //   //{
+
+      //   //   if (::is_set(m_pthreadUserInteraction->m_puiptraThread))
+      //   //   {
+
+      //   //      m_pthreadUserInteraction->m_puiptraThread->remove(this);
+
+      //   //   }
+
+      //   //   __release(m_pthreadUserInteraction OBJ_REF_DBG_COMMA_THIS);
+
+      //   //}
+
+      //   __throw(resource_exception("Couldn't create window"));
+
+      //   return;
+
+      //}
+
+
+      //if (!puserinteraction->create_window_ex(cs))
+      //{
+
+
+      //}
+
+      auto pimpl = m_pimpl;
 
       auto puwpui = pimpl->cast < ::uwp::interaction_impl >();
 
@@ -159,13 +211,26 @@ namespace uwp
 
       puwpui->m_window = m_window;
 
+      pimpl->m_rect.left = 0;
+
+      pimpl->m_rect.top = 0;
+
+      pimpl->m_rect.right = m_window->Bounds.Width;
+
+      pimpl->m_rect.bottom = m_window->Bounds.Height;
+
       m_pimpl = puwpui;
 
       m_directx->m_pimpl = puwpui;
 
-      auto size = puiHost->layout().sketch().size();
+      //auto size = puserinteraction->layout().sketch().size();
       
-      m_psystem->post_create_requests();
+      if (bCreatingSystem)
+      {
+
+         m_psystem->post_create_requests();
+
+      }
 
 
 
@@ -231,22 +296,26 @@ namespace uwp
    void directx_application::SetWindow(CoreWindow^ window)
    {
 
-      m_psystem->m_paurasystem->m_directxapplication = this;
+      if (m_window == nullptr)
+      {
 
-      impact::SetWindow(window);
+         m_psystem->m_paurasystem->m_directxapplication = this;
 
-      m_directx = ref new directx_base();
+         impact::SetWindow(window);
 
-      m_directx->m_psystem = m_psystem;
+         m_directx = ref new directx_base();
 
-      ::Windows::Graphics::Display::DisplayInformation ^ displayinformation = ::Windows::Graphics::Display::DisplayInformation::GetForCurrentView();
+         m_directx->m_psystem = m_psystem;
 
-      m_directx->Initialize(window, displayinformation->LogicalDpi);
+         ::Windows::Graphics::Display::DisplayInformation ^ displayinformation = ::Windows::Graphics::Display::DisplayInformation::GetForCurrentView();
 
-      install_directx_application_message_routing();
+         m_directx->Initialize(window, displayinformation->LogicalDpi);
 
-      initialize_directx_application();
+         install_directx_application_message_routing();
 
+         initialize_directx_application();
+
+      }
 
    }
 
@@ -411,7 +480,7 @@ namespace uwp
 
       spbase = pkey;
 
-      pkey->m_id = WM_CHAR;
+      pkey->m_id = e_message_char;
       pkey->m_playeredUserPrimitive = puiHost;
       pkey->m_nChar = keycode_to_char(args->KeyCode);
 
@@ -422,21 +491,38 @@ namespace uwp
 
    void directx_application::OnKeyDown(Windows::UI::Core::CoreWindow ^, Windows::UI::Core::KeyEventArgs ^ args)
    {
-      if (args->VirtualKey == ::Windows::System::VirtualKey::Shift)
+
+      auto virtualkey = args->VirtualKey;
+
+      if (virtualkey == ::Windows::System::VirtualKey::Shift)
       {
+
          m_bFontopusShift = true;
+
       }
 
-      if(m_psystem == nullptr)
+      if (m_psystem == nullptr)
+      {
+
          return;
 
+      }
+
       if (m_psystem->get_context_session()->m_puiHost == nullptr)
+      {
+
          return;
+
+      }
 
       auto puiHost = __user_interaction(m_psystem->get_context_session()->m_puiHost);
 
       if (puiHost->m_pimpl == nullptr)
+      {
+
          return;
+
+      }
 
       ___pointer < ::message::base > spbase;
 
@@ -456,7 +542,7 @@ namespace uwp
          || psession->is_key_pressed(::user::key_alt))
       {
 
-         pkey->m_id                 = WM_KEYDOWN;
+         pkey->m_id                 = e_message_key_down;
          pkey->m_playeredUserPrimitive = puiHost;
          pkey->m_nChar              = virtualkey_to_char(args->VirtualKey);
          pkey->m_ekey               = ekey;
@@ -515,7 +601,7 @@ namespace uwp
       if (bSpecialKey || !bTextFocus)
       {
 
-         pkey->m_id = WM_KEYUP;
+         pkey->m_id = e_message_key_up;
          pkey->m_playeredUserPrimitive = puiHost;
          pkey->m_nChar = virtualkey_to_char(args->VirtualKey);
          pkey->m_ekey = ekey;

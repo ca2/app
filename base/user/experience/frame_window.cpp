@@ -66,10 +66,10 @@ namespace experience
          return;
 
       }
-      else if (pmessage->m_id == WM_KEYDOWN
-         || pmessage->m_id == WM_KEYUP
-         || pmessage->m_id == WM_SYSKEYDOWN
-         || pmessage->m_id == WM_SYSKEYUP)
+      else if (pmessage->m_id == e_message_key_down
+         || pmessage->m_id == e_message_key_up
+         || pmessage->m_id == e_message_sys_key_down
+         || pmessage->m_id == e_message_sys_key_up)
       {
 
          SCAST_PTR(::message::key, pkey, pmessage);
@@ -79,7 +79,7 @@ namespace experience
          if (pkey->userinteraction() == this)
          {
 
-            if (pmessage->m_id == WM_KEYDOWN || pmessage->m_id == WM_SYSKEYDOWN)
+            if (pmessage->m_id == e_message_key_down || pmessage->m_id == e_message_sys_key_down)
             {
 
                if (!m_bFullScreenOnMaximize)
@@ -131,7 +131,7 @@ namespace experience
                }
 
             }
-            else if (pmessage->m_id == WM_KEYUP || pmessage->m_id == WM_SYSKEYUP)
+            else if (pmessage->m_id == e_message_key_up || pmessage->m_id == e_message_sys_key_up)
             {
 
                if (pkey->m_ekey == ::user::key_return)

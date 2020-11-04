@@ -156,16 +156,16 @@ namespace message
          return PrototypeNcActivate;
       case WM_TIMER:
          return PrototypeTimer;
-      case WM_KEYDOWN:
-      case WM_KEYUP:
-      case WM_CHAR:
-      case WM_DEADCHAR:
-      case WM_SYSKEYDOWN:
-      case WM_SYSKEYUP:
-      case WM_SYSCHAR:
-      case WM_SYSDEADCHAR:
+      case e_message_key_down:
+      case e_message_key_up:
+      case e_message_char:
+      case e_message_dead_char:
+      case e_message_sys_key_down:
+      case e_message_sys_key_up:
+      case e_message_sys_char:
+      case e_message_sys_dead_char:
 #if(_WIN32_WINNT >= 0x0501)
-      case WM_UNICHAR:
+      case e_message_uni_char:
 #endif
          return PrototypeKey;
       case WM_NCHITTEST:

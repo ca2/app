@@ -17,6 +17,19 @@ enum enum_message : ::i64
    e_message_quit = 18,
 
 
+   e_message_key_first = 256,
+   e_message_key_down = 256,
+   e_message_key_up = 257,
+   e_message_char = 258,
+   e_message_dead_char = 259,
+   e_message_sys_key_down = 260,
+   e_message_sys_key_up = 261,
+   e_message_sys_char = 262,
+   e_message_sys_dead_char = 263,
+   e_message_uni_char = 265,
+   e_message_key_last = 265,
+
+
    e_message_non_client_mouse_move = 160,
 
    e_message_mouse_first = 512,

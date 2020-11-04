@@ -141,9 +141,10 @@
     <ClInclude Include="filesystem\userfs\_data.h" />
     <ClInclude Include="filesystem\userfs\_tree.h" />
     <ClInclude Include="filesystem\userfs\_userfs.h" />
-    <ClInclude Include="html\matter\matter.h" />
-    <ClInclude Include="html\matter\_.h" />
-    <ClInclude Include="html\matter\_element.h" />
+    <ClInclude Include="html\element\element.h" />
+    <ClInclude Include="html\element\_.h" />
+    <ClInclude Include="html\element\_element.h" />
+    <ClInclude Include="html\impl\element.h" />
     <ClInclude Include="html\graphics\attribute.h" />
     <ClInclude Include="html\graphics\base.h" />
     <ClInclude Include="html\graphics\border.h" />
@@ -167,7 +168,6 @@
     <ClInclude Include="html\html\_.h" />
     <ClInclude Include="html\html\_html.h" />
     <ClInclude Include="html\impl\cell.h" />
-    <ClInclude Include="html\impl\matter.h" />
     <ClInclude Include="html\impl\form.h" />
     <ClInclude Include="html\impl\image.h" />
     <ClInclude Include="html\impl\input_button.h" />
@@ -526,7 +526,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="html\matter\matter.cpp" />
+    <ClCompile Include="html\element\element.cpp" />
+    <ClCompile Include="html\impl\element.cpp" />
     <ClCompile Include="html\graphics\attribute.cpp" />
     <ClCompile Include="html\graphics\base.cpp" />
     <ClCompile Include="html\graphics\font.cpp" />
@@ -542,7 +543,6 @@
     <ClCompile Include="html\html\core_data.cpp" />
     <ClCompile Include="html\html\data.cpp" />
     <ClCompile Include="html\impl\cell.cpp" />
-    <ClCompile Include="html\impl\matter.cpp" />
     <ClCompile Include="html\impl\form.cpp" />
     <ClCompile Include="html\impl\image.cpp" />
     <ClCompile Include="html\impl\input_button.cpp" />
@@ -795,6 +795,9 @@
     </ProjectReference>
     <ProjectReference Include="..\aqua\u_aqua.vcxproj">
       <Project>{d6fc3dc0-a19a-4f63-a3f1-3426fe53920b}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\aura\u_aura.vcxproj">
+      <Project>{b3b6a9d8-7776-434e-8e3b-d2696632df39}</Project>
     </ProjectReference>
     <ProjectReference Include="..\axis\u_axis.vcxproj">
       <Project>{0412ea6f-50d0-4baa-99e3-ac14fc63a879}</Project>

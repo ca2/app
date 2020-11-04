@@ -25,6 +25,8 @@ namespace uwp
       pointd                                    m_pointLastMouseMove;
       double                                    m_dAccumulatedMouseMoveDistance;
       tick                                      m_tickLastMouseMove;
+      Agile < Windows::ApplicationModel::Core::CoreApplicationView > m_view;
+      Agile < Windows::UI::ViewManagement::ApplicationView > m_applicationview;
       Agile < Windows::UI::Core::CoreWindow >   m_window;
       ::thread *                                m_pthreadDraw;
       ::user::primitive* m_pbasewnd;
@@ -124,6 +126,9 @@ namespace uwp
       // handling of RT_DLGINIT resource (extension to RT_DIALOG)
       bool ExecuteDlgInit(const char * lpszResourceName);
       bool ExecuteDlgInit(LPVOID lpResource);
+
+
+      virtual bool is_composite() override;
 
 
       virtual ::estatus update_graphics_resources() override;

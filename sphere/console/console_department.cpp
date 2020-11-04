@@ -48,7 +48,7 @@ namespace console
 
       if(pbase != nullptr)
       {
-         if(pbase->m_id == WM_KEYDOWN)
+         if(pbase->m_id == e_message_key_down)
          {
 
             SCAST_PTR(::message::key,pkey,pmessage);

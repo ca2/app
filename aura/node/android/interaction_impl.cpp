@@ -1063,17 +1063,17 @@ namespace android
 
       }
 
-      if(pmessage->m_id == WM_KEYDOWN ||
-            pmessage->m_id == WM_KEYUP ||
-            pmessage->m_id == WM_CHAR ||
-            pmessage->m_id == WM_SYSKEYDOWN ||
-            pmessage->m_id == WM_SYSKEYUP ||
-            pmessage->m_id == WM_SYSCHAR)
+      if(pmessage->m_id == e_message_key_down ||
+            pmessage->m_id == e_message_key_up ||
+            pmessage->m_id == e_message_char ||
+            pmessage->m_id == e_message_sys_key_down ||
+            pmessage->m_id == e_message_sys_key_up ||
+            pmessage->m_id == e_message_sys_char)
       {
 
          SCAST_PTR(::message::key, pkey, pmessage);
 
-         if(pmessage->m_id == WM_KEYDOWN || pmessage->m_id == WM_SYSKEYDOWN)
+         if(pmessage->m_id == e_message_key_down || pmessage->m_id == e_message_sys_key_down)
          {
             try
             {
@@ -1083,7 +1083,7 @@ namespace android
             {
             }
          }
-         else if(pmessage->m_id == WM_KEYUP || pmessage->m_id == WM_SYSKEYUP)
+         else if(pmessage->m_id == e_message_key_up || pmessage->m_id == e_message_sys_key_up)
          {
             try
             {
@@ -1261,12 +1261,12 @@ namespace android
       //   }
       //   return;
       //}
-      if(pmessage->m_id == WM_KEYDOWN ||
-            pmessage->m_id == WM_KEYUP ||
-            pmessage->m_id == WM_CHAR ||
-            pmessage->m_id == WM_SYSKEYDOWN ||
-            pmessage->m_id == WM_SYSKEYUP ||
-            pmessage->m_id == WM_SYSCHAR)
+      if(pmessage->m_id == e_message_key_down ||
+            pmessage->m_id == e_message_key_up ||
+            pmessage->m_id == e_message_char ||
+            pmessage->m_id == e_message_sys_key_down ||
+            pmessage->m_id == e_message_sys_key_up ||
+            pmessage->m_id == e_message_sys_char)
       {
 
          message::key * pkey = (::message::key *) pmessage;

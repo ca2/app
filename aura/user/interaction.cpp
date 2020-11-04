@@ -1049,7 +1049,7 @@ namespace user
          MESSAGE_LINK(e_message_set_focus, pchannel, this, &interaction::_001OnSetFocus);
          MESSAGE_LINK((enum_message)WM_DISPLAYCHANGE, pchannel, this, &interaction::_001OnDisplayChange);
          MESSAGE_LINK(e_message_lbutton_down, pchannel, this, &interaction::_001OnLButtonDown);
-         MESSAGE_LINK(WM_KEYDOWN, pchannel, this, &::user::interaction::_001OnKeyDown);
+         MESSAGE_LINK(e_message_key_down, pchannel, this, &::user::interaction::_001OnKeyDown);
          MESSAGE_LINK(WM_ENABLE, pchannel, this, &::user::interaction::_001OnEnable);
 
       }
@@ -4133,10 +4133,10 @@ namespace user
    bool interaction::post(::message::base * pbase)
    {
 
-      if(pbase->m_id == WM_KEYDOWN)
+      if(pbase->m_id == e_message_key_down)
       {
 
-         output_debug_string("::user::interaction::post WM_KEYDOWN");
+         output_debug_string("::user::interaction::post e_message_key_down");
 
       }
 
@@ -4373,7 +4373,7 @@ namespace user
 
    //   //SCAST_PTR(::message::base, pbase, pmessage);
 
-   //   //if(pbase->m_id == WM_KEYDOWN)
+   //   //if(pbase->m_id == e_message_key_down)
    //   //{
 
    //   //   SCAST_PTR(::message::key,pkey,pmessage);
@@ -4795,7 +4795,39 @@ namespace user
          if ((WS_CHILD & createstruct.style) == 0 && (!puiParent || puiParent != psession->m_puiHost))
          {
 
-            m_pimpl = __create < interaction_impl > ();
+            if (psession->m_pimplLastSeed)
+            {
+
+               m_pimpl = psession->m_pimplLastSeed;
+
+               psession->m_pimplLastSeed.release();
+
+               if (!m_pimpl->get_context_object())
+               {
+
+                  auto estatus = m_pimpl->initialize(this);
+
+                  if (!estatus)
+                  {
+
+                     return false;
+
+                  }
+
+               }
+
+               createstruct.x = m_pimpl->m_rect.left;
+               createstruct.y = m_pimpl->m_rect.top;
+               createstruct.cx = m_pimpl->m_rect.width();
+               createstruct.cy = m_pimpl->m_rect.height();
+
+            }
+            else
+            {
+
+               m_pimpl = __create < interaction_impl >();
+
+            }
 
             //uStyle &= ~WS_CHILD;
 
@@ -7701,10 +7733,10 @@ namespace user
 
       }
 
-      if(id == WM_KEYDOWN)
+      if(id == e_message_key_down)
       {
 
-         output_debug_string("::user::interaction::post_message WM_KEYDOWN");
+         output_debug_string("::user::interaction::post_message e_message_key_down");
 
       }
 
@@ -8013,6 +8045,8 @@ namespace user
 
    void interaction::sketch_to_design(::draw2d::graphics_pointer& pgraphics, bool & bUpdateBuffer, bool & bUpdateWindow)
    {
+
+      sync_lock sl(mutex());
 
       bUpdateBuffer = false;
 
@@ -13487,7 +13521,14 @@ restart:
 
       auto psession = Session;
 
-      psession->get_main_monitor(rectMainMonitor);
+      ::index iMainMonitor = psession->get_main_monitor(rectMainMonitor);
+
+      if (iMainMonitor < 0)
+      {
+
+         return false;
+
+      }
 
       ::rect rectWindow;
 

@@ -50,7 +50,7 @@ namespace user
       __pointer_array(::message::base)       m_messagebasea;
 
 
-      bool                                   m_bCreateNativeWindowOnInteractionThread;
+      //bool                                   m_bCreateNativeWindowOnInteractionThread;
 
       thread();
       virtual ~thread();

@@ -1190,7 +1190,7 @@ void _android_size(float xDummy, float yDummy, float cx, float cy)
 
 //    output_debug_string("here???555");
 
-//    android_key(WM_KEYDOWN, keyCode, iUni);
+//    android_key(e_message_key_down, keyCode, iUni);
 
 // }
 
@@ -1248,7 +1248,7 @@ void android_on_size(float xScreen, float yScreen, float pikachu, float yBitmap)
 // {
 //    output_debug_string("here???444");
 
-//    android_key(WM_KEYUP, keyCode, iUni);
+//    android_key(e_message_key_up, keyCode, iUni);
 
 // }
 
@@ -1360,7 +1360,7 @@ namespace acme
 
       __pointer(::message::key) pkey = __new(::message::key());
 
-      pkey->m_id = WM_KEYDOWN;
+      pkey->m_id = e_message_key_down;
 
       pkey->m_ekey = ::user::key_refer_to_text_member;
 

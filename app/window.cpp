@@ -9,6 +9,8 @@ namespace app_app
    window::window()
    {
 
+      m_rectInitialRateOrSize = { 0.05, 0.05, 0.4, 0.4 };
+
       m_dBreathPeriod = 60.0;
 
       m_dStartTime = ::get_secs();

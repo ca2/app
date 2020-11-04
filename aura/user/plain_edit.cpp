@@ -245,9 +245,9 @@ namespace user
       MESSAGE_LINK(e_message_rbutton_up, pchannel, this, &plain_edit::_001OnRButtonUp);
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &plain_edit::_001OnMouseMove);
       MESSAGE_LINK(WM_MOUSELEAVE, pchannel, this, &plain_edit::_001OnMouseLeave);
-      MESSAGE_LINK(WM_KEYDOWN, pchannel, this, &plain_edit::_001OnKeyDown);
-      MESSAGE_LINK(WM_KEYUP, pchannel, this, &plain_edit::_001OnKeyUp);
-      MESSAGE_LINK(WM_UNICHAR, pchannel, this, &plain_edit::_001OnUniChar);
+      MESSAGE_LINK(e_message_key_down, pchannel, this, &plain_edit::_001OnKeyDown);
+      MESSAGE_LINK(e_message_key_up, pchannel, this, &plain_edit::_001OnKeyUp);
+      MESSAGE_LINK(e_message_uni_char, pchannel, this, &plain_edit::_001OnUniChar);
 
       MESSAGE_LINK(e_message_size, pchannel, this, &::user::plain_edit::_001OnSize);
 

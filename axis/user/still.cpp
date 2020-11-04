@@ -44,7 +44,7 @@ namespace user
       //MESSAGE_LINK(WM_MBUTTONUP, pchannel, this, &still::_001OnMButtonUp);
       //MESSAGE_LINK(e_message_mouse_move, pchannel, this, &still::_001OnMouseMove);
       //MESSAGE_LINK(WM_MOUSELEAVE, pchannel, this, &still::_001OnMouseLeave);
-      MESSAGE_LINK(WM_KEYDOWN, pchannel, this, &still::_001OnKeyDown);
+      MESSAGE_LINK(e_message_key_down, pchannel, this, &still::_001OnKeyDown);
 
    }
 

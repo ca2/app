@@ -1764,21 +1764,21 @@ typedef struct tagMDINEXTMENU
 #define WM_INPUT                        0x00FF
 //#endif /* _WIN32_WINNT >= 0x0501 */
 
-#define WM_KEYFIRST                     0x0100
-#define WM_KEYDOWN                      0x0100
-#define WM_KEYUP                        0x0101
-#define WM_CHAR                         0x0102
-#define WM_DEADCHAR                     0x0103
-#define WM_SYSKEYDOWN                   0x0104
-#define WM_SYSKEYUP                     0x0105
-#define WM_SYSCHAR                      0x0106
-#define WM_SYSDEADCHAR                  0x0107
+#define e_message_key_first                     0x0100
+#define e_message_key_down                      0x0100
+#define e_message_key_up                        0x0101
+#define e_message_char                         0x0102
+#define e_message_dead_char                     0x0103
+#define e_message_sys_key_down                   0x0104
+#define e_message_sys_key_up                     0x0105
+#define e_message_sys_char                      0x0106
+#define e_message_sys_dead_char                  0x0107
 //#if(_WIN32_WINNT >= 0x0501)
-#define WM_UNICHAR                      0x0109
-#define WM_KEYLAST                      0x0109
+#define e_message_uni_char                      0x0109
+#define e_message_key_last                      0x0109
 #define UNICODE_NOCHAR                  0xFFFF
 //#else
-//#define WM_KEYLAST                      0x0108
+//#define e_message_key_last                      0x0108
 //#endif /* _WIN32_WINNT >= 0x0501 */
 
 //#if(WINVER >= 0x0400)

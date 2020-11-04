@@ -11,7 +11,7 @@ namespace uwp
    internal:
 
 
-      ::user::interaction_impl * m_pimpl;
+      __pointer(::user::interaction_impl) m_pimpl;
 
       Windows::Foundation::Point                m_pointLastCursor;
 
@@ -38,7 +38,7 @@ namespace uwp
 
       //::aura::application *                     m_papp;
 
-      __pointer(directx_interaction)            m_pdxinteraction;
+      //__pointer(directx_interaction)            m_pdxinteraction;
 
       bool                                      m_bLeftButton;
 

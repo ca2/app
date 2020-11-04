@@ -1439,14 +1439,14 @@ namespace linux
 
       }
 
-      if(pbase->m_id == WM_KEYDOWN || pbase->m_id == WM_KEYUP || pbase->m_id == WM_CHAR)
+      if(pbase->m_id == e_message_key_down || pbase->m_id == e_message_key_up || pbase->m_id == e_message_char)
       {
 
          ::message::key * pkey = (::message::key *) pbase;
 
          psession->translate_os_key_message(pkey);
 
-         if(pbase->m_id == WM_KEYDOWN)
+         if(pbase->m_id == e_message_key_down)
          {
 
             try
@@ -1461,7 +1461,7 @@ namespace linux
             }
 
          }
-         else if(pbase->m_id == WM_KEYUP)
+         else if(pbase->m_id == e_message_key_up)
          {
 
             try
@@ -1575,9 +1575,9 @@ namespace linux
          return;
 
       }
-      else if(pbase->m_id == WM_KEYDOWN ||
-              pbase->m_id == WM_KEYUP ||
-              pbase->m_id == WM_CHAR)
+      else if(pbase->m_id == e_message_key_down ||
+              pbase->m_id == e_message_key_up ||
+              pbase->m_id == e_message_char)
       {
 
          ::message::key * pkey = (::message::key *) pbase;

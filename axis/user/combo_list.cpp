@@ -62,8 +62,8 @@ namespace user
       MESSAGE_LINK(e_message_kill_focus, pchannel, this, &combo_list::_001OnKillFocus);
       MESSAGE_LINK(e_message_close, pchannel, this, &combo_list::_001OnClose);
       MESSAGE_LINK(WM_MOUSEACTIVATE, pchannel, this, &combo_list::_001OnMouseActivate);
-      MESSAGE_LINK(WM_KEYDOWN, pchannel, this, &combo_list::_001OnKeyDown);
-      MESSAGE_LINK(WM_KEYUP, pchannel, this, &combo_list::_001OnKeyUp);
+      MESSAGE_LINK(e_message_key_down, pchannel, this, &combo_list::_001OnKeyDown);
+      MESSAGE_LINK(e_message_key_up, pchannel, this, &combo_list::_001OnKeyUp);
       MESSAGE_LINK(e_message_lbutton_down, pchannel, this, &combo_list::_001OnLButtonDown);
       MESSAGE_LINK(WM_NCLBUTTONDOWN, pchannel, this, &combo_list::_001OnLButtonDown);
       MESSAGE_LINK(e_message_lbutton_up, pchannel, this, &combo_list::_001OnLButtonUp);

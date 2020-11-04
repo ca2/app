@@ -686,8 +686,8 @@ namespace user
       MESSAGE_LINK(e_message_create, pchannel,this,&form_control::_001OnCreate);
       MESSAGE_LINK(e_message_pos_create, pchannel,this,&form_control::_000OnPosCreate);
       MESSAGE_LINK(e_message_language, pchannel,this,&form_control::_001OnAppLanguage);
-      //MESSAGE_LINK(WM_KEYDOWN                     , pchannel,this,&form_control::_001OnKeyDown);
-      //MESSAGE_LINK(WM_KEYUP                       , pchannel,this,&form_control::_001OnKeyUp);
+      //MESSAGE_LINK(e_message_key_down                     , pchannel,this,&form_control::_001OnKeyDown);
+      //MESSAGE_LINK(e_message_key_up                       , pchannel,this,&form_control::_001OnKeyUp);
       MESSAGE_LINK(WM_USER + 123, pchannel,this,&form_control::_001OnUser123);
 
       install_update_data_message_routing(pchannel);

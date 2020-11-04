@@ -2936,12 +2936,12 @@ namespace aura
 
 #endif
 
-   class ::crypto::crypto & system::crypto()
-   {
+   // class ::crypto::crypto & system::crypto()
+   // {
 
-      return *m_pcrypto;
+   //    return *m_pcrypto;
 
-   }
+   // }
 
 
    //__pointer(::account::user_set) system::userset()
@@ -3824,16 +3824,20 @@ namespace aura
 
 #ifdef _UWP
 
-         auto psession = Session;
+         //auto psession = Session;
 
-         auto puiHost = __user_interaction(psession->m_puiHost);
+         auto puserinteraction = __user_interaction(pframe);
 
-         __pointer(::uwp::interaction_impl) pimpl = puiHost->m_pimpl;
+         __pointer(::uwp::interaction_impl) pimpl = puserinteraction->m_pimpl;
 
          if (pimpl.is_set())
          {
 
-            pimpl->m_directxapplication->m_directx->UpdateForWindowSizeChange();
+            auto pdirectxapplication = pimpl->m_directxapplication;
+
+            auto directx = pdirectxapplication->m_directx;
+
+            directx->UpdateForWindowSizeChange();
 
          }
 

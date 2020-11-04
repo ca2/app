@@ -40,7 +40,7 @@ void simple_menu_bar::install_message_routing(::channel * pchannel)
    //MESSAGE_LINK(e_message_mouse_move, pchannel, this, &simple_menu_bar::_001OnMouseMove);
    //MESSAGE_LINK(e_message_non_client_mouse_move, pchannel, this, &simple_menu_bar::_001OnNcMouseMove);
    MESSAGE_LINK(e_message_create, pchannel, this, &simple_menu_bar::_001OnCreate);
-   MESSAGE_LINK(WM_KEYDOWN, pchannel, this, &simple_menu_bar::_001OnKeyDown);
+   MESSAGE_LINK(e_message_key_down, pchannel, this, &simple_menu_bar::_001OnKeyDown);
    MESSAGE_LINK(e_message_destroy, pchannel, this, &simple_menu_bar::_001OnDestroy);
    MESSAGE_LINK(WM_MENUCHAR, pchannel, this, &simple_menu_bar::_001OnMenuChar);
    //MESSAGE_LINK(e_message_lbutton_down, pchannel, this, &simple_menu_bar::_001OnLButtonDown);
@@ -295,7 +295,7 @@ bool simple_menu_bar::_track_popup_menu(const ::point & point)
    //   if (m_itemHitTest.is_valid_item(m_iTopMenuCount) && item != m_iTracking)
    //   {
    //      TRACE("simple_menu_bar::OnMouseMove simple_menu_bar::_track_popup_menu % d\n", item.m_iItem);
-   //      //            SendMessage(WM_KEYDOWN, VK_ESCAPE);
+   //      //            SendMessage(e_message_key_down, VK_ESCAPE);
    //      //            if(m_iTracking >= 0)
    //      //          {
    //      send_message(WM_CANCELMODE);

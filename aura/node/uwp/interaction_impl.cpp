@@ -158,13 +158,45 @@ namespace uwp
    bool interaction_impl::_native_create_window_ex(::user::create_struct& cs)
    {
 
-      auto & system = System;
+      if (!m_window.Get())
+      {
 
-      auto directxapplication = system.m_directxapplication;
+         ::wait(Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(::Windows::UI::Core::CoreDispatcherPriority::Normal,
+            ref new Windows::UI::Core::DispatchedHandler([this, cs]()
+               {
 
-      m_window = directxapplication->m_window;
 
-      System.m_directxapplication->m_rectLastWindowRect = m_window->Bounds;
+                  m_view = Windows::ApplicationModel::Core::CoreApplication::CreateNewView();
+
+                  auto applicationview = ::Windows::UI::ViewManagement::ApplicationView::GetForCurrentView();
+
+                  ::wait(m_view->Dispatcher->RunAsync(
+                     ::Windows::UI::Core::CoreDispatcherPriority::Low,
+                     ref new Windows::UI::Core::DispatchedHandler([this, cs, applicationview]()
+                        {
+                           m_window = m_directxapplication->m_window;
+                           m_applicationview = ::Windows::UI::ViewManagement::ApplicationView::GetForCurrentView();
+                           //#if WINDOWS_UAP
+                           m_applicationview->SetPreferredMinSize({ (float)cs.cx, (float)cs.cy });
+                           //#endif
+                                          //var frame = new Frame();
+                                          //window.Content = frame;
+                                          //frame.Navigate(typeof(MainPage));
+                                          //window.Activate();
+                           Windows::UI::ViewManagement::ApplicationViewSwitcher::TryShowAsStandaloneAsync(
+                              m_applicationview->Id,
+                              Windows::UI::ViewManagement::ViewSizePreference::UseMore,
+                              applicationview->Id,
+                              Windows::UI::ViewManagement::ViewSizePreference::Default);
+                           bool success = m_applicationview->TryResizeView(::Windows::Foundation::Size({ (float)cs.cx,(float)cs.cy }));
+                        })));
+
+               })));
+
+
+      }
+
+
 
 
       //__refer(m_pthreadUserImpl, m_puserinteraction->m_pthreadUserInteraction);
@@ -186,11 +218,35 @@ namespace uwp
 
       install_message_routing(m_puserinteraction);
 
-      m_rectWindowScreen.left = 0;
-      m_rectWindowScreen.top = 0;
-      m_rectWindowScreen.right = (LONG)m_window->Bounds.Width;
-      m_rectWindowScreen.bottom = (LONG)m_window->Bounds.Height;
+      m_rectWindowScreen =  m_rect;
 
+      send_message(e_message_create, 0, (LPARAM)&cs);
+
+      //send_message(e_message_size, 0, MAKELPARAM(cs.cx, cs.cy));
+
+      //::size sizeDrawn;
+
+      //sync_lock slGraphics(m_pgraphics->mutex());
+
+      //::sync * psync = m_pgraphics->get_draw_lock();
+
+      //sync_lock sl(psync);
+
+      ////::draw2d::graphics_pointer pgraphics = m_pgraphics->on_begin_draw();
+
+      //slGraphics.unlock();
+
+      sync_lock sl(m_puserinteraction->mutex());
+
+      m_puserinteraction->set_dim(cs.x, cs.cy, cs.cx, cs.cy);
+
+      m_puserinteraction->add_ref(OBJ_REF_DBG_THIS_FUNCTION_LINE);
+
+      m_puserinteraction->m_ewindowflag |= ::window_flag_is_window;
+
+      m_puserinteraction->m_ewindowflag |= ::window_flag_window_created;
+
+      m_puserinteraction->m_layout.sketch().set_modified();
 
       return true;
 
@@ -905,19 +961,19 @@ namespace uwp
       }
 
 
-      if(pbase->m_id == WM_KEYDOWN ||
-            pbase->m_id == WM_KEYUP ||
-            pbase->m_id == WM_CHAR ||
-            pbase->m_id == WM_SYSKEYDOWN ||
-            pbase->m_id == WM_SYSKEYUP ||
-            pbase->m_id == WM_SYSCHAR)
+      if(pbase->m_id == e_message_key_down ||
+            pbase->m_id == e_message_key_up ||
+            pbase->m_id == e_message_char ||
+            pbase->m_id == e_message_sys_key_down ||
+            pbase->m_id == e_message_sys_key_up ||
+            pbase->m_id == e_message_sys_char)
       {
 
          SCAST_PTR(::message::key, pkey, pbase);
 
          //psession->keyboard().translate_os_key_message(pkey);
 
-         if(pbase->m_id == WM_KEYDOWN || pbase->m_id == WM_SYSKEYDOWN)
+         if(pbase->m_id == e_message_key_down || pbase->m_id == e_message_sys_key_down)
          {
 
             auto psession = Session;
@@ -930,7 +986,7 @@ namespace uwp
             {
             }
          }
-         else if(pbase->m_id == WM_KEYUP || pbase->m_id == WM_SYSKEYUP)
+         else if(pbase->m_id == e_message_key_up || pbase->m_id == e_message_sys_key_up)
          {
 
             auto psession = Session;
@@ -1068,9 +1124,9 @@ namespace uwp
          return;
 
       }
-      else if(pbase->m_id == WM_KEYDOWN ||
-              pbase->m_id == WM_KEYUP ||
-              pbase->m_id == WM_CHAR)
+      else if(pbase->m_id == e_message_key_down ||
+              pbase->m_id == e_message_key_up ||
+              pbase->m_id == e_message_char)
       {
 
          ::message::key * pkey = (::message::key *) pbase;
@@ -2232,15 +2288,23 @@ return TRUE;
 
       ::set_core_window_once_visible();
 
-      System.m_directxapplication->m_directx->m_pimpl = this;
+      m_directxapplication->m_directx->m_pimpl = this;
 
-      System.m_directxapplication->on_size({ (LONG)m_window->Bounds.Width, (LONG)m_window->Bounds.Height });
+      m_directxapplication->on_size(m_rect.size());
 
       UNREFERENCED_PARAMETER(pmessage);
 
       Default();
 
 
+
+   }
+
+
+   bool interaction_impl::is_composite()
+   {
+
+      return false;
 
    }
 
@@ -2793,7 +2857,7 @@ return TRUE;
 //
 //            // show the interaction_impl when certain special messages rec'd
 //            if(bShowIdle &&
-//                  (msg.message == 0x118 || msg.message == WM_SYSKEYDOWN))
+//                  (msg.message == 0x118 || msg.message == e_message_sys_key_down))
 //            {
 //               ShowWindow(SW_SHOWNORMAL);
 //               UpdateWindow();

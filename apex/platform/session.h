@@ -50,6 +50,7 @@ namespace apex
       // For Desktop Applications a meaning should be given or this member could be ignored?
       // The Main Application window?
       __reference(::layered)                                m_puiHost;
+      __pointer(::layered)     m_pimplLastSeed;
       //__pointer(::layered)                        m_puiMain2;
 
       // apex commented

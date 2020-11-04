@@ -333,7 +333,7 @@ namespace uwp
 
             bool bSpecialKey = false;
 
-            pkey->m_id = WM_KEYDOWN;
+            pkey->m_id = e_message_key_down;
             pkey->m_puserinteraction = m_psystem->get_context_session()->m_puiHost;
             pkey->m_nChar = 0;
             pkey->m_ekey = ::user::key_refer_to_text_member;

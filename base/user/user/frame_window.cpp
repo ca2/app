@@ -537,7 +537,7 @@ namespace user
 
 
 
-      /* trans if (pMsg->message >= WM_KEYFIRST && pMsg->message <= WM_KEYLAST)
+      /* trans if (pMsg->message >= e_message_key_first && pMsg->message <= e_message_key_last)
       {
       // finally, translate the message
       HACCEL hAccel = GetDefaultAccelerator();

@@ -150,13 +150,13 @@ bool defer_process_x_message(HTHREAD hthread, LPMESSAGE lpMsg, oswindow interact
                if(e.xkey.type == KeyPress)
                {
 
-                  lpMsg->message = WM_KEYDOWN;
+                  lpMsg->message = e_message_key_down;
 
                }
                else if(e.xkey.type == KeyRelease)
                {
 
-                  lpMsg->message = WM_KEYUP;
+                  lpMsg->message = e_message_key_up;
 
                }
                else

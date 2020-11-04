@@ -50,7 +50,7 @@
 //      //
 //      //#endif
 //      //
-//      MESSAGE_LINK(WM_KEYDOWN, pchannel, this, &::user::interaction::_001OnKeyDown);
+//      MESSAGE_LINK(e_message_key_down, pchannel, this, &::user::interaction::_001OnKeyDown);
 //
 //      MESSAGE_LINK(WM_ENABLE, pchannel, this, &::user::interaction::_001OnEnable);
 //      MESSAGE_LINK(e_message_set_focus, pchannel, this, &::user::interaction::_001OnSetFocus);

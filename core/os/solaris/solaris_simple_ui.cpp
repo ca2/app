@@ -399,13 +399,13 @@ namespace os
                                  buffer[0] = '\0';
                               }
                            }
-                           // lpMsg->message = WM_KEYDOWN;
+                           // lpMsg->message = e_message_key_down;
 
                         }
                         else if(e.xkey.type == KeyRelease)
                         {
 
-                           //lpMsg->message = WM_KEYUP;
+                           //lpMsg->message = e_message_key_up;
                            if(keysym == XK_Tab)
                            {
                               //on_key_up(VK_TAB);

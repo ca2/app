@@ -903,19 +903,19 @@ namespace uwp
       }
 
 
-      if(pbase->m_id == WM_KEYDOWN ||
-            pbase->m_id == WM_KEYUP ||
-            pbase->m_id == WM_CHAR ||
-            pbase->m_id == WM_SYSKEYDOWN ||
-            pbase->m_id == WM_SYSKEYUP ||
-            pbase->m_id == WM_SYSCHAR)
+      if(pbase->m_id == e_message_key_down ||
+            pbase->m_id == e_message_key_up ||
+            pbase->m_id == e_message_char ||
+            pbase->m_id == e_message_sys_key_down ||
+            pbase->m_id == e_message_sys_key_up ||
+            pbase->m_id == e_message_sys_char)
       {
 
          SCAST_PTR(::message::key, pkey, pbase);
 
          //psession->keyboard().translate_os_key_message(pkey);
 
-         if(pbase->m_id == WM_KEYDOWN || pbase->m_id == WM_SYSKEYDOWN)
+         if(pbase->m_id == e_message_key_down || pbase->m_id == e_message_sys_key_down)
          {
             try
             {
@@ -925,7 +925,7 @@ namespace uwp
             {
             }
          }
-         else if(pbase->m_id == WM_KEYUP || pbase->m_id == WM_SYSKEYUP)
+         else if(pbase->m_id == e_message_key_up || pbase->m_id == e_message_sys_key_up)
          {
             try
             {
@@ -1058,9 +1058,9 @@ namespace uwp
          return;
 
       }
-      else if(pbase->m_id == WM_KEYDOWN ||
-              pbase->m_id == WM_KEYUP ||
-              pbase->m_id == WM_CHAR)
+      else if(pbase->m_id == e_message_key_down ||
+              pbase->m_id == e_message_key_up ||
+              pbase->m_id == e_message_char)
       {
 
          ::message::key * pkey = (::message::key *) pbase;
@@ -2762,7 +2762,7 @@ return TRUE;
 
             // show the interaction_impl when certain special messages rec'd
             if(bShowIdle &&
-                  (msg.message == 0x118 || msg.message == WM_SYSKEYDOWN))
+                  (msg.message == 0x118 || msg.message == e_message_sys_key_down))
             {
                ShowWindow(SW_SHOWNORMAL);
                UpdateWindow();

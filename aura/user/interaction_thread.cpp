@@ -47,15 +47,15 @@ namespace user
 
       m_bMessageThread = true;
 
-#ifdef WINDOWS_DESKTOP
-
-      m_bCreateNativeWindowOnInteractionThread = true;
-
-#else
-
-      m_bCreateNativeWindowOnInteractionThread = false;
-
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//      m_bCreateNativeWindowOnInteractionThread = true;
+//
+//#else
+//
+//      m_bCreateNativeWindowOnInteractionThread = false;
+//
+//#endif
 
 
    }
@@ -64,7 +64,9 @@ namespace user
    {
 
    }
-   ::estatus     thread::initialize_user_thread(interaction_impl * pimpl, ::user::create_struct & createstruct)
+
+
+   ::estatus thread::initialize_user_thread(interaction_impl * pimpl, ::user::create_struct & createstruct)
    {
 
       auto estatus = initialize(pimpl);
@@ -177,25 +179,25 @@ namespace user
    ::estatus thread::task_caller_on_init()
    {
 
-      if (!m_bCreateNativeWindowOnInteractionThread)
-      {
+      //if (!m_bCreateNativeWindowOnInteractionThread)
+      //{
 
-         if (!m_pimpl->_native_create_window_ex(*m_pcreatestruct))
-         {
+      //   if (!m_pimpl->_native_create_window_ex(*m_pcreatestruct))
+      //   {
 
-            //delete m_pcreatestruct;
+      //      //delete m_pcreatestruct;
 
-            m_pcreatestruct = nullptr;
+      //      m_pcreatestruct = nullptr;
 
-            m_estatus = error_failed;
+      //      m_estatus = error_failed;
 
-            finish();
+      //      finish();
 
-            return ::error_failed;
+      //      return ::error_failed;
 
-         }
+      //   }
 
-      }
+      //}
 
 
       return ::success;
@@ -256,8 +258,8 @@ namespace user
 
       //  });
 
-      if (m_bCreateNativeWindowOnInteractionThread)
-      {
+      //if (m_bCreateNativeWindowOnInteractionThread)
+      //{
 
          if (!m_pimpl->_native_create_window_ex(*m_pcreatestruct))
          {
@@ -274,15 +276,15 @@ namespace user
 
          }
 
-      }
-      else
-      { 
-      
-         __refer(m_pimpl->m_puserinteraction->m_pthreadUserInteraction, this);
+      //}
+      //else
+      //{ 
+      //
+      //   __refer(m_pimpl->m_puserinteraction->m_pthreadUserInteraction, this);
 
-         uiptra().add(m_pimpl->m_puserinteraction);
+      //   uiptra().add(m_pimpl->m_puserinteraction);
 
-      }
+      //}
 
             //m_himc = ImmGetContext(m_pimpl->get_handle());
 
@@ -708,7 +710,7 @@ catch(...)
             //{
             //   fResult = FALSE;
             //}
-            //else if (WM_KEYDOWN == msg.message)
+            //else if (e_message_key_down == msg.message)
             //{
             //   // does an ime want it?
             //   if (pKeyMgr->TestKeyDown(msg.wParam, msg.lParam, &fEaten) == S_OK && fEaten &&
@@ -717,7 +719,7 @@ catch(...)
             //      continue;
             //   }
             //}
-            //else if (WM_KEYUP == msg.message)
+            //else if (e_message_key_up == msg.message)
             //{
             //   // does an ime want it?
             //   if (pKeyMgr->TestKeyUp(msg.wParam, msg.lParam, &fEaten) == S_OK && fEaten &&
@@ -811,7 +813,7 @@ catch(...)
 
             BOOL    fEaten;
 
-            if (WM_KEYDOWN == lpMsg->message)
+            if (e_message_key_down == lpMsg->message)
             {
                // does an ime want it?
                if (m_pkeystrokemgr->TestKeyDown(lpMsg->wParam, lpMsg->lParam, &fEaten) == S_OK && fEaten &&
@@ -820,7 +822,7 @@ catch(...)
                   continue;
                }
             }
-            else if (WM_KEYUP == lpMsg->message)
+            else if (e_message_key_up == lpMsg->message)
             {
                // does an ime want it?
                if (m_pkeystrokemgr->TestKeyUp(lpMsg->wParam, lpMsg->lParam, &fEaten) == S_OK && fEaten &&

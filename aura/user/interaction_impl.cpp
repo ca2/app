@@ -707,8 +707,10 @@ namespace user
          synca.wait();
 
          if (!m_puserinteraction || 
-            (m_puserthread->m_bCreateNativeWindowOnInteractionThread
-               && !m_puserinteraction->is_window()))
+            //(m_puserthread->m_bCreateNativeWindowOnInteractionThread
+               //&&
+            !m_puserinteraction->is_window())
+            //)
          {
 
             return false;
@@ -782,22 +784,22 @@ namespace user
 
       }
 
-      if (m_puserthread && !m_puserthread->m_bCreateNativeWindowOnInteractionThread)
-      {
+      //if (m_puserthread && !m_puserthread->m_bCreateNativeWindowOnInteractionThread)
+      //{
 
-         send_message(e_message_create, 0, (LPARAM)&createstruct);
+      //   send_message(e_message_create, 0, (LPARAM)&createstruct);
 
-         //m_puserinteraction->set_dim(createstruct.x, createstruct.cy, createstruct.cx, createstruct.cy);
+      //   //m_puserinteraction->set_dim(createstruct.x, createstruct.cy, createstruct.cx, createstruct.cy);
 
-         send_message(e_message_size, 0, MAKELPARAM(createstruct.cx, createstruct.cy));
+      //   send_message(e_message_size, 0, MAKELPARAM(createstruct.cx, createstruct.cy));
 
-         m_puserinteraction->add_ref(OBJ_REF_DBG_THIS_FUNCTION_LINE);
+      //   m_puserinteraction->add_ref(OBJ_REF_DBG_THIS_FUNCTION_LINE);
 
-         m_puserinteraction->m_ewindowflag |= ::window_flag_is_window;
+      //   m_puserinteraction->m_ewindowflag |= ::window_flag_is_window;
 
-         m_puserinteraction->m_ewindowflag |= ::window_flag_window_created;
+      //   m_puserinteraction->m_ewindowflag |= ::window_flag_window_created;
 
-      }
+      //}
 
       return true;
 

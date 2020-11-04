@@ -330,21 +330,26 @@ namespace uwp
 
       }
 
-      m_pimpl->m_puserinteraction->start_layout();
+      if (m_pimpl->m_puserinteraction)
+      {
 
-      m_pimpl->m_puserinteraction->display(display_normal);
+         m_pimpl->m_puserinteraction->start_layout();
 
-      m_pimpl->m_puserinteraction->set_dim(0, 0, m_size.cx, m_size.cy);
+         m_pimpl->m_puserinteraction->display(display_normal);
 
-      defer_resize_top_level_windows();
+         m_pimpl->m_puserinteraction->set_dim(0, 0, m_size.cx, m_size.cy);
 
-      m_pimpl->m_puserinteraction->set_reposition();
+         defer_resize_top_level_windows();
 
-      m_pimpl->m_puserinteraction->set_need_layout();
+         m_pimpl->m_puserinteraction->set_reposition();
 
-      m_pimpl->m_puserinteraction->set_need_redraw();
+         m_pimpl->m_puserinteraction->set_need_layout();
 
-      m_pimpl->m_puserinteraction->post_redraw();
+         m_pimpl->m_puserinteraction->set_need_redraw();
+
+         m_pimpl->m_puserinteraction->post_redraw();
+
+      }
 
 
    }

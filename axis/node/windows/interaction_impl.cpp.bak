@@ -1469,12 +1469,12 @@ namespace windows
 
       }
 
-      if (emessage == WM_KEYDOWN ||
-            emessage == WM_KEYUP ||
-            emessage == WM_CHAR ||
-            emessage == WM_SYSKEYDOWN ||
-            emessage == WM_SYSKEYUP ||
-            emessage == WM_SYSCHAR ||
+      if (emessage == e_message_key_down ||
+            emessage == e_message_key_up ||
+            emessage == e_message_char ||
+            emessage == e_message_sys_key_down ||
+            emessage == e_message_sys_key_up ||
+            emessage == e_message_sys_char ||
             emessage == WM_IME_KEYDOWN ||
             emessage == WM_IME_KEYUP ||
             emessage == WM_IME_CHAR ||
@@ -1498,14 +1498,14 @@ namespace windows
 
          SCAST_PTR(::message::key, pkey, pbase);
 
-         if (emessage == WM_KEYDOWN)
+         if (emessage == e_message_key_down)
          {
 
             output_debug_string("\n Key Down Event ");
 
          }
 
-         if (emessage == WM_KEYDOWN || emessage == WM_SYSKEYDOWN)
+         if (emessage == e_message_key_down || emessage == e_message_sys_key_down)
          {
             try
             {
@@ -1515,7 +1515,7 @@ namespace windows
             {
             }
          }
-         else if (emessage == WM_KEYUP || emessage == WM_SYSKEYUP)
+         else if (emessage == e_message_key_up || emessage == e_message_sys_key_up)
          {
 
             try
@@ -1784,12 +1784,12 @@ namespace windows
          }
          return;
       }
-      if (emessage == WM_KEYDOWN ||
-            emessage == WM_KEYUP ||
-            emessage == WM_CHAR ||
-            emessage == WM_SYSKEYDOWN ||
-            emessage == WM_SYSKEYUP ||
-            emessage == WM_SYSCHAR ||
+      if (emessage == e_message_key_down ||
+            emessage == e_message_key_up ||
+            emessage == e_message_char ||
+            emessage == e_message_sys_key_down ||
+            emessage == e_message_sys_key_up ||
+            emessage == e_message_sys_char ||
             emessage == WM_IME_KEYDOWN ||
             emessage == WM_IME_KEYUP ||
             emessage == WM_IME_CHAR ||
@@ -1812,9 +1812,9 @@ namespace windows
          {
             output_debug_string("WM_IME_NOTIFY");
          }
-         else if (emessage == WM_CHAR)
+         else if (emessage == e_message_char)
          {
-            output_debug_string("WM_CHAR");
+            output_debug_string("e_message_char");
          }
 
          if (puiFocus && puiFocus->is_window() && puiFocus != m_puserinteraction)

@@ -90,7 +90,7 @@ namespace user
 
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &list::_001OnMouseMove);
 
-      MESSAGE_LINK(WM_KEYDOWN, pchannel, this, &list::_001OnKeyDown);
+      MESSAGE_LINK(e_message_key_down, pchannel, this, &list::_001OnKeyDown);
 
       MESSAGE_LINK(e_message_create, pchannel, this, &list::_001OnCreate);
       //      //MESSAGE_LINK(WM_TIMER,           pchannel, this, &list::_001OnTimer);

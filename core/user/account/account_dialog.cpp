@@ -80,7 +80,7 @@ namespace account
       ::user::interaction::install_message_routing(pchannel);
 
       MESSAGE_LINK(e_message_create,pchannel,this,&dialog::_001OnCreate);
-      MESSAGE_LINK(WM_CHAR,pchannel,this,&dialog::_001OnChar);
+      MESSAGE_LINK(e_message_char,pchannel,this,&dialog::_001OnChar);
       MESSAGE_LINK(e_message_lbutton_down,pchannel,this,&dialog::_001OnLButtonDown);
       MESSAGE_LINK(e_message_lbutton_up,pchannel,this,&dialog::_001OnLButtonUp);
       MESSAGE_LINK(e_message_mouse_move,pchannel,this,&dialog::_001OnMouseMove);

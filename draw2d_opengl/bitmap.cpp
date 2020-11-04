@@ -414,7 +414,7 @@ namespace draw2d_opengl
          //PostQuitMessage(0);
          return 0;
 
-      case WM_KEYDOWN:
+      case e_message_key_down:
          //if (wParam == VK_ESCAPE)
       {
          //SendMessage(hWnd, e_message_close, 0, 0);

@@ -1892,11 +1892,14 @@ the file README-colorramp for more information. */
 #endif
 
       if (prect != nullptr)
-
       {
 
-         get_monitor_rect(iMainMonitor, prect);
+         if (!get_monitor_rect(iMainMonitor, prect))
+         {
 
+            return -1;
+
+         }
 
       }
 
@@ -1936,17 +1939,19 @@ the file README-colorramp for more information. */
 
 #ifdef _UWP
 
-      prect->left = 0;
+      return false;
 
-      prect->top = 0;
+      //prect->left = 0;
 
-      auto puserinteraction = __user_interaction(m_puiHost);
+      //prect->top = 0;
 
-      prect->right = puserinteraction->layout().sketch().width();
+      //auto puserinteraction = __user_interaction(m_puiHost);
 
-      prect->bottom = puserinteraction->layout().sketch().height();
+      //prect->right = puserinteraction->layout().sketch().width();
 
-      return true;
+      //prect->bottom = puserinteraction->layout().sketch().height();
+
+      //return true;
 
 #elif MOBILE_PLATFORM
 

@@ -135,7 +135,7 @@ namespace user
 
       MESSAGE_LINK(e_message_mouse_move, pchannel, this,&mesh::_001OnMouseMove);
 
-      MESSAGE_LINK(WM_KEYDOWN, pchannel, this,&mesh::_001OnKeyDown);
+      MESSAGE_LINK(e_message_key_down, pchannel, this,&mesh::_001OnKeyDown);
 
       MESSAGE_LINK(e_message_create, pchannel, this,&mesh::_001OnCreate);
 

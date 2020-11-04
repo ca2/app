@@ -5549,12 +5549,12 @@ namespace windows
 
       bool bUserElementalOk = !m_bDestroyImplOnly && m_puserinteraction && m_puserinteraction->m_bUserPrimitiveOk;
 
-      if (message == WM_KEYDOWN ||
-         message == WM_KEYUP ||
-         message == WM_CHAR ||
-         message == WM_SYSKEYDOWN ||
-         message == WM_SYSKEYUP ||
-         message == WM_SYSCHAR ||
+      if (message == e_message_key_down ||
+         message == e_message_key_up ||
+         message == e_message_char ||
+         message == e_message_sys_key_down ||
+         message == e_message_sys_key_up ||
+         message == e_message_sys_char ||
          message == WM_IME_KEYDOWN ||
          message == WM_IME_SETCONTEXT ||
          message == WM_IME_SELECT ||
@@ -5569,7 +5569,7 @@ namespace windows
 
          SCAST_PTR(::message::key, pkey, pbase);
 
-         if (message == WM_KEYDOWN)
+         if (message == e_message_key_down)
          {
 
             output_debug_string("\n Key Down Event ");
@@ -5578,7 +5578,7 @@ namespace windows
 
          auto psession = Session;
 
-         if (message == WM_KEYDOWN || message == WM_SYSKEYDOWN)
+         if (message == e_message_key_down || message == e_message_sys_key_down)
          {
             try
             {
@@ -5588,7 +5588,7 @@ namespace windows
             {
             }
          }
-         else if (message == WM_KEYUP || message == WM_SYSKEYUP)
+         else if (message == e_message_key_up || message == e_message_sys_key_up)
          {
 
             try
@@ -5927,12 +5927,12 @@ namespace windows
          }*/
          return;
       }
-      if (message == WM_KEYDOWN ||
-         message == WM_KEYUP ||
-         message == WM_CHAR ||
-         message == WM_SYSKEYDOWN ||
-         message == WM_SYSKEYUP ||
-         message == WM_SYSCHAR ||
+      if (message == e_message_key_down ||
+         message == e_message_key_up ||
+         message == e_message_char ||
+         message == e_message_sys_key_down ||
+         message == e_message_sys_key_up ||
+         message == e_message_sys_char ||
          message == WM_IME_KEYDOWN ||
          message == WM_IME_KEYUP ||
          message == WM_IME_CHAR ||

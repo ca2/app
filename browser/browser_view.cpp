@@ -846,7 +846,7 @@ namespace browser
 
    //BOOL view::PreTranslateMessage(MSG* pMsg)
    //{
-   //   if (pMsg->message == WM_KEYDOWN)
+   //   if (pMsg->message == e_message_key_down)
    //   {
    //      if (pMsg->wParam == VK_F5)
    //      {

@@ -1098,14 +1098,14 @@ namespace ios
 
       }
 
-      if(pbase->m_id == WM_KEYDOWN || pbase->m_id == WM_KEYUP || pbase->m_id == WM_CHAR)
+      if(pbase->m_id == e_message_key_down || pbase->m_id == e_message_key_up || pbase->m_id == e_message_char)
       {
 
          SCAST_PTR(::message::key, pkey, pbase);
 
          psession->translate_os_key_message(pkey);
 
-         if(pbase->m_id == WM_KEYDOWN)
+         if(pbase->m_id == e_message_key_down)
          {
 
             try
@@ -1120,7 +1120,7 @@ namespace ios
             }
 
          }
-         else if(pbase->m_id == WM_KEYUP)
+         else if(pbase->m_id == e_message_key_up)
          {
 
             try
@@ -1258,16 +1258,16 @@ namespace ios
          return;
 
       }
-      else if(pbase->m_id == WM_KEYDOWN ||
-              pbase->m_id == WM_KEYUP ||
-              pbase->m_id == WM_CHAR)
+      else if(pbase->m_id == e_message_key_down ||
+              pbase->m_id == e_message_key_up ||
+              pbase->m_id == e_message_char)
       {
 
          ::message::key * pkey = (::message::key *) pbase;
 
          //         Application.keyboard().translate_os_key_message(pkey);
          /*
-          if(pbase->m_id == WM_KEYDOWN)
+          if(pbase->m_id == e_message_key_down)
           {
           try
           {
@@ -1277,7 +1277,7 @@ namespace ios
           {
           }
           }
-          else if(pbase->m_id == WM_KEYUP)
+          else if(pbase->m_id == e_message_key_up)
           {
           try
           {
@@ -5140,7 +5140,7 @@ namespace ios
 
       auto pkey  = __new(::message::key());
 
-      pkey->m_id = WM_KEYDOWN;
+      pkey->m_id = e_message_key_down;
 
       pkey->m_ekey = ekey;
 
@@ -5160,7 +5160,7 @@ namespace ios
 
       auto pkey  = __new(::message::key());
 
-      pkey->m_id = WM_KEYUP;
+      pkey->m_id = e_message_key_up;
       pkey->m_ekey = ekey;
 
       spbase = pkey;
@@ -5275,7 +5275,7 @@ namespace ios
 
          auto pkey  = __new(::message::key());
 
-         pkey->m_id = WM_KEYDOWN;
+         pkey->m_id = e_message_key_down;
 
          string strText(pszText);
 
@@ -5326,7 +5326,7 @@ namespace ios
 
             Sleep(100);
 
-            pkey->m_id = WM_KEYUP;
+            pkey->m_id = e_message_key_up;
 
             on_host_message_handler(spbase);
 
@@ -5348,7 +5348,7 @@ namespace ios
 
          Sleep(100);
 
-         pkey->m_id = WM_KEYUP;
+         pkey->m_id = e_message_key_up;
 
          on_host_message_handler(spbase);
 

@@ -585,7 +585,7 @@ namespace user
    CLASS_DECL_APEX COLORREF get_system_app_background_color()
    {
 
-      auto color = System.get_context_session()->m_directxapplication->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
+      auto color = System.get_context_session()->m_frameworkview->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
 
       auto r = color.R;
 
@@ -600,7 +600,7 @@ namespace user
    //CLASS_DECL_APEX double get_system_app_luminance()
    //{
 
-   //   auto color = System.get_context_session()->m_directxapplication->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
+   //   auto color = System.get_context_session()->m_frameworkview->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
 
    //   double r = color.R;
 
@@ -620,7 +620,7 @@ namespace user
    //   {
 
 
-   //      auto color = System.get_context_session()->m_directxapplication->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
+   //      auto color = System.get_context_session()->m_frameworkview->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
 
    //      auto r = color.R;
 
@@ -637,7 +637,7 @@ namespace user
    //   {
 
 
-   //      auto color = System.get_context_session()->m_directxapplication->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
+   //      auto color = System.get_context_session()->m_frameworkview->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
 
    //      double r = color.R;
 

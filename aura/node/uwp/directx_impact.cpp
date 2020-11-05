@@ -19,7 +19,6 @@ using namespace Windows::UI::Text::Core;
 using namespace Windows::UI::ViewManagement;
 
 
-
 namespace uwp
 {
 
@@ -27,6 +26,9 @@ namespace uwp
    impact::impact()
    {
 
+      m_bNotifyLayoutCompletedPending = false;
+      m_bInternalFocus = false;
+      m_bExtendingLeft = false;
       m_bTextCompositionActive = false;
 
    }
@@ -35,92 +37,84 @@ namespace uwp
    void impact::Initialize(CoreApplicationView^ applicationView)
    {
 
-
    }
 
 
    void impact::SetWindow(CoreWindow^ window)
    {
 
-      //InitializeComponent();
-
-      // The CoreTextEditContext processes text input, but other keys are
-      // the apps's responsibility.
       m_window = window;
       
-      auto presizemanager = ::Windows::UI::Core::CoreWindowResizeManager::GetForCurrentView();
+      m_resizemanager = ::Windows::UI::Core::CoreWindowResizeManager::GetForCurrentView();
 
-      presizemanager->ShouldWaitForLayoutCompletion = true;
-
+      m_resizemanager->ShouldWaitForLayoutCompletion = true;
 
       //auto coreTitleBar = ::Windows::ApplicationModel::Core::CoreApplication::GetCurrentView()->TitleBar;
-      //coreTitleBar->ExtendViewIntoTitleBar = true;
-      //::Windows::ApplicationModel::Core::CoreApplication::GetCurrentView()->
 
-      // Register
+      //coreTitleBar->ExtendViewIntoTitleBar = true;
+
       m_tokenActivated = m_window->Activated += ref new TypedEventHandler < ::Windows::UI::Core::CoreWindow^, ::Windows::UI::Core::WindowActivatedEventArgs^>(this, &impact::CoreWindow_WindowActivated);
+
+      m_tokenClosed = m_window->Closed += ref new TypedEventHandler < ::Windows::UI::Core::CoreWindow ^, ::Windows::UI::Core::CoreWindowEventArgs ^>(this, &impact::CoreWindow_CoreWindowClosed);
 
       m_tokenKeyDown = m_window->KeyDown += ref new TypedEventHandler < ::Windows::UI::Core::CoreWindow^, ::Windows::UI::Core::KeyEventArgs^>(this, &impact::CoreWindow_KeyDown);
 
-      //m_tokenKeyDown = m_window->KeyDown += ref new TypedEventHandler < ::Windows::UI::Core::CoreWindow^, ::Windows::UI::Core::KeyEventArgs^>(this, &impact::CoreWindow_KeyDown);
-
       m_tokenPointerPressed = m_window->PointerPressed += ref new TypedEventHandler < ::Windows::UI::Core::CoreWindow^, ::Windows::UI::Core::PointerEventArgs^>(this, &impact::CoreWindow_PointerPressed);
 
-      // Create a CoreTextEditContext for our custom edit control.
-      CoreTextServicesManager^ manager = CoreTextServicesManager::GetForCurrentView();
+      CoreTextServicesManager ^ manager = CoreTextServicesManager::GetForCurrentView();
 
-      _editContext = manager->CreateEditContext();
+      m_editcontext = manager->CreateEditContext();
 
       // Get the Input Pane so we can programmatically hide and show it.
-      _inputPane = InputPane::GetForCurrentView();
+      m_inputpane = InputPane::GetForCurrentView();
 
       // For demonstration purposes, this sample sets the Input Pane display policy to Manual
       // so that it can manually show the software keyboard when the control gains focus and
       // dismiss it when the control loses focus. If you leave the policy as Automatic, then
       // the system will hide and show the Input Pane for you. Note that on Desktop, you will
       // need to implement the UIA text pattern to get expected automatic behavior.
-      _editContext->InputPaneDisplayPolicy = CoreTextInputPaneDisplayPolicy::Automatic;
+      m_editcontext->InputPaneDisplayPolicy = CoreTextInputPaneDisplayPolicy::Automatic;
 
       // Set the input scope to Text because this text box is for any text.
       // This also informs software keyboards to show their regular
       // text entry layout.  There are many other input scopes and each will
       // inform a keyboard layout and text behavior.
-      _editContext->InputScope = CoreTextInputScope::Text;
+      m_editcontext->InputScope = CoreTextInputScope::Text;
 
       // The system raises this event to request a specific range of text.
-      _editContext->TextRequested += ref new TypedEventHandler < CoreTextEditContext ^, CoreTextTextRequestedEventArgs^> (this, &impact::EditContext_TextRequested);
+      m_editcontext->TextRequested += ref new TypedEventHandler < CoreTextEditContext ^, CoreTextTextRequestedEventArgs^> (this, &impact::EditContext_TextRequested);
 
       // The system raises this event to request the current selection.
-      _editContext->SelectionRequested += ref new TypedEventHandler < CoreTextEditContext^, CoreTextSelectionRequestedEventArgs^>(this, &impact::EditContext_SelectionRequested);
+      m_editcontext->SelectionRequested += ref new TypedEventHandler < CoreTextEditContext^, CoreTextSelectionRequestedEventArgs^>(this, &impact::EditContext_SelectionRequested);
 
       // The system raises this event when it wants the edit control to remove focus.
-      _editContext->FocusRemoved += ref new TypedEventHandler < CoreTextEditContext^, Object^>(this, &impact::EditContext_FocusRemoved);
+      m_editcontext->FocusRemoved += ref new TypedEventHandler < CoreTextEditContext^, Object^>(this, &impact::EditContext_FocusRemoved);
 
       // The system raises this event to update text in the edit control.
-      _editContext->TextUpdating += ref new TypedEventHandler < CoreTextEditContext^, CoreTextTextUpdatingEventArgs^>(this, &impact::EditContext_TextUpdating);
+      m_editcontext->TextUpdating += ref new TypedEventHandler < CoreTextEditContext^, CoreTextTextUpdatingEventArgs^>(this, &impact::EditContext_TextUpdating);
 
       // The system raises this event to change the selection in the edit control.
-      _editContext->SelectionUpdating += ref new TypedEventHandler < CoreTextEditContext^, CoreTextSelectionUpdatingEventArgs^>(this, &impact::EditContext_SelectionUpdating);
+      m_editcontext->SelectionUpdating += ref new TypedEventHandler < CoreTextEditContext^, CoreTextSelectionUpdatingEventArgs^>(this, &impact::EditContext_SelectionUpdating);
 
       // The system raises this event when it wants the edit control
       // to apply formatting on a range of text.
-      _editContext->FormatUpdating += ref new TypedEventHandler < CoreTextEditContext^, CoreTextFormatUpdatingEventArgs^>(this, &impact::EditContext_FormatUpdating);
+      m_editcontext->FormatUpdating += ref new TypedEventHandler < CoreTextEditContext^, CoreTextFormatUpdatingEventArgs^>(this, &impact::EditContext_FormatUpdating);
 
       // The system raises this event to request layout information.
       // This is used to help choose a position for the IME candidate window.
-      _editContext->LayoutRequested += ref new TypedEventHandler < CoreTextEditContext^, CoreTextLayoutRequestedEventArgs^>(this, &impact::EditContext_LayoutRequested);
+      m_editcontext->LayoutRequested += ref new TypedEventHandler < CoreTextEditContext^, CoreTextLayoutRequestedEventArgs^>(this, &impact::EditContext_LayoutRequested);
 
       // The system raises this event to notify the edit control
       // that the string composition has started.
-      _editContext->CompositionStarted += ref new TypedEventHandler < CoreTextEditContext^, CoreTextCompositionStartedEventArgs^>(this, &impact::EditContext_CompositionStarted);
+      m_editcontext->CompositionStarted += ref new TypedEventHandler < CoreTextEditContext^, CoreTextCompositionStartedEventArgs^>(this, &impact::EditContext_CompositionStarted);
 
       // The system raises this event to notify the edit control
       // that the string composition is finished.
-      _editContext->CompositionCompleted += ref new TypedEventHandler < CoreTextEditContext^, CoreTextCompositionCompletedEventArgs^>(this, &impact::EditContext_CompositionCompleted);
+      m_editcontext->CompositionCompleted += ref new TypedEventHandler < CoreTextEditContext^, CoreTextCompositionCompletedEventArgs^>(this, &impact::EditContext_CompositionCompleted);
 
       // The system raises this event when the NotifyFocusLeave operation has
       // completed. Our sample does not use this event.
-      // _editContext->NotifyFocusLeaveCompleted += EditContext_NotifyFocusLeaveCompleted;
+      m_editcontext->NotifyFocusLeaveCompleted += ref new TypedEventHandler < CoreTextEditContext ^, ::Platform::Object ^>(this, &impact::EditContext_NotifyFocusLeaveCompleted);
 
       // Set our initial UI.
       UpdateTextUI();
@@ -154,12 +148,15 @@ namespace uwp
       //}
    }
 
+   
    void impact::SetInternalFocus()
    {
-      if (!_internalFocus)
+
+      if (!m_bInternalFocus)
       {
+
          // Update internal notion of focus.
-         _internalFocus = true;
+         m_bInternalFocus = true;
 
          // Update the UI.
          //UpdateTextUI();
@@ -167,96 +164,117 @@ namespace uwp
 
          // Notify the CoreTextEditContext that the edit context has focus,
          // so it should start processing text input.
-         _editContext->NotifyFocusEnter();
+         m_editcontext->NotifyFocusEnter();
+
       }
 
       // Ask the software keyboard to show.  The system will ultimately decide if it will show.
       // For example, it will not show if there is a keyboard attached.
-      _inputPane->TryShow();
+      m_inputpane->TryShow();
 
    }
+
 
    void impact::RemoveInternalFocus()
    {
-      if (_internalFocus)
+      
+      if (m_bInternalFocus)
       {
+         
          //Notify the system that this edit context is no longer in focus
-         _editContext->NotifyFocusLeave();
+         m_editcontext->NotifyFocusLeave();
 
          RemoveInternalFocusWorker();
+
       }
+
    }
+
 
    void impact::RemoveInternalFocusWorker()
    {
+
       //Update the internal notion of focus
-      _internalFocus = false;
+      m_bInternalFocus = false;
 
       // Ask the software keyboard to dismiss.
-      _inputPane->TryHide();
+      m_inputpane->TryHide();
 
       // Update our UI.
       UpdateTextUI();
+
       UpdateFocusUI();
+
    }
+
 
    void impact::EditContext_FocusRemoved(CoreTextEditContext ^sender, Object ^ args)
    {
+   
       RemoveInternalFocusWorker();
+
    }
 
 
    void impact::Element_Unloaded(Object ^ sender, ::Windows::UI::Xaml::RoutedEventArgs ^ e)
    {
+
       m_window->KeyDown -= m_tokenKeyDown;
+
       m_window->PointerPressed -= m_tokenPointerPressed;
+
    }
+
 
    void impact::SetText(String^ text, int iBeg, int iEnd)
    {
 
       m_strText = text;
       
-      main_async([this, iBeg, iEnd, text]()
-         {
+      ::wait(m_pimpl->m_view->Dispatcher->RunAsync(::Windows::UI::Core::CoreDispatcherPriority::Normal,
+         ref new Windows::UI::Core::DispatchedHandler([this, iBeg, iEnd, text]()
+      {
             
-            CoreTextRange sel;
+         CoreTextRange sel;
 
-            sel.StartCaretPosition = iBeg;
+         sel.StartCaretPosition = iBeg;
 
-            sel.EndCaretPosition = iEnd < 0 ? text->Length() + iEnd + 1 : iEnd;
+         sel.EndCaretPosition = iEnd < 0 ? text->Length() + iEnd + 1 : iEnd;
 
-            _editContext->NotifyTextChanged(_selection, m_strText.length(), sel);
+         m_editcontext->NotifyTextChanged(m_selection, m_strText.length(), sel);
 
-         });
+      })));
 
    }
+
 
    // Replace the text in the specified range.
    void impact::ReplaceText(CoreTextRange  modifiedRange, String ^ text)
    {
+
       // Modify the internal text store.
       m_strText = m_strText.Left(modifiedRange.StartCaretPosition) +
          text->Begin() +
          m_strText.Mid(modifiedRange.EndCaretPosition);
 
       // Move the caret to the end of the replacement text.
-      _selection.StartCaretPosition = modifiedRange.StartCaretPosition + m_strText.length();
-      _selection.EndCaretPosition = _selection.StartCaretPosition;
+      m_selection.StartCaretPosition = modifiedRange.StartCaretPosition + m_strText.length();
+      m_selection.EndCaretPosition = m_selection.StartCaretPosition;
 
       // Update the selection of the edit context.  There is no need to notify the system
       // of the selection change because we are going to call NotifyTextChanged soon.
-      SetSelection(_selection);
+      SetSelection(m_selection);
 
       // Let the CoreTextEditContext know what changed.
-      _editContext->NotifyTextChanged(modifiedRange, m_strText.length(), _selection);
+      m_editcontext->NotifyTextChanged(modifiedRange, m_strText.length(), m_selection);
+
    }
 
 
    bool impact::HasSelection()
    {
 
-      return _selection.StartCaretPosition != _selection.EndCaretPosition;
+      return m_selection.StartCaretPosition != m_selection.EndCaretPosition;
 
    }
 
@@ -264,11 +282,13 @@ namespace uwp
    // Change the selection without notifying CoreTextEditContext of the new selection.
    void impact::SetSelection(CoreTextRange selection)
    {
+      
       // Modify the internal selection.
-      _selection = selection;
+      m_selection = selection;
 
       //Update the UI to show the new selection.
       UpdateTextUI();
+
    }
 
 
@@ -278,7 +298,7 @@ namespace uwp
 
       SetSelection(selection);
 
-      _editContext->NotifySelectionChanged(_selection);
+      m_editcontext->NotifySelectionChanged(m_selection);
 
    }
 
@@ -287,30 +307,48 @@ namespace uwp
    // than exists in the text buffer.
    void impact::EditContext_TextRequested(CoreTextEditContext ^ sender, CoreTextTextRequestedEventArgs ^args)
    {
+      
       CoreTextTextRequest ^ request = args->Request;
+
       request->Text = m_strText.Mid(
          request->Range.StartCaretPosition,
          min(request->Range.EndCaretPosition, m_strText.length()) - request->Range.StartCaretPosition);
+
    }
+
 
    // Return the current selection.
    void impact::EditContext_SelectionRequested(CoreTextEditContext ^sender, CoreTextSelectionRequestedEventArgs ^args)
    {
+      
       CoreTextSelectionRequest^ request = args->Request;
-      request->Selection = _selection;
+
+      request->Selection = m_selection;
+
    }
+
 
    void impact::EditContext_TextUpdating(CoreTextEditContext ^sender, CoreTextTextUpdatingEventArgs ^ args)
    {
+   
       CoreTextRange range = args->Range;
+
+      ::output_debug_string("range" + __str(range.StartCaretPosition) + "," + __str(range.EndCaretPosition) +"\n");
+
       widestring newText = args->Text;
+
       CoreTextRange newSelection = args->NewSelection;
+
       auto pwsz= newText.c_str();
+
       m_strNewText = newText;
+
       // Modify the internal text store.
-      m_strText = m_strText.Left( range.StartCaretPosition) +
-         newText +
-         m_strText.Mid(min(m_strText.length(), range.EndCaretPosition));
+      m_strText = newText;
+
+      //m_strText.Left( range.StartCaretPosition) +
+      //newText //+
+      //m_strText.Mid(min(m_strText.length(), range.EndCaretPosition));
 
       // You can set the proper font or direction for the updated text based on the language by checking
       // args.InputLanguage.  We will not do that in this sample.
@@ -356,7 +394,6 @@ namespace uwp
             pkey->m_nFlags = 0;
             pkey->m_lparam = pkey->m_nFlags << 16;
             pkey->m_strText = m_strNewText;
-            //      pkey->m_key = args;
 
             auto puiHost = __user_interaction(m_psystem->get_context_session()->m_puiHost);
 
@@ -371,17 +408,20 @@ namespace uwp
 
    void impact::EditContext_SelectionUpdating(CoreTextEditContext ^sender, CoreTextSelectionUpdatingEventArgs ^ args)
    {
+
       // Set the new selection to the value specified by the system.
       CoreTextRange range = args->Selection;
 
       // Update the selection of the edit context. There is no need to notify the system
       // because the system itself changed the selection.
       SetSelection(range);
+
    }
 
    
    void impact::EditContext_FormatUpdating(CoreTextEditContext ^sender, CoreTextFormatUpdatingEventArgs ^ args)
    {
+
       // The following code specifies how you would apply any formatting to the specified range of text
       // For this sample, we do not make any changes to the format.
 
@@ -389,46 +429,50 @@ namespace uwp
       // A null value indicates that the default should be used.
       if (args->TextColor != nullptr)
       {
+
          //InternalSetTextColor(args.Range, args.TextColor.Value);
+
       }
       else
       {
+
          //InternalSetDefaultTextColor(args.Range);
+
       }
 
       // Apply background color if specified.
       // A null value indicates that the default should be used.
       if (args->BackgroundColor != nullptr)
       {
+
          //InternalSetBackgroundColor(args.Range, args.BackgroundColor.Value);
+
       }
       else
       {
+
          //InternalSetDefaultBackgroundColor(args.Range);
+
       }
 
       // Apply underline if specified.
       // A null value indicates that the default should be used.
       if (args->UnderlineType != nullptr)
       {
+
          //TextDecoration underline = new TextDecoration(args.Range,args.UnderlineType.Value,args.UnderlineColor.Value);
 
          //InternalAddTextDecoration(underline);
+
       }
       else
       {
-         //InternalRemoveTextDecoration(args.Range);
-      }
-   }
 
-   //Rect impact::ScaleRect(Rect rect, double scale)
-   //{
-   //   rect.X *= scale;
-   //   rect.Y *= scale;
-   //   rect.Width *= scale;
-   //   rect.Height *= scale;
-   //   return rect;
-   //}
+         //InternalRemoveTextDecoration(args.Range);
+
+      }
+
+   }
 
 
    void impact::EditContext_LayoutRequested(CoreTextEditContext ^sender, CoreTextLayoutRequestedEventArgs ^args)
@@ -445,7 +489,6 @@ namespace uwp
       Rect contentRect = get_input_content_rect();
 
       Rect selectionRect = get_input_selection_rect();
-
 
       // Next, convert to screen coordinates in view pixels.
       Rect windowBounds = m_window->Bounds;
@@ -466,7 +509,6 @@ namespace uwp
 
       //This is the bounds of the whole control
       request->LayoutBounds->ControlBounds = contentRect;
-
 
    }
 
@@ -490,6 +532,10 @@ namespace uwp
 
       auto pfocusui = psession->get_focus_ui();
 
+      //m_strText.Empty();
+
+      //m_strNewText.Empty();
+
       if (pfocusui)
       {
 
@@ -500,11 +546,20 @@ namespace uwp
    }
 
 
+   void impact::EditContext_NotifyFocusLeaveCompleted(::Windows::UI::Text::Core::CoreTextEditContext ^ sender, ::Platform::Object ^ args)
+   {
+
+
+   }
+
+
    void impact::CoreWindow_WindowActivated(::Windows::UI::Core::CoreWindow^ sender, Windows::UI::Core::WindowActivatedEventArgs^ args)
    {
 
-      if (args->WindowActivationState != ::Windows::UI::Core::CoreWindowActivationState::Deactivated)
+      if (args->WindowActivationState == ::Windows::UI::Core::CoreWindowActivationState::Deactivated)
       {
+
+         ::output_debug_string("Deactivated");
 
          //auto puiHost = Sess(m_psystem).host();
 
@@ -519,18 +574,29 @@ namespace uwp
    }
 
 
+   void impact::CoreWindow_CoreWindowClosed(::Windows::UI::Core::CoreWindow ^ sender, Windows::UI::Core::CoreWindowEventArgs ^ args)
+   {
+
+      ::output_debug_string("window closed");
+
+   }
+
+
    void impact::CoreWindow_KeyDown(::Windows::UI::Core::CoreWindow^ sender, KeyEventArgs ^args)
    {
+
       // Do not process keyboard input if the custom edit control does not
       // have focus.
-      if (!_internalFocus)
+      if (!m_bInternalFocus)
       {
+
          return;
+
       }
 
       // This holds the range we intend to operate on, or which we intend
       // to become the new selection. Start with the current selection.
-      CoreTextRange  range = _selection;
+      CoreTextRange  range = m_selection;
 
       // For the purpose of this sample, we will support only the left and right
       // arrow keys and the backspace key. A more complete text edit control
@@ -634,33 +700,48 @@ namespace uwp
    // Adjust the active endpoint of the selection in the specified direction.
    void impact::AdjustSelectionEndpoint(int direction)
    {
-      CoreTextRange range = _selection;
-      if (_extendingLeft)
+
+      CoreTextRange range = m_selection;
+
+      if (m_bExtendingLeft)
       {
+
          range.StartCaretPosition = max(0, range.StartCaretPosition + direction);      
+
       }
       else
       {
+
          range.EndCaretPosition = min(m_strText.length(), range.EndCaretPosition + direction);
+
       }
 
       SetSelectionAndNotify(range);
+
    }
 
+
    // Helper function to put a zero-width non-breaking space at the end of a string.
-      // This prevents TextBlock from trimming trailing spaces.
-      String ^ impact::PreserveTrailingSpaces(String ^ s)
+   // This prevents TextBlock from trimming trailing spaces.
+   String ^ impact::PreserveTrailingSpaces(String ^ s)
    {
+
       return s + L"\ufeff";
+
    }
+
 
    void impact::UpdateFocusUI()
    {
+
       //BorderPanel->BorderBrush = _internalFocus ? new ::Windows::UI::Xaml::Media::SolidColorBrush(::Windows::UI::Colors::Green) : null;
+
    }
+
 
    void impact::UpdateTextUI()
    {
+
       // The raw materials we have are a string (_text) and information about
       // where the caret/selection is (_selection). We can render the control
       // any way we like.
@@ -690,6 +771,7 @@ namespace uwp
       //SelectionEndIndexText.Text = _selection->EndCaretPosition.ToString();
    }
 
+
    //Rect impact::GetElementRect(FrameworkElement matter)
    //{
    //   GeneralTransform transform = matter.TransformToVisual(null);
@@ -698,10 +780,7 @@ namespace uwp
    //}
 
 
-
-
 } // namespace uwp
-
 
 
 

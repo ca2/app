@@ -2591,6 +2591,7 @@ namespace user
 
 class function;
 class method;
+template < typename FUTURE >
 class future;
 
 
@@ -2808,7 +2809,8 @@ using generic_pointer = __pointer(::matter);
 #endif
 
 class method;
-class future;
+using futurevar = ::future < ::var >;
+//class future;
 
 
 namespace core
@@ -2831,14 +2833,21 @@ class task;
 
 using method_array = ::array < ::method >;
 
-using future_array = ::array < ::future >;
+using generic_future_array = ::array < ::futurevar >;
+
+template < typename FUTURE >
+using future_array = ::array < ::future < FUTURE > >;
 
 
 template < typename PRED >
 void add_method(method_array& array, PRED pred);
 
 template < typename PRED >
-void add_future(future_array& array, PRED pred);
+void add_future(generic_future_array& array, PRED pred);
+
+template < typename PRED, typename FUTURE >
+void add_future(future_array < FUTURE > & array, PRED pred);
+
 
 #include "acme/primitive/primitive/context_object.h"
 
@@ -3101,7 +3110,7 @@ inline void dump_elements(dump_context & dumpcontext, const TYPE* pElements, ::c
 //{
 //
 //
-//   ref class directx_application;
+//   ref class directx_framework_view;
 //
 //
 //} // namespace uwp

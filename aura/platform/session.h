@@ -12,11 +12,11 @@ namespace aura
    public:
 
 
-#if defined _UWP
-
-      ::uwp::directx_application ^                          m_directxapplication;
-
-#endif
+//#if defined _UWP
+//
+//      ::uwp::directx_framework_view ^                          m_frameworkview;
+//
+//#endif
 
 
       __composite(::user::keyboard)                         m_pkeyboard;

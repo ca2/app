@@ -586,6 +586,7 @@ enum e_window_flag
    window_flag_loading_window_rect = 1 << 24,
    window_flag_main_frame = 1 << 25,
    window_flag_destroying = 1 << 26,
+   window_flag_not_visible = 1 << 27,
 
 };
 

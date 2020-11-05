@@ -1,7 +1,6 @@
 #pragma once
 
 
-
 template < class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = ::allocator::def < TYPE > >
 class array :
    public ::array_base < TYPE, ARG_TYPE, ALLOCATOR >
@@ -172,16 +171,17 @@ public:
 
    }
 
+
    template < typename ITERABLE >
    array_base< TYPE, ARG_TYPE,  ALLOCATOR > & copy_iter(const ITERABLE & iterable)
    {
 
-      this->set_size(0, max(iterable.get_count(), 17));
+      this->set_size(0, max(__iterable_count(iterable), 17));
 
       for (auto & item : iterable)
       {
 
-         add(item);
+         add_item(item);
 
       }
 

@@ -440,14 +440,14 @@ namespace uwp
    }
 
 
-   ::estatus     os_context::link_open(string strUrl)
+   ::estatus os_context::link_open(string strUrl)
    {
 
       try
       {
 
 
-         main_async([strUrl]()
+         System.main_user_async(__method([strUrl]()
             {
 
                Platform::String^ strUri = strUrl;
@@ -456,7 +456,7 @@ namespace uwp
 
                ::wait(Launcher::LaunchUriAsync(uri));
 
-            });
+            }));
 
       }
       catch (::Exception^ ex)

@@ -21,6 +21,7 @@ namespace user
       string      m_strClassName;
       string      m_strWindowName;
 #endif
+      ::user::interaction * m_puserinteractionOwner;
 
       create_struct(const create_struct &);
       

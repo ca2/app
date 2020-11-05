@@ -2,7 +2,7 @@
 #include "aura/node/uwp/directx.h"
 #include "aura/node/uwp/directx_interaction.h"
 #include "aura/node/uwp/directx_impact.h"
-#include "aura/node/uwp/directx_application.h"
+#include "aura/node/uwp/directx_framework_view.h"
 
 
 CLASS_DECL_CORE ::estatus os_application_system_run(::aura::system * psystem)

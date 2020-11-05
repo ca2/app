@@ -299,6 +299,30 @@ namespace user
    }
 
 
+   ::estatus primitive_impl::main_async(const method & method, e_priority epriority)
+   {
+
+      if (!m_puserinteraction)
+      {
+
+         return ::error_failed;
+
+      }
+
+      auto pwnd = m_puserinteraction->get_wnd();
+
+      if (!pwnd)
+      {
+
+          return ::error_failed;
+
+      }
+
+      return pwnd->main_async(method, epriority);
+
+   }
+
+
    void primitive_impl::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 

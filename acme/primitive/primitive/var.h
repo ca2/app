@@ -8,7 +8,7 @@ enum para_return
    s_success = 0
 };
 
-class future;
+//class future;
 //class function_arg;
 
 bool is_return_ok(para_return eret);
@@ -81,7 +81,7 @@ public:
       ::memory *                 m_pmemory;
       ::file::path_object *      m_ppath;
       ::method                   m_method;
-      ::future                   m_future;
+      ::futurevar           m_future;
       ::i64                      m_all[2];
 
 
@@ -133,7 +133,7 @@ public:
    var(const var & var);
    var(const property & prop);
    var(const method& method);
-   var(const future& future);
+   var(const futurevar& future);
    var(const property * pproperty);
    var(const class duration & duration);
    var(class duration * pduration);
@@ -277,8 +277,8 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
    inline ::uptr                    uptr(uptr uiDefault = 0)  const;
    float                            get_float(float fDefault = 0.f)   const;
    double                           get_double(double dDefault = 0.0)   const;
-   method                        get_method() const;
-   future                         get_future() const;
+   method                           get_method() const;
+   futurevar                        get_future() const;
    //::image *                        image() const;
    //::image * &                      image();
    string                           to_r_string() const;
@@ -435,7 +435,7 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
    }
 
    var& operator = (const ::method& method);
-   var& operator = (const ::future& future);
+   var& operator = (const ::futurevar& future);
 
    inline var & operator = (nullptr_t) { set_type(e_type_null, false); return *this; }
 

@@ -582,9 +582,9 @@ namespace user
    CLASS_DECL_AURA ::color calc_system_app_background_color()
    {
 
-      auto psession = Session;
+      auto psystem = ::get_context_system()->m_paurasystem;
 
-      auto color = psession->m_directxapplication->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
+      auto color = psystem->m_pimplMain->m_frameworkview->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
 
       auto r = color.R;
 
@@ -600,9 +600,9 @@ namespace user
    CLASS_DECL_AURA double calc_system_app_luminance()
    {
 
-      auto psession = Session;
+      auto psystem = ::get_context_system()->m_paurasystem;
 
-      auto color = psession->m_directxapplication->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
+      auto color = psystem->m_pimplMain->m_frameworkview->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
 
       double r = color.R;
 

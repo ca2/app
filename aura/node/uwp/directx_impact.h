@@ -6,11 +6,18 @@ namespace uwp
 
 
    ref class impact abstract :
-      //public Windows::UI::Xaml::Controls::UserControl
       public Windows::ApplicationModel::Core::IFrameworkView
-      //, public ::aura::system_window
    {
+   internal:
+
+
+      __pointer(::user::interaction)                           m_puserinteraction;
+      __pointer(::uwp::interaction_impl)                       m_pimpl;
+
+
    public:
+
+
 
       // IFrameworkView Methods
       virtual void Initialize(_In_ Windows::ApplicationModel::Core::CoreApplicationView^ applicationView);
@@ -29,15 +36,19 @@ namespace uwp
    internal:
 
 
-      bool        m_bTextCompositionActive;
-      widestring  m_strText;
-      widestring  m_strNewText;
-      ::aura::system* m_psystem;
+      bool                                                     m_bNotifyLayoutCompletedPending;
+      bool                                                     m_bTextCompositionActive;
+      widestring                                               m_strText;
+      widestring                                               m_strNewText;
+      ::aura::system *                                         m_psystem;
 
-      Agile < Windows::UI::Core::CoreWindow > m_window;
+      ::Windows::UI::Core::CoreWindowResizeManager ^           m_resizemanager;
+
+
+      Agile < Windows::UI::Core::CoreWindow >                  m_window;
 
       // The _editContext lets us communicate with the input system.
-      Agile < Windows::UI::Text::Core::CoreTextEditContext > _editContext;
+      Agile < Windows::UI::Text::Core::CoreTextEditContext >   m_editcontext;
 
       // We will use a plain text string to represent the
       // content of the custom text edit control.
@@ -45,24 +56,24 @@ namespace uwp
 
       // If the _selection starts and ends at the same point,
       // then it represents the location of the caret (insertion point).
-      Windows::UI::Text::Core::CoreTextRange _selection;
+      Windows::UI::Text::Core::CoreTextRange                   m_selection;
 
       // _internalFocus keeps track of whether our control acts like it has focus.
-      bool _internalFocus = false;
+      bool                                                     m_bInternalFocus;
 
       // If there is a nonempty selection, then _extendingLeft is true if the user
       // is using shift+arrow to adjust the starting point of the selection,
       // or false if the user is adjusting the ending point of the selection.
-      bool _extendingLeft = false;
+      bool                                                     m_bExtendingLeft;
 
       // The input pane object indicates the visibility of the on screen keyboard.
       // Apps can also ask the keyboard to show or hide.
-      Agile < Windows::UI::ViewManagement::InputPane > _inputPane;
+      Agile < Windows::UI::ViewManagement::InputPane >         m_inputpane;
 
-      Windows::Foundation::EventRegistrationToken m_tokenActivated;
-      Windows::Foundation::EventRegistrationToken m_tokenKeyDown;
-      Windows::Foundation::EventRegistrationToken m_tokenPointerPressed;
-      //TypedEventHandler < ::Windows::UI::Core::CoreWindow^, ::Windows::UI::Core::KeyEventArgs^> m_refPointer;
+      Windows::Foundation::EventRegistrationToken              m_tokenActivated;
+      Windows::Foundation::EventRegistrationToken              m_tokenClosed;
+      Windows::Foundation::EventRegistrationToken              m_tokenKeyDown;
+      Windows::Foundation::EventRegistrationToken              m_tokenPointerPressed;
 
 
       impact();
@@ -117,8 +128,13 @@ namespace uwp
       void EditContext_CompositionStarted(::Windows::UI::Text::Core::CoreTextEditContext^ sender, ::Windows::UI::Text::Core::CoreTextCompositionStartedEventArgs^ args);
       void EditContext_CompositionCompleted(::Windows::UI::Text::Core::CoreTextEditContext^ sender, ::Windows::UI::Text::Core::CoreTextCompositionCompletedEventArgs^ args);
 
+
+      void EditContext_NotifyFocusLeaveCompleted(::Windows::UI::Text::Core::CoreTextEditContext ^ sender, ::Platform::Object ^ args);
+
+
       // Revoke with event_token
       void CoreWindow_WindowActivated(::Windows::UI::Core::CoreWindow^ sender, Windows::UI::Core::WindowActivatedEventArgs^ args);
+      void CoreWindow_CoreWindowClosed(::Windows::UI::Core::CoreWindow ^ sender, Windows::UI::Core::CoreWindowEventArgs ^ args);
 
 
       void CoreWindow_KeyDown(::Windows::UI::Core::CoreWindow^ sender, Windows::UI::Core::KeyEventArgs^ args);

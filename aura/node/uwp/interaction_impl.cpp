@@ -30,7 +30,6 @@ namespace uwp
       m_nModalResult                         = 0;
       m_pfont                                = nullptr;
       m_pguieCapture                         = nullptr;
-      //m_pwindow                              = new ::user::native_window;
 
    }
 
@@ -41,10 +40,8 @@ namespace uwp
       m_bScreenRelativeMouseMessagePosition  = false;
       m_plistener = nullptr;
       m_nModalResult = 0;
-      // m_bMouseHover = false;
       m_pfont = nullptr;
       m_pguieCapture = nullptr;
-      //m_pwindow = nullptr;
 
    }
 
@@ -56,63 +53,9 @@ namespace uwp
       m_bScreenRelativeMouseMessagePosition  = false;
       m_plistener = nullptr;
       m_nModalResult = 0;
-      // m_bMouseHover = false;
       m_pfont = nullptr;
       m_pguieCapture = nullptr;
-      //m_pwindow = new ::user::native_window;
 
-   }
-
-
-      //::user::interaction_impl * interaction_impl::from_os_data(void * pdata)
-      //{
-      //return dynamic_cast <::user::interaction_impl *>(from_handle((oswindow) pdata));
-      //}
-
-      //void * interaction_impl::get_os_data() const
-      //{
-      ////      return hwnd_handle::get_handle();
-      //return oswindow(m_puserinteraction);
-      //}
-
-   // Change a interaction_impl's style
-
-   static bool __modify_style(oswindow hWnd,int nStyleOffset,u32 dwRemove,u32 dwAdd,UINT nFlags)
-   {
-
-#ifdef WINDOWS_DESKTOP
-
-      ASSERT(hWnd != nullptr);
-      u32 uStyle = ::GetWindowLong(hWnd, nStyleOffset);
-      u32 dwNewStyle = (uStyle & ~dwRemove) | dwAdd;
-      if (uStyle == dwNewStyle)
-         return FALSE;
-
-      ::SetWindowLong(hWnd, nStyleOffset, dwNewStyle);
-      if (nFlags != 0)
-      {
-         ::set_window_pos(hWnd, nullptr, 0, 0, 0, 0,
-                        SWP_NOSIZE | SWP_NOMOVE | SWP_NOZORDER | SWP_NOACTIVATE | nFlags);
-      }
-
-#else
-
-      __throw(todo());
-
-#endif
-
-      return TRUE;
-
-   }
-
-   bool interaction_impl::ModifyStyle(oswindow hWnd,u32 dwRemove,u32 dwAdd,UINT nFlags)
-   {
-      return __modify_style(hWnd,GWL_STYLE,dwRemove,dwAdd,nFlags);
-   }
-
-   bool interaction_impl::ModifyStyleEx(oswindow hWnd,u32 dwRemove,u32 dwAdd,UINT nFlags)
-   {
-      return __modify_style(hWnd,GWL_EXSTYLE,dwRemove,dwAdd,nFlags);
    }
 
 
@@ -138,23 +81,6 @@ namespace uwp
    }
 
 
-   //bool interaction_impl::CreateEx(u32 dwExStyle,const char * lpszClassName,
-   //                                const char * lpszWindowName,u32 uStyle,
-   //                                const RECT& rect,::user::interaction* puiParent,id id,
-   //                                LPVOID lpParam /* = nullptr */)
-   //{
-   //   return CreateEx(dwExStyle,lpszClassName,lpszWindowName,uStyle,
-   //                   rect.left,rect.top,rect.right - rect.left,rect.bottom - rect.top,
-   //                   puiParent->get_safe_handle(),id,lpParam);
-   //}
-
-   //bool interaction_impl::CreateEx(u32 dwExStyle,const char * lpszClassName,
-   //                                const char * lpszWindowName,u32 uStyle,
-   //                                int x,int y,int nWidth,int nHeight,
-   //                                oswindow hWndParent,id id,LPVOID lpParam)
-   //{
-
-
    bool interaction_impl::_native_create_window_ex(::user::create_struct& cs)
    {
 
@@ -165,43 +91,91 @@ namespace uwp
             ref new Windows::UI::Core::DispatchedHandler([this, cs]()
                {
 
+                  System.m_applicationsource->m_pimplHook = this;
 
                   m_view = Windows::ApplicationModel::Core::CoreApplication::CreateNewView();
 
-                  auto applicationview = ::Windows::UI::ViewManagement::ApplicationView::GetForCurrentView();
+               })));
 
-                  ::wait(m_view->Dispatcher->RunAsync(
-                     ::Windows::UI::Core::CoreDispatcherPriority::Low,
-                     ref new Windows::UI::Core::DispatchedHandler([this, cs, applicationview]()
-                        {
-                           m_window = m_directxapplication->m_window;
-                           m_applicationview = ::Windows::UI::ViewManagement::ApplicationView::GetForCurrentView();
-                           //#if WINDOWS_UAP
-                           m_applicationview->SetPreferredMinSize({ (float)cs.cx, (float)cs.cy });
-                           //#endif
-                                          //var frame = new Frame();
-                                          //window.Content = frame;
-                                          //frame.Navigate(typeof(MainPage));
-                                          //window.Activate();
-                           Windows::UI::ViewManagement::ApplicationViewSwitcher::TryShowAsStandaloneAsync(
-                              m_applicationview->Id,
-                              Windows::UI::ViewManagement::ViewSizePreference::UseMore,
-                              applicationview->Id,
-                              Windows::UI::ViewManagement::ViewSizePreference::Default);
-                           bool success = m_applicationview->TryResizeView(::Windows::Foundation::Size({ (float)cs.cx,(float)cs.cy }));
-                        })));
+         ::wait(m_view->Dispatcher->RunAsync(
+            ::Windows::UI::Core::CoreDispatcherPriority::Normal,
+            ref new Windows::UI::Core::DispatchedHandler([this, cs]()
+               {
+
+                  if (cs.cx > 0 && cs.cy > 0)
+                  {
+
+                     m_applicationview->SetPreferredMinSize({ (float)cs.cx, (float)cs.cy });
+
+                  }
+
+                  m_window->Activate();
+
+                  //m_bPendingActivation = true;
+
+                  auto applicationview1 = m_applicationview;
+
+                  //auto applicationview2 = System.m_pimplMain->m_applicationview;
+
+                  auto Id1 = applicationview1->Id;
+
+                  //auto Id2 = applicationview2->Id;
+
+                  ::Windows::UI::ViewManagement::ApplicationViewSwitcher::TryShowAsStandaloneAsync(
+                     Id1,
+                    Windows::UI::ViewManagement::ViewSizePreference::UseMore);
+
+                  if (cs.cx > 0 && cs.cy > 0)
+                  {
+
+                     m_rect.left = cs.x;
+                     m_rect.top = cs.y;
+                     m_rect.right = cs.cx;
+                     m_rect.bottom = cs.cy;
+
+                  }
+                  else 
+                  {
+
+                     m_rect.left = m_window->Bounds.X;
+                     m_rect.top = m_window->Bounds.Y;
+                     m_rect.right = m_rect.left + m_window->Bounds.Width;
+                     m_rect.bottom = m_rect.top + m_window->Bounds.Height;
+
+                  }
+                  
+
+
+                  //::wait(::Windows::UI::ViewManagement::ApplicationViewSwitcher::TryShowAsStandaloneAsync(
+                  //   Id1,
+                  //   Windows::UI::ViewManagement::ViewSizePreference::UseMore,
+                  //   Id2,
+                  //   Windows::UI::ViewManagement::ViewSizePreference::Default));
+
+                  if (cs.cx > 0 && cs.cy > 0)
+                  {
+
+                     m_applicationview->TryResizeView(::Windows::Foundation::Size({ (float)cs.cx,(float)cs.cy }));
+
+                  }
 
                })));
 
+      }
+      else
+      {
+
+         if (cs.cx > 0 && cs.cy > 0 && m_rect.is_empty())
+         {
+
+            m_rect.left = cs.x;
+            m_rect.top = cs.y;
+            m_rect.right = cs.cx;
+            m_rect.bottom = cs.cy;
+
+         }
 
       }
-
-
-
-
-      //__refer(m_pthreadUserImpl, m_puserinteraction->m_pthreadUserInteraction);
-
-      //m_strDebug += ::str::demangle(m_puserinteraction->type_name()) + ";";
 
       if(!m_puserinteraction->pre_create_window(cs))
       {
@@ -238,7 +212,7 @@ namespace uwp
 
       sync_lock sl(m_puserinteraction->mutex());
 
-      m_puserinteraction->set_dim(cs.x, cs.cy, cs.cx, cs.cy);
+      m_puserinteraction->place(m_rect);
 
       m_puserinteraction->add_ref(OBJ_REF_DBG_THIS_FUNCTION_LINE);
 
@@ -411,7 +385,7 @@ namespace uwp
       //if (psession->get_focus_ui())
       //{
 
-         m_directxapplication->SetInternalFocus();
+         m_frameworkview->SetInternalFocus();
 
       //}
 
@@ -423,7 +397,7 @@ namespace uwp
 
       SCAST_PTR(::message::kill_focus, pkillfocus, pmessage);
 
-      m_directxapplication->RemoveInternalFocus();
+      m_frameworkview->RemoveInternalFocus();
 
    }
 
@@ -910,6 +884,21 @@ namespace uwp
       UNREFERENCED_PARAMETER(pevent);
 
 //      return false;
+
+   }
+
+
+   ::estatus interaction_impl::main_async(const method & method, e_priority epriority)
+   {
+
+      m_view->Dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::Normal, ref new Windows::UI::Core::DispatchedHandler([method]()
+      {
+
+         method();
+
+      }));
+
+      return ::success;
 
    }
 
@@ -2273,24 +2262,28 @@ return TRUE;
    void interaction_impl::_001OnCreate(::message::message * pmessage)
    {
 
-      auto psession = Session;
+      //auto psession = Session;
 
-      auto phost = psession->m_puiHost;
+      //auto phost = psession->m_puiHost;
 
-      auto puiHost = __user_interaction(phost);
+      //auto puiHost = __user_interaction(phost);
+
+
+      m_frameworkview->m_puserinteraction = m_puserinteraction;
+
 
       //m_rectWindowScreen.left = 0;
       //m_rectWindowScreen.top = 0;
       //m_rectWindowScreen.right = (LONG)m_window->Bounds.Width;
       //m_rectWindowScreen.bottom = (LONG)m_window->Bounds.Height;
 
-      System.m_directxapplication->m_directx->m_bCreated = true;
+      m_frameworkview->m_directx->m_bCreated = true;
 
       ::set_core_window_once_visible();
 
-      m_directxapplication->m_directx->m_pimpl = this;
+      m_frameworkview->m_directx->m_pimpl = this;
 
-      m_directxapplication->on_size(m_rect.size());
+      m_frameworkview->on_size(m_rect.size());
 
       UNREFERENCED_PARAMETER(pmessage);
 
@@ -3401,7 +3394,9 @@ return TRUE;
       __throw(todo());
 
       //return ::GetWindowLong(get_handle(), nIndex);
+
    }
+
 
    LONG interaction_impl::SetWindowLong(int nIndex,LONG lValue)
    {
@@ -3409,6 +3404,7 @@ return TRUE;
       __throw(todo());
 
       //return ::SetWindowLong(get_handle(), nIndex, lValue);
+
    }
 
 
@@ -3668,21 +3664,6 @@ return TRUE;
       //ASSERT(::is_window(get_handle())); return ::ArrangeIconicWindows(get_handle());
    }
 
-   //int interaction_impl::SetWindowRgn(HRGN hRgn,bool bRedraw)
-   //{
-
-   //   __throw(todo());
-
-   //   //ASSERT(::is_window(get_handle())); return ::SetWindowRgn(get_handle(), hRgn, bRedraw);
-   //}
-
-   //int interaction_impl::GetWindowRgn(HRGN hRgn)
-   //{
-
-   //   __throw(todo());
-
-   //   //ASSERT(::is_window(get_handle()) && hRgn != nullptr); return ::GetWindowRgn(get_handle(), hRgn);
-   //}
 
    bool interaction_impl::BringWindowToTop()
    {
@@ -3692,6 +3673,7 @@ return TRUE;
       //return ::BringWindowToTop(get_handle()) != FALSE;
 
    }
+
 
    void interaction_impl::MapWindowPoints(::user::interaction_impl * pwndTo,LPPOINT lpPoint,UINT nCount)
    {
@@ -4572,10 +4554,6 @@ return TRUE;
 
       __throw(todo());
 
-      //ASSERT(::is_window(get_handle()));
-
-      //return ::SetWindowContextHelpId(get_handle(), dwContextHelpId) != FALSE;
-
    }
 
 
@@ -4584,26 +4562,33 @@ return TRUE;
 
       __throw(todo());
 
-      //ASSERT(::is_window(get_handle()));
-
-      //return ::GetWindowContextHelpId(get_handle());
-
    }
 
 
-   // Default message ::map implementations
    void interaction_impl::OnActivateApp(bool,u32)
    {
+
       Default();
+
    }
+
+
    void interaction_impl::OnActivate(UINT,::user::interaction_impl *,bool)
    {
+      
       Default();
+
    }
+
+
    void interaction_impl::OnCancelMode()
    {
+
       Default();
+
    }
+
+
    void interaction_impl::OnChildActivate()
    {
       Default();
@@ -6049,14 +6034,38 @@ namespace uwp
 
       }
 
-      main_async([this]()
-         {
+      if (m_frameworkview->m_bNotifyLayoutCompletedPending)
+      {
 
-            auto presizemanager = ::Windows::UI::Core::CoreWindowResizeManager::GetForCurrentView();
+         m_frameworkview->m_bNotifyLayoutCompletedPending = false;
+            
+         main_async(__method([this]()
+               {
 
-            presizemanager->NotifyLayoutCompleted();
+                  int x = m_window->Bounds.X;
 
-         });
+                  int y = m_window->Bounds.Y;
+
+                  int cx = m_window->Bounds.Width;
+
+                  int cy = m_window->Bounds.Height;
+
+                  m_frameworkview->m_resizemanager->NotifyLayoutCompleted();
+
+                  ::output_debug_string("interaction_impl::on_after_graphical_update NotifyLayoutCompleted\n");
+
+                  //if (m_bPendingActivation)
+                  //{
+
+                  //   m_bPendingActivation = false;
+
+                  //   m_window->Activate();
+
+                  //}
+
+               }));
+
+      }
 
    }
 
@@ -6171,16 +6180,16 @@ namespace uwp
       //alskdjfh++;
       //::output_debug_string("::uwp::interaction_impl::_001UpdateScreen " + __str(alskdjfh) + "\n");
 
-      //if (m_directxapplication)
+      //if (m_frameworkview)
       //{
 
-      //   if (m_directxapplication->m_window.Get())
+      //   if (m_frameworkview->m_window.Get())
       //   {
 
       //      main_async([this]()
       //         {
 
-      //            m_directxapplication->m_window->Activate();
+      //            m_frameworkview->m_window->Activate();
 
       //         });
 
@@ -6194,7 +6203,7 @@ namespace uwp
    bool interaction_impl::_is_window() const
    {
 
-      return m_directxapplication != nullptr && m_directxapplication->m_window != nullptr;
+      return m_frameworkview != nullptr && m_frameworkview->m_window != nullptr;
 
    }
 
@@ -6202,9 +6211,7 @@ namespace uwp
    void interaction_impl::show_software_keyboard(bool bShow, string str, strsize iBeg, strsize iEnd)
    {
 
-      auto psession = Session;
-
-      psession->m_directxapplication->SetText(str, iBeg, iEnd);
+      m_frameworkview->SetText(str, iBeg, iEnd);
 
    }
 
@@ -6218,9 +6225,7 @@ namespace uwp
 
       strsize sizeLen = strText.get_length();
 
-      auto psession = Session;
-
-      psession->m_directxapplication->SetText(strText, 0, sizeLen);
+      m_frameworkview->SetText(strText, 0, sizeLen);
 
    }
 
@@ -6228,7 +6233,7 @@ namespace uwp
    bool interaction_impl::is_text_composition_active()
    {
 
-      return m_directxapplication->m_bTextCompositionActive;
+      return m_frameworkview->m_bTextCompositionActive;
 
 
    }
@@ -6237,7 +6242,7 @@ namespace uwp
    void interaction_impl::set_input_content_rect(const rect& rect)
    {
 
-      __copy(m_directxapplication->m_rectInputContentRect, rect);
+      __copy(m_frameworkview->m_rectInputContentRect, rect);
 
    }
 
@@ -6245,7 +6250,7 @@ namespace uwp
    void interaction_impl::set_input_selection_rect(const rect& rect)
    {
 
-      __copy(m_directxapplication->m_rectInputSelectionRect, rect);
+      __copy(m_frameworkview->m_rectInputSelectionRect, rect);
 
    }
 
@@ -6255,7 +6260,7 @@ namespace uwp
 
       ::rect rect;
 
-      __copy(rect, m_directxapplication->m_rectInputContentRect);
+      __copy(rect, m_frameworkview->m_rectInputContentRect);
 
       return rect;
 
@@ -6267,7 +6272,7 @@ namespace uwp
 
       ::rect rect;
 
-      __copy(rect, m_directxapplication->m_rectInputSelectionRect);
+      __copy(rect, m_frameworkview->m_rectInputSelectionRect);
 
       return rect;
 
@@ -6277,6 +6282,7 @@ namespace uwp
 
 
 } // namespace uwp
+
 
 
 

@@ -974,7 +974,7 @@
 		<Unit filename="apex/node/uwp/dir_context.h" />
 		<Unit filename="apex/node/uwp/dir_system.h" />
 		<Unit filename="apex/node/uwp/directx.h" />
-		<Unit filename="apex/node/uwp/directx_application.h" />
+		<Unit filename="apex/node/uwp/directx_framework_view.h" />
 		<Unit filename="apex/node/uwp/directx_impact.h" />
 		<Unit filename="apex/node/uwp/directx_interaction.h" />
 		<Unit filename="apex/node/uwp/exception.h" />

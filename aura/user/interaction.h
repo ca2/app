@@ -228,6 +228,12 @@ namespace user
       //virtual void task_on_term(::task* pthread) override;
 
 
+      virtual ::estatus main_async(const ::method & method, e_priority epriority = priority_normal);
+
+
+      virtual ::estatus main_sync(const ::method & method, const ::duration & duration = one_minute(), e_priority epriority = priority_normal);
+
+
       inline void auto_prodevian_on_show() { m_ewindowflag |= window_flag_auto_prodevian_on_show; }
       inline void clear_auto_prodevian_on_show() { m_ewindowflag -= window_flag_auto_prodevian_on_show; }
       inline bool is_auto_prodevian_on_show() { return m_ewindowflag & window_flag_auto_prodevian_on_show; }

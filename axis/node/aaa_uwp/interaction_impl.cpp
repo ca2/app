@@ -353,7 +353,7 @@ namespace uwp
       //if (psession->get_focus_ui())
       //{
 
-         m_directxapplication->SetInternalFocus();
+         m_frameworkview->SetInternalFocus();
 
       //}
 
@@ -365,7 +365,7 @@ namespace uwp
 
       SCAST_PTR(::message::kill_focus, pkillfocus, pmessage);
 
-      m_directxapplication->RemoveInternalFocus();
+      m_frameworkview->RemoveInternalFocus();
 
    }
 
@@ -6042,7 +6042,7 @@ namespace uwp
    bool interaction_impl::_is_window() const
    {
 
-      return m_directxapplication != nullptr && m_directxapplication->m_window != nullptr;
+      return m_frameworkview != nullptr && m_frameworkview->m_window != nullptr;
 
    }
 
@@ -6050,7 +6050,7 @@ namespace uwp
    void interaction_impl::show_software_keyboard(bool bShow, string str, strsize iBeg, strsize iEnd)
    {
 
-      psession->m_directxapplication->SetText(str, iBeg, iEnd);
+      psession->m_frameworkview->SetText(str, iBeg, iEnd);
 
    }
 
@@ -6064,7 +6064,7 @@ namespace uwp
 
       strsize sizeLen = strText.get_length();
 
-      psession->m_directxapplication->SetText(strText, 0, sizeLen);
+      psession->m_frameworkview->SetText(strText, 0, sizeLen);
 
    }
 
@@ -6072,7 +6072,7 @@ namespace uwp
    bool interaction_impl::is_text_composition_active()
    {
 
-      return m_directxapplication->m_bTextCompositionActive;
+      return m_frameworkview->m_bTextCompositionActive;
 
 
    }
@@ -6081,7 +6081,7 @@ namespace uwp
    void interaction_impl::set_input_content_rect(const rect& rect)
    {
 
-      __copy(m_directxapplication->m_rectInputContentRect, rect);
+      __copy(m_frameworkview->m_rectInputContentRect, rect);
 
    }
 
@@ -6089,7 +6089,7 @@ namespace uwp
    void interaction_impl::set_input_selection_rect(const rect& rect)
    {
 
-      __copy(m_directxapplication->m_rectInputSelectionRect, rect);
+      __copy(m_frameworkview->m_rectInputSelectionRect, rect);
 
    }
 
@@ -6099,7 +6099,7 @@ namespace uwp
 
       ::rect rect;
 
-      __copy(rect, m_directxapplication->m_rectInputContentRect);
+      __copy(rect, m_frameworkview->m_rectInputContentRect);
 
       return rect;
 
@@ -6111,7 +6111,7 @@ namespace uwp
 
       ::rect rect;
 
-      __copy(rect, m_directxapplication->m_rectInputSelectionRect);
+      __copy(rect, m_frameworkview->m_rectInputSelectionRect);
 
       return rect;
 

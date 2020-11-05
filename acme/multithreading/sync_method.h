@@ -30,6 +30,7 @@ public:
    method                                 m_method;
    __pointer(manual_reset_event)          m_peventCompletion;
    ::duration                             m_duration;
+   ::estatus                              m_estatus;
 
 
    virtual ~sync_method() {}
@@ -38,11 +39,11 @@ public:
    inline virtual ::estatus operator()() override
    {
 
-      auto estatus = m_method();
+      m_estatus = m_method();
 
       m_peventCompletion->SetEvent();
 
-      return estatus;
+      return m_estatus;
 
    }
 

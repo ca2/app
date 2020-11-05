@@ -23,6 +23,12 @@
     <Filter Include="Libraries\x86\basis">
       <UniqueIdentifier>{c9c634d0-e8c4-49a0-88a3-fc06ee544238}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Libraries\x64">
+      <UniqueIdentifier>{ddc45200-2be9-4d3e-afba-f30b8e6c76d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libraries\x64\basis">
+      <UniqueIdentifier>{7f6e16eb-f799-487c-987d-1858be971319}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="uwp\_.cpp">
@@ -83,12 +89,6 @@
     <AppxManifest Include="Package10.appxmanifest" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\..\__archive\storage-uwp\binary\Win32\basis\libeay32.dll">
-      <Filter>Libraries\x86\basis</Filter>
-    </None>
-    <None Include="..\..\..\__archive\storage-uwp\binary\Win32\basis\ssleay32.dll">
-      <Filter>Libraries\x86\basis</Filter>
-    </None>
     <None Include="..\..\..\__archive\storage-uwp\third\binary\Win32\basis\pcre.dll">
       <Filter>Libraries\x86\basis</Filter>
     </None>
@@ -96,5 +96,11 @@
       <Filter>Libraries\x86\basis</Filter>
     </None>
     <None Include="uwp_app_net_TemporaryKey.pfx" />
+    <None Include="..\..\..\__archive\storage-uwp\third\binary\x64\basis\pcre.dll">
+      <Filter>Libraries\x64\basis</Filter>
+    </None>
+    <None Include="..\..\..\__archive\storage-uwp\third\binary\x64\basis\zlib.dll">
+      <Filter>Libraries\x64\basis</Filter>
+    </None>
   </ItemGroup>
 </Project>

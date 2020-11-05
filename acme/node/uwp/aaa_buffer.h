@@ -34,7 +34,7 @@ namespace uwp
       //};
 
 
-      directx_application  ^           m_directxapplication;
+      directx_framework_view  ^           m_frameworkview;
 
       ::draw2d::graphics_pointer       m_pdraw2dgraphics;
 

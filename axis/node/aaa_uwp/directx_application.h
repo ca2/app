@@ -5,7 +5,7 @@ namespace uwp
 {
 
 
-   ref class directx_application :
+   ref class directx_framework_view :
       public impact
    {
    internal:
@@ -51,7 +51,7 @@ namespace uwp
       Windows::Foundation::Rect                 m_rectInputSelectionRect;
 
 
-      directx_application(::aura::system * psystem,String ^ strId);
+      directx_framework_view(::aura::system * psystem,String ^ strId);
 
 
       void install_directx_application_message_routing();
@@ -83,7 +83,7 @@ namespace uwp
       virtual Windows::Foundation::Rect get_input_selection_rect() override;
 
 
-      virtual ~directx_application();
+      virtual ~directx_framework_view();
 
    private:
 

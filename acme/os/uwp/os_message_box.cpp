@@ -1,6 +1,115 @@
 ﻿#include "framework.h"
 #include <collection.h>
 
+template < typename T >
+ref class promisse_for_Windows_Foundation_IAsyncOperation sealed
+{
+private:
+
+   //manual_reset_event                                 m_event;
+   ::Windows::Foundation::IAsyncOperation < T > ^ m_operation;
+   ::Windows::Foundation::AsyncStatus                 m_status;
+   T                                                  m_result;
+   HRESULT                                            m_hresult;
+
+
+public:
+
+
+   waiter_for_Windows_Foundation_IAsyncOperation(::Windows::Foundation::IAsyncOperation < T > ^ operation, CallbackContext callbackcontext = CallbackContext::Any)
+   {
+
+      m_operation = operation;
+
+      m_operation->Completed = ref new ::Windows::Foundation::AsyncOperationCompletedHandler < T >([this](::Windows::Foundation::IAsyncOperation < T > ^ operation, ::Windows::Foundation::AsyncStatus status)
+         {
+
+            m_status = status;
+
+            if (m_status == ::Windows::Foundation::AsyncStatus::Completed)
+            {
+
+                m_operation->GetResults();
+
+            }
+            else
+            {
+
+               T t;
+
+               waiter_null_result(t);
+
+               return t;
+
+            }
+
+
+         });
+
+   }
+
+
+   virtual ~waiter_for_Windows_Foundation_IAsyncOperation()
+   {
+
+   }
+
+   template < typename PRED >
+   void then(PRED pred)
+   {
+
+      m_future = __future(pred);
+
+   }
+
+
+   //T wait(unsigned int dwMillis = INFINITE, ::Windows::Foundation::AsyncStatus * pstatus = nullptr)
+   //{
+
+   //   task_sleep(dwMillis, &m_event);
+
+   //   if (pstatus != nullptr)
+   //   {
+
+   //      *pstatus = m_status;
+
+   //   }
+
+   //   m_hresult = m_operation->ErrorCode.Value;
+
+   //   if (m_status == ::Windows::Foundation::AsyncStatus::Completed)
+   //   {
+
+   //      return m_operation->GetResults();
+
+   //   }
+   //   else
+   //   {
+
+   //      T t;
+
+   //      waiter_null_result(t);
+
+   //      return t;
+
+   //   }
+
+   //}
+
+internal:
+
+   template < typename PRED >
+   void wait(PRED pred, unsigned int dwMillis = INFINITE, ::Windows::Foundation::AsyncStatus * pstatus = nullptr)
+   {
+
+      pred(wait(dwMillis, pstatus));
+
+   }
+
+
+};
+
+
 
 bool g_bCoreWindowOnceVisible;
 
@@ -32,6 +141,9 @@ using namespace Windows::UI::Xaml::Navigation;
 ref class message_box_w
 {
 private:
+
+
+
    ~message_box_w()
    {
 
@@ -43,7 +155,6 @@ internal:
 
    int m_iMessageBox;
    ::future     m_future;
-   Platform::Agile<Windows::UI::Popups::MessageDialog> m_msg;
 
    message_box_w();
 
@@ -148,18 +259,32 @@ message_box_w::message_box_w()
 ::estatus _os_message_box(const char* pszMessage, const char* pszTitle, ::emessagebox emessagebox, const ::future & future)
 {
 
-   message_box_w ^ pmessageboxw = ref new message_box_w;
+   wstring wstrMessage(pszMessage);
 
-   pmessageboxw->init(wstring(pszMessage),wstring(pszTitle), emessagebox, future);
+   wstring wstrTitle(pszTitle);
 
-   g_messageboxa.add(pmessageboxw);
+   //g_messageboxa.add(pmessageboxw);
 
-   main_async([pmessageboxw]()
-      {
+   auto psystem = ::get_context_system();
 
-         pmessageboxw->m_msg->ShowAsync();
+   //psystem->main_user_async(__method([wstrMessage, wstrTitle, emessagebox, future]()
+     // {
 
-      });
+         message_box_w ^ pmessageboxw = ref new message_box_w;
+
+         pmessageboxw->init(wstrMessage, wstrTitle, emessagebox, future);
+
+       //  g_messageboxa.add_item(pmessageboxw);
+
+         wait(pmessageboxw->m_msg->ShowAsync())->
+            then([pmessageboxw](IUICommand ^ i)
+               {
+
+                  pmessageboxw->CommandInvokedHandler(i);
+
+               });
+
+      //}));
 
    return ::success;
 
@@ -190,7 +315,7 @@ void message_box_w::CommandInvokedHandler(IUICommand^ cmd)
    // Display message showing the label of the command that was invoked
    //rootPage.NotifyUser("The '" + command.Label + "' command has been selected.",
       //NotifyType.StatusMessage);
-   g_messageboxa.remove(this);
+   //g_messageboxa.remove(this);
 
 }
 

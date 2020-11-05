@@ -512,7 +512,7 @@ namespace user
    void box::sketch_prepare_window_restore(edisplay edisplay)
    {
 
-      main_async(__method([this, edisplay]()
+      get_wnd()->main_async(__method([this, edisplay]()
       {
 
          good_restore(NULL, layout().sketch().screen_rect(), true, layout().sketch().activation(), layout().sketch().zorder(), edisplay);

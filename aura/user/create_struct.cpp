@@ -26,6 +26,7 @@ namespace user
       set_class_name(createstruct.lpszClass);
       set_window_name(createstruct.lpszName);
 #endif
+      m_puserinteractionOwner = nullptr;
 
    }
 
@@ -43,6 +44,7 @@ namespace user
 #else
       lpCreateParams = pvCreateParams;
 #endif
+      m_puserinteractionOwner = nullptr;
 
    }
 

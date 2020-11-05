@@ -324,16 +324,6 @@ inline void main_async(const ::method & method, e_priority epriority = priority_
 #endif
 
 
-inline void main_sync(const method & method, const ::duration & duration = one_minute(), e_priority epriority = priority_normal)
-{
-
-   auto pmethod = ___sync_method(method);
-
-   main_branch(pmethod, epriority);
-
-   pmethod->wait(duration);
-
-}
 
 
 

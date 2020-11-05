@@ -122,6 +122,7 @@ public:
 
    void copy(const string_array_base & src);
    void copy(const i64_array & src);
+   using array < Type >::copy;
 
 
    ::index add(::str::range_array & rangea, const RawString & str)

@@ -11,7 +11,7 @@ public:
    string                           m_strTitle;
    ::emessagebox                    m_emessagebox;
    ::duration                       m_durationTimeout;
-   future                           m_future;
+   futurevar                        m_future;
 
 
    message_box();

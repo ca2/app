@@ -17,7 +17,7 @@
 //namespace uwp
 //{
 //
-//   ref class directx_application;
+//   ref class directx_framework_view;
 //
 //} // namespace uwp
 //

@@ -1920,7 +1920,7 @@
     <ClInclude Include="node\uwp\directx.h">
       <Filter>Header Files\node\uwp</Filter>
     </ClInclude>
-    <ClInclude Include="node\uwp\directx_application.h">
+    <ClInclude Include="node\uwp\directx_framework_view.h">
       <Filter>Header Files\node\uwp</Filter>
     </ClInclude>
     <ClInclude Include="node\uwp\directx_impact.h">
@@ -6340,7 +6340,7 @@
     <ClCompile Include="node\uwp\directx_impact.cpp">
       <Filter>Source Files\node\uwp</Filter>
     </ClCompile>
-    <ClCompile Include="node\uwp\directx_application.cpp">
+    <ClCompile Include="node\uwp\directx_framework_view.cpp">
       <Filter>Source Files\node\uwp</Filter>
     </ClCompile>
     <ClCompile Include="node\uwp\directx.cpp">

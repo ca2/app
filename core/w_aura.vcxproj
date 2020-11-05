@@ -577,7 +577,7 @@
     <ClInclude Include="node\uwp\buffer.h" />
     <ClInclude Include="node\uwp\command.h" />
     <ClInclude Include="node\uwp\directx.h" />
-    <ClInclude Include="node\uwp\directx_application.h" />
+    <ClInclude Include="node\uwp\directx_framework_view.h" />
     <ClInclude Include="node\uwp\directx_impact.h" />
     <ClInclude Include="node\uwp\directx_interaction.h" />
     <ClInclude Include="node\uwp\dir_context.h" />
@@ -1990,7 +1990,7 @@
     <ClCompile Include="node\uwp\app_core.cpp" />
     <ClCompile Include="node\uwp\command.cpp" />
     <ClCompile Include="node\uwp\directx.cpp" />
-    <ClCompile Include="node\uwp\directx_application.cpp" />
+    <ClCompile Include="node\uwp\directx_framework_view.cpp" />
     <ClCompile Include="node\uwp\directx_impact.cpp" />
     <ClCompile Include="node\uwp\directx_interaction.cpp" />
     <ClCompile Include="node\uwp\dir_context.cpp" />

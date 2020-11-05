@@ -47,7 +47,7 @@
 //
 
 
-template < typename PRED >
+template < typename PRED, typename FUTURE >
 class pred_future :
    virtual public matter
 {
@@ -61,7 +61,7 @@ public:
    pred_future(PRED pred) : m_pred(pred) { }
 
 
-   virtual void operator()(const var& var)  override
+   virtual void operator()(const FUTURE & var)  override
 
    //virtual void send(const var& var)
    {
@@ -81,12 +81,24 @@ public:
 };
 
 
-template < typename PRED >
-future __future(PRED pred)
+
+template < typename PRED, typename FUTURE >
+::future < FUTURE > __future(PRED pred)
 {
 
-   return __new(pred_future<PRED>(pred));
+   return __new(pred_future<PRED, FUTURE>(pred));
 
 }
+
+
+template < typename PRED >
+::futurevar __futurevar(PRED pred)
+{
+
+    return __new(pred_future<PRED, var>(pred));
+
+}
+
+
 
 

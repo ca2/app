@@ -564,13 +564,10 @@ namespace user
 
       #endif
 
-
-
       bool bNewOwnThread = true;
 
       bool bProdevianThread = true;
 
-      //if (createstruct.hwndParent != nullptr || (createstruct.style & WS_CHILD))
       if (createstruct.style & WS_CHILD)
       {
 
@@ -596,7 +593,14 @@ namespace user
       if (m_puserinteraction->m_ewindowflag & window_flag_satellite_window)
       {
 
-         //__bind(m_puserinteraction, m_pthreadUserInteraction, )
+         if (createstruct.m_puserinteractionOwner)
+         {
+
+            auto pthread = createstruct.m_puserinteractionOwner->m_pthreadUserInteraction;
+
+            m_puserinteraction->m_pthreadUserInteraction = pthread;
+
+         }
 
          // all except if satellite window it will use calling thread/parent window thread
 
@@ -3672,6 +3676,16 @@ namespace user
 
    }
 
+   
+   ::estatus interaction_impl::main_async(const method & method, e_priority epriority)
+   {
+
+      return ::error_interface_only;
+
+   }
+
+
+
 
    guie_message_wnd::guie_message_wnd(::layered * pobjectContext):
       ::object(pobjectContext)
@@ -5286,6 +5300,13 @@ namespace user
       }
 
       if (!(m_puserinteraction->m_ewindowflag & window_flag_is_window))
+      {
+
+         return false;
+
+      }
+
+      if (m_puserinteraction->m_ewindowflag & window_flag_not_visible)
       {
 
          return false;

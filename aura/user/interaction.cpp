@@ -2878,7 +2878,7 @@ namespace user
       else if (strType.contains_ci("plain_edit"))
       {
 
-         output_debug_string("plain_edit");
+         //output_debug_string("plain_edit");
 
       }
       else if (strType.contains_ci("font_list"))
@@ -3339,7 +3339,34 @@ namespace user
 
    }
 
+   
+   ::estatus interaction::main_async(const ::method & method, e_priority epriority)
+   {
 
+      return m_pimpl->main_async(method, epriority);
+
+   }
+
+
+   ::estatus interaction::main_sync(const method & method, const ::duration & duration, e_priority epriority)
+   {
+
+      auto pmethod = ___sync_method(method);
+
+      main_async(pmethod, epriority);
+
+      auto waitresult = pmethod->wait(duration);
+
+      if (!waitresult.succeeded())
+      {
+
+         return error_timeout;
+
+      }
+
+      return pmethod->m_estatus;
+
+   }
 
 
    void interaction::_001OnCreate(::message::message * pmessage)
@@ -7678,23 +7705,23 @@ namespace user
 
       }
 
-      auto puiParent = GetParent();
+      auto puiOwner = GetOwner();
 
-      if (puiParent && puiParent != pinteractionBind && puiParent != pusercallback)
+      if (puiOwner && puiOwner != pinteractionBind && puiOwner != pusercallback)
       {
 
-         puiParent->route_control_event(pevent);
+         puiOwner->route_control_event(pevent);
 
          return;
 
       }
 
-      auto puiOwner = GetOwner();
+      auto puiParent = GetParent();
 
-      if (puiOwner && puiOwner !=puiParent && puiOwner != pinteractionBind && puiOwner != pusercallback)
+      if (puiParent && puiParent != puiOwner && puiParent != pinteractionBind && puiParent != pusercallback)
       {
 
-         puiOwner->route_control_event(pevent);
+         puiParent->route_control_event(pevent);
 
          return;
 

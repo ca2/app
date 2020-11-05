@@ -26,7 +26,7 @@ namespace apex
 
 //#if defined _UWP
 //
-//      ::uwp::directx_application ^                          m_directxapplication;
+//      ::uwp::directx_framework_view ^                          m_frameworkview;
 //
 //#endif
 

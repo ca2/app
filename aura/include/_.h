@@ -33,6 +33,22 @@
 #define __spin_namespace aura // back bone / four-letter "spin*" namespace name
 
 
+#if defined _UWP
+
+
+namespace uwp
+{
+
+
+   ref class directx_framework_view;
+   ref class directx_application_source;
+   class interaction_impl;
+
+
+} // namespace uwp
+
+
+#endif
 
 
 
@@ -2924,20 +2940,6 @@ namespace draw2d
 //} // namespace aura
 
 
-#if defined _UWP
-
-
-namespace uwp
-{
-
-
-   ref class directx_application;
-
-
-} // namespace uwp
-
-
-#endif
 
 
 

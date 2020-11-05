@@ -10,14 +10,14 @@ namespace uwp
    CLASS_DECL_CORE LRESULT CALLBACK __cbt_filter_hook(int, WPARAM, LPARAM);
    CLASS_DECL_CORE LRESULT __call_window_procedure(::user::interaction * pWnd, oswindow hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam);
 
-   ref class directx_application;
+   ref class directx_framework_view;
 
    class CLASS_DECL_CORE interaction_impl :
       virtual public ::user::interaction_impl
    {
    public:
 
-      directx_application ^                     m_directxapplication;
+      directx_framework_view ^                     m_frameworkview;
       ::user::message_queue_listener *          m_plistener;
       string                                    m_strWindowText;
       //::image_pointer              m_pimage;

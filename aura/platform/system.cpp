@@ -3833,7 +3833,7 @@ namespace aura
          if (pimpl.is_set())
          {
 
-            auto pdirectxapplication = pimpl->m_directxapplication;
+            auto pdirectxapplication = pimpl->m_frameworkview;
 
             auto directx = pdirectxapplication->m_directx;
 
@@ -6649,6 +6649,22 @@ namespace aura
    //}
 
 
+   ::estatus system::main_user_async(const ::method & method, ::e_priority epriority)
+   {
+
+#ifdef _UWP
+
+      return m_pimplMain->main_async(method, epriority);
+
+#else
+
+      __throw(not_implemented);
+
+      return ::error_interface_only;
+
+#endif
+
+   }
 
 
    //namespace command

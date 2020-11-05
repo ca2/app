@@ -10,32 +10,31 @@ namespace uwp
    CLASS_DECL_AURA LRESULT CALLBACK __cbt_filter_hook(int, WPARAM, LPARAM);
    CLASS_DECL_AURA LRESULT __call_window_procedure(::user::interaction * pWnd, oswindow hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam);
 
-   ref class directx_application;
+   ref class directx_framework_view;
 
    class CLASS_DECL_AURA interaction_impl :
       virtual public ::user::interaction_impl
    {
    public:
 
-      directx_application ^                     m_directxapplication;
-      ::user::message_queue_listener *          m_plistener;
-      string                                    m_strWindowText;
-      //::image_pointer              m_pimage;
-      //::image_pointer              m_spimageMultAlphaWork;
-      pointd                                    m_pointLastMouseMove;
-      double                                    m_dAccumulatedMouseMoveDistance;
-      tick                                      m_tickLastMouseMove;
-      Agile < Windows::ApplicationModel::Core::CoreApplicationView > m_view;
-      Agile < Windows::UI::ViewManagement::ApplicationView > m_applicationview;
-      Agile < Windows::UI::Core::CoreWindow >   m_window;
-      ::thread *                                m_pthreadDraw;
-      ::user::primitive* m_pbasewnd;
-      ::user::interaction* m_pguieCapture;
 
-      int_ptr_to_int_ptr                        m_mapLong;
-      ::mutex                                     m_mutexQueue;
-      manual_reset_event                        m_evQueue;
-      __pointer_array(::message::base)                      m_messageaQueue;
+      directx_framework_view ^                                          m_frameworkview;
+      ::user::message_queue_listener *                                  m_plistener;
+      string                                                            m_strWindowText;
+      pointd                                                            m_pointLastMouseMove;
+      double                                                            m_dAccumulatedMouseMoveDistance;
+      tick                                                              m_tickLastMouseMove;
+      Agile < Windows::ApplicationModel::Core::CoreApplicationView >    m_view;
+      Agile < Windows::UI::ViewManagement::ApplicationView >            m_applicationview;
+      Agile < Windows::UI::Core::CoreWindow >                           m_window;
+      ::thread *                                                        m_pthreadDraw;
+      ::user::primitive *                                               m_pbasewnd;
+      ::user::interaction *                                             m_pguieCapture;
+
+      int_ptr_to_int_ptr                                                m_mapLong;
+      ::mutex                                                           m_mutexQueue;
+      manual_reset_event                                                m_evQueue;
+      __pointer_array(::message::base)                                  m_messageaQueue;
 
 
       interaction_impl();
@@ -87,6 +86,8 @@ namespace uwp
       virtual void route_command_message(::user::command * pcommand) override;
 
       virtual void on_control_event(::user::control_event * pevent) override;
+
+      virtual ::estatus main_async(const method & method, e_priority epriority = priority_normal);
 
       void _002OnDraw(::image * pimage);
 
@@ -620,11 +621,7 @@ namespace uwp
       virtual void WalkPreTranslateTree(::user::interaction * puiStop, ::message::message * pmessage);
       virtual bool is_frame_window(); // is_kind_of(System.template type_info < frame_window > ()))
       virtual void on_final_release();
-      static bool ModifyStyle(oswindow hWnd, u32 dwRemove, u32 dwAdd,
-                              UINT nFlags);
-      static bool ModifyStyleEx(oswindow hWnd, u32 dwRemove, u32 dwAdd,
-                                UINT nFlags);
-      static void _FilterToolTipMessage(MSG* pMsg, ::user::interaction_impl * pWnd);
+      //static void _FilterToolTipMessage(MSG* pMsg, ::user::interaction_impl * pWnd);
       bool _EnableToolTips(bool bEnable, UINT nFlag);
       static oswindow GetSafeOwner_(oswindow hWnd, oswindow* pWndTop);
       void PrepareForHelp();

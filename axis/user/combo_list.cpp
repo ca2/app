@@ -1005,7 +1005,7 @@ namespace user
 
       auto psession = Session;
 
-      psession->get_best_monitor(rectMonitor, rectWindow);
+      ::index i = psession->get_best_monitor(rectMonitor, rectWindow);
 
       ::rect rectList;
 
@@ -1014,38 +1014,40 @@ namespace user
       rectList.top = rectWindow.bottom;
       rectList.bottom = rectWindow.bottom + sizeFull.cy;
 
-      if (rectList.bottom > rectMonitor.bottom -m_iBorder)
+      if (i < 0)
+      {
+
+         m_pcombo->GetParent()->get_window_rect(rectMonitor);
+
+      }
+
+      if (rectList.bottom > rectMonitor.bottom - m_iBorder)
       {
 
          rectList.bottom = rectMonitor.bottom - m_iBorder;
 
          ::rect rectListOver;
 
-         rectListOver.left = rectWindow.left;
-         rectListOver.right = rectWindow.left + sizeFull.cx;
+         rectListOver.left = rectList.left;
+         rectListOver.right = rectList.right;
          rectListOver.bottom = rectWindow.top;
          rectListOver.top = rectWindow.top - sizeFull.cy;
 
          if (rectListOver.top < rectMonitor.top + m_iBorder)
          {
 
-            rectListOver.top = rectMonitor.top + m_iBorder;
-
-            if (rectListOver.height() > rectList.height())
-            {
-
-               rectList = rectListOver;
-
-            }
+            rectListOver.move_to(rectListOver.left, rectMonitor.top);
 
          }
+
+         rectList = rectListOver;
 
       }
 
       if (rectList.right > rectMonitor.right - m_iBorder)
       {
 
-         rectList.offset(rectMonitor.right - (rectList.right-m_iBorder), 0);
+         rectList.offset(rectMonitor.right - (rectList.right - m_iBorder), 0);
 
       }
 
@@ -1067,14 +1069,23 @@ namespace user
 
       _001EnsureVisible(m_pcombo->m_itemHover);
 
+      if (i < 0)
+      {
+
+         m_pcombo->GetParent()->_001ScreenToClient(rectList);
+
+      }
+
       if (!is_window())
       {
 
-         ::user::create_struct createstruct(0, nullptr, "combo_list");
+         ::user::create_struct createstruct(0, nullptr, "combo_list", i >= 0 ? 0 : WS_CHILD);
+
+         createstruct.m_puserinteractionOwner = m_pcombo;
 
          createstruct.set_rect(::rect(rectList).inflate(m_iBorder));
 
-         if (!create_window_ex(createstruct))
+         if (!create_window_ex(createstruct, i >= 0 ? nullptr : m_pcombo->GetParent()))
          {
 
             m_pcombo->m_plist.release();

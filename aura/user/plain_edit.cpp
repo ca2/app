@@ -5772,14 +5772,24 @@ finished_update:
    {
 
       if (m_bPassword)
+      {
+
          return;
+
+      }
+      
       string str;
+      
       _001GetSelText(str);
+
       str.replace("\r", "\r\n");
+      
       auto psession = Session;
 
       psession->copydesk().set_plain_text(str);
+
    }
+
 
    bool plain_edit::get_line_color(COLORREF & cr, const string & strLine)
    {

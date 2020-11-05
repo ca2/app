@@ -83,7 +83,7 @@ namespace imaging_wic
 
       bool bOk = true;
 
-      main_sync(__method([&]()
+      System.main_user_sync(__method([&]()
          {
 
             auto dataPackage = ::Windows::ApplicationModel::DataTransfer::Clipboard::GetContent();
@@ -202,26 +202,9 @@ namespace imaging_wic
 
       bool bOk = false;
 
-      main_sync(__method([&bOk]()
+      System.main_user_sync(__method([&bOk]()
          {
 
-            auto dataPackage = ::Windows::ApplicationModel::DataTransfer::Clipboard::GetContent();
-
-            if (dataPackage == nullptr)
-            {
-
-               return;
-
-            }
-
-            if (dataPackage->Contains(::Windows::ApplicationModel::DataTransfer::StandardDataFormats::Bitmap))
-            {
-
-               bOk = true;
-
-               return;
-
-            }
 
          }));
 

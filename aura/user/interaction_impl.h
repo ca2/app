@@ -156,6 +156,10 @@ namespace user
       virtual ::estatus update_graphics_resources();
 
 
+      virtual ::estatus main_async(const method & method, e_priority epriority = priority_normal);
+      
+
+
       virtual bool has_pending_focus();
 
       virtual bool set_pending_focus();

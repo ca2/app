@@ -155,6 +155,8 @@ virtual bool setWMClass(const char * psz);
       //virtual i32 SetWindowRgn(HRGN hRgn,bool bRedraw);
       //virtual i32 GetWindowRgn(HRGN hRgn);
 
+      virtual ::estatus main_async(const method & method, e_priority epriority = priority_normal);
+
 
 #ifdef WINDOWS
 

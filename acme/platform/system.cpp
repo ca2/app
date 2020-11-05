@@ -74,6 +74,35 @@ namespace acme
    }
 
 
+   ::estatus system::main_user_async(const ::method & method, ::e_priority epriority)
+   {
+
+      return ::error_interface_only;
+
+   }
+
+
+   ::estatus system::main_user_sync(const method & method, const ::duration & duration, e_priority epriority)
+   {
+
+      auto pmethod = ___sync_method(method);
+
+      main_user_async(pmethod, epriority);
+
+      auto waitresult = pmethod->wait(duration);
+
+      if (!waitresult.succeeded())
+      {
+
+         return ::error_timeout;
+
+      }
+
+      return pmethod->m_estatus;
+
+   }
+
+
    ::task * system::get_task(ITHREAD ithread)
    {
 

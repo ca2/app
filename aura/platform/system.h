@@ -1,7 +1,6 @@
 #pragma once
 
 
-
 namespace aura
 {
 
@@ -12,6 +11,13 @@ namespace aura
    public:
 
 
+#ifdef _UWP
+
+      
+      ::uwp::directx_application_source ^                   m_applicationsource;
+
+
+#endif
 
       bool m_bAvoidFirstResponder;
 
@@ -38,8 +44,11 @@ namespace aura
 
       //__composite(::sockets::sockets)                    m_psockets;
 
-      __pointer(::matter)                                 m_pDraw2dFactoryExchange;
-      __pointer(::draw2d::draw2d)                          m_pdraw2d;
+
+
+
+      __pointer(::matter)                                      m_pDraw2dFactoryExchange;
+      __pointer(::draw2d::draw2d)                              m_pdraw2d;
 
       //::file::path                                       m_pathConfig;
       //::file::path                                       m_pathCa2Roaming;
@@ -106,11 +115,11 @@ namespace aura
 //      bool                                               m_bFinalizeIfNoSessionSetting;
 //      bool                                               m_bFinalizeIfNoSession;
 
-#ifdef _UWP
-
-      ::uwp::directx_application ^                          m_directxapplication;
-
-#endif
+//#ifdef _UWP
+//
+//      ::uwp::directx_framework_view ^                          m_frameworkview;
+//
+//#endif
 
 //
 ////      __composite(::html::html)                          m_phtml;
@@ -247,7 +256,8 @@ namespace aura
 
 #ifdef _UWP
 
-      Agile < Windows::UI::Core::CoreWindow >      m_window;
+      __reference(::uwp::interaction_impl)            m_pimplMain;
+      //Agile < Windows::UI::Core::CoreWindow >      m_window;
 
 #endif
 
@@ -352,7 +362,7 @@ namespace aura
 
       //virtual bool verb();
 
-
+      virtual ::estatus main_user_async(const ::method & method, ::e_priority epriority = priority_normal) override;
 
 
 

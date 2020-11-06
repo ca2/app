@@ -107,13 +107,15 @@ inline string ___pointer < T >::type_str()
 //
 
 
-inline ::estatus method::operator()() const { return (*m_p)(); }
+inline ::estatus procedure::operator()() const { return (*m_p)(); }
 
-inline bool method::should_run_async() const { return m_p->should_run_async(); }
+inline bool procedure::should_run_async() const { return m_p->should_run_async(); }
 
-inline void future::operator()(const var& var) const { if(m_p) (*m_p)(var); }
+template < typename FUTURE >
+inline void future < FUTURE >::operator()(const FUTURE & future) const { if(m_p) (*m_p)(future); }
 
-inline bool future::should_run_async() const { return m_p->should_run_async(); }
+template < typename FUTURE >
+inline bool future < FUTURE >::should_run_async() const { return m_p->should_run_async(); }
 
 
 inline type::type(const ::matter * pobject)
@@ -2432,7 +2434,7 @@ inline const ::id& update::id() const { return m_psource->m_id; }
 
 
 
-inline ::var operator + (::var var, const ::method& method)
+inline ::var operator + (::var var, const ::procedure & procedure)
 {
 
    if (var.get_type() != type_propset)
@@ -2442,7 +2444,7 @@ inline ::var operator + (::var var, const ::method& method)
 
    }
 
-   var["method"] = method;
+   var["procedure"] = procedure;
 
    return var;
 
@@ -2450,7 +2452,7 @@ inline ::var operator + (::var var, const ::method& method)
 
 
 
-inline var operator + (var var, const ::future& future)
+inline var operator + (var var, const ::futurevar & futurevar)
 {
 
    if (var.get_type() != type_propset)
@@ -2460,7 +2462,7 @@ inline var operator + (var var, const ::future& future)
 
    }
 
-   var["future"] = future;
+   var["future"] = futurevar;
 
    return var;
 

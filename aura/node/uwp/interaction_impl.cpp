@@ -6039,7 +6039,7 @@ namespace uwp
 
          m_frameworkview->m_bNotifyLayoutCompletedPending = false;
             
-         main_async(__method([this]()
+         main_async(__procedure([this]()
                {
 
                   int x = m_window->Bounds.X;

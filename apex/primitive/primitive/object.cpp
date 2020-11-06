@@ -299,13 +299,13 @@ void object::dev_log(string strMessage) const
 }
 
 
-array < ::method >* object::methods(const ::id & id)
+array < ::procedure >* object::procedures(const ::id & id)
 {
 
    if (m_pmeta)
    {
 
-      auto p = m_pmeta->m_mapMethod.plookup(id);
+      auto p = m_pmeta->m_mapProcedure.plookup(id);
 
       if (p)
       {
@@ -321,13 +321,13 @@ array < ::method >* object::methods(const ::id & id)
 }
 
 
-array < ::future >* object::futures(const ::id & idFuture)
+array < ::futurevar >* object::futurevars(const ::id & idFuture)
 {
 
    if (m_pmeta)
    {
 
-      auto p = m_pmeta->m_mapFuture.plookup(idFuture);
+      auto p = m_pmeta->m_mapFuturevar.plookup(idFuture);
 
       if (p)
       {
@@ -343,63 +343,64 @@ array < ::future >* object::futures(const ::id & idFuture)
 }
 
 
-void object::call_method(const ::id & id)
+void object::call_procedure(const ::id & id)
 {
 
-   auto pmethoda = methods(id);
+   auto pprocedurea = procedures(id);
 
-   if(pmethoda)
+   if(pprocedurea)
    {
 
-      pmethoda->pred_each([](auto& method) {method(); });
-
-   }
-
-}
-
-void object::send_future(const ::id & idFuture, const ::var& var)
-{
-
-   auto pcallbacks = futures(idFuture);
-
-   if(pcallbacks)
-   {
-
-      pcallbacks->pred_each([&var](auto& f) {f(var); });
+      pprocedurea->pred_each([](auto& procedure) { procedure(); });
 
    }
 
 }
 
 
-void object::add_method(const ::id & id, const ::method & method)
+void object::send_futurevar(const ::id & idFuture, const ::var& var)
 {
 
-   meta()->m_mapMethod[id].add(method);
+   auto pfuturevars = futurevars(idFuture);
+
+   if(pfuturevars)
+   {
+
+      pfuturevars->pred_each([&var](auto & futurevar) { futurevar(var); });
+
+   }
 
 }
 
 
-void object::add_future(const ::id & id, const ::future & future)
+void object::add_procedure(const ::id & id, const ::procedure & procedure)
 {
 
-   meta()->m_mapFuture[id].add(future);
+   meta()->m_mapProcedure[id].add(procedure);
 
 }
 
 
-void object::add_methods_from(const ::id &id, ::object* pobjectSource)
+void object::add_futurevar(const ::id & id, const ::futurevar & futurevar)
+{
+
+   meta()->m_mapFuturevar[id].add(futurevar);
+
+}
+
+
+void object::add_procedures_from(const ::id &id, ::object* pobjectSource)
 {
 
    if (pobjectSource)
    {
 
-      auto pprocedures = pobjectSource->methods(id);
+      auto pprocedures = pobjectSource->procedures(id);
 
       if (pprocedures)
       {
 
-         meta()->m_mapMethod[id].add(*pprocedures);
+         meta()->m_mapProcedure[id].add(*pprocedures);
 
       }
 
@@ -408,18 +409,18 @@ void object::add_methods_from(const ::id &id, ::object* pobjectSource)
 }
 
 
-void object::add_futures_from(const ::id & id, ::object * pobjectSource)
+void object::add_futurevars_from(const ::id & id, ::object * pobjectSource)
 {
 
    if (pobjectSource)
    {
 
-      auto pcallbacks = pobjectSource->futures(id);
+      auto pcallbacks = pobjectSource->futurevars(id);
 
       if (pcallbacks)
       {
 
-         meta()->m_mapFuture[id].add(*pcallbacks);
+         meta()->m_mapFuturevar[id].add(*pcallbacks);
 
       }
 
@@ -1588,19 +1589,19 @@ void object::start()
 }
 
 
-void object::single_fork(const method_array & methoda)
+void object::single_fork(const procedure_array & procedurea)
 {
 
-   fork([methoda]()
+   fork([procedurea]()
    {
 
-      for(auto & method : methoda)
+      for(auto & procedure : procedurea)
       {
 
          try
          {
 
-            method();
+            procedure();
 
          }
          catch (...)
@@ -1615,41 +1616,22 @@ void object::single_fork(const method_array & methoda)
 }
 
 
-void object::multiple_fork(const method_array & methoda)
+void object::multiple_fork(const procedure_array & procedurea)
 {
 
-   for (auto & method : methoda)
+   for (auto & procedure : procedurea)
    {
 
-      fork([method]()
+      fork([procedure]()
          {
 
-            method();
+            procedure();
 
          });
 
    }
 
 }
-
-//thread_pointer object::defer_fork(string strThread)
-//{
-//
-//   if (strThread.is_empty())
-//   {
-//
-//      strThread = string(type_name()) + "::run";
-//
-//   }
-//
-//   return defer_fork(strThread, [this]()
-//   {
-//
-//      call();
-//
-//   });
-//
-//}
 
 
 ::estatus object::handle_exception(::exception_pointer pe)
@@ -2132,7 +2114,7 @@ bool __no_continue(::estatus estatus)
 }
 
 
-::estatus call_sync(const method_array & methoda)
+::estatus call_sync(const procedure_array & methoda)
 {
 
    try
@@ -2223,7 +2205,7 @@ string object::get_text(const var& var, const ::id& id)
 }
 
 
-::estatus object::message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, ::emessagebox emessagebox, ::future future)
+::estatus object::message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, ::emessagebox emessagebox, const ::futurevar & futurevar)
 {
 
    ::estatus estatus = error_failed;
@@ -2267,7 +2249,7 @@ string object::get_text(const var& var, const ::id& id)
 
       }
 
-      estatus = ::os_message_box(strMessage, strTitle, emessagebox, future);
+      estatus = ::os_message_box(strMessage, strTitle, emessagebox, futurevar);
 
    }
 
@@ -2276,7 +2258,7 @@ string object::get_text(const var& var, const ::id& id)
 }
 
 
-::estatus object::message_box_timeout(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, const ::duration& durationTimeout, ::emessagebox emessagebox, ::future future)
+::estatus object::message_box_timeout(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, const ::duration& durationTimeout, ::emessagebox emessagebox, const ::futurevar & futurevar)
 {
 
    ::estatus estatus = error_failed;
@@ -2291,7 +2273,7 @@ string object::get_text(const var& var, const ::id& id)
    if (!estatus)
    {
 
-      estatus = ::os_message_box(pszMessage, pszTitle, emessagebox, future);
+      estatus = ::os_message_box(pszMessage, pszTitle, emessagebox, futurevar);
 
    }
 

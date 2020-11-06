@@ -162,7 +162,7 @@ namespace user
 
          pathFolder = path.folder();
 
-         main_sync(__method([&]()
+         main_sync(__procedure([&]()
          {
 
             m_pindicator = ::linux::allocate_appindicator();

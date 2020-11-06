@@ -13,7 +13,7 @@ public:
    ::message::id_route                             m_idroute;
    ::message::id_route                             m_idrouteNew;
    bool                                            m_bNewChannel;
-   id_map < method_array >                         m_mapMethod;
+   id_map < procedure_array >                      m_mapProcedure;
 
 
    channel();

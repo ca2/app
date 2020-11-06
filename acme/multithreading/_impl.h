@@ -230,7 +230,7 @@ template < typename PRED >
 void async_pred(void (* pfnBranch )(::matter * pobjectTask, e_priority), PRED pred, e_priority epriority)
 {
 
-   auto pobjectTask = __method(pred);
+   auto pobjectTask = __procedure(pred);
 
    pfnBranch(pobjectTask, epriority);
 

@@ -86,12 +86,12 @@ namespace acme
    return _os_message_box(pszText, pszTitle, emessagebox, future);
 }
 #else
-::estatus os_message_box(const char * pszText, const char * pszTitle, ::emessagebox emessagebox, const ::future & future)
+::estatus os_message_box(const char * pszText, const char * pszTitle, ::emessagebox emessagebox, const ::futurevar & futurevar)
 {
 
    auto posmessagebox = __new(::acme::os_message_box(pszText, pszTitle, emessagebox));
 
-   return __realize(posmessagebox, future);
+   return __realize(posmessagebox, futurevar);
 
 }
 #endif

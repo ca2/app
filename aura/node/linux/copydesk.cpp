@@ -709,7 +709,7 @@ namespace linux
 
       bool b = false;
 
-      main_sync(__method([&]()
+      main_sync(__procedure([&]()
       {
 
          GtkClipboard* clipboard = gtk_clipboard_get(GDK_SELECTION_CLIPBOARD);

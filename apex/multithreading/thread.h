@@ -87,7 +87,7 @@ public:
    bool                                               m_bThreadClosed;
 
 
-   method_array                                       m_methoda;
+   procedure_array                                    m_procedurea;
 
 
    __pointer(manual_reset_event)                      m_pevent1;
@@ -242,8 +242,8 @@ public:
 
    virtual bool send_object(const ::id & id, WPARAM wParam, lparam lParam, ::duration durationTimeout = ::duration::infinite());
 
-   virtual bool post_task(const ::method & method);
-   virtual bool send_task(const ::method & method, ::duration durationTimeout = ::duration::infinite());
+   virtual bool post_task(const ::procedure & procedure);
+   virtual bool send_task(const ::procedure & procedure, ::duration durationTimeout = ::duration::infinite());
 
    template < typename PRED >
    bool pred(PRED pred)
@@ -254,14 +254,14 @@ public:
    template < typename PRED >
    bool post_pred(PRED pred)
    {
-      return post_object(e_message_system, system_message_method, __method(pred));
+      return post_object(e_message_system, system_message_method, __procedure(pred));
    }
 
 
-   bool send_method(const ::method & method, ::duration durationTimeout = ::duration::infinite())
+   bool send_procedure(const ::procedure & procedure, ::duration durationTimeout = ::duration::infinite())
    {
 
-      return send_object(e_message_system, system_message_method, method, durationTimeout);
+      return send_object(e_message_system, system_message_method, procedure, durationTimeout);
 
    }
 
@@ -269,29 +269,27 @@ public:
    template < typename PRED >
    bool schedule_pred(PRED pred)
    {
+
       return post_pred(pred);
+
    }
 
 
-
-   bool sync_pred(const ::method & method, ::duration durationTimeout = ::duration::infinite())
+   bool sync_procedure(const ::procedure & procedure, ::duration durationTimeout = ::duration::infinite())
    {
 
       if (this == ::get_task())
       {
 
-         method();
+         procedure();
 
          return true;
 
       }
 
-      return send_method(method, durationTimeout);
+      return send_procedure(procedure, durationTimeout);
 
    }
-
-
-
 
 
    //virtual bool final_handle_exception(::exception_pointer e);

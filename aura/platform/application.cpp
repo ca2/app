@@ -6053,7 +6053,7 @@ namespace aura
          if(pinteraction)
          {
 
-            pinteraction->post_method(__method([pinteraction, idCommand]()
+            pinteraction->post_procedure(__procedure([pinteraction, idCommand]()
             {
 
                ::user::command command;

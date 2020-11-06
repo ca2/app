@@ -441,7 +441,7 @@ namespace multithreading
 
 
 
-CLASS_DECL_ACME ::estatus call(const ::method & method)
+CLASS_DECL_ACME ::estatus call(const ::procedure & procedure)
 {
 
    ::estatus estatus;
@@ -449,7 +449,7 @@ CLASS_DECL_ACME ::estatus call(const ::method & method)
    try
    {
 
-      estatus = method();
+      estatus = procedure();
 
    }
    catch (...)
@@ -716,10 +716,10 @@ void thread_name_abbreviate(string & strName, int len)
 
 
 
-::estatus     run_runnable(const ::method & method)
+::estatus run_runnable(const ::procedure & procedure)
 {
 
-   ::estatus     estatus = error_exception;
+   ::estatus estatus = error_exception;
 
    try
    {
@@ -729,7 +729,7 @@ void thread_name_abbreviate(string & strName, int len)
       try
       {
 
-         estatus = method();
+         estatus = procedure();
 
       }
       catch (...)

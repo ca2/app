@@ -3,7 +3,7 @@
 
 
 //method_event::method_event(const ::method & method) :
-//   m_method(__method([this, method]()
+//   m_method(__procedure([this, method]()
 //      {
 //
 //         m_method->run();

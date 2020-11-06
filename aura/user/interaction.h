@@ -228,10 +228,10 @@ namespace user
       //virtual void task_on_term(::task* pthread) override;
 
 
-      virtual ::estatus main_async(const ::method & method, e_priority epriority = priority_normal);
+      virtual ::estatus main_async(const ::procedure & procedure, e_priority epriority = priority_normal);
 
 
-      virtual ::estatus main_sync(const ::method & method, const ::duration & duration = one_minute(), e_priority epriority = priority_normal);
+      virtual ::estatus main_sync(const ::procedure & procedure, const ::duration & duration = one_minute(), e_priority epriority = priority_normal);
 
 
       inline void auto_prodevian_on_show() { m_ewindowflag |= window_flag_auto_prodevian_on_show; }
@@ -1483,18 +1483,18 @@ namespace user
       virtual e_stock_icon get_stock_icon();
 
 
-      virtual void post_method(const ::method & method);
-      virtual void prodevian_post_method(const ::method & method);
+      virtual void post_procedure(const ::procedure & procedure);
+      virtual void prodevian_post_procedure(const ::procedure & procedure);
 
 
-      virtual void send_method(const ::method& method, ::duration durationTimeout = ::duration::infinite());
+      virtual void send_procedure(const ::procedure & procedure, ::duration durationTimeout = ::duration::infinite());
 
 
    /*   template < typename PRED >
       void post_pred(PRED pred)
       {
 
-         post_method(__method(pred));
+         post_method(__procedure(pred));
 
       }*/
 
@@ -1503,7 +1503,7 @@ namespace user
       void prodevian_post_pred(PRED pred)
       {
 
-         prodevian_schedule(__method(pred));
+         prodevian_schedule(__procedure(pred));
 
       }*/
 
@@ -1521,7 +1521,7 @@ namespace user
       void send_pred(PRED pred, ::duration durationTimeout = ::duration::infinite())
       {
 
-         send_method(__method(pred), durationTimeout);
+         send_method(__procedure(pred), durationTimeout);
 
       }*/
 

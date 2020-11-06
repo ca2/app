@@ -436,7 +436,7 @@ void matter::on_future(const ::var& var)
 }
 
 
-::task* matter::defer_start_task(const ::id& id, const ::method & method)
+::task* matter::defer_start_task(const ::id& id, const ::procedure & procedure)
 {
 
    auto ptasktool = __task_pool(taskpool());
@@ -444,7 +444,7 @@ void matter::on_future(const ::var& var)
    if (ptasktool)
    {
 
-      return ptasktool->defer_start(id, method);
+      return ptasktool->defer_start(id, procedure);
 
    }
 
@@ -735,10 +735,10 @@ void matter::to_string(const class string_exchange & str) const
 }
 
 
-CLASS_DECL_ACME ::estatus __call(const ::method & method)
+CLASS_DECL_ACME ::estatus __call(const ::procedure & procedure)
 {
 
-   return method();
+   return procedure();
 
 }
 

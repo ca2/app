@@ -377,10 +377,10 @@ CLASS_DECL_APEX int_bool show_window(oswindow oswindow, int iShowCmd)
 //}
 //
 
-CLASS_DECL_ACME::estatus _os_message_box(oswindow oswindow, const char* pszMessage, const char* pszTitle, ::emessagebox emessagebox, const ::future & future);
+CLASS_DECL_ACME::estatus _os_message_box(oswindow oswindow, const char* pszMessage, const char* pszTitle, ::emessagebox emessagebox, const ::futurevar & futurevar);
 
 
-CLASS_DECL_APEX ::estatus apex_os_message_box(oswindow oswindow, const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox, const ::future & future)
+CLASS_DECL_APEX ::estatus apex_os_message_box(oswindow oswindow, const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox, const ::futurevar & futurevar)
 {
 
    if (System.is_dedicated_thread())
@@ -389,7 +389,7 @@ CLASS_DECL_APEX ::estatus apex_os_message_box(oswindow oswindow, const char * ps
       System.fork([=]()
          {
 
-            _os_message_box(oswindow, pszMessage, pszTitle, emessagebox, future);
+            _os_message_box(oswindow, pszMessage, pszTitle, emessagebox, futurevar);
 
          });
 
@@ -397,7 +397,7 @@ CLASS_DECL_APEX ::estatus apex_os_message_box(oswindow oswindow, const char * ps
 
    }
 
-   return _os_message_box(oswindow, pszMessage, pszTitle, emessagebox, future);
+   return _os_message_box(oswindow, pszMessage, pszTitle, emessagebox, futurevar);
 
 }
 

@@ -25,7 +25,7 @@
 //   COUNT_ID,
 //
 //   // procedure
-//   CREATE_METHOD,
+//   CREATE_PROCEDURE,
 //   DESTROY_PROCEDURE,
 //
 //   // callback

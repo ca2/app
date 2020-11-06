@@ -30,7 +30,7 @@ namespace user
       bool                                m_bAutoSaveModified;
 
       string                              m_strSaveFileExtension;
-      id_map < method_array >             m_mapMethod;
+      id_map < procedure_array >          m_mapProcedure;
 
 
       document();

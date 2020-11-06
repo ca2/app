@@ -46,7 +46,7 @@ interprocess_intercommunication::~interprocess_intercommunication()
 
    run_property("on_create");
 
-   call_method(CREATE_METHOD);
+   call_procedure(CREATE_PROCEDURE);
 
    estatus = __construct_new(m_prx);
 

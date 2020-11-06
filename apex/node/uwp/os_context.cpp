@@ -447,7 +447,7 @@ namespace uwp
       {
 
 
-         System.main_user_async(__method([strUrl]()
+         System.main_user_async(__procedure([strUrl]()
             {
 
                Platform::String^ strUri = strUrl;

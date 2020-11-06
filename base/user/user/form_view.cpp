@@ -296,7 +296,7 @@ namespace user
          {
 
             //call_sync(get_document()->m_mapMethod["load"]);
-            get_document()->call_method("load");
+            get_document()->call_procedure("load");
 
          }
 

@@ -706,16 +706,16 @@ bool thread::pump_runnable()
    while(thread_get_run())
    {
 
-      if (m_methoda.isEmpty())
+      if (m_procedurea.isEmpty())
       {
 
          return false;
 
       }
 
-      auto method = m_methoda.first();
+      auto method = m_procedurea.first();
 
-      m_methoda.remove_at(0);
+      m_procedurea.remove_at(0);
 
       if (method)
       {
@@ -1498,7 +1498,7 @@ void thread::task_remove(::task * ptask)
 void thread::finalize()
 {
 
-   call_method(DESTROY_METHOD);
+   call_procedure(DESTROY_PROCEDURE);
 
    string strType = type_name();
 
@@ -2796,10 +2796,10 @@ void thread::post_to_all_threads(const ::id & id, WPARAM wparam, LPARAM lparam)
 }
 
 
-bool thread::post_task(const ::method& method)
+bool thread::post_task(const ::procedure & procedure)
 {
 
-   if (!method)
+   if (!procedure)
    {
 
       return false;
@@ -2808,7 +2808,7 @@ bool thread::post_task(const ::method& method)
 
    sync_lock sl(mutex());
 
-   m_methoda.add(method);
+   m_procedurea.add(procedure);
 
    kick_idle();
 
@@ -2817,10 +2817,10 @@ bool thread::post_task(const ::method& method)
 }
 
 
-bool thread::send_task(const ::method & method, ::duration durationTimeout)
+bool thread::send_task(const ::procedure & procedure, ::duration durationTimeout)
 {
 
-   return send_object(e_message_system, system_message_method, method, durationTimeout);
+   return send_object(e_message_system, system_message_method, procedure, durationTimeout);
 
 }
 
@@ -3958,9 +3958,9 @@ void thread::message_handler(::message::base * pbase)
          else if (msg.wParam == system_message_method)
          {
 
-            ::method method(msg.lParam);
+            ::procedure procedure(msg.lParam);
 
-            method();
+            procedure();
 
          }
          //else if (msg.wParam == system_message_runnable)

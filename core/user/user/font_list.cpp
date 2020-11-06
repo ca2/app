@@ -71,7 +71,7 @@ namespace user
 
       }
 
-      //psession->add(method(e_method_font_change, [this]() { on_font_change(); }));
+      //psession->add(method(e_procedure_font_change, [this]() { on_font_change(); }));
 
    }
 
@@ -595,7 +595,7 @@ namespace user
             //fork([this]()
   //             {
 //
-    //              psession->call(e_method_font_change);
+    //              psession->call(e_procedure_font_change);
 
       //         });
 

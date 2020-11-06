@@ -51,8 +51,8 @@ namespace user
 
       bool                                   m_bUpdatingScreen;
       tick                                   m_tickLastScreenUpdate;
-      ::method                               m_methodUpdateScreen;
-      ::method                               m_methodWindowShow;
+      ::procedure                            m_procedureUpdateScreen;
+      ::procedure                            m_procedureWindowShow;
 
 
       prodevian();

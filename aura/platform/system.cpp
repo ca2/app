@@ -6649,12 +6649,12 @@ namespace aura
    //}
 
 
-   ::estatus system::main_user_async(const ::method & method, ::e_priority epriority)
+   ::estatus system::main_user_async(const ::procedure & procedure, ::e_priority epriority)
    {
 
 #ifdef _UWP
 
-      return m_pimplMain->main_async(method, epriority);
+      return m_pimplMain->main_async(procedure, epriority);
 
 #else
 

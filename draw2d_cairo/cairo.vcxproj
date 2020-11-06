@@ -17,6 +17,22 @@
       <Configuration>cover</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="cube_basis|Win32">
+      <Configuration>cube_basis</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="cube_basis|x64">
+      <Configuration>cube_basis</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="cube_stage|Win32">
+      <Configuration>cube_stage</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="cube_stage|x64">
+      <Configuration>cube_stage</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="stage|Win32">
       <Configuration>stage</Configuration>
       <Platform>Win32</Platform>
@@ -41,6 +57,13 @@
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CLRSupport>false</CLRSupport>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cover|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
@@ -55,7 +78,21 @@
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CLRSupport>false</CLRSupport>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CLRSupport>false</CLRSupport>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <CLRSupport>false</CLRSupport>
@@ -77,10 +114,22 @@
     <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CLRSupport>false</CLRSupport>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\..\archive\platform-windows\Common.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\archive\platform-windows\Common.props" />
   </ImportGroup>
@@ -92,7 +141,15 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\archive\platform-windows\Common.props" />
   </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\..\archive\platform-windows\Common.props" />
+  </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\..\archive\platform-windows\Common.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\archive\platform-windows\Common.props" />
   </ImportGroup>
@@ -104,8 +161,19 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\archive\platform-windows\Common.props" />
   </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\..\archive\platform-windows\Common.props" />
+  </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
+    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
+    <GenerateManifest>false</GenerateManifest>
+    <EmbedManifest>false</EmbedManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
@@ -126,7 +194,21 @@
     <GenerateManifest>false</GenerateManifest>
     <EmbedManifest>false</EmbedManifest>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
+    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
+    <GenerateManifest>false</GenerateManifest>
+    <EmbedManifest>false</EmbedManifest>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
+    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
+    <GenerateManifest>false</GenerateManifest>
+    <EmbedManifest>false</EmbedManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'">
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
@@ -147,7 +229,75 @@
     <GenerateManifest>false</GenerateManifest>
     <EmbedManifest>false</EmbedManifest>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
+    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
+    <GenerateManifest>false</GenerateManifest>
+    <EmbedManifest>false</EmbedManifest>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>_DRAW2D_CAIRO_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)/local/include;$(__archive)/third-windows/$(PlatformName)/$(Configuration)/include;$(__archive)/third-windows/include;$(__archive)/third-windows/third/include;$(__archive)/third-windows/third/include/include;$(SolutionDir)../../../archive/platform-windows;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Disabled</Optimization>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAsManaged>false</CompileAsManaged>
+      <StringPooling>false</StringPooling>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <OpenMPSupport>false</OpenMPSupport>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MinimalRebuild>false</MinimalRebuild>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <SDLCheck>true</SDLCheck>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <FloatingPointExceptions>false</FloatingPointExceptions>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <BufferSecurityCheck>true</BufferSecurityCheck>
+      <EnableParallelCodeGeneration>false</EnableParallelCodeGeneration>
+      <CreateHotpatchableImage>false</CreateHotpatchableImage>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <UseFullPaths>true</UseFullPaths>
+      <ObjectFileName>$(IntDir)%(Directory)</ObjectFileName>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
+      <AdditionalDependencies>freetype.lib;cairo.lib;Shlwapi.lib;Gdiplus.lib;WinInet.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-windows\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-windows\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>
+      </IgnoreAllDefaultLibraries>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
+      <SubSystem>Windows</SubSystem>
+      <FixedBaseAddress>false</FixedBaseAddress>
+      <ShowProgress>NotSet</ShowProgress>
+    </Link>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <Manifest>
+      <AdditionalManifestFiles>
+      </AdditionalManifestFiles>
+    </Manifest>
+    <Xdcmake>
+      <DocumentLibraryDependencies>false</DocumentLibraryDependencies>
+    </Xdcmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_DRAW2D_CAIRO_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -339,7 +489,149 @@
       <DocumentLibraryDependencies>false</DocumentLibraryDependencies>
     </Xdcmake>
   </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>_DRAW2D_CAIRO_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)/local/include;$(__archive)/third-windows/$(PlatformName)/$(Configuration)/include;$(__archive)/third-windows/include;$(__archive)/third-windows/third/include;$(__archive)/third-windows/third/include/include;$(SolutionDir)../../../archive/platform-windows;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Full</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAsManaged>false</CompileAsManaged>
+      <StringPooling>false</StringPooling>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <OpenMPSupport>false</OpenMPSupport>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MinimalRebuild>false</MinimalRebuild>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <FloatingPointExceptions>false</FloatingPointExceptions>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
+      <FavorSizeOrSpeed>Size</FavorSizeOrSpeed>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
+      <CreateHotpatchableImage>false</CreateHotpatchableImage>
+      <BufferSecurityCheck>
+      </BufferSecurityCheck>
+      <SDLCheck>
+      </SDLCheck>
+      <UseFullPaths>true</UseFullPaths>
+      <ObjectFileName>$(IntDir)%(Directory)</ObjectFileName>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>freetype.lib;cairo.lib;Shlwapi.lib;Gdiplus.lib;WinInet.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      <AdditionalLibraryDirectories>$(OutDir);$(__archive)/third-windows/$(PlatformName)/$(Configuration)/lib;$(__archive)/third-windows/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>
+      </IgnoreAllDefaultLibraries>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
+      <SubSystem>Windows</SubSystem>
+      <FixedBaseAddress>false</FixedBaseAddress>
+      <ShowProgress>NotSet</ShowProgress>
+      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+      <RandomizedBaseAddress>true</RandomizedBaseAddress>
+      <MergeSections>
+      </MergeSections>
+    </Link>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <Manifest>
+      <AdditionalManifestFiles>
+      </AdditionalManifestFiles>
+    </Manifest>
+    <Xdcmake>
+      <DocumentLibraryDependencies>false</DocumentLibraryDependencies>
+    </Xdcmake>
+  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>_DRAW2D_CAIRO_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)/local/include;$(__archive)/third-windows/$(PlatformName)/$(Configuration)/include;$(__archive)/third-windows/include;$(__archive)/third-windows/third/include;$(__archive)/third-windows/third/include/include;$(SolutionDir)../../../archive/platform-windows;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <OpenMPSupport>false</OpenMPSupport>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
+      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MinimalRebuild>false</MinimalRebuild>
+      <CompileAsManaged>false</CompileAsManaged>
+      <Optimization>Disabled</Optimization>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <OmitFramePointers>false</OmitFramePointers>
+      <StringPooling>false</StringPooling>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <SDLCheck>true</SDLCheck>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <FloatingPointExceptions>false</FloatingPointExceptions>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <BufferSecurityCheck>true</BufferSecurityCheck>
+      <EnableParallelCodeGeneration>false</EnableParallelCodeGeneration>
+      <CreateHotpatchableImage>false</CreateHotpatchableImage>
+      <UseFullPaths>true</UseFullPaths>
+      <ObjectFileName>$(IntDir)%(Directory)</ObjectFileName>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
+      <AdditionalDependencies>freetype.lib;cairo.lib;Shlwapi.lib;Gdiplus.lib;WinInet.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-windows\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-windows\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>
+      </IgnoreAllDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <SubSystem>Windows</SubSystem>
+      <FixedBaseAddress>false</FixedBaseAddress>
+      <MapFileName>
+      </MapFileName>
+    </Link>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <CustomBuildStep>
+      <Command>
+      </Command>
+    </CustomBuildStep>
+    <CustomBuildStep>
+      <Outputs>
+      </Outputs>
+    </CustomBuildStep>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <Manifest>
+      <AdditionalManifestFiles>
+      </AdditionalManifestFiles>
+    </Manifest>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_DRAW2D_CAIRO_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -559,6 +851,83 @@
       </AdditionalManifestFiles>
     </Manifest>
   </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>_DRAW2D_CAIRO_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)/local/include;$(__archive)/third-windows/$(PlatformName)/$(Configuration)/include;$(__archive)/third-windows/include;$(__archive)/third-windows/third/include;$(__archive)/third-windows/third/include/include;$(SolutionDir)../../../archive/platform-windows;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <OpenMPSupport>false</OpenMPSupport>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MinimalRebuild>false</MinimalRebuild>
+      <CompileAsManaged>false</CompileAsManaged>
+      <Optimization>Full</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <OmitFramePointers>true</OmitFramePointers>
+      <StringPooling>false</StringPooling>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <FloatingPointExceptions>false</FloatingPointExceptions>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <BufferSecurityCheck>
+      </BufferSecurityCheck>
+      <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
+      <CreateHotpatchableImage>false</CreateHotpatchableImage>
+      <FavorSizeOrSpeed>Size</FavorSizeOrSpeed>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
+      <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
+      <SDLCheck>
+      </SDLCheck>
+      <UseFullPaths>true</UseFullPaths>
+      <ObjectFileName>$(IntDir)%(Directory)</ObjectFileName>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>freetype.lib;cairo.lib;Shlwapi.lib;Gdiplus.lib;WinInet.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      <AdditionalLibraryDirectories>$(OutDir);$(__archive)/third-windows/$(PlatformName)/$(Configuration)/lib;$(__archive)/third-windows/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>
+      </IgnoreAllDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <SubSystem>Windows</SubSystem>
+      <FixedBaseAddress>false</FixedBaseAddress>
+      <MapFileName>$(TargetDir)$(TargetName).map</MapFileName>
+      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+    </Link>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <CustomBuildStep>
+      <Command>
+      </Command>
+    </CustomBuildStep>
+    <CustomBuildStep>
+      <Outputs>
+      </Outputs>
+    </CustomBuildStep>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <Manifest>
+      <AdditionalManifestFiles>
+      </AdditionalManifestFiles>
+    </Manifest>
+  </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="bitmap.h" />
     <ClInclude Include="brush.h" />
@@ -584,11 +953,15 @@
     <ClCompile Include="font.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cover|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="graphics.cpp" />
     <ClCompile Include="image_impl.cpp" />

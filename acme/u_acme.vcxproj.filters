@@ -3132,7 +3132,7 @@
     <ClInclude Include="multithreading\pred_holder.h">
       <Filter>Header Files\multithreading</Filter>
     </ClInclude>
-    <ClInclude Include="multithreading\method_array.h">
+    <ClInclude Include="multithreading\procedure_array.h">
       <Filter>Header Files\multithreading</Filter>
     </ClInclude>
     <ClInclude Include="multithreading\retry.h">

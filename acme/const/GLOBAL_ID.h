@@ -25,8 +25,8 @@ enum
    COUNT_ID,
 
    // method
-   CREATE_METHOD,
-   DESTROY_METHOD,
+   CREATE_PROCEDURE,
+   DESTROY_PROCEDURE,
 
    // future
    FINISH_FUTURE,

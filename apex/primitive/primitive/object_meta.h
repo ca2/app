@@ -6,10 +6,10 @@ class CLASS_DECL_APEX object_meta
 public:
 
 
-   string                           m_strTopicText;
-   id_map < method_array >          m_mapMethod;
-   id_map < future_array >          m_mapFuture;
-   //__pointer_array(::task)          m_taska;
+   string                              m_strTopicText;
+   id_map < procedure_array >          m_mapProcedure;
+   id_map < futurevar_array >          m_mapFuturevar;
+   //__pointer_array(::task)           m_taska;
 
 
    object_meta() { }

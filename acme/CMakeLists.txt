@@ -349,7 +349,7 @@ add_executable(acme
         multithreading/initial_single_lock.h
         multithreading/manual_reset_event.cpp
         multithreading/manual_reset_event.h
-        multithreading/method_array.h
+        multithreading/procedure_array.h
         multithreading/mq.cpp
         multithreading/mq.h
         multithreading/multi_lock.cpp

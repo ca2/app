@@ -2590,9 +2590,10 @@ namespace user
 #include "acme/platform/_global.h"
 
 class function;
-class method;
+class procedure;
 template < typename FUTURE >
 class future;
+using futurevar = ::future < ::var >;
 
 
 namespace factory
@@ -2615,7 +2616,7 @@ class manual_reset_event;
 #include "acme/primitive/primitive/function_pointer.h"
 
 
-#include "acme/primitive/primitive/method.h"
+#include "acme/primitive/primitive/procedure.h"
 
 
 #include "acme/primitive/primitive/future.h"
@@ -2808,9 +2809,6 @@ using generic_pointer = __pointer(::matter);
 
 #endif
 
-class method;
-using futurevar = ::future < ::var >;
-//class future;
 
 
 namespace core
@@ -2831,19 +2829,19 @@ class task;
 
 #include "acme/exception/_.h"
 
-using method_array = ::array < ::method >;
+using procedure_array = ::array < ::procedure >;
 
-using generic_future_array = ::array < ::futurevar >;
+using futurevar_array = ::array < ::futurevar >;
 
 template < typename FUTURE >
 using future_array = ::array < ::future < FUTURE > >;
 
 
 template < typename PRED >
-void add_method(method_array& array, PRED pred);
+void add_procedure(procedure_array& array, PRED pred);
 
 template < typename PRED >
-void add_future(generic_future_array& array, PRED pred);
+void add_futurevar(futurevar_array& array, PRED pred);
 
 template < typename PRED, typename FUTURE >
 void add_future(future_array < FUTURE > & array, PRED pred);
@@ -3246,7 +3244,7 @@ class mq_base;
 //#include "acme/multithreading/simple_thread.h"
 //#include "acme/multithreading/go_thread.h"
 //#include "acme/multithreading/signal_thread.h"
-#include "acme/multithreading/method_array.h"
+#include "acme/multithreading/procedure_array.h"
 
 
 ///#include "acme/primitive/primitive/job.h"

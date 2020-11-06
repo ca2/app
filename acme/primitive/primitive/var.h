@@ -80,8 +80,8 @@ public:
       ::i64_array *              m_pi64a;
       ::memory *                 m_pmemory;
       ::file::path_object *      m_ppath;
-      ::method                   m_method;
-      ::futurevar           m_future;
+      ::procedure                m_procedure;
+      ::futurevar                m_futurevar;
       ::i64                      m_all[2];
 
 
@@ -132,8 +132,8 @@ public:
    var(const property_set & set);
    var(const var & var);
    var(const property & prop);
-   var(const method& method);
-   var(const futurevar& future);
+   var(const procedure & procedure);
+   var(const futurevar & futurevar);
    var(const property * pproperty);
    var(const class duration & duration);
    var(class duration * pduration);
@@ -277,8 +277,8 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
    inline ::uptr                    uptr(uptr uiDefault = 0)  const;
    float                            get_float(float fDefault = 0.f)   const;
    double                           get_double(double dDefault = 0.0)   const;
-   method                           get_method() const;
-   futurevar                        get_future() const;
+   procedure                        get_procedure() const;
+   futurevar                        get_futurevar() const;
    //::image *                        image() const;
    //::image * &                      image();
    string                           to_r_string() const;
@@ -434,8 +434,8 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
 
    }
 
-   var& operator = (const ::method& method);
-   var& operator = (const ::futurevar& future);
+   var& operator = (const ::procedure & procedure);
+   var& operator = (const ::futurevar & futurevar);
 
    inline var & operator = (nullptr_t) { set_type(e_type_null, false); return *this; }
 

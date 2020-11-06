@@ -521,7 +521,7 @@ template < typename PRED >
 inline ::thread_pointer object::fork(PRED pred)
 {
 
-   auto pmethod = __method(pred);
+   auto pmethod = __procedure(pred);
 
    auto pthread = __create_new < ::thread >();
 
@@ -536,12 +536,12 @@ inline ::thread_pointer object::fork(PRED pred)
 }
 
 
-inline ::thread_pointer object::launch(const ::method& method)
+inline ::thread_pointer object::launch(const ::procedure & procedure)
 {
 
    auto pthread = __create_new < ::thread >();
 
-   pthread->m_pmatter = method;
+   pthread->m_pmatter = procedure;
 
    pthread->m_id = pthread->m_pmatter->type_name();
 

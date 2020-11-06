@@ -2,7 +2,7 @@
 
 
 template < typename PRED >
-class pred_sync_method :
+class pred_sync_procedure :
    virtual public ::matter
 {
 public:
@@ -12,8 +12,8 @@ public:
    manual_reset_event         m_ev;
 
 
-   pred_sync_method(PRED pred) : m_pred(pred) { }
-   virtual ~pred_sync_method() {}
+   pred_sync_procedure(PRED pred) : m_pred(pred) { }
+   virtual ~pred_sync_procedure() {}
 
 
    virtual ::estatus run() override
@@ -50,9 +50,9 @@ public:
 
 
 template < typename PRED >
-method __sync_method(PRED pred)
+procedure __sync_procedure(PRED pred)
 {
 
-   return __new(pred_sync_method<PRED>(pred));
+   return __new(pred_sync_procedure<PRED>(pred));
 
 }

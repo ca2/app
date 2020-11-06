@@ -4,7 +4,7 @@
 #endif
 
 
-CLASS_DECL_AURA::estatus message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, ::emessagebox emessagebox, ::future future)
+CLASS_DECL_AURA::estatus message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, ::emessagebox emessagebox, const ::futurevar & futurevar)
 {
 
    ::estatus estatus = ::error_failed;
@@ -14,7 +14,7 @@ CLASS_DECL_AURA::estatus message_box(::user::primitive* puiOwner, const char* ps
    if(psystem)
    {
 
-      psystem->message_box(puiOwner, pszMessage, pszTitle, emessagebox, future);
+      psystem->message_box(puiOwner, pszMessage, pszTitle, emessagebox, futurevar);
 
    }
 

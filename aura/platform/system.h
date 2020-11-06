@@ -362,8 +362,7 @@ namespace aura
 
       //virtual bool verb();
 
-      virtual ::estatus main_user_async(const ::method & method, ::e_priority epriority = priority_normal) override;
-
+      virtual ::estatus main_user_async(const ::procedure & procedure, ::e_priority epriority = priority_normal) override;
 
 
       //virtual bool process_initialize();

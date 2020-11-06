@@ -299,7 +299,7 @@ namespace user
    }
 
 
-   ::estatus primitive_impl::main_async(const method & method, e_priority epriority)
+   ::estatus primitive_impl::main_async(const procedure & procedure, e_priority epriority)
    {
 
       if (!m_puserinteraction)
@@ -318,7 +318,7 @@ namespace user
 
       }
 
-      return pwnd->main_async(method, epriority);
+      return pwnd->main_async(procedure, epriority);
 
    }
 
@@ -1424,7 +1424,7 @@ namespace user
    bool primitive_impl::post_message(const ::id & id, WPARAM wparam, lparam lparam)
    {
 
-      m_puserinteraction->post_method(__method(call_message_handler_task(m_puserinteraction, id, wparam, lparam)));
+      m_puserinteraction->post_procedure(__procedure(call_message_handler_task(m_puserinteraction, id, wparam, lparam)));
 
       return true;
 
@@ -1518,7 +1518,7 @@ namespace user
       }
 
       m_puserinteraction->run_property("on_create");
-      m_puserinteraction->call_method(CREATE_METHOD);
+      m_puserinteraction->call_procedure(CREATE_PROCEDURE);
 
    }
 

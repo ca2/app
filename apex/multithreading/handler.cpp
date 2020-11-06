@@ -22,36 +22,36 @@ handler_manager::~handler_manager()
 }
 
 
-::estatus handler_manager::handle(const ::method& method, bool bSync)
+::estatus handler_manager::handle(const ::procedure & procedure, bool bSync)
 {
 
    if (bSync)
    {
 
-      return sync(method);
+      return sync(procedure);
 
    }
    else
    {
 
-      return async(method);
+      return async(procedure);
 
    }
 
 }
 
 
-::estatus handler_manager::sync(const ::method& method)
+::estatus handler_manager::sync(const ::procedure & procedure)
 {
 
    if (m_bUseDedicatedThread)
    {
 
-      auto pmethod = ___sync_method(method);
+      auto pprocedure = ___sync_procedure(procedure);
 
-      async(pmethod);
+      async(pprocedure);
 
-      pmethod->wait(one_minute());
+      pprocedure->wait(one_minute());
 
       return ::success;
 
@@ -59,7 +59,7 @@ handler_manager::~handler_manager()
    else
    {
 
-      return method();
+      return procedure();
 
    }
 
@@ -75,14 +75,14 @@ handler_manager::~handler_manager()
 
 
 
-::estatus handler_manager::async(const ::method & method)
+::estatus handler_manager::async(const ::procedure & procedure)
 {
 
    {
 
       sync_lock sl(mutex());
 
-      m_methoda.add(method);
+      m_procedurea.add(procedure);
 
       m_pevTaskOnQueue->SetEvent();
 
@@ -109,12 +109,12 @@ handler_manager::~handler_manager()
 }
 
 
-method handler_manager::pick_new_task()
+procedure handler_manager::pick_new_task()
 {
 
    sync_lock sl(mutex());
 
-   if (m_methoda.is_empty())
+   if (m_procedurea.is_empty())
    {
 
       sl.unlock();
@@ -125,16 +125,16 @@ method handler_manager::pick_new_task()
 
    }
 
-   if (m_methoda.is_empty())
+   if (m_procedurea.is_empty())
    {
 
       return nullptr;
 
    }
 
-   auto method = m_methoda.first();
+   auto method = m_procedurea.first();
 
-   m_methoda.remove_at(0);
+   m_procedurea.remove_at(0);
 
    return method;
 

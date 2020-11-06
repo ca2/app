@@ -1,11 +1,7 @@
 #pragma once
 
 
-
-
-
-
-class CLASS_DECL_ACME method :
+class CLASS_DECL_ACME procedure :
    public ::function_pointer
 {
 public:
@@ -20,8 +16,6 @@ public:
 
 
 };
-
-
 
 
 

@@ -162,8 +162,7 @@ public:
 
    virtual ::layered * taskpool();
 
-   virtual ::task* defer_start_task(const ::id& id, const ::method & method);
-//   virtual ::thread* defer_start_thread(const ::id& id, matter* pmatter);
+   virtual ::task* defer_start_task(const ::id & id, const ::procedure & procedure);
 
    virtual void delete_this();
 

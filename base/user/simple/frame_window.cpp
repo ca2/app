@@ -285,7 +285,7 @@ void simple_frame_window::defer_save_window_placement()
 
    m_tickLastSaveWindowRectRequest.Now();
 
-   defer_start_task("save_window_rect", __method([this]()
+   defer_start_task("save_window_rect", __procedure([this]()
       {
 
          _task_save_window_rect();
@@ -4057,7 +4057,7 @@ void simple_frame_window::call_notification_area_action(const char * pszId)
 
    string strId(pszId);
 
-   post_method(__method([this, strId]()
+   post_method(__procedure([this, strId]()
    {
 
       notification_area_action(strId);

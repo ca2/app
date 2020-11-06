@@ -1310,7 +1310,7 @@ namespace user
 
       //   post_redraw();
 
-      //   post_method(__method([this]() { finish(); }));
+      //   post_method(__procedure([this]() { finish(); }));
 
       //   return error_pending;
 
@@ -1522,7 +1522,7 @@ namespace user
          else
          {
 
-            post_method(__method([this]()
+            post_procedure(__procedure([this]()
                {
 
                   if (get_context_application() != nullptr && get_context_application()->get_context_session() != nullptr && has_focus())
@@ -3340,22 +3340,22 @@ namespace user
    }
 
    
-   ::estatus interaction::main_async(const ::method & method, e_priority epriority)
+   ::estatus interaction::main_async(const ::procedure & procedure, e_priority epriority)
    {
 
-      return m_pimpl->main_async(method, epriority);
+      return m_pimpl->main_async(procedure, epriority);
 
    }
 
 
-   ::estatus interaction::main_sync(const method & method, const ::duration & duration, e_priority epriority)
+   ::estatus interaction::main_sync(const procedure & procedure, const ::duration & duration, e_priority epriority)
    {
 
-      auto pmethod = ___sync_method(method);
+      auto pprocedure = ___sync_procedure(procedure);
 
-      main_async(pmethod, epriority);
+      main_async(pprocedure, epriority);
 
-      auto waitresult = pmethod->wait(duration);
+      auto waitresult = pprocedure->wait(duration);
 
       if (!waitresult.succeeded())
       {
@@ -3364,7 +3364,7 @@ namespace user
 
       }
 
-      return pmethod->m_estatus;
+      return pprocedure->m_estatus;
 
    }
 
@@ -3380,7 +3380,7 @@ namespace user
 
       run_property("on_create");
 
-      call_method(CREATE_METHOD);
+      call_procedure(CREATE_PROCEDURE);
 
       sync_style();
 
@@ -7625,7 +7625,7 @@ namespace user
       // make sure a message goes through to exit the modal loop
       m_bModal = false;
 
-      send_future(DIALOG_RESULT_FUTURE, idResult);
+      send_futurevar(DIALOG_RESULT_FUTURE, idResult);
 
       post_message(e_message_close);
 
@@ -9702,7 +9702,7 @@ restart:
          {
 
             defer_start_task("transparent_mouse_event_thread",
-               __method([this]()
+               __procedure([this]()
                   {
 
                      _task_transparent_mouse_event();
@@ -12537,13 +12537,13 @@ restart:
    }
 
 
-   void interaction::post_method(const ::method & method)
+   void interaction::post_procedure(const ::procedure & procedure)
    {
 
       if (::is_set(m_pthreadUserInteraction))
       {
 
-         m_pthreadUserInteraction->post_task(method);
+         m_pthreadUserInteraction->post_task(procedure);
 
       }
 
@@ -12604,7 +12604,7 @@ restart:
 #endif
 
 
-   void interaction::send_method(const ::method & method, ::duration durationTimeout)
+   void interaction::send_procedure(const ::procedure & procedure, ::duration durationTimeout)
    {
 
       ::thread * pthread = get_wnd() == nullptr ? (::thread *) nullptr : get_wnd()->m_pthreadUserInteraction;
@@ -12614,13 +12614,13 @@ restart:
       if (pthread == nullptr || pthread == pthreadCurrent)
       {
 
-         method();
+         procedure();
 
       }
       else
       {
 
-         pthread->send_method(method, durationTimeout);
+         pthread->send_procedure(procedure, durationTimeout);
 
       }
 

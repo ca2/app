@@ -30,7 +30,7 @@ message_box::~message_box()
 //
 //}
 
-CLASS_DECL_ACME ::estatus message_box(oswindow oswindow, const char* pszText, const char* pszTitle, ::emessagebox emessagebox, ::future future)
+CLASS_DECL_ACME ::estatus message_box(oswindow oswindow, const char* pszText, const char* pszTitle, ::emessagebox emessagebox, const ::futurevar & futurevar)
 {
 
    __throw(todo("message_box"));

@@ -38,9 +38,9 @@ namespace acme
       virtual void on_apply(::action * paction) override;
 
 
-      virtual ::estatus main_user_async(const ::method & method, ::e_priority epriority = priority_normal);
+      virtual ::estatus main_user_async(const ::procedure & procedure, ::e_priority epriority = priority_normal);
 
-      virtual ::estatus main_user_sync(const method & method, const ::duration & duration = one_minute(), e_priority epriority = priority_normal);
+      virtual ::estatus main_user_sync(const procedure & procedure, const ::duration & duration = one_minute(), e_priority epriority = priority_normal);
 
 
       ::task * get_task(ITHREAD ithread);

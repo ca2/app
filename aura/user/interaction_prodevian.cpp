@@ -81,7 +81,7 @@ namespace user
 
       }
 
-      m_methodUpdateScreen = __method([this]()
+      m_procedureUpdateScreen = __procedure([this]()
          {
 
             if (!m_bitFinishing && !m_bitSetFinish)
@@ -95,7 +95,7 @@ namespace user
 
          });
 
-      m_methodWindowShow = __method([this]()
+      m_procedureWindowShow = __procedure([this]()
          {
 
             if (m_pimpl)
@@ -239,23 +239,23 @@ void prodevian::term_thread()
 
    m_puserinteraction.release();
 
-   if (m_methodUpdateScreen)
+   if (m_procedureUpdateScreen)
    {
 
-      m_methodUpdateScreen->finalize();
+      m_procedureUpdateScreen->finalize();
 
    }
 
-   m_methodUpdateScreen.release(OBJ_REF_DBG_THIS);
+   m_procedureUpdateScreen.release(OBJ_REF_DBG_THIS);
 
-   if (m_methodWindowShow)
+   if (m_procedureWindowShow)
    {
 
-      m_methodWindowShow->finalize();
+      m_procedureWindowShow->finalize();
 
    }
 
-   m_methodWindowShow.release(OBJ_REF_DBG_THIS);
+   m_procedureWindowShow.release(OBJ_REF_DBG_THIS);
 
 }
 
@@ -720,7 +720,7 @@ bool prodevian::prodevian_iteration()
             if(m_puserinteraction)
             {
 
-               m_puserinteraction->post_method(m_methodUpdateScreen);
+               m_puserinteraction->post_procedure(m_procedureUpdateScreen);
 
             }
 
@@ -743,7 +743,7 @@ bool prodevian::prodevian_iteration()
       if (bStartWindowVisual)
       {
 
-         m_puserinteraction->post_method(m_methodWindowShow);
+         m_puserinteraction->post_procedure(m_procedureWindowShow);
 
       }
       // ENDIF WINDOWS
@@ -1134,13 +1134,13 @@ bool prodevian::prodevian_iteration()
    }
 
 
-   void interaction::prodevian_post_method(const ::method& method)
+   void interaction::prodevian_post_procedure(const ::procedure & procedure)
    {
 
       if (is_graphical())
       {
 
-         m_pimpl2->m_pprodevian->post_task(method);
+         m_pimpl2->m_pprodevian->post_task(procedure);
 
       }
 

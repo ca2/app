@@ -348,7 +348,7 @@ namespace user
 
       run_property("on_create");
 
-      call_method(CREATE_METHOD);
+      call_procedure(CREATE_PROCEDURE);
 
       //::database::client::initialize_data_client(Application.dataserver());
 

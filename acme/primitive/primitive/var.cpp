@@ -302,24 +302,24 @@ var::var(const property & prop)
 }
 
 
-var::var(const method & method)
+var::var(const procedure & procedure)
 {
 
     m_etype = type_new;
     xxf_zero(m_all);
-    set_type(type_method);
-    m_method = method;
+    set_type(type_procedure);
+    m_procedure = procedure;
 
 }
 
 
-var::var(const ::future & future)
+var::var(const ::futurevar & futurevar)
 {
 
    m_etype = type_new;
    xxf_zero(m_all);
-   set_type(type_future);
-   m_future = future;
+   set_type(type_futurevar);
+   m_futurevar = futurevar;
 
 }
 
@@ -2360,32 +2360,32 @@ id & var::get_ref_id(const char * pszOnNull)
 }
 
 
-method var::get_method() const
+procedure var::get_procedure() const
 {
 
-   if (get_type() != ::type_method)
+   if (get_type() != ::type_procedure)
    {
 
-      return method();
+      return procedure();
 
    }
 
-   return m_method;
+   return m_procedure;
 
 }
 
 
-future var::get_future() const
+futurevar var::get_futurevar() const
 {
 
-   if (get_type() != ::type_future)
+   if (get_type() != ::type_futurevar)
    {
 
-      return future();
+      return futurevar();
 
    }
 
-   return m_future;
+   return m_futurevar;
 
 }
 
@@ -5428,9 +5428,9 @@ bool var::is_numeric() const
 
    case type_i64a:
       return false;
-   case type_method:
+   case type_procedure:
       return false;
-   case type_future:
+   case type_futurevar:
       return false;
    default:
       __throw(not_implemented());
@@ -5778,10 +5778,10 @@ bool var::is_false() const
       return m_pvar || !*m_pvar;
    case type_prop:
       return m_pprop || !*m_pprop;
-   case type_method:
-         return !m_method;
-   case type_future:
-         return !m_future;
+   case type_procedure:
+         return !m_procedure;
+   case type_futurevar:
+         return !m_futurevar;
 
    // matter classes
    case type_element:
@@ -5903,10 +5903,10 @@ bool var::is_set_false() const
       return m_pvar || !*m_pvar;
    case type_prop:
       return m_pprop || !*m_pprop;
-   case type_method:
-      return !m_method;
-   case type_future:
-      return !m_future;
+   case type_procedure:
+      return !m_procedure;
+   case type_futurevar:
+      return !m_futurevar;
 
       // matter classes
    case type_element:
@@ -6166,10 +6166,10 @@ IMPL_VAR_ENUM(check);
       return m_pprop->run();
 
    }
-   else if (get_type() == type_method)
+   else if (get_type() == type_procedure)
    {
 
-      return m_method();
+      return m_procedure();
 
    }
    else if (get_type() == type_vara)
@@ -6180,10 +6180,10 @@ IMPL_VAR_ENUM(check);
       for (auto & varFunction : vara())
       {
 
-         if (varFunction.get_type() == type_method)
+         if (varFunction.get_type() == type_procedure)
          {
 
-            result.add(varFunction.m_method());
+            result.add(varFunction.m_procedure());
 
          }
 
@@ -6217,10 +6217,10 @@ void var::receive_response(const ::var & var)
       m_pprop->receive_response(var);
 
    }
-   else if (get_type() == type_future)
+   else if (get_type() == type_futurevar)
    {
 
-      m_future(var);
+      m_futurevar(var);
 
    }
    else if (get_type() == type_vara)
@@ -6229,10 +6229,10 @@ void var::receive_response(const ::var & var)
       for (auto& varFunction : this->vara())
       {
 
-         if (varFunction.get_type() == type_future)
+         if (varFunction.get_type() == type_futurevar)
          {
             
-            varFunction.m_future(var);
+            varFunction.m_futurevar(var);
 
          }
 
@@ -6243,24 +6243,24 @@ void var::receive_response(const ::var & var)
 }
 
 
-var& var::operator = (const ::method & method)
+var& var::operator = (const ::procedure & procedure)
 {
 
-   set_type(type_method);
+   set_type(type_procedure);
 
-   m_method = method;
+   m_procedure = procedure;
 
    return *this;
 
 }
 
 
-var& var::operator = (const ::future & future)
+var& var::operator = (const ::futurevar & futurevar)
 {
 
-   set_type(type_future);
+   set_type(type_futurevar);
 
-   m_future = future;
+   m_futurevar = futurevar;
 
    return *this;
 

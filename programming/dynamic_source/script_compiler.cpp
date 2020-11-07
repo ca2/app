@@ -739,9 +739,9 @@ namespace dynamic_source
       string strBuildCmd;
 
 #if defined(LINUX) || defined(MACOS)
-      strBuildCmd.Format(Context.dir().install() / "platform-" __PLATFORM "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_cl" + m_strPlat1 + ".bash");
+      strBuildCmd.Format(Context.dir().install() / "archive" / "platform-" __PLATFORM "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_cl" + m_strPlat1 + ".bash");
 #else
-      strBuildCmd.Format(Context.dir().install() / ("platform-" __PLATFORM "\\_stage\\dynamic_source_" + m_strVsTools) / m_strDynamicSourceConfiguration + ::file::path("_c") + m_strPlat1 + ".bat");
+      strBuildCmd.Format(Context.dir().install() / "archive" / ("platform-" __PLATFORM "\\_stage\\dynamic_source_" + m_strVsTools) / m_strDynamicSourceConfiguration + ::file::path("_c") + m_strPlat1 + ".bat");
 #endif
 
       str = Context.file().as_string(strBuildCmd);
@@ -793,7 +793,7 @@ namespace dynamic_source
       Context.file().put_contents_utf8(pathCompiler, strCompiler);
 
 #ifdef WINDOWS
-      process->create_child_process(strCompiler,true,"C:\\netnode\\app-core\\netnode_dynamic_source_script",::priority_highest);
+      process->create_child_process(strCompiler,true,"C:\\netnode\\source\\app-core\\netnode_dynamic_source_script",::priority_highest);
 #else
       process->create_child_process(strCompiler,true,m_pathProjectDir,::priority_highest);
 #endif
@@ -909,9 +909,9 @@ namespace dynamic_source
          //strBuildCmd;
 
 #if defined(LINUX) || defined(MACOS)
-         strBuildCmd.Format(Context.dir().install() / "platform-" __PLATFORM"\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_cl" + m_strPlat1 + ".bash");
+         strBuildCmd.Format(Context.dir().install() / "archive" / "platform-" __PLATFORM"\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_cl" + m_strPlat1 + ".bash");
 #else
-         strBuildCmd.Format(Context.dir().install() / ("platform-" __PLATFORM "\\_stage\\dynamic_source_" + m_strVsTools) / m_strDynamicSourceConfiguration + ::file::path("_l") + m_strPlat1 + ".bat");
+         strBuildCmd.Format(Context.dir().install() / "archive" / ("platform-" __PLATFORM "\\_stage\\dynamic_source_" + m_strVsTools) / m_strDynamicSourceConfiguration + ::file::path("_l") + m_strPlat1 + ".bat");
 #endif
 
          str = Context.file().as_string(strBuildCmd);
@@ -1564,7 +1564,7 @@ namespace dynamic_source
       if(!::str::ends(strFolder, "/") && !::str::ends(strFolder, "\\"))
          strFolder += "/";
       string strTemplate;
-      string strSource = "platform-" __PLATFORM "/_stage/dynamic_source/";
+      string strSource = "archive/platform-" __PLATFORM "/_stage/dynamic_source/";
       strSource += lpcszSource;
 
 //   string strN = m_pmanager->m_strNetnodePath;
@@ -1787,8 +1787,8 @@ namespace dynamic_source
       string vars2batSrc;
       string vars1batDst;
       string vars2batDst;
-      vars1batSrc = Context.dir().install() / "platform-" __PLATFORM "/_stage/dynamic_source/vc_vars.bat";
-      vars2batSrc = Context.dir().install() / "platform-" __PLATFORM "/_stage/dynamic_source/vc_vars_query_registry.bat";
+      vars1batSrc = Context.dir().install() / "archive" / "platform-" __PLATFORM "/_stage/dynamic_source/vc_vars.bat";
+      vars2batSrc = Context.dir().install() / "archive" / "platform-" __PLATFORM "/_stage/dynamic_source/vc_vars_query_registry.bat";
       vars1batDst = Context.dir().install() / m_strDynamicSourceStage / "front/vc_vars.bat";
       vars2batDst = Context.dir().install() / m_strDynamicSourceStage / "front/vc_vars_query_registry.bat";
       try
@@ -1833,9 +1833,9 @@ namespace dynamic_source
 //         strCmd = Context.dir().install() / m_strDynamicSourceStage / "front" / m_strDynamicSourceConfiguration + "_libc" + m_strPlat1 + ".bat";
 //#endif
 #ifdef LINUX
-         strCmd.Format(Context.dir().install() / "platform-" __PLATFORM "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_libc" + m_strPlat1 + ".bash");
+         strCmd.Format(Context.dir().install() / "archive" / "platform-" __PLATFORM "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_libc" + m_strPlat1 + ".bash");
 #else
-         strCmd.Format(Context.dir().install() / "platform-" __PLATFORM "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + ::file::path("_libc") + m_strPlat1 + ".bat");
+         strCmd.Format(Context.dir().install() / "archive" / "platform-" __PLATFORM "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + ::file::path("_libc") + m_strPlat1 + ".bat");
 #endif
 
          //#else
@@ -2006,9 +2006,9 @@ auto tickStart = ::tick::now();
 //         ".bat";
 //#endif
 #ifdef LINUX
-      strCmd.Format(Context.dir().install() / "platform-" __PLATFORM "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_libl" + m_strPlat1 + ".bash");
+      strCmd.Format(Context.dir().install() / "archive" / "platform-" __PLATFORM "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_libl" + m_strPlat1 + ".bash");
 #else
-      strCmd.Format(Context.dir().install() / "platform-" __PLATFORM "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + ::file::path("_libl") + m_strPlat1 + ".bat");
+      strCmd.Format(Context.dir().install() / "archive" / "platform-" __PLATFORM "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + ::file::path("_libl") + m_strPlat1 + ".bat");
 #endif
       //#else
       // strCmd.Format(strFolder, "app\\_stage\\aura\\account\\app\\main\\front\\dynamic_source_libl.bat", false));

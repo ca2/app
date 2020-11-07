@@ -7,17 +7,25 @@
 #define new ACME_NEW
 
 
+namespace factory
+{
+
+
+   CLASS_DECL_ACME critical_section * get_factory_critical_section();
+
+
+} // namespace factory
 
 
 template < typename TYPE, typename BASE_TYPE>
 inline __pointer(::factory::factory_base < BASE_TYPE >) create_factory(const ::id & id)
 {
 
-   cslock lock(::factory::g_pcsFactory);
+   cslock lock(::factory::get_factory_critical_section());
 
    auto pfactory = __new(::factory::factory< TYPE, BASE_TYPE >());
 
-   ::factory::g_pfactorymap->set_at(id, pfactory);
+   ::factory::get_factory_map()->set_at(id, pfactory);
 
    return pfactory;
 
@@ -28,7 +36,7 @@ template < typename TYPE, typename BASE_TYPE>
 inline __pointer(::factory::factory_base < BASE_TYPE >) create_factory()
 {
 
-   cslock lock(::factory::g_pcsFactory);
+   cslock lock(::factory::get_factory_critical_section());
 
    auto pfactory = __new(::factory::factory< TYPE, BASE_TYPE >());
 
@@ -43,7 +51,7 @@ template < typename TYPE, typename BASE_TYPE>
 inline __pointer(::factory::factory_base < BASE_TYPE >) create_reusable_factory()
 {
 
-   cslock lock(::factory::g_pcsFactory);
+   cslock lock(::factory::get_factory_critical_section());
 
    auto pfactory = __new(::factory::reusable_factory< TYPE, BASE_TYPE >());
 

@@ -4057,7 +4057,7 @@ void simple_frame_window::call_notification_area_action(const char * pszId)
 
    string strId(pszId);
 
-   post_method(__procedure([this, strId]()
+   post_procedure(__procedure([this, strId]()
    {
 
       notification_area_action(strId);

@@ -314,16 +314,16 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\app\aura\w_aura.vcxproj">
+    <ProjectReference Include="..\..\..\source\app\aura\w_aura.vcxproj">
       <Project>{b3e5b8e7-9e3b-44dd-9ede-e0a74d52c1c5}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\app\draw2d_direct2d\w_draw2d_direct2d.vcxproj">
+    <ProjectReference Include="..\..\..\source\app\draw2d_direct2d\w_draw2d_direct2d.vcxproj">
       <Project>{ba9bff50-1888-4722-8dee-73a3b5b32bcb}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\app\experience_core\u_experience_core.vcxproj">
+    <ProjectReference Include="..\..\..\source\app\experience_core\u_experience_core.vcxproj">
       <Project>{b2d7833b-9b59-4826-bbdf-c270a2115e86}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\app\wic_imaging\u_wic_imaging.vcxproj">
+    <ProjectReference Include="..\..\..\source\app\wic_imaging\u_wic_imaging.vcxproj">
       <Project>{b3a245f9-c92f-4487-aef7-cb0531f665bd}</Project>
     </ProjectReference>
     <ProjectReference Include="u_app_simple_shader.vcxproj">

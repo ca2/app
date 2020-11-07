@@ -1011,7 +1011,7 @@
     <ClInclude Include="resource1.h" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\app-core\experience_core\_experience_core.vcxproj">
+    <ProjectReference Include="..\..\..\..\source\app-core\experience_core\_experience_core.vcxproj">
       <Project>{e2d7833b-9b59-4826-bbdf-c270a2115e86}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\platform\draw2d_gdiplus\_draw2d_gdiplus.vcxproj">

@@ -225,7 +225,7 @@ namespace filemanager
             if (filemanager_document()->fs_data()->file_exists(strPath))
             {
 
-               auto pfuture = __future([this, strPath](const ::var& var)
+               auto pfuture = __futurevar([this, strPath](const ::var& var)
                   {
 
                      if (var == "yes")

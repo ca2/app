@@ -1138,6 +1138,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="exception\os.cpp" />
     <ClCompile Include="exception\parsing.cpp" />
     <ClCompile Include="exception\resource.cpp" />
+    <ClCompile Include="exception\result.cpp" />
     <ClCompile Include="exception\simple.cpp" />
     <ClCompile Include="exception\standard_translator.cpp" />
     <ClCompile Include="exception\temporary.cpp" />
@@ -1411,6 +1412,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="os\windows_common\file_c.cpp" />
     <ClCompile Include="os\windows_common\net.cpp" />
     <ClCompile Include="os\windows_common\thread.cpp" />
+    <ClCompile Include="os\windows_common\time.cpp" />
     <ClCompile Include="os\windows_common\unicode.cpp" />
     <ClCompile Include="os\windows_common\_dll.cpp" />
     <ClCompile Include="platform\assert.cpp" />

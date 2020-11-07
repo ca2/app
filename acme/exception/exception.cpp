@@ -484,26 +484,6 @@ namespace exception
 //
 
 
-namespace status
-{
-
-
-   i32 result::s_iSkipCallStack = SKIP_callstack;
-
-
-   void result::set_skip_callstack(i32 iSkip)
-   {
-
-      s_iSkipCallStack = iSkip;
-
-   }
-
-
-} // namespace status
-
-
-
-
 
 //CLASS_DECL_ACME __pointer(::exception::exception) __trace_context_move_throw_exception(::matter * trace_context, ::exception::exception * pexceptionNew)
 //{

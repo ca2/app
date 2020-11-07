@@ -828,22 +828,22 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\app-core\multimedia\multimedia.vcxproj">
+    <ProjectReference Include="..\..\..\..\source\app-core\multimedia\multimedia.vcxproj">
       <Project>{20fd0446-aa14-4013-84e0-b5cb63fa354f}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\app\ca2\ca2.vcxproj">
+    <ProjectReference Include="..\..\..\source\app\ca2\ca2.vcxproj">
       <Project>{afc48570-75e4-46bd-b8ab-4590b257e1c8}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\app\ca\ca.vcxproj">
+    <ProjectReference Include="..\..\..\source\app\ca\ca.vcxproj">
       <Project>{ab77745a-af30-4253-9e4b-961bf2d98641}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\app\c\c.vcxproj">
+    <ProjectReference Include="..\..\..\source\app\c\c.vcxproj">
       <Project>{4d7d3626-ada6-4ca2-9566-ed7b131e3d51}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\app\math\math.vcxproj">
+    <ProjectReference Include="..\..\..\source\app\math\math.vcxproj">
       <Project>{5b03fc53-c0aa-419d-a87f-4338c9dde3fa}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\app\thirdparty\zlib\_ca2zlib.vcxproj">
+    <ProjectReference Include="..\..\..\source\app\thirdparty\zlib\_ca2zlib.vcxproj">
       <Project>{9ffc2cf6-737c-43db-a1ee-383f7bfdb05b}</Project>
     </ProjectReference>
   </ItemGroup>

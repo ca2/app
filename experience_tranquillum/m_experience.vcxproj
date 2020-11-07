@@ -221,7 +221,7 @@
     <ClCompile Include="experience_core_library.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\app\aura\m_core.vcxproj">
+    <ProjectReference Include="..\..\..\source\app\aura\m_core.vcxproj">
       <Project>{420d7aeb-cfca-45de-bb6e-95055df21987}</Project>
     </ProjectReference>
   </ItemGroup>

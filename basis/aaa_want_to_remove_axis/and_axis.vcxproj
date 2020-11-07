@@ -489,16 +489,16 @@
       </EntryPointSymbol>
     </Link>
     <PreBuildEvent>
-      <Command>copy "$(SolutionDir)..\..\..\app\stage\app\matter\msvc++\msvcp110d.dll" "$(OutDir)"
-copy "$(SolutionDir)..\..\..\app\stage\app\matter\msvc++\msvcr110d.dll" "$(OutDir)"
-copy "$(SolutionDir)..\..\..\app\thirdparty\binary\FreeImage.dll" "$(OutDir)"
-copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libeay32.dll" "$(OutDir)"
-copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libmysql.dll" "$(OutDir)"
-copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libssl32.dll" "$(OutDir)"
-copy "$(SolutionDir)..\..\..\app\thirdparty\binary\pcre.dll" "$(OutDir)"
+      <Command>copy "$(SolutionDir)..\..\..\..\source\app\stage\app\matter\msvc++\msvcp110d.dll" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\..\source\app\stage\app\matter\msvc++\msvcr110d.dll" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\..\source\app\thirdparty\binary\FreeImage.dll" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\..\source\app\thirdparty\binary\libeay32.dll" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\..\source\app\thirdparty\binary\libmysql.dll" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\..\source\app\thirdparty\binary\libssl32.dll" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\..\source\app\thirdparty\binary\pcre.dll" "$(OutDir)"
 
 
-copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\..\source\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDir)"
 </Command>
     </PreBuildEvent>
     <Manifest>
@@ -544,16 +544,16 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <Profile>true</Profile>
     </Link>
     <PreBuildEvent>
-      <Command>copy "$(SolutionDir)..\..\..\app\stage\app\matter\msvc++100\msvcp100d.dll" "$(OutDir)"
-copy "$(SolutionDir)..\..\..\app\stage\app\matter\msvc++100\msvcr100d.dll" "$(OutDir)"
-copy "$(SolutionDir)..\..\..\app\thirdparty\binary\FreeImage.dll" "$(OutDir)"
-copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libeay32.dll" "$(OutDir)"
-copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libmysql.dll" "$(OutDir)"
-copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libssl32.dll" "$(OutDir)"
-copy "$(SolutionDir)..\..\..\app\thirdparty\binary\pcre.dll" "$(OutDir)"
+      <Command>copy "$(SolutionDir)..\..\..\..\source\app\stage\app\matter\msvc++100\msvcp100d.dll" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\..\source\app\stage\app\matter\msvc++100\msvcr100d.dll" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\..\source\app\thirdparty\binary\FreeImage.dll" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\..\source\app\thirdparty\binary\libeay32.dll" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\..\source\app\thirdparty\binary\libmysql.dll" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\..\source\app\thirdparty\binary\libssl32.dll" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\..\source\app\thirdparty\binary\pcre.dll" "$(OutDir)"
 
 
-copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDir)"</Command>
+copy "$(SolutionDir)..\..\..\..\source\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDir)"</Command>
     </PreBuildEvent>
     <Manifest>
       <AdditionalManifestFiles>

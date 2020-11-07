@@ -11,7 +11,7 @@
 * left as-is for anyone who may want to do such conversion, which was
 * allowed in earlier algorithms.
 */
-CLASS_DECL_ACME const char g_trailingBytesForUTF8[256] =
+const char g_trailingBytesForUTF8[256] =
 {
    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -23,6 +23,13 @@ CLASS_DECL_ACME const char g_trailingBytesForUTF8[256] =
    2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2, 3,3,3,3,3,3,3,3,4,4,4,4,5,5,5,5
 };
 
+
+CLASS_DECL_ACME int trailingBytesForUTF8(char ch)
+{
+
+    return g_trailingBytesForUTF8[ch];
+
+}
 
 
 namespace str

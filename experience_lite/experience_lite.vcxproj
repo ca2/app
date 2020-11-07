@@ -68,22 +68,22 @@
     <ClInclude Include="experience_lite_user_theme.h" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\app\ace\ace.vcxproj">
+    <ProjectReference Include="..\..\..\source\app\ace\ace.vcxproj">
       <Project>{21dcc811-4bce-4f16-b674-c0941f847127}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\app\ace\_ace.vcxproj">
+    <ProjectReference Include="..\..\..\source\app\ace\_ace.vcxproj">
       <Project>{699d6807-4f43-40e9-86ab-2a8b856707a9}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\app\aura\aura.vcxproj">
+    <ProjectReference Include="..\..\..\source\app\aura\aura.vcxproj">
       <Project>{03e5b8e7-9e3b-44dd-9ede-e0a74d52c1c5}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\app\axis\axis.vcxproj">
+    <ProjectReference Include="..\..\..\source\app\axis\axis.vcxproj">
       <Project>{73a245f9-c92f-4487-aef7-cb0531f665bd}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\app\base\base.vcxproj">
+    <ProjectReference Include="..\..\..\source\app\base\base.vcxproj">
       <Project>{4d7d3626-ada6-4ca2-9566-ed7b131e3d51}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\app\aura\aura.vcxproj">
+    <ProjectReference Include="..\..\..\source\app\aura\aura.vcxproj">
       <Project>{e000ffaf-392f-4e32-bf51-fd7ed638991f}</Project>
     </ProjectReference>
   </ItemGroup>

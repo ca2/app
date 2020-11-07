@@ -581,7 +581,7 @@ namespace core
    }
 
 
-   ::estatus user::dialog_box(::layered * pobjectContext, const char * pszMatter, property_set & propertyset, ::future future)
+   ::estatus user::dialog_box(::layered * pobjectContext, const char * pszMatter, property_set & propertyset, const ::futurevar & futurevar)
    {
 
       auto pbox = __object(pobjectContext)->__create_new < class ::userex::message_box >();
@@ -595,14 +595,14 @@ namespace core
 
       }
 
-      future(pbox->m_idResponse);
+      futurevar(pbox->m_idResponse);
 
       return ::success;
 
    }
 
 
-   ::estatus user::ui_message_box(::layered* pobjectContext, ::user::primitive * puiOwner, const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox, ::future future)
+   ::estatus user::ui_message_box(::layered* pobjectContext, ::user::primitive * puiOwner, const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox, const ::futurevar & futurevar)
    {
 
       auto pbox = __object(pobjectContext)->__create_new < ::userex::message_box >();
@@ -611,7 +611,7 @@ namespace core
 
       propertyset["message"] = pszMessage;
 
-      pbox->add_future(DIALOG_RESULT_FUTURE, future);
+      pbox->add_futurevar(DIALOG_RESULT_FUTURE, futurevar);
 
       auto psession = Session;
 
@@ -725,7 +725,7 @@ namespace core
    }
 
 
-   ::estatus user::ui_message_box_timeout(::layered * pobjectContext, ::user::primitive * puiOwner, const char* pszMessage, const char* pszTitle, const ::duration & durationTimeout, ::emessagebox emessagebox, ::future future)
+   ::estatus user::ui_message_box_timeout(::layered * pobjectContext, ::user::primitive * puiOwner, const char* pszMessage, const char* pszTitle, const ::duration & durationTimeout, ::emessagebox emessagebox, const ::futurevar & futurevar)
    {
 
       UNREFERENCED_PARAMETER(puiOwner);
@@ -734,7 +734,7 @@ namespace core
 
       pbox->value("message") = pszMessage;
 
-      pbox->add_future(DIALOG_RESULT_FUTURE, future);
+      pbox->add_futurevar(DIALOG_RESULT_FUTURE, futurevar);
 
       string strTitle = App(__object(pobjectContext)).get_title();
 
@@ -761,47 +761,8 @@ namespace core
       {
 
          return ::error_failed;
-         //__throw(resource_exception());
 
       }
-
-      //if (pbox->m_idResponse == "ok")
-      //{
-
-      //   return IDOK;
-
-      //}
-      //else if (pbox->m_idResponse == "yes")
-      //{
-
-      //   return IDYES;
-
-      //}
-      //else if (pbox->m_idResponse == "no")
-      //{
-
-      //   return IDNO;
-
-      //}
-      //else if (pbox->m_idResponse == "cancel")
-      //{
-
-      //   return IDCANCEL;
-
-      //}
-
-      //if (fuStyle & MB_YESNOCANCEL)
-      //{
-
-      //   return IDCANCEL;
-
-      //}
-      //else
-      //{
-
-      //   return 0;
-
-      //}
 
       return ::success;
 

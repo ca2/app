@@ -210,3 +210,12 @@ void matter::check_pending_releases()
 lparam_dbg g_lparamdbg;
 
 
+CLASS_DECL_ACME lparam_dbg & lparam_debug()
+{
+
+    return g_lparamdbg;
+
+}
+
+
+

@@ -27,7 +27,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\app-core\multimedia\w_multimedia.vcxproj">
+    <ProjectReference Include="..\..\..\..\source\app-core\multimedia\w_multimedia.vcxproj">
       <Project>{845177fa-3079-4b23-8f97-4543bb980265}</Project>
     </ProjectReference>
     <ProjectReference Include="..\aura\w_aura.vcxproj">

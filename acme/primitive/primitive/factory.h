@@ -156,9 +156,10 @@ namespace factory
 
    using factory_array = __pointer_array(factory_interface);
 
-   CLASS_DECL_ACME extern factory_array * g_pfactorya;
-   CLASS_DECL_ACME extern critical_section * g_pcsFactory;
-   CLASS_DECL_ACME extern factory_map * g_pfactorymap;
+
+   CLASS_DECL_ACME factory_array * get_factory_array();
+   CLASS_DECL_ACME critical_section * get_factory_critical_section();
+   CLASS_DECL_ACME factory_map * get_factory_map();
 
 
    CLASS_DECL_ACME void factory_init();

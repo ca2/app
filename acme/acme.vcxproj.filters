@@ -3415,6 +3415,12 @@
     <ClCompile Include="primitive\primitive\procedure.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
+    <ClCompile Include="os\windows_common\time.cpp">
+      <Filter>Source Files\os\windows_common</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\result.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="primitive\primitive\papaya.inl">

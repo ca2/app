@@ -14,6 +14,13 @@ os_local * g_poslocal;
 #endif
 
 
+extern natural_meta_data < string_meta_data < ansichar > > * g_pansistringNil;
+
+extern natural_meta_data < string_meta_data < wd16char > > * g_pwd16stringNil;
+
+extern natural_meta_data < string_meta_data < wd32char > > * g_pwd32stringNil;
+
+
 static void delete_all_release_on_end();
 
 

@@ -111,16 +111,16 @@
     <None Include="experience_core.def" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\app\aura\nord_aura.vcxproj">
+    <ProjectReference Include="..\..\..\source\app\aura\nord_aura.vcxproj">
       <Project>{02207bc4-c08b-4a2d-b754-f3bd46ad3098}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\app\axis\nord_axis.vcxproj">
+    <ProjectReference Include="..\..\..\source\app\axis\nord_axis.vcxproj">
       <Project>{03207bc4-c08b-4a2d-b754-f3bd46ad3098}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\app\base\nord_base.vcxproj">
+    <ProjectReference Include="..\..\..\source\app\base\nord_base.vcxproj">
       <Project>{04207bc4-c08b-4a2d-b754-f3bd46ad3098}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\app\aura\nord_core.vcxproj">
+    <ProjectReference Include="..\..\..\source\app\aura\nord_core.vcxproj">
       <Project>{16ab3478-f401-43c0-8bf1-a19f28802711}</Project>
     </ProjectReference>
   </ItemGroup>

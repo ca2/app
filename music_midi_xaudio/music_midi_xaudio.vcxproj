@@ -1461,19 +1461,19 @@
     <None Include="music_midi_mmsystem.def" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\app-core\multimedia\multimedia.vcxproj">
+    <ProjectReference Include="..\..\..\..\source\app-core\multimedia\multimedia.vcxproj">
       <Project>{20fd0446-aa14-4013-84e0-b5cb63fa354f}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\app-veriwell\multimedia\veriwell_multimedia.vcxproj">
+    <ProjectReference Include="..\..\..\..\source\app-veriwell\multimedia\veriwell_multimedia.vcxproj">
       <Project>{6cf16680-cdb9-437d-b24a-b9ba61a91fcd}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\app\base\base.vcxproj">
+    <ProjectReference Include="..\..\..\source\app\base\base.vcxproj">
       <Project>{4d7d3626-ada6-4ca2-9566-ed7b131e3d51}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\app\boot\boot.vcxproj">
+    <ProjectReference Include="..\..\..\source\app\boot\boot.vcxproj">
       <Project>{20ad9c6f-4eb1-48d7-a696-1d5b277e7e36}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\app\aura\aura.vcxproj">
+    <ProjectReference Include="..\..\..\source\app\aura\aura.vcxproj">
       <Project>{e000ffaf-392f-4e32-bf51-fd7ed638991f}</Project>
     </ProjectReference>
     <ProjectReference Include="..\multimedia_mmsystem\multimedia_mmsystem.vcxproj">

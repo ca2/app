@@ -45,7 +45,7 @@
     <ClCompile Include="translation.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\app-core\audio\u_audio.vcxproj">
+    <ProjectReference Include="..\..\..\source\app-core\audio\u_audio.vcxproj">
       <Project>{1935706b-4846-4a53-808f-9123fcba7dfd}</Project>
     </ProjectReference>
   </ItemGroup>

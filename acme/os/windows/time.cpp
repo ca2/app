@@ -6,16 +6,11 @@
 
 
 CLASS_DECL_ACME int_bool get_file_time(HANDLE hFile, LPFILETIME pCreationTime, LPFILETIME lpLastAccessTime, LPFILETIME lpLastWriteTime)
-
 {
 
    return GetFileTime(hFile, pCreationTime, lpLastAccessTime, lpLastWriteTime) != FALSE;
 
-
 }
-
-
-
 
 
 
@@ -129,12 +124,12 @@ BOOLEAN nanosleep(LONGLONG ns)
 }
 
 
-void sleep(const ::duration & dur)
-{
-
-   nanosleep(dur.total_nanoseconds());
-
-}
+//void sleep(const ::duration & dur)
+//{
+//
+//   nanosleep(dur.total_nanoseconds());
+//
+//}
 
 
 namespace windows

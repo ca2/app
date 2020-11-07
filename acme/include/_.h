@@ -341,7 +341,7 @@ CLASS_DECL_ACME void throw_what_exclamation_exclamation(const char * psz);
 #define __acolor(a, r, g, b)      ::color(r, g, b, a)
 
 
-inline int trailingBytesForUTF8(char ch);
+CLASS_DECL_ACME int trailingBytesForUTF8(char ch);
 
 
 class source;
@@ -350,15 +350,8 @@ class change;
 class action;
 
 
-extern CLASS_DECL_ACME const char g_trailingBytesForUTF8[256];
 
-
-inline int trailingBytesForUTF8(char ch)
-{
-
-   return ::g_trailingBytesForUTF8[(byte)ch];
-
-}
+CLASS_DECL_ACME int trailingBytesForUTF8(char ch);
 
 
 CLASS_DECL_ACME int is_ptr_null(const void * p, size_t s);

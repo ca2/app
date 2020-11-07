@@ -105,7 +105,7 @@ bool dialog::show(const char * pszMatter)
 
    m_pframe->m_bCloseApplicationIfLastVisibleFrame = false;
 
-   m_pframe->add_futures_from(DIALOG_RESULT_FUTURE, this);
+   m_pframe->add_procedures_from(DIALOG_RESULT_FUTURE, this);
 
    m_pform = m_pdocument->get_typed_view<::user::form>();
 

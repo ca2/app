@@ -1194,7 +1194,7 @@
     <ClCompile Include="_windows.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\app\aura\aura.vcxproj">
+    <ProjectReference Include="..\..\..\source\app\aura\aura.vcxproj">
       <Project>{03e5b8e7-9e3b-44dd-9ede-e0a74d52c1c5}</Project>
     </ProjectReference>
   </ItemGroup>

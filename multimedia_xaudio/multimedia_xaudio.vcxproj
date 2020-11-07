@@ -1055,7 +1055,7 @@
     <None Include="multimedia_xaudio.def" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\app-core\audio\audio.vcxproj">
+    <ProjectReference Include="..\..\..\source\app-core\audio\audio.vcxproj">
       <Project>{20fd0446-aa14-4013-84e0-b5cb63fa354f}</Project>
     </ProjectReference>
     <ProjectReference Include="..\acme\acme.vcxproj">

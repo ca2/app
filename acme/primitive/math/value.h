@@ -8,7 +8,7 @@ namespace math
    class value_impl;
 
 
-   class value
+   class CLASS_DECL_ACME value
    {
    public:
 
@@ -34,7 +34,7 @@ namespace math
 
 
 
-   class value_impl :
+   class CLASS_DECL_ACME value_impl :
       virtual public value
    {
    public:
@@ -58,5 +58,6 @@ namespace math
 
 
 } // namespace math
+
 
 

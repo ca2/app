@@ -222,7 +222,7 @@ namespace userex
 
 
 
-      post_method(__procedure([pupdown, this]
+      post_procedure(__procedure([pupdown, this]
       {
 
          __pointer(::simple_frame_window) pframewindow = pupdown;
@@ -755,7 +755,7 @@ namespace userex
    void impact_host::toggle_view(::id idView)
    {
 
-      post_method(__procedure([this, idView]()
+      post_procedure(__procedure([this, idView]()
          {
 
             bool bShow = false;

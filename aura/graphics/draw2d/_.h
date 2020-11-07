@@ -248,7 +248,7 @@ namespace factory
    inline __pointer(factory_interface) & get_factory < ::draw2d::bitmap >()
    {
 
-      return g_pfactorya->element_at_grow(factory_draw2d_bitmap);
+      return ::factory::get_factory_array()->element_at_grow(factory_draw2d_bitmap);
 
    }
 
@@ -257,7 +257,7 @@ namespace factory
    inline __pointer(factory_interface) & get_factory < ::draw2d::brush >()
    {
 
-      return g_pfactorya->element_at_grow(factory_draw2d_brush);
+      return ::factory::get_factory_array()->element_at_grow(factory_draw2d_brush);
 
    }
 
@@ -266,7 +266,7 @@ namespace factory
    inline __pointer(factory_interface) & get_factory < ::draw2d::font >()
    {
 
-      return g_pfactorya->element_at_grow(factory_draw2d_font);
+      return ::factory::get_factory_array()->element_at_grow(factory_draw2d_font);
 
    }
 
@@ -275,7 +275,7 @@ namespace factory
    inline __pointer(factory_interface) & get_factory < ::draw2d::graphics >()
    {
 
-      return g_pfactorya->element_at_grow(factory_draw2d_graphics);
+      return ::factory::get_factory_array()->element_at_grow(factory_draw2d_graphics);
 
    }
 
@@ -284,7 +284,7 @@ namespace factory
    inline __pointer(factory_interface) & get_factory < ::image >()
    {
 
-      return g_pfactorya->element_at_grow(factory_draw2d_image);
+      return ::factory::get_factory_array()->element_at_grow(factory_draw2d_image);
 
    }
 
@@ -293,7 +293,7 @@ namespace factory
    inline __pointer(factory_interface) & get_factory < ::draw2d::path >()
    {
 
-      return g_pfactorya->element_at_grow(factory_draw2d_path);
+      return ::factory::get_factory_array()->element_at_grow(factory_draw2d_path);
 
    }
 
@@ -302,7 +302,7 @@ namespace factory
    inline __pointer(factory_interface) & get_factory < ::draw2d::pen >()
    {
 
-      return g_pfactorya->element_at_grow(factory_draw2d_pen);
+      return ::factory::get_factory_array()->element_at_grow(factory_draw2d_pen);
 
    }
 
@@ -311,7 +311,7 @@ namespace factory
    inline __pointer(factory_interface) & get_factory < ::draw2d::region >()
    {
 
-      return g_pfactorya->element_at_grow(factory_draw2d_region);
+      return ::factory::get_factory_array()->element_at_grow(factory_draw2d_region);
 
    }
 

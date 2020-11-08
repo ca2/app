@@ -421,8 +421,8 @@ if(WIN32)
             node/windows/base/factory_exchange.cpp
             node/windows/base/factory_exchange.h
             node/windows/base/implementation.h
-            node/windows/base/print_job.cpp
-            node/windows/base/print_job.h
+            #node/windows/base/print_job.cpp
+            #node/windows/base/print_job.h
             node/windows/_.h
             node/windows/_node_windows.h
             node/windows/_node_windows_private.h

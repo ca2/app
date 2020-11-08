@@ -39,6 +39,9 @@ list(APPEND apex_source
         compress/context.h
         compress/zip_is_dir.cpp
         compress/zip_is_dir.h
+        compress/zip/_h
+        compress/zip/context.cpp
+        compress/zip/context.h
         const/_const.h
         const/charset.h
         const/id.h

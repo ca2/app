@@ -419,7 +419,6 @@ if(WIN32)
 
     list(APPEND aura_source
             node/windows/base/_windows.h
-            node/windows/base/_windows_node.cpp
             node/windows/base/factory_exchange.cpp
             node/windows/base/factory_exchange.h
             node/windows/base/implementation.h

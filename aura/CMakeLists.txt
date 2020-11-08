@@ -247,9 +247,6 @@ list(APPEND aura_source
         os/ansios/multithreading.h
         os/cairo/_.h
         os/cairo/_impl.h
-        os/cross/windows/windowing.h
-        os/cross/_.h
-        os/cross/cross.h
         os/_.h
         os/_application.cpp
         os/_application.h
@@ -273,9 +270,6 @@ list(APPEND aura_source
         os/time.h
         os/windowing.cpp
         os/windowing.h
-        os/winpr_input.h
-        os/winpr_keycode.cpp
-        os/winpr_scancode.cpp
         platform/_features.h
         platform/_impl.h
         platform/_platform.h
@@ -564,8 +558,15 @@ if(WIN32)
             user/windows_tsf/ui_element_sink.cpp
             user/windows_tsf/winres.h            )
 
+else()
 
-    endif()
+    list(APPEND aura_source
+        os/cross/windows/windowing.h
+        os/cross/_.h
+        os/cross/cross.h
+            )
+
+endif()
 
 if(UWP)
     list(APPEND aura_source
@@ -761,6 +762,9 @@ if(LINUX OR APPLE OR SOLARIS)
     list(APPEND aura_source
             node/posix/_posix.h
             node/posix/application.cpp
+            os/winpr_input.h
+            os/winpr_keycode.cpp
+            os/winpr_scancode.cpp
             )
 
     endif()

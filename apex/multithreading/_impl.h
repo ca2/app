@@ -363,11 +363,11 @@ template < typename PRED >
 auto sync_pred(void (* pfnBranch )(::matter * pobjectTask, e_priority), PRED pred, ::duration durationTimeout, e_priority epriority)
 {
 
-   auto pmethod = __sync_method(pred);
+   auto pprocedure = __sync_procedure(pred);
 
-   pfnBranch(pmethod, epriority);
+   pfnBranch(pprocedure, epriority);
 
-   pmethod->sync_wait(durationTimeout);
+   pprocedure->sync_wait(durationTimeout);
 
    return pmethod;
 

@@ -611,8 +611,6 @@ list(APPEND apex_source
         library.h
         message.h
         procedure.h
-        #rsa.cpp
-        #rsa.h
         update.h
         user.h)
 

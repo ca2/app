@@ -50,3 +50,4 @@ namespace crypto
 
 __pointer(::crypto::rsa) __create_rsa(const string& str);
 
+

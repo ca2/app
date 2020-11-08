@@ -231,7 +231,6 @@ list(APPEND aura_source
         message/timer.h
         message/user.cpp
         message/user.h
-        node/dummy/frame_window.cpp
         node/_.h
         node/_node.h
         node/serial.h

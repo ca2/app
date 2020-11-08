@@ -1,8 +1,10 @@
 //
 // Created by camilo on 2020-11-08.
 //
+#pragma once
 
-#ifndef APEX__FILE_H
-#define APEX__FILE_H
 
-#endif //APEX__FILE_H
+#include "html_file.h"
+
+
+

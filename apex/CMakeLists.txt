@@ -1343,7 +1343,7 @@ else()
 endif()
 
 
-add_library(apex SHARED ${apex_source})
+add_library(apex SHARED ${apex_source} filesystem/file/_file.h)
 
 target_precompile_headers(apex PRIVATE framework.h)
 

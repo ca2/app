@@ -5,27 +5,6 @@ namespace crypto
 {
 
 
-   rsa::~rsa()
-   {
-
-
-   }
-
-
-} // namespace crypto
-
-
-
-
-
-
-#include "framework.h"
-
-
-namespace crypto
-{
-
-
     rsa::rsa(const string& nParam)
     {
 

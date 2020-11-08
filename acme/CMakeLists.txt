@@ -1881,3 +1881,11 @@ file(COPY ${third_binaries} DESTINATION ${EXECUTABLE_OUTPUT_PATH})
 
 
 
+file(GLOB storage_binaries
+        "${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/storage-${PLATFORM_NAME}/binary/x64/basis/*"
+        )
+
+
+file(COPY ${storage_binaries} DESTINATION ${EXECUTABLE_OUTPUT_PATH})
+
+

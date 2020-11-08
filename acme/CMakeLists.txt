@@ -1,17 +1,24 @@
 cmake_minimum_required(VERSION 3.17)
 project(acme CXX)
-
-
-set(LIBRARY_OUTPUT_PATH ${CMAKE_SOURCE_DIR}/../../../time-windows/cmake)
-set(EXECUTABLE_OUTPUT_PATH ${CMAKE_SOURCE_DIR}/../../../time-windows/cmake)
-
+include(FindPkgConfig)
 
 set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
 
-if(WIN32)
+message(STATUS "CMAKE_SYSTEM_NAME is ${CMAKE_SYSTEM_NAME}")
+
+
+if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
+    set(LINUX TRUE)
+    set(PLATFORM_NAME "linux")
+elseif(WIN32)
     set(PLATFORM_NAME "windows")
 endif()
+
+
+set(LIBRARY_OUTPUT_PATH ${CMAKE_SOURCE_DIR}/../../../time-${PLATFORM_NAME}/cmake)
+set(EXECUTABLE_OUTPUT_PATH ${CMAKE_SOURCE_DIR}/../../../time-${PLATFORM_NAME}/cmake)
 
 
 list(APPEND acme_source
@@ -52,7 +59,6 @@ list(APPEND acme_source
         exception/invalid_index.cpp
         exception/io.cpp
         exception/memory.cpp
-        exception/mm.mm
         exception/not_implemented.cpp
         exception/not_installed.cpp
         exception/not_licensed.cpp
@@ -337,7 +343,6 @@ list(APPEND acme_source
         context_glx.cpp
         framework.cpp
         promise.cpp
-        timer.mm
         update.h)
 
 
@@ -1363,7 +1368,7 @@ if(WIN32)
         )
 else()
 
-    list(APPEND acme
+    list(APPEND acme_source
         os/cross/windows/crt.cpp
         os/cross/windows/crt_debug.cpp
         os/cross/windows/datetime.cpp
@@ -1371,7 +1376,7 @@ else()
         os/cross/windows/locale.cpp
         os/cross/windows/shared_memory.cpp
         os/cross/windows/thread_local_storage.cpp
-        os/cross/window/ansios_message_loop.cpp
+        #os/cross/windows/ansios_message_loop.cpp
         os/cross/windows/user.cpp
         os/cross/windows/windows.cpp
         os/cross/windows/e.h
@@ -1440,8 +1445,8 @@ if(LINUX)
         node/linux/file.cpp
         node/linux/linux.cpp
         node/linux/root_tools.cpp
-        node/linux/shell.cpp
-        node/linux/shell_linux.cpp
+#        node/linux/shell.cpp
+#        node/linux/shell_linux.cpp
         node/linux/stdio_file.cpp
         node/linux/thread.cpp
         node/linux/trace.cpp
@@ -1483,8 +1488,8 @@ if(LINUX)
         node/linux/file.h
         node/linux/internal.h
         node/linux/root_tools.h
-        node/linux/shell.h
-        node/linux/shell_linux.h
+        #node/linux/shell.h
+        #node/linux/shell_linux.h
         node/linux/stdio_file.h
         node/linux/thread.h
         node/linux/_.h
@@ -1677,6 +1682,8 @@ endif()
 
 if(APPLE)
     list(APPEND acme_source
+        timer.mm
+        exception/mm.mm
         os/cross/uwp/cross_metrowin_user.cpp
         os/cross/uwp/metrowin_user.cpp
         node/apple/apple_timer.cpp
@@ -1817,13 +1824,9 @@ else()
 endif()
 
 
-
-
 add_library(acme SHARED ${acme_source} exception/result.cpp)
 
-if(WIN32)
-    target_precompile_headers(acme PRIVATE framework.h)
-endif()
+target_precompile_headers(acme PRIVATE framework.h)
 
 set_target_properties(acme PROPERTIES LINKER_LANGUAGE CXX)
 
@@ -1832,15 +1835,24 @@ if (MSVC)
     target_link_options(acme PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
     target_link_options(acme PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/acme.lib")
     target_link_options(acme PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/acme.def")
+    target_link_libraries(acme PRIVATE zlib dbghelp imagehlp dwmapi Setupapi Windowscodecs Winmm ws2_32 Crypt32 Normaliz version Secur32 gdiplus Shlwapi Imm32.lib)
+elseif(LINUX)
+    #pkg_check_modules(PKGCONFIG glib-2.0 gtk+-3.0 gdk-3.0 appindicator-0.1)
+    pkg_check_modules(PKGCONFIG glib-2.0 freetype2 gtk+-3.0 gdk-3.0)
+    target_compile_options(acme PRIVATE ${PKGCONFIG_CFLAGS})
+    #target_compile_options(acme PRIVATE -std=c++14)
+    #target_link_options(acme PRIVATE ${GTK_LDFLAGS})
+    target_link_options(acme PRIVATE -Wl,-rpath=\$ORIGIN)
+    target_link_libraries(acme PRIVATE z dl pthread ncurses X11 Xrender Xinerama Xft ${PKGCONFIG_LIBRARIES})
+    target_link_options(acme PRIVATE -Wl,-z,defs)
+    message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
 endif()
 
 target_link_directories(acme PRIVATE ${LIBRARY_OUTPUT_PATH})
 target_link_directories(acme PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/storage-${PLATFORM_NAME}/third/library/x64/basis)
 
-if(WIN32)
-target_link_libraries(acme PRIVATE zlib dbghelp imagehlp dwmapi Setupapi Windowscodecs Winmm ws2_32 Crypt32 Normaliz version Secur32 gdiplus Shlwapi Imm32.lib)
-endif()
 
+target_include_directories(acme PRIVATE $ENV{HOME}/__config)
 target_include_directories(acme PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 target_include_directories(acme PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)
 target_include_directories(acme PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/app)
@@ -1857,9 +1869,13 @@ target_compile_definitions(acme PRIVATE _ACME_LIBRARY)
 target_compile_definitions(acme PRIVATE UNICODE)
 target_compile_definitions(acme PRIVATE _UNICODE)
 
+
 file(GLOB third_binaries
         "${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/storage-${PLATFORM_NAME}/third/binary/x64/basis/*"
         )
 
+
 file(COPY ${third_binaries} DESTINATION ${EXECUTABLE_OUTPUT_PATH})
+
+
 

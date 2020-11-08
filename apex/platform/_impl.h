@@ -605,12 +605,12 @@ inline void object::set_context_session(::apex::session* psessionContext)
 }
 
 
-inline void object::set_context_system(::apex::system* psystemContext)
-{
-
-   m_psystemContext = psystemContext;
-
-}
+//inline void object::set_context_system(::apex::system* psystemContext)
+//{
+//
+//   m_psystemContext = psystemContext;
+//
+//}
 
 
 #endif

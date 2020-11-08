@@ -1,33 +1,30 @@
 cmake_minimum_required(VERSION 3.17)
-project(apex)
+project(apex CXX)
+include(FindPkgConfig)
+
 
 set(CMAKE_CXX_STANDARD 14)
-
-add_definitions(-D_APEX_LIBRARY)
-add_definitions(-DUNICODE)
-add_definitions(-D_UNICODE)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
 
-if(WIN32)
+message(STATUS "CMAKE_SYSTEM_NAME is ${CMAKE_SYSTEM_NAME}")
+
+
+if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
+    set(LINUX TRUE)
+    set(PLATFORM_NAME "linux")
+    message("System is Linux")
+elseif(WIN32)
     set(PLATFORM_NAME "windows")
 endif()
 
 
-include_directories(${CMAKE_SOURCE_DIR}/../..)
-include_directories(${CMAKE_SOURCE_DIR}/..)
-include_directories(${CMAKE_SOURCE_DIR}/../../../source/app)
-include_directories(${CMAKE_SOURCE_DIR}/../../../source/app/_include)
-include_directories(${CMAKE_SOURCE_DIR}/../../../source/include)
-include_directories(${CMAKE_SOURCE_DIR}/../../../archive/platform-${PLATFORM_NAME})
-include_directories(${CMAKE_SOURCE_DIR}/../../../archive/platform-${PLATFORM_NAME}/_include)
-include_directories(${CMAKE_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/third/include)
-include_directories(${CMAKE_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/third/include/include)
-include_directories(.)
+set(LIBRARY_OUTPUT_PATH ${CMAKE_SOURCE_DIR}/../../../time-${PLATFORM_NAME}/cmake)
+set(EXECUTABLE_OUTPUT_PATH ${CMAKE_SOURCE_DIR}/../../../time-${PLATFORM_NAME}/cmake)
 
 
 
-set(apex_source
-        asset/aaa_new.cpp
+list(APPEND apex_source
         asset/cube_new.inl
         asset/new.inl
         axispolicy/_.h
@@ -44,8 +41,6 @@ set(apex_source
         compress/zip_is_dir.cpp
         compress/zip_is_dir.h
         const/_const.h
-        const/aaa_callback.h
-        const/aaa_simple_command.h
         const/charset.h
         const/id.h
         const/idpool.cpp
@@ -65,14 +60,6 @@ set(apex_source
         crypto/openssl/hasher_algorithm.h
         crypto/openssl/rsa.cpp
         crypto/openssl/rsa.h
-        crypto/winrt/_winrt.h
-        crypto/winrt/crypto.cpp
-        crypto/winrt/hasher.cpp
-        crypto/winrt/hasher.h
-        crypto/winrt/hasher_algorithm.cpp
-        crypto/winrt/hasher_algorithm.h
-        crypto/winrt/rsa.cpp
-        crypto/winrt/rsa.h
         crypto/_.h
         crypto/_crypto.h
         crypto/crypto.cpp
@@ -85,15 +72,6 @@ set(apex_source
         crypto/rsa.h
         database/_.h
         database/_impl.h
-        database/aaa_want_to_remove_database.cpp
-        database/aaa_want_to_remove_database.h
-        database/aaa_want_to_remove_dataset.cpp
-        database/aaa_want_to_remove_dataset.h
-        database/aaa_want_to_remove_definition.cpp
-        database/aaa_want_to_remove_definition.h
-        database/aaa_want_to_remove_field_definition.cpp
-        database/aaa_want_to_remove_field_definition.h
-        database/aaa_want_to_remove_template.h
         database/change_event.h
         database/client.cpp
         database/client.h
@@ -112,9 +90,6 @@ set(apex_source
         database/stringhelper.h
         filesystem/file/_.h
         filesystem/file/_data.h
-        filesystem/file/aaa_c.cpp
-        filesystem/file/aaa_cpp.cpp
-        filesystem/file/aaa_cpp.h
         filesystem/file/edit_file.cpp
         filesystem/file/edit_file.h
         filesystem/file/html_file.cpp
@@ -187,21 +162,15 @@ set(apex_source
         inline/_console_old.h
         inline/_draw2d_impl.h
         inline/_new_impl.h
-        inline/aaa_want_to_remove_app_prelude.inl
-        inline/aaa_want_to_remove_application.cpp
-        inline/aaa_want_to_remove_console.cpp
         inline/application.h
         inline/application_common.h
         inline/console.h
         inline/console_common.h
         inline/library.h
-        ios_aura/ios_aura.h
-        ios_aura/ios_aura.m
         message/_.cpp
         message/_.h
         message/_impl.h
         message/_message.h
-        message/aaa_timer.h
         message/application.cpp
         message/application.h
         message/base.cpp
@@ -233,7 +202,6 @@ set(apex_source
         multithreading/_.cpp
         multithreading/_.h
         multithreading/_impl.h
-        multithreading/aaa_pred_procedure.h
         multithreading/common.h
         multithreading/create_thread.h
         multithreading/data.h
@@ -261,10 +229,6 @@ set(apex_source
         multithreading/tools.h
         net/http/_.cpp
         net/http/_.h
-        net/http/aaa_want_to_remove_application.cpp
-        net/http/aaa_want_to_remove_application.h
-        net/http/aaa_want_to_remove_system.cpp
-        net/http/aaa_want_to_remove_system.h
         net/http/context.cpp
         net/http/context.h
         net/http/cookie.cpp
@@ -286,7 +250,6 @@ set(apex_source
         net/http/stream.h
         net/http/transaction.cpp
         net/http/transaction.h
-        net/sockets/base/aaa_want_to_remove_sockets_base_socket.cpp
         net/sockets/base/base_socket.cpp
         net/sockets/base/base_socket.h
         net/sockets/base/base_socket_handler.cpp
@@ -330,7 +293,6 @@ set(apex_source
         net/sockets/bsd/_.h
         net/sockets/bsd/_strconv.cpp
         net/sockets/bsd/_strconv.h
-        net/sockets/bsd/aaa_want_to_remove_sockets_sockets.h
         net/sockets/bsd/config.h
         net/sockets/bsd/include.cpp
         net/sockets/bsd/socket_id_list.h
@@ -357,79 +319,6 @@ set(apex_source
         net/sockets/http/socket.h
         net/sockets/http/tunnel.cpp
         net/sockets/http/tunnel.h
-        net/sockets/winrt/asynch_dns/resolv_server.cpp
-        net/sockets/winrt/asynch_dns/resolv_server.h
-        net/sockets/winrt/asynch_dns/resolv_socket.cpp
-        net/sockets/winrt/asynch_dns/resolv_socket.h
-        net/sockets/winrt/basic/listen_socket.cpp
-        net/sockets/winrt/basic/listen_socket.h
-        net/sockets/winrt/basic/net.cpp
-        net/sockets/winrt/basic/net.h
-        net/sockets/winrt/basic/sctp_socket.cpp
-        net/sockets/winrt/basic/sctp_socket.h
-        net/sockets/winrt/basic/Socket.cpp
-        net/sockets/winrt/basic/socket.h
-        net/sockets/winrt/basic/socket_handler.cpp
-        net/sockets/winrt/basic/socket_handler.h
-        net/sockets/winrt/basic/stream_socket.cpp
-        net/sockets/winrt/basic/stream_socket.h
-        net/sockets/winrt/basic/sync_socket_handler.cpp
-        net/sockets/winrt/basic/sync_socket_handler.h
-        net/sockets/winrt/basic/tcp_socket.cpp
-        net/sockets/winrt/basic/tcp_socket.h
-        net/sockets/winrt/basic/tls_socket.cpp
-        net/sockets/winrt/basic/tls_socket.h
-        net/sockets/winrt/basic/udp_socket.cpp
-        net/sockets/winrt/basic/udp_socket.h
-        net/sockets/winrt/sip/base.cpp
-        net/sockets/winrt/sip/base.h
-        net/sockets/winrt/sip/base_client_socket.cpp
-        net/sockets/winrt/sip/base_client_socket.h
-        net/sockets/winrt/sip/callback.cpp
-        net/sockets/winrt/sip/callback.h
-        net/sockets/winrt/sip/client.cpp
-        net/sockets/winrt/sip/client.h
-        net/sockets/winrt/sip/event.h
-        net/sockets/winrt/sip/request.cpp
-        net/sockets/winrt/sip/request.h
-        net/sockets/winrt/sip/response.cpp
-        net/sockets/winrt/sip/response.h
-        net/sockets/winrt/sip/server.cpp
-        net/sockets/winrt/sip/server.h
-        net/sockets/winrt/sip/socket.h
-        net/sockets/winrt/sip/tcp_client_socket.cpp
-        net/sockets/winrt/sip/tcp_client_socket.h
-        net/sockets/winrt/sip/transaction.cpp
-        net/sockets/winrt/sip/transaction.h
-        net/sockets/winrt/sip/udp_client_socket.cpp
-        net/sockets/winrt/sip/udp_client_socket.h
-        net/sockets/winrt/smtp/smtpd_socket.cpp
-        net/sockets/winrt/smtp/smtpd_socket.h
-        net/sockets/winrt/smtp/socket.cpp
-        net/sockets/winrt/smtp/socket.h
-        net/sockets/winrt/timer/Event.cpp
-        net/sockets/winrt/timer/event.h
-        net/sockets/winrt/timer/event_handler.h
-        net/sockets/winrt/timer/event_time.h
-        net/sockets/winrt/timer/EventHandler.cpp
-        net/sockets/winrt/timer/EventTime.cpp
-        net/sockets/winrt/timer/ievent_handler.h
-        net/sockets/winrt/timer/ievent_owner.h
-        net/sockets/winrt/timer/IEventOwner.cpp
-        net/sockets/winrt/webserver/aaa_http_base_socket.cpp
-        net/sockets/winrt/webserver/aaa_http_base_socket.h
-        net/sockets/winrt/webserver/ajp13.h
-        net/sockets/winrt/webserver/ajp13_socket.h
-        net/sockets/winrt/webserver/Ajp13Socket.cpp
-        net/sockets/winrt/webserver/ajp_base_socket.h
-        net/sockets/winrt/webserver/AjpBaseSocket.cpp
-        net/sockets/winrt/webserver/httpd_socket.cpp
-        net/sockets/winrt/webserver/httpd_socket.h
-        net/sockets/winrt/_.h
-        net/sockets/winrt/config.h
-        net/sockets/winrt/include.cpp
-        net/sockets/winrt/sockets.cpp
-        net/sockets/winrt/sockets.h
         net/sockets/_.h
         net/sockets/_system_sockets.cpp
         net/sockets/http_batch_buffer.cpp
@@ -472,108 +361,10 @@ set(apex_source
         net/url_department.h
         net/url_domain.cpp
         net/url_domain.h
-        node/android/Kerr/kerr.h
-        node/android/Kerr/LocalMemory.h
-        node/android/_.h
-        node/android/_android.h
-        node/android/aaa_want_to_move_from_here_file_watcher.cpp
-        node/android/aaa_want_to_move_from_here_file_watcher.h
-        node/android/aaa_want_to_remove_android_dumpinit.cpp
-        node/android/aaa_want_to_remove_android_thread_local_storage.cpp
-        node/android/aaa_want_to_remove_shell.cpp
-        node/android/aaa_want_to_remove_shell.h
-        node/android/aaa_want_to_remove_stdio_file.cpp
-        node/android/aaa_want_to_remove_stdio_file.h
-        node/android/android.cpp
-        node/android/android1.cpp
-        node/android/android1.h
-        node/android/application.cpp
-        node/android/application.h
-        node/android/buffer.cpp
-        node/android/buffer.h
-        node/android/dir_context.cpp
-        node/android/dir_context.h
-        node/android/dir_system.cpp
-        node/android/dir_system.h
-        node/android/error.cpp
-        node/android/exception.cpp
-        node/android/factory_exchange.cpp
-        node/android/factory_exchange.h
-        node/android/file.cpp
-        node/android/file.h
-        node/android/file_context.cpp
-        node/android/file_context.h
-        node/android/file_system.cpp
-        node/android/file_system.h
-        node/android/host_interaction.cpp
-        node/android/host_interaction.h
-        node/android/implementation.h
-        node/android/internal.h
-        node/android/main.cpp
-        node/android/os_context.cpp
-        node/android/os_context.h
-        node/android/process.cpp
-        node/android/shell.cpp
-        node/android/shell.h
-        node/android/thread.cpp
-        node/android/thread.h
-        node/android/trace.cpp
-        node/android/util.cpp
         node/posix/file_os_watcher.cpp
         node/posix/file_os_watcher.h
         node/_.h
         node/_node.h
-        os/android/_.h
-        os/android/_android.h
-        os/android/_bind_app.cpp
-        os/android/_bind_impact.cpp
-        os/android/_c.h
-        os/android/_os_android.cpp
-        os/android/_os_impl.cpp
-        os/android/_os_impl.h
-        os/android/_os_object.cpp
-        os/android/_os_object.h
-        os/android/_os_remote.h
-        os/android/aaa_os_local.h
-        os/android/application_system_run.cpp
-        os/android/aura.cpp
-        os/android/c.cpp
-        os/android/cairo_keep.h
-        os/android/cross_win_file.h
-        os/android/cross_win_gdi.h
-        os/android/cross_win_gdi_internal.h
-        os/android/debug.cpp
-        os/android/dir.cpp
-        os/android/exception_engine.cpp
-        os/android/exception_engine.h
-        os/android/file.cpp
-        os/android/file.h
-        os/android/graphics.cpp
-        os/android/graphics.h
-        os/android/internal.h
-        os/android/jni_launcher.cpp
-        os/android/language.cpp
-        os/android/launcher.cpp
-        os/android/library.cpp
-        os/android/locale.cpp
-        os/android/lock.cpp
-        os/android/main_android.cpp
-        os/android/message_loop.cpp
-        os/android/multithreading.cpp
-        os/android/process.cpp
-        os/android/process.h
-        os/android/process_pid.cpp
-        os/android/simple_shell_launcher.cpp
-        os/android/small_ipca_channel.cpp
-        os/android/view_bitmap.h
-        os/android/vsnord_native_app_glue.c
-        os/android/vsnord_native_app_glue.h
-        os/android/win_base.cpp
-        os/android/window_android.cpp
-        os/android/window_android.h
-        os/android/window_impl.cpp
-        os/android/windowing.cpp
-        os/android/windowing.h
         os/ansios/_.h
         os/ansios/_ansios.h
         os/ansios/_c.h
@@ -593,72 +384,11 @@ set(apex_source
         os/ansios/multithreading.h
         os/ansios/process.cpp
         os/ansios/win.cpp
-        os/ios/_.h
-        os/ios/_c.h
-        os/ios/_ios.h
-        os/ios/_m.h
-        os/ios/_mm.h
-        os/ios/application_system_run.cpp
-        os/ios/aura.cpp
-        os/ios/base_internal.h
-        os/ios/base_user.cpp
-        os/ios/cross_win.cpp
-        os/ios/cross_win_file.cpp
-        os/ios/cross_win_gdi.h
-        os/ios/crypt.cpp
-        os/ios/debug.cpp
-        os/ios/error.cpp
-        os/ios/exception_engine.cpp
-        os/ios/exception_engine.h
-        os/ios/file.cpp
-        os/ios/fontopus.cpp
-        os/ios/gen_1.h
-        os/ios/graphics.cpp
-        os/ios/implementation.h
-        os/ios/internal.h
-        os/ios/language.cpp
-        os/ios/launcher.cpp
-        os/ios/library.cpp
-        os/ios/lock.cpp
-        os/ios/MessageBoxA_W.mm
-        os/ios/mm.mm
-        os/ios/mm_cross_gdi.mm
-        os/ios/mm_graphics.h
-        os/ios/mm_oswindow.h
-        os/ios/mm_thread.mm
-        os/ios/mm_user.mm
-        os/ios/multithreading.cpp
-        os/ios/multithreading.h
-        os/ios/oswindow_data.cpp
-        os/ios/oswindow_data.h
-        os/ios/process.cpp
-        os/ios/process.h
-        os/ios/process_pid.cpp
-        os/ios/simple_shell_launcher.cpp
-        os/ios/small_ipca_channel.cpp
-        os/ios/time.cpp
-        os/ios/user.cpp
-        os/ios/win_base.cpp
-        os/ios/window.cpp
-        os/ios/window.h
-        "os/ios/window_boot 2.h"
-        os/ios/window_boot.h
-        os/ios/window_impl.h
-        os/ios/windowing.cpp
-        os/ios/windowing.h
         os/posix/base_file.cpp
         os/posix/pthread.cpp
         os/posix/thread.cpp
         os/posix/time.cpp
         os/posix/timer.cpp
-        os/win32/_.h
-        os/win32/dialog.cpp
-        os/win32/dialog.h
-        os/win32/font.cpp
-        os/win32/font.h
-        os/win32/window.cpp
-        os/win32/window.h
-
         os/_.h
         os/_application.cpp
         os/_application.h
@@ -883,14 +613,13 @@ set(apex_source
         procedure.h
         rsa.cpp
         rsa.h
-        timer.mm
         update.h
         user.h)
 
 
 
 if(WIN32)
-    set(apex_source_files
+    list(APPEND apex_source
         node/windows/base/_windows.h
         node/windows/base/_windows_node.cpp
         node/windows/base/factory_exchange.cpp
@@ -930,32 +659,37 @@ if(WIN32)
         node/windows/timer.cpp
         node/windows/trace.cpp
         node/windows_common/application.cpp
-            os/windows/_.cpp
-            os/windows/_.h
-            os/windows/_windows.h
-            os/windows/application.cpp
-            os/windows/dpi.cpp
-            os/windows/gdi.cpp
-            os/windows/interprocess_communication.cpp
-            os/windows/launcher.cpp
-            os/windows/library.cpp
-            os/windows/main.cpp
-            os/windows/menu.cpp
-            os/windows/simple_shell_launcher.cpp
-            os/windows/thread.cpp
-            os/windows/user.cpp
-            os/windows/windowing.cpp
-            os/windows/windowing.h
-            os/windows/windows_window_opengl.cpp
-            os/windows_common/_.h
-            os/windows_common/_windows_common.h
-            os/windows_common/file.cpp
-
-)
+        os/windows/_.cpp
+        os/windows/_.h
+        os/windows/_windows.h
+        os/windows/application.cpp
+        os/windows/dpi.cpp
+        os/windows/gdi.cpp
+        os/windows/interprocess_communication.cpp
+        os/windows/launcher.cpp
+        os/windows/library.cpp
+        os/windows/main.cpp
+        os/windows/menu.cpp
+        os/windows/simple_shell_launcher.cpp
+        os/windows/thread.cpp
+        os/windows/user.cpp
+        os/windows/windowing.cpp
+        os/windows/windowing.h
+        os/windows/windows_window_opengl.cpp
+        os/windows_common/_.h
+        os/windows_common/_windows_common.h
+        os/windows_common/file.cpp
+        os/win32/_.h
+        os/win32/dialog.cpp
+        os/win32/dialog.h
+        os/win32/font.cpp
+        os/win32/font.h
+        os/win32/window.cpp
+        os/win32/window.h
+    )
     else()
 
-    set(apex_source_files
-
+    list(APPEND apex_source
             os/cross/windows/windows_thread.h
             os/cross/windows/windows_thread_impl.h
             os/cross/cross.h
@@ -965,7 +699,86 @@ if(WIN32)
 
 
 if(UWP)
-    set(apex_source_files
+    list(APPEND apex_source
+            crypto/winrt/_winrt.h
+            crypto/winrt/crypto.cpp
+            crypto/winrt/hasher.cpp
+            crypto/winrt/hasher.h
+            crypto/winrt/hasher_algorithm.cpp
+            crypto/winrt/hasher_algorithm.h
+            crypto/winrt/rsa.cpp
+            crypto/winrt/rsa.h
+            net/sockets/winrt/asynch_dns/resolv_server.cpp
+            net/sockets/winrt/asynch_dns/resolv_server.h
+            net/sockets/winrt/asynch_dns/resolv_socket.cpp
+            net/sockets/winrt/asynch_dns/resolv_socket.h
+            net/sockets/winrt/basic/listen_socket.cpp
+            net/sockets/winrt/basic/listen_socket.h
+            net/sockets/winrt/basic/net.cpp
+            net/sockets/winrt/basic/net.h
+            net/sockets/winrt/basic/sctp_socket.cpp
+            net/sockets/winrt/basic/sctp_socket.h
+            net/sockets/winrt/basic/Socket.cpp
+            net/sockets/winrt/basic/socket.h
+            net/sockets/winrt/basic/socket_handler.cpp
+            net/sockets/winrt/basic/socket_handler.h
+            net/sockets/winrt/basic/stream_socket.cpp
+            net/sockets/winrt/basic/stream_socket.h
+            net/sockets/winrt/basic/sync_socket_handler.cpp
+            net/sockets/winrt/basic/sync_socket_handler.h
+            net/sockets/winrt/basic/tcp_socket.cpp
+            net/sockets/winrt/basic/tcp_socket.h
+            net/sockets/winrt/basic/tls_socket.cpp
+            net/sockets/winrt/basic/tls_socket.h
+            net/sockets/winrt/basic/udp_socket.cpp
+            net/sockets/winrt/basic/udp_socket.h
+            net/sockets/winrt/sip/base.cpp
+            net/sockets/winrt/sip/base.h
+            net/sockets/winrt/sip/base_client_socket.cpp
+            net/sockets/winrt/sip/base_client_socket.h
+            net/sockets/winrt/sip/callback.cpp
+            net/sockets/winrt/sip/callback.h
+            net/sockets/winrt/sip/client.cpp
+            net/sockets/winrt/sip/client.h
+            net/sockets/winrt/sip/event.h
+            net/sockets/winrt/sip/request.cpp
+            net/sockets/winrt/sip/request.h
+            net/sockets/winrt/sip/response.cpp
+            net/sockets/winrt/sip/response.h
+            net/sockets/winrt/sip/server.cpp
+            net/sockets/winrt/sip/server.h
+            net/sockets/winrt/sip/socket.h
+            net/sockets/winrt/sip/tcp_client_socket.cpp
+            net/sockets/winrt/sip/tcp_client_socket.h
+            net/sockets/winrt/sip/transaction.cpp
+            net/sockets/winrt/sip/transaction.h
+            net/sockets/winrt/sip/udp_client_socket.cpp
+            net/sockets/winrt/sip/udp_client_socket.h
+            net/sockets/winrt/smtp/smtpd_socket.cpp
+            net/sockets/winrt/smtp/smtpd_socket.h
+            net/sockets/winrt/smtp/socket.cpp
+            net/sockets/winrt/smtp/socket.h
+            net/sockets/winrt/timer/Event.cpp
+            net/sockets/winrt/timer/event.h
+            net/sockets/winrt/timer/event_handler.h
+            net/sockets/winrt/timer/event_time.h
+            net/sockets/winrt/timer/EventHandler.cpp
+            net/sockets/winrt/timer/EventTime.cpp
+            net/sockets/winrt/timer/ievent_handler.h
+            net/sockets/winrt/timer/ievent_owner.h
+            net/sockets/winrt/timer/IEventOwner.cpp
+            net/sockets/winrt/webserver/ajp13.h
+            net/sockets/winrt/webserver/ajp13_socket.h
+            net/sockets/winrt/webserver/Ajp13Socket.cpp
+            net/sockets/winrt/webserver/ajp_base_socket.h
+            net/sockets/winrt/webserver/AjpBaseSocket.cpp
+            net/sockets/winrt/webserver/httpd_socket.cpp
+            net/sockets/winrt/webserver/httpd_socket.h
+            net/sockets/winrt/_.h
+            net/sockets/winrt/config.h
+            net/sockets/winrt/include.cpp
+            net/sockets/winrt/sockets.cpp
+            net/sockets/winrt/sockets.h
             node/uwp/net/net_address.h
             node/uwp/_.h
             node/uwp/_aaa_want_to_remove_node_metrowin.cpp
@@ -1042,7 +855,7 @@ if(UWP)
 
 else()
 
-    set(apex_source_files
+    list(APPEND apex_source
             os/cross/uwp/cross_metrowin_user.cpp
             os/cross/uwp/metrowin_user.cpp)
 
@@ -1052,7 +865,7 @@ endif()
 
 if(LINUX)
 
-    set(apex_source_files
+    list(APPEND apex_source
         node/linux/_.h
         node/linux/_linux.h
         node/linux/application.cpp
@@ -1128,7 +941,7 @@ if(LINUX)
         os/linux/process_pid.cpp
         os/linux/simple_app.cpp
         os/linux/simple_shell_launcher.cpp
-        os/linux/small_ipca_channel.cpp
+        os/linux/interprocess_communication.cpp
         os/linux/time.cpp
         os/linux/user.cpp
         os/linux/user.h
@@ -1139,7 +952,7 @@ if(LINUX)
 
 
 if(MACOS)
-    set(apex_source_files
+    list(APPEND apex_source
             crypto/macos/rsa.cpp
             crypto/macos/rsa.h
             node/macos/_.h
@@ -1242,7 +1055,9 @@ if(MACOS)
 
 
 if(IOS)
-    set(apex_source_files
+    list(APPEND apex_source
+            ios_aura/ios_aura.h
+            ios_aura/ios_aura.m
             node/ios/_.h
             node/ios/_ios.h
             node/ios/_m.h
@@ -1285,6 +1100,59 @@ if(IOS)
             node/ios/thread.h
             node/ios/trace.cpp
             node/ios/util.cpp
+            os/ios/MessageBoxA_W.mm
+            os/ios/mm.mm
+            os/ios/mm_cross_gdi.mm
+            os/ios/mm_graphics.h
+            os/ios/mm_oswindow.h
+            os/ios/mm_thread.mm
+            os/ios/mm_user.mm
+            os/ios/_.h
+            os/ios/_c.h
+            os/ios/_ios.h
+            os/ios/_m.h
+            os/ios/_mm.h
+            os/ios/application_system_run.cpp
+            os/ios/aura.cpp
+            os/ios/base_internal.h
+            os/ios/base_user.cpp
+            os/ios/cross_win.cpp
+            os/ios/cross_win_file.cpp
+            os/ios/cross_win_gdi.h
+            os/ios/crypt.cpp
+            os/ios/debug.cpp
+            os/ios/error.cpp
+            os/ios/exception_engine.cpp
+            os/ios/exception_engine.h
+            os/ios/file.cpp
+            os/ios/fontopus.cpp
+            os/ios/gen_1.h
+            os/ios/graphics.cpp
+            os/ios/implementation.h
+            os/ios/internal.h
+            os/ios/language.cpp
+            os/ios/launcher.cpp
+            os/ios/library.cpp
+            os/ios/lock.cpp
+            os/ios/multithreading.cpp
+            os/ios/multithreading.h
+            os/ios/oswindow_data.cpp
+            os/ios/oswindow_data.h
+            os/ios/process.cpp
+            os/ios/process.h
+            os/ios/process_pid.cpp
+            os/ios/simple_shell_launcher.cpp
+            os/ios/small_ipca_channel.cpp
+            os/ios/time.cpp
+            os/ios/user.cpp
+            os/ios/win_base.cpp
+            os/ios/window.cpp
+            os/ios/window.h
+            "os/ios/window_boot 2.h"
+            os/ios/window_boot.h
+            os/ios/window_impl.h
+            os/ios/windowing.cpp
+            os/ios/windowing.h
 
             )
 
@@ -1293,19 +1161,105 @@ endif()
 
 
 if(ANDROID)
-    set(apex_source_files
-
+    list(APPEND apex_source
+            node/android/Kerr/kerr.h
+            node/android/Kerr/LocalMemory.h
+            node/android/_.h
+            node/android/_android.h
+            node/android/android.cpp
+            node/android/android1.cpp
+            node/android/android1.h
+            node/android/application.cpp
+            node/android/application.h
+            node/android/buffer.cpp
+            node/android/buffer.h
+            node/android/dir_context.cpp
+            node/android/dir_context.h
+            node/android/dir_system.cpp
+            node/android/dir_system.h
+            node/android/error.cpp
+            node/android/exception.cpp
+            node/android/factory_exchange.cpp
+            node/android/factory_exchange.h
+            node/android/file.cpp
+            node/android/file.h
+            node/android/file_context.cpp
+            node/android/file_context.h
+            node/android/file_system.cpp
+            node/android/file_system.h
+            node/android/host_interaction.cpp
+            node/android/host_interaction.h
+            node/android/implementation.h
+            node/android/internal.h
+            node/android/main.cpp
+            node/android/os_context.cpp
+            node/android/os_context.h
+            node/android/process.cpp
+            node/android/shell.cpp
+            node/android/shell.h
+            node/android/thread.cpp
+            node/android/thread.h
+            node/android/trace.cpp
+            node/android/util.cpp
+            os/android/_.h
+            os/android/_android.h
+            os/android/_bind_app.cpp
+            os/android/_bind_impact.cpp
+            os/android/_c.h
+            os/android/_os_android.cpp
+            os/android/_os_impl.cpp
+            os/android/_os_impl.h
+            os/android/_os_object.cpp
+            os/android/_os_object.h
+            os/android/_os_remote.h
+            os/android/application_system_run.cpp
+            os/android/aura.cpp
+            os/android/c.cpp
+            os/android/cairo_keep.h
+            os/android/cross_win_file.h
+            os/android/cross_win_gdi.h
+            os/android/cross_win_gdi_internal.h
+            os/android/debug.cpp
+            os/android/dir.cpp
+            os/android/exception_engine.cpp
+            os/android/exception_engine.h
+            os/android/file.cpp
+            os/android/file.h
+            os/android/graphics.cpp
+            os/android/graphics.h
+            os/android/internal.h
+            os/android/jni_launcher.cpp
+            os/android/language.cpp
+            os/android/launcher.cpp
+            os/android/library.cpp
+            os/android/locale.cpp
+            os/android/lock.cpp
+            os/android/main_android.cpp
+            os/android/message_loop.cpp
+            os/android/multithreading.cpp
+            os/android/process.cpp
+            os/android/process.h
+            os/android/process_pid.cpp
+            os/android/simple_shell_launcher.cpp
+            os/android/small_ipca_channel.cpp
+            os/android/view_bitmap.h
+            os/android/win_base.cpp
+            os/android/window_android.cpp
+            os/android/window_android.h
+            os/android/window_impl.cpp
+            os/android/windowing.cpp
+            os/android/windowing.h
         )
 
 endif()
 
 
 if(APPLE)
-    set(apex_source_files
-
-    node/apple/apple_timer.cpp
-node/apple/process.cpp
-node/apple/process.h
+    list(APPEND apex_source
+            timer.mm
+            node/apple/apple_timer.cpp
+            node/apple/process.cpp
+            node/apple/process.h
             os/apple/_.cpp
             os/apple/_.h
             os/apple/_apple.h
@@ -1333,7 +1287,7 @@ endif()
 
 
 if(SOLARIS)
-    set(apex_source_files
+    list(APPEND apex_source
             os/solaris/linux_internal.h
             os/solaris/solaris.cpp
             os/solaris/solaris.h
@@ -1380,24 +1334,59 @@ if(SOLARIS)
 
 
 
-add_library(apex MODULE
-        ${apex_source})
-
-if(WIN32)
-    target_precompile_headers(apex PUBLIC framework.h)
+if (MSVC)
+    set(LIBCXX_TARGETING_MSVC ON)
+else()
+    set(LIBCXX_TARGETING_MSVC OFF)
 endif()
 
+
+add_library(apex SHARED ${apex_source})
+
+target_precompile_headers(apex PRIVATE framework.h)
 
 set_target_properties(apex PROPERTIES LINKER_LANGUAGE CXX)
 
-
 if (MSVC)
-    target_compile_options(apex PUBLIC "/MD$<$<CONFIG:Debug>:d>")
-    target_link_options(apex PUBLIC /DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>)
+    target_compile_options(apex PRIVATE "/MD$<$<CONFIG:Debug>:d>")
+    target_link_options(apex PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
+    target_link_options(apex PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/apex.lib")
+    target_link_options(apex PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/apex.def")
+    target_link_libraries(apex PRIVATE acme)
+elseif(LINUX)
+    pkg_check_modules(PKGCONFIG glib-2.0 gtk+-3.0 libssl)
+    #pkg_check_modules(PKGCONFIG glib-2.0 freetype2 gtk+-3.0 gdk-3.0)
+    target_compile_options(apex PRIVATE ${PKGCONFIG_CFLAGS})
+    #target_compile_options(apex PRIVATE -std=c++14)
+    #target_link_options(apex PRIVATE ${GTK_LDFLAGS})
+    target_link_options(apex PRIVATE -Wl,-rpath=\$ORIGIN)
+    #target_link_libraries(apex PRIVATE )
+    target_link_libraries(apex PRIVATE ${PKGCONFIG_LIBRARIES})
+    target_link_libraries(apex PRIVATE acme)
+    target_link_options(apex PRIVATE -Wl,-z,defs)
+    message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
 endif()
 
+target_link_directories(apex PRIVATE ${LIBRARY_OUTPUT_PATH})
+target_link_directories(apex PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/storage-${PLATFORM_NAME}/third/library/x64/basis)
 
-target_link_libraries(apex PUBLIC acme)
+
+target_include_directories(apex PRIVATE $ENV{HOME}/__config)
+target_include_directories(apex PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../..)
+target_include_directories(apex PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)
+target_include_directories(apex PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/app)
+target_include_directories(apex PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/app/_include)
+target_include_directories(apex PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/include)
+target_include_directories(apex PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/platform-${PLATFORM_NAME})
+target_include_directories(apex PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/platform-${PLATFORM_NAME}/_include)
+target_include_directories(apex PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/third/include)
+target_include_directories(apex PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/third/include/include)
+target_include_directories(apex PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+
+
+target_compile_definitions(apex PRIVATE _APEX_LIBRARY)
+target_compile_definitions(apex PRIVATE UNICODE)
+target_compile_definitions(apex PRIVATE _UNICODE)
 
 
 

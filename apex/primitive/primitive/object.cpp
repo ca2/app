@@ -523,14 +523,14 @@ void object::set_topic_text(const ::string & strTopicText)
    if (!get_context_application())
    {
 
-      set_context_app(::get_context_application(pobjectContext) OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
+      set_context_app(::get_context_application(pobjectContext));
 
    }
 
    if (!get_context_session())
    {
 
-      set_context_session(::get_context_session(pobjectContext) OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
+      set_context_session(::get_context_session(pobjectContext));
 
    }
 
@@ -547,19 +547,19 @@ void object::set_topic_text(const ::string & strTopicText)
       if (m_pappContext)
       {
 
-         set_context(m_pappContext.get() OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
+         set_context(m_pappContext.get());
 
       }
       else if (m_psessionContext)
       {
 
-         set_context(m_psessionContext.get() OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
+         set_context(m_psessionContext.get());
 
       }
       else if (&System)
       {
 
-         set_context(&System OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
+         set_context(&System);
 
       }
 

@@ -1,23 +1,34 @@
 cmake_minimum_required(VERSION 3.17)
 project(apex CXX)
+include(FindPkgConfig)
 
 
 set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
 
-set(LIBRARY_OUTPUT_PATH ${CMAKE_SOURCE_DIR}/../../../time-windows/cmake)
-set(EXECUTABLE_OUTPUT_PATH ${CMAKE_SOURCE_DIR}/../../../time-windows/cmake)
+message(STATUS "CMAKE_SYSTEM_NAME is ${CMAKE_SYSTEM_NAME}")
 
 
-if(WIN32)
+if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
+    set(LINUX TRUE)
+    set(USE_OPENSSL TRUE)
+    set(PLATFORM_NAME "linux")
+    message("System is Linux")
+elseif(WIN32)
+    set(USE_OPENSSL TRUE)
     set(PLATFORM_NAME "windows")
 endif()
 
 
+set(LIBRARY_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../time-${PLATFORM_NAME}/cmake)
+set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../time-${PLATFORM_NAME}/cmake)
+
+
+
 list(APPEND apex_source
-        compress/zip/context.cpp
-        compress/zip/context.h
-        compress/zip/_.h
+        asset/cube_new.inl
+        asset/new.inl
         axispolicy/_.h
         axispolicy/_c.h
         axispolicy/policy_objc.h
@@ -651,8 +662,16 @@ if(WIN32)
         os/windows/windowing.h
         os/windows_common/_.h
         os/windows_common/_windows_common.h
-        os/windows_common/file.cpp)
-else()
+        os/windows_common/file.cpp
+        os/win32/_.h
+        os/win32/dialog.cpp
+        os/win32/dialog.h
+        os/win32/font.cpp
+        os/win32/font.h
+        os/win32/window.cpp
+        os/win32/window.h
+    )
+    else()
 
     list(APPEND apex_source
         os/cross/windows/windows_thread.h
@@ -849,7 +868,7 @@ if(LINUX)
         node/linux/file_context.h
         node/linux/file_system.cpp
         node/linux/file_system.h
-        node/linux/frame_window.cpp
+        #node/linux/frame_window.cpp
         node/linux/internal.h
         node/linux/linux.cpp
         node/linux/os_context.cpp
@@ -906,7 +925,7 @@ if(LINUX)
         os/linux/process_pid.cpp
         os/linux/simple_app.cpp
         os/linux/simple_shell_launcher.cpp
-        os/linux/small_ipca_channel.cpp
+        os/linux/interprocess_communication.cpp
         os/linux/time.cpp
         os/linux/user.cpp
         os/linux/user.h
@@ -915,109 +934,120 @@ if(LINUX)
 
 endif()
 
+        os/linux/win_base.cpp
+            )
+    endif()
+
+
+if(MACOS)
 
 if(MACOS)
 
     list(APPEND apex_source
-        crypto/macos/rsa.cpp
-        crypto/macos/rsa.h
-        node/macos/_.h
-        node/macos/_macos.h
-        node/macos/_mm.h
-        node/macos/apex_window.h
-        node/macos/apex_window.mm
-        node/macos/ApexWindow.h
-        node/macos/ApexWindow.mm
-        node/macos/ApexWindowApp.h
-        node/macos/ApexWindowApp.mm
-        node/macos/ApexWindowController.h
-        node/macos/ApexWindowController.mm
-        node/macos/ApexWindowFrameView.h
-        node/macos/ApexWindowFrameView.mm
-        node/macos/app.mm
-        node/macos/application.cpp
-        node/macos/application.h
-        node/macos/dir_context.cpp
-        node/macos/dir_context.h
-        node/macos/dir_system.cpp
-        node/macos/dir_system.h
-        node/macos/factory_exchange.cpp
-        node/macos/factory_exchange.h
-        node/macos/file.cpp
-        node/macos/file_context.cpp
-        node/macos/file_context.h
-        node/macos/file_os_watcher.cpp
-        node/macos/file_os_watcher.h
-        node/macos/file_system.cpp
-        node/macos/file_system.h
-        node/macos/keyboard.cpp
-        node/macos/keyboard.h
-        node/macos/keyboard_mm.mm
-        node/macos/main.cpp
-        node/macos/os_context.cpp
-        node/macos/os_context.h
-        node/macos/shell_macos_mm.mm
-        node/macos/stdio_file.cpp
-        node/macos/stdio_file.h
-        node/macos/thread.cpp
-        node/macos/thread.h
-        node/macos/trace.cpp
-        node/macos/user.h
-        node/macos/util.cpp
-        os/macos/_.h
-        os/macos/_c.h
-        os/macos/_macos.h
-        os/macos/_mm.h
-        os/macos/application_system_run.cpp
-        os/macos/aura.cpp
-        os/macos/clipboard.cpp
-        os/macos/cross_win.cpp
-        os/macos/cross_win_file.cpp
-        os/macos/cross_win_gdi.h
-        os/macos/debug.cpp
-        os/macos/exception_engine.cpp
-        os/macos/exception_engine.h
-        os/macos/file.cpp
-        os/macos/file.h
-        os/macos/file.mm
-        os/macos/graphics_mm.h
-        os/macos/internal.h
-        os/macos/keyboard.cpp
-        os/macos/language.cpp
-        os/macos/launcher.cpp
-        os/macos/library.cpp
-        os/macos/list_serial_ports.cpp
-        os/macos/lock.cpp
-        os/macos/macos.h
-        os/macos/main.h
-        os/macos/MessageBoxA.cpp
-        os/macos/mm.mm
-        os/macos/mm_graphics.mm
-        os/macos/mm_oswindow.h
-        os/macos/multithreading.cpp
-        os/macos/multithreading.h
-        os/macos/NSPasteboard++.mm
-        os/macos/os.cpp
-        os/macos/os.h
-        os/macos/process.cpp
-        os/macos/process_c.h
-        os/macos/process_pid.cpp
-        os/macos/simple_app.cpp
-        os/macos/simple_shell_launcher.cpp
-        os/macos/small_ipca_channel.cpp
-        os/macos/time.cpp
-        os/macos/user.cpp
-        os/macos/user.h
-        os/macos/win_base.cpp
-        os/macos/window_impl.h
-        os/macos/windowing.h
-        os/macos/windowing_c.h
-        os/macos/winpr_keycode.cpp)
+            crypto/macos/rsa.cpp
+            crypto/macos/rsa.h
+            node/macos/_.h
+            node/macos/_macos.h
+            node/macos/_mm.h
+            node/macos/apex_window.h
+            node/macos/apex_window.mm
+            node/macos/ApexWindow.h
+            node/macos/ApexWindow.mm
+            node/macos/ApexWindowApp.h
+            node/macos/ApexWindowApp.mm
+            node/macos/ApexWindowController.h
+            node/macos/ApexWindowController.mm
+            node/macos/ApexWindowFrameView.h
+            node/macos/ApexWindowFrameView.mm
+            node/macos/app.mm
+            node/macos/application.cpp
+            node/macos/application.h
+            node/macos/dir_context.cpp
+            node/macos/dir_context.h
+            node/macos/dir_system.cpp
+            node/macos/dir_system.h
+            node/macos/factory_exchange.cpp
+            node/macos/factory_exchange.h
+            node/macos/file.cpp
+            node/macos/file_context.cpp
+            node/macos/file_context.h
+            node/macos/file_os_watcher.cpp
+            node/macos/file_os_watcher.h
+            node/macos/file_system.cpp
+            node/macos/file_system.h
+            node/macos/keyboard.cpp
+            node/macos/keyboard.h
+            node/macos/keyboard_mm.mm
+            node/macos/main.cpp
+            node/macos/os_context.cpp
+            node/macos/os_context.h
+            node/macos/shell_macos_mm.mm
+            node/macos/stdio_file.cpp
+            node/macos/stdio_file.h
+            node/macos/thread.cpp
+            node/macos/thread.h
+            node/macos/trace.cpp
+            node/macos/user.h
+            node/macos/util.cpp
+            os/macos/_.h
+            os/macos/_c.h
+            os/macos/_macos.h
+            os/macos/_mm.h
+            os/macos/application_system_run.cpp
+            os/macos/aura.cpp
+            os/macos/clipboard.cpp
+            os/macos/cross_win.cpp
+            os/macos/cross_win_file.cpp
+            os/macos/cross_win_gdi.h
+            os/macos/debug.cpp
+            os/macos/exception_engine.cpp
+            os/macos/exception_engine.h
+            os/macos/file.cpp
+            os/macos/file.h
+            os/macos/file.mm
+            os/macos/graphics_mm.h
+            os/macos/internal.h
+            os/macos/keyboard.cpp
+            os/macos/language.cpp
+            os/macos/launcher.cpp
+            os/macos/library.cpp
+            os/macos/list_serial_ports.cpp
+            os/macos/lock.cpp
+            os/macos/macos.h
+            os/macos/main.h
+            os/macos/MessageBoxA.cpp
+            os/macos/mm.mm
+            os/macos/mm_graphics.mm
+            os/macos/mm_oswindow.h
+            os/macos/multithreading.cpp
+            os/macos/multithreading.h
+            os/macos/NSPasteboard++.mm
+            os/macos/os.cpp
+            os/macos/os.h
+            os/macos/process.cpp
+            os/macos/process_c.h
+            os/macos/process_pid.cpp
+            os/macos/simple_app.cpp
+            os/macos/simple_shell_launcher.cpp
+            os/macos/small_ipca_channel.cpp
+            os/macos/time.cpp
+            os/macos/user.cpp
+            os/macos/user.h
+            os/macos/win_base.cpp
+            os/macos/window_impl.h
+            os/macos/windowing.h
+            os/macos/windowing_c.h
+            os/macos/winpr_keycode.cpp
 
-endif()
+            )
+
+
+    endif()
 
 
 if(IOS)
+    list(APPEND apex_source
+            ios_aura/ios_aura.h
 
     list(APPEND apex_source
         ios_aura/ios_aura.h
@@ -1122,217 +1152,232 @@ endif()
 
 
 if(ANDROID)
-
     list(APPEND apex_source
-        node/android/Kerr/kerr.h
-        node/android/Kerr/LocalMemory.h
-        node/android/_.h
-        node/android/_android.h
-        node/android/android.cpp
-        node/android/android1.cpp
-        node/android/android1.h
-        node/android/application.cpp
-        node/android/application.h
-        node/android/buffer.cpp
-        node/android/buffer.h
-        node/android/dir_context.cpp
-        node/android/dir_context.h
-        node/android/dir_system.cpp
-        node/android/dir_system.h
-        node/android/error.cpp
-        node/android/exception.cpp
-        node/android/factory_exchange.cpp
-        node/android/factory_exchange.h
-        node/android/file.cpp
-        node/android/file.h
-        node/android/file_context.cpp
-        node/android/file_context.h
-        node/android/file_system.cpp
-        node/android/file_system.h
-        node/android/host_interaction.cpp
-        node/android/host_interaction.h
-        node/android/implementation.h
-        node/android/internal.h
-        node/android/main.cpp
-        node/android/os_context.cpp
-        node/android/os_context.h
-        node/android/process.cpp
-        node/android/shell.cpp
-        node/android/shell.h
-        node/android/thread.cpp
-        node/android/thread.h
-        node/android/trace.cpp
-        node/android/util.cpp
-        os/android/_.h
-        os/android/_android.h
-        os/android/_bind_app.cpp
-        os/android/_bind_impact.cpp
-        os/android/_c.h
-        os/android/_os_android.cpp
-        os/android/_os_impl.cpp
-        os/android/_os_impl.h
-        os/android/_os_object.cpp
-        os/android/_os_object.h
-        os/android/_os_remote.h
-        os/android/application_system_run.cpp
-        os/android/aura.cpp
-        os/android/c.cpp
-        os/android/cairo_keep.h
-        os/android/cross_win_file.h
-        os/android/cross_win_gdi.h
-        os/android/cross_win_gdi_internal.h
-        os/android/debug.cpp
-        os/android/dir.cpp
-        os/android/exception_engine.cpp
-        os/android/exception_engine.h
-        os/android/file.cpp
-        os/android/file.h
-        os/android/graphics.cpp
-        os/android/graphics.h
-        os/android/internal.h
-        os/android/jni_launcher.cpp
-        os/android/language.cpp
-        os/android/launcher.cpp
-        os/android/library.cpp
-        os/android/locale.cpp
-        os/android/lock.cpp
-        os/android/main_android.cpp
-        os/android/message_loop.cpp
-        os/android/multithreading.cpp
-        os/android/process.cpp
-        os/android/process.h
-        os/android/process_pid.cpp
-        os/android/simple_shell_launcher.cpp
-        os/android/small_ipca_channel.cpp
-        os/android/view_bitmap.h
-        os/android/win_base.cpp
-        os/android/window_android.cpp
-        os/android/window_android.h
-        os/android/window_impl.cpp
-        os/android/windowing.cpp
-        os/android/windowing.h)
+            node/android/Kerr/kerr.h
+            node/android/Kerr/LocalMemory.h
+            node/android/_.h
+            node/android/_android.h
+            node/android/android.cpp
+            node/android/android1.cpp
+            node/android/android1.h
+            node/android/application.cpp
+            node/android/application.h
+            node/android/buffer.cpp
+            node/android/buffer.h
+            node/android/dir_context.cpp
+            node/android/dir_context.h
+            node/android/dir_system.cpp
+            node/android/dir_system.h
+            node/android/error.cpp
+            node/android/exception.cpp
+            node/android/factory_exchange.cpp
+            node/android/factory_exchange.h
+            node/android/file.cpp
+            node/android/file.h
+            node/android/file_context.cpp
+            node/android/file_context.h
+            node/android/file_system.cpp
+            node/android/file_system.h
+            node/android/host_interaction.cpp
+            node/android/host_interaction.h
+            node/android/implementation.h
+            node/android/internal.h
+            node/android/main.cpp
+            node/android/os_context.cpp
+            node/android/os_context.h
+            node/android/process.cpp
+            node/android/shell.cpp
+            node/android/shell.h
+            node/android/thread.cpp
+            node/android/thread.h
+            node/android/trace.cpp
+            node/android/util.cpp
+            os/android/_.h
+            os/android/_android.h
+            os/android/_bind_app.cpp
+            os/android/_bind_impact.cpp
+            os/android/_c.h
+            os/android/_os_android.cpp
+            os/android/_os_impl.cpp
+            os/android/_os_impl.h
+            os/android/_os_object.cpp
+            os/android/_os_object.h
+            os/android/_os_remote.h
+            os/android/application_system_run.cpp
+            os/android/aura.cpp
+            os/android/c.cpp
+            os/android/cairo_keep.h
+            os/android/cross_win_file.h
+            os/android/cross_win_gdi.h
+            os/android/cross_win_gdi_internal.h
+            os/android/debug.cpp
+            os/android/dir.cpp
+            os/android/exception_engine.cpp
+            os/android/exception_engine.h
+            os/android/file.cpp
+            os/android/file.h
+            os/android/graphics.cpp
+            os/android/graphics.h
+            os/android/internal.h
+            os/android/jni_launcher.cpp
+            os/android/language.cpp
+            os/android/launcher.cpp
+            os/android/library.cpp
+            os/android/locale.cpp
+            os/android/lock.cpp
+            os/android/main_android.cpp
+            os/android/message_loop.cpp
+            os/android/multithreading.cpp
+            os/android/process.cpp
+            os/android/process.h
+            os/android/process_pid.cpp
+            os/android/simple_shell_launcher.cpp
+            os/android/small_ipca_channel.cpp
+            os/android/view_bitmap.h
+            os/android/win_base.cpp
+            os/android/window_android.cpp
+            os/android/window_android.h
+            os/android/window_impl.cpp
+            os/android/windowing.cpp
+            os/android/windowing.h
+        )
 
 endif()
 
 
 if(APPLE)
-
     list(APPEND apex_source
-        timer.mm
-        node/apple/apple_timer.cpp
-        node/apple/process.cpp
-        node/apple/process.h
-        os/apple/_.cpp
-        os/apple/_.h
-        os/apple/_apple.h
-        os/apple/_apple.mm
-        os/apple/_c_mm.h
-        os/apple/_mm.h
-        os/apple/_mm_common.h
-        os/apple/debug.cpp
-        os/apple/debug.h
-        os/apple/exe_path.cpp
-        os/apple/graphics.cpp
-        os/apple/graphics.h
-        os/apple/image_gif.cpp
-        os/apple/main.cpp
-        os/apple/main.h
-        os/apple/multihreading.cpp
-        os/apple/ns_exception.cpp
-        os/apple/ns_exception.h
-        os/apple/process.cpp
-        os/apple/time.cpp
-        os/apple/time.h
-        )
+            timer.mm
+            node/apple/apple_timer.cpp
+            node/apple/process.cpp
+            node/apple/process.h
+            os/apple/_.cpp
+            os/apple/_.h
+            os/apple/_apple.h
+            os/apple/_apple.mm
+            os/apple/_c_mm.h
+            os/apple/_mm.h
+            os/apple/_mm_common.h
+            os/apple/debug.cpp
+            os/apple/debug.h
+            os/apple/exe_path.cpp
+            os/apple/graphics.cpp
+            os/apple/graphics.h
+            os/apple/image_gif.cpp
+            os/apple/main.cpp
+            os/apple/main.h
+            os/apple/multihreading.cpp
+            os/apple/ns_exception.cpp
+            os/apple/ns_exception.h
+            os/apple/process.cpp
+            os/apple/time.cpp
+            os/apple/time.h
+            )
 
 endif()
 
 
 if(SOLARIS)
     list(APPEND apex_source
-        os/solaris/linux_internal.h
-        os/solaris/solaris.cpp
-        os/solaris/solaris.h
-        os/solaris/solaris_cairo_keep.cpp
-        os/solaris/solaris_cairo_keep.h
-        os/solaris/solaris_cross_win_file.cpp
-        os/solaris/solaris_cross_win_file.h
-        os/solaris/solaris_cross_win_gdi.cpp
-        os/solaris/solaris_cross_win_gdi.h
-        os/solaris/solaris_cross_win_gdi_internal.h
-        os/solaris/solaris_debug.h
-        os/solaris/solaris_display.cpp
-        os/solaris/solaris_file.cpp
-        os/solaris/solaris_file.h
-        os/solaris/solaris_file_watcher.cpp
-        os/solaris/solaris_file_watcher.h
-        os/solaris/solaris_graphics.h
-        os/solaris/solaris_http.cpp
-        os/solaris/solaris_http.h
-        os/solaris/solaris_http_lib.cpp
-        os/solaris/solaris_http_lib.h
-        os/solaris/solaris_internal.h
-        os/solaris/solaris_launcher.cpp
-        os/solaris/solaris_library.cpp
-        os/solaris/solaris_lock.cpp
-        os/solaris/solaris_message_loop.cpp
-        os/solaris/solaris_process.cpp
-        os/solaris/solaris_process.h
-        os/solaris/solaris_process_pid.cpp
-        os/solaris/solaris_simple_shell_launcher.cpp
-        os/solaris/solaris_simple_ui.cpp
-        os/solaris/solaris_simple_ui.h
-        os/solaris/solaris_small_ipca_channel.cpp
-        os/solaris/solaris_solaris.h
-        os/solaris/solaris_thread.cpp
-        os/solaris/solaris_user_impl.h
-        os/solaris/solaris_win_base.cpp
-        os/solaris/solaris_window.cpp
-        os/solaris/solaris_window_xlib.cpp
-        os/solaris/solaris_window_xlib.h
-        )
-
-endif()
-
-if(LINUX OR SOLARIS)
-
-    list(APPEND apex_source
-            crypto/rsa.cpp
-            crypto/rsa.h
-            node/posix/file_os_watcher.cpp
-            node/posix/file_os_watcher.h
-            os/posix/base_file.cpp
-            os/posix/pthread.cpp
-            os/posix/thread.cpp
-            os/posix/time.cpp
-            os/posix/timer.cpp
+            os/solaris/linux_internal.h
+            os/solaris/solaris.cpp
+            os/solaris/solaris.h
+            os/solaris/solaris_cairo_keep.cpp
+            os/solaris/solaris_cairo_keep.h
+            os/solaris/solaris_cross_win_file.cpp
+            os/solaris/solaris_cross_win_file.h
+            os/solaris/solaris_cross_win_gdi.cpp
+            os/solaris/solaris_cross_win_gdi.h
+            os/solaris/solaris_cross_win_gdi_internal.h
+            os/solaris/solaris_debug.h
+            os/solaris/solaris_display.cpp
+            os/solaris/solaris_file.cpp
+            os/solaris/solaris_file.h
+            os/solaris/solaris_file_watcher.cpp
+            os/solaris/solaris_file_watcher.h
+            os/solaris/solaris_graphics.h
+            os/solaris/solaris_http.cpp
+            os/solaris/solaris_http.h
+            os/solaris/solaris_http_lib.cpp
+            os/solaris/solaris_http_lib.h
+            os/solaris/solaris_internal.h
+            os/solaris/solaris_launcher.cpp
+            os/solaris/solaris_library.cpp
+            os/solaris/solaris_lock.cpp
+            os/solaris/solaris_message_loop.cpp
+            os/solaris/solaris_process.cpp
+            os/solaris/solaris_process.h
+            os/solaris/solaris_process_pid.cpp
+            os/solaris/solaris_simple_shell_launcher.cpp
+            os/solaris/solaris_simple_ui.cpp
+            os/solaris/solaris_simple_ui.h
+            os/solaris/solaris_small_ipca_channel.cpp
+            os/solaris/solaris_solaris.h
+            os/solaris/solaris_thread.cpp
+            os/solaris/solaris_user_impl.h
+            os/solaris/solaris_win_base.cpp
+            os/solaris/solaris_window.cpp
+            os/solaris/solaris_window_xlib.cpp
+            os/solaris/solaris_window_xlib.h
             )
 
+    endif()
+
+
+
+if (MSVC)
+    set(LIBCXX_TARGETING_MSVC ON)
+else()
+    set(LIBCXX_TARGETING_MSVC OFF)
 endif()
 
 
 add_library(apex SHARED ${apex_source})
 
-
-if(WIN32)
-    target_precompile_headers(apex PUBLIC framework.h)
-endif()
-
+target_precompile_headers(apex PRIVATE framework.h)
 
 set_target_properties(apex PROPERTIES LINKER_LANGUAGE CXX)
+
+if(USE_OPENSSL)
+    list(APPEND apex_source
+            crypto/openssl/_.cpp
+            crypto/openssl/_openssl.h
+            crypto/openssl/crypto.cpp
+            crypto/openssl/hasher.cpp
+            crypto/openssl/hasher.h
+            crypto/openssl/hasher_algorithm.cpp
+            crypto/openssl/hasher_algorithm.h
+            crypto/openssl/rsa.cpp
+            crypto/openssl/rsa.h
+            )
+endif()
 
 
 if (MSVC)
     target_compile_options(apex PRIVATE "/MD$<$<CONFIG:Debug>:d>")
-    target_link_options(apex PRIVATE /DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>)
+    target_link_options(apex PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
     target_link_options(apex PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/apex.lib")
     target_link_options(apex PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/apex.def")
+    target_link_libraries(apex PRIVATE acme)
+elseif(LINUX)
+    pkg_check_modules(PKGCONFIG glib-2.0 gtk+-3.0 libcrypto libssl appindicator-0.1)
+    #pkg_check_modules(PKGCONFIG glib-2.0 freetype2 gtk+-3.0 gdk-3.0)
+    target_compile_options(apex PRIVATE ${PKGCONFIG_CFLAGS})
+    #target_compile_options(apex PRIVATE -std=c++14)
+    #target_link_options(apex PRIVATE ${GTK_LDFLAGS})
+    target_link_options(apex PRIVATE -Wl,-rpath=\$ORIGIN)
+    target_link_libraries(apex PRIVATE dl pthread idn z)
+    target_link_libraries(apex PRIVATE ${PKGCONFIG_LIBRARIES})
+    target_link_libraries(apex PRIVATE acme)
+    target_link_options(apex PRIVATE -Wl,-z,defs)
+    message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
 endif()
 
 target_link_directories(apex PRIVATE ${LIBRARY_OUTPUT_PATH})
 target_link_directories(apex PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/storage-${PLATFORM_NAME}/third/library/x64/basis)
 
 
+target_include_directories(apex PRIVATE $ENV{HOME}/__config)
 target_include_directories(apex PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 target_include_directories(apex PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)
 target_include_directories(apex PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/app)
@@ -1340,7 +1385,6 @@ target_include_directories(apex PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../sou
 target_include_directories(apex PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/include)
 target_include_directories(apex PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/platform-${PLATFORM_NAME})
 target_include_directories(apex PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/platform-${PLATFORM_NAME}/_include)
-target_include_directories(apex PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/include)
 target_include_directories(apex PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/third/include)
 target_include_directories(apex PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/third/include/include)
 target_include_directories(apex PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
@@ -1349,9 +1393,6 @@ target_include_directories(apex PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 target_compile_definitions(apex PRIVATE _APEX_LIBRARY)
 target_compile_definitions(apex PRIVATE UNICODE)
 target_compile_definitions(apex PRIVATE _UNICODE)
-
-
-target_link_libraries(apex PRIVATE acme)
 
 
 

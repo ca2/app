@@ -239,9 +239,9 @@ namespace apex
 
       set_context_object(this OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
 
-      set_context_app(this OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
+      set_context_app(this);
 
-      set_context(this OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
+      set_context(this);
 
       if (::is_set(m_pappParent))
       {

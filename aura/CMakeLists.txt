@@ -1,36 +1,29 @@
 cmake_minimum_required(VERSION 3.17)
-project(aura)
+project(aura CXX)
+include(FindPkgConfig)
+
 
 set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
-add_definitions(-D_AURA_LIBRARY)
-add_definitions(-DUNICODE)
-add_definitions(-D_UNICODE)
 
-add_library(aura _.cpp)
+message(STATUS "CMAKE_SYSTEM_NAME is ${CMAKE_SYSTEM_NAME}")
 
-if(WIN32)
+
+if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
+    set(LINUX TRUE)
+    set(PLATFORM_NAME "linux")
+    message("System is Linux")
+elseif(WIN32)
     set(PLATFORM_NAME "windows")
 endif()
 
 
+set(LIBRARY_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../time-${PLATFORM_NAME}/cmake)
+set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../time-${PLATFORM_NAME}/cmake)
 
-include_directories(${CMAKE_SOURCE_DIR}/../..)
-include_directories(${CMAKE_SOURCE_DIR}/..)
-include_directories(${CMAKE_SOURCE_DIR}/../../../source/app)
-include_directories(${CMAKE_SOURCE_DIR}/../../../source/app/_include)
-include_directories(${CMAKE_SOURCE_DIR}/../../../source/include)
-include_directories(${CMAKE_SOURCE_DIR}/../../../archive/platform-${PLATFORM_NAME})
-include_directories(${CMAKE_SOURCE_DIR}/../../../archive/platform-${PLATFORM_NAME}/_include)
-include_directories(${CMAKE_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/third/include)
-include_directories(${CMAKE_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/third/include/include)
-include_directories(.)
 
-if(WIN32)
-    target_precompile_headers(aura PUBLIC framework.h)
-endif()
-
-set(aura_source
+list(APPEND aura_source
         asset/cube_new.inl
         asset/new.inl
         axispolicy/_.h
@@ -473,9 +466,6 @@ set(aura_source
         os/ios/_ios.h
         os/ios/_m.h
         os/ios/_mm.h
-        os/ios/aaa_simple_shell_launcher.cpp
-        os/ios/aaa_want_to_remove_genResource.cpp
-        os/ios/aaa_want_to_remove_macos_debug.cpp
         os/ios/application_system_run.cpp
         os/ios/aura.cpp
         os/ios/base_internal.h
@@ -528,10 +518,6 @@ set(aura_source
         os/macos/_c.h
         os/macos/_macos.h
         os/macos/_mm.h
-        os/macos/aaa_mmos.h
-        os/macos/aaa_mmos.mm
-        os/macos/aaa_simple_shell_launcher.cpp
-        os/macos/aaa_small_ipca_channel.cpp
         os/macos/application_system_run.cpp
         os/macos/aura.cpp
         os/macos/clipboard.cpp
@@ -582,8 +568,6 @@ set(aura_source
         os/macos/windowing.h
         os/macos/windowing_c.h
         os/macos/winpr_keycode.cpp
-        os/posix/aaa_local_memory_map.cpp
-        os/posix/aaa_want_to_remove_serial.cpp
         os/posix/base_file.cpp
         os/posix/pthread.cpp
         os/posix/thread.cpp
@@ -593,28 +577,6 @@ set(aura_source
         os/uwp/_os_metrowin.cpp
         os/uwp/_uwp.h
         os/uwp/_winrt.h
-        os/uwp/aaa_base_file.cpp
-        os/uwp/aaa_debug.cpp
-        os/uwp/aaa_dpi.cpp
-        os/uwp/aaa_exception_engine.cpp
-        os/uwp/aaa_exception_engine.h
-        os/uwp/aaa_file.cpp
-        os/uwp/aaa_file_memory_map.cpp
-        os/uwp/aaa_language.cpp
-        os/uwp/aaa_launcher.cpp
-        os/uwp/aaa_library.cpp
-        os/uwp/aaa_multithreading.cpp
-        os/uwp/aaa_os_message_box.cpp
-        os/uwp/aaa_process.cpp
-        os/uwp/aaa_simple_app.cpp
-        os/uwp/aaa_simple_shell_launcher.cpp
-        os/uwp/aaa_small_ipca_channel.cpp
-        os/uwp/aaa_sockets.cpp
-        os/uwp/aaa_time.cpp
-        os/uwp/aaa_want_to_remove_main_uwp.cpp
-        os/uwp/aaa_want_to_remove_MessageBoxA.cpp
-        os/uwp/aaa_want_to_remove_window_impl.cpp
-        os/uwp/aaa_want_to_remove_window_impl.h
         os/uwp/application_system_run.cpp
         os/uwp/aura.cpp
         os/uwp/base_file.h
@@ -643,34 +605,11 @@ set(aura_source
         os/win32/font.h
         os/win32/window.cpp
         os/win32/window.h
-        os/windows/aaa_want_to_remove_ansios/_os_ansios.cpp
-        os/windows/aaa_want_to_remove_ansios/ansios.h
-        os/windows/aaa_want_to_remove_ansios/ansios_base.cpp
-        os/windows/aaa_want_to_remove_ansios/ansios_base_file.cpp
-        os/windows/aaa_want_to_remove_ansios/ansios_cross_win.cpp
-        os/windows/aaa_want_to_remove_ansios/ansios_cross_win_file.cpp
-        os/windows/aaa_want_to_remove_ansios/ansios_cross_windows_user.cpp
-        os/windows/aaa_want_to_remove_ansios/ansios_file.h
-        os/windows/aaa_want_to_remove_ansios/ansios_file_std.cpp
-        os/windows/aaa_want_to_remove_ansios/ansios_local_memory_map.cpp
-        os/windows/aaa_want_to_remove_ansios/ansios_message_loop.cpp
-        os/windows/aaa_want_to_remove_ansios/ansios_multithreading.cpp
-        os/windows/aaa_want_to_remove_ansios/ansios_multithreading.h
-        os/windows/aaa_want_to_remove_ansios/ansios_process.cpp
-        os/windows/aaa_want_to_remove_ansios/ansios_serial.cpp
-        os/windows/aaa_want_to_remove_ansios/ansios_serial.h
-        os/windows/aaa_want_to_remove_ansios/ansios_thread.h
-        os/windows/aaa_want_to_remove_ansios/ansios_time.cpp
         os/windows/-ehrror.cpp
         os/windows/_.h
         os/windows/_c.h
         os/windows/_windows.h
         os/windows/_windows_impl.h
-        os/windows/aaa_dde.cpp
-        os/windows/aaa_multimedia.cpp
-        os/windows/aaa_want_to_remove_main_windows.cpp
-        os/windows/aaa_want_to_remove_process_env_reader.cpp
-        os/windows/aaa_want_to_remove_process_env_reader.h
         os/windows/ansi_file.cpp
         os/windows/ansios_message_loop.cpp
         os/windows/api.cpp
@@ -746,20 +685,6 @@ set(aura_source
         os/windows_common/_default_dll_impl.h
         os/windows_common/_file_c.h
         os/windows_common/_unicode_c.h
-        os/windows_common/aaa_-ehrror.cpp
-        os/windows_common/aaa_aura.cpp
-        os/windows_common/aaa_base.cpp
-        os/windows_common/aaa_bstring.cpp
-        os/windows_common/aaa_com.cpp
-        os/windows_common/aaa_file.cpp
-        os/windows_common/aaa_file_c.cpp
-        os/windows_common/aaa_multithreading.cpp
-        os/windows_common/aaa_networking.cpp
-        os/windows_common/aaa_unicode.cpp
-        os/windows_common/aaa_want_to_remove_new_api.cpp
-        os/windows_common/aaa_want_to_remove_windows_common_c.h
-        os/windows_common/aaa_want_to_remove_windows_common_error.h
-        os/windows_common/aaa_want_to_remove_windows_common_file.h
         os/windows_common/bstring.h
         os/windows_common/cotaskptr.h
         os/windows_common/draw2d_direct2d_global.cpp
@@ -784,15 +709,6 @@ set(aura_source
         os/_c.h
         os/_impl.h
         os/_os.h
-        os/aaa_chronometer.cpp
-        os/aaa_console.cpp
-        os/aaa_debug.cpp
-        os/aaa_file.cpp
-        os/aaa_openssl_crypt.cpp
-        os/aaa_os_os.cpp
-        os/aaa_process.cpp
-        os/aaa_threading.h
-        os/aaa_time.cpp
         os/argcargv.cpp
         os/binreloc.cpp
         os/binreloc.h
@@ -816,159 +732,6 @@ set(aura_source
         platform/_features.h
         platform/_impl.h
         platform/_platform.h
-        platform/aaa-progress_interface.h
-        platform/aaa_.cpp
-        platform/aaa__generic_object_constructor_impl.h
-        platform/aaa__system_id_impl.h
-        platform/aaa__system_object_impl.h
-        platform/aaa__system_smart_pointer_impl.h
-        platform/aaa__system_var_impl.h
-        platform/aaa_all.h
-        platform/aaa_app_core.cpp
-        platform/aaa_app_launcher.cpp
-        platform/aaa_app_launcher.h
-        platform/aaa_application_array.cpp
-        platform/aaa_application_array.h
-        platform/aaa_application_consumer.h
-        platform/aaa_application_container.cpp
-        platform/aaa_application_container.h
-        platform/aaa_application_heap.h
-        platform/aaa_application_impl.h
-        platform/aaa_application_menu.cpp
-        platform/aaa_application_menu.h
-        platform/aaa_application_message.h
-        platform/aaa_application_signal_details.h
-        platform/aaa_assert.cpp
-        platform/aaa_assert_running_task.h
-        platform/aaa_async.h
-        platform/aaa_aura_aura.h
-        platform/aaa_aura_main_data.cpp
-        platform/aaa_aura_main_struct.cpp
-        platform/aaa_aura_regex.h
-        platform/aaa_aura_str_pool.cpp
-        platform/aaa_aura_str_pool.h
-        platform/aaa_auto.h
-        platform/aaa_auto_pointer.h
-        platform/aaa_build_debug.cpp
-        platform/aaa_checked.cpp
-        platform/aaa_class.h
-        platform/aaa_cmp.h
-        platform/aaa_cmp2.h
-        platform/aaa_common.h
-        platform/aaa_console_application.cpp
-        platform/aaa_console_application.h
-        platform/aaa_const.h
-        platform/aaa_constraint.h
-        platform/aaa_context.cpp
-        platform/aaa_context.h
-        platform/aaa_context_thread.cpp
-        platform/aaa_context_thread.h
-        platform/aaa_debug.cpp
-        platform/aaa_debug.h
-        platform/aaa_definition.h
-        platform/aaa_department.cpp
-        platform/aaa_department.h
-        platform/aaa_display.cpp
-        platform/aaa_display.h
-        platform/aaa_enum.h
-        platform/aaa_error.h
-        platform/aaa_exclusive.cpp
-        platform/aaa_exclusive.h
-        platform/aaa_factory.cpp
-        platform/aaa_factory.h
-        platform/aaa_filestream.h
-        platform/aaa_fixed_alloc.cpp
-        platform/aaa_fixed_alloc.h
-        platform/aaa_fixed_alloc_impl.h
-        platform/aaa_flags.cpp
-        platform/aaa_flags.h
-        platform/aaa_history.cpp
-        platform/aaa_history.h
-        platform/aaa_hyperlink.cpp
-        platform/aaa_hyperlink.h
-        platform/aaa_international.cpp
-        platform/aaa_international.h
-        platform/aaa_ipc.cpp
-        platform/aaa_ipi.cpp
-        platform/aaa_keep.h
-        platform/aaa_keep_true.h
-        platform/aaa_launcher.h
-        platform/aaa_less.h
-        platform/aaa_library.cpp
-        platform/aaa_library.h
-        platform/aaa_library_object_allocator.h
-        platform/aaa_log.cpp
-        platform/aaa_log.h
-        platform/aaa_logic.cpp
-        platform/aaa_logic.h
-        platform/aaa_lparam.h
-        platform/aaa_machine_event.cpp
-        platform/aaa_machine_event2.h
-        platform/aaa_machine_event_central.cpp
-        platform/aaa_machine_event_central2.h
-        platform/aaa_machine_event_data.cpp
-        platform/aaa_machine_event_data2.h
-        platform/aaa_main.h
-        platform/aaa_math.cpp
-        platform/aaa_message_box.cpp
-        platform/aaa_message_box.h
-        platform/aaa_mq.cpp
-        platform/aaa_muldiv32.h
-        platform/aaa_muldiv64.cpp
-        platform/aaa_muldiv64.h
-        platform/aaa_net.cpp
-        platform/aaa_net.h
-        platform/aaa_number.h
-        platform/aaa_obj_ref_dbg.h
-        platform/aaa_obj_typ_ctr.cpp
-        platform/aaa_obj_typ_ctr.h
-        platform/aaa_os_context.cpp
-        platform/aaa_os_context.h
-        platform/aaa_os_history.cpp
-        platform/aaa_os_history.h
-        platform/aaa_process_data.h
-        platform/aaa_profiler.cpp
-        platform/aaa_progress.cpp
-        platform/aaa_progress.h
-        platform/aaa_regex.cpp
-        platform/aaa_regex.h
-        platform/aaa_restore.h
-        platform/aaa_savings.cpp
-        platform/aaa_savings.h
-        platform/aaa_serial.h
-        platform/aaa_serial_impl.h
-        platform/aaa_shell_launcher.cpp
-        platform/aaa_shell_launcher.h
-        platform/aaa_simple_app.h
-        platform/aaa_simple_log.cpp
-        platform/aaa_simple_log.h
-        platform/aaa_simple_trace.cpp
-        platform/aaa_static_setup.cpp
-        platform/aaa_static_setup.h
-        platform/aaa_status.h
-        platform/aaa_str_context.cpp
-        platform/aaa_str_context.h
-        platform/aaa_system_trace.cpp
-        platform/aaa_tick.h
-        platform/aaa_timer.cpp
-        platform/aaa_timer.h
-        platform/aaa_timer_array.cpp
-        platform/aaa_timer_array.h
-        platform/aaa_timer_callback.cpp
-        platform/aaa_timer_callback.h
-        platform/aaa_timer_event.cpp
-        platform/aaa_timer_event.h
-        platform/aaa_timer_item.cpp
-        platform/aaa_timer_item.h
-        platform/aaa_trace.cpp
-        platform/aaa_trace.h
-        platform/aaa_trace_category.cpp
-        platform/aaa_trace_category.h
-        platform/aaa_version.cpp
-        platform/aaa_version.h
-        platform/aaa_want_to_remove_printf.cpp
-        platform/aaa_want_to_remove_printf.h
-        platform/aaa_want_to_remove_strn.cpp
         platform/application.cpp
         platform/application.h
         platform/aura_mq.cpp
@@ -992,7 +755,6 @@ set(aura_source
         platform/title.h
         platform/user_parent.h
         template/list.h
-        user/windows_tsf/aaa_want_to_remove_tsfedit.h
         user/windows_tsf/afxres.h
         user/windows_tsf/context_owner_composition_sink.cpp
         user/windows_tsf/dataobj.cpp
@@ -1023,31 +785,6 @@ set(aura_source
         user/_interaction_impl.h
         user/_prelude.h
         user/_user.h
-        user/aaa_button.cpp
-        user/aaa_button.h
-        user/aaa_check.cpp
-        user/aaa_check.h
-        user/aaa_check_box.cpp
-        user/aaa_check_box.h
-        user/aaa_combo_box.cpp
-        user/aaa_combo_box.h
-        user/aaa_combo_list.cpp
-        user/aaa_combo_list.h
-        user/aaa_command.cpp
-        user/aaa_command.h
-        user/aaa_ewindowflag.h
-        user/aaa_interaction_debug.cpp
-        user/aaa_layout.h
-        user/aaa_menu_shared.cpp
-        user/aaa_menu_shared.h
-        user/aaa_slider.cpp
-        user/aaa_slider.h
-        user/aaa_split_layout.cpp
-        user/aaa_still.cpp
-        user/aaa_still.h
-        user/aaa_text.cpp
-        user/aaa_text.h
-        user/aaa_want_to_remove_edit_window.cpp
         user/box.cpp
         user/box.h
         user/callback.cpp
@@ -1174,14 +911,6 @@ if(LINUX)
     set(aura_source
             node/linux/_.h
             node/linux/_linux.h
-            node/linux/aaa_dir_context.cpp
-            node/linux/aaa_dir_system.cpp
-            node/linux/aaa_file_context.cpp
-            node/linux/aaa_file_system.cpp
-            node/linux/aaa_os_context.cpp
-            node/linux/aaa_want_to_remove_application.cpp
-            node/linux/aaa_want_to_remove_application.h
-            node/linux/aaa_want_to_remove_process.cpp
             node/linux/application.cpp
             node/linux/application.h
             node/linux/console_window.cpp
@@ -1294,17 +1023,6 @@ set(aura_source
         node/macos/_.h
         node/macos/_macos.h
         node/macos/_mm.h
-        node/macos/aaa_aura_window.h
-        node/macos/aaa_aura_window.mm
-        node/macos/aaa_AuraWindow.h
-        node/macos/aaa_AuraWindow.mm
-        node/macos/aaa_AuraWindowApp.h
-        node/macos/aaa_AuraWindowApp.mm
-        node/macos/aaa_AuraWindowController.h
-        node/macos/aaa_AuraWindowController.mm
-        node/macos/aaa_AuraWindowFrameView.h
-        node/macos/aaa_AuraWindowFrameView.mm
-        node/macos/aaa_keyboard_mm.mm
         node/macos/application.cpp
         node/macos/application.h
         node/macos/copydesk.cpp
@@ -1334,30 +1052,6 @@ set(aura_source
         node/ios/_ios.h
         node/ios/_m.h
         node/ios/_mm.h
-        node/ios/aaa_dir_context.cpp
-        node/ios/aaa_dir_context.h
-        node/ios/aaa_dir_system.cpp
-        node/ios/aaa_dir_system.h
-        node/ios/aaa_file.cpp
-        node/ios/aaa_file.h
-        node/ios/aaa_file_context.cpp
-        node/ios/aaa_file_context.h
-        node/ios/aaa_file_os_watcher.cpp
-        node/ios/aaa_file_os_watcher.h
-        node/ios/aaa_file_system.cpp
-        node/ios/aaa_file_system.h
-        node/ios/aaa_ip_enum.cpp
-        node/ios/aaa_ip_enum.h
-        node/ios/aaa_os_context.cpp
-        node/ios/aaa_os_context.h
-        node/ios/aaa_shell.cpp
-        node/ios/aaa_want_to_remove_dumpinit.cpp
-        node/ios/aaa_want_to_remove_ios.cpp
-        node/ios/aaa_want_to_remove_os.h
-        node/ios/aaa_want_to_remove_shell.cpp
-        node/ios/aaa_want_to_remove_shell.h
-        node/ios/aaa_want_to_remove_stdio_file.cpp
-        node/ios/aaa_want_to_remove_stdio_file.h
         node/ios/application.cpp
         node/ios/application.h
         node/ios/aura_window.h
@@ -1453,24 +1147,61 @@ if(APPLE)
 endif()
 
 
-add_library(aura MODULE
-        ${aura_source})
-
-if(WIN32)
-    target_precompile_headers(aura PRIVATE framework.h)
-endif()
-
-
-set_target_properties(aura PROPERTIES LINKER_LANGUAGE CXX)
 
 
 if (MSVC)
-    target_compile_options(aura PRIVATE "/MD$<$<CONFIG:Debug>:D>")
-    target_link_options(aura PRIVATE /DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>)
+    set(LIBCXX_TARGETING_MSVC ON)
+else()
+    set(LIBCXX_TARGETING_MSVC OFF)
 endif()
 
 
-target_link_libraries(apex PRIVATE acme apex aqua)
+add_library(aura SHARED ${aura_source})
+
+target_precompile_headers(aura PRIVATE framework.h)
+
+set_target_properties(aura PROPERTIES LINKER_LANGUAGE CXX)
+
+if (MSVC)
+    target_compile_options(aura PRIVATE "/MD$<$<CONFIG:Debug>:d>")
+    target_link_options(aura PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
+    target_link_options(aura PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/aura.lib")
+    target_link_options(aura PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/aura.def")
+    target_link_libraries(aura PRIVATE acme)
+elseif(LINUX)
+    pkg_check_modules(PKGCONFIG glib-2.0 gtk+-3.0 libssl)
+    #pkg_check_modules(PKGCONFIG glib-2.0 freetype2 gtk+-3.0 gdk-3.0)
+    target_compile_options(aura PRIVATE ${PKGCONFIG_CFLAGS})
+    #target_compile_options(aura PRIVATE -std=c++14)
+    #target_link_options(aura PRIVATE ${GTK_LDFLAGS})
+    target_link_options(aura PRIVATE -Wl,-rpath=\$ORIGIN)
+    #target_link_libraries(aura PRIVATE )
+    target_link_libraries(aura PRIVATE ${PKGCONFIG_LIBRARIES})
+    target_link_libraries(aura PRIVATE acme apex aqua)
+    target_link_options(aura PRIVATE -Wl,-z,defs)
+    message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
+endif()
+
+target_link_directories(aura PRIVATE ${LIBRARY_OUTPUT_PATH})
+target_link_directories(aura PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/storage-${PLATFORM_NAME}/third/library/x64/basis)
+
+
+target_include_directories(aura PRIVATE $ENV{HOME}/__config)
+target_include_directories(aura PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../..)
+target_include_directories(aura PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)
+target_include_directories(aura PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/app)
+target_include_directories(aura PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/app/_include)
+target_include_directories(aura PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/include)
+target_include_directories(aura PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/platform-${PLATFORM_NAME})
+target_include_directories(aura PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/platform-${PLATFORM_NAME}/_include)
+target_include_directories(aura PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/third/include)
+target_include_directories(aura PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/third/include/include)
+target_include_directories(aura PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+
+
+target_compile_definitions(aura PRIVATE _APEX_LIBRARY)
+target_compile_definitions(aura PRIVATE UNICODE)
+target_compile_definitions(aura PRIVATE _UNICODE)
 
 
 

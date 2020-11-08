@@ -23,7 +23,8 @@
 #ifndef RASPBIAN
 //#ifndef MANJARO
 // Manjaro libappindicator-gtk3
-#include <libappindicator3-0.1/libappindicator/app-indicator.h>
+//#include <libappindicator3-0.1/libappindicator/app-indicator.h>
+#include <libappindicator-0.1/libappindicator/app-indicator.h>
 //#else // MANJARO
 //#include <libappindicator-0.1/libappindicator/app-indicator.h>
 //#endif

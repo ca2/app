@@ -1,38 +1,28 @@
 cmake_minimum_required(VERSION 3.17)
-project(aqua)
+project(aqua CXX)
+include(FindPkgConfig)
 
 set(CMAKE_CXX_STANDARD 14)
-
-add_definitions(-D_AQUA_LIBRARY)
-add_definitions(-DUNICODE)
-add_definitions(-D_UNICODE)
-
-add_library(aqua)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
 
-if(WIN32)
+message(STATUS "CMAKE_SYSTEM_NAME is ${CMAKE_SYSTEM_NAME}")
+
+
+if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
+    set(LINUX TRUE)
+    set(PLATFORM_NAME "linux")
+elseif(WIN32)
     set(PLATFORM_NAME "windows")
 endif()
 
 
-
-include_directories(${CMAKE_SOURCE_DIR}/../..)
-include_directories(${CMAKE_SOURCE_DIR}/..)
-include_directories(${CMAKE_SOURCE_DIR}/../../../source/app)
-include_directories(${CMAKE_SOURCE_DIR}/../../../source/app/_include)
-include_directories(${CMAKE_SOURCE_DIR}/../../../source/include)
-include_directories(${CMAKE_SOURCE_DIR}/../../../archive/platform-${PLATFORM_NAME})
-include_directories(${CMAKE_SOURCE_DIR}/../../../archive/platform-${PLATFORM_NAME}/_include)
-include_directories(${CMAKE_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/third/include)
-include_directories(${CMAKE_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/third/include/include)
-include_directories(.)
+set(LIBRARY_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../time-${PLATFORM_NAME}/cmake)
+set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../time-${PLATFORM_NAME}/cmake)
 
 
-if(WIN32)
-    target_precompile_headers(aqua PUBLIC framework.h)
-endif()
 
-set(aqua_source
+list(APPEND aqua_source
         const/idpool.cpp
         const/idpool.h
         game/_.h
@@ -77,7 +67,6 @@ set(aqua_source
         multimedia/file_application.h
         multimedia/multimedia.cpp
         multimedia/multimedia.h
-        os/macos/graphics.cpp
         os/windows/audio.cpp
         os/_.h
         platform/_platform.h
@@ -144,28 +133,73 @@ set(aqua_source
         library.h
         xml.h)
 
-
-
-
-
-add_library(aqua MODULE
-        ${aqua_source})
-
-if(WIN32)
-    target_precompile_headers(aqua PUBLIC framework.h)
+if(MACOS)
+    list(APPEND aqua_source
+            os/macos/graphics.cpp
+            )
 endif()
 
-
-set_target_properties(aqua PROPERTIES LINKER_LANGUAGE CXX)
 
 
 if (MSVC)
-    target_compile_options(aqua PUBLIC "/MD$<$<CONFIG:Debug>:D>")
-    target_link_options(aqua PUBLIC /DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>)
+    set(LIBCXX_TARGETING_MSVC ON)
+else()
+    set(LIBCXX_TARGETING_MSVC OFF)
 endif()
 
 
-target_link_libraries(apex PUBLIC acme apex)
+add_library(aqua SHARED ${aqua_source})
+
+target_precompile_headers(aqua PRIVATE framework.h)
+
+set_target_properties(aqua PROPERTIES LINKER_LANGUAGE CXX)
+
+if (MSVC)
+    target_compile_options(aqua PRIVATE "/MD$<$<CONFIG:Debug>:d>")
+    target_link_options(aqua PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
+    target_link_options(aqua PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/aqua.lib")
+    target_link_options(aqua PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/aqua.def")
+    target_link_libraries(aqua PRIVATE acme)
+elseif(LINUX)
+    pkg_check_modules(PKGCONFIG glib-2.0 gtk+-3.0 libssl)
+    #pkg_check_modules(PKGCONFIG glib-2.0 freetype2 gtk+-3.0 gdk-3.0)
+    target_compile_options(aqua PRIVATE ${PKGCONFIG_CFLAGS})
+    #target_compile_options(aqua PRIVATE -std=c++14)
+    #target_link_options(aqua PRIVATE ${GTK_LDFLAGS})
+    target_link_options(aqua PRIVATE -Wl,-rpath=\$ORIGIN)
+    #target_link_libraries(aqua PRIVATE )
+    target_link_libraries(aqua PRIVATE ${PKGCONFIG_LIBRARIES})
+    target_link_libraries(aqua PRIVATE acme)
+    target_link_options(aqua PRIVATE -Wl,-z,defs)
+    message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
+endif()
+
+target_link_directories(aqua PRIVATE ${LIBRARY_OUTPUT_PATH})
+target_link_directories(aqua PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/storage-${PLATFORM_NAME}/third/library/x64/basis)
+
+
+target_include_directories(aqua PRIVATE $ENV{HOME}/__config)
+target_include_directories(aqua PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../..)
+target_include_directories(aqua PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)
+target_include_directories(aqua PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/app)
+target_include_directories(aqua PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/app/_include)
+target_include_directories(aqua PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/include)
+target_include_directories(aqua PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/platform-${PLATFORM_NAME})
+target_include_directories(aqua PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/platform-${PLATFORM_NAME}/_include)
+target_include_directories(aqua PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/third/include)
+target_include_directories(aqua PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/third/include/include)
+target_include_directories(aqua PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+
+
+target_compile_definitions(aqua PRIVATE _APEX_LIBRARY)
+target_compile_definitions(aqua PRIVATE UNICODE)
+target_compile_definitions(aqua PRIVATE _UNICODE)
+
+
+
+
+
+
 
 
 

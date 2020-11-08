@@ -379,13 +379,6 @@ list(APPEND apex_source
         os/ansios/multithreading.h
         os/ansios/process.cpp
         os/ansios/win.cpp
-        os/win32/_.h
-        os/win32/dialog.cpp
-        os/win32/dialog.h
-        os/win32/font.cpp
-        os/win32/font.h
-        os/win32/window.cpp
-        os/win32/window.h
         os/_.h
         os/_application.cpp
         os/_application.h
@@ -931,15 +924,8 @@ if(LINUX)
         os/linux/user.h
         os/linux/user_private.h
         os/linux/win_base.cpp)
-
 endif()
 
-        os/linux/win_base.cpp
-            )
-    endif()
-
-
-if(MACOS)
 
 if(MACOS)
 
@@ -1046,9 +1032,6 @@ if(MACOS)
 
 
 if(IOS)
-    list(APPEND apex_source
-            ios_aura/ios_aura.h
-
     list(APPEND apex_source
         ios_aura/ios_aura.h
         ios_aura/ios_aura.m

@@ -231,165 +231,10 @@ list(APPEND aura_source
         message/timer.h
         message/user.cpp
         message/user.h
-        node/android/Kerr/kerr.h
-        node/android/Kerr/LocalMemory.h
-        node/android/_.h
-        node/android/_android.h
-        node/android/android.cpp
-        node/android/android1.cpp
-        node/android/android1.h
-        node/android/application.cpp
-        node/android/application.h
-        node/android/buffer.cpp
-        node/android/buffer.h
-        node/android/dir_context.cpp
-        node/android/dir_context.h
-        node/android/dir_system.cpp
-        node/android/dir_system.h
-        node/android/error.cpp
-        node/android/exception.cpp
-        node/android/factory_exchange.cpp
-        node/android/factory_exchange.h
-        node/android/file.cpp
-        node/android/file.h
-        node/android/file_context.cpp
-        node/android/file_context.h
-        node/android/file_system.cpp
-        node/android/file_system.h
-        node/android/host_interaction.cpp
-        node/android/host_interaction.h
-        node/android/implementation.h
-        node/android/interaction_impl.cpp
-        node/android/interaction_impl.h
-        node/android/internal.h
-        node/android/main.cpp
-        node/android/os_context.cpp
-        node/android/os_context.h
-        node/android/process.cpp
-        node/android/shell.cpp
-        node/android/shell.h
-        node/android/thread.cpp
-        node/android/thread.h
-        node/android/trace.cpp
-        node/android/util.cpp
-        node/apple/apple_timer.cpp
-        node/apple/process.cpp
-        node/apple/process.h
         node/dummy/frame_window.cpp
-        node/posix/_posix.h
-        node/posix/application.cpp
-        node/posix/file_os_watcher.cpp
-        node/posix/file_os_watcher.h
-        node/posix/pipe.cpp
-        node/posix/pipe.h
-        node/posix/serial.cpp
-        node/posix/serial.h
-        node/uwp/net/net_address.h
-        node/uwp/_.h
-        node/uwp/_aaa_want_to_remove_node_metrowin.cpp
-        node/uwp/_uwp.h
-        node/uwp/application.cpp
-        node/uwp/buffer.h
-        node/uwp/copydesk.cpp
-        node/uwp/copydesk.h
-        node/uwp/directx.cpp
-        node/uwp/directx.h
-        node/uwp/directx_impact.cpp
-        node/uwp/directx_impact.h
-        node/uwp/directx_interaction.cpp
-        node/uwp/directx_interaction.h
-        node/uwp/error.cpp
-        node/uwp/factory_exchange.cpp
-        node/uwp/factory_exchange.h
-        node/uwp/graphics_buffer.cpp
-        node/uwp/interaction_impl.cpp
-        node/uwp/interaction_impl.h
-        node/uwp/timer.cpp
-        node/uwp/trace.cpp
-        node/uwp/util.cpp
-        node/windows/base/_windows.h
-        node/windows/base/_windows_node.cpp
-        node/windows/base/factory_exchange.cpp
-        node/windows/base/factory_exchange.h
-        node/windows/base/implementation.h
-        node/windows/base/print_job.cpp
-        node/windows/base/print_job.h
-        node/windows/_.h
-        node/windows/_node_windows.h
-        node/windows/_node_windows_private.h
-        node/windows/_windows.h
-        node/windows/application.cpp
-        node/windows/buffer.h
-        node/windows/copydesk.cpp
-        node/windows/copydesk.h
-        node/windows/factory_exchange.cpp
-        node/windows/factory_exchange.h
-        node/windows/graphics_buffer.cpp
-        node/windows/interaction_impl.cpp
-        node/windows/interaction_impl.h
-        node/windows/interaction_impl_message_bypass.cpp
-        node/windows/shell_open.cpp
-        node/windows/shell_open.h
-        node/windows/system_interaction_impl.cpp
-        node/windows/system_interaction_impl.h
-        node/windows/thread.cpp
-        node/windows/timer.cpp
-        node/windows/trace.cpp
-        node/windows/user.h
-        node/windows/windows_desktop.cpp
-        node/windows_common/application.cpp
         node/_.h
         node/_node.h
         node/serial.h
-        os/android/_.h
-        os/android/_android.h
-        os/android/_bind_app.cpp
-        os/android/_bind_impact.cpp
-        os/android/_c.h
-        os/android/_os_android.cpp
-        os/android/_os_impl.cpp
-        os/android/_os_impl.h
-        os/android/_os_local.h
-        os/android/_os_object.cpp
-        os/android/_os_object.h
-        os/android/_os_remote.h
-        os/android/application_system_run.cpp
-        os/android/aura.cpp
-        os/android/c.cpp
-        os/android/cairo_keep.h
-        os/android/cross_win_file.h
-        os/android/cross_win_gdi.h
-        os/android/cross_win_gdi_internal.h
-        os/android/debug.cpp
-        os/android/dir.cpp
-        os/android/exception_engine.cpp
-        os/android/exception_engine.h
-        os/android/file.cpp
-        os/android/file.h
-        os/android/graphics.cpp
-        os/android/graphics.h
-        os/android/internal.h
-        os/android/jni_launcher.cpp
-        os/android/language.cpp
-        os/android/launcher.cpp
-        os/android/library.cpp
-        os/android/locale.cpp
-        os/android/lock.cpp
-        os/android/main_android.cpp
-        os/android/message_loop.cpp
-        os/android/multithreading.cpp
-        os/android/process.cpp
-        os/android/process.h
-        os/android/process_pid.cpp
-        os/android/simple_shell_launcher.cpp
-        os/android/small_ipca_channel.cpp
-        os/android/view_bitmap.h
-        os/android/win_base.cpp
-        os/android/window_android.cpp
-        os/android/window_android.h
-        os/android/window_impl.cpp
-        os/android/windowing.cpp
-        os/android/windowing.h
         os/ansios/_.h
         os/ansios/_ansios.h
         os/ansios/_c.h
@@ -401,277 +246,11 @@ list(APPEND aura_source
         os/ansios/file_c.h
         os/ansios/file_raw.h
         os/ansios/multithreading.h
-        os/apple/_.cpp
-        os/apple/_.h
-        os/apple/_apple.h
-        os/apple/_apple.mm
-        os/apple/_c_mm.h
-        os/apple/_mm.h
-        os/apple/_mm_common.h
-        os/apple/debug.cpp
-        os/apple/debug.h
-        os/apple/exe_path.cpp
-        os/apple/graphics.cpp
-        os/apple/graphics.h
-        os/apple/image_gif.cpp
-        os/apple/main.cpp
-        os/apple/main.h
-        os/apple/multihreading.cpp
-        os/apple/ns_exception.cpp
-        os/apple/ns_exception.h
-        os/apple/process.cpp
-        os/apple/time.h
-        os/apple/windowing.cpp
-        os/apple/windowing.h
         os/cairo/_.h
         os/cairo/_impl.h
         os/cross/windows/windowing.h
         os/cross/_.h
         os/cross/cross.h
-        os/gdk/aura_gdk.cpp
-        os/gdk/aura_gdk.h
-        os/ios/_.h
-        os/ios/_c.h
-        os/ios/_ios.h
-        os/ios/_m.h
-        os/ios/_mm.h
-        os/ios/application_system_run.cpp
-        os/ios/aura.cpp
-        os/ios/base_internal.h
-        os/ios/base_user.cpp
-        os/ios/cross_win.cpp
-        os/ios/cross_win_file.cpp
-        os/ios/cross_win_gdi.h
-        os/ios/crypt.cpp
-        os/ios/debug.cpp
-        os/ios/error.cpp
-        os/ios/exception_engine.cpp
-        os/ios/exception_engine.h
-        os/ios/file.cpp
-        os/ios/fontopus.cpp
-        os/ios/gen_1.h
-        os/ios/graphics.cpp
-        os/ios/implementation.h
-        os/ios/internal.h
-        os/ios/language.cpp
-        os/ios/launcher.cpp
-        os/ios/library.cpp
-        os/ios/lock.cpp
-        os/ios/MessageBoxA_W.mm
-        os/ios/mm.mm
-        os/ios/mm_cross_gdi.mm
-        os/ios/mm_graphics.h
-        os/ios/mm_graphics.mm
-        os/ios/mm_oswindow.h
-        os/ios/mm_thread.mm
-        os/ios/mm_user.mm
-        os/ios/multithreading.cpp
-        os/ios/multithreading.h
-        os/ios/oswindow_data.cpp
-        os/ios/oswindow_data.h
-        os/ios/process.cpp
-        os/ios/process.h
-        os/ios/process_pid.cpp
-        os/ios/small_ipca_channel.cpp
-        os/ios/time.cpp
-        os/ios/user.cpp
-        os/ios/win_base.cpp
-        os/ios/window.cpp
-        os/ios/window.h
-        "os/ios/window_boot 2.h"
-        os/ios/window_boot.h
-        os/ios/window_impl.h
-        os/ios/windowing.cpp
-        os/ios/windowing.h
-        os/macos/_.h
-        os/macos/_c.h
-        os/macos/_macos.h
-        os/macos/_mm.h
-        os/macos/application_system_run.cpp
-        os/macos/aura.cpp
-        os/macos/clipboard.cpp
-        os/macos/cross_win.cpp
-        os/macos/cross_win_file.cpp
-        os/macos/cross_win_gdi.h
-        os/macos/debug.cpp
-        os/macos/exception_engine.cpp
-        os/macos/exception_engine.h
-        os/macos/file.cpp
-        os/macos/file.h
-        os/macos/file.mm
-        os/macos/graphics.cpp
-        os/macos/graphics_mm.h
-        os/macos/internal.h
-        os/macos/keyboard.cpp
-        os/macos/language.cpp
-        os/macos/launcher.cpp
-        os/macos/library.cpp
-        os/macos/list_serial_ports.cpp
-        os/macos/lock.cpp
-        os/macos/macos.h
-        os/macos/main.h
-        os/macos/message_loop.cpp
-        os/macos/MessageBoxA.cpp
-        os/macos/mm.mm
-        os/macos/mm_base_user.mm
-        os/macos/mm_graphics.mm
-        os/macos/mm_oswindow.h
-        os/macos/mm_user.mm
-        os/macos/multithreading.cpp
-        os/macos/multithreading.h
-        os/macos/NSPasteboard++.mm
-        os/macos/os.cpp
-        os/macos/os.h
-        os/macos/oswindow_data.cpp
-        os/macos/oswindow_data.h
-        os/macos/process.cpp
-        os/macos/process_c.h
-        os/macos/process_pid.cpp
-        os/macos/simple_app.cpp
-        os/macos/time.cpp
-        os/macos/user.cpp
-        os/macos/user.h
-        os/macos/win_base.cpp
-        os/macos/window_impl.h
-        os/macos/windowing.cpp
-        os/macos/windowing.h
-        os/macos/windowing_c.h
-        os/macos/winpr_keycode.cpp
-        os/posix/base_file.cpp
-        os/posix/pthread.cpp
-        os/posix/thread.cpp
-        os/posix/time.cpp
-        os/posix/timer.cpp
-        os/uwp/_.h
-        os/uwp/_os_metrowin.cpp
-        os/uwp/_uwp.h
-        os/uwp/_winrt.h
-        os/uwp/application_system_run.cpp
-        os/uwp/aura.cpp
-        os/uwp/base_file.h
-        os/uwp/direct2d_tls.cpp
-        os/uwp/dummy_ipc.cpp
-        os/uwp/file_winrt.h
-        os/uwp/gdi_winrt.h
-        os/uwp/graphics.cpp
-        os/uwp/host_interaction.h
-        os/uwp/lock.cpp
-        os/uwp/main.cpp
-        os/uwp/metrowin_metrowin.h
-        os/uwp/multithreading.h
-        os/uwp/multithreading_winrt.h
-        os/uwp/oswindow.h
-        os/uwp/process.h
-        os/uwp/simple_hold_handle.h
-        os/uwp/simple_ui.h
-        os/uwp/sockets.h
-        os/uwp/user.cpp
-        os/uwp/windowing.cpp
-        os/win32/_.h
-        os/win32/dialog.cpp
-        os/win32/dialog.h
-        os/win32/font.cpp
-        os/win32/font.h
-        os/win32/window.cpp
-        os/win32/window.h
-        os/windows/-ehrror.cpp
-        os/windows/_.h
-        os/windows/_c.h
-        os/windows/_windows.h
-        os/windows/_windows_impl.h
-        os/windows/ansi_file.cpp
-        os/windows/ansios_message_loop.cpp
-        os/windows/api.cpp
-        os/windows/api.h
-        os/windows/application.cpp
-        os/windows/aura.cpp
-        os/windows/callstack.cpp
-        os/windows/callstack.h
-        os/windows/d2d1_1.h
-        os/windows/debug.cpp
-        os/windows/dir.cpp
-        os/windows/dir.h
-        os/windows/dpi.cpp
-        os/windows/environment_variable.cpp
-        os/windows/environment_variable.h
-        os/windows/exception_engine.cpp
-        os/windows/exception_engine.h
-        os/windows/file.cpp
-        os/windows/file.h
-        os/windows/gdi.cpp
-        os/windows/gdi_icon.cpp
-        os/windows/gdiplus.h
-        os/windows/graphics.cpp
-        os/windows/graphics.h
-        os/windows/handle.h
-        os/windows/imm_context.cpp
-        os/windows/imm_context.h
-        os/windows/implementation.h
-        os/windows/interaction_debug.cpp
-        os/windows/internal.cpp
-        os/windows/internal.h
-        os/windows/ipc.cpp
-        os/windows/itemidlist.cpp
-        os/windows/itemidlist.h
-        os/windows/language.cpp
-        os/windows/launcher.cpp
-        os/windows/library.cpp
-        os/windows/list_serial_ports.cpp
-        os/windows/local_memory_map.cpp
-        os/windows/lock.cpp
-        os/windows/main.cpp
-        os/windows/message_loop.cpp
-        os/windows/multithreading.cpp
-        os/windows/multithreading.h
-        os/windows/opengl_buffer.h
-        os/windows/port_forward.h
-        os/windows/print_job.h
-        os/windows/printer.cpp
-        os/windows/printer.h
-        os/windows/process.cpp
-        os/windows/process.h
-        os/windows/registry.cpp
-        os/windows/registry.h
-        os/windows/shell1.h
-        os/windows/simple_app.cpp
-        os/windows/simple_hold_handle.h
-        os/windows/simple_shell_launcher.cpp
-        os/windows/simple_ui.h
-        os/windows/time.cpp
-        os/windows/top_level_enum.h
-        os/windows/user.cpp
-        os/windows/util.cpp
-        os/windows/utils.h
-        os/windows/window_opengl.cpp
-        os/windows/window_opengl.h
-        os/windows/windowing.cpp
-        os/windows/windowing.h
-        "os/windows/windows_window_gdi copy.h"
-        os/windows/windows_window_opengl.cpp
-        os/windows/windows_window_opengl.h
-        os/windows_common/_.h
-        os/windows_common/_c.h
-        os/windows_common/_default_dll_impl.h
-        os/windows_common/_file_c.h
-        os/windows_common/_unicode_c.h
-        os/windows_common/bstring.h
-        os/windows_common/cotaskptr.h
-        os/windows_common/draw2d_direct2d_global.cpp
-        os/windows_common/draw2d_direct2d_global.h
-        os/windows_common/file.h
-        os/windows_common/graphics.h
-        os/windows_common/multithreading.h
-        os/windows_common/new_api.h
-        os/windows_common/variant.h
-        os/x11/_x11.h
-        os/x11/debug.cpp
-        os/x11/x11_exception.h
-        os/x11/x11_keyboard.cpp
-        os/x11/x11_keyboard.h
-        os/x11/x11_message_box.cpp
-        os/x11/x11_message_box.h
-        os/x11/x11_windowing.cpp
-        os/x11/x11_xrender.cpp
         os/_.h
         os/_application.cpp
         os/_application.h
@@ -724,26 +303,6 @@ list(APPEND aura_source
         platform/title.h
         platform/user_parent.h
         template/list.h
-        user/windows_tsf/afxres.h
-        user/windows_tsf/context_owner_composition_sink.cpp
-        user/windows_tsf/dataobj.cpp
-        user/windows_tsf/dataobj.h
-        user/windows_tsf/edit_window.cpp
-        user/windows_tsf/edit_window.h
-        user/windows_tsf/function_provider.cpp
-        user/windows_tsf/globals.h
-        user/windows_tsf/persist.cpp
-        user/windows_tsf/propldr.cpp
-        user/windows_tsf/propldr.h
-        user/windows_tsf/resource.h
-        user/windows_tsf/test.cpp
-        user/windows_tsf/text_store_acp.cpp
-        user/windows_tsf/tsfapp.cpp
-        user/windows_tsf/tsfedit.cpp
-        user/windows_tsf/tsfwnd.cpp
-        user/windows_tsf/tsfwnd.h
-        user/windows_tsf/ui_element_sink.cpp
-        user/windows_tsf/winres.h
         user/_.cpp
         user/_.h
         user/_const-.h
@@ -863,11 +422,214 @@ list(APPEND aura_source
         timer.mm
         update.h)
 
+if(WIN32)
+
+    list(APPEND aura_source
+            node/windows/base/_windows.h
+            node/windows/base/_windows_node.cpp
+            node/windows/base/factory_exchange.cpp
+            node/windows/base/factory_exchange.h
+            node/windows/base/implementation.h
+            node/windows/base/print_job.cpp
+            node/windows/base/print_job.h
+            node/windows/_.h
+            node/windows/_node_windows.h
+            node/windows/_node_windows_private.h
+            node/windows/_windows.h
+            node/windows/application.cpp
+            node/windows/buffer.h
+            node/windows/copydesk.cpp
+            node/windows/copydesk.h
+            node/windows/factory_exchange.cpp
+            node/windows/factory_exchange.h
+            node/windows/graphics_buffer.cpp
+            node/windows/interaction_impl.cpp
+            node/windows/interaction_impl.h
+            node/windows/interaction_impl_message_bypass.cpp
+            node/windows/shell_open.cpp
+            node/windows/shell_open.h
+            node/windows/system_interaction_impl.cpp
+            node/windows/system_interaction_impl.h
+            node/windows/thread.cpp
+            node/windows/timer.cpp
+            node/windows/trace.cpp
+            node/windows/user.h
+            node/windows/windows_desktop.cpp
+            node/windows_common/application.cpp
+            os/windows/-ehrror.cpp
+            os/windows/_.h
+            os/windows/_c.h
+            os/windows/_windows.h
+            os/windows/_windows_impl.h
+            os/windows/ansi_file.cpp
+            os/windows/ansios_message_loop.cpp
+            os/windows/api.cpp
+            os/windows/api.h
+            os/windows/application.cpp
+            os/windows/aura.cpp
+            os/windows/callstack.cpp
+            os/windows/callstack.h
+            os/windows/d2d1_1.h
+            os/windows/debug.cpp
+            os/windows/dir.cpp
+            os/windows/dir.h
+            os/windows/dpi.cpp
+            os/windows/environment_variable.cpp
+            os/windows/environment_variable.h
+            os/windows/exception_engine.cpp
+            os/windows/exception_engine.h
+            os/windows/file.cpp
+            os/windows/file.h
+            os/windows/gdi.cpp
+            os/windows/gdi_icon.cpp
+            os/windows/gdiplus.h
+            os/windows/graphics.cpp
+            os/windows/graphics.h
+            os/windows/handle.h
+            os/windows/imm_context.cpp
+            os/windows/imm_context.h
+            os/windows/implementation.h
+            os/windows/interaction_debug.cpp
+            os/windows/internal.cpp
+            os/windows/internal.h
+            os/windows/ipc.cpp
+            os/windows/itemidlist.cpp
+            os/windows/itemidlist.h
+            os/windows/language.cpp
+            os/windows/launcher.cpp
+            os/windows/library.cpp
+            os/windows/list_serial_ports.cpp
+            os/windows/local_memory_map.cpp
+            os/windows/lock.cpp
+            os/windows/main.cpp
+            os/windows/message_loop.cpp
+            os/windows/multithreading.cpp
+            os/windows/multithreading.h
+            os/windows/opengl_buffer.h
+            os/windows/port_forward.h
+            os/windows/print_job.h
+            os/windows/printer.cpp
+            os/windows/printer.h
+            os/windows/process.cpp
+            os/windows/process.h
+            os/windows/registry.cpp
+            os/windows/registry.h
+            os/windows/shell1.h
+            os/windows/simple_app.cpp
+            os/windows/simple_hold_handle.h
+            os/windows/simple_shell_launcher.cpp
+            os/windows/simple_ui.h
+            os/windows/time.cpp
+            os/windows/top_level_enum.h
+            os/windows/user.cpp
+            os/windows/util.cpp
+            os/windows/utils.h
+            os/windows/window_opengl.cpp
+            os/windows/window_opengl.h
+            os/windows/windowing.cpp
+            os/windows/windowing.h
+            "os/windows/windows_window_gdi copy.h"
+            os/windows/windows_window_opengl.cpp
+            os/windows/windows_window_opengl.h
+            os/windows_common/_.h
+            os/windows_common/_c.h
+            os/windows_common/_default_dll_impl.h
+            os/windows_common/_file_c.h
+            os/windows_common/_unicode_c.h
+            os/windows_common/bstring.h
+            os/windows_common/cotaskptr.h
+            os/windows_common/draw2d_direct2d_global.cpp
+            os/windows_common/draw2d_direct2d_global.h
+            os/windows_common/file.h
+            os/windows_common/graphics.h
+            os/windows_common/multithreading.h
+            os/windows_common/new_api.h
+            os/windows_common/variant.h
+            user/windows_tsf/afxres.h
+            user/windows_tsf/context_owner_composition_sink.cpp
+            user/windows_tsf/dataobj.cpp
+            user/windows_tsf/dataobj.h
+            user/windows_tsf/edit_window.cpp
+            user/windows_tsf/edit_window.h
+            user/windows_tsf/function_provider.cpp
+            user/windows_tsf/globals.h
+            user/windows_tsf/persist.cpp
+            user/windows_tsf/propldr.cpp
+            user/windows_tsf/propldr.h
+            user/windows_tsf/resource.h
+            user/windows_tsf/test.cpp
+            user/windows_tsf/text_store_acp.cpp
+            user/windows_tsf/tsfapp.cpp
+            user/windows_tsf/tsfedit.cpp
+            user/windows_tsf/tsfwnd.cpp
+            user/windows_tsf/tsfwnd.h
+            user/windows_tsf/ui_element_sink.cpp
+            user/windows_tsf/winres.h            )
+
+
+    endif()
+
 if(UWP)
-set(aura_source
+    list(APPEND aura_source
+        node/uwp/net/net_address.h
+        node/uwp/_.h
+        node/uwp/_aaa_want_to_remove_node_metrowin.cpp
+        node/uwp/_uwp.h
+        node/uwp/application.cpp
+        node/uwp/buffer.h
+        node/uwp/copydesk.cpp
+        node/uwp/copydesk.h
+        node/uwp/directx.cpp
+        node/uwp/directx.h
+        node/uwp/directx_impact.cpp
+        node/uwp/directx_impact.h
+        node/uwp/directx_interaction.cpp
+        node/uwp/directx_interaction.h
+        node/uwp/error.cpp
+        node/uwp/factory_exchange.cpp
+        node/uwp/factory_exchange.h
+        node/uwp/graphics_buffer.cpp
+        node/uwp/interaction_impl.cpp
+        node/uwp/interaction_impl.h
+        node/uwp/timer.cpp
+        node/uwp/trace.cpp
+        node/uwp/util.cpp
+        os/uwp/_.h
+        os/uwp/_os_metrowin.cpp
+        os/uwp/_uwp.h
+        os/uwp/_winrt.h
+        os/uwp/application_system_run.cpp
+        os/uwp/aura.cpp
+        os/uwp/base_file.h
+        os/uwp/direct2d_tls.cpp
+        os/uwp/dummy_ipc.cpp
+        os/uwp/file_winrt.h
+        os/uwp/gdi_winrt.h
+        os/uwp/graphics.cpp
+        os/uwp/host_interaction.h
+        os/uwp/lock.cpp
+        os/uwp/main.cpp
+        os/uwp/metrowin_metrowin.h
+        os/uwp/multithreading.h
+        os/uwp/multithreading_winrt.h
+        os/uwp/oswindow.h
+        os/uwp/process.h
+        os/uwp/simple_hold_handle.h
+        os/uwp/simple_ui.h
+        os/uwp/sockets.h
+        os/uwp/user.cpp
+        os/uwp/windowing.cpp
+
+
+        )
+
+else()
+
+    list(APPEND aura_source
         os/cross/uwp/cross_metrowin_user.cpp
         os/cross/uwp/metrowin_user.cpp
-        )
+    )
+
 endif()
 
 if(UWP OR WIN32)
@@ -877,7 +639,7 @@ endif()
 
 if(LINUX)
 
-    set(aura_source
+    list(APPEND aura_source
             node/linux/_.h
             node/linux/_linux.h
             node/linux/application.cpp
@@ -916,6 +678,8 @@ if(LINUX)
             node/linux/thread.h
             node/linux/trace.cpp
             node/linux/util.cpp
+            os/gdk/aura_gdk.cpp
+            os/gdk/aura_gdk.h
             os/linux/_.h
             os/linux/_c.h
             os/linux/_linux.h
@@ -981,14 +745,31 @@ if(LINUX)
             os/linux/xdisplay.cpp
             os/linux/xdisplay.h
             os/linux/xinerama.cpp
+            os/x11/_x11.h
+            os/x11/debug.cpp
+            os/x11/x11_exception.h
+            os/x11/x11_keyboard.cpp
+            os/x11/x11_keyboard.h
+            os/x11/x11_message_box.cpp
+            os/x11/x11_message_box.h
+            os/x11/x11_windowing.cpp
+            os/x11/x11_xrender.cpp
             )
 
 endif()
 
 
+if(LINUX OR APPLE OR SOLARIS)
+    list(APPEND aura_source
+            node/posix/_posix.h
+            node/posix/application.cpp
+            )
+
+    endif()
+
 
 if(MACOS)
-set(aura_source
+    list(APPEND aura_source
         node/macos/_.h
         node/macos/_macos.h
         node/macos/_mm.h
@@ -1011,12 +792,68 @@ set(aura_source
         node/macos/trace.cpp
         node/macos/user.h
         node/macos/util.cpp
+            os/macos/_.h
+            os/macos/_c.h
+            os/macos/_macos.h
+            os/macos/_mm.h
+            os/macos/application_system_run.cpp
+            os/macos/aura.cpp
+            os/macos/clipboard.cpp
+            os/macos/cross_win.cpp
+            os/macos/cross_win_file.cpp
+            os/macos/cross_win_gdi.h
+            os/macos/debug.cpp
+            os/macos/exception_engine.cpp
+            os/macos/exception_engine.h
+            os/macos/file.cpp
+            os/macos/file.h
+            os/macos/file.mm
+            os/macos/graphics.cpp
+            os/macos/graphics_mm.h
+            os/macos/internal.h
+            os/macos/keyboard.cpp
+            os/macos/language.cpp
+            os/macos/launcher.cpp
+            os/macos/library.cpp
+            os/macos/list_serial_ports.cpp
+            os/macos/lock.cpp
+            os/macos/macos.h
+            os/macos/main.h
+            os/macos/message_loop.cpp
+            os/macos/MessageBoxA.cpp
+            os/macos/mm.mm
+            os/macos/mm_base_user.mm
+            os/macos/mm_graphics.mm
+            os/macos/mm_oswindow.h
+            os/macos/mm_user.mm
+            os/macos/multithreading.cpp
+            os/macos/multithreading.h
+            os/macos/NSPasteboard++.mm
+            os/macos/os.cpp
+            os/macos/os.h
+            os/macos/oswindow_data.cpp
+            os/macos/oswindow_data.h
+            os/macos/process.cpp
+            os/macos/process_c.h
+            os/macos/process_pid.cpp
+            os/macos/simple_app.cpp
+            os/macos/time.cpp
+            os/macos/user.cpp
+            os/macos/user.h
+            os/macos/win_base.cpp
+            os/macos/window_impl.h
+            os/macos/windowing.cpp
+            os/macos/windowing.h
+            os/macos/windowing_c.h
+            os/macos/winpr_keycode.cpp
         )
 endif()
 
 
 if(IOS)
-set(aura_source
+    list(APPEND aura_source
+        ios_aura/ios_aura.h
+        ios_aura/ios_aura.m
         node/ios/_.h
         node/ios/_ios.h
         node/ios/_m.h
@@ -1062,11 +899,64 @@ set(aura_source
         node/ios/thread.h
         node/ios/trace.cpp
         node/ios/util.cpp
+        os/ios/_.h
+        os/ios/_c.h
+        os/ios/_ios.h
+        os/ios/_m.h
+        os/ios/_mm.h
+        os/ios/application_system_run.cpp
+        os/ios/aura.cpp
+        os/ios/base_internal.h
+        os/ios/base_user.cpp
+        os/ios/cross_win.cpp
+        os/ios/cross_win_file.cpp
+        os/ios/cross_win_gdi.h
+        os/ios/crypt.cpp
+        os/ios/debug.cpp
+        os/ios/error.cpp
+        os/ios/exception_engine.cpp
+        os/ios/exception_engine.h
+        os/ios/file.cpp
+        os/ios/fontopus.cpp
+        os/ios/gen_1.h
+        os/ios/graphics.cpp
+        os/ios/implementation.h
+        os/ios/internal.h
+        os/ios/language.cpp
+        os/ios/launcher.cpp
+        os/ios/library.cpp
+        os/ios/lock.cpp
+        os/ios/MessageBoxA_W.mm
+        os/ios/mm.mm
+        os/ios/mm_cross_gdi.mm
+        os/ios/mm_graphics.h
+        os/ios/mm_graphics.mm
+        os/ios/mm_oswindow.h
+        os/ios/mm_thread.mm
+        os/ios/mm_user.mm
+        os/ios/multithreading.cpp
+        os/ios/multithreading.h
+        os/ios/oswindow_data.cpp
+        os/ios/oswindow_data.h
+        os/ios/process.cpp
+        os/ios/process.h
+        os/ios/process_pid.cpp
+        os/ios/small_ipca_channel.cpp
+        os/ios/time.cpp
+        os/ios/user.cpp
+        os/ios/win_base.cpp
+        os/ios/window.cpp
+        os/ios/window.h
+        "os/ios/window_boot 2.h"
+        os/ios/window_boot.h
+        os/ios/window_impl.h
+        os/ios/windowing.cpp
+        os/ios/windowing.h
         )
 endif()
 
 if(SOLARIS)
-    set(aura_source
+    list(APPEND aura_source
             os/solaris/linux_internal.h
             os/solaris/solaris.cpp
             os/solaris/solaris.h
@@ -1111,7 +1001,136 @@ if(SOLARIS)
 
     endif()
 
+if(ANDROID)
+    list(APPEND aura_source
+            node/android/Kerr/kerr.h
+            node/android/Kerr/LocalMemory.h
+            node/android/_.h
+            node/android/_android.h
+            node/android/android.cpp
+            node/android/android1.cpp
+            node/android/android1.h
+            node/android/application.cpp
+            node/android/application.h
+            node/android/buffer.cpp
+            node/android/buffer.h
+            node/android/dir_context.cpp
+            node/android/dir_context.h
+            node/android/dir_system.cpp
+            node/android/dir_system.h
+            node/android/error.cpp
+            node/android/exception.cpp
+            node/android/factory_exchange.cpp
+            node/android/factory_exchange.h
+            node/android/file.cpp
+            node/android/file.h
+            node/android/file_context.cpp
+            node/android/file_context.h
+            node/android/file_system.cpp
+            node/android/file_system.h
+            node/android/host_interaction.cpp
+            node/android/host_interaction.h
+            node/android/implementation.h
+            node/android/interaction_impl.cpp
+            node/android/interaction_impl.h
+            node/android/internal.h
+            node/android/main.cpp
+            node/android/os_context.cpp
+            node/android/os_context.h
+            node/android/process.cpp
+            node/android/shell.cpp
+            node/android/shell.h
+            node/android/thread.cpp
+            node/android/thread.h
+            node/android/trace.cpp
+            node/android/util.cpp
+            os/android/_.h
+            os/android/_android.h
+            os/android/_bind_app.cpp
+            os/android/_bind_impact.cpp
+            os/android/_c.h
+            os/android/_os_android.cpp
+            os/android/_os_impl.cpp
+            os/android/_os_impl.h
+            os/android/_os_local.h
+            os/android/_os_object.cpp
+            os/android/_os_object.h
+            os/android/_os_remote.h
+            os/android/application_system_run.cpp
+            os/android/aura.cpp
+            os/android/c.cpp
+            os/android/cairo_keep.h
+            os/android/cross_win_file.h
+            os/android/cross_win_gdi.h
+            os/android/cross_win_gdi_internal.h
+            os/android/debug.cpp
+            os/android/dir.cpp
+            os/android/exception_engine.cpp
+            os/android/exception_engine.h
+            os/android/file.cpp
+            os/android/file.h
+            os/android/graphics.cpp
+            os/android/graphics.h
+            os/android/internal.h
+            os/android/jni_launcher.cpp
+            os/android/language.cpp
+            os/android/launcher.cpp
+            os/android/library.cpp
+            os/android/locale.cpp
+            os/android/lock.cpp
+            os/android/main_android.cpp
+            os/android/message_loop.cpp
+            os/android/multithreading.cpp
+            os/android/process.cpp
+            os/android/process.h
+            os/android/process_pid.cpp
+            os/android/simple_shell_launcher.cpp
+            os/android/small_ipca_channel.cpp
+            os/android/view_bitmap.h
+            os/android/win_base.cpp
+            os/android/window_android.cpp
+            os/android/window_android.h
+            os/android/window_impl.cpp
+            os/android/windowing.cpp
+            os/android/windowing.h
+            )
+
+    endif()
+
 if(APPLE)
+
+    list(APPEND aura_source
+            node/apple/apple_timer.cpp
+            node/apple/process.cpp
+            node/apple/process.h
+            os/apple/_.cpp
+            os/apple/_.h
+            os/apple/_apple.h
+            os/apple/_apple.mm
+            os/apple/_c_mm.h
+            os/apple/_mm.h
+            os/apple/_mm_common.h
+            os/apple/debug.cpp
+            os/apple/debug.h
+            os/apple/exe_path.cpp
+            os/apple/graphics.cpp
+            os/apple/graphics.h
+            os/apple/image_gif.cpp
+            os/apple/main.cpp
+            os/apple/main.h
+            os/apple/multihreading.cpp
+            os/apple/ns_exception.cpp
+            os/apple/ns_exception.h
+            os/apple/process.cpp
+            os/apple/time.h
+            os/apple/windowing.cpp
+            os/apple/windowing.h
+            )
+
+endif()
+
+
+if(MACOS)
 
     list(APPEND aura_source
             ios_aura/ios_aura.h
@@ -1119,8 +1138,6 @@ if(APPLE)
             )
 
 endif()
-
-
 
 
 if (MSVC)

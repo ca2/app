@@ -1276,6 +1276,21 @@ if(APPLE)
 
 endif()
 
+if(USE_OPENSSL)
+    list(APPEND apex_source
+            crypto/openssl/_.cpp
+            crypto/openssl/_openssl.h
+            crypto/openssl/crypto.cpp
+            crypto/openssl/hasher.cpp
+            crypto/openssl/hasher.h
+            crypto/openssl/hasher_algorithm.cpp
+            crypto/openssl/hasher_algorithm.h
+            crypto/openssl/rsa.cpp
+            crypto/openssl/rsa.h
+            )
+endif()
+
+
 
 if(SOLARIS)
     list(APPEND apex_source
@@ -1338,19 +1353,6 @@ target_precompile_headers(apex PRIVATE framework.h)
 
 set_target_properties(apex PROPERTIES LINKER_LANGUAGE CXX)
 
-if(USE_OPENSSL)
-    list(APPEND apex_source
-            crypto/openssl/_.cpp
-            crypto/openssl/_openssl.h
-            crypto/openssl/crypto.cpp
-            crypto/openssl/hasher.cpp
-            crypto/openssl/hasher.h
-            crypto/openssl/hasher_algorithm.cpp
-            crypto/openssl/hasher_algorithm.h
-            crypto/openssl/rsa.cpp
-            crypto/openssl/rsa.h
-            )
-endif()
 
 
 if (MSVC)

@@ -379,8 +379,6 @@ list(APPEND apex_source
         os/ansios/file.cpp
         os/ansios/file.h
         os/ansios/file_c.h
-        os/ansios/file_raw.cpp
-        os/ansios/file_raw.h
         os/ansios/language.cpp
         os/ansios/multithreading.h
         os/ansios/process.cpp

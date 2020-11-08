@@ -880,6 +880,8 @@ if(LINUX)
         node/linux/thread.h
         node/linux/trace.cpp
         node/linux/util.cpp
+        node/posix/file_os_watcher.cpp
+        node/posix/file_os_watcher.cpp
         os/linux/_.h
         os/linux/_c.h
         os/linux/_linux.h

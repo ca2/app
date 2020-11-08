@@ -418,7 +418,6 @@ list(APPEND aura_source
         library.h
         message.h
         procedure.h
-        timer.mm
         update.h)
 
 if(WIN32)
@@ -1099,6 +1098,7 @@ if(ANDROID)
 if(APPLE)
 
     list(APPEND aura_source
+            timer.mm
             node/apple/apple_timer.cpp
             node/apple/process.cpp
             node/apple/process.h

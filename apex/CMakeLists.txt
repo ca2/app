@@ -1373,6 +1373,7 @@ target_include_directories(apex PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../sou
 target_include_directories(apex PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/include)
 target_include_directories(apex PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/platform-${PLATFORM_NAME})
 target_include_directories(apex PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/platform-${PLATFORM_NAME}/_include)
+target_include_directories(apex PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/include)
 target_include_directories(apex PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/third/include)
 target_include_directories(apex PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/third/include/include)
 target_include_directories(apex PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})

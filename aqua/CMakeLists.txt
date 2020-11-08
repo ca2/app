@@ -17,8 +17,8 @@ elseif(WIN32)
 endif()
 
 
-set(LIBRARY_OUTPUT_PATH ${CMAKE_SOURCE_DIR}/../../../time-${PLATFORM_NAME}/cmake)
-set(EXECUTABLE_OUTPUT_PATH ${CMAKE_SOURCE_DIR}/../../../time-${PLATFORM_NAME}/cmake)
+set(LIBRARY_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../time-${PLATFORM_NAME}/cmake)
+set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../time-${PLATFORM_NAME}/cmake)
 
 
 
@@ -67,7 +67,6 @@ list(APPEND aqua_source
         multimedia/file_application.h
         multimedia/multimedia.cpp
         multimedia/multimedia.h
-        os/macos/graphics.cpp
         os/windows/audio.cpp
         os/_.h
         platform/_platform.h
@@ -134,6 +133,11 @@ list(APPEND aqua_source
         library.h
         xml.h)
 
+if(MACOS)
+    list(APPEND aqua_source
+            os/macos/graphics.cpp
+            )
+endif()
 
 
 

@@ -19,8 +19,8 @@ elseif(WIN32)
 endif()
 
 
-set(LIBRARY_OUTPUT_PATH ${CMAKE_SOURCE_DIR}/../../../time-${PLATFORM_NAME}/cmake)
-set(EXECUTABLE_OUTPUT_PATH ${CMAKE_SOURCE_DIR}/../../../time-${PLATFORM_NAME}/cmake)
+set(LIBRARY_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../time-${PLATFORM_NAME}/cmake)
+set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../time-${PLATFORM_NAME}/cmake)
 
 
 
@@ -68,8 +68,8 @@ list(APPEND apex_source
         crypto/hasher.h
         crypto/hasher_algorithm.cpp
         crypto/hasher_algorithm.h
-        crypto/rsa.cpp
-        crypto/rsa.h
+        #crypto/rsa.cpp
+        #crypto/rsa.h
         database/_.h
         database/_impl.h
         database/change_event.h
@@ -611,8 +611,8 @@ list(APPEND apex_source
         library.h
         message.h
         procedure.h
-        rsa.cpp
-        rsa.h
+        #rsa.cpp
+        #rsa.h
         update.h
         user.h)
 
@@ -883,7 +883,7 @@ if(LINUX)
         node/linux/file_context.h
         node/linux/file_system.cpp
         node/linux/file_system.h
-        node/linux/frame_window.cpp
+        #node/linux/frame_window.cpp
         node/linux/internal.h
         node/linux/linux.cpp
         node/linux/os_context.cpp
@@ -1354,13 +1354,13 @@ if (MSVC)
     target_link_options(apex PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/apex.def")
     target_link_libraries(apex PRIVATE acme)
 elseif(LINUX)
-    pkg_check_modules(PKGCONFIG glib-2.0 gtk+-3.0 libssl)
+    pkg_check_modules(PKGCONFIG glib-2.0 gtk+-3.0 libcrypto libssl appindicator-0.1)
     #pkg_check_modules(PKGCONFIG glib-2.0 freetype2 gtk+-3.0 gdk-3.0)
     target_compile_options(apex PRIVATE ${PKGCONFIG_CFLAGS})
     #target_compile_options(apex PRIVATE -std=c++14)
     #target_link_options(apex PRIVATE ${GTK_LDFLAGS})
     target_link_options(apex PRIVATE -Wl,-rpath=\$ORIGIN)
-    #target_link_libraries(apex PRIVATE )
+    target_link_libraries(apex PRIVATE dl pthread idn z)
     target_link_libraries(apex PRIVATE ${PKGCONFIG_LIBRARIES})
     target_link_libraries(apex PRIVATE acme)
     target_link_options(apex PRIVATE -Wl,-z,defs)

@@ -34,9 +34,6 @@ list(APPEND apex_source
         axispolicy/policy_objc.h
         axispolicy/policy_objcpp.h
         axispolicy/policy_winrt.h
-        compress/zip/_.h
-        compress/zip/context.cpp
-        compress/zip/context.h
         compress/_.h
         compress/context.cpp
         compress/context.h
@@ -53,6 +50,15 @@ list(APPEND apex_source
         const/status_range_authentication.h
         const/thread.h
         const/timer.h
+        crypto/openssl/_.cpp
+        crypto/openssl/_openssl.h
+        crypto/openssl/crypto.cpp
+        crypto/openssl/hasher.cpp
+        crypto/openssl/hasher.h
+        crypto/openssl/hasher_algorithm.cpp
+        crypto/openssl/hasher_algorithm.h
+        crypto/openssl/rsa.cpp
+        crypto/openssl/rsa.h
         crypto/_.h
         crypto/_crypto.h
         crypto/crypto.cpp
@@ -61,8 +67,6 @@ list(APPEND apex_source
         crypto/hasher.h
         crypto/hasher_algorithm.cpp
         crypto/hasher_algorithm.h
-        crypto/rsa.cpp
-        crypto/rsa.h
         database/_.h
         database/_impl.h
         database/change_event.h
@@ -354,8 +358,6 @@ list(APPEND apex_source
         net/url_department.h
         net/url_domain.cpp
         net/url_domain.h
-        node/posix/file_os_watcher.cpp
-        node/posix/file_os_watcher.h
         node/_.h
         node/_node.h
         os/ansios/_.h
@@ -377,11 +379,13 @@ list(APPEND apex_source
         os/ansios/multithreading.h
         os/ansios/process.cpp
         os/ansios/win.cpp
-        os/posix/base_file.cpp
-        os/posix/pthread.cpp
-        os/posix/thread.cpp
-        os/posix/time.cpp
-        os/posix/timer.cpp
+        os/win32/_.h
+        os/win32/dialog.cpp
+        os/win32/dialog.h
+        os/win32/font.cpp
+        os/win32/font.h
+        os/win32/window.cpp
+        os/win32/window.h
         os/_.h
         os/_application.cpp
         os/_application.h
@@ -407,9 +411,6 @@ list(APPEND apex_source
         os/thread.cpp
         os/thread.h
         os/windowing.h
-        os/winpr_input.h
-        os/winpr_keycode.cpp
-        os/winpr_scancode.cpp
         platform/_.cpp
         platform/_impl.h
         platform/_platform.h
@@ -608,16 +609,9 @@ list(APPEND apex_source
         user.h)
 
 
-
 if(WIN32)
+
     list(APPEND apex_source
-        node/windows/base/_windows.h
-        node/windows/base/_windows_node.cpp
-        node/windows/base/factory_exchange.cpp
-        node/windows/base/factory_exchange.h
-        node/windows/base/implementation.h
-        node/windows/base/print_job.cpp
-        node/windows/base/print_job.h
         node/windows/_.h
         node/windows/_node_windows.h
         node/windows/_node_windows_private.h
@@ -666,7 +660,6 @@ if(WIN32)
         os/windows/user.cpp
         os/windows/windowing.cpp
         os/windows/windowing.h
-        os/windows/windows_window_opengl.cpp
         os/windows_common/_.h
         os/windows_common/_windows_common.h
         os/windows_common/file.cpp
@@ -681,168 +674,169 @@ if(WIN32)
     else()
 
     list(APPEND apex_source
-            os/cross/windows/windows_thread.h
-            os/cross/windows/windows_thread_impl.h
-            os/cross/cross.h
+        os/cross/windows/windows_thread.h
+        os/cross/windows/windows_thread_impl.h
+        os/cross/cross.h
+        os/winpr_input.h
+        os/winpr_keycode.cpp
+        os/winpr_scancode.cpp
             )
 
-    endif()
+endif()
 
 
 if(UWP)
     list(APPEND apex_source
-            crypto/winrt/_winrt.h
-            crypto/winrt/crypto.cpp
-            crypto/winrt/hasher.cpp
-            crypto/winrt/hasher.h
-            crypto/winrt/hasher_algorithm.cpp
-            crypto/winrt/hasher_algorithm.h
-            crypto/winrt/rsa.cpp
-            crypto/winrt/rsa.h
-            net/sockets/winrt/asynch_dns/resolv_server.cpp
-            net/sockets/winrt/asynch_dns/resolv_server.h
-            net/sockets/winrt/asynch_dns/resolv_socket.cpp
-            net/sockets/winrt/asynch_dns/resolv_socket.h
-            net/sockets/winrt/basic/listen_socket.cpp
-            net/sockets/winrt/basic/listen_socket.h
-            net/sockets/winrt/basic/net.cpp
-            net/sockets/winrt/basic/net.h
-            net/sockets/winrt/basic/sctp_socket.cpp
-            net/sockets/winrt/basic/sctp_socket.h
-            net/sockets/winrt/basic/Socket.cpp
-            net/sockets/winrt/basic/socket.h
-            net/sockets/winrt/basic/socket_handler.cpp
-            net/sockets/winrt/basic/socket_handler.h
-            net/sockets/winrt/basic/stream_socket.cpp
-            net/sockets/winrt/basic/stream_socket.h
-            net/sockets/winrt/basic/sync_socket_handler.cpp
-            net/sockets/winrt/basic/sync_socket_handler.h
-            net/sockets/winrt/basic/tcp_socket.cpp
-            net/sockets/winrt/basic/tcp_socket.h
-            net/sockets/winrt/basic/tls_socket.cpp
-            net/sockets/winrt/basic/tls_socket.h
-            net/sockets/winrt/basic/udp_socket.cpp
-            net/sockets/winrt/basic/udp_socket.h
-            net/sockets/winrt/sip/base.cpp
-            net/sockets/winrt/sip/base.h
-            net/sockets/winrt/sip/base_client_socket.cpp
-            net/sockets/winrt/sip/base_client_socket.h
-            net/sockets/winrt/sip/callback.cpp
-            net/sockets/winrt/sip/callback.h
-            net/sockets/winrt/sip/client.cpp
-            net/sockets/winrt/sip/client.h
-            net/sockets/winrt/sip/event.h
-            net/sockets/winrt/sip/request.cpp
-            net/sockets/winrt/sip/request.h
-            net/sockets/winrt/sip/response.cpp
-            net/sockets/winrt/sip/response.h
-            net/sockets/winrt/sip/server.cpp
-            net/sockets/winrt/sip/server.h
-            net/sockets/winrt/sip/socket.h
-            net/sockets/winrt/sip/tcp_client_socket.cpp
-            net/sockets/winrt/sip/tcp_client_socket.h
-            net/sockets/winrt/sip/transaction.cpp
-            net/sockets/winrt/sip/transaction.h
-            net/sockets/winrt/sip/udp_client_socket.cpp
-            net/sockets/winrt/sip/udp_client_socket.h
-            net/sockets/winrt/smtp/smtpd_socket.cpp
-            net/sockets/winrt/smtp/smtpd_socket.h
-            net/sockets/winrt/smtp/socket.cpp
-            net/sockets/winrt/smtp/socket.h
-            net/sockets/winrt/timer/Event.cpp
-            net/sockets/winrt/timer/event.h
-            net/sockets/winrt/timer/event_handler.h
-            net/sockets/winrt/timer/event_time.h
-            net/sockets/winrt/timer/EventHandler.cpp
-            net/sockets/winrt/timer/EventTime.cpp
-            net/sockets/winrt/timer/ievent_handler.h
-            net/sockets/winrt/timer/ievent_owner.h
-            net/sockets/winrt/timer/IEventOwner.cpp
-            net/sockets/winrt/webserver/ajp13.h
-            net/sockets/winrt/webserver/ajp13_socket.h
-            net/sockets/winrt/webserver/Ajp13Socket.cpp
-            net/sockets/winrt/webserver/ajp_base_socket.h
-            net/sockets/winrt/webserver/AjpBaseSocket.cpp
-            net/sockets/winrt/webserver/httpd_socket.cpp
-            net/sockets/winrt/webserver/httpd_socket.h
-            net/sockets/winrt/_.h
-            net/sockets/winrt/config.h
-            net/sockets/winrt/include.cpp
-            net/sockets/winrt/sockets.cpp
-            net/sockets/winrt/sockets.h
-            node/uwp/net/net_address.h
-            node/uwp/_.h
-            node/uwp/_aaa_want_to_remove_node_metrowin.cpp
-            node/uwp/_uwp.h
-            node/uwp/app_core.cpp
-            node/uwp/application.cpp
-            node/uwp/application.h
-            node/uwp/command.cpp
-            node/uwp/dir_context.cpp
-            node/uwp/dir_context.h
-            node/uwp/dir_system.cpp
-            node/uwp/dir_system.h
-            node/uwp/directx.cpp
-            node/uwp/directx_application.cpp
-            node/uwp/directx_impact.cpp
-            node/uwp/directx_interaction.cpp
-            node/uwp/error.cpp
-            node/uwp/factory_exchange.cpp
-            node/uwp/factory_exchange.h
-            node/uwp/file_context.cpp
-            node/uwp/file_context.h
-            node/uwp/file_find.cpp
-            node/uwp/file_system.cpp
-            node/uwp/file_system.h
-            node/uwp/file_watcher.cpp
-            node/uwp/file_watcher.h
-            node/uwp/folder_watch.cpp
-            node/uwp/graphics_buffer.cpp
-            node/uwp/native_buffer.cpp
-            node/uwp/os_context.cpp
-            node/uwp/os_context.h
-            node/uwp/registry.cpp
-            node/uwp/shell.cpp
-            node/uwp/shell_uwp.cpp
-            node/uwp/thread.cpp
-            node/uwp/thread.h
-            node/uwp/timer.cpp
-            node/uwp/trace.cpp
-            node/uwp/tts_speaker.cpp
-            node/uwp/uac_tools.cpp
-            node/uwp/util.cpp
-            os/uwp/_.h
-            os/uwp/_uwp.h
-            os/uwp/_winrt.h
-            os/uwp/apex.cpp
-            os/uwp/application_system_run.cpp
-            os/uwp/base_file.h
-            os/uwp/direct2d_tls.cpp
-            os/uwp/dummy_ipc.cpp
-            os/uwp/gdi_winrt.h
-            os/uwp/host_interaction.h
-            os/uwp/language.cpp
-            os/uwp/launcher.cpp
-            os/uwp/library.cpp
-            os/uwp/lock.cpp
-            os/uwp/main.cpp
-            os/uwp/menu.cpp
-            os/uwp/metrowin_metrowin.h
-            os/uwp/multithreading.cpp
-            os/uwp/multithreading.h
-            os/uwp/process.cpp
-            os/uwp/process.h
-            os/uwp/simple_app.cpp
-            os/uwp/simple_hold_handle.h
-            os/uwp/simple_shell_launcher.cpp
-            os/uwp/simple_ui.h
-            os/uwp/small_ipca_channel.cpp
-            os/uwp/sockets.cpp
-            os/uwp/sockets.h
-            os/uwp/time.cpp
-            os/uwp/user.cpp
-
-            )
+        crypto/winrt/_winrt.h
+        crypto/winrt/crypto.cpp
+        crypto/winrt/hasher.cpp
+        crypto/winrt/hasher.h
+        crypto/winrt/hasher_algorithm.cpp
+        crypto/winrt/hasher_algorithm.h
+        crypto/winrt/rsa.cpp
+        crypto/winrt/rsa.h
+        net/sockets/winrt/asynch_dns/resolv_server.cpp
+        net/sockets/winrt/asynch_dns/resolv_server.h
+        net/sockets/winrt/asynch_dns/resolv_socket.cpp
+        net/sockets/winrt/asynch_dns/resolv_socket.h
+        net/sockets/winrt/basic/listen_socket.cpp
+        net/sockets/winrt/basic/listen_socket.h
+        net/sockets/winrt/basic/net.cpp
+        net/sockets/winrt/basic/net.h
+        net/sockets/winrt/basic/sctp_socket.cpp
+        net/sockets/winrt/basic/sctp_socket.h
+        net/sockets/winrt/basic/Socket.cpp
+        net/sockets/winrt/basic/socket.h
+        net/sockets/winrt/basic/socket_handler.cpp
+        net/sockets/winrt/basic/socket_handler.h
+        net/sockets/winrt/basic/stream_socket.cpp
+        net/sockets/winrt/basic/stream_socket.h
+        net/sockets/winrt/basic/sync_socket_handler.cpp
+        net/sockets/winrt/basic/sync_socket_handler.h
+        net/sockets/winrt/basic/tcp_socket.cpp
+        net/sockets/winrt/basic/tcp_socket.h
+        net/sockets/winrt/basic/tls_socket.cpp
+        net/sockets/winrt/basic/tls_socket.h
+        net/sockets/winrt/basic/udp_socket.cpp
+        net/sockets/winrt/basic/udp_socket.h
+        net/sockets/winrt/sip/base.cpp
+        net/sockets/winrt/sip/base.h
+        net/sockets/winrt/sip/base_client_socket.cpp
+        net/sockets/winrt/sip/base_client_socket.h
+        net/sockets/winrt/sip/callback.cpp
+        net/sockets/winrt/sip/callback.h
+        net/sockets/winrt/sip/client.cpp
+        net/sockets/winrt/sip/client.h
+        net/sockets/winrt/sip/event.h
+        net/sockets/winrt/sip/request.cpp
+        net/sockets/winrt/sip/request.h
+        net/sockets/winrt/sip/response.cpp
+        net/sockets/winrt/sip/response.h
+        net/sockets/winrt/sip/server.cpp
+        net/sockets/winrt/sip/server.h
+        net/sockets/winrt/sip/socket.h
+        net/sockets/winrt/sip/tcp_client_socket.cpp
+        net/sockets/winrt/sip/tcp_client_socket.h
+        net/sockets/winrt/sip/transaction.cpp
+        net/sockets/winrt/sip/transaction.h
+        net/sockets/winrt/sip/udp_client_socket.cpp
+        net/sockets/winrt/sip/udp_client_socket.h
+        net/sockets/winrt/smtp/smtpd_socket.cpp
+        net/sockets/winrt/smtp/smtpd_socket.h
+        net/sockets/winrt/smtp/socket.cpp
+        net/sockets/winrt/smtp/socket.h
+        net/sockets/winrt/timer/Event.cpp
+        net/sockets/winrt/timer/event.h
+        net/sockets/winrt/timer/event_handler.h
+        net/sockets/winrt/timer/event_time.h
+        net/sockets/winrt/timer/EventHandler.cpp
+        net/sockets/winrt/timer/EventTime.cpp
+        net/sockets/winrt/timer/ievent_handler.h
+        net/sockets/winrt/timer/ievent_owner.h
+        net/sockets/winrt/timer/IEventOwner.cpp
+        net/sockets/winrt/webserver/ajp13.h
+        net/sockets/winrt/webserver/ajp13_socket.h
+        net/sockets/winrt/webserver/Ajp13Socket.cpp
+        net/sockets/winrt/webserver/ajp_base_socket.h
+        net/sockets/winrt/webserver/AjpBaseSocket.cpp
+        net/sockets/winrt/webserver/httpd_socket.cpp
+        net/sockets/winrt/webserver/httpd_socket.h
+        net/sockets/winrt/_.h
+        net/sockets/winrt/config.h
+        net/sockets/winrt/include.cpp
+        net/sockets/winrt/sockets.cpp
+        net/sockets/winrt/sockets.h
+        node/uwp/net/net_address.h
+        node/uwp/_.h
+        node/uwp/_aaa_want_to_remove_node_metrowin.cpp
+        node/uwp/_uwp.h
+        node/uwp/app_core.cpp
+        node/uwp/application.cpp
+        node/uwp/application.h
+        node/uwp/command.cpp
+        node/uwp/dir_context.cpp
+        node/uwp/dir_context.h
+        node/uwp/dir_system.cpp
+        node/uwp/dir_system.h
+        node/uwp/directx.cpp
+        node/uwp/directx_application.cpp
+        node/uwp/directx_impact.cpp
+        node/uwp/directx_interaction.cpp
+        node/uwp/error.cpp
+        node/uwp/factory_exchange.cpp
+        node/uwp/factory_exchange.h
+        node/uwp/file_context.cpp
+        node/uwp/file_context.h
+        node/uwp/file_find.cpp
+        node/uwp/file_system.cpp
+        node/uwp/file_system.h
+        node/uwp/file_watcher.cpp
+        node/uwp/file_watcher.h
+        node/uwp/folder_watch.cpp
+        node/uwp/graphics_buffer.cpp
+        node/uwp/native_buffer.cpp
+        node/uwp/os_context.cpp
+        node/uwp/os_context.h
+        node/uwp/registry.cpp
+        node/uwp/shell.cpp
+        node/uwp/shell_uwp.cpp
+        node/uwp/thread.cpp
+        node/uwp/thread.h
+        node/uwp/timer.cpp
+        node/uwp/trace.cpp
+        node/uwp/tts_speaker.cpp
+        node/uwp/uac_tools.cpp
+        node/uwp/util.cpp
+        os/uwp/_.h
+        os/uwp/_uwp.h
+        os/uwp/_winrt.h
+        os/uwp/apex.cpp
+        os/uwp/application_system_run.cpp
+        os/uwp/base_file.h
+        os/uwp/direct2d_tls.cpp
+        os/uwp/dummy_ipc.cpp
+        os/uwp/gdi_winrt.h
+        os/uwp/host_interaction.h
+        os/uwp/language.cpp
+        os/uwp/launcher.cpp
+        os/uwp/library.cpp
+        os/uwp/lock.cpp
+        os/uwp/main.cpp
+        os/uwp/menu.cpp
+        os/uwp/metrowin_metrowin.h
+        os/uwp/multithreading.cpp
+        os/uwp/multithreading.h
+        os/uwp/process.cpp
+        os/uwp/process.h
+        os/uwp/simple_app.cpp
+        os/uwp/simple_hold_handle.h
+        os/uwp/simple_shell_launcher.cpp
+        os/uwp/simple_ui.h
+        os/uwp/small_ipca_channel.cpp
+        os/uwp/sockets.cpp
+        os/uwp/sockets.h
+        os/uwp/time.cpp
+        os/uwp/user.cpp)
 
 else()
 
@@ -920,7 +914,6 @@ if(LINUX)
         os/linux/language.cpp
         os/linux/launcher.cpp
         os/linux/library.cpp
-        os/linux/linux.inl
         os/linux/linux_linux.h
         os/linux/lock.cpp
         os/linux/menu.cpp
@@ -937,12 +930,19 @@ if(LINUX)
         os/linux/user.cpp
         os/linux/user.h
         os/linux/user_private.h
+        os/linux/win_base.cpp)
+
+endif()
+
         os/linux/win_base.cpp
             )
     endif()
 
 
 if(MACOS)
+
+if(MACOS)
+
     list(APPEND apex_source
             crypto/macos/rsa.cpp
             crypto/macos/rsa.h
@@ -1048,105 +1048,105 @@ if(MACOS)
 if(IOS)
     list(APPEND apex_source
             ios_aura/ios_aura.h
-            ios_aura/ios_aura.m
-            node/ios/_.h
-            node/ios/_ios.h
-            node/ios/_m.h
-            node/ios/_mm.h
-            node/ios/application.cpp
-            node/ios/application.h
-            node/ios/dir_context.cpp
-            node/ios/dir_context.h
-            node/ios/dir_system.cpp
-            node/ios/dir_system.h
-            node/ios/exception.cpp
-            node/ios/factory_exchange.cpp
-            node/ios/factory_exchange.h
-            node/ios/file.cpp
-            node/ios/file.h
-            node/ios/file_context.cpp
-            node/ios/file_context.h
-            node/ios/file_os_watcher.cpp
-            node/ios/file_os_watcher.h
-            node/ios/file_system.cpp
-            node/ios/file_system.h
-            node/ios/host_interaction.cpp
-            node/ios/implementation.h
-            node/ios/internal.h
-            node/ios/ios.cpp
-            node/ios/ip_enum.cpp
-            node/ios/ip_enum.h
-            node/ios/main.cpp
-            node/ios/os_context.cpp
-            node/ios/os_context.h
-            node/ios/plane_system.cpp
-            node/ios/plane_system.h
-            node/ios/round_window.mm
-            node/ios/RoundCaretView.h
-            node/ios/RoundWindow.mm
-            node/ios/RoundWindowApp.h
-            node/ios/RoundWindowApp.mm
-            node/ios/state.h
-            node/ios/thread.cpp
-            node/ios/thread.h
-            node/ios/trace.cpp
-            node/ios/util.cpp
-            os/ios/MessageBoxA_W.mm
-            os/ios/mm.mm
-            os/ios/mm_cross_gdi.mm
-            os/ios/mm_graphics.h
-            os/ios/mm_oswindow.h
-            os/ios/mm_thread.mm
-            os/ios/mm_user.mm
-            os/ios/_.h
-            os/ios/_c.h
-            os/ios/_ios.h
-            os/ios/_m.h
-            os/ios/_mm.h
-            os/ios/application_system_run.cpp
-            os/ios/aura.cpp
-            os/ios/base_internal.h
-            os/ios/base_user.cpp
-            os/ios/cross_win.cpp
-            os/ios/cross_win_file.cpp
-            os/ios/cross_win_gdi.h
-            os/ios/crypt.cpp
-            os/ios/debug.cpp
-            os/ios/error.cpp
-            os/ios/exception_engine.cpp
-            os/ios/exception_engine.h
-            os/ios/file.cpp
-            os/ios/fontopus.cpp
-            os/ios/gen_1.h
-            os/ios/graphics.cpp
-            os/ios/implementation.h
-            os/ios/internal.h
-            os/ios/language.cpp
-            os/ios/launcher.cpp
-            os/ios/library.cpp
-            os/ios/lock.cpp
-            os/ios/multithreading.cpp
-            os/ios/multithreading.h
-            os/ios/oswindow_data.cpp
-            os/ios/oswindow_data.h
-            os/ios/process.cpp
-            os/ios/process.h
-            os/ios/process_pid.cpp
-            os/ios/simple_shell_launcher.cpp
-            os/ios/small_ipca_channel.cpp
-            os/ios/time.cpp
-            os/ios/user.cpp
-            os/ios/win_base.cpp
-            os/ios/window.cpp
-            os/ios/window.h
-            "os/ios/window_boot 2.h"
-            os/ios/window_boot.h
-            os/ios/window_impl.h
-            os/ios/windowing.cpp
-            os/ios/windowing.h
 
-            )
-
+    list(APPEND apex_source
+        ios_aura/ios_aura.h
+        ios_aura/ios_aura.m
+        node/ios/_.h
+        node/ios/_ios.h
+        node/ios/_m.h
+        node/ios/_mm.h
+        node/ios/application.cpp
+        node/ios/application.h
+        node/ios/dir_context.cpp
+        node/ios/dir_context.h
+        node/ios/dir_system.cpp
+        node/ios/dir_system.h
+        node/ios/exception.cpp
+        node/ios/factory_exchange.cpp
+        node/ios/factory_exchange.h
+        node/ios/file.cpp
+        node/ios/file.h
+        node/ios/file_context.cpp
+        node/ios/file_context.h
+        node/ios/file_os_watcher.cpp
+        node/ios/file_os_watcher.h
+        node/ios/file_system.cpp
+        node/ios/file_system.h
+        node/ios/host_interaction.cpp
+        node/ios/implementation.h
+        node/ios/internal.h
+        node/ios/ios.cpp
+        node/ios/ip_enum.cpp
+        node/ios/ip_enum.h
+        node/ios/main.cpp
+        node/ios/os_context.cpp
+        node/ios/os_context.h
+        node/ios/plane_system.cpp
+        node/ios/plane_system.h
+        node/ios/round_window.mm
+        node/ios/RoundCaretView.h
+        node/ios/RoundWindow.mm
+        node/ios/RoundWindowApp.h
+        node/ios/RoundWindowApp.mm
+        node/ios/state.h
+        node/ios/thread.cpp
+        node/ios/thread.h
+        node/ios/trace.cpp
+        node/ios/util.cpp
+        os/ios/_.h
+        os/ios/_c.h
+        os/ios/_ios.h
+        os/ios/_m.h
+        os/ios/_mm.h
+        os/ios/application_system_run.cpp
+        os/ios/aura.cpp
+        os/ios/base_internal.h
+        os/ios/base_user.cpp
+        os/ios/cross_win.cpp
+        os/ios/cross_win_file.cpp
+        os/ios/cross_win_gdi.h
+        os/ios/crypt.cpp
+        os/ios/debug.cpp
+        os/ios/error.cpp
+        os/ios/exception_engine.cpp
+        os/ios/exception_engine.h
+        os/ios/file.cpp
+        os/ios/fontopus.cpp
+        os/ios/gen_1.h
+        os/ios/graphics.cpp
+        os/ios/implementation.h
+        os/ios/internal.h
+        os/ios/language.cpp
+        os/ios/launcher.cpp
+        os/ios/library.cpp
+        os/ios/lock.cpp
+        os/ios/MessageBoxA_W.mm
+        os/ios/mm.mm
+        os/ios/mm_cross_gdi.mm
+        os/ios/mm_graphics.h
+        os/ios/mm_oswindow.h
+        os/ios/mm_thread.mm
+        os/ios/mm_user.mm
+        os/ios/multithreading.cpp
+        os/ios/multithreading.h
+        os/ios/oswindow_data.cpp
+        os/ios/oswindow_data.h
+        os/ios/process.cpp
+        os/ios/process.h
+        os/ios/process_pid.cpp
+        os/ios/simple_shell_launcher.cpp
+        os/ios/small_ipca_channel.cpp
+        os/ios/time.cpp
+        os/ios/user.cpp
+        os/ios/win_base.cpp
+        os/ios/window.cpp
+        os/ios/window.h
+        "os/ios/window_boot 2.h"
+        os/ios/window_boot.h
+        os/ios/window_impl.h
+        os/ios/windowing.cpp
+        os/ios/windowing.h)
 
 endif()
 

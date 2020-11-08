@@ -1,6 +1,5 @@
 cmake_minimum_required(VERSION 3.17)
 project(aura CXX)
-include(FindPkgConfig)
 
 
 set(CMAKE_CXX_STANDARD 14)
@@ -14,6 +13,7 @@ if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
     set(LINUX TRUE)
     set(PLATFORM_NAME "linux")
     message("System is Linux")
+    include(FindPkgConfig)
 elseif(WIN32)
     set(PLATFORM_NAME "windows")
 endif()

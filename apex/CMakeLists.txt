@@ -1,6 +1,5 @@
 cmake_minimum_required(VERSION 3.17)
 project(apex CXX)
-include(FindPkgConfig)
 
 
 set(CMAKE_CXX_STANDARD 14)
@@ -16,6 +15,7 @@ if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
     set(PTHREAD TRUE)
     set(PLATFORM_NAME "linux")
     message("System is Linux")
+    include(FindPkgConfig)
 elseif(WIN32)
     set(USE_OPENSSL TRUE)
     set(PLATFORM_NAME "windows")

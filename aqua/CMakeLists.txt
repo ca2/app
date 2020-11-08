@@ -193,7 +193,7 @@ target_include_directories(aqua PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../arc
 target_include_directories(aqua PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
 
-target_compile_definitions(aqua PRIVATE _APEX_LIBRARY)
+target_compile_definitions(aqua PRIVATE _AQUA_LIBRARY)
 target_compile_definitions(aqua PRIVATE UNICODE)
 target_compile_definitions(aqua PRIVATE _UNICODE)
 

@@ -35,35 +35,6 @@ list(APPEND aura_source
         const/charset.h
         const/idpool.cpp
         const/idpool.h
-        core/core/_.h
-        core/core/_impl.h
-        core/core/application.cpp
-        core/core/application.h
-        core/core/Debug.cpp
-        core/core/debug.h
-        core/core/library.cpp
-        core/core/library.h
-        core/core/session.cpp
-        core/core/session.h
-        core/core/static_start.cpp
-        core/core/system.cpp
-        core/core/system.h
-        core/node/android/android_simple_frame_window.cpp
-        core/node/uwp/metrowin_main.cpp
-        core/plugin/plugin.h
-        core/plugin/plugin_gen.h
-        core/plugin/plugin_history.cpp
-        core/plugin/plugin_history.h
-        core/plugin/plugin_host_interaction.cpp
-        core/plugin/plugin_host_interaction.h
-        core/plugin/plugin_instance.cpp
-        core/plugin/plugin_instance.h
-        core/plugin/plugin_plugin.cpp
-        core/plugin/plugin_plugin.h
-        core/plugin/plugin_run_start_installer.cpp
-        core/plugin/plugin_run_start_installer.h
-        core/plugin/plugin_system.cpp
-        core/plugin/plugin_system.h
         filesystem/filemanager/callback.cpp
         filesystem/filemanager/callback.h
         filesystem/filemanager/item_action.cpp
@@ -252,8 +223,6 @@ list(APPEND aura_source
         inline/console.h
         inline/console_common.h
         inline/library.h
-        ios_aura/ios_aura.h
-        ios_aura/ios_aura.m
         message/_.cpp
         message/_.h
         message/_impl.h
@@ -1144,6 +1113,11 @@ if(SOLARIS)
 
 if(APPLE)
 
+    list(APPEND aura_source
+            ios_aura/ios_aura.h
+            ios_aura/ios_aura.m
+            )
+
 endif()
 
 
@@ -1190,6 +1164,7 @@ target_link_directories(aura PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archiv
 target_include_directories(aura PRIVATE $ENV{HOME}/__config)
 target_include_directories(aura PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 target_include_directories(aura PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)
+target_include_directories(aura PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source)
 target_include_directories(aura PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/app)
 target_include_directories(aura PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/app/_include)
 target_include_directories(aura PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/include)

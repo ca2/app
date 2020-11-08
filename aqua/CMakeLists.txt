@@ -182,6 +182,7 @@ target_link_directories(aqua PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archiv
 target_include_directories(aqua PRIVATE $ENV{HOME}/__config)
 target_include_directories(aqua PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 target_include_directories(aqua PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)
+target_include_directories(aqua PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source)
 target_include_directories(aqua PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/app)
 target_include_directories(aqua PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/app/_include)
 target_include_directories(aqua PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/include)

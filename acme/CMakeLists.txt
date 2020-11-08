@@ -67,6 +67,7 @@ list(APPEND acme_source
         exception/os.cpp
         exception/parsing.cpp
         exception/resource.cpp
+        exception/result.cpp
         exception/simple.cpp
         exception/standard_translator.cpp
         exception/temporary.cpp
@@ -1824,7 +1825,7 @@ else()
 endif()
 
 
-add_library(acme SHARED ${acme_source} exception/result.cpp)
+add_library(acme SHARED ${acme_source})
 
 target_precompile_headers(acme PRIVATE framework.h)
 
@@ -1856,6 +1857,7 @@ target_link_directories(acme PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archiv
 target_include_directories(acme PRIVATE $ENV{HOME}/__config)
 target_include_directories(acme PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 target_include_directories(acme PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)
+target_include_directories(acme PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source)
 target_include_directories(acme PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/app)
 target_include_directories(acme PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/app/_include)
 target_include_directories(acme PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/include)

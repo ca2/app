@@ -13,6 +13,7 @@ message(STATUS "CMAKE_SYSTEM_NAME is ${CMAKE_SYSTEM_NAME}")
 if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
     set(LINUX TRUE)
     set(USE_OPENSSL TRUE)
+    set(PTHREAD TRUE)
     set(PLATFORM_NAME "linux")
     message("System is Linux")
 elseif(WIN32)
@@ -1326,6 +1327,13 @@ if(SOLARIS)
 
     endif()
 
+
+if(PTHREAD)
+
+    list(APPEND apex_source
+            os/posix/pthread.cpp)
+
+endif()
 
 
 if (MSVC)

@@ -70,6 +70,8 @@ list(APPEND apex_source
         crypto/hasher.h
         crypto/hasher_algorithm.cpp
         crypto/hasher_algorithm.h
+        crypto/rsa.cpp
+        crypto/rsa.h
         database/_.h
         database/_impl.h
         database/change_event.h

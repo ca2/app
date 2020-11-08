@@ -417,10 +417,10 @@ list(APPEND aura_source
 if(WIN32)
 
     list(APPEND aura_source
-            node/windows/base/_windows.h
-            node/windows/base/factory_exchange.cpp
-            node/windows/base/factory_exchange.h
-            node/windows/base/implementation.h
+            #node/windows/base/_windows.h
+            #node/windows/base/factory_exchange.cpp
+            #node/windows/base/factory_exchange.h
+            #node/windows/base/implementation.h
             #node/windows/base/print_job.cpp
             #node/windows/base/print_job.h
             node/windows/_.h

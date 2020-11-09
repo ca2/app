@@ -714,8 +714,6 @@ if(LINUX)
             os/x11/x11_exception.h
             os/x11/x11_keyboard.cpp
             os/x11/x11_keyboard.h
-            os/x11/x11_message_box.cpp
-            os/x11/x11_message_box.h
             os/x11/x11_windowing.cpp
             os/x11/x11_xrender.cpp
             )

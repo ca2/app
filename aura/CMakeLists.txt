@@ -658,8 +658,6 @@ if(LINUX)
             node/linux/internal.h
             node/linux/linux.cpp
             node/linux/os_context.h
-            node/linux/process.cpp
-            node/linux/process.h
             node/linux/root_tools.cpp
             node/linux/root_tools.h
             node/linux/stdio_file.cpp

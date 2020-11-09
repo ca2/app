@@ -5,7 +5,6 @@
 #include "aura/message.h"
 #include "aura/user/interaction_thread.h"
 #include "aura/os/windows/windowing.h"
-#include "aura/os/windows/top_level_enum.h"
 #include "aura/os/windows/imm_context.h"
 #include "aura/node/windows/buffer.h"
 #include "acme/const/timer.h"

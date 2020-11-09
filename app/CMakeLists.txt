@@ -40,7 +40,7 @@ else()
 endif()
 
 
-add_library(app_app SHARED ${app_app_source})
+add_executable(app_app ${app_app_source})
 
 target_precompile_headers(app_app PRIVATE framework.h)
 
@@ -49,6 +49,7 @@ set_target_properties(app_app PROPERTIES LINKER_LANGUAGE CXX)
 if (MSVC)
     target_compile_options(app_app PRIVATE "/MD$<$<CONFIG:Debug>:d>")
     target_link_options(app_app PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
+    target_link_options(app_app PRIVATE "/SUBSYSTEM:WINDOWS")
     target_link_libraries(app_app PRIVATE acme apex aqua aura)
 elseif(LINUX)
     #pkg_check_modules(PKGCONFIG glib-2.0 gtk+-3.0 gdk-3.0 appindicator-0.1)
@@ -82,6 +83,6 @@ target_include_directories(app_app PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../
 target_include_directories(app_app PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
 
-target_compile_definitions(app_app PRIVATE _AURA_LIBRARY)
+target_compile_definitions(app_app PRIVATE _APP_APP_LIBRARY)
 target_compile_definitions(app_app PRIVATE UNICODE)
 target_compile_definitions(app_app PRIVATE _UNICODE)

@@ -503,10 +503,8 @@ if(WIN32)
             os/windows/process.h
             os/windows/registry.cpp
             os/windows/registry.h
-            os/windows/shell1.h
             os/windows/simple_app.cpp
             os/windows/simple_hold_handle.h
-            os/windows/simple_shell_launcher.cpp
             os/windows/simple_ui.h
             os/windows/time.cpp
             os/windows/top_level_enum.h
@@ -664,10 +662,6 @@ if(LINUX)
             node/linux/process.h
             node/linux/root_tools.cpp
             node/linux/root_tools.h
-            node/linux/shell.cpp
-            node/linux/shell.h
-            node/linux/shell_linux.cpp
-            node/linux/shell_linux.h
             node/linux/stdio_file.cpp
             node/linux/stdio_file.h
             node/linux/thread.cpp
@@ -785,7 +779,6 @@ if(MACOS)
         node/macos/keyboard.h
         node/macos/main.cpp
         node/macos/mm.mm
-        node/macos/shell_macos_mm.mm
         node/macos/thread.cpp
         node/macos/thread.h
         node/macos/trace.cpp
@@ -892,7 +885,6 @@ if(IOS)
         node/ios/RoundTextRange.mm
         node/ios/RoundTextView.h
         node/ios/RoundTextView.mm
-        node/ios/shell.h
         node/ios/state.h
         node/ios/thread.cpp
         node/ios/thread.h
@@ -940,7 +932,6 @@ if(IOS)
         os/ios/process.cpp
         os/ios/process.h
         os/ios/process_pid.cpp
-        os/ios/small_ipca_channel.cpp
         os/ios/time.cpp
         os/ios/user.cpp
         os/ios/win_base.cpp
@@ -985,10 +976,8 @@ if(SOLARIS)
             os/solaris/solaris_process.cpp
             os/solaris/solaris_process.h
             os/solaris/solaris_process_pid.cpp
-            os/solaris/solaris_simple_shell_launcher.cpp
             os/solaris/solaris_simple_ui.cpp
             os/solaris/solaris_simple_ui.h
-            os/solaris/solaris_small_ipca_channel.cpp
             os/solaris/solaris_solaris.h
             os/solaris/solaris_thread.cpp
             os/solaris/solaris_user_impl.h
@@ -1037,8 +1026,6 @@ if(ANDROID)
             node/android/os_context.cpp
             node/android/os_context.h
             node/android/process.cpp
-            node/android/shell.cpp
-            node/android/shell.h
             node/android/thread.cpp
             node/android/thread.h
             node/android/trace.cpp
@@ -1083,8 +1070,6 @@ if(ANDROID)
             os/android/process.cpp
             os/android/process.h
             os/android/process_pid.cpp
-            os/android/simple_shell_launcher.cpp
-            os/android/small_ipca_channel.cpp
             os/android/view_bitmap.h
             os/android/win_base.cpp
             os/android/window_android.cpp

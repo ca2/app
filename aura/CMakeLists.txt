@@ -398,8 +398,6 @@ list(APPEND aura_source
         __matter_ca2.cpp
         _defer.h
         _h.h
-        aaa_callback.h
-        aaa_want_to_move_xml.h
         application.h
         astr.h
         console.h
@@ -565,7 +563,6 @@ if(UWP)
     list(APPEND aura_source
         node/uwp/net/net_address.h
         node/uwp/_.h
-        node/uwp/_aaa_want_to_remove_node_metrowin.cpp
         node/uwp/_uwp.h
         node/uwp/application.cpp
         node/uwp/buffer.h
@@ -640,30 +637,10 @@ if(LINUX)
             node/linux/console_window.h
             node/linux/copydesk.cpp
             node/linux/copydesk.h
-            node/linux/dir_context.h
-            node/linux/dir_system.h
-            node/linux/dumpinit.cpp
-            node/linux/error.cpp
-            node/linux/exception.cpp
             node/linux/factory_exchange.cpp
             node/linux/factory_exchange.h
-            node/linux/file.cpp
-            node/linux/file.h
-            node/linux/file_context.h
-            node/linux/file_system.h
             node/linux/interaction_impl.cpp
             node/linux/interaction_impl.h
-            node/linux/internal.h
-            node/linux/linux.cpp
-            node/linux/os_context.h
-            node/linux/root_tools.cpp
-            node/linux/root_tools.h
-            node/linux/stdio_file.cpp
-            node/linux/stdio_file.h
-            node/linux/thread.cpp
-            node/linux/thread.h
-            node/linux/trace.cpp
-            node/linux/util.cpp
             os/gdk/aura_gdk.cpp
             os/gdk/aura_gdk.h
             os/linux/_.h
@@ -675,7 +652,6 @@ if(LINUX)
             os/linux/application_system_run.cpp
             os/linux/aura.cpp
             os/linux/bloat_pad.h
-            os/linux/callstack.cpp
             os/linux/cross_win_file.cpp
             os/linux/cross_win_file.h
             os/linux/cross_win_gdi.cpp
@@ -736,8 +712,6 @@ if(LINUX)
             os/x11/x11_exception.h
             os/x11/x11_keyboard.cpp
             os/x11/x11_keyboard.h
-            os/x11/x11_message_box.cpp
-            os/x11/x11_message_box.h
             os/x11/x11_windowing.cpp
             os/x11/x11_xrender.cpp
             )

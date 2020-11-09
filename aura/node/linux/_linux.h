@@ -41,15 +41,6 @@ CLASS_DECL_AURA const char * __get_app_name();
 
 
 
-#include "thread.h"
-#include "os_context.h"
-
-#define NULL_REF(class) (*((class *) nullptr))
-
-#define LNX_THREAD(pthread) (dynamic_cast < ::linux::thread * > (dynamic_cast < ::thread * >(pthread)))
-
-//#include "shell.h"
-//#include "shell_linux.h"
 
 
 #include "interaction_impl.h"
@@ -67,8 +58,6 @@ i32 CLASS_DECL_AURA __linux_main(i32 argc, char * argv[]);
 
 CLASS_DECL_AURA void vfxThrowFileException(::object * pobject, const ::estatus & estatus, LONG lOsError, const char * pszFileName = nullptr);
 
-#include "internal.h"
-
 CLASS_DECL_AURA ::estatus os_shell_initialize();
 
 CLASS_DECL_AURA MESSAGE * __get_current_message();
@@ -79,11 +68,6 @@ CLASS_DECL_AURA __pointer(::user::primitive) __get_main_window();
 
 CLASS_DECL_AURA const char * __get_app_name();
 
-
-#include "dir_system.h"
-#include "dir_context.h"
-#include "file_system.h"
-#include "file_context.h"
 
 
 #include "copydesk.h"

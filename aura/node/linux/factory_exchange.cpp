@@ -10,14 +10,10 @@
 void __node_aura_factory_exchange()
 {
 
-   create_factory < ::linux::os_context         , ::os_context             >();
    create_factory < ::linux::console            , ::console::console       >();
    create_factory < ::xlib::buffer              , ::graphics::graphics     >();
    create_factory < ::linux::interaction_impl   , ::user::interaction_impl >();
    create_factory < ::linux::copydesk           , ::user::copydesk         >();
-
-   create_factory < ::file::os_watch            , ::file::watch            >();
-
 
 }
 

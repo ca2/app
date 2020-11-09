@@ -2,6 +2,7 @@
 
 
 #include "aura/_.h"
+#include "aura/gpu/gpu/_.h"
 
 
 #ifdef _APP_SHADER_LIBRARY
@@ -14,8 +15,10 @@
 namespace app_shader
 {
 
+
    class application;
    class window;
+
 
 } // namespace flag
 
@@ -31,9 +34,6 @@ namespace opengl
 
 
 } // namespace opengl
-
-
-#include "aura/gpu/gpu/_.h"
 
 
 #include "render.h"

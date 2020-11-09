@@ -7,9 +7,9 @@
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="basis">
-				<Option output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
-				<Option working_dir="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
-				<Option object_output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
+				<Option output="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
+				<Option object_output="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
@@ -19,8 +19,8 @@
 					<Add option="-m64" />
 					<Add option="-g" />
 					<Add option="-D_DEBUG" />
-					<Add directory="$(WORKSPACE_DIR)/../../platform-linux" />
-					<Add directory="$(WORKSPACE_DIR)/../../platform-linux/_include" />
+					<Add directory="$(WORKSPACE_DIR)/../../../archive/platform-linux" />
+					<Add directory="$(WORKSPACE_DIR)/../../../archive/platform-linux/_include" />
 					<Add directory="$(#archive)/third-linux/third/include" />
 				</Compiler>
 				<Linker>
@@ -50,14 +50,14 @@
 					<Add option="-lapex" />
 					<Add option="-laqua" />
 					<Add option="-Wl,-z,defs" />
-					<Add directory="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
+					<Add directory="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
 					<Add directory="$(#archive)/storage-linux/third/library/x64/" />
 				</Linker>
 			</Target>
 			<Target title="stage">
-				<Option output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
-				<Option working_dir="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
-				<Option object_output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
+				<Option output="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
+				<Option object_output="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
@@ -68,8 +68,8 @@
 					<Add option="-m64" />
 					<Add option="-g" />
 					<Add option="-O0" />
-					<Add directory="$(WORKSPACE_DIR)/../../platform-linux" />
-					<Add directory="$(WORKSPACE_DIR)/../../platform-linux/_include" />
+					<Add directory="$(WORKSPACE_DIR)/../../../archive/platform-linux" />
+					<Add directory="$(WORKSPACE_DIR)/../../../archive/platform-linux/_include" />
 				</Compiler>
 				<Linker>
 					<Add option="-pg" />
@@ -101,13 +101,13 @@
 					<Add option="-lace" />
 					<Add option="-laqua" />
 					<Add option="-Wl,-z,defs" />
-					<Add directory="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
+					<Add directory="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
 				</Linker>
 			</Target>
 			<Target title="memdleak">
-				<Option output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
-				<Option working_dir="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
-				<Option object_output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
+				<Option output="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
+				<Option object_output="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
@@ -116,17 +116,17 @@
 					<Add option="-g" />
 					<Add option="-D_DEBUG" />
 					<Add option="-DMEMDLEAK" />
-					<Add directory="$(WORKSPACE_DIR)/../../platform-linux" />
-					<Add directory="$(WORKSPACE_DIR)/../../platform-linux/_include" />
+					<Add directory="$(WORKSPACE_DIR)/../../../archive/platform-linux" />
+					<Add directory="$(WORKSPACE_DIR)/../../../archive/platform-linux/_include" />
 				</Compiler>
 				<Linker>
-					<Add directory="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
+					<Add directory="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
 				</Linker>
 			</Target>
 			<Target title="arm64_basis">
-				<Option output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
-				<Option working_dir="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
-				<Option object_output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
+				<Option output="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
+				<Option object_output="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
@@ -135,8 +135,8 @@
 					<Add option="-pg" />
 					<Add option="-g" />
 					<Add option="-D_DEBUG" />
-					<Add directory="$(WORKSPACE_DIR)/../../platform-raspbian" />
-					<Add directory="$(WORKSPACE_DIR)/../../platform-raspbian/_include" />
+					<Add directory="$(WORKSPACE_DIR)/../../../archive/platform-raspbian" />
+					<Add directory="$(WORKSPACE_DIR)/../../../archive/platform-raspbian/_include" />
 				</Compiler>
 				<Linker>
 					<Add option="-pg" />
@@ -163,13 +163,13 @@
 					<Add option="-lsqlite3" />
 					<Add option="`pkg-config --libs gtk+-3.0 gdk-3.0 gthread-2.0`" />
 					<Add option="-Wl,-z,defs" />
-					<Add directory="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
+					<Add directory="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
 				</Linker>
 			</Target>
 			<Target title="sanitizers">
-				<Option output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/basis/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
-				<Option working_dir="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/basis/" />
-				<Option object_output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/intermediate/basis/$(PROJECT_NAME)" />
+				<Option output="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/basis/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/basis/" />
+				<Option object_output="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/intermediate/basis/$(PROJECT_NAME)" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
@@ -181,8 +181,8 @@
 					<Add option="-fsanitize-recover=address" />
 					<Add option="-fsanitize=undefined" />
 					<Add option="-D_DEBUG" />
-					<Add directory="$(WORKSPACE_DIR)/../../platform-linux" />
-					<Add directory="$(WORKSPACE_DIR)/../../platform-linux/_include" />
+					<Add directory="$(WORKSPACE_DIR)/../../../archive/platform-linux" />
+					<Add directory="$(WORKSPACE_DIR)/../../../archive/platform-linux/_include" />
 				</Compiler>
 				<Linker>
 					<Add option="-Wl,-rpath=\\$$$ORIGIN" />
@@ -213,13 +213,13 @@
 					<Add option="-lace" />
 					<Add option="-laqua" />
 					<Add option="-Wl,-z,defs" />
-					<Add directory="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
+					<Add directory="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
 				</Linker>
 			</Target>
 			<Target title="freebsd_basis">
-				<Option output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
-				<Option working_dir="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
-				<Option object_output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
+				<Option output="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
+				<Option object_output="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
@@ -229,8 +229,8 @@
 					<Add option="-m64" />
 					<Add option="-g" />
 					<Add option="-D_DEBUG" />
-					<Add directory="$(WORKSPACE_DIR)/../../platform-freebsd" />
-					<Add directory="$(WORKSPACE_DIR)/../../platform-freebsd/_include" />
+					<Add directory="$(WORKSPACE_DIR)/../../../archive/platform-freebsd" />
+					<Add directory="$(WORKSPACE_DIR)/../../../archive/platform-freebsd/_include" />
 					<Add directory="$(#archive)/third-freebsd/third/include" />
 				</Compiler>
 				<Linker>
@@ -261,7 +261,7 @@
 					<Add option="-lsn" />
 					<Add option="`pkg-config --libs glib-2.0 gtk+-3.0 gdk-3.0 appindicator3-0.1`" />
 					<Add option="-Wl,-z,defs" />
-					<Add directory="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
+					<Add directory="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
 					<Add directory="$(#archive)/storage-linux/third/library/x64/" />
 				</Linker>
 			</Target>
@@ -286,18 +286,18 @@
 			<Add directory="$(PROJECT_DIR)" />
 			<Add directory="$(#archive)" />
 			<Add directory="$(#config)" />
-			<Add directory="$(WORKSPACE_DIR)/../.." />
-			<Add directory="$(WORKSPACE_DIR)/../../inc" />
-			<Add directory="$(WORKSPACE_DIR)/../../include" />
-			<Add directory="$(WORKSPACE_DIR)/../../app/_include" />
-			<Add directory="$(WORKSPACE_DIR)/../../app/" />
-			<Add directory="$(WORKSPACE_DIR)/../../platform-$(#platform_modifier)" />
-			<Add directory="$(WORKSPACE_DIR)/../../platform-$(#platform_modifier)/_include" />
+			<Add directory="$(WORKSPACE_DIR)/../../../source" />
+			<Add directory="$(WORKSPACE_DIR)/../../../source/inc" />
+			<Add directory="$(WORKSPACE_DIR)/../../../source/include" />
+			<Add directory="$(WORKSPACE_DIR)/../../../source/app/_include" />
+			<Add directory="$(WORKSPACE_DIR)/../../../source/app/" />
+			<Add directory="$(WORKSPACE_DIR)/../../../archive/platform-$(#platform_modifier)" />
+			<Add directory="$(WORKSPACE_DIR)/../../../archive/platform-$(#platform_modifier)/_include" />
 			<Add directory="$(#archive)/third-$(#platform_modifier)/third/include" />
 			<Add directory="$(#sensitive)/sensitive/include" />
 		</Compiler>
 		<Linker>
-			<Add directory="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
+			<Add directory="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
 		</Linker>
 		<Unit filename="_.cpp" />
 		<Unit filename="_.h" />
@@ -529,39 +529,25 @@
 		<Unit filename="node/linux/copydesk.h" />
 		<Unit filename="node/linux/dir_context.h" />
 		<Unit filename="node/linux/dir_system.h" />
-		<Unit filename="node/linux/dumpinit.cpp" />
-		<Unit filename="node/linux/error.cpp" />
-		<Unit filename="node/linux/exception.cpp" />
 		<Unit filename="node/linux/factory_exchange.cpp" />
 		<Unit filename="node/linux/factory_exchange.h" />
-		<Unit filename="node/linux/file.cpp" />
 		<Unit filename="node/linux/file.h" />
 		<Unit filename="node/linux/file_context.h" />
 		<Unit filename="node/linux/file_system.h" />
 		<Unit filename="node/linux/interaction_impl.cpp" />
 		<Unit filename="node/linux/interaction_impl.h" />
 		<Unit filename="node/linux/internal.h" />
-		<Unit filename="node/linux/linux.cpp" />
 		<Unit filename="node/linux/os_context.h" />
-		<Unit filename="node/linux/process.cpp" />
 		<Unit filename="node/linux/process.h" />
-		<Unit filename="node/linux/root_tools.cpp" />
 		<Unit filename="node/linux/root_tools.h" />
-		<Unit filename="node/linux/stdio_file.cpp" />
 		<Unit filename="node/linux/stdio_file.h" />
-		<Unit filename="node/linux/thread.cpp" />
 		<Unit filename="node/linux/thread.h" />
-		<Unit filename="node/linux/trace.cpp" />
-		<Unit filename="node/linux/util.cpp" />
 		<Unit filename="node/posix/_posix.h" />
 		<Unit filename="node/posix/aaa_want_to_remove_ansios.h" />
 		<Unit filename="node/posix/aaa_want_to_remove_ansios_thread_impl.h" />
 		<Unit filename="node/posix/application.cpp" />
-		<Unit filename="node/posix/file_os_watcher.cpp" />
 		<Unit filename="node/posix/file_watcher.h" />
-		<Unit filename="node/posix/pipe.cpp" />
 		<Unit filename="node/posix/pipe.h" />
-		<Unit filename="node/posix/serial.cpp" />
 		<Unit filename="node/posix/serial.h" />
 		<Unit filename="node/serial.h" />
 		<Unit filename="node/unix/_unix.h" />
@@ -707,11 +693,6 @@
 		<Unit filename="os/linux/xdisplay.h" />
 		<Unit filename="os/linux/xinerama.cpp" />
 		<Unit filename="os/os_windowing2.h" />
-		<Unit filename="os/posix/base_file.cpp" />
-		<Unit filename="os/posix/pthread.cpp" />
-		<Unit filename="os/posix/thread.cpp" />
-		<Unit filename="os/posix/time.cpp" />
-		<Unit filename="os/posix/timer.cpp" />
 		<Unit filename="os/process.h" />
 		<Unit filename="os/text.h" />
 		<Unit filename="os/thread.cpp" />
@@ -727,7 +708,6 @@
 		<Unit filename="os/x11/x11_exception.h" />
 		<Unit filename="os/x11/x11_keyboard.cpp" />
 		<Unit filename="os/x11/x11_keyboard.h" />
-		<Unit filename="os/x11/x11_message_box.cpp" />
 		<Unit filename="os/x11/x11_message_box.h" />
 		<Unit filename="os/x11/x11_windowing.cpp" />
 		<Unit filename="os/x11/x11_xrender.cpp" />

@@ -19,26 +19,30 @@
 #endif
 
 
-
 #ifdef _UWP
+
 
 // Enable function definitions in the GL headers below
 #define GL_GLEXT_PROTOTYPES
 
+
 // OpenGL ES includes
 #include <GLES2/gl2.h>
 #include <GLES2/gl2ext.h>
+
 
 // EGL includes
 #include <EGL/egl.h>
 #include <EGL/eglext.h>
 #include <EGL/eglplatform.h>
 
+
 #elif defined(LINUX)
 
 
 // Enable function definitions in the GL headers below
 #define GL_GLEXT_PROTOTYPES 1
+
 
 // Ubuntu : libglew-dev
 #include <GL/glew.h> // added for GL_VERTEX_SHADER
@@ -47,10 +51,10 @@
 //#include <GLES/glext.h>
 
 
-
 // OpenGL ES includes
 //#include <GLES2/gl2.h>
 //#include <GLES2/gl2ext.h>
+
 
 //#include <GL/gl.h>
 

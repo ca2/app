@@ -18,7 +18,7 @@
 #include <sys/utsname.h>
 
 
-// sudo apt install libappindicator-dev
+// sudo apt install libappindicator3-dev
 //int uname(struct utsname *buf);
 #ifndef RASPBIAN
 //#ifndef MANJARO

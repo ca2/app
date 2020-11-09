@@ -1085,9 +1085,12 @@ endif()
 
 add_library(aura SHARED ${aura_source} graphics/graphics/_graphics.h)
 
+
 target_precompile_headers(aura PRIVATE framework.h)
 
+
 set_target_properties(aura PROPERTIES LINKER_LANGUAGE CXX)
+
 
 if (MSVC)
     target_compile_options(aura PRIVATE "/MD$<$<CONFIG:Debug>:d>")
@@ -1096,26 +1099,28 @@ if (MSVC)
     target_link_options(aura PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/aura.def")
     target_link_libraries(aura PRIVATE acme apex aqua zlib libcrypto libssl dwrite d2d1 d3d11 dxgi Dxva2 dbghelp imagehlp dwmapi Setupapi Windowscodecs Winmm ws2_32 Crypt32 Normaliz version Secur32 gdiplus Shlwapi Imm32)
 elseif(LINUX)
-    pkg_check_modules(PKGCONFIG gdk-3.0)
-    #pkg_check_modules(PKGCONFIG glib-2.0 freetype2 gtk+-3.0 )
+    pkg_check_modules(PKGCONFIG glib-2.0 gdk-3.0 gtk+-3.0 appindicator3-0.1)
+    #pkg_check_modules(PKGCONFIG freetype2  )
     target_compile_options(aura PRIVATE ${PKGCONFIG_CFLAGS})
     #target_compile_options(aura PRIVATE -std=c++14)
     #target_link_options(aura PRIVATE ${GTK_LDFLAGS})
     target_link_options(aura PRIVATE -Wl,-rpath=\$ORIGIN)
     #target_link_libraries(aura PRIVATE z  dl  rt  bfd  X11  X11-xcb  xcb  xcb-util  Xinerama  Xmu  Xrandr  Xext  Xxf86vm  Xrender  Xi  ncurses  idn  pthread  sn)
-    target_link_libraries(aura PRIVATE X11 Xrandr Xrender Xinerama)
+    target_link_libraries(aura PRIVATE dl pthread X11 Xrandr Xrender Xinerama Xi ncurses sn)
     target_link_libraries(aura PRIVATE ${PKGCONFIG_LIBRARIES})
     target_link_libraries(aura PRIVATE acme apex aqua)
     target_link_options(aura PRIVATE -Wl,-z,defs)
     ##message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
 endif()
 
+
 target_link_directories(aura PRIVATE ${LIBRARY_OUTPUT_PATH})
 target_link_directories(aura PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/storage-${PLATFORM_NAME}/library/x64/basis)
 target_link_directories(aura PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/storage-${PLATFORM_NAME}/third/library/x64/basis)
 
 
-target_include_directories(aura PRIVATE $ENV{HOME}/__config)
+target_include_directories(aura PRIVATE .)
+target_include_directories(aura PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 target_include_directories(aura PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 target_include_directories(aura PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)
 target_include_directories(aura PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source)
@@ -1127,7 +1132,6 @@ target_include_directories(aura PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../arc
 target_include_directories(aura PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/include)
 target_include_directories(aura PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/third/include)
 target_include_directories(aura PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/third/include/include)
-target_include_directories(aura PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
 
 target_compile_definitions(aura PRIVATE _AURA_LIBRARY)

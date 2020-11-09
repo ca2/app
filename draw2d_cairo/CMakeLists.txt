@@ -26,7 +26,6 @@ set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../time-${PLATFORM_
 list(APPEND draw2d_cairo_source
         _.cpp
         _.h
-        aaa_want_to_remove_graphics_sht_font_code.cpp
         bitmap.cpp
         bitmap.h
         brush.cpp
@@ -78,15 +77,15 @@ if (MSVC)
     target_link_options(draw2d_cairo PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/draw2d_cairo.def")
     target_link_libraries(draw2d_cairo PRIVATE acme)
 elseif(LINUX)
-    pkg_check_modules(PKGCONFIG glib-2.0 gtk+-3.0 libssl)
-    #pkg_check_modules(PKGCONFIG glib-2.0 freetype2 gtk+-3.0 gdk-3.0)
+    pkg_check_modules(PKGCONFIG freetype2 pango cairo pangocairo)
+    #pkg_check_modules(PKGCONFIG glib-2.0 gtk+-3.0 gdk-3.0)
     target_compile_options(draw2d_cairo PRIVATE ${PKGCONFIG_CFLAGS})
     #target_compile_options(draw2d_cairo PRIVATE -std=c++14)
     #target_link_options(draw2d_cairo PRIVATE ${GTK_LDFLAGS})
     target_link_options(draw2d_cairo PRIVATE -Wl,-rpath=\$ORIGIN)
     #target_link_libraries(draw2d_cairo PRIVATE )
     target_link_libraries(draw2d_cairo PRIVATE ${PKGCONFIG_LIBRARIES})
-    target_link_libraries(draw2d_cairo PRIVATE acme apex aqua)
+    target_link_libraries(draw2d_cairo PRIVATE acme apex aqua aura)
     target_link_options(draw2d_cairo PRIVATE -Wl,-z,defs)
     message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
 endif()

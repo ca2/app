@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 namespace gpu
@@ -58,6 +58,7 @@ namespace gpu
 
 
 } // namespace gpu
+
 
 
 

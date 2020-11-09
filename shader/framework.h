@@ -1,6 +1,4 @@
-﻿#ifndef __GNUC__
-#pragma once
-#endif
+﻿#pragma once
 
 
 #include "acme/_start.h"

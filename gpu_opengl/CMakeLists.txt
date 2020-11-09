@@ -52,20 +52,28 @@ if(WIN32)
             )
 
 endif()
+
+
 if(LINUX)
     list(APPEND gpu_opengl_source
-            context_cgl.cpp
-            context_cgl.h
             context_egl.cpp
             context_egl.h
-            context_fbo.cpp
-            context_fbo.h
             context_glx.cpp
             context_glx.h
             )
 
     endif()
 
+
+if(APPLE)
+    list(APPEND gpu_opengl_source
+            context_cgl.cpp
+            context_cgl.h
+            context_fbo.cpp
+            context_fbo.h
+            )
+
+endif()
 
 
 if (MSVC)
@@ -88,16 +96,16 @@ if (MSVC)
     target_link_options(gpu_opengl PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/gpu_opengl.def")
     target_link_libraries(gpu_opengl PRIVATE acme apex aqua aura glu32 glew32 opengl32)
 elseif(LINUX)
-    pkg_check_modules(PKGCONFIG gdk-3.0)
-    #pkg_check_modules(PKGCONFIG glib-2.0 freetype2 gtk+-3.0 )
+    pkg_check_modules(PKGCONFIG glib-2.0)
+    #pkg_check_modules(PKGCONFIG freetype2 gtk+-3.0 )
     target_compile_options(gpu_opengl PRIVATE ${PKGCONFIG_CFLAGS})
     #target_compile_options(gpu_opengl PRIVATE -std=c++14)
     #target_link_options(gpu_opengl PRIVATE ${GTK_LDFLAGS})
     target_link_options(gpu_opengl PRIVATE -Wl,-rpath=\$ORIGIN)
     #target_link_libraries(gpu_opengl PRIVATE z  dl  rt  bfd  X11  X11-xcb  xcb  xcb-util  Xinerama  Xmu  Xrandr  Xext  Xxf86vm  Xrender  Xi  ncurses  idn  pthread  sn)
-    target_link_libraries(gpu_opengl PRIVATE X11 Xrandr Xrender Xinerama)
+    target_link_libraries(gpu_opengl PRIVATE GL GLEW EGL GLU)
     target_link_libraries(gpu_opengl PRIVATE ${PKGCONFIG_LIBRARIES})
-    target_link_libraries(gpu_opengl PRIVATE acme apex aqua)
+    target_link_libraries(gpu_opengl PRIVATE acme apex aqua aura)
     target_link_options(gpu_opengl PRIVATE -Wl,-z,defs)
     ##message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
 endif()

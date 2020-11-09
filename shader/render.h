@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 namespace app_shader
@@ -15,8 +15,8 @@ namespace app_shader
       bool                                m_bUpdateShader;
       string                              m_strProjection;
       string                              m_strFragment;
-      __pointer(::gpu::context)           m_pcontext;
-      __pointer(::gpu::program)           m_pprogram;
+      __pointer(::gpu::context)      m_pcontext;
+      __pointer(::gpu::program)      m_pprogram;
       rect                                m_rect;
       ::user::interaction *               m_pinteraction;
       string                              m_strFont1;
@@ -55,5 +55,6 @@ namespace app_shader
 
 
 } // namespace app_shader
+
 
 

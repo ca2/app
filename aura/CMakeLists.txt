@@ -492,8 +492,6 @@ if(WIN32)
             os/windows/lock.cpp
             os/windows/main.cpp
             os/windows/message_loop.cpp
-            os/windows/multithreading.cpp
-            os/windows/multithreading.h
             os/windows/opengl_buffer.h
             os/windows/port_forward.h
             os/windows/print_job.h

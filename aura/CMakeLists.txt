@@ -654,7 +654,6 @@ if(LINUX)
             os/linux/application_system_run.cpp
             os/linux/aura.cpp
             os/linux/bloat_pad.h
-            os/linux/callstack.cpp
             os/linux/cross_win_file.cpp
             os/linux/cross_win_file.h
             os/linux/cross_win_gdi.cpp

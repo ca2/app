@@ -481,7 +481,7 @@ if(WIN32)
             #os/windows/interaction_debug.cpp
             os/windows/internal.cpp
             os/windows/internal.h
-            os/windows/ipc.cpp
+            #os/windows/ipc.cpp
             os/windows/itemidlist.cpp
             os/windows/itemidlist.h
             os/windows/language.cpp
@@ -598,7 +598,7 @@ if(UWP)
         os/uwp/aura.cpp
         os/uwp/base_file.h
         os/uwp/direct2d_tls.cpp
-        os/uwp/dummy_ipc.cpp
+        #os/uwp/dummy_ipc.cpp
         os/uwp/file_winrt.h
         os/uwp/gdi_winrt.h
         os/uwp/graphics.cpp

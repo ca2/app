@@ -1,8 +1,10 @@
 //
 // Created by camilo on 2020-11-08.
 //
+#pragma once
 
-#ifndef AURA__GRAPHICS_H
-#define AURA__GRAPHICS_H
 
-#endif //AURA__GRAPHICS_H
+#include "buffer.h"
+
+
+

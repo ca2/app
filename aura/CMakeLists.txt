@@ -16,6 +16,9 @@ if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
     include(FindPkgConfig)
 elseif(WIN32)
     set(PLATFORM_NAME "windows")
+elseif(UWP)
+    set(PLATFORM_NAME "uwp")
+    set(WINDOWS_TSF TRUE)
 endif()
 
 
@@ -498,26 +501,7 @@ if(WIN32)
         os/windows_common/multithreading.h
         os/windows_common/new_api.h
         os/windows_common/variant.h
-        user/windows_tsf/afxres.h
-        user/windows_tsf/context_owner_composition_sink.cpp
-        user/windows_tsf/dataobj.cpp
-        user/windows_tsf/dataobj.h
-        user/windows_tsf/edit_window.cpp
-        user/windows_tsf/edit_window.h
-        user/windows_tsf/function_provider.cpp
-        user/windows_tsf/globals.h
-        user/windows_tsf/persist.cpp
-        user/windows_tsf/propldr.cpp
-        user/windows_tsf/propldr.h
-        user/windows_tsf/resource.h
-        user/windows_tsf/test.cpp
-        user/windows_tsf/text_store_acp.cpp
-        user/windows_tsf/tsfapp.cpp
-        user/windows_tsf/tsfedit.cpp
-        user/windows_tsf/tsfwnd.cpp
-        user/windows_tsf/tsfwnd.h
-        user/windows_tsf/ui_element_sink.cpp
-        user/windows_tsf/winres.h            )
+            )
 
 else()
 
@@ -528,6 +512,33 @@ else()
             )
 
 endif()
+
+if(WINDOWS_TSF)
+    list(APPEND aura_source
+            user/windows_tsf/afxres.h
+            user/windows_tsf/context_owner_composition_sink.cpp
+            user/windows_tsf/dataobj.cpp
+            user/windows_tsf/dataobj.h
+            user/windows_tsf/edit_window.cpp
+            user/windows_tsf/edit_window.h
+            user/windows_tsf/function_provider.cpp
+            user/windows_tsf/globals.h
+            user/windows_tsf/persist.cpp
+            user/windows_tsf/propldr.cpp
+            user/windows_tsf/propldr.h
+            user/windows_tsf/resource.h
+            user/windows_tsf/test.cpp
+            user/windows_tsf/text_store_acp.cpp
+            user/windows_tsf/tsfapp.cpp
+            user/windows_tsf/tsfedit.cpp
+            user/windows_tsf/tsfwnd.cpp
+            user/windows_tsf/tsfwnd.h
+            user/windows_tsf/ui_element_sink.cpp
+            user/windows_tsf/winres.h
+            )
+
+endif()
+
 
 if(UWP)
     list(APPEND aura_source
@@ -1072,7 +1083,7 @@ else()
 endif()
 
 
-add_library(aura SHARED ${aura_source})
+add_library(aura SHARED ${aura_source} graphics/graphics/_graphics.h)
 
 target_precompile_headers(aura PRIVATE framework.h)
 

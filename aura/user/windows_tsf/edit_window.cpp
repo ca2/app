@@ -4,7 +4,7 @@
 #endif
 #include "edit_window.h"
 #include "aura/message.h"
-#include "aura/platform/app_core.h"
+#include "apex/platform/app_core.h"
 #include "aura/user/interaction_thread.h"
 #include "aura/os/windows_common/variant.h"
 #include "Globals.h"

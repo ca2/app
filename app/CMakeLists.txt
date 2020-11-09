@@ -82,6 +82,6 @@ target_include_directories(app_app PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../
 target_include_directories(app_app PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
 
-target_compile_definitions(app_app PRIVATE _ACME_LIBRARY)
+target_compile_definitions(app_app PRIVATE _AURA_LIBRARY)
 target_compile_definitions(app_app PRIVATE UNICODE)
 target_compile_definitions(app_app PRIVATE _UNICODE)

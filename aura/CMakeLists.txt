@@ -724,60 +724,60 @@ if(MACOS)
         node/macos/trace.cpp
         node/macos/user.h
         node/macos/util.cpp
-            os/macos/_.h
-            os/macos/_c.h
-            os/macos/_macos.h
-            os/macos/_mm.h
-            os/macos/application_system_run.cpp
-            os/macos/aura.cpp
-            os/macos/clipboard.cpp
-            os/macos/cross_win.cpp
-            os/macos/cross_win_file.cpp
-            os/macos/cross_win_gdi.h
-            os/macos/debug.cpp
-            os/macos/exception_engine.cpp
-            os/macos/exception_engine.h
-            os/macos/file.cpp
-            os/macos/file.h
-            os/macos/file.mm
-            os/macos/graphics.cpp
-            os/macos/graphics_mm.h
-            os/macos/internal.h
-            os/macos/keyboard.cpp
-            os/macos/language.cpp
-            os/macos/launcher.cpp
-            os/macos/library.cpp
-            os/macos/list_serial_ports.cpp
-            os/macos/lock.cpp
-            os/macos/macos.h
-            os/macos/main.h
-            os/macos/message_loop.cpp
-            os/macos/MessageBoxA.cpp
-            os/macos/mm.mm
-            os/macos/mm_base_user.mm
-            os/macos/mm_graphics.mm
-            os/macos/mm_oswindow.h
-            os/macos/mm_user.mm
-            os/macos/multithreading.cpp
-            os/macos/multithreading.h
-            os/macos/NSPasteboard++.mm
-            os/macos/os.cpp
-            os/macos/os.h
-            os/macos/oswindow_data.cpp
-            os/macos/oswindow_data.h
-            os/macos/process.cpp
-            os/macos/process_c.h
-            os/macos/process_pid.cpp
-            os/macos/simple_app.cpp
-            os/macos/time.cpp
-            os/macos/user.cpp
-            os/macos/user.h
-            os/macos/win_base.cpp
-            os/macos/window_impl.h
-            os/macos/windowing.cpp
-            os/macos/windowing.h
-            os/macos/windowing_c.h
-            os/macos/winpr_keycode.cpp
+        os/macos/_.h
+        os/macos/_c.h
+        os/macos/_macos.h
+        os/macos/_mm.h
+        os/macos/application_system_run.cpp
+        os/macos/aura.cpp
+        os/macos/clipboard.cpp
+        os/macos/cross_win.cpp
+        os/macos/cross_win_file.cpp
+        os/macos/cross_win_gdi.h
+        os/macos/debug.cpp
+        os/macos/exception_engine.cpp
+        os/macos/exception_engine.h
+        os/macos/file.cpp
+        os/macos/file.h
+        os/macos/file.mm
+        os/macos/graphics.cpp
+        os/macos/graphics_mm.h
+        os/macos/internal.h
+        os/macos/keyboard.cpp
+        os/macos/language.cpp
+        os/macos/launcher.cpp
+        os/macos/library.cpp
+        os/macos/list_serial_ports.cpp
+        os/macos/lock.cpp
+        os/macos/macos.h
+        os/macos/main.h
+        os/macos/message_loop.cpp
+        os/macos/MessageBoxA.cpp
+        os/macos/mm.mm
+        os/macos/mm_base_user.mm
+        os/macos/mm_graphics.mm
+        os/macos/mm_oswindow.h
+        os/macos/mm_user.mm
+        os/macos/multithreading.cpp
+        os/macos/multithreading.h
+        os/macos/NSPasteboard++.mm
+        os/macos/os.cpp
+        os/macos/os.h
+        os/macos/oswindow_data.cpp
+        os/macos/oswindow_data.h
+        os/macos/process.cpp
+        os/macos/process_c.h
+        os/macos/process_pid.cpp
+        os/macos/simple_app.cpp
+        os/macos/time.cpp
+        os/macos/user.cpp
+        os/macos/user.h
+        os/macos/win_base.cpp
+        os/macos/window_impl.h
+        os/macos/windowing.cpp
+        os/macos/windowing.h
+        os/macos/windowing_c.h
+        os/macos/winpr_keycode.cpp
         )
 endif()
 
@@ -1085,17 +1085,18 @@ if (MSVC)
     target_link_options(aura PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/aura.def")
     target_link_libraries(aura PRIVATE acme)
 elseif(LINUX)
-    pkg_check_modules(PKGCONFIG glib-2.0 gtk+-3.0 libssl)
-    #pkg_check_modules(PKGCONFIG glib-2.0 freetype2 gtk+-3.0 gdk-3.0)
+    pkg_check_modules(PKGCONFIG gdk-3.0)
+    #pkg_check_modules(PKGCONFIG glib-2.0 freetype2 gtk+-3.0 )
     target_compile_options(aura PRIVATE ${PKGCONFIG_CFLAGS})
     #target_compile_options(aura PRIVATE -std=c++14)
     #target_link_options(aura PRIVATE ${GTK_LDFLAGS})
     target_link_options(aura PRIVATE -Wl,-rpath=\$ORIGIN)
-    #target_link_libraries(aura PRIVATE )
+    #target_link_libraries(aura PRIVATE z  dl  rt  bfd  X11  X11-xcb  xcb  xcb-util  Xinerama  Xmu  Xrandr  Xext  Xxf86vm  Xrender  Xi  ncurses  idn  pthread  sn)
+    target_link_libraries(aura PRIVATE X11 Xrandr Xrender Xinerama)
     target_link_libraries(aura PRIVATE ${PKGCONFIG_LIBRARIES})
     target_link_libraries(aura PRIVATE acme apex aqua)
     target_link_options(aura PRIVATE -Wl,-z,defs)
-    message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
+    ##message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
 endif()
 
 target_link_directories(aura PRIVATE ${LIBRARY_OUTPUT_PATH})

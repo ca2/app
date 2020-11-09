@@ -469,8 +469,6 @@ if(WIN32)
             os/windows/environment_variable.h
             os/windows/exception_engine.cpp
             os/windows/exception_engine.h
-            os/windows/file.cpp
-            os/windows/file.h
             os/windows/gdi.cpp
             os/windows/gdi_icon.cpp
             os/windows/gdiplus.h
@@ -480,10 +478,10 @@ if(WIN32)
             os/windows/imm_context.cpp
             os/windows/imm_context.h
             os/windows/implementation.h
-            os/windows/interaction_debug.cpp
+            #os/windows/interaction_debug.cpp
             os/windows/internal.cpp
             os/windows/internal.h
-            os/windows/ipc.cpp
+            #os/windows/ipc.cpp
             os/windows/itemidlist.cpp
             os/windows/itemidlist.h
             os/windows/language.cpp
@@ -600,7 +598,7 @@ if(UWP)
         os/uwp/aura.cpp
         os/uwp/base_file.h
         os/uwp/direct2d_tls.cpp
-        os/uwp/dummy_ipc.cpp
+        #os/uwp/dummy_ipc.cpp
         os/uwp/file_winrt.h
         os/uwp/gdi_winrt.h
         os/uwp/graphics.cpp

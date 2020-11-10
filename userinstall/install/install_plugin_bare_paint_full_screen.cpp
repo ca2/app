@@ -9,7 +9,7 @@ namespace hotplugin
 {
 
 
-   void plugin::on_bare_paint_full_screen(::draw2d::graphics_pointer & pgraphics,const RECT & lprect)
+   void plugin::on_bare_paint_full_screen(::draw2d::graphics_pointer & pgraphics,const RECT32 & lprect)
    {
 
       double dRate = get_progress_rate();
@@ -21,14 +21,14 @@ namespace hotplugin
 
       }
 
-      RECT rectWindow;
+      RECT32 rectWindow;
 
       get_window_rect(&rectWindow);
 
       i32 cx = rectWindow.right - rectWindow.left;
       i32 cy = rectWindow.bottom - rectWindow.top;
 
-      RECT rect;
+      RECT32 rect;
 
       rect.left = 0;
       rect.top = 0;
@@ -49,7 +49,7 @@ namespace hotplugin
 
       {
 
-         BYTE uchR, uchG, uchB;
+         byte uchR, uchG, uchB;
          ::rect rect;
          get_progress_color(uchR, uchG, uchB, dRate, 0);
          br->create_solid(ARGB(255, uchR, uchG, uchB));

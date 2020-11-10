@@ -51,7 +51,7 @@ wlfWindow* wlf_CreateDesktopWindow(wlfContext* wlfc, char* name, int width, int 
 void wlf_ResizeDesktopWindow(wlfContext* wlfc, wlfWindow* window, int width, int height);
 void wlf_SetWindowText(wlfContext* wlfc, wlfWindow* window, char* name);
 void wlf_SetWindowFullscreen(wlfContext* wlfc, wlfWindow* window, BOOL fullscree);
-void wlf_ShowWindow(wlfContext* wlfc, wlfWindow* window, BYTE state);
+void wlf_ShowWindow(wlfContext* wlfc, wlfWindow* window, byte state);
 void wlf_UpdateWindowArea(wlfContext* wlfc, wlfWindow* window, int x, int y, int width, int height);
 void wlf_DestroyWindow(wlfContext* wlfc, wlfWindow* window);
 

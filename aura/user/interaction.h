@@ -270,7 +270,7 @@ namespace user
 
       virtual bool is_full_screen_enabled() const;
 
-      virtual bool get_element_rect(RECT* prect, e_element eelement);
+      virtual bool get_element_rect(RECT32* prect, e_element eelement);
 
       virtual e_element get_default_element() const;
       virtual ::draw2d::font_pointer get_font(style * pstyle, e_element eelement, estate estate = e_state_none) const;
@@ -438,11 +438,11 @@ namespace user
       virtual void sketch_prepare_window_dock(edisplay edisplay) override;
 
 
-      inline void get_client_rect(LPRECT lprect, e_layout elayout = layout_design) const { layout().state(elayout).client_rect(lprect); }
+      inline void get_client_rect(LPRECT32 lprect, e_layout elayout = layout_design) const { layout().state(elayout).client_rect(lprect); }
       inline ::rect get_client_rect(e_layout elayout = layout_design) const { return layout().state(elayout).client_rect(); }
 
 
-      virtual void get_window_rect(LPRECT lprect, e_layout elayout = layout_design) const { *lprect = get_window_rect(elayout); }
+      virtual void get_window_rect(LPRECT32 lprect, e_layout elayout = layout_design) const { *lprect = get_window_rect(elayout); }
       virtual ::rect get_window_rect(e_layout elayout = layout_design) const;
 
 
@@ -475,7 +475,7 @@ namespace user
 
 
       virtual bool has_text_input();
-      //virtual COLORREF get_action_hover_border_color();
+      //virtual color32_t get_action_hover_border_color();
 
       virtual bool kick_queue();
 
@@ -505,8 +505,8 @@ namespace user
 
       virtual void ExitHelpMode();
 
-      virtual LONG get_window_long(i32 nIndex) const override;
-      virtual LONG set_window_long(i32 nIndex, LONG lValue) override;
+      virtual ::i32 get_window_long(i32 nIndex) const override;
+      virtual ::i32 set_window_long(i32 nIndex, ::i32 lValue) override;
 
       virtual LONG_PTR get_window_long_ptr(i32 nIndex) const override;
       virtual LONG_PTR set_window_long_ptr(i32 nIndex, LONG_PTR lValue) override;
@@ -688,11 +688,11 @@ namespace user
 
       virtual bool on_keyboard_focus(::user::primitive* pfocus) override;
 
-      virtual void get_child_rect(RECT* prect);
+      virtual void get_child_rect(RECT32* prect);
 
       inline auto get_child_rect() { ::rect rect(no_init); get_child_rect(&rect); return rect; }
 
-      virtual bool scroll_bar_get_client_rect(RECT* prect);
+      virtual bool scroll_bar_get_client_rect(RECT32* prect);
 
       virtual void on_visual_applied();
 
@@ -732,7 +732,7 @@ namespace user
 
       virtual bool create_window_ex(::user::create_struct& cs, ::user::interaction* puiParent = nullptr, const ::id& id = ::id()) override;
       enum AdjustType { adjustBorder = 0, adjustOutside = 1 };
-      virtual void CalcWindowRect(RECT* pClientRect, UINT nAdjustType = adjustBorder) override;
+      virtual void CalcWindowRect(RECT32* pClientRect, ::u32 nAdjustType = adjustBorder) override;
 
 
       virtual bool IsTopParentActive() override;
@@ -759,13 +759,13 @@ namespace user
 
       virtual bool RedrawWindow(const ::rect& rectUpdate = nullptr,
          ::draw2d::region* prgnUpdate = nullptr,
-         UINT flags = RDW_INVALIDATE | RDW_ERASE) override;
+         ::u32 flags = RDW_INVALIDATE | RDW_ERASE) override;
 
 #else
 
       virtual bool RedrawWindow(const ::rect& rectUpdate = nullptr,
          ::draw2d::region* prgnUpdate = nullptr,
-         UINT flags = 0) override;
+         ::u32 flags = 0) override;
 
 #endif
 
@@ -777,7 +777,7 @@ namespace user
 
       virtual void UpdateWindow() override;
       virtual void SetRedraw(bool bRedraw = TRUE) override;
-      virtual bool GetUpdateRect(RECT* prect, bool bErase = FALSE) override;
+      virtual bool GetUpdateRect(RECT32* prect, bool bErase = FALSE) override;
 
       virtual i32 GetUpdateRgn(::draw2d::region* pRgn, bool bErase = FALSE) override;
       virtual void Invalidate(bool bErase = TRUE) override;
@@ -792,8 +792,8 @@ namespace user
 
       virtual u32 GetStyle() const override;
       virtual u32 GetExStyle() const override;
-      virtual bool ModifyStyle(u32 dwRemove, u32 dwAdd, UINT nFlags = 0) override;
-      virtual bool ModifyStyleEx(u32 dwRemove, u32 dwAdd, UINT nFlags = 0) override;
+      virtual bool ModifyStyle(u32 dwRemove, u32 dwAdd, ::u32 nFlags = 0) override;
+      virtual bool ModifyStyleEx(u32 dwRemove, u32 dwAdd, ::u32 nFlags = 0) override;
 
       using ::user::primitive::send;
       virtual LRESULT send(::message::base* pbase) override;
@@ -820,7 +820,7 @@ namespace user
 
       virtual bool call_and_set_timer(uptr uEvent, ::duration durationElapse, PFN_TIMER pfnTimer = nullptr);
       virtual bool set_timer(uptr uEvent, ::duration durationElapse, PFN_TIMER pfnTimer = nullptr);
-      virtual bool SetTimer(uptr uEvent, UINT nElapse, PFN_TIMER pfnTimer = nullptr) override;
+      virtual bool SetTimer(uptr uEvent, ::u32 nElapse, PFN_TIMER pfnTimer = nullptr) override;
       virtual bool KillTimer(uptr uEvent) override;
 
       virtual bool is_this_enabled() const override;
@@ -972,7 +972,7 @@ namespace user
       virtual bool r_contains(const primitive* puiIsChild) const;
 
       virtual ::user::interaction* get_wnd() const override;
-      virtual ::user::interaction* get_wnd(UINT nCmd) const override;
+      virtual ::user::interaction* get_wnd(::u32 nCmd) const override;
 
       virtual ::user::interaction* SetParent(::user::interaction* pinteraction) override;
       virtual ::user::interaction* SetOwner(::user::interaction* pinteraction) override;
@@ -1010,15 +1010,15 @@ namespace user
 
       virtual ::user::interaction* get_focusable_descendant(::user::interaction* pinteraction = nullptr) override;
 
-      virtual void RepositionBars(UINT nIDFirst, UINT nIDLast, ::id idLeftOver, UINT nFlag = reposDefault, RECT* prectParam = nullptr, const ::rect& rectClient = nullptr, bool bStretch = true) override;
+      virtual void RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::id idLeftOver, ::u32 nFlag = reposDefault, RECT32* prectParam = nullptr, const ::rect& rectClient = nullptr, bool bStretch = true) override;
 
       virtual ::user::interaction* ChildWindowFromPoint(const ::point& point) override;
-      virtual ::user::interaction* ChildWindowFromPoint(const ::point& point, UINT nFlags) override;
+      virtual ::user::interaction* ChildWindowFromPoint(const ::point& point, ::u32 nFlags) override;
 
 #ifdef WINDOWS_DESKTOP
-      virtual ::user::interaction* get_next_window(UINT nFlag = GW_HWNDNEXT);
+      virtual ::user::interaction* get_next_window(::u32 nFlag = GW_HWNDNEXT);
 #else
-      virtual ::user::interaction* get_next_window(UINT nFlag = 0) override;
+      virtual ::user::interaction* get_next_window(::u32 nFlag = 0) override;
 #endif
 
       virtual ::user::interaction* GetTopWindow();
@@ -1066,10 +1066,10 @@ namespace user
 
       virtual bool set_icon(::draw2d::icon * picon, bool bSmall) override;
 
-      virtual void viewport_screen_to_client(POINT* ppt) override;
-      virtual void viewport_client_to_screen(POINT* ppt) override;
-      virtual void viewport_client_to_screen(RECT* ppt) override;
-      virtual void viewport_screen_to_client(RECT* ppt) override;
+      virtual void viewport_screen_to_client(POINT32* ppt) override;
+      virtual void viewport_client_to_screen(POINT32* ppt) override;
+      virtual void viewport_client_to_screen(RECT32* ppt) override;
+      virtual void viewport_screen_to_client(RECT32* ppt) override;
 
 
       virtual string get_window_default_matter() override;
@@ -1150,9 +1150,9 @@ namespace user
       virtual void display_child(i32 x, i32 y, i32 cx, i32 cy);
 
 
-      virtual ::user::interaction* best_top_level_parent(RECT* prect);
+      virtual ::user::interaction* best_top_level_parent(RECT32* prect);
 
-      //virtual void get_window_rect(RECT * prect) const override;
+      //virtual void get_window_rect(RECT32 * prect) const override;
 
       virtual index get_zoneing(::rect* prect, const ::rect& rect, edisplay edisplay);
 
@@ -1160,22 +1160,22 @@ namespace user
 
 
 
-      virtual index calculate_broad_and_compact_restore(RECT* prectWkspace = nullptr, SIZE* psizeMin = nullptr, const ::rect& rectHint = nullptr);
+      virtual index calculate_broad_and_compact_restore(RECT32* prectWkspace = nullptr, SIZE32* psizeMin = nullptr, const ::rect& rectHint = nullptr);
 
        //virtual void reset_window_state();
 
-      virtual index make_zoneing(RECT* prect, const ::rect& rect = nullptr, bool bSet = false, ::edisplay* pedisplay = nullptr, ::eactivation eactivation = activation_none, ::zorder zorder = zorder_top);
-      virtual index best_zoneing(RECT* prect, const ::rect& rect = nullptr, bool bSet = false, ::edisplay* pedisplay = nullptr, ::eactivation eactivation = activation_none, ::zorder zorder = zorder_top);
-      virtual index best_monitor(RECT* prect, const ::rect& rect = nullptr, bool bSet = false, ::eactivation eeactivation = activation_none, ::zorder zorder = zorder_top);
-      virtual index best_wkspace(RECT* prect, const ::rect& rect = nullptr, bool bSet = false, ::eactivation eeactivation = activation_none, ::zorder zorder = zorder_top);
-      virtual index good_restore(RECT* prect, const ::rect& rect = nullptr, bool bSet = false, ::eactivation eeactivation = activation_none, ::zorder zorder = zorder_top, edisplay edisplay = display_restore);
-      virtual index good_iconify(RECT* prect, const ::rect& rect = nullptr, bool bSet = false, ::eactivation eeactivation = activation_none, ::zorder zorder = zorder_top);
+      virtual index make_zoneing(RECT32* prect, const ::rect& rect = nullptr, bool bSet = false, ::edisplay* pedisplay = nullptr, ::eactivation eactivation = activation_none, ::zorder zorder = zorder_top);
+      virtual index best_zoneing(RECT32* prect, const ::rect& rect = nullptr, bool bSet = false, ::edisplay* pedisplay = nullptr, ::eactivation eactivation = activation_none, ::zorder zorder = zorder_top);
+      virtual index best_monitor(RECT32* prect, const ::rect& rect = nullptr, bool bSet = false, ::eactivation eeactivation = activation_none, ::zorder zorder = zorder_top);
+      virtual index best_wkspace(RECT32* prect, const ::rect& rect = nullptr, bool bSet = false, ::eactivation eeactivation = activation_none, ::zorder zorder = zorder_top);
+      virtual index good_restore(RECT32* prect, const ::rect& rect = nullptr, bool bSet = false, ::eactivation eeactivation = activation_none, ::zorder zorder = zorder_top, edisplay edisplay = display_restore);
+      virtual index good_iconify(RECT32* prect, const ::rect& rect = nullptr, bool bSet = false, ::eactivation eeactivation = activation_none, ::zorder zorder = zorder_top);
 
-      virtual index good_move(RECT* prect, const ::rect& rect = nullptr, ::eactivation eeactivation = activation_none, ::zorder zorder = zorder_top);
+      virtual index good_move(RECT32* prect, const ::rect& rect = nullptr, ::eactivation eeactivation = activation_none, ::zorder zorder = zorder_top);
       virtual index get_best_zoneing(edisplay& edisplay, ::rect* prect, const ::rect& rectRequest = ::rect(), bool bPreserveSize = false);
       virtual index get_best_wkspace(::rect* prect, const ::rect& rect, ::eactivation eactivation = activation_none);
 
-      virtual bool get_rect_normal(RECT* prect);
+      virtual bool get_rect_normal(RECT32* prect);
 
 
       virtual scroll_bar* get_horizontal_scroll_bar();
@@ -1203,7 +1203,7 @@ namespace user
       virtual ::point get_parent_accumulated_scroll(e_layout elayout = layout_design) const;
       virtual ::point get_parent_viewport_offset() const;
       virtual ::point get_ascendant_viewport_offset() const;
-      virtual void get_margin_rect(RECT* prectMargin);
+      virtual void get_margin_rect(RECT32* prectMargin);
 
       virtual int get_final_x_scroll_bar_width();
       virtual int get_final_y_scroll_bar_width();
@@ -1426,14 +1426,14 @@ namespace user
       index GetEditItem();
       //virtual ::user::interaction * ControlExGetWnd();
       //using ::user::box::get_client_rect;
-      //virtual bool get_client_rect(RECT * prect) override;
+      //virtual bool get_client_rect(RECT32 * prect) override;
       //using ::user::box::get_window_rect;
-      //virtual bool get_window_rect(RECT * prect) override;
+      //virtual bool get_window_rect(RECT32 * prect) override;
       //bool operator == (const class ::user::control_descriptor& descriptor) const;
       //bool operator == (const class control& control) const;
       virtual bool IsControlCommandEnabled();
       virtual void EnableControlCommand(bool bEnable);
-      //virtual void BaseControlExOnMouseMove(UINT nFlags, const ::point & point);
+      //virtual void BaseControlExOnMouseMove(::u32 nFlags, const ::point & point);
       //virtual void on_hit_test(::user::item & item) override;
       //DECL_GEN_SIGNAL(_001OnCreate);
       //DECL_GEN_SIGNAL(_001OnMouseMove);
@@ -1447,7 +1447,7 @@ namespace user
       //virtual void on_control_event(::user::control_event* pevent) override;
       //virtual bool simple_on_control_event(::message::message * pmessage, ::user::enum_event eevent) override;
       //virtual void walk_pre_translate_tree(::message::message * pmessage,__pointer(::user::interaction) puiStop);
-      //virtual bool get_element_rect(RECT* prect, e_element eelement);
+      //virtual bool get_element_rect(RECT32* prect, e_element eelement);
       virtual void get_simple_drop_down_open_arrow_polygon(point_array& pointa);
       // control member functions END
 
@@ -1527,7 +1527,7 @@ namespace user
 
       bool _001InitialFramePosition();
 
-      bool _001InitialFramePosition(LPRECT lprect, const rectd & rectOptionalRateOrSize = {0., 0., 0., 0.});
+      bool _001InitialFramePosition(LPRECT32 lprect, const rectd & rectOptionalRateOrSize = {0., 0., 0., 0.});
 
       virtual double _001GetTopLeftWeightedOccludedOpaqueRate() override;
 
@@ -1572,20 +1572,20 @@ namespace user
       template < typename POINT_OFFSETABLE >
       inline void _001ClientToParent(POINT_OFFSETABLE* po, e_layout elayout = layout_design) { _001ClientToParent(*po, elayout); }
 
-      inline void ScreenToClient(RECT* prect, e_layout elayout = layout_design) { ::rect_sub(prect, layout().screen_origin(elayout)); }
-      inline void ScreenToClient(POINT* ppoint, e_layout elayout = layout_design) { ::point_sub(ppoint, layout().screen_origin(elayout)); }
+      inline void ScreenToClient(RECT32* prect, e_layout elayout = layout_design) { ::rect_sub(prect, layout().screen_origin(elayout)); }
+      inline void ScreenToClient(POINT32* ppoint, e_layout elayout = layout_design) { ::point_sub(ppoint, layout().screen_origin(elayout)); }
 
 
-      inline void ClientToScreen(RECT* prect, e_layout elayout = layout_design) { ::rect_add(prect, layout().screen_origin(elayout)); }
-      inline void ClientToScreen(POINT* ppoint, e_layout elayout = layout_design) { ::point_add(ppoint, layout().screen_origin(elayout)); }
+      inline void ClientToScreen(RECT32* prect, e_layout elayout = layout_design) { ::rect_add(prect, layout().screen_origin(elayout)); }
+      inline void ClientToScreen(POINT32* ppoint, e_layout elayout = layout_design) { ::point_add(ppoint, layout().screen_origin(elayout)); }
 
 
-      inline void ParentToClient(RECT* prect, e_layout elayout = layout_design) { ::rect_sub(prect, layout().origin(elayout)); }
-      inline void ParentToClient(POINT* ppoint, e_layout elayout = layout_design) { ::point_sub(ppoint, layout().origin(elayout)); }
+      inline void ParentToClient(RECT32* prect, e_layout elayout = layout_design) { ::rect_sub(prect, layout().origin(elayout)); }
+      inline void ParentToClient(POINT32* ppoint, e_layout elayout = layout_design) { ::point_sub(ppoint, layout().origin(elayout)); }
 
 
-      inline void ClientToParent(RECT* prect, e_layout elayout = layout_design) { ::rect_add(prect, layout().origin(elayout)); }
-      inline void ClientToParent(POINT* ppoint, e_layout elayout = layout_design) { ::point_add(ppoint, layout().origin(elayout)); }
+      inline void ClientToParent(RECT32* prect, e_layout elayout = layout_design) { ::rect_add(prect, layout().origin(elayout)); }
+      inline void ClientToParent(POINT32* ppoint, e_layout elayout = layout_design) { ::point_add(ppoint, layout().origin(elayout)); }
 
 
    };

@@ -191,11 +191,11 @@ SizingNone:;
 
                auto pframewindow = m_pframewindow;
 
-               COLORREF    crMoveableBorder;
+               color32_t    crMoveableBorder;
 
-               COLORREF    crMoveableBorderHilight;
+               color32_t    crMoveableBorderHilight;
 
-               COLORREF    crMoveableBorderShadow;
+               color32_t    crMoveableBorderShadow;
 
                if(pframewindow->m_fActive)
                {
@@ -366,7 +366,7 @@ SizingNone:;
 
             }
 
-            void frame_001::GetBorderRect(const ::rect & rectClient, LPRECT lprect, e_border eside)
+            void frame_001::GetBorderRect(const ::rect & rectClient, LPRECT32 lprect, e_border eside)
             {
 
                ::rect rectBig(rectClient);

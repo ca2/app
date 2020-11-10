@@ -50,7 +50,7 @@ namespace user
       if (rectClient.area() <= 0)
          return;
 
-      COLORREF crText;
+      color32_t crText;
 
       pgraphics->set_smooth_mode(::draw2d::smooth_mode_high);
 

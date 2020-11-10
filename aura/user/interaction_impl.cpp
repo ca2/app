@@ -84,7 +84,7 @@ namespace user
 //
 //#endif
 
-      m_uiCodePage = 0;
+      m_uCodePage = 0;
 
       m_langid = 0;
 
@@ -375,7 +375,7 @@ namespace user
       return false;
    }
 
-   bool interaction_impl::GetScrollBarInfo(LONG idObject,PSCROLLBARINFO psbi) const
+   bool interaction_impl::GetScrollBarInfo(::i32 idObject,PSCROLLBARINFO psbi) const
    {
       UNREFERENCED_PARAMETER(idObject);
       UNREFERENCED_PARAMETER(psbi);
@@ -395,7 +395,7 @@ namespace user
 #if !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID)
 
 
-   ::user::interaction_impl * interaction_impl::GetAncestor(UINT gaFlags) const
+   ::user::interaction_impl * interaction_impl::GetAncestor(::u32 gaFlags) const
    {
 
       UNREFERENCED_PARAMETER(gaFlags);
@@ -415,7 +415,7 @@ namespace user
       return false;
    }
 
-   bool interaction_impl::FlashWindowEx(u32 dwFlags,UINT uCount,tick tickTimeout)
+   bool interaction_impl::FlashWindowEx(u32 dwFlags,::u32 uCount,tick tickTimeout)
    {
       UNREFERENCED_PARAMETER(dwFlags);
       UNREFERENCED_PARAMETER(uCount);
@@ -424,7 +424,7 @@ namespace user
       return false;
    }
 
-   bool interaction_impl::SetLayeredWindowAttributes(COLORREF crKey,BYTE bAlpha,u32 dwFlags)
+   bool interaction_impl::SetLayeredWindowAttributes(color32_t crKey,byte bAlpha,u32 dwFlags)
    {
       UNREFERENCED_PARAMETER(crKey);
       UNREFERENCED_PARAMETER(bAlpha);
@@ -433,8 +433,8 @@ namespace user
       return false;
    }
 
-   bool interaction_impl::UpdateLayeredWindow(::draw2d::graphics * pDCDst,POINT * pptDst,SIZE * psize,
-         ::draw2d::graphics * pDCSrc,POINT * pptSrc,COLORREF crKey,BLENDFUNCTION * pblend,u32 dwFlags)
+   bool interaction_impl::UpdateLayeredWindow(::draw2d::graphics * pDCDst,POINT32 * pptDst,SIZE32 * psize,
+         ::draw2d::graphics * pDCSrc,POINT32 * pptSrc,color32_t crKey,BLENDFUNCTION * pblend,u32 dwFlags)
    {
       UNREFERENCED_PARAMETER(pDCDst);
       UNREFERENCED_PARAMETER(pptDst);
@@ -449,7 +449,7 @@ namespace user
       return false;
    }
 
-   bool interaction_impl::GetLayeredWindowAttributes(COLORREF * pcrKey,BYTE * pbAlpha,u32 * pdwFlags) const
+   bool interaction_impl::GetLayeredWindowAttributes(color32_t * pcrKey,byte * pbAlpha,u32 * pdwFlags) const
    {
       UNREFERENCED_PARAMETER(pcrKey);
       UNREFERENCED_PARAMETER(pbAlpha);
@@ -459,7 +459,7 @@ namespace user
       return false;
    }
 
-   bool interaction_impl::PrintWindow(::draw2d::graphics_pointer & pgraphics,UINT nFlags) const
+   bool interaction_impl::PrintWindow(::draw2d::graphics_pointer & pgraphics,::u32 nFlags) const
    {
       UNREFERENCED_PARAMETER(pgraphics);
       UNREFERENCED_PARAMETER(nFlags);
@@ -1281,7 +1281,7 @@ namespace user
    }
 
 
-   bool interaction_impl::__windows_message_bypass(oswindow oswindow, UINT message, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
+   bool interaction_impl::__windows_message_bypass(oswindow oswindow, ::u32 message, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
    {
 
       return false;
@@ -1642,7 +1642,7 @@ namespace user
    }
 
 
-   //i32 interaction_impl::message_box(const char * pszText,const char * pszCaption,UINT nType)
+   //i32 interaction_impl::message_box(const char * pszText,const char * pszCaption,::u32 nType)
 
    //{
    //   UNREFERENCED_PARAMETER(pszText);
@@ -1739,7 +1739,7 @@ namespace user
    }
 
 
-   bool interaction_impl::GetScrollInfo(i32 nBar,LPSCROLLINFO pScrollInfo,UINT nMask)
+   bool interaction_impl::GetScrollInfo(i32 nBar,LPSCROLLINFO pScrollInfo,::u32 nMask)
 
    {
 
@@ -1764,7 +1764,7 @@ namespace user
    }
 
 
-   void interaction_impl::ScrollWindow(i32 xAmount,i32 yAmount, LPCRECT pcrect, LPCRECT pcrectClip)
+   void interaction_impl::ScrollWindow(i32 xAmount,i32 yAmount, LPCRECT32 pcrect, LPCRECT32 pcrectClip)
    {
 
       UNREFERENCED_PARAMETER(xAmount);
@@ -1777,7 +1777,7 @@ namespace user
    }
 
 
-   void interaction_impl::CalcWindowRect(RECT * pClientRect,UINT nAdjustType)
+   void interaction_impl::CalcWindowRect(RECT32 * pClientRect,::u32 nAdjustType)
    {
 
       UNREFERENCED_PARAMETER(pClientRect);
@@ -1791,7 +1791,7 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // Special keyboard/system command processing
 
-   bool interaction_impl::HandleFloatingSysCommand(UINT nID,LPARAM lParam)
+   bool interaction_impl::HandleFloatingSysCommand(::u32 nID,LPARAM lParam)
    {
       UNREFERENCED_PARAMETER(nID);
       UNREFERENCED_PARAMETER(lParam);
@@ -1848,7 +1848,7 @@ namespace user
 //      ::exception::throw_interface_only();
 //   }
 //
-//   void interaction_impl::OnSettingChange(UINT uFlags,const char * pszSection)
+//   void interaction_impl::OnSettingChange(::u32 uFlags,const char * pszSection)
 
 //   {
 //      UNREFERENCED_PARAMETER(uFlags);
@@ -1888,13 +1888,13 @@ namespace user
 //      ::exception::throw_interface_only();
 //   }
 
-   /*   void interaction_impl::OnHScroll(UINT, UINT, CScrollBar* pScrollBar)
+   /*   void interaction_impl::OnHScroll(::u32, ::u32, CScrollBar* pScrollBar)
    {
    UNREFERENCED_PARAMETER(pScrollBar);
    ::exception::throw_interface_only();
    }
 
-   void interaction_impl::OnVScroll(UINT, UINT, CScrollBar* pScrollBar)
+   void interaction_impl::OnVScroll(::u32, ::u32, CScrollBar* pScrollBar)
    {
    UNREFERENCED_PARAMETER(pScrollBar);
    ::exception::throw_interface_only();
@@ -1925,12 +1925,12 @@ namespace user
       ::exception::throw_interface_only();
    }
 
-   //void interaction_impl::OnEnterIdle(UINT /*nWhy*/,::user::interaction_impl * /*pWho*/)
+   //void interaction_impl::OnEnterIdle(::u32 /*nWhy*/,::user::interaction_impl * /*pWho*/)
    //{
    //   ::exception::throw_interface_only();
    //}
 
-   //void * interaction_impl::OnCtlColor(::draw2d::graphics *,::user::interaction_impl * pwindow,UINT)
+   //void * interaction_impl::OnCtlColor(::draw2d::graphics *,::user::interaction_impl * pwindow,::u32)
    //{
    //   UNREFERENCED_PARAMETER(pwindow);
    //   ::exception::throw_interface_only();
@@ -2017,7 +2017,7 @@ namespace user
 
    }
 
-   bool interaction_impl::SubclassDlgItem(UINT nID,::user::interaction_impl * pParent)
+   bool interaction_impl::SubclassDlgItem(::u32 nID,::user::interaction_impl * pParent)
    {
       UNREFERENCED_PARAMETER(nID);
       UNREFERENCED_PARAMETER(pParent);
@@ -2128,18 +2128,18 @@ namespace user
    //}
 
 
-   LONG interaction_impl::get_window_long(i32 nIndex) const
+   ::i32 interaction_impl::get_window_long(i32 nIndex) const
    {
 
-      return (LONG) ::get_window_long_ptr(m_oswindow, nIndex);
+      return (::i32) ::get_window_long_ptr(m_oswindow, nIndex);
 
    }
 
 
-   LONG interaction_impl::set_window_long(i32 nIndex,LONG lValue)
+   ::i32 interaction_impl::set_window_long(i32 nIndex,::i32 lValue)
    {
 
-      return  (LONG) ::set_window_long_ptr(m_oswindow, nIndex, lValue);
+      return  (::i32) ::set_window_long_ptr(m_oswindow, nIndex, lValue);
 
    }
 
@@ -2277,7 +2277,7 @@ namespace user
    }
 
 
-   bool interaction_impl::ModifyStyle(u32 dwRemove, u32 dwAdd, UINT nFlags)
+   bool interaction_impl::ModifyStyle(u32 dwRemove, u32 dwAdd, ::u32 nFlags)
    {
 
       if (!_is_window())
@@ -2287,7 +2287,7 @@ namespace user
 
       }
 
-      DWORD dw = get_window_long(GWL_STYLE);
+      ::u32 dw = get_window_long(GWL_STYLE);
 
       dw &= ~dwRemove;
 
@@ -2300,7 +2300,7 @@ namespace user
    }
 
 
-   bool interaction_impl::ModifyStyleEx(u32 dwRemove,u32 dwAdd,UINT nFlags)
+   bool interaction_impl::ModifyStyleEx(u32 dwRemove,u32 dwAdd,::u32 nFlags)
    {
 
       if (!_is_window())
@@ -2310,7 +2310,7 @@ namespace user
 
       }
 
-      DWORD dw = get_window_long(GWL_EXSTYLE);
+      ::u32 dw = get_window_long(GWL_EXSTYLE);
 
       dw &= ~dwRemove;
 
@@ -2485,7 +2485,7 @@ namespace user
    }
 
 
-   UINT interaction_impl::ArrangeIconicWindows()
+   ::u32 interaction_impl::ArrangeIconicWindows()
    {
 
       ::exception::throw_interface_only();
@@ -2495,7 +2495,7 @@ namespace user
    }
 
 
-   void interaction_impl::MapWindowPoints(::user::interaction_impl * pwndTo,LPPOINT pPoint,UINT nCount)
+   void interaction_impl::MapWindowPoints(::user::interaction_impl * pwndTo,POINT32 * pPoint,::u32 nCount)
    {
 
       UNREFERENCED_PARAMETER(pwndTo);
@@ -2507,7 +2507,7 @@ namespace user
    }
 
 
-   void interaction_impl::MapWindowPoints(::user::interaction_impl * pwndTo,RECT * prect)
+   void interaction_impl::MapWindowPoints(::user::interaction_impl * pwndTo,RECT32 * prect)
    {
       UNREFERENCED_PARAMETER(pwndTo);
       UNREFERENCED_PARAMETER(prect);
@@ -2526,7 +2526,7 @@ namespace user
       ::exception::throw_interface_only();
    }
 
-   bool interaction_impl::GetUpdateRect(RECT * prect,bool bErase)
+   bool interaction_impl::GetUpdateRect(RECT32 * prect,bool bErase)
 
    {
       UNREFERENCED_PARAMETER(prect);
@@ -2662,7 +2662,7 @@ namespace user
    }
 
 
-   bool interaction_impl::RedrawWindow(const ::rect & rectUpdate, ::draw2d::region * prgnUpdate, UINT flags)
+   bool interaction_impl::RedrawWindow(const ::rect & rectUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
    {
 
       m_puserinteraction->set_need_redraw();
@@ -2672,7 +2672,7 @@ namespace user
    }
 
 
-   bool interaction_impl::EnableScrollBar(i32 nSBFlags,UINT nArrowFlags)
+   bool interaction_impl::EnableScrollBar(i32 nSBFlags,::u32 nArrowFlags)
    {
 
       UNREFERENCED_PARAMETER(nSBFlags);
@@ -2686,7 +2686,7 @@ namespace user
    }
 
 
-   //bool interaction_impl::DrawAnimatedRects(i32 idAni, const LPRECT prcFrom, const ::rect & prcTo)
+   //bool interaction_impl::DrawAnimatedRects(i32 idAni, const LPRECT32 prcFrom, const ::rect & prcTo)
    //{
 
    //   UNREFERENCED_PARAMETER(idAni);
@@ -2700,7 +2700,7 @@ namespace user
    //}
 
 
-   bool interaction_impl::DrawCaption(::draw2d::graphics_pointer & pgraphics,const rect & prc,UINT uFlags)
+   bool interaction_impl::DrawCaption(::draw2d::graphics_pointer & pgraphics,const rect & prc,::u32 uFlags)
    {
 
       UNREFERENCED_PARAMETER(pgraphics);
@@ -2760,7 +2760,7 @@ namespace user
    }
 
 
-   void interaction_impl::CheckDlgButton(i32 nIDButton,UINT nCheck)
+   void interaction_impl::CheckDlgButton(i32 nIDButton,::u32 nCheck)
    {
       UNREFERENCED_PARAMETER(nIDButton);
       UNREFERENCED_PARAMETER(nCheck);
@@ -2775,7 +2775,7 @@ namespace user
       ::exception::throw_interface_only();
    }
 
-   i32 interaction_impl::DlgDirList(LPTSTR pPathSpec,i32 nIDListBox,i32 nIDStaticPath,UINT nFileType)
+   i32 interaction_impl::DlgDirList(LPTSTR pPathSpec,i32 nIDListBox,i32 nIDStaticPath,::u32 nFileType)
 
    {
       UNREFERENCED_PARAMETER(pPathSpec);
@@ -2787,7 +2787,7 @@ namespace user
       return 0;
    }
 
-   i32 interaction_impl::DlgDirListComboBox(LPTSTR pPathSpec,i32 nIDComboBox,i32 nIDStaticPath,UINT nFileType)
+   i32 interaction_impl::DlgDirListComboBox(LPTSTR pPathSpec,i32 nIDComboBox,i32 nIDStaticPath,::u32 nFileType)
 
    {
       UNREFERENCED_PARAMETER(pPathSpec);
@@ -2824,7 +2824,7 @@ namespace user
       return false;
    }
 
-   UINT interaction_impl::GetChildByIdInt(i32 nID,bool* pTrans,bool bSigned) const
+   ::u32 interaction_impl::GetChildByIdInt(i32 nID,bool* pTrans,bool bSigned) const
 
    {
       UNREFERENCED_PARAMETER(nID);
@@ -2875,7 +2875,7 @@ namespace user
    }
 
 
-   UINT interaction_impl::IsDlgButtonChecked(i32 nIDButton) const
+   ::u32 interaction_impl::IsDlgButtonChecked(i32 nIDButton) const
    {
       UNREFERENCED_PARAMETER(nIDButton);
       ::exception::throw_interface_only();
@@ -2884,7 +2884,7 @@ namespace user
    }
 
 
-   LPARAM interaction_impl::SendDlgItemMessage(i32 nID, UINT message, WPARAM wParam,LPARAM lParam)
+   LPARAM interaction_impl::SendDlgItemMessage(i32 nID, ::u32 message, WPARAM wParam,LPARAM lParam)
    {
 
       UNREFERENCED_PARAMETER(nID);
@@ -2898,7 +2898,7 @@ namespace user
    }
 
 
-   void interaction_impl::SetDlgItemInt(i32 nID,UINT nValue,bool bSigned)
+   void interaction_impl::SetDlgItemInt(i32 nID,::u32 nValue,bool bSigned)
    {
       UNREFERENCED_PARAMETER(nID);
       UNREFERENCED_PARAMETER(nValue);
@@ -2917,9 +2917,9 @@ namespace user
 
 
    i32 interaction_impl::ScrollWindowEx(i32 dx,i32 dy,
-                                        LPCRECT prectScroll,
-                                          LPCRECT prectClip,
-                                        ::draw2d::region* prgnUpdate,RECT * pRectUpdate,UINT flags)
+                                        LPCRECT32 prectScroll,
+                                          LPCRECT32 prectClip,
+                                        ::draw2d::region* prgnUpdate,RECT32 * pRectUpdate,::u32 flags)
    {
 
       UNREFERENCED_PARAMETER(dx);
@@ -2937,7 +2937,7 @@ namespace user
    }
 
 
-   void interaction_impl::ShowScrollBar(UINT nBar,bool bShow)
+   void interaction_impl::ShowScrollBar(::u32 nBar,bool bShow)
    {
 
       UNREFERENCED_PARAMETER(nBar);
@@ -2957,7 +2957,7 @@ namespace user
 
    }
 
-   ::user::interaction * interaction_impl::ChildWindowFromPoint(const ::point & point,UINT nFlags)
+   ::user::interaction * interaction_impl::ChildWindowFromPoint(const ::point & point,::u32 nFlags)
    {
       UNREFERENCED_PARAMETER(point);
       UNREFERENCED_PARAMETER(nFlags);
@@ -2968,7 +2968,7 @@ namespace user
    }
 
 
-   ::user::interaction * interaction_impl::get_next_window(UINT nFlag)
+   ::user::interaction * interaction_impl::get_next_window(::u32 nFlag)
    {
 
       UNREFERENCED_PARAMETER(nFlag);
@@ -3097,7 +3097,7 @@ namespace user
    }
 
 
-   bool interaction_impl::SendNotifyMessage(UINT message,WPARAM wParam,lparam lParam)
+   bool interaction_impl::SendNotifyMessage(::u32 message,WPARAM wParam,lparam lParam)
    {
 
       UNREFERENCED_PARAMETER(message);
@@ -3387,7 +3387,7 @@ namespace user
    }
 
 
-   bool interaction_impl::_EnableToolTips(bool bEnable,UINT nFlag)
+   bool interaction_impl::_EnableToolTips(bool bEnable,::u32 nFlag)
    {
 
       UNREFERENCED_PARAMETER(bEnable);
@@ -4368,7 +4368,7 @@ namespace user
 
       __keep_flag_on(m_puserinteraction->layout().m_eflag, ::user::interaction_layout::flag_apply_visual);
 
-      UINT uiFlags = 0;
+      ::u32 uFlags = 0;
 
       bool bLayered = GetExStyle() & WS_EX_LAYERED;
 
@@ -5157,7 +5157,7 @@ namespace user
    }
 
 
-   i64 interaction_impl::opaque_area(LPCRECT lpcrect)
+   i64 interaction_impl::opaque_area(LPCRECT32 lpcrect)
    {
 
       sync_lock sl(m_pgraphics->get_screen_sync());
@@ -5173,7 +5173,7 @@ namespace user
    }
 
 
-   i64 interaction_impl::_001GetRectTopLeftWeightedArea(LPCRECT lpcrect)
+   i64 interaction_impl::_001GetRectTopLeftWeightedArea(LPCRECT32 lpcrect)
    {
 
       ::rect rect(lpcrect);

@@ -82,7 +82,7 @@ namespace draw2d
 
 
 
-      virtual UINT GetObjectType() const;
+      virtual ::u32 GetObjectType() const;
       virtual bool CreateStockObject(i32 nIndex);
       virtual bool UnrealizeObject();
       virtual bool operator==(const ::draw2d::object & obj) const;

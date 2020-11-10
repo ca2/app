@@ -43,7 +43,7 @@ namespace windows
       };
 
       HANDLE            m_handleFile;
-      DWORD             m_dwAccessMode;
+      ::u32             m_dwAccessMode;
 
 
       file();

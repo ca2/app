@@ -24,10 +24,10 @@
 
 #include <freerdp/locale/keyboard.h>
 
-CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_send_mouse_button_event(rdpInput* input,const ::id & id,POINT pt);
-CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_send_keyboard_event(rdpInput* input,BOOL down,UINT scancode);
+CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_send_mouse_button_event(rdpInput* input,const ::id & id,POINT32 pt);
+CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_send_keyboard_event(rdpInput* input,BOOL down,::u32 scancode);
 
-CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_send_event(void* vinput,int bKey,int down,UINT scancode,const ::id & id,POINT pt)
+CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_send_event(void* vinput,int bKey,int down,::u32 scancode,const ::id & id,POINT32 pt)
 {
 rdpInput * input = (rdpInput *) vinput;
    if(bKey)
@@ -39,8 +39,8 @@ rdpInput * input = (rdpInput *) vinput;
       ca2rdp_send_mouse_button_event(input,emessage, point);
    }
 }
-//static BYTE keymap[256];
-//static BYTE functionmap[128];
+//static byte keymap[256];
+//static byte functionmap[128];
 //
 //void ca2rdp_keyboard_init()
 //{
@@ -171,10 +171,10 @@ rdpInput * input = (rdpInput *) vinput;
 //
 //}
 
-void ca2rdp_send_mouse_button_event(rdpInput* input, const ::id & id, POINT pt)
+void ca2rdp_send_mouse_button_event(rdpInput* input, const ::id & id, POINT32 pt)
 {
 
-	UINT16 flags = 0;
+	::u3216 flags = 0;
 
    switch(emessage)
    {
@@ -205,14 +205,14 @@ void ca2rdp_send_mouse_button_event(rdpInput* input, const ::id & id, POINT pt)
 
 
 	if (flags != 0)
-      input->MouseEvent(input,(UINT16) flags,(UINT16) point.x, (UINT16)point.y);
+      input->MouseEvent(input,(::u3216) flags,(::u3216) point.x, (::u3216)point.y);
 
 }
 
 
-void ca2rdp_send_mouse_wheel_event(rdpInput* input, INT16 axisrel, UINT16 x, UINT16 y)
+void ca2rdp_send_mouse_wheel_event(rdpInput* input, INT16 axisrel, ::u3216 x, ::u3216 y)
 {
-	UINT16 flags = PTR_FLAGS_WHEEL;
+	::u3216 flags = PTR_FLAGS_WHEEL;
 
 	if (axisrel < 0)
 		flags |= 0x0078;
@@ -222,7 +222,7 @@ void ca2rdp_send_mouse_wheel_event(rdpInput* input, INT16 axisrel, UINT16 x, UIN
 	input->MouseEvent(input, flags, x, y);
 }
 
-void ca2rdp_send_keyboard_event(rdpInput* input,BOOL down,UINT scancode)
+void ca2rdp_send_keyboard_event(rdpInput* input,BOOL down,::u32 scancode)
 {
 
 		freerdp_input_send_keyboard_event_ex(input, down, scancode);

@@ -45,7 +45,7 @@
 
 
 
-VOID WINAPI Sleep(DWORD dwMilliseconds)
+VOID WINAPI Sleep(::u32 dwMilliseconds)
 {
    static HANDLE singletonEvent = nullptr;
 
@@ -77,7 +77,7 @@ VOID WINAPI Sleep(DWORD dwMilliseconds)
 // typedef bool
 // (WINAPI * LPFN_ChangeWindowMessageFilter)(
 // _In_ const ::id & id,
-// _In_ DWORD dwFlag);
+// _In_ ::u32 dwFlag);
 
 
 // LPFN_ChangeWindowMessageFilter g_pfnChangeWindowMessageFilter = nullptr;
@@ -89,7 +89,7 @@ LSTATUS
     HKEY hkey,
     LPCWSTR lpSubKey,
     LPCWSTR lpValue,
-    DWORD dwFlags,
+    ::u32 dwFlags,
     LPDWORD pdwType,
 	 PVOID pvData,
     LPDWORD pcbData
@@ -149,7 +149,7 @@ WinRegGetValueW(
     HKEY hkey,
     LPCWSTR lpSubKey,
     LPCWSTR lpValue,
-    DWORD dwFlags,
+    ::u32 dwFlags,
     LPDWORD pdwType,
 	 PVOID pvData,
     LPDWORD pcbData
@@ -331,7 +331,7 @@ ulong_ptr                        g_gdiplusHookToken         = nullptr;
 //{
 //   wstring wstr;
 //   unichar * p = wstr.get_string_buffer(64 * 1024 / sizeof(unichar));
-//   DWORD dw = FormatMessageW(
+//   ::u32 dw = FormatMessageW(
 //              FORMAT_MESSAGE_FROM_SYSTEM,
 //              nullptr,
 //              dwError,
@@ -357,7 +357,7 @@ ulong_ptr                        g_gdiplusHookToken         = nullptr;
 ////}
 //
 //
-////DWORD WINAPI WaitForSingleObject( _In_ HANDLE hHandle, _In_ DWORD dwMilliseconds )
+////::u32 WINAPI WaitForSingleObject( _In_ HANDLE hHandle, _In_ ::u32 dwMilliseconds )
 ////{
 ////
 ////   return ::WaitForSingleObjectEx(hHandle, dwMilliseconds, FALSE);
@@ -372,7 +372,7 @@ ulong_ptr                        g_gdiplusHookToken         = nullptr;
 ////CreateMutex(
 ////    _In_opt_ LPSECURITY_ATTRIBUTES lpMutexAttributes,
 ////    _In_ BOOL bInitialOwner,
-////    _In_opt_ LPCSTR lpName
+////    _In_opt_ const char * lpName
 ////    )
 ////{
 ////   return CreateMutexW(lpMutexAttributes, bInitialOwner, wstring(lpName));

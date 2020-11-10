@@ -85,7 +85,7 @@ namespace linux
 //
 //      }
 
-//      i32 linux::get_image_by_extension(per_fork * pfork, oswindow oswindow, image_key & key, COLORREF crBk)
+//      i32 linux::get_image_by_extension(per_fork * pfork, oswindow oswindow, image_key & key, color32_t crBk)
 //      {
 //
 //         return 0x80000000;
@@ -95,7 +95,7 @@ namespace linux
 
 
 
-//      i32 linux::get_file_extension_image(oswindow oswindow, const string & strExtension, e_file_attribute eattribute, e_icon eicon, COLORREF crBk)
+//      i32 linux::get_file_extension_image(oswindow oswindow, const string & strExtension, e_file_attribute eattribute, e_icon eicon, color32_t crBk)
 //      {
 //
 //         i32 iImage;
@@ -238,7 +238,7 @@ namespace linux
       //      lpiidlAbsolute,
       //      szFilePath);
 
-      //   CHAR szPath[_MAX_PATH * 10];
+      //   char szPath[_MAX_PATH * 10];
       //   string strPath;
       //   //   i32 iImage = 0x80000000;
 
@@ -262,7 +262,7 @@ namespace linux
 
 
       //   i32 iIcon = 0x80000000;
-      //   UINT uiFlags = 0;
+      //   ::u32 uFlags = 0;
 
       //   SHFILEINFO shfi16;
       //   SHFILEINFO shfi48;
@@ -452,7 +452,7 @@ namespace linux
 
 
 
-      //i32 linux::get_image(per_fork * pfork, oswindow oswindow, image_key imagekey, LPITEMIDLIST lpiidlAbsolute, const unichar * lpcszExtra, COLORREF crBk)
+      //i32 linux::get_image(per_fork * pfork, oswindow oswindow, image_key imagekey, LPITEMIDLIST lpiidlAbsolute, const unichar * lpcszExtra, color32_t crBk)
       //{
 
       //   i32 iImage = get_image(pfork, oswindow, imagekey, lpiidlAbsolute, lpiidlChild, lpcszExtra, crBk);
@@ -910,7 +910,7 @@ namespace linux
 //
 
 
-//      i32 linux::get_image(oswindow oswindow, const string & strPath, e_file_attribute eattribute, e_icon eicon, COLORREF crBk)
+//      i32 linux::get_image(oswindow oswindow, const string & strPath, e_file_attribute eattribute, e_icon eicon, color32_t crBk)
 //      {
 //
 //         i32 iImage = 0x80000000;
@@ -983,7 +983,7 @@ namespace linux
 
 
       i32 shell::get_image_by_file_extension(image_key & imagekey)
-      //i32 linux::get_image_foo(oswindow oswindow, const string & strExtension, e_file_attribute eattribute, e_icon eicon, COLORREF crBk)
+      //i32 linux::get_image_foo(oswindow oswindow, const string & strExtension, e_file_attribute eattribute, e_icon eicon, color32_t crBk)
       {
 
          i32 iImage = 0x80000000;
@@ -1038,7 +1038,7 @@ namespace linux
       }
 
 
-//      int shell::add_hover_image(int iSize, int iImage, COLORREF crBk)
+//      int shell::add_hover_image(int iSize, int iImage, color32_t crBk)
 //      {
 //
 //         if (crBk == 0)

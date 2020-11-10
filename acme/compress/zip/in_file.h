@@ -58,7 +58,7 @@ namespace zip
 
       virtual filesize get_position() const override;
 
-      virtual bool zip_open(const char *,UINT);
+      virtual bool zip_open(const char *,::u32);
       virtual bool zip_open(::zip::file * pzfile,const char * pcszFileName);
 
 

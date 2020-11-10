@@ -51,7 +51,7 @@ namespace user
 //   {
 //   public:
 //
-//      RECT   m_rect;
+//      RECT32   m_rect;
 //
 //   };
 //
@@ -408,16 +408,16 @@ public:
    virtual bool create(const char * pClassName, const char * lpWindowName,
 
       u32 dwStyle, const ::rect & rect,
-      ::user::interaction_child* pParentWnd = nullptr, UINT nID = 0);
+      ::user::interaction_child* pParentWnd = nullptr, ::u32 nID = 0);
    virtual bool create_window_ex(u32 dwExStyle, const char * pClassName, const char * lpWindowName,
 
       u32 dwStyle, const ::rect & rect,
-      ::user::interaction_child* pParentWnd = nullptr, UINT nID = 0);
+      ::user::interaction_child* pParentWnd = nullptr, ::u32 nID = 0);
 
 
    bool OnNcActivate(bool bActive);
    LRESULT OnNcHitTest(const ::point & point);
-   void OnSysCommand(UINT nID, LPARAM lParam);
+   void OnSysCommand(::u32 nID, LPARAM lParam);
    void OnGetMinMaxInfo(MINMAXINFO* pMMI);
    LRESULT OnFloatStatus(WPARAM wParam, LPARAM lParam);
    LRESULT OnQueryCenterWnd(WPARAM wParam, LPARAM lParam);
@@ -425,7 +425,7 @@ public:
 
 
 public:
-   static void CalcBorders(RECT * pClientRect, u32 dwStyle = 0, u32 dwExStyle = 0);
+   static void CalcBorders(RECT32 * pClientRect, u32 dwStyle = 0, u32 dwExStyle = 0);
 
 
 protected:

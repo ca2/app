@@ -1641,7 +1641,7 @@ namespace html
    }
 
 
-   //bool element::get_color(COLORREF & cr, ::user::e_color ecolor, ::user::style_context * pcontext)
+   //bool element::get_color(color32_t & cr, ::user::e_color ecolor, ::user::style_context * pcontext)
    //{
 
    //   if(ecolor == ::user::color_text)
@@ -1682,7 +1682,7 @@ namespace html
    ::color element::get_color(::css::enum_color ecolor)
    {
 
-      COLORREF cr;
+      color32_t cr;
 
       if(ecolor == ::css::color_text)
       {

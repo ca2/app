@@ -46,7 +46,7 @@ namespace android
       //      return pszFolder;
 
       //   string strPath;
-      //   LPSTR lpsz;
+      //   char * lpsz;
 
       //   if(bEmptyRelative)
       //   {
@@ -208,14 +208,14 @@ namespace android
 
       //   // need to get both CT_CTYPE1 and CT_CTYPE3 for each filename
       //   LCID lcid = GetThreadLocale();
-      //   WORD aCharType11[_MAX_PATH];
+      //   ::u16 aCharType11[_MAX_PATH];
       //   VERIFY(GetStringTypeEx(lcid, CT_CTYPE1, lpszPath1, -1, aCharType11));
-      //   WORD aCharType13[_MAX_PATH];
+      //   ::u16 aCharType13[_MAX_PATH];
       //   VERIFY(GetStringTypeEx(lcid, CT_CTYPE3, lpszPath1, -1, aCharType13));
-      //   WORD aCharType21[_MAX_PATH];
+      //   ::u16 aCharType21[_MAX_PATH];
       //   VERIFY(GetStringTypeEx(lcid, CT_CTYPE1, lpszPath2, -1, aCharType21));
       //   #ifdef _DEBUG
-      //   WORD aCharType23[_MAX_PATH];
+      //   ::u16 aCharType23[_MAX_PATH];
       //   VERIFY(GetStringTypeEx(lcid, CT_CTYPE3, lpszPath2, -1, aCharType23));
       //   #endif
 
@@ -242,7 +242,7 @@ namespace android
 
       //void dir::root_ones(string_array & straPath, string_array & straTitle, ::aura::application * papp)
       //{
-      //   DWORD dwSize = ::GetLogicalDriveStrings(0, nullptr);
+      //   ::u32 dwSize = ::GetLogicalDriveStrings(0, nullptr);
       //   LPTSTR lpszAlloc = (LPTSTR) malloc(dwSize + 1);
       //   LPTSTR lpsz = lpszAlloc;
       //   dwSize = ::GetLogicalDriveStrings(dwSize + 1, lpsz);

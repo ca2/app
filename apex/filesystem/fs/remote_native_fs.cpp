@@ -312,7 +312,7 @@ namespace fs
    }
 
 
-   file_result remote_native::get_file(const ::file::path & path, UINT nOpenFlags)
+   file_result remote_native::get_file(const ::file::path & path, ::u32 nOpenFlags)
    {
 
       file_pointer pfile = __new(remote_native_file(path));

@@ -145,7 +145,7 @@ namespace userstack
 
    void frame::ShowControlBars(bool bShow)
    {
-      UINT nShow;
+      ::u32 nShow;
       if(bShow)
       {
          nShow = display_normal;

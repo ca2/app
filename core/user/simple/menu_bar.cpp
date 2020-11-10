@@ -54,7 +54,7 @@ void simple_menu_bar::install_message_routing(::channel * pchannel)
 /////////////////////////////////////////////////////////////////////////////
 // simple_menu_bar message handlers
 
-bool simple_menu_bar::LoadMenuBar(UINT nIDResource)
+bool simple_menu_bar::LoadMenuBar(::u32 nIDResource)
 {
 
    m_uiResourceID = nIDResource;
@@ -101,7 +101,7 @@ bool simple_menu_bar::LoadMenuBar(UINT nIDResource)
    return true;
 }
 
-void simple_menu_bar::SetMenuID(UINT uiResourceID)
+void simple_menu_bar::SetMenuID(::u32 uResourceID)
 {
    m_uiResourceID = uiResourceID;
 }
@@ -406,7 +406,7 @@ void simple_menu_bar::OnUpdateCmdUI(__pointer(::user::frame_window)pTarget, bool
    /*   tool_command state;
       state.m_pOther = this;
 
-      state.m_nIndexMax = (UINT)DefWindowProc(TB_BUTTONCOUNT, 0, 0);
+      state.m_nIndexMax = (::u32)DefWindowProc(TB_BUTTONCOUNT, 0, 0);
       for (state.m_nIndex = 0; state.m_nIndex < state.m_nIndexMax; state.m_nIndex++)
       {
          // get buttons state
@@ -510,7 +510,7 @@ bool simple_menu_bar::ReloadMenuBar()
 
 }
 */
-/*bool simple_menu_bar::_001GetItemRect(index iItem, RECT * prect, e_element eelement)
+/*bool simple_menu_bar::_001GetItemRect(index iItem, RECT32 * prect, e_element eelement)
 
 {
    if(iItem < 0 ||
@@ -574,7 +574,7 @@ bool simple_menu_bar::ReloadMenuBar()
    return true;
 }
 
-index simple_menu_bar::_001HitTest(const POINT *ppoint)
+index simple_menu_bar::_001HitTest(const POINT32 *ppoint)
 
 {
    for(index iItem = 0; iItem < m_buttona.get_size(); iItem++)

@@ -46,7 +46,7 @@ class nsSingleByteCharSetProber : public nsCharSetProber{
 public:
   nsSingleByteCharSetProber(SequenceModel *model){mModel = model; Reset();};
   const char* GetCharSetName() {return mModel->charsetName;};
-  nsProbingState HandleData(const char* aBuf, PRUint32 aLen);
+  nsProbingState HandleData(const char* aBuf, PR::u32 aLen);
   nsProbingState GetState(void) {return mState;};
   void      Reset(void);
   float     GetConfidence(void);
@@ -64,12 +64,12 @@ protected:
   //char order of last character
   unsigned char mLastOrder;
 
-  PRUint32 mTotalSeqs;
-  PRUint32 mSeqCounters[NUMBER_OF_SEQ_CAT];
+  PR::u32 mTotalSeqs;
+  PR::u32 mSeqCounters[NUMBER_OF_SEQ_CAT];
 
-  PRUint32 mTotalChar;
+  PR::u32 mTotalChar;
   //characters that fall in our sampling range
-  PRUint32 mFreqChar;
+  PR::u32 mFreqChar;
 };
 
 

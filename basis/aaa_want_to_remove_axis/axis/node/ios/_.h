@@ -9,7 +9,7 @@
 
 
 
-string get_error_message(DWORD dwError);
+string get_error_message(::u32 dwError);
 
 __pointer(::aura::application)     ios_instantiate_application(__pointer(::aura::application) pappSystem, const char * pszId);
 
@@ -30,22 +30,22 @@ __pointer(::aura::application)     ios_instantiate_application(__pointer(::aura:
 int_bool PeekMessage(
                     LPMESSAGE lpMsg,
                     oswindow hWnd,
-                    UINT wMsgFilterMin,
-                    UINT wMsgFilterMax,
-                    UINT wRemoveMsg);
+                    ::u32 wMsgFilterMin,
+                    ::u32 wMsgFilterMax,
+                    ::u32 wRemoveMsg);
 
 int_bool GetMessage(
                    LPMESSAGE lpMsg,
                    oswindow hWnd,
-                   UINT wMsgFilterMin,
-                   UINT wMsgFilterMax);
+                   ::u32 wMsgFilterMin,
+                   ::u32 wMsgFilterMax);
 
 
 
 i32 CLASS_DECL_AXIS __ios_main(i32 argc, char * argv[]);
 
 
-CLASS_DECL_AXIS void vfxThrowFileException(__pointer(::aura::application) papp, i32 cause, LONG lOsError, const char * lpszFileName = nullptr);
+CLASS_DECL_AXIS void vfxThrowFileException(__pointer(::aura::application) papp, i32 cause, ::i32 lOsError, const char * lpszFileName = nullptr);
 
 
 

@@ -223,7 +223,7 @@ namespace macos
 
       int iScan = 0;
 
-      ::aura::malloc < COLORREF * > pcolorref = (COLORREF *) mm_clipboard_get_image(w, h, iScan);
+      ::aura::malloc < color32_t * > pcolorref = (color32_t *) mm_clipboard_get_image(w, h, iScan);
 
       if(pcolorref == nullptr)
       {
@@ -272,7 +272,7 @@ namespace macos
 //
 //      int iScan = 0;
 //
-//      ::aura::malloc < COLORREF * > pcolorref = (COLORREF *) mm_clipboard_get_image(w, h, iScan);
+//      ::aura::malloc < color32_t * > pcolorref = (color32_t *) mm_clipboard_get_image(w, h, iScan);
 //
 //      if(pcolorref == nullptr)
 //      {

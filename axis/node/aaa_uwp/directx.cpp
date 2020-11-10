@@ -263,9 +263,9 @@ namespace uwp
 
          System.m_dpi = dpi;
 
-         m_size.cx = (LONG)m_window->Bounds.Width;
+         m_size.cx = (::i32)m_window->Bounds.Width;
 
-         m_size.cy = (LONG)m_window->Bounds.Height;
+         m_size.cy = (::i32)m_window->Bounds.Height;
 
          OnWindowSizeChange();
 
@@ -509,7 +509,7 @@ namespace uwp
 
          // Create a depth stencil view for use with 3D rendering if needed.
          CD3D11_TEXTURE2D_DESC depthStencilDesc(
-         DXGI_FORMAT_D24_UNORM_S8_UINT,
+         DXGI_FORMAT_D24_UNORM_S8_::u32,
          backBufferDesc.Width,
          backBufferDesc.Height,
          1,

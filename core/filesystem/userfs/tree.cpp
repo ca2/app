@@ -388,7 +388,7 @@ namespace userfs
 
 
 
-   COLORREF tree::get_background_color()
+   color32_t tree::get_background_color()
    {
       if (get_document() == nullptr)
       {

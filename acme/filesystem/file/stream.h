@@ -50,7 +50,7 @@ inline ::file::file & operator << (::file::file & file, const TYPE & t);
  inline void __exchange(::stream & s, u64 & u);
 
 
- inline void __exchange(::stream & s, LONG & l);
+ inline void __exchange(::stream & s, ::i32 & l);
 
 
  inline void __exchange(::stream & s, float & f);
@@ -65,20 +65,20 @@ inline ::file::file & operator << (::file::file & file, const TYPE & t);
  inline void __exchange(::stream & s, ::matter & matter);
 
 
- inline void __exchange(::stream & s, RECT & rect);
- inline void __exchange(::stream & s, RECTL & rect);
+ inline void __exchange(::stream & s, RECT32 & rect);
+ inline void __exchange(::stream & s, RECT64 & rect);
  inline void __exchange(::stream & s, RECTF & rect);
  inline void __exchange(::stream & s, RECTD & rect);
 
 
- inline void __exchange(::stream & s, SIZE & rect);
- inline void __exchange(::stream & s, SIZEL & rect);
+ inline void __exchange(::stream & s, SIZE32 & rect);
+ inline void __exchange(::stream & s, SIZE64 & rect);
  inline void __exchange(::stream & s, SIZEF & rect);
  inline void __exchange(::stream & s, SIZED & rect);
 
 
- inline void __exchange(::stream & s, POINT & rect);
- inline void __exchange(::stream & s, POINTL & rect);
+ inline void __exchange(::stream & s, POINT32 & rect);
+ inline void __exchange(::stream & s, POINT64 & rect);
  inline void __exchange(::stream & s, POINTF & rect);
  inline void __exchange(::stream & s, POINTD & rect);
 
@@ -483,9 +483,9 @@ public:
 #endif
    virtual void write(float f) { raw_write(f); }
    virtual void write(double d) { raw_write(d); }
-   //virtual void write(const POINT & point) { raw_write(point); }
-   //virtual void write(const SIZE & size) { raw_write(size); }
-   //virtual void write(const RECT & crect) { raw_write(crect); }
+   //virtual void write(const POINT32 & point) { raw_write(point); }
+   //virtual void write(const SIZE32 & size) { raw_write(size); }
+   //virtual void write(const RECT32 & crect) { raw_write(crect); }
    virtual void write(const char * psz);
 #ifdef WINDOWS
    virtual void write(const unichar * wch) { write(string(wch)); }
@@ -514,7 +514,7 @@ public:
    virtual void read(uchar & uch);
 #ifdef WINDOWS
    virtual void read(unichar & wch);
-   virtual void read(LONG & l);
+   virtual void read(::i32 & l);
 #elif defined(__APPLE__)  || defined(ANDROID) || defined(WINDOWS) || defined(RASPBIAN)
    virtual void read(long & l);
 #endif
@@ -531,9 +531,9 @@ public:
 #endif
    virtual void read(float & f);
    virtual void read(double & d);
-   //virtual void read(POINT & point);
-   //virtual void read(SIZE & size);
-   //virtual void read(RECT & rect);
+   //virtual void read(POINT32 & point);
+   //virtual void read(SIZE32 & size);
+   //virtual void read(RECT32 & rect);
    virtual void read(id & id);
    virtual void read(var & var);
    virtual void read_var_type(enum_type & etype);
@@ -569,9 +569,9 @@ public:
 #endif
    virtual void exchange(const ::id & id, float & f) { stream_exchange(id, f); }
    virtual void exchange(const ::id & id, double & d) { stream_exchange(id, d); }
-   virtual void exchange(const ::id & id, POINT & point) { stream_exchange(id, point); }
-   virtual void exchange(const ::id & id, SIZE & size) { stream_exchange(id, size); }
-   virtual void exchange(const ::id & id, RECT & crect) { stream_exchange(id, crect); }
+   virtual void exchange(const ::id & id, POINT32 & point) { stream_exchange(id, point); }
+   virtual void exchange(const ::id & id, SIZE32 & size) { stream_exchange(id, size); }
+   virtual void exchange(const ::id & id, RECT32 & crect) { stream_exchange(id, crect); }
    virtual void exchange(const ::id & id, POINTD& point) { stream_exchange(id, point); }
    virtual void exchange(const ::id & id, SIZED& size) { stream_exchange(id, size); }
    virtual void exchange(const ::id & id, RECTD& crect) { stream_exchange(id, crect); }
@@ -739,11 +739,11 @@ namespace std
 //
 //inline stream & operator >> (stream & s, double & d) { s.read(d); return s; }
 //
-//inline stream & operator >> (stream & s, POINT & point) { s.read(point); return s; }
+//inline stream & operator >> (stream & s, POINT32 & point) { s.read(point); return s; }
 //
-//inline stream & operator >> (stream & s, SIZE & size) { s.read(size); return s; }
+//inline stream & operator >> (stream & s, SIZE32 & size) { s.read(size); return s; }
 //
-//inline stream & operator >> (stream & s, RECT & rect) { s.read(rect); return s; }
+//inline stream & operator >> (stream & s, RECT32 & rect) { s.read(rect); return s; }
 //
 //inline stream & operator >> (stream & s, ::id & id) { s.read(id); return s; }
 //
@@ -843,11 +843,11 @@ namespace std
 //   return s;
 //}
 //
-//inline stream & operator << (stream & s, const POINT & point) { s.write(point); return s; }
+//inline stream & operator << (stream & s, const POINT32 & point) { s.write(point); return s; }
 //
-//inline stream & operator << (stream & s, const RECT & rect) { s.write(rect); return s; }
+//inline stream & operator << (stream & s, const RECT32 & rect) { s.write(rect); return s; }
 //
-//inline stream & operator << (stream & s, const SIZE & size) { s.write(size); return s; }
+//inline stream & operator << (stream & s, const SIZE32 & size) { s.write(size); return s; }
 //
 //inline stream & operator << (stream & s, const char * psz) { s.write(psz); return s; }
 //

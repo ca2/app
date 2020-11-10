@@ -68,10 +68,10 @@
 
 static const char base64[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
-CLASS_DECL_ACME char* _crypto_base64_encode(const BYTE* data, int length)
+CLASS_DECL_ACME char* _crypto_base64_encode(const byte* data, int length)
 {
    int c;
-   const BYTE* q;
+   const byte* q;
    char* point;
    char* ret;
    int i = 0;
@@ -158,14 +158,14 @@ static int _base64_decode_char(char c)
 static void* _base64_decode(const char* s, int length, int* data_len)
 {
    int n[4];
-   BYTE* q;
-   BYTE* data;
+   byte* q;
+   byte* data;
    int nBlocks, i, outputLen;
 
    if (length % 4)
       return nullptr;
 
-   q = data = (BYTE*)malloc(length / 4 * 3 + 1);
+   q = data = (byte*)malloc(length / 4 * 3 + 1);
    if (!q)
       return nullptr;
 
@@ -233,9 +233,9 @@ out_free:
    return nullptr;
 }
 
-CLASS_DECL_ACME void _crypto_base64_decode(const char* enc_data, int length, BYTE** dec_data, int* res_length)
+CLASS_DECL_ACME void _crypto_base64_decode(const char* enc_data, int length, byte** dec_data, int* res_length)
 {
-   *dec_data = (BYTE *) _base64_decode(enc_data, length, res_length);
+   *dec_data = (byte *) _base64_decode(enc_data, length, res_length);
 }
 
 

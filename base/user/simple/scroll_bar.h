@@ -19,7 +19,7 @@ public:
    point                            m_ptaB[4]; // pontos da segunda seta
    ::draw2d::region_pointer         m_rgnA; // região da primeira seta
    ::draw2d::region_pointer         m_rgnB; // região da segunda seta
-   UINT                             m_uiTimer;
+   ::u32                             m_uiTimer;
 
 
    simple_scroll_bar();
@@ -39,9 +39,9 @@ public:
 
    virtual void _001OnClip(::draw2d::graphics_pointer & pgraphics) override;
 
-   bool GetPageARect(RECT * pRectClient, RECT * lpRectTrack,  RECT * prect);
+   bool GetPageARect(RECT32 * pRectClient, RECT32 * lpRectTrack,  RECT32 * prect);
 
-   bool GetPageBRect(RECT * pRectClient, RECT * lpRectTrack,  RECT * prect);
+   bool GetPageBRect(RECT32 * pRectClient, RECT32 * lpRectTrack,  RECT32 * prect);
 
    void UpdateBitmaps();
    //void OnDisplayChange(i32 iBitsPerPixel, ::size sizeScreen);
@@ -55,9 +55,9 @@ public:
 
    i32 SetTrackingPos(const ::point & point);
    i32 GetTrackSize(::size & size);
-   bool GetTrackClientRect(RECT * prect);
+   bool GetTrackClientRect(RECT32 * prect);
 
-   bool GetTrackRect(RECT * prect) override;
+   bool GetTrackRect(RECT32 * prect) override;
 
    DECL_GEN_SIGNAL(_001OnMouseMove);
    DECL_GEN_SIGNAL(_001OnLButtonDown);

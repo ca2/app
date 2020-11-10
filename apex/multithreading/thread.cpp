@@ -779,7 +779,7 @@ __pointer(::matter) thread::running(const char * pszTag) const
 }
 
 
-int thread::_GetMessage(LPMESSAGE pmessage, oswindow oswindow, UINT wMsgFilterMin,UINT wMsgFilterMax)
+int thread::_GetMessage(LPMESSAGE pmessage, oswindow oswindow, ::u32 wMsgFilterMin,::u32 wMsgFilterMax)
 {
 
    __throw(exception::exception);
@@ -1180,7 +1180,7 @@ bool thread::defer_pump_message()
 }
 
 
-::estatus thread::on_thread_on_idle(thread *pimpl, LONG lCount)
+::estatus thread::on_thread_on_idle(thread *pimpl, ::i32 lCount)
 {
 
    return ::success;
@@ -1906,7 +1906,7 @@ sync_result thread::wait(const duration & duration)
 
 #if defined(WINDOWS)
 
-      DWORD timeout = duration.is_pos_infinity() ? INFINITE : static_cast<DWORD>(duration.total_milliseconds());
+      ::u32 timeout = duration.is_pos_infinity() ? U32_INFINITE_TIMEOUT : static_cast<::u32>(duration.total_milliseconds());
 
       HTHREAD hthread = m_hthread;
 
@@ -1935,7 +1935,7 @@ sync_result thread::wait(const duration & duration)
       else
       {
 
-         tick tickDelay = (DWORD) duration.total_milliseconds();
+         tick tickDelay = (::u32) duration.total_milliseconds();
 
          auto dwStep = min(max(tickDelay / 10, 1), 100);
 
@@ -2159,7 +2159,7 @@ size_t engine_symbol(char * sz, int n, DWORD_PTR * pdisplacement, DWORD_PTR dwAd
 //}
 
 
-bool thread::begin_thread(bool bSynchInitialization, ::e_priority epriority, UINT nStackSize, u32 uiCreateFlags, LPSECURITY_ATTRIBUTES psa)
+bool thread::begin_thread(bool bSynchInitialization, ::e_priority epriority, ::u32 nStackSize, u32 uiCreateFlags, LPSECURITY_ATTRIBUTES psa)
 {
 
    clear_finish_bit();
@@ -2192,7 +2192,7 @@ bool thread::begin_thread(bool bSynchInitialization, ::e_priority epriority, UIN
 
       dwDisplacement = 0;
 
-      UINT32 maxframes = sizeof(uia) / sizeof(uia[0]);
+      ::u32 maxframes = sizeof(uia) / sizeof(uia[0]);
 
       ULONG BackTraceHash;
 
@@ -2301,7 +2301,7 @@ bool thread::begin_thread(bool bSynchInitialization, ::e_priority epriority, UIN
 
 
 
-bool thread::begin(::e_priority epriority, UINT nStackSize, u32 uiCreateFlags, LPSECURITY_ATTRIBUTES psa)
+bool thread::begin(::e_priority epriority, ::u32 nStackSize, u32 uiCreateFlags, LPSECURITY_ATTRIBUTES psa)
 {
 
    if(!begin_thread(false, epriority, nStackSize, uiCreateFlags, psa))
@@ -2316,7 +2316,7 @@ bool thread::begin(::e_priority epriority, UINT nStackSize, u32 uiCreateFlags, L
 }
 
 
-bool thread::begin_synch(::e_priority epriority, UINT nStackSize, u32 uiCreateFlags, LPSECURITY_ATTRIBUTES psa)
+bool thread::begin_synch(::e_priority epriority, ::u32 nStackSize, u32 uiCreateFlags, LPSECURITY_ATTRIBUTES psa)
 {
 
    if(!begin_thread(true, epriority, nStackSize, uiCreateFlags, psa))
@@ -3050,7 +3050,7 @@ bool thread::send_message(const ::id & id, WPARAM wParam, lparam lParam, ::durat
 //
 //#ifdef WINDOWS_DESKTOP
 //
-//   m_uThread = (DWORD) ithread;
+//   m_uThread = (::u32) ithread;
 //
 //#else
 //
@@ -3295,7 +3295,7 @@ mq* thread::_get_mq()
 
 }
 
-int_bool thread::peek_message(LPMESSAGE pMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg)
+int_bool thread::peek_message(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg)
 {
 
    if (m_pmq)
@@ -3581,7 +3581,7 @@ int_bool thread::peek_message(LPMESSAGE pMsg, oswindow oswindow, UINT wMsgFilter
 }
 
 
-int_bool thread::get_message(LPMESSAGE pMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax)
+int_bool thread::get_message(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax)
 {
 
    bool bQuit = false;
@@ -3640,7 +3640,7 @@ int_bool thread::get_message(LPMESSAGE pMsg, oswindow oswindow, UINT wMsgFilterM
       if (iRet == -1)
       {
 
-         DWORD dwLastError = ::GetLastError();
+         ::u32 dwLastError = ::GetLastError();
 
          ::output_debug_string("Last Error : " + __str(dwLastError) + "\n");
 
@@ -4427,7 +4427,7 @@ thread_ptra::~thread_ptra()
 
 }
 
-CLASS_DECL_APEX bool thread_pump_sleep(DWORD dwMillis, sync * psync)
+CLASS_DECL_APEX bool thread_pump_sleep(::u32 dwMillis, sync * psync)
 {
 
    int iTenths = dwMillis / 100;
@@ -4661,10 +4661,10 @@ thread::file_info* thread::get_file_info()
 }
 
 
-DWORD thread::get_file_sharing_violation_timeout_total_milliseconds()
+::u32 thread::get_file_sharing_violation_timeout_total_milliseconds()
 {
 
-   return (DWORD)get_file_info()->m_durationFileSharingViolationTimeout.get_total_milliseconds();
+   return (::u32)get_file_info()->m_durationFileSharingViolationTimeout.get_total_milliseconds();
 
 }
 

@@ -57,7 +57,7 @@ lite_html_tag::~lite_html_tag()
  * @since 1.0
  * @author Gurmeet S. Kochar
  */
-UINT lite_html_tag::parseFromStr(::lite_html_reader * preader, const string & strString, strsize iPos,
+::u32 lite_html_tag::parseFromStr(::lite_html_reader * preader, const string & strString, strsize iPos,
                                  bool &bIsOpeningTag,
                                  bool &bIsClosingTag,
                                  bool bParseAttrib /* = true */)
@@ -68,7 +68,7 @@ UINT lite_html_tag::parseFromStr(::lite_html_reader * preader, const string & st
    bool            bOpeningTag = false;
    LiteHTMLAttributes   *pcollAttr = nullptr;
    string            strTagName;
-   UINT            nRetVal = 0U,
+   ::u32            nRetVal = 0U,
                    nTemp = 0U;
    const char *            pszBegin = &strString[iPos];
 
@@ -97,7 +97,7 @@ UINT lite_html_tag::parseFromStr(::lite_html_reader * preader, const string & st
       ASSERT(strTagName.is_empty());
       ASSERT(pcollAttr == nullptr);
       ASSERT(!bClosingTag);
-      nRetVal = (UINT) (pszBegin - &strString[iPos]);
+      nRetVal = (::u32) (pszBegin - &strString[iPos]);
 
       goto LUpdateAndExit;
    }
@@ -175,7 +175,7 @@ UINT lite_html_tag::parseFromStr(::lite_html_reader * preader, const string & st
 
       ASSERT(strTagName.get_length());
       ASSERT(pcollAttr == nullptr);
-      nRetVal = (UINT) (pszEnd - &strString[iPos]);
+      nRetVal = (::u32) (pszEnd - &strString[iPos]);
 
       goto LUpdateAndExit;
    }
@@ -209,7 +209,7 @@ UINT lite_html_tag::parseFromStr(::lite_html_reader * preader, const string & st
          }
 
          // ... and delegate parsing process
-         nTemp = (UINT) pcollAttr->parseFromStr(preader, pszBegin, strString.get_length() - (pszBegin - (const char *) strString));
+         nTemp = (::u32) pcollAttr->parseFromStr(preader, pszBegin, strString.get_length() - (pszBegin - (const char *) strString));
 
       }
 
@@ -268,7 +268,7 @@ UINT lite_html_tag::parseFromStr(::lite_html_reader * preader, const string & st
       pszEnd++;
 
 
-   nRetVal = (UINT) (pszEnd - &strString[iPos]);
+   nRetVal = (::u32) (pszEnd - &strString[iPos]);
 
    goto LUpdateAndExit;   // just to show the flow-of-control
 

@@ -99,7 +99,7 @@ void image_frame::_001Process(::image * pimageCompose, ::image * pimageFrame, im
 
       pimageCompose->g()->set_alpha_mode(::draw2d::alpha_mode_set);
 
-      COLORREF crBack = pframea->m_crBack;
+      color32_t crBack = pframea->m_crBack;
 
       byte bAlpha = colorref_get_a_value(crBack);
 

@@ -46,7 +46,7 @@ namespace console
 
       simple_frame_window::_001OnTimer(ptimer);;
 
-//      UINT uEvent = ptimer->m_uEvent;
+//      ::u32 uEvent = ptimer->m_uEvent;
 //      static float theta;
 //      if(uEvent == 3)
 //      {
@@ -146,7 +146,7 @@ namespace console
 
    void prompt_frame::ShowControlBars(bool bShow)
    {
-      UINT nShow;
+      ::u32 nShow;
       if(bShow)
       {
          nShow = display_normal;

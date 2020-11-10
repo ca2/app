@@ -19,7 +19,7 @@
 
    }
 
-   shared_memory::shared_memory(memory_container * pcontainer, double dAllocationRateUp, UINT nAllocFlags)
+   shared_memory::shared_memory(memory_container * pcontainer, double dAllocationRateUp, ::u32 nAllocFlags)
    {
 
       m_nAllocFlags        = nAllocFlags;
@@ -131,7 +131,7 @@
 
       m_hGlobalMemory = hGlobalMemory;
 
-      m_memory.m_pbStorage = (BYTE*)::GlobalLock(m_hGlobalMemory);
+      m_memory.m_pbStorage = (byte*)::GlobalLock(m_hGlobalMemory);
 
       m_memory.m_pdata = m_memory.m_pbStorage;
 

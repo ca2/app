@@ -132,7 +132,7 @@ namespace windows
 
       memsize nRead = 0;
 
-      if ((nRead = fread(pdata, sizeof(BYTE), (size_t) nCount, m_pStream)) == 0 && !feof(m_pStream))
+      if ((nRead = fread(pdata, sizeof(byte), (size_t) nCount, m_pStream)) == 0 && !feof(m_pStream))
       {
 
          ::file::throw_status(error_file, _doserrno, m_path);
@@ -158,7 +158,7 @@ namespace windows
       ASSERT(__is_valid_address(pdata, nCount, FALSE));
 
 
-      if (fwrite(pdata, sizeof(BYTE), (size_t)nCount, m_pStream) != nCount)
+      if (fwrite(pdata, sizeof(byte), (size_t)nCount, m_pStream) != nCount)
 
          ::file::throw_status(error_file, _doserrno, m_path);
    }
@@ -175,7 +175,7 @@ namespace windows
          ::file::throw_status(error_disk_full, _doserrno, m_path);
    }
 
-   char * stdio_file::read_string(LPSTR psz, UINT nMax)
+   char * stdio_file::read_string(char * psz, ::u32 nMax)
 
    {
       ASSERT(psz != nullptr);
@@ -184,7 +184,7 @@ namespace windows
 
       ASSERT(m_pStream != nullptr);
 
-      LPSTR pszResult = fgets(psz, nMax, m_pStream);
+      char * pszResult = fgets(psz, nMax, m_pStream);
 
       if (pszResult == nullptr && !feof(m_pStream))
 
@@ -268,7 +268,7 @@ namespace windows
    ::file::throw_status(error_disk_full, _doserrno, m_path);
    }*/
 
-   /*unichar * stdio_file::read_string(unichar * psz, UINT nMax)
+   /*unichar * stdio_file::read_string(unichar * psz, ::u32 nMax)
 
    {
    ASSERT(psz != nullptr);
@@ -412,9 +412,9 @@ namespace windows
    {
       ASSERT_VALID(this);
 
-      LONG nCurrent;
-      LONG nLength;
-      LONG nResult;
+      ::i32 nCurrent;
+      ::i32 nLength;
+      ::i32 nResult;
 
       nCurrent = ftell(m_pStream);
       if (nCurrent == -1)

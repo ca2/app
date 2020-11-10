@@ -55,7 +55,7 @@ namespace plugin
       DECL_GEN_SIGNAL(_001OnCheck);
       DECL_GEN_SIGNAL(_001OnCreate);
 
-      virtual bool RedrawWindow(const ::rect & rectUpdate, ::draw2d::region * prgnUpdate, UINT flags);
+      virtual bool RedrawWindow(const ::rect & rectUpdate, ::draw2d::region * prgnUpdate, ::u32 flags);
 
       ::user::interaction * get_os_focus_uie();
 

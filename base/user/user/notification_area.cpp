@@ -78,7 +78,7 @@ namespace user
          }
       }
 
-      DWORD dwTrayPid = 0;
+      ::u32 dwTrayPid = 0;
       if(!GetWindowThreadProcessId(m_oswindowTray, &dwTrayPid))
          return;
 
@@ -96,9 +96,9 @@ namespace user
       {
          ::SendMessage(m_oswindowTray, TB_GETBUTTON, i, (LPARAM)data.get_data());
          data.ReadData(&tb);
-         data.ReadData<TRAYDATA>(&tray,(LPCVOID)tb.dwData);
+         data.ReadData<TRAYDATA>(&tray,(const void *)tb.dwData);
 
-         DWORD dwProcessId = 0;
+         ::u32 dwProcessId = 0;
          GetWindowThreadProcessId(tray.m_oswindow,&dwProcessId);
 
          info.sProcessPath = module_path_from_pid(dwProcessId);
@@ -117,7 +117,7 @@ namespace user
                   wcscpy(sTip,L"[ToolTip was either too long or not set]");
                   break;
                }
-               data.ReadData<unichar>(&TipChar, (LPCVOID)pTip++);
+               data.ReadData<unichar>(&TipChar, (const void *)pTip++);
             }
             while(sTip[x++] = TipChar);
          }

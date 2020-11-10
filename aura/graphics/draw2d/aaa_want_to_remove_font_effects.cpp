@@ -65,7 +65,7 @@ namespace draw2d
 //         if(pglyph != nullptr)
 
 //         {
-//            pointOffset.x = LONG(pgraphics->GetTextExtent(str.Left(i)).cx);
+//            pointOffset.x = ::i32(pgraphics->GetTextExtent(str.Left(i)).cx);
 //            pglyph->DrawGlyph(
 
 //               pgraphics,
@@ -193,7 +193,7 @@ namespace draw2d
    bool font::AddGlyph(WCHAR wchar)
    {
 
-      return AddGlyph((UINT) wchar);
+      return AddGlyph((::u32) wchar);
 
    }
 
@@ -201,16 +201,16 @@ namespace draw2d
    bool font::AddGlyph(CHAR tch)
    {
 
-      return AddGlyph((UINT) tch);
+      return AddGlyph((::u32) tch);
 
    }
 
 
-   bool font::AddGlyph(UINT user)
+   bool font::AddGlyph(::u32 user)
    {
 
       //   single_lock sl(&m_mutex);
-      //   sl.lock(INFINITE);
+      //   sl.lock(U32_INFINITE_TIMEOUT);
 
       return TRUE;
 
@@ -299,15 +299,15 @@ namespace draw2d
 
    glyph * font::GetGlyph(CHAR ch)
    {
-      return GetGlyph((UINT) ch);
+      return GetGlyph((::u32) ch);
    }
 
    glyph * font::GetGlyph(WCHAR wch)
    {
-      return GetGlyph((UINT) wch);
+      return GetGlyph((::u32) wch);
    }
 
-   glyph * font::GetGlyph(UINT user)
+   glyph * font::GetGlyph(::u32 user)
    {
       return m_glyphset.GetGlyph(user);
    }
@@ -525,7 +525,7 @@ CLASS_DECL_AURA bool GetTextExtentPoint32U(HDC hdc, const char * pString, i32 ca
 }
 
 
-CLASS_DECL_AURA i32  DrawTextU(HDC hdc, const char * pchText, i32 cchText, RECT * lprc, UINT format)
+CLASS_DECL_AURA i32  DrawTextU(HDC hdc, const char * pchText, i32 cchText, RECT32 * lprc, ::u32 format)
 
 {
 

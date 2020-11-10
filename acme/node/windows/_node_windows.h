@@ -5,7 +5,7 @@
 
 //#include "exception.h"
 
-string get_error_message(DWORD dwError);
+string get_error_message(::u32 dwError);
 
 
 CLASS_DECL_ACME bool __initialize();
@@ -89,8 +89,8 @@ inline i32 __invariant_stricmp(const unichar *pwszLeft,const unichar *pwszRight)
 
 #define __set_dialog_control_id(oswindow, nID)     SetWindowLong(oswindow, GWL_ID, nID)
 #define __set_dialog_control_id_(oswindow, nID)     oswindow->SetWindowLong(GWL_ID, nID)
-#define __get_dialog_control_id(oswindow)         ((UINT)(WORD)::GetDlgCtrlID(oswindow))
-#define __get_dialog_control_id_(oswindow)         ((UINT)(WORD)oswindow->GetDlgCtrlId())
+#define __get_dialog_control_id(oswindow)         ((::u32)(::u16)::GetDlgCtrlID(oswindow))
+#define __get_dialog_control_id_(oswindow)         ((::u32)(::u16)oswindow->GetDlgCtrlId())
 
 
 //#include "pipe.h"
@@ -120,17 +120,17 @@ namespace windows
 
    CLASS_DECL_ACME bool        shell_get_special_folder_path(oswindow oswindow,::file::path &str,i32 csidl,bool fCreate);
    CLASS_DECL_ACME ::file::path  shell_get_special_folder_path(i32 csidl, bool fCreate = true, oswindow oswindow = nullptr);
-   CLASS_DECL_ACME DWORD       get_file_attributes(const char * pFileName);
+   CLASS_DECL_ACME ::u32       get_file_attributes(const char * pFileName);
 
-   CLASS_DECL_ACME DWORD       get_current_directory(string & str);
-   CLASS_DECL_ACME DWORD       get_temp_path(string & str);
-   CLASS_DECL_ACME LONG        reg_query_value(HKEY hkey,const char * pszSubKey,string & str);
+   CLASS_DECL_ACME ::u32       get_current_directory(string & str);
+   CLASS_DECL_ACME ::u32       get_temp_path(string & str);
+   CLASS_DECL_ACME ::i32        reg_query_value(HKEY hkey,const char * pszSubKey,string & str);
 
-   CLASS_DECL_ACME HICON       extract_icon(HINSTANCE hInst,const char * pszExeFileName,UINT nIconIndex);
+   CLASS_DECL_ACME HICON       extract_icon(HINSTANCE hInst,const char * pszExeFileName,::u32 nIconIndex);
 
    CLASS_DECL_ACME bool        delete_file(const char * pFileName);
 
-   CLASS_DECL_ACME i32     get_menu_string(HMENU hMenu,UINT uIDItem,string & str,UINT flags);
+   CLASS_DECL_ACME i32     get_menu_string(HMENU hMenu,::u32 uDItem,string & str,::u32 flags);
    CLASS_DECL_ACME void        time_to_filetime(::matter * pobject,const ::datetime::time& time,LPFILETIME pFileTime);
 
 
@@ -140,7 +140,7 @@ namespace windows
 
 
 
-CLASS_DECL_ACME LONG delete_registry_tree_helper(HKEY hParentKey,const string & strKeyName);
+CLASS_DECL_ACME ::i32 delete_registry_tree_helper(HKEY hParentKey,const string & strKeyName);
 
 
 //CLASS_DECL_ACME __pointer(::acme::application) __get_app();
@@ -148,7 +148,7 @@ CLASS_DECL_ACME HINSTANCE __get_resource_handle();
 CLASS_DECL_ACME void __set_resource_handle(HINSTANCE hInstResource);
 
 CLASS_DECL_ACME HINSTANCE __get_resource_handle();
-CLASS_DECL_ACME HINSTANCE __find_string_resource_handle(UINT nID);
+CLASS_DECL_ACME HINSTANCE __find_string_resource_handle(::u32 nID);
 
 
 

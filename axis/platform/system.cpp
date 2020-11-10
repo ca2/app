@@ -10,7 +10,7 @@
 void __node_axis_factory_exchange();
 
 
-int GetMainScreenRect(LPRECT lprect);
+int GetMainScreenRect(LPRECT32 lprect);
 
 //
 //const char* g_pszMultimediaLibraryName = nullptr;
@@ -74,7 +74,7 @@ void dappy(const char * psz);
 string get_user_name()
 {
    WCHAR wsz[1024];
-   DWORD dwSize = sizeof(wsz) / sizeof(WCHAR);
+   ::u32 dwSize = sizeof(wsz) / sizeof(WCHAR);
    ::GetUserNameW(wsz,&dwSize);
    return string(wsz);
 }
@@ -490,7 +490,7 @@ namespace axis
 
 
 
-   CLASS_DECL_AXIS void black_body(float* r, float* g, float* b, DWORD dwTemp);
+   CLASS_DECL_AXIS void black_body(float* r, float* g, float* b, ::u32 dwTemp);
 
 
    

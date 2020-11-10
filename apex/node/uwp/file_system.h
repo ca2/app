@@ -4,7 +4,7 @@
 //CLASS_DECL_APEX bool vfxFullPath(unichar * pszPathOut, const unichar * pszFileIn);
 
 //CLASS_DECL_APEX bool vfxFullPath(wstring & wstrFullPath, const wstring & wstrPath);
-//CLASS_DECL_APEX UINT vfxGetFileName(const unichar * pszPathName, unichar * pszTitle, UINT nMax);
+//CLASS_DECL_APEX ::u32 vfxGetFileName(const unichar * pszPathName, unichar * pszTitle, ::u32 nMax);
 
 //CLASS_DECL_APEX void vfxGetModuleShortFileName(HINSTANCE hInst, string & strShortName);
 //CLASS_DECL_APEX void vfxGetModuleShortFileName(HINSTANCE hInst, string& strShortName);

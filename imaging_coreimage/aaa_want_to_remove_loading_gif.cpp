@@ -315,11 +315,11 @@ namespace coreimage_imaging
 //
 //#if defined(ANDROID) && defined(__arm__)
 //
-//            COLORREF crQuad = ARGB(255, quad.rgbRed, quad.rgbGreen, quad.rgbBlue);
+//            color32_t crQuad = ARGB(255, quad.rgbRed, quad.rgbGreen, quad.rgbBlue);
 //
 //#else
 //
-//            //COLORREF crQuad = ARGB(255, quad.rgbBlue, quad.rgbGreen, quad.rgbRed);
+//            //color32_t crQuad = ARGB(255, quad.rgbBlue, quad.rgbGreen, quad.rgbRed);
 //
 //#endif
 //
@@ -336,7 +336,7 @@ namespace coreimage_imaging
 //      else if (FreeImage_GetBPP(pfi) == 32)
 //      {
 //
-//         ::copy_colorref(pframe->m_pimage->colorref(), pframe->m_pimage->width(), pframe->m_pimage->height(), pframe->m_pimage->scan_size(), (COLORREF *)pdata, iScan);
+//         ::copy_colorref(pframe->m_pimage->colorref(), pframe->m_pimage->width(), pframe->m_pimage->height(), pframe->m_pimage->scan_size(), (color32_t *)pdata, iScan);
 //
 //         return true;
 //

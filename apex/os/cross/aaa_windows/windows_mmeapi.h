@@ -10,13 +10,13 @@
  */
 typedef struct tWAVEFORMATEX
 {
-    WORD        wFormatTag;         /* format type */
-    WORD        nChannels;          /* number of channels (i.e. mono, stereo...) */
-    DWORD       nSamplesPerSec;     /* sample rate */
-    DWORD       nAvgBytesPerSec;    /* for buffer estimation */
-    WORD        nBlockAlign;        /* block size of data */
-    WORD        wBitsPerSample;     /* number of bits per sample of mono data */
-    WORD        cbSize;             /* the count in bytes of the size of */
+    ::u16        wFormatTag;         /* format type */
+    ::u16        nChannels;          /* number of channels (i.e. mono, stereo...) */
+    ::u32       nSamplesPerSec;     /* sample rate */
+    ::u32       nAvgBytesPerSec;    /* for buffer estimation */
+    ::u16        nBlockAlign;        /* block size of data */
+    ::u16        wBitsPerSample;     /* number of bits per sample of mono data */
+    ::u16        cbSize;             /* the count in bytes of the size of */
                                     /* extra information (after cbSize) */
 } WAVEFORMATEX, *PWAVEFORMATEX, NEAR *NPWAVEFORMATEX, FAR *LPWAVEFORMATEX;
 
@@ -29,7 +29,7 @@ typedef struct tWAVEFORMATEX
 typedef struct tag_WAVEHDR
 {
    LPBYTE   lpbyte;
-   UINT     uiCount;
+   ::u32     uiCount;
 } WAVEHDR, * LPWAVEHDR;
 
 

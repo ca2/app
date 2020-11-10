@@ -560,7 +560,7 @@ namespace aura
       //virtual ::apex::library * get_library(const char * pszLibrary, bool bOpenCa2 = false) override;
 
 
-      virtual UINT os_post_to_all_threads(const ::id & id,WPARAM wparam = 0,lparam lparam = 0) override;
+      virtual ::u32 os_post_to_all_threads(const ::id & id,WPARAM wparam = 0,lparam lparam = 0) override;
 
 
       //virtual void session_add(index iEdge, ::apex::session * psession) overr;
@@ -871,7 +871,7 @@ namespace aura
 
 #ifdef _UWP
 
-      virtual bool get_window_rect(RECT* prect);
+      virtual bool get_window_rect(RECT32* prect);
 
 
 #endif
@@ -880,7 +880,7 @@ namespace aura
 
 
 
-//      virtual bool wait_twf(tick tickTimeout = INFINITE);
+//      virtual bool wait_twf(tick tickTimeout = U32_INFINITE_TIMEOUT);
 
 
 
@@ -893,7 +893,7 @@ namespace aura
 
       virtual ::estatus add_view_library(::apex::library* plibrary);
 
-      //virtual void get_cursor_pos(LPPOINT ppoint);
+      //virtual void get_cursor_pos(POINT32 * ppoint);
 
 
 
@@ -957,13 +957,13 @@ namespace aura
 
 
 
-      //virtual DWORD get_monitor_color_temperature(index iMonitor);
-      //virtual bool adjust_monitor(index iMonitor, DWORD dwTemperature, double dBrightness, double dwGamma);
-      //virtual bool get_monitor_rect(index iMonitor, RECT* prect) override;
+      //virtual ::u32 get_monitor_color_temperature(index iMonitor);
+      //virtual bool adjust_monitor(index iMonitor, ::u32 dwTemperature, double dBrightness, double dwGamma);
+      //virtual bool get_monitor_rect(index iMonitor, RECT32* prect) override;
 
       //virtual ::count get_monitor_count() override;
 
-      //bool get_wkspace_rect(index iWkspace, RECT* prect) override;
+      //bool get_wkspace_rect(index iWkspace, RECT32* prect) override;
 
 
       //virtual ::user::interaction_impl * impl_from_handle(void * pdata) override;

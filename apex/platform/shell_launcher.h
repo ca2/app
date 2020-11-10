@@ -33,7 +33,7 @@ namespace apex
       HINSTANCE   m_hinstApp;       // out when SEE_MASK_NOCLOSEPROCESS is specified
       ULONG       m_fMask;          // in, SEE_MASK_XXX values
       void *      m_lpIDList;       // in, valid when SEE_MASK_IDLIST is specified, PCIDLIST_ABSOLUTE, for use with SEE_MASK_IDLIST & SEE_MASK_INVOKEIDLIST
-      LPCSTR      m_vssClass;       // in, valid when SEE_MASK_CLASSNAME is specified
+      const char *      m_vssClass;       // in, valid when SEE_MASK_CLASSNAME is specified
       HKEY        m_hkeyClass;      // in, valid when SEE_MASK_CLASSKEY is specified
       u32       m_dwHotKey;       // in, valid when SEE_MASK_HOTKEY is specified
       union

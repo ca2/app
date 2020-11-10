@@ -38,7 +38,7 @@ namespace coreimage_imaging
 
       //int iScan = 0;
 
-      ::acme::malloc < COLORREF * > pcolorref;
+      ::acme::malloc < color32_t * > pcolorref;
 
       CFDataRef data = CFDataCreateWithBytesNoCopy(nullptr, pmemory->data(), pmemory->size(), kCFAllocatorNull);
 
@@ -142,7 +142,7 @@ namespace coreimage_imaging
 
             int iScan = 0;
 
-            ::acme::malloc < COLORREF * > pdata((COLORREF *) cg_image_get_image_data(w, h, iScan, pimage));
+            ::acme::malloc < color32_t * > pdata((color32_t *) cg_image_get_image_data(w, h, iScan, pimage));
             // Check for valid `frameImage` before parsing its properties as frames can be corrupted (and `frameImage` even `nil` when `frameImageRef` was valid).
 
             auto p = __new(image_frame);
@@ -213,7 +213,7 @@ namespace coreimage_imaging
 
                }
 
-               p->m_tick = (DWORD) (dDelay * 1000.0);
+               p->m_tick = (::u32) (dDelay * 1000.0);
 
                if(p->m_tick < 90)
                {

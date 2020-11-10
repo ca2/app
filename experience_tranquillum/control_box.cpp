@@ -48,7 +48,7 @@ void control_box::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
    pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-   COLORREF crBackground;
+   color32_t crBackground;
 
    if(GetTopLevel()->frame_is_transparent())
    {

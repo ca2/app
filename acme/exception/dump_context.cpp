@@ -136,7 +136,7 @@ void dump_context::write(const char * psz)
 
       char szBuffer[512];
 
-      LPSTR pdata = szBuffer;
+      char * pdata = szBuffer;
 
       while (*psz != '\0')
       {
@@ -497,7 +497,7 @@ void dump_context::write(HFONT h)
 /////////////////////////////////////////////////////////////////////////////
 // Formatted output
 
-void dump_context::hex_dump(const char * pszLine, BYTE* pby, i32 nBytes, i32 nWidth)
+void dump_context::hex_dump(const char * pszLine, byte* pby, i32 nBytes, i32 nWidth)
 // do a simple hex-dump (8 per line) to a dump_context
 //  the "pszLine" is a string to print at the start of each line
 //    (%lx should be used to expand the current address)

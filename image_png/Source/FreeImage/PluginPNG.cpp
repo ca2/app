@@ -116,7 +116,7 @@ static int_bool
          tag = FreeImage_CreateTag();
          if(!tag) return FALSE;
 
-         DWORD tag_length;
+         ::u32 tag_length;
 
          if(text_ptr[i].text_length & 0x80000000)
          {
@@ -127,7 +127,7 @@ static int_bool
             }
             else
             {
-               tag_length = (DWORD) text_ptr[i].itxt_length;
+               tag_length = (::u32) text_ptr[i].itxt_length;
             }
 #else
             continue;
@@ -136,13 +136,13 @@ static int_bool
 #ifdef PNG_iTXt_SUPPORTED
          else if(text_ptr[i].itxt_length & 0x80000000)
          {
-            tag_length = (DWORD) text_ptr[i].text_length;
+            tag_length = (::u32) text_ptr[i].text_length;
          }
 #endif
          else
          {
 #ifdef PNG_iTXt_SUPPORTED
-            tag_length = (DWORD) max(text_ptr[i].text_length, text_ptr[i].itxt_length);
+            tag_length = (::u32) max(text_ptr[i].text_length, text_ptr[i].itxt_length);
 #else
             tag_length = text_ptr[i].text_length;
 #endif
@@ -287,8 +287,8 @@ MimeType()
 static int_bool DLL_CALLCONV
 Validate(FreeImageIO *io, fi_handle handle)
 {
-   BYTE png_signature[8] = { 137, 80, 78, 71, 13, 10, 26, 10 };
-   BYTE signature[8] = { 0, 0, 0, 0, 0, 0, 0, 0 };
+   byte png_signature[8] = { 137, 80, 78, 71, 13, 10, 26, 10 };
+   byte signature[8] = { 0, 0, 0, 0, 0, 0, 0, 0 };
 
    io->read_proc(&signature, 1, 8, handle);
 
@@ -312,7 +312,7 @@ SupportsExportType(FREE_IMAGE_TYPE type)
 {
    return (
           (type == FIT_BITMAP) ||
-          (type == FIT_UINT16) ||
+          (type == FIT_::u3216) ||
           (type == FIT_RGB16) ||
           (type == FIT_RGBA16)
           );
@@ -337,7 +337,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
 {
    png_structp png_ptr = nullptr;
    png_infop info_ptr;
-   png_uint_32 width, height;
+   png_::u32_32 width, height;
    png_colorp png_palette = nullptr;
    int color_type, palette_entries = 0;
    int bit_depth, pixel_depth;		// pixel_depth = bit_depth * channels
@@ -359,7 +359,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
       {
          // check to see if the file is in fact a PNG file
 
-         BYTE png_check[PNG_BYTES_TO_CHECK];
+         byte png_check[PNG_BYTES_TO_CHECK];
 
          io->read_proc(png_check, PNG_BYTES_TO_CHECK, 1, handle);
 
@@ -414,7 +414,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
          {
             if ((pixel_depth == 16) && (color_type == PNG_COLOR_TYPE_GRAY))
             {
-               image_type = FIT_UINT16;
+               image_type = FIT_::u3216;
             }
             else if ((pixel_depth == 48) && (color_type == PNG_COLOR_TYPE_RGB))
             {
@@ -433,7 +433,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
          }
 
 #ifndef FREEIMAGE_BIGENDIAN
-         if((image_type == FIT_UINT16) || (image_type == FIT_RGB16) || (image_type == FIT_RGBA16))
+         if((image_type == FIT_::u3216) || (image_type == FIT_RGB16) || (image_type == FIT_RGBA16))
          {
             // turn on 16 bit byte swapping
             png_set_swap(png_ptr);
@@ -578,7 +578,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
                {
                   palette[i].rgbRed   =
                   palette[i].rgbGreen =
-                  palette[i].rgbBlue  = (BYTE)((i * 255) / (palette_entries - 1));
+                  palette[i].rgbBlue  = (byte)((i * 255) / (palette_entries - 1));
                }
             }
             break;
@@ -605,7 +605,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
                // single transparent color
                if (trans_color->gray < palette_entries)
                {
-                  BYTE table[256];
+                  byte table[256];
                   memset(table, 0xFF, palette_entries);
                   table[trans_color->gray] = 0;
 /*                  FreeImage_SetTransparencyTable(pimage, table, palette_entries);
@@ -614,7 +614,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
             else if((color_type == PNG_COLOR_TYPE_PALETTE) && trans_alpha)
             {
                // transparency table
-/*               FreeImage_SetTransparencyTable(pimage, (BYTE *)trans_alpha, num_trans);
+/*               FreeImage_SetTransparencyTable(pimage, (byte *)trans_alpha, num_trans);
             }
          }
 
@@ -631,9 +631,9 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
 
             if (png_get_bKGD(png_ptr, info_ptr, &image_background))
             {
-               rgbBkColor.rgbRed      = (BYTE)image_background->red;
-               rgbBkColor.rgbGreen    = (BYTE)image_background->green;
-               rgbBkColor.rgbBlue     = (BYTE)image_background->blue;
+               rgbBkColor.rgbRed      = (byte)image_background->red;
+               rgbBkColor.rgbGreen    = (byte)image_background->green;
+               rgbBkColor.rgbBlue     = (byte)image_background->blue;
                rgbBkColor.rgbReserved = 0;
 
 /*               FreeImage_SetBackgroundColor(pimage, &rgbBkColor);
@@ -644,7 +644,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
 
          if (png_get_valid(png_ptr, info_ptr, PNG_INFO_pHYs))
          {
-            png_uint_32 res_x, res_y;
+            png_::u32_32 res_x, res_y;
 
             // we'll overload this var and use 0 to mean no phys data,
             // since if it's not in meters we can't use it anyway
@@ -673,7 +673,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
             png_bytep profile_data = nullptr;
 #endif
 
-            png_uint_32 profile_length = 0;
+            png_::u32_32 profile_length = 0;
 
             int  compression_type;
 
@@ -714,7 +714,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
          // read in the bitmap bits via the pointer table
          // allow loading of PNG with minor errors (such as images with several IDAT chunks)
 
-         for (png_uint_32 k = 0; k < height; k++)
+         for (png_::u32_32 k = 0; k < height; k++)
          {
 /*            row_pointers[height - 1 - k] = FreeImage_GetScanLine(pimage, k);
          }
@@ -790,7 +790,7 @@ static int_bool DLL_CALLCONV
    png_structp png_ptr;
    png_infop info_ptr;
    png_colorp palette = nullptr;
-   png_uint_32 width, height;
+   png_::u32_32 width, height;
    int_bool has_alpha_channel = FALSE;
 
    RGBQUAD *pal;					// pointer to image palette
@@ -842,8 +842,8 @@ static int_bool DLL_CALLCONV
 
          // set physical resolution
 
-/*         png_uint_32 res_x = (png_uint_32)FreeImage_GetDotsPerMeterX(pimage);
-/*         png_uint_32 res_y = (png_uint_32)FreeImage_GetDotsPerMeterY(pimage);
+/*         png_::u32_32 res_x = (png_::u32_32)FreeImage_GetDotsPerMeterX(pimage);
+/*         png_::u32_32 res_y = (png_::u32_32)FreeImage_GetDotsPerMeterY(pimage);
 
          if ((res_x > 0) && (res_y > 0))
          {
@@ -1065,13 +1065,13 @@ static int_bool DLL_CALLCONV
 
          if ((pixel_depth == 32) && (!has_alpha_channel))
          {
-            BYTE *buffer = (BYTE *)malloc(width * 3);
+            byte *buffer = (byte *)malloc(width * 3);
 
             // transparent conversion to 24-bit
             // the number of passes is either 1 for non-interlaced images, or 7 for interlaced images
             for (int pass = 0; pass < number_passes; pass++)
             {
-               for (png_uint_32 k = 0; k < height; k++)
+               for (png_::u32_32 k = 0; k < height; k++)
                {
 /*                  FreeImage_ConvertLine32To24(buffer, FreeImage_GetScanLine(pimage, height - k - 1), width);
                   png_write_row(png_ptr, buffer);
@@ -1084,7 +1084,7 @@ static int_bool DLL_CALLCONV
             // the number of passes is either 1 for non-interlaced images, or 7 for interlaced images
             for (int pass = 0; pass < number_passes; pass++)
             {
-               for (png_uint_32 k = 0; k < height; k++)
+               for (png_::u32_32 k = 0; k < height; k++)
                {
 /*                  png_write_row(png_ptr, FreeImage_GetScanLine(pimage, height - k - 1));
                }

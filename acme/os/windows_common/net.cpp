@@ -9,15 +9,15 @@ bool g_bWsaStartup = false;
 CLASS_DECL_ACME bool defer_init_winsock()
 {
 
-   BYTE byteHi = 2;
+   byte byteHi = 2;
 
-   BYTE byteLo = 2;
+   byte byteLo = 2;
 
    if (!g_bWsaStartup)
    {
 
       /* Use the MAKEWORD(lowbyte, highbyte) macro declared in Windef.h */
-      WORD wVersionRequested = MAKEWORD(byteHi, byteLo);
+      ::u16 wVersionRequested = MAKEWORD(byteHi, byteLo);
 
       g_iWsaStartupError = WSAStartup(wVersionRequested, &g_wsadata);
 

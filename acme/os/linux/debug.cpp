@@ -122,17 +122,17 @@ gdb_check(void)
 
 
 
-DWORD
+::u32
 WINAPI
 FormatMessage(
-DWORD dwFlags,
-LPCVOID pSource,
+::u32 dwFlags,
+const void * pSource,
 
-DWORD dwMessageId,
-DWORD dwLanguageId,
-LPSTR pBuffer,
+::u32 dwMessageId,
+::u32 dwLanguageId,
+char * pBuffer,
 
-DWORD nSize,
+::u32 nSize,
 va_list *Arguments
 )
 {
@@ -146,7 +146,7 @@ va_list *Arguments
 
 
 
-VOID WINAPI output_debug_string(LPCSTR pOutputString)
+VOID WINAPI output_debug_string(const char * pOutputString)
 {
 
    if(::acme::g_bOutputDebugString)

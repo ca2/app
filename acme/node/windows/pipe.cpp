@@ -55,7 +55,7 @@ namespace windows
       if(!bBlock)
       {
 
-         DWORD dwMode = PIPE_NOWAIT;
+         ::u32 dwMode = PIPE_NOWAIT;
          VERIFY(SetNamedPipeHandleState(m_hRead,&dwMode,nullptr,nullptr));
          //VERIFY(SetNamedPipeHandleState(m_hWrite,&dwMode,nullptr,nullptr));
 
@@ -95,7 +95,7 @@ namespace windows
 
       bool bSuccess = false;
 
-      DWORD dwWritten;
+      ::u32 dwWritten;
 
       bSuccess = WriteFile(m_hWrite,(const char *)psz,dwLen,&dwWritten,nullptr) != FALSE;
 
@@ -111,7 +111,7 @@ namespace windows
 
       const i32 BUFSIZE = 1024 * 8;
 
-      DWORD dwRead;
+      ::u32 dwRead;
 
       bool bSuccess = false;
 
@@ -156,7 +156,7 @@ namespace windows
 
       const i32 BUFSIZE = 1024 * 8;
 
-      DWORD dwRead;
+      ::u32 dwRead;
 
       bool bSuccess = false;
 

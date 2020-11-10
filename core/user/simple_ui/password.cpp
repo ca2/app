@@ -27,10 +27,10 @@ namespace simple_ui
 
       pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
 
-      COLORREF crBk;
-      COLORREF crBkSel;
-      COLORREF crSel;
-      COLORREF cr;
+      color32_t crBk;
+      color32_t crBkSel;
+      color32_t crSel;
+      color32_t cr;
 
       auto pstyle = get_style(pgraphics);
 
@@ -120,7 +120,7 @@ namespace simple_ui
       color ca;
       ca.set_rgb(RGB(227,227,210));
       ca.hls_rate(0.0,-0.33,-0.23);
-//      COLORREF crBorder = ca.get_rgb() | (0xff << 24);
+//      color32_t crBorder = ca.get_rgb() | (0xff << 24);
       //pgraphics->draw3d_rect(rectClient,crBorder,crBorder);
 
       if(m_ptree == nullptr)

@@ -40,7 +40,7 @@ nsUniversalDetector::nsUniversalDetector()
   mInputState = ePureAscii;
   mLastChar = '\0';
 
-  PRUint32 i;
+  PR::u32 i;
   for (i = 0; i < NUM_OF_CHARSET_PROBERS; i++)
     mCharSetProbers[i] = nsnull;
 }
@@ -69,7 +69,7 @@ void nsUniversalDetector::Reset()
   if (mEscCharSetProber)
     mEscCharSetProber->Reset();
 
-  PRUint32 i;
+  PR::u32 i;
   for (i = 0; i < NUM_OF_CHARSET_PROBERS; i++)
     if (mCharSetProbers[i])
       mCharSetProbers[i]->Reset();
@@ -79,7 +79,7 @@ void nsUniversalDetector::Reset()
 #define SHORTCUT_THRESHOLD      (float)0.95
 #define MINIMUM_THRESHOLD      (float)0.20
 
-void nsUniversalDetector::HandleData(const char* aBuf, PRUint32 aLen)
+void nsUniversalDetector::HandleData(const char* aBuf, PR::u32 aLen)
 {
   if(mDone) 
     return;
@@ -132,7 +132,7 @@ void nsUniversalDetector::HandleData(const char* aBuf, PRUint32 aLen)
       }
   }
   
-  PRUint32 i;
+  PR::u32 i;
   for (i = 0; i < aLen; i++)
   {
     //other than 0xa0, if every othe character is ascii, the page is ascii

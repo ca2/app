@@ -1158,7 +1158,7 @@ void simple_frame_window::on_reposition()
 }
 
 
-void simple_frame_window::ViewOnActivateFrame(__pointer(::user::impact) pview, UINT user, __pointer(::user::interaction) pframe)
+void simple_frame_window::ViewOnActivateFrame(__pointer(::user::impact) pview, ::u32 user, __pointer(::user::interaction) pframe)
 {
    UNREFERENCED_PARAMETER(pview);
    UNREFERENCED_PARAMETER(user);
@@ -1193,7 +1193,7 @@ void simple_frame_window::_001OnGetMinMaxInfo(::message::message * pmessage)
 void simple_frame_window::ShowControlBars(bool bShow, bool bLeaveFullScreenBarsOnHide)
 {
 
-   UINT nShow;
+   ::u32 nShow;
 
    if (bShow)
    {
@@ -1454,7 +1454,7 @@ void simple_frame_window::ActivateFrame(edisplay edisplay)
 }
 
 
-void simple_frame_window::GetBorderRect(RECT * prect)
+void simple_frame_window::GetBorderRect(RECT32 * prect)
 
 {
    *prect = m_rectBorder;
@@ -2643,7 +2643,7 @@ void simple_frame_window::on_after_set_parent()
 }
 
 
-bool simple_frame_window::get_client_rect(RECT * prect)
+bool simple_frame_window::get_client_rect(RECT32 * prect)
 {
 
    if (m_bWindowFrame && m_pframe != nullptr && !layout().is_full_screen() && !frame_is_transparent())
@@ -2902,13 +2902,13 @@ void simple_frame_window::OnDropFiles(HDROP hDropInfo)
 {
 
    SetActiveWindow();      // activate us first !
-   UINT nFiles = ::DragQueryFile(hDropInfo, (UINT)-1, nullptr, 0);
+   ::u32 nFiles = ::DragQueryFile(hDropInfo, (::u32)-1, nullptr, 0);
 
    ::file::patha patha;
 
    natural_wstring pwszFileName(char_count, _MAX_PATH);
 
-   for (UINT iFile = 0; iFile < nFiles; iFile++)
+   for (::u32 iFile = 0; iFile < nFiles; iFile++)
    {
 
       if (::DragQueryFileW(hDropInfo, iFile, pwszFileName, _MAX_PATH))
@@ -3048,7 +3048,7 @@ LRESULT simple_frame_window::OnDDEExecute(WPARAM wParam, LPARAM lParam)
    ::PostMessage((oswindow)wParam, WM_DDE_ACK, (WPARAM)get_handle(),
                  //IA64: Assume DDE LPARAMs are still 32-bit
                  ReuseDDElParam(lParam, WM_DDE_EXECUTE, WM_DDE_ACK,
-                                (UINT)0x8000, (uptr)hData));
+                                (::u32)0x8000, (uptr)hData));
 
    // don't execute the command when the ui is disabled
    if (!is_window_enabled())
@@ -3845,7 +3845,7 @@ void simple_frame_window::_001OnTimer(::timer * ptimer)
 }
 
 
-void simple_frame_window::OnNotifyIconContextMenu(UINT uiNotifyIcon)
+void simple_frame_window::OnNotifyIconContextMenu(::u32 uNotifyIcon)
 {
 
    auto psession = Session;
@@ -3861,7 +3861,7 @@ void simple_frame_window::OnNotifyIconContextMenu(UINT uiNotifyIcon)
 }
 
 
-void simple_frame_window::OnNotifyIconLButtonDblClk(UINT uiNotifyIcon)
+void simple_frame_window::OnNotifyIconLButtonDblClk(::u32 uNotifyIcon)
 {
 
    UNREFERENCED_PARAMETER(uiNotifyIcon);
@@ -3869,7 +3869,7 @@ void simple_frame_window::OnNotifyIconLButtonDblClk(UINT uiNotifyIcon)
 }
 
 
-void simple_frame_window::OnNotifyIconLButtonDown(UINT uiNotifyIcon)
+void simple_frame_window::OnNotifyIconLButtonDown(::u32 uNotifyIcon)
 {
 
    default_notify_icon_topic();
@@ -3996,7 +3996,7 @@ bool simple_frame_window::window_is_notify_icon_enabled()
 }
 
 
-//bool simple_frame_window::get_color(COLORREF & cr, ::user::e_color ecolor, ::user::interaction * pinteraction)
+//bool simple_frame_window::get_color(color32_t & cr, ::user::e_color ecolor, ::user::interaction * pinteraction)
 //{
 //
 //   if (m_pframe != nullptr)

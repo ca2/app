@@ -47,7 +47,7 @@ namespace draw2d_opengl
       if(m_bHasPointInternal)
       {
 
-         //return pointd((LONG) m_pointInternal.X, (LONG) m_pointInternal.Y);
+         //return pointd((::i32) m_pointInternal.X, (::i32) m_pointInternal.Y);
 
          return pointd(0, 0);
 

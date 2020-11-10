@@ -28,8 +28,8 @@ public:
    LONG_PTR set_window_long_ptr(int nIndex, LONG_PTR l);
 
 
-   bool _001ClientToScreen(LPPOINT lppoint);
-   bool _001ScreenToClient(LPPOINT lppoint);
+   bool _001ClientToScreen(POINT32 * lppoint);
+   bool _001ScreenToClient(POINT32 * lppoint);
    bool is_iconic();
    bool is_window_visible();
 

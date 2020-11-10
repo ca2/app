@@ -12,8 +12,8 @@ typedef i32 int_bool;
 
 
 typedef unsigned char         uchar;
-typedef unsigned short int    uint2;
-typedef unsigned int          uint4;
+typedef unsigned short int    ::u16;
+typedef unsigned int          ::u32;
 
 typedef unsigned char         byte;
 

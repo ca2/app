@@ -142,7 +142,7 @@ struct MAP_WM_MESSAGE
 {
 
 
-   UINT              nMsg;
+   ::u32              nMsg;
    const char *      pszMsg;
 
 
@@ -336,7 +336,7 @@ static const MAP_WM_MESSAGE allMessagesArray[] =
 };
 
 
-CLASS_DECL_AURA const char *  get_windows_message_name(UINT nMsg)
+CLASS_DECL_AURA const char *  get_windows_message_name(::u32 nMsg)
 {
 
    MAP_WM_MESSAGE * pmessage = (MAP_WM_MESSAGE *) allMessagesArray;

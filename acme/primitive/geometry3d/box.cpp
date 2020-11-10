@@ -238,7 +238,7 @@ index box::find_nearest_vertice(locationd point)
 }
 
 
-index box::find_nearest_vertice(LONG x, LONG y)
+index box::find_nearest_vertice(::i32 x, ::i32 y)
 {
 
    array < locationd >  verts = vertices();

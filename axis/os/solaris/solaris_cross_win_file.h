@@ -2,9 +2,9 @@
 
 
 #define INVALID_HANDLE_VALUE ((HANDLE)(long_ptr)-1)
-#define INVALID_FILE_SIZE ((DWORD)0xFFFFFFFF)
-#define INVALID_SET_FILE_POINTER ((DWORD)-1)
-#define INVALID_FILE_ATTRIBUTES ((DWORD)-1)
+#define INVALID_FILE_SIZE ((::u32)0xFFFFFFFF)
+#define INVALID_SET_FILE_POINTER ((::u32)-1)
+#define INVALID_FILE_ATTRIBUTES ((::u32)-1)
 
 #define FILE_BEGIN           0
 #define FILE_CURRENT         1
@@ -93,8 +93,8 @@
 #define FILE_ACTION_MODIFIED                0x00000003
 #define FILE_ACTION_RENAMED_OLD_NAME        0x00000004
 #define FILE_ACTION_RENAMED_NEW_NAME        0x00000005
-#define MAILSLOT_NO_MESSAGE             ((DWORD)-1)
-#define MAILSLOT_WAIT_FOREVER           ((DWORD)-1)
+#define MAILSLOT_NO_MESSAGE             ((::u32)-1)
+#define MAILSLOT_WAIT_FOREVER           ((::u32)-1)
 #define FILE_CASE_SENSITIVE_SEARCH          0x00000001
 #define FILE_CASE_PRESERVED_NAMES           0x00000002
 #define FILE_UNICODE_ON_DISK                0x00000004
@@ -135,28 +135,28 @@
 //      +-+-------------+---------------+-------------------------------+
 //
 //      typedef struct _ACCESS_MASK {
-//          WORD   SpecificRights;
-//          BYTE  StandardRights;
-//          BYTE  AccessSystemAcl : 1;
-//          BYTE  Reserved : 3;
-//          BYTE  GenericAll : 1;
-//          BYTE  GenericExecute : 1;
-//          BYTE  GenericWrite : 1;
-//          BYTE  GenericRead : 1;
+//          ::u16   SpecificRights;
+//          byte  StandardRights;
+//          byte  AccessSystemAcl : 1;
+//          byte  Reserved : 3;
+//          byte  GenericAll : 1;
+//          byte  GenericExecute : 1;
+//          byte  GenericWrite : 1;
+//          byte  GenericRead : 1;
 //      } ACCESS_MASK;
 //      typedef ACCESS_MASK *PACCESS_MASK;
 //
 //  but to make life simple for programmer's we'll allow them to specify
 //  a desired access mask by simply OR'ing together mulitple single rights
-//  and treat an access mask as a DWORD.  For example
+//  and treat an access mask as a ::u32.  For example
 //
 //      DesiredAccess = DELETE | READ_CONTROL
 //
-//  So we'll declare ACCESS_MASK as DWORD
+//  So we'll declare ACCESS_MASK as ::u32
 //
 
 // begin_wdm
-typedef DWORD ACCESS_MASK;
+typedef ::u32 ACCESS_MASK;
 typedef ACCESS_MASK *PACCESS_MASK;
 
 ////////////////////////////////////////////////////////////////////////

@@ -76,7 +76,7 @@ namespace app_app
 
       pgraphics->fill_solid_rect_dim(x, y + dBase * 6.0, dBase * 11.0, dBase * 5.0, ARGB(127, 255, 110, 150));
 
-      rectClient.deflate((LONG) dBase);
+      rectClient.deflate((::i32) dBase);
 
       for (int i = 0; i < dBase; i++)
       {

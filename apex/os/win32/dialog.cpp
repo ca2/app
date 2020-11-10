@@ -79,7 +79,7 @@ namespace win32
 
 #ifdef WINDOWS
 
-   INT_PTR CALLBACK dialog::DialogProc(HWND hwnd, UINT message, WPARAM wparam, LPARAM lparam)
+   INT_PTR CALLBACK dialog::DialogProc(HWND hwnd, ::u32 message, WPARAM wparam, LPARAM lparam)
    {
 
       dialog * pdialog;

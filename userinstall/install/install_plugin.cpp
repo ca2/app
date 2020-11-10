@@ -824,7 +824,7 @@ run_install:
 
 
 
-   void plugin::on_paint(::draw2d::graphics_pointer & pgraphics,const RECT & lprect)
+   void plugin::on_paint(::draw2d::graphics_pointer & pgraphics,const RECT32 & lprect)
    {
 
 #ifdef _UWP
@@ -833,14 +833,14 @@ run_install:
 
 #else
 
-      //DWORD dwTime1 = ::get_tick();
+      //::u32 dwTime1 = ::get_tick();
 
 
 
       //if(!m_bLogin && (m_bLogged || m_bHasCred) && !m_bCa2Login && !m_bCa2Logout && !m_bNativeLaunch && !is_installing() && System.install().is_ca2_installed())
       if(!m_bLogin && !m_bCa2Login && !m_bCa2Logout && !m_bNativeLaunch && !is_installing() && System.install().is_ca2_installed())
       {
-         //DWORD dwTime3 = ::get_tick();
+         //::u32 dwTime3 = ::get_tick();
 
          //TRACE("eval1 %d",dwTime3 - dwTime1);
 
@@ -848,7 +848,7 @@ run_install:
          if(ensure_tx(WM_APP+WM_USER,(void *)&lprect,sizeof(lprect)))
          {
 
-            //DWORD dwTime5 = ::get_tick();
+            //::u32 dwTime5 = ::get_tick();
 
             //TRACE("ensure_tx %d",dwTime5 - dwTime3);
 
@@ -938,14 +938,14 @@ run_install:
 
             }
 
-            //DWORD dwTime7 = ::get_tick();
+            //::u32 dwTime7 = ::get_tick();
 
             //TRACE("focus_update %d",dwTime7 - dwTime5);
 
 
             m_phost->blend_bitmap(pgraphics, lprect);
 
-            //DWORD dwTime9 = ::get_tick();
+            //::u32 dwTime9 = ::get_tick();
 
             //TRACE("blend %d",dwTime9 - dwTime7);
 
@@ -977,9 +977,9 @@ run_install:
 #endif
 
 
-      RECT rect;
+      RECT32 rect;
 
-      RECT rectWindow;
+      RECT32 rectWindow;
 
       get_window_rect(&rectWindow);
 
@@ -1040,7 +1040,7 @@ run_install:
          ::SelectObject(hdc, (HGDIOBJ) hpenOld);
          ::SelectObject(hdc, (HGDIOBJ) hbrushOld);*/
 
-         /*         RECT rect;
+         /*         RECT32 rect;
          rect.left      = 0;
          rect.top       = 0;
          rect.bottom    = cx;
@@ -1162,7 +1162,7 @@ run_install:
    //}
 
 
-   void plugin::on_paint_progress(::draw2d::graphics_pointer & pgraphics,const RECT & lprect)
+   void plugin::on_paint_progress(::draw2d::graphics_pointer & pgraphics,const RECT32 & lprect)
    {
 
       ::hotplugin::plugin::on_paint_progress(pgraphics, lprect);
@@ -1173,7 +1173,7 @@ run_install:
    double plugin::extract_spa_progress_rate()
    {
 
-      DWORD dwRead;
+      ::u32 dwRead;
 
       HANDLE hfile = ::create_file(::path::install_log(process_platform_dir_name2()), GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, nullptr, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr);
 
@@ -1344,7 +1344,7 @@ run_install:
 
 #endif
 
-   bool plugin::set_window_pos(iptr z,i32 x,i32 y,i32 cx,i32 cy,UINT nFlags)
+   bool plugin::set_window_pos(iptr z,i32 x,i32 y,i32 cx,i32 cy,::u32 nFlags)
    {
 
       bool bOk = ::hotplugin::plugin::set_window_pos(z, x, y, cx, cy, nFlags);
@@ -1567,13 +1567,13 @@ restart:
 
    }
 
-   void plugin::viewport_screen_to_client(POINT * ppt)
+   void plugin::viewport_screen_to_client(POINT32 * ppt)
    {
       //::user::interaction::viewport_screen_to_client(ppt);
    }
 
 
-   void plugin::viewport_client_to_screen(POINT * ppt)
+   void plugin::viewport_client_to_screen(POINT32 * ppt)
    {
       //::user::interaction::viewport_client_to_screen(ppt);
 
@@ -1633,7 +1633,7 @@ restart:
 
             m_rectSent = rect;
 
-            if(!ensure_tx(::hotplugin::message_set_window,(void *)&rect,sizeof(RECT)))
+            if(!ensure_tx(::hotplugin::message_set_window,(void *)&rect,sizeof(RECT32)))
             {
 
                m_phost->m_pbasecomposer->m_bRectSent = false;

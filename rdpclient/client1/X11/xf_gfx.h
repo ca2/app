@@ -27,32 +27,32 @@
 
 struct xf_gfx_surface
 {
-	UINT16 surfaceId;
-	UINT32 width;
-	UINT32 height;
+	::u3216 surfaceId;
+	::u32 width;
+	::u32 height;
 	BOOL alpha;
-	BYTE* data;
-	BYTE* stage;
+	byte* data;
+	byte* stage;
 /*	XImage* pimage;
 	int scanline;
 	int stageStep;
-	UINT32 format;
+	::u32 format;
 	BOOL outputMapped;
-	UINT32 outputOriginX;
-	UINT32 outputOriginY;
+	::u32 outputOriginX;
+	::u32 outputOriginY;
 	REGION16 invalidRegion;
 };
 typedef struct xf_gfx_surface xfGfxSurface;
 
 struct xf_gfx_cache_entry
 {
-	UINT64 cacheKey;
-	UINT32 width;
-	UINT32 height;
+	::u3264 cacheKey;
+	::u32 width;
+	::u32 height;
 	BOOL alpha;
-	BYTE* data;
+	byte* data;
 	int scanline;
-	UINT32 format;
+	::u32 format;
 };
 typedef struct xf_gfx_cache_entry xfGfxCacheEntry;
 

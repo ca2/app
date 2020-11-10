@@ -22,9 +22,9 @@ namespace user
       index           m_iSubItem;
       index           m_iListItem;
       string                  m_strText;
-      COLORREF                m_crText;
-      COLORREF                m_crTextBackground;
-      COLORREF                m_crItemBackground;
+      color32_t                m_crText;
+      color32_t                m_crTextBackground;
+      color32_t                m_crItemBackground;
       i32                     m_iState;
       index           m_iImage;
       bool                    m_bOk;

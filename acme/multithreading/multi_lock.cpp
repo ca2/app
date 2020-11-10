@@ -98,12 +98,12 @@ sync_result multi_lock::lock(const duration & duration, bool bWaitForAll, u32 dw
 
    }
 
-   DWORD iUpperBound = WAIT_OBJECT_0 + (DWORD) m_synca.m_hsyncaCache.get_count();
+   ::u32 iUpperBound = WAIT_OBJECT_0 + (::u32) m_synca.m_hsyncaCache.get_count();
 
    if(iResult == WAIT_FAILED)
    {
 
-      DWORD dw = ::get_last_error();
+      ::u32 dw = ::get_last_error();
 
       // TRACELASTERROR();
 
@@ -156,7 +156,7 @@ bool multi_lock::unlock()
 }
 
 
-bool multi_lock::unlock(LONG lCount, LPLONG pPrevCount /* =nullptr */)
+bool multi_lock::unlock(::i32 lCount, LPLONG pPrevCount /* =nullptr */)
 {
 
    bool bGotOne = false;

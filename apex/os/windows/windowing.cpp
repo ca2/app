@@ -65,7 +65,7 @@ CLASS_DECL_APEX bool get_gui_thread_info(PGUITHREADINFO pinfo)
 
    }
 
-   DWORD dwThread = GetWindowThreadProcessId(hwndForeground, nullptr);
+   ::u32 dwThread = GetWindowThreadProcessId(hwndForeground, nullptr);
 
    xxf_zerop(pinfo);
 
@@ -74,7 +74,7 @@ CLASS_DECL_APEX bool get_gui_thread_info(PGUITHREADINFO pinfo)
    if (!::GetGUIThreadInfo(dwThread, pinfo))
    {
 
-      DWORD dwLastError = ::GetLastError();
+      ::u32 dwLastError = ::GetLastError();
 
       return false;
 
@@ -266,7 +266,7 @@ CLASS_DECL_APEX int_bool show_window(oswindow oswindow, int iShowCmd)
 //}
 //
 //
-//int_bool point_is_window_origin(POINT ptHitTest, oswindow oswindowExclude, int iMargin)
+//int_bool point_is_window_origin(POINT32 ptHitTest, oswindow oswindowExclude, int iMargin)
 //{
 //
 //   auto poswindowa = get_top_level_windows();

@@ -40,7 +40,7 @@ namespace uwp
       virtual bool GetLastAccessTime(::datetime::time& refTime) const;
       virtual bool GetCreationTime(::datetime::time& refTime) const;
 
-      virtual bool MatchesMask(DWORD dwMask) const;
+      virtual bool MatchesMask(::u32 dwMask) const;
 
       virtual bool IsDots() const;
       // these aren't virtual because they all use MatchesMask(), which is
@@ -55,7 +55,7 @@ namespace uwp
 
       // Operations
       void close();
-      virtual bool FindFile(const char * pstrName = nullptr, DWORD dwUnused = 0);
+      virtual bool FindFile(const char * pstrName = nullptr, ::u32 dwUnused = 0);
       virtual bool FindNextFile();
 
       virtual void CloseContext();

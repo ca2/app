@@ -98,15 +98,15 @@ namespace comparison
 #if defined(WINDOWS)
 
    template < >
-   inline bool lt(i64 i, unsigned __int64 ui)
+   inline bool lt(i64 i, unsigned ::i64 ui)
    {
-      return i < 0 ? true : (unsigned __int64)i < ui;
+      return i < 0 ? true : (unsigned ::i64)i < ui;
    }
 
    template < >
-   inline bool lt(DWORD dw, int i)
+   inline bool lt(::u32 dw, int i)
    {
-      return i < 0 ? false : dw < (DWORD)i;
+      return i < 0 ? false : dw < (::u32)i;
    }
 
 #endif
@@ -211,7 +211,7 @@ namespace comparison
 
 #ifdef WINDOWS
    template < >
-   inline bool gt(DWORD dw, int i)
+   inline bool gt(::u32 dw, int i)
    {
       return i < 0 ? true : dw >((unsigned int)dw);
    }

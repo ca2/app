@@ -20,8 +20,8 @@ namespace os
       int                        m_w;
       int                        m_h;
 /*      ::image_pointer           m_pimage;
-      SIZE                       m_size;
-      POINT                      m_point;
+      SIZE32                       m_size;
+      POINT32                      m_point;
       window_xlib                m_xlib;
 
 
@@ -54,19 +54,19 @@ namespace os
 
       virtual ~simple_ui();
 
-      virtual bool create_window(LPCRECT lprect);
+      virtual bool create_window(LPCRECT32 lprect);
 
-      virtual bool prepare_window(LPCRECT lprect);
+      virtual bool prepare_window(LPCRECT32 lprect);
 
 
       using ::user::interaction::_001ClientToScreen;
-      virtual void _001ClientToScreen(POINT * ppt);
+      virtual void _001ClientToScreen(POINT32 * ppt);
 
       using ::user::interaction::_001ScreenToClient;
-      virtual void _001ScreenToClient(POINT * ppt);
+      virtual void _001ScreenToClient(POINT32 * ppt);
 
-      virtual void get_window_rect(RECT * prect);
-      virtual void get_client_rect(RECT * prect);
+      virtual void get_window_rect(RECT32 * prect);
+      virtual void get_client_rect(RECT32 * prect);
 
 
       virtual bool show_window(bool bShow = true);

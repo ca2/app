@@ -22,7 +22,7 @@ CLASS_DECL_APEX void __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_
 //::apex::application *     win_application_create(::apex::application * pappSystem, const char * pszId);
 //::apex::application *     win_instantiate_application(::apex::application * pappSystem, const char * pszId);
 //int                     win_application_procedure(::apex::application * pappSystem)
-//UINT c_cdecl          win_application_thread_proc(LPVOID);
+//::u32 c_cdecl          win_application_thread_proc(LPVOID);
 /////////////////////////////////////////////////////////////////////////////
 // Standard WinMain implementation
 //  Can be replaced as long as '::ca2::WinInit' is called first

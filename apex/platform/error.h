@@ -3,8 +3,8 @@
 
 //
 //
-//CLASS_DECL_APEX DWORD get_last_error();
-//CLASS_DECL_APEX void set_last_error(DWORD dw);
+//CLASS_DECL_APEX ::u32 get_last_error();
+//CLASS_DECL_APEX void set_last_error(::u32 dw);
 
 
 
@@ -14,7 +14,7 @@
 //{
 //public:
 //
-//   inline static DWORD get_last_error()
+//   inline static ::u32 get_last_error()
 //   {
 //
 //      return errno;
@@ -37,7 +37,7 @@
 //{
 //public:
 //
-//   static DWORD get_last_error() { return ::get_last_error(); }
+//   static ::u32 get_last_error() { return ::get_last_error(); }
 //
 //   static string GetErrorDescription(int iErrorCode = get_last_error())
 //   {

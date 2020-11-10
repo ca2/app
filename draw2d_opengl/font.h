@@ -13,7 +13,7 @@ namespace draw2d_opengl
       
       HDC                           m_hdcFont;
       HFONT                         m_hfont;
-      GLuint	                     m_baseFont;				// Base Display List For The Font Set
+      GL::u32	                     m_baseFont;				// Base Display List For The Font Set
 
 #ifdef WINDOWS
       GLYPHMETRICSFLOAT             m_gmf[256];	// Storage For Information About Our Outline Font Characters

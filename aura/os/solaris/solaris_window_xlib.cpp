@@ -38,22 +38,22 @@ void window_xlib::create(oswindow window, i64 cxParam, i64 cyParam, int iStrideP
 
    m_size.cy = cyParam;
 
-   //if(iStrideParam < 0 || iStrideParam < (m_size.cx * sizeof(COLORREF)))
+   //if(iStrideParam < 0 || iStrideParam < (m_size.cx * sizeof(color32_t)))
    {
 
-      m_iScan = m_size.cx * sizeof(COLORREF);
+      m_iScan = m_size.cx * sizeof(color32_t);
 
    }
    /*else
    {
 
-      m_iScan = ((iStrideParam + sizeof(COLORREF) - 1) & ~sizeof(COLORREF));
+      m_iScan = ((iStrideParam + sizeof(color32_t) - 1) & ~sizeof(color32_t));
 
    }*/
 
    m_mem.set_size(cyParam * m_iScan);
 
-/*   m_pimage = XCreateImage(window->display(), window->draw2d(), window->m_iDepth, ZPixmap, 0, (char *) m_mem->get_data(), cxParam, cyParam, sizeof(COLORREF) * 8, m_iScan);
+/*   m_pimage = XCreateImage(window->display(), window->draw2d(), window->m_iDepth, ZPixmap, 0, (char *) m_mem->get_data(), cxParam, cyParam, sizeof(color32_t) * 8, m_iScan);
 
    m_pdc = new device_context();
 
@@ -79,7 +79,7 @@ void window_xlib::destroy()
 }
 
 
-void window_xlib::update_window(oswindow window, COLORREF * pOsBitmapData, LPCRECT lpcrect, int iStride)
+void window_xlib::update_window(oswindow window, color32_t * pOsBitmapData, LPCRECT32 lpcrect, int iStride)
 {
 
    single_lock sl(&user_mutex());
@@ -102,7 +102,7 @@ void window_xlib::update_window(oswindow window, COLORREF * pOsBitmapData, LPCRE
 
    //__memset(pOsBitmapData, 0x44, min(iStride * 16, iStride * m_size.cy));
 
-   copy_colorref((COLORREF *) m_mem.get_data(), pOsBitmapData, iStride);
+   copy_colorref((color32_t *) m_mem.get_data(), pOsBitmapData, iStride);
 
 
 

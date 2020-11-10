@@ -123,7 +123,7 @@ typedef unsigned char guchar;
 typedef short gshort;
 typedef unsigned short gushort;
 typedef int gint;
-typedef unsigned int guint;
+typedef unsigned int g::u32;
 typedef long glong;
 typedef unsigned long gulong;
 

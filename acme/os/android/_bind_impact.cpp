@@ -4,7 +4,7 @@
 #include "acme/user/interaction_prodevian.h"
 
 
-int SetMainScreenRect(LPCRECT lpcrect);
+int SetMainScreenRect(LPCRECT32 lpcrect);
 
 extern "C"
 JNIEXPORT void JNICALL Java_com_android_1app_impact_render_1impact(JNIEnv * env, jobject  obj, jobject bitmap, jlong  time_ms, jobject result)

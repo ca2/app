@@ -63,7 +63,7 @@ namespace simple_ui
       int iCount = rectDraw.width();
       int jCount = rectDraw.height();
 
-      BYTE * point = (BYTE *)m_pimage->get_data();
+      byte * point = (byte *)m_pimage->get_data();
 
       for (i = 0; i < iCount; i++)
       {
@@ -379,9 +379,9 @@ namespace simple_ui
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-      COLORREF crOut;
+      color32_t crOut;
 
-      COLORREF crIn;
+      color32_t crIn;
 
       /*   if (eschema == ::hotplugin::plugin::schema_darker)
          {

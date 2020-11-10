@@ -314,9 +314,9 @@ Opened:
          ASSERT(m_estate == state_initial);
 
          m_pwaveformat->wFormatTag        = 0;
-         m_pwaveformat->nChannels         = (WORD) uiChannelCount;
+         m_pwaveformat->nChannels         = (::u16) uiChannelCount;
          m_pwaveformat->nSamplesPerSec    = uiSamplesPerSec;
-         m_pwaveformat->wBitsPerSample    = (WORD) uiBitsPerSample;
+         m_pwaveformat->wBitsPerSample    = (::u16) uiBitsPerSample;
          m_pwaveformat->nBlockAlign       = m_pwaveformat->wBitsPerSample * m_pwaveformat->nChannels / 8;
          m_pwaveformat->nAvgBytesPerSec   = m_pwaveformat->nSamplesPerSec * m_pwaveformat->nBlockAlign;
          m_pwaveformat->cbSize            = 0;

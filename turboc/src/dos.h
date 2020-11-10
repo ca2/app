@@ -65,7 +65,7 @@ __BEGIN_DECLS
 
 //
 CLASS_DECL_TURBOC void gettime (struct time *timep);
-CLASS_DECL_TURBOC void delay (guint gettime);
+CLASS_DECL_TURBOC void delay (g::u32 gettime);
 
 __END_DECLS
 //--------------------------------------------------------------------------

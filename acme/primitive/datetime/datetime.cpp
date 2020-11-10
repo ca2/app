@@ -610,7 +610,7 @@ CLASS_DECL_ACME i64 first_nano()
 
 
 //extern "C"
-CLASS_DECL_ACME DWORD get_fast_tick_count()
+CLASS_DECL_ACME ::u32 get_fast_tick_count()
 {
 
 #ifdef WINDOWS
@@ -628,7 +628,7 @@ CLASS_DECL_ACME DWORD get_fast_tick_count()
 
    }
 
-   return (DWORD)(tv.tv_sec * 1000 + tv.tv_usec / 1000);
+   return (::u32)(tv.tv_sec * 1000 + tv.tv_usec / 1000);
 
 #endif
 

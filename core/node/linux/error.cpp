@@ -1,8 +1,8 @@
 #include "framework.h"
 
-string get_error_message(DWORD dwError)
+string get_error_message(::u32 dwError)
 {
-   LPSTR pBuffer;
+   char * pBuffer;
 
    string str;
 //   FormatMessage(
@@ -11,7 +11,7 @@ string get_error_message(DWORD dwError)
 //      nullptr,
 //      dwError,
 //      0,
-//      (LPSTR) &pBuffer,
+//      (char *) &pBuffer,
 
 //      1,
 //      nullptr);

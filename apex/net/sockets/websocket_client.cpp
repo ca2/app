@@ -15,7 +15,7 @@
 *      Number of bytes required.
 */
 static inline memsize
-uint32_size(u32 v)
+::u32_size(u32 v)
 {
    if (v < (1UL << 7))
    {
@@ -52,7 +52,7 @@ uint32_size(u32 v)
 *      Number of bytes written to `out`.
 */
 static inline memsize
-uint32_pack(u32 value, u8 *out)
+::u32_pack(u32 value, u8 *out)
 {
    unsigned rv = 0;
 
@@ -82,18 +82,18 @@ uint32_pack(u32 value, u8 *out)
 }
 
 
-CLASS_DECL_APEX void websocket_prefix_varuint(memory & m, unsigned int ui)
+CLASS_DECL_APEX void websocket_prefix_var::u32(memory & m, unsigned int ui)
 {
 
-   auto iSize = uint32_size(ui);
+   auto iSize = ::u32_size(ui);
 
    m.allocate_add_up(iSize);
 
    m.move(iSize);
 
-   //auto iSize2 = uint32_pack(ui, m.get_data());
+   //auto iSize2 = ::u32_pack(ui, m.get_data());
    
-   uint32_pack(ui, m.get_data());
+   ::u32_pack(ui, m.get_data());
 
 }
 

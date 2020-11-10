@@ -18,7 +18,7 @@ namespace ftp
       file();
       virtual ~file();
 
-      bool Open( const string& strFileName, UINT uiMode);
+      bool Open( const string& strFileName, ::u32 uMode);
 
       bool close();
 
@@ -32,9 +32,9 @@ namespace ftp
 
       virtual string GetLocalStreamName() const override;
 
-      virtual UINT GetLocalStreamSize() const override;
+      virtual ::u32 GetLocalStreamSize() const override;
 
-      virtual void SetLocalStreamOffset(DWORD dwOffsetFromBeginOfStream) override;
+      virtual void SetLocalStreamOffset(::u32 dwOffsetFromBeginOfStream) override;
 
       virtual void OnBytesReceived(const memory & vBuffer, long lReceivedBytes) override;
 

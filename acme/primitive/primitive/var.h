@@ -62,8 +62,8 @@ public:
       double                     m_d;
       double *                   m_pd;
       var *                      m_pvar;
-      __time64_t                 m_time;
-      FILETIME                   m_filetime;
+      time_t                     m_time;
+      filetime_t                 m_filetime;
       id *                       m_pid;
       property *                 m_pprop;
       class duration             m_duration;
@@ -116,8 +116,10 @@ public:
    var(const id & id);
    var(bool * pb);
    var(const ::datetime::time & time);
+#ifdef WINDOWS
    var(const FILETIME & time);
    var(const SYSTEMTIME & time);
+#endif
    var(string * pstr);
    var(var * pvar);
    var(const var * pvar);
@@ -371,7 +373,7 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
    operator bool() const;
 
 #ifdef WINDOWS
-   operator LONG() const;
+   operator ::i32() const;
 #elif defined(__APPLE__) || defined(ANDROID) || defined(RASPBIAN)
    operator long() const;
 #endif
@@ -496,8 +498,8 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
    var & operator = (::u32 * pinteraction);
 #ifdef WINDOWS
    var & operator = (LPDWORD lpdw);
-   var & operator = (LONG l);
-   var & operator = (DWORD dw);
+   var & operator = (::i32 l);
+   var & operator = (::u32 dw);
 #elif defined(__APPLE__) || defined(ANDROID) || defined(RASPBIAN)
    var & operator = (long l);
 #endif
@@ -508,8 +510,10 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
    var & operator = (float f);
    var & operator = (double d);
    var & operator = (const ::datetime::time & time);
+#ifdef WINDOWS
    var & operator = (const FILETIME & time);
    var & operator = (const SYSTEMTIME & time);
+#endif
    inline var & operator = (const char * psz);
    inline var & operator = (const string & str);
    inline var & operator = (string && str);
@@ -1027,7 +1031,7 @@ inline uptr var::uptr(::uptr uiDefault) const
 
 #ifdef WINDOWS
 
-inline var::operator LONG () const
+inline var::operator ::i32 () const
 {
 
    return i32();

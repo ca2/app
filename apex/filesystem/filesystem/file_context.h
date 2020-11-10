@@ -311,19 +311,19 @@ public:
    string sys_temp(const char * lpszName, const char * pszExtension);
 
 
-   //virtual ::file_result get_file(const var & varFile, UINT nOpenFlags);
+   //virtual ::file_result get_file(const var & varFile, ::u32 nOpenFlags);
 
 
    //virtual bool is_read_only(const ::file::path & psz);
 
-   inline auto open_for_reading(const var & varFile, UINT nOpenFlags = ::file::type_binary)
+   inline auto open_for_reading(const var & varFile, ::u32 nOpenFlags = ::file::type_binary)
    {
 
       return get_file(varFile, nOpenFlags | ::file::mode_read);
 
    }
 
-   inline auto create_for_writing(const var & varFile, UINT nOpenFlags = ::file::type_binary | ::file::defer_create_directory)
+   inline auto create_for_writing(const var & varFile, ::u32 nOpenFlags = ::file::type_binary | ::file::defer_create_directory)
    {
 
       return get_file(varFile, nOpenFlags | ::file::mode_create | ::file::mode_write);
@@ -332,7 +332,7 @@ public:
 
 
    // get a file and if there are exceptions, should show end user friendly messages
-   virtual rp(::file::file) friendly_get_file(const var & varFile, UINT nOpenFlags);
+   virtual rp(::file::file) friendly_get_file(const var & varFile, ::u32 nOpenFlags);
 
 
    //void dtf(const ::file::path & pszFile, const ::file::path & pszDir);

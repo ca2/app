@@ -46,7 +46,7 @@ GC x11_create_gc(Colormap colormap, Display* pdisplay, Window window, byte a, by
 
    GC gc = XCreateGC(pdisplay, window, 0, 0);
 
-   COLORREF cr = ARGB(a, r * a / 255, g * a / 255, b * a / 255);
+   color32_t cr = ARGB(a, r * a / 255, g * a / 255, b * a / 255);
 
    XSetForeground (pdisplay, gc, cr);
 

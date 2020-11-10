@@ -23,16 +23,16 @@ namespace filemanager
       comptr < IContextMenu2 >   m_pcontextmenu2;
 
 #endif
-      UINT              m_uiMinId;
+      ::u32              m_uiMinId;
 
 
       context_menu();
       virtual ~context_menu();
 
 
-      void OnCommand(UINT uiId);
-      void GetMessageString(UINT nID, string & rstrMessage);
-      void GetVerb(UINT nID, string & rwstrMessage);
+      void OnCommand(::u32 uId);
+      void GetMessageString(::u32 nID, string & rstrMessage);
+      void GetVerb(::u32 nID, string & rwstrMessage);
 
 
    };

@@ -6,7 +6,7 @@
 //static string * m_pstrOutputDebugStringA = nullptr;
 ::mutex * g_pmutexOutputDebugStringA = nullptr;
 
-VOID WINAPI output_debug_string(LPCSTR lpOutputString)
+VOID WINAPI output_debug_string(const char * lpOutputString)
 {
 
    sync_lock sl(g_pmutexOutputDebugStringA);
@@ -100,15 +100,15 @@ CLASS_DECL_APEX void os_trace(e_trace_level elevel, const char * pszTag, const c
 
 
 
-DWORD
+::u32
 WINAPI
 FormatMessage(
-DWORD dwFlags,
-LPCVOID lpSource,
-DWORD dwMessageId,
-DWORD dwLanguageId,
-LPSTR lpBuffer,
-DWORD nSize,
+::u32 dwFlags,
+const void * lpSource,
+::u32 dwMessageId,
+::u32 dwLanguageId,
+char * lpBuffer,
+::u32 nSize,
 va_list *Arguments
 )
 {

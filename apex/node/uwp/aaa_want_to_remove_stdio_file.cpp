@@ -26,7 +26,7 @@ namespace uwp
    }
 
 
-   ::status::result stdio_file::open(const ::file::path & lpszFileName,UINT nOpenFlags)
+   ::status::result stdio_file::open(const ::file::path & lpszFileName,::u32 nOpenFlags)
    {
 
       ASSERT(lpszFileName != nullptr);
@@ -128,7 +128,7 @@ namespace uwp
 
       memsize nRead = 0;
 
-      if ((nRead = fread(lpBuf, sizeof(BYTE), nCount, m_pStream)) == 0 && !feof(m_pStream))
+      if ((nRead = fread(lpBuf, sizeof(byte), nCount, m_pStream)) == 0 && !feof(m_pStream))
          ::file::throw_stdio_exception(::error_file, _doserrno, m_path);
       if (ferror(m_pStream))
       {
@@ -144,7 +144,7 @@ namespace uwp
       ASSERT(m_pStream != nullptr);
       ASSERT(__is_valid_address(lpBuf, nCount, FALSE));
 
-      if (fwrite(lpBuf, sizeof(BYTE), nCount, m_pStream) != nCount)
+      if (fwrite(lpBuf, sizeof(byte), nCount, m_pStream) != nCount)
          ::file::throw_status(error_file, _doserrno, m_path);
    }
 
@@ -157,7 +157,7 @@ namespace uwp
          ::file::throw_status(error_disk_full, _doserrno, m_path);
    }
 
-   char * stdio_file::read_string(char * lpsz, UINT nMax)
+   char * stdio_file::read_string(char * lpsz, ::u32 nMax)
    {
       ASSERT(lpsz != nullptr);
       ASSERT(__is_valid_address(lpsz, nMax));
@@ -264,7 +264,7 @@ namespace uwp
       if (m_pStream != nullptr)
          nErr = fclose(m_pStream);
 
-      m_hFile = (UINT) hFileNull;
+      m_hFile = (::u32) hFileNull;
       m_bCloseOnDelete = FALSE;
       m_pStream = nullptr;
 
@@ -278,7 +278,7 @@ namespace uwp
 
       if (m_pStream != nullptr && m_bCloseOnDelete)
          fclose(m_pStream);  // close but ignore errors
-      m_hFile = (UINT) hFileNull;
+      m_hFile = (::u32) hFileNull;
       m_pStream = nullptr;
       m_bCloseOnDelete = FALSE;
    }
@@ -330,9 +330,9 @@ namespace uwp
    {
       ASSERT_VALID(this);
 
-      LONG nCurrent;
-      LONG nLength;
-      LONG nResult;
+      ::i32 nCurrent;
+      ::i32 nLength;
+      ::i32 nResult;
 
       nCurrent = ftell(m_pStream);
       if (nCurrent == -1)

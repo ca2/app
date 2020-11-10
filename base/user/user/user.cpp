@@ -736,7 +736,7 @@ namespace base
    //   return nullptr;
    //}
 
-   //bool session::get_monitor_rect(index iMonitor, RECT * prect)
+   //bool session::get_monitor_rect(index iMonitor, RECT32 * prect)
 
    //{
 
@@ -1485,7 +1485,7 @@ namespace base
 //
 //
 //
-//COLORREF argb_swap_rb(COLORREF cr)
+//color32_t argb_swap_rb(color32_t cr)
 //{
 //   return ARGB(
 //      colorref_get_a_value(cr),

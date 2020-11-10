@@ -6,7 +6,7 @@
 
 #define __msg_entry(x) if(uMessage == (x)) { str = (#x); }
 
-CLASS_DECL_APEX string get_message_text(UINT uMessage, bool bWithNumbers)
+CLASS_DECL_APEX string get_message_text(::u32 uMessage, bool bWithNumbers)
 {
    string str;
    if (uMessage == -1)
@@ -184,17 +184,17 @@ return str;
 
 }
 
-UINT g_puiaMessageMouseMove[] =
+::u32 g_puiaMessageMouseMove[] =
 {
 
    e_message_mouse_move,
    WM_SETCURSOR,
    WM_NCHITTEST,
    e_message_non_client_mouse_move,
-   (UINT)-1
+   (::u32)-1
 };
 
-UINT g_puiaMessageWindowDeactivating[] =
+::u32 g_puiaMessageWindowDeactivating[] =
 {
    // 2019-06-28-00-28
    WM_NCACTIVATE,
@@ -203,10 +203,10 @@ UINT g_puiaMessageWindowDeactivating[] =
    e_message_kill_focus,
    WM_IME_SETCONTEXT,
    WM_IME_NOTIFY,
-   (UINT)-1
+   (::u32)-1
 };
 
-UINT g_puiaMessageWindowActivating[] =
+::u32 g_puiaMessageWindowActivating[] =
 {
    // 2019-06-28-00-33
    WM_WINDOWPOSCHANGING,
@@ -220,10 +220,10 @@ UINT g_puiaMessageWindowActivating[] =
    e_message_set_focus,
 
 
-   (UINT)-1
+   (::u32)-1
 };
 
-UINT f[] =
+::u32 f[] =
 {
    // IME, Input Method Editor Client : ca2 Framework
    // Viagem da Mummi... : Yakissoba delicioso!!
@@ -251,18 +251,18 @@ UINT f[] =
    WM_DWMNCRENDERINGCHANGED,
    WM_PAINT,
    e_message_redraw,
-   (UINT)-1
+   (::u32)-1
 };
 
 
-UINT g_puiaMessageWindowCreated[] =
+::u32 g_puiaMessageWindowCreated[] =
 {
    WM_GETICON,
-   (UINT)-1
+   (::u32)-1
 };
 
 
-UINT g_puiaMessageInputLanguageChange[] =
+::u32 g_puiaMessageInputLanguageChange[] =
 {
    // IME, Input Method Editor Client : ca2 Framework
    // Mummi no �nibus... already missing!!
@@ -272,7 +272,7 @@ UINT g_puiaMessageInputLanguageChange[] =
    WM_INPUTLANGCHANGE,
    WM_IME_NOTIFY,
    e_message_key_up,
-   (UINT)-1
+   (::u32)-1
 };
 
 

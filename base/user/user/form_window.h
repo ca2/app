@@ -23,9 +23,9 @@ namespace user
 
       //using ::user::interaction::_001IsPointInside;
       virtual bool _001IsPointInside(interaction * pinteraction, point64 point) override;
-      virtual void control_get_window_rect(interaction * pinteraction, RECT * prect) override;
+      virtual void control_get_window_rect(interaction * pinteraction, RECT32 * prect) override;
 
-      virtual void control_get_client_rect(interaction * pinteraction, RECT * prect) override;
+      virtual void control_get_client_rect(interaction * pinteraction, RECT32 * prect) override;
 
       using form_callback::update;
       using form_control::update;
@@ -72,13 +72,13 @@ namespace user
 
       bool OnCommand(WPARAM wparam, LPARAM lparam);
 
-      bool OnCommandButton(interaction * pinteraction, UINT uiNotificationCode, LPARAM lparam);
+      bool OnCommandButton(interaction * pinteraction, ::u32 uNotificationCode, LPARAM lparam);
 
-      bool OnCommandCheckBox(interaction * pinteraction, UINT uiNotificationCode, LPARAM lparam);
+      bool OnCommandCheckBox(interaction * pinteraction, ::u32 uNotificationCode, LPARAM lparam);
 
-      bool OnCommandComboBox(interaction * pinteraction, UINT uiNotificationCode, LPARAM lparam);
+      bool OnCommandComboBox(interaction * pinteraction, ::u32 uNotificationCode, LPARAM lparam);
 
-      bool OnCommandEdit(interaction * pinteraction, UINT uiNotificationCode, LPARAM lparam);
+      bool OnCommandEdit(interaction * pinteraction, ::u32 uNotificationCode, LPARAM lparam);
 
 
 

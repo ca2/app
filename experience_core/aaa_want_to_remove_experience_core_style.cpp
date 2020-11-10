@@ -321,7 +321,7 @@ namespace experience_core
    }
 
 
-   void user_style::_001OnTabPaneDrawTitle(::user::tab_pane & pane,::user::tab * ptab,::draw2d::graphics_pointer & pgraphics,LPCRECT lpcrect,::draw2d::brush_pointer & brushText)
+   void user_style::_001OnTabPaneDrawTitle(::user::tab_pane & pane,::user::tab * ptab,::draw2d::graphics_pointer & pgraphics,LPCRECT32 lpcrect,::draw2d::brush_pointer & brushText)
    {
 
       string_array & straTitle = pane.m_straTitle;
@@ -388,7 +388,7 @@ namespace experience_core
 
       {
 
-         //         DWORD dwTime2 = ::get_tick();
+         //         ::u32 dwTime2 = ::get_tick();
 
          //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
          //TRACE("usertab::on_layout call time1= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
@@ -635,7 +635,7 @@ namespace experience_core
    bool user_style::_001DrawSimpleScrollBar(::draw2d::graphics_pointer & pgraphics, simple_scroll_bar * pbar)
    {
 
-      COLORREF crBackground = 0;
+      color32_t crBackground = 0;
 
       pbar->get_color(crBackground, ::user::color_scrollbar_background);
 
@@ -684,11 +684,11 @@ namespace experience_core
       if (pbar->m_bTracking || (bool)pbar->prop("tracking_on"))
       {
 
-         DWORD tickFadeIn = 490;
+         ::u32 tickFadeIn = 490;
 
-         DWORD tickFadeOut = 490;
+         ::u32 tickFadeOut = 490;
 
-         byte uchAlpha = max(0, min(255, pbar->prop("tracking_alpha").uint32()));
+         byte uchAlpha = max(0, min(255, pbar->prop("tracking_alpha").::u32()));
 
          if (pbar->m_bTracking)
          {
@@ -731,7 +731,7 @@ namespace experience_core
 
          if ((bool)pbar->prop("tracking_fade_in"))
          {
-            DWORD dwFade = pbar->prop("tracking_start").tick().elapsed();
+            ::u32 dwFade = pbar->prop("tracking_start").tick().elapsed();
             if (dwFade < tickFadeIn)
             {
                uchAlpha = (byte)min(255, max(0, (dwFade * 255 / tickFadeIn)));
@@ -745,7 +745,7 @@ namespace experience_core
          }
          else if ((bool)pbar->prop("tracking_fade_out"))
          {
-            DWORD dwFade = pbar->prop("tracking_start").tick().elapsed();
+            ::u32 dwFade = pbar->prop("tracking_start").tick().elapsed();
             if (dwFade < tickFadeOut)
             {
                uchAlpha = (byte)(255 - min(255, max(0, (dwFade * 255 / tickFadeOut))));
@@ -923,7 +923,7 @@ namespace experience_core
 
 
 
-   bool user_style::get_color(COLORREF & cr, ::user::e_color ecolor)
+   bool user_style::get_color(color32_t & cr, ::user::e_color ecolor)
    {
 
       if (ecolor == ::user::color_background)

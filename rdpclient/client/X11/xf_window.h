@@ -95,34 +95,34 @@ struct xf_app_window
 	int height;
 	char* title;
 
-	UINT32 windowId;
-	UINT32 ownerWindowId;
+	::u32 windowId;
+	::u32 ownerWindowId;
 
-	UINT32 dwStyle;
-	UINT32 dwExStyle;
-	UINT32 showState;
+	::u32 dwStyle;
+	::u32 dwExStyle;
+	::u32 showState;
 
 	INT32 clientOffsetX;
 	INT32 clientOffsetY;
-	UINT32 clientAreaWidth;
-	UINT32 clientAreaHeight;
+	::u32 clientAreaWidth;
+	::u32 clientAreaHeight;
 
 	INT32 windowOffsetX;
 	INT32 windowOffsetY;
 	INT32 windowClientDeltaX;
 	INT32 windowClientDeltaY;
-	UINT32 windowWidth;
-	UINT32 windowHeight;
-	UINT32 numWindowRects;
+	::u32 windowWidth;
+	::u32 windowHeight;
+	::u32 numWindowRects;
 	RECTANGLE_16* windowRects;
 
 	INT32 visibleOffsetX;
 	INT32 visibleOffsetY;
-	UINT32 numVisibilityRects;
+	::u32 numVisibilityRects;
 	RECTANGLE_16* visibilityRects;
 
-	UINT32 localWindowOffsetCorrX;
-	UINT32 localWindowOffsetCorrY;
+	::u32 localWindowOffsetCorrX;
+	::u32 localWindowOffsetCorrY;
 
 	GC gc;
 	int shmid;
@@ -133,7 +133,7 @@ struct xf_app_window
 	BOOL is_mapped;
 	BOOL is_transient;
 	xfLocalMove local_move;
-	BYTE rail_state;
+	byte rail_state;
 	BOOL rail_ignore_configure;
 };
 
@@ -151,17 +151,17 @@ void xf_ResizeDesktopWindow(xfContext* xfc, xfWindow* window, int width, int hei
 void xf_DestroyDesktopWindow(xfContext* xfc, xfWindow* window);
 
 BOOL xf_GetWindowProperty(xfContext* xfc, Window window, Atom property, int length,
-		unsigned long* nitems, unsigned long* bytes, BYTE** prop);
+		unsigned long* nitems, unsigned long* bytes, byte** prop);
 void xf_SendClientEvent(xfContext* xfc, Window window, Atom atom, unsigned int numArgs, ...);
 
 int xf_AppWindowInit(xfContext* xfc, xfAppWindow* appWindow);
 void xf_SetWindowText(xfContext* xfc, xfAppWindow* appWindow, char* name);
 void xf_MoveWindow(xfContext* xfc, xfAppWindow* appWindow, int x, int y, int width, int height);
-void xf_ShowWindow(xfContext* xfc, xfAppWindow* appWindow, BYTE state);
+void xf_ShowWindow(xfContext* xfc, xfAppWindow* appWindow, byte state);
 //void xf_SetWindowIcon(xfContext* xfc, xfAppWindow* appWindow, rdpIcon* icon);
 void xf_SetWindowRects(xfContext* xfc, xfAppWindow* appWindow, RECTANGLE_16* rects, int nrects);
-void xf_SetWindowVisibilityRects(xfContext* xfc, xfAppWindow* appWindow, UINT32 rectsOffsetX, UINT32 rectsOffsetY, RECTANGLE_16* rects, int nrects);
-void xf_SetWindowStyle(xfContext* xfc, xfAppWindow* appWindow, UINT32 style, UINT32 ex_style);
+void xf_SetWindowVisibilityRects(xfContext* xfc, xfAppWindow* appWindow, ::u32 rectsOffsetX, ::u32 rectsOffsetY, RECTANGLE_16* rects, int nrects);
+void xf_SetWindowStyle(xfContext* xfc, xfAppWindow* appWindow, ::u32 style, ::u32 ex_style);
 void xf_UpdateWindowArea(xfContext* xfc, xfAppWindow* appWindow, int x, int y, int width, int height);
 void xf_DestroyWindow(xfContext* xfc, xfAppWindow* appWindow);
 void xf_SetWindowMinMaxInfo(xfContext* xfc, xfAppWindow* appWindow,

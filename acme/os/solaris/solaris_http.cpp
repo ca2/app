@@ -6,7 +6,7 @@
 #endif
 
 tiny_http g_tinyhttp;
-DWORD g_MsDownloadSize = 1024 * 128;
+::u32 g_MsDownloadSize = 1024 * 128;
 char * g_MsDownloadBuffer = nullptr;
 
 void prepare_http()
@@ -70,8 +70,8 @@ bool ms_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, 
       strHost = strUrl.substr(7, iPos - 7);
       strReq = strUrl.substr(iPos);
    }
-   DWORD dwSize = 0;
-   LPSTR pszOutBuffer;
+   ::u32 dwSize = 0;
+   char * pszOutBuffer;
    int_bool  bResults = FALSE;
 
    WCHAR * pwzHost = utf8_to_16(strHost);
@@ -107,9 +107,9 @@ vsstring ms_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *, i
       strHost = strUrl.substr(7, iPos - 7);
       strReq = strUrl.substr(iPos);
    }
-   DWORD dwSize = 0;
-   DWORD dwDownloaded = 0;
-   LPSTR pszOutBuffer;
+   ::u32 dwSize = 0;
+   ::u32 dwDownloaded = 0;
+   char * pszOutBuffer;
    int_bool  bResults = FALSE;
 
    g_tinyhttp.m_strUserAgent = "ccwarehouse_ca2_account/linux";
@@ -196,9 +196,9 @@ strHost = strUrl.substr(8, iPos - 8);
 strReq = strUrl.substr(iPos);
 iPort = 443;
 }
-DWORD dwSize = 0;
-DWORD dwDownloaded = 0;
-LPSTR pszOutBuffer;
+::u32 dwSize = 0;
+::u32 dwDownloaded = 0;
+char * pszOutBuffer;
 int_bool  bResults = FALSE;
 HINTERNET  hSession = nullptr,
 hConnect = nullptr,
@@ -266,7 +266,7 @@ WINHTTP_NO_ADDITIONAL_HEADERS,
 0, WINHTTP_NO_REQUEST_DATA, 0,
 strlen(pszPost), 0);
 
-DWORD dwUploaded;
+::u32 dwUploaded;
 if (bResults)
 if (! (bResults = WinHttpWriteData( hRequest, (LPVOID)pszPost,
 strlen(pszPost), &dwUploaded)))
@@ -320,7 +320,7 @@ delete [] pszOutBuffer;
 } while (dwSize>0);
 }
 
-DWORD dw = get_last_error();
+::u32 dw = get_last_error();
 // Report any errors.
 if (!bResults)
 printf("Error %d has occurred.\n",dw);
@@ -344,7 +344,7 @@ WINHTTP_AUTOPROXY_OPTIONS apop;
 
 char szPac[4096];
 __memset(szPac, 0, sizeof(szPac));
-DWORD lcbPac;
+::u32 lcbPac;
 HKEY hkey;
 __memset(&apop, 0, sizeof(apop));
 bool bGot = false;
@@ -353,8 +353,8 @@ if(RegOpenKey(HKEY_CURRENT_USER,
 "Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings\\Connections",
 &hkey) == ERROR_SUCCESS)
 {
-LONG l;
-DWORD dw;
+::i32 l;
+::u32 dw;
 if((l = RegQueryValueEx(hkey, "DefaultConnectionSettings", nullptr, nullptr, (byte *) &szPac, &lcbPac)) == ERROR_SUCCESS
 && (szPac[8] & 8))
 {
@@ -376,7 +376,7 @@ if(RegOpenKey(HKEY_CURRENT_USER,
 "Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings",
 &hkey) == ERROR_SUCCESS)
 {
-LONG l;
+::i32 l;
 if((l = RegQueryValueEx(hkey, "AutoConfigURL", nullptr, nullptr, (byte *) szPac, &lcbPac)) == ERROR_SUCCESS)
 {
 

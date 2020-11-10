@@ -74,7 +74,7 @@
             }
 
 
-            void frame::Glass(::draw2d::graphics_pointer & pgraphics, const RECT & lprect)
+            void frame::Glass(::draw2d::graphics_pointer & pgraphics, const RECT32 & lprect)
             {
 
                auto pframewindow = m_pframewindow;
@@ -144,7 +144,7 @@
 
             }
 
-            COLORREF frame::get_border_main_body_color()
+            color32_t frame::get_border_main_body_color()
             {
                return ARGB(255, 63, 150, 106);
             }
@@ -157,7 +157,7 @@
             //}
 
 
-            void frame::ColorGlass(::draw2d::graphics_pointer & pgraphics, const RECT & lprect, COLORREF cr, BYTE bAlpha)
+            void frame::ColorGlass(::draw2d::graphics_pointer & pgraphics, const RECT32 & lprect, color32_t cr, byte bAlpha)
             {
 
                /*Gdiplus::Graphics g((HDC) pgraphics->get_os_data());
@@ -233,7 +233,7 @@
                return (frame::e_element) (*((i32*)&eelement))++;
             }
 
-            bool frame::get_element_rect(LPRECT lprect, e_element eelement)
+            bool frame::get_element_rect(LPRECT32 lprect, e_element eelement)
             {
                switch (eelement)
                {
@@ -270,7 +270,7 @@
 
             }
 
-            bool frame::hit_test(const POINT &point, e_element &eelementParam)
+            bool frame::hit_test(const POINT32 &point, e_element &eelementParam)
             {
                ::rect rect;
                for (e_element eelement = (e_element)(ElementNone + 1);
@@ -288,7 +288,7 @@
             }
 
 
-            void frame::set_moveable_border_color(COLORREF cr)
+            void frame::set_moveable_border_color(color32_t cr)
             {
                m_crMoveableBorder = cr;
 
@@ -312,12 +312,12 @@
             }
 
 
-            void frame::set_button_color_schema_001(COLORREF crMoveableBorder)
+            void frame::set_button_color_schema_001(color32_t crMoveableBorder)
             {
 
 //               defer_create_user_schema(::user::schema_button);
 
-               COLORREF crBase = crMoveableBorder;
+               color32_t crBase = crMoveableBorder;
 
                color ca;
 
@@ -391,7 +391,7 @@
 
             }
 
-            COLORREF frame::get_style_moveable_border_color(e_style estyle)
+            color32_t frame::get_style_moveable_border_color(e_style estyle)
             {
                switch (m_estyle)
                {
@@ -441,7 +441,7 @@
             }
 
 
-            void frame::Draw3dRectSide(::draw2d::graphics_pointer & pgraphics, const ::rect & rectParam, e_border eborder, COLORREF crTopLeft, COLORREF crBottomRight)
+            void frame::Draw3dRectSide(::draw2d::graphics_pointer & pgraphics, const ::rect & rectParam, e_border eborder, color32_t crTopLeft, color32_t crBottomRight)
             {
 
                ::rect rect(rectParam);
@@ -608,11 +608,11 @@
 
                   auto pframewindow = m_pframewindow;
 
-                  COLORREF    crMoveableBorder;
+                  color32_t    crMoveableBorder;
 
-                  COLORREF    crMoveableBorderHilight;
+                  color32_t    crMoveableBorderHilight;
 
-                  COLORREF    crMoveableBorderShadow;
+                  color32_t    crMoveableBorderShadow;
 
                   string str;
 

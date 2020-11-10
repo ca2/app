@@ -324,8 +324,8 @@ CLASS_DECL_ACME bool __simple_task_sleep();
 CLASS_DECL_ACME bool __simple_task_sleep(tick tick);
 CLASS_DECL_ACME bool __simple_task_sleep(::sync* psync);
 CLASS_DECL_ACME bool __simple_task_sleep(tick tick, ::sync* psync);
-CLASS_DECL_ACME bool task_sleep(tick tick = INFINITE, ::sync * psync = nullptr);
-//CLASS_DECL_ACME bool acme_task_sleep(tick tick = INFINITE, ::sync* psync = nullptr);
+CLASS_DECL_ACME bool task_sleep(tick tick = U32_INFINITE_TIMEOUT, ::sync * psync = nullptr);
+//CLASS_DECL_ACME bool acme_task_sleep(tick tick = U32_INFINITE_TIMEOUT, ::sync* psync = nullptr);
 //CLASS_DECL_ACME void set_taskhread_sleep(PFN_task_sleep pfnThreadSleep);
 
 #ifdef _UWP

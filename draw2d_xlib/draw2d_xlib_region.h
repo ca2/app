@@ -30,8 +30,8 @@ namespace draw2d_xlib
       bool CreateRectRgnIndirect(const ::rect & rect);
       bool CreateEllipticRgn(i32 x1, i32 y1, i32 x2, i32 y2);
       bool CreateEllipticRgnIndirect(const ::rect & rect);
-      bool CreatePolygonRgn(LPPOINT lpPoints, i32 nCount, i32 nMode);
-      bool CreatePolyPolygonRgn(LPPOINT lpPoints, LPINT lpPolyCounts,
+      bool CreatePolygonRgn(POINT32 * lpPoints, i32 nCount, i32 nMode);
+      bool CreatePolyPolygonRgn(POINT32 * lpPoints, LPINT lpPolyCounts,
             i32 nCount, i32 nPolyFillMode);
       bool CreateRoundRectRgn(i32 x1, i32 y1, i32 x2, i32 y2, i32 x3, i32 y3);
       bool CreateFromPath(::image::image * pimage);
@@ -46,7 +46,7 @@ namespace draw2d_xlib
       //bool EqualRgn(const ::draw2d::region* pRgn) const;
       //i32 OffsetRgn(i32 x, i32 y);
       //i32 OffsetRgn(const ::point & point);
-      //i32 GetRgnBox(RECT * prect) const;
+      //i32 GetRgnBox(RECT32 * prect) const;
       //bool PtInRegion(i32 x, i32 y) const;
       //bool PtInRegion(const ::point & point) const;
       //bool RectInRegion(const ::rect & rect) const;

@@ -956,8 +956,8 @@ u32 len)
             *(((char*)zi->ci.stream.next_out)+i) =
             *(((const char*)zi->ci.stream.next_in)+i);
          {
-            zi->ci.stream.avail_in -= (uInt) copy_this;
-            zi->ci.stream.avail_out-= (uInt) copy_this;
+            zi->ci.stream.avail_in -= (::u32) copy_this;
+            zi->ci.stream.avail_out-= (::u32) copy_this;
             zi->ci.stream.next_in+= copy_this;
             zi->ci.stream.next_out+= copy_this;
             zi->ci.stream.total_in+= (uLong) copy_this;

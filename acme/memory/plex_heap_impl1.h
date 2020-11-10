@@ -18,10 +18,10 @@ public:
    i32                      m_iAllocSize;
 
 
-   plex_heap_alloc(memsize nAllocSize, UINT nBlockSize = 64);
+   plex_heap_alloc(memsize nAllocSize, ::u32 nBlockSize = 64);
    virtual ~plex_heap_alloc();
 
-   inline UINT GetAllocSize() { return m_iAllocSize; }
+   inline ::u32 GetAllocSize() { return m_iAllocSize; }
 
    void * Alloc();               // return a chunk of memory of nAllocSize
    void Free(void * p);          // free chunk of memory returned from Alloc

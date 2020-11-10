@@ -7,9 +7,9 @@
 //CLASS_DECL_AURA
 //i32
 //MultiByteToWideChar2(
-//UINT     CodePage,
-//DWORD    dwFlags,
-//LPCSTR   pMultiByteStr,
+//::u32     CodePage,
+//::u32    dwFlags,
+//const char *   pMultiByteStr,
 //
 //i32      cbMultiByte,
 //widechar *  pWideCharStr,
@@ -19,17 +19,17 @@
 //CLASS_DECL_AURA
 //i32
 //WideCharToMultiByte2(
-//UINT     CodePage,
-//DWORD    dwFlags,
+//::u32     CodePage,
+//::u32    dwFlags,
 //const widechar *  pWideCharStr,
 //
 //i32      cchWideChar,
-//LPSTR   pMultiByteStr,
+//char *   pMultiByteStr,
 //
 //i32      cbMultiByte,
-//LPCSTR   pDefaultChar,
+//const char *   pDefaultChar,
 //
-//LPBOOL  pUsedDefaultChar);
+//int_bool *  pUsedDefaultChar);
 //
 //
 

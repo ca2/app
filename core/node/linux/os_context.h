@@ -27,10 +27,10 @@ namespace linux
       //virtual ::file::path get_module_path(HMODULE hmodule) override;
 
 
-      virtual bool get_pid_by_path(const char * lpszName, DWORD & dwPid) override;
-      virtual bool get_pid_by_title(const char * lpszName, DWORD & dwPid) override;
+      virtual bool get_pid_by_path(const char * lpszName, ::u32 & dwPid) override;
+      virtual bool get_pid_by_title(const char * lpszName, ::u32 & dwPid) override;
       virtual void get_all_processes(u32_array & dwa) override;
-      virtual ::file::path get_process_path(DWORD dwPid) override;
+      virtual ::file::path get_process_path(::u32 dwPid) override;
       virtual int get_pid() override;
 
       virtual var connection_settings_get_auto_detect() override;
@@ -60,7 +60,7 @@ namespace linux
       virtual bool start_service(::layered * pobjectContext);
       virtual bool stop_service(::layered * pobjectContext);
 
-      void raise_exception( DWORD dwExceptionCode, DWORD dwExceptionFlags);
+      void raise_exception( ::u32 dwExceptionCode, ::u32 dwExceptionFlags);
 
       virtual bool is_remote_session() override;
 

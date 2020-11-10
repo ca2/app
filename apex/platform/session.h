@@ -145,7 +145,7 @@ namespace apex
 
       bool                                                  m_bMatterFromHttpCache;
 
-      DWORD                                                 m_dwLongPhRESSingTime;
+      ::u32                                                 m_dwLongPhRESSingTime;
 
 
       session();
@@ -162,22 +162,22 @@ namespace apex
 
       //void construct(::object * pobject, int iPhase) override;
 
-      virtual index get_main_monitor(RECT* prect = nullptr);
+      virtual index get_main_monitor(RECT32* prect = nullptr);
 
       virtual ::count get_monitor_count();
-      virtual bool  get_monitor_rect(index iMonitor, RECT* prect);
+      virtual bool  get_monitor_rect(index iMonitor, RECT32* prect);
 
       virtual ::count get_desk_monitor_count();
-      virtual bool  get_desk_monitor_rect(index iMonitor, RECT* prect);
+      virtual bool  get_desk_monitor_rect(index iMonitor, RECT32* prect);
 
 
-      virtual index get_main_wkspace(RECT* prect = nullptr);
+      virtual index get_main_wkspace(RECT32* prect = nullptr);
 
       virtual ::count get_wkspace_count();
-      virtual bool  get_wkspace_rect(index iWkspace, RECT* prect);
+      virtual bool  get_wkspace_rect(index iWkspace, RECT32* prect);
 
       virtual ::count get_desk_wkspace_count();
-      virtual bool  get_desk_wkspace_rect(index iWkspace, RECT* prect);
+      virtual bool  get_desk_wkspace_rect(index iWkspace, RECT32* prect);
 
       //virtual index get_ui_wkspace(::user::interaction * pinteraction);
 
@@ -205,7 +205,7 @@ namespace apex
       virtual size get_window_minimum_size();
 
 
-      //virtual void  get_cursor_pos(LPPOINT ppoint);
+      //virtual void  get_cursor_pos(POINT32 * ppoint);
 
       virtual bool on_get_thread_name(string& strThreadName) override;
 
@@ -221,7 +221,7 @@ namespace apex
 
       // Long PhRESSing time
       // time in milliseconds that a pressing is considered a double click
-      virtual DWORD get_Long_PhRESSing_time();
+      virtual ::u32 get_Long_PhRESSing_time();
 
       //virtual void defer_initialize_user_presence();
 
@@ -289,7 +289,7 @@ namespace apex
 
       virtual bool open_by_file_extension(::create * pcc);
 
-      virtual COLORREF get_default_color(u64 ui);
+      virtual color32_t get_default_color(u64 ui);
 
       virtual void frame_pre_translate_message(::message::message * pmessage);
 
@@ -305,56 +305,56 @@ namespace apex
 
 
       // apex commented
-      virtual void get_cursor_pos(LPPOINT ppoint);
+      virtual void get_cursor_pos(POINT32 * ppoint);
       inline ::point get_cursor_pos() {::point point; get_cursor_pos(&point); return point;}
 
       // apex commented
       virtual void set_cursor_pos(const ::point & point);
 
-      //virtual index get_main_monitor(RECT * prect = nullptr);
+      //virtual index get_main_monitor(RECT32 * prect = nullptr);
 
       virtual bool set_main_monitor(index iMonitor);
       //virtual ::count get_monitor_count();
-      //virtual bool  get_monitor_rect(index iMonitor, RECT * prect);
+      //virtual bool  get_monitor_rect(index iMonitor, RECT32 * prect);
 
-      //virtual index get_main_wkspace(RECT * prect = nullptr);
+      //virtual index get_main_wkspace(RECT32 * prect = nullptr);
 
       virtual bool set_main_wkspace(index iWkspace);
       //virtual ::count get_wkspace_count();
-      //virtual bool  get_wkspace_rect(index iWkspace, RECT * prect);
+      //virtual bool  get_wkspace_rect(index iWkspace, RECT32 * prect);
 
-      virtual bool wkspace_to_monitor(RECT * prect, index iMonitor, index iWkspace);
+      virtual bool wkspace_to_monitor(RECT32 * prect, index iMonitor, index iWkspace);
 
-      virtual bool monitor_to_wkspace(RECT * prect, index iWkspace, index iMonitor);
+      virtual bool monitor_to_wkspace(RECT32 * prect, index iWkspace, index iMonitor);
 
-      virtual bool wkspace_to_monitor(RECT * prect);
+      virtual bool wkspace_to_monitor(RECT32 * prect);
 
-      virtual bool monitor_to_wkspace(RECT * prect);
+      virtual bool monitor_to_wkspace(RECT32 * prect);
 
       //virtual ::count get_desk_monitor_count();
-      //virtual bool  get_desk_monitor_rect(index iMonitor, RECT * prect);
+      //virtual bool  get_desk_monitor_rect(index iMonitor, RECT32 * prect);
 
       virtual void  get_monitor(rect_array & rectaMonitor, rect_array & rectaIntersect, const ::rect & rect);
 
       // apex commented
-      //virtual index initial_frame_position(RECT * prect, const ::rect & rect, bool bMove, ::user::interaction * pinteraction);
+      //virtual index initial_frame_position(RECT32 * prect, const ::rect & rect, bool bMove, ::user::interaction * pinteraction);
 
       virtual index _get_best_zoneing(edisplay * pedisplay, ::rect * prect, const ::rect & rect, bool bPreserveSize = false);
 
-      virtual index get_best_monitor(RECT * prect, const ::rect & rect, ::eactivation eactivation = activation_none);
+      virtual index get_best_monitor(RECT32 * prect, const ::rect & rect, ::eactivation eactivation = activation_none);
 
       virtual index get_best_wkspace(::rect * prect, const ::rect& rect, ::eactivation eactivation = activation_none);
 
-      virtual index get_good_iconify(RECT * prect, const ::rect & rect);
+      virtual index get_good_iconify(RECT32 * prect, const ::rect & rect);
 
       // apex commented
-      //virtual index get_window_restore_1(RECT * prect, const ::rect & rect, ::user::interaction * pinteraction, edisplay edisplayRestore);
+      //virtual index get_window_restore_1(RECT32 * prect, const ::rect & rect, ::user::interaction * pinteraction, edisplay edisplayRestore);
 
       // apex commented
-      //virtual index get_window_restore_2(RECT* prect, const ::rect& rect, ::user::interaction* pinteraction, edisplay edisplayRestore);
+      //virtual index get_window_restore_2(RECT32* prect, const ::rect& rect, ::user::interaction* pinteraction, edisplay edisplayRestore);
 
       // apex commented
-      //virtual index get_good_move(RECT * prect, const ::rect & rect, ::user::interaction * pinteraction);
+      //virtual index get_good_move(RECT32 * prect, const ::rect & rect, ::user::interaction * pinteraction);
 
       // apex commented
       //virtual index get_ui_wkspace(::user::interaction * pinteraction);
@@ -483,7 +483,7 @@ namespace apex
 
       virtual ::estatus     main() override;
 
-      virtual ::estatus defer_initialize_host_window(LPCRECT lprect = nullptr);
+      virtual ::estatus defer_initialize_host_window(LPCRECT32 lprect = nullptr);
 
       __pointer(::apex::application) get_current_application();
 

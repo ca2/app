@@ -89,11 +89,11 @@ public:
 
    /**
     * Returns the color value of the attribute
-    * @return a COLORREF representing the color
+    * @return a color32_t representing the color
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   COLORREF getColorValue(::lite_html_reader * preader) const;
+   color32_t getColorValue(::lite_html_reader * preader) const;
 
    /**
     * Returns the RGB value of the attribute in hexadecimal format
@@ -183,13 +183,13 @@ public:
    }
 
    /**
-    * Converts attribute value to BYTE (uchar)
+    * Converts attribute value to byte (uchar)
     * @return the left-most character of attribute value
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   operator BYTE() const
-   { return ((BYTE)(m_strValue.get_length() ? m_strValue[0] : 0)); }
+   operator byte() const
+   { return ((byte)(m_strValue.get_length() ? m_strValue[0] : 0)); }
 
    /**
     * Converts attribute value to double

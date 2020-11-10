@@ -31,8 +31,9 @@ public:
    __pointer(::matter)              m_pmatter;
    __pointer(manual_reset_event)    m_pevSleep;
 
+#ifdef WINDOWS
    HRESULT                          m_hresultCoInitialize;
-
+#endif
 
 
    task();
@@ -55,7 +56,7 @@ public:
 
 #ifdef WINDOWS
 
-   static DWORD WINAPI s_os_task(void* p);
+   static ::u32 WINAPI s_os_task(void* p);
 
 #else
 

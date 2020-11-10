@@ -81,8 +81,8 @@ namespace user
       //virtual void _001OnDeferPaintLayeredWindowBackground(::draw2d::graphics_pointer & pgraphics);
 
 
-      //virtual bool _get_client_rect(RECT * prect) = 0;
-      //virtual bool _get_window_rect(RECT * prect) = 0;
+      //virtual bool _get_client_rect(RECT32 * prect) = 0;
+      //virtual bool _get_window_rect(RECT32 * prect) = 0;
 
       //virtual ::point _client_parent_top_left() = 0;
       //virtual ::point _client_screen_top_left() = 0;
@@ -114,7 +114,7 @@ namespace user
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
-      //virtual bool get_window_rect(RECT * prect);
+      //virtual bool get_window_rect(RECT32 * prect);
       class control_descriptor& descriptor();
       const class control_descriptor & descriptor() const;
 
@@ -130,11 +130,11 @@ namespace user
       //inline ::size client_size() { return m_sizeClient; }
       //inline ::size window_size() { return m_sizeScreen; }
 
-      //inline void _001ScreenToClient(RECT* prect) { ::rect_sub(prect, client_screen_top_left()); }
-      //inline void _001ClientToScreen(RECT* prect) { ::rect_add(prect, client_screen_top_left()); }
+      //inline void _001ScreenToClient(RECT32* prect) { ::rect_sub(prect, client_screen_top_left()); }
+      //inline void _001ClientToScreen(RECT32* prect) { ::rect_add(prect, client_screen_top_left()); }
 
-      //inline void get_client_rect(RECT* prect) { ::set_rect_point_size(prect, m_pointClient, client_size()); }
-      //inline void get_window_rect(RECT* prect) { ::set_rect_point_size(prect, m_pointScreenWindow, window_size()); }
+      //inline void get_client_rect(RECT32* prect) { ::set_rect_point_size(prect, m_pointClient, client_size()); }
+      //inline void get_window_rect(RECT32* prect) { ::set_rect_point_size(prect, m_pointScreenWindow, window_size()); }
 
       //inline auto get_client_rect() { ::rect rect; get_client_rect(rect); return rect; }
       //inline auto get_window_rect() { ::rect rect; get_window_rect(rect); return rect; }
@@ -327,7 +327,7 @@ namespace user
       inline ::point origin() { return top_left(); }
       inline ::point screen_top_left() { return ui_state().m_pointScreen; }
 
-      inline LONG area() { return size().area(); }
+      inline ::i32 area() { return size().area(); }
 
 
       template < typename SIZE_SHIFTABLE >
@@ -369,26 +369,26 @@ namespace user
       template < typename POINT_OFFSETABLE >
       inline void _001ClientToParent(POINT_OFFSETABLE* po) { _001ClientToParent(*po); }
 
-      inline void ScreenToClient(RECT* prect) { ::rect_sub(prect, screen_top_left()); }
-      inline void ScreenToClient(POINT * ppoint) { ::point_sub(ppoint, screen_top_left()); }
+      inline void ScreenToClient(RECT32* prect) { ::rect_sub(prect, screen_top_left()); }
+      inline void ScreenToClient(POINT32 * ppoint) { ::point_sub(ppoint, screen_top_left()); }
 
 
-      inline void ClientToScreen(RECT* prect) { ::rect_add(prect, screen_top_left()); }
-      inline void ClientToScreen(POINT* ppoint) { ::point_add(ppoint, screen_top_left()); }
+      inline void ClientToScreen(RECT32* prect) { ::rect_add(prect, screen_top_left()); }
+      inline void ClientToScreen(POINT32* ppoint) { ::point_add(ppoint, screen_top_left()); }
 
 
-      inline void ParentToClient(RECT* prect) { ::rect_sub(prect, top_left()); }
-      inline void ParentToClient(POINT* ppoint) { ::point_sub(ppoint, top_left()); }
+      inline void ParentToClient(RECT32* prect) { ::rect_sub(prect, top_left()); }
+      inline void ParentToClient(POINT32* ppoint) { ::point_sub(ppoint, top_left()); }
 
 
-      inline void ClientToParent(RECT* prect) { ::rect_add(prect, top_left()); }
-      inline void ClientToParent(POINT* ppoint) { ::point_add(ppoint, top_left()); }
+      inline void ClientToParent(RECT32* prect) { ::rect_add(prect, top_left()); }
+      inline void ClientToParent(POINT32* ppoint) { ::point_add(ppoint, top_left()); }
 
 
-      inline void get_client_rect(RECT* prect) const { prect->left = 0; prect->top = 0; *(SIZE*)&prect->right = ui_state().m_size; }
-      virtual void get_window_rect(RECT* prect) const;
-      inline void window_request_rect(RECT * prect) const { ::set_rect_point_size(prect, request_state().m_point, request_state().m_size); }
-      inline void parent_client_rect(RECT* prect) const { ::set_rect_point_size(prect, ui_state().m_point, ui_state().m_size); }
+      inline void get_client_rect(RECT32* prect) const { prect->left = 0; prect->top = 0; *(SIZE32*)&prect->right = ui_state().m_size; }
+      virtual void get_window_rect(RECT32* prect) const;
+      inline void window_request_rect(RECT32 * prect) const { ::set_rect_point_size(prect, request_state().m_point, request_state().m_size); }
+      inline void parent_client_rect(RECT32* prect) const { ::set_rect_point_size(prect, ui_state().m_point, ui_state().m_size); }
 
       inline auto get_client_rect() const { ::rect rect; get_client_rect(rect); return rect; }
       inline auto get_window_rect() const { ::rect rect; get_window_rect(rect); return rect; }

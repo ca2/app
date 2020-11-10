@@ -1881,7 +1881,7 @@ i32 file_context::cmp(const ::file::path & psz1, const ::file::path & psz2)
 //         read_n_number(spfile, &ctx, iLen);
 //         while (iLen > 0)
 //         {
-//            uiRead = spfile->read(buf, (UINT)(min(iBufSize, iLen)));
+//            uiRead = spfile->read(buf, (::u32)(min(iBufSize, iLen)));
 //            if (uiRead == 0)
 //               break;
 //            pfile2->write(buf, uiRead);
@@ -1970,7 +1970,7 @@ i32 file_context::cmp(const ::file::path & psz1, const ::file::path & psz2)
 //{
 //   i64 iLen;
 //   read_n_number(pfile, pctx, iLen);
-//   LPSTR psz = str.get_string_buffer((strsize)(iLen + 1));
+//   char * psz = str.get_string_buffer((strsize)(iLen + 1));
 //
 //   pfile->read(psz, (memsize)iLen);
 //
@@ -3188,7 +3188,7 @@ bool file_context::is_file_or_dir(const ::file::path & pszPath, ::file::enum_typ
 //}
 
 
-rp(::file::file) file_context::friendly_get_file(const var & varFile, UINT nOpenFlags)
+rp(::file::file) file_context::friendly_get_file(const var & varFile, ::u32 nOpenFlags)
 {
 
    try
@@ -3213,7 +3213,7 @@ rp(::file::file) file_context::friendly_get_file(const var & varFile, UINT nOpen
 }
 //
 //
-//::file_result file_context::get_file(const var & varFile, UINT nOpenFlags)
+//::file_result file_context::get_file(const var & varFile, ::u32 nOpenFlags)
 //{
 //
 //   return Context.file().get_file(get_context_application(), varFile, nOpenFlags);

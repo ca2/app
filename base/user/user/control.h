@@ -70,9 +70,9 @@ namespace user
    //   //virtual ::user::interaction * ControlExGetWnd();
 
    //   //using ::user::box::get_client_rect;
-   //   //virtual bool get_client_rect(RECT * prect) override;
+   //   //virtual bool get_client_rect(RECT32 * prect) override;
    //   //using ::user::box::get_window_rect;
-   //   //virtual bool get_window_rect(RECT * prect) override;
+   //   //virtual bool get_window_rect(RECT32 * prect) override;
 
 
 
@@ -83,7 +83,7 @@ namespace user
    //   virtual bool IsControlCommandEnabled();
    //   virtual void EnableControlCommand(bool bEnable);
 
-   //   //virtual void BaseControlExOnMouseMove(UINT nFlags, const ::point & point);
+   //   //virtual void BaseControlExOnMouseMove(::u32 nFlags, const ::point & point);
 
    //   //virtual void on_hit_test(::user::item & item) override;
 
@@ -108,7 +108,7 @@ namespace user
 
 
 
-   //   virtual bool get_element_rect(RECT * prect, e_element eelement);
+   //   virtual bool get_element_rect(RECT32 * prect, e_element eelement);
 
    //   virtual void get_simple_drop_down_open_arrow_polygon(point_array & pointa);
 

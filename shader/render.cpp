@@ -2,7 +2,7 @@
 #include <math.h>
 
 
-CLASS_DECL_AURA COLORREF dk_red(); // <3 tbs
+CLASS_DECL_AURA color32_t dk_red(); // <3 tbs
 
 
 void image_gl_set(image* pimage);
@@ -190,7 +190,7 @@ namespace app_shader
 
       }
 
-      COLORREF crText = ARGB(255, 55, 210, 120);
+      color32_t crText = ARGB(255, 55, 210, 120);
 
       string strProjection = m_strProjection;
 

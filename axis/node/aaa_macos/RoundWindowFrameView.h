@@ -41,7 +41,7 @@ struct mf_context
    bool m_bRAlt;
    bool m_bLCommand; // In Windows, the Windows Key
    bool m_bRCommand; // In Windows, the Windows Key
-   DWORD kbdModFlags;
+   ::u32 kbdModFlags;
    
 }
 

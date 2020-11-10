@@ -150,7 +150,7 @@
 //   if (file == nullptr)
 //   {
 //
-//      DWORD dw = ::get_last_error();
+//      ::u32 dw = ::get_last_error();
 //
 //      return "";
 //
@@ -228,7 +228,7 @@
 //   if (file == nullptr)
 //   {
 //
-//      DWORD dw = ::get_last_error();
+//      ::u32 dw = ::get_last_error();
 //
 //      return false;
 //

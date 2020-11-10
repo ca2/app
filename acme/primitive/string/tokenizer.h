@@ -27,9 +27,9 @@ namespace str
                     bool bWithSeparator = false);
       // _01Read read a token if find one of \n\r\t or space
       bool _01Read(i32 & i);
-      bool _01Read(UINT & user);
+      bool _01Read(::u32 & user);
       bool _01ReadHex(i32 & i);
-      bool _01ReadHex(UINT & user);
+      bool _01ReadHex(::u32 & user);
       //bool _01Read(LPTSTR psz);
 
       bool _01Read(string & str);

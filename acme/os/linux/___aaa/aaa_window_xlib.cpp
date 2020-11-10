@@ -91,9 +91,9 @@ namespace xlib
 //
 //      //m_mem.m_bAligned = true;
 //
-//      m_mem.set_size((m_iGoodStride * size.cy) * sizeof(COLORREF));
+//      m_mem.set_size((m_iGoodStride * size.cy) * sizeof(color32_t));
 //
-//      m_pixmap.init(size, (COLORREF *) m_mem.get_data(), m_iGoodStride);
+//      m_pixmap.init(size, (color32_t *) m_mem.get_data(), m_iGoodStride);
 //
 //      //::acme::del(m_pdc);
 //
@@ -101,7 +101,7 @@ namespace xlib
 //
 //         xdisplay d(m_oswindow->display());
 //
-//         m_pimage = XCreateImage(d, m_oswindow->visual(), m_oswindow->m_iDepth, ZPixmap, 0, (char *) m_mem->get_data(), m_pixmap->width(), m_pixmap->height(), sizeof(COLORREF) * 8, m_iGoodStride);
+//         m_pimage = XCreateImage(d, m_oswindow->visual(), m_oswindow->m_iDepth, ZPixmap, 0, (char *) m_mem->get_data(), m_pixmap->width(), m_pixmap->height(), sizeof(color32_t) * 8, m_iGoodStride);
 //
 //         XGCValues gcvalues;
 //
@@ -176,7 +176,7 @@ namespace xlib
 ////
 ////      }
 ////
-////      m_pixmap.init(pimage->size(), (COLORREF *) pimage->get_data(), pimage->scan_size());
+////      m_pixmap.init(pimage->size(), (color32_t *) pimage->get_data(), pimage->scan_size());
 ////
 ////      {
 ////
@@ -192,7 +192,7 @@ namespace xlib
 ////               (char *) pimage->get_data(),
 ////               pimage->width(),
 ////               pimage->height(),
-////               sizeof(COLORREF) * 8,
+////               sizeof(color32_t) * 8,
 ////               pimage->scan_size());
 ////
 ////      }
@@ -317,7 +317,7 @@ namespace xlib
                (char *) pimage->get_data(),
                pimage->width(),
                pimage->height(),
-               sizeof(COLORREF) * 8,
+               sizeof(color32_t) * 8,
                pimage->scan_size());
 
          //pimage->value("pximage") = (::i64) pximage;

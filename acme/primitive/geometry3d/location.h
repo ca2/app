@@ -81,7 +81,7 @@ public:
 
 inline ::point __point(LPCLOCATIOND plocation)
 {
-   return ::point((LONG)plocation->x, (LONG)plocation->y);
+   return ::point((::i32)plocation->x, (::i32)plocation->y);
 }
 
 

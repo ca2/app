@@ -101,8 +101,8 @@ namespace draw2d
 
       ::point p;
 
-      p.x = (LONG) (point.x * a1 + point.y * b1 + c1);
-      p.y = (LONG) (point.x * a2 + point.y * b2 + c2);
+      p.x = (::i32) (point.x * a1 + point.y * b1 + c1);
+      p.y = (::i32) (point.x * a2 + point.y * b2 + c2);
 
       point = p;
 

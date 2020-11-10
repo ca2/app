@@ -11,7 +11,7 @@
 #include "aura/gpu/gpu/_.h"
 
 
-int GetMainScreenRect(LPRECT lprect);
+int GetMainScreenRect(LPRECT32 lprect);
 
 
 #ifdef LINUX
@@ -75,7 +75,7 @@ void dappy(const char * psz);
 //string get_user_name()
 //{
 //   WCHAR wsz[1024];
-//   DWORD dwSize = sizeof(wsz) / sizeof(WCHAR);
+//   ::u32 dwSize = sizeof(wsz) / sizeof(WCHAR);
 //   ::GetUserNameW(wsz,&dwSize);
 //   return string(wsz);
 //}
@@ -1932,7 +1932,7 @@ namespace aura
    }
 
 
-   UINT system::os_post_to_all_threads(const ::id & id,WPARAM wparam,lparam lparam)
+   ::u32 system::os_post_to_all_threads(const ::id & id,WPARAM wparam,lparam lparam)
    {
 
       post_to_all_threads(id, wparam, lparam);
@@ -3246,7 +3246,7 @@ namespace aura
 //   }
 //
 //
-//   CLASS_DECL_AURA bool get_window_rect(::aura::system_window ^ pwindow, RECT * prect)
+//   CLASS_DECL_AURA bool get_window_rect(::aura::system_window ^ pwindow, RECT32 * prect)
 //   {
 //
 //      ::rectd rect;
@@ -3306,7 +3306,7 @@ namespace aura
    }
 
 
-//   index system::get_main_monitor(RECT * prect)
+//   index system::get_main_monitor(RECT32 * prect)
 //   {
 //
 //      index iMainMonitor = 0;
@@ -3372,7 +3372,7 @@ namespace aura
    }*/
 
 
-//   bool system::get_monitor_rect(index iMonitor, RECT * prect)
+//   bool system::get_monitor_rect(index iMonitor, RECT32 * prect)
 //   {
 //
 //#if MOBILE_PLATFORM
@@ -3453,7 +3453,7 @@ namespace aura
 //   }
 //
 //
-//   bool system::get_desk_monitor_rect(index iMonitor, RECT * prect)
+//   bool system::get_desk_monitor_rect(index iMonitor, RECT32 * prect)
 //
 //   {
 //
@@ -3463,7 +3463,7 @@ namespace aura
 //   }
 //
 //
-//   index system::get_main_wkspace(RECT * prect)
+//   index system::get_main_wkspace(RECT32 * prect)
 //
 //   {
 //
@@ -3520,7 +3520,7 @@ namespace aura
 //   }
 //
 
-//   bool system::get_wkspace_rect(index iWkspace, RECT * prect)
+//   bool system::get_wkspace_rect(index iWkspace, RECT32 * prect)
 //   {
 //
 //#ifdef WINDOWS_DESKTOP
@@ -3597,7 +3597,7 @@ namespace aura
 //   }
 //
 //
-//   bool system::get_desk_wkspace_rect(index iWkspace, RECT * prect)
+//   bool system::get_desk_wkspace_rect(index iWkspace, RECT32 * prect)
 //
 //   {
 //
@@ -5073,7 +5073,7 @@ namespace aura
 
 //#include <HighLevelMonitorConfigurationAPI.h>
 //
-//DWORD mc_color_kelvin(MC_COLOR_TEMPERATURE e)
+//::u32 mc_color_kelvin(MC_COLOR_TEMPERATURE e)
 //{
 //   switch (e)
 //   {
@@ -5098,7 +5098,7 @@ namespace aura
 //   }
 //}
 
-//MC_COLOR_TEMPERATURE kelvin_mc_color(DWORD kelvin)
+//MC_COLOR_TEMPERATURE kelvin_mc_color(::u32 kelvin)
 //{
 //   if (kelvin < 4500)
 //   {
@@ -5166,7 +5166,7 @@ typedef void BASECORE_INIT();
 namespace aura
 {
 
-   //CLASS_DECL_AURA void black_body(float* r, float* g, float* b, DWORD dwTemp);
+   //CLASS_DECL_AURA void black_body(float* r, float* g, float* b, ::u32 dwTemp);
 
    /*  bool system::on_application_menu_action(const char * pszCommand)
      {
@@ -5674,7 +5674,7 @@ namespace aura
    //   set_enum_name(::type_empty     , "is_empty");
    //   set_enum_name(::type_string    , "string");
    //   set_enum_name(::type_int32   , "integer");
-   //   set_enum_name(::type_uint32     , "ulong");
+   //   set_enum_name(::type_::u32     , "ulong");
    //   set_enum_name(::type_element       , "ca2");
    //   set_enum_name(::type_bool      , "bool");
    //   set_enum_name(::type_double    , "double");*/
@@ -6111,7 +6111,7 @@ namespace aura
 #ifdef _UWP
 
 
-   bool system::get_window_rect(RECT* prect)
+   bool system::get_window_rect(RECT32* prect)
    {
 
       if (::is_null(get_context_session()))
@@ -6628,7 +6628,7 @@ namespace aura
    }
 
 
-   //CLASS_DECL_AURA void black_body(float* r, float* g, float* b, DWORD dwTemp)
+   //CLASS_DECL_AURA void black_body(float* r, float* g, float* b, ::u32 dwTemp)
    //{
 
    //   int temp_index = ((dwTemp - 1000) / 100) * 3;

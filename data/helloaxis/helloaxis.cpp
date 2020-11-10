@@ -6,7 +6,7 @@
 #ifdef _UWP
 [MTAThread]
 #endif
-int_bool WINAPI DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
+int_bool WINAPI DllMain(HINSTANCE hInstance, ::u32 dwReason, LPVOID lpReserved)
 {
 
    UNREFERENCED_PARAMETER(hInstance);

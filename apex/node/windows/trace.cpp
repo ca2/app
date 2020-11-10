@@ -7,7 +7,7 @@
 //
 //struct CLASS_DECL_APEX __MAP_MESSAGE
 //{
-//   UINT    nMsg;
+//   ::u32    nMsg;
 //   const char *  pszMsg;
 
 //};

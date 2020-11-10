@@ -29,12 +29,12 @@ namespace experience
 
 
                void on_draw_frame(::draw2d::graphics_pointer & pgraphics);
-               void Draw3dRectSide(::draw2d::graphics_pointer & pgraphics, const ::rect & rect, e_border eborder, COLORREF crTopLeft, COLORREF crBottomRight);
+               void Draw3dRectSide(::draw2d::graphics_pointer & pgraphics, const ::rect & rect, e_border eborder, color32_t crTopLeft, color32_t crBottomRight);
                void DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::rect & rectClient);
 
                void draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::rect & rectClient, e_border eside);
 
-               void GetBorderRect(const ::rect & rectClient, RECT * prect, e_border eside);
+               void GetBorderRect(const ::rect & rectClient, RECT32 * prect, e_border eside);
 
                void DrawGripSet(::draw2d::graphics_pointer & pgraphics, const ::rect & rectClient);
 

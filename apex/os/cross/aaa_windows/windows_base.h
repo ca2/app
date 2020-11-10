@@ -7,7 +7,7 @@ typedef void * LPSECURITY_ATTRIBUTES;
 #define CREATE_SUSPENDED 0x00000004
 
 #define IGNORE              0       // Ignore signal
-#define INFINITE            0xFFFFFFFF  // Infinite timeout
+#define U32_INFINITE_TIMEOUT            0xFFFFFFFF  // Infinite timeout
 
 
 
@@ -46,25 +46,25 @@ typedef void * LPSECURITY_ATTRIBUTES;
 #ifndef _FILETIME_
 #define _FILETIME_
 typedef struct _FILETIME {
-    DWORD dwLowDateTime;
-    DWORD dwHighDateTime;
+    ::u32 dwLowDateTime;
+    ::u32 dwHighDateTime;
 } FILETIME, *PFILETIME, *LPFILETIME;
 #endif
 
 
 typedef struct _SYSTEMTIME {
-    WORD wYear;
-    WORD wMonth;
-    WORD wDayOfWeek;
-    WORD wDay;
-    WORD wHour;
-    WORD wMinute;
-    WORD wSecond;
-    WORD wMilliseconds;
+    ::u16 wYear;
+    ::u16 wMonth;
+    ::u16 wDayOfWeek;
+    ::u16 wDay;
+    ::u16 wHour;
+    ::u16 wMinute;
+    ::u16 wSecond;
+    ::u16 wMilliseconds;
 } SYSTEMTIME, *PSYSTEMTIME, *LPSYSTEMTIME;
 
 
-typedef DWORD (WINAPI *PTHREAD_START_ROUTINE)(LPVOID lpThreadParameter);
+typedef ::u32 (WINAPI *PTHREAD_START_ROUTINE)(LPVOID lpThreadParameter);
 
 typedef PTHREAD_START_ROUTINE LPTHREAD_START_ROUTINE;
 
@@ -72,6 +72,6 @@ typedef PTHREAD_START_ROUTINE LPTHREAD_START_ROUTINE;
 
 
 
-void Sleep(DWORD dwMilliseconds);
+void Sleep(::u32 dwMilliseconds);
 
 

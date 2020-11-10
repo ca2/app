@@ -137,7 +137,7 @@ namespace macos
        if (!ExitWindowsEx(EWX_REBOOT | EWX_FORCE,
        SHTDN_REASON_MAJOR_SOFTWARE | SHTDN_REASON_MINOR_INSTALLATION))
        {
-       DWORD dwLastError = ::get_last_error();
+       ::u32 dwLastError = ::get_last_error();
        return false;
        }*/
       //reset the previlages
@@ -154,13 +154,13 @@ namespace macos
 //      __throw(not_implemented());
       return;
 
-      /*      DWORD dwPid;
+      /*      ::u32 dwPid;
        while(get_pid_by_title(pszName, dwPid))
        {
        HANDLE hProcess = OpenProcess( PROCESS_QUERY_INFORMATION |
        PROCESS_VM_READ,
        FALSE, dwPid );
-       TerminateProcess(hProcess, (UINT) -1);
+       TerminateProcess(hProcess, (::u32) -1);
        CloseHandle(hProcess);
        ::EnumWindows((WNDENUMPROC)
        CKillProcessHelper::TerminateAppEnum,
@@ -180,7 +180,7 @@ namespace macos
       //  }
    }
 
-   bool os_context::get_pid_by_path(const char * pszName, DWORD & dwPid)
+   bool os_context::get_pid_by_path(const char * pszName, ::u32 & dwPid)
    {
       u32_array dwa;
       get_all_processes(dwa);
@@ -195,7 +195,7 @@ namespace macos
       return false;
    }
 
-   bool os_context::get_pid_by_title(const char * pszName, DWORD & dwPid)
+   bool os_context::get_pid_by_title(const char * pszName, ::u32 & dwPid)
    {
       u32_array dwa;
       get_all_processes(dwa);
@@ -210,7 +210,7 @@ namespace macos
       return false;
    }
 
-   ::file::path os_context::get_process_path(DWORD dwPid)
+   ::file::path os_context::get_process_path(::u32 dwPid)
    {
       /*
        string strName = ":<unknown>";
@@ -224,7 +224,7 @@ namespace macos
        if (nullptr != hProcess )
        {
        HMODULE hMod;
-       DWORD cbNeeded;
+       ::u32 cbNeeded;
 
        if(EnumProcessModules( hProcess, &hMod, sizeof(hMod),
        &cbNeeded) )
@@ -248,18 +248,18 @@ namespace macos
 
       /*
        dwa.set_size(0);
-       DWORD cbNeeded = 0;
+       ::u32 cbNeeded = 0;
        while(cbNeeded == natural(dwa.get_count()))
        {
        dwa.set_size(dwa.get_count() + 1024);
        if(!EnumProcesses(
        dwa.get_data(),
-       (DWORD) (dwa.get_count() * sizeof(DWORD)),
+       (::u32) (dwa.get_count() * sizeof(::u32)),
        &cbNeeded))
        {
        return;
        }
-       dwa.set_size(cbNeeded / sizeof(DWORD));
+       dwa.set_size(cbNeeded / sizeof(::u32));
        }*/
    }
 
@@ -797,7 +797,7 @@ namespace macos
    }
 
 
-   void os_context::raise_exception( DWORD dwExceptionCode, DWORD dwExceptionFlags)
+   void os_context::raise_exception( ::u32 dwExceptionCode, ::u32 dwExceptionFlags)
    {
 
       __throw(not_implemented());
@@ -1024,7 +1024,7 @@ namespace macos
    {
 
 
-//      DWORD wAttr;
+//      ::u32 wAttr;
 //      FILETIME creationTime;
 //      FILETIME lastAccessTime;
 //      FILETIME lastWriteTime;
@@ -1034,24 +1034,24 @@ namespace macos
 //
 //      wstring wstr(lpszFileName);
 //
-//      if((wAttr = windows_get_file_attributes(wstr)) == (DWORD)-1L)
+//      if((wAttr = windows_get_file_attributes(wstr)) == (::u32)-1L)
 //      {
 //
-//         ::windows::file_exception::throw_os_error( (LONG)get_last_error());
+//         ::windows::file_exception::throw_os_error( (::i32)get_last_error());
 //
 //      }
 //
-//      if ((DWORD)status.m_attribute != wAttr && (wAttr & ::windows::file::readOnly))
+//      if ((::u32)status.m_attribute != wAttr && (wAttr & ::windows::file::readOnly))
 //      {
 //
 //         // set file attribute, only if currently readonly.
 //         // This way we will be able to modify the time assuming the
 //         // caller changed the file from readonly.
 //
-//         if (!SetFileAttributesW(wstr, (DWORD)status.m_attribute))
+//         if (!SetFileAttributesW(wstr, (::u32)status.m_attribute))
 //         {
 //
-//            ::windows::file_exception::throw_os_error( (LONG)get_last_error());
+//            ::windows::file_exception::throw_os_error( (::i32)get_last_error());
 //
 //         }
 //
@@ -1092,31 +1092,31 @@ namespace macos
 //      if(hFile == INVALID_HANDLE_VALUE)
 //      {
 //
-//         ::windows::file_exception::throw_os_error( (LONG)::get_last_error());
+//         ::windows::file_exception::throw_os_error( (::i32)::get_last_error());
 //
 //      }
 //
 //      if(!SetFileTime((HANDLE)hFile, lpCreationTime, lpLastAccessTime, lpLastWriteTime))
 //      {
 //
-//         ::windows::file_exception::throw_os_error( (LONG)::get_last_error());
+//         ::windows::file_exception::throw_os_error( (::i32)::get_last_error());
 //
 //      }
 //
 //      if(!::CloseHandle(hFile))
 //      {
 //
-//         ::windows::file_exception::throw_os_error( (LONG)::get_last_error());
+//         ::windows::file_exception::throw_os_error( (::i32)::get_last_error());
 //
 //      }
 //
-//      if ((DWORD)status.m_attribute != wAttr && !(wAttr & ::windows::file::readOnly))
+//      if ((::u32)status.m_attribute != wAttr && !(wAttr & ::windows::file::readOnly))
 //      {
 //
-//         if (!::SetFileAttributesW(wstr, (DWORD)status.m_attribute))
+//         if (!::SetFileAttributesW(wstr, (::u32)status.m_attribute))
 //         {
 //
-//            ::windows::file_exception::throw_os_error( (LONG)get_last_error());
+//            ::windows::file_exception::throw_os_error( (::i32)get_last_error());
 //
 //         }
 //

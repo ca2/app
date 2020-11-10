@@ -154,7 +154,7 @@ memory::memory(const char * psz)
 }
 
 
-memory::memory(memory_container * pcontainer, memsize dwAllocationAddUp, UINT nAllocFlags)
+memory::memory(memory_container * pcontainer, memsize dwAllocationAddUp, ::u32 nAllocFlags)
 {
 
    UNREFERENCED_PARAMETER(nAllocFlags);

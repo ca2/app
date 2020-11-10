@@ -100,7 +100,7 @@ WCHAR* module_debug_wcsdup(HINSTANCE hinstance, WCHAR* pwszPrefix = nullptr, WCH
 
       wcscat(pwsz, L"\'");
 
-      ::GetModuleFileNameW(hinstance, &pwsz[wcslen(pwsz)], (DWORD)module_len);
+      ::GetModuleFileNameW(hinstance, &pwsz[wcslen(pwsz)], (::u32)module_len);
 
       wcscat(pwsz, L"\'");
 
@@ -187,7 +187,7 @@ void module_output_debug_string_w(HINSTANCE hinstance, WCHAR* pwszPrefix = nullp
 #ifdef _UWP
 [MTAThread]
 #endif
-int_bool CLASS_DECL_ACME _001DefaultDllMain(HINSTANCE hinstance, DWORD dwReason, LPVOID pReserved, int iLibMainDebugBox, const lib_main_int& intDelayMs)
+int_bool CLASS_DECL_ACME _001DefaultDllMain(HINSTANCE hinstance, ::u32 dwReason, LPVOID pReserved, int iLibMainDebugBox, const lib_main_int& intDelayMs)
 {
 
    UNREFERENCED_PARAMETER(pReserved);

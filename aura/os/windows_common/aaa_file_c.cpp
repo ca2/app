@@ -7,7 +7,7 @@ CLASS_DECL_AURA::Windows::Storage::StorageFolder^ winrt_folder(string& strPath, 
 #endif
 
 
-//DWORD windows_get_file_attributes(const char* path)
+//::u32 windows_get_file_attributes(const char* path)
 //{
 //
 //   wstring wstr(path);
@@ -68,7 +68,7 @@ CLASS_DECL_AURA::Windows::Storage::StorageFolder^ winrt_folder(string& strPath, 
 //
 //   wstring wstrPath(get_buffer, MAX_PATH * 16);
 //
-//   if (!GetModuleFileNameW(nullptr, wstrPath, (DWORD)wstrPath.get_length()))
+//   if (!GetModuleFileNameW(nullptr, wstrPath, (::u32)wstrPath.get_length()))
 //   {
 //
 //      return "";
@@ -161,7 +161,7 @@ CLASS_DECL_AURA::Windows::Storage::StorageFolder^ winrt_folder(string& strPath, 
 //
 //      }
 //
-//      DWORD dw = GetFinalPathNameByHandleW(hfile, nullptr, 0, VOLUME_NAME_DOS);
+//      ::u32 dw = GetFinalPathNameByHandleW(hfile, nullptr, 0, VOLUME_NAME_DOS);
 //
 //      if (dw > 0)
 //      {
@@ -218,7 +218,7 @@ int_bool is_file_or_dir_dup(const char * path, ::file::enum_type * petype)
 
 #ifdef _UWP
 
-      DWORD dwLastError = ::get_last_error();
+      ::u32 dwLastError = ::get_last_error();
 
       string strPrefix;
 

@@ -11,14 +11,14 @@ namespace file
    public:
 
 
-      LONG              m_lOsError;
+      ::i32              m_lOsError;
       int               m_iErrNo;
       ::file::path      m_path;
       string            m_strAdd;
       ::efileopen       m_efileopen;
 
 
-      exception(const ::estatus & estatus = error_file, LONG lOsError = -1, int iErrNo = -1, const ::file::path & path = nullptr, const ::efileopen & efileopen = 0);
+      exception(const ::estatus & estatus = error_file, ::i32 lOsError = -1, int iErrNo = -1, const ::file::path & path = nullptr, const ::efileopen & efileopen = 0);
 
       virtual ~exception();
 
@@ -26,11 +26,12 @@ namespace file
 
 
       virtual ::estatus     get_status();
-      virtual LONG get_os_error();
+      virtual ::i32 get_os_error();
       virtual string get_file_path();
 
+#ifdef WINDOWS
       virtual bool get_error_message(string & str, PUINT pnHelpContext = nullptr);
-
+#endif
 
    };
 
@@ -40,17 +41,17 @@ namespace file
 
    CLASS_DECL_ACME bool should_ignore_file_exception_callstack(const ::estatus & estatus);
 
-   CLASS_DECL_ACME void throw_exception(const ::estatus& estatus, LONG lOsError, int iErrNo, const ::file::path& path, const ::efileopen& efileopen);
+   CLASS_DECL_ACME void throw_exception(const ::estatus& estatus, ::i32 lOsError, int iErrNo, const ::file::path& path, const ::efileopen& efileopen);
 
-   CLASS_DECL_ACME void throw_status(const ::estatus& estatus, LONG lOsError, const ::file::path& path = nullptr);
+   CLASS_DECL_ACME void throw_status(const ::estatus& estatus, ::i32 lOsError, const ::file::path& path = nullptr);
 
-   CLASS_DECL_ACME void throw_stdio_exception(const ::estatus& estatus, LONG lDOSError, const ::file::path& path);
+   CLASS_DECL_ACME void throw_stdio_exception(const ::estatus& estatus, ::i32 lDOSError, const ::file::path& path);
 
-   CLASS_DECL_ACME void throw_os_error(LONG lOsError, const ::file::path& path = nullptr);
+   CLASS_DECL_ACME void throw_os_error(::i32 lOsError, const ::file::path& path = nullptr);
 
    CLASS_DECL_ACME void throw_errno(int iErrNo, const ::file::path& path = nullptr);
 
-   CLASS_DECL_ACME ::estatus os_error_to_status(LONG lOsError);
+   CLASS_DECL_ACME ::estatus os_error_to_status(::i32 lOsError);
 
    CLASS_DECL_ACME ::estatus errno_to_status(i32 nErrno);
 

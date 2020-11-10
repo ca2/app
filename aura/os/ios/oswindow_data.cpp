@@ -36,10 +36,10 @@ bool oswindow_data::show_window(int iShow)
 }
 
 
-bool oswindow_data::_001ClientToScreen(POINT *lppoint)
+bool oswindow_data::_001ClientToScreen(POINT32 *lppoint)
 {
 
-   RECT rect;
+   RECT32 rect;
    
    get_uiwindow_rect(this, &rect);
    
@@ -52,10 +52,10 @@ bool oswindow_data::_001ClientToScreen(POINT *lppoint)
 }
 
 
-bool oswindow_data::_001ScreenToClient(POINT *lppoint)
+bool oswindow_data::_001ScreenToClient(POINT32 *lppoint)
 {
    
-   RECT rect;
+   RECT32 rect;
    
    get_uiwindow_rect(this, &rect);
    
@@ -69,7 +69,7 @@ bool oswindow_data::_001ScreenToClient(POINT *lppoint)
 
 
 
-int_bool SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, int x, int y, int cx, int cy, UINT uFlags)
+int_bool SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, int x, int y, int cx, int cy, ::u32 uFlags)
 {
    
    return TRUE;

@@ -7,7 +7,7 @@
 
 
 CLASS_DECL_APEX int xinerama_get_monitor_count();
-CLASS_DECL_APEX int xinerama_get_monitor_rect(index i, RECT * prect);
+CLASS_DECL_APEX int xinerama_get_monitor_rect(index i, RECT32 * prect);
 
 CLASS_DECL_APEX int xinerama_get_screen_size(int& width, int& height);
 
@@ -49,7 +49,7 @@ int xinerama_get_monitor_count()
 }
 
 
-int xinerama_get_monitor_rect(index iMonitor, RECT * prect)
+int xinerama_get_monitor_rect(index iMonitor, RECT32 * prect)
 {
 
    xdisplay  d;
@@ -207,7 +207,7 @@ int xinerama_get_screen_size(int& width, int& height)
 
 // it doesn't work for final purpose,
 // but it calls function that "sorts" rectangles with stability
-int get_best_ordered_monitor(::user::interaction * pinteraction, RECT * prectRet)
+int get_best_ordered_monitor(::user::interaction * pinteraction, RECT32 * prectRet)
 
 {
 
@@ -226,7 +226,7 @@ int get_best_ordered_monitor(::user::interaction * pinteraction, RECT * prectRet
 }
 
 
-int best_xinerama_monitor(::user::interaction * pinteraction, const ::rect & rectParam, RECT * prectRet)
+int best_xinerama_monitor(::user::interaction * pinteraction, const ::rect & rectParam, RECT32 * prectRet)
 {
 
    ::null_rect(prectRet);
@@ -269,7 +269,7 @@ int best_xinerama_monitor(::user::interaction * pinteraction, const ::rect & rec
 }
 
 
-int best_xinerama_monitor(::user::interaction * pinteraction, RECT * prectRet)
+int best_xinerama_monitor(::user::interaction * pinteraction, RECT32 * prectRet)
 
 {
 
@@ -279,7 +279,7 @@ int best_xinerama_monitor(::user::interaction * pinteraction, RECT * prectRet)
 }
 
 
-int get_best_monitor(::user::interaction * pinteraction, const ::rect & rectParam, RECT * prectRet)
+int get_best_monitor(::user::interaction * pinteraction, const ::rect & rectParam, RECT32 * prectRet)
 {
 
    ::rect rNull = nullptr;
@@ -300,7 +300,7 @@ int get_best_monitor(::user::interaction * pinteraction, const ::rect & rectPara
 }
 
 
-int get_best_monitor(::user::interaction * pinteraction, RECT * prectRet)
+int get_best_monitor(::user::interaction * pinteraction, RECT32 * prectRet)
 {
 
    return get_best_monitor(pinteraction, nullptr, prectRet);

@@ -54,7 +54,7 @@ namespace graphics
 
       virtual bool defer_write(char ch, int x, int y, int cx, int cy, int iColor);
 
-      static COLORREF console_COLORREF(int iColor);
+      static color32_t console_COLORREF(int iColor);
 
       void get_cursor_position(int & x, int & y, filesize & iPointer);
 

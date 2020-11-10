@@ -38,7 +38,7 @@ namespace draw2d_cairo
       virtual ::draw2d::bitmap_pointer detach_bitmap() override;
 
 
-      //virtual COLORREF * get_data();
+      //virtual color32_t * get_data();
 
       virtual bool stretch_image(::image * pimage_impl) override;
 

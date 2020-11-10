@@ -32,18 +32,18 @@ public:
 
       LARGE_INTEGER li = {};
 
-      li.QuadPart = - ((LONGLONG) uWait / 100LL);
+      li.QuadPart = - ((::i64) uWait / 100LL);
 
       if (!SetWaitableTimer(m_hTimer, &li, 0, nullptr, nullptr, FALSE))
       {
 
-         Sleep(DWORD(uWait / 1000000LL));
+         Sleep(::u32(uWait / 1000000LL));
 
       }
       else
       {
 
-         WaitForSingleObject(m_hTimer, INFINITE);
+         WaitForSingleObject(m_hTimer, U32_INFINITE_TIMEOUT);
 
       }
 
@@ -127,7 +127,7 @@ public:
    bool                                m_bPeriodic;
    void *                              m_pvoidData;
    bool                                m_bRunning;
-   DWORD                               m_dwMillis;
+   ::u32                               m_dwMillis;
    ::user::interaction *               m_puserinteraction;
    bool                                m_bHandling;
 

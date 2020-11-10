@@ -66,7 +66,7 @@ namespace draw2d_opengl
    { ASSERT(get_os_data() != nullptr); return ::OffsetRgn((HRGN)get_os_data(), point.x, point.y); }
 
    */
-   bool region::get_bounding_box(LPRECT lprect) const
+   bool region::get_bounding_box(LPRECT32 lprect) const
    {
 
       //((region *)this)->defer_update();

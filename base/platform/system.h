@@ -200,7 +200,7 @@ namespace base
 //
 //#ifdef WINDOWS_DESKTOP
 //
-//      UINT                                         m_uiWindowsTaskbarCreatedMessage;
+//      ::u32                                         m_uiWindowsTaskbarCreatedMessage;
 //
 //#endif
 //
@@ -541,7 +541,7 @@ namespace base
 //      virtual ::apex::library * get_library(const char * pszLibrary, bool bOpenCa2 = false);
 //
 //
-//      virtual UINT os_post_to_all_threads(const ::id & id,WPARAM wparam = 0,lparam lparam = 0);
+//      virtual ::u32 os_post_to_all_threads(const ::id & id,WPARAM wparam = 0,lparam lparam = 0);
 //
 //
 //      virtual void session_add(index iEdge, ::aura::session * psession);
@@ -727,28 +727,28 @@ namespace base
 //
 //#if defined(WINDOWS)
 //      //#pragma message("at macos??")
-//      static BOOL CALLBACK monitor_enum_proc(HMONITOR hmonitor, HDC hdcMonitor, RECT * prcMonitor, LPARAM dwData);
+//      static BOOL CALLBACK monitor_enum_proc(HMONITOR hmonitor, HDC hdcMonitor, RECT32 * prcMonitor, LPARAM dwData);
 //
-//      void monitor_enum(HMONITOR hmonitor, HDC hdcMonitor, RECT * prcMonitor);
+//      void monitor_enum(HMONITOR hmonitor, HDC hdcMonitor, RECT32 * prcMonitor);
 //
 //#endif
 //
-//      virtual index get_main_monitor(RECT * prect = nullptr);
+//      virtual index get_main_monitor(RECT32 * prect = nullptr);
 //
 //      virtual ::count get_monitor_count();
-//      virtual bool  get_monitor_rect(index iMonitor, RECT * prect);
+//      virtual bool  get_monitor_rect(index iMonitor, RECT32 * prect);
 //
 //      virtual ::count get_desk_monitor_count();
-//      virtual bool  get_desk_monitor_rect(index iMonitor, RECT * prect);
+//      virtual bool  get_desk_monitor_rect(index iMonitor, RECT32 * prect);
 //
 //
-//      virtual index get_main_wkspace(RECT * prect = nullptr);
+//      virtual index get_main_wkspace(RECT32 * prect = nullptr);
 //
 //      virtual ::count get_wkspace_count();
-//      virtual bool  get_wkspace_rect(index iWkspace, RECT * prect);
+//      virtual bool  get_wkspace_rect(index iWkspace, RECT32 * prect);
 //
 //      virtual ::count get_desk_wkspace_count();
-//      virtual bool  get_desk_wkspace_rect(index iWkspace, RECT * prect);
+//      virtual bool  get_desk_wkspace_rect(index iWkspace, RECT32 * prect);
 //
 //      virtual index get_ui_wkspace(::user::interaction * pinteraction);
 //
@@ -879,7 +879,7 @@ namespace base
 //
 //#ifdef _UWP
 //
-//      virtual bool get_window_rect(RECT* prect);
+//      virtual bool get_window_rect(RECT32* prect);
 //
 //
 //#endif
@@ -888,7 +888,7 @@ namespace base
 //
 //
 //
-////      virtual bool wait_twf(tick tickTimeout = INFINITE);
+////      virtual bool wait_twf(tick tickTimeout = U32_INFINITE_TIMEOUT);
 //
 //
 //
@@ -901,7 +901,7 @@ namespace base
 //
 //      virtual ::estatus add_view_library(::apex::library* plibrary);
 //
-//      //virtual void get_cursor_pos(LPPOINT ppoint);
+//      //virtual void get_cursor_pos(POINT32 * ppoint);
 //
 //
 //
@@ -965,13 +965,13 @@ namespace base
 //
 //
 //
-//      virtual DWORD get_monitor_color_temperature(index iMonitor);
-//      virtual bool adjust_monitor(index iMonitor, DWORD dwTemperature, double dBrightness, double dwGamma);
-//      //virtual bool get_monitor_rect(index iMonitor, RECT* prect) override;
+//      virtual ::u32 get_monitor_color_temperature(index iMonitor);
+//      virtual bool adjust_monitor(index iMonitor, ::u32 dwTemperature, double dBrightness, double dwGamma);
+//      //virtual bool get_monitor_rect(index iMonitor, RECT32* prect) override;
 //
 //      //virtual ::count get_monitor_count() override;
 //
-//      //bool get_wkspace_rect(index iWkspace, RECT* prect) override;
+//      //bool get_wkspace_rect(index iWkspace, RECT32* prect) override;
 //
 //
 //      //virtual ::user::interaction_impl * impl_from_handle(void * pdata) override;

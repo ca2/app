@@ -4,7 +4,7 @@
 //#include "aura/node/ansios/ansios.h"
 
 
-string get_error_message(DWORD dwError);
+string get_error_message(::u32 dwError);
 
 __pointer(::aura::application)     linux_instantiate_application(__pointer(::aura::application) pappSystem, const char * pszId);
 
@@ -59,13 +59,13 @@ CLASS_DECL_CORE void AfxProcessWndProcException(::exception::exception*, ::messa
 
 CLASS_DECL_CORE void __cdecl __pre_translate_message(::message::message * pmessage);
 
-int_bool mq_peek_message(LPMESSAGE pMsg, oswindow hWnd, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg);
+int_bool mq_peek_message(LPMESSAGE pMsg, oswindow hWnd, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg);
 
-int_bool mq_get_message(LPMESSAGE pMsg, oswindow hWnd, UINT wMsgFilterMin, UINT wMsgFilterMax);
+int_bool mq_get_message(LPMESSAGE pMsg, oswindow hWnd, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax);
 
 i32 CLASS_DECL_CORE __linux_main(i32 argc, char * argv[]);
 
-CLASS_DECL_CORE void vfxThrowFileException(::object * pobject, const ::estatus & estatus, LONG lOsError, const char * pszFileName = nullptr);
+CLASS_DECL_CORE void vfxThrowFileException(::object * pobject, const ::estatus & estatus, ::i32 lOsError, const char * pszFileName = nullptr);
 
 #include "internal.h"
 

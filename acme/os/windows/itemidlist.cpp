@@ -298,7 +298,7 @@ LPITEMIDLIST itemidlist::_cat(LPCITEMIDLIST pidl1, LPCITEMIDLIST pidl2)
 
       }
 
-      ::memcpy_dup(((LPSTR)pidlNew) + cb1, pidl2, cb2);
+      ::memcpy_dup(((char *)pidlNew) + cb1, pidl2, cb2);
 
    }
 
@@ -557,7 +557,7 @@ int itemidlist::_len(LPCITEMIDLIST pidl, int nCount)
 }
 
 
-string itemidlist::display_name(DWORD dwFlags) const
+string itemidlist::display_name(::u32 dwFlags) const
 {
 
    comptr < IShellFolder > psf;
@@ -1092,12 +1092,12 @@ string itemidlist::_display_name(STRRET & strret, LPCITEMIDLIST pidl)
    break;
    case STRRET_OFFSET:
    {
-      str = (LPSTR)pidl + strret.uOffset;
+      str = (char *)pidl + strret.uOffset;
    }
    break;
    case STRRET_CSTR:
    {
-      str = (LPSTR)strret.cStr;
+      str = (char *)strret.cStr;
       break;
    }
    default:
@@ -1109,7 +1109,7 @@ string itemidlist::_display_name(STRRET & strret, LPCITEMIDLIST pidl)
 }
 
 
-string itemidlist::_display_name(IShellFolder * psf, LPCITEMIDLIST pi, DWORD dwFlags)
+string itemidlist::_display_name(IShellFolder * psf, LPCITEMIDLIST pi, ::u32 dwFlags)
 
 {
 

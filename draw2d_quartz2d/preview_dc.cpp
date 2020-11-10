@@ -390,7 +390,7 @@
  /////////////////////////////////////////////////////////////////////////////
  // Drawing-Attribute Functions
  
- COLORREF preview_dc::SetBkColor(COLORREF crColor)
+ color32_t preview_dc::SetBkColor(color32_t crColor)
  {
  ASSERT(get_handle2() != nullptr);
  if (get_os_data() != nullptr)
@@ -398,7 +398,7 @@
  return ::SetBkColor(get_handle2(), crColor);
  }
  
- COLORREF preview_dc::SetTextColor(COLORREF crColor)
+ color32_t preview_dc::SetTextColor(color32_t crColor)
  {
  ASSERT(get_handle2() != nullptr);
  if (get_os_data() != nullptr)
@@ -475,11 +475,11 @@
  
  // private helpers for text_out functions
  
- __STATIC i32 CLASS_DECL_DRAW2D_QUARTZ2D _AfxComputeNextTab(i32 x, UINT nTabStops, LPINT lpnTabStops, i32 nTabOrigin, i32 nTabWidth)
+ __STATIC i32 CLASS_DECL_DRAW2D_QUARTZ2D _AfxComputeNextTab(i32 x, ::u32 nTabStops, LPINT lpnTabStops, i32 nTabOrigin, i32 nTabWidth)
  {
  ENSURE(nTabWidth!=0);
  x -= nTabOrigin;        // normalize position to tab origin
- for (UINT i = 0; i < nTabStops; i++, lpnTabStops++)
+ for (::u32 i = 0; i < nTabStops; i++, lpnTabStops++)
  {
  if (*lpnTabStops > x)
  {
@@ -491,8 +491,8 @@
  
  // Compute a character delta table for correctly positioning the screen
  // font characters where the printer characters will appear on the page
- size preview_dc::ComputeDeltas(i32& x, const char * lpszString, UINT &nCount,
- int_bool bTabbed, UINT nTabStops, LPINT lpnTabStops, i32 nTabOrigin,
+ size preview_dc::ComputeDeltas(i32& x, const char * lpszString, ::u32 &nCount,
+ int_bool bTabbed, ::u32 nTabStops, LPINT lpnTabStops, i32 nTabOrigin,
  __out_z LPTSTR lpszOutputString, i32* pnDxWidths, i32& nRightFixup)
  {
  ASSERT_VALID(this);
@@ -506,7 +506,7 @@
  ::GetTextExtentPoint32A(get_handle2(), "A", 1, &sizeExtent);
  
  ::point pointCurrent;
- UINT nAlignment = ::GetTextAlign(get_handle2());
+ ::u32 nAlignment = ::GetTextAlign(get_handle2());
  int_bool bUpdateCP = (nAlignment & TA_UPDATECP) != 0;
  if (bUpdateCP)
  {
@@ -536,7 +536,7 @@
  }
  }
  
- for (UINT i = 0; i < nCount; i++)
+ for (::u32 i = 0; i < nCount; i++)
  {
  int_bool bSpace = ((_TUCHAR)*lpszCurChar == (_TUCHAR)tmAttrib.tmBreakChar);
  if (bSpace || (bTabbed && *lpszCurChar == '\t'))
@@ -630,7 +630,7 @@
  if (bUpdateCP)
  ::MoveToEx(get_os_data(), x, pointCurrent.y, nullptr);
  
- nCount = (UINT)(pnCurDelta - pnDxWidths);   // number of characters output
+ nCount = (::u32)(pnCurDelta - pnDxWidths);   // number of characters output
  return sizeExtent;
  }
  
@@ -639,8 +639,8 @@
  return ExtTextOut(x, y, 0, nullptr, lpszString, nCount, nullptr);
  }
  
- int_bool preview_dc::ExtTextOut(i32 x, i32 y, UINT nOptions, const ::rect & rect,
- const char * lpszString, UINT nCount, LPINT lpDxWidths)
+ int_bool preview_dc::ExtTextOut(i32 x, i32 y, ::u32 nOptions, const ::rect & rect,
+ const char * lpszString, ::u32 nCount, LPINT lpDxWidths)
  {
  ASSERT(get_os_data() != nullptr);
  ASSERT(get_handle2() != nullptr);
@@ -704,7 +704,7 @@
  FALSE));
  
  if (nCount <= 0)
- return (DWORD) 0;         // nCount is zero, there is nothing to print
+ return (::u32) 0;         // nCount is zero, there is nothing to print
  
  i32* pDeltas = nullptr;
  LPTSTR pOutputString = nullptr;
@@ -719,11 +719,11 @@
  {
  delete[] pDeltas;
  // Note: DELETE_EXCEPTION(e) not required
- return (DWORD) 0;           // signify error
+ return (::u32) 0;           // signify error
  }
  
  
- UINT uCount = nCount;
+ ::u32 uCount = nCount;
  size sizeFinalExtent = ComputeDeltas(x, lpszString, uCount, TRUE,
  nTabPositions, lpnTabStopPositions, nTabOrigin,
  pOutputString, pDeltas, nRightFixup);
@@ -745,14 +745,14 @@
  
  // This one is too complicated to do character-by-character output positioning
  // All we really need to do here is mirror the current position
- i32 preview_dc::DrawText(const char * lpszString, i32 nCount, RECT * prect,
- UINT nFormat)
+ i32 preview_dc::DrawText(const char * lpszString, i32 nCount, RECT32 * prect,
+ ::u32 nFormat)
  {
  ASSERT(get_handle2() != nullptr);
  ASSERT(get_os_data() != nullptr);
  ASSERT(lpszString != nullptr);
  ASSERT(rect != nullptr);
- ASSERT(fx_is_valid_address(rect, sizeof(RECT)));
+ ASSERT(fx_is_valid_address(rect, sizeof(RECT32)));
  ASSERT(nCount == -1 ?
  AfxIsValidString(lpszString) :
  fx_is_valid_address(lpszString, nCount, FALSE));
@@ -765,14 +765,14 @@
  return retVal;
  }
  
- i32 preview_dc::DrawTextEx(__in_ecount(nCount) LPTSTR lpszString, i32 nCount, RECT * prect,
- UINT nFormat, LPDRAWTEXTPARAMS lpDTParams)
+ i32 preview_dc::DrawTextEx(__in_ecount(nCount) LPTSTR lpszString, i32 nCount, RECT32 * prect,
+ ::u32 nFormat, LPDRAWTEXTPARAMS lpDTParams)
  {
  ASSERT(get_handle2() != nullptr);
  ASSERT(get_os_data() != nullptr);
  ASSERT(lpszString != nullptr);
  ASSERT(rect != nullptr);
- ASSERT(fx_is_valid_address(rect, sizeof(RECT)));
+ ASSERT(fx_is_valid_address(rect, sizeof(RECT32)));
  ASSERT(nCount == -1 ?
  AfxIsValidString(lpszString) :
  fx_is_valid_address(lpszString, nCount, FALSE));
@@ -961,7 +961,7 @@
  
  // these conversion functions can be used without an attached screen DC
  
- void preview_dc::PrinterDPtoScreenDP(LPPOINT lpPoint) const
+ void preview_dc::PrinterDPtoScreenDP(POINT32 * lpPoint) const
  {
  ASSERT(get_handle2() != nullptr);
  

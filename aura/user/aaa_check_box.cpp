@@ -5,12 +5,12 @@
 #include "acme/const/timer.h"
 
 
-void scroll_x(RECT * prect, double dRateX, const ::rect & rect)
+void scroll_x(RECT32 * prect, double dRateX, const ::rect & rect)
 {
 
-   LONG w = ::width(prect);
+   ::i32 w = ::width(prect);
 
-   prect->left = (LONG) (rect.left + (rect.width() - w) * dRateX);
+   prect->left = (::i32) (rect.left + (rect.width() - w) * dRateX);
 
    prect->right = prect->left + w;
 
@@ -205,7 +205,7 @@ namespace user
 
          pgraphics->set_font(this);
 
-         COLORREF crText;
+         color32_t crText;
 
          if (drawcontext.m_bListItemHover)
          {
@@ -364,7 +364,7 @@ namespace user
 
          }
 
-         COLORREF cr = ARGB(255, 255, 255, 255);
+         color32_t cr = ARGB(255, 255, 255, 255);
 
          ::draw2d::brush_pointer br(e_create);
 
@@ -379,7 +379,7 @@ namespace user
 
          }
 
-         br1->m_color = (br1->m_color.operator COLORREF() & 0xffffff) | ((BYTE(255.0 * dRate)) << 24);
+         br1->m_color = (br1->m_color.operator color32_t() & 0xffffff) | ((byte(255.0 * dRate)) << 24);
 
          br1->set_modified();
 
@@ -393,9 +393,9 @@ namespace user
          pgraphics->path(point);
 
          br->create_solid(ARGB(255,
-                               (BYTE)((double) colorref_get_r_value(cr) * dRate),
-                               (BYTE)((double) colorref_get_g_value(cr) * dRate),
-                               (BYTE)((double) colorref_get_b_value(cr) * dRate)));
+                               (byte)((double) colorref_get_r_value(cr) * dRate),
+                               (byte)((double) colorref_get_g_value(cr) * dRate),
+                               (byte)((double) colorref_get_b_value(cr) * dRate)));
 
          ::scroll_x(rectEllipse, dRate, rect);
 
@@ -405,9 +405,9 @@ namespace user
 
          pgraphics->fill_ellipse(rectEllipse);
 
-         BYTE bAlphaP1 = (BYTE) (255.0 * (1.0 - dRate));
+         byte bAlphaP1 = (byte) (255.0 * (1.0 - dRate));
 
-         COLORREF crP1 = ARGB(bAlphaP1, 0, 0, 0);
+         color32_t crP1 = ARGB(bAlphaP1, 0, 0, 0);
 
          point1->create_solid(2.0, crP1);
 
@@ -492,8 +492,8 @@ namespace user
       rectCheckBox.right = iMin + 1;
       rectCheckBox.bottom = iMin + 1;
 
-      COLORREF crPen = ARGB(255, 0, 0, 0);
-      COLORREF crBrush;
+      color32_t crPen = ARGB(255, 0, 0, 0);
+      color32_t crBrush;
 
       if (echeck() == ::check_checked)
       {

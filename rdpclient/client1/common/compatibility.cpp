@@ -89,7 +89,7 @@ COMMAND_LINE_ARGUMENT_A old_args[] =
 	{ nullptr, 0, nullptr, nullptr, nullptr, -1, nullptr, nullptr }
 };
 
-BOOL freerdp_client_old_parse_hostname(char* str, char** ServerHostname, UINT32* ServerPort)
+BOOL freerdp_client_old_parse_hostname(char* str, char** ServerHostname, ::u32* ServerPort)
 {
 	char* p;
 
@@ -197,7 +197,7 @@ int freerdp_client_old_process_plugin(rdpSettings* settings, ADDIN_ARGV* args)
 	return args_handled;
 }
 
-int freerdp_client_old_command_line_pre_filter(void* context, int index, int argc, LPCSTR* argv)
+int freerdp_client_old_command_line_pre_filter(void* context, int index, int argc, const char ** argv)
 {
 	rdpSettings* settings = (rdpSettings*) context;
 
@@ -368,7 +368,7 @@ int freerdp_client_old_command_line_post_filter(void* context, COMMAND_LINE_ARGU
 int freerdp_detect_old_command_line_syntax(int argc, char** argv, int* count)
 {
 	int status;
-	DWORD flags;
+	::u32 flags;
 	int detect_status;
 	rdpSettings* settings;
 	COMMAND_LINE_ARGUMENT_A* arg;
@@ -445,7 +445,7 @@ int freerdp_client_parse_old_command_line_arguments(int argc, char** argv, rdpSe
 	char* p;
 	char* str;
 	int status;
-	DWORD flags;
+	::u32 flags;
 	COMMAND_LINE_ARGUMENT_A* arg;
 
 	freerdp_register_addin_provider((FREERDP_LOAD_CHANNEL_ADDIN_ENTRY_FN) freerdp_channels_load_static_addin_entry, 0);

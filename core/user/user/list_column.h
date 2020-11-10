@@ -24,8 +24,8 @@ public:
    ::user::list_column_array *         m_pcontainer;
    index                       m_iOrder;
    id                                  m_uiText;
-   UINT                                m_uiSmallBitmap;
-   COLORREF                            m_crSmallMask;
+   ::u32                                m_uiSmallBitmap;
+   color32_t                            m_crSmallMask;
    i32                                 m_iSmallImageWidth;
    index                       m_iSubItem;
    index                       m_iColumn;

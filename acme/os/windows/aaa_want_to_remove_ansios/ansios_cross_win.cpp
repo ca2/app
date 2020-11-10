@@ -4,15 +4,15 @@
 #if 0
 
 
-DWORD
+::u32
 WINAPI
 FormatMessage(
-              DWORD dwFlags,
-              LPCVOID lpSource,
-              DWORD dwMessageId,
-              DWORD dwLanguageId,
-              LPSTR lpBuffer,
-              DWORD nSize,
+              ::u32 dwFlags,
+              const void * lpSource,
+              ::u32 dwMessageId,
+              ::u32 dwLanguageId,
+              char * lpBuffer,
+              ::u32 nSize,
               va_list *Arguments
               )
 {
@@ -27,7 +27,7 @@ FormatMessage(
 VOID
 WINAPI
 output_debug_string(
-                   LPCSTR lpOutputString
+                   const char * lpOutputString
                    )
 {
 

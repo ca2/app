@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-static DWORD nextTlsIndex = ::multithreading::slot_user_begin;
+static ::u32 nextTlsIndex = ::multithreading::slot_user_begin;
 
 
 

@@ -16,7 +16,7 @@ namespace draw2d_direct2d
    }
 
 
-   //COLORREF * image::get_data() const
+   //color32_t * image::get_data() const
    //{
 
    //   map();
@@ -106,7 +106,7 @@ namespace draw2d_direct2d
 
       m_pgraphicsMap->create_memory_graphics();
 
-      COLORREF * pcolorref = nullptr;
+      color32_t * pcolorref = nullptr;
 
       int iScan = iStride;
 
@@ -353,8 +353,8 @@ namespace draw2d_direct2d
       byte * dest = (byte*) colorref();
       int iSize = cx * cy;
 
-      BYTE b;
-      BYTE bMax;
+      byte b;
+      byte bMax;
       while (iSize-- > 0)
       {
          if (srcM[0] == 255)
@@ -364,11 +364,11 @@ namespace draw2d_direct2d
          else
          {
             bMax = 0;
-            b = (BYTE)(r1[0] - r2[0]);
+            b = (byte)(r1[0] - r2[0]);
             bMax = max(b, bMax);
-            b = (BYTE)(r1[1] - r2[1]);
+            b = (byte)(r1[1] - r2[1]);
             bMax = max(b, bMax);
-            b = (BYTE)(r1[2] - r2[2]);
+            b = (byte)(r1[2] - r2[2]);
             bMax = max(b, bMax);
             bMax = 255 - bMax;
          }
@@ -646,10 +646,10 @@ namespace draw2d_direct2d
 
    /*void image::Fill (int A, int R, int G, int B )
    {
-   COLORREF color = RGB ( B, G, R ) | (A << 24);
+   color32_t color = RGB ( B, G, R ) | (A << 24);
    int size=stride*cy;
 
-   COLORREF * pcr;
+   color32_t * pcr;
 
    map();
 
@@ -700,7 +700,7 @@ namespace draw2d_direct2d
    }*/
 
 
-   //COLORREF image::GetAverageColor()
+   //color32_t image::GetAverageColor()
    //{
    //   double dR = 0.0;
    //   double dG = 0.0;
@@ -776,9 +776,9 @@ namespace draw2d_direct2d
    //   int iFrameHeight = cy / iSliceCount;
    //   int iX = iFrame % iSliceCount;
    //   int iY = iFrame / iSliceCount;
-   //   COLORREF * lpDest = &m_pcolorref[iFrameWidth * iX + iY * iFrameHeight * cx];
-   //   COLORREF * lpSrc = (COLORREF *) lpdata;
-   //   COLORREF * lpDestLine;
+   //   color32_t * lpDest = &m_pcolorref[iFrameWidth * iX + iY * iFrameHeight * cx];
+   //   color32_t * lpSrc = (color32_t *) lpdata;
+   //   color32_t * lpDestLine;
    //   for(int y = 0; y < iFrameHeight; y++)
    //   {
    //      lpDestLine = &lpDest[y * cx];
@@ -802,9 +802,9 @@ namespace draw2d_direct2d
    //   int iFrameHeight = cy / iSliceCount;
    //   int iX = iFrame % iSliceCount;
    //   int iY = iFrame / iSliceCount;
-   //   COLORREF * lpDest = &m_pcolorref[iFrameWidth * iX + iY * iFrameHeight * cx];
-   //   COLORREF * lpSrc = (COLORREF *) lpdata;
-   //   COLORREF * lpDestLine;
+   //   color32_t * lpDest = &m_pcolorref[iFrameWidth * iX + iY * iFrameHeight * cx];
+   //   color32_t * lpSrc = (color32_t *) lpdata;
+   //   color32_t * lpDestLine;
    //   for(int y = iFrameHeight - 1; y >= 0; y--)
    //   {
    //      lpDestLine = &lpDest[y * cx];
@@ -828,9 +828,9 @@ namespace draw2d_direct2d
    //   int iFrameHeight = cy / iSliceCount;
    //   int iX = iFrame % iSliceCount;
    //   int iY = iFrame / iSliceCount;
-   //   COLORREF * lpDest = &m_pcolorref[iFrameWidth * iX + iY * iFrameHeight * cx];
-   //   COLORREF * lpSrc = (COLORREF *) lpdata;
-   //   COLORREF * lpDestLine;
+   //   color32_t * lpDest = &m_pcolorref[iFrameWidth * iX + iY * iFrameHeight * cx];
+   //   color32_t * lpSrc = (color32_t *) lpdata;
+   //   color32_t * lpDestLine;
    //   for(int y = iFrameHeight - 1; y >= 0; y--)
    //   {
    //      lpDestLine = &lpDest[y * cx];
@@ -850,9 +850,9 @@ namespace draw2d_direct2d
    //   int iFrameHeight = cy / iSliceCount;
    //   int iX = iFrame % iSliceCount;
    //   int iY = iFrame / iSliceCount;
-   //   COLORREF * lpSrc = &m_pcolorref[iFrameWidth * iX + iY * iFrameHeight *  cx];
-   //   COLORREF * lpDest = (COLORREF *) lpdata;
-   //   COLORREF * lpSrcLine;
+   //   color32_t * lpSrc = &m_pcolorref[iFrameWidth * iX + iY * iFrameHeight *  cx];
+   //   color32_t * lpDest = (color32_t *) lpdata;
+   //   color32_t * lpSrcLine;
    //   for(int y = 0; y < iFrameHeight; y++)
    //   {
    //      lpSrcLine = &lpSrc[y * cx];
@@ -868,7 +868,7 @@ namespace draw2d_direct2d
    //bool image::is_rgb_black()
    //{
    //   int iSize = cx * cy;
-   //   COLORREF * lp = m_pcolorref;
+   //   color32_t * lp = m_pcolorref;
    //   for(int i = 0; i < iSize; i++)
    //   {
    //      if((*lp & 0x00FFFFFF) != 0)
@@ -1029,13 +1029,13 @@ namespace draw2d_direct2d
    //   int offset = ((int)echannel) % 4;
    //   int size=cx*cy;
 
-   //   BYTE * pb;
+   //   byte * pb;
 
    //   int iSize32 = size / 32;
    //   int i;
    //   for (i=0; i < iSize32; i+=32 )
    //   {
-   //      pb = ((BYTE * ) &m_pcolorref[i]) + offset;
+   //      pb = ((byte * ) &m_pcolorref[i]) + offset;
    //      pb[0 * 4] = (byte) intensity;
    //      pb[1 * 4] = (byte) intensity;
    //      pb[2 * 4] = (byte) intensity;
@@ -1072,7 +1072,7 @@ namespace draw2d_direct2d
 
    //   for (i=0; i<size; i++ )
    //   {
-   //      *(((BYTE * ) &m_pcolorref[i]) + offset) = (byte) intensity;
+   //      *(((byte * ) &m_pcolorref[i]) + offset) = (byte) intensity;
    //   }
    //}
 
@@ -1140,13 +1140,13 @@ namespace draw2d_direct2d
 
       }
 
-      m_pcolorrefRaw = (COLORREF *)pbitmap->m_map.bits;
+      m_pcolorrefRaw = (color32_t *)pbitmap->m_map.bits;
 
       m_iScan = pbitmap->m_map.pitch;
 
-      int compare_scan = this->width() * sizeof(COLORREF);
+      int compare_scan = this->width() * sizeof(color32_t);
 
-      i64 i = m_iScan * this->height() / sizeof(COLORREF);
+      i64 i = m_iScan * this->height() / sizeof(color32_t);
 
       if (bApplyAlphaTransform)
       {
@@ -1220,7 +1220,7 @@ namespace draw2d_direct2d
 
          byte * p = (byte *)m_pcolorrefRaw;
 
-         i64 i = m_iScan * this->height() / sizeof(COLORREF);
+         i64 i = m_iScan * this->height() / sizeof(color32_t);
 
          if (m_bTrans)
          {

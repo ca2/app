@@ -44,7 +44,7 @@ public:
    virtual bool is_locked() const;
 
    virtual bool unlock();
-   virtual bool unlock(LONG /* lCount */, LPLONG /* pPrevCount=nullptr */);
+   virtual bool unlock(::i32 /* lCount */, ::i32 * /* pPrevCount=nullptr */);
 
 
    virtual void init_wait();

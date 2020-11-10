@@ -45,7 +45,7 @@ namespace draw2d
       }
 
 
-      virtual bool CreateBitmap(::draw2d::graphics * pgraphics, const ::size & size, UINT nPlanes, UINT nBitcount, const void * pBits, i32 stride);
+      virtual bool CreateBitmap(::draw2d::graphics * pgraphics, const ::size & size, ::u32 nPlanes, ::u32 nBitcount, const void * pBits, i32 stride);
 
       virtual bool CreateBitmapIndirect(::draw2d::graphics * pgraphics, LPBITMAP pBitmap);
 
@@ -54,7 +54,7 @@ namespace draw2d
 
       virtual bool create_bitmap(::draw2d::graphics * pgraphics, const ::size& size, void** ppcolorref, int* piScan);
       virtual bool host_bitmap(::draw2d::graphics* pgraphics, const pixmap* ppximap);
-      virtual bool CreateDIBitmap(::draw2d::graphics * pgraphics, int cx, int cy, u32 flInit, const void *pjBits, UINT iUsage);
+      virtual bool CreateDIBitmap(::draw2d::graphics * pgraphics, int cx, int cy, u32 flInit, const void *pjBits, ::u32 iUsage);
 
       virtual bool attach(void * posdata);
       virtual void * detach();

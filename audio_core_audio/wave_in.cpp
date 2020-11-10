@@ -322,7 +322,7 @@ namespace multimedia
       }
 
       /*
-            void CALLBACK in::in_proc(HWAVEIN hwi, UINT uMsg, DWORD dwInstance, DWORD dwParam1, DWORD dwParam2)
+            void CALLBACK in::in_proc(HWAVEIN hwi, ::u32 uMsg, ::u32 dwInstance, ::u32 dwParam1, ::u32 dwParam2)
             {
 
                UNREFERENCED_PARAMETER(hwi);
@@ -449,7 +449,7 @@ namespace multimedia
                                       AudioQueueRef                        inAQ,
                                       AudioQueueBufferRef                  inBuffer,
                                       const AudioTimeStamp                 *inStartTime,
-                                      UInt32                               inNumPackets,
+                                      ::u32                               inNumPackets,
                                       const AudioStreamPacketDescription   *inPacketDesc)
       {
 
@@ -463,7 +463,7 @@ namespace multimedia
       void in::HandleInputBuffer( AudioQueueRef                        inAQ,
                                        AudioQueueBufferRef                  inBuffer,
                                        const AudioTimeStamp                 *inStartTime,
-                                       UInt32                               inNumPackets,
+                                       ::u32                               inNumPackets,
                                        const AudioStreamPacketDescription   *inPacketDesc)
       {
 

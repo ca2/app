@@ -52,7 +52,7 @@ struct BacktraceState
 static _Unwind_Reason_Code unwindCallback(struct _Unwind_Context* context,void* arg)
 {
    BacktraceState* state = static_cast<BacktraceState*>(arg);
-   uintptr_t pc = _Unwind_GetIP(context);
+   ::u32ptr_t pc = _Unwind_GetIP(context);
    if(pc)
    {
       if(state->current == state->end)
@@ -152,7 +152,7 @@ HANDLE SymGetProcessHandle()
 #ifdef WINDOWS_DESKTOP
 
 
-bool engine_get_line_from_address(HANDLE hprocess, OS_DWORD uiAddress, DWORD * puiDisplacement, OS_IMAGEHLP_LINE * pline)
+bool engine_get_line_from_address(HANDLE hprocess, OS_DWORD uiAddress, ::u32 * puiDisplacement, OS_IMAGEHLP_LINE * pline)
 {
 
 #ifdef WORK_AROUND_SRCLINE_BUG
@@ -207,7 +207,7 @@ index engine_fileline(OS_DWORD dwAddress, char * psz, int nCount, u32 * pline, u
 
    HANDLE hprocess = SymGetProcessHandle();
 
-   DWORD displacement = 0;
+   ::u32 displacement = 0;
 
    if (!engine_get_line_from_address(hprocess, dwAddress, &displacement, &img_line))
    {
@@ -246,7 +246,7 @@ index engine_fileline(OS_DWORD dwAddress, char * psz, int nCount, u32 * pline, u
 size_t engine_symbol(char * sz,int n,DWORD64 * pdisplacement,DWORD64 dwAddress)
 {
 
-   BYTE symbol[4096];
+   byte symbol[4096];
    PIMAGEHLP_SYMBOL64 pSym = (PIMAGEHLP_SYMBOL64)&symbol;
    __memset(pSym,0,sizeof(symbol)) ;
    pSym->SizeOfStruct = sizeof(IMAGEHLP_SYMBOL64) ;
@@ -264,17 +264,17 @@ size_t engine_symbol(char * sz,int n,DWORD64 * pdisplacement,DWORD64 dwAddress)
    return strlen(sz);
 }
 #else
-size_t engine_symbol(char * sz, int n, DWORD * pdisplacement, DWORD dwAddress)
+size_t engine_symbol(char * sz, int n, ::u32 * pdisplacement, ::u32 dwAddress)
 {
 
-   BYTE symbol[4096];
+   byte symbol[4096];
    PIMAGEHLP_SYMBOL pSym = (PIMAGEHLP_SYMBOL)&symbol;
    __memset(pSym, 0, sizeof(symbol));
    pSym->SizeOfStruct = sizeof(IMAGEHLP_SYMBOL);
    pSym->MaxNameLength = sizeof(symbol) - sizeof(IMAGEHLP_SYMBOL);
 
    HANDLE hprocess = SymGetProcessHandle();
-   DWORD displacement = 0;
+   ::u32 displacement = 0;
    int r = SymGetSymFromAddr(hprocess, dwAddress, &displacement, pSym);
    if (!r) return 0;
    if (pdisplacement)
@@ -308,7 +308,7 @@ int_bool __stdcall My_ReadProcessMemory(HANDLE      hProcess,
                                         DWORD64     qwBaseAddress,
                                         PVOID       pBuffer,
 
-                                        DWORD       nSize,
+                                        ::u32       nSize,
                                         LPDWORD     pNumberOfBytesRead
 
                                        );
@@ -338,7 +338,7 @@ HANDLE      hProcess,
 DWORD64     qwBaseAddress,
 PVOID       pBuffer,
 
-DWORD       nSize,
+::u32       nSize,
 LPDWORD     pNumberOfBytesRead
 
 )
@@ -348,7 +348,7 @@ LPDWORD     pNumberOfBytesRead
 #if defined(_UWP) || defined(LINUX) || defined(APPLEOS) || defined(ANDROID) || defined(SOLARIS)
    return FALSE;
 #else
-   if(!ReadProcessMemory(hProcess, (LPCVOID) qwBaseAddress, (LPVOID) pBuffer, nSize, &size))
+   if(!ReadProcessMemory(hProcess, (const void *) qwBaseAddress, (LPVOID) pBuffer, nSize, &size))
 
       return FALSE;
    *pNumberOfBytesRead = (u32) size;
@@ -362,7 +362,7 @@ LPDWORD     pNumberOfBytesRead
 
 #ifndef FAST_STACK_TRACE
 
-int_bool __stdcall My_ReadProcessMemory32(HANDLE hProcess, DWORD qwBaseAddress, PVOID pBuffer, DWORD nSize, LPDWORD lpNumberOfBytesRead)
+int_bool __stdcall My_ReadProcessMemory32(HANDLE hProcess, ::u32 qwBaseAddress, PVOID pBuffer, ::u32 nSize, LPDWORD lpNumberOfBytesRead)
 
 {
 
@@ -370,7 +370,7 @@ int_bool __stdcall My_ReadProcessMemory32(HANDLE hProcess, DWORD qwBaseAddress, 
 #if defined(_UWP) || defined(LINUX) || defined(APPLEOS) || defined(ANDROID) || defined(SOLARIS)
    __throw(todo());
 #else
-   if (!ReadProcessMemory(hProcess, (LPCVOID)qwBaseAddress, (LPVOID)pBuffer, nSize, &size))
+   if (!ReadProcessMemory(hProcess, (const void *)qwBaseAddress, (LPVOID)pBuffer, nSize, &size))
 
       return FALSE;
 #endif
@@ -385,7 +385,7 @@ int_bool __stdcall My_ReadProcessMemory32(HANDLE hProcess, DWORD qwBaseAddress, 
 
 /*
 #else
-int_bool __stdcall My_ReadProcessMemory (HANDLE, LPCVOID pBaseAddress, LPVOID lpBuffer, u32 nSize, SIZE_T * lpNumberOfBytesRead)
+int_bool __stdcall My_ReadProcessMemory (HANDLE, const void * pBaseAddress, LPVOID lpBuffer, u32 nSize, SIZE_T * lpNumberOfBytesRead)
 
 {
 return ReadProcessMemory(GetCurrentProcess(), pBaseAddress, lpBuffer, nSize, lpNumberOfBytesRead) != FALSE;
@@ -472,7 +472,7 @@ namespace exception
 #ifdef WINDOWS_DESKTOP
 
 
-   size_t engine::symbol(char * psz, int nCount, DWORD * pdisplacement)
+   size_t engine::symbol(char * psz, int nCount, ::u32 * pdisplacement)
    {
 
       if (!check())
@@ -551,7 +551,7 @@ namespace exception
 
 #if FAST_STACK_TRACE
 
-      UINT32 maxframes = c;
+      ::u32 maxframes = c;
       ULONG BackTraceHash;
       c = RtlCaptureStackBackTrace(0, maxframes, reinterpret_cast<PVOID*>(pinteraction), &BackTraceHash);
 
@@ -561,7 +561,7 @@ namespace exception
    {
 
 #if FAST_STACK_TRACE
-      UINT32 maxframes = sizeof(m_uia) / sizeof(m_uia[0]);
+      ::u32 maxframes = sizeof(m_uia) / sizeof(m_uia[0]);
       ULONG BackTraceHash;
       m_iAddressWrite = RtlCaptureStackBackTrace(0, maxframes, reinterpret_cast<PVOID*>(&m_uia), &BackTraceHash);
 #else
@@ -687,7 +687,7 @@ namespace exception
    }
 
 
-   bool engine::get_line_from_address (HANDLE hprocess, OS_DWORD uiAddress, DWORD * puiDisplacement, OS_IMAGEHLP_LINE * pline)
+   bool engine::get_line_from_address (HANDLE hprocess, OS_DWORD uiAddress, ::u32 * puiDisplacement, OS_IMAGEHLP_LINE * pline)
    {
 
       return engine_get_line_from_address(hprocess, uiAddress, puiDisplacement, pline);
@@ -715,7 +715,7 @@ namespace exception
 //#endif
    }
 //#else
-//   bool engine::get_line_from_address(HANDLE hprocess, DWORD64 uiAddress, DWORD * puiDisplacement, IMAGEHLP_LINE64 * pline)
+//   bool engine::get_line_from_address(HANDLE hprocess, DWORD64 uiAddress, ::u32 * puiDisplacement, IMAGEHLP_LINE64 * pline)
 //   {
 //
 //      return engine_get_line_from_address(hprocess, uiAddress, puiDisplacement, pline);
@@ -846,13 +846,13 @@ namespace exception
 //         {
 //            ENUMPROCESSMODULES fnEnumProcessModules =
 //            (ENUMPROCESSMODULES)GetProcAddress(hInst, "EnumProcessModules");
-//            DWORD cbNeeded = 0;
+//            ::u32 cbNeeded = 0;
 //            if (fnEnumProcessModules &&
 //                  fnEnumProcessModules(GetCurrentProcess(), 0, 0, &cbNeeded) &&
 //                  cbNeeded)
 //            {
 //               HMODULE * pmod = (HMODULE *)alloca(cbNeeded);
-//               DWORD cb = cbNeeded;
+//               ::u32 cb = cbNeeded;
 //               if (fnEnumProcessModules(GetCurrentProcess(), pmod, cb, &cbNeeded))
 //               {
 //                  m_iRef = 0;
@@ -1049,7 +1049,7 @@ namespace exception
       //   SymSetOptions (SYMOPT_UNDNAME|SYMOPT_LOAD_LINES);
       if (!::SymInitialize(hprocess, 0, TRUE))
       {
-         DWORD dw = ::GetLastError();
+         ::u32 dw = ::GetLastError();
          output_debug_string("Last Error = " + __str(dw));
          ASSERT(0);
 
@@ -1487,7 +1487,7 @@ namespace exception
    }
 
 #if OSBIT == 32
-   char * engine::stack_trace(DWORD * pinteraction, int c, const char * pszFormat)
+   char * engine::stack_trace(::u32 * pinteraction, int c, const char * pszFormat)
 #else
    char * engine::stack_trace(DWORD64 * pinteraction, int c, const char * pszFormat)
 #endif
@@ -1544,7 +1544,7 @@ namespace exception
       u32 uiLineDisplacement = 0;
       u32 uiLineNumber = 0;
 #if OSBIT == 32
-      DWORD uiSymbolDisplacement = 0;
+      ::u32 uiSymbolDisplacement = 0;
 #else
       DWORD64 uiSymbolDisplacement = 0;
 #endif
@@ -1657,7 +1657,7 @@ namespace exception
 
       cslock csl(&m_cs);
 
-      UINT32 maxframes = c;
+      ::u32 maxframes = c;
 
       c = ::backtrace(pinteraction, maxframes);
 
@@ -1761,7 +1761,7 @@ namespace exception
 
       sync_lock sl(mutex());
 
-      UINT32 maxframes = c;
+      ::u32 maxframes = c;
 
       c = ::backtrace(ppui, maxframes);
 

@@ -51,11 +51,11 @@ public:
    rect_type(const POINT_TYPE& point, const SIZE_TYPE& size) noexcept : rect_type(point.x, point.y, point.x + size.cx, point.y + size.cy) {}
    rect_type(const SIZE_TYPE& size) noexcept : rect_type(nullptr, size) {}
    rect_type(const POINT_TYPE& point1, const POINT_TYPE& point2) noexcept { top_left() = point1; bottom_right() = point2; }
-   rect_type(const RECT& t) noexcept { ::copy_rect(this, &t); }
+   rect_type(const RECT32& t) noexcept { ::copy_rect(this, &t); }
    rect_type(const RECT64& t) noexcept { ::copy_rect(this, &t); }
    rect_type(const RECTF& t) noexcept { ::copy_rect(this, &t); }
    rect_type(const RECTD& t) noexcept { ::copy_rect(this, &t); }
-   rect_type(const RECT* p) noexcept { ::copy_rect(this, p); }
+   rect_type(const RECT32* p) noexcept { ::copy_rect(this, p); }
    rect_type(const RECT64* p) noexcept { ::copy_rect(this, p); }
    rect_type(const RECTF* p) noexcept { ::copy_rect(this, p); }
    rect_type(const RECTD* p) noexcept { ::copy_rect(this, p); }
@@ -957,7 +957,7 @@ public:
 
  }
 
- void SubtractRectMinor(const rect_type & rectMajor, const rect & rectMinor)
+ void SubtractRectMinor(const rect_type & rectMajor, const rect_type & rectMinor)
 
  {
     UNREFERENCED_PARAMETER(rectMajor);

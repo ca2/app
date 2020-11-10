@@ -1,10 +1,10 @@
 #include "framework.h"
 //#include "uwp.h"
 
-//DWORD ::get_tick()
+//::u32 ::get_tick()
 //{
 //
-//   return (DWORD) (GetTickCount64() % 0x100000000ULL);
+//   return (::u32) (GetTickCount64() % 0x100000000ULL);
 //
 //}
 
@@ -28,6 +28,6 @@
 CLASS_DECL_AURA void sleep(const ::duration & dur)
 {
 
-   Sleep((DWORD) dur.total_milliseconds());
+   Sleep((::u32) dur.total_milliseconds());
 
 }

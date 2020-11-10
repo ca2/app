@@ -11,7 +11,7 @@ typedef THREAD_PROC * thread_proc;
 //thread_proc proc,
 //void * p,
 //::e_priority epriority = ::priority_normal,
-//UINT nStackSize = 0,
+//::u32 nStackSize = 0,
 //u32 uiCreateFlags = 0,
 //LPSECURITY_ATTRIBUTES psa = nullptr,
 //

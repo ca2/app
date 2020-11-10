@@ -17,7 +17,7 @@ namespace experience
       point                         m_pointCursorOrigin;
       ::rect                        m_rectWindowOrigin;
       size                          m_sizeMinimumBorder;
-      UINT                          m_uiSWPFlags;
+      ::u32                          m_uiSWPFlags;
       e_grip                        m_egripMask;
       i32                           m_iPaintCount;
 
@@ -39,7 +39,7 @@ namespace experience
       e_grip GetGripMask();
       void SetGripMask(e_grip egrip);
       bool window_is_sizing();
-      void SetSWPFlags(UINT uiFlags);
+      void SetSWPFlags(::u32 uFlags);
       virtual ::size GetMinSize();
       e_cursor translate(e_hittest ehittest);
       bool set_frame_window(frame_window * pframewindow);

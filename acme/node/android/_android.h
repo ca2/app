@@ -7,7 +7,7 @@ CLASS_DECL_ACME::estatus os_shell_initialize();
 //#include "acme/node/ansios/ansios.h"
 
 
-string get_error_message(DWORD dwError);
+string get_error_message(::u32 dwError);
 
 //::acme::application* win_instantiate_application(::acme::application* pappSystem, const char* pszId);
 
@@ -43,22 +43,22 @@ CLASS_DECL_ACME void __cdecl __pre_translate_message(::message::message* pmessag
 int_bool PeekMessage(
    LPMESSAGE lpMsg,
    oswindow hWnd,
-   UINT wMsgFilterMin,
-   UINT wMsgFilterMax,
-   UINT wRemoveMsg);
+   ::u32 wMsgFilterMin,
+   ::u32 wMsgFilterMax,
+   ::u32 wRemoveMsg);
 
 int_bool GetMessage(
    LPMESSAGE lpMsg,
    oswindow hWnd,
-   UINT wMsgFilterMin,
-   UINT wMsgFilterMax);
+   ::u32 wMsgFilterMin,
+   ::u32 wMsgFilterMax);
 
 
 
 i32 CLASS_DECL_ACME __android_main(i32 argc, char* argv[]);
 
 
-CLASS_DECL_ACME void vfxThrowFileException(::matter* pobject, const ::estatus& estatus, LONG lOsError, const char* lpszFileName = nullptr);
+CLASS_DECL_ACME void vfxThrowFileException(::matter* pobject, const ::estatus& estatus, ::i32 lOsError, const char* lpszFileName = nullptr);
 
 
 #include "internal.h"

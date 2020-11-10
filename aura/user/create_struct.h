@@ -41,7 +41,7 @@ namespace user
 
       void set_rect(const ::rect & rect);
 
-      void get_rect(RECT * prect);
+      void get_rect(RECT32 * prect);
 
       void add_visible(bool bAdd = true);
 

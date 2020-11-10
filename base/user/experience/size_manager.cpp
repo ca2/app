@@ -69,7 +69,7 @@ namespace experience
       if(ehittest != hittest_none)
       {
 
-         UINT nHitTest = HTCLIENT;
+         ::u32 nHitTest = HTCLIENT;
 
          switch(ehittest)
          {
@@ -305,7 +305,7 @@ namespace experience
    }
 
 
-   void size_manager::SetSWPFlags(UINT uiFlags)
+   void size_manager::SetSWPFlags(::u32 uFlags)
    {
 
       m_uiSWPFlags = uiFlags;

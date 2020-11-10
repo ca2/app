@@ -15,7 +15,7 @@ public:
    TYPE      m_number;
 
 
-   inline number_cast(__int64 i);
+   inline number_cast(::i64 i);
    inline number_cast(int i);
 
    operator TYPE() { return m_number; }
@@ -104,6 +104,6 @@ using DWORD_cast = u32_cast;
 #define __memsize(x) ((::memsize)(::memsize_cast)(x))
 #define __strsize(x) ((::strsize)(::strsize_cast)(x))
 
-#define __LONG(x) ((LONG)(::i32_cast)(x))
+#define __LONG(x) ((::i32)(::i32_cast)(x))
 
 

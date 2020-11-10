@@ -393,23 +393,23 @@ inline ::estatus __preserve_construct(::image_pointer & pimage, const ::size & s
 
 
 
-inline void copy_colorref(COLORREF * pcolorrefDst, const ::size & size, int iStrideDst, const COLORREF * pcolorrefSrc, int iStrideSrc)
+inline void copy_colorref(color32_t * pcolorrefDst, const ::size & size, int iStrideDst, const color32_t * pcolorrefSrc, int iStrideSrc)
 {
    return copy_colorref(pcolorrefDst, size.cx, size.cy, iStrideDst, pcolorrefSrc, iStrideSrc);
 }
 
 
-inline CLASS_DECL_AURA void copy_colorref(COLORREF * pcolorrefDst, const ::point & point, const ::size & size, int iStrideDst, const COLORREF * pcolorrefSrc, int iStrideSrc)
+inline CLASS_DECL_AURA void copy_colorref(color32_t * pcolorrefDst, const ::point & point, const ::size & size, int iStrideDst, const color32_t * pcolorrefSrc, int iStrideSrc)
 {
 
    byte * pDst = (byte *) pcolorrefDst;
 
-   return copy_colorref((COLORREF *) pDst + point.x * sizeof(COLORREF) + point.y * iStrideDst, size.cx, size.cy, iStrideDst, pcolorrefSrc, iStrideSrc);
+   return copy_colorref((color32_t *) pDst + point.x * sizeof(color32_t) + point.y * iStrideDst, size.cx, size.cy, iStrideDst, pcolorrefSrc, iStrideSrc);
 
 }
 
 
-inline CLASS_DECL_AURA void copy_colorref(COLORREF * pcolorrefDst, const ::rect & rect, int iStrideDst, const COLORREF * pcolorrefSrc, int iStrideSrc)
+inline CLASS_DECL_AURA void copy_colorref(color32_t * pcolorrefDst, const ::rect & rect, int iStrideDst, const color32_t * pcolorrefSrc, int iStrideSrc)
 {
 
    return copy_colorref(pcolorrefDst, rect.top_left(), rect.size(), iStrideDst, pcolorrefSrc, iStrideSrc);
@@ -417,10 +417,10 @@ inline CLASS_DECL_AURA void copy_colorref(COLORREF * pcolorrefDst, const ::rect 
 }
 
 
-inline COLORREF * image::get_data() { return m_pcolorref1; }
+inline color32_t * image::get_data() { return m_pcolorref1; }
 
 
-const COLORREF * image::get_data() const
+const color32_t * image::get_data() const
 {
 
    map();

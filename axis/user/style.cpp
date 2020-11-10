@@ -467,7 +467,7 @@ namespace axis
    //}
 
 
-   //bool style::_001OnDrawMenuInteraction(::draw2d::graphics_pointer & pgraphics, menu_interaction * pinteraction)
+   //bool style::_001OnDrawMen::u32eraction(::draw2d::graphics_pointer & pgraphics, menu_interaction * pinteraction)
    //{
 
    //   return false;
@@ -574,7 +574,7 @@ namespace axis
    //}
 
 
-   //bool style::create_color(e_color ecolor, COLORREF cr)
+   //bool style::create_color(e_color ecolor, color32_t cr)
    //{
 
    //   if (userstyle()->m_mapColor.is_null())
@@ -617,7 +617,7 @@ namespace axis
   // }
 
 
-   //bool style::create_opaque_color(e_color ecolor, COLORREF cr)
+   //bool style::create_opaque_color(e_color ecolor, color32_t cr)
    //{
 
    //   if (!create_color(ecolor, opaque_color(cr)))
@@ -662,7 +662,7 @@ namespace axis
    //}
 
 
-   //bool style::create_session_default_color(e_color eusercolor, BYTE bAlpha, u64 ui)
+   //bool style::create_session_default_color(e_color eusercolor, byte bAlpha, u64 ui)
    //{
 
    //   if (!create_color(eusercolor, alpha_color(bAlpha, psession->get_default_color(ui))))
@@ -1092,7 +1092,7 @@ namespace axis
       //}
 
 
-      //bool style::_001OnDrawMenuInteraction(::draw2d::graphics_pointer & pgraphics, menu_interaction * pinteraction)
+      //bool style::_001OnDrawMen::u32eraction(::draw2d::graphics_pointer & pgraphics, menu_interaction * pinteraction)
       //{
 
       //   return false;
@@ -1175,7 +1175,7 @@ namespace axis
       //}
 
 
-      //bool style::create_color(e_color ecolor, COLORREF cr)
+      //bool style::create_color(e_color ecolor, color32_t cr)
       //{
 
       //   if (userstyle()->m_mapColor.is_null())
@@ -1218,7 +1218,7 @@ namespace axis
      // }
 
 
-      //bool style::create_opaque_color(e_color ecolor, COLORREF cr)
+      //bool style::create_opaque_color(e_color ecolor, color32_t cr)
       //{
 
       //   if (!create_color(ecolor, opaque_color(cr)))
@@ -1263,7 +1263,7 @@ namespace axis
       //}
 
 
-      //bool style::create_session_default_color(e_color eusercolor, BYTE bAlpha, u64 ui)
+      //bool style::create_session_default_color(e_color eusercolor, byte bAlpha, u64 ui)
       //{
 
       //   if (!create_color(eusercolor, alpha_color(bAlpha, psession->get_default_color(ui))))

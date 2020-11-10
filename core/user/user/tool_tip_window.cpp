@@ -186,7 +186,7 @@ namespace user
    //
    //
    ///////////////////////////////////////////////////////////
-   bool tool_tip_window::CalcRect(::draw2d::graphics_pointer & pgraphics, RECT * prect, const ::rect & rectTool, const char * pcsz)
+   bool tool_tip_window::CalcRect(::draw2d::graphics_pointer & pgraphics, RECT32 * prect, const ::rect & rectTool, const char * pcsz)
    {
       
       pgraphics->set(m_font);
@@ -198,11 +198,11 @@ namespace user
       {
          prect->right = m_point.x - (m_point.x - rectTool.left) / 2;
 
-         prect->left = (LONG) (prect->right - size.cx - m_sizeArrow.cx - 4);
+         prect->left = (::i32) (prect->right - size.cx - m_sizeArrow.cx - 4);
 
          prect->bottom = m_point.y - (m_point.y - rectTool.top) / 2;
 
-         prect->top = (LONG) (prect->bottom - size.cy - m_sizeArrow.cy - 4);
+         prect->top = (::i32) (prect->bottom - size.cy - m_sizeArrow.cy - 4);
 
       }
       else if(((m_ealign & AlignRight) == AlignRight) &&
@@ -212,9 +212,9 @@ namespace user
 
          prect->bottom = m_point.y - (m_point.y - rectTool.top) / 2;
 
-         prect->right = (LONG) (prect->left + size.cx + m_sizeArrow.cx + 4);
+         prect->right = (::i32) (prect->left + size.cx + m_sizeArrow.cx + 4);
 
-         prect->top = (LONG) (prect->bottom - size.cy - m_sizeArrow.cy - 4);
+         prect->top = (::i32) (prect->bottom - size.cy - m_sizeArrow.cy - 4);
 
       }
       else
@@ -223,9 +223,9 @@ namespace user
 
          prect->top = prect->bottom + m_pointOffset.y;
 
-         prect->right = (LONG)(prect->left + size.cx + m_sizeArrow.cx + 4);
+         prect->right = (::i32)(prect->left + size.cx + m_sizeArrow.cx + 4);
 
-         prect->bottom = (LONG) (prect->top + size.cy + m_sizeArrow.cy + 4);
+         prect->bottom = (::i32) (prect->top + size.cy + m_sizeArrow.cy + 4);
 
       }
       return true;
@@ -308,7 +308,7 @@ namespace user
    //
    //
    ///////////////////////////////////////////////////////////
-   void tool_tip_window::OnTimer(UINT uEvent)
+   void tool_tip_window::OnTimer(::u32 uEvent)
    {
       switch(uEvent)
       {
@@ -357,7 +357,7 @@ namespace user
    //
    //
    ///////////////////////////////////////////////////////////
-   void tool_tip_window::OnSize(UINT nType, i32 cx, i32 cy)
+   void tool_tip_window::OnSize(::u32 nType, i32 cx, i32 cy)
    {
       update_drawing_objects();
    }
@@ -536,7 +536,7 @@ namespace user
 
 
 
-   bool tool_tip_window::GetToolRect(i32 iTool, RECT * prect)
+   bool tool_tip_window::GetToolRect(i32 iTool, RECT32 * prect)
 
    {
       GetTool(iTool)->BaseToolTipGetRect(prect);

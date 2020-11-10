@@ -82,7 +82,7 @@ BOOL wf_sw_end_paint(wfContext* wfc)
 	int i;
 	rdpGdi* gdi;
 	int ninvalid;
-	RECT updateRect;
+	RECT32 updateRect;
 	HGDI_RGN cinvalid;
 	REGION16 invalidRegion;
 	RECTANGLE_16 invalidRect;
@@ -175,7 +175,7 @@ BOOL wf_sw_end_paint(wfContext* wfc)
 //BOOL wf_hw_desktop_resize(wfContext* wfc)
 //{
 //	BOOL same;
-//	RECT rect;
+//	RECT32 rect;
 //	rdpSettings* settings;
 //
 //	settings = wfc->instance->settings;
@@ -350,7 +350,7 @@ CLASS_DECL_EXPORT BOOL wf_pre_connect(freerdp* instance)
 //	item_info.wID = SYSCOMMAND_ID_SMARTSIZING;
 //	item_info.fType = MFT_STRING;
 //	item_info.dwTypeData = _wcsdup(_T("Smart sizing"));
-//	item_info.cch = (UINT) _wcslen(_T("Smart sizing"));
+//	item_info.cch = (::u32) _wcslen(_T("Smart sizing"));
 //	item_info.dwItemData = (ULONG_PTR) wfc;
 //
 //	InsertMenuItem(hMenu, 6, TRUE, &item_info);
@@ -364,7 +364,7 @@ CLASS_DECL_EXPORT BOOL wf_pre_connect(freerdp* instance)
 //BOOL wf_post_connect(freerdp* instance)
 //{
 //	rdpGdi* gdi;
-//	DWORD dwStyle;
+//	::u32 dwStyle;
 //	rdpCache* cache;
 //	wfContext* wfc;
 //	rdpContext* context;
@@ -439,7 +439,7 @@ CLASS_DECL_EXPORT BOOL wf_pre_connect(freerdp* instance)
 //
 //	if (!wfc->hwnd)
 //	{
-//		wfc->hwnd = CreateWindowEx((DWORD) nullptr, wfc->wndClassName, lpWindowName, dwStyle,
+//		wfc->hwnd = CreateWindowEx((::u32) nullptr, wfc->wndClassName, lpWindowName, dwStyle,
 //			0, 0, 0, 0, wfc->hWndParent, nullptr, wfc->hInstance, nullptr);
 //
 //		SetWindowLongPtr(wfc->hwnd, GWLP_USERDATA, (LONG_PTR) wfc);
@@ -511,8 +511,8 @@ CLASS_DECL_EXPORT BOOL wf_pre_connect(freerdp* instance)
 //
 //
 //	//BOOL fSave;
-//	//DWORD status;
-//	//DWORD dwFlags;
+//	//::u32 status;
+//	//::u32 dwFlags;
 //	//char UserName[CREDUI_MAX_USERNAME_LENGTH + 1];
 //	//char Password[CREDUI_MAX_PASSWORD_LENGTH + 1];
 //	//char User[CREDUI_MAX_USERNAME_LENGTH + 1];
@@ -587,9 +587,9 @@ CLASS_DECL_EXPORT BOOL wf_pre_connect(freerdp* instance)
 //BOOL wf_verify_certificate(freerdp* instance, char* subject, char* issuer, char* fingerprint)
 //{
 //#if 0
-//	DWORD mode;
+//	::u32 mode;
 //	int read_size;
-//	DWORD read_count;
+//	::u32 read_count;
 //	TCHAR answer[2];
 //	TCHAR* read_buffer;
 //	HANDLE input_handle;
@@ -617,8 +617,8 @@ CLASS_DECL_EXPORT BOOL wf_pre_connect(freerdp* instance)
 //{
 //	wfContext* wfc = (wfContext *)instance->context;
 //
-//	UINT32 num_retries = 0;
-//	UINT32 max_retries = instance->settings->AutoReconnectMaxRetries;
+//	::u32 num_retries = 0;
+//	::u32 max_retries = instance->settings->AutoReconnectMaxRetries;
 //
 //	/* Only auto reconnect on network disconnects. */
 //	if (freerdp_error_info(instance) != 0)
@@ -687,14 +687,14 @@ CLASS_DECL_EXPORT BOOL wf_pre_connect(freerdp* instance)
 //	return nullptr;
 //}
 
-//DWORD WINAPI wf_client_thread(LPVOID lpParam)
+//::u32 WINAPI wf_client_thread(LPVOID lpParam)
 //{
 //	MSG msg;
 //	int width;
 //	int height;
 //	BOOL msg_ret;
 //	int quit_msg;
-//	DWORD nCount;
+//	::u32 nCount;
 //	HANDLE handles[64];
 //	wfContext* wfc;
 //	freerdp* instance;
@@ -741,7 +741,7 @@ CLASS_DECL_EXPORT BOOL wf_pre_connect(freerdp* instance)
 //
 //		if (!async_transport)
 //		{
-//			DWORD tmp = freerdp_get_event_handles(context, &handles[nCount], 64 - nCount);
+//			::u32 tmp = freerdp_get_event_handles(context, &handles[nCount], 64 - nCount);
 //
 //			if (tmp == 0)
 //			{
@@ -821,7 +821,7 @@ CLASS_DECL_EXPORT BOOL wf_pre_connect(freerdp* instance)
 //		wMessageQueue* input_queue;
 //		input_queue = freerdp_get_message_queue(instance, FREERDP_INPUT_MESSAGE_QUEUE);
 //		if (MessageQueue_PostQuit(input_queue, 0))
-//			WaitForSingleObject(input_thread, INFINITE);
+//			WaitForSingleObject(input_thread, U32_INFINITE_TIMEOUT);
 //		CloseHandle(input_thread);
 //	}
 //
@@ -833,7 +833,7 @@ CLASS_DECL_EXPORT BOOL wf_pre_connect(freerdp* instance)
 //	return 0;
 //}
 //
-DWORD WINAPI wf_keyboard_thread(LPVOID lpParam)
+::u32 WINAPI wf_keyboard_thread(LPVOID lpParam)
 {
 	MSG msg;
 	BOOL status;
@@ -870,7 +870,7 @@ DWORD WINAPI wf_keyboard_thread(LPVOID lpParam)
 
 	WLog_DBG(TAG, "Keyboard thread exited.");
 	ExitThread(0);
-	return (DWORD) nullptr;
+	return (::u32) nullptr;
 }
 
 rdpSettings* freerdp_client_get_settings(wfContext* wfc)
@@ -896,7 +896,7 @@ int freerdp_client_set_window_size(wfContext* wfc, int width, int height)
 
 	if ((width != wfc->client_width) || (height != wfc->client_height))
 	{
-      postthreadmessage(wfc->mainThreadId, e_message_size, SIZE_RESTORED, ((UINT) height << 16) | (UINT) width);
+      postthreadmessage(wfc->mainThreadId, e_message_size, SIZE_RESTORED, ((::u32) height << 16) | (::u32) width);
 	}
 
 	return 0;
@@ -936,7 +936,7 @@ int freerdp_client_load_settings_from_rdp_file(wfContext* wfc, char* filename)
 	return 0;
 }
 
-void wf_size_scrollbars(wfContext* wfc, UINT32 client_width, UINT32 client_height)
+void wf_size_scrollbars(wfContext* wfc, ::u32 client_width, ::u32 client_height)
 {
 	if (wfc->disablewindowtracking)
 		return;
@@ -1166,7 +1166,7 @@ int wfreerdp_client_stop(rdpContext* context)
 	{
       postthreadmessage(wfc->mainThreadId, e_message_quit, 0, 0);
 
-		WaitForSingleObject(wfc->thread, INFINITE);
+		WaitForSingleObject(wfc->thread, U32_INFINITE_TIMEOUT);
 		CloseHandle(wfc->thread);
 		wfc->thread = nullptr;
 		wfc->mainThreadId = 0;
@@ -1176,7 +1176,7 @@ int wfreerdp_client_stop(rdpContext* context)
 	{
       postthreadmessage(wfc->keyboardThreadId, e_message_quit, 0, 0);
 
-		WaitForSingleObject(wfc->keyboardThread, INFINITE);
+		WaitForSingleObject(wfc->keyboardThread, U32_INFINITE_TIMEOUT);
 		CloseHandle(wfc->keyboardThread);
 
 		wfc->keyboardThread = nullptr;

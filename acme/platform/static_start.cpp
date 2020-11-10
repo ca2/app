@@ -1137,7 +1137,7 @@ namespace acme
 
 
 
-CLASS_DECL_ACME COLORREF dk_red() // <3 tbs
+CLASS_DECL_ACME color32_t dk_red() // <3 tbs
 {
    return ARGB(255, 200, 16, 46);
 }

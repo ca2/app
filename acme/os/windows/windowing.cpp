@@ -68,7 +68,7 @@ CLASS_DECL_ACME int_bool is_window(oswindow oswindow)
 //
 //   }
 //
-//   DWORD dwThread = GetWindowThreadProcessId(hwndForeground, nullptr);
+//   ::u32 dwThread = GetWindowThreadProcessId(hwndForeground, nullptr);
 //
 //   xxf_zerop(pinfo);
 //
@@ -77,7 +77,7 @@ CLASS_DECL_ACME int_bool is_window(oswindow oswindow)
 //   if (!::GetGUIThreadInfo(dwThread, pinfo))
 //   {
 //
-//      DWORD dwLastError = ::GetLastError();
+//      ::u32 dwLastError = ::GetLastError();
 //
 //      return false;
 //
@@ -269,7 +269,7 @@ CLASS_DECL_ACME int_bool is_window(oswindow oswindow)
 ////}
 ////
 //
-////int_bool point_is_window_origin(POINT ptHitTest, oswindow oswindowExclude, int iMargin)
+////int_bool point_is_window_origin(POINT32 ptHitTest, oswindow oswindowExclude, int iMargin)
 ////{
 ////
 ////   auto poswindowa = get_top_level_windows();
@@ -434,7 +434,7 @@ CLASS_DECL_ACME bool windows_register_class(WNDCLASSEXW* pwndclass)
    if (!::RegisterClassExW(pwndclass))
    {
 
-      DWORD dw = GetLastError();
+      ::u32 dw = GetLastError();
 
       return FALSE;
 
@@ -450,7 +450,7 @@ CLASS_DECL_ACME bool windows_register_class(WNDCLASSEXW* pwndclass)
 
 
 
-LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
+LRESULT CALLBACK WndProc(HWND hWnd, ::u32 message, WPARAM wParam, LPARAM lParam);
 
 WNDPROC g_pwindowprocedure = &WndProc;
 

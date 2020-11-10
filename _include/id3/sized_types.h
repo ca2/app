@@ -41,7 +41,7 @@
 /* Define 8-bit types */
 #if UCHAR_MAX == 0xff
 
-typedef unsigned char   uint8;
+typedef unsigned char   ::u328;
 typedef signed char      int8;
 
 #else
@@ -51,12 +51,12 @@ typedef signed char      int8;
 /* Define 16-bit types */
 #if UINT_MAX == 0xffff
 
-typedef unsigned int    uint16;
+typedef unsigned int    ::u3216;
 typedef int              int16;
 
 #elif USHRT_MAX == 0xffff
 
-typedef unsigned short  uint16;
+typedef unsigned short  ::u3216;
 typedef short            int16;
 
 #else

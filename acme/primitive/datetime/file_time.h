@@ -5,19 +5,24 @@ namespace datetime
 {
 
 
-   class CLASS_DECL_ACME file_time:
-      public FILETIME
+   class CLASS_DECL_ACME file_time
    {
    public:
 
+      filetime_t  m_filetime;
+
 
       file_time() noexcept;
+      file_time(filetime_t nTime) noexcept;
+#ifdef WINDOWS
       file_time(const FILETIME& ft) noexcept;
-      file_time(ULONGLONG nTime) noexcept;
+#endif
 
-      static file_time WINAPI get_current_time() noexcept;
+      static file_time get_current_time() noexcept;
 
+#ifdef WINDOWS
       file_time& operator=(const FILETIME& ft) noexcept;
+#endif
 
       file_time& operator+=(file_time_span span) noexcept;
       file_time& operator-=(file_time_span span) noexcept;
@@ -33,18 +38,18 @@ namespace datetime
       bool operator<=(file_time ft) const noexcept;
       bool operator>=(file_time ft) const noexcept;
 
-      ULONGLONG get_time() const noexcept;
-      void SetTime(ULONGLONG nTime) noexcept;
+      filetime_t get_time() const noexcept;
+      void SetTime(filetime_t nTime) noexcept;
 
       file_time UTCToLocal() const noexcept;
       file_time LocalToUTC() const noexcept;
 
-      static const ULONGLONG Millisecond;
-      static const ULONGLONG Second;
-      static const ULONGLONG Minute;
-      static const ULONGLONG Hour;
-      static const ULONGLONG Day;
-      static const ULONGLONG Week;
+      static const filetime_t Millisecond;
+      static const filetime_t Second;
+      static const filetime_t Minute;
+      static const filetime_t Hour;
+      static const filetime_t Day;
+      static const filetime_t Week;
    };
 
    // Used only if these strings could not be found in resources.
@@ -60,7 +65,7 @@ namespace datetime
 } // namesace datetime
 
 
-CLASS_DECL_ACME FILETIME get_file_time_now();
+CLASS_DECL_ACME filetime_t get_file_time_now();
 
 
 struct CLASS_DECL_ACME file_time
@@ -68,9 +73,9 @@ struct CLASS_DECL_ACME file_time
 
 
 //#ifdef WINDOWS
-   FILETIME                         creation;
-   FILETIME                         modified;
-   FILETIME                         access; // Not used at Windows?
+   filetime_t                         creation;
+   filetime_t                         modified;
+   filetime_t                         access; // Not used at Windows?
 //#else
   // __time_t                         creation;
 //   __time_t                         access;
@@ -99,14 +104,10 @@ struct CLASS_DECL_ACME file_time
    }
 
 
-   bool modified_timeout(const FILETIME & current, int iSeconds)
+   bool modified_timeout(const filetime_t & current, int iSeconds)
    {
 
-      u64 mod = (u64)modified.dwLowDateTime | ((u64) modified.dwHighDateTime << 32);
-
-      u64 now = (u64)current.dwLowDateTime | ((u64)current.dwHighDateTime << 32);
-
-      if (now - mod > (natural(iSeconds) * 1000 * 1000 * 10))
+      if (current - modified > (natural(iSeconds) * 1000 * 1000 * 10))
       {
 
          return true;
@@ -118,10 +119,10 @@ struct CLASS_DECL_ACME file_time
    }
 
 
-   bool modified_timeout( int iSeconds)
+   bool modified_timeout(int iSeconds)
    {
 
-      FILETIME current = get_file_time_now();
+      filetime_t current = get_file_time_now();
 
       return modified_timeout(current, iSeconds);
 
@@ -134,11 +135,11 @@ CLASS_DECL_ACME bool file_modified_timeout(const char * path, int iSeconds);
 
 CLASS_DECL_ACME bool get_file_time(const char * psz,file_time & time);
 
-CLASS_DECL_ACME bool get_file_time(const char * psz,FILETIME & creation,FILETIME & modified);
+CLASS_DECL_ACME bool get_file_time(const char * psz, filetime_t & creation, filetime_t & modified);
 
 CLASS_DECL_ACME bool set_modified_file_time(const char* psz, const ::datetime::time & time);
 
-CLASS_DECL_ACME bool set_modified_file_time(const char* psz, const FILETIME& modified);
+CLASS_DECL_ACME bool set_modified_file_time(const char* psz, const filetime_t & modified);
 
 inline file_time get_file_time(const char * psz)
 {

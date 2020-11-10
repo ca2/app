@@ -74,7 +74,7 @@ namespace user
    }
 
 
-   void frame_window::GetBorderRect(RECT * prect)
+   void frame_window::GetBorderRect(RECT32 * prect)
    {
 
       UNREFERENCED_PARAMETER(prect);
@@ -596,7 +596,7 @@ namespace user
       */
    }
 
-   bool frame_window::OnSetCursor(__pointer(::user::interaction) pwindow, UINT nHitTest, const ::id & id)
+   bool frame_window::OnSetCursor(__pointer(::user::interaction) pwindow, ::u32 nHitTest, const ::id & id)
    {
       UNREFERENCED_PARAMETER(pwindow);
       UNREFERENCED_PARAMETER(nHitTest);
@@ -646,7 +646,7 @@ namespace user
    //   // return TRUE if command invocation was attempted
    //{
    //   //   ::oswindow oswindow_Ctrl = (::oswindow) lParam;
-   //   //   UINT nID = LOWORD(wParam);
+   //   //   ::u32 nID = LOWORD(wParam);
 
    //   __pointer(::user::frame_window) pFrameWnd = GetTopLevelFrame();
    //   ENSURE_VALID(pFrameWnd);
@@ -1684,7 +1684,7 @@ namespace user
 
    /*
    // Delegate scroll messages to active ::user::impact as well
-   void frame_window::OnHScroll(UINT, UINT, CScrollBar*)
+   void frame_window::OnHScroll(::u32, ::u32, CScrollBar*)
    {
       __pointer(::user::interaction) pActiveView = GetActiveView();
       if (pActiveView != nullptr)
@@ -1694,7 +1694,7 @@ namespace user
       }
    }
 
-   void frame_window::OnVScroll(UINT, UINT, CScrollBar*)
+   void frame_window::OnVScroll(::u32, ::u32, CScrollBar*)
    {
       __pointer(::user::interaction) pActiveView = GetActiveView();
       if (pActiveView != nullptr)
@@ -1811,14 +1811,14 @@ namespace user
    }
 
 
-   void frame_window::OnSysCommand(UINT nID, LPARAM lParam)
+   void frame_window::OnSysCommand(::u32 nID, LPARAM lParam)
    {
       UNREFERENCED_PARAMETER(lParam);
       __pointer(::user::frame_window) pFrameWnd = GetTopLevelFrame();
       ENSURE_VALID(pFrameWnd);
 
       // set status bar as appropriate
-      //   UINT nItemID = (nID & 0xFFF0);
+      //   ::u32 nItemID = (nID & 0xFFF0);
 
       // don't interfere with system commands if not in help mode
       if (pFrameWnd->m_bHelpMode)
@@ -1993,7 +1993,7 @@ namespace user
    // Command prompts
 
 
-   void frame_window::GetMessageString(UINT nID, string & rMessage) const
+   void frame_window::GetMessageString(::u32 nID, string & rMessage) const
    {
       UNREFERENCED_PARAMETER(nID);
       UNREFERENCED_PARAMETER(rMessage);
@@ -2035,7 +2035,7 @@ namespace user
    LRESULT frame_window::OnSetMessageString(WPARAM wParam, LPARAM lParam)
    {
 
-      UINT nIDLast = m_nIDLastMessage;
+      ::u32 nIDLast = m_nIDLastMessage;
 
       //      m_nFlags &= ~WF_NOPOPMSG;
 
@@ -2070,7 +2070,7 @@ namespace user
             // get message associated with the ID indicated by wParam
             //NT64: Assume IDs are still 32-bit
 
-            GetMessageString((UINT)wParam, strMessage);
+            GetMessageString((::u32)wParam, strMessage);
 
             psz = strMessage;
 
@@ -2086,17 +2086,17 @@ namespace user
          if (pFrameWnd != nullptr)
          {
 
-            pFrameWnd->m_nIDLastMessage = (UINT)wParam;
+            pFrameWnd->m_nIDLastMessage = (::u32)wParam;
 
-            pFrameWnd->m_nIDTracking = (UINT)wParam;
+            pFrameWnd->m_nIDTracking = (::u32)wParam;
 
          }
 
       }
 
-      m_nIDLastMessage = (UINT)wParam;    // new ID (or 0)
+      m_nIDLastMessage = (::u32)wParam;    // new ID (or 0)
 
-      m_nIDTracking = (UINT)wParam;       // so F1 on toolbar buttons work
+      m_nIDTracking = (::u32)wParam;       // so F1 on toolbar buttons work
 
       return nIDLast;
 
@@ -2113,7 +2113,7 @@ namespace user
       return get_child_by_id("status_bar");
    }
 
-   void frame_window::OnEnterIdle(UINT nWhy, __pointer(::user::interaction) pWho)
+   void frame_window::OnEnterIdle(::u32 nWhy, __pointer(::user::interaction) pWho)
    {
       UNREFERENCED_PARAMETER(pWho);
       // trans user::frame_window::OnEnterIdle(nWhy, pWho);
@@ -2136,7 +2136,7 @@ namespace user
 
    }
 
-   void frame_window::SetMessageText(UINT nID)
+   void frame_window::SetMessageText(::u32 nID)
    {
       send_message(WM_SETMESSAGESTRING, (WPARAM)nID);
    }
@@ -2294,7 +2294,7 @@ namespace user
       m_nIdleFlags &= ~(idleLayout | idleNotify);
       {
 
-         //         DWORD dwTime2 = ::get_tick();
+         //         ::u32 dwTime2 = ::get_tick();
 
          //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
          //TRACE("userframewindow call time1= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
@@ -2330,7 +2330,7 @@ namespace user
 
 
    // frame_window implementation of OLE border space negotiation
-   bool frame_window::NegotiateBorderSpace(UINT nBorderCmd, RECT * pRectBorder)
+   bool frame_window::NegotiateBorderSpace(::u32 nBorderCmd, RECT32 * pRectBorder)
    {
 
       ::rect border, request;
@@ -2379,7 +2379,7 @@ namespace user
       return TRUE;
    }
 
-   void frame_window::OnSize(UINT nType, i32 cx, i32 cy)
+   void frame_window::OnSize(::u32 nType, i32 cx, i32 cy)
    {
    }
 
@@ -2402,7 +2402,7 @@ namespace user
 
 #ifdef WINDOWS_DESKTOP
 
-      WORD keyState = 0;
+      ::u16 keyState = 0;
 
       auto psession = Session;
 
@@ -2691,7 +2691,7 @@ namespace user
    }
 
 
-   bool frame_window::OnBarCheck(UINT nID)
+   bool frame_window::OnBarCheck(::u32 nID)
    {
       UNREFERENCED_PARAMETER(nID);
       /*ASSERT(ID_VIEW_STATUS_BAR == "status_bar");

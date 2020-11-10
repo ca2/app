@@ -29,10 +29,10 @@ public:
    node *                     m_pnodeLastBlock;
 
 
-   plex_heap_alloc_sync(memsize nAllocSize, UINT nBlockSize = 64);
+   plex_heap_alloc_sync(memsize nAllocSize, ::u32 nBlockSize = 64);
    virtual ~plex_heap_alloc_sync();
 
-   UINT GetAllocSize() { return m_nAllocSize; }
+   ::u32 GetAllocSize() { return m_nAllocSize; }
 
    void * Alloc();               // return a chunk of memory of nAllocSize
    void Free(void * p);          // free chunk of memory returned from Alloc

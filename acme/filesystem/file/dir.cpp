@@ -184,7 +184,7 @@ namespace dir
 
       }
 
-      if (!GetModuleFileNameW(hmodule, wstrModuleFilePath, (DWORD)wstrModuleFilePath.length()))
+      if (!GetModuleFileNameW(hmodule, wstrModuleFilePath, (::u32)wstrModuleFilePath.length()))
       {
 
          return "";
@@ -195,7 +195,7 @@ namespace dir
 
       LPWSTR pszModuleFileName;
 
-      if (!GetFullPathNameW(wstrModuleFilePath, (DWORD)wstrModuleFilePath.length(), wstrModuleFolder, &pszModuleFileName))
+      if (!GetFullPathNameW(wstrModuleFilePath, (::u32)wstrModuleFilePath.length(), wstrModuleFolder, &pszModuleFileName))
       {
 
          return "";
@@ -347,7 +347,7 @@ namespace dir
 
       }
 
-      if(!GetModuleFileNameW(hmodule,wstrModuleFilePath, (DWORD) wstrModuleFilePath.length()))
+      if(!GetModuleFileNameW(hmodule,wstrModuleFilePath, (::u32) wstrModuleFilePath.length()))
       {
 
          return "";
@@ -356,7 +356,7 @@ namespace dir
 
       LPWSTR pszModuleFileName;
 
-      if (!GetFullPathNameW(wstrModuleFilePath, (DWORD) wstrModuleFilePath.length(), wstrModuleFolder, &pszModuleFileName))
+      if (!GetFullPathNameW(wstrModuleFilePath, (::u32) wstrModuleFilePath.length(), wstrModuleFolder, &pszModuleFileName))
       {
 
          return "";
@@ -747,7 +747,7 @@ namespace dir
          else
          {
 
-            DWORD dwError = ::get_last_error();
+            ::u32 dwError = ::get_last_error();
 
             if (dwError == ERROR_ALREADY_EXISTS)
             {
@@ -890,7 +890,7 @@ namespace dir
 
       wstring path(get_buffer, MAX_PATH * 8);
 
-      if(!GetModuleFileNameW(nullptr, path, (DWORD) path.size()))
+      if(!GetModuleFileNameW(nullptr, path, (::u32) path.size()))
       {
 
          return "";
@@ -957,7 +957,7 @@ namespace dir
 
 
 
-         DWORD dwLastError = ::get_last_error();
+         ::u32 dwLastError = ::get_last_error();
 
          string strPrefix;
 

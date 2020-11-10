@@ -132,7 +132,7 @@ void android_fill_plasma(AndroidBitmapInfo * info, void * pixels, double  t)
 
    auto transfer_height = min(image_height, window_height);
 
-   ::copy_colorref_swap_red_blue((COLORREF *) pixels,
+   ::copy_colorref_swap_red_blue((color32_t *) pixels,
    transfer_width,
    transfer_height,
    window_stride,
@@ -170,7 +170,7 @@ void* load_lib(const char* l)
 ::estatus os_application_system_run(::apex::system* psystem);
 
 
-int SetMainScreenRect(LPCRECT lpcrect);
+int SetMainScreenRect(LPCRECT32 lpcrect);
 
 void android_apex_main()
 {

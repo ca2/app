@@ -508,7 +508,7 @@ CLASS_DECL_ACME string defer_solve_relative(const char * pszRelative,const char 
 
 
 
-//CLASS_DECL_ACME bool read_resource_as_file(const char * pszFile,HINSTANCE hinst,UINT nID,LPCTSTR pcszType);
+//CLASS_DECL_ACME bool read_resource_as_file(const char * pszFile,HINSTANCE hinst,::u32 nID,LPCTSTR pcszType);
 
 
 
@@ -520,7 +520,7 @@ string get_temp_file_name_dup(const char * lpszName,const char * pszExtension)
 
    WCHAR pPathBuffer[MAX_PATH * 16];
 
-   DWORD dwRetVal = GetTempPathW(sizeof(pPathBuffer) / sizeof(WCHAR), pPathBuffer);
+   ::u32 dwRetVal = GetTempPathW(sizeof(pPathBuffer) / sizeof(WCHAR), pPathBuffer);
 
    if (dwRetVal > sizeof(pPathBuffer) || (dwRetVal == 0))
    {
@@ -589,18 +589,18 @@ bool write_memory_to_file(FILE * file,const void * pdata,memsize nCount,memsize 
 
    memsize pos = 0;
 
-   DWORD dw= 0;
+   ::u32 dw= 0;
 
-   DWORD dwWrite;
+   ::u32 dwWrite;
 
    memsize uiWrittenTotal = 0;
 
    while(pos < nCount)
    {
 
-      dwWrite = (DWORD)min(nCount - uiWrittenTotal,0xffffffffu);
+      dwWrite = (::u32)min(nCount - uiWrittenTotal,0xffffffffu);
 
-      dw = (DWORD) (fwrite(&((u8 *)pdata)[pos],1, dwWrite, file));
+      dw = (::u32) (fwrite(&((u8 *)pdata)[pos],1, dwWrite, file));
 
 
       if(dw != dwWrite)
@@ -639,7 +639,7 @@ bool write_memory_to_file(FILE * file,const void * pdata,memsize nCount,memsize 
 
 #else
 
-   DWORD dw = 0;
+   ::u32 dw = 0;
 
    dw = ::fwrite(pdata, 1, (size_t) nCount, file);
 
@@ -661,7 +661,7 @@ bool write_memory_to_file(FILE * file,const void * pdata,memsize nCount,memsize 
 
 
 
-CLASS_DECL_ACME bool file_append_wait(const string & strFile, const char * psz, strsize s, DWORD tickTimeout)
+CLASS_DECL_ACME bool file_append_wait(const string & strFile, const char * psz, strsize s, ::u32 tickTimeout)
 {
 
    ::dir::mk(::dir::name(strFile));
@@ -715,7 +715,7 @@ CLASS_DECL_ACME bool file_append_wait(const string & strFile, const char * psz, 
 }
 
 
-bool file_append_wait(const string & strFile, const string & str, DWORD tickTimeout)
+bool file_append_wait(const string & strFile, const string & str, ::u32 tickTimeout)
 {
 
    return file_append_wait(strFile, str, str.get_length(), tickTimeout);

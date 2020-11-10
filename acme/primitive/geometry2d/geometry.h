@@ -13,7 +13,7 @@ namespace geometry
       i32      m_iXCenter;
       i32      m_iYCenter;
 
-      void rotate(LPPOINT ppoint, i32 iCount);
+      void rotate(POINT32 * ppoint, i32 iCount);
 
    };
 
@@ -33,9 +33,9 @@ namespace geometry
 
       double rotate_y(double x, double y, double phi);
       double rotate_x(double x, double y, double phi);
-      void rotate(i32 x, i32 y, LPPOINT ppoint, i32 iCount, double phi);
+      void rotate(i32 x, i32 y, POINT32 * ppoint, i32 iCount, double phi);
 
-      void rotate(i32 x, i32 y, LPPOINT ppoint, i32 iCount, double cosphi, double sinphi);
+      void rotate(i32 x, i32 y, POINT32 * ppoint, i32 iCount, double cosphi, double sinphi);
 
       void rotate(i32 x, i32 y, POINTD * ppoint, i32 iCount, double phi);
 
@@ -43,8 +43,8 @@ namespace geometry
 
 
 
-      //void RandomPoint(POINT * ppoint, const ::rect & rect);
-      void deflate(RECT * prect, double dLeftRate, double dRightRate, double dTopRate, double dBottomRate);
+      //void RandomPoint(POINT32 * ppoint, const ::rect & rect);
+      void deflate(RECT32 * prect, double dLeftRate, double dRightRate, double dTopRate, double dBottomRate);
 
 
 

@@ -47,9 +47,9 @@ namespace ios
       virtual ::user::shell::e_folder get_folder_type(::object * pobject, const char * lpcszPath) override;
 
        
-      i32 get_image(image_key key, const unichar * lpcszExtra, COLORREF crBk);
-      i32 get_image_by_extension(image_key & key, COLORREF crBk);
-      i32 get_foo_image(image_key key, COLORREF crBk);
+      i32 get_image(image_key key, const unichar * lpcszExtra, color32_t crBk);
+      i32 get_image_by_extension(image_key & key, color32_t crBk);
+      i32 get_foo_image(image_key key, color32_t crBk);
 
        
       virtual void do_initialize() override;

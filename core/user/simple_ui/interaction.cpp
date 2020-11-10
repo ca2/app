@@ -470,9 +470,9 @@ namespace simple_ui
 //
 //      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 //
-//      COLORREF crOut;
+//      color32_t crOut;
 //
-//      COLORREF crIn;
+//      color32_t crIn;
 //
 //      /*   if (eschema == ::hotplugin::plugin::schema_darker)
 //         {
@@ -565,7 +565,7 @@ namespace simple_ui
 //   }
 //
 //
-//   COLORREF interaction::get_action_hover_border_color()
+//   color32_t interaction::get_action_hover_border_color()
 //   {
 //
 //      return _001GetColor(::user::color_action_hover_border_color);
@@ -619,7 +619,7 @@ namespace simple_ui
 //      int iCount = rectWindow.width();
 //      int jCount = rectWindow.height();
 //
-//      BYTE * point = (BYTE *)m_pimage->get_data();
+//      byte * point = (byte *)m_pimage->get_data();
 //
 //      for (i = 0; i < iCount; i++)
 //      {

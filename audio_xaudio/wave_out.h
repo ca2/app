@@ -22,7 +22,7 @@ namespace multimedia
 
          // Unused methods in this application
          STDMETHOD_(void,OnVoiceProcessingPassEnd());
-         STDMETHOD_(void,OnVoiceProcessingPassStart(UINT32 SamplesRequired)) ;
+         STDMETHOD_(void,OnVoiceProcessingPassStart(::u32 SamplesRequired)) ;
          STDMETHOD_(void,OnBufferEnd(void * pBufferContext))  ;
          STDMETHOD_(void,OnBufferStart(void * pBufferContext));
          STDMETHOD_(void,OnLoopEnd(void * pBufferContext));

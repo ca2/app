@@ -34,11 +34,11 @@ void  nsSJISProber::Reset(void)
   mDistributionAnalyser.Reset();
 }
 
-nsProbingState nsSJISProber::HandleData(const char* aBuf, PRUint32 aLen)
+nsProbingState nsSJISProber::HandleData(const char* aBuf, PR::u32 aLen)
 {
   nsSMState codingState;
 
-  for (PRUint32 i = 0; i < aLen; i++)
+  for (PR::u32 i = 0; i < aLen; i++)
   {
     codingState = mCodingSM->NextState(aBuf[i]);
     if (codingState == eError)
@@ -53,7 +53,7 @@ nsProbingState nsSJISProber::HandleData(const char* aBuf, PRUint32 aLen)
     }
     if (codingState == eStart)
     {
-      PRUint32 charLen = mCodingSM->GetCurrentCharLen();
+      PR::u32 charLen = mCodingSM->GetCurrentCharLen();
       if (i == 0)
       {
         mLastChar[1] = aBuf[0];

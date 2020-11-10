@@ -538,8 +538,8 @@ namespace uwp
 
       spbase = pmouse;
 
-      pmouse->m_point.x       = (LONG) pointerPoint->RawPosition.X;
-      pmouse->m_point.y       = (LONG) pointerPoint->RawPosition.Y;
+      pmouse->m_point.x       = (::i32) pointerPoint->RawPosition.X;
+      pmouse->m_point.y       = (::i32) pointerPoint->RawPosition.Y;
       pmouse->m_id            = e_message_mouse_move;
       pmouse->m_puserinteraction  = m_psystem->get_context_session()->m_puiHost;
 
@@ -574,9 +574,9 @@ namespace uwp
 
       spbase = pmouse;
 
-      pmouse->m_point.x = (LONG) pointerPoint->RawPosition.X;
+      pmouse->m_point.x = (::i32) pointerPoint->RawPosition.X;
 
-      pmouse->m_point.y = (LONG) pointerPoint->RawPosition.Y;
+      pmouse->m_point.y = (::i32) pointerPoint->RawPosition.Y;
 
       if(args->CurrentPoint->Properties->IsLeftButtonPressed && !m_bLeftButton)
       {
@@ -638,9 +638,9 @@ namespace uwp
 
       spbase = pmouse;
 
-      pmouse->m_point.x = (LONG) pointerPoint->RawPosition.X;
+      pmouse->m_point.x = (::i32) pointerPoint->RawPosition.X;
 
-      pmouse->m_point.y = (LONG) pointerPoint->RawPosition.Y;
+      pmouse->m_point.y = (::i32) pointerPoint->RawPosition.Y;
 
       if(m_bLeftButton && !args->CurrentPoint->Properties->IsLeftButtonPressed)
       {

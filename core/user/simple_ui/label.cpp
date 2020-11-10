@@ -26,7 +26,7 @@ namespace simple_ui
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
 
-      COLORREF c;
+      color32_t c;
 
       //if(get_style()->m_eschema == ::hotplugin::plugin::schema_darker)
       {

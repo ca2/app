@@ -34,10 +34,10 @@ namespace file
    }
 
 
-   UINT text_file::read_full_string(string & str)
+   ::u32 text_file::read_full_string(string & str)
    {
-      UINT uiRead;
-      UINT uiTotal = 0;
+      ::u32 uRead;
+      ::u32 uTotal = 0;
       string strLine;
       while((uiRead = read_string(strLine)) > 0)
       {

@@ -8,7 +8,7 @@
 
 
 
-int_bool read_resource_as_file(const char * pszFile, HINSTANCE hinstance, UINT nID, LPCTSTR pcszType)
+int_bool read_resource_as_file(const char * pszFile, HINSTANCE hinstance, ::u32 nID, LPCTSTR pcszType)
 
 {
 
@@ -17,7 +17,7 @@ int_bool read_resource_as_file(const char * pszFile, HINSTANCE hinstance, UINT n
    HGLOBAL hglobalResource;
    u32 dwResourseSize;
    int_bool bOk;
-   UINT FAR* pResource;
+   ::u32 FAR* pResource;
    FILE * file;
 
    if(hrsrc == nullptr)
@@ -35,7 +35,7 @@ int_bool read_resource_as_file(const char * pszFile, HINSTANCE hinstance, UINT n
 
       bOk = FALSE;
 
-      pResource = (UINT FAR*) LockResource(hglobalResource);
+      pResource = (::u32 FAR*) LockResource(hglobalResource);
 
       dir::mk(dir::name(pszFile));
 
@@ -120,7 +120,7 @@ filesize file_length_dup(const char * path)
    if(hfile == INVALID_HANDLE_VALUE)
       return 0;
 
-   DWORD dwHi = 0;
+   ::u32 dwHi = 0;
 
    u64 ui = GetFileSize(hfile, &dwHi);
 
@@ -220,8 +220,8 @@ string file_get_mozilla_firefox_plugin_container_path()
       return "";
    {
 
-      DWORD dwType;
-      DWORD dwData;
+      ::u32 dwType;
+      ::u32 dwData;
       dwData = 0;
       if(::WinRegGetValueW(hkeyMozillaFirefox, nullptr, L"CurrentVersion", RRF_RT_REG_SZ, &dwType, nullptr, &dwData) != ERROR_SUCCESS)
       {
@@ -291,19 +291,19 @@ string file_as_string(const char * path, strsize iReadAtMostByteCount)
    if (file == nullptr)
    {
 
-      DWORD dw = ::get_last_error();
+      ::u32 dw = ::get_last_error();
 
       return "";
 
    }
 
-   DWORD dwSize;
+   ::u32 dwSize;
 
-   dwSize = (DWORD) FILE_get_size(file);
+   dwSize = (::u32) FILE_get_size(file);
 
    iReadAtMostByteCount = iReadAtMostByteCount < 0 ? dwSize :  min(iReadAtMostByteCount, (::strsize)dwSize);
 
-   LPSTR psz = str.get_string_buffer(iReadAtMostByteCount);
+   char * psz = str.get_string_buffer(iReadAtMostByteCount);
 
    ::size_t iPos = 0;
 
@@ -544,7 +544,7 @@ struct PROCESS_INFO_t
 ////  IN ULONG              SystemInformationLength,
 ////  OUT   PULONG                ReturnLength OPTIONAL );
 //
-////UINT g_CurrentIndex = 0;
+////::u32 g_CurrentIndex = 0;
 ////struct THREAD_PARAMS
 ////{
 ////   PSYSTEM_HANDLE_INFORMATION pSysHandleInformation;
@@ -557,18 +557,18 @@ struct PROCESS_INFO_t
 ////   bool bStatus;
 ////};
 //
-////DWORD WINAPI  ThreadProc(void * p)
+////::u32 WINAPI  ThreadProc(void * p)
 ////{
 ////
 ////   THREAD_PARAMS * pThreadParam = (THREAD_PARAMS *) p;
 ////
-////   FILE_NAME_INFO * pinfo = (FILE_NAME_INFO *)new BYTE[MAX_PATH * 8];
+////   FILE_NAME_INFO * pinfo = (FILE_NAME_INFO *)new byte[MAX_PATH * 8];
 ////
 ////   GetFinalPathNameByHandleDef pGetFinalPathNameByHandle = pThreadParam->pGetFinalPathNameByHandle;
 ////   for( g_CurrentIndex; g_CurrentIndex < pThreadParam->pSysHandleInformation->dwCount;  )
 ////   {
 ////
-////      WaitForSingleObject( pThreadParam->hStartEvent, INFINITE );
+////      WaitForSingleObject( pThreadParam->hStartEvent, U32_INFINITE_TIMEOUT );
 ////      ResetEvent( pThreadParam->hStartEvent );
 ////      pThreadParam->bStatus = false;
 ////      SYSTEM_HANDLE& sh = pThreadParam->pSysHandleInformation->Handles[g_CurrentIndex];
@@ -602,7 +602,7 @@ struct PROCESS_INFO_t
 ////      SetEvent( pThreadParam->hFinishedEvent );
 ////
 ////   }
-////   delete[] (BYTE *) pinfo;
+////   delete[] (byte *) pinfo;
 ////   return ::success;
 ////}
 //
@@ -620,7 +620,7 @@ struct PROCESS_INFO_t
 ////      nFileType = XP_FILETYPE;
 ////   }
 ////
-////   LPCSTR pPath = csPath;
+////   const char * pPath = csPath;
 ////
 ////   wstring csShortName;
 ////   GetShortPathNameW( wstring(csPath), csShortName.get_buffer( MAX_PATH), MAX_PATH );
@@ -628,7 +628,7 @@ struct PROCESS_INFO_t
 ////   string strShortName(csShortName);
 ////   strShortName.make_lower();
 ////   bool bShortPath = false;
-////   LPCSTR pShortPath = strShortName;
+////   const char * pShortPath = strShortName;
 ////
 ////   if(string( csShortName )!= csPath && FALSE == csShortName.is_empty())
 ////   {
@@ -646,7 +646,7 @@ struct PROCESS_INFO_t
 ////   // Get the list of all handles in the file_system
 ////   PSYSTEM_HANDLE_INFORMATION pSysHandleInformation = new SYSTEM_HANDLE_INFORMATION;
 ////   u32 size = sizeof(SYSTEM_HANDLE_INFORMATION);
-////   DWORD needed = 0;
+////   ::u32 needed = 0;
 ////   NTSTATUS status = NtQuerySystemInformation( SystemHandleInformation, pSysHandleInformation, size, &needed );
 ////   if( !NT_SUCCESS(status))
 ////   {
@@ -657,7 +657,7 @@ struct PROCESS_INFO_t
 ////      // The previously supplied buffer wasn't enough.
 ////      delete pSysHandleInformation;
 ////      size = needed + 1024;
-////      pSysHandleInformation = (PSYSTEM_HANDLE_INFORMATION)new BYTE[size];
+////      pSysHandleInformation = (PSYSTEM_HANDLE_INFORMATION)new byte[size];
 ////      status = NtQuerySystemInformation( SystemHandleInformation, pSysHandleInformation, size, &needed );
 ////      if( !NT_SUCCESS(status))
 ////      {
@@ -756,7 +756,7 @@ struct PROCESS_INFO_t
 ////         HANDLE_INFO stHandle = {0};
 ////         ADDRESS_INFO stAddress;
 ////         stAddress.pAddress = sh.pAddress;
-////         DWORD dwReturn = 0;
+////         ::u32 dwReturn = 0;
 ////         bool bSuccess = DeviceIoControl( hDriver, IOCTL_LISTDRV_BUFFERED_IO, &stAddress, sizeof(ADDRESS_INFO), &stHandle, sizeof(HANDLE_INFO), &dwReturn, nullptr ) != FALSE;
 ////
 ////
@@ -854,8 +854,8 @@ struct PROCESS_INFO_t
 ////   }
 ////
 ////   u32 dwsize = 300;
-////   PDWORD pDwId = (PDWORD)new BYTE[dwsize];
-////   DWORD dwReturned = dwsize;
+////   PDWORD pDwId = (PDWORD)new byte[dwsize];
+////   ::u32 dwReturned = dwsize;
 ////   // Enum all the process first
 ////   while( 1 )
 ////   {
@@ -866,7 +866,7 @@ struct PROCESS_INFO_t
 ////      }
 ////      delete pDwId;
 ////      dwsize += 50;
-////      pDwId = (PDWORD)new BYTE[dwsize];
+////      pDwId = (PDWORD)new byte[dwsize];
 ////   }
 ////   i32 nCount = dwReturned / sizeof(u32);
 ////   i32 nItemCount = -1;
@@ -990,16 +990,16 @@ int_bool FILE_set_size(FILE * file, size_t iSize)
 int_bool ensure_file_size_handle(HANDLE h, u64 iSize)
 {
 
-   DWORD dwHi;
+   ::u32 dwHi;
 
-   DWORD dwLo = GetFileSize(h, &dwHi);
+   ::u32 dwLo = GetFileSize(h, &dwHi);
 
    if(((u64) dwLo | ((u64)dwHi << 32)) != iSize)
    {
 
-      LONG l = (iSize >> 32) & 0xffffffff;
+      ::i32 l = (iSize >> 32) & 0xffffffff;
 
-      if(SetFilePointer(h, iSize & 0xffffffff, &l, SEEK_SET) != (DWORD) (iSize & 0xffffffff))
+      if(SetFilePointer(h, iSize & 0xffffffff, &l, SEEK_SET) != (::u32) (iSize & 0xffffffff))
          return false;
 
       if(l != ((iSize >> 32) & 0xffffffff))
@@ -1124,10 +1124,10 @@ int_bool file_is_equal_path(const char * psz1,const char * psz2)
 
    i32 iCmp = -1;
 
-   if(GetFullPathNameW(pwsz1, (DWORD)( pwszPath1.m_iSize / sizeof(unichar)), pwszPath1, &pwszFile1))
+   if(GetFullPathNameW(pwsz1, (::u32)( pwszPath1.m_iSize / sizeof(unichar)), pwszPath1, &pwszFile1))
    {
 
-      if(GetFullPathNameW(pwsz2, (DWORD) (pwszPath2.m_iSize / sizeof(unichar)), pwszPath2, &pwszFile2))
+      if(GetFullPathNameW(pwsz2, (::u32) (pwszPath2.m_iSize / sizeof(unichar)), pwszPath2, &pwszFile2))
       {
 
          iCmp = _wcsicmp(pwszPath1, pwszPath2);
@@ -1387,7 +1387,7 @@ bool GetDrive(const char * pszDosName, string& csDrive, bool bDriveLetterOnly)
 
 
 
-CLASS_DECL_ACME bool read_resource_as_memory(memory & m, HINSTANCE hinstance, UINT nID, const char * pcszType, strsize iReadAtMostByteCount)
+CLASS_DECL_ACME bool read_resource_as_memory(memory & m, HINSTANCE hinstance, ::u32 nID, const char * pcszType, strsize iReadAtMostByteCount)
 
 {
 
@@ -1431,7 +1431,7 @@ CLASS_DECL_ACME bool read_resource_as_memory(memory & m, HINSTANCE hinstance, UI
    HGLOBAL hglobalResource;
    strsize dwResourceSize;
    int_bool bOk;
-   UINT FAR* pResource;
+   ::u32 FAR* pResource;
 
    if (hrsrc == nullptr)
       return FALSE;
@@ -1448,7 +1448,7 @@ CLASS_DECL_ACME bool read_resource_as_memory(memory & m, HINSTANCE hinstance, UI
 
       bOk = TRUE;
 
-      pResource = (UINT FAR*) LockResource(hglobalResource);
+      pResource = (::u32 FAR*) LockResource(hglobalResource);
 
       auto iSize = min_non_neg(dwResourceSize, iReadAtMostByteCount);
 
@@ -1467,12 +1467,12 @@ CLASS_DECL_ACME bool read_resource_as_memory(memory & m, HINSTANCE hinstance, UI
 CLASS_DECL_ACME HANDLE hfile_create(
 const char *            pFileName,
 
-DWORD                   dwDesiredAccess,
-DWORD                   dwShareMode,
+::u32                   dwDesiredAccess,
+::u32                   dwShareMode,
 LPSECURITY_ATTRIBUTES   pSecurityAttributes,
 
-DWORD                   dwCreationDisposition,
-DWORD                   dwFlagsAndAttributes,
+::u32                   dwCreationDisposition,
+::u32                   dwFlagsAndAttributes,
 HANDLE                  hTemplateFile
 )
 {

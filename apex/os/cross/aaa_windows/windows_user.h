@@ -17,9 +17,9 @@
 
 CLASS_DECL_APEX int_bool destroy_window(oswindow window);
 
-CLASS_DECL_APEX int_bool GetCursorPos(LPPOINT lppointCursor);
+CLASS_DECL_APEX int_bool GetCursorPos(POINT32 * lppointCursor);
 
-//CLASS_DECL_APEX int_bool PostMessage(oswindow oswindow, UINT Msg, WPARAM wParam, LPARAM lParam);
+//CLASS_DECL_APEX int_bool PostMessage(oswindow oswindow, ::u32 Msg, WPARAM wParam, LPARAM lParam);
 
 #define MESSAGE_WINDOW_PARENT (::oswindow((void *) (iptr) 1))
 
@@ -35,10 +35,10 @@ int_bool IsChild(oswindow oswindowParent, oswindow oswindowcandidateChildOrDesce
 // oswindow GetParent(oswindow oswindow);
 // oswindow SetParent(oswindow oswindowChild, oswindow oswindowNewParent);
 int_bool show_window(oswindow oswindow, i32 iShow);
-LONG GetWindowLongA(oswindow oswindow, int nIndex);
-LONG SetWindowLongA(oswindow oswindow, int nIndex, LONG l);
-int_bool _001ClientToScreen(oswindow oswindow, LPPOINT lppoint);
-int_bool _001ScreenToClient(oswindow oswindow, LPPOINT lppoint);
+::i32 GetWindowLongA(oswindow oswindow, int nIndex);
+::i32 SetWindowLongA(oswindow oswindow, int nIndex, ::i32 l);
+int_bool _001ClientToScreen(oswindow oswindow, POINT32 * lppoint);
+int_bool _001ScreenToClient(oswindow oswindow, POINT32 * lppoint);
 int_bool IsIconic(oswindow oswindow);
 int_bool IsWindowVisible(oswindow oswindow);
 #define GetWindowLong GetWindowLongA
@@ -49,7 +49,7 @@ int_bool IsWindowVisible(oswindow oswindow);
 CLASS_DECL_APEX int_bool is_window(oswindow oswindow);
 
 
-//CLASS_DECL_APEX int_bool GetCursorPos(LPPOINT lppointCursor);
+//CLASS_DECL_APEX int_bool GetCursorPos(POINT32 * lppointCursor);
 
 #ifndef HWND_MESSAGE
 
@@ -61,19 +61,19 @@ CLASS_DECL_APEX int_bool is_window(oswindow oswindow);
 
 
 
-typedef VOID(CALLBACK* TIMERPROC)(oswindow,UINT,uptr,DWORD);
+typedef VOID(CALLBACK* TIMERPROC)(oswindow,::u32,uptr,::u32);
 typedef int_bool(CALLBACK* GRAYSTRINGPROC)(HDC,LPARAM,i32);
 typedef int_bool(CALLBACK* WNDENUMPROC)(oswindow,LPARAM);
 typedef LRESULT(CALLBACK* HOOKPROC)(i32 code,WPARAM wParam,LPARAM lParam);
-typedef VOID(CALLBACK* SENDASYNCPROC)(oswindow,UINT,ulong_ptr,LRESULT);
+typedef VOID(CALLBACK* SENDASYNCPROC)(oswindow,::u32,ulong_ptr,LRESULT);
 
-typedef int_bool(CALLBACK* PROPENUMPROca)(oswindow,LPCSTR,HANDLE);
+typedef int_bool(CALLBACK* PROPENUMPROca)(oswindow,const char *,HANDLE);
 typedef int_bool(CALLBACK* PROPENUMPROCW)(oswindow,LPCWSTR,HANDLE);
 
-typedef int_bool(CALLBACK* PROPENUMPROCEXA)(oswindow,LPSTR,HANDLE,ulong_ptr);
+typedef int_bool(CALLBACK* PROPENUMPROCEXA)(oswindow,char *,HANDLE,ulong_ptr);
 typedef int_bool(CALLBACK* PROPENUMPROCEXW)(oswindow,LPWSTR,HANDLE,ulong_ptr);
 
-typedef i32(CALLBACK* EDITWORDBREAKPROca)(LPSTR lpch,i32 ichCurrent,i32 cch,i32 code);
+typedef i32(CALLBACK* EDITWORDBREAKPROca)(char * lpch,i32 ichCurrent,i32 cch,i32 code);
 typedef i32(CALLBACK* EDITWORDBREAKPROCW)(LPWSTR lpch,i32 ichCurrent,i32 cch,i32 code);
 
 
@@ -165,7 +165,7 @@ typedef i32(CALLBACK* EDITWORDBREAKPROCW)(LPWSTR lpch,i32 ichCurrent,i32 cch,i32
 #define GET_NCHITTEST_WPARAM(wParam)    ((short)LOWORD(wParam))
 #define GET_XBUTTON_WPARAM(wParam)      (HIWORD(wParam))
 
-/* XButton values are WORD flags */
+/* XButton values are ::u16 flags */
 #define XBUTTON1      0x0001
 #define XBUTTON2      0x0002
 /* Were there to be an XBUTTON3, its value would be 0x0004 */
@@ -216,7 +216,7 @@ typedef i32(CALLBACK* EDITWORDBREAKPROCW)(LPWSTR lpch,i32 ichCurrent,i32 cch,i32
 typedef struct
 {
    GUID PowerSetting;
-   DWORD DataLength;
+   ::u32 DataLength;
    WINUCHAR Data[1];
 } POWERBROADcaST_SETTING,*PPOWERBROADcaST_SETTING;
 
@@ -453,12 +453,12 @@ typedef struct
 
 /*
 
-UINT
+::u32
 WINAPI
 RegisterWindowMessageA(
-LPCSTR lpString);
+const char * lpString);
 
-UINT
+::u32
 WINAPI
 RegisterWindowMessageW(
 LPCWSTR lpString);
@@ -639,11 +639,11 @@ oswindow hWnd);
 //
 //typedef struct tagDRAWTEXTPARAMS
 //{
-//   UINT    cbSize;
+//   ::u32    cbSize;
 //   i32     iTabLength;
 //   i32     iLeftMargin;
 //   i32     iRightMargin;
-//   UINT    uiLengthDrawn;
+//   ::u32    uiLengthDrawn;
 //} DRAWTEXTPARAMS,FAR *LPDRAWTEXTPARAMS;
 //
 //#endif
@@ -687,8 +687,8 @@ oswindow hWnd);
 ///*oswindow
 //WINAPI
 //FindWindowA(
-//LPCSTR lpClassName,
-//LPCSTR lpWindowName);
+//const char * lpClassName,
+//const char * lpWindowName);
 //
 //oswindow
 //WINAPI
@@ -807,7 +807,7 @@ oswindow hWnd);
 //WINAPI
 //GetWindow(
 //oswindow hWnd,
-//UINT uCmd);
+//::u32 uCmd);
 //*/
 //
 //
@@ -1004,13 +1004,13 @@ oswindow hWnd);
 //typedef struct tagACCEL
 //{
 //#ifndef _MAC
-//   BYTE   fVirt;               /* Also called the flags field */
-//   WORD   key;
-//   WORD   cmd;
+//   byte   fVirt;               /* Also called the flags field */
+//   ::u16   key;
+//   ::u16   cmd;
 //#else
-//   WORD   fVirt;               /* Also called the flags field */
-//   WORD   key;
-//   DWORD  cmd;
+//   ::u16   fVirt;               /* Also called the flags field */
+//   ::u16   key;
+//   ::u32  cmd;
 //#endif
 //} ACCEL,*LPACCEL;
 //
@@ -1020,10 +1020,10 @@ oswindow hWnd);
 //{
 //   HDC         hdc;
 //   int_bool        fErase;
-//   RECT        rcPaint;
+//   RECT32        rcPaint;
 //   int_bool        fRestore;
 //   int_bool        fIncUpdate;
-//   BYTE        rgbReserved[32];
+//   byte        rgbReserved[32];
 //} PAINTSTRUCT,*PPAINTSTRUCT,*NPPAINTSTRUCT,*LPPAINTSTRUCT;
 //
 //
@@ -1037,10 +1037,10 @@ oswindow hWnd);
 //   i32         cx;
 //   i32         y;
 //   i32         x;
-//   LONG        style;
-//   LPCSTR      lpszName;
-//   LPCSTR      lpszClass;
-//   DWORD       dwExStyle;
+//   ::i32        style;
+//   const char *      lpszName;
+//   const char *      lpszClass;
+//   ::u32       dwExStyle;
 //} CREATESTRUCTA,*LPCREATESTRUCTA;
 //typedef struct tagCREATESTRUCTW
 //{
@@ -1052,10 +1052,10 @@ oswindow hWnd);
 //   i32         cx;
 //   i32         y;
 //   i32         x;
-//   LONG        style;
+//   ::i32        style;
 //   LPCWSTR     lpszName;
 //   LPCWSTR     lpszClass;
-//   DWORD       dwExStyle;
+//   ::u32       dwExStyle;
 //} CREATESTRUCTW,*LPCREATESTRUCTW;
 //#ifdef UNICODE
 //typedef CREATESTRUCTW CREATESTRUCT;
@@ -1068,14 +1068,14 @@ oswindow hWnd);
 //
 //typedef struct tagWINDOWPLACEMENT
 //{
-//   UINT  length;
-//   UINT  flags;
-//   UINT  showCmd;
-//   POINT pointMinPosition;
-//   POINT pointMaxPosition;
-//   RECT  rcNormalPosition;
+//   ::u32  length;
+//   ::u32  flags;
+//   ::u32  showCmd;
+//   POINT32 pointMinPosition;
+//   POINT32 pointMaxPosition;
+//   RECT32  rcNormalPosition;
 //#ifdef _MAC
-//   RECT  rcDevice;
+//   RECT32  rcDevice;
 //#endif
 //} WINDOWPLACEMENT;
 //typedef WINDOWPLACEMENT *PWINDOWPLACEMENT,*LPWINDOWPLACEMENT;
@@ -1092,10 +1092,10 @@ oswindow hWnd);
 //typedef struct tag_MSG
 //{
 //oswindow    hwnd;
-//UINT        message;
+//::u32        message;
 //WPARAM      wParam;
 //LPARAM      lParam;
-//POINT       pt;
+//POINT32       pt;
 //} MESSAGE, * LPMESSAGE;
 //
 //*/
@@ -1116,7 +1116,7 @@ oswindow hWnd);
 //#endif
 //
 //
-//int_bool WINAPI SetWindowPos(oswindow hWnd,oswindow hWndInsertAfter,i32 X,i32 Y,i32 cx,i32 cy,UINT uFlags);
+//int_bool WINAPI SetWindowPos(oswindow hWnd,oswindow hWndInsertAfter,i32 X,i32 Y,i32 cx,i32 cy,::u32 uFlags);
 //
 //int_bool WINAPI IsWindowVisible(oswindow hWnd);
 //
@@ -1131,7 +1131,7 @@ oswindow hWnd);
 ////
 ////#endif
 //
-////int_bool RedrawWindow(oswindow hWnd, CONST RECT *lprcUpdate, HRGN hrgnUpdate, UINT flags);
+////int_bool RedrawWindow(oswindow hWnd, CONST RECT32 *lprcUpdate, HRGN hrgnUpdate, ::u32 flags);
 //
 //
 ///*
@@ -1165,14 +1165,14 @@ oswindow hWnd);
 //#endif /* _WIN32_WINNT >= 0x0501 */
 //
 //
-//LONG
+//::i32
 //WINAPI
 //GetWindowLongA(
 //oswindow hWnd,
 //i32 nIndex);
 //
 //
-//LONG
+//::i32
 //WINAPI
 //GetWindowLongW(
 //oswindow hWnd,
@@ -1202,20 +1202,20 @@ oswindow hWnd);
 //#endif // !UNICODE
 //
 //
-//LONG
+//::i32
 //WINAPI
 //SetWindowLongA(
 //oswindow hWnd,
 //i32 nIndex,
-//LONG l);
+//::i32 l);
 //
 //
-//LONG
+//::i32
 //WINAPI
 //SetWindowLongW(
 //oswindow hWnd,
 //i32 nIndex,
-//LONG l);
+//::i32 l);
 //#ifdef UNICODE
 //#define SetWindowLong  SetWindowLongW
 //#else
@@ -1247,8 +1247,8 @@ oswindow hWnd);
 //typedef struct tagNMHDR
 //{
 //   oswindow      hwndFrom;
-//   UINT_PTR  idFrom;
-//   UINT      code;         // NM_ code
+//   ::u32_PTR  idFrom;
+//   ::u32      code;         // NM_ code
 //}   NMHDR;
 //
 //
@@ -1257,8 +1257,8 @@ oswindow hWnd);
 //
 //typedef struct tagSTYLESTRUCT
 //{
-//   DWORD   styleOld;
-//   DWORD   styleNew;
+//   ::u32   styleOld;
+//   ::u32   styleNew;
 //} STYLESTRUCT,* LPSTYLESTRUCT;
 //
 //#endif
@@ -1640,11 +1640,11 @@ oswindow hWnd);
 // */
 //typedef struct tagMINMAXINFO
 //{
-//   POINT pointReserved;
-//   POINT pointMaxSize;
-//   POINT pointMaxPosition;
-//   POINT pointMinTrackSize;
-//   POINT pointMaxTrackSize;
+//   POINT32 pointReserved;
+//   POINT32 pointMaxSize;
+//   POINT32 pointMaxPosition;
+//   POINT32 pointMinTrackSize;
+//   POINT32 pointMaxTrackSize;
 //} MINMAXINFO, *PMINMAXINFO, *LPMINMAXINFO;
 //
 //#define WM_PAINTICON                    0x0026
@@ -1692,7 +1692,7 @@ oswindow hWnd);
 //typedef struct tagCOPYDATASTRUCT
 //{
 //   uptr dwData;
-//   DWORD cbData;
+//   ::u32 cbData;
 //   PVOID lpData;
 //} COPYDATASTRUCT, *PCOPYDATASTRUCT;
 //
@@ -1901,7 +1901,7 @@ oswindow hWnd);
 //#define GET_NCHITTEST_WPARAM(wParam)    ((short)LOWORD(wParam))
 //#define GET_XBUTTON_WPARAM(wParam)      (HIWORD(wParam))
 //
-///* XButton values are WORD flags */
+///* XButton values are ::u16 flags */
 //#define XBUTTON1      0x0001
 //#define XBUTTON2      0x0002
 ///* Were there to be an XBUTTON3, its value would be 0x0004 */
@@ -1956,7 +1956,7 @@ oswindow hWnd);
 //typedef struct
 //{
 //   GUID PowerSetting;
-//   DWORD DataLength;
+//   ::u32 DataLength;
 //   WINUCHAR Data[1];
 //} POWERBROADCAST_SETTING, *PPOWERBROADCAST_SETTING;
 //
@@ -2222,12 +2222,12 @@ oswindow hWnd);
 ////#if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
 //
 //
-//UINT
+//::u32
 //WINAPI
 //RegisterWindowMessageA(
-//LPCSTR lpString);
+//const char * lpString);
 //
-//UINT
+//::u32
 //WINAPI
 //RegisterWindowMessageW(
 //LPCWSTR lpString);
@@ -2274,7 +2274,7 @@ oswindow hWnd);
 //   i32     y;
 //   i32     cx;
 //   i32     cy;
-//   UINT    flags;
+//   ::u32    flags;
 //} WINDOWPOS, *LPWINDOWPOS, *PWINDOWPOS;
 //
 ///*
@@ -2282,7 +2282,7 @@ oswindow hWnd);
 // */
 //typedef struct tagNCCALCSIZE_PARAMS
 //{
-//   RECT       rgrc[3];
+//   RECT32       rgrc[3];
 //   PWINDOWPOS lppos;
 //} NCCALCSIZE_PARAMS, *LPNCCALCSIZE_PARAMS;
 //
@@ -2343,10 +2343,10 @@ oswindow hWnd);
 //
 //typedef struct tagTRACKMOUSEEVENT
 //{
-//   DWORD cbSize;
-//   DWORD dwFlags;
+//   ::u32 cbSize;
+//   ::u32 dwFlags;
 //   oswindow  hwndTrack;
-//   DWORD dwHoverTime;
+//   ::u32 dwHoverTime;
 //} TRACKMOUSEEVENT, *LPTRACKMOUSEEVENT;
 //
 //
@@ -2748,18 +2748,18 @@ oswindow hWnd);
 //
 //
 //
-//CLASS_DECL_APEX int_bool CopyRect(LPRECT prectDest, LPCRECT pcrectSrc);
-//CLASS_DECL_APEX int_bool PtInRect(LPCRECT prect, POINT point);
-//CLASS_DECL_APEX int_bool SetRect(LPRECT prect, i32 x1, i32 y1, i32 x2, i32 y2);
-//CLASS_DECL_APEX int_bool SetRectEmpty(LPRECT prect);
-//CLASS_DECL_APEX int_bool EqualRect(LPCRECT prect1, LPCRECT prect2);
-//CLASS_DECL_APEX int_bool InflateRect(LPRECT prect, i32 x, i32 y);
-//CLASS_DECL_APEX int_bool OffsetRect(LPRECT prect, i32 x, i32 y);
-//CLASS_DECL_APEX int_bool IntersectRect(LPRECT prect, LPCRECT prect1, LPCRECT prect2);
-////CLASS_DECL_APEX int_bool x_intersect_rect(LPRECT prect, LPCRECT prect1, LPCRECT prect2);
-////CLASS_DECL_APEX int_bool y_intersect_rect(LPRECT prect, LPCRECT prect1, LPCRECT prect2);
-//CLASS_DECL_APEX int_bool UnionRect(LPRECT prect, LPCRECT prect1, LPCRECT prect2);
-//CLASS_DECL_APEX int_bool SubtractRect(LPRECT prect, LPCRECT prect1, LPCRECT prect2);
+//CLASS_DECL_APEX int_bool CopyRect(LPRECT32 prectDest, LPCRECT32 pcrectSrc);
+//CLASS_DECL_APEX int_bool PtInRect(LPCRECT32 prect, POINT32 point);
+//CLASS_DECL_APEX int_bool SetRect(LPRECT32 prect, i32 x1, i32 y1, i32 x2, i32 y2);
+//CLASS_DECL_APEX int_bool SetRectEmpty(LPRECT32 prect);
+//CLASS_DECL_APEX int_bool EqualRect(LPCRECT32 prect1, LPCRECT32 prect2);
+//CLASS_DECL_APEX int_bool InflateRect(LPRECT32 prect, i32 x, i32 y);
+//CLASS_DECL_APEX int_bool OffsetRect(LPRECT32 prect, i32 x, i32 y);
+//CLASS_DECL_APEX int_bool IntersectRect(LPRECT32 prect, LPCRECT32 prect1, LPCRECT32 prect2);
+////CLASS_DECL_APEX int_bool x_intersect_rect(LPRECT32 prect, LPCRECT32 prect1, LPCRECT32 prect2);
+////CLASS_DECL_APEX int_bool y_intersect_rect(LPRECT32 prect, LPCRECT32 prect1, LPCRECT32 prect2);
+//CLASS_DECL_APEX int_bool UnionRect(LPRECT32 prect, LPCRECT32 prect1, LPCRECT32 prect2);
+//CLASS_DECL_APEX int_bool SubtractRect(LPRECT32 prect, LPCRECT32 prect1, LPCRECT32 prect2);
 //
 ////typedef struct oswindow_data *   oswindow;
 //
@@ -2769,13 +2769,13 @@ oswindow hWnd);
 //typedef struct tagMESSAGE
 //{
 //   oswindow    hwnd;
-//   UINT        message;
+//   ::u32        message;
 //   WPARAM      wParam;
 //   LPARAM      lParam;
-//   DWORD       time;
-//   POINT       pt;
+//   ::u32       time;
+//   POINT32       pt;
 //#ifdef _MAC
-//   DWORD       lPrivate;
+//   ::u32       lPrivate;
 //#endif
 //} MESSAGE, *PMESSAGE, NEAR *NPMESSAGE, FAR *LPMESSAGE;
 //
@@ -2787,7 +2787,7 @@ oswindow hWnd);
 //void set_TranslateMessage(int_bool (*pfn)(const MESSAGE * lpmessage));
 //void set_DispatchMessage(LRESULT (*pfn)(const MESSAGE * lpmessage));
 //
-//CLASS_DECL_APEX int_bool IsRectEmpty(LPCRECT lpcrect);
+//CLASS_DECL_APEX int_bool IsRectEmpty(LPCRECT32 lpcrect);
 //
 ////#ifdef cplusplus
 ////

@@ -22,7 +22,7 @@
 ////::aura::application *     win_application_create(::aura::application * pappSystem, const char * pszId);
 ////::aura::application *     win_instantiate_application(::aura::application * pappSystem, const char * pszId);
 ////int                     win_application_procedure(::aura::application * pappSystem)
-////UINT c_cdecl          win_application_thread_proc(LPVOID);
+////::u32 c_cdecl          win_application_thread_proc(LPVOID);
 ///////////////////////////////////////////////////////////////////////////////
 //// Standard WinMain implementation
 ////  Can be replaced as long as '::ca2::WinInit' is called first

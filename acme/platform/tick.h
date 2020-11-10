@@ -214,7 +214,7 @@ inline double __double(const ::tick & tick) { return (double) tick.m_i; }
 
 inline auto __pr(const ::tick & tick) { return tick.m_i; }
 
-inline u32 __os(const ::tick & tick) { return tick.m_i > (i64) MAXI32 ? INFINITE : tick.m_i < 0 ? 0 : (u32) tick.m_i; }
+inline u32 __os(const ::tick & tick) { return tick.m_i > (i64) MAXI32 ? U32_INFINITE_TIMEOUT : tick.m_i < 0 ? 0 : (u32) tick.m_i; }
 
 inline ::i32 __i32(const ::tick & tick) { return (::i32) tick.m_i; }
 

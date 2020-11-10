@@ -124,9 +124,9 @@ namespace linux
 //   ASSERT(fx_is_valid_address(pdata, nCount));
 
 
-      UINT nRead = 0;
+      ::u32 nRead = 0;
 
-      if ((nRead = fread(pdata, sizeof(BYTE), nCount, m_pStream)) == 0 && !feof(m_pStream))
+      if ((nRead = fread(pdata, sizeof(byte), nCount, m_pStream)) == 0 && !feof(m_pStream))
 
          ::file::throw_status(error_file, errno, m_path);
       if (ferror(m_pStream))
@@ -145,7 +145,7 @@ namespace linux
 //   ASSERT(fx_is_valid_address(pdata, nCount, FALSE));
 
 
-      if (fwrite(pdata, sizeof(BYTE), nCount, m_pStream) != nCount)
+      if (fwrite(pdata, sizeof(byte), nCount, m_pStream) != nCount)
 
          ::file::throw_status(error_file, errno, m_path);
    }
@@ -162,7 +162,7 @@ namespace linux
          ::file::throw_status(error_disk_full, errno, m_path);
    }
 
-   LPTSTR stdio_file::read_string(LPTSTR psz, UINT nMax)
+   LPTSTR stdio_file::read_string(LPTSTR psz, ::u32 nMax)
 
    {
       ASSERT(psz != nullptr);
@@ -250,7 +250,7 @@ namespace linux
          ::file::throw_status(error_diskFull, errno, m_path);
    }*/
 
-   /*unichar * stdio_file::read_string(unichar * psz, UINT nMax)
+   /*unichar * stdio_file::read_string(unichar * psz, ::u32 nMax)
 
    {
       ASSERT(psz != nullptr);
@@ -334,7 +334,7 @@ namespace linux
       if (m_pStream != nullptr)
          nErr = fclose(m_pStream);
 
-//   m_hFile = (UINT) hFileNull;
+//   m_hFile = (::u32) hFileNull;
       //m_bCloseOnDelete = FALSE;
       m_pStream = nullptr;
 
@@ -349,7 +349,7 @@ namespace linux
 //   if (m_pStream != nullptr && m_bCloseOnDelete)
       if (m_pStream != nullptr)
          fclose(m_pStream);  // close but ignore errors
-//   m_hFile = (UINT) hFileNull;
+//   m_hFile = (::u32) hFileNull;
       m_pStream = nullptr;
       //m_bCloseOnDelete = FALSE;
    }
@@ -398,9 +398,9 @@ namespace linux
    {
       ASSERT_VALID(this);
 
-      LONG nCurrent;
-      LONG nLength;
-      LONG nResult;
+      ::i32 nCurrent;
+      ::i32 nLength;
+      ::i32 nResult;
 
       nCurrent = ftell(m_pStream);
       if (nCurrent == -1)

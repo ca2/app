@@ -326,7 +326,7 @@ namespace draw2d
          info.bmiHeader.biCompression = BI_RGB;
          info.bmiHeader.biSizeImage = size.cy * iScan;
 
-         COLORREF* pcolorref = nullptr;
+         color32_t* pcolorref = nullptr;
 
          hbitmap = ::CreateDIBSection(nullptr, &info, DIB_RGB_COLORS, (void **) &pcolorref, nullptr, 0);
 
@@ -347,20 +347,20 @@ namespace draw2d
          {
 
             bool bAllZeroAlpha = true;
-            bool bTheresUint32 = false;
+            bool bTheres::u32 = false;
 
             pixmap.map();
 
             int area = size.area();
 
             auto pc = pixmap.colorref();
-            BYTE * pA = &((BYTE *)pc)[3];
+            byte * pA = &((byte *)pc)[3];
 
             for (int i = 0; i < area; i++)
             {
                if (*pc != 0)
                {
-                  bTheresUint32 = true;
+                  bTheres::u32 = true;
                }
                if (*pA != 0)
                {
@@ -371,11 +371,11 @@ namespace draw2d
                pA += 4;
             }
 
-            if (bAllZeroAlpha && bTheresUint32)
+            if (bAllZeroAlpha && bTheres::u32)
             {
 
                pc = pixmap.colorref();
-               pA = &((BYTE *)pc)[3];
+               pA = &((byte *)pc)[3];
 
                for (int i = 0; i < area; i++)
                {

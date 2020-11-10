@@ -49,7 +49,7 @@ nsMBCSGroupProber::nsMBCSGroupProber()
 
 nsMBCSGroupProber::~nsMBCSGroupProber()
 {
-  for (PRUint32 i = 0; i < NUM_OF_PROBERS; i++)
+  for (PR::u32 i = 0; i < NUM_OF_PROBERS; i++)
   {
     delete mProbers[i];
   }
@@ -68,7 +68,7 @@ const char* nsMBCSGroupProber::GetCharSetName()
 
 void  nsMBCSGroupProber::Reset(void)
 {
-  for (PRUint32 i = 0; i < NUM_OF_PROBERS; i++)
+  for (PR::u32 i = 0; i < NUM_OF_PROBERS; i++)
   {
     mProbers[i]->Reset();
     mIsActive[i] = PR_TRUE;
@@ -78,10 +78,10 @@ void  nsMBCSGroupProber::Reset(void)
   mState = eDetecting;
 }
 
-nsProbingState nsMBCSGroupProber::HandleData(const char* aBuf, PRUint32 aLen)
+nsProbingState nsMBCSGroupProber::HandleData(const char* aBuf, PR::u32 aLen)
 {
   nsProbingState st;
-  PRUint32 i;
+  PR::u32 i;
 
   //do filtering to reduce load to probers
   char *highbyteBuf;
@@ -110,7 +110,7 @@ nsProbingState nsMBCSGroupProber::HandleData(const char* aBuf, PRUint32 aLen)
   {
      if (!mIsActive[i])
        continue;
-     st = mProbers[i]->HandleData(highbyteBuf, (PRUint32)(hptr - highbyteBuf));
+     st = mProbers[i]->HandleData(highbyteBuf, (PR::u32)(hptr - highbyteBuf));
      if (st == eFoundIt)
      {
        mBestGuess = i;
@@ -136,7 +136,7 @@ nsProbingState nsMBCSGroupProber::HandleData(const char* aBuf, PRUint32 aLen)
 
 float nsMBCSGroupProber::GetConfidence(void)
 {
-  PRUint32 i;
+  PR::u32 i;
   float bestConf = 0.0, cf;
 
   switch (mState)
@@ -165,7 +165,7 @@ float nsMBCSGroupProber::GetConfidence(void)
 void 
 nsMBCSGroupProber::DumpStatus()
 {
-  PRUint32 i;
+  PR::u32 i;
   float cf;
   
   GetConfidence();

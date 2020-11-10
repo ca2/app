@@ -188,12 +188,12 @@ namespace str
       return true;
    }
 
-   bool tokenizer::_01Read(UINT & user)
+   bool tokenizer::_01Read(::u32 & user)
    {
       i32 i;
       if(!_01Read(i))
          return false;
-      user = (UINT) i;
+      user = (::u32) i;
       return true;
    }
 
@@ -206,12 +206,12 @@ namespace str
       return true;
    }
 
-   bool tokenizer::_01ReadHex(UINT & user)
+   bool tokenizer::_01ReadHex(::u32 & user)
    {
       i32 i;
       if(!_01ReadHex(i))
          return false;
-      user = (UINT) i;
+      user = (::u32) i;
       return true;
    }
 

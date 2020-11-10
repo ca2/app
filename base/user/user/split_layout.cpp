@@ -496,9 +496,9 @@ namespace user
 
       __pointer(::user::interaction) pwnd;
 
-      UINT uiBaseFlags = SWP_NOZORDER;
+      ::u32 uBaseFlags = SWP_NOZORDER;
 
-      UINT uiFlags = uiBaseFlags;
+      ::u32 uFlags = uiBaseFlags;
 
       for(i = 0; i < iSplitBarCount; i++)
       {
@@ -740,7 +740,7 @@ namespace user
    }
 
 
-   void split_layout::CalcPaneRect(index iPane, RECT * prect)
+   void split_layout::CalcPaneRect(index iPane, RECT32 * prect)
 
    {
 
@@ -753,7 +753,7 @@ namespace user
 
    }
 
-   void split_layout::CalcPaneRect(i32 nMinPos, i32 nMaxPos, RECT * prect)
+   void split_layout::CalcPaneRect(i32 nMinPos, i32 nMaxPos, RECT32 * prect)
 
    {
 
@@ -830,7 +830,7 @@ namespace user
    }
 
 
-   void split_layout::CalcSplitBarRect(index iIndex, RECT * prect)
+   void split_layout::CalcSplitBarRect(index iIndex, RECT32 * prect)
 
    {
 
@@ -1061,7 +1061,7 @@ namespace user
    }
 
 
-   void split_layout::SetPaneFixedSize(index iIndex, SIZE * pSize)
+   void split_layout::SetPaneFixedSize(index iIndex, SIZE32 * pSize)
    {
 
       UNREFERENCED_PARAMETER(iIndex);

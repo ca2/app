@@ -240,7 +240,7 @@ namespace fs
    }
 
 
-   file_result native::get_file(const ::file::path & path,UINT nOpenFlags)
+   file_result native::get_file(const ::file::path & path,::u32 nOpenFlags)
    {
 
       file_pointer pfile;

@@ -54,7 +54,7 @@ namespace sockets
    }
 
 
-   //bool transfer_socket_exception::GetErrorMessage(string & strError, PUINT /*pnHelpContext = nullptr*/)
+   //bool transfer_socket_exception::GetErrorMessage(string & strError, P::u32 /*pnHelpContext = nullptr*/)
    //{
    //   if (m_nError == 0)
    //   {
@@ -67,7 +67,7 @@ namespace sockets
    //   return true;
    //}
 
-   //string transfer_socket_exception::GetErrorMessage(PUINT /*pnHelpContext = nullptr*/)
+   //string transfer_socket_exception::GetErrorMessage(P::u32 /*pnHelpContext = nullptr*/)
    //{
    //   string str;
    //   GetErrorMessage(str);
@@ -335,7 +335,7 @@ namespace sockets
 
    //   int nBytesReceived = 0;
 
-   //   DWORD tickStart = ::get_tick();
+   //   ::u32 tickStart = ::get_tick();
 
    //   int iRead = 0;
 
@@ -506,7 +506,7 @@ namespace sockets
    //   do
    //   {
    //      // look for lf (assume preceded by cr)
-   //      if ((pch2 = (LPSTR)memchr(pch1, '\n', nBytesThisTime)) != nullptr)
+   //      if ((pch2 = (char *)memchr(pch1, '\n', nBytesThisTime)) != nullptr)
    //      {
    //         ASSERT((pch2) > m_pReadBuf);
    //         ASSERT(*(pch2 - 1) == '\r');

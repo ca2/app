@@ -78,7 +78,7 @@ namespace user
 
    }
    
-   //LRESULT _OnCommand(WORD, WORD, HWND);
+   //LRESULT _OnCommand(::u16, ::u16, HWND);
 
    LRESULT edit_window::_OnSetFocus(VOID)
    {

@@ -158,10 +158,10 @@ struct CLASS_DECL_ACME matter :
 
 #ifdef WINDOWS
 
-   static DWORD WINAPI s_os_thread_proc(void * p)
+   static ::u32 WINAPI s_os_thread_proc(void * p)
    {
 
-      return (DWORD)s_thread_proc(p);
+      return (::u32)s_thread_proc(p);
 
    }
 
@@ -190,7 +190,7 @@ struct CLASS_DECL_ACME matter :
    // very close to the operating system
    HTHREAD __create_thread(
       ::e_priority epriority = ::priority_normal,
-      UINT nStackSize = 0,
+      ::u32 nStackSize = 0,
       u32 uiCreateFlags = 0,
       LPSECURITY_ATTRIBUTES psa = nullptr,
       ITHREAD * puiId = nullptr);

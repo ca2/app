@@ -32,7 +32,7 @@ CLASS_DECL_ACME i32 __cdecl _memory_type(const void * p);
 // typedef int
 // (WINAPI * LPFN_ChangeWindowMessageFilter)(
 // const ::id & id,
-// DWORD dwFlag);
+// ::u32 dwFlag);
 
 
 //LPFN_ChangeWindowMessageFilter g_pfnChangeWindowMessageFilter = nullptr;
@@ -246,11 +246,11 @@ string key_to_char(WPARAM wparam, LPARAM lparam)
 
    unichar wsz[32];
 
-   BYTE baState[256];
+   byte baState[256];
 
    for(int i = 0; i < 256; i++)
    {
-      baState[i] = (BYTE) GetAsyncKeyState(i);
+      baState[i] = (byte) GetAsyncKeyState(i);
    }
 
    if((GetAsyncKeyState(VK_SHIFT) & 0x80000000) != 0)
@@ -259,7 +259,7 @@ string key_to_char(WPARAM wparam, LPARAM lparam)
    }
 
 
-   i32 iRet = ToUnicodeEx((UINT) wparam, (UINT) lparam, baState, wsz, 32, 0, GetKeyboardLayout(GetCurrentThreadId()));
+   i32 iRet = ToUnicodeEx((::u32) wparam, (::u32) lparam, baState, wsz, 32, 0, GetKeyboardLayout(GetCurrentThreadId()));
 
 
    if(iRet > 0)
@@ -368,9 +368,9 @@ string key_to_char(WPARAM wparam, LPARAM lparam)
 // (which means Windows NT, 2000, XP).
 int GetVersion_ex1()
 {
-   DWORD    dwVersion = GetVersion();
+   ::u32    dwVersion = GetVersion();
    // Get major and minor version numbers of Windows
-   WORD loword = LOWORD(dwVersion);
+   ::u16 loword = LOWORD(dwVersion);
    int lowbyte = LOBYTE(loword);
    int hibyte = HIBYTE(loword);
 
@@ -573,21 +573,21 @@ int_bool is_windows_native_unicode()
    if (bNativeUnicode == -1)
    {
 
-      DWORD dwVersion = GetVersion();
+      ::u32 dwVersion = GetVersion();
 
       // get the Windows version.
 
-      DWORD dwWindowsMajorVersion = (DWORD)(LOBYTE(LOWORD(dwVersion)));
-      DWORD dwWindowsMinorVersion = (DWORD)(HIBYTE(LOWORD(dwVersion)));
+      ::u32 dwWindowsMajorVersion = (::u32)(LOBYTE(LOWORD(dwVersion)));
+      ::u32 dwWindowsMinorVersion = (::u32)(HIBYTE(LOWORD(dwVersion)));
 
       // get the build number.
 
-      DWORD dwBuild;
+      ::u32 dwBuild;
 
       if (dwVersion < 0x80000000)              // Windows NT
-         dwBuild = (DWORD)(HIWORD(dwVersion));
+         dwBuild = (::u32)(HIWORD(dwVersion));
       else if (dwWindowsMajorVersion < 4)      // Win32s
-         dwBuild = (DWORD)(HIWORD(dwVersion) & ~0x8000);
+         dwBuild = (::u32)(HIWORD(dwVersion) & ~0x8000);
       else                                     // Windows Me/98/95
          dwBuild = 0;
 
@@ -621,7 +621,7 @@ bool __is_valid_atom(ATOM nAtom)
 
    }
    
-   DWORD dwError = get_last_error();
+   ::u32 dwError = get_last_error();
 
    if(dwError == ERROR_INSUFFICIENT_BUFFER || dwError == ERROR_MORE_DATA)
    {
@@ -738,7 +738,7 @@ CLASS_DECL_ACME string get_last_error_string()
 CLASS_DECL_ACME string get_error_string(u64 ui)
 {
 
-   DWORD dwError = (DWORD) ui;
+   ::u32 dwError = (::u32) ui;
 
    wchar_t * pszError;
 
@@ -758,7 +758,7 @@ CLASS_DECL_ACME string expand_env(string str)
 
    wstring wstr;
 
-   ExpandEnvironmentStringsW(wstring(str), wstr.get_string_buffer(8192), (DWORD)wstr.get_length());
+   ExpandEnvironmentStringsW(wstring(str), wstr.get_string_buffer(8192), (::u32)wstr.get_length());
 
    return wstr;
 

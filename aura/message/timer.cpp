@@ -11,7 +11,7 @@ namespace message
 
       base::set(pwnd, id, wparam, lparam);
 
-      m_uEvent = static_cast<UINT>(wparam);
+      m_uEvent = static_cast<::u32>(wparam);
 
    }
 

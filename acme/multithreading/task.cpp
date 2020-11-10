@@ -130,7 +130,7 @@ bool task::is_thread() const
 
 
 #ifdef WINDOWS
-DWORD WINAPI task::s_os_task(void* p)
+::u32 WINAPI task::s_os_task(void* p)
 #else
 void* task::s_os_task(void* p)
 #endif
@@ -445,7 +445,7 @@ void task::term_task()
 
 #ifdef WINDOWS
 
-   DWORD dwThread = 0;
+   ::u32 dwThread = 0;
 
    m_hthread = ::CreateThread(nullptr, nStackSize, &::task::s_os_task, (LPVOID)(task*)this, uCreateFlags, &dwThread);
 
@@ -486,7 +486,7 @@ void task::term_task()
 }
 
 
-::task_pointer task::launch(::matter * pmatter, ::e_priority epriority, UINT nStackSize, u32 uCreateFlags)
+::task_pointer task::launch(::matter * pmatter, ::e_priority epriority, ::u32 nStackSize, u32 uCreateFlags)
 {
 
    auto ptask = __new(task);
@@ -723,7 +723,7 @@ CLASS_DECL_ACME bool task_sleep(tick tick, sync* psync)
       if (::is_null(psync))
       {
 
-         if (__os(tick) == INFINITE)
+         if (__os(tick) == U32_INFINITE_TIMEOUT)
          {
 
          }
@@ -738,7 +738,7 @@ CLASS_DECL_ACME bool task_sleep(tick tick, sync* psync)
       else
       {
 
-         if (__os(tick) == INFINITE)
+         if (__os(tick) == U32_INFINITE_TIMEOUT)
          {
 
             return psync->lock();
@@ -760,7 +760,7 @@ CLASS_DECL_ACME bool task_sleep(tick tick, sync* psync)
    if (::is_null(psync))
    {
 
-      if (__os(tick) == INFINITE)
+      if (__os(tick) == U32_INFINITE_TIMEOUT)
       {
 
          return __task_sleep(pthread);
@@ -777,7 +777,7 @@ CLASS_DECL_ACME bool task_sleep(tick tick, sync* psync)
    else
    {
 
-      if (__os(tick) == INFINITE)
+      if (__os(tick) == U32_INFINITE_TIMEOUT)
       {
 
          return __task_sleep(pthread, psync);

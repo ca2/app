@@ -526,7 +526,7 @@ namespace experience
    }
 
 
-   void frame_window::GetRegionClientRect(RECT * prect)
+   void frame_window::GetRegionClientRect(RECT32 * prect)
    {
 
       ASSERT(m_pframe != nullptr);
@@ -536,7 +536,7 @@ namespace experience
    }
 
 
-   void frame_window::get_draw_client_rect(RECT * prect)
+   void frame_window::get_draw_client_rect(RECT32 * prect)
    {
 
       ASSERT(m_pframe != nullptr);
@@ -1040,7 +1040,7 @@ namespace experience
    //  define System flags que serão usados para posicionar ou
    //  dimensionar pelo uso da função set_window_pos
 
-   void frame_window::SetSWPFlags(UINT uiFlags)
+   void frame_window::SetSWPFlags(::u32 uFlags)
    {
 
       m_uiSWPFlags = uiFlags;
@@ -1503,7 +1503,7 @@ namespace experience
       //if(m_pframe != nullptr)
       //{
 
-      //   if(!m_pframe->_001OnTimer((UINT) ptimer->m_uEvent))
+      //   if(!m_pframe->_001OnTimer((::u32) ptimer->m_uEvent))
       //   {
 
       //      ptimer->finalize();
@@ -1515,7 +1515,7 @@ namespace experience
    }
 
 
-   void frame_window::OnNcCalcSize(RECT * prect)
+   void frame_window::OnNcCalcSize(RECT32 * prect)
    {
 
       ASSERT(m_pframe != nullptr);

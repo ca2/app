@@ -8,7 +8,7 @@ namespace dynamic_source
 {
 
    
-   UINT ThreadProcRsa(LPVOID lp);
+   ::u32 ThreadProcRsa(LPVOID lp);
 
 
    //script_instance * get_seed_instance()
@@ -1130,7 +1130,7 @@ namespace dynamic_source
    }
 
 
-   UINT ThreadProcRsa(LPVOID lp)
+   ::u32 ThreadProcRsa(LPVOID lp)
    {
       script_manager * pmanager = (script_manager *) lp;
       pmanager->calc_rsa_key();

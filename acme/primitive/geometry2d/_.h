@@ -76,8 +76,8 @@ enum e_orientation
 };
 
 
-inline auto left(const RECT * prect) { return prect->left; }
-inline auto top(const RECT * prect) { return prect->top; }
+inline auto left(const RECT32 * prect) { return prect->left; }
+inline auto top(const RECT32 * prect) { return prect->top; }
 inline auto left(const RECT64 * prect) { return prect->left; }
 inline auto top(const RECT64 * prect) { return prect->top; }
 inline auto left(const RECTF * prect) { return prect->left; }
@@ -673,7 +673,7 @@ RECT_TYPE * set_rect_dim(RECT_TYPE* prect, L l, T t, W w, H h)
 }
 
 template <  typename L, typename T, typename W, typename H >
-inline auto _001SetRectDim(RECT * p, L l, T t, W w, H h) { return set_rect_dim(p, l, t, w, h); }
+inline auto _001SetRectDim(RECT32 * p, L l, T t, W w, H h) { return set_rect_dim(p, l, t, w, h); }
 template <  typename L, typename T, typename W, typename H >
 inline auto _001SetRectDim(RECT64 * p, L l, T t, W w, H h) { return set_rect_dim(p, l, t, w, h); }
 template <  typename L, typename T, typename W, typename H >
@@ -959,7 +959,7 @@ namespace design
 using e_align = cflag < enum_align >;
 
 
-inline LONG area(LONG cx, LONG cy) { return (cx < 0 && cy < 0 ? -1 : 1) * cx * cy; }
+inline ::i32 area(::i32 cx, ::i32 cy) { return (cx < 0 && cy < 0 ? -1 : 1) * cx * cy; }
 inline i64 area(i64 cx, i64 cy) { return (cx < 0 && cy < 0 ? -1 : 1) * cx * cy; }
 inline double area(double cx, double cy) { return (cx < 0. && cy < 0. ? -1. : 1.) * cx * cy; }
 
@@ -989,19 +989,19 @@ struct RECTD;
 
 
 
-using point = point_type < POINT, SIZE, RECT >;
+using point = point_type < POINT32, SIZE32, RECT32 >;
 using point64 = point_type < POINT64, SIZE64, RECT64 >;
 using pointf = point_type < POINTF, SIZEF, RECTF >;
 using pointd = point_type < POINTD, SIZED, RECTD >;
 
 
-using size = size_type < SIZE, POINT, RECT >;
+using size = size_type < SIZE32, POINT32, RECT32 >;
 using size64 = size_type < SIZE64, POINT64, RECT64 >;
 using sizef = size_type < SIZEF, POINTF, RECTF >;
 using sized = size_type < SIZED, POINTD, RECTD >;
 
 
-using rect = rect_type < RECT, POINT, SIZE >;
+using rect = rect_type < RECT32, POINT32, SIZE32 >;
 using rect64 = rect_type < RECT64, POINT64, SIZE64 >;
 using rectf = rect_type < RECTF, POINTF, SIZEF >;
 using rectd = rect_type < RECTD, POINTD, SIZED >;
@@ -1021,52 +1021,52 @@ inline i64 MulDiv(i64 nNumber, i32 iNum, i32 iDen);
 inline i64 i32muldiv(i64 i, i32 iNum, i32 iDen);
 
 
-inline void copy(POINT* ppointDst, const POINT* ppointSrc) { *ppointDst = *ppointSrc; }
-inline void copy(POINT* ppointDst, const POINT64* ppointSrc) { ::copy_point(ppointDst, ppointSrc);}
-inline void copy(POINT* ppointDst, const POINTF* ppointSrc) { ::copy_point(ppointDst, ppointSrc); }
-inline void copy(POINT* ppointDst, const POINTD* ppointSrc) { ::copy_point(ppointDst, ppointSrc ); }
-inline void copy(POINT64* ppointDst, const POINT* ppointSrc) { ::copy_point(ppointDst, ppointSrc); }
+inline void copy(POINT32* ppointDst, const POINT32* ppointSrc) { *ppointDst = *ppointSrc; }
+inline void copy(POINT32* ppointDst, const POINT64* ppointSrc) { ::copy_point(ppointDst, ppointSrc);}
+inline void copy(POINT32* ppointDst, const POINTF* ppointSrc) { ::copy_point(ppointDst, ppointSrc); }
+inline void copy(POINT32* ppointDst, const POINTD* ppointSrc) { ::copy_point(ppointDst, ppointSrc ); }
+inline void copy(POINT64* ppointDst, const POINT32* ppointSrc) { ::copy_point(ppointDst, ppointSrc); }
 inline void copy(POINT64* ppointDst, const POINT64* ppointSrc) { *ppointDst = *ppointSrc; }
 inline void copy(POINT64* ppointDst, const POINTF* ppointSrc) { ::copy_point(ppointDst, ppointSrc); }
 inline void copy(POINT64* ppointDst, const POINTD* ppointSrc) { ::copy_point(ppointDst, ppointSrc); }
-inline void copy(POINTF* ppointDst, const POINT* ppointSrc) { ::copy_point(ppointDst, ppointSrc); }
+inline void copy(POINTF* ppointDst, const POINT32* ppointSrc) { ::copy_point(ppointDst, ppointSrc); }
 inline void copy(POINTF* ppointDst, const POINT64* ppointSrc) { ::copy_point(ppointDst, ppointSrc); }
 inline void copy(POINTF* ppointDst, const POINTF* ppointSrc) { *ppointDst = *ppointSrc; }
 inline void copy(POINTF* ppointDst, const POINTD* ppointSrc) { ::copy_point(ppointDst, ppointSrc); }
-inline void copy(POINTD* ppointDst, const POINT* ppointSrc) { ::copy_point(ppointDst, ppointSrc); }
+inline void copy(POINTD* ppointDst, const POINT32* ppointSrc) { ::copy_point(ppointDst, ppointSrc); }
 inline void copy(POINTD* ppointDst, const POINT64* ppointSrc) { ::copy_point(ppointDst, ppointSrc); }
 inline void copy(POINTD* ppointDst, const POINTD* ppointSrc) { *ppointDst=*ppointSrc; }
 
-inline void copy(SIZE* psizeDst, const SIZE* psizeSrc) { *psizeDst = *psizeSrc; }
-inline void copy(SIZE* psizeDst, const SIZE64* psizeSrc) { ::copy_size(psizeDst, psizeSrc ); }
-inline void copy(SIZE* psizeDst, const SIZEF* psizeSrc) { ::copy_size(psizeDst, psizeSrc); }
-inline void copy(SIZE* psizeDst, const SIZED* psizeSrc) { ::copy_size(psizeDst, psizeSrc ); }
-inline void copy(SIZE64* psizeDst, const SIZE* psizeSrc) { ::copy_size(psizeDst, psizeSrc); }
+inline void copy(SIZE32* psizeDst, const SIZE32* psizeSrc) { *psizeDst = *psizeSrc; }
+inline void copy(SIZE32* psizeDst, const SIZE64* psizeSrc) { ::copy_size(psizeDst, psizeSrc ); }
+inline void copy(SIZE32* psizeDst, const SIZEF* psizeSrc) { ::copy_size(psizeDst, psizeSrc); }
+inline void copy(SIZE32* psizeDst, const SIZED* psizeSrc) { ::copy_size(psizeDst, psizeSrc ); }
+inline void copy(SIZE64* psizeDst, const SIZE32* psizeSrc) { ::copy_size(psizeDst, psizeSrc); }
 inline void copy(SIZE64* psizeDst, const SIZE64* psizeSrc) { *psizeDst = *psizeSrc; }
 inline void copy(SIZE64* psizeDst, const SIZEF* psizeSrc) { ::copy_size(psizeDst, psizeSrc); }
 inline void copy(SIZE64* psizeDst, const SIZED* psizeSrc) { ::copy_size(psizeDst, psizeSrc); }
-inline void copy(SIZEF* psizeDst, const SIZE* psizeSrc) { ::copy_size(psizeDst, psizeSrc); }
+inline void copy(SIZEF* psizeDst, const SIZE32* psizeSrc) { ::copy_size(psizeDst, psizeSrc); }
 inline void copy(SIZEF* psizeDst, const SIZE64* psizeSrc) { ::copy_size(psizeDst, psizeSrc); }
 inline void copy(SIZEF* psizeDst, const SIZEF* psizeSrc) { *psizeDst = *psizeSrc; }
 inline void copy(SIZEF* psizeDst, const SIZED* psizeSrc) { ::copy_size(psizeDst, psizeSrc); }
-inline void copy(SIZED* psizeDst, const SIZE* psizeSrc) { ::copy_size(psizeDst, psizeSrc); }
+inline void copy(SIZED* psizeDst, const SIZE32* psizeSrc) { ::copy_size(psizeDst, psizeSrc); }
 inline void copy(SIZED* psizeDst, const SIZE64* psizeSrc) { ::copy_size(psizeDst, psizeSrc); }
 inline void copy(SIZED* psizeDst, const SIZEF* psizeSrc) { ::copy_size(psizeDst, psizeSrc); }
 inline void copy(SIZED* psizeDst, const SIZED* psizeSrc) { *psizeDst = *psizeSrc; }
 
-inline void copy(RECT* prectDst, const RECT* prectSrc) { *prectDst=*prectSrc; }
-inline void copy(RECT* prectDst, const RECT64* prectSrc) { ::copy_rect(prectDst, prectSrc ); }
-inline void copy(RECT* prectDst, const RECTF* prectSrc) { ::copy_rect(prectDst, prectSrc); }
-inline void copy(RECT* prectDst, const RECTD* prectSrc) { ::copy_rect(prectDst, prectSrc ); }
-inline void copy(RECT64* prectDst, const RECT* prectSrc) { ::copy_rect(prectDst, prectSrc); }
+inline void copy(RECT32* prectDst, const RECT32* prectSrc) { *prectDst=*prectSrc; }
+inline void copy(RECT32* prectDst, const RECT64* prectSrc) { ::copy_rect(prectDst, prectSrc ); }
+inline void copy(RECT32* prectDst, const RECTF* prectSrc) { ::copy_rect(prectDst, prectSrc); }
+inline void copy(RECT32* prectDst, const RECTD* prectSrc) { ::copy_rect(prectDst, prectSrc ); }
+inline void copy(RECT64* prectDst, const RECT32* prectSrc) { ::copy_rect(prectDst, prectSrc); }
 inline void copy(RECT64* prectDst, const RECT64* prectSrc) { *prectDst = *prectSrc; }
 inline void copy(RECT64* prectDst, const RECTF* prectSrc) { ::copy_rect(prectDst, prectSrc); }
 inline void copy(RECT64* prectDst, const RECTD* prectSrc) { ::copy_rect(prectDst, prectSrc); }
-inline void copy(RECTF* prectDst, const RECT* prectSrc) { ::copy_rect(prectDst, prectSrc); }
+inline void copy(RECTF* prectDst, const RECT32* prectSrc) { ::copy_rect(prectDst, prectSrc); }
 inline void copy(RECTF* prectDst, const RECT64* prectSrc) { ::copy_rect(prectDst, prectSrc); }
 inline void copy(RECTF* prectDst, const RECTF* prectSrc) { *prectDst = *prectSrc; }
 inline void copy(RECTF* prectDst, const RECTD* prectSrc) { ::copy_rect(prectDst, prectSrc); }
-inline void copy(RECTD* prectDst, const RECT* prectSrc) { ::copy_rect(prectDst, prectSrc); }
+inline void copy(RECTD* prectDst, const RECT32* prectSrc) { ::copy_rect(prectDst, prectSrc); }
 inline void copy(RECTD* prectDst, const RECT64* prectSrc) { ::copy_rect(prectDst, prectSrc); }
 inline void copy(RECTD* prectDst, const RECTF* prectSrc) { ::copy_rect(prectDst, prectSrc); }
 inline void copy(RECTD* prectDst, const RECTD* prectSrc) { *prectDst = *prectSrc; }
@@ -1080,29 +1080,29 @@ inline void copy(RECTD* prectDst, const RECTD* prectSrc) { *prectDst = *prectSrc
 
 
 
-inline bool contains(const RECT* prect, const POINT& point) { return ::rect_contains(prect, point.x, point.y); }
-inline RECT* null(RECT* prectDst) { return ::null_rect(prectDst); }
-inline bool is_equal(const RECT* prect1, const RECT* prect2) { return ::rect_equals(prect1, prect2); }
-inline RECT* inflate(RECT * prect, LONG x, LONG y) { return ::rect_inflate_point(prect, x, y); }
-inline RECT* deflate(RECT * prect, LONG x, LONG y) { return ::rect_deflate_point(prect, x, y); }
-inline RECT* offset(RECT * prect, LONG x, LONG y) { return ::offset_rect(prect, x, y); }
-inline bool intersect(RECT * prect, const RECT * prect1, const RECT * prect2) { return ::intersect_rect(prect, prect1, prect2); }
-inline bool unite(RECT * prect, const RECT * prect1, const RECT * prect2) { return ::union_rect(prect, prect1, prect2); }
-inline LONG width(const RECT * prect) { return ::rect_width(prect); }
-inline LONG height(const RECT * prect) { return ::rect_height(prect); }
-inline LONG area(const RECT * prect) { return ::rect_area(prect); }
-inline bool is_empty(const RECT * prect) { return ::is_rect_empty(prect); }
-inline void swap_left_right(RECT * prect) noexcept { ::__swap(prect->left, prect->right); }
+inline bool contains(const RECT32* prect, const POINT32& point) { return ::rect_contains(prect, point.x, point.y); }
+inline RECT32* null(RECT32* prectDst) { return ::null_rect(prectDst); }
+inline bool is_equal(const RECT32* prect1, const RECT32* prect2) { return ::rect_equals(prect1, prect2); }
+inline RECT32* inflate(RECT32 * prect, ::i32 x, ::i32 y) { return ::rect_inflate_point(prect, x, y); }
+inline RECT32* deflate(RECT32 * prect, ::i32 x, ::i32 y) { return ::rect_deflate_point(prect, x, y); }
+inline RECT32* offset(RECT32 * prect, ::i32 x, ::i32 y) { return ::offset_rect(prect, x, y); }
+inline bool intersect(RECT32 * prect, const RECT32 * prect1, const RECT32 * prect2) { return ::intersect_rect(prect, prect1, prect2); }
+inline bool unite(RECT32 * prect, const RECT32 * prect1, const RECT32 * prect2) { return ::union_rect(prect, prect1, prect2); }
+inline ::i32 width(const RECT32 * prect) { return ::rect_width(prect); }
+inline ::i32 height(const RECT32 * prect) { return ::rect_height(prect); }
+inline ::i32 area(const RECT32 * prect) { return ::rect_area(prect); }
+inline bool is_empty(const RECT32 * prect) { return ::is_rect_empty(prect); }
+inline void swap_left_right(RECT32 * prect) noexcept { ::__swap(prect->left, prect->right); }
 
-inline LONG width(const RECT & rect) { return ::width(&rect); }
-inline LONG height(const RECT & rect) { return ::height(&rect); }
-inline LONG area(const RECT & rect) { return ::area(&rect); }
-inline bool is_empty(const RECT & rect) { return ::is_empty(&rect); }
-inline void swap_left_right(RECT & rect) noexcept { ::swap_left_right(&rect); }
+inline ::i32 width(const RECT32 & rect) { return ::width(&rect); }
+inline ::i32 height(const RECT32 & rect) { return ::height(&rect); }
+inline ::i32 area(const RECT32 & rect) { return ::area(&rect); }
+inline bool is_empty(const RECT32 & rect) { return ::is_empty(&rect); }
+inline void swap_left_right(RECT32 & rect) noexcept { ::swap_left_right(&rect); }
 
 
 
-inline bool is_empty(SIZE* psize){ return psize->cx <= 0 || psize->cy <= 0; }
+inline bool is_empty(SIZE32* psize){ return psize->cx <= 0 || psize->cy <= 0; }
 inline bool is_empty(SIZE64* psize) { return psize->cx <= 0 || psize->cy <= 0; }
 inline bool is_empty(SIZEF* psize) { return psize->cx <= 0.f || psize->cy <= 0.f; }
 inline bool is_empty(SIZED* psize) { return psize->cx <= 0. || psize->cy <= 0.; }
@@ -1114,7 +1114,7 @@ inline bool is_empty(SIZED* psize) { return psize->cx <= 0. || psize->cy <= 0.; 
 
 
 
-inline bool contains(const RECT64* prect, const POINT& point) { return ::rect_contains(prect, point.x, point.y); }
+inline bool contains(const RECT64* prect, const POINT32& point) { return ::rect_contains(prect, point.x, point.y); }
 inline RECT64* null(RECT64* prectDst) { return ::null_rect(prectDst); }
 inline bool is_equal(const RECT64* prect1, const RECT64* prect2) { return ::rect_equals(prect1, prect2); }
 inline RECT64* inflate(RECT64 * prect, i64 x, i64 y) { return ::rect_inflate_point(prect, x, y); }
@@ -1181,8 +1181,8 @@ inline double area(const RECTD & rect) { return ::area(&rect); }
 inline bool is_empty(const RECTD & rect) { return ::is_empty(&rect); }
 inline void swap_left_right(RECTD & rect) noexcept { ::swap_left_right(&rect); }
 
-inline POINT & operator -= (POINT & point, const ::point & pointOffset) { ::point_sub(&point, pointOffset); return point; }
-inline POINT & operator += (POINT & point, const ::point & pointOffset) { ::point_add(&point, pointOffset); return point; }
+inline POINT32 & operator -= (POINT32 & point, const ::point & pointOffset) { ::point_sub(&point, pointOffset); return point; }
+inline POINT32 & operator += (POINT32 & point, const ::point & pointOffset) { ::point_add(&point, pointOffset); return point; }
 inline POINT64 & operator -= (POINT64 & point, const ::point64 & pointOffset) { ::point_sub(&point, pointOffset); return point; }
 inline POINT64 & operator += (POINT64 & point, const ::point64 & pointOffset) { ::point_add(&point, pointOffset); return point; }
 inline POINTF & operator -= (POINTF & point, const ::pointf & pointOffset) { ::point_sub(&point, pointOffset); return point; }
@@ -1191,8 +1191,8 @@ inline POINTD & operator -= (POINTD & point, const ::pointd & pointOffset) { ::p
 inline POINTD & operator += (POINTD & point, const ::pointd & pointOffset) { ::point_add(&point, pointOffset); return point; }
 
 
-inline RECT& operator -= (RECT& rect, const ::point& point) { ::rect_sub(&rect, point); return rect; }
-inline RECT& operator += (RECT& rect, const ::point& point) { ::rect_add(&rect, point); return rect; }
+inline RECT32& operator -= (RECT32& rect, const ::point& point) { ::rect_sub(&rect, point); return rect; }
+inline RECT32& operator += (RECT32& rect, const ::point& point) { ::rect_add(&rect, point); return rect; }
 inline RECT64& operator -= (RECT64& rect, const ::point64& point) { ::rect_sub(&rect, point); return rect; }
 inline RECT64& operator += (RECT64& rect, const ::point64& point) { ::rect_add(&rect, point); return rect; }
 inline RECTF& operator -= (RECTF& rect, const ::pointf& point) { ::rect_sub(&rect, point); return rect; }
@@ -1200,7 +1200,7 @@ inline RECTF& operator += (RECTF& rect, const ::pointf& point) { ::rect_add(&rec
 inline RECTD& operator -= (RECTD& rect, const ::pointd& point) { ::rect_sub(&rect, point); return rect; }
 inline RECTD& operator += (RECTD& rect, const ::pointd& point) { ::rect_add(&rect, point); return rect; }
 
-//inline bool deflate(RECT * prect, const ::rect & prectParam);
+//inline bool deflate(RECT32 * prect, const ::rect & prectParam);
 
 
 #include "point.h"
@@ -1224,7 +1224,7 @@ inline void copy(::rectd* prectDst, const ::rectd* prectSrc) { *prectDst=*prectS
 CLASS_DECL_ACME double d_distance(const point & point1, const point & point2);
 
 
-inline CLASS_DECL_ACME rect rect_dim(LONG x, LONG y, LONG cx, LONG cy)
+inline CLASS_DECL_ACME rect rect_dim(::i32 x, ::i32 y, ::i32 cx, ::i32 cy)
 {
 
    return rect(x, y, x + cx, y + cy);
@@ -1245,16 +1245,16 @@ inline rectd rectd_dim(X x, Y y, W w, H h)
 
 #ifdef APPLEOS
 
-void copy(CGRect * prectTarget, const RECT * prectSource);
-void copy(RECT * prectTarget, const CGRect * prectSource);
+void copy(CGRect * prectTarget, const RECT32 * prectSource);
+void copy(RECT32 * prectTarget, const CGRect * prectSource);
 void copy(CGRect * prectTarget, const RECTD * prectSource);
 void copy(RECTD * prectTarget, const CGRect * prectSource);
-void window_copy(CGRect * prectTarget, const RECT * prectSource);
-void window_copy(RECT * prectTarget, const CGRect * prectSource);
+void window_copy(CGRect * prectTarget, const RECT32 * prectSource);
+void window_copy(RECT32 * prectTarget, const CGRect * prectSource);
 
 
-void copy(CGPoint * ppointTarget, const POINT * ppointSource);
-void copy(POINT * ppointTarget, const CGPoint * ppointSource);
+void copy(CGPoint * ppointTarget, const POINT32 * ppointSource);
+void copy(POINT32 * ppointTarget, const CGPoint * ppointSource);
 void copy(CGPoint * ppointTarget, const POINTD * ppointSource);
 void copy(POINTD * ppointTarget, const CGPoint * ppointSource);
 
@@ -1270,10 +1270,10 @@ inline void copy(RECTF* prectDst, const D2D1_RECT_F* prectSrc) { ::copy_rect(pre
 
 inline void copy(rect * prectDst, const Windows::Foundation::Rect * prectSrc)
 {
-   prectDst->left = (LONG) prectSrc->X;
-   prectDst->top = (LONG)prectSrc->Y;
-   prectDst->right = (LONG) (prectSrc->X + prectSrc->Width);
-   prectDst->bottom = (LONG) (prectSrc->Y + prectSrc->Height);
+   prectDst->left = (::i32) prectSrc->X;
+   prectDst->top = (::i32)prectSrc->Y;
+   prectDst->right = (::i32) (prectSrc->X + prectSrc->Width);
+   prectDst->bottom = (::i32) (prectSrc->Y + prectSrc->Height);
 }
 
 inline void copy(Windows::Foundation::Rect* prectDst, rect* prectSrc)
@@ -1288,8 +1288,8 @@ inline void copy(Windows::Foundation::Rect* prectDst, rect* prectSrc)
 
 
 inline auto __point(const ::lparam & lparam) noexcept { return ::point(lparam.x(), lparam.y()); }
-inline auto __point(const ::u32 u) noexcept { return ::point((LONG)__u32x(u), (LONG)__u32y(u)); }
-inline auto __point(const ::u64 u) noexcept { return ::point((LONG)__u64x(u), (LONG)__u64y(u)); }
+inline auto __point(const ::u32 u) noexcept { return ::point((::i32)__u32x(u), (::i32)__u32y(u)); }
+inline auto __point(const ::u64 u) noexcept { return ::point((::i32)__u64x(u), (::i32)__u64y(u)); }
 inline auto __point(const ::size & size) noexcept { return ::point(size.cx, size.cy); }
 
 inline auto __point64(const ::lparam & lparam) noexcept { return ::point64(lparam.x(), lparam.y()); }

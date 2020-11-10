@@ -68,7 +68,7 @@ namespace userstack
 
       ::user::document * get_document();
 
-      void GetAreaThumbRect(LPRECT lprect, i32 iArea);
+      void GetAreaThumbRect(LPRECT32 lprect, i32 iArea);
 
       void on_hit_test(::user::item & item) override;
 
@@ -86,7 +86,7 @@ namespace userstack
 
       void mt_show_window(oswindow oswindow, i32 iShow);
 
-      static UINT c_cdecl ThreadProcShowWindow(LPVOID lpparam);
+      static ::u32 c_cdecl ThreadProcShowWindow(LPVOID lpparam);
 
       void _000OnMouse(::message::mouse * pmouse) override;
 

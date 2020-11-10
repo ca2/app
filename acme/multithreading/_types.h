@@ -7,7 +7,7 @@
 #ifdef WINDOWS
 
 typedef u32 ITHREAD;
-typedef DWORD thread_data_index;
+typedef ::u32 thread_data_index;
 
 #else
 
@@ -21,7 +21,7 @@ using thread_data_index = ::u32;
 
 typedef HANDLE HTHREAD;
 
-//typedef uint32 ITHREAD;
+//typedef ::u32 ITHREAD;
 
 
 #define NULL_HTHREAD ((HTHREAD)0)

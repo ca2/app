@@ -26,8 +26,8 @@
 BOOL xf_register_pointer(rdpGraphics* graphics);
 BOOL xf_register_graphics(rdpGraphics* graphics);
 
-BOOL xf_decode_color(rdpGdi* gdi, const UINT32 srcColor,
-                     UINT32* color, UINT32* format);
-UINT32 xf_get_local_color_format(xfContext* xfc, BOOL aligned);
+BOOL xf_decode_color(rdpGdi* gdi, const ::u32 srcColor,
+                     ::u32* color, ::u32* format);
+::u32 xf_get_local_color_format(xfContext* xfc, BOOL aligned);
 
 #endif /* __XF_GRAPHICS_H */

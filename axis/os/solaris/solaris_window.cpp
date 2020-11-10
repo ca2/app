@@ -518,7 +518,7 @@ bool oswindow_data::show_window(i32 nCmdShow)
 
 
 
-LONG oswindow_data::get_window_long(i32 nIndex)
+::i32 oswindow_data::get_window_long(i32 nIndex)
 {
 
    return m_plongmap->operator[](nIndex);
@@ -527,8 +527,8 @@ LONG oswindow_data::get_window_long(i32 nIndex)
       i32 format = 0;
       unsigned long itemcount = 0;
       unsigned long remaining = 0;
-      LONG * pl = nullptr;
-      LONG l;
+      ::i32 * pl = nullptr;
+      ::i32 l;
 
       if(XGetWindowProperty(display(), window(), m_pdata->m_osdisplay.get_window_long_atom(nIndex), 0, 1, False, m_pdata->m_osdisplay.atom_long_type(), &type, &format, &itemcount, &remaining, (unsigned char **) &pl) == Success)
       {
@@ -562,13 +562,13 @@ LONG oswindow_data::get_window_long(i32 nIndex)
 }
 
 
-LONG oswindow_data::set_window_long(i32 nIndex, LONG l)
+::i32 oswindow_data::set_window_long(i32 nIndex, ::i32 l)
 {
 
-   LONG lOld = m_plongmap->operator[](nIndex);
+   ::i32 lOld = m_plongmap->operator[](nIndex);
 
    m_plongmap->operator[](nIndex) = l;
-   /*   LONG lOld = get_window_long(nIndex);
+   /*   ::i32 lOld = get_window_long(nIndex);
 
       XChangeProperty(display(), window(), m_osdisplay.get_window_long_atom(nIndex), m_osdisplay.atom_long_type(), 32, PropModeReplace, (unsigned char *) &l, 1);*/
 
@@ -577,7 +577,7 @@ LONG oswindow_data::set_window_long(i32 nIndex, LONG l)
 }
 
 
-bool oswindow_data::_001ClientToScreen(POINT * pp)
+bool oswindow_data::_001ClientToScreen(POINT32 * pp)
 {
 
    return true;
@@ -585,7 +585,7 @@ bool oswindow_data::_001ClientToScreen(POINT * pp)
 }
 
 
-bool oswindow_data::_001ScreenToClient(POINT * pp)
+bool oswindow_data::_001ScreenToClient(POINT32 * pp)
 {
 
    return true;
@@ -700,7 +700,7 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 #define SIZEY  50
 
 
-void message_box_paint(::draw2d::graphics_pointer & pgraphics, string_array & stra, bool_array  & baTab, int_array  & ya,SIZE * psize)
+void message_box_paint(::draw2d::graphics_pointer & pgraphics, string_array & stra, bool_array  & baTab, int_array  & ya,SIZE32 * psize)
 {
 
    pgraphics->FillSolidRect(0, 0, psizecx, psize->cy, RGB(84, 90, 80));
@@ -794,7 +794,7 @@ public:
          if(bEmpty)
             str = "L";
 
-         SIZE sizeItem = g->GetTextExtent(str);
+         SIZE32 sizeItem = g->GetTextExtent(str);
 
          int x = bTab ? 25 : 0;
 
@@ -878,7 +878,7 @@ i32 message_box_show_xlib(base_application * papp, const char * lpText, const ch
 
 
 
-i32 WINAPI MessageBoxA_x11(oswindow hWnd, const char * lpText, const char * lpCaption, UINT uType)
+i32 WINAPI MessageBoxA_x11(oswindow hWnd, const char * lpText, const char * lpCaption, ::u32 uType)
 {
 
    base_application * papp = nullptr;
@@ -914,7 +914,7 @@ static void initialize_x11_message_box()
 
 
 
-i32 WINAPI MessageBoxA(oswindow hWnd, const char * lpText, const char * lpCaption, UINT uType)
+i32 WINAPI MessageBoxA(oswindow hWnd, const char * lpText, const char * lpCaption, ::u32 uType)
 {
 
    message_box_show_xlib(get_context_application(), lpText, lpCaption);

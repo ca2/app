@@ -7,10 +7,10 @@
 CLASS_DECL_AXIS int g_iMouse = -1;
 
 
-CLASS_DECL_AXIS int_bool GetCursorPos(LPPOINT lppoint);
+CLASS_DECL_AXIS int_bool GetCursorPos(POINT32 * lppoint);
 
 
-CLASS_DECL_AXIS int_bool ui_get_cursor_pos(POINT * ppt)
+CLASS_DECL_AXIS int_bool ui_get_cursor_pos(POINT32 * ppt)
 {
 
    if (ppt == nullptr)
@@ -52,7 +52,7 @@ int g_iMouseX = 0;
 int g_iMouseY = 0;
 
 
-CLASS_DECL_AXIS int_bool GetCursorPos(LPPOINT lppoint)
+CLASS_DECL_AXIS int_bool GetCursorPos(POINT32 * lppoint)
 {
 
    lppoint->x = g_iMouseX;
@@ -78,9 +78,9 @@ CLASS_DECL_AXIS int_bool GetCursorPos(LPPOINT lppoint)
 
             Windows::UI::Input::PointerPoint ^ pointerPoint = ::Windows::UI::Input::PointerPoint::GetCurrentPoint(g_iMouse);
 
-            g_iMouseX = (LONG)pointerPoint->RawPosition.X;
+            g_iMouseX = (::i32)pointerPoint->RawPosition.X;
 
-            g_iMouseY = (LONG)pointerPoint->RawPosition.Y;
+            g_iMouseY = (::i32)pointerPoint->RawPosition.Y;
 
          }
 
@@ -525,7 +525,7 @@ uptr virtualkey_to_code(::Windows::System::VirtualKey e)
 }
 
 
-//UINT system_main(::aura::system * psystem)
+//::u32 system_main(::aura::system * psystem)
 //{
 //
 //   try
@@ -579,7 +579,7 @@ namespace user
 {
 
 
-   CLASS_DECL_AXIS COLORREF get_system_app_background_color()
+   CLASS_DECL_AXIS color32_t get_system_app_background_color()
    {
 
       auto color = System.get_context_session()->m_frameworkview->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);

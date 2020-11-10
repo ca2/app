@@ -270,7 +270,7 @@ namespace user
 
 
 
-   void interaction_child::CalcWindowRect(RECT * pClientRect, UINT nAdjustType)
+   void interaction_child::CalcWindowRect(RECT32 * pClientRect, ::u32 nAdjustType)
 
    {
       UNREFERENCED_PARAMETER(pClientRect);
@@ -362,7 +362,7 @@ namespace user
    void interaction_child::message_handler(::message::base * pbase)
    {
 
-      UINT message;
+      ::u32 message;
 
       message = pbase->m_id.umessage();
 
@@ -636,7 +636,7 @@ namespace user
    }
 
 
-   bool interaction_child::RedrawWindow(const ::rect & rectUpdate, ::draw2d::region * prgnUpdate, UINT flags)
+   bool interaction_child::RedrawWindow(const ::rect & rectUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
    {
 
       ::user::interaction * pinteraction = get_wnd();

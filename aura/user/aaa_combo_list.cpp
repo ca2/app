@@ -151,9 +151,9 @@ namespace user
 
          rectItem.bottom = rectItem.top + _001GetItemHeight();
 
-         COLORREF crBk;
+         color32_t crBk;
 
-         COLORREF cr;
+         color32_t cr;
 
          string strDebug;
 
@@ -231,9 +231,9 @@ namespace user
 
       }
 
-      //COLORREF crBorder = _001GetColor(::user::color_border);
+      //color32_t crBorder = _001GetColor(::user::color_border);
 
-      COLORREF crBorder = ARGB(255, 0, 0, 0);
+      color32_t crBorder = ARGB(255, 0, 0, 0);
 
       ::draw2d::pen_pointer pen(e_create);
 
@@ -366,7 +366,7 @@ namespace user
 
       }
 
-      psize->cy = (LONG)(_001GetItemHeight() * (m_pcombo->_001GetListCount() + iAddUp));
+      psize->cy = (::i32)(_001GetItemHeight() * (m_pcombo->_001GetListCount() + iAddUp));
 
       psize->cx += m_iBorder * 2;
 
@@ -399,7 +399,7 @@ namespace user
          && iItem >= 0 && iItem < m_pcombo->_001GetListCount())
       {
 
-         m_pointScroll.y = (LONG) (iItem * _001GetItemHeight());
+         m_pointScroll.y = (::i32) (iItem * _001GetItemHeight());
 
       }
       else

@@ -581,7 +581,7 @@ bool oswindow_data::is_null() const
 #include <CoreFoundation/CoreFoundation.h>
 
 
-int_bool set_need_redraw(oswindow hWnd, LPCRECT pcrect, HRGN hrgnUpdate, UINT flags)
+int_bool set_need_redraw(oswindow hWnd, LPCRECT32 pcrect, HRGN hrgnUpdate, ::u32 flags)
 {
 
    return true;
@@ -1317,7 +1317,7 @@ int_bool is_window_occluded(oswindow oswindow)
 
 void cg_get_window_rect_list(rect_array & recta, array < CGWindowID > & windowida);
 
-int_bool point_is_window_origin(POINT pointHitTest, oswindow oswindowExclude, int iMargin)
+int_bool point_is_window_origin(POINT32 pointHitTest, oswindow oswindowExclude, int iMargin)
 {
    
    CGWindowID windowidExclude = get_os_window_window_number(oswindowExclude);

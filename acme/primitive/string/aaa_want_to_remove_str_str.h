@@ -263,7 +263,7 @@ namespace str
    inline string  from_int(const T & t);
 
    template < typename T >
-   inline string  from_uint(const T & t);
+   inline string  from_u(const T & t);
 
    inline CLASS_DECL_ACME string from_strdup(const char * psz);
 
@@ -440,7 +440,7 @@ namespace str
 
 //#ifdef WINDOWS
 //
-//   inline void format(string_format * pformat,const DWORD & dw) { return format(pformat,(const u32 &)dw);  }
+//   inline void format(string_format * pformat,const ::u32 & dw) { return format(pformat,(const u32 &)dw);  }
 //
 //#endif
 

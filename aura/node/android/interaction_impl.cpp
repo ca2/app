@@ -123,7 +123,7 @@ namespace android
    // Change a interaction_impl's style
 
    __STATIC bool CLASS_DECL_AURA __modify_style(oswindow oswindow,i32 nStyleOffset,
-         u32 dwRemove,u32 dwAdd,UINT nFlags)
+         u32 dwRemove,u32 dwAdd,::u32 nFlags)
    {
       ASSERT(oswindow != nullptr);
       u32 dwStyle = ::GetWindowLong(oswindow,nStyleOffset);
@@ -140,7 +140,7 @@ namespace android
    }
 
 
-   bool interaction_impl::ModifyStyle(oswindow oswindow,u32 dwRemove,u32 dwAdd,UINT nFlags)
+   bool interaction_impl::ModifyStyle(oswindow oswindow,u32 dwRemove,u32 dwAdd,::u32 nFlags)
    {
 
       return __modify_style(oswindow,GWL_STYLE,dwRemove,dwAdd,nFlags);
@@ -148,7 +148,7 @@ namespace android
    }
 
 
-   bool interaction_impl::ModifyStyleEx(oswindow oswindow,u32 dwRemove,u32 dwAdd,UINT nFlags)
+   bool interaction_impl::ModifyStyleEx(oswindow oswindow,u32 dwRemove,u32 dwAdd,::u32 nFlags)
    {
 
       return __modify_style(oswindow,GWL_EXSTYLE,dwRemove,dwAdd,nFlags);
@@ -715,7 +715,7 @@ namespace android
    }
 
 
-   LRESULT interaction_impl::DefWindowProc(UINT nMsg,WPARAM wParam,lparam lParam)
+   LRESULT interaction_impl::DefWindowProc(::u32 nMsg,WPARAM wParam,lparam lParam)
    {
 
       return 0;
@@ -814,7 +814,7 @@ namespace android
    //   Default();
    //}
 
-   bool interaction_impl::_EnableToolTips(bool bEnable,UINT nFlag)
+   bool interaction_impl::_EnableToolTips(bool bEnable,::u32 nFlag)
    {
       UNREFERENCED_PARAMETER(bEnable);
       UNREFERENCED_PARAMETER(nFlag);
@@ -822,7 +822,7 @@ namespace android
    }
 
 
-   //bool interaction_impl::GetScrollBarInfo(LONG idObject,PSCROLLBARINFO psbi) const
+   //bool interaction_impl::GetScrollBarInfo(::i32 idObject,PSCROLLBARINFO psbi) const
    //{
    //   ASSERT(::is_window(((interaction_impl *) this)->get_handle()));
    //   ASSERT(psbi != nullptr);
@@ -842,7 +842,7 @@ namespace android
    //   return ::AnimateWindow(get_handle(),tick,dwFlags) != FALSE;
    //}
 
-   //bool interaction_impl::FlashWindowEx(u32 dwFlags,UINT  uCount,tick tickTimeout)
+   //bool interaction_impl::FlashWindowEx(u32 dwFlags,::u32  uCount,tick tickTimeout)
    //{
    //   ASSERT(::is_window(get_handle()));
    //   FLASHWINFO fwi;
@@ -857,14 +857,14 @@ namespace android
 
 
 
-   //bool interaction_impl::SetLayeredWindowAttributes(COLORREF crKey,BYTE bAlpha,u32 dwFlags)
+   //bool interaction_impl::SetLayeredWindowAttributes(color32_t crKey,byte bAlpha,u32 dwFlags)
    //{
    //   ASSERT(::is_window(get_handle()));
    //   return ::SetLayeredWindowAttributes(get_handle(),crKey,bAlpha,dwFlags) != FALSE;
    //}
 
-   //bool interaction_impl::UpdateLayeredWindow(::draw2d::graphics * pDCDst,POINT *pptDst,SIZE *psize,
-   //   ::draw2d::graphics * pDCSrc,POINT *pptSrc,COLORREF crKey,BLENDFUNCTION *pblend,u32 dwFlags)
+   //bool interaction_impl::UpdateLayeredWindow(::draw2d::graphics * pDCDst,POINT32 *pptDst,SIZE32 *psize,
+   //   ::draw2d::graphics * pDCSrc,POINT32 *pptSrc,color32_t crKey,BLENDFUNCTION *pblend,u32 dwFlags)
    //{
    //   ASSERT(::is_window(get_handle()));
    //   ::exception::throw_not_implemented();
@@ -874,13 +874,13 @@ namespace android
    //}
 
 
-   //bool interaction_impl::GetLayeredWindowAttributes(COLORREF *pcrKey,BYTE *pbAlpha,u32 *pdwFlags) const
+   //bool interaction_impl::GetLayeredWindowAttributes(color32_t *pcrKey,byte *pbAlpha,u32 *pdwFlags) const
    //{
    //   ASSERT(::is_window(((interaction_impl *) this)->get_handle()));
    //   return ::GetLayeredWindowAttributes(((interaction_impl *) this)->get_handle(),pcrKey,pbAlpha,(LPDWORD)pdwFlags) != FALSE;
    //}
 
-   //bool interaction_impl::PrintWindow(::draw2d::graphics_pointer & pgraphics,UINT nFlags) const
+   //bool interaction_impl::PrintWindow(::draw2d::graphics_pointer & pgraphics,::u32 nFlags) const
    //{
    //   ASSERT(::is_window(((interaction_impl *) this)->get_handle()));
    //   ::exception::throw_not_implemented();
@@ -901,7 +901,7 @@ namespace android
    /////////////////////////////////////////////////////////////////////////////
    // interaction_impl extensions for help support
 
-   void interaction_impl::WinHelp(uptr dwData,UINT nCmd)
+   void interaction_impl::WinHelp(uptr dwData,::u32 nCmd)
    {
       UNREFERENCED_PARAMETER(dwData);
       UNREFERENCED_PARAMETER(nCmd);
@@ -929,7 +929,7 @@ namespace android
       }*/
    }
 
-   //void interaction_impl::HtmlHelp(uptr dwData, UINT nCmd)
+   //void interaction_impl::HtmlHelp(uptr dwData, ::u32 nCmd)
    //{
    // ::exception::throw_not_implemented();
    /*
@@ -993,7 +993,7 @@ namespace android
    }
 
 
-   void interaction_impl::WinHelpInternal(uptr dwData,UINT nCmd)
+   void interaction_impl::WinHelpInternal(uptr dwData,::u32 nCmd)
    {
       UNREFERENCED_PARAMETER(dwData);
       UNREFERENCED_PARAMETER(nCmd);
@@ -1199,15 +1199,15 @@ namespace android
             ::rect rcMonitor;
             System.get_monitor_rect(0,&rcMonitor);
             if(rectWindow.left >= rcMonitor.left)
-            pmouse->m_point.x += (LONG)rectWindow.left;
+            pmouse->m_point.x += (::i32)rectWindow.left;
             if(rectWindow.top >= rcMonitor.top)
-            pmouse->m_point.y += (LONG)rectWindow.top;
+            pmouse->m_point.y += (::i32)rectWindow.top;
             }
             else*/
             //if(rectWindow.left >= 0)
-            pmouse->m_point.x += (LONG)rectWindow.left;
+            pmouse->m_point.x += (::i32)rectWindow.left;
             //if(rectWindow.top >= 0)
-            pmouse->m_point.y += (LONG)rectWindow.top;
+            pmouse->m_point.y += (::i32)rectWindow.top;
          }
 
          if(pmessage->m_id == e_message_mouse_move)
@@ -1397,7 +1397,7 @@ namespace android
    //   return ::android::interaction_impl::from_handle(oswindow);
    //}
 
-   //i32 interaction_impl::message_box(const char * lpszText,const char * lpszCaption,UINT nType)
+   //i32 interaction_impl::message_box(const char * lpszText,const char * lpszCaption,::u32 nType)
    //{
    //   if(lpszCaption == nullptr)
    //      lpszCaption = Application.m_strAppName;
@@ -1448,7 +1448,7 @@ namespace android
    //   return true;
    //}
 
-   //bool interaction_impl::GetScrollInfo(i32 nBar,LPSCROLLINFO lpScrollInfo,UINT nMask)
+   //bool interaction_impl::GetScrollInfo(i32 nBar,LPSCROLLINFO lpScrollInfo,::u32 nMask)
    //{
    //   UNREFERENCED_PARAMETER(nMask);
    //   ASSERT(lpScrollInfo != nullptr);
@@ -1471,7 +1471,7 @@ namespace android
    }
 
    void interaction_impl::ScrollWindow(i32 xAmount,i32 yAmount,
-                                       LPCRECT lpRect,LPCRECT lpClipRect)
+                                       LPCRECT32 lpRect,LPCRECT32 lpClipRect)
    {
       //ASSERT(::is_window(get_handle()));
 
@@ -1505,9 +1505,9 @@ namespace android
 
 
 
-   void interaction_impl::CalcWindowRect(LPRECT lpClientRect, UINT nAdjustType)
+   void interaction_impl::CalcWindowRect(LPRECT32 lpClientRect, ::u32 nAdjustType)
    {
-      /*DWORD dwExStyle = GetExStyle();
+      /*::u32 dwExStyle = GetExStyle();
       if (nAdjustType == 0)
       dwExStyle &= ~WS_EX_CLIENTEDGE;
       ::AdjustWindowRectEx(lpClientRect, GetStyle(), FALSE, dwExStyle);*/
@@ -1516,7 +1516,7 @@ namespace android
 /////////////////////////////////////////////////////////////////////////////
 // Special keyboard/system command processing
 
-   //bool interaction_impl::HandleFloatingSysCommand(UINT nID, LPARAM lparam)
+   //bool interaction_impl::HandleFloatingSysCommand(::u32 nID, LPARAM lparam)
    //{
 
    //   return false;
@@ -1619,13 +1619,13 @@ namespace android
 //   return LNX_WINDOW(pWnd)->SendChildNotifyLastMsg(pResult);
 //}
 
-//bool interaction_impl::OnChildNotify(UINT uMsg, WPARAM wparam, LPARAM lparam, LRESULT* pResult)
+//bool interaction_impl::OnChildNotify(::u32 uMsg, WPARAM wparam, LPARAM lparam, LRESULT* pResult)
 //{
 //
 //   return ReflectChildNotify(uMsg, wparam, lparam, pResult);
 //}
 //
-//bool interaction_impl::ReflectChildNotify(UINT uMsg, WPARAM wparam, LPARAM lparam, LRESULT* pResult)
+//bool interaction_impl::ReflectChildNotify(::u32 uMsg, WPARAM wparam, LPARAM lparam, LRESULT* pResult)
 //{
 //   UNREFERENCED_PARAMETER(wparam);
 //   // Note: reflected messages are send directly to interaction_impl::OnWndMsg
@@ -1738,7 +1738,7 @@ namespace android
    bool gen_GotScrollLines;
 
 
-   void interaction_impl::OnSettingChange(UINT uFlags, const char * lpszSection)
+   void interaction_impl::OnSettingChange(::u32 uFlags, const char * lpszSection)
    {
 
       gen_GotScrollLines = FALSE;
@@ -1826,7 +1826,7 @@ namespace android
          //m_pthreadDraw = ::fork(get_context_application(), [&]()
          //{
 
-         //   DWORD tickStart;
+         //   ::u32 tickStart;
 
          //   while (::thread_get_run())
          //   {
@@ -1906,7 +1906,7 @@ namespace android
    //   oswindow m_hwnd;
    //   HDC m_hdc;
 
-   //   print_window(oswindow hwnd, HDC hdc, DWORD tickTimeout)
+   //   print_window(oswindow hwnd, HDC hdc, ::u32 tickTimeout)
    //   {
 
    //      m_event.ResetEvent();
@@ -1991,7 +1991,7 @@ namespace android
       //      ::rect rectx;
       //      ::draw2d::bitmap * pbitmap = &pgraphics->GetCurrentBitmap();
       //      ::GetCurrentObject((HDC) pbase->m_wparam, OBJ_BITMAP);
-      //      //      DWORD dw = ::get_last_error();
+      //      //      ::u32 dw = ::get_last_error();
       //      ::size size = pbitmap->get_size();
       //      rectx.left = 0;
       //      rectx.top = 0;
@@ -2051,7 +2051,7 @@ namespace android
    }
 
 
-   //void interaction_impl::OnEnterIdle(UINT /*nWhy*/ , ::user::interaction  /*pWho*/)
+   //void interaction_impl::OnEnterIdle(::u32 /*nWhy*/ , ::user::interaction  /*pWho*/)
    //{
    //   // In some OLE inplace active scenarios, OLE will post a
    //   // message instead of sending it.  This causes so many WM_ENTERIDLE
@@ -2070,7 +2070,7 @@ namespace android
    //   Default();
    //}
 
-   HBRUSH interaction_impl::OnCtlColor(::draw2d::graphics *, ::user::interaction * pWnd, UINT)
+   HBRUSH interaction_impl::OnCtlColor(::draw2d::graphics *, ::user::interaction * pWnd, ::u32)
    {
       ASSERT(pWnd != nullptr && pWnd->get_handle() != nullptr);
       LRESULT lResult;
@@ -2084,8 +2084,8 @@ namespace android
 ////  return value of FALSE means caller must call DefWindowProc's default
 ////  TRUE means that 'hbrGray' will be used and the appropriate text
 ////    ('clrText') and background colors are set.
-//   bool PASCAL interaction_impl::GrayCtlColor(HDC hDC, oswindow hWnd, UINT nCtlColor,
-//         HBRUSH hbrGray, COLORREF clrText)
+//   bool PASCAL interaction_impl::GrayCtlColor(HDC hDC, oswindow hWnd, ::u32 nCtlColor,
+//         HBRUSH hbrGray, color32_t clrText)
 //   {
 //      __throw(not_implemented());
 //      //      if (hDC == nullptr)
@@ -2106,7 +2106,7 @@ namespace android
 //      //      {
 //      //         // only handle requests to draw the space between edit and drop button
 //      //         //  in a drop-down combo (not a drop-down list)
-//      //         if (!__is_combo_box_control(hWnd, (UINT)CBS_DROPDOWN))
+//      //         if (!__is_combo_box_control(hWnd, (::u32)CBS_DROPDOWN))
 //      //            return FALSE;
 //      //      }
 //      //
@@ -2114,7 +2114,7 @@ namespace android
 //      //      LOGBRUSH logbrush;
 //      //      VERIFY(::GetObject(hbrGray, sizeof(LOGBRUSH), (LPVOID)&logbrush));
 //      //      ::SetBkColor(hDC, logbrush.lbColor);
-//      //      if (clrText == (COLORREF)-1)
+//      //      if (clrText == (color32_t)-1)
 //      //         clrText = ::GetSysColor(COLOR_WINDOWTEXT);  // normal text
 //      //      ::SetTextColor(hDC, clrText);
 //      //      return TRUE;
@@ -2127,7 +2127,7 @@ namespace android
       //      ASSERT(::is_window((oswindow) get_handle()));
       //
       //      // determine owner interaction_impl to center against
-      //      DWORD dwStyle = GetStyle();
+      //      ::u32 dwStyle = GetStyle();
       //      __pointer(::user::interaction) hWndCenter = pAlternateOwner;
       //      if (pAlternateOwner == nullptr)
       //      {
@@ -2156,7 +2156,7 @@ namespace android
       //         // don't center against invisible or minimized windows
       //         if (hWndCenter != nullptr)
       //         {
-      //            DWORD dwAlternateStyle = hWndCenter->GetWindowLong(GWL_STYLE);
+      //            ::u32 dwAlternateStyle = hWndCenter->GetWindowLong(GWL_STYLE);
       //            if (!(dwAlternateStyle & WS_VISIBLE) || (dwAlternateStyle & WS_MINIMIZE))
       //               hWndCenter = nullptr;
       //         }
@@ -2191,7 +2191,7 @@ namespace android
       //         hWndParent->get_client_rect(&rcarea);
       //         ASSERT(hWndCenter->is_window());
       //         hWndCenter->get_client_rect(&rcCenter);
-      //         ::MapWindowPoints(hWndCenter->get_handle(), hWndParent->get_handle(), (POINT*)&rcCenter, 2);
+      //         ::MapWindowPoints(hWndCenter->get_handle(), hWndParent->get_handle(), (POINT32*)&rcCenter, 2);
       //      }
       //
       //      // find dialog's upper left based on rcCenter
@@ -2362,7 +2362,7 @@ namespace android
 
 //#define SWP_IGNOREPALACEGUARD 0x80000000
 //
-//   bool interaction_impl::set_window_pos(iptr z, i32 x, i32 y, i32 cx, i32 cy, UINT nFlags)
+//   bool interaction_impl::set_window_pos(iptr z, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags)
 //   {
 //
 //      return ::user::interaction_impl::set_window_pos(z, x, y, cx, cy, nFlags);
@@ -2473,7 +2473,7 @@ namespace android
    //}
 
 
-   //bool interaction_impl::_001ClientToScreen(LPRECT lprect)
+   //bool interaction_impl::_001ClientToScreen(LPRECT32 lprect)
    //{
 
    //   ::rect64 rectWindow;
@@ -2485,17 +2485,17 @@ namespace android
 
    //   }
 
-   //   lprect->left += (LONG)rectWindow.left;
-   //   lprect->right += (LONG)rectWindow.left;
-   //   lprect->top += (LONG)rectWindow.top;
-   //   lprect->bottom += (LONG)rectWindow.top;
+   //   lprect->left += (::i32)rectWindow.left;
+   //   lprect->right += (::i32)rectWindow.left;
+   //   lprect->top += (::i32)rectWindow.top;
+   //   lprect->bottom += (::i32)rectWindow.top;
 
    //   return true;
 
    //}
 
 
-   //bool interaction_impl::_001ClientToScreen(LPPOINT lppoint)
+   //bool interaction_impl::_001ClientToScreen(POINT32 * lppoint)
    //{
 
    //   ::rect64 rectWindow;
@@ -2507,8 +2507,8 @@ namespace android
 
    //   }
 
-   //   lppoint->x += (LONG)rectWindow.left;
-   //   lppoint->y += (LONG)rectWindow.top;
+   //   lppoint->x += (::i32)rectWindow.left;
+   //   lppoint->y += (::i32)rectWindow.top;
 
    //   return true;
 
@@ -2557,7 +2557,7 @@ namespace android
    //}
 
 
-   //bool interaction_impl::_001ScreenToClient(LPRECT lprect)
+   //bool interaction_impl::_001ScreenToClient(LPRECT32 lprect)
    //{
 
    //   ::rect64 rectWindow;
@@ -2569,17 +2569,17 @@ namespace android
 
    //   }
 
-   //   lprect->left -= (LONG)rectWindow.left;
-   //   lprect->right -= (LONG)rectWindow.left;
-   //   lprect->top -= (LONG)rectWindow.top;
-   //   lprect->bottom -= (LONG)rectWindow.top;
+   //   lprect->left -= (::i32)rectWindow.left;
+   //   lprect->right -= (::i32)rectWindow.left;
+   //   lprect->top -= (::i32)rectWindow.top;
+   //   lprect->bottom -= (::i32)rectWindow.top;
 
    //   return true;
 
    //}
 
 
-   //bool interaction_impl::_001ScreenToClient(LPPOINT lppoint)
+   //bool interaction_impl::_001ScreenToClient(POINT32 * lppoint)
    //{
 
    //   ::rect64 rectWindow;
@@ -2591,8 +2591,8 @@ namespace android
 
    //   }
 
-   //   lppoint->x -= (LONG)rectWindow.left;
-   //   lppoint->y -= (LONG)rectWindow.top;
+   //   lppoint->x -= (::i32)rectWindow.left;
+   //   lppoint->y -= (::i32)rectWindow.top;
 
    //   return true;
 
@@ -2776,7 +2776,7 @@ namespace android
    //}
 
    
-   LONG interaction_impl::GetWindowLong(i32 nIndex)
+   ::i32 interaction_impl::GetWindowLong(i32 nIndex)
    {
 
       return ::GetWindowLong((oswindow)get_handle(), nIndex);
@@ -2784,7 +2784,7 @@ namespace android
    }
 
 
-   LONG interaction_impl::SetWindowLong(i32 nIndex, LONG lValue)
+   ::i32 interaction_impl::SetWindowLong(i32 nIndex, ::i32 lValue)
    {
       return ::SetWindowLong((oswindow)get_handle(), nIndex, lValue);
    }
@@ -2805,20 +2805,20 @@ namespace android
       return const_cast < ::user::interaction_impl * >  (&wnd)->get_handle() != ((interaction_impl *)this)->get_handle();
    }
 
-//DWORD interaction_impl::GetStyle() const
+//::u32 interaction_impl::GetStyle() const
 //{
 //   ASSERT(::is_window((oswindow)get_handle()));
-//   return (DWORD)::GetWindowLong((oswindow)get_handle(), GWL_STYLE);
+//   return (::u32)::GetWindowLong((oswindow)get_handle(), GWL_STYLE);
 //}
 //
-//DWORD interaction_impl::GetExStyle() const
+//::u32 interaction_impl::GetExStyle() const
 //{
 //   ASSERT(::is_window((oswindow)get_handle()));
-//   return (DWORD)::GetWindowLong((oswindow)get_handle(), GWL_EXSTYLE);
+//   return (::u32)::GetWindowLong((oswindow)get_handle(), GWL_EXSTYLE);
 //}
 
 
-   bool interaction_impl::ModifyStyle(DWORD dwRemove, DWORD dwAdd, UINT nFlags)
+   bool interaction_impl::ModifyStyle(::u32 dwRemove, ::u32 dwAdd, ::u32 nFlags)
    {
    
       ASSERT(::is_window((oswindow)get_handle()));
@@ -2828,7 +2828,7 @@ namespace android
    }
 
 
-   bool interaction_impl::ModifyStyleEx(DWORD dwRemove, DWORD dwAdd, UINT nFlags)
+   bool interaction_impl::ModifyStyleEx(::u32 dwRemove, ::u32 dwAdd, ::u32 nFlags)
    {
 
       ASSERT(::is_window((oswindow)get_handle()));
@@ -2868,7 +2868,7 @@ namespace android
    }
 
 
-   //bool interaction_impl::DragDetect(POINT pt) const
+   //bool interaction_impl::DragDetect(POINT32 pt) const
    //{
 
    //   __throw(not_implemented());
@@ -2987,7 +2987,7 @@ namespace android
 
    //}
 
-   //void interaction_impl::MoveWindow(LPCRECT lpRect, bool bRepaint)
+   //void interaction_impl::MoveWindow(LPCRECT32 lpRect, bool bRepaint)
    //{
 
    //   MoveWindow(lpRect->left, lpRect->top, lpRect->right - lpRect->left, lpRect->bottom - lpRect->top, bRepaint);
@@ -2995,7 +2995,7 @@ namespace android
    //}
 
 
-   //UINT interaction_impl::ArrangeIconicWindows()
+   //::u32 interaction_impl::ArrangeIconicWindows()
    //{
 
    //   __throw(not_implemented());
@@ -3042,7 +3042,7 @@ namespace android
    //}
 
 
-   //void interaction_impl::MapWindowPoints(::user::interaction * pwndTo, LPPOINT lpPoint, UINT nCount)
+   //void interaction_impl::MapWindowPoints(::user::interaction * pwndTo, POINT32 * lpPoint, ::u32 nCount)
    //{
 
    //   __throw(not_implemented());
@@ -3053,13 +3053,13 @@ namespace android
    //}
 
 
-   //void interaction_impl::MapWindowPoints(::user::interaction * pwndTo, LPRECT lpRect)
+   //void interaction_impl::MapWindowPoints(::user::interaction * pwndTo, LPRECT32 lpRect)
    //{
 
    //   __throw(not_implemented());
 
    //   //      ASSERT(::is_window((oswindow) get_handle()));
-   //   //      ::MapWindowPoints(get_handle(), (oswindow) pwndTo->get_handle(), (LPPOINT)lpRect, 2);
+   //   //      ::MapWindowPoints(get_handle(), (oswindow) pwndTo->get_handle(), (POINT32 *)lpRect, 2);
 
    //}
 
@@ -3155,7 +3155,7 @@ namespace android
    //   //::SendMessage(get_handle(), WM_SETREDRAW, bRedraw, 0);
    //}
 
-   //bool interaction_impl::GetUpdateRect(LPRECT lpRect, bool bErase)
+   //bool interaction_impl::GetUpdateRect(LPRECT32 lpRect, bool bErase)
    //{
    //   __throw(not_implemented());
    //   //ASSERT(::is_window((oswindow) get_handle()));
@@ -3176,7 +3176,7 @@ namespace android
    //   //::InvalidateRect(get_handle(), nullptr, bErase);
    //}
 
-   //void interaction_impl::InvalidateRect(LPCRECT lpRect, bool bErase)
+   //void interaction_impl::InvalidateRect(LPCRECT32 lpRect, bool bErase)
    //{
    //   __throw(not_implemented());
    //   //ASSERT(::is_window((oswindow) get_handle()));
@@ -3190,7 +3190,7 @@ namespace android
    //   //::InvalidateRgn(get_handle(), (HRGN)pRgn->get_handle(), bErase);
    //}
 
-   //void interaction_impl::ValidateRect(LPCRECT lpRect)
+   //void interaction_impl::ValidateRect(LPCRECT32 lpRect)
    //{
    //   __throw(not_implemented());
    //   //ASSERT(::is_window((oswindow) get_handle()));
@@ -3285,7 +3285,7 @@ namespace android
    //   }
    //}
 
-   //::draw2d::graphics * interaction_impl::GetDCEx(::draw2d::region * prgnClip, DWORD flags)
+   //::draw2d::graphics * interaction_impl::GetDCEx(::draw2d::region * prgnClip, ::u32 flags)
    //{
 
    //   __throw(not_implemented());
@@ -3315,7 +3315,7 @@ namespace android
    }
 
 
-   //bool interaction_impl::RedrawWindow(const ::rect & rectUpdate, ::draw2d::region * prgnUpdate, UINT flags)
+   //bool interaction_impl::RedrawWindow(const ::rect & rectUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
    //{
 
    //   if (!is_window_visible())
@@ -3343,7 +3343,7 @@ namespace android
    //}
 
    /*
-   bool interaction_impl::EnableScrollBar(i32 nSBFlags, UINT nArrowFlags)
+   bool interaction_impl::EnableScrollBar(i32 nSBFlags, ::u32 nArrowFlags)
    {
 
    ASSERT(::is_window((oswindow) get_handle()));
@@ -3353,7 +3353,7 @@ namespace android
    }
    */
 
-   //bool interaction_impl::DrawAnimatedRects(i32 idAni, CONST RECT *lprcFrom, CONST RECT *lprcTo)
+   //bool interaction_impl::DrawAnimatedRects(i32 idAni, CONST RECT32 *lprcFrom, CONST RECT32 *lprcTo)
    //{
 
    //   __throw(not_implemented());
@@ -3362,7 +3362,7 @@ namespace android
 
    //}
 
-   //bool interaction_impl::DrawCaption(::draw2d::graphics_pointer & pgraphics, LPCRECT lprc, UINT uFlags)
+   //bool interaction_impl::DrawCaption(::draw2d::graphics_pointer & pgraphics, LPCRECT32 lprc, ::u32 uFlags)
    //{
 
    //   __throw(not_implemented());
@@ -3371,7 +3371,7 @@ namespace android
 
    //}
 
-   //bool interaction_impl::SetTimer(uptr uEvent, UINT nElapse, PFN_TIMER pfnTimer)
+   //bool interaction_impl::SetTimer(uptr uEvent, ::u32 nElapse, PFN_TIMER pfnTimer)
    //{
 
    //   return ::user::interaction_impl::SetTimer(uEvent, nElapse, pfnTimer);
@@ -3520,7 +3520,7 @@ namespace android
    }
 
 
-   void interaction_impl::CheckDlgButton(i32 nIDButton, UINT nCheck)
+   void interaction_impl::CheckDlgButton(i32 nIDButton, ::u32 nCheck)
    {
 
       __throw(not_implemented());
@@ -3538,7 +3538,7 @@ namespace android
 
    }
 
-   i32 interaction_impl::DlgDirList(LPTSTR lpPathSpec, i32 nIDListBox, i32 nIDStaticPath, UINT nFileType)
+   i32 interaction_impl::DlgDirList(LPTSTR lpPathSpec, i32 nIDListBox, i32 nIDStaticPath, ::u32 nFileType)
    {
 
       __throw(not_implemented());
@@ -3547,7 +3547,7 @@ namespace android
 
    }
 
-   i32 interaction_impl::DlgDirListComboBox(LPTSTR lpPathSpec, i32 nIDComboBox, i32 nIDStaticPath, UINT nFileType)
+   i32 interaction_impl::DlgDirListComboBox(LPTSTR lpPathSpec, i32 nIDComboBox, i32 nIDStaticPath, ::u32 nFileType)
    {
 
       __throw(not_implemented());
@@ -3586,7 +3586,7 @@ namespace android
    */
 
    /*
-   UINT interaction_impl::GetDlgItemInt(i32 nID, int_bool * lpTrans, bool bSigned) const
+   ::u32 interaction_impl::GetDlgItemInt(i32 nID, int_bool * lpTrans, bool bSigned) const
    {
 
    ASSERT(::is_window((oswindow) get_handle()));
@@ -3620,7 +3620,7 @@ namespace android
 
    //}
 
-   UINT interaction_impl::IsDlgButtonChecked(i32 nIDButton) const
+   ::u32 interaction_impl::IsDlgButtonChecked(i32 nIDButton) const
    {
 
       __throw(not_implemented());
@@ -3638,7 +3638,7 @@ namespace android
 
    }
 
-   void interaction_impl::SetDlgItemInt(i32 nID, UINT nValue, bool bSigned)
+   void interaction_impl::SetDlgItemInt(i32 nID, ::u32 nValue, bool bSigned)
    {
 
       __throw(not_implemented());
@@ -3656,7 +3656,7 @@ namespace android
 
    }
 
-   i32 interaction_impl::ScrollWindowEx(i32 dx, i32 dy, LPCRECT lpRectScroll, LPCRECT lpRectClip, ::draw2d::region * prgnUpdate, LPRECT lpRectUpdate, UINT flags)
+   i32 interaction_impl::ScrollWindowEx(i32 dx, i32 dy, LPCRECT32 lpRectScroll, LPCRECT32 lpRectClip, ::draw2d::region * prgnUpdate, LPRECT32 lpRectUpdate, ::u32 flags)
    {
 
       __throw(not_implemented());
@@ -3665,7 +3665,7 @@ namespace android
 
    }
 
-   void interaction_impl::ShowScrollBar(UINT nBar, bool bShow)
+   void interaction_impl::ShowScrollBar(::u32 nBar, bool bShow)
    {
 
       __throw(not_implemented());
@@ -3674,7 +3674,7 @@ namespace android
 
    }
 
-   ::user::interaction * interaction_impl::ChildWindowFromPoint(POINT point)
+   ::user::interaction * interaction_impl::ChildWindowFromPoint(POINT32 point)
    {
 
 
@@ -3684,7 +3684,7 @@ namespace android
 
    }
 
-   ::user::interaction * interaction_impl::ChildWindowFromPoint(POINT point, UINT nFlags)
+   ::user::interaction * interaction_impl::ChildWindowFromPoint(POINT32 point, ::u32 nFlags)
    {
 
       __throw(not_implemented());
@@ -3711,7 +3711,7 @@ namespace android
 
    }
 
-   //::user::interaction * interaction_impl::GetWindow(UINT nCmd)
+   //::user::interaction * interaction_impl::GetWindow(::u32 nCmd)
    //{
 
    //   ASSERT(::is_window((oswindow)get_handle()));
@@ -3741,7 +3741,7 @@ namespace android
    //}
 
 
-   //::user::interaction * PASCAL interaction_impl::oswindowFromPoint(POINT point)
+   //::user::interaction * PASCAL interaction_impl::oswindowFromPoint(POINT32 point)
    //{
 
 
@@ -3818,11 +3818,11 @@ namespace android
 
    //   __throw(not_implemented());
    //   //      ::point point;
-   //   //      ::GetCaretPos((LPPOINT)&point); return point;
+   //   //      ::GetCaretPos((POINT32 *)&point); return point;
 
    //}
 
-   //void PASCAL interaction_impl::SetCaretPos(POINT point)
+   //void PASCAL interaction_impl::SetCaretPos(POINT32 point)
    //{
 
    //   __throw(not_implemented());
@@ -3874,7 +3874,7 @@ namespace android
 
    }
 
-   //void interaction_impl::Print(::draw2d::graphics_pointer & pgraphics, DWORD dwFlags) const
+   //void interaction_impl::Print(::draw2d::graphics_pointer & pgraphics, ::u32 dwFlags) const
    //{
 
    //   __throw(not_implemented());
@@ -3883,7 +3883,7 @@ namespace android
 
    //}
 
-   //void interaction_impl::PrintClient(::draw2d::graphics_pointer & pgraphics, DWORD dwFlags) const
+   //void interaction_impl::PrintClient(::draw2d::graphics_pointer & pgraphics, ::u32 dwFlags) const
    //{
 
    //   __throw(not_implemented());
@@ -3892,7 +3892,7 @@ namespace android
 
    //}
 
-   bool interaction_impl::SetWindowContextHelpId(DWORD dwContextHelpId)
+   bool interaction_impl::SetWindowContextHelpId(::u32 dwContextHelpId)
    {
 
       __throw(not_implemented());
@@ -3901,7 +3901,7 @@ namespace android
 
    }
 
-   DWORD interaction_impl::GetWindowContextHelpId() const
+   ::u32 interaction_impl::GetWindowContextHelpId() const
    {
 
       __throw(not_implemented());
@@ -3912,11 +3912,11 @@ namespace android
 
 
 // Default message ::collection::map implementations
-   //void interaction_impl::OnActivateApp(bool, DWORD)
+   //void interaction_impl::OnActivateApp(bool, ::u32)
    //{
    //   Default();
    //}
-   //void interaction_impl::OnActivate(UINT, ::user::interaction *, bool)
+   //void interaction_impl::OnActivate(::u32, ::user::interaction *, bool)
    //{
    //   Default();
    //}
@@ -3972,11 +3972,11 @@ namespace android
    {
       Default();
    }
-   LRESULT interaction_impl::OnMenuChar(UINT, UINT, ::user::menu*)
+   LRESULT interaction_impl::OnMenuChar(::u32, ::u32, ::user::menu*)
    {
       return Default();
    }
-   void interaction_impl::OnMenuSelect(UINT, UINT, HMENU)
+   void interaction_impl::OnMenuSelect(::u32, ::u32, HMENU)
    {
       Default();
    }
@@ -4042,15 +4042,15 @@ namespace android
 
 
 
-   void interaction_impl::OnShowWindow(bool, UINT)
+   void interaction_impl::OnShowWindow(bool, ::u32)
    {
       Default();
    }
-   void interaction_impl::OnSize(UINT, i32, i32)
+   void interaction_impl::OnSize(::u32, i32, i32)
    {
       Default();
    }
-   void interaction_impl::OnTCard(UINT, DWORD)
+   void interaction_impl::OnTCard(::u32, ::u32)
    {
       Default();
    }
@@ -4094,31 +4094,31 @@ namespace android
    {
       return Default();
    }
-   //void interaction_impl::OnNcLButtonDblClk(UINT, point)
+   //void interaction_impl::OnNcLButtonDblClk(::u32, point)
    //{
    //   Default();
    //}
-   //void interaction_impl::OnNcLButtonDown(UINT, point)
+   //void interaction_impl::OnNcLButtonDown(::u32, point)
    //{
    //   Default();
    //}
-   //void interaction_impl::OnNcLButtonUp(UINT, point)
+   //void interaction_impl::OnNcLButtonUp(::u32, point)
    //{
    //   Default();
    //}
-   //void interaction_impl::OnNcMButtonDblClk(UINT, point)
+   //void interaction_impl::OnNcMButtonDblClk(::u32, point)
    //{
    //   Default();
    //}
-   //void interaction_impl::OnNcMButtonDown(UINT, point)
+   //void interaction_impl::OnNcMButtonDown(::u32, point)
    //{
    //   Default();
    //}
-   //void interaction_impl::OnNcMButtonUp(UINT, point)
+   //void interaction_impl::OnNcMButtonUp(::u32, point)
    //{
    //   Default();
    //}
-   //void interaction_impl::OnNcMouseMove(UINT, point)
+   //void interaction_impl::OnNcMouseMove(::u32, point)
    //{
    //   Default();
    //}
@@ -4126,39 +4126,39 @@ namespace android
    {
       Default();
    }
-   //void interaction_impl::OnNcRButtonDblClk(UINT, point)
+   //void interaction_impl::OnNcRButtonDblClk(::u32, point)
    //{
    //   Default();
    //}
-   //void interaction_impl::OnNcRButtonDown(UINT, point)
+   //void interaction_impl::OnNcRButtonDown(::u32, point)
    //{
    //   Default();
    //}
-   //void interaction_impl::OnNcRButtonUp(UINT, point)
+   //void interaction_impl::OnNcRButtonUp(::u32, point)
    //{
    //   Default();
    //}
-   void interaction_impl::OnSysChar(UINT, UINT, UINT)
+   void interaction_impl::OnSysChar(::u32, ::u32, ::u32)
    {
       Default();
    }
-   void interaction_impl::OnSysCommand(UINT, LPARAM)
+   void interaction_impl::OnSysCommand(::u32, LPARAM)
    {
       Default();
    }
-   void interaction_impl::OnSysDeadChar(UINT, UINT, UINT)
+   void interaction_impl::OnSysDeadChar(::u32, ::u32, ::u32)
    {
       Default();
    }
-   void interaction_impl::OnSysKeyDown(UINT, UINT, UINT)
+   void interaction_impl::OnSysKeyDown(::u32, ::u32, ::u32)
    {
       Default();
    }
-   void interaction_impl::OnSysKeyUp(UINT, UINT, UINT)
+   void interaction_impl::OnSysKeyUp(::u32, ::u32, ::u32)
    {
       Default();
    }
-   void interaction_impl::OnCompacting(UINT)
+   void interaction_impl::OnCompacting(::u32)
    {
       Default();
    }
@@ -4170,7 +4170,7 @@ namespace android
    {
       Default();
    }
-   void interaction_impl::OnSpoolerStatus(UINT, UINT)
+   void interaction_impl::OnSpoolerStatus(::u32, ::u32)
    {
       Default();
    }
@@ -4178,56 +4178,56 @@ namespace android
    {
       Default();
    }
-   void interaction_impl::OnChar(UINT, UINT, UINT)
+   void interaction_impl::OnChar(::u32, ::u32, ::u32)
    {
       Default();
    }
-   void interaction_impl::OnDeadChar(UINT, UINT, UINT)
+   void interaction_impl::OnDeadChar(::u32, ::u32, ::u32)
    {
       Default();
    }
-   void interaction_impl::OnKeyDown(UINT, UINT, UINT)
+   void interaction_impl::OnKeyDown(::u32, ::u32, ::u32)
    {
       Default();
    }
-   void interaction_impl::OnKeyUp(UINT, UINT, UINT)
+   void interaction_impl::OnKeyUp(::u32, ::u32, ::u32)
    {
       Default();
    }
-   //void interaction_impl::OnLButtonDblClk(UINT, point)
+   //void interaction_impl::OnLButtonDblClk(::u32, point)
    //{
    //   Default();
    //}
-   //void interaction_impl::OnLButtonDown(UINT, point)
+   //void interaction_impl::OnLButtonDown(::u32, point)
    //{
    //   Default();
    //}
-   //void interaction_impl::OnLButtonUp(UINT, point)
+   //void interaction_impl::OnLButtonUp(::u32, point)
    //{
    //   Default();
    //}
-   //void interaction_impl::OnMButtonDblClk(UINT, point)
+   //void interaction_impl::OnMButtonDblClk(::u32, point)
    //{
    //   Default();
    //}
-   //void interaction_impl::OnMButtonDown(UINT, point)
+   //void interaction_impl::OnMButtonDown(::u32, point)
    //{
    //   Default();
    //}
-   //void interaction_impl::OnMButtonUp(UINT, point)
+   //void interaction_impl::OnMButtonUp(::u32, point)
    //{
    //   Default();
    //}
-   i32 interaction_impl::OnMouseActivate(::user::interaction *, UINT, UINT)
+   i32 interaction_impl::OnMouseActivate(::user::interaction *, ::u32, ::u32)
    {
       return (i32)Default();
    }
-   //void interaction_impl::OnMouseMove(UINT, point)
+   //void interaction_impl::OnMouseMove(::u32, point)
    //{
    //   Default();
    //}
 
-   //bool interaction_impl::OnMouseWheel(UINT, short, point)
+   //bool interaction_impl::OnMouseWheel(::u32, short, point)
    //{
 
    //   return Default() != FALSE;
@@ -4238,15 +4238,15 @@ namespace android
    {
       return Default();
    }
-   //void interaction_impl::OnRButtonDblClk(UINT, point)
+   //void interaction_impl::OnRButtonDblClk(::u32, point)
    //{
    //   Default();
    //}
-   //void interaction_impl::OnRButtonDown(UINT, point)
+   //void interaction_impl::OnRButtonDown(::u32, point)
    //{
    //   Default();
    //}
-   //void interaction_impl::OnRButtonUp(UINT, point)
+   //void interaction_impl::OnRButtonUp(::u32, point)
    //{
    //   Default();
    //}
@@ -4258,11 +4258,11 @@ namespace android
    {
       Default();
    }
-   void interaction_impl::OnInitMenuPopup(::user::menu*, UINT, bool)
+   void interaction_impl::OnInitMenuPopup(::user::menu*, ::u32, bool)
    {
       Default();
    }
-   void interaction_impl::OnAskCbFormatName(UINT nMaxCount, LPTSTR pszName)
+   void interaction_impl::OnAskCbFormatName(::u32 nMaxCount, LPTSTR pszName)
    {
       (nMaxCount);
       if (nMaxCount>0)
@@ -4284,7 +4284,7 @@ namespace android
    {
       Default();
    }
-   void interaction_impl::OnHScrollClipboard(::user::interaction *, UINT, UINT)
+   void interaction_impl::OnHScrollClipboard(::user::interaction *, ::u32, ::u32)
    {
       Default();
    }
@@ -4296,7 +4296,7 @@ namespace android
    {
       Default();
    }
-   void interaction_impl::OnRenderFormat(UINT)
+   void interaction_impl::OnRenderFormat(::u32)
    {
       Default();
    }
@@ -4304,13 +4304,13 @@ namespace android
    {
       Default();
    }
-   void interaction_impl::OnVScrollClipboard(::user::interaction *, UINT, UINT)
+   void interaction_impl::OnVScrollClipboard(::user::interaction *, ::u32, ::u32)
    {
       Default();
    }
-   UINT interaction_impl::OnGetDlgCode()
+   ::u32 interaction_impl::OnGetDlgCode()
    {
-      return (UINT)Default();
+      return (::u32)Default();
    }
    void interaction_impl::OnMDIActivate(bool, ::user::interaction *, ::user::interaction *)
    {
@@ -4329,11 +4329,11 @@ namespace android
 //   { Default(); }
 //   void interaction_impl::OnStyleChanging(i32, LPSTYLESTRUCT)
 //   { Default(); }
-   void interaction_impl::OnSizing(UINT, LPRECT)
+   void interaction_impl::OnSizing(::u32, LPRECT32)
    {
       Default();
    }
-   void interaction_impl::OnMoving(UINT, LPRECT)
+   void interaction_impl::OnMoving(::u32, LPRECT32)
    {
       Default();
    }
@@ -4342,7 +4342,7 @@ namespace android
       Default();
    }
 
-   bool interaction_impl::OnDeviceChange(UINT, dword_ptr)
+   bool interaction_impl::OnDeviceChange(::u32, dword_ptr)
    {
 
       return Default() != FALSE;
@@ -4353,19 +4353,19 @@ namespace android
    {
       Default();
    }
-   void interaction_impl::OnChangeUIState(UINT, UINT)
+   void interaction_impl::OnChangeUIState(::u32, ::u32)
    {
       Default();
    }
-   void interaction_impl::OnUpdateUIState(UINT, UINT)
+   void interaction_impl::OnUpdateUIState(::u32, ::u32)
    {
       Default();
    }
 
-   UINT interaction_impl::OnQueryUIState()
+   ::u32 interaction_impl::OnQueryUIState()
    {
 
-      return (UINT)Default();
+      return (::u32)Default();
 
    }
 
@@ -4548,7 +4548,7 @@ namespace android
    }
 
 
-   ::user::interaction * interaction_impl::GetNextWindow(UINT nFlag)
+   ::user::interaction * interaction_impl::GetNextWindow(::u32 nFlag)
    {
 
       if (nFlag == GW_HWNDNEXT)

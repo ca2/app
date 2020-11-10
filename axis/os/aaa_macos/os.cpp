@@ -23,7 +23,7 @@ CLASS_DECL_AXIS bool _istlead(i32 ch)
 
 
 
-int_bool GetCursorPos(LPPOINT ppointCursor)
+int_bool GetCursorPos(POINT32 * ppointCursor)
 
 {
 

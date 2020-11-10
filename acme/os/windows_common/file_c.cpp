@@ -7,7 +7,7 @@ CLASS_DECL_ACME::Windows::Storage::StorageFolder^ winrt_folder(string& strPath, 
 #endif
 
 
-DWORD windows_get_file_attributes(const char* path)
+::u32 windows_get_file_attributes(const char* path)
 {
 
    wstring wstr(path);
@@ -68,7 +68,7 @@ int_bool windows_create_directory(const char* path, LPSECURITY_ATTRIBUTES lpSecu
 
    wstring wstrPath(get_buffer, MAX_PATH * 16);
 
-   if (!GetModuleFileNameW(nullptr, wstrPath, (DWORD)wstrPath.get_length()))
+   if (!GetModuleFileNameW(nullptr, wstrPath, (::u32)wstrPath.get_length()))
    {
 
       return "";
@@ -161,7 +161,7 @@ int_bool file_copy_dup(const char * pszNew, const char * pszSrc, int_bool bOverw
 
       }
 
-      DWORD dw = GetFinalPathNameByHandleW(hfile, nullptr, 0, VOLUME_NAME_DOS);
+      ::u32 dw = GetFinalPathNameByHandleW(hfile, nullptr, 0, VOLUME_NAME_DOS);
 
       if (dw > 0)
       {
@@ -218,7 +218,7 @@ int_bool is_file_or_dir_dup(const char * path, ::file::enum_type * petype)
 
 #ifdef _UWP
 
-      DWORD dwLastError = ::get_last_error();
+      ::u32 dwLastError = ::get_last_error();
 
       string strPrefix;
 
@@ -365,7 +365,7 @@ CLASS_DECL_ACME bool _os_may_have_alias(const char * psz)
 CLASS_DECL_ACME memsize hfile_read(hfile hfile, void* p, memsize s)
 {
 
-   DWORD dwRead = 0;
+   ::u32 dwRead = 0;
 
    if (!::ReadFile(hfile, p, min(INT_MAX, s), &dwRead, nullptr))
    {
@@ -389,7 +389,7 @@ CLASS_DECL_ACME::estatus hfile_write(hfile hfile, const void* p, memsize s)
 
       int iWrite = min(INT_MAX, s);
 
-      DWORD dwWritten = 0;
+      ::u32 dwWritten = 0;
 
       if (!WriteFile(hfile, p, iWrite, &dwWritten, nullptr))
       {

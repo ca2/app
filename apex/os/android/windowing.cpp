@@ -567,7 +567,7 @@ LONG_PTR oswindow_data::set_window_long_ptr(i32 nIndex, LONG_PTR l)
 }
 
 
-bool oswindow_data::_001ClientToScreen(POINT * pp)
+bool oswindow_data::_001ClientToScreen(POINT32 * pp)
 {
 
    return true;
@@ -575,7 +575,7 @@ bool oswindow_data::_001ClientToScreen(POINT * pp)
 }
 
 
-bool oswindow_data::_001ScreenToClient(POINT * pp)
+bool oswindow_data::_001ScreenToClient(POINT32 * pp)
 {
 
    return true;
@@ -646,7 +646,7 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 */
 
 
-void message_box_paint(::draw2d::graphics_pointer & pgraphics, string_array & stra, bool_array  & baTab, int_array  & ya, SIZE * psize)
+void message_box_paint(::draw2d::graphics_pointer & pgraphics, string_array & stra, bool_array  & baTab, int_array  & ya, SIZE32 * psize)
 {
 
    pgraphics->fill_solid_rect_dim(0, 0, psize->cx, psize->cy, RGB(84, 90, 80));
@@ -720,7 +720,7 @@ oswindow get_focus()
 }
 
 
-int_bool get_client_rect(oswindow_data * pdata, RECT * prect)
+int_bool get_client_rect(oswindow_data * pdata, RECT32 * prect)
 {
 
    pdata->m_pimpl->m_puserinteraction->get_client_rect(prect);
@@ -735,7 +735,7 @@ int_bool get_client_rect(oswindow_data * pdata, RECT * prect)
 }
 
 
-int_bool get_window_rect(oswindow_data * pdata, RECT * prect)
+int_bool get_window_rect(oswindow_data * pdata, RECT32 * prect)
 {
 
    pdata->m_pimpl->m_puserinteraction->get_window_rect(prect);
@@ -919,17 +919,17 @@ oswindow get_desktop_window()
 }
 
 
-POINT g_pointCursor;
+POINT32 g_pointCursor;
 
 
-int_bool SetCursorPos(LPPOINT lppt)
+int_bool SetCursorPos(POINT32 * lppt)
 {
    g_pointCursor = *lppt;
    return TRUE;
 }
 
 
-int_bool GetCursorPos(LPPOINT lppt)
+int_bool GetCursorPos(POINT32 * lppt)
 {
    *lppt = g_pointCursor;
    return TRUE;
@@ -963,24 +963,24 @@ int_bool GetCursorPos(LPPOINT lppt)
 //
 
 
-//LONG GetWindowLongA(oswindow window, int nIndex)
+//::i32 GetWindowLongA(oswindow window, int nIndex)
 //{
 //
 //   if (!IsWindow(window))
 //      return false;
 //
-//   return (LONG) window->get_window_long_ptr(nIndex);
+//   return (::i32) window->get_window_long_ptr(nIndex);
 //
 //}
 //
 //
-//LONG SetWindowLongA(oswindow window, int nIndex, LONG lValue)
+//::i32 SetWindowLongA(oswindow window, int nIndex, ::i32 lValue)
 //{
 //
 //   if (!IsWindow(window))
 //      return false;
 //
-//   return (LONG) window->set_window_long_ptr(nIndex, lValue);
+//   return (::i32) window->set_window_long_ptr(nIndex, lValue);
 //
 //}
 
@@ -1575,7 +1575,7 @@ CLASS_DECL_APEX ::estatus os_message_box(oswindow oswindow, const char * pText, 
 }
 
 
-int_bool point_is_window_origin(POINT ptHitTest, oswindow oswindowExclude, int iMargin)
+int_bool point_is_window_origin(POINT32 ptHitTest, oswindow oswindowExclude, int iMargin)
 {
 
    return abs(ptHitTest.x) < iMargin && abs(ptHitTest.y) < iMargin;
@@ -1603,7 +1603,7 @@ double _001GetWindowTopLeftWeightedOccludedOpaqueRate(oswindow oswindow)
 
 
 
-int GetMainScreenRect(LPRECT lprect)
+int GetMainScreenRect(LPRECT32 lprect)
 {
 
    *lprect = System.get_context_session()->m_puiHost->m_pimpl->cast < ::user::interaction_impl >()->m_rectWindowScreen;
@@ -1617,7 +1617,7 @@ int GetMainScreenRect(LPRECT lprect)
 
 
 
-int SetMainScreenRect(LPCRECT lpcrect)
+int SetMainScreenRect(LPCRECT32 lpcrect)
 {
 
    System.get_context_session()->m_puiHost->m_pimpl->cast < ::user::interaction_impl >()->m_rectWindowScreen = *lpcrect;

@@ -33,7 +33,7 @@ typedef iptr strsize;
 #include "acme/multithreading/_types.h"
 #include "acme/os/thread.h"
 //#include "acme/platform/struct.h"
-#include "acme/os/cross/_.h"
+//#include "acme/os/cross/_.h"
 //#include "acme/os/acme.h"
 
 

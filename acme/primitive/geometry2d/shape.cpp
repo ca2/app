@@ -28,7 +28,7 @@ bool ___shape::expand_bounding_rect(RECTD* prect) const
 }
 
 
-bool ___shape::expand_bounding_rect(RECT* prect) const
+bool ___shape::expand_bounding_rect(RECT32* prect) const
 {
 
    rectd r;
@@ -57,7 +57,7 @@ bool ___shape::get_bounding_rect(RECTD* prect) const
 }
 
 
-bool ___shape::get_bounding_rect(RECT* prect) const
+bool ___shape::get_bounding_rect(RECT32* prect) const
 {
 
    ::null_rect(prect);

@@ -4,7 +4,7 @@
 
 
 // interesting function
-/*bool CLASS_DECL_AXIS __custom_log_font(UINT nIDS, LOGFONT* pLogFont)
+/*bool CLASS_DECL_AXIS __custom_log_font(::u32 nIDS, LOGFONT* pLogFont)
 {
    ENSURE_ARG(pLogFont != nullptr);
    ASSERT(nIDS != 0);
@@ -26,12 +26,12 @@
    return TRUE;
 }*/
 #ifdef WINDOWS_DESKTOP
-bool CLASS_DECL_AXIS __is_combo_box_control(oswindow hWnd, UINT nStyle)
+bool CLASS_DECL_AXIS __is_combo_box_control(oswindow hWnd, ::u32 nStyle)
 {
    if (hWnd == nullptr)
       return FALSE;
    // do cheap style compare first
-   if ((UINT)(::GetWindowLong(hWnd, GWL_STYLE) & 0x0F) != nStyle)
+   if ((::u32)(::GetWindowLong(hWnd, GWL_STYLE) & 0x0F) != nStyle)
       return FALSE;
 
    // do expensive classname compare next
@@ -49,7 +49,7 @@ bool CLASS_DECL_AXIS __compare_class_name(oswindow hWnd, const char * lpszClassN
 }
 
 
-oswindow CLASS_DECL_AXIS __child_window_from_point(oswindow hWnd, POINT point)
+oswindow CLASS_DECL_AXIS __child_window_from_point(oswindow hWnd, POINT32 point)
 {
    ASSERT(hWnd != nullptr);
 
@@ -58,7 +58,7 @@ oswindow CLASS_DECL_AXIS __child_window_from_point(oswindow hWnd, POINT point)
    oswindow hWndChild = ::GetWindow(hWnd, GW_CHILD);
    for (; hWndChild != nullptr; hWndChild = ::GetWindow(hWndChild, GW_HWNDNEXT))
    {
-      if (__get_dialog_control_id(hWndChild) != (WORD)0 &&
+      if (__get_dialog_control_id(hWndChild) != (::u16)0 &&
             (::GetWindowLong(hWndChild, GWL_STYLE) & WS_VISIBLE))
       {
          // see if point hits the child ::user::interaction_impl
@@ -112,14 +112,14 @@ void CLASS_DECL_AXIS __cancel_modes(oswindow hWndRcvr)
       return;     // let input go to ::user::interaction_impl with focus
 
    // focus is in part of a combo-box
-   if (!__is_combo_box_control(hWndCancel, (UINT)CBS_DROPDOWNLIST))
+   if (!__is_combo_box_control(hWndCancel, (::u32)CBS_DROPDOWNLIST))
    {
       // check as a dropdown
       hWndCancel = ::GetParent(hWndCancel);   // parent of edit is combo
       if (hWndCancel == hWndRcvr)
          return;     // let input go to part of combo
 
-      if (!__is_combo_box_control(hWndCancel, (UINT)CBS_DROPDOWN))
+      if (!__is_combo_box_control(hWndCancel, (::u32)CBS_DROPDOWN))
          return;     // not a combo-box that is active
    }
 
@@ -140,7 +140,7 @@ void CLASS_DECL_AXIS __global_free(HGLOBAL hGlobal)
 
    // avoid bogus warning error messages from various debugging tools
    ASSERT(GlobalFlags(hGlobal) != GMEM_INVALID_HANDLE);
-   UINT nCount = GlobalFlags(hGlobal) & GMEM_LOCKCOUNT;
+   ::u32 nCount = GlobalFlags(hGlobal) & GMEM_LOCKCOUNT;
    while (nCount--)
       GlobalUnlock(hGlobal);
 

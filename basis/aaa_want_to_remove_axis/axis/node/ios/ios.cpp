@@ -10,7 +10,7 @@ namespace ios
    }
 
 
-   DWORD GetTempPath(string & str)
+   ::u32 GetTempPath(string & str)
    {
       //return ::GetTempPathW(MAX_PATH * 8,wtostring(str,MAX_PATH * 8));
       

@@ -2,10 +2,10 @@
 
 
 //CLASS_DECL_APEX void hfile_set_size(HANDLE h, i64 iSize);
-//CLASS_DECL_APEX DWORD Winwindows_get_file_attributes(const unichar * psz);
+//CLASS_DECL_APEX ::u32 Winwindows_get_file_attributes(const unichar * psz);
 //#define WinGetFileAttributes Winwindows_get_file_attributes
-//CLASS_DECL_APEX DWORD GetFileSize(HANDLE h, LPDWORD lpdwHi);
-//CLASS_DECL_APEX DWORD WinSetFilePointer(HANDLE h, LONG lMove, PLONG plHi, DWORD dwMeth);
+//CLASS_DECL_APEX ::u32 GetFileSize(HANDLE h, LPDWORD lpdwHi);
+//CLASS_DECL_APEX ::u32 WinSetFilePointer(HANDLE h, ::i32 lMove, PLONG plHi, ::u32 dwMeth);
 //CLASS_DECL_APEX HANDLE FindFirstFile(const char * psz, WIN32_FIND_DATA * pdata);
 
 

@@ -85,7 +85,7 @@ namespace graphics
    }
 
 
-   COLORREF console::console_COLORREF(int iColor)
+   color32_t console::console_COLORREF(int iColor)
    {
       switch (iColor)
       {
@@ -261,7 +261,7 @@ namespace graphics
 
       }
 
-      COLORREF crScreen = console_COLORREF(m_iScreenColor);
+      color32_t crScreen = console_COLORREF(m_iScreenColor);
 
       m_pimage->fill(crScreen);
 

@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "core/user/simple/_simple.h"
+#include "base/user/simple/_simple.h"
 
 
 
@@ -36,7 +36,7 @@ void simple_frame_window::defer_set_icon()
 
       }
 
-      auto d = load_image("matter://icon.png");
+      auto d = Application.image().get_image("matter://icon.png");
 
       //if(d.load_matter_icon(straMatter, "icon.png"))
       //{

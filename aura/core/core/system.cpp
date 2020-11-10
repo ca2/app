@@ -28,7 +28,7 @@
 
 #include <HighLevelMonitorConfigurationAPI.h>
 
-DWORD mc_color_kelvin(MC_COLOR_TEMPERATURE e)
+::u32 mc_color_kelvin(MC_COLOR_TEMPERATURE e)
 {
    switch (e)
    {
@@ -53,7 +53,7 @@ DWORD mc_color_kelvin(MC_COLOR_TEMPERATURE e)
    }
 }
 
-MC_COLOR_TEMPERATURE kelvin_mc_color(DWORD kelvin)
+MC_COLOR_TEMPERATURE kelvin_mc_color(::u32 kelvin)
 {
    if (kelvin < 4500)
    {
@@ -121,7 +121,7 @@ typedef void BASECORE_INIT();
 namespace aura
 {
 
-   CLASS_DECL_AURA void black_body(float* r, float* g, float* b, DWORD dwTemp);
+   CLASS_DECL_AURA void black_body(float* r, float* g, float* b, ::u32 dwTemp);
 
  /*  bool system::on_application_menu_action(const char * pszCommand)
    {
@@ -560,7 +560,7 @@ namespace aura
       set_enum_name(::type_empty     , "is_empty");
       set_enum_name(::type_string    , "string");
       set_enum_name(::type_int32   , "integer");
-      set_enum_name(::type_uint32     , "ulong");
+      set_enum_name(::type_::u32     , "ulong");
       set_enum_name(::type_element       , "ca2");
       set_enum_name(::type_bool      , "bool");
       set_enum_name(::type_double    , "double");*/
@@ -1002,7 +1002,7 @@ namespace aura
 #ifdef _UWP
 
 
-   bool system::get_window_rect(RECT * prect)
+   bool system::get_window_rect(RECT32 * prect)
    {
 
       if (::is_null(get_context_session()))
@@ -1203,7 +1203,7 @@ namespace aura
    }
 
 
-   DWORD system::get_monitor_color_temperature(index iMonitor)
+   ::u32 system::get_monitor_color_temperature(index iMonitor)
    {
 
 #ifdef _UWP
@@ -1259,7 +1259,7 @@ namespace aura
 
    ::mutex g_monitor_adjust;
 
-   bool system::adjust_monitor(index iMonitor, DWORD dwTemperature, double dBrightness, double dGamma)
+   bool system::adjust_monitor(index iMonitor, ::u32 dwTemperature, double dBrightness, double dGamma)
    {
 
 #ifdef _UWP
@@ -1329,24 +1329,24 @@ namespace aura
       }
 
 
-      DWORD dwMinDriveR;
-      DWORD dwCurDriveR;
-      DWORD dwMaxDriveR;
-      DWORD dwMinDriveG;
-      DWORD dwCurDriveG;
-      DWORD dwMaxDriveG;
-      DWORD dwMinDriveB;
-      DWORD dwCurDriveB;
-      DWORD dwMaxDriveB;
-      DWORD dwMinGainR;
-      DWORD dwCurGainR;
-      DWORD dwMaxGainR;
-      DWORD dwMinGainG;
-      DWORD dwCurGainG;
-      DWORD dwMaxGainG;
-      DWORD dwMinGainB;
-      DWORD dwCurGainB;
-      DWORD dwMaxGainB;
+      ::u32 dwMinDriveR;
+      ::u32 dwCurDriveR;
+      ::u32 dwMaxDriveR;
+      ::u32 dwMinDriveG;
+      ::u32 dwCurDriveG;
+      ::u32 dwMaxDriveG;
+      ::u32 dwMinDriveB;
+      ::u32 dwCurDriveB;
+      ::u32 dwMaxDriveB;
+      ::u32 dwMinGainR;
+      ::u32 dwCurGainR;
+      ::u32 dwMaxGainR;
+      ::u32 dwMinGainG;
+      ::u32 dwCurGainG;
+      ::u32 dwMaxGainG;
+      ::u32 dwMinGainB;
+      ::u32 dwCurGainB;
+      ::u32 dwMaxGainB;
 
       float fR;
       float fG;
@@ -1359,7 +1359,7 @@ namespace aura
       MC_COLOR_TEMPERATURE e = kelvin_mc_color(dwTemperature);
 
       HMONITOR hMonitor = nullptr;
-      DWORD cPhysicalMonitors;
+      ::u32 cPhysicalMonitors;
       LPPHYSICAL_MONITOR pPhysicalMonitors = nullptr;
 
       // Get the number of physical monitors.
@@ -1397,7 +1397,7 @@ namespace aura
       if (!GetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_RED_GAIN, &dwMinGainR, &dwCurGainR, &dwMaxGainR))
       {
 
-         DWORD dwLastError = get_last_error();
+         ::u32 dwLastError = get_last_error();
 
          TRACELASTERROR();
 
@@ -1444,9 +1444,9 @@ namespace aura
       //    SetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_RED_GAIN, dwMinGainR);
       //    SetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_GREEN_GAIN, dwMinGainG);
       //    SetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_BLUE_GAIN, dwMinGainB);
-            //SetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_RED_DRIVE, (DWORD)(dwMinDriveR + (dwMaxDriveR - dwMinDriveR) * r));
-            //SetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_GREEN_DRIVE, (DWORD)(dwMinDriveG + (dwMaxDriveG - dwMinDriveG) * g));
-            //SetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_BLUE_DRIVE, (DWORD)(dwMinDriveB + (dwMaxDriveB - dwMinDriveB) * b));
+            //SetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_RED_DRIVE, (::u32)(dwMinDriveR + (dwMaxDriveR - dwMinDriveR) * r));
+            //SetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_GREEN_DRIVE, (::u32)(dwMinDriveG + (dwMaxDriveG - dwMinDriveG) * g));
+            //SetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_BLUE_DRIVE, (::u32)(dwMinDriveB + (dwMaxDriveB - dwMinDriveB) * b));
             //SetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_RED_GAIN, dwMaxGainR);
             //SetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_GREEN_GAIN, dwMaxGainG);
             //SetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_BLUE_GAIN, dwMaxGainB);
@@ -1472,9 +1472,9 @@ namespace aura
 //#define F(Y, C)  pow(dBrightness * C, 1.0 / dGamma)
 #define F(C)  pow(dBrightness * C, 1.0 / dGamma)
 
-      DWORD dwR = (DWORD)(dwMinGainR + (dwMaxGainR - dwMinGainR) * F(fR));
-      DWORD dwG = (DWORD)(dwMinGainG + (dwMaxGainG - dwMinGainG) * F(fG));
-      DWORD dwB = (DWORD)(dwMinGainB + (dwMaxGainB - dwMinGainB) * F(fB));
+      ::u32 dwR = (::u32)(dwMinGainR + (dwMaxGainR - dwMinGainR) * F(fR));
+      ::u32 dwG = (::u32)(dwMinGainG + (dwMaxGainG - dwMinGainG) * F(fG));
+      ::u32 dwB = (::u32)(dwMinGainB + (dwMaxGainB - dwMinGainB) * F(fB));
 
       if (dwR != dwCurGainR)
       {
@@ -1615,7 +1615,7 @@ namespace aura
    }
 
 
-   bool system::get_monitor_rect(index iMonitor, RECT* prect)
+   bool system::get_monitor_rect(index iMonitor, RECT32* prect)
    {
 
 #ifdef _UWP
@@ -1643,7 +1643,7 @@ namespace aura
    }
 
 
-   bool system::get_wkspace_rect(index iWkspace, RECT* prect)
+   bool system::get_wkspace_rect(index iWkspace, RECT32* prect)
 
    {
 
@@ -2071,7 +2071,7 @@ namespace aura
 
 
 
-   CLASS_DECL_AURA void black_body(float* r, float* g, float* b, DWORD dwTemp)
+   CLASS_DECL_AURA void black_body(float* r, float* g, float* b, ::u32 dwTemp)
    {
 
       int temp_index = ((dwTemp - 1000) / 100) * 3;

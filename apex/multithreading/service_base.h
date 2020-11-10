@@ -16,7 +16,7 @@ class CLASS_DECL_APEX service_base :
 {
 public:
 
-   DWORD                   m_dwStopTimeout;
+   ::u32                   m_dwStopTimeout;
    static service_base *   s_pservice;
 
    service_status          m_status;
@@ -71,12 +71,12 @@ public:
 
 #ifdef WINDOWS_DESKTOP
 
-   virtual void _main_server(DWORD argumentCount, PWSTR * arguments);
+   virtual void _main_server(::u32 argumentCount, PWSTR * arguments);
 
 
-   static void WINAPI ServiceMain(DWORD argumentCount, PWSTR* arguments);
+   static void WINAPI ServiceMain(::u32 argumentCount, PWSTR* arguments);
 
-   static void WINAPI ServiceHandler(DWORD control);
+   static void WINAPI ServiceHandler(::u32 control);
 
 #endif
 

@@ -25,7 +25,7 @@
    Local Function Prototypes
 **************************************************************************/
 
-int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int);
+int WINAPI WinMain(HINSTANCE, HINSTANCE, char *, int);
 
 /**************************************************************************
    Global Variables
@@ -41,7 +41,7 @@ ITfThreadMgr    *g_pThreadMgr;
 
 int WINAPI WinMain( HINSTANCE hInstance,
                     HINSTANCE hPrevInstance,
-                    LPSTR lpCmdLine,
+                    char * lpCmdLine,
                     int nCmdShow)
 {
     CTSFMainWnd *pMainWnd;

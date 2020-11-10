@@ -29,9 +29,9 @@ namespace draw2d_opengl
       //ASSERT(get_handle() != nullptr); return ::UnrealizeObject(get_handle()); 
       return 0;
    }
-   UINT object::GetObjectType() const
+   ::u32 object::GetObjectType() const
    {
-      //return (UINT)::GetObjectType(get_handle()); 
+      //return (::u32)::GetObjectType(get_handle());
       return 0;
    }
    bool object::operator==(const ::draw2d::object& obj) const

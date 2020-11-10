@@ -833,14 +833,14 @@ class var & var::operator = (::u32 ui)
 }
 
 #if !defined(LINUX) && !defined(MACOS) && !defined(ANDROID) && !defined(APPLE_IOS)
-class var & var::operator = (LONG l)
+class var & var::operator = (::i32 l)
 {
    set_type(type_i32,false);
    m_i32 = l;
    return *this;
 }
 
-class var & var::operator = (DWORD dw)
+class var & var::operator = (::u32 dw)
 {
    set_type(type_u32,false);
    m_u32 = dw;

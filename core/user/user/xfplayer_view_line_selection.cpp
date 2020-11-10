@@ -23,7 +23,7 @@ void XfplayerViewLineSelection::relay_event(xfplayer_view_line & viewline, ::mes
 {
    SCAST_PTR(::message::base, pbase, pmessage);
 
-   UINT message;
+   ::u32 message;
 
    message = pbase->m_id.umessage();
 
@@ -439,7 +439,7 @@ bool    bMerge)
 }
 
 
-bool XfplayerViewLineSelection::OnLButtonDown(xfplayer_view_line & viewline, UINT user, const ::point & point)
+bool XfplayerViewLineSelection::OnLButtonDown(xfplayer_view_line & viewline, ::u32 user, const ::point & point)
 {
    
    UNREFERENCED_PARAMETER(user);
@@ -486,7 +486,7 @@ bool XfplayerViewLineSelection::OnLButtonDown(xfplayer_view_line & viewline, UIN
 }
 
 
-bool XfplayerViewLineSelection::OnMouseMove(xfplayer_view_line & viewline, UINT user, const ::point & point)
+bool XfplayerViewLineSelection::OnMouseMove(xfplayer_view_line & viewline, ::u32 user, const ::point & point)
 {
    
    if (!viewline.IsVisible())
@@ -575,7 +575,7 @@ bool XfplayerViewLineSelection::OnMouseMove(xfplayer_view_line & viewline, UINT 
    return false;
 }
 
-bool XfplayerViewLineSelection::OnLButtonUp(xfplayer_view_line & viewline, UINT user, const ::point & point)
+bool XfplayerViewLineSelection::OnLButtonUp(xfplayer_view_line & viewline, ::u32 user, const ::point & point)
 {
    UNREFERENCED_PARAMETER(user);
    if(!viewline.IsVisible())
@@ -657,9 +657,9 @@ bool XfplayerViewLineSelection::OnLButtonUp(xfplayer_view_line & viewline, UINT 
    return false;
 }
 
-bool XfplayerViewLineSelection::OnTimer(xfplayer_view_line & viewline, UINT user)
+bool XfplayerViewLineSelection::OnTimer(xfplayer_view_line & viewline, ::u32 user)
 {
-   UINT uEvent = user;
+   ::u32 uEvent = user;
    if(uEvent == ::e_timer_hover)
    {
       if(viewline.is_hover())

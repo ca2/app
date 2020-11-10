@@ -86,7 +86,7 @@ namespace message
 {
 
 
-//   UINT translate_to_os_message(const ::id & id)
+//   ::u32 translate_to_os_message(const ::id & id)
 //   {
 //
 //#ifdef WINDOWS
@@ -118,7 +118,7 @@ namespace message
 //   }
 
 
-   e_prototype get_message_prototype(UINT_PTR emessage, UINT uiCode)
+   e_prototype get_message_prototype(::u32_PTR emessage, ::u32 uCode)
    {
       switch (emessage)
       {

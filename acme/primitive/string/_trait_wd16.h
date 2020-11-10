@@ -43,7 +43,7 @@ namespace str
    inline  strsize            string_format(wd16char * pszBuffer, strsize nlength, const wd16char * pszFormat, va_list args) noexcept;
    inline  void               flood_characters(wd16char * pwsz, wd16char wch, strsize len) noexcept;
 
-   inline  u32                format_message(u32 dwFlags, LPCVOID pSource, u32 dwMessageID, u32 dwLanguageID, wd16char * pszBuffer, u32 nSize, va_list * pArguments) noexcept;
+   inline  u32                format_message(u32 dwFlags, const void * pSource, u32 dwMessageID, u32 dwLanguageID, wd16char * pszBuffer, u32 nSize, va_list * pArguments) noexcept;
    inline  strsize            string_safe_length(const wd16char * psz) noexcept;
    inline  u32                get_environment_variable(const wd16char * pszVar, wd16char * pszBuffer, u32 dwSize);
 

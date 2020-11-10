@@ -441,7 +441,7 @@ namespace user
    }
 
 
-   bool combo_box::get_element_rect(RECT * prect, e_element eelement)
+   bool combo_box::get_element_rect(RECT32 * prect, e_element eelement)
 
    {
 
@@ -1100,7 +1100,7 @@ namespace user
 
    }
 
-   index combo_box::GetLBText(index nIndex, LPSTR pszText)
+   index combo_box::GetLBText(index nIndex, char * pszText)
 
    {
 
@@ -1265,7 +1265,7 @@ namespace user
 
    }
 
-   i32 combo_box::SetItemHeight(index nIndex, UINT cyItemHeight)
+   i32 combo_box::SetItemHeight(index nIndex, ::u32 cyItemHeight)
    {
 
       //ASSERT(is_window());
@@ -1322,7 +1322,7 @@ namespace user
 
    }
 
-   void combo_box::GetDroppedControlRect(RECT * prect)
+   void combo_box::GetDroppedControlRect(RECT32 * prect)
 
    {
 
@@ -1388,7 +1388,7 @@ namespace user
 
    }
 
-   ::count combo_box::InitStorage(::count nItems, UINT nBytes)
+   ::count combo_box::InitStorage(::count nItems, ::u32 nBytes)
    {
 
       //ASSERT(is_window());
@@ -1399,7 +1399,7 @@ namespace user
 
    }
 
-   void combo_box::SetHorizontalExtent(UINT nExtent)
+   void combo_box::SetHorizontalExtent(::u32 nExtent)
    {
 
       //ASSERT(is_window());
@@ -1408,18 +1408,18 @@ namespace user
 
    }
 
-   UINT combo_box::GetHorizontalExtent()
+   ::u32 combo_box::GetHorizontalExtent()
    {
 
       //ASSERT(is_window());
 
-      //return (UINT)send_message( CB_GETHORIZONTALEXTENT, 0, 0);
+      //return (::u32)send_message( CB_GETHORIZONTALEXTENT, 0, 0);
 
       return 0;
 
    }
 
-   i32 combo_box::SetDroppedWidth(UINT nWidth)
+   i32 combo_box::SetDroppedWidth(::u32 nWidth)
    {
 
 //      ASSERT(is_window());

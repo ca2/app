@@ -35,7 +35,7 @@ namespace fs
       virtual bool fast_has_subdir(const ::file::path & psz);
       virtual bool is_link(const ::file::path & psz);
 
-      virtual file_result get_file(const ::file::path & path, UINT nOpenFlags);
+      virtual file_result get_file(const ::file::path & path, ::u32 nOpenFlags);
 
       virtual bool is_zero_latency(const ::file::path & psz);
 

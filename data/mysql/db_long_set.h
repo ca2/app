@@ -33,11 +33,11 @@
 //    }
 
 //    bool load(const char * lpKey, i64 * lValue);
-//    bool load(const char * lpKey, LPRECT lpRect);
+//    bool load(const char * lpKey, LPRECT32 lpRect);
 // #ifdef WINDOWS_DESKTOP
 //    bool load(const char * lpKey, WINDOWPLACEMENT & wp);
 // #endif
-//    bool load(const char * lpKey, LPPOINT lpPoint);
+//    bool load(const char * lpKey, POINT32 * lpPoint);
 
 //    // save Functions
 //    template < typename T >
@@ -49,11 +49,11 @@
 //    }
 
 //    bool save(const char * lpKey, i64 lValue);
-//    bool save(const char * lpKey, LPCRECT lpRect);
+//    bool save(const char * lpKey, LPCRECT32 lpRect);
 // #ifdef WINDOWS_DESKTOP
 //    bool save(const char * lpKey, WINDOWPLACEMENT & wp);
 // #endif
-//    bool save(const char * lpKey, LPPOINT lpPoint);
+//    bool save(const char * lpKey, POINT32 * lpPoint);
 
 //    // Search Functions
 //    bool find(const char * lpKey);

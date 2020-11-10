@@ -48,7 +48,7 @@ namespace user
       return (this);
    }
 
-   void tool_tip_tool::BaseToolTipGetRect(RECT * prect)
+   void tool_tip_tool::BaseToolTipGetRect(RECT32 * prect)
 
    {
       UNREFERENCED_PARAMETER(prect);

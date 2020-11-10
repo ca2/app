@@ -740,7 +740,7 @@ namespace core
 
       pbox->value("application_name") = strTitle;
 
-      pbox->m_tickDelay = (DWORD)durationTimeout.get_total_milliseconds();
+      pbox->m_tickDelay = (::u32)durationTimeout.get_total_milliseconds();
 
       string strMatter;
 
@@ -886,10 +886,10 @@ namespace core
 #ifdef WINDOWS_DESKTOP
 
       CHOOSECOLOR cc;
-      COLORREF crCustColors[16];
+      color32_t crCustColors[16];
 
       // init-int this array did not affect the mouse problem
-      // uint idx ;
+      // ::u32 idx ;
       // for (idx=0; idx<16; idx++) {
       // crCustColors[idx] = RGB(idx, idx, idx) ;
       // }
@@ -1603,9 +1603,9 @@ namespace core
       wstring  wstr;
 
       wstr.get_string_buffer(MAX_PATH * 8);
-      //UINT uLen = pwsz.memsize();
+      //::u32 uLen = pwsz.memsize();
 
-      if (!SystemParametersInfoW(SPI_GETDESKWALLPAPER, (UINT)wstr.get_storage_length(), wstr.m_pdata, 0))
+      if (!SystemParametersInfoW(SPI_GETDESKWALLPAPER, (::u32)wstr.get_storage_length(), wstr.m_pdata, 0))
       {
          return "";
 
@@ -2025,7 +2025,7 @@ namespace core
    //}
 
 
-   //i32 application::sync_message_box(::user::primitive * puiOwner, const char * pszMessage, UINT fuStyle)
+   //i32 application::sync_message_box(::user::primitive * puiOwner, const char * pszMessage, ::u32 fuStyle)
    //{
 
    //   ::output_debug_string("\n\napp_message_box: " + string(pszMessage) + "\n\n");
@@ -2038,7 +2038,7 @@ namespace core
    //}
 
 
-   //i32 application::sync_message_box_timeout(::user::primitive * pwndOwner, var var, ::duration durationTimeOut, UINT fuStyle)
+   //i32 application::sync_message_box_timeout(::user::primitive * pwndOwner, var var, ::duration durationTimeOut, ::u32 fuStyle)
    //{
 
    //   if (psession->user() == nullptr)
@@ -2255,7 +2255,7 @@ namespace core
    }
 
 
-   //::estatus application::message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, UINT uFlags, ::function_arg function)
+   //::estatus application::message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, ::u32 uFlags, ::function_arg function)
    //{
 
    //   auto estatus = ui_message_box(puiOwner->get_safe_handle(), pszMessage, pszTitle, fuStyle, functionarg);

@@ -51,8 +51,8 @@ namespace exception
       static void exception_enable_stack_trace(bool bEnable);
 
 
-      //virtual bool get_message(string & str, PUINT pnHelpContext = nullptr);
-      //virtual string get_message(PUINT pnHelpContext = nullptr);
+      //virtual bool get_message(string & str, P::u32 pnHelpContext = nullptr);
+      //virtual string get_message(P::u32 pnHelpContext = nullptr);
 
       virtual string get_message() const;
 

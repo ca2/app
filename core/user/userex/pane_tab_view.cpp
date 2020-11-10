@@ -61,7 +61,7 @@ namespace userex
    }
 
 
-   void pane_tab_view::GetTabClientRect(RECT * prect)
+   void pane_tab_view::GetTabClientRect(RECT32 * prect)
 
    {
 

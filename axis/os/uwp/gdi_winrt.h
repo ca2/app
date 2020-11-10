@@ -11,4 +11,4 @@
 //CLASS_DECL_AXIS float x_dpi(float x);
 //
 //
-//CLASS_DECL_AXIS int_bool GetCursorPos(LPPOINT lppoint);
+//CLASS_DECL_AXIS int_bool GetCursorPos(POINT32 * lppoint);

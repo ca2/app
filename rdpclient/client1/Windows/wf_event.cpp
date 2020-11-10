@@ -36,11 +36,11 @@
 
 static HWND g_focus_hWnd;
 
-#define X_POS(lParam) ((UINT16) (lParam & 0xFFFF))
-#define Y_POS(lParam) ((UINT16) ((lParam >> 16) & 0xFFFF))
+#define X_POS(lParam) ((::u3216) (lParam & 0xFFFF))
+#define Y_POS(lParam) ((::u3216) ((lParam >> 16) & 0xFFFF))
 
-BOOL wf_scale_blt(wfContext* wfc, HDC hdc, int x, int y, int w, int h, HDC hdcSrc, int x1, int y1, DWORD rop);
-void wf_scale_mouse_event(wfContext* wfc, rdpInput* input, UINT16 flags, UINT16 x, UINT16 y);
+BOOL wf_scale_blt(wfContext* wfc, HDC hdc, int x, int y, int w, int h, HDC hdcSrc, int x1, int y1, ::u32 rop);
+void wf_scale_mouse_event(wfContext* wfc, rdpInput* input, ::u3216 flags, ::u3216 x, ::u3216 y);
 
 static BOOL g_flipping_in;
 static BOOL g_flipping_out;
@@ -54,7 +54,7 @@ static BOOL alt_ctrl_down()
 LRESULT CALLBACK wf_ll_kbd_proc(int nCode, WPARAM wParam, LPARAM lParam)
 {
 	wfContext* wfc;
-	DWORD rdp_scancode;
+	::u32 rdp_scancode;
 	rdpInput* input;
 	PKBDLLHOOKSTRUCT p;
 
@@ -82,10 +82,10 @@ LRESULT CALLBACK wf_ll_kbd_proc(int nCode, WPARAM wParam, LPARAM lParam)
 					return 1;
 				
 				input = wfc->instance->input;
-				rdp_scancode = MAKE_RDP_SCANCODE((BYTE) p->scanCode, p->flags & LLKHF_EXTENDED);
+				rdp_scancode = MAKE_RDP_SCANCODE((byte) p->scanCode, p->flags & LLKHF_EXTENDED);
 
 				DEBUG_KBD("keydown %d scanCode %04X flags %02X vkCode %02X",
-					(wParam == e_message_key_down), (BYTE) p->scanCode, p->flags, p->vkCode);
+					(wParam == e_message_key_down), (byte) p->scanCode, p->flags, p->vkCode);
 
 				if (wfc->fs_toggle &&
 					((p->vkCode == VK_RETURN) || (p->vkCode == VK_CANCEL)) &&
@@ -155,10 +155,10 @@ LRESULT CALLBACK wf_ll_kbd_proc(int nCode, WPARAM wParam, LPARAM lParam)
 
 void wf_event_focus_in(wfContext* wfc)
 {
-	UINT16 syncFlags;
+	::u3216 syncFlags;
 	rdpInput* input;
-	POINT pt;
-	RECT rc;
+	POINT32 pt;
+	RECT32 rc;
 
 	input = wfc->instance->input;
 
@@ -184,10 +184,10 @@ void wf_event_focus_in(wfContext* wfc)
 	get_client_rect(wfc->hwnd, &rc);
 
 	if (point.x >= rc.left && point.x < rc.right && point.y >= rc.top && point.y < rc.bottom)
-		input->MouseEvent(input, PTR_FLAGS_MOVE, (UINT16)point.x, (UINT16)point.y);
+		input->MouseEvent(input, PTR_FLAGS_MOVE, (::u3216)point.x, (::u3216)point.y);
 }
 
-static int wf_event_process_WM_MOUSEWHEEL(wfContext* wfc, HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam)
+static int wf_event_process_WM_MOUSEWHEEL(wfContext* wfc, HWND hWnd, ::u32 Msg, WPARAM wParam, LPARAM lParam)
 {
 	int delta;
 	int flags;
@@ -214,11 +214,11 @@ static int wf_event_process_WM_MOUSEWHEEL(wfContext* wfc, HWND hWnd, UINT Msg, W
 void wf_sizing(wfContext* wfc, WPARAM wParam, LPARAM lParam)
 {
 	// Holding the CTRL key down while resizing the window will force the desktop aspect ratio.
-	LPRECT rect;
+	LPRECT32 rect;
 
 	if (wfc->instance->settings->SmartSizing && (GetAsyncKeyState(VK_CONTROL) & 0x8000))
 	{
-		rect = (LPRECT) wParam;
+		rect = (LPRECT32) wParam;
 
 		switch(lParam)
 		{
@@ -247,7 +247,7 @@ void wf_sizing(wfContext* wfc, WPARAM wParam, LPARAM lParam)
 
 }
 
-//LRESULT CALLBACK wf_event_proc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam)
+//LRESULT CALLBACK wf_event_proc(HWND hWnd, ::u32 Msg, WPARAM wParam, LPARAM lParam)
 //{
 //	HDC hdc;
 //	LONG_PTR ptr;
@@ -256,7 +256,7 @@ void wf_sizing(wfContext* wfc, WPARAM wParam, LPARAM lParam)
 //	PAINTSTRUCT ps;
 //	rdpInput* input;
 //	BOOL processed;
-//	RECT windowRect;
+//	RECT32 windowRect;
 //	MINMAXINFO* minmax;
 //	SCROLLINFO si;
 //
@@ -442,8 +442,8 @@ void wf_sizing(wfContext* wfc, WPARAM wParam, LPARAM lParam)
 //					// client area when ScrollWindowEx is called; however, it is 
 //					// necessary to call UpdateWindow in order to repaint the 
 //					// rectangle of pixels that were invalidated.) 
-//					ScrollWindowEx(wfc->hwnd, -xDelta, -yDelta, (CONST RECT *) nullptr,
-//						(CONST RECT *) nullptr, (HRGN) nullptr, (PRECT) nullptr, 
+//					ScrollWindowEx(wfc->hwnd, -xDelta, -yDelta, (CONST RECT32 *) nullptr,
+//						(CONST RECT32 *) nullptr, (HRGN) nullptr, (PRECT) nullptr,
 //						SW_INVALIDATE); 
 //					UpdateWindow(wfc->hwnd);
 // 
@@ -515,8 +515,8 @@ void wf_sizing(wfContext* wfc, WPARAM wParam, LPARAM lParam)
 //					// client area when ScrollWindowEx is called; however, it is 
 //					// necessary to call UpdateWindow in order to repaint the 
 //					// rectangle of pixels that were invalidated.) 
-//					ScrollWindowEx(wfc->hwnd, -xDelta, -yDelta, (CONST RECT *) nullptr,
-//						(CONST RECT *) nullptr, (HRGN) nullptr, (PRECT) nullptr, 
+//					ScrollWindowEx(wfc->hwnd, -xDelta, -yDelta, (CONST RECT32 *) nullptr,
+//						(CONST RECT32 *) nullptr, (HRGN) nullptr, (PRECT) nullptr,
 //						SW_INVALIDATE); 
 //					UpdateWindow(wfc->hwnd);
 // 
@@ -615,7 +615,7 @@ void wf_sizing(wfContext* wfc, WPARAM wParam, LPARAM lParam)
 //	return 0;
 //}
 //
-//BOOL wf_scale_blt(wfContext* wfc, HDC hdc, int x, int y, int w, int h, HDC hdcSrc, int x1, int y1, DWORD rop)
+//BOOL wf_scale_blt(wfContext* wfc, HDC hdc, int x, int y, int w, int h, HDC hdcSrc, int x1, int y1, ::u32 rop)
 //{
 //	int ww, wh, dw, dh;
 //
@@ -651,7 +651,7 @@ void wf_sizing(wfContext* wfc, WPARAM wParam, LPARAM lParam)
 //	return TRUE;
 //}
 
-void wf_scale_mouse_event(wfContext* wfc, rdpInput* input, UINT16 flags, UINT16 x, UINT16 y)
+void wf_scale_mouse_event(wfContext* wfc, rdpInput* input, ::u3216 flags, ::u3216 x, ::u3216 y)
 {
 	int ww, wh, dw, dh;
 	rdpContext* context;

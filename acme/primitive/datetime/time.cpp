@@ -88,7 +88,7 @@ namespace datetime
       }
    }
 
-   time::time(WORD wDosDate, WORD wDosTime, i32 nDST)
+   time::time(::u16 wDosDate, ::u16 wDosTime, i32 nDST)
    {
 
       struct tm atm;
@@ -131,7 +131,7 @@ namespace datetime
 
       //if (sysTime.wYear < 1900)
       //{
-      //   __time64_t time0 = 0L;
+      //   time_t time0 = 0L;
       //   time timeT(time0);
       //   *this = timeT;
       //}
@@ -356,19 +356,19 @@ namespace datetime
 
       if(!ptm) { return false; }
 
-      timeDest.wYear = (WORD) (1900 + ptm->tm_year);
-      timeDest.wMonth = (WORD) (1 + ptm->tm_mon);
-      timeDest.wDayOfWeek = (WORD) ptm->tm_wday;
-      timeDest.wDay = (WORD) ptm->tm_mday;
-      timeDest.wHour = (WORD) ptm->tm_hour;
-      timeDest.wMinute = (WORD) ptm->tm_min;
-      timeDest.wSecond = (WORD) ptm->tm_sec;
+      timeDest.wYear = (::u16) (1900 + ptm->tm_year);
+      timeDest.wMonth = (::u16) (1 + ptm->tm_mon);
+      timeDest.wDayOfWeek = (::u16) ptm->tm_wday;
+      timeDest.wDay = (::u16) ptm->tm_mday;
+      timeDest.wHour = (::u16) ptm->tm_hour;
+      timeDest.wMinute = (::u16) ptm->tm_min;
+      timeDest.wSecond = (::u16) ptm->tm_sec;
       timeDest.wMilliseconds = 0;
 
       return true;
    }
 
-   __time64_t time::get_time() const noexcept
+   time_t time::get_time() const noexcept
    {
       return( m_time );
    }
@@ -689,7 +689,7 @@ namespace datetime
 
 #ifdef WINDOWS
 
-         DWORD dwLastError = ::GetLastError();
+         ::u32 dwLastError = ::GetLastError();
 
 #endif
 
@@ -722,7 +722,7 @@ namespace datetime
    }
 
 
-   __time64_t time::GetTimeOfDay() const noexcept
+   time_t time::GetTimeOfDay() const noexcept
    {
 
       struct tm ttm;
@@ -736,7 +736,7 @@ namespace datetime
    }
 
 
-   __time64_t time::GetGmtTimeOfDay() const noexcept
+   time_t time::GetGmtTimeOfDay() const noexcept
    {
 
       struct tm ttm;
@@ -787,7 +787,7 @@ dump_context & operator <<(dump_context & dumpcontext, ::datetime::time & time)
    char psz[32];
    psz[0] = '\0';
 
-//   __time64_t tmp = time.get_time();
+//   time_t tmp = time.get_time();
 //   errno_t err = _ctime64_s(psz, sizeof(psz), &tmp);
 
    errno_t err = 0;

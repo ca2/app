@@ -51,7 +51,7 @@ memory_base & memory_base::prefix_der_length()
    if(msb < 7)
    {
       move_and_grow(1);
-      get_data()[0] = (BYTE)(get_size() - 1);
+      get_data()[0] = (byte)(get_size() - 1);
    }
    else
    {
@@ -93,7 +93,7 @@ memory_base & memory_base::prefix_der_type(i32 iType)
 
 }
 
-memory_base & memory_base::prefix_der_uint()
+memory_base & memory_base::prefix_der_::u32()
 {
    return prefix_der_uint_content().prefix_der_length().prefix_der_type(2); // 2 - integer
 }
@@ -596,7 +596,7 @@ comptr < IStream > memory_base::create_istream() const
 
    }
 
-   return ::SHCreateMemStream(get_data(),(UINT)get_size());
+   return ::SHCreateMemStream(get_data(),(::u32)get_size());
 
 }
 
@@ -1325,7 +1325,7 @@ string memory_base::to_string(memsize iStart, memsize iCount) const
 
    }
 
-   LPSTR psz = str.get_string_buffer(iCount + 1);
+   char * psz = str.get_string_buffer(iCount + 1);
 
    ::memcpy_dup(psz, &get_data()[iStart], iCount);
 
@@ -1730,7 +1730,7 @@ CFDataRef memory_base::get_os_cf_data(memsize pos, memsize size) const
    {
       size = get_size() - pos;
    }
-   return CFDataCreate(kCFAllocatorDefault, (const UInt8 *)&get_data()[pos], (CFIndex)size);
+   return CFDataCreate(kCFAllocatorDefault, (const ::u328 *)&get_data()[pos], (CFIndex)size);
 }
 
 

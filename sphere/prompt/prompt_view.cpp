@@ -270,7 +270,7 @@ namespace prompt
          strWeekDay = "quarta-feira";
          break;
       case 5:
-         strWeekDay = "quinta-feira";
+         strWeekDay = "q::u32a-feira";
          break;
       case 6:
          strWeekDay = "sexta-feira";

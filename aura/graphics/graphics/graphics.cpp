@@ -197,7 +197,7 @@ namespace graphics
    }
 
 
-   i64 graphics::_001GetTopLeftWeightedOpaqueArea(LPCRECT lpcrect)
+   i64 graphics::_001GetTopLeftWeightedOpaqueArea(LPCRECT32 lpcrect)
    {
 
       sync_lock sl(get_screen_sync());

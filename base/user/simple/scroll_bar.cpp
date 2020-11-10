@@ -240,7 +240,7 @@ void simple_scroll_bar::_001OnLButtonUp(::message::message * pmessage)
 }
 
 
-bool simple_scroll_bar::GetTrackRect(RECT * prect)
+bool simple_scroll_bar::GetTrackRect(RECT32 * prect)
 {
 
    ::rect rectClient;
@@ -412,7 +412,7 @@ bool simple_scroll_bar::_001SetScrollInfo(::user::scroll_info * psi, bool bRedra
 }
 
 
-bool simple_scroll_bar::GetTrackClientRect(RECT * prect)
+bool simple_scroll_bar::GetTrackClientRect(RECT32 * prect)
 
 {
 
@@ -1015,7 +1015,7 @@ void simple_scroll_bar::UpdateBitmaps()
 
 }
 
-bool simple_scroll_bar::GetPageARect(RECT * prectClient,RECT * prectTrack, RECT * prect)
+bool simple_scroll_bar::GetPageARect(RECT32 * prectClient,RECT32 * prectTrack, RECT32 * prect)
 
 {
 
@@ -1047,7 +1047,7 @@ bool simple_scroll_bar::GetPageARect(RECT * prectClient,RECT * prectTrack, RECT 
 }
 
 
-bool simple_scroll_bar::GetPageBRect(RECT * prectClient,RECT * prectTrack, RECT * prect)
+bool simple_scroll_bar::GetPageBRect(RECT32 * prectClient,RECT32 * prectTrack, RECT32 * prect)
 
 {
    if(m_eorientation == orientation_horizontal)
@@ -1294,7 +1294,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
    auto pstyle = get_style(pgraphics);
 
-   COLORREF crBackground = get_color(pstyle, ::user::element_background);
+   color32_t crBackground = get_color(pstyle, ::user::element_background);
 
    ::rect rectClient;
 
@@ -1339,9 +1339,9 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
    //if (m_bTracking || (bool)prop("tracking_on"))
    //{
 
-   //   DWORD tickFadeIn = 300;
+   //   ::u32 tickFadeIn = 300;
 
-   //   DWORD tickFadeOut = 300;
+   //   ::u32 tickFadeOut = 300;
 
    //   byte uchAlpha = max(0, min(255, prop("tracking_alpha").u32()));
 
@@ -1410,7 +1410,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
    //   if ((bool)prop("tracking_fade_in"))
    //   {
 
-   //      DWORD dwFade = prop("tracking_start").u32().elapsed();
+   //      ::u32 dwFade = prop("tracking_start").u32().elapsed();
 
    //      if (dwFade < tickFadeIn)
    //      {
@@ -1431,7 +1431,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
    //   else if ((bool)prop("tracking_fade_out"))
    //   {
 
-   //      DWORD dwFade = prop("tracking_start").u32().elapsed();
+   //      ::u32 dwFade = prop("tracking_start").u32().elapsed();
 
    //      if (dwFade < tickFadeOut)
    //      {
@@ -1499,7 +1499,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
    //}
 
-   COLORREF cr = scrollbar_color(pstyle, ::user::element_scrollbar_rectA);
+   color32_t cr = scrollbar_color(pstyle, ::user::element_scrollbar_rectA);
 
    m_brushDraw->create_solid(cr);
 
@@ -1705,7 +1705,7 @@ void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics_pointer & pgraphi
 
    pgraphics->SetStretchBltMode(HALFTONE);
 
-   pgraphics->alpha_blend(rectDraw.top_left(), rectDraw.size(), m_pimageDots->g(), point((LONG)iDiv, (LONG)iDiv), m_pimageDots->get_size() - ::size((LONG)(iDiv * 2), (LONG)(iDiv * 2)), uchAlpha / 255.0);
+   pgraphics->alpha_blend(rectDraw.top_left(), rectDraw.size(), m_pimageDots->g(), point((::i32)iDiv, (::i32)iDiv), m_pimageDots->get_size() - ::size((::i32)(iDiv * 2), (::i32)(iDiv * 2)), uchAlpha / 255.0);
 
 }
 

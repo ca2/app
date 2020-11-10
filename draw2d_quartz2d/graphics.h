@@ -56,8 +56,8 @@ namespace draw2d_quartz2d
 
 
       // for bidi and mirrored localization
-      DWORD GetLayout() override;
-      DWORD SetLayout(DWORD dwLayout) override;
+      ::u32 GetLayout() override;
+      ::u32 SetLayout(::u32 dwLayout) override;
 
 
       virtual double get_dpix() override;
@@ -73,8 +73,8 @@ namespace draw2d_quartz2d
       virtual i32 SaveDC() override;
       virtual bool RestoreDC(i32 nSavedDC) override;
       i32 GetDeviceCaps(i32 nIndex) override;
-      UINT SetBoundsRect(const ::rect & rectBounds, UINT flags) override;
-      UINT GetBoundsRect(LPRECT rectBounds, UINT flags) override;
+      ::u32 SetBoundsRect(const ::rect & rectBounds, ::u32 flags) override;
+      ::u32 GetBoundsRect(LPRECT32 rectBounds, ::u32 flags) override;
       // xxx      bool ResetDC(const DEVMODE* lpDevMode);
 
       // Drawing-Tool Functions
@@ -101,19 +101,19 @@ namespace draw2d_quartz2d
 
 
       // color and color Palette Functions
-//      COLORREF GetNearestColor(const ::color & color) override;
+//      color32_t GetNearestColor(const ::color & color) override;
 //      ::draw2d::palette* SelectPalette(::draw2d::palette* pPalette, bool bForceBackground) override;
-//      UINT RealizePalette() override;
+//      ::u32 RealizePalette() override;
 //      void UpdateColors() override;
 
       // Drawing-Attribute Functions
-      COLORREF GetBkColor() const;
+      color32_t GetBkColor() const;
       i32 GetBkMode() const;
       i32 GetPolyFillMode() override;
       i32 GetROP2() override;
       i32 GetStretchBltMode() override;
 
-      //virtual COLORREF SetBkColor(const ::color & color);
+      //virtual color32_t SetBkColor(const ::color & color);
       i32 SetBkMode(i32 nBkMode);
       i32 SetPolyFillMode(i32 nPolyFillMode) override;
       i32 SetROP2(i32 nDrawMode) override;
@@ -124,11 +124,11 @@ namespace draw2d_quartz2d
 
 #if (_WIN32_WINNT >= 0x0500)
 
-      COLORREF GetDCBrushColor() const;
-      COLORREF SetDCBrushColor(const ::color & color);
+      color32_t GetDCBrushColor() const;
+      color32_t SetDCBrushColor(const ::color & color);
 
-      COLORREF GetDCPenColor() const;
-      COLORREF SetDCPenColor(const ::color & color);
+      color32_t GetDCPenColor() const;
+      color32_t SetDCPenColor(const ::color & color);
 
 #endif
 
@@ -138,7 +138,7 @@ namespace draw2d_quartz2d
 
       // World transform
       bool SetWorldTransform(const XFORM* pXform);
-      bool ModifyWorldTransform(const XFORM* pXform,DWORD iMode);
+      bool ModifyWorldTransform(const XFORM* pXform,::u32 iMode);
       bool GetWorldTransform(XFORM* pXform) const;
 
       // Mapping Functions
@@ -169,11 +169,11 @@ namespace draw2d_quartz2d
       virtual size ScaleWindowExt(i32 xNum, i32 xDenom, i32 yNum, i32 yDenom) override;
 
       // Coordinate Functions
-      void DPtoLP(LPPOINT lpPoints, i32 nCount = 1) const;
-      void DPtoLP(RECT * prect) override;
+      void DPtoLP(POINT32 * lpPoints, i32 nCount = 1) const;
+      void DPtoLP(RECT32 * prect) override;
       void DPtoLP(LPSIZE lpSize) override;
-      void LPtoDP(LPPOINT lpPoints, i32 nCount = 1) const;
-      void LPtoDP(RECT * prect) override;
+      void LPtoDP(POINT32 * lpPoints, i32 nCount = 1) const;
+      void LPtoDP(RECT32 * prect) override;
       void LPtoDP(LPSIZE lpSize) override;
 
       // Special Coordinate Functions (useful for dealing with metafiles and OLE)
@@ -189,7 +189,7 @@ namespace draw2d_quartz2d
       bool PaintRgn(::draw2d::region* pRgn) override;
 
       // Clipping Functions
-      virtual i32 GetClipBox(RECT * prect) override;
+      virtual i32 GetClipBox(RECT32 * prect) override;
       //virtual bool PtVisible(i32 x, i32 y) override;
       //virtual bool PtVisible(const ::point & point) override;
       //virtual bool RectVisible(const ::rect & rect) override;
@@ -227,7 +227,7 @@ namespace draw2d_quartz2d
 //      virtual bool Arc(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4) override;
       virtual bool Arc(double x, double y, double w, double h, angle start, angle end) override;
 //      virtual bool Arc(const ::rectd & rect, const ::pointd & pointStart, const ::pointd & pointEnd) override;
-      virtual bool Polyline(const POINT* lpPoints, count nCount) override;
+      virtual bool Polyline(const POINT32* lpPoints, count nCount) override;
 
       virtual bool AngleArc(i32 x, i32 y, i32 nRadius, angle fStartAngle, angle fSweepAngle) override;
 //      virtual bool ArcTo(i32 x1, i32 y1, i32 x2, i32 y2, i32 x3, i32 y3, i32 x4, i32 y4) override;
@@ -235,13 +235,13 @@ namespace draw2d_quartz2d
       virtual i32 GetArcDirection() override;
       virtual i32 SetArcDirection(i32 nArcDirection) override;
 
-      bool PolyDraw(const POINT* lpPoints, const BYTE* lpTypes, i32 nCount);
-      bool PolylineTo(const POINT* lpPoints, i32 nCount);
-      bool PolyPolyline(const POINT* lpPoints,
-                        const DWORD* lpPolyPoints, i32 nCount);
+      bool PolyDraw(const POINT32* lpPoints, const byte* lpTypes, i32 nCount);
+      bool PolylineTo(const POINT32* lpPoints, i32 nCount);
+      bool PolyPolyline(const POINT32* lpPoints,
+                        const ::u32* lpPolyPoints, i32 nCount);
 
-      bool PolyBezier(const POINT* lpPoints, i32 nCount);
-      bool PolyBezierTo(const POINT* lpPoints, i32 nCount);
+      bool PolyBezier(const POINT32* lpPoints, i32 nCount);
+      bool PolyBezierTo(const POINT32* lpPoints, i32 nCount);
 
       // Simple Drawing Functions
       virtual bool fill_rect(const ::rectd & rect, ::draw2d::brush* pbrush) override;
@@ -257,23 +257,23 @@ namespace draw2d_quartz2d
       
       virtual bool DrawIcon(i32 x, i32 y, ::draw2d::icon * picon) override;
       virtual bool DrawIcon(const ::point & point, ::draw2d::icon * picon) override;
-      virtual bool DrawIcon(i32 x, i32 y, ::draw2d::icon * picon, i32 cx, i32 cy, UINT istepIfAniCur, HBRUSH hbrFlickerFreeDraw, UINT diFlags) override;
-//      virtual bool DrawState(const ::point & point, const ::size & size, HBITMAP hBitmap, UINT nFlags,
+      virtual bool DrawIcon(i32 x, i32 y, ::draw2d::icon * picon, i32 cx, i32 cy, ::u32 istepIfAniCur, HBRUSH hbrFlickerFreeDraw, ::u32 diFlags) override;
+//      virtual bool DrawState(const ::point & point, const ::size & size, HBITMAP hBitmap, ::u32 nFlags,
 //                             HBRUSH hBrush = nullptr) override;
-//      virtual bool DrawState(const ::point & point, const ::size & size, ::draw2d::bitmap* pBitmap, UINT nFlags,
+//      virtual bool DrawState(const ::point & point, const ::size & size, ::draw2d::bitmap* pBitmap, ::u32 nFlags,
 //                             ::draw2d::brush* pBrush = nullptr) override;
-      /*      bool DrawState(const ::point & point, const ::size & size, HICON hIcon, UINT nFlags,
+      /*      bool DrawState(const ::point & point, const ::size & size, HICON hIcon, ::u32 nFlags,
                            HBRUSH hBrush = nullptr);
-            bool DrawState(const ::point & point, const ::size & size, HICON hIcon, UINT nFlags,
+            bool DrawState(const ::point & point, const ::size & size, HICON hIcon, ::u32 nFlags,
                            ::draw2d::brush* pBrush = nullptr);*/
-//      virtual bool DrawState(const ::point & point, const ::size & size, const char * lpszText, UINT nFlags,
+//      virtual bool DrawState(const ::point & point, const ::size & size, const char * lpszText, ::u32 nFlags,
 //                             bool bPrefixText = TRUE, i32 nTextLen = 0, HBRUSH hBrush = nullptr) override;
-//      virtual bool DrawState(const ::point & point, const ::size & size, const char * lpszText, UINT nFlags,
+//      virtual bool DrawState(const ::point & point, const ::size & size, const char * lpszText, ::u32 nFlags,
 //                             bool bPrefixText = TRUE, i32 nTextLen = 0, ::draw2d::brush* pBrush = nullptr) override;
       //xxx      bool DrawState(const ::point & point, const ::size & size, DRAWSTATEPROC lpDrawProc,
-      //xxx         LPARAM lData, UINT nFlags, HBRUSH hBrush = nullptr);
+      //xxx         LPARAM lData, ::u32 nFlags, HBRUSH hBrush = nullptr);
       //xxx      bool DrawState(const ::point & point, const ::size & size, DRAWSTATEPROC lpDrawProc,
-      //xxx         LPARAM lData, UINT nFlags, ::draw2d::brush* pBrush = nullptr);
+      //xxx         LPARAM lData, ::u32 nFlags, ::draw2d::brush* pBrush = nullptr);
 
       // Ellipse and Polygon Functions
       virtual bool Chord(i32 x1, i32 y1, i32 x2, i32 y2, i32 x3, i32 y3,
@@ -296,39 +296,39 @@ namespace draw2d_quartz2d
       bool Pie(i32 x1, i32 y1, i32 x2, i32 y2, i32 x3, i32 y3, i32 x4, i32 y4) override;
       bool Pie(const ::rect & rect, const ::point & pointStart, const ::point & pointEnd) override;
       virtual bool set_polygon(const POINTD * lpPoints, count nCount);
-      virtual bool set_polygon(const POINT * lpPoints, count nCount);
+      virtual bool set_polygon(const POINT32 * lpPoints, count nCount);
       virtual bool fill_polygon(const POINTD * lpPoints, count nCount) override;
-      virtual bool fill_polygon(const POINT* lpPoints, count nCount) override;
+      virtual bool fill_polygon(const POINT32* lpPoints, count nCount) override;
       virtual bool draw_polygon(const POINTD * lpPoints, count nCount) override;
-      virtual bool draw_polygon(const POINT * lpPoints, count nCount) override;
+      virtual bool draw_polygon(const POINT32 * lpPoints, count nCount) override;
       virtual bool polygon(const POINTD * ppoint,count nCount) override;
       virtual bool round_rect(const ::rectd & rect, const ::pointd & point) override;
 
       // Bitmap Functions
-      bool PatBlt(i32 x, i32 y, i32 nWidth, i32 nHeight, DWORD dwRop) override;
+      bool PatBlt(i32 x, i32 y, i32 nWidth, i32 nHeight, ::u32 dwRop) override;
       using ::draw2d::graphics::BitBlt;
       bool BitBltRaw(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc,
-                     i32 xSrc, i32 ySrc, DWORD dwRop) override;
+                     i32 xSrc, i32 ySrc, ::u32 dwRop) override;
       virtual bool StretchBltRaw(double x, double y, double nWidth, double nHeight, ::draw2d::graphics * pgraphicsSrc,
-                                 i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight, DWORD dwRop) override;
+                                 i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight, ::u32 dwRop) override;
       ::color GetPixel(i32 x, i32 y) override;
       ::color GetPixel(const ::point & point) override;
       ::color SetPixel(i32 x, i32 y, const ::color & color) override;
       ::color SetPixel(const ::point & point, const ::color & color) override;
 //      bool FloodFill(i32 x, i32 y, const ::color & color) override;
-//      bool ExtFloodFill(i32 x, i32 y, const ::color & color, UINT nFillType) override;
+//      bool ExtFloodFill(i32 x, i32 y, const ::color & color, ::u32 nFillType) override;
       bool MaskBlt(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc,
                    i32 xSrc, i32 ySrc, ::draw2d::bitmap& maskBitmap, i32 xMask, i32 yMask,
-                   DWORD dwRop) override;
-      bool PlgBlt(LPPOINT lpPoint, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc,
+                   ::u32 dwRop) override;
+      bool PlgBlt(POINT32 * lpPoint, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc,
                   i32 nWidth, i32 nHeight, ::draw2d::bitmap& maskBitmap, i32 xMask, i32 yMask) override;
       bool SetPixelV(i32 x, i32 y, const ::color & color) override;
       bool SetPixelV(const ::point & point, const ::color & color) override;
       bool GradientFill(TRIVERTEX* pVertices, WINULONG nVertices,
-                        void * pMesh, WINULONG nMeshElements, DWORD dwMode) override;
+                        void * pMesh, WINULONG nMeshElements, ::u32 dwMode) override;
       bool TransparentBlt(i32 xDest, i32 yDest, i32 nDestWidth, i32 nDestHeight,
                           ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight,
-                          UINT clrTransparent) override;
+                          ::u32 clrTransparent) override;
 
       virtual bool alpha_blendRaw(i32 xDest, i32 yDest, i32 nDestWidth, i32 nDestHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight, double dOpacity) override;
 
@@ -355,9 +355,9 @@ namespace draw2d_quartz2d
       virtual bool text_out(i32 x, i32 y, const string & str) override;
       virtual bool TextOutRaw(double x, double y, const string & str) override;
       virtual bool text_out(double x, double y, const string & str) override;
-      virtual bool ExtTextOut(i32 x, i32 y, UINT nOptions, const ::rectd & rect,
-                              const char * lpszString, UINT nCount, LPINT lpDxWidths);
-      bool ExtTextOut(i32 x, i32 y, UINT nOptions, const ::rect & rect,
+      virtual bool ExtTextOut(i32 x, i32 y, ::u32 nOptions, const ::rectd & rect,
+                              const char * lpszString, ::u32 nCount, LPINT lpDxWidths);
+      bool ExtTextOut(i32 x, i32 y, ::u32 nOptions, const ::rect & rect,
                       const string & str, LPINT lpDxWidths) override;
       virtual size TabbedTextOut(i32 x, i32 y, const char * lpszString, i32 nCount,
                                  i32 nTabPositions, LPINT lpnTabStopPositions, i32 nTabOrigin);
@@ -386,8 +386,8 @@ namespace draw2d_quartz2d
       virtual bool GrayString(::draw2d::brush* pBrush,
                               bool (CALLBACK* lpfnOutput)(HDC, LPARAM, i32), LPARAM lpData,
                               i32 nCount, i32 x, i32 y, i32 nWidth, i32 nHeight) override;
-      UINT GetTextAlign() override;
-      UINT SetTextAlign(UINT nFlags) override;
+      ::u32 GetTextAlign() override;
+      ::u32 SetTextAlign(::u32 nFlags) override;
       i32 GetTextFace(i32 nCount, LPTSTR lpszFacename);
       i32 GetTextFace(string & rString) override;
       bool get_text_metrics(::draw2d::text_metric * lpMetrics) override;
@@ -396,8 +396,8 @@ namespace draw2d_quartz2d
 //      i32 GetTextCharacterExtra() override;
 //      i32 SetTextCharacterExtra(i32 nCharExtra) override;
 
-      //xxx      DWORD GetCharacterPlacement(const char * lpString, i32 nCount, i32 nMaxExtent, LPGCP_RESULTS lpResults, DWORD dwFlags) const;
-      //xxx      DWORD GetCharacterPlacement(string & str, i32 nMaxExtent, LPGCP_RESULTS lpResults, DWORD dwFlags) const;
+      //xxx      ::u32 GetCharacterPlacement(const char * lpString, i32 nCount, i32 nMaxExtent, LPGCP_RESULTS lpResults, ::u32 dwFlags) const;
+      //xxx      ::u32 GetCharacterPlacement(string & str, i32 nMaxExtent, LPGCP_RESULTS lpResults, ::u32 dwFlags) const;
 
 //#if (_WIN32_WINNT >= 0x0500)
 //
@@ -409,37 +409,37 @@ namespace draw2d_quartz2d
 
 
       // Advanced Drawing
-      bool DrawEdge(RECT * prect, UINT nEdge, UINT nFlags);
-      bool DrawFrameControl(RECT * prect, UINT nType, UINT nState);
+      bool DrawEdge(RECT32 * prect, ::u32 nEdge, ::u32 nFlags);
+      bool DrawFrameControl(RECT32 * prect, ::u32 nType, ::u32 nState);
 
 //      // Scrolling Functions
 //      bool ScrollDC(i32 dx, i32 dy, const ::rect & rectScroll, const ::rect & rectClip,
-//                    ::draw2d::region* pRgnUpdate, LPRECT lpRectUpdate) override;
+//                    ::draw2d::region* pRgnUpdate, LPRECT32 lpRectUpdate) override;
 //
 //      // font Functions
-//      bool GetCharWidth(UINT nFirstChar, UINT nLastChar, LPINT lpBuffer) override;
-//      bool GetOutputCharWidth(UINT nFirstChar, UINT nLastChar, LPINT lpBuffer) override;
-//      DWORD SetMapperFlags(DWORD dwFlag) override;
+//      bool GetCharWidth(::u32 nFirstChar, ::u32 nLastChar, LPINT lpBuffer) override;
+//      bool GetOutputCharWidth(::u32 nFirstChar, ::u32 nLastChar, LPINT lpBuffer) override;
+//      ::u32 SetMapperFlags(::u32 dwFlag) override;
 //      size GetAspectRatioFilter() override;
 //
-//      //xxx      bool GetCharABCWidths(UINT nFirstChar, UINT nLastChar, LPABC lpabc) const;
-//      DWORD GetFontData(DWORD dwTable, DWORD dwOffset, LPVOID lpData, DWORD cbData) override;
+//      //xxx      bool GetCharABCWidths(::u32 nFirstChar, ::u32 nLastChar, LPABC lpabc) const;
+//      ::u32 GetFontData(::u32 dwTable, ::u32 dwOffset, LPVOID lpData, ::u32 cbData) override;
 //      //xxx      i32 GetKerningPairs(i32 nPairs, LPKERNINGPAIR lpkrnpair) const;
-//      //xxx      UINT GetOutlineTextMetrics(UINT cbData, LPOUTLINETEXTMETRIC lpotm) const;
-//      //xxx      DWORD GetGlyphOutline(UINT nChar, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, LPGLYPHMETRICS lpgm,
-//      //xxx    DWORD cbBuffer, LPVOID lpBuffer, const MAT2* lpmat2) const;
+//      //xxx      ::u32 GetOutlineTextMetrics(::u32 cbData, LPOUTLINETEXTMETRIC lpotm) const;
+//      //xxx      ::u32 GetGlyphOutline(::u32 nChar, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, LPGLYPHMETRICS lpgm,
+//      //xxx    ::u32 cbBuffer, LPVOID lpBuffer, const MAT2* lpmat2) const;
 //
-//      //xxx      bool GetCharABCWidths(UINT nFirstChar, UINT nLastChar,
+//      //xxx      bool GetCharABCWidths(::u32 nFirstChar, ::u32 nLastChar,
 //      //xxx         LPABCFLOAT lpABCF) const;
-//      bool GetCharWidth(UINT nFirstChar, UINT nLastChar,
+//      bool GetCharWidth(::u32 nFirstChar, ::u32 nLastChar,
 //                        float* lpFloatBuffer) override;
 //
-//      DWORD GetFontLanguageInfo() override;
+//      ::u32 GetFontLanguageInfo() override;
 //
 //#if (_WIN32_WINNT >= 0x0500)
 //
-//      bool GetCharABCWidthsI(UINT giFirst, UINT cgi, LPWORD pgi, LPABC lpabc) const;
-//      bool GetCharWidthI(UINT giFirst, UINT cgi, LPWORD pgi, LPINT lpBuffer) const;
+//      bool GetCharABCWidthsI(::u32 giFirst, ::u32 cgi, LPWORD pgi, LPABC lpabc) const;
+//      bool GetCharWidthI(::u32 giFirst, ::u32 cgi, LPWORD pgi, LPINT lpBuffer) const;
 //
 //#endif
 //
@@ -460,7 +460,7 @@ namespace draw2d_quartz2d
       // MetaFile Functions
       //xxx      bool PlayMetaFile(HMETAFILE hMF);
       bool PlayMetaFile(HENHMETAFILE hEnhMetaFile, const ::rect & rectBounds);
-      bool AddMetaFileComment(UINT nDataSize, const BYTE* pCommentData) override;
+      bool AddMetaFileComment(::u32 nDataSize, const byte* pCommentData) override;
       // can be used for enhanced metafiles only
 
       // Path Functions
@@ -486,7 +486,7 @@ namespace draw2d_quartz2d
 
       float GetMiterLimit() override;
       bool SetMiterLimit(float fMiterLimit) override;
-      i32 GetPath(LPPOINT lpPoints, LPBYTE lpTypes, i32 nCount) ;
+      i32 GetPath(POINT32 * lpPoints, LPBYTE lpTypes, i32 nCount) ;
       //bool SelectClipPath(i32 nMode) override;
 
       // Misc Helper Functions

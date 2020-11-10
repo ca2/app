@@ -39,7 +39,7 @@ void defer_term_ui();
 CLASS_DECL_ACME bool is_verbose();
 
 
-int_bool point_is_window_origin(POINT ptHitTest, oswindow oswindowExclude, int iMargin);
+int_bool point_is_window_origin(POINT32 ptHitTest, oswindow oswindowExclude, int iMargin);
 
 #ifdef _UWP
 
@@ -178,7 +178,7 @@ namespace apex
    }
    
 
-   index session::get_main_monitor(RECT* prect)
+   index session::get_main_monitor(RECT32* prect)
    {
 
       return -1;
@@ -194,7 +194,7 @@ namespace apex
    }
 
    
-   bool  session::get_monitor_rect(index iMonitor, RECT* prect)
+   bool  session::get_monitor_rect(index iMonitor, RECT32* prect)
    {
 
       return false;
@@ -210,7 +210,7 @@ namespace apex
    }
 
 
-   bool  session::get_desk_monitor_rect(index iMonitor, RECT* prect)
+   bool  session::get_desk_monitor_rect(index iMonitor, RECT32* prect)
    {
 
       return false;
@@ -218,7 +218,7 @@ namespace apex
    }
 
 
-   index session::get_main_wkspace(RECT* prect)
+   index session::get_main_wkspace(RECT32* prect)
    {
 
       return -1;
@@ -234,7 +234,7 @@ namespace apex
    }
 
 
-   bool  session::get_wkspace_rect(index iWkspace, RECT* prect)
+   bool  session::get_wkspace_rect(index iWkspace, RECT32* prect)
    {
 
       return false;
@@ -250,7 +250,7 @@ namespace apex
    }
   
    
-   bool  session::get_desk_wkspace_rect(index iWkspace, RECT* prect)
+   bool  session::get_desk_wkspace_rect(index iWkspace, RECT32* prect)
    {
 
       return false;
@@ -274,7 +274,7 @@ namespace apex
    }
 
 
-   bool session::wkspace_to_monitor(RECT* prect, index iMonitor, index iWkspace)
+   bool session::wkspace_to_monitor(RECT32* prect, index iMonitor, index iWkspace)
    {
 
       return false;
@@ -282,7 +282,7 @@ namespace apex
    }
 
 
-   bool session::monitor_to_wkspace(RECT* prect, index iWkspace, index iMonitor)
+   bool session::monitor_to_wkspace(RECT32* prect, index iWkspace, index iMonitor)
    {
 
       return false;
@@ -290,7 +290,7 @@ namespace apex
    }
 
 
-   bool session::wkspace_to_monitor(RECT* prect)
+   bool session::wkspace_to_monitor(RECT32* prect)
    {
 
       return false;
@@ -298,7 +298,7 @@ namespace apex
    }
 
 
-   bool session::monitor_to_wkspace(RECT* prect)
+   bool session::monitor_to_wkspace(RECT32* prect)
    {
 
       return false;
@@ -313,7 +313,7 @@ namespace apex
    }
 
 
-   COLORREF session::get_default_color(u64 ui)
+   color32_t session::get_default_color(u64 ui)
    {
 
       switch (ui)
@@ -1233,7 +1233,7 @@ namespace apex
    //}
 
 
-  void session::get_cursor_pos(LPPOINT ppoint)
+  void session::get_cursor_pos(POINT32 * ppoint)
   {
 
 
@@ -1241,7 +1241,7 @@ namespace apex
 //     if (m_bSystemSynchronizedCursor)
 //     {
 //
-//        POINT point;
+//        POINT32 point;
 //
 //        ::GetCursorPos(&point);
 //
@@ -1623,7 +1623,7 @@ namespace apex
    }
 
 
-   index session::get_best_monitor(RECT * prect, const rect & rectParam, ::eactivation eactivation)
+   index session::get_best_monitor(RECT32 * prect, const rect & rectParam, ::eactivation eactivation)
    {
 
       index iMatchingMonitor = -1;
@@ -1781,7 +1781,7 @@ namespace apex
    }
 
 
-   index session::get_good_iconify(RECT * prect, const rect & rectParam)
+   index session::get_good_iconify(RECT32 * prect, const rect & rectParam)
    {
 
       ::rect rectMonitor;
@@ -1801,7 +1801,7 @@ namespace apex
    }
 
 
-   //index session::initial_frame_position(RECT * prect, const rect & rectParam, bool bMove, ::user::interaction * pinteraction)
+   //index session::initial_frame_position(RECT32 * prect, const rect & rectParam, bool bMove, ::user::interaction * pinteraction)
    //{
 
    //   ::rect rectRestore(rectParam);
@@ -1908,7 +1908,7 @@ namespace apex
    //}
 
 
-   //index session::get_window_restore_1(RECT * prect, const rect & rectParam, ::user::interaction * pinteraction, edisplay edisplayRestore)
+   //index session::get_window_restore_1(RECT32 * prect, const rect & rectParam, ::user::interaction * pinteraction, edisplay edisplayRestore)
    //{
 
    //   ::rect rectRestore(rectParam);
@@ -2006,7 +2006,7 @@ namespace apex
    //}
 
 
-   //index session::get_window_restore_2(RECT* prect, const rect& rectParam, ::user::interaction* pinteraction, edisplay edisplayRestore)
+   //index session::get_window_restore_2(RECT32* prect, const rect& rectParam, ::user::interaction* pinteraction, edisplay edisplayRestore)
    //{
 
    //   ::rect rect(rectParam);
@@ -2192,7 +2192,7 @@ namespace apex
    //}
 
 
-   //index session::get_good_move(RECT * prect, const rect & rectParam, ::user::interaction * pinteraction)
+   //index session::get_good_move(RECT32 * prect, const rect & rectParam, ::user::interaction * pinteraction)
    //{
 
    //   index iMatchingMonitor = initial_frame_position(prect, rectParam, true, pinteraction);
@@ -2469,7 +2469,7 @@ ret:
    }
 
 
-   ::estatus session::defer_initialize_host_window(LPCRECT lpcrect)
+   ::estatus session::defer_initialize_host_window(LPCRECT32 lpcrect)
    {
 
       return ::success;
@@ -2596,7 +2596,7 @@ ret:
    }
 
 
-   DWORD session::get_Long_PhRESSing_time()
+   ::u32 session::get_Long_PhRESSing_time()
    {
 
       return m_dwLongPhRESSingTime;

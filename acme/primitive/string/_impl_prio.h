@@ -51,14 +51,14 @@ inline T FormatArgument(T value) noexcept
 
 }
 
-
-inline UINT _gen_GetConversionACP()
+#ifdef WINDOWS
+inline ::u32 _gen_GetConversionACP()
 {
 
    return CP_UTF8;
 
 }
-
+#endif
 
 class fixed_alloc_array;
 

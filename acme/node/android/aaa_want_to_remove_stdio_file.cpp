@@ -24,7 +24,7 @@
 //   }
 //
 //
-//   ::status::result stdio_file::open(const ::file::path & lpszFileName, UINT nOpenFlags)
+//   ::status::result stdio_file::open(const ::file::path & lpszFileName, ::u32 nOpenFlags)
 //   {
 //      ASSERT(lpszFileName != nullptr);
 //      //ASSERT(AfxIsValidString(lpszFileName));
@@ -110,9 +110,9 @@
 //
 ////   ASSERT(fx_is_valid_address(lpBuf, nCount));
 //
-//      UINT nRead = 0;
+//      ::u32 nRead = 0;
 //
-//      if ((nRead = fread(lpBuf, sizeof(BYTE), nCount, m_pStream)) == 0 && !feof(m_pStream))
+//      if ((nRead = fread(lpBuf, sizeof(byte), nCount, m_pStream)) == 0 && !feof(m_pStream))
 //         ::file::throw_status(error_file, errno, m_strFileName);
 //      if (ferror(m_pStream))
 //      {
@@ -128,7 +128,7 @@
 //      ASSERT(m_pStream != nullptr);
 ////   ASSERT(fx_is_valid_address(lpBuf, nCount, FALSE));
 //
-//      if (fwrite(lpBuf, sizeof(BYTE), nCount, m_pStream) != nCount)
+//      if (fwrite(lpBuf, sizeof(byte), nCount, m_pStream) != nCount)
 //         ::file::throw_status(error_file, errno, m_strFileName);
 //   }
 //
@@ -143,7 +143,7 @@
 //   }
 //
 //
-//   LPTSTR stdio_file::read_string(LPTSTR lpsz, UINT nMax)
+//   LPTSTR stdio_file::read_string(LPTSTR lpsz, ::u32 nMax)
 //   {
 //
 //      ASSERT(lpsz != nullptr);
@@ -220,7 +220,7 @@
 //         ::file::throw_status(error_diskFull, errno, m_strFileName);
 //   }*/
 //
-//   /*unichar * stdio_file::read_string(unichar * lpsz, UINT nMax)
+//   /*unichar * stdio_file::read_string(unichar * lpsz, ::u32 nMax)
 //   {
 //      ASSERT(lpsz != nullptr);
 //      ASSERT(fx_is_valid_address(lpsz, nMax));
@@ -352,9 +352,9 @@
 //   {
 //      ASSERT_VALID(this);
 //
-//      LONG nCurrent;
-//      LONG nLength;
-//      LONG nResult;
+//      ::i32 nCurrent;
+//      ::i32 nLength;
+//      ::i32 nResult;
 //
 //      nCurrent = ftell(m_pStream);
 //      if (nCurrent == -1)

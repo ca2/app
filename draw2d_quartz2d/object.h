@@ -22,7 +22,7 @@ namespace draw2d_quartz2d
       
       
       i32 get_object(i32 nCount, LPVOID lpObject) const;
-      UINT GetObjectType() const;
+      ::u32 GetObjectType() const;
       bool CreateStockObject(i32 nIndex);
       bool UnrealizeObject();
       bool operator==(const ::draw2d::object& obj) const;

@@ -143,7 +143,7 @@ Display * g_pdisplayX11= nullptr;
 int g_fdX11[2] = {};
 
 
-int_bool _x11_get_cursor_pos(Display * d, LPPOINT ppointCursor);
+int_bool _x11_get_cursor_pos(Display * d, POINT32 * ppointCursor);
 
 
 ::mutex * g_pmutexX11 = nullptr;
@@ -162,7 +162,7 @@ void wm_state_hidden_raw(oswindow w, bool bSet);
 CLASS_DECL_CORE int_bool mq_remove_window_from_all_queues(oswindow oswindow);
 
 
-int_bool x11_get_cursor_pos(LPPOINT ppointCursor);
+int_bool x11_get_cursor_pos(POINT32 * ppointCursor);
 
 
 
@@ -459,7 +459,7 @@ void unmapped_net_state_raw(Display * d, Window w, ...)
 }
 
 
-int_bool x11_get_window_rect(Display * d, Window window, RECT * prect)
+int_bool x11_get_window_rect(Display * d, Window window, RECT32 * prect)
 
 {
 
@@ -900,7 +900,7 @@ bool x11_window_list(Display *disp, array < Window > & windowa)
 
 }
 
-bool point_is_window_origin(POINT pointHitTest, oswindow oswindowExclude, int iMargin)
+bool point_is_window_origin(POINT32 pointHitTest, oswindow oswindowExclude, int iMargin)
 {
 
    bool bIsOrigin = false;
@@ -1791,7 +1791,7 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 #define SIZEY  50
 
 
-void message_box_paint(::draw2d::graphics_pointer & pgraphics, string_array & stra, bool_array  & baTab, int_array  & ya,SIZE * psize)
+void message_box_paint(::draw2d::graphics_pointer & pgraphics, string_array & stra, bool_array  & baTab, int_array  & ya,SIZE32 * psize)
 {
 
    sync_lock sl(x11_mutex());
@@ -2762,8 +2762,8 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e, XGenericEventC
 void x11_post_message(MESSAGE & msg);
 
 bool g_bSkipMouseMessageInXcess = true;
-DWORD g_dwLastMotion = 0;
-DWORD g_dwMotionSkipTimeout = 23;
+::u32 g_dwLastMotion = 0;
+::u32 g_dwMotionSkipTimeout = 23;
 
 #ifdef XDISPLAY_LOCK_LOG
 
@@ -4144,7 +4144,7 @@ namespace user
 //} // namespace aura
 //
 
-int_bool set_window_pos(oswindow hwnd, oswindow hwndInsertAfter, i32 x, i32 y, i32 cx, i32 cy, UINT nFlags)
+int_bool set_window_pos(oswindow hwnd, oswindow hwndInsertAfter, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags)
 {
 
    sync_lock sl(x11_mutex());
@@ -4157,7 +4157,7 @@ int_bool set_window_pos(oswindow hwnd, oswindow hwndInsertAfter, i32 x, i32 y, i
 
 
 
-int_bool get_window_rect(oswindow hwnd, RECT * prect)
+int_bool get_window_rect(oswindow hwnd, RECT32 * prect)
 {
 
    sync_lock sl(x11_mutex());
@@ -4178,7 +4178,7 @@ int_bool get_window_rect(oswindow hwnd, RECT * prect)
 }
 
 
-int_bool get_client_rect(oswindow window, RECT * prect)
+int_bool get_client_rect(oswindow window, RECT32 * prect)
 {
 
    sync_lock sl(x11_mutex());
@@ -4220,7 +4220,7 @@ int_bool get_client_rect(oswindow window, RECT * prect)
 }
 
 
-int_bool ca2_GetClientRect(oswindow window, RECT * prect)
+int_bool ca2_GetClientRect(oswindow window, RECT32 * prect)
 {
 
    sync_lock sl(window->m_pimpl->m_puserinteraction->mutex());
@@ -4324,7 +4324,7 @@ HCURSOR imaging::load_default_cursor(e_cursor ecursor)
 
 
 
-int_bool x11_get_cursor_pos(LPPOINT ppointCursor)
+int_bool x11_get_cursor_pos(POINT32 * ppointCursor)
 {
 
    Window root_return;
@@ -4369,7 +4369,7 @@ int_bool x11_get_cursor_pos(LPPOINT ppointCursor)
 }
 
 
-int_bool GetCursorPos(LPPOINT ppointCursor)
+int_bool GetCursorPos(POINT32 * ppointCursor)
 {
 
    x11_sync([&]()
@@ -4803,7 +4803,7 @@ HCURSOR imaging::CreateAlphaCursor(oswindow window, const ::image * pimage, int 
 
 
 
-int_bool WINAPI SetWindowPos(oswindow hWnd,oswindow hWndInsertAfter,i32 X,i32 Y,i32 cx,i32 cy,UINT uFlags)
+int_bool WINAPI SetWindowPos(oswindow hWnd,oswindow hWndInsertAfter,i32 X,i32 Y,i32 cx,i32 cy,::u32 uFlags)
 {
 
    return hWnd->set_window_pos(hWndInsertAfter, X, Y, cx, cy, uFlags);

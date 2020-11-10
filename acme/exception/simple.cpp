@@ -59,7 +59,7 @@
 //}
 //
 //
-//bool ::exception::exception::get_error_message(string & str,PUINT pnHelpContext)
+//bool ::exception::exception::get_error_message(string & str,P::u32 pnHelpContext)
 //{
 //
 //   str = what();

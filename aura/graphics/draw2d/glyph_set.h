@@ -20,9 +20,9 @@ namespace draw2d
 
       void quick_sort();
 
-      index find_first(UINT user);
+      index find_first(::u32 user);
 
-      glyph * GetGlyph(UINT user);
+      glyph * GetGlyph(::u32 user);
 
 
    };

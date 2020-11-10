@@ -32,7 +32,7 @@ namespace uwp
    }
 
 
-   i32 shell::get_image_by_extension(const image_key & imagekey, COLORREF crBk)
+   i32 shell::get_image_by_extension(const image_key & imagekey, color32_t crBk)
    {
 
       i32 iImage = -1;

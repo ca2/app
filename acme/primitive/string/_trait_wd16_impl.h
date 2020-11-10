@@ -343,7 +343,7 @@ namespace str
 
       strsize nLen = utf_to_utf_length(bstr, pchData, nDataLength);
 
-      bstr = ::SysAllocStringLen(nullptr, (UINT)nLen);
+      bstr = ::SysAllocStringLen(nullptr, (::u32)nLen);
 
       if (bstr != nullptr)
       {
@@ -363,7 +363,7 @@ namespace str
 
       strsize nLen = utf_to_utf_length(pbstr, pchData, nDataLength);
 
-      bool bSuccess = ::SysReAllocStringLen(pbstr, nullptr, (UINT)nLen) != 0;
+      bool bSuccess = ::SysReAllocStringLen(pbstr, nullptr, (::u32)nLen) != 0;
 
       if (bSuccess)
       {
@@ -380,7 +380,7 @@ namespace str
 #endif
 
 
-   u32 format_message(u32 dwFlags, LPCVOID pSource, u32 dwMessageID, u32 dwLanguageID, wd16char * pszBuffer, u32 nSize, va_list * pArguments) noexcept
+   u32 format_message(u32 dwFlags, const void * pSource, u32 dwMessageID, u32 dwLanguageID, wd16char * pszBuffer, u32 nSize, va_list * pArguments) noexcept
    {
 
 #ifdef WINDOWS

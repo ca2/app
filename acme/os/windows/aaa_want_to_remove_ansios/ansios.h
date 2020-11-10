@@ -7,6 +7,6 @@
 
 
 
-//extern int_bool (* g_messageboxa)(oswindow interaction_impl, const char * psz, const char * pszTitle, uint32_t uiFlags);
+//extern int_bool (* g_messageboxa)(oswindow interaction_impl, const char * psz, const char * pszTitle, ::u32 uiFlags);
 
 

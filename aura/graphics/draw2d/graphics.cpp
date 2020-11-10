@@ -451,7 +451,7 @@ namespace draw2d
    }
 
 
-   //COLORREF graphics::GetNearestColor(const ::color & colorColor)
+   //color32_t graphics::GetNearestColor(const ::color & colorColor)
    //{
 
    //   UNREFERENCED_PARAMETER(crColor);
@@ -461,7 +461,7 @@ namespace draw2d
    //}
 
 
-   //UINT graphics::RealizePalette()
+   //::u32 graphics::RealizePalette()
    //{
 
 
@@ -545,7 +545,7 @@ namespace draw2d
    point graphics::GetViewportOrg()
    {
 
-      return ::point((LONG)m_matrixViewport.c1, (LONG) m_matrixViewport.c2);
+      return ::point((::i32)m_matrixViewport.c1, (::i32) m_matrixViewport.c2);
 
    }
 
@@ -624,7 +624,7 @@ namespace draw2d
    }
 
 
-   void graphics::DPtoLP(LPPOINT ppoints, count nCount)
+   void graphics::DPtoLP(POINT32 * ppoints, count nCount)
 
    {
 
@@ -638,7 +638,7 @@ namespace draw2d
    }
 
 
-   void graphics::DPtoLP(RECT * rect)
+   void graphics::DPtoLP(RECT32 * rect)
 
    {
       UNREFERENCED_PARAMETER(rect);
@@ -646,7 +646,7 @@ namespace draw2d
 
    }
 
-   void graphics::LPtoDP(LPPOINT ppoints, count nCount)
+   void graphics::LPtoDP(POINT32 * ppoints, count nCount)
 
    {
       UNREFERENCED_PARAMETER(ppoints);
@@ -655,7 +655,7 @@ namespace draw2d
 
    }
 
-   void graphics::LPtoDP(RECT * rect)
+   void graphics::LPtoDP(RECT32 * rect)
 
    {
       UNREFERENCED_PARAMETER(rect);
@@ -987,7 +987,7 @@ namespace draw2d
    }
 
 
-   bool graphics::Polyline(const POINT * ppoints, count nCount)
+   bool graphics::Polyline(const POINT32 * ppoints, count nCount)
    {
 
       UNREFERENCED_PARAMETER(ppoints);
@@ -1048,7 +1048,7 @@ namespace draw2d
 
    }
 
-   bool graphics::DrawIcon(i32 x, i32 y, ::draw2d::icon * picon, i32 cx, i32 cy, UINT istepIfAniCur, HBRUSH hbrFlickerFreeDraw, UINT diFlags)
+   bool graphics::DrawIcon(i32 x, i32 y, ::draw2d::icon * picon, i32 cx, i32 cy, ::u32 istepIfAniCur, HBRUSH hbrFlickerFreeDraw, ::u32 diFlags)
    {
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
@@ -1065,7 +1065,7 @@ namespace draw2d
    }
 
 
-   bool graphics::DrawState(const ::point & point, const ::size & size, HBITMAP hBitmap, UINT nFlags, HBRUSH hBrush)
+   bool graphics::DrawState(const ::point & point, const ::size & size, HBITMAP hBitmap, ::u32 nFlags, HBRUSH hBrush)
    {
 
       UNREFERENCED_PARAMETER(point);
@@ -1080,7 +1080,7 @@ namespace draw2d
    }
 
 
-   bool graphics::DrawState(const ::point & point, const ::size & size, ::draw2d::bitmap* pBitmap, UINT nFlags, ::draw2d::brush* pBrush)
+   bool graphics::DrawState(const ::point & point, const ::size & size, ::draw2d::bitmap* pBitmap, ::u32 nFlags, ::draw2d::brush* pBrush)
    {
 
       UNREFERENCED_PARAMETER(point);
@@ -1096,7 +1096,7 @@ namespace draw2d
 #ifdef WINDOWS
 
 
-   bool graphics::DrawState(const ::point & point, const ::size & size, HICON hIcon, UINT nFlags, HBRUSH hBrush)
+   bool graphics::DrawState(const ::point & point, const ::size & size, HICON hIcon, ::u32 nFlags, HBRUSH hBrush)
    {
 
       UNREFERENCED_PARAMETER(point);
@@ -1111,7 +1111,7 @@ namespace draw2d
    }
 
 
-   bool graphics::DrawState(const ::point & point, const ::size & size, HICON hIcon, UINT nFlags, ::draw2d::brush* pBrush)
+   bool graphics::DrawState(const ::point & point, const ::size & size, HICON hIcon, ::u32 nFlags, ::draw2d::brush* pBrush)
    {
 
       UNREFERENCED_PARAMETER(point);
@@ -1128,7 +1128,7 @@ namespace draw2d
 #endif
 
 
-   bool graphics::DrawState(const ::point & point, const ::size & size, const char * pszText, UINT nFlags, bool bPrefixText, i32 nTextLen, HBRUSH hBrush)
+   bool graphics::DrawState(const ::point & point, const ::size & size, const char * pszText, ::u32 nFlags, bool bPrefixText, i32 nTextLen, HBRUSH hBrush)
    {
 
       UNREFERENCED_PARAMETER(point);
@@ -1146,7 +1146,7 @@ namespace draw2d
    }
 
 
-   bool graphics::DrawState(const ::point & point, const ::size & size, const char * pszText, UINT nFlags, bool bPrefixText, i32 nTextLen, ::draw2d::brush* pBrush)
+   bool graphics::DrawState(const ::point & point, const ::size & size, const char * pszText, ::u32 nFlags, bool bPrefixText, i32 nTextLen, ::draw2d::brush* pBrush)
    {
 
       UNREFERENCED_PARAMETER(point);
@@ -1168,7 +1168,7 @@ namespace draw2d
 #ifdef WINDOWS_DESKTOP
 
 
-   bool graphics::DrawState(const ::point & point, const ::size & size, DRAWSTATEPROC pDrawProc, LPARAM lData, UINT nFlags, HBRUSH hBrush)
+   bool graphics::DrawState(const ::point & point, const ::size & size, DRAWSTATEPROC pDrawProc, LPARAM lData, ::u32 nFlags, HBRUSH hBrush)
    {
 
       UNREFERENCED_PARAMETER(point);
@@ -1185,7 +1185,7 @@ namespace draw2d
    }
 
 
-   bool graphics::DrawState(const ::point & point, const ::size & size, DRAWSTATEPROC pDrawProc, LPARAM lData, UINT nFlags, ::draw2d::brush* pBrush)
+   bool graphics::DrawState(const ::point & point, const ::size & size, DRAWSTATEPROC pDrawProc, LPARAM lData, ::u32 nFlags, ::draw2d::brush* pBrush)
    {
 
       UNREFERENCED_PARAMETER(point);
@@ -1205,7 +1205,7 @@ namespace draw2d
 #endif
 
 
-   bool graphics::DrawEdge(const rect & rect, UINT nEdge, UINT nFlags)
+   bool graphics::DrawEdge(const rect & rect, ::u32 nEdge, ::u32 nFlags)
    {
 
       UNREFERENCED_PARAMETER(rect);
@@ -1218,7 +1218,7 @@ namespace draw2d
    }
 
 
-   bool graphics::DrawFrameControl(const rect & rect, UINT nType, UINT nState)
+   bool graphics::DrawFrameControl(const rect & rect, ::u32 nType, ::u32 nState)
    {
 
       UNREFERENCED_PARAMETER(rect);
@@ -1468,7 +1468,7 @@ namespace draw2d
    }
 
 
-   bool graphics::fill_polygon(const POINT * ppoints, count nCount)
+   bool graphics::fill_polygon(const POINT32 * ppoints, count nCount)
 
    {
 
@@ -1482,7 +1482,7 @@ namespace draw2d
    }
 
 
-   bool graphics::draw_polygon(const POINT * ppoints, count nCount)
+   bool graphics::draw_polygon(const POINT32 * ppoints, count nCount)
 
    {
 
@@ -1496,7 +1496,7 @@ namespace draw2d
    }
 
 
-   bool graphics::polygon(const POINT * ppoints, count nCount)
+   bool graphics::polygon(const POINT32 * ppoints, count nCount)
    {
 
       bool bOk1 = fill_polygon(ppoints, nCount);
@@ -1520,7 +1520,7 @@ namespace draw2d
    }
 
 
-   bool graphics::poly_polygon(const POINT * ppoints, const i32 * pPolyCounts, count nCount)
+   bool graphics::poly_polygon(const POINT32 * ppoints, const i32 * pPolyCounts, count nCount)
    {
 
       bool bOk1 = fill_poly_polygon(ppoints, pPolyCounts, nCount);
@@ -1543,7 +1543,7 @@ namespace draw2d
    }
 
 
-   bool graphics::draw_poly_polygon(const POINT * ppoints, const i32 * pPolyCounts, count nCount)
+   bool graphics::draw_poly_polygon(const POINT32 * ppoints, const i32 * pPolyCounts, count nCount)
    {
 
       bool bOk = true;
@@ -1595,7 +1595,7 @@ namespace draw2d
    }
 
 
-   bool graphics::fill_poly_polygon(const POINT * ppoints, const i32 * pPolyCounts, count nCount)
+   bool graphics::fill_poly_polygon(const POINT32 * ppoints, const i32 * pPolyCounts, count nCount)
    {
 
       bool bOk = true;
@@ -1853,7 +1853,7 @@ namespace draw2d
 
          ::rect rectIntersect(m_pointAlphaBlend, m_pimageAlphaBlend->get_size());
 
-         ::rect rectBlt(point((LONG)x, (LONG)y), ::size(nWidth, nHeight));
+         ::rect rectBlt(point((::i32)x, (::i32)y), ::size(nWidth, nHeight));
 
          if (rectIntersect.intersect(rectIntersect, rectBlt))
          {
@@ -2077,15 +2077,15 @@ namespace draw2d
 
          ::rect rectIntersect(m_pointAlphaBlend, m_pimageAlphaBlend->get_size());
 
-         ::rect rectBlt(point((LONG)xDst, (LONG)yDst), size((LONG)nDstWidth, (LONG)nDstHeight));
+         ::rect rectBlt(point((::i32)xDst, (::i32)yDst), size((::i32)nDstWidth, (::i32)nDstHeight));
 
          if (rectIntersect.intersect(rectIntersect, rectBlt))
          {
 
             ::point pointSrc(xSrc, ySrc);
-            ::point pointDst((LONG)xDst, (LONG)yDst);
+            ::point pointDst((::i32)xDst, (::i32)yDst);
             ::size sizeSrc(nSrcWidth, nSrcHeight);
-            ::size sizeDst((LONG)nDstWidth, (LONG)nDstHeight);
+            ::size sizeDst((::i32)nDstWidth, (::i32)nDstHeight);
 
             //::image_pointer pimage1 = create_image(sizeDst);
 
@@ -2114,8 +2114,8 @@ namespace draw2d
 
             //pimage2->fill(255, 0, 0, 0);
 
-            //pimage2->from(point((LONG)max(0, m_pointAlphaBlend.x - xDst), (LONG)max(0, m_pointAlphaBlend.y - yDst)),
-            //            m_pimageAlphaBlend->g(), point((LONG)max(0, xDst - m_pointAlphaBlend.x), (LONG)max(0, yDst - m_pointAlphaBlend.y)), sizeDst);
+            //pimage2->from(point((::i32)max(0, m_pointAlphaBlend.x - xDst), (::i32)max(0, m_pointAlphaBlend.y - yDst)),
+            //            m_pimageAlphaBlend->g(), point((::i32)max(0, xDst - m_pointAlphaBlend.x), (::i32)max(0, yDst - m_pointAlphaBlend.y)), sizeDst);
 
             //pimage1->channel_multiply(::color::channel_alpha, pimage2);
 
@@ -2127,7 +2127,7 @@ namespace draw2d
 
             pimage1->from(nullptr, pgraphicsSrc, ::point(xSrc, ySrc), ::size(nSrcWidth, nSrcHeight));
 
-            pimage1->blend2(::point(), m_pimageAlphaBlend, ::point((LONG)(xDst-m_pointAlphaBlend.x), (LONG)(yDst-m_pointAlphaBlend.y)), ::size(nSrcWidth, nSrcHeight), 255);
+            pimage1->blend2(::point(), m_pimageAlphaBlend, ::point((::i32)(xDst-m_pointAlphaBlend.x), (::i32)(yDst-m_pointAlphaBlend.y)), ::size(nSrcWidth, nSrcHeight), 255);
 
             StretchBltRaw(xDst, yDst, nDstWidth, nDstHeight, pimage1->g(), 0, 0, nSrcWidth, nSrcHeight, SRCCOPY);
 
@@ -2230,7 +2230,7 @@ namespace draw2d
    }
 
 
-   bool graphics::ExtFloodFill(i32 x, i32 y, const ::color& color, UINT nFillType)
+   bool graphics::ExtFloodFill(i32 x, i32 y, const ::color& color, ::u32 nFillType)
    {
 
       UNREFERENCED_PARAMETER(x);
@@ -2322,7 +2322,7 @@ namespace draw2d
 
       //size.cy = size.cy * 110 / 100;
 
-      ::rect rectText(point((LONG)x, (LONG)y), size);
+      ::rect rectText(point((::i32)x, (::i32)y), size);
 
       if (rectIntersect.intersect(rectIntersect, rectText))
       {
@@ -2355,7 +2355,7 @@ namespace draw2d
    }
 
 
-   bool graphics::ExtTextOut(i32 x, i32 y, UINT nOptions, const ::rect & rect, const char * pszString, strsize nCount, i32 * pDxWidths)
+   bool graphics::ExtTextOut(i32 x, i32 y, ::u32 nOptions, const ::rect & rect, const char * pszString, strsize nCount, i32 * pDxWidths)
    {
 
       UNREFERENCED_PARAMETER(x);
@@ -2370,7 +2370,7 @@ namespace draw2d
       return false;
    }
 
-   bool graphics::ExtTextOut(i32 x, i32 y, UINT nOptions, const ::rect & rect, const string & str, i32 * pDxWidths)
+   bool graphics::ExtTextOut(i32 x, i32 y, ::u32 nOptions, const ::rect & rect, const string & str, i32 * pDxWidths)
 
    {
       UNREFERENCED_PARAMETER(x);
@@ -2488,7 +2488,7 @@ namespace draw2d
       return false;
    }
 
-   UINT graphics::GetTextAlign()
+   ::u32 graphics::GetTextAlign()
    {
 
       return -1;
@@ -2548,7 +2548,7 @@ namespace draw2d
 //      return -1;
 //   }
 //
-//   bool graphics::GetCharWidth(UINT nFirstChar, UINT nLastChar, i32 * pBuffer)
+//   bool graphics::GetCharWidth(::u32 nFirstChar, ::u32 nLastChar, i32 * pBuffer)
 //
 //   {
 //      UNREFERENCED_PARAMETER(nFirstChar);
@@ -2559,7 +2559,7 @@ namespace draw2d
 //      return false;
 //   }
 //
-//   bool graphics::GetOutputCharWidth(UINT nFirstChar, UINT nLastChar, i32 * pBuffer)
+//   bool graphics::GetOutputCharWidth(::u32 nFirstChar, ::u32 nLastChar, i32 * pBuffer)
 //
 //   {
 //      UNREFERENCED_PARAMETER(nFirstChar);
@@ -2612,7 +2612,7 @@ namespace draw2d
 //      return size(0, 0);
 //   }
 
-   //bool graphics::ScrollDC(i32 dx, i32 dy, const rect &  pRectScroll, const rect &  pRectClip, ::draw2d::region * pRgnUpdate, RECT * pRectUpdate)
+   //bool graphics::ScrollDC(i32 dx, i32 dy, const rect &  pRectScroll, const rect &  pRectClip, ::draw2d::region * pRgnUpdate, RECT32 * pRectUpdate)
 
    //{
    //   UNREFERENCED_PARAMETER(dx);
@@ -2644,7 +2644,7 @@ namespace draw2d
    //}
 
    // ::draw2d::graphics_pointer 3.1 Specific functions
-   UINT graphics::SetBoundsRect(const rect &  pRectBounds, UINT flags)
+   ::u32 graphics::SetBoundsRect(const rect &  pRectBounds, ::u32 flags)
 
    {
       UNREFERENCED_PARAMETER(pRectBounds);
@@ -2654,7 +2654,7 @@ namespace draw2d
       return -1;
    }
 
-   UINT graphics::GetBoundsRect(RECT * pRectBounds, UINT flags)
+   ::u32 graphics::GetBoundsRect(RECT32 * pRectBounds, ::u32 flags)
 
    {
       UNREFERENCED_PARAMETER(pRectBounds);
@@ -2680,7 +2680,7 @@ namespace draw2d
 
 //#ifdef WINDOWS_DESKTOP
 //
-//   UINT graphics::GetOutlineTextMetrics(UINT cbData, LPOUTLINETEXTMETRICW potm)
+//   ::u32 graphics::GetOutlineTextMetrics(::u32 cbData, LPOUTLINETEXTMETRICW potm)
 //
 //   {
 //      UNREFERENCED_PARAMETER(cbData);
@@ -2690,7 +2690,7 @@ namespace draw2d
 //      return -1;
 //   }
 //
-//   bool graphics::GetCharABCWidths(UINT nFirstChar, UINT nLastChar, LPABC pabc)
+//   bool graphics::GetCharABCWidths(::u32 nFirstChar, ::u32 nLastChar, LPABC pabc)
 //
 //   {
 //      UNREFERENCED_PARAMETER(nFirstChar);
@@ -2727,7 +2727,7 @@ namespace draw2d
 //      return -1;
 //   }
 //
-//   u32 graphics::GetGlyphOutline(UINT nChar, const ::e_align & ealign, const ::e_draw_text & edrawtext, LPGLYPHMETRICS pgm,  u32 cbBuffer, LPVOID pBuffer, const MAT2* pmat2)
+//   u32 graphics::GetGlyphOutline(::u32 nChar, const ::e_align & ealign, const ::e_draw_text & edrawtext, LPGLYPHMETRICS pgm,  u32 cbBuffer, LPVOID pBuffer, const MAT2* pmat2)
 //
 //
 //
@@ -2816,7 +2816,7 @@ namespace draw2d
 
       return false;
    }
-   bool graphics::PlgBlt(LPPOINT pPoint, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc,
+   bool graphics::PlgBlt(POINT32 * pPoint, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc,
 
                          i32 nWidth, i32 nHeight, ::draw2d::bitmap& maskBitmap, i32 xMask, i32 yMask)
    {
@@ -2892,7 +2892,7 @@ namespace draw2d
    }
 
 
-   bool graphics::PolyPolyline(const POINT * ppoints, const INT * pPolyPoints, count nCount)
+   bool graphics::PolyPolyline(const POINT32 * ppoints, const INT * pPolyPoints, count nCount)
 
 
    {
@@ -2963,7 +2963,7 @@ namespace draw2d
    }
 
 
-   bool graphics::PolyBezier(const POINT * ppoints, count nCount)
+   bool graphics::PolyBezier(const POINT32 * ppoints, count nCount)
 
    {
 
@@ -3005,7 +3005,7 @@ namespace draw2d
 //
 //#ifdef WINDOWS_DESKTOP
 //
-//   bool graphics::GetCharABCWidths(UINT nFirstChar, UINT nLastChar, LPABCFLOAT pABCF)
+//   bool graphics::GetCharABCWidths(::u32 nFirstChar, ::u32 nLastChar, LPABCFLOAT pABCF)
 //
 //   {
 //      UNREFERENCED_PARAMETER(nFirstChar);
@@ -3018,7 +3018,7 @@ namespace draw2d
 //
 //#endif
 //
-//   bool graphics::GetCharWidth(UINT nFirstChar, UINT nLastChar, float * pFloatBuffer)
+//   bool graphics::GetCharWidth(::u32 nFirstChar, ::u32 nLastChar, float * pFloatBuffer)
 //
 //   {
 //      UNREFERENCED_PARAMETER(nFirstChar);
@@ -3100,7 +3100,7 @@ namespace draw2d
    }
 
 
-   i32 graphics::GetPath(LPPOINT ppoints, byte * pTypes, count nCount)
+   i32 graphics::GetPath(POINT32 * ppoints, byte * pTypes, count nCount)
 
 
    {
@@ -3212,7 +3212,7 @@ namespace draw2d
    }
 
 
-   bool graphics::AddMetaFileComment(UINT nDataSize, const BYTE* pCommentData)
+   bool graphics::AddMetaFileComment(::u32 nDataSize, const byte* pCommentData)
    {
       UNREFERENCED_PARAMETER(nDataSize);
       UNREFERENCED_PARAMETER(pCommentData);
@@ -3235,7 +3235,7 @@ namespace draw2d
 #endif
 
    bool graphics::TransparentBlt(i32 xDest, i32 yDest, i32 nDestWidth, i32 nDestHeight,
-                                 ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight, UINT crTransparent)
+                                 ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight, ::u32 crTransparent)
    {
       UNREFERENCED_PARAMETER(xDest);
       UNREFERENCED_PARAMETER(yDest);
@@ -3264,7 +3264,7 @@ namespace draw2d
 
 //#ifdef WINDOWS
 //
-//   COLORREF graphics::GetDCBrushColor()
+//   color32_t graphics::GetDCBrushColor()
 //   {
 //
 //      return 0;
@@ -3281,13 +3281,13 @@ namespace draw2d
 //   //}
 //
 //
-//   COLORREF graphics::GetDCPenColor()
+//   color32_t graphics::GetDCPenColor()
 //   {
 //
 //      return 0;
 //   }
 //
-//   COLORREF graphics::SetDCPenColor(const ::color & colorColor)
+//   color32_t graphics::SetDCPenColor(const ::color & colorColor)
 //   {
 //      UNREFERENCED_PARAMETER(crColor);
 //
@@ -3296,7 +3296,7 @@ namespace draw2d
 
 //#ifndef _UWP
 //
-//   bool graphics::GetCharABCWidthsI(UINT giFirst, UINT cgi, LPWORD pgi, LPABC pabc)
+//   bool graphics::GetCharABCWidthsI(::u32 giFirst, ::u32 cgi, LPWORD pgi, LPABC pabc)
 //
 //   {
 //      UNREFERENCED_PARAMETER(giFirst);
@@ -3308,7 +3308,7 @@ namespace draw2d
 //      return false;
 //   }
 //
-//   bool graphics::GetCharWidthI(UINT giFirst, UINT cgi, LPWORD pgi, i32 * pBuffer)
+//   bool graphics::GetCharWidthI(::u32 giFirst, ::u32 cgi, LPWORD pgi, i32 * pBuffer)
 //
 //   {
 //      UNREFERENCED_PARAMETER(giFirst);
@@ -3613,7 +3613,7 @@ namespace draw2d
 
       update_matrix();
 
-      return ::point((LONG)m_matrixViewport.c1, (LONG)m_matrixViewport.c2);
+      return ::point((::i32)m_matrixViewport.c1, (::i32)m_matrixViewport.c2);
 
    }
 
@@ -3639,7 +3639,7 @@ namespace draw2d
 
       update_matrix();
 
-      return point((LONG)m_matrixViewport.c1, (LONG)m_matrixViewport.c2);
+      return point((::i32)m_matrixViewport.c1, (::i32)m_matrixViewport.c2);
 
    }
 
@@ -3721,7 +3721,7 @@ namespace draw2d
    }
 
 
-   i32 graphics::GetClipBox(RECT * rect)
+   i32 graphics::GetClipBox(RECT32 * rect)
    {
 
       UNREFERENCED_PARAMETER(rect);
@@ -3891,7 +3891,7 @@ namespace draw2d
 //   }
 
 
-   UINT graphics::SetTextAlign(UINT nFlags)
+   ::u32 graphics::SetTextAlign(::u32 nFlags)
    {
       UNREFERENCED_PARAMETER(nFlags);
 
@@ -3957,7 +3957,7 @@ namespace draw2d
       return -1;
    }
 
-   bool graphics::PolyDraw(const POINT * ppoints, const BYTE* pTypes, count nCount)
+   bool graphics::PolyDraw(const POINT32 * ppoints, const byte* pTypes, count nCount)
 
 
    {
@@ -3970,7 +3970,7 @@ namespace draw2d
       return false;
    }
 
-   bool graphics::PolylineTo(const POINT * ppoints, count nCount)
+   bool graphics::PolylineTo(const POINT32 * ppoints, count nCount)
 
    {
       UNREFERENCED_PARAMETER(ppoints);
@@ -3999,7 +3999,7 @@ namespace draw2d
 //#endif
 
 
-   bool graphics::PolyBezierTo(const POINT * ppoints, count nCount)
+   bool graphics::PolyBezierTo(const POINT32 * ppoints, count nCount)
 
    {
       UNREFERENCED_PARAMETER(ppoints);
@@ -4944,7 +4944,7 @@ namespace draw2d
 
          ::rect rectIntersect(m_pointAlphaBlend, m_pimageAlphaBlend->size());
 
-         ::rect rectBlt(point((LONG)xDest, (LONG)yDest), size(nDestWidth, nDestHeight));
+         ::rect rectBlt(point((::i32)xDest, (::i32)yDest), size(nDestWidth, nDestHeight));
 
          if (rectIntersect.intersect(rectIntersect, rectBlt))
          {
@@ -5587,7 +5587,7 @@ namespace draw2d
 
       rect.left = 0;
       rect.top = 0;
-      rect.right = (LONG) sz.cx;
+      rect.right = (::i32) sz.cx;
       rect.bottom = iLineSpacing;
 
       //::e_align e_align;
@@ -5943,14 +5943,14 @@ namespace draw2d
 
          //m_ppen->m_elinecapBeg = ::draw2d::e_line_cap_flat;
          //m_ppen->m_elinecapEnd = ::draw2d::e_line_cap_flat;
-         //move_to(rect.top_left() + ::size(0,(LONG) (pen->m_dWidth/2.0)));
-         //line_to(rect.top_right() + ::size(0,(LONG)(pen->m_dWidth / 2.0)));
-         //move_to(rect.top_left() + ::size(0,(LONG)(pen->m_dWidth)));
-         //line_to(rect.top_right() + ::size(0,(LONG)(pen->m_dWidth)));
-         //move_to(rect.top_left() + ::size(0,(LONG)(pen->m_dWidth *3.0 / 2.0)));
-         //line_to(rect.top_right() + ::size(0,(LONG)(pen->m_dWidth *3.0 / 2.0)));
-         //move_to(rect.top_left() + ::size(0,(LONG)(pen->m_dWidth*2.0)));
-         //line_to(rect.top_right() + ::size(0,(LONG)(pen->m_dWidth*2.0)));
+         //move_to(rect.top_left() + ::size(0,(::i32) (pen->m_dWidth/2.0)));
+         //line_to(rect.top_right() + ::size(0,(::i32)(pen->m_dWidth / 2.0)));
+         //move_to(rect.top_left() + ::size(0,(::i32)(pen->m_dWidth)));
+         //line_to(rect.top_right() + ::size(0,(::i32)(pen->m_dWidth)));
+         //move_to(rect.top_left() + ::size(0,(::i32)(pen->m_dWidth *3.0 / 2.0)));
+         //line_to(rect.top_right() + ::size(0,(::i32)(pen->m_dWidth *3.0 / 2.0)));
+         //move_to(rect.top_left() + ::size(0,(::i32)(pen->m_dWidth*2.0)));
+         //line_to(rect.top_right() + ::size(0,(::i32)(pen->m_dWidth*2.0)));
 
       }
       else if(eicon == stock_icon_restore)
@@ -6004,14 +6004,14 @@ namespace draw2d
          rect.deflate(0, rect.height() / 7.0);
 
 
-         move_to(rect.bottom_left() - ::size(0,(LONG)(m_ppen->m_dWidth*2.0)));
-         line_to(rect.bottom_right() - ::size(0,(LONG)(m_ppen->m_dWidth*2.0)));
-         move_to(rect.bottom_left() - ::size(0,(LONG)(m_ppen->m_dWidth*3.0 / 2.0)));
-         line_to(rect.bottom_right() - ::size(0,(LONG)(m_ppen->m_dWidth*3.0 / 2.0)));
-         move_to(rect.bottom_left() - ::size(0,(LONG)(m_ppen->m_dWidth)));
-         line_to(rect.bottom_right() - ::size(0,(LONG)(m_ppen->m_dWidth)));
-         move_to(rect.bottom_left() - ::size(0,(LONG)(m_ppen->m_dWidth / 2.0)));
-         line_to(rect.bottom_right() - ::size(0,(LONG)(m_ppen->m_dWidth / 2.0)));
+         move_to(rect.bottom_left() - ::size(0,(::i32)(m_ppen->m_dWidth*2.0)));
+         line_to(rect.bottom_right() - ::size(0,(::i32)(m_ppen->m_dWidth*2.0)));
+         move_to(rect.bottom_left() - ::size(0,(::i32)(m_ppen->m_dWidth*3.0 / 2.0)));
+         line_to(rect.bottom_right() - ::size(0,(::i32)(m_ppen->m_dWidth*3.0 / 2.0)));
+         move_to(rect.bottom_left() - ::size(0,(::i32)(m_ppen->m_dWidth)));
+         line_to(rect.bottom_right() - ::size(0,(::i32)(m_ppen->m_dWidth)));
+         move_to(rect.bottom_left() - ::size(0,(::i32)(m_ppen->m_dWidth / 2.0)));
+         line_to(rect.bottom_right() - ::size(0,(::i32)(m_ppen->m_dWidth / 2.0)));
          move_to(rect.bottom_left());
          line_to(rect.bottom_right());
 
@@ -6165,7 +6165,7 @@ namespace draw2d
 
          auto scan = pimage->scan_size();
 
-         auto wscan = scan / sizeof(COLORREF);
+         auto wscan = scan / sizeof(color32_t);
 
          for(double dx = 0; dx < w; dx+=dStep)
          {
@@ -6626,10 +6626,10 @@ namespace draw2d
 
          float* point = &pts[i * 2];
 
-         move_to(::point((LONG) point[0], (LONG)point[1]));
-         line_to(::point((LONG)point[2], (LONG)point[3]));
-         line_to(::point((LONG)point[4], (LONG)point[5]));
-         line_to(::point((LONG)point[6], (LONG)point[7]));
+         move_to(::point((::i32) point[0], (::i32)point[1]));
+         line_to(::point((::i32)point[2], (::i32)point[3]));
+         line_to(::point((::i32)point[4], (::i32)point[5]));
+         line_to(::point((::i32)point[6], (::i32)point[7]));
 
       }
 

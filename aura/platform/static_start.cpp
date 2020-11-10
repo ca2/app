@@ -1040,7 +1040,7 @@ namespace aura
 
 
 
-//CLASS_DECL_AURA COLORREF dk_red() // <3 tbs
+//CLASS_DECL_AURA color32_t dk_red() // <3 tbs
 //{
 //   return ARGB(255, 200, 16, 46);
 //}

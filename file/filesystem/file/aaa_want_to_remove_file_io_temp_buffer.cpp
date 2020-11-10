@@ -16,7 +16,7 @@ namespace file
 
    static const u32 kTempBufSize = (1 << 20);
 
-   static LPCSTR kTempFilePrefixString = "7zt";
+   static const char * kTempFilePrefixString = "7zt";
 
    temp_io_buffer::temp_io_buffer()
    {

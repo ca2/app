@@ -23,7 +23,7 @@ namespace filemanager
       double dSoft = 184.6;
       i32 iRight = ileft + cx;
       i32 iMaxW = iRight - iW;
-      COLORREF cr;
+      color32_t cr;
       for(x = ileft; x < iMaxW; x+=iW)
       {
          cr = RGB(
@@ -70,8 +70,8 @@ namespace filemanager
       rectProgress = rectClient;
       //rectProgress.left += 23;
       //rectProgress.right -= 23;
-      rectProgress.top += (LONG)dTop;
-      rectProgress.bottom = (LONG)(dTop + dBarHeight);
+      rectProgress.top += (::i32)dTop;
+      rectProgress.bottom = (::i32)(dTop + dBarHeight);
       double dProgressL = 0.0;
       double dProgressU;
       double dProgressD = 1.0 / (double)iLineCount;
@@ -97,8 +97,8 @@ namespace filemanager
                   rectBar.right - rectBar.left,rectBar.bottom - rectBar.top,m_dAnime);
          }
          dTop += dBarHeight;
-         rectProgress.top = (LONG)dTop;
-         rectProgress.bottom = (LONG)(dTop + dBarHeight);
+         rectProgress.top = (::i32)dTop;
+         rectProgress.bottom = (::i32)(dTop + dBarHeight);
          dProgressL = dProgressU;
       }
       //::fill_rect(hdc, &rectProgress, g_hbrushProgress1);

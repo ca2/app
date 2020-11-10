@@ -226,7 +226,7 @@ void window_copy(CGRect * prectTarget, const ::rect * prectSource)
 }
 
 
-void window_copy(RECT * prectTarget, const CGRect * prectSource)
+void window_copy(RECT32 * prectTarget, const CGRect * prectSource)
 {
 
    CGRect rectWorkspace = mm_get_workspace_rect();
@@ -238,7 +238,7 @@ void window_copy(RECT * prectTarget, const CGRect * prectSource)
 
 }
 
-void copy(CGPoint * ppointTarget, const POINT * ppointSource)
+void copy(CGPoint * ppointTarget, const POINT32 * ppointSource)
 {
 
    ppointTarget->x      = ppointSource->x;
@@ -247,7 +247,7 @@ void copy(CGPoint * ppointTarget, const POINT * ppointSource)
 }
 
 
-void copy(POINT * ppointTarget, const CGPoint * ppointSource)
+void copy(POINT32 * ppointTarget, const CGPoint * ppointSource)
 {
 
    ppointTarget->x      = ppointSource->x;
@@ -272,7 +272,7 @@ void copy(POINTD * ppointTarget, const CGPoint * ppointSource)
 
 }
 
-void copy(CGRect * prectTarget, const RECT * prectSource)
+void copy(CGRect * prectTarget, const RECT32 * prectSource)
 {
 
    prectTarget->origin.x      = prectSource->left;
@@ -283,7 +283,7 @@ void copy(CGRect * prectTarget, const RECT * prectSource)
 }
 
 
-void copy(RECT * prectTarget, const CGRect * prectSource)
+void copy(RECT32 * prectTarget, const CGRect * prectSource)
 {
    
    prectTarget->left          = prectSource->origin.x;

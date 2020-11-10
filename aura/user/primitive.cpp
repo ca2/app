@@ -93,7 +93,7 @@ namespace user
 //   }
 //
 //
-//   bool primitive::RedrawOptimize(RECT * prectOut, const rect & rect1Param, const rect & rect2Param)
+//   bool primitive::RedrawOptimize(RECT32 * prectOut, const rect & rect1Param, const rect & rect2Param)
 //   {
 //
 //      ::rect rect1(rect1Param);
@@ -358,7 +358,7 @@ namespace user
    //}
 
 
-   /*bool primitive::_001ClientToScreen(RECT * prect)
+   /*bool primitive::_001ClientToScreen(RECT32 * prect)
    {
 
       ::offset_rect(prect, client_screen_top_left());
@@ -378,7 +378,7 @@ namespace user
    }
 */
 
-   //bool primitive::_001ClientToScreen(LPPOINT ppoint)
+   //bool primitive::_001ClientToScreen(POINT32 * ppoint)
    //{
 
    //   ::offset_point(ppoint, client_screen_top_left());
@@ -418,7 +418,7 @@ namespace user
    //}
 
 
-   //bool primitive::_001ScreenToClient(RECT * prect)
+   //bool primitive::_001ScreenToClient(RECT32 * prect)
    //{
 
    //   ::offset_rect(prect, -client_screen_top_left());
@@ -438,7 +438,7 @@ namespace user
    //}
 
 
-   //bool primitive::_001ScreenToClient(LPPOINT ppoint)
+   //bool primitive::_001ScreenToClient(POINT32 * ppoint)
    //{
 
    //   ::offset_point(ppoint, -client_screen_top_left());
@@ -478,7 +478,7 @@ namespace user
    //}
 
 
-   //bool primitive::GetWindowPos(RECT * prect)
+   //bool primitive::GetWindowPos(RECT32 * prect)
    //{
 
    //   ::exception::throw_interface_only();
@@ -488,7 +488,7 @@ namespace user
    //}
 
 
-   //bool primitive::get_window_rect(RECT * prect)
+   //bool primitive::get_window_rect(RECT32 * prect)
    //{
 
    //   ::exception::throw_interface_only();
@@ -506,7 +506,7 @@ namespace user
    //}
 
 
-   //bool primitive::get_client_rect(RECT * prect)
+   //bool primitive::get_client_rect(RECT32 * prect)
    //{
 
    //   ::exception::throw_interface_only();
@@ -676,7 +676,7 @@ namespace user
 
 
 
-   //bool primitive::SetPlacement(const ::rect & rect,UINT nFlags)
+   //bool primitive::SetPlacement(const ::rect & rect,::u32 nFlags)
    //{
 
    //   ::exception::throw_interface_only();
@@ -728,7 +728,7 @@ namespace user
    //}
 
 
-   //i32 primitive::sync_message_box_timeout(const char * pszMessage, ::duration durationTimeOut, UINT fuStyle)
+   //i32 primitive::sync_message_box_timeout(const char * pszMessage, ::duration durationTimeOut, ::u32 fuStyle)
    //{
 
    //   return Application.sync_message_box_timeout(this, pszMessage, get_title(), durationTimeOut, fuStyle);
@@ -767,7 +767,7 @@ namespace user
    //}
 
 
-   //void primitive::message_box_timeout(string strMessage, ::duration durationTimeout, UINT fuStyle)
+   //void primitive::message_box_timeout(string strMessage, ::duration durationTimeout, ::u32 fuStyle)
    //{
 
    //   fork([=]()
@@ -788,7 +788,7 @@ namespace user
    //}
 
 
-   //bool primitive::RepositionWindow(i32 x,i32 y,i32 cx,i32 cy,UINT nFlags)
+   //bool primitive::RepositionWindow(i32 x,i32 y,i32 cx,i32 cy,::u32 nFlags)
    //{
 
    //   ::exception::throw_interface_only();
@@ -798,7 +798,7 @@ namespace user
    //}
 
 
-   //bool primitive::MoveWindow(i32 x,i32 y,UINT nFlags)
+   //bool primitive::MoveWindow(i32 x,i32 y,::u32 nFlags)
    //{
 
    //   ::exception::throw_interface_only();
@@ -818,7 +818,7 @@ namespace user
    //}
 
 
-   //bool primitive::SizeWindow(i32 cx,i32 cy,UINT nFlags)
+   //bool primitive::SizeWindow(i32 cx,i32 cy,::u32 nFlags)
    //{
 
    //   ::exception::throw_interface_only();
@@ -838,7 +838,7 @@ namespace user
    //}
 
 
-   //bool primitive::ResizeWindow(i32 cx,i32 cy,UINT nFlags)
+   //bool primitive::ResizeWindow(i32 cx,i32 cy,::u32 nFlags)
    //{
 
    //   ::exception::throw_interface_only();
@@ -848,7 +848,7 @@ namespace user
    //}
 
 
-   //bool primitive::ResizeWindow(const size & sz,UINT nFlags)
+   //bool primitive::ResizeWindow(const size & sz,::u32 nFlags)
    //{
 
    //   ::exception::throw_interface_only();
@@ -858,7 +858,7 @@ namespace user
    //}
 
 
-   //bool primitive::set_window_pos(class zorder zorder, const ::rect & rect, UINT nFlags)
+   //bool primitive::set_window_pos(class zorder zorder, const ::rect & rect, ::u32 nFlags)
 
    //{
 
@@ -868,7 +868,7 @@ namespace user
 
    //}
 
-   //bool primitive::defer_set_window_pos(iptr z, const  const rect & & rect, UINT nFlags) // only set_windows_pos if get_parent()->_001ScreenToClient(get_window_rect) different of rect(x, y, cx, cy)
+   //bool primitive::defer_set_window_pos(iptr z, const  const rect & & rect, ::u32 nFlags) // only set_windows_pos if get_parent()->_001ScreenToClient(get_window_rect) different of rect(x, y, cx, cy)
    //{
 
    //   ::exception::throw_interface_only();
@@ -878,7 +878,7 @@ namespace user
    //}
 
 
-   //bool primitive::defer_set_window_pos(iptr z,i32 x,i32 y,i32 cx,i32 cy,UINT nFlags) // only set_windows_pos if get_parent()->_001ScreenToClient(get_window_rect) different of rect(x, y, cx, cy)
+   //bool primitive::defer_set_window_pos(iptr z,i32 x,i32 y,i32 cx,i32 cy,::u32 nFlags) // only set_windows_pos if get_parent()->_001ScreenToClient(get_window_rect) different of rect(x, y, cx, cy)
    //{
 
    //   ::exception::throw_interface_only();
@@ -1061,7 +1061,7 @@ namespace user
    //}
 
 
-   bool primitive::ModifyStyle(u32 dwRemove,u32 dwAdd,UINT nFlags)
+   bool primitive::ModifyStyle(u32 dwRemove,u32 dwAdd,::u32 nFlags)
    {
 
       ::exception::throw_interface_only();
@@ -1071,7 +1071,7 @@ namespace user
    }
 
 
-   bool primitive::ModifyStyleEx(u32 dwRemove,u32 dwAdd,UINT nFlags)
+   bool primitive::ModifyStyleEx(u32 dwRemove,u32 dwAdd,::u32 nFlags)
    {
 
       ::exception::throw_interface_only();
@@ -1225,7 +1225,7 @@ namespace user
    }
 
 
-   LONG primitive::get_window_long(i32 nIndex) const
+   ::i32 primitive::get_window_long(i32 nIndex) const
    {
 
       ::exception::throw_interface_only();
@@ -1235,7 +1235,7 @@ namespace user
    }
 
 
-   LONG primitive::set_window_long(i32 nIndex,LONG lValue)
+   ::i32 primitive::set_window_long(i32 nIndex,::i32 lValue)
    {
 
       ::exception::throw_interface_only();
@@ -1265,7 +1265,7 @@ namespace user
    }
 
 
-   bool primitive::RedrawWindow(const ::rect& rectUpdate, ::draw2d::region * prgnUpdate, UINT flags)
+   bool primitive::RedrawWindow(const ::rect& rectUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
    {
 
       ::exception::throw_interface_only();
@@ -1285,7 +1285,7 @@ namespace user
    }
 
 
-   ::user::interaction * primitive::ChildWindowFromPoint(const ::point & point,UINT nFlags)
+   ::user::interaction * primitive::ChildWindowFromPoint(const ::point & point,::u32 nFlags)
    {
 
       ::exception::throw_interface_only();
@@ -1295,7 +1295,7 @@ namespace user
    }
 
 
-   ::user::interaction * primitive::get_next_window(UINT nFlag)
+   ::user::interaction * primitive::get_next_window(::u32 nFlag)
    {
 
       if(nFlag == GW_HWNDNEXT)
@@ -1346,7 +1346,7 @@ namespace user
    }
 
 
-   ::user::interaction * primitive::get_wnd(UINT nCmd) const
+   ::user::interaction * primitive::get_wnd(::u32 nCmd) const
    {
 
       ::exception::throw_interface_only();
@@ -1609,7 +1609,7 @@ namespace user
    }
 
 
-   void primitive::CalcWindowRect(RECT * prect,UINT nAdjustType)
+   void primitive::CalcWindowRect(RECT32 * prect,::u32 nAdjustType)
 
    {
 
@@ -1618,7 +1618,7 @@ namespace user
    }
 
 
-   void primitive::RepositionBars(UINT nIDFirst, UINT nIDLast, ::id idLeftOver, UINT nFlag, RECT * prectParam, const ::rect & rectClient, bool bStretch)
+   void primitive::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::id idLeftOver, ::u32 nFlag, RECT32 * prectParam, const ::rect & rectClient, bool bStretch)
    {
 
       ::exception::throw_interface_only();
@@ -1758,7 +1758,7 @@ namespace user
    }
 
 
-   void primitive::viewport_client_to_screen(POINT * ppt)
+   void primitive::viewport_client_to_screen(POINT32 * ppt)
    {
 
       ::exception::throw_interface_only();
@@ -1766,7 +1766,7 @@ namespace user
    }
 
 
-   void primitive::viewport_screen_to_client(POINT * ppt)
+   void primitive::viewport_screen_to_client(POINT32 * ppt)
    {
 
       ::exception::throw_interface_only();
@@ -1774,7 +1774,7 @@ namespace user
    }
 
 
-   void primitive::viewport_client_to_screen(RECT * prect)
+   void primitive::viewport_client_to_screen(RECT32 * prect)
    {
 
       ::exception::throw_interface_only();
@@ -1782,7 +1782,7 @@ namespace user
    }
 
 
-   void primitive::viewport_screen_to_client(RECT * prect)
+   void primitive::viewport_screen_to_client(RECT32 * prect)
    {
 
       ::exception::throw_interface_only();
@@ -1959,7 +1959,7 @@ namespace user
    }
 
 
-   bool primitive::GetUpdateRect(RECT * prect,bool bErase)
+   bool primitive::GetUpdateRect(RECT32 * prect,bool bErase)
 
    {
 
@@ -2157,7 +2157,7 @@ namespace user
    }
 
 
-   bool primitive::SetTimer(uptr uEvent,UINT nElapse, PFN_TIMER pfnTimer)
+   bool primitive::SetTimer(uptr uEvent,::u32 nElapse, PFN_TIMER pfnTimer)
    {
 
       ::exception::throw_interface_only();
@@ -2603,7 +2603,7 @@ namespace user
    }
 
 
-   bool primitive::GetFocusRect(RECT* prect)
+   bool primitive::GetFocusRect(RECT32* prect)
    {
 
       return false;
@@ -2992,7 +2992,7 @@ namespace user
    }
 
 
-   //bool primitive::set_window_pos(class zorder zorder, i32 x, i32 y, i32 cx, i32 cy, UINT nFlags)
+   //bool primitive::set_window_pos(class zorder zorder, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags)
    //{
 
    //   ::exception::throw_interface_only();
@@ -3475,7 +3475,7 @@ namespace user
    //}
 
 
-   bool primitive::SetPlacement(const ::rect & rect, UINT nFlags)
+   bool primitive::SetPlacement(const ::rect & rect, ::u32 nFlags)
    {
 
       UNREFERENCED_PARAMETER(rect);

@@ -105,7 +105,7 @@ CLASS_DECL_ACME void set_simple_ui_darkness(int iWeatherDarkness)
 }
 
 
-COLORREF argb_swap_rb(COLORREF cr)
+color32_t argb_swap_rb(color32_t cr)
 {
 
    return ARGB(

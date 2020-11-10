@@ -1,7 +1,7 @@
 #pragma once
 
 
-typedef DWORD thread_data_index;
+typedef ::u32 thread_data_index;
 
 
 CLASS_DECL_ACME::estatus init_gdi_plus();
@@ -16,8 +16,8 @@ class memory;
 
 
 CLASS_DECL_ACME string key_to_char(WPARAM wparam, LPARAM lparam);
-CLASS_DECL_ACME string read_resource_as_string(HINSTANCE hinst, UINT nID, const char * pcszType, strsize iReadAtMostByteCount = -1);
-CLASS_DECL_ACME bool read_resource_as_memory(memory & m, HINSTANCE hinst, UINT nID, const char * pcszType, strsize iReadAtMostByteCount = -1);
+CLASS_DECL_ACME string read_resource_as_string(HINSTANCE hinst, ::u32 nID, const char * pcszType, strsize iReadAtMostByteCount = -1);
+CLASS_DECL_ACME bool read_resource_as_memory(memory & m, HINSTANCE hinst, ::u32 nID, const char * pcszType, strsize iReadAtMostByteCount = -1);
 
 
 CLASS_DECL_ACME HANDLE dup_handle(HANDLE h);

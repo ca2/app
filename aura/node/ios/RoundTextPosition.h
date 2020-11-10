@@ -53,9 +53,9 @@
 
 @interface RoundTextPosition : UITextPosition
 
-@property (nonatomic) NSUInteger index;
+@property (nonatomic) NS::u32eger index;
 @property (nonatomic) id <UITextInputDelegate> inputDelegate;
 
-+ (instancetype)positionWithIndex:(NSUInteger)index;
++ (instancetype)positionWithIndex:(NS::u32eger)index;
 
 @end

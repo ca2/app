@@ -5020,7 +5020,7 @@ namespace user
    }
 
 
-   LONG interaction::get_window_long(i32 nIndex) const
+   ::i32 interaction::get_window_long(i32 nIndex) const
    {
 
       if (m_pimpl == nullptr)
@@ -5035,7 +5035,7 @@ namespace user
    }
 
 
-   LONG interaction::set_window_long(i32 nIndex, LONG lValue)
+   ::i32 interaction::set_window_long(i32 nIndex, ::i32 lValue)
    {
 
       if (m_pimpl == nullptr)
@@ -5103,7 +5103,7 @@ namespace user
    }
 
 
-   bool interaction::RedrawWindow(const ::rect& rectUpdate, ::draw2d::region* prgnUpdate, UINT flags)
+   bool interaction::RedrawWindow(const ::rect& rectUpdate, ::draw2d::region* prgnUpdate, ::u32 flags)
    {
 
       if (m_pimpl == nullptr)
@@ -5133,7 +5133,7 @@ namespace user
    }
 
 
-   ::user::interaction * interaction::ChildWindowFromPoint(const ::point & point, UINT nFlags)
+   ::user::interaction * interaction::ChildWindowFromPoint(const ::point & point, ::u32 nFlags)
    {
 
       if (m_pimpl == nullptr)
@@ -5148,7 +5148,7 @@ namespace user
    }
 
 
-   ::user::interaction * interaction::get_next_window(UINT nFlag)
+   ::user::interaction * interaction::get_next_window(::u32 nFlag)
    {
 
       if (m_pimpl == nullptr)
@@ -5268,7 +5268,7 @@ namespace user
    }
 
 
-   ::user::interaction * interaction::get_wnd(UINT nCmd) const
+   ::user::interaction * interaction::get_wnd(::u32 nCmd) const
    {
 
       if (m_pimpl == nullptr)
@@ -5738,7 +5738,7 @@ namespace user
    }
 
 
-   bool interaction::ModifyStyle(u32 dwRemove, u32 dwAdd, UINT nFlags)
+   bool interaction::ModifyStyle(u32 dwRemove, u32 dwAdd, ::u32 nFlags)
    {
 
       if (m_pimpl == nullptr)
@@ -5753,7 +5753,7 @@ namespace user
    }
 
 
-   bool interaction::ModifyStyleEx(u32 dwRemove, u32 dwAdd, UINT nFlags)
+   bool interaction::ModifyStyleEx(u32 dwRemove, u32 dwAdd, ::u32 nFlags)
    {
 
       if (m_pimpl == nullptr)
@@ -5972,7 +5972,7 @@ namespace user
    }
 
 
-   void interaction::CalcWindowRect(RECT * prect, UINT nAdjustType)
+   void interaction::CalcWindowRect(RECT32 * prect, ::u32 nAdjustType)
    {
 
       if (m_pimpl == nullptr)
@@ -5987,7 +5987,7 @@ namespace user
    }
 
 
-   void interaction::RepositionBars(UINT nIDFirst, UINT nIDLast, ::id idLeftOver, UINT nFlag, RECT * prectParam, const ::rect & rectClient, bool bStretch)
+   void interaction::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::id idLeftOver, ::u32 nFlag, RECT32 * prectParam, const ::rect & rectClient, bool bStretch)
    {
 
       if (m_pimpl == nullptr)
@@ -6182,7 +6182,7 @@ namespace user
    }
 
 
-   void interaction::viewport_client_to_screen(POINT * ppt)
+   void interaction::viewport_client_to_screen(POINT32 * ppt)
    {
 
       m_pimpl->viewport_client_to_screen(ppt);
@@ -6198,7 +6198,7 @@ namespace user
    }
 
 
-   void interaction::viewport_screen_to_client(POINT * ppt)
+   void interaction::viewport_screen_to_client(POINT32 * ppt)
    {
 
       if (m_pimpl.is_null())
@@ -6213,22 +6213,22 @@ namespace user
    }
 
 
-   void interaction::viewport_client_to_screen(RECT * prect)
+   void interaction::viewport_client_to_screen(RECT32 * prect)
    {
 
-      viewport_client_to_screen((POINT *)&prect->left);
+      viewport_client_to_screen((POINT32 *)&prect->left);
 
-      viewport_client_to_screen((POINT *)&prect->right);
+      viewport_client_to_screen((POINT32 *)&prect->right);
 
    }
 
 
-   void interaction::viewport_screen_to_client(RECT * prect)
+   void interaction::viewport_screen_to_client(RECT32 * prect)
    {
 
-      viewport_screen_to_client((POINT *)&prect->left);
+      viewport_screen_to_client((POINT32 *)&prect->left);
 
-      viewport_screen_to_client((POINT *)&prect->right);
+      viewport_screen_to_client((POINT32 *)&prect->right);
 
    }
 
@@ -7059,7 +7059,7 @@ namespace user
    }
 
 
-   bool interaction::GetUpdateRect(RECT * prect, bool bErase)
+   bool interaction::GetUpdateRect(RECT32 * prect, bool bErase)
    {
 
       if (m_pimpl == nullptr)
@@ -7819,7 +7819,7 @@ namespace user
 
       _001OnTimer(&timer);
 
-      return SetTimer(uEvent, (UINT) durationElapse.get_total_milliseconds(), pfnTimer);
+      return SetTimer(uEvent, (::u32) durationElapse.get_total_milliseconds(), pfnTimer);
 
    }
 
@@ -7834,12 +7834,12 @@ namespace user
 
       }
 
-      return SetTimer(uEvent, (UINT) durationElapse.get_total_milliseconds(), pfnTimer);
+      return SetTimer(uEvent, (::u32) durationElapse.get_total_milliseconds(), pfnTimer);
 
    }
 
 
-   bool interaction::SetTimer(uptr uEvent, UINT nElapse, PFN_TIMER pfnTimer)
+   bool interaction::SetTimer(uptr uEvent, ::u32 nElapse, PFN_TIMER pfnTimer)
    {
 
       if (m_pimpl == nullptr)
@@ -9187,7 +9187,7 @@ restart:
    }
 
 
-   void interaction::get_child_rect(RECT* prect)
+   void interaction::get_child_rect(RECT32* prect)
    {
 
       get_client_rect(prect);
@@ -9630,7 +9630,7 @@ restart:
 
          ::ScreenToClient(oswindow, pointCursor);
 
-         RECT rectClient;
+         RECT32 rectClient;
 
          ::GetClientRect(oswindow, &rectClient);
 
@@ -10238,7 +10238,7 @@ restart:
    }
 
 
-   ::user::interaction * interaction::best_top_level_parent(RECT * prect)
+   ::user::interaction * interaction::best_top_level_parent(RECT32 * prect)
    {
 
       __pointer(::user::interaction) pinteraction = GetTopLevel();
@@ -10345,7 +10345,7 @@ restart:
    }
 
 
-   index interaction::best_monitor(RECT * prect, const ::rect & rect, bool bSet, ::eactivation eactivation, ::zorder zorderParam)
+   index interaction::best_monitor(RECT32 * prect, const ::rect & rect, bool bSet, ::eactivation eactivation, ::zorder zorderParam)
    {
 
       ::rect rectSample;
@@ -10429,7 +10429,7 @@ restart:
    }
 
 
-   index interaction::best_wkspace(RECT * prect, const ::rect & rect, bool bSet, ::eactivation eactivation, ::zorder zorderParam)
+   index interaction::best_wkspace(RECT32 * prect, const ::rect & rect, bool bSet, ::eactivation eactivation, ::zorder zorderParam)
    {
 
       ::rect rectWindow;
@@ -10606,7 +10606,7 @@ restart:
    }
 
 
-   index interaction::calculate_broad_and_compact_restore(RECT* prectWkspace, SIZE * psizeMin, const ::rect& rectHint)
+   index interaction::calculate_broad_and_compact_restore(RECT32* prectWkspace, SIZE32 * psizeMin, const ::rect& rectHint)
    {
 
       ::rect rectRestore(rectHint);
@@ -10681,7 +10681,7 @@ restart:
    //}
 
 
-   index interaction::make_zoneing(RECT * prect, const ::rect & rect, bool bSet, edisplay * pedisplay, ::eactivation eactivation, ::zorder zorderParam)
+   index interaction::make_zoneing(RECT32 * prect, const ::rect & rect, bool bSet, edisplay * pedisplay, ::eactivation eactivation, ::zorder zorderParam)
    {
 
       if (pedisplay == nullptr || !is_docking_appearance(*pedisplay))
@@ -10771,7 +10771,7 @@ restart:
    }
 
 
-   index interaction::best_zoneing(RECT * prect, const ::rect & rect, bool bSet, edisplay * pedisplay, ::eactivation eactivation, ::zorder zorderParam)
+   index interaction::best_zoneing(RECT32 * prect, const ::rect & rect, bool bSet, edisplay * pedisplay, ::eactivation eactivation, ::zorder zorderParam)
    {
 
       edisplay edisplay;
@@ -10831,7 +10831,7 @@ restart:
    }
 
 
-   index interaction::good_restore(RECT * prect, const ::rect & rect, bool bSet, ::eactivation eactivation, ::zorder zorderParam, edisplay edisplay)
+   index interaction::good_restore(RECT32 * prect, const ::rect & rect, bool bSet, ::eactivation eactivation, ::zorder zorderParam, edisplay edisplay)
    {
 
       ::rect rectWindow;
@@ -10901,7 +10901,7 @@ restart:
    }
 
 
-   index interaction::good_iconify(RECT * prect, const ::rect & rect, bool bSet, ::eactivation eactivation, ::zorder zorderParam)
+   index interaction::good_iconify(RECT32 * prect, const ::rect & rect, bool bSet, ::eactivation eactivation, ::zorder zorderParam)
    {
 
       ::rect rectWindow;
@@ -10946,7 +10946,7 @@ restart:
    }
 
 
-   index interaction::good_move(RECT * prect, const ::rect & rect, ::eactivation eactivation, ::zorder zorderParam)
+   index interaction::good_move(RECT32 * prect, const ::rect & rect, ::eactivation eactivation, ::zorder zorderParam)
    {
 
       ::rect rectWindow;
@@ -11011,7 +11011,7 @@ restart:
    }
 
 
-   bool interaction::get_rect_normal(RECT * prect)
+   bool interaction::get_rect_normal(RECT32 * prect)
    {
 
       return m_pimpl->get_rect_normal(prect);
@@ -11218,7 +11218,7 @@ restart:
    }
 
 
-   void interaction::get_margin_rect(RECT * prectMargin)
+   void interaction::get_margin_rect(RECT32 * prectMargin)
 
    {
 
@@ -12470,7 +12470,7 @@ restart:
    //}
 
 
-   bool interaction::scroll_bar_get_client_rect(RECT * prect)
+   bool interaction::scroll_bar_get_client_rect(RECT32 * prect)
    {
 
       get_client_rect(prect);
@@ -12635,7 +12635,7 @@ restart:
    }
 
 
-//void interaction::get_layout_rect(RECT * prect)
+//void interaction::get_layout_rect(RECT32 * prect)
 
 //{
 
@@ -13539,7 +13539,7 @@ restart:
    }
 
 
-   bool interaction::_001InitialFramePosition(LPRECT lprect, const rectd & rectOptionalRateOrSize)
+   bool interaction::_001InitialFramePosition(LPRECT32 lprect, const rectd & rectOptionalRateOrSize)
    {
 
       ::rectd rectRate(rectOptionalRateOrSize);
@@ -13967,7 +13967,7 @@ restart:
       ASSERT_KINDOF(simple_toolbar, pToolBar);
       ASSERT(m_nIndex < m_nIndexMax);
 
-      UINT nNewStyle = pToolBar->GetButtonStyle(m_nIndex) &
+      ::u32 nNewStyle = pToolBar->GetButtonStyle(m_nIndex) &
                   ~(TBBS_CHECKED | TBBS_INDETERMINATE);
       if (nCheck == 1)
           nNewStyle |= TBBS_CHECKED;
@@ -14209,7 +14209,7 @@ restart:
    }
 
 
-   bool interaction::get_element_rect(RECT* prect, e_element eelement)
+   bool interaction::get_element_rect(RECT32* prect, e_element eelement)
    {
 
       if (eelement == element_drop_down)

@@ -1,6 +1,6 @@
 #include "framework.h"
 
-
+#ifdef WINDOWS
 
 hresult_exception::hresult_exception(HRESULT hr) :
    m_hr(hr)
@@ -27,3 +27,7 @@ CLASS_DECL_ACME int trace_hr(const char * psz,HRESULT hr)
    return 0;
 
 }
+
+
+#endif
+

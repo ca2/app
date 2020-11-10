@@ -38,34 +38,34 @@ namespace draw2d
       virtual bool create_oval(const ::rect & rect);
       
 
-      virtual bool create_polygon(const POINT * pPoints, i32 nCount, ::draw2d::e_fill_mode efillmode);
+      virtual bool create_polygon(const POINT32 * pPoints, i32 nCount, ::draw2d::e_fill_mode efillmode);
 
       virtual bool create_polygon(const POINTD * pPoints, i32 nCount,::draw2d::e_fill_mode efillmode);
 
       virtual bool create_poly_polygon(const POINTD * pPoints, const i32 * lpPolyCounts, i32 nCount, ::draw2d::e_fill_mode efillmode);
 
-      virtual bool create_poly_polygon(const POINT * pPoints, const i32 * lpPolyCounts, i32 nCount,::draw2d::e_fill_mode efillmode);
+      virtual bool create_poly_polygon(const POINT32 * pPoints, const i32 * lpPolyCounts, i32 nCount,::draw2d::e_fill_mode efillmode);
 
       
       virtual bool combine(const ::draw2d::region * prgn1, const ::draw2d::region * prgn2, enum_combine ecombine, ::draw2d::graphics * pgraphics = nullptr);
-      virtual bool translate(const POINT & point, ::draw2d::graphics * pgraphics = nullptr);
-      virtual bool get_bounding_box(RECT * prect, ::draw2d::graphics * pgraphics = nullptr);
+      virtual bool translate(const POINT32 & point, ::draw2d::graphics * pgraphics = nullptr);
+      virtual bool get_bounding_box(RECT32 * prect, ::draw2d::graphics * pgraphics = nullptr);
 
-      virtual bool contains(const POINT & point, ::draw2d::graphics * pgraphics = nullptr);
+      virtual bool contains(const POINT32 & point, ::draw2d::graphics * pgraphics = nullptr);
       virtual bool contains(const POINTD & point, ::draw2d::graphics * pgraphics = nullptr);
 
       
-      bool internal_contains(const POINT & point);
+      bool internal_contains(const POINT32 & point);
 
-      bool internal_rect_contains(const POINT & point);
+      bool internal_rect_contains(const POINT32 & point);
 
-      bool internal_oval_contains(const POINT & point);
+      bool internal_oval_contains(const POINT32 & point);
 
-      bool internal_polygon_contains(const POINT & point);
+      bool internal_polygon_contains(const POINT32 & point);
 
-      bool internal_poly_polygon_contains(const POINT & point);
+      bool internal_poly_polygon_contains(const POINT32 & point);
 
-      bool internal_combine_contains(const POINT & point);
+      bool internal_combine_contains(const POINT32 & point);
 
 
 
@@ -82,17 +82,17 @@ namespace draw2d
       bool internal_combine_contains(const POINTD & point);
 
 
-      virtual void max_bounding_box(RECT * prect, ::draw2d::graphics * pgraphics = nullptr);
+      virtual void max_bounding_box(RECT32 * prect, ::draw2d::graphics * pgraphics = nullptr);
 
-      virtual void max_bounding_box_rect(RECT * prect, ::draw2d::graphics * pgraphics = nullptr);
+      virtual void max_bounding_box_rect(RECT32 * prect, ::draw2d::graphics * pgraphics = nullptr);
 
-      virtual void max_bounding_box_oval(RECT * prect, ::draw2d::graphics * pgraphics = nullptr);
+      virtual void max_bounding_box_oval(RECT32 * prect, ::draw2d::graphics * pgraphics = nullptr);
 
-      virtual void max_bounding_box_polygon(RECT * prect, ::draw2d::graphics * pgraphics = nullptr);
+      virtual void max_bounding_box_polygon(RECT32 * prect, ::draw2d::graphics * pgraphics = nullptr);
 
-      virtual void max_bounding_box_poly_polygon(RECT * prect, ::draw2d::graphics * pgraphics = nullptr);
+      virtual void max_bounding_box_poly_polygon(RECT32 * prect, ::draw2d::graphics * pgraphics = nullptr);
 
-      virtual void max_bounding_box_combine(RECT * prect, ::draw2d::graphics * pgraphics = nullptr);
+      virtual void max_bounding_box_combine(RECT32 * prect, ::draw2d::graphics * pgraphics = nullptr);
 
 
       

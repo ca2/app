@@ -29,9 +29,9 @@ namespace datetime
 
          virtual ::estatus initialize(::layered * pobjectContext) override;
 
-         virtual void GetRectDay(::datetime::time& time, LPRECT lprect);
-         virtual void GetRectDay(int32_t iWeekDay, int32_t iLine, LPRECT lprect);
-         virtual void GetRect(LPRECT lprect, enum enum_element eelement);
+         virtual void GetRectDay(::datetime::time& time, LPRECT32 lprect);
+         virtual void GetRectDay(int32_t iWeekDay, int32_t iLine, LPRECT32 lprect);
+         virtual void GetRect(LPRECT32 lprect, enum enum_element eelement);
 
          virtual void set_month(int32_t iYear, int32_t iMonth);
          virtual void set_time(const ::datetime::time& time);

@@ -112,7 +112,7 @@ namespace user
 
    }
 
-   void create_struct::get_rect(LPRECT lprect)
+   void create_struct::get_rect(LPRECT32 lprect)
    {
 
       lprect->left = x;

@@ -333,7 +333,7 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 //   }
 //
 //   // Desenha chanfro
-//   COLORREF cr = m_pimageDraft->GetPixel(0, 0);
+//   color32_t cr = m_pimageDraft->GetPixel(0, 0);
 //   pgraphics->SetPixel(0, 0, cr);
 //   pgraphics->SetPixel(0, 1, m_pimageDraft->GetPixel(0, 1));
 //   pgraphics->SetPixel(0, 2, m_pimageDraft->GetPixel(0, 2));
@@ -569,13 +569,13 @@ size simple_toolbar::CalcSize(::draw2d::graphics_pointer & pgraphics, index nCou
 
       m_itema[i]->m_rect.left = cur.x;
 
-      m_itema[i]->m_rect.right = (LONG) (cur.x + buttonx);
+      m_itema[i]->m_rect.right = (::i32) (cur.x + buttonx);
 
-      cur.x += (LONG) buttonx; //  +sPress.cx;
+      cur.x += (::i32) buttonx; //  +sPress.cx;
 
       sizeResult.cx = max(cur.x, sizeResult.cx);
 
-      cur.y = (LONG) max(cur.y, buttony);
+      cur.y = (::i32) max(cur.y, buttony);
 
       if (m_itema[i]->m_fsState & TBSTATE_WRAP)
       {
@@ -680,7 +680,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
    ::user::toolbar_item & item = m_itema(iItem);
 
-   UINT nStyle = GetButtonStyle(iItem);
+   ::u32 nStyle = GetButtonStyle(iItem);
 
    //bool bHover = m_itemHover == iItem;
 
@@ -688,7 +688,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
    __pointer(::user::menu_central) pmenucentral = puser->menu();
 
-   UINT uiImage = pmenucentral->command_image(item.m_id);
+   ::u32 uImage = pmenucentral->command_image(item.m_id);
    
    ::user::estate estate = get_button_state((int)iItem);
 
@@ -1037,7 +1037,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 }
 
 
-bool simple_toolbar::_001GetElementRect(index iItem, RECT * prect, ::user::e_element eelement, ::user::estate estate)
+bool simple_toolbar::_001GetElementRect(index iItem, RECT32 * prect, ::user::e_element eelement, ::user::estate estate)
 {
 
    if (iItem < 0 || iItem >= m_itema.get_size())
@@ -1703,7 +1703,7 @@ void simple_tool_command::enable(bool bOn, const ::action_context & context)
 
    ASSERT(m_iIndex < m_iCount);
 
-   UINT nNewStyle = pToolBar->GetButtonStyle((index)m_iIndex) & ~TBBS_DISABLED;
+   ::u32 nNewStyle = pToolBar->GetButtonStyle((index)m_iIndex) & ~TBBS_DISABLED;
 
    if (!bOn)
    {
@@ -1740,7 +1740,7 @@ void simple_tool_command::_001SetCheck(enum_check echeck, const ::action_context
 
    ASSERT(m_iIndex < m_iCount);
 
-   UINT nNewStyle = pToolBar->GetButtonStyle((index)m_iIndex) & ~(TBBS_CHECKED | TBBS_INDETERMINATE);
+   ::u32 nNewStyle = pToolBar->GetButtonStyle((index)m_iIndex) & ~(TBBS_CHECKED | TBBS_INDETERMINATE);
 
    if (echeck == check_checked)
    {
@@ -1778,7 +1778,7 @@ index simple_toolbar::GetItemStyle(index iItem)
 }
 
 
-bool simple_toolbar::SetItemStyle(index iItem, BYTE bStyle)
+bool simple_toolbar::SetItemStyle(index iItem, byte bStyle)
 {
 
    UNREFERENCED_PARAMETER(iItem);
@@ -1790,7 +1790,7 @@ bool simple_toolbar::SetItemStyle(index iItem, BYTE bStyle)
 }
 
 
-UINT simple_toolbar::GetButtonStyle(index nIndex)
+::u32 simple_toolbar::GetButtonStyle(index nIndex)
 {
 
    __pointer(::user::toolbar_item) pitem = m_itema[nIndex];
@@ -1807,7 +1807,7 @@ UINT simple_toolbar::GetButtonStyle(index nIndex)
 }
 
 
-void simple_toolbar::SetButtonStyle(index nIndex, UINT nStyle)
+void simple_toolbar::SetButtonStyle(index nIndex, ::u32 nStyle)
 {
 
    __pointer(::user::toolbar_item) pitem = m_itema[nIndex];
@@ -1819,12 +1819,12 @@ void simple_toolbar::SetButtonStyle(index nIndex, UINT nStyle)
 
    }
 
-   if (pitem->m_fsStyle != (BYTE)LOWORD(nStyle) || pitem->m_fsState != (BYTE)HIWORD(nStyle))
+   if (pitem->m_fsStyle != (byte)LOWORD(nStyle) || pitem->m_fsState != (byte)HIWORD(nStyle))
    {
 
-      pitem->m_fsStyle = (BYTE)LOWORD(nStyle);
+      pitem->m_fsStyle = (byte)LOWORD(nStyle);
 
-      pitem->m_fsState = (BYTE)HIWORD(nStyle);
+      pitem->m_fsState = (byte)HIWORD(nStyle);
 
       m_bDelayedButtonLayout = TRUE;
 
@@ -2404,7 +2404,7 @@ size simple_toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, u32 dwMo
             //    TBIF_COMMAND
             //    | TBIF_STYLE
             //    | TBIF_SIZE;
-            // UINT uiID = GetItemID(i);
+            // ::u32 uID = GetItemID(i);
             // GetToolBarCtrl().GetButtonInfo(uiID, &buttona);
             // TRACE("BUTTON.m_id = %d\n", buttona.m_id  );
             // TRACE("BUTTON.m_fsStyle = %d\n", buttona.m_fsStyle  );
@@ -2598,28 +2598,28 @@ rect simple_toolbar::get_item_pad()
    if (rect.left < 0)
    {
 
-      rect.left = (LONG)(m_dFontSize / 3);
+      rect.left = (::i32)(m_dFontSize / 3);
 
    }
 
    if (rect.right < 0)
    {
 
-      rect.right = (LONG) (m_dFontSize / 3);
+      rect.right = (::i32) (m_dFontSize / 3);
 
    }
 
    if (rect.top < 0)
    {
 
-      rect.top = (LONG) (m_dFontSize / 3);
+      rect.top = (::i32) (m_dFontSize / 3);
 
    }
 
    if (rect.bottom < 0)
    {
 
-      rect.bottom = (LONG) (m_dFontSize / 3);
+      rect.bottom = (::i32) (m_dFontSize / 3);
 
    }
 
@@ -2636,25 +2636,25 @@ rect simple_toolbar::get_bar_border()
    if (rect.left < 0)
    {
 
-      rect.left = (LONG) (m_dFontSize / 3);
+      rect.left = (::i32) (m_dFontSize / 3);
 
    }
    if (rect.right < 0)
    {
 
-      rect.right = (LONG) (m_dFontSize / 3);
+      rect.right = (::i32) (m_dFontSize / 3);
 
    }
    if (rect.top < 0)
    {
 
-      rect.top = (LONG) (m_dFontSize / 3);
+      rect.top = (::i32) (m_dFontSize / 3);
 
    }
    if (rect.bottom < 0)
    {
 
-      rect.bottom = (LONG)(m_dFontSize / 3);
+      rect.bottom = (::i32)(m_dFontSize / 3);
 
    }
 
@@ -2706,14 +2706,14 @@ size simple_toolbar::get_separator_size()
    if (s.cx < 0)
    {
 
-      s.cx = LONG(m_dFontSize * 2 / 3);
+      s.cx = ::i32(m_dFontSize * 2 / 3);
 
    }
 
    if (s.cy < 0)
    {
 
-      s.cy = LONG(m_dFontSize * 2 / 3);
+      s.cy = ::i32(m_dFontSize * 2 / 3);
 
    }
 

@@ -180,7 +180,7 @@ namespace draw2d_direct2d
 
       Microsoft::WRL::ComPtr < IDWriteTextLayout> textLayout;
 
-      pfactory->CreateTextLayout(szOutline, (UINT32) szOutline.length(),(IDWriteTextFormat *)pfont->get_os_data(pgraphics),1024 * 1024,1024 * 1024,&textLayout);
+      pfactory->CreateTextLayout(szOutline, (::u32) szOutline.length(),(IDWriteTextFormat *)pfont->get_os_data(pgraphics),1024 * 1024,1024 * 1024,&textLayout);
 
       Microsoft::WRL::ComPtr < IDWriteTextRenderer > textRenderer;
 
@@ -549,10 +549,10 @@ namespace draw2d_direct2d
 
       //::rectd rect;
 
-      //rect.left      = (LONG) (arc.m_pointCenter.x - arc.m_sizeRadius.cx);
-      //rect.right     = (LONG) (arc.m_pointCenter.x + arc.m_sizeRadius.cx);
-      //rect.top       = (LONG) (arc.m_pointCenter.y - arc.m_sizeRadius.cy);
-      //rect.bottom    = (LONG) (arc.m_pointCenter.y + arc.m_sizeRadius.cy);
+      //rect.left      = (::i32) (arc.m_pointCenter.x - arc.m_sizeRadius.cx);
+      //rect.right     = (::i32) (arc.m_pointCenter.x + arc.m_sizeRadius.cx);
+      //rect.top       = (::i32) (arc.m_pointCenter.y - arc.m_sizeRadius.cy);
+      //rect.bottom    = (::i32) (arc.m_pointCenter.y + arc.m_sizeRadius.cy);
 
       //bool bOk = internal_add_arc(pgraphics, parc);
 
@@ -734,10 +734,10 @@ namespace draw2d_direct2d
 
    //   //::rectd rect;
 
-   //   //rect.left      = (LONG) (arc.m_pointCenter.x - arc.m_sizeRadius.cx);
-   //   //rect.right     = (LONG) (arc.m_pointCenter.x + arc.m_sizeRadius.cx);
-   //   //rect.top       = (LONG) (arc.m_pointCenter.y - arc.m_sizeRadius.cy);
-   //   //rect.bottom    = (LONG) (arc.m_pointCenter.y + arc.m_sizeRadius.cy);
+   //   //rect.left      = (::i32) (arc.m_pointCenter.x - arc.m_sizeRadius.cx);
+   //   //rect.right     = (::i32) (arc.m_pointCenter.x + arc.m_sizeRadius.cx);
+   //   //rect.top       = (::i32) (arc.m_pointCenter.y - arc.m_sizeRadius.cy);
+   //   //rect.bottom    = (::i32) (arc.m_pointCenter.y + arc.m_sizeRadius.cy);
 
    //   //bool bOk = internal_add_arc(pgraphics, parc);
 
@@ -832,9 +832,9 @@ public:
    STDMETHOD_(ULONG,Release)() override;
 
 private:
-   LONG cRefCount_;
+   ::i32 cRefCount_;
    FLOAT m_pixelsPerDip;   // Number of pixels per DIP.
-   UINT m_ref;
+   ::u32 m_ref;
 };
 
 

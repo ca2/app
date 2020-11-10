@@ -577,20 +577,20 @@ bool image::from(const ::point & pointDstParam, ::image * pimageSrc, const ::poi
 
    i32 scanSrc = pimageSrc->m_iScan;
 
-   u8 * pdst = &((u8 *)pimageDst->colorref())[scanDst * pointDst.y + pointDst.x * sizeof(COLORREF)];
+   u8 * pdst = &((u8 *)pimageDst->colorref())[scanDst * pointDst.y + pointDst.x * sizeof(color32_t)];
 
-   u8 * psrc = &((u8 *)pimageSrc->colorref())[scanSrc * pointSrc.y + pointSrc.x * sizeof(COLORREF)];
+   u8 * psrc = &((u8 *)pimageSrc->colorref())[scanSrc * pointSrc.y + pointSrc.x * sizeof(color32_t)];
 
-   COLORREF * pdst2;
+   color32_t * pdst2;
 
-   COLORREF * psrc2;
+   color32_t * psrc2;
 
    for (int y = 0; y < yEnd; y++)
    {
 
-      pdst2 = (COLORREF *)&pdst[scanDst * y];
+      pdst2 = (color32_t *)&pdst[scanDst * y];
 
-      psrc2 = (COLORREF *)&psrc[scanSrc * y];
+      psrc2 = (color32_t *)&psrc[scanSrc * y];
 
       ::memcpy_dup(pdst2, psrc2, xEnd * 4);
       //for(int x = 0; x < xEnd; x++)
@@ -702,9 +702,9 @@ bool image::from(const ::point & pointDstParam, ::image * pimageSrc, const ::poi
 
    i32 scanSrc = pimageSrc->m_iScan;
 
-   u8 * pdst = &((u8 *)pimageDst->colorref())[scanDst * pointDst.y + pointDst.x * sizeof(COLORREF)];
+   u8 * pdst = &((u8 *)pimageDst->colorref())[scanDst * pointDst.y + pointDst.x * sizeof(color32_t)];
 
-   u8 * psrc = &((u8 *)pimageSrc->colorref())[scanSrc * pointSrc.y + pointSrc.x * sizeof(COLORREF)];
+   u8 * psrc = &((u8 *)pimageSrc->colorref())[scanSrc * pointSrc.y + pointSrc.x * sizeof(color32_t)];
 
    u8 * pdst2;
 
@@ -799,9 +799,9 @@ bool image::blend2(const ::point & pointDstParam, ::image * pimageSrc, const ::p
 
    i32 scanSrc = pimageSrc->m_iScan;
 
-   u8 * pdst = &((u8 *)pimageDst->colorref())[scanDst * pointDst.y + pointDst.x * sizeof(COLORREF)];
+   u8 * pdst = &((u8 *)pimageDst->colorref())[scanDst * pointDst.y + pointDst.x * sizeof(color32_t)];
 
-   u8 * psrc = &((u8 *)pimageSrc->colorref())[scanSrc * pointSrc.y + pointSrc.x * sizeof(COLORREF)];
+   u8 * psrc = &((u8 *)pimageSrc->colorref())[scanSrc * pointSrc.y + pointSrc.x * sizeof(color32_t)];
 
    u8 * pdst2;
 
@@ -835,7 +835,7 @@ bool image::blend2(const ::point & pointDstParam, ::image * pimageSrc, const ::p
             else if (aSrc == 0)
             {
 
-               *((COLORREF *)pdst2) = 0;
+               *((color32_t *)pdst2) = 0;
 
             }
             else
@@ -989,15 +989,15 @@ bool image::blend(const ::point & pointDstParam, ::image * pimageSrc, const ::po
    u8 * psrc2;
 
 #ifdef __APPLE__
-   u8 * pdst = &((u8 *)pimageDst->colorref())[scanDst * (pimageDst->height() - pointDst.y - yEnd) + pointDst.x * sizeof(COLORREF)];
+   u8 * pdst = &((u8 *)pimageDst->colorref())[scanDst * (pimageDst->height() - pointDst.y - yEnd) + pointDst.x * sizeof(color32_t)];
 
-   u8 * psrc = &((u8 *)pimageSrc->colorref())[scanSrc * (pimageSrc->height() - pointSrc.y - yEnd) + pointSrc.x * sizeof(COLORREF)];
+   u8 * psrc = &((u8 *)pimageSrc->colorref())[scanSrc * (pimageSrc->height() - pointSrc.y - yEnd) + pointSrc.x * sizeof(color32_t)];
 
 #else
 
-   u8 * pdst = &((u8 *)pimageDst->colorref())[scanDst * pointDst.y + pointDst.x * sizeof(COLORREF)];
+   u8 * pdst = &((u8 *)pimageDst->colorref())[scanDst * pointDst.y + pointDst.x * sizeof(color32_t)];
 
-   u8 * psrc = &((u8 *)pimageSrc->colorref())[scanSrc *  pointSrc.y + pointSrc.x * sizeof(COLORREF)];
+   u8 * psrc = &((u8 *)pimageSrc->colorref())[scanSrc *  pointSrc.y + pointSrc.x * sizeof(color32_t)];
 
 #endif
 
@@ -1134,7 +1134,7 @@ bool image::blend(const ::point & pointDstParam, ::image * pimageSrc, const ::po
                else if(alpha == 0)
                {
 
-                  *((COLORREF *)pdst2) = 0;
+                  *((color32_t *)pdst2) = 0;
 
                }
                else
@@ -1300,9 +1300,9 @@ bool image::precision_blend(const ::point & pointDstParam, ::image * pimageSrc, 
 
    i32 scanSrc = pimageSrc->m_iScan;
 
-   u8 * pdst = &((u8 *)pimageDst->colorref())[scanDst * pointDst.y + pointDst.x * sizeof(COLORREF)];
+   u8 * pdst = &((u8 *)pimageDst->colorref())[scanDst * pointDst.y + pointDst.x * sizeof(color32_t)];
 
-   u8 * psrc = &((u8 *)pimageSrc->colorref())[scanSrc * pointSrc.y + pointSrc.x * sizeof(COLORREF)];
+   u8 * psrc = &((u8 *)pimageSrc->colorref())[scanSrc * pointSrc.y + pointSrc.x * sizeof(color32_t)];
 
    u8 * pdst2;
 
@@ -1482,9 +1482,9 @@ bool image::fork_blend(const ::point & pointDstParam, ::image * pimageSrc, const
 
    i32 scanSrc = pimageSrc->m_iScan;
 
-   u8 * pdst = &((u8 *)pimageDst->colorref())[scanDst * pointDst.y + pointDst.x * sizeof(COLORREF)];
+   u8 * pdst = &((u8 *)pimageDst->colorref())[scanDst * pointDst.y + pointDst.x * sizeof(color32_t)];
 
-   u8 * psrc = &((u8 *)pimageSrc->colorref())[scanSrc * pointSrc.y + pointSrc.x * sizeof(COLORREF)];
+   u8 * psrc = &((u8 *)pimageSrc->colorref())[scanSrc * pointSrc.y + pointSrc.x * sizeof(color32_t)];
 
    //u8 * pdst5; // dst opacity map if available // opacity map does not make sense for images that change
 
@@ -1621,17 +1621,17 @@ bool image::from_ignore_alpha(const ::point & pointDstParam, ::image * pimage, c
    if (yEnd < 0)
       return false;
 
-   i32 s1 = m_iScan / sizeof(COLORREF);
+   i32 s1 = m_iScan / sizeof(color32_t);
 
-   i32 s2 = pimage->m_iScan / sizeof(COLORREF);
+   i32 s2 = pimage->m_iScan / sizeof(color32_t);
 
-   COLORREF * pdst = &colorref()[s1 * pointDst.y] + pointDst.x;
+   color32_t * pdst = &colorref()[s1 * pointDst.y] + pointDst.x;
 
-   COLORREF * psrc = &pimage->colorref()[s2 * pointSrc.y] + pointSrc.x;
+   color32_t * psrc = &pimage->colorref()[s2 * pointSrc.y] + pointSrc.x;
 
-   COLORREF * pdst2;
+   color32_t * pdst2;
 
-   COLORREF * psrc2;
+   color32_t * psrc2;
 
    int i = 0;
 
@@ -1737,11 +1737,11 @@ bool image::blend(const ::point & pointDstParam, ::image * pimageSrc, const ::po
 
    i32 scanAlf = pimageAlf->m_iScan;
 
-   u8 * pdst = &((u8 *)pimageDst->colorref())[scanDst * pointDst.y + pointDst.x * sizeof(COLORREF)];
+   u8 * pdst = &((u8 *)pimageDst->colorref())[scanDst * pointDst.y + pointDst.x * sizeof(color32_t)];
 
-   u8 * psrc = &((u8 *)pimageSrc->colorref())[scanSrc * pointSrc.y + pointSrc.x * sizeof(COLORREF)];
+   u8 * psrc = &((u8 *)pimageSrc->colorref())[scanSrc * pointSrc.y + pointSrc.x * sizeof(color32_t)];
 
-   u8 * palf = &((u8 *)pimageAlf->colorref())[-scanAlf * pointDstAlf.y - pointDstAlf.x * sizeof(COLORREF)] + 3;
+   u8 * palf = &((u8 *)pimageAlf->colorref())[-scanAlf * pointDstAlf.y - pointDstAlf.x * sizeof(color32_t)] + 3;
 
    u8 * pdst2;
 
@@ -1782,16 +1782,16 @@ bool image::blend(const ::point & pointDstParam, ::image * pimageSrc, const ::po
 //                  a = (*palf2 * psrc2[3]) / 255;
 //                  a = psrc2[3];
 //                  //a = (int) (byte) sqrt((float) (*palf2 * psrc2[3]));
-//                  pdst2[3] = (BYTE)max(a, pdst2[3]);
-//                  //pdst2[3] = (BYTE)((((int)psrc2[3] - (int)pdst2[3]) * a + ((int)pdst2[3] * 255)) / 255);
-//                  pdst2[3] = (BYTE)(max(psrc2[3], pdst2[3]));
+//                  pdst2[3] = (byte)max(a, pdst2[3]);
+//                  //pdst2[3] = (byte)((((int)psrc2[3] - (int)pdst2[3]) * a + ((int)pdst2[3] * 255)) / 255);
+//                  pdst2[3] = (byte)(max(psrc2[3], pdst2[3]));
 //
 //                  //                  if (a > 0)
 //                  {
 //
-//                     pdst2[0] = (BYTE)((((int)psrc2[0] - (int)pdst2[0]) * a + ((int)pdst2[0] * 255)) / 255);
-//                     pdst2[1] = (BYTE)((((int)psrc2[1] - (int)pdst2[1]) * a + ((int)pdst2[1] * 255)) / 255);
-//                     pdst2[2] = (BYTE)((((int)psrc2[2] - (int)pdst2[2]) * a + ((int)pdst2[2] * 255)) / 255);
+//                     pdst2[0] = (byte)((((int)psrc2[0] - (int)pdst2[0]) * a + ((int)pdst2[0] * 255)) / 255);
+//                     pdst2[1] = (byte)((((int)psrc2[1] - (int)pdst2[1]) * a + ((int)pdst2[1] * 255)) / 255);
+//                     pdst2[2] = (byte)((((int)psrc2[2] - (int)pdst2[2]) * a + ((int)pdst2[2] * 255)) / 255);
 //
 //                  }
 //
@@ -1799,15 +1799,15 @@ bool image::blend(const ::point & pointDstParam, ::image * pimageSrc, const ::po
 //               else
             {
 
-               //pdst2[3] = (BYTE)(max(psrc2[3], pdst2[3]));
-               //pdst2[3] = (BYTE)((((int)psrc2[3] - (int)pdst2[3]) * (int)psrc2[3] + ((int)pdst2[3] * 255)) / 255);
-               //pdst2[0] = (BYTE)((((int)psrc2[0] - (int)pdst2[0]) * (int)psrc2[3] + ((int)pdst2[0] * 255)) / 255);
-               //pdst2[1] = (BYTE)((((int)psrc2[1] - (int)pdst2[1]) * (int)psrc2[3] + ((int)pdst2[1] * 255)) / 255);
-               //pdst2[2] = (BYTE)((((int)psrc2[2] - (int)pdst2[2]) * (int)psrc2[3] + ((int)pdst2[2] * 255)) / 255);
-               pdst2[3] = (BYTE)(max(((((int)psrc2[3] - (int)pdst2[3]) * (int)psrc2[3] + ((int)pdst2[3] * 255)) / 255), pdst2[3]));
-               pdst2[0] = (BYTE)((((int)psrc2[0] - (int)pdst2[0]) * (int)psrc2[3] + ((int)pdst2[0] * 255)) / 255);
-               pdst2[1] = (BYTE)((((int)psrc2[1] - (int)pdst2[1]) * (int)psrc2[3] + ((int)pdst2[1] * 255)) / 255);
-               pdst2[2] = (BYTE)((((int)psrc2[2] - (int)pdst2[2]) * (int)psrc2[3] + ((int)pdst2[2] * 255)) / 255);
+               //pdst2[3] = (byte)(max(psrc2[3], pdst2[3]));
+               //pdst2[3] = (byte)((((int)psrc2[3] - (int)pdst2[3]) * (int)psrc2[3] + ((int)pdst2[3] * 255)) / 255);
+               //pdst2[0] = (byte)((((int)psrc2[0] - (int)pdst2[0]) * (int)psrc2[3] + ((int)pdst2[0] * 255)) / 255);
+               //pdst2[1] = (byte)((((int)psrc2[1] - (int)pdst2[1]) * (int)psrc2[3] + ((int)pdst2[1] * 255)) / 255);
+               //pdst2[2] = (byte)((((int)psrc2[2] - (int)pdst2[2]) * (int)psrc2[3] + ((int)pdst2[2] * 255)) / 255);
+               pdst2[3] = (byte)(max(((((int)psrc2[3] - (int)pdst2[3]) * (int)psrc2[3] + ((int)pdst2[3] * 255)) / 255), pdst2[3]));
+               pdst2[0] = (byte)((((int)psrc2[0] - (int)pdst2[0]) * (int)psrc2[3] + ((int)pdst2[0] * 255)) / 255);
+               pdst2[1] = (byte)((((int)psrc2[1] - (int)pdst2[1]) * (int)psrc2[3] + ((int)pdst2[1] * 255)) / 255);
+               pdst2[2] = (byte)((((int)psrc2[2] - (int)pdst2[2]) * (int)psrc2[3] + ((int)pdst2[2] * 255)) / 255);
 
             }
          }
@@ -1886,15 +1886,15 @@ bool image::blend(const ::point & pointDst,::image * pimageSrc, const ::point & 
 
 #ifdef __APPLE__
 
-   u8 * pdst = &((u8 *)pimageDst->colorref())[scanDst * (pimageDst->height() - pointDst.y - 1) + pointDst.x * sizeof(COLORREF)] + 3;
+   u8 * pdst = &((u8 *)pimageDst->colorref())[scanDst * (pimageDst->height() - pointDst.y - 1) + pointDst.x * sizeof(color32_t)] + 3;
 
-   u8 * psrc = &((u8 *)pimageSrc->colorref())[scanSrc * (pimageSrc->height() - pointSrc.y - 1) + pointSrc.x * sizeof(COLORREF)] + 3;
+   u8 * psrc = &((u8 *)pimageSrc->colorref())[scanSrc * (pimageSrc->height() - pointSrc.y - 1) + pointSrc.x * sizeof(color32_t)] + 3;
 
 #else
 
-   u8 * pdst = &((u8 *)pimageDst->colorref())[scanDst * pointDst.y + pointDst.x * sizeof(COLORREF)] + 3;
+   u8 * pdst = &((u8 *)pimageDst->colorref())[scanDst * pointDst.y + pointDst.x * sizeof(color32_t)] + 3;
 
-   u8 * psrc = &((u8 *)pimageSrc->colorref())[scanSrc * pointSrc.y + pointSrc.x * sizeof(COLORREF)] + 3;
+   u8 * psrc = &((u8 *)pimageSrc->colorref())[scanSrc * pointSrc.y + pointSrc.x * sizeof(color32_t)] + 3;
 
 #endif
 
@@ -1949,7 +1949,7 @@ bool image::set_rgb(i32 R, i32 G, i32 B)
 
    i64 size = scan_area();
 
-   COLORREF * pcr = get_data();
+   color32_t * pcr = get_data();
 
    if (pcr == nullptr)
    {
@@ -1978,10 +1978,10 @@ bool image::set_rgb(i32 R, i32 G, i32 B)
 
 /*   bool image::Fill ( i32 R, i32 G, i32 B )
    {
-      COLORREF color=RGB ( B, G, R );
+      color32_t color=RGB ( B, G, R );
       i64 size = area();
 
-      COLORREF * pcr;
+      color32_t * pcr;
 
       i64 iSize32 = size / 32;
       i32 i;
@@ -2316,7 +2316,7 @@ bool image::mult_alpha_fast()
    {
       if (dst[3] == 0)
       {
-         *((COLORREF*)dst) = 0;
+         *((color32_t*)dst) = 0;
       }
       else if (dst[3] != 255)
       {
@@ -2375,11 +2375,11 @@ bool image::mult_alpha(const ::point & pointDstParam, const ::size & sizeParam)
 
 #ifdef __APPLE__
 
-   u8 * pdst = &((u8 *)pimageDst->colorref())[scanDst * (height() - pointDst.y - 1) + pointDst.x * sizeof(COLORREF)];
+   u8 * pdst = &((u8 *)pimageDst->colorref())[scanDst * (height() - pointDst.y - 1) + pointDst.x * sizeof(color32_t)];
 
 #else
 
-   u8 * pdst = &((u8 *)pimageDst->colorref())[scanDst * pointDst.y + pointDst.x * sizeof(COLORREF)];
+   u8 * pdst = &((u8 *)pimageDst->colorref())[scanDst * pointDst.y + pointDst.x * sizeof(color32_t)];
 
 #endif
 
@@ -2541,11 +2541,11 @@ bool image::div_alpha(const ::point & pointDstParam, const ::size & sizeParam)
 
 #ifdef __APPLE__
 
-   u8 * pdst = &((u8 *)pimageDst->colorref())[scanDst * (height() - pointDst.y - 1) + pointDst.x * sizeof(COLORREF)];
+   u8 * pdst = &((u8 *)pimageDst->colorref())[scanDst * (height() - pointDst.y - 1) + pointDst.x * sizeof(color32_t)];
 
 #else
 
-   u8 * pdst = &((u8 *)pimageDst->colorref())[scanDst * pointDst.y + pointDst.x * sizeof(COLORREF)];
+   u8 * pdst = &((u8 *)pimageDst->colorref())[scanDst * pointDst.y + pointDst.x * sizeof(color32_t)];
 
 #endif
 
@@ -2612,16 +2612,16 @@ bool image::Map(i32 ToRgb, i32 FromRgb)
 }
 
 
-bool image::ToAlphaAndFill(i32 i, COLORREF cr)
+bool image::ToAlphaAndFill(i32 i, color32_t cr)
 {
 
    u8 *dst = (u8 *)get_data();
 
    i64 size = scan_area();
 
-   BYTE uchB = ::blue(cr);
-   BYTE uchG = ::green(cr);
-   BYTE uchR = ::red(cr);
+   byte uchB = ::blue(cr);
+   byte uchG = ::green(cr);
+   byte uchR = ::red(cr);
 
    while (size--)
    {
@@ -2637,7 +2637,7 @@ bool image::ToAlphaAndFill(i32 i, COLORREF cr)
 }
 
 
-bool image::GrayToARGB(COLORREF cr)
+bool image::GrayToARGB(color32_t cr)
 {
 
    u8 *dst = (u8 *)get_data();
@@ -2651,9 +2651,9 @@ bool image::GrayToARGB(COLORREF cr)
    while (size-- > 0)
    {
       dst[3] = dst[0];
-      dst[0] = (BYTE)(((dwB * dst[3]) / 256) & 0xff);
-      dst[1] = (BYTE)(((dwG * dst[3]) / 256) & 0xff);
-      dst[2] = (BYTE)(((dwR * dst[3]) / 256) & 0xff);
+      dst[0] = (byte)(((dwB * dst[3]) / 256) & 0xff);
+      dst[1] = (byte)(((dwG * dst[3]) / 256) & 0xff);
+      dst[2] = (byte)(((dwR * dst[3]) / 256) & 0xff);
       dst += 4;
    }
 
@@ -2721,7 +2721,7 @@ bool image::BitBlt(int cxParam, int cyParam, ::image * pimage, i32 op)
       if (iStrideSrc <= 0)
       {
 
-         iStrideSrc = cxParam * sizeof(COLORREF);
+         iStrideSrc = cxParam * sizeof(color32_t);
 
       }
 
@@ -2734,15 +2734,15 @@ bool image::BitBlt(int cxParam, int cyParam, ::image * pimage, i32 op)
       else
       {
 
-         int wsrc = iStrideSrc / sizeof(COLORREF);
-         int wdst = m_iScan / sizeof(COLORREF);
-         int cw = min(cxParam, width()) * sizeof(COLORREF);
+         int wsrc = iStrideSrc / sizeof(color32_t);
+         int wdst = m_iScan / sizeof(color32_t);
+         int cw = min(cxParam, width()) * sizeof(color32_t);
 
          int h = min(cyParam, height());
 
 
-         COLORREF * psrc = pimage->colorref();
-         COLORREF * pdst = colorref();
+         color32_t * psrc = pimage->colorref();
+         color32_t * pdst = colorref();
 
          for (int i = 0; i < h; i++)
          {
@@ -2901,7 +2901,7 @@ bool image::channel_multiply(color::e_channel echannel, ::image * pimage, bool b
       for (i32 x = 0; x < width(); x++)
       {
 
-         int i = (BYTE)(((u32)*pb1_2 * (u32)*pb2_2) / 255);
+         int i = (byte)(((u32)*pb1_2 * (u32)*pb2_2) / 255);
 
          *pb2 = i;
 
@@ -2987,7 +2987,7 @@ bool image::channel_from(color::e_channel echannel, ::image * pimage)
 {
    map();
    pimage->map();
-   i64 size = m_iScan * height() / sizeof(COLORREF);
+   i64 size = m_iScan * height() / sizeof(color32_t);
    i64 size64 = size / 64;
    byte * pb1 = (byte *)get_data();
 
@@ -3176,10 +3176,10 @@ bool image::channel_from(color::e_channel echannel, ::image * pimage, const ::re
 
    }
 
-   byte * pb1 = ((byte *)get_data()) + (rect.left * sizeof(COLORREF) + rect.top * m_iScan);
+   byte * pb1 = ((byte *)get_data()) + (rect.left * sizeof(color32_t) + rect.top * m_iScan);
 
 
-   byte * pb2 = ((byte *)pimage->get_data()) + (rect.left * sizeof(COLORREF) + rect.top * pimage->m_iScan);
+   byte * pb2 = ((byte *)pimage->get_data()) + (rect.left * sizeof(color32_t) + rect.top * pimage->m_iScan);
 
 
    pb1 += ((i32)echannel) % 4;
@@ -3263,18 +3263,18 @@ bool image::channel_multiply(color::e_channel echannel, ::image * pimage, const 
 
 #ifdef __APPLE__
 
-   byte * pb1 = ((byte *)get_data()) + (rect.left * sizeof(COLORREF) + (height() - rect.top - 1) * m_iScan);
+   byte * pb1 = ((byte *)get_data()) + (rect.left * sizeof(color32_t) + (height() - rect.top - 1) * m_iScan);
 
 
-   byte * pb2 = ((byte *)pimage->get_data()) + (rect.left * sizeof(COLORREF) + (pimage->height() - rect.top - 1) * pimage->m_iScan);
+   byte * pb2 = ((byte *)pimage->get_data()) + (rect.left * sizeof(color32_t) + (pimage->height() - rect.top - 1) * pimage->m_iScan);
 
 
 #else
 
-   byte * pb1 = ((byte *)get_data()) + (rect.left * sizeof(COLORREF) + rect.top * m_iScan);
+   byte * pb1 = ((byte *)get_data()) + (rect.left * sizeof(color32_t) + rect.top * m_iScan);
 
 
-   byte * pb2 = ((byte *)pimage->get_data()) + (rect.left * sizeof(COLORREF) + rect.top * pimage->m_iScan);
+   byte * pb2 = ((byte *)pimage->get_data()) + (rect.left * sizeof(color32_t) + rect.top * pimage->m_iScan);
 
 
 #endif
@@ -3354,9 +3354,9 @@ bool image::fill_glass(i32 R, i32 G, i32 B, i32 A)
    while (size--)
    {
 
-      dst[0] = (BYTE)(((B - dst[0])*A + (dst[0] << 8)) >> 8);
-      dst[1] = (BYTE)(((G - dst[1])*A + (dst[1] << 8)) >> 8);
-      dst[2] = (BYTE)(((R - dst[2])*A + (dst[2] << 8)) >> 8);
+      dst[0] = (byte)(((B - dst[0])*A + (dst[0] << 8)) >> 8);
+      dst[1] = (byte)(((G - dst[1])*A + (dst[1] << 8)) >> 8);
+      dst[2] = (byte)(((R - dst[2])*A + (dst[2] << 8)) >> 8);
       dst += 4;
 
    }
@@ -3369,7 +3369,7 @@ bool image::fill_glass(i32 R, i32 G, i32 B, i32 A)
 bool image::fill_stippled_glass(i32 R, i32 G, i32 B)
 {
 
-   COLORREF color = RGB(B, G, R);
+   color32_t color = RGB(B, G, R);
    i32 w = width();
    i32 h = height();
 
@@ -3451,7 +3451,7 @@ bool image::bitmap_blend(::draw2d::graphics * pgraphics, const ::rect & rect)
 }
 
 
-bool image::color_blend(COLORREF cr, BYTE bAlpha)
+bool image::color_blend(color32_t cr, byte bAlpha)
 {
 
    u8 *dst = (u8 *)get_data();
@@ -3468,9 +3468,9 @@ bool image::color_blend(COLORREF cr, BYTE bAlpha)
 
    while (size--)
    {
-      dst[0] = (BYTE)(((dst[0] - dwB)*bAlpha + dwB_) >> 8);
-      dst[1] = (BYTE)(((dst[1] - dwG)*bAlpha + dwG_) >> 8);
-      dst[2] = (BYTE)(((dst[2] - dwG)*bAlpha + dwR_) >> 8);
+      dst[0] = (byte)(((dst[0] - dwB)*bAlpha + dwB_) >> 8);
+      dst[1] = (byte)(((dst[1] - dwG)*bAlpha + dwG_) >> 8);
+      dst[2] = (byte)(((dst[2] - dwG)*bAlpha + dwR_) >> 8);
       dst += 4;
    }
 
@@ -3490,7 +3490,7 @@ bool image::op(string str)
       // half width
       int hx = width() / 2;
       // aligned scan
-      int as = m_iScan / sizeof(COLORREF);
+      int as = m_iScan / sizeof(color32_t);
 
       for (index i = 0; i < height(); i++)
       {
@@ -3524,9 +3524,9 @@ bool image::Blend(::image * pimage, i32 A)
 
    while (size--)
    {
-      dst[0] = (BYTE)(((src[0] - dst[0])*A + (dst[0] << 8)) >> 8);
-      dst[1] = (BYTE)(((src[1] - dst[1])*A + (dst[1] << 8)) >> 8);
-      dst[2] = (BYTE)(((src[2] - dst[2])*A + (dst[2] << 8)) >> 8);
+      dst[0] = (byte)(((src[0] - dst[0])*A + (dst[0] << 8)) >> 8);
+      dst[1] = (byte)(((src[1] - dst[1])*A + (dst[1] << 8)) >> 8);
+      dst[2] = (byte)(((src[2] - dst[2])*A + (dst[2] << 8)) >> 8);
       dst += 4;
       src += 4;
    }
@@ -3551,9 +3551,9 @@ bool image::Blend(::image *pDib, ::image *DibA, i32 A)
 
    while (size--)
    {
-      dst[0] = (BYTE)(((src[0] - dst[0])*alf[A] + (dst[0] << 8)) >> 8);
-      dst[1] = (BYTE)(((src[1] - dst[1])*alf[A] + (dst[1] << 8)) >> 8);
-      dst[2] = (BYTE)(((src[2] - dst[2])*alf[A] + (dst[2] << 8)) >> 8);
+      dst[0] = (byte)(((src[0] - dst[0])*alf[A] + (dst[0] << 8)) >> 8);
+      dst[1] = (byte)(((src[1] - dst[1])*alf[A] + (dst[1] << 8)) >> 8);
+      dst[2] = (byte)(((src[2] - dst[2])*alf[A] + (dst[2] << 8)) >> 8);
       dst += 4;
       src += 4;
       alf += 4;
@@ -3581,9 +3581,9 @@ bool image::Blend(::image *pDib, ::image *DibA)
 
    while (size--)
    {
-      dst[0] = (BYTE)(((src[0] - dst[0])* (*alf) + (dst[0] << 8)) >> 8);
-      dst[1] = (BYTE)(((src[1] - dst[1])* (*alf) + (dst[1] << 8)) >> 8);
-      dst[2] = (BYTE)(((src[2] - dst[2])* (*alf) + (dst[2] << 8)) >> 8);
+      dst[0] = (byte)(((src[0] - dst[0])* (*alf) + (dst[0] << 8)) >> 8);
+      dst[1] = (byte)(((src[1] - dst[1])* (*alf) + (dst[1] << 8)) >> 8);
+      dst[2] = (byte)(((src[2] - dst[2])* (*alf) + (dst[2] << 8)) >> 8);
       dst += 4;
       src += 4;
       alf += 4;
@@ -3608,14 +3608,14 @@ bool image::blend(::image * pimage, ::image * pimageRate)
 
    while (size >= 2)
    {
-      dst[00] = (BYTE)(((((i32)src[00] - (i32)dst[00]) * (i32)alf[00]) + (i32)dst[00] * (i32)255) / 255);
-      dst[01] = (BYTE)(((((i32)src[01] - (i32)dst[01]) * (i32)alf[01]) + (i32)dst[01] * (i32)255) / 255);
-      dst[02] = (BYTE)(((((i32)src[02] - (i32)dst[02]) * (i32)alf[02]) + (i32)dst[02] * (i32)255) / 255);
-      dst[03] = (BYTE)(((((i32)src[03] - (i32)dst[03]) * (i32)alf[03]) + (i32)dst[03] * (i32)255) / 255);
-      dst[04] = (BYTE)(((((i32)src[04] - (i32)dst[04]) * (i32)alf[04]) + (i32)dst[04] * (i32)255) / 255);
-      dst[05] = (BYTE)(((((i32)src[05] - (i32)dst[05]) * (i32)alf[05]) + (i32)dst[05] * (i32)255) / 255);
-      dst[06] = (BYTE)(((((i32)src[06] - (i32)dst[06]) * (i32)alf[06]) + (i32)dst[06] * (i32)255) / 255);
-      dst[07] = (BYTE)(((((i32)src[07] - (i32)dst[07]) * (i32)alf[07]) + (i32)dst[07] * (i32)255) / 255);
+      dst[00] = (byte)(((((i32)src[00] - (i32)dst[00]) * (i32)alf[00]) + (i32)dst[00] * (i32)255) / 255);
+      dst[01] = (byte)(((((i32)src[01] - (i32)dst[01]) * (i32)alf[01]) + (i32)dst[01] * (i32)255) / 255);
+      dst[02] = (byte)(((((i32)src[02] - (i32)dst[02]) * (i32)alf[02]) + (i32)dst[02] * (i32)255) / 255);
+      dst[03] = (byte)(((((i32)src[03] - (i32)dst[03]) * (i32)alf[03]) + (i32)dst[03] * (i32)255) / 255);
+      dst[04] = (byte)(((((i32)src[04] - (i32)dst[04]) * (i32)alf[04]) + (i32)dst[04] * (i32)255) / 255);
+      dst[05] = (byte)(((((i32)src[05] - (i32)dst[05]) * (i32)alf[05]) + (i32)dst[05] * (i32)255) / 255);
+      dst[06] = (byte)(((((i32)src[06] - (i32)dst[06]) * (i32)alf[06]) + (i32)dst[06] * (i32)255) / 255);
+      dst[07] = (byte)(((((i32)src[07] - (i32)dst[07]) * (i32)alf[07]) + (i32)dst[07] * (i32)255) / 255);
       dst += 4 * 2;
       src += 4 * 2;
       alf += 4 * 2;
@@ -3623,10 +3623,10 @@ bool image::blend(::image * pimage, ::image * pimageRate)
    }
    while (size > 0)
    {
-      dst[00] = (BYTE)(((((i32)src[00] - (i32)dst[00]) * (i32)alf[00]) + (i32)dst[00] * (i32)255) / 255);
-      dst[01] = (BYTE)(((((i32)src[01] - (i32)dst[01]) * (i32)alf[01]) + (i32)dst[01] * (i32)255) / 255);
-      dst[02] = (BYTE)(((((i32)src[02] - (i32)dst[02]) * (i32)alf[02]) + (i32)dst[02] * (i32)255) / 255);
-      dst[03] = (BYTE)(((((i32)src[03] - (i32)dst[03]) * (i32)alf[03]) + (i32)dst[03] * (i32)255) / 255);
+      dst[00] = (byte)(((((i32)src[00] - (i32)dst[00]) * (i32)alf[00]) + (i32)dst[00] * (i32)255) / 255);
+      dst[01] = (byte)(((((i32)src[01] - (i32)dst[01]) * (i32)alf[01]) + (i32)dst[01] * (i32)255) / 255);
+      dst[02] = (byte)(((((i32)src[02] - (i32)dst[02]) * (i32)alf[02]) + (i32)dst[02] * (i32)255) / 255);
+      dst[03] = (byte)(((((i32)src[03] - (i32)dst[03]) * (i32)alf[03]) + (i32)dst[03] * (i32)255) / 255);
       dst += 4;
       src += 4;
       alf += 4;
@@ -3653,9 +3653,9 @@ bool image::Darken(::image * pimage)
 
    while (size--)
    {
-      dst[0] = (BYTE)((src[0] < dst[0]) ? src[0] : dst[0]);
-      dst[1] = (BYTE)((src[1] < dst[1]) ? src[1] : dst[1]);
-      dst[2] = (BYTE)((src[2] < dst[2]) ? src[2] : dst[2]);
+      dst[0] = (byte)((src[0] < dst[0]) ? src[0] : dst[0]);
+      dst[1] = (byte)((src[1] < dst[1]) ? src[1] : dst[1]);
+      dst[2] = (byte)((src[2] < dst[2]) ? src[2] : dst[2]);
       dst += 4;
       src += 4;
    }
@@ -3683,11 +3683,11 @@ bool image::Difference(::image * pimage)
    {
       i32 Difference;
       Difference = src[0] - dst[0];
-      dst[0] = (BYTE)((Difference < 0) ? -Difference : Difference);
+      dst[0] = (byte)((Difference < 0) ? -Difference : Difference);
       Difference = src[1] - dst[1];
-      dst[1] = (BYTE)((Difference < 0) ? -Difference : Difference);
+      dst[1] = (byte)((Difference < 0) ? -Difference : Difference);
       Difference = src[2] - dst[2];
-      dst[2] = (BYTE)((Difference < 0) ? -Difference : Difference);
+      dst[2] = (byte)((Difference < 0) ? -Difference : Difference);
       dst += 4;
       src += 4;
    }
@@ -3713,9 +3713,9 @@ bool image::Lighten(::image * pimage)
 
    while (size--)
    {
-      dst[0] = (BYTE)((src[0] > dst[0]) ? src[0] : dst[0]);
-      dst[1] = (BYTE)((src[1] > dst[1]) ? src[1] : dst[1]);
-      dst[2] = (BYTE)((src[2] > dst[2]) ? src[2] : dst[2]);
+      dst[0] = (byte)((src[0] > dst[0]) ? src[0] : dst[0]);
+      dst[1] = (byte)((src[1] > dst[1]) ? src[1] : dst[1]);
+      dst[2] = (byte)((src[2] > dst[2]) ? src[2] : dst[2]);
       dst += 4;
       src += 4;
    }
@@ -3735,9 +3735,9 @@ bool image::lighten(double dRate)
 
    while (size--)
    {
-      dst[0] += (BYTE) ((dst[3] - dst[0]) * dRate);
-      dst[1] += (BYTE) ((dst[3] - dst[1]) * dRate);
-      dst[2] += (BYTE) ((dst[3] - dst[2]) * dRate);
+      dst[0] += (byte) ((dst[3] - dst[0]) * dRate);
+      dst[1] += (byte) ((dst[3] - dst[1]) * dRate);
+      dst[2] += (byte) ((dst[3] - dst[2]) * dRate);
       dst += 4;
    }
 
@@ -3762,9 +3762,9 @@ bool image::Multiply(::image * pimage)
 
    while (size--)
    {
-      dst[0] = (BYTE)(((src[0])*(dst[0])) >> 8);
-      dst[1] = (BYTE)(((src[1])*(dst[1])) >> 8);
-      dst[2] = (BYTE)(((src[2])*(dst[2])) >> 8);
+      dst[0] = (byte)(((src[0])*(dst[0])) >> 8);
+      dst[1] = (byte)(((src[1])*(dst[1])) >> 8);
+      dst[2] = (byte)(((src[2])*(dst[2])) >> 8);
       dst += 4;
       src += 4;
    }
@@ -3790,9 +3790,9 @@ bool image::Screen(::image * pimage)
 
    while (size--)
    {
-      dst[0] = (BYTE)(255 - (((255 - src[0])*(255 - dst[0])) >> 8));
-      dst[1] = (BYTE)(255 - (((255 - src[1])*(255 - dst[1])) >> 8));
-      dst[2] = (BYTE)(255 - (((255 - src[2])*(255 - dst[2])) >> 8));
+      dst[0] = (byte)(255 - (((255 - src[0])*(255 - dst[0])) >> 8));
+      dst[1] = (byte)(255 - (((255 - src[1])*(255 - dst[1])) >> 8));
+      dst[2] = (byte)(255 - (((255 - src[2])*(255 - dst[2])) >> 8));
       dst += 4;
       src += 4;
    }
@@ -3877,7 +3877,7 @@ bool image::fill_rect(const ::rect & rect, i32 R, i32 G, i32 B)
 
    map();
 
-   COLORREF *dst = get_data() + (py*width()) + px;
+   color32_t *dst = get_data() + (py*width()) + px;
 
    while (dy--)
    {
@@ -3891,7 +3891,7 @@ bool image::fill_rect(const ::rect & rect, i32 R, i32 G, i32 B)
 
       }
 
-      dst += m_iScan / sizeof(COLORREF);
+      dst += m_iScan / sizeof(color32_t);
 
    }
 
@@ -3900,7 +3900,7 @@ bool image::fill_rect(const ::rect & rect, i32 R, i32 G, i32 B)
 }
 
 
-bool image::fill_rect(const ::rect & rect, COLORREF cr)
+bool image::fill_rect(const ::rect & rect, color32_t cr)
 
 {
 
@@ -3943,7 +3943,7 @@ bool image::fill_rect(const ::rect & rect, COLORREF cr)
          return false;
 
       // Prepare buffer Address
-      COLORREF *dst = get_data() + (py*width()) + px;
+      color32_t *dst = get_data() + (py*width()) + px;
 
       while (dy--)
       {
@@ -3955,7 +3955,7 @@ bool image::fill_rect(const ::rect & rect, COLORREF cr)
 
          }
 
-         dst += m_iScan / sizeof(COLORREF);
+         dst += m_iScan / sizeof(color32_t);
 
       }
 
@@ -4022,9 +4022,9 @@ bool image::fill_glass_rect(const ::rect & rect, i32 R, i32 G, i32 B, i32 A)
    {
       for (i32 i = 0; i < dx; i++)
       {
-         dst[0] = (BYTE)(((B - dst[0])*A + (dst[0] << 8)) >> 8);
-         dst[1] = (BYTE)(((G - dst[1])*A + (dst[1] << 8)) >> 8);
-         dst[2] = (BYTE)(((R - dst[2])*A + (dst[2] << 8)) >> 8);
+         dst[0] = (byte)(((B - dst[0])*A + (dst[0] << 8)) >> 8);
+         dst[1] = (byte)(((G - dst[1])*A + (dst[1] << 8)) >> 8);
+         dst[2] = (byte)(((R - dst[2])*A + (dst[2] << 8)) >> 8);
          dst += 4;
       }
 
@@ -4063,8 +4063,8 @@ bool image::fill_stippled_glass_rect(const ::rect & rect, i32 R, i32 G, i32 B)
       return false;
 
    // Prepare buffer Address
-   COLORREF *dst = get_data() + (py*width()) + px;
-   COLORREF color = RGB(B, G, R);
+   color32_t *dst = get_data() + (py*width()) + px;
+   color32_t color = RGB(B, G, R);
 
    // Do FillStippledGlass
    for (i32 j = 0; j < dy; j++)
@@ -4103,9 +4103,9 @@ bool image::BlendRect(::image * pimage, i32 x, i32 y, i32 A)
    {
       for (i32 i = 0; i < dx; i++)
       {
-         dst[0] = (BYTE)(((src[0] - dst[0])*A + (dst[0] << 8)) >> 8);
-         dst[1] = (BYTE)(((src[1] - dst[1])*A + (dst[1] << 8)) >> 8);
-         dst[2] = (BYTE)(((src[2] - dst[2])*A + (dst[2] << 8)) >> 8);
+         dst[0] = (byte)(((src[0] - dst[0])*A + (dst[0] << 8)) >> 8);
+         dst[1] = (byte)(((src[1] - dst[1])*A + (dst[1] << 8)) >> 8);
+         dst[2] = (byte)(((src[2] - dst[2])*A + (dst[2] << 8)) >> 8);
          dst += 4;
          src += 4;
       }
@@ -4141,9 +4141,9 @@ bool image::DarkenRect(::image * pimage, i32 x, i32 y)
    {
       for (i32 i = 0; i < dx; i++)
       {
-         dst[0] = (BYTE)((src[0] < dst[0]) ? src[0] : dst[0]);
-         dst[1] = (BYTE)((src[1] < dst[1]) ? src[1] : dst[1]);
-         dst[2] = (BYTE)((src[2] < dst[2]) ? src[2] : dst[2]);
+         dst[0] = (byte)((src[0] < dst[0]) ? src[0] : dst[0]);
+         dst[1] = (byte)((src[1] < dst[1]) ? src[1] : dst[1]);
+         dst[2] = (byte)((src[2] < dst[2]) ? src[2] : dst[2]);
          dst += 4;
          src += 4;
       }
@@ -4181,11 +4181,11 @@ bool image::DifferenceRect(::image * pimage, i32 x, i32 y)
       {
          i32 Difference;
          Difference = src[0] - dst[0];
-         dst[0] = (BYTE)((Difference < 0) ? -Difference : Difference);
+         dst[0] = (byte)((Difference < 0) ? -Difference : Difference);
          Difference = src[1] - dst[1];
-         dst[1] = (BYTE)((Difference < 0) ? -Difference : Difference);
+         dst[1] = (byte)((Difference < 0) ? -Difference : Difference);
          Difference = src[2] - dst[2];
-         dst[2] = (BYTE)((Difference < 0) ? -Difference : Difference);
+         dst[2] = (byte)((Difference < 0) ? -Difference : Difference);
          dst += 4;
          src += 4;
       }
@@ -4221,9 +4221,9 @@ bool image::LightenRect(::image * pimage, i32 x, i32 y)
    {
       for (i32 i = 0; i < dx; i++)
       {
-         dst[0] = (BYTE)((src[0] > dst[0]) ? src[0] : dst[0]);
-         dst[1] = (BYTE)((src[1] > dst[1]) ? src[1] : dst[1]);
-         dst[2] = (BYTE)((src[2] > dst[2]) ? src[2] : dst[2]);
+         dst[0] = (byte)((src[0] > dst[0]) ? src[0] : dst[0]);
+         dst[1] = (byte)((src[1] > dst[1]) ? src[1] : dst[1]);
+         dst[2] = (byte)((src[2] > dst[2]) ? src[2] : dst[2]);
          dst += 4;
          src += 4;
       }
@@ -4259,9 +4259,9 @@ bool image::MultiplyRect(::image * pimage, i32 x, i32 y)
    {
       for (i32 i = 0; i < dx; i++)
       {
-         dst[0] = (BYTE)(((src[0])*(dst[0])) >> 8);
-         dst[1] = (BYTE)(((src[1])*(dst[1])) >> 8);
-         dst[2] = (BYTE)(((src[2])*(dst[2])) >> 8);
+         dst[0] = (byte)(((src[0])*(dst[0])) >> 8);
+         dst[1] = (byte)(((src[1])*(dst[1])) >> 8);
+         dst[2] = (byte)(((src[2])*(dst[2])) >> 8);
          dst += 4;
          src += 4;
       }
@@ -4297,9 +4297,9 @@ bool image::ScreenRect(::image * pimage, i32 x, i32 y)
    {
       for (i32 i = 0; i < dx; i++)
       {
-         dst[0] = (BYTE)(255 - (((255 - src[0])*(255 - dst[0])) >> 8));
-         dst[1] = (BYTE)(255 - (((255 - src[1])*(255 - dst[1])) >> 8));
-         dst[2] = (BYTE)(255 - (((255 - src[2])*(255 - dst[2])) >> 8));
+         dst[0] = (byte)(255 - (((255 - src[0])*(255 - dst[0])) >> 8));
+         dst[1] = (byte)(255 - (((255 - src[1])*(255 - dst[1])) >> 8));
+         dst[2] = (byte)(255 - (((255 - src[2])*(255 - dst[2])) >> 8));
          dst += 4;
          src += 4;
       }
@@ -4319,7 +4319,7 @@ bool image::ScreenRect(::image * pimage, i32 x, i32 y)
 /*bool image::Line ( i32 x1, i32 y1, i32 x2, i32 y2, i32 R, i32 G, i32 B )
 {
 i32 dx, dy, k1, k2, d, x, y;
-COLORREF color=RGB ( B, G, R );
+color32_t color=RGB ( B, G, R );
 
 dx=x2-x1;
 dy=y2-y1;
@@ -4359,15 +4359,15 @@ bool image::horizontal_line(i32 y, i32 R, i32 G, i32 B, i32 A, i32 x1, i32 x2)
       x2 += width();
    if (x1 < 0)
       x1 += width();
-   COLORREF color = RGB(B, G, R) | (A << 24);
+   color32_t color = RGB(B, G, R) | (A << 24);
 
 #ifdef __APPLE__
 
-   COLORREF * pdata = get_data() + (height() - y - 1) * (m_iScan / sizeof(COLORREF));
+   color32_t * pdata = get_data() + (height() - y - 1) * (m_iScan / sizeof(color32_t));
 
 #else
 
-   COLORREF * pdata = get_data() + y * (m_iScan / sizeof(COLORREF));
+   color32_t * pdata = get_data() + y * (m_iScan / sizeof(color32_t));
 
 #endif
 
@@ -4388,7 +4388,7 @@ bool image::horizontal_line(i32 y, i32 R, i32 G, i32 B, i32 A, i32 x1, i32 x2)
 bool image::Line(i32 x1, i32 y1, i32 x2, i32 y2, i32 R, i32 G, i32 B)
 {
    i32 d, x, y, aura, ay, sx, sy, dx, dy;
-   COLORREF color = RGB(B, G, R);
+   color32_t color = RGB(B, G, R);
 
    dx = x2 - x1;
    aura = abs(dx) << 1;
@@ -4404,7 +4404,7 @@ bool image::Line(i32 x1, i32 y1, i32 x2, i32 y2, i32 R, i32 G, i32 B)
       d = ay - (aura >> 1);
       while (x != x2)
       {
-         get_data()[y*(m_iScan / sizeof(COLORREF)) + x] = color;
+         get_data()[y*(m_iScan / sizeof(color32_t)) + x] = color;
          if (d >= 0)
          {
             y += sy;
@@ -4419,7 +4419,7 @@ bool image::Line(i32 x1, i32 y1, i32 x2, i32 y2, i32 R, i32 G, i32 B)
       d = aura - (ay >> 1);
       while (y != y2)
       {
-         get_data()[y*(m_iScan / sizeof(COLORREF)) + x] = color;
+         get_data()[y*(m_iScan / sizeof(color32_t)) + x] = color;
          if (d >= 0)
          {
             x += sx;
@@ -4438,7 +4438,7 @@ bool image::Line(i32 x1, i32 y1, i32 x2, i32 y2, i32 R, i32 G, i32 B)
 bool image::LineGlass(i32 x1, i32 y1, i32 x2, i32 y2, i32 R, i32 G, i32 B, i32 A)
 {
    i32 d, x, y, aura, ay, sx, sy, dx, dy;
-   //      COLORREF color=RGB ( B, G, R );
+   //      color32_t color=RGB ( B, G, R );
    u8 *dst = (u8 *)get_data();
 
    dx = x2 - x1;
@@ -4455,9 +4455,9 @@ bool image::LineGlass(i32 x1, i32 y1, i32 x2, i32 y2, i32 R, i32 G, i32 B, i32 A
       d = ay - (aura >> 1);
       while (x != x2)
       {
-         dst[(y*(m_iScan / sizeof(COLORREF)) + x) << 2] = (BYTE)(((B - dst[(y*(m_iScan / sizeof(COLORREF)) + x) << 2])*A + (dst[(y*(m_iScan / sizeof(COLORREF)) + x) << 2] << 8)) >> 8);
-         dst[((y*(m_iScan / sizeof(COLORREF)) + x) << 2) + 1] = (BYTE)(((G - dst[((y*(m_iScan / sizeof(COLORREF)) + x) << 2) + 1])*A + (dst[((y*(m_iScan / sizeof(COLORREF)) + x) << 2) + 1] << 8)) >> 8);
-         dst[((y*(m_iScan / sizeof(COLORREF)) + x) << 2) + 2] = (BYTE)(((R - dst[((y*(m_iScan / sizeof(COLORREF)) + x) << 2) + 2])*A + (dst[((y*(m_iScan / sizeof(COLORREF)) + x) << 2) + 2] << 8)) >> 8);
+         dst[(y*(m_iScan / sizeof(color32_t)) + x) << 2] = (byte)(((B - dst[(y*(m_iScan / sizeof(color32_t)) + x) << 2])*A + (dst[(y*(m_iScan / sizeof(color32_t)) + x) << 2] << 8)) >> 8);
+         dst[((y*(m_iScan / sizeof(color32_t)) + x) << 2) + 1] = (byte)(((G - dst[((y*(m_iScan / sizeof(color32_t)) + x) << 2) + 1])*A + (dst[((y*(m_iScan / sizeof(color32_t)) + x) << 2) + 1] << 8)) >> 8);
+         dst[((y*(m_iScan / sizeof(color32_t)) + x) << 2) + 2] = (byte)(((R - dst[((y*(m_iScan / sizeof(color32_t)) + x) << 2) + 2])*A + (dst[((y*(m_iScan / sizeof(color32_t)) + x) << 2) + 2] << 8)) >> 8);
          if (d >= 0)
          {
             y += sy;
@@ -4472,9 +4472,9 @@ bool image::LineGlass(i32 x1, i32 y1, i32 x2, i32 y2, i32 R, i32 G, i32 B, i32 A
       d = aura - (ay >> 1);
       while (y != y2)
       {
-         dst[(y*(m_iScan / sizeof(COLORREF)) + x) << 2] = (BYTE)(((B - dst[(y*(m_iScan / sizeof(COLORREF)) + x) << 2])*A + (dst[(y*(m_iScan / sizeof(COLORREF)) + x) << 2] << 8)) >> 8);
-         dst[((y*(m_iScan / sizeof(COLORREF)) + x) << 2) + 1] = (BYTE)(((G - dst[((y*(m_iScan / sizeof(COLORREF)) + x) << 2) + 1])*A + (dst[((y*(m_iScan / sizeof(COLORREF)) + x) << 2) + 1] << 8)) >> 8);
-         dst[((y*(m_iScan / sizeof(COLORREF)) + x) << 2) + 2] = (BYTE)(((R - dst[((y*(m_iScan / sizeof(COLORREF)) + x) << 2) + 2])*A + (dst[((y*(m_iScan / sizeof(COLORREF)) + x) << 2) + 2] << 8)) >> 8);
+         dst[(y*(m_iScan / sizeof(color32_t)) + x) << 2] = (byte)(((B - dst[(y*(m_iScan / sizeof(color32_t)) + x) << 2])*A + (dst[(y*(m_iScan / sizeof(color32_t)) + x) << 2] << 8)) >> 8);
+         dst[((y*(m_iScan / sizeof(color32_t)) + x) << 2) + 1] = (byte)(((G - dst[((y*(m_iScan / sizeof(color32_t)) + x) << 2) + 1])*A + (dst[((y*(m_iScan / sizeof(color32_t)) + x) << 2) + 1] << 8)) >> 8);
+         dst[((y*(m_iScan / sizeof(color32_t)) + x) << 2) + 2] = (byte)(((R - dst[((y*(m_iScan / sizeof(color32_t)) + x) << 2) + 2])*A + (dst[((y*(m_iScan / sizeof(color32_t)) + x) << 2) + 2] << 8)) >> 8);
          if (d >= 0)
          {
             x += sx;
@@ -4490,11 +4490,11 @@ bool image::LineGlass(i32 x1, i32 y1, i32 x2, i32 y2, i32 R, i32 G, i32 B, i32 A
 }
 
 
-bool image::Mask(COLORREF crMask, COLORREF crInMask, COLORREF crOutMask)
+bool image::Mask(color32_t crMask, color32_t crInMask, color32_t crOutMask)
 {
-   COLORREF crFind = RGB(::blue(crMask), ::green(crMask), ::red(crMask));
-   COLORREF crSet = RGB(::blue(crInMask), ::green(crInMask), ::red(crInMask));
-   COLORREF crUnset = RGB(::blue(crOutMask), ::green(crOutMask), ::red(crOutMask));
+   color32_t crFind = RGB(::blue(crMask), ::green(crMask), ::red(crMask));
+   color32_t crSet = RGB(::blue(crInMask), ::green(crInMask), ::red(crInMask));
+   color32_t crUnset = RGB(::blue(crOutMask), ::green(crOutMask), ::red(crOutMask));
 
    i64 size = scan_area();
 
@@ -4511,7 +4511,7 @@ bool image::Mask(COLORREF crMask, COLORREF crInMask, COLORREF crOutMask)
 
 bool image::transparent_color(color color)
 {
-   COLORREF crFind = color.get_rgb();
+   color32_t crFind = color.get_rgb();
    i64 iSize = scan_area();
 
    for (i32 i = 0; i < iSize; i++)
@@ -4528,7 +4528,7 @@ bool image::transparent_color(color color)
 bool image::channel_mask(uchar uchFind, uchar uchSet, uchar uchUnset, color::e_channel echannel)
 {
 
-   i32 size = (m_iScan / sizeof(COLORREF)) * height();
+   i32 size = (m_iScan / sizeof(color32_t)) * height();
 
    uchar * puch = (uchar *)get_data();
 
@@ -4561,7 +4561,7 @@ bool image::channel_mask(uchar uchFind, uchar uchSet, uchar uchUnset, color::e_c
 u32 image::GetPixel(i32 x, i32 y)
 {
 
-   u32 ui = *(get_data() + x + line(y) * (m_iScan / sizeof(COLORREF)));
+   u32 ui = *(get_data() + x + line(y) * (m_iScan / sizeof(color32_t)));
 
    u8 * point = (u8 *) &ui;
 
@@ -4588,7 +4588,7 @@ u32 image::GetPixel(i32 x, i32 y)
 // The gradient can´t have more then 256 levels of the most bright color
 // (white). So creating a radial fill of radius 256 and then using fasting
 // stretching algorithms is much faster than calculating radial fill.
-bool image::RadialFill(BYTE alpha, BYTE red, BYTE green, BYTE blue, i32 xCenter, i32 yCenter, i32 iRadius)
+bool image::RadialFill(byte alpha, byte red, byte green, byte blue, i32 xCenter, i32 yCenter, i32 iRadius)
 {
 
    if (iRadius == 0)
@@ -4610,14 +4610,14 @@ bool image::RadialFill(BYTE alpha, BYTE red, BYTE green, BYTE blue, i32 xCenter,
 
 
    if(xL < 0) xL = 0;
-   if(xU >= m_Size.(m_iScan / sizeof(COLORREF))) xU = m_Size.(m_iScan / sizeof(COLORREF)) - 1;
+   if(xU >= m_Size.(m_iScan / sizeof(color32_t))) xU = m_Size.(m_iScan / sizeof(color32_t)) - 1;
    if(yL < 0) yL = 0;
    if(yU >= m_Size.height()) yU = m_Size.height() - 1;
 
 
-   u8 *dst = ((u8 *)(get_data() + xL + yL * m_Size.(m_iScan / sizeof(COLORREF))));
-   u32 dwAdd = ((m_Size.(m_iScan / sizeof(COLORREF)) - 1 - xU) + xL) * 4;
-   i32 size=m_Size.(m_iScan / sizeof(COLORREF))*m_Size.height();
+   u8 *dst = ((u8 *)(get_data() + xL + yL * m_Size.(m_iScan / sizeof(color32_t))));
+   u32 dwAdd = ((m_Size.(m_iScan / sizeof(color32_t)) - 1 - xU) + xL) * 4;
+   i32 size=m_Size.(m_iScan / sizeof(color32_t))*m_Size.height();
    double iLevel;
 
    i32 dx, dy;
@@ -4726,8 +4726,8 @@ bool image::RadialFill(BYTE alpha, BYTE red, BYTE green, BYTE blue, i32 xCenter,
       if (yU >= height()) yU = height() - 1;
 
 
-      u8 *dst = ((u8 *)(get_data() + xL + yL * (m_iScan / sizeof(COLORREF))));
-      u32 dwAdd = (((m_iScan / sizeof(COLORREF)) - 1 - xU) + xL) * 4;
+      u8 *dst = ((u8 *)(get_data() + xL + yL * (m_iScan / sizeof(color32_t))));
+      u32 dwAdd = (((m_iScan / sizeof(color32_t)) - 1 - xU) + xL) * 4;
       //         i64 size = area();
 
       i32 dx, dy;
@@ -4761,8 +4761,8 @@ bool image::RadialFill(BYTE alpha, BYTE red, BYTE green, BYTE blue, i32 xCenter,
 
 
 bool image::RadialFill(
-BYTE alpha1, BYTE red1, BYTE green1, BYTE blue1,
-BYTE alpha2, BYTE red2, BYTE green2, BYTE blue2,
+byte alpha1, byte red1, byte green1, byte blue1,
+byte alpha2, byte red2, byte green2, byte blue2,
 i32 xCenter, i32 yCenter, i32 iRadius)
 {
    if (iRadius == 0)
@@ -4781,14 +4781,14 @@ i32 xCenter, i32 yCenter, i32 iRadius)
 
 
    if(xL < 0) xL = 0;
-   if(xU >= m_Size.(m_iScan / sizeof(COLORREF))) xU = m_Size.(m_iScan / sizeof(COLORREF)) - 1;
+   if(xU >= m_Size.(m_iScan / sizeof(color32_t))) xU = m_Size.(m_iScan / sizeof(color32_t)) - 1;
    if(yL < 0) yL = 0;
    if(yU >= m_Size.height()) yU = m_Size.height() - 1;
 
 
-   u8 *dst = ((u8 *)(get_data() + xL + yL * m_Size.(m_iScan / sizeof(COLORREF))));
-   u32 dwAdd = ((m_Size.(m_iScan / sizeof(COLORREF)) - 1 - xU) + xL) * 4;
-   i32 size=m_Size.(m_iScan / sizeof(COLORREF))*m_Size.height();
+   u8 *dst = ((u8 *)(get_data() + xL + yL * m_Size.(m_iScan / sizeof(color32_t))));
+   u32 dwAdd = ((m_Size.(m_iScan / sizeof(color32_t)) - 1 - xU) + xL) * 4;
+   i32 size=m_Size.(m_iScan / sizeof(color32_t))*m_Size.height();
    double iLevel;
 
    i32 dx, dy;
@@ -4902,15 +4902,15 @@ i32 xCenter, i32 yCenter, i32 iRadius)
       if (yU > height()) yU = height();
 
 
-      u8 *dst = ((u8 *)(get_data() + xL + yL * (m_iScan / sizeof(COLORREF))));
-      u32 dwAdd = (((m_iScan / sizeof(COLORREF)) - xU) + xL) * 4;
+      u8 *dst = ((u8 *)(get_data() + xL + yL * (m_iScan / sizeof(color32_t))));
+      u32 dwAdd = (((m_iScan / sizeof(color32_t)) - xU) + xL) * 4;
       //         i64 size = area();
 
       double dx, dy;
 
       double dRadius = 255.0 / (double)iRadius;
 
-      BYTE bComp;
+      byte bComp;
 
       int b;
 
@@ -5041,8 +5041,8 @@ i32 xCenter, i32 yCenter, i32 iRadius)
 //      u8 * dest = (u8 *)get_data();
 //      i32 iSize = width()*height();
 //
-//      BYTE b;
-//      BYTE bMax;
+//      byte b;
+//      byte bMax;
 //      while (iSize-- > 0)
 //      {
 //         if (srcM[0] == 255)
@@ -5052,11 +5052,11 @@ i32 xCenter, i32 yCenter, i32 iRadius)
 //         else
 //         {
 //            bMax = 0;
-//            b = (BYTE)(r1[0] - r2[0]);
+//            b = (byte)(r1[0] - r2[0]);
 //            bMax = max(b, bMax);
-//            b = (BYTE)(r1[1] - r2[1]);
+//            b = (byte)(r1[1] - r2[1]);
 //            bMax = max(b, bMax);
-//            b = (BYTE)(r1[2] - r2[2]);
+//            b = (byte)(r1[2] - r2[2]);
 //            bMax = max(b, bMax);
 //            bMax = 255 - bMax;
 //         }
@@ -5140,9 +5140,9 @@ bool image::rotate(::image * pimage, double dAngle, double dScale)
 
    int joff = hTarget / 2;
 
-   int dsw = m_iScan / sizeof(COLORREF);
+   int dsw = m_iScan / sizeof(color32_t);
 
-   int ssw = pimage->m_iScan / sizeof(COLORREF);
+   int ssw = pimage->m_iScan / sizeof(color32_t);
 
    double dCos = ::cos(dAngle * pi() / 180.0) * dScale;
 
@@ -5197,7 +5197,7 @@ bool image::Rotate034(::image * pimage, double dAngle, double dScale)
    i32 joff = height() / 2;
    i32 ioff = width() / 2;
 
-   int stride_unit = m_iScan / sizeof(COLORREF);
+   int stride_unit = m_iScan / sizeof(color32_t);
    i32 k = 0;
    double dCos = ::cos(dAngle * pi() / 180.0) * dScale;
    double dSin = ::sin(dAngle * pi() / 180.0) * dScale;
@@ -5264,7 +5264,7 @@ bool image::rotate(::image * pimage, const ::rect & rect, double dAngle, double 
 
    i32 ioff = width() / 2 + rect.top;
 
-   int stride_unit = m_iScan / sizeof(COLORREF);
+   int stride_unit = m_iScan / sizeof(color32_t);
    //i32 iAngle = iStep % 360;
    //i32 iAngle = iStep;
    //i32 iAngle = 1;
@@ -5353,9 +5353,9 @@ bool image::rotate90(::image * pimage)
 
    i32 cy = pimage->height();
 
-   int s = m_iScan / sizeof(COLORREF);
+   int s = m_iScan / sizeof(color32_t);
 
-   int srcS = pimage->m_iScan / sizeof(COLORREF);
+   int srcS = pimage->m_iScan / sizeof(color32_t);
 
    for (i32 i = 0; i < cx; i++)
    {
@@ -5392,9 +5392,9 @@ bool image::rotate180(::image * pimage)
 
    i32 cy = height();
 
-   int s = m_iScan / sizeof(COLORREF);
+   int s = m_iScan / sizeof(color32_t);
 
-   int srcS = pimage->m_iScan / sizeof(COLORREF);
+   int srcS = pimage->m_iScan / sizeof(color32_t);
 
    for (i32 i = 0; i < cy; i++)
    {
@@ -5431,9 +5431,9 @@ bool image::rotate270(::image * pimage)
 
    i32 cy = pimage->height();
 
-   int s = m_iScan / sizeof(COLORREF);
+   int s = m_iScan / sizeof(color32_t);
 
-   int srcS = pimage->m_iScan / sizeof(COLORREF);
+   int srcS = pimage->m_iScan / sizeof(color32_t);
 
    for (i32 i = 0; i < cx; i++)
    {
@@ -5500,9 +5500,9 @@ bool image::rotate90flipx(::image * pimage)
 
    i32 cy = pimage->height();
 
-   int s = m_iScan / sizeof(COLORREF);
+   int s = m_iScan / sizeof(color32_t);
 
-   int srcS = pimage->m_iScan / sizeof(COLORREF);
+   int srcS = pimage->m_iScan / sizeof(color32_t);
 
    for (i32 i = 0; i < cx; i++)
    {
@@ -5539,9 +5539,9 @@ bool image::rotate180flipx(::image * pimage)
 
    i32 cy = height();
 
-   int s = m_iScan / sizeof(COLORREF);
+   int s = m_iScan / sizeof(color32_t);
 
-   int srcS = pimage->m_iScan / sizeof(COLORREF);
+   int srcS = pimage->m_iScan / sizeof(color32_t);
 
    for (i32 i = 0; i < cy; i++)
    {
@@ -5578,9 +5578,9 @@ bool image::rotate270flipx(::image * pimage)
 
    i32 cy = pimage->height();
 
-   int s = m_iScan / sizeof(COLORREF);
+   int s = m_iScan / sizeof(color32_t);
 
-   int srcS = pimage->m_iScan / sizeof(COLORREF);
+   int srcS = pimage->m_iScan / sizeof(color32_t);
 
    for (i32 i = 0; i < cx; i++)
    {
@@ -5686,7 +5686,7 @@ bool image::fill_byte(uchar uch)
 }
 
 
-bool image::fill(COLORREF cr)
+bool image::fill(color32_t cr)
 {
 
    if (m_bMapped)
@@ -5714,7 +5714,7 @@ bool image::fill(COLORREF cr)
 
       cr = IMAGE_ARGB(a, rect, g, b);
 
-      COLORREF * pcr = colorref();
+      color32_t * pcr = colorref();
 
       for (i64 i = 0; i < size; i++)
          pcr[i] = cr;
@@ -5748,7 +5748,7 @@ bool image::fill(i32 a, i32 rect, i32 g, i32 b)
    else
    {
 
-      COLORREF color = make_colorref(a, rect, g, b);
+      color32_t color = make_colorref(a, rect, g, b);
 
       fill(color);
 
@@ -5759,7 +5759,7 @@ bool image::fill(i32 a, i32 rect, i32 g, i32 b)
 }
 
 
-COLORREF image::GetAverageColor()
+color32_t image::GetAverageColor()
 {
 
    map();
@@ -5825,7 +5825,7 @@ COLORREF image::GetAverageColor()
 }
 
 
-COLORREF image::GetAverageOpaqueColor()
+color32_t image::GetAverageOpaqueColor()
 {
    map();
    double dR = 0.0;
@@ -5930,11 +5930,11 @@ bool image::set_frame1(void * pdata, i32 iFrame, i32 iFrameCount)
    i32 iFrameHeight = height() / iSliceCount;
    i32 iX = iFrame % iSliceCount;
    i32 iY = iFrame / iSliceCount;
-   COLORREF * pdst = &get_data()[iFrameWidth * iX + iY * iFrameHeight * width()];
+   color32_t * pdst = &get_data()[iFrameWidth * iX + iY * iFrameHeight * width()];
 
-   COLORREF * psrc = (COLORREF *)pdata;
+   color32_t * psrc = (color32_t *)pdata;
 
-   COLORREF * pdstline;
+   color32_t * pdstline;
 
    for (i32 y = 0; y < iFrameHeight; y++)
    {
@@ -5967,11 +5967,11 @@ bool image::set_frame2(void * pdata, i32 iFrame, i32 iFrameCount)
    i32 iFrameHeight = height() / iSliceCount;
    i32 iX = iFrame % iSliceCount;
    i32 iY = iFrame / iSliceCount;
-   COLORREF * pdst = &get_data()[iFrameWidth * iX + iY * iFrameHeight * width()];
+   color32_t * pdst = &get_data()[iFrameWidth * iX + iY * iFrameHeight * width()];
 
-   COLORREF * psrc = (COLORREF *)pdata;
+   color32_t * psrc = (color32_t *)pdata;
 
-   COLORREF * pdstline;
+   color32_t * pdstline;
 
    for (i32 y = iFrameHeight - 1; y >= 0; y--)
    {
@@ -6003,11 +6003,11 @@ bool image::xor_image_frame2(void * pdata, i32 iFrame, i32 iFrameCount)
    i32 iFrameHeight = height() / iSliceCount;
    i32 iX = iFrame % iSliceCount;
    i32 iY = iFrame / iSliceCount;
-   COLORREF * pdst = &get_data()[iFrameWidth * iX + iY * iFrameHeight * width()];
+   color32_t * pdst = &get_data()[iFrameWidth * iX + iY * iFrameHeight * width()];
 
-   COLORREF * psrc = (COLORREF *)pdata;
+   color32_t * psrc = (color32_t *)pdata;
 
-   COLORREF * pdstline;
+   color32_t * pdstline;
 
    for (i32 y = iFrameHeight - 1; y >= 0; y--)
    {
@@ -6037,11 +6037,11 @@ bool image::get_frame(void * pdata, i32 iFrame, i32 iFrameCount)
    i32 iFrameHeight = height() / iSliceCount;
    i32 iX = iFrame % iSliceCount;
    i32 iY = iFrame / iSliceCount;
-   COLORREF * psrc = &get_data()[iFrameWidth * iX + iY * iFrameHeight *  width()];
+   color32_t * psrc = &get_data()[iFrameWidth * iX + iY * iFrameHeight *  width()];
 
-   COLORREF * pdst = (COLORREF *)pdata;
+   color32_t * pdst = (color32_t *)pdata;
 
-   COLORREF * psrcline;
+   color32_t * psrcline;
 
    for (i32 y = 0; y < iFrameHeight; y++)
    {
@@ -6066,7 +6066,7 @@ bool image::get_frame(void * pdata, i32 iFrame, i32 iFrameCount)
 bool image::is_rgb_black()
 {
    i32 iSize = width() * height();
-   COLORREF * point = get_data();
+   color32_t * point = get_data();
 
    for (i32 i = 0; i < iSize; i++)
    {
@@ -6311,9 +6311,9 @@ bool image::_set_mipmap(::draw2d::e_mipmap emipmap)
             C2PassScale < CBlackmanFilter > scale(1.0);
 
             scale.Scale(
-            &colorref()[x + y * m_iScan / sizeof(COLORREF)],
-            (UINT) cx,
-            (UINT)cy,
+            &colorref()[x + y * m_iScan / sizeof(color32_t)],
+            (::u32) cx,
+            (::u32)cy,
             m_iScan,
             pimage->get_data(),
             cxSource,
@@ -6379,11 +6379,11 @@ bool image::_set_mipmap(::draw2d::e_mipmap emipmap)
                C2PassScale < CBlackmanFilter > scale(1.0);
 
                scale.Scale(
-               &colorref()[x + y * m_iScan / sizeof(COLORREF)],
+               &colorref()[x + y * m_iScan / sizeof(color32_t)],
                dx,
                dy,
                m_iScan,
-               &pimage->colorref()[xPrevious + yPrevious * pimage->m_iScan / sizeof(COLORREF)],
+               &pimage->colorref()[xPrevious + yPrevious * pimage->m_iScan / sizeof(color32_t)],
                cxPrevious,
                cyPrevious,
                pimage->m_iScan
@@ -6486,7 +6486,7 @@ bool image::_create_helper_map()
 
    index w = width();
    index h = height();
-   index sw = w * sizeof(COLORREF);
+   index sw = w * sizeof(color32_t);
    index aa = w * h;
    {
 
@@ -6729,7 +6729,7 @@ bool image::fill_channel(i32 intensity, color::e_channel echannel)
    i32 offset = ((i32)echannel) % 4;
    i64 size = scan_area();
 
-   COLORREF * pcr = (COLORREF *) &((u8 *)colorref())[offset];
+   color32_t * pcr = (color32_t *) &((u8 *)colorref())[offset];
 
    u8 * pb;
 
@@ -6788,7 +6788,7 @@ bool image::white_fill_channel(i32 intensity, color::e_channel echannel)
    i32 offset = ((i32)echannel) % 4;
    i64 size = scan_area();
 
-   COLORREF * pcr = (COLORREF *) &((u8 *)colorref())[offset];
+   color32_t * pcr = (color32_t *) &((u8 *)colorref())[offset];
 
    //      u8 * pb;
 
@@ -6966,9 +6966,9 @@ bool image::tint(::image * pimage, const rgb & rgb)
    u8 *dst = (u8 *)colorref();
    i64 size = scan_area();
 
-   BYTE uchR = (byte)rgb.m_iR;
-   BYTE uchG = (byte)rgb.m_iG;
-   BYTE uchB = (byte)rgb.m_iB;
+   byte uchR = (byte)rgb.m_iR;
+   byte uchG = (byte)rgb.m_iG;
+   byte uchB = (byte)rgb.m_iB;
 
    //      i32 i = 0;;
 
@@ -7079,7 +7079,7 @@ bool image::tint(::image * pimage, const rgb & rgb)
    //   size--;
    //}
 
-   COLORREF o = ARGB(255, uchR, uchG, uchB);
+   color32_t o = ARGB(255, uchR, uchG, uchB);
 
    while (size > 0)
    {
@@ -7089,13 +7089,13 @@ bool image::tint(::image * pimage, const rgb & rgb)
       if (bA == 0)
       {
 
-         *((COLORREF *)dst) = 0;
+         *((color32_t *)dst) = 0;
 
       }
       else if (bA == 255)
       {
 
-         *((COLORREF *)dst) = o;
+         *((color32_t *)dst) = o;
 
       }
       else
@@ -7204,9 +7204,9 @@ bool image::set_rgb_pre_alpha(i32 R, i32 G, i32 B, i32 A)
    u8 *dst = (u8 *)colorref();
    i64 size = scan_area();
 
-   BYTE uchB = (byte)R;
-   BYTE uchG = (byte)G;
-   BYTE uchR = (byte)B;
+   byte uchB = (byte)R;
+   byte uchG = (byte)G;
+   byte uchR = (byte)B;
 
    //      i32 i = 0;;
 
@@ -7313,7 +7313,7 @@ bool image::set_rgb_pre_alpha(i32 R, i32 G, i32 B, i32 A)
 }
 
 
-bool image::set_rgb(COLORREF cr)
+bool image::set_rgb(color32_t cr)
 {
 
    return set_rgb(colorref_get_r_value(cr), colorref_get_g_value(cr), colorref_get_b_value(cr));
@@ -7334,9 +7334,9 @@ bool image::set_rgb(COLORREF cr)
 
    ::i64 areaRgba = 0;
 
-   COLORREF cr = IMAGE_ARGB(rgba.m_iA, rgba.m_iR, rgba.m_iG, rgba.m_iB);
+   color32_t cr = IMAGE_ARGB(rgba.m_iA, rgba.m_iR, rgba.m_iG, rgba.m_iB);
 
-   const COLORREF* p = this->get_data();
+   const color32_t* p = this->get_data();
 
    areaRgba++;
 
@@ -7363,7 +7363,7 @@ bool image::set_rgb(COLORREF cr)
 }
 
 
-::i64 image::get_rgba_area(const rgba& rgba, LPCRECT lpcrect) const
+::i64 image::get_rgba_area(const rgba& rgba, LPCRECT32 lpcrect) const
 {
 
    ::rect r(lpcrect);
@@ -7377,9 +7377,9 @@ bool image::set_rgb(COLORREF cr)
 
    ::count areaRgba = 0;
 
-   COLORREF cr = IMAGE_ARGB(rgba.m_iA, rgba.m_iR, rgba.m_iG, rgba.m_iB);
+   color32_t cr = IMAGE_ARGB(rgba.m_iA, rgba.m_iR, rgba.m_iG, rgba.m_iB);
 
-   int wscan = m_iScan / sizeof(COLORREF);
+   int wscan = m_iScan / sizeof(color32_t);
 
    int w = r.width();
 
@@ -7387,7 +7387,7 @@ bool image::set_rgb(COLORREF cr)
 
    int scanadvance = wscan - w;
 
-   const COLORREF* p = this->get_data() + r.left + wscan * r.top;
+   const color32_t* p = this->get_data() + r.left + wscan * r.top;
 
    areaRgba++;
 
@@ -7430,7 +7430,7 @@ bool image::set_rgb(COLORREF cr)
 }
 
 
-::i64 image::_001GetTopLeftWeightedOpaqueArea(int iAlphaMin, LPCRECT lpcrect) const
+::i64 image::_001GetTopLeftWeightedOpaqueArea(int iAlphaMin, LPCRECT32 lpcrect) const
 {
 
    ::rect r(lpcrect);
@@ -7446,7 +7446,7 @@ bool image::set_rgb(COLORREF cr)
 
    ::i64 areaRgba = 0;
 
-   int wscan = m_iScan / sizeof(COLORREF);
+   int wscan = m_iScan / sizeof(color32_t);
 
    int w = r.width();
 
@@ -7454,7 +7454,7 @@ bool image::set_rgb(COLORREF cr)
 
    ::i64 areaRgbaLast = 0;
 
-   const COLORREF* p = this->get_data() + r.left + wscan * r.top;
+   const color32_t* p = this->get_data() + r.left + wscan * r.top;
 
    areaRgba++;
 
@@ -7475,7 +7475,7 @@ bool image::set_rgb(COLORREF cr)
 
          }
 
-         pbyte += sizeof(COLORREF);
+         pbyte += sizeof(color32_t);
 
       }
 
@@ -7579,7 +7579,7 @@ bool image::pixelate(i32 iSize)
 
    i32 w = width();
    i32 h = height();
-   i32 s = m_iScan / sizeof(COLORREF);
+   i32 s = m_iScan / sizeof(color32_t);
 
    i32 xCount = w / iSize;
    i32 yCount = h / iSize;
@@ -7596,7 +7596,7 @@ bool image::pixelate(i32 iSize)
    i32 g2;
    i32 b2;
    //bool bFirst;
-   COLORREF * pdata = get_data();
+   color32_t * pdata = get_data();
    i32 x1;
    i32 y1;
    for (i32 x = 0; x < xCount; x++)
@@ -7620,7 +7620,7 @@ bool image::pixelate(i32 iSize)
          {
             for (i32 j = 0; j < iSize; j++)
             {
-               COLORREF cr = pdata[x1 + i + (y1 + j) * s];
+               color32_t cr = pdata[x1 + i + (y1 + j) * s];
                a += colorref_get_a_value(cr);
                rect += colorref_get_r_value(cr);
                g += colorref_get_g_value(cr);
@@ -7648,7 +7648,7 @@ bool image::pixelate(i32 iSize)
             g2 = (g2 * iDiv2 + g / iDiv) / (iDiv2 + 1);
             b2 = (b2 * iDiv2 + b / iDiv) / (iDiv2 + 1);
          }
-         COLORREF cr = ARGB(a2, r2, g2, b2);
+         color32_t cr = ARGB(a2, r2, g2, b2);
          for (i32 i = 0; i < iSize; i++)
          {
             for (i32 j = 0; j < iSize; j++)
@@ -7687,7 +7687,7 @@ bool image::pixelate(i32 iSize)
          {
             for (i32 j = 0; j < iSize; j++)
             {
-               COLORREF cr = pdata[x1 + i + (y1 + j) * w];
+               color32_t cr = pdata[x1 + i + (y1 + j) * w];
                a += colorref_get_a_value(cr);
                rect += colorref_get_r_value(cr);
                g += colorref_get_g_value(cr);
@@ -7715,7 +7715,7 @@ bool image::pixelate(i32 iSize)
             g2 = (g2 * iDiv2 + g / iDiv) / (iDiv2 + 1);
             b2 = (b2 * iDiv2 + b / iDiv) / (iDiv2 + 1);
          }
-         COLORREF cr = ARGB(a2, r2, g2, b2);
+         color32_t cr = ARGB(a2, r2, g2, b2);
          for (i32 i = 0; i < iMax; i++)
          {
             for (i32 j = 0; j < iSize; j++)
@@ -7750,7 +7750,7 @@ bool image::pixelate(i32 iSize)
          {
             for (i32 j = 0; j < jMax; j++)
             {
-               COLORREF cr = pdata[x1 + i + (y1 + j) * w];
+               color32_t cr = pdata[x1 + i + (y1 + j) * w];
                a += colorref_get_a_value(cr);
                rect += colorref_get_r_value(cr);
                g += colorref_get_g_value(cr);
@@ -7778,7 +7778,7 @@ bool image::pixelate(i32 iSize)
             g2 = (g2 * iDiv2 + g / iDiv) / (iDiv2 + 1);
             b2 = (b2 * iDiv2 + b / iDiv) / (iDiv2 + 1);
          }
-         COLORREF cr = ARGB(a2, r2, g2, b2);
+         color32_t cr = ARGB(a2, r2, g2, b2);
          for (i32 i = 0; i < iSize; i++)
          {
             for (i32 j = 0; j < jMax; j++)
@@ -7814,7 +7814,7 @@ bool image::pixelate(i32 iSize)
       {
          for (i32 j = 0; j < jMax; j++)
          {
-            COLORREF cr = pdata[x1 + i + (y1 + j) * w];
+            color32_t cr = pdata[x1 + i + (y1 + j) * w];
             a += colorref_get_a_value(cr);
             rect += colorref_get_r_value(cr);
             g += colorref_get_g_value(cr);
@@ -7845,7 +7845,7 @@ bool image::pixelate(i32 iSize)
 
       }
 
-      COLORREF cr = ARGB(a2, r2, g2, b2);
+      color32_t cr = ARGB(a2, r2, g2, b2);
 
       for (i32 i = 0; i < iMax; i++)
       {
@@ -7993,7 +7993,7 @@ bool image::set_mapped()
 
 
 
-bool image::gradient_fill(COLORREF clr1, COLORREF clr2, const point & point1, const point & point2)
+bool image::gradient_fill(color32_t clr1, color32_t clr2, const point & point1, const point & point2)
 {
 
    double dx = point2.x - point1.x;
@@ -8109,7 +8109,7 @@ bool image::gradient_fill(COLORREF clr1, COLORREF clr2, const point & point1, co
 }
 
 
-bool image::gradient_horizontal_fill(COLORREF clr1, COLORREF clr2, int start, int end)
+bool image::gradient_horizontal_fill(color32_t clr1, color32_t clr2, int start, int end)
 {
 
    if (end < start)
@@ -8119,13 +8119,13 @@ bool image::gradient_horizontal_fill(COLORREF clr1, COLORREF clr2, int start, in
    }
 
    end = min(end, height() - 1);
-   COLORREF clr = clr1;
+   color32_t clr = clr1;
    u8 * pb = (u8 *)colorref();
-   COLORREF * pdata;
+   color32_t * pdata;
    int line = 0;
    for (; line < start; line++)
    {
-      pdata = (COLORREF *)&pb[m_iScan * line];
+      pdata = (color32_t *)&pb[m_iScan * line];
       for (int row = 0; row < width(); row++)
       {
          *pdata = clr;
@@ -8144,7 +8144,7 @@ bool image::gradient_horizontal_fill(COLORREF clr1, COLORREF clr2, int start, in
             byte_clip(colorref_get_g_value(clr1) * (1.0 - d) + colorref_get_g_value(clr2) * d),
             byte_clip(colorref_get_b_value(clr1) * (1.0 - d) + colorref_get_b_value(clr2) * d));
 
-      pdata = (COLORREF *)&pb[m_iScan * line];
+      pdata = (color32_t *)&pb[m_iScan * line];
       for (int row = 0; row < width(); row++)
       {
          *pdata = clr;
@@ -8154,7 +8154,7 @@ bool image::gradient_horizontal_fill(COLORREF clr1, COLORREF clr2, int start, in
    clr = clr2;
    for (; line < height(); line++)
    {
-      pdata = (COLORREF *)&pb[m_iScan * line];
+      pdata = (color32_t *)&pb[m_iScan * line];
       for (int row = 0; row < width(); row++)
       {
          *pdata = clr;
@@ -8167,7 +8167,7 @@ bool image::gradient_horizontal_fill(COLORREF clr1, COLORREF clr2, int start, in
 }
 
 
-bool image::gradient_vertical_fill(COLORREF clr1, COLORREF clr2, int start, int end)
+bool image::gradient_vertical_fill(color32_t clr1, color32_t clr2, int start, int end)
 {
 
    if (end < start)
@@ -8177,13 +8177,13 @@ bool image::gradient_vertical_fill(COLORREF clr1, COLORREF clr2, int start, int 
    }
 
    end = min(end, width() - 1);
-   COLORREF clr = clr1;
+   color32_t clr = clr1;
    u8 * pb = (u8 *)colorref();
-   COLORREF * pdata;
+   color32_t * pdata;
    int row = 0;
    for (; row < start; row++)
    {
-      pdata = (COLORREF *)&pb[sizeof(COLORREF) * row];
+      pdata = (color32_t *)&pb[sizeof(color32_t) * row];
       for (int line = 0; line < height(); line++)
       {
          *pdata = clr;
@@ -8202,7 +8202,7 @@ bool image::gradient_vertical_fill(COLORREF clr1, COLORREF clr2, int start, int 
             byte_clip(colorref_get_g_value(clr1) * (1.0 - d) + colorref_get_g_value(clr2) * d),
             byte_clip(colorref_get_b_value(clr1) * (1.0 - d) + colorref_get_b_value(clr2) * d));
 
-      pdata = (COLORREF *)&pb[sizeof(COLORREF) * row];
+      pdata = (color32_t *)&pb[sizeof(color32_t) * row];
       for (int line = 0; line < width(); line++)
       {
          *pdata = clr;
@@ -8212,7 +8212,7 @@ bool image::gradient_vertical_fill(COLORREF clr1, COLORREF clr2, int start, int 
    clr = clr2;
    for (; row < width(); row++)
    {
-      pdata = (COLORREF *)&pb[sizeof(COLORREF) * row];
+      pdata = (color32_t *)&pb[sizeof(color32_t) * row];
       for (int line = 0; line < width(); line++)
       {
          *pdata = clr;
@@ -8225,7 +8225,7 @@ bool image::gradient_vertical_fill(COLORREF clr1, COLORREF clr2, int start, int 
 }
 
 
-bool image::gradient_horizontal_fill(COLORREF clr1, COLORREF clr2)
+bool image::gradient_horizontal_fill(color32_t clr1, color32_t clr2)
 {
 
    gradient_horizontal_fill(clr1, clr2, 0, height() - 1);
@@ -8235,7 +8235,7 @@ bool image::gradient_horizontal_fill(COLORREF clr1, COLORREF clr2)
 }
 
 
-bool image::gradient_vertical_fill(COLORREF clr1, COLORREF clr2)
+bool image::gradient_vertical_fill(color32_t clr1, color32_t clr2)
 {
 
    gradient_vertical_fill(clr1, clr2, 0, width() - 1);
@@ -8324,11 +8324,11 @@ bool image::create_circle(::image * pimage, int diameter)
 
    ::size s = size();
 
-   COLORREF * pcolorref = colorref();
+   color32_t * pcolorref = colorref();
 
    int iScan = m_iScan;
 
-   int wscan = iScan / sizeof(COLORREF);
+   int wscan = iScan / sizeof(color32_t);
 
    double rect = diameter / 2.0;
 
@@ -8340,7 +8340,7 @@ bool image::create_circle(::image * pimage, int diameter)
 
    int crA;
 
-   COLORREF * pcolorref2;
+   color32_t * pcolorref2;
 
    for (int y = 0; y < s.cx; y++)
    {
@@ -8373,7 +8373,7 @@ bool image::create_circle(::image * pimage, int diameter)
 }
 
 
-bool image::create_framed_square(::image * pimage, int inner, int outer, COLORREF cr)
+bool image::create_framed_square(::image * pimage, int inner, int outer, color32_t cr)
 {
 
    if (!create({ inner + outer * 2, inner + outer * 2 }))
@@ -8776,7 +8776,7 @@ CLASS_DECL_AURA void draw_freetype_bitmap(::image * m_p, i32 dx, i32 dy, void * 
 
          i32 a = bitmap->buffer[q * bitmap->width + point];
 
-         *((COLORREF *)&((u8 *)m_p->get_data())[(dy + j) * m_p->m_iScan + (dx + i) * 4]) = ARGB(a, 0, 0, 0);
+         *((color32_t *)&((u8 *)m_p->get_data())[(dy + j) * m_p->m_iScan + (dx + i) * 4]) = ARGB(a, 0, 0, 0);
 
       }
    }
@@ -8809,13 +8809,13 @@ CLASS_DECL_AURA void draw_freetype_bitmap(::image * m_p, i32 dx, i32 dy, void * 
          if (a > 0)
          {
 
-            *((COLORREF *)&((u8 *)m_p->get_data())[(dy + j) * m_p->m_iScan + (dx + i) * 4]) = ARGB(a * aParam / 255, rect, g, b);
+            *((color32_t *)&((u8 *)m_p->get_data())[(dy + j) * m_p->m_iScan + (dx + i) * 4]) = ARGB(a * aParam / 255, rect, g, b);
 
          }
          else
          {
 
-            *((COLORREF *)&((u8 *)m_p->get_data())[(dy + j) * m_p->m_iScan + (dx + i) * 4]) = 0;
+            *((color32_t *)&((u8 *)m_p->get_data())[(dy + j) * m_p->m_iScan + (dx + i) * 4]) = 0;
 
          }
 
@@ -8859,7 +8859,7 @@ CLASS_DECL_AURA void draw_freetype_bitmap(::image * m_p, i32 dx, i32 dy, void * 
 
          i32 a = bitmap->buffer[q * bitmap->width + point];
 
-         *((COLORREF *)&((u8 *)m_p->get_data())[(dy + j) * m_p->m_iScan + (dx + i) * 4]) = ARGB(a, 0, 0, 0);
+         *((color32_t *)&((u8 *)m_p->get_data())[(dy + j) * m_p->m_iScan + (dx + i) * 4]) = ARGB(a, 0, 0, 0);
 
       }
    }
@@ -8892,13 +8892,13 @@ CLASS_DECL_AURA void draw_freetype_bitmap(::image * m_p, i32 dx, i32 dy, void * 
          if (a > 0)
          {
 
-            *((COLORREF *)&((u8 *)m_p->get_data())[(dy + j) * m_p->m_iScan + (dx + i) * 4]) = ARGB(a * aParam / 255, rect, g, b);
+            *((color32_t *)&((u8 *)m_p->get_data())[(dy + j) * m_p->m_iScan + (dx + i) * 4]) = ARGB(a * aParam / 255, rect, g, b);
 
          }
          else
          {
 
-            *((COLORREF *)&((u8 *)m_p->get_data())[(dy + j) * m_p->m_iScan + (dx + i) * 4]) = 0;
+            *((color32_t *)&((u8 *)m_p->get_data())[(dy + j) * m_p->m_iScan + (dx + i) * 4]) = 0;
 
          }
 
@@ -9085,7 +9085,7 @@ stream & image::read(::stream & stream)
 
    }
 
-   if (iScan < widthAlloc / (i32)sizeof(COLORREF))
+   if (iScan < widthAlloc / (i32)sizeof(color32_t))
    {
       stream.setstate(::file::badbit);
 
@@ -9130,7 +9130,7 @@ stream & image::read(::stream & stream)
 
       }
 
-      ::copy_colorref(get_data(), width, height, m_iScan, (COLORREF *)mem.get_data(), iScan);
+      ::copy_colorref(get_data(), width, height, m_iScan, (color32_t *)mem.get_data(), iScan);
 
    }
 

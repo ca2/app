@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_ACME colorref_array :
-   virtual public numeric_array < COLORREF >
+   virtual public numeric_array < color32_t >
 {
 public:
 

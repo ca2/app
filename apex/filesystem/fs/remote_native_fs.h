@@ -39,7 +39,7 @@ namespace fs
 
       virtual bool file_move(const ::file::path & pszDst,const ::file::path & pszSrc) override;
 
-      virtual file_result get_file(const ::file::path & path, UINT nOpenFlags) override;
+      virtual file_result get_file(const ::file::path & path, ::u32 nOpenFlags) override;
 
       virtual bool file_exists(const ::file::path & pszPath) override;
 

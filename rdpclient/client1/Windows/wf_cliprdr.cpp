@@ -76,7 +76,7 @@ void wf_destroy_file_obj(IDataObject* instance);
 //
 //ULONG STDMETHODCALLTYPE CliprdrStream_Release(IStream* This)
 //{
-//	LONG count;
+//	::i32 count;
 //	CliprdrStream* instance = (CliprdrStream*) This;
 //
 //	count = InterlockedDecrement(&instance->m_lRefCount);
@@ -135,7 +135,7 @@ void wf_destroy_file_obj(IDataObject* instance);
 //	return STG_E_ACCESSDENIED;
 //}
 //
-//HRESULT STDMETHODCALLTYPE CliprdrStream_Seek(IStream* This, LARGE_INTEGER dlibMove, DWORD dwOrigin, ULARGE_INTEGER* plibNewPosition)
+//HRESULT STDMETHODCALLTYPE CliprdrStream_Seek(IStream* This, LARGE_INTEGER dlibMove, ::u32 dwOrigin, ULARGE_INTEGER* plibNewPosition)
 //{
 //	ULONGLONG newoffset;
 //	CliprdrStream* instance = (CliprdrStream*) This;
@@ -182,7 +182,7 @@ void wf_destroy_file_obj(IDataObject* instance);
 //	return S_OK;
 //}
 //
-//HRESULT STDMETHODCALLTYPE CliprdrStream_Commit(IStream* This, DWORD grfCommitFlags)
+//HRESULT STDMETHODCALLTYPE CliprdrStream_Commit(IStream* This, ::u32 grfCommitFlags)
 //{
 //	CliprdrStream* instance = (CliprdrStream*) This;
 //
@@ -196,21 +196,21 @@ void wf_destroy_file_obj(IDataObject* instance);
 //	return STG_E_INSUFFICIENTMEMORY;
 //}
 //
-//HRESULT STDMETHODCALLTYPE CliprdrStream_LockRegion(IStream* This, ULARGE_INTEGER libOffset, ULARGE_INTEGER cb, DWORD dwLockType)
+//HRESULT STDMETHODCALLTYPE CliprdrStream_LockRegion(IStream* This, ULARGE_INTEGER libOffset, ULARGE_INTEGER cb, ::u32 dwLockType)
 //{
 //	CliprdrStream* instance = (CliprdrStream*) This;
 //
 //	return STG_E_INSUFFICIENTMEMORY;
 //}
 //
-//HRESULT STDMETHODCALLTYPE CliprdrStream_UnlockRegion(IStream* This, ULARGE_INTEGER libOffset, ULARGE_INTEGER cb, DWORD dwLockType)
+//HRESULT STDMETHODCALLTYPE CliprdrStream_UnlockRegion(IStream* This, ULARGE_INTEGER libOffset, ULARGE_INTEGER cb, ::u32 dwLockType)
 //{
 //	CliprdrStream* instance = (CliprdrStream*) This;
 //
 //	return STG_E_INSUFFICIENTMEMORY;
 //}
 //
-//HRESULT STDMETHODCALLTYPE CliprdrStream_Stat(IStream* This, STATSTG* pstatstg, DWORD grfStatFlag)
+//HRESULT STDMETHODCALLTYPE CliprdrStream_Stat(IStream* This, STATSTG* pstatstg, ::u32 grfStatFlag)
 //{
 //	CliprdrStream* instance = (CliprdrStream*) This;
 //
@@ -249,7 +249,7 @@ void wf_destroy_file_obj(IDataObject* instance);
 //	return STG_E_INSUFFICIENTMEMORY;
 //}
 //
-//CliprdrStream* CliprdrStream_New(LONG index, void* pData)
+//CliprdrStream* CliprdrStream_New(::i32 index, void* pData)
 //{
 //	IStream* iStream;
 //	CliprdrStream* instance;
@@ -288,7 +288,7 @@ void wf_destroy_file_obj(IDataObject* instance);
 //			/* get content size of this stream */
 //			cliprdr_send_request_filecontents(clipboard, (void*) instance,
 //				instance->m_lIndex, FILECONTENTS_SIZE, 0, 0, 8);
-//			instance->m_lSize.QuadPart = *((LONGLONG*) clipboard->req_fdata);
+//			instance->m_lSize.QuadPart = *((::i64*) clipboard->req_fdata);
 //			free(clipboard->req_fdata);
 //		}
 //		else
@@ -357,7 +357,7 @@ void wf_destroy_file_obj(IDataObject* instance);
 //
 //ULONG STDMETHODCALLTYPE CliprdrDataObject_Release(IDataObject* This)
 //{
-//	LONG count;
+//	::i32 count;
 //	CliprdrDataObject* instance = (CliprdrDataObject*) This;
 //
 //	count = InterlockedDecrement(&instance->m_lRefCount);
@@ -400,9 +400,9 @@ void wf_destroy_file_obj(IDataObject* instance);
 //		pMedium->hGlobal = clipboard->hmem;   /* points to a FILEGROUPDESCRIPTOR structure */
 //
 //		/* GlobalLock returns a pointer to the first byte of the memory block,
-//		* in which is a FILEGROUPDESCRIPTOR structure, whose first UINT member
+//		* in which is a FILEGROUPDESCRIPTOR structure, whose first ::u32 member
 //		* is the number of FILEDESCRIPTOR's */
-//		instance->m_nStreams = *((PUINT) GlobalLock(clipboard->hmem));
+//		instance->m_nStreams = *((P::u32) GlobalLock(clipboard->hmem));
 //		GlobalUnlock(clipboard->hmem);
 //
 //		if (instance->m_nStreams > 0)
@@ -497,7 +497,7 @@ void wf_destroy_file_obj(IDataObject* instance);
 //	return E_NOTIMPL;
 //}
 //
-//HRESULT STDMETHODCALLTYPE CliprdrDataObject_EnumFormatEtc(IDataObject* This, DWORD dwDirection, IEnumFORMATETC** ppenumFormatEtc)
+//HRESULT STDMETHODCALLTYPE CliprdrDataObject_EnumFormatEtc(IDataObject* This, ::u32 dwDirection, IEnumFORMATETC** ppenumFormatEtc)
 //{
 //	CliprdrDataObject* instance = (CliprdrDataObject*) This;
 //
@@ -515,14 +515,14 @@ void wf_destroy_file_obj(IDataObject* instance);
 //	}
 //}
 //
-//HRESULT STDMETHODCALLTYPE CliprdrDataObject_DAdvise(IDataObject* This, FORMATETC* pformatetc, DWORD advf, IAdviseSink* pAdvSink, DWORD* pdwConnection)
+//HRESULT STDMETHODCALLTYPE CliprdrDataObject_DAdvise(IDataObject* This, FORMATETC* pformatetc, ::u32 advf, IAdviseSink* pAdvSink, ::u32* pdwConnection)
 //{
 //	CliprdrDataObject* instance = (CliprdrDataObject*) This;
 //
 //	return OLE_E_ADVISENOTSUPPORTED;
 //}
 //
-//HRESULT STDMETHODCALLTYPE CliprdrDataObject_DUnadvise(IDataObject* This, DWORD dwConnection)
+//HRESULT STDMETHODCALLTYPE CliprdrDataObject_DUnadvise(IDataObject* This, ::u32 dwConnection)
 //{
 //	CliprdrDataObject* instance = (CliprdrDataObject*) This;
 //
@@ -704,7 +704,7 @@ void wf_destroy_file_obj(IDataObject* instance);
 //
 //ULONG STDMETHODCALLTYPE CliprdrEnumFORMATETC_Release(IEnumFORMATETC* This)
 //{
-//	LONG count;
+//	::i32 count;
 //	CliprdrEnumFORMATETC* instance = (CliprdrEnumFORMATETC*) This;
 //
 //	count = InterlockedDecrement(&instance->m_lRefCount);
@@ -743,7 +743,7 @@ void wf_destroy_file_obj(IDataObject* instance);
 //{
 //	CliprdrEnumFORMATETC* instance = (CliprdrEnumFORMATETC*) This;
 //
-//	if (instance->m_nIndex + (LONG) celt > instance->m_nNumFormats)
+//	if (instance->m_nIndex + (::i32) celt > instance->m_nNumFormats)
 //		return E_FAIL;
 //
 //	instance->m_nIndex += celt;
@@ -849,7 +849,7 @@ void wf_destroy_file_obj(IDataObject* instance);
 //
 ///***********************************************************************************/
 //
-//static UINT32 get_local_format_id_by_name(wfClipboard* clipboard, void* format_name)
+//static ::u32 get_local_format_id_by_name(wfClipboard* clipboard, void* format_name)
 //{
 //	int i;
 //	formatMapping* map;
@@ -876,7 +876,7 @@ void wf_destroy_file_obj(IDataObject* instance);
 //	return get_local_format_id_by_name(clipboard, _T("FileGroupDescriptorW")) ? TRUE : FALSE;
 //}
 //
-//static UINT32 get_remote_format_id(wfClipboard* clipboard, UINT32 local_format)
+//static ::u32 get_remote_format_id(wfClipboard* clipboard, ::u32 local_format)
 //{
 //	int i;
 //	formatMapping* map;
@@ -947,9 +947,9 @@ void wf_destroy_file_obj(IDataObject* instance);
 //{
 //	int count;
 //	int length;
-//	UINT32 index;
-//	UINT32 numFormats;
-//	UINT32 formatId = 0;
+//	::u32 index;
+//	::u32 numFormats;
+//	::u32 formatId = 0;
 //	char formatName[1024];
 //	CLIPRDR_FORMAT* format;
 //	CLIPRDR_FORMAT* formats;
@@ -962,7 +962,7 @@ void wf_destroy_file_obj(IDataObject* instance);
 //
 //	count = CountClipboardFormats();
 //
-//	numFormats = (UINT32) count;
+//	numFormats = (::u32) count;
 //	formats = (CLIPRDR_FORMAT*) calloc(numFormats, sizeof(CLIPRDR_FORMAT));
 //
 //	index = 0;
@@ -1006,7 +1006,7 @@ void wf_destroy_file_obj(IDataObject* instance);
 //	return 1;
 //}
 //
-//int cliprdr_send_data_request(wfClipboard* clipboard, UINT32 formatId)
+//int cliprdr_send_data_request(wfClipboard* clipboard, ::u32 formatId)
 //{
 //	CLIPRDR_FORMAT_DATA_REQUEST formatDataRequest;
 //
@@ -1018,20 +1018,20 @@ void wf_destroy_file_obj(IDataObject* instance);
 //
 //	clipboard->context->ClientFormatDataRequest(clipboard->context, &formatDataRequest);
 //
-//	WaitForSingleObject(clipboard->response_data_event, INFINITE);
+//	WaitForSingleObject(clipboard->response_data_event, U32_INFINITE_TIMEOUT);
 //	ResetEvent(clipboard->response_data_event);
 //
 //	return 0;
 //}
 //
 //int cliprdr_send_request_filecontents(wfClipboard* clipboard, void* streamid,
-//		int index, int flag, DWORD positionhigh, DWORD positionlow, ULONG nreq)
+//		int index, int flag, ::u32 positionhigh, ::u32 positionlow, ULONG nreq)
 //{
 //	CLIPRDR_FILE_CONTENTS_REQUEST fileContentsRequest;
 //
 //	ZeroMemory(&fileContentsRequest, sizeof(CLIPRDR_FILE_CONTENTS_REQUEST));
 //
-//	fileContentsRequest.streamId = (UINT32) streamid;
+//	fileContentsRequest.streamId = (::u32) streamid;
 //	fileContentsRequest.listIndex = index;
 //	fileContentsRequest.dwFlags = flag;
 //	fileContentsRequest.nPositionLow = positionlow;
@@ -1041,13 +1041,13 @@ void wf_destroy_file_obj(IDataObject* instance);
 //
 //	clipboard->context->ClientFileContentsRequest(clipboard->context, &fileContentsRequest);
 //
-//	WaitForSingleObject(clipboard->req_fevent, INFINITE);
+//	WaitForSingleObject(clipboard->req_fevent, U32_INFINITE_TIMEOUT);
 //	ResetEvent(clipboard->req_fevent);
 //
 //	return 0;
 //}
 //
-//int cliprdr_send_response_filecontents(wfClipboard* clipboard, UINT32 streamId, UINT32 size, BYTE* data)
+//int cliprdr_send_response_filecontents(wfClipboard* clipboard, ::u32 streamId, ::u32 size, byte* data)
 //{
 //	CLIPRDR_FILE_CONTENTS_RESPONSE fileContentsResponse;
 //
@@ -1062,7 +1062,7 @@ void wf_destroy_file_obj(IDataObject* instance);
 //	return 0;
 //}
 //
-//static LRESULT CALLBACK cliprdr_proc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam)
+//static LRESULT CALLBACK cliprdr_proc(HWND hWnd, ::u32 Msg, WPARAM wParam, LPARAM lParam)
 //{
 //	static wfClipboard* clipboard = nullptr;
 //
@@ -1114,13 +1114,13 @@ void wf_destroy_file_obj(IDataObject* instance);
 //
 //		case WM_RENDERFORMAT:
 //			DEBUG_CLIPRDR("info: WM_RENDERFORMAT");
-//			if (cliprdr_send_data_request(clipboard, (UINT32) wParam) != 0)
+//			if (cliprdr_send_data_request(clipboard, (::u32) wParam) != 0)
 //			{
 //				DEBUG_CLIPRDR("error: cliprdr_send_data_request failed.");
 //				break;
 //			}
 //
-//			if (!SetClipboardData((UINT) wParam, clipboard->hmem))
+//			if (!SetClipboardData((::u32) wParam, clipboard->hmem))
 //			{
 //				DEBUG_CLIPRDR("SetClipboardData failed with 0x%x", get_last_error());
 //
@@ -1262,11 +1262,11 @@ void wf_destroy_file_obj(IDataObject* instance);
 //	clipboard->nFiles = 0;
 //}
 //
-//static BOOL wf_cliprdr_get_file_contents(WCHAR* file_name, BYTE* buffer,
+//static BOOL wf_cliprdr_get_file_contents(WCHAR* file_name, byte* buffer,
 //	int positionLow, int positionHigh, int nRequested, unsigned int* puSize)
 //{
 //	HANDLE hFile;
-//	DWORD nGet;
+//	::u32 nGet;
 //
 //	if (!file_name || !buffer || !puSize)
 //	{
@@ -1286,7 +1286,7 @@ void wf_destroy_file_obj(IDataObject* instance);
 //
 //	if (!ReadFile(hFile, buffer, nRequested, &nGet, nullptr))
 //	{
-//		DWORD err = get_last_error();
+//		::u32 err = get_last_error();
 //		DEBUG_CLIPRDR("ReadFile failed with 0x%x.", err);
 //	}
 //
@@ -1456,7 +1456,7 @@ void wf_destroy_file_obj(IDataObject* instance);
 //
 //static int wf_cliprdr_server_capabilities(CliprdrClientContext* context, CLIPRDR_CAPABILITIES* capabilities)
 //{
-//	UINT32 index;
+//	::u32 index;
 //	CLIPRDR_CAPABILITY_SET* capabilitySet;
 //	wfClipboard* clipboard = (wfClipboard*) context->custom;
 //
@@ -1480,7 +1480,7 @@ void wf_destroy_file_obj(IDataObject* instance);
 //
 //static int wf_cliprdr_server_format_list(CliprdrClientContext* context, CLIPRDR_FORMAT_LIST* formatList)
 //{
-//	UINT32 i, j;
+//	::u32 i, j;
 //	formatMapping* mapping;
 //	CLIPRDR_FORMAT* format;
 //	wfClipboard* clipboard = (wfClipboard*) context->custom;
@@ -1497,7 +1497,7 @@ void wf_destroy_file_obj(IDataObject* instance);
 //		if (format->formatName)
 //		{
 //			mapping->name = _strdup(format->formatName);
-//			mapping->local_format_id = RegisterClipboardFormatA((LPCSTR) mapping->name);
+//			mapping->local_format_id = RegisterClipboardFormatA((const char *) mapping->name);
 //		}
 //		else
 //		{
@@ -1520,7 +1520,7 @@ void wf_destroy_file_obj(IDataObject* instance);
 //
 //		if (EmptyClipboard())
 //		{
-//			for (i = 0; i < (UINT32) clipboard->map_size; i++)
+//			for (i = 0; i < (::u32) clipboard->map_size; i++)
 //			{
 //				SetClipboardData(clipboard->format_mappings[i].local_format_id, nullptr);
 //			}
@@ -1556,7 +1556,7 @@ void wf_destroy_file_obj(IDataObject* instance);
 //	char* buff = nullptr;
 //	char* globlemem = nullptr;
 //	HANDLE hClipdata = nullptr;
-//	UINT32 requestedFormatId;
+//	::u32 requestedFormatId;
 //	CLIPRDR_FORMAT_DATA_RESPONSE response;
 //	wfClipboard* clipboard = (wfClipboard*) context->custom;
 //
@@ -1691,7 +1691,7 @@ void wf_destroy_file_obj(IDataObject* instance);
 //			size = 4 + clipboard->nFiles * sizeof(FILEDESCRIPTORW);
 //			buff = (char*) malloc(size);
 //
-//			*((UINT32*) buff) = clipboard->nFiles;
+//			*((::u32*) buff) = clipboard->nFiles;
 //
 //			for (i = 0; i < clipboard->nFiles; i++)
 //			{
@@ -1732,7 +1732,7 @@ void wf_destroy_file_obj(IDataObject* instance);
 //
 //	response.msgFlags = CB_RESPONSE_OK;
 //	response.dataLen = size;
-//	response.requestedFormatData = (BYTE*) buff;
+//	response.requestedFormatData = (byte*) buff;
 //
 //	clipboard->context->ClientFormatDataResponse(clipboard->context, &response);
 //
@@ -1743,12 +1743,12 @@ void wf_destroy_file_obj(IDataObject* instance);
 //
 //static int wf_cliprdr_server_format_data_response(CliprdrClientContext* context, CLIPRDR_FORMAT_DATA_RESPONSE* formatDataResponse)
 //{
-//	BYTE* data;
+//	byte* data;
 //	HANDLE hMem;
 //	wfClipboard* clipboard = (wfClipboard*) context->custom;
 //
 //	hMem = GlobalAlloc(GMEM_FIXED, formatDataResponse->dataLen);
-//	data = (BYTE*) GlobalLock(hMem);
+//	data = (byte*) GlobalLock(hMem);
 //	CopyMemory(data, formatDataResponse->requestedFormatData, formatDataResponse->dataLen);
 //	GlobalUnlock(hMem);
 //
@@ -1760,8 +1760,8 @@ void wf_destroy_file_obj(IDataObject* instance);
 //
 //int wf_cliprdr_server_file_contents_request(CliprdrClientContext* context, CLIPRDR_FILE_CONTENTS_REQUEST* fileContentsRequest)
 //{
-//	UINT32 uSize = 0;
-//	BYTE* pData = nullptr;
+//	::u32 uSize = 0;
+//	byte* pData = nullptr;
 //	HRESULT	hRet = S_OK;
 //	FORMATETC vFormatEtc;
 //	LPDATAOBJECT pDataObj = nullptr;
@@ -1769,13 +1769,13 @@ void wf_destroy_file_obj(IDataObject* instance);
 //	LPSTREAM pStream = nullptr;
 //	BOOL bIsStreamFile = TRUE;
 //	static LPSTREAM	pStreamStc = nullptr;
-//	static UINT32 uStreamIdStc = 0;
+//	static ::u32 uStreamIdStc = 0;
 //	wfClipboard* clipboard = (wfClipboard*) context->custom;
 //
 //	if (fileContentsRequest->dwFlags == FILECONTENTS_SIZE)
-//		fileContentsRequest->cbRequested = sizeof(UINT64);
+//		fileContentsRequest->cbRequested = sizeof(::u3264);
 //
-//	pData = (BYTE*) calloc(1, fileContentsRequest->cbRequested);
+//	pData = (byte*) calloc(1, fileContentsRequest->cbRequested);
 //	
 //	if (!pData)
 //		goto error;
@@ -1852,8 +1852,8 @@ void wf_destroy_file_obj(IDataObject* instance);
 //
 //			if (hRet == S_OK)
 //			{
-//				*((UINT32*) &pData[0]) = vStatStg.cbSize.LowPart;
-//				*((UINT32*) &pData[4]) = vStatStg.cbSize.HighPart;
+//				*((::u32*) &pData[0]) = vStatStg.cbSize.LowPart;
+//				*((::u32*) &pData[4]) = vStatStg.cbSize.HighPart;
 //				uSize = fileContentsRequest->cbRequested;
 //			}
 //		}
@@ -1878,8 +1878,8 @@ void wf_destroy_file_obj(IDataObject* instance);
 //	{
 //		if (fileContentsRequest->dwFlags == FILECONTENTS_SIZE)
 //		{
-//			*((UINT32*) &pData[0]) = clipboard->fileDescriptor[fileContentsRequest->listIndex]->nFileSizeLow;
-//			*((UINT32*) &pData[4]) = clipboard->fileDescriptor[fileContentsRequest->listIndex]->nFileSizeHigh;
+//			*((::u32*) &pData[0]) = clipboard->fileDescriptor[fileContentsRequest->listIndex]->nFileSizeLow;
+//			*((::u32*) &pData[4]) = clipboard->fileDescriptor[fileContentsRequest->listIndex]->nFileSizeHigh;
 //			uSize = fileContentsRequest->cbRequested;
 //		}
 //		else if (fileContentsRequest->dwFlags == FILECONTENTS_RANGE)
@@ -2038,7 +2038,7 @@ void wf_destroy_file_obj(IDataObject* instance);
 //
 //	if (clipboard->thread)
 //	{
-//		WaitForSingleObject(clipboard->thread, INFINITE);
+//		WaitForSingleObject(clipboard->thread, U32_INFINITE_TIMEOUT);
 //		CloseHandle(clipboard->thread);
 //		clipboard->thread = nullptr;
 //	}

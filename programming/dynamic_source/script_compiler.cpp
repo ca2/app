@@ -16,7 +16,7 @@
 #include <ctype.h>
 #endif
 
-DWORD RunSilent(const char* strFunct, char* strstrParams);
+::u32 RunSilent(const char* strFunct, char* strstrParams);
 
 
 
@@ -1493,7 +1493,7 @@ namespace dynamic_source
 //   //   }
 //   //process->write("\n");
 //   u32 dwExitCode;
-//   DWORD tickStart = ::get_tick();
+//   ::u32 tickStart = ::get_tick();
 //   while(::thread_get_run() && thread_get_run())
 //   {
 //

@@ -27,7 +27,7 @@ namespace user
    }
 
 
-   void scroll_bar::send_scroll_message(UINT nSBCode)
+   void scroll_bar::send_scroll_message(::u32 nSBCode)
    {
 
       auto pscroll = __new(::message::scroll);
@@ -100,7 +100,7 @@ namespace user
    }
 
 
-   bool scroll_bar::GetTrackRect(RECT* prect)
+   bool scroll_bar::GetTrackRect(RECT32* prect)
    {
 
       return false;

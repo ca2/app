@@ -10,8 +10,8 @@ namespace user
    struct CLASS_DECL_BASE TRAYDATA
    {
       HWND    m_oswindow;
-      UINT        uID;
-      UINT        uCallbackMessage;
+      ::u32        uID;
+      ::u32        uCallbackMessage;
       u32       Reserved[2];
       HICON       hIcon;
    };
@@ -21,8 +21,8 @@ namespace user
       virtual public object
    {
       oswindow    m_oswindow;
-      UINT        uID;
-      UINT        uCallbackMessage;
+      ::u32        uID;
+      ::u32        uCallbackMessage;
       string      sTip;
       string      sProcessPath;
       bool        bVisible;

@@ -101,7 +101,7 @@ namespace linux
 
       virtual bool IsOpened();
 
-      virtual u64 GetBufferPtr(UINT nCommand, u64 nCount = 0, void ** ppBufStart = nullptr, void ** ppBufMax = nullptr);
+      virtual u64 GetBufferPtr(::u32 nCommand, u64 nCount = 0, void ** ppBufStart = nullptr, void ** ppBufMax = nullptr);
 
 
    };
@@ -111,9 +111,9 @@ namespace linux
 //   {
 //
 //
-//      ::estatus os_error_to_exception(LONG lOsError);
+//      ::estatus os_error_to_exception(::i32 lOsError);
 ////      ::estatus PASCAL ErrnoToException(i32 nErrno);
-//      void throw_os_error(LONG lOsError, const char * pszFileName = nullptr);
+//      void throw_os_error(::i32 lOsError, const char * pszFileName = nullptr);
 
 //      //void PASCAL ThrowErrno(__pointer(::acme::application) papp, i32 nErrno, const char * pszFileName = nullptr);
 

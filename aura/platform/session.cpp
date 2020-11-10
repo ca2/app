@@ -22,7 +22,7 @@ void enum_display_monitors(::aura::session * psession);
 
 #include <HighLevelMonitorConfigurationAPI.h>
 
-DWORD mc_color_kelvin(MC_COLOR_TEMPERATURE e)
+::u32 mc_color_kelvin(MC_COLOR_TEMPERATURE e)
 {
    switch (e)
    {
@@ -47,7 +47,7 @@ DWORD mc_color_kelvin(MC_COLOR_TEMPERATURE e)
    }
 }
 
-MC_COLOR_TEMPERATURE kelvin_mc_color(DWORD kelvin)
+MC_COLOR_TEMPERATURE kelvin_mc_color(::u32 kelvin)
 {
    if (kelvin < 4500)
    {
@@ -127,7 +127,7 @@ extern "C"
 void defer_term_ui();
 
 
-int_bool point_is_window_origin(POINT ptHitTest, oswindow oswindowExclude, int iMargin);
+int_bool point_is_window_origin(POINT32 ptHitTest, oswindow oswindowExclude, int iMargin);
 
 #ifdef _UWP
 
@@ -419,7 +419,7 @@ the file README-colorramp for more information. */
    }
 
 
-   CLASS_DECL_AURA void black_body(float* r, float* g, float* b, DWORD dwTemp)
+   CLASS_DECL_AURA void black_body(float* r, float* g, float* b, ::u32 dwTemp)
    {
 
       int temp_index = ((dwTemp - 1000) / 100) * 3;
@@ -574,7 +574,7 @@ the file README-colorramp for more information. */
 
 
 
-   COLORREF session::get_default_color(u64 ui)
+   color32_t session::get_default_color(u64 ui)
    {
 
       switch (ui)
@@ -1608,7 +1608,7 @@ the file README-colorramp for more information. */
 
 
 
-   void session::get_cursor_pos(LPPOINT ppoint)
+   void session::get_cursor_pos(POINT32 * ppoint)
    {
 
 #if defined(WINDOWS_DESKTOP)
@@ -1616,7 +1616,7 @@ the file README-colorramp for more information. */
       if (m_bSystemSynchronizedCursor)
       {
 
-         POINT point;
+         POINT32 point;
 
          ::get_cursor_pos(&point);
 
@@ -1697,7 +1697,7 @@ the file README-colorramp for more information. */
    }
 
 
-   //index session::get_main_wkspace(RECT * prect)
+   //index session::get_main_wkspace(RECT32 * prect)
    //{
 
    //   if (m_bSystemSynchronizedScreen)
@@ -1795,7 +1795,7 @@ the file README-colorramp for more information. */
 
 #ifdef WINDOWS_DESKTOP
 
-   BOOL CALLBACK session::monitor_enum_proc(HMONITOR hmonitor, HDC hdcMonitor, RECT* prcMonitor, LPARAM dwData)
+   BOOL CALLBACK session::monitor_enum_proc(HMONITOR hmonitor, HDC hdcMonitor, RECT32* prcMonitor, LPARAM dwData)
 
    {
 
@@ -1808,7 +1808,7 @@ the file README-colorramp for more information. */
 
    }
 
-   void session::monitor_enum(HMONITOR hmonitor, HDC hdcMonitor, RECT* prcMonitor)
+   void session::monitor_enum(HMONITOR hmonitor, HDC hdcMonitor, RECT32* prcMonitor)
 
    {
 
@@ -1865,7 +1865,7 @@ the file README-colorramp for more information. */
 
 
 
-   index session::get_main_monitor(RECT* prect)
+   index session::get_main_monitor(RECT32* prect)
    {
 
       index iMainMonitor = 0;
@@ -1934,7 +1934,7 @@ the file README-colorramp for more information. */
    }
 
 
-   bool session::get_monitor_rect(index iMonitor, RECT* prect)
+   bool session::get_monitor_rect(index iMonitor, RECT32* prect)
    {
 
 #ifdef _UWP
@@ -2029,7 +2029,7 @@ the file README-colorramp for more information. */
    }
 
 
-   bool session::get_desk_monitor_rect(index iMonitor, RECT* prect)
+   bool session::get_desk_monitor_rect(index iMonitor, RECT32* prect)
 
    {
 
@@ -2039,7 +2039,7 @@ the file README-colorramp for more information. */
    }
 
 
-   index session::get_main_wkspace(RECT* prect)
+   index session::get_main_wkspace(RECT32* prect)
 
    {
 
@@ -2096,7 +2096,7 @@ the file README-colorramp for more information. */
    }
 
 
-   bool session::get_wkspace_rect(index iWkspace, RECT* prect)
+   bool session::get_wkspace_rect(index iWkspace, RECT32* prect)
    {
 
 #ifdef WINDOWS_DESKTOP
@@ -2173,7 +2173,7 @@ the file README-colorramp for more information. */
    }
 
 
-   bool session::get_desk_wkspace_rect(index iWkspace, RECT* prect)
+   bool session::get_desk_wkspace_rect(index iWkspace, RECT32* prect)
 
    {
 
@@ -2212,7 +2212,7 @@ the file README-colorramp for more information. */
    }
 
 
-   bool session::wkspace_to_monitor(RECT * prect, index iMonitor, index iWkspace)
+   bool session::wkspace_to_monitor(RECT32 * prect, index iMonitor, index iWkspace)
    {
 
       ::rect rect(*prect);
@@ -2247,7 +2247,7 @@ the file README-colorramp for more information. */
    }
 
 
-   bool session::wkspace_to_monitor(RECT * prect)
+   bool session::wkspace_to_monitor(RECT32 * prect)
    {
 
       index iWkspace = get_best_wkspace(nullptr, rect(prect));
@@ -2257,7 +2257,7 @@ the file README-colorramp for more information. */
    }
 
 
-   bool session::monitor_to_wkspace(RECT * prect)
+   bool session::monitor_to_wkspace(RECT32 * prect)
    {
 
       index iMonitor = get_best_monitor(nullptr, rect(prect));
@@ -2267,7 +2267,7 @@ the file README-colorramp for more information. */
    }
 
 
-   bool session::monitor_to_wkspace(RECT * prect, index iWkspace, index iMonitor)
+   bool session::monitor_to_wkspace(RECT32 * prect, index iWkspace, index iMonitor)
    {
 
       ::rect rect(prect);
@@ -2335,7 +2335,7 @@ the file README-colorramp for more information. */
    }
 
 
-   DWORD session::get_monitor_color_temperature(index iMonitor)
+   ::u32 session::get_monitor_color_temperature(index iMonitor)
    {
 
 #ifdef _UWP
@@ -2391,7 +2391,7 @@ the file README-colorramp for more information. */
 
    ::mutex g_monitor_adjust;
 
-   bool session::adjust_monitor(index iMonitor, DWORD dwTemperature, double dBrightness, double dGamma)
+   bool session::adjust_monitor(index iMonitor, ::u32 dwTemperature, double dBrightness, double dGamma)
    {
 
 #ifdef _UWP
@@ -2461,24 +2461,24 @@ the file README-colorramp for more information. */
       }
 
 
-      DWORD dwMinDriveR;
-      DWORD dwCurDriveR;
-      DWORD dwMaxDriveR;
-      DWORD dwMinDriveG;
-      DWORD dwCurDriveG;
-      DWORD dwMaxDriveG;
-      DWORD dwMinDriveB;
-      DWORD dwCurDriveB;
-      DWORD dwMaxDriveB;
-      DWORD dwMinGainR;
-      DWORD dwCurGainR;
-      DWORD dwMaxGainR;
-      DWORD dwMinGainG;
-      DWORD dwCurGainG;
-      DWORD dwMaxGainG;
-      DWORD dwMinGainB;
-      DWORD dwCurGainB;
-      DWORD dwMaxGainB;
+      ::u32 dwMinDriveR;
+      ::u32 dwCurDriveR;
+      ::u32 dwMaxDriveR;
+      ::u32 dwMinDriveG;
+      ::u32 dwCurDriveG;
+      ::u32 dwMaxDriveG;
+      ::u32 dwMinDriveB;
+      ::u32 dwCurDriveB;
+      ::u32 dwMaxDriveB;
+      ::u32 dwMinGainR;
+      ::u32 dwCurGainR;
+      ::u32 dwMaxGainR;
+      ::u32 dwMinGainG;
+      ::u32 dwCurGainG;
+      ::u32 dwMaxGainG;
+      ::u32 dwMinGainB;
+      ::u32 dwCurGainB;
+      ::u32 dwMaxGainB;
 
       float fR;
       float fG;
@@ -2491,7 +2491,7 @@ the file README-colorramp for more information. */
       MC_COLOR_TEMPERATURE e = kelvin_mc_color(dwTemperature);
 
       HMONITOR hMonitor = nullptr;
-      DWORD cPhysicalMonitors;
+      ::u32 cPhysicalMonitors;
       LPPHYSICAL_MONITOR pPhysicalMonitors = nullptr;
 
       // Get the number of physical monitors.
@@ -2529,7 +2529,7 @@ the file README-colorramp for more information. */
       if (!GetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_RED_GAIN, &dwMinGainR, &dwCurGainR, &dwMaxGainR))
       {
 
-         DWORD dwLastError = get_last_error();
+         ::u32 dwLastError = get_last_error();
 
          TRACELASTERROR();
 
@@ -2576,9 +2576,9 @@ the file README-colorramp for more information. */
       //    SetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_RED_GAIN, dwMinGainR);
       //    SetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_GREEN_GAIN, dwMinGainG);
       //    SetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_BLUE_GAIN, dwMinGainB);
-            //SetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_RED_DRIVE, (DWORD)(dwMinDriveR + (dwMaxDriveR - dwMinDriveR) * r));
-            //SetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_GREEN_DRIVE, (DWORD)(dwMinDriveG + (dwMaxDriveG - dwMinDriveG) * g));
-            //SetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_BLUE_DRIVE, (DWORD)(dwMinDriveB + (dwMaxDriveB - dwMinDriveB) * b));
+            //SetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_RED_DRIVE, (::u32)(dwMinDriveR + (dwMaxDriveR - dwMinDriveR) * r));
+            //SetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_GREEN_DRIVE, (::u32)(dwMinDriveG + (dwMaxDriveG - dwMinDriveG) * g));
+            //SetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_BLUE_DRIVE, (::u32)(dwMinDriveB + (dwMaxDriveB - dwMinDriveB) * b));
             //SetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_RED_GAIN, dwMaxGainR);
             //SetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_GREEN_GAIN, dwMaxGainG);
             //SetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_BLUE_GAIN, dwMaxGainB);
@@ -2604,9 +2604,9 @@ the file README-colorramp for more information. */
 //#define F(Y, C)  pow(dBrightness * C, 1.0 / dGamma)
 #define F(C)  pow(dBrightness * C, 1.0 / dGamma)
 
-      DWORD dwR = (DWORD)(dwMinGainR + (dwMaxGainR - dwMinGainR) * F(fR));
-      DWORD dwG = (DWORD)(dwMinGainG + (dwMaxGainG - dwMinGainG) * F(fG));
-      DWORD dwB = (DWORD)(dwMinGainB + (dwMaxGainB - dwMinGainB) * F(fB));
+      ::u32 dwR = (::u32)(dwMinGainR + (dwMaxGainR - dwMinGainR) * F(fR));
+      ::u32 dwG = (::u32)(dwMinGainG + (dwMaxGainG - dwMinGainG) * F(fG));
+      ::u32 dwB = (::u32)(dwMinGainB + (dwMaxGainB - dwMinGainB) * F(fB));
 
       if (dwR != dwCurGainR)
       {
@@ -3027,7 +3027,7 @@ the file README-colorramp for more information. */
    }
 
 
-   index session::get_best_monitor(RECT * prect, const rect & rectParam, ::eactivation eactivation)
+   index session::get_best_monitor(RECT32 * prect, const rect & rectParam, ::eactivation eactivation)
    {
 
       index iMatchingMonitor = -1;
@@ -3185,7 +3185,7 @@ the file README-colorramp for more information. */
    }
 
 
-   index session::get_good_iconify(RECT * prect, const rect & rectParam)
+   index session::get_good_iconify(RECT32 * prect, const rect & rectParam)
    {
 
       ::rect rectMonitor;
@@ -3205,7 +3205,7 @@ the file README-colorramp for more information. */
    }
 
 
-   index session::initial_frame_position(RECT * prect, const rect & rectParam, bool bMove, ::user::interaction * pinteraction)
+   index session::initial_frame_position(RECT32 * prect, const rect & rectParam, bool bMove, ::user::interaction * pinteraction)
    {
 
       ::rect rectRestore(rectParam);
@@ -3312,7 +3312,7 @@ the file README-colorramp for more information. */
    }
 
 
-   index session::get_window_restore_1(RECT * prect, const rect & rectParam, ::user::interaction * pinteraction, edisplay edisplayRestore)
+   index session::get_window_restore_1(RECT32 * prect, const rect & rectParam, ::user::interaction * pinteraction, edisplay edisplayRestore)
    {
 
       ::rect rectRestore(rectParam);
@@ -3410,7 +3410,7 @@ the file README-colorramp for more information. */
    }
 
 
-   index session::get_window_restore_2(RECT* prect, const rect& rectParam, ::user::interaction* pinteraction, edisplay edisplayRestore)
+   index session::get_window_restore_2(RECT32* prect, const rect& rectParam, ::user::interaction* pinteraction, edisplay edisplayRestore)
    {
 
       ::rect rect(rectParam);
@@ -3596,7 +3596,7 @@ the file README-colorramp for more information. */
    }
 
 
-   index session::get_good_move(RECT * prect, const rect & rectParam, ::user::interaction * pinteraction)
+   index session::get_good_move(RECT32 * prect, const rect & rectParam, ::user::interaction * pinteraction)
    {
 
       index iMatchingMonitor = initial_frame_position(prect, rectParam, true, pinteraction);
@@ -3939,7 +3939,7 @@ ret:
    }
 
 
-   ::estatus session::defer_initialize_host_window(LPCRECT lpcrect)
+   ::estatus session::defer_initialize_host_window(LPCRECT32 lpcrect)
    {
 
 #if !defined(APPLE_IOS) && !defined(_UWP) && !defined(ANDROID)
@@ -4167,7 +4167,7 @@ ret:
    }
 
 
-   DWORD session::get_Long_PhRESSing_time()
+   ::u32 session::get_Long_PhRESSing_time()
    {
 
       return m_dwLongPhRESSingTime;
@@ -4528,7 +4528,7 @@ namespace aura
       if (eelement == ::user::element_background)
       {
 
-         COLORREF crBk;
+         color32_t crBk;
 
          if (::user::is_app_dark_mode())
          {
@@ -4549,7 +4549,7 @@ namespace aura
       else if (eelement == ::user::element_face)
       {
 
-         COLORREF crBk;
+         color32_t crBk;
 
          if (::user::is_app_dark_mode())
          {
@@ -4570,7 +4570,7 @@ namespace aura
       else if (eelement == ::user::element_text)
       {
 
-         COLORREF crText;
+         color32_t crText;
 
          if (::user::is_app_dark_mode())
          {

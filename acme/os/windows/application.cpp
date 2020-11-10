@@ -6,9 +6,9 @@
 #define TGA_SUCCESS_KILL 2
 #define TGA_SUCCESS_16 3
 
-DWORD TerminateGuiApp(DWORD dwPID, DWORD tickTimeout);
-//DWORD WINAPI Terminate16App(DWORD dwPID, DWORD dwThread,
-//   WORD w16Task, DWORD tickTimeout);
+::u32 TerminateGuiApp(::u32 dwPID, ::u32 tickTimeout);
+//::u32 WINAPI Terminate16App(::u32 dwPID, ::u32 dwThread,
+//   ::u16 w16Task, ::u32 tickTimeout);
 
 //#endif
 //int SendCtrlShiftQToChrome(HWND chrome, int iSleep, ::acme::application * papp);
@@ -34,7 +34,7 @@ block_input::block_input( int iSleep) :
    m_bBlocked = ::BlockInput(TRUE) != FALSE;
    //{
 
-   //   DWORD dw = ::get_last_error();
+   //   ::u32 dw = ::get_last_error();
    //   m_bBlocked = false;
    //   goto repeat;
    //}
@@ -91,11 +91,11 @@ bool is_good_active_w(oswindow w)
 //   //   App(papp).message_box_timeout(nullptr, "Quiting browser...", seconds(3), MB_ICONASTERISK);
 //   block_input blockinput;
 //
-//   UINT ui;
-//   UINT character_count;
-//   WORD vka[3];
+//   ::u32 u;
+//   ::u32 character_count;
+//   ::u16 vka[3];
 //   char text[3];
-//   DWORD flag[3];
+//   ::u32 flag[3];
 //
 //   vka[0] = VK_CONTROL;
 //   vka[1] = VK_SHIFT;
@@ -122,7 +122,7 @@ bool is_good_active_w(oswindow w)
 //      return 0;
 //
 //   INPUT input;
-//   DWORD tick = 0;
+//   ::u32 tick = 0;
 //
 //   character_count = 3;
 //   for (ui = 0; ui < character_count; ui++)
@@ -213,10 +213,10 @@ bool is_good_active_w(oswindow w)
 //      //keystroke[i + character_count].ki.dwFlags = flag[character_count - i - 1] | KEYEVENTF_KEYUP;
 //      //keystroke[i + character_count].ki.time = tick;
 //      //keystroke[i + character_count].ki.dwExtraInfo = GetMessageExtraInfo();
-//      //      SendInput((UINT)keystrokes_to_send, keystroke, sizeof(*keystroke));
+//      //      SendInput((::u32)keystrokes_to_send, keystroke, sizeof(*keystroke));
 //   }
 //
-//   //keystrokes_sent = SendInput((UINT)keystrokes_to_send, keystroke, sizeof(*keystroke));
+//   //keystrokes_sent = SendInput((::u32)keystrokes_to_send, keystroke, sizeof(*keystroke));
 //
 //   //Send the keystrokes.
 //   //delete[] keystroke;
@@ -753,7 +753,7 @@ bool is_good_active_w(oswindow w)
 ////
 ////
 ////   const SHORT Vk = VkKeyScanExW(ch, hkl);
-////   //const UINT VKey = ::MapVirtualKey(LOBYTE(Vk), 0);
+////   //const ::u32 VKey = ::MapVirtualKey(LOBYTE(Vk), 0);
 ////
 ////   if (HIBYTE(Vk) == 1) // Check if shift key needs to be pressed for this key
 ////   {
@@ -814,7 +814,7 @@ bool is_good_active_w(oswindow w)
 ////   Sleep(iSleep);
 ////
 ////   //const SHORT Vk = VkKeyScanExW(ch, hkl);
-////   ////const UINT VKey = ::MapVirtualKey(LOBYTE(Vk), 0);
+////   ////const ::u32 VKey = ::MapVirtualKey(LOBYTE(Vk), 0);
 ////
 ////   //if (HIBYTE(Vk) == 1) // Check if shift key needs to be pressed for this key
 ////   //{
@@ -914,10 +914,10 @@ bool is_good_active_w(oswindow w)
 
 BOOL CALLBACK TerminateGuiAppEnum(HWND hwnd, LPARAM lParam);
 
-DWORD TerminateGuiApp(DWORD dwPID, DWORD tickTimeout)
+::u32 TerminateGuiApp(::u32 dwPID, ::u32 tickTimeout)
 {
    HANDLE   hProc;
-   DWORD   dwRet;
+   ::u32   dwRet;
 
    // If we can't open the process with PROCESS_TERMINATE rights,
    // then we give up immediately.
@@ -949,11 +949,11 @@ DWORD TerminateGuiApp(DWORD dwPID, DWORD tickTimeout)
 
 BOOL CALLBACK TerminateGuiAppEnum(HWND hwnd, LPARAM lParam)
 {
-   DWORD dwID;
+   ::u32 dwID;
 
    GetWindowThreadProcessId(hwnd, &dwID);
 
-   if (dwID == (DWORD)lParam)
+   if (dwID == (::u32)lParam)
    {
       PostMessage(hwnd, e_message_close, 0, 0);
    }

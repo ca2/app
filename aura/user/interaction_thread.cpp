@@ -792,7 +792,7 @@ catch(...)
 #ifdef WINDOWS_DESKTOP
 
 
-   int thread::_GetMessage(LPMESSAGE lpMsg, HWND hWnd, UINT wMsgFilterMin, UINT wMsgFilterMax)
+   int thread::_GetMessage(LPMESSAGE lpMsg, HWND hWnd, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax)
    {
 
 #ifdef ENABLE_TEXT_SERVICES_FRAMEWORK

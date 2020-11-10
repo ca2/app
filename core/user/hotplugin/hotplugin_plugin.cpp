@@ -157,7 +157,7 @@ namespace hotplugin
    }
 
    //// ca.dll-absence-(ca.dll-delay-load)-safe
-   //void plugin::get_window_rect(RECT * prect)
+   //void plugin::get_window_rect(RECT32 * prect)
 
    //{
 
@@ -368,7 +368,7 @@ namespace hotplugin
 
    }
 
-   void plugin::get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate, i32 iProfile)
+   void plugin::get_progress_color(byte & uchR, byte & uchG, byte & uchB, double dRate, i32 iProfile)
    {
       double dH = dRate; // blue ==> red => green
       double dL;
@@ -514,12 +514,12 @@ namespace hotplugin
          dG      = (dCMin + dG * dCAdd);
          dB      = (dCMin + dB * dCAdd);
 
-         /*uchR      = (BYTE) ftol(dR * 255.0);
-         uchG      = (BYTE) ftol(dG * 255.0);
-         uchB      = (BYTE) ftol(dB * 255.0);*/
-         uchR      = (BYTE) (dR * 255.0);
-         uchG      = (BYTE) (dG * 255.0);
-         uchB      = (BYTE) (dB * 255.0);
+         /*uchR      = (byte) ftol(dR * 255.0);
+         uchG      = (byte) ftol(dG * 255.0);
+         uchB      = (byte) ftol(dB * 255.0);*/
+         uchR      = (byte) (dR * 255.0);
+         uchG      = (byte) (dG * 255.0);
+         uchB      = (byte) (dB * 255.0);
 
       }
 
@@ -793,7 +793,7 @@ namespace hotplugin
 //#endif
 //         }
 
-         uptr size = m_sizeBitmapData.cx * m_sizeBitmapData.cy * sizeof(COLORREF);
+         uptr size = m_sizeBitmapData.cx * m_sizeBitmapData.cy * sizeof(color32_t);
 
          ::file::path pathName = Context.dir().appdata() / "time" / "aura/app_app_nest-" + m_strBitmapChannel;
 
@@ -852,7 +852,7 @@ namespace hotplugin
 //
 //         }
 //
-//         uptr size = m_sizeBitmapData.cx * m_sizeBitmapData.cy * sizeof(COLORREF);
+//         uptr size = m_sizeBitmapData.cx * m_sizeBitmapData.cy * sizeof(color32_t);
 //
 //
 //#ifdef _UWP
@@ -898,13 +898,13 @@ namespace hotplugin
 //#endif
 //
 //#ifdef _UWP
-//      m_pcolorref = (COLORREF *) MapViewOfFileFromApp(
+//      m_pcolorref = (color32_t *) MapViewOfFileFromApp(
 //         m_hfilemapBitmap,
 //         FILE_MAP_READ | FILE_MAP_WRITE,
 //         0,
 //         0);
 //#elif defined(WINDOWS)
-//         m_pcolorref = (COLORREF *) MapViewOfFile(
+//         m_pcolorref = (color32_t *) MapViewOfFile(
 //            m_hfilemapBitmap,
 //            FILE_MAP_READ | FILE_MAP_WRITE,
 //            0,
@@ -912,7 +912,7 @@ namespace hotplugin
 //            0
 //            );
 //#else
-//         m_pcolorref = (COLORREF *) mmap(nullptr, size, PROT_READ | PROT_WRITE, MAP_SHARED, m_hfileBitmap, 0);
+//         m_pcolorref = (color32_t *) mmap(nullptr, size, PROT_READ | PROT_WRITE, MAP_SHARED, m_hfileBitmap, 0);
 //#endif
 //
 //#ifdef WINDOWS
@@ -940,7 +940,7 @@ namespace hotplugin
 
    }
 
-   //bool plugin::_001ClientToScreen(POINT * ppt)
+   //bool plugin::_001ClientToScreen(POINT32 * ppt)
    //{
 
    //   ::user::interaction::_001ClientToScreen(ppt);
@@ -949,7 +949,7 @@ namespace hotplugin
 
    //}
 
-   //bool plugin::_001ScreenToClient(POINT * ppt)
+   //bool plugin::_001ScreenToClient(POINT32 * ppt)
    //{
 
    //   ::user::interaction::_001ScreenToClient(ppt);
@@ -1076,7 +1076,7 @@ namespace hotplugin
       LPARAM lparam;
 
 
-      message = (UINT) (LPARAM) pbase->m_id.i64();
+      message = (::u32) (LPARAM) pbase->m_id.i64();
 
       wparam     = pbase->m_wparam;
 

@@ -11,7 +11,7 @@
 
 /// constant representing infinite time
 //const boost::posix_time::time_duration InfiniteTime = boost::posix_time::time_duration(boost::date_time::pos_infin);
-// use INFINITE
+// use U32_INFINITE_TIMEOUT
 
 /// constant representing zero time
 //const boost::posix_time::time_duration ZeroTime = boost::posix_time::time_duration();

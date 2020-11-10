@@ -57,13 +57,13 @@ namespace windows
       memory memorySalt;
       memorySalt.from_string(pszSalt);
       DataSalt.pbData = memorySalt.get_data();
-      DataSalt.cbData = (DWORD)memorySalt.get_size();
+      DataSalt.cbData = (::u32)memorySalt.get_size();
 
       //--------------------------------------------------------------------
       // Initialize the DataIn structure.
 
       DataIn.pbData = storageEncrypt.get_data();
-      DataIn.cbData = (DWORD)storageEncrypt.get_size();
+      DataIn.cbData = (::u32)storageEncrypt.get_size();
 
       unichar * pwsz = nullptr;
 
@@ -142,14 +142,14 @@ namespace windows
       memory memorySalt;
       memorySalt.from_string(pszSalt);
       DataSalt.pbData = memorySalt.get_data();
-      DataSalt.cbData = (DWORD)memorySalt.get_size();
+      DataSalt.cbData = (::u32)memorySalt.get_size();
 
 
       //--------------------------------------------------------------------
       // Initialize the DataIn structure.
 
-      DataIn.pbData = (BYTE *)storageDecrypt.get_data();
-      DataIn.cbData = (DWORD)storageDecrypt.get_size();
+      DataIn.pbData = (byte *)storageDecrypt.get_data();
+      DataIn.cbData = (::u32)storageDecrypt.get_size();
 
       //      unichar * pwsz = nullptr;
 

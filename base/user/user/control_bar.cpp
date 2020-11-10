@@ -219,7 +219,7 @@ namespace user
 #define ID_TIMER_WAIT   0xE000  // timer while waiting to show status
 #define ID_TIMER_CHECK  0xE001  // timer to check for removal of status
 
-   void control_bar::ResetTimer(UINT nEvent, UINT nTime)
+   void control_bar::ResetTimer(::u32 nEvent, ::u32 nTime)
    {
       KillTimer(ID_TIMER_WAIT);
       KillTimer(ID_TIMER_CHECK);
@@ -229,7 +229,7 @@ namespace user
    void control_bar::_001OnTimer(::timer * ptimer)
    {
       UNREFERENCED_PARAMETER(ptimer);
-//      UINT uEvent = ptimer->m_uEvent;
+//      ::u32 uEvent = ptimer->m_uEvent;
 #ifdef WINDOWS_DESKTOP
       auto psession = Session;
 
@@ -289,7 +289,7 @@ namespace user
 
       SCAST_PTR(::message::base, pbase, pmessage);
 
-      UINT message;
+      ::u32 message;
 
       message = pbase->m_id.umessage();
 
@@ -344,7 +344,7 @@ namespace user
 
       LRESULT lResult;
 
-      UINT message;
+      ::u32 message;
 
       message = pbase->m_id.umessage();
 
@@ -630,7 +630,7 @@ namespace user
 //       SCAST_PTR(::message::base, pbase, pmessage);
 //       // handle delay hide/show
 //       bool bVis = (GetStyle() & WS_VISIBLE) != 0;
-//       UINT swpFlags = 0;
+//       ::u32 swpFlags = 0;
 //       if ((m_nStateFlags & delayHide) && bVis)
 //          swpFlags = SWP_HIDEWINDOW;
 //       else if ((m_nStateFlags & delayShow) && !bVis)
@@ -703,7 +703,7 @@ namespace user
 //      // handle delay hide/show
 ////      if (m_nStateFlags & (delayHide|delayShow))
 //      {
-//         UINT swpFlags = 0;
+//         ::u32 swpFlags = 0;
 //         //if (m_nStateFlags & delayHide)
 //         //{
 //         //   ASSERT((m_nStateFlags & delayShow) == 0);
@@ -895,9 +895,9 @@ namespace user
       ::rect rect1, rect2;
       rect1 = rect;
       rect2 = rect;
-      //   COLORREF clr = afxData.bWin4 ? afxData.clrBtnShadow : afxData.clrWindowFrame;
-//      COLORREF clr = afxData.clrBtnShadow;
-      COLORREF clr;
+      //   color32_t clr = afxData.bWin4 ? afxData.clrBtnShadow : afxData.clrWindowFrame;
+//      color32_t clr = afxData.clrBtnShadow;
+      color32_t clr;
       clr = RGB(128, 128, 123);
 
 

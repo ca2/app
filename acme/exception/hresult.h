@@ -1,6 +1,6 @@
 #pragma once
 
-
+#ifdef WINDOWS
 class CLASS_DECL_ACME hresult_exception :
    public ::exception::exception
 {
@@ -22,3 +22,4 @@ public:
    }
 
 };
+#endif

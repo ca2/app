@@ -3,7 +3,7 @@
 #undef new
 
 
-fixed_alloc_no_sync::fixed_alloc_no_sync(UINT nAllocSize, UINT nBlockSize)
+fixed_alloc_no_sync::fixed_alloc_no_sync(::u32 nAllocSize, ::u32 nBlockSize)
 {
    if(nBlockSize <= 1)
       nBlockSize = 4;
@@ -44,8 +44,8 @@ void fixed_alloc_no_sync::NewBlock()
    // chain them into _free list
    node* pNode = (node*)pNewBlock->data();
    // _free in reverse order to make it easier to debug
-   (BYTE*&)pNode += (nAllocSize * m_nBlockSize) - nAllocSize;
-   for (i32 i = m_nBlockSize-1; i >= 0; i--, (BYTE*&)pNode -= nAllocSize)
+   (byte*&)pNode += (nAllocSize * m_nBlockSize) - nAllocSize;
+   for (i32 i = m_nBlockSize-1; i >= 0; i--, (byte*&)pNode -= nAllocSize)
    {
       pNode->pNext = m_pnodeFree;
       m_pnodeFree = pNode;
@@ -59,7 +59,7 @@ void fixed_alloc_no_sync::NewBlock()
 // fixed_alloc_sync
 //
 
-fixed_alloc_sync::fixed_alloc_sync(UINT nAllocSize, UINT nBlockSize, i32 iShareCount)
+fixed_alloc_sync::fixed_alloc_sync(::u32 nAllocSize, ::u32 nBlockSize, i32 iShareCount)
 {
 
    m_i = 0;
@@ -150,7 +150,7 @@ void fixed_alloc_sync::FreeAll()
 // fixed_alloc
 //
 
-fixed_alloc::fixed_alloc(UINT nAllocSize, UINT nBlockSize)
+fixed_alloc::fixed_alloc(::u32 nAllocSize, ::u32 nBlockSize)
 {
 
    m_i = 0;

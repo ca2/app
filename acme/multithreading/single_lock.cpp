@@ -133,7 +133,7 @@ bool single_lock::unlock()
 }
 
 
-bool single_lock::unlock(LONG lCount, LPLONG pPrevCount /* = nullptr */)
+bool single_lock::unlock(::i32 lCount, LPLONG pPrevCount /* = nullptr */)
 
 {
    ASSERT(m_psync != nullptr);

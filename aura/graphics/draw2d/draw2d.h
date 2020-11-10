@@ -66,8 +66,8 @@ namespace draw2d
       ::draw2d::font * pfont,
       const ::e_align & e_align,
       const ::e_draw_text & edrawtext,
-      COLORREF crText,
-      COLORREF crGlow,
+      color32_t crText,
+      color32_t crGlow,
       int iSpreadRadius,
       int iBlurRadius,
       int iBlur,
@@ -82,16 +82,16 @@ namespace draw2d
       PRED pred,
       ::draw2d::fastblur & blur,
       ::image_pointer & imageBlur,
-      COLORREF crGlow,
+      color32_t crGlow,
       int iSpreadRadius,
       int iBlurRadius,
       int iBlur,
       bool bUpdate,
       double dAlpha = 1.0);
 
-      virtual void alpha_spread__24CC(byte * pbDest, i32 xDest, i32 yDest, i32 wDest, i32 cx, i32 cy, byte * pbSrc, i32 ySrc, i32 xSrc, i32 wSrc, BYTE bMin, i32 iRadius);
+      virtual void alpha_spread__24CC(byte * pbDest, i32 xDest, i32 yDest, i32 wDest, i32 cx, i32 cy, byte * pbSrc, i32 ySrc, i32 xSrc, i32 wSrc, byte bMin, i32 iRadius);
 
-      virtual bool channel_spread__32CC(::image * pimageDst, ::image * pimageSrc, i32 iChannel, i32 iRadius, COLORREF crSpreadSetColor);
+      virtual bool channel_spread__32CC(::image * pimageDst, ::image * pimageSrc, i32 iChannel, i32 iRadius, color32_t crSpreadSetColor);
 
       virtual void enum_draw2d_fonts(::draw2d::font_enum_item_array& itema);
 

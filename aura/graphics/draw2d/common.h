@@ -3,11 +3,11 @@
 
 
 
-CLASS_DECL_AURA void vertical_swap_copy_colorref(COLORREF * pcolorrefDst, int cx, int cy, int iStrideDst, const COLORREF * pcolorrefSrc, int iStrideSrc);
-CLASS_DECL_AURA void copy_colorref(COLORREF * pcolorrefDst, int cx, int cy, int iStrideDst, const COLORREF * pcolorrefSrc, int iStrideSrc);
-CLASS_DECL_AURA void copy_colorref(COLORREF * pcolorrefDst, int x, int y, int cx, int cy, int iStrideDst, const COLORREF * pcolorrefSrc, int iStrideSrc);
+CLASS_DECL_AURA void vertical_swap_copy_colorref(color32_t * pcolorrefDst, int cx, int cy, int iStrideDst, const color32_t * pcolorrefSrc, int iStrideSrc);
+CLASS_DECL_AURA void copy_colorref(color32_t * pcolorrefDst, int cx, int cy, int iStrideDst, const color32_t * pcolorrefSrc, int iStrideSrc);
+CLASS_DECL_AURA void copy_colorref(color32_t * pcolorrefDst, int x, int y, int cx, int cy, int iStrideDst, const color32_t * pcolorrefSrc, int iStrideSrc);
 
-inline void copy_colorref(COLORREF* pcolorrefDst, const ::size& size, int iStrideDst, const COLORREF* pcolorrefSrc, int iStrideSrc);
+inline void copy_colorref(color32_t* pcolorrefDst, const ::size& size, int iStrideDst, const color32_t* pcolorrefSrc, int iStrideSrc);
 
 typedef void FUNCTION_FACTORY_EXCHANGE();
 

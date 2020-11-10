@@ -59,7 +59,7 @@
 // }
 
 
-// int_bool get_client_rect(oswindow hwnd, LPRECT lprect)
+// int_bool get_client_rect(oswindow hwnd, LPRECT32 lprect)
 // {
 
 //    mutex_lock sl(user_mutex(), true);
@@ -85,7 +85,7 @@
 // }
 
 
-// int_bool get_window_rect(oswindow hwnd, LPRECT lprect)
+// int_bool get_window_rect(oswindow hwnd, LPRECT32 lprect)
 // {
 
 
@@ -136,7 +136,7 @@
 
 
 
-// i32 FillRect(HDC hdc, const RECT * lprc, HBRUSH hbr)
+// i32 FillRect(HDC hdc, const RECT32 * lprc, HBRUSH hbr)
 // {
 
 //    mutex_lock sl(user_mutex(), true);
@@ -167,7 +167,7 @@
 // }
 
 
-// int_bool GetCursorPos(LPPOINT lppointCursor)
+// int_bool GetCursorPos(POINT32 * lppointCursor)
 // {
 
 //    //mutex_lock sl(user_mutex(), true);
@@ -194,7 +194,7 @@
 
 
 
-// int_bool set_window_pos(oswindow hwnd, oswindow hwndInsertAfter, i32 x, i32 y, i32 cx, i32 cy, UINT uFlags)
+// int_bool set_window_pos(oswindow hwnd, oswindow hwndInsertAfter, i32 x, i32 y, i32 cx, i32 cy, ::u32 uFlags)
 // {
 
 //    mutex_lock sl(user_mutex(), true);

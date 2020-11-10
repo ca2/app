@@ -10,12 +10,12 @@ CLASS_DECL_APEX int32_t thread_get_scheduling_priority(int iOsPolicy, const sche
 CLASS_DECL_APEX int32_t process_get_scheduling_priority(int iOsPolicy, const sched_param * pparam);
 
 
-DWORD MsgWaitForMultipleObjectsEx(DWORD dwSize, sync_object * * pobjectptra, DWORD tickTimeout, DWORD dwWakeMask, DWORD dwFlags)
+::u32 MsgWaitForMultipleObjectsEx(::u32 dwSize, sync_object * * pobjectptra, ::u32 tickTimeout, ::u32 dwWakeMask, ::u32 dwFlags)
 {
 
-   DWORD start = 0;
+   ::u32 start = 0;
 
-   if(tickTimeout != (DWORD) INFINITE)
+   if(tickTimeout != (::u32) U32_INFINITE_TIMEOUT)
    {
 
       start = ::get_tick();
@@ -68,7 +68,7 @@ DWORD MsgWaitForMultipleObjectsEx(DWORD dwSize, sync_object * * pobjectptra, DWO
 
             }
 
-            if(tickTimeout != (DWORD) INFINITE && start.elapsed() >= tickTimeout)
+            if(tickTimeout != (::u32) U32_INFINITE_TIMEOUT && start.elapsed() >= tickTimeout)
             {
 
                for(j = 0; j < i; j++)
@@ -127,7 +127,7 @@ DWORD MsgWaitForMultipleObjectsEx(DWORD dwSize, sync_object * * pobjectptra, DWO
 
             }
 
-            if(tickTimeout != (DWORD) INFINITE && start.elapsed() >= tickTimeout)
+            if(tickTimeout != (::u32) U32_INFINITE_TIMEOUT && start.elapsed() >= tickTimeout)
             {
 
                return WAIT_TIMEOUT;
@@ -152,7 +152,7 @@ DWORD MsgWaitForMultipleObjectsEx(DWORD dwSize, sync_object * * pobjectptra, DWO
 }
 
 
-DWORD MsgWaitForMultipleObjects(DWORD dwSize, sync_object ** pobjectptra, int_bool bWaitForAll, DWORD tickTimeout, DWORD dwWakeMask)
+::u32 MsgWaitForMultipleObjects(::u32 dwSize, sync_object ** pobjectptra, int_bool bWaitForAll, ::u32 tickTimeout, ::u32 dwWakeMask)
 {
 
    return MsgWaitForMultipleObjectsEx(dwSize, pobjectptra, tickTimeout, dwWakeMask, (bWaitForAll ?  MWMO_WAITALL : 0));
@@ -160,7 +160,7 @@ DWORD MsgWaitForMultipleObjects(DWORD dwSize, sync_object ** pobjectptra, int_bo
 }
 
 
-DWORD WaitForMultipleObjectsEx(DWORD dwSize, sync_object ** pobjectptra, int_bool bWaitForAll, DWORD tickTimeout, int_bool bAlertable)
+::u32 WaitForMultipleObjectsEx(::u32 dwSize, sync_object ** pobjectptra, int_bool bWaitForAll, ::u32 tickTimeout, int_bool bAlertable)
 {
 
    return MsgWaitForMultipleObjectsEx(dwSize, pobjectptra, tickTimeout, 0, (bWaitForAll ?  MWMO_WAITALL : 0) | (bAlertable ?  MWMO_ALERTABLE : 0));
@@ -168,7 +168,7 @@ DWORD WaitForMultipleObjectsEx(DWORD dwSize, sync_object ** pobjectptra, int_boo
 }
 
 
-DWORD WaitForMultipleObjects(DWORD dwSize, sync_object ** pobjectptra, int_bool bWaitForAll, DWORD tickTimeout)
+::u32 WaitForMultipleObjects(::u32 dwSize, sync_object ** pobjectptra, int_bool bWaitForAll, ::u32 tickTimeout)
 {
 
    return WaitForMultipleObjectsEx(dwSize, pobjectptra, bWaitForAll, tickTimeout, FALSE);
@@ -176,7 +176,7 @@ DWORD WaitForMultipleObjects(DWORD dwSize, sync_object ** pobjectptra, int_bool 
 }
 
 
-DWORD WaitForSingleObjectEx(sync_object * pobject, DWORD tickTimeout, int_bool bAlertable)
+::u32 WaitForSingleObjectEx(sync_object * pobject, ::u32 tickTimeout, int_bool bAlertable)
 {
 
    return WaitForMultipleObjectsEx(1, &pobject, TRUE, tickTimeout, bAlertable);
@@ -184,7 +184,7 @@ DWORD WaitForSingleObjectEx(sync_object * pobject, DWORD tickTimeout, int_bool b
 }
 
 
-DWORD WaitForSingleObject(sync_object * pobject, DWORD tickTimeout)
+::u32 WaitForSingleObject(sync_object * pobject, ::u32 tickTimeout)
 {
 
    return WaitForSingleObjectEx(pobject, tickTimeout, FALSE);
@@ -356,15 +356,15 @@ CLASS_DECL_APEX void attach_thread_input_to_main_thread(bool bAttach)
 }
 
 
-// LPVOID WINAPI thread_get_data(HTHREAD hthread,DWORD dwIndex);
+// LPVOID WINAPI thread_get_data(HTHREAD hthread,::u32 dwIndex);
 
-// int_bool WINAPI thread_set_data(HTHREAD hthread,DWORD dwIndex,LPVOID lpTlsValue);
+// int_bool WINAPI thread_set_data(HTHREAD hthread,::u32 dwIndex,LPVOID lpTlsValue);
 
-DWORD g_dwDebug_post_thread_msg_time;
+::u32 g_dwDebug_post_thread_msg_time;
 
 int g_iDebug_post_thread_msg_time;
 
-CLASS_DECL_APEX int_bool WINAPI PostThreadMessage(ITHREAD iThreadId,UINT Msg,WPARAM wParam,LPARAM lParam)
+CLASS_DECL_APEX int_bool WINAPI PostThreadMessage(ITHREAD iThreadId,::u32 Msg,WPARAM wParam,LPARAM lParam)
 {
 
    __pointer(mq) pmq = __get_mq(iThreadId);
@@ -383,7 +383,7 @@ CLASS_DECL_APEX int_bool WINAPI PostThreadMessage(ITHREAD iThreadId,UINT Msg,WPA
    if(Msg == e_message_quit)
    {
 
-      ::output_debug_string("\n\n\nWM_QUIT posted to thread " + __str((uint64_t)iThreadId) + "\n\n\n");
+      ::output_debug_string("\n\n\nWM_QUIT posted to thread " + __str((::u3264_t)iThreadId) + "\n\n\n");
 
    }
 

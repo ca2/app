@@ -54,7 +54,7 @@ namespace aura
       semaphore                                       m_semCompiler;
       // former ::aura::application_interface // moved on 2015-05-23 Sammstag while listening to RocketBeansTV (a German channel?) at TwitchTV
 
-      DWORD                                           m_dwInstallGoodToCheckAgain;
+      ::u32                                           m_dwInstallGoodToCheckAgain;
 
       //bool                                            m_bAppHasInstallerProtected;
       //bool                                            m_bAppHasInstallerChangedProtected;
@@ -130,7 +130,7 @@ namespace aura
 //
 //      ATOM                                            m_atomApp;
 //      ATOM                                            m_atomSystemTopic;   // for DDE open
-//      UINT                                            m_nNumPreviewPages; // number of default printed pages
+//      ::u32                                            m_nNumPreviewPages; // number of default printed pages
 //
 //      string                                          m_strId;
 
@@ -499,7 +499,7 @@ namespace aura
 
       //virtual void process_message_filter(i32 code,::message::message * pmessage) override;
 
-      virtual ::estatus on_thread_on_idle(::thread * pthread,LONG lCount) override;
+      virtual ::estatus on_thread_on_idle(::thread * pthread,::i32 lCount) override;
 
 
       //virtual bool app_set(string strPath, string strValue) override;
@@ -875,7 +875,7 @@ namespace aura
 
       virtual u32 guess_code_page(const string& str) override;
 
-      //virtual i32 _sync_message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, UINT fuStyle) override;
+      //virtual i32 _sync_message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, ::u32 fuStyle) override;
 
       //virtual bool is_serviceable() const override;
 
@@ -924,14 +924,14 @@ namespace aura
       //virtual void on_request(::create* pcreate) override;
 
       // overrides for implementation
-      virtual bool on_idle(LONG lCount) override; // return TRUE if more idle processing
+      virtual bool on_idle(::i32 lCount) override; // return TRUE if more idle processing
       virtual void process_window_procedure_exception(::exception_pointer pe, ::message::message* pmessage) override;
 
       void EnableModelessEx(bool bEnable);
 #ifdef WINDOWS
-      HENHMETAFILE LoadEnhMetaFile(UINT uiResource);
+      HENHMETAFILE LoadEnhMetaFile(::u32 uResource);
 #endif
-      bool GetResourceData(UINT nID, const char* lcszType, memory& storage);
+      bool GetResourceData(::u32 nID, const char* lcszType, memory& storage);
 
 #ifdef WINDOWS
       virtual bool OnMessageWindowMessage(LPMESSAGE pmsg);
@@ -940,7 +940,7 @@ namespace aura
       virtual bool OnX11WindowMessage(void* pev);
 #endif
 
-      bool CreateFileFromRawResource(UINT nID, const char* lcszType, const char* pcszFilePath);
+      bool CreateFileFromRawResource(::u32 nID, const char* lcszType, const char* pcszFilePath);
 
       virtual LRESULT GetPaintMsgProc(i32 nCode, WPARAM wParam, LPARAM lParam) override;
 
@@ -956,8 +956,8 @@ namespace aura
       void EnableHtmlHelp();
 
 
-      //virtual i32 sync_message_box_timeout(::user::primitive * puiOwner,var var, const char * pszTitle, ::duration durationTimeout,UINT fuStyle = MB_OK) override;
-      //virtual i32 sync_message_box(::user::primitive * puiOwner,const char * pszMessage, const char * pszTitle, UINT fuStyle = MB_OK) override;
+      //virtual i32 sync_message_box_timeout(::user::primitive * puiOwner,var var, const char * pszTitle, ::duration durationTimeout,::u32 fuStyle = MB_OK) override;
+      //virtual i32 sync_message_box(::user::primitive * puiOwner,const char * pszMessage, const char * pszTitle, ::u32 fuStyle = MB_OK) override;
 
 
       //bool on_exclusive_instance_conflict(bool & bHandled, EExclusiveInstance eexclusive, string strId) override;
@@ -985,7 +985,7 @@ namespace aura
       // profile member functions; prevents writing to an INI spfile->
       void SetRegistryKey(const char* pszRegistryKey);
 
-      void SetRegistryKey(UINT nIDRegistryKey);
+      void SetRegistryKey(::u32 nIDRegistryKey);
 
 
       void RegisterShellFileTypes(bool bCompat = FALSE);
@@ -1025,7 +1025,7 @@ namespace aura
       //virtual void close(::aura::e_end eend) override; // close documents before exiting
 
       // Advanced: to override message boxes and other hooks
-      //virtual i32 DoMessageBox(const char * pszPrompt,UINT nType,UINT nIDPrompt);
+      //virtual i32 DoMessageBox(const char * pszPrompt,::u32 nType,::u32 nIDPrompt);
 
 
       // Advanced: process async DDE request
@@ -1034,9 +1034,9 @@ namespace aura
 
 //#ifdef WINDOWS_DESKTOP
 //      // Advanced: Help support
-//      virtual void WinHelp(uptr dwData,UINT nCmd = HELP_CONTEXT);
-//      virtual void HtmlHelp(uptr dwData,UINT nCmd = 0x000F);
-//      virtual void WinHelpInternal(uptr dwData,UINT nCmd = HELP_CONTEXT);
+//      virtual void WinHelp(uptr dwData,::u32 nCmd = HELP_CONTEXT);
+//      virtual void HtmlHelp(uptr dwData,::u32 nCmd = 0x000F);
+//      virtual void WinHelpInternal(uptr dwData,::u32 nCmd = HELP_CONTEXT);
 //#endif
 
       // Command Handlers
@@ -1074,7 +1074,7 @@ namespace aura
 
 
       // helper for message boxes; can work when no application can be found
-      //static i32 ShowAppMessageBox(__pointer(application)pApp,const char * pszPrompt,UINT nType,UINT nIDPrompt);
+      //static i32 ShowAppMessageBox(__pointer(application)pApp,const char * pszPrompt,::u32 nType,::u32 nIDPrompt);
 
       static void DoEnableModeless(bool bEnable); // to disable OLE in-place dialogs
 
@@ -1222,10 +1222,10 @@ namespace aura
 
       /*
       virtual ::count get_monitor_count();
-      virtual bool  get_monitor_rect(index i, RECT * prect);
+      virtual bool  get_monitor_rect(index i, RECT32 * prect);
 
       virtual ::count get_desk_monitor_count();
-      virtual bool  get_desk_monitor_rect(index i, RECT * prect);
+      virtual bool  get_desk_monitor_rect(index i, RECT32 * prect);
 
       */
 
@@ -1366,7 +1366,7 @@ namespace aura
 
       //virtual __pointer(::user::user) create_user();
 
-      //virtual bool on_thread_on_idle(::thread* pthread, LONG lCount) override;
+      //virtual bool on_thread_on_idle(::thread* pthread, ::i32 lCount) override;
 
 
 
@@ -1438,7 +1438,7 @@ namespace aura
 
 
 
-//CLASS_DECL_AURA UINT c_cdecl application_thread_procedure(LPVOID pvoid);
+//CLASS_DECL_AURA ::u32 c_cdecl application_thread_procedure(LPVOID pvoid);
 
 //typedef __pointer(::aura::application) (*LPFN_instantiate_application)(__pointer(::aura::application) pappParent, const char* pszId);
 

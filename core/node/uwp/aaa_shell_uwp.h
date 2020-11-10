@@ -25,7 +25,7 @@ namespace uwp
       virtual i32 impl_get_file_image(const image_key & imagekey) override;
 
 
-      i32 get_image_by_extension(const image_key & key, COLORREF crBk);
+      i32 get_image_by_extension(const image_key & key, color32_t crBk);
 
 
       virtual void do_initialize() override;

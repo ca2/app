@@ -17,7 +17,7 @@ struct myfx_CTLCOLOR
 {
    ::oswindow oswindow;
    HDC hDC;
-   UINT nCtlType;
+   ::u32 nCtlType;
 };
 
 
@@ -127,7 +127,7 @@ namespace message
       base::set(playeredUserPrimitive, id, wparam, lparam);
 
 
-      m_nState = (UINT)(LOWORD(wparam));
+      m_nState = (::u32)(LOWORD(wparam));
 
       if(lparam == 0)
 
@@ -184,7 +184,7 @@ namespace message
    WPARAM MapLeftRightKeys(WPARAM vk, LPARAM lParam)
    {
       WPARAM new_vk = vk;
-      UINT scancode = (lParam & 0x00ff0000) >> 16;
+      ::u32 scancode = (lParam & 0x00ff0000) >> 16;
       int extended = (lParam & 0x01000000) != 0;
       switch (vk)
       {
@@ -215,7 +215,7 @@ namespace message
 
       base::set(playeredUserPrimitive, id,wparam,lparam);
 
-      m_nChar = static_cast<UINT>(wparam);
+      m_nChar = static_cast<::u32>(wparam);
 
       m_nRepCnt = LOWORD(lparam);
 
@@ -273,7 +273,7 @@ namespace message
 
       base::set(playeredUserPrimitive, id,wparam,lparam);
 
-      m_nType     = static_cast < UINT > (wparam);
+      m_nType     = static_cast < ::u32 > (wparam);
 
       m_size      = ::size(LOWORD(lparam),HIWORD(lparam));
 
@@ -388,7 +388,7 @@ namespace message
    }
 
 
-   UINT mouse_activate::GetHitTest()
+   ::u32 mouse_activate::GetHitTest()
    {
 
       return LOWORD(m_lparam);
@@ -396,7 +396,7 @@ namespace message
    }
 
 
-   UINT mouse_activate::get_message()
+   ::u32 mouse_activate::get_message()
    {
 
       return HIWORD(m_lparam);
@@ -433,7 +433,7 @@ namespace message
 
       m_bShow = wparam != FALSE;
 
-      m_nStatus = static_cast<UINT>(lparam);
+      m_nStatus = static_cast<::u32>(lparam);
 
    }
 
@@ -496,7 +496,7 @@ namespace message
    }
 
 
-   UINT mouse_wheel::GetFlags()
+   ::u32 mouse_wheel::GetFlags()
    {
       return LOWORD(m_wparam);
    }
@@ -511,12 +511,12 @@ namespace message
       return point(GET_X_LPARAM(m_lparam),GET_Y_LPARAM(m_lparam));
    }
 
-   UINT command::GetNotifyCode()
+   ::u32 command::GetNotifyCode()
    {
       return HIWORD(m_wparam);
    }
 
-   UINT command::GetId()
+   ::u32 command::GetId()
    {
       return LOWORD(m_wparam);
    }

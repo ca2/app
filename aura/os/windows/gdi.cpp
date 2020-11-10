@@ -38,12 +38,12 @@
 //   LOGFONTW & logFont = *pLogFont;
 //
 //
-//   POINT point;
+//   POINT32 point;
 //   // 72 points/inch, 10 decipoints/point
 //   point.y = ::MulDiv(::GetDeviceCaps(hdc, LOGPIXELSY), logFont.lfHeight, 720);
 //   point.x = 0;
 //   ::DPtoLP(hdc, &point, 1);
-//   POINT pointOrg = { 0, 0 };
+//   POINT32 pointOrg = { 0, 0 };
 //   ::DPtoLP(hdc, &pointOrg, 1);
 //   logFont.lfHeight = -abs(point.y - pointOrg.y);
 //
@@ -245,16 +245,16 @@ namespace draw2d
       }
 
 
-      static BOOL CALLBACK callback(LPLOGFONTW plf, LPNEWTEXTMETRICW lpntm, DWORD FontType, LPVOID point);
+      static BOOL CALLBACK callback(LPLOGFONTW plf, LPNEWTEXTMETRICW lpntm, ::u32 FontType, LPVOID point);
 
 
-      static BOOL CALLBACK callback_cs(LPLOGFONTW plf, LPNEWTEXTMETRICW lpntm, DWORD FontType, LPVOID point);
+      static BOOL CALLBACK callback_cs(LPLOGFONTW plf, LPNEWTEXTMETRICW lpntm, ::u32 FontType, LPVOID point);
 
 
    };
 
 
-   BOOL CALLBACK wingdi_font_enum::callback(LPLOGFONTW plf, LPNEWTEXTMETRICW lpntm, DWORD dwFontType, LPVOID p)
+   BOOL CALLBACK wingdi_font_enum::callback(LPLOGFONTW plf, LPNEWTEXTMETRICW lpntm, ::u32 dwFontType, LPVOID p)
    {
 
       wingdi_font_enum * penum = (wingdi_font_enum *)p;
@@ -302,7 +302,7 @@ namespace draw2d
    }
 
 
-   BOOL CALLBACK wingdi_font_enum::callback_cs(LPLOGFONTW plf, LPNEWTEXTMETRICW lpntm, DWORD dwFontType, LPVOID p)
+   BOOL CALLBACK wingdi_font_enum::callback_cs(LPLOGFONTW plf, LPNEWTEXTMETRICW lpntm, ::u32 dwFontType, LPVOID p)
    {
 
       ::draw2d::font_enum_item * pitem = (::draw2d::font_enum_item *) p;
@@ -472,7 +472,7 @@ CLASS_DECL_AURA HBITMAP CreateAlphaBitmapV5(const ::image * pimage)
   }
 
   //   HDC hMemDC;
-  DWORD dwWidth, dwHeight;
+  ::u32 dwWidth, dwHeight;
   BITMAPV5HEADER bi;
   // HBITMAP hOldBitmap;
   HBITMAP hBitmap;
@@ -486,7 +486,7 @@ CLASS_DECL_AURA HBITMAP CreateAlphaBitmapV5(const ::image * pimage)
   ZeroMemory(&bi, sizeof(BITMAPV5HEADER));
   bi.bV5Size = sizeof(BITMAPV5HEADER);
   bi.bV5Width = dwWidth;
-  bi.bV5Height = -(LONG)dwHeight;
+  bi.bV5Height = -(::i32)dwHeight;
   bi.bV5Planes = 1;
   bi.bV5BitCount = 32;
   bi.bV5Compression = BI_BITFIELDS;
@@ -501,7 +501,7 @@ CLASS_DECL_AURA HBITMAP CreateAlphaBitmapV5(const ::image * pimage)
   hdc = GetDC(nullptr);
 
   // Create the DIB section with an alpha channel.
-  hBitmap = CreateDIBSection(hdc, (BITMAPINFO *)&bi, DIB_RGB_COLORS, (void **)&pBits, nullptr, (DWORD)0);
+  hBitmap = CreateDIBSection(hdc, (BITMAPINFO *)&bi, DIB_RGB_COLORS, (void **)&pBits, nullptr, (::u32)0);
 
 
   //hMemDC = CreateCompatibleDC(hdc);
@@ -519,9 +519,9 @@ CLASS_DECL_AURA HBITMAP CreateAlphaBitmapV5(const ::image * pimage)
   // Set the alpha values for each pixel in the cursor so that
   // the complete cursor is semi-transparent.
 
-  int iStrideDst = dwWidth * sizeof(COLORREF);
+  int iStrideDst = dwWidth * sizeof(color32_t);
 
-  ::copy_colorref((COLORREF *)pBits, pimage->width(), pimage->height(), iStrideDst, pimage->get_data(), pimage->scan_size());
+  ::copy_colorref((color32_t *)pBits, pimage->width(), pimage->height(), iStrideDst, pimage->get_data(), pimage->scan_size());
 
   return hBitmap;
 
@@ -622,7 +622,7 @@ CLASS_DECL_AURA HBITMAP CreateHBITMAP(pixmap * ppixmap)
 
    pixmap pixmap;
 
-   pixmap.m_iScan = ppixmap->width() * sizeof(COLORREF);
+   pixmap.m_iScan = ppixmap->width() * sizeof(color32_t);
 
    pixmap.m_size = ppixmap->size();
 
@@ -652,12 +652,12 @@ CLASS_DECL_AURA HBITMAP CreateHBITMAP2(pixmap * ppixmap)
    ZeroMemory(&bminfo, sizeof(bminfo));
    bminfo.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
    bminfo.bmiHeader.biWidth = ppixmap->width();
-   bminfo.bmiHeader.biHeight = -((LONG)ppixmap->height());
+   bminfo.bmiHeader.biHeight = -((::i32)ppixmap->height());
    bminfo.bmiHeader.biPlanes = 1;
    bminfo.bmiHeader.biBitCount = 32;
    bminfo.bmiHeader.biCompression = BI_RGB;
 
-   COLORREF * pvImageBits = nullptr;
+   color32_t * pvImageBits = nullptr;
 
    HDC hdcScreen = GetDC(nullptr);
 
@@ -672,7 +672,7 @@ CLASS_DECL_AURA HBITMAP CreateHBITMAP2(pixmap * ppixmap)
 
    }
 
-   ppixmap->m_iScan = ppixmap->width() * sizeof(COLORREF);
+   ppixmap->m_iScan = ppixmap->width() * sizeof(color32_t);
 
    return hbmp;
 
@@ -740,7 +740,7 @@ CLASS_DECL_AURA HBITMAP CreateHBITMAP2(pixmap * ppixmap)
 ////
 ////   void * pdata = FreeImage_GetBits(image32);
 ////
-////   COLORREF * pcolorref = nullptr;
+////   color32_t * pcolorref = nullptr;
 ////
 ////   BITMAPINFO info;
 ////

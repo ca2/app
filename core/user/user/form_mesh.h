@@ -57,9 +57,9 @@ namespace user
 
       virtual bool _001HitTest_(const ::point & point, index&iItem, index&iSubItem) override;
 
-      void control_get_client_rect(::user::interaction * pinteraction,RECT * prect) override;
+      void control_get_client_rect(::user::interaction * pinteraction,RECT32 * prect) override;
 
-      void control_get_window_rect(::user::interaction * pinteraction,RECT * prect) override;
+      void control_get_window_rect(::user::interaction * pinteraction,RECT32 * prect) override;
 
       bool control_001DisplayHitTest(const ::point & point);
 
@@ -89,7 +89,7 @@ namespace user
       DECL_GEN_SIGNAL(_001OnHScroll);
       DECL_GEN_SIGNAL(_001OnKeyDown);
 
-      virtual bool _001OnMouseActivate(::user::interaction_impl * pDesktopWnd,UINT nHitTest,const ::id & id,LRESULT & iResult);
+      virtual bool _001OnMouseActivate(::user::interaction_impl * pDesktopWnd,::u32 nHitTest,const ::id & id,LRESULT & iResult);
 
 
       virtual void install_message_routing(::channel * pchannel) override;

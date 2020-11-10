@@ -95,7 +95,7 @@ namespace file
 
       ensure_file_size_fd(m_iFile, m_size);
 
-      m_pdata = (COLORREF *)mmap(nullptr, m_size, (m_bRead ? PROT_READ : 0) | (m_bWrite ? PROT_WRITE : 0), MAP_SHARED, m_iFile, 0);
+      m_pdata = (color32_t *)mmap(nullptr, m_size, (m_bRead ? PROT_READ : 0) | (m_bWrite ? PROT_WRITE : 0), MAP_SHARED, m_iFile, 0);
 
       if (m_pdata == (void *)MAP_FAILED)
       {

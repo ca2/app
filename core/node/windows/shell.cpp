@@ -55,7 +55,7 @@ namespace windows
 
 
 
-//      i32 shell::thread::get_image_by_file_extension(oswindow image_key & imagekey, COLORREF crBk)
+//      i32 shell::thread::get_image_by_file_extension(oswindow image_key & imagekey, color32_t crBk)
 //      {
 //
 //#ifdef WINDOWS_DESKTOP
@@ -73,7 +73,7 @@ namespace windows
 
    // returned image should be "Definitive" icon/pimage->
    // maybe fallback but not temporary
-   i32 shell::get_file_image(image_key imagekey, const itemidlist & pidlAbsolute, const itemidlist & pidlChild, const unichar * pcszExtra, COLORREF crBk)
+   i32 shell::get_file_image(image_key imagekey, const itemidlist & pidlAbsolute, const itemidlist & pidlChild, const unichar * pcszExtra, color32_t crBk)
 
    {
 
@@ -156,7 +156,7 @@ namespace windows
       comptr < IExtractImage > piextractimage;
 
 
-      UINT uiExtractIconLocationFlags = 0;
+      ::u32 uExtractIconLocationFlags = 0;
 
       string strIconLocation;
 
@@ -241,7 +241,7 @@ namespace windows
 
             int iIndex = 0;
 
-            DWORD dwFlags = 0;
+            ::u32 dwFlags = 0;
 
             if (SUCCEEDED(hrGetOverlayInfo = pioverlay->GetOverlayInfo(
 
@@ -294,9 +294,9 @@ namespace windows
 
                s.cy = 48;
 
-               DWORD dwDepth = 32;
+               ::u32 dwDepth = 32;
 
-               DWORD dwFlags = 0;
+               ::u32 dwFlags = 0;
 
                if (SUCCEEDED(hrGetLocation = piextractimage->GetLocation(
 
@@ -849,7 +849,7 @@ namespace windows
    }
 
 
-   i32 shell::get_file_image(image_key imagekey, const unichar * pcszExtra, COLORREF crBk)
+   i32 shell::get_file_image(image_key imagekey, const unichar * pcszExtra, color32_t crBk)
 
    {
 
@@ -1098,7 +1098,7 @@ namespace windows
 
 
 
-   int shell::add_icon_set(SHFILEINFOW * pinfo16, SHFILEINFOW * pinfo48, COLORREF crBk, bool & bUsed16, bool & bUsed48, int iImage)
+   int shell::add_icon_set(SHFILEINFOW * pinfo16, SHFILEINFOW * pinfo48, color32_t crBk, bool & bUsed16, bool & bUsed48, int iImage)
    {
 
       sync_lock sl(mutex());
@@ -1119,7 +1119,7 @@ namespace windows
    }
 
 
-   int shell::add_icon_path(::file::path path, COLORREF crBk, int iImage)
+   int shell::add_icon_path(::file::path path, color32_t crBk, int iImage)
    {
 
       sync_lock sl(mutex());
@@ -1138,7 +1138,7 @@ namespace windows
          if (hicon == nullptr)
          {
 
-            DWORD dwLastError = ::GetLastError();
+            ::u32 dwLastError = ::GetLastError();
 
             output_debug_string("LastError = " + __str(dwLastError));
 
@@ -1155,7 +1155,7 @@ namespace windows
    }
 
 
-   int shell::add_icon(int iSize, HICON hicon, COLORREF crBk, int iImage)
+   int shell::add_icon(int iSize, HICON hicon, color32_t crBk, int iImage)
    {
 
       sync_lock sl(m_pil[iSize]->mutex());
@@ -1171,7 +1171,7 @@ namespace windows
    }
 
 
-   int shell::add_icon_info(int iSize, SHFILEINFOW * pinfo16, SHFILEINFOW * pinfo48, COLORREF crBk, bool & bUsed16, bool & bUsed48, int iImage)
+   int shell::add_icon_info(int iSize, SHFILEINFOW * pinfo16, SHFILEINFOW * pinfo48, color32_t crBk, bool & bUsed16, bool & bUsed48, int iImage)
    {
 
       bool bUsed = false;
@@ -1234,7 +1234,7 @@ namespace windows
    }
 
 
-   int shell::add_system_icon(int iSize, IImageList * pil, SHFILEINFOW * pinfo, COLORREF crBk, bool & bUsedImageList, int iImage)
+   int shell::add_system_icon(int iSize, IImageList * pil, SHFILEINFOW * pinfo, color32_t crBk, bool & bUsedImageList, int iImage)
    {
 
       if (pil != nullptr)
@@ -1288,7 +1288,7 @@ namespace windows
 
 
 
-   void shell::set_image_ico(string strIconLocation, i32 & iImage, COLORREF crBk)
+   void shell::set_image_ico(string strIconLocation, i32 & iImage, color32_t crBk)
    {
 
       ASSERT(strIconLocation.ends_ci(".ico"));
@@ -1309,7 +1309,7 @@ namespace windows
    }
 
 
-   void shell::set_image_resource(string strIconLocation, i32 & iImage, const image_key & imagekey, COLORREF crBk)
+   void shell::set_image_resource(string strIconLocation, i32 & iImage, const image_key & imagekey, color32_t crBk)
    {
 
       ASSERT(!strIconLocation.ends_ci(".ico"));

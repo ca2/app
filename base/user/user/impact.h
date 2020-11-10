@@ -51,7 +51,7 @@ namespace user
       virtual bool IsSelected(const object* pDocItem) const; // support for OLE
 
       // OLE scrolling support (used for drag/drop as well)
-      virtual bool OnScroll(UINT nScrollCode, UINT nPos, bool bDoScroll = TRUE);
+      virtual bool OnScroll(::u32 nScrollCode, ::u32 nPos, bool bDoScroll = TRUE);
       //virtual bool OnScrollBy(::size sizeScroll, bool bDoScroll = TRUE);
 
       // OLE drag/drop support
@@ -69,7 +69,7 @@ namespace user
       //virtual void OnPrepareDC(::draw2d::graphics_pointer & pgraphics, CPrintInfo* pInfo = nullptr);
 
       virtual void OnActivateView(bool bActivate, __pointer(impact) pActivateView, __pointer(impact) pDeactiveView);
-      virtual void OnActivateFrame(UINT nState, __pointer(::user::frame_window) pFrameWnd);
+      virtual void OnActivateFrame(::u32 nState, __pointer(::user::frame_window) pFrameWnd);
 
 
       virtual void set_impact_title(const string & strImpactTitle);
@@ -94,7 +94,7 @@ namespace user
 
 
 
-      virtual void CalcWindowRect(RECT * pClientRect, UINT nAdjustType = adjustBorder) override;
+      virtual void CalcWindowRect(RECT32 * pClientRect, ::u32 nAdjustType = adjustBorder) override;
 
 
 
@@ -126,9 +126,9 @@ namespace user
 
 
       void OnUpdateSplitCmd(::user::command* pCmdUI);
-      bool OnSplitCmd(UINT nID);
+      bool OnSplitCmd(::u32 nID);
       void OnUpdateNextPaneMenu(::user::command* pCmdUI);
-      bool OnNextPaneCmd(UINT nID);
+      bool OnNextPaneCmd(::u32 nID);
 
       // not mapped commands - must be mapped in derived class
       void OnFilePrint();
@@ -153,7 +153,7 @@ namespace user
       //      virtual bool IsSelected(const object* pDocItem) const; // support for OLE
 
       // OLE scrolling support (used for drag/drop as well)
-      //      virtual bool OnScroll(UINT nScrollCode, UINT nPos, bool bDoScroll = TRUE);
+      //      virtual bool OnScroll(::u32 nScrollCode, ::u32 nPos, bool bDoScroll = TRUE);
       //    virtual bool OnScrollBy(const ::size & sizeScroll, bool bDoScroll = TRUE);
 
       // OLE drag/drop support
@@ -172,7 +172,7 @@ namespace user
 
 
       //virtual void OnActivateView(bool bActivate, __pointer(::user::impact) pActivateView, __pointer(::user::impact) pDeactiveView);
-      //virtual void OnActivateFrame(UINT nState, __pointer(::user::frame_window) pFrameWnd);
+      //virtual void OnActivateFrame(::u32 nState, __pointer(::user::frame_window) pFrameWnd);
 
       //virtual void on_apply(::action * paction) override;
 

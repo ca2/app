@@ -26,8 +26,8 @@ namespace ftp
       bool GetNextLine(string& strLine);
 
       virtual string GetLocalStreamName() const override;
-      virtual UINT GetLocalStreamSize() const override;
-      virtual void SetLocalStreamOffset(DWORD dwOffsetFromBeginOfStream) override;
+      virtual ::u32 GetLocalStreamSize() const override;
+      virtual void SetLocalStreamOffset(::u32 dwOffsetFromBeginOfStream) override;
       virtual void OnBytesReceived(const memory& vBuffer, long lReceivedBytes) override;
       virtual void OnPreBytesSend(byte* pszBuffer, memsize bufferSize, memsize& bytesToSend) override;
    };

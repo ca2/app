@@ -145,8 +145,8 @@ CLASS_DECL_ACME bool solve_relative_inline(string & str, bool & bUrl, bool & bOn
 CLASS_DECL_ACME string defer_solve_relative(const char * pszRelative,const char * pszCurrent);
 CLASS_DECL_ACME bool file_append(const string & strFile, const string & str);
 CLASS_DECL_ACME bool file_append(const string & strFile, const char * psz, strsize s);
-CLASS_DECL_ACME bool file_append_wait(const string & strFile, const string & str, DWORD tickTimeout = INFINITE);
-CLASS_DECL_ACME bool file_append_wait(const string & strFile, const char * psz, strsize s, DWORD tickTimeout = INFINITE);
+CLASS_DECL_ACME bool file_append_wait(const string & strFile, const string & str, ::u32 tickTimeout = U32_INFINITE_TIMEOUT);
+CLASS_DECL_ACME bool file_append_wait(const string & strFile, const char * psz, strsize s, ::u32 tickTimeout = U32_INFINITE_TIMEOUT);
 
 CLASS_DECL_ACME bool write_memory_to_file(FILE * file, const void * pdata, memsize nCount, memsize * puiWritten);
 

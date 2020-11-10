@@ -10,7 +10,7 @@ CLASS_DECL_CORE bool _istlead(i32 ch)
 }
 
 
-void Sleep(DWORD dwMillis)
+void Sleep(::u32 dwMillis)
 {
    timespec t;
    t.tv_sec = dwMillis / 1000;

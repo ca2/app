@@ -3,7 +3,7 @@
 
 #ifndef WINDOWS
 
-CLASS_DECL_ACME int_bool is_process_running(DWORD pid)
+CLASS_DECL_ACME int_bool is_process_running(::u32 pid)
 {
 
 

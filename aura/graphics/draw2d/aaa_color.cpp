@@ -31,7 +31,7 @@ color::color(const color & color)
 }
 
 
-color::color(COLORREF cr)
+color::color(color32_t cr)
 {
 
    operator = (cr);
@@ -483,9 +483,9 @@ double dS)
    double dFinalG = (dCMin + dG * dCAdd);
    double dFinalB = (dCMin + dB * dCAdd);
 
-   m_iR = (BYTE)primitive_color_round(dFinalR * 255.0);
-   m_iG = (BYTE)primitive_color_round(dFinalG * 255.0);
-   m_iB = (BYTE)primitive_color_round(dFinalB * 255.0);
+   m_iR = (byte)primitive_color_round(dFinalR * 255.0);
+   m_iG = (byte)primitive_color_round(dFinalG * 255.0);
+   m_iB = (byte)primitive_color_round(dFinalB * 255.0);
 
    /*   double H = dH * 360.0;
 
@@ -502,9 +502,9 @@ double dS)
       m_dG = ((G1 - AVERAGE) * dS) + AVERAGE;
       m_dB = ((B1 - AVERAGE) * dS) + AVERAGE;
 
-      m_iR      = (BYTE)primitive_color_round(m_dR * 255.0);
-      m_iG      = (BYTE)primitive_color_round(m_dG * 255.0);
-      m_iB      = (BYTE)primitive_color_round(m_dB * 255.0);*/
+      m_iR      = (byte)primitive_color_round(m_dR * 255.0);
+      m_iG      = (byte)primitive_color_round(m_dG * 255.0);
+      m_iB      = (byte)primitive_color_round(m_dB * 255.0);*/
 
 }
 
@@ -538,13 +538,13 @@ u32 color::get_bgra() const
 //   return quad;
 //}
 
-color::operator COLORREF() const
+color::operator color32_t() const
 {
    return get_rgba();
 }
 
 
-void color::set_rgb(COLORREF cr)
+void color::set_rgb(color32_t cr)
 {
 
    m_iR = colorref_get_r_value(cr);
@@ -554,7 +554,7 @@ void color::set_rgb(COLORREF cr)
 }
 
 
-void color::set_argb(COLORREF cr)
+void color::set_argb(color32_t cr)
 {
 
    m_iR = colorref_get_r_value(cr);
@@ -565,7 +565,7 @@ void color::set_argb(COLORREF cr)
 }
 
 
-void color::set_COLORREF(COLORREF cr)
+void color::set_COLORREF(color32_t cr)
 {
 
    set_argb(cr);
@@ -740,7 +740,7 @@ void CColor::get_hls(byte * H, byte * L, byte * S)
    // calculate lightness
    dMax = max(max(dRed, dGreen), dBlue);
    dMin = min(min(dRed, dGreen), dBlue);
-   dLightness = (BYTE) (((dMax + dMin) * HLSMAX) + RGBMAX) / (2 * RGBMAX);
+   dLightness = (byte) (((dMax + dMin) * HLSMAX) + RGBMAX) / (2 * RGBMAX);
    if(dMax == dMin)
    {
       // rect=g=b --> achromatic case
@@ -774,9 +774,9 @@ void CColor::get_hls(byte * H, byte * L, byte * S)
       if (dHue > HLSMAX)
          dHue -= HLSMAX;
    }
-   *H = (BYTE) dHue;
-   *L = (BYTE) dLightness;
-   *S = (BYTE) dSaturation;
+   *H = (byte) dHue;
+   *L = (byte) dLightness;
+   *S = (byte) dSaturation;
 }*/
 
 /*
@@ -837,9 +837,9 @@ void CColor::set_hls(
       dBlue   = (HueToRGB(dMagic1, dMagic2, dHue-(HLSMAX/3.0))*RGBMAX +
          (HLSMAX/2))/HLSMAX;
    }
-   m_bBlue      = (BYTE) dBlue;
-   m_bGreen   = (BYTE) dGreen;
-   m_bRed      = (BYTE) dRed;
+   m_bBlue      = (byte) dBlue;
+   m_bGreen   = (byte) dGreen;
+   m_bRed      = (byte) dRed;
 
 
 }
@@ -863,7 +863,7 @@ color & color::operator = (const color & color)
 }
 
 
-color & color::operator = (COLORREF cr)
+color & color::operator = (color32_t cr)
 {
 
    set_argb(cr);
@@ -988,24 +988,24 @@ bool color::parse_color(const char * psz)
 }
 
 
-CLASS_DECL_AURA COLORREF alpha_color(BYTE bAlpha, COLORREF cr)
+CLASS_DECL_AURA color32_t alpha_color(byte bAlpha, color32_t cr)
 {
 
    return (cr & 0xffffff) | ((bAlpha & 0xff) << 24);
 
 }
 
-CLASS_DECL_AURA COLORREF alpha_color(BYTE bAlpha, enum_color ecolor)
+CLASS_DECL_AURA color32_t alpha_color(byte bAlpha, enum_color ecolor)
 {
 
    return alpha_color(bAlpha, pure_color(ecolor));
 
 }
 
-CLASS_DECL_AURA COLORREF pure_color(enum_color ecolor)
+CLASS_DECL_AURA color32_t pure_color(enum_color ecolor)
 {
 
-   COLORREF cr;
+   color32_t cr;
 
    switch (ecolor)
    {
@@ -1045,14 +1045,14 @@ CLASS_DECL_AURA COLORREF pure_color(enum_color ecolor)
 
 }
 
-CLASS_DECL_AURA COLORREF opaque_color(COLORREF cr)
+CLASS_DECL_AURA color32_t opaque_color(color32_t cr)
 {
 
    return alpha_color(255, cr);
 
 }
 
-CLASS_DECL_AURA COLORREF opaque_color(enum_color ecolor)
+CLASS_DECL_AURA color32_t opaque_color(enum_color ecolor)
 {
 
    return opaque_color(pure_color(ecolor));

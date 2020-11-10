@@ -405,7 +405,7 @@
 //
 //
 //
-//   //bool control::get_window_rect(RECT * prect)
+//   //bool control::get_window_rect(RECT32 * prect)
 //
 //   //{
 //
@@ -426,7 +426,7 @@
 //
 //
 //
-//   //bool control::get_client_rect(RECT * prect)
+//   //bool control::get_client_rect(RECT32 * prect)
 //
 //   //{
 //
@@ -598,7 +598,7 @@
 //      ASSERT_KINDOF(simple_toolbar, pToolBar);
 //      ASSERT(m_nIndex < m_nIndexMax);
 //
-//      UINT nNewStyle = pToolBar->GetButtonStyle(m_nIndex) &
+//      ::u32 nNewStyle = pToolBar->GetButtonStyle(m_nIndex) &
 //                  ~(TBBS_CHECKED | TBBS_INDETERMINATE);
 //      if (nCheck == 1)
 //          nNewStyle |= TBBS_CHECKED;
@@ -750,7 +750,7 @@
 //
 //
 //
-//   //void control::BaseControlExOnMouseMove(UINT nFlags, const ::point & point)
+//   //void control::BaseControlExOnMouseMove(::u32 nFlags, const ::point & point)
 //   //{
 //   //   UNREFERENCED_PARAMETER(nFlags);
 //   //   UNREFERENCED_PARAMETER(point);
@@ -976,7 +976,7 @@
 //   }
 //
 //
-//   bool control::get_element_rect(RECT * prect, e_element eelement)
+//   bool control::get_element_rect(RECT32 * prect, e_element eelement)
 //
 //   {
 //

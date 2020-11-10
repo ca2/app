@@ -51,7 +51,7 @@ BOOL ca2rdp_Pointer_New(rdpContext* context, rdpPointer* pointer)
    {
 
       if (!freerdp_image_copy_from_pointer_data(
-            (BYTE *) ::draw2d::image_get_data(dib), PIXEL_FORMAT_RGBA32,
+            (byte *) ::draw2d::image_get_data(dib), PIXEL_FORMAT_RGBA32,
             0, 0, 0, pointer->width, pointer->height,
             pointer->xorMaskData, pointer->lengthXorMask,
             pointer->andMaskData, pointer->lengthAndMask,
@@ -61,13 +61,13 @@ BOOL ca2rdp_Pointer_New(rdpContext* context, rdpPointer* pointer)
          //xf_unlock_x11(xfc, FALSE);
          return FALSE;
       }
-      //  freerdp_alpha_cursor_convert((BYTE *) ::draw2d::image_get_data(dib),pointer->xorMaskData,pointer->andMaskData,
+      //  freerdp_alpha_cursor_convert((byte *) ::draw2d::image_get_data(dib),pointer->xorMaskData,pointer->andMaskData,
       //pointer->width, pointer->height, pointer->xorBpp, ca2rdpi->clrconv);
    }
 
    //if (pointer->xorBpp > 24)
    //{
-//     freerdp_image_swap_color_order((BYTE *)::draw2d::image_get_data(dib),pointer->width,pointer->height);
+//     freerdp_image_swap_color_order((byte *)::draw2d::image_get_data(dib),pointer->width,pointer->height);
    //}
 
    return 1;

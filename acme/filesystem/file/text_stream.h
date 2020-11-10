@@ -184,9 +184,9 @@ public:
    virtual void write (u64 ui)  override;
    virtual void write (float f)  override;
    virtual void write (double d)  override;
-   //virtual void write(const POINT & point) override;
-   //virtual void write(const SIZE & size) override;
-   //virtual void write(const RECT & rect) override;
+   //virtual void write(const POINT32 & point) override;
+   //virtual void write(const SIZE32 & size) override;
+   //virtual void write(const RECT32 & rect) override;
 
    virtual void write (const char * psz) override;
    virtual void write(const ::id & id) override;

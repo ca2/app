@@ -745,7 +745,7 @@ namespace str
 
 
    template < typename T >
-   inline string from_uint(const T& t)
+   inline string from_u(const T& t)
    {
 
       string str;
@@ -993,7 +993,7 @@ inline void string_base < TYPE_CHAR >::set_at(strsize iChar, CHAR_TYPE ch)
 
 #ifdef WINDOWS
 #if OSBIT == 64
-typedef unsigned __int64* int_ptr_atomic;
+typedef unsigned ::i64* int_ptr_atomic;
 #elif OSBIT == 32
 typedef unsigned int* int_ptr_atomic;
 #else
@@ -1003,11 +1003,11 @@ typedef unsigned int* int_ptr_atomic;
 #ifdef ANDROID
 typedef int* int_ptr_atomic;
 #elif defined(RASPBIAN)
-typedef unsigned __int64* int_ptr_atomic;
+typedef unsigned ::i64* int_ptr_atomic;
 #elif defined(LINUX)
-typedef unsigned __int64* int_ptr_atomic;
+typedef ::u64* int_ptr_atomic;
 #elif defined(APPLEOS)
-typedef unsigned __int64* int_ptr_atomic;
+typedef unsigned ::i64* int_ptr_atomic;
 #else
 typedef iptr int_ptr_atomic;
 #endif
@@ -1258,7 +1258,7 @@ namespace str
 #ifdef WINDOWS
 
 
-   inline void from(string& str, const LONG& i)
+   inline void from(string& str, const ::i32& i)
    {
 
       str = i64toa_dup(i);
@@ -1266,7 +1266,7 @@ namespace str
    }
 
 
-   inline void from(string& str, const DWORD& ui)
+   inline void from(string& str, const ::u32& ui)
    {
 
       str = ui64toa_dup(ui);

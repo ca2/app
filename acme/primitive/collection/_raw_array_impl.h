@@ -332,7 +332,7 @@ raw_array < TYPE, ARG_TYPE, ALLOCATOR >::~raw_array()
 //   {
 //      for( i32 i = 0; i < m_nSize; i++ )
 //         destruct_element(m_pData + i)->~TYPE();
-//      delete[] (BYTE*)m_pData;
+//      delete[] (byte*)m_pData;
 //      m_pData     = nullptr;
 //      m_nSize     = 0;
 //      m_nMaxSize  = 0;
@@ -388,7 +388,7 @@ raw_array < TYPE, ARG_TYPE, ALLOCATOR >::~raw_array()
 //      {
 ////         for( i32 i = 0; i < m_nSize; i++ )
 ////            (m_pData + i)->~TYPE();
-//         delete[] (BYTE*)m_pData;
+//         delete[] (byte*)m_pData;
 //         m_pData = nullptr;
 //      }
 //      m_nSize = m_nMaxSize = 0;
@@ -404,7 +404,7 @@ raw_array < TYPE, ARG_TYPE, ALLOCATOR >::~raw_array()
 //#endif
 //      ::count nAllocSize = max(nNewSize, m_nGrowBy);
 ////#undef new
-//      m_pData = (TYPE*) new BYTE[(size_t)nAllocSize * sizeof(TYPE)];
+//      m_pData = (TYPE*) new byte[(size_t)nAllocSize * sizeof(TYPE)];
 //      //__memset((void *)m_pData, 0, (size_t)nAllocSize * sizeof(TYPE));
 ////      for( ::index i = 0; i < nNewSize; i++ )
 //  //       ::new( (void *)( m_pData + i ) ) TYPE;
@@ -458,7 +458,7 @@ raw_array < TYPE, ARG_TYPE, ALLOCATOR >::~raw_array()
 //      ASSERT(nNewMax <= SIZE_T_MAX/sizeof(TYPE)); // no overflow
 //#endif
 //#undef new
-//      TYPE* pNewData = (TYPE*) new BYTE[(size_t)nNewMax * sizeof(TYPE)];
+//      TYPE* pNewData = (TYPE*) new byte[(size_t)nNewMax * sizeof(TYPE)];
 //#define new ACME_NEW
 //
 //      // copy new data from old
@@ -473,7 +473,7 @@ raw_array < TYPE, ARG_TYPE, ALLOCATOR >::~raw_array()
 ////         ::new( (void *)( pNewData + m_nSize + i ) ) TYPE;
 ////#define new ACME_NEW
 //      // get rid of old stuff (note: no destructors called)
-//      delete[] (BYTE*)m_pData;
+//      delete[] (byte*)m_pData;
 //      m_pData = pNewData;
 //      m_nSize = nNewSize;
 //      m_nMaxSize = nNewMax;
@@ -497,14 +497,14 @@ raw_array < TYPE, ARG_TYPE, ALLOCATOR >::~raw_array()
 //      TYPE* pNewData = nullptr;
 //      if (m_nSize != 0)
 //      {
-//         pNewData = (TYPE*) new BYTE[m_nSize * sizeof(TYPE)];
+//         pNewData = (TYPE*) new byte[m_nSize * sizeof(TYPE)];
 //         // copy new data from old
 //         ::acme::memcpy_s(pNewData, m_nSize * sizeof(TYPE),
 //            m_pData, m_nSize * sizeof(TYPE));
 //      }
 //
 //      // get rid of old stuff (note: no destructors called)
-//      delete[] (BYTE*)m_pData;
+//      delete[] (byte*)m_pData;
 //      m_pData = pNewData;
 //      m_nMaxSize = m_nSize;
 //   }

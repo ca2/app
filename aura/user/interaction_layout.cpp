@@ -449,7 +449,7 @@ namespace user
 
 
 
-   //void interaction_layout::get_window_rect(RECT* prect) const
+   //void interaction_layout::get_window_rect(RECT32* prect) const
    //{
 
    //   ::set_rect_point_size(prect, ui_state().m_pointScreen, ui_state().m_size);

@@ -32,7 +32,7 @@ namespace datetime
       }
 
 
-      void clock::GetRect(LPRECT lprect, enum_element eelement)
+      void clock::GetRect(LPRECT32 lprect, enum_element eelement)
       {
          UNREFERENCED_PARAMETER(lprect);
          UNREFERENCED_PARAMETER(eelement);

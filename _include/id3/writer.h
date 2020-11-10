@@ -34,7 +34,7 @@ class ID3_CPP_EXPORT ID3_Writer
 {
 public:
    typedef u32 size_type;
-   typedef uint8  char_type;
+   typedef ::u328  char_type;
    typedef u32 pos_type;
    typedef  int32 off_type;
    typedef  int16 int_type;

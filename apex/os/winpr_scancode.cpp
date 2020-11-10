@@ -16,7 +16,7 @@
  * Keyboard Type 4
  */
 
-static DWORD KBD4T[128] =
+static ::u32 KBD4T[128] =
 {
    KBD4_T00,
    KBD4_T01,
@@ -148,7 +148,7 @@ static DWORD KBD4T[128] =
    KBD4_T7F
 };
 
-static DWORD KBD4X[128] =
+static ::u32 KBD4X[128] =
 {
    VK_NONE,
    VK_NONE,
@@ -284,7 +284,7 @@ static DWORD KBD4X[128] =
  * Keyboard Type 7
  */
 
-static DWORD KBD7T[128] =
+static ::u32 KBD7T[128] =
 {
    KBD7_T00,
    KBD7_T01,
@@ -416,7 +416,7 @@ static DWORD KBD7T[128] =
    KBD7_T7F
 };
 
-static DWORD KBD7X[128] =
+static ::u32 KBD7X[128] =
 {
    VK_NONE,
    VK_NONE,
@@ -549,9 +549,9 @@ static DWORD KBD7X[128] =
 };
 
 extern "C"
-DWORD GetVirtualKeyCodeFromVirtualScanCode(DWORD scancode, DWORD dwKeyboardType)
+::u32 GetVirtualKeyCodeFromVirtualScanCode(::u32 scancode, ::u32 dwKeyboardType)
 {
-   DWORD codeIndex;
+   ::u32 codeIndex;
 
    codeIndex = scancode & 0xFF;
 
@@ -574,11 +574,11 @@ DWORD GetVirtualKeyCodeFromVirtualScanCode(DWORD scancode, DWORD dwKeyboardType)
 }
 
 extern "C"
-DWORD GetVirtualScanCodeFromVirtualKeyCode(DWORD vkcode, DWORD dwKeyboardType)
+::u32 GetVirtualScanCodeFromVirtualKeyCode(::u32 vkcode, ::u32 dwKeyboardType)
 {
    int i;
-   DWORD scancode;
-   DWORD codeIndex;
+   ::u32 scancode;
+   ::u32 codeIndex;
 
    scancode = 0;
    codeIndex = vkcode & 0xFF;

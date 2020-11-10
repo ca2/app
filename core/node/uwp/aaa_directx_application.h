@@ -15,7 +15,7 @@ namespace uwp
 
       Windows::Foundation::Point                m_pointLastCursor;
 
-      DWORD                                     m_dwMouseMoveThrottle;
+      ::u32                                     m_dwMouseMoveThrottle;
 
       tick m_tickLastMouseMove;
 

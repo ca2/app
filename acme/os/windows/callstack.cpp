@@ -37,7 +37,7 @@ HANDLE SymGetProcessHandle()
 
 
 
-bool engine_get_line_from_address(HANDLE hprocess, OS_DWORD uiAddress, DWORD * puiDisplacement, OS_IMAGEHLP_LINE * pline)
+bool engine_get_line_from_address(HANDLE hprocess, OS_DWORD uiAddress, ::u32 * puiDisplacement, OS_IMAGEHLP_LINE * pline)
 {
 
 #ifdef WORK_AROUND_SRCLINE_BUG
@@ -92,7 +92,7 @@ index engine_fileline(OS_DWORD dwAddress, char * psz, int nCount, u32 * pline, u
 
    HANDLE hprocess = SymGetProcessHandle();
 
-   DWORD displacement = 0;
+   ::u32 displacement = 0;
 
    if (!engine_get_line_from_address(hprocess, dwAddress, &displacement, &img_line))
    {
@@ -130,7 +130,7 @@ index engine_fileline(OS_DWORD dwAddress, char * psz, int nCount, u32 * pline, u
 size_t engine_symbol(char * sz, int n, OS_DWORD * pdisplacement, OS_DWORD dwAddress)
 {
 
-   BYTE symbol[4096];
+   byte symbol[4096];
    OS_PIMAGEHLP_SYMBOL pSym = (OS_PIMAGEHLP_SYMBOL)&symbol;
    __memset(pSym, 0, sizeof(symbol));
    pSym->SizeOfStruct = sizeof(OS_IMAGEHLP_SYMBOL);
@@ -173,7 +173,7 @@ int_bool __stdcall engine_ReadProcessMemory(HANDLE      hProcess,
    DWORD64     qwBaseAddress,
    PVOID       pBuffer,
 
-   DWORD       nSize,
+   ::u32       nSize,
    LPDWORD     pNumberOfBytesRead
 
 );
@@ -200,7 +200,7 @@ int_bool __stdcall engine_ReadProcessMemory(
    DWORD64     qwBaseAddress,
    PVOID       pBuffer,
 
-   DWORD       nSize,
+   ::u32       nSize,
    LPDWORD     pNumberOfBytesRead
 
 )
@@ -208,7 +208,7 @@ int_bool __stdcall engine_ReadProcessMemory(
 
    SIZE_T size = 0;
 
-   if (!ReadProcessMemory(hProcess, (LPCVOID)qwBaseAddress, (LPVOID)pBuffer, nSize, &size))
+   if (!ReadProcessMemory(hProcess, (const void *)qwBaseAddress, (LPVOID)pBuffer, nSize, &size))
 
    {
 
@@ -225,13 +225,13 @@ int_bool __stdcall engine_ReadProcessMemory(
 
 #ifndef FAST_STACK_TRACE
 
-int_bool __stdcall engine_ReadProcessMemory32(HANDLE hProcess, DWORD qwBaseAddress, PVOID pBuffer, DWORD nSize, LPDWORD lpNumberOfBytesRead)
+int_bool __stdcall engine_ReadProcessMemory32(HANDLE hProcess, ::u32 qwBaseAddress, PVOID pBuffer, ::u32 nSize, LPDWORD lpNumberOfBytesRead)
 
 {
 
    SIZE_T size = 0;
 
-   if (!ReadProcessMemory(hProcess, (LPCVOID)qwBaseAddress, (LPVOID)pBuffer, nSize, &size))
+   if (!ReadProcessMemory(hProcess, (const void *)qwBaseAddress, (LPVOID)pBuffer, nSize, &size))
 
       return FALSE;
 
@@ -246,7 +246,7 @@ int_bool __stdcall engine_ReadProcessMemory32(HANDLE hProcess, DWORD qwBaseAddre
 
 /*
 #else
-int_bool __stdcall My_ReadProcessMemory (HANDLE, LPCVOID pBaseAddress, LPVOID lpBuffer, u32 nSize, SIZE_T * lpNumberOfBytesRead)
+int_bool __stdcall My_ReadProcessMemory (HANDLE, const void * pBaseAddress, LPVOID lpBuffer, u32 nSize, SIZE_T * lpNumberOfBytesRead)
 
 {
 return ReadProcessMemory(GetCurrentProcess(), pBaseAddress, lpBuffer, nSize, lpNumberOfBytesRead) != FALSE;
@@ -398,7 +398,7 @@ namespace windows
 
 #if FAST_STACK_TRACE
 
-      UINT32 maxframes = c;
+      ::u32 maxframes = c;
       ULONG BackTraceHash;
       c = RtlCaptureStackBackTrace(0, maxframes, reinterpret_cast<PVOID *>(pinteraction), &BackTraceHash);
 
@@ -410,7 +410,7 @@ namespace windows
    {
 
 #if FAST_STACK_TRACE
-      UINT32 maxframes = min_non_neg(iCount, (int)(sizeof(m_uia) / sizeof(m_uia[0])));
+      ::u32 maxframes = min_non_neg(iCount, (int)(sizeof(m_uia) / sizeof(m_uia[0])));
       ULONG BackTraceHash;
       m_iAddressWrite = RtlCaptureStackBackTrace(0, maxframes, reinterpret_cast<PVOID *>(&m_uia), &BackTraceHash);
 #else
@@ -545,7 +545,7 @@ namespace windows
    }
 
 
-   bool callstack::get_line_from_address(HANDLE hprocess, OS_DWORD uiAddress, DWORD * puiDisplacement, OS_IMAGEHLP_LINE * pline)
+   bool callstack::get_line_from_address(HANDLE hprocess, OS_DWORD uiAddress, ::u32 * puiDisplacement, OS_IMAGEHLP_LINE * pline)
    {
 
       return engine_get_line_from_address(hprocess, uiAddress, puiDisplacement, pline);
@@ -573,7 +573,7 @@ namespace windows
       //#endif
    }
    //#else
-   //   bool callstack::get_line_from_address(HANDLE hprocess, DWORD64 uiAddress, DWORD * puiDisplacement, IMAGEHLP_LINE64 * pline)
+   //   bool callstack::get_line_from_address(HANDLE hprocess, DWORD64 uiAddress, ::u32 * puiDisplacement, IMAGEHLP_LINE64 * pline)
    //   {
    //
    //      return engine_get_line_from_address(hprocess, uiAddress, puiDisplacement, pline);
@@ -678,13 +678,13 @@ namespace windows
       //         {
       //            ENUMPROCESSMODULES fnEnumProcessModules =
       //            (ENUMPROCESSMODULES)GetProcAddress(hInst, "EnumProcessModules");
-      //            DWORD cbNeeded = 0;
+      //            ::u32 cbNeeded = 0;
       //            if (fnEnumProcessModules &&
       //                  fnEnumProcessModules(GetCurrentProcess(), 0, 0, &cbNeeded) &&
       //                  cbNeeded)
       //            {
       //               HMODULE * pmod = (HMODULE *)alloca(cbNeeded);
-      //               DWORD cb = cbNeeded;
+      //               ::u32 cb = cbNeeded;
       //               if (fnEnumProcessModules(GetCurrentProcess(), pmod, cb, &cbNeeded))
       //               {
       //                  m_iRef = 0;
@@ -861,7 +861,7 @@ namespace windows
       //   SymSetOptions (SYMOPT_UNDNAME|SYMOPT_LOAD_LINES);
       if (!::SymInitialize(hprocess, 0, TRUE))
       {
-         DWORD dw = ::GetLastError();
+         ::u32 dw = ::GetLastError();
          output_debug_string("Last Error = " + __str(dw));
          ASSERT(0);
 

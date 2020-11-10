@@ -80,11 +80,11 @@ void NSISCALL setuservariable(const int varnum, LPCTSTR var);
 #define PushStringW(x) pushstring(x)
 #define SetUserVariableW(x,y) setuservariable(x,y)
 
-int  NSISCALL PopStringA(LPSTR ansiStr);
-void NSISCALL PushStringA(LPCSTR ansiStr);
+int  NSISCALL PopStringA(char * ansiStr);
+void NSISCALL PushStringA(const char * ansiStr);
 void NSISCALL GetUserVariableW(const int varnum, LPWSTR wideStr);
-void NSISCALL GetUserVariableA(const int varnum, LPSTR ansiStr);
-void NSISCALL SetUserVariableA(const int varnum, LPCSTR ansiStr);
+void NSISCALL GetUserVariableA(const int varnum, char * ansiStr);
+void NSISCALL SetUserVariableA(const int varnum, const char * ansiStr);
 
 #else
 // ANSI defs
@@ -96,7 +96,7 @@ void NSISCALL SetUserVariableA(const int varnum, LPCSTR ansiStr);
 int  NSISCALL PopStringW(LPWSTR wideStr);
 void NSISCALL PushStringW(LPWSTR wideStr);
 void NSISCALL GetUserVariableW(const int varnum, LPWSTR wideStr);
-void NSISCALL GetUserVariableA(const int varnum, LPSTR ansiStr);
+void NSISCALL GetUserVariableA(const int varnum, char * ansiStr);
 void NSISCALL SetUserVariableW(const int varnum, LPCWSTR wideStr);
 
 #endif

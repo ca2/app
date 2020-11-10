@@ -15,7 +15,7 @@ public:
 
 #ifdef WINDOWS
 
-   static DWORD WINAPI s_os_thread_proc(void* p);
+   static ::u32 WINAPI s_os_thread_proc(void* p);
 
 #else
 

@@ -49,7 +49,7 @@ void CLASS_DECL_APEX __abort()
 //   }
 //
 //
-//   DWORD GetTempPath(string & str)
+//   ::u32 GetTempPath(string & str)
 //   {
 //      return ::GetTempPathW(MAX_PATH * 8,::str::international::utf8_to_unicode(str,MAX_PATH * 8));
 //   }

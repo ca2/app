@@ -26,7 +26,7 @@ namespace uwp
 
 
          string_map < Agile < Windows::Media::SpeechSynthesis::SpeechSynthesizer > >        m_synth;
-         string_map < DWORD >                                                       m_time;
+         string_map < ::u32 >                                                       m_time;
          string_map < bool >                                                        m_tts;
 
 

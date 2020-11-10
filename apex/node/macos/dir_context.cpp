@@ -350,7 +350,7 @@ namespace macos
 //
 //      bool bIsDir;
 //
-//      DWORD dwLastError;
+//      ::u32 dwLastError;
 //
 //      if(m_isdirmap.lookup(strPath, bIsDir, dwLastError))
 //      {
@@ -428,7 +428,7 @@ namespace macos
 
       bool bIsDir;
 
-      DWORD dwLastError;
+      ::u32 dwLastError;
 
       if(::thread_is_set(id_thread_zip_is_dir) && iLast >= 3  && !ansi_count_compare_ci(&((const char *) str)[iLast - 3], ".zip", 4))
       {
@@ -489,7 +489,7 @@ namespace macos
             if(!::dir::mkdir(stra[i]))
             {
 
-               DWORD dwError = ::get_last_error();
+               ::u32 dwError = ::get_last_error();
 
                if(dwError == ERROR_ALREADY_EXISTS)
                {
@@ -850,7 +850,7 @@ try1:
 //
 //        }
 //
-//        DWORD dwAttrib;
+//        ::u32 dwAttrib;
 //
 //        dwAttrib = windows_get_file_attributes(::str::international::utf8_to_unicode(strPath));
 //
@@ -898,7 +898,7 @@ try1:
    //         ::str::begin(wstrPath, L"\\\\?\\");
    //      }
    //   }
-   //   DWORD dwAttrib;
+   //   ::u32 dwAttrib;
    //   dwAttrib = windows_get_file_attributes(wstrPath);
    //   /*if(dwAttrib == INVALID_FILE_ATTRIBUTES)
    //   {
@@ -991,7 +991,7 @@ try1:
 //                ::str::begin(wstrPath, L"\\\\?\\");
 //            }
 //        }
-//        DWORD dwAttrib;
+//        ::u32 dwAttrib;
 //        dwAttrib = windows_get_file_attributes(wstrPath);
 //        /*if(dwAttrib == INVALID_FILE_ATTRIBUTES)
 //         {
@@ -1398,11 +1398,11 @@ try1:
    //   VERIFY(FindClose(hFind));
 
    //   // strip attribute of NORMAL bit, our API doesn't have a "normal" bit.
-   //   rStatus.m_attribute = (BYTE)(findFileData.dwFileAttributes & ~FILE_ATTRIBUTE_NORMAL);
+   //   rStatus.m_attribute = (byte)(findFileData.dwFileAttributes & ~FILE_ATTRIBUTE_NORMAL);
 
-   //   // get just the low DWORD of the file size
+   //   // get just the low ::u32 of the file size
    //   ASSERT(findFileData.nFileSizeHigh == 0);
-   //   rStatus.m_size = (LONG)findFileData.nFileSizeLow;
+   //   rStatus.m_size = (::i32)findFileData.nFileSizeLow;
 
    //   // convert times as appropriate
    //   rStatus.m_ctime = ::datetime::time(findFileData.ftCreationTime);

@@ -725,7 +725,7 @@ string context::defer_get_file_title(string strParam)
 
 
 
-file_pointer context::friendly_get_file(var varFile, UINT nOpenFlags)
+file_pointer context::friendly_get_file(var varFile, ::u32 nOpenFlags)
 {
 
    try

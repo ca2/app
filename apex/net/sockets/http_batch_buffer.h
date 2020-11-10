@@ -11,14 +11,14 @@ namespace sockets
    public:
 
       
-      UINT                 m_nOpenFlags;
+      ::u32                 m_nOpenFlags;
       string               m_strPath;
 
 
       http_batch_buffer();
 
 
-      virtual ::status::result open(const char * pszFileName, UINT nOpenFlags);
+      virtual ::status::result open(const char * pszFileName, ::u32 nOpenFlags);
 
       virtual void close();
       virtual void flush();

@@ -43,7 +43,7 @@ namespace experience
 
       }
 
-      COLORREF crText;
+      color32_t crText;
 
       if (!is_window_enabled())
       {

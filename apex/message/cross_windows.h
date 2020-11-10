@@ -12,10 +12,10 @@ typedef struct tagCREATESTRUCTA
    i32         cx;
    i32         y;
    i32         x;
-   LONG        style;
-   LPCSTR      lpszName;
+   ::i32        style;
+   const char *      lpszName;
 
-   LPCSTR      lpszClass;
+   const char *      lpszClass;
 
    u32       dwExStyle;
 } CREATESTRUCTA,*LPCREATESTRUCTA;
@@ -31,7 +31,7 @@ typedef struct tagCREATESTRUCTW
    i32         cx;
    i32         y;
    i32         x;
-   LONG        style;
+   ::i32        style;
    LPCWSTR     lpszName;
 
    LPCWSTR     lpszClass;

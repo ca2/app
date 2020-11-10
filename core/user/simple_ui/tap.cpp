@@ -238,13 +238,13 @@ namespace simple_ui
 
          pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-         COLORREF crOut;
+         color32_t crOut;
 
-         COLORREF crIn;
+         color32_t crIn;
 
-         COLORREF crBorderOut;
+         color32_t crBorderOut;
 
-         COLORREF crBorderIn;
+         color32_t crBorderIn;
 
          ::rect rectClient;
 
@@ -426,7 +426,7 @@ namespace simple_ui
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-      COLORREF crText;
+      color32_t crText;
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
 

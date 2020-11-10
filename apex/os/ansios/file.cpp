@@ -8,12 +8,12 @@
 //create_file(
 //            char const * pFileName,
 
-//            DWORD dwDesiredAccess,
-//            DWORD dwShareMode,
+//            ::u32 dwDesiredAccess,
+//            ::u32 dwShareMode,
 //            LPSECURITY_ATTRIBUTES pSecurityAttributes,
 
-//            DWORD dwCreationDisposition,
-//            DWORD dwFlagsAndAttributes,
+//            ::u32 dwCreationDisposition,
+//            ::u32 dwFlagsAndAttributes,
 //            HANDLE hTemplateFile
 //            )
 //{
@@ -57,14 +57,14 @@
 //
 //}
 //
-//DWORD
+//::u32
 //WINAPI
 //SetFilePointer(
 //               HANDLE hFile,
-//               LONG lDistanceToMove,
+//               ::i32 lDistanceToMove,
 //               PLONG pDistanceToMoveHigh,
 
-//               DWORD dwMoveMethod
+//               ::u32 dwMoveMethod
 //               )
 //{
 //    if(hFile == INVALID_HANDLE_VALUE)
@@ -79,9 +79,9 @@
 //WINAPI
 //WriteFile(
 //          HANDLE hFile,
-//          LPCVOID pBuffer,
+//          const void * pBuffer,
 
-//          DWORD nNumberOfBytesToWrite,
+//          ::u32 nNumberOfBytesToWrite,
 //          LPDWORD pNumberOfBytesWritten,
 
 //          LPOVERLAPPED pOverlapped
@@ -107,7 +107,7 @@
 //         HANDLE hFile,
 //         LPVOID pBuffer,
 
-//         DWORD nNumberOfBytesToRead,
+//         ::u32 nNumberOfBytesToRead,
 //         LPDWORD pNumberOfBytesRead,
 
 //         LPOVERLAPPED pOverlapped
@@ -177,10 +177,10 @@
 //
 //
 //
-//DWORD
+//::u32
 //WINAPI
 //GetTempPathW(
-//    DWORD nBufferLength,
+//    ::u32 nBufferLength,
 //    LPWSTR pBuffer
 
 //    )
@@ -199,7 +199,7 @@
 
 //   }
 //
-//   return (DWORD) iLen;
+//   return (::u32) iLen;
 //
 //}
 

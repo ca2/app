@@ -117,10 +117,10 @@ namespace user
    }
 
 
-   COLORREF menu_button::_001GetButtonBackgroundColor()
+   color32_t menu_button::_001GetButtonBackgroundColor()
    {
 
-      COLORREF crBackground = ::user::button::_001GetButtonBackgroundColor();
+      color32_t crBackground = ::user::button::_001GetButtonBackgroundColor();
 
       crBackground &= 0x00ffffff;
 
@@ -139,7 +139,7 @@ namespace user
       if (pbasestyle)
       {
 
-         if (pbasestyle->_001OnDrawMenuInteraction(pgraphics, this))
+         if (pbasestyle->_001OnDrawMen::u32eraction(pgraphics, this))
          {
 
             return;
@@ -192,7 +192,7 @@ namespace user
    void menu_button::_001DrawCheck(::draw2d::graphics_pointer & pgraphics)
    {
 
-      UINT uiImage = 0xffffffffu;
+      ::u32 uImage = 0xffffffffu;
 
       if(m_pmenuitem != nullptr)
       {

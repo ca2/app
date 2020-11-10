@@ -192,7 +192,7 @@ public:
 //} // namespace acme
 
 
-inline bool IsDirSep(WCHAR ch)
+inline bool IsDirSep(widechar ch)
 {
 
    return (ch == '\\' || ch == '/');

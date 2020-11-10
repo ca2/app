@@ -154,7 +154,7 @@ namespace filemanager
    void path_view::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      //COLORREF crBackground = 0;
+      //color32_t crBackground = 0;
 
       //get_color(crBackground, ::user::color_background);
 

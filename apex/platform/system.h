@@ -186,7 +186,7 @@ namespace apex
 
 #ifdef WINDOWS_DESKTOP
 
-      UINT                                         m_uiWindowsTaskbarCreatedMessage;
+      ::u32                                         m_uiWindowsTaskbarCreatedMessage;
 
 #endif
 
@@ -540,7 +540,7 @@ namespace apex
       virtual ::apex::library * get_library(const char * pszLibrary, bool bOpenCa2 = false);
 
 
-      virtual UINT os_post_to_all_threads(const ::id & id,WPARAM wparam = 0,lparam lparam = 0);
+      virtual ::u32 os_post_to_all_threads(const ::id & id,WPARAM wparam = 0,lparam lparam = 0);
 
 
       virtual void session_add(index iEdge, ::apex::session * psession);
@@ -728,9 +728,9 @@ namespace apex
 //
 //#if defined(WINDOWS)
 //      //#pragma message("at macos??")
-//      static BOOL CALLBACK monitor_enum_proc(HMONITOR hmonitor, HDC hdcMonitor, RECT * prcMonitor, LPARAM dwData);
+//      static BOOL CALLBACK monitor_enum_proc(HMONITOR hmonitor, HDC hdcMonitor, RECT32 * prcMonitor, LPARAM dwData);
 //
-//      void monitor_enum(HMONITOR hmonitor, HDC hdcMonitor, RECT * prcMonitor);
+//      void monitor_enum(HMONITOR hmonitor, HDC hdcMonitor, RECT32 * prcMonitor);
 //
 //#endif
 
@@ -869,7 +869,7 @@ namespace apex
 
 #ifdef _UWP
 
-      virtual bool get_window_rect(RECT* prect);
+      virtual bool get_window_rect(RECT32* prect);
 
 
 #endif
@@ -878,7 +878,7 @@ namespace apex
 
 
 
-//      virtual bool wait_twf(tick tickTimeout = INFINITE);
+//      virtual bool wait_twf(tick tickTimeout = U32_INFINITE_TIMEOUT);
 
 
 
@@ -891,7 +891,7 @@ namespace apex
 
       //virtual ::estatus add_view_library(::apex::library* plibrary);
 
-      //virtual void get_cursor_pos(LPPOINT ppoint);
+      //virtual void get_cursor_pos(POINT32 * ppoint);
 
       virtual bool is_thread() const;
 
@@ -947,11 +947,11 @@ namespace apex
 
 
 
-      //virtual bool get_monitor_rect(index iMonitor, RECT* prect) override;
+      //virtual bool get_monitor_rect(index iMonitor, RECT32* prect) override;
 
       //virtual ::count get_monitor_count() override;
 
-      //bool get_wkspace_rect(index iWkspace, RECT* prect) override;
+      //bool get_wkspace_rect(index iWkspace, RECT32* prect) override;
 
 
       //virtual ::user::interaction_impl * impl_from_handle(void * pdata) override;

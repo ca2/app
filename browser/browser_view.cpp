@@ -8,7 +8,7 @@
 #include "include/wrapper/cef_closure_task.h"
 #include "include/wrapper/cef_helpers.h"
 #include "acme/const/timer.h"
-int cef_main(HINSTANCE hInstance, HWND hwnd, RECT rect);
+int cef_main(HINSTANCE hInstance, HWND hwnd, RECT32 rect);
 
 namespace browser
 {
@@ -411,7 +411,7 @@ namespace browser
 
                m_pbrowser->GetHost()->WasResized();
                //auto hwnd = m_pbrowser->GetHost()->GetWindowHandle();
-               //auto rect = RECT{ 0 };
+               //auto rect = RECT32{ 0 };
                //get_client_rect(&rect);
 
                //auto hwnd2 = get_handle();
@@ -827,7 +827,7 @@ namespace browser
    {
    }
 
-   //void view::OnSize(UINT nType, int cx, int cy)
+   //void view::OnSize(::u32 nType, int cx, int cy)
    //{
    //   CView::OnSize(nType, cx, cy);
 
@@ -836,7 +836,7 @@ namespace browser
    //      if (m_pbrowser != nullptr)
    //      {
    //         auto hwnd = m_pbrowser->GetHost()->GetWindowHandle();
-   //         auto rect = RECT{ 0 };
+   //         auto rect = RECT32{ 0 };
    //         get_client_rect(&rect);
 
    //         ::set_window_pos(hwnd, HWND_TOP, rect.left, rect.top, rect.right - rect.left, rect.bottom - rect.top, SWP_NOZORDER);
@@ -896,7 +896,7 @@ namespace browser
 
       pixmap p;
 
-      p.init(::size(width, height), (COLORREF *) buffer, width * sizeof(COLORREF));
+      p.init(::size(width, height), (color32_t *) buffer, width * sizeof(color32_t));
 
 /*      m_pimageBrowser->create_image(this, ::size(width, height));
 

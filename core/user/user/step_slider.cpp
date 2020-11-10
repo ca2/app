@@ -167,7 +167,7 @@ namespace user
    }
 
 
-   void step_slider::GetStepHoverRect(RECT * prect, i64 iStep, i64 iMin, i64 iMax, const ::rect & rectClient)
+   void step_slider::GetStepHoverRect(RECT32 * prect, i64 iStep, i64 iMin, i64 iMax, const ::rect & rectClient)
    {
 
       if((iMax - iMin) == 0)
@@ -179,16 +179,16 @@ namespace user
 
       double dWidth = ((double)rectClient.width()) / (iMax - iMin);
 
-      prect->left = (LONG) (dWidth * (iStep - iMin));
+      prect->left = (::i32) (dWidth * (iStep - iMin));
 
-      prect->right = (LONG) (dWidth * (iStep - iMin + 1));
+      prect->right = (::i32) (dWidth * (iStep - iMin + 1));
 
 
 
    }
 
 
-   void step_slider::GetStepRect(RECT * prect, i64 iStep, i64 iMin, i64 iMax, const ::rect & rectClient)
+   void step_slider::GetStepRect(RECT32 * prect, i64 iStep, i64 iMin, i64 iMax, const ::rect & rectClient)
    {
 
       if((iMax - iMin) == 0)

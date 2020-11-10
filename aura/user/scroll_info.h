@@ -6,8 +6,8 @@ namespace user
    class scroll_info
    {
       public:
-         UINT     cbSize;
-         UINT     fMask;
+         ::u32     cbSize;
+         ::u32     fMask;
          i32      nMin;
          i32      nMax;
          i32      nPage;

@@ -64,8 +64,8 @@
 //
 //struct error_table
 //{
-//   DWORD       start;
-//   DWORD       end;
+//   ::u32       start;
+//   ::u32       end;
 //   const int *table;
 //};
 //
@@ -109,7 +109,7 @@
 // * RETURNS
 // *  The current error value for the thread, as set by SetLastWin32Error() or set_last_error().
 // */
-//DWORD WINAPI RtlGetLastWin32Error(void)
+//::u32 WINAPI RtlGetLastWin32Error(void)
 //{
 //   return (NTSTATUS) NtCurrentTeb()->LastErrorValue;
 //}
@@ -141,7 +141,7 @@
 // * RETURNS
 // *  Nothing.
 // */
-//void WINAPI RtlSetLastWin32Error( DWORD err )
+//void WINAPI RtlSetLastWin32Error( ::u32 err )
 //{
 //   NtCurrentTeb()->LastErrorValue = err;
 //}
@@ -1552,10 +1552,10 @@
 #ifndef _UWP
 
 
-thread_local DWORD t_dwLastError;
+thread_local ::u32 t_dwLastError;
 
 
-CLASS_DECL_APEX DWORD get_last_error()
+CLASS_DECL_APEX ::u32 get_last_error()
 {
 
    return t_dwLastError;
@@ -1563,7 +1563,7 @@ CLASS_DECL_APEX DWORD get_last_error()
 }
 
 
-CLASS_DECL_APEX void set_last_error(DWORD dw)
+CLASS_DECL_APEX void set_last_error(::u32 dw)
 {
 
    t_dwLastError = dw;

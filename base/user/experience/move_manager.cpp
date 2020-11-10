@@ -247,7 +247,7 @@ namespace experience
       }
 
 
-      void move_manager::SetSWPFlags(UINT uiFlags)
+      void move_manager::SetSWPFlags(::u32 uFlags)
       {
          m_uiSWPFlags = uiFlags;
          m_uiSWPFlags |= SWP_NOSIZE;
@@ -377,7 +377,7 @@ namespace experience
       }
 
 
-      bool move_manager::_001OnTimer(UINT uEvent)
+      bool move_manager::_001OnTimer(::u32 uEvent)
       {
 
          return false;

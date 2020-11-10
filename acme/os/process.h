@@ -38,7 +38,7 @@ CLASS_DECL_ACME string process_platform_dir_name();
 CLASS_DECL_ACME string process_platform_dir_name2();
 CLASS_DECL_ACME string process_version_dir_name();
 
-CLASS_DECL_ACME int_bool is_process_running(DWORD pid);
+CLASS_DECL_ACME int_bool is_process_running(::u32 pid);
 
 //CLASS_DECL_ACME ::file::path core_app_path(string strApp);
 
@@ -61,7 +61,7 @@ CLASS_DECL_ACME id_array app_get_pid(const char * pszModuleName);
 #endif
 
 #ifndef _UWP
-CLASS_DECL_ACME bool process_contains_module(string & strImage, DWORD processID, const char * pszLibrary);
+CLASS_DECL_ACME bool process_contains_module(string & strImage, ::u32 processID, const char * pszLibrary);
 CLASS_DECL_ACME void shared_library_process(dword_array & dwa, string_array & straProcesses, const char * pszLibrary);
 #endif
 
@@ -90,7 +90,7 @@ CLASS_DECL_ACME bool root_execute_sync(const char * pszFile, const char * pszPar
 CLASS_DECL_ACME string executable_title_from_appid(string str);
 
 
-CLASS_DECL_ACME DWORD get_current_process_id();
+CLASS_DECL_ACME ::u32 get_current_process_id();
 
 
 

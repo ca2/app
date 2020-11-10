@@ -91,7 +91,7 @@ namespace install
 
       virtual bool plugin_initialize();
 
-      virtual void on_paint(::draw2d::graphics_pointer & pgraphics, const RECT & lprect);
+      virtual void on_paint(::draw2d::graphics_pointer & pgraphics, const RECT32 & lprect);
 
       virtual void on_prepare_memory();
 
@@ -101,7 +101,7 @@ namespace install
       
       virtual void message_handler(::message::base * pbase) override;
 
-      virtual void on_paint_progress(::draw2d::graphics_pointer & pgraphics, const RECT & lprect);
+      virtual void on_paint_progress(::draw2d::graphics_pointer & pgraphics, const RECT32 & lprect);
 
       virtual double extract_spa_progress_rate();
 
@@ -124,17 +124,17 @@ namespace install
       virtual void restart_aura_ipc();
 
       using ::hotplugin::plugin::set_window_pos;
-      virtual bool set_window_pos(iptr z,i32 x,i32 y,i32 cx,i32 cy,UINT nFlags = SWP_SHOWWINDOW);
+      virtual bool set_window_pos(iptr z,i32 x,i32 y,i32 cx,i32 cy,::u32 nFlags = SWP_SHOWWINDOW);
 
       virtual void on_ready();
 
       virtual string defer_get_plugin();
 
       using ::hotplugin::plugin::viewport_screen_to_client;
-      virtual void viewport_screen_to_client(POINT * ppt);
+      virtual void viewport_screen_to_client(POINT32 * ppt);
       
       using ::hotplugin::plugin::viewport_client_to_screen;
-      virtual void viewport_client_to_screen(POINT * ppt);
+      virtual void viewport_client_to_screen(POINT32 * ppt);
 
       virtual bool set_host(::hotplugin::host * phost);
 

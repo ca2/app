@@ -41,26 +41,26 @@ struct _CliprdrStream
 {
 	IStream * iStream;
 
-	LONG m_lRefCount;
-	LONG m_lIndex;
+	::i32 m_lRefCount;
+	::i32 m_lIndex;
 	ULARGE_INTEGER m_lSize;
 	ULARGE_INTEGER m_lOffset;
 	void* m_pData;
 };
 typedef struct _CliprdrStream CliprdrStream;
 
-CliprdrStream* CliprdrStream_New(LONG index, void* pData);
+CliprdrStream* CliprdrStream_New(::i32 index, void* pData);
 void CliprdrStream_Delete(CliprdrStream* instance);
 
 struct _CliprdrDataObject
 {
 	IDataObject * iDataObject;
 
-	LONG m_lRefCount;
+	::i32 m_lRefCount;
 	FORMATETC* m_pFormatEtc;
 	STGMEDIUM* m_pStgMedium;
-	LONG m_nNumFormats;
-	LONG m_nStreams;
+	::i32 m_nNumFormats;
+	::i32 m_nStreams;
 	IStream** m_pStream;
 	void* m_pData;
 };
@@ -73,9 +73,9 @@ struct _CliprdrEnumFORMATETC
 {
 	IEnumFORMATETC * iEnumFORMATETC;
 
-	LONG m_lRefCount;
-	LONG m_nIndex;
-	LONG m_nNumFormats;
+	::i32 m_lRefCount;
+	::i32 m_nIndex;
+	::i32 m_nNumFormats;
 	FORMATETC* m_pFormatEtc;
 };
 typedef struct _CliprdrEnumFORMATETC CliprdrEnumFORMATETC;
@@ -85,8 +85,8 @@ void CliprdrEnumFORMATETC_Delete(CliprdrEnumFORMATETC* This);
 
 struct format_mapping
 {
-	UINT32 remote_format_id;
-	UINT32 local_format_id;
+	::u32 remote_format_id;
+	::u32 local_format_id;
 	void* name; /* Unicode or ASCII characters with nullptr terminator */
 };
 typedef struct format_mapping formatMapping;
@@ -98,13 +98,13 @@ struct wf_clipboard
 	CliprdrClientContext* action_context;
 
 	BOOL sync;
-	UINT32 capabilities;
+	::u32 capabilities;
 
 	int map_size;
 	int map_capacity;
 	formatMapping* format_mappings;
 
-	UINT32 requestedFormatId;
+	::u32 requestedFormatId;
 
 	HWND hwnd;
 	HANDLE hmem;
@@ -130,10 +130,10 @@ struct wf_clipboard
 void wf_cliprdr_init(wfContext* wfc, CliprdrClientContext* cliprdr);
 void wf_cliprdr_uninit(wfContext* wfc, CliprdrClientContext* cliprdr);
 
-int cliprdr_send_data_request(wfClipboard* clipboard, UINT32 format);
+int cliprdr_send_data_request(wfClipboard* clipboard, ::u32 format);
 int cliprdr_send_lock(wfClipboard* clipboard);
 int cliprdr_send_unlock(wfClipboard* clipboard);
 int cliprdr_send_request_filecontents(wfClipboard* clipboard, void* streamid,
-		int index, int flag, DWORD positionhigh, DWORD positionlow, ULONG request);
+		int index, int flag, ::u32 positionhigh, ::u32 positionlow, ULONG request);
 
 #endif /* __WF_CLIPRDR_H */

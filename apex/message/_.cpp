@@ -67,7 +67,7 @@ namespace message
    }
 
 
-//   UINT translate_to_os_message(const ::id & id)
+//   ::u32 translate_to_os_message(const ::id & id)
 //   {
 //
 ////#ifdef WINDOWS
@@ -75,7 +75,7 @@ namespace message
 ////      if (id.m_etype == ::id::e_type_message)
 ////      {
 ////
-////         return (UINT) id.m_emessage;
+////         return (::u32) id.m_emessage;
 ////
 ////      }
 ////
@@ -99,7 +99,7 @@ namespace message
 //   }
 
 
-   e_prototype get_message_prototype(enum_message emessage, UINT uiCode)
+   e_prototype get_message_prototype(enum_message emessage, ::u32 uCode)
    {
       switch (emessage)
       {

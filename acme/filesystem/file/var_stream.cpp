@@ -126,7 +126,7 @@ var_stream::~var_stream()
 //      oblt(rect);
 //
 //   }
-//   void var_stream::write(RECT * pcrect)
+//   void var_stream::write(RECT32 * pcrect)
 
 //   {
 //
@@ -192,7 +192,7 @@ var_stream::~var_stream()
 //#endif
 //   void var_stream::read(float & f);
 //   void var_stream::read(double & d);
-//   void var_stream::read(RECT * prect);
+//   void var_stream::read(RECT32 * prect);
 
 //   void var_stream::read(const size & & size);
 //   void var_stream::read(id & id);

@@ -26,7 +26,7 @@
 
 
 static HANDLE g_hMainThread = nullptr;
-static UINT g_iMainThread = -1;
+static ::u32 g_iMainThread = -1;
 
 void set_main_thread(HANDLE hThread)
 {
@@ -39,7 +39,7 @@ void set_main_thread(HANDLE hThread)
 
 }
 
-void set_main_thread_id(UINT uiThread)
+void set_main_thread_id(::u32 uThread)
 {
 
    MSG msg;
@@ -56,7 +56,7 @@ HANDLE get_main_thread()
    return g_hMainThread;
 
 }
-UINT   get_main_thread_id()
+::u32   get_main_thread_id()
 {
    return g_iMainThread;
 }

@@ -137,7 +137,7 @@ __pointer(::message::base) channel::get_message_base(const ::id & id, WPARAM wpa
 
    xxf_zero(msg);
 
-   msg.message = (UINT) id.m_emessage;
+   msg.message = (::u32) id.m_emessage;
    msg.wParam = wparam;
    msg.lParam = lparam;
 

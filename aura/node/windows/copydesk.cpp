@@ -38,7 +38,7 @@ namespace windows
    }
 
 
-   LRESULT WINAPI copydesk::WindowProc(HWND hwnd, UINT message, WPARAM wparam, LPARAM lparam)
+   LRESULT WINAPI copydesk::WindowProc(HWND hwnd, ::u32 message, WPARAM wparam, LPARAM lparam)
    {
 
       if(message == WM_CLIPBOARDUPDATE)
@@ -183,7 +183,7 @@ namespace windows
       pDropFiles->fNC = TRUE;
       pDropFiles->fWide = TRUE;
 
-      LPSTR psz = (char *)pDropFiles;
+      char * psz = (char *)pDropFiles;
 
       psz += pDropFiles->pFiles;
 
@@ -247,7 +247,7 @@ namespace windows
    HGLOBAL copydesk::hglobal_get_image(const ::image * pimage)
    {
 
-      DWORD dwWidth, dwHeight;
+      ::u32 dwWidth, dwHeight;
       BITMAPINFOHEADER bi;
       HCURSOR hAlphaCursor = nullptr;
 
@@ -257,7 +257,7 @@ namespace windows
       ZeroMemory(&bi, sizeof(BITMAPINFOHEADER));
       bi.biSize = sizeof(BITMAPINFOHEADER);
       bi.biWidth = dwWidth;
-      bi.biHeight = -(LONG)dwHeight;
+      bi.biHeight = -(::i32)dwHeight;
       bi.biPlanes = 1;
       bi.biBitCount = 32;
       bi.biCompression = BI_RGB;
@@ -294,9 +294,9 @@ namespace windows
       if(m_iPriorityTextFormat == -2)
       {
 
-         UINT iCfShellInternetUrlW = ::RegisterClipboardFormat(CFSTR_INETURLW);
+         ::u32 iCfShellInternetUrlW = ::RegisterClipboardFormat(CFSTR_INETURLW);
 
-         UINT uiaFormatPriorityList[] =
+         ::u32 uaFormatPriorityList[] =
          {
             iCfShellInternetUrlW,
             CF_UNICODETEXT,
@@ -390,11 +390,11 @@ namespace windows
       for (::index i = 0; i < c; i++)
       {
 
-         UINT uiLen = ::DragQueryFileW(hdrop, (UINT) i, nullptr, 0);
+         ::u32 uLen = ::DragQueryFileW(hdrop, (::u32) i, nullptr, 0);
 
          wstring wstr(get_buffer, uiLen);
 
-         ::DragQueryFileW(hdrop, (UINT) i, wstr, (UINT) wstr.length());
+         ::DragQueryFileW(hdrop, (::u32) i, wstr, (::u32) wstr.length());
 
          wstr.release_string_buffer();
 

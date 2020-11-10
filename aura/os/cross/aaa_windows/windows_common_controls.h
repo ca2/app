@@ -22,12 +22,12 @@
 typedef struct _TBBUTTON {
    int iBitmap;
    int idCommand;
-   BYTE fsState;
-   BYTE fsStyle;
+   byte fsState;
+   byte fsStyle;
 #ifdef _WIN64
-   BYTE bReserved[6];          // padding for alignment
+   byte bReserved[6];          // padding for alignment
 #elif defined(_WIN32)
-   BYTE bReserved[2];          // padding for alignment
+   byte bReserved[2];          // padding for alignment
 #endif
    DWORD_PTR dwData;
    INT_PTR iString;
@@ -36,19 +36,19 @@ typedef const TBBUTTON *LPCTBBUTTON;
 
 
 typedef struct _COLORMAP {
-   COLORREF from;
-   COLORREF to;
+   color32_t from;
+   color32_t to;
 } COLORMAP,*LPCOLORMAP;
 
 /*
  
-WINCOMMCTRLAPI oswindow WINAPI CreateToolbarEx(oswindow hwnd,DWORD ws,UINT wID,int nBitmaps,
-   HINSTANCE hBMInst,UINT_PTR wBMID,LPCTBBUTTON lpButtons,
+WINCOMMCTRLAPI oswindow WINAPI CreateToolbarEx(oswindow hwnd,::u32 ws,::u32 wID,int nBitmaps,
+   HINSTANCE hBMInst,::u32_PTR wBMID,LPCTBBUTTON lpButtons,
    int iNumButtons,int dxButton,int dyButton,
-   int dxBitmap,int dyBitmap,UINT uStructSize);
+   int dxBitmap,int dyBitmap,::u32 uStructSize);
 
 WINCOMMCTRLAPI HBITMAP WINAPI CreateMappedBitmap(HINSTANCE hInstance,INT_PTR idBitmap,
-   UINT wFlags,_In_opt_ LPCOLORMAP lpColorMap,
+   ::u32 wFlags,_In_opt_ LPCOLORMAP lpColorMap,
    int iNumMaps);
  
  */
@@ -122,14 +122,14 @@ typedef struct _NMTBCUSTOMDRAW {
    HBRUSH hbrLines;                // For drawing lines on buttons
    HPEN hpenLines;                 // For drawing lines on buttons
 
-   COLORREF clrText;               // Color of text
-   COLORREF clrMark;               // Color of text bk when marked. (only if TBSTATE_MARKED)
-   COLORREF clrTextHighlight;      // Color of text when highlighted
-   COLORREF clrBtnFace;            // Background of the button
-   COLORREF clrBtnHighlight;       // 3D highlight
-   COLORREF clrHighlightHotTrack;  // In conjunction with fHighlightHotTrack
+   color32_t clrText;               // Color of text
+   color32_t clrMark;               // Color of text bk when marked. (only if TBSTATE_MARKED)
+   color32_t clrTextHighlight;      // Color of text when highlighted
+   color32_t clrBtnFace;            // Background of the button
+   color32_t clrBtnHighlight;       // 3D highlight
+   color32_t clrHighlightHotTrack;  // In conjunction with fHighlightHotTrack
    // will cause button to highlight like a menu
-   RECT rcText;                    // Rect for text
+   RECT32 rcText;                    // Rect for text
 
    int nStringBkMode;
    int nHLStringBkMode;
@@ -172,7 +172,7 @@ typedef struct _NMTBCUSTOMDRAW {
 #ifdef _WIN32
 typedef struct tagTBADDBITMAP {
    HINSTANCE       hInst;
-   UINT_PTR        nID;
+   ::u32_PTR        nID;
 } TBADDBITMAP,*LPTBADDBITMAP;
 
 #define HINST_COMMCTRL          ((HINSTANCE)-1)
@@ -243,8 +243,8 @@ typedef struct tagTBADDBITMAP {
 
 typedef struct tagTBSAVEPARAMSA {
    HKEY hkr;
-   LPCSTR pszSubKey;
-   LPCSTR pszValueName;
+   const char * pszSubKey;
+   const char * pszValueName;
 } TBSAVEPARAMSA,*LPTBSAVEPARAMSA;
 
 typedef struct tagTBSAVEPARAMSW {
@@ -318,14 +318,14 @@ typedef struct tagTBSAVEPARAMSW {
 
 typedef struct {
    int   iButton;
-   DWORD dwFlags;
+   ::u32 dwFlags;
 } TBINSERTMARK,* LPTBINSERTMARK;
 #define TBIMHT_AFTER      0x00000001 // TRUE = insert After iButton, otherwise before
 #define TBIMHT_BACKGROUND 0x00000002 // TRUE iff missed buttons completely
 
 #define TB_GETINSERTMARK        (WM_USER + 79)  // lParam == LPTBINSERTMARK
 #define TB_SETINSERTMARK        (WM_USER + 80)  // lParam == LPTBINSERTMARK
-#define TB_INSERTMARKHITTEST    (WM_USER + 81)  // wParam == LPPOINT lParam == LPTBINSERTMARK
+#define TB_INSERTMARKHITTEST    (WM_USER + 81)  // wParam == POINT32 * lParam == LPTBINSERTMARK
 #define TB_MOVEBUTTON           (WM_USER + 82)
 #define TB_GETMAXSIZE           (WM_USER + 83)  // lParam == LPSIZE
 #define TB_SETEXTENDEDSTYLE     (WM_USER + 84)  // For TBSTYLE_EX_*
@@ -350,9 +350,9 @@ typedef struct {
 
 typedef struct {
    HINSTANCE       hInstOld;
-   UINT_PTR        nIDOld;
+   ::u32_PTR        nIDOld;
    HINSTANCE       hInstNew;
-   UINT_PTR        nIDNew;
+   ::u32_PTR        nIDNew;
    int             nButtons;
 } TBREPLACEBITMAP,*LPTBREPLACEBITMAP;
 
@@ -373,26 +373,26 @@ typedef struct {
 #define TBIF_BYINDEX            0x80000000 // this specifies that the wparam in Get/SetButtonInfo is an index, not id
 
 typedef struct {
-   UINT cbSize;
-   DWORD dwMask;
+   ::u32 cbSize;
+   ::u32 dwMask;
    int idCommand;
    int iImage;
-   BYTE fsState;
-   BYTE fsStyle;
-   WORD cx;
+   byte fsState;
+   byte fsStyle;
+   ::u16 cx;
    DWORD_PTR lParam;
-   LPSTR pszText;
+   char * pszText;
    int cchText;
 } TBBUTTONINFOA,*LPTBBUTTONINFOA;
 
 typedef struct {
-   UINT cbSize;
-   DWORD dwMask;
+   ::u32 cbSize;
+   ::u32 dwMask;
    int idCommand;
    int iImage;
-   BYTE fsState;
-   BYTE fsStyle;
-   WORD cx;
+   byte fsState;
+   byte fsStyle;
+   ::u16 cx;
    DWORD_PTR lParam;
    LPWSTR pszText;
    int cchText;
@@ -461,8 +461,8 @@ typedef struct {
 #define TBMF_BUTTONSPACING      0x00000004
 
 typedef struct {
-   UINT cbSize;
-   DWORD dwMask;
+   ::u32 cbSize;
+   ::u32 dwMask;
 
    int cxPad;        // PAD
    int cyPad;
@@ -506,7 +506,7 @@ typedef struct tagNMTBHOTITEM
    NMHDR   hdr;
    int     idOld;
    int     idNew;
-   DWORD   dwFlags;           // HICF_*
+   ::u32   dwFlags;           // HICF_*
 } NMTBHOTITEM,* LPNMTBHOTITEM;
 
 // Hot item change flags
@@ -546,9 +546,9 @@ typedef struct tagNMTBHOTITEM
 typedef struct tagNMTBSAVE
 {
    NMHDR hdr;
-   DWORD* pData;
-   DWORD* pCurrent;
-   UINT cbData;
+   ::u32* pData;
+   ::u32* pCurrent;
+   ::u32 cbData;
    int iItem;
    int cButtons;
    TBBUTTON tbButton;
@@ -557,9 +557,9 @@ typedef struct tagNMTBSAVE
 typedef struct tagNMTBRESTORE
 {
    NMHDR hdr;
-   DWORD* pData;
-   DWORD* pCurrent;
-   UINT cbData;
+   ::u32* pData;
+   ::u32* pCurrent;
+   ::u32 cbData;
    int iItem;
    int cButtons;
    int cbBytesPerRecord;
@@ -569,7 +569,7 @@ typedef struct tagNMTBRESTORE
 typedef struct tagNMTBGETINFOTIPA
 {
    NMHDR hdr;
-   LPSTR pszText;
+   char * pszText;
    int cchTextMax;
    int iItem;
    LPARAM lParam;
@@ -600,17 +600,17 @@ typedef struct tagNMTBGETINFOTIPW
 
 typedef struct {
    NMHDR  hdr;
-   DWORD dwMask;     // [in] Specifies the values requested .[out] Client ask the data to be set for future use
+   ::u32 dwMask;     // [in] Specifies the values requested .[out] Client ask the data to be set for future use
    int idCommand;    // [in] id of button we're requesting info for
    DWORD_PTR lParam;  // [in] lParam of button
    int iImage;       // [out] image index
-   LPSTR pszText;    // [out] new text for item
+   char * pszText;    // [out] new text for item
    int cchText;      // [in] size of buffer pointed to by pszText
 } NMTBDISPINFOA,*LPNMTBDISPINFOA;
 
 typedef struct {
    NMHDR hdr;
-   DWORD dwMask;      //[in] Specifies the values requested .[out] Client ask the data to be set for future use
+   ::u32 dwMask;      //[in] Specifies the values requested .[out] Client ask the data to be set for future use
    int idCommand;    // [in] id of button we're requesting info for
    DWORD_PTR lParam;  // [in] lParam of button
    int iImage;       // [out] image index
@@ -654,8 +654,8 @@ typedef struct tagNMTOOLBARA {
    int     iItem;
    TBBUTTON tbButton;
    int     cchText;
-   LPSTR   pszText;
-   RECT    rcButton;
+   char *   pszText;
+   RECT32    rcButton;
 } NMTOOLBARA,*LPNMTOOLBARA;
 
 typedef struct tagNMTOOLBARW {
@@ -664,7 +664,7 @@ typedef struct tagNMTOOLBARW {
    TBBUTTON tbButton;
    int     cchText;
    LPWSTR   pszText;
-   RECT    rcButton;
+   RECT32    rcButton;
 } NMTOOLBARW,*LPNMTOOLBARW;
 
 #ifdef UNICODE
@@ -714,8 +714,8 @@ typedef struct tagNMTOOLBARW {
 
 typedef struct tagREBARINFO
 {
-   UINT        cbSize;
-   UINT        fMask;
+   ::u32        cbSize;
+   ::u32        fMask;
 //#ifndef NOIMAGEAPIS
   // HIMAGELIST  himl;
 //#else
@@ -760,29 +760,29 @@ typedef struct tagREBARINFO
 
 typedef struct tagREBARBANDINFOA
 {
-   UINT        cbSize;
-   UINT        fMask;
-   UINT        fStyle;
-   COLORREF    clrFore;
-   COLORREF    clrBack;
-   LPSTR       lpText;
-   UINT        cch;
+   ::u32        cbSize;
+   ::u32        fMask;
+   ::u32        fStyle;
+   color32_t    clrFore;
+   color32_t    clrBack;
+   char *       lpText;
+   ::u32        cch;
    int         iImage;
    oswindow        hwndChild;
-   UINT        cxMinChild;
-   UINT        cyMinChild;
-   UINT        cx;
+   ::u32        cxMinChild;
+   ::u32        cyMinChild;
+   ::u32        cx;
    HBITMAP     hbmBack;
-   UINT        wID;
-   UINT        cyChild;
-   UINT        cyMaxChild;
-   UINT        cyIntegral;
-   UINT        cxIdeal;
+   ::u32        wID;
+   ::u32        cyChild;
+   ::u32        cyMaxChild;
+   ::u32        cyIntegral;
+   ::u32        cxIdeal;
    LPARAM      lParam;
-   UINT        cxHeader;
+   ::u32        cxHeader;
 #if (NTDDI_VERSION >= NTDDI_VISTA)
-   RECT        rcChevronLocation;  // the rect is in client co-ord wrt hwndChild
-   UINT        uChevronState;      // STATE_SYSTEM_*
+   RECT32        rcChevronLocation;  // the rect is in client co-ord wrt hwndChild
+   ::u32        uChevronState;      // STATE_SYSTEM_*
 #endif
 }   REBARBANDINFOA,*LPREBARBANDINFOA;
 typedef REBARBANDINFOA CONST *LPCREBARBANDINFOA;
@@ -795,29 +795,29 @@ typedef REBARBANDINFOA CONST *LPCREBARBANDINFOA;
 
 typedef struct tagREBARBANDINFOW
 {
-   UINT        cbSize;
-   UINT        fMask;
-   UINT        fStyle;
-   COLORREF    clrFore;
-   COLORREF    clrBack;
+   ::u32        cbSize;
+   ::u32        fMask;
+   ::u32        fStyle;
+   color32_t    clrFore;
+   color32_t    clrBack;
    LPWSTR      lpText;
-   UINT        cch;
+   ::u32        cch;
    int         iImage;
    oswindow        hwndChild;
-   UINT        cxMinChild;
-   UINT        cyMinChild;
-   UINT        cx;
+   ::u32        cxMinChild;
+   ::u32        cyMinChild;
+   ::u32        cx;
    HBITMAP     hbmBack;
-   UINT        wID;
-   UINT        cyChild;
-   UINT        cyMaxChild;
-   UINT        cyIntegral;
-   UINT        cxIdeal;
+   ::u32        wID;
+   ::u32        cyChild;
+   ::u32        cyMaxChild;
+   ::u32        cyIntegral;
+   ::u32        cxIdeal;
    LPARAM      lParam;
-   UINT        cxHeader;
+   ::u32        cxHeader;
 #if (NTDDI_VERSION >= NTDDI_VISTA)
-   RECT        rcChevronLocation;    // the rect is in client co-ord wrt hwndChild
-   UINT        uChevronState; // STATE_SYSTEM_*
+   RECT32        rcChevronLocation;    // the rect is in client co-ord wrt hwndChild
+   ::u32        uChevronState; // STATE_SYSTEM_*
 #endif
 }   REBARBANDINFOW,*LPREBARBANDINFOW;
 typedef REBARBANDINFOW CONST *LPCREBARBANDINFOW;
@@ -949,19 +949,19 @@ typedef REBARBANDINFOW CONST *LPCREBARBANDINFOW;
 typedef struct tagNMREBARCHILDSIZE
 {
    NMHDR hdr;
-   UINT uBand;
-   UINT wID;
-   RECT rcChild;
-   RECT rcBand;
+   ::u32 uBand;
+   ::u32 wID;
+   RECT32 rcChild;
+   RECT32 rcBand;
 } NMREBARCHILDSIZE,*LPNMREBARCHILDSIZE;
 
 typedef struct tagNMREBAR
 {
    NMHDR   hdr;
-   DWORD   dwMask;           // RBNM_*
-   UINT    uBand;
-   UINT    fStyle;
-   UINT    wID;
+   ::u32   dwMask;           // RBNM_*
+   ::u32    uBand;
+   ::u32    fStyle;
+   ::u32    wID;
    LPARAM  lParam;
 } NMREBAR,*LPNMREBAR;
 
@@ -975,17 +975,17 @@ typedef struct tagNMRBAUTOSIZE
 {
    NMHDR hdr;
    int_bool fChanged;
-   RECT rcTarget;
-   RECT rcActual;
+   RECT32 rcTarget;
+   RECT32 rcActual;
 } NMRBAUTOSIZE,*LPNMRBAUTOSIZE;
 
 typedef struct tagNMREBARCHEVRON
 {
    NMHDR hdr;
-   UINT uBand;
-   UINT wID;
+   ::u32 uBand;
+   ::u32 wID;
    LPARAM lParam;
-   RECT rc;
+   RECT32 rc;
    LPARAM lParamNM;
 } NMREBARCHEVRON,*LPNMREBARCHEVRON;
 
@@ -993,7 +993,7 @@ typedef struct tagNMREBARCHEVRON
 typedef struct tagNMREBARSPLITTER
 {
    NMHDR hdr;
-   RECT  rcSizing;
+   RECT32  rcSizing;
 } NMREBARSPLITTER,*LPNMREBARSPLITTER;
 #endif
 
@@ -1004,11 +1004,11 @@ typedef struct tagNMREBARSPLITTER
 typedef struct tagNMREBARAUTOBREAK
 {
    NMHDR hdr;
-   UINT uBand;
-   UINT wID;
+   ::u32 uBand;
+   ::u32 wID;
    LPARAM lParam;
-   UINT uMsg;
-   UINT fStyleCurrent;
+   ::u32 uMsg;
+   ::u32 fStyleCurrent;
    int_bool fAutoBreak;
 } NMREBARAUTOBREAK,*LPNMREBARAUTOBREAK;
 #endif
@@ -1024,8 +1024,8 @@ typedef struct tagNMREBARAUTOBREAK
 
 typedef struct _RB_HITTESTINFO
 {
-   POINT pt;
-   UINT flags;
+   POINT32 pt;
+   ::u32 flags;
    int iBand;
 } RBHITTESTINFO,*LPRBHITTESTINFO;
 
@@ -1066,13 +1066,13 @@ typedef struct _RB_HITTESTINFO
 #define TTTOOLINFOW_V3_SIZE CCSIZEOF_STRUCT(TTTOOLINFOW, lpReserved)
 
 typedef struct tagTOOLINFOA {
-   UINT cbSize;
-   UINT uFlags;
+   ::u32 cbSize;
+   ::u32 uFlags;
    oswindow hwnd;
-   UINT_PTR uId;
-   RECT rect;
+   ::u32_PTR uId;
+   RECT32 rect;
    HINSTANCE hinst;
-   LPSTR lpszText;
+   char * lpszText;
    LPARAM lParam;
 #if (NTDDI_VERSION >= NTDDI_WINXP)
    void *lpReserved;
@@ -1080,11 +1080,11 @@ typedef struct tagTOOLINFOA {
 } TTTOOLINFOA,NEAR *PTOOLINFOA,*LPTTTOOLINFOA;
 
 typedef struct tagTOOLINFOW {
-   UINT cbSize;
-   UINT uFlags;
+   ::u32 cbSize;
+   ::u32 uFlags;
    oswindow hwnd;
-   UINT_PTR uId;
-   RECT rect;
+   ::u32_PTR uId;
+   RECT32 rect;
    HINSTANCE hinst;
    LPWSTR lpszText;
    LPARAM lParam;
@@ -1207,9 +1207,9 @@ typedef struct tagTOOLINFOW {
 
 typedef struct _TTGETTITLE
 {
-   DWORD dwSize;
-   UINT uTitleBitmap;
-   UINT cch;
+   ::u32 dwSize;
+   ::u32 uTitleBitmap;
+   ::u32 cch;
    WCHAR* pszTitle;
 } TTGETTITLE,*PTTGETTITLE;
 #endif
@@ -1251,13 +1251,13 @@ typedef struct _TTGETTITLE
 
 typedef struct _TT_HITTESTINFOA {
    oswindow hwnd;
-   POINT pt;
+   POINT32 pt;
    TTTOOLINFOA ti;
 } TTHITTESTINFOA,*LPTTHITTESTINFOA;
 
 typedef struct _TT_HITTESTINFOW {
    oswindow hwnd;
-   POINT pt;
+   POINT32 pt;
    TTTOOLINFOW ti;
 } TTHITTESTINFOW,*LPTTHITTESTINFOW;
 
@@ -1299,10 +1299,10 @@ typedef struct _TT_HITTESTINFOW {
 
 typedef struct tagNMTTDISPINFOA {
    NMHDR hdr;
-   LPSTR lpszText;
+   char * lpszText;
    char szText[80];
    HINSTANCE hinst;
-   UINT uFlags;
+   ::u32 uFlags;
    LPARAM lParam;
 } NMTTDISPINFOA,*LPNMTTDISPINFOA;
 
@@ -1311,7 +1311,7 @@ typedef struct tagNMTTDISPINFOW {
    LPWSTR lpszText;
    WCHAR szText[80];
    HINSTANCE hinst;
-   UINT uFlags;
+   ::u32 uFlags;
    LPARAM lParam;
 } NMTTDISPINFOW,*LPNMTTDISPINFOW;
 
@@ -1343,11 +1343,11 @@ typedef struct tagNMTTDISPINFOW {
 
 // end_r_commctrl
 
-//WINCOMMCTRLAPI void WINAPI DrawStatusTextA(HDC hDC,LPCRECT lprc,LPCSTR pszText,UINT uFlags);
-//WINCOMMCTRLAPI void WINAPI DrawStatusTextW(HDC hDC,LPCRECT lprc,LPCWSTR pszText,UINT uFlags);
+//WINCOMMCTRLAPI void WINAPI DrawStatusTextA(HDC hDC,LPCRECT32 lprc,const char * pszText,::u32 uFlags);
+//WINCOMMCTRLAPI void WINAPI DrawStatusTextW(HDC hDC,LPCRECT32 lprc,LPCWSTR pszText,::u32 uFlags);
 
-//WINCOMMCTRLAPI oswindow WINAPI CreateStatusWindowA(LONG style,LPCSTR lpszText,oswindow hwndParent,UINT wID);
-//WINCOMMCTRLAPI oswindow WINAPI CreateStatusWindowW(LONG style,LPCWSTR lpszText,oswindow hwndParent,UINT wID);
+//WINCOMMCTRLAPI oswindow WINAPI CreateStatusWindowA(::i32 style,const char * lpszText,oswindow hwndParent,::u32 wID);
+//WINCOMMCTRLAPI oswindow WINAPI CreateStatusWindowW(::i32 style,LPCWSTR lpszText,oswindow hwndParent,::u32 wID);
 
 #ifdef UNICODE
 #define CreateStatusWindow      CreateStatusWindowW
@@ -1429,9 +1429,9 @@ typedef struct tagNMTTDISPINFOW {
 
 #ifndef NOMENUHELP
 
-//WINCOMMCTRLAPI void WINAPI MenuHelp(UINT uMsg,WPARAM wParam,LPARAM lParam,HMENU hMainMenu,HINSTANCE hInst,oswindow hwndStatus,_In_reads_(_Inexpressible_(2 + 2n && n >= 1)) UINT *lpwIDs);
-//WINCOMMCTRLAPI int_bool WINAPI ShowHideMenuCtl(_In_ oswindow hWnd,_In_ UINT_PTR uFlags,_In_z_ LPINT lpInfo);
-//WINCOMMCTRLAPI void WINAPI GetEffectiveClientRect(_In_ oswindow hWnd,_Out_ LPRECT lprc,_In_z_ const INT *lpInfo);
+//WINCOMMCTRLAPI void WINAPI MenuHelp(::u32 uMsg,WPARAM wParam,LPARAM lParam,HMENU hMainMenu,HINSTANCE hInst,oswindow hwndStatus,_In_reads_(_Inexpressible_(2 + 2n && n >= 1)) ::u32 *lpwIDs);
+//WINCOMMCTRLAPI int_bool WINAPI ShowHideMenuCtl(_In_ oswindow hWnd,_In_ ::u32_PTR uFlags,_In_z_ LPINT lpInfo);
+//WINCOMMCTRLAPI void WINAPI GetEffectiveClientRect(_In_ oswindow hWnd,_Out_ LPRECT32 lprc,_In_z_ const INT *lpInfo);
 
 #define MINSYSCOMMAND   SC_SIZE
 

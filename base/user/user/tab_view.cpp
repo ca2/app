@@ -1055,17 +1055,17 @@ namespace user
    void tab_drop_target_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      COLORREF crBorderNormal = ARGB(80, 127, 127, 80);
+      color32_t crBorderNormal = ARGB(80, 127, 127, 80);
 
-      COLORREF crBorderSelect = ARGB(100, 40, 40, 20);
+      color32_t crBorderSelect = ARGB(100, 40, 40, 20);
 
-      COLORREF crBorder;
+      color32_t crBorder;
 
-      COLORREF crBkNormal = ARGB(160, 150, 200, 255);
+      color32_t crBkNormal = ARGB(160, 150, 200, 255);
 
-      COLORREF crBkSelect = ARGB(180, 255, 230, 155);
+      color32_t crBkSelect = ARGB(180, 255, 230, 155);
 
-      COLORREF crBk;
+      color32_t crBk;
 
       auto psession = Session;
 

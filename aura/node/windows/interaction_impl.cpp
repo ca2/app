@@ -27,10 +27,10 @@
 CLASS_DECL_AURA WNDPROC windows_user_interaction_impl_get_window_procedure();
 
 
-CLASS_DECL_AURA wstring windows_register_window_class(::layered * pobjectContext, UINT nClassStyle, HCURSOR hCursor, HBRUSH hbrBackground, HICON hIcon);
+CLASS_DECL_AURA wstring windows_register_window_class(::layered * pobjectContext, ::u32 nClassStyle, HCURSOR hCursor, HBRUSH hbrBackground, HICON hIcon);
 
 
-static bool has_autohide_appbar(UINT edge, const rect& mon) // Interface Update - Infinisys Ltd.
+static bool has_autohide_appbar(::u32 edge, const rect& mon) // Interface Update - Infinisys Ltd.
 {
    if (IsWindows8Point1OrGreater())
    {
@@ -70,7 +70,7 @@ CLASS_DECL_AURA int g_iMouseDown = 0;
 //thread_int_ptr < HHOOK > t_hHookOldCbtFilter;
 //thread_pointer < ::windows::interaction_impl  > thread_set("wnd_init");
 
-//LRESULT CALLBACK __activation_window_procedure(oswindow oswindow,UINT nMsg,WPARAM wParam,LPARAM lParam);
+//LRESULT CALLBACK __activation_window_procedure(oswindow oswindow,::u32 nMsg,WPARAM wParam,LPARAM lParam);
 
 const char * gen_OldWndProc = "::aura::OldWndProc423";
 
@@ -94,7 +94,7 @@ struct __CTLCOLOR
 {
    oswindow oswindow;
    HDC hDC;
-   UINT nCtlType;
+   ::u32 nCtlType;
 };
 
 
@@ -113,7 +113,7 @@ namespace windows
    }
 
 
-   HRESULT STDMETHODCALLTYPE interaction_impl::DragEnter(IDataObject *pDataObj, DWORD grfKeyState, POINTL point, DWORD *pdwEffect)
+   HRESULT STDMETHODCALLTYPE interaction_impl::DragEnter(IDataObject *pDataObj, ::u32 grfKeyState, POINTL point, ::u32 *pdwEffect)
    {
 
       ::message::drag_and_drop m(this, MESSAGE_OLE_DRAGENTER);
@@ -153,7 +153,7 @@ namespace windows
    }
 
 
-   HRESULT STDMETHODCALLTYPE interaction_impl::DragOver(DWORD grfKeyState, POINTL point,  DWORD *pdwEffect)
+   HRESULT STDMETHODCALLTYPE interaction_impl::DragOver(::u32 grfKeyState, POINTL point,  ::u32 *pdwEffect)
    {
 
       ::message::drag_and_drop m(this, MESSAGE_OLE_DRAGOVER);
@@ -225,7 +225,7 @@ namespace windows
    }
 
 
-   HRESULT STDMETHODCALLTYPE interaction_impl::Drop(IDataObject * pDataObj, DWORD grfKeyState, POINTL point, DWORD * pdwEffect)
+   HRESULT STDMETHODCALLTYPE interaction_impl::Drop(IDataObject * pDataObj, ::u32 grfKeyState, POINTL point, ::u32 * pdwEffect)
    {
 
       ::message::drag_and_drop m(this, MESSAGE_OLE_DRAGDROP);
@@ -319,7 +319,7 @@ namespace windows
 
       m_bSystemCaret = false;
 
-      m_uiCodePage = CP_UTF8;
+      m_uCodePage = CP_UTF8;
 
       m_langid = LANG_USER_DEFAULT;
 
@@ -369,7 +369,7 @@ namespace windows
 
 
    __STATIC bool CLASS_DECL_AURA __modify_style(oswindow oswindow, i32 nStyleOffset,
-         u32 dwRemove, u32 dwAdd, UINT nFlags)
+         u32 dwRemove, u32 dwAdd, ::u32 nFlags)
    {
       ASSERT(oswindow != nullptr);
       u32 uStyle = ::GetWindowLong(oswindow, nStyleOffset);
@@ -385,7 +385,7 @@ namespace windows
       return TRUE;
    }
 
-   bool interaction_impl::ModifyStyle(oswindow oswindow, u32 dwRemove, u32 dwAdd, UINT nFlags)
+   bool interaction_impl::ModifyStyle(oswindow oswindow, u32 dwRemove, u32 dwAdd, ::u32 nFlags)
    {
 
       bool bOk = __modify_style(oswindow, GWL_STYLE, dwRemove, dwAdd, 0);
@@ -404,7 +404,7 @@ namespace windows
    }
 
 
-   bool interaction_impl::ModifyStyleEx(oswindow oswindow, u32 dwRemove, u32 dwAdd, UINT nFlags)
+   bool interaction_impl::ModifyStyleEx(oswindow oswindow, u32 dwRemove, u32 dwAdd, ::u32 nFlags)
    {
 
       return __modify_style(oswindow, GWL_EXSTYLE, dwRemove, dwAdd, nFlags);
@@ -1200,7 +1200,7 @@ namespace windows
    //   //Default();
    //}
 
-   //bool interaction_impl::_EnableToolTips(bool bEnable, UINT nFlag)
+   //bool interaction_impl::_EnableToolTips(bool bEnable, ::u32 nFlag)
    //{
    //   UNREFERENCED_PARAMETER(bEnable);
    //   UNREFERENCED_PARAMETER(nFlag);
@@ -1215,7 +1215,7 @@ namespace windows
    //   return ::GetWindowInfo(((interaction_impl *)this)->get_handle(), pwi) != FALSE;
    //}
 
-   //::user::interaction_impl * interaction_impl::GetAncestor(UINT gaFlags) const
+   //::user::interaction_impl * interaction_impl::GetAncestor(::u32 gaFlags) const
    //{
    //   ASSERT(::is_window(((interaction_impl *)this)->get_handle()));
    //   return  System.ui_from_handle(::GetAncestor(((interaction_impl *)this)->get_handle(), gaFlags));
@@ -1223,7 +1223,7 @@ namespace windows
 
 
 
-   //bool interaction_impl::GetScrollBarInfo(LONG idObject, PSCROLLBARINFO psbi) const
+   //bool interaction_impl::GetScrollBarInfo(::i32 idObject, PSCROLLBARINFO psbi) const
    //{
    //   ASSERT(::is_window(((interaction_impl *)this)->get_handle()));
    //   ASSERT(psbi != nullptr);
@@ -1243,7 +1243,7 @@ namespace windows
    //   return ::AnimateWindow(get_handle(), __os(tick), dwFlags) != FALSE;
    //}
 
-   //bool interaction_impl::FlashWindowEx(u32 dwFlags, UINT  uCount, tick tickTimeout)
+   //bool interaction_impl::FlashWindowEx(u32 dwFlags, ::u32  uCount, tick tickTimeout)
    //{
    //   ASSERT(::is_window(get_handle()));
    //   FLASHWINFO fwi;
@@ -1258,14 +1258,14 @@ namespace windows
 
 
 
-   //bool interaction_impl::SetLayeredWindowAttributes(COLORREF crKey, BYTE bAlpha, u32 dwFlags)
+   //bool interaction_impl::SetLayeredWindowAttributes(color32_t crKey, byte bAlpha, u32 dwFlags)
    //{
    //   ASSERT(::is_window(get_handle()));
    //   return ::SetLayeredWindowAttributes(get_handle(), crKey, bAlpha, dwFlags) != FALSE;
    //}
 
-   //bool interaction_impl::UpdateLayeredWindow(::draw2d::graphics * pDCDst, POINT *pptDst, SIZE *psize,
-   //      ::draw2d::graphics * pDCSrc, POINT *pptSrc, COLORREF crKey, BLENDFUNCTION *pblend, u32 dwFlags)
+   //bool interaction_impl::UpdateLayeredWindow(::draw2d::graphics * pDCDst, POINT32 *pptDst, SIZE32 *psize,
+   //      ::draw2d::graphics * pDCSrc, POINT32 *pptSrc, color32_t crKey, BLENDFUNCTION *pblend, u32 dwFlags)
    //{
    //   ASSERT(::is_window(get_handle()));
    //   ::exception::throw_not_implemented();
@@ -1275,13 +1275,13 @@ namespace windows
    //}
 
 
-   //bool interaction_impl::GetLayeredWindowAttributes(COLORREF *pcrKey, BYTE *pbAlpha, u32 *pdwFlags) const
+   //bool interaction_impl::GetLayeredWindowAttributes(color32_t *pcrKey, byte *pbAlpha, u32 *pdwFlags) const
    //{
    //   ASSERT(::is_window(((interaction_impl *)this)->get_handle()));
    //   return ::GetLayeredWindowAttributes(((interaction_impl *)this)->get_handle(), pcrKey, pbAlpha, (LPDWORD)pdwFlags) != FALSE;
    //}
 
-   //bool interaction_impl::PrintWindow(::draw2d::graphics_pointer & pgraphics, UINT nFlags) const
+   //bool interaction_impl::PrintWindow(::draw2d::graphics_pointer & pgraphics, ::u32 nFlags) const
    //{
    //   ASSERT(::is_window(((interaction_impl *)this)->get_handle()));
    //   ::exception::throw_not_implemented();
@@ -1302,7 +1302,7 @@ namespace windows
    ///////////////////////////////////////////////////////////////////////////////
    //// interaction_impl extensions for help support
 
-   //void interaction_impl::WinHelp(uptr dwData, UINT nCmd)
+   //void interaction_impl::WinHelp(uptr dwData, ::u32 nCmd)
    //{
    //   UNREFERENCED_PARAMETER(dwData);
    //   UNREFERENCED_PARAMETER(nCmd);
@@ -1330,7 +1330,7 @@ namespace windows
    //   }*/
    //}
 
-   ////void interaction_impl::HtmlHelp(uptr dwData, UINT nCmd)
+   ////void interaction_impl::HtmlHelp(uptr dwData, ::u32 nCmd)
    ////{
    //// ::exception::throw_not_implemented();
    ///*
@@ -1388,7 +1388,7 @@ namespace windows
    //}
 
 
-   //void interaction_impl::WinHelpInternal(uptr dwData, UINT nCmd)
+   //void interaction_impl::WinHelpInternal(uptr dwData, ::u32 nCmd)
    //{
    //   UNREFERENCED_PARAMETER(dwData);
    //   UNREFERENCED_PARAMETER(nCmd);
@@ -1556,7 +1556,7 @@ namespace windows
       return true;
    }
 
-   bool interaction_impl::GetScrollInfo(i32 nBar, LPSCROLLINFO pScrollInfo, UINT nMask)
+   bool interaction_impl::GetScrollInfo(i32 nBar, LPSCROLLINFO pScrollInfo, ::u32 nMask)
 
    {
       UNREFERENCED_PARAMETER(nMask);
@@ -1581,7 +1581,7 @@ namespace windows
    }
 
    void interaction_impl::ScrollWindow(i32 xAmount, i32 yAmount,
-      LPCRECT rect, LPCRECT lpClipRect)
+      LPCRECT32 rect, LPCRECT32 lpClipRect)
 
    {
       //ASSERT(::is_window(get_handle()));
@@ -1616,7 +1616,7 @@ namespace windows
    }
 
 
-   void interaction_impl::CalcWindowRect(RECT * pClientRect, UINT nAdjustType)
+   void interaction_impl::CalcWindowRect(RECT32 * pClientRect, ::u32 nAdjustType)
    {
 
       u32 dwExStyle = GetExStyle();
@@ -1627,7 +1627,7 @@ namespace windows
    }
 
 
-   bool interaction_impl::HandleFloatingSysCommand(UINT nID, LPARAM lParam)
+   bool interaction_impl::HandleFloatingSysCommand(::u32 nID, LPARAM lParam)
    {
 
       __pointer(::user::interaction) pParent = GetTopLevel();
@@ -1703,7 +1703,7 @@ namespace windows
       //  and interaction_impl::_001OnCommand for speed and because these messages are not
       //  routed by normal _001OnCommand routing (they are only dispatched)
 
-      UINT message;
+      ::u32 message;
 
       message = ::message::translate_to_os_message(pbase->m_id);
 
@@ -1828,7 +1828,7 @@ namespace windows
 //
 //   bool gen_GotScrollLines;
 //
-//   void interaction_impl::OnSettingChange(UINT uFlags, const char * pszSection)
+//   void interaction_impl::OnSettingChange(::u32 uFlags, const char * pszSection)
 //
 //   {
 //      UNUSED_ALWAYS(uFlags);
@@ -2232,7 +2232,7 @@ namespace windows
 
          TRACE(trace_category_appmsg, trace_level_warning, "point: Trying to use subclass_window with incorrect interaction_impl\n");
          TRACE(trace_category_appmsg, trace_level_warning, "\tderived class.\n");
-         TRACE(trace_category_appmsg, trace_level_warning, "\toswindow_ = $%08X (nIDC=$%08X) is not a %hs.\n", (UINT)(uptr)oswindow, __get_dialog_control_id(oswindow), typeid(*this).name());
+         TRACE(trace_category_appmsg, trace_level_warning, "\toswindow_ = $%08X (nIDC=$%08X) is not a %hs.\n", (::u32)(uptr)oswindow, __get_dialog_control_id(oswindow), typeid(*this).name());
 
          ASSERT(FALSE);
 
@@ -2253,7 +2253,7 @@ namespace windows
    }
 
 
-   bool interaction_impl::SubclassDlgItem(UINT nID, ::user::interaction_impl * pParent)
+   bool interaction_impl::SubclassDlgItem(::u32 nID, ::user::interaction_impl * pParent)
    {
 
       ASSERT(pParent);
@@ -2429,7 +2429,7 @@ namespace windows
    //}
 
 
-   bool interaction_impl::window_rect_from_os(RECT * prect)
+   bool interaction_impl::window_rect_from_os(RECT32 * prect)
    {
 
       if (!::is_window(get_handle()))
@@ -2472,7 +2472,7 @@ namespace windows
    }
 
 
-   bool interaction_impl::client_rect_from_os(RECT * prect)
+   bool interaction_impl::client_rect_from_os(RECT32 * prect)
    {
 
       //oswindow handle = get_handle();
@@ -2653,12 +2653,12 @@ namespace windows
 
 
 
-   LONG interaction_impl::get_window_long(i32 nIndex) const
+   ::i32 interaction_impl::get_window_long(i32 nIndex) const
    {
       return ::GetWindowLong(get_handle(), nIndex);
    }
 
-   LONG interaction_impl::set_window_long(i32 nIndex, LONG lValue)
+   ::i32 interaction_impl::set_window_long(i32 nIndex, ::i32 lValue)
    {
       return ::SetWindowLong(get_handle(), nIndex, lValue);
    }
@@ -2720,7 +2720,7 @@ namespace windows
    }
 
 
-   bool interaction_impl::ModifyStyle(u32 dwRemove, u32 dwAdd, UINT nFlags)
+   bool interaction_impl::ModifyStyle(u32 dwRemove, u32 dwAdd, ::u32 nFlags)
    {
 
       if (!::is_window(get_handle()))
@@ -2731,7 +2731,7 @@ namespace windows
    }
 
 
-   bool interaction_impl::ModifyStyleEx(u32 dwRemove, u32 dwAdd, UINT nFlags)
+   bool interaction_impl::ModifyStyleEx(u32 dwRemove, u32 dwAdd, ::u32 nFlags)
    {
 
       if (!::is_window(get_handle()))
@@ -2755,7 +2755,7 @@ namespace windows
 
       oswindow oswindow = get_handle();
 
-      UINT message = id.umessage();
+      ::u32 message = id.umessage();
 
       WPARAM wparam = wParam;
 
@@ -2851,7 +2851,7 @@ namespace windows
    }
 
 
-   UINT interaction_impl::ArrangeIconicWindows()
+   ::u32 interaction_impl::ArrangeIconicWindows()
    {
 
       ASSERT(::is_window(get_handle()));
@@ -2946,7 +2946,7 @@ namespace windows
 
    //}
 
-   void interaction_impl::MapWindowPoints(::user::interaction_impl * pwndTo, LPPOINT pPoint, UINT nCount)
+   void interaction_impl::MapWindowPoints(::user::interaction_impl * pwndTo, POINT32 * pPoint, ::u32 nCount)
 
    {
       ASSERT(::is_window(get_handle()));
@@ -2954,11 +2954,11 @@ namespace windows
 
    }
 
-   void interaction_impl::MapWindowPoints(::user::interaction_impl * pwndTo, RECT * prect)
+   void interaction_impl::MapWindowPoints(::user::interaction_impl * pwndTo, RECT32 * prect)
 
    {
       ASSERT(::is_window(get_handle()));
-      ::MapWindowPoints(get_handle(), pwndTo->get_handle(), (LPPOINT)prect, 2);
+      ::MapWindowPoints(get_handle(), pwndTo->get_handle(), (POINT32 *)prect, 2);
 
    }
 
@@ -2975,7 +2975,7 @@ namespace windows
       ::SendMessage(get_handle(), WM_SETREDRAW, bRedraw, 0);
    }
 
-   bool interaction_impl::GetUpdateRect(RECT * prect, bool bErase)
+   bool interaction_impl::GetUpdateRect(RECT32 * prect, bool bErase)
 
    {
       ASSERT(::is_window(get_handle()));
@@ -3001,7 +3001,7 @@ namespace windows
       ::InvalidateRect(get_handle(), nullptr, bErase);
    }
 
-   void interaction_impl::InvalidateRect(LPCRECT rect, bool bErase)
+   void interaction_impl::InvalidateRect(LPCRECT32 rect, bool bErase)
 
    {
       ASSERT(::is_window(get_handle()));
@@ -3019,7 +3019,7 @@ namespace windows
    }
 
 
-   void interaction_impl::ValidateRect(LPCRECT rect)
+   void interaction_impl::ValidateRect(LPCRECT32 rect)
 
    {
 
@@ -3133,7 +3133,7 @@ namespace windows
    }
 
 
-   bool interaction_impl::RedrawWindow(const ::rect& rectUpdate, ::draw2d::region* prgnUpdate, UINT flags)
+   bool interaction_impl::RedrawWindow(const ::rect& rectUpdate, ::draw2d::region* prgnUpdate, ::u32 flags)
    {
 
       if (m_bDestroyImplOnly)
@@ -3212,7 +3212,7 @@ namespace windows
 
 
 
-   bool interaction_impl::EnableScrollBar(i32 nSBFlags, UINT nArrowFlags)
+   bool interaction_impl::EnableScrollBar(i32 nSBFlags, ::u32 nArrowFlags)
    {
 
       ASSERT(::is_window(get_handle()));
@@ -3232,7 +3232,7 @@ namespace windows
 
    //}
 
-   bool interaction_impl::DrawCaption(::draw2d::graphics_pointer & pgraphics, const rect & prc, UINT uFlags)
+   bool interaction_impl::DrawCaption(::draw2d::graphics_pointer & pgraphics, const rect & prc, ::u32 uFlags)
 
    {
 
@@ -3434,7 +3434,7 @@ namespace windows
    }
 
 
-   void interaction_impl::CheckDlgButton(i32 nIDButton, UINT nCheck)
+   void interaction_impl::CheckDlgButton(i32 nIDButton, ::u32 nCheck)
    {
 
       ASSERT(::is_window(get_handle()));
@@ -3454,7 +3454,7 @@ namespace windows
    }
 
 
-   i32 interaction_impl::DlgDirList(LPTSTR pPathSpec, i32 nIDListBox, i32 nIDStaticPath, UINT nFileType)
+   i32 interaction_impl::DlgDirList(LPTSTR pPathSpec, i32 nIDListBox, i32 nIDStaticPath, ::u32 nFileType)
 
    {
 
@@ -3466,7 +3466,7 @@ namespace windows
    }
 
 
-   i32 interaction_impl::DlgDirListComboBox(LPTSTR pPathSpec, i32 nIDComboBox, i32 nIDStaticPath, UINT nFileType)
+   i32 interaction_impl::DlgDirListComboBox(LPTSTR pPathSpec, i32 nIDComboBox, i32 nIDStaticPath, ::u32 nFileType)
 
    {
 
@@ -3514,7 +3514,7 @@ namespace windows
    }
 
 
-   UINT interaction_impl::GetChildByIdInt(i32 nID, BOOL * pTrans, bool bSigned) const
+   ::u32 interaction_impl::GetChildByIdInt(i32 nID, BOOL * pTrans, bool bSigned) const
 
    {
 
@@ -3558,14 +3558,14 @@ namespace windows
    //}
 
 
-   UINT interaction_impl::IsDlgButtonChecked(i32 nIDButton) const
+   ::u32 interaction_impl::IsDlgButtonChecked(i32 nIDButton) const
    {
       ASSERT(::is_window(((interaction_impl *)this)->get_handle()));
       return ::IsDlgButtonChecked(((interaction_impl *)this)->get_handle(), nIDButton);
    }
 
 
-   LPARAM interaction_impl::SendDlgItemMessage(i32 nID, UINT message, WPARAM wParam, LPARAM lParam)
+   LPARAM interaction_impl::SendDlgItemMessage(i32 nID, ::u32 message, WPARAM wParam, LPARAM lParam)
    {
 
       ASSERT(::is_window(((interaction_impl *)this)->get_handle()));
@@ -3575,7 +3575,7 @@ namespace windows
    }
 
 
-   void interaction_impl::SetDlgItemInt(i32 nID, UINT nValue, bool bSigned)
+   void interaction_impl::SetDlgItemInt(i32 nID, ::u32 nValue, bool bSigned)
    {
       ASSERT(::is_window(get_handle()));
       ::SetDlgItemInt(get_handle(), nID, nValue, bSigned);
@@ -3588,9 +3588,9 @@ namespace windows
 
    }
    i32 interaction_impl::ScrollWindowEx(i32 dx, i32 dy,
-      LPCRECT pRectScroll, LPCRECT lpRectClip,
+      LPCRECT32 pRectScroll, LPCRECT32 lpRectClip,
 
-                                        ::draw2d::region* prgnUpdate, RECT * pRectUpdate, UINT flags)
+                                        ::draw2d::region* prgnUpdate, RECT32 * pRectUpdate, ::u32 flags)
 
    {
 
@@ -3604,7 +3604,7 @@ namespace windows
 
    }
 
-   void interaction_impl::ShowScrollBar(UINT nBar, bool bShow)
+   void interaction_impl::ShowScrollBar(::u32 nBar, bool bShow)
    {
       ASSERT(::is_window(get_handle()));
       ::ShowScrollBar(get_handle(), nBar, bShow);
@@ -3618,7 +3618,7 @@ namespace windows
 
    }
 
-   ::user::interaction * interaction_impl::ChildWindowFromPoint(const ::point & point, UINT nFlags)
+   ::user::interaction * interaction_impl::ChildWindowFromPoint(const ::point & point, ::u32 nFlags)
    {
       ASSERT(::is_window(get_handle()));
 
@@ -3629,7 +3629,7 @@ namespace windows
 
 
 
-   ::user::interaction * interaction_impl::get_next_window(UINT nFlag)
+   ::user::interaction * interaction_impl::get_next_window(::u32 nFlag)
    {
 
       if (!::is_window(get_handle()))
@@ -3650,7 +3650,7 @@ namespace windows
    }
 
 
-   ::user::interaction * interaction_impl::GetWindow(UINT nCmd) const
+   ::user::interaction * interaction_impl::GetWindow(::u32 nCmd) const
    {
 
       ASSERT(::is_window(get_handle()));
@@ -3735,7 +3735,7 @@ namespace windows
 
       ::point point;
 
-      ::GetCaretPos((LPPOINT)&point);
+      ::GetCaretPos((POINT32 *)&point);
 
       return point;
 
@@ -3778,7 +3778,7 @@ namespace windows
    }
 
 
-   bool interaction_impl::SendNotifyMessage(UINT message, WPARAM wParam, lparam lParam)
+   bool interaction_impl::SendNotifyMessage(::u32 message, WPARAM wParam, lparam lParam)
    {
 
       return ::SendNotifyMessage(get_handle(), message, wParam, lParam) != FALSE;
@@ -3846,7 +3846,7 @@ namespace windows
    //{
    //   Default();
    //}
-   //void interaction_impl::OnActivate(UINT, ::user::interaction_impl *, bool)
+   //void interaction_impl::OnActivate(::u32, ::user::interaction_impl *, bool)
    //{
    //   Default();
    //}
@@ -3934,7 +3934,7 @@ namespace windows
    }
 
 
-   //LRESULT interaction_impl::OnMenuChar(UINT, UINT, ::user::menu*)
+   //LRESULT interaction_impl::OnMenuChar(::u32, ::u32, ::user::menu*)
    //{
 
    //   return Default();
@@ -3942,7 +3942,7 @@ namespace windows
    //}
 
 
-   //void interaction_impl::OnMenuSelect(UINT, UINT, HMENU)
+   //void interaction_impl::OnMenuSelect(::u32, ::u32, HMENU)
    //{
 
    //   Default();
@@ -4009,7 +4009,7 @@ namespace windows
    }
 
 
-   //void interaction_impl::OnShowWindow(bool, UINT)
+   //void interaction_impl::OnShowWindow(bool, ::u32)
    //{
 
    //   Default();
@@ -4017,7 +4017,7 @@ namespace windows
    //}
 
 
-   //void interaction_impl::OnSize(UINT, i32, i32)
+   //void interaction_impl::OnSize(::u32, i32, i32)
    //{
 
    //   Default();
@@ -4025,7 +4025,7 @@ namespace windows
    //}
 
 
-   //void interaction_impl::OnTCard(UINT, u32)
+   //void interaction_impl::OnTCard(::u32, u32)
    //{
 
    //   Default();
@@ -4188,31 +4188,31 @@ namespace windows
 //   {
 //      return Default();
 //   }
-//   void interaction_impl::OnNcLButtonDblClk(UINT, const point&)
+//   void interaction_impl::OnNcLButtonDblClk(::u32, const point&)
 //   {
 //      Default();
 //   }
-//   void interaction_impl::OnNcLButtonDown(UINT, const point&)
+//   void interaction_impl::OnNcLButtonDown(::u32, const point&)
 //   {
 //      Default();
 //   }
-//   void interaction_impl::OnNcLButtonUp(UINT, const point&)
+//   void interaction_impl::OnNcLButtonUp(::u32, const point&)
 //   {
 //      Default();
 //   }
-//   void interaction_impl::OnNcMButtonDblClk(UINT, const point&)
+//   void interaction_impl::OnNcMButtonDblClk(::u32, const point&)
 //   {
 //      Default();
 //   }
-//   void interaction_impl::OnNcMButtonDown(UINT, const point&)
+//   void interaction_impl::OnNcMButtonDown(::u32, const point&)
 //   {
 //      Default();
 //   }
-//   void interaction_impl::OnNcMButtonUp(UINT, const point&)
+//   void interaction_impl::OnNcMButtonUp(::u32, const point&)
 //   {
 //      Default();
 //   }
-//   void interaction_impl::OnNcMouseMove(UINT, const point&)
+//   void interaction_impl::OnNcMouseMove(::u32, const point&)
 //   {
 //      Default();
 //   }
@@ -4220,39 +4220,39 @@ namespace windows
 //   {
 //      Default();
 //   }
-//   void interaction_impl::OnNcRButtonDblClk(UINT, const point&)
+//   void interaction_impl::OnNcRButtonDblClk(::u32, const point&)
 //   {
 //      Default();
 //   }
-//   void interaction_impl::OnNcRButtonDown(UINT, const point&)
+//   void interaction_impl::OnNcRButtonDown(::u32, const point&)
 //   {
 //      Default();
 //   }
-//   void interaction_impl::OnNcRButtonUp(UINT, const point&)
+//   void interaction_impl::OnNcRButtonUp(::u32, const point&)
 //   {
 //      Default();
 //   }
-//   void interaction_impl::OnSysChar(UINT, UINT, UINT)
+//   void interaction_impl::OnSysChar(::u32, ::u32, ::u32)
 //   {
 //      Default();
 //   }
-//   void interaction_impl::OnSysCommand(UINT, LPARAM)
+//   void interaction_impl::OnSysCommand(::u32, LPARAM)
 //   {
 //      Default();
 //   }
-//   void interaction_impl::OnSysDeadChar(UINT, UINT, UINT)
+//   void interaction_impl::OnSysDeadChar(::u32, ::u32, ::u32)
 //   {
 //      Default();
 //   }
-//   void interaction_impl::OnSysKeyDown(UINT, UINT, UINT)
+//   void interaction_impl::OnSysKeyDown(::u32, ::u32, ::u32)
 //   {
 //      Default();
 //   }
-//   void interaction_impl::OnSysKeyUp(UINT, UINT, UINT)
+//   void interaction_impl::OnSysKeyUp(::u32, ::u32, ::u32)
 //   {
 //      Default();
 //   }
-//   void interaction_impl::OnCompacting(UINT)
+//   void interaction_impl::OnCompacting(::u32)
 //   {
 //      Default();
 //   }
@@ -4264,7 +4264,7 @@ namespace windows
 //   {
 //      Default();
 //   }
-//   void interaction_impl::OnSpoolerStatus(UINT, UINT)
+//   void interaction_impl::OnSpoolerStatus(::u32, ::u32)
 //   {
 //      Default();
 //   }
@@ -4272,56 +4272,56 @@ namespace windows
 //   {
 //      Default();
 //   }
-//   void interaction_impl::OnChar(UINT, UINT, UINT)
+//   void interaction_impl::OnChar(::u32, ::u32, ::u32)
 //   {
 //      Default();
 //   }
-//   void interaction_impl::OnDeadChar(UINT, UINT, UINT)
+//   void interaction_impl::OnDeadChar(::u32, ::u32, ::u32)
 //   {
 //      Default();
 //   }
-//   void interaction_impl::OnKeyDown(UINT, UINT, UINT)
+//   void interaction_impl::OnKeyDown(::u32, ::u32, ::u32)
 //   {
 //      Default();
 //   }
-//   void interaction_impl::OnKeyUp(UINT, UINT, UINT)
+//   void interaction_impl::OnKeyUp(::u32, ::u32, ::u32)
 //   {
 //      Default();
 //   }
-//   void interaction_impl::OnLButtonDblClk(UINT, const point&)
+//   void interaction_impl::OnLButtonDblClk(::u32, const point&)
 //   {
 //      Default();
 //   }
-//   void interaction_impl::OnLButtonDown(UINT, const point&)
+//   void interaction_impl::OnLButtonDown(::u32, const point&)
 //   {
 //      Default();
 //   }
-//   void interaction_impl::OnLButtonUp(UINT, const point&)
+//   void interaction_impl::OnLButtonUp(::u32, const point&)
 //   {
 //      Default();
 //   }
-//   void interaction_impl::OnMButtonDblClk(UINT, const point&)
+//   void interaction_impl::OnMButtonDblClk(::u32, const point&)
 //   {
 //      Default();
 //   }
-//   void interaction_impl::OnMButtonDown(UINT, const point&)
+//   void interaction_impl::OnMButtonDown(::u32, const point&)
 //   {
 //      Default();
 //   }
-//   void interaction_impl::OnMButtonUp(UINT, const point&)
+//   void interaction_impl::OnMButtonUp(::u32, const point&)
 //   {
 //      Default();
 //   }
-//   i32 interaction_impl::OnMouseActivate(::user::interaction_impl *, UINT, UINT)
+//   i32 interaction_impl::OnMouseActivate(::user::interaction_impl *, ::u32, ::u32)
 //   {
 //      return (i32)Default();
 //   }
-//   void interaction_impl::OnMouseMove(UINT, const point&)
+//   void interaction_impl::OnMouseMove(::u32, const point&)
 //   {
 //      Default();
 //   }
 //
-//   bool interaction_impl::OnMouseWheel(UINT, i16, const point&)
+//   bool interaction_impl::OnMouseWheel(::u32, i16, const point&)
 //   {
 //
 //      return Default() != FALSE;
@@ -4332,15 +4332,15 @@ namespace windows
 //   {
 //      return Default();
 //   }
-//   void interaction_impl::OnRButtonDblClk(UINT, const point&)
+//   void interaction_impl::OnRButtonDblClk(::u32, const point&)
 //   {
 //      Default();
 //   }
-//   void interaction_impl::OnRButtonDown(UINT, const point&)
+//   void interaction_impl::OnRButtonDown(::u32, const point&)
 //   {
 //      Default();
 //   }
-//   void interaction_impl::OnRButtonUp(UINT, const point&)
+//   void interaction_impl::OnRButtonUp(::u32, const point&)
 //   {
 //      Default();
 //   }
@@ -4352,11 +4352,11 @@ namespace windows
 //   {
 //      Default();
 //   }
-//   void interaction_impl::OnInitMenuPopup(::user::menu*, UINT, bool)
+//   void interaction_impl::OnInitMenuPopup(::user::menu*, ::u32, bool)
 //   {
 //      Default();
 //   }
-//   void interaction_impl::OnAskCbFormatName(__in UINT nMaxCount, __out_ecount_z(nMaxCount) LPTSTR lpszName)
+//   void interaction_impl::OnAskCbFormatName(__in ::u32 nMaxCount, __out_ecount_z(nMaxCount) LPTSTR lpszName)
 //   {
 //      (nMaxCount);
 //      if (nMaxCount > 0)
@@ -4378,7 +4378,7 @@ namespace windows
 //   {
 //      Default();
 //   }
-//   void interaction_impl::OnHScrollClipboard(::user::interaction_impl *, UINT, UINT)
+//   void interaction_impl::OnHScrollClipboard(::user::interaction_impl *, ::u32, ::u32)
 //   {
 //      Default();
 //   }
@@ -4390,7 +4390,7 @@ namespace windows
 //   {
 //      Default();
 //   }
-//   void interaction_impl::OnRenderFormat(UINT)
+//   void interaction_impl::OnRenderFormat(::u32)
 //   {
 //      Default();
 //   }
@@ -4398,13 +4398,13 @@ namespace windows
 //   {
 //      Default();
 //   }
-//   void interaction_impl::OnVScrollClipboard(::user::interaction_impl *, UINT, UINT)
+//   void interaction_impl::OnVScrollClipboard(::user::interaction_impl *, ::u32, ::u32)
 //   {
 //      Default();
 //   }
-//   UINT interaction_impl::OnGetDlgCode()
+//   ::u32 interaction_impl::OnGetDlgCode()
 //   {
-//      return (UINT)Default();
+//      return (::u32)Default();
 //   }
 //   void interaction_impl::OnMDIActivate(bool, ::user::interaction_impl *, ::user::interaction_impl *)
 //   {
@@ -4427,11 +4427,11 @@ namespace windows
 //   {
 //      Default();
 //   }
-//   void interaction_impl::OnSizing(UINT, RECT *)
+//   void interaction_impl::OnSizing(::u32, RECT32 *)
 //   {
 //      Default();
 //   }
-//   void interaction_impl::OnMoving(UINT, RECT *)
+//   void interaction_impl::OnMoving(::u32, RECT32 *)
 //   {
 //      Default();
 //   }
@@ -4440,7 +4440,7 @@ namespace windows
 //      Default();
 //   }
 //
-//   bool interaction_impl::OnDeviceChange(UINT, uptr)
+//   bool interaction_impl::OnDeviceChange(::u32, uptr)
 //   {
 //
 //      return Default() != FALSE;
@@ -4451,17 +4451,17 @@ namespace windows
 //   {
 //      Default();
 //   }
-//   void interaction_impl::OnChangeUIState(UINT, UINT)
+//   void interaction_impl::OnChangeUIState(::u32, ::u32)
 //   {
 //      Default();
 //   }
-//   void interaction_impl::OnUpdateUIState(UINT, UINT)
+//   void interaction_impl::OnUpdateUIState(::u32, ::u32)
 //   {
 //      Default();
 //   }
-//   UINT interaction_impl::OnQueryUIState()
+//   ::u32 interaction_impl::OnQueryUIState()
 //   {
-//      return (UINT)Default();
+//      return (::u32)Default();
 //   }
 
 // interaction_impl dialog data support
@@ -4719,7 +4719,7 @@ namespace windows
 
 
 
-   bool interaction_impl::get_rect_normal(RECT * prect)
+   bool interaction_impl::get_rect_normal(RECT32 * prect)
 
    {
 
@@ -4738,7 +4738,7 @@ namespace windows
    }
 
 
-   DWORD WINAPI drop_target(LPVOID point)
+   ::u32 WINAPI drop_target(LPVOID point)
 
    {
 
@@ -4832,7 +4832,7 @@ namespace windows
    }
 
 
-   /*bool interaction_impl::set_window_pos(class ::user::zorder zorder, i32 x, i32 y, i32 cx, i32 cy, UINT nFlags)
+   /*bool interaction_impl::set_window_pos(class ::user::zorder zorder, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags)
    {
 
       if (!::user::interaction_impl::set_window_pos(zorder, x, y, cx, cy, nFlags))
@@ -4885,11 +4885,11 @@ namespace windows
 
          MARGINS m = { 0,0,0,0 };
 
-         DWORD  dw = DWMNCRP_ENABLED;
+         ::u32  dw = DWMNCRP_ENABLED;
 
          DwmExtendFrameIntoClientArea(get_safe_handle(), &m);
 
-         DwmSetWindowAttribute(get_safe_handle(), DWMWA_NCRENDERING_POLICY, &dw, sizeof(DWORD));
+         DwmSetWindowAttribute(get_safe_handle(), DWMWA_NCRENDERING_POLICY, &dw, sizeof(::u32));
 
       }
       else
@@ -4930,11 +4930,11 @@ namespace windows
 
          MARGINS m = { 0,0,0,0 };
 
-         DWORD  dw = DWMNCRP_ENABLED;
+         ::u32  dw = DWMNCRP_ENABLED;
 
          DwmExtendFrameIntoClientArea(get_safe_handle(), &m);
 
-         DwmSetWindowAttribute(get_safe_handle(), DWMWA_NCRENDERING_POLICY, &dw, sizeof(DWORD));
+         DwmSetWindowAttribute(get_safe_handle(), DWMWA_NCRENDERING_POLICY, &dw, sizeof(::u32));
 
       }
       else
@@ -5071,7 +5071,7 @@ namespace windows
 } // namespace windows
 
 
-bool is_registered_windows_message(UINT message)
+bool is_registered_windows_message(::u32 message)
 {
 
    return message >= 0xc000 && message <= 0xffff;
@@ -5079,11 +5079,11 @@ bool is_registered_windows_message(UINT message)
 }
 
 
-LRESULT CALLBACK WndProc(HWND oswindow, UINT message, WPARAM wparam, LPARAM lparam);
+LRESULT CALLBACK WndProc(HWND oswindow, ::u32 message, WPARAM wparam, LPARAM lparam);
 
 int g_iCol = 0;
 
-LRESULT CALLBACK __window_procedure(HWND oswindow, UINT message, WPARAM wparam, LPARAM lparam)
+LRESULT CALLBACK __window_procedure(HWND oswindow, ::u32 message, WPARAM wparam, LPARAM lparam)
 {
 
    ::user::interaction_impl * pimpl = oswindow_interaction_impl(oswindow);
@@ -5449,13 +5449,13 @@ namespace windows
       if (pfnWndProc == nullptr)
       {
 
-         lresult = ::DefWindowProcW(m_oswindow, (UINT) pmessage->m_id.i64(), pmessage->m_wparam, pmessage->m_lparam);
+         lresult = ::DefWindowProcW(m_oswindow, (::u32) pmessage->m_id.i64(), pmessage->m_wparam, pmessage->m_lparam);
 
       }
       else
       {
 
-         lresult = ::CallWindowProc(pfnWndProc, m_oswindow, (UINT) pmessage->m_id.i64(), pmessage->m_wparam, pmessage->m_lparam);
+         lresult = ::CallWindowProc(pfnWndProc, m_oswindow, (::u32) pmessage->m_id.i64(), pmessage->m_wparam, pmessage->m_lparam);
 
       }
 
@@ -5486,13 +5486,13 @@ namespace windows
       if(bSmall)
       {
  
-         SendMessage(get_handle(), (UINT)WM_SETICON, ICON_SMALL, (LPARAM)hicon);
+         SendMessage(get_handle(), (::u32)WM_SETICON, ICON_SMALL, (LPARAM)hicon);
 
       }
       else
       {
 
-         SendMessage(get_handle(), (UINT)WM_SETICON, ICON_BIG, (LPARAM)hicon);
+         SendMessage(get_handle(), (::u32)WM_SETICON, ICON_BIG, (LPARAM)hicon);
 
       }
 
@@ -6200,7 +6200,7 @@ wstring CLASS_DECL_AURA windows_get_user_interaction_window_class(::user::intera
 
 
 
-bool CLASS_DECL_AURA windows_register_with_icon(WNDCLASSEXW * pwndclass, const unichar * pszClassName, UINT nIDIcon)
+bool CLASS_DECL_AURA windows_register_with_icon(WNDCLASSEXW * pwndclass, const unichar * pszClassName, ::u32 nIDIcon)
 {
 
    pwndclass->lpszClassName = pszClassName;
@@ -6215,7 +6215,7 @@ bool CLASS_DECL_AURA windows_register_with_icon(WNDCLASSEXW * pwndclass, const u
 CLASS_DECL_ACME WNDPROC get_window_procedure();
 
 
-CLASS_DECL_AURA wstring windows_register_window_class(::layered * pobjectContext, UINT nClassStyle, HCURSOR hCursor, HBRUSH hbrBackground, HICON hIcon)
+CLASS_DECL_AURA wstring windows_register_window_class(::layered * pobjectContext, ::u32 nClassStyle, HCURSOR hCursor, HBRUSH hbrBackground, HICON hIcon)
 {
 
   ::apex::application * papp = ::get_context_application(pobjectContext);

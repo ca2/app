@@ -1,28 +1,28 @@
 #include "framework.h"
 
 
-typedef UINT FN_GetDpiForWindow(HWND hwnd);
+typedef ::u32 FN_GetDpiForWindow(HWND hwnd);
 
 
 float g_DPIScaleX = 1.0f;
 float g_DPIScaleY = 1.0f;
 
 
-UINT legacy_get_dpi_for_system()
+::u32 legacy_get_dpi_for_system()
 {
 
    HDC hdc = ::GetDC(nullptr);
 
-   UINT dpiX = 72;
+   ::u32 dpiX = 72;
 
-   UINT dpiY = 72;
+   ::u32 dpiY = 72;
 
    if (hdc)
    {
 
-      dpiX = static_cast<UINT>(::GetDeviceCaps(hdc, LOGPIXELSX));
+      dpiX = static_cast<::u32>(::GetDeviceCaps(hdc, LOGPIXELSX));
 
-      dpiY = static_cast<UINT>(::GetDeviceCaps(hdc, LOGPIXELSY));
+      dpiY = static_cast<::u32>(::GetDeviceCaps(hdc, LOGPIXELSY));
 
       ::ReleaseDC(nullptr, hdc);
 
@@ -36,7 +36,7 @@ UINT legacy_get_dpi_for_system()
 void dpi_os_initialize()
 {
 
-   UINT uDpi = legacy_get_dpi_for_system();
+   ::u32 uDpi = legacy_get_dpi_for_system();
 
    g_DPIScaleX = uDpi / 72.0f;
 

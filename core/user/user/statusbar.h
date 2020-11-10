@@ -17,8 +17,8 @@ namespace user
       i32               cxText;     // width of string area in pixels
                      //   on both sides there is a 3 pixel gap and
                      //   a one pixel border, making a pane 6 pixels wider
-      UINT              nStyle;     // style flags (SBPS_*)
-      UINT              nFlags;     // state flags (SBPF_*)
+      ::u32              nStyle;     // style flags (SBPS_*)
+      ::u32              nFlags;     // state flags (SBPF_*)
       string            strText;    // text in the pane
 
 
@@ -57,7 +57,7 @@ namespace user
       // standard control bar things
       i32 CommandToIndex(id id);
       id GetItemId(i32 nIndex);
-      void GetItemRect(i32 nIndex, RECT * prect);
+      void GetItemRect(i32 nIndex, RECT32 * prect);
 
 
       // specific to status_bar
@@ -65,12 +65,12 @@ namespace user
       string GetPaneText(i32 nIndex);
       bool SetPaneText(i32 nIndex, const char * pszNewText, bool bUpdate = TRUE);
 
-      void GetPaneInfo(i32 nIndex, id & id, UINT& nStyle, i32& cxWidth);
-      void SetPaneInfo(i32 nIndex, id id, UINT nStyle, i32 cxWidth);
-      void SetPaneInfo(i32 nIndex, i32 iId, UINT nStyle, i32 cxWidth);
-      void SetPaneInfo(i32 nIndex, const char * pszId, UINT nStyle, i32 cxWidth);
-      UINT GetPaneStyle(i32 nIndex);
-      void SetPaneStyle(i32 nIndex, UINT nStyle);
+      void GetPaneInfo(i32 nIndex, id & id, ::u32& nStyle, i32& cxWidth);
+      void SetPaneInfo(i32 nIndex, id id, ::u32 nStyle, i32 cxWidth);
+      void SetPaneInfo(i32 nIndex, i32 iId, ::u32 nStyle, i32 cxWidth);
+      void SetPaneInfo(i32 nIndex, const char * pszId, ::u32 nStyle, i32 cxWidth);
+      ::u32 GetPaneStyle(i32 nIndex);
+      void SetPaneStyle(i32 nIndex, ::u32 nStyle);
 
       // for direct access to the underlying common control
       status_bar_control& GetStatusBarCtrl();

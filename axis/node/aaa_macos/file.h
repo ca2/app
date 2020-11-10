@@ -94,7 +94,7 @@ namespace macos
       virtual void close() override;
 
       virtual bool is_opened() const override;
-//      virtual u64 GetBufferPtr(UINT nCommand, u64 nCount = 0, void ** ppBufStart = nullptr, void ** ppBufMax = nullptr);
+//      virtual u64 GetBufferPtr(::u32 nCommand, u64 nCount = 0, void ** ppBufStart = nullptr, void ** ppBufMax = nullptr);
 
 
    };

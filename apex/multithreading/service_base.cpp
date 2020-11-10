@@ -211,7 +211,7 @@ string service_base::get_service_name() const
 //      Description:    The starting point for the service.
 //
 //*****************************************************************************
-void WINAPI service_base::ServiceMain(DWORD argumentCount, PWSTR * arguments)
+void WINAPI service_base::ServiceMain(::u32 argumentCount, PWSTR * arguments)
 {
 
    // Since there's no way to inform the SCM of failure before a successful
@@ -227,7 +227,7 @@ void WINAPI service_base::ServiceMain(DWORD argumentCount, PWSTR * arguments)
 }
 
 
-void service_base::_main_server(DWORD argumentCount, PWSTR * arguments)
+void service_base::_main_server(::u32 argumentCount, PWSTR * arguments)
 {
 
    if (1 != argumentCount || 0 == arguments || 0 == arguments[0])
@@ -279,7 +279,7 @@ void service_base::_main_server(DWORD argumentCount, PWSTR * arguments)
 //                      when an event occurs.
 //
 //*****************************************************************************
-void WINAPI service_base::ServiceHandler(DWORD control)
+void WINAPI service_base::ServiceHandler(::u32 control)
 {
 
 

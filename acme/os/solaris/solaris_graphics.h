@@ -12,7 +12,7 @@
 
 
 
-void set(XColor & color, COLORREF cr);
+void set(XColor & color, color32_t cr);
 
 
 
@@ -71,7 +71,7 @@ if you want to make a ARGB window using xlib/Qt here is the code i use
 
 
 
-void set(XColor & color, COLORREF cr);
+void set(XColor & color, color32_t cr);
 
 
 

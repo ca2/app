@@ -49,7 +49,7 @@ clockTurbo (void)
 //-----------------------------------------------------------------------
 
 void
-delay (guint milliseconds)
+delay (g::u32 milliseconds)
 {
   //struct tms Buf;
   //clock_t EndTime;

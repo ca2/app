@@ -32,7 +32,7 @@ namespace music
             
          }
 
-         UInt64 nano_to_absolute(UInt64 nano)
+         ::u3264 nano_to_absolute(::u3264 nano)
          {
             
             return nano * sTimebaseInfo.denom / sTimebaseInfo.numer;

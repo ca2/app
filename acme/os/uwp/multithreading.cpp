@@ -156,7 +156,7 @@ void _on_aura_thread_detach()
 
 #pragma warning (disable : 4273)
 
-CLASS_DECL_ACME DWORD WINAPI MsgWaitForMultipleObjects(DWORD nCount, const HANDLE* pHandles, BOOL fWaitAll, DWORD dwMilliseconds, DWORD dwWakeMask)
+CLASS_DECL_ACME ::u32 WINAPI MsgWaitForMultipleObjects(::u32 nCount, const HANDLE* pHandles, BOOL fWaitAll, ::u32 dwMilliseconds, ::u32 dwWakeMask)
 {
 
    return MsgWaitForMultipleObjectsEx(nCount, pHandles, dwMilliseconds, dwWakeMask | (fWaitAll ? MWMO_WAITALL: 0), 0);
@@ -164,10 +164,10 @@ CLASS_DECL_ACME DWORD WINAPI MsgWaitForMultipleObjects(DWORD nCount, const HANDL
 }
 
 
-CLASS_DECL_ACME DWORD WINAPI MsgWaitForMultipleObjectsEx(DWORD nCount, const HANDLE* pHandles, DWORD dwMilliseconds, DWORD dwWakeMask, DWORD dwFlags)
+CLASS_DECL_ACME ::u32 WINAPI MsgWaitForMultipleObjectsEx(::u32 nCount, const HANDLE* pHandles, ::u32 dwMilliseconds, ::u32 dwWakeMask, ::u32 dwFlags)
 {
 
-   DWORD dwResult = 0;
+   ::u32 dwResult = 0;
 
    if (dwWakeMask & MWMO_ALERTABLE)
    {
@@ -220,7 +220,7 @@ HTHREAD get_current_hthread()
 
 
 HTHREAD g_hMainThread = nullptr;
-UINT g_iMainThread = -1;
+::u32 g_iMainThread = -1;
 
 
 void set_main_thread(HTHREAD hThread)
@@ -231,7 +231,7 @@ void set_main_thread(HTHREAD hThread)
 }
 
 
-void set_main_thread_id(UINT uiThread)
+void set_main_thread_id(::u32 uThread)
 {
 
    g_iMainThread = uiThread;
@@ -247,7 +247,7 @@ HTHREAD get_main_thread()
 }
 
 
-UINT   get_main_thread_id()
+::u32   get_main_thread_id()
 {
 
    return g_iMainThread;

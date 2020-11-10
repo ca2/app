@@ -287,7 +287,7 @@ BOOL ca2rdp_verify_certificate(freerdp* instance, char* subject, char* issuer, c
    return FALSE;
 }
 
-static int ca2rdp_receive_channel_data(freerdp* instance, int channelId, BYTE* data, int size, int flags, int total_size)
+static int ca2rdp_receive_channel_data(freerdp* instance, int channelId, byte* data, int size, int flags, int total_size)
 {
    return freerdp_channels_data(instance, channelId, data, size, flags, total_size);
 }
@@ -511,7 +511,7 @@ int main(int argc, char* argv[])
 
 	while (g_thread_count > 0)
 	{
-		WaitForSingleObject(g_sem, INFINITE);
+		WaitForSingleObject(g_sem, U32_INFINITE_TIMEOUT);
 	}
 
 	return 0;
@@ -529,12 +529,12 @@ int main(int argc, char* argv[])
 
 }
 
-COLORREF * ca2rdp_ctx_get_primary(ca2rdp_context * pcontext)
+color32_t * ca2rdp_ctx_get_primary(ca2rdp_context * pcontext)
 {
 //#ifdef _WIN32
 //   if(pcontext->primary == nullptr)
 //      return nullptr;
-//   return (COLORREF *) pcontext->primary->pdata;
+//   return (color32_t *) pcontext->primary->pdata;
 //#else
    if(pcontext->gdi == nullptr)
       return nullptr;
@@ -542,8 +542,8 @@ COLORREF * ca2rdp_ctx_get_primary(ca2rdp_context * pcontext)
          return nullptr;
       if(pcontext->gdi->drawing->bitmap == nullptr)
          return nullptr;
-      return (COLORREF *)pcontext->gdi->drawing->bitmap->p*/
-   return (COLORREF *)pcontext->gdi->primary_buffer;
+      return (color32_t *)pcontext->gdi->drawing->bitmap->p*/
+   return (color32_t *)pcontext->gdi->primary_buffer;
    ;
 //#endif
 }
@@ -556,7 +556,7 @@ int ca2rdp_ctx_get_bitmap_size(ca2rdp_context * pcontext)
    return nullptr;
    if(pcontext->gdi->drawing->bitmap == nullptr)
    return nullptr;
-   return (COLORREF *)pcontext->gdi->drawing->bitmap->p*/
+   return (color32_t *)pcontext->gdi->drawing->bitmap->p*/
    return pcontext->gdi->bitmap_size;
    ;
 }

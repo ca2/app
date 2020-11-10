@@ -520,7 +520,7 @@ namespace user
       }
 
 
-      bool edit_impl::get_element_rect(RECT * prect, index i, e_element eelement)
+      bool edit_impl::get_element_rect(RECT32 * prect, index i, e_element eelement)
 
       {
 
@@ -558,7 +558,7 @@ namespace user
 
       }
 
-      bool edit_impl::get_item_rect(RECT * prect, index i)
+      bool edit_impl::get_item_rect(RECT32 * prect, index i)
 
       {
 
@@ -670,7 +670,7 @@ namespace user
 
          //   pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-         //   COLORREF crBackground = _001GetColor(::user::color_background, ARGB(128, 255, 255, 255));
+         //   color32_t crBackground = _001GetColor(::user::color_background, ARGB(128, 255, 255, 255));
 
          //   //if (colorref_get_r_value(crBackground) != 255)
          //   //{
@@ -694,7 +694,7 @@ namespace user
 
          //   pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-         //   COLORREF crBackground = _001GetColor(m_ecolorBackground, ARGB(200, 255, 255, 255));
+         //   color32_t crBackground = _001GetColor(m_ecolorBackground, ARGB(200, 255, 255, 255));
 
          //   //if (colorref_get_r_value(crBackground) != 255)
          //   //{

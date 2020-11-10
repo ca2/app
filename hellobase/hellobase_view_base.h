@@ -21,10 +21,10 @@ namespace hellobase
 
       int                     m_yDrawStatus;
       ::draw2d::font_pointer       m_fontDrawStatus;
-      COLORREF                m_crDrawStatus;
+      color32_t                m_crDrawStatus;
 
       double                  m_dFps;
-      DWORD                   m_dwRoll;
+      ::u32                   m_dwRoll;
 
       string                  m_strHoverFont;
       string                  m_strNewFont;

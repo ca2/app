@@ -71,7 +71,7 @@ memory_file::memory_file(void * pMemory, memsize dwSize) :
 //
 //}
 
-memory_file::memory_file(var & var, UINT nFlags) :
+memory_file::memory_file(var & var, ::u32 nFlags) :
    memory_container(var)
 {
 

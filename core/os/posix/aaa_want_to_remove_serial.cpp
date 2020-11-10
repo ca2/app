@@ -373,7 +373,7 @@ Serial::SerialImpl::reconfigurePort()
    if (m_stopbits == stopbits_one)
       options.c_cflag &= (tcflag_t)~(CSTOPB);
    else if (m_stopbits == stopbits_one_point_five)
-      // ONE POINT FIVE same as TWO.. there is no POSIX support for 1.5
+      // ONE POINT32 FIVE same as TWO.. there is no POSIX support for 1.5
       options.c_cflag |= (CSTOPB);
    else if (m_stopbits == stopbits_two)
       options.c_cflag |= (CSTOPB);

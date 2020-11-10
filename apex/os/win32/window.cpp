@@ -74,7 +74,7 @@ namespace win32
    }
 
 
-   void window::on_command(UINT nID)
+   void window::on_command(::u32 nID)
    {
 
    }

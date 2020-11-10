@@ -23,7 +23,7 @@ namespace uwp
 
 
 
-string get_error_message(DWORD dwError);
+string get_error_message(::u32 dwError);
 
 
 /////////////////////////////////////////////////////////////////////////////

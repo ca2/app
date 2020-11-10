@@ -10,7 +10,7 @@ namespace datetime
    protected:
 
 
-      LONGLONG m_nSpan;
+      ::i64 m_nSpan;
 
 
    public:
@@ -18,7 +18,7 @@ namespace datetime
 
       file_time_span() noexcept;
       file_time_span(const file_time_span& span) noexcept;
-      file_time_span(LONGLONG nSpan) noexcept;
+      file_time_span(::i64 nSpan) noexcept;
 
 
       file_time_span& operator=(const file_time_span& span) noexcept;
@@ -36,8 +36,8 @@ namespace datetime
       bool operator<=(file_time_span span) const noexcept;
       bool operator>=(file_time_span span) const noexcept;
 
-      LONGLONG GetTimeSpan() const noexcept;
-      void SetTimeSpan(LONGLONG nSpan) noexcept;
+      ::i64 GetTimeSpan() const noexcept;
+      void SetTimeSpan(::i64 nSpan) noexcept;
 
 
    };

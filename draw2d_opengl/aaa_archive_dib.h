@@ -29,7 +29,7 @@ namespace draw2d_opengl
       virtual ::draw2d::bitmap_pointer detach_bitmap();
 
 
-      /*virtual COLORREF * get_data() const;
+      /*virtual color32_t * get_data() const;
 
       */void stretch_image(::image::image * pimage);
 
@@ -55,10 +55,10 @@ namespace draw2d_opengl
       void SetIconMask(::draw2d::icon * picon, i32 cx, i32 cy);
 
 
-      //bool color_blend(COLORREF cr, BYTE bAlpha);
+      //bool color_blend(color32_t cr, byte bAlpha);
       //bool Blend(imagepimage, ::image::image * pimageA, i32 A);
       //void BitBlt(::image::image * pimage, i32 op);
-      //COLORREF GetAverageColor();
+      //color32_t GetAverageColor();
       //i32 cos(i32 i, i32 iAngle);
       //i32 sin(i32 i, i32 iAngle);
       //i32 cos10(i32 i, i32 iAngle);
@@ -68,8 +68,8 @@ namespace draw2d_opengl
       //void xor(::image::image * pimage);
 
       //void ToAlpha(i32 i);
-      //void ToAlphaAndFill(i32 i, COLORREF cr);
-      //void GrayToARGB(COLORREF cr);
+      //void ToAlphaAndFill(i32 i, color32_t cr);
+      //void GrayToARGB(color32_t cr);
 
       //void from_alpha();
       //void mult_alpha(::image::image * pimageWork, bool bPreserveAlpha = true);
@@ -79,15 +79,15 @@ namespace draw2d_opengl
       //void rotate(::image::image * pimage, double dAngle, double dScale);
       //void Rotate034(::image::image * pimage, double dAngle, double dScale);
 
-      //void RadialFill(BYTE a, BYTE rect, BYTE g, BYTE b, i32 x, i32 y, i32 iRadius);
+      //void RadialFill(byte a, byte rect, byte g, byte b, i32 x, i32 y, i32 iRadius);
       //void RadialFill(
-      //   BYTE a1, BYTE r1, BYTE g1, BYTE b1, // center colors
-      //   BYTE a2, BYTE r2, BYTE g2, BYTE b2, // border colors
+      //   byte a1, byte r1, byte g1, byte b1, // center colors
+      //   byte a2, byte r2, byte g2, byte b2, // border colors
       //   i32 x, i32 y, i32 iRadius);
 
       //u32 GetPixel(i32 x, i32 y);
-      //void Mask(COLORREF crMask, COLORREF crInMask, COLORREF crOutMask);
-      //void color::channel_mask(BYTE uchFind, BYTE uchSet, BYTE uchUnset, color::color::rgba::echannel echannel);
+      //void Mask(color32_t crMask, color32_t crInMask, color32_t crOutMask);
+      //void color::channel_mask(byte uchFind, byte uchSet, byte uchUnset, color::color::rgba::echannel echannel);
       //void transparent_color(color color);
       //void DivideRGB(i32 iDivide);
       //void DivideARGB(i32 iDivide);

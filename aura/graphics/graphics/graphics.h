@@ -33,7 +33,7 @@ namespace graphics
 
       virtual ::size window_size();
 
-      virtual i64 _001GetTopLeftWeightedOpaqueArea(LPCRECT lpcrect);
+      virtual i64 _001GetTopLeftWeightedOpaqueArea(LPCRECT32 lpcrect);
 
       virtual sync * get_draw_lock();
       virtual ::draw2d::graphics * on_begin_draw();

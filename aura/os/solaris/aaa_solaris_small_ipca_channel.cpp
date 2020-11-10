@@ -66,7 +66,7 @@ namespace aura
       }
 
 
-      bool tx::send(const char * pszMessage,DWORD tickTimeout)
+      bool tx::send(const char * pszMessage,::u32 tickTimeout)
       {
 
          data_struct data;
@@ -90,7 +90,7 @@ namespace aura
       }
 
 
-      bool tx::send(i32 message,void * pdata,i32 len,DWORD tickTimeout)
+      bool tx::send(i32 message,void * pdata,i32 len,::u32 tickTimeout)
       {
 
          if(message == 0x80000000)

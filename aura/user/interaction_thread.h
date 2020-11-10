@@ -78,7 +78,7 @@ namespace user
       virtual void term_thread() override;
 
 #ifdef WINDOWS_DESKTOP
-      virtual int _GetMessage(LPMSG lpMsg, HWND hWnd, UINT wMsgFilterMin, UINT wMsgFilterMax) override;
+      virtual int _GetMessage(LPMSG lpMsg, HWND hWnd, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax) override;
 #endif
 
       virtual bool pump_message() override;

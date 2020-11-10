@@ -30719,13 +30719,13 @@ copy protection errors.
 #define OSS_MORE_BUF                     _HRESULT_TYPEDEF_(0x80093001L)
 
 //
-// MessageId: OSS_NEGATIVE_UINTEGER
+// MessageId: OSS_NEGATIVE_::u32EGER
 //
 // MessageText:
 //
 // OSS ASN.1 Error: Signed integer is encoded as a unsigned integer.
 //
-#define OSS_NEGATIVE_UINTEGER            _HRESULT_TYPEDEF_(0x80093002L)
+#define OSS_NEGATIVE_::u32EGER            _HRESULT_TYPEDEF_(0x80093002L)
 
 //
 // MessageId: OSS_PDU_RANGE
@@ -41155,7 +41155,7 @@ copy protection errors.
 #ifdef RC_INVOKED
 #define _NDIS_ERROR_TYPEDEF_(_sc)  _sc
 #else // RC_INVOKED
-#define _NDIS_ERROR_TYPEDEF_(_sc)  (DWORD)(_sc)
+#define _NDIS_ERROR_TYPEDEF_(_sc)  (::u32)(_sc)
 #endif // RC_INVOKED
 
 //

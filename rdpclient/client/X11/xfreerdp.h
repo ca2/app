@@ -42,19 +42,19 @@ typedef struct xf_context xfContext;
 
 struct xf_FullscreenMonitors
 {
-   UINT32 top;
-   UINT32 bottom;
-   UINT32 left;
-   UINT32 right;
+   ::u32 top;
+   ::u32 bottom;
+   ::u32 left;
+   ::u32 right;
 };
 typedef struct xf_FullscreenMonitors xfFullscreenMonitors;
 
 struct xf_WorkArea
 {
-   UINT32 x;
-   UINT32 y;
-   UINT32 width;
-   UINT32 height;
+   ::u32 x;
+   ::u32 y;
+   ::u32 width;
+   ::u32 height;
 };
 typedef struct xf_WorkArea xfWorkArea;
 
@@ -130,21 +130,21 @@ struct xf_context
    BOOL cursorHidden;
 
    HGDI_DC hdc;
-   UINT32 bitmap_size;
-   BYTE* bitmap_buffer;
+   ::u32 bitmap_size;
+   byte* bitmap_buffer;
 
    BOOL frame_begin;
-   UINT16 frame_x1;
-   UINT16 frame_y1;
-   UINT16 frame_x2;
-   UINT16 frame_y2;
+   ::u3216 frame_x1;
+   ::u3216 frame_y1;
+   ::u3216 frame_x2;
+   ::u3216 frame_y2;
 
-   UINT8 red_shift_l;
-   UINT8 red_shift_r;
-   UINT8 green_shift_l;
-   UINT8 green_shift_r;
-   UINT8 blue_shift_l;
-   UINT8 blue_shift_r;
+   ::u328 red_shift_l;
+   ::u328 red_shift_r;
+   ::u328 green_shift_l;
+   ::u328 green_shift_r;
+   ::u328 blue_shift_l;
+   ::u328 blue_shift_r;
 
    int XInputOpcode;
 
@@ -166,7 +166,7 @@ struct xf_context
    BOOL suppress_output;
    BOOL fullscreen_toggle;
    BOOL controlToggle;
-   UINT32 KeyboardLayout;
+   ::u32 KeyboardLayout;
    BOOL KeyboardState[256];
    XModifierKeymap* modifierMap;
    wArrayList* keyCombinations;
@@ -284,7 +284,7 @@ void xf_unlock_x11(xfContext* xfc, BOOL display);
 BOOL xf_picture_transform_required(xfContext* xfc);
 void xf_draw_screen(xfContext* xfc, int x, int y, int w, int h);
 
-FREERDP_API DWORD xf_exit_code_from_disconnect_reason(DWORD reason);
+FREERDP_API ::u32 xf_exit_code_from_disconnect_reason(::u32 reason);
 
 #endif /* __XFREERDP_H */
 

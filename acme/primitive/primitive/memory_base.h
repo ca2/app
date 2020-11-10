@@ -55,7 +55,7 @@ public:
    memsize                 m_cbStorage;
    //memsize                 m_dwAllocation;
    double                  m_dAllocationRateUp;
-   DWORD                   m_dwAllocationAddUp;
+   ::u32                   m_dwAllocationAddUp;
 
    memory_container *      m_pcontainer;
 

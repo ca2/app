@@ -23,7 +23,7 @@ public:
 
    sync_result lock(bool bWaitForAll = TRUE, u32 dwWakeMask = 0);
    bool unlock();
-   bool unlock(LONG lCount, LPLONG lPrevCount = nullptr);
+   bool unlock(::i32 lCount, LPLONG lPrevCount = nullptr);
    bool IsLocked(index dwItem);
 
 

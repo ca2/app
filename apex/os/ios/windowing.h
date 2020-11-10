@@ -16,13 +16,13 @@ struct UIWindow;
 UIWindow * __uiwindow(oswindow oswindow);
 
 
-int GetMainScreenRect(LPRECT lprect);
+int GetMainScreenRect(LPRECT32 lprect);
 
-int GetScreenRect(LPRECT lprect, int iMonitor);
+int GetScreenRect(LPRECT32 lprect, int iMonitor);
 
 int GetScreenCount();
 
-int GetWkspaceRect(LPRECT lprect, int iMonitor);
+int GetWkspaceRect(LPRECT32 lprect, int iMonitor);
 
 int GetWkspaceCount();
 
@@ -45,7 +45,7 @@ oswindow get_active_window();
 oswindow set_active_window(oswindow window);
 
 
-//void GetMainScreenRect(LPRECT lprect);
+//void GetMainScreenRect(LPRECT32 lprect);
 
 int_bool SetForegroundWindow(oswindow window);
 int_bool BringWindowToTop(oswindow window);

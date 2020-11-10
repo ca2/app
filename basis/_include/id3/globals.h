@@ -126,10 +126,10 @@ ID3_C_VAR const int          ID3LIB_BINARY_AGE;
 
 
 typedef       unsigned char   uchar;
-typedef long  unsigned int    luint;
+typedef long  unsigned int    l::u32;
 
-typedef uint16                unicode_t;
-typedef uint16                flags_t;
+typedef ::u3216                unicode_t;
+typedef ::u3216                flags_t;
 
 #define NULL_UNICODE ((unicode_t) '\0')
 

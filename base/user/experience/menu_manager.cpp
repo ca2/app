@@ -69,7 +69,7 @@ namespace experience
       case WM_LBUTTONDBLCLK:
       {
                               auto point = __point(pbase->m_lparam);
-                              if(OnLButtonDblClk((UINT)pbase->m_wparam, point))
+                              if(OnLButtonDblClk((::u32)pbase->m_wparam, point))
                               {
 
                                  pbase->m_lresult = 0;
@@ -114,7 +114,7 @@ namespace experience
       }
    }
 
-   bool menu_manager::OnLButtonDblClk(UINT nFlags, const ::point & point)
+   bool menu_manager::OnLButtonDblClk(::u32 nFlags, const ::point & point)
    {
 
       UNREFERENCED_PARAMETER(nFlags);

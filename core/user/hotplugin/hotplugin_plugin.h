@@ -88,10 +88,10 @@ namespace hotplugin
 
       /*
       using ::user::interaction::_001ClientToScreen;
-      virtual bool _001ClientToScreen(POINT * ppt) override;
+      virtual bool _001ClientToScreen(POINT32 * ppt) override;
 
       using ::user::interaction::_001ScreenToClient;
-      virtual bool _001ScreenToClient(POINT * ppt) override;
+      virtual bool _001ScreenToClient(POINT32 * ppt) override;
 
       using ::user::interaction::get_window_rect;
       virtual bool get_window_rect(RECT64 * prect) override;
@@ -180,7 +180,7 @@ namespace hotplugin
 
       virtual bool set_host(::hotplugin::host * phost);
 
-      virtual void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate, i32 iProfile);
+      virtual void get_progress_color(byte & uchR, byte & uchG, byte & uchB, double dRate, i32 iProfile);
 
       virtual void on_host_timer();
 

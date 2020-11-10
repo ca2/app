@@ -10,10 +10,10 @@ inline constexpr auto __vert(const ::point & point) { return point.y; }
 inline constexpr auto __horz(const ::size & size) { return size.cx; }
 inline constexpr auto __vert(const ::size & size) { return size.cy; }
 
-inline point& top_left(const RECT* prect) { return *(point*)prect; }
-inline point& bottom_right(const RECT* prect) { return *(point*)& prect->right; }
-inline point& top_left(const RECT& rect) { return top_left(&rect); }
-inline point& bottom_right(const RECT& rect) { return bottom_right(&rect); }
+inline point& top_left(const RECT32* prect) { return *(point*)prect; }
+inline point& bottom_right(const RECT32* prect) { return *(point*)& prect->right; }
+inline point& top_left(const RECT32& rect) { return top_left(&rect); }
+inline point& bottom_right(const RECT32& rect) { return bottom_right(&rect); }
 
 
 inline point64& top_left(const RECT64* prect) { return *(point64*)prect; }
@@ -98,10 +98,10 @@ inline UNIT_TYPE __conv(const string & str)
 
 
 template <  >
-inline LONG __conv<LONG>(const string & str)
+inline ::i32 __conv<::i32>(const string & str)
 {
 
-   return (LONG) ::atoi(str);
+   return (::i32) ::atoi(str);
 
 }
 
@@ -110,7 +110,7 @@ template <  >
 inline i64 __conv<i64>(const string & str)
 {
 
-   return (LONG) ::atoi(str);
+   return (::i32) ::atoi(str);
 
 }
 
@@ -119,7 +119,7 @@ template <  >
 inline double __conv<double>(const string & str)
 {
 
-   return (LONG) ::atoi(str);
+   return (::i32) ::atoi(str);
 
 }
 
@@ -134,7 +134,7 @@ inline string __xmlpri()
 
 
 template < >
-inline string __xmlpri<LONG>()
+inline string __xmlpri<::i32>()
 {
 
    return "%" PRId32;
@@ -216,10 +216,10 @@ bool _shape < SHAPE, ESHAPE >::expand_bounding_rect(RECTD* prect) const
 
 
 template < typename SHAPE, enum_shape ESHAPE >
-bool _shape < SHAPE, ESHAPE >::expand_bounding_rect(RECT* prect) const
+bool _shape < SHAPE, ESHAPE >::expand_bounding_rect(RECT32* prect) const
    {
 
-      ::RECT r;
+      ::RECT32 r;
 
       if (!this->get_bounding_rect(&r))
       {

@@ -139,16 +139,16 @@ public:
    BaseControlBarInfo();
 
    // Attributes
-   UINT m_nBarID;      // ID of this bar
+   ::u32 m_nBarID;      // ID of this bar
    bool m_bVisible;    // visibility of this bar
    bool m_bFloating;   // whether floating or not
    bool m_bHorz;       // orientation of floating dockbar
    bool m_bDockBar;    // TRUE if a dockbar
    point m_pointPos;  // topleft point of interaction_impl
 
-   UINT m_nMRUWidth;   // MRUWidth for Dynamic Toolbars
+   ::u32 m_nMRUWidth;   // MRUWidth for Dynamic Toolbars
    bool m_bDocking;    // TRUE if this bar has a DockContext
-   UINT m_uMRUDockID;  // most recent docked dockbar
+   ::u32 m_uMRUDockID;  // most recent docked dockbar
    ::rect m_rectMRUDockPos; // most recent docked position
    u32 m_dwMRUFloatStyle; // most recent floating orientation
    point m_pointMRUFloatPos; // most recent floating position
@@ -191,14 +191,14 @@ namespace user
   //    i32 m_rectBorder.top, m_rectBorder.bottom;
       ::rect          m_rectBorder;
       i32               m_cxDefaultGap;         // default gap value
-      UINT m_nMRUWidth;   // For dynamic resizing.
+      ::u32 m_nMRUWidth;   // For dynamic resizing.
       bool  m_bDockTrack;
       bool  m_bFullScreenBar;
       // array of elements
       //i32 m_nCount;
       //void * m_pData;        // m_nCount elements - type depends on derived class
 
-      UINT m_nStateFlags;
+      ::u32 m_nStateFlags;
 
       // support for docking
       u32 m_dwStyle;    // creation style (used for on_layout)
@@ -268,7 +268,7 @@ namespace user
       void CalcInsideRect(::draw2d::graphics_pointer& pgraphics, ::rect& rect, bool bHorz) const; // adjusts borders etc
       //bool AllocElements(i32 nElements, i32 cbElement);
       virtual bool SetStatusText(i32 nHit);
-      void ResetTimer(UINT nEvent, UINT nTime);
+      void ResetTimer(::u32 nEvent, ::u32 nTime);
       void EraseNonClient();
       void EraseNonClient(::draw2d::graphics_pointer & pgraphics);
 

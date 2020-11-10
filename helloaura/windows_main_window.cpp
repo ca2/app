@@ -11,8 +11,8 @@ WCHAR szWindowClass[MAX_LOADSTRING];            // the main window class name
 // Forward declarations of functions included in this code module:
 ATOM                MyRegisterClass(HINSTANCE hInstance);
 BOOL                InitInstance(::helloaura::render * prender, HINSTANCE, int);
-LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
-INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
+LRESULT CALLBACK    WndProc(HWND, ::u32, WPARAM, LPARAM);
+INT_PTR CALLBACK    About(HWND, ::u32, WPARAM, LPARAM);
 
 
 namespace helloaura
@@ -109,7 +109,7 @@ BOOL InitInstance(::helloaura::render * prender, HINSTANCE hInstance, int nCmdSh
 }
 
 //
-//  FUNCTION: WndProc(HWND, UINT, WPARAM, LPARAM)
+//  FUNCTION: WndProc(HWND, ::u32, WPARAM, LPARAM)
 //
 //  PURPOSE:  Processes messages for the main window.
 //

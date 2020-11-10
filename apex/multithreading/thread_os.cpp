@@ -36,7 +36,7 @@
 //thread_proc proc,
 //void * p,
 //::e_priority epriority,
-//UINT nStackSize,
+//::u32 nStackSize,
 //u32 uiCreateFlags,
 //LPSECURITY_ATTRIBUTES psa,
 //

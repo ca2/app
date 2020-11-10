@@ -25,7 +25,7 @@
 
 #define HDFT_ISSTRING       0x0000      // HD_ITEM.pvFilter points to a HD_TEXTFILTER
 #define HDFT_ISNUMBER       0x0001      // HD_ITEM.pvFilter points to a INT
-#define HDFT_ISDATE         0x0002      // HD_ITEM.pvFilter points to a DWORD (dos date)
+#define HDFT_ISDATE         0x0002      // HD_ITEM.pvFilter points to a ::u32 (dos date)
 
 #define HDFT_HASNOVALUE     0x8000      // clear the filter, by setting this bit
 
@@ -61,7 +61,7 @@ namespace user
       public:
 
 
-         UINT    mask;
+         ::u32    mask;
          i32     cxy;
          LPWSTR  pszText;
          HBITMAP hbm;
@@ -70,9 +70,9 @@ namespace user
          LPARAM  lParam;
          i32     iImage;        // index of bitmap in ImageList
          i32     iOrder;
-         UINT    type;           // [in] filter type (defined what pvFilter is a pointer to)
+         ::u32    type;           // [in] filter type (defined what pvFilter is a pointer to)
          void *  pvFilter;       // [in] fillter data see above
-         UINT   state;
+         ::u32   state;
       };
 
 
@@ -118,10 +118,10 @@ namespace user
       virtual i32 GetDividerWidth();
 
 
-      bool GetItemRect(RECT * prect, e_element eelement, index iItem);
+      bool GetItemRect(RECT32 * prect, e_element eelement, index iItem);
 
 
-      bool GetItemRect(RECT * prect, e_element eelementLButtonDown, index iItemLButtonDown,
+      bool GetItemRect(RECT32 * prect, e_element eelementLButtonDown, index iItemLButtonDown,
 
                        e_element eelement,
                        index iItem);

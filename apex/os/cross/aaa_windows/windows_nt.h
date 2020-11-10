@@ -293,7 +293,7 @@ extern "C" {
 #define MAX_NATURAL_ALIGNMENT sizeof(ULONGLONG)
 #define MEMORY_ALLOCATION_ALIGNMENT 16
 #else
-#define MAX_NATURAL_ALIGNMENT sizeof(DWORD)
+#define MAX_NATURAL_ALIGNMENT sizeof(::u32)
 #define MEMORY_ALLOCATION_ALIGNMENT 8
 #endif
 
@@ -307,11 +307,11 @@ extern "C" {
 
 #ifdef OS64BIT
 # define PROBE_ALIGNMENT(_s) \
-    (TYPE_ALIGNMENT(_s) > TYPE_ALIGNMENT(DWORD) ? \
-    TYPE_ALIGNMENT(_s) : TYPE_ALIGNMENT(DWORD))
-# define PROBE_ALIGNMENT32(_s) TYPE_ALIGNMENT(DWORD)
+    (TYPE_ALIGNMENT(_s) > TYPE_ALIGNMENT(::u32) ? \
+    TYPE_ALIGNMENT(_s) : TYPE_ALIGNMENT(::u32))
+# define PROBE_ALIGNMENT32(_s) TYPE_ALIGNMENT(::u32)
 #else
-# define PROBE_ALIGNMENT(_s) TYPE_ALIGNMENT(DWORD)
+# define PROBE_ALIGNMENT(_s) TYPE_ALIGNMENT(::u32)
 #endif
 
 /* Compile time assertion */
@@ -379,13 +379,13 @@ extern "C++" { \
 #endif
 //typedef VOID           *PVOID;
 typedef VOID           *PVOID64;
-typedef BYTE            WINBOOLEAN,    *PBOOLEAN;
+typedef byte            WINBOOLEAN,    *PBOOLEAN;
 typedef char            CHAR,       *PCHAR;
 typedef short           SHORT,      *PSHORT;
 #ifdef _MSC_VER
-typedef long            LONG,       *PLONG;
+typedef long            ::i32,       *PLONG;
 #else
-typedef i32             LONG,       *PLONG;
+typedef i32             ::i32,       *PLONG;
 #endif
 
 /* Some systems might have unichar, but we really need 16 bit characters */
@@ -399,11 +399,11 @@ typedef unsigned short  WCHAR,      *PWCHAR;
 #ifndef _ULONGLONG_
 # define _ULONGLONG_
 # ifdef _MSC_VER
-typedef signed __int64   LONGLONG,  *PLONGLONG;
-typedef unsigned __int64 ULONGLONG, *PULONGLONG;
+typedef signed ::i64   ::i64,  *PLONGLONG;
+typedef unsigned ::i64 ULONGLONG, *PULONGLONG;
 # else
-typedef signed __int64   DECLSPEC_ALIGN(8) LONGLONG,   *PLONGLONG;
-typedef unsigned __int64 DECLSPEC_ALIGN(8) ULONGLONG,  *PULONGLONG;
+typedef signed ::i64   DECLSPEC_ALIGN(8) ::i64,   *PLONGLONG;
+typedef unsigned ::i64 DECLSPEC_ALIGN(8) ULONGLONG,  *PULONGLONG;
 # endif
 #endif
 
@@ -419,8 +419,8 @@ typedef ULONGLONG   DECLSPEC_ALIGN(8) DWORDLONG,   *PDWORDLONG;
 /* ANSI string types */
 typedef CHAR           *PCH,        *LPCH;
 typedef const CHAR     *PCCH,       *LPCCH;
-typedef CHAR           *PSTR,       *LPSTR,     *NPSTR;
-typedef const CHAR     *PCSTR,      *LPCSTR;
+typedef CHAR           *PSTR,       *char *,     *NPSTR;
+typedef const CHAR     *PCSTR,      *const char *;
 
 /* Unicode string types */
 typedef WCHAR          *PWCH,       *LPWCH;
@@ -447,8 +447,8 @@ typedef LPCWSTR         PCTSTR,      LPCTSTR;
 typedef CHAR            TCHAR,      *PTCHAR;
 # define _TCHAR_DEFINED
 # endif
-typedef LPSTR           PTSTR,       LPTSTR;
-typedef LPCSTR          PCTSTR,      LPCTSTR;
+typedef char *           PTSTR,       LPTSTR;
+typedef const char *          PCTSTR,      LPCTSTR;
 #  define __TEXT(string) string
 # endif /* UNICODE */
 # define TEXT(quote) __TEXT(quote)
@@ -456,12 +456,12 @@ typedef LPCSTR          PCTSTR,      LPCTSTR;
 
 /* Misc common WIN32 types */
 typedef char            CCHAR;
-typedef DWORD           LCID,       *PLCID;
-typedef WORD            LANGID;
-typedef DWORD		EXECUTION_STATE;
+typedef ::u32           LCID,       *PLCID;
+typedef ::u16            LANGID;
+typedef ::u32		EXECUTION_STATE;
 #ifndef _HRESULT_DEFINED
 #define _HRESULT_DEFINED
-typedef LONG            HRESULT;
+typedef ::i32            HRESULT;
 #endif
 
 /* Handle type */
@@ -475,9 +475,9 @@ typedef LONG            HRESULT;
 #define DECLARE_HANDLE(a) typedef HANDLE a
 #endif /*STRICT*/
 
-typedef BYTE  FCHAR;
-typedef WORD  FSHORT;
-typedef DWORD FLONG;
+typedef byte  FCHAR;
+typedef ::u16  FSHORT;
+typedef ::u32 FLONG;
 
 /* Defines */
 
@@ -595,11 +595,11 @@ typedef struct _MEMORY_BASIC_INFORMATION
 {
     LPVOID   BaseAddress;
     LPVOID   AllocationBase;
-    DWORD    AllocationProtect;
+    ::u32    AllocationProtect;
     SIZE_T   RegionSize;
-    DWORD    State;
-    DWORD    Protect;
-    DWORD    Type;
+    ::u32    State;
+    ::u32    Protect;
+    ::u32    Type;
 } MEMORY_BASIC_INFORMATION, *PMEMORY_BASIC_INFORMATION;
 
 #define	PAGE_NOACCESS		0x01
@@ -652,7 +652,7 @@ typedef struct _MEMORY_BASIC_INFORMATION
 #define UNICODE_STRING_MAX_CHARS 32767
 
 #define FIELD_OFFSET(type, field) \
-  ((LONG)(INT_PTR)&(((type *)0)->field))
+  ((::i32)(INT_PTR)&(((type *)0)->field))
 
 #define CONTAINING_RECORD(address, type, field) \
   ((type *)((PCHAR)(address) - (PCHAR)(&((type *)0)->field)))
@@ -711,8 +711,8 @@ typedef union _SLIST_HEADER {
     ULONGLONG Alignment;
     struct {
         SLIST_ENTRY Next;
-        WORD Depth;
-        WORD Sequence;
+        ::u16 Depth;
+        ::u16 Sequence;
     } DUMMYSTRUCTNAME;
 } SLIST_HEADER, *PSLIST_HEADER;
 
@@ -723,7 +723,7 @@ NTSYSAPI VOID         WINAPI RtlInitializeSListHead(PSLIST_HEADER);
 NTSYSAPI PSLIST_ENTRY WINAPI RtlInterlockedFlushSList(PSLIST_HEADER);
 NTSYSAPI PSLIST_ENTRY WINAPI RtlInterlockedPopEntrySList(PSLIST_HEADER);
 NTSYSAPI PSLIST_ENTRY WINAPI RtlInterlockedPushEntrySList(PSLIST_HEADER, PSLIST_ENTRY);
-NTSYSAPI WORD         WINAPI RtlQueryDepthSList(PSLIST_HEADER);
+NTSYSAPI ::u16         WINAPI RtlQueryDepthSList(PSLIST_HEADER);
 
 
 /* Heap flags */
@@ -783,57 +783,57 @@ typedef enum _HEAP_INFORMATION_CLASS {
 
 typedef struct _FLOATING_SAVE_AREA
 {
-    DWORD   ControlWord;
-    DWORD   StatusWord;
-    DWORD   TagWord;
-    DWORD   ErrorOffset;
-    DWORD   ErrorSelector;
-    DWORD   DataOffset;
-    DWORD   DataSelector;
-    BYTE    RegisterArea[SIZE_OF_80387_REGISTERS];
-    DWORD   Cr0NpxState;
+    ::u32   ControlWord;
+    ::u32   StatusWord;
+    ::u32   TagWord;
+    ::u32   ErrorOffset;
+    ::u32   ErrorSelector;
+    ::u32   DataOffset;
+    ::u32   DataSelector;
+    byte    RegisterArea[SIZE_OF_80387_REGISTERS];
+    ::u32   Cr0NpxState;
 } FLOATING_SAVE_AREA, *PFLOATING_SAVE_AREA;
 
 #define MAXIMUM_SUPPORTED_EXTENSION     512
 
 typedef struct _CONTEXT
 {
-    DWORD   ContextFlags;
+    ::u32   ContextFlags;
 
     /* These are selected by CONTEXT_DEBUG_REGISTERS */
-    DWORD   Dr0;
-    DWORD   Dr1;
-    DWORD   Dr2;
-    DWORD   Dr3;
-    DWORD   Dr6;
-    DWORD   Dr7;
+    ::u32   Dr0;
+    ::u32   Dr1;
+    ::u32   Dr2;
+    ::u32   Dr3;
+    ::u32   Dr6;
+    ::u32   Dr7;
 
     /* These are selected by CONTEXT_FLOATING_POINT */
     FLOATING_SAVE_AREA FloatSave;
 
     /* These are selected by CONTEXT_SEGMENTS */
-    DWORD   SegGs;
-    DWORD   SegFs;
-    DWORD   SegEs;
-    DWORD   SegDs;
+    ::u32   SegGs;
+    ::u32   SegFs;
+    ::u32   SegEs;
+    ::u32   SegDs;
 
     /* These are selected by CONTEXT_INTEGER */
-    DWORD   Edi;
-    DWORD   Esi;
-    DWORD   Ebx;
-    DWORD   Edx;
-    DWORD   Ecx;
-    DWORD   Eax;
+    ::u32   Edi;
+    ::u32   Esi;
+    ::u32   Ebx;
+    ::u32   Edx;
+    ::u32   Ecx;
+    ::u32   Eax;
 
     /* These are selected by CONTEXT_CONTROL */
-    DWORD   Ebp;
-    DWORD   Eip;
-    DWORD   SegCs;
-    DWORD   EFlags;
-    DWORD   Esp;
-    DWORD   SegSs;
+    ::u32   Ebp;
+    ::u32   Eip;
+    ::u32   SegCs;
+    ::u32   EFlags;
+    ::u32   Esp;
+    ::u32   SegSs;
 
-    BYTE    ExtendedRegisters[MAXIMUM_SUPPORTED_EXTENSION];
+    byte    ExtendedRegisters[MAXIMUM_SUPPORTED_EXTENSION];
 } CONTEXT;
 
 #define CONTEXT_X86       0x00010000
@@ -857,14 +857,14 @@ typedef struct _CONTEXT
 #endif  /* __i386__ */
 
 typedef struct _LDT_ENTRY {
-    WORD	LimitLow;
-    WORD	BaseLow;
+    ::u16	LimitLow;
+    ::u16	BaseLow;
     union {
         struct {
-            BYTE    BaseMid;
-            BYTE    Flags1;
-            BYTE    Flags2;
-            BYTE    BaseHi;
+            byte    BaseMid;
+            byte    Flags1;
+            byte    Flags2;
+            byte    BaseHi;
         } Bytes;
         struct {
             unsigned    BaseMid: 8;
@@ -900,26 +900,26 @@ typedef struct _LDT_ENTRY {
 
 typedef struct DECLSPEC_ALIGN(16) _M128A {
     ULONGLONG Low;
-    LONGLONG High;
+    ::i64 High;
 } M128A, *PM128A;
 
 typedef struct _XMM_SAVE_AREA32 {
-    WORD ControlWord;        /* 000 */
-    WORD StatusWord;         /* 002 */
-    BYTE TagWord;            /* 004 */
-    BYTE Reserved1;          /* 005 */
-    WORD ErrorOpcode;        /* 006 */
-    DWORD ErrorOffset;       /* 008 */
-    WORD ErrorSelector;      /* 00c */
-    WORD Reserved2;          /* 00e */
-    DWORD DataOffset;        /* 010 */
-    WORD DataSelector;       /* 014 */
-    WORD Reserved3;          /* 016 */
-    DWORD MxCsr;             /* 018 */
-    DWORD MxCsr_Mask;        /* 01c */
+    ::u16 ControlWord;        /* 000 */
+    ::u16 StatusWord;         /* 002 */
+    byte TagWord;            /* 004 */
+    byte Reserved1;          /* 005 */
+    ::u16 ErrorOpcode;        /* 006 */
+    ::u32 ErrorOffset;       /* 008 */
+    ::u16 ErrorSelector;      /* 00c */
+    ::u16 Reserved2;          /* 00e */
+    ::u32 DataOffset;        /* 010 */
+    ::u16 DataSelector;       /* 014 */
+    ::u16 Reserved3;          /* 016 */
+    ::u32 MxCsr;             /* 018 */
+    ::u32 MxCsr_Mask;        /* 01c */
     M128A FloatRegisters[8]; /* 020 */
     M128A XmmRegisters[16];  /* 0a0 */
-    BYTE Reserved4[96];      /* 1a0 */
+    byte Reserved4[96];      /* 1a0 */
 } XMM_SAVE_AREA32, *PXMM_SAVE_AREA32;
 
 
@@ -933,17 +933,17 @@ typedef struct DECLSPEC_ALIGN(16) _CONTEXT {
     DWORD64 P6Home;          /* 028 */
 
     /* Control flags */
-    DWORD ContextFlags;      /* 030 */
-    DWORD MxCsr;             /* 034 */
+    ::u32 ContextFlags;      /* 030 */
+    ::u32 MxCsr;             /* 034 */
 
     /* Segment */
-    WORD SegCs;              /* 038 */
-    WORD SegDs;              /* 03a */
-    WORD SegEs;              /* 03c */
-    WORD SegFs;              /* 03e */
-    WORD SegGs;              /* 040 */
-    WORD SegSs;              /* 042 */
-    DWORD EFlags;            /* 044 */
+    ::u16 SegCs;              /* 038 */
+    ::u16 SegDs;              /* 03a */
+    ::u16 SegEs;              /* 03c */
+    ::u16 SegFs;              /* 03e */
+    ::u16 SegGs;              /* 040 */
+    ::u16 SegSs;              /* 042 */
+    ::u32 EFlags;            /* 044 */
 
     /* Debug */
     DWORD64 Dr0;             /* 048 */
@@ -1013,9 +1013,9 @@ typedef struct DECLSPEC_ALIGN(16) _CONTEXT {
 
 typedef struct _RUNTIME_FUNCTION
 {
-    DWORD BeginAddress;
-    DWORD EndAddress;
-    DWORD UnwindData;
+    ::u32 BeginAddress;
+    ::u32 EndAddress;
+    ::u32 UnwindData;
 } RUNTIME_FUNCTION, *PRUNTIME_FUNCTION;
 
 #define UNWIND_HISTORY_TABLE_SIZE 12
@@ -1090,7 +1090,7 @@ typedef struct _KNONVOLATILE_CONTEXT_POINTERS
     } DUMMYUNIONNAME2;
 } KNONVOLATILE_CONTEXT_POINTERS, *PKNONVOLATILE_CONTEXT_POINTERS;
 
-WINBOOLEAN CDECL            RtlAddFunctionTable(RUNTIME_FUNCTION*,DWORD,DWORD64);
+WINBOOLEAN CDECL            RtlAddFunctionTable(RUNTIME_FUNCTION*,::u32,DWORD64);
 WINBOOLEAN CDECL            RtlDeleteFunctionTable(RUNTIME_FUNCTION*);
 PRUNTIME_FUNCTION WINAPI RtlLookupFunctionEntry(DWORD64,DWORD64*,UNWIND_HISTORY_TABLE*);
 PVOID WINAPI             RtlVirtualUnwind(WINULONG,ULONG64,ULONG64,RUNTIME_FUNCTION*,CONTEXT*,PVOID*,ULONG64*,KNONVOLATILE_CONTEXT_POINTERS*);
@@ -1123,8 +1123,8 @@ PVOID WINAPI             RtlVirtualUnwind(WINULONG,ULONG64,ULONG64,RUNTIME_FUNCT
 
 typedef struct _CONTEXT
 {
-    DWORD ContextFlags;
-    DWORD Fill1[3];
+    ::u32 ContextFlags;
+    ::u32 Fill1[3];
     ULONGLONG DbI0;
     ULONGLONG DbI1;
     ULONGLONG DbI2;
@@ -1505,9 +1505,9 @@ typedef struct _CONTEXT
 
     /* selected by CONTEXT_CONTROL */
     ULONGLONG Fir;
-    DWORD Psr;
-    DWORD ContextFlags;
-    DWORD Fill[4];
+    ::u32 Psr;
+    ::u32 ContextFlags;
+    ::u32 Fill[4];
 } CONTEXT;
 
 #define _QUAD_PSR_OFFSET   HighSoftFpcr
@@ -1591,86 +1591,86 @@ typedef struct _CONTEXT {
 
 typedef struct _CONTEXT
 {
-    DWORD Argument[4];
+    ::u32 Argument[4];
     /* These are selected by CONTEXT_FLOATING_POINT */
-    DWORD FltF0;
-    DWORD FltF1;
-    DWORD FltF2;
-    DWORD FltF3;
-    DWORD FltF4;
-    DWORD FltF5;
-    DWORD FltF6;
-    DWORD FltF7;
-    DWORD FltF8;
-    DWORD FltF9;
-    DWORD FltF10;
-    DWORD FltF11;
-    DWORD FltF12;
-    DWORD FltF13;
-    DWORD FltF14;
-    DWORD FltF15;
-    DWORD FltF16;
-    DWORD FltF17;
-    DWORD FltF18;
-    DWORD FltF19;
-    DWORD FltF20;
-    DWORD FltF21;
-    DWORD FltF22;
-    DWORD FltF23;
-    DWORD FltF24;
-    DWORD FltF25;
-    DWORD FltF26;
-    DWORD FltF27;
-    DWORD FltF28;
-    DWORD FltF29;
-    DWORD FltF30;
-    DWORD FltF31;
+    ::u32 FltF0;
+    ::u32 FltF1;
+    ::u32 FltF2;
+    ::u32 FltF3;
+    ::u32 FltF4;
+    ::u32 FltF5;
+    ::u32 FltF6;
+    ::u32 FltF7;
+    ::u32 FltF8;
+    ::u32 FltF9;
+    ::u32 FltF10;
+    ::u32 FltF11;
+    ::u32 FltF12;
+    ::u32 FltF13;
+    ::u32 FltF14;
+    ::u32 FltF15;
+    ::u32 FltF16;
+    ::u32 FltF17;
+    ::u32 FltF18;
+    ::u32 FltF19;
+    ::u32 FltF20;
+    ::u32 FltF21;
+    ::u32 FltF22;
+    ::u32 FltF23;
+    ::u32 FltF24;
+    ::u32 FltF25;
+    ::u32 FltF26;
+    ::u32 FltF27;
+    ::u32 FltF28;
+    ::u32 FltF29;
+    ::u32 FltF30;
+    ::u32 FltF31;
 
     /* These are selected by CONTEXT_INTEGER */
-    DWORD IntZero;
-    DWORD IntAt;
-    DWORD IntV0;
-    DWORD IntV1;
-    DWORD IntA0;
-    DWORD IntA1;
-    DWORD IntA2;
-    DWORD IntA3;
-    DWORD IntT0;
-    DWORD IntT1;
-    DWORD IntT2;
-    DWORD IntT3;
-    DWORD IntT4;
-    DWORD IntT5;
-    DWORD IntT6;
-    DWORD IntT7;
-    DWORD IntS0;
-    DWORD IntS1;
-    DWORD IntS2;
-    DWORD IntS3;
-    DWORD IntS4;
-    DWORD IntS5;
-    DWORD IntS6;
-    DWORD IntS7;
-    DWORD IntT8;
-    DWORD IntT9;
-    DWORD IntK0;
-    DWORD IntK1;
-    DWORD IntGp;
-    DWORD IntSp;
-    DWORD IntS8;
-    DWORD IntRa;
-    DWORD IntLo;
-    DWORD IntHi;
+    ::u32 IntZero;
+    ::u32 IntAt;
+    ::u32 IntV0;
+    ::u32 IntV1;
+    ::u32 IntA0;
+    ::u32 IntA1;
+    ::u32 IntA2;
+    ::u32 IntA3;
+    ::u32 IntT0;
+    ::u32 IntT1;
+    ::u32 IntT2;
+    ::u32 IntT3;
+    ::u32 IntT4;
+    ::u32 IntT5;
+    ::u32 IntT6;
+    ::u32 IntT7;
+    ::u32 IntS0;
+    ::u32 IntS1;
+    ::u32 IntS2;
+    ::u32 IntS3;
+    ::u32 IntS4;
+    ::u32 IntS5;
+    ::u32 IntS6;
+    ::u32 IntS7;
+    ::u32 IntT8;
+    ::u32 IntT9;
+    ::u32 IntK0;
+    ::u32 IntK1;
+    ::u32 IntGp;
+    ::u32 IntSp;
+    ::u32 IntS8;
+    ::u32 IntRa;
+    ::u32 IntLo;
+    ::u32 IntHi;
 
     /* These are selected by CONTEXT_FLOATING_POINT */
-    DWORD Fsr;
+    ::u32 Fsr;
 
     /* These are selected by CONTEXT_CONTROL */
-    DWORD Fir;
-    DWORD Psr;
+    ::u32 Fir;
+    ::u32 Psr;
 
-    DWORD ContextFlags;
-    DWORD Fill[2];
+    ::u32 ContextFlags;
+    ::u32 Fill[2];
 } CONTEXT;
 
 #endif  /* _MIPS_ */
@@ -1726,82 +1726,82 @@ typedef struct
     double Fpscr;
 
     /* These are selected by CONTEXT_INTEGER */
-    DWORD Gpr0;
-    DWORD Gpr1;
-    DWORD Gpr2;
-    DWORD Gpr3;
-    DWORD Gpr4;
-    DWORD Gpr5;
-    DWORD Gpr6;
-    DWORD Gpr7;
-    DWORD Gpr8;
-    DWORD Gpr9;
-    DWORD Gpr10;
-    DWORD Gpr11;
-    DWORD Gpr12;
-    DWORD Gpr13;
-    DWORD Gpr14;
-    DWORD Gpr15;
-    DWORD Gpr16;
-    DWORD Gpr17;
-    DWORD Gpr18;
-    DWORD Gpr19;
-    DWORD Gpr20;
-    DWORD Gpr21;
-    DWORD Gpr22;
-    DWORD Gpr23;
-    DWORD Gpr24;
-    DWORD Gpr25;
-    DWORD Gpr26;
-    DWORD Gpr27;
-    DWORD Gpr28;
-    DWORD Gpr29;
-    DWORD Gpr30;
-    DWORD Gpr31;
+    ::u32 Gpr0;
+    ::u32 Gpr1;
+    ::u32 Gpr2;
+    ::u32 Gpr3;
+    ::u32 Gpr4;
+    ::u32 Gpr5;
+    ::u32 Gpr6;
+    ::u32 Gpr7;
+    ::u32 Gpr8;
+    ::u32 Gpr9;
+    ::u32 Gpr10;
+    ::u32 Gpr11;
+    ::u32 Gpr12;
+    ::u32 Gpr13;
+    ::u32 Gpr14;
+    ::u32 Gpr15;
+    ::u32 Gpr16;
+    ::u32 Gpr17;
+    ::u32 Gpr18;
+    ::u32 Gpr19;
+    ::u32 Gpr20;
+    ::u32 Gpr21;
+    ::u32 Gpr22;
+    ::u32 Gpr23;
+    ::u32 Gpr24;
+    ::u32 Gpr25;
+    ::u32 Gpr26;
+    ::u32 Gpr27;
+    ::u32 Gpr28;
+    ::u32 Gpr29;
+    ::u32 Gpr30;
+    ::u32 Gpr31;
 
-    DWORD Cr;
-    DWORD Xer;
+    ::u32 Cr;
+    ::u32 Xer;
 
     /* These are selected by CONTEXT_CONTROL */
-    DWORD Msr;
-    DWORD Iar; /* Instruction Address Register , aka PC ... */
-    DWORD Lr;
-    DWORD Ctr;
+    ::u32 Msr;
+    ::u32 Iar; /* Instruction Address Register , aka PC ... */
+    ::u32 Lr;
+    ::u32 Ctr;
 
-    DWORD ContextFlags;
+    ::u32 ContextFlags;
 
-    DWORD Dar;   /* Fault registers for coredump */
-    DWORD Dsisr;
-    DWORD Trap;  /* number of powerpc exception taken */
+    ::u32 Dar;   /* Fault registers for coredump */
+    ::u32 Dsisr;
+    ::u32 Trap;  /* number of powerpc exception taken */
 
     /* These are selected by CONTEXT_DEBUG_REGISTERS */
-    DWORD Dr0;
-    DWORD Dr1;
-    DWORD Dr2;
-    DWORD Dr3;
-    DWORD Dr4;
-    DWORD Dr5;
-    DWORD Dr6;
-    DWORD Dr7;
+    ::u32 Dr0;
+    ::u32 Dr1;
+    ::u32 Dr2;
+    ::u32 Dr3;
+    ::u32 Dr4;
+    ::u32 Dr5;
+    ::u32 Dr6;
+    ::u32 Dr7;
 } CONTEXT;
 
 typedef struct _STACK_FRAME_HEADER
 {
-    DWORD BackChain;
-    DWORD GlueSaved1;
-    DWORD GlueSaved2;
-    DWORD Reserved1;
-    DWORD Spare1;
-    DWORD Spare2;
+    ::u32 BackChain;
+    ::u32 GlueSaved1;
+    ::u32 GlueSaved2;
+    ::u32 Reserved1;
+    ::u32 Spare1;
+    ::u32 Spare2;
 
-    DWORD Parameter0;
-    DWORD Parameter1;
-    DWORD Parameter2;
-    DWORD Parameter3;
-    DWORD Parameter4;
-    DWORD Parameter5;
-    DWORD Parameter6;
-    DWORD Parameter7;
+    ::u32 Parameter0;
+    ::u32 Parameter1;
+    ::u32 Parameter2;
+    ::u32 Parameter3;
+    ::u32 Parameter4;
+    ::u32 Parameter5;
+    ::u32 Parameter6;
+    ::u32 Parameter7;
 } STACK_FRAME_HEADER,*PSTACK_FRAME_HEADER;
 
 #endif  /* __powerpc__ */
@@ -1838,49 +1838,49 @@ typedef struct _STACK_FRAME_HEADER
 
 typedef struct _CONTEXT
 {
-    DWORD ContextFlags;
+    ::u32 ContextFlags;
 
     /* These are selected by CONTEXT_INTEGER */
-    DWORD g0;
-    DWORD g1;
-    DWORD g2;
-    DWORD g3;
-    DWORD g4;
-    DWORD g5;
-    DWORD g6;
-    DWORD g7;
-    DWORD o0;
-    DWORD o1;
-    DWORD o2;
-    DWORD o3;
-    DWORD o4;
-    DWORD o5;
-    DWORD o6;
-    DWORD o7;
-    DWORD l0;
-    DWORD l1;
-    DWORD l2;
-    DWORD l3;
-    DWORD l4;
-    DWORD l5;
-    DWORD l6;
-    DWORD l7;
-    DWORD i0;
-    DWORD i1;
-    DWORD i2;
-    DWORD i3;
-    DWORD i4;
-    DWORD i5;
-    DWORD i6;
-    DWORD i7;
+    ::u32 g0;
+    ::u32 g1;
+    ::u32 g2;
+    ::u32 g3;
+    ::u32 g4;
+    ::u32 g5;
+    ::u32 g6;
+    ::u32 g7;
+    ::u32 o0;
+    ::u32 o1;
+    ::u32 o2;
+    ::u32 o3;
+    ::u32 o4;
+    ::u32 o5;
+    ::u32 o6;
+    ::u32 o7;
+    ::u32 l0;
+    ::u32 l1;
+    ::u32 l2;
+    ::u32 l3;
+    ::u32 l4;
+    ::u32 l5;
+    ::u32 l6;
+    ::u32 l7;
+    ::u32 i0;
+    ::u32 i1;
+    ::u32 i2;
+    ::u32 i3;
+    ::u32 i4;
+    ::u32 i5;
+    ::u32 i6;
+    ::u32 i7;
 
     /* These are selected by CONTEXT_CONTROL */
-    DWORD psr;
-    DWORD pc;
-    DWORD npc;
-    DWORD y;
-    DWORD wim;
-    DWORD tbr;
+    ::u32 psr;
+    ::u32 pc;
+    ::u32 npc;
+    ::u32 y;
+    ::u32 wim;
+    ::u32 tbr;
 
     /* FIXME: floating point registers missing */
 
@@ -1947,12 +1947,12 @@ NTSYSAPI void WINAPI RtlCaptureContext(CONTEXT*);
 
 #define MAKELCID(l, s)		(MAKELONG(l, s))
 
-#define MAKELANGID(p, s)        ((((WORD)(s))<<10) | (WORD)(p))
-#define PRIMARYLANGID(l)        ((WORD)(l) & 0x3ff)
-#define SUBLANGID(l)            ((WORD)(l) >> 10)
+#define MAKELANGID(p, s)        ((((::u16)(s))<<10) | (::u16)(p))
+#define PRIMARYLANGID(l)        ((::u16)(l) & 0x3ff)
+#define SUBLANGID(l)            ((::u16)(l) >> 10)
 
-#define LANGIDFROMLCID(lcid)	((WORD)(lcid))
-#define SORTIDFROMLCID(lcid)	((WORD)((((DWORD)(lcid)) >> 16) & 0x0f))
+#define LANGIDFROMLCID(lcid)	((::u16)(lcid))
+#define SORTIDFROMLCID(lcid)	((::u16)((((::u32)(lcid)) >> 16) & 0x0f))
 
 #define LANG_SYSTEM_DEFAULT	(MAKELANGID(LANG_NEUTRAL, SUBLANG_SYS_DEFAULT))
 #define LANG_USER_DEFAULT	(MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT))
@@ -2419,12 +2419,12 @@ NTSYSAPI void WINAPI RtlCaptureContext(CONTEXT*);
 
 typedef struct _EXCEPTION_RECORD
 {
-    DWORD    ExceptionCode;
-    DWORD    ExceptionFlags;
+    ::u32    ExceptionCode;
+    ::u32    ExceptionFlags;
     struct  _EXCEPTION_RECORD *ExceptionRecord;
 
     PVOID    ExceptionAddress;
-    DWORD    NumberParameters;
+    ::u32    NumberParameters;
     ULONG_PTR ExceptionInformation[EXCEPTION_MAXIMUM_PARAMETERS];
 } EXCEPTION_RECORD, *PEXCEPTION_RECORD;
 
@@ -2448,7 +2448,7 @@ typedef struct _EXCEPTION_POINTERS
 
 struct _EXCEPTION_REGISTRATION_RECORD;
 
-typedef DWORD (*PEXCEPTION_HANDLER)(PEXCEPTION_RECORD,struct _EXCEPTION_REGISTRATION_RECORD*,
+typedef ::u32 (*PEXCEPTION_HANDLER)(PEXCEPTION_RECORD,struct _EXCEPTION_REGISTRATION_RECORD*,
                                     PCONTEXT,struct _EXCEPTION_REGISTRATION_RECORD **);
 
 typedef struct _EXCEPTION_REGISTRATION_RECORD
@@ -2461,7 +2461,7 @@ typedef struct _EXCEPTION_REGISTRATION_RECORD
  * function pointer to an exception filter
  */
 
-typedef LONG (CALLBACK *PVECTORED_EXCEPTION_HANDLER)(PEXCEPTION_POINTERS ExceptionInfo);
+typedef ::i32 (CALLBACK *PVECTORED_EXCEPTION_HANDLER)(PEXCEPTION_POINTERS ExceptionInfo);
 
 typedef struct _NT_TIB
 {
@@ -2471,7 +2471,7 @@ typedef struct _NT_TIB
 	PVOID SubSystemTib;
 	union {
           PVOID FiberData;
-          DWORD Version;
+          ::u32 Version;
 	} DUMMYUNIONNAME;
 	PVOID ArbitraryUserPointer;
 	struct _NT_TIB *Self;
@@ -2544,25 +2544,25 @@ extern struct _TEB * WINAPI NtCurrentTeb(void);
 
 //#include "windows_pshpack2.h"
 //typedef struct _IMAGE_DOS_HEADER {
-//    WORD  e_magic;      /* 00: MZ Header signature */
-//    WORD  e_cblp;       /* 02: Bytes on last page of file */
-//    WORD  e_cp;         /* 04: Pages in file */
-//    WORD  e_crlc;       /* 06: Relocations */
-//    WORD  e_cparhdr;    /* 08: Size of header in paragraphs */
-//    WORD  e_minalloc;   /* 0a: Minimum extra paragraphs needed */
-//    WORD  e_maxalloc;   /* 0c: Maximum extra paragraphs needed */
-//    WORD  e_ss;         /* 0e: Initial (relative) SS value */
-//    WORD  e_pointer;         /* 10: Initial SP value */
-//    WORD  e_csum;       /* 12: Checksum */
-//    WORD  e_ip;         /* 14: Initial IP value */
-//    WORD  e_cs;         /* 16: Initial (relative) CS value */
-//    WORD  e_lfarlc;     /* 18: File address of relocation table */
-//    WORD  e_ovno;       /* 1a: Overlay number */
-//    WORD  e_res[4];     /* 1c: Reserved words */
-//    WORD  e_oemid;      /* 24: OEM identifier (for e_oeminfo) */
-//    WORD  e_oeminfo;    /* 26: OEM information; e_oemid specific */
-//    WORD  e_res2[10];   /* 28: Reserved words */
-//    DWORD e_lfanew;     /* 3c: Offset to extended header */
+//    ::u16  e_magic;      /* 00: MZ Header signature */
+//    ::u16  e_cblp;       /* 02: Bytes on last page of file */
+//    ::u16  e_cp;         /* 04: Pages in file */
+//    ::u16  e_crlc;       /* 06: Relocations */
+//    ::u16  e_cparhdr;    /* 08: Size of header in paragraphs */
+//    ::u16  e_minalloc;   /* 0a: Minimum extra paragraphs needed */
+//    ::u16  e_maxalloc;   /* 0c: Maximum extra paragraphs needed */
+//    ::u16  e_ss;         /* 0e: Initial (relative) SS value */
+//    ::u16  e_pointer;         /* 10: Initial SP value */
+//    ::u16  e_csum;       /* 12: Checksum */
+//    ::u16  e_ip;         /* 14: Initial IP value */
+//    ::u16  e_cs;         /* 16: Initial (relative) CS value */
+//    ::u16  e_lfarlc;     /* 18: File address of relocation table */
+//    ::u16  e_ovno;       /* 1a: Overlay number */
+//    ::u16  e_res[4];     /* 1c: Reserved words */
+//    ::u16  e_oemid;      /* 24: OEM identifier (for e_oeminfo) */
+//    ::u16  e_oeminfo;    /* 26: OEM information; e_oemid specific */
+//    ::u16  e_res2[10];   /* 28: Reserved words */
+//    ::u32 e_lfanew;     /* 3c: Offset to extended header */
 //} IMAGE_DOS_HEADER, *PIMAGE_DOS_HEADER;
 //#include "windows_poppack.h"
 
@@ -2580,92 +2580,92 @@ extern struct _TEB * WINAPI NtCurrentTeb(void);
 //#include "windows_pshpack2.h"
 //typedef struct
 //{
-//    WORD  ne_magic;             /* 00 NE signature 'NE' */
-//    BYTE  ne_ver;               /* 02 Linker version number */
-//    BYTE  ne_rev;               /* 03 Linker revision number */
-//    WORD  ne_enttab;            /* 04 Offset to entry table relative to NE */
-//    WORD  ne_cbenttab;          /* 06 Length of entry table in bytes */
-//    LONG  ne_crc;               /* 08 Checksum */
-//    WORD  ne_flags;             /* 0c Flags about segments in this file */
-//    WORD  ne_autodata;          /* 0e Automatic data segment number */
-//    WORD  ne_heap;              /* 10 Initial size of local heap */
-//    WORD  ne_stack;             /* 12 Initial size of stack */
-//    DWORD ne_csip;              /* 14 Initial CS:IP */
-//    DWORD ne_sssp;              /* 18 Initial SS:SP */
-//    WORD  ne_cseg;              /* 1c # of entries in segment table */
-//    WORD  ne_cmod;              /* 1e # of entries in module context_object tab. */
-//    WORD  ne_cbnrestab;         /* 20 Length of nonresident-name table     */
-//    WORD  ne_segtab;            /* 22 Offset to segment table */
-//    WORD  ne_rsrctab;           /* 24 Offset to resource table */
-//    WORD  ne_restab;            /* 26 Offset to resident-name table */
-//    WORD  ne_modtab;            /* 28 Offset to module context_object table */
-//    WORD  ne_imptab;            /* 2a Offset to imported name table */
-//    DWORD ne_nrestab;           /* 2c Offset to nonresident-name table */
-//    WORD  ne_cmovent;           /* 30 # of movable entry points */
-//    WORD  ne_align;             /* 32 Logical sector alignment shift count */
-//    WORD  ne_cres;              /* 34 # of resource segments */
-//    BYTE  ne_exetyp;            /* 36 Flags indicating target OS */
-//    BYTE  ne_flagsothers;       /* 37 Additional information flags */
-//    WORD  ne_pretthunks;        /* 38 Offset to return thunks */
-//    WORD  ne_psegrefbytes;      /* 3a Offset to segment ref. bytes */
-//    WORD  ne_swaparea;          /* 3c Reserved by Microsoft */
-//    WORD  ne_expver;            /* 3e Expected Windows version number */
+//    ::u16  ne_magic;             /* 00 NE signature 'NE' */
+//    byte  ne_ver;               /* 02 Linker version number */
+//    byte  ne_rev;               /* 03 Linker revision number */
+//    ::u16  ne_enttab;            /* 04 Offset to entry table relative to NE */
+//    ::u16  ne_cbenttab;          /* 06 Length of entry table in bytes */
+//    ::i32  ne_crc;               /* 08 Checksum */
+//    ::u16  ne_flags;             /* 0c Flags about segments in this file */
+//    ::u16  ne_autodata;          /* 0e Automatic data segment number */
+//    ::u16  ne_heap;              /* 10 Initial size of local heap */
+//    ::u16  ne_stack;             /* 12 Initial size of stack */
+//    ::u32 ne_csip;              /* 14 Initial CS:IP */
+//    ::u32 ne_sssp;              /* 18 Initial SS:SP */
+//    ::u16  ne_cseg;              /* 1c # of entries in segment table */
+//    ::u16  ne_cmod;              /* 1e # of entries in module context_object tab. */
+//    ::u16  ne_cbnrestab;         /* 20 Length of nonresident-name table     */
+//    ::u16  ne_segtab;            /* 22 Offset to segment table */
+//    ::u16  ne_rsrctab;           /* 24 Offset to resource table */
+//    ::u16  ne_restab;            /* 26 Offset to resident-name table */
+//    ::u16  ne_modtab;            /* 28 Offset to module context_object table */
+//    ::u16  ne_imptab;            /* 2a Offset to imported name table */
+//    ::u32 ne_nrestab;           /* 2c Offset to nonresident-name table */
+//    ::u16  ne_cmovent;           /* 30 # of movable entry points */
+//    ::u16  ne_align;             /* 32 Logical sector alignment shift count */
+//    ::u16  ne_cres;              /* 34 # of resource segments */
+//    byte  ne_exetyp;            /* 36 Flags indicating target OS */
+//    byte  ne_flagsothers;       /* 37 Additional information flags */
+//    ::u16  ne_pretthunks;        /* 38 Offset to return thunks */
+//    ::u16  ne_psegrefbytes;      /* 3a Offset to segment ref. bytes */
+//    ::u16  ne_swaparea;          /* 3c Reserved by Microsoft */
+//    ::u16  ne_expver;            /* 3e Expected Windows version number */
 //} IMAGE_OS2_HEADER, *PIMAGE_OS2_HEADER;
 //#include "windows_poppack.h"
 
 //#include "windows_pshpack2.h"
 //typedef struct _IMAGE_VXD_HEADER {
-//  WORD  e32_magic;
-//  BYTE  e32_border;
-//  BYTE  e32_worder;
-//  DWORD e32_level;
-//  WORD  e32_cpu;
-//  WORD  e32_os;
-//  DWORD e32_ver;
-//  DWORD e32_mflags;
-//  DWORD e32_mpages;
-//  DWORD e32_startobj;
-//  DWORD e32_eip;
-//  DWORD e32_stackobj;
-//  DWORD e32_esp;
-//  DWORD e32_pagesize;
-//  DWORD e32_lastpagesize;
-//  DWORD e32_fixupsize;
-//  DWORD e32_fixupsum;
-//  DWORD e32_ldrsize;
-//  DWORD e32_ldrsum;
-//  DWORD e32_objtab;
-//  DWORD e32_objcnt;
-//  DWORD e32_objmap;
-//  DWORD e32_itermap;
-//  DWORD e32_rsrctab;
-//  DWORD e32_rsrccnt;
-//  DWORD e32_restab;
-//  DWORD e32_enttab;
-//  DWORD e32_dirtab;
-//  DWORD e32_dircnt;
-//  DWORD e32_fpagetab;
-//  DWORD e32_frectab;
-//  DWORD e32_impmod;
-//  DWORD e32_impmodcnt;
-//  DWORD e32_impproc;
-//  DWORD e32_pagesum;
-//  DWORD e32_datapage;
-//  DWORD e32_preload;
-//  DWORD e32_nrestab;
-//  DWORD e32_cbnrestab;
-//  DWORD e32_nressum;
-//  DWORD e32_autodata;
-//  DWORD e32_debuginfo;
-//  DWORD e32_debuglen;
-//  DWORD e32_instpreload;
-//  DWORD e32_instdemand;
-//  DWORD e32_heapsize;
-//  BYTE  e32_res3[12];
-//  DWORD e32_winresoff;
-//  DWORD e32_winreslen;
-//  WORD  e32_devid;
-//  WORD  e32_ddkver;
+//  ::u16  e32_magic;
+//  byte  e32_border;
+//  byte  e32_worder;
+//  ::u32 e32_level;
+//  ::u16  e32_cpu;
+//  ::u16  e32_os;
+//  ::u32 e32_ver;
+//  ::u32 e32_mflags;
+//  ::u32 e32_mpages;
+//  ::u32 e32_startobj;
+//  ::u32 e32_eip;
+//  ::u32 e32_stackobj;
+//  ::u32 e32_esp;
+//  ::u32 e32_pagesize;
+//  ::u32 e32_lastpagesize;
+//  ::u32 e32_fixupsize;
+//  ::u32 e32_fixupsum;
+//  ::u32 e32_ldrsize;
+//  ::u32 e32_ldrsum;
+//  ::u32 e32_objtab;
+//  ::u32 e32_objcnt;
+//  ::u32 e32_objmap;
+//  ::u32 e32_itermap;
+//  ::u32 e32_rsrctab;
+//  ::u32 e32_rsrccnt;
+//  ::u32 e32_restab;
+//  ::u32 e32_enttab;
+//  ::u32 e32_dirtab;
+//  ::u32 e32_dircnt;
+//  ::u32 e32_fpagetab;
+//  ::u32 e32_frectab;
+//  ::u32 e32_impmod;
+//  ::u32 e32_impmodcnt;
+//  ::u32 e32_impproc;
+//  ::u32 e32_pagesum;
+//  ::u32 e32_datapage;
+//  ::u32 e32_preload;
+//  ::u32 e32_nrestab;
+//  ::u32 e32_cbnrestab;
+//  ::u32 e32_nressum;
+//  ::u32 e32_autodata;
+//  ::u32 e32_debuginfo;
+//  ::u32 e32_debuglen;
+//  ::u32 e32_instpreload;
+//  ::u32 e32_instdemand;
+//  ::u32 e32_heapsize;
+//  byte  e32_res3[12];
+//  ::u32 e32_winresoff;
+//  ::u32 e32_winreslen;
+//  ::u16  e32_devid;
+//  ::u16  e32_ddkver;
 //} IMAGE_VXD_HEADER, *PIMAGE_VXD_HEADER;
 //#include "windows_poppack.h"
 
@@ -2810,57 +2810,57 @@ extern struct _TEB * WINAPI NtCurrentTeb(void);
 #define IMAGE_DLLCHARACTERISTICS_TERMINAL_SERVER_AWARE 0x8000
 
 typedef struct _IMAGE_FILE_HEADER {
-  WORD  Machine;
-  WORD  NumberOfSections;
-  DWORD TimeDateStamp;
-  DWORD PointerToSymbolTable;
-  DWORD NumberOfSymbols;
-  WORD  SizeOfOptionalHeader;
-  WORD  Characteristics;
+  ::u16  Machine;
+  ::u16  NumberOfSections;
+  ::u32 TimeDateStamp;
+  ::u32 PointerToSymbolTable;
+  ::u32 NumberOfSymbols;
+  ::u16  SizeOfOptionalHeader;
+  ::u16  Characteristics;
 } IMAGE_FILE_HEADER, *PIMAGE_FILE_HEADER;
 
 typedef struct _IMAGE_DATA_DIRECTORY {
-  DWORD VirtualAddress;
-  DWORD Size;
+  ::u32 VirtualAddress;
+  ::u32 Size;
 } IMAGE_DATA_DIRECTORY, *PIMAGE_DATA_DIRECTORY;
 
 #define IMAGE_NUMBEROF_DIRECTORY_ENTRIES 16
 
 typedef struct _IMAGE_OPTIONAL_HEADER64 {
-  WORD  Magic; /* 0x20b */
-  BYTE MajorLinkerVersion;
-  BYTE MinorLinkerVersion;
-  DWORD SizeOfCode;
-  DWORD SizeOfInitializedData;
-  DWORD SizeOfUninitializedData;
-  DWORD AddressOfEntryPoint;
-  DWORD BaseOfCode;
+  ::u16  Magic; /* 0x20b */
+  byte MajorLinkerVersion;
+  byte MinorLinkerVersion;
+  ::u32 SizeOfCode;
+  ::u32 SizeOfInitializedData;
+  ::u32 SizeOfUninitializedData;
+  ::u32 AddressOfEntryPoint;
+  ::u32 BaseOfCode;
   ULONGLONG ImageBase;
-  DWORD SectionAlignment;
-  DWORD FileAlignment;
-  WORD MajorOperatingSystemVersion;
-  WORD MinorOperatingSystemVersion;
-  WORD MajorImageVersion;
-  WORD MinorImageVersion;
-  WORD MajorSubsystemVersion;
-  WORD MinorSubsystemVersion;
-  DWORD Win32VersionValue;
-  DWORD SizeOfImage;
-  DWORD SizeOfHeaders;
-  DWORD CheckSum;
-  WORD Subsystem;
-  WORD DllCharacteristics;
+  ::u32 SectionAlignment;
+  ::u32 FileAlignment;
+  ::u16 MajorOperatingSystemVersion;
+  ::u16 MinorOperatingSystemVersion;
+  ::u16 MajorImageVersion;
+  ::u16 MinorImageVersion;
+  ::u16 MajorSubsystemVersion;
+  ::u16 MinorSubsystemVersion;
+  ::u32 Win32VersionValue;
+  ::u32 SizeOfImage;
+  ::u32 SizeOfHeaders;
+  ::u32 CheckSum;
+  ::u16 Subsystem;
+  ::u16 DllCharacteristics;
   ULONGLONG SizeOfStackReserve;
   ULONGLONG SizeOfStackCommit;
   ULONGLONG SizeOfHeapReserve;
   ULONGLONG SizeOfHeapCommit;
-  DWORD LoaderFlags;
-  DWORD NumberOfRvaAndSizes;
+  ::u32 LoaderFlags;
+  ::u32 NumberOfRvaAndSizes;
   IMAGE_DATA_DIRECTORY DataDirectory[IMAGE_NUMBEROF_DIRECTORY_ENTRIES];
 } IMAGE_OPTIONAL_HEADER64, *PIMAGE_OPTIONAL_HEADER64;
 
 typedef struct _IMAGE_NT_HEADERS64 {
-  DWORD Signature;
+  ::u32 Signature;
   IMAGE_FILE_HEADER FileHeader;
   IMAGE_OPTIONAL_HEADER64 OptionalHeader;
 } IMAGE_NT_HEADERS64, *PIMAGE_NT_HEADERS64;
@@ -2869,45 +2869,45 @@ typedef struct _IMAGE_OPTIONAL_HEADER {
 
   /* Standard fields */
 
-  WORD  Magic; /* 0x10b or 0x107 */	/* 0x00 */
-  BYTE  MajorLinkerVersion;
-  BYTE  MinorLinkerVersion;
-  DWORD SizeOfCode;
-  DWORD SizeOfInitializedData;
-  DWORD SizeOfUninitializedData;
-  DWORD AddressOfEntryPoint;		/* 0x10 */
-  DWORD BaseOfCode;
-  DWORD BaseOfData;
+  ::u16  Magic; /* 0x10b or 0x107 */	/* 0x00 */
+  byte  MajorLinkerVersion;
+  byte  MinorLinkerVersion;
+  ::u32 SizeOfCode;
+  ::u32 SizeOfInitializedData;
+  ::u32 SizeOfUninitializedData;
+  ::u32 AddressOfEntryPoint;		/* 0x10 */
+  ::u32 BaseOfCode;
+  ::u32 BaseOfData;
 
   /* NT additional fields */
 
-  DWORD ImageBase;
-  DWORD SectionAlignment;		/* 0x20 */
-  DWORD FileAlignment;
-  WORD  MajorOperatingSystemVersion;
-  WORD  MinorOperatingSystemVersion;
-  WORD  MajorImageVersion;
-  WORD  MinorImageVersion;
-  WORD  MajorSubsystemVersion;		/* 0x30 */
-  WORD  MinorSubsystemVersion;
-  DWORD Win32VersionValue;
-  DWORD SizeOfImage;
-  DWORD SizeOfHeaders;
-  DWORD CheckSum;			/* 0x40 */
-  WORD  Subsystem;
-  WORD  DllCharacteristics;
-  DWORD SizeOfStackReserve;
-  DWORD SizeOfStackCommit;
-  DWORD SizeOfHeapReserve;		/* 0x50 */
-  DWORD SizeOfHeapCommit;
-  DWORD LoaderFlags;
-  DWORD NumberOfRvaAndSizes;
+  ::u32 ImageBase;
+  ::u32 SectionAlignment;		/* 0x20 */
+  ::u32 FileAlignment;
+  ::u16  MajorOperatingSystemVersion;
+  ::u16  MinorOperatingSystemVersion;
+  ::u16  MajorImageVersion;
+  ::u16  MinorImageVersion;
+  ::u16  MajorSubsystemVersion;		/* 0x30 */
+  ::u16  MinorSubsystemVersion;
+  ::u32 Win32VersionValue;
+  ::u32 SizeOfImage;
+  ::u32 SizeOfHeaders;
+  ::u32 CheckSum;			/* 0x40 */
+  ::u16  Subsystem;
+  ::u16  DllCharacteristics;
+  ::u32 SizeOfStackReserve;
+  ::u32 SizeOfStackCommit;
+  ::u32 SizeOfHeapReserve;		/* 0x50 */
+  ::u32 SizeOfHeapCommit;
+  ::u32 LoaderFlags;
+  ::u32 NumberOfRvaAndSizes;
   IMAGE_DATA_DIRECTORY DataDirectory[IMAGE_NUMBEROF_DIRECTORY_ENTRIES]; /* 0x60 */
   /* 0xE0 */
 } IMAGE_OPTIONAL_HEADER32, *PIMAGE_OPTIONAL_HEADER32;
 
 typedef struct _IMAGE_NT_HEADERS {
-  DWORD Signature; /* "PE"\0\0 */	/* 0x00 */
+  ::u32 Signature; /* "PE"\0\0 */	/* 0x00 */
   IMAGE_FILE_HEADER FileHeader;		/* 0x04 */
   IMAGE_OPTIONAL_HEADER32 OptionalHeader;	/* 0x18 */
 } IMAGE_NT_HEADERS32, *PIMAGE_NT_HEADERS32;
@@ -2927,25 +2927,25 @@ typedef PIMAGE_OPTIONAL_HEADER32 PIMAGE_OPTIONAL_HEADER;
 #define IMAGE_SIZEOF_SHORT_NAME 8
 
 typedef struct _IMAGE_SECTION_HEADER {
-  BYTE  Name[IMAGE_SIZEOF_SHORT_NAME];
+  byte  Name[IMAGE_SIZEOF_SHORT_NAME];
   union {
-    DWORD PhysicalAddress;
-    DWORD VirtualSize;
+    ::u32 PhysicalAddress;
+    ::u32 VirtualSize;
   } Misc;
-  DWORD VirtualAddress;
-  DWORD SizeOfRawData;
-  DWORD PointerToRawData;
-  DWORD PointerToRelocations;
-  DWORD PointerToLinenumbers;
-  WORD  NumberOfRelocations;
-  WORD  NumberOfLinenumbers;
-  DWORD Characteristics;
+  ::u32 VirtualAddress;
+  ::u32 SizeOfRawData;
+  ::u32 PointerToRawData;
+  ::u32 PointerToRelocations;
+  ::u32 PointerToLinenumbers;
+  ::u16  NumberOfRelocations;
+  ::u16  NumberOfLinenumbers;
+  ::u32 Characteristics;
 } IMAGE_SECTION_HEADER, *PIMAGE_SECTION_HEADER;
 
 #define	IMAGE_SIZEOF_SECTION_HEADER 40
 
 #define IMAGE_FIRST_SECTION(ntheader) \
-  ((PIMAGE_SECTION_HEADER)(ULONG_PTR)((const BYTE *)&((const IMAGE_NT_HEADERS *)(ntheader))->OptionalHeader + \
+  ((PIMAGE_SECTION_HEADER)(ULONG_PTR)((const byte *)&((const IMAGE_NT_HEADERS *)(ntheader))->OptionalHeader + \
                            ((const IMAGE_NT_HEADERS *)(ntheader))->FileHeader.SizeOfOptionalHeader))
 
 /* These defines are for the Characteristics bitfield. */
@@ -3008,18 +3008,18 @@ typedef struct _IMAGE_SECTION_HEADER {
 //
 //typedef struct _IMAGE_SYMBOL {
 //    union {
-//        BYTE    ShortName[8];
+//        byte    ShortName[8];
 //        struct {
-//            DWORD   Short;
-//            DWORD   Long;
+//            ::u32   Short;
+//            ::u32   Long;
 //        } Name;
-//        DWORD   LongName[2];
+//        ::u32   LongName[2];
 //    } N;
-//    DWORD   Value;
+//    ::u32   Value;
 //    SHORT   SectionNumber;
-//    WORD    Type;
-//    BYTE    StorageClass;
-//    BYTE    NumberOfAuxSymbols;
+//    ::u16    Type;
+//    byte    StorageClass;
+//    byte    NumberOfAuxSymbols;
 //} IMAGE_SYMBOL;
 //typedef IMAGE_SYMBOL *PIMAGE_SYMBOL;
 //
@@ -3027,10 +3027,10 @@ typedef struct _IMAGE_SECTION_HEADER {
 //
 //typedef struct _IMAGE_LINENUMBER {
 //    union {
-//        DWORD   SymbolTableIndex;
-//        DWORD   VirtualAddress;
+//        ::u32   SymbolTableIndex;
+//        ::u32   VirtualAddress;
 //    } Type;
-//    WORD    Linenumber;
+//    ::u16    Linenumber;
 //} IMAGE_LINENUMBER;
 //typedef IMAGE_LINENUMBER *PIMAGE_LINENUMBER;
 //
@@ -3038,35 +3038,35 @@ typedef struct _IMAGE_SECTION_HEADER {
 //
 //typedef union _IMAGE_AUX_SYMBOL {
 //    struct {
-//        DWORD    TagIndex;
+//        ::u32    TagIndex;
 //        union {
 //            struct {
-//                WORD    Linenumber;
-//                WORD    Size;
+//                ::u16    Linenumber;
+//                ::u16    Size;
 //            } LnSz;
-//           DWORD    TotalSize;
+//           ::u32    TotalSize;
 //        } Misc;
 //        union {
 //            struct {
-//                DWORD    PointerToLinenumber;
-//                DWORD    PointerToNextFunction;
+//                ::u32    PointerToLinenumber;
+//                ::u32    PointerToNextFunction;
 //            } Function;
 //            struct {
-//                WORD     Dimension[4];
+//                ::u16     Dimension[4];
 //            } Array;
 //        } FcnAry;
-//        WORD    TvIndex;
+//        ::u16    TvIndex;
 //    } Sym;
 //    struct {
-//        BYTE    Name[IMAGE_SIZEOF_SYMBOL];
+//        byte    Name[IMAGE_SIZEOF_SYMBOL];
 //    } File;
 //    struct {
-//        DWORD   Length;
-//        WORD    NumberOfRelocations;
-//        WORD    NumberOfLinenumbers;
-//        DWORD   CheckSum;
+//        ::u32   Length;
+//        ::u16    NumberOfRelocations;
+//        ::u16    NumberOfLinenumbers;
+//        ::u32   CheckSum;
 //        SHORT   Number;
-//        BYTE    Selection;
+//        byte    Selection;
 //    } Section;
 //} IMAGE_AUX_SYMBOL;
 //typedef IMAGE_AUX_SYMBOL *PIMAGE_AUX_SYMBOL;
@@ -3093,7 +3093,7 @@ typedef struct _IMAGE_SECTION_HEADER {
 #define IMAGE_SYM_TYPE_MOE                  0x000B
 #define IMAGE_SYM_TYPE_BYTE                 0x000C
 #define IMAGE_SYM_TYPE_WORD                 0x000D
-#define IMAGE_SYM_TYPE_UINT                 0x000E
+#define IMAGE_SYM_TYPE_::u32                 0x000E
 #define IMAGE_SYM_TYPE_DWORD                0x000F
 #define IMAGE_SYM_TYPE_PCODE                0x8000
 
@@ -3102,7 +3102,7 @@ typedef struct _IMAGE_SECTION_HEADER {
 #define IMAGE_SYM_DTYPE_FUNCTION            2
 #define IMAGE_SYM_DTYPE_ARRAY               3
 
-#define IMAGE_SYM_CLASS_END_OF_FUNCTION     (BYTE )-1
+#define IMAGE_SYM_CLASS_END_OF_FUNCTION     (byte )-1
 #define IMAGE_SYM_CLASS_NULL                0x0000
 #define IMAGE_SYM_CLASS_AUTOMATIC           0x0001
 #define IMAGE_SYM_CLASS_EXTERNAL            0x0002
@@ -3178,23 +3178,23 @@ typedef struct _IMAGE_SECTION_HEADER {
 /* Export module directory */
 
 typedef struct _IMAGE_EXPORT_DIRECTORY {
-	DWORD	Characteristics;
-	DWORD	TimeDateStamp;
-	WORD	MajorVersion;
-	WORD	MinorVersion;
-	DWORD	Name;
-	DWORD	Base;
-	DWORD	NumberOfFunctions;
-	DWORD	NumberOfNames;
-	DWORD	AddressOfFunctions;
-	DWORD	AddressOfNames;
-	DWORD	AddressOfNameOrdinals;
+	::u32	Characteristics;
+	::u32	TimeDateStamp;
+	::u16	MajorVersion;
+	::u16	MinorVersion;
+	::u32	Name;
+	::u32	Base;
+	::u32	NumberOfFunctions;
+	::u32	NumberOfNames;
+	::u32	AddressOfFunctions;
+	::u32	AddressOfNames;
+	::u32	AddressOfNameOrdinals;
 } IMAGE_EXPORT_DIRECTORY,*PIMAGE_EXPORT_DIRECTORY;
 
 /* Import name entry */
 typedef struct _IMAGE_IMPORT_BY_NAME {
-	WORD	Hint;
-	BYTE	Name[1];
+	::u16	Hint;
+	byte	Name[1];
 } IMAGE_IMPORT_BY_NAME,*PIMAGE_IMPORT_BY_NAME;
 
 //#include "windows_pshpack8.h"
@@ -3211,10 +3211,10 @@ typedef struct _IMAGE_IMPORT_BY_NAME {
 
 typedef struct _IMAGE_THUNK_DATA32 {
 	union {
-		DWORD ForwarderString;
-		DWORD Function;
-		DWORD Ordinal;
-		DWORD AddressOfData;
+		::u32 ForwarderString;
+		::u32 Function;
+		::u32 Ordinal;
+		::u32 AddressOfData;
 	} u1;
 } IMAGE_THUNK_DATA32,*PIMAGE_THUNK_DATA32;
 
@@ -3222,20 +3222,20 @@ typedef struct _IMAGE_THUNK_DATA32 {
 
 typedef struct _IMAGE_IMPORT_DESCRIPTOR {
 	union {
-		DWORD	Characteristics; /* 0 for terminating null import descriptor  */
-		DWORD	OriginalFirstThunk;	/* RVA to original unbound IAT */
+		::u32	Characteristics; /* 0 for terminating null import descriptor  */
+		::u32	OriginalFirstThunk;	/* RVA to original unbound IAT */
 	} DUMMYUNIONNAME;
-	DWORD	TimeDateStamp;	/* 0 if not bound,
+	::u32	TimeDateStamp;	/* 0 if not bound,
 				 * -1 if bound, and real date\time stamp
 				 *    in IMAGE_DIRECTORY_ENTRY_BOUND_IMPORT
 				 * (new BIND)
 				 * otherwise date/time stamp of DLL bound to
 				 * (Old BIND)
 				 */
-	DWORD	ForwarderChain;	/* -1 if no forwarders */
-	DWORD	Name;
+	::u32	ForwarderChain;	/* -1 if no forwarders */
+	::u32	Name;
 	/* RVA to IAT (if bound this IAT has actual addresses) */
-	DWORD	FirstThunk;
+	::u32	FirstThunk;
 } IMAGE_IMPORT_DESCRIPTOR,*PIMAGE_IMPORT_DESCRIPTOR;
 
 #define IMAGE_ORDINAL_FLAG64             (((ULONGLONG)0x80000000 << 32) | 0x00000000)
@@ -3261,24 +3261,24 @@ typedef struct _IMAGE_IMPORT_DESCRIPTOR {
 
 typedef struct _IMAGE_BOUND_IMPORT_DESCRIPTOR
 {
-    DWORD   TimeDateStamp;
-    WORD    OffsetModuleName;
-    WORD    NumberOfModuleForwarderRefs;
+    ::u32   TimeDateStamp;
+    ::u16    OffsetModuleName;
+    ::u16    NumberOfModuleForwarderRefs;
 /* Array of zero or more IMAGE_BOUND_FORWARDER_REF follows */
 } IMAGE_BOUND_IMPORT_DESCRIPTOR,  *PIMAGE_BOUND_IMPORT_DESCRIPTOR;
 
 typedef struct _IMAGE_BOUND_FORWARDER_REF
 {
-    DWORD   TimeDateStamp;
-    WORD    OffsetModuleName;
-    WORD    Reserved;
+    ::u32   TimeDateStamp;
+    ::u16    OffsetModuleName;
+    ::u16    Reserved;
 } IMAGE_BOUND_FORWARDER_REF, *PIMAGE_BOUND_FORWARDER_REF;
 
 typedef struct _IMAGE_BASE_RELOCATION
 {
-	DWORD	VirtualAddress;
-	DWORD	SizeOfBlock;
-	/* WORD	TypeOffset[1]; */
+	::u32	VirtualAddress;
+	::u32	SizeOfBlock;
+	/* ::u16	TypeOffset[1]; */
 } IMAGE_BASE_RELOCATION,*PIMAGE_BASE_RELOCATION;
 
 //#include "windows_pshpack2.h"
@@ -3286,11 +3286,11 @@ typedef struct _IMAGE_BASE_RELOCATION
 //typedef struct _IMAGE_RELOCATION
 //{
 //    union {
-//        DWORD   VirtualAddress;
-//        DWORD   RelocCount;
+//        ::u32   VirtualAddress;
+//        ::u32   RelocCount;
 //    } DUMMYUNIONNAME;
-//    DWORD   SymbolTableIndex;
-//    WORD    Type;
+//    ::u32   SymbolTableIndex;
+//    ::u16    Type;
 //} IMAGE_RELOCATION, *PIMAGE_RELOCATION;
 //
 //#include "windows_poppack.h"
@@ -3496,33 +3496,33 @@ typedef struct _IMAGE_BASE_RELOCATION
 
 typedef struct _IMAGE_ARCHIVE_MEMBER_HEADER
 {
-    BYTE     Name[16];
-    BYTE     Date[12];
-    BYTE     UserID[6];
-    BYTE     GroupID[6];
-    BYTE     Mode[8];
-    BYTE     Size[10];
-    BYTE     EndHeader[2];
+    byte     Name[16];
+    byte     Date[12];
+    byte     UserID[6];
+    byte     GroupID[6];
+    byte     Mode[8];
+    byte     Size[10];
+    byte     EndHeader[2];
 } IMAGE_ARCHIVE_MEMBER_HEADER, *PIMAGE_ARCHIVE_MEMBER_HEADER;
 
 #define IMAGE_SIZEOF_ARCHIVE_MEMBER_HDR 60
 
 typedef struct _IMPORT_OBJECT_HEADER
 {
-    WORD     Sig1;
-    WORD     Sig2;
-    WORD     Version;
-    WORD     Machine;
-    DWORD    TimeDateStamp;
-    DWORD    SizeOfData;
+    ::u16     Sig1;
+    ::u16     Sig2;
+    ::u16     Version;
+    ::u16     Machine;
+    ::u32    TimeDateStamp;
+    ::u32    SizeOfData;
     union
     {
-        WORD Ordinal;
-        WORD Hint;
+        ::u16 Ordinal;
+        ::u16 Hint;
     } DUMMYUNIONNAME;
-    WORD     Type : 2;
-    WORD     NameType : 3;
-    WORD     Reserved : 11;
+    ::u16     Type : 2;
+    ::u16     NameType : 3;
+    ::u16     Reserved : 11;
 } IMPORT_OBJECT_HEADER;
 
 #define IMPORT_OBJECT_HDR_SIG2  0xffff
@@ -3544,25 +3544,25 @@ typedef enum IMPORT_OBJECT_NAME_TYPE
 
 typedef struct _ANON_OBJECT_HEADER
 {
-    WORD     Sig1;
-    WORD     Sig2;
-    WORD     Version;
-    WORD     Machine;
-    DWORD    TimeDateStamp;
+    ::u16     Sig1;
+    ::u16     Sig2;
+    ::u16     Version;
+    ::u16     Machine;
+    ::u32    TimeDateStamp;
     CLSID    ClassID;
-    DWORD    SizeOfData;
+    ::u32    SizeOfData;
 } ANON_OBJECT_HEADER;
 
 /*
  * Resource directory stuff
  */
 typedef struct _IMAGE_RESOURCE_DIRECTORY {
-	DWORD	Characteristics;
-	DWORD	TimeDateStamp;
-	WORD	MajorVersion;
-	WORD	MinorVersion;
-	WORD	NumberOfNamedEntries;
-	WORD	NumberOfIdEntries;
+	::u32	Characteristics;
+	::u32	TimeDateStamp;
+	::u16	MajorVersion;
+	::u16	MinorVersion;
+	::u16	NumberOfNamedEntries;
+	::u16	NumberOfIdEntries;
 	/*  IMAGE_RESOURCE_DIRECTORY_ENTRY DirectoryEntries[]; */
 } IMAGE_RESOURCE_DIRECTORY,*PIMAGE_RESOURCE_DIRECTORY;
 
@@ -3580,19 +3580,19 @@ typedef struct _IMAGE_RESOURCE_DIRECTORY_ENTRY {
 			unsigned NameIsString:1;
 #endif
 		} DUMMYSTRUCTNAME1;
-		DWORD   Name;
+		::u32   Name;
                 struct {
 #ifdef WORDS_BIGENDIAN
-			WORD    __pad;
-			WORD    Id;
+			::u16    __pad;
+			::u16    Id;
 #else
-			WORD    Id;
-			WORD    __pad;
+			::u16    Id;
+			::u16    __pad;
 #endif
 		} DUMMYSTRUCTNAME2;
 	} DUMMYUNIONNAME1;
 	union {
-		DWORD   OffsetToData;
+		::u32   OffsetToData;
 		struct {
 #ifdef BITFIELDS_BIGENDIAN
 			unsigned DataIsDirectory:1;
@@ -3607,25 +3607,25 @@ typedef struct _IMAGE_RESOURCE_DIRECTORY_ENTRY {
 
 
 typedef struct _IMAGE_RESOURCE_DIRECTORY_STRING {
-	WORD	Length;
+	::u16	Length;
 	CHAR	NameString[ 1 ];
 } IMAGE_RESOURCE_DIRECTORY_STRING,*PIMAGE_RESOURCE_DIRECTORY_STRING;
 
 typedef struct _IMAGE_RESOURCE_DIR_STRING_U {
-	WORD	Length;
+	::u16	Length;
 	WCHAR	NameString[ 1 ];
 } IMAGE_RESOURCE_DIR_STRING_U,*PIMAGE_RESOURCE_DIR_STRING_U;
 
 typedef struct _IMAGE_RESOURCE_DATA_ENTRY {
-	DWORD	OffsetToData;
-	DWORD	Size;
-	DWORD	CodePage;
-	DWORD	Reserved;
+	::u32	OffsetToData;
+	::u32	Size;
+	::u32	CodePage;
+	::u32	Reserved;
 } IMAGE_RESOURCE_DATA_ENTRY,*PIMAGE_RESOURCE_DATA_ENTRY;
 
 
 typedef VOID (CALLBACK *PIMAGE_TLS_CALLBACK)(
-	LPVOID DllHandle,DWORD Reason,LPVOID Reserved
+	LPVOID DllHandle,::u32 Reason,LPVOID Reserved
 );
 
 typedef struct _IMAGE_TLS_DIRECTORY64 {
@@ -3633,17 +3633,17 @@ typedef struct _IMAGE_TLS_DIRECTORY64 {
     ULONGLONG   EndAddressOfRawData;
     ULONGLONG   AddressOfIndex;
     ULONGLONG   AddressOfCallBacks;
-    DWORD       SizeOfZeroFill;
-    DWORD       Characteristics;
+    ::u32       SizeOfZeroFill;
+    ::u32       Characteristics;
 } IMAGE_TLS_DIRECTORY64, *PIMAGE_TLS_DIRECTORY64;
 
 typedef struct _IMAGE_TLS_DIRECTORY32 {
-    DWORD   StartAddressOfRawData;
-    DWORD   EndAddressOfRawData;
-    DWORD   AddressOfIndex;
-    DWORD   AddressOfCallBacks;
-    DWORD   SizeOfZeroFill;
-    DWORD   Characteristics;
+    ::u32   StartAddressOfRawData;
+    ::u32   EndAddressOfRawData;
+    ::u32   AddressOfIndex;
+    ::u32   AddressOfCallBacks;
+    ::u32   SizeOfZeroFill;
+    ::u32   Characteristics;
 } IMAGE_TLS_DIRECTORY32, *PIMAGE_TLS_DIRECTORY32;
 
 #ifdef OS64BIT
@@ -3655,14 +3655,14 @@ typedef PIMAGE_TLS_DIRECTORY32          PIMAGE_TLS_DIRECTORY;
 #endif
 
 typedef struct _IMAGE_DEBUG_DIRECTORY {
-  DWORD Characteristics;
-  DWORD TimeDateStamp;
-  WORD  MajorVersion;
-  WORD  MinorVersion;
-  DWORD Type;
-  DWORD SizeOfData;
-  DWORD AddressOfRawData;
-  DWORD PointerToRawData;
+  ::u32 Characteristics;
+  ::u32 TimeDateStamp;
+  ::u16  MajorVersion;
+  ::u16  MinorVersion;
+  ::u32 Type;
+  ::u32 SizeOfData;
+  ::u32 AddressOfRawData;
+  ::u32 PointerToRawData;
 } IMAGE_DEBUG_DIRECTORY, *PIMAGE_DEBUG_DIRECTORY;
 
 #define IMAGE_DEBUG_TYPE_UNKNOWN        0
@@ -3711,13 +3711,13 @@ typedef enum ReplacesCorHdrNumericDefines
 
 typedef struct IMAGE_COR20_HEADER
 {
-    DWORD cb;
-    WORD  MajorRuntimeVersion;
-    WORD  MinorRuntimeVersion;
+    ::u32 cb;
+    ::u16  MajorRuntimeVersion;
+    ::u16  MinorRuntimeVersion;
 
     IMAGE_DATA_DIRECTORY MetaData;
-    DWORD Flags;
-    DWORD EntryPointToken;
+    ::u32 Flags;
+    ::u32 EntryPointToken;
 
     IMAGE_DATA_DIRECTORY Resources;
     IMAGE_DATA_DIRECTORY StrongNameSignature;
@@ -3729,14 +3729,14 @@ typedef struct IMAGE_COR20_HEADER
 } IMAGE_COR20_HEADER, *PIMAGE_COR20_HEADER;
 
 typedef struct _IMAGE_COFF_SYMBOLS_HEADER {
-  DWORD NumberOfSymbols;
-  DWORD LvaToFirstSymbol;
-  DWORD NumberOfLinenumbers;
-  DWORD LvaToFirstLinenumber;
-  DWORD RvaToFirstByteOfCode;
-  DWORD RvaToLastByteOfCode;
-  DWORD RvaToFirstByteOfData;
-  DWORD RvaToLastByteOfData;
+  ::u32 NumberOfSymbols;
+  ::u32 LvaToFirstSymbol;
+  ::u32 NumberOfLinenumbers;
+  ::u32 LvaToFirstLinenumber;
+  ::u32 RvaToFirstByteOfCode;
+  ::u32 RvaToLastByteOfCode;
+  ::u32 RvaToFirstByteOfData;
+  ::u32 RvaToLastByteOfData;
 } IMAGE_COFF_SYMBOLS_HEADER, *PIMAGE_COFF_SYMBOLS_HEADER;
 
 #define FRAME_FPO       0
@@ -3745,93 +3745,93 @@ typedef struct _IMAGE_COFF_SYMBOLS_HEADER {
 #define FRAME_NONFPO    3
 
 typedef struct _FPO_DATA {
-  DWORD ulOffStart;
-  DWORD cbProcSize;
-  DWORD cdwLocals;
-  WORD  cdwParams;
-  WORD  cbProlog : 8;
-  WORD  cbRegs   : 3;
-  WORD  fHasSEH  : 1;
-  WORD  fUseBP   : 1;
-  WORD  reserved : 1;
-  WORD  cbFrame  : 2;
+  ::u32 ulOffStart;
+  ::u32 cbProcSize;
+  ::u32 cdwLocals;
+  ::u16  cdwParams;
+  ::u16  cbProlog : 8;
+  ::u16  cbRegs   : 3;
+  ::u16  fHasSEH  : 1;
+  ::u16  fUseBP   : 1;
+  ::u16  reserved : 1;
+  ::u16  cbFrame  : 2;
 } FPO_DATA, *PFPO_DATA;
 
 typedef struct _IMAGE_LOAD_CONFIG_DIRECTORY {
-  DWORD Size;
-  DWORD TimeDateStamp;
-  WORD  MajorVersion;
-  WORD  MinorVersion;
-  DWORD GlobalFlagsClear;
-  DWORD GlobalFlagsSet;
-  DWORD CriticalSectionDefaultTimeout;
-  DWORD DeCommitFreeBlockThreshold;
-  DWORD DeCommitTotalFreeThreshold;
+  ::u32 Size;
+  ::u32 TimeDateStamp;
+  ::u16  MajorVersion;
+  ::u16  MinorVersion;
+  ::u32 GlobalFlagsClear;
+  ::u32 GlobalFlagsSet;
+  ::u32 CriticalSectionDefaultTimeout;
+  ::u32 DeCommitFreeBlockThreshold;
+  ::u32 DeCommitTotalFreeThreshold;
   PVOID LockPrefixTable;
-  DWORD MaximumAllocationSize;
-  DWORD VirtualMemoryThreshold;
-  DWORD ProcessHeapFlags;
-  DWORD ProcessAffinityMask;
-  WORD  CSDVersion;
-  WORD  Reserved1;
+  ::u32 MaximumAllocationSize;
+  ::u32 VirtualMemoryThreshold;
+  ::u32 ProcessHeapFlags;
+  ::u32 ProcessAffinityMask;
+  ::u16  CSDVersion;
+  ::u16  Reserved1;
   PVOID EditList;
-  DWORD SecurityCookie;
-  DWORD SEHandlerTable;
-  DWORD SEHandlerCount;
+  ::u32 SecurityCookie;
+  ::u32 SEHandlerTable;
+  ::u32 SEHandlerCount;
 } IMAGE_LOAD_CONFIG_DIRECTORY, *PIMAGE_LOAD_CONFIG_DIRECTORY;
 
 typedef struct _IMAGE_FUNCTION_ENTRY {
-  DWORD StartingAddress;
-  DWORD EndingAddress;
-  DWORD EndOfPrologue;
+  ::u32 StartingAddress;
+  ::u32 EndingAddress;
+  ::u32 EndOfPrologue;
 } IMAGE_FUNCTION_ENTRY, *PIMAGE_FUNCTION_ENTRY;
 
 #define IMAGE_DEBUG_MISC_EXENAME    1
 
 typedef struct _IMAGE_DEBUG_MISC {
-    DWORD       DataType;
-    DWORD       Length;
-    BYTE        Unicode;
-    BYTE        Reserved[ 3 ];
-    BYTE        Data[ 1 ];
+    ::u32       DataType;
+    ::u32       Length;
+    byte        Unicode;
+    byte        Reserved[ 3 ];
+    byte        Data[ 1 ];
 } IMAGE_DEBUG_MISC, *PIMAGE_DEBUG_MISC;
 
 /* This is the structure that appears at the very start of a .DBG file. */
 
 typedef struct _IMAGE_SEPARATE_DEBUG_HEADER {
-	WORD	Signature;
-	WORD	Flags;
-	WORD	Machine;
-	WORD	Characteristics;
-	DWORD	TimeDateStamp;
-	DWORD	CheckSum;
-	DWORD	ImageBase;
-	DWORD	SizeOfImage;
-	DWORD	NumberOfSections;
-	DWORD	ExportedNamesSize;
-	DWORD	DebugDirectorySize;
-	DWORD	SectionAlignment;
-	DWORD	Reserved[ 2 ];
+	::u16	Signature;
+	::u16	Flags;
+	::u16	Machine;
+	::u16	Characteristics;
+	::u32	TimeDateStamp;
+	::u32	CheckSum;
+	::u32	ImageBase;
+	::u32	SizeOfImage;
+	::u32	NumberOfSections;
+	::u32	ExportedNamesSize;
+	::u32	DebugDirectorySize;
+	::u32	SectionAlignment;
+	::u32	Reserved[ 2 ];
 } IMAGE_SEPARATE_DEBUG_HEADER,*PIMAGE_SEPARATE_DEBUG_HEADER;
 
 #define IMAGE_SEPARATE_DEBUG_SIGNATURE 0x4944
 
 
 typedef struct tagMESSAGE_RESOURCE_ENTRY {
-	WORD	Length;
-	WORD	Flags;
-	BYTE	Text[1];
+	::u16	Length;
+	::u16	Flags;
+	byte	Text[1];
 } MESSAGE_RESOURCE_ENTRY,*PMESSAGE_RESOURCE_ENTRY;
 #define	MESSAGE_RESOURCE_UNICODE	0x0001
 
 typedef struct tagMESSAGE_RESOURCE_BLOCK {
-	DWORD	LowId;
-	DWORD	HighId;
-	DWORD	OffsetToEntries;
+	::u32	LowId;
+	::u32	HighId;
+	::u32	OffsetToEntries;
 } MESSAGE_RESOURCE_BLOCK,*PMESSAGE_RESOURCE_BLOCK;
 
 typedef struct tagMESSAGE_RESOURCE_DATA {
-	DWORD			NumberOfBlocks;
+	::u32			NumberOfBlocks;
 	MESSAGE_RESOURCE_BLOCK	Blocks[ 1 ];
 } MESSAGE_RESOURCE_DATA,*PMESSAGE_RESOURCE_DATA;
 
@@ -3923,7 +3923,7 @@ typedef enum _TOKEN_INFORMATION_CLASS {
 #define _SECURITY_DEFINED
 
 
-typedef DWORD ACCESS_MASK, *PACCESS_MASK;
+typedef ::u32 ACCESS_MASK, *PACCESS_MASK;
 
 typedef struct _GENERIC_MAPPING {
     ACCESS_MASK GenericRead;
@@ -3935,17 +3935,17 @@ typedef struct _GENERIC_MAPPING {
 #ifndef SID_IDENTIFIER_AUTHORITY_DEFINED
 #define SID_IDENTIFIER_AUTHORITY_DEFINED
 typedef struct {
-    BYTE Value[6];
+    byte Value[6];
 } SID_IDENTIFIER_AUTHORITY, *PSID_IDENTIFIER_AUTHORITY;
 #endif /* !defined(SID_IDENTIFIER_AUTHORITY_DEFINED) */
 
 #ifndef SID_DEFINED
 #define SID_DEFINED
 typedef struct _SID {
-    BYTE Revision;
-    BYTE SubAuthorityCount;
+    byte Revision;
+    byte SubAuthorityCount;
     SID_IDENTIFIER_AUTHORITY IdentifierAuthority;
-    DWORD SubAuthority[1];
+    ::u32 SubAuthority[1];
 } SID,*PISID;
 #endif /* !defined(SID_DEFINED) */
 
@@ -3953,7 +3953,7 @@ typedef struct _SID {
 #define	SID_MAX_SUB_AUTHORITIES		(15)	/* current max subauths */
 #define	SID_RECOMMENDED_SUB_AUTHORITIES	(1)	/* recommended subauths */
 
-#define SECURITY_MAX_SID_SIZE (sizeof(SID) - sizeof(DWORD) + (SID_MAX_SUB_AUTHORITIES * sizeof(DWORD)))
+#define SECURITY_MAX_SID_SIZE (sizeof(SID) - sizeof(::u32) + (SID_MAX_SUB_AUTHORITIES * sizeof(::u32)))
 
 /*
  * ACL
@@ -3970,11 +3970,11 @@ typedef struct _SID {
 #define ACL_REVISION 2
 
 typedef struct _ACL {
-    BYTE AclRevision;
-    BYTE Sbz1;
-    WORD AclSize;
-    WORD AceCount;
-    WORD Sbz2;
+    byte AclRevision;
+    byte Sbz1;
+    ::u16 AclSize;
+    ::u16 AceCount;
+    ::u16 Sbz2;
 } ACL, *PACL;
 
 typedef enum _ACL_INFORMATION_CLASS
@@ -3985,14 +3985,14 @@ typedef enum _ACL_INFORMATION_CLASS
 
 typedef struct _ACL_REVISION_INFORMATION
 {
-    DWORD AclRevision;
+    ::u32 AclRevision;
 } ACL_REVISION_INFORMATION, *PACL_REVISION_INFORMATION;
 
 typedef struct _ACL_SIZE_INFORMATION
 {
-    DWORD AceCount;
-    DWORD AclBytesInUse;
-    DWORD AclBytesFree;
+    ::u32 AceCount;
+    ::u32 AclBytesInUse;
+    ::u32 AclBytesFree;
 } ACL_SIZE_INFORMATION, *PACL_SIZE_INFORMATION;
 
 /* SECURITY_DESCRIPTOR */
@@ -4063,23 +4063,23 @@ typedef struct _ACL_SIZE_INFORMATION
 #define SE_RM_CONTROL_VALID		0x00004000
 #define SE_SELF_RELATIVE		0x00008000
 
-typedef DWORD SECURITY_INFORMATION, *PSECURITY_INFORMATION;
-typedef WORD SECURITY_DESCRIPTOR_CONTROL, *PSECURITY_DESCRIPTOR_CONTROL;
+typedef ::u32 SECURITY_INFORMATION, *PSECURITY_INFORMATION;
+typedef ::u16 SECURITY_DESCRIPTOR_CONTROL, *PSECURITY_DESCRIPTOR_CONTROL;
 
 /* The security descriptor structure */
 typedef struct {
-    BYTE Revision;
-    BYTE Sbz1;
+    byte Revision;
+    byte Sbz1;
     SECURITY_DESCRIPTOR_CONTROL Control;
-    DWORD Owner;
-    DWORD Group;
-    DWORD Sacl;
-    DWORD Dacl;
+    ::u32 Owner;
+    ::u32 Group;
+    ::u32 Sacl;
+    ::u32 Dacl;
 } SECURITY_DESCRIPTOR_RELATIVE, *PISECURITY_DESCRIPTOR_RELATIVE;
 
 typedef struct {
-    BYTE Revision;
-    BYTE Sbz1;
+    byte Revision;
+    byte Sbz1;
     SECURITY_DESCRIPTOR_CONTROL Control;
     PSID Owner;
     PSID Group;
@@ -4097,7 +4097,7 @@ typedef struct {
 
 typedef struct _SID_AND_ATTRIBUTES {
   PSID  Sid;
-  DWORD Attributes;
+  ::u32 Attributes;
 } SID_AND_ATTRIBUTES, *PSID_AND_ATTRIBUTES;
 
 /* security entities */
@@ -4306,7 +4306,7 @@ typedef struct _TOKEN_USER {
  */
 
 typedef struct _TOKEN_GROUPS {
-    DWORD GroupCount;
+    ::u32 GroupCount;
     SID_AND_ATTRIBUTES Groups[ANYSIZE_ARRAY];
 } TOKEN_GROUPS, *PTOKEN_GROUPS;
 
@@ -4317,45 +4317,45 @@ typedef struct _TOKEN_GROUPS {
 typedef union _LARGE_INTEGER {
     struct {
 #ifdef WORDS_BIGENDIAN
-        LONG     HighPart;
-        DWORD    LowPart;
+        ::i32     HighPart;
+        ::u32    LowPart;
 #else
-        DWORD    LowPart;
-        LONG     HighPart;
+        ::u32    LowPart;
+        ::i32     HighPart;
 #endif
     } u;
 #ifndef NONAMELESSSTRUCT
     struct {
 #ifdef WORDS_BIGENDIAN
-        LONG     HighPart;
-        DWORD    LowPart;
+        ::i32     HighPart;
+        ::u32    LowPart;
 #else
-        DWORD    LowPart;
-        LONG     HighPart;
+        ::u32    LowPart;
+        ::i32     HighPart;
 #endif
     };
 #endif
-    LONGLONG QuadPart;
+    ::i64 QuadPart;
 } LARGE_INTEGER, *PLARGE_INTEGER;
 
 typedef union _ULARGE_INTEGER {
     struct {
 #ifdef WORDS_BIGENDIAN
-        DWORD    HighPart;
-        DWORD    LowPart;
+        ::u32    HighPart;
+        ::u32    LowPart;
 #else
-        DWORD    LowPart;
-        DWORD    HighPart;
+        ::u32    LowPart;
+        ::u32    HighPart;
 #endif
     } u;
 #ifndef NONAMELESSSTRUCT
     struct {
 #ifdef WORDS_BIGENDIAN
-        DWORD    HighPart;
-        DWORD    LowPart;
+        ::u32    HighPart;
+        ::u32    LowPart;
 #else
-        DWORD    LowPart;
-        DWORD    HighPart;
+        ::u32    LowPart;
+        ::u32    HighPart;
 #endif
     };
 #endif
@@ -4367,14 +4367,14 @@ typedef union _ULARGE_INTEGER {
  */
 
 typedef struct _LUID {
-    DWORD LowPart;
-    LONG HighPart;
+    ::u32 LowPart;
+    ::i32 HighPart;
 } LUID, *PLUID;
 
 //#include "windows_pshpack4.h"
 //typedef struct _LUID_AND_ATTRIBUTES {
 //  LUID   Luid;
-//  DWORD  Attributes;
+//  ::u32  Attributes;
 //} LUID_AND_ATTRIBUTES, *PLUID_AND_ATTRIBUTES;
 //#include "windows_poppack.h"
 
@@ -4383,8 +4383,8 @@ typedef struct _LUID {
  */
 
 //typedef struct _PRIVILEGE_SET {
-//    DWORD PrivilegeCount;
-//    DWORD Control;
+//    ::u32 PrivilegeCount;
+//    ::u32 Control;
 //    LUID_AND_ATTRIBUTES Privilege[ANYSIZE_ARRAY];
 //} PRIVILEGE_SET, *PPRIVILEGE_SET;
 
@@ -4393,7 +4393,7 @@ typedef struct _LUID {
  */
 
 //typedef struct _TOKEN_PRIVILEGES {
-//  DWORD PrivilegeCount;
+//  ::u32 PrivilegeCount;
 //  LUID_AND_ATTRIBUTES Privileges[ANYSIZE_ARRAY];
 //} TOKEN_PRIVILEGES, *PTOKEN_PRIVILEGES;
 
@@ -4463,7 +4463,7 @@ typedef WINBOOLEAN SECURITY_CONTEXT_TRACKING_MODE,
  */
 
 typedef struct _SECURITY_QUALITY_OF_SERVICE {
-  DWORD				Length;
+  ::u32				Length;
   SECURITY_IMPERSONATION_LEVEL	ImpersonationLevel;
   SECURITY_CONTEXT_TRACKING_MODE ContextTrackingMode;
   WINBOOLEAN			EffectiveOnly;
@@ -4480,23 +4480,23 @@ typedef struct _SECURITY_QUALITY_OF_SERVICE {
 //  LARGE_INTEGER ExpirationTime;
 //  TOKEN_TYPE    TokenType;
 //  SECURITY_IMPERSONATION_LEVEL ImpersonationLevel;
-//  DWORD DynamicCharged;
-//  DWORD Dynamicavailable;
-//  DWORD GroupCount;
-//  DWORD PrivilegeCount;
+//  ::u32 DynamicCharged;
+//  ::u32 Dynamicavailable;
+//  ::u32 GroupCount;
+//  ::u32 PrivilegeCount;
 //  LUID  ModifiedId;
 //} TOKEN_STATISTICS;
 //#include "windows_poppack.h"
 
 //typedef struct _TOKEN_GROUPS_AND_PRIVILEGES {
-//  DWORD                 SidCount;
-//  DWORD                 SidLength;
+//  ::u32                 SidCount;
+//  ::u32                 SidLength;
 //  PSID_AND_ATTRIBUTES   Sids;
-//  DWORD                 RestrictedSidCount;
-//  DWORD                 RestrictedSidLength;
+//  ::u32                 RestrictedSidCount;
+//  ::u32                 RestrictedSidLength;
 //  PSID_AND_ATTRIBUTES   RestrictedSids;
-//  DWORD                 PrivilegeCount;
-//  DWORD                 PrivilegeLength;
+//  ::u32                 PrivilegeCount;
+//  ::u32                 PrivilegeLength;
 //  PLUID_AND_ATTRIBUTES  Privileges;
 //  LUID                  AuthenticationId;
 //} TOKEN_GROUPS_AND_PRIVILEGES, * PTOKEN_GROUPS_AND_PRIVILEGES;
@@ -4510,7 +4510,7 @@ typedef struct _TOKEN_LINKED_TOKEN {
 } TOKEN_LINKED_TOKEN, * PTOKEN_LINKED_TOKEN;
 
 typedef struct _TOKEN_ELEVATION {
-  DWORD TokenIsElevated;
+  ::u32 TokenIsElevated;
 } TOKEN_ELEVATION, * PTOKEN_ELEVATION;
 
 
@@ -4520,9 +4520,9 @@ typedef struct _TOKEN_ELEVATION {
 
 /* ACEs, directly starting after an ACL */
 typedef struct _ACE_HEADER {
-	BYTE	AceType;
-	BYTE	AceFlags;
-	WORD	AceSize;
+	byte	AceType;
+	byte	AceFlags;
+	::u16	AceSize;
 } ACE_HEADER,*PACE_HEADER;
 
 /* AceType */
@@ -4552,26 +4552,26 @@ typedef struct _ACE_HEADER {
  */
 typedef struct _ACCESS_ALLOWED_ACE {
 	ACE_HEADER	Header;
-	DWORD		Mask;
-	DWORD		SidStart;
+	::u32		Mask;
+	::u32		SidStart;
 } ACCESS_ALLOWED_ACE,*PACCESS_ALLOWED_ACE;
 
 typedef struct _ACCESS_DENIED_ACE {
 	ACE_HEADER	Header;
-	DWORD		Mask;
-	DWORD		SidStart;
+	::u32		Mask;
+	::u32		SidStart;
 } ACCESS_DENIED_ACE,*PACCESS_DENIED_ACE;
 
 typedef struct _SYSTEM_AUDIT_ACE {
 	ACE_HEADER	Header;
-	DWORD		Mask;
-	DWORD		SidStart;
+	::u32		Mask;
+	::u32		SidStart;
 } SYSTEM_AUDIT_ACE,*PSYSTEM_AUDIT_ACE;
 
 typedef struct _SYSTEM_ALARM_ACE {
 	ACE_HEADER	Header;
-	DWORD		Mask;
-	DWORD		SidStart;
+	::u32		Mask;
+	::u32		SidStart;
 } SYSTEM_ALARM_ACE,*PSYSTEM_ALARM_ACE;
 
 typedef enum tagSID_NAME_USE {
@@ -4691,8 +4691,8 @@ typedef struct _QUOTA_LIMITS_EX {
     SIZE_T Reserved2;
     SIZE_T Reserved3;
     SIZE_T Reserved4;
-    DWORD Flags;
-    DWORD Reserved5;
+    ::u32 Flags;
+    ::u32 Reserved5;
 } QUOTA_LIMITS_EX, *PQUOTA_LIMITS_EX;
 
 #define SECTION_QUERY              0x0001
@@ -4799,17 +4799,17 @@ typedef struct _QUOTA_LIMITS_EX {
 #define	FILE_256_BYTE_ALIGNMENT		0x000000ff
 #define	FILE_512_BYTE_ALIGNMENT		0x000001ff
 
-#define MAILSLOT_NO_MESSAGE             ((DWORD)-1)
-#define MAILSLOT_WAIT_FOREVER           ((DWORD)-1)
+#define MAILSLOT_NO_MESSAGE             ((::u32)-1)
+#define MAILSLOT_WAIT_FOREVER           ((::u32)-1)
 
 #define REG_NONE		0	/* no type */
 #define REG_SZ			1	/* string type (ASCII) */
 #define REG_EXPAND_SZ		2	/* string, includes %ENVVAR% (expanded by caller) (ASCII) */
 #define REG_BINARY		3	/* binary format, callerspecific */
 /* YES, REG_DWORD == REG_DWORD_LITTLE_ENDIAN */
-#define REG_DWORD		4	/* DWORD in little endian format */
-#define REG_DWORD_LITTLE_ENDIAN	4	/* DWORD in little endian format */
-#define REG_DWORD_BIG_ENDIAN	5	/* DWORD in big endian format  */
+#define REG_DWORD		4	/* ::u32 in little endian format */
+#define REG_DWORD_LITTLE_ENDIAN	4	/* ::u32 in little endian format */
+#define REG_DWORD_BIG_ENDIAN	5	/* ::u32 in big endian format  */
 #define REG_LINK		6	/* symbolic link (UNICODE) */
 #define REG_MULTI_SZ		7	/* multiple strings, delimited by \0, terminated by \0\0 (ASCII) */
 #define REG_RESOURCE_LIST	8	/* resource list? huh? */
@@ -4939,12 +4939,12 @@ typedef struct _PROCESSOR_POWER_POLICY_INFO {
 *PPROCESSOR_POWER_POLICY_INFO;
 
 typedef struct _PROCESSOR_POWER_POLICY {
-	DWORD Revision;
-	BYTE DynamicThrottle;
-	BYTE Spare[3];
-	DWORD DisableCStates:1;
-	DWORD Reserved:31;
-	DWORD PolicyCount;
+	::u32 Revision;
+	byte DynamicThrottle;
+	byte Spare[3];
+	::u32 DisableCStates:1;
+	::u32 Reserved:31;
+	::u32 PolicyCount;
 	PROCESSOR_POWER_POLICY_INFO Policy[3];
 } PROCESSOR_POWER_POLICY,
 *PPROCESSOR_POWER_POLICY;
@@ -5051,9 +5051,9 @@ typedef union _FILE_SEGMENT_ELEMENT {
 } FILE_SEGMENT_ELEMENT, *PFILE_SEGMENT_ELEMENT;
 
 typedef struct _FILE_NOTIFY_INFORMATION {
-	DWORD NextEntryOffset;
-	DWORD Action;
-	DWORD FileNameLength;
+	::u32 NextEntryOffset;
+	::u32 Action;
+	::u32 FileNameLength;
 	WCHAR FileName[1];
 } FILE_NOTIFY_INFORMATION, *PFILE_NOTIFY_INFORMATION;
 
@@ -5086,18 +5086,18 @@ typedef struct _FILE_NOTIFY_INFORMATION {
 #define TAPE_SPACE_SEQUENTIAL_SMKS 9
 
 typedef struct _TAPE_CREATE_PARTITION {
-    DWORD Method;
-    DWORD Count;
-    DWORD Size;
+    ::u32 Method;
+    ::u32 Count;
+    ::u32 Size;
 } TAPE_CREATE_PARTITION, *PTAPE_CREATE_PARTITION;
 
 typedef struct _TAPE_ERASE {
-    DWORD Type;
+    ::u32 Type;
     WINBOOLEAN Immediate;
 } TAPE_ERASE, *PTAPE_ERASE;
 
 typedef struct _TAPE_PREPARE {
-    DWORD Operation;
+    ::u32 Operation;
     WINBOOLEAN Immediate;
 } TAPE_PREPARE, *PTAPE_PREPARE;
 
@@ -5114,8 +5114,8 @@ typedef struct _TAPE_SET_MEDIA_PARAMETERS {
 } TAPE_SET_MEDIA_PARAMETERS, *PTAPE_SET_MEDIA_PARAMETERS;
 
 typedef struct _TAPE_WRITE_MARKS {
-    DWORD Type;
-    DWORD Count;
+    ::u32 Type;
+    ::u32 Count;
     WINBOOLEAN Immediate;
 } TAPE_WRITE_MARKS, *PTAPE_WRITE_MARKS;
 
@@ -5138,20 +5138,20 @@ typedef struct _TAPE_GET_DRIVE_PARAMETERS {
     WINBOOLEAN Compression;
     WINBOOLEAN DataPadding;
     WINBOOLEAN ReportSetmarks;
-    DWORD DefaultBlockSize;
-    DWORD MaximumBlockSize;
-    DWORD MinimumBlockSize;
-    DWORD MaximumPartitionCount;
-    DWORD FeaturesLow;
-    DWORD FeaturesHigh;
-    DWORD EOTWarningZoneSize;
+    ::u32 DefaultBlockSize;
+    ::u32 MaximumBlockSize;
+    ::u32 MinimumBlockSize;
+    ::u32 MaximumPartitionCount;
+    ::u32 FeaturesLow;
+    ::u32 FeaturesHigh;
+    ::u32 EOTWarningZoneSize;
 } TAPE_GET_DRIVE_PARAMETERS, *PTAPE_GET_DRIVE_PARAMETERS;
 
 typedef struct _TAPE_GET_MEDIA_PARAMETERS {
     LARGE_INTEGER Capacity;
     LARGE_INTEGER Remaining;
-    DWORD BlockSize;
-    DWORD PartitionCount;
+    ::u32 BlockSize;
+    ::u32 PartitionCount;
     WINBOOLEAN WriteProtected;
 } TAPE_GET_MEDIA_PARAMETERS, *PTAPE_GET_MEDIA_PARAMETERS;
 
@@ -5239,22 +5239,22 @@ typedef struct _TAPE_GET_MEDIA_PARAMETERS {
 #define EVENTLOG_BACKWARDS_READ         0x0008
 
 typedef struct _EVENTLOGRECORD {
-    DWORD  Length;
-    DWORD  Reserved;
-    DWORD  RecordNumber;
-    DWORD  TimeGenerated;
-    DWORD  TimeWritten;
-    DWORD  EventID;
-    WORD   EventType;
-    WORD   NumStrings;
-    WORD   EventCategory;
-    WORD   ReservedFlags;
-    DWORD  ClosingRecordNumber;
-    DWORD  StringOffset;
-    DWORD  UserSidLength;
-    DWORD  UserSidOffset;
-    DWORD  DataLength;
-    DWORD  DataOffset;
+    ::u32  Length;
+    ::u32  Reserved;
+    ::u32  RecordNumber;
+    ::u32  TimeGenerated;
+    ::u32  TimeWritten;
+    ::u32  EventID;
+    ::u16   EventType;
+    ::u16   NumStrings;
+    ::u16   EventCategory;
+    ::u16   ReservedFlags;
+    ::u32  ClosingRecordNumber;
+    ::u32  StringOffset;
+    ::u32  UserSidLength;
+    ::u32  UserSidOffset;
+    ::u32  DataLength;
+    ::u32  DataOffset;
 } EVENTLOGRECORD, *PEVENTLOGRECORD;
 
 #define SERVICE_BOOT_START   0x00000000
@@ -5325,30 +5325,30 @@ typedef enum _CM_ERROR_CONTROL_TYPE
 #include "windows_guid_def.h"
 
 typedef struct _OBJECT_TYPE_LIST {
-    WORD   Level;
-    WORD   Sbz;
+    ::u16   Level;
+    ::u16   Sbz;
     GUID *ObjectType;
 } OBJECT_TYPE_LIST, *POBJECT_TYPE_LIST;
 
 typedef struct _RTL_CRITICAL_SECTION_DEBUG
 {
-  WORD   Type;
-  WORD   CreatorBackTraceIndex;
+  ::u16   Type;
+  ::u16   CreatorBackTraceIndex;
   struct _RTL_CRITICAL_SECTION *CriticalSection;
   LIST_ENTRY ProcessLocksList;
-  DWORD EntryCount;
-  DWORD ContentionCount;
+  ::u32 EntryCount;
+  ::u32 ContentionCount;
 #ifdef __WINESRC__  /* in Wine we store the name here */
   DWORD_PTR Spare[8/sizeof(DWORD_PTR)];
 #else
-  DWORD Spare[ 2 ];
+  ::u32 Spare[ 2 ];
 #endif
 } RTL_CRITICAL_SECTION_DEBUG, *PRTL_CRITICAL_SECTION_DEBUG, RTL_RESOURCE_DEBUG, *PRTL_RESOURCE_DEBUG;
 
 typedef struct _RTL_CRITICAL_SECTION {
     PRTL_CRITICAL_SECTION_DEBUG DebugInfo;
-    LONG LockCount;
-    LONG RecursionCount;
+    ::i32 LockCount;
+    ::i32 RecursionCount;
     HANDLE OwningThread;
     HANDLE LockSemaphore;
     ULONG_PTR SpinCount;
@@ -5375,20 +5375,20 @@ typedef VOID (NTAPI * PFLS_CALLBACK_FUNCTION) ( PVOID );
 //#include "windows_poppack.h"
 
 //typedef struct {
-//	DWORD dwOSVersionInfoSize;
-//	DWORD dwMajorVersion;
-//	DWORD dwMinorVersion;
-//	DWORD dwBuildNumber;
-//	DWORD dwPlatformId;
+//	::u32 dwOSVersionInfoSize;
+//	::u32 dwMajorVersion;
+//	::u32 dwMinorVersion;
+//	::u32 dwBuildNumber;
+//	::u32 dwPlatformId;
 //	CHAR szCSDVersion[128];
 //} OSVERSIONINFOA, *POSVERSIONINFOA, *LPOSVERSIONINFOA;
 
 typedef struct {
-	DWORD dwOSVersionInfoSize;
-	DWORD dwMajorVersion;
-	DWORD dwMinorVersion;
-	DWORD dwBuildNumber;
-	DWORD dwPlatformId;
+	::u32 dwOSVersionInfoSize;
+	::u32 dwMajorVersion;
+	::u32 dwMinorVersion;
+	::u32 dwBuildNumber;
+	::u32 dwPlatformId;
 	WCHAR szCSDVersion[128];
 } OSVERSIONINFOW, *POSVERSIONINFOW, *LPOSVERSIONINFOW, RTL_OSVERSIONINFOW, *PRTL_OSVERSIONINFOW;
 
@@ -5399,24 +5399,24 @@ DECL_WINELIB_TYPE_AW(LPOSVERSIONINFO)
 
 
 typedef struct {
-	DWORD dwOSVersionInfoSize;
-	DWORD dwMajorVersion;
-	DWORD dwMinorVersion;
-	DWORD dwBuildNumber;
-	DWORD dwPlatformId;
+	::u32 dwOSVersionInfoSize;
+	::u32 dwMajorVersion;
+	::u32 dwMinorVersion;
+	::u32 dwBuildNumber;
+	::u32 dwPlatformId;
 	WCHAR szCSDVersion[128];
-	WORD wServicePackMajor;
-	WORD wServicePackMinor;
-	WORD wSuiteMask;
-	BYTE wProductType;
-	BYTE wReserved;
+	::u16 wServicePackMajor;
+	::u16 wServicePackMinor;
+	::u16 wSuiteMask;
+	byte wProductType;
+	byte wReserved;
 } OSVERSIONINFOEXW, *POSVERSIONINFOEXW, *LPOSVERSIONINFOEXW, RTL_OSVERSIONINFOEXW, *PRTL_OSVERSIONINFOEXW;
 
 DECL_WINELIB_TYPE_AW(OSVERSIONINFOEX)
 DECL_WINELIB_TYPE_AW(POSVERSIONINFOEX)
 DECL_WINELIB_TYPE_AW(LPOSVERSIONINFOEX)
 
-NTSYSAPI ULONGLONG WINAPI VerSetConditionMask(ULONGLONG,DWORD,BYTE);
+NTSYSAPI ULONGLONG WINAPI VerSetConditionMask(ULONGLONG,::u32,byte);
 
 #define VER_SET_CONDITION(_m_,_t_,_c_) ((_m_)=VerSetConditionMask((_m_),(_t_),(_c_)))
 
@@ -5457,53 +5457,53 @@ NTSYSAPI ULONGLONG WINAPI VerSetConditionMask(ULONGLONG,DWORD,BYTE);
 #define	VER_OR					7
 
 typedef struct _ACTIVATION_CONTEXT_DETAILED_INFORMATION {
-    DWORD dwFlags;
-    DWORD ulFormatVersion;
-    DWORD ulAssemblyCount;
-    DWORD ulRootManifestPathType;
-    DWORD ulRootManifestPathChars;
-    DWORD ulRootConfigurationPathType;
-    DWORD ulRootConfigurationPathChars;
-    DWORD ulAppDirPathType;
-    DWORD ulAppDirPathChars;
+    ::u32 dwFlags;
+    ::u32 ulFormatVersion;
+    ::u32 ulAssemblyCount;
+    ::u32 ulRootManifestPathType;
+    ::u32 ulRootManifestPathChars;
+    ::u32 ulRootConfigurationPathType;
+    ::u32 ulRootConfigurationPathChars;
+    ::u32 ulAppDirPathType;
+    ::u32 ulAppDirPathChars;
     PCWSTR lpRootManifestPath;
     PCWSTR lpRootConfigurationPath;
     PCWSTR lpAppDirPath;
 } ACTIVATION_CONTEXT_DETAILED_INFORMATION, *PACTIVATION_CONTEXT_DETAILED_INFORMATION;
 
 typedef struct _ACTIVATION_CONTEXT_ASSEMBLY_DETAILED_INFORMATION {
-    DWORD ulFlags;
-    DWORD ulEncodedAssemblyIdentityLength;
-    DWORD ulManifestPathType;
-    DWORD ulManifestPathLength;
+    ::u32 ulFlags;
+    ::u32 ulEncodedAssemblyIdentityLength;
+    ::u32 ulManifestPathType;
+    ::u32 ulManifestPathLength;
     LARGE_INTEGER liManifestLastWriteTime;
-    DWORD ulPolicyPathType;
-    DWORD ulPolicyPathLength;
+    ::u32 ulPolicyPathType;
+    ::u32 ulPolicyPathLength;
     LARGE_INTEGER liPolicyLastWriteTime;
-    DWORD ulMetadataSatelliteRosterIndex;
-    DWORD ulManifestVersionMajor;
-    DWORD ulManifestVersionMinor;
-    DWORD ulPolicyVersionMajor;
-    DWORD ulPolicyVersionMinor;
-    DWORD ulAssemblyDirectoryNameLength;
+    ::u32 ulMetadataSatelliteRosterIndex;
+    ::u32 ulManifestVersionMajor;
+    ::u32 ulManifestVersionMinor;
+    ::u32 ulPolicyVersionMajor;
+    ::u32 ulPolicyVersionMinor;
+    ::u32 ulAssemblyDirectoryNameLength;
     PCWSTR lpAssemblyEncodedAssemblyIdentity;
     PCWSTR lpAssemblyManifestPath;
     PCWSTR lpAssemblyPolicyPath;
     PCWSTR lpAssemblyDirectoryName;
-    DWORD  ulFileCount;
+    ::u32  ulFileCount;
 } ACTIVATION_CONTEXT_ASSEMBLY_DETAILED_INFORMATION, *PACTIVATION_CONTEXT_ASSEMBLY_DETAILED_INFORMATION;
 
 typedef struct _ACTIVATION_CONTEXT_QUERY_INDEX {
-    DWORD ulAssemblyIndex;
-    DWORD ulFileIndexInAssembly;
+    ::u32 ulAssemblyIndex;
+    ::u32 ulFileIndexInAssembly;
 } ACTIVATION_CONTEXT_QUERY_INDEX, *PACTIVATION_CONTEXT_QUERY_INDEX;
 
 typedef const struct _ACTIVATION_CONTEXT_QUERY_INDEX *PCACTIVATION_CONTEXT_QUERY_INDEX;
 
 typedef struct _ASSEMBLY_FILE_DETAILED_INFORMATION {
-    DWORD ulFlags;
-    DWORD ulFilenameLength;
-    DWORD ulPathLength;
+    ::u32 ulFlags;
+    ::u32 ulFilenameLength;
+    ::u32 ulPathLength;
     PCWSTR lpFileName;
     PCWSTR lpFilePath;
 } ASSEMBLY_FILE_DETAILED_INFORMATION, *PASSEMBLY_FILE_DETAILED_INFORMATION;
@@ -5571,59 +5571,59 @@ typedef enum _PROCESSOR_CACHE_TYPE
 
 typedef struct _PROCESSOR_GROUP_INFO
 {
-    BYTE MaximumProcessorCount;
-    BYTE ActiveProcessorCount;
-    BYTE Reserved[38];
+    byte MaximumProcessorCount;
+    byte ActiveProcessorCount;
+    byte Reserved[38];
     KAFFINITY ActiveProcessorMask;
 } PROCESSOR_GROUP_INFO, *PPROCESSOR_GROUP_INFO;
 
 typedef struct _CACHE_DESCRIPTOR
 {
-    BYTE Level;
-    BYTE Associativity;
-    WORD LineSize;
-    DWORD Size;
+    byte Level;
+    byte Associativity;
+    ::u16 LineSize;
+    ::u32 Size;
     PROCESSOR_CACHE_TYPE Type;
 } CACHE_DESCRIPTOR, *PCACHE_DESCRIPTOR;
 
 typedef struct _GROUP_AFFINITY
 {
     KAFFINITY Mask;
-    WORD Group;
-    WORD Reserved[3];
+    ::u16 Group;
+    ::u16 Reserved[3];
 } GROUP_AFFINITY, *PGROUP_AFFINITY;
 
 typedef struct _PROCESSOR_RELATIONSHIP
 {
-    BYTE Flags;
-    BYTE Reserved[21];
-    WORD GroupCount;
+    byte Flags;
+    byte Reserved[21];
+    ::u16 GroupCount;
     GROUP_AFFINITY GroupMask[ANYSIZE_ARRAY];
 } PROCESSOR_RELATIONSHIP, *PPROCESSOR_RELATIONSHIP;
 
 
 typedef struct _NUMA_NODE_RELATIONSHIP
 {
-    DWORD NodeNumber;
-    BYTE Reserved[20];
+    ::u32 NodeNumber;
+    byte Reserved[20];
     GROUP_AFFINITY GroupMask;
 } NUMA_NODE_RELATIONSHIP, *PNUMA_NODE_RELATIONSHIP;
 
 typedef struct _CACHE_RELATIONSHIP
 {
-    BYTE Level;
-    BYTE Associativity;
-    WORD LineSize;
+    byte Level;
+    byte Associativity;
+    ::u16 LineSize;
     PROCESSOR_CACHE_TYPE Type;
-    BYTE Reserved[20];
+    byte Reserved[20];
     GROUP_AFFINITY GroupMask;
 } CACHE_RELATIONSHIP, *PCACHE_RELATIONSHIP;
 
 typedef struct _GROUP_RELATIONSHIP
 {
-    WORD MaximumGroupCount;
-    WORD ActiveGroupCount;
-    BYTE Reserved[20];
+    ::u16 MaximumGroupCount;
+    ::u16 ActiveGroupCount;
+    byte Reserved[20];
     PROCESSOR_GROUP_INFO GroupInfo[ANYSIZE_ARRAY];
 } GROUP_RELATIONSHIP, *PGROUP_RELATIONSHIP;
 
@@ -5635,11 +5635,11 @@ typedef struct _SYSTEM_LOGICAL_PROCESSOR_INFORMATION
     {
         struct
         {
-            BYTE Flags;
+            byte Flags;
         } ProcessorCore;
         struct
         {
-            DWORD NodeNumber;
+            ::u32 NodeNumber;
         } NumaNode;
         CACHE_DESCRIPTOR cache;
         ULONGLONG Reserved[2];
@@ -5649,7 +5649,7 @@ typedef struct _SYSTEM_LOGICAL_PROCESSOR_INFORMATION
 typedef struct _SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX
 {
     LOGICAL_PROCESSOR_RELATIONSHIP Relationship;
-    DWORD Size;
+    ::u32 Size;
     union
     {
         PROCESSOR_RELATIONSHIP Processor;
@@ -5659,7 +5659,7 @@ typedef struct _SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX
     } DUMMYUNIONNAME;
 } SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX, *PSYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX;
 
-NTSYSAPI WINBOOLEAN NTAPI RtlGetProductInfo(DWORD,DWORD,DWORD,DWORD,PDWORD);
+NTSYSAPI WINBOOLEAN NTAPI RtlGetProductInfo(::u32,::u32,::u32,::u32,PDWORD);
 
 #ifdef __cplusplus
 }

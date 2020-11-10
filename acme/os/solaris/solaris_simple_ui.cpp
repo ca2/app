@@ -43,7 +43,7 @@ namespace os
    }
 
 
-   bool simple_ui::create_window(LPCRECT lpcrect)
+   bool simple_ui::create_window(LPCRECT32 lpcrect)
    {
 
       single_lock ml(&user_mutex());
@@ -183,7 +183,7 @@ namespace os
 
 
 
-   bool simple_ui::prepare_window(LPCRECT lpcrect)
+   bool simple_ui::prepare_window(LPCRECT32 lpcrect)
    {
 
       single_lock ml(&user_mutex());
@@ -496,13 +496,13 @@ namespace os
    }
 
 
-   void simple_ui::_001ClientToScreen(POINT * ppt)
+   void simple_ui::_001ClientToScreen(POINT32 * ppt)
    {
       //::_001ClientToScreen(m_window, ppt);
       ::user::interaction::_001ClientToScreen(ppt);
    }
 
-   void simple_ui::_001ScreenToClient(POINT * ppt)
+   void simple_ui::_001ScreenToClient(POINT32 * ppt)
    {
       //::_001ScreenToClient(m_window, ppt);
       ::user::interaction::_001ScreenToClient(ppt);
@@ -529,12 +529,12 @@ namespace os
       string str;
       //unichar wsz[32];
 
-      BYTE baState[256];
+      byte baState[256];
 
       xxf_zero(baState);
       for (int i = 0; i < 256; i++)
       {
-//         baState[i] = (BYTE)GetAsyncKeyState(i);
+//         baState[i] = (byte)GetAsyncKeyState(i);
       }
 
       baState[uiKey & 0xff] = 0x80;
@@ -555,9 +555,9 @@ namespace os
       sz[0] = uiKey;
       sz[1]  = '\0';
 
-      //i32 iRet = ToUnicodeEx((UINT)wparam, 0, baState, wsz, 32, 0, GetKeyboardLayout(GetCurrentThreadId()));
+      //i32 iRet = ToUnicodeEx((::u32)wparam, 0, baState, wsz, 32, 0, GetKeyboardLayout(GetCurrentThreadId()));
       str = sz;
-      on_char(static_cast<UINT>(uiKey), str);
+      on_char(static_cast<::u32>(uiKey), str);
 
       if (m_bShiftKey && uiKey == VK_SHIFT)
       {
@@ -571,13 +571,13 @@ namespace os
 
 
 
-   void simple_ui::get_window_rect(RECT * prect)
+   void simple_ui::get_window_rect(RECT32 * prect)
    {
 
       *prect = m_rectWindow;
 
    }
-   void simple_ui::get_client_rect(RECT * prect)
+   void simple_ui::get_client_rect(RECT32 * prect)
    {
 
       *prect = m_rectWindow;
@@ -639,7 +639,7 @@ namespace os
 
          //m_pimage->Fill(255, 184, 184, 177);
 
-/*         BYTE *dst = (BYTE*) m_pimage->get_data();
+/*         byte *dst = (byte*) m_pimage->get_data();
 
          i64 size = m_size.cx * m_size.cy;
 
@@ -692,7 +692,7 @@ namespace os
             dst += 4;
          }
 
-/*         m_xlib.update_window(m_window, (COLORREF *)m_pimage->get_data(), &rect, m_pimage->m_iScan);
+/*         m_xlib.update_window(m_window, (color32_t *)m_pimage->get_data(), &rect, m_pimage->m_iScan);
 
       }
 

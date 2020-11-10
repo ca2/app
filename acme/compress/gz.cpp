@@ -252,7 +252,7 @@ stop1:
 //   u32 crypto::crc32(u32 dwPrevious, const char * psz)
 //   {
 //
-//      return (u32) ::crc32(dwPrevious, (const u8 *)psz, (uInt)strlen(psz));
+//      return (u32) ::crc32(dwPrevious, (const u8 *)psz, (::u32)strlen(psz));
 //
 //   }
 //

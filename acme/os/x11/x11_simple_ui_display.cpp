@@ -347,7 +347,7 @@ void simple_ui_display::on_expose(Display * pdisplay)
 
          //GC gc = create_gc();
 
-         COLORREF crBk = get_simple_ui_color(::user::element_background);
+         color32_t crBk = get_simple_ui_color(::user::element_background);
 
 //         crBk = argb_swap_rb(crBk);
 //
@@ -359,7 +359,7 @@ void simple_ui_display::on_expose(Display * pdisplay)
 //
 //         auto gcontext = XGContextFromGC(gc);
 //
-//         COLORREF crText = get_simple_ui_color(::user::element_text);
+//         color32_t crText = get_simple_ui_color(::user::element_text);
 //
 //         crText = argb_swap_rb(crText);
 //

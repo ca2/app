@@ -12,7 +12,7 @@ namespace hotplugin
 {
 
 
-   void plugin::on_bare_paint_veri_discreet(::draw2d::graphics_pointer & pgraphics,const RECT & lprect)
+   void plugin::on_bare_paint_veri_discreet(::draw2d::graphics_pointer & pgraphics,const RECT32 & lprect)
    {
 
       double dRate = get_progress_rate();
@@ -24,11 +24,11 @@ namespace hotplugin
 
       }
 
-      RECT rectWindow;
+      RECT32 rectWindow;
       get_window_rect(&rectWindow);
       //  i32 cx = rectWindow.right - rectWindow.left;
       //i32 cy = rectWindow.bottom - rectWindow.top;
-      RECT rect = lprect;
+      RECT32 rect = lprect;
 
 
 
@@ -87,7 +87,7 @@ namespace hotplugin
 
       ::rect rectProgress(rectBar);
 
-      rectProgress.right = (LONG) (rectProgress.left + rectBar.width() * min(1.0, max(0.0, dRate)));
+      rectProgress.right = (::i32) (rectProgress.left + rectBar.width() * min(1.0, max(0.0, dRate)));
 
       ::rect rectProgressComplement(rectBar);
 
@@ -97,7 +97,7 @@ namespace hotplugin
 
       {
 
-         BYTE uchR,uchG,uchB;
+         byte uchR,uchG,uchB;
          ::draw2d::brush_pointer br(e_create);
          get_progress_color(uchR,uchG,uchB,dRate,0);
          br->create_solid(ARGB(184,uchR,uchG,uchB));

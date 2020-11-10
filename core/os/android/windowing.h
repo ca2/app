@@ -72,8 +72,8 @@ struct CLASS_DECL_CORE oswindow_data
    bool                          m_bMessageOnlyWindow;
    ::user::interaction_impl *    m_pimpl;
    HTHREAD                       m_hthread;
-   COLORREF *                    m_pcolorref;
-   //RECT                          m_rect;
+   color32_t *                    m_pcolorref;
+   //RECT32                          m_rect;
    bool                          m_bDestroying;
    bool                          m_bIconic;
    mq *                          m_pmq;
@@ -141,8 +141,8 @@ struct CLASS_DECL_CORE oswindow_data
    bool show_window(::edisplay edisplay);
    LONG_PTR get_window_long_ptr(i32 nIndex);
    LONG_PTR set_window_long_ptr(i32 nIndex, LONG_PTR l);
-   bool _001ClientToScreen(LPPOINT lppoint);
-   bool _001ScreenToClient(LPPOINT lppoint);
+   bool _001ClientToScreen(POINT32 * lppoint);
+   bool _001ScreenToClient(POINT32 * lppoint);
 
 
 
@@ -171,10 +171,10 @@ struct CLASS_DECL_CORE oswindow_data
 
 // define portable types for 32-bit / 64-bit OS
 //typedef i32 int_bool;
-typedef u8 BYTE;
-//typedef u16 WORD;
-typedef u32 DWORD;
-//typedef i32 LONG;
+typedef u8 byte;
+//typedef u16 ::u16;
+typedef u32 ::u32;
+//typedef i32 ::i32;
 
 
 #undef FAR

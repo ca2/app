@@ -199,7 +199,7 @@ namespace account
 //
 //      string strRequestingServer = System.url().get_server(pathUrl);
 //
-//      DWORD dwGetFontopusBeg = ::get_tick();
+//      ::u32 dwGetFontopusBeg = ::get_tick();
 //
 //      string strGetFontopus;
 //
@@ -226,7 +226,7 @@ namespace account
 //      if(strRequestingServer == "ca2.cc")
 //         return "ca2.cc";
 //
-//      DWORD dwGetFontopusEnd = ::get_tick();
+//      ::u32 dwGetFontopusEnd = ::get_tick();
 //
 //      TRACE("NetLogin: Get Fontopus Millis = %d",dwGetFontopusEnd - dwGetFontopusBeg);
 //

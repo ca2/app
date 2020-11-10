@@ -208,7 +208,7 @@ string file_as_string(const char * path, strsize iReadAtMostByteCount)
 
    iReadAtMostByteCount = min_non_neg(iSize, iReadAtMostByteCount);
 
-   LPSTR psz = str.get_string_buffer(iReadAtMostByteCount);
+   char * psz = str.get_string_buffer(iReadAtMostByteCount);
 
 
    ::count iRead = fread(psz, 1, iReadAtMostByteCount, f);
@@ -398,7 +398,7 @@ filesize file_length_dup(const char * path)
    wstring pszModuleFilePath(MAX_PATH * 8);
 
 
-   if (!GetModuleFileNameW(nullptr, pszModuleFilePath, (DWORD)pszModuleFilePath.count()))
+   if (!GetModuleFileNameW(nullptr, pszModuleFilePath, (::u32)pszModuleFilePath.count()))
 
       return "";
 

@@ -13,8 +13,8 @@ namespace user
       int               m_iCode;
       uptr              m_nChar;
       uptr              m_nScanCode;
-      UINT              m_nRepCnt;
-      UINT              m_nFlags;
+      ::u32              m_nRepCnt;
+      ::u32              m_nFlags;
       bool              m_bExt;
       int               m_iVirtualKey;
 

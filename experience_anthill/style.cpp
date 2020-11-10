@@ -918,7 +918,7 @@ namespace experience
 
       {
 
-         //         DWORD dwTime2 = ::get_tick();
+         //         ::u32 dwTime2 = ::get_tick();
 
          //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
          //TRACE("usertab::on_layout call time1= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
@@ -1238,13 +1238,13 @@ namespace experience
 
       ::user::toolbar_item & item = ptoolbar->m_itema(iItem);
 
-      UINT nStyle = ptoolbar->GetButtonStyle(iItem);
+      ::u32 nStyle = ptoolbar->GetButtonStyle(iItem);
 
       auto puser = User;
 
       __pointer(::user::menu_central) pmenucentral = puser->menu();
 
-      UINT uiImage = pmenucentral->command_image(item.m_id);
+      ::u32 uImage = pmenucentral->command_image(item.m_id);
       
       ::user::estate estate = ptoolbar->get_button_state((int) iItem);
 
@@ -1545,7 +1545,7 @@ namespace experience
 
       ::user::toolbar_item & item = ptoolbar->m_itema(iItem);
 
-      UINT nStyle = ptoolbar->GetButtonStyle(iItem);
+      ::u32 nStyle = ptoolbar->GetButtonStyle(iItem);
 
 //      bool bHover = ptoolbar->m_itemHover == iItem;
 
@@ -1553,7 +1553,7 @@ namespace experience
 
       __pointer(::user::menu_central) pmenucentral = puser->menu();
 
-      UINT uiImage = pmenucentral->command_image(item.m_id);
+      ::u32 uImage = pmenucentral->command_image(item.m_id);
 
       ::user::estate estate = ptoolbar->get_button_state((int)iItem);
 

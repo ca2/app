@@ -21,28 +21,28 @@ void set_defer_process_x_message(bool (* pfn)(HTHREAD hthread,LPMESSAGE pMsg,osw
 
 #pragma warning (disable:4273)
 
-CLASS_DECL_APEX DWORD WINAPI MsgWaitForMultipleObjects(DWORD nCount, const HANDLE * pHandles, BOOL fWaitAll, DWORD dwMilliseconds, DWORD dwWakeMask);
+CLASS_DECL_APEX ::u32 WINAPI MsgWaitForMultipleObjects(::u32 nCount, const HANDLE * pHandles, BOOL fWaitAll, ::u32 dwMilliseconds, ::u32 dwWakeMask);
 
-CLASS_DECL_APEX DWORD WINAPI MsgWaitForMultipleObjectsEx(DWORD nCount, const HANDLE* pHandles, DWORD dwMilliseconds, DWORD dwWakeMask, DWORD dwFlags);
+CLASS_DECL_APEX ::u32 WINAPI MsgWaitForMultipleObjectsEx(::u32 nCount, const HANDLE* pHandles, ::u32 dwMilliseconds, ::u32 dwWakeMask, ::u32 dwFlags);
 
 #else
 
-DWORD WaitForMultipleObjectsEx(DWORD dwSize, HSYNC * synca, int_bool bWaitForAll, DWORD tickTimeout, int_bool bAlertable);
+::u32 WaitForMultipleObjectsEx(::u32 dwSize, HSYNC * synca, int_bool bWaitForAll, ::u32 tickTimeout, int_bool bAlertable);
 
-DWORD WaitForMultipleObjects(DWORD dwSize, HSYNC * synca, int_bool bWaitForAll, DWORD tickTimeout);
+::u32 WaitForMultipleObjects(::u32 dwSize, HSYNC * synca, int_bool bWaitForAll, ::u32 tickTimeout);
 
-DWORD MsgWaitForMultipleObjects(DWORD dwSize, HSYNC * synca, int_bool bWaitForAll, DWORD tickTimeout, DWORD dwWakeMask);
+::u32 MsgWaitForMultipleObjects(::u32 dwSize, HSYNC * synca, int_bool bWaitForAll, ::u32 tickTimeout, ::u32 dwWakeMask);
 
-DWORD MsgWaitForMultipleObjectsEx(DWORD dwSize, HSYNC * synca, DWORD tickTimeout, DWORD dwWakeMask, DWORD dwFlags);
+::u32 MsgWaitForMultipleObjectsEx(::u32 dwSize, HSYNC * synca, ::u32 tickTimeout, ::u32 dwWakeMask, ::u32 dwFlags);
 
 #endif
 
 
 #ifndef _UWP
 
-DWORD WaitForSingleObject(HSYNC hsync, DWORD dwMilliseconds);
+::u32 WaitForSingleObject(HSYNC hsync, ::u32 dwMilliseconds);
 
-DWORD WaitForSingleObjectEx(HSYNC hsync, DWORD dwMilliseconds, int_bool bAlertable);
+::u32 WaitForSingleObjectEx(HSYNC hsync, ::u32 dwMilliseconds, int_bool bAlertable);
 
 #endif
 
@@ -51,19 +51,19 @@ DWORD WaitForSingleObjectEx(HSYNC hsync, DWORD dwMilliseconds, int_bool bAlertab
 
 
 /*
-#define STATUS_WAIT_0            ((DWORD   ) 0x00000000L)
-#define STATUS_ABANDONED_WAIT_0  ((DWORD   ) 0x00000080L)
-#define STATUS_USER_APC          ((DWORD   ) 0x000000C0L)
-#define STATUS_TIMEOUT           ((DWORD   ) 0x00000102L)
+#define STATUS_WAIT_0            ((::u32   ) 0x00000000L)
+#define STATUS_ABANDONED_WAIT_0  ((::u32   ) 0x00000080L)
+#define STATUS_USER_APC          ((::u32   ) 0x000000C0L)
+#define STATUS_TIMEOUT           ((::u32   ) 0x00000102L)
  */
 
 #ifndef _UWP
 
-#define WAIT_FAILED              ((DWORD   ) 0xFFFFFFFFL)
-#define WAIT_OBJECT_0            ((DWORD   ) STATUS_WAIT_0 + 0)
+#define WAIT_FAILED              ((::u32   ) 0xFFFFFFFFL)
+#define WAIT_OBJECT_0            ((::u32   ) STATUS_WAIT_0 + 0)
 
-#define WAIT_ABANDONED           ((DWORD   ) STATUS_ABANDONED_WAIT_0 + 0)
-#define WAIT_ABANDONED_0         ((DWORD   ) STATUS_ABANDONED_WAIT_0 + 0)
+#define WAIT_ABANDONED           ((::u32   ) STATUS_ABANDONED_WAIT_0 + 0)
+#define WAIT_ABANDONED_0         ((::u32   ) STATUS_ABANDONED_WAIT_0 + 0)
 
 #endif
 
@@ -95,18 +95,18 @@ union semun
 // class mq;
 
 
-// CLASS_DECL_APEX int_bool WINAPI GetMessage(LPMESSAGE pMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax);
+// CLASS_DECL_APEX int_bool WINAPI GetMessage(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax);
 
-// CLASS_DECL_APEX int_bool WINAPI PeekMessage(LPMESSAGE pMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg);
+// CLASS_DECL_APEX int_bool WINAPI PeekMessage(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg);
 
-// CLASS_DECL_APEX int_bool WINAPI PostThreadMessage(ITHREAD idthread, UINT Msg, WPARAM wParam, LPARAM lParam);
+// CLASS_DECL_APEX int_bool WINAPI PostThreadMessage(ITHREAD idthread, ::u32 Msg, WPARAM wParam, LPARAM lParam);
 
 // CLASS_DECL_APEX void mq_clear(ITHREAD hthread);
 
 
 // #ifndef _UWP
 
-// CLASS_DECL_APEX DWORD WINAPI GetThreadId(HTHREAD Thread);
+// CLASS_DECL_APEX ::u32 WINAPI GetThreadId(HTHREAD Thread);
 
 // CLASS_DECL_APEX HTHREAD GetCurrentThread();
 

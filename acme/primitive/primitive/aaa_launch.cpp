@@ -38,7 +38,7 @@ CLASS_DECL_ACME ::estatus __launch(
 #ifdef WINDOWS
 
 
-DWORD WINAPI ___launch::s_os_thread_proc(void* p)
+::u32 WINAPI ___launch::s_os_thread_proc(void* p)
 {
 
    try
@@ -90,7 +90,7 @@ void* ___launch::s_os_thread_proc(void* p)
 #endif
 
 
-::estatus ___launch::fork(::e_priority epriority, UINT nStackSize, u32 uiCreateFlags, ITHREAD* pithread, HTHREAD* phthread)
+::estatus ___launch::fork(::e_priority epriority, ::u32 nStackSize, u32 uiCreateFlags, ITHREAD* pithread, HTHREAD* phthread)
 {
 
    HTHREAD hthread = NULL_HTHREAD;
@@ -99,7 +99,7 @@ void* ___launch::s_os_thread_proc(void* p)
 
 #ifdef WINDOWS
 
-   DWORD dwThread = 0;
+   ::u32 dwThread = 0;
 
    hthread = ::CreateThread(nullptr, nStackSize, &::___launch::s_os_thread_proc, (LPVOID)(___launch*)this, uiCreateFlags, &dwThread);
 

@@ -130,7 +130,7 @@ namespace gpu
    }
 
 
-   //::estatus shader::shader_compile_errors(GLuint shader, GLenum type, string & strSummary)
+   //::estatus shader::shader_compile_errors(GL::u32 shader, GLenum type, string & strSummary)
    //{
 
    //   ::estatus estatus = ::success;
@@ -140,7 +140,7 @@ namespace gpu
    //}
 
 
-   //::estatus shader::program_compile_errors(GLuint program, string & strSummary)
+   //::estatus shader::program_compile_errors(GL::u32 program, string & strSummary)
    //{
 
    //   ::estatus estatus = ::success;

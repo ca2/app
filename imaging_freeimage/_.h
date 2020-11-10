@@ -5,8 +5,6 @@
 
 #ifdef LINUX
 
-#define BOOL int
-
 #include <FreeImage.h>
 
 #else

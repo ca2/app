@@ -268,7 +268,7 @@ extern "C" {
 //
 //  Sorting Flags.
 //
-//    WORD Sort:    culturally correct sort
+//    ::u16 Sort:    culturally correct sort
 //                  hyphen and apostrophe are special cased
 //                  example: "coop" and "co-op" will sort together in a list
 //
@@ -908,25 +908,25 @@ extern "C" {
 //
 //  Language Group ID.
 //
-typedef DWORD LGRPID;
+typedef ::u32 LGRPID;
 
 
 //
 //  Locale type constant.
 //
-typedef DWORD LCTYPE;
+typedef ::u32 LCTYPE;
 
 
 //
 //  Calendar type constant.
 //
-typedef DWORD CALTYPE;
+typedef ::u32 CALTYPE;
 
 
 //
 //  Calendar ID.
 //
-typedef DWORD CALID;
+typedef ::u32 CALID;
 
 
 //
@@ -935,27 +935,27 @@ typedef DWORD CALID;
 
 typedef struct _cpinfo
 {
-   UINT    MaxCharSize;                    // max length (in bytes) of a char
-   BYTE    DefaultChar[MAX_DEFAULTCHAR];   // default character
-   BYTE    LeadByte[MAX_LEADBYTES];        // lead byte ranges
+   ::u32    MaxCharSize;                    // max length (in bytes) of a char
+   byte    DefaultChar[MAX_DEFAULTCHAR];   // default character
+   byte    LeadByte[MAX_LEADBYTES];        // lead byte ranges
 } CPINFO, *LPCPINFO;
 
 typedef struct _cpinfoexA
 {
-   UINT    MaxCharSize;                    // max length (in bytes) of a char
-   BYTE    DefaultChar[MAX_DEFAULTCHAR];   // default character (MB)
-   BYTE    LeadByte[MAX_LEADBYTES];        // lead byte ranges
+   ::u32    MaxCharSize;                    // max length (in bytes) of a char
+   byte    DefaultChar[MAX_DEFAULTCHAR];   // default character (MB)
+   byte    LeadByte[MAX_LEADBYTES];        // lead byte ranges
    WCHAR   UnicodeDefaultChar;             // default character (Unicode)
-   UINT    CodePage;                       // code page id
+   ::u32    CodePage;                       // code page id
    CHAR    CodePageName[MAX_PATH];         // code page name (Unicode)
 } CPINFOEXA, *LPCPINFOEXA;
 typedef struct _cpinfoexW
 {
-   UINT    MaxCharSize;                    // max length (in bytes) of a char
-   BYTE    DefaultChar[MAX_DEFAULTCHAR];   // default character (MB)
-   BYTE    LeadByte[MAX_LEADBYTES];        // lead byte ranges
+   ::u32    MaxCharSize;                    // max length (in bytes) of a char
+   byte    DefaultChar[MAX_DEFAULTCHAR];   // default character (MB)
+   byte    LeadByte[MAX_LEADBYTES];        // lead byte ranges
    WCHAR   UnicodeDefaultChar;             // default character (Unicode)
-   UINT    CodePage;                       // code page id
+   ::u32    CodePage;                       // code page id
    WCHAR   CodePageName[MAX_PATH];         // code page name (Unicode)
 } CPINFOEXW, *LPCPINFOEXW;
 #ifdef UNICODE
@@ -973,21 +973,21 @@ typedef LPCPINFOEXA LPCPINFOEX;
 
 typedef struct _numberfmtA
 {
-   UINT    NumDigits;                 // number of decimal digits
-   UINT    LeadingZero;               // if leading zero in decimal fields
-   UINT    Grouping;                  // group size left of decimal
-   LPSTR   lpDecimalSep;              // ptr to decimal separator string
-   LPSTR   lpThousandSep;             // ptr to thousand separator string
-   UINT    NegativeOrder;             // negative number ordering
+   ::u32    NumDigits;                 // number of decimal digits
+   ::u32    LeadingZero;               // if leading zero in decimal fields
+   ::u32    Grouping;                  // group size left of decimal
+   char *   lpDecimalSep;              // ptr to decimal separator string
+   char *   lpThousandSep;             // ptr to thousand separator string
+   ::u32    NegativeOrder;             // negative number ordering
 } NUMBERFMTA, *LPNUMBERFMTA;
 typedef struct _numberfmtW
 {
-   UINT    NumDigits;                 // number of decimal digits
-   UINT    LeadingZero;               // if leading zero in decimal fields
-   UINT    Grouping;                  // group size left of decimal
+   ::u32    NumDigits;                 // number of decimal digits
+   ::u32    LeadingZero;               // if leading zero in decimal fields
+   ::u32    Grouping;                  // group size left of decimal
    LPWSTR  lpDecimalSep;              // ptr to decimal separator string
    LPWSTR  lpThousandSep;             // ptr to thousand separator string
-   UINT    NegativeOrder;             // negative number ordering
+   ::u32    NegativeOrder;             // negative number ordering
 } NUMBERFMTW, *LPNUMBERFMTW;
 #ifdef UNICODE
 typedef NUMBERFMTW NUMBERFMT;
@@ -1004,24 +1004,24 @@ typedef LPNUMBERFMTA LPNUMBERFMT;
 
 typedef struct _currencyfmtA
 {
-   UINT    NumDigits;                 // number of decimal digits
-   UINT    LeadingZero;               // if leading zero in decimal fields
-   UINT    Grouping;                  // group size left of decimal
-   LPSTR   lpDecimalSep;              // ptr to decimal separator string
-   LPSTR   lpThousandSep;             // ptr to thousand separator string
-   UINT    NegativeOrder;             // negative currency ordering
-   UINT    PositiveOrder;             // positive currency ordering
-   LPSTR   lpCurrencySymbol;          // ptr to currency symbol string
+   ::u32    NumDigits;                 // number of decimal digits
+   ::u32    LeadingZero;               // if leading zero in decimal fields
+   ::u32    Grouping;                  // group size left of decimal
+   char *   lpDecimalSep;              // ptr to decimal separator string
+   char *   lpThousandSep;             // ptr to thousand separator string
+   ::u32    NegativeOrder;             // negative currency ordering
+   ::u32    PositiveOrder;             // positive currency ordering
+   char *   lpCurrencySymbol;          // ptr to currency symbol string
 } CURRENCYFMTA, *LPCURRENCYFMTA;
 typedef struct _currencyfmtW
 {
-   UINT    NumDigits;                 // number of decimal digits
-   UINT    LeadingZero;               // if leading zero in decimal fields
-   UINT    Grouping;                  // group size left of decimal
+   ::u32    NumDigits;                 // number of decimal digits
+   ::u32    LeadingZero;               // if leading zero in decimal fields
+   ::u32    Grouping;                  // group size left of decimal
    LPWSTR  lpDecimalSep;              // ptr to decimal separator string
    LPWSTR  lpThousandSep;             // ptr to thousand separator string
-   UINT    NegativeOrder;             // negative currency ordering
-   UINT    PositiveOrder;             // positive currency ordering
+   ::u32    NegativeOrder;             // negative currency ordering
+   ::u32    PositiveOrder;             // positive currency ordering
    LPWSTR  lpCurrencySymbol;          // ptr to currency symbol string
 } CURRENCYFMTW, *LPCURRENCYFMTW;
 #ifdef UNICODE
@@ -1040,7 +1040,7 @@ enum SYSNLS_FUNCTION
 {
    COMPARE_STRING    =  0x0001,
 };
-typedef DWORD NLS_FUNCTION;
+typedef ::u32 NLS_FUNCTION;
 
 
 //
@@ -1049,9 +1049,9 @@ typedef DWORD NLS_FUNCTION;
 
 typedef struct _nlsversioninfo
 {
-   DWORD dwNLSVersionInfoSize;     // 12 bytes
-   DWORD dwNLSVersion;
-   DWORD dwDefinedVersion;
+   ::u32 dwNLSVersionInfoSize;     // 12 bytes
+   ::u32 dwNLSVersion;
+   ::u32 dwDefinedVersion;
 } NLSVERSIONINFO, *LPNLSVERSIONINFO;
 
 // This is to be deprecated, please use the NLSVERSIONINFO
@@ -1059,10 +1059,10 @@ typedef struct _nlsversioninfo
 // the effective ID is more robust.
 typedef struct _nlsversioninfoex
 {
-   DWORD dwNLSVersionInfoSize;     // sizeof(NLSVERSIONINFOEX) == 32 bytes
-   DWORD dwNLSVersion;
-   DWORD dwDefinedVersion;
-   DWORD dwEffectiveId;            // Use NLSVERSIONINFO instead
+   ::u32 dwNLSVersionInfoSize;     // sizeof(NLSVERSIONINFOEX) == 32 bytes
+   ::u32 dwNLSVersion;
+   ::u32 dwDefinedVersion;
+   ::u32 dwEffectiveId;            // Use NLSVERSIONINFO instead
 //xxx linux    GUID  guidCustomVersion;
 } NLSVERSIONINFOEX, *LPNLSVERSIONINFOEX;
 
@@ -1070,9 +1070,9 @@ typedef struct _nlsversioninfoex
 //  GEO defines
 //
 
-typedef LONG    GEOID;
-typedef DWORD   GEOTYPE;
-typedef DWORD   GEOCLASS;
+typedef ::i32    GEOID;
+typedef ::u32   GEOTYPE;
+typedef ::u32   GEOCLASS;
 
 #define GEOID_NOT_AVAILABLE -1
 
@@ -1138,18 +1138,18 @@ typedef enum _NORM_FORM
 
 #ifdef STRICT
 
-typedef int_bool (CALLBACK* LANGUAGEGROUP_ENUMPROCA)(LGRPID, LPSTR, LPSTR, DWORD, iptr);
-//xxx linux typedef int_bool (CALLBACK* LANGGROUPLOCALE_ENUMPROCA)(LGRPID, LCID, LPSTR, long_ptr);
-typedef int_bool (CALLBACK* UILANGUAGE_ENUMPROCA)(LPSTR, iptr);
-typedef int_bool (CALLBACK* LOCALE_ENUMPROCA)(LPSTR);
-typedef int_bool (CALLBACK* CODEPAGE_ENUMPROCA)(LPSTR);
-typedef int_bool (CALLBACK* DATEFMT_ENUMPROCA)(LPSTR);
-typedef int_bool (CALLBACK* DATEFMT_ENUMPROCEXA)(LPSTR, CALID);
-typedef int_bool (CALLBACK* TIMEFMT_ENUMPROCA)(LPSTR);
-typedef int_bool (CALLBACK* CALINFO_ENUMPROCA)(LPSTR);
-typedef int_bool (CALLBACK* CALINFO_ENUMPROCEXA)(LPSTR, CALID);
+typedef int_bool (CALLBACK* LANGUAGEGROUP_ENUMPROCA)(LGRPID, char *, char *, ::u32, iptr);
+//xxx linux typedef int_bool (CALLBACK* LANGGROUPLOCALE_ENUMPROCA)(LGRPID, LCID, char *, long_ptr);
+typedef int_bool (CALLBACK* UILANGUAGE_ENUMPROCA)(char *, iptr);
+typedef int_bool (CALLBACK* LOCALE_ENUMPROCA)(char *);
+typedef int_bool (CALLBACK* CODEPAGE_ENUMPROCA)(char *);
+typedef int_bool (CALLBACK* DATEFMT_ENUMPROCA)(char *);
+typedef int_bool (CALLBACK* DATEFMT_ENUMPROCEXA)(char *, CALID);
+typedef int_bool (CALLBACK* TIMEFMT_ENUMPROCA)(char *);
+typedef int_bool (CALLBACK* CALINFO_ENUMPROCA)(char *);
+typedef int_bool (CALLBACK* CALINFO_ENUMPROCEXA)(char *, CALID);
 
-typedef int_bool (CALLBACK* LANGUAGEGROUP_ENUMPROCW)(LGRPID, LPWSTR, LPWSTR, DWORD, iptr);
+typedef int_bool (CALLBACK* LANGUAGEGROUP_ENUMPROCW)(LGRPID, LPWSTR, LPWSTR, ::u32, iptr);
 //xxx linux typedef int_bool (CALLBACK* LANGGROUPLOCALE_ENUMPROCW)(LGRPID, LCID, LPWSTR, long_ptr);
 typedef int_bool (CALLBACK* UILANGUAGE_ENUMPROCW)(LPWSTR, iptr);
 typedef int_bool (CALLBACK* LOCALE_ENUMPROCW)(LPWSTR);
@@ -1223,19 +1223,19 @@ typedef FARPROC CALINFO_ENUMPROCEXW;
 
 typedef struct _FILEMUIINFO
 {
-   DWORD       dwSize;                 // Size of the structure including buffer size [in]
-   DWORD       dwVersion;              // Version of the structure [in]
-   DWORD       dwFileType;             // Type of the file [out]
-   BYTE        pChecksum[16];          // Checksum of the file [out]
-   BYTE        pServiceChecksum[16];   // Checksum of the file [out]
-   DWORD       dwLanguageNameOffset;   // Language name of the file [out]
-   DWORD       dwTypeIDMainSize;       // Number of TypeIDs in main module [out]
-   DWORD       dwTypeIDMainOffset;     // Array of TypeIDs (DWORD) in main module [out]
-   DWORD       dwTypeNameMainOffset;   // Multistring array of TypeNames in main module [out]
-   DWORD       dwTypeIDMUISize;        // Number of TypeIDs in MUI module [out]
-   DWORD       dwTypeIDMUIOffset;      // Array of TypeIDs (DWORD) in MUI module [out]
-   DWORD       dwTypeNameMUIOffset;    // Multistring array of TypeNames in MUI module [out]
-   BYTE        abBuffer[8];             // Buffer for extra data [in] (Size 4 is for padding)
+   ::u32       dwSize;                 // Size of the structure including buffer size [in]
+   ::u32       dwVersion;              // Version of the structure [in]
+   ::u32       dwFileType;             // Type of the file [out]
+   byte        pChecksum[16];          // Checksum of the file [out]
+   byte        pServiceChecksum[16];   // Checksum of the file [out]
+   ::u32       dwLanguageNameOffset;   // Language name of the file [out]
+   ::u32       dwTypeIDMainSize;       // Number of TypeIDs in main module [out]
+   ::u32       dwTypeIDMainOffset;     // Array of TypeIDs (::u32) in main module [out]
+   ::u32       dwTypeNameMainOffset;   // Multistring array of TypeNames in main module [out]
+   ::u32       dwTypeIDMUISize;        // Number of TypeIDs in MUI module [out]
+   ::u32       dwTypeIDMUIOffset;      // Array of TypeIDs (::u32) in MUI module [out]
+   ::u32       dwTypeNameMUIOffset;    // Multistring array of TypeNames in MUI module [out]
+   byte        abBuffer[8];             // Buffer for extra data [in] (Size 4 is for padding)
 } FILEMUIINFO, *PFILEMUIINFO;
 
 
@@ -1264,25 +1264,25 @@ typedef struct _FILEMUIINFO
 #define FILEMUIINFO_GET_CULTURE(pInfo)          \
     ((LPWSTR)((pInfo->dwLanguageNameOffset>0)?(ulong_ptr)pInfo+pInfo->dwLanguageNameOffset:nullptr))
 //
-// Gets the main module types array (DWORD[]), nullptr if not initialized
+// Gets the main module types array (::u32[]), nullptr if not initialized
 #define FILEMUIINFO_GET_MAIN_TYPEIDS(pInfo)       \
-    ((DWORD*)((pInfo->dwTypeIDMainOffset>0)?(ulong_ptr)pInfo+pInfo->dwTypeIDMainOffset:nullptr))
+    ((::u32*)((pInfo->dwTypeIDMainOffset>0)?(ulong_ptr)pInfo+pInfo->dwTypeIDMainOffset:nullptr))
 //
-// Gets the main module type array matter iType (DWORD), the array is not initialized or index is out of bounds
+// Gets the main module type array matter iType (::u32), the array is not initialized or index is out of bounds
 #define FILEMUIINFO_GET_MAIN_TYPEID(pInfo,iType)  \
-    (((iType<pInfo->dwTypeIDMainSize)&&(pInfo->dwTypeIDMainOffset>0))?*((DWORD*)((ulong_ptr)pInfo+pInfo->dwTypeIDMainOffset)+iType):0)
+    (((iType<pInfo->dwTypeIDMainSize)&&(pInfo->dwTypeIDMainOffset>0))?*((::u32*)((ulong_ptr)pInfo+pInfo->dwTypeIDMainOffset)+iType):0)
 //
 // Gets the main module names multistring array (LPWSTR), nullptr if not initialized
 #define FILEMUIINFO_GET_MAIN_TYPENAMES(pInfo)       \
     ((LPWSTR)((pInfo->dwTypeNameMainOffset>0)?(ulong_ptr)pInfo+pInfo->dwTypeNameMainOffset:nullptr))
 //
-// Gets the mui module types array (DWORD[]), nullptr if not initialized
+// Gets the mui module types array (::u32[]), nullptr if not initialized
 #define FILEMUIINFO_GET_MUI_TYPEIDS(pInfo)        \
-    ((DWORD*)((pInfo->dwTypeIDMUIOffset>0)?(ulong_ptr)pInfo+pInfo->dwTypeIDMUIOffset:nullptr))
+    ((::u32*)((pInfo->dwTypeIDMUIOffset>0)?(ulong_ptr)pInfo+pInfo->dwTypeIDMUIOffset:nullptr))
 //
-// Gets the mui module type array matter iType (DWORD), the array is not initialized or index is out of bounds
+// Gets the mui module type array matter iType (::u32), the array is not initialized or index is out of bounds
 #define FILEMUIINFO_GET_MUI_TYPEID(pInfo,iType)   \
-    (((iType<pInfo->dwTypeIDMUISize)&&(pInfo->dwTypeIDMUIOffset>0))?*((DWORD*)((ulong_ptr)pInfo+pInfo->dwTypeIDMUIOffset)+iType):0)
+    (((iType<pInfo->dwTypeIDMUISize)&&(pInfo->dwTypeIDMUIOffset>0))?*((::u32*)((ulong_ptr)pInfo+pInfo->dwTypeIDMUIOffset)+iType):0)
 //
 // Gets the mui module names multistring array (LPWSTR), nullptr if not initialized
 #define FILEMUIINFO_GET_MUI_TYPENAMES(pInfo)        \
@@ -1306,15 +1306,15 @@ typedef struct _FILEMUIINFO
 int_bool
 WINAPI
 IsValidCodePage(
-UINT  CodePage);
+::u32  CodePage);
 
 //xxx linux WINAXISAPI
-UINT
+::u32
 WINAPI
 GetACP(void);
 
 //xxx linux WINAXISAPI
-UINT
+::u32
 WINAPI
 GetOEMCP(void);
 
@@ -1322,22 +1322,22 @@ GetOEMCP(void);
 int_bool
 WINAPI
 GetCPInfo(
-UINT       CodePage,
+::u32       CodePage,
 LPCPINFO  lpCPInfo);
 
 //xxx linux WINAXISAPI
 int_bool
 WINAPI
 GetCPInfoExA(
-UINT          CodePage,
-DWORD         dwFlags,
+::u32          CodePage,
+::u32         dwFlags,
 LPCPINFOEXA  lpCPInfoEx);
 //xxx linux WINAXISAPI
 int_bool
 WINAPI
 GetCPInfoExW(
-UINT          CodePage,
-DWORD         dwFlags,
+::u32          CodePage,
+::u32         dwFlags,
 LPCPINFOEXW  lpCPInfoEx);
 #ifdef UNICODE
 #define GetCPInfoEx  GetCPInfoExW
@@ -1349,14 +1349,14 @@ LPCPINFOEXW  lpCPInfoEx);
 int_bool
 WINAPI
 IsDBCSLeadByte(
-BYTE  TestChar);
+byte  TestChar);
 
 //xxx linux WINAXISAPI
 int_bool
 WINAPI
 IsDBCSLeadByteEx(
-UINT  CodePage,
-BYTE  TestChar);
+::u32  CodePage,
+byte  TestChar);
 
 //xxx linux WINAXISAPI
 
@@ -1372,7 +1372,7 @@ i32
 WINAPI
 CompareStringA(
 LCID     Locale,
-DWORD    dwCmpFlags,
+::u32    dwCmpFlags,
 PCNZCH lpString1,
 i32      cchCount1,
 PCNZCH  lpString2,
@@ -1383,7 +1383,7 @@ i32
 WINAPI
 CompareStringW(
 LCID     Locale,
-DWORD    dwCmpFlags,
+::u32    dwCmpFlags,
 PCNZWCH lpString1,
 i32      cchCount1,
 PCNZWCH  lpString2,
@@ -1401,7 +1401,7 @@ __inline
 i32
 CompareString(
 LCID     Locale,
-DWORD    dwCmpFlags,
+::u32    dwCmpFlags,
 LPCTSTR  lpString1,
 i32      cchCount1,
 LPCTSTR  lpString2,
@@ -1431,7 +1431,7 @@ i32
 WINAPI
 FindNLSString(
 LCID Locale,
-DWORD dwFindNLSStringFlags,
+::u32 dwFindNLSStringFlags,
 LPCWSTR lpStringSource,
 i32 cchSource,
 LPCWSTR lpStringValue,
@@ -1446,7 +1446,7 @@ LPINT pcchFound);
 i32
 WINAPI
 FindStringOrdinal(
-DWORD dwFindStringOrdinalFlags,
+::u32 dwFindStringOrdinalFlags,
 LPCWSTR lpStringSource,
 i32 cchSource,
 LPCWSTR lpStringValue,
@@ -1461,10 +1461,10 @@ i32
 WINAPI
 LCMapStringA(
 LCID     Locale,
-DWORD    dwMapFlags,
-LPCSTR  lpSrcStr,
+::u32    dwMapFlags,
+const char *  lpSrcStr,
 i32      cchSrc,
-LPSTR  lpDestStr,
+char *  lpDestStr,
 i32      cchDest);
 // For Windows Vista and above LCMapStringEx is preferred
 //xxx linux WINAXISAPI
@@ -1472,7 +1472,7 @@ i32
 WINAPI
 LCMapStringW(
 LCID     Locale,
-DWORD    dwMapFlags,
+::u32    dwMapFlags,
 LPCWSTR  lpSrcStr,
 i32      cchSrc,
 LPWSTR  lpDestStr,
@@ -1490,7 +1490,7 @@ WINAPI
 GetLocaleInfoA(
 LCID     Locale,
 LCTYPE   LCType,
-LPSTR  lpLCData,
+char *  lpLCData,
 i32      cchData);
 // For Windows Vista and above GetLocaleInfoEx is preferred
 //xxx linux WINAXISAPI
@@ -1513,7 +1513,7 @@ WINAPI
 SetLocaleInfoA(
 LCID     Locale,
 LCTYPE   LCType,
-LPCSTR  lpLCData);
+const char *  lpLCData);
 //xxx linux WINAXISAPI
 int_bool
 WINAPI
@@ -1536,7 +1536,7 @@ GetCalendarInfoA(
 LCID     Locale,
 CALID    Calendar,
 CALTYPE  CalType,
-LPSTR   lpCalData,
+char *   lpCalData,
 i32      cchData,
 LPDWORD  lpValue);
 // For Windows Vista and above GetCalendarInfoEx is preferred
@@ -1563,7 +1563,7 @@ SetCalendarInfoA(
 LCID     Locale,
 CALID    Calendar,
 CALTYPE  CalType,
-LPCSTR  lpCalData);
+const char *  lpCalData);
 WINAXISAPI
 int_bool
 WINAPI
@@ -1587,14 +1587,14 @@ LCIDToLocaleName(
 LCID     Locale,
 __out_ecount_opt(cchName) LPWSTR  lpName,
 i32      cchName,
-DWORD    dwFlags);
+::u32    dwFlags);
 
 WINAXISAPI
 LCID
 WINAPI
 LocaleNameToLCID(
 LPCWSTR lpName,
-DWORD dwFlags);
+::u32 dwFlags);
 
 #endif  // (WINVER >= 0x0600)
 
@@ -1604,10 +1604,10 @@ i32
 WINAPI
 GetTimeFormatA(
 LCID             Locale,
-DWORD            dwFlags,
+::u32            dwFlags,
 CONST SYSTEMTIME *lpTime,
-LPCSTR          lpFormat,
-LPSTR          lpTimeStr,
+const char *          lpFormat,
+char *          lpTimeStr,
 i32              cchTime);
 // For Windows Vista and above GetTimeFormatEx is preferred
 //xxx linux WINAXISAPI
@@ -1615,7 +1615,7 @@ i32
 WINAPI
 GetTimeFormatW(
 LCID             Locale,
-DWORD            dwFlags,
+::u32            dwFlags,
 CONST SYSTEMTIME *lpTime,
 LPCWSTR          lpFormat,
 LPWSTR          lpTimeStr,
@@ -1634,7 +1634,7 @@ i32
 WINAPI
 GetDurationFormat(
 LCID             Locale,
-DWORD            dwFlags,
+::u32            dwFlags,
 CONST SYSTEMTIME *lpDuration,
 ULONGLONG ullDuration,
 LPCWSTR          lpFormat,
@@ -1648,10 +1648,10 @@ i32
 WINAPI
 GetDateFormatA(
 LCID             Locale,
-DWORD            dwFlags,
+::u32            dwFlags,
 CONST SYSTEMTIME *lpDate,
-LPCSTR          lpFormat,
-LPSTR          lpDateStr,
+const char *          lpFormat,
+char *          lpDateStr,
 i32              cchDate);
 // For Windows Vista and above GetDateFormatEx is preferred
 //xxx linux WINAXISAPI
@@ -1659,7 +1659,7 @@ i32
 WINAPI
 GetDateFormatW(
 LCID             Locale,
-DWORD            dwFlags,
+::u32            dwFlags,
 CONST SYSTEMTIME *lpDate,
 LPCWSTR          lpFormat,
 LPWSTR          lpDateStr,
@@ -1676,10 +1676,10 @@ i32
 WINAPI
 GetNumberFormatA(
 LCID             Locale,
-DWORD            dwFlags,
-LPCSTR          lpValue,
+::u32            dwFlags,
+const char *          lpValue,
 CONST NUMBERFMTA *lpFormat,
-LPSTR          lpNumberStr,
+char *          lpNumberStr,
 i32              cchNumber);
 // For Windows Vista and above GetNumberFormatEx is preferred
 //xxx linux WINAXISAPI
@@ -1687,7 +1687,7 @@ i32
 WINAPI
 GetNumberFormatW(
 LCID             Locale,
-DWORD            dwFlags,
+::u32            dwFlags,
 LPCWSTR          lpValue,
 CONST NUMBERFMTW *lpFormat,
 LPWSTR          lpNumberStr,
@@ -1704,10 +1704,10 @@ i32
 WINAPI
 GetCurrencyFormatA(
 LCID               Locale,
-DWORD              dwFlags,
-LPCSTR            lpValue,
+::u32              dwFlags,
+const char *            lpValue,
 CONST CURRENCYFMTA *lpFormat,
-LPSTR            lpCurrencyStr,
+char *            lpCurrencyStr,
 i32                cchCurrency);
 // For Windows Vista and above GetCurrencyFormatEx is preferred
 //xxx linux WINAXISAPI
@@ -1715,7 +1715,7 @@ i32
 WINAPI
 GetCurrencyFormatW(
 LCID               Locale,
-DWORD              dwFlags,
+::u32              dwFlags,
 LPCWSTR            lpValue,
 CONST CURRENCYFMTW *lpFormat,
 LPWSTR            lpCurrencyStr,
@@ -1783,7 +1783,7 @@ WINAPI
 EnumTimeFormatsA(
 TIMEFMT_ENUMPROCA lpTimeFmtEnumProc,
 LCID              Locale,
-DWORD             dwFlags);
+::u32             dwFlags);
 // For Windows Vista and above EnumTimeFormatsEx is preferred
 //xxx linux WINAXISAPI
 int_bool
@@ -1791,7 +1791,7 @@ WINAPI
 EnumTimeFormatsW(
 TIMEFMT_ENUMPROCW lpTimeFmtEnumProc,
 LCID              Locale,
-DWORD             dwFlags);
+::u32             dwFlags);
 #ifdef UNICODE
 #define EnumTimeFormats  EnumTimeFormatsW
 #else
@@ -1805,7 +1805,7 @@ WINAPI
 EnumDateFormatsA(
 DATEFMT_ENUMPROCA lpDateFmtEnumProc,
 LCID              Locale,
-DWORD             dwFlags);
+::u32             dwFlags);
 // For Windows Vista and above EnumDateFormatsExEx is preferred
 //xxx linux WINAXISAPI
 int_bool
@@ -1813,7 +1813,7 @@ WINAPI
 EnumDateFormatsW(
 DATEFMT_ENUMPROCW lpDateFmtEnumProc,
 LCID              Locale,
-DWORD             dwFlags);
+::u32             dwFlags);
 #ifdef UNICODE
 #define EnumDateFormats  EnumDateFormatsW
 #else
@@ -1828,7 +1828,7 @@ WINAPI
 EnumDateFormatsExA(
 DATEFMT_ENUMPROCEXA lpDateFmtEnumProcEx,
 LCID                Locale,
-DWORD               dwFlags);
+::u32               dwFlags);
 // For Windows Vista and above EnumDateFormatsExEx is preferred
 WINAXISAPI
 int_bool
@@ -1836,7 +1836,7 @@ WINAPI
 EnumDateFormatsExW(
 DATEFMT_ENUMPROCEXW lpDateFmtEnumProcEx,
 LCID                Locale,
-DWORD               dwFlags);
+::u32               dwFlags);
 #ifdef UNICODE
 #define EnumDateFormatsEx  EnumDateFormatsExW
 #else
@@ -1850,7 +1850,7 @@ int_bool
 WINAPI
 IsValidLanguageGroup(
 LGRPID  LanguageGroup,
-DWORD   dwFlags);
+::u32   dwFlags);
 #endif /* WINVER >= 0x0500 */
 
 // For Windows Vista and above GetNLSVersionEx is preferred
@@ -1867,7 +1867,7 @@ int_bool
 WINAPI
 IsNLSDefinedString(
 NLS_FUNCTION     Function,
-DWORD            dwFlags,
+::u32            dwFlags,
 LPNLSVERSIONINFO lpVersionInformation,
 LPCWSTR          lpString,
 INT              cchStr);
@@ -1878,7 +1878,7 @@ int_bool
 WINAPI
 IsValidLocale(
 LCID   Locale,
-DWORD  dwFlags);
+::u32  dwFlags);
 
 //xxx linux WINAXISAPI
 i32
@@ -1886,7 +1886,7 @@ WINAPI
 GetGeoInfoA(
 GEOID       Location,
 GEOTYPE     GeoType,
-LPSTR     lpGeoData,
+char *     lpGeoData,
 i32         cchData,
 LANGID      LangId);
 //xxx linux WINAXISAPI
@@ -1993,7 +1993,7 @@ WINAXISAPI
 int_bool
 WINAPI
 GetProcessPreferredUILanguages(
-DWORD dwFlags,
+::u32 dwFlags,
 PWINULONG pulNumLanguages,
 __out_ecount_opt(*pcchLanguagesBuffer) PZZWSTR pwszLanguagesBuffer,
 PWINULONG pcchLanguagesBuffer
@@ -2004,7 +2004,7 @@ WINAXISAPI
 int_bool
 WINAPI
 SetProcessPreferredUILanguages(
-DWORD dwFlags,
+::u32 dwFlags,
 PCZZWSTR pwszLanguagesBuffer,
 PWINULONG pulNumLanguages
 );
@@ -2014,7 +2014,7 @@ WINAXISAPI
 int_bool
 WINAPI
 GetUserPreferredUILanguages (
-DWORD dwFlags,
+::u32 dwFlags,
 PWINULONG pulNumLanguages,
 __out_ecount_opt(*pcchLanguagesBuffer) PZZWSTR pwszLanguagesBuffer,
 PWINULONG pcchLanguagesBuffer
@@ -2025,7 +2025,7 @@ WINAXISAPI
 int_bool
 WINAPI
 GetSystemPreferredUILanguages (
-DWORD dwFlags,
+::u32 dwFlags,
 PWINULONG pulNumLanguages,
 __out_ecount_opt(*pcchLanguagesBuffer) PZZWSTR pwszLanguagesBuffer,
 PWINULONG pcchLanguagesBuffer
@@ -2036,7 +2036,7 @@ WINAXISAPI
 int_bool
 WINAPI
 GetThreadPreferredUILanguages(
-DWORD dwFlags,
+::u32 dwFlags,
 PWINULONG pulNumLanguages,
 __out_ecount_opt(*pcchLanguagesBuffer) PZZWSTR pwszLanguagesBuffer,
 PWINULONG pcchLanguagesBuffer
@@ -2047,7 +2047,7 @@ WINAXISAPI
 int_bool
 WINAPI
 SetThreadPreferredUILanguages(
-DWORD dwFlags,
+::u32 dwFlags,
 PCZZWSTR pwszLanguagesBuffer,
 PWINULONG pulNumLanguages
 );
@@ -2057,16 +2057,16 @@ __success(return==1)
 int_bool
 WINAPI
 GetFileMUIInfo(
-DWORD           dwFlags,
+::u32           dwFlags,
 PCWSTR          pcwszFilePath,
 __inout_bcount_part_opt(*pcbFileMUIInfo,*pcbFileMUIInfo) PFILEMUIINFO    pFileMUIInfo,
-DWORD*          pcbFileMUIInfo);
+::u32*          pcbFileMUIInfo);
 
 WINAXISAPI
 int_bool
 WINAPI
 GetFileMUIPath(
-DWORD      dwFlags,
+::u32      dwFlags,
 PCWSTR     pcwszFilePath,
 __inout_ecount_opt    (*pcchLanguage)   PWSTR pwszLanguage,
 PWINULONG  pcchLanguage,
@@ -2080,7 +2080,7 @@ WINAXISAPI
 int_bool
 WINAPI
 GetUILanguageInfo(
-DWORD dwFlags,
+::u32 dwFlags,
 PCZZWSTR pwmszLanguage,
 __out_ecount_opt(*pcchFallbackLanguages) PZZWSTR pwszFallbackLanguages,
 __inout_opt PDWORD pcchFallbackLanguages,
@@ -2092,10 +2092,10 @@ WINAXISAPI
 int_bool
 WINAPI
 NotifyUILanguageChange(
-DWORD dwFlags,
+::u32 dwFlags,
 PCWSTR pcwstrNewLanguage,
 PCWSTR pcwstrPreviousLanguage,
-DWORD dwReserved,
+::u32 dwReserved,
 PDWORD pdwStatusRtrn
 );
 
@@ -2110,8 +2110,8 @@ int_bool
 WINAPI
 GetStringTypeExA(
 LCID       Locale,
-DWORD      dwInfoType,
-LPCSTR   lpSrcStr,
+::u32      dwInfoType,
+const char *   lpSrcStr,
 i32        cchSrc,
 LPWORD     lpCharType);
 //xxx linux WINAXISAPI
@@ -2119,7 +2119,7 @@ int_bool
 WINAPI
 GetStringTypeExW(
 LCID       Locale,
-DWORD      dwInfoType,
+::u32      dwInfoType,
 LPCWSTR   lpSrcStr,
 i32        cchSrc,
 LPWORD     lpCharType);
@@ -2145,8 +2145,8 @@ int_bool
 WINAPI
 GetStringTypeA(
 LCID     Locale,
-DWORD    dwInfoType,
-LPCSTR   lpSrcStr,
+::u32    dwInfoType,
+const char *   lpSrcStr,
 i32      cchSrc,
 LPWORD  lpCharType);
 
@@ -2154,7 +2154,7 @@ LPWORD  lpCharType);
 int_bool
 WINAPI
 GetStringTypeW(
-DWORD    dwInfoType,
+::u32    dwInfoType,
 LPCWSTR  lpSrcStr,
 i32      cchSrc,
 LPWORD  lpCharType);
@@ -2164,16 +2164,16 @@ LPWORD  lpCharType);
 i32
 WINAPI
 FoldStringA(
-DWORD    dwMapFlags,
-LPCSTR  lpSrcStr,
+::u32    dwMapFlags,
+const char *  lpSrcStr,
 i32      cchSrc,
-LPSTR  lpDestStr,
+char *  lpDestStr,
 i32      cchDest);
 //xxx linux WINAXISAPI
 i32
 WINAPI
 FoldStringW(
-DWORD    dwMapFlags,
+::u32    dwMapFlags,
 LPCWSTR  lpSrcStr,
 i32      cchSrc,
 LPWSTR  lpDestStr,
@@ -2190,14 +2190,14 @@ int_bool
 WINAPI
 EnumSystemLanguageGroupsA(
 LANGUAGEGROUP_ENUMPROCA lpLanguageGroupEnumProc,
-DWORD                   dwFlags,
+::u32                   dwFlags,
 long_ptr                lParam);
 WINAXISAPI
 int_bool
 WINAPI
 EnumSystemLanguageGroupsW(
 LANGUAGEGROUP_ENUMPROCW lpLanguageGroupEnumProc,
-DWORD                   dwFlags,
+::u32                   dwFlags,
 long_ptr                lParam);
 #ifdef UNICODE
 #define EnumSystemLanguageGroups  EnumSystemLanguageGroupsW
@@ -2211,7 +2211,7 @@ WINAPI
 EnumLanguageGroupLocalesA(
 LANGGROUPLOCALE_ENUMPROCA lpLangGroupLocaleEnumProc,
 LGRPID                    LanguageGroup,
-DWORD                     dwFlags,
+::u32                     dwFlags,
 long_ptr                  lParam);
 WINAXISAPI
 int_bool
@@ -2219,7 +2219,7 @@ WINAPI
 EnumLanguageGroupLocalesW(
 LANGGROUPLOCALE_ENUMPROCW lpLangGroupLocaleEnumProc,
 LGRPID                    LanguageGroup,
-DWORD                     dwFlags,
+::u32                     dwFlags,
 long_ptr                  lParam);
 #ifdef UNICODE
 #define EnumLanguageGroupLocales  EnumLanguageGroupLocalesW
@@ -2232,14 +2232,14 @@ int_bool
 WINAPI
 EnumUILanguagesA(
 UILANGUAGE_ENUMPROCA lpUILanguageEnumProc,
-DWORD                dwFlags,
+::u32                dwFlags,
 long_ptr             lParam);
 WINAXISAPI
 int_bool
 WINAPI
 EnumUILanguagesW(
 UILANGUAGE_ENUMPROCW lpUILanguageEnumProc,
-DWORD                dwFlags,
+::u32                dwFlags,
 long_ptr             lParam);
 #ifdef UNICODE
 #define EnumUILanguages  EnumUILanguagesW
@@ -2253,13 +2253,13 @@ int_bool
 WINAPI
 EnumSystemLocalesA(
 LOCALE_ENUMPROCA lpLocaleEnumProc,
-DWORD            dwFlags);
+::u32            dwFlags);
 //xxx linux WINAXISAPI
 int_bool
 WINAPI
 EnumSystemLocalesW(
 LOCALE_ENUMPROCW lpLocaleEnumProc,
-DWORD            dwFlags);
+::u32            dwFlags);
 #ifdef UNICODE
 #define EnumSystemLocales  EnumSystemLocalesW
 #else
@@ -2271,13 +2271,13 @@ int_bool
 WINAPI
 EnumSystemCodePagesA(
 CODEPAGE_ENUMPROCA lpCodePageEnumProc,
-DWORD              dwFlags);
+::u32              dwFlags);
 //xxx linux WINAXISAPI
 int_bool
 WINAPI
 EnumSystemCodePagesW(
 CODEPAGE_ENUMPROCW lpCodePageEnumProc,
-DWORD              dwFlags);
+::u32              dwFlags);
 #ifdef UNICODE
 #define EnumSystemCodePages  EnumSystemCodePagesW
 #else
@@ -2309,7 +2309,7 @@ WINAPI IsNormalizedString(                   NORM_FORM NormForm,
 //
 WINNORMALIZEAPI
 i32
-WINAPI IdnToAscii(                          DWORD    dwFlags,
+WINAPI IdnToAscii(                          ::u32    dwFlags,
       __in_ecount(cchUnicodeChar) 	 LPCWSTR  lpUnicodeCharStr,
       i32      cchUnicodeChar,
       __out_ecount_opt(cchASCIIChar) LPWSTR   lpASCIICharStr,
@@ -2317,7 +2317,7 @@ WINAPI IdnToAscii(                          DWORD    dwFlags,
 
 WINNORMALIZEAPI
 i32
-WINAPI IdnToNameprepUnicode(                           	DWORD   dwFlags,
+WINAPI IdnToNameprepUnicode(                           	::u32   dwFlags,
       __in_ecount(cchUnicodeChar)     	LPCWSTR lpUnicodeCharStr,
       i32     cchUnicodeChar,
       __out_ecount_opt(cchNameprepChar)   LPWSTR  lpNameprepCharStr,
@@ -2325,7 +2325,7 @@ WINAPI IdnToNameprepUnicode(                           	DWORD   dwFlags,
 
 WINNORMALIZEAPI
 i32
-WINAPI IdnToUnicode(                        	 DWORD   dwFlags,
+WINAPI IdnToUnicode(                        	 ::u32   dwFlags,
       __in_ecount(cchASCIIChar)    	 LPCWSTR lpASCIICharStr,
       i32     cchASCIIChar,
       __out_ecount_opt(cchUnicodeChar) LPWSTR  lpUnicodeCharStr,
@@ -2334,7 +2334,7 @@ WINAPI IdnToUnicode(                        	 DWORD   dwFlags,
 WINAXISAPI
 int_bool
 WINAPI VerifyScripts(
-DWORD   dwFlags,            // optional behavior flags
+::u32   dwFlags,            // optional behavior flags
 LPCWSTR lpLocaleScripts,    // Locale list of scripts string
 i32     cchLocaleScripts,   // size of locale script list string
 LPCWSTR lpTestScripts,      // test scripts string
@@ -2343,7 +2343,7 @@ i32     cchTestScripts);    // size of test list string
 WINAXISAPI
 i32
 WINAPI GetStringScripts(
-DWORD   dwFlags,        // optional behavior flags
+::u32   dwFlags,        // optional behavior flags
 LPCWSTR lpString,       // Unicode character input string
 i32     cchString,      // size of input string
 __out_ecount_opt(cchScripts) LPWSTR  lpScripts,      // Script list output string
@@ -2389,7 +2389,7 @@ i32
 WINAPI
 GetTimeFormatEx(
 LPCWSTR lpLocaleName,
-DWORD dwFlags,
+::u32 dwFlags,
 CONST SYSTEMTIME *lpTime,
 LPCWSTR lpFormat,
 LPWSTR lpTimeStr,
@@ -2401,7 +2401,7 @@ i32
 WINAPI
 GetDateFormatEx(
 LPCWSTR lpLocaleName,
-DWORD dwFlags,
+::u32 dwFlags,
 CONST SYSTEMTIME *lpDate,
 LPCWSTR lpFormat,
 LPWSTR lpDateStr,
@@ -2414,7 +2414,7 @@ i32
 WINAPI
 GetDurationFormatEx(
 LPCWSTR lpLocaleName,
-DWORD dwFlags,
+::u32 dwFlags,
 CONST SYSTEMTIME *lpDuration,
 ULONGLONG ullDuration,
 LPCWSTR lpFormat,
@@ -2427,7 +2427,7 @@ i32
 WINAPI
 GetNumberFormatEx(
 LPCWSTR lpLocaleName,
-DWORD dwFlags,
+::u32 dwFlags,
 LPCWSTR lpValue,
 CONST NUMBERFMTW *lpFormat,
 LPWSTR lpNumberStr,
@@ -2439,7 +2439,7 @@ i32
 WINAPI
 GetCurrencyFormatEx(
 LPCWSTR lpLocaleName,
-DWORD dwFlags,
+::u32 dwFlags,
 LPCWSTR lpValue,
 CONST CURRENCYFMTW *lpFormat,
 LPWSTR lpCurrencyStr,
@@ -2476,7 +2476,7 @@ i32
 WINAPI
 CompareStringEx(
 LPCWSTR lpLocaleName,
-DWORD dwCmpFlags,
+::u32 dwCmpFlags,
 LPCWSTR lpString1,
 i32 cchCount1,
 LPCWSTR lpString2,
@@ -2491,7 +2491,7 @@ i32
 WINAPI
 FindNLSStringEx(
 LPCWSTR lpLocaleName,
-DWORD dwFindNLSStringFlags,
+::u32 dwFindNLSStringFlags,
 __in_ecount(cchSource) LPCWSTR lpStringSource,
 i32 cchSource,
 __in_ecount(cchValue) LPCWSTR lpStringValue,
@@ -2508,7 +2508,7 @@ i32
 WINAPI
 LCMapStringEx(
 LPCWSTR lpLocaleName,
-DWORD dwMapFlags,
+::u32 dwMapFlags,
 LPCWSTR lpSrcStr,
 i32 cchSrc,
 LPWSTR lpDestStr,
@@ -2558,7 +2558,7 @@ WINAPI
 EnumDateFormatsExEx(
 DATEFMT_ENUMPROCEXEX lpDateFmtEnumProcExEx,
 LPCWSTR lpLocaleName,
-DWORD dwFlags,
+::u32 dwFlags,
 LPARAM lParam
 );
 
@@ -2570,18 +2570,18 @@ WINAPI
 EnumTimeFormatsEx(
 TIMEFMT_ENUMPROCEX lpTimeFmtEnumProcEx,
 LPCWSTR lpLocaleName,
-DWORD dwFlags,
+::u32 dwFlags,
 LPARAM lParam
 );
 
-typedef int_bool (CALLBACK* LOCALE_ENUMPROCEX)(LPWSTR, DWORD, LPARAM);
+typedef int_bool (CALLBACK* LOCALE_ENUMPROCEX)(LPWSTR, ::u32, LPARAM);
 
 WINAXISAPI
 int_bool
 WINAPI
 EnumSystemLocalesEx(
 LOCALE_ENUMPROCEX lpLocaleEnumProcEx,
-DWORD dwFlags,
+::u32 dwFlags,
 LPARAM lParam,
 LPVOID lpReserved
 );

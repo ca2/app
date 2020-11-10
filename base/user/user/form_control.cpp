@@ -91,7 +91,7 @@ namespace user
    bool form_control::OnCommand(WPARAM wparam,LPARAM lparam)
    {
 
-      UINT uiNotificationCode = HIWORD(wparam);
+      ::u32 uNotificationCode = HIWORD(wparam);
 
       ::id id(LOWORD(wparam));
 
@@ -131,7 +131,7 @@ namespace user
    }
 
 
-   bool form_control::OnCommandButton(::user::interaction * pinteraction,UINT uiNotificationCode,LPARAM lparam)
+   bool form_control::OnCommandButton(::user::interaction * pinteraction,::u32 uNotificationCode,LPARAM lparam)
 
    {
 
@@ -168,7 +168,7 @@ namespace user
    }
 
 
-   bool form_control::OnCommandCheckBox(::user::interaction * pinteraction,UINT uiNotificationCode,LPARAM lparam)
+   bool form_control::OnCommandCheckBox(::user::interaction * pinteraction,::u32 uNotificationCode,LPARAM lparam)
 
    {
 
@@ -204,7 +204,7 @@ namespace user
    }
 
 
-   bool form_control::OnCommandComboBox(::user::interaction * pinteraction,UINT uiNotificationCode,LPARAM lparam)
+   bool form_control::OnCommandComboBox(::user::interaction * pinteraction,::u32 uNotificationCode,LPARAM lparam)
 
    {
 
@@ -248,7 +248,7 @@ namespace user
    }
 
 
-   bool form_control::OnCommandEdit(::user::interaction * pinteraction,UINT uiNotificationCode,LPARAM lparam)
+   bool form_control::OnCommandEdit(::user::interaction * pinteraction,::u32 uNotificationCode,LPARAM lparam)
 
    {
 
@@ -1417,7 +1417,7 @@ namespace user
    //}
 
 
-   void form_control::control_get_window_rect(::user::interaction * pinteraction,RECT * prect)
+   void form_control::control_get_window_rect(::user::interaction * pinteraction,RECT32 * prect)
 
    {
 
@@ -1426,7 +1426,7 @@ namespace user
 
    }
 
-   void form_control::control_get_client_rect(::user::interaction * pinteraction,RECT * prect)
+   void form_control::control_get_client_rect(::user::interaction * pinteraction,RECT32 * prect)
 
    {
 

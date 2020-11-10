@@ -826,7 +826,7 @@ namespace user
 
       auto pstyle = get_style(pgraphics);
 
-      COLORREF crBackground = get_color(pstyle, element_background);
+      color32_t crBackground = get_color(pstyle, element_background);
 
       if ((crBackground & ARGB(255, 0, 0, 0)) != 0)
       {
@@ -1305,7 +1305,7 @@ namespace user
       //else
       //{
 
-      //   RECT * prect = (RECT *)pbase->m_lparam.m_lparam;
+      //   RECT32 * prect = (RECT32 *)pbase->m_lparam.m_lparam;
 
       //   prect->left = m_pointTrack.x;
 

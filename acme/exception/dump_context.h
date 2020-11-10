@@ -60,7 +60,7 @@ public:
 
 #endif
 
-   void hex_dump(const char * pszLine, BYTE* pby, i32 nBytes, i32 nWidth);
+   void hex_dump(const char * pszLine, byte* pby, i32 nBytes, i32 nWidth);
 
    void flush();
 

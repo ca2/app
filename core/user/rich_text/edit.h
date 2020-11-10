@@ -31,9 +31,9 @@ namespace user
 
          virtual void on_hit_test(::user::item & item) override;
 
-         virtual bool get_item_rect(RECT * prect, index i);
+         virtual bool get_item_rect(RECT32 * prect, index i);
 
-         virtual bool get_element_rect(RECT * prect, index i, e_element eelement);
+         virtual bool get_element_rect(RECT32 * prect, index i, e_element eelement);
 
 
          virtual ::sized get_size() override;

@@ -2,7 +2,7 @@
 
 
 template < typename SHAPE, enum_shape ESHAPE >
-bool _shape < SHAPE, ESHAPE >::get_bounding_rect(RECT* prect) const
+bool _shape < SHAPE, ESHAPE >::get_bounding_rect(RECT32* prect) const
    {
 
       return ::get_bounding_rect(prect, &m_shape);
@@ -21,7 +21,7 @@ bool _shape < SHAPE, ESHAPE >::get_bounding_rect(RECTD* prect) const
 
 
    template < typename SHAPE, enum_shape ESHAPE >
-bool _shape < SHAPE, ESHAPE >::contains(const ::POINT & point) const
+bool _shape < SHAPE, ESHAPE >::contains(const ::POINT32 & point) const
 
    {
 

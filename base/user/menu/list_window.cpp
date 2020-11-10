@@ -212,7 +212,7 @@ namespace user
    }
 
 
-   void menu_list_window::layout_buttons(menu_item * pitemParent, i32 iMaxWidth, RECT * prect, const ::rect & rectBound)
+   void menu_list_window::layout_buttons(menu_item * pitemParent, i32 iMaxWidth, RECT32 * prect, const ::rect & rectBound)
    {
 
       if (!m_bMenuOk)

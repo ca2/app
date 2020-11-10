@@ -22,12 +22,12 @@
 #include <stdio.h>
 
 typedef signed long   PRInt32;
-typedef unsigned long PRUint32;
+typedef unsigned long PR::u32;
 typedef signed short    PRInt16;
-typedef unsigned short  PRUint16;
+typedef unsigned short  PR::u3216;
 typedef signed char   PRInt8;
-typedef unsigned char PRUint8;
-typedef unsigned int PRUintn;
+typedef unsigned char PR::u328;
+typedef unsigned int PR::u32n;
 typedef char PRBool;
 
 #define PR_FALSE 0

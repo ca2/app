@@ -11,7 +11,7 @@ namespace message
    public:
 
 
-      UINT m_uEvent;
+      ::u32 m_uEvent;
 
 
       timer() {}

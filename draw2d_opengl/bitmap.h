@@ -99,7 +99,7 @@ namespace draw2d_opengl
 
 
       bool                 m_bTexture;
-      GLuint               m_texture;
+      GL::u32               m_texture;
       memory               m_memIn;
       memory               m_memOut;
 
@@ -163,15 +163,15 @@ namespace draw2d_opengl
 
 
       bool LoadBitmap(const char * lpszResourceName);
-      bool LoadBitmap(UINT nIDResource);
-      bool LoadOEMBitmap(UINT nIDBitmap); // for OBM_/OCR_/OIC_
-      bool CreateBitmap(::draw2d::graphics * pgraphics, i32 nWidth, i32 nHeight, UINT nPlanes, UINT nBitcount, const void * lpBits, i32 stride);
+      bool LoadBitmap(::u32 nIDResource);
+      bool LoadOEMBitmap(::u32 nIDBitmap); // for OBM_/OCR_/OIC_
+      bool CreateBitmap(::draw2d::graphics * pgraphics, i32 nWidth, i32 nHeight, ::u32 nPlanes, ::u32 nBitcount, const void * lpBits, i32 stride);
       bool CreateBitmapIndirect(::draw2d::graphics * pgraphics, LPBITMAP lpBitmap);
       bool CreateCompatibleBitmap(::draw2d::graphics * pgraphics, i32 nWidth, i32 nHeight);
       bool CreateDiscardableBitmap(::draw2d::graphics * pgraphics, i32 nWidth, i32 nHeight);
       
       virtual bool create_bitmap(::draw2d::graphics * pgraphics, const ::size& size, void** ppcolorref, int* piScan) override;
-      virtual bool CreateDIBitmap(::draw2d::graphics * pgraphics, int cx, int cy, u32 flInit, const void* pjBits, UINT iUsage) override;
+      virtual bool CreateDIBitmap(::draw2d::graphics * pgraphics, int cx, int cy, u32 flInit, const void* pjBits, ::u32 iUsage) override;
 
 
       i32 GetBitmap(BITMAP* pBitMap);

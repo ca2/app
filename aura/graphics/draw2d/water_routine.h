@@ -13,7 +13,7 @@ namespace draw2d
 
 
       void create(i32 iWidth,i32 iHeight);
-      void to(COLORREF * pSrcImage, COLORREF * pTargetImage);
+      void to(color32_t * pSrcImage, color32_t * pTargetImage);
 
       void CalcWater(i32 npage, i32 density);
       void SmoothWater(i32 npage);
@@ -25,9 +25,9 @@ namespace draw2d
       void HeightBlob(i32 x, i32 y, i32 radius, i32 height, i32 page);
       void CalcWaterBigFilter(i32 npage, i32 density);
 
-      void DrawWaterNoLight(i32 page, COLORREF * pSrcImage, COLORREF * pTargetImage);
-      void DrawWaterWithLight(i32 page, i32 LightModifier, COLORREF * pSrcImage, COLORREF * pTargetImage);
-      COLORREF GetShiftedColor(COLORREF color,i32 shift);
+      void DrawWaterNoLight(i32 page, color32_t * pSrcImage, color32_t * pTargetImage);
+      void DrawWaterWithLight(i32 page, i32 LightModifier, color32_t * pSrcImage, color32_t * pTargetImage);
+      color32_t GetShiftedColor(color32_t color,i32 shift);
 
       i32            m_iWidth;
       i32            m_iHeight;

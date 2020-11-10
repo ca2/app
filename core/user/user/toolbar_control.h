@@ -18,8 +18,8 @@ namespace user
 
       //bool LoadToolBar(const char * pszResourceName);
 
-      //bool LoadToolBar(UINT nIDResource);
-      bool SetButtons(const UINT* pIDArray, i32 nIDCount);
+      //bool LoadToolBar(::u32 nIDResource);
+      bool SetButtons(const ::u32* pIDArray, i32 nIDCount);
 
 
 
@@ -33,27 +33,27 @@ namespace user
       bool IsButtonPressed(i32 nID);
       bool IsButtonHidden(i32 nID);
       bool IsButtonIndeterminate(i32 nID);
-      bool set_state(i32 nID, UINT nState);
+      bool set_state(i32 nID, ::u32 nState);
       i32 GetState(i32 nID);
 #ifdef WINDOWS_DESKTOP
       bool GetButton(i32 nIndex, LPTBBUTTON pButton);
 
 #endif
       i32 GetButtonCount();
-      bool GetItemRect(i32 nIndex, RECT * prect);
+      bool GetItemRect(i32 nIndex, RECT32 * prect);
 
-      bool GetRect(i32 nID, RECT * prect);
+      bool GetRect(i32 nID, RECT32 * prect);
 
       void SetButtonStructSize(i32 nSize);
       u32 get_button_size();
       bool SetButtonSize(const ::size & size);
       bool SetBitmapSize(const ::size & size);
       __pointer(::user::interaction)  SetOwner(__pointer(::user::interaction) pwindow);
-      void SetRows(i32 nRows, bool bLarger, RECT * prect);
+      void SetRows(i32 nRows, bool bLarger, RECT32 * prect);
 
       i32 GetRows();
-      bool SetCmdID(i32 nIndex, UINT nID);
-      UINT GetBitmapFlags();
+      bool SetCmdID(i32 nIndex, ::u32 nID);
+      ::u32 GetBitmapFlags();
       ::image_list* GetDisabledImageList();
       ::image_list* GetHotImageList();
       ::image_list* GetImageList();
@@ -83,12 +83,12 @@ namespace user
 #endif
       bool GetMaxSize(LPSIZE pSize);
 #ifdef WINDOWS_DESKTOP
-      bool InsertMarkHitTest(LPPOINT ppt, LPTBINSERTMARK ptbim);
+      bool InsertMarkHitTest(POINT32 * ppt, LPTBINSERTMARK ptbim);
 #endif
       u32 GetExtendedStyle();
       u32 SetExtendedStyle(u32 dwExStyle);
-      COLORREF GetInsertMarkColor();
-      COLORREF SetInsertMarkColor(COLORREF clrNew);
+      color32_t GetInsertMarkColor();
+      color32_t SetInsertMarkColor(color32_t clrNew);
 
    // Operations
    public:
@@ -105,7 +105,7 @@ namespace user
 
 #endif
       bool DeleteButton(i32 nIndex);
-      UINT CommandToIndex(UINT nID);
+      ::u32 CommandToIndex(::u32 nID);
 #ifdef WINDOWS_DESKTOP
       void SaveState(HKEY hKeyRoot, const char * pszSubKey, const char * pszValueName);
 
@@ -113,17 +113,17 @@ namespace user
 
 #endif
       void LoadImages(i32 iBitmapID, HINSTANCE hinst);
-      bool MapAccelerator(char chAccel, UINT* pIDBtn);
+      bool MapAccelerator(char chAccel, ::u32* pIDBtn);
       bool MarkButton(i32 nID, bool fHighlight = TRUE);
-      bool MoveButton(UINT nOldPos, UINT nNewPos);
-      i32 hit_test(LPPOINT ppt);
+      bool MoveButton(::u32 nOldPos, ::u32 nNewPos);
+      i32 hit_test(POINT32 * ppt);
 
       void Customize();
       i32 AddStrings(const char * pszStrings);
 
       void AutoSize();
 
-      i32 GetButtonText(UINT uiID, string &str);
+      i32 GetButtonText(::u32 uID, string &str);
       virtual ~toolbar_control();
 
       DECL_GEN_SIGNAL(_001OnCreate);

@@ -184,7 +184,7 @@ namespace axis
 //
 //      // get path of executable
 //      /*   char szBuff[_MAX_PATH];
-//      DWORD dwRet = ::GetModuleFileName(m_hInstance, szBuff, _MAX_PATH);
+//      ::u32 dwRet = ::GetModuleFileName(m_hInstance, szBuff, _MAX_PATH);
 //      ASSERT( dwRet != 0 && dwRet != _MAX_PATH );
 //      if( dwRet == 0 || dwRet == _MAX_PATH )
 //      __throw(user_exception());*/

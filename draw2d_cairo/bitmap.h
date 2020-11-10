@@ -21,24 +21,24 @@ namespace draw2d_cairo
 
 
       bool LoadBitmap(const char * lpszResourceName);
-      bool LoadBitmap(UINT nIDResource);
-      bool LoadOEMBitmap(UINT nIDBitmap); // for OBM_/OCR_/OIC_
+      bool LoadBitmap(::u32 nIDResource);
+      bool LoadOEMBitmap(::u32 nIDBitmap); // for OBM_/OCR_/OIC_
    #ifndef ___NO_AFXCMN_SUPPORT
-// xxx      bool LoadMappedBitmap(UINT nIDBitmap, UINT nFlags = 0, LPCOLORMAP lpColorMap = nullptr, i32 nMapSize = 0);
+// xxx      bool LoadMappedBitmap(::u32 nIDBitmap, ::u32 nFlags = 0, LPCOLORMAP lpColorMap = nullptr, i32 nMapSize = 0);
    #endif
-      bool CreateBitmap(::draw2d::graphics * pgraphics, i32 nWidth, i32 nHeight, UINT nPlanes, UINT nBitcount, const void * lpBits, i32 iStride);
+      bool CreateBitmap(::draw2d::graphics * pgraphics, i32 nWidth, i32 nHeight, ::u32 nPlanes, ::u32 nBitcount, const void * lpBits, i32 iStride);
       bool CreateBitmapIndirect(::draw2d::graphics * pgraphics, LPBITMAP lpBitmap);
       bool CreateCompatibleBitmap(::draw2d::graphics * pgraphics, i32 nWidth, i32 nHeight);
       bool CreateDiscardableBitmap(::draw2d::graphics * pgraphics, i32 nWidth, i32 nHeight);
       bool create_bitmap(::draw2d::graphics * pgraphics, const ::size & size, void **ppvBits, int * stride);
-      bool CreateDIBitmap(::draw2d::graphics * pgraphics, int cx, int cy, DWORD flInit, const void *pjBits, UINT iUsage);
+      bool CreateDIBitmap(::draw2d::graphics * pgraphics, int cx, int cy, ::u32 flInit, const void *pjBits, ::u32 iUsage);
 
 
       i32 GetBitmap(BITMAP* pBitMap);
 
 
-      DWORD SetBitmapBits(DWORD dwCount, const void * lpBits);
-      DWORD GetBitmapBits(DWORD dwCount, LPVOID lpBits) const;
+      ::u32 SetBitmapBits(::u32 dwCount, const void * lpBits);
+      ::u32 GetBitmapBits(::u32 dwCount, LPVOID lpBits) const;
       ::size SetBitmapDimension(i32 nWidth, i32 nHeight);
       ::size GetBitmapDimension() const;
 

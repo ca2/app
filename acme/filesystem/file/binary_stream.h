@@ -247,9 +247,9 @@ public:
 #endif
    virtual void write(float f) override { raw_write(f); }
    virtual void write(double d) override { raw_write(d); }
-   //virtual void write(const POINT & point) { raw_write(point); }
-   //virtual void write(const SIZE & size) { raw_write(size); }
-   //virtual void write(const RECT & crect) { raw_write(crect); }
+   //virtual void write(const POINT32 & point) { raw_write(point); }
+   //virtual void write(const SIZE32 & size) { raw_write(size); }
+   //virtual void write(const RECT32 & crect) { raw_write(crect); }
    virtual void write(const char * psz) override;
 #ifdef WINDOWS
    virtual void write(const unichar * wch) { write(string(wch)); }
@@ -292,9 +292,9 @@ public:
 #endif
    virtual void read(float & f) override { raw_read(f); }
    virtual void read(double & d) override { raw_read(d); }
-   //virtual void read(POINT & point) { raw_read(point); }
-   //virtual void read(SIZE & size) { raw_read(size); }
-   //virtual void read(RECT & rect) { raw_read(rect); }
+   //virtual void read(POINT32 & point) { raw_read(point); }
+   //virtual void read(SIZE32 & size) { raw_read(size); }
+   //virtual void read(RECT32 & rect) { raw_read(rect); }
    virtual void read(id & id) override;
    virtual void read(var & var) override;
    virtual void read_var_type(enum_type & etype) override;

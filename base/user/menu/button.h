@@ -36,7 +36,7 @@ namespace user
 
       virtual bool keyboard_focus_is_focusable() override;
 
-      virtual COLORREF _001GetButtonBackgroundColor() override;
+      virtual color32_t _001GetButtonBackgroundColor() override;
 
 
    };

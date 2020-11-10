@@ -450,13 +450,13 @@ public:
 ////
 ////#ifdef WINDOWS
 ////
-////   property & operator =(LONG l)
+////   property & operator =(::i32 l)
 ////   {
 ////      m_var = l;
 ////      return *this;
 ////   }
 ////
-////   property & operator =(DWORD dw)
+////   property & operator =(::u32 dw)
 ////   {
 ////      m_var = dw;
 ////      return *this;
@@ -643,8 +643,8 @@ public:
 ////
 ////#ifdef WINDOWS
 ////
-////   operator LONG() { return operator LONG(); }
-////   operator LONG() const { return operator LONG(); }
+////   operator ::i32() { return operator ::i32(); }
+////   operator ::i32() const { return operator ::i32(); }
 ////
 ////#endif
 ////

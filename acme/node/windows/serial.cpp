@@ -77,7 +77,7 @@ Serial::SerialImpl::open ()
 
    if (m_hFile == INVALID_HANDLE_VALUE)
    {
-      DWORD errno_ = get_last_error();
+      ::u32 errno_ = get_last_error();
       string str;
       switch (errno_)
       {
@@ -454,8 +454,8 @@ Serial::SerialImpl::read (u8 *buf, size_t size)
    {
       __throw(PortNotOpenedException ("Serial::read"));
    }
-   DWORD bytes_read;
-   if (!ReadFile(m_hFile, buf, static_cast<DWORD>(size), &bytes_read, nullptr))
+   ::u32 bytes_read;
+   if (!ReadFile(m_hFile, buf, static_cast<::u32>(size), &bytes_read, nullptr))
    {
       string ss;
       ss.Format("Error while reading from the serial port: %d", get_last_error());
@@ -471,8 +471,8 @@ Serial::SerialImpl::write (const u8 *data, size_t length)
    {
       __throw(PortNotOpenedException ("Serial::write"));
    }
-   DWORD bytes_written;
-   if (!WriteFile(m_hFile, data, static_cast<DWORD>(length), &bytes_written, nullptr))
+   ::u32 bytes_written;
+   if (!WriteFile(m_hFile, data, static_cast<::u32>(length), &bytes_written, nullptr))
    {
       string str;
       str.Format("Error while writing to the serial port: %d", get_last_error());
@@ -716,7 +716,7 @@ Serial::SerialImpl::waitForChange ()
    {
       __throw(PortNotOpenedException ("Serial::waitForChange"));
    }
-   DWORD dwCommEvent;
+   ::u32 dwCommEvent;
 
    if (!SetCommMask(m_hFile, EV_CTS | EV_DSR | EV_RING | EV_RLSD))
    {
@@ -743,7 +743,7 @@ Serial::SerialImpl::getCTS ()
    {
       __throw(PortNotOpenedException ("Serial::getCTS"));
    }
-   DWORD dwModemStatus;
+   ::u32 dwModemStatus;
    if (!GetCommModemStatus(m_hFile, &dwModemStatus))
    {
       THROW (IOException, "Error getting the status of the CTS line.");
@@ -759,7 +759,7 @@ Serial::SerialImpl::getDSR ()
    {
       __throw(PortNotOpenedException ("Serial::getDSR"));
    }
-   DWORD dwModemStatus;
+   ::u32 dwModemStatus;
    if (!GetCommModemStatus(m_hFile, &dwModemStatus))
    {
       THROW (IOException, "Error getting the status of the DSR line.");
@@ -775,7 +775,7 @@ Serial::SerialImpl::getRI()
    {
       __throw(PortNotOpenedException ("Serial::getRI"));
    }
-   DWORD dwModemStatus;
+   ::u32 dwModemStatus;
    if (!GetCommModemStatus(m_hFile, &dwModemStatus))
    {
       THROW (IOException, "Error getting the status of the RI line.");
@@ -791,7 +791,7 @@ Serial::SerialImpl::getCD()
    {
       __throw(PortNotOpenedException ("Serial::getCD"));
    }
-   DWORD dwModemStatus;
+   ::u32 dwModemStatus;
    if (!GetCommModemStatus(m_hFile, &dwModemStatus))
    {
       // Error in GetCommModemStatus;
@@ -804,7 +804,7 @@ Serial::SerialImpl::getCD()
 void
 Serial::SerialImpl::readLock()
 {
-   if (WaitForSingleObject(m_hMutexRead, INFINITE) != WAIT_OBJECT_0)
+   if (WaitForSingleObject(m_hMutexRead, U32_INFINITE_TIMEOUT) != WAIT_OBJECT_0)
    {
       THROW (IOException, "Error claiming read ::mutex.");
    }
@@ -822,7 +822,7 @@ Serial::SerialImpl::readUnlock()
 void
 Serial::SerialImpl::writeLock()
 {
-   if (WaitForSingleObject(m_hMutexWrite, INFINITE) != WAIT_OBJECT_0)
+   if (WaitForSingleObject(m_hMutexWrite, U32_INFINITE_TIMEOUT) != WAIT_OBJECT_0)
    {
       THROW (IOException, "Error claiming write ::mutex.");
    }

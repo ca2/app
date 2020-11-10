@@ -13,10 +13,10 @@ static LCID user_lcid, system_lcid;
 //static LANGID user_ui_language, system_ui_language;
 static LANGID system_ui_language;
 
-UINT setup_unix_locales(void);
+::u32 setup_unix_locales(void);
 int_bool is_genitive_name_supported( LCTYPE lctype );
 LCID convert_default_lcid( LCID lcid, LCTYPE lctype );
-const WCHAR *get_locale_value_name( DWORD lctype );
+const WCHAR *get_locale_value_name( ::u32 lctype );
 INT get_registry_locale_info( LPCWSTR value, LPWSTR buffer, INT len );
 
 /******************************************************************************
@@ -388,7 +388,7 @@ LCID convert_default_lcid( LCID lcid, LCTYPE lctype )
  *
  * Gets the registry value name for a given lctype.
  */
-const WCHAR *get_locale_value_name( DWORD lctype )
+const WCHAR *get_locale_value_name( ::u32 lctype )
 {
    static const WCHAR iCalendarTypeW[] = {'i','C','a','l','e','n','d','a','r','T','y','p','e',0};
    static const WCHAR iCountryW[] = {'i','C','o','u','n','t','r','y',0};
@@ -524,7 +524,7 @@ INT get_registry_locale_info(LPCWSTR, LPWSTR, INT)
 /***********************************************************************
  *           setup_unix_locales
  */
-UINT setup_unix_locales(void)
+::u32 setup_unix_locales(void)
 {
    return 0;
 }

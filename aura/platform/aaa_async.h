@@ -240,7 +240,7 @@ namespace async
 
       }
 
-      virtual T * wait(u32 dwMillis = INFINITE)
+      virtual T * wait(u32 dwMillis = U32_INFINITE_TIMEOUT)
       {
 
          ::get_task()->wait(millis(dwMillis));
@@ -342,7 +342,7 @@ public:
    }
 
 
-   T * wait(u32 dwMillis = INFINITE)
+   T * wait(u32 dwMillis = U32_INFINITE_TIMEOUT)
    {
 
       m_presult = m_pobjectTask->wait(dwMillis);
@@ -357,7 +357,7 @@ public:
 
 
 template < typename T >
-inline  T * wait(::async::task < T > * pobjectTask, u32 dwMillis = INFINITE)
+inline  T * wait(::async::task < T > * pobjectTask, u32 dwMillis = U32_INFINITE_TIMEOUT)
 {
 
    return waiter_for_async_task < T > (pobjectTask).wait(dwMillis);

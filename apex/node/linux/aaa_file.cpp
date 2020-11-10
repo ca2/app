@@ -82,7 +82,7 @@ namespace linux
 //         return nullptr;
 //
 //      auto pFile  = __new(file(get_context_application(), iNew));
-//      pFile->m_iFile = (UINT)iNew;
+//      pFile->m_iFile = (::u32)iNew;
 //      ASSERT(pFile->m_iFile != INVALID_FILE);
 //      return pFile;
 //
@@ -129,7 +129,7 @@ namespace linux
 
       // ::collection::map read/write mode
       ASSERT((::file::mode_read|::file::mode_write|::file::mode_read_write) == 3);
-      DWORD dwFlags =  0;
+      ::u32 dwFlags =  0;
       switch (eopen & ::file::mode_read_write)
       {
       case ::file::mode_read:
@@ -147,7 +147,7 @@ namespace linux
       }
 
       // ::collection::map share mode
-      DWORD dwShareMode = 0;
+      ::u32 dwShareMode = 0;
       switch (eopen & ::file::share_mask)    // ::collection::map compatibility mode to exclusive
       {
       default:
@@ -178,7 +178,7 @@ namespace linux
          dwFlags |= O_TRUNC;
       }
 
-      DWORD dwPermission = 0;
+      ::u32 dwPermission = 0;
 
       dwPermission |= S_IRUSR | S_IWUSR | S_IXUSR;
       dwPermission |= S_IRGRP | S_IWGRP | S_IXGRP;
@@ -193,7 +193,7 @@ namespace linux
 
          int iError = errno;
 
-         DWORD dwLastError = ::get_last_error();
+         ::u32 dwLastError = ::get_last_error();
 
          //return //::fesp(get_context_application(), file_exception::os_error_to_exception(dwLastError), dwLastError, m_path);
 
@@ -293,10 +293,10 @@ namespace linux
       ASSERT(nFrom == ::file::seek_begin || nFrom == ::file::seek_end || nFrom == ::file::seek_current);
       ASSERT(::file::seek_begin == SEEK_SET && ::file::seek_end == SEEK_END && ::file::seek_current == SEEK_CUR);
 
-      LONG lLoOffset = lOff & 0xffffffff;
-      //LONG lHiOffset = (lOff >> 32) & 0xffffffff;
+      ::i32 lLoOffset = lOff & 0xffffffff;
+      //::i32 lHiOffset = (lOff >> 32) & 0xffffffff;
 
-      filesize posNew = ::lseek64(m_iFile, lLoOffset, (DWORD)nFrom);
+      filesize posNew = ::lseek64(m_iFile, lLoOffset, (::u32)nFrom);
 //      posNew |= ((filesize) lHiOffset) << 32;
       if(posNew  == (filesize)-1)
          throw_errno(errno, m_path);
@@ -309,8 +309,8 @@ namespace linux
 
       ASSERT(m_iFile != INVALID_FILE);
 
-      LONG lLoOffset = 0;
-//      LONG lHiOffset = 0;
+      ::i32 lLoOffset = 0;
+//      ::i32 lHiOffset = 0;
 
       filesize pos = ::lseek64(m_iFile, lLoOffset, SEEK_CUR);
       //    pos |= ((filesize)lHiOffset) << 32;
@@ -394,7 +394,7 @@ namespace linux
 
       ASSERT(m_iFile != INVALID_FILE);
 
-      seek((LONG)dwNewLen, (::file::e_seek)::file::seek_begin);
+      seek((::i32)dwNewLen, (::file::e_seek)::file::seek_begin);
 
       if (::ftruncate64(m_iFile, dwNewLen) == -1)
       {
@@ -423,7 +423,7 @@ namespace linux
 
 
    // file does not support direct buffering (CMemFile does)
-   u64 file::GetBufferPtr(UINT /*nCommand*/, u64 /*nCount*/, void ** /*ppBufStart*/, void ** /*ppBufMax*/)
+   u64 file::GetBufferPtr(::u32 /*nCommand*/, u64 /*nCount*/, void ** /*ppBufStart*/, void ** /*ppBufMax*/)
    {
 
       //ASSERT(nCommand == bufferCheck);
@@ -448,7 +448,7 @@ namespace linux
 
       ::file::file::dump(dumpcontext);
 
-      dumpcontext << "with handle " << (UINT)m_iFile;
+      dumpcontext << "with handle " << (::u32)m_iFile;
       dumpcontext << " and name \"" << m_path << "\"";
       dumpcontext << "\n";
 
@@ -502,7 +502,7 @@ namespace linux
 
 
 
-//   void PASCAL file_exception::throw_os_error(LONG lOsError, const char * pszFileName /* = nullptr */)
+//   void PASCAL file_exception::throw_os_error(::i32 lOsError, const char * pszFileName /* = nullptr */)
 
 //   {
 //      if (lOsError != 0)
@@ -520,10 +520,10 @@ namespace linux
 
 
 
-//   ::estatus PASCAL file_exception::os_error_to_exception(LONG lOsErr)
+//   ::estatus PASCAL file_exception::os_error_to_exception(::i32 lOsErr)
 //   {
 //      // NT Error codes
-//      switch ((UINT)lOsErr)
+//      switch ((::u32)lOsErr)
 //      {
 //      case NO_ERROR:
 //         return ::file::exception::undefined;

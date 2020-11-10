@@ -118,7 +118,7 @@ namespace filehandler
 
 
 
-      COLORREF cr;
+      color32_t cr;
       __pointer(::aura::application) papp = pview->get_context_application();
       
       bool bHover = pview->m_itemHover == m_iIndex;
@@ -137,8 +137,8 @@ namespace filehandler
       }
       cr = bHover ? ARGB(255, 150, 255, 150) : ARGB(255, 50, 255, 50);
       pgraphics->fill_rect(m_rectStatusImage, cr);
-      COLORREF cr1;
-      COLORREF cr2;
+      color32_t cr1;
+      color32_t cr2;
       if(bHover)
       {
          cr = ARGB(255, 0, 100, 0);
@@ -166,7 +166,7 @@ namespace filehandler
       m_iItemHeight = 30;
    }
 
-   void view::list::on_layout(LPCRECT lpcrect)
+   void view::list::on_layout(LPCRECT32 lpcrect)
    {
       i32 top = lpcrect->top;
       for(i32 i = 0; i < get_count(); i++)

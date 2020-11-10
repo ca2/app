@@ -30,7 +30,7 @@ namespace draw2d_direct2d
       bool EqualRgn(const ::draw2d::region* pRgn) const;
       int OffsetRgn(int x, int y);
       int OffsetRgn(const ::point & point);
-      int GetRgnBox(RECT * prect) const;
+      int GetRgnBox(RECT32 * prect) const;
       bool contains(::draw2d::graphics * pgraphics, int x, int y) const;
       bool contains(::draw2d::graphics * pgraphics, const ::point & point) const;
       bool RectInRegion(const ::rect & rect) const;

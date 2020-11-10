@@ -1621,7 +1621,7 @@ namespace user
 
             // Draw Select Rectangle
 
-            COLORREF crBkSel;
+            color32_t crBkSel;
 
             if (bHasFocus && m_pedit->is_text_editable())
             {

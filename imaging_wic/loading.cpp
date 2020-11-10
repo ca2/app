@@ -216,7 +216,7 @@ namespace imaging_wic
 
       }
 
-      hr = piStream->InitializeFromMemory(pmemory->get_data(), (DWORD)pmemory->get_size());
+      hr = piStream->InitializeFromMemory(pmemory->get_data(), (::u32)pmemory->get_size());
 
       if (FAILED(hr))
       {
@@ -378,9 +378,9 @@ namespace imaging_wic
 
       }
 
-      UINT uiWidth;
+      ::u32 uWidth;
 
-      UINT uiHeight;
+      ::u32 uHeight;
 
       hr = piBmp->GetSize(&uiWidth, &uiHeight);
 
@@ -409,7 +409,7 @@ namespace imaging_wic
 
       }
 
-      UINT cbStride;
+      ::u32 cbStride;
 
       piLock->GetStride(&cbStride);
 
@@ -420,9 +420,9 @@ namespace imaging_wic
 
       }
 
-      UINT uiArea;
+      ::u32 uArea;
 
-      BYTE * pData;
+      byte * pData;
 
       hr = piLock->GetDataPointer(&uiArea, &pData);
 
@@ -444,7 +444,7 @@ namespace imaging_wic
 
       pimageFrame->map();
 
-      ::copy_colorref(pimageFrame->get_data(), uiWidth, uiHeight, pimageFrame->scan_size(), (COLORREF *)pData, cbStride);
+      ::copy_colorref(pimageFrame->get_data(), uiWidth, uiHeight, pimageFrame->scan_size(), (color32_t *)pData, cbStride);
 
 
       return true;
@@ -602,8 +602,8 @@ namespace imaging_wic
       comptr < IPropertyBag2 > pPropertybag = nullptr;
 
       comptr < IWICStream > piStream = nullptr;
-      UINT uiWidth = pimage->width();
-      UINT uiHeight = pimage->height();
+      ::u32 uWidth = pimage->width();
+      ::u32 uHeight = pimage->height();
 
       HRESULT hr = CoCreateInstance(
          CLSID_WICImagingFactory,
@@ -763,7 +763,7 @@ namespace imaging_wic
 
       pimage->map();
 
-      const COLORREF * pcr = pimage->get_data();
+      const color32_t * pcr = pimage->get_data();
 
       //   memory m;
       //
@@ -771,7 +771,7 @@ namespace imaging_wic
       //
       //   m.set_size(uiHeight*pimage->scan_size());
       //
-      //   pcr = (COLORREF *)m.get_data();
+      //   pcr = (color32_t *)m.get_data();
       //
       //   ::draw2d::vertical_swap_copy_colorref(pimage->width(), pimage->height(), pcr,
       //                                         pimage->scan_size(), pimage->get_data(), pimage->scan_size());
@@ -787,7 +787,7 @@ namespace imaging_wic
             if (SUCCEEDED(hr))
             {
 
-               hr = piBitmapFrame->WritePixels(uiHeight, pimage->scan_size(), uiHeight * pimage->scan_size(), (BYTE *)pcr);
+               hr = piBitmapFrame->WritePixels(uiHeight, pimage->scan_size(), uiHeight * pimage->scan_size(), (byte *)pcr);
 
             }
 
@@ -806,7 +806,7 @@ namespace imaging_wic
                   GUID_WICPixelFormat32bppBGRA,
                   pimage->scan_size(),
                   pimage->scan_size() * pimage->height(),
-                  (BYTE *)pcr,
+                  (byte *)pcr,
                   &pbitmap
                );
 

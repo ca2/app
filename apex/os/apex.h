@@ -4,7 +4,7 @@
 //CLASS_DECL_APEX void defer_dock_application(int_bool bDock);
 //
 //
-//CLASS_DECL_APEX int_bool IsProcessRunning(DWORD pid);
+//CLASS_DECL_APEX int_bool IsProcessRunning(::u32 pid);
 //
 
 

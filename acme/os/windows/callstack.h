@@ -12,7 +12,7 @@
 #pragma warning(disable: 4091)
 #include <ImageHlp.h>
 #if OSBIT == 32
-#define OS_DWORD DWORD
+#define OS_DWORD ::u32
 #define OS_IMAGEHLP_LINE IMAGEHLP_LINE
 #define OS_SymGetLineFromAddr SymGetLineFromAddr
 #define OS_SymGetSymFromAddr SymGetSymFromAddr
@@ -96,7 +96,7 @@ namespace windows
       u32 WINAPI stack_trace_ThreadProc(void * pvoidParam);
 
 
-      bool get_line_from_address(HANDLE hProc, OS_DWORD uiAddress, DWORD * puiDisplacement, OS_IMAGEHLP_LINE * pline);
+      bool get_line_from_address(HANDLE hProc, OS_DWORD uiAddress, ::u32 * puiDisplacement, OS_IMAGEHLP_LINE * pline);
       //size_t get_module_basename(HMODULE hmodule, string & strName);
       size_t get_module_name(HMODULE hmodule, char * psz, int nCount);
 

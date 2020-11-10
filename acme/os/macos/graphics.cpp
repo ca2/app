@@ -45,7 +45,7 @@ bool macos1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const 
 
 //
 //
-//CGColorRef cg_create_color(COLORREF cr)
+//CGColorRef cg_create_color(color32_t cr)
 //{
 //
 //   // Create a color and add it as an attribute to the string.
@@ -78,7 +78,7 @@ bool macos1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const 
 //{
 //   return nullptr;
 //}
-//HPEN CreatePen(int iPenStyle, int iWidth, COLORREF crColor)
+//HPEN CreatePen(int iPenStyle, int iWidth, color32_t crColor)
 //{
 //   return nullptr;
 //}
@@ -102,7 +102,7 @@ bool macos1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const 
 //{
 //   return nullptr;
 //}
-//HBITMAP WINAPI CreateDIBSection(HDC hdc, int cx, int cy, UINT usage, void **ppvBits, HANDLE hSection, DWORD offset)
+//HBITMAP WINAPI CreateDIBSection(HDC hdc, int cx, int cy, ::u32 usage, void **ppvBits, HANDLE hSection, ::u32 offset)
 //{
 //   return nullptr;
 //}
@@ -122,14 +122,14 @@ bool macos1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const 
 //{
 //   return FALSE;
 //}
-//int_bool GetTextExtentPoint(HDC hdc, const char * pszText, int iSize, SIZE * psize)
+//int_bool GetTextExtentPoint(HDC hdc, const char * pszText, int iSize, SIZE32 * psize)
 //{
 //   return FALSE;
 //}
 //
 //
 
-//int_bool SetTextColor(HDC hdc, COLORREF crText)
+//int_bool SetTextColor(HDC hdc, color32_t crText)
 //{
 //
 //   cg_release_color(hdc->m_cgcolorrefText);
@@ -137,7 +137,7 @@ bool macos1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const 
 //   return TRUE;
 //}
 
-HBRUSH CreateSolidBrush(COLORREF cr)
+HBRUSH CreateSolidBrush(color32_t cr)
 {
    return nullptr;
 }
@@ -333,7 +333,7 @@ HBRUSH CreateSolidBrush(COLORREF cr)
 //
 //
 //
-//void FillSolidRect_dup(HDC hdc, const ::rect & rect, COLORREF clr)
+//void FillSolidRect_dup(HDC hdc, const ::rect & rect, color32_t clr)
 
 //{
 //   CGColorRef color = cg_create_color(clr);
@@ -610,7 +610,7 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const cha
 
 
 
-//CGColorRef cg_create_color(COLORREF cr)
+//CGColorRef cg_create_color(color32_t cr)
 //{
 //
 //   // Create a color and add it as an attribute to the string.
@@ -695,7 +695,7 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const cha
 // }
 
 
-//int_bool get_client_rect(oswindow hwnd, RECT * prect)
+//int_bool get_client_rect(oswindow hwnd, RECT32 * prect)
 //
 //{
 //   /*   XWindowAttributes attrs;
@@ -731,7 +731,7 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const cha
 //}
 
 //
-//int_bool get_window_rect(oswindow hwnd, RECT * prect)
+//int_bool get_window_rect(oswindow hwnd, RECT32 * prect)
 //
 //{
 //   /* XWindowAttributes attrs;
@@ -833,7 +833,7 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const cha
 // {
 //     return nullptr;
 // }
-// HPEN CreatePen(int iPenStyle, int iWidth, COLORREF crColor)
+// HPEN CreatePen(int iPenStyle, int iWidth, color32_t crColor)
 // {
 //     return nullptr;
 // }
@@ -857,7 +857,7 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const cha
 // {
 //     return nullptr;
 // }
-// HBITMAP WINAPI CreateDIBSection(HDC hdc, const BITMAPINFO *pbmi, UINT usage, void **ppvBits, HANDLE hSection, DWORD offset)
+// HBITMAP WINAPI CreateDIBSection(HDC hdc, const BITMAPINFO *pbmi, ::u32 usage, void **ppvBits, HANDLE hSection, ::u32 offset)
 
 // {
 //     return nullptr;
@@ -878,14 +878,14 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const cha
 // {
 //     return FALSE;
 // }
-// int_bool GetTextExtentPoint(HDC hdc, const char * pszText, int iSize, SIZE * psize)
+// int_bool GetTextExtentPoint(HDC hdc, const char * pszText, int iSize, SIZE32 * psize)
 // {
 //     return FALSE;
 // }
 
 
 
-// int_bool SetTextColor(HDC hdc, COLORREF crText)
+// int_bool SetTextColor(HDC hdc, color32_t crText)
 // {
 
 //    cg_release_color(hdc->m_cgcolorrefText);
@@ -893,7 +893,7 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const cha
 //    return TRUE;
 // }
 
-// HBRUSH CreateSolidBrush(COLORREF cr)
+// HBRUSH CreateSolidBrush(color32_t cr)
 // {
 //     return nullptr;
 // }
@@ -1088,7 +1088,7 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const cha
 
 
 
-// void FillSolidRect_dup(HDC hdc, const ::rect & rect, COLORREF clr)
+// void FillSolidRect_dup(HDC hdc, const ::rect & rect, color32_t clr)
 
 // {
 //    CGColorRef color = cg_create_color(clr);
@@ -1201,7 +1201,7 @@ void os_term_imaging()
 
 
 
-//int_bool get_window_rect(oswindow hwnd, RECT * prect)
+//int_bool get_window_rect(oswindow hwnd, RECT32 * prect)
 //
 //{
 //   /* XWindowAttributes attrs;
@@ -1313,10 +1313,10 @@ void * cg_image_get_image_data(int & width, int & height, int & iScan, CGImageRe
    long bytesPerRow = bytesPerPixel * width;
    long bitsPerComponent = 8;
 
-   UInt32 * pixels;
-   pixels = (UInt32 *) calloc(height * width, sizeof(UInt32));
+   ::u32 * pixels;
+   pixels = (::u32 *) calloc(height * width, sizeof(::u32));
    
-   iScan = width * sizeof(UInt32);
+   iScan = width * sizeof(::u32);
 
    // 3.
    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();

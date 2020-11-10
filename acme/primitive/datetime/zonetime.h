@@ -11,14 +11,14 @@ namespace datetime
    public:
 
 
-      __time64_t        m_iZoneOffset;
+      time_t        m_iZoneOffset;
 
 
-      static zonetime WINAPI get_current_time(__time64_t iZone) noexcept;
+      static zonetime WINAPI get_current_time(time_t iZone) noexcept;
 
       zonetime() noexcept;
       zonetime(const zonetime & zonetime) noexcept;
-      zonetime(__time64_t zonetime, int iZoneOffset) noexcept;
+      zonetime(time_t zonetime, int iZoneOffset) noexcept;
       zonetime(i32 nYear, i32 nMonth, i32 nDay, i32 nHour, i32 nMin, i32 nSec, i32 iZoneOffset);
 
 
@@ -33,7 +33,7 @@ namespace datetime
       i32 GetZoneSecond() const noexcept;
       i32 GetZoneDayOfWeek() const noexcept; // 1 = Sunday, 7 = Saturday
 
-      __time64_t GetZoneTimeOfDay() const noexcept;
+      time_t GetZoneTimeOfDay() const noexcept;
       i64 GetZoneDaySig() const noexcept;
 
 

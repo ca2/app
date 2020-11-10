@@ -75,7 +75,7 @@ namespace draw2d
 }*/
 
    
-   UINT object::GetObjectType() const
+   ::u32 object::GetObjectType() const
    {
       
       ::exception::throw_interface_only();

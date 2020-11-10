@@ -267,7 +267,7 @@ namespace user
       }
 
 
-      bool edit::get_element_rect(RECT * prect, index i, e_element eelement)
+      bool edit::get_element_rect(RECT32 * prect, index i, e_element eelement)
 
       {
 
@@ -305,7 +305,7 @@ namespace user
 
       }
 
-      bool edit::get_item_rect(RECT * prect, index i)
+      bool edit::get_item_rect(RECT32 * prect, index i)
 
       {
 

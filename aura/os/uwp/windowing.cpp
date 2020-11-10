@@ -193,7 +193,7 @@ LONG_PTR oswindow_data::set_window_long_ptr(int nIndex, LONG_PTR l)
 }
 
 
-bool oswindow_data::_001ClientToScreen(LPPOINT lppoint)
+bool oswindow_data::_001ClientToScreen(POINT32 * lppoint)
 {
    if (m_pimpl == nullptr || m_pimpl->m_puserinteraction == nullptr)
    {
@@ -206,7 +206,7 @@ bool oswindow_data::_001ClientToScreen(LPPOINT lppoint)
    return true;
 }
 
-bool oswindow_data::_001ScreenToClient(LPPOINT lppoint)
+bool oswindow_data::_001ScreenToClient(POINT32 * lppoint)
 {
    if (m_pimpl == nullptr || m_pimpl->m_puserinteraction == nullptr)
    {
@@ -420,7 +420,7 @@ int destroy_window(oswindow oswindow)
 //}
 
 
-int_bool point_is_window_origin(POINT ptHitTest, oswindow oswindowExclude, int iMargin)
+int_bool point_is_window_origin(POINT32 ptHitTest, oswindow oswindowExclude, int iMargin)
 {
 
    return abs(ptHitTest.x) < iMargin && abs(ptHitTest.y) < iMargin;
@@ -480,10 +480,10 @@ void os_term_windowing()
 //
 
 
-__int64 oswindow_id(struct oswindow_data * pdata)
+::i64 oswindow_id(struct oswindow_data * pdata)
 {
 
-   return (__int64)pdata;
+   return (::i64)pdata;
 
 }
 
@@ -611,7 +611,7 @@ int_bool is_window_occluded(oswindow oswindow)
 
 
 
-int_bool WINAPI SetWindowPos(oswindow pdata, oswindow pdataAfter, int x, int y, int cx, int cy, UINT uiFlags)
+int_bool WINAPI SetWindowPos(oswindow pdata, oswindow pdataAfter, int x, int y, int cx, int cy, ::u32 uFlags)
 {
 
    pdata->m_pimpl->m_puserinteraction->order(pdata);
@@ -642,7 +642,7 @@ void defer_term_ui()
 //int g_iMouseY = 0;
 //
 //
-//CLASS_DECL_AURA int_bool GetCursorPos(LPPOINT lppoint)
+//CLASS_DECL_AURA int_bool GetCursorPos(POINT32 * lppoint)
 //{
 //
 //   lppoint->x = g_iMouseX;
@@ -668,9 +668,9 @@ void defer_term_ui()
 //
 //                  Windows::UI::Input::PointerPoint^ pointerPoint = ::Windows::UI::Input::PointerPoint::GetCurrentPoint(g_iMouse);
 //
-//                  g_iMouseX = (LONG)pointerPoint->RawPosition.X;
+//                  g_iMouseX = (::i32)pointerPoint->RawPosition.X;
 //
-//                  g_iMouseY = (LONG)pointerPoint->RawPosition.Y;
+//                  g_iMouseY = (::i32)pointerPoint->RawPosition.Y;
 //
 //               }
 //

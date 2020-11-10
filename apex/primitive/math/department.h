@@ -37,7 +37,7 @@ namespace math
       double         dPi;
       float          fPi;
       u32            dwMode;
-      BYTE           pbData[16];
+      byte           pbData[16];
 
    public:
 

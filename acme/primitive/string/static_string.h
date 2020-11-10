@@ -7,23 +7,23 @@ class static_string
 public:
 
    
-   typedef CHAR CHAR_TYPE;
-   const CHAR * m_psz;
+   typedef TYPE_CHAR CHAR_TYPE;
+   const TYPE_CHAR * m_psz;
 
 
-   static_string(const CHAR* psz) :
+   static_string(const TYPE_CHAR* psz) :
       m_psz(psz)
    {
    }
 
-   operator const CHAR* () const
+   operator const TYPE_CHAR* () const
    {
       return m_psz;
    }
 
    static strsize __cdecl get_length()
    {
-      return (t_nSize / sizeof(CHAR)) - 1;
+      return (t_nSize / sizeof(TYPE_CHAR)) - 1;
    }
 
 

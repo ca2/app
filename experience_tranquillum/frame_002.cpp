@@ -17,7 +17,7 @@
 #define GRIP_CENTER_SMALL_CY 7
 
 
-COLORREF SetAValue(BYTE a, COLORREF cr)
+color32_t SetAValue(byte a, color32_t cr)
 {
 
    return ARGB(a, colorref_get_r_value(cr), colorref_get_g_value(cr), colorref_get_b_value(cr));
@@ -213,9 +213,9 @@ SizingNone:;
 
                auto pframewindow = m_pframewindow;
 
-               COLORREF    crMoveableBorder;
-               COLORREF    crMoveableBorderHilight;
-               COLORREF    crMoveableBorderShadow;
+               color32_t    crMoveableBorder;
+               color32_t    crMoveableBorderHilight;
+               color32_t    crMoveableBorderShadow;
 
                if(pframewindow->is_active())
                {
@@ -423,7 +423,7 @@ SizingNone:;
             void frame_002::GetBorderRect(
             const ::rect & rectClient,
 
-            RECT * prect,
+            RECT32 * prect,
 
             e_border eside)
             {
@@ -1054,7 +1054,7 @@ SizingNone:;
             }
 
 
-            COLORREF frame_002::get_border_main_body_color()
+            color32_t frame_002::get_border_main_body_color()
             {
 
                return m_crMoveableBorder;

@@ -1121,8 +1121,9 @@ target_link_directories(aura PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archiv
 
 target_include_directories(aura PRIVATE .)
 target_include_directories(aura PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
-target_include_directories(aura PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../..)
-target_include_directories(aura PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)
+target_include_directories(aura PRIVATE $ENV{HOME}/__config)
+target_include_directories(aura PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source)
+target_include_directories(aura PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive)
 target_include_directories(aura PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source)
 target_include_directories(aura PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/app)
 target_include_directories(aura PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/app/_include)

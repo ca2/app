@@ -29,7 +29,7 @@ public:
    memory_file(const memory_file & file);
    memory_file(memory_file && file);
    memory_file(void * pMemory, memsize dwSize);
-   memory_file(var & var, UINT nFlags = 0);
+   memory_file(var & var, ::u32 nFlags = 0);
    memory_file(memory_base & memory, efileopen eopen = 0);
    memory_file(memory_base * pmemory, efileopen eopen = 0);
    template < typename MEMORY>

@@ -74,7 +74,7 @@ namespace user
    {
    public:
 
-      RECT   m_rect;
+      RECT32   m_rect;
 
    };
 

@@ -255,8 +255,9 @@ CLASS_DECL_ACME string FormatMessageFromSystem(u32 dwError);
 
 CLASS_DECL_ACME string get_mem_info_report1();
 CLASS_DECL_ACME ::count get_mem_info(i32 ** ppiUse, const char *** ppszFile, const char *** pszCallStack, u32 ** ppuiLine, size_t ** ppsize);
+#ifdef WINDOWS
 CLASS_DECL_ACME ::count get_mem_info2(i32 ** ppiUse, const char *** ppszFile, DWORD64 ** ppuiStack[64], i64 ** ppiStack, i32 ** ppiLine, i64 ** ppiSize);
-
+#endif
 
 
 #endif

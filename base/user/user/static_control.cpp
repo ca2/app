@@ -146,7 +146,7 @@ namespace user
 
 
 
-      COLORREF crText = ARGB(255, 0, 0, 0);
+      color32_t crText = ARGB(255, 0, 0, 0);
 
       if(m_bHover)
       {

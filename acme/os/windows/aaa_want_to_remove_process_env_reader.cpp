@@ -79,7 +79,7 @@ BOOL CProcessEnvReader::ReadEnvironmentBlock(HANDLE hProcess,_ENVSTRING_t& stEnv
       PEB peb = {0};
       SIZE_T nReturnNumBytes = 0;
       // Check read access of specified locationd in the processs and get the size of block
-      ReadProcessMemory(hProcess,(LPCVOID)stBasiProcInfo.PebBaseAddress,&peb,sizeof(peb),&nReturnNumBytes);
+      ReadProcessMemory(hProcess,(const void *)stBasiProcInfo.PebBaseAddress,&peb,sizeof(peb),&nReturnNumBytes);
 
 
       // Get the address of RTL_USER_PROCESS_PARAMETERS structure
@@ -95,7 +95,7 @@ BOOL CProcessEnvReader::ReadEnvironmentBlock(HANDLE hProcess,_ENVSTRING_t& stEnv
 
       // Get the first 0x64 bytes of RTL_USER_PROCESS_PARAMETERS strcuture
       char cBuffRTLUserInfo[0x64] = {0};
-      ReadProcessMemory(hProcess,(LPCVOID)pRTLUserInfo,cBuffRTLUserInfo,0x64,&nReturnNumBytes);
+      ReadProcessMemory(hProcess,(const void *)pRTLUserInfo,cBuffRTLUserInfo,0x64,&nReturnNumBytes);
 
       // Validate the read operation
       if(!nReturnNumBytes)
@@ -118,7 +118,7 @@ BOOL CProcessEnvReader::ReadEnvironmentBlock(HANDLE hProcess,_ENVSTRING_t& stEnv
       __memset(pchBuffEnvString,0,sizeof(UCHAR)* nReadbleSize);
 
       // Read the environment block
-      ReadProcessMemory(hProcess,(LPCVOID)pAddrEnvStrBlock,
+      ReadProcessMemory(hProcess,(const void *)pAddrEnvStrBlock,
                         pchBuffEnvString,nReadbleSize,&nReturnNumBytes);
 
       // Cleanup existing data if any
@@ -175,7 +175,7 @@ BOOL CProcessEnvReader::HasReadAccess(HANDLE hProcess,
 /**
 * Function to open the specified process to read or query information
 **/
-HANDLE CProcessEnvReader::OpenProcessToRead(DWORD dwPID)
+HANDLE CProcessEnvReader::OpenProcessToRead(::u32 dwPID)
 {
    HANDLE hProcess = OpenProcess(PROCESS_QUERY_INFORMATION |
                                  PROCESS_VM_READ,FALSE,dwPID);
@@ -250,7 +250,7 @@ string CProcessEnvReader::GetProcessNameFromHandle(HANDLE hProcess)
    return szProcessName;
 }
 
-string CProcessEnvReader::GetProcessNameFromID(DWORD dwPID)
+string CProcessEnvReader::GetProcessNameFromID(::u32 dwPID)
 {
    HANDLE hProcess = OpenProcessToRead(dwPID);
    string csName = GetProcessNameFromHandle(hProcess);

@@ -1429,9 +1429,9 @@ string & property::get_http_post(string & str) const
 //  //   ::text_stream ostring;
 //  //   //ostring << (const char *)m_strName << "='" << (const char *)m_strValue << "' ";
 //
-//  //   ostring << (const char *)m_strName << L"=" << (CHAR)opt->value_quotation_mark
+//  //   ostring << (const char *)m_strName << L"=" << (char)opt->value_quotation_mark
 //  //      << (const char *)(opt->reference_value&&opt->m_pentities?opt->m_pentities->entity_to_ref(m_strValue):m_strValue)
-//  //      << (CHAR)opt->value_quotation_mark << L" ";
+//  //      << (char)opt->value_quotation_mark << L" ";
 //  //   return ostring.str();
 //
 //  if(opt == ((::xml::disp_option *) 1))

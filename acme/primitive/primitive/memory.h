@@ -83,7 +83,7 @@ public:
    memory(const memory & memory);
    memory(const char * psz);
    memory(const ::block & block);
-   memory(memory_container * pcontainer, memsize size = 0, UINT uAllocFlags = 0);
+   memory(memory_container * pcontainer, memsize size = 0, ::u32 uAllocFlags = 0);
    memory(memory_container * pcontainer, const void * pdata, memsize size);
    memory(manager * pmanager);
    memory(const memory & memory, manager * pmanager);

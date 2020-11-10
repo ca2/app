@@ -360,14 +360,14 @@ namespace user
 
       pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
 
-      COLORREF crBk;
-      COLORREF crBkSel;
-      COLORREF crSel;
-      COLORREF cr;
+      color32_t crBk;
+      color32_t crBkSel;
+      color32_t crSel;
+      color32_t cr;
 
       auto rectClient = get_client_rect();
 
-      COLORREF crEditBackground = get_color(pstyle, element_background);
+      color32_t crEditBackground = get_color(pstyle, element_background);
 
       pgraphics->fill_rect(rectClient, crEditBackground);
 
@@ -587,7 +587,7 @@ namespace user
          //else
          {
 
-            COLORREF crOverride = ARGB(255, 0, 0, 0);
+            color32_t crOverride = ARGB(255, 0, 0, 0);
 
             bool bOverride = false;
 
@@ -2741,7 +2741,7 @@ namespace user
 
                }
 
-               sizeLast.cx = (LONG) size.cx;
+               sizeLast.cx = (::i32) size.cx;
 
                for (int j = 0; j < iLen; j++)
                {
@@ -2778,7 +2778,7 @@ namespace user
       if (iLineUpdate < 0)
       {
 
-         m_sizeTotal.cy = (LONG) ((((i32)m_iaLineLen.get_count() + (m_bMultiLine ? max(5, m_iLineCount) : 0)) * m_iLineHeight));
+         m_sizeTotal.cy = (::i32) ((((i32)m_iaLineLen.get_count() + (m_bMultiLine ? max(5, m_iLineCount) : 0)) * m_iLineHeight));
 
          ::sized sizePage;
 
@@ -2854,7 +2854,7 @@ namespace user
    }
 
 
-   bool plain_edit::plain_edit_caret_rect(::draw2d::graphics_pointer& pgraphics, LPRECT lprect, strsize iSel)
+   bool plain_edit::plain_edit_caret_rect(::draw2d::graphics_pointer& pgraphics, LPRECT32 lprect, strsize iSel)
    {
 
       int x = 0;
@@ -2877,7 +2877,7 @@ namespace user
    }
 
 
-   bool plain_edit::plain_edit_index_range(::draw2d::graphics_pointer& pgraphics, LPRECT lprect, strsize iSel)
+   bool plain_edit::plain_edit_index_range(::draw2d::graphics_pointer& pgraphics, LPRECT32 lprect, strsize iSel)
    {
 
       index iLine = plain_edit_char_to_line(pgraphics, iSel);
@@ -2887,7 +2887,7 @@ namespace user
    }
 
 
-   bool plain_edit::plain_edit_line_range(::draw2d::graphics_pointer& pgraphics, LPRECT lprect, ::index iLine)
+   bool plain_edit::plain_edit_line_range(::draw2d::graphics_pointer& pgraphics, LPRECT32 lprect, ::index iLine)
    {
 
       if(iLine < 0)
@@ -2897,9 +2897,9 @@ namespace user
 
       }
 
-      lprect->top = (LONG) (iLine * m_iItemHeight);
+      lprect->top = (::i32) (iLine * m_iItemHeight);
 
-      lprect->bottom = (LONG) (lprect->top + m_iItemHeight);
+      lprect->bottom = (::i32) (lprect->top + m_iItemHeight);
 
       return true;
 
@@ -4912,11 +4912,11 @@ finished_update:
 
       index y = (index) ((iLine)* m_iLineHeight - get_viewport_offset().y);
       index y2 = y + m_iLineHeight;
-      ::point point((LONG)x,(LONG) y);
+      ::point point((::i32)x,(::i32) y);
       get_client_rect(rect);
-      rect.left =(LONG) x;
-      rect.top = (LONG)y;
-      rect.bottom = (LONG)y2;
+      rect.left =(::i32) x;
+      rect.top = (::i32)y;
+      rect.bottom = (::i32)y2;
       _001ClientToScreen(rect);
       get_wnd()->_001ScreenToClient(rect);
 
@@ -5281,7 +5281,7 @@ finished_update:
       /*   char flag;
          m_iViewOffset = 0;
          i32 iLineSize;
-         UINT uiRead;
+         ::u32 uRead;
          i32 iPos = 0;
          i32 iLineStart = -1;
          i32 iLineEnd = -1;
@@ -5791,7 +5791,7 @@ finished_update:
    }
 
 
-   bool plain_edit::get_line_color(COLORREF & cr, const string & strLine)
+   bool plain_edit::get_line_color(color32_t & cr, const string & strLine)
    {
 
       return false;

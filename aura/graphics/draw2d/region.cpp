@@ -119,7 +119,7 @@ namespace draw2d
    }
 
 
-   bool region::create_polygon(const POINT * ppoints, i32 nCount, ::draw2d::e_fill_mode efillmode)
+   bool region::create_polygon(const POINT32 * ppoints, i32 nCount, ::draw2d::e_fill_mode efillmode)
    {
 
       if(m_eregion != e_region_none)
@@ -189,7 +189,7 @@ namespace draw2d
    }
 
 
-   bool region::create_poly_polygon(const POINT * ppoints, const i32 * ppolycounts,i32 nCount,::draw2d::e_fill_mode efillmode)
+   bool region::create_poly_polygon(const POINT32 * ppoints, const i32 * ppolycounts,i32 nCount,::draw2d::e_fill_mode efillmode)
    {
 
       if(m_eregion != e_region_none)
@@ -328,7 +328,7 @@ namespace draw2d
    }
 
 
-   bool region::get_bounding_box(RECT * prect, ::draw2d::graphics * pgraphics)
+   bool region::get_bounding_box(RECT32 * prect, ::draw2d::graphics * pgraphics)
    {
 
       ::exception::throw_interface_only();
@@ -346,7 +346,7 @@ namespace draw2d
    }
 
 
-   bool region::translate(const POINT & point, ::draw2d::graphics * pgraphics)
+   bool region::translate(const POINT32 & point, ::draw2d::graphics * pgraphics)
    {
 
       set_modified();
@@ -400,7 +400,7 @@ namespace draw2d
    }
 
 
-   bool region::contains(const POINT & point, ::draw2d::graphics * pgraphics)
+   bool region::contains(const POINT32 & point, ::draw2d::graphics * pgraphics)
    {
 
       return contains(pointd(point));
@@ -408,7 +408,7 @@ namespace draw2d
    }
 
 
-   void region::max_bounding_box(RECT * prect, ::draw2d::graphics * pgraphics)
+   void region::max_bounding_box(RECT32 * prect, ::draw2d::graphics * pgraphics)
    {
 
       ::rectd rect;
@@ -420,7 +420,7 @@ namespace draw2d
    }
 
 
-   void region::max_bounding_box_rect(RECT * prect, ::draw2d::graphics * pgraphics)
+   void region::max_bounding_box_rect(RECT32 * prect, ::draw2d::graphics * pgraphics)
    {
 
       ::rectd rect;
@@ -433,7 +433,7 @@ namespace draw2d
    }
 
 
-   void region::max_bounding_box_oval(RECT * prect, ::draw2d::graphics * pgraphics)
+   void region::max_bounding_box_oval(RECT32 * prect, ::draw2d::graphics * pgraphics)
    {
 
       ::rectd rect;
@@ -446,7 +446,7 @@ namespace draw2d
    }
 
 
-   void region::max_bounding_box_polygon(RECT * prect, ::draw2d::graphics * pgraphics)
+   void region::max_bounding_box_polygon(RECT32 * prect, ::draw2d::graphics * pgraphics)
    {
 
       ::rectd rect;
@@ -458,7 +458,7 @@ namespace draw2d
    }
 
 
-   void region::max_bounding_box_poly_polygon(RECT * prect, ::draw2d::graphics * pgraphics)
+   void region::max_bounding_box_poly_polygon(RECT32 * prect, ::draw2d::graphics * pgraphics)
    {
 
       ::rectd rect;
@@ -471,7 +471,7 @@ namespace draw2d
    }
 
 
-   void region::max_bounding_box_combine(RECT * prect, ::draw2d::graphics * pgraphics)
+   void region::max_bounding_box_combine(RECT32 * prect, ::draw2d::graphics * pgraphics)
    {
 
       ::rectd rect;
@@ -845,7 +845,7 @@ namespace draw2d
    }
 
 
-   bool region::internal_contains(const POINT & point)
+   bool region::internal_contains(const POINT32 & point)
    {
 
       return internal_contains(pointd(point));
@@ -853,7 +853,7 @@ namespace draw2d
    }
 
 
-   bool region::internal_rect_contains(const POINT & point)
+   bool region::internal_rect_contains(const POINT32 & point)
    {
 
       return internal_rect_contains(pointd(point));
@@ -861,7 +861,7 @@ namespace draw2d
    }
 
 
-   bool region::internal_oval_contains(const POINT & point)
+   bool region::internal_oval_contains(const POINT32 & point)
    {
 
       return internal_oval_contains(pointd(point));
@@ -869,7 +869,7 @@ namespace draw2d
    }
 
 
-   bool region::internal_polygon_contains(const POINT & point)
+   bool region::internal_polygon_contains(const POINT32 & point)
    {
 
       return internal_polygon_contains(pointd(point));
@@ -877,7 +877,7 @@ namespace draw2d
    }
 
 
-   bool region::internal_poly_polygon_contains(const POINT & point)
+   bool region::internal_poly_polygon_contains(const POINT32 & point)
    {
 
       return internal_poly_polygon_contains(pointd(point));
@@ -885,7 +885,7 @@ namespace draw2d
    }
 
 
-   bool region::internal_combine_contains(const POINT & point)
+   bool region::internal_combine_contains(const POINT32 & point)
    {
 
       return internal_combine_contains(pointd(point));

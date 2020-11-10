@@ -5139,7 +5139,7 @@ const char * GeoIP_region_name_by_code(const char * country_code,const char * re
       name = "El Progreso";
       break;
       case 6:
-      name = "Escuintla";
+      name = "Esc::u32la";
       break;
       case 7:
       name = "Guatemala";
@@ -8574,7 +8574,7 @@ const char * GeoIP_region_name_by_code(const char * country_code,const char * re
       name = "Queretaro de Arteaga";
       break;
       case 23:
-      name = "Quintana Roo";
+      name = "Q::u32ana Roo";
       break;
       case 24:
       name = "San Luis Potosi";

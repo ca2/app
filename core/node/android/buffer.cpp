@@ -83,7 +83,7 @@ namespace android
       //*/
 
 
-      //::copy_colorref(pimage->width(), pimage->height(), (COLORREF *)buffer.bits, pimage->width() * sizeof(COLORREF), pimage->get_data(), pimage->scan_size());
+      //::copy_colorref(pimage->width(), pimage->height(), (color32_t *)buffer.bits, pimage->width() * sizeof(color32_t), pimage->get_data(), pimage->scan_size());
 
       //ANativeWindow_unlockAndPost(m_pimpl->m_oswindow->m_engine.app->window);
 

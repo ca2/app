@@ -4,12 +4,12 @@
 /*HANDLE
 WINAPI
 create_file(
-            LPCSTR lpFileName,
-            DWORD dwDesiredAccess,
-            DWORD dwShareMode,
+            const char * lpFileName,
+            ::u32 dwDesiredAccess,
+            ::u32 dwShareMode,
             LPSECURITY_ATTRIBUTES lpSecurityAttributes,
-            DWORD dwCreationDisposition,
-            DWORD dwFlagsAndAttributes,
+            ::u32 dwCreationDisposition,
+            ::u32 dwFlagsAndAttributes,
             HANDLE hTemplateFile
             )
 {
@@ -30,13 +30,13 @@ create_file(
 
 }
 
-DWORD
+::u32
 WINAPI
 SetFilePointer(
                HANDLE hFile,
-               LONG lDistanceToMove,
+               ::i32 lDistanceToMove,
                PLONG lpDistanceToMoveHigh,
-               DWORD dwMoveMethod
+               ::u32 dwMoveMethod
                )
 {
     if(hFile == INVALID_HANDLE_VALUE)
@@ -51,8 +51,8 @@ int_bool
 WINAPI
 WriteFile(
           HANDLE hFile,
-          LPCVOID lpBuffer,
-          DWORD nNumberOfBytesToWrite,
+          const void * lpBuffer,
+          ::u32 nNumberOfBytesToWrite,
           LPDWORD lpNumberOfBytesWritten,
           LPOVERLAPPED lpOverlapped
           )
@@ -72,7 +72,7 @@ WINAPI
 ReadFile(
          HANDLE hFile,
          LPVOID lpBuffer,
-         DWORD nNumberOfBytesToRead,
+         ::u32 nNumberOfBytesToRead,
          LPDWORD lpNumberOfBytesRead,
          LPOVERLAPPED lpOverlapped
          )

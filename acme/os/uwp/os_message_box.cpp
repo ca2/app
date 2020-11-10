@@ -63,7 +63,7 @@ public:
    }
 
 
-   //T wait(unsigned int dwMillis = INFINITE, ::Windows::Foundation::AsyncStatus * pstatus = nullptr)
+   //T wait(unsigned int dwMillis = U32_INFINITE_TIMEOUT, ::Windows::Foundation::AsyncStatus * pstatus = nullptr)
    //{
 
    //   task_sleep(dwMillis, &m_event);
@@ -99,7 +99,7 @@ public:
 internal:
 
    template < typename PRED >
-   void wait(PRED pred, unsigned int dwMillis = INFINITE, ::Windows::Foundation::AsyncStatus * pstatus = nullptr)
+   void wait(PRED pred, unsigned int dwMillis = U32_INFINITE_TIMEOUT, ::Windows::Foundation::AsyncStatus * pstatus = nullptr)
    {
 
       pred(wait(dwMillis, pstatus));

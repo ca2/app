@@ -117,7 +117,7 @@ mkstemps(char *pattern, int suffix_len)
 #endif
 
 
-HGLOBAL WINAPI GlobalAlloc(UINT uFlags, SIZE_T dwBytes)
+HGLOBAL WINAPI GlobalAlloc(::u32 uFlags, SIZE_T dwBytes)
 {
 
    i32 result;
@@ -191,7 +191,7 @@ HGLOBAL WINAPI GlobalAlloc(UINT uFlags, SIZE_T dwBytes)
 }
 
 
-HGLOBAL WINAPI GlobalReAlloc(HGLOBAL hglobal, SIZE_T dwBytes, UINT uFlags)
+HGLOBAL WINAPI GlobalReAlloc(HGLOBAL hglobal, SIZE_T dwBytes, ::u32 uFlags)
 {
 
    i32 result = ftruncate(hglobal->m_fd, dwBytes);

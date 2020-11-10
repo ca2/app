@@ -88,7 +88,7 @@ namespace helloworld
 
       //tick                            m_tickAnime;
       //tick m_tickLastFast;
-      //DWORD                            m_tickFastAnime;
+      //::u32                            m_tickFastAnime;
       //::image_pointer                 m_pimageFast;
 
 
@@ -99,7 +99,7 @@ namespace helloworld
       //string                           m_strCurrent23;
       //string                           m_strLast23;
       //bool                             m_bFirst23;
-      //DWORD                            m_dw23;
+      //::u32                            m_dw23;
 
       //array < bilbo >                  m_bilboa;
       //tick m_tickLastOk;

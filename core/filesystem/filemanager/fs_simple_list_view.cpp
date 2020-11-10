@@ -344,7 +344,7 @@ namespace filemanager
 
          }
 
-         UINT c_cdecl list_view::ThreadProcFillTask(LPVOID pParameter)
+         ::u32 c_cdecl list_view::ThreadProcFillTask(LPVOID pParameter)
 
          {
             UNREFERENCED_PARAMETER(pParameter);

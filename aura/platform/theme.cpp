@@ -148,7 +148,7 @@ namespace aura
    }
 
 
-   void theme::get_theme_text_color(COLORREF & crText, COLORREF & crBack)
+   void theme::get_theme_text_color(color32_t & crText, color32_t & crBack)
    {
 
       crText = get_theme_text_color();

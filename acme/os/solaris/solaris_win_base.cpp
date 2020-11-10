@@ -1,11 +1,11 @@
 #include "framework.h"
 
 
-DWORD
+::u32
 WINAPI
 GetTempPathA(
-    DWORD nBufferLength,
-    LPSTR lpBuffer
+    ::u32 nBufferLength,
+    char * lpBuffer
     )
 {
 

@@ -19,7 +19,7 @@ void * nscursor_system(e_cursor ecursor);
 CGImageRef cgimageref_from_image(const ::image * pimage)
 {
 
-   ::acme::malloc < COLORREF * > pdst;
+   ::acme::malloc < color32_t * > pdst;
 
    pdst.alloc(pimage->scan_size() * pimage->height());
 
@@ -156,7 +156,7 @@ namespace coreimage_imaging
 
       CGImageRef cgimage = cgimageref_from_image(pimage);
 
-      ::acme::malloc < COLORREF * > p;
+      ::acme::malloc < color32_t * > p;
 
       switch (psaveimage == nullptr ? ::draw2d::format_png : psaveimage->m_eformat)
       {
@@ -248,7 +248,7 @@ namespace coreimage_imaging
 
       int iScan = 0;
 
-      ::acme::malloc < COLORREF * > pcolorref;
+      ::acme::malloc < color32_t * > pcolorref;
 
       pcolorref = file_memory_to_image_data(w, h, iScan, memory.get_data(), memory.get_size());
       
@@ -300,10 +300,10 @@ void * cg_image_get_image_data(int & width, int & height, int & iScan, CGImageRe
    long bytesPerRow = bytesPerPixel * width;
    long bitsPerComponent = 8;
 
-   UInt32 * pixels;
-   pixels = (UInt32 *) calloc(height * width, sizeof(UInt32));
+   ::u32 * pixels;
+   pixels = (::u32 *) calloc(height * width, sizeof(::u32));
    
-   iScan = width * sizeof(UInt32);
+   iScan = width * sizeof(::u32);
 
    // 3.
    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();

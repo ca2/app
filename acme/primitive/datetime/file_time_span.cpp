@@ -15,7 +15,7 @@ namespace datetime
    {
    }
 
-   file_time_span::file_time_span(LONGLONG nSpan) noexcept:
+   file_time_span::file_time_span(::i64 nSpan) noexcept:
       m_nSpan(nSpan)
    {
    }
@@ -81,12 +81,12 @@ namespace datetime
       return(m_nSpan >= span.m_nSpan);
    }
 
-   LONGLONG file_time_span::GetTimeSpan() const noexcept
+   ::i64 file_time_span::GetTimeSpan() const noexcept
    {
       return(m_nSpan);
    }
 
-   void file_time_span::SetTimeSpan(LONGLONG nSpan) noexcept
+   void file_time_span::SetTimeSpan(::i64 nSpan) noexcept
    {
       m_nSpan = nSpan;
    }

@@ -41,7 +41,7 @@ namespace gen
     ::output_debug_string("\n");
     //TRACE(trace::category_Exception, 0, "__throw(hresult_exception: hr = 0x%x\n", hr ));
     ASSERT( false );
-    DWORD dwExceptionCode;
+    ::u32 dwExceptionCode;
     switch(hr)
     {
     case E_OUTOFMEMORY:
@@ -50,7 +50,7 @@ namespace gen
     default:
     dwExceptionCode = EXCEPTION_ILLEGAL_INSTRUCTION;
     }
-    atl_raise_exception((DWORD)dwExceptionCode);*/
+    atl_raise_exception((::u32)dwExceptionCode);*/
    //}
 #endif
    

@@ -1084,7 +1084,7 @@ break_click:;
    }
 
 
-   bool form_list::_001OnMouseActivate(::user::interaction_impl * pDesktopWnd,UINT nHitTest,const ::id & id,LRESULT & iResult)
+   bool form_list::_001OnMouseActivate(::user::interaction_impl * pDesktopWnd,::u32 nHitTest,const ::id & id,LRESULT & iResult)
    {
       UNREFERENCED_PARAMETER(pDesktopWnd);
       UNREFERENCED_PARAMETER(nHitTest);
@@ -1577,7 +1577,7 @@ break_click:;
    }
 
 
-   void form_list::control_get_client_rect(::user::interaction * pinteraction,RECT * prect)
+   void form_list::control_get_client_rect(::user::interaction * pinteraction,RECT32 * prect)
 
    {
 
@@ -1638,7 +1638,7 @@ break_click:;
    }
 
 
-   void form_list::control_get_window_rect(::user::interaction * pinteraction,RECT * prect)
+   void form_list::control_get_window_rect(::user::interaction * pinteraction,RECT32 * prect)
 
    {
 

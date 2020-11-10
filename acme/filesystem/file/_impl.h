@@ -850,7 +850,7 @@ inline void __exchange(::stream & s, i64 & i) { s.default_exchange(i); }
 #if defined(__APPLE__)  || defined(ANDROID) || defined(RASPBIAN)
 inline void __exchange(::stream & s, long & l) { s.default_exchange(l); }
 #elif !defined(LINUX)
-inline void __exchange(::stream & s, LONG & l) { s.default_exchange(l); }
+inline void __exchange(::stream & s, ::i32 & l) { s.default_exchange(l); }
 #endif
 
 #if defined(__APPLE__) || defined(ANDROID) || defined(WINDOWS) || defined(RASPBIAN)
@@ -947,14 +947,14 @@ inline text_stream & operator << (text_stream & stream, const file_result & pfil
 }
 
 
-inline void __exchange(::stream & s, RECT & rect)
+inline void __exchange(::stream & s, RECT32 & rect)
 {
 
    s.exchange("left", rect.left); s.exchange("top", rect.top); s.exchange("right", rect.right); s.exchange("bottom", rect.bottom);
 
 }
 
-inline void __exchange(::stream & s, RECTL & rect)
+inline void __exchange(::stream & s, RECT64 & rect)
 {
 
    s.exchange("left", rect.left); s.exchange("top", rect.top); s.exchange("right", rect.right); s.exchange("bottom", rect.bottom);
@@ -979,7 +979,7 @@ inline void __exchange(::stream & s, RECTD & rect)
 
 
 
-inline void __exchange(::stream & s, SIZE & size)
+inline void __exchange(::stream & s, SIZE32 & size)
 {
    s.exchange("cx", size.cx); s.exchange("cy", size.cy);
 }
@@ -1013,14 +1013,14 @@ inline void __exchange(::stream & s, SIZED & size)
 
 
 
-inline void __exchange(::stream & s, POINT & point)
+inline void __exchange(::stream & s, POINT32 & point)
 {
    s.exchange("x", point.x); s.exchange("y", point.y);
 }
 
 
 
-inline void __exchange(::stream & s, POINTL & point)
+inline void __exchange(::stream & s, POINT64 & point)
 {
    s.exchange("x", point.x); s.exchange("y", point.y);
 }

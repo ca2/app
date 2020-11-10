@@ -23,9 +23,9 @@ namespace user
 
       void _000OnMouse(::message::mouse * pmouse) override;
 
-      void control_get_client_rect(::user::interaction * pinteraction,RECT * prect) override;
+      void control_get_client_rect(::user::interaction * pinteraction,RECT32 * prect) override;
 
-      void control_get_window_rect(::user::interaction * pinteraction,RECT * prect) override;
+      void control_get_window_rect(::user::interaction * pinteraction,RECT32 * prect) override;
 
       bool control_001DisplayHitTest(const ::point & point);
 
@@ -68,7 +68,7 @@ namespace user
       virtual void _001UpdateEdit(::user::interaction * pinteraction) override;
       virtual bool _001SaveEdit(::user::interaction * pinteraction) override;
 
-      virtual bool _001OnMouseActivate(::user::interaction_impl * pDesktopWnd,UINT nHitTest,const ::id & id,LRESULT & iResult) override;
+      virtual bool _001OnMouseActivate(::user::interaction_impl * pDesktopWnd,::u32 nHitTest,const ::id & id,LRESULT & iResult) override;
 
 
       virtual void install_message_routing(::channel * pchannel) override;

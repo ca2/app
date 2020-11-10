@@ -7,7 +7,7 @@
 //
 //struct CLASS_DECL_AURA __MAP_MESSAGE
 //{
-//   UINT    nMsg;
+//   ::u32    nMsg;
 //   const char *  pszMsg;
 
 //};
@@ -255,9 +255,9 @@ void TraceDDE(const char * pszPrefix, const MSG* pMsg)
 
       wchar_t szFormat[80];
       szFormat[0] = '\0';
-      if (((UINT)0xC000 <= (UINT)pAdvise->cfFormat) &&
+      if (((::u32)0xC000 <= (::u32)pAdvise->cfFormat) &&
 
-            ((UINT)pAdvise->cfFormat <= (UINT)0xFFFF))
+            ((::u32)pAdvise->cfFormat <= (::u32)0xFFFF))
 
       {
          ::GetClipboardFormatNameW(pAdvise->cfFormat,

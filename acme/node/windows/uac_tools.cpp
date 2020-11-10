@@ -12,7 +12,7 @@ Author: Andrei Belogortseff [ http://www.winability.com ]
 
 TERMS OF USE: You are free to use this file in any way you like,
 for both the commercial and non-commercial purposes, royalty-free,
-AS LONG AS you agree with the warranty disclaimer above,
+AS ::i32 AS you agree with the warranty disclaimer above,
 EXCEPT that you may not remov or modify this or any of the
 preceeding paragraphs. If you make any changes, please document
 them in the MODIFICATIONS section below. If the changes are of general
@@ -246,7 +246,7 @@ namespace VistaTools
          return hResult;
       }
 
-      DWORD dwReturnLength = 0;
+      ::u32 dwReturnLength = 0;
 
       if(!::GetTokenInformation(
             hToken,
@@ -287,7 +287,7 @@ namespace VistaTools
       }
 
       TOKEN_ELEVATION te = {0};
-      DWORD dwReturnLength = 0;
+      ::u32 dwReturnLength = 0;
 
       if(!::GetTokenInformation(
             hToken,
@@ -348,7 +348,7 @@ namespace VistaTools
    HHOOK   hVEHook                     = nullptr;
 
    __declspec(allocate("ve_shared"))
-   UINT   uVEMsg                     = 0;
+   ::u32   uVEMsg                     = 0;
 
    __declspec(allocate("ve_shared"))
    bool   bVESuccess                  = FALSE;
@@ -404,7 +404,7 @@ namespace VistaTools
    bool
    (WINAPI
     *PGetModuleHandleExW)(
-    __in        DWORD    dwFlags,
+    __in        ::u32    dwFlags,
     __in_opt    const unichar * pModuleName,
 
     __out HMODULE* phModule

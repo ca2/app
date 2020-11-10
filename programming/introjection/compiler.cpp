@@ -29,7 +29,7 @@ string vs_build()
 #endif
 
 
-DWORD RunSilent(const char* strFunct, char* strstrParams);
+::u32 RunSilent(const char* strFunct, char* strstrParams);
 
 
 namespace introjection
@@ -1432,7 +1432,7 @@ auto tickStart = ::tick::now();
 }
 
 
-DWORD RunSilent(const char* strFunct, char* strstrParams)
+::u32 RunSilent(const char* strFunct, char* strstrParams)
 {
 
 #if defined(_UWP)
@@ -1498,7 +1498,7 @@ DWORD RunSilent(const char* strFunct, char* strstrParams)
 
    }
 
-   WaitForSingleObject(ProcessInfo.hProcess, INFINITE);
+   WaitForSingleObject(ProcessInfo.hProcess, U32_INFINITE_TIMEOUT);
 
    if (!GetExitCodeProcess(ProcessInfo.hProcess, &rc))
    {

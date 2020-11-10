@@ -81,7 +81,7 @@ namespace filemanager
       virtual count _001GetItemCount() override;
       virtual void _001InsertColumns() override;
 
-      virtual COLORREF get_background_color();
+      virtual color32_t get_background_color();
 
    };
 

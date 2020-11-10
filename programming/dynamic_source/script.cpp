@@ -483,7 +483,7 @@ namespace dynamic_source
          if (iRetry > 0)
          {
 
-            Sleep((DWORD)__random(2000, 4000));
+            Sleep((::u32)__random(2000, 4000));
 
          }
 

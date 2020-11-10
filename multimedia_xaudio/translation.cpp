@@ -31,7 +31,7 @@ namespace multimedia
       //
       //   pbuffer->m_posdata            = &wavehdr;
 
-      //   wavehdr.lpData                = (LPSTR) pbuffer->m_pData;
+      //   wavehdr.lpData                = (char *) pbuffer->m_pData;
       //   wavehdr.dwBufferLength        = pwavebuffer->m_uiBufferSize;
       //   wavehdr.dwBytesRecorded       = 0;
       //   wavehdr.dwUser                = pbuffer->m_iIndex;

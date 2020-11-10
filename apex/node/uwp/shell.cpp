@@ -259,21 +259,21 @@ namespace uwp
    bool shell::Initialize()
    {
       /*
-      DWORD dwVersion = GetVersion();
+      ::u32 dwVersion = GetVersion();
 
       // get the Windows version.
 
-      DWORD dwWindowsMajorVersion =  (DWORD)(LOBYTE(LOWORD(dwVersion)));
-      //   DWORD dwWindowsMinorVersion =  (DWORD)(HIBYTE(LOWORD(dwVersion)));
+      ::u32 dwWindowsMajorVersion =  (::u32)(LOBYTE(LOWORD(dwVersion)));
+      //   ::u32 dwWindowsMinorVersion =  (::u32)(HIBYTE(LOWORD(dwVersion)));
 
       // get the build number.
 
-      DWORD dwBuild;
+      ::u32 dwBuild;
 
       if (dwVersion < 0x80000000)              // Windows NT
-         dwBuild = (DWORD)(HIWORD(dwVersion));
+         dwBuild = (::u32)(HIWORD(dwVersion));
       else if (dwWindowsMajorVersion < 4)      // Win32s
-         dwBuild = (DWORD)(HIWORD(dwVersion) & ~0x8000);
+         dwBuild = (::u32)(HIWORD(dwVersion) & ~0x8000);
       else                                     // Windows Me/98/95
          dwBuild =  0;
 
@@ -439,9 +439,9 @@ namespace uwp
 //   }
 //
 //
-//   DWORD WINAPI shell::_GetFullPathName(
+//   ::u32 WINAPI shell::_GetFullPathName(
 //      const unichar * lpFileName,
-//      DWORD nBufferLength,
+//      ::u32 nBufferLength,
 //      unichar * lpBuffer,
 //      unichar ** lpFilePart)
 //   {
@@ -450,7 +450,7 @@ namespace uwp
 //      string str;
 //      LPTSTR lpsz = str.GetBuffer(nBufferLength * 2);
 //      LPTSTR lpszFilePart;
-//      DWORD dw = ::GetFullPathName(pszPathA, nBufferLength, lpsz, &lpszFilePart);
+//      ::u32 dw = ::GetFullPathName(pszPathA, nBufferLength, lpsz, &lpszFilePart);
 //      str.ReleaseBuffer();
 //      ::str::international::ACPToUnicode(lpBuffer, nBufferLength, str);
 //      *lpFilePart = lpBuffer + ((int) (lpszFilePart - lpsz));
@@ -460,12 +460,12 @@ namespace uwp
 //   BOOL WINAPI shell::_GetVolumeInformation(
 //      const unichar * lpRootPathName,           // root directory
 //      unichar * lpVolumeNameBuffer,        // volume name buffer
-//      DWORD nVolumeNameSize,            // length of name buffer
+//      ::u32 nVolumeNameSize,            // length of name buffer
 //      LPDWORD lpVolumeSerialNumber,     // volume serial number
 //      LPDWORD lpMaximumComponentLength, // maximum file name length
 //      LPDWORD lpFileSystemFlags,        // file system options
 //      unichar * lpFileSystemNameBuffer,    // file system name buffer
-//      DWORD nFileSystemNameSize)         // length of file system name buffer
+//      ::u32 nFileSystemNameSize)         // length of file system name buffer
 //   {
 //      string strRootPathName;
 //      string strVolumeNameBuffer;
@@ -496,10 +496,10 @@ namespace uwp
 //
 //   dword_ptr shell::_SHGetFileInfo(
 //      const unichar * pszPath,
-//      DWORD dwFileAttributes,
+//      ::u32 dwFileAttributes,
 //      SHFILEINFOW *psfi,
-//      UINT cbFileInfo,
-//      UINT uFlags)
+//      ::u32 cbFileInfo,
+//      ::u32 uFlags)
 //   {
 //      UNREFERENCED_PARAMETER(cbFileInfo);
 //      string strPath;
@@ -523,18 +523,18 @@ namespace uwp
 //
 //
 //   BOOL shell::_GetStringTypeEx(
-//      LCID uiCodePage,
-//      DWORD dwInfoType,
+//      LCID uCodePage,
+//      ::u32 dwInfoType,
 //      const unichar * lpSrcStr,
 //      int cchSrc,
 //      LPWORD lpCharType)
 //   {
 //      strsize iCount = cchSrc;
 //      if(iCount < 0)
-//         iCount = ::str::international::UnicodeToMultiByteCount(uiCodePage, lpSrcStr);
+//         iCount = ::str::international::UnicodeToMultiByteCount(uCodePage, lpSrcStr);
 //      string str;
 //      LPTSTR lpsz = str.GetBuffer(iCount);
-//      if(::str::international::UnicodeToMultiByte(uiCodePage, lpsz, iCount, lpSrcStr))
+//      if(::str::international::UnicodeToMultiByte(uCodePage, lpsz, iCount, lpSrcStr))
 //      {
 //         //str.ReleaseBuffer();
 //         //return true;
@@ -543,7 +543,7 @@ namespace uwp
 //      {
 //         return false;
 //      }
-//      if(!GetStringTypeA(uiCodePage, dwInfoType, lpsz, (int) iCount, lpCharType))
+//      if(!GetStringTypeA(uCodePage, dwInfoType, lpsz, (int) iCount, lpCharType))
 //      {
 //         return FALSE;
 //      }
@@ -551,21 +551,21 @@ namespace uwp
 //   }
 //
 //
-//   DWORD shell::_GetTempPath(
-//      DWORD nBufferLength,
+//   ::u32 shell::_GetTempPath(
+//      ::u32 nBufferLength,
 //      unichar * lpBuffer)
 //   {
 //      string str;
-//      DWORD dw = ::GetTempPathA(nBufferLength, str.GetBuffer(nBufferLength * 2));
+//      ::u32 dw = ::GetTempPathA(nBufferLength, str.GetBuffer(nBufferLength * 2));
 //      str.ReleaseBuffer();
 //      ::str::international::ACPToUnicode(lpBuffer, nBufferLength, str);
 //      return dw;
 //   }
 //
-//   UINT shell::_GetTempFileName(
+//   ::u32 shell::_GetTempFileName(
 //      const unichar * lpPathName,
 //      const unichar * lpPrefixString,
-//      UINT uUnique,
+//      ::u32 uUnique,
 //      unichar * lpTempFileName)
 //   {
 //      string strPathName;
@@ -573,7 +573,7 @@ namespace uwp
 //      string strTempFileName;
 //      ::str::international::UnicodeToACP(strPathName, lpPathName);
 //      ::str::international::UnicodeToACP(strPrefixString, lpPrefixString);
-//      UINT user = ::GetTempFileNameA(
+//      ::u32 user = ::GetTempFileNameA(
 //         strPathName,
 //         strPrefixString,
 //         uUnique,
@@ -593,11 +593,11 @@ namespace uwp
 //
 //   HANDLE shell::_CreateFile(
 //      const unichar * lpFileName,
-//      DWORD dwDesiredAccess,
-//      DWORD dwShareMode,
+//      ::u32 dwDesiredAccess,
+//      ::u32 dwShareMode,
 //      LPSECURITY_ATTRIBUTES lpSecurityAttributes,
-//      DWORD dwCreationDisposition,
-//      DWORD dwFlagsAndAttributes,
+//      ::u32 dwCreationDisposition,
+//      ::u32 dwFlagsAndAttributes,
 //      HANDLE hTemplateFile
 //      )
 //   {
@@ -615,14 +615,14 @@ namespace uwp
 //   }
 //
 //
-//   DWORD shell::_GetModuleFileName(
+//   ::u32 shell::_GetModuleFileName(
 //      HMODULE hModule,
 //      unichar * lpFilename,
-//      DWORD nSize
+//      ::u32 nSize
 //      )
 //   {
 //      string str;
-//      DWORD dw = ::GetModuleFileNameA(hModule, str.GetBuffer(nSize * 2), nSize * 2);
+//      ::u32 dw = ::GetModuleFileNameA(hModule, str.GetBuffer(nSize * 2), nSize * 2);
 //      str.ReleaseBuffer();
 //      ::str::international::ACPToUnicode(lpFilename, nSize, str);
 //      return dw;
@@ -634,7 +634,7 @@ namespace uwp
 //
 //      string strClassName;
 //      const char * lpszClassName;
-//      if(((DWORD) lpClassName) >> 16 == 0)
+//      if(((::u32) lpClassName) >> 16 == 0)
 //      {
 //         lpszClassName = (const char *) lpClassName;
 //      }
@@ -656,7 +656,7 @@ namespace uwp
 //      lpWndClass->hCursor = wndclass.hCursor;
 //      lpWndClass->hbrBackground = wndclass.hbrBackground;
 //
-//      /*   if(((DWORD) wndclass) >> 16 == 0)
+//      /*   if(((::u32) wndclass) >> 16 == 0)
 //      {
 //      lpszClassName = (const char *) lpClassName;
 //      }
@@ -702,10 +702,10 @@ namespace uwp
 //
 //
 //   oswindow shell::_CreateWindowEx(
-//      DWORD dwExStyle,
+//      ::u32 dwExStyle,
 //      const unichar * lpClassName,
 //      const unichar * lpWindowName,
-//      DWORD uStyle,
+//      ::u32 uStyle,
 //      int x,
 //      int y,
 //      int nWidth,
@@ -717,7 +717,7 @@ namespace uwp
 //   {
 //      string strClassName;
 //      const char * lpszClassName;
-//      if(((DWORD) lpClassName) >> 16 == 0)
+//      if(((::u32) lpClassName) >> 16 == 0)
 //      {
 //         lpszClassName = (const char *) lpClassName;
 //      }

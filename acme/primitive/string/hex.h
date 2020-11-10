@@ -164,7 +164,7 @@ namespace hex
 
    inline void to_u32(u32 & ui,const string & str) { ui = to_u32(str); }
    inline void to_u32(u64 & ui,const string & str) { ui = to_u64(str); }
-   inline uptr to_uint_ptr(const string & str) { uptr ui; to_u32(ui,str); return ui; }
+   inline uptr to_uptr(const string & str) { uptr ui; to_u32(ui,str); return ui; }
 
 } // namespace hex
 

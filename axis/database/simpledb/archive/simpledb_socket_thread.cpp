@@ -58,7 +58,7 @@ namespace simpledb
       }
 
 
-      WaitForInputIdle(m_pi.hProcess, INFINITE);
+      WaitForInputIdle(m_pi.hProcess, U32_INFINITE_TIMEOUT);
 
 
       //   m_hChildThreadId = ::OpenThread(THREAD_ALL_ACCESS, TRUE, m_pi.dwThreadId);

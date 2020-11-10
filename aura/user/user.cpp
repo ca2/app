@@ -631,7 +631,7 @@ namespace aura
    //   return nullptr;
    //}
 
-   //bool session::get_monitor_rect(index iMonitor, RECT * prect)
+   //bool session::get_monitor_rect(index iMonitor, RECT32 * prect)
 
    //{
 

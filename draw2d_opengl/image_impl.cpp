@@ -98,7 +98,7 @@ namespace draw2d_opengl
 
       }
 
-      COLORREF * pcolorref = nullptr;
+      color32_t * pcolorref = nullptr;
 
       if(!m_pbitmap->create_bitmap(nullptr, size, (void **) & pcolorref, &iStride))
       {
@@ -237,10 +237,10 @@ namespace draw2d_opengl
 
    /*void image::Fill ( i32 R, i32 G, i32 B )
    {
-      COLORREF color=RGB ( B, G, R );
+      color32_t color=RGB ( B, G, R );
       i64 size = area();
 
-      COLORREF * pcr;
+      color32_t * pcr;
 
       i64 iSize32 = size / 32;
       i32 i;
@@ -291,21 +291,21 @@ namespace draw2d_opengl
    {
       i64 size = area();
 
-      BYTE * pbyte = (BYTE *) m_pcolorref;
+      byte * pbyte = (byte *) m_pcolorref;
 
       i32 i;
       for (i=0; i<size; i++ )
       {
-         *pbyte++ = (BYTE) R;
-         *pbyte++ = (BYTE) G;
-         *pbyte++ = (BYTE) B;
+         *pbyte++ = (byte) R;
+         *pbyte++ = (byte) G;
+         *pbyte++ = (byte) B;
          pbyte++;
       }
    }
 
    void image::ToAlpha(i32 i)
    {
-      BYTE *dst=(BYTE*)m_pcolorref;
+      byte *dst=(byte*)m_pcolorref;
       i64 size = area();
 
       while ( size-- )
@@ -317,7 +317,7 @@ namespace draw2d_opengl
 
    void image::from_alpha()
    {
-      BYTE *dst=(BYTE*)m_pcolorref;
+      byte *dst=(byte*)m_pcolorref;
       i64 size = area();
 
       while ( size-- )
@@ -382,7 +382,7 @@ namespace draw2d_opengl
 
    //void image::Map(i32 ToRgb, i32 FromRgb)
    //{
-   //   BYTE *dst=(BYTE*)m_pcolorref;
+   //   byte *dst=(byte*)m_pcolorref;
    //   i64 size = area();
 
    //   while ( size-- )
@@ -393,14 +393,14 @@ namespace draw2d_opengl
    //}
 
 
-   //void image::ToAlphaAndFill(i32 i, COLORREF cr)
+   //void image::ToAlphaAndFill(i32 i, color32_t cr)
    //{
-   //   BYTE *dst=(BYTE*)m_pcolorref;
+   //   byte *dst=(byte*)m_pcolorref;
    //   i64 size = area();
 
-   //   BYTE uchB = ::blue(cr);
-   //   BYTE uchG = ::green(cr);
-   //   BYTE uchR = ::red(cr);
+   //   byte uchB = ::blue(cr);
+   //   byte uchG = ::green(cr);
+   //   byte uchR = ::red(cr);
 
    //   while ( size-- )
    //   {
@@ -412,21 +412,21 @@ namespace draw2d_opengl
    //   }
    //}
 
-   //void image::GrayToARGB(COLORREF cr)
+   //void image::GrayToARGB(color32_t cr)
    //{
-   //   BYTE *dst=(BYTE*)m_pcolorref;
+   //   byte *dst=(byte*)m_pcolorref;
    //   i64 size = area();
 
-   //   DWORD dwB = ::blue(cr);
-   //   DWORD dwG = ::green(cr);
-   //   DWORD dwR = ::red(cr);
+   //   ::u32 dwB = ::blue(cr);
+   //   ::u32 dwG = ::green(cr);
+   //   ::u32 dwR = ::red(cr);
 
    //   while (size-- > 0)
    //   {
    //      dst[3] = dst[0];
-   //      dst[0] = (BYTE)(((dwB * dst[3]) / 256) & 0xff);
-   //      dst[1] = (BYTE)(((dwG * dst[3]) / 256) & 0xff);
-   //      dst[2] = (BYTE)(((dwR * dst[3]) / 256) & 0xff);
+   //      dst[0] = (byte)(((dwB * dst[3]) / 256) & 0xff);
+   //      dst[1] = (byte)(((dwG * dst[3]) / 256) & 0xff);
+   //      dst[2] = (byte)(((dwR * dst[3]) / 256) & 0xff);
    //      dst+=4;
    //   }
    //}
@@ -440,13 +440,13 @@ namespace draw2d_opengl
    //      LPDWORD lpbitsSrc= (LPDWORD) pimage->get_data();
    //      LPDWORD lpbitsDest= (LPDWORD) m_pcolorref;
 
-   //      COLORREF _colorref = RGB ( 0, 0, 0 ) | (255 << 24);
-   //      COLORREF colorrefa[2];
+   //      color32_t _colorref = RGB ( 0, 0, 0 ) | (255 << 24);
+   //      color32_t colorrefa[2];
    //      colorrefa[0] = _colorref;
    //      colorrefa[1] = _colorref;
 
-   //      COLORREF _colorrefN = RGB ( 255, 255, 255) | (0 << 24);
-   //      COLORREF colorrefaN[2];
+   //      color32_t _colorrefN = RGB ( 255, 255, 255) | (0 << 24);
+   //      color32_t colorrefaN[2];
    //      colorrefaN[0] = _colorrefN;
    //      colorrefaN[1] = _colorrefN;
    //      __throw(todo());
@@ -572,21 +572,21 @@ namespace draw2d_opengl
 
    //void image::FillGlass ( i32 R, i32 G, i32 B, i32 A )
    //{
-   //   BYTE *dst=(BYTE*)m_pcolorref;
+   //   byte *dst=(byte*)m_pcolorref;
    //   i64 size = area();
    //
    //   while ( size-- )
    //   {
-   //      dst[0]=(BYTE)(((B-dst[0])*A+(dst[0]<<8))>>8);
-   //      dst[1]=(BYTE)(((G-dst[1])*A+(dst[1]<<8))>>8);
-   //      dst[2]=(BYTE)(((R-dst[2])*A+(dst[2]<<8))>>8);
+   //      dst[0]=(byte)(((B-dst[0])*A+(dst[0]<<8))>>8);
+   //      dst[1]=(byte)(((G-dst[1])*A+(dst[1]<<8))>>8);
+   //      dst[2]=(byte)(((R-dst[2])*A+(dst[2]<<8))>>8);
    //      dst+=4;
    //   }
    //}
 
    //void image::FillStippledGlass ( i32 R, i32 G, i32 B )
    //{
-   //   COLORREF color=RGB ( B, G, R );
+   //   color32_t color=RGB ( B, G, R );
    //   i32 w=m_size.cx;
    //   i32 h=m_size.cy;
 
@@ -605,7 +605,7 @@ namespace draw2d_opengl
    //   if (pimage->get_size() != m_size)
    //      image = create_image (m_size);
    //   // do copy
-   //   ::memcpy_dup ( pimage->get_data(), m_pcolorref, (size_t) area() * sizeof(COLORREF) );
+   //   ::memcpy_dup ( pimage->get_data(), m_pcolorref, (size_t) area() * sizeof(color32_t) );
    //}
 
 
@@ -615,28 +615,28 @@ namespace draw2d_opengl
    //   if (m_size !=pimage.get_size() )
    //      create ( pimage->get_size() );
    //   // do Paste
-   //   ::memcpy_dup ( m_pcolorref, pimage->get_data(), (size_t) area() * sizeof(COLORREF) );
+   //   ::memcpy_dup ( m_pcolorref, pimage->get_data(), (size_t) area() * sizeof(color32_t) );
    //}
 
-   //bool image::color_blend(COLORREF cr, BYTE bAlpha)
+   //bool image::color_blend(color32_t cr, byte bAlpha)
    //{
 
-   //   BYTE *dst=(BYTE*)m_pcolorref;
+   //   byte *dst=(byte*)m_pcolorref;
    //   i64 size = area();
 
-   //   DWORD dwB = ::blue(cr);
-   //   DWORD dwG = ::green(cr);
-   //   DWORD dwR = ::red(cr);
+   //   ::u32 dwB = ::blue(cr);
+   //   ::u32 dwG = ::green(cr);
+   //   ::u32 dwR = ::red(cr);
    //
-   //   DWORD dwB_ = dwB << 8;
-   //   DWORD dwG_ = dwG << 8;
-   //   DWORD dwR_ = dwR << 8;
+   //   ::u32 dwB_ = dwB << 8;
+   //   ::u32 dwG_ = dwG << 8;
+   //   ::u32 dwR_ = dwR << 8;
    //
    //   while ( size-- )
    //   {
-   //      dst[0]=(BYTE)(((dst[0]-dwB)*bAlpha+dwB_)>>8);
-   //      dst[1]=(BYTE)(((dst[1]-dwG)*bAlpha+dwG_)>>8);
-   //      dst[2]=(BYTE)(((dst[2]-dwG)*bAlpha+dwR_)>>8);
+   //      dst[0]=(byte)(((dst[0]-dwB)*bAlpha+dwB_)>>8);
+   //      dst[1]=(byte)(((dst[1]-dwG)*bAlpha+dwG_)>>8);
+   //      dst[2]=(byte)(((dst[2]-dwG)*bAlpha+dwR_)>>8);
    //      dst+=4;
    //   }
    //   return true;
@@ -648,15 +648,15 @@ namespace draw2d_opengl
    //   if(size() != pimage->size())
    //      return;
 
-   //   BYTE *src=(BYTE*)pimage->get_data();
-   //   BYTE *dst=(BYTE*)m_pcolorref;
+   //   byte *src=(byte*)pimage->get_data();
+   //   byte *dst=(byte*)m_pcolorref;
    //   i64 size = area();
    //
    //   while ( size-- )
    //   {
-   //      dst[0]=(BYTE)(((src[0]-dst[0])*A+(dst[0]<<8))>>8);
-   //      dst[1]=(BYTE)(((src[1]-dst[1])*A+(dst[1]<<8))>>8);
-   //      dst[2]=(BYTE)(((src[2]-dst[2])*A+(dst[2]<<8))>>8);
+   //      dst[0]=(byte)(((src[0]-dst[0])*A+(dst[0]<<8))>>8);
+   //      dst[1]=(byte)(((src[1]-dst[1])*A+(dst[1]<<8))>>8);
+   //      dst[2]=(byte)(((src[2]-dst[2])*A+(dst[2]<<8))>>8);
    //      dst+=4;
    //      src+=4;
    //   }
@@ -668,18 +668,18 @@ namespace draw2d_opengl
    //      size() != imageA.size())
    //      return false;
 
-   //   BYTE *src=(BYTE*)pimage->get_data();
-   //   BYTE *dst=(BYTE*)m_pcolorref;
-   //   BYTE *alf=(BYTE*)imageA.m_pcolorref;
+   //   byte *src=(byte*)pimage->get_data();
+   //   byte *dst=(byte*)m_pcolorref;
+   //   byte *alf=(byte*)imageA.m_pcolorref;
    //   i64 size = area();
 
    //   A = 2 - A;
    //
    //   while ( size-- )
    //   {
-   //      dst[0]=(BYTE)(((src[0]-dst[0])*alf[A]+(dst[0]<<8))>>8);
-   //      dst[1]=(BYTE)(((src[1]-dst[1])*alf[A]+(dst[1]<<8))>>8);
-   //      dst[2]=(BYTE)(((src[2]-dst[2])*alf[A]+(dst[2]<<8))>>8);
+   //      dst[0]=(byte)(((src[0]-dst[0])*alf[A]+(dst[0]<<8))>>8);
+   //      dst[1]=(byte)(((src[1]-dst[1])*alf[A]+(dst[1]<<8))>>8);
+   //      dst[2]=(byte)(((src[2]-dst[2])*alf[A]+(dst[2]<<8))>>8);
    //      dst+=4;
    //      src+=4;
    //      alf+=4;
@@ -693,15 +693,15 @@ namespace draw2d_opengl
    //   if(size() != pimage->size())
    //      return;
 
-   //   BYTE *src=(BYTE*)pimage->get_data();
-   //   BYTE *dst=(BYTE*)m_pcolorref;
+   //   byte *src=(byte*)pimage->get_data();
+   //   byte *dst=(byte*)m_pcolorref;
    //   i64 size = area();
    //
    //   while ( size-- )
    //   {
-   //      dst[0]=(BYTE)((src[0]<dst[0]) ? src[0] : dst[0]);
-   //      dst[1]=(BYTE)((src[1]<dst[1]) ? src[1] : dst[1]);
-   //      dst[2]=(BYTE)((src[2]<dst[2]) ? src[2] : dst[2]);
+   //      dst[0]=(byte)((src[0]<dst[0]) ? src[0] : dst[0]);
+   //      dst[1]=(byte)((src[1]<dst[1]) ? src[1] : dst[1]);
+   //      dst[2]=(byte)((src[2]<dst[2]) ? src[2] : dst[2]);
    //      dst+=4;
    //      src+=4;
    //   }
@@ -712,19 +712,19 @@ namespace draw2d_opengl
    //   if(size() != pimage->size())
    //      return;
 
-   //   BYTE *src=(BYTE*)pimage->get_data();
-   //   BYTE *dst=(BYTE*)m_pcolorref;
+   //   byte *src=(byte*)pimage->get_data();
+   //   byte *dst=(byte*)m_pcolorref;
    //   i64 size = area();
    //
    //   while ( size-- )
    //   {
    //      i32 Difference;
    //      Difference=src[0]-dst[0];
-   //      dst[0]=(BYTE)((Difference<0) ? -Difference : Difference);
+   //      dst[0]=(byte)((Difference<0) ? -Difference : Difference);
    //      Difference=src[1]-dst[1];
-   //      dst[1]=(BYTE)((Difference<0) ? -Difference : Difference);
+   //      dst[1]=(byte)((Difference<0) ? -Difference : Difference);
    //      Difference=src[2]-dst[2];
-   //      dst[2]=(BYTE)((Difference<0) ? -Difference : Difference);
+   //      dst[2]=(byte)((Difference<0) ? -Difference : Difference);
    //      dst+=4;
    //      src+=4;
    //   }
@@ -735,15 +735,15 @@ namespace draw2d_opengl
    //   if(size() != pimage->size())
    //      return;
 
-   //   BYTE *src=(BYTE*)pimage->get_data();
-   //   BYTE *dst=(BYTE*)m_pcolorref;
+   //   byte *src=(byte*)pimage->get_data();
+   //   byte *dst=(byte*)m_pcolorref;
    //   i64 size = area();
    //
    //   while ( size-- )
    //   {
-   //      dst[0]=(BYTE)((src[0]>dst[0]) ? src[0] : dst[0]);
-   //      dst[1]=(BYTE)((src[1]>dst[1]) ? src[1] : dst[1]);
-   //      dst[2]=(BYTE)((src[2]>dst[2]) ? src[2] : dst[2]);
+   //      dst[0]=(byte)((src[0]>dst[0]) ? src[0] : dst[0]);
+   //      dst[1]=(byte)((src[1]>dst[1]) ? src[1] : dst[1]);
+   //      dst[2]=(byte)((src[2]>dst[2]) ? src[2] : dst[2]);
    //      dst+=4;
    //      src+=4;
    //   }
@@ -755,15 +755,15 @@ namespace draw2d_opengl
    //   if(size() != pimage->size())
    //      return;
 
-   //   BYTE *src=(BYTE*)pimage->get_data();
-   //   BYTE *dst=(BYTE*)m_pcolorref;
+   //   byte *src=(byte*)pimage->get_data();
+   //   byte *dst=(byte*)m_pcolorref;
    //   i64 size = area();
    //
    //   while ( size-- )
    //   {
-   //      dst[0]=(BYTE)(((src[0])*(dst[0]))>>8);
-   //      dst[1]=(BYTE)(((src[1])*(dst[1]))>>8);
-   //      dst[2]=(BYTE)(((src[2])*(dst[2]))>>8);
+   //      dst[0]=(byte)(((src[0])*(dst[0]))>>8);
+   //      dst[1]=(byte)(((src[1])*(dst[1]))>>8);
+   //      dst[2]=(byte)(((src[2])*(dst[2]))>>8);
    //      dst+=4;
    //      src+=4;
    //   }
@@ -774,15 +774,15 @@ namespace draw2d_opengl
    //   if(size() != pimage->size())
    //      return;
 
-   //   BYTE *src=(BYTE*)pimage->get_data();
-   //   BYTE *dst=(BYTE*)m_pcolorref;
+   //   byte *src=(byte*)pimage->get_data();
+   //   byte *dst=(byte*)m_pcolorref;
    //   i64 size = area();
    //
    //   while ( size-- )
    //   {
-   //      dst[0]=(BYTE)(255-(((255-src[0])*(255-dst[0]))>>8));
-   //      dst[1]=(BYTE)(255-(((255-src[1])*(255-dst[1]))>>8));
-   //      dst[2]=(BYTE)(255-(((255-src[2])*(255-dst[2]))>>8));
+   //      dst[0]=(byte)(255-(((255-src[0])*(255-dst[0]))>>8));
+   //      dst[1]=(byte)(255-(((255-src[1])*(255-dst[1]))>>8));
+   //      dst[2]=(byte)(255-(((255-src[2])*(255-dst[2]))>>8));
    //      dst+=4;
    //      src+=4;
    //   }
@@ -810,8 +810,8 @@ namespace draw2d_opengl
    //      image = create_image ( dx, dy );
 
    //   // Prepare buffer Addresses
-   //   COLORREF *src=m_pcolorref+(py*m_size.cx)+px;
-   //   COLORREF *dst=pimage->get_data();
+   //   color32_t *src=m_pcolorref+(py*m_size.cx)+px;
+   //   color32_t *dst=pimage->get_data();
 
    //   // Do copy
    //   while ( dy-- )
@@ -838,8 +838,8 @@ namespace draw2d_opengl
    //      return;
 
    //   // Prepare buffer Addresses
-   //   COLORREF *src=pimage->get_data()+((py-y)*pimage->width())+px-x;
-   //   COLORREF *dst=m_pcolorref+(py*m_size.cx)+px;
+   //   color32_t *src=pimage->get_data()+((py-y)*pimage->width())+px-x;
+   //   color32_t *dst=m_pcolorref+(py*m_size.cx)+px;
 
    //   // Do Paste
    //   while ( dy-- )
@@ -866,8 +866,8 @@ namespace draw2d_opengl
    //      return;
 
    //   // Prepare buffer Address
-   //   COLORREF *dst=m_pcolorref+(py*m_size.cx)+px;
-   //   COLORREF color=RGB ( B, G, R );
+   //   color32_t *dst=m_pcolorref+(py*m_size.cx)+px;
+   //   color32_t color=RGB ( B, G, R );
 
    //   // Do Fill
    //   while ( dy-- )
@@ -895,16 +895,16 @@ namespace draw2d_opengl
    //      return;
 
    //   // Prepare buffer Address
-   //   BYTE *dst=(BYTE *)m_pcolorref+((py*m_size.cx)+px)*4;
+   //   byte *dst=(byte *)m_pcolorref+((py*m_size.cx)+px)*4;
 
    //   // Do FillGlass
    //   while ( dy-- )
    //   {
    //      for ( i32 i=0; i<dx; i++ )
    //      {
-   //         dst[0]=(BYTE)(((B-dst[0])*A+(dst[0]<<8))>>8);
-   //         dst[1]=(BYTE)(((G-dst[1])*A+(dst[1]<<8))>>8);
-   //         dst[2]=(BYTE)(((R-dst[2])*A+(dst[2]<<8))>>8);
+   //         dst[0]=(byte)(((B-dst[0])*A+(dst[0]<<8))>>8);
+   //         dst[1]=(byte)(((G-dst[1])*A+(dst[1]<<8))>>8);
+   //         dst[2]=(byte)(((R-dst[2])*A+(dst[2]<<8))>>8);
    //         dst+=4;
    //      }
    //      dst+=(m_size.cx-dx)<<2;
@@ -926,8 +926,8 @@ namespace draw2d_opengl
    //      return;
 
    //   // Prepare buffer Address
-   //   COLORREF *dst=m_pcolorref+(py*m_size.cx)+px;
-   //   COLORREF color=RGB ( B, G, R );
+   //   color32_t *dst=m_pcolorref+(py*m_size.cx)+px;
+   //   color32_t color=RGB ( B, G, R );
 
    //   // Do FillStippledGlass
    //   for ( i32 j=0; j<dy; j++ )
@@ -955,17 +955,17 @@ namespace draw2d_opengl
    //      return;
 
    //   // Prepare buffer Addresses
-   //   BYTE *src=(BYTE *)pimage->get_data()+(((py-y)*pimage->width())+px-x)*4;
-   //   BYTE *dst=(BYTE *)m_pcolorref+((py*m_size.cx)+px)*4;
+   //   byte *src=(byte *)pimage->get_data()+(((py-y)*pimage->width())+px-x)*4;
+   //   byte *dst=(byte *)m_pcolorref+((py*m_size.cx)+px)*4;
 
    //   // Do Blend
    //   while ( dy-- )
    //   {
    //      for ( i32 i=0; i<dx; i++ )
    //      {
-   //         dst[0]=(BYTE)(((src[0]-dst[0])*A+(dst[0]<<8))>>8);
-   //         dst[1]=(BYTE)(((src[1]-dst[1])*A+(dst[1]<<8))>>8);
-   //         dst[2]=(BYTE)(((src[2]-dst[2])*A+(dst[2]<<8))>>8);
+   //         dst[0]=(byte)(((src[0]-dst[0])*A+(dst[0]<<8))>>8);
+   //         dst[1]=(byte)(((src[1]-dst[1])*A+(dst[1]<<8))>>8);
+   //         dst[2]=(byte)(((src[2]-dst[2])*A+(dst[2]<<8))>>8);
    //         dst+=4;
    //         src+=4;
    //      }
@@ -989,17 +989,17 @@ namespace draw2d_opengl
    //      return;
 
    //   // Prepare buffer Addresses
-   //   BYTE *src=(BYTE *)pimage->get_data()+(((py-y)*pimage->cx)+px-x)*4;
-   //   BYTE *dst=(BYTE *)m_pcolorref+((py*cx)+px)*4;
+   //   byte *src=(byte *)pimage->get_data()+(((py-y)*pimage->cx)+px-x)*4;
+   //   byte *dst=(byte *)m_pcolorref+((py*cx)+px)*4;
 
    //   // Do Darken
    //   while ( dy-- )
    //   {
    //      for ( i32 i=0; i<dx; i++ )
    //      {
-   //         dst[0]=(BYTE)((src[0]<dst[0]) ? src[0] : dst[0]);
-   //         dst[1]=(BYTE)((src[1]<dst[1]) ? src[1] : dst[1]);
-   //         dst[2]=(BYTE)((src[2]<dst[2]) ? src[2] : dst[2]);
+   //         dst[0]=(byte)((src[0]<dst[0]) ? src[0] : dst[0]);
+   //         dst[1]=(byte)((src[1]<dst[1]) ? src[1] : dst[1]);
+   //         dst[2]=(byte)((src[2]<dst[2]) ? src[2] : dst[2]);
    //         dst+=4;
    //         src+=4;
    //      }
@@ -1023,8 +1023,8 @@ namespace draw2d_opengl
    //      return;
 
    //   // Prepare buffer Addresses
-   //   BYTE *src=(BYTE *)pimage->get_data()+(((py-y)*pimage->cx)+px-x)*4;
-   //   BYTE *dst=(BYTE *)m_pcolorref+((py*cx)+px)*4;
+   //   byte *src=(byte *)pimage->get_data()+(((py-y)*pimage->cx)+px-x)*4;
+   //   byte *dst=(byte *)m_pcolorref+((py*cx)+px)*4;
 
    //   // Do Difference
    //   while ( dy-- )
@@ -1033,11 +1033,11 @@ namespace draw2d_opengl
    //      {
    //         i32 Difference;
    //         Difference=src[0]-dst[0];
-   //         dst[0]=(BYTE)((Difference<0) ? -Difference : Difference);
+   //         dst[0]=(byte)((Difference<0) ? -Difference : Difference);
    //         Difference=src[1]-dst[1];
-   //         dst[1]=(BYTE)((Difference<0) ? -Difference : Difference);
+   //         dst[1]=(byte)((Difference<0) ? -Difference : Difference);
    //         Difference=src[2]-dst[2];
-   //         dst[2]=(BYTE)((Difference<0) ? -Difference : Difference);
+   //         dst[2]=(byte)((Difference<0) ? -Difference : Difference);
    //         dst+=4;
    //         src+=4;
    //      }
@@ -1061,17 +1061,17 @@ namespace draw2d_opengl
    //      return;
 
    //   // Prepare buffer Addresses
-   //   BYTE *src=(BYTE *)pimage->get_data()+(((py-y)*pimage->cx)+px-x)*4;
-   //   BYTE *dst=(BYTE *)m_pcolorref+((py*cx)+px)*4;
+   //   byte *src=(byte *)pimage->get_data()+(((py-y)*pimage->cx)+px-x)*4;
+   //   byte *dst=(byte *)m_pcolorref+((py*cx)+px)*4;
 
    //   // Do Lighten
    //   while ( dy-- )
    //   {
    //      for ( i32 i=0; i<dx; i++ )
    //      {
-   //         dst[0]=(BYTE)((src[0]>dst[0]) ? src[0] : dst[0]);
-   //         dst[1]=(BYTE)((src[1]>dst[1]) ? src[1] : dst[1]);
-   //         dst[2]=(BYTE)((src[2]>dst[2]) ? src[2] : dst[2]);
+   //         dst[0]=(byte)((src[0]>dst[0]) ? src[0] : dst[0]);
+   //         dst[1]=(byte)((src[1]>dst[1]) ? src[1] : dst[1]);
+   //         dst[2]=(byte)((src[2]>dst[2]) ? src[2] : dst[2]);
    //         dst+=4;
    //         src+=4;
    //      }
@@ -1095,17 +1095,17 @@ namespace draw2d_opengl
    //      return;
 
    //   // Prepare buffer Addresses
-   //   BYTE *src=(BYTE *)pimage->get_data()+(((py-y)*pimage->cx)+px-x)*4;
-   //   BYTE *dst=(BYTE *)m_pcolorref+((py*cx)+px)*4;
+   //   byte *src=(byte *)pimage->get_data()+(((py-y)*pimage->cx)+px-x)*4;
+   //   byte *dst=(byte *)m_pcolorref+((py*cx)+px)*4;
 
    //   // Do Multiply
    //   while ( dy-- )
    //   {
    //      for ( i32 i=0; i<dx; i++ )
    //      {
-   //         dst[0]=(BYTE)(((src[0])*(dst[0]))>>8);
-   //         dst[1]=(BYTE)(((src[1])*(dst[1]))>>8);
-   //         dst[2]=(BYTE)(((src[2])*(dst[2]))>>8);
+   //         dst[0]=(byte)(((src[0])*(dst[0]))>>8);
+   //         dst[1]=(byte)(((src[1])*(dst[1]))>>8);
+   //         dst[2]=(byte)(((src[2])*(dst[2]))>>8);
    //         dst+=4;
    //         src+=4;
    //      }
@@ -1129,17 +1129,17 @@ namespace draw2d_opengl
    //      return;
 
    //   // Prepare buffer Addresses
-   //   BYTE *src=(BYTE *)pimage->get_data()+(((py-y)*pimage->cx)+px-x)*4;
-   //   BYTE *dst=(BYTE *)m_pcolorref+((py*cx)+px)*4;
+   //   byte *src=(byte *)pimage->get_data()+(((py-y)*pimage->cx)+px-x)*4;
+   //   byte *dst=(byte *)m_pcolorref+((py*cx)+px)*4;
 
    //   // Do Screen
    //   while ( dy-- )
    //   {
    //      for ( i32 i=0; i<dx; i++ )
    //      {
-   //         dst[0]=(BYTE)(255-(((255-src[0])*(255-dst[0]))>>8));
-   //         dst[1]=(BYTE)(255-(((255-src[1])*(255-dst[1]))>>8));
-   //         dst[2]=(BYTE)(255-(((255-src[2])*(255-dst[2]))>>8));
+   //         dst[0]=(byte)(255-(((255-src[0])*(255-dst[0]))>>8));
+   //         dst[1]=(byte)(255-(((255-src[1])*(255-dst[1]))>>8));
+   //         dst[2]=(byte)(255-(((255-src[2])*(255-dst[2]))>>8));
    //         dst+=4;
    //         src+=4;
    //      }
@@ -1155,7 +1155,7 @@ namespace draw2d_opengl
    /*void image::Line ( i32 x1, i32 y1, i32 x2, i32 y2, i32 R, i32 G, i32 B )
    {
       i32 dx, dy, k1, k2, d, x, y;
-      COLORREF color=RGB ( B, G, R );
+      color32_t color=RGB ( B, G, R );
 
       dx=x2-x1;
       dy=y2-y1;
@@ -1186,7 +1186,7 @@ namespace draw2d_opengl
 //   void image::Line ( i32 x1, i32 y1, i32 x2, i32 y2, i32 R, i32 G, i32 B )
 //   {
 //      i32 d, x, y, ax, ay, sx, sy, dx, dy;
-//      COLORREF color=RGB ( B, G, R );
+//      color32_t color=RGB ( B, G, R );
 //
 //      dx=x2-x1;
 //      ax=abs ( dx )<<1;
@@ -1232,8 +1232,8 @@ namespace draw2d_opengl
 //   void image::LineGlass ( i32 x1, i32 y1, i32 x2, i32 y2, i32 R, i32 G, i32 B, i32 A )
 //   {
 //      i32 d, x, y, ax, ay, sx, sy, dx, dy;
-////      COLORREF color=RGB ( B, G, R );
-//      BYTE *dst=(BYTE *)m_pcolorref;
+////      color32_t color=RGB ( B, G, R );
+//      byte *dst=(byte *)m_pcolorref;
 //
 //      dx=x2-x1;
 //      ax=abs ( dx )<<1;
@@ -1249,9 +1249,9 @@ namespace draw2d_opengl
 //         d=ay-(ax>>1);
 //         while ( x!=x2 )
 //         {
-//            dst[(y*cx+x)<<2]=(BYTE)(((B-dst[(y*cx+x)<<2])*A+(dst[(y*cx+x)<<2]<<8))>>8);
-//            dst[((y*cx+x)<<2)+1]=(BYTE)(((G-dst[((y*cx+x)<<2)+1])*A+(dst[((y*cx+x)<<2)+1]<<8))>>8);
-//            dst[((y*cx+x)<<2)+2]=(BYTE)(((R-dst[((y*cx+x)<<2)+2])*A+(dst[((y*cx+x)<<2)+2]<<8))>>8);
+//            dst[(y*cx+x)<<2]=(byte)(((B-dst[(y*cx+x)<<2])*A+(dst[(y*cx+x)<<2]<<8))>>8);
+//            dst[((y*cx+x)<<2)+1]=(byte)(((G-dst[((y*cx+x)<<2)+1])*A+(dst[((y*cx+x)<<2)+1]<<8))>>8);
+//            dst[((y*cx+x)<<2)+2]=(byte)(((R-dst[((y*cx+x)<<2)+2])*A+(dst[((y*cx+x)<<2)+2]<<8))>>8);
 //            if ( d>=0 )
 //            {
 //               y+=sy;
@@ -1266,9 +1266,9 @@ namespace draw2d_opengl
 //         d=ax-(ay>>1);
 //         while ( y!=y2 )
 //         {
-//            dst[(y*cx+x)<<2]=(BYTE)(((B-dst[(y*cx+x)<<2])*A+(dst[(y*cx+x)<<2]<<8))>>8);
-//            dst[((y*cx+x)<<2)+1]=(BYTE)(((G-dst[((y*cx+x)<<2)+1])*A+(dst[((y*cx+x)<<2)+1]<<8))>>8);
-//            dst[((y*cx+x)<<2)+2]=(BYTE)(((R-dst[((y*cx+x)<<2)+2])*A+(dst[((y*cx+x)<<2)+2]<<8))>>8);
+//            dst[(y*cx+x)<<2]=(byte)(((B-dst[(y*cx+x)<<2])*A+(dst[(y*cx+x)<<2]<<8))>>8);
+//            dst[((y*cx+x)<<2)+1]=(byte)(((G-dst[((y*cx+x)<<2)+1])*A+(dst[((y*cx+x)<<2)+1]<<8))>>8);
+//            dst[((y*cx+x)<<2)+2]=(byte)(((R-dst[((y*cx+x)<<2)+2])*A+(dst[((y*cx+x)<<2)+2]<<8))>>8);
 //            if ( d>=0 )
 //            {
 //               x+=sx;
@@ -1280,11 +1280,11 @@ namespace draw2d_opengl
 //      }
 //   }
 
-   //void image::Mask(COLORREF crMask, COLORREF crInMask, COLORREF crOutMask)
+   //void image::Mask(color32_t crMask, color32_t crInMask, color32_t crOutMask)
    //{
-   //   COLORREF crFind = RGB(::blue(crMask), ::green(crMask), ::red(crMask));
-   //   COLORREF crSet = RGB(::blue(crInMask), ::green(crInMask), ::red(crInMask));
-   //   COLORREF crUnset  = RGB(::blue(crOutMask), ::green(crOutMask), ::red(crOutMask));
+   //   color32_t crFind = RGB(::blue(crMask), ::green(crMask), ::red(crMask));
+   //   color32_t crSet = RGB(::blue(crInMask), ::green(crInMask), ::red(crInMask));
+   //   color32_t crUnset  = RGB(::blue(crOutMask), ::green(crOutMask), ::red(crOutMask));
 
    //   i32 size=cx*cy;
 
@@ -1298,7 +1298,7 @@ namespace draw2d_opengl
 
    //void image::transparent_color(color color)
    //{
-   //   COLORREF crFind = color.get_rgb();
+   //   color32_t crFind = color.get_rgb();
    //   i64 size = area();
 
    //   for ( i32 i=0; i<size; i++ )
@@ -1326,7 +1326,7 @@ namespace draw2d_opengl
 
    //u32 image::GetPixel(i32 x, i32 y)
    //{
-   //   DWORD dw = *(m_pcolorref + x + (cy - y - 1) * cx);
+   //   ::u32 dw = *(m_pcolorref + x + (cy - y - 1) * cx);
    //   return RGB(::blue(dw), ::green(dw), ::red(dw));
    //}
 
@@ -1335,7 +1335,7 @@ namespace draw2d_opengl
    // The gradient can�t have more then 256 levels of the most bright color
    // (white). So creating a radial fill of radius 256 and then using fasting
    // stretching algorithms is much faster than calculating radial fill.
-//   void image::RadialFill(BYTE alpha, BYTE red, BYTE green, BYTE blue, i32 xCenter, i32 yCenter, i32 iRadius)
+//   void image::RadialFill(byte alpha, byte red, byte green, byte blue, i32 xCenter, i32 yCenter, i32 iRadius)
 //   {
 //      if (iRadius == 0)
 //         return;
@@ -1356,8 +1356,8 @@ namespace draw2d_opengl
 //         if(yU >= cy) yU = cy - 1;
 //
 //
-//         BYTE *dst = ((BYTE*)(m_pcolorref + xL + yL * cx));
-//         DWORD dwAdd = ((cx - 1 - xU) + xL) * 4;
+//         byte *dst = ((byte*)(m_pcolorref + xL + yL * cx));
+//         ::u32 dwAdd = ((cx - 1 - xU) + xL) * 4;
 //         i32 size=cx*cy;
 //         double iLevel;
 //
@@ -1463,8 +1463,8 @@ namespace draw2d_opengl
 //         if(yU >= cy) yU = cy - 1;
 //
 //
-//         BYTE *dst = ((BYTE*)(m_pcolorref + xL + yL * cx));
-//         DWORD dwAdd = ((cx - 1 - xU) + xL) * 4;
+//         byte *dst = ((byte*)(m_pcolorref + xL + yL * cx));
+//         ::u32 dwAdd = ((cx - 1 - xU) + xL) * 4;
 ////         i32 size=cx*cy;
 //
 //         i32 dx, dy;
@@ -1493,8 +1493,8 @@ namespace draw2d_opengl
 //
 //
 //   void image::RadialFill(
-//      BYTE alpha1, BYTE red1, BYTE green1, BYTE blue1,
-//      BYTE alpha2, BYTE red2, BYTE green2, BYTE blue2,
+//      byte alpha1, byte red1, byte green1, byte blue1,
+//      byte alpha2, byte red2, byte green2, byte blue2,
 //      i32 xCenter, i32 yCenter, i32 iRadius)
 //   {
 //      if (iRadius == 0)
@@ -1516,8 +1516,8 @@ namespace draw2d_opengl
 //         if(yU >= cy) yU = cy - 1;
 //
 //
-//         BYTE *dst = ((BYTE*)(m_pcolorref + xL + yL * cx));
-//         DWORD dwAdd = ((cx - 1 - xU) + xL) * 4;
+//         byte *dst = ((byte*)(m_pcolorref + xL + yL * cx));
+//         ::u32 dwAdd = ((cx - 1 - xU) + xL) * 4;
 //         i32 size=cx*cy;
 //         double iLevel;
 //
@@ -1623,13 +1623,13 @@ namespace draw2d_opengl
 //         if(yU >= cy) yU = cy - 1;
 //
 //
-//         BYTE *dst = ((BYTE*)(m_pcolorref + xL + yL * cx));
-//         DWORD dwAdd = ((cx - 1 - xU) + xL) * 4;
+//         byte *dst = ((byte*)(m_pcolorref + xL + yL * cx));
+//         ::u32 dwAdd = ((cx - 1 - xU) + xL) * 4;
 ////         i32 size=cx*cy;
 //
 //         i32 dx, dy;
 //
-//         BYTE bComp;
+//         byte bComp;
 //
 //         // Top Left
 //
@@ -1702,14 +1702,14 @@ namespace draw2d_opengl
    //   nullptr,
    //   DI_MASK);
 
-   //   BYTE * r1=(BYTE*)pimage1->m_pcolorref;
-   //   BYTE * r2=(BYTE*)pimage2->get_data();
-   //   BYTE * srcM=(BYTE*)imageM.m_pcolorref;
-   //   BYTE * dest=(BYTE*)m_pcolorref;
+   //   byte * r1=(byte*)pimage1->m_pcolorref;
+   //   byte * r2=(byte*)pimage2->get_data();
+   //   byte * srcM=(byte*)imageM.m_pcolorref;
+   //   byte * dest=(byte*)m_pcolorref;
    //   i32 iSize = cx*cy;
 
-   //   BYTE b;
-   //   BYTE bMax;
+   //   byte b;
+   //   byte bMax;
    //   while ( iSize-- > 0)
    //   {
    //      if(srcM[0] == 255)
@@ -1719,11 +1719,11 @@ namespace draw2d_opengl
    //      else
    //      {
    //         bMax = 0;
-   //         b =(BYTE)(r1[0]  - r2[0]);
+   //         b =(byte)(r1[0]  - r2[0]);
    //         bMax = max(b, bMax);
-   //         b =(BYTE)(r1[1]  - r2[1]);
+   //         b =(byte)(r1[1]  - r2[1]);
    //         bMax = max(b, bMax);
-   //         b =(BYTE)(r1[2]  - r2[2]);
+   //         b =(byte)(r1[2]  - r2[2]);
    //         bMax = max(b, bMax);
    //         bMax = 255 - bMax;
    //      }
@@ -2005,10 +2005,10 @@ namespace draw2d_opengl
 
    //void image::Fill (i32 A, i32 R, i32 G, i32 B )
    //{
-   //   COLORREF color = RGB ( B, G, R ) | (A << 24);
+   //   color32_t color = RGB ( B, G, R ) | (A << 24);
    //   i32 size=cx*cy;
 
-   //   COLORREF * pcr;
+   //   color32_t * pcr;
 
    //   i64 iSize32 = size / 32;
    //   i32 i;
@@ -2056,7 +2056,7 @@ namespace draw2d_opengl
 
    //}
 
-   //COLORREF image::GetAverageColor()
+   //color32_t image::GetAverageColor()
    //{
    //   double dR = 0.0;
    //   double dG = 0.0;
@@ -2132,9 +2132,9 @@ namespace draw2d_opengl
    //   i32 iFrameHeight = cy / iSliceCount;
    //   i32 iX = iFrame % iSliceCount;
    //   i32 iY = iFrame / iSliceCount;
-   //   COLORREF * lpDest = &m_pcolorref[iFrameWidth * iX + iY * iFrameHeight * cx];
-   //   COLORREF * lpSrc = (COLORREF *) lpdata;
-   //   COLORREF * lpDestLine;
+   //   color32_t * lpDest = &m_pcolorref[iFrameWidth * iX + iY * iFrameHeight * cx];
+   //   color32_t * lpSrc = (color32_t *) lpdata;
+   //   color32_t * lpDestLine;
    //   for(i32 y = 0; y < iFrameHeight; y++)
    //   {
    //      lpDestLine = &lpDest[y * cx];
@@ -2158,9 +2158,9 @@ namespace draw2d_opengl
    //   i32 iFrameHeight = cy / iSliceCount;
    //   i32 iX = iFrame % iSliceCount;
    //   i32 iY = iFrame / iSliceCount;
-   //   COLORREF * lpDest = &m_pcolorref[iFrameWidth * iX + iY * iFrameHeight * cx];
-   //   COLORREF * lpSrc = (COLORREF *) lpdata;
-   //   COLORREF * lpDestLine;
+   //   color32_t * lpDest = &m_pcolorref[iFrameWidth * iX + iY * iFrameHeight * cx];
+   //   color32_t * lpSrc = (color32_t *) lpdata;
+   //   color32_t * lpDestLine;
    //   for(i32 y = iFrameHeight - 1; y >= 0; y--)
    //   {
    //      lpDestLine = &lpDest[y * cx];
@@ -2184,9 +2184,9 @@ namespace draw2d_opengl
    //   i32 iFrameHeight = cy / iSliceCount;
    //   i32 iX = iFrame % iSliceCount;
    //   i32 iY = iFrame / iSliceCount;
-   //   COLORREF * lpDest = &m_pcolorref[iFrameWidth * iX + iY * iFrameHeight * cx];
-   //   COLORREF * lpSrc = (COLORREF *) lpdata;
-   //   COLORREF * lpDestLine;
+   //   color32_t * lpDest = &m_pcolorref[iFrameWidth * iX + iY * iFrameHeight * cx];
+   //   color32_t * lpSrc = (color32_t *) lpdata;
+   //   color32_t * lpDestLine;
    //   for(i32 y = iFrameHeight - 1; y >= 0; y--)
    //   {
    //      lpDestLine = &lpDest[y * cx];
@@ -2206,9 +2206,9 @@ namespace draw2d_opengl
    //   i32 iFrameHeight = cy / iSliceCount;
    //   i32 iX = iFrame % iSliceCount;
    //   i32 iY = iFrame / iSliceCount;
-   //   COLORREF * lpSrc = &m_pcolorref[iFrameWidth * iX + iY * iFrameHeight *  cx];
-   //   COLORREF * lpDest = (COLORREF *) lpdata;
-   //   COLORREF * lpSrcLine;
+   //   color32_t * lpSrc = &m_pcolorref[iFrameWidth * iX + iY * iFrameHeight *  cx];
+   //   color32_t * lpDest = (color32_t *) lpdata;
+   //   color32_t * lpSrcLine;
    //   for(i32 y = 0; y < iFrameHeight; y++)
    //   {
    //      lpSrcLine = &lpSrc[y * cx];
@@ -2224,7 +2224,7 @@ namespace draw2d_opengl
    //bool image::is_rgb_black()
    //{
    //   i32 iSize = cx * cy;
-   //   COLORREF * lp = m_pcolorref;
+   //   color32_t * lp = m_pcolorref;
    //   for(i32 i = 0; i < iSize; i++)
    //   {
    //      if((*lp & 0x00FFFFFF) != 0)
@@ -2379,13 +2379,13 @@ namespace draw2d_opengl
    //     i32 offset = ((i32)echannel) % 4;
    //    i32 size=m_size.cx*cy;
 
-   //    BYTE * pb;
+   //    byte * pb;
 
    //    i32 iSize32 = size;
    //    i32 i;
    //    for (i=0; i < iSize32; i+=32 )
    //    {
-   //       pb = ((BYTE * ) &m_pcolorref[i]) + offset;
+   //       pb = ((byte * ) &m_pcolorref[i]) + offset;
    //       pb[0 * 4] = (byte) intensity;
    //       pb[1 * 4] = (byte) intensity;
    //       pb[2 * 4] = (byte) intensity;
@@ -2422,7 +2422,7 @@ namespace draw2d_opengl
 
    //    for (; i<size; i++ )
    //    {
-   //       *(((BYTE * ) &m_pcolorref[i]) + offset) = (byte) intensity;
+   //       *(((byte * ) &m_pcolorref[i]) + offset) = (byte) intensity;
    //    }
    //}
 
@@ -2481,10 +2481,10 @@ namespace draw2d_opengl
 ////
 ////         //pre_multiply_alpha((unsigned int *) get_data(),m_size.cx,m_size.cy,m_size.cx * 4);
 ////
-////         BYTE *dstR=(BYTE*)get_data();
-////         BYTE *dstG=dstR + 1;
-////         BYTE *dstB=dstR + 2;
-////         BYTE *dstA=dstR + 3;
+////         byte *dstR=(byte*)get_data();
+////         byte *dstG=dstR + 1;
+////         byte *dstB=dstR + 2;
+////         byte *dstA=dstR + 3;
 ////         i64 size = area() * 4;
 ////
 ////
@@ -2493,7 +2493,7 @@ namespace draw2d_opengl
 //////         #pragma omp parallel num_threads(3)
 //////                  {
 //////
-//////                     BYTE *dst = dstR + omp_get_thread_num();
+//////                     byte *dst = dstR + omp_get_thread_num();
 //////      #pragma omp parallel for
 //////                     for(index i = 0; i < size; i+=4)
 //////                     {
@@ -2506,7 +2506,7 @@ namespace draw2d_opengl
 ////////
 ////////            if(omp_get_thread_num() == 3)
 ////////            {
-////////               COLORREF *dst = get_data();
+////////               color32_t *dst = get_data();
 ////////#pragma omp parallel for
 ////////               for(index i = 0; i < size; i+=4)
 ////////               {
@@ -2518,7 +2518,7 @@ namespace draw2d_opengl
 ////////            }
 ////////            else
 ////////            {
-////////               BYTE *dst = dstR + omp_get_thread_num();
+////////               byte *dst = dstR + omp_get_thread_num();
 ////////#pragma omp parallel for
 ////////               for(index i = 0; i < size; i+=4)
 ////////               {
@@ -2564,18 +2564,18 @@ namespace draw2d_opengl
 //         // width is not a multiple of 4.
 //
 //         int totalBytes = b->m_sizeOut.cx * b.m_sizeOut.cy * 4;
-//         BYTE * p = (BYTE*)b->m_memOut.get_data();
+//         byte * p = (byte*)b->m_memOut.get_data();
 //         for (int i = 0; i < totalBytes; i += 4)
 //         {
-//            p[0] = (BYTE)(p[0] * p[3] / 255);
-//            p[1] = (BYTE)(p[1] * p[3] / 255);
-//            p[2] = (BYTE)(p[2] * p[3] / 255);
+//            p[0] = (byte)(p[0] * p[3] / 255);
+//            p[1] = (byte)(p[1] * p[3] / 255);
+//            p[2] = (byte)(p[2] * p[3] / 255);
 //            p+=4;
 //         }
 //      }
 //
 //
-//      pwnd->get_window_graphics()->update_window(pwnd->get_handle(),(COLORREF*)b->m_memOut.get_data(),rect, b->m_sizeOut.cx, b.m_sizeOut.cy, b.m_sizeOut.cx * 4,bTransferBuffer);
+//      pwnd->get_window_graphics()->update_window(pwnd->get_handle(),(color32_t*)b->m_memOut.get_data(),rect, b->m_sizeOut.cx, b.m_sizeOut.cy, b.m_sizeOut.cx * 4,bTransferBuffer);
 //      b->m_bFlashed = true;
 //
 //      return true;

@@ -184,7 +184,7 @@ namespace zip
       str.replace("\\", "/");
       if(unzLocateFile(m_pfUnzip, str, 1) != UNZ_OK)
          return;
-      BYTE buf[1024];
+      byte buf[1024];
       i32 iRead;
       if(unzOpenCurrentFile(m_pfUnzip) != UNZ_OK)
          return;

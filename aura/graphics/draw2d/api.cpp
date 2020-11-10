@@ -19,11 +19,11 @@ namespace draw2d
 
    void api::DrawBeziers(
    ::draw2d::graphics_pointer & pgraphics,
-   LPPOINT             ppoints,
+   POINT32 *             ppoints,
 
    i32                  iCount,
    double               dRateX,
-   LPPOINT               ppointOffset)
+   POINT32 *               ppointOffset)
 
    {
 
@@ -50,11 +50,11 @@ namespace draw2d
 
    void api::DrawAndFillBeziers(
    ::draw2d::graphics_pointer & pgraphics,
-   LPPOINT             ppoints,
+   POINT32 *             ppoints,
 
    i32                  iCount,
    double               dRateX,
-   LPPOINT               ppointOffset)
+   POINT32 *               ppointOffset)
 
    {
 
@@ -88,7 +88,7 @@ namespace draw2d
    pglyph,
 
    double               dRateX,
-   LPPOINT               ppointOffset)
+   POINT32 *               ppointOffset)
 
    {
 
@@ -172,8 +172,8 @@ namespace draw2d
    i32            iLeft,
    i32            iTop,
    i32            iWidth,
-   COLORREF       crText,
-   COLORREF       crOutline,
+   color32_t       crText,
+   color32_t       crOutline,
    i32            iLen)
    {
       ::rect clipRect;

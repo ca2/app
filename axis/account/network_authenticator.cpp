@@ -491,7 +491,7 @@ namespace account
 //   try
 //   {
 //
-//      DWORD dwBeg = ::get_tick();
+//      ::u32 dwBeg = ::get_tick();
 //
 //      ::property_set set;
 //
@@ -503,7 +503,7 @@ namespace account
 //
 //      strNode = Context.http().get(strGetFontopus, set);
 //
-//      DWORD tickEnd = ::get_tick();
+//      ::u32 tickEnd = ::get_tick();
 //
 //      TRACE("get_account_login HTTP GET time = %dms",tickEnd - dwBeg);
 //

@@ -371,7 +371,7 @@ void openURL(const string &url_str)
 {
    CFURLRef url = CFURLCreateWithBytes(
                   nullptr,                        // allocator
-                  (UInt8*)url_str.c_str(),     // URLBytes
+                  (::u328*)url_str.c_str(),     // URLBytes
                   url_str.length(),            // length
                   kCFStringEncodingASCII,      // encoding
                   nullptr                         // baseURL
@@ -391,7 +391,7 @@ void openURL(const string &url_str)
 //   __throw(todo());
 //   CFURLRef url = CFURLCreateWithBytes(
 //      nullptr,                        // allocator
-//      (UInt8*)url_str.c_str(),     // URLBytes
+//      (::u328*)url_str.c_str(),     // URLBytes
 //      url_str.length(),            // length
 //      kCFStringEncodingASCII,      // encoding
 //      nullptr                         // baseURL
@@ -931,7 +931,7 @@ CLASS_DECL_ACME string url_decode(const char* psz)
 //{
 //   CFURLRef url = CFURLCreateWithBytes(
 //      nullptr,                        // allocator
-//      (UInt8*)url_str.c_str(),     // URLBytes
+//      (::u328*)url_str.c_str(),     // URLBytes
 //      url_str.length(),            // length
 //      kCFStringEncodingASCII,      // encoding
 //      nullptr                         // baseURL
@@ -951,7 +951,7 @@ void openURL(const string& url_str)
    //   __throw(todo());
    //   CFURLRef url = CFURLCreateWithBytes(
    //      nullptr,                        // allocator
-   //      (UInt8*)url_str.c_str(),     // URLBytes
+   //      (::u328*)url_str.c_str(),     // URLBytes
    //      url_str.length(),            // length
    //      kCFStringEncodingASCII,      // encoding
    //      nullptr                         // baseURL

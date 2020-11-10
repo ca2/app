@@ -59,7 +59,7 @@ public:
 
    bool on_result(const ::estatus & estatus);
 
-   static DWORD WINAPI MAIN(LPVOID pvoid);
+   static ::u32 WINAPI MAIN(LPVOID pvoid);
 
    //bool system_beg();
 

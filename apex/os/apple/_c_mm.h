@@ -20,19 +20,19 @@ char * ns_string(NSString * str);
 CGRect mm_get_workspace_rect();
 
 
-//void copy(CGRect * prectTarget, const RECT * prectSource);
-//void copy(RECT * prectTarget, const CGRect * prectSource);
+//void copy(CGRect * prectTarget, const RECT32 * prectSource);
+//void copy(RECT32 * prectTarget, const CGRect * prectSource);
 //void copy(CGRect * prectTarget, const RECTD * prectSource);
 //void copy(RECTD * prectTarget, const CGRect * prectSource);
-//void window_copy(CGRect * prectTarget, const RECT * prectSource);
-//void window_copy(RECT * prectTarget, const CGRect * prectSource);
+//void window_copy(CGRect * prectTarget, const RECT32 * prectSource);
+//void window_copy(RECT32 * prectTarget, const CGRect * prectSource);
 //
 //#ifdef MM
 //
-//void copy(NSRect & rect, LPCRECT lpcrect);
-//void copy(LPRECT lprect, const NSRect & rectSrc);
-//void window_copy(NSRect & rect, LPCRECT lpcrect);
-//void window_copy(LPRECT lprect, const NSRect & rectSrc);
+//void copy(NSRect & rect, LPCRECT32 lpcrect);
+//void copy(LPRECT32 lprect, const NSRect & rectSrc);
+//void window_copy(NSRect & rect, LPCRECT32 lpcrect);
+//void window_copy(LPRECT32 lprect, const NSRect & rectSrc);
 //
 //#endif
 

@@ -28,7 +28,7 @@ namespace user
 
       virtual bool create_window(e_orientation eorientation, u32 uStyle, ::user::interaction * puiParent, ::id id);
 
-      virtual void send_scroll_message(UINT nSBCode);
+      virtual void send_scroll_message(::u32 nSBCode);
 
       virtual ::point get_parent_viewport_offset() const override;
       virtual ::point get_ascendant_viewport_offset() const override;
@@ -36,7 +36,7 @@ namespace user
       virtual void _001OnClip(::draw2d::graphics_pointer & pgraphics) override;
 
 
-      virtual bool GetTrackRect(RECT* prect);
+      virtual bool GetTrackRect(RECT32* prect);
 
 
       virtual ::color scrollbar_color_strong(::user::style* pstyle, ::user::e_element eelement);

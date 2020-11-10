@@ -45,7 +45,7 @@ struct thread_data : public no_track_object
 
 struct slot_data
 {
-   DWORD dwFlags;      // slot flags (allocated/not allocated)
+   ::u32 dwFlags;      // slot flags (allocated/not allocated)
    HINSTANCE hInst;    // module which owns this slot
 };
 

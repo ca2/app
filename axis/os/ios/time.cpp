@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-inline DWORD GetTickCount()
+inline ::u32 GetTickCount()
 {
    timeval ts;
    gettimeofday(&ts,0);
@@ -11,10 +11,10 @@ inline DWORD GetTickCount()
 
 
 
-//DWORD ::get_tick()
+//::u32 ::get_tick()
 //{
 //
-//   return (DWORD) GetTickCount();
+//   return (::u32) GetTickCount();
 //
 //}
 //

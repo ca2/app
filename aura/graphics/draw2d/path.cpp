@@ -64,7 +64,7 @@ namespace draw2d
    //}
 
 
-   //bool path::matter::expand_bounding_rect(RECT* prect) const
+   //bool path::matter::expand_bounding_rect(RECT32* prect) const
    //{
 
    //   rectd r;
@@ -93,7 +93,7 @@ namespace draw2d
    //}
 
 
-   //bool path::matter::get_bounding_rect(RECT* prect) const
+   //bool path::matter::get_bounding_rect(RECT32* prect) const
    //{
 
    //   ::null_rect(prect);
@@ -381,7 +381,7 @@ namespace draw2d
    }
 
 
-   bool path::get_bounding_rect(RECT* prect) const
+   bool path::get_bounding_rect(RECT32* prect) const
    {
 
       ::rect r;
@@ -884,7 +884,7 @@ namespace draw2d
    }
 
 
-   bool path::add_polygon(const POINT* ppoint, ::count nCount)
+   bool path::add_polygon(const POINT32* ppoint, ::count nCount)
    {
 
       auto ppolygon = __new(polygon_shape);
@@ -920,7 +920,7 @@ namespace draw2d
 
 
 
-   bool path::add_lines(const POINT * ppoint, ::count nCount)
+   bool path::add_lines(const POINT32 * ppoint, ::count nCount)
    {
 
       auto plines = __new(lines_shape);

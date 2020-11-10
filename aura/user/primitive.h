@@ -118,17 +118,17 @@ namespace user
 
       //virtual pointd client_screen_top_left();
 
-      virtual bool GetFocusRect(RECT * prect);
+      virtual bool GetFocusRect(RECT32 * prect);
 
       virtual void defer_update_display();
 
       //using ::user::primitive::get_client_rect;
       //using ::user::primitive::get_window_rect;
 
-      //virtual bool _get_client_size(SIZE * psize) override;
-      //virtual bool _get_window_size(SIZE * psize) override;
+      //virtual bool _get_client_size(SIZE32 * psize) override;
+      //virtual bool _get_window_size(SIZE32 * psize) override;
 
-      //virtual bool SetPlacement(const ::rect & rect,UINT nFlags = SWP_SHOWWINDOW) override;
+      //virtual bool SetPlacement(const ::rect & rect,::u32 nFlags = SWP_SHOWWINDOW) override;
 
 
       virtual bool add_prodevian(::context_object * pobject);
@@ -137,7 +137,7 @@ namespace user
       virtual bool display(::edisplay edisplay = display_default, ::eactivation eactivation = activation_none);
 
 
-      //virtual bool defer_set_window_pos(iptr z,i32 x,i32 y,i32 cx,i32 cy,UINT nFlags); // only set_windows_pos if GetParent()->_001ScreenToClient(get_window_rect) different of rect(x, y, cx, cy)      virtual bool set_placement(RECT * prect);
+      //virtual bool defer_set_window_pos(iptr z,i32 x,i32 y,i32 cx,i32 cy,::u32 nFlags); // only set_windows_pos if GetParent()->_001ScreenToClient(get_window_rect) different of rect(x, y, cx, cy)      virtual bool set_placement(RECT32 * prect);
 
       //virtual i32 SetWindowRgn(HRGN hRgn,bool bRedraw);
       //virtual i32 GetWindowRgn(HRGN hRgn);
@@ -191,8 +191,8 @@ namespace user
 
       virtual bool _is_window() const;
 
-      virtual LONG get_window_long(i32 nIndex) const;
-      virtual LONG set_window_long(i32 nIndex,LONG lValue);
+      virtual ::i32 get_window_long(i32 nIndex) const;
+      virtual ::i32 set_window_long(i32 nIndex,::i32 lValue);
 
       virtual LONG_PTR get_window_long_ptr(i32 nIndex) const;
       virtual LONG_PTR set_window_long_ptr(i32 nIndex,LONG_PTR lValue);
@@ -303,7 +303,7 @@ namespace user
       virtual bool create_window(const char * pszClassName, const char * pszWindowName,u32 uStyle, ::user::interaction * puiParent, const ::id & id, ::create * pcreate = nullptr);
 
       virtual bool create_window_ex(::user::create_struct & cs, ::user::interaction * puiParent, const ::id & id);
-      virtual void CalcWindowRect(RECT * pClientRect,UINT nAdjustType = adjustBorder);
+      virtual void CalcWindowRect(RECT32 * pClientRect,::u32 nAdjustType = adjustBorder);
 
 
       virtual bool IsTopParentActive();
@@ -316,18 +316,18 @@ namespace user
 
 #ifdef WINDOWS
 
-      virtual bool RedrawWindow(const ::rect& rectUpdate = nullptr, ::draw2d::region * prgnUpdate = nullptr, UINT flags = RDW_INVALIDATE | RDW_ERASE);
+      virtual bool RedrawWindow(const ::rect& rectUpdate = nullptr, ::draw2d::region * prgnUpdate = nullptr, ::u32 flags = RDW_INVALIDATE | RDW_ERASE);
 
 #else
 
-      virtual bool RedrawWindow(const ::rect& rectUpdate = nullptr, ::draw2d::region * prgnUpdate = nullptr, UINT flags = 0);
+      virtual bool RedrawWindow(const ::rect& rectUpdate = nullptr, ::draw2d::region * prgnUpdate = nullptr, ::u32 flags = 0);
 
 #endif
 
 
 //      virtual void UpdateWindow();
       virtual void SetRedraw(bool bRedraw = TRUE);
-      virtual bool GetUpdateRect(RECT * prect,bool bErase = FALSE);
+      virtual bool GetUpdateRect(RECT32 * prect,bool bErase = FALSE);
 
       virtual i32 GetUpdateRgn(::draw2d::region* pRgn,bool bErase = FALSE);
 //      virtual void Invalidate(bool bErase = TRUE);
@@ -363,14 +363,14 @@ namespace user
 
       virtual bool post_simple_command(const e_simple_command & ecommand,lparam lParam = 0);
 
-      virtual bool ModifyStyle(u32 dwRemove,u32 dwAdd,UINT nFlags = 0);
-      virtual bool ModifyStyleEx(u32 dwRemove,u32 dwAdd,UINT nFlags = 0);
+      virtual bool ModifyStyle(u32 dwRemove,u32 dwAdd,::u32 nFlags = 0);
+      virtual bool ModifyStyleEx(u32 dwRemove,u32 dwAdd,::u32 nFlags = 0);
       //virtual bool _display(edisplay edisplay);
 
       //virtual void SetWindowDisplayChanged();
 
       // timer Functions
-      virtual bool SetTimer(uptr uEvent,UINT nElapse,PFN_TIMER pfnTimer);
+      virtual bool SetTimer(uptr uEvent,::u32 nElapse,PFN_TIMER pfnTimer);
       virtual bool KillTimer(uptr uEvent);
 
       virtual void _001PrintBuffer(::draw2d::graphics_pointer & pgraphics);
@@ -442,7 +442,7 @@ namespace user
 
 
       virtual ::user::interaction * get_wnd() const;
-      virtual ::user::interaction * get_wnd(UINT nCmd) const;
+      virtual ::user::interaction * get_wnd(::u32 nCmd) const;
       virtual ::user::interaction_impl * get_impl() const;
       virtual ::thread * get_task() const;
 
@@ -479,16 +479,16 @@ namespace user
       virtual bool is_descendant(::user::interaction * pinteraction,bool bIncludeSelf = false);
       virtual ::user::interaction * get_focusable_descendant(::user::interaction * pinteraction = nullptr);
 
-      virtual void RepositionBars(UINT nIDFirst, UINT nIDLast, ::id idLeftOver, UINT nFlag = reposDefault, RECT * prectParam = nullptr, const ::rect & rectClient = nullptr, bool bStretch = true);
+      virtual void RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::id idLeftOver, ::u32 nFlag = reposDefault, RECT32 * prectParam = nullptr, const ::rect & rectClient = nullptr, bool bStretch = true);
 
       virtual ::user::interaction * ChildWindowFromPoint(const ::point & point);
-      virtual ::user::interaction * ChildWindowFromPoint(const ::point & point,UINT nFlags);
+      virtual ::user::interaction * ChildWindowFromPoint(const ::point & point,::u32 nFlags);
 
 
 #ifdef WINDOWS_DESKTOP
-      virtual ::user::interaction * get_next_window(UINT nFlag = GW_HWNDNEXT);
+      virtual ::user::interaction * get_next_window(::u32 nFlag = GW_HWNDNEXT);
 #else
-      virtual ::user::interaction * get_next_window(UINT nFlag = 0);
+      virtual ::user::interaction * get_next_window(::u32 nFlag = 0);
 #endif
 
       virtual ::user::interaction * get_next(bool bIgnoreChildren = false,i32 * piLevel = nullptr);
@@ -537,10 +537,10 @@ namespace user
 
       virtual void set_viewport_org(::draw2d::graphics_pointer & pgraphics);
 
-      virtual void viewport_screen_to_client(POINT * ppt);
-      virtual void viewport_client_to_screen(POINT * ppt);
-      virtual void viewport_client_to_screen(RECT * ppt);
-      virtual void viewport_screen_to_client(RECT * ppt);
+      virtual void viewport_screen_to_client(POINT32 * ppt);
+      virtual void viewport_client_to_screen(POINT32 * ppt);
+      virtual void viewport_client_to_screen(RECT32 * ppt);
+      virtual void viewport_screen_to_client(RECT32 * ppt);
 
 
       virtual string get_window_default_matter();
@@ -727,7 +727,7 @@ namespace user
 
 #endif
 
-      virtual bool SetPlacement(const ::rect & rect, UINT nFlags = SWP_SHOWWINDOW);
+      virtual bool SetPlacement(const ::rect & rect, ::u32 nFlags = SWP_SHOWWINDOW);
 
       virtual i32 get_total_page_count(::change * pchange);
 

@@ -51,7 +51,7 @@ namespace user
 
       virtual void route_command_message(::user::command * pcommand) override;
 
-      virtual void get_child_rect(RECT * prect) override;
+      virtual void get_child_rect(RECT32 * prect) override;
 
 
    };

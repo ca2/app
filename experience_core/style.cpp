@@ -975,9 +975,9 @@ namespace experience
       if (pbar->m_bTracking || pbar->is_true("tracking_on"))
       {
 
-         DWORD tickFadeIn = 490;
+         ::u32 tickFadeIn = 490;
 
-         DWORD tickFadeOut = 490;
+         ::u32 tickFadeOut = 490;
 
          byte uchAlpha = max(0u, min(255u, (byte) pbar->find_u32("tracking_alpha")));
 
@@ -1231,7 +1231,7 @@ namespace experience
    }
 
 
-   //bool style::get_color(COLORREF & cr, ::user::e_color ecolor, ::user::style_context * pcontext)
+   //bool style::get_color(color32_t & cr, ::user::e_color ecolor, ::user::style_context * pcontext)
    //{
 
    //   if (ecolor == ::user::color_background)

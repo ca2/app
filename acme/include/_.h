@@ -297,7 +297,7 @@ CLASS_DECL_ACME void throw_what_exclamation_exclamation(const char * psz);
 #define IMAGE_B_BYTE_INDEX 0
 
 
-#define IMAGE_ARGB(a, r, g, b)         ((COLORREF)((low_byte(b)|((WORD)(low_byte(g))<<8))|(((u32)low_byte(r))<<16)|(((u32)low_byte(a))<<24)))
+#define IMAGE_ARGB(a, r, g, b)         ((color32_t)((low_byte(b)|((::u16)(low_byte(g))<<8))|(((u32)low_byte(r))<<16)|(((u32)low_byte(a))<<24)))
 
 
 #define image_r_value(rgb)    (low_byte((rgb)>>16))
@@ -315,7 +315,7 @@ CLASS_DECL_ACME void throw_what_exclamation_exclamation(const char * psz);
 #define IMAGE_B_BYTE_INDEX 2
 
 
-#define IMAGE_ARGB(a, r, g, b)         ((COLORREF)((low_byte(r)|((WORD)(low_byte(g))<<8))|(((u32)low_byte(b))<<16)|(((u32)low_byte(a))<<24)))
+#define IMAGE_ARGB(a, r, g, b)         ((color32_t)((low_byte(r)|((::u16)(low_byte(g))<<8))|(((u32)low_byte(b))<<16)|(((u32)low_byte(a))<<24)))
 
 
 #define image_r_value(rgb)    (low_byte((rgb)))
@@ -334,7 +334,7 @@ CLASS_DECL_ACME void throw_what_exclamation_exclamation(const char * psz);
 #define colorref_get_g_value(rgb)    (low_byte((rgb)>>8))
 #define colorref_get_b_value(rgb)    (low_byte((rgb)>>16))
 #define colorref_get_a_value(rgb)    (low_byte((rgb)>>24))
-#define RGBA(r, g, b, a)         ((COLORREF)((low_byte(r)|((WORD)(low_byte(g))<<8))|(((u32)low_byte(b))<<16)|(((u32)low_byte(a))<<24)))
+#define RGBA(r, g, b, a)         ((color32_t)((low_byte(r)|((::u16)(low_byte(g))<<8))|(((u32)low_byte(b))<<16)|(((u32)low_byte(a))<<24)))
 #define ARGB(a, r, g, b)      RGBA(r, g, b, a)
 
 
@@ -466,14 +466,14 @@ CLASS_DECL_ACME enum_platform_level get_platform_level();
 #define __u64xy(u)                                    __u64x(u), __u64y(u)
 
 
-#ifndef GET_X_LPARAM
-#define GET_X_LPARAM(lparam)                          ((i32)(i16)LOWORD(lparam))
-#endif
-
-
-#ifndef GET_Y_LPARAM
-#define GET_Y_LPARAM(lparam)                          ((i32)(i16)HIWORD(lparam))
-#endif
+//#ifndef GET_X_LPARAM
+//#define GET_X_LPARAM(lparam)                          ((i32)(i16)LOWORD(lparam))
+//#endif
+//
+//
+//#ifndef GET_Y_LPARAM
+//#define GET_Y_LPARAM(lparam)                          ((i32)(i16)HIWORD(lparam))
+//#endif
 
 #define GET_X_LPARAM64(lparam)                        ((i32)(i16)LODWORD(lparam))
 #define GET_Y_LPARAM64(lparam)                        ((i32)(i16)HIDWORD(lparam))
@@ -508,8 +508,8 @@ CLASS_DECL_ACME void    ansi_get_errno(i32 * perrno);
 CLASS_DECL_ACME void    ansi_unlink(const char * psz);
 
 
-CLASS_DECL_ACME DWORD get_last_error();
-CLASS_DECL_ACME void set_last_error(DWORD dw);
+CLASS_DECL_ACME ::u32 get_last_error();
+CLASS_DECL_ACME void set_last_error(::u32 dw);
 
 typedef char ansichar;
 
@@ -1992,14 +1992,14 @@ class image_list;
 
 
 
-struct SIZEPARENTPARAMS
-{
-
-   RECT  rect;       // parent client rectangle (trim as appropriate)
-   SIZE  sizeTotal;  // total size on each side as on_layout proceeds
-   bool  bStretch;   // should stretch to fill all space
-
-};
+//struct SIZEPARENTPARAMS
+//{
+//
+//   RECT32  rect;       // parent client rectangle (trim as appropriate)
+//   SIZE32  sizeTotal;  // total size on each side as on_layout proceeds
+//   bool  bStretch;   // should stretch to fill all space
+//
+//};
 
 
 typedef struct RECTD RECTD;
@@ -2023,7 +2023,7 @@ namespace acme
 //
 //   CLASS_DECL_ACME bool get_window_rect(system_window ^ pwindow,RECTD * prect);
 
-//   CLASS_DECL_ACME bool get_window_rect(system_window ^ pwindow,RECT * prect);
+//   CLASS_DECL_ACME bool get_window_rect(system_window ^ pwindow,RECT32 * prect);
 
 //
 //#endif
@@ -2526,7 +2526,7 @@ class memory_base;
 template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename RECT_BASE_TYPE >
 class size_type;
 
-using size = size_type < SIZE, POINT, RECT >;
+using size = size_type < SIZE32, POINT32, RECT32 >;
 
 
 #include "acme/primitive/math/cast.h"
@@ -3082,7 +3082,7 @@ inline void dump_elements(dump_context & dumpcontext, const TYPE* pElements, ::c
 //
 //   //CLASS_DECL_ACME bool get_window_rect(system_window ^ pwindow, RECTD * prect);
 //
-//   //CLASS_DECL_ACME bool get_window_rect(system_window ^ pwindow, RECT * prect);
+//   //CLASS_DECL_ACME bool get_window_rect(system_window ^ pwindow, RECT32 * prect);
 //
 //
 //#endif
@@ -3662,8 +3662,8 @@ return __str(value);
 #include "acme/node/_.h"
 
 
-i32 CLASS_DECL_ACME MultiByteToWideChar2(UINT CodePage, DWORD dwFlags, const ansichar* pMultByteStr, i32 cbMultiByte, widechar* pWideCharStr, i32 cchWideChar);
-i32 CLASS_DECL_ACME WideCharToMultiByte2(UINT CodePage, DWORD dwFlags, const widechar* pWideCharStr, i32 cchWideChar, ansichar* pMultByteStr, i32 cbMultiByte, LPCSTR pDefaultChar, LPBOOL pUsedDefaultChar);
+i32 CLASS_DECL_ACME MultiByteToWideChar2(::u32 CodePage, ::u32 dwFlags, const ansichar* pMultByteStr, i32 cbMultiByte, widechar* pWideCharStr, i32 cchWideChar);
+i32 CLASS_DECL_ACME WideCharToMultiByte2(::u32 CodePage, ::u32 dwFlags, const widechar* pWideCharStr, i32 cchWideChar, ansichar* pMultByteStr, i32 cbMultiByte, const char * pDefaultChar, int_bool * pUsedDefaultChar);
 
 
 #include "acme/multithreading/data.h"
@@ -3937,8 +3937,9 @@ inline string & to_json(string & str, const T & value, bool bNewLine)
 
 }
 
-
+#ifdef WINDOWS
 CLASS_DECL_ACME int trace_hr(const char * psz,HRESULT hr);
+#endif
 
 CLASS_DECL_ACME string get_last_error_string();
 
@@ -4035,11 +4036,11 @@ namespace draw2d
 //#include "acme/primitive/collection/_collection_impl.h"
 
 
-#ifndef WINDOWS_DESKTOP
-
-#include "acme/os/cross/windows/windows_thread_impl.h"
-
-#endif
+//#ifndef WINDOWS_DESKTOP
+//
+//#include "acme/os/cross/windows/windows_thread_impl.h"
+//
+//#endif
 
 
 #include "acme/primitive/collection/_papaya_impl.h"

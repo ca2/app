@@ -35,10 +35,10 @@
 //}
 
 //
-//LPSTR GetCommandLineA()
+//char * GetCommandLineA()
 //{
 //
-//   return (LPSTR) (LPCSTR) get_command_line_string();
+//   return (char *) (const char *) get_command_line_string();
 //
 //}
 //

@@ -82,7 +82,7 @@ namespace html
       virtual void _001OnDraw(html_data * pdocument);
       virtual void load(html_data * pdocument, base * pbase);
 
-      //virtual bool get_color(COLORREF & cr, ::user::e_color ecolor, ::user::style_context * pcontext) override;
+      //virtual bool get_color(color32_t & cr, ::user::e_color ecolor, ::user::style_context * pcontext) override;
       //virtual bool get_font(::draw2d::font_pointer & spfont, ::user::e_font efont, ::user::style_context * pcontext) override;
 
       virtual ::color get_color(::css::enum_color ecolor);

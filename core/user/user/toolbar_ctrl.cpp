@@ -30,7 +30,7 @@ namespace user
       ASSERT(is_window());
       TBADDBITMAP tbab;
       tbab.hInst = nullptr;
-      tbab.nID = (UINT_PTR)pBitmap->get_os_data();
+      tbab.nID = (::u32_PTR)pBitmap->get_os_data();
       return (i32) send_message( TB_ADDBITMAP, (WPARAM)nNumButtons,
          (LPARAM)&tbab);
 #else
@@ -98,14 +98,14 @@ namespace user
 
    struct CToolBarCtrlData
    {
-      WORD wVersion;
-      WORD wWidth;
-      WORD wHeight;
-      WORD wItemCount;
-      //WORD aItems[wItemCount]
+      ::u16 wVersion;
+      ::u16 wWidth;
+      ::u16 wHeight;
+      ::u16 wItemCount;
+      //::u16 aItems[wItemCount]
 
-      WORD* items()
-      { return (WORD*)(this+1); }
+      ::u16* items()
+      { return (::u16*)(this+1); }
    };
 
    /*bool toolbar_control::LoadToolBar(const char * pszResourceName)
@@ -132,7 +132,7 @@ namespace user
    return FALSE;
    ASSERT(pData->wVersion == 1);
 
-   UINT* pItems = new UINT[pData->wItemCount];
+   ::u32* pItems = new ::u32[pData->wItemCount];
    for (i32 i = 0; i < pData->wItemCount; i++)
    pItems[i] = pData->items()[i];
    bool bResult = SetButtons(pItems, pData->wItemCount);
@@ -146,7 +146,7 @@ namespace user
    //      SetSizes(sizeButton, sizeImage);
 
    // load bitmap now that sizes are known by the toolbar control
-   LoadImages((i32)(WORD) (long *)pszResourceName, __get_resource_handle());
+   LoadImages((i32)(::u16) (long *)pszResourceName, __get_resource_handle());
 
    }
 
@@ -156,14 +156,14 @@ namespace user
    return bResult;
    }*/
 
-   bool toolbar_control::SetButtons(const UINT* pIDArray, i32 nIDCount)
+   bool toolbar_control::SetButtons(const ::u32* pIDArray, i32 nIDCount)
 
    {
       ASSERT_VALID(this);
       ASSERT(nIDCount >= 1);  // must be at least one of them
       ASSERT(pIDArray == nullptr ||
 
-         __is_valid_address(pIDArray, sizeof(UINT) * nIDCount, FALSE));
+         __is_valid_address(pIDArray, sizeof(::u32) * nIDCount, FALSE));
 
 
       // delete all existing buttons
@@ -220,7 +220,7 @@ namespace user
       return TRUE;
    }
 
-   i32 toolbar_control::GetButtonText(UINT uiID, string &str)
+   i32 toolbar_control::GetButtonText(::u32 uID, string &str)
    {
 #ifdef WINDOWS_DESKTOP
       UNREFERENCED_PARAMETER(uiID);
@@ -352,7 +352,7 @@ namespace user
    }
 
 
-   bool toolbar_control::set_state(i32 nID, UINT nState)
+   bool toolbar_control::set_state(i32 nID, ::u32 nState)
    {
 #ifdef WINDOWS_DESKTOP
       ASSERT(is_window()); 
@@ -435,12 +435,12 @@ namespace user
 
 #endif
    }
-   UINT toolbar_control::CommandToIndex(UINT nID)
+   ::u32 toolbar_control::CommandToIndex(::u32 nID)
    {
 
 #ifdef WINDOWS_DESKTOP
 
-   ASSERT(is_window()); return (UINT) send_message( TB_COMMANDTOINDEX, nID);
+   ASSERT(is_window()); return (::u32) send_message( TB_COMMANDTOINDEX, nID);
 
 #else
 
@@ -484,7 +484,7 @@ namespace user
 
    }
 
-   bool toolbar_control::GetItemRect(i32 nIndex, RECT * prect)
+   bool toolbar_control::GetItemRect(i32 nIndex, RECT32 * prect)
 
    {
 
@@ -580,7 +580,7 @@ namespace user
    }
 
 
-   void toolbar_control::SetRows(i32 nRows, bool bLarger, RECT * prect)
+   void toolbar_control::SetRows(i32 nRows, bool bLarger, RECT32 * prect)
 
    {
 
@@ -614,7 +614,7 @@ namespace user
    }
 
 
-   bool toolbar_control::SetCmdID(i32 nIndex, UINT nID)
+   bool toolbar_control::SetCmdID(i32 nIndex, ::u32 nID)
    {
 
 #ifdef WINDOWS_DESKTOP
@@ -630,12 +630,12 @@ namespace user
    }
 
 
-   UINT toolbar_control::GetBitmapFlags()
+   ::u32 toolbar_control::GetBitmapFlags()
    {
 
 #ifdef WINDOWS_DESKTOP
 
-   ASSERT(is_window()); return (UINT) send_message( TB_GETBITMAPFLAGS);
+   ASSERT(is_window()); return (::u32) send_message( TB_GETBITMAPFLAGS);
 
 #else
 
@@ -646,7 +646,7 @@ namespace user
    }
 
 
-   i32 toolbar_control::hit_test(LPPOINT ppt)
+   i32 toolbar_control::hit_test(POINT32 * ppt)
    {
 
 #ifdef WINDOWS_DESKTOP
@@ -694,12 +694,12 @@ namespace user
    }
 
 
-   COLORREF toolbar_control::GetInsertMarkColor()
+   color32_t toolbar_control::GetInsertMarkColor()
    {
 
 #ifdef WINDOWS_DESKTOP
 
-   ASSERT(is_window()); return (COLORREF) send_message( TB_GETINSERTMARKCOLOR);
+   ASSERT(is_window()); return (color32_t) send_message( TB_GETINSERTMARKCOLOR);
 
 #else
 
@@ -710,12 +710,12 @@ namespace user
    }
 
 
-   COLORREF toolbar_control::SetInsertMarkColor(COLORREF clrNew)
+   color32_t toolbar_control::SetInsertMarkColor(color32_t clrNew)
    {
 
 #ifdef WINDOWS_DESKTOP
 
-   ASSERT(is_window()); return (COLORREF) send_message( TB_SETINSERTMARKCOLOR, 0, (LPARAM) clrNew);
+   ASSERT(is_window()); return (color32_t) send_message( TB_SETINSERTMARKCOLOR, 0, (LPARAM) clrNew);
 
 #else
 
@@ -825,7 +825,7 @@ namespace user
    }
 
 
-   bool toolbar_control::GetRect(i32 nID, RECT * prect)
+   bool toolbar_control::GetRect(i32 nID, RECT32 * prect)
 
    {
 
@@ -1143,7 +1143,7 @@ namespace user
 
 #ifdef WINDOWS_DESKTOP
 
-   bool toolbar_control::InsertMarkHitTest(LPPOINT ppt, LPTBINSERTMARK ptbim)
+   bool toolbar_control::InsertMarkHitTest(POINT32 * ppt, LPTBINSERTMARK ptbim)
    {
 
    ASSERT(is_window()); return send_message( TB_INSERTMARKHITTEST, (WPARAM)ppt, (LPARAM)ptbim) != FALSE;
@@ -1153,7 +1153,7 @@ namespace user
 #endif
 
 
-   bool toolbar_control::MapAccelerator(char chAccel, UINT* pIDBtn)
+   bool toolbar_control::MapAccelerator(char chAccel, ::u32* pIDBtn)
    {
 #ifdef WINDOWS_DESKTOP
 
@@ -1179,7 +1179,7 @@ namespace user
 #endif
 
    }
-   bool toolbar_control::MoveButton(UINT nOldPos, UINT nNewPos)
+   bool toolbar_control::MoveButton(::u32 nOldPos, ::u32 nNewPos)
    {
 
 #ifdef WINDOWS_DESKTOP

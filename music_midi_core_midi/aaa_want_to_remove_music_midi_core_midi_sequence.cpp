@@ -565,7 +565,7 @@ namespace music
    //                  if(os == noErr)
    //                  {
    //
-   //                     UInt64 outHostTime = 0;
+   //                     ::u3264 outHostTime = 0;
    //
    //                     MusicPlayerGetHostTimeForBeats ( m_player, now, &outHostTime );
    //
@@ -692,7 +692,7 @@ namespace music
              ::file::byte_stream_memory_file memFile(get_context_application(), (LPBYTE) &lpdwParam[1], pheader->m_dwLength - sizeof(u32));
              for(i32 i = 0; i < m_iaLevel.get_size(); i++)
              {
-             BYTE b;
+             byte b;
              memFile >> b;
              m_iaLevel.element_at(i) = b;
              }

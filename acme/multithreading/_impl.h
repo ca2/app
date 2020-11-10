@@ -29,7 +29,7 @@ _AFXMT_INLINE CSingleLock::~CSingleLock()
 _AFXMT_INLINE int_bool CSingleLock::IsLocked()
 { return m_bAcquired; }
 
-_AFXMT_INLINE int_bool CMultiLock::IsLocked(DWORD dwObject)
+_AFXMT_INLINE int_bool CMultiLock::IsLocked(::u32 dwObject)
 {
    ASSERT(dwObject < m_dwCount);
    return m_bLockedArray[dwObject];
@@ -74,8 +74,8 @@ _AFXMT_INLINE int_bool critical_section::Lock()
    }
    return TRUE;
 }
-_AFXMT_INLINE int_bool critical_section::Lock(DWORD tickTimeout)
-{ ASSERT(tickTimeout == INFINITE); (void)tickTimeout; return Lock(); }
+_AFXMT_INLINE int_bool critical_section::Lock(::u32 tickTimeout)
+{ ASSERT(tickTimeout == U32_INFINITE_TIMEOUT); (void)tickTimeout; return Lock(); }
 _AFXMT_INLINE int_bool critical_section::Unlock()
 { ::LeaveCriticalSection(&m_sect); return TRUE; }
 

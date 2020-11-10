@@ -2,7 +2,7 @@
 #include "aura_gdk.h"
 
 
-void copy(RECT * prectTarget, const GdkRectangle * prectSource)
+void copy(RECT32 * prectTarget, const GdkRectangle * prectSource)
 {
 
    prectTarget->left = prectSource->x;
@@ -18,7 +18,7 @@ void copy(RECT * prectTarget, const GdkRectangle * prectSource)
 
 
 
-void copy(GdkRectangle * prectTarget, const RECT * prectSource)
+void copy(GdkRectangle * prectTarget, const RECT32 * prectSource)
 {
 
    prectTarget->x = prectSource->left;

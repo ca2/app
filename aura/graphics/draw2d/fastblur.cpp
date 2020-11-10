@@ -77,11 +77,11 @@ inline void kernelPosition(int boxBlur,unsigned& std,int& dLeft,int& dRight)
 inline float32x4_t loadRGBA8AsFloat(u32* source)
 {
 
-   uint32x2_t temporary1 = {0, 0};
+   ::u32x2_t temporary1 = {0, 0};
 
    temporary1 = vset_lane_u32(*source,temporary1,0);
 
-   uint16x4_t temporary2 = vget_low_u16(vmovl_u8(vreinterpret_u8_u32(temporary1)));
+   ::u3216x4_t temporary2 = vget_low_u16(vmovl_u8(vreinterpret_u8_u32(temporary1)));
 
    return vcvtq_f32_u32(vmovl_u16(temporary2));
 
@@ -90,9 +90,9 @@ inline float32x4_t loadRGBA8AsFloat(u32* source)
 inline void storeFloatAsRGBA8(float32x4_t data,u32* destination)
 {
 
-   uint16x4_t temporary1 = vmovn_u32(vcvtq_u32_f32(data));
+   ::u3216x4_t temporary1 = vmovn_u32(vcvtq_u32_f32(data));
 
-   uint8x8_t temporary2 = vmovn_u16(vcombine_u16(temporary1,temporary1));
+   ::u328x8_t temporary2 = vmovn_u16(vcombine_u16(temporary1,temporary1));
 
    *destination = vget_lane_u32(vreinterpret_u32_u8(temporary2),0);
 
@@ -379,7 +379,7 @@ auto tickA0 = ::tick::now();
             }
          }
 auto tickA1 = ::tick::now();
-         DWORD dwA2 = dwA1 - dwA0;
+         ::u32 dwA2 = dwA1 - dwA0;
          string str;
 
          str.Format("%d",dwA2);
@@ -410,7 +410,7 @@ auto tick1 = ::tick::now();
 
          }
 auto tick2 = ::tick::now();
-         DWORD dw3 = dw2 - dw1;
+         ::u32 dw3 = dw2 - dw1;
 
          string str1;
          str1.Format("| Parameters: w=%d h=%d rect=%d  \n",w,h,m_iRadius);
@@ -446,7 +446,7 @@ auto tickC0 = ::tick::now();
             }
          }
 auto tickC1 = ::tick::now();
-         DWORD dwC2 = dwC1 - dwC0;
+         ::u32 dwC2 = dwC1 - dwC0;
          string str;
 
          str.Format("%d",dwC2);
@@ -573,7 +573,7 @@ auto tickC0 = ::tick::now();
 #else
 
 
-      //DWORD dw1 = ::get_tick();
+      //::u32 dw1 = ::get_tick();
 
 #ifdef __arm__
 
@@ -609,7 +609,7 @@ auto tickC0 = ::tick::now();
 
       /*
 auto tick2 = ::tick::now();
-      DWORD dw3 = dw2 - dw1;
+      ::u32 dw3 = dw2 - dw1;
       string str1;
       str1.Format("| Parameters: w=%d h=%d rect=%d  \n",m_size.cx,m_size.cy,m_iRadius);
       string str2;
@@ -1583,7 +1583,7 @@ auto tick2 = ::tick::now();
             }
 
             i32 asum, rsum, gsum, bsum, x, y, i, yp, yi, yw;
-            i32 s = stride / sizeof(COLORREF);
+            i32 s = stride / sizeof(color32_t);
             i32 wm = w - 1;
             i32 hm = h - 1;
             i32 div = radius + radius + 1;

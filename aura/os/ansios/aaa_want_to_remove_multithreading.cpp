@@ -14,12 +14,12 @@
 //CLASS_DECL_AURA i32 process_get_scheduling_priority(int iOsPolicy, const sched_param * pparam);
 //
 //
-//DWORD MsgWaitForMultipleObjectsEx(DWORD dwSize, HSYNC * pwaitableptra, DWORD dwTimeout, DWORD UNUSED(dwWakeMask), DWORD dwFlags)
+//::u32 MsgWaitForMultipleObjectsEx(::u32 dwSize, HSYNC * pwaitableptra, ::u32 dwTimeout, ::u32 UNUSED(dwWakeMask), ::u32 dwFlags)
 //{
 //
-//   DWORD start = 0;
+//   ::u32 start = 0;
 //
-//   if(dwTimeout != (DWORD) INFINITE)
+//   if(dwTimeout != (::u32) U32_INFINITE_TIMEOUT)
 //   {
 //      start = ::get_tick();
 //   }
@@ -42,7 +42,7 @@
 //      i = 0;
 //      for(; i < dwSize;)
 //      {
-//         if(dwTimeout != (DWORD) INFINITE && ::get_tick() - start >= dwTimeout)
+//         if(dwTimeout != (::u32) U32_INFINITE_TIMEOUT && ::get_tick() - start >= dwTimeout)
 //         {
 //            return WAIT_TIMEOUT;
 //         }
@@ -79,7 +79,7 @@
 //
 //         for(i = 0; i < dwSize;)
 //         {
-//            if(dwTimeout != (DWORD) INFINITE && ::get_tick() - start >= dwTimeout)
+//            if(dwTimeout != (::u32) U32_INFINITE_TIMEOUT && ::get_tick() - start >= dwTimeout)
 //            {
 //               return WAIT_TIMEOUT;
 //            }
@@ -97,7 +97,7 @@
 //
 //}
 //
-//DWORD MsgWaitForMultipleObjects(DWORD dwSize, HSYNC * pwaitableptra, int_bool bWaitForAll, DWORD dwTimeout, DWORD dwWakeMask)
+//::u32 MsgWaitForMultipleObjects(::u32 dwSize, HSYNC * pwaitableptra, int_bool bWaitForAll, ::u32 dwTimeout, ::u32 dwWakeMask)
 //{
 //
 //   return MsgWaitForMultipleObjectsEx(dwSize, pwaitableptra, dwTimeout, dwWakeMask, (bWaitForAll ?  MWMO_WAITALL : 0));
@@ -105,7 +105,7 @@
 //}
 //
 //
-//DWORD WaitForMultipleObjectsEx(DWORD dwSize, HSYNC * pwaitableptra, int_bool bWaitForAll, DWORD dwTimeout, int_bool bAlertable)
+//::u32 WaitForMultipleObjectsEx(::u32 dwSize, HSYNC * pwaitableptra, int_bool bWaitForAll, ::u32 dwTimeout, int_bool bAlertable)
 //{
 //
 //   return MsgWaitForMultipleObjectsEx(dwSize, pwaitableptra, dwTimeout, 0, (bWaitForAll ?  MWMO_WAITALL : 0) | (bAlertable ?  MWMO_ALERTABLE : 0));
@@ -113,7 +113,7 @@
 //}
 //
 //
-//DWORD WaitForMultipleObjects(DWORD dwSize, HSYNC * pwaitableptra, int_bool bWaitForAll, DWORD dwTimeout)
+//::u32 WaitForMultipleObjects(::u32 dwSize, HSYNC * pwaitableptra, int_bool bWaitForAll, ::u32 dwTimeout)
 //{
 //
 //   return WaitForMultipleObjectsEx(dwSize, pwaitableptra, bWaitForAll, dwTimeout, FALSE);
@@ -121,7 +121,7 @@
 //}
 //
 //
-//DWORD WaitForSingleObjectEx(HSYNC  pwaitable, DWORD dwTimeout, int_bool bAlertable)
+//::u32 WaitForSingleObjectEx(HSYNC  pwaitable, ::u32 dwTimeout, int_bool bAlertable)
 //{
 //
 //   return WaitForMultipleObjectsEx(1, &pwaitable, TRUE, dwTimeout, bAlertable);
@@ -129,7 +129,7 @@
 //}
 //
 //
-//DWORD WaitForSingleObject(HSYNC  pwaitable, DWORD dwTimeout)
+//::u32 WaitForSingleObject(HSYNC  pwaitable, ::u32 dwTimeout)
 //{
 //
 //   return WaitForSingleObjectEx(pwaitable, dwTimeout, FALSE);
@@ -186,18 +186,18 @@
 //
 ////
 ////thread_pointer < ThreadLocalData > currentThreadData;
-////thread_int_ptr < DWORD > currentThreadId;
+////thread_int_ptr < ::u32 > currentThreadId;
 ////thread_pointer < hthread > currentThread;
 ////thread_pointer < os_thread > t_posthread;
 //
 //
-////raw_array<DWORD> * freeTlsIndices = NULL;
+////raw_array<::u32> * freeTlsIndices = NULL;
 ////mutex * g_pmutexTlsData = NULL;
 //
 //
 ////map < HTHREAD,HTHREAD,HTHREAD,HTHREAD > * s_pmapHthreadHthread = NULL;
-////map < DWORD,DWORD,HTHREAD,HTHREAD > * s_pmapDwordHthread = NULL;
-////map < HTHREAD,HTHREAD,DWORD,DWORD > * s_pmapHthreadDword = NULL;
+////map < ::u32,::u32,HTHREAD,HTHREAD > * s_pmapDwordHthread = NULL;
+////map < HTHREAD,HTHREAD,::u32,::u32 > * s_pmapHthreadDword = NULL;
 ////map < HTHREAD,HTHREAD,ThreadLocalData *,ThreadLocalData * > * allthreaddata = NULL;
 //
 //
@@ -210,13 +210,13 @@
 //
 //   //s_pmapHthreadHthread = new map < HTHREAD,HTHREAD,HTHREAD,HTHREAD >();
 //
-//   //s_pmapDwordHthread = new map < DWORD,DWORD,HTHREAD,HTHREAD >();
+//   //s_pmapDwordHthread = new map < ::u32,::u32,HTHREAD,HTHREAD >();
 //
-//   //s_pmapHthreadDword = new map < HTHREAD,HTHREAD,DWORD,DWORD >();
+//   //s_pmapHthreadDword = new map < HTHREAD,HTHREAD,::u32,::u32 >();
 //
 //   //allthreaddata = new map < HTHREAD,HTHREAD,ThreadLocalData *,ThreadLocalData * >();
 //
-//   //freeTlsIndices = new raw_array<DWORD>();
+//   //freeTlsIndices = new raw_array<::u32>();
 //
 //
 //}
@@ -305,7 +305,7 @@
 ////
 ////}
 ////
-////map < DWORD,DWORD,HTHREAD,HTHREAD > & thread_id_handle_map()
+////map < ::u32,::u32,HTHREAD,HTHREAD > & thread_id_handle_map()
 ////{
 ////
 ////   return *s_pmapDwordHthread;
@@ -313,16 +313,16 @@
 ////}
 ////
 ////
-////map < HTHREAD,HTHREAD,DWORD,DWORD > & thread_id_map()
+////map < HTHREAD,HTHREAD,::u32,::u32 > & thread_id_map()
 ////{
 ////
 ////   return *s_pmapHthreadDword;
 ////
 ////}
 ////
-////DWORD DwThreadId()
+////::u32 DwThreadId()
 ////{
-////   static DWORD g_dw_thread_id = 0;
+////   static ::u32 g_dw_thread_id = 0;
 ////
 ////   if(g_dw_thread_id <= 0)
 ////      g_dw_thread_id = 1;
@@ -332,7 +332,7 @@
 ////
 ////
 ////
-////static DWORD nextTlsIndex = 0;
+////static ::u32 nextTlsIndex = 0;
 //
 ////mutex * os_thread::s_pmutex = NULL;
 ////comparable_raw_array < os_thread * >::type * os_thread::s_pptra = NULL;
@@ -464,7 +464,7 @@
 ////
 ////         pendingThreads()[threadHandle] = info;
 ////
-////         //::WaitForSingleObjectEx(info.suspensionEvent, INFINITE, FALSE);
+////         //::WaitForSingleObjectEx(info.suspensionEvent, U32_INFINITE_TIMEOUT, FALSE);
 ////      }
 ////      else
 ////      {
@@ -492,7 +492,7 @@
 ////}
 ////
 ////
-////DWORD WINAPI ResumeThread(HTHREAD hThread)
+////::u32 WINAPI ResumeThread(HTHREAD hThread)
 ////{
 ////   sync_lock lock(g_pmutexPendingThreadsLock);
 ////
@@ -503,7 +503,7 @@
 ////   {
 ////      // Can only resume threads while they are in CREATE_SUSPENDED state.
 ////      //assert(false);
-////      return (DWORD)-1;
+////      return (::u32)-1;
 ////   }
 ////
 ////   // Start the thread.
@@ -515,7 +515,7 @@
 ////   }
 ////   catch(...)
 ////   {
-////      return (DWORD)-1;
+////      return (::u32)-1;
 ////   }
 ////
 ////   // Remove this thread from the pending list.
@@ -557,7 +557,7 @@
 ////
 ////
 ////
-////DWORD WINAPI TlsAlloc()
+////::u32 WINAPI TlsAlloc()
 ////{
 ////
 ////   sync_lock lock(g_pmutexTlsData);
@@ -565,7 +565,7 @@
 ////   // Can we reuse a previously freed TLS slot?
 ////   if(freeTlsIndices->get_count() > 0)
 ////   {
-////      DWORD result = freeTlsIndices->element_at(freeTlsIndices->get_count() - 1);
+////      ::u32 result = freeTlsIndices->element_at(freeTlsIndices->get_count() - 1);
 ////      freeTlsIndices->remove_at(freeTlsIndices->get_count() - 1);
 ////      return result;
 ////   }
@@ -575,7 +575,7 @@
 ////}
 ////
 ////
-////int_bool WINAPI TlsFree(DWORD dwTlsIndex)
+////int_bool WINAPI TlsFree(::u32 dwTlsIndex)
 ////{
 ////
 ////   sync_lock lock(g_pmutexTlsData);
@@ -618,7 +618,7 @@
 ////}
 ////
 ////
-////LPVOID WINAPI TlsGetValue(DWORD dwTlsIndex)
+////LPVOID WINAPI TlsGetValue(::u32 dwTlsIndex)
 ////{
 ////   ThreadLocalData* threadData = currentThreadData;
 ////
@@ -644,7 +644,7 @@
 ////}
 ////
 ////
-////LPVOID WINAPI TlsGetValue(HTHREAD hthread,DWORD dwTlsIndex)
+////LPVOID WINAPI TlsGetValue(HTHREAD hthread,::u32 dwTlsIndex)
 ////{
 ////
 ////   try
@@ -683,7 +683,7 @@
 ////}
 ////
 ////
-////int_bool WINAPI TlsSetValue(DWORD dwTlsIndex,LPVOID lpTlsValue)
+////int_bool WINAPI TlsSetValue(::u32 dwTlsIndex,LPVOID lpTlsValue)
 ////{
 ////
 ////   ThreadLocalData* threadData = currentThreadData;
@@ -717,7 +717,7 @@
 ////   return true;
 ////}
 ////
-////int_bool WINAPI TlsSetValue(HTHREAD hthread,DWORD dwTlsIndex,LPVOID lpTlsValue)
+////int_bool WINAPI TlsSetValue(HTHREAD hthread,::u32 dwTlsIndex,LPVOID lpTlsValue)
 ////{
 ////
 ////   sync_lock lock(g_pmutexTlsData);
@@ -980,7 +980,7 @@
 ////   // Run the user callback.
 ////   //attach_thread_input_to_main_thread();
 ////
-////   DWORD dwRet = 0xffffffff;
+////   ::u32 dwRet = 0xffffffff;
 ////
 ////   try
 ////   {
@@ -1006,7 +1006,7 @@
 ////}
 ////
 ////
-////HTHREAD start_thread(DWORD(WINAPI * pfn)(LPVOID),LPVOID pv,i32 iPriority)
+////HTHREAD start_thread(::u32(WINAPI * pfn)(LPVOID),LPVOID pv,i32 iPriority)
 ////{
 ////
 ////   UNREFERENCED_PARAMETER(iPriority);
@@ -1029,7 +1029,7 @@
 ////
 ////
 ////static HANDLE g_hMainThread = NULL;
-////static UINT g_iMainThread = -1;
+////static ::u32 g_iMainThread = -1;
 ////
 ////CLASS_DECL_AURA void set_main_thread(HANDLE hThread)
 ////{
@@ -1044,7 +1044,7 @@
 ////
 ////}
 ////
-////CLASS_DECL_AURA void set_main_thread_id(UINT uiThread)
+////CLASS_DECL_AURA void set_main_thread_id(::u32 uThread)
 ////{
 ////
 ////   //   MESSAGE msg;
@@ -1063,7 +1063,7 @@
 ////   return g_hMainThread;
 ////
 ////}
-////CLASS_DECL_AURA UINT   get_main_thread_id()
+////CLASS_DECL_AURA ::u32   get_main_thread_id()
 ////{
 ////   return g_iMainThread;
 ////}
@@ -1086,7 +1086,7 @@
 ////
 /////*
 ////
-////DWORD WINAPI thread_layer::proc(LPVOID lp)
+////::u32 WINAPI thread_layer::proc(LPVOID lp)
 ////{
 ////
 ////   thread_layer * player   = (thread_layer *)lp;
@@ -1135,12 +1135,12 @@
 ////
 /////*
 ////
-////CLASS_DECL_AURA DWORD WINAPI GetThreadId(HTHREAD Thread)
+////CLASS_DECL_AURA ::u32 WINAPI GetThreadId(HTHREAD Thread)
 ////{
 ////
 ////   sync_lock mlThreadId(g_pmutexThreadIdLock);
 ////
-////   map < HTHREAD,HTHREAD,DWORD,DWORD >::pair * p = thread_id_map().plookup(Thread);
+////   map < HTHREAD,HTHREAD,::u32,::u32 >::pair * p = thread_id_map().plookup(Thread);
 ////
 ////   if(p == NULL)
 ////      return -1;
@@ -1150,12 +1150,12 @@
 ////
 ////}
 ////
-////CLASS_DECL_AURA HTHREAD  WINAPI get_thread_handle(DWORD dw)
+////CLASS_DECL_AURA HTHREAD  WINAPI get_thread_handle(::u32 dw)
 ////{
 ////
 ////   sync_lock mlThreadIdHandle(g_pmutexThreadIdHandleLock);
 ////
-////   map < DWORD,DWORD,HTHREAD,HTHREAD >::pair * p = thread_id_handle_map().plookup(dw);
+////   map < ::u32,::u32,HTHREAD,HTHREAD >::pair * p = thread_id_handle_map().plookup(dw);
 ////
 ////   if(p == NULL)
 ////      return NULL;
@@ -1168,7 +1168,7 @@
 ////*/
 ////
 /////*
-////CLASS_DECL_AURA int_bool WINAPI PostThreadMessageW(DWORD idThread,UINT Msg,WPARAM wParam,LPARAM lParam)
+////CLASS_DECL_AURA int_bool WINAPI PostThreadMessageW(::u32 idThread,::u32 Msg,WPARAM wParam,LPARAM lParam)
 ////{
 ////
 ////   HTHREAD h = ::get_thread_handle(idThread);
@@ -1206,7 +1206,7 @@
 ////}
 ////*/
 ////
-////CLASS_DECL_AURA int_bool WINAPI PostMessageW(oswindow oswindow,UINT Msg,WPARAM wParam,LPARAM lParam)
+////CLASS_DECL_AURA int_bool WINAPI PostMessageW(oswindow oswindow,::u32 Msg,WPARAM wParam,LPARAM lParam)
 ////{
 ////
 ////   HTHREAD  h = oswindow->get_user_interaction()->m_papp->get_os_handle();
@@ -1248,7 +1248,7 @@
 ////
 ////
 ////
-////void thread_layer::wait_thread(DWORD dwMillis)
+////void thread_layer::wait_thread(::u32 dwMillis)
 ////{
 ////
 ////   try
@@ -1330,7 +1330,7 @@
 ////
 ////}
 ////
-////CLASS_DECL_AURA UINT GetCurrentThreadId()
+////CLASS_DECL_AURA ::u32 GetCurrentThreadId()
 ////{
 ////
 ////   return currentThreadId;

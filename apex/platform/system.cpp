@@ -16,7 +16,7 @@
 
 CLASS_DECL_APEX void apex_generate_random_bytes(void* p, memsize s);
 
-int GetMainScreenRect(LPRECT lprect);
+int GetMainScreenRect(LPRECT32 lprect);
 
 
 const char* g_pszMultimediaLibraryName = nullptr;
@@ -81,7 +81,7 @@ void dappy(const char * psz);
 string get_user_name()
 {
    WCHAR wsz[1024];
-   DWORD dwSize = sizeof(wsz) / sizeof(WCHAR);
+   ::u32 dwSize = sizeof(wsz) / sizeof(WCHAR);
    ::GetUserNameW(wsz,&dwSize);
    return string(wsz);
 }
@@ -2204,7 +2204,7 @@ namespace apex
    }
 
 
-   UINT system::os_post_to_all_threads(const ::id & id,WPARAM wparam,lparam lparam)
+   ::u32 system::os_post_to_all_threads(const ::id & id,WPARAM wparam,lparam lparam)
    {
 
       post_to_all_threads(id,wparam,lparam);
@@ -3532,7 +3532,7 @@ namespace apex
 //   }
 //
 //
-//   CLASS_DECL_APEX bool get_window_rect(::apex::system_window ^ pwindow, RECT * prect)
+//   CLASS_DECL_APEX bool get_window_rect(::apex::system_window ^ pwindow, RECT32 * prect)
 //   {
 //
 //      ::rectd rect;
@@ -4723,7 +4723,7 @@ typedef void BASECORE_INIT();
 namespace apex
 {
 
-   CLASS_DECL_APEX void black_body(float* r, float* g, float* b, DWORD dwTemp);
+   CLASS_DECL_APEX void black_body(float* r, float* g, float* b, ::u32 dwTemp);
 
    /*  bool system::on_application_menu_action(const char * pszCommand)
      {
@@ -5384,7 +5384,7 @@ namespace apex
 #ifdef _UWP
 
 
-   bool system::get_window_rect(RECT* prect)
+   bool system::get_window_rect(RECT32* prect)
    {
 
       if (::is_null(get_context_session()))

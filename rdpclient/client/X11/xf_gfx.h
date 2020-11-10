@@ -30,25 +30,25 @@
 struct xf_gfx_surface
 {
 	gdiGfxSurface gdi;
-	BYTE* stage;
-	UINT32 stageScanline;
+	byte* stage;
+	::u32 stageScanline;
 /*	XImage* pimage;
 };
 typedef struct xf_gfx_surface xfGfxSurface;
 
 struct xf_gfx_cache_entry
 {
-	UINT64 cacheKey;
-	UINT32 width;
-	UINT32 height;
-	BYTE* data;
-	UINT32 scanline;
-	UINT32 format;
+	::u3264 cacheKey;
+	::u32 width;
+	::u32 height;
+	byte* data;
+	::u32 scanline;
+	::u32 format;
 };
 typedef struct xf_gfx_cache_entry xfGfxCacheEntry;
 
-UINT xf_OutputExpose(xfContext* xfc, UINT32 x, UINT32 y,
-                     UINT32 width, UINT32 height);
+::u32 xf_OutputExpose(xfContext* xfc, ::u32 x, ::u32 y,
+                     ::u32 width, ::u32 height);
 
 void xf_graphics_pipeline_init(xfContext* xfc, RdpgfxClientContext* gfx);
 void xf_graphics_pipeline_uninit(xfContext* xfc, RdpgfxClientContext* gfx);

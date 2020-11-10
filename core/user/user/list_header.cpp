@@ -120,7 +120,7 @@ namespace user
    }
 
 
-   bool list_header::GetItemRect(RECT * prect, e_element eelement, index iItem)
+   bool list_header::GetItemRect(RECT32 * prect, e_element eelement, index iItem)
 
    {
 
@@ -185,7 +185,7 @@ namespace user
    }
 
    bool list_header::GetItemRect(
-   RECT * prect,
+   RECT32 * prect,
 
    e_element eelementLButtonDown,
    index iItemLButtonDown,

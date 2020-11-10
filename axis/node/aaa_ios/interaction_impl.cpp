@@ -173,21 +173,21 @@ string strNow)
 
 }
 
-int_bool SetWindowRect(oswindow hwnd, LPRECT lprect);
+int_bool SetWindowRect(oswindow hwnd, LPRECT32 lprect);
 
 // int_bool PeekMessage(
 // LPMESSAGE lpMsg,
 // oswindow hWnd,
-// UINT wMsgFilterMin,
-// UINT wMsgFilterMax,
-// UINT wRemoveMsg);
+// ::u32 wMsgFilterMin,
+// ::u32 wMsgFilterMax,
+// ::u32 wRemoveMsg);
 
 
 // int_bool GetMessage(
 // LPMESSAGE lpMsg,
 // oswindow hWnd,
-// UINT wMsgFilterMin,
-// UINT wMsgFilterMax);
+// ::u32 wMsgFilterMin,
+// ::u32 wMsgFilterMax);
 
 namespace ios
 {
@@ -247,11 +247,11 @@ namespace ios
    // Change a window's style
 
    /*__STATIC bool CLASS_DECL_BASE __modify_style(oswindow hWnd, i32 nStyleOffset,
-    DWORD dwRemove, DWORD dwAdd, UINT nFlags)
+    ::u32 dwRemove, ::u32 dwAdd, ::u32 nFlags)
     {
     ASSERT(hWnd != nullptr);
-    DWORD uStyle = ::GetWindowLong(hWnd, nStyleOffset);
-    DWORD dwNewStyle = (uStyle & ~dwRemove) | dwAdd;
+    ::u32 uStyle = ::GetWindowLong(hWnd, nStyleOffset);
+    ::u32 dwNewStyle = (uStyle & ~dwRemove) | dwAdd;
     if (uStyle == dwNewStyle)
     return FALSE;
 
@@ -265,7 +265,7 @@ namespace ios
     }*/
 
    /*
-      bool  interaction_impl::ModifyStyle(oswindow hWnd, DWORD dwRemove, DWORD dwAdd, UINT nFlags)
+      bool  interaction_impl::ModifyStyle(oswindow hWnd, ::u32 dwRemove, ::u32 dwAdd, ::u32 nFlags)
       {
 
          //      __throw(todo());
@@ -273,7 +273,7 @@ namespace ios
          if(!::is_window(hWnd))
             return false;
 
-         DWORD dw = hWnd->get_window_long(GWL_STYLE);
+         ::u32 dw = hWnd->get_window_long(GWL_STYLE);
 
          dw &= ~dwRemove;
 
@@ -288,7 +288,7 @@ namespace ios
       }
 
 
-      bool interaction_impl::ModifyStyleEx(oswindow hWnd, DWORD dwRemove, DWORD dwAdd, UINT nFlags)
+      bool interaction_impl::ModifyStyleEx(oswindow hWnd, ::u32 dwRemove, ::u32 dwAdd, ::u32 nFlags)
       {
 
          //      __throw(todo());
@@ -296,7 +296,7 @@ namespace ios
          if(!::is_window(hWnd))
             return false;
 
-         DWORD dw = hWnd->get_window_long(GWL_EXSTYLE);
+         ::u32 dw = hWnd->get_window_long(GWL_EXSTYLE);
 
          dw &= ~dwRemove;
 
@@ -907,7 +907,7 @@ namespace ios
    }
 
 
-//   LRESULT interaction_impl::DefWindowProc(UINT nMsg, WPARAM wparam, ::lparam lparam)
+//   LRESULT interaction_impl::DefWindowProc(::u32 nMsg, WPARAM wparam, ::lparam lparam)
 //   {
 //      /*  if (m_pfnSuper != nullptr)
 //       return ::CallWindowProc(m_pfnSuper, get_handle(), nMsg, wparam, lparam);
@@ -999,7 +999,7 @@ namespace ios
    //      Default();
    // }
 
-   bool interaction_impl::_EnableToolTips(bool bEnable, UINT nFlag)
+   bool interaction_impl::_EnableToolTips(bool bEnable, ::u32 nFlag)
    {
       UNREFERENCED_PARAMETER(bEnable);
       UNREFERENCED_PARAMETER(nFlag);
@@ -1037,7 +1037,7 @@ namespace ios
    }
 
 
-   /*void interaction_impl::WinHelpInternal(dword_ptr dwData, UINT nCmd)
+   /*void interaction_impl::WinHelpInternal(dword_ptr dwData, ::u32 nCmd)
     {
     UNREFERENCED_PARAMETER(dwData);
     UNREFERENCED_PARAMETER(nCmd);
@@ -1229,16 +1229,16 @@ namespace ios
                ::rect rcMonitor;
                System.get_monitor_rect(0, &rcMonitor);
                if(rectWindow.left >= rcMonitor.left)
-                  pmouse->m_point.x += (LONG) rectWindow.left;
+                  pmouse->m_point.x += (::i32) rectWindow.left;
                if(rectWindow.top >= rcMonitor.top)
-                  pmouse->m_point.y += (LONG) rectWindow.top;
+                  pmouse->m_point.y += (::i32) rectWindow.top;
             }
             else
             {
                if(rectWindow.left >= 0)
-                  pmouse->m_point.x += (LONG) rectWindow.left;
+                  pmouse->m_point.x += (::i32) rectWindow.left;
                if(rectWindow.top >= 0)
-                  pmouse->m_point.y += (LONG) rectWindow.top;
+                  pmouse->m_point.y += (::i32) rectWindow.top;
             }
          }
 
@@ -1377,7 +1377,7 @@ namespace ios
        //      __NOTIFY notify;
        //    notify.pResult = pResult;
        //  notify.pNMHDR = pNMHDR;
-       //xxx   return _001OnCommand((UINT)nID, MAKELONG(nCode, WM_NOTIFY), &notify, nullptr);*/
+       //xxx   return _001OnCommand((::u32)nID, MAKELONG(nCode, WM_NOTIFY), &notify, nullptr);*/
       return false;
    }
 
@@ -1531,7 +1531,7 @@ namespace ios
 
 
 
-//   i32 interaction_impl::message_box(const char * lpszText, const char * lpszCaption, UINT nType)
+//   i32 interaction_impl::message_box(const char * lpszText, const char * lpszCaption, ::u32 nType)
 //   {
 //
 //      string strCaption;
@@ -1598,7 +1598,7 @@ namespace ios
     return true;
     }
 
-    bool interaction_impl::GetScrollInfo(i32 nBar, LPSCROLLINFO lpScrollInfo, UINT nMask)
+    bool interaction_impl::GetScrollInfo(i32 nBar, LPSCROLLINFO lpScrollInfo, ::u32 nMask)
     {
     UNREFERENCED_PARAMETER(nMask);
     ASSERT(lpScrollInfo != nullptr);
@@ -1620,7 +1620,7 @@ namespace ios
    }
 
 //   void interaction_impl::ScrollWindow(i32 xAmount, i32 yAmount,
-//                                       const ::rect & rect, LPCRECT lpClipRect)
+//                                       const ::rect & rect, LPCRECT32 lpClipRect)
 //   {
 //      /*      ASSERT(::is_window(get_handle()));
 //
@@ -1655,9 +1655,9 @@ namespace ios
 
 
 
-   void interaction_impl::CalcWindowRect(LPRECT lpClientRect, UINT nAdjustType)
+   void interaction_impl::CalcWindowRect(LPRECT32 lpClientRect, ::u32 nAdjustType)
    {
-      /*DWORD dwExStyle = GetExStyle();
+      /*::u32 dwExStyle = GetExStyle();
        if (nAdjustType == 0)
        dwExStyle &= ~WS_EX_CLIENTEDGE;
        ::AdjustWindowRectEx(lpClientRect, GetStyle(), FALSE, dwExStyle);*/
@@ -1666,7 +1666,7 @@ namespace ios
    /////////////////////////////////////////////////////////////////////////////
    // Special keyboard/system command processing
 
-   bool interaction_impl::HandleFloatingSysCommand(UINT nID, LPARAM lparam)
+   bool interaction_impl::HandleFloatingSysCommand(::u32 nID, LPARAM lparam)
    {
       /*      ::user::interaction* pParent = GetTopLevelParent();
        switch (nID & 0xfff0)
@@ -1768,13 +1768,13 @@ namespace ios
       return false;
    }
 
-   bool interaction_impl::OnChildNotify(UINT uMsg, WPARAM wparam, LPARAM lparam, LRESULT* pResult)
+   bool interaction_impl::OnChildNotify(::u32 uMsg, WPARAM wparam, LPARAM lparam, LRESULT* pResult)
    {
 
       return ReflectChildNotify(uMsg, wparam, lparam, pResult);
    }
 
-   bool interaction_impl::ReflectChildNotify(UINT uMsg, WPARAM wparam, LPARAM lparam, LRESULT* pResult)
+   bool interaction_impl::ReflectChildNotify(::u32 uMsg, WPARAM wparam, LPARAM lparam, LRESULT* pResult)
    {
       UNREFERENCED_PARAMETER(wparam);
       // Note: reflected messages are send directly to interaction_impl::OnWndMsg
@@ -1897,7 +1897,7 @@ namespace ios
 
    bool gen_GotScrollLines;
 
-   void interaction_impl::OnSettingChange(UINT uFlags, const char * lpszSection)
+   void interaction_impl::OnSettingChange(::u32 uFlags, const char * lpszSection)
    {
       //      UNUSED_ALWAYS(uFlags);
       //    UNUSED_ALWAYS(lpszSection);
@@ -1984,7 +1984,7 @@ namespace ios
 ////         m_pthreadProDevian = fork([&]()
 ////                                   {
 ////
-////                                      DWORD tickStart;
+////                                      ::u32 tickStart;
 ////
 ////                                      bool bUpdateScreen = false;
 ////
@@ -2078,7 +2078,7 @@ namespace ios
 ////
 ////                                            }
 ////
-////                                            DWORD dwSpan = tickStart.elapsed();
+////                                            ::u32 dwSpan = tickStart.elapsed();
 ////
 ////                                            if (dwSpan < 50)
 ////                                            {
@@ -2110,7 +2110,7 @@ namespace ios
 ////      m_pthreadProDevian = m_puserinteraction->fork([&]()
 ////                                       {
 ////
-////                                          DWORD tickStart;
+////                                          ::u32 tickStart;
 ////
 ////                                          bool bUpdateScreen = false;
 ////
@@ -2168,7 +2168,7 @@ namespace ios
 ////
 ////                                                }
 ////
-////                                                DWORD dwSpan = tickStart.elapsed();
+////                                                ::u32 dwSpan = tickStart.elapsed();
 ////
 ////                                                if (dwSpan < 20)
 ////                                                {
@@ -2284,13 +2284,13 @@ namespace ios
    /*
 
 
-    void interaction_impl::OnHScroll(UINT, UINT, CScrollBar* pScrollBar)
+    void interaction_impl::OnHScroll(::u32, ::u32, CScrollBar* pScrollBar)
     {
     UNREFERENCED_PARAMETER(pScrollBar);
     Default();
     }
 
-    void interaction_impl::OnVScroll(UINT, UINT, CScrollBar* pScrollBar)
+    void interaction_impl::OnVScroll(::u32, ::u32, CScrollBar* pScrollBar)
     {
     UNREFERENCED_PARAMETER(pScrollBar);
     Default();
@@ -2365,7 +2365,7 @@ namespace ios
       //      ::rect rectx;
       //      ::draw2d::bitmap * pbitmap = &pgraphics->GetCurrentBitmap();
       //      ::GetCurrentObject((HDC) pbase->m_wparam, OBJ_BITMAP);
-      //      //      DWORD dw = ::get_last_error();
+      //      //      ::u32 dw = ::get_last_error();
       //      ::size size = pbitmap->get_size();
       //      rectx.left = 0;
       //      rectx.top = 0;
@@ -2425,7 +2425,7 @@ namespace ios
    }
 
 
-   void interaction_impl::OnEnterIdle(UINT /*nWhy*/, ::user::interaction * /*pWho*/)
+   void interaction_impl::OnEnterIdle(::u32 /*nWhy*/, ::user::interaction * /*pWho*/)
    {
       // In some OLE inplace active scenarios, OLE will post a
       // message instead of sending it.  This causes so many WM_ENTERIDLE
@@ -2444,7 +2444,7 @@ namespace ios
       //Default();
    }
 
-   HBRUSH interaction_impl::OnCtlColor(::draw2d::graphics *, ::user::interaction * pWnd, UINT)
+   HBRUSH interaction_impl::OnCtlColor(::draw2d::graphics *, ::user::interaction * pWnd, ::u32)
    {
       ASSERT(pWnd != nullptr && get_handle() != nullptr);
       LRESULT lResult;
@@ -2459,8 +2459,8 @@ namespace ios
    //  return value of FALSE means caller must call DefWindowProc's default
    //  TRUE means that 'hbrGray' will be used and the appropriate text
    //    ('clrText') and background colors are set.
-   bool PASCAL interaction_impl::GrayCtlColor(HDC hDC, oswindow hWnd, UINT nCtlColor,
-         HBRUSH hbrGray, COLORREF clrText)
+   bool PASCAL interaction_impl::GrayCtlColor(HDC hDC, oswindow hWnd, ::u32 nCtlColor,
+         HBRUSH hbrGray, color32_t clrText)
    {
       __throw(not_implemented());
       //      if (hDC == nullptr)
@@ -2481,7 +2481,7 @@ namespace ios
       //      {
       //         // only handle requests to draw the space between edit and drop button
       //         //  in a drop-down combo (not a drop-down list)
-      //         if (!__is_combo_box_control(hWnd, (UINT)CBS_DROPDOWN))
+      //         if (!__is_combo_box_control(hWnd, (::u32)CBS_DROPDOWN))
       //            return FALSE;
       //      }
       //
@@ -2489,7 +2489,7 @@ namespace ios
       //      LOGBRUSH logbrush;
       //      VERIFY(::GetObject(hbrGray, sizeof(LOGBRUSH), (LPVOID)&logbrush));
       //      ::SetBkColor(hDC, logbrush.lbColor);
-      //      if (clrText == (COLORREF)-1)
+      //      if (clrText == (color32_t)-1)
       //         clrText = ::GetSysColor(COLOR_WINDOWTEXT);  // normal text
       //      ::SetTextColor(hDC, clrText);
       //      return TRUE;
@@ -2636,7 +2636,7 @@ namespace ios
 //   }
 
 
-//   bool interaction_impl::_001ClientToScreen(LPRECT lprect)
+//   bool interaction_impl::_001ClientToScreen(LPRECT32 lprect)
 //   {
 //
 //      ::rect64 rectWindow;
@@ -2648,17 +2648,17 @@ namespace ios
 //
 //      }
 //
-//      lprect->left   += (LONG) rectWindow.left;
-//      lprect->right  += (LONG) rectWindow.left;
-//      lprect->top    += (LONG) rectWindow.top;
-//      lprect->bottom += (LONG) rectWindow.top;
+//      lprect->left   += (::i32) rectWindow.left;
+//      lprect->right  += (::i32) rectWindow.left;
+//      lprect->top    += (::i32) rectWindow.top;
+//      lprect->bottom += (::i32) rectWindow.top;
 //
 //      return true;
 //
 //   }
 
 
-//   bool interaction_impl::_001ClientToScreen(LPPOINT lppoint)
+//   bool interaction_impl::_001ClientToScreen(POINT32 * lppoint)
 //   {
 //
 //      ::rect64 rectWindow;
@@ -2670,8 +2670,8 @@ namespace ios
 //
 //      }
 //
-//      lppoint->x     += (LONG) rectWindow.left;
-//      lppoint->y     += (LONG) rectWindow.top;
+//      lppoint->x     += (::i32) rectWindow.left;
+//      lppoint->y     += (::i32) rectWindow.top;
 //
 //      return true;
 //
@@ -2719,7 +2719,7 @@ namespace ios
 //   }
 //
 //
-//   bool interaction_impl::_001ScreenToClient(LPRECT lprect)
+//   bool interaction_impl::_001ScreenToClient(LPRECT32 lprect)
 //   {
 //
 //      ::rect64 rectWindow;
@@ -2731,17 +2731,17 @@ namespace ios
 //
 //      }
 //
-//      lprect->left   -= (LONG) rectWindow.left;
-//      lprect->right  -= (LONG) rectWindow.left;
-//      lprect->top    -= (LONG) rectWindow.top;
-//      lprect->bottom -= (LONG) rectWindow.top;
+//      lprect->left   -= (::i32) rectWindow.left;
+//      lprect->right  -= (::i32) rectWindow.left;
+//      lprect->top    -= (::i32) rectWindow.top;
+//      lprect->bottom -= (::i32) rectWindow.top;
 //
 //      return true;
 //
 //   }
 
 
-//   bool interaction_impl::_001ScreenToClient(LPPOINT lppoint)
+//   bool interaction_impl::_001ScreenToClient(POINT32 * lppoint)
 //   {
 //
 //      ::rect64 rectWindow;
@@ -2753,8 +2753,8 @@ namespace ios
 //
 //      }
 //
-//      lppoint->x     -= (LONG) rectWindow.left;
-//      lppoint->y     -= (LONG) rectWindow.top;
+//      lppoint->x     -= (::i32) rectWindow.left;
+//      lppoint->y     -= (::i32) rectWindow.top;
 //
 //
 //      return true;
@@ -2964,7 +2964,7 @@ namespace ios
    }
 
 
-   LONG interaction_impl::GetWindowLong(i32 nIndex)
+   ::i32 interaction_impl::GetWindowLong(i32 nIndex)
    {
 
       return ::GetWindowLong(get_handle(), nIndex);
@@ -2972,7 +2972,7 @@ namespace ios
    }
 
 
-   LONG interaction_impl::SetWindowLong(i32 nIndex, LONG lValue)
+   ::i32 interaction_impl::SetWindowLong(i32 nIndex, ::i32 lValue)
    {
 
       return ::SetWindowLong(get_handle(), nIndex, lValue);
@@ -2983,25 +2983,25 @@ namespace ios
    /*
 
 
-      DWORD interaction_impl::GetStyle() const
+      ::u32 interaction_impl::GetStyle() const
       {
          ASSERT(::is_window(get_handle()));
-         return (DWORD)::GetWindowLong(get_handle(), GWL_STYLE);
+         return (::u32)::GetWindowLong(get_handle(), GWL_STYLE);
       }
 
-      DWORD interaction_impl::GetExStyle() const
+      ::u32 interaction_impl::GetExStyle() const
       {
          ASSERT(::is_window(get_handle()));
-         return (DWORD)::GetWindowLong(get_handle(), GWL_EXSTYLE);
+         return (::u32)::GetWindowLong(get_handle(), GWL_EXSTYLE);
       }
 
-      bool interaction_impl::ModifyStyle(DWORD dwRemove, DWORD dwAdd, UINT nFlags)
+      bool interaction_impl::ModifyStyle(::u32 dwRemove, ::u32 dwAdd, ::u32 nFlags)
       {
          ASSERT(::is_window(get_handle()));
          return ModifyStyle(get_handle(), dwRemove, dwAdd, nFlags);
       }
 
-      bool interaction_impl::ModifyStyleEx(DWORD dwRemove, DWORD dwAdd, UINT nFlags)
+      bool interaction_impl::ModifyStyleEx(::u32 dwRemove, ::u32 dwAdd, ::u32 nFlags)
       {
          ASSERT(::is_window(get_handle()));
          return ModifyStyleEx(get_handle(), dwRemove, dwAdd, nFlags);
@@ -3072,7 +3072,7 @@ namespace ios
 //      }
 //   }
 //
-//   bool interaction_impl::DragDetect(POINT point) const
+//   bool interaction_impl::DragDetect(POINT32 point) const
 //   {
 //
 //      __throw(not_implemented());
@@ -3166,7 +3166,7 @@ namespace ios
 //      MoveWindow(lpRect->left, lpRect->top, lpRect->right - lpRect->left, lpRect->bottom - lpRect->top, bRepaint);
 //   }
 
-   UINT interaction_impl::ArrangeIconicWindows()
+   ::u32 interaction_impl::ArrangeIconicWindows()
    {
       __throw(not_implemented());
       //      ASSERT(::is_window(get_handle())); return ::ArrangeIconicWindows(get_handle());
@@ -3210,18 +3210,18 @@ namespace ios
 //   }
 
 
-   void interaction_impl::MapWindowPoints(::user::interaction * pwndTo, LPPOINT lpPoint, UINT nCount)
+   void interaction_impl::MapWindowPoints(::user::interaction * pwndTo, POINT32 * lpPoint, ::u32 nCount)
    {
       __throw(not_implemented());
       //      ASSERT(::is_window(get_handle()));
       //      ::MapWindowPoints(get_handle(), (oswindow) pwndTo->get_handle(), lpPoint, nCount);
    }
 
-   void interaction_impl::MapWindowPoints(::user::interaction * pwndTo, LPRECT lpRect)
+   void interaction_impl::MapWindowPoints(::user::interaction * pwndTo, LPRECT32 lpRect)
    {
       __throw(not_implemented());
       //      ASSERT(::is_window(get_handle()));
-      //      ::MapWindowPoints(get_handle(), (oswindow) pwndTo->get_handle(), (LPPOINT)lpRect, 2);
+      //      ::MapWindowPoints(get_handle(), (oswindow) pwndTo->get_handle(), (POINT32 *)lpRect, 2);
    }
 
    ::draw2d::graphics * interaction_impl::GetDC()
@@ -3298,7 +3298,7 @@ namespace ios
       //::SendMessage(get_handle(), WM_SETREDRAW, bRedraw, 0);
    }
 
-   bool interaction_impl::GetUpdateRect(LPRECT lpRect, bool bErase)
+   bool interaction_impl::GetUpdateRect(LPRECT32 lpRect, bool bErase)
    {
       __throw(not_implemented());
       //ASSERT(::is_window(get_handle()));
@@ -3424,7 +3424,7 @@ namespace ios
 
 
 
-//   ::draw2d::graphics * interaction_impl::GetDCEx(::draw2d::region* prgnClip, DWORD flags)
+//   ::draw2d::graphics * interaction_impl::GetDCEx(::draw2d::region* prgnClip, ::u32 flags)
 //   {
 //
 //      __throw(not_implemented());
@@ -3454,7 +3454,7 @@ namespace ios
    }
 
 
-//   bool interaction_impl::RedrawWindow(const ::rect& rectUpdate, ::draw2d::region* prgnUpdate, UINT flags)
+//   bool interaction_impl::RedrawWindow(const ::rect& rectUpdate, ::draw2d::region* prgnUpdate, ::u32 flags)
 //   {
 //
 //      if(flags & RDW_UPDATENOW)
@@ -3529,7 +3529,7 @@ namespace ios
 //   }
 
    /*
-    bool interaction_impl::EnableScrollBar(i32 nSBFlags, UINT nArrowFlags)
+    bool interaction_impl::EnableScrollBar(i32 nSBFlags, ::u32 nArrowFlags)
     {
 
     ASSERT(::is_window(get_handle()));
@@ -3539,7 +3539,7 @@ namespace ios
     }
     */
 
-//   bool interaction_impl::DrawAnimatedRects(i32 idAni, CONST RECT *lprcFrom, CONST RECT *lprcTo)
+//   bool interaction_impl::DrawAnimatedRects(i32 idAni, CONST RECT32 *lprcFrom, CONST RECT32 *lprcTo)
 //   {
 //
 //      __throw(not_implemented());
@@ -3548,7 +3548,7 @@ namespace ios
 //
 //   }
 
-//   bool interaction_impl::DrawCaption(::draw2d::graphics_pointer & pgraphics, LPCRECT lprc, UINT uFlags)
+//   bool interaction_impl::DrawCaption(::draw2d::graphics_pointer & pgraphics, LPCRECT32 lprc, ::u32 uFlags)
 //   {
 //
 //      __throw(not_implemented());
@@ -3557,7 +3557,7 @@ namespace ios
 //
 //   }
 
-   bool interaction_impl::SetTimer(uptr uEvent, UINT nElapse, PFN_TIMER pfnTimer)
+   bool interaction_impl::SetTimer(uptr uEvent, ::u32 nElapse, PFN_TIMER pfnTimer)
    {
       return ::user::interaction_impl::SetTimer(uEvent, nElapse, pfnTimer);
       /*
@@ -3747,7 +3747,7 @@ namespace ios
       return 0; // invalid ID
    }
 
-   void interaction_impl::CheckDlgButton(i32 nIDButton, UINT nCheck)
+   void interaction_impl::CheckDlgButton(i32 nIDButton, ::u32 nCheck)
    {
 
       __throw(not_implemented());
@@ -3765,7 +3765,7 @@ namespace ios
 
    }
 
-   i32 interaction_impl::DlgDirList(LPTSTR lpPathSpec, i32 nIDListBox, i32 nIDStaticPath, UINT nFileType)
+   i32 interaction_impl::DlgDirList(LPTSTR lpPathSpec, i32 nIDListBox, i32 nIDStaticPath, ::u32 nFileType)
    {
 
       __throw(not_implemented());
@@ -3774,7 +3774,7 @@ namespace ios
 
    }
 
-   i32 interaction_impl::DlgDirListComboBox(LPTSTR lpPathSpec, i32 nIDComboBox, i32 nIDStaticPath, UINT nFileType)
+   i32 interaction_impl::DlgDirListComboBox(LPTSTR lpPathSpec, i32 nIDComboBox, i32 nIDStaticPath, ::u32 nFileType)
    {
 
       __throw(not_implemented());
@@ -3813,7 +3813,7 @@ namespace ios
     */
 
    /*
-    UINT interaction_impl::GetDlgItemInt(i32 nID, int_bool * lpTrans, bool bSigned) const
+    ::u32 interaction_impl::GetDlgItemInt(i32 nID, int_bool * lpTrans, bool bSigned) const
     {
 
     ASSERT(::is_window(get_handle()));
@@ -3847,7 +3847,7 @@ namespace ios
 
    }
 
-   UINT interaction_impl::IsDlgButtonChecked(i32 nIDButton) const
+   ::u32 interaction_impl::IsDlgButtonChecked(i32 nIDButton) const
    {
 
       __throw(not_implemented());
@@ -3865,7 +3865,7 @@ namespace ios
 
    }
 
-   void interaction_impl::SetDlgItemInt(i32 nID, UINT nValue, bool bSigned)
+   void interaction_impl::SetDlgItemInt(i32 nID, ::u32 nValue, bool bSigned)
    {
 
       __throw(not_implemented());
@@ -3883,7 +3883,7 @@ namespace ios
 
    }
 
-//   i32 interaction_impl::ScrollWindowEx(i32 dx, i32 dy, const ::rect & rectScroll, const ::rect & rectClip, ::draw2d::region* prgnUpdate, LPRECT lpRectUpdate, UINT flags)
+//   i32 interaction_impl::ScrollWindowEx(i32 dx, i32 dy, const ::rect & rectScroll, const ::rect & rectClip, ::draw2d::region* prgnUpdate, LPRECT32 lpRectUpdate, ::u32 flags)
 //   {
 //
 //      __throw(not_implemented());
@@ -3892,7 +3892,7 @@ namespace ios
 //
 //   }
 
-   void interaction_impl::ShowScrollBar(UINT nBar, bool bShow)
+   void interaction_impl::ShowScrollBar(::u32 nBar, bool bShow)
    {
 
       __throw(not_implemented());
@@ -3901,7 +3901,7 @@ namespace ios
 
    }
 
-//   ::user::interaction *  interaction_impl::ChildWindowFromPoint(POINT point)
+//   ::user::interaction *  interaction_impl::ChildWindowFromPoint(POINT32 point)
 //   {
 //
 //
@@ -3911,7 +3911,7 @@ namespace ios
 //
 //   }
 
-//   ::user::interaction *  interaction_impl::ChildWindowFromPoint(POINT point, UINT nFlags)
+//   ::user::interaction *  interaction_impl::ChildWindowFromPoint(POINT32 point, ::u32 nFlags)
 //   {
 //
 //      __throw(not_implemented());
@@ -3922,7 +3922,7 @@ namespace ios
 
 
 
-   ::user::interaction *  interaction_impl::GetNextWindow(UINT nFlag)
+   ::user::interaction *  interaction_impl::GetNextWindow(::u32 nFlag)
    {
 
       return nullptr;
@@ -3939,7 +3939,7 @@ namespace ios
 
    }
 
-   ::user::interaction *  interaction_impl::GetWindow(UINT nCmd)
+   ::user::interaction *  interaction_impl::GetWindow(::u32 nCmd)
    {
 
       ASSERT(::is_window(get_handle()));
@@ -3966,7 +3966,7 @@ namespace ios
 
    }
 
-   ::user::interaction * PASCAL interaction_impl::oswindowFromPoint(POINT point)
+   ::user::interaction * PASCAL interaction_impl::oswindowFromPoint(POINT32 point)
    {
 
 
@@ -4042,11 +4042,11 @@ namespace ios
 
       __throw(not_implemented());
       //      ::point point;
-      //      ::GetCaretPos((LPPOINT)&point); return point;
+      //      ::GetCaretPos((POINT32 *)&point); return point;
 
    }
 
-   void PASCAL interaction_impl::SetCaretPos(POINT point)
+   void PASCAL interaction_impl::SetCaretPos(POINT32 point)
    {
 
       __throw(not_implemented());
@@ -4098,7 +4098,7 @@ namespace ios
    }
 
 
-   void interaction_impl::Print(::draw2d::graphics_pointer & pgraphics, DWORD dwFlags) const
+   void interaction_impl::Print(::draw2d::graphics_pointer & pgraphics, ::u32 dwFlags) const
    {
 
       __throw(not_implemented());
@@ -4107,7 +4107,7 @@ namespace ios
 
    }
 
-   void interaction_impl::PrintClient(::draw2d::graphics_pointer & pgraphics, DWORD dwFlags) const
+   void interaction_impl::PrintClient(::draw2d::graphics_pointer & pgraphics, ::u32 dwFlags) const
    {
 
       __throw(not_implemented());
@@ -4116,7 +4116,7 @@ namespace ios
 
    }
 
-   bool interaction_impl::SetWindowContextHelpId(DWORD dwContextHelpId)
+   bool interaction_impl::SetWindowContextHelpId(::u32 dwContextHelpId)
    {
 
       __throw(not_implemented());
@@ -4125,7 +4125,7 @@ namespace ios
 
    }
 
-   DWORD interaction_impl::GetWindowContextHelpId() const
+   ::u32 interaction_impl::GetWindowContextHelpId() const
    {
 
       __throw(not_implemented());
@@ -4136,13 +4136,13 @@ namespace ios
 
 
    // Default message ::collection::map implementations
-   void interaction_impl::OnActivateApp(bool, DWORD)
+   void interaction_impl::OnActivateApp(bool, ::u32)
    {
       //Default();
       
       
    }
-   void interaction_impl::OnActivate(UINT, ::user::interaction *, bool)
+   void interaction_impl::OnActivate(::u32, ::user::interaction *, bool)
    {
       //Default();
       
@@ -4215,14 +4215,14 @@ namespace ios
       
    }
 
-   LRESULT interaction_impl::OnMenuChar(UINT, UINT, ::user::menu*)
+   LRESULT interaction_impl::OnMenuChar(::u32, ::u32, ::user::menu*)
    {
       //Default();
       return 0;
       
    }
 
-   void interaction_impl::OnMenuSelect(UINT, UINT, HMENU)
+   void interaction_impl::OnMenuSelect(::u32, ::u32, HMENU)
    {
       //Default();
       
@@ -4283,19 +4283,19 @@ namespace ios
       pbase->m_bRet = true;
       //(bool)Default();
    }
-   void interaction_impl::OnShowWindow(bool, UINT)
+   void interaction_impl::OnShowWindow(bool, ::u32)
    {
       //Default();
       
       
    }
-   void interaction_impl::OnSize(UINT, i32, i32)
+   void interaction_impl::OnSize(::u32, i32, i32)
    {
       //Default();
       
       
    }
-   void interaction_impl::OnTCard(UINT, DWORD)
+   void interaction_impl::OnTCard(::u32, ::u32)
    {
       //Default();
       
@@ -4350,42 +4350,42 @@ namespace ios
 //      
 //      
 //   }
-//   void interaction_impl::OnNcLButtonDblClk(UINT, point)
+//   void interaction_impl::OnNcLButtonDblClk(::u32, point)
 //     {
 //      //Default();
 //      
 //      
 //   }
-//   void interaction_impl::OnNcLButtonDown(UINT, point)   {
+//   void interaction_impl::OnNcLButtonDown(::u32, point)   {
 //      //Default();
 //      
 //      
 //   }
-//   void interaction_impl::OnNcLButtonUp(UINT, point)
+//   void interaction_impl::OnNcLButtonUp(::u32, point)
 //   {
 //      //Default();
 //      
 //      
 //   }
-//   void interaction_impl::OnNcMButtonDblClk(UINT, point)
+//   void interaction_impl::OnNcMButtonDblClk(::u32, point)
 //     {
 //      //Default();
 //      
 //      
 //   }
-//   void interaction_impl::OnNcMButtonDown(UINT, point)
+//   void interaction_impl::OnNcMButtonDown(::u32, point)
 //   {
 //      //Default();
 //      
 //      
 //   }
-//   void interaction_impl::OnNcMButtonUp(UINT, point)
+//   void interaction_impl::OnNcMButtonUp(::u32, point)
 //   {
 //      //Default();
 //      
 //      
 //   }
-//   void interaction_impl::OnNcMouseMove(UINT, point)
+//   void interaction_impl::OnNcMouseMove(::u32, point)
 //   {
 //      //Default();
 //      
@@ -4396,54 +4396,54 @@ namespace ios
 //      //Default();
 //      
 //      
-//   }   void interaction_impl::OnNcRButtonDblClk(UINT, point)
+//   }   void interaction_impl::OnNcRButtonDblClk(::u32, point)
 //   {
 //      //Default();
 //      
 //      
 //   }
-//   void interaction_impl::OnNcRButtonDown(UINT, point)
+//   void interaction_impl::OnNcRButtonDown(::u32, point)
 //    {
 //      //Default();
 //      
 //      
 //   }
-//   void interaction_impl::OnNcRButtonUp(UINT, point)
+//   void interaction_impl::OnNcRButtonUp(::u32, point)
 //    {
 //      //Default();
 //      
 //      
 //   }
-   void interaction_impl::OnSysChar(UINT, UINT, UINT)
+   void interaction_impl::OnSysChar(::u32, ::u32, ::u32)
    {
       //Default();
       
       
    }
-   void interaction_impl::OnSysCommand(UINT, LPARAM)   {
+   void interaction_impl::OnSysCommand(::u32, LPARAM)   {
       //Default();
       
       
    }
-   void interaction_impl::OnSysDeadChar(UINT, UINT, UINT)
+   void interaction_impl::OnSysDeadChar(::u32, ::u32, ::u32)
    {
       //Default();
       
       
    }
-   void interaction_impl::OnSysKeyDown(UINT, UINT, UINT)
+   void interaction_impl::OnSysKeyDown(::u32, ::u32, ::u32)
    {
       //Default();
       
       
    }
-   void interaction_impl::OnSysKeyUp(UINT, UINT, UINT)
+   void interaction_impl::OnSysKeyUp(::u32, ::u32, ::u32)
     {
       //Default();
       
       
    }
-   void interaction_impl::OnCompacting(UINT)
+   void interaction_impl::OnCompacting(::u32)
    {
       //Default();
       
@@ -4461,7 +4461,7 @@ namespace ios
       
       
    }
-   void interaction_impl::OnSpoolerStatus(UINT, UINT)
+   void interaction_impl::OnSpoolerStatus(::u32, ::u32)
       {
       //Default();
       
@@ -4473,80 +4473,80 @@ namespace ios
       
       
    }
-   void interaction_impl::OnChar(UINT, UINT, UINT)
+   void interaction_impl::OnChar(::u32, ::u32, ::u32)
       {
       //Default();
       
       
    }
-   void interaction_impl::OnDeadChar(UINT, UINT, UINT)
+   void interaction_impl::OnDeadChar(::u32, ::u32, ::u32)
      {
       //Default();
       
       
    }
-   void interaction_impl::OnKeyDown(UINT, UINT, UINT)
+   void interaction_impl::OnKeyDown(::u32, ::u32, ::u32)
      {
       //Default();
       
       
    }
-   void interaction_impl::OnKeyUp(UINT, UINT, UINT)
+   void interaction_impl::OnKeyUp(::u32, ::u32, ::u32)
    {
       //Default();
       
       
    }
-//   void interaction_impl::OnLButtonDblClk(UINT, point)
+//   void interaction_impl::OnLButtonDblClk(::u32, point)
 //     {
 //      //Default();
 //
 //
 //   }
-//   void interaction_impl::OnLButtonDown(UINT, point)
+//   void interaction_impl::OnLButtonDown(::u32, point)
 //     {
 //      //Default();
 //
 //
 //   }
-//   void interaction_impl::OnLButtonUp(UINT, point)
+//   void interaction_impl::OnLButtonUp(::u32, point)
 //     {
 //      //Default();
 //
 //
 //   }
-//   void interaction_impl::OnMButtonDblClk(UINT, point)
+//   void interaction_impl::OnMButtonDblClk(::u32, point)
 //      {
 //      //Default();
 //
 //
 //   }
-//   void interaction_impl::OnMButtonDown(UINT, point)
+//   void interaction_impl::OnMButtonDown(::u32, point)
 //      {
 //      //Default();
 //
 //
 //   }
-//   void interaction_impl::OnMButtonUp(UINT, point)
+//   void interaction_impl::OnMButtonUp(::u32, point)
 //     {
 //      //Default();
 //
 //
 //   }
-   i32 interaction_impl::OnMouseActivate(::user::interaction *, UINT, UINT)
+   i32 interaction_impl::OnMouseActivate(::user::interaction *, ::u32, ::u32)
       {
       //Default();
          return 1;
       
    }
-//   void interaction_impl::OnMouseMove(UINT, point)
+//   void interaction_impl::OnMouseMove(::u32, point)
 //   {
 //      //Default();
 //      
 //      
 //   }
 //
-//   bool interaction_impl::OnMouseWheel(UINT, short, point)
+//   bool interaction_impl::OnMouseWheel(::u32, short, point)
 //   {
 //
 //      return true;
@@ -4559,19 +4559,19 @@ namespace ios
 //      
 //      
 //   }
-//   void interaction_impl::OnRButtonDblClk(UINT, point)
+//   void interaction_impl::OnRButtonDblClk(::u32, point)
 //   {
 //      //Default();
 //      
 //      
 //   }
-//   void interaction_impl::OnRButtonDown(UINT, point)
+//   void interaction_impl::OnRButtonDown(::u32, point)
 //     {
 //         //Default();
 //         
 //         
 //      }
-//   void interaction_impl::OnRButtonUp(UINT, point)
+//   void interaction_impl::OnRButtonUp(::u32, point)
 //   {
 //      //Default();
 //      
@@ -4589,13 +4589,13 @@ namespace ios
       
       
    }
-   void interaction_impl::OnInitMenuPopup(::user::menu*, UINT, bool)
+   void interaction_impl::OnInitMenuPopup(::user::menu*, ::u32, bool)
     {
       //Default();
       
       
    }
-   void interaction_impl::OnAskCbFormatName(UINT nMaxCount, LPTSTR pszName)
+   void interaction_impl::OnAskCbFormatName(::u32 nMaxCount, LPTSTR pszName)
    {
       //Default();
       
@@ -4619,7 +4619,7 @@ namespace ios
       
       
    }
-   void interaction_impl::OnHScrollClipboard(::user::interaction *, UINT, UINT)
+   void interaction_impl::OnHScrollClipboard(::user::interaction *, ::u32, ::u32)
    {
       //Default();
       
@@ -4637,7 +4637,7 @@ namespace ios
       
       
    }
-   void interaction_impl::OnRenderFormat(UINT)
+   void interaction_impl::OnRenderFormat(::u32)
    {
       //Default();
       
@@ -4649,13 +4649,13 @@ namespace ios
       
       
    }
-   void interaction_impl::OnVScrollClipboard(::user::interaction *, UINT, UINT)
+   void interaction_impl::OnVScrollClipboard(::user::interaction *, ::u32, ::u32)
    {
       //Default();
       
       
    }
-   UINT interaction_impl::OnGetDlgCode()
+   ::u32 interaction_impl::OnGetDlgCode()
    {
       //Default();
       return 0;
@@ -4684,13 +4684,13 @@ namespace ios
    //   { Default(); }
    //   void interaction_impl::OnStyleChanging(i32, LPSTYLESTRUCT)
    //   { Default(); }
-   void interaction_impl::OnSizing(UINT, LPRECT)
+   void interaction_impl::OnSizing(::u32, LPRECT32)
    {
       //Default();
       
       
    }
-   void interaction_impl::OnMoving(UINT, LPRECT)
+   void interaction_impl::OnMoving(::u32, LPRECT32)
      {
       //Default();
       
@@ -4702,7 +4702,7 @@ namespace ios
       
    }
 
-   bool interaction_impl::OnDeviceChange(UINT, uptr)
+   bool interaction_impl::OnDeviceChange(::u32, uptr)
    {
 
       return true;
@@ -4715,20 +4715,20 @@ namespace ios
       
       
    }
-   void interaction_impl::OnChangeUIState(UINT, UINT)
+   void interaction_impl::OnChangeUIState(::u32, ::u32)
    {
       //Default();
       
       
    }
-   void interaction_impl::OnUpdateUIState(UINT, UINT)
+   void interaction_impl::OnUpdateUIState(::u32, ::u32)
    {
       //Default();
       
       
    }
 
-   UINT interaction_impl::OnQueryUIState()
+   ::u32 interaction_impl::OnQueryUIState()
    {
 
       return 0;
@@ -5020,7 +5020,7 @@ namespace ios
 //   }
 
 
-   void interaction_impl::offset_viewport_org(LPRECT lprectScreen)
+   void interaction_impl::offset_viewport_org(LPRECT32 lprectScreen)
    {
 
    }
@@ -5540,8 +5540,8 @@ namespace ios
          auto pmouse = __new(::message::mouse());
 
          pmouse->m_id = e_message_lbutton_down;
-         pmouse->m_point.x = (LONG) x;
-         pmouse->m_point.y = (LONG) y;
+         pmouse->m_point.x = (::i32) x;
+         pmouse->m_point.y = (::i32) y;
          pmouse->m_bTranslated = true;
          //pmouse->m_bTranslateMouseMessageCursor = true;
 
@@ -5562,8 +5562,8 @@ namespace ios
       auto pmouse = __new(::message::mouse());
 
       pmouse->m_id = e_message_lbutton_up;
-      pmouse->m_point.x = (LONG) x;
-      pmouse->m_point.y = (LONG) y;
+      pmouse->m_point.x = (::i32) x;
+      pmouse->m_point.y = (::i32) y;
       pmouse->m_bTranslated = true;
       //      pmouse->m_bTranslateMouseMessageCursor = true;
 
@@ -5582,8 +5582,8 @@ namespace ios
       auto pmouse = __new(::message::mouse());
 
       pmouse->m_id = e_message_mouse_move;
-      pmouse->m_point.x = (LONG) x;
-      pmouse->m_point.y = (LONG) y;
+      pmouse->m_point.x = (::i32) x;
+      pmouse->m_point.y = (::i32) y;
       pmouse->m_bTranslated = true;
       //      pmouse->m_bTranslateMouseMessageCursor = true;
 
@@ -5602,8 +5602,8 @@ namespace ios
       auto pmouse = __new(::message::mouse());
 
       pmouse->m_id = e_message_mouse_move;
-      pmouse->m_point.x = (LONG) x;
-      pmouse->m_point.y = (LONG) y;
+      pmouse->m_point.x = (::i32) x;
+      pmouse->m_point.y = (::i32) y;
       pmouse->m_bTranslated = true;
       //      pmouse->m_bTranslateMouseMessageCursor = true;
 

@@ -144,7 +144,7 @@ bool retry_multi_lock::unlock()
 }
 
 
-bool retry_multi_lock::unlock(LONG lCount, LPLONG pPrevCount /* =nullptr */)
+bool retry_multi_lock::unlock(::i32 lCount, LPLONG pPrevCount /* =nullptr */)
 {
 
    bool bGotOne = false;

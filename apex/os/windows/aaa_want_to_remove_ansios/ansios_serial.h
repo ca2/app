@@ -52,7 +52,7 @@ using serial::IOException;
 
 class MillisecondTimer {
 public:
-  MillisecondTimer(const uint32_t millis);         
+  MillisecondTimer(const ::u32 millis);
   int64_t remaining();
 
 private:
@@ -85,16 +85,16 @@ public:
   available ();
 
   bool
-  waitReadable (uint32_t timeout);
+  waitReadable (::u32 timeout);
 
   void
   waitByteTimes (size_t count);
 
   size_t
-  read (uint8_t *buf, size_t size = 1);
+  read (::u328_t *buf, size_t size = 1);
 
   size_t
-  write (const uint8_t *data, size_t length);
+  write (const ::u328_t *data, size_t length);
 
   void
   flush ();
@@ -199,7 +199,7 @@ private:
 
   Timeout timeout_;           // Timeout for read operations
   unsigned long baudrate_;    // Baudrate
-  uint32_t byte_time_ns_;     // Nanoseconds to transmit/receive a single byte
+  ::u32 byte_time_ns_;     // Nanoseconds to transmit/receive a single byte
 
   parity_t parity_;           // Parity
   bytesize_t bytesize_;       // Size of the bytes

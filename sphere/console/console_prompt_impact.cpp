@@ -300,9 +300,9 @@ namespace console
 
       pgraphics->SelectObject(f);
 
-      DWORD dwAlpha = 123;
+      ::u32 dwAlpha = 123;
 
-      COLORREF crTopic;
+      color32_t crTopic;
 
       if(m_tickLastError.elapsed() < 84 && !m_bOk)
       {
@@ -347,7 +347,7 @@ namespace console
 
          ::rect rectCaret;
 
-         rectCaret.left = (LONG) (iLeftMargin+m_sizeChar.cx * m_iCursor);
+         rectCaret.left = (::i32) (iLeftMargin+m_sizeChar.cx * m_iCursor);
          rectCaret.right = rectCaret.left + m_sizeChar.cx;
          rectCaret.top = m_sizeChar.cy - 3;
          rectCaret.bottom = m_sizeChar.cy;

@@ -1244,7 +1244,7 @@ namespace ios
 //         strFile = strFile.Left(iEnd) + ::str::has_char(pszExtension, ".");
 //      }
 
-      file_pointer file_system::get_file(var varFile,UINT nOpenFlags,::status::result * pfesp,::aura::application * papp)
+      file_pointer file_system::get_file(var varFile,::u32 nOpenFlags,::status::result * pfesp,::aura::application * papp)
       {
 
          file_pointer spfile;

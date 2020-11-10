@@ -7,7 +7,7 @@
 
 struct CLASS_DECL_AXIS __MAP_MESSAGE
 {
-   UINT    nMsg;
+   ::u32    nMsg;
    const char *  lpszMsg;
 };
 
@@ -252,8 +252,8 @@ static const __MAP_MESSAGE allMessages[] =
 
  char szFormat[80];
  szFormat[0] = '\0';
- if (((UINT)0xC000 <= (UINT)lpAdvise->cfFormat) &&
- ((UINT)lpAdvise->cfFormat <= (UINT)0xFFFF))
+ if (((::u32)0xC000 <= (::u32)lpAdvise->cfFormat) &&
+ ((::u32)lpAdvise->cfFormat <= (::u32)0xFFFF))
  {
  ::GetClipboardFormatName(lpAdvise->cfFormat,
  szFormat, _countof(szFormat));

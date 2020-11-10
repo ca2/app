@@ -208,7 +208,7 @@ namespace turboc
    }
 
 
-   UINT application::thread_proc_load_ai_font(void * pparam)
+   ::u32 application::thread_proc_load_ai_font(void * pparam)
    {
 
       application * pview = (application *)pparam;

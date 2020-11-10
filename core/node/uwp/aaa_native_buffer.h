@@ -76,7 +76,7 @@ namespace uwp
 
       virtual bool is_opened() const override;
       //enum BufferCommand { bufferRead,bufferWrite,bufferCommit,bufferCheck };
-      //virtual u64 GetBufferPtr(UINT nCommand,u64 nCount = 0,
+      //virtual u64 GetBufferPtr(::u32 nCommand,u64 nCount = 0,
       //                              void ** ppBufStart = nullptr,void ** ppBufMax = nullptr);
 
    };

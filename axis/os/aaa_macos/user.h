@@ -63,15 +63,15 @@ namespace macos
  
  typedef LPWINDOW oswindow;
  
- typedef int LONG;
+ typedef int ::i32;
  
  typedef struct tagRECT
  {
- LONG    left;
- LONG    top;
- LONG    right;
- LONG    bottom;
- } const rect &, *PRECT, NEAR *NPRECT, FAR *RECT *;
+ ::i32    left;
+ ::i32    top;
+ ::i32    right;
+ ::i32    bottom;
+ } const rect &, *PRECT, NEAR *NPRECT, FAR *RECT32 *;
  
  typedef const rect & FAR* const rect &;
  
@@ -83,7 +83,7 @@ namespace macos
 CGContextRef get_nswindow_cgcontext(oswindow pnswindow);
 
 
-int_bool get_nswindow_rect(oswindow hwnd,RECT * prect);
+int_bool get_nswindow_rect(oswindow hwnd,RECT32 * prect);
 
 
 
@@ -226,8 +226,8 @@ typedef int wxCoord;
 //   Rect              m_portBounds;
 //   bool              m_wasSwapped;
 //   
-//   COLORREF          m_crText;
-//   COLORREF          m_crBk;
+//   color32_t          m_crText;
+//   color32_t          m_crBk;
 //   CGColorRef        m_cgcolorrefText;
 //   CGColorRef        m_cgcolorrefBk;
 //   CTFontRef         m_ctfontref;
@@ -321,7 +321,7 @@ typedef int wxCoord;
 //
 //
 //
-//CGColorRef cg_create_color(COLORREF crText);
+//CGColorRef cg_create_color(color32_t crText);
 //int_bool cg_release_color(CGColorRef colorref);
 
 
@@ -339,7 +339,7 @@ typedef int wxCoord;
 
 
 
-int_bool set_nswindow_frame(oswindow hwnd, const RECT * prect, int iDisplay);
+int_bool set_nswindow_frame(oswindow hwnd, const RECT32 * prect, int iDisplay);
 int_bool move_nswindow(oswindow hwnd,int x,int y);
 int_bool make_key_and_order_front_nswindow(oswindow hwnd);
 int_bool order_front_nswindow(oswindow hwnd);

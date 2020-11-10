@@ -9,11 +9,11 @@ namespace datetime
    public:
 
 
-      __time64_t m_timeSpan;
+      time_t m_timeSpan;
 
 
       time_span() noexcept;
-      time_span(__time64_t time) noexcept;
+      time_span(time_t time) noexcept;
       time_span(const ::tick & tick) noexcept;
       time_span(i64 lDays,i32 nHours,i32 nMins,i32 nSecs) noexcept;
 
@@ -25,7 +25,7 @@ namespace datetime
       i64 GetTotalSeconds() const noexcept;
       i32 GetSeconds() const noexcept;
 
-      __time64_t GetTimeSpan() const noexcept;
+      time_t GetTimeSpan() const noexcept;
 
       time_span operator+(time_span span) const noexcept;
       time_span operator-(time_span span) const noexcept;
@@ -61,7 +61,7 @@ namespace datetime
    {
    }
 
-   inline time_span::time_span(__time64_t time) noexcept :
+   inline time_span::time_span(time_t time) noexcept :
       m_timeSpan(time)
    {
    }
@@ -88,7 +88,7 @@ namespace datetime
 
    inline i32 time_span::GetHours() const noexcept
    {
-      return(LONG(GetTotalHours() - (GetDays() * 24)));
+      return(::i32(GetTotalHours() - (GetDays() * 24)));
    }
 
    inline i64 time_span::GetTotalMinutes() const noexcept
@@ -98,7 +98,7 @@ namespace datetime
 
    inline i32 time_span::GetMinutes() const noexcept
    {
-      return(LONG(GetTotalMinutes() - (GetTotalHours() * 60)));
+      return(::i32(GetTotalMinutes() - (GetTotalHours() * 60)));
    }
 
    inline i64 time_span::GetTotalSeconds() const noexcept
@@ -108,10 +108,10 @@ namespace datetime
 
    inline i32 time_span::GetSeconds() const noexcept
    {
-      return(LONG(GetTotalSeconds() - (GetTotalMinutes() * 60)));
+      return(::i32(GetTotalSeconds() - (GetTotalMinutes() * 60)));
    }
 
-   inline __time64_t time_span::GetTimeSpan() const noexcept
+   inline time_t time_span::GetTimeSpan() const noexcept
    {
       return(m_timeSpan);
    }

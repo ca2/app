@@ -191,7 +191,7 @@
 //
 //}
 //
-//bool matter::unlock(LONG lCount, LPLONG pPrevCount)
+//bool matter::unlock(::i32 lCount, LPLONG pPrevCount)
 
 //{
 //   UNREFERENCED_PARAMETER(lCount);

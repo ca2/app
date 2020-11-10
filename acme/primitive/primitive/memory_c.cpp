@@ -17,7 +17,7 @@ CLASS_DECL_ACME void* __memmov(void * dst, const void * src, memsize iSize)
       return dst;
 
    }
-   else if (iSize > MAXUINT_PTR)
+   else if (iSize > MAX::u32_PTR)
    {
 
       return nullptr;
@@ -114,7 +114,7 @@ void * memcpy_dup(void * dst, const void * src, memsize iSize)
       return dst;
 
    }
-   else if (iSize > MAXUINT_PTR)
+   else if (iSize > MAX::u32_PTR)
    {
 
       return nullptr;
@@ -158,7 +158,7 @@ i32 __memcmp(const void * p1, const void * p2, memsize iLen)
       return 0; // equal
 
    }
-   else if (iLen > MAXUINT_PTR)
+   else if (iLen > MAX::u32_PTR)
    {
 
       throw invalid_argument_exception();
@@ -263,7 +263,7 @@ void * reverse_memcpy(void * dst, const void * src, memsize size)
       return dst;
 
    }
-   else if (size > MAXUINT_PTR)
+   else if (size > MAX::u32_PTR)
    {
 
       return nullptr;

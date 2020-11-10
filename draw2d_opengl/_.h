@@ -57,7 +57,7 @@ namespace opengl
    }
 
    
-   inline void color(COLORREF cr)
+   inline void color(color32_t cr)
    {
 
       ::opengl::color(

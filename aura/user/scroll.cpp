@@ -152,25 +152,25 @@ namespace user
          if (pscroll->m_nSBCode == SB_LINELEFT)
          {
 
-            set_viewport_offset_x((LONG) (get_viewport_offset().x - m_scrolldataHorz.m_iLine));
+            set_viewport_offset_x((::i32) (get_viewport_offset().x - m_scrolldataHorz.m_iLine));
 
          }
          else if (pscroll->m_nSBCode == SB_PAGELEFT)
          {
 
-            set_viewport_offset_x((LONG) (get_viewport_offset().x - m_scrolldataHorz.m_iPage));
+            set_viewport_offset_x((::i32) (get_viewport_offset().x - m_scrolldataHorz.m_iPage));
 
          }
          else if (pscroll->m_nSBCode == SB_PAGERIGHT)
          {
 
-            set_viewport_offset_x((LONG) (get_viewport_offset().x + m_scrolldataHorz.m_iPage));
+            set_viewport_offset_x((::i32) (get_viewport_offset().x + m_scrolldataHorz.m_iPage));
 
          }
          else if (pscroll->m_nSBCode == SB_LINERIGHT)
          {
 
-            set_viewport_offset_x((LONG) (get_viewport_offset().x + m_scrolldataHorz.m_iLine));
+            set_viewport_offset_x((::i32) (get_viewport_offset().x + m_scrolldataHorz.m_iLine));
 
          }
          else if (pscroll->m_nSBCode == SB_THUMBTRACK)
@@ -225,7 +225,7 @@ namespace user
          if (point.x > max(0, sizeTotal.cx - sizePage.cx))
          {
 
-            point.x = (LONG) max(0, sizeTotal.cx - sizePage.cx);
+            point.x = (::i32) max(0, sizeTotal.cx - sizePage.cx);
 
          }
 
@@ -255,17 +255,17 @@ namespace user
 
       get_client_rect(rectClient);
 
-      LONG iTotalHeight = (LONG) sizeTotal.cy;
+      ::i32 iTotalHeight = (::i32) sizeTotal.cy;
 
-      LONG iTotalWidth = (LONG) sizeTotal.cx;
+      ::i32 iTotalWidth = (::i32) sizeTotal.cx;
 
-      LONG iClientHeight = rectClient.height();
+      ::i32 iClientHeight = rectClient.height();
 
-      LONG iClientWidth = rectClient.width();
+      ::i32 iClientWidth = rectClient.width();
 
-      //LONG iScrollHeight = iClientHeight - GetSystemMetrics(SM_CYHSCROLL);
+      //::i32 iScrollHeight = iClientHeight - GetSystemMetrics(SM_CYHSCROLL);
 
-      LONG iScrollWidth = iClientWidth - GetSystemMetrics(SM_CXVSCROLL);
+      ::i32 iScrollWidth = iClientWidth - GetSystemMetrics(SM_CXVSCROLL);
 
       m_scrolldataHorz.m_bScroll = false;
 
@@ -460,25 +460,25 @@ namespace user
       if (pscroll->m_nSBCode == SB_LINEUP)
       {
 
-         set_viewport_offset_y((LONG) (get_viewport_offset().y - m_scrolldataVert.m_iLine));
+         set_viewport_offset_y((::i32) (get_viewport_offset().y - m_scrolldataVert.m_iLine));
 
       }
       else if (pscroll->m_nSBCode == SB_PAGEUP)
       {
 
-         set_viewport_offset_y((LONG) (get_viewport_offset().y - m_scrolldataVert.m_iPage));
+         set_viewport_offset_y((::i32) (get_viewport_offset().y - m_scrolldataVert.m_iPage));
 
       }
       else if (pscroll->m_nSBCode == SB_PAGEDOWN)
       {
 
-         set_viewport_offset_y((LONG) (get_viewport_offset().y + m_scrolldataVert.m_iPage));
+         set_viewport_offset_y((::i32) (get_viewport_offset().y + m_scrolldataVert.m_iPage));
 
       }
       else if (pscroll->m_nSBCode == SB_LINEDOWN)
       {
 
-         set_viewport_offset_y((LONG) (get_viewport_offset().y + m_scrolldataVert.m_iLine));
+         set_viewport_offset_y((::i32) (get_viewport_offset().y + m_scrolldataVert.m_iLine));
 
       }
       else if (pscroll->m_nSBCode == SB_THUMBTRACK)
@@ -597,7 +597,7 @@ namespace user
          if (point.y > max(0, sizeTotal.cy - sizePage.cy))
          {
 
-            point.y = (LONG) max(0, sizeTotal.cy - sizePage.cy);
+            point.y = (::i32) max(0, sizeTotal.cy - sizePage.cy);
 
          }
 
@@ -632,17 +632,17 @@ namespace user
 
       get_client_rect(rectClient);
 
-      LONG iTotalHeight = (LONG) sizeTotal.cy;
+      ::i32 iTotalHeight = (::i32) sizeTotal.cy;
 
-      LONG iTotalWidth = (LONG) sizeTotal.cx;
+      ::i32 iTotalWidth = (::i32) sizeTotal.cx;
 
-      LONG iClientHeight = rectClient.height();
+      ::i32 iClientHeight = rectClient.height();
 
-      LONG iClientWidth = rectClient.width();
+      ::i32 iClientWidth = rectClient.width();
 
-      LONG iScrollHeight = iClientHeight - GetSystemMetrics(SM_CYHSCROLL);
+      ::i32 iScrollHeight = iClientHeight - GetSystemMetrics(SM_CYHSCROLL);
 
-      //LONG iscrollWidth = iClientWidth - GetSystemMetrics(SM_CXVSCROLL);
+      //::i32 iscrollWidth = iClientWidth - GetSystemMetrics(SM_CXVSCROLL);
 
       m_scrolldataVert.m_bScroll = false;
 
@@ -773,17 +773,17 @@ namespace user
 
       }
 
-      LONG iTotalHeight = (LONG) sizeTotal.cy;
+      ::i32 iTotalHeight = (::i32) sizeTotal.cy;
 
-      LONG iTotalWidth = (LONG) sizeTotal.cx;
+      ::i32 iTotalWidth = (::i32) sizeTotal.cx;
 
-      LONG iClientHeight = rectClient.height();
+      ::i32 iClientHeight = rectClient.height();
 
-      LONG iClientWidth = rectClient.width();
+      ::i32 iClientWidth = rectClient.width();
 
-      LONG iScrollHeight = iClientHeight - GetSystemMetrics(SM_CYHSCROLL);
+      ::i32 iScrollHeight = iClientHeight - GetSystemMetrics(SM_CYHSCROLL);
 
-      LONG iscrollWidth = iClientWidth - GetSystemMetrics(SM_CXVSCROLL);
+      ::i32 iscrollWidth = iClientWidth - GetSystemMetrics(SM_CXVSCROLL);
 
       if (iTotalWidth > iClientWidth)
       {
@@ -1029,7 +1029,7 @@ namespace user
 
    }
 
-   bool scroll_base::GetActiveClientRect(RECT * prect)
+   bool scroll_base::GetActiveClientRect(RECT32 * prect)
    {
 
       ::user::interaction::get_client_rect(prect);
@@ -1038,16 +1038,16 @@ namespace user
 
       auto pointOffset = get_viewport_offset();
 
-      prect->right = (LONG) (prect->left + min(::width(prect), sizeTotal.cx - m_scrolldataHorz.m_iPage - pointOffset.x));
+      prect->right = (::i32) (prect->left + min(::width(prect), sizeTotal.cx - m_scrolldataHorz.m_iPage - pointOffset.x));
 
-      prect->bottom = (LONG) (prect->top + min(::height(prect), sizeTotal.cy - m_scrolldataVert.m_iPage - pointOffset.y));
+      prect->bottom = (::i32) (prect->top + min(::height(prect), sizeTotal.cy - m_scrolldataVert.m_iPage - pointOffset.y));
 
       return true;
 
    }
 
 
-   //bool scroll_base::get_client_rect(RECT * prect)
+   //bool scroll_base::get_client_rect(RECT32 * prect)
    //{
 
    //   ::user::interaction::get_client_rect(prect);
@@ -1061,7 +1061,7 @@ namespace user
    //}
 
 
-   bool scroll_base::GetFocusRect(RECT * prect)
+   bool scroll_base::GetFocusRect(RECT32 * prect)
    {
 
       prect->left = 0;
@@ -1120,8 +1120,8 @@ namespace user
 
          rect.top = rectClient.bottom;
          rect.left = rectClient.right;
-         rect.right = (LONG) (rect.left + m_pscrollbarVert->layout().design().size().cx);
-         rect.bottom = (LONG) (rect.top + m_pscrollbarHorz->layout().design().size().cy);
+         rect.right = (::i32) (rect.left + m_pscrollbarVert->layout().design().size().cx);
+         rect.bottom = (::i32) (rect.top + m_pscrollbarHorz->layout().design().size().cy);
 
          pgraphics->fill_rect(rect, ARGB(127, 127, 127, 127));
 

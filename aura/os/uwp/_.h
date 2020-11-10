@@ -12,12 +12,12 @@
 
 #ifndef _UWP
 
-CLASS_DECL_AURA void WINAPI Sleep(DWORD dwMilliseconds);
+CLASS_DECL_AURA void WINAPI Sleep(::u32 dwMilliseconds);
 
 #endif
 
 /*#define GetAValue(rgb)      (LOBYTE((rgb)>>24))
-#define ARGB(a, r,g,b)          ((COLORREF)(((BYTE)(r)|((WORD)((BYTE)(g))<<8))|(((DWORD)(BYTE)(b))<<16)|(((DWORD)(BYTE)(a))<<24)))*/
+#define ARGB(a, r,g,b)          ((color32_t)(((byte)(r)|((::u16)((byte)(g))<<8))|(((::u32)(byte)(b))<<16)|(((::u32)(byte)(a))<<24)))*/
 
 
 //CLASS_DECL_AURA int_bool os_initialize();
@@ -29,11 +29,11 @@ CLASS_DECL_AURA void WINAPI Sleep(DWORD dwMilliseconds);
 //
 //
 //CLASS_DECL_AURA void set_main_thread(HTHREAD hThread);
-//CLASS_DECL_AURA void set_main_thread_id(UINT uiThread);
+//CLASS_DECL_AURA void set_main_thread_id(::u32 uThread);
 //
 //
 //CLASS_DECL_AURA HTHREAD get_main_thread();
-//CLASS_DECL_AURA UINT get_main_thread_id();
+//CLASS_DECL_AURA ::u32 get_main_thread_id();
 //
 //CLASS_DECL_AURA oswindow get_focus();
 //CLASS_DECL_AURA oswindow set_focus(oswindow oswindow);
@@ -43,17 +43,17 @@ CLASS_DECL_AURA void WINAPI Sleep(DWORD dwMilliseconds);
 //CLASS_DECL_AURA void attach_thread_input_to_main_thread(int_bool bAttach);
 //
 
-//CLASS_DECL_AURA DWORD WINAPI WaitForSingleObject( _In_ HANDLE hHandle, _In_ DWORD dwMilliseconds );
+//CLASS_DECL_AURA ::u32 WINAPI WaitForSingleObject( _In_ HANDLE hHandle, _In_ ::u32 dwMilliseconds );
 
 
 
 
 //CLASS_DECL_AURA char* getenv(const char* name);
-//CLASS_DECL_AURA HANDLE WINAPI CreateMutex(_In_opt_ LPSECURITY_ATTRIBUTES lpMutexAttributes, _In_ BOOL bInitialOwner, _In_opt_ LPCSTR lpName  );
+//CLASS_DECL_AURA HANDLE WINAPI CreateMutex(_In_opt_ LPSECURITY_ATTRIBUTES lpMutexAttributes, _In_ BOOL bInitialOwner, _In_opt_ const char * lpName  );
 
 //CLASS_DECL_AURA HANDLE WINAPI CreateMutexW(    _In_opt_ LPSECURITY_ATTRIBUTES lpMutexAttributes,    _In_ BOOL bInitialOwner,    _In_opt_ LPCWSTR lpName    );
 
 
-//CLASS_DECL_AURA HANDLE create_file(const char * lpcszFileName, DWORD dwDesiredAcces, DWORD dwShareMode, LPSECURITY_ATTRIBUTES lpSA, DWORD dwCreationDisposition, DWORD dwFlagsAndAttributes, HANDLE hTemplateFile);
+//CLASS_DECL_AURA HANDLE create_file(const char * lpcszFileName, ::u32 dwDesiredAcces, ::u32 dwShareMode, LPSECURITY_ATTRIBUTES lpSA, ::u32 dwCreationDisposition, ::u32 dwFlagsAndAttributes, HANDLE hTemplateFile);
 
 

@@ -52,7 +52,7 @@ namespace geometry
       return x * sin(phi) + y * cos(phi);
    }
 
-   void geometry::rotate(i32 xParam, i32 yParam, LPPOINT ppoint, i32 iCount, double phi)
+   void geometry::rotate(i32 xParam, i32 yParam, POINT32 * ppoint, i32 iCount, double phi)
 
    {
       double phicos = cos(phi);
@@ -64,7 +64,7 @@ namespace geometry
    void geometry::rotate(
       i32 xParam,
       i32 yParam,
-      LPPOINT ppoint,
+      POINT32 * ppoint,
 
       i32 iCount,
       double phicos,
@@ -76,9 +76,9 @@ namespace geometry
 
          double y = ppoint[i].y - yParam;
 
-         ppoint[i].x = (LONG)(((x * phicos - y * phisin)) + xParam);
+         ppoint[i].x = (::i32)(((x * phicos - y * phisin)) + xParam);
 
-         ppoint[i].y = (LONG)(((x * phisin + y * phicos)) + yParam);
+         ppoint[i].y = (::i32)(((x * phisin + y * phicos)) + yParam);
 
       }
    }
@@ -107,20 +107,20 @@ namespace geometry
 
          double y = ppoint[i].y - yParam;
 
-         ppoint[i].x = (LONG)(((x * phicos - y * phisin)) + xParam);
+         ppoint[i].x = (::i32)(((x * phicos - y * phisin)) + xParam);
 
-         ppoint[i].y = (LONG)(((x * phisin + y * phicos)) + yParam);
+         ppoint[i].y = (::i32)(((x * phisin + y * phicos)) + yParam);
 
       }
    }
 
 
-   //void geometry::RandomPoint(POINT * ppoint, const ::rect & rect)
+   //void geometry::RandomPoint(POINT32 * ppoint, const ::rect & rect)
    //{
 
-   //   ppoint->x = (LONG)Sy(rect.left,rect.right);
+   //   ppoint->x = (::i32)Sy(rect.left,rect.right);
 
-   //   ppoint->y = (LONG)__random(rect.top,rect.bottom);
+   //   ppoint->y = (::i32)__random(rect.top,rect.bottom);
 
    //}
 
@@ -144,7 +144,7 @@ namespace geometry
    // Vanessa Testoni
    //
    //////////////////////////////////////////////////////////////////////
-   void geometry::deflate(RECT * prect, double dLeftRate, double dRightRate, double dTopRate, double dBottomRate)
+   void geometry::deflate(RECT32 * prect, double dLeftRate, double dRightRate, double dTopRate, double dBottomRate)
 
    {
       ::rect rect(prect);
@@ -161,7 +161,7 @@ namespace geometry
    }
 
 
-   void rotation::rotate(LPPOINT ppoint, i32 iCount)
+   void rotation::rotate(POINT32 * ppoint, i32 iCount)
 
    {
       for (i32 i = 0; i < iCount; i++)
@@ -170,9 +170,9 @@ namespace geometry
 
          long y = ppoint[i].y - m_iYCenter;
 
-         ppoint[i].x = ((LONG)(x * m_dCosPhi - y * m_dSinPhi)) + m_iXCenter;
+         ppoint[i].x = ((::i32)(x * m_dCosPhi - y * m_dSinPhi)) + m_iXCenter;
 
-         ppoint[i].y = ((LONG)(x * m_dSinPhi + y * m_dCosPhi)) + m_iYCenter;
+         ppoint[i].y = ((::i32)(x * m_dSinPhi + y * m_dCosPhi)) + m_iYCenter;
 
       }
    }

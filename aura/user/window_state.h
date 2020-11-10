@@ -126,8 +126,8 @@ namespace user
       visual_state& operator = (const ::rect & rect) { set_modified(); m_point = rect.origin(); m_size = rect.size(); return *this; }
 
 
-      LONG width() const { return m_size.cx; }
-      LONG height() const { return m_size.cy; }
+      ::i32 width() const { return m_size.cx; }
+      ::i32 height() const { return m_size.cy; }
 
 
       bool operator == (const visual_state & visualstate) const { return !memcmp(this, &visualstate, sizeof(visual_state)); }
@@ -135,15 +135,15 @@ namespace user
 
 
       inline auto screen_rect() const { return ::rect(m_pointScreen, m_size); }
-      void screen_rect(LPRECT lprect) const { *lprect = screen_rect(); }
+      void screen_rect(LPRECT32 lprect) const { *lprect = screen_rect(); }
 
 
       auto client_rect() const { return ::rect(m_size); }
-      void client_rect(LPRECT lprect) const { *lprect = client_rect(); }
+      void client_rect(LPRECT32 lprect) const { *lprect = client_rect(); }
 
 
       auto parent_client_rect() const { return ::rect(m_point, m_size); }
-      void parent_client_rect(LPRECT lprect) const { *lprect = parent_client_rect(); }
+      void parent_client_rect(LPRECT32 lprect) const { *lprect = parent_client_rect(); }
 
 
    };

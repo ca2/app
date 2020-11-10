@@ -6,7 +6,7 @@ namespace hex
 {
 
 
-   u16 parse_uint16_exc(const char * & psz, const char * pszEnd)
+   u16 parse_::u3216_exc(const char * & psz, const char * pszEnd)
    {
       string strUni;
       const char * pszNext = psz;
@@ -1053,11 +1053,11 @@ namespace str
       if(strFind.get_length() > (str.get_length() - iStart))
          return -1;
 
-      string strFindLow(&((LPCSTR)strFind)[0], strFind.get_length()); // avoid optimized read only string copy
+      string strFindLow(&((const char *)strFind)[0], strFind.get_length()); // avoid optimized read only string copy
 
       strFindLow.make_lower();
 
-      string strLow(&((LPCSTR)str)[iStart], str.get_length() - iStart); // avoid optimized read only string copy
+      string strLow(&((const char *)str)[iStart], str.get_length() - iStart); // avoid optimized read only string copy
 
       strLow.make_lower();
 
@@ -1129,7 +1129,7 @@ namespace str
       else
       {
 
-         string strFindLow(&((LPCSTR)strFind)[0], iFindLen); // avoid optimized read only string copy
+         string strFindLow(&((const char *)strFind)[0], iFindLen); // avoid optimized read only string copy
 
          strFindLow.make_lower();
 
@@ -2650,7 +2650,7 @@ namespace str
 
       str.trim();
 
-      LPCSTR psz = str;
+      const char * psz = str;
 
       if(*psz == '\0')
          return false;
@@ -3403,7 +3403,7 @@ skip:
             {
                psz++;
                u16 ui[2];
-               ui[0] = ::hex::parse_uint16_exc(psz, pszEnd);
+               ui[0] = ::hex::parse_::u3216_exc(psz, pszEnd);
                if (utf16_is_1st_surrogate(ui[0]))
                {
                   if (*psz != '\\')
@@ -3416,7 +3416,7 @@ skip:
                      throw_parsing_exception("expect 'u' character here (for low surrogate)");
                   }
                   psz++;
-                  ui[1] = ::hex::parse_uint16_exc(psz, pszEnd);
+                  ui[1] = ::hex::parse_::u3216_exc(psz, pszEnd);
 
                   if (!utf16_is_2nd_surrogate(ui[1]))
                   {

@@ -81,9 +81,9 @@ public:
 
    __pointer(::task_pool)                             m_ptaskpool;
 
-   UINT                                               m_nDisablePumpCount;
+   ::u32                                               m_nDisablePumpCount;
 
-   UINT                                               m_dwFinishTimeout;
+   ::u32                                               m_dwFinishTimeout;
    bool                                               m_bThreadClosed;
 
 
@@ -136,8 +136,8 @@ public:
    inline mq* get_mq() { return m_pmq ? m_pmq : _get_mq(); }
    mq* _get_mq();
 
-   int_bool peek_message(LPMESSAGE pMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg);
-   int_bool get_message(LPMESSAGE pMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax);
+   int_bool peek_message(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg);
+   int_bool get_message(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax);
    int_bool post_message(oswindow oswindow, const ::id & id, WPARAM wParam, LPARAM lParam);
 
    user_interaction_ptr_array & uiptra();
@@ -160,7 +160,7 @@ public:
 
    // file related stuff
    file_info * get_file_info();
-   DWORD get_file_sharing_violation_timeout_total_milliseconds();
+   ::u32 get_file_sharing_violation_timeout_total_milliseconds();
    ::duration set_file_sharing_violation_timeout(::duration duration);
 
    virtual bool is_running() const;
@@ -296,7 +296,7 @@ public:
    __pointer(::matter) running(const char * pszTag) const override;
 
    ///virtual void relay_exception(::exception_pointer e, e_thread ethreadSource = thread_none);
-   virtual int _GetMessage(LPMESSAGE lpMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax);
+   virtual int _GetMessage(LPMESSAGE lpMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax);
 
    virtual bool has_step() const;
    virtual bool has_raw_message() const;
@@ -321,8 +321,8 @@ public:
    //virtual void process_window_message(::message::base * pbase);
    virtual ::estatus process_message();     // route message
    virtual ::estatus raw_process_message();     // route message
-   // virtual bool on_idle(LONG lCount); // return TRUE if more idle processing
-   virtual ::estatus on_thread_on_idle(::thread * pthread, LONG lCount);
+   // virtual bool on_idle(::i32 lCount); // return TRUE if more idle processing
+   virtual ::estatus on_thread_on_idle(::thread * pthread, ::i32 lCount);
    virtual bool is_idle_message(::message::message * pmessage);  // checks for special messages
    virtual bool is_idle_message();  // checks for special messages
 
@@ -342,7 +342,7 @@ public:
    //virtual void remove(::user::primitive * pinteraction);
    //virtual ::count get_ui_count();
    //virtual ::user::primitive * get_ui(index iIndex);
-   //virtual void set_timer(::user::primitive * pinteraction, uptr uEvent, UINT nEllapse);
+   //virtual void set_timer(::user::primitive * pinteraction, uptr uEvent, ::u32 nEllapse);
    //virtual void unset_timer(::user::primitive * pinteraction, uptr uEvent);
    //virtual void set_auto_delete(bool bAutoDelete = true);
    virtual ::user::primitive * get_active_ui();
@@ -446,7 +446,7 @@ public:
    virtual bool begin_thread(
    bool bSynchInitialization = false,
    ::e_priority epriority = ::priority_normal,
-   UINT nStackSize = 0,
+   ::u32 nStackSize = 0,
    u32 uiCreateFlags = 0,
    LPSECURITY_ATTRIBUTES psa = nullptr);
 
@@ -454,14 +454,14 @@ public:
 
    virtual bool begin(
    ::e_priority epriority = ::priority_normal,
-   UINT nStackSize = 0,
+   ::u32 nStackSize = 0,
    u32 uiCreateFlags = 0,
    LPSECURITY_ATTRIBUTES psa = nullptr);
 
 
    virtual bool begin_synch(
    ::e_priority epriority = ::priority_normal,
-   UINT nStackSize = 0,
+   ::u32 nStackSize = 0,
    u32 uiCreateFlags = 0,
    LPSECURITY_ATTRIBUTES psa = nullptr);
 

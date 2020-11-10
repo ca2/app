@@ -22,14 +22,14 @@ namespace user
       void BaseToolTipRelayEvent(::message::message * pmessage);
 
       // Overridables
-      virtual void BaseToolTipGetRect(RECT * prect);
+      virtual void BaseToolTipGetRect(RECT32 * prect);
 
       virtual bool BaseToolTipGetText(string & str);
       virtual i32 BaseToolTipGetIndex();
       virtual __pointer(::user::interaction) BaseToolTipGetWnd();
 
       tool_tip_window *  m_pbasetooltiphdl;      // Base tooltip handler
-      UINT              m_uiBaseToolTipText;    // Base tooltip text id
+      ::u32              m_uiBaseToolTipText;    // Base tooltip text id
 
    };
 

@@ -100,7 +100,7 @@ namespace windows
 
       // map read/write mode
       ASSERT((::file::mode_read | ::file::mode_write | ::file::mode_read_write) == 3);
-      DWORD dwAccess = 0;
+      ::u32 dwAccess = 0;
       switch (eopen & 3)
       {
       case ::file::mode_read:
@@ -118,7 +118,7 @@ namespace windows
       }
 
       // map share mode
-      DWORD dwShareMode = 0;
+      ::u32 dwShareMode = 0;
       switch (eopen & 0x70)    // map compatibility mode to exclusive
       {
       default:
@@ -154,7 +154,7 @@ namespace windows
       }
 
       // map creation flags
-      DWORD dwCreateFlag;
+      ::u32 dwCreateFlag;
       if (eopen & ::file::mode_create)
       {
          if (eopen & ::file::mode_no_truncate)
@@ -167,10 +167,10 @@ namespace windows
 
       HANDLE handleFile = INVALID_HANDLE_VALUE;
 
-      DWORD dwWaitSharingViolation = 84;
+      ::u32 dwWaitSharingViolation = 84;
       auto tickStart = ::tick::now();
 
-      //DWORD dwFileSharingViolationRetryTimeout = ::get_task() != nullptr ? ::get_task()->get_file_sharing_violation_timeout_total_milliseconds() : 0;
+      //::u32 dwFileSharingViolationRetryTimeout = ::get_task() != nullptr ? ::get_task()->get_file_sharing_violation_timeout_total_milliseconds() : 0;
 
    retry:
 
@@ -184,7 +184,7 @@ namespace windows
       if (handleFile == INVALID_HANDLE_VALUE)
       {
 
-         DWORD dwLastError = ::get_last_error();
+         ::u32 dwLastError = ::get_last_error();
 
          if (!(eopen & ::file::no_share_violation_wait))
          {
@@ -239,12 +239,12 @@ namespace windows
       ASSERT(__is_valid_address(pdata, nCount));
 
 
-      DWORD dwRead;
-      if (!::ReadFile((HANDLE)m_handleFile, pdata, (DWORD)nCount, &dwRead, nullptr))
+      ::u32 dwRead;
+      if (!::ReadFile((HANDLE)m_handleFile, pdata, (::u32)nCount, &dwRead, nullptr))
 
-         ::file::throw_os_error((LONG)::get_last_error());
+         ::file::throw_os_error((::i32)::get_last_error());
 
-      return (UINT)dwRead;
+      return (::u32)dwRead;
    }
 
    void file::write(const void* pdata, memsize nCount)
@@ -261,10 +261,10 @@ namespace windows
       ASSERT(__is_valid_address(pdata, nCount, FALSE));
 
 
-      DWORD nWritten;
-      if (!::WriteFile((HANDLE)m_handleFile, pdata, (DWORD)nCount, &nWritten, nullptr))
+      ::u32 nWritten;
+      if (!::WriteFile((HANDLE)m_handleFile, pdata, (::u32)nCount, &nWritten, nullptr))
 
-         ::file::throw_os_error((LONG)::get_last_error(), m_path);
+         ::file::throw_os_error((::i32)::get_last_error(), m_path);
 
       // Win32s will not return an error all the time (usually DISK_FULL)
       if (nWritten != nCount)
@@ -275,20 +275,20 @@ namespace windows
    {
 
       if (m_handleFile == INVALID_HANDLE_VALUE)
-         ::file::throw_os_error((LONG)0);
+         ::file::throw_os_error((::i32)0);
 
       ASSERT_VALID(this);
       ASSERT(m_handleFile != INVALID_HANDLE_VALUE);
       ASSERT(nFrom == ::file::seek_begin || nFrom == ::file::seek_end || nFrom == ::file::seek_current);
       ASSERT(::file::seek_begin == FILE_BEGIN && ::file::seek_end == FILE_END && ::file::seek_current == FILE_CURRENT);
 
-      LONG lLoOffset = lOff & 0xffffffff;
-      LONG lHiOffset = (lOff >> 32) & 0xffffffff;
+      ::i32 lLoOffset = lOff & 0xffffffff;
+      ::i32 lHiOffset = (lOff >> 32) & 0xffffffff;
 
-      filesize posNew = ::SetFilePointer((HANDLE)m_handleFile, lLoOffset, &lHiOffset, (DWORD)nFrom);
+      filesize posNew = ::SetFilePointer((HANDLE)m_handleFile, lLoOffset, &lHiOffset, (::u32)nFrom);
       posNew |= ((filesize)lHiOffset) << 32;
       if (posNew == (filesize)-1)
-         ::file::throw_os_error((LONG)::get_last_error());
+         ::file::throw_os_error((::i32)::get_last_error());
 
       return posNew;
    }
@@ -298,13 +298,13 @@ namespace windows
       ASSERT_VALID(this);
       ASSERT(m_handleFile != INVALID_HANDLE_VALUE);
 
-      LONG lLoOffset = 0;
-      LONG lHiOffset = 0;
+      ::i32 lLoOffset = 0;
+      ::i32 lHiOffset = 0;
 
       filesize pos = ::SetFilePointer((HANDLE)m_handleFile, lLoOffset, &lHiOffset, FILE_CURRENT);
       pos |= ((filesize)lHiOffset) << 32;
       if (pos == (filesize)-1)
-         ::file::throw_os_error((LONG)::get_last_error());
+         ::file::throw_os_error((::i32)::get_last_error());
 
       return pos;
    }
@@ -318,14 +318,14 @@ namespace windows
 
       if (!::FlushFileBuffers((HANDLE)m_handleFile))
       {
-         DWORD dwLastError = ::get_last_error();
+         ::u32 dwLastError = ::get_last_error();
          if (dwLastError == ERROR_INVALID_HANDLE
             || dwLastError == ERROR_ACCESS_DENIED)
          {
          }
          else
          {
-            ::file::throw_os_error((LONG)dwLastError);
+            ::file::throw_os_error((::i32)dwLastError);
          }
       }
    }
@@ -339,7 +339,7 @@ namespace windows
       ASSERT(m_handleFile != INVALID_HANDLE_VALUE);
 
       bool bError = FALSE;
-      DWORD dwLastError = 0;
+      ::u32 dwLastError = 0;
       if (m_handleFile != INVALID_HANDLE_VALUE)
       {
          bError = !::CloseHandle((HANDLE)m_handleFile);
@@ -365,7 +365,7 @@ namespace windows
       ASSERT(m_handleFile != INVALID_HANDLE_VALUE);
 
       if (!::LockFile((HANDLE)m_handleFile, LODWORD(dwPos), HIDWORD(dwPos), LODWORD(dwCount), HIDWORD(dwCount)))
-         ::file::throw_os_error((LONG)::get_last_error());
+         ::file::throw_os_error((::i32)::get_last_error());
    }
 
 
@@ -375,7 +375,7 @@ namespace windows
       ASSERT(m_handleFile != INVALID_HANDLE_VALUE);
 
       if (!::UnlockFile((HANDLE)m_handleFile, LODWORD(dwPos), HIDWORD(dwPos), LODWORD(dwCount), HIDWORD(dwCount)))
-         ::file::throw_os_error((LONG)::get_last_error());
+         ::file::throw_os_error((::i32)::get_last_error());
    }
 
 
@@ -385,10 +385,10 @@ namespace windows
       ASSERT_VALID(this);
       ASSERT(m_handleFile != INVALID_HANDLE_VALUE);
 
-      seek((LONG)dwNewLen, (::file::e_seek)::file::seek_begin);
+      seek((::i32)dwNewLen, (::file::e_seek)::file::seek_begin);
 
       if (!::SetEndOfFile((HANDLE)m_handleFile))
-         ::file::throw_os_error((LONG)::get_last_error());
+         ::file::throw_os_error((::i32)::get_last_error());
 
    }
 
@@ -542,7 +542,7 @@ namespace windows
          }
          else
          {
-            rStatus.m_attribute = (BYTE)information.dwFileAttributes & 0xff;
+            rStatus.m_attribute = (byte)information.dwFileAttributes & 0xff;
 
          }
 
@@ -602,7 +602,7 @@ namespace windows
 
    //{
 
-   //   return (u64) read(pBuffer, (UINT)dwCount);
+   //   return (u64) read(pBuffer, (::u32)dwCount);
 
 
    //}
@@ -611,7 +611,7 @@ namespace windows
 
    //{
 
-   //   write(pBuffer, (UINT)dwCount);
+   //   write(pBuffer, (::u32)dwCount);
 
 
    //}
@@ -647,7 +647,7 @@ bool CLASS_DECL_ACME vfxFullPath(wstring & wstrFullPath, const wstring & wstrPat
    unichar * pszFilePart;
 
 
-   strsize dwLen = GetFullPathNameW(wstrPath, (DWORD) dwAllocLen, pwszFullPath, &pszFilePart);
+   strsize dwLen = GetFullPathNameW(wstrPath, (::u32) dwAllocLen, pwszFullPath, &pszFilePart);
 
    wstrFullPath.release_string_buffer();
 
@@ -668,7 +668,7 @@ bool CLASS_DECL_ACME vfxFullPath(wstring & wstrFullPath, const wstring & wstrPat
 
       dwAllocLen = dwLen + _MAX_PATH;
 
-      dwLen = GetFullPathNameW(wstrPath, (DWORD) dwAllocLen, pwszFullPath, &pszFilePart);
+      dwLen = GetFullPathNameW(wstrPath, (::u32) dwAllocLen, pwszFullPath, &pszFilePart);
 
       wstrFullPath.release_string_buffer();
 
@@ -689,7 +689,7 @@ bool CLASS_DECL_ACME vfxFullPath(wstring & wstrFullPath, const wstring & wstrPat
    vfxGetRoot(wstrRoot, wstrFullPath);
 
    // get file system information for the volume
-   DWORD dwFlags, dwDummy;
+   ::u32 dwFlags, dwDummy;
    if (!GetVolumeInformationW(wstrRoot, nullptr, 0, nullptr, &dwDummy, &dwFlags, nullptr, 0))
    {
       //      TRACE1("Warning: could not get volume information '%s'.\n", strRoot);
@@ -777,10 +777,10 @@ bool CLASS_DECL_ACME vfxGetInProcServer(const char * pszCLSID, string & str)
             wstring wstr;
             LPWSTR psz = wstr.get_string_buffer(_MAX_PATH);
 
-            DWORD dwSize = _MAX_PATH * sizeof(WCHAR);
-            DWORD dwType;
-            LONG lRes = ::RegQueryValueExW(hKeyInProc,L"",
-                                          nullptr, &dwType, (BYTE*)psz, &dwSize);
+            ::u32 dwSize = _MAX_PATH * sizeof(WCHAR);
+            ::u32 dwType;
+            ::i32 lRes = ::RegQueryValueExW(hKeyInProc,L"",
+                                          nullptr, &dwType, (byte*)psz, &dwSize);
 
             str.release_string_buffer();
             str = wstr;
@@ -827,7 +827,7 @@ bool CLASS_DECL_ACME vfxFullPath(unichar * pszPathOut, const unichar * pszFileIn
 
 
    // get file system information for the volume
-   DWORD dwFlags, dwDummy;
+   ::u32 dwFlags, dwDummy;
    if (!GetVolumeInformationW(::str::international::utf8_to_unicode(strRoot), nullptr, 0, nullptr, &dwDummy, &dwFlags, nullptr, 0))
    {
       //      TRACE1("Warning: could not get volume information '%s'.\n", strRoot);
@@ -995,7 +995,7 @@ void CLASS_DECL_ACME vfxGetRoot(const unichar * pszPath, string& strRoot)
 
 
 
-UINT CLASS_DECL_ACME vfxGetFileName(const unichar * pszPathName, unichar * pszTitle, UINT nMax)
+::u32 CLASS_DECL_ACME vfxGetFileName(const unichar * pszPathName, unichar * pszTitle, ::u32 nMax)
 
 {
    ASSERT(pszTitle == nullptr ||

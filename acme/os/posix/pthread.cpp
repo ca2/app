@@ -22,12 +22,12 @@ mq * get_mq(ITHREAD idthread, bool bCreate);
 //CLASS_DECL_ACME::e_priority process_get_scheduling_priority(int iOsPolicy, const sched_param * pparam);
 
 
-DWORD MsgWaitForMultipleObjectsEx(DWORD dwSize, HSYNC * synca, DWORD tickTimeout, DWORD dwWakeMask, DWORD dwFlags)
+::u32 MsgWaitForMultipleObjectsEx(::u32 dwSize, HSYNC * synca, ::u32 tickTimeout, ::u32 dwWakeMask, ::u32 dwFlags)
 {
 
    tick start;
 
-   if (tickTimeout != (DWORD)INFINITE)
+   if (tickTimeout != (::u32)U32_INFINITE_TIMEOUT)
    {
 
       start = ::tick::now();
@@ -77,7 +77,7 @@ DWORD MsgWaitForMultipleObjectsEx(DWORD dwSize, HSYNC * synca, DWORD tickTimeout
 
             }
 
-            if (tickTimeout != (DWORD)INFINITE && start.elapsed() >= tickTimeout)
+            if (tickTimeout != (::u32)U32_INFINITE_TIMEOUT && start.elapsed() >= tickTimeout)
             {
 
                for (j = 0; j < i; j++)
@@ -138,7 +138,7 @@ DWORD MsgWaitForMultipleObjectsEx(DWORD dwSize, HSYNC * synca, DWORD tickTimeout
          for (i = 0; comparison::lt(i, dwSize); i++)
          {
 
-            if (tickTimeout != (DWORD)INFINITE && start.elapsed() >= tickTimeout)
+            if (tickTimeout != (::u32)U32_INFINITE_TIMEOUT && start.elapsed() >= tickTimeout)
             {
 
                return WAIT_TIMEOUT;
@@ -163,7 +163,7 @@ DWORD MsgWaitForMultipleObjectsEx(DWORD dwSize, HSYNC * synca, DWORD tickTimeout
 }
 
 
-DWORD MsgWaitForMultipleObjects(DWORD dwSize, HSYNC * synca, int_bool bWaitForAll, DWORD tickTimeout, DWORD dwWakeMask)
+::u32 MsgWaitForMultipleObjects(::u32 dwSize, HSYNC * synca, int_bool bWaitForAll, ::u32 tickTimeout, ::u32 dwWakeMask)
 {
 
    return MsgWaitForMultipleObjectsEx(dwSize, synca, tickTimeout, dwWakeMask, (bWaitForAll ? MWMO_WAITALL : 0));
@@ -171,7 +171,7 @@ DWORD MsgWaitForMultipleObjects(DWORD dwSize, HSYNC * synca, int_bool bWaitForAl
 }
 
 
-DWORD WaitForMultipleObjectsEx(DWORD dwSize, HSYNC * synca, int_bool bWaitForAll, DWORD tickTimeout, int_bool bAlertable)
+::u32 WaitForMultipleObjectsEx(::u32 dwSize, HSYNC * synca, int_bool bWaitForAll, ::u32 tickTimeout, int_bool bAlertable)
 {
 
    return MsgWaitForMultipleObjectsEx(dwSize, synca, tickTimeout, 0, (bWaitForAll ? MWMO_WAITALL : 0) | (bAlertable ? MWMO_ALERTABLE : 0));
@@ -179,7 +179,7 @@ DWORD WaitForMultipleObjectsEx(DWORD dwSize, HSYNC * synca, int_bool bWaitForAll
 }
 
 
-DWORD WaitForMultipleObjects(DWORD dwSize, HSYNC * synca, int_bool bWaitForAll, DWORD tickTimeout)
+::u32 WaitForMultipleObjects(::u32 dwSize, HSYNC * synca, int_bool bWaitForAll, ::u32 tickTimeout)
 {
 
    return WaitForMultipleObjectsEx(dwSize, synca, bWaitForAll, tickTimeout, FALSE);
@@ -187,7 +187,7 @@ DWORD WaitForMultipleObjects(DWORD dwSize, HSYNC * synca, int_bool bWaitForAll, 
 }
 
 
-DWORD WaitForSingleObjectEx(HSYNC hsync, DWORD tickTimeout, int_bool bAlertable)
+::u32 WaitForSingleObjectEx(HSYNC hsync, ::u32 tickTimeout, int_bool bAlertable)
 {
 
    return WaitForMultipleObjectsEx(1, &hsync, TRUE, tickTimeout, bAlertable);
@@ -195,7 +195,7 @@ DWORD WaitForSingleObjectEx(HSYNC hsync, DWORD tickTimeout, int_bool bAlertable)
 }
 
 
-DWORD WaitForSingleObject(HSYNC hsync, DWORD tickTimeout)
+::u32 WaitForSingleObject(HSYNC hsync, ::u32 tickTimeout)
 {
 
    return WaitForSingleObjectEx(hsync, tickTimeout, FALSE);
@@ -407,23 +407,23 @@ CLASS_DECL_ACME void attach_thread_input_to_main_thread(bool bAttach)
 
 
 
-// LPVOID WINAPI thread_get_data(HTHREAD hthread, DWORD dwIndex);
+// LPVOID WINAPI thread_get_data(HTHREAD hthread, ::u32 dwIndex);
 
 
-// int_bool WINAPI thread_set_data(HTHREAD hthread, DWORD dwIndex, LPVOID pTlsValue);
+// int_bool WINAPI thread_set_data(HTHREAD hthread, ::u32 dwIndex, LPVOID pTlsValue);
 
 
 
 
-DWORD g_dwDebug_post_thread_msg_time;
+::u32 g_dwDebug_post_thread_msg_time;
 
 int g_iDebug_post_thread_msg_time;
 
 
 
 
-//CLASS_DECL_ACME int_bool WINAPI mq_post(mq * pmq, oswindow oswindow, UINT Msg, WPARAM wParam, LPARAM lParam)
-//CLASS_DECL_ACME int_bool WINAPI mq_post(mq * pmq, UINT Msg, WPARAM wParam, LPARAM lParam)
+//CLASS_DECL_ACME int_bool WINAPI mq_post(mq * pmq, oswindow oswindow, ::u32 Msg, WPARAM wParam, LPARAM lParam)
+//CLASS_DECL_ACME int_bool WINAPI mq_post(mq * pmq, ::u32 Msg, WPARAM wParam, LPARAM lParam)
 //{
 //
 //   sync_lock ml(pmq->mutex());

@@ -17,7 +17,7 @@ namespace android
       bool                                      m_bUpdateGraphics;
       size                                      m_size;
       point                                     m_point;
-      static const UINT                         m_nMsgDragList;
+      static const ::u32                         m_nMsgDragList;
       edisplay                                  m_edisplayLayout;
       ::thread *                                m_pthreadDraw;
       int                                       m_iSoftwareKeyboardScroll;
@@ -40,8 +40,8 @@ namespace android
       bool operator==(const ::user::interaction_impl& wnd) const;
       bool operator!=(const ::user::interaction_impl& wnd) const;
 
-      virtual bool ModifyStyle(u32 dwRemove,u32 dwAdd,UINT nFlags = 0) override;
-      virtual bool ModifyStyleEx(u32 dwRemove,u32 dwAdd,UINT nFlags = 0) override;
+      virtual bool ModifyStyle(u32 dwRemove,u32 dwAdd,::u32 nFlags = 0) override;
+      virtual bool ModifyStyleEx(u32 dwRemove,u32 dwAdd,::u32 nFlags = 0) override;
 
       virtual void route_command_message(::user::command * pcommand) override;
 
@@ -72,7 +72,7 @@ namespace android
       // subclassing/unsubclassing functions
       virtual void pre_subclass_window() override;
       //bool subclass_window(oswindow oswindow);
-      //bool SubclassDlgItem(UINT nID,::user::interaction * pParent);
+      //bool SubclassDlgItem(::u32 nID,::user::interaction * pParent);
       //oswindow unsubclass_window();
 
       // handling of RT_DLGINIT resource (extension to RT_DIALOG)
@@ -95,7 +95,7 @@ namespace android
 
       // Advanced: virtual AdjustWindowRect
       enum AdjustType { adjustBorder = 0,adjustOutside = 1 };
-      virtual void CalcWindowRect(LPRECT lpClientRect,UINT nAdjustType = adjustBorder) override;
+      virtual void CalcWindowRect(LPRECT32 lpClientRect,::u32 nAdjustType = adjustBorder) override;
 
       virtual void edit_on_set_focus(::user::interaction* pinteraction) override;
 
@@ -123,9 +123,9 @@ namespace android
       bool SendNotifyMessage(const ::id & id,WPARAM wParam,lparam lParam) override;
       //bool SendChildNotifyLastMsg(LRESULT* pResult = nullptr);
 
-      //bool DragDetect(POINT pt) const;
+      //bool DragDetect(POINT32 pt) const;
 
-      //virtual void RedrawWindow(UINT nFlags = 0) override;
+      //virtual void RedrawWindow(::u32 nFlags = 0) override;
 
       // Window Text Functions
       virtual void set_window_text(const char * lpszString) override;
@@ -141,8 +141,8 @@ namespace android
       //i32 GetWindowRgn(HRGN hRgn);
 
       //using ::user::interaction_impl::set_window_pos;
-      //virtual bool set_window_pos(iptr z,i32 x,i32 y,i32 cx,i32 cy,UINT nFlags = SWP_SHOWWINDOW);
-      //virtual UINT ArrangeIconicWindows();
+      //virtual bool set_window_pos(iptr z,i32 x,i32 y,i32 cx,i32 cy,::u32 nFlags = SWP_SHOWWINDOW);
+      //virtual ::u32 ArrangeIconicWindows();
       //virtual void BringToTop(int nCmdShow);
       //virtual bool BringWindowToTop();
       //using ::user::interaction_impl::get_window_rect;
@@ -150,32 +150,32 @@ namespace android
       //using ::user::interaction_impl::get_client_rect;
       //virtual bool get_client_rect(RECT64 * lpRect);
 
-      //virtual bool _001ClientToScreen(LPRECT lprect);
-      //virtual bool _001ClientToScreen(LPPOINT lppoint);
+      //virtual bool _001ClientToScreen(LPRECT32 lprect);
+      //virtual bool _001ClientToScreen(POINT32 * lppoint);
       //virtual bool _001ClientToScreen(RECT64 * lprect);
       //virtual bool _001ClientToScreen(POINT64 * lppoint);
-      //virtual bool _001ScreenToClient(LPRECT lprect);
-      //virtual bool _001ScreenToClient(LPPOINT lppoint);
+      //virtual bool _001ScreenToClient(LPRECT32 lprect);
+      //virtual bool _001ScreenToClient(POINT32 * lppoint);
       //virtual bool _001ScreenToClient(RECT64 * lprect);
       //virtual bool _001ScreenToClient(POINT64 * lppoint);
 
       //virtual bool GetWindowPlacement(WINDOWPLACEMENT* lpwndpl);
       //virtual bool SetWindowPlacement(const WINDOWPLACEMENT* lpwndpl);
 
-      //virtual void MapWindowPoints(::user::interaction * pwndTo,LPPOINT lpPoint,UINT nCount);
-      //virtual void MapWindowPoints(::user::interaction * pwndTo,LPRECT lpRect);
+      //virtual void MapWindowPoints(::user::interaction * pwndTo,POINT32 * lpPoint,::u32 nCount);
+      //virtual void MapWindowPoints(::user::interaction * pwndTo,LPRECT32 lpRect);
 
       //virtual void Print(::draw2d::graphics_pointer & pgraphics,u32 dwFlags) const;
       //virtual void PrintClient(::draw2d::graphics_pointer & pgraphics,u32 dwFlags) const;
 
       //virtual void UpdateWindow();
       //virtual void SetRedraw(bool bRedraw = TRUE);
-      //virtual bool GetUpdateRect(LPRECT lpRect,bool bErase = FALSE);
+      //virtual bool GetUpdateRect(LPRECT32 lpRect,bool bErase = FALSE);
       //virtual i32 GetUpdateRgn(::draw2d::region* pRgn,bool bErase = FALSE);
       //virtual void Invalidate(bool bErase = TRUE);
-      //virtual void InvalidateRect(LPCRECT lpRect,bool bErase = TRUE);
+      //virtual void InvalidateRect(LPCRECT32 lpRect,bool bErase = TRUE);
       //virtual void InvalidateRgn(::draw2d::region* pRgn,bool bErase = TRUE);
-      //virtual void ValidateRect(LPCRECT lpRect);
+      //virtual void ValidateRect(LPCRECT32 lpRect);
       //virtual void ValidateRgn(::draw2d::region* pRgn);
       virtual bool ShowWindow(i32 nCmdShow) override;
 //      virtual void _001WindowMinimize();
@@ -192,19 +192,19 @@ namespace android
       //virtual ::draw2d::graphics * GetDCEx(::draw2d::region* prgnClip,u32 flags);
       virtual bool LockWindowUpdate() override;
       virtual void UnlockWindowUpdate() override;
-      //virtual bool RedrawWindow(LPCRECT lpRectUpdate = nullptr,
+      //virtual bool RedrawWindow(LPCRECT32 lpRectUpdate = nullptr,
         //                        ::draw2d::region* prgnUpdate = nullptr,
-          //                      UINT flags = RDW_INVALIDATE | RDW_ERASE);
-      //virtual bool EnableScrollBar(i32 nSBFlags,UINT nArrowFlags = 0);
+          //                      ::u32 flags = RDW_INVALIDATE | RDW_ERASE);
+      //virtual bool EnableScrollBar(i32 nSBFlags,::u32 nArrowFlags = 0);
 
-      //virtual bool DrawAnimatedRects(i32 idAni,CONST RECT *lprcFrom,CONST RECT *lprcTo);
-      //virtual bool DrawCaption(::draw2d::graphics_pointer & pgraphics,LPCRECT lprc,UINT uFlags);
+      //virtual bool DrawAnimatedRects(i32 idAni,CONST RECT32 *lprcFrom,CONST RECT32 *lprcTo);
+      //virtual bool DrawCaption(::draw2d::graphics_pointer & pgraphics,LPCRECT32 lprc,::u32 uFlags);
 
 
 
 
       // timer Functions
-      //virtual bool SetTimer(uptr uEvent,UINT nElapse, PFN_TIMER pfnTimer);
+      //virtual bool SetTimer(uptr uEvent,::u32 nElapse, PFN_TIMER pfnTimer);
       //virtual bool KillTimer(uptr uEvent);
 
 
@@ -234,65 +234,65 @@ namespace android
 
       // Dialog-Box Item Functions
       // (NOTE: Dialog-Box Items/Controls are not necessarily in dialog boxes!)
-      virtual void CheckDlgButton(i32 nIDButton, UINT nCheck) override;
+      virtual void CheckDlgButton(i32 nIDButton, ::u32 nCheck) override;
       virtual void CheckRadioButton(i32 nIDFirstButton, i32 nIDLastButton, i32 nIDCheckButton) override;
       virtual i32 GetCheckedRadioButton(i32 nIDFirstButton, i32 nIDLastButton) override;
-      virtual i32 DlgDirList(LPTSTR lpPathSpec, i32 nIDListBox, i32 nIDStaticPath, UINT nFileType) override;
-      virtual i32 DlgDirListComboBox(LPTSTR lpPathSpec, i32 nIDComboBox, i32 nIDStaticPath, UINT nFileType) override;
+      virtual i32 DlgDirList(LPTSTR lpPathSpec, i32 nIDListBox, i32 nIDStaticPath, ::u32 nFileType) override;
+      virtual i32 DlgDirListComboBox(LPTSTR lpPathSpec, i32 nIDComboBox, i32 nIDStaticPath, ::u32 nFileType) override;
       virtual bool DlgDirSelect(LPTSTR lpString, i32 nSize, i32 nIDListBox) override;
       virtual bool DlgDirSelectComboBox(LPTSTR lpString, i32 nSize, i32 nIDComboBox) override;
 
-      //virtual UINT GetChildByIdInt(i32 nID, bool * lpTrans = nullptr, bool bSigned = TRUE) const;
+      //virtual ::u32 GetChildByIdInt(i32 nID, bool * lpTrans = nullptr, bool bSigned = TRUE) const;
       //virtual i32 GetChildByIdText(i32 nID, LPTSTR lpStr, i32 nMaxCount) const;
       //virtual i32 GetChildByIdText(i32 nID, string & rString) const;
       //virtual ::user::interaction * GetNextDlgGroupItem(::user::interaction * pWndCtl, bool bPrevious = FALSE) const;
       //virtual ::user::interaction * GetNextDlgTabItem(::user::interaction * pWndCtl, bool bPrevious = FALSE) const;
-      virtual UINT IsDlgButtonChecked(i32 nIDButton) const override;
+      virtual ::u32 IsDlgButtonChecked(i32 nIDButton) const override;
       virtual LRESULT SendDlgItemMessage(i32 nID, const ::id & id, WPARAM wParam = 0, LPARAM lParam = 0) override;
-      virtual void SetDlgItemInt(i32 nID, UINT nValue, bool bSigned = TRUE) override;
+      virtual void SetDlgItemInt(i32 nID, ::u32 nValue, bool bSigned = TRUE) override;
       virtual void SetDlgItemText(i32 nID, const char * lpszString) override;
 
 
       // Scrolling Functions
       virtual i32 GetScrollPos(i32 nBar) const override;
       virtual void GetScrollRange(i32 nBar,LPINT lpMinPos,LPINT lpMaxPos) const override;
-      virtual void ScrollWindow(i32 xAmount,i32 yAmount, LPCRECT lpRect = nullptr, LPCRECT lpClipRect = nullptr) override;
+      virtual void ScrollWindow(i32 xAmount,i32 yAmount, LPCRECT32 lpRect = nullptr, LPCRECT32 lpClipRect = nullptr) override;
       virtual i32 SetScrollPos(i32 nBar,i32 nPos,bool bRedraw = TRUE) override;
       virtual void SetScrollRange(i32 nBar,i32 nMinPos,i32 nMaxPos, bool bRedraw = TRUE) override;
-      virtual void ShowScrollBar(UINT nBar,bool bShow = TRUE) override;
+      virtual void ShowScrollBar(::u32 nBar,bool bShow = TRUE) override;
       virtual void EnableScrollBarCtrl(i32 nBar,bool bEnable = TRUE) override;
 
       virtual i32 ScrollWindowEx(i32 dx,i32 dy,
-                                 LPCRECT lpRectScroll,LPCRECT lpRectClip,
-                                 ::draw2d::region* prgnUpdate,LPRECT lpRectUpdate,UINT flags) override;
+                                 LPCRECT32 lpRectScroll,LPCRECT32 lpRectClip,
+                                 ::draw2d::region* prgnUpdate,LPRECT32 lpRectUpdate,::u32 flags) override;
       //virtual bool SetScrollInfo(i32 nBar,LPSCROLLINFO lpScrollInfo,
       //   bool bRedraw = TRUE);
-      //virtual bool GetScrollInfo(i32 nBar,LPSCROLLINFO lpScrollInfo,UINT nMask = SIF_ALL);
+      //virtual bool GetScrollInfo(i32 nBar,LPSCROLLINFO lpScrollInfo,::u32 nMask = SIF_ALL);
       virtual i32 GetScrollLimit(i32 nBar) override;
 
 #if(WINVER >= 0x0500)
 
-      virtual bool GetScrollBarInfo(LONG idObject,PSCROLLBARINFO psbi) const;
+      virtual bool GetScrollBarInfo(::i32 idObject,PSCROLLBARINFO psbi) const;
 
 #endif   // WINVER >= 0x0500
 
       // Window Access Functions
-      virtual ::user::interaction * ChildWindowFromPoint(POINT point);
-      virtual ::user::interaction * ChildWindowFromPoint(POINT point,UINT nFlags);
+      virtual ::user::interaction * ChildWindowFromPoint(POINT32 point);
+      virtual ::user::interaction * ChildWindowFromPoint(POINT32 point,::u32 nFlags);
       static ::user::interaction * FindWindow(const char * lpszClassName,const char * lpszWindowName);
       static ::user::interaction * FindWindowEx(oswindow oswindowParent,oswindow oswindowChildAfter,const char * lpszClass,const char * lpszWindow);
 
-      virtual ::user::interaction * GetNextWindow(UINT nFlag = GW_HWNDNEXT);
+      virtual ::user::interaction * GetNextWindow(::u32 nFlag = GW_HWNDNEXT);
       virtual ::user::interaction * GetTopWindow() const override;
 
-      //virtual ::user::interaction * GetWindow(UINT nCmd);
+      //virtual ::user::interaction * GetWindow(::u32 nCmd);
       virtual ::user::interaction * GetLastActivePopup() override;
 
       //virtual bool IsChild(::user::interaction *  pWnd);
       //virtual ::user::interaction * GetParent();
       //using ::user::interaction_impl::SetParent;
       //::user::interaction * SetParent(::user::interaction * pWndNewParent);
-      //static::user::interaction * PASCAL oswindowFromPoint(POINT point);
+      //static::user::interaction * PASCAL oswindowFromPoint(POINT32 point);
 
 
       //virtual ::user::interaction * SetOwner(::user::interaction * pWndNewParent);
@@ -300,12 +300,12 @@ namespace android
 
       //virtual bool FlashWindow(bool bInvert);
 
-      //virtual i32 message_box(const char * lpszText,const char * lpszCaption = nullptr,UINT nType = MB_OK) override;
+      //virtual i32 message_box(const char * lpszText,const char * lpszCaption = nullptr,::u32 nType = MB_OK) override;
 
 
 #if(WINVER >= 0x0500)
 
-      virtual bool FlashWindowEx(u32 dwFlags,UINT  uCount,tick tickTimeout);
+      virtual bool FlashWindowEx(u32 dwFlags,::u32  uCount,tick tickTimeout);
 
 #endif   // WINVER >= 0x0500
 
@@ -319,7 +319,7 @@ namespace android
 
 
       //static point GetCaretPos();
-      //static void SetCaretPos(POINT point);
+      //static void SetCaretPos(POINT32 point);
       //virtual void HideCaret() override;
       //virtual void ShowCaret() override;
 
@@ -343,9 +343,9 @@ namespace android
       void OnHelpIndex();     // ID_HELP_INDEX
       void OnHelpFinder();    // ID_HELP_FINDER, ID_DEFAULT_HELP
       void OnHelpUsing();     // ID_HELP_USING
-      virtual void WinHelp(uptr dwData,UINT nCmd = 0);
-      //virtual void HtmlHelp(uptr dwData, UINT nCmd = 0x000F);
-      virtual void WinHelpInternal(uptr dwData,UINT nCmd = 0);
+      virtual void WinHelp(uptr dwData,::u32 nCmd = 0);
+      //virtual void HtmlHelp(uptr dwData, ::u32 nCmd = 0x000F);
+      virtual void WinHelpInternal(uptr dwData,::u32 nCmd = 0);
 
 
 
@@ -359,7 +359,7 @@ namespace android
       DECL_GEN_SIGNAL(_001OnCreate);
 
       virtual bool SubclassWindow(oswindow hWnd);
-      HBRUSH OnCtlColor(::draw2d::graphics_pointer & pgraphics,::user::interaction * pwindow,UINT nCtlColor);
+      HBRUSH OnCtlColor(::draw2d::graphics_pointer & pgraphics,::user::interaction * pwindow,::u32 nCtlColor);
 
       DECL_GEN_SIGNAL(_001OnDestroy);
       void OnEnable(bool bEnable);
@@ -368,8 +368,8 @@ namespace android
       void OnGetMinMaxInfo(MINMAXINFO* lpMMI);
       void OnIconEraseBkgnd(::draw2d::graphics_pointer & pgraphics);
       void OnKillFocus(::user::interaction * pNewWnd);
-      LRESULT OnMenuChar(UINT nChar,UINT nFlags,::user::menu* pMenu);
-      void OnMenuSelect(UINT nItemID,UINT nFlags,HMENU hSysMenu);
+      LRESULT OnMenuChar(::u32 nChar,::u32 nFlags,::user::menu* pMenu);
+      void OnMenuSelect(::u32 nItemID,::u32 nFlags,HMENU hSysMenu);
       void OnMove(i32 x,i32 y);
       DECL_GEN_SIGNAL(_001OnPaint);
       DECL_GEN_SIGNAL(_001OnPrint);
@@ -379,13 +379,13 @@ namespace android
       bool OnQueryNewPalette();
       bool OnQueryOpen();
       void OnSetFocus(::user::interaction *);
-      void OnShowWindow(bool bShow,UINT nStatus);
-      void OnSize(UINT nType,i32 cx,i32 cy);
-      void OnTCard(UINT idAction,u32 dwActionData);
+      void OnShowWindow(bool bShow,::u32 nStatus);
+      void OnSize(::u32 nType,i32 cx,i32 cy);
+      void OnTCard(::u32 idAction,u32 dwActionData);
 
-      void OnChangeUIState(UINT nAction,UINT nUIElement);
-      void OnUpdateUIState(UINT nAction,UINT nUIElement);
-      UINT OnQueryUIState();
+      void OnChangeUIState(::u32 nAction,::u32 nUIElement);
+      void OnUpdateUIState(::u32 nAction,::u32 nUIElement);
+      ::u32 OnQueryUIState();
 
       // Nonclient-Area message handler member functions
       bool OnNcActivate(bool bActive);
@@ -394,80 +394,80 @@ namespace android
 
       DECL_GEN_SIGNAL(_001OnNcCalcSize);
       LRESULT OnNcHitTest(::point point);
-      void OnNcLButtonDblClk(UINT nHitTest, const ::point & point);
-      void OnNcLButtonDown(UINT nHitTest, const ::point & point);
-      void OnNcLButtonUp(UINT nHitTest, const ::point & point);
-      void OnNcMButtonDblClk(UINT nHitTest, const ::point & point);
-      void OnNcMButtonDown(UINT nHitTest, const ::point & point);
-      void OnNcMButtonUp(UINT nHitTest, const ::point & point);
-      void OnNcMouseMove(UINT nHitTest, const ::point & point);
+      void OnNcLButtonDblClk(::u32 nHitTest, const ::point & point);
+      void OnNcLButtonDown(::u32 nHitTest, const ::point & point);
+      void OnNcLButtonUp(::u32 nHitTest, const ::point & point);
+      void OnNcMButtonDblClk(::u32 nHitTest, const ::point & point);
+      void OnNcMButtonDown(::u32 nHitTest, const ::point & point);
+      void OnNcMButtonUp(::u32 nHitTest, const ::point & point);
+      void OnNcMouseMove(::u32 nHitTest, const ::point & point);
       void OnNcPaint();
-      void OnNcRButtonDblClk(UINT nHitTest, const ::point & point);
-      void OnNcRButtonDown(UINT nHitTest, const ::point & point);
-      void OnNcRButtonUp(UINT nHitTest, const ::point & point);
+      void OnNcRButtonDblClk(::u32 nHitTest, const ::point & point);
+      void OnNcRButtonDown(::u32 nHitTest, const ::point & point);
+      void OnNcRButtonUp(::u32 nHitTest, const ::point & point);
 
       // System message handler member functions
       void OnDropFiles(HDROP hDropInfo);
       void OnPaletteIsChanging(::user::interaction * pRealizeWnd);
-      void OnSysChar(UINT nChar,UINT nRepCnt,UINT nFlags);
-      void OnSysCommand(UINT nID,LPARAM lParam);
-      void OnSysDeadChar(UINT nChar,UINT nRepCnt,UINT nFlags);
-      void OnSysKeyDown(UINT nChar,UINT nRepCnt,UINT nFlags);
-      void OnSysKeyUp(UINT nChar,UINT nRepCnt,UINT nFlags);
-      void OnCompacting(UINT nCpuTime);
+      void OnSysChar(::u32 nChar,::u32 nRepCnt,::u32 nFlags);
+      void OnSysCommand(::u32 nID,LPARAM lParam);
+      void OnSysDeadChar(::u32 nChar,::u32 nRepCnt,::u32 nFlags);
+      void OnSysKeyDown(::u32 nChar,::u32 nRepCnt,::u32 nFlags);
+      void OnSysKeyUp(::u32 nChar,::u32 nRepCnt,::u32 nFlags);
+      void OnCompacting(::u32 nCpuTime);
       void OnDevModeChange(LPTSTR lpDeviceName);
       void OnFontChange();
       void OnPaletteChanged(::user::interaction * pFocusWnd);
-      void OnSpoolerStatus(UINT nStatus,UINT nJobs);
+      void OnSpoolerStatus(::u32 nStatus,::u32 nJobs);
       void OnSysColorChange();
       void OnTimeChange();
-      void OnSettingChange(UINT uFlags,const char * lpszSection);
+      void OnSettingChange(::u32 uFlags,const char * lpszSection);
       void OnWinIniChange(const char * lpszSection);
 
       // Input message handler member functions
-      void OnChar(UINT nChar,UINT nRepCnt,UINT nFlags);
-      void OnDeadChar(UINT nChar,UINT nRepCnt,UINT nFlags);
-      //      void OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
-      //    void OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
-      void OnKeyDown(UINT nChar,UINT nRepCnt,UINT nFlags);
-      void OnKeyUp(UINT nChar,UINT nRepCnt,UINT nFlags);
-      void OnLButtonDblClk(UINT nFlags, const ::point & point);
-      void OnLButtonDown(UINT nFlags, const ::point & point);
-      void OnLButtonUp(UINT nFlags, const ::point & point);
-      void OnMButtonDblClk(UINT nFlags, const ::point & point);
-      void OnMButtonDown(UINT nFlags, const ::point & point);
-      void OnMButtonUp(UINT nFlags, const ::point & point);
-      i32 OnMouseActivate(::user::interaction * pDesktopWnd,UINT nHitTest,const ::id & id);
-      void OnMouseMove(UINT nFlags, const ::point & point);
-      bool OnMouseWheel(UINT nFlags,i16 zDelta, const ::point & point);
+      void OnChar(::u32 nChar,::u32 nRepCnt,::u32 nFlags);
+      void OnDeadChar(::u32 nChar,::u32 nRepCnt,::u32 nFlags);
+      //      void OnHScroll(::u32 nSBCode, ::u32 nPos, CScrollBar* pScrollBar);
+      //    void OnVScroll(::u32 nSBCode, ::u32 nPos, CScrollBar* pScrollBar);
+      void OnKeyDown(::u32 nChar,::u32 nRepCnt,::u32 nFlags);
+      void OnKeyUp(::u32 nChar,::u32 nRepCnt,::u32 nFlags);
+      void OnLButtonDblClk(::u32 nFlags, const ::point & point);
+      void OnLButtonDown(::u32 nFlags, const ::point & point);
+      void OnLButtonUp(::u32 nFlags, const ::point & point);
+      void OnMButtonDblClk(::u32 nFlags, const ::point & point);
+      void OnMButtonDown(::u32 nFlags, const ::point & point);
+      void OnMButtonUp(::u32 nFlags, const ::point & point);
+      i32 OnMouseActivate(::user::interaction * pDesktopWnd,::u32 nHitTest,const ::id & id);
+      void OnMouseMove(::u32 nFlags, const ::point & point);
+      bool OnMouseWheel(::u32 nFlags,i16 zDelta, const ::point & point);
       LRESULT OnRegisteredMouseWheel(WPARAM wParam,LPARAM lParam);
-      void OnRButtonDblClk(UINT nFlags, const ::point & point);
-      void OnRButtonDown(UINT nFlags, const ::point & point);
-      void OnRButtonUp(UINT nFlags, const ::point & point);
+      void OnRButtonDblClk(::u32 nFlags, const ::point & point);
+      void OnRButtonDown(::u32 nFlags, const ::point & point);
+      void OnRButtonUp(::u32 nFlags, const ::point & point);
       DECL_GEN_SIGNAL(_001OnSetCursor);
       void OnTimer(uptr uEvent);
 
       // Initialization message handler member functions
       void OnInitMenu(::user::menu* pMenu);
-      void OnInitMenuPopup(::user::menu* pPopupMenu,UINT nIndex,bool bSysMenu);
+      void OnInitMenuPopup(::user::menu* pPopupMenu,::u32 nIndex,bool bSysMenu);
 
       // Clipboard message handler member functions
-      void OnAskCbFormatName(UINT nMaxCount,LPTSTR lpszString);
+      void OnAskCbFormatName(::u32 nMaxCount,LPTSTR lpszString);
       void OnChangeCbChain(oswindow oswindow_Remove,oswindow oswindow_After);
       void OnDestroyClipboard();
       void OnDrawClipboard();
-      void OnHScrollClipboard(::user::interaction * pClipAppWnd,UINT nSBCode,UINT nPos);
+      void OnHScrollClipboard(::user::interaction * pClipAppWnd,::u32 nSBCode,::u32 nPos);
       void OnPaintClipboard(::user::interaction * pClipAppWnd,HGLOBAL hPaintStruct);
       void OnRenderAllFormats();
-      void OnRenderFormat(UINT nFormat);
+      void OnRenderFormat(::u32 nFormat);
       void OnSizeClipboard(::user::interaction * pClipAppWnd,HGLOBAL hRect);
-      void OnVScrollClipboard(::user::interaction * pClipAppWnd,UINT nSBCode,UINT nPos);
+      void OnVScrollClipboard(::user::interaction * pClipAppWnd,::u32 nSBCode,::u32 nPos);
 
       // control message handler member functions
       //i32 OnCompareItem(i32 nIDCtl,LPCOMPAREITEMSTRUCT lpCompareItemStruct);
       //void OnDeleteItem(i32 nIDCtl,LPDELETEITEMSTRUCT lpDeleteItemStruct);
       //void OnDrawItem(i32 nIDCtl,LPDRAWITEMSTRUCT lpDrawItemStruct);
-      UINT OnGetDlgCode();
+      ::u32 OnGetDlgCode();
       //void OnMeasureItem(i32 nIDCtl,LPMEASUREITEMSTRUCT lpMeasureItemStruct);
 
       // MDI message handler member functions
@@ -481,10 +481,10 @@ namespace android
       // Win4 messages
       void OnStyleChanged(i32 nStyleType,LPSTYLESTRUCT lpStyleStruct);
       void OnStyleChanging(i32 nStyleType,LPSTYLESTRUCT lpStyleStruct);
-      void OnSizing(UINT nSide,LPRECT lpRect);
-      void OnMoving(UINT nSide,LPRECT lpRect);
+      void OnSizing(::u32 nSide,LPRECT32 lpRect);
+      void OnMoving(::u32 nSide,LPRECT32 lpRect);
       void OnCaptureChanged(::user::interaction * pwindow);
-      bool OnDeviceChange(UINT nEventType,uptr dwData);
+      bool OnDeviceChange(::u32 nEventType,uptr dwData);
 
       // Overridables and other helpers (for implementation of derived classes)
       // for deriving from a standard control
@@ -519,21 +519,21 @@ namespace android
 
       // Implementation
       virtual bool CheckAutoCenter() override;
-      //virtual bool GrayCtlColor(HDC hDC,oswindow oswindow,UINT nCtlColor,
-      //                          HBRUSH hbrGray,COLORREF clrText);
+      //virtual bool GrayCtlColor(HDC hDC,oswindow oswindow,::u32 nCtlColor,
+      //                          HBRUSH hbrGray,color32_t clrText);
 
 
       // helper routines for implementation
-      //bool HandleFloatingSysCommand(UINT nID, LPARAM lParam) override;
+      //bool HandleFloatingSysCommand(::u32 nID, LPARAM lParam) override;
       bool IsTopParentActive() override;
       void ActivateTopParent() override;
       //virtual void WalkPreTranslateTree(::user::interaction * puiStop, ::message::message * pmessage);
       virtual bool is_frame_window(); // is_kind_of(__type(frame_window)))
       virtual void on_final_release() override;
-      static bool ModifyStyle(oswindow hWnd, DWORD dwRemove, DWORD dwAdd, UINT nFlags);
-      static bool ModifyStyleEx(oswindow hWnd, DWORD dwRemove, DWORD dwAdd, UINT nFlags);
+      static bool ModifyStyle(oswindow hWnd, ::u32 dwRemove, ::u32 dwAdd, ::u32 nFlags);
+      static bool ModifyStyleEx(oswindow hWnd, ::u32 dwRemove, ::u32 dwAdd, ::u32 nFlags);
       //static void PASCAL _FilterToolTipMessage(MESSAGE* pMsg, ::user::interaction * pWnd);
-      bool _EnableToolTips(bool bEnable, UINT nFlag) override;
+      bool _EnableToolTips(bool bEnable, ::u32 nFlag) override;
       //static oswindow PASCAL GetSafeOwner_(oswindow hWnd, oswindow* pWndTop);
       void PrepareForHelp() override;
 
@@ -558,8 +558,8 @@ namespace android
 
       virtual void _001DeferPaintLayeredWindowBackground(HDC hdc);
 
-      //virtual LONG get_window_long(i32 nIndex) const;
-      //virtual LONG set_window_long(i32 nIndex,LONG lValue);
+      //virtual ::i32 get_window_long(i32 nIndex) const;
+      //virtual ::i32 set_window_long(i32 nIndex,::i32 lValue);
       //virtual LONG_PTR get_window_long_ptr(i32 nIndex) const;
       //virtual LONG_PTR set_window_long_ptr(i32 nIndex,LONG_PTR lValue);
 
@@ -579,7 +579,7 @@ namespace android
 
       bool Attach(oswindow hWndNew);
       virtual oswindow Detach();
-      //virtual bool get_rect_normal(LPRECT lprect);
+      //virtual bool get_rect_normal(LPRECT32 lprect);
       virtual oswindow UnsubclassWindow();
 //      virtual void register_drop_target();
 
@@ -589,14 +589,14 @@ namespace android
       virtual oswindow get_handle() const override;
 
       //virtual void MoveWindow(i32 x, i32 y, i32 nWidth, i32 nHeight, bool bRepaint);
-      //virtual void MoveWindow(LPCRECT lpRect, bool bRepaint = TRUE);
+      //virtual void MoveWindow(LPCRECT32 lpRect, bool bRepaint = TRUE);
 
       virtual id SetDlgCtrlId(id id) override;
       virtual id GetDlgCtrlId();
 
 
-      virtual LONG GetWindowLong(i32 nIndex);
-      virtual LONG SetWindowLong(i32 nIndex, LONG lValue);
+      virtual ::i32 GetWindowLong(i32 nIndex);
+      virtual ::i32 SetWindowLong(i32 nIndex, ::i32 lValue);
 
 
       virtual void SetFont(::draw2d::font* pfont, bool bRedraw);

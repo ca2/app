@@ -1851,13 +1851,13 @@ namespace filemanager
    }
 
 
-   //COLORREF file_list::get_background_color()
+   //color32_t file_list::get_background_color()
    //{
 
    //   if (filemanager_data() != nullptr && filemanager_data()->is_topic())
    //   {
    //      return ARGB(255, 255, 255, 255);
-   //      //COLORREF cr;
+   //      //color32_t cr;
    //      //if (filemanager_document()->m_emode == document::mode_saving)
    //      //{
 

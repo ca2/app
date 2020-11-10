@@ -3,22 +3,22 @@
 
 
 CLASS_DECL_AURA void vertical_swap(pixmap * ppixmap);
-CLASS_DECL_AURA void vertical_swap_copy_colorref(COLORREF * pcolorrefDst, int cx, int cy, int iStrideDst, const COLORREF * pcolorrefSrc, int iStrideSrc = -1);
-CLASS_DECL_AURA void vertical_swap_copy_colorref_swap_red_blue(COLORREF * pcolorrefDst, int cx, int cy, int iStrideDst, const COLORREF * pcolorrefSrc, int iStrideSrc = -1);
-CLASS_DECL_AURA void copy_colorref(COLORREF * pcolorrefDst, int cx, int cy, int iStrideDst, const COLORREF * pcolorrefSrc, int iStrideSrc = -1);
-CLASS_DECL_AURA void copy_colorref(COLORREF * pcolorrefDst, int x, int y, int cx, int cy, int iStrideDst, const COLORREF * pcolorrefSrc, int iStrideSrc = -1);
-inline void copy_colorref(COLORREF * pcolorrefDst, const ::size & size, int iStrideDst, const COLORREF * pcolorrefSrc, int iStrideSrc = -1);
-CLASS_DECL_AURA void copy_colorref(COLORREF * pcolorrefDst, const ::point & point, const ::size & size, int iStrideDst, const COLORREF * pcolorrefSrc, int iStrideSrc = -1);
-CLASS_DECL_AURA void copy_colorref(COLORREF * pcolorrefDst, const ::rect & rect, int iStrideDst, const COLORREF * pcolorrefSrc, int iStrideSrc = -1);
-CLASS_DECL_AURA void copy_colorref_swap_red_blue(COLORREF * pcolorrefDst, int cx, int cy, int iStrideDst, const COLORREF * pcolorrefSrc, int iStrideSrc = -1);
-CLASS_DECL_AURA void _001ProperCopyColorref(COLORREF * pcolorrefDst, int cx, int cy, int iStrideDst, const COLORREF * pcolorrefSrc, int iStrideSrc = -1);
+CLASS_DECL_AURA void vertical_swap_copy_colorref(color32_t * pcolorrefDst, int cx, int cy, int iStrideDst, const color32_t * pcolorrefSrc, int iStrideSrc = -1);
+CLASS_DECL_AURA void vertical_swap_copy_colorref_swap_red_blue(color32_t * pcolorrefDst, int cx, int cy, int iStrideDst, const color32_t * pcolorrefSrc, int iStrideSrc = -1);
+CLASS_DECL_AURA void copy_colorref(color32_t * pcolorrefDst, int cx, int cy, int iStrideDst, const color32_t * pcolorrefSrc, int iStrideSrc = -1);
+CLASS_DECL_AURA void copy_colorref(color32_t * pcolorrefDst, int x, int y, int cx, int cy, int iStrideDst, const color32_t * pcolorrefSrc, int iStrideSrc = -1);
+inline void copy_colorref(color32_t * pcolorrefDst, const ::size & size, int iStrideDst, const color32_t * pcolorrefSrc, int iStrideSrc = -1);
+CLASS_DECL_AURA void copy_colorref(color32_t * pcolorrefDst, const ::point & point, const ::size & size, int iStrideDst, const color32_t * pcolorrefSrc, int iStrideSrc = -1);
+CLASS_DECL_AURA void copy_colorref(color32_t * pcolorrefDst, const ::rect & rect, int iStrideDst, const color32_t * pcolorrefSrc, int iStrideSrc = -1);
+CLASS_DECL_AURA void copy_colorref_swap_red_blue(color32_t * pcolorrefDst, int cx, int cy, int iStrideDst, const color32_t * pcolorrefSrc, int iStrideSrc = -1);
+CLASS_DECL_AURA void _001ProperCopyColorref(color32_t * pcolorrefDst, int cx, int cy, int iStrideDst, const color32_t * pcolorrefSrc, int iStrideSrc = -1);
 
 
 namespace draw2d
 {
 
 
-    inline COLORREF get_pixel(const COLORREF * pcolorref, int iScan, int iHeight, int x, int y);
+    inline color32_t get_pixel(const color32_t * pcolorref, int iScan, int iHeight, int x, int y);
 
 
 } // namespace draw2d
@@ -84,7 +84,7 @@ CLASS_DECL_AURA e_rotate_flip exif_orientation_rotate_flip(int orientation);
 //   virtual ::count get_image_count() const= 0;
 //   virtual ::image_pointer get_image(index i)= 0;
 //
-//   virtual COLORREF * get_data() const= 0;
+//   virtual color32_t * get_data() const= 0;
 //
 //   virtual bool set_mipmap(::draw2d::e_mipmap emipmap)= 0;
 //   virtual bool _set_mipmap(::draw2d::e_mipmap emipmap)= 0;
@@ -108,8 +108,8 @@ CLASS_DECL_AURA e_rotate_flip exif_orientation_rotate_flip(int orientation);
 //   virtual bool rate_rgb(int iMul, int iDiv)= 0;
 //   virtual bool dc_select(bool bSelect = true)= 0;
 //
-//   virtual COLORREF GetAverageColor()= 0;
-//   virtual COLORREF GetAverageOpaqueColor()= 0;
+//   virtual color32_t GetAverageColor()= 0;
+//   virtual color32_t GetAverageOpaqueColor()= 0;
 //   virtual bool blend(::image * pimage, ::image * pimageRate)= 0;
 //   virtual bool Blend(::image * pimage, ::image * pimageA, i32 A)= 0;
 //   virtual bool Blend(::image * pimage, ::image * pimageA)= 0;
@@ -123,7 +123,7 @@ CLASS_DECL_AURA e_rotate_flip exif_orientation_rotate_flip(int orientation);
 //   virtual bool fork_blend(const ::point & pointDst, ::image * pimageAlf, const ::point & pointAlf, const ::size & size, byte bA)= 0;
 //   virtual bool bitmap_blend(::draw2d::graphics_pointer & pgraphics, const ::rect & rect)= 0;
 //
-//   virtual bool color_blend(COLORREF cr, BYTE bAlpha)= 0;
+//   virtual bool color_blend(color32_t cr, byte bAlpha)= 0;
 //   virtual bool BitBlt(::image * pimage, i32 op)= 0;
 //   virtual bool BitBlt(int cxParam, int cyParam, ::image * pimage, i32 op)= 0;
 //   virtual i32 cos(i32 i, i32 iAngle)= 0;
@@ -148,8 +148,8 @@ CLASS_DECL_AURA e_rotate_flip exif_orientation_rotate_flip(int orientation);
 //   virtual bool do_xor(::image * pimage)= 0;
 //
 //   virtual bool ToAlpha(i32 i)= 0;
-//   virtual bool ToAlphaAndFill(i32 i, COLORREF cr)= 0;
-//   virtual bool GrayToARGB(COLORREF cr)= 0;
+//   virtual bool ToAlphaAndFill(i32 i, color32_t cr)= 0;
+//   virtual bool GrayToARGB(color32_t cr)= 0;
 //
 //   virtual bool from_alpha()= 0;
 //   virtual bool mult_alpha(::image * pimageWork, bool bPreserveAlpha = true)= 0;
@@ -181,7 +181,7 @@ CLASS_DECL_AURA e_rotate_flip exif_orientation_rotate_flip(int orientation);
 //   virtual bool rotate270flipx()= 0;
 //
 //
-//   virtual bool set_rgb(COLORREF cr)= 0;
+//   virtual bool set_rgb(color32_t cr)= 0;
 //   virtual bool set_rgb(i32 R, i32 G, i32 B)= 0;
 //   virtual bool tint(::image * pimage, const rgb & rgb)= 0;
 //   virtual bool set_rgb_pre_alpha(i32 R, i32 G, i32 B, i32 A)= 0;
@@ -195,22 +195,22 @@ CLASS_DECL_AURA e_rotate_flip exif_orientation_rotate_flip(int orientation);
 //
 //
 //   virtual bool SetIconMask(::draw2d::icon * picon, i32 cx, i32 cy)= 0;
-//   virtual bool RadialFill(BYTE a, BYTE rect, BYTE g, BYTE b, i32 x, i32 y, i32 iRadius)= 0;
+//   virtual bool RadialFill(byte a, byte rect, byte g, byte b, i32 x, i32 y, i32 iRadius)= 0;
 //   virtual bool RadialFill(
-//   BYTE a1, BYTE r1, BYTE g1, BYTE b1, // center colors
-//   BYTE a2, BYTE r2, BYTE g2, BYTE b2, // border colors
+//   byte a1, byte r1, byte g1, byte b1, // center colors
+//   byte a2, byte r2, byte g2, byte b2, // border colors
 //   i32 x, i32 y, i32 iRadius)= 0;
 //
-//   virtual bool gradient_fill(COLORREF clr1, COLORREF clr2, const point & point1, const point & point2)= 0;
-//   virtual bool gradient_horizontal_fill(COLORREF clr1, COLORREF clr2, int start, int end)= 0;
-//   virtual bool gradient_vertical_fill(COLORREF clr1, COLORREF clr2, int start, int end)= 0;
-//   virtual bool gradient_horizontal_fill(COLORREF clr1, COLORREF clr2)= 0;
-//   virtual bool gradient_vertical_fill(COLORREF clr1, COLORREF clr2)= 0;
+//   virtual bool gradient_fill(color32_t clr1, color32_t clr2, const point & point1, const point & point2)= 0;
+//   virtual bool gradient_horizontal_fill(color32_t clr1, color32_t clr2, int start, int end)= 0;
+//   virtual bool gradient_vertical_fill(color32_t clr1, color32_t clr2, int start, int end)= 0;
+//   virtual bool gradient_horizontal_fill(color32_t clr1, color32_t clr2)= 0;
+//   virtual bool gradient_vertical_fill(color32_t clr1, color32_t clr2)= 0;
 //
 //
 //   virtual u32 GetPixel(i32 x, i32 y)= 0;
-//   virtual bool Mask(COLORREF crMask, COLORREF crInMask, COLORREF crOutMask)= 0;
-//   virtual bool channel_mask(BYTE uchFind, BYTE uchSet, BYTE uchUnset, color::e_channel echannel)= 0;
+//   virtual bool Mask(color32_t crMask, color32_t crInMask, color32_t crOutMask)= 0;
+//   virtual bool channel_mask(byte uchFind, byte uchSet, byte uchUnset, color::e_channel echannel)= 0;
 //   virtual bool transparent_color(color color)= 0;
 //
 //   virtual bool create_thumbnail(const char * pszPath) = 0;
@@ -265,7 +265,7 @@ CLASS_DECL_AURA e_rotate_flip exif_orientation_rotate_flip(int orientation);
 //   virtual bool fill_channel(i32 C, color::e_channel echannel)= 0;
 //   virtual bool white_fill_channel(i32 C, color::e_channel echannel)= 0;
 //   virtual bool fill_byte(uchar uch)= 0;
-//   virtual bool fill(COLORREF level)= 0;
+//   virtual bool fill(color32_t level)= 0;
 //   virtual bool fill(i32 A, i32 R, i32 G, i32 B)= 0;
 //   //      virtual bool Fill(i32 R, i32 G, i32 B)= 0;
 //   //virtual bool set(i32 R, i32 G, i32 B)= 0;
@@ -306,7 +306,7 @@ CLASS_DECL_AURA e_rotate_flip exif_orientation_rotate_flip(int orientation);
 //   virtual bool copy(::image * pimage, i32 x, i32 y)= 0;
 //   virtual bool PasteRect(::image * pimage, i32 x, i32 y)= 0;
 //
-//   virtual bool fill_rect(const ::rect & rect, COLORREF cr)= 0;
+//   virtual bool fill_rect(const ::rect & rect, color32_t cr)= 0;
 //
 //   virtual bool fill_rect(const ::rect & rect, i32 R, i32 G, i32 B)= 0;
 //
@@ -338,7 +338,7 @@ CLASS_DECL_AURA e_rotate_flip exif_orientation_rotate_flip(int orientation);
 //
 //
 //   virtual bool create_circle(::image * pimage, int diameter)= 0;
-//   virtual bool create_framed_square(::image * pimage, int inner, int outer, COLORREF cr)= 0;
+//   virtual bool create_framed_square(::image * pimage, int inner, int outer, color32_t cr)= 0;
 //
 //
 //   virtual bool invert_rgb(const ::rect & rect)= 0;
@@ -346,13 +346,13 @@ CLASS_DECL_AURA e_rotate_flip exif_orientation_rotate_flip(int orientation);
 //
 //
 //
-//   virtual LONG scan_area()= 0;
+//   virtual ::i32 scan_area()= 0;
 //
 //
 //
-//   inline bool fill_rect_dim(i32 x, i32 y, i32 w, i32 h, COLORREF cr) { return fill_rect(::rect_dim(x, y, w, h), cr); }
+//   inline bool fill_rect_dim(i32 x, i32 y, i32 w, i32 h, color32_t cr) { return fill_rect(::rect_dim(x, y, w, h), cr); }
 //   inline bool fill_rect_dim(i32 x, i32 y, i32 w, i32 h, i32 R, i32 G, i32 B) { return fill_rect(::rect_dim(x, y, w, h), R, G, B); }
-//   inline bool fill_rect_coord(i32 x1, i32 y1, i32 x2, i32 y2, COLORREF cr) { return fill_rect(::rect(x1, y1, x2, y2), cr); }
+//   inline bool fill_rect_coord(i32 x1, i32 y1, i32 x2, i32 y2, color32_t cr) { return fill_rect(::rect(x1, y1, x2, y2), cr); }
 //   inline bool fill_rect_coord(i32 x1, i32 y1, i32 x2, i32 y2, i32 R, i32 G, i32 B) { return fill_rect(::rect(x1, y1, x2, y2), R, G, B); }
 //
 //

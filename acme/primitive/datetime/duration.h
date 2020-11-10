@@ -94,7 +94,7 @@ public:
    inline duration & operator += (const ::datetime::time_span & duration);
    inline duration & operator -= (const ::datetime::time_span & duration);
 
-   inline __time64_t GetTimeSpan() const;
+   inline time_t GetTimeSpan() const;
 
    duration operator - (const duration & duration) const;
    duration operator + (const duration & duration) const;
@@ -239,7 +239,7 @@ inline lock_duration duration::lock_duration() const
 {
 
    if(is_pos_infinity())
-      return INFINITE;
+      return U32_INFINITE_TIMEOUT;
 
    if(get_total_milliseconds() >= 0xffffffff)
       return 0xfffffffe;
@@ -700,7 +700,7 @@ inline days::days(long double d) :
 
 }
 
-inline __time64_t duration::GetTimeSpan() const
+inline time_t duration::GetTimeSpan() const
 {
    return total_seconds();
 }
@@ -823,6 +823,6 @@ inline duration __random(const duration & d1, const duration & d2)
 
 #ifdef WINDOWS
 
-inline u32 __os(const ::duration & duration) { return duration.is_infinite() ? INFINITE : (duration.get_total_milliseconds() > (i64) MAXI32 ? INFINITE : duration.get_total_milliseconds() < 0 ? 0 : (u32)duration.get_total_milliseconds()); }
+inline u32 __os(const ::duration & duration) { return duration.is_infinite() ? U32_INFINITE_TIMEOUT : (duration.get_total_milliseconds() > (i64) MAXI32 ? U32_INFINITE_TIMEOUT : duration.get_total_milliseconds() < 0 ? 0 : (u32)duration.get_total_milliseconds()); }
 
 #endif

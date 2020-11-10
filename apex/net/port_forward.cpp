@@ -73,7 +73,7 @@ namespace net
    // There are five functions that create threads, and each function takes a oswindow as a
    // parameter.  During execution of the thread, each thread will post messages to this oswindow,
    // so as to notify the HWMND of the thread's progress through the needed COM tasks.  The
-   // message is always the same: a UINT named UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION.
+   // message is always the same: a ::u32 named UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION.
    // Encodings of the WPARAM and LPARAM within the message will enable the oswindow to determine
    // what's going on inside the thread.  The five functions are:
    //
@@ -92,7 +92,7 @@ namespace net
 
 #ifdef WINDOWS_DESKTOP
 
-   extern const UINT UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION = ::RegisterWindowMessage(
+   extern const ::u32 UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION = ::RegisterWindowMessage(
 		   _T("UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION-{7C29C80A_5712_40e8_A124_A82E4B2795A7}") );
 
 #endif
@@ -118,7 +118,7 @@ namespace net
    // you would choose your CMainFrame interaction_impl (use the ::__get_main_window() function).  However, you might
    // choose a different interaction_impl, such as your CView-derived interaction_impl for SDI applications
    //
-   // The interaction_impl that you choose must be able to process the message, which is a UINT named
+   // The interaction_impl that you choose must be able to process the message, which is a ::u32 named
    // UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION.  For an MFC application, here are the changes
    // you must make to your ::user::interaction class:
    //
@@ -131,7 +131,7 @@ namespace net
    // 2. In your *.cpp file include the following "extern" statement somewhere at the beginning of
    //    the file.  This statement tells the linker that the value of the message is defined elsewhere:
    //
-   //		extern const UINT UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION;  // defined in PortForwadEngine.cpp
+   //		extern const ::u32 UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION;  // defined in PortForwadEngine.cpp
    //
    // 3. In your .cpp implementation file, add an entry to the message map as follows:
    //

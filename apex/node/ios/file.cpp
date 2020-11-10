@@ -27,7 +27,7 @@ namespace ios
    file::file()
    {
 
-      m_iFile = (UINT) hFileNull;
+      m_iFile = (::u32) hFileNull;
 
    }
 
@@ -41,7 +41,7 @@ namespace ios
 //
 //   }
 //
-//   file::file(::object * pobject, const char * lpszFileName, UINT nOpenFlags) :
+//   file::file(::object * pobject, const char * lpszFileName, ::u32 nOpenFlags) :
 //      ::object(pobject)
 //   {
 //
@@ -55,9 +55,9 @@ namespace ios
    file::~file()
    {
 
-//      if (m_iFile != (UINT)hFileNull && m_bCloseOnDelete)
+//      if (m_iFile != (::u32)hFileNull && m_bCloseOnDelete)
       //       close();
-      if (m_iFile != (UINT)hFileNull)
+      if (m_iFile != (::u32)hFileNull)
       {
        
          close();
@@ -69,7 +69,7 @@ namespace ios
 //   __pointer(::file::file) file::Duplicate() const
 //   {
 //      ASSERT_VALID(this);
-//      ASSERT(m_iFile != (UINT)hFileNull);
+//      ASSERT(m_iFile != (::u32)hFileNull);
 //
 //      i32 iNew = dup(m_iFile);
 //
@@ -77,8 +77,8 @@ namespace ios
 //         return nullptr;
 //
 //      file* pFile = new file(get_context_application(), iNew);
-//      pFile->m_iFile = (UINT)iNew;
-//      ASSERT(pFile->m_iFile != (UINT)hFileNull);
+//      pFile->m_iFile = (::u32)iNew;
+//      ASSERT(pFile->m_iFile != (::u32)hFileNull);
 ////      pFile->m_bCloseOnDelete = m_bCloseOnDelete;
 //      return pFile;
 //   }
@@ -86,7 +86,7 @@ namespace ios
    ::status::result file::open(const ::file::path& path, const efileopen & eopenParam)
    {
 
-      if (m_iFile != (UINT)hFileNull)
+      if (m_iFile != (::u32)hFileNull)
       {
          
          close();
@@ -114,7 +114,7 @@ namespace ios
 
       }
 
-      m_iFile = (UINT)hFileNull;
+      m_iFile = (::u32)hFileNull;
       
       m_strFileName.Empty();
 
@@ -128,7 +128,7 @@ namespace ios
 
       ASSERT((::file::mode_read|::file::mode_write|::file::mode_read_write) == 3);
       
-      DWORD dwFlags =  0;
+      ::u32 dwFlags =  0;
       
       switch (eopen & 3)
       {
@@ -179,7 +179,7 @@ namespace ios
          
       }
 
-      DWORD dwPermission = 0;
+      ::u32 dwPermission = 0;
 
       dwPermission |= S_IRUSR | S_IWUSR | S_IXUSR;
 
@@ -269,7 +269,7 @@ namespace ios
    memsize file::read(void * lpBuf, memsize nCount)
    {
       ASSERT_VALID(this);
-      ASSERT(m_iFile != (UINT)hFileNull);
+      ASSERT(m_iFile != (::u32)hFileNull);
 
       if (nCount == 0)
          return 0;   // avoid Win32 "null-read"
@@ -325,7 +325,7 @@ namespace ios
       
       ASSERT_VALID(this);
       
-      ASSERT(m_iFile != (UINT)hFileNull);
+      ASSERT(m_iFile != (::u32)hFileNull);
 
       if (nCount == 0)
       {
@@ -348,7 +348,7 @@ namespace ios
          if(iWrite == -1)
          {
             
-            ::file::throw_os_error( (LONG)::get_last_error(), m_strFileName);
+            ::file::throw_os_error( (::i32)::get_last_error(), m_strFileName);
             
          }
          
@@ -364,21 +364,21 @@ namespace ios
    filesize file::seek(filesize lOff, ::file::e_seek nFrom)
    {
 
-      if(m_iFile == (UINT)hFileNull)
-         ::file::throw_os_error( (LONG)0);
+      if(m_iFile == (::u32)hFileNull)
+         ::file::throw_os_error( (::i32)0);
 
       ASSERT_VALID(this);
-      ASSERT(m_iFile != (UINT)hFileNull);
+      ASSERT(m_iFile != (::u32)hFileNull);
       ASSERT(nFrom == ::file::seek_begin || nFrom == ::file::seek_end || nFrom == ::file::seek_current);
       ASSERT(::file::seek_begin == SEEK_SET && ::file::seek_end == SEEK_END && ::file::seek_current == SEEK_CUR);
 
-      LONG lLoOffset = lOff & 0xffffffff;
-      //LONG lHiOffset = (lOff >> 32) & 0xffffffff;
+      ::i32 lLoOffset = lOff & 0xffffffff;
+      //::i32 lHiOffset = (lOff >> 32) & 0xffffffff;
 
-      filesize posNew = ::lseek(m_iFile, lLoOffset, (DWORD)nFrom);
+      filesize posNew = ::lseek(m_iFile, lLoOffset, (::u32)nFrom);
       //      posNew |= ((filesize) lHiOffset) << 32;
       if(posNew  == (filesize)-1)
-         ::file::throw_os_error( (LONG)::get_last_error());
+         ::file::throw_os_error( (::i32)::get_last_error());
 
       return posNew;
    }
@@ -386,15 +386,15 @@ namespace ios
    filesize file::get_position() const
    {
       ASSERT_VALID(this);
-      ASSERT(m_iFile != (UINT)hFileNull);
+      ASSERT(m_iFile != (::u32)hFileNull);
 
-      LONG lLoOffset = 0;
-      //      LONG lHiOffset = 0;
+      ::i32 lLoOffset = 0;
+      //      ::i32 lHiOffset = 0;
 
       filesize pos = ::lseek(m_iFile, lLoOffset, SEEK_CUR);
       //    pos |= ((filesize)lHiOffset) << 32;
       if(pos  == (filesize)-1)
-         ::file::throw_os_error( (LONG)::get_last_error());
+         ::file::throw_os_error( (::i32)::get_last_error());
 
       return pos;
    }
@@ -412,25 +412,25 @@ namespace ios
 //
 //      /*ASSERT_VALID(this);
 //
-//       if (m_iFile == (UINT)hFileNull)
+//       if (m_iFile == (::u32)hFileNull)
 //       return;
 //
 //       if (!::FlushFileBuffers((HANDLE)m_iFile))
-//       ::macos::file_exception::throw_os_error( (LONG)::get_last_error());*/
+//       ::macos::file_exception::throw_os_error( (::i32)::get_last_error());*/
 //   }
 
 //   filesize file::get_position() const
 //   {
 //      ASSERT_VALID(this);
-//      ASSERT(m_iFile != (UINT)hFileNull);
+//      ASSERT(m_iFile != (::u32)hFileNull);
 //
-//      LONG lLoOffset = 0;
-//      //      LONG lHiOffset = 0;
+//      ::i32 lLoOffset = 0;
+//      //      ::i32 lHiOffset = 0;
 //
 //      filesize pos = ::lseek(m_iFile, lLoOffset, SEEK_CUR);
 //      //    pos |= ((filesize)lHiOffset) << 32;
 //      if(pos  == (filesize)-1)
-//         ::file::throw_os_error( (LONG)::get_last_error());
+//         ::file::throw_os_error( (::i32)::get_last_error());
 //
 //      return pos;
 //   }
@@ -448,41 +448,41 @@ namespace ios
 //
 //      /*ASSERT_VALID(this);
 //
-         if (m_iFile == (UINT)hFileNull)
+         if (m_iFile == (::u32)hFileNull)
        return;
       
       //::flush(m_iFile);
       
 //
 //       if (!::FlushFileBuffers((HANDLE)m_iFile))
-//       ::file::throw_os_error( (LONG)::get_last_error());*/
+//       ::file::throw_os_error( (::i32)::get_last_error());*/
    }
 
    void file::close()
    {
       ASSERT_VALID(this);
-      ASSERT(m_iFile != (UINT)hFileNull);
+      ASSERT(m_iFile != (::u32)hFileNull);
 
       bool bError = FALSE;
-      if (m_iFile != (UINT)hFileNull)
+      if (m_iFile != (::u32)hFileNull)
          bError = ::close(m_iFile) != 0;
 
-      m_iFile = (UINT) hFileNull;
+      m_iFile = (::u32) hFileNull;
       //      m_bCloseOnDelete = FALSE;
       m_strFileName.Empty();
 
       if (bError)
-         ::file::throw_os_error( (LONG)::get_last_error());
+         ::file::throw_os_error( (::i32)::get_last_error());
    }
 
 //   void file::Abort()
 //   {
 //      ASSERT_VALID(this);
-//      if (m_iFile != (UINT)hFileNull)
+//      if (m_iFile != (::u32)hFileNull)
 //      {
 //         // close but ignore errors
 //         ::close(m_iFile);
-//         m_iFile = (UINT)hFileNull;
+//         m_iFile = (::u32)hFileNull;
 //      }
 //      m_strFileName.Empty();
 //   }
@@ -494,10 +494,10 @@ namespace ios
       
       ASSERT_VALID(this);
       
-      ASSERT(m_iFile != (UINT)hFileNull);
+      ASSERT(m_iFile != (::u32)hFileNull);
 
       /*if (!::LockFile((HANDLE)m_iFile, LODWORD(dwPos), HIDWORD(dwPos), LODWORD(dwCount), HIDWORD(dwCount)))
-       ::macos::file_exception::throw_os_error( (LONG)::get_last_error());*/
+       ::macos::file_exception::throw_os_error( (::i32)::get_last_error());*/
       
    }
 
@@ -507,10 +507,10 @@ namespace ios
       
       ASSERT_VALID(this);
       
-      ASSERT(m_iFile != (UINT)hFileNull);
+      ASSERT(m_iFile != (::u32)hFileNull);
 
       /*      if (!::UnlockFile((HANDLE)m_iFile,  LODWORD(dwPos), HIDWORD(dwPos), LODWORD(dwCount), HIDWORD(dwCount)))
-       ::macos::file_exception::throw_os_error( (LONG)::get_last_error());*/
+       ::macos::file_exception::throw_os_error( (::i32)::get_last_error());*/
       
    }
 
@@ -520,14 +520,14 @@ namespace ios
       
       ASSERT_VALID(this);
       
-      ASSERT(m_iFile != (UINT)hFileNull);
+      ASSERT(m_iFile != (::u32)hFileNull);
 
-      seek((LONG)dwNewLen, (::file::e_seek)::file::seek_begin);
+      seek((::i32)dwNewLen, (::file::e_seek)::file::seek_begin);
 
       if (::ftruncate(m_iFile, dwNewLen) == -1)
       {
          
-         ::file::throw_os_error( (LONG)::get_last_error());
+         ::file::throw_os_error( (::i32)::get_last_error());
          
       }
       
@@ -568,7 +568,7 @@ namespace ios
       
       ::file::file::dump(dumpcontext);
 
-      dumpcontext << "with handle " << (UINT)m_iFile;
+      dumpcontext << "with handle " << (::u32)m_iFile;
       dumpcontext << " and name \"" << m_strFileName << "\"";
       dumpcontext << "\n";
       
@@ -675,13 +675,13 @@ namespace ios
 //      //VERIFY(FindClose(hFind));
 //
 //      // strip attribute of NORMAL bit, our API doesn't have a "normal" bit.
-//      //rStatus.m_attribute = (BYTE) (findFileData.dwFileAttributes & ~FILE_ATTRIBUTE_NORMAL);
+//      //rStatus.m_attribute = (byte) (findFileData.dwFileAttributes & ~FILE_ATTRIBUTE_NORMAL);
 //
 //      rStatus.m_attribute = 0;
 //
-//      // get just the low DWORD of the file size
+//      // get just the low ::u32 of the file size
 //      //ASSERT(findFileData.nFileSizeHigh == 0);
-//      //rStatus.m_size = (LONG)findFileData.nFileSizeLow;
+//      //rStatus.m_size = (::i32)findFileData.nFileSizeLow;
 //
 //      rStatus.m_size = st.st_size;
 //
@@ -752,7 +752,7 @@ CLASS_DECL_APEX void vfxGetModuleShortFileName(HINSTANCE hInst, string& strShort
 }
 
 
-//void CLASS_DECL_APEX vfxThrowFileException(::object * pobject, ::estatus cause, LONG lOsError, const char * lpszFileName /* == nullptr */)
+//void CLASS_DECL_APEX vfxThrowFileException(::object * pobject, ::estatus cause, ::i32 lOsError, const char * lpszFileName /* == nullptr */)
 //{
 //
 //   __throw(::file::exception(cause, lOsError, lpszFileName));
@@ -760,7 +760,7 @@ CLASS_DECL_APEX void vfxGetModuleShortFileName(HINSTANCE hInst, string& strShort
 //}
 //
 //
-//::file::exception * CLASS_DECL_APEX get_FileException(::object * pobject, ::estatus cause, LONG lOsError, const char * lpszFileName /* == nullptr */)
+//::file::exception * CLASS_DECL_APEX get_FileException(::object * pobject, ::estatus cause, ::i32 lOsError, const char * lpszFileName /* == nullptr */)
 //{
 //
 //   return __new(::file::exception(cause, lOsError, lpszFileName));

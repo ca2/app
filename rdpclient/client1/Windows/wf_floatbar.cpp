@@ -70,9 +70,9 @@ struct _Button {
 struct _FloatBar {
 	HWND parent;
 	HWND hwnd;
-	RECT rect;
-	LONG width;
-	LONG height;
+	RECT32 rect;
+	::i32 width;
+	::i32 height;
 	wfContext* wfc;
 	Button* buttons[BTN_MAX];
 	BOOL shown;
@@ -210,7 +210,7 @@ static int floatbar_animation(FloatBar* floatbar, BOOL show)
 	return 0;
 }
 
-LRESULT CALLBACK floatbar_proc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam)
+LRESULT CALLBACK floatbar_proc(HWND hWnd, ::u32 Msg, WPARAM wParam, LPARAM lParam)
 {
 	static int dragging = FALSE;
 	static int lbtn_dwn = FALSE;

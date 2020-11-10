@@ -54,7 +54,7 @@ public:
    bool WriteData(const T& data)
    {
       return (m_hProcess && m_lpData) ? WriteProcessMemory(m_hProcess, m_lpData,
-         (LPCVOID)&data, sizeof T, nullptr) : FALSE;
+         (const void *)&data, sizeof T, nullptr) : FALSE;
    }
 
    //ReadData reads back data from memory in the foreign process
@@ -65,7 +65,7 @@ public:
 
    //Templated ReadData that's used to read a specific data type from
    //a memory address located in the foreign process
-   template<typename TSUBTYPE> bool ReadData(TSUBTYPE* data, LPCVOID pData)
+   template<typename TSUBTYPE> bool ReadData(TSUBTYPE* data, const void * pData)
 
    {
       return m_hProcess ? ReadProcessMemory(m_hProcess, pData, (LPVOID)data, sizeof TSUBTYPE, nullptr) != FALSE : false;

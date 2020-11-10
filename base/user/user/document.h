@@ -235,7 +235,7 @@ namespace user
 
       virtual __pointer(::user::impact) get_typed_view_with_id(::type info,id id);
 
-      virtual void show_all_frames(UINT nCmdShow);
+      virtual void show_all_frames(::u32 nCmdShow);
 
 
       //class update

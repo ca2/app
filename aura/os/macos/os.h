@@ -12,11 +12,11 @@
 #define _unlink   unlink
 
 
-#define WAIT_FAILED              ((DWORD   ) 0xFFFFFFFFL)
-#define WAIT_OBJECT_0            ((DWORD   ) STATUS_WAIT_0 + 0)
+#define WAIT_FAILED              ((::u32   ) 0xFFFFFFFFL)
+#define WAIT_OBJECT_0            ((::u32   ) STATUS_WAIT_0 + 0)
 
-#define WAIT_ABANDONED           ((DWORD   ) STATUS_ABANDONED_WAIT_0 + 0)
-#define WAIT_ABANDONED_0         ((DWORD   ) STATUS_ABANDONED_WAIT_0 + 0)
+#define WAIT_ABANDONED           ((::u32   ) STATUS_ABANDONED_WAIT_0 + 0)
+#define WAIT_ABANDONED_0         ((::u32   ) STATUS_ABANDONED_WAIT_0 + 0)
 
 #define WAIT_IO_COMPLETION                   STATUS_USER_APC
 
@@ -33,15 +33,15 @@ oswindow get_active_window();
 oswindow set_active_window(oswindow window);
 
 
-int GetMainScreenRect(RECT * prect);
+int GetMainScreenRect(RECT32 * prect);
 
 
-int GetScreenRect(RECT * prect, int iMonitor);
+int GetScreenRect(RECT32 * prect, int iMonitor);
 
 
 int GetScreenCount();
 
-int GetWkspaceRect(RECT * prect, int iMonitor);
+int GetWkspaceRect(RECT32 * prect, int iMonitor);
 
 
 int GetWkspaceCount();

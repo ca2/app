@@ -1,7 +1,7 @@
 #pragma once
 
 
-typedef ::u32 uint32;
+typedef ::u32 ::u32;
 
 
 

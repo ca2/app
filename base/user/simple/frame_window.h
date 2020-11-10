@@ -74,7 +74,7 @@ public:
    virtual bool on_set_parent(::user::interaction * puiParent) override;
    virtual void on_after_set_parent() override;
 
-   virtual bool get_client_rect(RECT * prect);
+   virtual bool get_client_rect(RECT32 * prect);
 
 
    virtual bool is_application_main_window();
@@ -82,11 +82,11 @@ public:
    bool GetCustomFrame();
    void SetCustomFrame(bool bCustom);
    void SetBorderRect(const ::rect & rect) override;
-   virtual void GetBorderRect(RECT * prect) override;
+   virtual void GetBorderRect(RECT32 * prect) override;
 
    virtual ::color get_border_main_body_color() override;
 
-   void ViewOnActivateFrame(__pointer(::user::impact) pview, UINT user, __pointer(::user::interaction) pframe);
+   void ViewOnActivateFrame(__pointer(::user::impact) pview, ::u32 user, __pointer(::user::interaction) pframe);
 
    virtual void ToggleFullScreen();
    virtual void WfiOnFullScreen() override;
@@ -201,8 +201,8 @@ public:
    virtual void dump(dump_context & dumpcontext) const override;
 
 
-   void OnHScroll(UINT nSBCode, UINT nPos, ::user::scroll_bar* pScrollBar);
-   void OnVScroll(UINT nSBCode, UINT nPos, ::user::scroll_bar* pScrollBar);
+   void OnHScroll(::u32 nSBCode, ::u32 nPos, ::user::scroll_bar* pScrollBar);
+   void OnVScroll(::u32 nSBCode, ::u32 nPos, ::user::scroll_bar* pScrollBar);
    virtual void on_simple_command(::message::simple_command * psimplecommand) override;
 
 #ifdef WINDOWS_DESKTOP
@@ -252,9 +252,9 @@ public:
 
    virtual void defer_create_notification_icon();
 
-   virtual void OnNotifyIconContextMenu(UINT uiNotifyIcon) override;
-   virtual void OnNotifyIconLButtonDblClk(UINT uiNotifyIcon) override;
-   virtual void OnNotifyIconLButtonDown(UINT uiNotifyIcon) override;
+   virtual void OnNotifyIconContextMenu(::u32 uNotifyIcon) override;
+   virtual void OnNotifyIconLButtonDblClk(::u32 uNotifyIcon) override;
+   virtual void OnNotifyIconLButtonDown(::u32 uNotifyIcon) override;
 
    virtual void notification_area_action(const char * pszId);
 

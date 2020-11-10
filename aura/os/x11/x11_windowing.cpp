@@ -212,7 +212,7 @@ public:
 //
 //   GC gc = XCreateGC(pdisplay, window, 0, 0);
 //
-//   COLORREF cr = ARGB(a, r * a / 255, g * a / 255, b * a / 255);
+//   color32_t cr = ARGB(a, r * a / 255, g * a / 255, b * a / 255);
 //
 //   XSetForeground (pdisplay, gc, cr);
 //
@@ -308,7 +308,7 @@ public:
 //
 //   GC gc = create_gc();
 //
-//   COLORREF crBk = get_simple_ui_color(::user::element_background);
+//   color32_t crBk = get_simple_ui_color(::user::element_background);
 //
 //   crBk = argb_swap_rb(crBk);
 //
@@ -320,7 +320,7 @@ public:
 //
 //   auto gcontext = XGContextFromGC(gc);
 //
-//   COLORREF crText = get_simple_ui_color(::user::element_text);
+//   color32_t crText = get_simple_ui_color(::user::element_text);
 //
 //   crText = argb_swap_rb(crText);
 //

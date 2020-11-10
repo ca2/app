@@ -148,7 +148,7 @@ namespace plugin
       if(!m_pplugin->is_ok())
          return false;
 
-      return send_message((UINT)message_check, 0, (LPARAM) echeck) != 0;
+      return send_message((::u32)message_check, 0, (LPARAM) echeck) != 0;
 
    }
 
@@ -262,7 +262,7 @@ namespace plugin
 //   }
 
 
-   bool host_interaction::RedrawWindow(const ::rect & rectUpdate,::draw2d::region * prgnUpdate, UINT flags)
+   bool host_interaction::RedrawWindow(const ::rect & rectUpdate,::draw2d::region * prgnUpdate, ::u32 flags)
    {
 
       UNREFERENCED_PARAMETER(rectUpdate);

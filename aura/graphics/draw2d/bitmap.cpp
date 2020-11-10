@@ -41,7 +41,7 @@ namespace draw2d
    }
 
 
-   bool bitmap::CreateBitmap(::draw2d::graphics* pgraphics, const ::size & size,UINT nPlanes,UINT nBitcount,const void * pBits,i32 stride)
+   bool bitmap::CreateBitmap(::draw2d::graphics* pgraphics, const ::size & size,::u32 nPlanes,::u32 nBitcount,const void * pBits,i32 stride)
    {
 
       UNREFERENCED_PARAMETER(size);
@@ -65,7 +65,7 @@ namespace draw2d
    }
 
 
-//   bool bitmap::CreateDIBSection(::draw2d::graphics * pgraphics,const BITMAPINFO * pbmi,UINT usage,void **ppvBits,int * stride,HANDLE hSection,u32 offset)
+//   bool bitmap::CreateDIBSection(::draw2d::graphics * pgraphics,const BITMAPINFO * pbmi,::u32 usage,void **ppvBits,int * stride,HANDLE hSection,u32 offset)
 //   {
 
 //      UNREFERENCED_PARAMETER(pgraphics);
@@ -80,7 +80,7 @@ namespace draw2d
 //      return false;
 //   }
 //
-//   bool bitmap::HostDIBSection(::draw2d::graphics * pgraphics, const BITMAPINFO * pbmi, UINT usage, void * ppvBits, int stride, HANDLE hSection, u32 offset)
+//   bool bitmap::HostDIBSection(::draw2d::graphics * pgraphics, const BITMAPINFO * pbmi, ::u32 usage, void * ppvBits, int stride, HANDLE hSection, u32 offset)
 
 //   {
 //      UNREFERENCED_PARAMETER(pgraphics);
@@ -96,7 +96,7 @@ namespace draw2d
 //      return false;
 //   }
 //
-//   bool bitmap::CreateDIBitmap(::draw2d::graphics * pgraphics,const BITMAPINFOHEADER *pbmih,u32 flInit,const void *pjBits,const BITMAPINFO *pbmi,UINT iUsage)
+//   bool bitmap::CreateDIBitmap(::draw2d::graphics * pgraphics,const BITMAPINFOHEADER *pbmih,u32 flInit,const void *pjBits,const BITMAPINFO *pbmi,::u32 iUsage)
 //   {
 //      UNREFERENCED_PARAMETER(pgraphics);
 //      UNREFERENCED_PARAMETER(pbmih);
@@ -138,7 +138,7 @@ namespace draw2d
    }
 
 
-   bool bitmap::CreateDIBitmap(::draw2d::graphics * pgraphics, int cx, int cy,u32 flInit,const void *pjBits, UINT iUsage)
+   bool bitmap::CreateDIBitmap(::draw2d::graphics * pgraphics, int cx, int cy,u32 flInit,const void *pjBits, ::u32 iUsage)
    {
       UNREFERENCED_PARAMETER(pgraphics);
       UNREFERENCED_PARAMETER(cx);
@@ -274,17 +274,17 @@ void vertical_swap(pixmap * ppixmap)
    if (iStride <= 0)
    {
 
-      iStride = ppixmap->width() * sizeof(COLORREF);
+      iStride = ppixmap->width() * sizeof(color32_t);
 
    }
 
-   int w = iStride / sizeof(COLORREF);
+   int w = iStride / sizeof(color32_t);
 
    int h = ppixmap->height();
 
-   int wBytes = ppixmap->width() * sizeof(COLORREF);
+   int wBytes = ppixmap->width() * sizeof(color32_t);
 
-   COLORREF * pdata = ppixmap->colorref();
+   color32_t * pdata = ppixmap->colorref();
 
    u8 * pline1 = (u8 *) pdata;
 
@@ -324,7 +324,7 @@ void vertical_swap(pixmap * ppixmap)
 }
 
 
-void vertical_swap_copy_colorref(COLORREF * pcolorrefDst, int cxParam,int cyParam,int iStrideDst,const COLORREF * pcolorrefSrc,int iStrideSrc)
+void vertical_swap_copy_colorref(color32_t * pcolorrefDst, int cxParam,int cyParam,int iStrideDst,const color32_t * pcolorrefSrc,int iStrideSrc)
 {
 
    try
@@ -333,18 +333,18 @@ void vertical_swap_copy_colorref(COLORREF * pcolorrefDst, int cxParam,int cyPara
    if(iStrideSrc <= 0)
    {
 
-      iStrideSrc = cxParam * sizeof(COLORREF);
+      iStrideSrc = cxParam * sizeof(color32_t);
 
    }
 
 
-   int wsrc = iStrideSrc / sizeof(COLORREF);
-   int wdst = iStrideDst / sizeof(COLORREF);
-   int cw = cxParam * sizeof(COLORREF);
+   int wsrc = iStrideSrc / sizeof(color32_t);
+   int wdst = iStrideDst / sizeof(color32_t);
+   int cw = cxParam * sizeof(color32_t);
 
 
    auto * psrc = pcolorrefSrc;
-   auto * pdst = (COLORREF * )((u8 *) (pcolorrefDst) + iStrideDst * (cyParam - 1));
+   auto * pdst = (color32_t * )((u8 *) (pcolorrefDst) + iStrideDst * (cyParam - 1));
 
    for(int i = 0; i < cyParam; i++)
    {
@@ -369,7 +369,7 @@ void vertical_swap_copy_colorref(COLORREF * pcolorrefDst, int cxParam,int cyPara
 }
 
 
-void vertical_swap_copy_colorref_swap_red_blue(COLORREF * pcolorrefDst, int cxParam,int cyParam,int iStrideDst, const COLORREF * pcolorrefSrc,int iStrideSrc)
+void vertical_swap_copy_colorref_swap_red_blue(color32_t * pcolorrefDst, int cxParam,int cyParam,int iStrideDst, const color32_t * pcolorrefSrc,int iStrideSrc)
 {
 
    try
@@ -379,16 +379,16 @@ void vertical_swap_copy_colorref_swap_red_blue(COLORREF * pcolorrefDst, int cxPa
    if(iStrideSrc <= 0)
    {
 
-      iStrideSrc = cxParam * sizeof(COLORREF);
+      iStrideSrc = cxParam * sizeof(color32_t);
 
    }
 
-   int wsrc = iStrideSrc / sizeof(COLORREF);
-   int wdst = iStrideDst / sizeof(COLORREF);
-   int cw = cxParam * sizeof(COLORREF);
+   int wsrc = iStrideSrc / sizeof(color32_t);
+   int wdst = iStrideDst / sizeof(color32_t);
+   int cw = cxParam * sizeof(color32_t);
 
    auto * psrc = pcolorrefSrc;
-   auto * pdst = (COLORREF * )((u8 *) (pcolorrefDst) + iStrideDst * (cyParam - 1));
+   auto * pdst = (color32_t * )((u8 *) (pcolorrefDst) + iStrideDst * (cyParam - 1));
 
    for(int i = 0; i < cyParam; i++)
    {
@@ -405,9 +405,9 @@ void vertical_swap_copy_colorref_swap_red_blue(COLORREF * pcolorrefDst, int cxPa
          pd[2] = ps[0];
          pd[3] = ps[3];
 
-         pd += sizeof(COLORREF);
+         pd += sizeof(color32_t);
 
-         ps += sizeof(COLORREF);
+         ps += sizeof(color32_t);
 
       }
 
@@ -428,7 +428,7 @@ void vertical_swap_copy_colorref_swap_red_blue(COLORREF * pcolorrefDst, int cxPa
 }
 
 
-void copy_colorref(COLORREF * pcolorrefDst, int cxParam, int cyParam, int iStrideDst, const COLORREF * pcolorrefSrc, int iStrideSrc)
+void copy_colorref(color32_t * pcolorrefDst, int cxParam, int cyParam, int iStrideDst, const color32_t * pcolorrefSrc, int iStrideSrc)
 {
 
    try
@@ -452,7 +452,7 @@ void copy_colorref(COLORREF * pcolorrefDst, int cxParam, int cyParam, int iStrid
       if (iStrideSrc <= 0)
       {
 
-         iStrideSrc = cxParam * sizeof(COLORREF);
+         iStrideSrc = cxParam * sizeof(color32_t);
 
       }
 
@@ -465,9 +465,9 @@ void copy_colorref(COLORREF * pcolorrefDst, int cxParam, int cyParam, int iStrid
       else
       {
 
-         int wsrc = iStrideSrc / sizeof(COLORREF);
-         int wdst = iStrideDst / sizeof(COLORREF);
-         int cw = cxParam * sizeof(COLORREF);
+         int wsrc = iStrideSrc / sizeof(color32_t);
+         int wdst = iStrideDst / sizeof(color32_t);
+         int cw = cxParam * sizeof(color32_t);
 
 
          auto psrc = pcolorrefSrc;
@@ -496,7 +496,7 @@ void copy_colorref(COLORREF * pcolorrefDst, int cxParam, int cyParam, int iStrid
 }
 
 
-void copy_colorref_swap_red_blue(COLORREF * pcolorrefDst, int cxParam,int cyParam,int iStrideDst, const COLORREF * pcolorrefSrc,int iStrideSrc)
+void copy_colorref_swap_red_blue(color32_t * pcolorrefDst, int cxParam,int cyParam,int iStrideDst, const color32_t * pcolorrefSrc,int iStrideSrc)
 {
 
    try
@@ -519,13 +519,13 @@ void copy_colorref_swap_red_blue(COLORREF * pcolorrefDst, int cxParam,int cyPara
    if(iStrideSrc <= 0)
    {
 
-      iStrideSrc = cxParam * sizeof(COLORREF);
+      iStrideSrc = cxParam * sizeof(color32_t);
 
    }
 
-   int wsrc = iStrideSrc / sizeof(COLORREF);
-   int wdst = iStrideDst / sizeof(COLORREF);
-   int cw = cxParam * sizeof(COLORREF);
+   int wsrc = iStrideSrc / sizeof(color32_t);
+   int wdst = iStrideDst / sizeof(color32_t);
+   int cw = cxParam * sizeof(color32_t);
 
 
    auto * psrc = pcolorrefSrc;
@@ -547,9 +547,9 @@ void copy_colorref_swap_red_blue(COLORREF * pcolorrefDst, int cxParam,int cyPara
          pd[2] = ps[0];
          pd[3] = ps[3];
 
-         pd += sizeof(COLORREF);
+         pd += sizeof(color32_t);
 
-         ps += sizeof(COLORREF);
+         ps += sizeof(color32_t);
 
       }
 
@@ -571,7 +571,7 @@ void copy_colorref_swap_red_blue(COLORREF * pcolorrefDst, int cxParam,int cyPara
 }
 
 
-void _001ProperCopyColorref(COLORREF * pcolorrefDst, int cxParam,int cyParam,int iStrideDst,const COLORREF * pcolorrefSrc,int iStrideSrc)
+void _001ProperCopyColorref(color32_t * pcolorrefDst, int cxParam,int cyParam,int iStrideDst,const color32_t * pcolorrefSrc,int iStrideSrc)
 {
 
 #ifdef WINDOWS_DESKTOP
@@ -588,7 +588,7 @@ void _001ProperCopyColorref(COLORREF * pcolorrefDst, int cxParam,int cyParam,int
 }
 
 
-void copy_colorref(COLORREF * pcolorrefDst, int xParam, int yParam, int cxParam,int cyParam, int iStrideDst, const COLORREF * pcolorrefSrc,int iStrideSrc)
+void copy_colorref(color32_t * pcolorrefDst, int xParam, int yParam, int cxParam,int cyParam, int iStrideDst, const color32_t * pcolorrefSrc,int iStrideSrc)
 {
 
    try
@@ -597,17 +597,17 @@ void copy_colorref(COLORREF * pcolorrefDst, int xParam, int yParam, int cxParam,
    if(iStrideSrc <= 0)
    {
 
-      iStrideSrc = cxParam * sizeof(COLORREF);
+      iStrideSrc = cxParam * sizeof(color32_t);
 
    }
 
-   int wsrc = iStrideSrc / sizeof(COLORREF);
-   int wdst = iStrideDst / sizeof(COLORREF);
-   int cw = cxParam * sizeof(COLORREF);
+   int wsrc = iStrideSrc / sizeof(color32_t);
+   int wdst = iStrideDst / sizeof(color32_t);
+   int cw = cxParam * sizeof(color32_t);
 
 
-   auto psrc = &pcolorrefSrc[xParam + yParam * iStrideSrc / sizeof(COLORREF)];
-   auto pdst = &pcolorrefDst[xParam + yParam * iStrideDst / sizeof(COLORREF)];
+   auto psrc = &pcolorrefSrc[xParam + yParam * iStrideSrc / sizeof(color32_t)];
+   auto pdst = &pcolorrefDst[xParam + yParam * iStrideDst / sizeof(color32_t)];
 
    for(int i = 0; i < cyParam; i++)
    {

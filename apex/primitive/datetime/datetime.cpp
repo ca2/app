@@ -569,7 +569,7 @@ namespace datetime
 //
 //
 ////extern "C"
-//CLASS_DECL_APEX DWORD get_fast_tick_count()
+//CLASS_DECL_APEX ::u32 get_fast_tick_count()
 //{
 //
 //#ifdef WINDOWS
@@ -587,7 +587,7 @@ namespace datetime
 //
 //   }
 //
-//   return (DWORD)(tv.tv_sec * 1000 + tv.tv_usec / 1000);
+//   return (::u32)(tv.tv_sec * 1000 + tv.tv_usec / 1000);
 //
 //#endif
 //

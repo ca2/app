@@ -408,7 +408,7 @@ namespace windows
             //else
             //{
 
-            POINT pointSrc = { 0 };
+            POINT32 pointSrc = { 0 };
 
             BLENDFUNCTION blendPixelFunction = { AC_SRC_OVER, 0, 255, AC_SRC_ALPHA };
 
@@ -583,7 +583,7 @@ namespace windows
 
                }
 
-               RECT rectProbe;
+               RECT32 rectProbe;
 
                if (::GetWindowRect(m_pimpl->m_oswindow, &rectProbe))
                {
@@ -657,11 +657,11 @@ namespace windows
             //
             //               }
 
-                           //RECT r3;
+                           //RECT32 r3;
 
                            //GetWindowRect(m_oswindow, &r3);
 
-                           //RECT r4;
+                           //RECT32 r4;
 
                            //GetClientRect(m_oswindow, &r4);
 

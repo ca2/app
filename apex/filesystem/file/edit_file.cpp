@@ -513,14 +513,14 @@ namespace file
 
       u8 * buf = (u8 *)pdata;
 
-      memsize uiRead = 0;
+      memsize uRead = 0;
 
       memsize uiReadCount = 0;
 
       if(m_position >= m_size)
       {
 
-         return uiRead;
+         return uRead;
 
       }
 
@@ -636,18 +636,18 @@ namespace file
 
          }
 
-         buf[uiRead] = b;
+         buf[uRead] = b;
 
          nCount--;
 
-         uiRead++;
+         uRead++;
 
          m_position++;
 
       }
       while(nCount > 0 && m_position < m_size);
 
-      return uiRead;
+      return uRead;
 
    }
 
@@ -889,12 +889,12 @@ namespace file
 
       char buf[4096];
       
-      memsize uiRead;
+      memsize uRead;
       
-      while((uiRead = read(buf, sizeof(buf))) > 0)
+      while((uRead = read(buf, sizeof(buf))) > 0)
       {
          
-         pfile->write(buf, uiRead);
+         pfile->write(buf, uRead);
          
       }
       
@@ -910,12 +910,12 @@ namespace file
       
       string str;
       
-      memsize uiRead;
+      memsize uRead;
       
-      while((uiRead = read(buf,sizeof(buf))) > 0)
+      while((uRead = read(buf,sizeof(buf))) > 0)
       {
          
-         buf[uiRead] = '\0';
+         buf[uRead] = '\0';
          
          str = buf;
          

@@ -255,7 +255,7 @@ namespace file
    bool file::full_read(void * pdata, memsize nCount)
    {
 
-      memsize uiRead;
+      memsize uRead;
       memsize uiPos = 0;
       u8 * buf = (u8 *) pdata;
 
@@ -263,17 +263,17 @@ namespace file
       while(nCount > 0)
       {
 
-         uiRead = read(&buf[uiPos], nCount);
+         uRead = read(&buf[uiPos], nCount);
 
-         if(uiRead <= 0)
+         if(uRead <= 0)
          {
 
             return false;
 
          }
 
-         nCount   -= uiRead;
-         uiPos    += uiRead;
+         nCount   -= uRead;
+         uiPos    += uRead;
 
       }
 
@@ -863,15 +863,15 @@ namespace file
       memsize uiBufMin = uiBufMax / 8;
       memsize uiBufSize = uiBufMax;
       memsize uiBufInc = uiBufSize;
-      memsize uiRead;
+      memsize uRead;
       memsize uiSize = pfileOut->get_internal_data_size();
 
       while(pfileOut->increase_internal_data_size(uiBufInc) && pfileOut->get_internal_data() != nullptr)
       {
          __memmov(((u8 *) pfileOut->get_internal_data()) + pfileOut->get_position() + uiBufInc, ((u8 *) pfileOut->get_internal_data()) + pfileOut->get_position(), uiBufInc);
-         uiRead = read(((u8 *) pfileOut->get_internal_data()) + pfileOut->get_position(), uiBufSize);
-         pfileOut->seek(uiRead, seek_current);
-         uiBufSize -= uiRead;
+         uRead = read(((u8 *) pfileOut->get_internal_data()) + pfileOut->get_position(), uiBufSize);
+         pfileOut->seek(uRead, seek_current);
+         uiBufSize -= uRead;
          if(uiBufSize < uiBufMin)
          {
             uiBufSize   = uiBufMax;
@@ -893,13 +893,13 @@ namespace file
       {
          while(true)
          {
-            uiRead = read(buf, buf.get_size());
-            pfileOut->write(buf, uiRead);
-            if(uiRead <= 0)
+            uRead = read(buf, buf.get_size());
+            pfileOut->write(buf, uRead);
+            if(uRead <= 0)
             {
                return;
             }
-            uiSize += uiRead;
+            uiSize += uRead;
          }
       }
       catch(...)
@@ -1036,7 +1036,7 @@ namespace file
       }
 
 
-      memsize uiRead;
+      memsize uRead;
       memsize uiSize = 0;
       uiBufSize = max(32 * 1024, uiBufSize);
 
@@ -1051,13 +1051,13 @@ namespace file
       {
          while(true)
          {
-            uiRead = pfileIn->read(buf.get_data(), buf.get_size());
-            if(uiRead <= 0)
+            uRead = pfileIn->read(buf.get_data(), buf.get_size());
+            if(uRead <= 0)
             {
                break;
             }
-            write(buf.get_data(), uiRead);
-            uiSize += uiRead;
+            write(buf.get_data(), uRead);
+            uiSize += uRead;
          }
       }
       catch(...)
@@ -1119,9 +1119,9 @@ namespace file
       ::exception::throw_interface_only();
    }
 
-   void file::write (u16 ui)
+   void file::write (u16 u)
    {
-      UNREFERENCED_PARAMETER(ui);
+      UNREFERENCED_PARAMETER(u);
       ::exception::throw_interface_only();
    }
 
@@ -1143,9 +1143,9 @@ namespace file
       ::exception::throw_interface_only();
    }
 
-   void file::write (u32 ui)
+   void file::write (u32 u)
    {
-      UNREFERENCED_PARAMETER(ui);
+      UNREFERENCED_PARAMETER(u);
       ::exception::throw_interface_only();
    }
 
@@ -1155,9 +1155,9 @@ namespace file
       ::exception::throw_interface_only();
    }
 
-   void file::write (u64 ui)
+   void file::write (u64 u)
    {
-      UNREFERENCED_PARAMETER(ui);
+      UNREFERENCED_PARAMETER(u);
       ::exception::throw_interface_only();
    }
 

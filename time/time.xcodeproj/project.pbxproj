@@ -35,12 +35,12 @@
 		9A237A7320E0285C00FB91CA /* datetime_scanner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A237A5A20E0285C00FB91CA /* datetime_scanner.cpp */; };
 		9A237A7420E0285C00FB91CA /* datetime_calendar_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A237A5C20E0285C00FB91CA /* datetime_calendar_interface.h */; };
 		9A237A7520E0285C00FB91CA /* datetime_clock.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A237A5D20E0285C00FB91CA /* datetime_clock.h */; };
-		9A237A7620E0285C00FB91CA /* datetime_windows_file_time.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A237A5E20E0285C00FB91CA /* datetime_windows_file_time.cpp */; };
+		9A237A7620E0285C00FB91CA /* datetime_windows_filetime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A237A5E20E0285C00FB91CA /* datetime_windows_filetime.cpp */; };
 		9A237A7720E0285C00FB91CA /* datetime_clock_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A237A5F20E0285C00FB91CA /* datetime_clock_interface.cpp */; };
 		9A237A7820E0285C00FB91CA /* datetime.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A237A6020E0285C00FB91CA /* datetime.h */; };
 		9A237A7920E0285C00FB91CA /* datetime_clock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A237A6120E0285C00FB91CA /* datetime_clock.cpp */; };
 		9A237A7A20E0285C00FB91CA /* datetime_float_time.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A237A6220E0285C00FB91CA /* datetime_float_time.h */; };
-		9A237A7B20E0285C00FB91CA /* datetime_windows_file_time.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A237A6320E0285C00FB91CA /* datetime_windows_file_time.h */; };
+		9A237A7B20E0285C00FB91CA /* datetime_windows_filetime.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A237A6320E0285C00FB91CA /* datetime_windows_filetime.h */; };
 		9A237A7C20E0285C00FB91CA /* datetime_calendar.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A237A6420E0285C00FB91CA /* datetime_calendar.h */; };
 		9A237A7D20E0285C00FB91CA /* datetime_calendar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A237A6520E0285C00FB91CA /* datetime_calendar.cpp */; };
 		9A237A7E20E0285C00FB91CA /* datetime_calendar_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A237A6620E0285C00FB91CA /* datetime_calendar_interface.cpp */; };
@@ -133,12 +133,12 @@
 		9A237A5A20E0285C00FB91CA /* datetime_scanner.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = datetime_scanner.cpp; sourceTree = "<group>"; };
 		9A237A5C20E0285C00FB91CA /* datetime_calendar_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = datetime_calendar_interface.h; sourceTree = "<group>"; };
 		9A237A5D20E0285C00FB91CA /* datetime_clock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = datetime_clock.h; sourceTree = "<group>"; };
-		9A237A5E20E0285C00FB91CA /* datetime_windows_file_time.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = datetime_windows_file_time.cpp; sourceTree = "<group>"; };
+		9A237A5E20E0285C00FB91CA /* datetime_windows_filetime.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = datetime_windows_filetime.cpp; sourceTree = "<group>"; };
 		9A237A5F20E0285C00FB91CA /* datetime_clock_interface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = datetime_clock_interface.cpp; sourceTree = "<group>"; };
 		9A237A6020E0285C00FB91CA /* datetime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = datetime.h; sourceTree = "<group>"; };
 		9A237A6120E0285C00FB91CA /* datetime_clock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = datetime_clock.cpp; sourceTree = "<group>"; };
 		9A237A6220E0285C00FB91CA /* datetime_float_time.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = datetime_float_time.h; sourceTree = "<group>"; };
-		9A237A6320E0285C00FB91CA /* datetime_windows_file_time.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = datetime_windows_file_time.h; sourceTree = "<group>"; };
+		9A237A6320E0285C00FB91CA /* datetime_windows_filetime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = datetime_windows_filetime.h; sourceTree = "<group>"; };
 		9A237A6420E0285C00FB91CA /* datetime_calendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = datetime_calendar.h; sourceTree = "<group>"; };
 		9A237A6520E0285C00FB91CA /* datetime_calendar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = datetime_calendar.cpp; sourceTree = "<group>"; };
 		9A237A6620E0285C00FB91CA /* datetime_calendar_interface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = datetime_calendar_interface.cpp; sourceTree = "<group>"; };
@@ -269,12 +269,12 @@
 			children = (
 				9A237A5C20E0285C00FB91CA /* datetime_calendar_interface.h */,
 				9A237A5D20E0285C00FB91CA /* datetime_clock.h */,
-				9A237A5E20E0285C00FB91CA /* datetime_windows_file_time.cpp */,
+				9A237A5E20E0285C00FB91CA /* datetime_windows_filetime.cpp */,
 				9A237A5F20E0285C00FB91CA /* datetime_clock_interface.cpp */,
 				9A237A6020E0285C00FB91CA /* datetime.h */,
 				9A237A6120E0285C00FB91CA /* datetime_clock.cpp */,
 				9A237A6220E0285C00FB91CA /* datetime_float_time.h */,
-				9A237A6320E0285C00FB91CA /* datetime_windows_file_time.h */,
+				9A237A6320E0285C00FB91CA /* datetime_windows_filetime.h */,
 				9A237A6420E0285C00FB91CA /* datetime_calendar.h */,
 				9A237A6520E0285C00FB91CA /* datetime_calendar.cpp */,
 				9A237A6620E0285C00FB91CA /* datetime_calendar_interface.cpp */,
@@ -342,7 +342,7 @@
 				9A237A4920E0284C00FB91CA /* visual_clock.h in Headers */,
 				9A237A4720E0284C00FB91CA /* visual_calendar.h in Headers */,
 				9A237A7420E0285C00FB91CA /* datetime_calendar_interface.h in Headers */,
-				9A237A7B20E0285C00FB91CA /* datetime_windows_file_time.h in Headers */,
+				9A237A7B20E0285C00FB91CA /* datetime_windows_filetime.h in Headers */,
 				9A237A7120E0285C00FB91CA /* datetime_parser_exception.h in Headers */,
 				9A237A6C20E0285C00FB91CA /* datetime_token.h in Headers */,
 				9A237A7020E0285C00FB91CA /* datetime_scanner.h in Headers */,
@@ -512,7 +512,7 @@
 				9A237A4620E0284C00FB91CA /* visual_clock.cpp in Sources */,
 				9A237A6920E0285C00FB91CA /* datetime_parser.cpp in Sources */,
 				9A237A7D20E0285C00FB91CA /* datetime_calendar.cpp in Sources */,
-				9A237A7620E0285C00FB91CA /* datetime_windows_file_time.cpp in Sources */,
+				9A237A7620E0285C00FB91CA /* datetime_windows_filetime.cpp in Sources */,
 				9A237A6A20E0285C00FB91CA /* datetime_element.cpp in Sources */,
 				9A237A4820E0284C00FB91CA /* visual_calendar.cpp in Sources */,
 				9A237A7220E0285C00FB91CA /* datetime_token.cpp in Sources */,

@@ -89,7 +89,7 @@
 //
 //
 //
-//int get_arbitrary_length(u64 ui);
+//int get_arbitrary_length(u64 u);
 //
 //
 //
@@ -157,10 +157,10 @@
 ////}
 ////
 ////
-////void stream::write(u16 ui)
+////void stream::write(u16 u)
 ////{
 ////
-////   oblt(ui);
+////   oblt(u);
 ////
 ////}
 ////
@@ -187,10 +187,10 @@
 ////}
 ////
 ////
-////void stream::write(u32 ui)
+////void stream::write(u32 u)
 ////{
 ////
-////   oblt(ui);
+////   oblt(u);
 ////
 ////}
 ////
@@ -203,10 +203,10 @@
 ////}
 ////
 ////
-////void stream::write(u64 ui)
+////void stream::write(u64 u)
 ////{
 ////
-////   oblt(ui);
+////   oblt(u);
 ////
 ////}
 ////
@@ -328,7 +328,7 @@
 //}
 //
 //
-//int get_arbitrary_length(u64 ui);
+//int get_arbitrary_length(u64 u);
 //
 //
 //bool stream::read(char & ch)
@@ -363,9 +363,9 @@
 //}
 //
 //
-//void stream::read(u16 & ui)
+//void stream::read(u16 & u)
 //{
-//   iblt(ui);
+//   iblt(u);
 //
 //}
 //
@@ -399,10 +399,10 @@
 //}
 //
 //
-//void stream::read(u32 & ui)
+//void stream::read(u32 & u)
 //{
 //
-//   iblt(ui);
+//   iblt(u);
 //
 //}
 //
@@ -415,10 +415,10 @@
 //}
 //
 //
-//void stream::read(u64 & ui)
+//void stream::read(u64 & u)
 //{
 //
-//   iblt(ui);
+//   iblt(u);
 //
 //}
 //
@@ -499,11 +499,11 @@
 //      while (uiCount > 0)
 //      {
 //
-//         memsize uiRead = m_pfile->read(&pstr[uiPos], (memsize)uiCount);
+//         memsize uRead = m_pfile->read(&pstr[uiPos], (memsize)uiCount);
 //
-//         uiCount -= uiRead;
+//         uiCount -= uRead;
 //
-//         uiPos += uiRead;
+//         uiPos += uRead;
 //
 //      }
 //

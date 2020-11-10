@@ -91,9 +91,9 @@ namespace str
    inline void from(string& str, const i16& i);
    inline void from(string& str, const u16& i);
    inline void from(string& str, const i32& i);
-   inline void from(string& str, const u32& ui);
+   inline void from(string& str, const u32& u);
    inline void from(string& str, const i64& i);
-   inline void from(string& str, const u64& ui);
+   inline void from(string& str, const u64& u);
    inline void from(string& str, const unsigned long& ul);
    CLASS_DECL_ACME void from(string& str, const float& f);
    CLASS_DECL_ACME void from(string& str, const double& d);

@@ -1158,7 +1158,7 @@
     <ClInclude Include="primitive\datetime\datetime_duration.h" />
     <ClInclude Include="primitive\datetime\datetime_time.h" />
     <ClInclude Include="primitive\datetime\datetime_value.h" />
-    <ClInclude Include="primitive\datetime\datetime_windows_file_time.h" />
+    <ClInclude Include="primitive\datetime\datetime_windows_filetime.h" />
     <ClInclude Include="primitive\primitive.h" />
     <ClInclude Include="primitive\align.h" />
     <ClInclude Include="primitive\check.h" />
@@ -2106,7 +2106,7 @@
     <ClCompile Include="primitive\datetime\datetime_float_time.cpp" />
     <ClCompile Include="primitive\datetime\datetime_time.cpp" />
     <ClCompile Include="primitive\datetime\datetime_value.cpp" />
-    <ClCompile Include="primitive\datetime\datetime_windows_file_time.cpp" />
+    <ClCompile Include="primitive\datetime\datetime_windows_filetime.cpp" />
     <ClCompile Include="primitive\color.cpp" />
     <ClCompile Include="primitive\count.cpp" />
     <ClCompile Include="primitive\fixed_string.cpp" />

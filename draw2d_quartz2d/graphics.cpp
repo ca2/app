@@ -5670,12 +5670,12 @@ namespace draw2d_quartz2d
       if(c > 0)
       {
 
-         for(unsigned long ui = 0; ui < c; ui++)
+         for(unsigned long u = 0; u < c; u++)
          {
 
-            itema.add(__new(::draw2d::font_enum_item(p[ui], p[ui])));
+            itema.add(__new(::draw2d::font_enum_item(p[u], p[u])));
 
-            free(p[ui]);
+            free(p[u]);
 
          }
 

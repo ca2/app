@@ -3,20 +3,21 @@
 // Contains a 64-bit value representing the number
 // of 100-nanosecond intervals since January 1, 1601 (UTC).
 using filetime_t = ::u64;
+
 #pragma pack(push, cross, 1)
 using color32_t = ::u32;
 
 using dummy_pointer = void *;
 
-#pragma pop(cross)
+#pragma pack(pop, cross)
 
 #ifdef WINDOWS
 
 #define U32_INFINITE_TIMEOUT INFINITE
 
 #define SIZE32 SIZE
-#define POINT32 POINT32
-#define RECT32 RECT32
+#define POINT32 POINT
+#define RECT32 RECT
 
 #else
 #define TCHAR char

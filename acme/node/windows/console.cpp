@@ -159,7 +159,7 @@ namespace windows
    void console::SetScreenColor(int color, int iLineStart, int iLineCount)
    {
       COORD coord = {0,(SHORT)iLineStart};
-      ::u32 dwWritten;
+      DWORD dwWritten;
       if(iLineCount < 0)
          iLineCount = m_iH + iLineCount + 1;
       if(iLineCount > m_iH - iLineStart)

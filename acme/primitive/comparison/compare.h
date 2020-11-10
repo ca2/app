@@ -13,9 +13,9 @@ namespace comparison
    }
 
    template < >
-   inline bool eq(int i, unsigned int ui)
+   inline bool eq(::i32 i, ::u32 u)
    {
-      return i < 0 ? false : (unsigned int)i == ui;
+      return i < 0 ? false : (::u32)i == u;
    }
 
 
@@ -37,48 +37,48 @@ namespace comparison
    }
 
    template < >
-   inline bool lt(int i, unsigned long long ull)
+   inline bool lt(::i32 i, unsigned long long ull)
    {
       return i < 0 ? true : (unsigned long long) i < ull;
    }
 
    template < >
-   inline bool lt(int i, unsigned long ul)
+   inline bool lt(::i32 i, unsigned long ul)
    {
       return i < 0 ? true : (unsigned long)i < ul;
    }
 
 
    template < >
-   inline bool lt(int i, unsigned int ui)
+   inline bool lt(::i32 i, ::u32 u)
    {
-      return i < 0 ? true : (unsigned int)i < ui;
+      return i < 0 ? true : (::u32)i < u;
    }
 
 
    template < >
-   inline bool lt(unsigned int ui, int i)
+   inline bool lt(::u32 u, ::i32 i)
    {
 
-      return i < 0 ? false : ui < (unsigned int)i;
-
-   }
-
-
-   template < >
-   inline bool lt(unsigned int ui, long l)
-   {
-
-      return l < 0 ? false : ui < (unsigned int)l;
+      return i < 0 ? false : u < (::u32)i;
 
    }
 
 
    template < >
-   inline bool lt(unsigned int ui, char ch)
+   inline bool lt(::u32 u, long l)
    {
 
-      return ch < 0 ? false : ui < (unsigned int)ch;
+      return l < 0 ? false : u < (::u32)l;
+
+   }
+
+
+   template < >
+   inline bool lt(::u32 u, char ch)
+   {
+
+      return ch < 0 ? false : u < (::u32)ch;
 
    }
 
@@ -98,15 +98,15 @@ namespace comparison
 #if defined(WINDOWS)
 
    template < >
-   inline bool lt(i64 i, unsigned ::i64 ui)
+   inline bool lt(i64 i, ::u64 u)
    {
-      return i < 0 ? true : (unsigned ::i64)i < ui;
+      return i < 0 ? true : (::u64)i < u;
    }
 
    template < >
-   inline bool lt(::u32 dw, int i)
+   inline bool lt(unsigned long u, long i)
    {
-      return i < 0 ? false : dw < (::u32)i;
+      return i < 0 ? false : u < (::u32) i;
    }
 
 #endif
@@ -120,15 +120,15 @@ namespace comparison
 
 
    template <  >
-   inline bool le(i32 i, unsigned int ui)
+   inline bool le(i32 i, ::u32 u)
    {
-      return i < 0 ? false : (unsigned int) i <= ui;
+      return i < 0 ? false : (::u32) i <= u;
    }
 
    template <  >
-   inline bool le(i64 i, size_t ui)
+   inline bool le(i64 i, size_t u)
    {
-      return i < 0 ? false : (unsigned int)i <= ui;
+      return i < 0 ? false : (::u32)i <= u;
    }
 
    template < typename A, typename B >
@@ -139,88 +139,88 @@ namespace comparison
 
 
    template < >
-   inline bool gt(int i, unsigned int ui)
+   inline bool gt(::i32 i, ::u32 u)
    {
 
-      return i < 0 ? false : ((unsigned int)i) > ui;
+      return i < 0 ? false : ((::u32)i) > u;
 
    }
 
 
    template < >
-   inline bool gt(int i, unsigned long ul)
+   inline bool gt(::i32 i, unsigned long ul)
    {
 
-      return i < 0 ? false : ((unsigned int)i) > ul;
+      return i < 0 ? false : ((::u32)i) > ul;
 
    }
 
 
    template < >
-   inline bool gt(unsigned int ui, int i)
+   inline bool gt(::u32 u, ::i32 i)
    {
 
-      return i < 0 ? true : ui > ((unsigned int) i);
+      return i < 0 ? true : u > ((::u32) i);
 
    }
 
 
    template < >
-   inline bool gt(unsigned int ui, long l)
+   inline bool gt(::u32 u, long l)
    {
 
-      return l < 0 ? true : ui >((unsigned int)l);
+      return l < 0 ? true : u >((::u32)l);
 
    }
 
 
    template < >
-   inline bool gt(unsigned int ui, char ch)
+   inline bool gt(::u32 u, char ch)
    {
 
-      return ch < 0 ? true : ui >((unsigned int)ch);
+      return ch < 0 ? true : u >((::u32)ch);
 
    }
 
 
    template < >
-   inline bool gt(i64 i, u64 ui)
+   inline bool gt(i64 i, u64 u)
    {
 
-      return i < 0 ? false : ((u64)i) > ui;
+      return i < 0 ? false : ((u64)i) > u;
 
    }
 
    template < >
-   inline bool gt(int i, long long unsigned int llui)
+   inline bool gt(::i32 i, long long int lli)
    {
 
-      return i < 0 ? false : ((long long unsigned int)i) > llui;
+      return i < 0 ? false : ((long long int)i) > lli;
 
    }
 
 
    template < >
-   inline bool gt(u64 ui, i64 i)
+   inline bool gt(u64 u, i64 i)
    {
 
-      return i < 0 ? true : ui > ((u64) i);
+      return i < 0 ? true : u > ((u64) i);
 
    }
 
 
 #ifdef WINDOWS
    template < >
-   inline bool gt(::u32 dw, int i)
+   inline bool gt(DWORD dw, ::i32 i)
    {
-      return i < 0 ? true : dw >((unsigned int)dw);
+      return i < 0 ? true : dw >((DWORD)i);
    }
 
    //template < >
-   //inline bool gt(count i,u64 ui)
+   //inline bool gt(count i,u64 u)
    //{
 
-   //   return i < 0 ? false : ((u64)i) > ui;
+   //   return i < 0 ? false : ((u64)i) > u;
 
    //}
 
@@ -233,7 +233,7 @@ namespace comparison
    }
 
    template < >
-   inline bool ge(int i, unsigned long long ul)
+   inline bool ge(::i32 i, unsigned long long ul)
    {
       return i < 0 ? false : ((unsigned long)i) >= ul;
    }
@@ -245,9 +245,9 @@ namespace comparison
    }
 
    template < >
-   inline bool ge(unsigned int ui, unsigned long long ul)
+   inline bool ge(::u32 u, unsigned long long ul)
    {
-      return ui >= ul;
+      return u >= ul;
    }
 
    template < >
@@ -263,33 +263,33 @@ namespace comparison
    }
 
    template < >
-   inline bool ge(unsigned int ui, short sh)
+   inline bool ge(::u32 u, short sh)
    {
-      return sh < 0 ? true : ui >= (unsigned int)sh;
+      return sh < 0 ? true : u >= (::u32)sh;
    }
 
    template < >
-   inline bool ge(int i, unsigned int ui)
+   inline bool ge(::i32 i, ::u32 u)
    {
-      return i < 0 ? false : (unsigned int)i >= ui;
+      return i < 0 ? false : (::u32)i >= u;
    }
 
    template < >
-   inline bool ge(unsigned int ui, int i)
+   inline bool ge(::u32 u, ::i32 i)
    {
-      return i < 0 ? true : ui >= (unsigned int)i;
+      return i < 0 ? true : u >= (::u32)i;
    }
 
 
    template < >
-   inline bool ge(unsigned long ul, int i)
+   inline bool ge(unsigned long ul, ::i32 i)
    {
       return i < 0 ? true : ul >= (unsigned long)i;
    }
 
 
    template < >
-   inline bool le(int i, unsigned long long ul)
+   inline bool le(::i32 i, unsigned long long ul)
    {
       return i < 0 ? true : ((unsigned long)i) <= ul;
    }

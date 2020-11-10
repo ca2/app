@@ -3476,7 +3476,7 @@ end:
 
       char * buf = (char *)m.get_data();
 
-      memsize uiRead;
+      memsize uRead;
 
       char * psz;
 
@@ -3500,7 +3500,7 @@ end:
 
       int iLastR = 0;
 
-      while ((uiRead = m_ptree->m_peditfile->read(buf, m.get_size())) > 0)
+      while ((uRead = m_ptree->m_peditfile->read(buf, m.get_size())) > 0)
       {
 
          uiPos = 0;
@@ -3508,7 +3508,7 @@ end:
          psz = buf;
 
 
-         while (uiPos < uiRead)
+         while (uiPos < uRead)
          {
 
             if (*psz == '\r')
@@ -3650,7 +3650,7 @@ end:
 
       char * buf = (char *)m.get_data();
 
-      memsize uiRead;
+      memsize uRead;
 
       char * psz;
 
@@ -3671,7 +3671,7 @@ end:
 
       bool bSet = false;
 
-      while ((uiRead = m_ptree->m_peditfile->read(buf, m.get_size())) > 0)
+      while ((uRead = m_ptree->m_peditfile->read(buf, m.get_size())) > 0)
       {
 
          uiPos = 0;
@@ -3679,7 +3679,7 @@ end:
          psz = buf;
 
 
-         while (uiPos < uiRead)
+         while (uiPos < uRead)
          {
 
             if (*psz == '\r')
@@ -4611,8 +4611,8 @@ finished_update:
                {
                   char buf[32];
                   m_ptree->m_peditfile->seek(m_ptree->m_iSelEnd, ::file::seek_begin);
-                  memsize uiRead = m_ptree->m_peditfile->read(buf, 32);
-                  if (uiRead == 2 &&
+                  memsize uRead = m_ptree->m_peditfile->read(buf, 32);
+                  if (uRead == 2 &&
                         buf[0] == '\r' &&
                         buf[1] == '\n')
                   {
@@ -4657,8 +4657,8 @@ finished_update:
                      char * psz;
                      m_ptree->m_peditfile->seek(max(0, m_ptree->m_iSelEnd - 32), ::file::seek_begin);
                      psz = &buf[min(32, m_ptree->m_iSelEnd)];
-                     memsize uiRead = m_ptree->m_peditfile->read(buf, 64);
-                     if (uiRead == 2 &&
+                     memsize uRead = m_ptree->m_peditfile->read(buf, 64);
+                     if (uRead == 2 &&
                            psz[0] == '\r' &&
                            psz[1] == '\n')
                      {

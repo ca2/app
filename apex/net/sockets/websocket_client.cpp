@@ -82,18 +82,18 @@ static inline memsize
 }
 
 
-CLASS_DECL_APEX void websocket_prefix_var::u32(memory & m, unsigned int ui)
+CLASS_DECL_APEX void websocket_prefix_varuint32(memory & m, unsigned int u)
 {
 
-   auto iSize = ::u32_size(ui);
+   auto iSize = ::u32_size(u);
 
    m.allocate_add_up(iSize);
 
    m.move(iSize);
 
-   //auto iSize2 = ::u32_pack(ui, m.get_data());
+   //auto iSize2 = ::u32_pack(u, m.get_data());
    
-   ::u32_pack(ui, m.get_data());
+   ::u32_pack(u, m.get_data());
 
 }
 

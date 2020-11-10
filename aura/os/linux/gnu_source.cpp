@@ -6,10 +6,10 @@
 
 typedef pthread_t pthread;
 
-typedef pthread HTHREAD;
+typedef pthread hthread_t;
 
 
-int SetThreadAffinityMask(HTHREAD h, unsigned int dwThreadAffinityMask)
+int SetThreadAffinityMask(hthread_t h, unsigned int dwThreadAffinityMask)
 {
 
    cpu_set_t c;

@@ -308,14 +308,12 @@ sync_result semaphore::wait(const duration & durationTimeout)
 
 
 
-bool semaphore::unlock(::i32 lCount, LPLONG pPrevCount)
-
+bool semaphore::unlock(::i32 lCount, ::i32 * pPrevCount)
 {
 
 #ifdef WINDOWS
 
-   return ::ReleaseSemaphore(m_hsync, lCount, pPrevCount) != FALSE;
-
+   return ::ReleaseSemaphore(m_hsync, lCount, (LPLONG) pPrevCount) != FALSE;
 
 #elif defined(ANDROID)
 

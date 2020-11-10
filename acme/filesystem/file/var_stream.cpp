@@ -64,9 +64,9 @@ var_stream::~var_stream()
 //      m_var = sh;
 //   }
 //
-//   void var_stream::write(u16 ui)
+//   void var_stream::write(u16 u)
 //   {
-//      m_var = ui;
+//      m_var = u;
 //   }
 //#ifdef WINDOWS
 //   void var_stream::write(unichar wch)
@@ -83,27 +83,27 @@ var_stream::~var_stream()
 //   {
 //      m_var = i;
 //   }
-//   void var_stream::write(u32 ui)
+//   void var_stream::write(u32 u)
 //   {
 //
-//      m_var = ui;
+//      m_var = u;
 //   }
 //   void var_stream::write(i64 i)
 //   {
 //
 //      m_var = i;
 //   }
-//   void var_stream::write(u64 ui)
+//   void var_stream::write(u64 u)
 //   {
 //
-//      m_var = ui;
+//      m_var = u;
 //
 //   }
 //#if defined(__APPLE__)
-//   void var_stream::write(unsigned long ui)
+//   void var_stream::write(unsigned long u)
 //   {
 //
-//      m_var = ui;
+//      m_var = u;
 //
 //   }
 //   //void write (long long ll);
@@ -169,9 +169,9 @@ var_stream::~var_stream()
 //
 //
 //   //      virtual void read(i32 & i);
-//   //      virtual void read(u32 & ui);
+//   //      virtual void read(u32 & u);
 //   //      virtual void read(i64 & i);
-//   //      virtual void read(u64 & ui);
+//   //      virtual void read(u64 & u);
 //
 //
 //   void var_stream::read(bool & b);
@@ -181,14 +181,14 @@ var_stream::~var_stream()
 //   void var_stream::read(unichar & wch);
 //#endif
 //   void var_stream::read(i16 & sh);
-//   void var_stream::read(u16 & ui);
+//   void var_stream::read(u16 & u);
 //   void var_stream::read(i32 & i);
-//   void var_stream::read(u32 & ui);
+//   void var_stream::read(u32 & u);
 //   void var_stream::read(i64 & i);
-//   void var_stream::read(u64 & ui);
+//   void var_stream::read(u64 & u);
 //#ifdef __APPLE__
-//   void var_stream::read(unsigned long & ui);
-//   //virtual void read (long long & ui);
+//   void var_stream::read(unsigned long & u);
+//   //virtual void read (long long & u);
 //#endif
 //   void var_stream::read(float & f);
 //   void var_stream::read(double & d);

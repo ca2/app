@@ -555,7 +555,7 @@
     <ClInclude Include="filesystem\file\file_stream_buffer_base.h" />
     <ClInclude Include="filesystem\file\file_string_buffer.h" />
     <ClInclude Include="filesystem\file\file_text_buffer.h" />
-    <ClInclude Include="filesystem\file\file_timeout_buffer.h" />
+    <ClInclude Include="filesystem\file\filetimeout_buffer.h" />
     <ClInclude Include="filesystem\file\file_transfer_buffer.h" />
     <ClInclude Include="filesystem\file\file_writer.h" />
     <ClInclude Include="filesystem\file\file_writer_flush.h" />
@@ -2918,7 +2918,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="filesystem\file\file_timeout_buffer.cpp">
+    <ClCompile Include="filesystem\file\filetimeout_buffer.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>

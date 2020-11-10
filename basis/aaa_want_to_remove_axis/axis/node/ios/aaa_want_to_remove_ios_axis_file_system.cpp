@@ -542,10 +542,10 @@ namespace ios
 //            return false;
 //         memory mem;
 //         mem.set_size(1024 * 1024 * 8);
-//         memsize uiRead;
-//         while((uiRead = reader.read(mem.get_data(), mem.get_size())) > 0)
+//         memsize uRead;
+//         while((uRead = reader.read(mem.get_data(), mem.get_size())) > 0)
 //         {
-//            spfile->write(mem.get_data(), uiRead);
+//            spfile->write(mem.get_data(), uRead);
 //         }
 //         return true;
 //      }

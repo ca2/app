@@ -400,10 +400,10 @@ typedef unsigned short  WCHAR,      *PWCHAR;
 # define _ULONGLONG_
 # ifdef _MSC_VER
 typedef signed ::i64   ::i64,  *PLONGLONG;
-typedef unsigned ::i64 ULONGLONG, *PULONGLONG;
+typedef ::u64 ULONGLONG, *PULONGLONG;
 # else
 typedef signed ::i64   DECLSPEC_ALIGN(8) ::i64,   *PLONGLONG;
-typedef unsigned ::i64 DECLSPEC_ALIGN(8) ULONGLONG,  *PULONGLONG;
+typedef ::u64 DECLSPEC_ALIGN(8) ULONGLONG,  *PULONGLONG;
 # endif
 #endif
 

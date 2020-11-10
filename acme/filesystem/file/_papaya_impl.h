@@ -157,7 +157,7 @@ void __transfer_to_writer(WRITER & writer, ::file::file * pfileIn, memsize uiBuf
    }
 
 
-   memsize uiRead;
+   memsize uRead;
    memsize uiSize = 0;
    uiBufSize = max(32 * 1024, uiBufSize);
 
@@ -172,13 +172,13 @@ void __transfer_to_writer(WRITER & writer, ::file::file * pfileIn, memsize uiBuf
    {
       while (true)
       {
-         uiRead = pfileIn->read(buf.get_data(), buf.get_size());
-         if (uiRead <= 0)
+         uRead = pfileIn->read(buf.get_data(), buf.get_size());
+         if (uRead <= 0)
          {
             break;
          }
-         writer.write(buf.get_data(), uiRead);
-         uiSize += uiRead;
+         writer.write(buf.get_data(), uRead);
+         uiSize += uRead;
       }
    }
    catch (...)

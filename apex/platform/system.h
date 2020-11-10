@@ -257,10 +257,10 @@ namespace apex
       virtual bool thread_get_run() const override;
 
 
-         //::thread * get_task(ITHREAD ithread);
-      //ITHREAD get_thread_id(::thread * pthread);
-      //void set_thread(ITHREAD ithread, ::thread * pthread);
-      //void unset_thread(ITHREAD ithread, ::thread * pthread);
+         //::thread * get_task(ithread_t ithread);
+      //ithread_t get_thread_id(::thread * pthread);
+      //void set_thread(ithread_t ithread, ::thread * pthread);
+      //void unset_thread(ithread_t ithread, ::thread * pthread);
    //::url::department                           & url()     { return m_urldepartment; }
 
 

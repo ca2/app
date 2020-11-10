@@ -1080,7 +1080,7 @@ namespace dynamic_source
    void script_compiler::cppize(ds_script * pscript)
    {
 
-      auto ftDs = get_file_time(pscript->m_strSourcePath);
+      auto ftDs = get_filetime(pscript->m_strSourcePath);
 
       if(Context.file().exists(pscript->m_strCppPath))
       {

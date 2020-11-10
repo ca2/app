@@ -562,7 +562,7 @@ namespace linux
 
             }
 
-            HTHREAD hthread = ::get_current_hthread();
+            hthread_t hthread = ::get_current_hthread();
 
             m_oswindow->m_hthread = hthread;
 

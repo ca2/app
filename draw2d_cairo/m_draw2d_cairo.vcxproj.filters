@@ -797,7 +797,7 @@
     <ClInclude Include="plane\plane_system_var.h">
       <Filter>Header Files\plane</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\datetime\datetime_windows_file_time.h">
+    <ClInclude Include="primitive\datetime\datetime_windows_filetime.h">
       <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
     <ClInclude Include="os\os.h">
@@ -4126,7 +4126,7 @@
     <ClCompile Include="primitive\datetime\datetime_value.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\datetime\datetime_windows_file_time.cpp">
+    <ClCompile Include="primitive\datetime\datetime_windows_filetime.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
     <ClCompile Include="primitive\geometric_types.cpp">

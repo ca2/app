@@ -10,7 +10,7 @@
 
 
 
-mq * get_mq(ITHREAD idthread, bool bCreate);
+mq * get_mq(ithread_t idthread, bool bCreate);
 
 
 //CLASS_DECL_ACME void thread_get_os_priority(i32 * piOsPolicy, sched_param * pparam, ::e_priority epriority);
@@ -233,7 +233,7 @@ mq * get_mq(ITHREAD idthread, bool bCreate);
 //}
 
 
-CLASS_DECL_ACME HTHREAD get_current_hthread()
+CLASS_DECL_ACME hthread_t get_current_hthread()
 {
 
    return ::pthread_self();
@@ -241,7 +241,7 @@ CLASS_DECL_ACME HTHREAD get_current_hthread()
 }
 
 
-CLASS_DECL_ACME ITHREAD get_current_ithread()
+CLASS_DECL_ACME ithread_t get_current_ithread()
 {
 
    return ::pthread_self();
@@ -267,10 +267,10 @@ void __node_term_multithreading()
 
 #if defined(LINUX) // || defined(ANDROID)
 
-bool (*g_pfn_defer_process_x_message)(HTHREAD hthread, LPMESSAGE pMsg, oswindow oswindow, bool bPeek) = nullptr;
+bool (*g_pfn_defer_process_x_message)(hthread_t hthread, LPMESSAGE pMsg, oswindow oswindow, bool bPeek) = nullptr;
 
 
-bool aura_defer_process_x_message(HTHREAD hthread, LPMESSAGE pMsg, oswindow oswindow, bool bPeek)
+bool aura_defer_process_x_message(hthread_t hthread, LPMESSAGE pMsg, oswindow oswindow, bool bPeek)
 
 {
 
@@ -282,7 +282,7 @@ bool aura_defer_process_x_message(HTHREAD hthread, LPMESSAGE pMsg, oswindow oswi
 
 }
 
-void set_defer_process_x_message(bool (*pfn)(HTHREAD hthread, LPMESSAGE pMsg, oswindow oswindow, bool bPeek))
+void set_defer_process_x_message(bool (*pfn)(hthread_t hthread, LPMESSAGE pMsg, oswindow oswindow, bool bPeek))
 
 {
 
@@ -308,7 +308,7 @@ void * os_thread_thread_proc(LPVOID pparameter);
 
 
 
-//int_bool WINAPI SetThreadPriority(HTHREAD hThread, i32 nCa2Priority)
+//int_bool WINAPI SetThreadPriority(hthread_t hthread, i32 nCa2Priority)
 //{
 //
 //   i32 iPolicy;
@@ -317,7 +317,7 @@ void * os_thread_thread_proc(LPVOID pparameter);
 //
 //   thread_get_os_priority(&iPolicy, &schedparam, (::e_priority)nCa2Priority);
 //
-//   pthread_setschedparam((pthread_t)hThread, iPolicy, &schedparam);
+//   pthread_setschedparam((pthread_t)hthread, iPolicy, &schedparam);
 //
 //   return TRUE;
 //
@@ -335,7 +335,7 @@ i32 get_os_thread_priority(::e_priority epriority)
 
 
 
-//i32 WINAPI GetThreadPriority(HTHREAD  hthread)
+//i32 WINAPI GetThreadPriority(hthread_t  hthread)
 //{
 //
 //   int iOsPolicy = SCHED_OTHER;
@@ -344,7 +344,7 @@ i32 get_os_thread_priority(::e_priority epriority)
 //
 //   schedparam.sched_priority = 0;
 //
-//   pthread_getschedparam((ITHREAD)hthread, &iOsPolicy, &schedparam);
+//   pthread_getschedparam((ithread_t)hthread, &iOsPolicy, &schedparam);
 //
 //   return thread_get_scheduling_priority(iOsPolicy, &schedparam);
 //
@@ -353,12 +353,12 @@ i32 get_os_thread_priority(::e_priority epriority)
 
 
 
-static HTHREAD g_hMainThread = (HTHREAD) nullptr;
+static hthread_t g_hMainThread = (hthread_t) nullptr;
 
-static ITHREAD g_uiMainThread = (ITHREAD)-1;
+static ithread_t g_uiMainThread = (ithread_t)-1;
 
 
-CLASS_DECL_ACME void set_main_hthread(HTHREAD hThread)
+CLASS_DECL_ACME void set_main_hthread(hthread_t hthread)
 {
 
    // MESSAGE msg;
@@ -366,12 +366,12 @@ CLASS_DECL_ACME void set_main_hthread(HTHREAD hThread)
    // PeekMessage function used to create message queue Windows Desktop
    // PeekMessage(&msg, nullptr, 0, 0xffffffff, FALSE);
 
-   g_hMainThread = hThread;
+   g_hMainThread = hthread;
 
 }
 
 
-CLASS_DECL_ACME void set_main_ithread(ITHREAD uiThread)
+CLASS_DECL_ACME void set_main_ithread(ithread_t ithread)
 {
 
    //   MESSAGE msg;
@@ -379,12 +379,12 @@ CLASS_DECL_ACME void set_main_ithread(ITHREAD uiThread)
    // PeekMessage function used to create message queue Windows Desktop
    // PeekMessage(&msg, nullptr, 0, 0xffffffff, FALSE);
 
-   g_uiMainThread = uiThread;
+   g_uiMainThread = ithread;
 
 }
 
 
-CLASS_DECL_ACME HTHREAD get_main_hthread()
+CLASS_DECL_ACME hthread_t get_main_hthread()
 {
 
    return g_hMainThread;
@@ -392,7 +392,7 @@ CLASS_DECL_ACME HTHREAD get_main_hthread()
 }
 
 
-CLASS_DECL_ACME ITHREAD get_main_ithread()
+CLASS_DECL_ACME ithread_t get_main_ithread()
 {
 
    return g_uiMainThread;
@@ -407,10 +407,10 @@ CLASS_DECL_ACME void attach_thread_input_to_main_thread(bool bAttach)
 
 
 
-// LPVOID WINAPI thread_get_data(HTHREAD hthread, ::u32 dwIndex);
+// LPVOID WINAPI thread_get_data(hthread_t hthread, ::u32 dwIndex);
 
 
-// int_bool WINAPI thread_set_data(HTHREAD hthread, ::u32 dwIndex, LPVOID pTlsValue);
+// int_bool WINAPI thread_set_data(hthread_t hthread, ::u32 dwIndex, LPVOID pTlsValue);
 
 
 
@@ -453,14 +453,14 @@ int g_iDebug_post_thread_msg_time;
 //}
 
 
-// CLASS_DECL_ACME HTHREAD GetCurrentThread()
+// CLASS_DECL_ACME hthread_t GetCurrentThread()
 // {
 
 //    return pthread_self();
 
 // }
 
-// CLASS_DECL_ACME ITHREAD GetCurrentThreadId()
+// CLASS_DECL_ACME ithread_t GetCurrentThreadId()
 // {
 
 //    return pthread_self();

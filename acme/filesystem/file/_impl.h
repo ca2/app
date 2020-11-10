@@ -847,10 +847,8 @@ inline void __exchange(::stream & s, i16 & i) { s.default_exchange(i); }
 inline void __exchange(::stream & s, i32 & i) { s.default_exchange(i); }
 inline void __exchange(::stream & s, i64 & i) { s.default_exchange(i); }
 
-#if defined(__APPLE__)  || defined(ANDROID) || defined(RASPBIAN)
+#if defined(__APPLE__)  || defined(ANDROID) || defined(RASPBIAN) || defined(WINDOWS)
 inline void __exchange(::stream & s, long & l) { s.default_exchange(l); }
-#elif !defined(LINUX)
-inline void __exchange(::stream & s, ::i32 & l) { s.default_exchange(l); }
 #endif
 
 #if defined(__APPLE__) || defined(ANDROID) || defined(WINDOWS) || defined(RASPBIAN)

@@ -544,7 +544,7 @@ namespace sockets
          if (prangea->get_count() > 1)
          {
             
-            memsize uiTotal = 0;
+            memsize uTotal = 0;
             
             memory mem;
             
@@ -567,7 +567,7 @@ namespace sockets
                // iEnd > iLen is not verified because file may be growing
                preader->seek(iStart, ::file::seek_begin);
 
-               memsize uiRead;
+               memsize uRead;
 
                auto pfile = create_memory_file();
 
@@ -601,18 +601,18 @@ namespace sockets
 
                   if (iEnd >= iStart)
                   {
-                     uiRead = min(mem.get_size(), (memsize)(iEnd - iPos + 1));
+                     uRead = min(mem.get_size(), (memsize)(iEnd - iPos + 1));
                   }
                   else
                   {
-                     uiRead = mem.get_size();
+                     uRead = mem.get_size();
                   }
-                  uiRead = preader->read(mem.get_data(), uiRead);
-                  uiTotal += uiRead;
-                  if (uiRead == 0)
+                  uRead = preader->read(mem.get_data(), uRead);
+                  uTotal += uRead;
+                  if (uRead == 0)
                      break;
-                  pfile->write(mem.get_data(), uiRead);
-                  iPos += uiRead;
+                  pfile->write(mem.get_data(), uRead);
+                  iPos += uRead;
                   if (iPos >= preader->get_size())
                      break;
                }
@@ -629,7 +629,7 @@ namespace sockets
          else
          {
             
-            memsize uiTotal = 0;
+            memsize uTotal = 0;
             
             memory mem;
             
@@ -645,7 +645,7 @@ namespace sockets
                // iEnd > iLen is not verified because file may be growing
                preader->seek(iStart, ::file::seek_begin);
                
-               memsize uiRead;
+               memsize uRead;
 
                ::memory_file memfile;
                
@@ -668,30 +668,30 @@ namespace sockets
                   if (iEnd != -1 && iEnd >= iStart)
                   {
 
-                     uiRead = min(mem.get_size(), (memsize)(iEnd - iPos + 1));
+                     uRead = min(mem.get_size(), (memsize)(iEnd - iPos + 1));
 
                   }
                   else
                   {
                      
-                     uiRead = mem.get_size();
+                     uRead = mem.get_size();
 
                   }
                   
-                  uiRead = preader->read(mem.get_data(), uiRead);
+                  uRead = preader->read(mem.get_data(), uRead);
                   
-                  uiTotal += uiRead;
+                  uTotal += uRead;
 
-                  if (uiRead == 0)
+                  if (uRead == 0)
                   {
 
                      break;
 
                   }
                   
-                  response().file()->write(mem.get_data(), uiRead);
+                  response().file()->write(mem.get_data(), uRead);
                   
-                  iPos += uiRead;
+                  iPos += uRead;
 
                   if (iPos >= preader->get_size())
                   {

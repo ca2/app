@@ -84,7 +84,7 @@ namespace sockets
 } // namespace sockets
 
 
-CLASS_DECL_APEX void websocket_prefix_var::u32(memory & m, unsigned int ui);
+CLASS_DECL_APEX void websocket_prefix_varuint32(memory & m, unsigned int u);
 
 
 

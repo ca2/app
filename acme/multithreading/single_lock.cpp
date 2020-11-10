@@ -133,12 +133,17 @@ bool single_lock::unlock()
 }
 
 
-bool single_lock::unlock(::i32 lCount, LPLONG pPrevCount /* = nullptr */)
-
+bool single_lock::unlock(::i32 lCount, ::i32 * pPrevCount /* = nullptr */)
 {
+
    ASSERT(m_psync != nullptr);
+
    if (m_bAcquired)
+   {
+
       m_bAcquired = !m_psync->unlock(lCount, pPrevCount);
+
+   }
 
 
    // successfully unlocking means it isn't acquired

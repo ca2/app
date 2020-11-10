@@ -238,11 +238,14 @@ namespace windows
 
       ASSERT(__is_valid_address(pdata, nCount));
 
+      DWORD dwRead;
 
-      ::u32 dwRead;
       if (!::ReadFile((HANDLE)m_handleFile, pdata, (::u32)nCount, &dwRead, nullptr))
+      {
 
          ::file::throw_os_error((::i32)::get_last_error());
+
+      }
 
       return (::u32)dwRead;
    }
@@ -260,11 +263,14 @@ namespace windows
 
       ASSERT(__is_valid_address(pdata, nCount, FALSE));
 
+      DWORD nWritten;
 
-      ::u32 nWritten;
       if (!::WriteFile((HANDLE)m_handleFile, pdata, (::u32)nCount, &nWritten, nullptr))
+      {
 
          ::file::throw_os_error((::i32)::get_last_error(), m_path);
+
+      }
 
       // Win32s will not return an error all the time (usually DISK_FULL)
       if (nWritten != nCount)
@@ -282,8 +288,8 @@ namespace windows
       ASSERT(nFrom == ::file::seek_begin || nFrom == ::file::seek_end || nFrom == ::file::seek_current);
       ASSERT(::file::seek_begin == FILE_BEGIN && ::file::seek_end == FILE_END && ::file::seek_current == FILE_CURRENT);
 
-      ::i32 lLoOffset = lOff & 0xffffffff;
-      ::i32 lHiOffset = (lOff >> 32) & 0xffffffff;
+      LONG lLoOffset = lOff & 0xffffffff;
+      LONG lHiOffset = (lOff >> 32) & 0xffffffff;
 
       filesize posNew = ::SetFilePointer((HANDLE)m_handleFile, lLoOffset, &lHiOffset, (::u32)nFrom);
       posNew |= ((filesize)lHiOffset) << 32;
@@ -298,8 +304,8 @@ namespace windows
       ASSERT_VALID(this);
       ASSERT(m_handleFile != INVALID_HANDLE_VALUE);
 
-      ::i32 lLoOffset = 0;
-      ::i32 lHiOffset = 0;
+      LONG lLoOffset = 0;
+      LONG lHiOffset = 0;
 
       filesize pos = ::SetFilePointer((HANDLE)m_handleFile, lLoOffset, &lHiOffset, FILE_CURRENT);
       pos |= ((filesize)lHiOffset) << 32;
@@ -689,7 +695,7 @@ bool CLASS_DECL_ACME vfxFullPath(wstring & wstrFullPath, const wstring & wstrPat
    vfxGetRoot(wstrRoot, wstrFullPath);
 
    // get file system information for the volume
-   ::u32 dwFlags, dwDummy;
+   DWORD dwFlags, dwDummy;
    if (!GetVolumeInformationW(wstrRoot, nullptr, 0, nullptr, &dwDummy, &dwFlags, nullptr, 0))
    {
       //      TRACE1("Warning: could not get volume information '%s'.\n", strRoot);
@@ -777,8 +783,8 @@ bool CLASS_DECL_ACME vfxGetInProcServer(const char * pszCLSID, string & str)
             wstring wstr;
             LPWSTR psz = wstr.get_string_buffer(_MAX_PATH);
 
-            ::u32 dwSize = _MAX_PATH * sizeof(WCHAR);
-            ::u32 dwType;
+            DWORD dwSize = _MAX_PATH * sizeof(WCHAR);
+            DWORD dwType;
             ::i32 lRes = ::RegQueryValueExW(hKeyInProc,L"",
                                           nullptr, &dwType, (byte*)psz, &dwSize);
 
@@ -827,7 +833,7 @@ bool CLASS_DECL_ACME vfxFullPath(unichar * pszPathOut, const unichar * pszFileIn
 
 
    // get file system information for the volume
-   ::u32 dwFlags, dwDummy;
+   DWORD dwFlags, dwDummy;
    if (!GetVolumeInformationW(::str::international::utf8_to_unicode(strRoot), nullptr, 0, nullptr, &dwDummy, &dwFlags, nullptr, 0))
    {
       //      TRACE1("Warning: could not get volume information '%s'.\n", strRoot);

@@ -321,9 +321,9 @@ namespace math
       u64 uiHi = Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
       return uiLo | (uiHi << 32);
 #else
-      u64 ui = 0;
-      gen_rand(&ui, sizeof(ui));
-      return ui;
+      u64 u = 0;
+      gen_rand(&u, sizeof(u));
+      return u;
 #endif
 
    }

@@ -21,7 +21,7 @@ void plain_service::Start(u32)
 }
 
 
-void plain_service::Stop(u32 ui)
+void plain_service::Stop(u32 u)
 {
 
    //System.m_bDoNotExitIfNoApplications = false;

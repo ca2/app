@@ -46,9 +46,9 @@ bool engine_get_line_from_address(HANDLE hprocess, OS_DWORD uiAddress, ::u32 * p
    // line addresses (after the first lookup) that fall exactly on
    // a zero displacement. I'll walk backward 100 bytes to
    // find the line and return the proper displacement.
-   u32 dwDisplacement = 0;
+   DWORD dwDisplacement = 0;
 
-   while (!OS_SymGetLineFromAddr(hprocess, uiAddress - dwDisplacement, puiDisplacement, pline))
+   while (!OS_SymGetLineFromAddr(hprocess, uiAddress - dwDisplacement, &dwDisplacement, pline))
    {
 
       if (100 == ++dwDisplacement)
@@ -63,7 +63,7 @@ bool engine_get_line_from_address(HANDLE hprocess, OS_DWORD uiAddress, ::u32 * p
    // "Debugging Applications" John Robbins
    // I found the line, and the source line information is correct, so
    // change the displacement if I had to search backward to find the source line.
-   if (dwDisplacement)
+   if (puiDisplacement)
    {
 
       *puiDisplacement = dwDisplacement;
@@ -74,7 +74,7 @@ bool engine_get_line_from_address(HANDLE hprocess, OS_DWORD uiAddress, ::u32 * p
 
 #else
 
-   return 0 != OS_SymGetLineFromAddr(hprocess, uiAddress, (u32 *)puiDisplacement, pline);
+   return 0 != OS_SymGetLineFromAddr(hprocess, uiAddress, (DWORD *)puiDisplacement, pline);
 
 #endif
 
@@ -442,7 +442,7 @@ namespace windows
          bool r = StackWalk64(
             dwType,   // __in      u32 MachineType,
             hprocess,        // __in      HANDLE hProcess,
-            get_current_hthread(),         // __in      HANDLE hThread,
+            get_current_hthread(),         // __in      hthread_t hthread,
             &m_stackframe,                       // __inout   LP STACKFRAME64 StackFrame,
             &m_context,                  // __inout   PVOID ContextRecord,
             My_ReadProcessMemory,                     // __in_opt  PREAD_PROCESS_MEMORY_ROUTINE64 ReadMemoryRoutine,
@@ -455,7 +455,7 @@ namespace windows
          bool r = StackWalk(
             dwType,   // __in      u32 MachineType,
             hprocess,        // __in      HANDLE hProcess,
-            get_current_hthread(),         // __in      HANDLE hThread,
+            get_current_hthread(),         // __in      hthread_t hthread,
             &m_stackframe,                       // __inout   LP STACKFRAME64 StackFrame,
             &m_context,                  // __inout   PVOID ContextRecord,
             My_ReadProcessMemory32,                     // __in_opt  PREAD_PROCESS_MEMORY_ROUTINE64 ReadMemoryRoutine,

@@ -68,10 +68,10 @@ CLASS_DECL_AXIS int_bool GetCursorPos(POINT32 * lppoint)
 
       Windows::Foundation::Collections::IVectorView < Windows::Devices::Input::PointerDevice ^ > ^ deva = ::Windows::Devices::Input::PointerDevice::GetPointerDevices();
 
-      for (unsigned int ui = 0; ui < deva->Size; ui++)
+      for (unsigned int u = 0; u < deva->Size; u++)
       {
 
-         Windows::Devices::Input::PointerDevice ^ dev = deva->GetAt(ui);
+         Windows::Devices::Input::PointerDevice ^ dev = deva->GetAt(u);
 
          if (dev->PointerDeviceType == ::Windows::Devices::Input::PointerDeviceType::Mouse)
          {

@@ -129,7 +129,7 @@ public:
    bool                                   m_bMessageOnlyWindow;
    __pointer(::user::interaction_impl)    m_pimpl;
    __pointer(mq)                          m_pmq;
-   HTHREAD                                m_hthread;
+   hthread_t                                m_hthread;
    Colormap                               m_colormap;
    tick                                   m_tickLastMouseMove;
    Window                                 m_parent;

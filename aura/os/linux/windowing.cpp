@@ -33,7 +33,7 @@
 //void x11_defer_check_configuration(oswindow oswindow);
 
 
-mq * get_mq(ITHREAD idthread, bool bCreate);
+mq * get_mq(ithread_t idthread, bool bCreate);
 
 
 void oswindow_set_active_window(oswindow oswindow);
@@ -4944,7 +4944,7 @@ void x11_thread(osdisplay_data * pdisplaydata);
 //pthread_t g_pthreadX11;
 
 __pointer(::thread) g_pthreadXlib;
-ITHREAD g_ithreadXlib;
+ithread_t g_ithreadXlib;
 
 //void * x11_thread_proc(void * p)
 //{

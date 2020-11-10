@@ -66,7 +66,7 @@ WorkItemPriority GetWorkItemPriority(int nPriority)
 }
 
 //
-//HTHREAD start_thread(u32 ( * pfn)(void *), void * pv, int iPriority)
+//hthread_t start_thread(u32 ( * pfn)(void *), void * pv, int iPriority)
 //{
 //
 //   UNREFERENCED_PARAMETER(iPriority);
@@ -205,7 +205,7 @@ void _on_os_hthread_end()
 }
 
 
-//ITHREAD get_current_ithread()
+//ithread_t get_current_ithread()
 //{
 //
 //   return ::GetCurrentThreadId();
@@ -213,7 +213,7 @@ void _on_os_hthread_end()
 //}
 //
 //
-//HTHREAD get_current_hthread()
+//hthread_t get_current_hthread()
 //{
 //
 //   return ::GetCurrentThread();
@@ -221,27 +221,27 @@ void _on_os_hthread_end()
 //}
 
 
-HTHREAD g_hMainThread = nullptr;
+hthread_t g_hMainThread = nullptr;
 ::u32 g_iMainThread = -1;
 
 
-void set_main_thread(HTHREAD hThread)
+void set_main_hthread(hthread_t hthread)
 {
 
-   g_hMainThread = hThread;
+   g_hMainThread = hthread;
 
 }
 
 
-void set_main_thread_id(::u32 uThread)
+void set_main_ithread(ithread_t ithread)
 {
 
-   g_iMainThread = uiThread;
+   g_iMainThread = ithread;
 
 }
 
 
-HTHREAD get_main_thread()
+hthread_t get_main_hthread()
 {
 
    return g_hMainThread;
@@ -249,7 +249,7 @@ HTHREAD get_main_thread()
 }
 
 
-::u32   get_main_thread_id()
+::u32   get_main_ithread()
 {
 
    return g_iMainThread;

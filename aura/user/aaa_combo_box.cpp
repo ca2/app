@@ -1581,10 +1581,10 @@ namespace user
    }
 
 
-   void combo_box::set_current_item_by_data(uptr ui, const ::action_context & context)
+   void combo_box::set_current_item_by_data(uptr u, const ::action_context & context)
    {
 
-      index iSel = m_straValue.find_first(__str(ui));
+      index iSel = m_straValue.find_first(__str(u));
 
       if (iSel < 0)
       {

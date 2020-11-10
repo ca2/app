@@ -1575,8 +1575,8 @@
     <ClCompile Include="primitive\datetime\date_span.cpp" />
     <ClCompile Include="primitive\datetime\department.cpp" />
     <ClCompile Include="primitive\datetime\duration.cpp" />
-    <ClCompile Include="primitive\datetime\file_time.cpp" />
-    <ClCompile Include="primitive\datetime\file_time_span.cpp" />
+    <ClCompile Include="primitive\datetime\filetime.cpp" />
+    <ClCompile Include="primitive\datetime\filetime_span.cpp" />
     <ClCompile Include="primitive\datetime\mktime.cpp" />
     <ClCompile Include="primitive\datetime\time.cpp" />
     <ClCompile Include="primitive\datetime\time_span.cpp" />
@@ -2549,8 +2549,8 @@
     <ClInclude Include="primitive\datetime\date_span.h" />
     <ClInclude Include="primitive\datetime\department.h" />
     <ClInclude Include="primitive\datetime\duration.h" />
-    <ClInclude Include="primitive\datetime\file_time.h" />
-    <ClInclude Include="primitive\datetime\file_time_span.h" />
+    <ClInclude Include="primitive\datetime\filetime.h" />
+    <ClInclude Include="primitive\datetime\filetime_span.h" />
     <ClInclude Include="primitive\datetime\mktime.h" />
     <ClInclude Include="primitive\datetime\time.h" />
     <ClInclude Include="primitive\datetime\time_span.h" />

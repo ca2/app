@@ -57,7 +57,7 @@ namespace aura
       //thread_map                                         m_threadmap;
       //thread_id_map                                      m_threadidmap;
       //::mutex                                            m_mutexThreadOn;
-      //isomap < ITHREAD, ITHREAD >                        m_mapThreadOn;
+      //isomap < ithread_t, ithread_t >                        m_mapThreadOn;
 
       ::mutex                                            m_mutexUserChildren;
       __composite(class imaging)                         m_pimaging;
@@ -286,10 +286,10 @@ namespace aura
 
       //::url::department                           & url()     { return m_urldepartment; }
 
-      //::thread * get_task(ITHREAD ithread);
-      //ITHREAD get_thread_id(::thread * pthread);
-      //void set_thread(ITHREAD ithread, ::thread * pthread);
-      //void unset_thread(ITHREAD ithread, ::thread * pthread);
+      //::thread * get_task(ithread_t ithread);
+      //ithread_t get_thread_id(::thread * pthread);
+      //void set_thread(ithread_t ithread, ::thread * pthread);
+      //void unset_thread(ithread_t ithread, ::thread * pthread);
 
 
       ::aura::estamira& estamira();

@@ -12,7 +12,7 @@
 #pragma warning(disable: 4091)
 #include <ImageHlp.h>
 #if OSBIT == 32
-#define OS_DWORD ::u32
+#define OS_DWORD DWORD
 #define OS_IMAGEHLP_LINE IMAGEHLP_LINE
 #define OS_SymGetLineFromAddr SymGetLineFromAddr
 #define OS_SymGetSymFromAddr SymGetSymFromAddr

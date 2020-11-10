@@ -551,7 +551,7 @@ namespace introjection
 
       }
       else if(!bNew)
-//         if(get_file_time(strFilePath) == lib->m_filetime)
+//         if(get_filetime(strFilePath) == lib->m_filetime)
       {
 
 //          bNew = false;
@@ -582,7 +582,7 @@ namespace introjection
 
       bNew = true;
 
-      plibrary->m_filetime = get_file_time(strFilePath);
+      plibrary->m_filetime = get_filetime(strFilePath);
 
       ::file::path strName(strFilePath);
 
@@ -1507,7 +1507,7 @@ auto tickStart = ::tick::now();
 
    }
 
-   CloseHandle(ProcessInfo.hThread);
+   CloseHandle(ProcessInfo.hthread);
 
    CloseHandle(ProcessInfo.hProcess);
 

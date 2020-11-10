@@ -649,61 +649,6 @@ namespace datetime
    }
 
 
-   SYSTEMTIME time::to_system_time() const
-   {
-
-      SYSTEMTIME st = {};
-
-      struct tm ttm;
-
-      struct tm * ptm;
-
-      ptm = GetGmtTm(&ttm);
-
-      st.wDay = ptm->tm_mday;
-      st.wDayOfWeek = ptm->tm_wday;
-      st.wHour = ptm->tm_hour;
-      st.wMilliseconds = 0;
-      st.wMinute = ptm->tm_min;
-      st.wMonth = ptm->tm_mon + 1;
-      st.wSecond = ptm->tm_sec;
-      st.wYear = 1900 + ptm->tm_year;
-
-      return st;
-
-
-
-   }
-
-   FILETIME time::to_file_time() const
-   {
-
-      SYSTEMTIME st = to_system_time();
-
-      FILETIME ft = {};
-
-      if (!SystemTimeToFileTime(&st, &ft))
-      {
-
-#ifdef WINDOWS
-
-#ifdef WINDOWS
-
-         ::u32 dwLastError = ::GetLastError();
-
-#endif
-
-#endif
-
-         //TRACELASTERROR();
-
-         xxf_zero(ft);
-
-      }
-
-      return ft;
-
-   }
 
 
    time_span time::elapsed() const
@@ -833,3 +778,58 @@ stream & operator <<(stream & os, ::datetime::time & time)
 
 
 
+
+
+CLASS_DECL_ACME SYSTEMTIME __SYSTEMTIME(const ::datetime::time & time)
+{
+
+   SYSTEMTIME st = {};
+
+   struct tm ttm;
+
+   struct tm * ptm;
+
+   ptm = time.GetGmtTm(&ttm);
+
+   st.wDay = ptm->tm_mday;
+   st.wDayOfWeek = ptm->tm_wday;
+   st.wHour = ptm->tm_hour;
+   st.wMilliseconds = 0;
+   st.wMinute = ptm->tm_min;
+   st.wMonth = ptm->tm_mon + 1;
+   st.wSecond = ptm->tm_sec;
+   st.wYear = 1900 + ptm->tm_year;
+
+   return st;
+
+
+
+}
+
+
+
+filetime __filetime(const ::datetime::time & time) 
+{
+
+   SYSTEMTIME systemtime = __SYSTEMTIME(time);
+
+   FILETIME filetime = {};
+
+   if (!SystemTimeToFileTime(&systemtime, &filetime))
+   {
+
+#ifdef WINDOWS
+
+      DWORD dwLastError = ::GetLastError();
+
+#endif
+
+      //TRACELASTERROR();
+
+      xxf_zero(filetime);
+
+   }
+
+   return filetime;
+
+}

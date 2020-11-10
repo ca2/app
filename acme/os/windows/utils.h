@@ -36,8 +36,10 @@ typedef struct _ADDRESS_INFO
    PVOID pAddress;
 } ADDRESS_INFO;
 
-typedef ::i32 NTSTATUS;
 
+#ifndef WINDOWS_DESKTOP
+typedef ::i32 NTSTATUS;
+#endif
 
 
 typedef struct _SYSTEM_HANDLE

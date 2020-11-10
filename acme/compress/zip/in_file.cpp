@@ -643,12 +643,12 @@ namespace zip
 
       mem.set_size(256 * 1024);
 
-      memsize uiRead;
+      memsize uRead;
 
-      while((uiRead = pfile->read(mem,mem.get_size())) > 0)
+      while((uRead = pfile->read(mem,mem.get_size())) > 0)
       {
 
-         zipWriteInFileInZip(get_zip_file()->m_pfZip,mem.get_data(),(u32)uiRead);
+         zipWriteInFileInZip(get_zip_file()->m_pfZip,mem.get_data(),(u32)uRead);
 
       }
 

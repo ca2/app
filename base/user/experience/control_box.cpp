@@ -1466,7 +1466,7 @@ namespace experience
       catch (...)
       {
 
-         __throw(::exception::exception("no more a ui"));
+         __throw(::exception::exception("no more a u"));
 
       }
 

@@ -244,7 +244,11 @@ namespace file
          }
          */
 
-      bool exception::get_error_message(string& str, P::u32 pnHelpContext)
+
+#ifdef WINDOWS
+
+
+      bool exception::get_error_message(string& str, PUINT pnHelpContext)
       {
 
          // if (pnHelpContext != nullptr)
@@ -278,6 +282,8 @@ namespace file
             }
 
          }
+
+#endif
 
          string strExtra;
 

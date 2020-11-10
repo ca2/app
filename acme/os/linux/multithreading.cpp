@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-bool set_thread_name(HTHREAD hthread, const char * psz)
+bool set_thread_name(hthread_t hthread, const char * psz)
 {
 
    string strName(psz);

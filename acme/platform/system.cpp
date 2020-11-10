@@ -103,7 +103,7 @@ namespace acme
    }
 
 
-   ::task * system::get_task(ITHREAD ithread)
+   ::task * system::get_task(ithread_t ithread)
    {
 
       sync_lock sl(&m_mutexTask);
@@ -113,12 +113,12 @@ namespace acme
    }
 
 
-   ITHREAD system::get_task_id(::task * ptask)
+   ithread_t system::get_task_id(::task * ptask)
    {
 
       sync_lock sl(&m_mutexTask);
 
-      ITHREAD ithread = NULL_ITHREAD;
+      ithread_t ithread = NULL_ITHREAD;
 
       if (!m_taskidmap.lookup(ptask, ithread))
       {
@@ -132,7 +132,7 @@ namespace acme
    }
 
 
-   void system::set_task(ITHREAD ithread, ::task * ptask)
+   void system::set_task(ithread_t ithread, ::task * ptask)
    {
 
       sync_lock sl(&m_mutexTask);
@@ -144,7 +144,7 @@ namespace acme
    }
 
 
-   void system::unset_task(ITHREAD ithread, ::task * ptask)
+   void system::unset_task(ithread_t ithread, ::task * ptask)
    {
 
       sync_lock sl(&m_mutexTask);

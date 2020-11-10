@@ -4419,7 +4419,7 @@ namespace apex
    }
 
 
-//   ::thread* system::get_task(ITHREAD ithread)
+//   ::thread* system::get_task(ithread_t ithread)
 //   {
 //
 //      sync_lock sl(&m_mutexThread);
@@ -4429,12 +4429,12 @@ namespace apex
 //   }
 //
 //
-//   ITHREAD system::get_thread_id(::thread* pthread)
+//   ithread_t system::get_thread_id(::thread* pthread)
 //   {
 //
 //      sync_lock sl(&m_mutexThread);
 //
-//      ITHREAD ithread = NULL_ITHREAD;
+//      ithread_t ithread = NULL_ITHREAD;
 //
 //      if (!m_threadidmap.lookup(pthread, ithread))
 //      {
@@ -4448,7 +4448,7 @@ namespace apex
 //   }
 //
 //
-//   void system::set_thread(ITHREAD ithread, ::thread* pthread)
+//   void system::set_thread(ithread_t ithread, ::thread* pthread)
 //   {
 //
 //      sync_lock sl(&m_mutexThread);
@@ -4460,7 +4460,7 @@ namespace apex
 //   }
 //
 //
-//   void system::unset_thread(ITHREAD ithread, ::thread * pthread)
+//   void system::unset_thread(ithread_t ithread, ::thread * pthread)
 //   {
 //
 //      sync_lock sl(&m_mutexThread);

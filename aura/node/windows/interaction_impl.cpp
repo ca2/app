@@ -3322,7 +3322,7 @@ namespace windows
    bool interaction_impl::is_active()
    {
 
-      ITHREAD ithread = 0;
+      ithread_t ithread = 0;
       
       if (m_puserinteraction && m_puserinteraction->m_pthreadUserInteraction)
       {
@@ -4881,7 +4881,7 @@ namespace windows
       if (enabled)
       {
 
-         /* The ui needs a frame to show a shadow, so give it the smallest amount of frame possible */
+         /* The u needs a frame to show a shadow, so give it the smallest amount of frame possible */
 
          MARGINS m = { 0,0,0,0 };
 
@@ -4926,7 +4926,7 @@ namespace windows
       if (enabled)
       {
 
-         /* The ui needs a frame to show a shadow, so give it the smallest amount of frame possible */
+         /* The u needs a frame to show a shadow, so give it the smallest amount of frame possible */
 
          MARGINS m = { 0,0,0,0 };
 
@@ -5007,7 +5007,7 @@ namespace windows
 
          /* Maximized windows always have a non-client border that hangs over
          the edge of the screen, so the size proposed by WM_NCCALCSIZE is
-         fine. Just adjust the top border to remove the ui title. */
+         fine. Just adjust the top border to remove the u title. */
          pncsp->rgrc[0].left = client.left;
 
          pncsp->rgrc[0].top = nonclient.top + wi.cyWindowBorders;
@@ -5023,7 +5023,7 @@ namespace windows
          GetMonitorInfoW(mon, &mi);
 
          /* If the client rectangle is the same as the monitor's rectangle,
-         the shell assumes that the ui has gone fullscreen, so it removes
+         the shell assumes that the u has gone fullscreen, so it removes
          the topmost attribute from any auto-hide appbars, making them
          inaccessible. To avoid this, reduce the size of the client area by
          one pixel on a certain edge. The edge is chosen based on which side

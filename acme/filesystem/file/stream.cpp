@@ -793,7 +793,7 @@ void stream::read(long& l)
 }
 
 
-void stream::read(unsigned long & ui)
+void stream::read(unsigned long & u)
 {
 
    set_fail_bit();

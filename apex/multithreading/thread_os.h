@@ -7,7 +7,7 @@ typedef THREAD_PROC * thread_proc;
 
 //
 //// very close to the operating system
-//CLASS_DECL_APEX HTHREAD create_thread(
+//CLASS_DECL_APEX hthread_t create_thread(
 //thread_proc proc,
 //void * p,
 //::e_priority epriority = ::priority_normal,
@@ -15,16 +15,16 @@ typedef THREAD_PROC * thread_proc;
 //u32 uiCreateFlags = 0,
 //LPSECURITY_ATTRIBUTES psa = nullptr,
 //
-//ITHREAD * puiId = nullptr);
+//ithread_t * puiId = nullptr);
 //
 //
 
 
 
 
-//CLASS_DECL_APEX ITHREAD get_current_ithread();
+//CLASS_DECL_APEX ithread_t get_current_ithread();
 
-//CLASS_DECL_APEX HTHREAD get_current_hthread();
+//CLASS_DECL_APEX hthread_t get_current_hthread();
 
 
 
@@ -99,11 +99,11 @@ namespace multithreading
    CLASS_DECL_APEX void term_multithreading();
 
    //CLASS_DECL_APEX bool thread_registered(::thread * pthread);
-   //CLASS_DECL_APEX bool thread_id_registered(ITHREAD id);
+   //CLASS_DECL_APEX bool thread_id_registered(ithread_t id);
 
-   //CLASS_DECL_APEX void thread_register(ITHREAD ithread, ::thread * pthread);
+   //CLASS_DECL_APEX void thread_register(ithread_t ithread, ::thread * pthread);
 
-   //CLASS_DECL_APEX void thread_unregister(ITHREAD ithread, ::thread * pthread);
+   //CLASS_DECL_APEX void thread_unregister(ithread_t ithread, ::thread * pthread);
 
    CLASS_DECL_APEX bool is_child(::task * ptask);
 
@@ -118,7 +118,7 @@ namespace multithreading
    //CLASS_DECL_APEX void __node_on_init_thread(thread * pthread);
    //CLASS_DECL_APEX void __node_on_term_thread(thread * pthread);
 
-   //CLASS_DECL_APEX extern comparable_eq_array <ITHREAD> * s_piaThread;
+   //CLASS_DECL_APEX extern comparable_eq_array <ithread_t> * s_piaThread;
    //CLASS_DECL_APEX extern address_array < ::thread * > * s_pthreadptra;
    //CLASS_DECL_APEX extern ::mutex * s_pmutex;
 

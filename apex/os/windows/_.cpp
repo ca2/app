@@ -709,10 +709,10 @@ int GetVersion_ex1()
 //
 //}
 
-//CLASS_DECL_APEX string get_error_string(u64 ui)
+//CLASS_DECL_APEX string get_error_string(u64 u)
 //{
 //
-//   ::u32 dwError = (::u32)ui;
+//   ::u32 dwError = (::u32)u;
 //
 //   wchar_t* pszError;
 //

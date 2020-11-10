@@ -13,12 +13,12 @@
 char get_drive_letter(const char * pDevicePath);
 
 
-CLASS_DECL_AXIS void set_main_thread(HANDLE hThread);
-CLASS_DECL_AXIS void set_main_thread_id(::u32 uThread);
+CLASS_DECL_AXIS void set_main_hthread(hthread_t hthread);
+CLASS_DECL_AXIS void set_main_ithread(ithread_t ithread);
 
 
-CLASS_DECL_AXIS HANDLE get_main_thread();
-CLASS_DECL_AXIS ::u32   get_main_thread_id();
+CLASS_DECL_AXIS HANDLE get_main_hthread();
+CLASS_DECL_AXIS ::u32   get_main_ithread();
 
 
 CLASS_DECL_AXIS HMONITOR GetUiMonitorHandle(HWND hwnd);

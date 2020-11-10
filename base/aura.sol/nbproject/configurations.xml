@@ -1150,15 +1150,15 @@
               <itemPath>../base/openssl/crypto/txt_db/txt_db.c</itemPath>
               <itemPath>../base/openssl/crypto/txt_db/txt_db.h</itemPath>
             </logicalFolder>
-            <logicalFolder name="ui" displayName="ui" projectFiles="true">
-              <itemPath>../base/openssl/crypto/ui/ui.h</itemPath>
-              <itemPath>../base/openssl/crypto/ui/ui_compat.c</itemPath>
-              <itemPath>../base/openssl/crypto/ui/ui_compat.h</itemPath>
-              <itemPath>../base/openssl/crypto/ui/ui_err.c</itemPath>
-              <itemPath>../base/openssl/crypto/ui/ui_lib.c</itemPath>
-              <itemPath>../base/openssl/crypto/ui/ui_locl.h</itemPath>
-              <itemPath>../base/openssl/crypto/ui/ui_openssl.c</itemPath>
-              <itemPath>../base/openssl/crypto/ui/ui_util.c</itemPath>
+            <logicalFolder name="u" displayName="u" projectFiles="true">
+              <itemPath>../base/openssl/crypto/u/u.h</itemPath>
+              <itemPath>../base/openssl/crypto/u/ui_compat.c</itemPath>
+              <itemPath>../base/openssl/crypto/u/ui_compat.h</itemPath>
+              <itemPath>../base/openssl/crypto/u/ui_err.c</itemPath>
+              <itemPath>../base/openssl/crypto/u/ui_lib.c</itemPath>
+              <itemPath>../base/openssl/crypto/u/ui_locl.h</itemPath>
+              <itemPath>../base/openssl/crypto/u/ui_openssl.c</itemPath>
+              <itemPath>../base/openssl/crypto/u/ui_util.c</itemPath>
             </logicalFolder>
             <logicalFolder name="whrlpool" displayName="whrlpool" projectFiles="true">
               <itemPath>../base/openssl/crypto/whrlpool/whrlpool.h</itemPath>
@@ -1416,7 +1416,7 @@
               <itemPath>../base/openssl/include/openssl/tls1.h</itemPath>
               <itemPath>../base/openssl/include/openssl/ts.h</itemPath>
               <itemPath>../base/openssl/include/openssl/txt_db.h</itemPath>
-              <itemPath>../base/openssl/include/openssl/ui.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/u.h</itemPath>
               <itemPath>../base/openssl/include/openssl/ui_compat.h</itemPath>
               <itemPath>../base/openssl/include/openssl/whrlpool.h</itemPath>
               <itemPath>../base/openssl/include/openssl/x509.h</itemPath>
@@ -1761,8 +1761,8 @@
           <itemPath>../filesystem/file/file_system.h</itemPath>
           <itemPath>../filesystem/file/file_text_buffer.cpp</itemPath>
           <itemPath>../filesystem/file/file_text_buffer.h</itemPath>
-          <itemPath>../filesystem/file/file_timeout_buffer.cpp</itemPath>
-          <itemPath>../filesystem/file/file_timeout_buffer.h</itemPath>
+          <itemPath>../filesystem/file/filetimeout_buffer.cpp</itemPath>
+          <itemPath>../filesystem/file/filetimeout_buffer.h</itemPath>
           <itemPath>../filesystem/file/file_transfer_buffer.cpp</itemPath>
           <itemPath>../filesystem/file/file_transfer_buffer.h</itemPath>
           <itemPath>../filesystem/file/file_writer.cpp</itemPath>

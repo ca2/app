@@ -4,7 +4,7 @@
 namespace windows
 {
 
-   namespace file_time
+   namespace filetime
    {
 
 
@@ -185,7 +185,7 @@ namespace windows
 
 
 
-   } // namespace file_time
+   } // namespace filetime
 
 
 } // namespace windows

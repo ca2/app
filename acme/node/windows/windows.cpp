@@ -69,12 +69,11 @@ namespace windows
 
 
    ::i32 reg_query_value(HKEY hkey,const char * pszSubKey,string & str)
-
    {
 
-      ::u32 dwType = 0;
-      ::u32 dwSize = 0;
-      ::i32 lResult = RegQueryValueExW(hkey,wstring(pszSubKey),nullptr,&dwType,nullptr,&dwSize);
+      DWORD dwType = 0;
+      DWORD dwSize = 0;
+      ::i32 lResult = RegQueryValueExW(hkey,wstring(pszSubKey),nullptr,&dwType,nullptr, &dwSize);
 
       if(lResult != ERROR_SUCCESS)
          return lResult;

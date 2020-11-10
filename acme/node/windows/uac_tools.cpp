@@ -246,7 +246,7 @@ namespace VistaTools
          return hResult;
       }
 
-      ::u32 dwReturnLength = 0;
+      DWORD dwReturnLength = 0;
 
       if(!::GetTokenInformation(
             hToken,
@@ -287,7 +287,7 @@ namespace VistaTools
       }
 
       TOKEN_ELEVATION te = {0};
-      ::u32 dwReturnLength = 0;
+      DWORD dwReturnLength = 0;
 
       if(!::GetTokenInformation(
             hToken,

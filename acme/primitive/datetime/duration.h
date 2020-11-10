@@ -260,12 +260,12 @@ inline tick_duration duration::tick_duration() const
    if(is_pos_infinity())
       return 0xffffffff;
 
-   auto uiTotal = get_total_milliseconds();
+   auto uTotal = get_total_milliseconds();
 
-   if(uiTotal >= ::numeric_info < tick_duration::TYPE >::max())
+   if(uTotal >= ::numeric_info < tick_duration::TYPE >::max())
       return ::numeric_info < tick_duration::TYPE >::max();
 
-   return (tick_duration::TYPE) uiTotal;
+   return (tick_duration::TYPE) uTotal;
 
 }
 
@@ -575,8 +575,8 @@ inline millis::millis(i64 i) :
 }
 
 
-inline millis::millis(u64 ui) :
-duration(ui / 1000, (ui % 1000) * 1000000)
+inline millis::millis(u64 u) :
+duration(u / 1000, (u % 1000) * 1000000)
 {
 
 }

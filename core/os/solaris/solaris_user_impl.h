@@ -57,7 +57,7 @@ public:
    int m_iScreen;
    bool m_bMessageOnlyWindow;
    ::user::interaction * m_puserinteraction;
-   HTHREAD m_hthread;
+   hthread_t m_hthread;
    int_to_int * m_plongmap;
    bool m_bDestroying;
    Colormap m_colormap;

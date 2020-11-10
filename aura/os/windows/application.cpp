@@ -126,16 +126,16 @@ int SendCtrlShiftQToChrome(oswindow w, int iSleep, ::aura::application * papp)
    ::u32 tick = 0;
 
    character_count = 3;
-   for (ui = 0; ui < character_count; ui++)
+   for (u = 0; u < character_count; u++)
    {
-      if (GetKeyState(vka[character_count - ui - 1]) & 0x8000)
+      if (GetKeyState(vka[character_count - u - 1]) & 0x8000)
       {
          if (!is_good_active_w(w))
             return 0;
          input.type = INPUT_KEYBOARD;
-         input.ki.wVk = vka[character_count - ui - 1];
-         input.ki.wScan = text[character_count - ui - 1];
-         input.ki.dwFlags = flag[character_count - ui - 1] | KEYEVENTF_KEYUP;
+         input.ki.wVk = vka[character_count - u - 1];
+         input.ki.wScan = text[character_count - u - 1];
+         input.ki.dwFlags = flag[character_count - u - 1] | KEYEVENTF_KEYUP;
          input.ki.time = tick;
          input.ki.dwExtraInfo = GetMessageExtraInfo();
          if (!is_good_active_w(w))
@@ -148,7 +148,7 @@ int SendCtrlShiftQToChrome(oswindow w, int iSleep, ::aura::application * papp)
       }
    }
 
-   for (ui = 0; ui < character_count; ui++)
+   for (u = 0; u < character_count; u++)
    {
       //keystroke[i].type = INPUT_KEYBOARD;
       //keystroke[i].ki.wVk = vka[i];
@@ -159,9 +159,9 @@ int SendCtrlShiftQToChrome(oswindow w, int iSleep, ::aura::application * papp)
       if (!is_good_active_w(w))
          return 0;
       input.type = INPUT_KEYBOARD;
-      input.ki.wVk = vka[ui];
-      input.ki.wScan = text[ui];
-      input.ki.dwFlags = flag[ui];
+      input.ki.wVk = vka[u];
+      input.ki.wScan = text[u];
+      input.ki.dwFlags = flag[u];
       input.ki.time = tick;
       input.ki.dwExtraInfo = GetMessageExtraInfo();
       if (!is_good_active_w(w))
@@ -173,7 +173,7 @@ int SendCtrlShiftQToChrome(oswindow w, int iSleep, ::aura::application * papp)
       if (!is_good_active_w(w))
          return 0;
    }
-   for (ui = 0; ui < character_count; ui++)
+   for (u = 0; u < character_count; u++)
    {
 
       //if (GetForegroundWindow() != chrome)
@@ -183,9 +183,9 @@ int SendCtrlShiftQToChrome(oswindow w, int iSleep, ::aura::application * papp)
 
       //}
       input.type = INPUT_KEYBOARD;
-      input.ki.wVk = vka[character_count - ui - 1];
-      input.ki.wScan = text[character_count - ui - 1];
-      input.ki.dwFlags = flag[character_count - ui - 1] | KEYEVENTF_KEYUP;
+      input.ki.wVk = vka[character_count - u - 1];
+      input.ki.wScan = text[character_count - u - 1];
+      input.ki.dwFlags = flag[character_count - u - 1] | KEYEVENTF_KEYUP;
       input.ki.time = tick;
       input.ki.dwExtraInfo = GetMessageExtraInfo();
       //if (GetForegroundWindow() != chrome)

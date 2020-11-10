@@ -42,9 +42,9 @@
 #ifndef _UWP
 
 
-CLASS_DECL_APEX ::u32 WINAPI ResumeThread(HTHREAD hThread);
-CLASS_DECL_APEX int_bool WINAPI SetThreadPriority(HTHREAD hThread, i32 nPriority);
-CLASS_DECL_APEX i32 WINAPI GetThreadPriority(HTHREAD hThread);
+CLASS_DECL_APEX ::u32 WINAPI ResumeThread(hthread_t hthread);
+CLASS_DECL_APEX int_bool WINAPI SetThreadPriority(hthread_t hthread, i32 nPriority);
+CLASS_DECL_APEX i32 WINAPI GetThreadPriority(hthread_t hthread);
 
 CLASS_DECL_APEX VOID WINAPI Sleep(::u32 dwMilliseconds);
 

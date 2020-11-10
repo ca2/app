@@ -908,12 +908,12 @@ bool file_context::put_contents(const var & varFile, ::file::file * pfile)
 
    mem.set_size(1024 * 1024 * 8);
 
-   memsize uiRead;
+   memsize uRead;
 
-   while ((uiRead = pfile->read(mem.get_data(), mem.get_size())) > 0)
+   while ((uRead = pfile->read(mem.get_data(), mem.get_size())) > 0)
    {
 
-      spfile->write(mem.get_data(), uiRead);
+      spfile->write(mem.get_data(), uRead);
 
    }
 
@@ -1794,7 +1794,7 @@ i32 file_context::cmp(const ::file::path & psz1, const ::file::path & psz2)
 //
 //   memsize iBufSize = 1024 * 1024;
 //
-//   memsize uiRead;
+//   memsize uRead;
 //
 //   memory buf;
 //
@@ -1820,10 +1820,10 @@ i32 file_context::cmp(const ::file::path & psz1, const ::file::path & psz2)
 //      if (pfile2->open(stra[i], ::file::mode_read | ::file::type_binary).failed())
 //         __throw(::exception::exception("failed"));
 //      write_n_number(spfile, &ctx, (i32)pfile2->get_size());
-//      while ((uiRead = pfile2->read(buf, iBufSize)) > 0)
+//      while ((uRead = pfile2->read(buf, iBufSize)) > 0)
 //      {
-//         spfile->write(buf, uiRead);
-//         MD5_Update(&ctx, buf, (size_t)uiRead);
+//         spfile->write(buf, uRead);
+//         MD5_Update(&ctx, buf, (size_t)uRead);
 //      }
 //      spfile->seek(iPos, ::file::seek_begin);
 //      strMd5 = __str(ctx);
@@ -1862,7 +1862,7 @@ i32 file_context::cmp(const ::file::path & psz1, const ::file::path & psz2)
 //
 //   auto pfile2 = __create < ::file::file >();
 //
-//   memsize uiRead;
+//   memsize uRead;
 //
 //   if (strVersion == "fileset v1")
 //   {
@@ -1881,12 +1881,12 @@ i32 file_context::cmp(const ::file::path & psz1, const ::file::path & psz2)
 //         read_n_number(spfile, &ctx, iLen);
 //         while (iLen > 0)
 //         {
-//            uiRead = spfile->read(buf, (::u32)(min(iBufSize, iLen)));
-//            if (uiRead == 0)
+//            uRead = spfile->read(buf, (::u32)(min(iBufSize, iLen)));
+//            if (uRead == 0)
 //               break;
-//            pfile2->write(buf, uiRead);
-//            MD5_Update(&ctx, buf, (size_t)uiRead);
-//            iLen -= uiRead;
+//            pfile2->write(buf, uRead);
+//            MD5_Update(&ctx, buf, (size_t)uRead);
+//            iLen -= uRead;
 //         }
 //         pfile2->close();
 //         strMd5New = __str(ctx);
@@ -1922,13 +1922,13 @@ i32 file_context::cmp(const ::file::path & psz1, const ::file::path & psz2)
 //void file_context::read_n_number(::file::file * pfile, void * pctx, i64 & iNumber)
 //{
 //
-//   u64 uiRead;
+//   u64 uRead;
 //
 //   string str;
 //
 //   char ch;
 //
-//   while ((uiRead = pfile->read(&ch, 1)) == 1)
+//   while ((uRead = pfile->read(&ch, 1)) == 1)
 //   {
 //
 //      if (ch >= '0' && ch <= '9')
@@ -2898,10 +2898,10 @@ file_result file_context::get_file(const var & varFile, const efileopen & eopenF
 //{
 //   class memory memory;
 //   memory.set_size(1024 * 256);
-//   memsize  uiRead;
-//   while ((uiRead = istream.read(memory, memory.get_size())) > 0)
+//   memsize  uRead;
+//   while ((uRead = istream.read(memory, memory.get_size())) > 0)
 //   {
-//      ostream.write(memory, uiRead);
+//      ostream.write(memory, uRead);
 //   }
 //   return true;
 //}

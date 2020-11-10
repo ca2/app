@@ -224,9 +224,9 @@ namespace sockets
       //strProfileInfo += "\n";
 
 
-      for(unsigned int ui = 0; ui < names->Size; ui++)
+      for(unsigned int u = 0; u < names->Size; u++)
       {
-         ::Windows::Networking::HostName ^ name = names->GetAt(ui);
+         ::Windows::Networking::HostName ^ name = names->GetAt(u);
          if(name == nullptr)
             continue;
          if(name->IPInformation == nullptr)

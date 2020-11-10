@@ -55,8 +55,8 @@ void ___release(TYPE *& p OBJ_REF_DBG_COMMA_PARAMS);
 //   ::e_priority epriority = priority_normal,
 //   u32 nStackSize = 0,
 //   u32 dwCreateFlags = 0,
-//   ITHREAD* pithread = nullptr,
-//   HTHREAD* phthread = nullptr);
+//   ithread_t* pithread = nullptr,
+//   hthread_t* phthread = nullptr);
 
 
 //CLASS_DECL_ACME void launch_action(action* paction);

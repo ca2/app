@@ -22,7 +22,6 @@ ENUM enum_default()
 }
 
 
-
 class CLASS_DECL_ACME var :
    public var_type < var >
 {
@@ -96,9 +95,9 @@ public:
    inline var(std::nullptr_t);
    var(bool b);
    var(::i32 i);
-   var(::u32 ui);
+   var(::u32 u);
    var(::i64 i);
-   var(::u64 ui);
+   var(::u64 u);
 #ifdef APPLEOS
 #ifdef OS64BIT
    var(long l);
@@ -372,9 +371,7 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
 
    operator bool() const;
 
-#ifdef WINDOWS
-   operator ::i32() const;
-#elif defined(__APPLE__) || defined(ANDROID) || defined(RASPBIAN)
+#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBIAN) || defined(WINDOWS)
    operator long() const;
 #endif
    operator ::i8() const;
@@ -389,7 +386,7 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
    operator double() const;
    operator ::estatus() const;
    operator class duration() const;
-   operator ::datetime::file_time() const;
+   operator ::filetime() const;
    operator ::datetime::time() const;
    operator block () const;
    operator block ();
@@ -494,12 +491,12 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
    var & operator = (bool * pb);
    var & operator = (::i32 i);
    var & operator = (::i32 * pi);
-   var & operator = (::u32 ui);
+   var & operator = (::u32 u);
    var & operator = (::u32 * pinteraction);
 #ifdef WINDOWS
    var & operator = (LPDWORD lpdw);
-   var & operator = (::i32 l);
-   var & operator = (::u32 dw);
+   var & operator = (long l);
+   var & operator = (DWORD dw);
 #elif defined(__APPLE__) || defined(ANDROID) || defined(RASPBIAN)
    var & operator = (long l);
 #endif
@@ -757,90 +754,90 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
 
 
    var operator - (::i32 i) const;
-   var operator - (::u32 ui) const;
+   var operator - (::u32 u) const;
    var operator - (::i64 i) const;
-   var operator - (::u64 ui) const;
+   var operator - (::u64 u) const;
    var operator - (double d) const;
 
    friend var CLASS_DECL_ACME operator - (::i32 i,const var & var);
-   friend var CLASS_DECL_ACME operator - (::u32 ui,const var & var);
+   friend var CLASS_DECL_ACME operator - (::u32 u,const var & var);
    friend var CLASS_DECL_ACME operator - (::i64 l,const var & var);
    friend var CLASS_DECL_ACME operator - (::u64 ul,const var & var);
    friend var CLASS_DECL_ACME operator - (double d,const var & var);
    friend var CLASS_DECL_ACME operator - (const var & var1,const var & var2);
 
    var operator + (::i32 i) const;
-   var operator + (::u32 ui) const;
+   var operator + (::u32 u) const;
    var operator + (::i64 i) const;
-   var operator + (::u64 ui) const;
+   var operator + (::u64 u) const;
    var operator + (double d) const;
 
    var operator + (const string & str) const;
    inline var operator + (const char * psz) const { return *this + string(psz); }
 
    friend var CLASS_DECL_ACME operator + (::i32 i,const var & var);
-   friend var CLASS_DECL_ACME operator + (::u32 ui,const var & var);
+   friend var CLASS_DECL_ACME operator + (::u32 u,const var & var);
    friend var CLASS_DECL_ACME operator + (::i64 l,const var & var);
    friend var CLASS_DECL_ACME operator + (::u64 ul,const var & var);
    friend var CLASS_DECL_ACME operator + (double d,const var & var);
    friend var CLASS_DECL_ACME operator + (const var & var1,const var & var2);
 
    var operator / (::i32 i) const;
-   var operator / (::u32 ui) const;
+   var operator / (::u32 u) const;
    var operator / (::i64 i) const;
-   var operator / (::u64 ui) const;
+   var operator / (::u64 u) const;
    var operator / (double d) const;
 
    friend var CLASS_DECL_ACME operator / (::i32 i,const var & var);
-   friend var CLASS_DECL_ACME operator / (::u32 ui,const var & var);
+   friend var CLASS_DECL_ACME operator / (::u32 u,const var & var);
    friend var CLASS_DECL_ACME operator / (::i64 l,const var & var);
    friend var CLASS_DECL_ACME operator / (::u64 ul,const var & var);
    friend var CLASS_DECL_ACME operator / (double d,const var & var);
    friend var CLASS_DECL_ACME operator / (const var & var1,const var & var2);
 
    var operator * (::i32 i) const;
-   var operator * (::u32 ui) const;
+   var operator * (::u32 u) const;
    var operator * (::i64 i) const;
-   var operator * (::u64 ui) const;
+   var operator * (::u64 u) const;
    var operator * (double d) const;
 
    ::i32 str_compare(const property & prop) const;
 
    friend var CLASS_DECL_ACME operator * (::i32 i,const var & var);
-   friend var CLASS_DECL_ACME operator * (::u32 ui,const var & var);
+   friend var CLASS_DECL_ACME operator * (::u32 u,const var & var);
    friend var CLASS_DECL_ACME operator * (::i64 l,const var & var);
    friend var CLASS_DECL_ACME operator * (::u64 ul,const var & var);
    friend var CLASS_DECL_ACME operator * (double d,const var & var);
    friend var CLASS_DECL_ACME operator * (const var & var1,const var & var2);
 
    var & operator -= (::i32 i);
-   var & operator -= (::u32 ui);
+   var & operator -= (::u32 u);
    var & operator -= (::i64 i);
-   var & operator -= (::u64 ui);
+   var & operator -= (::u64 u);
    var & operator -= (double d);
    var & operator -= (const var & var);
    //var & operator -= (const property & property);
 
    var & operator += (::i32 i);
-   var & operator += (::u32 ui);
+   var & operator += (::u32 u);
    var & operator += (::i64 i);
-   var & operator += (::u64 ui);
+   var & operator += (::u64 u);
    var & operator += (double d);
    var & operator += (const var & var);
    //var & operator += (const property & property);
 
    var & operator /= (::i32 i);
-   var & operator /= (::u32 ui);
+   var & operator /= (::u32 u);
    var & operator /= (::i64 i);
-   var & operator /= (::u64 ui);
+   var & operator /= (::u64 u);
    var & operator /= (double d);
    var & operator /= (const var & var);
    //var & operator /= (const property & property);
 
    var & operator *= (::i32 i);
-   var & operator *= (::u32 ui);
+   var & operator *= (::u32 u);
    var & operator *= (::i64 i);
-   var & operator *= (::u64 ui);
+   var & operator *= (::u64 u);
    var & operator *= (double d);
    var & operator *= (const var & var);
    //var & operator *= (const property & property);
@@ -1031,7 +1028,7 @@ inline uptr var::uptr(::uptr uiDefault) const
 
 #ifdef WINDOWS
 
-inline var::operator ::i32 () const
+inline var::operator long () const
 {
 
    return i32();

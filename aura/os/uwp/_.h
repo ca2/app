@@ -28,12 +28,12 @@ CLASS_DECL_AURA void WINAPI Sleep(::u32 dwMilliseconds);
 //CLASS_DECL_AURA int_bool main_finalize();
 //
 //
-//CLASS_DECL_AURA void set_main_thread(HTHREAD hThread);
-//CLASS_DECL_AURA void set_main_thread_id(::u32 uThread);
+//CLASS_DECL_AURA void set_main_hthread(hthread_t hthread);
+//CLASS_DECL_AURA void set_main_ithread(ithread_t ithread);
 //
 //
-//CLASS_DECL_AURA HTHREAD get_main_thread();
-//CLASS_DECL_AURA ::u32 get_main_thread_id();
+//CLASS_DECL_AURA hthread_t get_main_hthread();
+//CLASS_DECL_AURA ::u32 get_main_ithread();
 //
 //CLASS_DECL_AURA oswindow get_focus();
 //CLASS_DECL_AURA oswindow set_focus(oswindow oswindow);

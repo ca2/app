@@ -485,12 +485,12 @@ void memory_file::dump(dump_context & dumpcontext) const
 //
 //   storage.set_size(1_mb);
 //
-//   memsize uiRead;
+//   memsize uRead;
 //
-//   while ((uiRead = pfile->read(storage.get_data(), storage.get_size())) > 0)
+//   while ((uRead = pfile->read(storage.get_data(), storage.get_size())) > 0)
 //   {
 //
-//      write(storage.get_data(), uiRead);
+//      write(storage.get_data(), uRead);
 //
 //   }
 //

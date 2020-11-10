@@ -3,7 +3,7 @@
 
 
 extern __pointer(::thread) g_pthreadXlib;
-extern ITHREAD g_ithreadXlib;
+extern ithread_t g_ithreadXlib;
 
 
 void x11_kick_idle();

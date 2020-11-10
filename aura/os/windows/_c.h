@@ -13,12 +13,12 @@
 //char get_drive_letter(const char * pDevicePath);
 //
 //
-//CLASS_DECL_AURA void set_main_thread(HANDLE hThread);
-//CLASS_DECL_AURA void set_main_thread_id(::u32 uThread);
+//CLASS_DECL_AURA void set_main_hthread(hthread_t hthread);
+//CLASS_DECL_AURA void set_main_ithread(ithread_t ithread);
 //
 //
-//CLASS_DECL_AURA HANDLE get_main_thread();
-//CLASS_DECL_AURA ::u32   get_main_thread_id();
+//CLASS_DECL_AURA HANDLE get_main_hthread();
+//CLASS_DECL_AURA ::u32   get_main_ithread();
 //
 //
 //CLASS_DECL_AURA HMONITOR GetUiMonitorHandle(HWND hwnd);

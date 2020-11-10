@@ -71,7 +71,7 @@
 
 
 template <  >
-inline bool EqualElements<ITHREAD>(ITHREAD r1, ITHREAD r2)
+inline bool EqualElements<ithread_t>(ithread_t r1, ithread_t r2)
 {
 
    return ithread_equals(r1, r2) != 0;
@@ -80,7 +80,7 @@ inline bool EqualElements<ITHREAD>(ITHREAD r1, ITHREAD r2)
 
 
 template <  >
-inline uptr uptr_hash(ITHREAD key)
+inline uptr uptr_hash(ithread_t key)
 {
 
    return 0;
@@ -90,7 +90,7 @@ inline uptr uptr_hash(ITHREAD key)
 
 #endif
 
-//CLASS_DECL_ACME __pointer(mq) __get_mq(ITHREAD id, bool bCreate);
+//CLASS_DECL_ACME __pointer(mq) __get_mq(ithread_t id, bool bCreate);
 
 
 

@@ -228,7 +228,7 @@ namespace aura
 
       //virtual __pointer(::user::menu_interaction) create_menu_button(::user::style_pointer & pstyle, ::user::menu_item * pitem);
 
-      virtual color32_t get_default_color(u64 ui) override;
+      virtual color32_t get_default_color(u64 u) override;
 
       //virtual ::size get_window_minimum_size();
 

@@ -15,7 +15,7 @@ namespace introjection
       ::file::path                              m_pathScript;
       ::string_stream                               m_memfileError;
       string                                    m_strError;
-      file_time                                 m_filetime;
+      filetime                                 m_filetime;
 
 
       library(::layered * pobjectContext);

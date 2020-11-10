@@ -17,10 +17,10 @@
 
 
 
-CLASS_DECL_ACME void set_main_hthread(HTHREAD hthread);
-CLASS_DECL_ACME void set_main_ithread(ITHREAD ithread);
-CLASS_DECL_ACME HTHREAD get_main_hthread(void);
-CLASS_DECL_ACME ITHREAD get_main_ithread(void);
+CLASS_DECL_ACME void set_main_hthread(hthread_t hthread);
+CLASS_DECL_ACME void set_main_ithread(ithread_t ithread);
+CLASS_DECL_ACME hthread_t get_main_hthread(void);
+CLASS_DECL_ACME ithread_t get_main_ithread(void);
 
 
 

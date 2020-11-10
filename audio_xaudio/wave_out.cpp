@@ -638,10 +638,10 @@ namespace multimedia
 
          //}
 
-         unsigned ::i64 freq;
+         ::u64 freq;
          QueryPerformanceFrequency((LARGE_INTEGER*)&freq);
          double timerFrequency = (1.0 / freq);
-         unsigned ::i64 startTime;
+         ::u64 startTime;
          QueryPerformanceCounter((LARGE_INTEGER *)&startTime);
 
 
@@ -653,7 +653,7 @@ namespace multimedia
 
          m_psynththread->on_free(iBuffer);
 
-         unsigned ::i64 endTime;
+         ::u64 endTime;
          QueryPerformanceCounter((LARGE_INTEGER *)&endTime);
          double timeDifferenceInseconds = ((endTime - startTime) * timerFrequency);
          if(timeDifferenceInseconds > 0.040)

@@ -72,11 +72,11 @@ filesize file_length_dup(const char* path)
 
    }
 
-   u64 ui = hfile_get_size(hfile);
+   u64 u = hfile_get_size(hfile);
 
    CloseHandle(hfile);
 
-   return ui;
+   return u;
 
 }
 
@@ -361,7 +361,7 @@ string file_module_path_dup()
 //
 //   ::u32 cbNeeded;
 //
-//   u32 ui;
+//   u32 u;
 //
 //   hProcess = OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_READ,FALSE,processID);
 //
@@ -387,14 +387,14 @@ string file_module_path_dup()
 //   if(EnumProcessModules(hProcess,hMods,sizeof(HMODULE) * iMaxModuleCount,&cbNeeded))
 //   {
 //
-//      for(ui = 0; ui < (cbNeeded / sizeof(HMODULE)); ui++)
+//      for(u = 0; u < (cbNeeded / sizeof(HMODULE)); u++)
 //      {
 //
 //         TCHAR szModName[MAX_PATH];
 //
 //         // Get the full path to the module's file.
 //
-//         if(GetModuleFileNameEx(hProcess,hMods[ui],szModName,sizeof(szModName) / sizeof(TCHAR)))
+//         if(GetModuleFileNameEx(hProcess,hMods[u],szModName,sizeof(szModName) / sizeof(TCHAR)))
 //         {
 //
 //            if(!ansi_compare_ci(szModName,pszDll))
@@ -428,7 +428,7 @@ string file_module_path_dup()
 //
 //   ::u32 cbNeeded,cProcesses;
 //
-//   u32 ui;
+//   u32 u;
 //
 //   if(!EnumProcesses(aProcesses,124 * 8 * sizeof(::u32),&cbNeeded))
 //   {
@@ -444,14 +444,14 @@ string file_module_path_dup()
 //
 //   string strImage;
 //
-//   for(ui = 0; ui < cProcesses; ui++)
+//   for(u = 0; u < cProcesses; u++)
 //   {
 //
-//      if(PrintModules(strImage,aProcesses[ui],pszDll))
+//      if(PrintModules(strImage,aProcesses[u],pszDll))
 //      {
 //
 //         straProcesses.add(strImage); // there may processes with different pids but same image
-//         dwa.add(aProcesses[ui]);
+//         dwa.add(aProcesses[u]);
 //
 //      }
 //
@@ -1880,7 +1880,7 @@ hfile hfile_create(const char* lpcszFileName, ::u32 dwDesiredAcces, ::u32 dwShar
 }
 
 
-bool get_file_time(::Windows::Storage::StorageFile^ file, LPFILETIME lpCreationTime, LPFILETIME lpItemTime, LPFILETIME lpLastWriteTime)
+bool get_filetime(::Windows::Storage::StorageFile^ file, LPFILETIME lpCreationTime, LPFILETIME lpItemTime, LPFILETIME lpLastWriteTime)
 {
 
    if (lpCreationTime != nullptr)

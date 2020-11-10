@@ -7,7 +7,7 @@ typedef THREAD_PROC * thread_proc;
 
 //
 //// very close to the operating system
-//CLASS_DECL_ACME HTHREAD create_thread(
+//CLASS_DECL_ACME hthread_t create_thread(
 //thread_proc proc,
 //void * p,
 //::e_priority epriority = ::priority_normal,
@@ -15,16 +15,16 @@ typedef THREAD_PROC * thread_proc;
 //u32 uiCreateFlags = 0,
 //LPSECURITY_ATTRIBUTES psa = nullptr,
 //
-//ITHREAD * puiId = nullptr);
+//ithread_t * puiId = nullptr);
 //
 //
 
 
 
 
-CLASS_DECL_ACME ITHREAD get_current_ithread();
+CLASS_DECL_ACME ithread_t get_current_ithread();
 
-CLASS_DECL_ACME HTHREAD get_current_hthread();
+CLASS_DECL_ACME hthread_t get_current_hthread();
 
 
 
@@ -96,11 +96,11 @@ CLASS_DECL_ACME bool thread_get_run();
 //   //CLASS_DECL_ACME void term_multithreading();
 //
 //   //CLASS_DECL_ACME bool thread_registered(::thread * pthread);
-//   //CLASS_DECL_ACME bool thread_id_registered(ITHREAD id);
+//   //CLASS_DECL_ACME bool thread_id_registered(ithread_t id);
 //
-//   //CLASS_DECL_ACME void thread_register(ITHREAD ithread, ::thread * pthread);
+//   //CLASS_DECL_ACME void thread_register(ithread_t ithread, ::thread * pthread);
 //
-//   //CLASS_DECL_ACME void thread_unregister(ITHREAD ithread, ::thread * pthread);
+//   //CLASS_DECL_ACME void thread_unregister(ithread_t ithread, ::thread * pthread);
 //
 //   //CLASS_DECL_ACME bool is_child(::thread * pthread);
 //
@@ -115,7 +115,7 @@ CLASS_DECL_ACME bool thread_get_run();
 //   //CLASS_DECL_ACME void __node_on_init_thread(thread * pthread);
 //   //CLASS_DECL_ACME void __node_on_term_thread(thread * pthread);
 //
-//   //CLASS_DECL_ACME extern comparable_eq_array <ITHREAD> * s_piaThread;
+//   //CLASS_DECL_ACME extern comparable_eq_array <ithread_t> * s_piaThread;
 //   //CLASS_DECL_ACME extern address_array < ::thread * > * s_pthreadptra;
 //   //CLASS_DECL_ACME extern ::mutex * s_pmutex;
 //

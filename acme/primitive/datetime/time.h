@@ -125,10 +125,11 @@ namespace datetime
       i64 GetDaySig() const noexcept;
       i64 GetGmtDaySig() const noexcept;
 
-#ifdef WINDOWS
-      FILETIME to_FILETIME() const;
-      SYSTEMTIME to_SYSTEMTIME() const;
-#endif
+//      filetime to_filetime() const;
+//
+//#ifdef WINDOWS
+//      SYSTEMTIME to_SYSTEMTIME() const;
+//#endif
 
       time_span elapsed() const;
       time_span abs_diff(const ::datetime::time & time) const;
@@ -251,5 +252,13 @@ inline CLASS_DECL_ACME ::datetime::time operator + (const duration & duration, c
    return ::datetime::time(duration.GetTimeSpan() + time.m_time);
 
 }
+
+
+#ifdef WINDOWS
+
+CLASS_DECL_ACME SYSTEMTIME __SYSTEMTIME(const ::datetime::time & time);
+
+#endif
+
 
 

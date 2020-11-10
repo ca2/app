@@ -307,7 +307,7 @@ namespace apex
 ////#endif
 //   }
 
-//   ITHREAD application::get_thread_id()
+//   ithread_t application::get_thread_id()
 //   {
 //      return ::GetCurrentThreadId();
 //   }

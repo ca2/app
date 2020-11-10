@@ -29,7 +29,7 @@ inline void __exchange(::var_stream& s, i8& i) { s.default_exchange(i); }
 inline void __exchange(::var_stream& s, i16& i) { s.default_exchange(i); }
 inline void __exchange(::var_stream& s, i32& i) { s.default_exchange(i); }
 inline void __exchange(::var_stream& s, i64& i) { s.default_exchange(i); }
-#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBIAN)
+#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBIAN) || defined(WINDOWS)
 inline void __exchange(::var_stream& s, long& l) { s.default_exchange(l); }
 #endif
 inline void __exchange(::var_stream& s, u8& u) { s.default_exchange(u); }

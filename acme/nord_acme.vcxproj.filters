@@ -205,10 +205,10 @@
     <ClCompile Include="primitive\datetime\duration.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\datetime\file_time.cpp">
+    <ClCompile Include="primitive\datetime\filetime.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\datetime\file_time_span.cpp">
+    <ClCompile Include="primitive\datetime\filetime_span.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
     <ClCompile Include="primitive\datetime\mktime.cpp">
@@ -1512,10 +1512,10 @@
     <ClInclude Include="primitive\datetime\datetime_duration.h">
       <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\datetime\datetime_file_time.h">
+    <ClInclude Include="primitive\datetime\datetime_filetime.h">
       <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\datetime\datetime_file_time_span.h">
+    <ClInclude Include="primitive\datetime\datetime_filetime_span.h">
       <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
     <ClInclude Include="primitive\datetime\datetime_mktime.h">

@@ -289,7 +289,7 @@ namespace apex
 
       virtual bool open_by_file_extension(::create * pcc);
 
-      virtual color32_t get_default_color(u64 ui);
+      virtual color32_t get_default_color(u64 u);
 
       virtual void frame_pre_translate_message(::message::message * pmessage);
 

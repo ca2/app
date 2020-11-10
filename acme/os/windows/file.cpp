@@ -8,7 +8,7 @@
 
 
 
-int_bool read_resource_as_file(const char * pszFile, HINSTANCE hinstance, ::u32 nID, LPCTSTR pcszType)
+int_bool read_resource_as_file(const char * pszFile, HINSTANCE hinstance, DWORD nID, LPCTSTR pcszType)
 
 {
 
@@ -17,7 +17,7 @@ int_bool read_resource_as_file(const char * pszFile, HINSTANCE hinstance, ::u32 
    HGLOBAL hglobalResource;
    u32 dwResourseSize;
    int_bool bOk;
-   ::u32 FAR* pResource;
+   DWORD FAR* pResource;
    FILE * file;
 
    if(hrsrc == nullptr)
@@ -35,7 +35,7 @@ int_bool read_resource_as_file(const char * pszFile, HINSTANCE hinstance, ::u32 
 
       bOk = FALSE;
 
-      pResource = (::u32 FAR*) LockResource(hglobalResource);
+      pResource = (DWORD FAR*) LockResource(hglobalResource);
 
       dir::mk(dir::name(pszFile));
 
@@ -120,15 +120,15 @@ filesize file_length_dup(const char * path)
    if(hfile == INVALID_HANDLE_VALUE)
       return 0;
 
-   ::u32 dwHi = 0;
+   DWORD dwHi = 0;
 
-   u64 ui = GetFileSize(hfile, &dwHi);
+   u64 u = GetFileSize(hfile, &dwHi);
 
-   ui |= ((u64)dwHi) << 32ULL;
+   u |= ((u64)dwHi) << 32ULL;
 
    CloseHandle(hfile);
 
-   return ui;
+   return u;
 
 }
 
@@ -220,8 +220,8 @@ string file_get_mozilla_firefox_plugin_container_path()
       return "";
    {
 
-      ::u32 dwType;
-      ::u32 dwData;
+      DWORD dwType;
+      DWORD dwData;
       dwData = 0;
       if(::WinRegGetValueW(hkeyMozillaFirefox, nullptr, L"CurrentVersion", RRF_RT_REG_SZ, &dwType, nullptr, &dwData) != ERROR_SUCCESS)
       {
@@ -291,15 +291,15 @@ string file_as_string(const char * path, strsize iReadAtMostByteCount)
    if (file == nullptr)
    {
 
-      ::u32 dw = ::get_last_error();
+      DWORD dw = ::get_last_error();
 
       return "";
 
    }
 
-   ::u32 dwSize;
+   DWORD dwSize;
 
-   dwSize = (::u32) FILE_get_size(file);
+   dwSize = (DWORD) FILE_get_size(file);
 
    iReadAtMostByteCount = iReadAtMostByteCount < 0 ? dwSize :  min(iReadAtMostByteCount, (::strsize)dwSize);
 
@@ -544,7 +544,7 @@ struct PROCESS_INFO_t
 ////  IN ULONG              SystemInformationLength,
 ////  OUT   PULONG                ReturnLength OPTIONAL );
 //
-////::u32 g_CurrentIndex = 0;
+////DWORD g_CurrentIndex = 0;
 ////struct THREAD_PARAMS
 ////{
 ////   PSYSTEM_HANDLE_INFORMATION pSysHandleInformation;
@@ -557,7 +557,7 @@ struct PROCESS_INFO_t
 ////   bool bStatus;
 ////};
 //
-////::u32 WINAPI  ThreadProc(void * p)
+////DWORD WINAPI  ThreadProc(void * p)
 ////{
 ////
 ////   THREAD_PARAMS * pThreadParam = (THREAD_PARAMS *) p;
@@ -646,7 +646,7 @@ struct PROCESS_INFO_t
 ////   // Get the list of all handles in the file_system
 ////   PSYSTEM_HANDLE_INFORMATION pSysHandleInformation = new SYSTEM_HANDLE_INFORMATION;
 ////   u32 size = sizeof(SYSTEM_HANDLE_INFORMATION);
-////   ::u32 needed = 0;
+////   DWORD needed = 0;
 ////   NTSTATUS status = NtQuerySystemInformation( SystemHandleInformation, pSysHandleInformation, size, &needed );
 ////   if( !NT_SUCCESS(status))
 ////   {
@@ -756,7 +756,7 @@ struct PROCESS_INFO_t
 ////         HANDLE_INFO stHandle = {0};
 ////         ADDRESS_INFO stAddress;
 ////         stAddress.pAddress = sh.pAddress;
-////         ::u32 dwReturn = 0;
+////         DWORD dwReturn = 0;
 ////         bool bSuccess = DeviceIoControl( hDriver, IOCTL_LISTDRV_BUFFERED_IO, &stAddress, sizeof(ADDRESS_INFO), &stHandle, sizeof(HANDLE_INFO), &dwReturn, nullptr ) != FALSE;
 ////
 ////
@@ -855,7 +855,7 @@ struct PROCESS_INFO_t
 ////
 ////   u32 dwsize = 300;
 ////   PDWORD pDwId = (PDWORD)new byte[dwsize];
-////   ::u32 dwReturned = dwsize;
+////   DWORD dwReturned = dwsize;
 ////   // Enum all the process first
 ////   while( 1 )
 ////   {
@@ -990,16 +990,16 @@ int_bool FILE_set_size(FILE * file, size_t iSize)
 int_bool ensure_file_size_handle(HANDLE h, u64 iSize)
 {
 
-   ::u32 dwHi;
+   DWORD dwHi;
 
-   ::u32 dwLo = GetFileSize(h, &dwHi);
+   DWORD dwLo = GetFileSize(h, &dwHi);
 
    if(((u64) dwLo | ((u64)dwHi << 32)) != iSize)
    {
 
-      ::i32 l = (iSize >> 32) & 0xffffffff;
+      LONG l = (iSize >> 32) & 0xffffffff;
 
-      if(SetFilePointer(h, iSize & 0xffffffff, &l, SEEK_SET) != (::u32) (iSize & 0xffffffff))
+      if(SetFilePointer(h, iSize & 0xffffffff, &l, SEEK_SET) != (DWORD) (iSize & 0xffffffff))
          return false;
 
       if(l != ((iSize >> 32) & 0xffffffff))
@@ -1124,10 +1124,10 @@ int_bool file_is_equal_path(const char * psz1,const char * psz2)
 
    i32 iCmp = -1;
 
-   if(GetFullPathNameW(pwsz1, (::u32)( pwszPath1.m_iSize / sizeof(unichar)), pwszPath1, &pwszFile1))
+   if(GetFullPathNameW(pwsz1, (DWORD)( pwszPath1.m_iSize / sizeof(unichar)), pwszPath1, &pwszFile1))
    {
 
-      if(GetFullPathNameW(pwsz2, (::u32) (pwszPath2.m_iSize / sizeof(unichar)), pwszPath2, &pwszFile2))
+      if(GetFullPathNameW(pwsz2, (DWORD) (pwszPath2.m_iSize / sizeof(unichar)), pwszPath2, &pwszFile2))
       {
 
          iCmp = _wcsicmp(pwszPath1, pwszPath2);
@@ -1387,7 +1387,7 @@ bool GetDrive(const char * pszDosName, string& csDrive, bool bDriveLetterOnly)
 
 
 
-CLASS_DECL_ACME bool read_resource_as_memory(memory & m, HINSTANCE hinstance, ::u32 nID, const char * pcszType, strsize iReadAtMostByteCount)
+CLASS_DECL_ACME bool read_resource_as_memory(memory & m, HINSTANCE hinstance, DWORD nID, const char * pcszType, strsize iReadAtMostByteCount)
 
 {
 
@@ -1431,7 +1431,7 @@ CLASS_DECL_ACME bool read_resource_as_memory(memory & m, HINSTANCE hinstance, ::
    HGLOBAL hglobalResource;
    strsize dwResourceSize;
    int_bool bOk;
-   ::u32 FAR* pResource;
+   DWORD FAR* pResource;
 
    if (hrsrc == nullptr)
       return FALSE;
@@ -1448,7 +1448,7 @@ CLASS_DECL_ACME bool read_resource_as_memory(memory & m, HINSTANCE hinstance, ::
 
       bOk = TRUE;
 
-      pResource = (::u32 FAR*) LockResource(hglobalResource);
+      pResource = (DWORD FAR*) LockResource(hglobalResource);
 
       auto iSize = min_non_neg(dwResourceSize, iReadAtMostByteCount);
 

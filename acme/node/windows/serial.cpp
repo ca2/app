@@ -454,7 +454,9 @@ Serial::SerialImpl::read (u8 *buf, size_t size)
    {
       __throw(PortNotOpenedException ("Serial::read"));
    }
-   ::u32 bytes_read;
+
+   DWORD bytes_read;
+
    if (!ReadFile(m_hFile, buf, static_cast<::u32>(size), &bytes_read, nullptr))
    {
       string ss;
@@ -471,7 +473,9 @@ Serial::SerialImpl::write (const u8 *data, size_t length)
    {
       __throw(PortNotOpenedException ("Serial::write"));
    }
-   ::u32 bytes_written;
+   
+   DWORD bytes_written;
+
    if (!WriteFile(m_hFile, data, static_cast<::u32>(length), &bytes_written, nullptr))
    {
       string str;
@@ -716,7 +720,8 @@ Serial::SerialImpl::waitForChange ()
    {
       __throw(PortNotOpenedException ("Serial::waitForChange"));
    }
-   ::u32 dwCommEvent;
+
+   DWORD dwCommEvent;
 
    if (!SetCommMask(m_hFile, EV_CTS | EV_DSR | EV_RING | EV_RLSD))
    {
@@ -743,7 +748,7 @@ Serial::SerialImpl::getCTS ()
    {
       __throw(PortNotOpenedException ("Serial::getCTS"));
    }
-   ::u32 dwModemStatus;
+   DWORD dwModemStatus;
    if (!GetCommModemStatus(m_hFile, &dwModemStatus))
    {
       THROW (IOException, "Error getting the status of the CTS line.");
@@ -759,7 +764,9 @@ Serial::SerialImpl::getDSR ()
    {
       __throw(PortNotOpenedException ("Serial::getDSR"));
    }
-   ::u32 dwModemStatus;
+   
+   DWORD dwModemStatus;
+
    if (!GetCommModemStatus(m_hFile, &dwModemStatus))
    {
       THROW (IOException, "Error getting the status of the DSR line.");
@@ -775,7 +782,9 @@ Serial::SerialImpl::getRI()
    {
       __throw(PortNotOpenedException ("Serial::getRI"));
    }
-   ::u32 dwModemStatus;
+   
+   DWORD dwModemStatus;
+
    if (!GetCommModemStatus(m_hFile, &dwModemStatus))
    {
       THROW (IOException, "Error getting the status of the RI line.");
@@ -791,7 +800,9 @@ Serial::SerialImpl::getCD()
    {
       __throw(PortNotOpenedException ("Serial::getCD"));
    }
-   ::u32 dwModemStatus;
+   
+   DWORD dwModemStatus;
+
    if (!GetCommModemStatus(m_hFile, &dwModemStatus))
    {
       // Error in GetCommModemStatus;

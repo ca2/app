@@ -279,7 +279,7 @@ GtkWidget * linux_g_direct_app_indicator_init(AppIndicator * pindicator, user_no
 
 //         GtkUIManager * uim = gtk_ui_manager_new ();
 
-//         indicator_menu = gtk_ui_manager_get_widget (uim, "/ui/IndicatorPopup");
+//         indicator_menu = gtk_ui_manager_get_widget (uim, "/u/IndicatorPopup");
 
          GtkWidget * pmenu = gtk_menu_new_from_model(G_MENU_MODEL(menu));
 
@@ -335,7 +335,7 @@ GtkWidget * linux_g_direct_app_indicator_init(AppIndicator * pindicator, user_no
 //
 //         gchar * ui_info = (gchar *) malloc(1024 * 1024);
 //
-//         strcpy(ui_info, "<ui>");
+//         strcpy(ui_info, "<u>");
 //         strcat(ui_info, "  <popup name='IndicatorPopup'>");
 //
 //         int iEntry = 0;
@@ -387,7 +387,7 @@ GtkWidget * linux_g_direct_app_indicator_init(AppIndicator * pindicator, user_no
 //         }
 //
 //         strcat(ui_info, "  </popup>");
-//         strcat(ui_info, "</ui>");
+//         strcat(ui_info, "</u>");
 //
 //         gtk_action_group_add_actions (action_group, entries, iEntry, pbridge);
 //
@@ -433,7 +433,7 @@ GtkWidget * linux_g_direct_app_indicator_init(AppIndicator * pindicator, user_no
 //         if(bOk)
 //         {
 //
-//            indicator_menu = gtk_ui_manager_get_widget (uim, "/ui/IndicatorPopup");
+//            indicator_menu = gtk_ui_manager_get_widget (uim, "/u/IndicatorPopup");
 //
 //            app_indicator_set_menu(m_pappindicator, GTK_MENU (indicator_menu));
 //

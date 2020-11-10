@@ -221,7 +221,7 @@ void thread_data::set(void * p)
 }
 
 
-CLASS_DECL_ACME HTHREAD get_current_hthread()
+CLASS_DECL_ACME hthread_t get_current_hthread()
 {
 
    return ::GetCurrentThread();
@@ -229,7 +229,7 @@ CLASS_DECL_ACME HTHREAD get_current_hthread()
 }
 
 
-CLASS_DECL_ACME ITHREAD get_current_ithread()
+CLASS_DECL_ACME ithread_t get_current_ithread()
 {
 
    return ::GetCurrentThreadId();
@@ -255,9 +255,9 @@ void __node_term_multithreading()
 
 #if defined(LINUX) // || defined(ANDROID)
 
-bool (* g_pfn_defer_process_x_message)(HTHREAD hthread,LPMESSAGE lpMsg,oswindow oswindow,bool bPeek) = nullptr;
+bool (* g_pfn_defer_process_x_message)(hthread_t hthread,LPMESSAGE lpMsg,oswindow oswindow,bool bPeek) = nullptr;
 
-bool aura_defer_process_x_message(HTHREAD hthread,LPMESSAGE lpMsg,oswindow oswindow,bool bPeek)
+bool aura_defer_process_x_message(hthread_t hthread,LPMESSAGE lpMsg,oswindow oswindow,bool bPeek)
 {
 
    if(g_pfn_defer_process_x_message == nullptr)
@@ -267,7 +267,7 @@ bool aura_defer_process_x_message(HTHREAD hthread,LPMESSAGE lpMsg,oswindow oswin
 
 }
 
-void set_defer_process_x_message(bool (* pfn)(HTHREAD hthread,LPMESSAGE lpMsg,oswindow oswindow,bool bPeek))
+void set_defer_process_x_message(bool (* pfn)(hthread_t hthread,LPMESSAGE lpMsg,oswindow oswindow,bool bPeek))
 {
 
    g_pfn_defer_process_x_message = pfn;
@@ -281,7 +281,7 @@ extern "C"
 void * os_thread_thread_proc(LPVOID lpparameter);
 
 
-int_bool WINAPI SetThreadPriority(HTHREAD hThread,int32_t nCa2Priority)
+int_bool WINAPI SetThreadPriority(hthread_t hthread,int32_t nCa2Priority)
 {
 
    int32_t iPolicy;
@@ -290,14 +290,14 @@ int_bool WINAPI SetThreadPriority(HTHREAD hThread,int32_t nCa2Priority)
 
    thread_get_os_priority(&iPolicy,&schedparam,nCa2Priority);
 
-   pthread_setschedparam((pthread_t) hThread,iPolicy,&schedparam);
+   pthread_setschedparam((pthread_t) hthread,iPolicy,&schedparam);
 
    return TRUE;
 
 }
 
 
-int32_t WINAPI GetThreadPriority(HTHREAD  hthread)
+int32_t WINAPI GetThreadPriority(hthread_t  hthread)
 {
 
    int iOsPolicy = SCHED_OTHER;
@@ -306,35 +306,35 @@ int32_t WINAPI GetThreadPriority(HTHREAD  hthread)
 
    schedparam.sched_priority = 0;
 
-   pthread_getschedparam((ITHREAD) hthread,&iOsPolicy,&schedparam);
+   pthread_getschedparam((ithread_t) hthread,&iOsPolicy,&schedparam);
 
    return thread_get_scheduling_priority(iOsPolicy,&schedparam);
 
 }
 
 
-static HTHREAD g_hMainThread = nullptr;
+static hthread_t g_hMainThread = nullptr;
 
-static ITHREAD g_iMainThread = (ITHREAD) -1;
+static ithread_t g_iMainThread = (ithread_t) -1;
 
 
-CLASS_DECL_ACME void set_main_thread(HTHREAD hThread)
+CLASS_DECL_ACME void set_main_hthread(hthread_t hthread)
 {
 
-   g_hMainThread = hThread;
+   g_hMainThread = hthread;
 
 }
 
 
-CLASS_DECL_ACME void set_main_thread_id(ITHREAD uiThread)
+CLASS_DECL_ACME void set_main_ithread(ithread_t ithread)
 {
 
-   g_iMainThread = uiThread;
+   g_iMainThread = ithread;
 
 }
 
 
-CLASS_DECL_ACME HTHREAD get_main_thread()
+CLASS_DECL_ACME hthread_t get_main_hthread()
 {
 
    return g_hMainThread;
@@ -342,7 +342,7 @@ CLASS_DECL_ACME HTHREAD get_main_thread()
 }
 
 
-CLASS_DECL_ACME ITHREAD get_main_thread_id()
+CLASS_DECL_ACME ithread_t get_main_ithread()
 {
 
    return g_iMainThread;
@@ -356,15 +356,15 @@ CLASS_DECL_ACME void attach_thread_input_to_main_thread(bool bAttach)
 }
 
 
-// LPVOID WINAPI thread_get_data(HTHREAD hthread,::u32 dwIndex);
+// LPVOID WINAPI thread_get_data(hthread_t hthread,::u32 dwIndex);
 
-// int_bool WINAPI thread_set_data(HTHREAD hthread,::u32 dwIndex,LPVOID lpTlsValue);
+// int_bool WINAPI thread_set_data(hthread_t hthread,::u32 dwIndex,LPVOID lpTlsValue);
 
 ::u32 g_dwDebug_post_thread_msg_time;
 
 int g_iDebug_post_thread_msg_time;
 
-CLASS_DECL_ACME int_bool WINAPI PostThreadMessage(ITHREAD iThreadId,::u32 Msg,WPARAM wParam,LPARAM lParam)
+CLASS_DECL_ACME int_bool WINAPI PostThreadMessage(ithread_t iThreadId,::u32 Msg,WPARAM wParam,LPARAM lParam)
 {
 
    __pointer(mq) pmq = __get_mq(iThreadId);
@@ -403,7 +403,7 @@ CLASS_DECL_ACME int_bool WINAPI PostThreadMessage(ITHREAD iThreadId,::u32 Msg,WP
 }
 
 
-CLASS_DECL_ACME HTHREAD GetCurrentThread()
+CLASS_DECL_ACME hthread_t GetCurrentThread()
 {
 
    return pthread_self();
@@ -411,7 +411,7 @@ CLASS_DECL_ACME HTHREAD GetCurrentThread()
 }
 
 
-CLASS_DECL_ACME ITHREAD GetCurrentThreadId()
+CLASS_DECL_ACME ithread_t GetCurrentThreadId()
 {
 
    return pthread_self();

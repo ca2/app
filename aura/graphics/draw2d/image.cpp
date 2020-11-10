@@ -4561,9 +4561,9 @@ bool image::channel_mask(uchar uchFind, uchar uchSet, uchar uchUnset, color::e_c
 u32 image::GetPixel(i32 x, i32 y)
 {
 
-   u32 ui = *(get_data() + x + line(y) * (m_iScan / sizeof(color32_t)));
+   u32 u = *(get_data() + x + line(y) * (m_iScan / sizeof(color32_t)));
 
-   u8 * point = (u8 *) &ui;
+   u8 * point = (u8 *) &u;
 
    int iA = point[IMAGE_A_BYTE_INDEX];
 

@@ -116,7 +116,7 @@ typedef i32 intptr_t;
 
 #ifndef _::u32PTR_T_DEFINED
 #ifdef  OS64BIT
-typedef unsigned ::i64 ::u32ptr_t;
+typedef ::u64 ::u32ptr_t;
 #else
 typedef u32 ::u32ptr_t;
 #endif
@@ -136,7 +136,7 @@ typedef i32 ptrdiff_t;
 /*
 #ifndef _SIZE_T_DEFINED
 #ifdef OS64BIT
-typedef unsigned ::i64 size_t;
+typedef ::u64 size_t;
 #else
 typedef u32 size_t;
 #endif

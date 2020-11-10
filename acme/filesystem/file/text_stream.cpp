@@ -109,10 +109,10 @@ void text_stream::write(i16 i)
 }
 
 
-void text_stream::write(u16 ui)
+void text_stream::write(u16 u)
 {
 
-   write((u32)ui);
+   write((u32)u);
 
 }
 
@@ -168,10 +168,10 @@ void text_stream::write(i32 i)
 }
 
 
-void text_stream::write(u32 ui)
+void text_stream::write(u32 u)
 {
 
-   print_number(__str(ui));
+   print_number(__str(u));
 
 }
 
@@ -184,10 +184,10 @@ void text_stream::write(i64 i)
 }
 
 
-void text_stream::write(u64 ui)
+void text_stream::write(u64 u)
 {
 
-   print_number(__str(ui));
+   print_number(__str(u));
 
 }
 
@@ -356,22 +356,22 @@ void text_stream::read(i16 & sh)
    m_p->read(&sh, sizeof(sh));
 }
 
-void text_stream::read(u16 & ui)
+void text_stream::read(u16 & u)
 {
-   m_p->read(&ui, sizeof(ui));
+   m_p->read(&u, sizeof(u));
 }
 
 void text_stream::read(i32 & i)
 {
-   u64 uiRead = m_p->read(&i, sizeof(i));
-   if (uiRead != sizeof(i))
+   u64 uRead = m_p->read(&i, sizeof(i));
+   if (uRead != sizeof(i))
       __throw(::exception::exception("failed to read i32"));
 }
 
-void text_stream::read(u32 & ui)
+void text_stream::read(u32 & u)
 {
-   u64 uiRead = m_p->read(&ui, sizeof(ui));
-   if (uiRead != sizeof(ui))
+   u64 uRead = m_p->read(&u, sizeof(u));
+   if (uRead != sizeof(u))
       __throw(::exception::exception("failed to read u32"));
 }
 
@@ -380,9 +380,9 @@ void text_stream::read(i64 & i)
    m_p->read(&i, sizeof(i));
 }
 
-void text_stream::read(u64 & ui)
+void text_stream::read(u64 & u)
 {
-   m_p->read(&ui, sizeof(ui));
+   m_p->read(&u, sizeof(u));
 }
 
 void text_stream::read(float & f)

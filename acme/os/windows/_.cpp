@@ -735,10 +735,10 @@ CLASS_DECL_ACME string get_last_error_string()
 
 }
 
-CLASS_DECL_ACME string get_error_string(u64 ui)
+CLASS_DECL_ACME string get_error_string(u64 u)
 {
 
-   ::u32 dwError = (::u32) ui;
+   ::u32 dwError = (::u32) u;
 
    wchar_t * pszError;
 

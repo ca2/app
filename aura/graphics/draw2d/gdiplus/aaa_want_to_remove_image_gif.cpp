@@ -869,9 +869,9 @@ HRESULT windows_image_get_frame(::image * pimageCompose,
             ::u32 u;
 
             // Convert the delay retrieved in 10 ms units to a delay in 1 ms units
-            hr = ::u32Mult(propValue.uiVal, 10, &ui);
+            hr = ::u32Mult(propValue.uiVal, 10, &u);
 
-            pframe->m_tick = ui;
+            pframe->m_tick = u;
 
          }
 

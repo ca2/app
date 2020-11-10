@@ -506,9 +506,9 @@ namespace uwp
 
       ::Windows::Storage::Streams::IBuffer ^ buffer = memory.get_os_buffer();
 
-      unsigned int ui = ::wait(m_stream->WriteAsync(buffer));
+      unsigned int u = ::wait(m_stream->WriteAsync(buffer));
 
-      if (ui != nCount)
+      if (u != nCount)
       {
 
          __throw(io_exception());

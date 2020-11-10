@@ -74,7 +74,7 @@ namespace user
 
       virtual bool has_action_hover();
 
-      virtual void set_current_item_by_data(uptr ui, const ::action_context & action_context);
+      virtual void set_current_item_by_data(uptr u, const ::action_context & action_context);
       
       virtual void set_current_item_by_string_value(const string & strValue, const ::action_context & action_context);
       

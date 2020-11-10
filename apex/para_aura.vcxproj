@@ -300,7 +300,7 @@
     <ClCompile Include="filesystem\file\file_stream_buffer_base.cpp" />
     <ClCompile Include="filesystem\file\file_string_buffer.cpp" />
     <ClCompile Include="filesystem\file\file_text_buffer.cpp" />
-    <ClCompile Include="filesystem\file\file_timeout_buffer.cpp" />
+    <ClCompile Include="filesystem\file\filetimeout_buffer.cpp" />
     <ClCompile Include="filesystem\file\file_transfer_buffer.cpp" />
     <ClCompile Include="filesystem\file\file_writer.cpp" />
     <ClCompile Include="filesystem\file\file_writer_flush.cpp" />

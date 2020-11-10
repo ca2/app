@@ -580,7 +580,7 @@ namespace net
    }
 
 
-   address ipv4(u32 ui, port_t port)
+   address ipv4(u32 u, port_t port)
    {
 
       address a;
@@ -592,7 +592,7 @@ namespace net
       a.m_iLen = -1;
       a.u.m_addr.sin_family = AF_INET;
       a.u.m_addr.sin_port = port;
-      ::memcpy_dup(&a.u.m_addr.sin_addr, &ui, sizeof(a.u.m_addr.sin_addr));
+      ::memcpy_dup(&a.u.m_addr.sin_addr, &u, sizeof(a.u.m_addr.sin_addr));
 #ifdef WINDOWS
       ::__swap(a.u.m_addr.sin_addr.S_un.S_un_b.s_b1, a.u.m_addr.sin_addr.S_un.S_un_b.s_b4);
       ::__swap(a.u.m_addr.sin_addr.S_un.S_un_b.s_b2, a.u.m_addr.sin_addr.S_un.S_un_b.s_b3);

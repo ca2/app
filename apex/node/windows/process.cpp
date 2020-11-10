@@ -26,10 +26,10 @@ namespace windows
 
       }
 
-      if(m_pi.hThread != INVALID_HANDLE_VALUE && m_pi.hThread != nullptr)
+      if(m_pi.hthread != INVALID_HANDLE_VALUE && m_pi.hthread != nullptr)
       {
 
-         CloseHandle(m_pi.hThread);
+         CloseHandle(m_pi.hthread);
 
       }
 
@@ -162,7 +162,7 @@ namespace windows
          // of the child process, for example.
 
          //CloseHandle(m_pi.hProcess);
-         //CloseHandle(m_pi.hThread);
+         //CloseHandle(m_pi.hthread);
       }
 
       return true;
@@ -293,7 +293,7 @@ auto tickStart = ::tick::now();
    {
       ::system(string("taskkill /F /T /PID " ) + __str((i32) m_pi.dwProcessId));
       return true;
-      //return TerminateProcess(m_pi.hThread, -1) != FALSE;
+      //return TerminateProcess(m_pi.hthread, -1) != FALSE;
 
    }
 

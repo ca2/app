@@ -65,7 +65,7 @@
     <ClInclude Include="datetime\float_time.h">
       <Filter>Header Files\datetime</Filter>
     </ClInclude>
-    <ClInclude Include="datetime\windows_file_time.h">
+    <ClInclude Include="datetime\windows_filetime.h">
       <Filter>Header Files\datetime</Filter>
     </ClInclude>
     <ClInclude Include="graphics\_.h">
@@ -100,7 +100,7 @@
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="datetime\datetime_windows_file_time.cpp">
+    <ClCompile Include="datetime\datetime_windows_filetime.cpp">
       <Filter>Source Files\datetime</Filter>
     </ClCompile>
     <ClCompile Include="calculator\parser.cpp">

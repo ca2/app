@@ -8,7 +8,7 @@
 
 
 
-CLASS_DECL_ACME mq * get_mq(ITHREAD idthread, bool bCreate);
+CLASS_DECL_ACME mq * get_mq(ithread_t idthread, bool bCreate);
 
 
 ::mutex * g_pmutexThreadWaitClose = nullptr;
@@ -33,7 +33,7 @@ index engine_fileline(DWORD_PTR dwAddress, char * psz, int nCount, u32 * pline, 
 
 #ifdef LINUX
 
-int SetThreadAffinityMask(HTHREAD h, unsigned int dwThreadAffinityMask);
+int SetThreadAffinityMask(hthread_t h, unsigned int dwThreadAffinityMask);
 
 #endif
 
@@ -150,7 +150,7 @@ thread::thread()
 
    m_bDupHandle = false;
 
-   //m_hthread = (HTHREAD) nullptr;
+   //m_hthread = (hthread_t) nullptr;
 
    //m_ithread = 0;
 
@@ -212,7 +212,7 @@ thread::~thread()
 }
 
 
-HTHREAD thread::get_os_handle() const
+hthread_t thread::get_os_handle() const
 {
 
    return get_hthread();
@@ -1899,7 +1899,7 @@ void thread::wait()
 sync_result thread::wait(const duration & duration)
 {
 
-   ITHREAD ithread = m_ithread;
+   ithread_t ithread = m_ithread;
 
    try
    {
@@ -1908,7 +1908,7 @@ sync_result thread::wait(const duration & duration)
 
       ::u32 timeout = duration.is_pos_infinity() ? U32_INFINITE_TIMEOUT : static_cast<::u32>(duration.total_milliseconds());
 
-      HTHREAD hthread = m_hthread;
+      hthread_t hthread = m_hthread;
 
       if (hthread == NULL || hthread == INVALID_HANDLE_VALUE)
       {
@@ -2164,7 +2164,7 @@ bool thread::begin_thread(bool bSynchInitialization, ::e_priority epriority, ::u
 
    clear_finish_bit();
 
-   ENSURE(m_hthread == (HTHREAD) nullptr);
+   ENSURE(m_hthread == (hthread_t) nullptr);
 
    if(m_id.is_empty())
    {
@@ -2373,7 +2373,7 @@ bool thread::begin_synch(::e_priority epriority, ::u32 nStackSize, u32 uiCreateF
 }
 
 
-HTHREAD thread::get_hthread() const
+hthread_t thread::get_hthread() const
 {
 
    return m_hthread;
@@ -2381,7 +2381,7 @@ HTHREAD thread::get_hthread() const
 }
 
 
-ITHREAD thread::get_ithread() const
+ithread_t thread::get_ithread() const
 {
 
    return m_ithread;
@@ -2392,7 +2392,7 @@ ITHREAD thread::get_ithread() const
 bool thread::task_active() const
 {
 
-   return !m_bThreadClosed && m_hthread != (HTHREAD)0;
+   return !m_bThreadClosed && m_hthread != (hthread_t)0;
 
 }
 
@@ -2936,7 +2936,7 @@ bool thread::send_object(const ::id & id, WPARAM wParam, lparam lParam, ::durati
 
    }
 
-   if (m_hthread == (HTHREAD)nullptr || !thread_get_run())
+   if (m_hthread == (hthread_t)nullptr || !thread_get_run())
    {
 
       if (lParam != 0)
@@ -3038,14 +3038,14 @@ bool thread::send_message(const ::id & id, WPARAM wParam, lparam lParam, ::durat
 //
 //#else
 //
-//   m_hthread = (HTHREAD)pvoidOsData;
+//   m_hthread = (hthread_t)pvoidOsData;
 //
 //#endif
 //
 //}
 
 
-//void thread::set_os_int(ITHREAD ithread)
+//void thread::set_os_int(ithread_t ithread)
 //{
 //
 //#ifdef WINDOWS_DESKTOP
@@ -3054,7 +3054,7 @@ bool thread::send_message(const ::id & id, WPARAM wParam, lparam lParam, ::durat
 //
 //#else
 //
-//   m_uThread = (ITHREAD) ithread;
+//   m_uThread = (ithread_t) ithread;
 //
 //#endif
 //
@@ -3806,10 +3806,10 @@ void thread::dump(dump_context & dumpcontext) const
 }
 
 
-thread::operator HTHREAD() const
+thread::operator hthread_t() const
 {
 
-   return is_null(this) ? (HTHREAD) nullptr : m_hthread;
+   return is_null(this) ? (hthread_t) nullptr : m_hthread;
 
 }
 
@@ -4310,9 +4310,9 @@ bool thread::kick_thread()
 
 //::mutex * g_pmutexThreadOn = nullptr;
 
-//map < ITHREAD, ITHREAD, ITHREAD, ITHREAD > * g_pmapThreadOn = nullptr;
+//map < ithread_t, ithread_t, ithread_t, ithread_t > * g_pmapThreadOn = nullptr;
 
-CLASS_DECL_APEX bool is_thread_on(ITHREAD id)
+CLASS_DECL_APEX bool is_thread_on(ithread_t id)
 {
 
    sync_lock sl(&System.m_mutexTaskOn);
@@ -4336,7 +4336,7 @@ CLASS_DECL_APEX bool is_active(::thread * pthread)
 
 }
 
-CLASS_DECL_APEX void set_thread_on(ITHREAD id)
+CLASS_DECL_APEX void set_thread_on(ithread_t id)
 {
 
    sync_lock sl(&System.m_mutexTaskOn);
@@ -4346,7 +4346,7 @@ CLASS_DECL_APEX void set_thread_on(ITHREAD id)
 }
 
 
-CLASS_DECL_APEX void set_thread_off(ITHREAD id)
+CLASS_DECL_APEX void set_thread_off(ithread_t id)
 {
 
    sync_lock sl(&System.m_mutexTaskOn);

@@ -203,7 +203,7 @@ namespace windows
    estatus registry::key::_value(void* pvalue, const char* pcszValueName, ::u32& dwType, ::u32& cbValue)
    {
 
-      if (ERROR_SUCCESS != ::RegQueryValueExW(m_hkey, wstring(pcszValueName), nullptr, &dwType, (byte*)pvalue, &cbValue))
+      if (ERROR_SUCCESS != ::RegQueryValueExW(m_hkey, wstring(pcszValueName), nullptr, (LPDWORD) &dwType, (byte*)pvalue, (LPDWORD) &cbValue))
       {
 
          return error_failed;
@@ -549,7 +549,8 @@ namespace windows
    estatus registry::key::_ls_key(string_array & stra)
    {
 
-      ::u32 dwMaxSubKeyLen;
+      DWORD dwMaxSubKeyLen;
+
       RegQueryInfoKey(
       m_hkey,
       nullptr,
@@ -592,9 +593,9 @@ namespace windows
 
       ::i32 l;
 
-      ::u32 dwIndex = 0;
+      DWORD dwIndex = 0;
 
-      ::u32 dwLen = dwMaxValueNameLen;
+      DWORD dwLen = dwMaxValueNameLen;
 
       while(ERROR_SUCCESS == (l = RegEnumValueW(
                                   m_hkey,

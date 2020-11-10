@@ -102,12 +102,12 @@ var::var(::i32 i)
 }
 
 
-var::var(::u32 ui )
+var::var(::u32 u )
 {
 
    m_etype = type_u32;
 
-   operator = (ui);
+   operator = (u);
 
 }
 
@@ -122,12 +122,12 @@ var::var(::i64 i)
 }
 
 
-var::var(::u64 ui )
+var::var(::u64 u )
 {
 
    m_etype = type_u64;
 
-   m_u64 = ui;
+   m_u64 = u;
 
 }
 
@@ -402,8 +402,10 @@ var::var(const ::datetime::time & time)
 
 var::var(const FILETIME & filetime)
 {
+
    m_etype = type_filetime;
-   m_filetime = filetime;
+   m_u64 = make64_from32(filetime.dwLowDateTime, filetime.dwHighDateTime);
+
 }
 
 
@@ -773,12 +775,18 @@ class var & var::operator = (const ::datetime::time & time)
    return *this;
 }
 
+
 class var & var::operator = (const FILETIME & filetime)
 {
+
    set_type(type_filetime, false);
-   m_filetime = filetime;
+
+   m_u64 = make64_from32(filetime.dwLowDateTime, filetime.dwHighDateTime);
+
    return *this;
+
 }
+
 
 class var & var::operator = (::i64 i)
 {
@@ -825,26 +833,38 @@ class var & var::operator = (::u64 u)
 }
 
 
-class var & var::operator = (::u32 ui)
+class var & var::operator = (::u32 u)
 {
    set_type(type_u32, false);
-   m_u32 = ui;
+   m_u32 = u;
    return *this;
 }
+
 
 #if !defined(LINUX) && !defined(MACOS) && !defined(ANDROID) && !defined(APPLE_IOS)
-class var & var::operator = (::i32 l)
+
+
+class var & var::operator = (long l)
 {
+
    set_type(type_i32,false);
+
    m_i32 = l;
+
    return *this;
+
 }
 
-class var & var::operator = (::u32 dw)
+
+class var & var::operator = (DWORD dw)
 {
+
    set_type(type_u32,false);
+
    m_u32 = dw;
+
    return *this;
+
 }
 
 #endif
@@ -5773,7 +5793,7 @@ bool var::is_false() const
    case type_time:
       return !m_time;
    case type_filetime:
-      return !m_filetime.dwLowDateTime && ! m_filetime.dwHighDateTime;
+      return !m_filetime;
    case type_pvar:
       return m_pvar || !*m_pvar;
    case type_prop:
@@ -5898,7 +5918,7 @@ bool var::is_set_false() const
    case type_time:
       return !m_time;
    case type_filetime:
-      return !m_filetime.dwLowDateTime && ! m_filetime.dwHighDateTime;
+      return !m_filetime;
    case type_pvar:
       return m_pvar || !*m_pvar;
    case type_prop:

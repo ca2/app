@@ -30,12 +30,12 @@ unsigned long apple_get_fonts(char ***p)
    
    *p = (char **) malloc(sizeof(char *) * c);
    
-   for(unsigned long ui = 0; ui < c; ui++)
+   for(unsigned long u = 0; u < c; u++)
    {
       
-      NSString * pstr =[fonts objectAtIndex: ui];
+      NSString * pstr =[fonts objectAtIndex: u];
       
-      (*p)[ui] = strdup([pstr UTF8String]);
+      (*p)[u] = strdup([pstr UTF8String]);
       
    }
    

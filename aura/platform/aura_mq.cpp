@@ -57,7 +57,7 @@ CLASS_DECL_AURA int_bool mq_remove_window_from_all_queues(oswindow oswindow)
 
    }
 
-   ITHREAD idthread = pinteraction->get_context_application()->get_ithread();
+   ithread_t idthread = pinteraction->get_context_application()->get_ithread();
 
    mq * pmq = get_mq(idthread, false);
 

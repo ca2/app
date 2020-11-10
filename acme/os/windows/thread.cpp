@@ -28,35 +28,35 @@
 static HANDLE g_hMainThread = nullptr;
 static ::u32 g_iMainThread = -1;
 
-void set_main_thread(HANDLE hThread)
+void set_main_hthread(hthread_t hthread)
 {
 
    MSG msg;
 
    PeekMessage(&msg,nullptr,0,0xffffffff,FALSE);
 
-   g_hMainThread = hThread;
+   g_hMainThread = hthread;
 
 }
 
-void set_main_thread_id(::u32 uThread)
+void set_main_ithread(ithread_t ithread)
 {
 
    MSG msg;
 
    PeekMessage(&msg,nullptr,0,0xffffffff,FALSE);
 
-   g_iMainThread = uiThread;
+   g_iMainThread = ithread;
 
 }
 
 
-HANDLE get_main_thread()
+HANDLE get_main_hthread()
 {
    return g_hMainThread;
 
 }
-::u32   get_main_thread_id()
+::u32   get_main_ithread()
 {
    return g_iMainThread;
 }
@@ -74,12 +74,12 @@ void attach_thread_input_to_main_thread(bool bAttach)
 
    }
 
-   AttachThreadInput(::GetCurrentThreadId(),get_main_thread_id(),bAttach ? TRUE : FALSE);
+   AttachThreadInput(::GetCurrentThreadId(),get_main_ithread(),bAttach ? TRUE : FALSE);
 
 }
 
 
-HTHREAD get_current_hthread()
+hthread_t get_current_hthread()
 {
 
    return ::GetCurrentThread();
@@ -87,7 +87,7 @@ HTHREAD get_current_hthread()
 }
 
 
-ITHREAD get_current_ithread()
+ithread_t get_current_ithread()
 {
 
    return ::GetCurrentThreadId();

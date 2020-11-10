@@ -1414,7 +1414,7 @@ typedef unsigned long long int ::u3264_t;
 #elif defined(_WIN32)
 //typedef __int32 int32_t;
 //typedef ::i64 int64_t;
-//typedef unsigned ::i64 ::u3264_t;
+//typedef ::u64 ::u3264_t;
 #else
 /* Fallback if nothing above works */
 #include <inttypes.h>

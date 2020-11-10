@@ -54,7 +54,7 @@ oswindow_data::oswindow_data()
 
    m_pmq = nullptr;
 
-   m_hthread = (HTHREAD) nullptr;
+   m_hthread = (hthread_t) nullptr;
 
    m_pimpl = nullptr;
 

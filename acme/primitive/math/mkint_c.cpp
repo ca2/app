@@ -4,11 +4,11 @@
 
 
 
-CLASS_DECL_ACME i32 mkint32(u32 ui)
+CLASS_DECL_ACME i32 mkint32(u32 u)
 {
-   if (ui >= 0x7fffffff)
+   if (u >= 0x7fffffff)
       throw_cast_overflow();
-   return (i32)ui;
+   return (i32)u;
 }
 
 CLASS_DECL_ACME  i64 mkint64(u64 ull)

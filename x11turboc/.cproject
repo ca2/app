@@ -124,7 +124,7 @@
 </storageModule>
 <storageModule moduleId="org.eclipse.cdt.aura.externalSettings"/>
 <storageModule moduleId="org.eclipse.cdt.aura.language.mapping"/>
-<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
+<storageModule moduleId="org.eclipse.cdt.internal.u.text.commentOwnerProjectMappings"/>
 </cconfiguration>
 </storageModule>
 <storageModule moduleId="cdtBuildSystem" version="4.0.0">

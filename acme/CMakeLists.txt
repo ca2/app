@@ -229,8 +229,8 @@ list(APPEND acme_source
         primitive/datetime/date_span.cpp
         primitive/datetime/datetime.cpp
         primitive/datetime/duration.cpp
-        primitive/datetime/file_time.cpp
-        primitive/datetime/file_time_span.cpp
+        primitive/datetime/filetime.cpp
+        primitive/datetime/filetime_span.cpp
         primitive/datetime/mktime.cpp
         primitive/datetime/time.cpp
         primitive/datetime/time_span.cpp
@@ -956,8 +956,8 @@ list(APPEND acme_source
     primitive/comparison/_c.h
     primitive/datetime/date_span.h
     primitive/datetime/duration.h
-    primitive/datetime/file_time.h
-    primitive/datetime/file_time_span.h
+    primitive/datetime/filetime.h
+    primitive/datetime/filetime_span.h
     primitive/datetime/time.h
     primitive/datetime/time_span.h
     primitive/datetime/value.h

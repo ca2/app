@@ -146,38 +146,38 @@ namespace file
 
       }
 
-      memsize uiRead = 0;
+      memsize uRead = 0;
 
       memsize uiReadNow = 0;
 
-      while(uiRead < nCount)
+      while(uRead < nCount)
       {
 
          if(m_uiPosition >= m_uiBufLPos && m_uiPosition <= m_uiBufUPos && m_uiBufUPos != 0xFFFFFFFF)
          {
 
-            uiReadNow = min(nCount - uiRead, (memsize) (m_uiBufUPos - m_uiPosition + 1));
+            uiReadNow = min(nCount - uRead, (memsize) (m_uiBufUPos - m_uiPosition + 1));
 
             if(nCount == 1)
             {
 
-               ((byte *)pBufParam)[uiRead] = m_storage.get_data()[m_uiPosition - m_uiBufLPos];
+               ((byte *)pBufParam)[uRead] = m_storage.get_data()[m_uiPosition - m_uiBufLPos];
 
             }
             else
             {
 
-               ::memcpy_dup(&((byte *)pBufParam)[uiRead], &m_storage.get_data()[m_uiPosition - m_uiBufLPos], (size_t) uiReadNow);
+               ::memcpy_dup(&((byte *)pBufParam)[uRead], &m_storage.get_data()[m_uiPosition - m_uiBufLPos], (size_t) uiReadNow);
 
             }
 
             m_uiPosition += uiReadNow;
 
-            uiRead += uiReadNow;
+            uRead += uiReadNow;
 
          }
 
-         if(uiRead < nCount)
+         if(uRead < nCount)
          {
 
             if (!buffer())
@@ -191,7 +191,7 @@ namespace file
 
       }
 
-      return uiRead;
+      return uRead;
 
    }
 
@@ -230,17 +230,17 @@ namespace file
 
       }
 
-      memsize uiRead    = m_pfile->read(m_storage.get_data(), uiCopy);
+      memsize uRead    = m_pfile->read(m_storage.get_data(), uiCopy);
 
       m_uiBufLPos       = m_uiPosition;
 
-      m_uiBufUPos       = m_uiPosition + uiRead - 1;
+      m_uiBufUPos       = m_uiPosition + uRead - 1;
 
       m_uiWriteLPos     = 0xffffffff;
 
       m_uiWriteUPos     = 0xffffffff;
 
-      return uiRead > 0;
+      return uRead > 0;
 
    }
 

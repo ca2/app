@@ -31,7 +31,7 @@ struct CLASS_DECL_AURA oswindow_data
 
    bool                          m_bMessageOnlyWindow;
    ::user::primitive *         m_puserinteraction;
-   HTHREAD                       m_hthread;
+   hthread_t                       m_hthread;
    color32_t *                    m_pcolorref;
    RECT32                          m_rect;
    int_map < ::i32 > *            m_plongmap;

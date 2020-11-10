@@ -21,8 +21,8 @@ CLASS_DECL_ACME ::estatus __launch(
    ::e_priority epriority,
    u32 nStackSize,
    u32 dwCreateFlags,
-   ITHREAD* pithread,
-   HTHREAD* phthread)
+   ithread_t* pithread,
+   hthread_t* phthread)
 {
 
    auto plaunch = new ___launch(pmatter);
@@ -90,12 +90,12 @@ void* ___launch::s_os_thread_proc(void* p)
 #endif
 
 
-::estatus ___launch::fork(::e_priority epriority, ::u32 nStackSize, u32 uiCreateFlags, ITHREAD* pithread, HTHREAD* phthread)
+::estatus ___launch::fork(::e_priority epriority, ::u32 nStackSize, u32 uiCreateFlags, ithread_t* pithread, hthread_t* phthread)
 {
 
-   HTHREAD hthread = NULL_HTHREAD;
+   hthread_t hthread = NULL_HTHREAD;
 
-   ITHREAD ithread = NULL_ITHREAD;
+   ithread_t ithread = NULL_ITHREAD;
 
 #ifdef WINDOWS
 

@@ -80,8 +80,8 @@ HANDLE dup_handle(HANDLE h)
 //   _NtQueryInformationProcess NtQueryInformationProcess = (_NtQueryInformationProcess)GetProcAddress(GetModuleHandleA("ntdll.dll"), "NtQueryInformationProcess");
 //   PROCESS_BASIC_INFORMATION pbi;
 //   __memset(&pbi, 0, sizeof(pbi));
-//   ::u32 dwInLen = sizeof(pbi);
-//   ::u32 dwOutLen = 0xffffffff;
+//   DWORD dwInLen = sizeof(pbi);
+//   DWORD dwOutLen = 0xffffffff;
 //   u32 dwStatus = NtQueryInformationProcess(handleProcess, ProcessBasicInformation, &pbi, dwInLen, &dwOutLen);
 //   string strError = get_display_error(dwStatus);
 //   if ((dwStatus & 3) == 3)
@@ -162,9 +162,9 @@ struct shell_execute :
 
       ::datetime::time timeEnd = ::datetime::time::get_current_time() + durationTimeout;
 
-      ::u32 dwGetLastError = get_last_error();
+      DWORD dwGetLastError = get_last_error();
 
-      ::u32 dwExitCode = 0;
+      DWORD dwExitCode = 0;
 
       while(::datetime::time::get_current_time() < timeEnd)
       {
@@ -304,7 +304,7 @@ i32 call_async(const char * pszPath, const char * pszParam, const char * pszDir,
 
    }
 
-   ::u32 dwGetLastError = get_last_error();
+   DWORD dwGetLastError = get_last_error();
 
    return iOk;
 
@@ -343,15 +343,15 @@ u32 call_sync(const char * pszPath, const char * pszParam, const char * pszDir, 
    if (!::ShellExecuteExW(&infoa))
    {
 
-      ::u32 dwLastError = ::GetLastError();
+      DWORD dwLastError = ::GetLastError();
 
       return -1;
 
    }
 
-   set["pid"] = ::GetProcessId(infoa.hProcess);
+   set["pid"] = (::u32) ::GetProcessId(infoa.hProcess);
 
-   ::u32 dwExitCode = (::u32) -1;
+   DWORD dwExitCode = (DWORD) -1;
 
    ::tick tick;
 
@@ -391,7 +391,7 @@ u32 call_sync(const char * pszPath, const char * pszParam, const char * pszDir, 
          auto TerminateProcess_GetLastError = ::GetLastError();
 
          set["TerminateProcess_return"] = TerminateProcess_return;
-         set["TerminateProcess_GetLastError"] = TerminateProcess_GetLastError;
+         set["TerminateProcess_GetLastError"] = (::u32) TerminateProcess_GetLastError;
 
       }
 
@@ -501,7 +501,7 @@ bool process_modules(string_array & stra, u32 processID)
 
    HANDLE hProcess;
 
-   ::u32 cbNeeded;
+   DWORD cbNeeded;
 
    u32 i;
 
@@ -890,7 +890,7 @@ CLASS_DECL_ACME bool process_contains_module(string & strImage, ::u32 processID,
 
    HANDLE hProcess;
 
-   ::u32 cbNeeded;
+   DWORD cbNeeded;
 
    index i;
 
@@ -911,7 +911,7 @@ CLASS_DECL_ACME bool process_contains_module(string & strImage, ::u32 processID,
 
    mem.set_size(iImageSize);
 
-   GetModuleFileNameExW(hProcess, nullptr, (WCHAR *)mem.get_data(), (::u32) (mem.get_size() / sizeof(WCHAR)));
+   GetModuleFileNameExW(hProcess, nullptr, (WCHAR *)mem.get_data(), (DWORD) (mem.get_size() / sizeof(WCHAR)));
 
    strImage = (const wchar_t *)mem.get_data();
 
@@ -919,7 +919,7 @@ CLASS_DECL_ACME bool process_contains_module(string & strImage, ::u32 processID,
 
    bool bFound = false;
 
-   if (EnumProcessModules(hProcess, hmods.get_data(), (::u32) (hmods.get_size_in_bytes()), &cbNeeded))
+   if (EnumProcessModules(hProcess, hmods.get_data(), (DWORD) (hmods.get_size_in_bytes()), &cbNeeded))
    {
 
       for (i = 0; i < ::index(cbNeeded / sizeof(HMODULE)); i++)
@@ -927,7 +927,7 @@ CLASS_DECL_ACME bool process_contains_module(string & strImage, ::u32 processID,
 
          // Get the full path to the module's file.
 
-         if (GetModuleFileNameExW(hProcess, hmods[i], (WCHAR *)mem.get_data(), (::u32) (mem.get_size() / sizeof(WCHAR))))
+         if (GetModuleFileNameExW(hProcess, hmods[i], (WCHAR *)mem.get_data(), (DWORD) (mem.get_size() / sizeof(WCHAR))))
          {
 
             if (!wide_compare_case_insensitive((const wchar_t *)mem.get_data(), wstrLibrary))
@@ -961,11 +961,11 @@ CLASS_DECL_ACME void shared_library_process(dword_array & dwa, string_array & st
 
    aProcesses.set_size(8192);
 
-   ::u32 cbNeeded, cProcesses;
+   DWORD cbNeeded, cProcesses;
 
    index i;
 
-   if (!EnumProcesses((::u32 *) aProcesses.get_data(), (::u32) (aProcesses.get_size_in_bytes()), &cbNeeded))
+   if (!EnumProcesses((DWORD *) aProcesses.get_data(), (DWORD) (aProcesses.get_size_in_bytes()), &cbNeeded))
    {
 
       return;
@@ -974,7 +974,7 @@ CLASS_DECL_ACME void shared_library_process(dword_array & dwa, string_array & st
 
    // Calculate how many process identifiers were returned.
 
-   cProcesses = cbNeeded / sizeof(::u32);
+   cProcesses = cbNeeded / sizeof(DWORD);
 
    // Print the name of the modules for each process.
 
@@ -1044,9 +1044,9 @@ CLASS_DECL_ACME void shared_library_process(dword_array & dwa, string_array & st
 //   //PROCESS_INFORMATION pi;
 //   //STARTUPINFO si;
 //   BOOL bResult = FALSE;
-//   ::u32 dwSessionId, winlogonPid;
+//   DWORD dwSessionId, winlogonPid;
 //   HANDLE hUserToken, hUserTokenDup, hPToken, hProcess;
-//   ::u32 dwCreationFlags;
+//   DWORD dwCreationFlags;
 //
 //   // Log the client on to the local computer.
 //
@@ -1084,7 +1084,7 @@ CLASS_DECL_ACME void shared_library_process(dword_array & dwa, string_array & st
 //      {
 //         // We found a winlogon process...
 //         // make sure it's running in the console session
-//         ::u32 winlogonSessId = 0;
+//         DWORD winlogonSessId = 0;
 //         HANDLE h = ::OpenProcess(PROCESS_QUERY_INFORMATION, FALSE, procEntry.th32ProcessID);
 //         if (ProcessIdToSessionId(procEntry.th32ProcessID, &winlogonSessId))
 //         {
@@ -1097,7 +1097,7 @@ CLASS_DECL_ACME void shared_library_process(dword_array & dwa, string_array & st
 //         }
 //         else
 //         {
-//            ::u32 dwLastError = get_last_error();
+//            DWORD dwLastError = get_last_error();
 //
 //            //            TRACE(get_object())("%d", dwLastError);
 //         }
@@ -1140,7 +1140,7 @@ CLASS_DECL_ACME void shared_library_process(dword_array & dwa, string_array & st
 //
 //   //Adjust Token privilege
 //   SetTokenInformation(hUserTokenDup,
-//      TokenSessionId, (void*)(DWORD_PTR)dwSessionId, sizeof(::u32));
+//      TokenSessionId, (void*)(DWORD_PTR)dwSessionId, sizeof(DWORD));
 //
 //   if (!AdjustTokenPrivileges(hUserTokenDup, FALSE, &tp, sizeof(TOKEN_PRIVILEGES),
 //      (PTOKEN_PRIVILEGES)nullptr, nullptr))
@@ -1234,9 +1234,9 @@ CLASS_DECL_ACME void shared_library_process(dword_array & dwa, string_array & st
 //   //PROCESS_INFORMATION pi;
 //   //STARTUPINFO si;
 //   BOOL bResult = FALSE;
-//   //   ::u32 dwSessionId,winlogonPid;
+//   //   DWORD dwSessionId,winlogonPid;
 //   HANDLE hUserTokenDup, hProcess, hPToken;
-//   ::u32 dwCreationFlags;
+//   DWORD dwCreationFlags;
 //   HANDLE hUserToken = nullptr;
 //
 //
@@ -1302,7 +1302,7 @@ CLASS_DECL_ACME void shared_library_process(dword_array & dwa, string_array & st
 //   // "NETWORK SERVICE" or "NetworkService" ?
 //   if (!LogonUserW(L"LocalService", L"NT AUTHORITY", nullptr, LOGON32_LOGON_SERVICE, LOGON32_PROVIDER_DEFAULT, &hUserToken))
 //   {
-//      ::u32 dwError = ::get_last_error();
+//      DWORD dwError = ::get_last_error();
 //      string str;
 //      str.Format("lookup Privilege value Error: %u\n", dwError);
 //      message_box(str, "Help Me", MB_OK);
@@ -1316,7 +1316,7 @@ CLASS_DECL_ACME void shared_library_process(dword_array & dwa, string_array & st
 //
 //   //Adjust Token privilege
 //   //SetTokenInformation(hUserTokenDup,
-//   //   TokenSessionId,(void*)dwSessionId,sizeof(::u32));
+//   //   TokenSessionId,(void*)dwSessionId,sizeof(DWORD));
 //
 //
 //
@@ -1367,7 +1367,7 @@ CLASS_DECL_ACME int_bool is_process_running(::u32 pid)
 
    HANDLE process = OpenProcess(SYNCHRONIZE, FALSE, pid);
 
-   ::u32 ret = WaitForSingleObject(process, 0);
+   DWORD ret = WaitForSingleObject(process, 0);
 
    CloseHandle(process);
 

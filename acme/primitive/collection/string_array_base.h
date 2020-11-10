@@ -1519,12 +1519,12 @@ template < class Type, class RawType >
 string_array_base < Type, RawType > ::string_array_base(Platform::Array < Platform::String ^ > ^ refstra)
 {
 
-   for (unsigned int ui = 0; ui < refstra->Length; ui++)
+   for (unsigned int u = 0; u < refstra->Length; u++)
    {
 
       Type str;
 
-      str = refstra[ui]->Begin();
+      str = refstra[u]->Begin();
 
       add(str);
 
@@ -4433,9 +4433,9 @@ template < class Type, class RawType >
 Type string_array_base < Type, RawType > ::encode_v16()
 {
    //Type strEncode;
-   //for(::index ui = 0; ui < this->get_count(); ui++)
+   //for(::index u = 0; u < this->get_count(); u++)
    //{
-   //   Type & str = this->element_at(ui);
+   //   Type & str = this->element_at(u);
    //   strEncode += hex::lower_from((const char*)str,str.get_length());
    //   strEncode += "00";
    //   /*      for(::index uj = 0; uj < str.length(); uj++)

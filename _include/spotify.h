@@ -44,7 +44,7 @@ extern "C" {
 #include <stddef.h>
 
 #ifdef _WIN32
-typedef unsigned ::i64 sp_::u3264;
+typedef ::u64 sp_::u3264;
 #else
 #include <stdint.h>
 typedef ::u3264_t sp_::u3264;

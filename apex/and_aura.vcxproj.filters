@@ -1131,7 +1131,7 @@
     <ClInclude Include="filesystem\file\file_text_buffer.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\file\file_timeout_buffer.h">
+    <ClInclude Include="filesystem\file\filetimeout_buffer.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\file\file_transfer_buffer.h">
@@ -2197,7 +2197,7 @@
     <ClCompile Include="filesystem\file\file_text_buffer.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\file\file_timeout_buffer.cpp">
+    <ClCompile Include="filesystem\file\filetimeout_buffer.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\file_transfer_buffer.cpp">

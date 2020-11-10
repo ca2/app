@@ -937,7 +937,7 @@
     <ClInclude Include="datetime\clock_visual.h" />
     <ClInclude Include="datetime\clock.h" />
     <ClInclude Include="datetime\float_time.h" />
-    <ClInclude Include="datetime\windows_file_time.h" />
+    <ClInclude Include="datetime\windows_filetime.h" />
     <ClInclude Include="datetime\_const.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="graphics\_.h" />
@@ -957,7 +957,7 @@
     <ClCompile Include="datetime\clock_html.cpp" />
     <ClCompile Include="datetime\clock.cpp" />
     <ClCompile Include="datetime\float_time.cpp" />
-    <ClCompile Include="datetime\datetime_windows_file_time.cpp" />
+    <ClCompile Include="datetime\datetime_windows_filetime.cpp" />
     <ClCompile Include="datetime\_.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>

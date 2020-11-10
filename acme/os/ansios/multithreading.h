@@ -3,7 +3,7 @@
 
 #if !defined(WINDOWS_DESKTOP)
 
-void set_defer_process_x_message(bool (* pfn)(HTHREAD hthread,LPMESSAGE pMsg,oswindow oswindow,bool bPeek));
+void set_defer_process_x_message(bool (* pfn)(hthread_t hthread,LPMESSAGE pMsg,oswindow oswindow,bool bPeek));
 
 
 #ifdef __cplusplus
@@ -99,18 +99,18 @@ union semun
 
 // CLASS_DECL_ACME int_bool WINAPI PeekMessage(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg);
 
-// CLASS_DECL_ACME int_bool WINAPI PostThreadMessage(ITHREAD idthread, ::u32 Msg, WPARAM wParam, LPARAM lParam);
+// CLASS_DECL_ACME int_bool WINAPI PostThreadMessage(ithread_t idthread, ::u32 Msg, WPARAM wParam, LPARAM lParam);
 
-// CLASS_DECL_ACME void mq_clear(ITHREAD hthread);
+// CLASS_DECL_ACME void mq_clear(ithread_t hthread);
 
 
 // #ifndef _UWP
 
-// CLASS_DECL_ACME ::u32 WINAPI GetThreadId(HTHREAD Thread);
+// CLASS_DECL_ACME ::u32 WINAPI GetThreadId(hthread_t Thread);
 
-// CLASS_DECL_ACME HTHREAD GetCurrentThread();
+// CLASS_DECL_ACME hthread_t GetCurrentThread();
 
-// CLASS_DECL_ACME ITHREAD GetCurrentThreadId();
+// CLASS_DECL_ACME ithread_t GetCurrentThreadId();
 
 // #endif
 

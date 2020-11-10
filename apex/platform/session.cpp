@@ -313,10 +313,10 @@ namespace apex
    }
 
 
-   color32_t session::get_default_color(u64 ui)
+   color32_t session::get_default_color(u64 u)
    {
 
-      switch (ui)
+      switch (u)
       {
       case COLOR_3DFACE:
          return ARGB(127, 192, 192, 184);

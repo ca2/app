@@ -100,7 +100,7 @@ bool task::thread_get_run() const
 bool task::task_active() const
 {
 
-   return m_hthread != (HTHREAD) 0;
+   return m_hthread != (hthread_t) 0;
 
 }
 
@@ -130,7 +130,7 @@ bool task::is_thread() const
 
 
 #ifdef WINDOWS
-::u32 WINAPI task::s_os_task(void* p)
+DWORD WINAPI task::s_os_task(void* p)
 #else
 void* task::s_os_task(void* p)
 #endif
@@ -445,7 +445,7 @@ void task::term_task()
 
 #ifdef WINDOWS
 
-   ::u32 dwThread = 0;
+   DWORD dwThread = 0;
 
    m_hthread = ::CreateThread(nullptr, nStackSize, &::task::s_os_task, (LPVOID)(task*)this, uCreateFlags, &dwThread);
 

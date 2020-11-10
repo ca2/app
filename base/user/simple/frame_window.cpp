@@ -3050,10 +3050,10 @@ LRESULT simple_frame_window::OnDDEExecute(WPARAM wParam, LPARAM lParam)
                  ReuseDDElParam(lParam, WM_DDE_EXECUTE, WM_DDE_ACK,
                                 (::u32)0x8000, (uptr)hData));
 
-   // don't execute the command when the ui is disabled
+   // don't execute the command when the u is disabled
    if (!is_window_enabled())
    {
-      TRACE(trace_category_appmsg, trace_level_warning, "Warning: DDE command '%s' ignored because ui is disabled.\n",
+      TRACE(trace_category_appmsg, trace_level_warning, "Warning: DDE command '%s' ignored because u is disabled.\n",
             string(strCommand).c_str());
       return 0;
    }
@@ -3100,12 +3100,12 @@ void simple_frame_window::NotifyFloatingWindows(u32 dwFlags)
    ASSERT_VALID(this);
    // trans   ASSERT(get_handle() != nullptr);
 
-   // get top level parent frame ui first unless this is a child ui
+   // get top level parent frame u first unless this is a child u
    __pointer(::user::frame_window) pParent = (GetStyle() & WS_CHILD) ? this : GetTopLevelFrame();
    ASSERT(pParent != nullptr);
    //if (dwFlags & (FS_DEACTIVATE | FS_ACTIVATE))
    //{
-   //   // update parent ui activation state
+   //   // update parent u activation state
    //   bool bActivate = !(dwFlags & FS_DEACTIVATE);
    //   bool bEnabled = pParent->is_window_enabled();
 
@@ -3235,7 +3235,7 @@ string simple_frame_window::get_window_default_matter()
 //            pview->OnActivateFrame(WA_INACTIVE, pframe);
 //
 //         // finally, activate the frame
-//         // (send the default show command unless the main desktop ui)
+//         // (send the default show command unless the main desktop u)
 //         edisplay edisplay = display_default;      // default
 //         ::aura::application* pApp = &System;
 //         if (pApp != nullptr && pApp->m_puiMain == pframe)

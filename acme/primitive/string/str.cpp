@@ -6,7 +6,7 @@ namespace hex
 {
 
 
-   u16 parse_::u3216_exc(const char * & psz, const char * pszEnd)
+   u16 parse_u16_exc(const char * & psz, const char * pszEnd)
    {
       string strUni;
       const char * pszNext = psz;
@@ -39,14 +39,14 @@ namespace hex
 #ifdef LINUX
 ////#include <ctype.h>
 #endif
-//bool is_high_surrogate(u16 ui)
+//bool is_high_surrogate(u16 u)
 //{
-//   return ui >= 0xD800 && ui <= 0xDBFF;
+//   return u >= 0xD800 && u <= 0xDBFF;
 //
 //}
-//bool is_low_surrogate(u16 ui)
+//bool is_low_surrogate(u16 u)
 //{
-//   return ui >= 0xDC00 && ui <= 0xDFFF;
+//   return u >= 0xDC00 && u <= 0xDFFF;
 //}
 //CLASS_DECL_ACME bool is_surrogated(u32 character)
 //{
@@ -1960,7 +1960,7 @@ namespace str
 //
 //   }
 //
-//   bool to(u64 & ui, const char * psz)
+//   bool to(u64 & u, const char * psz)
 //   {
 //
 //      char * pszEnd;
@@ -1970,13 +1970,13 @@ namespace str
 //      if(pszEnd == psz)
 //         return false;
 //
-//      ui = uiConversion;
+//      u = uiConversion;
 //
 //      return true;
 //
 //   }
 //
-//   bool to(u32 & ui, const char * psz)
+//   bool to(u32 & u, const char * psz)
 //   {
 //
 //      char * pszEnd;
@@ -1989,14 +1989,14 @@ namespace str
 //      if(uiConversion > numeric_info < u32 > ::max())
 //         return false;
 //
-//      ui = (u32) uiConversion;
+//      u = (u32) uiConversion;
 //
 //      return true;
 //
 //   }
 //
 //
-//   bool to(u64 & ui, i32 iBase, const char * psz)
+//   bool to(u64 & u, i32 iBase, const char * psz)
 //   {
 //
 //      if(iBase < 0 || iBase == 1 || iBase > 36)
@@ -2009,13 +2009,13 @@ namespace str
 //      if(pszEnd == psz)
 //         return false;
 //
-//      ui = uiConversion;
+//      u = uiConversion;
 //
 //      return true;
 //
 //   }
 //
-//   bool to(u32 & ui, i32 iBase, const char * psz)
+//   bool to(u32 & u, i32 iBase, const char * psz)
 //   {
 //
 //      if(iBase < 0 || iBase == 1 || iBase > 36)
@@ -2031,7 +2031,7 @@ namespace str
 //      if(uiConversion > numeric_info< u32 >::max ())
 //         return false;
 //
-//      ui = uiConversion;
+//      u = uiConversion;
 //
 //      return true;
 //
@@ -3402,9 +3402,9 @@ skip:
             else if(*psz == 'u')
             {
                psz++;
-               u16 ui[2];
-               ui[0] = ::hex::parse_::u3216_exc(psz, pszEnd);
-               if (utf16_is_1st_surrogate(ui[0]))
+               u16 u[2];
+               u[0] = ::hex::parse_u16_exc(psz, pszEnd);
+               if (utf16_is_1st_surrogate(u[0]))
                {
                   if (*psz != '\\')
                   {
@@ -3416,9 +3416,9 @@ skip:
                      throw_parsing_exception("expect 'u' character here (for low surrogate)");
                   }
                   psz++;
-                  ui[1] = ::hex::parse_::u3216_exc(psz, pszEnd);
+                  u[1] = ::hex::parse_u16_exc(psz, pszEnd);
 
-                  if (!utf16_is_2nd_surrogate(ui[1]))
+                  if (!utf16_is_2nd_surrogate(u[1]))
                   {
 
                      throw_parsing_exception("expect low surrogate");
@@ -3427,7 +3427,7 @@ skip:
                   else
                   {
 
-                     wd32char uni = (wd32char)decode_utf16_pair(ui);
+                     wd32char uni = (wd32char)decode_utf16_pair(u);
                      string strUtf8 = wd32_to_ansi_str(&uni, 1);
                      str+=strUtf8;
 
@@ -3437,7 +3437,7 @@ skip:
                else
                {
 
-                  wd32char uni = ui[0];
+                  wd32char uni = u[0];
                   string strUtf8 = wd32_to_ansi_str(&uni, 1);
                   str += strUtf8;
 
@@ -4074,17 +4074,17 @@ skip:
       if(bNegative)
          i++;
 
-      u64 ui = 0;
+      u64 u = 0;
 
       for(; i < str.get_length() && isdigit(str[i]); i++)
       {
-         ui = ui * 10 + str[i] - 48;
+         u = u * 10 + str[i] - 48;
       }
 
       if(bNegative)
-         return -(i64) ui;
+         return -(i64) u;
       else
-         return (i64) ui;
+         return (i64) u;
    }
 
    i64 to_i64(const char * psz)
@@ -4099,17 +4099,17 @@ skip:
       if(bNegative)
          psz++;
 
-      u64 ui = 0;
+      u64 u = 0;
 
       for(; *psz != '\0' && i < 30 && ansi_char_is_digit(*psz); psz++, i++)
       {
-         ui = ui * 10 + *psz - 48;
+         u = u * 10 + *psz - 48;
       }
 
       if(bNegative)
-         return -(i64) ui;
+         return -(i64) u;
       else
-         return (i64) ui;
+         return (i64) u;
 
    }
 
@@ -4120,14 +4120,14 @@ skip:
 
       for (; i < str.get_length() && isspace(str[i]); i++);
 
-      u64 ui = 0;
+      u64 u = 0;
 
       for(; i < str.get_length() && isdigit(str[i]); i++)
       {
-         ui = ui * 10 + str[i] - 48;
+         u = u * 10 + str[i] - 48;
       }
 
-      return ui;
+      return u;
 
    }
 
@@ -4138,14 +4138,14 @@ skip:
 
       for (; *psz != '\0' && i < 30 && isspace(*psz); i++, psz++);
 
-      u64 ui = 0;
+      u64 u = 0;
 
       for(; *psz != '\0' && i < 30 && isdigit(*psz); psz++, i++)
       {
-         ui = ui * 10 + *psz - 48;
+         u = u * 10 + *psz - 48;
       }
 
-      return ui;
+      return u;
 
    }
 

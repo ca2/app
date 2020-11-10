@@ -188,12 +188,12 @@ struct CLASS_DECL_ACME matter :
    }
 
    // very close to the operating system
-   HTHREAD __create_thread(
+   hthread_t __create_thread(
       ::e_priority epriority = ::priority_normal,
       ::u32 nStackSize = 0,
       u32 uiCreateFlags = 0,
       LPSECURITY_ATTRIBUTES psa = nullptr,
-      ITHREAD * puiId = nullptr);
+      ithread_t * puiId = nullptr);
 
 
    virtual string to_string() const;

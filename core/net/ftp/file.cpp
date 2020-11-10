@@ -85,9 +85,9 @@ namespace ftp
 
       }
 
-      memsize uiRead = m_file->read(pBuffer, itemSize * itemCount);
+      memsize uRead = m_file->read(pBuffer, itemSize * itemCount);
 
-      return (memsize)(uiRead / itemSize);
+      return (memsize)(uRead / itemSize);
 
    }
 

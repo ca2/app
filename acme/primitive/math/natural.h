@@ -20,9 +20,9 @@ inline u32 natural(i32 i)
    return i >= 0 ? (u32) i : 0;
 }
 
-inline u32 natural(u32 ui)
+inline u32 natural(u32 u)
 {
-   return ui;
+   return u;
 }
 
 inline u64 natural(i64 ll)
@@ -76,17 +76,17 @@ inline i32 natural_min(i32 i1, i32 i2, i32 iEscape = -1)
 }
 
 
-inline bool less_than(u64 ui, i32 i)
+inline bool less_than(u64 u, i32 i)
 {
-   return i < 0 ? false : ui < (u64) i;
+   return i < 0 ? false : u < (u64) i;
 }
 
 
-inline i32 mkint(u32 ui)
+inline i32 mkint(u32 u)
 {
-   if (ui >= 0x7fffffff)
+   if (u >= 0x7fffffff)
       throw_cast_overflow();
-   return (i32) ui;
+   return (i32) u;
 }
 
 inline i32 mkint(i32 i)

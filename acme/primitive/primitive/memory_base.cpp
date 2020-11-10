@@ -93,7 +93,7 @@ memory_base & memory_base::prefix_der_type(i32 iType)
 
 }
 
-memory_base & memory_base::prefix_der_::u32()
+memory_base & memory_base::prefix_der_uint()
 {
    return prefix_der_uint_content().prefix_der_length().prefix_der_type(2); // 2 - integer
 }
@@ -452,15 +452,15 @@ void memory_base::transfer_from(::file::file * pfileIn,memsize uiBufferSize)
 
          set_size((::memsize) filesize);
 
-         memsize uiRead = pfileIn->read(get_data(), (memsize) get_size());
+         memsize uRead = pfileIn->read(get_data(), (memsize) get_size());
 
-         set_size(uiRead);
+         set_size(uRead);
 
       }
       else
       {
 
-         memsize uiRead;
+         memsize uRead;
 
          memsize uiSize = 0;
 
@@ -469,15 +469,15 @@ void memory_base::transfer_from(::file::file * pfileIn,memsize uiBufferSize)
 
             set_size(uiSize + uiBufferSize);
 
-            uiRead = pfileIn->read(&get_data()[uiSize], uiBufferSize);
+            uRead = pfileIn->read(&get_data()[uiSize], uiBufferSize);
 
-            if (uiRead <= 0)
+            if (uRead <= 0)
             {
                break;
 
             }
 
-            uiSize += uiRead;
+            uiSize += uRead;
 
          }
 
@@ -1865,7 +1865,7 @@ namespace papaya
       else
       {
 
-         memsize uiRead;
+         memsize uRead;
 
          memsize uiSize = 0;
 
@@ -1874,15 +1874,15 @@ namespace papaya
 
             mem.set_size(uiSize + uiBufferSize);
 
-            uiRead = pfileIn->read(&mem.get_data()[uiSize], uiBufferSize);
+            uRead = pfileIn->read(&mem.get_data()[uiSize], uiBufferSize);
 
-            if (uiRead <= 0)
+            if (uRead <= 0)
             {
                break;
 
             }
 
-            uiSize += uiRead;
+            uiSize += uRead;
 
          }
 

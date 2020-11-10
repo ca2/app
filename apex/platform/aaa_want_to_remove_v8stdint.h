@@ -45,7 +45,7 @@ typedef unsigned short u16;  // NOLINT
 typedef int i32;
 typedef unsigned int u32;
 typedef ::i64 i64;
-typedef unsigned ::i64 u64;
+typedef ::u64 u64;
 // intptr_t and friends are defined in crtdefs.h through stdio.h.
 
 #else

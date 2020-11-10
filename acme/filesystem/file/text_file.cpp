@@ -39,11 +39,11 @@ namespace file
       ::u32 uRead;
       ::u32 uTotal = 0;
       string strLine;
-      while((uiRead = read_string(strLine)) > 0)
+      while((uRead = read_string(strLine)) > 0)
       {
          str += strLine;
       }
-      return uiTotal;
+      return uTotal;
    }
 
 

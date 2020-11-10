@@ -1450,6 +1450,8 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="platform\version.cpp" />
     <ClCompile Include="platform\_.cpp" />
     <ClCompile Include="platform\static_start_aura.cpp" />
+    <ClCompile Include="primitive\datetime\filetime.cpp" />
+    <ClCompile Include="primitive\datetime\filetime_span.cpp" />
     <ClCompile Include="primitive\geometry2d\shape.cpp" />
     <ClCompile Include="primitive\primitive\block.cpp" />
     <ClCompile Include="primitive\primitive\change.cpp" />
@@ -1803,6 +1805,8 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="primitive\collection\_geometry_bounding_rect.h" />
     <ClInclude Include="primitive\collection\_geometry_contains.h" />
     <ClInclude Include="primitive\comparison\sign.h" />
+    <ClInclude Include="primitive\datetime\filetime.h" />
+    <ClInclude Include="primitive\datetime\filetime_span.h" />
     <ClInclude Include="primitive\geometry2d\angle.h" />
     <ClInclude Include="primitive\geometry2d\arc.h" />
     <ClInclude Include="primitive\geometry2d\bounding_rect.h" />
@@ -1894,8 +1898,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="primitive\datetime\datetime.cpp" />
     <ClCompile Include="primitive\datetime\date_span.cpp" />
     <ClCompile Include="primitive\datetime\duration.cpp" />
-    <ClCompile Include="primitive\datetime\file_time.cpp" />
-    <ClCompile Include="primitive\datetime\file_time_span.cpp" />
     <ClCompile Include="primitive\datetime\mktime.cpp" />
     <ClCompile Include="primitive\datetime\time.cpp" />
     <ClCompile Include="primitive\datetime\time_span.cpp" />
@@ -2102,8 +2104,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="primitive\datetime\_.h" />
     <ClInclude Include="primitive\datetime\date_span.h" />
     <ClInclude Include="primitive\datetime\duration.h" />
-    <ClInclude Include="primitive\datetime\file_time.h" />
-    <ClInclude Include="primitive\datetime\file_time_span.h" />
     <ClInclude Include="primitive\datetime\time.h" />
     <ClInclude Include="primitive\datetime\time_span.h" />
     <ClInclude Include="primitive\datetime\value.h" />

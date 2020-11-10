@@ -398,7 +398,7 @@ auto sync_pred(void (* pfnBranch )(::matter * pobjectTask, e_priority), PRED pre
 //}
 //
 //
-//inline ::thread* get_task(ITHREAD idthread)
+//inline ::thread* get_task(ithread_t idthread)
 //{
 //
 //   return (::thread*) System.get_task(idthread);

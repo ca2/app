@@ -115,10 +115,10 @@ public:
 
    inline size_type operator-() const noexcept { return size_type(-this->cx, -this->cy); }
 
-#ifdef WINDOWS
-   inline size_type operator /(int i) const noexcept { return size_type((UNIT_TYPE)(this->cx / i), (UNIT_TYPE)(this->cy / i)); }
-#endif
-   inline size_type operator /(::i32 l) const noexcept { return size_type((UNIT_TYPE)(this->cx / l), (UNIT_TYPE)(this->cy / l)); }
+//#ifdef WINDOWS
+//   inline size_type operator /(int i) const noexcept { return size_type((UNIT_TYPE)(this->cx / i), (UNIT_TYPE)(this->cy / i)); }
+//#endif
+   inline size_type operator /(i32 l) const noexcept { return size_type((UNIT_TYPE)(this->cx / l), (UNIT_TYPE)(this->cy / l)); }
    inline size_type operator /(i64 i) const noexcept { return size_type((UNIT_TYPE)(this->cx / i), (UNIT_TYPE)(this->cy / i)); }
    inline size_type operator /(float f) const noexcept { return size_type((UNIT_TYPE)(this->cx / f), (UNIT_TYPE)(this->cy / f)); }
    inline size_type operator /(double d) const noexcept { return size_type((UNIT_TYPE)(this->cx / d), (UNIT_TYPE)(this->cy / d)); }

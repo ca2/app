@@ -250,7 +250,7 @@ namespace simpledb
          i32 iLen = Context.file().length(lpcsz);
          if(prangea->get_count() > 1)
          {
-            memsize uiTotal = 0;
+            memsize uTotal = 0;
             memory mem;
             mem.set_size(128 * 1024 * 1024);
             for(i32 i = 0; i < prangea->get_count(); i++)
@@ -261,7 +261,7 @@ namespace simpledb
                   continue;
                // iEnd > iLen is not verified because file may be growing
                spfile->seek(iStart, ::file::seek_begin);
-               memsize uiRead;
+               memsize uRead;
                ::memory_file memfile(get_object());
                memsize iPos = iStart;
                if(iEnd >= iStart)
@@ -283,18 +283,18 @@ namespace simpledb
                {
                   if(iEnd >= iStart)
                   {
-                     uiRead = min(mem.get_size(), (memsize) (iEnd - iPos + 1));
+                     uRead = min(mem.get_size(), (memsize) (iEnd - iPos + 1));
                   }
                   else
                   {
-                     uiRead = mem.get_size();
+                     uRead = mem.get_size();
                   }
-                  uiRead = spfile->read(mem.get_data(), uiRead);
-                  uiTotal += uiRead;
-                  if(uiRead == 0)
+                  uRead = spfile->read(mem.get_data(), uRead);
+                  uTotal += uRead;
+                  if(uRead == 0)
                      break;
-                  memfile.write(mem.get_data(), uiRead);
-                  iPos += uiRead;
+                  memfile.write(mem.get_data(), uRead);
+                  iPos += uRead;
                   if(iPos >= spfile->get_length())
                      break;
                }
@@ -305,7 +305,7 @@ namespace simpledb
          }
          else
          {
-            memsize uiTotal = 0;
+            memsize uTotal = 0;
             memory mem;
             mem.set_size(128 * 1024 * 1024);
             memsize iStart = prangea->element_at(0)->element_at(0);
@@ -314,7 +314,7 @@ namespace simpledb
             {
                // iEnd > iLen is not verified because file may be growing
                spfile->seek(iStart, ::file::seek_begin);
-               memsize uiRead;
+               memsize uRead;
                ::memory_file memfile(get_object());
                memsize iPos = iStart;
                if(iEnd >= iStart)
@@ -328,18 +328,18 @@ namespace simpledb
                {
                   if(iEnd != -1 && iEnd >= iStart)
                   {
-                     uiRead = min(mem.get_size(), (iEnd - iPos + 1));
+                     uRead = min(mem.get_size(), (iEnd - iPos + 1));
                   }
                   else
                   {
-                     uiRead = mem.get_size();
+                     uRead = mem.get_size();
                   }
-                  uiRead = spfile->read(mem.get_data(), uiRead);
-                  uiTotal += uiRead;
-                  if(uiRead == 0)
+                  uRead = spfile->read(mem.get_data(), uRead);
+                  uTotal += uRead;
+                  if(uRead == 0)
                      break;
-                  response().file().write(mem.get_data(), uiRead);
-                  iPos += uiRead;
+                  response().file().write(mem.get_data(), uRead);
+                  iPos += uRead;
                   if(iPos >= spfile->get_length())
                      break;
                }

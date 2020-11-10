@@ -50,7 +50,7 @@ inline ::file::file & operator << (::file::file & file, const TYPE & t);
  inline void __exchange(::stream & s, u64 & u);
 
 
- inline void __exchange(::stream & s, ::i32 & l);
+ inline void __exchange(::stream & s, long & l);
 
 
  inline void __exchange(::stream & s, float & f);
@@ -514,7 +514,7 @@ public:
    virtual void read(uchar & uch);
 #ifdef WINDOWS
    virtual void read(unichar & wch);
-   virtual void read(::i32 & l);
+   virtual void read(long & l);
 #elif defined(__APPLE__)  || defined(ANDROID) || defined(WINDOWS) || defined(RASPBIAN)
    virtual void read(long & l);
 #endif
@@ -526,8 +526,8 @@ public:
    virtual void read(i64 & i);
    virtual void read(::u64 & u);
 #if defined(__APPLE__) || defined(ANDROID) || defined(WINDOWS) || defined(RASPBIAN)
-   virtual void read(unsigned long & ui);
-   //inline void read (long long & ui);
+   virtual void read(unsigned long & u);
+   //inline void read (long long & u);
 #endif
    virtual void read(float & f);
    virtual void read(double & d);
@@ -731,7 +731,7 @@ namespace std
 //
 //#ifdef __APPLE__
 //
-//inline stream & operator >> (stream & s, unsigned long & ui) { s.read(ui); return s; }
+//inline stream & operator >> (stream & s, unsigned long & u) { s.read(u); return s; }
 //
 //#endif
 //
@@ -807,7 +807,7 @@ namespace std
 //
 //inline stream & operator << (stream & s, i16 sh) { s.write(sh); return s; }
 //
-//inline stream & operator << (stream & s, u16 ui) { s.write(ui); return s; }
+//inline stream & operator << (stream & s, u16 u) { s.write(u); return s; }
 //
 //#ifdef WINDOWS
 //
@@ -819,15 +819,15 @@ namespace std
 //
 //inline stream & operator << (stream & s, i32 i) { s.write(i); return s; }
 //
-//inline stream & operator << (stream & s, u32 ui) { s.write(ui); return s; }
+//inline stream & operator << (stream & s, u32 u) { s.write(u); return s; }
 //
 //inline stream & operator << (stream & s, i64 i) { s.write(i); return s; }
 //
-//inline stream & operator << (stream & s, u64 ui) { s.write(ui); return s; }
+//inline stream & operator << (stream & s, u64 u) { s.write(u); return s; }
 //
 //#if defined(__APPLE__)
 //
-//inline stream & operator << (stream & s, const unsigned long ui) { s.write(ui); return s; }
+//inline stream & operator << (stream & s, const unsigned long u) { s.write(u); return s; }
 //
 //#endif
 //

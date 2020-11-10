@@ -175,8 +175,8 @@ public:
       u32 dwCreateFlags = 0) override;
 
 
-   virtual HTHREAD get_hthread() const;
-   virtual ITHREAD get_ithread() const;
+   virtual hthread_t get_hthread() const;
+   virtual ithread_t get_ithread() const;
 
 
    virtual bool task_active() const;
@@ -184,7 +184,7 @@ public:
 
    virtual void set_current_handles();
 
-   virtual HTHREAD get_os_handle() const;
+   virtual hthread_t get_os_handle() const;
 
    //virtual bool thread_active() const;
    virtual bool is_dedicated_thread() const;
@@ -193,7 +193,7 @@ public:
    //virtual bool is_running() const override;
 
    //virtual void set_os_data(void * pvoidOsData);
-   //virtual void set_os_int(ITHREAD iData);
+   //virtual void set_os_int(ithread_t iData);
 
 
    //static __pointer(thread) start(
@@ -427,7 +427,7 @@ public:
    virtual ::estatus on_thread_term();
    //virtual ::estatus     on_thread_end();
    //virtual void thread_delete();
-   operator HTHREAD() const;
+   operator hthread_t() const;
 
 
    virtual ::estatus initialize(::layered * pobjectContext) override;
@@ -566,9 +566,9 @@ CLASS_DECL_APEX bool is_active(::thread * pthread);
 
 
 
-CLASS_DECL_APEX bool is_thread_on(ITHREAD id);
-CLASS_DECL_APEX void set_thread_on(ITHREAD id);
-CLASS_DECL_APEX void set_thread_off(ITHREAD id);
+CLASS_DECL_APEX bool is_thread_on(ithread_t id);
+CLASS_DECL_APEX void set_thread_on(ithread_t id);
+CLASS_DECL_APEX void set_thread_off(ithread_t id);
 
 
 

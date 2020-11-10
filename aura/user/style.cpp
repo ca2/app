@@ -663,10 +663,10 @@ namespace user
    //}
 
 
-   //bool style::create_session_default_opaque_color(e_color eusercolor, u64 ui)
+   //bool style::create_session_default_opaque_color(e_color eusercolor, u64 u)
    //{
 
-   //   if (!create_opaque_color(eusercolor, psession->get_default_color(ui)))
+   //   if (!create_opaque_color(eusercolor, psession->get_default_color(u)))
    //   {
 
    //      return false;
@@ -678,10 +678,10 @@ namespace user
    //}
 
 
-   //bool style::create_session_default_color(e_color eusercolor, byte bAlpha, u64 ui)
+   //bool style::create_session_default_color(e_color eusercolor, byte bAlpha, u64 u)
    //{
 
-   //   if (!create_color(eusercolor, alpha_color(bAlpha, psession->get_default_color(ui))))
+   //   if (!create_color(eusercolor, alpha_color(bAlpha, psession->get_default_color(u))))
    //   {
 
    //      return false;

@@ -383,7 +383,7 @@
     <ClInclude Include="datetime\datetime_clock.h" />
     <ClInclude Include="datetime\datetime_clock_interface.h" />
     <ClInclude Include="datetime\datetime_float_time.h" />
-    <ClInclude Include="datetime\datetime_windows_file_time.h" />
+    <ClInclude Include="datetime\datetime_windows_filetime.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="graphics\graphics.h" />
     <ClInclude Include="graphics\visual\visual.h" />
@@ -402,7 +402,7 @@
     <ClCompile Include="datetime\datetime_clock.cpp" />
     <ClCompile Include="datetime\datetime_clock_interface.cpp" />
     <ClCompile Include="datetime\datetime_float_time.cpp" />
-    <ClCompile Include="datetime\datetime_windows_file_time.cpp" />
+    <ClCompile Include="datetime\datetime_windows_filetime.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">Create</PrecompiledHeader>

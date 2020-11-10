@@ -156,7 +156,7 @@ bool multi_lock::unlock()
 }
 
 
-bool multi_lock::unlock(::i32 lCount, LPLONG pPrevCount /* =nullptr */)
+bool multi_lock::unlock(::i32 lCount, ::i32 * pPrevCount /* =nullptr */)
 {
 
    bool bGotOne = false;

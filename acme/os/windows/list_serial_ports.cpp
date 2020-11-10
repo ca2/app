@@ -15,9 +15,9 @@
 
 using serial::PortInfo;
 
-static const ::u32 port_name_max_length = 256;
-static const ::u32 friendly_name_max_length = 256;
-static const ::u32 hardware_id_max_length = 256;
+static const DWORD port_name_max_length = 256;
+static const DWORD friendly_name_max_length = 256;
+static const DWORD hardware_id_max_length = 256;
 
 // Convert a wide Unicode string to an UTF8 string
 string utf8_encode(const wstring &wstr)
@@ -56,7 +56,7 @@ serial::list_ports()
 			KEY_READ);
 
 		TCHAR port_name[port_name_max_length];
-		::u32 port_name_length = port_name_max_length;
+		DWORD port_name_length = port_name_max_length;
 
 		::i32 return_code = RegQueryValueEx(
 					hkey,
@@ -84,7 +84,7 @@ serial::list_ports()
 		// Get port friendly name
 
 		TCHAR friendly_name[friendly_name_max_length];
-		::u32 friendly_name_actual_length = 0;
+		DWORD friendly_name_actual_length = 0;
 
 		BOOL got_friendly_name = SetupDiGetDeviceRegistryProperty(
 					device_info_set,
@@ -103,7 +103,7 @@ serial::list_ports()
 		// Get hardware ID
 
 		TCHAR hardware_id[hardware_id_max_length];
-		::u32 hardware_id_actual_length = 0;
+		DWORD hardware_id_actual_length = 0;
 
 		BOOL got_hardware_id = SetupDiGetDeviceRegistryProperty(
 					device_info_set,

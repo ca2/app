@@ -969,7 +969,7 @@ namespace windows
       u32   dwResult;
       sec_cotaskptr < PVOID > pvInAuthBlob;
       sec_cotaskptr < PVOID > pvAuthBlob;
-      CREDUI_INFOW ui;
+      CREDUI_INFOW u;
       ULONG   ulAuthPackage = 0;
       BOOL    fSave = FALSE;
       WCHAR szDomainAndUser[CREDUI_MAX_USERNAME_LENGTH + CREDUI_MAX_DOMAIN_TARGET_LENGTH + 1];
@@ -984,9 +984,9 @@ namespace windows
 
 
       // Display a dialog box to request credentials.
-      xxf_zero(ui);
-      ui.cbSize = sizeof(ui);
-      ui.hwndParent = nullptr;
+      xxf_zero(u);
+      u.cbSize = sizeof(u);
+      u.hwndParent = nullptr;
 
 
 
@@ -1084,15 +1084,15 @@ namespace windows
       }
 
 
-      ui.pszCaptionText = wstrCaption;
-      ui.pszMessageText = wstrMessage;
+      u.pszCaptionText = wstrCaption;
+      u.pszMessageText = wstrMessage;
       hicon = (HICON) ::LoadImageW(::GetModuleHandle(nullptr),MAKEINTRESOURCEW(1),IMAGE_ICON,48,48,LR_DEFAULTCOLOR);
 
 
       if(hicon != nullptr)
       {
 
-         ui.hbmBanner = get_icon_hbitmap(hicon);
+         u.hbmBanner = get_icon_hbitmap(hicon);
 
          ::DeleteObject(hicon);
 
@@ -1101,7 +1101,7 @@ namespace windows
 retry:
 
       dwResult = LIBCALL(credui,CredUIPromptForWindowsCredentialsW)(
-                 &ui,             // Customizing information
+                 &u,             // Customizing information
                  dwLastError,               // Error code to display
                  &ulAuthPackage,  // Authorization package
                  pvInAuthBlob,    // Credential byte array
@@ -1191,10 +1191,10 @@ retry:
          bOk = false;
       }
 
-      if(ui.hbmBanner != nullptr)
+      if(u.hbmBanner != nullptr)
       {
 
-         ::DeleteObject(ui.hbmBanner);
+         ::DeleteObject(u.hbmBanner);
 
       }
 

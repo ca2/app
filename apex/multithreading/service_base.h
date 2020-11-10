@@ -74,9 +74,9 @@ public:
    virtual void _main_server(::u32 argumentCount, PWSTR * arguments);
 
 
-   static void WINAPI ServiceMain(::u32 argumentCount, PWSTR* arguments);
+   static void WINAPI ServiceMain(DWORD argumentCount, PWSTR* arguments);
 
-   static void WINAPI ServiceHandler(::u32 control);
+   static void WINAPI ServiceHandler(DWORD control);
 
 #endif
 

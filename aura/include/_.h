@@ -2445,8 +2445,8 @@ CLASS_DECL_AURA bool __node_aura_pos_term();
 //#include "aura/primitive/datetime/time_span.h"
 //#include "aura/primitive/datetime/time.h"
 //#include "aura/primitive/datetime/zonetime.h"
-//#include "aura/primitive/datetime/file_time_span.h"
-//#include "aura/primitive/datetime/file_time.h"
+//#include "aura/primitive/datetime/filetime_span.h"
+//#include "aura/primitive/datetime/filetime.h"
 //
 //
 //

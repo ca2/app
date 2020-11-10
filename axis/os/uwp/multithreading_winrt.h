@@ -14,9 +14,9 @@ inline void waiter_null_result(bool & b)
 }
 
 template < >
-inline void waiter_null_result(unsigned int & ui)
+inline void waiter_null_result(unsigned int & u)
 {
-   ui = NULL;
+   u = NULL;
 }
 
 

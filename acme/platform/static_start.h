@@ -133,7 +133,7 @@ namespace acme
 
 #endif
 
-   //extern map < ITHREAD, ITHREAD, ITHREAD, ITHREAD > * g_pmapThreadOn;
+   //extern map < ithread_t, ithread_t, ithread_t, ithread_t > * g_pmapThreadOn;
 
 #ifdef WINDOWS
 

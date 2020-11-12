@@ -23,6 +23,8 @@ public:
 
    bool is_opened() const;
 
+   void clear_composition();   
+
    bool close_candidate(index iIndex = 0);
 
    string get_string(int iStr = GCS_COMPSTR);

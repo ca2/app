@@ -69,9 +69,9 @@ namespace str
 
 //CLASS_DECL_ACME void defer_dock_application(int_bool bDock);
 
-
+#ifdef WINDOWS
 CLASS_DECL_ACME string executable_get_app_id(HINSTANCE hinstance);
-
+#endif
 
 CLASS_DECL_ACME string executable_get_app_id();
 

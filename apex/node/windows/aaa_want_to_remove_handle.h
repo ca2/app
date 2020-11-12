@@ -40,38 +40,38 @@
 #pragma once
 
 template <>
-inline UINT HashKey < oswindow >(oswindow key)
+inline ::u32 HashKey < oswindow >(oswindow key)
 {
    // default identity hash - works for most primitive values
-   return (DWORD)((uptr)key);
+   return (::u32)((uptr)key);
 }
 
 template <>
-inline UINT HashKey < HMENU >(HMENU key)
+inline ::u32 HashKey < HMENU >(HMENU key)
 {
    // default identity hash - works for most primitive values
-   return (DWORD)((uptr)key);
+   return (::u32)((uptr)key);
 }
 
 template <>
-inline UINT HashKey < HDC >(HDC key)
+inline ::u32 HashKey < HDC >(HDC key)
 {
    // default identity hash - works for most primitive values
-   return (DWORD)((uptr)key);
+   return (::u32)((uptr)key);
 }
 
 template <>
-inline UINT HashKey < HGDIOBJ >(HGDIOBJ key)
+inline ::u32 HashKey < HGDIOBJ >(HGDIOBJ key)
 {
    // default identity hash - works for most primitive values
-   return (DWORD)((uptr)key);
+   return (::u32)((uptr)key);
 }
 
 template <>
-inline UINT HashKey < HIMAGELIST >(HIMAGELIST key)
+inline ::u32 HashKey < HIMAGELIST >(HIMAGELIST key)
 {
    // default identity hash - works for most primitive values
-   return (DWORD)((uptr)key);
+   return (::u32)((uptr)key);
 }
 
 
@@ -279,7 +279,7 @@ CT* handle_map < HT, CT >::from_handle(HANDLE h, CT * (*pfnAllocator) (__pointer
       else
       {
          // get memory for the object from the fixed allocator
-         //      ASSERT((UINT)m_pClass->m_nObjectSize == m_alloc.GetAllocSize());
+         //      ASSERT((::u32)m_pClass->m_nObjectSize == m_alloc.GetAllocSize());
          pTemp = (CT*)m_alloc.Alloc();
          if (pTemp == nullptr)
             __throw(memory_exception());

@@ -28,8 +28,8 @@ namespace draw2d
       1,
       32,
       nullptr,
-      rect.width() * sizeof(COLORREF));
-      /*#define ARGB(a, rect,g,b)          ((COLORREF)(((BYTE)(rect)|((WORD)((BYTE)(g))<<8))|(((u32)(BYTE)(b))<<16)|((u32)(BYTE)(a))<<24)))
+      rect.width() * sizeof(color32_t));
+      /*#define ARGB(a, rect,g,b)          ((color32_t)(((byte)(rect)|((::u16)((byte)(g))<<8))|(((u32)(byte)(b))<<16)|((u32)(byte)(a))<<24)))
          set(m_bitmapBlend);
          fill_rect(rect, ARGB(0, 0, 0, 0));*/
    }

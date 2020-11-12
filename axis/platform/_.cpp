@@ -194,21 +194,21 @@ CLASS_DECL_AXIS void debug_print(const char* pszFormat, ...)
 
 }
 
-
-void __post_quit_message(i32 nExitCode)
-{
-
-#ifdef WINDOWS_DESKTOP
-
-   ::PostQuitMessage(nExitCode);
-
-#else
-
-   ::multithreading::set_finish(::get_context_application());
-
-#endif
-
-}
+//
+//void __post_quit_message(i32 nExitCode)
+//{
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//   ::PostQuitMessage(nExitCode);
+//
+//#else
+//
+//   ::multithreading::set_finish(::get_context_application());
+//
+//#endif
+//
+//}
 
 
 //string_map < __pointer(::apex::library) >* g_pmapLibrary = nullptr;

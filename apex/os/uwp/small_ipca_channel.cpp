@@ -16,7 +16,7 @@
 
       // extern bool (WINAPI * g_pfnChangeWindowMessageFilter)(
       // _In_ const ::id & id,
-      // _In_ DWORD dwFlag);
+      // _In_ ::u32 dwFlag);
 
 
       base::base()
@@ -97,7 +97,7 @@
 
          ::Windows::Foundation::Uri ^uri = ref new ::Windows::Foundation::Uri(anotherappURI);
 
-         main_sync(__method([uri, durationTimeout]()
+         System.main_user_sync(__procedure([uri, durationTimeout]()
             {
 
                ::wait(Launcher::LaunchUriAsync(uri), durationTimeout);

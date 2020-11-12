@@ -28,7 +28,7 @@
 //
 //      static BOOL WINAPI _MoveFile(const unichar * pExistingFileName, const unichar * lpNewFileName);
 //
-//      static DWORD WINAPI _GetFullPathName(const unichar * pFileName, DWORD nBufferLength, unichar * lpBuffer, unichar ** lpFilePart);
+//      static ::u32 WINAPI _GetFullPathName(const unichar * pFileName, ::u32 nBufferLength, unichar * lpBuffer, unichar ** lpFilePart);
 //
 //      static WCHAR * __cdecl __fullpath(WCHAR *UserBuf, const WCHAR *path, size_t maxlen);
 //      static BOOL WINAPI _GetVolumeInformation(
@@ -36,7 +36,7 @@
 //
 //         unichar * pVolumeNameBuffer,        // volume name buffer
 //
-//         DWORD nVolumeNameSize,            // length of name buffer
+//         ::u32 nVolumeNameSize,            // length of name buffer
 //         LPDWORD pVolumeSerialNumber,     // volume serial number
 //
 //         LPDWORD pMaximumComponentLength, // maximum file name length
@@ -45,49 +45,49 @@
 //
 //         unichar * pFileSystemNameBuffer,    // file system name buffer
 //
-//         DWORD nFileSystemNameSize);         // length of file system name buffer
+//         ::u32 nFileSystemNameSize);         // length of file system name buffer
 //      static uptr __stdcall _SHGetFileInfo(      
 //         const unichar * pszPath,
-//         DWORD dwFileAttributes,
+//         ::u32 dwFileAttributes,
 //         SHFILEINFOW *psfi,
-//         UINT cbFileInfo,
-//         UINT uFlags);
+//         ::u32 cbFileInfo,
+//         ::u32 uFlags);
 //      static BOOL __stdcall _GetStringTypeEx(      
 //         LCID Locale,
-//         DWORD dwInfoType,
+//         ::u32 dwInfoType,
 //         const unichar * pSrcStr,
 //
 //         i32 cchSrc,
 //         LPWORD pCharType);
 //
-//      static DWORD WINAPI  _GetTempPath(
-//         DWORD nBufferLength,
+//      static ::u32 WINAPI  _GetTempPath(
+//         ::u32 nBufferLength,
 //         unichar * pBuffer);
 //
-//      static UINT WINAPI _GetTempFileName(
+//      static ::u32 WINAPI _GetTempFileName(
 //         const unichar * pszPath,
 //
 //         const unichar * pszPrefix,
 //
-//         UINT uUnique,
+//         ::u32 uUnique,
 //         unichar * pTempFileName);
 //
 //      static HANDLE WINAPI _CreateFile(
 //         const unichar * pFileName,
 //
-//         DWORD dwDesiredAccess,
-//         DWORD dwShareMode,
+//         ::u32 dwDesiredAccess,
+//         ::u32 dwShareMode,
 //         LPSECURITY_ATTRIBUTES pSecurityAttributes,
 //
-//         DWORD dwCreationDisposition,
-//         DWORD dwFlagsAndAttributes,
+//         ::u32 dwCreationDisposition,
+//         ::u32 dwFlagsAndAttributes,
 //         HANDLE hTemplateFile
 //         );
-//      static DWORD WINAPI _GetModuleFileName(
+//      static ::u32 WINAPI _GetModuleFileName(
 //         HMODULE hModule,
 //         unichar * pFilename,
 //
-//         DWORD nSize
+//         ::u32 nSize
 //         );
 //      static BOOL WINAPI _GetClassInfo(
 //         HINSTANCE hInstance ,
@@ -100,12 +100,12 @@
 //
 //
 //      static oswindow WINAPI _CreateWindowEx(
-//         DWORD dwExStyle,
+//         ::u32 dwExStyle,
 //         const unichar * pClassName,
 //
 //         const unichar * pWindowName,
 //
-//         DWORD dwStyle,
+//         ::u32 dwStyle,
 //         i32 x,
 //         i32 y,
 //         i32 nWidth,
@@ -128,14 +128,14 @@
 //      BOOL (WINAPI * m_pfnMoveFile)(const unichar * pExistingFileName, const unichar * lpNewFileName);
 //
 //      WCHAR * (__cdecl * m_pfn_fullpath)(WCHAR *UserBuf, const WCHAR *path, size_t maxlen);
-//      DWORD (WINAPI * m_pfnGetFullPathName)(const unichar * pFileName, DWORD nBufferLength, unichar * lpBuffer, unichar ** lpFilePart);
+//      ::u32 (WINAPI * m_pfnGetFullPathName)(const unichar * pFileName, ::u32 nBufferLength, unichar * lpBuffer, unichar ** lpFilePart);
 //
 //      BOOL (WINAPI * m_pfnGetVolumeInformation)(
 //         const unichar * pRootPathName,           // root directory
 //
 //         unichar * pVolumeNameBuffer,        // volume name buffer
 //
-//         DWORD nVolumeNameSize,            // length of name buffer
+//         ::u32 nVolumeNameSize,            // length of name buffer
 //         LPDWORD pVolumeSerialNumber,     // volume serial number
 //
 //         LPDWORD pMaximumComponentLength, // maximum file name length
@@ -144,51 +144,51 @@
 //
 //         unichar * pFileSystemNameBuffer,    // file system name buffer
 //
-//         DWORD nFileSystemNameSize);         // length of file system name buffer
+//         ::u32 nFileSystemNameSize);         // length of file system name buffer
 //
 //      DWORD_PTR (__stdcall * m_pfnSHGetFileInfo)(      
 //         const unichar * pszPath,
-//         DWORD dwFileAttributes,
+//         ::u32 dwFileAttributes,
 //         SHFILEINFOW *psfi,
-//         UINT cbFileInfo,
-//         UINT uFlags);
+//         ::u32 cbFileInfo,
+//         ::u32 uFlags);
 //      BOOL (__stdcall * m_pfnGetStringTypeEx)(      
 //         LCID Locale,
-//         DWORD dwInfoType,
+//         ::u32 dwInfoType,
 //         const unichar * pSrcStr,
 //
 //         i32 cchSrc,
 //         LPWORD pCharType);
 //
-//      DWORD (WINAPI * m_pfnGetTempPath)(
-//         DWORD nBufferLength,
+//      ::u32 (WINAPI * m_pfnGetTempPath)(
+//         ::u32 nBufferLength,
 //         unichar * pBuffer);
 //
-//      UINT (WINAPI * m_pfnGetTempFileName)(
+//      ::u32 (WINAPI * m_pfnGetTempFileName)(
 //         const unichar * pszPath,
 //
 //         const unichar * pszPrefix,
 //
-//         UINT uUnique,
+//         ::u32 uUnique,
 //         unichar * pTempFileName);
 //
 //      HANDLE (WINAPI * m_pfnCreateFile)(
 //         const unichar * pFileName,
 //
-//         DWORD dwDesiredAccess,
-//         DWORD dwShareMode,
+//         ::u32 dwDesiredAccess,
+//         ::u32 dwShareMode,
 //         LPSECURITY_ATTRIBUTES pSecurityAttributes,
 //
-//         DWORD dwCreationDisposition,
-//         DWORD dwFlagsAndAttributes,
+//         ::u32 dwCreationDisposition,
+//         ::u32 dwFlagsAndAttributes,
 //         HANDLE hTemplateFile
 //         );
 //
-//      DWORD (WINAPI * m_pfnGetModuleFileName)(
+//      ::u32 (WINAPI * m_pfnGetModuleFileName)(
 //         HMODULE hModule,
 //         unichar * pFilename,
 //
-//         DWORD nSize
+//         ::u32 nSize
 //         );
 //
 //      BOOL (WINAPI * m_pfnGetClassInfo)(
@@ -203,12 +203,12 @@
 //
 //
 //      oswindow (WINAPI * m_pfnCreateWindowEx)(
-//         DWORD dwExStyle,
+//         ::u32 dwExStyle,
 //         const unichar * pClassName,
 //
 //         const unichar * pWindowName,
 //
-//         DWORD dwStyle,
+//         ::u32 dwStyle,
 //         i32 x,
 //         i32 y,
 //         i32 nWidth,
@@ -235,14 +235,14 @@
 //      static bool MoveFile(const unichar * pExistingFileName, const unichar * lpNewFileName);
 //
 //      static WCHAR * __cdecl _fullpath(WCHAR *UserBuf, const WCHAR *path, size_t maxlen);
-//      static DWORD GetFullPathName(const unichar * pFileName, DWORD nBufferLength, unichar * lpBuffer, unichar ** lpFilePart);
+//      static ::u32 GetFullPathName(const unichar * pFileName, ::u32 nBufferLength, unichar * lpBuffer, unichar ** lpFilePart);
 //
 //      static bool GetVolumeInformation(
 //         const unichar * pRootPathName,           // root directory
 //
 //         unichar * pVolumeNameBuffer,        // volume name buffer
 //
-//         DWORD nVolumeNameSize,            // length of name buffer
+//         ::u32 nVolumeNameSize,            // length of name buffer
 //         LPDWORD pVolumeSerialNumber,     // volume serial number
 //
 //         LPDWORD pMaximumComponentLength, // maximum file name length
@@ -251,54 +251,54 @@
 //
 //         unichar * pFileSystemNameBuffer,    // file system name buffer
 //
-//         DWORD nFileSystemNameSize);         // length of file system name buffer
+//         ::u32 nFileSystemNameSize);         // length of file system name buffer
 //
-//      static WH_SHSTDAPI(DWORD) SHGetFileInfo(      
+//      static WH_SHSTDAPI(::u32) SHGetFileInfo(
 //         const unichar * pszPath,
-//         DWORD dwFileAttributes,
+//         ::u32 dwFileAttributes,
 //         SHFILEINFOW *psfi,
-//         UINT cbFileInfo,
-//         UINT uFlags);
+//         ::u32 cbFileInfo,
+//         ::u32 uFlags);
 //
 //      static bool  GetStringTypeEx(      
 //         LCID Locale,
-//         DWORD dwInfoType,
+//         ::u32 dwInfoType,
 //         const char * pSrcStr,
 //
 //         i32 cchSrc,
 //         LPWORD pCharType);
 //
 //
-//      static DWORD GetTempPathW(
-//         DWORD nBufferLength,
+//      static ::u32 GetTempPathW(
+//         ::u32 nBufferLength,
 //         unichar * pBuffer);
 //
 //
-//      static UINT GetTempFileNameW(
+//      static ::u32 GetTempFileNameW(
 //         const unichar * pszPath,
 //
 //         const unichar * pszPrefix,
 //
-//         UINT uUnique,
+//         ::u32 uUnique,
 //         unichar * pTempFileName);
 //
 //
 //      static HANDLE CreateFile(
 //         const unichar * pFileName,
 //
-//         DWORD dwDesiredAccess,
-//         DWORD dwShareMode,
+//         ::u32 dwDesiredAccess,
+//         ::u32 dwShareMode,
 //         LPSECURITY_ATTRIBUTES pSecurityAttributes,
 //
-//         DWORD dwCreationDisposition,
-//         DWORD dwFlagsAndAttributes,
+//         ::u32 dwCreationDisposition,
+//         ::u32 dwFlagsAndAttributes,
 //         HANDLE hTemplateFile);
 //
-//      static DWORD WINAPI GetModuleFileName(
+//      static ::u32 WINAPI GetModuleFileName(
 //         HMODULE hModule,
 //         unichar * pFilename,
 //
-//         DWORD nSize
+//         ::u32 nSize
 //         );
 //
 //      static bool WINAPI GetClassInfo(
@@ -313,12 +313,12 @@
 //
 //
 //      static oswindow WINAPI CreateWindowEx(
-//         DWORD dwExStyle,
+//         ::u32 dwExStyle,
 //         const unichar * pClassName,
 //
 //         const unichar * pWindowName,
 //
-//         DWORD dwStyle,
+//         ::u32 dwStyle,
 //         i32 x,
 //         i32 y,
 //         i32 nWidth,
@@ -330,21 +330,21 @@
 //
 //
 //
-//      static WH_SHSTDAPI(DWORD) SHGetFileInfo(      
+//      static WH_SHSTDAPI(::u32) SHGetFileInfo(
 //         const char * pszPath,
-//         DWORD dwFileAttributes,
+//         ::u32 dwFileAttributes,
 //         SHFILEINFO *psfi,
-//         UINT cbFileInfo,
-//         UINT uFlags);
+//         ::u32 cbFileInfo,
+//         ::u32 uFlags);
 //
-//      static DWORD GetTempPath(string & str);
+//      static ::u32 GetTempPath(string & str);
 //
-//      static UINT GetTempFileName(
+//      static ::u32 GetTempFileName(
 //         const char * pszPath,
 //
 //         const char * pszPrefix,
 //
-//         UINT uUnique,
+//         ::u32 uUnique,
 //         string & str);
 //
 //      static bool MoveFile(const char * pExistingFileName, const char * lpNewFileName);
@@ -390,7 +390,7 @@
 //      return (*theWindowsShell.m_pfn_fullpath)(UserBuf, path, maxlen);
 //   }
 //
-//   inline DWORD shell::GetFullPathName(const unichar * pFileName, DWORD nBufferLength, unichar * lpBuffer, unichar ** lpFilePart)
+//   inline ::u32 shell::GetFullPathName(const unichar * pFileName, ::u32 nBufferLength, unichar * lpBuffer, unichar ** lpFilePart)
 //
 //   {
 //      return (*theWindowsShell.m_pfnGetFullPathName)(pFileName, nBufferLength, lpBuffer, lpFilePart);
@@ -410,7 +410,7 @@
 //
 //      unichar * pVolumeNameBuffer,        // volume name buffer
 //
-//      DWORD nVolumeNameSize,            // length of name buffer
+//      ::u32 nVolumeNameSize,            // length of name buffer
 //      LPDWORD pVolumeSerialNumber,     // volume serial number
 //
 //      LPDWORD pMaximumComponentLength, // maximum file name length
@@ -419,7 +419,7 @@
 //
 //      unichar * pFileSystemNameBuffer,    // file system name buffer
 //
-//      DWORD nFileSystemNameSize)         // length of file system name buffer
+//      ::u32 nFileSystemNameSize)         // length of file system name buffer
 //   {
 //      return (*theWindowsShell.m_pfnGetVolumeInformation)(
 //         pRootPathName,           // root directory
@@ -438,14 +438,14 @@
 //         nFileSystemNameSize) != FALSE;         // length of file system name buffer
 //   }
 //
-//   inline DWORD shell::SHGetFileInfo(
+//   inline ::u32 shell::SHGetFileInfo(
 //      const unichar * pszPath,
-//      DWORD dwFileAttributes,
+//      ::u32 dwFileAttributes,
 //      SHFILEINFOW *psfi,
-//      UINT cbFileInfo,
-//      UINT uFlags)
+//      ::u32 cbFileInfo,
+//      ::u32 uFlags)
 //   {
-//      return (DWORD) (*theWindowsShell.m_pfnSHGetFileInfo)(
+//      return (::u32) (*theWindowsShell.m_pfnSHGetFileInfo)(
 //         pszPath,
 //         dwFileAttributes,
 //         psfi,
@@ -453,8 +453,8 @@
 //         uFlags);
 //   }
 //
-//   inline DWORD shell::GetTempPathW(
-//      DWORD nBufferLength,
+//   inline ::u32 shell::GetTempPathW(
+//      ::u32 nBufferLength,
 //      unichar * pBuffer)
 //
 //   {
@@ -464,12 +464,12 @@
 //
 //   }
 //
-//   inline UINT shell::GetTempFileNameW(
+//   inline ::u32 shell::GetTempFileNameW(
 //      const unichar * pszPath,
 //
 //      const unichar * pszPrefix,
 //
-//      UINT uUnique,
+//      ::u32 uUnique,
 //      unichar * pTempFileName)
 //
 //   {
@@ -486,12 +486,12 @@
 //   inline HANDLE shell::CreateFile(
 //      const unichar * pFileName,
 //
-//      DWORD dwDesiredAccess,
-//      DWORD dwShareMode,
+//      ::u32 dwDesiredAccess,
+//      ::u32 dwShareMode,
 //      LPSECURITY_ATTRIBUTES pSecurityAttributes,
 //
-//      DWORD dwCreationDisposition,
-//      DWORD dwFlagsAndAttributes,
+//      ::u32 dwCreationDisposition,
+//      ::u32 dwFlagsAndAttributes,
 //      HANDLE hTemplateFile)
 //   {
 //      return (*theWindowsShell.m_pfnCreateFile)(
@@ -506,11 +506,11 @@
 //         hTemplateFile);
 //   }
 //
-//   inline DWORD shell::GetModuleFileName(
+//   inline ::u32 shell::GetModuleFileName(
 //      HMODULE hModule,
 //      unichar * pFilename,
 //
-//      DWORD nSize
+//      ::u32 nSize
 //      )
 //   {
 //      return (*theWindowsShell.m_pfnGetModuleFileName)(
@@ -541,12 +541,12 @@
 //   }
 //
 //   inline oswindow shell::CreateWindowEx(
-//      DWORD dwExStyle,
+//      ::u32 dwExStyle,
 //      const unichar * pClassName,
 //
 //      const unichar * pWindowName,
 //
-//      DWORD dwStyle,
+//      ::u32 dwStyle,
 //      i32 x,
 //      i32 y,
 //      i32 nWidth,
@@ -576,16 +576,16 @@
 //
 //   }
 //
-//   inline DWORD shell::GetTempPath(string & str)
+//   inline ::u32 shell::GetTempPath(string & str)
 //   {
 //      unichar * pwsz = (unichar *) malloc(sizeof(unichar) * MAX_PATH * 4);
-//      DWORD dwResult = (*theWindowsShell.m_pfnGetTempPath)(sizeof(unichar) * MAX_PATH * 4, pwsz);
+//      ::u32 dwResult = (*theWindowsShell.m_pfnGetTempPath)(sizeof(unichar) * MAX_PATH * 4, pwsz);
 //      ::str::international::unicode_to_utf8(str, pwsz);
 //      free(pwsz);
 //      return dwResult;
 //   }
 //
-//   inline UINT shell::GetTempFileName(const char * pszPath, const char * pszPrefix, UINT uUnique, string & str)
+//   inline ::u32 shell::GetTempFileName(const char * pszPath, const char * pszPrefix, ::u32 uUnique, string & str)
 //
 //   {
 //      wstring wstrPathName = ::str::international::utf8_to_unicode(pszPath);
@@ -594,7 +594,7 @@
 //
 //      wstring wstr;
 //      wstr.get_buffer(MAX_PATH * 4);
-//      UINT uiResult = (*theWindowsShell.m_pfnGetTempFileName)(wstrPathName, wstrPrefixString, uUnique, wstr);
+//      ::u32 uResult = (*theWindowsShell.m_pfnGetTempFileName)(wstrPathName, wstrPrefixString, uUnique, wstr);
 //      ::str::international::unicode_to_utf8(str, wstr);
 //      return uiResult;
 //   }

@@ -43,7 +43,7 @@ namespace multimedia
 
          AudioQueueBufferRef buf = nullptr;
 
-         if(0 != AudioQueueAllocateBuffer(m_Queue, (UInt32) len, &buf))
+         if(0 != AudioQueueAllocateBuffer(m_Queue, (::u32) len, &buf))
             return;
 
          if(buf == nullptr)

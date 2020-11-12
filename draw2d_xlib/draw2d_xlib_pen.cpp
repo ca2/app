@@ -20,12 +20,12 @@ namespace draw2d_xlib
    {
       return dynamic_cast < pen* > (::win::object::from_handle(papp, hPen));
    }*/
-/*   int_bool pen::CreatePen(i32 nPenStyle, i32 nWidth, COLORREF crColor)
+/*   int_bool pen::CreatePen(i32 nPenStyle, i32 nWidth, color32_t crColor)
    { return Attach(::CreatePen(nPenStyle, nWidth, crColor)); }*/
 /*   int_bool pen::CreatePenIndirect(LPLOGPEN lpLogPen)
    { return Attach(::CreatePenIndirect(lpLogPen)); }*/
 /*   int_bool pen::CreatePen(i32 nPenStyle, i32 nWidth, const LOGBRUSH* pLogBrush,
-      i32 nStyleCount, const DWORD* lpStyle)
+      i32 nStyleCount, const ::u32* lpStyle)
    { return Attach(::ExtCreatePen(nPenStyle, nWidth, pLogBrush, nStyleCount,
    lpStyle)); }*/
 /*   i32 pen::GetExtLogPen(EXTLOGPEN* pLogPen)
@@ -40,7 +40,7 @@ namespace draw2d_xlib
    }
 */
 
-/*   void pen::construct(i32 nPenStyle, i32 nWidth, COLORREF crColor)
+/*   void pen::construct(i32 nPenStyle, i32 nWidth, color32_t crColor)
    {
       if (!Attach(::CreatePen(nPenStyle, nWidth, crColor)))
          AfxThrowResourceException();
@@ -48,7 +48,7 @@ namespace draw2d_xlib
 */
 /*
    void pen::construct(i32 nPenStyle, i32 nWidth, const LOGBRUSH* pLogBrush,
-      i32 nStyleCount, const DWORD* lpStyle)
+      i32 nStyleCount, const ::u32* lpStyle)
    {
       if (!Attach(::ExtCreatePen(nPenStyle, nWidth, pLogBrush, nStyleCount,
          lpStyle)))

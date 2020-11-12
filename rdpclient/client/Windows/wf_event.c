@@ -74,10 +74,10 @@ LRESULT CALLBACK wf_ll_kbd_proc(int nCode, WPARAM wParam, LPARAM lParam)
 	{
 		switch (wParam)
 		{
-			case WM_KEYDOWN:
-			case WM_SYSKEYDOWN:
-			case WM_KEYUP:
-			case WM_SYSKEYUP:
+			case e_message_key_down:
+			case e_message_sys_key_down:
+			case e_message_key_up:
+			case e_message_sys_key_up:
 				wfc = (wfContext*) GetWindowLongPtr(g_focus_hWnd, GWLP_USERDATA);
 				p = (PKBDLLHOOKSTRUCT) lParam;
 
@@ -87,14 +87,14 @@ LRESULT CALLBACK wf_ll_kbd_proc(int nCode, WPARAM wParam, LPARAM lParam)
 				input = wfc->context.input;
 				rdp_scancode = MAKE_RDP_SCANCODE((BYTE) p->scanCode, p->flags & LLKHF_EXTENDED);
 				DEBUG_KBD("keydown %d scanCode %04X flags %02X vkCode %02X",
-				          (wParam == WM_KEYDOWN), (BYTE) p->scanCode, p->flags, p->vkCode);
+				          (wParam == e_message_key_down), (BYTE) p->scanCode, p->flags, p->vkCode);
 
 				if (wfc->fs_toggle &&
 				    ((p->vkCode == VK_RETURN) || (p->vkCode == VK_CANCEL)) &&
 				    (GetAsyncKeyState(VK_CONTROL) & 0x8000) &&
 				    (GetAsyncKeyState(VK_MENU) & 0x8000)) /* could also use flags & LLKHF_ALTDOWN */
 				{
-					if (wParam == WM_KEYDOWN)
+					if (wParam == e_message_key_down)
 					{
 						wf_toggle_fullscreen(wfc);
 						return 1;
@@ -111,7 +111,7 @@ LRESULT CALLBACK wf_ll_kbd_proc(int nCode, WPARAM wParam, LPARAM lParam)
 				{
 					/* Windows sends Pause as if it was a RDP NumLock (handled above).
 						 * It must however be sent as a one-shot Ctrl+NumLock */
-					if (wParam == WM_KEYDOWN)
+					if (wParam == e_message_key_down)
 					{
 						DEBUG_KBD("Pause, sent as Ctrl+NumLock");
 						freerdp_input_send_keyboard_event_ex(input, TRUE, RDP_SCANCODE_LCONTROL);
@@ -354,22 +354,22 @@ LRESULT CALLBACK wf_event_proc(HWND hWnd, UINT Msg, WPARAM wParam,
 				EndPaint(hWnd, &ps);
 				break;
 
-			case WM_LBUTTONDOWN:
+			case e_message_lbutton_down:
 				wf_scale_mouse_event(wfc, input, PTR_FLAGS_DOWN | PTR_FLAGS_BUTTON1,
 				                     X_POS(lParam) - wfc->offset_x, Y_POS(lParam) - wfc->offset_y);
 				break;
 
-			case WM_LBUTTONUP:
+			case e_message_lbutton_up:
 				wf_scale_mouse_event(wfc, input, PTR_FLAGS_BUTTON1,
 				                     X_POS(lParam) - wfc->offset_x, Y_POS(lParam) - wfc->offset_y);
 				break;
 
-			case WM_RBUTTONDOWN:
+			case e_message_rbutton_down:
 				wf_scale_mouse_event(wfc, input, PTR_FLAGS_DOWN | PTR_FLAGS_BUTTON2,
 				                     X_POS(lParam) - wfc->offset_x, Y_POS(lParam) - wfc->offset_y);
 				break;
 
-			case WM_RBUTTONUP:
+			case e_message_rbutton_up:
 				wf_scale_mouse_event(wfc, input, PTR_FLAGS_BUTTON2,
 				                     X_POS(lParam) - wfc->offset_x, Y_POS(lParam) - wfc->offset_y);
 				break;
@@ -379,7 +379,7 @@ LRESULT CALLBACK wf_event_proc(HWND hWnd, UINT Msg, WPARAM wParam,
 				                     Y_POS(lParam) - wfc->offset_y);
 				break;
 
-			case WM_MOUSEWHEEL:
+			case e_message_mouse_wheel:
 				wf_event_process_WM_MOUSEWHEEL(wfc, hWnd, Msg, wParam, lParam);
 				break;
 

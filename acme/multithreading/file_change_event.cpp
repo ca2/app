@@ -42,7 +42,7 @@ bool file_change_event::unlock()
 sync_result file_change_event::wait ()
 {
 
-   if (::WaitForSingleObject(hsync(), INFINITE) != WAIT_OBJECT_0)
+   if (::WaitForSingleObject(hsync(), U32_INFINITE_TIMEOUT) != WAIT_OBJECT_0)
    {
 
       return sync_result(sync_result::result_error);

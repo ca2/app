@@ -5,17 +5,12 @@
 
 
 
-CLASS_DECL_ACME int_bool get_file_time(HANDLE hFile, LPFILETIME pCreationTime, LPFILETIME lpLastAccessTime, LPFILETIME lpLastWriteTime)
-
+CLASS_DECL_ACME int_bool get_filetime(HANDLE hFile, LPFILETIME pCreationTime, LPFILETIME lpLastAccessTime, LPFILETIME lpLastWriteTime)
 {
 
    return GetFileTime(hFile, pCreationTime, lpLastAccessTime, lpLastWriteTime) != FALSE;
 
-
 }
-
-
-
 
 
 
@@ -41,14 +36,14 @@ CLASS_DECL_ACME int_bool get_file_time(HANDLE hFile, LPFILETIME pCreationTime, L
 //}
 //
 //#ifndef __APPLE__
-//uint64 NowInUs() {
+//::u3264 NowInUs() {
 //   struct timespec now;
 //   clock_gettime(CLOCK_MONOTONIC, &now);
-//   return static_cast<uint64>(now.tv_sec) * 1000000 + now.tv_nsec / 1000;
+//   return static_cast<::u3264>(now.tv_sec) * 1000000 + now.tv_nsec / 1000;
 //}
 //
 //#else // mac
-//uint64 NowInUs() {
+//::u3264 NowInUs() {
 //   clock_serv_t cs;
 //   mach_timespec_t ts;
 //
@@ -56,7 +51,7 @@ CLASS_DECL_ACME int_bool get_file_time(HANDLE hFile, LPFILETIME pCreationTime, L
 //   clock_get_time(cs, &ts);
 //   mach_port_deallocate(mach_task_self(), cs);
 //
-//   return static_cast<uint64>(ts.tv_sec) * 1000000 + ts.tv_nsec / 1000;
+//   return static_cast<::u3264>(ts.tv_sec) * 1000000 + ts.tv_nsec / 1000;
 //}
 //#endif // __APPLE__
 //#endif // _WIN32
@@ -74,35 +69,35 @@ CLASS_DECL_ACME int_bool get_file_time(HANDLE hFile, LPFILETIME pCreationTime, L
 //
 //   ::HANDLE timer = ::CreateWaitableTimer(nullptr, TRUE, nullptr);
 //   ::SetWaitableTimer(timer, &ft, 0, nullptr, nullptr, 0);
-//   ::WaitForSingleObject(timer, INFINITE);
+//   ::WaitForSingleObject(timer, U32_INFINITE_TIMEOUT);
 //   ::CloseHandle(timer);
 //}
 //
-//static inline uint64 GetPerfFrequency() {
+//static inline ::u3264 GetPerfFrequency() {
 //   ::LARGE_INTEGER freq;
 //   ::QueryPerformanceFrequency(&freq);
 //   return freq.QuadPart;
 //}
 //
-//static inline uint64 PerfFrequency() {
-//   static uint64 xFreq = GetPerfFrequency();
+//static inline ::u3264 PerfFrequency() {
+//   static ::u3264 xFreq = GetPerfFrequency();
 //   return xFreq;
 //}
 //
-//static inline uint64 PerfCounter() {
+//static inline ::u3264 PerfCounter() {
 //   ::LARGE_INTEGER counter;
 //   ::QueryPerformanceCounter(&counter);
 //   return counter.QuadPart;
 //}
 //
-//uint64 NowInUs() {
-//   return static_cast<uint64>(
+//::u3264 NowInUs() {
+//   return static_cast<::u3264>(
 //      static_cast<double>(PerfCounter()) * 1000000 / PerfFrequency());
 //}
 //#endif // _WIN32
 
 /* Windows sleep in 100ns units */
-BOOLEAN nanosleep(LONGLONG ns)
+BOOLEAN nanosleep(::i64 ns)
 {
    /* Declarations */
    HANDLE timer;   /* Timer handle */
@@ -110,7 +105,7 @@ BOOLEAN nanosleep(LONGLONG ns)
    /* Create timer */
    if (!(timer = CreateWaitableTimer(nullptr, TRUE, nullptr)))
    {
-      Sleep((DWORD) (ns / (1000 * 1000)));
+      Sleep((::u32) (ns / (1000 * 1000)));
       return TRUE;
    }
    /* Set timer properties */
@@ -121,7 +116,7 @@ BOOLEAN nanosleep(LONGLONG ns)
       return FALSE;
    }
    /* Start & wait for timer */
-   WaitForSingleObject(timer, INFINITE);
+   WaitForSingleObject(timer, U32_INFINITE_TIMEOUT);
    /* Clean resources */
    CloseHandle(timer);
    /* Slept without problems */
@@ -129,12 +124,12 @@ BOOLEAN nanosleep(LONGLONG ns)
 }
 
 
-void sleep(const ::duration & dur)
-{
-
-   nanosleep(dur.total_nanoseconds());
-
-}
+//void sleep(const ::duration & dur)
+//{
+//
+//   nanosleep(dur.total_nanoseconds());
+//
+//}
 
 
 namespace windows
@@ -146,22 +141,22 @@ namespace windows
 
       SYSTEMTIME sysTime;
 
-      sysTime.wYear = (WORD)time.GetYear();
-      sysTime.wMonth = (WORD)time.GetMonth();
-      sysTime.wDay = (WORD)time.GetDay();
-      sysTime.wHour = (WORD)time.GetHour();
-      sysTime.wMinute = (WORD)time.GetMinute();
-      sysTime.wSecond = (WORD)time.GetSecond();
+      sysTime.wYear = (::u16)time.GetYear();
+      sysTime.wMonth = (::u16)time.GetMonth();
+      sysTime.wDay = (::u16)time.GetDay();
+      sysTime.wHour = (::u16)time.GetHour();
+      sysTime.wMinute = (::u16)time.GetMinute();
+      sysTime.wSecond = (::u16)time.GetSecond();
       sysTime.wMilliseconds = 0;
 
       // convert system time to local file time
       FILETIME localTime;
       if (!SystemTimeToFileTime((LPSYSTEMTIME)&sysTime, &localTime))
-         ::file::throw_os_error((LONG)::get_last_error());
+         ::file::throw_os_error((::i32)::get_last_error());
 
       // convert local file time to UTC file time
       if (!LocalFileTimeToFileTime(&localTime, pFileTime))
-         ::file::throw_os_error((LONG)::get_last_error());
+         ::file::throw_os_error((::i32)::get_last_error());
 
    }
 

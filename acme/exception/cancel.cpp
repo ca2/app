@@ -13,7 +13,7 @@ cancel_exception::~cancel_exception()
 
 }
 
-//bool cancel_exception::get_error_message(string & str,PUINT pnHelpContext)
+//bool cancel_exception::get_error_message(string & str,P::u32 pnHelpContext)
 //{
 //
 //   str = what();

@@ -8,7 +8,7 @@ namespace str
    inline string  from_int(const T & t);
 
    template < typename T >
-   inline string  from_uint(const T & t);
+   inline string  from_u(const T & t);
 
    inline CLASS_DECL_ACME string from_strdup(const ansichar * psz);
 
@@ -91,9 +91,9 @@ namespace str
    inline void from(string& str, const i16& i);
    inline void from(string& str, const u16& i);
    inline void from(string& str, const i32& i);
-   inline void from(string& str, const u32& ui);
+   inline void from(string& str, const u32& u);
    inline void from(string& str, const i64& i);
-   inline void from(string& str, const u64& ui);
+   inline void from(string& str, const u64& u);
    inline void from(string& str, const unsigned long& ul);
    CLASS_DECL_ACME void from(string& str, const float& f);
    CLASS_DECL_ACME void from(string& str, const double& d);
@@ -109,8 +109,8 @@ namespace str
    #ifdef WINDOWS
 
    inline void from(string& str, const long& i);
-   inline void from(string& str, const LONG& i);
-   inline void from(string& str, const DWORD& i);
+   inline void from(string& str, const ::i32& i);
+   inline void from(string& str, const ::u32& i);
 
    #endif
 

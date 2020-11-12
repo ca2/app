@@ -21,7 +21,7 @@ namespace music
 
          void mach_init_timebase();
       
-         UInt64 nano_to_absolute(UInt64 nano);
+         ::u3264 nano_to_absolute(::u3264 nano);
 
       
       }

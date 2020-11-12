@@ -11,7 +11,9 @@
 //#include <X11/Xatom.h>
 // // Ubuntu apt-get install libcairo2-dev
 
-#include <glib.h> // gtk3-devel
+// sudo apt install libgtk-3-dev
+// gtk3-devel
+#include <glib.h>
 
 
 enum e_net_wm_state
@@ -34,14 +36,14 @@ const char * net_wm_state_text(e_net_wm_state estate);
 
 
 CLASS_DECL_ACME int xinerama_get_monitor_count();
-CLASS_DECL_ACME int xinerama_get_monitor_rect(index i, RECT * prect);
+CLASS_DECL_ACME int xinerama_get_monitor_rect(index i, RECT32 * prect);
 
 CLASS_DECL_ACME int xinerama_get_screen_size(int& width, int& height);
 
 
-int best_xinerama_monitor(::user::interaction * pinteraction, RECT * prectRet);
+int best_xinerama_monitor(::user::interaction * pinteraction, RECT32 * prectRet);
 
-int best_xinerama_monitor(::user::interaction * pinteraction, const ::rect & rect, RECT * lprectRet);
+int best_xinerama_monitor(::user::interaction * pinteraction, const ::rect & rect, RECT32 * lprectRet);
 
 
 
@@ -65,7 +67,7 @@ void unmapped_net_state_raw(Display * d, Window w, ...);
 
 #ifdef __cplusplus
 
-void set_xcolor(XColor & color, COLORREF cr);
+void set_xcolor(XColor & color, color32_t cr);
 
 #endif
 

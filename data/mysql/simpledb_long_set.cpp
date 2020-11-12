@@ -489,7 +489,7 @@ bool db_long_set::find(const char * lpKey)
 }
 
 
-bool db_long_set::load(const char * lpKey, LPRECT lpRect)
+bool db_long_set::load(const char * lpKey, LPRECT32 lpRect)
 {
 
    ::rect rect;
@@ -520,7 +520,7 @@ bool db_long_set::load(const char * lpKey, LPRECT lpRect)
 // 'false' if one or more save operations has failed.
 // 'true' otherwise
 
-bool db_long_set::save(const char * lpKey, LPCRECT lpRect)
+bool db_long_set::save(const char * lpKey, LPCRECT32 lpRect)
 {
 
    string strKey = lpKey;
@@ -842,7 +842,7 @@ bool db_long_set::load(const char * lpKey, WINDOWPLACEMENT & wp)
 
 
 
-bool db_long_set::load(const char * lpKey, LPPOINT lpPoint)
+bool db_long_set::load(const char * lpKey, POINT32 * lpPoint)
 {
 
    ::point point;
@@ -861,7 +861,7 @@ bool db_long_set::load(const char * lpKey, LPPOINT lpPoint)
 
 }
 
-bool db_long_set::save(const char * lpKey, LPPOINT lpPoint)
+bool db_long_set::save(const char * lpKey, POINT32 * lpPoint)
 {
 
    string strKey = lpKey;

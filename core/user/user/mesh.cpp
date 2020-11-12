@@ -15,9 +15,9 @@
 namespace user
 {
 
-   const UINT mesh::MESSAGE_ENDCOLUMNHEADERDRAG = WM_USER + 25;
-   const UINT mesh::MESSAGE_COLUMNHEADERTRACK = WM_USER + 26;
-   const UINT mesh::MESSAGE_ENDCOLUMNHEADERTRACK = WM_USER + 27;
+   const ::u32 mesh::MESSAGE_ENDCOLUMNHEADERDRAG = WM_USER + 25;
+   const ::u32 mesh::MESSAGE_COLUMNHEADERTRACK = WM_USER + 26;
+   const ::u32 mesh::MESSAGE_ENDCOLUMNHEADERTRACK = WM_USER + 27;
 
    mesh::mesh():
       m_penFocused(e_create),
@@ -126,16 +126,16 @@ namespace user
 
       if (!bList)
       {
-         MESSAGE_LINK(WM_LBUTTONDOWN, pchannel, this, &mesh::_001OnLButtonDown);
-         MESSAGE_LINK(WM_LBUTTONUP, pchannel, this, &mesh::_001OnLButtonUp);
+         MESSAGE_LINK(e_message_lbutton_down, pchannel, this, &mesh::_001OnLButtonDown);
+         MESSAGE_LINK(e_message_lbutton_up, pchannel, this, &mesh::_001OnLButtonUp);
          MESSAGE_LINK(WM_LBUTTONDBLCLK, pchannel, this, &mesh::_001OnLButtonDblClk);
       }
-      MESSAGE_LINK(WM_RBUTTONDOWN, pchannel, this,&mesh::_001OnRButtonDown);
-      MESSAGE_LINK(WM_RBUTTONDOWN, pchannel, this, &mesh::_001OnRButtonUp);
+      MESSAGE_LINK(e_message_rbutton_down, pchannel, this,&mesh::_001OnRButtonDown);
+      MESSAGE_LINK(e_message_rbutton_down, pchannel, this, &mesh::_001OnRButtonUp);
 
       MESSAGE_LINK(e_message_mouse_move, pchannel, this,&mesh::_001OnMouseMove);
 
-      MESSAGE_LINK(WM_KEYDOWN, pchannel, this,&mesh::_001OnKeyDown);
+      MESSAGE_LINK(e_message_key_down, pchannel, this,&mesh::_001OnKeyDown);
 
       MESSAGE_LINK(e_message_create, pchannel, this,&mesh::_001OnCreate);
 
@@ -199,7 +199,7 @@ namespace user
                   || i == sizea.get_upper_bound())
             {
                ::rect rect;
-               rect.top = LONG(y - pointScroll.y);
+               rect.top = ::i32(y - pointScroll.y);
                if(i == 0)
                {
                   w = sizea[0].cx - x      ;
@@ -215,9 +215,9 @@ namespace user
                   y += sizea[i - 1].cy;
                   iNewStart = i - 1;
                }
-               rect.left = LONG(- pointScroll.x);
+               rect.left = ::i32(- pointScroll.x);
                rect.right = rectClient.right;
-               rect.bottom = LONG(y - pointScroll.y);
+               rect.bottom = ::i32(y - pointScroll.y);
 
                pgraphics->_DrawText(m_strTopText.Mid(iStart,i - iStart),rect,e_align_left);
                iStart = iNewStart;
@@ -597,7 +597,7 @@ namespace user
          }
          else
          {
-            COLORREF crTranslucid = RGB(0,0,0);
+            color32_t crTranslucid = RGB(0,0,0);
             ::rect rect = pdrawitem->m_rectItem;
             rect.inflate(8,0,8,-1);
             System.imaging().color_blend(pdrawitem->m_pgraphics,rect,crTranslucid,127);
@@ -788,7 +788,7 @@ namespace user
    return window::pre_create_window(cs);
    }*/
 
-   /*void mesh::OnSize(UINT nType, index cx, index cy)
+   /*void mesh::OnSize(::u32 nType, index cx, index cy)
    {
    window::OnSize(nType, cx, cy);
 
@@ -1003,8 +1003,8 @@ namespace user
       if(m_eview == impact_grid)
       {
 
-         sizeTotal.cy = (LONG) m_nColumnCount;
-         sizeTotal.cx = (LONG) m_nItemCount;
+         sizeTotal.cy = (::i32) m_nColumnCount;
+         sizeTotal.cx = (::i32) m_nItemCount;
 
       }
       else if(m_eview == impact_list)
@@ -1034,7 +1034,7 @@ namespace user
             if(m_iItemHeight <= 0)
                sizeTotal.cx = rectClient.right;
             else
-               sizeTotal.cx  = (LONG)min(
+               sizeTotal.cx  = (::i32)min(
                                m_nItemCount * itemFirst.m_rectItem.width() * m_iItemHeight /
                                rectClient.height()
                                + itemFirst.m_rectItem.width(),MAXLONG);
@@ -1826,8 +1826,8 @@ namespace user
                if(pdrawitem->m_iItemRectItem < 0)
                {
 
-                  pdrawitem->m_rectItem.left    = (LONG) m_iLateralGroupWidth;
-                  pdrawitem->m_rectItem.right   = (LONG)(pdrawitem->m_rectItem.left + m_iItemWidth);
+                  pdrawitem->m_rectItem.left    = (::i32) m_iLateralGroupWidth;
+                  pdrawitem->m_rectItem.right   = (::i32)(pdrawitem->m_rectItem.left + m_iItemWidth);
                   pdrawitem->m_iItemRectItem = 0;
                   pdrawitem->m_rectItem.top  = 0;
                   //if(m_bHeaderCtrl)
@@ -1885,7 +1885,7 @@ namespace user
                if(pdrawitem->m_iGroup < m_nGroupCount && pdrawitem->m_iGroup >= 0)
                {
                   pdrawitem->m_iItemRectItem       = pdrawitem->m_iDisplayItem;
-                  pdrawitem->m_rectItem.top       += (LONG)((pdrawitem->m_iItemRectItem - pdrawitem->m_iGroupTopDisplayIndex) * m_iItemHeight);
+                  pdrawitem->m_rectItem.top       += (::i32)((pdrawitem->m_iItemRectItem - pdrawitem->m_iGroupTopDisplayIndex) * m_iItemHeight);
                   pdrawitem->m_rectItem.bottom     =  pdrawitem->m_rectItem.top + m_iItemHeight;
                }
             }
@@ -1899,14 +1899,14 @@ namespace user
 
             pdrawitem->m_rectItem.left    = m_iLeftMargin;
 
-            pdrawitem->m_rectItem.right   = (LONG)(m_iLeftMargin + m_iItemWidth);
+            pdrawitem->m_rectItem.right   = (::i32)(m_iLeftMargin + m_iItemWidth);
 
             pdrawitem->m_rectItem.top = 0;
             //if(m_bHeaderCtrl)
             //{
             //   pdrawitem->m_rectItem.top += m_iItemHeight;
             //}
-            pdrawitem->m_rectItem.top += (LONG)(m_iItemHeight * pdrawitem->m_iDisplayItem);
+            pdrawitem->m_rectItem.top += (::i32)(m_iItemHeight * pdrawitem->m_iDisplayItem);
             if(m_bTopText)
             {
                pdrawitem->m_rectItem.top += m_rectTopText.height();
@@ -1928,8 +1928,8 @@ namespace user
                if(pdrawitem->m_iItemRectItem < 0)
                {
 
-                  pdrawitem->m_rectItem.left    = (LONG)m_iLateralGroupWidth;
-                  pdrawitem->m_rectItem.right   = (LONG)(pdrawitem->m_rectItem.left + m_iItemWidth);
+                  pdrawitem->m_rectItem.left    = (::i32)m_iLateralGroupWidth;
+                  pdrawitem->m_rectItem.right   = (::i32)(pdrawitem->m_rectItem.left + m_iItemWidth);
                   pdrawitem->m_iItemRectItem = 0;
                   pdrawitem->m_rectItem.top  = 0;
                   //if(m_bHeaderCtrl)
@@ -1987,7 +1987,7 @@ namespace user
                if(pdrawitem->m_iGroup < m_nGroupCount && pdrawitem->m_iGroup >= 0)
                {
                   pdrawitem->m_iItemRectItem       = pdrawitem->m_iDisplayItem;
-                  pdrawitem->m_rectItem.top       += (LONG)((pdrawitem->m_iItemRectItem - pdrawitem->m_iGroupTopDisplayIndex) * m_iItemHeight);
+                  pdrawitem->m_rectItem.top       += (::i32)((pdrawitem->m_iItemRectItem - pdrawitem->m_iGroupTopDisplayIndex) * m_iItemHeight);
                   pdrawitem->m_rectItem.bottom     =  pdrawitem->m_rectItem.top + m_iItemHeight;
                }
             }
@@ -1999,14 +1999,14 @@ namespace user
          else
          {
             pdrawitem->m_rectItem.left    = 0;
-            pdrawitem->m_rectItem.right   = (LONG)m_iItemWidth;
+            pdrawitem->m_rectItem.right   = (::i32)m_iItemWidth;
 
             pdrawitem->m_rectItem.top = 0;
             //if(m_bHeaderCtrl)
             //{
             //   pdrawitem->m_rectItem.top += m_iItemHeight;
             //}
-            pdrawitem->m_rectItem.top += (LONG)(m_iItemHeight * pdrawitem->m_iDisplayItem);
+            pdrawitem->m_rectItem.top += (::i32)(m_iItemHeight * pdrawitem->m_iDisplayItem);
             if(m_bTopText)
             {
                pdrawitem->m_rectItem.top += m_rectTopText.height();
@@ -2033,8 +2033,8 @@ namespace user
          index iRoundHeight = (rectClient.height() / m_iItemHeight) * m_iItemHeight;
          if(iRoundHeight != 0)
          {
-            pdrawitem->m_rectItem.left = (LONG)(((pdrawitem->m_iItem * m_iItemHeight) / iRoundHeight) * m_iItemWidth);
-            pdrawitem->m_rectItem.top = (LONG)((pdrawitem->m_iItem * m_iItemHeight) % iRoundHeight);
+            pdrawitem->m_rectItem.left = (::i32)(((pdrawitem->m_iItem * m_iItemHeight) / iRoundHeight) * m_iItemWidth);
+            pdrawitem->m_rectItem.top = (::i32)((pdrawitem->m_iItem * m_iItemHeight) % iRoundHeight);
          }
          if(m_bTopText)
          {
@@ -2044,8 +2044,8 @@ namespace user
          //{
          //   pdrawitem->m_rectItem.top += m_iItemHeight;
          //}
-         pdrawitem->m_rectItem.bottom = (LONG)(pdrawitem->m_rectItem.top + m_iItemHeight);
-         pdrawitem->m_rectItem.right = (LONG)(pdrawitem->m_rectItem.left + m_iItemWidth);
+         pdrawitem->m_rectItem.bottom = (::i32)(pdrawitem->m_rectItem.top + m_iItemHeight);
+         pdrawitem->m_rectItem.right = (::i32)(pdrawitem->m_rectItem.left + m_iItemWidth);
          pdrawitem->m_rectItem.offset(-pointScroll.x,-pointScroll.y);
       }
       else if(m_eview == impact_icon)
@@ -2061,10 +2061,10 @@ namespace user
             //index iIconSize = max(32,m_columna[0]->m_sizeIcon.cy);
             index iIconSize = 32;
             index iItemSize = iIconSize * 2;
-            pdrawitem->m_rectItem.left = (LONG)(iItemSize * (pdrawitem->m_iItem % (max(1,rectClient.width() / iItemSize))));
-            pdrawitem->m_rectItem.top = (LONG)(iItemSize * (pdrawitem->m_iItem / (max(1,rectClient.width() / iItemSize))));
-            pdrawitem->m_rectItem.bottom = (LONG)(pdrawitem->m_rectItem.top + iItemSize);
-            pdrawitem->m_rectItem.right = (LONG)(pdrawitem->m_rectItem.left + iItemSize);
+            pdrawitem->m_rectItem.left = (::i32)(iItemSize * (pdrawitem->m_iItem % (max(1,rectClient.width() / iItemSize))));
+            pdrawitem->m_rectItem.top = (::i32)(iItemSize * (pdrawitem->m_iItem / (max(1,rectClient.width() / iItemSize))));
+            pdrawitem->m_rectItem.bottom = (::i32)(pdrawitem->m_rectItem.top + iItemSize);
+            pdrawitem->m_rectItem.right = (::i32)(pdrawitem->m_rectItem.left + iItemSize);
          }
          //else
          //{
@@ -2075,10 +2075,10 @@ namespace user
          //      rectClient.top += m_rectTopText.height();
          //   }
          //   index iItemSize = get_item_size().cy;
-         //   pdrawitem->m_rectItem.left = (LONG)(iItemSize * (pdrawitem->m_iDisplayItem % m_piconlayout.m_iWidth));
-         //   pdrawitem->m_rectItem.top = (LONG)(rectClient.top + iItemSize * (pdrawitem->m_iDisplayItem / m_piconlayout.m_iWidth));
-         //   pdrawitem->m_rectItem.bottom = (LONG)(pdrawitem->m_rectItem.top + iItemSize);
-         //   pdrawitem->m_rectItem.right = (LONG)(pdrawitem->m_rectItem.left + iItemSize);
+         //   pdrawitem->m_rectItem.left = (::i32)(iItemSize * (pdrawitem->m_iDisplayItem % m_piconlayout.m_iWidth));
+         //   pdrawitem->m_rectItem.top = (::i32)(rectClient.top + iItemSize * (pdrawitem->m_iDisplayItem / m_piconlayout.m_iWidth));
+         //   pdrawitem->m_rectItem.bottom = (::i32)(pdrawitem->m_rectItem.top + iItemSize);
+         //   pdrawitem->m_rectItem.right = (::i32)(pdrawitem->m_rectItem.left + iItemSize);
          //}
          pdrawitem->m_rectItem.offset(-pointScroll.x,-pointScroll.y);
       }
@@ -2228,7 +2228,7 @@ namespace user
          }
          if(eelement == ::user::mesh::element_group_item_text)
          {
-            pdrawitem->m_rectText.top       = (LONG)(pdrawitem->m_rectGroup.top + m_iItemHeight * pdrawitem->m_iItem);
+            pdrawitem->m_rectText.top       = (::i32)(pdrawitem->m_rectGroup.top + m_iItemHeight * pdrawitem->m_iItem);
             if(pdrawitem->m_rectText.top >= iImageBottom)
             {
                pdrawitem->m_rectText.left      = pdrawitem->m_rectGroup.left;
@@ -3282,7 +3282,7 @@ namespace user
    //   if(pcolumn == nullptr)
    //      return;
 
-   //   if(pcolumn->m_uiSmallBitmap == (UINT)-1)
+   //   if(pcolumn->m_uiSmallBitmap == (::u32)-1)
    //   {
    //      return;
    //   }
@@ -3722,7 +3722,7 @@ namespace user
       m_rectTopText.left = 0;
       m_rectTopText.top = 0;
       m_rectTopText.right = rectClient.right;
-      m_rectTopText.bottom = (LONG)y;
+      m_rectTopText.bottom = (::i32)y;
 
 
    }
@@ -5327,7 +5327,7 @@ namespace user
       m_iOrder          = -1;
       m_iSubItem        = -1;
       m_iListItem       = -1;
-      m_crText              = (COLORREF)-1;
+      m_crText              = (color32_t)-1;
       m_crTextBackground    = ARGB(255, 0, 0, 0);
       m_crItemBackground = 0;
       m_iState          = -1;
@@ -5715,7 +5715,7 @@ namespace user
    }
 
 
-   //bool mesh::get_client_rect(RECT * prect)
+   //bool mesh::get_client_rect(RECT32 * prect)
    //{
 
    //   if(m_eview == impact_grid && m_iItemHeight > 0)

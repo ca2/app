@@ -697,7 +697,7 @@ namespace crypto
    u32 crypto::crc32(u32 dwPrevious, const char* psz)
    {
 
-      return ::crc32(dwPrevious, (const Bytef*)psz, (uInt)strlen(psz));
+      return ::crc32(dwPrevious, (const Bytef*)psz, (::u32)strlen(psz));
 
    }
 
@@ -1542,7 +1542,7 @@ namespace crypto
       X509* signer = nullptr;
       {
          string strSigner = Context.file().as_string(strSignerPath);
-         BIO* pbio = BIO_new_mem_buf((void*)(LPCSTR)strSigner, (i32)strSigner.get_length());
+         BIO* pbio = BIO_new_mem_buf((void*)(const char *)strSigner, (i32)strSigner.get_length());
          //signer = PEM_read_bio_X509_AUX(pbio, nullptr, 0, nullptr);
          signer = PEM_read_bio_X509(pbio, nullptr, 0, nullptr);
          BIO_free(pbio);
@@ -1551,7 +1551,7 @@ namespace crypto
       EVP_PKEY* pkey;
       {
          string strKey = Context.file().as_string(strKeyPath);
-         BIO* pbio = BIO_new_mem_buf((void*)(LPCSTR)strKey, (i32)strKey.get_length());
+         BIO* pbio = BIO_new_mem_buf((void*)(const char *)strKey, (i32)strKey.get_length());
          pkey = PEM_read_bio_PrivateKey(pbio, nullptr, nullptr, nullptr);
          BIO_free(pbio);
       }
@@ -1595,7 +1595,7 @@ namespace crypto
          }
       }
 
-      BIO* input = BIO_new_mem_buf((void*)(LPCSTR)strSignature, (i32)strSignature.get_length());
+      BIO* input = BIO_new_mem_buf((void*)(const char *)strSignature, (i32)strSignature.get_length());
 
       PKCS7* pkcs7 = PKCS7_sign(signer, pkey, pstack509, input, PKCS7_BINARY | PKCS7_DETACHED);
 

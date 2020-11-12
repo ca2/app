@@ -385,7 +385,7 @@ namespace user
          else
          {
             
-            send_method(__method([this, windowrect]()
+            send_procedure(__procedure([this, windowrect]()
             {
 
                good_restore(nullptr, windowrect.m_rectRestored, true, activation_none, zorder_top, windowrect.m_edisplay);
@@ -512,7 +512,7 @@ namespace user
    void box::sketch_prepare_window_restore(edisplay edisplay)
    {
 
-      main_async(__method([this, edisplay]()
+      get_wnd()->main_async(__procedure([this, edisplay]()
       {
 
          good_restore(NULL, layout().sketch().screen_rect(), true, layout().sketch().activation(), layout().sketch().zorder(), edisplay);

@@ -74,7 +74,7 @@ namespace axis
 
       //virtual bool on_ui_event(enum_event eevent, e_object eobject, ::user::interaction * pinteraction) override;
 
-      //virtual bool _001OnDrawMenuInteraction(::draw2d::graphics_pointer & pgraphics, menu_interaction * pbutton) override;
+      //virtual bool _001OnDrawMen::u32eraction(::draw2d::graphics_pointer & pgraphics, menu_interaction * pbutton) override;
 
       //virtual bool _001OnTabLayout(::draw2d::graphics_pointer& pgraphics, ::user::tab * ptab) override;
 
@@ -114,7 +114,7 @@ namespace axis
       //virtual bool set(::user::interaction * pinteraction, e_font efont = font_default);
 
 
-      //virtual COLORREF           _001GetColor(e_color ecolor, COLORREF crDefault = 0);
+      //virtual color32_t           _001GetColor(e_color ecolor, color32_t crDefault = 0);
       //virtual ::draw2d::font_pointer  _001GetFont(e_font efont, ::draw2d::font * pfont = nullptr);
       //virtual e_translucency     _001GetTranslucency(e_element eelement = element_none, e_translucency etranslucencyDefault = translucency_undefined);
       //virtual bool               _001GetFlag(::user::e_flag eflag, bool bDefault = false);

@@ -13,8 +13,8 @@
 //
 //      ::user::primitive *     m_puserinteraction;
 //      uptr                m_uiId;
-//      UINT                    m_uiElapse;
-//      UINT                    m_uiLastSent;
+//      ::u32                    m_uiElapse;
+//      ::u32                    m_uiLastSent;
 //
 //
 //      timer_item(::layered * pobjectContext);

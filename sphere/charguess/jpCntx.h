@@ -16,9 +16,9 @@ class JapaneseContextAnalysis
 public:
   JapaneseContextAnalysis() {Reset();};
 
-  void HandleData(const char* aBuf, PRUint32 aLen);
+  void HandleData(const char* aBuf, PR::u32 aLen);
 
-  void HandleOneChar(const char* aStr, PRUint32 aCharLen)
+  void HandleOneChar(const char* aStr, PR::u32 aCharLen)
   {
     PRInt32 order;
 
@@ -43,21 +43,21 @@ public:
   PRBool GotEnoughData() {return mTotalRel > ENOUGH_REL_THRESHOLD;};
 
 protected:
-  virtual PRInt32 GetOrder(const char* str, PRUint32 *charLen) = 0;
+  virtual PRInt32 GetOrder(const char* str, PR::u32 *charLen) = 0;
   virtual PRInt32 GetOrder(const char* str) = 0;
 
   //category counters, each interger counts sequence in its category
-  PRUint32 mRelSample[NUM_OF_CATEGORY];
+  PR::u32 mRelSample[NUM_OF_CATEGORY];
 
   //total sequence received
-  PRUint32 mTotalRel;
+  PR::u32 mTotalRel;
   
   //The order of previous char
   PRInt32  mLastCharOrder;
 
   //if last byte in current buffer is not the last byte of a character, we
   //need to know how many byte to skip in next buffer.
-  PRUint32 mNeedToSkipCharNum;
+  PR::u32 mNeedToSkipCharNum;
 
   //If this flag is set to PR_TRUE, detection is done and conclusion has been made
   PRBool   mDone;
@@ -68,7 +68,7 @@ class SJISContextAnalysis : public JapaneseContextAnalysis
 {
   //SJISContextAnalysis(){};
 protected:
-  PRInt32 GetOrder(const char* str, PRUint32 *charLen);
+  PRInt32 GetOrder(const char* str, PR::u32 *charLen);
 
   PRInt32 GetOrder(const char* str)
   {
@@ -84,7 +84,7 @@ protected:
 class EUCJPContextAnalysis : public JapaneseContextAnalysis
 {
 protected:
-  PRInt32 GetOrder(const char* str, PRUint32 *charLen);
+  PRInt32 GetOrder(const char* str, PR::u32 *charLen);
   PRInt32 GetOrder(const char* str)
     //We only interested in Hiragana, so first byte is '\244'
   {

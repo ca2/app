@@ -74,7 +74,36 @@ namespace acme
    }
 
 
-   ::task * system::get_task(ITHREAD ithread)
+   ::estatus system::main_user_async(const ::procedure & procedure, ::e_priority epriority)
+   {
+
+      return ::error_interface_only;
+
+   }
+
+
+   ::estatus system::main_user_sync(const procedure & procedure, const ::duration & duration, e_priority epriority)
+   {
+
+      auto pmethod = ___sync_procedure(procedure);
+
+      main_user_async(pmethod, epriority);
+
+      auto waitresult = pmethod->wait(duration);
+
+      if (!waitresult.succeeded())
+      {
+
+         return ::error_timeout;
+
+      }
+
+      return pmethod->m_estatus;
+
+   }
+
+
+   ::task * system::get_task(ithread_t ithread)
    {
 
       sync_lock sl(&m_mutexTask);
@@ -84,12 +113,12 @@ namespace acme
    }
 
 
-   ITHREAD system::get_task_id(::task * ptask)
+   ithread_t system::get_task_id(::task * ptask)
    {
 
       sync_lock sl(&m_mutexTask);
 
-      ITHREAD ithread = NULL_ITHREAD;
+      ithread_t ithread = NULL_ITHREAD;
 
       if (!m_taskidmap.lookup(ptask, ithread))
       {
@@ -103,7 +132,7 @@ namespace acme
    }
 
 
-   void system::set_task(ITHREAD ithread, ::task * ptask)
+   void system::set_task(ithread_t ithread, ::task * ptask)
    {
 
       sync_lock sl(&m_mutexTask);
@@ -115,7 +144,7 @@ namespace acme
    }
 
 
-   void system::unset_task(ITHREAD ithread, ::task * ptask)
+   void system::unset_task(ithread_t ithread, ::task * ptask)
    {
 
       sync_lock sl(&m_mutexTask);
@@ -149,7 +178,7 @@ CLASS_DECL_ACME ::acme::system * get_context_system()
 
 
 
-void acme_system_init()
+CLASS_DECL_ACME void acme_system_init()
 {
 
    g_psystem = new acme::system();
@@ -158,7 +187,7 @@ void acme_system_init()
 
 
 
-void acme_system_term()
+CLASS_DECL_ACME void acme_system_term()
 {
 
    ::acme::del(g_psystem);

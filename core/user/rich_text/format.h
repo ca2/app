@@ -23,8 +23,8 @@ namespace user
          bool                    m_bUnderline;
          string                  m_strFontFamily;
          double                  m_dFontSize;
-         COLORREF                m_crForeground;
-         COLORREF                m_crBackground;
+         color32_t                m_crForeground;
+         color32_t                m_crBackground;
          e_script                m_escript;
          e_line_height           m_elineheight;
 

@@ -9,7 +9,7 @@ namespace hotplugin
 {
 
 
-   void plugin::on_bare_paint_discreet(::draw2d::graphics_pointer & pgraphics,const RECT & lprect)
+   void plugin::on_bare_paint_discreet(::draw2d::graphics_pointer & pgraphics,const RECT32 & lprect)
    {
 
       double dRate = get_progress_rate();
@@ -21,11 +21,11 @@ namespace hotplugin
 
       }
 
-      RECT rectWindow;
+      RECT32 rectWindow;
       get_window_rect(&rectWindow);
       i32 cx = rectWindow.right - rectWindow.left;
       i32 cy = rectWindow.bottom - rectWindow.top;
-      RECT rect;
+      RECT32 rect;
       rect.left = 0;
       rect.top = 0;
       rect.bottom = cy;
@@ -76,7 +76,7 @@ auto m_tickSync = ::tick::now();
 
       i32 iRate1 = 25;
 
-      BYTE bA;
+      byte bA;
 
       {
 
@@ -94,15 +94,15 @@ auto m_tickSync = ::tick::now();
          else
          bA = 184 * 2 - iA;*/
 
-         bA = min(255, max(0, (BYTE)((184.0 * ((sin(w * t) + 1.0) / 2.0)) + 23.0)));
+         bA = min(255, max(0, (byte)((184.0 * ((sin(w * t) + 1.0) / 2.0)) + 23.0)));
 
 
 
       }
 
-      BYTE uchR;
-      BYTE uchG;
-      BYTE uchB;
+      byte uchR;
+      byte uchG;
+      byte uchB;
 
       //graphics2.SetCompositingMode(Gdiplus::CompositingModeSourceOver);
 
@@ -117,7 +117,7 @@ auto m_tickSync = ::tick::now();
 
       ::draw2d::path_pointer pathClip1(e_create);
 
-      RECT rectClip1;
+      RECT32 rectClip1;
 
       rectClip1.left = rect.left + iBorder1;
       rectClip1.top = rect.top + iBorder1;
@@ -159,7 +159,7 @@ auto m_tickSync = ::tick::now();
 
       ::draw2d::path_pointer pathClip(e_create);
 
-      RECT rectClip;
+      RECT32 rectClip;
 
       rectClip.left = rect.left + cx / iRate - iBorder;
       rectClip.top = rect.top + (cy - iBarHeight) / 2 - iBorder;
@@ -176,7 +176,7 @@ auto m_tickSync = ::tick::now();
       //pgraphics->exclude_clip(pathClip);
 
 
-      POINT pa[4];
+      POINT32 pa[4];
 
       //Gdiplus::SolidBrush * pbr = new Gdiplus::SolidBrush(Gdiplus::Color(49, 177 + iBarHeight, 177 + iBarHeight, 177 + 19));
       //graphics2.FillRectangle(pbr, rect.left , rect.top, rect.left + cx, rect.top + cy);
@@ -236,7 +236,7 @@ auto m_tickSync = ::tick::now();
 
       br->create_solid(ARGB(84, 90, 90, 80));
 
-      RECT r1;
+      RECT32 r1;
 
       r1.left = rect.left + cx / iRate - 1;
       r1.top = rect.top + (cy - iBarHeight) / 2 - 1;

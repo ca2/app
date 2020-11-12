@@ -382,7 +382,7 @@ namespace draw2d
          else if (!bCheckHover && i == m_iHover)
          {
 
-            COLORREF cr = pgraphics->m_puserinteraction->get_color(pgraphics->m_puserstyle, ::user::element_background, ::user::e_state_hover);
+            color32_t cr = pgraphics->m_puserinteraction->get_color(pgraphics->m_puserstyle, ::user::element_background, ::user::e_state_hover);
 
             int iA = colorref_get_a_value(cr);
 
@@ -1546,7 +1546,7 @@ namespace draw2d
    }
 
 
-   bool font_list::get_box_rect(LPRECT lprect, ::index i)
+   bool font_list::get_box_rect(LPRECT32 lprect, ::index i)
    {
 
       sync_lock sl(mutex());
@@ -1567,7 +1567,7 @@ namespace draw2d
    }
 
 
-   bool font_list::get_box_rect_wide(LPRECT lprect, ::index i)
+   bool font_list::get_box_rect_wide(LPRECT32 lprect, ::index i)
    {
 
       sync_lock sl(mutex());
@@ -1602,7 +1602,7 @@ namespace draw2d
    }
 
 
-   bool font_list::get_box_rect_single_column(LPRECT lprect, ::index i)
+   bool font_list::get_box_rect_single_column(LPRECT32 lprect, ::index i)
    {
 
       sync_lock sl(mutex());
@@ -1639,7 +1639,7 @@ namespace draw2d
    }
 
 
-   void font_list::set_client_rect(LPCRECT lpcrect)
+   void font_list::set_client_rect(LPCRECT32 lpcrect)
    {
 
       ::rect rect(lpcrect);

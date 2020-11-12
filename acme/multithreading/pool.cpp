@@ -18,7 +18,7 @@ task_pool::~task_pool()
 }
 
 
-task_pointer & task_pool::defer_start(const ::id& id, const ::method & method)
+task_pointer & task_pool::defer_start(const ::id& id, const ::procedure & procedure)
 {
 
    auto& pthread = task(id);
@@ -39,7 +39,7 @@ task_pointer & task_pool::defer_start(const ::id& id, const ::method & method)
 
    }
 
-   pthread->start(method);
+   pthread->start(procedure);
 
    return pthread;
 
@@ -49,7 +49,7 @@ task_pointer & task_pool::defer_start(const ::id& id, const ::method & method)
 void task_pool::start_clock(enum_clock eclock, duration duration)
 {
 
-   defer_start(eclock, __method([&, eclock, duration]()
+   defer_start(eclock, __procedure([&, eclock, duration]()
       {
 
          _task_clock(eclock, duration);

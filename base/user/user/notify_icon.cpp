@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "apex/os/linux/gnome_gnome.h"
 #if !BROAD_PRECOMPILED_HEADER
 #include "base/user/user/_user.h"
 #endif
@@ -68,7 +69,7 @@ namespace user
    }
 
 
-   bool notify_icon::create_notify_icon(UINT uiId, notify_icon_listener * plistener, ::draw2d::icon * pvisualicon)
+   bool notify_icon::create_notify_icon(::u32 uId, notify_icon_listener * plistener, ::draw2d::icon * pvisualicon)
    {
 
       if(m_bCreated)
@@ -162,7 +163,7 @@ namespace user
 
          pathFolder = path.folder();
 
-         main_sync(__method([&]()
+         gdk_sync(5_s, __procedure([&]()
          {
 
             m_pindicator = ::linux::allocate_appindicator();
@@ -416,7 +417,7 @@ namespace user
 
       SCAST_PTR(::message::base, pbase, pmessage);
 
-      if (pbase->m_lparam == WM_LBUTTONDOWN)
+      if (pbase->m_lparam == e_message_lbutton_down)
       {
 
          while (m_wndptraHidden.get_size() > 0)
@@ -452,7 +453,7 @@ namespace user
 
       }
 
-      m_plistener->OnNotifyIconMessage(m_uiId, (UINT) pbase->m_lparam);
+      m_plistener->OnNotifyIconMessage(m_uiId, (::u32) pbase->m_lparam);
 
    }
 

@@ -619,9 +619,9 @@ namespace html
 
          ::draw2d::graphics_pointer & pgraphics = pdata->m_pcoredata->m_pgraphics;
 
-         COLORREF crBkSel = RGB(120, 240, 150);
+         color32_t crBkSel = RGB(120, 240, 150);
 
-         COLORREF crSel = RGB(10, 30, 20);
+         color32_t crSel = RGB(10, 30, 20);
 
          e_tag etag = m_pelemental->m_etag;
 
@@ -647,7 +647,7 @@ namespace html
 
             pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-            COLORREF cr = 0;
+            color32_t cr = 0;
 
             double d;
 
@@ -659,7 +659,7 @@ namespace html
                   pgraphics,
                   rect,
                   cr,
-                  max(0, min(255, (BYTE)(d * 255))));
+                  max(0, min(255, (byte)(d * 255))));
                }
                else if(has_link() && m_pelemental->m_pstyle->get_color("background-color", "link", pdata, m_pelemental, cr))
                {
@@ -667,7 +667,7 @@ namespace html
                   pgraphics,
                   rect,
                   cr,
-                  max(0, min(255, (BYTE)(d * 255))));
+                  max(0, min(255, (byte)(d * 255))));
                }
                else if (m_pelemental->m_pstyle->get_color("background-color", "", pdata, m_pelemental, cr))
                {
@@ -675,7 +675,7 @@ namespace html
                   pgraphics,
                   rect,
                   cr,
-                  max(0, min(255, (BYTE)(d * 255))));
+                  max(0, min(255, (byte)(d * 255))));
                }
             }
             else
@@ -700,9 +700,9 @@ namespace html
          ::html::impl::element::_001OnDraw(pdata);
 
 
-         COLORREF cr = 0;
+         color32_t cr = 0;
          bool bOpaque;
-         COLORREF crBkColor;
+         color32_t crBkColor;
          if(m_bHover && m_pelemental->m_pstyle->get_color("background-color", "hover", pdata, m_pelemental, cr))
          {
             bOpaque = true;
@@ -945,7 +945,7 @@ namespace html
       }
 
 
-      bool text::get_color(COLORREF & cr)
+      bool text::get_color(color32_t & cr)
       {
 
          if(has_link())

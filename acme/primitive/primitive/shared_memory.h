@@ -1,7 +1,7 @@
 #pragma once
 
 
-#if !defined(_UWP)
+#ifdef WINDOWS_DESKTOP
 
    class CLASS_DECL_ACME shared_memory :
       public memory_base
@@ -9,13 +9,13 @@
    public:
 
 
-      UINT                                   m_nAllocFlags;
+      ::u32                                   m_nAllocFlags;
    HGLOBAL                                m_hGlobalMemory;
       bool                                   m_bAllowGrow;
 
 
       shared_memory(const memory_base & memory);
-      shared_memory(memory_container * pmsc = nullptr, double dAllocationRateUp = 4096, UINT nAllocFlags = 0);
+      shared_memory(memory_container * pmsc = nullptr, double dAllocationRateUp = 4096, ::u32 nAllocFlags = 0);
       shared_memory(memory_container * pmsc, void * pMemory, memsize dwSize);
       shared_memory(const void *, memsize iCount);
       virtual ~shared_memory();

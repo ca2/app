@@ -62,7 +62,7 @@ namespace user
       //DECL_GEN_SIGNAL(_001OnMouseLeave);
       //DECL_GEN_SIGNAL(_001OnLButtonDown);
 
-      virtual bool get_item_rect(index i, RECT * prect);
+      virtual bool get_item_rect(index i, RECT32 * prect);
 
 
       virtual void on_hit_test(::user::item & item) override;

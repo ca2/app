@@ -12,7 +12,7 @@
 //
 //#else
 //
-//   DWORD                m_dwIndex;
+//   ::u32                m_dwIndex;
 //
 //#endif
 //

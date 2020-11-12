@@ -263,7 +263,7 @@ namespace str
    inline string  from_int(const T & t);
 
    template < typename T >
-   inline string  from_uint(const T & t);
+   inline string  from_u(const T & t);
 
    inline CLASS_DECL_ACME string from_strdup(const char * psz);
 
@@ -272,9 +272,9 @@ namespace str
 
 
    /*inline CLASS_DECL_ACME string  from(i32 i);
-   inline CLASS_DECL_ACME string  from(u32 ui);
+   inline CLASS_DECL_ACME string  from(u32 u);
    inline CLASS_DECL_ACME string  from(i64 i);
-   inline CLASS_DECL_ACME string  from(u64 ui);
+   inline CLASS_DECL_ACME string  from(u64 u);
    inline CLASS_DECL_ACME string  from(const var & var);
    inline CLASS_DECL_ACME string  from(const id & id);
    inline CLASS_DECL_ACME string  from(double d);
@@ -282,9 +282,9 @@ namespace str
 
    /*
       CLASS_DECL_ACME  string &       from(string & str, i32 i);
-      CLASS_DECL_ACME  string &       from(string & str, u32 ui);
+      CLASS_DECL_ACME  string &       from(string & str, u32 u);
       CLASS_DECL_ACME  string &       from(string & str, i64 i);
-      CLASS_DECL_ACME  string &       from(string & str, u64 ui);
+      CLASS_DECL_ACME  string &       from(string & str, u64 u);
       CLASS_DECL_ACME  string &       from(string & str, float f);
       CLASS_DECL_ACME  string &       from(string & str, double d);
       inline CLASS_DECL_ACME string & from(string & str, const id & id);
@@ -383,7 +383,7 @@ namespace str
 //
 //#ifdef RASPBIAN
 //
-//   CLASS_DECL_ACME void format(string_format * pformat, long unsigned int const & ui);
+//   CLASS_DECL_ACME void format(string_format * pformat, long unsigned int const & u);
 //
 //#endif
 //
@@ -440,7 +440,7 @@ namespace str
 
 //#ifdef WINDOWS
 //
-//   inline void format(string_format * pformat,const DWORD & dw) { return format(pformat,(const u32 &)dw);  }
+//   inline void format(string_format * pformat,const ::u32 & dw) { return format(pformat,(const u32 &)dw);  }
 //
 //#endif
 

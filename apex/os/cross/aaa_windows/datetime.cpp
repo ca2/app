@@ -55,7 +55,7 @@ extern "C" int settimeofday (const struct timeval *__tv, const struct timezone *
 //#define __CA__DLL
 
 
-LONG TIME_GetBias(void);
+::i32 TIME_GetBias(void);
 
 
 /*#ifdef _WIN32
@@ -152,7 +152,7 @@ PTIME_FIELDS TimeFields)
    i32 SecondsInDay;
    u64 cleaps, years, yearday, months;
    u64 Days;
-   LONGLONG Time;
+   ::i64 Time;
 
    /* Extract millisecond from time and convert time into seconds */
    TimeFields->Milliseconds =
@@ -257,7 +257,7 @@ PLARGE_INTEGER Time)
           584817 ;                      /* zero that on 1601-01-01 */
    /* done */
 
-   Time->QuadPart = (((((LONGLONG) day * HOURSPERDAY +
+   Time->QuadPart = (((((::i64) day * HOURSPERDAY +
                         tfTimeFields->Hour) * MINSPERHOUR +
                        tfTimeFields->Minute) * SECSPERMIN +
                       tfTimeFields->Second ) * 1000 +
@@ -278,11 +278,11 @@ PLARGE_INTEGER Time)
  * RETURNS
  *   The bias for the current timezone.
  */
-LONG TIME_GetBias(void)
+::i32 TIME_GetBias(void)
 {
    static time_t last_utc;
-   static LONG last_bias;
-   LONG ret;
+   static ::i32 last_bias;
+   ::i32 ret;
    time_t utc;
 
    utc = time( nullptr );
@@ -322,12 +322,12 @@ LONG TIME_GetBias(void)
 NTSTATUS WINAPI RtlLocalTimeToSystemTime( const LARGE_INTEGER *LocalTime,
       PLARGE_INTEGER SystemTime)
 {
-   LONG bias;
+   ::i32 bias;
 
 //xxx    TRACE("(%point, %point)\n", LocalTime, SystemTime);
 
    bias = TIME_GetBias();
-   SystemTime->QuadPart = LocalTime->QuadPart + bias * (LONGLONG)TICKSPERSEC;
+   SystemTime->QuadPart = LocalTime->QuadPart + bias * (::i64)TICKSPERSEC;
    return STATUS_SUCCESS;
 }
 
@@ -347,12 +347,12 @@ NTSTATUS WINAPI RtlLocalTimeToSystemTime( const LARGE_INTEGER *LocalTime,
 NTSTATUS WINAPI RtlSystemTimeToLocalTime( const LARGE_INTEGER *SystemTime,
       PLARGE_INTEGER LocalTime )
 {
-   LONG bias;
+   ::i32 bias;
 
 //xxx    TRACE("(%point, %point)\n", SystemTime, LocalTime);
 
    bias = TIME_GetBias();
-   LocalTime->QuadPart = SystemTime->QuadPart - bias * (LONGLONG)TICKSPERSEC;
+   LocalTime->QuadPart = SystemTime->QuadPart - bias * (::i64)TICKSPERSEC;
    return STATUS_SUCCESS;
 }
 
@@ -367,14 +367,14 @@ NTSTATUS WINAPI RtlSystemTimeToLocalTime( const LARGE_INTEGER *SystemTime,
  *
  * RETURNS
  *   Success: TRUE.
- *   Failure: FALSE, if the resulting value will not fit in a DWORD.
+ *   Failure: FALSE, if the resulting value will not fit in a ::u32.
  */
 int_bool WINAPI RtlTimeToSecondsSince1970( const LARGE_INTEGER *Time, LPDWORD Seconds )
 {
    ULONGLONG tmp = ((ULONGLONG)Time->u.HighPart << 32) | Time->u.LowPart;
    tmp = tmp / TICKSPERSEC - SECS_1601_TO_1970;
    if (tmp > 0xffffffff) return FALSE;
-   *Seconds = (DWORD)tmp;
+   *Seconds = (::u32)tmp;
    return TRUE;
 }
 
@@ -389,14 +389,14 @@ int_bool WINAPI RtlTimeToSecondsSince1970( const LARGE_INTEGER *Time, LPDWORD Se
  *
  * RETURNS
  *   Success: TRUE.
- *   Failure: FALSE, if the resulting value will not fit in a DWORD.
+ *   Failure: FALSE, if the resulting value will not fit in a ::u32.
  */
 int_bool WINAPI RtlTimeToSecondsSince1980( const LARGE_INTEGER *Time, LPDWORD Seconds )
 {
    ULONGLONG tmp = ((ULONGLONG)Time->u.HighPart << 32) | Time->u.LowPart;
    tmp = tmp / TICKSPERSEC - SECS_1601_TO_1980;
    if (tmp > 0xffffffff) return FALSE;
-   *Seconds = (DWORD)tmp;
+   *Seconds = (::u32)tmp;
    return TRUE;
 }
 
@@ -412,11 +412,11 @@ int_bool WINAPI RtlTimeToSecondsSince1980( const LARGE_INTEGER *Time, LPDWORD Se
  * RETURNS
  *   Nothing.
  */
-void WINAPI RtlSecondsSince1970ToTime( DWORD Seconds, LARGE_INTEGER *Time )
+void WINAPI RtlSecondsSince1970ToTime( ::u32 Seconds, LARGE_INTEGER *Time )
 {
    ULONGLONG secs = Seconds * (ULONGLONG)TICKSPERSEC + TICKS_1601_TO_1970;
-   Time->u.LowPart  = (DWORD)secs;
-   Time->u.HighPart = (DWORD)(secs >> 32);
+   Time->u.LowPart  = (::u32)secs;
+   Time->u.HighPart = (::u32)(secs >> 32);
 }
 
 /******************************************************************************
@@ -431,11 +431,11 @@ void WINAPI RtlSecondsSince1970ToTime( DWORD Seconds, LARGE_INTEGER *Time )
  * RETURNS
  *   Nothing.
  */
-void WINAPI RtlSecondsSince1980ToTime( DWORD Seconds, LARGE_INTEGER *Time )
+void WINAPI RtlSecondsSince1980ToTime( ::u32 Seconds, LARGE_INTEGER *Time )
 {
    ULONGLONG secs = Seconds * (ULONGLONG)TICKSPERSEC + TICKS_1601_TO_1980;
-   Time->u.LowPart  = (DWORD)secs;
-   Time->u.HighPart = (DWORD)(secs >> 32);
+   Time->u.LowPart  = (::u32)secs;
+   Time->u.HighPart = (::u32)(secs >> 32);
 }
 
 /******************************************************************************
@@ -452,7 +452,7 @@ void WINAPI RtlSecondsSince1980ToTime( DWORD Seconds, LARGE_INTEGER *Time )
  */
 void WINAPI RtlTimeToElapsedTimeFields( const LARGE_INTEGER *Time, PTIME_FIELDS TimeFields )
 {
-   LONGLONG time;
+   ::i64 time;
    INT rem;
 
    time = Time->QuadPart / TICKSPERSEC;
@@ -474,7 +474,7 @@ void WINAPI RtlTimeToElapsedTimeFields( const LARGE_INTEGER *Time, PTIME_FIELDS 
 #ifdef _UWP
 
 
-const __int64 DELTA_EPOCH_IN_MICROSECS= 11644473600000000;
+const ::i64 DELTA_EPOCH_IN_MICROSECS= 11644473600000000;
 
 /* IN UNIX the use of the timezone struct is obsolete;
  I don't know why you use it. See http://linux.about.com/od/commands/l/blcmdl2_gettime.htm
@@ -492,7 +492,7 @@ struct timezone2
 //i32 gettimeofday(timeval *tv/*in*/, struct timezone2 *tz/*in*/)
 //{
 //  FILETIME ft;
-//  __int64 tmpres = 0;
+//  ::i64 tmpres = 0;
 //  TIME_ZONE_INFORMATION tz_winapi;
 //  i32 rez=0;
 //
@@ -630,7 +630,7 @@ static i32 weekday_to_mday(i32 year, i32 day, i32 mon, i32 day_of_week)
 
 int_bool match_tz_date(const RTL_SYSTEM_TIME *st, const RTL_SYSTEM_TIME *reg_st)
 {
-   WORD wDay;
+   ::u16 wDay;
 
    if (st->wMonth != reg_st->wMonth) return FALSE;
 
@@ -661,7 +661,7 @@ int_bool match_tz_info(const RTL_TIME_ZONE_INFORMATION *tzi, const RTL_TIME_ZONE
 
 /*
 
-static int_bool reg_query_value(HKEY hkey, LPCWSTR name, DWORD type, void *data, DWORD count)
+static int_bool reg_query_value(HKEY hkey, LPCWSTR name, ::u32 type, void *data, ::u32 count)
 {
     UNICODE_STRING nameW;
     char buf[256];
@@ -749,7 +749,7 @@ static i32 init_tz_info(RTL_TIME_ZONE_INFORMATION *tzi)
 //xxx    TRACE("year_end: %s", ctime(&year_end));
 
    tm = gmtime(&year_start);
-   tzi->Bias = (LONG)(mktime(tm) - year_start) / 60;
+   tzi->Bias = (::i32)(mktime(tm) - year_start) / 60;
 //xxx    TRACE("bias: %d\n", tzi->Bias);
 
    tmp = find_dst_change(year_start, year_end, &is_dst);
@@ -880,7 +880,7 @@ NTSTATUS WINAPI NtSetSystemTime(const LARGE_INTEGER *NewTime, LARGE_INTEGER *Old
 {
    struct timeval tv;
    //time_t tm_t;
-   DWORD sec, oldsec;
+   ::u32 sec, oldsec;
    LARGE_INTEGER tm;
 
    /* Return the old time if necessary */

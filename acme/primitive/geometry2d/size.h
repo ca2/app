@@ -22,11 +22,11 @@ public:
    size_type(::u64 u) noexcept : size_type(__u64xy(u)) {}
    size_type(const POINT_TYPE& point) noexcept;
    size_type(const RECT_TYPE& rect) noexcept;
-   size_type(const SIZE& size) noexcept : size_type((UNIT_TYPE)size.cx, (UNIT_TYPE)size.cy) {}
+   size_type(const SIZE32& size) noexcept : size_type((UNIT_TYPE)size.cx, (UNIT_TYPE)size.cy) {}
    size_type(const SIZE64& size) noexcept : size_type((UNIT_TYPE)size.cx, (UNIT_TYPE)size.cy) {}
    size_type(const SIZEF& size) noexcept : size_type((UNIT_TYPE)size.cx, (UNIT_TYPE)size.cy) {}
    size_type(const SIZED& size) noexcept : size_type((UNIT_TYPE)size.cx, (UNIT_TYPE)size.cy) {}
-   size_type(const SIZE* psize) noexcept : size_type(*psize) {}
+   size_type(const SIZE32* psize) noexcept : size_type(*psize) {}
    size_type(const SIZE64* psize) noexcept : size_type(*psize) {}
    size_type(const SIZEF* psize) noexcept : size_type(*psize) {}
    size_type(const SIZED* psize) noexcept : size_type(*psize) {}
@@ -36,8 +36,8 @@ public:
 #endif
 
 
-   operator SIZE* () noexcept { return this; }
-   operator const SIZE* () const noexcept { return this; }
+   operator SIZE32* () noexcept { return this; }
+   operator const SIZE32* () const noexcept { return this; }
    operator bool () const noexcept { return is_set(); }
 
 
@@ -115,10 +115,10 @@ public:
 
    inline size_type operator-() const noexcept { return size_type(-this->cx, -this->cy); }
 
-#ifdef WINDOWS
-   inline size_type operator /(int i) const noexcept { return size_type((UNIT_TYPE)(this->cx / i), (UNIT_TYPE)(this->cy / i)); }
-#endif
-   inline size_type operator /(LONG l) const noexcept { return size_type((UNIT_TYPE)(this->cx / l), (UNIT_TYPE)(this->cy / l)); }
+//#ifdef WINDOWS
+//   inline size_type operator /(int i) const noexcept { return size_type((UNIT_TYPE)(this->cx / i), (UNIT_TYPE)(this->cy / i)); }
+//#endif
+   inline size_type operator /(i32 l) const noexcept { return size_type((UNIT_TYPE)(this->cx / l), (UNIT_TYPE)(this->cy / l)); }
    inline size_type operator /(i64 i) const noexcept { return size_type((UNIT_TYPE)(this->cx / i), (UNIT_TYPE)(this->cy / i)); }
    inline size_type operator /(float f) const noexcept { return size_type((UNIT_TYPE)(this->cx / f), (UNIT_TYPE)(this->cy / f)); }
    inline size_type operator /(double d) const noexcept { return size_type((UNIT_TYPE)(this->cx / d), (UNIT_TYPE)(this->cy / d)); }

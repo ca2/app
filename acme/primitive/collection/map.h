@@ -13,7 +13,7 @@ public:
 
    assoc *           m_assocHashDefault[DEFAULT_HASH_TABLE_SIZE];
    assoc **          m_ppassocHash;
-   UINT              m_nHashTableSize;
+   ::u32              m_nHashTableSize;
 
    map_dynamic_hash_table()
    {
@@ -25,7 +25,7 @@ public:
    }
 
 
-   UINT GetHashTableSize() const
+   ::u32 GetHashTableSize() const
    {
 
       return m_nHashTableSize;
@@ -33,7 +33,7 @@ public:
    }
 
 
-   void InitHashTable(UINT nHashSize, bool bAllocNow = TRUE)
+   void InitHashTable(::u32 nHashSize, bool bAllocNow = TRUE)
    {
 
       if(m_ppassocHash != nullptr && m_ppassocHash != m_assocHashDefault && m_nHashTableSize > DEFAULT_HASH_TABLE_SIZE)
@@ -106,11 +106,11 @@ public:
    }
 
 
-   UINT GetHashTableSize() const
+   ::u32 GetHashTableSize() const
    {
       return m_nHashTableSize;
    }
-   void InitHashTable(UINT hashSize,bool bAllocNow = TRUE) {  }
+   void InitHashTable(::u32 hashSize,bool bAllocNow = TRUE) {  }
 
    void remove_all()
    {
@@ -416,11 +416,11 @@ public:
    assoc * get_next(const assoc *passocRet);
 
    //advanced features for derived classes
-   UINT GetHashTableSize() const
+   ::u32 GetHashTableSize() const
    {
       return m_hashtable.GetHashTableSize();
    }
-   void InitHashTable(UINT hashSize,bool bAllocNow = TRUE);
+   void InitHashTable(::u32 hashSize,bool bAllocNow = TRUE);
 
 
    VALUE get(ARG_KEY argkey, ARG_VALUE valueDefault);
@@ -470,7 +470,7 @@ public:
 
    assoc * new_assoc(ARG_KEY key);
    void free_assoc(assoc * passoc);
-   assoc * get_assoc_at(ARG_KEY, UINT&, UINT&) const;
+   assoc * get_assoc_at(ARG_KEY, ::u32&, ::u32&) const;
 
 
    virtual void assert_valid() const override;
@@ -687,7 +687,7 @@ typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, PAIR >::assoc* map < KEY, ARG_KEY
 }
 
 //template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class PAIR >
-//inline UINT map < KEY, ARG_KEY, VALUE, ARG_VALUE, PAIR >::GetHashTableSize() const
+//inline ::u32 map < KEY, ARG_KEY, VALUE, ARG_VALUE, PAIR >::GetHashTableSize() const
 //{
 //
 //   return m_nHashTableSize;
@@ -921,7 +921,7 @@ void map < KEY, ARG_KEY, VALUE, ARG_VALUE, PAIR >::free_assoc(assoc * passoc)
 
 template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class PAIR >
 typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, PAIR >::assoc *
-map < KEY, ARG_KEY, VALUE, ARG_VALUE, PAIR >::get_assoc_at(ARG_KEY key, UINT& nHashBucket, UINT& nHashValue) const
+map < KEY, ARG_KEY, VALUE, ARG_VALUE, PAIR >::get_assoc_at(ARG_KEY key, ::u32& nHashBucket, ::u32& nHashValue) const
 // find association (or return nullptr)
 {
 
@@ -952,7 +952,7 @@ bool map < KEY, ARG_KEY, VALUE, ARG_VALUE, PAIR >::lookup(ARG_KEY key, VALUE& rV
 {
    //ASSERT_VALID(this);
 
-   UINT nHashBucket, nHashValue;
+   ::u32 nHashBucket, nHashValue;
 
    assoc* passoc = get_assoc_at(key, nHashBucket, nHashValue);
 
@@ -983,7 +983,7 @@ const typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, PAIR >::assoc* map < KEY, A
 {
    //ASSERT_VALID(this);
 
-   UINT nHashBucket, nHashValue;
+   ::u32 nHashBucket, nHashValue;
    assoc* passoc = get_assoc_at(key, nHashBucket, nHashValue);
    return passoc;
 }
@@ -993,7 +993,7 @@ typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, PAIR >::assoc* map < KEY, ARG_KEY
 {
    //ASSERT_VALID(this);
 
-   UINT nHashBucket, nHashValue;
+   ::u32 nHashBucket, nHashValue;
    assoc* passoc = get_assoc_at(key, nHashBucket, nHashValue);
    return passoc;
 }
@@ -1015,7 +1015,7 @@ inline typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, PAIR >::assoc * map < KEY,
 
    ASSERT_VALID(this);
 
-   UINT nHashBucket, nHashValue;
+   ::u32 nHashBucket, nHashValue;
 
    return get_assoc_at(key, nHashBucket, nHashValue);
 
@@ -1028,7 +1028,7 @@ typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, PAIR >::assoc * map < KEY, ARG_KE
 
    ASSERT_VALID(this);
 
-   UINT nHashBucket,nHashValue;
+   ::u32 nHashBucket,nHashValue;
 
    assoc * passoc;
 
@@ -1229,7 +1229,7 @@ template < class KEY, class VALUE, class ARG_VALUE = const VALUE & >
 using isomap = map < KEY, KEY, VALUE, ARG_VALUE >;
 
 template < class VALUE, class ARG_VALUE = const VALUE & >
-using colorrefmap = isomap < COLORREF, VALUE, ARG_VALUE >;
+using colorrefmap = isomap < color32_t, VALUE, ARG_VALUE >;
 
 
 template < class VALUE, class ARG_VALUE = const VALUE & >
@@ -1238,7 +1238,7 @@ using double_map = isomap < double, VALUE, ARG_VALUE >;
 using double_to_double = double_map < double, double >;
 
 template < class VALUE, class ARG_VALUE = const VALUE & >
-using dword_map = isomap < DWORD, VALUE, ARG_VALUE >;
+using dword_map = isomap < ::u32, VALUE, ARG_VALUE >;
 
 template < class VALUE, class ARG_VALUE = const VALUE & >
 using uptr_map = isomap < uptr, VALUE, ARG_VALUE >;

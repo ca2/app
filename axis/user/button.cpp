@@ -107,7 +107,7 @@ namespace user
       ::user::interaction::install_message_routing(pchannel);
 
       MESSAGE_LINK(e_message_create    , pchannel, this, &button::_001OnCreate);
-      MESSAGE_LINK(WM_KEYDOWN   , pchannel, this, &button::_001OnKeyDown);
+      MESSAGE_LINK(e_message_key_down   , pchannel, this, &button::_001OnKeyDown);
 
       install_simple_ui_default_mouse_handling(pchannel);
 
@@ -197,8 +197,8 @@ namespace user
          const ::size & size = pgraphics->GetTextExtent(str);
 
          ::rect rect(0, 0, 0, 0);
-         rect.right = LONG(size.cx * 1.6);
-         rect.bottom = LONG(size.cy * 1.4);
+         rect.right = ::i32(size.cx * 1.6);
+         rect.bottom = ::i32(size.cy * 1.4);
 
          set_size(rect.size());
 
@@ -216,9 +216,9 @@ namespace user
 
          ::size sizeTotal = calc_text_size();
 
-         sizeTotal.cx = (LONG)(sizeTotal.cx * 1.6);
+         sizeTotal.cx = (::i32)(sizeTotal.cx * 1.6);
 
-         sizeTotal.cy = (LONG)(sizeTotal.cy * 1.4);
+         sizeTotal.cy = (::i32)(sizeTotal.cy * 1.4);
 
          set_size(sizeTotal);
 
@@ -307,7 +307,7 @@ namespace user
 
       get_client_rect(rectClient);
 
-      COLORREF crBk;
+      color32_t crBk;
 
       if (!is_window_enabled())
       {
@@ -358,7 +358,7 @@ namespace user
 
       }
 
-      COLORREF crBorder;
+      color32_t crBorder;
 
       if (!is_window_enabled())
       {
@@ -460,10 +460,10 @@ namespace user
    }
 
 
-   COLORREF button::get_button_text_color()
+   color32_t button::get_button_text_color()
    {
 
-      COLORREF crText;
+      color32_t crText;
 
       if (!is_window_enabled())
       {
@@ -495,10 +495,10 @@ namespace user
    }
 
 
-   COLORREF button::_001GetButtonBackgroundColor()
+   color32_t button::_001GetButtonBackgroundColor()
    {
 
-      COLORREF crBackground;
+      color32_t crBackground;
 
       if (!is_window_enabled())
       {
@@ -545,7 +545,7 @@ namespace user
 
       get_client_rect(rectClient);
 
-      COLORREF crBackground = _001GetButtonBackgroundColor();
+      color32_t crBackground = _001GetButtonBackgroundColor();
 
       if(get_echeck() == ::check_checked)
       {
@@ -597,7 +597,7 @@ namespace user
    }
 
 
-   void button::_001OnButtonDrawTextLayer(::draw2d::graphics_pointer & pgraphics, RECT * prectText)
+   void button::_001OnButtonDrawTextLayer(::draw2d::graphics_pointer & pgraphics, RECT32 * prectText)
    {
 
       ::rect rectText(prectText);
@@ -612,7 +612,7 @@ namespace user
          if (strText.has_char())
          {
 
-            COLORREF crText = get_button_text_color();
+            color32_t crText = get_button_text_color();
 
             pgraphics->set_text_color(crText);
 
@@ -663,7 +663,7 @@ namespace user
       else
       {
 
-         COLORREF crText = get_button_text_color();
+         color32_t crText = get_button_text_color();
 
          pgraphics->set_text_color(crText);
 
@@ -773,9 +773,9 @@ namespace user
 
          double dMin = min(min(dW, dH), 1.0);
 
-         rectAspect.right = (LONG) (pimage->width() * dMin);
+         rectAspect.right = (::i32) (pimage->width() * dMin);
 
-         rectAspect.bottom = (LONG) (pimage->height() * dMin);
+         rectAspect.bottom = (::i32) (pimage->height() * dMin);
 
          rectAspect.Align(e_align_center, rectClient);
 
@@ -839,9 +839,9 @@ namespace user
 
             double dMin = min(min(dW, dH), 1.0);
 
-            rectAspect.right = (LONG) (pimage->width() * dMin);
+            rectAspect.right = (::i32) (pimage->width() * dMin);
 
-           rectAspect.bottom = (LONG) (pimage->height() * dMin);
+           rectAspect.bottom = (::i32) (pimage->height() * dMin);
 
             rectAspect.Align(e_align_bottom_left, rectPadded);
 
@@ -876,7 +876,7 @@ namespace user
 
       auto color = get_color(pstyle, element_background);
 
-      COLORREF cr;
+      color32_t cr;
 
       if(echeck() == ::check_checked)
       {
@@ -1098,7 +1098,7 @@ namespace user
    }
 
 
-   void button::BaseToolTipGetRect(RECT * prect)
+   void button::BaseToolTipGetRect(RECT32 * prect)
 
    {
       // use window client rect as the tool rect

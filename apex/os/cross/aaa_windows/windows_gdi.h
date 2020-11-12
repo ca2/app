@@ -22,33 +22,33 @@ struct tagLOGRGN;
 
 //typedef struct tagPOINT
 //{
-//   LONG  x;
-//   LONG  y;
-//} POINT,*PPOINT,NEAR *NPPOINT,FAR *LPPOINT;
+//   ::i32  x;
+//   ::i32  y;
+//} POINT32,*PPOINT,NEAR *NPPOINT,FAR *POINT32 *;
 //
 //
 
 
 /* Ternary raster operations */
-#define SRCCOPY             (DWORD)0x00CC0020 /* dest = source                   */
-#define SRCPAINT            (DWORD)0x00EE0086 /* dest = source OR dest           */
-#define SRcaND              (DWORD)0x008800C6 /* dest = source AND dest          */
-#define SRCINVERT           (DWORD)0x00660046 /* dest = source XOR dest          */
-#define SRCERASE            (DWORD)0x00440328 /* dest = source AND (NOT dest )   */
-#define NOTSRCCOPY          (DWORD)0x00330008 /* dest = (NOT source)             */
-#define NOTSRCERASE         (DWORD)0x001100A6 /* dest = (NOT src) AND (NOT dest) */
-#define MERGECOPY           (DWORD)0x00C000ca /* dest = (source AND pattern)     */
-#define MERGEPAINT          (DWORD)0x00BB0226 /* dest = (NOT source) OR dest     */
-#define PATCOPY             (DWORD)0x00F00021 /* dest = pattern                  */
-#define PATPAINT            (DWORD)0x00FB0A09 /* dest = DPSnoo                   */
-#define PATINVERT           (DWORD)0x005A0049 /* dest = pattern XOR dest         */
-#define DSTINVERT           (DWORD)0x00550009 /* dest = (NOT dest)               */
-#define BLACKNESS           (DWORD)0x00000042 /* dest = BLACK                    */
-#define WHITENESS           (DWORD)0x00FF0062 /* dest = WHITE                    */
+#define SRCCOPY             (::u32)0x00CC0020 /* dest = source                   */
+#define SRCPAINT            (::u32)0x00EE0086 /* dest = source OR dest           */
+#define SRcaND              (::u32)0x008800C6 /* dest = source AND dest          */
+#define SRCINVERT           (::u32)0x00660046 /* dest = source XOR dest          */
+#define SRCERASE            (::u32)0x00440328 /* dest = source AND (NOT dest )   */
+#define NOTSRCCOPY          (::u32)0x00330008 /* dest = (NOT source)             */
+#define NOTSRCERASE         (::u32)0x001100A6 /* dest = (NOT src) AND (NOT dest) */
+#define MERGECOPY           (::u32)0x00C000ca /* dest = (source AND pattern)     */
+#define MERGEPAINT          (::u32)0x00BB0226 /* dest = (NOT source) OR dest     */
+#define PATCOPY             (::u32)0x00F00021 /* dest = pattern                  */
+#define PATPAINT            (::u32)0x00FB0A09 /* dest = DPSnoo                   */
+#define PATINVERT           (::u32)0x005A0049 /* dest = pattern XOR dest         */
+#define DSTINVERT           (::u32)0x00550009 /* dest = (NOT dest)               */
+#define BLACKNESS           (::u32)0x00000042 /* dest = BLACK                    */
+#define WHITENESS           (::u32)0x00FF0062 /* dest = WHITE                    */
 #if(WINVER >= 0x0500)
 
-#define NOMIRRORBITMAP               (DWORD)0x80000000 /* Do not Mirror the bitmap in this call */
-#define caPTUREBLT                   (DWORD)0x40000000 /* Include layered windows */
+#define NOMIRRORBITMAP               (::u32)0x80000000 /* Do not Mirror the bitmap in this call */
+#define caPTUREBLT                   (::u32)0x40000000 /* Include layered windows */
 #endif /* WINVER >= 0x0500 */
 
 
@@ -58,10 +58,10 @@ struct tagLOGRGN;
 #define LCS_sRGB                'sRGB'
 #define LCS_WINDOWS_COLOR_SPACE 'Win '  // Windows default color space
 
-typedef LONG   LCSCSTYPE;
+typedef ::i32   LCSCSTYPE;
 #define LCS_caLIBRATED_RGB              0x00000000L
 
-typedef LONG    LCSGAMUTMATCH;
+typedef ::i32    LCSGAMUTMATCH;
 #define LCS_GM_BUSINESS                 0x00000001L
 #define LCS_GM_GRAPHICS                 0x00000002L
 #define LCS_GM_IMAGES                   0x00000004L
@@ -80,13 +80,13 @@ typedef LONG    LCSGAMUTMATCH;
 #define ICM_UNREGISTERICMATCHER         6
 #define ICM_QUERYMATCH                  7
 
-/* Macros to retrieve CMYK values from a COLORREF */
-#define GetKValue(cmyk)      ((BYTE)(cmyk))
-#define GetYValue(cmyk)      ((BYTE)((cmyk)>> 8))
-#define GetMValue(cmyk)      ((BYTE)((cmyk)>>16))
-#define GetCValue(cmyk)      ((BYTE)((cmyk)>>24))
+/* Macros to retrieve CMYK values from a color32_t */
+#define GetKValue(cmyk)      ((byte)(cmyk))
+#define GetYValue(cmyk)      ((byte)((cmyk)>> 8))
+#define GetMValue(cmyk)      ((byte)((cmyk)>>16))
+#define GetCValue(cmyk)      ((byte)((cmyk)>>24))
 
-#define CMYK(c,m,y,k)       ((COLORREF)((((BYTE)(k)|((WORD)((BYTE)(y))<<8))|(((DWORD)(BYTE)(m))<<16))|(((DWORD)(BYTE)(c))<<24)))
+#define CMYK(c,m,y,k)       ((color32_t)((((byte)(k)|((::u16)((byte)(y))<<8))|(((::u32)(byte)(m))<<16))|(((::u32)(byte)(c))<<24)))
 
 typedef long            FXPT16DOT16,FAR *LPFXPT16DOT16;
 typedef long            FXPT2DOT30,FAR *LPFXPT2DOT30;
@@ -116,20 +116,20 @@ typedef long            FXPT2DOT30,FAR *LPFXPT2DOT30;
 /* Bitmap Header Definition */
 //typedef struct tagBITMAP
 //{
-//   LONG        bmType;
-//   LONG        bmWidth;
-//   LONG        bmHeight;
-//   LONG        bmWidthBytes;
-//   WORD        bmPlanes;
-//   WORD        bmBitsPixel;
+//   ::i32        bmType;
+//   ::i32        bmWidth;
+//   ::i32        bmHeight;
+//   ::i32        bmWidthBytes;
+//   ::u16        bmPlanes;
+//   ::u16        bmBitsPixel;
 //   LPVOID      bmBits;
 //} BITMAP,*PBITMAP,NEAR *NPBITMAP,FAR *LPBITMAP;
 
 ////#include <pshpack1.h>
 //typedef struct tagRGBTRIPLE {
-//   BYTE    rgbtBlue;
-//   BYTE    rgbtGreen;
-//   BYTE    rgbtRed;
+//   byte    rgbtBlue;
+//   byte    rgbtGreen;
+//   byte    rgbtRed;
 //} RGBTRIPLE,*PRGBTRIPLE,NEAR *NPRGBTRIPLE,FAR *LPRGBTRIPLE;
 ////#include "poppack.h"
 
@@ -157,27 +157,27 @@ typedef long            FXPT2DOT30,FAR *LPFXPT2DOT30;
 //#define BOOL int
 //#endif
 
-//typedef DWORD   COLORREF;
-//typedef DWORD   *LPCOLORREF;
+//typedef ::u32   color32_t;
+//typedef ::u32   *LPCOLORREF;
 //
 //typedef struct tagRGBQUAD {
-//   BYTE    rgbBlue;
-//   BYTE    rgbGreen;
-//   BYTE    rgbRed;
-//   BYTE    rgbReserved;
+//   byte    rgbBlue;
+//   byte    rgbGreen;
+//   byte    rgbRed;
+//   byte    rgbReserved;
 //} RGBQUAD, FAR* LPRGBQUAD;
 //
 //typedef struct tagPALETTEENTRY {
-//   BYTE        peRed;
-//   BYTE        peGreen;
-//   BYTE        peBlue;
-//   BYTE        peFlags;
+//   byte        peRed;
+//   byte        peGreen;
+//   byte        peBlue;
+//   byte        peFlags;
 //} PALETTEENTRY,*PPALETTEENTRY,FAR *LPPALETTEENTRY;
 
 ///* Logical Palette */
 //typedef struct tagLOGPALETTE {
-//   WORD                palVersion;
-//   WORD                palNumEntries;
+//   ::u16                palVersion;
+//   ::u16                palNumEntries;
 //   PALETTEENTRY        palPalEntry[1];
 //} LOGPALETTE,*PLOGPALETTE,NEAR *NPLOGPALETTE,FAR *LPLOGPALETTE;
 //
@@ -188,38 +188,38 @@ typedef long            FXPT2DOT30,FAR *LPFXPT2DOT30;
 //
 //struct  tagLOGFONTA
 //{
-//   LONG      lfHeight;
-//   LONG      lfWidth;
-//   LONG      lfEscapement;
-//   LONG      lfOrientation;
-//   LONG      lfWeight;
-//   BYTE      lfItalic;
-//   BYTE      lfUnderline;
-//   BYTE      lfStrikeOut;
-//   BYTE      lfCharSet;
-//   BYTE      lfOutPrecision;
-//   BYTE      lfClipPrecision;
-//   BYTE      lfQuality;
-//   BYTE      lfPitchAndFamily;
+//   ::i32      lfHeight;
+//   ::i32      lfWidth;
+//   ::i32      lfEscapement;
+//   ::i32      lfOrientation;
+//   ::i32      lfWeight;
+//   byte      lfItalic;
+//   byte      lfUnderline;
+//   byte      lfStrikeOut;
+//   byte      lfCharSet;
+//   byte      lfOutPrecision;
+//   byte      lfClipPrecision;
+//   byte      lfQuality;
+//   byte      lfPitchAndFamily;
 //   char      lfFaceName[LF_FACESIZE];
 //};
 
 
 //struct tagLOGFONTW
 //{
-//   LONG      lfHeight;
-//   LONG      lfWidth;
-//   LONG      lfEscapement;
-//   LONG      lfOrientation;
-//   LONG      lfWeight;
-//   BYTE      lfItalic;
-//   BYTE      lfUnderline;
-//   BYTE      lfStrikeOut;
-//   BYTE      lfCharSet;
-//   BYTE      lfOutPrecision;
-//   BYTE      lfClipPrecision;
-//   BYTE      lfQuality;
-//   BYTE      lfPitchAndFamily;
+//   ::i32      lfHeight;
+//   ::i32      lfWidth;
+//   ::i32      lfEscapement;
+//   ::i32      lfOrientation;
+//   ::i32      lfWeight;
+//   byte      lfItalic;
+//   byte      lfUnderline;
+//   byte      lfStrikeOut;
+//   byte      lfCharSet;
+//   byte      lfOutPrecision;
+//   byte      lfClipPrecision;
+//   byte      lfQuality;
+//   byte      lfPitchAndFamily;
 //   unichar   lfFaceName[LF_FACESIZE];
 //};
 
@@ -312,49 +312,49 @@ typedef LPFONT HFONT;
 
 //typedef struct tagTEXTMETRIca
 //{
-//   LONG        tmHeight;
-//   LONG        tmAscent;
-//   LONG        tmDescent;
-//   LONG        tmInternalLeading;
-//   LONG        tmExternalLeading;
-//   LONG        tmAveCharWidth;
-//   LONG        tmMaxCharWidth;
-//   LONG        tmWeight;
-//   LONG        tmOverhang;
-//   LONG        tmDigitizedAspectX;
-//   LONG        tmDigitizedAspectY;
-//   BYTE        tmFirstChar;
-//   BYTE        tmLastChar;
-//   BYTE        tmDefaultChar;
-//   BYTE        tmBreakChar;
-//   BYTE        tmItalic;
-//   BYTE        tmUnderlined;
-//   BYTE        tmStruckOut;
-//   BYTE        tmPitchAndFamily;
-//   BYTE        tmCharSet;
+//   ::i32        tmHeight;
+//   ::i32        tmAscent;
+//   ::i32        tmDescent;
+//   ::i32        tmInternalLeading;
+//   ::i32        tmExternalLeading;
+//   ::i32        tmAveCharWidth;
+//   ::i32        tmMaxCharWidth;
+//   ::i32        tmWeight;
+//   ::i32        tmOverhang;
+//   ::i32        tmDigitizedAspectX;
+//   ::i32        tmDigitizedAspectY;
+//   byte        tmFirstChar;
+//   byte        tmLastChar;
+//   byte        tmDefaultChar;
+//   byte        tmBreakChar;
+//   byte        tmItalic;
+//   byte        tmUnderlined;
+//   byte        tmStruckOut;
+//   byte        tmPitchAndFamily;
+//   byte        tmCharSet;
 //} TEXTMETRIca,*PTEXTMETRIca,NEAR *NPTEXTMETRIca,FAR *LPTEXTMETRIca;
 //typedef struct tagTEXTMETRICW
 //{
-//   LONG        tmHeight;
-//   LONG        tmAscent;
-//   LONG        tmDescent;
-//   LONG        tmInternalLeading;
-//   LONG        tmExternalLeading;
-//   LONG        tmAveCharWidth;
-//   LONG        tmMaxCharWidth;
-//   LONG        tmWeight;
-//   LONG        tmOverhang;
-//   LONG        tmDigitizedAspectX;
-//   LONG        tmDigitizedAspectY;
+//   ::i32        tmHeight;
+//   ::i32        tmAscent;
+//   ::i32        tmDescent;
+//   ::i32        tmInternalLeading;
+//   ::i32        tmExternalLeading;
+//   ::i32        tmAveCharWidth;
+//   ::i32        tmMaxCharWidth;
+//   ::i32        tmWeight;
+//   ::i32        tmOverhang;
+//   ::i32        tmDigitizedAspectX;
+//   ::i32        tmDigitizedAspectY;
 //   WCHAR       tmFirstChar;
 //   WCHAR       tmLastChar;
 //   WCHAR       tmDefaultChar;
 //   WCHAR       tmBreakChar;
-//   BYTE        tmItalic;
-//   BYTE        tmUnderlined;
-//   BYTE        tmStruckOut;
-//   BYTE        tmPitchAndFamily;
-//   BYTE        tmCharSet;
+//   byte        tmItalic;
+//   byte        tmUnderlined;
+//   byte        tmStruckOut;
+//   byte        tmPitchAndFamily;
+//   byte        tmCharSet;
 //} TEXTMETRICW,*PTEXTMETRICW,NEAR *NPTEXTMETRICW,FAR *LPTEXTMETRICW;
 //#ifdef UNICODE
 //typedef TEXTMETRICW TEXTMETRIC;
@@ -373,25 +373,25 @@ typedef LPFONT HFONT;
 ///* Pel Array */
 //typedef struct tagPELARRAY
 //{
-//   LONG        paXCount;
-//   LONG        paYCount;
-//   LONG        paXExt;
-//   LONG        paYExt;
-//   BYTE        paRGBs;
+//   ::i32        paXCount;
+//   ::i32        paYCount;
+//   ::i32        paXExt;
+//   ::i32        paYExt;
+//   byte        paRGBs;
 //} PELARRAY,*PPELARRAY,NEAR *NPPELARRAY,FAR *LPPELARRAY;
 //
 ///* Logical Brush (or Pattern) */
 //typedef struct tagLOGBRUSH
 //{
-//   UINT        lbStyle;
-//   COLORREF    lbColor;
+//   ::u32        lbStyle;
+//   color32_t    lbColor;
 //   ulong_ptr   lbHatch;
 //} LOGBRUSH,*PLOGBRUSH,NEAR *NPLOGBRUSH,FAR *LPLOGBRUSH;
 //
 //typedef struct tagLOGBRUSH32
 //{
-//   UINT        lbStyle;
-//   COLORREF    lbColor;
+//   ::u32        lbStyle;
+//   color32_t    lbColor;
 //   WINULONG       lbHatch;
 //} LOGBRUSH32,*PLOGBRUSH32,NEAR *NPLOGBRUSH32,FAR *LPLOGBRUSH32;
 //
@@ -405,9 +405,9 @@ typedef LPFONT HFONT;
 ///* Logical Pen */
 //typedef struct tagLOGPEN
 //{
-//   UINT        lopnStyle;
-//   POINT       lopnWidth;
-//   COLORREF    lopnColor;
+//   ::u32        lopnStyle;
+//   POINT32       lopnWidth;
+//   color32_t    lopnColor;
 //} LOGPEN,*PLOGPEN,NEAR *NPLOGPEN,FAR *LPLOGPEN;
 //
 //
@@ -447,10 +447,10 @@ typedef LPFONT HFONT;
 //#define AD_COUNTERCLOCKWISE 1
 //#define AD_CLOCKWISE        2
 //
-//#define RGB(r,g,b)          ((COLORREF)(((BYTE)(r)|((WORD)((BYTE)(g))<<8))|(((DWORD)(BYTE)(b))<<16)))
+//#define RGB(r,g,b)          ((color32_t)(((byte)(r)|((::u16)((byte)(g))<<8))|(((::u32)(byte)(b))<<16)))
 //
 //#define GetRValue(rgb)      (LOBYTE(rgb))
-//#define GetGValue(rgb)      (LOBYTE(((WORD)(rgb)) >> 8))
+//#define GetGValue(rgb)      (LOBYTE(((::u16)(rgb)) >> 8))
 //#define GetBValue(rgb)      (LOBYTE((rgb)>>16))
 //
 ///* Background Modes */
@@ -507,25 +507,25 @@ typedef LPFONT HFONT;
 //
 ///* structures for defining DIBs */
 //typedef struct tagBITMAPCOREHEADER {
-//   DWORD   bcSize;                 /* used to get to color table */
-//   WORD    bcWidth;
-//   WORD    bcHeight;
-//   WORD    bcPlanes;
-//   WORD    bcBitCount;
+//   ::u32   bcSize;                 /* used to get to color table */
+//   ::u16    bcWidth;
+//   ::u16    bcHeight;
+//   ::u16    bcPlanes;
+//   ::u16    bcBitCount;
 //} BITMAPCOREHEADER,FAR *LPBITMAPCOREHEADER,*PBITMAPCOREHEADER;
 //
 //typedef struct tagBITMAPINFOHEADER{
-//   DWORD      biSize;
-//   LONG       biWidth;
-//   LONG       biHeight;
-//   WORD       biPlanes;
-//   WORD       biBitCount;
-//   DWORD      biCompression;
-//   DWORD      biSizeImage;
-//   LONG       biXPelsPerMeter;
-//   LONG       biYPelsPerMeter;
-//   DWORD      biClrUsed;
-//   DWORD      biClrImportant;
+//   ::u32      biSize;
+//   ::i32       biWidth;
+//   ::i32       biHeight;
+//   ::u16       biPlanes;
+//   ::u16       biBitCount;
+//   ::u32      biCompression;
+//   ::u32      biSizeImage;
+//   ::i32       biXPelsPerMeter;
+//   ::i32       biYPelsPerMeter;
+//   ::u32      biClrUsed;
+//   ::u32      biClrImportant;
 //} BITMAPINFOHEADER,FAR *LPBITMAPINFOHEADER,*PBITMAPINFOHEADER;
 //
 //typedef struct tagBITMAPINFO {
@@ -536,71 +536,71 @@ typedef LPFONT HFONT;
 //
 //#if(WINVER >= 0x0400)
 //typedef struct {
-//   DWORD        bV4Size;
-//   LONG         bV4Width;
-//   LONG         bV4Height;
-//   WORD         bV4Planes;
-//   WORD         bV4BitCount;
-//   DWORD        bV4V4Compression;
-//   DWORD        bV4SizeImage;
-//   LONG         bV4XPelsPerMeter;
-//   LONG         bV4YPelsPerMeter;
-//   DWORD        bV4ClrUsed;
-//   DWORD        bV4ClrImportant;
-//   DWORD        bV4RedMask;
-//   DWORD        bV4GreenMask;
-//   DWORD        bV4BlueMask;
-//   DWORD        bV4AlphaMask;
-//   DWORD        bV4CSType;
+//   ::u32        bV4Size;
+//   ::i32         bV4Width;
+//   ::i32         bV4Height;
+//   ::u16         bV4Planes;
+//   ::u16         bV4BitCount;
+//   ::u32        bV4V4Compression;
+//   ::u32        bV4SizeImage;
+//   ::i32         bV4XPelsPerMeter;
+//   ::i32         bV4YPelsPerMeter;
+//   ::u32        bV4ClrUsed;
+//   ::u32        bV4ClrImportant;
+//   ::u32        bV4RedMask;
+//   ::u32        bV4GreenMask;
+//   ::u32        bV4BlueMask;
+//   ::u32        bV4AlphaMask;
+//   ::u32        bV4CSType;
 //   CIEXYZTRIPLE bV4Endpoints;
-//   DWORD        bV4GammaRed;
-//   DWORD        bV4GammaGreen;
-//   DWORD        bV4GammaBlue;
+//   ::u32        bV4GammaRed;
+//   ::u32        bV4GammaGreen;
+//   ::u32        bV4GammaBlue;
 //} BITMAPV4HEADER,FAR *LPBITMAPV4HEADER,*PBITMAPV4HEADER;
 //#endif /* WINVER >= 0x0400 */
 //
 //#if (WINVER >= 0x0500)
 //typedef struct {
-//   DWORD        bV5Size;
-//   LONG         bV5Width;
-//   LONG         bV5Height;
-//   WORD         bV5Planes;
-//   WORD         bV5BitCount;
-//   DWORD        bV5Compression;
-//   DWORD        bV5SizeImage;
-//   LONG         bV5XPelsPerMeter;
-//   LONG         bV5YPelsPerMeter;
-//   DWORD        bV5ClrUsed;
-//   DWORD        bV5ClrImportant;
-//   DWORD        bV5RedMask;
-//   DWORD        bV5GreenMask;
-//   DWORD        bV5BlueMask;
-//   DWORD        bV5AlphaMask;
-//   DWORD        bV5CSType;
+//   ::u32        bV5Size;
+//   ::i32         bV5Width;
+//   ::i32         bV5Height;
+//   ::u16         bV5Planes;
+//   ::u16         bV5BitCount;
+//   ::u32        bV5Compression;
+//   ::u32        bV5SizeImage;
+//   ::i32         bV5XPelsPerMeter;
+//   ::i32         bV5YPelsPerMeter;
+//   ::u32        bV5ClrUsed;
+//   ::u32        bV5ClrImportant;
+//   ::u32        bV5RedMask;
+//   ::u32        bV5GreenMask;
+//   ::u32        bV5BlueMask;
+//   ::u32        bV5AlphaMask;
+//   ::u32        bV5CSType;
 //   CIEXYZTRIPLE bV5Endpoints;
-//   DWORD        bV5GammaRed;
-//   DWORD        bV5GammaGreen;
-//   DWORD        bV5GammaBlue;
-//   DWORD        bV5Intent;
-//   DWORD        bV5ProfileData;
-//   DWORD        bV5ProfileSize;
-//   DWORD        bV5Reserved;
+//   ::u32        bV5GammaRed;
+//   ::u32        bV5GammaGreen;
+//   ::u32        bV5GammaBlue;
+//   ::u32        bV5Intent;
+//   ::u32        bV5ProfileData;
+//   ::u32        bV5ProfileSize;
+//   ::u32        bV5Reserved;
 //} BITMAPV5HEADER,FAR *LPBITMAPV5HEADER,*PBITMAPV5HEADER;
 //
 //
 //
 //typedef struct tagBITMAPINFOHEADER{
-//   DWORD biSize;
-//   LONG  biWidth;
-//   LONG  biHeight;
-//   WORD  biPlanes;
-//   WORD  biBitCount;
-//   DWORD biCompression;
-//   DWORD biSizeImage;
-//   LONG  biXPelsPerMeter;
-//   LONG  biYPelsPerMeter;
-//   DWORD biClrUsed;
-//   DWORD biClrImportant;
+//   ::u32 biSize;
+//   ::i32  biWidth;
+//   ::i32  biHeight;
+//   ::u16  biPlanes;
+//   ::u16  biBitCount;
+//   ::u32 biCompression;
+//   ::u32 biSizeImage;
+//   ::i32  biXPelsPerMeter;
+//   ::i32  biYPelsPerMeter;
+//   ::u32 biClrUsed;
+//   ::u32 biClrImportant;
 //} BITMAPINFOHEADER,*PBITMAPINFOHEADER;
 //
 //typedef struct tagBITMAPINFO {
@@ -648,8 +648,8 @@ typedef LPBITMAPINFO HBITMAP;
 //
 //typedef struct _TRIVERTEX
 //{
-//   LONG    x;
-//   LONG    y;
+//   ::i32    x;
+//   ::i32    y;
 //   COLOR16 Red;
 //   COLOR16 Green;
 //   COLOR16 Blue;
@@ -672,10 +672,10 @@ typedef LPBITMAPINFO HBITMAP;
 //
 //typedef struct _BLENDFUNCTION
 //{
-//   BYTE   BlendOp;
-//   BYTE   BlendFlags;
-//   BYTE   SourceConstantAlpha;
-//   BYTE   AlphaFormat;
+//   byte   BlendOp;
+//   byte   BlendFlags;
+//   byte   SourceConstantAlpha;
+//   byte   AlphaFormat;
 //}BLENDFUNCTION,*PBLENDFUNCTION;
 
 
@@ -707,62 +707,62 @@ typedef LPLOGRGN HRGN;
 HBITMAP CreateCompatibleBitmap(HDC hdc,i32 cx,i32 cy);
 
 
-int_bool BitBlt(HDC hdcDest,i32 nXDest,i32 nYDest,i32 nWidth,i32 nHeight,HDC hdcSrc,i32 nXSrc,i32 nYSrc,DWORD dwRop);
+int_bool BitBlt(HDC hdcDest,i32 nXDest,i32 nYDest,i32 nWidth,i32 nHeight,HDC hdcSrc,i32 nXSrc,i32 nYSrc,::u32 dwRop);
 
 
-//int_bool SetViewportOrgEx(HDC hdc, i32 X, i32 Y, LPPOINT lpPoint);
+//int_bool SetViewportOrgEx(HDC hdc, i32 X, i32 Y, POINT32 * lpPoint);
 
 
 
-int_bool get_client_rect(oswindow hwnd,LPRECT lprect);
+int_bool get_client_rect(oswindow hwnd,LPRECT32 lprect);
 
-int_bool get_window_rect(oswindow hwnd,LPRECT lprect);
+int_bool get_window_rect(oswindow hwnd,LPRECT32 lprect);
 
-i32 FillRect(HDC hDC,const RECT *lprc,HBRUSH hbr);
+i32 FillRect(HDC hDC,const RECT32 *lprc,HBRUSH hbr);
 
 //int_bool ReleaseDC(oswindow hwnd,HDC hdc);
 
 //HDC GetWindowDC(oswindow hwnd);
 
 
-HBRUSH CreateSolidBrush(COLORREF color);
+HBRUSH CreateSolidBrush(color32_t color);
 
 //
 ///* Enhanced Metafile structures */
 //typedef struct tagENHMETARECORD
 //{
-//   DWORD   iType;              // Record type EMR_XXX
-//   DWORD   nSize;              // Record size in bytes
-//   DWORD   dParm[1];           // Parameters
+//   ::u32   iType;              // Record type EMR_XXX
+//   ::u32   nSize;              // Record size in bytes
+//   ::u32   dParm[1];           // Parameters
 //} ENHMETARECORD,*PENHMETARECORD,*LPENHMETARECORD;
 //
 //typedef struct tagENHMETAHEADER
 //{
-//   DWORD   iType;              // Record typeEMR_HEADER
-//   DWORD   nSize;              // Record size in bytes.  This may be greater
+//   ::u32   iType;              // Record typeEMR_HEADER
+//   ::u32   nSize;              // Record size in bytes.  This may be greater
 //   // than the sizeof(ENHMETAHEADER).
 //   RECTL   rclBounds;          // Inclusive-inclusive bounds in device units
 //   RECTL   rclFrame;           // Inclusive-inclusive Picture Frame of metafile in .01 mm units
-//   DWORD   dSignature;         // Signature.  Must be ENHMETA_SIGNATURE.
-//   DWORD   nVersion;           // Version number
-//   DWORD   nBytes;             // Size of the metafile in bytes
-//   DWORD   nRecords;           // Number of records in the metafile
-//   WORD    nHandles;           // Number of handles in the handle table
+//   ::u32   dSignature;         // Signature.  Must be ENHMETA_SIGNATURE.
+//   ::u32   nVersion;           // Version number
+//   ::u32   nBytes;             // Size of the metafile in bytes
+//   ::u32   nRecords;           // Number of records in the metafile
+//   ::u16    nHandles;           // Number of handles in the handle table
 //   // Handle index zero is reserved.
-//   WORD    sReserved;          // Reserved.  Must be zero.
-//   DWORD   nDescription;       // Number of chars in the unicode description string
+//   ::u16    sReserved;          // Reserved.  Must be zero.
+//   ::u32   nDescription;       // Number of chars in the unicode description string
 //   // This is 0 if there is no description string
-//   DWORD   offDescription;     // Offset to the metafile description record.
+//   ::u32   offDescription;     // Offset to the metafile description record.
 //   // This is 0 if there is no description string
-//   DWORD   nPalEntries;        // Number of entries in the metafile palette.
+//   ::u32   nPalEntries;        // Number of entries in the metafile palette.
 //   SIZEL   szlDevice;          // Size of the context_object device in pels
 //   SIZEL   szlMillimeters;     // Size of the context_object device in millimeters
 //#if(WINVER >= 0x0400)
-//   DWORD   cbPixelFormat;      // Size of PIXELFORMATDESCRIPTOR information
+//   ::u32   cbPixelFormat;      // Size of PIXELFORMATDESCRIPTOR information
 //   // This is 0 if no pixel format is set
-//   DWORD   offPixelFormat;     // Offset to PIXELFORMATDESCRIPTOR
+//   ::u32   offPixelFormat;     // Offset to PIXELFORMATDESCRIPTOR
 //   // This is 0 if no pixel format is set
-//   DWORD   bOpenGL;            // TRUE if OpenGL commands are present in
+//   ::u32   bOpenGL;            // TRUE if OpenGL commands are present in
 //   // the metafile, otherwise FALSE
 //#endif /* WINVER >= 0x0400 */
 //#if(WINVER >= 0x0500)

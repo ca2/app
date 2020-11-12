@@ -6,7 +6,7 @@ CLASS_DECL_APEX ::Windows::Storage::StorageFolder^ winrt_folder(string& strPath,
 #endif
 
 
-//CLASS_DECL_APEX DWORD windows_get_file_attributes(const char* path)
+//CLASS_DECL_APEX ::u32 windows_get_file_attributes(const char* path)
 //{
 //
 //   wstring wstr(path);
@@ -65,7 +65,7 @@ CLASS_DECL_APEX ::Windows::Storage::StorageFolder^ winrt_folder(string& strPath,
 //
 //   wstring wstrPath(get_buffer, MAX_PATH * 16);
 //
-//   if (!GetModuleFileNameW(nullptr, wstrPath, (DWORD)wstrPath.get_length()))
+//   if (!GetModuleFileNameW(nullptr, wstrPath, (::u32)wstrPath.get_length()))
 //   {
 //
 //      return "";
@@ -151,7 +151,7 @@ CLASS_DECL_APEX ::Windows::Storage::StorageFolder^ winrt_folder(string& strPath,
 //
 //      }
 //
-//      DWORD dw = GetFinalPathNameByHandleW(hfile, nullptr, 0, VOLUME_NAME_DOS);
+//      ::u32 dw = GetFinalPathNameByHandleW(hfile, nullptr, 0, VOLUME_NAME_DOS);
 //
 //      if (dw > 0)
 //      {
@@ -208,7 +208,7 @@ CLASS_DECL_APEX ::Windows::Storage::StorageFolder^ winrt_folder(string& strPath,
 //
 //#ifdef _UWP
 //
-//      DWORD dwLastError = ::get_last_error();
+//      ::u32 dwLastError = ::get_last_error();
 //
 //      string strPrefix;
 //

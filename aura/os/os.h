@@ -4,7 +4,7 @@
 ////CLASS_DECL_AURA void defer_dock_application(int_bool bDock);
 ////
 ////
-////CLASS_DECL_AURA int_bool IsProcessRunning(DWORD pid);
+////CLASS_DECL_AURA int_bool IsProcessRunning(::u32 pid);
 //
 //
 //

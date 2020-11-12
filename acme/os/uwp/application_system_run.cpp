@@ -2,7 +2,7 @@
 #include "acme/node/uwp/directx.h"
 #include "acme/node/uwp/directx_interaction.h"
 #include "acme/node/uwp/directx_impact.h"
-#include "acme/node/uwp/directx_application.h"
+#include "acme/node/uwp/directx_framework_view.h"
 
 
 CLASS_DECL_ACME ::estatus os_application_system_run(::acme::system * psystem)

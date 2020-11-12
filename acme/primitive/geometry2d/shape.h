@@ -62,11 +62,11 @@ public:
 
    virtual bool expand_bounding_rect(RECTD* prect) const;
 
-   virtual bool expand_bounding_rect(RECT* prect) const;
+   virtual bool expand_bounding_rect(RECT32* prect) const;
 
    virtual bool get_bounding_rect(RECTD* prect) const;
 
-   virtual bool get_bounding_rect(RECT* prect) const;
+   virtual bool get_bounding_rect(RECT32* prect) const;
 
    virtual bool contains(const ::pointd& point) const;
 
@@ -144,16 +144,16 @@ public:
    virtual bool expand_bounding_rect(RECTD* prect) const;
 
 
-   virtual bool expand_bounding_rect(RECT* prect) const;
+   virtual bool expand_bounding_rect(RECT32* prect) const;
 
 
    virtual bool get_bounding_rect(RECTD* prect) const;
 
 
-   virtual bool get_bounding_rect(RECT* prect) const;
+   virtual bool get_bounding_rect(RECT32* prect) const;
 
 
-   virtual bool contains(const ::POINT & point) const;
+   virtual bool contains(const ::POINT32 & point) const;
 
 
    virtual bool contains(const ::POINTD & point) const;

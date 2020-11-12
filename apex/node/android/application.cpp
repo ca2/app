@@ -99,7 +99,7 @@ namespace apex
    //}
 
 
-   //ITHREAD application::get_thread_id()
+   //ithread_t application::get_thread_id()
    //{
 
    //   return ::pthread_self();

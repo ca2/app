@@ -96,7 +96,7 @@ namespace windows
       u32 WINAPI stack_trace_ThreadProc(void * pvoidParam);
 
 
-      bool get_line_from_address(HANDLE hProc, OS_DWORD uiAddress, DWORD * puiDisplacement, OS_IMAGEHLP_LINE * pline);
+      bool get_line_from_address(HANDLE hProc, OS_DWORD uiAddress, ::u32 * puiDisplacement, OS_IMAGEHLP_LINE * pline);
       //size_t get_module_basename(HMODULE hmodule, string & strName);
       size_t get_module_name(HMODULE hmodule, char * psz, int nCount);
 

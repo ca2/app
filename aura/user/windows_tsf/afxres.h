@@ -417,7 +417,7 @@
 #define AFX_IDP_PARSE_STRING_SIZE       0xF114
 #define AFX_IDP_PARSE_RADIO_BUTTON      0xF115
 #define AFX_IDP_PARSE_BYTE              0xF116
-#define AFX_IDP_PARSE_UINT              0xF117
+#define AFX_IDP_PARSE_::u32              0xF117
 #define AFX_IDP_PARSE_DATETIME          0xF118
 #define AFX_IDP_PARSE_CURRENCY          0xF119
 

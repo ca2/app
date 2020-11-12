@@ -1,7 +1,7 @@
 #pragma once
 
 
-typedef ::u32 uint32;
+typedef ::u32 ::u32;
 
 
 
@@ -17,8 +17,8 @@ typedef ::u32 uint32;
 
 
 
-CLASS_DECL_AURA void set_main_hthread(HTHREAD hthread);
-CLASS_DECL_AURA void set_main_ithread(ITHREAD ithread);
-CLASS_DECL_AURA HTHREAD get_main_hthread(void);
-CLASS_DECL_AURA ITHREAD get_main_ithread(void);
+CLASS_DECL_AURA void set_main_hthread(hthread_t hthread);
+CLASS_DECL_AURA void set_main_ithread(ithread_t ithread);
+CLASS_DECL_AURA hthread_t get_main_hthread(void);
+CLASS_DECL_AURA ithread_t get_main_ithread(void);
 

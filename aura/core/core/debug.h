@@ -33,9 +33,9 @@ void __stdcall gen_TraceSnapshotProcess( uptr dwProcess );
 
 
 void __cdecl gen_TraceVA(uptr dwModule, const char *pszFileName, i32 nLineNo,
-                  uptr dwCategory, UINT nLevel, const CHAR *pszFormat, va_list ptr);
+                  uptr dwCategory, ::u32 nLevel, const CHAR *pszFormat, va_list ptr);
 void __cdecl gen_TraceVU(uptr dwModule,const char *pszFileName, i32 nLineNo,
-                  uptr dwCategory, UINT nLevel, const WCHAR *pszFormat, va_list ptr);
+                  uptr dwCategory, ::u32 nLevel, const WCHAR *pszFormat, va_list ptr);
 
 bool __stdcall gen_TraceLoadSettingsA(const CHAR *pszFileName, uptr dwProcess = 0);
 bool __stdcall gen_TraceLoadSettingsU(const WCHAR *pszFileName, uptr dwProcess = 0);
@@ -44,13 +44,13 @@ bool __stdcall gen_TraceSaveSettingsU(const WCHAR *pszFileName, uptr dwProcess =
 
 /*typedef struct TRACESETTINGS
 {
-   UINT nLevel;
+   ::u32 nLevel;
    TRACESTATUS eStatus;
 } TRACESETTINGS;
 
 typedef struct TRACEPROCESSSETTINGS
 {
-   UINT nLevel;
+   ::u32 nLevel;
    bool bEnabled, bFuncAndCategoryNames, bFileNameAndLineNo;
 } TRACEPROCESSSETTINGS;
 

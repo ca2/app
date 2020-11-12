@@ -520,7 +520,7 @@ namespace experience
    }
 
 
-   //void dock_manager::SetSWPFlags(UINT uiFlags)
+   //void dock_manager::SetSWPFlags(::u32 uFlags)
    //{
 
    //   m_uiSWPFlags = uiFlags;
@@ -600,7 +600,7 @@ namespace experience
    }
 
 
-   bool dock_manager::_001OnTimer(UINT uEvent)
+   bool dock_manager::_001OnTimer(::u32 uEvent)
    {
 
       return false;

@@ -350,7 +350,7 @@ namespace draw2d_xlib
    /*   HGDIOBJ graphics::SelectObject(HGDIOBJ hObject) // Safe for nullptr handles
       {
 
-         UINT uiType = GetObjectType(hObject);
+         ::u32 uType = GetObjectType(hObject);
 
          if(uiType == OBJ_BITMAP)
          {
@@ -383,14 +383,14 @@ namespace draw2d_xlib
    /*    return nullptr;
     }*/
 
-   COLORREF graphics::GetNearestColor(COLORREF crColor) const
+   color32_t graphics::GetNearestColor(color32_t crColor) const
    {
       //__throw(not_implemented());
       return crColor;
 //      return ::GetNearestColor(get_handle2(), crColor);
    }
 
-   UINT graphics::RealizePalette()
+   ::u32 graphics::RealizePalette()
    {
 //      return ::RealizePalette(get_handle1());
       return 0;
@@ -495,24 +495,24 @@ namespace draw2d_xlib
       return ::size(0, 0);
    }
 
-   void graphics::DPtoLP(LPPOINT lpPoints, i32 nCount) const
+   void graphics::DPtoLP(POINT32 * lpPoints, i32 nCount) const
    {
       //::DPtoLP(get_handle2(), lpPoints, nCount);
    }
 
-   void graphics::DPtoLP(RECT * prect) const
+   void graphics::DPtoLP(RECT32 * prect) const
    {
-      //::DPtoLP(get_handle2(), (LPPOINT)rect, 2);
+      //::DPtoLP(get_handle2(), (POINT32 *)rect, 2);
    }
 
-   void graphics::LPtoDP(LPPOINT lpPoints, i32 nCount) const
+   void graphics::LPtoDP(POINT32 * lpPoints, i32 nCount) const
    {
       //::LPtoDP(get_handle2(), lpPoints, nCount);
    }
 
-   void graphics::LPtoDP(RECT * prect) const
+   void graphics::LPtoDP(RECT32 * prect) const
    {
-      //::LPtoDP(get_handle2(), (LPPOINT)rect, 2);
+      //::LPtoDP(get_handle2(), (POINT32 *)rect, 2);
    }
 
    bool graphics::FillRgn(::draw2d::region* pRgn, ::draw2d::brush* pBrush)
@@ -645,7 +645,7 @@ namespace draw2d_xlib
 
    }
 
-   bool graphics::Polyline(const POINT* lpPoints, i32 nCount)
+   bool graphics::Polyline(const POINT32* lpPoints, i32 nCount)
    {
 
       /*ASSERT(get_handle1() != nullptr);
@@ -744,7 +744,7 @@ namespace draw2d_xlib
 
    }
 
-   bool graphics::DrawIcon(i32 x, i32 y, ::draw2d::icon * picon, i32 cx, i32 cy, UINT istepIfAniCur, HBRUSH hbrFlickerFreeDraw, UINT diFlags)
+   bool graphics::DrawIcon(i32 x, i32 y, ::draw2d::icon * picon, i32 cx, i32 cy, ::u32 istepIfAniCur, HBRUSH hbrFlickerFreeDraw, ::u32 diFlags)
    {
 
 
@@ -766,7 +766,7 @@ namespace draw2d_xlib
          bool bOk = FALSE;
 
          BITMAPINFO info;
-         COLORREF * pcolorref;
+         color32_t * pcolorref;
 
          ZeroMemory(&info, sizeof (BITMAPINFO));
 
@@ -792,11 +792,11 @@ namespace draw2d_xlib
             try
             {
 
-               //Gdiplus::Bitmap b(cx, cy, cx * 4 , PixelFormat32bppARGB, (BYTE *) pcolorref);
+               //Gdiplus::Bitmap b(cx, cy, cx * 4 , PixelFormat32bppARGB, (byte *) pcolorref);
 
                ::draw2d::bitmap_pointer b(e_create);
 
-               b->CreateBitmap(this, cx, cy, 1, 32, pcolorref, cx * sizeof(COLORREF));
+               b->CreateBitmap(this, cx, cy, 1, 32, pcolorref, cx * sizeof(color32_t));
 
                xlib_surface_t * psurface = (xlib_surface_t *) b->get_os_data();
 
@@ -856,7 +856,7 @@ namespace draw2d_xlib
       return false;
    }
 
-   bool graphics::DrawState(const ::point & point, const ::size & size, HBITMAP hBitmap, UINT nFlags, HBRUSH hBrush)
+   bool graphics::DrawState(const ::point & point, const ::size & size, HBITMAP hBitmap, ::u32 nFlags, HBRUSH hBrush)
    {
 
       __throw(not_implemented());
@@ -866,7 +866,7 @@ namespace draw2d_xlib
 
    }
 
-   bool graphics::DrawState(const ::point & point, const ::size & size, ::draw2d::bitmap* pBitmap, UINT nFlags, ::draw2d::brush* pBrush)
+   bool graphics::DrawState(const ::point & point, const ::size & size, ::draw2d::bitmap* pBitmap, ::u32 nFlags, ::draw2d::brush* pBrush)
    {
 
       __throw(not_implemented());
@@ -876,7 +876,7 @@ namespace draw2d_xlib
 
    }
 
-   /*   bool graphics::DrawState(const ::point & point, const ::size & size, HICON hIcon, UINT nFlags, HBRUSH hBrush)
+   /*   bool graphics::DrawState(const ::point & point, const ::size & size, HICON hIcon, ::u32 nFlags, HBRUSH hBrush)
       {
 
          __throw(not_implemented());
@@ -887,7 +887,7 @@ namespace draw2d_xlib
       }
 
 
-      bool graphics::DrawState(const ::point & point, const ::size & size, HICON hIcon, UINT nFlags, ::draw2d::brush* pBrush)
+      bool graphics::DrawState(const ::point & point, const ::size & size, HICON hIcon, ::u32 nFlags, ::draw2d::brush* pBrush)
       {
 
          __throw(not_implemented());
@@ -897,7 +897,7 @@ namespace draw2d_xlib
 
       }*/
 
-   bool graphics::DrawState(const ::point & point, const ::size & size, const char * lpszText, UINT nFlags, bool bPrefixText, i32 nTextLen, HBRUSH hBrush)
+   bool graphics::DrawState(const ::point & point, const ::size & size, const char * lpszText, ::u32 nFlags, bool bPrefixText, i32 nTextLen, HBRUSH hBrush)
    {
 
       __throw(not_implemented());
@@ -907,7 +907,7 @@ namespace draw2d_xlib
 
    }
 
-   bool graphics::DrawState(const ::point & point, const ::size & size, const char * lpszText, UINT nFlags, bool bPrefixText, i32 nTextLen, ::draw2d::brush* pBrush)
+   bool graphics::DrawState(const ::point & point, const ::size & size, const char * lpszText, ::u32 nFlags, bool bPrefixText, i32 nTextLen, ::draw2d::brush* pBrush)
    {
 
       __throw(not_implemented());
@@ -919,7 +919,7 @@ namespace draw2d_xlib
 
    /*
 
-      bool graphics::DrawState(const ::point & point, const ::size & size, DRAWSTATEPROC lpDrawProc, LPARAM lData, UINT nFlags, HBRUSH hBrush)
+      bool graphics::DrawState(const ::point & point, const ::size & size, DRAWSTATEPROC lpDrawProc, LPARAM lData, ::u32 nFlags, HBRUSH hBrush)
       {
 
          __throw(not_implemented());
@@ -930,7 +930,7 @@ namespace draw2d_xlib
 
       }
 
-      bool graphics::DrawState(const ::point & point, const ::size & size, DRAWSTATEPROC lpDrawProc, LPARAM lData, UINT nFlags, ::draw2d::brush* pBrush)
+      bool graphics::DrawState(const ::point & point, const ::size & size, DRAWSTATEPROC lpDrawProc, LPARAM lData, ::u32 nFlags, ::draw2d::brush* pBrush)
       {
 
          __throw(not_implemented());
@@ -943,7 +943,7 @@ namespace draw2d_xlib
 
    */
 
-   bool graphics::DrawEdge(RECT * prect, UINT nEdge, UINT nFlags)
+   bool graphics::DrawEdge(RECT32 * prect, ::u32 nEdge, ::u32 nFlags)
    {
 
       __throw(not_implemented());
@@ -954,7 +954,7 @@ namespace draw2d_xlib
 
    }
 
-   bool graphics::DrawFrameControl(RECT * prect, UINT nType, UINT nState)
+   bool graphics::DrawFrameControl(RECT32 * prect, ::u32 nType, ::u32 nState)
    {
 
       __throw(not_implemented());
@@ -1136,7 +1136,7 @@ namespace draw2d_xlib
 
    }
 
-   bool graphics::fill_polygon(const POINT* pa, i32 iCount)
+   bool graphics::fill_polygon(const POINT32* pa, i32 iCount)
    {
 
       if(iCount <= 0)
@@ -1192,7 +1192,7 @@ namespace draw2d_xlib
    }
 
 
-   bool graphics::draw_polygon(const POINT* pa, i32 iCount)
+   bool graphics::draw_polygon(const POINT32* pa, i32 iCount)
    {
 
       if(iCount <= 0)
@@ -1219,7 +1219,7 @@ namespace draw2d_xlib
    }
 
 
-   bool graphics::Polygon(const POINT* pa, i32 iCount)
+   bool graphics::Polygon(const POINT32* pa, i32 iCount)
    {
 
       if(iCount <= 0)
@@ -1250,7 +1250,7 @@ namespace draw2d_xlib
    }
 
 
-   bool graphics::PolyPolygon(const POINT* lpPoints, const INT* lpPolyCounts, i32 nCount)
+   bool graphics::PolyPolygon(const POINT32* lpPoints, const INT* lpPolyCounts, i32 nCount)
    {
 
       __throw(not_implemented());
@@ -1584,7 +1584,7 @@ namespace draw2d_xlib
    }
 
 
-   COLORREF graphics::GetPixel(i32 x, i32 y) const
+   color32_t graphics::GetPixel(i32 x, i32 y) const
    {
 
       __throw(not_implemented());
@@ -1595,7 +1595,7 @@ namespace draw2d_xlib
 
    }
 
-   COLORREF graphics::GetPixel(const ::point & point) const
+   color32_t graphics::GetPixel(const ::point & point) const
    {
 
       __throw(not_implemented());
@@ -1606,7 +1606,7 @@ namespace draw2d_xlib
 
    }
 
-   COLORREF graphics::SetPixel(i32 x, i32 y, COLORREF crColor)
+   color32_t graphics::SetPixel(i32 x, i32 y, color32_t crColor)
    {
 
       __throw(not_implemented());
@@ -1617,7 +1617,7 @@ namespace draw2d_xlib
 
    }
 
-   COLORREF graphics::SetPixel(const ::point & point, COLORREF crColor)
+   color32_t graphics::SetPixel(const ::point & point, color32_t crColor)
    {
 
       __throw(not_implemented());
@@ -1628,7 +1628,7 @@ namespace draw2d_xlib
 
    }
 
-   bool graphics::FloodFill(i32 x, i32 y, COLORREF crColor)
+   bool graphics::FloodFill(i32 x, i32 y, color32_t crColor)
    {
 
       __throw(not_implemented());
@@ -1639,7 +1639,7 @@ namespace draw2d_xlib
 
    }
 
-   bool graphics::ExtFloodFill(i32 x, i32 y, COLORREF crColor, UINT nFillType)
+   bool graphics::ExtFloodFill(i32 x, i32 y, color32_t crColor, ::u32 nFillType)
    {
 
       __throw(not_implemented());
@@ -1775,7 +1775,7 @@ namespace draw2d_xlib
 
    } // call virtual
 
-   bool graphics::ExtTextOut(i32 x, i32 y, UINT nOptions, const ::rect & rect, const char * lpszString, UINT nCount, LPINT lpDxWidths)
+   bool graphics::ExtTextOut(i32 x, i32 y, ::u32 nOptions, const ::rect & rect, const char * lpszString, ::u32 nCount, LPINT lpDxWidths)
    {
 
       __throw(not_implemented());
@@ -1786,14 +1786,14 @@ namespace draw2d_xlib
 
    }
 
-   bool graphics::ExtTextOut(i32 x, i32 y, UINT nOptions, const ::rect & rect, const string & str, LPINT lpDxWidths)
+   bool graphics::ExtTextOut(i32 x, i32 y, ::u32 nOptions, const ::rect & rect, const string & str, LPINT lpDxWidths)
    {
 
       __throw(not_implemented());
       return false;
 
 //      ASSERT(get_handle1() != nullptr);
-//      return ::ExtTextOut(get_handle1(), x, y, nOptions, rect, str, (UINT)str.get_length(), lpDxWidths) != FALSE;
+//      return ::ExtTextOut(get_handle1(), x, y, nOptions, rect, str, (::u32)str.get_length(), lpDxWidths) != FALSE;
 
    }
 
@@ -1875,7 +1875,7 @@ namespace draw2d_xlib
 
    }
 
-   UINT graphics::GetTextAlign() const
+   ::u32 graphics::GetTextAlign() const
    {
 
       __throw(not_implemented());
@@ -1950,14 +1950,14 @@ namespace draw2d_xlib
          return false;
       }
 
-      lpMetrics->tmAscent              = (LONG) font->max_bounds.ascent;
-      lpMetrics->tmDescent             = (LONG) font->max_bounds.descent;
-      lpMetrics->tmHeight              = (LONG) font->ascent + font->descent;*/
+      lpMetrics->tmAscent              = (::i32) font->max_bounds.ascent;
+      lpMetrics->tmDescent             = (::i32) font->max_bounds.descent;
+      lpMetrics->tmHeight              = (::i32) font->ascent + font->descent;*/
 
-      lpMetrics->tmInternalLeading     = (LONG) lpMetrics->tmAscent + lpMetrics->tmDescent - lpMetrics->tmHeight;
-      lpMetrics->tmExternalLeading     = (LONG) (lpMetrics->tmHeight * 0.25);
+      lpMetrics->tmInternalLeading     = (::i32) lpMetrics->tmAscent + lpMetrics->tmDescent - lpMetrics->tmHeight;
+      lpMetrics->tmExternalLeading     = (::i32) (lpMetrics->tmHeight * 0.25);
 
-//      lpMetrics->tmAveCharWidth        = (LONG) (font->max_bounds.width + font->min_bounds.width) / 2; // fast calculation
+//      lpMetrics->tmAveCharWidth        = (::i32) (font->max_bounds.width + font->min_bounds.width) / 2; // fast calculation
 
       //::XFreeFontInfo(nullptr, font, 0);
 
@@ -1989,7 +1989,7 @@ namespace draw2d_xlib
 
    }
 
-   bool graphics::GetCharWidth(UINT nFirstChar, UINT nLastChar, LPINT lpBuffer) const
+   bool graphics::GetCharWidth(::u32 nFirstChar, ::u32 nLastChar, LPINT lpBuffer) const
    {
 
       __throw(not_implemented());
@@ -2000,7 +2000,7 @@ namespace draw2d_xlib
 
    }
 
-   bool graphics::GetOutputCharWidth(UINT nFirstChar, UINT nLastChar, LPINT lpBuffer) const
+   bool graphics::GetOutputCharWidth(::u32 nFirstChar, ::u32 nLastChar, LPINT lpBuffer) const
    {
 
       __throw(not_implemented());
@@ -2062,7 +2062,7 @@ namespace draw2d_xlib
    }
 
 
-   bool graphics::ScrollDC(i32 dx, i32 dy, rect lpRectScroll, const ::rect & rectClip, ::draw2d::region* pRgnUpdate, LPRECT lpRectUpdate)
+   bool graphics::ScrollDC(i32 dx, i32 dy, rect lpRectScroll, const ::rect & rectClip, ::draw2d::region* pRgnUpdate, LPRECT32 lpRectUpdate)
    {
 
       __throw(not_implemented());
@@ -2086,7 +2086,7 @@ namespace draw2d_xlib
    }
 
    // graphics 3.1 Specific functions
-   UINT graphics::SetBoundsRect(::rect rectBounds, UINT flags)
+   ::u32 graphics::SetBoundsRect(::rect rectBounds, ::u32 flags)
    {
 
       __throw(not_implemented());
@@ -2097,7 +2097,7 @@ namespace draw2d_xlib
 
    }
 
-   UINT graphics::GetBoundsRect(LPRECT rectBounds, UINT flags)
+   ::u32 graphics::GetBoundsRect(LPRECT32 rectBounds, ::u32 flags)
    {
 
       __throw(not_implemented());
@@ -2121,7 +2121,7 @@ namespace draw2d_xlib
 
       }
 
-      UINT graphics::GetOutlineTextMetrics(UINT cbData, LPOUTLINETEXTMETRICW lpotm) const
+      ::u32 graphics::GetOutlineTextMetrics(::u32 cbData, LPOUTLINETEXTMETRICW lpotm) const
       {
 
          __throw(not_implemented());
@@ -2132,7 +2132,7 @@ namespace draw2d_xlib
 
       }
 
-      bool graphics::GetCharABCWidths(UINT nFirstChar, UINT nLastChar, LPABC lpabc) const
+      bool graphics::GetCharABCWidths(::u32 nFirstChar, ::u32 nLastChar, LPABC lpabc) const
       {
 
          __throw(not_implemented());
@@ -2169,7 +2169,7 @@ namespace draw2d_xlib
 
       }
 
-      u32 graphics::GetGlyphOutline(UINT nChar, const ::e_align & ealign, const ::e_draw_text & edrawtext, LPGLYPHMETRICS lpgm, u32 cbBuffer, LPVOID lpBuffer, const MAT2* lpmat2) const
+      u32 graphics::GetGlyphOutline(::u32 nChar, const ::e_align & ealign, const ::e_draw_text & edrawtext, LPGLYPHMETRICS lpgm, u32 cbBuffer, LPVOID lpBuffer, const MAT2* lpmat2) const
       {
 
          __throw(not_implemented());
@@ -2264,7 +2264,7 @@ namespace draw2d_xlib
 
    }
 
-   bool graphics::PlgBlt(LPPOINT lpPoint, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nWidth, i32 nHeight, ::draw2d::bitmap& maskBitmap, i32 xMask, i32 yMask)
+   bool graphics::PlgBlt(POINT32 * lpPoint, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nWidth, i32 nHeight, ::draw2d::bitmap& maskBitmap, i32 xMask, i32 yMask)
    {
 
       __throw(not_implemented());
@@ -2275,7 +2275,7 @@ namespace draw2d_xlib
 
    }
 
-   bool graphics::SetPixelV(i32 x, i32 y, COLORREF crColor)
+   bool graphics::SetPixelV(i32 x, i32 y, color32_t crColor)
    {
 
       __throw(not_implemented());
@@ -2286,7 +2286,7 @@ namespace draw2d_xlib
 
    }
 
-   bool graphics::SetPixelV(const ::point & point, COLORREF crColor)
+   bool graphics::SetPixelV(const ::point & point, color32_t crColor)
    {
 
       __throw(not_implemented());
@@ -2330,7 +2330,7 @@ namespace draw2d_xlib
 
    }
 
-   bool graphics::PolyPolyline(const POINT* lpPoints, const u32* lpPolyPoints, i32 nCount)
+   bool graphics::PolyPolyline(const POINT32* lpPoints, const u32* lpPolyPoints, i32 nCount)
    {
 
       __throw(not_implemented());
@@ -2392,7 +2392,7 @@ namespace draw2d_xlib
 
    }
 
-   bool graphics::PolyBezier(const POINT* lpPoints, i32 nCount)
+   bool graphics::PolyBezier(const POINT32* lpPoints, i32 nCount)
    {
 
       __throw(not_implemented());
@@ -2427,7 +2427,7 @@ namespace draw2d_xlib
 
    /*
 
-      bool graphics::GetCharABCWidths(UINT nFirstChar, UINT nLastChar, LPABCFLOAT lpABCF) const
+      bool graphics::GetCharABCWidths(::u32 nFirstChar, ::u32 nLastChar, LPABCFLOAT lpABCF) const
       {
 
          __throw(not_implemented());
@@ -2440,7 +2440,7 @@ namespace draw2d_xlib
 
    */
 
-   bool graphics::GetCharWidth(UINT nFirstChar, UINT nLastChar, float* lpFloatBuffer) const
+   bool graphics::GetCharWidth(::u32 nFirstChar, ::u32 nLastChar, float* lpFloatBuffer) const
    {
 
       __throw(not_implemented());
@@ -2547,7 +2547,7 @@ namespace draw2d_xlib
 
    }
 
-   i32 graphics::GetPath(LPPOINT lpPoints, byte * lpTypes, i32 nCount) const
+   i32 graphics::GetPath(POINT32 * lpPoints, byte * lpTypes, i32 nCount) const
    {
 
       __throw(not_implemented());
@@ -2625,7 +2625,7 @@ namespace draw2d_xlib
    }
 
 
-   bool graphics::AddMetaFileComment(UINT nDataSize, const BYTE* pCommentData)
+   bool graphics::AddMetaFileComment(::u32 nDataSize, const byte* pCommentData)
    {
 
       __throw(not_implemented());
@@ -2929,7 +2929,7 @@ namespace draw2d_xlib
    }*/
 
 
-   bool graphics::TransparentBlt(i32 xDest, i32 yDest, i32 nDestWidth, i32 nDestHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight, UINT crTransparent)
+   bool graphics::TransparentBlt(i32 xDest, i32 yDest, i32 nDestWidth, i32 nDestHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight, ::u32 crTransparent)
    {
 
       __throw(not_implemented());
@@ -2956,7 +2956,7 @@ namespace draw2d_xlib
    // Always Inline. Functions only in Win98/Win2K or later
 
 
-   COLORREF graphics::GetDCBrushColor() const
+   color32_t graphics::GetDCBrushColor() const
    {
 
       __throw(not_implemented());
@@ -2967,7 +2967,7 @@ namespace draw2d_xlib
 
    }
 
-   COLORREF graphics::SetDCBrushColor(COLORREF crColor)
+   color32_t graphics::SetDCBrushColor(color32_t crColor)
    {
 
       __throw(not_implemented());
@@ -2978,7 +2978,7 @@ namespace draw2d_xlib
 
    }
 
-   COLORREF graphics::GetDCPenColor() const
+   color32_t graphics::GetDCPenColor() const
    {
 
       __throw(not_implemented());
@@ -2988,7 +2988,7 @@ namespace draw2d_xlib
 //       return ::GetDCPenColor(get_handle1());
    }
 
-   COLORREF graphics::SetDCPenColor(COLORREF crColor)
+   color32_t graphics::SetDCPenColor(color32_t crColor)
    {
 
       __throw(not_implemented());
@@ -3003,7 +3003,7 @@ namespace draw2d_xlib
 
 #if (_WIN32_WINNT >= 0x0500)
 
-   bool graphics::GetCharABCWidthsI(UINT giFirst, UINT cgi, LPWORD pgi, LPABC lpabc) const
+   bool graphics::GetCharABCWidthsI(::u32 giFirst, ::u32 cgi, LPWORD pgi, LPABC lpabc) const
    {
 
       __throw(not_implemented());
@@ -3014,7 +3014,7 @@ namespace draw2d_xlib
 
    }
 
-   bool graphics::GetCharWidthI(UINT giFirst, UINT cgi, LPWORD pgi, LPINT lpBuffer) const
+   bool graphics::GetCharWidthI(::u32 giFirst, ::u32 cgi, LPWORD pgi, LPINT lpBuffer) const
    {
 
       __throw(not_implemented());
@@ -3069,7 +3069,7 @@ namespace draw2d_xlib
       __throw(not_implemented());
 
       /*
-            ASSERT(__is_valid_address(lpSize, sizeof(SIZE)));
+            ASSERT(__is_valid_address(lpSize, sizeof(SIZE32)));
 
             i32 nMapMode;
             if (this != nullptr && (nMapMode = GetMapMode()) < MM_ISOTROPIC && nMapMode != MM_TEXT)
@@ -3109,7 +3109,7 @@ namespace draw2d_xlib
 
       __throw(not_implemented());
 
-      /*      ASSERT(__is_valid_address(lpSize, sizeof(SIZE)));
+      /*      ASSERT(__is_valid_address(lpSize, sizeof(SIZE32)));
 
             i32 nMapMode;
             if (this != nullptr && (nMapMode = GetMapMode()) < MM_ISOTROPIC &&
@@ -3147,7 +3147,7 @@ namespace draw2d_xlib
 
    void graphics::LPtoHIMETRIC(LPSIZE lpSize) const
    {
-      ASSERT(__is_valid_address(lpSize, sizeof(SIZE)));
+      ASSERT(__is_valid_address(lpSize, sizeof(SIZE32)));
 
       LPtoDP(lpSize);
       DPtoHIMETRIC(lpSize);
@@ -3155,7 +3155,7 @@ namespace draw2d_xlib
 
    void graphics::HIMETRICtoLP(LPSIZE lpSize) const
    {
-      ASSERT(__is_valid_address(lpSize, sizeof(SIZE)));
+      ASSERT(__is_valid_address(lpSize, sizeof(SIZE32)));
 
       HIMETRICtoDP(lpSize);
       DPtoLP(lpSize);
@@ -3169,9 +3169,9 @@ namespace draw2d_xlib
       /*      ::aura::LockGlobals(CRIT_HALFTONEBRUSH);
             if (gen_HalftoneBrush == nullptr)
             {
-               WORD grayPattern[8];
+               ::u16 grayPattern[8];
                for (i32 i = 0; i < 8; i++)
-                  grayPattern[i] = (WORD)(0x5555 << (i & 1));
+                  grayPattern[i] = (::u16)(0x5555 << (i & 1));
                HBITMAP grayBitmap = CreateBitmap(8, 8, 1, 1, grayPattern);
                if (grayBitmap != nullptr)
                {
@@ -3193,9 +3193,9 @@ namespace draw2d_xlib
       __throw(not_implemented());
 
       /*
-            ASSERT(__is_valid_address(rect, sizeof(RECT), FALSE));
+            ASSERT(__is_valid_address(rect, sizeof(RECT32), FALSE));
             ASSERT(lpRectLast == nullptr ||
-               __is_valid_address(lpRectLast, sizeof(RECT), FALSE));
+               __is_valid_address(lpRectLast, sizeof(RECT32), FALSE));
 
             // first, determine the update region and select it
             ::draw2d::region rgnNew;
@@ -3266,13 +3266,13 @@ namespace draw2d_xlib
 
    }
 
-   /*void graphics::FillSolidRect(const ::rect & rect, COLORREF clr)
+   /*void graphics::FillSolidRect(const ::rect & rect, color32_t clr)
    {
       ::SetBkColor(get_handle1(), clr);
       ::ExtTextOut(get_handle1(), 0, 0, ETO_OPAQUE, rect, nullptr, 0, nullptr);
    }*/
 
-   void graphics::FillSolidRect(const RECT64 * rect, COLORREF clr)
+   void graphics::FillSolidRect(const RECT64 * rect, color32_t clr)
    {
       ::rect rect32;
       __copy(rect32, rect);
@@ -3282,7 +3282,7 @@ namespace draw2d_xlib
 
    /*
 
-   void graphics::FillSolidRect(i32 x, i32 y, i32 cx, i32 cy, COLORREF clr)
+   void graphics::FillSolidRect(i32 x, i32 y, i32 cx, i32 cy, color32_t clr)
    {
       ::SetBkColor(get_handle1(), clr);
       ::rect rect(x, y, x + cx, y + cy);
@@ -3292,14 +3292,14 @@ namespace draw2d_xlib
    */
 
    void graphics::Draw3dRect(const ::rect & rect,
-                             COLORREF clrTopLeft, COLORREF clrBottomRight)
+                             color32_t clrTopLeft, color32_t clrBottomRight)
    {
       Draw3dRect(rect.left, rect.top, rect.right - rect.left,
                  rect.bottom - rect.top, clrTopLeft, clrBottomRight);
    }
 
    void graphics::Draw3dRect(i32 x, i32 y, i32 cx, i32 cy,
-                             COLORREF clrTopLeft, COLORREF clrBottomRight)
+                             color32_t clrTopLeft, color32_t clrBottomRight)
    {
       FillSolidRect(x, y, cx - 1, 1, clrTopLeft);
       FillSolidRect(x, y, 1, cy - 1, clrTopLeft);
@@ -3863,7 +3863,7 @@ namespace draw2d_xlib
 
    }
 
-   i32 graphics::GetClipBox(RECT * prect) const
+   i32 graphics::GetClipBox(RECT32 * prect) const
    {
 
       //__throw(not_implemented());
@@ -4033,14 +4033,14 @@ namespace draw2d_xlib
 
    }
 
-   UINT graphics::SetTextAlign(UINT nFlags)
+   ::u32 graphics::SetTextAlign(::u32 nFlags)
    {
 
       __throw(not_implemented());
       return 0;
 
       /*
-            UINT nRetVal = GDI_ERROR;
+            ::u32 nRetVal = GDI_ERROR;
             if(get_handle1() != nullptr && get_handle1() != get_handle2())
                ::SetTextAlign(get_handle1(), nFlags);
             if(get_handle2() != nullptr)
@@ -4158,20 +4158,20 @@ namespace draw2d_xlib
 
    }
    /*
-   void window::_001ScreenToClient(RECT * prect)
+   void window::_001ScreenToClient(RECT32 * prect)
    {
    ASSERT(::IsWindow(get_handle1()));
-   ::_001ScreenToClient(get_handle1(), (LPPOINT)rect);
-   ::_001ScreenToClient(get_handle1(), ((LPPOINT)rect)+1);
+   ::_001ScreenToClient(get_handle1(), (POINT32 *)rect);
+   ::_001ScreenToClient(get_handle1(), ((POINT32 *)rect)+1);
    if (GetExStyle() & WS_EX_LAYOUTRTL)
    rect::swap_left_right(rect);
    }
 
-   void window::_001ClientToScreen(RECT * prect)
+   void window::_001ClientToScreen(RECT32 * prect)
    {
    ASSERT(::IsWindow(get_handle1()));
-   ::_001ClientToScreen(get_handle1(), (LPPOINT)rect);
-   ::_001ClientToScreen(get_handle1(), ((LPPOINT)rect)+1);
+   ::_001ClientToScreen(get_handle1(), (POINT32 *)rect);
+   ::_001ClientToScreen(get_handle1(), ((POINT32 *)rect)+1);
    if (GetExStyle() & WS_EX_LAYOUTRTL)
    rect::swap_left_right(rect);
    }*/
@@ -4219,7 +4219,7 @@ namespace draw2d_xlib
 
    }
 
-   bool graphics::PolyDraw(const POINT* lpPoints, const BYTE* lpTypes, i32 nCount)
+   bool graphics::PolyDraw(const POINT32* lpPoints, const byte* lpTypes, i32 nCount)
    {
 
       __throw(not_implemented());
@@ -4239,7 +4239,7 @@ namespace draw2d_xlib
 
    }
 
-   bool graphics::PolylineTo(const POINT* lpPoints, i32 nCount)
+   bool graphics::PolylineTo(const POINT32* lpPoints, i32 nCount)
    {
 
       __throw(not_implemented());
@@ -4278,7 +4278,7 @@ namespace draw2d_xlib
 
 //   }
 
-   bool graphics::PolyBezierTo(const POINT* lpPoints, i32 nCount)
+   bool graphics::PolyBezierTo(const POINT32* lpPoints, i32 nCount)
    {
 
       __throw(not_implemented());
@@ -4397,17 +4397,17 @@ namespace draw2d_xlib
             (dynamic_cast<::win::graphics * >(pgraphics))->RestoreDC((i32)(short)pMetaRec->rdParm[0]);
             break;
          case META_SETBKCOLOR:
-            (dynamic_cast<::win::graphics * >(pgraphics))->SetBkColor(*(UNALIGNED COLORREF*)&pMetaRec->rdParm[0]);
+            (dynamic_cast<::win::graphics * >(pgraphics))->SetBkColor(*(UNALIGNED color32_t*)&pMetaRec->rdParm[0]);
             break;
          case META_SETTEXTCOLOR:
-            (dynamic_cast<::win::graphics * >(pgraphics))->SetTextColor(*(UNALIGNED COLORREF*)&pMetaRec->rdParm[0]);
+            (dynamic_cast<::win::graphics * >(pgraphics))->SetTextColor(*(UNALIGNED color32_t*)&pMetaRec->rdParm[0]);
             break;
 
             // need to watch out for SelectObject(HFONT), for custom font mapping
          case META_SELECTOBJECT:
             {
                HGDIOBJ hObject = pHandleTable->objectHandle[pMetaRec->rdParm[0]];
-               UINT nObjType = GetObjectType(hObject);
+               ::u32 nObjType = GetObjectType(hObject);
                if (nObjType == 0)
                {
                   // object type is unknown, determine if it is a font
@@ -4478,7 +4478,7 @@ namespace draw2d_xlib
       return;
 
       /*
-            ASSERT(__is_valid_address(lpSize, sizeof(SIZE)));
+            ASSERT(__is_valid_address(lpSize, sizeof(SIZE32)));
 
             size sizeWinExt = GetWindowExt();
             size sizeVpExt = GetViewportExt();
@@ -4495,7 +4495,7 @@ namespace draw2d_xlib
       return;
 
       /*
-            ASSERT(__is_valid_address(lpSize, sizeof(SIZE)));
+            ASSERT(__is_valid_address(lpSize, sizeof(SIZE32)));
 
             size sizeWinExt = GetWindowExt();
             size sizeVpExt = GetViewportExt();
@@ -4507,7 +4507,7 @@ namespace draw2d_xlib
 
 
 
-   i32 graphics::draw_text(const char * lpszString, i32 nCount, RECT * prect, const ::e_align & ealign, const ::e_draw_text & edrawtext)
+   i32 graphics::draw_text(const char * lpszString, i32 nCount, RECT32 * prect, const ::e_align & ealign, const ::e_draw_text & edrawtext)
    {
       /*if(get_handle1() == nullptr)
          return -1;
@@ -4522,7 +4522,7 @@ namespace draw2d_xlib
    }
 
 
-   i32 graphics::draw_text(const string & str, RECT * prect, const ::e_align & ealign, const ::e_draw_text & edrawtext)
+   i32 graphics::draw_text(const string & str, RECT32 * prect, const ::e_align & ealign, const ::e_draw_text & edrawtext)
    {
 
       //sync_lock ml(&xlib_mutex());
@@ -4620,7 +4620,7 @@ namespace draw2d_xlib
 
    }
 
-   i32 graphics::draw_text_ex(LPTSTR lpszString, i32 nCount, RECT * prect, const ::e_align & ealign, const ::e_draw_text & edrawtext, LPDRAWTEXTPARAMS lpDTParams)
+   i32 graphics::draw_text_ex(LPTSTR lpszString, i32 nCount, RECT32 * prect, const ::e_align & ealign, const ::e_draw_text & edrawtext, LPDRAWTEXTPARAMS lpDTParams)
    {
 
       __throw(not_implemented());
@@ -4637,7 +4637,7 @@ namespace draw2d_xlib
       */
    }
 
-   i32 graphics::draw_text_ex(const string & str, RECT * prect, const ::e_align & ealign, const ::e_draw_text & edrawtext, LPDRAWTEXTPARAMS lpDTParams)
+   i32 graphics::draw_text_ex(const string & str, RECT32 * prect, const ::e_align & ealign, const ::e_draw_text & edrawtext, LPDRAWTEXTPARAMS lpDTParams)
    {
 
       __throw(not_implemented());
@@ -4656,7 +4656,7 @@ namespace draw2d_xlib
 
    /**
     * Computes the text rectangle.
-    * \return CUInt2dRectangle.
+    * \return C::u322dRectangle.
     */
    size graphics::GetTextExtent(const char * lpszString, strsize nCount, i32 iIndex) const
    {
@@ -4916,7 +4916,7 @@ namespace draw2d_xlib
    // IMPLEMENT_DYNAMIC(::draw2d::region, object)
 
 
-   void graphics::FillSolidRect(const ::rect & rect, COLORREF clr)
+   void graphics::FillSolidRect(const ::rect & rect, color32_t clr)
    {
 
       FillSolidRect(rect.left, rect.top, width(rect), height(rect), clr);
@@ -4924,7 +4924,7 @@ namespace draw2d_xlib
    }
 
 
-   void graphics::FillSolidRect(i32 x, i32 y, i32 cx, i32 cy, COLORREF clr)
+   void graphics::FillSolidRect(i32 x, i32 y, i32 cx, i32 cy, color32_t clr)
    {
 
       if(cx <= 0 || cy <= 0)
@@ -5682,7 +5682,7 @@ ok:
       return p;
    }
 
-   bool graphics::set_os_color(COLORREF cr)
+   bool graphics::set_os_color(color32_t cr)
    {
 
       //xlib_set_source_rgba(m_pdc, colorref_get_r_value(cr) / 255.0, colorref_get_g_value(cr) / 255.0, colorref_get_b_value(cr) / 255.0, colorref_get_a_value(cr) / 255.0);

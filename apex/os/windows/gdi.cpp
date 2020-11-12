@@ -37,12 +37,12 @@ CLASS_DECL_APEX HFONT wingdi_CreatePointFontIndirect(LOGFONTW* pLogFont, HDC hdc
    LOGFONTW& logFont = *pLogFont;
 
 
-   POINT point;
+   POINT32 point;
    // 72 points/inch, 10 decipoints/point
    point.y = ::MulDiv(::GetDeviceCaps(hdc, LOGPIXELSY), logFont.lfHeight, 720);
    point.x = 0;
    ::DPtoLP(hdc, &point, 1);
-   POINT pointOrg = { 0, 0 };
+   POINT32 pointOrg = { 0, 0 };
    ::DPtoLP(hdc, &pointOrg, 1);
    logFont.lfHeight = -abs(point.y - pointOrg.y);
 

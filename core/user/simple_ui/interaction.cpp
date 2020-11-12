@@ -46,8 +46,8 @@ namespace simple_ui
 //   void interaction::install_simple_ui_default_mouse_handling(::channel * pchannel)
 //   {
 //      
-//      MESSAGE_LINK(WM_LBUTTONDOWN  , pchannel, this, &interaction::_001OnLButtonDown);
-//      MESSAGE_LINK(WM_LBUTTONUP    , pchannel, this, &interaction::_001OnLButtonUp);
+//      MESSAGE_LINK(e_message_lbutton_down  , pchannel, this, &interaction::_001OnLButtonDown);
+//      MESSAGE_LINK(e_message_lbutton_up    , pchannel, this, &interaction::_001OnLButtonUp);
 //      MESSAGE_LINK(WM_MBUTTONDOWN  , pchannel, this, &interaction::_001OnMButtonDown);
 //      MESSAGE_LINK(WM_MBUTTONUP    , pchannel, this, &interaction::_001OnMButtonUp);
 //      MESSAGE_LINK(e_message_mouse_move    , pchannel, this, &interaction::_001OnMouseMove);
@@ -470,9 +470,9 @@ namespace simple_ui
 //
 //      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 //
-//      COLORREF crOut;
+//      color32_t crOut;
 //
-//      COLORREF crIn;
+//      color32_t crIn;
 //
 //      /*   if (eschema == ::hotplugin::plugin::schema_darker)
 //         {
@@ -565,7 +565,7 @@ namespace simple_ui
 //   }
 //
 //
-//   COLORREF interaction::get_action_hover_border_color()
+//   color32_t interaction::get_action_hover_border_color()
 //   {
 //
 //      return _001GetColor(::user::color_action_hover_border_color);
@@ -619,7 +619,7 @@ namespace simple_ui
 //      int iCount = rectWindow.width();
 //      int jCount = rectWindow.height();
 //
-//      BYTE * point = (BYTE *)m_pimage->get_data();
+//      byte * point = (byte *)m_pimage->get_data();
 //
 //      for (i = 0; i < iCount; i++)
 //      {

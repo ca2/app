@@ -55,23 +55,23 @@
 //
 //      // Loads a cursor resource.
 //      HCURSOR LoadCursor(const char * lpszResourceName) const;
-//      HCURSOR LoadCursor(UINT nIDResource) const;
+//      HCURSOR LoadCursor(::u32 nIDResource) const;
 //
 //      // Loads a stock cursor resource; for for IDC_* values.
 //      HCURSOR LoadStandardCursor(const char * lpszCursorName) const;
 //
 //      // Loads an OEM cursor; for all OCR_* values.
-//      HCURSOR LoadOEMCursor(UINT nIDCursor) const;
+//      HCURSOR LoadOEMCursor(::u32 nIDCursor) const;
 //
 //      // Loads an icon resource.
 //      HICON LoadIcon(const char * lpszResourceName) const;
-//      HICON LoadIcon(UINT nIDResource) const;
+//      HICON LoadIcon(::u32 nIDResource) const;
 //
 //      // Loads an icon resource; for stock IDI_ values.
 //      HICON LoadStandardIcon(const char * lpszIconName) const;
 //
 //      // Loads an OEM icon resource; for all OIC_* values.
-//      HICON LoadOEMIcon(UINT nIDIcon) const;
+//      HICON LoadOEMIcon(::u32 nIDIcon) const;
 //
 //      virtual string get_version();
 //
@@ -125,10 +125,10 @@
 //
 //      /*virtual void construct(__THREADPROC pfnThreadProc, LPVOID pParam);
 //
-//      virtual bool begin(int nPriority = THREAD_PRIORITY_NORMAL, UINT nStackSize = 0,
-//         DWORD dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = nullptr);
+//      virtual bool begin(int nPriority = THREAD_PRIORITY_NORMAL, ::u32 nStackSize = 0,
+//         ::u32 dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = nullptr);
 //
-//      bool CreateThread(DWORD dwCreateFlags = 0, UINT nStackSize = 0,
+//      bool CreateThread(::u32 dwCreateFlags = 0, ::u32 nStackSize = 0,
 //         LPSECURITY_ATTRIBUTES lpSecurityAttrs = nullptr);
 //
 //      virtual iptr get_os_data();
@@ -139,8 +139,8 @@
 //      bool SetThreadPriority(int nPriority);
 //
 //   // Operations
-//      DWORD SuspendThread();
-//      DWORD ResumeThread();
+//      ::u32 SuspendThread();
+//      ::u32 ResumeThread();
 //      bool post_message(::user::interaction * pguie, const ::id & id, WPARAM wParam, LPARAM lParam);
 //
 //      virtual bool PreInitInstance();
@@ -153,13 +153,13 @@
 //      // thread initialization
 //      virtual bool init_application();
 //
-//      virtual ::message::e_prototype GetMessagePrototype(const ::id & id, UINT uiCode);
+//      virtual ::message::e_prototype GetMessagePrototype(const ::id & id, ::u32 uCode);
 //
 //      // running and idle processing
 //      virtual int run();
 //      virtual void pre_translate_message(::message::message * pmessage);
 //      virtual bool pump_message();     // low level message pump
-//      virtual bool on_idle(LONG lCount); // return TRUE if more idle processing
+//      virtual bool on_idle(::i32 lCount); // return TRUE if more idle processing
 //      virtual bool is_idle_message(MSG* pMsg);  // checks for special messages
 //
 //      // thread termination

@@ -25,7 +25,7 @@ namespace datetime
          virtual ~clock();
 
 
-         virtual void GetRect(LPRECT lprect, enum_element eelement);
+         virtual void GetRect(LPRECT32 lprect, enum_element eelement);
 
 
          virtual void set_time(const ::datetime::time& time);

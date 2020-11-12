@@ -31,7 +31,7 @@ namespace user
 
    void form_mesh::install_message_routing(::channel * pchannel)
    {
-      MESSAGE_LINK(WM_KEYDOWN, pchannel, this,&form_mesh::_001OnKeyDown);
+      MESSAGE_LINK(e_message_key_down, pchannel, this,&form_mesh::_001OnKeyDown);
 
       form::install_message_routing(pchannel);
       mesh::install_message_routing(pchannel);
@@ -210,7 +210,7 @@ namespace user
    }
 
 
-   bool form_mesh::_001OnMouseActivate(::user::interaction_impl * pDesktopWnd,UINT nHitTest,const ::id & id,LRESULT & iResult)
+   bool form_mesh::_001OnMouseActivate(::user::interaction_impl * pDesktopWnd,::u32 nHitTest,const ::id & id,LRESULT & iResult)
    {
       UNREFERENCED_PARAMETER(pDesktopWnd);
       UNREFERENCED_PARAMETER(nHitTest);
@@ -488,7 +488,7 @@ namespace user
 
       //_001ScreenToClient(point);
 
-      //if(pmouse->m_id == WM_LBUTTONDOWN)
+      //if(pmouse->m_id == e_message_lbutton_down)
       //{
       //
       //   i32 iItem;
@@ -515,7 +515,7 @@ namespace user
       //}
       //}
       //}
-      //else if(emessage == WM_LBUTTONUP)
+      //else if(emessage == e_message_lbutton_up)
       //{
       //i32 iItem;
       //i32 iSubItem;
@@ -583,7 +583,7 @@ namespace user
    }
 
 
-   void form_mesh::control_get_client_rect(::user::interaction * pinteraction,RECT * prect)
+   void form_mesh::control_get_client_rect(::user::interaction * pinteraction,RECT32 * prect)
 
    {
 
@@ -644,7 +644,7 @@ namespace user
    }
 
 
-   void form_mesh::control_get_window_rect(::user::interaction * pinteraction,RECT * prect)
+   void form_mesh::control_get_window_rect(::user::interaction * pinteraction,RECT32 * prect)
 
    {
       control_get_client_rect(pinteraction,prect);

@@ -28,7 +28,7 @@ namespace zip
 
 
 
-   bool in_file::zip_open(const char * pszFileName,UINT)
+   bool in_file::zip_open(const char * pszFileName,::u32)
    {
 
       m_filea.remove_all();
@@ -324,7 +324,7 @@ namespace zip
    {
       if(m_strFileName.is_empty())
          return false;
-      BYTE buf[1024];
+      byte buf[1024];
       memsize iRead;
       while((iRead = read(buf,sizeof(buf))) > 0)
       {
@@ -337,7 +337,7 @@ namespace zip
    bool in_file::dump(memory & m)
    {
 
-      BYTE buf[1024];
+      byte buf[1024];
 
       memsize iRead;
 
@@ -370,7 +370,7 @@ namespace zip
 
       m_iPosition += iRead;
 
-      return (UINT)iRead;
+      return (::u32)iRead;
    }
 
    void in_file::write(const void * pdata,memsize nCount)
@@ -425,7 +425,7 @@ namespace zip
          i64 iRemain = iNewPos - m_iPosition;
          i64 iGet;
          i32 iRead;
-         BYTE pbBuf[1024];
+         byte pbBuf[1024];
 
          while(iRemain > 0)
          {
@@ -643,12 +643,12 @@ namespace zip
 
       mem.set_size(256 * 1024);
 
-      memsize uiRead;
+      memsize uRead;
 
-      while((uiRead = pfile->read(mem,mem.get_size())) > 0)
+      while((uRead = pfile->read(mem,mem.get_size())) > 0)
       {
 
-         zipWriteInFileInZip(get_zip_file()->m_pfZip,mem.get_data(),(u32)uiRead);
+         zipWriteInFileInZip(get_zip_file()->m_pfZip,mem.get_data(),(u32)uRead);
 
       }
 
@@ -675,7 +675,7 @@ namespace zip
          while(true)
          {
 
-            CHAR szTitle[_MAX_PATH];
+            char szTitle[_MAX_PATH];
 
             unzGetCurrentFileInfo(
             pf,
@@ -734,7 +734,7 @@ namespace zip
          while (true)
          {
 
-            CHAR szTitle[_MAX_PATH];
+            char szTitle[_MAX_PATH];
 
             unzGetCurrentFileInfo(
             pf,

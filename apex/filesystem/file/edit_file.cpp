@@ -27,18 +27,18 @@ namespace file
 
    filesize edit_item_base::get_position(bool bForward) { UNREFERENCED_PARAMETER(bForward); return m_position; };
 
-   BYTE * edit_item_base::get_data() { return nullptr; }
+   byte * edit_item_base::get_data() { return nullptr; }
    enum_edit_item edit_item_base::get_type() { return e_edit_item_undefined; }
    memsize edit_item_base::get_extent() { return 0; }
    memsize edit_item_base::get_file_extent() { return 0; }
-   BYTE * edit_item_base::reverse_get_data() { return nullptr; }
+   byte * edit_item_base::reverse_get_data() { return nullptr; }
    enum_edit_item edit_item_base::reverse_get_type() { return e_edit_item_undefined; }
    memsize edit_item_base::reverse_get_extent() { return 0; }
    memsize edit_item_base::reverse_get_file_extent() { return 0; }
    memsize edit_item_base::get_extent(bool bForward) { return bForward ? get_extent() : reverse_get_extent(); }
    enum_edit_item edit_item_base::get_type(bool bForward) { return bForward ? get_type() : reverse_get_type(); }
    memsize edit_item_base::get_file_extent(bool bForward) { return bForward ? get_file_extent() : reverse_get_file_extent(); }
-   BYTE * edit_item_base::get_data(bool bForward) { return bForward ? get_data() : reverse_get_data(); }
+   byte * edit_item_base::get_data(bool bForward) { return bForward ? get_data() : reverse_get_data(); }
    memsize edit_item_base::get_delta_length()  { return 0; }
 
 
@@ -58,7 +58,7 @@ namespace file
       return m_memstorage.get_size();
    }
 
-   BYTE * delete_item::get_data()
+   byte * delete_item::get_data()
    {
       return nullptr;
    }
@@ -84,7 +84,7 @@ namespace file
    }
 
 
-   BYTE * delete_item::reverse_get_data()
+   byte * delete_item::reverse_get_data()
    {
 
       return m_memstorage.get_data();
@@ -180,7 +180,7 @@ namespace file
       return 0;
    }
 
-   BYTE * insert_item::get_data()
+   byte * insert_item::get_data()
    {
       return m_memstorage.get_data();
    }
@@ -200,7 +200,7 @@ namespace file
       return m_memstorage.get_size();
    }
 
-   BYTE * insert_item::reverse_get_data()
+   byte * insert_item::reverse_get_data()
    {
       return nullptr;
    }
@@ -321,7 +321,7 @@ namespace file
       return get_extent();
    }
 
-   BYTE * edit_item::get_data()
+   byte * edit_item::get_data()
    {
       return m_memstorage.get_data();
    }
@@ -341,7 +341,7 @@ namespace file
       return get_extent();
    }
 
-   BYTE * edit_item::reverse_get_data()
+   byte * edit_item::reverse_get_data()
    {
       return m_memstorageReverse.get_data();
    }
@@ -377,7 +377,7 @@ namespace file
       return 0;
    }
 
-   BYTE * edit_group_item::get_data()
+   byte * edit_group_item::get_data()
    {
       return 0;
    }
@@ -397,7 +397,7 @@ namespace file
       return 0;
    }
 
-   BYTE * edit_group_item::reverse_get_data()
+   byte * edit_group_item::reverse_get_data()
    {
       return 0;
    }
@@ -513,14 +513,14 @@ namespace file
 
       u8 * buf = (u8 *)pdata;
 
-      memsize uiRead = 0;
+      memsize uRead = 0;
 
       memsize uiReadCount = 0;
 
       if(m_position >= m_size)
       {
 
-         return uiRead;
+         return uRead;
 
       }
 
@@ -538,7 +538,7 @@ namespace file
 
       m_bRootDirection = calc_root_direction();
 
-      UINT uiReadItem = 0xffffffff;
+      ::u32 uReadItem = 0xffffffff;
 
       //u64 uiStopSize;
 
@@ -565,7 +565,7 @@ namespace file
 
       bool bRead;
 
-      DWORD dwFileOffset = 0;
+      ::u32 dwFileOffset = 0;
 
       do
       {
@@ -636,18 +636,18 @@ namespace file
 
          }
 
-         buf[uiRead] = b;
+         buf[uRead] = b;
 
          nCount--;
 
-         uiRead++;
+         uRead++;
 
          m_position++;
 
       }
       while(nCount > 0 && m_position < m_size);
 
-      return uiRead;
+      return uRead;
 
    }
 
@@ -889,12 +889,12 @@ namespace file
 
       char buf[4096];
       
-      memsize uiRead;
+      memsize uRead;
       
-      while((uiRead = read(buf, sizeof(buf))) > 0)
+      while((uRead = read(buf, sizeof(buf))) > 0)
       {
          
-         pfile->write(buf, uiRead);
+         pfile->write(buf, uRead);
          
       }
       
@@ -910,12 +910,12 @@ namespace file
       
       string str;
       
-      memsize uiRead;
+      memsize uRead;
       
-      while((uiRead = read(buf,sizeof(buf))) > 0)
+      while((uRead = read(buf,sizeof(buf))) > 0)
       {
          
-         buf[uiRead] = '\0';
+         buf[uRead] = '\0';
          
          str = buf;
          

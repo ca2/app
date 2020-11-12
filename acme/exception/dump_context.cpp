@@ -136,7 +136,7 @@ void dump_context::write(const char * psz)
 
       char szBuffer[512];
 
-      LPSTR pdata = szBuffer;
+      char * pdata = szBuffer;
 
       while (*psz != '\0')
       {
@@ -192,12 +192,12 @@ void dump_context::write(char i)
 }
 
 
-void dump_context::write(u8 ui)
+void dump_context::write(u8 u)
 {
 
    string str;
 
-   str.Format("%u", (i32) ui);
+   str.Format("%u", (i32) u);
 
    output_string(str);
 
@@ -220,12 +220,12 @@ void dump_context::write(i16 i)
 }
 
 
-void dump_context::write(u16 ui)
+void dump_context::write(u16 u)
 {
 
    string str;
 
-   str.Format("%u", (u16) ui);
+   str.Format("%u", (u16) u);
 
    output_string(str);
 
@@ -248,12 +248,12 @@ void dump_context::write(i32 i)
 }
 
 
-void dump_context::write(u32 ui)
+void dump_context::write(u32 u)
 {
 
    string str;
 
-   str.Format("%u", ui);
+   str.Format("%u", u);
 
    output_string(str);
 
@@ -276,12 +276,12 @@ void dump_context::write(i64 i)
 }
 
 
-void dump_context::write(u64 ui)
+void dump_context::write(u64 u)
 {
 
    string str;
 
-   str.Format("%l64u", ui);
+   str.Format("%l64u", u);
 
    output_string(str);
 
@@ -304,12 +304,12 @@ void dump_context::hex_dump(i8 i)
 }
 
 
-void dump_context::hex_dump(u8 ui)
+void dump_context::hex_dump(u8 u)
 {
 
    string str;
 
-   str.Format("0x%02x", (u32)ui);
+   str.Format("0x%02x", (u32)u);
 
    output_string(str);
 
@@ -332,12 +332,12 @@ void dump_context::hex_dump(i16 i)
 }
 
 
-void dump_context::hex_dump(u16 ui)
+void dump_context::hex_dump(u16 u)
 {
 
    string str;
 
-   str.Format("0x%04x", (u32) ui);
+   str.Format("0x%04x", (u32) u);
 
    output_string(str);
 
@@ -360,12 +360,12 @@ void dump_context::hex_dump(i32 i)
 }
 
 
-void dump_context::hex_dump(u32 ui)
+void dump_context::hex_dump(u32 u)
 {
 
    string str;
 
-   str.Format("0x%08x", ui);
+   str.Format("0x%08x", u);
 
    output_string(str);
 
@@ -388,12 +388,12 @@ void dump_context::hex_dump(i64 i)
 }
 
 
-void dump_context::hex_dump(u64 ui)
+void dump_context::hex_dump(u64 u)
 {
 
    string str;
 
-   str.Format("0x%016l64x", ui);
+   str.Format("0x%016l64x", u);
 
    output_string(str);
 
@@ -497,7 +497,7 @@ void dump_context::write(HFONT h)
 /////////////////////////////////////////////////////////////////////////////
 // Formatted output
 
-void dump_context::hex_dump(const char * pszLine, BYTE* pby, i32 nBytes, i32 nWidth)
+void dump_context::hex_dump(const char * pszLine, byte* pby, i32 nBytes, i32 nWidth)
 // do a simple hex-dump (8 per line) to a dump_context
 //  the "pszLine" is a string to print at the start of each line
 //    (%lx should be used to expand the current address)

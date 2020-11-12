@@ -75,12 +75,12 @@ namespace user
       bool InsertPaneAt(index iIndex, ::user::interaction * puserinteraction, bool bFixedSize, id idPane = id());
       bool SetPane(index iIndex, ::user::interaction* puserinteraction, bool bFixedSize, id idPane = id());
       bool RemovePaneAt(index iIndex);
-      void SetPaneFixedSize(index iIndex, SIZE * pSize);
-      void CalcSplitBarRect(index iIndex, RECT * prect);
+      void SetPaneFixedSize(index iIndex, SIZE32 * pSize);
+      void CalcSplitBarRect(index iIndex, RECT32 * prect);
 
-      void CalcPaneRect(i32 nMinPos, i32 nMaxPos, RECT * prect);
+      void CalcPaneRect(i32 nMinPos, i32 nMaxPos, RECT32 * prect);
 
-      void CalcPaneRect(index iIndex, RECT * prect);
+      void CalcPaneRect(index iIndex, RECT32 * prect);
 
 
       virtual __pointer(::user::interaction) get_pane_window(index iPane);

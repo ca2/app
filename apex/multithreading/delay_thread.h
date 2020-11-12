@@ -7,9 +7,9 @@ class delay_thread :
 
 public:
 
-   DWORD       m_dwSleep;
+   ::u32       m_dwSleep;
 
-   delay_thread(::object * pobject, DWORD dwSleep = 1000) :
+   delay_thread(::object * pobject, ::u32 dwSleep = 1000) :
       ::object(pobject)
    {
 
@@ -24,7 +24,7 @@ public:
       while (true)
       {
 
-         DWORD dwSleep = m_dwSleep;
+         ::u32 dwSleep = m_dwSleep;
 
          if (dwSleep == 0)
          {
@@ -67,7 +67,7 @@ public:
    PRED &      m_pred;
    
    
-   pred_delay_thread(::object * pobject, PRED pred, DWORD dwSleep = 1000) :
+   pred_delay_thread(::object * pobject, PRED pred, ::u32 dwSleep = 1000) :
       m_pred(pred),
       ::object(pobject),
       delay_thread(pobject, dwSleep)

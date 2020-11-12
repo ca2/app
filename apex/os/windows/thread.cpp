@@ -126,7 +126,7 @@ bool __os_init_thread()
 // CLASS_DECL_ACME void * thread_get_data(u32 uiIndex)
 // {
 
-//    return (void *) TlsGetValue((DWORD) uiIndex);
+//    return (void *) TlsGetValue((::u32) uiIndex);
 
 // }
 
@@ -134,7 +134,7 @@ bool __os_init_thread()
 // CLASS_DECL_ACME i32 thread_set_data(u32 uiIndex, void * pvalue)
 // {
 
-//    return TlsSetValue((DWORD)uiIndex, (LPVOID) pvalue);
+//    return TlsSetValue((::u32)uiIndex, (LPVOID) pvalue);
 
 // }
 
@@ -142,7 +142,7 @@ bool __os_init_thread()
 // CLASS_DECL_ACME int_bool thread_free(u32 uiIndex)
 // {
 
-//    return TlsFree((DWORD) uiIndex);
+//    return TlsFree((::u32) uiIndex);
 
 // }
 
@@ -212,7 +212,7 @@ bool __os_term_thread()
 CLASS_DECL_APEX void main_branch(matter * pmatter, e_priority epriority)
 {
 
-   System.sync_pred(pmatter);
+   System.sync_procedure(pmatter);
 
 }
 

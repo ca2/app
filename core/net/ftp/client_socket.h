@@ -174,7 +174,7 @@ namespace ftp
       int _abort();
       int system();
       int Noop();
-      int RepresentationType(const representation& repType, DWORD dwSize = 0);
+      int RepresentationType(const representation& repType, ::u32 dwSize = 0);
       int FileStructure(const structure& crStructure);
       int TransferMode(const transfer_mode& crTransferMode);
       int Allocate(int iReserveBytes, const int* piMaxPageOrRecordSize = nullptr);
@@ -184,21 +184,21 @@ namespace ftp
       int Help(const string& strTopic);
 
       int Reinitialize();
-      int Restart(DWORD dwPosition);
+      int Restart(::u32 dwPosition);
 
       int FileSize(const string& strPath, long& lSize);
       int FileModificationTime(const string& strPath, tm& tmModificationTime);
       int FileModificationTime(const string& strPath, string& strModificationTime);
 
       bool ExecuteDatachannelCommand(const command& crDatachannelCmd, const string& strPath, const representation& representation,
-                                     bool fPasv, DWORD dwByteOffset, itransfer_notification& Observer);
+                                     bool fPasv, ::u32 dwByteOffset, itransfer_notification& Observer);
 
       observer_array& GetObservers();
 
-      int _RepresentationType(const representation& repType, DWORD dwSize = 0);
+      int _RepresentationType(const representation& repType, ::u32 dwSize = 0);
       bool TransferData(const command& crDatachannelCmd, itransfer_notification& Observer, ::sockets::transfer_socket & sckDataConnection);
-      bool OpenActiveDataConnection(::sockets::socket & sckDataConnection, const command& crDatachannelCmd, const string& strPath, DWORD dwByteOffset);
-      bool OpenPassiveDataConnection(::sockets::socket & sckDataConnection, const command& crDatachannelCmd, const string& strPath, DWORD dwByteOffset);
+      bool OpenActiveDataConnection(::sockets::socket & sckDataConnection, const command& crDatachannelCmd, const string& strPath, ::u32 dwByteOffset);
+      bool OpenPassiveDataConnection(::sockets::socket & sckDataConnection, const command& crDatachannelCmd, const string& strPath, ::u32 dwByteOffset);
       bool SendData(itransfer_notification& Observer, ::sockets::transfer_socket& sckDataConnection);
       bool ReceiveData(itransfer_notification& Observer, ::sockets::transfer_socket& sckDataConnection);
 
@@ -213,7 +213,7 @@ namespace ftp
       bool OpenControlChannel(const string& strServerHost, WINUSHORT ushServerPort = DEFAULT_FTP_PORT);
       void CloseControlChannel();
 
-      void ReportError(const string& strErrorMsg, const string& strFile, DWORD dwLineNr);
+      void ReportError(const string& strErrorMsg, const string& strFile, ::u32 dwLineNr);
       bool GetIpAddressFromResponse(const string& strResponse, WINULONG& ulIpAddress, WINUSHORT& ushPort);
 
    };
@@ -227,7 +227,7 @@ namespace ftp
    {
    public:
       virtual ~notification() {}
-      virtual void OnInternalError(const string& /*strErrorMsg*/, const string& /*strFileName*/, DWORD /*dwLineNr*/) {}
+      virtual void OnInternalError(const string& /*strErrorMsg*/, const string& /*strFileName*/, ::u32 /*dwLineNr*/) {}
 
       virtual void OnBeginReceivingData() {}
       virtual void OnEndReceivingData(long /*lReceivedBytes*/) {}

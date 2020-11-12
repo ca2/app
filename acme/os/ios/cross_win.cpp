@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-//DWORD get_last_error()
+//::u32 get_last_error()
 //{
 //   
 //   return ::get_task()->value("last_error").u32();
@@ -9,7 +9,7 @@
 //}
 //
 //   
-//void set_last_error(DWORD uLastError)
+//void set_last_error(::u32 uLastError)
 //{
 //   
 //   ::get_task()->value("last_error") = uLastError;
@@ -20,7 +20,7 @@
 
 //
 //
-//void Sleep(DWORD dwMillis)
+//void Sleep(::u32 dwMillis)
 //{
 //    
 //    timespec ts;

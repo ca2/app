@@ -49,9 +49,9 @@ namespace draw2d
 
       virtual bool CreatePatternBrush(::image * pimage);
 #ifdef WINDOWS
-      virtual bool CreateDIBPatternBrush(HGLOBAL hPackedDIB, UINT nUsage);
+      virtual bool CreateDIBPatternBrush(HGLOBAL hPackedDIB, ::u32 nUsage);
 #endif
-      virtual bool CreateDIBPatternBrush(const void * pPackedDIB, UINT nUsage);
+      virtual bool CreateDIBPatternBrush(const void * pPackedDIB, ::u32 nUsage);
 
       virtual bool CreateSysColorBrush(i32 nIndex);
 
@@ -94,7 +94,7 @@ namespace draw2d
    //   }
 
    //   // create_solid
-   //   brush_pointer(const ::allocer & allocer, COLORREF crColor) :
+   //   brush_pointer(const ::allocer & allocer, color32_t crColor) :
    //      pointer < brush > (allocer)
    //   {
    //      m_p->create_solid(crColor);
@@ -102,7 +102,7 @@ namespace draw2d
 
    //   /*
    //         // CreateHatchBrush
-   //         brush_pointer(::object * pobject, i32 nIndex, COLORREF crColor) :
+   //         brush_pointer(::object * pobject, i32 nIndex, color32_t crColor) :
    //            pointer < brush > (pobject)
    //         {
    //            m_p->construct(nIndex, crColor);

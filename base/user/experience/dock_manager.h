@@ -35,7 +35,7 @@ namespace experience
       bool _001OnLButtonDown(::message::mouse * pmouse);
       bool _001OnMouseMove(::message::mouse * pmouse);
       bool _001OnLButtonUp(::message::mouse * pmouse);
-      bool _001OnTimer(UINT uEvent);
+      bool _001OnTimer(::u32 uEvent);
 
       bool dock_window(::message::mouse* pmouse);
 

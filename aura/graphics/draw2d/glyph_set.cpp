@@ -17,7 +17,7 @@ namespace draw2d
    }
 
 
-   glyph * glyph_set::GetGlyph(UINT user)
+   glyph * glyph_set::GetGlyph(::u32 user)
    {
 
       index i = find_first(user);
@@ -38,7 +38,7 @@ namespace draw2d
    }
 
 
-   index glyph_set::find_first(UINT user)
+   index glyph_set::find_first(::u32 user)
    {
 
       index iLoBound = 0;

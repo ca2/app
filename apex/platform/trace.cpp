@@ -142,7 +142,7 @@ struct MAP_WM_MESSAGE
 {
 
 
-   UINT              nMsg;
+   ::u32              nMsg;
    const char *      pszMsg;
 
 
@@ -167,7 +167,7 @@ static const MAP_WM_MESSAGE allMessagesArray[] =
    DEFINE_MESSAGE(WM_GETTEXT),
    DEFINE_MESSAGE(WM_GETTEXTLENGTH),
    DEFINE_MESSAGE(WM_PAINT),
-   DEFINE_MESSAGE(WM_CLOSE),
+   DEFINE_MESSAGE(e_message_close),
    DEFINE_MESSAGE(WM_QUERYENDSESSION),
    DEFINE_MESSAGE(e_message_quit),
    DEFINE_MESSAGE(WM_QUERYOPEN),
@@ -224,15 +224,15 @@ static const MAP_WM_MESSAGE allMessagesArray[] =
    DEFINE_MESSAGE(WM_NCMBUTTONDOWN),
    DEFINE_MESSAGE(WM_NCMBUTTONUP),
    DEFINE_MESSAGE(WM_NCMBUTTONDBLCLK),
-   DEFINE_MESSAGE(WM_KEYDOWN),
-   DEFINE_MESSAGE(WM_KEYUP),
-   DEFINE_MESSAGE(WM_CHAR),
-   DEFINE_MESSAGE(WM_DEADCHAR),
-   DEFINE_MESSAGE(WM_SYSKEYDOWN),
-   DEFINE_MESSAGE(WM_SYSKEYUP),
-   DEFINE_MESSAGE(WM_SYSCHAR),
-   DEFINE_MESSAGE(WM_SYSDEADCHAR),
-   DEFINE_MESSAGE(WM_KEYLAST),
+   DEFINE_MESSAGE(e_message_key_down),
+   DEFINE_MESSAGE(e_message_key_up),
+   DEFINE_MESSAGE(e_message_char),
+   DEFINE_MESSAGE(e_message_dead_char),
+   DEFINE_MESSAGE(e_message_sys_key_down),
+   DEFINE_MESSAGE(e_message_sys_key_up),
+   DEFINE_MESSAGE(e_message_sys_char),
+   DEFINE_MESSAGE(e_message_sys_dead_char),
+   DEFINE_MESSAGE(e_message_key_last),
    DEFINE_MESSAGE(WM_INITDIALOG),
    DEFINE_MESSAGE(WM_COMMAND),
    DEFINE_MESSAGE(WM_SYSCOMMAND),
@@ -244,13 +244,13 @@ static const MAP_WM_MESSAGE allMessagesArray[] =
    DEFINE_MESSAGE(WM_MENUSELECT),
    DEFINE_MESSAGE(WM_MENUCHAR),
    DEFINE_MESSAGE(WM_ENTERIDLE),
-   DEFINE_MESSAGE(WM_MOUSEWHEEL),
+   DEFINE_MESSAGE(e_message_mouse_wheel),
    DEFINE_MESSAGE(e_message_mouse_move),
-   DEFINE_MESSAGE(WM_LBUTTONDOWN),
-   DEFINE_MESSAGE(WM_LBUTTONUP),
+   DEFINE_MESSAGE(e_message_lbutton_down),
+   DEFINE_MESSAGE(e_message_lbutton_up),
    DEFINE_MESSAGE(WM_LBUTTONDBLCLK),
-   DEFINE_MESSAGE(WM_RBUTTONDOWN),
-   DEFINE_MESSAGE(WM_RBUTTONUP),
+   DEFINE_MESSAGE(e_message_rbutton_down),
+   DEFINE_MESSAGE(e_message_rbutton_up),
    DEFINE_MESSAGE(WM_RBUTTONDBLCLK),
    DEFINE_MESSAGE(WM_MBUTTONDOWN),
    DEFINE_MESSAGE(WM_MBUTTONUP),
@@ -336,7 +336,7 @@ static const MAP_WM_MESSAGE allMessagesArray[] =
 };
 
 
-CLASS_DECL_APEX const char *  get_windows_message_name(UINT nMsg)
+CLASS_DECL_APEX const char *  get_windows_message_name(::u32 nMsg)
 {
 
    MAP_WM_MESSAGE * pmessage = (MAP_WM_MESSAGE *) allMessagesArray;

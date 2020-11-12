@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-BYTE OriginalBytes[5] = {0};
+byte OriginalBytes[5] = {0};
 
 
 

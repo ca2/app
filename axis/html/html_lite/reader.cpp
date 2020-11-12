@@ -140,7 +140,7 @@ strsize lite_html_reader::parseDocument()
    string   strT;               // temporary storage
    strsize   dwCharDataStart = 0L;   // starting position of character data
    strsize   dwCharDataLen = 0L;      // length of character data
-   LONG   lTemp = 0L;            // temporary storage
+   ::i32   lTemp = 0L;            // temporary storage
    char   ch = 0;               // character at current buffer position
    lite_html_tag   oTag;         // tag information
 
@@ -648,7 +648,7 @@ bool lite_html_reader::isWhiteSpace(char ch) const
 bool lite_html_reader::parseTag(lite_html_tag &rTag, bool &bIsOpeningTag, bool &bIsClosingTag)
 {
 
-   UINT nRetVal = rTag.parseFromStr(this, m_strBuffer, m_dwBufPos, bIsOpeningTag, bIsClosingTag);
+   ::u32 nRetVal = rTag.parseFromStr(this, m_strBuffer, m_dwBufPos, bIsOpeningTag, bIsClosingTag);
 
    if(!nRetVal)
       return false;

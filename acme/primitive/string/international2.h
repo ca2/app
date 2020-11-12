@@ -13,27 +13,27 @@ namespace str
   //    void CLASS_DECL_ACME utf8_to_unicode(string_array & stra, string_array & stra);
 
 
-      bool CLASS_DECL_ACME UnicodeToMultiByte(UINT uiCodePage, memory & str, const widechar * pcsz);
+      bool CLASS_DECL_ACME UnicodeToMultiByte(::u32 uCodePage, memory & str, const widechar * pcsz);
 
 
-      bool CLASS_DECL_ACME MultiByteToMultiByte(UINT uiCodePageDest, memory & str, UINT uiCodePageSrc, const char * pcsz);
+      bool CLASS_DECL_ACME MultiByteToMultiByte(::u32 uCodePageDest, memory & str, ::u32 uCodePageSrc, const char * pcsz);
 
-      bool CLASS_DECL_ACME MultiByteToMultiByte(UINT uiCodePageDest, memory & str, UINT uiCodePageSrc, const char * pcsz, strsize nCount);
-
-
-      bool CLASS_DECL_ACME multibyte_to_utf8(UINT uiCodePageSrc, memory & str, const char * pcsz);
-
-      bool CLASS_DECL_ACME multibyte_to_utf8(UINT uiCodePageSrc, memory & str, const char * pcsz, strsize nCount);
+      bool CLASS_DECL_ACME MultiByteToMultiByte(::u32 uCodePageDest, memory & str, ::u32 uCodePageSrc, const char * pcsz, strsize nCount);
 
 
-//      bool CLASS_DECL_ACME OEMToMultiByte(UINT uiCodePage, memory & str, const char * pcsz);
+      bool CLASS_DECL_ACME multibyte_to_utf8(::u32 uCodePageSrc, memory & str, const char * pcsz);
 
-//      bool CLASS_DECL_ACME OEMToMultiByte(UINT uiCodePage, memory & str, const char * pcsz, strsize nCount);
+      bool CLASS_DECL_ACME multibyte_to_utf8(::u32 uCodePageSrc, memory & str, const char * pcsz, strsize nCount);
 
 
-      bool CLASS_DECL_ACME utf8_to_multibyte(UINT uiCodePage, memory & str, const char * pcsz);
+//      bool CLASS_DECL_ACME OEMToMultiByte(::u32 uCodePage, memory & str, const char * pcsz);
 
-      bool CLASS_DECL_ACME utf8_to_multibyte(UINT uiCodePage, memory & str, const char * pcsz, strsize nCount);
+//      bool CLASS_DECL_ACME OEMToMultiByte(::u32 uCodePage, memory & str, const char * pcsz, strsize nCount);
+
+
+      bool CLASS_DECL_ACME utf8_to_multibyte(::u32 uCodePage, memory & str, const char * pcsz);
+
+      bool CLASS_DECL_ACME utf8_to_multibyte(::u32 uCodePage, memory & str, const char * pcsz, strsize nCount);
 
 
 //      bool CLASS_DECL_ACME OemToUtf8(memory & str, const char * pcsz);
@@ -61,18 +61,23 @@ namespace str
          }
       }*/
 
-      inline bool multibyte_to_utf8(UINT uiCodePageSrc, memory & str, const char * pcsz)
-
+      inline bool multibyte_to_utf8(::u32 uCodePageSrc, memory & str, const char * pcsz)
       {
-         return MultiByteToMultiByte(CP_UTF8, str, uiCodePageSrc, pcsz);
+#ifdef WINDOWS
+         return MultiByteToMultiByte(CP_UTF8, str, uCodePageSrc, pcsz);
+#else
+         __throw(todo("multibyte"));
+#endif
 
       }
 
-      inline bool multibyte_to_utf8(UINT uiCodePageSrc, memory & str, const char * pcsz, strsize nCount)
-
+      inline bool multibyte_to_utf8(::u32 uCodePageSrc, memory & str, const char * pcsz, strsize nCount)
       {
-         return MultiByteToMultiByte(CP_UTF8, str, uiCodePageSrc, pcsz, nCount);
-
+#ifdef WINDOWS
+return MultiByteToMultiByte(CP_UTF8, str, uCodePageSrc, pcsz, nCount);
+#else
+         __throw(todo("multibyte"));
+#endif
       }
 
       //inline bool OemToUtf8(memory & str, const char * pcsz)
@@ -89,17 +94,17 @@ namespace str
 
       //}
 
-      inline bool utf8_to_multibyte(UINT uiCodePage, memory & str, const char * pcsz)
+      inline bool utf8_to_multibyte(::u32 uCodePage, memory & str, const char * pcsz)
 
       {
-         return MultiByteToMultiByte(CodePageUtf8, str, uiCodePage, pcsz);
+         return MultiByteToMultiByte(CodePageUtf8, str, uCodePage, pcsz);
 
       }
 
-      inline bool utf8_to_multibyte(UINT uiCodePage, memory & str, const char * pcsz, strsize nCount)
+      inline bool utf8_to_multibyte(::u32 uCodePage, memory & str, const char * pcsz, strsize nCount)
 
       {
-         return MultiByteToMultiByte(CodePageUtf8, str, uiCodePage, pcsz, nCount);
+         return MultiByteToMultiByte(CodePageUtf8, str, uCodePage, pcsz, nCount);
 
       }
 

@@ -6,6 +6,25 @@ natural_meta_data < string_meta_data < wd16char > > * g_pwd16stringNil = nullptr
 natural_meta_data < string_meta_data < wd32char > > * g_pwd32stringNil = nullptr;
 
 
+
+
+
+template < >
+CLASS_DECL_ACME natural_meta_data < string_meta_data < wd16char > > * __nil < natural_meta_data < string_meta_data < wd16char > > >()
+{
+
+    return g_pwd16stringNil;
+
+}
+
+template < >
+CLASS_DECL_ACME natural_meta_data < string_meta_data < wd32char > > * __nil < natural_meta_data < string_meta_data < wd32char > > >()
+{
+
+    return g_pwd32stringNil;
+
+}
+
 //const unichar * wstring::g_pszWindowsBBQBUNC(L"\\\\?\\UNC");
 //const unichar * wstring::g_pszWindowsBBQB(L"\\\\?\\");
 //const unichar * wstring::g_pszWindowsBB(L"\\\\");

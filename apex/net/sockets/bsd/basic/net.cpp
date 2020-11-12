@@ -844,7 +844,7 @@ bool net::convert(struct in6_addr & sa, const string & host, i32 ai_flags)
       struct addrinfo *ai = res;
       int iSaSize = sizeof(sockaddr_in6);
       //char ipstringbuffer[46];
-      DWORD ipbufferlength = 46;
+      ::u32 ipbufferlength = 46;
       while (ai)
       {
          // The buffer length is changed by each call to WSAAddresstoString

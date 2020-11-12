@@ -12,7 +12,7 @@ public:
    tick                          m_tick;
    index                         m_iFrame;
    ::draw2d::e_disposal          m_edisposal;
-   COLORREF                      m_crTransparent;
+   color32_t                      m_crTransparent;
    bool                          m_bTransparent;
    bool                          m_bLocalPalette;
 

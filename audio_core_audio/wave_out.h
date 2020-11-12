@@ -16,7 +16,7 @@ namespace multimedia
       public:
 
 
-         UInt32                                    m_NumPacketsToRead;
+         ::u32                                    m_NumPacketsToRead;
          array < AudioStreamPacketDescription * >  m_PacketDescs;
          bool                                      m_bDone;
          iptr                                   m_iBufferCount;

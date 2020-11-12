@@ -35,8 +35,8 @@ namespace experience
       point                                m_pointWindowIcon;
       point                                m_pointMoveGripMinimal;
 
-      COLORREF                             m_crMoveableBorder;
-      COLORREF                             m_crMoveableBorderShadow;
+      color32_t                             m_crMoveableBorder;
+      color32_t                             m_crMoveableBorderShadow;
 
 
       ::experience::experience *           m_pexperience;
@@ -95,18 +95,18 @@ namespace experience
 
 
 
-      virtual bool get_window_client_rect(RECT * prect);
+      virtual bool get_window_client_rect(RECT32 * prect);
 
-      virtual bool get_draw_client_rect(RECT * prect);
-
-
-      virtual void calc_window_client_rect(RECT * prect, const rect & lprectWindow);
+      virtual bool get_draw_client_rect(RECT32 * prect);
 
 
-      virtual bool get_element_rect(RECT * prect, e_element eelement);
+      virtual void calc_window_client_rect(RECT32 * prect, const rect & lprectWindow);
 
 
-      virtual void get_parent_rect(RECT * prect);
+      virtual bool get_element_rect(RECT32 * prect, e_element eelement);
+
+
+      virtual void get_parent_rect(RECT32 * prect);
 
       virtual rect * get_control_box_rect();
       virtual rect * get_control_box_margin_rect();
@@ -137,14 +137,14 @@ namespace experience
       virtual size GetMinSize();
 
       virtual void OnActivate();
-      virtual void OnNcCalcSize(RECT * prect);
+      virtual void OnNcCalcSize(RECT32 * prect);
 
       //virtual void _001OnBeforeSize(const ::rect & rectWindow);
 
       virtual e_hittest _001HitTest(const ::point & point);
 
 
-      virtual COLORREF get_border_main_body_color();
+      virtual color32_t get_border_main_body_color();
 
       virtual bool _001OnLButtonDown(::message::mouse * pmouse);
       virtual bool _001OnLButtonUp(::message::mouse * pmouse);
@@ -153,8 +153,8 @@ namespace experience
       virtual bool _001OnNcLButtonUp(::message::mouse * pmouse);
       virtual bool _001OnNcMouseMove(::message::mouse * pmouse);
       virtual bool _001OnNcHitTest(const ::point & point, LRESULT & nHitTest);
-      virtual bool _001OnTimer(UINT uEvent);
-      //virtual bool _001OnSize(UINT nType, i32 cx, i32 cy);
+      virtual bool _001OnTimer(::u32 uEvent);
+      //virtual bool _001OnSize(::u32 nType, i32 cx, i32 cy);
       //virtual bool _001OnMove(i32 x, i32 y);
       virtual bool _001OnCommand(WPARAM wparam, LPARAM lparam, LRESULT & lresult);
 

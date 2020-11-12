@@ -76,9 +76,9 @@ public:
    //virtual void OnUpdateHover();
    void SetItemImage(index iItem, index iImage);
    void GetButtonText(index i, string & str);
-   void SetButtonStyle(index nIndex, UINT nStyle);
-   UINT GetButtonStyle(index iButton);
-   bool SetItemStyle(index iItem, BYTE bStyle);
+   void SetButtonStyle(index nIndex, ::u32 nStyle);
+   ::u32 GetButtonStyle(index iButton);
+   bool SetItemStyle(index iItem, byte bStyle);
    index GetItemStyle(index iItem);
    void _001SetImageList(__pointer(::image_list) imagelist);
    void _001DiscardImageList();
@@ -97,21 +97,21 @@ public:
    /*
       bool LoadToolBar(const char * pszResourceName);
 
-      bool LoadToolBar(UINT nIDResource);
+      bool LoadToolBar(::u32 nIDResource);
       bool LoadBitmap(const char * pszResourceName);
 
-      bool LoadBitmap(UINT nIDResource);
+      bool LoadBitmap(::u32 nIDResource);
    */
 
-//  virtual bool _001GetItemRect(index iItem,RECT * prect)
+//  virtual bool _001GetItemRect(index iItem,RECT32 * prect)
 
-   virtual bool _001GetElementRect(index iItem,RECT * prect, ::user::e_element eelement,
+   virtual bool _001GetElementRect(index iItem,RECT32 * prect, ::user::e_element eelement,
                                    ::user::estate estate) override;
 
 
 
 
-//   bool SetButtons(const UINT* pIDArray, index nIDCount);
+//   bool SetButtons(const ::u32* pIDArray, index nIDCount);
 
    void SetSizes(const ::size & sizeButton, const ::size & sizeImage);
 

@@ -7,7 +7,7 @@
 #undef Session
 
 
-CLASS_DECL_CORE bool __initialize(bool bDLL, DWORD dwVersion);
+CLASS_DECL_CORE bool __initialize(bool bDLL, ::u32 dwVersion);
 
 CLASS_DECL_CORE uptr keycode_to_char(uptr n);
 

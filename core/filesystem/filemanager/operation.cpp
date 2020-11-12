@@ -284,12 +284,12 @@ namespace filemanager
       {
          if(m_iFile >= m_stra.get_size())
             return false;
-         memsize uiRead = m_fileSrc->read(m_pchBuffer,m_iBufferSize);
-         if(uiRead > 0)
+         memsize uRead = m_fileSrc->read(m_pchBuffer,m_iBufferSize);
+         if(uRead > 0)
          {
-            m_fileDst->write(m_pchBuffer,uiRead);
-            m_daRead[m_iFile] += uiRead;
-            m_dRead += uiRead;
+            m_fileDst->write(m_pchBuffer,uRead);
+            m_daRead[m_iFile] += uRead;
+            m_dRead += uRead;
          }
          else
          {
@@ -396,15 +396,15 @@ namespace filemanager
          if(m_iFile >= m_stra.get_size())
             return false;
 
-         memsize uiRead = m_fileSrc->read(m_pchBuffer,m_iBufferSize);
+         memsize uRead = m_fileSrc->read(m_pchBuffer,m_iBufferSize);
 
-         m_fileDst->write(m_pchBuffer,uiRead);
+         m_fileDst->write(m_pchBuffer,uRead);
 
-         m_daRead[m_iFile] += uiRead;
+         m_daRead[m_iFile] += uRead;
 
-         m_dRead += uiRead;
+         m_dRead += uRead;
 
-         if(uiRead == 0)
+         if(uRead == 0)
          {
 
             m_fileSrc->close();

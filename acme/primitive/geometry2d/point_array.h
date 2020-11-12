@@ -129,8 +129,8 @@ void point_array_base < POINT_TYPE >::rotate(double dAngle)
    {
       x = this->element_at(i).x;
       y = this->element_at(i).y;
-      this->element_at(i).x = (LONG)(x * dCos - y * dSin);
-      this->element_at(i).y = (LONG)(x * dSin + y * dCos);
+      this->element_at(i).x = (::i32)(x * dCos - y * dSin);
+      this->element_at(i).y = (::i32)(x * dSin + y * dCos);
    }
 
 }
@@ -198,8 +198,8 @@ void point_array_base < POINT_TYPE >::rotate(double dAngle, POINT_TYPE pointCent
       this->element_at(i) -= pointCenter;
       x = this->element_at(i).x;
       y = this->element_at(i).y;
-      this->element_at(i).x = (LONG)(x * dCos - y * dSin);
-      this->element_at(i).y = (LONG)(x * dSin + y * dCos);
+      this->element_at(i).x = (::i32)(x * dCos - y * dSin);
+      this->element_at(i).y = (::i32)(x * dSin + y * dCos);
       this->element_at(i) += pointCenter;
    }
 

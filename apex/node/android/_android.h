@@ -7,7 +7,7 @@ CLASS_DECL_APEX::estatus os_shell_initialize();
 //#include "apex/node/ansios/ansios.h"
 
 
-string get_error_message(DWORD dwError);
+string get_error_message(::u32 dwError);
 
 ::apex::application* win_instantiate_application(::apex::application* pappSystem, const char* pszId);
 
@@ -43,22 +43,22 @@ CLASS_DECL_APEX void __cdecl __pre_translate_message(::message::message* pmessag
 int_bool PeekMessage(
    LPMESSAGE lpMsg,
    oswindow hWnd,
-   UINT wMsgFilterMin,
-   UINT wMsgFilterMax,
-   UINT wRemoveMsg);
+   ::u32 wMsgFilterMin,
+   ::u32 wMsgFilterMax,
+   ::u32 wRemoveMsg);
 
 int_bool GetMessage(
    LPMESSAGE lpMsg,
    oswindow hWnd,
-   UINT wMsgFilterMin,
-   UINT wMsgFilterMax);
+   ::u32 wMsgFilterMin,
+   ::u32 wMsgFilterMax);
 
 
 
 i32 CLASS_DECL_APEX __android_main(i32 argc, char* argv[]);
 
 
-CLASS_DECL_APEX void vfxThrowFileException(::object* pobject, const ::estatus& estatus, LONG lOsError, const char* lpszFileName = nullptr);
+CLASS_DECL_APEX void vfxThrowFileException(::object* pobject, const ::estatus& estatus, ::i32 lOsError, const char* lpszFileName = nullptr);
 
 
 #include "internal.h"

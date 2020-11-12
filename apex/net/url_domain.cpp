@@ -45,7 +45,7 @@ void url_domain_axis::create(const char * pszServerName)
       psz += 4;
       m_iCount--;
    }
-   const char * pszEnd = ((LPCSTR) m_strOriginalName) + m_strOriginalName.get_length();
+   const char * pszEnd = ((const char *) m_strOriginalName) + m_strOriginalName.get_length();
    m_pszTopLevel = pszEnd;
    while(m_pszTopLevel > psz && *m_pszTopLevel != '.')
    {

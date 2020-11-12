@@ -24,7 +24,7 @@ public:
    void on_layout(::draw2d::graphics_pointer & pgraphics);
 
 
-   virtual bool get_client_rect(RECT * prect);
+   virtual bool get_client_rect(RECT32 * prect);
 
 
    virtual void install_message_routing(::channel * pchannel);

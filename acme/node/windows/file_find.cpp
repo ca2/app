@@ -54,7 +54,7 @@ namespace windows
    }
 
 
-   bool file_find::find_file(const char * pstrName /* = nullptr */, DWORD dwUnused /* = 0 */)
+   bool file_find::find_file(const char * pstrName /* = nullptr */, ::u32 dwUnused /* = 0 */)
    {
 
       UNUSED_ALWAYS(dwUnused);
@@ -82,7 +82,7 @@ namespace windows
       if (m_hContext == INVALID_HANDLE_VALUE)
       {
 
-         DWORD dwTemp = ::get_last_error();
+         ::u32 dwTemp = ::get_last_error();
 
          close();
 

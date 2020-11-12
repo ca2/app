@@ -34,7 +34,7 @@ namespace sphere
    //}
 
 
-   //bool main_frame::get_color(COLORREF & cr, ::user::e_color ecolor, ::user::style_context * pcontext)
+   //bool main_frame::get_color(color32_t & cr, ::user::e_color ecolor, ::user::style_context * pcontext)
    //{
 
    //   bool bOk = true;

@@ -40,10 +40,10 @@ void simple_menu_bar::install_message_routing(::channel * pchannel)
    //MESSAGE_LINK(e_message_mouse_move, pchannel, this, &simple_menu_bar::_001OnMouseMove);
    //MESSAGE_LINK(e_message_non_client_mouse_move, pchannel, this, &simple_menu_bar::_001OnNcMouseMove);
    MESSAGE_LINK(e_message_create, pchannel, this, &simple_menu_bar::_001OnCreate);
-   MESSAGE_LINK(WM_KEYDOWN, pchannel, this, &simple_menu_bar::_001OnKeyDown);
+   MESSAGE_LINK(e_message_key_down, pchannel, this, &simple_menu_bar::_001OnKeyDown);
    MESSAGE_LINK(e_message_destroy, pchannel, this, &simple_menu_bar::_001OnDestroy);
    MESSAGE_LINK(WM_MENUCHAR, pchannel, this, &simple_menu_bar::_001OnMenuChar);
-   //MESSAGE_LINK(WM_LBUTTONDOWN, pchannel, this, &simple_menu_bar::_001OnLButtonDown);
+   //MESSAGE_LINK(e_message_lbutton_down, pchannel, this, &simple_menu_bar::_001OnLButtonDown);
    //MESSAGE_LINK(e_message_language, pchannel, this, &simple_menu_bar::_001OnAppLanguage);
 
    //MESSAGE_LINK(WM_ERASEBKGND               , pchannel, this, *simple_menu_bar::_001On);
@@ -54,7 +54,7 @@ void simple_menu_bar::install_message_routing(::channel * pchannel)
 /////////////////////////////////////////////////////////////////////////////
 // simple_menu_bar message handlers
 
-bool simple_menu_bar::LoadMenuBar(UINT nIDResource)
+bool simple_menu_bar::LoadMenuBar(::u32 nIDResource)
 {
 
    m_uiResourceID = nIDResource;
@@ -101,7 +101,7 @@ bool simple_menu_bar::LoadMenuBar(UINT nIDResource)
    return true;
 }
 
-void simple_menu_bar::SetMenuID(UINT uiResourceID)
+void simple_menu_bar::SetMenuID(::u32 uResourceID)
 {
    m_uiResourceID = uiResourceID;
 }
@@ -295,7 +295,7 @@ bool simple_menu_bar::_track_popup_menu(const ::point & point)
    //   if (m_itemHitTest.is_valid_item(m_iTopMenuCount) && item != m_iTracking)
    //   {
    //      TRACE("simple_menu_bar::OnMouseMove simple_menu_bar::_track_popup_menu % d\n", item.m_iItem);
-   //      //            SendMessage(WM_KEYDOWN, VK_ESCAPE);
+   //      //            SendMessage(e_message_key_down, VK_ESCAPE);
    //      //            if(m_iTracking >= 0)
    //      //          {
    //      send_message(WM_CANCELMODE);
@@ -406,7 +406,7 @@ void simple_menu_bar::OnUpdateCmdUI(__pointer(::user::frame_window)pTarget, bool
    /*   tool_command state;
       state.m_pOther = this;
 
-      state.m_nIndexMax = (UINT)DefWindowProc(TB_BUTTONCOUNT, 0, 0);
+      state.m_nIndexMax = (::u32)DefWindowProc(TB_BUTTONCOUNT, 0, 0);
       for (state.m_nIndex = 0; state.m_nIndex < state.m_nIndexMax; state.m_nIndex++)
       {
          // get buttons state
@@ -510,7 +510,7 @@ bool simple_menu_bar::ReloadMenuBar()
 
 }
 */
-/*bool simple_menu_bar::_001GetItemRect(index iItem, RECT * prect, e_element eelement)
+/*bool simple_menu_bar::_001GetItemRect(index iItem, RECT32 * prect, e_element eelement)
 
 {
    if(iItem < 0 ||
@@ -574,7 +574,7 @@ bool simple_menu_bar::ReloadMenuBar()
    return true;
 }
 
-index simple_menu_bar::_001HitTest(const POINT *ppoint)
+index simple_menu_bar::_001HitTest(const POINT32 *ppoint)
 
 {
    for(index iItem = 0; iItem < m_buttona.get_size(); iItem++)

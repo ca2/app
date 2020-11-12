@@ -2,7 +2,7 @@
 #include <math.h>
 
 
-CLASS_DECL_AURA COLORREF dk_red(); // <3 tbs
+CLASS_DECL_AURA color32_t dk_red(); // <3 tbs
 
 
 namespace simple_shader

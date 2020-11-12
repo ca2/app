@@ -126,7 +126,7 @@ namespace user
       virtual void update_command(menu_item * pitemParent);
 
       void calc_size(menu_item * pitem, ::draw2d::graphics_pointer & pgraphics, i32 & iMaxWidth, i32 & iMaxHeight);
-      void layout_buttons(menu_item * pitem, i32 iMaxWidth, RECT * prect, const ::rect & lpcrectBound);
+      void layout_buttons(menu_item * pitem, i32 iMaxWidth, RECT32 * prect, const ::rect & lpcrectBound);
 
 
 

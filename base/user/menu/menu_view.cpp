@@ -233,7 +233,7 @@ namespace user
    }
 
 
-   bool menu_view::get_item_rect(index i, RECT * prect)
+   bool menu_view::get_item_rect(index i, RECT32 * prect)
    {
 
       int iHeight = (int) ( m_fontTitle->m_dFontSize * 1.25 + 20);
@@ -271,7 +271,7 @@ namespace user
          iSep++;
       }
 
-      prect->top = (LONG)( y + (i + iSep) * iHeight);
+      prect->top = (::i32)( y + (i + iSep) * iHeight);
 
       prect->bottom = prect->top + iHeight;
 

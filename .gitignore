@@ -1,3 +1,7 @@
+time-*/
+workspace.xml
+cmake-build-*/
+cmake-time-*/
 **/.vs
 **/.DS_Store
 **/.git

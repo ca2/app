@@ -11,7 +11,7 @@
 #define ALOG_CONTEXT ::trace_object(::trace_category_windowing)
 
 
-CLASS_DECL_ACME mq * get_mq(ITHREAD idthread, bool bCreate);
+CLASS_DECL_ACME mq * get_mq(ithread_t idthread, bool bCreate);
 
 
 //static oswindow g_oswindowSplash = nullptr;
@@ -242,7 +242,7 @@ CLASS_DECL_ACME mq * get_mq(ITHREAD idthread, bool bCreate);
 //
 //   }
 //
-//   ITHREAD idthread = pinteraction->get_context_application()->get_ithread();
+//   ithread_t idthread = pinteraction->get_context_application()->get_ithread();
 //
 //   mq * pmq = get_mq(idthread, false);
 //

@@ -116,7 +116,7 @@ typedef struct NPClass NPClass;
 typedef char NPUTF8;
 typedef struct _NPString {
     const NPUTF8 *UTF8Characters;
-    uint32_t UTF8Length;
+    ::u32 UTF8Length;
 } NPString;
 
 typedef enum {
@@ -281,11 +281,11 @@ typedef void (*NPDeallocateFunctionPtr)(NPObject *npobj);
 typedef void (*NPInvalidateFunctionPtr)(NPObject *npobj);
 typedef bool (*NPHasMethodFunctionPtr)(NPObject *npobj, NPIdentifier name);
 typedef bool (*NPInvokeFunctionPtr)(NPObject *npobj, NPIdentifier name,
-                                    const NPVariant *args, uint32_t argCount,
+                                    const NPVariant *args, ::u32 argCount,
                                     NPVariant *result);
 typedef bool (*NPInvokeDefaultFunctionPtr)(NPObject *npobj,
                                            const NPVariant *args,
-                                           uint32_t argCount,
+                                           ::u32 argCount,
                                            NPVariant *result);
 typedef bool (*NPHasPropertyFunctionPtr)(NPObject *npobj, NPIdentifier name);
 typedef bool (*NPGetPropertyFunctionPtr)(NPObject *npobj, NPIdentifier name,
@@ -295,10 +295,10 @@ typedef bool (*NPSetPropertyFunctionPtr)(NPObject *npobj, NPIdentifier name,
 typedef bool (*NPRemovePropertyFunctionPtr)(NPObject *npobj,
                                             NPIdentifier name);
 typedef bool (*NPEnumerationFunctionPtr)(NPObject *npobj, NPIdentifier **value,
-                                         uint32_t *count);
+                                         ::u32 *count);
 typedef bool (*NPConstructFunctionPtr)(NPObject *npobj,
                                        const NPVariant *args,
-                                       uint32_t argCount,
+                                       ::u32 argCount,
                                        NPVariant *result);
 
 /*
@@ -326,7 +326,7 @@ typedef bool (*NPConstructFunctionPtr)(NPObject *npobj,
 */
 struct NPClass
 {
-    uint32_t structVersion;
+    ::u32 structVersion;
     NPAllocateFunctionPtr allocate;
     NPDeallocateFunctionPtr deallocate;
     NPInvalidateFunctionPtr invalidate;
@@ -354,7 +354,7 @@ struct NPClass
 
 struct NPObject {
     NPClass *_class;
-    uint32_t referenceCount;
+    ::u32 referenceCount;
     /*
      * Additional space may be allocated here by types of NPObjects
      */
@@ -393,9 +393,9 @@ void NPN_ReleaseObject(NPObject *npobj);
 */
 
 bool NPN_Invoke(NPP npp, NPObject *npobj, NPIdentifier methodName,
-                const NPVariant *args, uint32_t argCount, NPVariant *result);
+                const NPVariant *args, ::u32 argCount, NPVariant *result);
 bool NPN_InvokeDefault(NPP npp, NPObject *npobj, const NPVariant *args,
-                       uint32_t argCount, NPVariant *result);
+                       ::u32 argCount, NPVariant *result);
 bool NPN_Evaluate(NPP npp, NPObject *npobj, NPString *script,
                   NPVariant *result);
 bool NPN_GetProperty(NPP npp, NPObject *npobj, NPIdentifier propertyName,
@@ -406,9 +406,9 @@ bool NPN_RemoveProperty(NPP npp, NPObject *npobj, NPIdentifier propertyName);
 bool NPN_HasProperty(NPP npp, NPObject *npobj, NPIdentifier propertyName);
 bool NPN_HasMethod(NPP npp, NPObject *npobj, NPIdentifier methodName);
 bool NPN_Enumerate(NPP npp, NPObject *npobj, NPIdentifier **identifier,
-                   uint32_t *count);
+                   ::u32 *count);
 bool NPN_Construct(NPP npp, NPObject *npobj, const NPVariant *args,
-                   uint32_t argCount, NPVariant *result);
+                   ::u32 argCount, NPVariant *result);
 
 /*
     NPN_SetException may be called to trigger a script exception upon

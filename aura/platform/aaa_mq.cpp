@@ -11,7 +11,7 @@
 #if defined(LINUX) // || defined(ANDROID)
 
 
-bool aura_defer_process_x_message(HTHREAD hthread,LPMESSAGE pMsg,oswindow oswindow,bool bPeek);
+bool aura_defer_process_x_message(hthread_t hthread,LPMESSAGE pMsg,oswindow oswindow,bool bPeek);
 
 
 #endif
@@ -35,7 +35,7 @@ mq::~mq()
 }
 
 
-int_bool mq::post_message(oswindow oswindow, UINT uMessage, WPARAM wParam, LPARAM lParam)
+int_bool mq::post_message(oswindow oswindow, ::u32 uMessage, WPARAM wParam, LPARAM lParam)
 {
 
    if(m_bQuit)
@@ -80,13 +80,13 @@ int_bool mq::post_message(const MESSAGE & message)
 }
 
 
-int_bool mq::get_message(LPMESSAGE pMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax)
+int_bool mq::get_message(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax)
 {
 
    if (wMsgFilterMax == 0)
    {
 
-      wMsgFilterMax = (UINT)-1;
+      wMsgFilterMax = (::u32)-1;
 
    }
 
@@ -167,13 +167,13 @@ int_bool mq::get_message(LPMESSAGE pMsg, oswindow oswindow, UINT wMsgFilterMin, 
 }
 
 
-int_bool mq::peek_message(LPMESSAGE pMsg,oswindow oswindow,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg)
+int_bool mq::peek_message(LPMESSAGE pMsg,oswindow oswindow,::u32 wMsgFilterMin,::u32 wMsgFilterMax,::u32 wRemoveMsg)
 {
 
    if(wMsgFilterMax == 0)
    {
 
-      wMsgFilterMax = (UINT)-1;
+      wMsgFilterMax = (::u32)-1;
 
    }
 
@@ -222,7 +222,7 @@ int_bool mq::peek_message(LPMESSAGE pMsg,oswindow oswindow,UINT wMsgFilterMin,UI
 }
 
 
-//__pointer(mq) get_mq(ITHREAD idthread, bool bCreate)
+//__pointer(mq) get_mq(ithread_t idthread, bool bCreate)
 //{
 //
 //   ::thread * pthread = System.get_task(idthread);
@@ -350,7 +350,7 @@ CLASS_DECL_AURA int_bool post_ui_message(const MESSAGE & message)
 //
 //   }
 //
-//   ITHREAD idthread = pinteraction->m_pthreadUserInteraction->get_os_int();
+//   ithread_t idthread = pinteraction->m_pthreadUserInteraction->get_os_int();
 //
 //   auto pmq = ::get_mq(idthread, message.message != e_message_quit);
 //
@@ -385,7 +385,7 @@ CLASS_DECL_AURA int_bool mq_remove_window_from_all_queues(oswindow oswindow)
 //
 //   }
 //
-//   ITHREAD idthread = pinteraction->get_context_application()->get_os_int();
+//   ithread_t idthread = pinteraction->get_context_application()->get_os_int();
 //
 //   mq * pmq = __get_mq(idthread, false);
 //
@@ -410,7 +410,7 @@ CLASS_DECL_AURA int_bool mq_remove_window_from_all_queues(oswindow oswindow)
 }
 
 
-CLASS_DECL_AURA void mq_clear(ITHREAD idthread)
+CLASS_DECL_AURA void mq_clear(ithread_t idthread)
 {
 
    auto pmq = ::get_mq(idthread, false);
@@ -429,7 +429,7 @@ CLASS_DECL_AURA void mq_clear(ITHREAD idthread)
 }
 
 
-int_bool mq_post_thread_message(ITHREAD idthread, const ::id & id, WPARAM wparam, LPARAM lparam)
+int_bool mq_post_thread_message(ithread_t idthread, const ::id & id, WPARAM wparam, LPARAM lparam)
 {
 
    auto pmq = get_mq(idthread, true);
@@ -479,7 +479,7 @@ CLASS_DECL_AURA int_bool mq_post_message(oswindow oswindow, const ::id & id, WPA
 }
 
 
-CLASS_DECL_AURA int_bool mq_peek_message(LPMESSAGE pMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg)
+CLASS_DECL_AURA int_bool mq_peek_message(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg)
 {
 
    auto pmq = ::get_mq(::get_current_ithread(), false);
@@ -503,7 +503,7 @@ CLASS_DECL_AURA int_bool mq_peek_message(LPMESSAGE pMsg, oswindow oswindow, UINT
 }
 
 
-CLASS_DECL_AURA int_bool mq_get_message(LPMESSAGE pMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax)
+CLASS_DECL_AURA int_bool mq_get_message(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax)
 {
 
    auto pmq = ::get_mq(::get_current_ithread(), true);

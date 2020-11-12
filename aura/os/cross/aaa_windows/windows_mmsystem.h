@@ -1,7 +1,7 @@
 #pragma once
 
 
-typedef DWORD           FOURCC;         /* a four character code */
+typedef ::u32           FOURCC;         /* a four character code */
 
 
 #ifdef _WIN32
@@ -21,8 +21,8 @@ typedef DWORD           FOURCC;         /* a four character code */
  *
  */
 #define MAKEFOURCC(ch0, ch1, ch2, ch3)                              \
-                ((DWORD)(BYTE)(ch0) | ((DWORD)(BYTE)(ch1) << 8) |   \
-                ((DWORD)(BYTE)(ch2) << 16) | ((DWORD)(BYTE)(ch3) << 24 ))
+                ((::u32)(byte)(ch0) | ((::u32)(byte)(ch1) << 8) |   \
+                ((::u32)(byte)(ch2) << 16) | ((::u32)(byte)(ch3) << 24 ))
 
 
 /* MMIO macros */
@@ -38,15 +38,15 @@ typedef DWORD           FOURCC;         /* a four character code */
 /* MIDI data block header */
 typedef struct midihdr_tag
 {
-   LPSTR       lpData;               /* pointer to locked data block */
-   DWORD       dwBufferLength;       /* length of data in data block */
-   DWORD       dwBytesRecorded;      /* used for input only */
+   char *       lpData;               /* pointer to locked data block */
+   ::u32       dwBufferLength;       /* length of data in data block */
+   ::u32       dwBytesRecorded;      /* used for input only */
    dword_ptr   dwUser;               /* for client's use */
-   DWORD       dwFlags;              /* assorted flags (see defines) */
+   ::u32       dwFlags;              /* assorted flags (see defines) */
    struct midihdr_tag far *lpNext;   /* reserved for driver */
    dword_ptr   reserved;             /* reserved for driver */
 #if (WINVER >= 0x0400)
-   DWORD       dwOffset;             /* CALLBACK offset into buffer */
+   ::u32       dwOffset;             /* CALLBACK offset into buffer */
    dword_ptr   dwReserved[8];        /* Reserved for MMSYSTEM */
 #endif
 } MIDIHDR, *PMIDIHDR, NEAR *NPMIDIHDR, FAR *LPMIDIHDR;
@@ -68,7 +68,7 @@ typedef struct midihdr_tag
 
 
 
-typedef UINT        MMVERSION;  /* major (high byte), minor (low byte) */
+typedef ::u32        MMVERSION;  /* major (high byte), minor (low byte) */
 
 
 
@@ -134,25 +134,25 @@ typedef UINT        MMVERSION;  /* major (high byte), minor (low byte) */
 #define MIXER_OBJECTF_AUX       0x50000000L
 
 
-WINMMAPI UINT WINAPI mixerGetNumDevs(void);
+WINMMAPI ::u32 WINAPI mixerGetNumDevs(void);
 
 typedef struct tagMIXERcaPSA
 {
-   WORD            wMid;                   /* manufacturer id */
-   WORD            wPid;                   /* product id */
+   ::u16            wMid;                   /* manufacturer id */
+   ::u16            wPid;                   /* product id */
    MMVERSION       vDriverVersion;         /* version of the driver */
    CHAR            szPname[MAXPNAMELEN];   /* product name */
-   DWORD           fdwSupport;             /* misc. support bits */
-   DWORD           cDestinations;          /* count of destinations */
+   ::u32           fdwSupport;             /* misc. support bits */
+   ::u32           cDestinations;          /* count of destinations */
 } MIXERcaPSA, *PMIXERcaPSA, *LPMIXERcaPSA;
 typedef struct tagMIXERcaPSW
 {
-   WORD            wMid;                   /* manufacturer id */
-   WORD            wPid;                   /* product id */
+   ::u16            wMid;                   /* manufacturer id */
+   ::u16            wPid;                   /* product id */
    MMVERSION       vDriverVersion;         /* version of the driver */
    WCHAR           szPname[MAXPNAMELEN];   /* product name */
-   DWORD           fdwSupport;             /* misc. support bits */
-   DWORD           cDestinations;          /* count of destinations */
+   ::u32           fdwSupport;             /* misc. support bits */
+   ::u32           cDestinations;          /* count of destinations */
 } MIXERcaPSW, *PMIXERcaPSW, *LPMIXERcaPSW;
 #ifdef UNICODE
 typedef MIXERcaPSW MIXERcaPS;
@@ -165,24 +165,24 @@ typedef LPMIXERcaPSA LPMIXERcaPS;
 #endif // UNICODE
 typedef struct tagMIXERcaPS2A
 {
-   WORD            wMid;                   /* manufacturer id */
-   WORD            wPid;                   /* product id */
+   ::u16            wMid;                   /* manufacturer id */
+   ::u16            wPid;                   /* product id */
    MMVERSION       vDriverVersion;         /* version of the driver */
    CHAR            szPname[MAXPNAMELEN];   /* product name */
-   DWORD           fdwSupport;             /* misc. support bits */
-   DWORD           cDestinations;          /* count of destinations */
+   ::u32           fdwSupport;             /* misc. support bits */
+   ::u32           cDestinations;          /* count of destinations */
    GUID            ManufacturerGuid;       /* for extensible MID mapping */
    GUID            ProductGuid;            /* for extensible PID mapping */
    GUID            NameGuid;               /* for name lookup in registry */
 } MIXERcaPS2A, *PMIXERcaPS2A, *LPMIXERcaPS2A;
 typedef struct tagMIXERcaPS2W
 {
-   WORD            wMid;                   /* manufacturer id */
-   WORD            wPid;                   /* product id */
+   ::u16            wMid;                   /* manufacturer id */
+   ::u16            wPid;                   /* product id */
    MMVERSION       vDriverVersion;         /* version of the driver */
    WCHAR           szPname[MAXPNAMELEN];   /* product name */
-   DWORD           fdwSupport;             /* misc. support bits */
-   DWORD           cDestinations;          /* count of destinations */
+   ::u32           fdwSupport;             /* misc. support bits */
+   ::u32           cDestinations;          /* count of destinations */
    GUID            ManufacturerGuid;       /* for extensible MID mapping */
    GUID            ProductGuid;            /* for extensible PID mapping */
    GUID            NameGuid;               /* for name lookup in registry */
@@ -215,48 +215,48 @@ typedef LPMIXERcaPS2A LPMIXERcaPS2;
 
 typedef struct tagMIXERLINEA
 {
-   DWORD       cbStruct;               /* size of MIXERLINE structure */
-   DWORD       dwDestination;          /* zero based destination index */
-   DWORD       dwSource;               /* zero based source index (if source) */
-   DWORD       dwLineID;               /* unique line id for mixer device */
-   DWORD       fdwLine;                /* state/information about line */
+   ::u32       cbStruct;               /* size of MIXERLINE structure */
+   ::u32       dwDestination;          /* zero based destination index */
+   ::u32       dwSource;               /* zero based source index (if source) */
+   ::u32       dwLineID;               /* unique line id for mixer device */
+   ::u32       fdwLine;                /* state/information about line */
    dword_ptr   dwUser;                 /* driver specific information */
-   DWORD       dwComponentType;        /* component type line connects to */
-   DWORD       cChannels;              /* number of channels line supports */
-   DWORD       cConnections;           /* number of connections [possible] */
-   DWORD       cControls;              /* number of controls at this line */
+   ::u32       dwComponentType;        /* component type line connects to */
+   ::u32       cChannels;              /* number of channels line supports */
+   ::u32       cConnections;           /* number of connections [possible] */
+   ::u32       cControls;              /* number of controls at this line */
    CHAR        szShortName[MIXER_SHORT_NAME_CHARS];
    CHAR        szName[MIXER_LONG_NAME_CHARS];
    struct
    {
-      DWORD       dwType;                 /* MIXERLINE_TARGETTYPE_xxxx */
-      DWORD       dwDeviceID;             /* target device ID of device type */
-      WORD        wMid;                   /* of target device */
-      WORD        wPid;                   /*      " */
+      ::u32       dwType;                 /* MIXERLINE_TARGETTYPE_xxxx */
+      ::u32       dwDeviceID;             /* target device ID of device type */
+      ::u16        wMid;                   /* of target device */
+      ::u16        wPid;                   /*      " */
       MMVERSION   vDriverVersion;         /*      " */
       CHAR        szPname[MAXPNAMELEN];   /*      " */
    } Target;
 } MIXERLINEA, *PMIXERLINEA, *LPMIXERLINEA;
 typedef struct tagMIXERLINEW
 {
-   DWORD       cbStruct;               /* size of MIXERLINE structure */
-   DWORD       dwDestination;          /* zero based destination index */
-   DWORD       dwSource;               /* zero based source index (if source) */
-   DWORD       dwLineID;               /* unique line id for mixer device */
-   DWORD       fdwLine;                /* state/information about line */
+   ::u32       cbStruct;               /* size of MIXERLINE structure */
+   ::u32       dwDestination;          /* zero based destination index */
+   ::u32       dwSource;               /* zero based source index (if source) */
+   ::u32       dwLineID;               /* unique line id for mixer device */
+   ::u32       fdwLine;                /* state/information about line */
    dword_ptr   dwUser;                 /* driver specific information */
-   DWORD       dwComponentType;        /* component type line connects to */
-   DWORD       cChannels;              /* number of channels line supports */
-   DWORD       cConnections;           /* number of connections [possible] */
-   DWORD       cControls;              /* number of controls at this line */
+   ::u32       dwComponentType;        /* component type line connects to */
+   ::u32       cChannels;              /* number of channels line supports */
+   ::u32       cConnections;           /* number of connections [possible] */
+   ::u32       cControls;              /* number of controls at this line */
    WCHAR       szShortName[MIXER_SHORT_NAME_CHARS];
    WCHAR       szName[MIXER_LONG_NAME_CHARS];
    struct
    {
-      DWORD       dwType;                 /* MIXERLINE_TARGETTYPE_xxxx */
-      DWORD       dwDeviceID;             /* target device ID of device type */
-      WORD        wMid;                   /* of target device */
-      WORD        wPid;                   /*      " */
+      ::u32       dwType;                 /* MIXERLINE_TARGETTYPE_xxxx */
+      ::u32       dwDeviceID;             /* target device ID of device type */
+      ::u16        wMid;                   /* of target device */
+      ::u16        wPid;                   /*      " */
       MMVERSION   vDriverVersion;         /*      " */
       WCHAR       szPname[MAXPNAMELEN];   /*      " */
    } Target;
@@ -275,62 +275,62 @@ typedef LPMIXERLINEA LPMIXERLINE;
 
 typedef struct tagMIXERCONTROLA
 {
-   DWORD           cbStruct;           /* size in bytes of MIXERCONTROL */
-   DWORD           dwControlID;        /* unique control id for mixer device */
-   DWORD           dwControlType;      /* MIXERCONTROL_CONTROLTYPE_xxx */
-   DWORD           fdwControl;         /* MIXERCONTROL_CONTROLF_xxx */
-   DWORD           cMultipleItems;     /* if MIXERCONTROL_CONTROLF_MULTIPLE set */
+   ::u32           cbStruct;           /* size in bytes of MIXERCONTROL */
+   ::u32           dwControlID;        /* unique control id for mixer device */
+   ::u32           dwControlType;      /* MIXERCONTROL_CONTROLTYPE_xxx */
+   ::u32           fdwControl;         /* MIXERCONTROL_CONTROLF_xxx */
+   ::u32           cMultipleItems;     /* if MIXERCONTROL_CONTROLF_MULTIPLE set */
    CHAR            szShortName[MIXER_SHORT_NAME_CHARS];
    CHAR            szName[MIXER_LONG_NAME_CHARS];
    union
    {
       struct
       {
-         LONG    lMinimum;           /* signed minimum for this control */
-         LONG    lMaximum;           /* signed maximum for this control */
+         ::i32    lMinimum;           /* signed minimum for this control */
+         ::i32    lMaximum;           /* signed maximum for this control */
       } DUMMYSTRUCTNAME;
       struct
       {
-         DWORD   dwMinimum;          /* unsigned minimum for this control */
-         DWORD   dwMaximum;          /* unsigned maximum for this control */
+         ::u32   dwMinimum;          /* unsigned minimum for this control */
+         ::u32   dwMaximum;          /* unsigned maximum for this control */
       } DUMMYSTRUCTNAME2;
-      DWORD       dwReserved[6];
+      ::u32       dwReserved[6];
    } Bounds;
    union
    {
-      DWORD       cSteps;             /* # of steps between min & max */
-      DWORD       cbCustomData;       /* size in bytes of custom data */
-      DWORD       dwReserved[6];      /* !!! needed? we have cbStruct.... */
+      ::u32       cSteps;             /* # of steps between min & max */
+      ::u32       cbCustomData;       /* size in bytes of custom data */
+      ::u32       dwReserved[6];      /* !!! needed? we have cbStruct.... */
    } Metrics;
 } MIXERCONTROLA, *PMIXERCONTROLA, *LPMIXERCONTROLA;
 typedef struct tagMIXERCONTROLW
 {
-   DWORD           cbStruct;           /* size in bytes of MIXERCONTROL */
-   DWORD           dwControlID;        /* unique control id for mixer device */
-   DWORD           dwControlType;      /* MIXERCONTROL_CONTROLTYPE_xxx */
-   DWORD           fdwControl;         /* MIXERCONTROL_CONTROLF_xxx */
-   DWORD           cMultipleItems;     /* if MIXERCONTROL_CONTROLF_MULTIPLE set */
+   ::u32           cbStruct;           /* size in bytes of MIXERCONTROL */
+   ::u32           dwControlID;        /* unique control id for mixer device */
+   ::u32           dwControlType;      /* MIXERCONTROL_CONTROLTYPE_xxx */
+   ::u32           fdwControl;         /* MIXERCONTROL_CONTROLF_xxx */
+   ::u32           cMultipleItems;     /* if MIXERCONTROL_CONTROLF_MULTIPLE set */
    WCHAR           szShortName[MIXER_SHORT_NAME_CHARS];
    WCHAR           szName[MIXER_LONG_NAME_CHARS];
    union
    {
       struct
       {
-         LONG    lMinimum;           /* signed minimum for this control */
-         LONG    lMaximum;           /* signed maximum for this control */
+         ::i32    lMinimum;           /* signed minimum for this control */
+         ::i32    lMaximum;           /* signed maximum for this control */
       } DUMMYSTRUCTNAME;
       struct
       {
-         DWORD   dwMinimum;          /* unsigned minimum for this control */
-         DWORD   dwMaximum;          /* unsigned maximum for this control */
+         ::u32   dwMinimum;          /* unsigned minimum for this control */
+         ::u32   dwMaximum;          /* unsigned maximum for this control */
       } DUMMYSTRUCTNAME2;
-      DWORD       dwReserved[6];
+      ::u32       dwReserved[6];
    } Bounds;
    union
    {
-      DWORD       cSteps;             /* # of steps between min & max */
-      DWORD       cbCustomData;       /* size in bytes of custom data */
-      DWORD       dwReserved[6];      /* !!! needed? we have cbStruct.... */
+      ::u32       cSteps;             /* # of steps between min & max */
+      ::u32       cbCustomData;       /* size in bytes of custom data */
+      ::u32       dwReserved[6];      /* !!! needed? we have cbStruct.... */
    } Metrics;
 } MIXERCONTROLW, *PMIXERCONTROLW, *LPMIXERCONTROLW;
 #ifdef UNICODE
@@ -387,28 +387,28 @@ typedef LPMIXERCONTROLA LPMIXERCONTROL;
 
 typedef struct tagMIXERLINECONTROLSA
 {
-   DWORD           cbStruct;       /* size in bytes of MIXERLINECONTROLS */
-   DWORD           dwLineID;       /* line id (from MIXERLINE.dwLineID) */
+   ::u32           cbStruct;       /* size in bytes of MIXERLINECONTROLS */
+   ::u32           dwLineID;       /* line id (from MIXERLINE.dwLineID) */
    union
    {
-      DWORD       dwControlID;    /* MIXER_GETLINECONTROLSF_ONEBYID */
-      DWORD       dwControlType;  /* MIXER_GETLINECONTROLSF_ONEBYTYPE */
+      ::u32       dwControlID;    /* MIXER_GETLINECONTROLSF_ONEBYID */
+      ::u32       dwControlType;  /* MIXER_GETLINECONTROLSF_ONEBYTYPE */
    } DUMMYUNIONNAME;
-   DWORD           cControls;      /* count of controls pmxctrl points to */
-   DWORD           cbmxctrl;       /* size in bytes of _one_ MIXERCONTROL */
+   ::u32           cControls;      /* count of controls pmxctrl points to */
+   ::u32           cbmxctrl;       /* size in bytes of _one_ MIXERCONTROL */
    LPMIXERCONTROLA pamxctrl;       /* pointer to first MIXERCONTROL array */
 } MIXERLINECONTROLSA, *PMIXERLINECONTROLSA, *LPMIXERLINECONTROLSA;
 typedef struct tagMIXERLINECONTROLSW
 {
-   DWORD           cbStruct;       /* size in bytes of MIXERLINECONTROLS */
-   DWORD           dwLineID;       /* line id (from MIXERLINE.dwLineID) */
+   ::u32           cbStruct;       /* size in bytes of MIXERLINECONTROLS */
+   ::u32           dwLineID;       /* line id (from MIXERLINE.dwLineID) */
    union
    {
-      DWORD       dwControlID;    /* MIXER_GETLINECONTROLSF_ONEBYID */
-      DWORD       dwControlType;  /* MIXER_GETLINECONTROLSF_ONEBYTYPE */
+      ::u32       dwControlID;    /* MIXER_GETLINECONTROLSF_ONEBYID */
+      ::u32       dwControlType;  /* MIXER_GETLINECONTROLSF_ONEBYTYPE */
    } DUMMYUNIONNAME;
-   DWORD           cControls;      /* count of controls pmxctrl points to */
-   DWORD           cbmxctrl;       /* size in bytes of _one_ MIXERCONTROL */
+   ::u32           cControls;      /* count of controls pmxctrl points to */
+   ::u32           cbmxctrl;       /* size in bytes of _one_ MIXERCONTROL */
    LPMIXERCONTROLW pamxctrl;       /* pointer to first MIXERCONTROL array */
 } MIXERLINECONTROLSW, *PMIXERLINECONTROLSW, *LPMIXERLINECONTROLSW;
 #ifdef UNICODE

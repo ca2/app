@@ -864,7 +864,7 @@ public:
    }*/
 
    // Load the string_base from resource 'nID' in module 'hInstance', using language 'wLanguageID'
-   /*bool load_string(HINSTANCE hInstance,strsize nID,WORD wLanguageID )
+   /*bool load_string(HINSTANCE hInstance,strsize nID,::u16 wLanguageID )
    {
    const STRINGRESOURCEIMAGE* pImage = gen_GetStringResourceImage( hInstance, nID, wLanguageID );
    if( pImage == nullptr )

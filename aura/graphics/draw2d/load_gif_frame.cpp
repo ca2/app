@@ -43,7 +43,7 @@ bool draw2d_gif_draw_frame(::image * pimageCanvas, image_frame_array * pframea, 
 //
 //   pframe->m_pimage->map();
 //
-//   //COLORREF crBack = 0;
+//   //color32_t crBack = 0;
 //
 //   if (uFrameIndex <= 0 && transparentIndex >= 0)
 //   {
@@ -64,7 +64,7 @@ bool draw2d_gif_draw_frame(::image * pimageCanvas, image_frame_array * pframea, 
 //
 //   //      pimageCanvas.get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
 //
-//   //      COLORREF crBack = pframea->m_crBack;
+//   //      color32_t crBack = pframea->m_crBack;
 //
 //   //      byte bAlpha = colorref_get_a_value(crBack);
 //
@@ -230,7 +230,7 @@ bool draw2d_gif_draw_frame(::image * pimageCanvas, image_frame_array * pframea, 
 //
 //         pimageCanvas->g()->set_alpha_mode(::draw2d::alpha_mode_set);
 //
-//         COLORREF crBack = pframea->m_crBack;
+//         color32_t crBack = pframea->m_crBack;
 //
 //         byte bAlpha = colorref_get_a_value(crBack);
 //
@@ -286,7 +286,7 @@ bool draw2d_gif_draw_frame(image * pimageCanvas, image_frame_array * pframea, im
 
    auto colorref = pframe->m_pimage->colorref();
 
-   int w = pframe->m_pimage->scan_size() / sizeof(COLORREF);
+   int w = pframe->m_pimage->scan_size() / sizeof(color32_t);
 
    for (index y = 0; y < pframe->m_rect.height(); y++)
    {
@@ -314,7 +314,7 @@ bool draw2d_gif_draw_frame(image * pimageCanvas, image_frame_array * pframea, im
 
          }
 
-         COLORREF cr = cra[iIndex];
+         color32_t cr = cra[iIndex];
 
          byte bA = colorref_get_a_value(cr);
 

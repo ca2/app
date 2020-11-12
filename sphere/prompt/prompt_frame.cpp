@@ -154,7 +154,7 @@ namespace prompt
 
    void frame::ShowControlBars(bool bShow)
    {
-      UINT nShow;
+      ::u32 nShow;
       if(bShow)
       {
          nShow = display_normal;
@@ -210,7 +210,7 @@ namespace prompt
    {
       simple_frame_window::install_message_routing(pchannel);
       MESSAGE_LINK(e_message_create, pchannel, this, &frame::_001OnCreate);
-      MESSAGE_LINK(WM_CLOSE, pchannel, this, &frame::_001OnClose);
+      MESSAGE_LINK(e_message_close, pchannel, this, &frame::_001OnClose);
 //
       MESSAGE_LINK(e_message_move, pchannel, this, &frame::_001OnMove);
       MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &frame::_001OnShowWindow);

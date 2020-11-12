@@ -3464,9 +3464,9 @@ end:
    ITYPE encode_v16(const ITERABLE & iterable)
    {
       ITYPE strEncode;
-      for (i32 ui = 0; ui < iterable.get_count(); ui++)
+      for (i32 u = 0; u < iterable.get_count(); u++)
       {
-         ITYPE & str = iterable.element_at(ui);
+         ITYPE & str = iterable.element_at(u);
          strEncode += hex::lower_from((const char*)str);
          strEncode += "00";
          /*      for(i32 uj = 0; uj < str.length(); uj++)

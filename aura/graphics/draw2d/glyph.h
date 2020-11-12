@@ -10,7 +10,7 @@ namespace draw2d
    public:
 
 
-      UINT   m_ui;
+      ::u32   m_ui;
 
       array <point_array, point_array &> m_pointsets;
 
@@ -25,7 +25,7 @@ namespace draw2d
       virtual ~glyph();
 
 
-      void DrawGlyph(::draw2d::graphics_pointer & pgraphics, bool bFill, double dRateX, LPPOINT ppointoffset);
+      void DrawGlyph(::draw2d::graphics_pointer & pgraphics, bool bFill, double dRateX, POINT32 * ppointoffset);
 
 
 #ifdef WINDOWS_DESKTOP
@@ -35,7 +35,7 @@ namespace draw2d
 
 #endif
 
-      void GetGlyphRect(i32 x, i32 y, RECT * prect);
+      void GetGlyphRect(i32 x, i32 y, RECT32 * prect);
 
 
       void clear();

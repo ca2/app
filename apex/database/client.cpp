@@ -29,9 +29,9 @@ namespace database
 
       }
 
-      auto idRunnable = translate_property_id(id);
+      auto idProcedure = translate_property_id(id);
 
-      ::add_method(Application.m_mapMethod[idRunnable], [this, id]()
+      ::add_procedure(Application.m_mapProcedure[idProcedure], [this, id]()
          {
 
             auto pproperty = fetch_property(id);

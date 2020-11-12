@@ -14,7 +14,7 @@ namespace draw2d_direct2d
 
       Microsoft::WRL::ComPtr<ID2D1SolidColorBrush>    m_pbrush;
       bool                                            m_bMetroColor;
-      COLORREF                                        m_crMetro;
+      color32_t                                        m_crMetro;
 
 
       pen();
@@ -25,12 +25,12 @@ namespace draw2d_direct2d
       virtual void destroy() override;
       virtual bool create(::draw2d::graphics * pgraphics, i8 iCreate) override;
 
-      /*virtual void construct(int nPenStyle, double nWidth, COLORREF crColor);
-      virtual void construct(int nPenStyle, double nWidth, const LOGBRUSH* pLogBrush, int nStyleCount = 0, const DWORD* lpStyle = nullptr);
-      bool CreatePen(int nPenStyle, double nWidth, COLORREF crColor);
-      bool CreatePen(int nPenStyle, double nWidth, const LOGBRUSH* pLogBrush, int nStyleCount = 0, const DWORD* lpStyle = nullptr);*/
+      /*virtual void construct(int nPenStyle, double nWidth, color32_t crColor);
+      virtual void construct(int nPenStyle, double nWidth, const LOGBRUSH* pLogBrush, int nStyleCount = 0, const ::u32* lpStyle = nullptr);
+      bool CreatePen(int nPenStyle, double nWidth, color32_t crColor);
+      bool CreatePen(int nPenStyle, double nWidth, const LOGBRUSH* pLogBrush, int nStyleCount = 0, const ::u32* lpStyle = nullptr);*/
 
-      //virtual bool create_solid(::draw2d::graphics * pgraphics, double dWidth, COLORREF crColor);
+      //virtual bool create_solid(::draw2d::graphics * pgraphics, double dWidth, color32_t crColor);
 
       //virtual ID2D1Brush * get_os_pen_brush(::draw2d_direct2d::graphics * pgraphics) const;
 

@@ -96,7 +96,7 @@
 //
 //      virtual void get_time(struct timeval *point);
 //      virtual void set_env_var(const string & var,const string & value);
-//      virtual ITHREAD get_thread_id();
+//      virtual ithread_t get_thread_id();
 //      string draw2d_get_default_library_name();
 //
 //      string multimedia_audio_get_default_library_name();

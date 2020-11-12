@@ -63,17 +63,17 @@ int __node_is_debugger_attached()
 
 
 
-DWORD
+::u32
 WINAPI
 FormatMessage(
-DWORD dwFlags,
-LPCVOID pSource,
+::u32 dwFlags,
+const void * pSource,
 
-DWORD dwMessageId,
-DWORD dwLanguageId,
-LPSTR pBuffer,
+::u32 dwMessageId,
+::u32 dwLanguageId,
+char * pBuffer,
 
-DWORD nSize,
+::u32 nSize,
 va_list *Arguments
 )
 {

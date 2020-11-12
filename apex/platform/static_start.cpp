@@ -171,7 +171,7 @@ namespace apex
 //
 //#endif
 
-   //map < ITHREAD, ITHREAD, ITHREAD, ITHREAD > * g_pmapThreadOn;
+   //map < ithread_t, ithread_t, ithread_t, ithread_t > * g_pmapThreadOn;
 
 #ifdef WINDOWS
 
@@ -322,7 +322,7 @@ namespace apex
 //
 //#endif
 
-      //map < ITHREAD, ITHREAD, ITHREAD, ITHREAD > * g_pmapThreadOn;
+      //map < ithread_t, ithread_t, ithread_t, ithread_t > * g_pmapThreadOn;
 
 #ifdef WINDOWS
 
@@ -513,7 +513,7 @@ namespace apex
 
       //g_pmutexThreadOn = new ::mutex();
 
-      //g_pmapThreadOn = new ::map < ITHREAD, ITHREAD, ITHREAD, ITHREAD >;
+      //g_pmapThreadOn = new ::map < ithread_t, ithread_t, ithread_t, ithread_t >;
 
       //g_pmutexSystemHeap = new critical_section();
 
@@ -1019,7 +1019,7 @@ namespace apex
 
 
 //
-//CLASS_DECL_APEX COLORREF dk_red() // <3 tbs
+//CLASS_DECL_APEX color32_t dk_red() // <3 tbs
 //{
 //   return ARGB(255, 200, 16, 46);
 //}

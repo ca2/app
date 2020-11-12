@@ -193,7 +193,7 @@ namespace user
 
       /*static void send_message_to_descendants(oswindow oswindow, const ::id & id,
       WPARAM wParam, LPARAM lParam, bool bDeep, bool bOnlyPerm);*/
-      static void send_message_to_descendants(oswindow oswindow, UINT message, WPARAM wParam, LPARAM lParam, bool bDeep);
+      static void send_message_to_descendants(oswindow oswindow, ::u32 message, WPARAM wParam, LPARAM lParam, bool bDeep);
       static bool IsAscendant(oswindow oswindowAscendant, oswindow oswindowDescendant);
 
       static i32 GetZOrder(oswindow oswindow);

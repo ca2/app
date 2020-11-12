@@ -11,7 +11,7 @@ public:
    {
 
 
-      m_pfimemory = FreeImage_OpenMemory(memory.get_data(), (DWORD) memory.get_size());
+      m_pfimemory = FreeImage_OpenMemory(memory.get_data(), (::u32) memory.get_size());
 
    }
 

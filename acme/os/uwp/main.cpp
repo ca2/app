@@ -22,7 +22,7 @@ CLASS_DECL_ACME void __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_
 //::acme::application *     win_application_create(::acme::application * pappSystem, const char * pszId);
 //::acme::application *     win_instantiate_application(::acme::application * pappSystem, const char * pszId);
 //int                     win_application_procedure(::acme::application * pappSystem)
-//UINT c_cdecl          win_application_thread_proc(LPVOID);
+//::u32 c_cdecl          win_application_thread_proc(LPVOID);
 /////////////////////////////////////////////////////////////////////////////
 // Standard WinMain implementation
 //  Can be replaced as long as '::ca2::WinInit' is called first

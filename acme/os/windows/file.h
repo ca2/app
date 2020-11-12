@@ -28,4 +28,4 @@ int ftruncate(int file, filesize len);
 
 
 CLASS_DECL_ACME int_bool ensure_file_size_handle(HANDLE h, u64 iSize);
-CLASS_DECL_ACME int_bool get_file_time(HANDLE hFile, LPFILETIME lpCreationTime, LPFILETIME lpLastAccessTime, LPFILETIME lpLastWriteTime);
+CLASS_DECL_ACME int_bool get_filetime(HANDLE hFile, LPFILETIME lpCreationTime, LPFILETIME lpLastAccessTime, LPFILETIME lpLastWriteTime);

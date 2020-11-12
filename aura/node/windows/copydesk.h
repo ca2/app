@@ -29,7 +29,7 @@ namespace windows
       virtual ~copydesk();
 
 
-      static LRESULT WINAPI WindowProc(HWND hwnd, UINT message, WPARAM wparam, LPARAM lparam);
+      static LRESULT WINAPI WindowProc(HWND hwnd, ::u32 message, WPARAM wparam, LPARAM lparam);
 
 
 

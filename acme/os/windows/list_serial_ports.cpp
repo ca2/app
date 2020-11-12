@@ -58,7 +58,7 @@ serial::list_ports()
 		TCHAR port_name[port_name_max_length];
 		DWORD port_name_length = port_name_max_length;
 
-		LONG return_code = RegQueryValueEx(
+		::i32 return_code = RegQueryValueEx(
 					hkey,
 					_T("PortName"),
 					nullptr,

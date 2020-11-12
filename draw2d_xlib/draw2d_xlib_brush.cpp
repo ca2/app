@@ -17,7 +17,7 @@ namespace draw2d_xlib
    {
    }
 
-   //bool brush::CreateSolidBrush(COLORREF crColor)
+   //bool brush::CreateSolidBrush(color32_t crColor)
    //{
 
    //   if(m_pbrush != nullptr)
@@ -31,7 +31,7 @@ namespace draw2d_xlib
    //
    //}
 
-   // bool brush::CreateHatchBrush(i32 nIndex, COLORREF crColor)
+   // bool brush::CreateHatchBrush(i32 nIndex, color32_t crColor)
    // {
    //    //return Attach(::CreateHatchBrush(nIndex, crColor));
    //    return FALSE;
@@ -46,7 +46,7 @@ namespace draw2d_xlib
     //   //return Attach(::CreatePatternBrush((HBITMAP)pBitmap->get_os_data()));
     //   return FALSE;
     //}
-    //bool brush::CreateDIBPatternBrush(const void * lpPackedDIB, UINT nUsage)
+    //bool brush::CreateDIBPatternBrush(const void * lpPackedDIB, ::u32 nUsage)
     //{
     //   //return Attach(::CreateDIBPatternBrushPt(lpPackedDIB, nUsage));
     //   return FALSE;
@@ -65,13 +65,13 @@ namespace draw2d_xlib
     }*/
 
 
-//   void brush::construct(COLORREF crColor)
+//   void brush::construct(color32_t crColor)
 //   {
 ////      if (!Attach(::CreateSolidBrush(crColor)))
 //  //       __throw(resource_exception());
 //   }
 //
-//   void brush::construct(i32 nIndex, COLORREF crColor)
+//   void brush::construct(i32 nIndex, color32_t crColor)
 //   {
 //    //  if (!Attach(::CreateHatchBrush(nIndex, crColor)))
 //      //   __throw(resource_exception());
@@ -85,7 +85,7 @@ namespace draw2d_xlib
 //        // __throw(resource_exception());
 //   }
 //
-//   bool brush::CreateDIBPatternBrush(HGLOBAL hPackedDIB, UINT nUsage)
+//   bool brush::CreateDIBPatternBrush(HGLOBAL hPackedDIB, ::u32 nUsage)
 //   {
 //      //ASSERT(hPackedDIB != nullptr);
 //      //const void * lpPackedDIB = ::GlobalLock(hPackedDIB);

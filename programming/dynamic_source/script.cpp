@@ -100,7 +100,7 @@ namespace dynamic_source
 
       bool bMatches = false;
 
-      auto ft = get_file_time(m_strSourcePath);
+      auto ft = get_filetime(m_strSourcePath);
 
       bMatches = m_ft == ft;
 
@@ -483,7 +483,7 @@ namespace dynamic_source
          if (iRetry > 0)
          {
 
-            Sleep((DWORD)__random(2000, 4000));
+            Sleep((::u32)__random(2000, 4000));
 
          }
 
@@ -527,7 +527,7 @@ namespace dynamic_source
 
       m_tickLastBuildTime = ::get_tick();
 
-      m_ft = get_file_time(m_strSourcePath);
+      m_ft = get_filetime(m_strSourcePath);
 
       Load();
 

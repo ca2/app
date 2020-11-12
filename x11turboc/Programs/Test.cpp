@@ -46,7 +46,7 @@ void
 #endif
 main (void)
 {
-  guint milliseconds;
+  g::u32 milliseconds;
   int Handle;
   struct ftime ft;
   struct ffblk fblk;

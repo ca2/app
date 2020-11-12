@@ -169,7 +169,7 @@ namespace aura
 
 #endif
 
-   //map < ITHREAD, ITHREAD, ITHREAD, ITHREAD > * g_pmapThreadOn;
+   //map < ithread_t, ithread_t, ithread_t, ithread_t > * g_pmapThreadOn;
 
    // aura commented
 //#ifdef WINDOWS
@@ -337,7 +337,7 @@ namespace aura
 //
 //#endif
 
-      //map < ITHREAD, ITHREAD, ITHREAD, ITHREAD > * g_pmapThreadOn;
+      //map < ithread_t, ithread_t, ithread_t, ithread_t > * g_pmapThreadOn;
 
 //#ifdef WINDOWS
 //
@@ -526,7 +526,7 @@ namespace aura
 
       //g_pmutexThreadOn = new ::mutex();
 
-      //g_pmapThreadOn = new ::map < ITHREAD, ITHREAD, ITHREAD, ITHREAD >;
+      //g_pmapThreadOn = new ::map < ithread_t, ithread_t, ithread_t, ithread_t >;
 
       //g_pmutexSystemHeap = new critical_section();
 
@@ -1040,7 +1040,7 @@ namespace aura
 
 
 
-//CLASS_DECL_AURA COLORREF dk_red() // <3 tbs
+//CLASS_DECL_AURA color32_t dk_red() // <3 tbs
 //{
 //   return ARGB(255, 200, 16, 46);
 //}

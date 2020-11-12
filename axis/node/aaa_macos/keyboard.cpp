@@ -223,24 +223,24 @@ extern "C" {
     * Functions
     */
    
-   char* GetVirtualKeyName(DWORD vkcode);
-   DWORD GetVirtualKeyCodeFromName(const char* vkname);
-   DWORD GetVirtualKeyCodeFromXkbKeyName(const char* xkbname);
+   char* GetVirtualKeyName(::u32 vkcode);
+   ::u32 GetVirtualKeyCodeFromName(const char* vkname);
+   ::u32 GetVirtualKeyCodeFromXkbKeyName(const char* xkbname);
    
-   DWORD GetVirtualKeyCodeFromVirtualScanCode(DWORD scancode, DWORD dwKeyboardType);
-   DWORD GetVirtualScanCodeFromVirtualKeyCode(DWORD vkcode, DWORD dwKeyboardType);
+   ::u32 GetVirtualKeyCodeFromVirtualScanCode(::u32 scancode, ::u32 dwKeyboardType);
+   ::u32 GetVirtualScanCodeFromVirtualKeyCode(::u32 vkcode, ::u32 dwKeyboardType);
    
 #define KEYCODE_TYPE_APPLE      0x00000001
 #define KEYCODE_TYPE_EVDEV      0x00000002
    
-   DWORD GetVirtualKeyCodeFromKeycode(DWORD keycode, DWORD dwFlags);
-   DWORD GetKeycodeFromVirtualKeyCode(DWORD keycode, DWORD dwFlags);
+   ::u32 GetVirtualKeyCodeFromKeycode(::u32 keycode, ::u32 dwFlags);
+   ::u32 GetKeycodeFromVirtualKeyCode(::u32 keycode, ::u32 dwFlags);
    
 #ifdef __cplusplus
 }
 #endif
 
-DWORD fixKeyCode(DWORD keyCode, unichar keyChar, enum APPLE_KEYBOARD_TYPE type)
+::u32 fixKeyCode(::u32 keyCode, unichar keyChar, enum APPLE_KEYBOARD_TYPE type)
 {
    /**
     * In 99% of cases, the given key code is truly keyboard independent.

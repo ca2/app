@@ -130,8 +130,7 @@ bool sync::unlock()
 }
 
 
-bool sync::unlock(LONG /* lCount */, LPLONG /* pPrevCount=nullptr */)
-
+bool sync::unlock(::i32 /* lCount */, ::i32 * /* pPrevCount=nullptr */)
 {
 
    return false;
@@ -213,7 +212,7 @@ void sync::release_ownership()
 //}
 
 
-//bool sync::unlock(LONG /* lCount */, LPLONG /* pPrevCount=nullptr */)
+//bool sync::unlock(::i32 /* lCount */, LPLONG /* pPrevCount=nullptr */)
 //
 //{
 //

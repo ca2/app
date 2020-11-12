@@ -48,9 +48,9 @@ namespace uwp
 
       }
 
-      auto pdirectxapplication = psession->m_directxapplication;
+      auto puwpimpl = pimpl->cast < ::uwp::interaction_impl >();
 
-      m_directxapplication = pdirectxapplication;
+      m_frameworkview = puwpimpl->m_frameworkview;
 
       return estatus;
 
@@ -76,7 +76,15 @@ namespace uwp
    ::draw2d::graphics* buffer::on_begin_draw()
    {
 
-      auto directxapplication = m_directxapplication;
+      auto directxapplication = m_frameworkview;
+
+      if (!directxapplication)
+      {
+
+         return nullptr;
+
+      }
+
 
       auto directx = directxapplication->m_directx;
 
@@ -95,7 +103,7 @@ namespace uwp
 
       pdevicecontext->BeginDraw();
 
-      auto colorBackground = m_directxapplication->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
+      auto colorBackground = m_frameworkview->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
 
       D2D1_COLOR_F cr = {};
 
@@ -155,7 +163,7 @@ namespace uwp
       //if (m_bNewBuffer)
       //{
 
-         m_directxapplication->m_directx->Present();
+         m_frameworkview->m_directx->Present();
 
          //m_bNewBuffer = false;
 
@@ -172,7 +180,7 @@ namespace uwp
       if (m_bNewBuffer)
       {
 
-         m_directxapplication->m_directx->Present();
+         m_frameworkview->m_directx->Present();
 
       }
 

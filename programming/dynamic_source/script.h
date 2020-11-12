@@ -51,8 +51,8 @@ namespace dynamic_source
       __pointer(::apex::library)              m_plibrary;
 
 
-      file_time                        m_ft;
-      file_time                        m_ftDs;
+      filetime                        m_ft;
+      filetime                        m_ftDs;
 
       bool                             m_bLastVersionCheck;
       tick m_tickLastVersionCheck;

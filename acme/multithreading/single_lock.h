@@ -8,7 +8,7 @@ public:
 
 
    __pointer(sync)         m_psync;
-   HANDLE                  m_hobject;
+   //HANDLE                  m_hobject;
    bool                    m_bAcquired;
 
 
@@ -18,7 +18,7 @@ public:
    sync_result wait();
    sync_result wait(const duration & duration);
    bool unlock();
-   bool unlock(LONG lCount, LPLONG lPrevCount = nullptr);
+   bool unlock(::i32 lCount, ::i32 * lPrevCount = nullptr);
    bool IsLocked();
 
 

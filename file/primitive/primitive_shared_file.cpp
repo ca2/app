@@ -8,7 +8,7 @@ namespace primitive
 {
 
 
-   shared_file::shared_file(::object * pobject, UINT nAllocFlags, UINT nGrowBytes) :
+   shared_file::shared_file(::object * pobject, ::u32 nAllocFlags, ::u32 nGrowBytes) :
       ::object(pobject)
    {
 

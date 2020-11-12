@@ -24,7 +24,7 @@ namespace draw2d_quartz2d
    }
    
    
-   bool bitmap::CreateBitmap(::draw2d::graphics * pgraphics, const ::size & size, UINT nPlanes, UINT nBitcount, const void * pdata, i32 iStride)
+   bool bitmap::CreateBitmap(::draw2d::graphics * pgraphics, const ::size & size, ::u32 nPlanes, ::u32 nBitcount, const void * pdata, i32 iStride)
    {
       
       if(nPlanes != 1 || nBitcount != 32)
@@ -49,7 +49,7 @@ namespace draw2d_quartz2d
          
       }
       
-      m_pdata = (COLORREF *) m_memory.get_data();
+      m_pdata = (color32_t *) m_memory.get_data();
       
       if(m_pdata == nullptr)
       {
@@ -109,7 +109,7 @@ namespace draw2d_quartz2d
    bool bitmap::create_bitmap(::draw2d::graphics * pgraphics, const ::size & size, void ** ppdata, int * piStride)
    {
       
-      if(!CreateBitmap(pgraphics, size, 1, 32, nullptr, size.cx * sizeof(COLORREF)))
+      if(!CreateBitmap(pgraphics, size, 1, 32, nullptr, size.cx * sizeof(color32_t)))
       {
          
          return false;
@@ -135,7 +135,7 @@ namespace draw2d_quartz2d
    }
    
    
-   bool bitmap::CreateDIBitmap(::draw2d::graphics * pgraphics, int cx, int cy, DWORD flInit, const void *pjBits, UINT iUsage)
+   bool bitmap::CreateDIBitmap(::draw2d::graphics * pgraphics, int cx, int cy, ::u32 flInit, const void *pjBits, ::u32 iUsage)
    {
       
       return false;
@@ -143,7 +143,7 @@ namespace draw2d_quartz2d
    }
    
    
-   DWORD bitmap::SetBitmapBits(DWORD dwCount, const void * lpBits)
+   ::u32 bitmap::SetBitmapBits(::u32 dwCount, const void * lpBits)
    {
       
       return 0;
@@ -151,7 +151,7 @@ namespace draw2d_quartz2d
    }
    
    
-   DWORD bitmap::GetBitmapBits(DWORD dwCount, LPVOID lpBits) const
+   ::u32 bitmap::GetBitmapBits(::u32 dwCount, LPVOID lpBits) const
    {
 
       return 0;
@@ -190,7 +190,7 @@ namespace draw2d_quartz2d
    }
    
    
-   bool bitmap::LoadBitmap(UINT nIDResource)
+   bool bitmap::LoadBitmap(::u32 nIDResource)
    {
       
       return false;
@@ -198,7 +198,7 @@ namespace draw2d_quartz2d
    }
    
    
-   bool bitmap::LoadOEMBitmap(UINT nIDBitmap)
+   bool bitmap::LoadOEMBitmap(::u32 nIDBitmap)
    {
 
       return false;
@@ -209,7 +209,7 @@ namespace draw2d_quartz2d
    bool bitmap::CreateCompatibleBitmap(::draw2d::graphics * pgraphics, i32 cx, i32 cy)
    {
       
-      if(!CreateBitmap(pgraphics, ::size(cx, cy), 1, 32, nullptr, cx * sizeof(COLORREF)))
+      if(!CreateBitmap(pgraphics, ::size(cx, cy), 1, 32, nullptr, cx * sizeof(color32_t)))
       {
          
          return false;
@@ -277,7 +277,7 @@ namespace draw2d_quartz2d
       
       m_iScan     = (int) CGBitmapContextGetBytesPerRow(m_pdc);
       
-      m_pdata     = (COLORREF *) CGBitmapContextGetData(m_pdc);
+      m_pdata     = (color32_t *) CGBitmapContextGetData(m_pdc);
       
       return true;
       

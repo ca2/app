@@ -1265,8 +1265,8 @@
 		07A6DFBD173C27EB009E6FB8 /* datetime_time.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D631173C27E9009E6FB8 /* datetime_time.h */; };
 		07A6DFBE173C27EB009E6FB8 /* datetime_value.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D632173C27E9009E6FB8 /* datetime_value.cpp */; };
 		07A6DFBF173C27EB009E6FB8 /* datetime_value.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D633173C27E9009E6FB8 /* datetime_value.h */; };
-		07A6DFC0173C27EB009E6FB8 /* datetime_windows_file_time.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D634173C27E9009E6FB8 /* datetime_windows_file_time.cpp */; };
-		07A6DFC1173C27EB009E6FB8 /* datetime_windows_file_time.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D635173C27E9009E6FB8 /* datetime_windows_file_time.h */; };
+		07A6DFC0173C27EB009E6FB8 /* datetime_windows_filetime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D634173C27E9009E6FB8 /* datetime_windows_filetime.cpp */; };
+		07A6DFC1173C27EB009E6FB8 /* datetime_windows_filetime.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D635173C27E9009E6FB8 /* datetime_windows_filetime.h */; };
 		07A6DFC2173C27EB009E6FB8 /* primitive.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D636173C27E9009E6FB8 /* primitive.h */; };
 		07A6DFC3173C27EB009E6FB8 /* primitive_align.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D637173C27E9009E6FB8 /* primitive_align.h */; };
 		07A6DFC4173C27EB009E6FB8 /* primitive_check.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D638173C27E9009E6FB8 /* primitive_check.h */; };
@@ -3538,8 +3538,8 @@
 		07A6D631173C27E9009E6FB8 /* datetime_time.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = datetime_time.h; sourceTree = "<group>"; };
 		07A6D632173C27E9009E6FB8 /* datetime_value.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = datetime_value.cpp; sourceTree = "<group>"; };
 		07A6D633173C27E9009E6FB8 /* datetime_value.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = datetime_value.h; sourceTree = "<group>"; };
-		07A6D634173C27E9009E6FB8 /* datetime_windows_file_time.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = datetime_windows_file_time.cpp; sourceTree = "<group>"; };
-		07A6D635173C27E9009E6FB8 /* datetime_windows_file_time.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = datetime_windows_file_time.h; sourceTree = "<group>"; };
+		07A6D634173C27E9009E6FB8 /* datetime_windows_filetime.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = datetime_windows_filetime.cpp; sourceTree = "<group>"; };
+		07A6D635173C27E9009E6FB8 /* datetime_windows_filetime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = datetime_windows_filetime.h; sourceTree = "<group>"; };
 		07A6D636173C27E9009E6FB8 /* primitive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = primitive.h; sourceTree = "<group>"; };
 		07A6D637173C27E9009E6FB8 /* primitive_align.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = primitive_align.h; sourceTree = "<group>"; };
 		07A6D638173C27E9009E6FB8 /* primitive_check.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = primitive_check.h; sourceTree = "<group>"; };
@@ -6804,8 +6804,8 @@
 				07A6D631173C27E9009E6FB8 /* datetime_time.h */,
 				07A6D632173C27E9009E6FB8 /* datetime_value.cpp */,
 				07A6D633173C27E9009E6FB8 /* datetime_value.h */,
-				07A6D634173C27E9009E6FB8 /* datetime_windows_file_time.cpp */,
-				07A6D635173C27E9009E6FB8 /* datetime_windows_file_time.h */,
+				07A6D634173C27E9009E6FB8 /* datetime_windows_filetime.cpp */,
+				07A6D635173C27E9009E6FB8 /* datetime_windows_filetime.h */,
 			);
 			path = datetime;
 			sourceTree = "<group>";
@@ -8215,7 +8215,7 @@
 				07A6DFBB173C27EB009E6FB8 /* datetime_float_time.h in Headers */,
 				07A6DFBD173C27EB009E6FB8 /* datetime_time.h in Headers */,
 				07A6DFBF173C27EB009E6FB8 /* datetime_value.h in Headers */,
-				07A6DFC1173C27EB009E6FB8 /* datetime_windows_file_time.h in Headers */,
+				07A6DFC1173C27EB009E6FB8 /* datetime_windows_filetime.h in Headers */,
 				07A6DFC2173C27EB009E6FB8 /* primitive.h in Headers */,
 				07A6DFC3173C27EB009E6FB8 /* primitive_align.h in Headers */,
 				07A6DFC4173C27EB009E6FB8 /* primitive_check.h in Headers */,
@@ -9331,7 +9331,7 @@
 				07A6DFBA173C27EB009E6FB8 /* datetime_float_time.cpp in Sources */,
 				07A6DFBC173C27EB009E6FB8 /* datetime_time.cpp in Sources */,
 				07A6DFBE173C27EB009E6FB8 /* datetime_value.cpp in Sources */,
-				07A6DFC0173C27EB009E6FB8 /* datetime_windows_file_time.cpp in Sources */,
+				07A6DFC0173C27EB009E6FB8 /* datetime_windows_filetime.cpp in Sources */,
 				07A6DFC5173C27EB009E6FB8 /* primitive_color.cpp in Sources */,
 				07A6DFC7173C27EB009E6FB8 /* primitive_count.cpp in Sources */,
 				07A6DFC8173C27EB009E6FB8 /* primitive_fixed_string.cpp in Sources */,

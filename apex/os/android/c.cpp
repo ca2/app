@@ -19,13 +19,13 @@
          return 0;
       }
 
-      u64 ui = ts.tv_sec;
+      u64 u = ts.tv_sec;
 
-      ui *= 1000 * 1000 * 1000;
+      u *= 1000 * 1000 * 1000;
 
-      ui += ts.tv_nsec;
+      u += ts.tv_nsec;
 
-      return  ui;
+      return  u;
 
    }
 

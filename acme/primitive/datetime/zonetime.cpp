@@ -6,7 +6,7 @@ namespace datetime
 {
 
 
-   ::datetime::zonetime WINAPI zonetime::get_current_time(__time64_t iZoneOffset) noexcept
+   ::datetime::zonetime WINAPI zonetime::get_current_time(time_t iZoneOffset) noexcept
    {
 
       zonetime t;
@@ -44,7 +44,7 @@ zonetime::zonetime(const zonetime & zonetime) noexcept :
    }
 
 
-zonetime::zonetime(__time64_t zonetime, int iZoneOffset) noexcept :
+zonetime::zonetime(time_t zonetime, int iZoneOffset) noexcept :
    time(zonetime),
    m_iZoneOffset(iZoneOffset)
    {
@@ -108,7 +108,7 @@ zonetime::zonetime(__time64_t zonetime, int iZoneOffset) noexcept :
 
          struct tm tmTemp;
 
-         __time64_t t = m_time;
+         time_t t = m_time;
 
          t += m_iZoneOffset;
 
@@ -242,7 +242,7 @@ zonetime::zonetime(__time64_t zonetime, int iZoneOffset) noexcept :
    }
 
 
-   __time64_t zonetime::GetZoneTimeOfDay() const noexcept
+   time_t zonetime::GetZoneTimeOfDay() const noexcept
    {
 
       struct tm ttm;
@@ -280,7 +280,7 @@ dump_context & operator <<(dump_context & dumpcontext, ::datetime::zonetime zone
    char psz[32];
    psz[0] = '\0';
 
-   //   __time64_t tmp = zonetime.get_time();
+   //   time_t tmp = zonetime.get_time();
    //   errno_t err = _ctime64_s(psz, sizeof(psz), &tmp);
 
    errno_t err = 0;

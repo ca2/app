@@ -14,7 +14,7 @@
 //
 //#ifndef CUBE
 //
-//CLASS_DECL_AURA int_bool _001DefaultDllMain(HINSTANCE hinstance, DWORD dwReason, LPVOID pReserved, int iLibMainDebugBox = 0, const lib_main_int & intDelayMs = {});
+//CLASS_DECL_AURA int_bool _001DefaultDllMain(HINSTANCE hinstance, ::u32 dwReason, LPVOID pReserved, int iLibMainDebugBox = 0, const lib_main_int & intDelayMs = {});
 //
 //#endif
 

@@ -31,10 +31,10 @@ struct CLASS_DECL_APEX oswindow_data
 
    bool                          m_bMessageOnlyWindow;
    ::user::primitive *         m_puserinteraction;
-   HTHREAD                       m_hthread;
-   COLORREF *                    m_pcolorref;
-   RECT                          m_rect;
-   int_map < LONG > *            m_plongmap;
+   hthread_t                       m_hthread;
+   color32_t *                    m_pcolorref;
+   RECT32                          m_rect;
+   int_map < ::i32 > *            m_plongmap;
    bool                          m_bDestroying;
 
 
@@ -96,10 +96,10 @@ struct CLASS_DECL_APEX oswindow_data
    bool is_iconic();
    bool is_window_visible();
    bool ShowWindow(int nCmdShow);
-   LONG get_window_long(i32 nIndex);
-   LONG set_window_long(i32 nIndex, LONG l);
-   bool ClientToScreen(LPPOINT lppoint);
-   bool ScreenToClient(LPPOINT lppoint);
+   ::i32 get_window_long(i32 nIndex);
+   ::i32 set_window_long(i32 nIndex, ::i32 l);
+   bool ClientToScreen(POINT32 * lppoint);
+   bool ScreenToClient(POINT32 * lppoint);
 
 
 

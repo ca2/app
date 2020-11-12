@@ -239,9 +239,9 @@ namespace apex
 
       set_context_object(this OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
 
-      set_context_app(this OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
+      set_context_app(this);
 
-      set_context(this OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
+      set_context(this);
 
       if (::is_set(m_pappParent))
       {
@@ -934,13 +934,13 @@ namespace apex
    //   if (durationTimeout.is_null())
    //   {
 
-   //      return message_box(puiOwner, strMessage, strTitle, (UINT) uFlags, function);
+   //      return message_box(puiOwner, strMessage, strTitle, (::u32) uFlags, function);
 
    //   }
    //   else
    //   {
 
-   //      return message_box_timeout(puiOwner, strMessage, strTitle, durationTimeout, (UINT) uFlags, function);
+   //      return message_box_timeout(puiOwner, strMessage, strTitle, durationTimeout, (::u32) uFlags, function);
 
    //   }
 
@@ -1656,12 +1656,14 @@ namespace apex
 
          //xxdebug_box("pre_run 1 ok", "pre_run 1 ok", MB_ICONINFORMATION);
 
-         if (!initial_check_directrix())
+         auto estatus = on_before_launching();
+
+         if(!estatus)
          {
 
             m_bReady = true;
 
-            return false;
+            return estatus;
 
          }
 
@@ -2642,7 +2644,7 @@ namespace apex
    }
 
 
-   ::estatus application::initial_check_directrix()
+   ::estatus application::on_before_launching()
    {
 
       string strLicense = get_license_id();
@@ -4525,7 +4527,7 @@ retry_license:
    }
 
 
-   //i32 application::sync_message_box_timeout(::user::primitive * pwndOwner, var var, const char * pszTitle, ::duration durationTimeOut, UINT fuStyle)
+   //i32 application::sync_message_box_timeout(::user::primitive * pwndOwner, var var, const char * pszTitle, ::duration durationTimeOut, ::u32 fuStyle)
    //{
 
    //   UNREFERENCED_PARAMETER(durationTimeOut);
@@ -5131,8 +5133,8 @@ retry_license:
          output_debug_string("Could not create or open a registrty key\n");
          return 0;
       }
-      RegSetValueExW(hkey, L"", 0, REG_SZ, (BYTE*)desc.c_str(), DWORD (desc.length() * sizeof(wchar_t))); // default vlaue is description of file extension
-      RegSetValueExW(hkey, L"ContentType", 0, REG_SZ, (BYTE*)content_type.c_str(), DWORD (content_type.length() * sizeof(wchar_t))); // default vlaue is description of file extension
+      RegSetValueExW(hkey, L"", 0, REG_SZ, (byte*)desc.c_str(), ::u32 (desc.length() * sizeof(wchar_t))); // default vlaue is description of file extension
+      RegSetValueExW(hkey, L"ContentType", 0, REG_SZ, (byte*)content_type.c_str(), ::u32 (content_type.length() * sizeof(wchar_t))); // default vlaue is description of file extension
       RegCloseKey(hkey);
 
 
@@ -5144,7 +5146,7 @@ retry_license:
          output_debug_string("Could not create or open a registrty key\n");
          return 0;
       }
-      RegSetValueExW(hkey, L"", 0, REG_SZ, (BYTE*)app.c_str(), DWORD(app.length() * sizeof(wchar_t)));
+      RegSetValueExW(hkey, L"", 0, REG_SZ, (byte*)app.c_str(), ::u32(app.length() * sizeof(wchar_t)));
       RegCloseKey(hkey);
 
 
@@ -5155,7 +5157,7 @@ retry_license:
          output_debug_string("Could not create or open a registrty key\n");
          return 0;
       }
-      RegSetValueExW(hkey, L"", 0, REG_SZ, (BYTE*)icon.c_str(), DWORD (icon.length() * sizeof(wchar_t)));
+      RegSetValueExW(hkey, L"", 0, REG_SZ, (byte*)icon.c_str(), ::u32 (icon.length() * sizeof(wchar_t)));
       RegCloseKey(hkey);
 
       wstring wstr(dir::stage(m_strAppId, process_platform_dir_name(), process_configuration_dir_name()) / "spa_register.txt");
@@ -5234,7 +5236,7 @@ retry_license:
       sei.lpFile = wstr.c_str();
 
       ::ShellExecuteExW(&sei);
-      DWORD dwGetLastError = get_last_error();
+      ::u32 dwGetLastError = get_last_error();
 
 #endif
 
@@ -6127,7 +6129,19 @@ retry_license:
       if (_001CanCloseApplication())
       {
 
+#ifdef _UWP
+         Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(
+            Windows::UI::Core::CoreDispatcherPriority::Normal,
+            ref new Windows::UI::Core::DispatchedHandler([this]()
+               {
+                  Windows::UI::ViewManagement::ApplicationView::GetForCurrentView()->TryConsolidateAsync();
+      }));
+
+#else
+
          finish();
+
+#endif
 
       }
 
@@ -7551,7 +7565,7 @@ namespace apex
    }
 
 
-   bool application::CreateFileFromRawResource(UINT nID, const char* pcszType, const char* pcszFilePath)
+   bool application::CreateFileFromRawResource(::u32 nID, const char* pcszType, const char* pcszFilePath)
    {
 
       UNREFERENCED_PARAMETER(nID);
@@ -7597,7 +7611,7 @@ namespace apex
    }
 
 
-   bool application::GetResourceData(UINT nID, const char* pcszType, memory& storage)
+   bool application::GetResourceData(::u32 nID, const char* pcszType, memory& storage)
 
    {
 
@@ -7613,7 +7627,7 @@ namespace apex
 
 #ifdef WINDOWS_DESKTOP
 
-   HENHMETAFILE application::LoadEnhMetaFile(UINT uiResource)
+   HENHMETAFILE application::LoadEnhMetaFile(::u32 uResource)
    {
 
       memory storage;
@@ -7625,7 +7639,7 @@ namespace apex
 
       }
 
-      return SetEnhMetaFileBits((UINT)storage.get_size(), storage.get_data());
+      return SetEnhMetaFileBits((::u32)storage.get_size(), storage.get_data());
 
    }
 
@@ -7654,7 +7668,7 @@ namespace apex
    }*/
 
 
-   bool application::on_idle(LONG lCount)
+   bool application::on_idle(::i32 lCount)
    {
 
       return false;
@@ -7683,7 +7697,7 @@ namespace apex
       }
 
       // handle all the rest
-      //linux UINT nIDP = __IDP_INTERNAL_FAILURE;   // matter message string
+      //linux ::u32 nIDP = __IDP_INTERNAL_FAILURE;   // matter message string
       const char* nIDP = "Internal Failure";
       pbase->m_lresult = 0;        // sensible default
       if (pbase->m_id == WM_COMMAND)
@@ -7774,7 +7788,7 @@ namespace apex
    void application::memory_to_hex(string & strHex, memory & memory)
    {
    ::count count = memory.get_size();
-   LPSTR psz = strHex.get_string_buffer(count * 2);
+   char * psz = strHex.get_string_buffer(count * 2);
 
    for(index i = 0; i < count; i++)
    {
@@ -7982,9 +7996,9 @@ namespace apex
 #ifdef WINDOWS_DESKTOP
 
       HKEY hkPolicy = nullptr;
-      DWORD dwValue = 0;
-      DWORD dwDataLen = sizeof(dwValue);
-      DWORD dwType = 0;
+      ::u32 dwValue = 0;
+      ::u32 dwDataLen = sizeof(dwValue);
+      ::u32 dwType = 0;
 
       //// clear current policy settings.
       //m_dwPolicies = ___SYSPOLICY_NOTINITIALIZED;
@@ -8050,7 +8064,7 @@ namespace apex
       //                  pData->szPolicyName,
       //                  nullptr,
       //                  &dwType,
-      //                  (BYTE*)&dwValue,
+      //                  (byte*)&dwValue,
       //                  &dwDataLen))
       //         {
       //            if (dwType == REG_DWORD)
@@ -8100,7 +8114,7 @@ namespace apex
 
 
 
-   /*   void application::LoadStdProfileSettings(UINT nMaxMRU)
+   /*   void application::LoadStdProfileSettings(::u32 nMaxMRU)
    {
    UNREFERENCED_PARAMETER(nMaxMRU);
    ASSERT_VALID(this);
@@ -8261,7 +8275,7 @@ namespace apex
    //   // WinHelp helper
    //
    //
-   //   void application::WinHelp(uptr dwData, UINT nCmd)
+   //   void application::WinHelp(uptr dwData, ::u32 nCmd)
    //   {
    //      UNREFERENCED_PARAMETER(dwData);
    //      UNREFERENCED_PARAMETER(nCmd);
@@ -8276,7 +8290,7 @@ namespace apex
    //   /////////////////////////////////////////////////////////////////////////////
    //   // HtmlHelp helper
    //
-   //   void application::HtmlHelp(uptr dwData, UINT nCmd)
+   //   void application::HtmlHelp(uptr dwData, ::u32 nCmd)
    //   {
    //
    //      UNREFERENCED_PARAMETER(dwData);
@@ -8291,7 +8305,7 @@ namespace apex
    //   }
    //
    //
-   //   void application::WinHelpInternal(uptr dwData, UINT nCmd)
+   //   void application::WinHelpInternal(uptr dwData, ::u32 nCmd)
    //   {
    //      UNREFERENCED_PARAMETER(dwData);
    //      UNREFERENCED_PARAMETER(nCmd);
@@ -8415,14 +8429,14 @@ namespace apex
 
 
 
-   /*void ::apex::FormatString1(string & rString, UINT nIDS, const char * psz1)
+   /*void ::apex::FormatString1(string & rString, ::u32 nIDS, const char * psz1)
 
    {
    __format_strings(rString, nIDS, &psz1, 1);
 
    }
 
-   void ::apex::FormatString2(string & rString, UINT nIDS, const char * psz1,
+   void ::apex::FormatString2(string & rString, ::u32 nIDS, const char * psz1,
 
    const char * psz2)
 
@@ -8595,7 +8609,7 @@ namespace apex
 
       //ASSERT(m_puiMain1 != nullptr);
 
-      //m_puiMain1->m_puiThis->send_message(WM_CLOSE);
+      //m_puiMain1->m_puiThis->send_message(e_message_close);
 
    }
 
@@ -8751,7 +8765,7 @@ namespace apex
       ////__enable_memory_tracking(bEnable);
    }
 
-   void application::SetRegistryKey(UINT nIDRegistryKey)
+   void application::SetRegistryKey(::u32 nIDRegistryKey)
    {
       //UNREFERENCED_PARAMETER(nIDRegistryKey);
       //ASSERT(m_pszRegistryKey == nullptr);
@@ -8778,7 +8792,7 @@ namespace apex
       //if(RegOpenKeyEx(HKEY_CURRENT_USER,"software",0,KEY_WRITE | KEY_READ,
       //   &hSoftKey) == ERROR_SUCCESS)
       //{
-      //   DWORD dw;
+      //   ::u32 dw;
       //   if(RegCreateKeyEx(hSoftKey,m_pszRegistryKey,0,REG_NONE,
       //      REG_OPTION_NON_VOLATILE,KEY_WRITE | KEY_READ,nullptr,
       //      &hCompanyKey,&dw) == ERROR_SUCCESS)
@@ -8813,7 +8827,7 @@ namespace apex
       if (hAppKey == nullptr)
          return nullptr;
 
-      DWORD dw;
+      ::u32 dw;
       RegCreateKeyExW(hAppKey, wstring(pszSection), 0, REG_NONE, REG_OPTION_NON_VOLATILE, KEY_WRITE | KEY_READ, nullptr, &hSectionKey, &dw);
 
       RegCloseKey(hAppKey);
@@ -8822,7 +8836,7 @@ namespace apex
 
 #endif
 
-   /*   UINT application::GetProfileInt(const char * pszSection, const char * pszEntry,
+   /*   ::u32 application::GetProfileInt(const char * pszSection, const char * pszEntry,
 
    i32 nDefault)
    {
@@ -8839,7 +8853,7 @@ namespace apex
    u32 dwValue;
    u32 dwType;
    u32 dwCount = sizeof(u32);
-   LONG lResult = RegQueryValueEx(hSecKey, (LPTSTR)pszEntry, nullptr, &dwType,
+   ::i32 lResult = RegQueryValueEx(hSecKey, (LPTSTR)pszEntry, nullptr, &dwType,
 
    (byte *)&dwValue, &dwCount);
    RegCloseKey(hSecKey);
@@ -8847,7 +8861,7 @@ namespace apex
    {
    ASSERT(dwType == REG_DWORD);
    ASSERT(dwCount == sizeof(dwValue));
-   return (UINT)dwValue;
+   return (::u32)dwValue;
    }
    return nDefault;
    }
@@ -8879,7 +8893,7 @@ namespace apex
    string strValue;
    u32 dwType=REG_NONE;
    u32 dwCount=0;
-   LONG lResult = RegQueryValueEx(hSecKey, (LPTSTR)pszEntry, nullptr, &dwType,
+   ::i32 lResult = RegQueryValueEx(hSecKey, (LPTSTR)pszEntry, nullptr, &dwType,
 
    nullptr, &dwCount);
    if (lResult == ERROR_SUCCESS)
@@ -8919,7 +8933,7 @@ namespace apex
 
    bool application::GetProfileBinary(const char * pszSection, const char * pszEntry,
 
-   BYTE** ppData, UINT* pBytes)
+   byte** ppData, ::u32* pBytes)
    {
    ASSERT(pszSection != nullptr);
 
@@ -8944,13 +8958,13 @@ namespace apex
 
    u32 dwType=0;
    u32 dwCount=0;
-   LONG lResult = RegQueryValueEx(hSecKey, (LPTSTR)pszEntry, nullptr, &dwType, nullptr, &dwCount);
+   ::i32 lResult = RegQueryValueEx(hSecKey, (LPTSTR)pszEntry, nullptr, &dwType, nullptr, &dwCount);
 
    *pBytes = dwCount;
    if (lResult == ERROR_SUCCESS)
    {
    ASSERT(dwType == REG_BINARY);
-   *ppData = new BYTE[*pBytes];
+   *ppData = new byte[*pBytes];
    lResult = RegQueryValueEx(hSecKey, (LPTSTR)pszEntry, nullptr, &dwType,
 
    *ppData, &dwCount);
@@ -8977,11 +8991,11 @@ namespace apex
    return FALSE;
    ASSERT(str.get_length()%2 == 0);
    iptr nLen = str.get_length();
-   *pBytes = UINT(nLen)/2;
-   *ppData = new BYTE[*pBytes];
+   *pBytes = ::u32(nLen)/2;
+   *ppData = new byte[*pBytes];
    for (i32 i=0;i<nLen;i+=2)
    {
-   (*ppData)[i/2] = (BYTE)
+   (*ppData)[i/2] = (byte)
    (((str[i+1] - 'A') << 4) + (str[i] - 'A'));
    }
    return TRUE;
@@ -9003,7 +9017,7 @@ namespace apex
 
    if (hSecKey == nullptr)
    return FALSE;
-   LONG lResult = RegSetValueEx(hSecKey, pszEntry, nullptr, REG_DWORD,
+   ::i32 lResult = RegSetValueEx(hSecKey, pszEntry, nullptr, REG_DWORD,
 
    (byte *)&nValue, sizeof(nValue));
    RegCloseKey(hSecKey);
@@ -9030,7 +9044,7 @@ namespace apex
 
    if (m_pszRegistryKey != nullptr)
    {
-   LONG lResult;
+   ::i32 lResult;
    if (pszEntry == nullptr) //delete whole department
 
    {
@@ -9079,13 +9093,13 @@ namespace apex
 
    bool application::WriteProfileBinary(const char * pszSection, const char * pszEntry,
 
-   byte * pData, UINT nBytes)
+   byte * pData, ::u32 nBytes)
    {
    ASSERT(pszSection != nullptr);
 
    if (m_pszRegistryKey != nullptr)
    {
-   LONG lResult;
+   ::i32 lResult;
    HKEY hSecKey = GetSectionKey(pszSection);
 
    if (hSecKey == nullptr)
@@ -9100,7 +9114,7 @@ namespace apex
    // convert to string and write out
    LPTSTR psz = new char[nBytes*2+1];
 
-   UINT i;
+   ::u32 i;
    for (i = 0; i < nBytes; i++)
    {
    psz[i*2] = (char)((pData[i] & 0x0F) + 'A'); //low nibble
@@ -9360,7 +9374,7 @@ namespace apex
 //      dumpcontext << "\nm_hDevNames = " << (void*)m_hDevNames;
 //#endif
 //
-//      dumpcontext << "\nm_dwPromptContext = " << (UINT)m_dwPromptContext;
+//      dumpcontext << "\nm_dwPromptContext = " << (::u32)m_dwPromptContext;
 //      //      dumpcontext << "\nm_eHelpType = " << m_eHelpType;
 //
 //
@@ -10408,7 +10422,7 @@ namespace apex
       //case MSGF_DIALOGBOX:    // handles message boxes as well.
       //   //pMainWnd = __get_main_window();
       //   if (code == MSGF_DIALOGBOX && m_puiActive != nullptr &&
-      //      pbase->m_id >= WM_KEYFIRST && pbase->m_id <= WM_KEYLAST)
+      //      pbase->m_id >= e_message_key_first && pbase->m_id <= e_message_key_last)
       //   {
       //   }
       //   break;
@@ -10499,7 +10513,7 @@ namespace apex
    //}
 
 
-   ::estatus application::on_thread_on_idle(::thread* pthread, LONG lCount)
+   ::estatus application::on_thread_on_idle(::thread* pthread, ::i32 lCount)
    {
 
       __throw(todo("interaction"));

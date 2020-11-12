@@ -145,12 +145,12 @@ namespace draw2d
       virtual ::user::item hit_test_wide(const ::point& point);
       virtual ::user::item hit_test_single_column(const ::point& point);
       
-      virtual bool get_box_rect(LPRECT lprect, ::index i);
-      virtual bool get_box_rect_wide(LPRECT lprect, ::index i);
-      virtual bool get_box_rect_single_column(LPRECT lprect, ::index i);
+      virtual bool get_box_rect(LPRECT32 lprect, ::index i);
+      virtual bool get_box_rect_wide(LPRECT32 lprect, ::index i);
+      virtual bool get_box_rect_single_column(LPRECT32 lprect, ::index i);
 
 
-      virtual void set_client_rect(LPCRECT lpcrect);
+      virtual void set_client_rect(LPCRECT32 lpcrect);
 
       virtual void set_font_list_type(enum_type etype);
       virtual enum_type get_font_list_type() const;

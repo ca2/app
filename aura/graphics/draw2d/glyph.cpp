@@ -80,9 +80,9 @@ namespace draw2d
    *
    *  RETURNS    : number of Bezier points placed into the pPts const point & array.
    ****************************************************************************/
-   UINT MakeBezierFromLine( POINT *pPts, const point & startpt, const point & endpt )
+   ::u32 MakeBezierFromLine( POINT32 *pPts, const point & startpt, const point & endpt )
    {
-      UINT cTotal = 0;
+      ::u32 cTotal = 0;
 
       // starting point of Bezier
       pPts[cTotal] = startpt;
@@ -114,7 +114,7 @@ namespace draw2d
    *
    *  RETURNS    : number of Bezier points placed into the pPts const point & array.
    ****************************************************************************/
-   UINT MakeBezierFromQBSpline( POINT *pPts, POINTFX *pSpline )
+   ::u32 MakeBezierFromQBSpline( POINT32 *pPts, POINTFX *pSpline )
    {
       ::point point0;         // Quadratic on curve start point
       ::point point1;         // Quadratic control point
@@ -164,17 +164,17 @@ namespace draw2d
    *
    *  RETURNS    : number of Bezier points added to the const point & array.
    ****************************************************************************/
-   //UINT AppendPolyLineToBezier( LPPOINT point, POINTFX start, LPTTPOLYCURVE pCurve )
+   //::u32 AppendPolyLineToBezier( POINT32 * point, POINTFX start, LPTTPOLYCURVE pCurve )
 
-   UINT AppendPolyLineToBezier(
+   ::u32 AppendPolyLineToBezier(
    point_array      &pointsset,
    POINTFX         start,
    LPTTPOLYCURVE   pCurve,
 
-   UINT         cTotal )
+   ::u32         cTotal )
    {
       i32     i;
-      //    UINT    cTotal = 0;
+      //    ::u32    cTotal = 0;
       ::point   endpt;
       ::point   startpt;
       ::point   bezier[4];
@@ -224,18 +224,18 @@ namespace draw2d
    *
    *  RETURNS    : number of Bezier points added to the const point & array.
    ****************************************************************************/
-   //UINT AppendQuadBSplineToBezier( LPPOINT point, POINTFX start, LPTTPOLYCURVE pCurve )
+   //::u32 AppendQuadBSplineToBezier( POINT32 * point, POINTFX start, LPTTPOLYCURVE pCurve )
 
-   UINT AppendQuadBSplineToBezier(
+   ::u32 AppendQuadBSplineToBezier(
    point_array & pointset,
    POINTFX start,
    LPTTPOLYCURVE pCurve,
 
-   UINT cTotal )
+   ::u32 cTotal )
 
    {
-      WORD                i;
-      //    UINT                cTotal = 0;
+      ::u16                i;
+      //    ::u32                cTotal = 0;
       POINTFX             spline[3];  // a Quadratic is defined by 3 points
       ::point               bezier[4];  // a Cubic by 4
 
@@ -305,10 +305,10 @@ namespace draw2d
    *
    *  RETURNS    : number of points aded to the point const point & array.
    ****************************************************************************/
-   //UINT CloseContour( LPPOINT point, UINT cTotal )
-   UINT CloseContour(
+   //::u32 CloseContour( POINT32 * point, ::u32 cTotal )
+   ::u32 CloseContour(
    point_array & pointset,
-   UINT cTotal )
+   ::u32 cTotal )
    {
       ::point               endpt;
       ::point                 startpt;    // definition of a line
@@ -357,13 +357,13 @@ namespace draw2d
 
    {
 
-      WORD                i;
-      UINT                cTotal = 0; // Total points in a contour.
+      ::u16                i;
+      ::u32                cTotal = 0; // Total points in a contour.
       LPTTPOLYGONHEADER   pStart;    // the start of the buffer
 
       LPTTPOLYCURVE       pCurve;    // the current curve of a contour
 
-      //  LPPOINT             point;         // the bezier buffer
+      //  POINT32 *             point;         // the bezier buffer
       POINTFX             pointStart;    // The starting point of a curve
       u32               dwMaxPts = size/sizeof(POINTFX); // max possible pts.
       u32               dwBuffSize;
@@ -394,8 +394,8 @@ namespace draw2d
             //pPoints = new CPoints();
             //         pPoints->m_lpPoints = point;
 
-            //point = (LPPOINT)malloc( dwBuffSize );
-            //         point = (LPPOINT) new BYTE(dwBuffSize);
+            //point = (POINT32 *)malloc( dwBuffSize );
+            //         point = (POINT32 *) new byte(dwBuffSize);
             // Convert the starting point. It is an on curve point.
             // All other points are continuous from the "last"
             // point of the contour. Thus the start point the next
@@ -437,7 +437,7 @@ namespace draw2d
                //      previous curve's last point.
                //**********************************************
 
-               pointStart = *(LPPOINTFX)((char *)pCurve - sizeof(POINTFX));
+               pointStart = *(POINT32 *FX)((char *)pCurve - sizeof(POINTFX));
 
                if (pCurve->wType == TT_PRIM_LINE)
 
@@ -534,7 +534,7 @@ namespace draw2d
    }
 
 
-   void glyph::GetGlyphRect(i32 x, i32 y, RECT * prect)
+   void glyph::GetGlyphRect(i32 x, i32 y, RECT32 * prect)
 
    {
 
@@ -559,7 +559,7 @@ namespace draw2d
    }
 
 
-   void glyph::DrawGlyph(::draw2d::graphics_pointer & pgraphics, bool bFill, double dRateX, LPPOINT ppointOffset)
+   void glyph::DrawGlyph(::draw2d::graphics_pointer & pgraphics, bool bFill, double dRateX, POINT32 * ppointOffset)
 
    {
 

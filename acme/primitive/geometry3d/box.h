@@ -42,7 +42,7 @@ public:
    array < array < locationd > > faces_vertices();
    locationd get_nearest_vertice(locationd point);
    index find_nearest_vertice(locationd point);
-   index find_nearest_vertice(LONG x,LONG y);
+   index find_nearest_vertice(::i32 x,::i32 y);
 
 
 

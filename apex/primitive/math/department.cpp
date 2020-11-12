@@ -117,11 +117,11 @@ namespace math
 //         // set additional parameters on the original key.
 //         // First, set the cipher mode.
 //
-//         DWORD dwMode = CRYPT_MODE_ECB;
+//         ::u32 dwMode = CRYPT_MODE_ECB;
 //         if (CryptSetKeyParam(
 //            m_hOriginalKey,
 //            KP_MODE,
-//            (BYTE*)& dwMode,
+//            (byte*)& dwMode,
 //            0))
 //         {
 //            //debug_print("Key Parameters set. \n");
@@ -140,7 +140,7 @@ namespace math
 //         // Generate a random initialization vector.
 //         if (CryptGenRandom(
 //            m_hCryptProv,
-//            (DWORD)m.get_size(),
+//            (::u32)m.get_size(),
 //            m.get_data()))
 //         {
 //            //debug_print("Random sequence generated. \n");
@@ -237,7 +237,7 @@ namespace math
 //         cslock lock(&m_cs);
 //
 //
-//         ::CryptGenRandom(m_hCryptProv, (DWORD)s, (BYTE*)p);
+//         ::CryptGenRandom(m_hCryptProv, (::u32)s, (byte*)p);
 //
 //      }
 //
@@ -321,9 +321,9 @@ namespace math
       u64 uiHi = Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
       return uiLo | (uiHi << 32);
 #else
-      u64 ui = 0;
-      gen_rand(&ui, sizeof(ui));
-      return ui;
+      u64 u = 0;
+      gen_rand(&u, sizeof(u));
+      return u;
 #endif
 
    }

@@ -10,8 +10,8 @@ class single_lock;
 
 #ifdef WINDOWS
 
-typedef u32 ITHREAD;
-typedef DWORD thread_data_index;
+typedef u32 ithread_t;
+typedef ::u32 thread_data_index;
 
 #else
 
@@ -67,7 +67,7 @@ class multi_lock;
 
 
 
-//typedef UINT(c_cdecl *__THREADPROC)(LPVOID);
+//typedef ::u32(c_cdecl *__THREADPROC)(LPVOID);
 
 
 CLASS_DECL_APEX bool do_events();
@@ -180,4 +180,4 @@ namespace exception
 
 
 
-//CLASS_DECL_APEX thread* __begin_thread(::object * pobject, __THREADPROC pfnThreadProc, LPVOID pParam, i32 epriority = ::priority_normal, UINT nStackSize = 0, u32 dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = nullptr, ITHREAD * puiId = nullptr, error * perror = nullptr);
+//CLASS_DECL_APEX thread* __begin_thread(::object * pobject, __THREADPROC pfnThreadProc, LPVOID pParam, i32 epriority = ::priority_normal, ::u32 nStackSize = 0, u32 dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = nullptr, ithread_t * puiId = nullptr, error * perror = nullptr);

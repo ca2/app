@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 namespace gpu
@@ -20,7 +20,6 @@ namespace gpu
       virtual void gpu_read();
       virtual void gpu_write();
       
-
 
    };
 

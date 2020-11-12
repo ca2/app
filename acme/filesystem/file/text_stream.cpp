@@ -109,10 +109,10 @@ void text_stream::write(i16 i)
 }
 
 
-void text_stream::write(u16 ui)
+void text_stream::write(u16 u)
 {
 
-   write((u32)ui);
+   write((u32)u);
 
 }
 
@@ -168,10 +168,10 @@ void text_stream::write(i32 i)
 }
 
 
-void text_stream::write(u32 ui)
+void text_stream::write(u32 u)
 {
 
-   print_number(__str(ui));
+   print_number(__str(u));
 
 }
 
@@ -184,10 +184,10 @@ void text_stream::write(i64 i)
 }
 
 
-void text_stream::write(u64 ui)
+void text_stream::write(u64 u)
 {
 
-   print_number(__str(ui));
+   print_number(__str(u));
 
 }
 
@@ -216,7 +216,7 @@ void text_stream::write(double d)
 }
 
 
-//void text_stream::write(const RECT & rect)
+//void text_stream::write(const RECT32 & rect)
 //{
 //
 //   this->m_estrflag = (e_str_flag)((int)this->m_estrflag & ~(int)str_flag_ifnumberparenthesizeandspace);
@@ -226,7 +226,7 @@ void text_stream::write(double d)
 //}
 //
 //
-//void text_stream::write(const SIZE * psize)
+//void text_stream::write(const SIZE32 * psize)
 //{
 //
 //   this->m_estrflag = (e_str_flag)((int)this->m_estrflag & ~(int)str_flag_ifnumberparenthesizeandspace);
@@ -237,7 +237,7 @@ void text_stream::write(double d)
 //
 //
 //
-//void text_stream::write(const POINT * ppoint)
+//void text_stream::write(const POINT32 * ppoint)
 //{
 //
 //   this->m_estrflag = (e_str_flag)((int)this->m_estrflag & ~(int)str_flag_ifnumberparenthesizeandspace);
@@ -356,22 +356,22 @@ void text_stream::read(i16 & sh)
    m_p->read(&sh, sizeof(sh));
 }
 
-void text_stream::read(u16 & ui)
+void text_stream::read(u16 & u)
 {
-   m_p->read(&ui, sizeof(ui));
+   m_p->read(&u, sizeof(u));
 }
 
 void text_stream::read(i32 & i)
 {
-   u64 uiRead = m_p->read(&i, sizeof(i));
-   if (uiRead != sizeof(i))
+   u64 uRead = m_p->read(&i, sizeof(i));
+   if (uRead != sizeof(i))
       __throw(::exception::exception("failed to read i32"));
 }
 
-void text_stream::read(u32 & ui)
+void text_stream::read(u32 & u)
 {
-   u64 uiRead = m_p->read(&ui, sizeof(ui));
-   if (uiRead != sizeof(ui))
+   u64 uRead = m_p->read(&u, sizeof(u));
+   if (uRead != sizeof(u))
       __throw(::exception::exception("failed to read u32"));
 }
 
@@ -380,9 +380,9 @@ void text_stream::read(i64 & i)
    m_p->read(&i, sizeof(i));
 }
 
-void text_stream::read(u64 & ui)
+void text_stream::read(u64 & u)
 {
-   m_p->read(&ui, sizeof(ui));
+   m_p->read(&u, sizeof(u));
 }
 
 void text_stream::read(float & f)
@@ -395,7 +395,7 @@ void text_stream::read(double & d)
    m_p->read(&d, sizeof(d));
 }
 
-//void text_stream::read(RECT * prect)
+//void text_stream::read(RECT32 * prect)
 //
 //{
 //   m_p->read(&prect->left, sizeof(prect->left));
@@ -408,13 +408,13 @@ void text_stream::read(double & d)
 //   
 //}
 //
-//void text_stream::read(SIZE * psize)
+//void text_stream::read(SIZE32 * psize)
 //{
 //   m_p->read(&psize->cx, sizeof(psize->cx));
 //   m_p->read(&psize->cy, sizeof(psize->cy));
 //}
 //
-//void text_stream::read(POINT * ppoint)
+//void text_stream::read(POINT32 * ppoint)
 //{
 //   m_p->read(&ppoint->x, sizeof(ppoint->x));
 //   m_p->read(&ppoint->y, sizeof(ppoint->y));

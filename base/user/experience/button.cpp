@@ -25,7 +25,7 @@ namespace experience
 
       ::user::button::install_message_routing(pchannel);
 
-      MESSAGE_LINK(WM_LBUTTONDOWN, pchannel, this, &button::_001OnLButtonDown);
+      MESSAGE_LINK(e_message_lbutton_down, pchannel, this, &button::_001OnLButtonDown);
 
 
    }
@@ -143,7 +143,7 @@ namespace experience
       catch (...)
       {
 
-         __throw(::exception::exception("no more a ui"));
+         __throw(::exception::exception("no more a u"));
 
       }
 

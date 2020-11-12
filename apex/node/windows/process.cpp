@@ -26,10 +26,10 @@ namespace windows
 
       }
 
-      if(m_pi.hThread != INVALID_HANDLE_VALUE && m_pi.hThread != nullptr)
+      if(m_pi.hthread != INVALID_HANDLE_VALUE && m_pi.hthread != nullptr)
       {
 
-         CloseHandle(m_pi.hThread);
+         CloseHandle(m_pi.hthread);
 
       }
 
@@ -81,7 +81,7 @@ namespace windows
       m_si.wShowWindow = display_none;
 
 
-      DWORD dwPriorityClass = ::get_os_priority_class(epriority);
+      ::u32 dwPriorityClass = ::get_os_priority_class(epriority);
 
       wstring wstrDir(pszDir);
 
@@ -124,7 +124,7 @@ namespace windows
       }
 
       unichar * pwszCommandLine = (unichar * ) (const unichar *) wstrCommandLine;
-      DWORD dwFlags = 0;
+      ::u32 dwFlags = 0;
       if (is_true("inherit"))
       {
          dwFlags = CREATE_NEW_CONSOLE | CREATE_UNICODE_ENVIRONMENT;
@@ -144,7 +144,7 @@ namespace windows
       // If an error occurs, exit the application.
       if (!bSuccess)
       {
-         DWORD dwLastError = ::get_last_error();
+         ::u32 dwLastError = ::get_last_error();
          string strMessage = get_system_error_message(dwLastError);
          output_debug_string(pwszCommandLine);
          output_debug_string("\r\n");
@@ -162,7 +162,7 @@ namespace windows
          // of the child process, for example.
 
          //CloseHandle(m_pi.hProcess);
-         //CloseHandle(m_pi.hThread);
+         //CloseHandle(m_pi.hthread);
       }
 
       return true;
@@ -173,7 +173,7 @@ namespace windows
    bool process::has_exited()
    {
 
-      DWORD dwExitCode;
+      ::u32 dwExitCode;
 
       bool bExited;
 
@@ -213,7 +213,7 @@ namespace windows
    bool process::synch_elevated(const char * pszCmdLine,int iShow,const ::duration & durationTimeOut,bool * pbTimeOut)
    {
 
-      DWORD dwExitCode = 0;
+      ::u32 dwExitCode = 0;
 
       HANDLE h = nullptr;
 
@@ -250,7 +250,7 @@ namespace windows
       bool bTimedOut = true;
 auto tickStart = ::tick::now();
 
-      DWORD tickTimeout = durationTimeOut.tick_duration();
+      ::u32 tickTimeout = durationTimeOut.tick_duration();
 
       while(tickStart.elapsed() < tickTimeout)
       {
@@ -293,7 +293,7 @@ auto tickStart = ::tick::now();
    {
       ::system(string("taskkill /F /T /PID " ) + __str((i32) m_pi.dwProcessId));
       return true;
-      //return TerminateProcess(m_pi.hThread, -1) != FALSE;
+      //return TerminateProcess(m_pi.hthread, -1) != FALSE;
 
    }
 

@@ -24,12 +24,12 @@ namespace draw2d_opengl
       }*/
    }
 
-   /*bool pen::CreatePen(i32 nPenStyle, i32 nWidth, COLORREF crColor)
+   /*bool pen::CreatePen(i32 nPenStyle, i32 nWidth, color32_t crColor)
    { return attach(::CreatePen(nPenStyle, nWidth, crColor)); }
    bool pen::CreatePenIndirect(LPLOGPEN lpLogPen)
    { return attach(::CreatePenIndirect(lpLogPen)); }
    bool pen::CreatePen(i32 nPenStyle, i32 nWidth, const LOGBRUSH* pLogBrush,
-      i32 nStyleCount, const DWORD* lpStyle)
+      i32 nStyleCount, const ::u32* lpStyle)
    { return attach(::ExtCreatePen(nPenStyle, nWidth, pLogBrush, nStyleCount,
    lpStyle)); }
    i32 pen::GetExtLogPen(EXTLOGPEN* pLogPen)
@@ -44,7 +44,7 @@ namespace draw2d_opengl
    }
 
 
-   void pen::construct(i32 nPenStyle, double dWidth, COLORREF crColor)
+   void pen::construct(i32 nPenStyle, double dWidth, color32_t crColor)
    {
       
       if(m_ppen == nullptr)
@@ -58,7 +58,7 @@ namespace draw2d_opengl
    }
 
    void pen::construct(i32 nPenStyle, i32 nWidth, const LOGBRUSH* pLogBrush,
-      i32 nStyleCount, const DWORD* lpStyle)
+      i32 nStyleCount, const ::u32* lpStyle)
    {
       if (!attach(::ExtCreatePen(nPenStyle, nWidth, pLogBrush, nStyleCount,
          lpStyle)))
@@ -118,17 +118,17 @@ namespace draw2d_opengl
       // Standard exception processing
 
 
-   /*void __get_gray_bitmap(::object * pobject, const ::draw2d::bitmap &rSrc, ::draw2d::bitmap *pDest, COLORREF crBackground)
+   /*void __get_gray_bitmap(::object * pobject, const ::draw2d::bitmap &rSrc, ::draw2d::bitmap *pDest, color32_t crBackground)
    {
       ASSERT(pDest);
       ASSERT_KINDOF(::draw2d::bitmap, pDest);
 
       BITMAP bm;
       ::draw2d::graphics_pointer graphicsMem, graphicsMask;
-      COLORREF cr;
+      color32_t cr;
       ::draw2d::bitmap_pointer bmpMask(pobject);
       ::draw2d::bitmap *pOldMask, *pOldMem;
-      const DWORD   CP_ROP = 0xE20746;
+      const ::u32   CP_ROP = 0xE20746;
       ::draw2d::brush_pointer brHighLight(papp, psession->get_default_color(COLOR_3DHIGHLIGHT)),
          brShadow(papp, psession->get_default_color(COLOR_3DSHADOW)), spbr;
 
@@ -176,17 +176,17 @@ namespace draw2d_opengl
       }
    }
 
-   void __draw_gray_bitmap(::object * pobject, ::draw2d::graphics * pgraphics, i32 x, i32 y, const ::draw2d::bitmap &rSrc, COLORREF crBackground)
+   void __draw_gray_bitmap(::object * pobject, ::draw2d::graphics * pgraphics, i32 x, i32 y, const ::draw2d::bitmap &rSrc, color32_t crBackground)
    {
       ASSERT(pgraphics);
       ASSERT_KINDOF(::draw2d::graphics_pointer, pgraphics);
 
       BITMAP bm;
       ::draw2d::graphics_pointer graphicsMem, graphicsMask;
-      COLORREF cr;
+      color32_t cr;
       ::draw2d::bitmap_pointer bmpMask(pobject);
       ::draw2d::bitmap *pOldMask, *pOldMem;
-      const DWORD   CP_ROP = 0xE20746;
+      const ::u32   CP_ROP = 0xE20746;
       ::draw2d::brush_pointer brHighLight(papp, psession->get_default_color(COLOR_3DHIGHLIGHT)),
          brShadow(papp, psession->get_default_color(COLOR_3DSHADOW)), spbr;
 
@@ -224,18 +224,18 @@ namespace draw2d_opengl
       }
    }
 
-   void __get_dithered_bitmap(::object * pobject, const ::draw2d::bitmap &rSrc, ::draw2d::bitmap *pDest, COLORREF cr1, COLORREF cr2)
+   void __get_dithered_bitmap(::object * pobject, const ::draw2d::bitmap &rSrc, ::draw2d::bitmap *pDest, color32_t cr1, color32_t cr2)
    {
       ASSERT(pDest);
       ASSERT_KINDOF(::draw2d::bitmap, pDest);
 
       BITMAP bm;
       ::draw2d::graphics_pointer graphicsSrc, graphicsMask, graphicsDest;
-      COLORREF cr;
+      color32_t cr;
       ::draw2d::bitmap_pointer bmpMask(pobject);
       ::draw2d::bitmap *pOldMask, *pOldSrc;
       ::draw2d::brush brChecker;
-      static const WORD wPat[8] = {0x55, 0xaa, 0x55, 0xaa, 0x55, 0xaa, 0x55, 0xaa};
+      static const ::u16 wPat[8] = {0x55, 0xaa, 0x55, 0xaa, 0x55, 0xaa, 0x55, 0xaa};
 
       if(graphicsSrc->CreateCompatibleDC(nullptr) &&
          graphicsMask->CreateCompatibleDC(nullptr) &&
@@ -293,18 +293,18 @@ namespace draw2d_opengl
       }
    }
 
-   void __draw_dithered_bitmap(::object * pobject, ::draw2d::graphics * pgraphics, i32 x, i32 y, const ::draw2d::bitmap &rSrc, COLORREF cr1, COLORREF cr2)
+   void __draw_dithered_bitmap(::object * pobject, ::draw2d::graphics * pgraphics, i32 x, i32 y, const ::draw2d::bitmap &rSrc, color32_t cr1, color32_t cr2)
    {
       ASSERT(pgraphics);
       ASSERT_KINDOF(::draw2d::graphics_pointer, pgraphics);
 
       BITMAP bm;
       ::draw2d::graphics_pointer graphicsSrc, graphicsMask;
-      COLORREF cr;
+      color32_t cr;
       ::draw2d::bitmap_pointer bmpMask(pobject);
       ::draw2d::bitmap *pOldMask, *pOldSrc;
       ::draw2d::brush brChecker;
-      static const WORD wPat[8] = {0x55, 0xaa, 0x55, 0xaa, 0x55, 0xaa, 0x55, 0xaa};
+      static const ::u16 wPat[8] = {0x55, 0xaa, 0x55, 0xaa, 0x55, 0xaa, 0x55, 0xaa};
 
       if(graphicsSrc->CreateCompatibleDC(pgraphics) &&
          graphicsMask->CreateCompatibleDC(pgraphics) &&

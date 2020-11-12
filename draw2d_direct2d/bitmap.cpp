@@ -20,7 +20,7 @@ namespace draw2d_direct2d
    }
 
 
-   bool bitmap::CreateBitmap(::draw2d::graphics* pgraphics, const ::size& sizeParam, UINT nPlanes, UINT nBitcount, const void * lpBits, int stride)
+   bool bitmap::CreateBitmap(::draw2d::graphics* pgraphics, const ::size& sizeParam, ::u32 nPlanes, ::u32 nBitcount, const void * lpBits, int stride)
    {
 
       ::draw2d::lock draw2dlock;
@@ -51,7 +51,7 @@ namespace draw2d_direct2d
 
       //if(ppdata != nullptr)
       {
-         // g.m_pdc->CreateBitmap(size, *ppdata, cx * sizeof(COLORREF), props, &m_pbitmap);
+         // g.m_pdc->CreateBitmap(size, *ppdata, cx * sizeof(color32_t), props, &m_pbitmap);
       }
       //else
       //{
@@ -70,7 +70,7 @@ namespace draw2d_direct2d
       //    m_pbitmap->Map(D2D1_MAP_OPTIONS_READ | D2D1_MAP_OPTIONS_WRITE, &m_map);
       //
       //if(ppdata != nullptr)
-      // *ppdata = (COLORREF *) m_map.bits;
+      // *ppdata = (color32_t *) m_map.bits;
       m_osdata[0] = m_pbitmap.Get();
 
       return true;
@@ -124,7 +124,7 @@ namespace draw2d_direct2d
 
       //props.bitmapOptions = D2D1_BITMAP_OPTIONS_CPU_READ | D2D1_BITMAP_OPTIONS_CANNOT_DRAW;
 
-      //m_memory.set_size(size.width * size.height * sizeof(COLORREF));
+      //m_memory.set_size(size.width * size.height * sizeof(color32_t));
 
       HRESULT hr;
 
@@ -137,7 +137,7 @@ namespace draw2d_direct2d
       //else
       {
 
-         //hr = METROWIN_DC(pgraphics)->m_pdevicecontext->CreateBitmap(size, m_memory.get_data(), size.width * sizeof(COLORREF), props, &m_pbitmap1);
+         //hr = METROWIN_DC(pgraphics)->m_pdevicecontext->CreateBitmap(size, m_memory.get_data(), size.width * sizeof(color32_t), props, &m_pbitmap1);
 
       }
 
@@ -166,7 +166,7 @@ namespace draw2d_direct2d
    }
 
 
-   bool bitmap::CreateDIBitmap(::draw2d::graphics* pgraphics, int cx, int cy, u32 flInit, const void *pjBits, UINT iUsage)
+   bool bitmap::CreateDIBitmap(::draw2d::graphics* pgraphics, int cx, int cy, u32 flInit, const void *pjBits, ::u32 iUsage)
    {
 
       return false;
@@ -217,7 +217,7 @@ namespace draw2d_direct2d
    }
 
 
-   bool bitmap::LoadBitmap(UINT nIDResource)
+   bool bitmap::LoadBitmap(::u32 nIDResource)
    {
 
       //return Attach(::LoadBitmap(::aura::FindResourceHandle(MAKEINTRESOURCE(nIDResource), RT_BITMAP), MAKEINTRESOURCE(nIDResource)));
@@ -226,7 +226,7 @@ namespace draw2d_direct2d
    }
 
 
-   bool bitmap::LoadOEMBitmap(UINT nIDBitmap)
+   bool bitmap::LoadOEMBitmap(::u32 nIDBitmap)
    {
 
       //return Attach(::LoadBitmap(nullptr, MAKEINTRESOURCE(nIDBitmap)));
@@ -265,12 +265,12 @@ namespace draw2d_direct2d
 
       //if(ppdata != nullptr)
       {
-         // g.m_pdc->CreateBitmap(size, *ppdata, cx * sizeof(COLORREF), props, &m_pbitmap);
+         // g.m_pdc->CreateBitmap(size, *ppdata, cx * sizeof(color32_t), props, &m_pbitmap);
       }
       //else
       //      ID2D1Bitmap1 * pbitmap1;
       {
-         ((ID2D1DeviceContext *)pgraphics->get_os_data())->CreateBitmap(size, nullptr, size.width * sizeof(COLORREF), props, &m_pbitmap1);
+         ((ID2D1DeviceContext *)pgraphics->get_os_data())->CreateBitmap(size, nullptr, size.width * sizeof(color32_t), props, &m_pbitmap1);
       }
       m_pbitmap = m_pbitmap1;
 
@@ -313,11 +313,11 @@ namespace draw2d_direct2d
 
       //if(ppdata != nullptr)
       {
-         // g.m_pdc->CreateBitmap(size, *ppdata, cx * sizeof(COLORREF), props, &m_pbitmap);
+         // g.m_pdc->CreateBitmap(size, *ppdata, cx * sizeof(color32_t), props, &m_pbitmap);
       }
       //else
       {
-         ((ID2D1DeviceContext *)pgraphics->get_os_data())->CreateBitmap(size, nullptr, size.width * sizeof(COLORREF), &props, &m_pbitmap1);
+         ((ID2D1DeviceContext *)pgraphics->get_os_data())->CreateBitmap(size, nullptr, size.width * sizeof(color32_t), &props, &m_pbitmap1);
       }
       m_pbitmap = m_pbitmap1;
 
@@ -328,7 +328,7 @@ namespace draw2d_direct2d
       //m_pbitmap->Map(D2D1_MAP_OPTIONS_READ | D2D1_MAP_OPTIONS_WRITE, &m_map);
 
       //if(ppdata != nullptr)
-      // *ppdata = (COLORREF *) m_map.bits;
+      // *ppdata = (color32_t *) m_map.bits;
 
 
       return true;

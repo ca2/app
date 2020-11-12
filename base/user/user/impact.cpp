@@ -26,14 +26,14 @@ namespace user
       ::user::box::install_message_routing(pchannel);
 
       //MESSAGE_LINK(WM_VIEW, pchannel, this, &impact::_001OnView);
-      MESSAGE_LINK(WM_LBUTTONDOWN, pchannel, this, &impact::_001OnLButtonDown);
-      MESSAGE_LINK(WM_LBUTTONUP, pchannel, this, &impact::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_lbutton_down, pchannel, this, &impact::_001OnLButtonDown);
+      MESSAGE_LINK(e_message_lbutton_up, pchannel, this, &impact::_001OnLButtonUp);
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &impact::_001OnMouseMove);
       MESSAGE_LINK(e_message_create, pchannel, this, &impact::_001OnCreate);
       MESSAGE_LINK(e_message_destroy, pchannel, this, &impact::_001OnDestroy);
-      //      MESSAGE_LINK(WM_LBUTTONDOWN    , pchannel, this, &impact::_001OnRButtonDown);
+      //      MESSAGE_LINK(e_message_lbutton_down    , pchannel, this, &impact::_001OnRButtonDown);
       MESSAGE_LINK(WM_MBUTTONDOWN, pchannel, this, &impact::_001OnMButtonDown);
-      MESSAGE_LINK(WM_RBUTTONDOWN, pchannel, this, &impact::_001OnRButtonDown);
+      MESSAGE_LINK(e_message_rbutton_down, pchannel, this, &impact::_001OnRButtonDown);
 
 
       MESSAGE_LINK(WM_MOUSEACTIVATE, pchannel, this, &impact::_001OnMouseActivate);
@@ -241,7 +241,7 @@ namespace user
    }
 
 
-   void impact::CalcWindowRect(RECT * pClientRect, UINT nAdjustType)
+   void impact::CalcWindowRect(RECT32 * pClientRect, ::u32 nAdjustType)
 
    {
       /* trans   ENSURE_ARG(pClientRect != nullptr);
@@ -474,12 +474,12 @@ namespace user
       }
    }
 
-   void impact::OnActivateFrame(UINT /*nState*/, __pointer(::user::frame_window) /*pFrameWnd*/)
+   void impact::OnActivateFrame(::u32 /*nState*/, __pointer(::user::frame_window) /*pFrameWnd*/)
    {
    }
 
    /* trans
-   i32 impact::OnMouseActivate(::user::interaction_impl * pDesktopWnd, UINT nHitTest, const ::id & id)
+   i32 impact::OnMouseActivate(::user::interaction_impl * pDesktopWnd, ::u32 nHitTest, const ::id & id)
    {
    i32 nResult = ::user::interaction::OnMouseActivate(pDesktopWnd, nHitTest, message);
    if (nResult == MA_NOACTIVATE || nResult == MA_NOACTIVATEANDEAT)
@@ -513,7 +513,7 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // ::user::impact scrolling support
 
-   bool impact::OnScroll(UINT /*nScrollCode*/, UINT /*nPos*/, bool /*bDoScroll*/)
+   bool impact::OnScroll(::u32 /*nScrollCode*/, ::u32 /*nPos*/, bool /*bDoScroll*/)
    {
       return FALSE;
    }
@@ -606,7 +606,7 @@ namespace user
       pCmdUI->enable(pSplitter != nullptr && !pSplitter->IsTracking());*/
    }
 
-   bool impact::OnSplitCmd(UINT)
+   bool impact::OnSplitCmd(::u32)
    {
       /*   CSplitterWnd* pSplitter = GetParentSplitter(this, FALSE);
       if (pSplitter == nullptr)
@@ -627,7 +627,7 @@ namespace user
       pSplitter->CanActivateNext(pCmdUI->m_nID == ID_PREV_PANE));*/
    }
 
-   bool impact::OnNextPaneCmd(UINT nID)
+   bool impact::OnNextPaneCmd(::u32 nID)
    {
       UNREFERENCED_PARAMETER(nID);
       /*   CSplitterWnd* pSplitter = GetParentSplitter(this, FALSE);
@@ -1270,7 +1270,7 @@ namespace user
 
 
    /*
-   __pointer(::user::interaction) impact::CreateView(__pointer(::create) pContext, UINT nID)
+   __pointer(::user::interaction) impact::CreateView(__pointer(::create) pContext, ::u32 nID)
    {
    ASSERT(is_window());
    ASSERT(pContext != nullptr);
@@ -1307,7 +1307,7 @@ namespace user
    }*/
 
 
-   /*__pointer(::user::interaction) impact::CreateView(__pointer(::create) pContext, UINT nID, ::user::interaction  * pwndParent)
+   /*__pointer(::user::interaction) impact::CreateView(__pointer(::create) pContext, ::u32 nID, ::user::interaction  * pwndParent)
    {
    ASSERT(pwndParent->is_window());
    ASSERT(pContext != nullptr);

@@ -142,7 +142,7 @@ namespace windows
          HANDLE hProcess = ::OpenProcess( PROCESS_QUERY_INFORMATION |
                                           PROCESS_VM_READ,
                                           FALSE, uPid);
-         TerminateProcess(hProcess, (UINT) -1);
+         TerminateProcess(hProcess, (::u32) -1);
          CloseHandle(hProcess);
          /*::EnumWindows((WNDENUMPROC)
          CKillProcessHelper::TerminateAppEnum,
@@ -216,7 +216,7 @@ namespace windows
       if (nullptr != hProcess )
       {
          HMODULE hMod;
-         DWORD cbNeeded;
+         ::u32 cbNeeded;
 
          if(EnumProcessModules( hProcess, &hMod, sizeof(hMod),
                                 &cbNeeded) )
@@ -233,18 +233,18 @@ namespace windows
    void os_context::get_all_processes(u32_array & ua)
    {
 
-      ASSERT(sizeof(DWORD) == sizeof(u32));
+      ASSERT(sizeof(::u32) == sizeof(u32));
 
       ua.allocate(0);
 
-      DWORD cbNeeded = 0;
+      ::u32 cbNeeded = 0;
 
       while(cbNeeded == natural(ua.get_count()))
       {
 
          ua.allocate(ua.get_count() + 1024);
 
-         if(!EnumProcesses((DWORD *) ua.get_data(), (DWORD) (ua.get_count() * sizeof(DWORD)), &cbNeeded))
+         if(!EnumProcesses((::u32 *) ua.get_data(), (::u32) (ua.get_count() * sizeof(::u32)), &cbNeeded))
          {
 
             return;
@@ -795,14 +795,14 @@ namespace windows
    struct TOKEN_INFO
    {
       TOKEN_USER tokenUser;
-      BYTE buffer[SECURITY_MAX_SID_SIZE];
+      byte buffer[SECURITY_MAX_SID_SIZE];
    };
    HRESULT GetCurrentUserIdentity(TOKEN_INFO & tokenInfo)
    {
       // Declare variables.
       bool bOk = true;
       HANDLE tokenHandle = nullptr;
-      DWORD bytesReturned = 0;
+      ::u32 bytesReturned = 0;
 
 
       // Open the access token associated with the
@@ -849,8 +849,8 @@ namespace windows
    )
    {
       LPTSTR ReferencedDomain=nullptr;
-      DWORD cbSid=128;    // initial allocation attempt
-      DWORD cchReferencedDomain=16; // initial allocation size
+      ::u32 cbSid=128;    // initial allocation attempt
+      ::u32 cchReferencedDomain=16; // initial allocation size
       SID_NAME_USE peUse;
       BOOL bSuccess=FALSE; // assume this function will fail
 
@@ -969,7 +969,7 @@ namespace windows
       u32   dwResult;
       sec_cotaskptr < PVOID > pvInAuthBlob;
       sec_cotaskptr < PVOID > pvAuthBlob;
-      CREDUI_INFOW ui;
+      CREDUI_INFOW u;
       ULONG   ulAuthPackage = 0;
       BOOL    fSave = FALSE;
       WCHAR szDomainAndUser[CREDUI_MAX_USERNAME_LENGTH + CREDUI_MAX_DOMAIN_TARGET_LENGTH + 1];
@@ -984,9 +984,9 @@ namespace windows
 
 
       // Display a dialog box to request credentials.
-      xxf_zero(ui);
-      ui.cbSize = sizeof(ui);
-      ui.hwndParent = nullptr;
+      xxf_zero(u);
+      u.cbSize = sizeof(u);
+      u.hwndParent = nullptr;
 
 
 
@@ -1084,15 +1084,15 @@ namespace windows
       }
 
 
-      ui.pszCaptionText = wstrCaption;
-      ui.pszMessageText = wstrMessage;
+      u.pszCaptionText = wstrCaption;
+      u.pszMessageText = wstrMessage;
       hicon = (HICON) ::LoadImageW(::GetModuleHandle(nullptr),MAKEINTRESOURCEW(1),IMAGE_ICON,48,48,LR_DEFAULTCOLOR);
 
 
       if(hicon != nullptr)
       {
 
-         ui.hbmBanner = get_icon_hbitmap(hicon);
+         u.hbmBanner = get_icon_hbitmap(hicon);
 
          ::DeleteObject(hicon);
 
@@ -1101,7 +1101,7 @@ namespace windows
 retry:
 
       dwResult = LIBCALL(credui,CredUIPromptForWindowsCredentialsW)(
-                 &ui,             // Customizing information
+                 &u,             // Customizing information
                  dwLastError,               // Error code to display
                  &ulAuthPackage,  // Authorization package
                  pvInAuthBlob,    // Credential byte array
@@ -1118,9 +1118,9 @@ retry:
       if(dwResult == NO_ERROR)
       {
 
-         DWORD lenName = maxLenName;
-         DWORD lenDomain = maxLenDomain;
-         DWORD lenPass = maxLenPass;
+         ::u32 lenName = maxLenName;
+         ::u32 lenDomain = maxLenDomain;
+         ::u32 lenPass = maxLenPass;
 
          bOk = LIBCALL(credui, CredUnPackAuthenticationBufferW)(CRED_PACK_PROTECTED_CREDENTIALS,
                pvAuthBlob,
@@ -1191,10 +1191,10 @@ retry:
          bOk = false;
       }
 
-      if(ui.hbmBanner != nullptr)
+      if(u.hbmBanner != nullptr)
       {
 
-         ::DeleteObject(ui.hbmBanner);
+         ::DeleteObject(u.hbmBanner);
 
       }
 
@@ -1579,7 +1579,7 @@ retry:
       if((wAttr = windows_get_file_attributes(pszFileName)) == (u32)-1L)
       {
 
-         ::file::throw_os_error( (LONG)get_last_error());
+         ::file::throw_os_error( (::i32)get_last_error());
 
       }
 
@@ -1593,7 +1593,7 @@ retry:
          if (!SetFileAttributesW(wstr, (u32)status.m_attribute))
          {
 
-            ::file::throw_os_error( (LONG)get_last_error());
+            ::file::throw_os_error( (::i32)get_last_error());
 
          }
 
@@ -1637,7 +1637,7 @@ retry:
       if(hFile == INVALID_HANDLE_VALUE)
       {
 
-         ::file::throw_os_error( (LONG)::get_last_error());
+         ::file::throw_os_error( (::i32)::get_last_error());
 
       }
 
@@ -1645,14 +1645,14 @@ retry:
 
       {
 
-         ::file::throw_os_error( (LONG)::get_last_error());
+         ::file::throw_os_error( (::i32)::get_last_error());
 
       }
 
       if(!::CloseHandle(hFile))
       {
 
-         ::file::throw_os_error( (LONG)::get_last_error());
+         ::file::throw_os_error( (::i32)::get_last_error());
 
       }
 
@@ -1662,7 +1662,7 @@ retry:
          if (!::SetFileAttributesW(wstr, (u32)status.m_attribute))
          {
 
-            ::file::throw_os_error( (LONG)get_last_error());
+            ::file::throw_os_error( (::i32)get_last_error());
 
          }
 
@@ -2233,13 +2233,13 @@ repeat:
 
          string strValue;
 
-         regkey.set(strTargetProgId, "Software\\Clients\\StartMenuInternet\\" + strTargetProgId + "\\Capabilities");
+         regkey.set(strTargetProgId, "Software\\Clients\\StartMen::u32ernet\\" + strTargetProgId + "\\Capabilities");
 
       }
 
       {
 
-         ::windows::registry::key regkey(HKEY_LOCAL_MACHINE, "Software\\Clients\\StartMenuInternet\\" + strTargetProgId, true);
+         ::windows::registry::key regkey(HKEY_LOCAL_MACHINE, "Software\\Clients\\StartMen::u32ernet\\" + strTargetProgId, true);
 
          string strValue;
 
@@ -2249,7 +2249,7 @@ repeat:
 
       {
 
-         ::windows::registry::key regkey(HKEY_LOCAL_MACHINE, "Software\\Clients\\StartMenuInternet\\" + strTargetProgId + "\\Capabilities", true);
+         ::windows::registry::key regkey(HKEY_LOCAL_MACHINE, "Software\\Clients\\StartMen::u32ernet\\" + strTargetProgId + "\\Capabilities", true);
 
          string strValue;
 
@@ -2261,7 +2261,7 @@ repeat:
 
       {
 
-         ::windows::registry::key regkey(HKEY_LOCAL_MACHINE, "Software\\Clients\\StartMenuInternet\\" + strTargetProgId + "\\Capabilities\\FileAssociations", true);
+         ::windows::registry::key regkey(HKEY_LOCAL_MACHINE, "Software\\Clients\\StartMen::u32ernet\\" + strTargetProgId + "\\Capabilities\\FileAssociations", true);
 
          string strValue;
 
@@ -2278,17 +2278,17 @@ repeat:
 
       {
 
-         ::windows::registry::key regkey(HKEY_LOCAL_MACHINE, "Software\\Clients\\StartMenuInternet\\" + strTargetProgId + "\\Capabilities\\Startmenu", true);
+         ::windows::registry::key regkey(HKEY_LOCAL_MACHINE, "Software\\Clients\\StartMen::u32ernet\\" + strTargetProgId + "\\Capabilities\\Startmenu", true);
 
          string strValue;
 
-         regkey.set("StartMenuInternet", strTargetProgId);
+         regkey.set("StartMen::u32ernet", strTargetProgId);
 
       }
 
       {
 
-         ::windows::registry::key regkey(HKEY_LOCAL_MACHINE, "Software\\Clients\\StartMenuInternet\\" + strTargetProgId + "\\Capabilities\\URLAssociations", true);
+         ::windows::registry::key regkey(HKEY_LOCAL_MACHINE, "Software\\Clients\\StartMen::u32ernet\\" + strTargetProgId + "\\Capabilities\\URLAssociations", true);
 
          string strValue;
 
@@ -2310,7 +2310,7 @@ repeat:
 
       {
 
-         ::windows::registry::key regkey(HKEY_LOCAL_MACHINE, "Software\\Clients\\StartMenuInternet\\" + strTargetProgId + "\\DefaultIcon", true);
+         ::windows::registry::key regkey(HKEY_LOCAL_MACHINE, "Software\\Clients\\StartMen::u32ernet\\" + strTargetProgId + "\\DefaultIcon", true);
 
          string strValue;
 
@@ -2321,7 +2321,7 @@ repeat:
 
       {
 
-         ::windows::registry::key regkey(HKEY_LOCAL_MACHINE, "Software\\Clients\\StartMenuInternet\\" + strTargetProgId + "\\InstallInfo", true);
+         ::windows::registry::key regkey(HKEY_LOCAL_MACHINE, "Software\\Clients\\StartMen::u32ernet\\" + strTargetProgId + "\\InstallInfo", true);
 
          string strValue;
 
@@ -2335,7 +2335,7 @@ repeat:
 
       {
 
-         ::windows::registry::key regkey(HKEY_LOCAL_MACHINE, "Software\\Clients\\StartMenuInternet\\" + strTargetProgId + "\\shell\\open\\command", true);
+         ::windows::registry::key regkey(HKEY_LOCAL_MACHINE, "Software\\Clients\\StartMen::u32ernet\\" + strTargetProgId + "\\shell\\open\\command", true);
 
          string strValue;
 
@@ -2665,11 +2665,11 @@ repeat:
 
       //{
 
-      //   ::windows::registry::key regkey(HKEY_LOCAL_MACHINE, "Software\\Clients\\StartMenuInternet\\" + strTargetProgId + "\\Capabilities\\Startmenu", true);
+      //   ::windows::registry::key regkey(HKEY_LOCAL_MACHINE, "Software\\Clients\\StartMen::u32ernet\\" + strTargetProgId + "\\Capabilities\\Startmenu", true);
 
       //   string strValue;
 
-      //   regkey.set("StartMenuInternet", strTargetProgId);
+      //   regkey.set("StartMen::u32ernet", strTargetProgId);
 
       //}
 
@@ -3004,7 +3004,7 @@ repeat:
             if (rgSpec.get_size() > 0)
             {
 
-               pfileopen->SetFileTypes(UINT(rgSpec.get_size()), rgSpec.get_data());
+               pfileopen->SetFileTypes(::u32(rgSpec.get_size()), rgSpec.get_data());
 
             }
 
@@ -3075,7 +3075,7 @@ repeat:
                   if (SUCCEEDED(hr))
                   {
 
-                     DWORD dwNumItems = 0; // number of items in multiple selection
+                     ::u32 dwNumItems = 0; // number of items in multiple selection
 
                      hr = pitema->GetCount(&dwNumItems);  // get number of selected items
 
@@ -3250,7 +3250,7 @@ repeat:
             if (rgSpec.get_size() > 0)
             {
 
-               pfilesave->SetFileTypes(UINT (rgSpec.get_size()), rgSpec.get_data());
+               pfilesave->SetFileTypes(::u32 (rgSpec.get_size()), rgSpec.get_data());
 
             }
 
@@ -3589,7 +3589,7 @@ repeat:
    void os_context::list_process(::file::patha & patha, u32_array & uaPid)
    {
 
-      ASSERT(sizeof(DWORD) == sizeof(u32));
+      ASSERT(sizeof(::u32) == sizeof(u32));
 
       get_all_processes(uaPid);
 

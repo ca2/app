@@ -64,27 +64,27 @@ namespace axis
       char lpszModuleFilePath[MAX_PATH + 1];
       GetModuleFileName(nullptr, lpszModuleFilePath, MAX_PATH + 1);
 
-      DWORD dw;
+      ::u32 dw;
 
-      DWORD dwResSize = GetFileVersionInfoSize(
+      ::u32 dwResSize = GetFileVersionInfoSize(
                         lpszModuleFilePath,
                         &dw);
 
 
       if(dwResSize > 0)
       {
-         LPVOID lpdata = new BYTE[dwResSize];
+         LPVOID lpdata = new byte[dwResSize];
          if(GetFileVersionInfo(
                lpszModuleFilePath,
                0,
                dwResSize,
                lpdata))
          {
-            UINT cbTranslate;
+            ::u32 cbTranslate;
             struct LANGANDCODEPAGE
             {
-               WORD wLanguage;
-               WORD wCodePage;
+               ::u16 wLanguage;
+               ::u16 wCodePage;
             } *lpTranslate;
 
             // read the list of languages and code pages.
@@ -99,7 +99,7 @@ namespace axis
             for(int i=0; i < 1; i++ )
             {
                LPTSTR lpsz;
-               UINT uiSize;
+               ::u32 uSize;
 
                strKey.Format(
                TEXT("\\StringFileInfo\\%04x%04x\\FileDescription"),

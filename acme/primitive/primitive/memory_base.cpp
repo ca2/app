@@ -51,7 +51,7 @@ memory_base & memory_base::prefix_der_length()
    if(msb < 7)
    {
       move_and_grow(1);
-      get_data()[0] = (BYTE)(get_size() - 1);
+      get_data()[0] = (byte)(get_size() - 1);
    }
    else
    {
@@ -452,15 +452,15 @@ void memory_base::transfer_from(::file::file * pfileIn,memsize uiBufferSize)
 
          set_size((::memsize) filesize);
 
-         memsize uiRead = pfileIn->read(get_data(), (memsize) get_size());
+         memsize uRead = pfileIn->read(get_data(), (memsize) get_size());
 
-         set_size(uiRead);
+         set_size(uRead);
 
       }
       else
       {
 
-         memsize uiRead;
+         memsize uRead;
 
          memsize uiSize = 0;
 
@@ -469,15 +469,15 @@ void memory_base::transfer_from(::file::file * pfileIn,memsize uiBufferSize)
 
             set_size(uiSize + uiBufferSize);
 
-            uiRead = pfileIn->read(&get_data()[uiSize], uiBufferSize);
+            uRead = pfileIn->read(&get_data()[uiSize], uiBufferSize);
 
-            if (uiRead <= 0)
+            if (uRead <= 0)
             {
                break;
 
             }
 
-            uiSize += uiRead;
+            uiSize += uRead;
 
          }
 
@@ -596,7 +596,7 @@ comptr < IStream > memory_base::create_istream() const
 
    }
 
-   return ::SHCreateMemStream(get_data(),(UINT)get_size());
+   return ::SHCreateMemStream(get_data(),(::u32)get_size());
 
 }
 
@@ -1325,7 +1325,7 @@ string memory_base::to_string(memsize iStart, memsize iCount) const
 
    }
 
-   LPSTR psz = str.get_string_buffer(iCount + 1);
+   char * psz = str.get_string_buffer(iCount + 1);
 
    ::memcpy_dup(psz, &get_data()[iStart], iCount);
 
@@ -1730,7 +1730,7 @@ CFDataRef memory_base::get_os_cf_data(memsize pos, memsize size) const
    {
       size = get_size() - pos;
    }
-   return CFDataCreate(kCFAllocatorDefault, (const UInt8 *)&get_data()[pos], (CFIndex)size);
+   return CFDataCreate(kCFAllocatorDefault, (const ::u328 *)&get_data()[pos], (CFIndex)size);
 }
 
 
@@ -1865,7 +1865,7 @@ namespace papaya
       else
       {
 
-         memsize uiRead;
+         memsize uRead;
 
          memsize uiSize = 0;
 
@@ -1874,15 +1874,15 @@ namespace papaya
 
             mem.set_size(uiSize + uiBufferSize);
 
-            uiRead = pfileIn->read(&mem.get_data()[uiSize], uiBufferSize);
+            uRead = pfileIn->read(&mem.get_data()[uiSize], uiBufferSize);
 
-            if (uiRead <= 0)
+            if (uRead <= 0)
             {
                break;
 
             }
 
-            uiSize += uiRead;
+            uiSize += uRead;
 
          }
 

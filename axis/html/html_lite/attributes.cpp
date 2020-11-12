@@ -447,7 +447,7 @@ bool LiteHTMLElemAttr::isHexColorValue() const
 
 
 
-COLORREF LiteHTMLElemAttr::getColorValue(::lite_html_reader * preader) const
+color32_t LiteHTMLElemAttr::getColorValue(::lite_html_reader * preader) const
 {
 
    color color;
@@ -496,7 +496,7 @@ string LiteHTMLElemAttr::getColorHexValue(::lite_html_reader * preader) const
    else
    {
 
-      COLORREF crTemp = getColorValue(preader);
+      color32_t crTemp = getColorValue(preader);
 
       if (crTemp != 0xffffffff)
          strColorHex.Format("#%06x", crTemp);

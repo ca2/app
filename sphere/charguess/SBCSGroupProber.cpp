@@ -45,7 +45,7 @@ nsSBCSGroupProber::nsSBCSGroupProber()
 
 nsSBCSGroupProber::~nsSBCSGroupProber()
 {
-  for (PRUint32 i = 0; i < NUM_OF_SBCS_PROBERS; i++)
+  for (PR::u32 i = 0; i < NUM_OF_SBCS_PROBERS; i++)
   {
     delete mProbers[i];
   }
@@ -68,7 +68,7 @@ const char* nsSBCSGroupProber::GetCharSetName()
 
 void  nsSBCSGroupProber::Reset(void)
 {
-  for (PRUint32 i = 0; i < NUM_OF_SBCS_PROBERS; i++)
+  for (PR::u32 i = 0; i < NUM_OF_SBCS_PROBERS; i++)
   {
     mProbers[i]->Reset();
     mIsActive[i] = PR_TRUE;
@@ -78,7 +78,7 @@ void  nsSBCSGroupProber::Reset(void)
 }
 
 //This filter apply to all scripts that does not use latin letters (english letter)
-PRBool nsSBCSGroupProber::FilterWithoutEnglishLetters(const char* aBuf, PRUint32 aLen, char** newBuf, PRUint32& newLen)
+PRBool nsSBCSGroupProber::FilterWithoutEnglishLetters(const char* aBuf, PR::u32 aLen, char** newBuf, PR::u32& newLen)
 {
   //do filtering to reduce load to probers
   char *newptr;
@@ -109,14 +109,14 @@ PRBool nsSBCSGroupProber::FilterWithoutEnglishLetters(const char* aBuf, PRUint32
     }
   }
 
-  newLen = (PRUint32)(newptr - *newBuf);
+  newLen = (PR::u32)(newptr - *newBuf);
 
   return PR_TRUE;
 }
 
 #ifdef  NO_ENGLISH_CONTAMINATION 
 //This filter apply to all scripts that does use latin letters (english letter)
-PRBool nsSBCSGroupProber::FilterWithEnglishLetters(const char* aBuf, PRUint32 aLen, char** newBuf, PRUint32& newLen)
+PRBool nsSBCSGroupProber::FilterWithEnglishLetters(const char* aBuf, PR::u32 aLen, char** newBuf, PR::u32& newLen)
 {
   //do filtering to reduce load to probers
   char *newptr;
@@ -155,12 +155,12 @@ PRBool nsSBCSGroupProber::FilterWithEnglishLetters(const char* aBuf, PRUint32 aL
 }
 #endif //NO_ENGLISH_CONTAMINATION
 
-nsProbingState nsSBCSGroupProber::HandleData(const char* aBuf, PRUint32 aLen)
+nsProbingState nsSBCSGroupProber::HandleData(const char* aBuf, PR::u32 aLen)
 {
   nsProbingState st;
-  PRUint32 i;
+  PR::u32 i;
   char *newBuf1;
-  PRUint32 newLen1;
+  PR::u32 newLen1;
 
   //apply filter to original buffer, and we got new buffer back
   //depend on what script it is, we will feed them the new buffer 
@@ -197,7 +197,7 @@ nsProbingState nsSBCSGroupProber::HandleData(const char* aBuf, PRUint32 aLen)
 
 float nsSBCSGroupProber::GetConfidence(void)
 {
-  PRUint32 i;
+  PR::u32 i;
   float bestConf = 0.0, cf;
 
   switch (mState)
@@ -226,7 +226,7 @@ float nsSBCSGroupProber::GetConfidence(void)
 void 
 nsSBCSGroupProber::DumpStatus()
 {
-  PRUint32 i;
+  PR::u32 i;
   float cf;
   
   cf = GetConfidence();

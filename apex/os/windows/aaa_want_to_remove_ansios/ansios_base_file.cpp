@@ -123,7 +123,7 @@ int_bool file_put_contents(const char * path, const char * contents, ::count len
 
       }
 
-      size_t dwWritten = ::fwrite(contents, 1, (uint32_t) dwWrite, file);
+      size_t dwWritten = ::fwrite(contents, 1, (::u32) dwWrite, file);
 
       bOk = dwWritten == dwWrite;
 
@@ -156,7 +156,7 @@ string file_as_string(const char * path)
 
    ::count iSize = FILE_get_size(f);
 
-   LPSTR lpsz = str.GetBufferSetLength(iSize);
+   char * lpsz = str.GetBufferSetLength(iSize);
 
    ::count iRead = fread(lpsz, 1,iSize, f);
 
@@ -254,7 +254,7 @@ memsize file_as_memory(const char * path, void * p, memsize s)
 
 
 
-uint64_t file_length_dup(const char * path)
+::u3264_t file_length_dup(const char * path)
 {
 
    struct stat st;

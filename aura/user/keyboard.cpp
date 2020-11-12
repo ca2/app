@@ -229,7 +229,7 @@ namespace user
 //
 //      WCHAR wsz[KL_NAMELENGTH];
 //
-//      WORD w;
+//      ::u16 w;
 //
 //      if(GetKeyboardLayoutNameW(wsz))
 //      {
@@ -249,7 +249,7 @@ namespace user
 //            {
 //               string str(wstring(&wsz[4],4)); // least significant four digits
 //
-//               w = (WORD) ::hex::to_i64(str);
+//               w = (::u16) ::hex::to_i64(str);
 //
 //            }
 //
@@ -707,7 +707,7 @@ namespace user
 ////         strHkl.trim();
 ////         if(::str::begins_eat_ci(strHkl, "0x"))
 ////         {
-////            hkl = (HKL) ::hex::to_uint_ptr(strHkl);
+////            hkl = (HKL) ::hex::to_uptr(strHkl);
 ////         }
 ////         else
 ////         {

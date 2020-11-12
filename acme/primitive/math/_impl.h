@@ -4,10 +4,10 @@
 
 
 template < typename TYPE >
-inline number_cast<TYPE>::number_cast(__int64 i)
+inline number_cast<TYPE>::number_cast(::i64 i)
 {
 
-   if (i > (__int64)::numeric_info < TYPE >::maximum() || i < (__int64)::numeric_info < TYPE >::minimum())
+   if (i > (::i64)::numeric_info < TYPE >::maximum() || i < (::i64)::numeric_info < TYPE >::minimum())
    {
 
       __throw(invalid_type("not valid \"<" __STRING(TYPE) ">\""));

@@ -13,7 +13,7 @@ CLASS_DECL_APEX i64 first_nano();
 CLASS_DECL_APEX i64 get_nanos();
 
 
-CLASS_DECL_APEX DWORD get_fast_tick_count();
+CLASS_DECL_APEX ::u32 get_fast_tick_count();
 
 /// tick, int milliseconds
 inline i64 first_tick() { return nano_to_tick(first_nano()); }

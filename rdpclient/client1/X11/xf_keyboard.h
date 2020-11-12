@@ -47,16 +47,16 @@ typedef struct _XF_MODIFIER_KEYS XF_MODIFIER_KEYS;
 BOOL xf_keyboard_init(xfContext* xfc);
 void xf_keyboard_free(xfContext* xfc);
 void xf_keyboard_clear(xfContext* xfc);
-void xf_keyboard_key_press(xfContext* xfc, BYTE keycode, KeySym keysym);
-void xf_keyboard_key_release(xfContext* xfc, BYTE keycode);
+void xf_keyboard_key_press(xfContext* xfc, byte keycode, KeySym keysym);
+void xf_keyboard_key_release(xfContext* xfc, byte keycode);
 void xf_keyboard_release_all_keypress(xfContext* xfc);
 BOOL xf_keyboard_key_pressed(xfContext* xfc, KeySym keysym);
-void xf_keyboard_send_key(xfContext* xfc, BOOL down, BYTE keycode);
+void xf_keyboard_send_key(xfContext* xfc, BOOL down, byte keycode);
 int xf_keyboard_read_keyboard_state(xfContext* xfc);
 BOOL xf_keyboard_get_key_state(xfContext* xfc, int state, int keysym);
-UINT32 xf_keyboard_get_toggle_keys_state(xfContext* xfc);
+::u32 xf_keyboard_get_toggle_keys_state(xfContext* xfc);
 void xf_keyboard_focus_in(xfContext* xfc);
 BOOL xf_keyboard_handle_special_keys(xfContext* xfc, KeySym keysym);
-BOOL xf_keyboard_set_indicators(rdpContext* action_context, UINT16 led_flags);
+BOOL xf_keyboard_set_indicators(rdpContext* action_context, ::u3216 led_flags);
 
 #endif /* __XF_KEYBOARD_H */

@@ -18,7 +18,7 @@ namespace user
    }
 
 
-   bool image_manager::Initialize(::object * pobject, UINT uiaMenuV003Map [][2])
+   bool image_manager::Initialize(::object * pobject, ::u32 uaMenuV003Map [][2])
    {
       UNREFERENCED_PARAMETER(pobject);
       UNREFERENCED_PARAMETER(uiaMenuV003Map);
@@ -39,13 +39,13 @@ namespace user
    }
 
 
-   /*void image_manager::LoadToolbar(toolbar & toolbar, UINT * pinteraction)
+   /*void image_manager::LoadToolbar(toolbar & toolbar, ::u32 * pinteraction)
    {
 
       toolbar.GetToolBarCtrl().SetImageList(&GetImageList());
       TBBUTTON tbb;
 
-      Carray < UINT, UINT > uia;
+      Carray < ::u32, ::u32 > uia;
       while(*pinteraction != 0xffffffff)
       {
          tbb.idCommand = *pinteraction;
@@ -77,14 +77,14 @@ namespace user
    }*/
 
    /*
-   void image_manager::LoadToolbar(simple_toolbar & toolbar, UINT * pinteraction)
+   void image_manager::LoadToolbar(simple_toolbar & toolbar, ::u32 * pinteraction)
    {
 
       toolbar._001SetImageList(&GetImageList());
       TBBUTTON tbb;
       __memset(&tbb, 0, sizeof(tbb));
 
-      UINT user;
+      ::u32 user;
       while(*pinteraction != 0xffffffff)
       {
          tbb.idCommand = *pinteraction;

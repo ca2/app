@@ -98,9 +98,9 @@ bool node_save_image(comptr < IStream > pstream, const ::image * pimage, ::save_
 
    comptr < IWICStream > pwicstream;
 
-   UINT uiWidth = pimage->width();
+   ::u32 uWidth = pimage->width();
 
-   UINT uiHeight = pimage->height();
+   ::u32 uHeight = pimage->height();
 
    HRESULT hr = CoCreateInstance(
                 CLSID_WICImagingFactory,
@@ -268,7 +268,7 @@ bool node_save_image(comptr < IStream > pstream, const ::image * pimage, ::save_
          if (SUCCEEDED(hr))
          {
 
-            hr = pbitmapframeencode->WritePixels(uiHeight, pimage->scan_size(), uiHeight * pimage->scan_size(), (BYTE *)pimage->get_data());
+            hr = pbitmapframeencode->WritePixels(uiHeight, pimage->scan_size(), uiHeight * pimage->scan_size(), (byte *)pimage->get_data());
 
          }
 
@@ -287,7 +287,7 @@ bool node_save_image(comptr < IStream > pstream, const ::image * pimage, ::save_
                  GUID_WICPixelFormat32bppBGRA,
                pimage->scan_size(),
                pimage->scan_size() * pimage->height(),
-                 (BYTE *)pimage->get_data(),
+                 (byte *)pimage->get_data(),
                  &pbitmap
                  );
 
@@ -310,8 +310,8 @@ bool node_save_image(comptr < IStream > pstream, const ::image * pimage, ::save_
          }
 
          //Step 4: Create render target and D2D bitmap from IWICBitmapSource
-         //UINT width=0;
-         //UINT height=0;
+         //::u32 width=0;
+         //::u32 height=0;
          //if(SUCCEEDED(hr))
          //{
          //   hr = pbitmap->GetSize(&width,&height);

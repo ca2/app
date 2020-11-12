@@ -8,9 +8,9 @@
 		<Option check_files="0" />
 		<Build>
 			<Target title="basis">
-				<Option output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
-				<Option working_dir="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
-				<Option object_output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
+				<Option output="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
+				<Option object_output="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
@@ -20,8 +20,8 @@
 					<Add option="-m64" />
 					<Add option="-g" />
 					<Add option="-D_DEBUG" />
-					<Add directory="$(WORKSPACE_DIR)/../../platform-linux" />
-					<Add directory="$(WORKSPACE_DIR)/../../platform-linux/_include" />
+					<Add directory="$(WORKSPACE_DIR)/../../../archive/platform-linux" />
+					<Add directory="$(WORKSPACE_DIR)/../../../archive/platform-linux/_include" />
 					<Add directory="$(#archive)/third-linux/third/include" />
 				</Compiler>
 				<Linker>
@@ -39,14 +39,14 @@
 					<Add option="`pkg-config --libs glib-2.0 gtk+-3.0 gdk-3.0 appindicator3-0.1`" />
 					<Add option="-lacme" />
 					<Add option="-Wl,-z,defs" />
-					<Add directory="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
+					<Add directory="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
 					<Add directory="$(#archive)/storage-linux/third/library/x64/" />
 				</Linker>
 			</Target>
 			<Target title="stage">
-				<Option output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
-				<Option working_dir="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
-				<Option object_output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
+				<Option output="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
+				<Option object_output="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
@@ -57,7 +57,7 @@
 					<Add option="-m64" />
 					<Add option="-g" />
 					<Add option="-O0" />
-					<Add directory="$(WORKSPACE_DIR)/../../platform-linux" />
+					<Add directory="$(WORKSPACE_DIR)/../../../archive/platform-linux" />
 				</Compiler>
 				<Linker>
 					<Add option="-pg" />
@@ -89,13 +89,13 @@
 					<Add option="-lace" />
 					<Add option="-lapex" />
 					<Add option="-Wl,-z,defs" />
-					<Add directory="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
+					<Add directory="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
 				</Linker>
 			</Target>
 			<Target title="memdleak">
-				<Option output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
-				<Option working_dir="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
-				<Option object_output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
+				<Option output="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
+				<Option object_output="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
@@ -104,16 +104,16 @@
 					<Add option="-g" />
 					<Add option="-D_DEBUG" />
 					<Add option="-DMEMDLEAK" />
-					<Add directory="$(WORKSPACE_DIR)/../../platform-linux" />
+					<Add directory="$(WORKSPACE_DIR)/../../../archive/platform-linux" />
 				</Compiler>
 				<Linker>
-					<Add directory="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
+					<Add directory="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
 				</Linker>
 			</Target>
 			<Target title="arm64_basis">
-				<Option output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
-				<Option working_dir="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
-				<Option object_output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
+				<Option output="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
+				<Option object_output="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
@@ -122,8 +122,8 @@
 					<Add option="-pg" />
 					<Add option="-g" />
 					<Add option="-D_DEBUG" />
-					<Add directory="$(WORKSPACE_DIR)/../../platform-raspbian" />
-					<Add directory="$(WORKSPACE_DIR)/../../platform-raspbian/_include" />
+					<Add directory="$(WORKSPACE_DIR)/../../../archive/platform-raspbian" />
+					<Add directory="$(WORKSPACE_DIR)/../../../archive/platform-raspbian/_include" />
 					<Add directory="$(#archive)/third-raspbian/third/include" />
 				</Compiler>
 				<Linker>
@@ -150,13 +150,13 @@
 					<Add option="`pkg-config --libs gtk+-3.0 gdk-3.0 gthread-2.0`" />
 					<Add option="-lacme" />
 					<Add option="-Wl,-z,defs" />
-					<Add directory="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
+					<Add directory="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
 				</Linker>
 			</Target>
 			<Target title="sanitizers">
-				<Option output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/basis/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
-				<Option working_dir="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/basis/" />
-				<Option object_output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/intermediate/basis/$(PROJECT_NAME)" />
+				<Option output="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/basis/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/basis/" />
+				<Option object_output="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/intermediate/basis/$(PROJECT_NAME)" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
@@ -168,7 +168,7 @@
 					<Add option="-fsanitize-recover=address" />
 					<Add option="-fsanitize=undefined" />
 					<Add option="-D_DEBUG" />
-					<Add directory="$(WORKSPACE_DIR)/../../platform-linux" />
+					<Add directory="$(WORKSPACE_DIR)/../../../archive/platform-linux" />
 				</Compiler>
 				<Linker>
 					<Add option="-Wl,-rpath=\\$$$ORIGIN" />
@@ -199,7 +199,7 @@
 					<Add option="-lace" />
 					<Add option="-lapex" />
 					<Add option="-Wl,-z,defs" />
-					<Add directory="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
+					<Add directory="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
 				</Linker>
 			</Target>
 		</Build>
@@ -223,19 +223,19 @@
 			<Add directory="$(PROJECT_DIR)" />
 			<Add directory="$(#archive)" />
 			<Add directory="$(#config)" />
-			<Add directory="$(WORKSPACE_DIR)/../.." />
-			<Add directory="$(WORKSPACE_DIR)/../../inc" />
-			<Add directory="$(WORKSPACE_DIR)/../../include" />
-			<Add directory="$(WORKSPACE_DIR)/../../app/_include" />
-			<Add directory="$(WORKSPACE_DIR)/../../app/" />
-			<Add directory="$(WORKSPACE_DIR)/../../platform-$(#platform_modifier)" />
-			<Add directory="$(WORKSPACE_DIR)/../../platform-$(#platform_modifier)/_include" />
+			<Add directory="$(WORKSPACE_DIR)/../../../source" />
+			<Add directory="$(WORKSPACE_DIR)/../../../source/inc" />
+			<Add directory="$(WORKSPACE_DIR)/../../../source/include" />
+			<Add directory="$(WORKSPACE_DIR)/../../../source/app/_include" />
+			<Add directory="$(WORKSPACE_DIR)/../../../source/app/" />
+			<Add directory="$(WORKSPACE_DIR)/../../../archive/platform-$(#platform_modifier)" />
+			<Add directory="$(WORKSPACE_DIR)/../../../archive/platform-$(#platform_modifier)/_include" />
 			<Add directory="$(#archive)/third-$(#platform_modifier)/third/include" />
 			<Add directory="$(#sensitive)/sensitive/include" />
 			<Add directory="$(#archive)/third-linux/third/include" />
 		</Compiler>
 		<Linker>
-			<Add directory="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
+			<Add directory="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
 		</Linker>
 		<Unit filename="_.cpp" />
 		<Unit filename="_.h" />
@@ -969,7 +969,6 @@
 		<Unit filename="os/ansios/file.cpp" />
 		<Unit filename="os/ansios/file.h" />
 		<Unit filename="os/ansios/file_c.h" />
-		<Unit filename="os/ansios/file_raw.cpp" />
 		<Unit filename="os/ansios/file_raw.h" />
 		<Unit filename="os/ansios/language.cpp" />
 		<Unit filename="os/ansios/multithreading.h" />
@@ -1027,6 +1026,7 @@
 		<Unit filename="os/linux/graphics.cpp" />
 		<Unit filename="os/linux/graphics.h" />
 		<Unit filename="os/linux/graphics2.h" />
+		<Unit filename="os/linux/interprocess_communication.cpp" />
 		<Unit filename="os/linux/language.cpp" />
 		<Unit filename="os/linux/launcher.cpp" />
 		<Unit filename="os/linux/library.cpp" />
@@ -1041,7 +1041,6 @@
 		<Unit filename="os/linux/process_pid.cpp" />
 		<Unit filename="os/linux/simple_app.cpp" />
 		<Unit filename="os/linux/simple_shell_launcher.cpp" />
-		<Unit filename="os/linux/small_ipca_channel.cpp" />
 		<Unit filename="os/linux/time.cpp" />
 		<Unit filename="os/linux/user.cpp" />
 		<Unit filename="os/linux/user.h" />

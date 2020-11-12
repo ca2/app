@@ -8,7 +8,7 @@
 
 #define _wcsinc(_pc)    ((_pc)+1)
 
-UINT __get_file_title(const widechar * pszPathName, widechar * pszTitle, UINT nMax);
+::u32 __get_file_title(const widechar * pszPathName, widechar * pszTitle, ::u32 nMax);
 
 
 bool _set_reg_key(const widechar * pszKey, const widechar * pszValue, const widechar * pszValueName = nullptr);
@@ -126,8 +126,8 @@ namespace user
       {
       ASSERT(strFilterExt[0] == '.');
 
-      LONG lSize = _MAX_PATH * 2;
-      LONG lResult = ::RegQueryValue(HKEY_CLASSES_ROOT, strFilterExt,
+      ::i32 lSize = _MAX_PATH * 2;
+      ::i32 lResult = ::RegQueryValue(HKEY_CLASSES_ROOT, strFilterExt,
       strTemp.GetBuffer(lSize), &lSize);
       strTemp.ReleaseBuffer();
 
@@ -281,8 +281,8 @@ namespace user
       {
       ASSERT(strFilterExt[0] == '.');
 
-      LONG lSize = _MAX_PATH * 2;
-      LONG lResult = ::RegQueryValue(HKEY_CLASSES_ROOT, strFilterExt,
+      ::i32 lSize = _MAX_PATH * 2;
+      ::i32 lResult = ::RegQueryValue(HKEY_CLASSES_ROOT, strFilterExt,
       strTemp.GetBuffer(lSize), &lSize);
       strTemp.ReleaseBuffer();
 

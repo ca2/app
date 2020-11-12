@@ -44,7 +44,7 @@ CLASS_DECL_ACME bool __simple_task_sleep(tick tick)
 
    }
 
-   Sleep((DWORD) i);
+   Sleep((::u32) i);
 
    return ::thread_get_run();
 
@@ -122,7 +122,7 @@ CLASS_DECL_ACME bool acme_task_sleep(tick tick, sync* psync)
    if (::is_null(psync))
    {
 
-      if (__os(tick) == INFINITE)
+      if (__os(tick) == U32_INFINITE_TIMEOUT)
       {
 
          return __simple_task_sleep();
@@ -139,7 +139,7 @@ CLASS_DECL_ACME bool acme_task_sleep(tick tick, sync* psync)
    else
    {
 
-      if (__os(tick) == INFINITE)
+      if (__os(tick) == U32_INFINITE_TIMEOUT)
       {
 
          return __simple_task_sleep(psync);

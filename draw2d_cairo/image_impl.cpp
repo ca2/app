@@ -17,7 +17,7 @@ namespace draw2d_cairo
 
    }
 
-//   COLORREF * image::get_data()
+//   color32_t * image::get_data()
 //   {
 //      return m_pcolorrefMap;
 //   }
@@ -138,11 +138,11 @@ namespace draw2d_cairo
       if (iGoodStride < 0)
       {
 
-         iGoodStride = size.cx * sizeof(COLORREF);
+         iGoodStride = size.cx * sizeof(color32_t);
 
       }
 
-      COLORREF * pcolorrefRaw = nullptr;
+      color32_t * pcolorrefRaw = nullptr;
 
       i32 iScan = iGoodStride;
 
@@ -274,10 +274,10 @@ namespace draw2d_cairo
 
    //void image::Fill ( i32 R, i32 G, i32 B )
    //{
-   //   COLORREF color=RGB ( B, G, R );
+   //   color32_t color=RGB ( B, G, R );
    //   i32 size=cx*cy;
 
-   //   COLORREF * pcr;
+   //   color32_t * pcr;
 
    //   i32 iSize32 = size / 32;
    //   i32 i;
@@ -331,18 +331,18 @@ namespace draw2d_cairo
 
    //   i32 size = scan*cy;
 
-   //   BYTE * pbyte = (BYTE *) m_pcolorrefMap;
+   //   byte * pbyte = (byte *) m_pcolorrefMap;
 
    //   i32 i;
    //   i32 j;
-   //   i32 rect = scan - cx * sizeof(COLORREF);
+   //   i32 rect = scan - cx * sizeof(color32_t);
    //   for (i=0; i<cy; i++ )
    //   {
    //      for (j=0; j<cx; j++ )
    //      {
-   //         *pbyte++ = (BYTE) R * pbyte[3] / 255;
-   //         *pbyte++ = (BYTE) G * pbyte[2] / 255;
-   //         *pbyte++ = (BYTE) B * pbyte[1] / 255;
+   //         *pbyte++ = (byte) R * pbyte[3] / 255;
+   //         *pbyte++ = (byte) G * pbyte[2] / 255;
+   //         *pbyte++ = (byte) B * pbyte[1] / 255;
    //         pbyte++;
    //      }
    //      j+= rect;
@@ -351,7 +351,7 @@ namespace draw2d_cairo
 
    //void image::ToAlpha(i32 i)
    //{
-   //   BYTE *dst=(BYTE*)m_pcolorrefMap;
+   //   byte *dst=(byte*)m_pcolorrefMap;
    //   i32 size=cx*cy;
 
    //   while ( size-- )
@@ -363,7 +363,7 @@ namespace draw2d_cairo
 
    //void image::from_alpha()
    //{
-   //   BYTE *dst=(BYTE*)m_pcolorrefMap;
+   //   byte *dst=(byte*)m_pcolorrefMap;
    //   i64 size = cx * cy;
 
    //   while ( size-- )
@@ -478,7 +478,7 @@ namespace draw2d_cairo
       if(!bApplyAlphaTransform)
       {
 
-         int size = m_iScan * m_sizeRaw.cy / sizeof(COLORREF);
+         int size = m_iScan * m_sizeRaw.cy / sizeof(color32_t);
 
          while(size > 0)
          {
@@ -552,7 +552,7 @@ namespace draw2d_cairo
 
       byte * pdata =  (byte *) m_pcolorrefRaw;
 
-      int size = m_iScan * m_sizeRaw.cy / sizeof(COLORREF);
+      int size = m_iScan * m_sizeRaw.cy / sizeof(color32_t);
 
       pdata =  (byte *) cairo_image_surface_get_data(surface);
 
@@ -636,14 +636,14 @@ namespace draw2d_cairo
 
       pimageM->g()->DrawIcon(0, 0, picon, cx, cy, 0, nullptr, DI_MASK);
 
-      BYTE * r1=(BYTE*)pimage1->colorref();
-      BYTE * r2=(BYTE*)pimage2->get_data();
-      BYTE * srcM=(BYTE*)pimageM->colorref();
-      BYTE * dest=(BYTE*)m_pcolorref1;
+      byte * r1=(byte*)pimage1->colorref();
+      byte * r2=(byte*)pimage2->get_data();
+      byte * srcM=(byte*)pimageM->colorref();
+      byte * dest=(byte*)m_pcolorref1;
       i32 iSize = cx*cy;
 
-      BYTE b;
-      BYTE bMax;
+      byte b;
+      byte bMax;
       while ( iSize-- > 0)
       {
          if(srcM[0] == 255)
@@ -653,11 +653,11 @@ namespace draw2d_cairo
          else
          {
             bMax = 0;
-            b =(BYTE)(r1[0]  - r2[0]);
+            b =(byte)(r1[0]  - r2[0]);
             bMax = max(b, bMax);
-            b =(BYTE)(r1[1]  - r2[1]);
+            b =(byte)(r1[1]  - r2[1]);
             bMax = max(b, bMax);
-            b =(BYTE)(r1[2]  - r2[2]);
+            b =(byte)(r1[2]  - r2[2]);
             bMax = max(b, bMax);
             bMax = 255 - bMax;
          }
@@ -966,15 +966,15 @@ namespace draw2d_cairo
       byte * psrc2;
 
 #ifdef APPLEOS
-      byte * pdst = &((byte *)imageDst.m_pcolorrefMap)[scanDst * (imageDst.height() - ptDst.y - yEnd) + ptDst.x * sizeof(COLORREF)];
+      byte * pdst = &((byte *)imageDst.m_pcolorrefMap)[scanDst * (imageDst.height() - ptDst.y - yEnd) + ptDst.x * sizeof(color32_t)];
 
-      byte * psrc = &((byte *)imageSrc.m_pcolorrefMap)[scanSrc * (imageSrc.height() - ptSrc.y - yEnd) + ptSrc.x * sizeof(COLORREF)];
+      byte * psrc = &((byte *)imageSrc.m_pcolorrefMap)[scanSrc * (imageSrc.height() - ptSrc.y - yEnd) + ptSrc.x * sizeof(color32_t)];
 
 #else
 
-      byte * pdst = &((byte *)pimplDst->m_pcolorref1)[scanDst * pointDst.y + pointDst.x * sizeof(COLORREF)];
+      byte * pdst = &((byte *)pimplDst->m_pcolorref1)[scanDst * pointDst.y + pointDst.x * sizeof(color32_t)];
 
-      byte * psrc = &((byte *)pimplSrc->m_pcolorref1)[scanSrc *  pointSrc.y + pointSrc.x * sizeof(COLORREF)];
+      byte * psrc = &((byte *)pimplSrc->m_pcolorref1)[scanSrc *  pointSrc.y + pointSrc.x * sizeof(color32_t)];
 
 #endif
 
@@ -1111,7 +1111,7 @@ namespace draw2d_cairo
                   else if(alpha == 0)
                   {
 
-                     *((COLORREF *)pdst2) = 0;
+                     *((color32_t *)pdst2) = 0;
 
                   }
                   else

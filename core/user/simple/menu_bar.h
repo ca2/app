@@ -26,7 +26,7 @@ public:
    i32_spreadset *                     m_prel;
    bool                                m_bTracking;
    index                               m_iTracking;
-   UINT                                m_uiResourceID;
+   ::u32                                m_uiResourceID;
    index                               m_iTopMenuCount;
    __composite(::user::menu)           m_pmenu;
 
@@ -62,9 +62,9 @@ protected:
    //void _001Hover(const ::point & point);
    //void _001Hover();
    //void _001DrawItem(::draw2d::graphics_pointer & pgraphics, index iItem);
-   //index _001HitTest(const POINT * point);
+   //index _001HitTest(const POINT32 * point);
    //bool _001CheckItem(index iItem, bool bCheck);
-   //bool _001GetItemRect(index iItem, RECT * prect, e_element eelement);
+   //bool _001GetItemRect(index iItem, RECT32 * prect, e_element eelement);
 
    //virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
    bool ReloadMenuBar();
@@ -86,8 +86,8 @@ protected:
    //static ::estatus  CalcSize(CToolBarCtrl & tbc, size & size);
    bool _track_popup_menu(const ::point & point);
    bool _track_popup_menu(index iItem);
-   bool LoadMenuBar(UINT nIDResource);
-   void SetMenuID(UINT nIDResource);
+   bool LoadMenuBar(::u32 nIDResource);
+   void SetMenuID(::u32 nIDResource);
 
    //DECL_GEN_SIGNAL(_001OnMouseMove);
    //DECL_GEN_SIGNAL(_001OnNcMouseMove);

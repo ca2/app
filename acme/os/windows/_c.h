@@ -12,20 +12,20 @@
 CLASS_DECL_ACME char get_drive_letter(const char * pDevicePath);
 
 
-CLASS_DECL_ACME void set_main_thread(HANDLE hThread);
-CLASS_DECL_ACME void set_main_thread_id(UINT uiThread);
+CLASS_DECL_ACME void set_main_hthread(hthread_t hthread);
+CLASS_DECL_ACME void set_main_ithread(ithread_t ithread);
 
 
-CLASS_DECL_ACME HANDLE get_main_thread();
-CLASS_DECL_ACME UINT   get_main_thread_id();
+CLASS_DECL_ACME hthread_t get_main_hthread();
+CLASS_DECL_ACME ithread_t get_main_ithread();
 
 
 //CLASS_DECL_ACME HMONITOR GetUiMonitorHandle(HWND hwnd);
 //CLASS_DECL_ACME HMONITOR GetPrimaryMonitorHandle();
-//CLASS_DECL_ACME bool GetPrimaryMonitorRect(RECT * prect);
+//CLASS_DECL_ACME bool GetPrimaryMonitorRect(RECT32 * prect);
 
 
-CLASS_DECL_ACME int WinRegGetValueW(HKEY hkey, LPCWSTR pSubKey, LPCWSTR lpValue, DWORD dwFlags, LPDWORD pdwType, PVOID pvData, LPDWORD pcbData);
+CLASS_DECL_ACME int WinRegGetValueW(HKEY hkey, LPCWSTR pSubKey, LPCWSTR lpValue, ::u32 dwFlags, LPDWORD pdwType, PVOID pvData, LPDWORD pcbData);
 
 
 

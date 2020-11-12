@@ -21,7 +21,7 @@ public:
    virtual ~task_pool();
 
 
-   virtual ::task_pointer & defer_start(const ::id& id, const ::method & method);
+   virtual ::task_pointer & defer_start(const ::id& id, const ::procedure & procedure);
 
 
    virtual void start_clock(enum_clock eclock, duration duration);

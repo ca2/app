@@ -59,7 +59,7 @@ namespace ios
    }
 
 
-   i32 shell::get_image_by_extension(image_key & key, COLORREF crBk)
+   i32 shell::get_image_by_extension(image_key & key, color32_t crBk)
    {
 
       return 0x80000000;
@@ -67,7 +67,7 @@ namespace ios
    }
 
 
-   i32 shell::get_foo_image(image_key imagekey, COLORREF crBk)
+   i32 shell::get_foo_image(image_key imagekey, color32_t crBk)
    {
 
       i32 iImage = -1;
@@ -79,7 +79,7 @@ namespace ios
    }
 
 
-   i32 shell::get_image(image_key imagekey, const unichar * lpcszExtra, COLORREF crBk)
+   i32 shell::get_image(image_key imagekey, const unichar * lpcszExtra, color32_t crBk)
    {
 
       i32 iImage = 0x80000000;
@@ -305,7 +305,7 @@ namespace ios
    }
 
 
-//   i32 ios::get_image_by_extension(per_fork * pfork, oswindow oswindow, image_key & key, COLORREF crBk)
+//   i32 ios::get_image_by_extension(per_fork * pfork, oswindow oswindow, image_key & key, color32_t crBk)
 //   {
 //
 //#ifdef WINDOWS_DESKTOP
@@ -321,7 +321,7 @@ namespace ios
 //   }
 
 
-//   i32 ios::get_image(per_fork * pfork, oswindow oswindow, image_key imagekey, LPITEMIDLIST lpiidlAbsolute, LPITEMIDLIST lpiidlChild, const unichar * lpcszExtra, COLORREF crBk)
+//   i32 ios::get_image(per_fork * pfork, oswindow oswindow, image_key imagekey, LPITEMIDLIST lpiidlAbsolute, LPITEMIDLIST lpiidlChild, const unichar * lpcszExtra, color32_t crBk)
 ////      {
 ////
 ////         int iImage = 0x80000000;
@@ -370,7 +370,7 @@ namespace ios
 ////
 ////         string strFilePath(imagekey.m_strPath);
 ////
-////         CHAR szPath[_MAX_PATH * 6];
+////         char szPath[_MAX_PATH * 6];
 ////         WCHAR wszPath[_MAX_PATH * 6];
 ////         string strPath;
 ////
@@ -402,7 +402,7 @@ namespace ios
 ////         ::ios::comptr < IShellIconOverlayIdentifier > lpioverlay;
 ////         ::ios::comptr < IExtractImage > lpiextractimage;
 ////
-////         UINT uiExtractIconLocationFlags = 0;
+////         ::u32 uExtractIconLocationFlags = 0;
 ////
 ////         bool bMaybeLink = true;
 ////
@@ -505,7 +505,7 @@ namespace ios
 ////            lpioverlay)))
 ////         {
 ////            int iIndex = 0;
-////            DWORD dwFlags = 0;
+////            ::u32 dwFlags = 0;
 ////            if (SUCCEEDED(hrIconLocation = lpioverlay->GetOverlayInfo(
 ////               wszPath,
 ////               sizeof(wszPath),
@@ -537,11 +537,11 @@ namespace ios
 ////            nullptr,
 ////            lpiextractimage)))
 ////         {
-////            SIZE s;
+////            SIZE32 s;
 ////            s.cx = 48;
 ////            s.cy = 48;
-////            DWORD dwDepth = 32;
-////            DWORD dwFlags = 0;
+////            ::u32 dwDepth = 32;
+////            ::u32 dwFlags = 0;
 ////            if (SUCCEEDED(hrIconLocation = lpiextractpimage->GetLocation(
 ////               wszPath,
 ////               sizeof(wszPath),
@@ -877,7 +877,7 @@ namespace ios
 ////      }
 
 
-//   i32 ios::get_foo_image(per_fork * pfork, oswindow oswindow, image_key imagekey, COLORREF crBk)
+//   i32 ios::get_foo_image(per_fork * pfork, oswindow oswindow, image_key imagekey, color32_t crBk)
 //   {
 //
 //      i32 iImage = -1;
@@ -1024,7 +1024,7 @@ namespace ios
    //      lpiidlAbsolute,
    //      szFilePath);
 
-   //   CHAR szPath[_MAX_PATH * 10];
+   //   char szPath[_MAX_PATH * 10];
    //   string strPath;
    //   //   i32 iImage = 0x80000000;
 
@@ -1048,7 +1048,7 @@ namespace ios
 
 
    //   i32 iIcon = 0x80000000;
-   //   UINT uiFlags = 0;
+   //   ::u32 uFlags = 0;
 
    //   SHFILEINFO shfi16;
    //   SHFILEINFO shfi48;
@@ -1238,7 +1238,7 @@ namespace ios
 
 
 
-   //i32 ios::get_image(per_fork * pfork, oswindow oswindow, image_key imagekey, LPITEMIDLIST lpiidlAbsolute, const unichar * lpcszExtra, COLORREF crBk)
+   //i32 ios::get_image(per_fork * pfork, oswindow oswindow, image_key imagekey, LPITEMIDLIST lpiidlAbsolute, const unichar * lpcszExtra, color32_t crBk)
    //{
 
    //   i32 iImage = get_image(pfork, oswindow, imagekey, lpiidlAbsolute, lpiidlChild, lpcszExtra, crBk);
@@ -1427,7 +1427,7 @@ namespace ios
 
    //}
 
-//   i32 ios::get_image(per_fork * pfork, oswindow oswindow, image_key imagekey, const unichar * lpcszExtra, COLORREF crBk)
+//   i32 ios::get_image(per_fork * pfork, oswindow oswindow, image_key imagekey, const unichar * lpcszExtra, color32_t crBk)
 //   {
 //
 //      i32 iImage = 0x80000000;
@@ -1733,7 +1733,7 @@ namespace ios
 //   }
 
 
-//   i32 ios::get_image(oswindow oswindow, const string & strPath, e_file_attribute eattribute, e_icon eicon, COLORREF crBk)
+//   i32 ios::get_image(oswindow oswindow, const string & strPath, e_file_attribute eattribute, e_icon eicon, color32_t crBk)
 //   {
 //
 //      i32 iImage = 0x80000000;
@@ -1801,7 +1801,7 @@ namespace ios
 //   }
 //
 //
-//   i32 ios::get_image_foo(oswindow oswindow, const string & strExtension, e_file_attribute eattribute, e_icon eicon, COLORREF crBk)
+//   i32 ios::get_image_foo(oswindow oswindow, const string & strExtension, e_file_attribute eattribute, e_icon eicon, color32_t crBk)
 //   {
 //
 //      i32 iImage = 0x80000000;
@@ -1857,7 +1857,7 @@ namespace ios
 //   }
 //
 //
-//   int shell::add_hover_image(int iSize, int iImage, COLORREF crBk)
+//   int shell::add_hover_image(int iSize, int iImage, color32_t crBk)
 //   {
 //
 //      if (crBk == 0)

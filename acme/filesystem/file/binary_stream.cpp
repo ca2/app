@@ -1217,7 +1217,7 @@ void binary_stream::read_to_hex(string & str, filesize tickStart, filesize tickE
       m_p->seek_from_begin(tickStart);
    }
    memsize uiPos = 0;
-   memsize uiRead;
+   memsize uRead;
    memory.set_size(1024);
 
    strsize nCount;
@@ -1235,10 +1235,10 @@ void binary_stream::read_to_hex(string & str, filesize tickStart, filesize tickE
 
    }
 
-   while ((uiRead = read(&memory.get_data()[uiPos], min(memory.get_size() - uiPos, (memsize)nCount))) > 0)
+   while ((uRead = read(&memory.get_data()[uiPos], min(memory.get_size() - uiPos, (memsize)nCount))) > 0)
    {
-      uiPos += uiRead;
-      nCount -= uiRead;
+      uiPos += uRead;
+      nCount -= uRead;
       if (memory.get_size() - uiPos <= 0)
       {
          memory.allocate_add_up(1024 * 1024);

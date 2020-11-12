@@ -166,11 +166,11 @@ namespace hotplugin
 
          try
          {
-            //DWORD dwTime1 = ::get_tick();
+            //::u32 dwTime1 = ::get_tick();
 
             m_pplugin->on_paint(pgraphics, rect);
 
-            //DWORD dwTime9 = ::get_tick();
+            //::u32 dwTime9 = ::get_tick();
 
             //TRACE("plugin->on_paint %d",dwTime9 - dwTime1);
 
@@ -191,19 +191,19 @@ namespace hotplugin
 
       if(::user::interaction::m_pimpl != nullptr && pgraphics != nullptr)
       {
-         //DWORD dwTime1 = ::get_tick();
+         //::u32 dwTime1 = ::get_tick();
 
 
          ::user::interaction::m_pimpl->_001Print(pgraphics);
-         //DWORD dwTime9 = ::get_tick();
+         //::u32 dwTime9 = ::get_tick();
 
          //TRACE("m_pimpl->_001Print %d",dwTime9 - dwTime1);
 
       }
-      //DWORD dwTime1 = ::get_tick();
+      //::u32 dwTime1 = ::get_tick();
 
       deferred_prodevian_redraw();
-      //DWORD dwTime9 = ::get_tick();
+      //::u32 dwTime9 = ::get_tick();
 
       //TRACE("deferred_prodevian_redraw %d",dwTime9 - dwTime1);
 
@@ -573,9 +573,9 @@ namespace hotplugin
 
       m_pimage->map();
 
-      ::memcpy_dup(m_pimage->colorref(), m_memorymapBitmap.get_data(), (size_t) (m_pimage->area() * sizeof(COLORREF)));
+      ::memcpy_dup(m_pimage->colorref(), m_memorymapBitmap.get_data(), (size_t) (m_pimage->area() * sizeof(color32_t)));
 
-      pgraphics->draw((const POINT *) &rectOut, m_sizeBitmap, m_pimage->g());
+      pgraphics->draw((const POINT32 *) &rectOut, m_sizeBitmap, m_pimage->g());
 
 
    }
@@ -703,7 +703,7 @@ namespace hotplugin
 
 
 
-   //bool host::set_window_pos(class ::user::zorder zorder, i32 x, i32 y, i32 cx, i32 cy, UINT nFlags)
+   //bool host::set_window_pos(class ::user::zorder zorder, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags)
    //{
 
    //   bool bOk = ::hotplugin::plugin::set_window_pos(zorder, x, y, cx, cy, nFlags);

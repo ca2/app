@@ -191,18 +191,18 @@ CLASS_DECL_ACME void wide_parse_command_line(widechar *cmdstart, widechar **argv
 //
 //
 
-//void wide_from_u64_base(unichar * sz, u32 ui, i32 iBase)
+//void wide_from_u64_base(unichar * sz, u32 u, i32 iBase)
 //{
-//   if(ui == 0)
+//   if(u == 0)
 //   {
 //      sz[0] = L'0';
 //      sz[1] = L'\0';
 //      return;
 //   }
 //   i32 iIndex = 0;
-//   while(ui > 0)
+//   while(u > 0)
 //   {
-//      i32 iDigit = (ui % iBase);
+//      i32 iDigit = (u % iBase);
 //      unichar wch;
 //      if(iDigit <= 9)
 //      {
@@ -213,7 +213,7 @@ CLASS_DECL_ACME void wide_parse_command_line(widechar *cmdstart, widechar **argv
 //         wch = iDigit - 10 + L'a';
 //      }
 //      sz[iIndex] =  wch;
-//      ui = ui / iBase;
+//      u = u / iBase;
 //      iIndex++;
 //   }
 //   sz[iIndex] = L'\0';

@@ -11,6 +11,13 @@ namespace aura
    public:
 
 
+#ifdef _UWP
+
+      
+      ::uwp::directx_application_source ^                   m_applicationsource;
+
+
+#endif
 
       bool m_bAvoidFirstResponder;
 
@@ -37,8 +44,11 @@ namespace aura
 
       //__composite(::sockets::sockets)                    m_psockets;
 
-      __pointer(::matter)                                 m_pDraw2dFactoryExchange;
-      __pointer(::draw2d::draw2d)                          m_pdraw2d;
+
+
+
+      __pointer(::matter)                                      m_pDraw2dFactoryExchange;
+      __pointer(::draw2d::draw2d)                              m_pdraw2d;
 
       //::file::path                                       m_pathConfig;
       //::file::path                                       m_pathCa2Roaming;
@@ -47,7 +57,7 @@ namespace aura
       //thread_map                                         m_threadmap;
       //thread_id_map                                      m_threadidmap;
       //::mutex                                            m_mutexThreadOn;
-      //isomap < ITHREAD, ITHREAD >                        m_mapThreadOn;
+      //isomap < ithread_t, ithread_t >                        m_mapThreadOn;
 
       ::mutex                                            m_mutexUserChildren;
       __composite(class imaging)                         m_pimaging;
@@ -104,6 +114,12 @@ namespace aura
 //
 //      bool                                               m_bFinalizeIfNoSessionSetting;
 //      bool                                               m_bFinalizeIfNoSession;
+
+//#ifdef _UWP
+//
+//      ::uwp::directx_framework_view ^                          m_frameworkview;
+//
+//#endif
 
 //
 ////      __composite(::html::html)                          m_phtml;
@@ -240,7 +256,8 @@ namespace aura
 
 #ifdef _UWP
 
-      Agile < Windows::UI::Core::CoreWindow >      m_window;
+      __reference(::uwp::interaction_impl)            m_pimplMain;
+      //Agile < Windows::UI::Core::CoreWindow >      m_window;
 
 #endif
 
@@ -269,10 +286,10 @@ namespace aura
 
       //::url::department                           & url()     { return m_urldepartment; }
 
-      //::thread * get_task(ITHREAD ithread);
-      //ITHREAD get_thread_id(::thread * pthread);
-      //void set_thread(ITHREAD ithread, ::thread * pthread);
-      //void unset_thread(ITHREAD ithread, ::thread * pthread);
+      //::thread * get_task(ithread_t ithread);
+      //ithread_t get_thread_id(::thread * pthread);
+      //void set_thread(ithread_t ithread, ::thread * pthread);
+      //void unset_thread(ithread_t ithread, ::thread * pthread);
 
 
       ::aura::estamira& estamira();
@@ -345,8 +362,7 @@ namespace aura
 
       //virtual bool verb();
 
-
-
+      virtual ::estatus main_user_async(const ::procedure & procedure, ::e_priority epriority = priority_normal) override;
 
 
       //virtual bool process_initialize();
@@ -544,7 +560,7 @@ namespace aura
       //virtual ::apex::library * get_library(const char * pszLibrary, bool bOpenCa2 = false) override;
 
 
-      virtual UINT os_post_to_all_threads(const ::id & id,WPARAM wparam = 0,lparam lparam = 0) override;
+      virtual ::u32 os_post_to_all_threads(const ::id & id,WPARAM wparam = 0,lparam lparam = 0) override;
 
 
       //virtual void session_add(index iEdge, ::apex::session * psession) overr;
@@ -575,7 +591,7 @@ namespace aura
 
       //virtual ::estatus init2();
 
-      virtual ::estatus initial_check_directrix() override;
+      virtual ::estatus post_create_requests() override;
 
       //virtual void term_system();
 
@@ -638,7 +654,7 @@ namespace aura
       //   return *m_sphttpsystem;
       //}
 
-      class ::crypto::crypto                       & crypto();
+      //class ::crypto::crypto                       & crypto();
 
 
       virtual ::file::path local_get_matter_cache_path() override;
@@ -855,7 +871,7 @@ namespace aura
 
 #ifdef _UWP
 
-      virtual bool get_window_rect(RECT* prect);
+      virtual bool get_window_rect(RECT32* prect);
 
 
 #endif
@@ -864,7 +880,7 @@ namespace aura
 
 
 
-//      virtual bool wait_twf(tick tickTimeout = INFINITE);
+//      virtual bool wait_twf(tick tickTimeout = U32_INFINITE_TIMEOUT);
 
 
 
@@ -877,7 +893,7 @@ namespace aura
 
       virtual ::estatus add_view_library(::apex::library* plibrary);
 
-      //virtual void get_cursor_pos(LPPOINT ppoint);
+      //virtual void get_cursor_pos(POINT32 * ppoint);
 
 
 
@@ -941,13 +957,13 @@ namespace aura
 
 
 
-      //virtual DWORD get_monitor_color_temperature(index iMonitor);
-      //virtual bool adjust_monitor(index iMonitor, DWORD dwTemperature, double dBrightness, double dwGamma);
-      //virtual bool get_monitor_rect(index iMonitor, RECT* prect) override;
+      //virtual ::u32 get_monitor_color_temperature(index iMonitor);
+      //virtual bool adjust_monitor(index iMonitor, ::u32 dwTemperature, double dBrightness, double dwGamma);
+      //virtual bool get_monitor_rect(index iMonitor, RECT32* prect) override;
 
       //virtual ::count get_monitor_count() override;
 
-      //bool get_wkspace_rect(index iWkspace, RECT* prect) override;
+      //bool get_wkspace_rect(index iWkspace, RECT32* prect) override;
 
 
       //virtual ::user::interaction_impl * impl_from_handle(void * pdata) override;

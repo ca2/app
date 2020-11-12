@@ -1,15 +1,15 @@
 #include "framework.h"
 
-string get_error_message(DWORD dwError)
+string get_error_message(::u32 dwError)
 {
-   LPCSTR lpBuffer = "";
+   const char * lpBuffer = "";
 //   FormatMessage(
 //                 FORMAT_MESSAGE_ALLOCATE_BUFFER |
 //                 FORMAT_MESSAGE_FROM_SYSTEM,
 //                 nullptr,
 ////                 dwError,
 //                 0,
-//                 (LPSTR) &lpBuffer,
+//                 (char *) &lpBuffer,
 //                 1,
 //                 nullptr);
    string str = lpBuffer;

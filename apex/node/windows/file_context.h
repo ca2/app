@@ -4,7 +4,7 @@
 CLASS_DECL_APEX bool vfxFullPath(unichar * pszPathOut, const unichar * pszFileIn);
 
 CLASS_DECL_APEX bool vfxFullPath(wstring & wstrFullPath, const wstring & wstrPath);
-CLASS_DECL_APEX UINT vfxGetFileName(const unichar * pszPathName, unichar * pszTitle, UINT nMax);
+CLASS_DECL_APEX ::u32 vfxGetFileName(const unichar * pszPathName, unichar * pszTitle, ::u32 nMax);
 
 CLASS_DECL_APEX void vfxGetModuleShortFileName(HINSTANCE hInst, string & strShortName);
 CLASS_DECL_APEX void vfxGetModuleShortFileName(HINSTANCE hInst, string & strShortName);
@@ -42,7 +42,7 @@ namespace windows
       virtual bool FullPath(string & str, const char * pszFileIn);
 
       virtual bool FullPath(wstring & wstrFullPath, const wstring & wstrPath);
-      virtual UINT GetFileName(const char * pszPathName, string & str);
+      virtual ::u32 GetFileName(const char * pszPathName, string & str);
 
       virtual void GetModuleShortFileName(HINSTANCE hInst, string & strShortName);
       virtual var length(const ::file::path & path) override;

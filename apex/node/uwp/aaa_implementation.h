@@ -2,7 +2,7 @@
 
 //#define __defer_register_class(fClass) __end_defer_register_class(fClass)
 
-//CLASS_DECL_APEX bool __end_defer_register_class(LONG fToRegister, const char ** ppszClass);
+//CLASS_DECL_APEX bool __end_defer_register_class(::i32 fToRegister, const char ** ppszClass);
 
 
 // Temporary ::map management (locks temp ::map on current thread)
@@ -24,13 +24,13 @@ extern CLASS_DECL_APEX const char gen_WndOleControl[];
 
 CLASS_DECL_APEX void __cancel_modes(oswindow hWndRcvr);
 CLASS_DECL_APEX bool __help_enabled();  // determine if ID_HELP handler exists
-CLASS_DECL_APEX bool __custom_log_font(UINT nIDS, LOGFONT* pLogFont);
-CLASS_DECL_APEX bool __get_prop_sheet_font(string & strFace, WORD& wSize, bool bWizard);
+CLASS_DECL_APEX bool __custom_log_font(::u32 nIDS, LOGFONT* pLogFont);
+CLASS_DECL_APEX bool __get_prop_sheet_font(string & strFace, ::u16& wSize, bool bWizard);
 
-CLASS_DECL_APEX bool __is_combo_box_control(oswindow hWnd, UINT nStyle);
+CLASS_DECL_APEX bool __is_combo_box_control(oswindow hWnd, ::u32 nStyle);
 CLASS_DECL_APEX bool __check_center_dialog(const char * lpszResource);
 CLASS_DECL_APEX bool __compare_class_name(oswindow hWnd, const char * lpszClassName);
-CLASS_DECL_APEX oswindow __child_window_from_point(oswindow, POINT);
+CLASS_DECL_APEX oswindow __child_window_from_point(oswindow, POINT32);
 
 // for determining version of COMCTL32.DLL
 #define VERSION_WIN4    MAKELONG(0, 4)
@@ -39,4 +39,4 @@ CLASS_DECL_APEX oswindow __child_window_from_point(oswindow, POINT);
 #define VERSION_IE401   MAKELONG(72, 4)
 #define VERSION_6      MAKELONG(0, 6)
 extern int gen_ComCtlVersion;
-DWORD __get_common_controls_version();
+::u32 __get_common_controls_version();

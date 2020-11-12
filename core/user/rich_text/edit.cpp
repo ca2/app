@@ -80,12 +80,12 @@ namespace user
          MESSAGE_LINK(e_message_create, pchannel, this, &edit::_001OnCreate);
          MESSAGE_LINK(e_message_destroy, pchannel, this, &edit::_001OnDestroy);
          MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &edit::_001OnShowWindow);
-         MESSAGE_LINK(WM_LBUTTONDOWN, pchannel, this, &edit::_001OnLButtonDown);
-         MESSAGE_LINK(WM_LBUTTONUP, pchannel, this, &edit::_001OnLButtonUp);
+         MESSAGE_LINK(e_message_lbutton_down, pchannel, this, &edit::_001OnLButtonDown);
+         MESSAGE_LINK(e_message_lbutton_up, pchannel, this, &edit::_001OnLButtonUp);
          MESSAGE_LINK(e_message_mouse_move, pchannel, this, &edit::_001OnMouseMove);
          MESSAGE_LINK(WM_MOUSELEAVE, pchannel, this, &edit::_001OnMouseLeave);
-         MESSAGE_LINK(WM_KEYDOWN, pchannel, this, &edit::_001OnKeyDown);
-         MESSAGE_LINK(WM_KEYUP, pchannel, this, &edit::_001OnKeyUp);
+         MESSAGE_LINK(e_message_key_down, pchannel, this, &edit::_001OnKeyDown);
+         MESSAGE_LINK(e_message_key_up, pchannel, this, &edit::_001OnKeyUp);
          MESSAGE_LINK(e_message_set_focus, pchannel, this, &edit::_001OnSetFocus);
          MESSAGE_LINK(e_message_kill_focus, pchannel, this, &edit::_001OnKillFocus);
          
@@ -267,7 +267,7 @@ namespace user
       }
 
 
-      bool edit::get_element_rect(RECT * prect, index i, e_element eelement)
+      bool edit::get_element_rect(RECT32 * prect, index i, e_element eelement)
 
       {
 
@@ -305,7 +305,7 @@ namespace user
 
       }
 
-      bool edit::get_item_rect(RECT * prect, index i)
+      bool edit::get_item_rect(RECT32 * prect, index i)
 
       {
 

@@ -17,10 +17,10 @@
    ON_TYPED_MESSAGE(WM_SHOWWINDOW, ::message::show_window, showwindow)
 
 #define ON_WM_LBUTTONDOWN \
-   ON_TYPED_MESSAGE(WM_LBUTTONDOWN, ::message::mouse, mouse)
+   ON_TYPED_MESSAGE(e_message_lbutton_down, ::message::mouse, mouse)
 
 #define ON_WM_LBUTTONUP \
-   ON_TYPED_MESSAGE(WM_LBUTTONUP, ::message::mouse, mouse)
+   ON_TYPED_MESSAGE(e_message_lbutton_up, ::message::mouse, mouse)
 
 #define ON_WM_MBUTTONDOWN \
    ON_TYPED_MESSAGE(WM_MBUTTONDOWN, ::message::mouse, mouse)
@@ -29,10 +29,10 @@
    ON_TYPED_MESSAGE(WM_MBUTTONUP, ::message::mouse, mouse)
 
 #define ON_WM_RBUTTONDOWN \
-   ON_TYPED_MESSAGE(WM_RBUTTONDOWN, ::message::mouse, mouse)
+   ON_TYPED_MESSAGE(e_message_rbutton_down, ::message::mouse, mouse)
 
 #define ON_WM_RBUTTONUP \
-   ON_TYPED_MESSAGE(WM_RBUTTONUP, ::message::mouse, mouse)
+   ON_TYPED_MESSAGE(e_message_rbutton_up, ::message::mouse, mouse)
 
 #define ON_WM_MOUSEMOVE \
    ON_TYPED_MESSAGE(e_message_mouse_move, ::message::mouse, mouse)

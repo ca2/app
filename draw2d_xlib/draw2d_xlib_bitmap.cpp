@@ -25,7 +25,7 @@ namespace draw2d_xlib
 
    }
 
-   bool bitmap::CreateBitmap(::draw2d::graphics * pgraphics, i32 cx, i32 cy, UINT nPlanes, UINT nBitcount, const void * pdata, i32 iStrideParam)
+   bool bitmap::CreateBitmap(::draw2d::graphics * pgraphics, i32 cx, i32 cy, ::u32 nPlanes, ::u32 nBitcount, const void * pdata, i32 iStrideParam)
    {
 
       cy = abs(cy);
@@ -111,7 +111,7 @@ namespace draw2d_xlib
    }
 
 
-   bool bitmap::CreateDIBSection(::draw2d::graphics * pgraphics, const BITMAPINFO * lpbmi, UINT usage, void ** ppdata, int * pstride, HANDLE hSection, u32 offset)
+   bool bitmap::CreateDIBSection(::draw2d::graphics * pgraphics, const BITMAPINFO * lpbmi, ::u32 usage, void ** ppdata, int * pstride, HANDLE hSection, u32 offset)
    {
 
       int cy = abs(lpbmi->bmiHeader.biHeight);
@@ -190,7 +190,7 @@ namespace draw2d_xlib
       if(ppdata != nullptr)
       {
 
-         *ppdata = (COLORREF *) m_mem.get_data();
+         *ppdata = (color32_t *) m_mem.get_data();
 
       }
 
@@ -211,20 +211,20 @@ namespace draw2d_xlib
    }
 
 
-   bool bitmap::CreateDIBitmap(::draw2d::graphics * pgraphics, const BITMAPINFOHEADER *pbmih, DWORD flInit, const void *pjBits, const BITMAPINFO *pbmi, UINT iUsage)
+   bool bitmap::CreateDIBitmap(::draw2d::graphics * pgraphics, const BITMAPINFOHEADER *pbmih, ::u32 flInit, const void *pjBits, const BITMAPINFO *pbmi, ::u32 iUsage)
    {
       return FALSE;
    }
 
 
-   DWORD bitmap::SetBitmapBits(DWORD dwCount, const void * lpBits)
+   ::u32 bitmap::SetBitmapBits(::u32 dwCount, const void * lpBits)
    {
 
       //return ::SetBitmapBits((HBITMAP)get_handle(), dwCount, lpBits);
       return 0;
 
    }
-   DWORD bitmap::GetBitmapBits(DWORD dwCount, LPVOID lpBits) const
+   ::u32 bitmap::GetBitmapBits(::u32 dwCount, LPVOID lpBits) const
    {
       //return ::GetBitmapBits((HBITMAP)get_handle(), dwCount, lpBits);
       return 0;
@@ -260,12 +260,12 @@ namespace draw2d_xlib
 
    }
 
-   bool bitmap::LoadBitmap(UINT nIDResource)
+   bool bitmap::LoadBitmap(::u32 nIDResource)
    {
       //return Attach(::LoadBitmap(::aura::FindResourceHandle(MAKEINTRESOURCE(nIDResource), RT_BITMAP), MAKEINTRESOURCE(nIDResource)));
       return FALSE;
    }
-   bool bitmap::LoadOEMBitmap(UINT nIDBitmap)
+   bool bitmap::LoadOEMBitmap(::u32 nIDBitmap)
    {
       //return Attach(::LoadBitmap(nullptr, MAKEINTRESOURCE(nIDBitmap)));
       return FALSE;
@@ -277,7 +277,7 @@ namespace draw2d_xlib
 
       __memset(m_mem.get_data(), 0, m_mem.get_size());
 
-      if(!CreateBitmap(pgraphics, cx, cy, 1, 32, (COLORREF *) m_mem.get_data(), cx * sizeof(COLORREF)))
+      if(!CreateBitmap(pgraphics, cx, cy, 1, 32, (color32_t *) m_mem.get_data(), cx * sizeof(color32_t)))
       {
 
          m_mem.set_size(0);
@@ -364,7 +364,7 @@ namespace draw2d_xlib
    }
 
 /*
-   void get_surface_size (xlib_surface_t * psurface, LONG * plongWidth, LONG * plongHeight)
+   void get_surface_size (xlib_surface_t * psurface, ::i32 * plongWidth, ::i32 * plongHeight)
 	{
 
       if(plongWidth != nullptr)

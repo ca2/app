@@ -46,7 +46,7 @@ bool imm_context::is_opened() const
 bool imm_context::close_candidate(index iIndex)
 {
 
-   return ImmNotifyIME(m_himc, NI_CLOSECANDIDATE, 0, (DWORD)iIndex) != FALSE;
+   return ImmNotifyIME(m_himc, NI_CLOSECANDIDATE, 0, (::u32)iIndex) != FALSE;
 
 }
 
@@ -74,14 +74,14 @@ string imm_context::_get_candidate(int iList)
 
    memory mem;
 
-   DWORD dwCount = 0;
+   ::u32 dwCount = 0;
 
-   DWORD dwSize = ImmGetCandidateListW(m_himc, iList, 0, 0);
+   ::u32 dwSize = ImmGetCandidateListW(m_himc, iList, 0, 0);
 
    if (dwSize == 0)
    {
 
-      DWORD dw = GetLastError();
+      ::u32 dw = GetLastError();
 
       output_debug_string("error " + __str(dw));
 
@@ -98,7 +98,7 @@ string imm_context::_get_candidate(int iList)
 
    }
 
-   ImmGetCandidateListW(m_himc, iList, pc, (DWORD)mem.get_size());
+   ImmGetCandidateListW(m_himc, iList, pc, (::u32)mem.get_size());
 
    int iTest = pc->dwOffset[0];
 

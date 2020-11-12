@@ -197,7 +197,7 @@ extern CLASS_DECL_APEX int g_bApex;
 //#define IMAGE_B_BYTE_INDEX 0
 //
 //
-//#define IMAGE_ARGB(a, r, g, b)         ((COLORREF)((low_byte(b)|((WORD)(low_byte(g))<<8))|(((u32)low_byte(r))<<16)|(((u32)low_byte(a))<<24)))
+//#define IMAGE_ARGB(a, r, g, b)         ((color32_t)((low_byte(b)|((::u16)(low_byte(g))<<8))|(((u32)low_byte(r))<<16)|(((u32)low_byte(a))<<24)))
 //
 //
 //#define image_r_value(rgb)    (low_byte((rgb)>>16))
@@ -215,7 +215,7 @@ extern CLASS_DECL_APEX int g_bApex;
 //#define IMAGE_B_BYTE_INDEX 2
 //
 //
-//#define IMAGE_ARGB(a, r, g, b)         ((COLORREF)((low_byte(r)|((WORD)(low_byte(g))<<8))|(((u32)low_byte(b))<<16)|(((u32)low_byte(a))<<24)))
+//#define IMAGE_ARGB(a, r, g, b)         ((color32_t)((low_byte(r)|((::u16)(low_byte(g))<<8))|(((u32)low_byte(b))<<16)|(((u32)low_byte(a))<<24)))
 //
 //
 //#define image_r_value(rgb)    (low_byte((rgb)))
@@ -234,7 +234,7 @@ extern CLASS_DECL_APEX int g_bApex;
 //#define colorref_get_g_value(rgb)    (low_byte((rgb)>>8))
 //#define colorref_get_b_value(rgb)    (low_byte((rgb)>>16))
 //#define colorref_get_a_value(rgb)    (low_byte((rgb)>>24))
-//#define RGBA(r, g, b, a)         ((COLORREF)((low_byte(r)|((WORD)(low_byte(g))<<8))|(((u32)low_byte(b))<<16)|(((u32)low_byte(a))<<24)))
+//#define RGBA(r, g, b, a)         ((color32_t)((low_byte(r)|((::u16)(low_byte(g))<<8))|(((u32)low_byte(b))<<16)|(((u32)low_byte(a))<<24)))
 //#define ARGB(a, r, g, b)      RGBA(r, g, b, a)
 //
 //
@@ -371,13 +371,13 @@ extern CLASS_DECL_APEX int g_bApex;
 //CLASS_DECL_APEX void    ansi_unlink(const char * psz);
 
 
-//CLASS_DECL_APEX DWORD get_last_error();
-//CLASS_DECL_APEX void set_last_error(DWORD dw);
+//CLASS_DECL_APEX ::u32 get_last_error();
+//CLASS_DECL_APEX void set_last_error(::u32 dw);
 
 //typedef char ansichar;
 //
-//i32 CLASS_DECL_APEX MultiByteToWideChar2(UINT CodePage, DWORD dwFlags, const ansichar * pMultByteStr, i32 cbMultiByte, widechar * pWideCharStr, i32 cchWideChar);
-//i32 CLASS_DECL_APEX WideCharToMultiByte2(UINT CodePage, DWORD dwFlags, const widechar * pWideCharStr, i32 cchWideChar, ansichar * pMultByteStr, i32 cbMultiByte, LPCSTR pDefaultChar, LPBOOL pUsedDefaultChar);
+//i32 CLASS_DECL_APEX MultiByteToWideChar2(::u32 CodePage, ::u32 dwFlags, const ansichar * pMultByteStr, i32 cbMultiByte, widechar * pWideCharStr, i32 cchWideChar);
+//i32 CLASS_DECL_APEX WideCharToMultiByte2(::u32 CodePage, ::u32 dwFlags, const widechar * pWideCharStr, i32 cchWideChar, ansichar * pMultByteStr, i32 cbMultiByte, const char * pDefaultChar, int_bool * pUsedDefaultChar);
 
 
 
@@ -1272,14 +1272,14 @@ class form_property_set;
 //   class scroll_data;
 //
 //
-//   //using color_map = map < e_color, e_color, COLORREF, COLORREF >;
+//   //using color_map = map < e_color, e_color, color32_t, color32_t >;
 //   //using font_map = map < e_font, e_font, ::draw2d::font_pointer >;
 //   using eflag = flags < enum_flag >;
 //   //using flag_map = map < e_flag, e_flag, bool, bool >;
 //   //using rect_map = ::map < e_rect, e_rect, style_rect >;
 //   //using int_map = ::map < e_int, e_int, int, int >;
 //   //using double_map = ::map < e_double, e_double, double, double >;
-//   //using color_map = map < e_color, e_color, COLORREF, COLORREF >;
+//   //using color_map = map < e_color, e_color, color32_t, color32_t >;
 //   //using eelement = base_enum < e_element >;
 //   //using translucency_map = ::map < e_element, e_element, e_translucency, e_translucency >;
 //
@@ -1585,7 +1585,7 @@ namespace datetime
 //template < typename T >
 //inline int type_is_null(const T * p)
 //{
-//   return (((UINT_PTR)(void *)p) < max(4096, sizeof(T)));
+//   return (((::u32_PTR)(void *)p) < max(4096, sizeof(T)));
 //}
 
 
@@ -1796,8 +1796,8 @@ namespace datetime
 //struct SIZEPARENTPARAMS
 //{
 //
-//   RECT  rect;       // parent client rectangle (trim as appropriate)
-//   SIZE  sizeTotal;  // total size on each side as on_layout proceeds
+//   RECT32  rect;       // parent client rectangle (trim as appropriate)
+//   SIZE32  sizeTotal;  // total size on each side as on_layout proceeds
 //   bool  bStretch;   // should stretch to fill all space
 //
 //};
@@ -1824,7 +1824,7 @@ namespace apex
 //
 //   CLASS_DECL_APEX bool get_window_rect(system_window ^ pwindow,RECTD * prect);
 
-//   CLASS_DECL_APEX bool get_window_rect(system_window ^ pwindow,RECT * prect);
+//   CLASS_DECL_APEX bool get_window_rect(system_window ^ pwindow,RECT32 * prect);
 
 //
 //#endif
@@ -2335,8 +2335,8 @@ namespace primitive
 //#include "apex/primitive/datetime/time_span.h"
 //#include "apex/primitive/datetime/time.h"
 //#include "apex/primitive/datetime/zonetime.h"
-//#include "apex/primitive/datetime/file_time_span.h"
-//#include "apex/primitive/datetime/file_time.h"
+//#include "apex/primitive/datetime/filetime_span.h"
+//#include "apex/primitive/datetime/filetime.h"
 
 
 
@@ -2398,7 +2398,7 @@ namespace primitive
 //template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename RECT_BASE_TYPE >
 //class size_type;
 //
-//using size = size_type < SIZE, POINT, RECT >;
+//using size = size_type < SIZE32, POINT32, RECT32 >;
 //
 
 //#include "apex/primitive/math/cast.h"
@@ -2820,7 +2820,7 @@ namespace core
 //
 //   CLASS_DECL_APEX bool get_window_rect(system_window ^ pwindow, RECTD * prect);
 //
-//   CLASS_DECL_APEX bool get_window_rect(system_window ^ pwindow, RECT * prect);
+//   CLASS_DECL_APEX bool get_window_rect(system_window ^ pwindow, RECT32 * prect);
 //
 //
 //#endif
@@ -2839,7 +2839,7 @@ namespace core
 //{
 //
 //
-//   ref class directx_application;
+//   ref class directx_framework_view;
 //
 //
 //} // namespace uwp

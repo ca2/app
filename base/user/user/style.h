@@ -37,7 +37,7 @@ namespace base
       //virtual bool simple_ui_draw_focus_rect(::user::interaction * pinteraction, ::draw2d::graphics_pointer & pgraphics) override;
       //virtual bool on_ui_event(enum_event eevent, e_object eobject, ::user::interaction * pinteraction) override;
       virtual bool _001TabOnDrawSchema01(::draw2d::graphics_pointer & pgraphics, ::user::tab * ptab);
-      virtual bool _001OnDrawMenuInteraction(::draw2d::graphics_pointer & pgraphics, ::user::menu_interaction * pbutton);
+      virtual bool _001OnDrawMen::u32eraction(::draw2d::graphics_pointer & pgraphics, ::user::menu_interaction * pbutton);
       virtual void _001OnTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::rect & rect, ::draw2d::brush_pointer & brushText);
 
       virtual bool _001OnTabLayout(::draw2d::graphics_pointer& pgraphics, ::user::tab * ptab);
@@ -60,7 +60,7 @@ namespace base
 
 
 
-      //virtual COLORREF           _001GetColor(::user::interaction * pinteraction, e_color ecolor, COLORREF crDefault = 0);
+      //virtual color32_t           _001GetColor(::user::interaction * pinteraction, e_color ecolor, color32_t crDefault = 0);
       //virtual ::draw2d::font_pointer  _001GetFont(::user::interaction * pinteraction, e_font efont, ::draw2d::font * pfont = nullptr);
       //virtual e_translucency     _001GetTranslucency(::user::interaction * pinteraction, e_element eelement = element_none, e_translucency etranslucencyDefault = translucency_undefined);
       //virtual bool               _001GetFlag(::user::interaction * pinteraction, ::user::e_flag eflag, bool bDefault = false);
@@ -90,7 +90,7 @@ namespace base
       //virtual ::draw2d::graphics * style_get_graphics();
 
 
-      //virtual bool userstyle_color(COLORREF & cr, e_color ecolor, ::user::interaction * pinteraction);
+      //virtual bool userstyle_color(color32_t & cr, e_color ecolor, ::user::interaction * pinteraction);
       //virtual bool userstyle_font(::draw2d::font_pointer & sp, e_font efont, ::user::interaction * pinteraction);
       //virtual bool userstyle_translucency(e_translucency & etranslucency, e_element eelement, ::user::interaction * pinteraction);
       //virtual bool userstyle_flag(bool & bSet, ::user::e_flag eflag, ::user::interaction * pinteraction);
@@ -99,7 +99,7 @@ namespace base
       //virtual bool userstyle_double(double & d, ::user::e_double edouble, ::user::interaction * pinteraction);
 
 
-      //virtual bool style_color(COLORREF & cr, e_color ecolor, ::user::interaction * pinteraction);
+      //virtual bool style_color(color32_t & cr, e_color ecolor, ::user::interaction * pinteraction);
       //virtual bool style_font(::draw2d::font_pointer & sp, e_font efont, ::user::interaction * pinteraction);
       //virtual bool style_translucency(e_translucency & etranslucency, e_element eelement, ::user::interaction * pinteraction);
       //virtual bool style_flag(bool & bSet, ::user::e_flag eflag, ::user::interaction * pinteraction);

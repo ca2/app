@@ -47,9 +47,9 @@ namespace user
       ::user::combo_list::install_message_routing(pchannel);
 
       MESSAGE_LINK(e_message_create, pchannel, this, &font_list::_001OnCreate);
-      MESSAGE_LINK(WM_LBUTTONDOWN, pchannel, this, &font_list::_001OnLButtonDown);
+      MESSAGE_LINK(e_message_lbutton_down, pchannel, this, &font_list::_001OnLButtonDown);
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &font_list::_001OnMouseMove);
-      MESSAGE_LINK(WM_CLOSE, pchannel, this, &font_list::_001OnClose);
+      MESSAGE_LINK(e_message_close, pchannel, this, &font_list::_001OnClose);
       MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &font_list::_001OnShowWindow);
 
    }
@@ -71,7 +71,7 @@ namespace user
 
       }
 
-      //psession->add(method(e_method_font_change, [this]() { on_font_change(); }));
+      //psession->add(method(e_procedure_font_change, [this]() { on_font_change(); }));
 
    }
 
@@ -595,7 +595,7 @@ namespace user
             //fork([this]()
   //             {
 //
-    //              psession->call(e_method_font_change);
+    //              psession->call(e_procedure_font_change);
 
       //         });
 

@@ -1,13 +1,13 @@
 ﻿#pragma once
 
 
-//#undef System
+#undef System
 //#undef Platform
 ////#undef Application
 ////#undef Session
 
 
-CLASS_DECL_ACME bool __initialize(bool bDLL, DWORD dwVersion);
+CLASS_DECL_ACME bool __initialize(bool bDLL, ::u32 dwVersion);
 
 CLASS_DECL_ACME uptr keycode_to_char(uptr n);
 

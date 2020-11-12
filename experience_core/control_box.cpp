@@ -49,7 +49,7 @@ namespace experience
 
          pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-         COLORREF crBackground;
+         color32_t crBackground;
 
          if(GetTopLevel()->frame_is_transparent())
          {
@@ -108,8 +108,8 @@ namespace experience
          ::experience::control_box::install_message_routing(pframewindow);
 
          MESSAGE_LINK(WM_SHOWWINDOW, pframewindow, this, &control_box::_001OnShowWindow);
-         MESSAGE_LINK(WM_LBUTTONDOWN, pframewindow, this, &control_box::_001OnLButtonDown);
-         MESSAGE_LINK(WM_LBUTTONUP, pframewindow, this, &control_box::_001OnLButtonUp);
+         MESSAGE_LINK(e_message_lbutton_down, pframewindow, this, &control_box::_001OnLButtonDown);
+         MESSAGE_LINK(e_message_lbutton_up, pframewindow, this, &control_box::_001OnLButtonUp);
          //MESSAGE_LINK(e_message_size, pframewindow, this, &control_box::_001OnSize);
       //   //MESSAGE_LINK(WM_TIMER, pframewindow, this, &control_box::_001OnTimer);
 

@@ -104,7 +104,7 @@ namespace uwp
       /*if (!ExitWindowsEx(EWX_REBOOT | EWX_FORCE,
       SHTDN_REASON_MAJOR_SOFTWARE | SHTDN_REASON_MINOR_INSTALLATION))
       {
-      DWORD dwLastError = ::get_last_error();
+      ::u32 dwLastError = ::get_last_error();
       return false;
       }*/
       //reset the previlages
@@ -119,13 +119,13 @@ namespace uwp
    void os_context::terminate_processes_by_title(const char * pszName)
    {
 #ifdef WINDOWS_DESKTOP
-      DWORD dwPid;
+      ::u32 dwPid;
       while(get_pid_by_title(pszName, dwPid))
       {
          HANDLE hProcess = OpenProcess( PROCESS_QUERY_INFORMATION |
                                         PROCESS_VM_READ,
                                         FALSE, dwPid );
-         TerminateProcess(hProcess, (UINT) -1);
+         TerminateProcess(hProcess, (::u32) -1);
          CloseHandle(hProcess);
          /*::EnumWindows((WNDENUMPROC)
          CKillProcessHelper::TerminateAppEnum,
@@ -196,7 +196,7 @@ namespace uwp
       if (nullptr != hProcess )
       {
          HMODULE hMod;
-         DWORD cbNeeded;
+         ::u32 cbNeeded;
 
          if(EnumProcessModules( hProcess, &hMod, sizeof(hMod),
                                 &cbNeeded) )
@@ -218,18 +218,18 @@ namespace uwp
    {
 #ifdef WINDOWS_DESKTOP
       dwa.set_size(0);
-      DWORD cbNeeded = 0;
+      ::u32 cbNeeded = 0;
       while(cbNeeded == natural(dwa.get_count()))
       {
          dwa.set_size(dwa.get_count() + 1024);
          if(!EnumProcesses(
                dwa.get_data(),
-               (DWORD) (dwa.get_count() * sizeof(DWORD)),
+               (::u32) (dwa.get_count() * sizeof(::u32)),
                &cbNeeded))
          {
             return;
          }
-         dwa.set_size(cbNeeded / sizeof(DWORD));
+         dwa.set_size(cbNeeded / sizeof(::u32));
       }
 #elif defined(_UWP)
 
@@ -246,7 +246,7 @@ namespace uwp
 
 #ifdef WINDOWS_DESKTOP
 
-      DWORD dwSize = 1;
+      ::u32 dwSize = 1;
 
       while(natural(strPath.get_length() + 1) == dwSize)
       {
@@ -440,14 +440,14 @@ namespace uwp
    }
 
 
-   ::estatus     os_context::link_open(string strUrl)
+   ::estatus os_context::link_open(string strUrl)
    {
 
       try
       {
 
 
-         main_async([strUrl]()
+         System.main_user_async(__procedure([strUrl]()
             {
 
                Platform::String^ strUri = strUrl;
@@ -456,7 +456,7 @@ namespace uwp
 
                ::wait(Launcher::LaunchUriAsync(uri));
 
-            });
+            }));
 
       }
       catch (::Exception^ ex)

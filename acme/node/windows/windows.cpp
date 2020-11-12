@@ -52,7 +52,7 @@ namespace windows
 
 
 
-   DWORD get_current_directory(string & str)
+   ::u32 get_current_directory(string & str)
    {
 
       return ::GetCurrentDirectoryW(MAX_PATH * 8,wtostring(str,MAX_PATH * 8));
@@ -60,7 +60,7 @@ namespace windows
    }
 
 
-   DWORD get_temp_path(string & str)
+   ::u32 get_temp_path(string & str)
    {
 
       return ::GetTempPathW(MAX_PATH * 8,wtostring(str,MAX_PATH * 8));
@@ -68,13 +68,12 @@ namespace windows
    }
 
 
-   LONG reg_query_value(HKEY hkey,const char * pszSubKey,string & str)
-
+   ::i32 reg_query_value(HKEY hkey,const char * pszSubKey,string & str)
    {
 
       DWORD dwType = 0;
       DWORD dwSize = 0;
-      LONG lResult = RegQueryValueExW(hkey,wstring(pszSubKey),nullptr,&dwType,nullptr,&dwSize);
+      ::i32 lResult = RegQueryValueExW(hkey,wstring(pszSubKey),nullptr,&dwType,nullptr, &dwSize);
 
       if(lResult != ERROR_SUCCESS)
          return lResult;
@@ -103,7 +102,7 @@ namespace windows
    }
 
 
-   HICON extract_icon(HINSTANCE hInst,const char * pszExeFileName,UINT nIconIndex)
+   HICON extract_icon(HINSTANCE hInst,const char * pszExeFileName,::u32 nIconIndex)
 
    {
 
@@ -128,22 +127,22 @@ namespace windows
 
       SYSTEMTIME sysTime;
 
-      sysTime.wYear           = (WORD)time.GetYear();
-      sysTime.wMonth          = (WORD)time.GetMonth();
-      sysTime.wDay            = (WORD)time.GetDay();
-      sysTime.wHour           = (WORD)time.GetHour();
-      sysTime.wMinute         = (WORD)time.GetMinute();
-      sysTime.wSecond         = (WORD)time.GetSecond();
+      sysTime.wYear           = (::u16)time.GetYear();
+      sysTime.wMonth          = (::u16)time.GetMonth();
+      sysTime.wDay            = (::u16)time.GetDay();
+      sysTime.wHour           = (::u16)time.GetHour();
+      sysTime.wMinute         = (::u16)time.GetMinute();
+      sysTime.wSecond         = (::u16)time.GetSecond();
       sysTime.wMilliseconds   = 0;
 
       // convert system time to local file time
       FILETIME localTime;
       if(!SystemTimeToFileTime((LPSYSTEMTIME)&sysTime,&localTime))
-         ::file::throw_os_error((LONG)::get_last_error());
+         ::file::throw_os_error((::i32)::get_last_error());
 
       // convert local file time to UTC file time
       if(!LocalFileTimeToFileTime(&localTime,pFileTime))
-         ::file::throw_os_error((LONG)::get_last_error());
+         ::file::throw_os_error((::i32)::get_last_error());
 
    }
 

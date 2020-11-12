@@ -65,7 +65,7 @@
 //#endif
 //
 //#ifndef _UWP
-//CLASS_DECL_APEX bool process_contains_module(string & strImage, DWORD processID, const char * pszLibrary);
+//CLASS_DECL_APEX bool process_contains_module(string & strImage, ::u32 processID, const char * pszLibrary);
 //CLASS_DECL_APEX void shared_library_process(dword_array & dwa, string_array & straProcesses, const char * pszLibrary);
 //#endif
 //
@@ -94,7 +94,7 @@ CLASS_DECL_APEX void os_term_application();
 //CLASS_DECL_APEX string executable_title_from_appid(string str);
 //
 //
-//CLASS_DECL_APEX DWORD get_current_process_id();
+//CLASS_DECL_APEX ::u32 get_current_process_id();
 //
 //
 //

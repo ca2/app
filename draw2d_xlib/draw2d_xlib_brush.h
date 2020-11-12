@@ -18,8 +18,8 @@ namespace draw2d_xlib
 
 
       brush(::layered * pobjectContext);
-      //virtual void construct(COLORREF crColor);                // CreateSolidBrush
-      //virtual void construct(i32 nIndex, COLORREF crColor);    // CreateHatchBrush
+      //virtual void construct(color32_t crColor);                // CreateSolidBrush
+      //virtual void construct(i32 nIndex, color32_t crColor);    // CreateHatchBrush
       //virtual void construct(::draw2d::bitmap * pbitmap);                // CreatePatternBrush
       virtual ~brush();
 
@@ -27,11 +27,11 @@ namespace draw2d_xlib
       virtual void * get_os_data() const;
 
 
-      //bool CreateSolidBrush(COLORREF crColor);
-      //bool CreateHatchBrush(i32 nIndex, COLORREF crColor);
+      //bool CreateSolidBrush(color32_t crColor);
+      //bool CreateHatchBrush(i32 nIndex, color32_t crColor);
       //bool CreatePatternBrush(::draw2d::bitmap* pBitmap);
-      //bool CreateDIBPatternBrush(HGLOBAL hPackedDIB, UINT nUsage);
-      //bool CreateDIBPatternBrush(const void * lpPackedDIB, UINT nUsage);
+      //bool CreateDIBPatternBrush(HGLOBAL hPackedDIB, ::u32 nUsage);
+      //bool CreateDIBPatternBrush(const void * lpPackedDIB, ::u32 nUsage);
       //bool CreateSysColorBrush(i32 nIndex);
 
 

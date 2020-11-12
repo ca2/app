@@ -21,11 +21,11 @@
 #include "SBCharsetProber.h"
 
 
-nsProbingState nsSingleByteCharSetProber::HandleData(const char* aBuf, PRUint32 aLen)
+nsProbingState nsSingleByteCharSetProber::HandleData(const char* aBuf, PR::u32 aLen)
 {
   unsigned char order;
 
-  for (PRUint32 i = 0; i < aLen; i++)
+  for (PR::u32 i = 0; i < aLen; i++)
   {
     order = mModel->charToOrderMap[(unsigned char)aBuf[i]];
 
@@ -61,7 +61,7 @@ void  nsSingleByteCharSetProber::Reset(void)
 {
   mState = eDetecting;
   mLastOrder = 255;
-  for (PRUint32 i = 0; i < NUMBER_OF_SEQ_CAT; i++)
+  for (PR::u32 i = 0; i < NUMBER_OF_SEQ_CAT; i++)
     mSeqCounters[i] = 0;
   mTotalSeqs = 0;
   mTotalChar = 0;

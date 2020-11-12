@@ -40,10 +40,10 @@ void imm_client::install_message_routing(::channel * pchannel)
    MESSAGE_LINK(WM_IME_SELECT, pchannel, this, &::imm_client::_001OnIme);
    MESSAGE_LINK(WM_INPUTLANGCHANGE, pchannel, this, &::imm_client::_001OnIme);
 
-   MESSAGE_LINK(WM_CHAR, pchannel, this, &::imm_client::_011OnChar);
+   MESSAGE_LINK(e_message_char, pchannel, this, &::imm_client::_011OnChar);
    MESSAGE_LINK(WM_IME_CHAR, pchannel, this, &::imm_client::_011OnChar);
 
-   MESSAGE_LINK(WM_KEYDOWN, pchannel, this, &::imm_client::_001OnKeyDown);
+   MESSAGE_LINK(e_message_key_down, pchannel, this, &::imm_client::_001OnKeyDown);
 
 
 }
@@ -71,7 +71,7 @@ void imm_client::_011OnChar(::message::message * pmessage)
 
    SCAST_PTR(::message::base, pbase, pmessage);
 
-   if (pbase->m_id == WM_CHAR)
+   if (pbase->m_id == e_message_char)
    {
 
       auto psession = Session;
@@ -357,9 +357,9 @@ void imm_client::_001OnIme(::message::message * pmessage)
 
          imm_context imm(this);
 
-         DWORD dwConversion = 0;
+         ::u32 dwConversion = 0;
 
-         DWORD dwSentence = 0;
+         ::u32 dwSentence = 0;
 
          ImmGetConversionStatus(imm, &dwConversion, &dwSentence);
 

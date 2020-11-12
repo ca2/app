@@ -1025,7 +1025,7 @@ namespace helloaxis
 //
 //      }
 //
-//      //DWORD dw = ::get_tick();
+//      //::u32 dw = ::get_tick();
 //
 //      if (m_bFast || !m_bFirstDone || m_tickLastFast.elapsed() < m_tickFastAnime)
 //      {

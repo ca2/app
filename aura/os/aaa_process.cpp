@@ -366,14 +366,14 @@ CLASS_DECL_AURA string process_version_dir_name()
 //extern "C"
 //{
 
-   CLASS_DECL_AURA int_bool IsProcessRunning(DWORD pid)
+   CLASS_DECL_AURA int_bool IsProcessRunning(::u32 pid)
    {
 
 #ifdef WINDOWS
 
       HANDLE process = OpenProcess(SYNCHRONIZE, FALSE, pid);
 
-      DWORD ret = WaitForSingleObject(process, 0);
+      ::u32 ret = WaitForSingleObject(process, 0);
 
       CloseHandle(process);
 

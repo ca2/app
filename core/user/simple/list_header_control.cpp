@@ -28,8 +28,8 @@ void simple_list_header_control::install_message_routing(::channel * pchannel)
    MESSAGE_LINK(HDN_ENDDRAG, pchannel, this, &simple_list_header_control::_001OnEndDrag);
 #endif
    MESSAGE_LINK(e_message_create, pchannel, this, &simple_list_header_control::_001OnCreate);
-   //MESSAGE_LINK(WM_LBUTTONDOWN, pchannel, this, &simple_list_header_control::_001OnLButtonDown);
-   //MESSAGE_LINK(WM_LBUTTONUP, pchannel, this, &simple_list_header_control::_001OnLButtonUp);
+   //MESSAGE_LINK(e_message_lbutton_down, pchannel, this, &simple_list_header_control::_001OnLButtonDown);
+   //MESSAGE_LINK(e_message_lbutton_up, pchannel, this, &simple_list_header_control::_001OnLButtonUp);
    //MESSAGE_LINK(e_message_mouse_move, pchannel, this, &simple_list_header_control::_001OnMouseMove);
 }
 

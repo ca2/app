@@ -794,8 +794,8 @@ namespace multimedia
       bool control::OnCommand(WPARAM wParam, LPARAM lParam)
       {
          UNREFERENCED_PARAMETER(lParam);
-         WORD wNotifyCode = HIWORD(wParam);
-         WORD wID = LOWORD(wParam);
+         ::u16 wNotifyCode = HIWORD(wParam);
+         ::u16 wID = LOWORD(wParam);
 
          ::multimedia::audio_mixer::user::control * pwnd = GetControlByDlgCtrlID((u32)wID);
 

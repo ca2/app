@@ -47,7 +47,7 @@ namespace ios
       string str;
       for(i32 i = 0; i < iCount; i++)
       {
-         UINT uiLen = ::DragQueryFileW(hdrop, i, nullptr, 0);
+         ::u32 uLen = ::DragQueryFileW(hdrop, i, nullptr, 0);
          unichar * lpwsz = (unichar *) malloc(sizeof(unichar) * (uiLen + 1));
          ::DragQueryFileW(hdrop, i, lpwsz, uiLen + 1);
          stra.add(::str::international::unicode_to_utf8(lpwsz));

@@ -1133,7 +1133,7 @@ LONG_PTR oswindow_data::set_window_long_ptr(i32 nIndex, LONG_PTR l)
 }
 
 
-bool oswindow_data::_001ClientToScreen(POINT * ppoint)
+bool oswindow_data::_001ClientToScreen(POINT32 * ppoint)
 {
 
    return true;
@@ -1141,7 +1141,7 @@ bool oswindow_data::_001ClientToScreen(POINT * ppoint)
 }
 
 
-bool oswindow_data::_001ScreenToClient(POINT * ppoint)
+bool oswindow_data::_001ScreenToClient(POINT32 * ppoint)
 {
 
    return true;
@@ -1297,7 +1297,7 @@ bool oswindow_data::is_destroying()
 
 #undef SET_WINDOW_POS_LOG
 
-bool oswindow_data::set_window_pos(class ::zorder zorder, i32 x, i32 y, i32 cx, i32 cy, UINT nFlags)
+bool oswindow_data::set_window_pos(class ::zorder zorder, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags)
 {
 
    bool bOk = false;
@@ -1314,7 +1314,7 @@ bool oswindow_data::set_window_pos(class ::zorder zorder, i32 x, i32 y, i32 cx, 
 }
 
 
-bool oswindow_data::_set_window_pos(class ::zorder zorder, i32 x, i32 y, i32 cx, i32 cy, UINT nFlags)
+bool oswindow_data::_set_window_pos(class ::zorder zorder, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags)
 {
 
    sync_lock sl(x11_mutex());

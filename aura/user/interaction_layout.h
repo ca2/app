@@ -81,8 +81,8 @@ namespace user
       //virtual void _001OnDeferPaintLayeredWindowBackground(::draw2d::graphics_pointer & pgraphics);
 
 
-      //virtual bool _get_client_rect(RECT * prect) = 0;
-      //virtual bool _get_window_rect(RECT * prect) = 0;
+      //virtual bool _get_client_rect(RECT32 * prect) = 0;
+      //virtual bool _get_window_rect(RECT32 * prect) = 0;
 
       //virtual ::point _client_parent_top_left() = 0;
       //virtual ::point _client_screen_top_left() = 0;
@@ -138,7 +138,7 @@ namespace user
 
       //virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
-      //virtual bool get_window_rect(RECT * prect);
+      //virtual bool get_window_rect(RECT32 * prect);
       
 
 
@@ -151,11 +151,11 @@ namespace user
       //inline ::size client_size() { return m_sizeClient; }
       //inline ::size window_size() { return m_sizeScreen; }
 
-      //inline void _001ScreenToClient(RECT* prect) { ::rect_sub(prect, client_screen_top_left()); }
-      //inline void _001ClientToScreen(RECT* prect) { ::rect_add(prect, client_screen_top_left()); }
+      //inline void _001ScreenToClient(RECT32* prect) { ::rect_sub(prect, client_screen_top_left()); }
+      //inline void _001ClientToScreen(RECT32* prect) { ::rect_add(prect, client_screen_top_left()); }
 
-      //inline void get_client_rect(RECT* prect) { ::set_rect_point_size(prect, m_pointClient, client_size()); }
-      //inline void get_window_rect(RECT* prect) { ::set_rect_point_size(prect, m_pointScreenWindow, window_size()); }
+      //inline void get_client_rect(RECT32* prect) { ::set_rect_point_size(prect, m_pointClient, client_size()); }
+      //inline void get_window_rect(RECT32* prect) { ::set_rect_point_size(prect, m_pointScreenWindow, window_size()); }
 
       //inline auto get_client_rect() { ::rect rect; get_client_rect(rect); return rect; }
       //inline auto get_window_rect() { ::rect rect; get_window_rect(rect); return rect; }
@@ -310,12 +310,12 @@ namespace user
       inline ::point origin(e_layout elayout = layout_design) const { return state(elayout).origin();; }
       inline ::point screen_origin(e_layout elayout = layout_design) const { return state(elayout).screen_origin(); }
 
-      inline LONG area(e_layout elayout = layout_design) const { return size(elayout).area(); }
+      inline ::i32 area(e_layout elayout = layout_design) const { return size(elayout).area(); }
 
 
-      inline void get_client_rect(RECT* prect, e_layout elayout = layout_design) const { state(elayout).client_rect(prect); }
-      inline void get_window_rect(RECT* prect, e_layout elayout = layout_design) const { state(elayout).screen_rect(prect); }
-      inline void parent_client_rect(RECT* prect, e_layout elayout = layout_design) const { state(elayout).parent_client_rect(prect); }
+      inline void get_client_rect(RECT32* prect, e_layout elayout = layout_design) const { state(elayout).client_rect(prect); }
+      inline void get_window_rect(RECT32* prect, e_layout elayout = layout_design) const { state(elayout).screen_rect(prect); }
+      inline void parent_client_rect(RECT32* prect, e_layout elayout = layout_design) const { state(elayout).parent_client_rect(prect); }
 
 
       inline ::rect get_client_rect(e_layout elayout = layout_design) const { ::rect rect; get_client_rect(rect, elayout); return rect; }

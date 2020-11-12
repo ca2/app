@@ -21,14 +21,14 @@ namespace user
 
    struct toolbar_data
    {
-      WORD wVersion;
-      WORD wWidth;
-      WORD wHeight;
-      WORD wItemCount;
-      //WORD aItems[wItemCount]
+      ::u16 wVersion;
+      ::u16 wWidth;
+      ::u16 wHeight;
+      ::u16 wItemCount;
+      //::u16 aItems[wItemCount]
 
-      WORD* items()
-         { return (WORD*)(this+1); }
+      ::u16* items()
+         { return (::u16*)(this+1); }
    };
 
 } // namespace user

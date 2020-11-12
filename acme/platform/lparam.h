@@ -1,6 +1,8 @@
 #pragma once
 
 
+#define U32_LO16(u) (u & 0xff)
+#define U32_HI16(u) ((u >> 16) & 0xff)
 
 
 class CLASS_DECL_ACME lparam
@@ -110,7 +112,7 @@ public:
    inline int x() const
    {
 
-      return GET_X_LPARAM(m_lparam);
+      return U32_LO16(m_lparam);
 
    }
 
@@ -118,7 +120,7 @@ public:
    inline int y() const
    {
 
-      return GET_Y_LPARAM(m_lparam);
+      return U32_HI16(m_lparam);
 
    }
 

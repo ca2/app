@@ -30,16 +30,16 @@ struct CLASS_DECL_AXIS_RDPCLIENT rdp_event_item
    void * input;
    int bKey;
    int down;
-   UINT scancode;
+   ::u32 scancode;
    const ::id & id;
-   POINT pt;
+   POINT32 pt;
    void send();
 };
-CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_queue_event(void * input,int bKey, int down, UINT scancode, const ::id & id,POINT pt);
+CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_queue_event(void * input,int bKey, int down, ::u32 scancode, const ::id & id,POINT32 pt);
 CLASS_DECL_AXIS_RDPCLIENT int  ca2rdp_get_event(rdp_event_item & item,void * input);
-CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_send_event(void * input,int bKey,int down,UINT scancode,const ::id & id,POINT pt);
+CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_send_event(void * input,int bKey,int down,::u32 scancode,const ::id & id,POINT32 pt);
 
-//CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_send_mouse_button_event(rdpInput* input,const ::id & id,POINT pt);
-//CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_send_keyboard_event(rdpInput* input,BOOL down,UINT scancode);
+//CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_send_mouse_button_event(rdpInput* input,const ::id & id,POINT32 pt);
+//CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_send_keyboard_event(rdpInput* input,BOOL down,::u32 scancode);
 
 #endif /* __DF_EVENT_H */

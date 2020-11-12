@@ -793,7 +793,7 @@ void stream::read(long& l)
 }
 
 
-void stream::read(unsigned long & ui)
+void stream::read(unsigned long & u)
 {
 
    set_fail_bit();
@@ -820,7 +820,7 @@ void stream::read(double & d)
 }
 
 
-//void stream::read(POINT & point)
+//void stream::read(POINT32 & point)
 //{
 //
 //   set_fail_bit();
@@ -828,7 +828,7 @@ void stream::read(double & d)
 //}
 //
 //
-//void stream::read(SIZE & size)
+//void stream::read(SIZE32 & size)
 //{
 //
 //   set_fail_bit();
@@ -836,7 +836,7 @@ void stream::read(double & d)
 //}
 //
 //
-//void stream::read(RECT & rect)
+//void stream::read(RECT32 & rect)
 //{
 //
 //   set_fail_bit();

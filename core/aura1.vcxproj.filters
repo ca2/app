@@ -1496,10 +1496,10 @@
     <ClInclude Include="primitive\datetime\duration.h">
       <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\datetime\file_time.h">
+    <ClInclude Include="primitive\datetime\filetime.h">
       <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\datetime\file_time_span.h">
+    <ClInclude Include="primitive\datetime\filetime_span.h">
       <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
     <ClInclude Include="primitive\datetime\mktime.h">
@@ -5614,10 +5614,10 @@
     <ClCompile Include="primitive\datetime\duration.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\datetime\file_time.cpp">
+    <ClCompile Include="primitive\datetime\filetime.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\datetime\file_time_span.cpp">
+    <ClCompile Include="primitive\datetime\filetime_span.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
     <ClCompile Include="primitive\datetime\mktime.cpp">
@@ -8537,7 +8537,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="..\..\platform-windows\version.rc">
+    <ResourceCompile Include="..\..\..\archive\platform-windows\version.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
   </ItemGroup>

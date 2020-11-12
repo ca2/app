@@ -10,9 +10,9 @@ using namespace Microsoft::WRL;
 using namespace Windows::Graphics::Display;
 using namespace D2D1;
 
-static void __pre_init_dialog(::user::interaction * pWnd,LPRECT lpRectOld,u32* pdwStyleOld);
-static void __post_init_dialog(::user::interaction * pWnd,const RECT& rectOld,u32 dwStyleOld);
-LRESULT CALLBACK __activation_window_procedure(oswindow hWnd,UINT nMsg,WPARAM wParam,LPARAM lParam);
+static void __pre_init_dialog(::user::interaction * pWnd,LPRECT32 lpRectOld,u32* pdwStyleOld);
+static void __post_init_dialog(::user::interaction * pWnd,const RECT32& rectOld,u32 dwStyleOld);
+LRESULT CALLBACK __activation_window_procedure(oswindow hWnd,::u32 nMsg,WPARAM wParam,LPARAM lParam);
 
 
 namespace uwp
@@ -74,7 +74,7 @@ namespace uwp
 
    // Change a interaction_impl's style
 
-   static bool __modify_style(oswindow hWnd,int nStyleOffset,u32 dwRemove,u32 dwAdd,UINT nFlags)
+   static bool __modify_style(oswindow hWnd,int nStyleOffset,u32 dwRemove,u32 dwAdd,::u32 nFlags)
    {
 
 #ifdef WINDOWS_DESKTOP
@@ -102,12 +102,12 @@ namespace uwp
 
    }
 
-   bool interaction_impl::ModifyStyle(oswindow hWnd,u32 dwRemove,u32 dwAdd,UINT nFlags)
+   bool interaction_impl::ModifyStyle(oswindow hWnd,u32 dwRemove,u32 dwAdd,::u32 nFlags)
    {
       return __modify_style(hWnd,GWL_STYLE,dwRemove,dwAdd,nFlags);
    }
 
-   bool interaction_impl::ModifyStyleEx(oswindow hWnd,u32 dwRemove,u32 dwAdd,UINT nFlags)
+   bool interaction_impl::ModifyStyleEx(oswindow hWnd,u32 dwRemove,u32 dwAdd,::u32 nFlags)
    {
       return __modify_style(hWnd,GWL_EXSTYLE,dwRemove,dwAdd,nFlags);
    }
@@ -137,7 +137,7 @@ namespace uwp
 
    //bool interaction_impl::CreateEx(u32 dwExStyle,const char * lpszClassName,
    //                                const char * lpszWindowName,u32 uStyle,
-   //                                const RECT& rect,::user::interaction* puiParent,id id,
+   //                                const RECT32& rect,::user::interaction* puiParent,id id,
    //                                LPVOID lpParam /* = nullptr */)
    //{
    //   return CreateEx(dwExStyle,lpszClassName,lpszWindowName,uStyle,
@@ -353,7 +353,7 @@ namespace uwp
       //if (psession->get_focus_ui())
       //{
 
-         m_directxapplication->SetInternalFocus();
+         m_frameworkview->SetInternalFocus();
 
       //}
 
@@ -365,7 +365,7 @@ namespace uwp
 
       SCAST_PTR(::message::kill_focus, pkillfocus, pmessage);
 
-      m_directxapplication->RemoveInternalFocus();
+      m_frameworkview->RemoveInternalFocus();
 
    }
 
@@ -538,7 +538,7 @@ namespace uwp
    }
 
 
-   LRESULT interaction_impl::DefWindowProc(UINT nMsg,WPARAM wParam,lparam lParam)
+   LRESULT interaction_impl::DefWindowProc(::u32 nMsg,WPARAM wParam,lparam lParam)
    {
       return 0;
 
@@ -671,7 +671,7 @@ namespace uwp
 #endif
 
 
-   bool interaction_impl::_EnableToolTips(bool bEnable,UINT nFlag)
+   bool interaction_impl::_EnableToolTips(bool bEnable,::u32 nFlag)
    {
       UNREFERENCED_PARAMETER(bEnable);
       UNREFERENCED_PARAMETER(nFlag);
@@ -681,7 +681,7 @@ namespace uwp
 
 
 
-   ::user::interaction_impl * interaction_impl::GetAncestor(UINT gaFlags) const
+   ::user::interaction_impl * interaction_impl::GetAncestor(::u32 gaFlags) const
    {
 
 #ifdef WINDOWS_DESKTOP
@@ -697,7 +697,7 @@ namespace uwp
 
 
 #ifdef WINDOWS_DESKTOP
-   bool interaction_impl::GetScrollBarInfo(LONG idObject, PSCROLLBARINFO psbi) const
+   bool interaction_impl::GetScrollBarInfo(::i32 idObject, PSCROLLBARINFO psbi) const
    {
       ASSERT(::is_window((oswindow)get_os_data()));
       ASSERT(psbi != nullptr);
@@ -722,7 +722,7 @@ namespace uwp
 #endif
    }
 
-   bool interaction_impl::FlashWindowEx(u32 dwFlags,UINT  uCount,tick tickTimeout)
+   bool interaction_impl::FlashWindowEx(u32 dwFlags,::u32  uCount,tick tickTimeout)
    {
       __throw(todo());
 
@@ -739,15 +739,15 @@ namespace uwp
 
 
 
-   bool interaction_impl::SetLayeredWindowAttributes(COLORREF crKey,BYTE bAlpha,u32 dwFlags)
+   bool interaction_impl::SetLayeredWindowAttributes(color32_t crKey,byte bAlpha,u32 dwFlags)
    {
       __throw(todo());
       //ASSERT(::is_window((oswindow)get_os_data()));
       //return ::SetLayeredWindowAttributes((oswindow)get_os_data(), crKey, bAlpha, dwFlags) != FALSE;
    }
 
-   bool interaction_impl::UpdateLayeredWindow(::draw2d::graphics * pDCDst,POINT *pptDst,SIZE *psize,
-         ::draw2d::graphics * pDCSrc,POINT *pptSrc,COLORREF crKey,BLENDFUNCTION *pblend,u32 dwFlags)
+   bool interaction_impl::UpdateLayeredWindow(::draw2d::graphics * pDCDst,POINT32 *pptDst,SIZE32 *psize,
+         ::draw2d::graphics * pDCSrc,POINT32 *pptSrc,color32_t crKey,BLENDFUNCTION *pblend,u32 dwFlags)
    {
       __throw(todo());
       //ASSERT(::is_window((oswindow)get_os_data()));
@@ -756,14 +756,14 @@ namespace uwp
    }
 
 
-   bool interaction_impl::GetLayeredWindowAttributes(COLORREF *pcrKey,BYTE *pbAlpha,u32 *pdwFlags) const
+   bool interaction_impl::GetLayeredWindowAttributes(color32_t *pcrKey,byte *pbAlpha,u32 *pdwFlags) const
    {
       __throw(todo());
       //ASSERT(::is_window((oswindow)get_os_data()));
       //return ::GetLayeredWindowAttributes((oswindow)get_os_data(), pcrKey, pbAlpha, pdwFlags) != FALSE;
    }
 
-   bool interaction_impl::PrintWindow(::draw2d::graphics_pointer & pgraphics,UINT nFlags) const
+   bool interaction_impl::PrintWindow(::draw2d::graphics_pointer & pgraphics,::u32 nFlags) const
    {
       __throw(todo());
       //ASSERT(::is_window((oswindow)get_os_data()));
@@ -805,7 +805,7 @@ namespace uwp
    }
 
 #ifdef WINDOWS_DESKTOP
-   void interaction_impl::WinHelpInternal(dword_ptr dwData, UINT nCmd)
+   void interaction_impl::WinHelpInternal(dword_ptr dwData, ::u32 nCmd)
    {
       UNREFERENCED_PARAMETER(dwData);
       UNREFERENCED_PARAMETER(nCmd);
@@ -903,19 +903,19 @@ namespace uwp
       }
 
 
-      if(pbase->m_id == WM_KEYDOWN ||
-            pbase->m_id == WM_KEYUP ||
-            pbase->m_id == WM_CHAR ||
-            pbase->m_id == WM_SYSKEYDOWN ||
-            pbase->m_id == WM_SYSKEYUP ||
-            pbase->m_id == WM_SYSCHAR)
+      if(pbase->m_id == e_message_key_down ||
+            pbase->m_id == e_message_key_up ||
+            pbase->m_id == e_message_char ||
+            pbase->m_id == e_message_sys_key_down ||
+            pbase->m_id == e_message_sys_key_up ||
+            pbase->m_id == e_message_sys_char)
       {
 
          SCAST_PTR(::message::key, pkey, pbase);
 
          //psession->keyboard().translate_os_key_message(pkey);
 
-         if(pbase->m_id == WM_KEYDOWN || pbase->m_id == WM_SYSKEYDOWN)
+         if(pbase->m_id == e_message_key_down || pbase->m_id == e_message_sys_key_down)
          {
             try
             {
@@ -925,7 +925,7 @@ namespace uwp
             {
             }
          }
-         else if(pbase->m_id == WM_KEYUP || pbase->m_id == WM_SYSKEYUP)
+         else if(pbase->m_id == e_message_key_up || pbase->m_id == e_message_sys_key_up)
          {
             try
             {
@@ -941,7 +941,7 @@ namespace uwp
       {
 //         m_puserinteraction->get_context_application()->step_timer();
       }
-      else if(pbase->m_id == WM_LBUTTONDOWN)
+      else if(pbase->m_id == e_message_lbutton_down)
       {
          //g_pwndLastLButtonDown = m_puserinteraction;
       }
@@ -959,14 +959,14 @@ namespace uwp
 
       //_000OnMouseLeave(pbase);
 
-      if(pbase->m_id == WM_LBUTTONDOWN ||
-            pbase->m_id == WM_LBUTTONUP ||
+      if(pbase->m_id == e_message_lbutton_down ||
+            pbase->m_id == e_message_lbutton_up ||
             pbase->m_id == WM_MBUTTONDOWN ||
             pbase->m_id == WM_MBUTTONUP ||
-            pbase->m_id == WM_RBUTTONDOWN ||
-            pbase->m_id == WM_RBUTTONUP ||
+            pbase->m_id == e_message_rbutton_down ||
+            pbase->m_id == e_message_rbutton_up ||
             pbase->m_id == e_message_mouse_move ||
-            pbase->m_id == WM_MOUSEWHEEL)
+            pbase->m_id == e_message_mouse_wheel)
       {
 
          message::mouse * pmouse = (::message::mouse *) pbase;
@@ -974,10 +974,10 @@ namespace uwp
          if (pbase)
          {
 
-            if (pbase->m_id == WM_LBUTTONUP)
+            if (pbase->m_id == e_message_lbutton_up)
             {
 
-               output_debug_string("WM_LBUTTONUP");
+               output_debug_string("e_message_lbutton_up");
 
             }
 
@@ -1030,16 +1030,16 @@ namespace uwp
 
                get_context_session()->get_monitor_rect(0,&rcMonitor);
                if(rectWindow.left >= rcMonitor.left)
-                  pmouse->m_point.x += (LONG)rectWindow.left;
+                  pmouse->m_point.x += (::i32)rectWindow.left;
                if(rectWindow.top >= rcMonitor.top)
-                  pmouse->m_point.y += (LONG)rectWindow.top;
+                  pmouse->m_point.y += (::i32)rectWindow.top;
             }
             else
             {
                if(rectWindow.left >= 0)
-                  pmouse->m_point.x += (LONG)rectWindow.left;
+                  pmouse->m_point.x += (::i32)rectWindow.left;
                if(rectWindow.top >= 0)
-                  pmouse->m_point.y += (LONG)rectWindow.top;
+                  pmouse->m_point.y += (::i32)rectWindow.top;
             }
          }
 
@@ -1058,9 +1058,9 @@ namespace uwp
          return;
 
       }
-      else if(pbase->m_id == WM_KEYDOWN ||
-              pbase->m_id == WM_KEYUP ||
-              pbase->m_id == WM_CHAR)
+      else if(pbase->m_id == e_message_key_down ||
+              pbase->m_id == e_message_key_up ||
+              pbase->m_id == e_message_char)
       {
 
          ::message::key * pkey = (::message::key *) pbase;
@@ -1084,7 +1084,7 @@ namespace uwp
                   return;
             }
          }
-         pbase->set_lresult(DefWindowProc((UINT) pbase->m_id.i64(),pbase->m_wparam,pbase->m_lparam));
+         pbase->set_lresult(DefWindowProc((::u32) pbase->m_id.i64(),pbase->m_wparam,pbase->m_lparam));
          return;
       }
       if(pbase->m_id == e_message_event)
@@ -1118,7 +1118,7 @@ namespace uwp
       return;
       }
       */
-      pbase->set_lresult(DefWindowProc((UINT) pbase->m_id.i64(),pbase->m_wparam,pbase->m_lparam));
+      pbase->set_lresult(DefWindowProc((::u32) pbase->m_id.i64(),pbase->m_wparam,pbase->m_lparam));
    }
 
    /*
@@ -1166,7 +1166,7 @@ namespace uwp
    bHandled = FALSE;
 
    const __MSGMAP* pMessageMap; pMessageMap = GetMessageMap();
-   UINT iHash; iHash = (LOWORD((dword_ptr)pMessageMap) ^ message) & (iHashMax-1);
+   ::u32 iHash; iHash = (LOWORD((dword_ptr)pMessageMap) ^ message) & (iHashMax-1);
    winMsgLock.lock(CRIT_WINMSGCACHE);
    __MSG_CACHE* pMsgCache; pMsgCache = &gen_MsgCache[iHash];
    const __MSGMAP_ENTRY* lpEntry;
@@ -1213,7 +1213,7 @@ else
 lpEntry = pMessageMap->lpEntries;
 while ((lpEntry = ::ca2::FindMessageEntry(lpEntry, 0xC000, 0, 0)) != nullptr)
 {
-UINT* pnID = (UINT*)(lpEntry->nSig);
+::u32* pnID = (::u32*)(lpEntry->nSig);
 ASSERT(*pnID >= 0xC000 || *pnID == 0);
 // must be successfully registered
 if (*pnID == message)
@@ -1257,7 +1257,7 @@ lResult = (this->*mmf.pfn_b_b)(static_cast<bool>(wParam));
 break;
 
 case ::ca2::Sig_b_u_v:
-lResult = (this->*mmf.pfn_b_u)(static_cast<UINT>(wParam));
+lResult = (this->*mmf.pfn_b_u)(static_cast<::u32>(wParam));
 break;
 
 case ::ca2::Sig_b_h_v:
@@ -1265,7 +1265,7 @@ lResult = (this->*mmf.pfn_b_h)(reinterpret_cast<HANDLE>(wParam));
 break;
 
 case ::ca2::Sig_i_u_v:
-lResult = (this->*mmf.pfn_i_u)(static_cast<UINT>(wParam));
+lResult = (this->*mmf.pfn_i_u)(static_cast<::u32>(wParam));
 break;
 
 case ::ca2::Sig_C_v_v:
@@ -1273,12 +1273,12 @@ lResult = reinterpret_cast<LRESULT>((this->*mmf.pfn_C_v)());
 break;
 
 case ::ca2::Sig_v_u_W:
-(this->*mmf.pfn_v_u_W)(static_cast<UINT>(wParam),
+(this->*mmf.pfn_v_u_W)(static_cast<::u32>(wParam),
 ::uwp::interaction_impl::from_handle(reinterpret_cast<oswindow>(lParam)));
 break;
 
 case ::ca2::Sig_u_u_v:
-lResult = (this->*mmf.pfn_u_u)(static_cast<UINT>(wParam));
+lResult = (this->*mmf.pfn_u_u)(static_cast<::u32>(wParam));
 break;
 
 case ::ca2::Sig_b_v_v:
@@ -1309,7 +1309,7 @@ __CTLCOLOR* pCtl = reinterpret_cast<__CTLCOLOR*>(lParam);
 dcTemp.set_handle1(pCtl->hDC);
 interaction_impl wndTemp;
 wndTemp.set_handle(pCtl->hWnd);
-UINT nCtlType = pCtl->nCtlType;
+::u32 nCtlType = pCtl->nCtlType;
 // if not coming from a permanent interaction_impl, use stack temporary
 ::user::interaction_impl * pWnd = ::uwp::interaction_impl::FromHandlePermanent(wndTemp.get_handle());
 if (pWnd == nullptr)
@@ -1331,7 +1331,7 @@ ASSERT(message == WM_REFLECT_BASE+WM_CTLCOLOR);
 __CTLCOLOR* pCtl = reinterpret_cast<__CTLCOLOR*>(lParam);
 ::draw2d::graphics_pointer dcTemp;
 dcTemp.set_handle1(pCtl->hDC);
-UINT nCtlType = pCtl->nCtlType;
+::u32 nCtlType = pCtl->nCtlType;
 HBRUSH hbr = (this->*mmf.pfn_B_D_u)(&dcTemp, nCtlType);
 // fast detach of temporary objects
 dcTemp.set_handle1(nullptr);
@@ -1382,11 +1382,11 @@ case ::ca2::Sig_v_v_v:
 break;
 
 case ::ca2::Sig_v_u_v:
-(this->*mmf.pfn_v_u)(static_cast<UINT>(wParam));
+(this->*mmf.pfn_v_u)(static_cast<::u32>(wParam));
 break;
 
 case ::ca2::Sig_v_u_u:
-(this->*mmf.pfn_v_u_u)(static_cast<UINT>(wParam), static_cast<UINT>(lParam));
+(this->*mmf.pfn_v_u_u)(static_cast<::u32>(wParam), static_cast<::u32>(lParam));
 break;
 
 case ::ca2::Sig_v_uu_v:
@@ -1398,11 +1398,11 @@ case ::ca2::Sig_v_v_ii:
 break;
 
 case ::ca2::Sig_v_u_uu:
-(this->*mmf.pfn_v_u_u_u)(static_cast<UINT>(wParam), LOWORD(lParam), HIWORD(lParam));
+(this->*mmf.pfn_v_u_u_u)(static_cast<::u32>(wParam), LOWORD(lParam), HIWORD(lParam));
 break;
 
 case ::ca2::Sig_v_u_ii:
-(this->*mmf.pfn_v_u_i_i)(static_cast<UINT>(wParam), LOWORD(lParam), HIWORD(lParam));
+(this->*mmf.pfn_v_u_i_i)(static_cast<::u32>(wParam), LOWORD(lParam), HIWORD(lParam));
 break;
 
 case ::ca2::Sig_v_w_l:
@@ -1471,7 +1471,7 @@ case ::ca2::Sig_v_v_s:
 break;
 
 case ::ca2::Sig_v_u_cs:
-(this->*mmf.pfn_v_u_cs)(static_cast<UINT>(wParam), reinterpret_cast<const char *>(lParam));
+(this->*mmf.pfn_v_u_cs)(static_cast<::u32>(wParam), reinterpret_cast<const char *>(lParam));
 break;
 
 case ::ca2::Sig_OWNERDRAW:
@@ -1510,12 +1510,12 @@ break;
 case ::ca2::Sig_v_u_p:
 {
 ::point point(lParam);
-(this->*mmf.pfn_v_u_p)(static_cast<UINT>(wParam), point);
+(this->*mmf.pfn_v_u_p)(static_cast<::u32>(wParam), point);
 }
 break;
 
 case ::ca2::Sig_SIZING:
-(this->*mmf.pfn_v_u_pr)(static_cast<UINT>(wParam), reinterpret_cast<LPRECT>(lParam));
+(this->*mmf.pfn_v_u_pr)(static_cast<::u32>(wParam), reinterpret_cast<LPRECT32>(lParam));
 lResult = TRUE;
 break;
 
@@ -1585,7 +1585,7 @@ return TRUE;
       //      __NOTIFY notify;
       //    notify.pResult = pResult;
       //  notify.pNMHDR = pNMHDR;
-      //xxx   return _001OnCommand((UINT)nID, MAKELONG(nCode, WM_NOTIFY), &notify, nullptr);
+      //xxx   return _001OnCommand((::u32)nID, MAKELONG(nCode, WM_NOTIFY), &notify, nullptr);
       return false;
    }
 
@@ -1736,7 +1736,7 @@ return TRUE;
       return ::uwp::interaction_impl::from_handle(hWnd);
       }
       */
-   //int interaction_impl::message_box(const char * lpszText,const char * lpszCaption,UINT nType)
+   //int interaction_impl::message_box(const char * lpszText,const char * lpszCaption,::u32 nType)
    //{
    //   if(lpszCaption == nullptr)
    //      lpszCaption = Application.m_strAppName;
@@ -1797,7 +1797,7 @@ return TRUE;
       return true;
    }
 
-   bool interaction_impl::GetScrollInfo(int nBar, LPSCROLLINFO lpScrollInfo, UINT nMask)
+   bool interaction_impl::GetScrollInfo(int nBar, LPSCROLLINFO lpScrollInfo, ::u32 nMask)
    {
       UNREFERENCED_PARAMETER(nMask);
       ASSERT(lpScrollInfo != nullptr);
@@ -1828,7 +1828,7 @@ return TRUE;
 
    }
 
-   //void interaction_impl::ScrollWindow(int xAmount,int yAmount,const ::rect & rect,LPCRECT lpClipRect)
+   //void interaction_impl::ScrollWindow(int xAmount,int yAmount,const ::rect & rect,LPCRECT32 lpClipRect)
    //{
 
    //   __throw(todo());
@@ -1865,7 +1865,7 @@ return TRUE;
    //}
 
 
-   void interaction_impl::CalcWindowRect(LPRECT lpClientRect,UINT nAdjustType)
+   void interaction_impl::CalcWindowRect(LPRECT32 lpClientRect,::u32 nAdjustType)
    {
 
       __throw(todo());
@@ -1879,7 +1879,7 @@ return TRUE;
    /////////////////////////////////////////////////////////////////////////////
    // Special keyboard/system command processing
 
-   bool interaction_impl::HandleFloatingSysCommand(UINT nID,LPARAM lParam)
+   bool interaction_impl::HandleFloatingSysCommand(::u32 nID,LPARAM lParam)
    {
 
 
@@ -1984,13 +1984,13 @@ return TRUE;
       //return WIN_WINDOW(pWnd)->SendChildNotifyLastMsg(pResult);
    }
 
-   bool interaction_impl::OnChildNotify(UINT uMsg,WPARAM wParam,LPARAM lParam,LRESULT* pResult)
+   bool interaction_impl::OnChildNotify(::u32 uMsg,WPARAM wParam,LPARAM lParam,LRESULT* pResult)
    {
 
       return ReflectChildNotify(uMsg,wParam,lParam,pResult);
    }
 
-   bool interaction_impl::ReflectChildNotify(UINT uMsg,WPARAM wParam,LPARAM lParam,LRESULT* pResult)
+   bool interaction_impl::ReflectChildNotify(::u32 uMsg,WPARAM wParam,LPARAM lParam,LRESULT* pResult)
    {
       UNREFERENCED_PARAMETER(wParam);
       // Note: reflected messages are send directly to interaction_impl::OnWndMsg
@@ -2115,7 +2115,7 @@ return TRUE;
 
    bool gen_GotScrollLines;
 
-   void interaction_impl::OnSettingChange(UINT uFlags,const char * lpszSection)
+   void interaction_impl::OnSettingChange(::u32 uFlags,const char * lpszSection)
    {
       UNUSED_ALWAYS(uFlags);
       UNUSED_ALWAYS(lpszSection);
@@ -2213,13 +2213,13 @@ return TRUE;
 
    }
 
-   //void interaction_impl::OnHScroll(UINT,UINT,CScrollBar* pScrollBar)
+   //void interaction_impl::OnHScroll(::u32,::u32,CScrollBar* pScrollBar)
    //{
    //   UNREFERENCED_PARAMETER(pScrollBar);
    //   Default();
    //}
 
-   //void interaction_impl::OnVScroll(UINT,UINT,CScrollBar* pScrollBar)
+   //void interaction_impl::OnVScroll(::u32,::u32,CScrollBar* pScrollBar)
    //{
    //   UNREFERENCED_PARAMETER(pScrollBar);
    //   Default();
@@ -2383,7 +2383,7 @@ return TRUE;
    }
 
 
-   void interaction_impl::OnEnterIdle(UINT /*nWhy*/,::user::interaction_impl * /*pWho*/)
+   void interaction_impl::OnEnterIdle(::u32 /*nWhy*/,::user::interaction_impl * /*pWho*/)
    {
 
       __throw(todo());
@@ -2404,7 +2404,7 @@ return TRUE;
       //Default();
    }
 
-   HBRUSH interaction_impl::OnCtlColor(::draw2d::graphics *,::user::interaction_impl * pWnd,UINT)
+   HBRUSH interaction_impl::OnCtlColor(::draw2d::graphics *,::user::interaction_impl * pWnd,::u32)
    {
       //ASSERT(pWnd != nullptr && pWnd->get_handle() != nullptr);
       //LRESULT lResult;
@@ -2421,7 +2421,7 @@ return TRUE;
    //  return value of FALSE means caller must call DefWindowProc's default
    //  TRUE means that 'hbrGray' will be used and the appropriate text
    //    ('clrText') and background colors are set.
-   bool interaction_impl::GrayCtlColor(HDC hDC,oswindow hWnd,UINT nCtlColor,HBRUSH hbrGray,COLORREF clrText)
+   bool interaction_impl::GrayCtlColor(HDC hDC,oswindow hWnd,::u32 nCtlColor,HBRUSH hbrGray,color32_t clrText)
    {
 
       //if (hDC == nullptr)
@@ -2442,7 +2442,7 @@ return TRUE;
       //{
       //   // only handle requests to draw the space between edit and drop button
       //   //  in a drop-down combo (not a drop-down list)
-      //   if (!__is_combo_box_control(hWnd, (UINT)CBS_DROPDOWN))
+      //   if (!__is_combo_box_control(hWnd, (::u32)CBS_DROPDOWN))
       //      return FALSE;
       //}
 
@@ -2450,7 +2450,7 @@ return TRUE;
       //LOGBRUSH logbrush;
       //VERIFY(::GetObject(hbrGray, sizeof(LOGBRUSH), (LPVOID)&logbrush));
       //::SetBkColor(hDC, logbrush.lbColor);
-      //if (clrText == (COLORREF)-1)
+      //if (clrText == (color32_t)-1)
       //   clrText = ::GetSysColor(COLOR_WINDOWTEXT);  // normal text
       //::SetTextColor(hDC, clrText);
       //return TRUE;
@@ -2534,7 +2534,7 @@ return TRUE;
       ////   hWndParent->get_client_rect(&rcArea);
       ////   ASSERT(hWndCenter->is_window());
       ////   hWndCenter->get_client_rect(&rcCenter);
-      ////   ::MapWindowPoints(hWndCenter->_get_handle(), hWndParent->_get_handle(), (POINT*)&rcCenter, 2);
+      ////   ::MapWindowPoints(hWndCenter->_get_handle(), hWndParent->_get_handle(), (POINT32*)&rcCenter, 2);
       ////}
 
       ////// find dialog's upper left based on rcCenter
@@ -2628,7 +2628,7 @@ return TRUE;
       }
 
       // check for handlers in the parent interaction_impl
-      if (interaction_impl::_001OnCommand((UINT)state.m_nID, CN_UPDATE_::user::command, &state, nullptr))
+      if (interaction_impl::_001OnCommand((::u32)state.m_nID, CN_UPDATE_::user::command, &state, nullptr))
       continue;
 
       // determine whether to disable when no handler exists
@@ -2643,11 +2643,11 @@ return TRUE;
       else
       {
       // only certain button controls get automagically disabledi
-      UINT nStyle = (UINT)(wndTemp.GetStyle() & 0x0F);
-      if (nStyle == (UINT)BS_AUTOCHECKBOX ||
-      nStyle == (UINT)BS_AUTO3STATE ||
-      nStyle == (UINT)BS_GROUPBOX ||
-      nStyle == (UINT)BS_AUTORADIOBUTTON)
+      ::u32 nStyle = (::u32)(wndTemp.GetStyle() & 0x0F);
+      if (nStyle == (::u32)BS_AUTOCHECKBOX ||
+      nStyle == (::u32)BS_AUTO3STATE ||
+      nStyle == (::u32)BS_GROUPBOX ||
+      nStyle == (::u32)BS_AUTORADIOBUTTON)
       {
       bDisableTemp = FALSE;
       }
@@ -2665,7 +2665,7 @@ return TRUE;
 
       // for tracking the idle time state
       bool bIdle = TRUE;
-      LONG lIdleCount = 0;
+      ::i32 lIdleCount = 0;
 //      bool bShowIdle = (dwFlags & MLF_SHOWONIDLE) && !(GetStyle() & WS_VISIBLE);
       bool bShowIdle = !(GetStyle() & WS_VISIBLE);
       oswindow hWndParent = oswindow_get(GetParent()->m_pimpl.cast < ::user::interaction_impl >());
@@ -2762,7 +2762,7 @@ return TRUE;
 
             // show the interaction_impl when certain special messages rec'd
             if(bShowIdle &&
-                  (msg.message == 0x118 || msg.message == WM_SYSKEYDOWN))
+                  (msg.message == 0x118 || msg.message == e_message_sys_key_down))
             {
                ShowWindow(SW_SHOWNORMAL);
                UpdateWindow();
@@ -2873,7 +2873,7 @@ ExitModal:
    }
    
 
-   bool interaction_impl::SubclassDlgItem(UINT nID,::user::interaction_impl * pParent)
+   bool interaction_impl::SubclassDlgItem(::u32 nID,::user::interaction_impl * pParent)
    {
 
       __throw(todo());
@@ -2933,7 +2933,7 @@ ExitModal:
    }
 
 
-   //bool interaction_impl::set_window_pos(iptr z,int x,int y,int cx,int cy,UINT nFlags)
+   //bool interaction_impl::set_window_pos(iptr z,int x,int y,int cx,int cy,::u32 nFlags)
    //{
    //   /*bool b;
    //   bool * pb = &b;
@@ -2984,7 +2984,7 @@ ExitModal:
    //}
 
 
-   //bool interaction_impl::_001ClientToScreen(LPRECT lprect)
+   //bool interaction_impl::_001ClientToScreen(LPRECT32 lprect)
    //{
 
    //   ::rect64 rectWindow;
@@ -2996,17 +2996,17 @@ ExitModal:
 
    //   }
 
-   //   lprect->left   += (LONG)rectWindow.left;
-   //   lprect->right  += (LONG)rectWindow.left;
-   //   lprect->top    += (LONG)rectWindow.top;
-   //   lprect->bottom += (LONG)rectWindow.top;
+   //   lprect->left   += (::i32)rectWindow.left;
+   //   lprect->right  += (::i32)rectWindow.left;
+   //   lprect->top    += (::i32)rectWindow.top;
+   //   lprect->bottom += (::i32)rectWindow.top;
 
    //   return true;
 
    //}
 
 
-   //bool interaction_impl::_001ClientToScreen(LPPOINT lppoint)
+   //bool interaction_impl::_001ClientToScreen(POINT32 * lppoint)
    //{
 
    //   ::rect64 rectWindow;
@@ -3018,8 +3018,8 @@ ExitModal:
 
    //   }
 
-   //   lppoint->x     += (LONG)rectWindow.left;
-   //   lppoint->y     += (LONG)rectWindow.top;
+   //   lppoint->x     += (::i32)rectWindow.left;
+   //   lppoint->y     += (::i32)rectWindow.top;
 
    //   return true;
 
@@ -3068,7 +3068,7 @@ ExitModal:
    //}
 
 
-   //bool interaction_impl::_001ScreenToClient(LPRECT lprect)
+   //bool interaction_impl::_001ScreenToClient(LPRECT32 lprect)
    //{
 
    //   ::rect64 rectWindow;
@@ -3080,17 +3080,17 @@ ExitModal:
 
    //   }
 
-   //   lprect->left   -= (LONG)rectWindow.left;
-   //   lprect->right  -= (LONG)rectWindow.left;
-   //   lprect->top    -= (LONG)rectWindow.top;
-   //   lprect->bottom -= (LONG)rectWindow.top;
+   //   lprect->left   -= (::i32)rectWindow.left;
+   //   lprect->right  -= (::i32)rectWindow.left;
+   //   lprect->top    -= (::i32)rectWindow.top;
+   //   lprect->bottom -= (::i32)rectWindow.top;
 
    //   return true;
 
    //}
 
 
-   //bool interaction_impl::_001ScreenToClient(LPPOINT lppoint)
+   //bool interaction_impl::_001ScreenToClient(POINT32 * lppoint)
    //{
 
    //   ::rect64 rectWindow;
@@ -3102,8 +3102,8 @@ ExitModal:
 
    //   }
 
-   //   lppoint->x     -= (LONG)rectWindow.left;
-   //   lppoint->y     -= (LONG)rectWindow.top;
+   //   lppoint->x     -= (::i32)rectWindow.left;
+   //   lppoint->y     -= (::i32)rectWindow.top;
 
    //   return true;
 
@@ -3300,7 +3300,7 @@ ExitModal:
       //return ::uwp::interaction_impl::from_handle(::GetParent(get_handle()));
    }
 
-   LONG interaction_impl::GetWindowLong(int nIndex)
+   ::i32 interaction_impl::GetWindowLong(int nIndex)
    {
 
       __throw(todo());
@@ -3308,7 +3308,7 @@ ExitModal:
       //return ::GetWindowLong(get_handle(), nIndex);
    }
 
-   LONG interaction_impl::SetWindowLong(int nIndex,LONG lValue)
+   ::i32 interaction_impl::SetWindowLong(int nIndex,::i32 lValue)
    {
 
       __throw(todo());
@@ -3367,7 +3367,7 @@ ExitModal:
    }
 
 
-   bool interaction_impl::ModifyStyle(u32 dwRemove,u32 dwAdd,UINT nFlags)
+   bool interaction_impl::ModifyStyle(u32 dwRemove,u32 dwAdd,::u32 nFlags)
    {
 
       set_window_long_ptr(GWL_STYLE, (get_window_long_ptr(GWL_STYLE) | dwAdd) & ~(dwRemove));
@@ -3383,7 +3383,7 @@ ExitModal:
    }
 
 
-   bool interaction_impl::ModifyStyleEx(u32 dwRemove,u32 dwAdd,UINT nFlags)
+   bool interaction_impl::ModifyStyleEx(u32 dwRemove,u32 dwAdd,::u32 nFlags)
    {
 
       set_window_long_ptr(GWL_EXSTYLE, (get_window_long_ptr(GWL_EXSTYLE) | dwAdd) & ~(dwRemove));
@@ -3458,7 +3458,7 @@ ExitModal:
    }
 
 
-   bool interaction_impl::DragDetect(POINT point) const
+   bool interaction_impl::DragDetect(POINT32 point) const
    {
 
 
@@ -3500,7 +3500,7 @@ ExitModal:
 
    }
 
-   //strsize interaction_impl::GetWindowText(LPSTR lpszString,strsize nMaxCount)
+   //strsize interaction_impl::GetWindowText(char * lpszString,strsize nMaxCount)
    //{
    //   strncpy(lpszString,m_strWindowText,nMaxCount);
    //   return min(nMaxCount,m_strWindowText.get_length());
@@ -3564,7 +3564,7 @@ ExitModal:
    //   MoveWindow(lpRect->left,lpRect->top,lpRect->right - lpRect->left,lpRect->bottom - lpRect->top,bRepaint);
    //}
 
-   UINT interaction_impl::ArrangeIconicWindows()
+   ::u32 interaction_impl::ArrangeIconicWindows()
    {
 
       __throw(todo());
@@ -3597,7 +3597,7 @@ ExitModal:
 
    }
 
-   void interaction_impl::MapWindowPoints(::user::interaction_impl * pwndTo,LPPOINT lpPoint,UINT nCount)
+   void interaction_impl::MapWindowPoints(::user::interaction_impl * pwndTo,POINT32 * lpPoint,::u32 nCount)
    {
 
       __throw(todo());
@@ -3606,13 +3606,13 @@ ExitModal:
       //::MapWindowPoints(get_handle(), (oswindow) pwndTo->get_os_data(), lpPoint, nCount);
    }
 
-   void interaction_impl::MapWindowPoints(::user::interaction_impl * pwndTo,LPRECT lpRect)
+   void interaction_impl::MapWindowPoints(::user::interaction_impl * pwndTo,LPRECT32 lpRect)
    {
 
       __throw(todo());
 
       //ASSERT(::is_window(get_handle()));
-      //::MapWindowPoints(get_handle(), (oswindow) pwndTo->get_os_data(), (LPPOINT)lpRect, 2);
+      //::MapWindowPoints(get_handle(), (oswindow) pwndTo->get_os_data(), (POINT32 *)lpRect, 2);
    }
 
    ::draw2d::graphics * interaction_impl::GetDC()
@@ -3681,7 +3681,7 @@ ExitModal:
       //::SendMessage(get_handle(), WM_SETREDRAW, bRedraw, 0);
    }
 
-   //bool interaction_impl::GetUpdateRect(LPRECT lpRect,bool bErase)
+   //bool interaction_impl::GetUpdateRect(LPRECT32 lpRect,bool bErase)
    //{
 
    //   __throw(todo());
@@ -3866,7 +3866,7 @@ ExitModal:
    }
 
 
-   bool interaction_impl::RedrawWindow(const ::rect& rectUpdate, ::draw2d::region* prgnUpdate, UINT flags)
+   bool interaction_impl::RedrawWindow(const ::rect& rectUpdate, ::draw2d::region* prgnUpdate, ::u32 flags)
    {
 
       m_puserinteraction->m_bRedraw = true;
@@ -3889,7 +3889,7 @@ ExitModal:
 
 #ifdef WINDOWS_DESKTOP
 
-   bool interaction_impl::EnableScrollBar(int nSBFlags, UINT nArrowFlags)
+   bool interaction_impl::EnableScrollBar(int nSBFlags, ::u32 nArrowFlags)
    {
 
       __throw(todo());
@@ -3902,7 +3902,7 @@ ExitModal:
 
 #endif
 
-   bool interaction_impl::DrawAnimatedRects(int idAni,CONST RECT *lprcFrom,CONST RECT *lprcTo)
+   bool interaction_impl::DrawAnimatedRects(int idAni,CONST RECT32 *lprcFrom,CONST RECT32 *lprcTo)
    {
 
       __throw(todo());
@@ -3913,7 +3913,7 @@ ExitModal:
 
    }
 
-   bool interaction_impl::DrawCaption(::draw2d::graphics_pointer & pgraphics,LPCRECT lprc,UINT uFlags)
+   bool interaction_impl::DrawCaption(::draw2d::graphics_pointer & pgraphics,LPCRECT32 lprc,::u32 uFlags)
    {
 
       __throw(todo());
@@ -3924,7 +3924,7 @@ ExitModal:
 
    }
 
-   bool interaction_impl::SetTimer(uptr uEvent,UINT nElapse,PFN_TIMER pfnTimer)
+   bool interaction_impl::SetTimer(uptr uEvent,::u32 nElapse,PFN_TIMER pfnTimer)
    {
 
 
@@ -4019,7 +4019,7 @@ ExitModal:
       return 0; // invalid ID
    }
 
-   void interaction_impl::CheckDlgButton(int nIDButton,UINT nCheck)
+   void interaction_impl::CheckDlgButton(int nIDButton,::u32 nCheck)
    {
 
       __throw(todo());
@@ -4043,7 +4043,7 @@ ExitModal:
 
 #ifdef WINDOWS_DESKTOP
 
-   int interaction_impl::DlgDirList(__inout_z LPTSTR lpPathSpec, __in int nIDListBox, __in int nIDStaticPath, __in UINT nFileType)
+   int interaction_impl::DlgDirList(__inout_z LPTSTR lpPathSpec, __in int nIDListBox, __in int nIDStaticPath, __in ::u32 nFileType)
    {
 
       __throw(todo());
@@ -4054,7 +4054,7 @@ ExitModal:
 
    }
 
-   int interaction_impl::DlgDirListComboBox(__inout_z LPTSTR lpPathSpec, __in int nIDComboBox,  __in int nIDStaticPath, __in UINT nFileType)
+   int interaction_impl::DlgDirListComboBox(__inout_z LPTSTR lpPathSpec, __in int nIDComboBox,  __in int nIDStaticPath, __in ::u32 nFileType)
    {
 
       __throw(todo());
@@ -4100,7 +4100,7 @@ ExitModal:
 
    }
 
-   UINT interaction_impl::GetDlgItemInt(int nID,BOOL * lpTrans,bool bSigned) const
+   ::u32 interaction_impl::GetDlgItemInt(int nID,BOOL * lpTrans,bool bSigned) const
    {
 
       __throw(todo());
@@ -4144,7 +4144,7 @@ ExitModal:
       //return ::uwp::interaction_impl::from_handle(::GetNextDlgTabItem(get_handle(), (oswindow) pWndCtl->get_os_data(), bPrevious));
    }
 
-   UINT interaction_impl::IsDlgButtonChecked(int nIDButton) const
+   ::u32 interaction_impl::IsDlgButtonChecked(int nIDButton) const
    {
 
       __throw(todo());
@@ -4164,7 +4164,7 @@ ExitModal:
       //return ::SendDlgItemMessage(get_handle(), nID, message, wParam, lParam);
 
    }
-   void interaction_impl::SetDlgItemInt(int nID,UINT nValue,bool bSigned)
+   void interaction_impl::SetDlgItemInt(int nID,::u32 nValue,bool bSigned)
    {
 
       __throw(todo());
@@ -4186,7 +4186,7 @@ ExitModal:
    }
 
 
-   //int interaction_impl::ScrollWindowEx(int dx,int dy,const ::rect & rectScroll,const ::rect & rectClip,::draw2d::region* prgnUpdate,LPRECT lpRectUpdate,UINT flags)
+   //int interaction_impl::ScrollWindowEx(int dx,int dy,const ::rect & rectScroll,const ::rect & rectClip,::draw2d::region* prgnUpdate,LPRECT32 lpRectUpdate,::u32 flags)
    //{
 
    //   __throw(todo());
@@ -4198,7 +4198,7 @@ ExitModal:
    //}
 
 
-   void interaction_impl::ShowScrollBar(UINT nBar,bool bShow)
+   void interaction_impl::ShowScrollBar(::u32 nBar,bool bShow)
    {
 
       __throw(todo());
@@ -4209,7 +4209,7 @@ ExitModal:
 
    }
 
-   ::user::interaction *  interaction_impl::ChildWindowFromPoint(POINT point)
+   ::user::interaction *  interaction_impl::ChildWindowFromPoint(POINT32 point)
    {
 
       __throw(todo());
@@ -4220,7 +4220,7 @@ ExitModal:
 
    }
 
-   ::user::interaction *  interaction_impl::ChildWindowFromPoint(POINT point,UINT nFlags)
+   ::user::interaction *  interaction_impl::ChildWindowFromPoint(POINT32 point,::u32 nFlags)
    {
 
       __throw(todo());
@@ -4246,7 +4246,7 @@ ExitModal:
    }
 
 
-   ::user::interaction *  interaction_impl::GetWindow(UINT nCmd)
+   ::user::interaction *  interaction_impl::GetWindow(::u32 nCmd)
    {
 
       __throw(todo());
@@ -4278,7 +4278,7 @@ ExitModal:
    //}
 
    
-   __pointer(::user::interaction_impl) interaction_impl::WindowFromPoint(POINT point)
+   __pointer(::user::interaction_impl) interaction_impl::WindowFromPoint(POINT32 point)
    {
 
       __throw(todo());
@@ -4369,7 +4369,7 @@ ExitModal:
    }
 
 
-   void interaction_impl::SetCaretPos(POINT point)
+   void interaction_impl::SetCaretPos(POINT32 point)
    {
 
       __throw(todo());
@@ -4500,7 +4500,7 @@ ExitModal:
    {
       Default();
    }
-   void interaction_impl::OnActivate(UINT,::user::interaction_impl *,bool)
+   void interaction_impl::OnActivate(::u32,::user::interaction_impl *,bool)
    {
       Default();
    }
@@ -4566,11 +4566,11 @@ ExitModal:
    {
       Default();
    }
-   LRESULT interaction_impl::OnMenuChar(UINT,UINT,::user::menu*)
+   LRESULT interaction_impl::OnMenuChar(::u32,::u32,::user::menu*)
    {
       return Default();
    }
-   void interaction_impl::OnMenuSelect(UINT,UINT,HMENU)
+   void interaction_impl::OnMenuSelect(::u32,::u32,HMENU)
    {
       Default();
    }
@@ -4621,15 +4621,15 @@ ExitModal:
 
    }
 
-   void interaction_impl::OnShowWindow(bool,UINT)
+   void interaction_impl::OnShowWindow(bool,::u32)
    {
       Default();
    }
-   void interaction_impl::OnSize(UINT,int,int)
+   void interaction_impl::OnSize(::u32,int,int)
    {
       Default();
    }
-   void interaction_impl::OnTCard(UINT,u32)
+   void interaction_impl::OnTCard(::u32,u32)
    {
       Default();
    }
@@ -4691,7 +4691,7 @@ ExitModal:
    }
 
 
-   //void interaction_impl::OnNcLButtonDblClk(UINT,point)
+   //void interaction_impl::OnNcLButtonDblClk(::u32,point)
    //{
 
    //   Default();
@@ -4699,27 +4699,27 @@ ExitModal:
    //}
 
 
-   //void interaction_impl::OnNcLButtonDown(UINT,point)
+   //void interaction_impl::OnNcLButtonDown(::u32,point)
    //{
    //   Default();
    //}
-   //void interaction_impl::OnNcLButtonUp(UINT,point)
+   //void interaction_impl::OnNcLButtonUp(::u32,point)
    //{
    //   Default();
    //}
-   //void interaction_impl::OnNcMButtonDblClk(UINT,point)
+   //void interaction_impl::OnNcMButtonDblClk(::u32,point)
    //{
    //   Default();
    //}
-   //void interaction_impl::OnNcMButtonDown(UINT,point)
+   //void interaction_impl::OnNcMButtonDown(::u32,point)
    //{
    //   Default();
    //}
-   //void interaction_impl::OnNcMButtonUp(UINT,point)
+   //void interaction_impl::OnNcMButtonUp(::u32,point)
    //{
    //   Default();
    //}
-   //void interaction_impl::OnNcMouseMove(UINT,point)
+   //void interaction_impl::OnNcMouseMove(::u32,point)
    //{
    //   Default();
    //}
@@ -4727,39 +4727,39 @@ ExitModal:
    {
       Default();
    }
-   //void interaction_impl::OnNcRButtonDblClk(UINT,point)
+   //void interaction_impl::OnNcRButtonDblClk(::u32,point)
    //{
    //   Default();
    //}
-   //void interaction_impl::OnNcRButtonDown(UINT,point)
+   //void interaction_impl::OnNcRButtonDown(::u32,point)
    //{
    //   Default();
    //}
-   //void interaction_impl::OnNcRButtonUp(UINT,point)
+   //void interaction_impl::OnNcRButtonUp(::u32,point)
    //{
    //   Default();
    //}
-   void interaction_impl::OnSysChar(UINT,UINT,UINT)
+   void interaction_impl::OnSysChar(::u32,::u32,::u32)
    {
       Default();
    }
-   void interaction_impl::OnSysCommand(UINT,LPARAM)
+   void interaction_impl::OnSysCommand(::u32,LPARAM)
    {
       Default();
    }
-   void interaction_impl::OnSysDeadChar(UINT,UINT,UINT)
+   void interaction_impl::OnSysDeadChar(::u32,::u32,::u32)
    {
       Default();
    }
-   void interaction_impl::OnSysKeyDown(UINT,UINT,UINT)
+   void interaction_impl::OnSysKeyDown(::u32,::u32,::u32)
    {
       Default();
    }
-   void interaction_impl::OnSysKeyUp(UINT,UINT,UINT)
+   void interaction_impl::OnSysKeyUp(::u32,::u32,::u32)
    {
       Default();
    }
-   void interaction_impl::OnCompacting(UINT)
+   void interaction_impl::OnCompacting(::u32)
    {
       Default();
    }
@@ -4771,7 +4771,7 @@ ExitModal:
    {
       Default();
    }
-   void interaction_impl::OnSpoolerStatus(UINT,UINT)
+   void interaction_impl::OnSpoolerStatus(::u32,::u32)
    {
       Default();
    }
@@ -4779,56 +4779,56 @@ ExitModal:
    {
       Default();
    }
-   void interaction_impl::OnChar(UINT,UINT,UINT)
+   void interaction_impl::OnChar(::u32,::u32,::u32)
    {
       Default();
    }
-   void interaction_impl::OnDeadChar(UINT,UINT,UINT)
+   void interaction_impl::OnDeadChar(::u32,::u32,::u32)
    {
       Default();
    }
-   void interaction_impl::OnKeyDown(UINT,UINT,UINT)
+   void interaction_impl::OnKeyDown(::u32,::u32,::u32)
    {
       Default();
    }
-   void interaction_impl::OnKeyUp(UINT,UINT,UINT)
+   void interaction_impl::OnKeyUp(::u32,::u32,::u32)
    {
       Default();
    }
-   //void interaction_impl::OnLButtonDblClk(UINT,point)
+   //void interaction_impl::OnLButtonDblClk(::u32,point)
    //{
    //   Default();
    //}
-   //void interaction_impl::OnLButtonDown(UINT,point)
+   //void interaction_impl::OnLButtonDown(::u32,point)
    //{
    //   Default();
    //}
-   //void interaction_impl::OnLButtonUp(UINT,point)
+   //void interaction_impl::OnLButtonUp(::u32,point)
    //{
    //   Default();
    //}
-   //void interaction_impl::OnMButtonDblClk(UINT,point)
+   //void interaction_impl::OnMButtonDblClk(::u32,point)
    //{
    //   Default();
    //}
-   //void interaction_impl::OnMButtonDown(UINT,point)
+   //void interaction_impl::OnMButtonDown(::u32,point)
    //{
    //   Default();
    //}
-   //void interaction_impl::OnMButtonUp(UINT,point)
+   //void interaction_impl::OnMButtonUp(::u32,point)
    //{
    //   Default();
    //}
-   int interaction_impl::OnMouseActivate(::user::interaction_impl *,UINT,UINT)
+   int interaction_impl::OnMouseActivate(::user::interaction_impl *,::u32,::u32)
    {
       return (int)Default();
    }
-   //void interaction_impl::OnMouseMove(UINT,point)
+   //void interaction_impl::OnMouseMove(::u32,point)
    //{
    //   Default();
    //}
 
-   //bool interaction_impl::OnMouseWheel(UINT,short,point)
+   //bool interaction_impl::OnMouseWheel(::u32,short,point)
    //{
 
    //   return Default() != FALSE;
@@ -4839,15 +4839,15 @@ ExitModal:
    {
       return Default();
    }
-   //void interaction_impl::OnRButtonDblClk(UINT,point)
+   //void interaction_impl::OnRButtonDblClk(::u32,point)
    //{
    //   Default();
    //}
-   //void interaction_impl::OnRButtonDown(UINT,point)
+   //void interaction_impl::OnRButtonDown(::u32,point)
    //{
    //   Default();
    //}
-   //void interaction_impl::OnRButtonUp(UINT,point)
+   //void interaction_impl::OnRButtonUp(::u32,point)
    //{
    //   Default();
    //}
@@ -4859,14 +4859,14 @@ ExitModal:
    {
       Default();
    }
-   void interaction_impl::OnInitMenuPopup(::user::menu*,UINT,bool)
+   void interaction_impl::OnInitMenuPopup(::user::menu*,::u32,bool)
    {
       Default();
    }
 
 #ifdef WINDOWS_DESKTOP
 
-   void interaction_impl::OnAskCbFormatName(__in UINT nMaxCount, __out_ecount_z(nMaxCount) LPTSTR pszName)
+   void interaction_impl::OnAskCbFormatName(__in ::u32 nMaxCount, __out_ecount_z(nMaxCount) LPTSTR pszName)
    {
       (nMaxCount);
       if(nMaxCount>0)
@@ -4891,7 +4891,7 @@ ExitModal:
    {
       Default();
    }
-   void interaction_impl::OnHScrollClipboard(::user::interaction_impl *,UINT,UINT)
+   void interaction_impl::OnHScrollClipboard(::user::interaction_impl *,::u32,::u32)
    {
       Default();
    }
@@ -4903,7 +4903,7 @@ ExitModal:
    {
       Default();
    }
-   void interaction_impl::OnRenderFormat(UINT)
+   void interaction_impl::OnRenderFormat(::u32)
    {
       Default();
    }
@@ -4911,13 +4911,13 @@ ExitModal:
    {
       Default();
    }
-   void interaction_impl::OnVScrollClipboard(::user::interaction_impl *,UINT,UINT)
+   void interaction_impl::OnVScrollClipboard(::user::interaction_impl *,::u32,::u32)
    {
       Default();
    }
-   UINT interaction_impl::OnGetDlgCode()
+   ::u32 interaction_impl::OnGetDlgCode()
    {
-      return (UINT)Default();
+      return (::u32)Default();
    }
    void interaction_impl::OnMDIActivate(bool,::user::interaction_impl *,::user::interaction_impl *)
    {
@@ -4946,11 +4946,11 @@ ExitModal:
 
 #endif
 
-   void interaction_impl::OnSizing(UINT,LPRECT)
+   void interaction_impl::OnSizing(::u32,LPRECT32)
    {
       Default();
    }
-   void interaction_impl::OnMoving(UINT,LPRECT)
+   void interaction_impl::OnMoving(::u32,LPRECT32)
    {
       Default();
    }
@@ -4959,7 +4959,7 @@ ExitModal:
       Default();
    }
 
-   bool interaction_impl::OnDeviceChange(UINT,dword_ptr)
+   bool interaction_impl::OnDeviceChange(::u32,dword_ptr)
    {
 
       return Default() != FALSE;
@@ -4970,17 +4970,17 @@ ExitModal:
    {
       Default();
    }
-   void interaction_impl::OnChangeUIState(UINT,UINT)
+   void interaction_impl::OnChangeUIState(::u32,::u32)
    {
       Default();
    }
-   void interaction_impl::OnUpdateUIState(UINT,UINT)
+   void interaction_impl::OnUpdateUIState(::u32,::u32)
    {
       Default();
    }
-   UINT interaction_impl::OnQueryUIState()
+   ::u32 interaction_impl::OnQueryUIState()
    {
-      return (UINT)Default();
+      return (::u32)Default();
    }
 
    // interaction_impl dialog data support
@@ -5103,7 +5103,7 @@ ExitModal:
 
 #ifdef WINDOWS_DESKTOP
 
-   CLASS_DECL_BASE LRESULT __call_window_procedure(::user::interaction * pinteraction, oswindow hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam)
+   CLASS_DECL_BASE LRESULT __call_window_procedure(::user::interaction * pinteraction, oswindow hWnd, ::u32 nMsg, WPARAM wParam, LPARAM lParam)
    {
 
 
@@ -5400,7 +5400,7 @@ lCallNextHook:
 
 #undef __window_procedure
 
-LRESULT CALLBACK __window_procedure(oswindow hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam)
+LRESULT CALLBACK __window_procedure(oswindow hWnd, ::u32 nMsg, WPARAM wParam, LPARAM lParam)
 {
    // special message which identifies the interaction_impl as using __window_procedure
    if (nMsg == WM_QUERYAFXWNDPROC)
@@ -5424,7 +5424,7 @@ WNDPROC CLASS_DECL_BASE __get_window_procedure()
 // Special helpers for certain windows messages
 
 __STATIC void CLASS_DECL_BASE __pre_init_dialog(
-::user::interaction * pWnd, LPRECT lpRectOld, u32* pdwStyleOld)
+::user::interaction * pWnd, LPRECT32 lpRectOld, u32* pdwStyleOld)
 {
    ASSERT(lpRectOld != nullptr);
    ASSERT(pdwStyleOld != nullptr);
@@ -5434,7 +5434,7 @@ __STATIC void CLASS_DECL_BASE __pre_init_dialog(
 }
 
 __STATIC void CLASS_DECL_BASE __post_init_dialog(
-::user::interaction * pWnd, const RECT& rectOld, u32 dwStyleOld)
+::user::interaction * pWnd, const RECT32& rectOld, u32 dwStyleOld)
 {
    // must be hidden to start with
    if (dwStyleOld & WS_VISIBLE)
@@ -5476,7 +5476,7 @@ CLASS_DECL_BASE bool unhook_window_create()
 
 
 
-CLASS_DECL_BASE const char * __register_window_class(UINT nClassStyle,
+CLASS_DECL_BASE const char * __register_window_class(::u32 nClassStyle,
       HCURSOR hCursor, HBRUSH hbrBackground, HICON hIcon)
 {
    // Returns a temporary string name for the class
@@ -5560,11 +5560,11 @@ __handle_activate(::user::interaction_impl * pWnd, WPARAM nState, ::user::intera
 }
 
 __STATIC bool CLASS_DECL_BASE
-__handle_set_cursor(::user::interaction_impl * pWnd, UINT nHitTest, UINT nMsg)
+__handle_set_cursor(::user::interaction_impl * pWnd, ::u32 nHitTest, ::u32 nMsg)
 {
    if (nHitTest == HTERROR &&
-         (nMsg == WM_LBUTTONDOWN || nMsg == WM_MBUTTONDOWN ||
-          nMsg == WM_RBUTTONDOWN))
+         (nMsg == e_message_lbutton_down || nMsg == WM_MBUTTONDOWN ||
+          nMsg == e_message_rbutton_down))
    {
       // activate the last active interaction_impl if not active
       ::user::interaction * pLastActive = WIN_WINDOW(pWnd)->GetTopLevel();
@@ -5586,7 +5586,7 @@ __handle_set_cursor(::user::interaction_impl * pWnd, UINT nHitTest, UINT nMsg)
 // Standard init called by WinMain
 
 __STATIC bool CLASS_DECL_BASE __register_with_icon(WNDCLASS* pWndCls,
-      const char * lpszClassName, UINT nIDIcon)
+      const char * lpszClassName, ::u32 nIDIcon)
 {
    pWndCls->lpszClassName = lpszClassName;
    pWndCls->hIcon = ::LoadIcon(nullptr, IDI_APPLICATION);
@@ -5594,11 +5594,11 @@ __STATIC bool CLASS_DECL_BASE __register_with_icon(WNDCLASS* pWndCls,
 }
 
 
-bool CLASS_DECL_BASE __end_defer_register_class(LONG fToRegisterParam, const char ** ppszClass)
+bool CLASS_DECL_BASE __end_defer_register_class(::i32 fToRegisterParam, const char ** ppszClass)
 {
    // mask off all classes that are already registered
    __MODULE_STATE* pModuleState = __get_module_state();
-   LONG fToRegister = fToRegisterParam & ~pModuleState->m_fRegisteredClasses;
+   ::i32 fToRegister = fToRegisterParam & ~pModuleState->m_fRegisteredClasses;
    if (fToRegister == 0)
    {
       fToRegister = fToRegisterParam;
@@ -5628,7 +5628,7 @@ bool CLASS_DECL_BASE __end_defer_register_class(LONG fToRegisterParam, const cha
       return TRUE;
    }
 
-   LONG fRegisteredClasses = 0;
+   ::i32 fRegisteredClasses = 0;
 
    // common initialization
    WNDCLASS wndcls;
@@ -5734,7 +5734,7 @@ bool CLASS_DECL_BASE __end_defer_register_class(LONG fToRegisterParam, const cha
 
 
 LRESULT CALLBACK
-__activation_window_procedure(oswindow hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam)
+__activation_window_procedure(oswindow hWnd, ::u32 nMsg, WPARAM wParam, LPARAM lParam)
 {
    WNDPROC oldWndProc = (WNDPROC)::GetProp(hWnd, gen_OldWndProc);
    ASSERT(oldWndProc != nullptr);
@@ -5883,7 +5883,7 @@ namespace uwp
    }
 
 
-   void interaction_impl::offset_view_port_org(LPRECT lprectScreen)
+   void interaction_impl::offset_view_port_org(LPRECT32 lprectScreen)
    {
    }
 
@@ -6042,7 +6042,7 @@ namespace uwp
    bool interaction_impl::_is_window() const
    {
 
-      return m_directxapplication != nullptr && m_directxapplication->m_window != nullptr;
+      return m_frameworkview != nullptr && m_frameworkview->m_window != nullptr;
 
    }
 
@@ -6050,7 +6050,7 @@ namespace uwp
    void interaction_impl::show_software_keyboard(bool bShow, string str, strsize iBeg, strsize iEnd)
    {
 
-      psession->m_directxapplication->SetText(str, iBeg, iEnd);
+      psession->m_frameworkview->SetText(str, iBeg, iEnd);
 
    }
 
@@ -6064,7 +6064,7 @@ namespace uwp
 
       strsize sizeLen = strText.get_length();
 
-      psession->m_directxapplication->SetText(strText, 0, sizeLen);
+      psession->m_frameworkview->SetText(strText, 0, sizeLen);
 
    }
 
@@ -6072,7 +6072,7 @@ namespace uwp
    bool interaction_impl::is_text_composition_active()
    {
 
-      return m_directxapplication->m_bTextCompositionActive;
+      return m_frameworkview->m_bTextCompositionActive;
 
 
    }
@@ -6081,7 +6081,7 @@ namespace uwp
    void interaction_impl::set_input_content_rect(const rect& rect)
    {
 
-      __copy(m_directxapplication->m_rectInputContentRect, rect);
+      __copy(m_frameworkview->m_rectInputContentRect, rect);
 
    }
 
@@ -6089,7 +6089,7 @@ namespace uwp
    void interaction_impl::set_input_selection_rect(const rect& rect)
    {
 
-      __copy(m_directxapplication->m_rectInputSelectionRect, rect);
+      __copy(m_frameworkview->m_rectInputSelectionRect, rect);
 
    }
 
@@ -6099,7 +6099,7 @@ namespace uwp
 
       ::rect rect;
 
-      __copy(rect, m_directxapplication->m_rectInputContentRect);
+      __copy(rect, m_frameworkview->m_rectInputContentRect);
 
       return rect;
 
@@ -6111,7 +6111,7 @@ namespace uwp
 
       ::rect rect;
 
-      __copy(rect, m_directxapplication->m_rectInputSelectionRect);
+      __copy(rect, m_frameworkview->m_rectInputSelectionRect);
 
       return rect;
 

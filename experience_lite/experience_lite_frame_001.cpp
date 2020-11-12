@@ -189,16 +189,16 @@ SizingNone:;
 
 
 
-            void frame_001::draw_border_side(::draw2d::graphics_pointer & pgraphics, const RECT & lpcrectClient, e_border eside)
+            void frame_001::draw_border_side(::draw2d::graphics_pointer & pgraphics, const RECT32 & lpcrectClient, e_border eside)
             {
 
                auto pframewindow = m_pframewindow;
 
-               COLORREF    crMoveableBorder;
+               color32_t    crMoveableBorder;
 
-               COLORREF    crMoveableBorderHilight;
+               color32_t    crMoveableBorderHilight;
 
-               COLORREF    crMoveableBorderShadow;
+               color32_t    crMoveableBorderShadow;
 
                if(pframewindow->m_fActive)
                {
@@ -325,7 +325,7 @@ SizingNone:;
             }
 
 
-            void frame_001::DrawBorder(::draw2d::graphics_pointer & pgraphics, const RECT & lpcrectClient)
+            void frame_001::DrawBorder(::draw2d::graphics_pointer & pgraphics, const RECT32 & lpcrectClient)
             {
 
 
@@ -373,7 +373,7 @@ SizingNone:;
 
             }
 
-            void frame_001::GetBorderRect(const RECT & lpcrectClient, LPRECT lprect, e_border eside)
+            void frame_001::GetBorderRect(const RECT32 & lpcrectClient, LPRECT32 lprect, e_border eside)
             {
 
                ::rect rectBig(lpcrectClient);
@@ -424,7 +424,7 @@ SizingNone:;
             }
 
 
-            void frame_001::DrawGrip(::draw2d::graphics_pointer & pgraphics, const RECT & lpcrectClient, e_grip egrip)
+            void frame_001::DrawGrip(::draw2d::graphics_pointer & pgraphics, const RECT32 & lpcrectClient, e_grip egrip)
             {
 
                ::rect rectC(lpcrectClient);
@@ -1129,7 +1129,7 @@ SizingNone:;
 
             }
 
-            void frame_001::DrawRectGrip(::draw2d::graphics_pointer & pgraphics,const RECT & rectParam)
+            void frame_001::DrawRectGrip(::draw2d::graphics_pointer & pgraphics,const RECT32 & rectParam)
             {
 
 
@@ -1152,7 +1152,7 @@ SizingNone:;
 
             }
 
-            void frame_001::DrawGripSet(::draw2d::graphics_pointer & pgraphics, const RECT & lpcrectClient)
+            void frame_001::DrawGripSet(::draw2d::graphics_pointer & pgraphics, const RECT32 & lpcrectClient)
             {
                size_manager * psizenager = m_pframewindow->size_manager();
 

@@ -115,7 +115,7 @@ namespace experience
    }
 
 
-   void frame::OnNcCalcSize(RECT * prect)
+   void frame::OnNcCalcSize(RECT32 * prect)
    {
 
       if(m_pframewindow->m_bUseNc)
@@ -229,7 +229,7 @@ namespace experience
    }
 
 
-   COLORREF frame::get_border_main_body_color()
+   color32_t frame::get_border_main_body_color()
    {
 
       return 0;
@@ -478,7 +478,7 @@ namespace experience
    }
 
 
-   bool frame::_001OnTimer(UINT uEvent)
+   bool frame::_001OnTimer(::u32 uEvent)
    {
 
       UNREFERENCED_PARAMETER(uEvent);
@@ -975,7 +975,7 @@ namespace experience
    //}
 
 
-   bool frame::get_window_client_rect(RECT * prect)
+   bool frame::get_window_client_rect(RECT32 * prect)
 
    {
 
@@ -995,7 +995,7 @@ namespace experience
    }
 
 
-   bool frame::get_draw_client_rect(RECT * prect)
+   bool frame::get_draw_client_rect(RECT32 * prect)
 
    {
 
@@ -1043,7 +1043,7 @@ namespace experience
    }
 
 
-   void frame::calc_window_client_rect(RECT * prect, const rect &  rectWindow)
+   void frame::calc_window_client_rect(RECT32 * prect, const rect &  rectWindow)
    {
 
       ::rect rect(rectWindow);
@@ -1539,7 +1539,7 @@ namespace experience
    }
 
 
-   bool frame::get_element_rect(RECT * prect,e_element eelement)
+   bool frame::get_element_rect(RECT32 * prect,e_element eelement)
    {
 
       return false;
@@ -1547,7 +1547,7 @@ namespace experience
    }
 
 
-   void frame::get_parent_rect(RECT * prect)
+   void frame::get_parent_rect(RECT32 * prect)
 
    {
 

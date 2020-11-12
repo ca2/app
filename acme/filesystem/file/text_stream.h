@@ -177,16 +177,16 @@ public:
    virtual void write (unichar wch)  override;
 #endif
    virtual void write (i16 sh)  override;
-   virtual void write (u16 ui)  override;
+   virtual void write (u16 u)  override;
    virtual void write (i32 i)  override;
-   virtual void write (u32 ui)  override;
+   virtual void write (u32 u)  override;
    virtual void write (i64 i)  override;
-   virtual void write (u64 ui)  override;
+   virtual void write (u64 u)  override;
    virtual void write (float f)  override;
    virtual void write (double d)  override;
-   //virtual void write(const POINT & point) override;
-   //virtual void write(const SIZE & size) override;
-   //virtual void write(const RECT & rect) override;
+   //virtual void write(const POINT32 & point) override;
+   //virtual void write(const SIZE32 & size) override;
+   //virtual void write(const RECT32 & rect) override;
 
    virtual void write (const char * psz) override;
    virtual void write(const ::id & id) override;
@@ -216,11 +216,11 @@ public:
 #endif
    virtual void read(i8 & i) override;
    virtual void read (i16 & sh) override;
-   virtual void read (u16 & ui) override;
+   virtual void read (u16 & u) override;
    virtual void read (i32 & i) override;
-   virtual void read (u32 & ui) override;
+   virtual void read (u32 & u) override;
    virtual void read (i64 & i) override;
-   virtual void read (u64 & ui) override;
+   virtual void read (u64 & u) override;
    virtual void read (float & f) override;
    virtual void read (double & d) override;
    virtual void read(string & str) override;

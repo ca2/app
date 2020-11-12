@@ -48,7 +48,7 @@ namespace message
    public:
 
 
-      UINT  m_nState;
+      ::u32  m_nState;
       ::user::interaction * m_pWndOther;
       bool  m_bMinimized;
 
@@ -84,7 +84,7 @@ namespace message
    public:
 
 
-      UINT     m_nType;
+      ::u32     m_nType;
       ::size   m_size;
 
       size() { }
@@ -101,7 +101,7 @@ namespace message
    public:
 
 
-      UINT                    m_nSBCode;
+      ::u32                    m_nSBCode;
       i32                     m_nPos;
       ::user::primitive *     m_pScrollBar;
 
@@ -151,7 +151,7 @@ namespace message
 
       mouse_wheel() { }
 
-      UINT GetFlags();
+      ::u32 GetFlags();
 
       i16 GetDelta();
 
@@ -173,9 +173,9 @@ namespace message
 
       ::user::interaction * get_desktop_window();
 
-      UINT GetHitTest();
+      ::u32 GetHitTest();
 
-      UINT get_message();
+      ::u32 get_message();
 
    };
 
@@ -199,8 +199,8 @@ namespace message
 
 
       ::user::primitive *     m_pWnd;
-      UINT                    m_nHitTest;
-      UINT                    m_message;
+      ::u32                    m_nHitTest;
+      ::u32                    m_message;
 
 
       set_cursor() { }
@@ -215,7 +215,7 @@ namespace message
 
       
       bool m_bShow;
-      UINT  m_nStatus;
+      ::u32  m_nStatus;
 
 
       show_window() { }
@@ -345,9 +345,9 @@ namespace message
 
       command() { }
 
-      UINT GetNotifyCode();
+      ::u32 GetNotifyCode();
 
-      UINT GetId();
+      ::u32 GetId();
 
       oswindow get_oswindow();
 
@@ -361,7 +361,7 @@ namespace message
 
       HBRUSH                     m_hbrush;
       ::draw2d::graphics *       m_pdc;
-      UINT                       m_nCtlType;
+      ::u32                       m_nCtlType;
 
       ctl_color() { }
 
@@ -474,8 +474,8 @@ namespace message
 
       IDataObject *  pDataObj;// [in] DragEnter, Drop
       POINTL         point; // [in] DragEnter, DragOver, Drop
-      DWORD          grfKeyState; // [in] DragEnter, DragOver, Drop
-      DWORD          dwEffect; // [in][out] DragEnter, DragOver, Drop
+      ::u32          grfKeyState; // [in] DragEnter, DragOver, Drop
+      ::u32          dwEffect; // [in][out] DragEnter, DragOver, Drop
 
 #endif
 

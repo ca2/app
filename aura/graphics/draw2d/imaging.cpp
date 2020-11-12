@@ -71,8 +71,8 @@ i32                 y,
 const char *            pcsz,
 
 size_t                  cb,
-COLORREF                crText,
-COLORREF                crShadow,
+color32_t                crText,
+color32_t                crShadow,
 i32                 cx,
 i32                 cy)
 {
@@ -89,17 +89,17 @@ i32                 cy)
     ** system color for that one.
     */
 
-   //   COLORREF                crOld;
-   //   UINT                    uMode;
+   //   color32_t                crOld;
+   //   ::u32                    uMode;
    SIZED                   sizeText;
    ::rect                  rectText;
 
    auto psession = Session;
 
-   if(crShadow == (COLORREF)-1)
+   if(crShadow == (color32_t)-1)
       crShadow = psession->get_default_color(COLOR_BTNSHADOW);
 
-   if(crText == (COLORREF)-1)
+   if(crText == (color32_t)-1)
       crText = psession->get_default_color(COLOR_BTNTEXT);
 
    /* setup the DC, saving off the old values
@@ -116,9 +116,9 @@ i32                 cy)
    sizeText = pgraphics->GetTextExtent(string(pcsz,cb));
 
    rectText.left    = x;
-   rectText.right   = LONG (x + cx + sizeText.cx);
+   rectText.right   = ::i32 (x + cx + sizeText.cx);
    rectText.top     = y;
-   rectText.bottom  = LONG(y + cy + sizeText.cy);
+   rectText.bottom  = ::i32(y + cy + sizeText.cy);
    //ExtTextOut(hDC, x+cx, y+cy, ETO_OPAQUE, &rectText, psz, cb, nullptr);
 
    //pgraphics->SetBkMode(TRANSPARENT);
@@ -182,7 +182,7 @@ void imaging::GetMultiLineTextExtent(HDC hDC,string_array * pArray,LPSIZE pSize)
    //      tm.tmExternalLeading +
    //      tm.tmInternalLeading) *
    nSize;
-   pSize->cy = (LONG)((tm.tmHeight + tm.tmExternalLeading) * nSize);
+   pSize->cy = (::i32)((tm.tmHeight + tm.tmExternalLeading) * nSize);
 
 
 #else
@@ -238,7 +238,7 @@ void imaging::DrawMultiLineText(HDC hDC,string_array * pArray)
 //   i32 y,
 //   i32 cx,
 //   i32 cy,
-//   COLORREF crAlpha)
+//   color32_t crAlpha)
 //{
 //   UNREFERENCED_PARAMETER(pgraphics);
 //   UNREFERENCED_PARAMETER(x);
@@ -260,7 +260,7 @@ void imaging::DrawMultiLineText(HDC hDC,string_array * pArray)
 //   ::draw2d::bitmap * pitmapMask,
 
 //   const ::rect & rect,
-//   COLORREF crTransparent)
+//   color32_t crTransparent)
 //{
 //
 //   return GrayVRCP(
@@ -306,7 +306,7 @@ bool imaging::CreateHueImageList(
 ::draw2d::graphics * pgraphics,
 __pointer(::image_list) pilGray,
 __pointer(::image_list) pilParam,
-COLORREF crHue,
+color32_t crHue,
 double dCompress)
 {
 __pointer(::image_list) pil = pilGray;
@@ -340,7 +340,7 @@ return true;
 
 
 
-bool imaging::change_hue(image_list * pilHue, image_list * pil, COLORREF crHue,double dCompress)
+bool imaging::change_hue(image_list * pilHue, image_list * pil, color32_t crHue,double dCompress)
 {
 
    pilHue->copy_from(pil);
@@ -352,7 +352,7 @@ bool imaging::change_hue(image_list * pilHue, image_list * pil, COLORREF crHue,d
 }
 
 
-bool imaging::color_blend(image_list * pilBlend, image_list * pil, COLORREF cr, BYTE bAlpha)
+bool imaging::color_blend(image_list * pilBlend, image_list * pil, color32_t cr, byte bAlpha)
 {
 
    //sync_lock ml(&user_mutex());
@@ -406,7 +406,7 @@ bool imaging::color_blend(image_list * pilBlend, image_list * pil, COLORREF cr, 
 }
 
 
-bool imaging::color_blend(::image * pimage, COLORREF cr, BYTE bAlpha)
+bool imaging::color_blend(::image * pimage, color32_t cr, byte bAlpha)
 {
 
    try
@@ -481,54 +481,54 @@ return pil;
 //   i32 y,
 //   i32 cx,
 //   i32 cy,
-//   COLORREF crAlpha)
+//   color32_t crAlpha)
 //{
 //
 //   return false;
 //
 ////   UNREFERENCED_PARAMETER(crAlpha);
-////   //COLORREF cr3dface = psession->get_default_color(COLOR_3DFACE);
+////   //color32_t cr3dface = psession->get_default_color(COLOR_3DFACE);
 ////
 ////#ifdef WINDOWS_DESKTOP
 ////
-////   COLORREF cr3dshadow = psession->get_default_color(COLOR_3DSHADOW);
+////   color32_t cr3dshadow = psession->get_default_color(COLOR_3DSHADOW);
 ////
 ////#else
 ////
-////   COLORREF cr3dshadow = ARGB(255,127,127,127);
+////   color32_t cr3dshadow = ARGB(255,127,127,127);
 ////
 ////#endif
 ////
-////   //BYTE uch3dfaceR = ::red(cr3dface);
-////   //BYTE uch3dfaceG = ::green(cr3dface);
-////   //BYTE uch3dfaceB = ::blue(cr3dface);
-////   BYTE uch3dshadowR = ::red(cr3dshadow);
-////   BYTE uch3dshadowG = ::green(cr3dshadow);
-////   BYTE uch3dshadowB = ::blue(cr3dshadow);
+////   //byte uch3dfaceR = ::red(cr3dface);
+////   //byte uch3dfaceG = ::green(cr3dface);
+////   //byte uch3dfaceB = ::blue(cr3dface);
+////   byte uch3dshadowR = ::red(cr3dshadow);
+////   byte uch3dshadowG = ::green(cr3dshadow);
+////   byte uch3dshadowB = ::blue(cr3dshadow);
 ////
 ////
 ////#ifdef WINDOWS_DESKTOP
 ////
-////   COLORREF cr3dhighlight = psession->get_default_color(COLOR_3DHILIGHT);
+////   color32_t cr3dhighlight = psession->get_default_color(COLOR_3DHILIGHT);
 ////
 ////#else
 ////
-////   COLORREF cr3dhighlight = ARGB(255,192,192,192);
+////   color32_t cr3dhighlight = ARGB(255,192,192,192);
 ////
 ////#endif
 ////
 ////
-////   BYTE uch3dhighlightR = ::red(cr3dhighlight);
-////   BYTE uch3dhighlightG = ::green(cr3dhighlight);
-////   BYTE uch3dhighlightB = ::blue(cr3dhighlight);
+////   byte uch3dhighlightR = ::red(cr3dhighlight);
+////   byte uch3dhighlightG = ::green(cr3dhighlight);
+////   byte uch3dhighlightB = ::blue(cr3dhighlight);
 ////
 ////   const ::size & size = pitmap->get_size();
 
 ////
-////   UINT cbLine = ((size.cx * 3 + 3) & ~3);
-////   UINT cbImage = size.cy * cbLine;
+////   ::u32 cbLine = ((size.cx * 3 + 3) & ~3);
+////   ::u32 cbImage = size.cy * cbLine;
 ////
-////   UINT cbMask = size.cy * ((size.cx + 3) & ~3);
+////   ::u32 cbMask = size.cy * ((size.cx + 3) & ~3);
 ////
 ////
 ////   BITMAPINFO bmi;
@@ -562,7 +562,7 @@ return pil;
 ////
 ////#ifdef WINDOWS_DESKTOP
 ////
-////   UINT uiScanLines = size.cy;
+////   ::u32 uScanLines = size.cy;
 ////
 ////
 ////   if(!GetDIBits(
@@ -668,23 +668,23 @@ return pil;
 
 ////
 ////
-////   BYTE br,bg,bb;
+////   byte br,bg,bb;
 ////
-////   //   COLORREF crBtnFace = psession->get_default_color(COLOR_BTNFACE);
-////   //   COLORREF crBtnShad = psession->get_default_color(COLOR_BTNSHADOW);
-////   //   COLORREF crWndBack = psession->get_default_color(COLOR_WINDOW);
+////   //   color32_t crBtnFace = psession->get_default_color(COLOR_BTNFACE);
+////   //   color32_t crBtnShad = psession->get_default_color(COLOR_BTNSHADOW);
+////   //   color32_t crWndBack = psession->get_default_color(COLOR_WINDOW);
 ////
-////   //   BYTE bRBtnFace = ::red(crBtnFace);
-////   //   BYTE bGBtnFace = ::green(crBtnFace);
-////   //   BYTE bBBtnFace = ::blue(crBtnFace);
+////   //   byte bRBtnFace = ::red(crBtnFace);
+////   //   byte bGBtnFace = ::green(crBtnFace);
+////   //   byte bBBtnFace = ::blue(crBtnFace);
 ////
-////   //   BYTE bRBtnShad = ::red(crBtnShad);
-////   //   BYTE bGBtnShad = ::green(crBtnShad);
-////   //   BYTE bBBtnShad = ::blue(crBtnShad);
+////   //   byte bRBtnShad = ::red(crBtnShad);
+////   //   byte bGBtnShad = ::green(crBtnShad);
+////   //   byte bBBtnShad = ::blue(crBtnShad);
 ////
-////   //   BYTE bRWndBack = ::red(crWndBack);
-////   //   BYTE bGWndBack = ::green(crWndBack);
-////   //   BYTE bBWndBack = ::blue(crWndBack);
+////   //   byte bRWndBack = ::red(crWndBack);
+////   //   byte bGWndBack = ::green(crWndBack);
+////   //   byte bBWndBack = ::blue(crWndBack);
 ////
 ////   i32 i;
 ////   for(i = 0; i < cy; i ++)
@@ -796,7 +796,7 @@ return pil;
 ////
 ////   i32 cyminus1 = cy - 1;
 ////   i32 cxminus1 = cx - 1;
-////   BYTE b;
+////   byte b;
 ////
 ////   for(i = 0; i < cyminus1; i ++)
 ////   {
@@ -974,8 +974,8 @@ return pil;
 
 //   const rect & rectParam,
 //   i32 &iWidthParam,
-//   UINT & uiStartScanLineParam,
-//   UINT & uiScanLineCountParam,
+//   ::u32 & uiStartScanLineParam,
+//   ::u32 & uiScanLineCountParam,
 //   i32 & iLimitYParam)
 //{
 //   UNREFERENCED_PARAMETER(pitmap);
@@ -1045,8 +1045,8 @@ return pil;
 //#endif
 //         //       ::point pointViewport = pgraphics->GetViewportOrg();
 //
-//         UINT uiStartScanLine = max(0,bm.bmHeight - y - cy);
-//         UINT uiScanLines = cy + min(0,bm.bmHeight - y - cy);
+//         ::u32 uStartScanLine = max(0,bm.bmHeight - y - cy);
+//         ::u32 uScanLines = cy + min(0,bm.bmHeight - y - cy);
 //
 //         uiStartScanLineParam = uiStartScanLine;
 //         uiScanLineCountParam = uiScanLines;
@@ -1081,7 +1081,7 @@ return pil;
 //      }
 //      catch(i32)
 //      {
-//         //         UINT user = get_last_error();
+//         //         ::u32 user = get_last_error();
 //         pgraphics->set(pmpOld);
 
 //         return false;
@@ -1104,11 +1104,11 @@ BITMAP & bm,
 BITMAPINFO & bmi,
 memory & memorystorage,
 ::draw2d::bitmap   ** ppbitmap,
-RECT * prect,
+RECT32 * prect,
 
 i32 &iWidthParam,
-UINT & uiStartScanLineParam,
-UINT & uiScanLineCountParam,
+::u32 & uiStartScanLineParam,
+::u32 & uiScanLineCountParam,
 i32 & iLimitYParam)
 {
 
@@ -1177,8 +1177,8 @@ LPVOID pv = memorystorage.get_data();
 
 ::point pointViewport = pgraphics->GetViewportOrg();
 
-UINT uiStartScanLine = 0;
-UINT uiScanLines = cy;
+::u32 uStartScanLine = 0;
+::u32 uScanLines = cy;
 
 uiStartScanLineParam = uiStartScanLine;
 uiScanLineCountParam = uiScanLines;
@@ -1200,7 +1200,7 @@ __throw(::exception::exception("integer_exception" + __str($1)));
 }
 catch(i32)
 {
-UINT user = get_last_error();
+::u32 user = get_last_error();
 pgraphics->set(pmpOld);
 
 return false;
@@ -1281,12 +1281,12 @@ LPVOID pv = memorystorage.get_data();
 
 ::point pointViewport;
 pointViewport = pgraphics->GetViewportOrg();
-UINT uiStartScanLine = bm.bmHeight;
+::u32 uStartScanLine = bm.bmHeight;
 
 uiStartScanLineParam = uiStartScanLine;
 
-//UINT uiStartScanLine = bm.bmHeight - y - cy;
-UINT uiScanLines = cy;
+//::u32 uStartScanLine = bm.bmHeight - y - cy;
+::u32 uScanLines = cy;
 uiScanLineCountParam = uiScanLines;
 i32 xOffset = (x + pointViewport.x) * 3;
 //if(!GetDIBits(dcAux.get_os_data(), bitmap, bm.bmHeight - cy, cy, pv, &bmi, DIB_RGB_COLORS))
@@ -1364,7 +1364,7 @@ i32 w3)
    byte * pC1 = (byte *)pCParam + y3 + x3;
 
 
-   //   BYTE dwA;
+   //   byte dwA;
    for(i = 0; i < cy; i++)
    {
 
@@ -1377,11 +1377,11 @@ i32 w3)
       for(j = 0; j < cx; j++)
       {
 
-         pA[0] = (BYTE)(((((u32)pA[0]) * ((u32)(255 - pC[0])) + (((u32)pB[0]) * ((u32)pC[0])))) / 255);
+         pA[0] = (byte)(((((u32)pA[0]) * ((u32)(255 - pC[0])) + (((u32)pB[0]) * ((u32)pC[0])))) / 255);
 
-         pA[1] = (BYTE)(((((u32)pA[1]) * ((u32)(255 - pC[1])) + (((u32)pB[1]) * ((u32)pC[1])))) / 255);
+         pA[1] = (byte)(((((u32)pA[1]) * ((u32)(255 - pC[1])) + (((u32)pB[1]) * ((u32)pC[1])))) / 255);
 
-         pA[2] = (BYTE)(((((u32)pA[2]) * ((u32)(255 - pC[2])) + (((u32)pB[2]) * ((u32)pC[2])))) / 255);
+         pA[2] = (byte)(((((u32)pA[2]) * ((u32)(255 - pC[2])) + (((u32)pB[2]) * ((u32)pC[2])))) / 255);
 
          pA+=3;
 
@@ -1411,7 +1411,7 @@ byte * pSrcParam,
 i32 xSrc,
 i32 ySrc,
 i32 wSrc,
-BYTE bAlpha)
+byte bAlpha)
 {
    i32 i,j;
    xDest *= 3;
@@ -1437,8 +1437,8 @@ BYTE bAlpha)
 
 
 
-   //   BYTE bAlphaComplement = 255 - bAlpha;
-   //   BYTE dwA;
+   //   byte bAlphaComplement = 255 - bAlpha;
+   //   byte dwA;
    if(bAlpha == 0)
    {
    }
@@ -1486,19 +1486,19 @@ BYTE bAlpha)
 
          for(j = 0; j < cx; j++)
          {
-            pDst[0] = (BYTE)(((((i32)pSrc[0] - pDst[0]) * ((i32)(bAlpha))) / 256) + (i32)pDst[0]);
+            pDst[0] = (byte)(((((i32)pSrc[0] - pDst[0]) * ((i32)(bAlpha))) / 256) + (i32)pDst[0]);
 
 
 
 
 
-            pDst[1] = (BYTE)(((((i32)pSrc[1] - pDst[1]) * ((i32)(bAlpha))) / 256) + (i32)pDst[1]);
+            pDst[1] = (byte)(((((i32)pSrc[1] - pDst[1]) * ((i32)(bAlpha))) / 256) + (i32)pDst[1]);
 
 
 
 
 
-            pDst[2] = (BYTE)(((((i32)pSrc[2] - pDst[2]) * ((i32)(bAlpha))) / 256) + (i32)pDst[2]);
+            pDst[2] = (byte)(((((i32)pSrc[2] - pDst[2]) * ((i32)(bAlpha))) / 256) + (i32)pDst[2]);
 
 
 
@@ -1552,7 +1552,7 @@ BYTE bAlpha)
 
       for(;j < maxw; j++)
       {
-      *pDst++ = (BYTE) (((u32) (*pSrc++ - *pDst) * ((u32) (bAlpha))) / 256) + *pDst;
+      *pDst++ = (byte) (((u32) (*pSrc++ - *pDst) * ((u32) (bAlpha))) / 256) + *pDst;
 
 
 
@@ -1584,7 +1584,7 @@ const ::point & pointDst,
 const ::size & size,
 ::draw2d::graphics * pdcSrc, // source device
 const ::point & pointSrc,
-BYTE bAlpha)
+byte bAlpha)
 {
 
    ::image_pointer pimage;
@@ -1622,7 +1622,7 @@ const ::point & pointDst,
 const ::size & size,
 ::draw2d::graphics * pdcSrc, // source device
 const ::point & pointSrc,
-BYTE bAlpha)
+byte bAlpha)
 {
 
    return pdcDst->alpha_blend(pointDst,size,pdcSrc,pointSrc,bAlpha / 255.0);
@@ -1635,7 +1635,7 @@ bool imaging::bitmap_blend(::draw2d::graphics * pdcDst,
                            const ::size & size,
                            ::image * pimage,
                            const ::point & pointSrc,
-                           BYTE bAlpha)
+                           byte bAlpha)
 {
 
    return pdcDst->alpha_blend(pointDst, size, pimage, pointSrc, bAlpha / 255.0);
@@ -1735,9 +1735,9 @@ bool imaging::ColorInvert(::draw2d::graphics * pgraphics,i32 x,i32 y,i32 cx,i32 
 
    ::point pointViewport;
    pointViewport = pgraphics->GetViewportOrg();
-   UINT uiStartScanLine = bm.bmHeight - y - cy - pointViewport.y;
-   //UINT uiStartScanLine = bm.bmHeight - y - cy;
-   UINT uiScanLines = cy;
+   ::u32 uStartScanLine = bm.bmHeight - y - cy - pointViewport.y;
+   //::u32 uStartScanLine = bm.bmHeight - y - cy;
+   ::u32 uScanLines = cy;
    i32 xOffset = (x + pointViewport.x) * 3;
    //if(!GetDIBits(dcAux.get_os_data(), bitmapA, bm.bmHeight - cy, cy, pv, &bmi, DIB_RGB_COLORS))
 
@@ -1772,17 +1772,17 @@ bool imaging::ColorInvert(::draw2d::graphics * pgraphics,i32 x,i32 y,i32 cx,i32 
 
    for(j = 0; j < iLimitX; j++)
    {
-   *p++ = (BYTE) 255 - *p;
+   *p++ = (byte) 255 - *p;
 
 
 
 
-   *p++ = (BYTE) 255 - *p;
+   *p++ = (byte) 255 - *p;
 
 
 
 
-   *p++ = (BYTE) 255 - *p;
+   *p++ = (byte) 255 - *p;
 
 
 
@@ -1850,9 +1850,9 @@ bool imaging::ColorInvert(::draw2d::graphics * pgraphics,i32 x,i32 y,i32 cx,i32 
    LPVOID pv = memstorageA.get_data();
 
    ::point pointViewport = pgraphics->GetViewportOrg();
-   UINT uiStartScanLine = bm.bmHeight - y - cy - pointViewport.y;
-   //UINT uiStartScanLine = bm.bmHeight - y - cy;
-   UINT uiScanLines = cy;
+   ::u32 uStartScanLine = bm.bmHeight - y - cy - pointViewport.y;
+   //::u32 uStartScanLine = bm.bmHeight - y - cy;
+   ::u32 uScanLines = cy;
    i32 xOffset = (x + pointViewport.x) * 3;
 
 
@@ -1893,17 +1893,17 @@ bool imaging::ColorInvert(::draw2d::graphics * pgraphics,i32 x,i32 y,i32 cx,i32 
    continue;
    for(j = 0; j < iLimitX; j++)
    {
-   *p++ = (BYTE) 255 - *p ;
+   *p++ = (byte) 255 - *p ;
 
 
 
 
-   *p++ = (BYTE) 255 - *p;
+   *p++ = (byte) 255 - *p;
 
 
 
 
-   *p++ = (BYTE) 255 - *p;
+   *p++ = (byte) 255 - *p;
 
 
 
@@ -2011,7 +2011,7 @@ return true;
 //   }
 
 
-bool imaging::color_blend_3dRect(::draw2d::graphics *pgraphics,const rect & rectParam,COLORREF crTopLeft,BYTE bAlphaTopLeft,COLORREF crBottomRight,BYTE bAlphaBottomRight)
+bool imaging::color_blend_3dRect(::draw2d::graphics *pgraphics,const rect & rectParam,color32_t crTopLeft,byte bAlphaTopLeft,color32_t crBottomRight,byte bAlphaBottomRight)
 {
 
    ::rect rect(rectParam);
@@ -2030,7 +2030,7 @@ bool imaging::color_blend_3dRect(::draw2d::graphics *pgraphics,const rect & rect
 }
 
 
-bool imaging::clip_color_blend(::draw2d::graphics * pgraphics, const rect & rectParam, COLORREF cr, BYTE alpha)
+bool imaging::clip_color_blend(::draw2d::graphics * pgraphics, const rect & rectParam, color32_t cr, byte alpha)
 {
 
    ::rect rect(rectParam);
@@ -2044,7 +2044,7 @@ bool imaging::clip_color_blend(::draw2d::graphics * pgraphics, const rect & rect
 }
 
 
-bool imaging::clip_color_blend(::draw2d::graphics * pgraphics,const ::point & point,const ::size & size,COLORREF cr,BYTE bA)
+bool imaging::clip_color_blend(::draw2d::graphics * pgraphics,const ::point & point,const ::size & size,color32_t cr,byte bA)
 {
 
    pgraphics->fill_rect(rect(size), ARGB(bA,colorref_get_r_value(cr),colorref_get_g_value(cr),colorref_get_b_value(cr)));
@@ -2062,7 +2062,7 @@ bool imaging::clip_color_blend(::draw2d::graphics * pgraphics,const ::point & po
 }
 
 
-bool imaging::color_blend(::draw2d::graphics * pgraphics, const ::rect64 & rect, COLORREF cr, BYTE alpha)
+bool imaging::color_blend(::draw2d::graphics * pgraphics, const ::rect64 & rect, color32_t cr, byte alpha)
 {
 
    return color_blend(pgraphics,(const ::rect &) rect,cr,alpha);
@@ -2070,7 +2070,7 @@ bool imaging::color_blend(::draw2d::graphics * pgraphics, const ::rect64 & rect,
 }
 
 
-bool imaging::color_blend(::draw2d::graphics * pgraphics, const ::rect & rect, COLORREF cr, BYTE alpha)
+bool imaging::color_blend(::draw2d::graphics * pgraphics, const ::rect & rect, color32_t cr, byte alpha)
 {
 
    return color_blend(pgraphics, rect.origin(), rect.size(), cr, alpha);
@@ -2078,14 +2078,14 @@ bool imaging::color_blend(::draw2d::graphics * pgraphics, const ::rect & rect, C
 }
 
 
-bool imaging::color_blend(::draw2d::graphics * pgraphics,i32 x,i32 y,i32 cx,i32 cy,COLORREF cr,BYTE bA)
+bool imaging::color_blend(::draw2d::graphics * pgraphics,i32 x,i32 y,i32 cx,i32 cy,color32_t cr,byte bA)
 {
 
    return color_blend(pgraphics,point(x,y),size(cx,cy),cr,bA);
 
 }
 
-bool imaging::color_blend(::draw2d::graphics * pgraphics,const ::point & point,const ::size & size,COLORREF cr,BYTE bA)
+bool imaging::color_blend(::draw2d::graphics * pgraphics,const ::point & point,const ::size & size,color32_t cr,byte bA)
 {
 
    pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
@@ -2269,21 +2269,21 @@ void imaging::blur_32CC(::image * pimageDst, ::image * pimageSrc,i32 iRadius)
    i32 iFilterWidth = iRadius * 2 + 1;
    i32 iFilterHeight = iRadius * 2 + 1;
    i32 divisor = iFilterWidth * iFilterHeight;
-   BYTE *pSource;
+   byte *pSource;
 
 
-   BYTE *pDestination;
+   byte *pDestination;
 
 
-   BYTE *pSource1;
+   byte *pSource1;
 
 
-   BYTE *pSource2;
+   byte *pSource2;
 
 
-   BYTE *pFilter;
+   byte *pFilter;
 
-   BYTE * pFilterData = new BYTE[iFilterHeight *iFilterWidth];
+   byte * pFilterData = new byte[iFilterHeight *iFilterWidth];
    __memset(pFilterData,1,iFilterHeight * iFilterWidth);
 
    byte * pSrc = (byte *)pimageSrc->get_data();
@@ -2603,16 +2603,16 @@ void imaging::blur_32CC_r2(::image * pimageDst, ::image * pimageSrc)
    i32 wSrc = pimageSrc->scan_size();
    i32 wDest = pimageDst->scan_size();
 
-   BYTE *pSource;
+   byte *pSource;
 
 
-   BYTE *pDestination;
+   byte *pDestination;
 
 
-   BYTE *pSource1;
+   byte *pSource1;
 
 
-   BYTE *pSource2[5];
+   byte *pSource2[5];
 
 
 
@@ -3071,24 +3071,24 @@ bool imaging::channel_gray_blur_32CC(::image * pimageDst, ::image * pimageSrc,
    //   i32 iFilterArea = iFilterW * iFilterH;
    i32 iDivisor;
 
-   BYTE *pDestination;
+   byte *pDestination;
 
 
-   BYTE *pDestination_1;
+   byte *pDestination_1;
 
 
 
 
-   BYTE *pSource;
+   byte *pSource;
 
 
-   BYTE *pSource1;
+   byte *pSource1;
 
 
-   BYTE *pSource2;
+   byte *pSource2;
 
 
-   BYTE *pSource_3;
+   byte *pSource_3;
 
 
 
@@ -3206,19 +3206,19 @@ bool imaging::channel_gray_blur_32CC(::image * pimageDst, ::image * pimageSrc,
             iDivisor = (iFilterYUpperBound - iFilterYLowerBound + 1) * (iFilterXUpperBound - iFilterXLowerBound + 1);
             if(iDivisor == 0)
             {
-               pDestination_1[0] = (BYTE)max(0u,min(dwI,255u));
+               pDestination_1[0] = (byte)max(0u,min(dwI,255u));
 
 
-               pDestination_1[1] = (BYTE)max(0u,min(dwI,255u));
+               pDestination_1[1] = (byte)max(0u,min(dwI,255u));
 
 
-               pDestination_1[2] = (BYTE)min(0u,min(dwI,255u));
+               pDestination_1[2] = (byte)min(0u,min(dwI,255u));
 
 
             }
             else
             {
-               pDestination_1[0] = (BYTE)(dwI / iDivisor);
+               pDestination_1[0] = (byte)(dwI / iDivisor);
 
 
                pDestination_1[1] = pDestination_1[0];
@@ -3367,24 +3367,24 @@ bool imaging::channel_alpha_gray_blur_32CC(::image * pimageDst, ::image * pimage
    //   i32 iFilterArea = iFilterW * iFilterH;
    i32 iDivisor;
 
-   BYTE *pDestination;
+   byte *pDestination;
 
 
-   BYTE *pDestination_1;
+   byte *pDestination_1;
 
 
 
 
-   BYTE *pSource;
+   byte *pSource;
 
 
-   BYTE *pSource1;
+   byte *pSource1;
 
 
-   BYTE *pSource2;
+   byte *pSource2;
 
 
-   BYTE *pSource_3;
+   byte *pSource_3;
 
 
 
@@ -3502,22 +3502,22 @@ bool imaging::channel_alpha_gray_blur_32CC(::image * pimageDst, ::image * pimage
             iDivisor = (iFilterYUpperBound - iFilterYLowerBound + 1) * (iFilterXUpperBound - iFilterXLowerBound + 1);
             if(iDivisor == 0)
             {
-               pDestination_1[0] = (BYTE)max(0u,min(dwI,255u));
+               pDestination_1[0] = (byte)max(0u,min(dwI,255u));
 
 
-               pDestination_1[1] = (BYTE)max(0u,min(dwI,255u));
+               pDestination_1[1] = (byte)max(0u,min(dwI,255u));
 
 
-               pDestination_1[2] = (BYTE)min(0u,min(dwI,255u));
+               pDestination_1[2] = (byte)min(0u,min(dwI,255u));
 
 
-               pDestination_1[3] = (BYTE)min(0u,min(dwI,255u));
+               pDestination_1[3] = (byte)min(0u,min(dwI,255u));
 
 
             }
             else
             {
-               pDestination_1[0] = (BYTE)(dwI / iDivisor);
+               pDestination_1[0] = (byte)(dwI / iDivisor);
 
 
                pDestination_1[1] = pDestination_1[0];
@@ -3730,27 +3730,27 @@ bool imaging::channel_gray_blur_32CC(::image * pimageDst, ::image * pimageSrc,
    i32 iFilterArea = iFilterWidth * iFilterHeight;
    i32 divisor;
 
-   BYTE *pDestination;
+   byte *pDestination;
 
 
 
 
-   BYTE *pSource;
+   byte *pSource;
 
 
-   BYTE *pSource1;
+   byte *pSource1;
 
 
-   BYTE *pSource2;
+   byte *pSource2;
 
 
-   BYTE *pSource_3;
+   byte *pSource_3;
 
 
 
-   BYTE *pFilter;
+   byte *pFilter;
 
-   BYTE * pFilterData = new BYTE[iFilterHeight *iFilterWidth];
+   byte * pFilterData = new byte[iFilterHeight *iFilterWidth];
 
    __memset(pFilterData,1,iFilterHeight * iFilterWidth);
 
@@ -4167,7 +4167,7 @@ i32 y1,
 i32 w1,
 i32 cx,
 i32 cy,
-COLORREF cr,
+color32_t cr,
 byte * pCParam,
 
 i32 x3,
@@ -4180,9 +4180,9 @@ i32 w3)
    y1 *= w1;
    y3 *= w3;
 
-   BYTE bR = ::red(cr);
-   BYTE bG = ::green(cr);
-   BYTE bB = ::blue(cr);
+   byte bR = ::red(cr);
+   byte bG = ::green(cr);
+   byte bB = ::blue(cr);
 
    pAParam = (byte *)pAParam + y1 + x1;
 
@@ -4193,7 +4193,7 @@ i32 w3)
 
 
 
-   //   BYTE dwA;
+   //   byte dwA;
    for(i = 0; i < cy; i++)
    {
       byte * pA = (byte *)pAParam + (w1 * i);
@@ -4208,7 +4208,7 @@ i32 w3)
 
       for(j = 0; j < cx; j++)
       {
-         pA[0] = (BYTE)(((((u32)pA[0]) * ((u32)(255 - pC[0])) + (((u32)bB) * ((u32)pC[0])))) / 255);
+         pA[0] = (byte)(((((u32)pA[0]) * ((u32)(255 - pC[0])) + (((u32)bB) * ((u32)pC[0])))) / 255);
 
 
 
@@ -4217,7 +4217,7 @@ i32 w3)
 
 
 
-         pA[1] = (BYTE)(((((u32)pA[1]) * ((u32)(255 - pC[1])) + (((u32)bG) * ((u32)pC[1])))) / 255);
+         pA[1] = (byte)(((((u32)pA[1]) * ((u32)(255 - pC[1])) + (((u32)bG) * ((u32)pC[1])))) / 255);
 
 
 
@@ -4226,7 +4226,7 @@ i32 w3)
 
 
 
-         pA[2] = (BYTE)(((((u32)pA[2]) * ((u32)(255 - pC[2])) + (((u32)bR) * ((u32)pC[2])))) / 255);
+         pA[2] = (byte)(((((u32)pA[2]) * ((u32)(255 - pC[2])) + (((u32)bR) * ((u32)pC[2])))) / 255);
 
 
 
@@ -4250,14 +4250,14 @@ i32 w3)
 
 
 
-//bool imaging::alpha_spread_R2(::draw2d::graphics *pdcDst,const ::point & pointDst,const ::size & size,::draw2d::graphics * pdcSrc,const ::point & pointSrc,BYTE bMin)
+//bool imaging::alpha_spread_R2(::draw2d::graphics *pdcDst,const ::point & pointDst,const ::size & size,::draw2d::graphics * pdcSrc,const ::point & pointSrc,byte bMin)
 //{
 //   if(size.cx <= 0 || size.cy <= 0)
 //      return true;
 //
-//   UINT user;
-//   UINT uiStartScanLine;
-//   UINT uiScanLineCount;
+//   ::u32 user;
+//   ::u32 uStartScanLine;
+//   ::u32 uScanLineCount;
 //
 //
 //   ::rect rectDst(pointDst,size);
@@ -4424,7 +4424,7 @@ i32 w3)
 //}
 
 
-//bool imaging::alpha_spread(::draw2d::graphics *pdcDst,const ::point & pointDst,const ::size & size,::draw2d::graphics * pdcSrc,const ::point & pointSrc,BYTE bMin,i32 iRadius)
+//bool imaging::alpha_spread(::draw2d::graphics *pdcDst,const ::point & pointDst,const ::size & size,::draw2d::graphics * pdcSrc,const ::point & pointSrc,byte bMin,i32 iRadius)
 //{
 //
 //   if(size.cx <= 0 || size.cy <= 0)
@@ -4433,9 +4433,9 @@ i32 w3)
 //   //   single_lock sl(&m_csMem, TRUE);
 //
 //
-//   UINT user;
-//   UINT uiStartScanLine;
-//   UINT uiScanLineCount;
+//   ::u32 user;
+//   ::u32 uStartScanLine;
+//   ::u32 uScanLineCount;
 //
 //
 //   ::rect rectDest(pointDst,size);
@@ -4603,7 +4603,7 @@ i32 w3)
 //}
 
 
-void imaging::alpha_spread_R2_24CC(byte * pDst,i32 xDest,i32 yDest,i32 wDest,i32 cx,i32 cy,byte * pSrc,i32 xSrc,i32 ySrc,i32 wSrc,BYTE bMin)
+void imaging::alpha_spread_R2_24CC(byte * pDst,i32 xDest,i32 yDest,i32 wDest,i32 cx,i32 cy,byte * pSrc,i32 xSrc,i32 ySrc,i32 wSrc,byte bMin)
 
 
 
@@ -4616,21 +4616,21 @@ void imaging::alpha_spread_R2_24CC(byte * pDst,i32 xDest,i32 yDest,i32 wDest,i32
    i32 iFilterWidth = 2 * 2 + 1;
    i32 iFilterHeight = 2 * 2 + 1;
    i32 divisor = iFilterWidth * iFilterHeight;
-   BYTE *pSource;
+   byte *pSource;
 
 
-   BYTE *pSource1;
+   byte *pSource1;
 
 
-   BYTE *pSource2;
+   byte *pSource2;
 
 
-   BYTE *pDestination;
+   byte *pDestination;
 
 
-   BYTE *pFilter;
+   byte *pFilter;
 
-   BYTE * pFilterData = new BYTE[iFilterHeight *iFilterWidth];
+   byte * pFilterData = new byte[iFilterHeight *iFilterWidth];
    __memset(pFilterData,1,iFilterHeight * iFilterWidth);
 
    i32 maxx1 = cx;
@@ -4817,7 +4817,7 @@ const ::size & size,
 ::draw2d::graphics * pdcSrc,
 const ::point & pointSrc,
 i32 iChannel,i32 iRadius,
-COLORREF cr)
+color32_t cr)
 {
 
    if(size.is_empty())
@@ -4901,7 +4901,7 @@ const ::size & size,
 ::draw2d::graphics * pdcSrc,
 const ::point & pointSrc,
 i32 iRadius,
-COLORREF cr)
+color32_t cr)
 {
 
    if(size.is_empty())
@@ -4966,7 +4966,7 @@ COLORREF cr)
 
 
 
-bool imaging::spread__32CC(::image * pimageDst, ::image * pimageSrc,i32 iRadius,COLORREF crSpreadSetColor)
+bool imaging::spread__32CC(::image * pimageDst, ::image * pimageSrc,i32 iRadius,color32_t crSpreadSetColor)
 {
 
    if (iRadius <= 1)
@@ -4989,19 +4989,19 @@ bool imaging::spread__32CC(::image * pimageDst, ::image * pimageSrc,i32 iRadius,
    i32 iFilterHalfH  = iRadius;
    i32 iFilterArea   = iFilterW * iFilterH;
    i32 divisor       = iFilterW * iFilterH;
-   BYTE *pSource;
+   byte *pSource;
 
 
-   BYTE *pSource1;
+   byte *pSource1;
 
 
-   BYTE *pSource2;
+   byte *pSource2;
 
 
-   BYTE *pDestination;
+   byte *pDestination;
 
 
-   BYTE *pFilter;
+   byte *pFilter;
 
    i32 i;
    i32 x;
@@ -5038,7 +5038,7 @@ bool imaging::spread__32CC(::image * pimageDst, ::image * pimageSrc,i32 iRadius,
 
       pmemory->set_size(iFilterArea);
 
-      BYTE * pdata = pmemory->get_data();
+      byte * pdata = pmemory->get_data();
 
       for(y = 0; y < iFilterHalfH; y++)
       {
@@ -5075,7 +5075,7 @@ bool imaging::spread__32CC(::image * pimageDst, ::image * pimageSrc,i32 iRadius,
 
    sl.unlock();
 
-   BYTE * pFilterData = pmemory->get_data();
+   byte * pFilterData = pmemory->get_data();
 
    i32 cx = pimageDst->width();
 
@@ -5102,7 +5102,7 @@ bool imaging::spread__32CC(::image * pimageDst, ::image * pimageSrc,i32 iRadius,
 
    i32 max3x1 = maxx1 * 4;
 
-   ::copy_colorref((COLORREF *)pDst, cx,cy,pimageDst->scan_size(),(COLORREF *)pSrc,pimageSrc->scan_size());
+   ::copy_colorref((color32_t *)pDst, cx,cy,pimageDst->scan_size(),(color32_t *)pSrc,pimageSrc->scan_size());
 
 
    i32 iFilterXLowerBound;
@@ -5503,9 +5503,9 @@ breakFilter2:
 //   if(cx <= 0 || cy <= 0)
 //      return true;
 //
-//   UINT user;
-//   UINT uiStartScanLine;
-//   UINT uiScanLineCount;
+//   ::u32 user;
+//   ::u32 uStartScanLine;
+//   ::u32 uScanLineCount;
 //
 //
 //   memory memstorageA;
@@ -5711,22 +5711,22 @@ i32      iSize)
    UNREFERENCED_PARAMETER(xSrc);
    UNREFERENCED_PARAMETER(ySrc);
    i32      divisor;
-   BYTE *   pSource;
+   byte *   pSource;
 
 
-   BYTE *   pDestination;
+   byte *   pDestination;
 
 
-   BYTE *   pDestination_1;
+   byte *   pDestination_1;
 
 
-   BYTE *   pDestination_2;
+   byte *   pDestination_2;
 
 
-   BYTE *   pSource1;
+   byte *   pSource1;
 
 
-   BYTE *   pSource2;
+   byte *   pSource2;
 
 
 
@@ -5990,13 +5990,13 @@ i32      iSize)
          {
             for(i32 xFilter = 0; xFilter < iFilterXEnd; xFilter++)
             {
-               pDestination_2[0] = (BYTE)dwR;
+               pDestination_2[0] = (byte)dwR;
 
 
-               pDestination_2[1] = (BYTE)dwG;
+               pDestination_2[1] = (byte)dwG;
 
 
-               pDestination_2[2] = (BYTE)dwB;
+               pDestination_2[2] = (byte)dwB;
 
 
                pDestination_2 += 3;
@@ -6048,9 +6048,9 @@ i32      iSize)
 //   memory memstorageC;
 //
 //
-//   UINT user;
-//   UINT uiStartScanLine;
-//   UINT uiScanLineCount;
+//   ::u32 user;
+//   ::u32 uStartScanLine;
+//   ::u32 uScanLineCount;
 //
 //
 //   ::rect rectDest;
@@ -6302,41 +6302,41 @@ i32 iAlpha)
    //   const i32 constFilterWidth = 3;
    //   const i32 constFilterHeight = 3;
    i32 divisor = iSize * iSize;
-   BYTE *pSource1;
+   byte *pSource1;
 
 
-   BYTE *pSource2;
+   byte *pSource2;
 
 
-   BYTE *pDestination;
+   byte *pDestination;
 
 
-   BYTE *pDestination_1;
+   byte *pDestination_1;
 
 
-   BYTE *pDestination_2;
+   byte *pDestination_2;
 
 
-   BYTE *pSource1_1;
+   byte *pSource1_1;
 
 
-   BYTE *pSource1_2;
+   byte *pSource1_2;
 
 
-   BYTE *pSource2_1;
+   byte *pSource2_1;
 
 
-   BYTE *pSource2_2;
+   byte *pSource2_2;
 
 
-   //   WORD *pDestination_2;
+   //   ::u16 *pDestination_2;
 
 
-   //   BYTE *pFilter;
+   //   byte *pFilter;
 
    //u32 *pConv;
 
-   //   BYTE pFilter[constFilterHeight *constFilterWidth];
+   //   byte pFilter[constFilterHeight *constFilterWidth];
    //u32 pConv[constFilterHeight * constFilterWidth * 3];
    //   __memset(pFilter, 1, constFilterHeight * constFilterWidth);
 
@@ -6669,13 +6669,13 @@ i32 iAlpha)
          {
             for(i32 xFilter = 0; xFilter < iFilterXEnd; xFilter++)
             {
-               pDestination_2[0] = (BYTE)dwR;
+               pDestination_2[0] = (byte)dwR;
 
 
-               pDestination_2[1] = (BYTE)dwG;
+               pDestination_2[1] = (byte)dwG;
 
 
-               pDestination_2[2] = (BYTE)dwB;
+               pDestination_2[2] = (byte)dwB;
 
 
                pDestination_2 += 3;
@@ -6700,7 +6700,7 @@ i32 iAlpha)
 
 
 // dCompress de 0 a 1
-bool imaging::HueVRCP(::image * pimage,COLORREF crHue,double dCompress)
+bool imaging::HueVRCP(::image * pimage,color32_t crHue,double dCompress)
 {
 
    pimage->map();
@@ -6714,7 +6714,7 @@ bool imaging::HueVRCP(::image * pimage,COLORREF crHue,double dCompress)
 
    }
 
-   COLORREF cra[256];
+   color32_t cra[256];
 
    color color;
 
@@ -6786,7 +6786,7 @@ bool imaging::HueVRCP(::image * pimage,COLORREF crHue,double dCompress)
 //}
 
 
-void imaging::AlphaTextOut(::draw2d::graphics *pgraphics,i32 left,i32 top,const char * pcsz,i32 len,COLORREF cr,double dBlend)
+void imaging::AlphaTextOut(::draw2d::graphics *pgraphics,i32 left,i32 top,const char * pcsz,i32 len,color32_t cr,double dBlend)
 {
 
    string str(pcsz,len);
@@ -6813,7 +6813,7 @@ void imaging::AlphaTextOut(::draw2d::graphics *pgraphics,i32 left,i32 top,const 
 
    }
 
-   brushText->create_solid(ARGB((BYTE)(255 * dBlend),colorref_get_r_value(cr),colorref_get_g_value(cr),colorref_get_b_value(cr)));
+   brushText->create_solid(ARGB((byte)(255 * dBlend),colorref_get_r_value(cr),colorref_get_g_value(cr),colorref_get_b_value(cr)));
 
    pgraphics->set(brushText);
 

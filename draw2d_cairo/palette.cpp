@@ -60,7 +60,7 @@ namespace draw2d_cairo
    */
 
    /*
-      UINT palette::GetPaletteEntries(UINT nStartIndex, UINT nNumEntries, LPPALETTEENTRY lpPaletteColors) const
+      ::u32 palette::GetPaletteEntries(::u32 nStartIndex, ::u32 nNumEntries, LPPALETTEENTRY lpPaletteColors) const
       {
 
          //ASSERT(get_os_data() != nullptr);
@@ -71,7 +71,7 @@ namespace draw2d_cairo
       }
 
 
-      UINT palette::SetPaletteEntries(UINT nStartIndex, UINT nNumEntries, LPPALETTEENTRY lpPaletteColors)
+      ::u32 palette::SetPaletteEntries(::u32 nStartIndex, ::u32 nNumEntries, LPPALETTEENTRY lpPaletteColors)
       {
 
          //ASSERT(get_os_data() != nullptr);
@@ -82,7 +82,7 @@ namespace draw2d_cairo
       }
 
 
-      void palette::AnimatePalette(UINT nStartIndex, UINT nNumEntries, LPPALETTEENTRY lpPaletteColors)
+      void palette::AnimatePalette(::u32 nStartIndex, ::u32 nNumEntries, LPPALETTEENTRY lpPaletteColors)
       {
 
          //ASSERT(get_os_data() != nullptr);
@@ -92,7 +92,7 @@ namespace draw2d_cairo
       }
 
 
-      UINT palette::GetNearestPaletteIndex(COLORREF crColor) const
+      ::u32 palette::GetNearestPaletteIndex(color32_t crColor) const
       {
 
          //ASSERT(get_os_data() != nullptr);
@@ -106,7 +106,7 @@ namespace draw2d_cairo
 
    /*
 
-      int_bool palette::ResizePalette(UINT nNumEntries)
+      int_bool palette::ResizePalette(::u32 nNumEntries)
       {
 
          //ASSERT(get_os_data() != nullptr);
@@ -125,9 +125,9 @@ namespace draw2d_cairo
 
          //ASSERT(get_os_data() != nullptr);
 
-         //WORD nEntries;
+         //::u16 nEntries;
 
-         //::GetObject(get_os_data(), sizeof(WORD), &nEntries); return (i32)nEntries;
+         //::GetObject(get_os_data(), sizeof(::u16), &nEntries); return (i32)nEntries;
 
          return 0;
 

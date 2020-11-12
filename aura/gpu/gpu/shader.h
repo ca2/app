@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 namespace gpu
@@ -49,15 +49,16 @@ namespace gpu
 
       //virtual shader * create_shader(const char* pszVertex, enum_shader eshader);
 
-      //static ::estatus shader_compile_errors(GLuint shader, enum_shader eshader, string & strSummary);
+      //static ::estatus shader_compile_errors(GL::u32 shader, enum_shader eshader, string & strSummary);
 
-      //static ::estatus program_compile_errors(GLuint program, string & strSummary);
+      //static ::estatus program_compile_errors(GL::u32 program, string & strSummary);
 
 
    };
 
 
 } // namespace gpu
+
 
 
 

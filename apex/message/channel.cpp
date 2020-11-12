@@ -137,7 +137,7 @@ __pointer(::message::base) channel::get_message_base(const ::id & id, WPARAM wpa
 
    xxf_zero(msg);
 
-   msg.message = (UINT) id.m_emessage;
+   msg.message = (::u32) id.m_emessage;
    msg.wParam = wparam;
    msg.lParam = lparam;
 
@@ -318,16 +318,16 @@ void channel::finalize()
 
    m_idrouteNew.remove_all();
 
-   for (auto& methoda : m_mapMethod.values())
+   for (auto& procedurea : m_mapProcedure.values())
    {
 
-      methoda.finalize();
+      procedurea.finalize();
 
-      methoda.remove_all();
+      procedurea.remove_all();
 
    }
 
-   m_mapMethod.remove_all();
+   m_mapProcedure.remove_all();
 
    ::object::finalize();
 

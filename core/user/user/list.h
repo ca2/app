@@ -30,7 +30,7 @@ namespace user
       ::draw2d::fastblur                     m_blur;
       index_map < ::image_pointer >          m_mapBlur;
       index_map < string >                   m_mapText;
-      index_map < COLORREF >                 m_mapBackColor;
+      index_map < color32_t >                 m_mapBackColor;
       ::draw2d::fastblur                     m_blurIcon;
       index_map < ::image_pointer >          m_mapIconBlur;
       double                                 m_dIconSaturation;
@@ -364,7 +364,7 @@ namespace user
 
       virtual void _001OnClip(::draw2d::graphics_pointer & pgraphics) override;
 
-      //virtual bool get_client_rect(RECT * prect) override;
+      //virtual bool get_client_rect(RECT32 * prect) override;
 
 
       virtual void update_icon_list_view_sort();

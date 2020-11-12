@@ -10,7 +10,7 @@ inline void __exchange(::var_stream & s, i16 & i);
 inline void __exchange(::var_stream & s, i32 & i);
 inline void __exchange(::var_stream & s, i64 & i);
 #if !defined(LINUX)
-inline void __exchange(::var_stream & s, LONG & l);
+inline void __exchange(::var_stream & s, long & l);
 #endif
 inline void __exchange(::var_stream & s, u8 & u);
 inline void __exchange(::var_stream & s, u16 & u);

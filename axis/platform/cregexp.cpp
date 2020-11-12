@@ -30,7 +30,7 @@
 //         delete un.charclass;
 //         break;
 //      case ReWord:
-//         delete un.ui;
+//         delete un.u;
 //         break;
 //      case ReSymb:
 //         delete un.symbol;
@@ -166,7 +166,7 @@
 //      };
 //      if (next->op == ReWord)
 //      {
-//         firstChar = (*next->un.ui)[0];
+//         firstChar = (*next->un.u)[0];
 //      }
 //      break;
 //   };
@@ -566,7 +566,7 @@
 //            if (idx > 0) delete retmp;
 //         }
 //         reword->op = ReWord;
-//         wcword.implode(*reword->un.ui);
+//         wcword.implode(*reword->un.u);
 //         reword->next = reafterword;
 //         if (reafterword)
 //            reafterword->prev = reword;
@@ -837,12 +837,12 @@
 //         if (!checkMetaSymbol(re->un.metaSymbol, toParse)) return false;
 //         break;
 //      case ReWord:
-//         wlen = re->un.ui->get_length();
+//         wlen = re->un.u->get_length();
 //         if (toParse+wlen > end) return false;
 //         if (ignoreCase)
 //         {
 //            string strAnalyze = pattern.Mid(toParse, wlen);
-//            if(strAnalyze.compare_ci(*re->un.ui))
+//            if(strAnalyze.compare_ci(*re->un.u))
 //               return false;
 //            toParse += wlen;
 //         }
@@ -850,7 +850,7 @@
 //         {
 //            for(i = 0; i < wlen; i++)
 //            {
-//               if(((const char *)pattern)[toParse+i] != (*re->un.ui)[i]) return false;
+//               if(((const char *)pattern)[toParse+i] != (*re->un.u)[i]) return false;
 //            };
 //            toParse += wlen;
 //         }

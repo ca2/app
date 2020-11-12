@@ -77,9 +77,9 @@ namespace apex
             GetModuleFileName(nullptr, pszModuleFilePath, MAX_PATH + 1);
 
 
-            DWORD dw;
+            ::u32 dw;
 
-            DWORD dwResSize = GetFileVersionInfoSize(
+            ::u32 dwResSize = GetFileVersionInfoSize(
                pszModuleFilePath,
 
                &dw);
@@ -87,7 +87,7 @@ namespace apex
 
             if(dwResSize > 0)
             {
-               LPVOID pdata = new BYTE[dwResSize];
+               LPVOID pdata = new byte[dwResSize];
 
                if(GetFileVersionInfo(
                   pszModuleFilePath,
@@ -97,10 +97,10 @@ namespace apex
                   pdata))
 
                {
-                  UINT cbTranslate;
+                  ::u32 cbTranslate;
                   struct LANGANDCODEPAGE {
-                     WORD wLanguage;
-                     WORD wCodePage;
+                     ::u16 wLanguage;
+                     ::u16 wCodePage;
                   } *pTranslate;
 
 
@@ -119,7 +119,7 @@ namespace apex
                   {
                      LPTSTR psz;
 
-                     UINT uiSize;
+                     ::u32 uSize;
 
                      strKey.Format(
                         TEXT("\\StringFileInfo\\%04x%04x\\FileDescription"),
@@ -353,7 +353,7 @@ namespace apex
 //
 //      // get path of executable
 //   /*   char szBuff[_MAX_PATH];
-//      DWORD dwRet = ::GetModuleFileName(m_hInstance, szBuff, _MAX_PATH);
+//      ::u32 dwRet = ::GetModuleFileName(m_hInstance, szBuff, _MAX_PATH);
 //      ASSERT( dwRet != 0 && dwRet != _MAX_PATH );
 //      if( dwRet == 0 || dwRet == _MAX_PATH )
 //         __throw(apex_exception());*/
@@ -424,7 +424,7 @@ namespace apex
    }
 
 
-   ITHREAD application::get_thread_id()
+   ithread_t application::get_thread_id()
    {
 
       return ::pthread_self();

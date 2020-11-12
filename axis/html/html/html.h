@@ -12,7 +12,7 @@ namespace html
 
 
 
-      COLORREF                               m_clrInvalid;   // an invalid color
+      color32_t                               m_clrInvalid;   // an invalid color
       u16                                    m_percentMax;   // maximum allowable percentage value
       CNamedColors                           m_namedColors;   // collection of named colors
       __composite(LiteHTMLEntityResolver)    m_pentitysolver;

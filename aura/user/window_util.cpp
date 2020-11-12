@@ -661,7 +661,7 @@ namespace user
    }*/
 
 
-   void window_util::send_message_to_descendants(oswindow oswindow, UINT message, WPARAM wParam, LPARAM lParam, bool bDeep)
+   void window_util::send_message_to_descendants(oswindow oswindow, ::u32 message, WPARAM wParam, LPARAM lParam, bool bDeep)
    {
 
 #if defined(WINDOWS_DESKTOP)

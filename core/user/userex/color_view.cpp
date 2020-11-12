@@ -29,7 +29,7 @@ namespace flag
    void dk(::draw2d::graphics_pointer & pgraphics, double x, double y, double w, double h)
    {
 
-      COLORREF crDenmarkRoed = ARGB(255, 200, 16, 46);
+      color32_t crDenmarkRoed = ARGB(255, 200, 16, 46);
 
       double dx = w / 90.0;
 
@@ -69,11 +69,11 @@ namespace visual
 
       double dh = (double) h;
 
-      UINT uScan;
+      ::u32 uScan;
 
-      uScan = pimage->scan_size() / sizeof(COLORREF);
+      uScan = pimage->scan_size() / sizeof(color32_t);
 
-      COLORREF * pline;
+      color32_t * pline;
 
       for (index i = 0; i < w; i++)
       {
@@ -180,12 +180,12 @@ namespace visual
             double _dG = (dCMin + dG * dCAdd);
             double _dB = (dCMin + dB * dCAdd);
 
-            //BYTE uchR = (BYTE)primitive_color_round(m_dR * 255.0);
-            //m_uchG = (BYTE)primitive_color_round(m_dG * 255.0);
-            //m_uchB = (BYTE)primitive_color_round(m_dB * 255.0);
+            //byte uchR = (byte)primitive_color_round(m_dR * 255.0);
+            //m_uchG = (byte)primitive_color_round(m_dG * 255.0);
+            //m_uchB = (byte)primitive_color_round(m_dB * 255.0);
 
 
-            *pline = IMAGE_ARGB(255, BYTE(_dR*255.0), BYTE(_dG*255.0), BYTE(_dB*255.0));
+            *pline = IMAGE_ARGB(255, byte(_dR*255.0), byte(_dG*255.0), byte(_dB*255.0));
 
             pline+=uScan;
 
@@ -210,14 +210,14 @@ namespace visual
 
       double dh = (double) h;
 
-      UINT uScan;
+      ::u32 uScan;
 
 
       //dS = 1.0 - ((double)j / dh);
 
-      uScan = pimage->scan_size() / sizeof(COLORREF);
+      uScan = pimage->scan_size() / sizeof(color32_t);
 
-      COLORREF * pline;
+      color32_t * pline;
 
       double dR, dG, dB;
 
@@ -315,12 +315,12 @@ namespace visual
          double _dG = (dCMin + dG * dCAdd);
          double _dB = (dCMin + dB * dCAdd);
 
-         //BYTE uchR = (BYTE)primitive_color_round(m_dR * 255.0);
-         //m_uchG = (BYTE)primitive_color_round(m_dG * 255.0);
-         //m_uchB = (BYTE)primitive_color_round(m_dB * 255.0);
+         //byte uchR = (byte)primitive_color_round(m_dR * 255.0);
+         //m_uchG = (byte)primitive_color_round(m_dG * 255.0);
+         //m_uchB = (byte)primitive_color_round(m_dB * 255.0);
 
          pline = pimage->get_data() + uScan * j;
-         COLORREF cr = IMAGE_ARGB(255, BYTE(_dR*255.0), BYTE(_dG*255.0), BYTE(_dB*255.0));
+         color32_t cr = IMAGE_ARGB(255, byte(_dR*255.0), byte(_dG*255.0), byte(_dB*255.0));
          for (index i = 0; i < w; i++)
          {
 
@@ -388,8 +388,8 @@ namespace userex
 
       MESSAGE_LINK(e_message_create, pchannel, this, &color_view::_001OnCreate);
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &color_view::_001OnMouseMove);
-      MESSAGE_LINK(WM_LBUTTONDOWN, pchannel, this, &color_view::_001OnLButtonDown);
-      MESSAGE_LINK(WM_LBUTTONUP, pchannel, this, &color_view::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_lbutton_down, pchannel, this, &color_view::_001OnLButtonDown);
+      MESSAGE_LINK(e_message_lbutton_up, pchannel, this, &color_view::_001OnLButtonUp);
       MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &color_view::_001OnShowWindow);
 
       m_pimageTemplate = create_image({2048,  2048});
@@ -506,7 +506,7 @@ namespace userex
 
          auto pointColor = point - m_rectColors.top_left();
 
-         COLORREF cr = m_pimage->GetPixel(__point(pointColor));
+         color32_t cr = m_pimage->GetPixel(__point(pointColor));
 
          color c(cr);
 
@@ -542,7 +542,7 @@ namespace userex
 
          auto pointLuminance = point - ::size(m_rectColors.center().x, m_rectColors.top);
 
-//         COLORREF cr = m_pimageLuminance->m_pcolorref[point->x + (m_pimage->m_iScan / sizeof(COLORREF)) * point->y];
+//         color32_t cr = m_pimageLuminance->m_pcolorref[point->x + (m_pimage->m_iScan / sizeof(color32_t)) * point->y];
 
          m_hls.m_dL = 1.0 - ((double)pointLuminance.y / (double) m_pimage->height());
 
@@ -732,9 +732,9 @@ namespace userex
 
       ::point point;
 
-      point.x = (LONG) (r1.left + r1.width() * m_hls.m_dH);
+      point.x = (::i32) (r1.left + r1.width() * m_hls.m_dH);
 
-      point.y = (LONG) (r1.top + r1.height() * (1.0 - m_hls.m_dS));
+      point.y = (::i32) (r1.top + r1.height() * (1.0 - m_hls.m_dS));
 
       draw_beam(pgraphics, point);
 

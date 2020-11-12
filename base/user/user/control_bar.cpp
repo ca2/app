@@ -50,8 +50,8 @@ namespace user
       MESSAGE_LINK(WM_SIZEPARENT, pchannel, this, &control_bar::_001OnSizeParent);
       MESSAGE_LINK(WM_WINDOWPOSCHANGING, pchannel, this, &control_bar::_001OnWindowPosChanging);
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &control_bar::_001OnMouseMove);
-      MESSAGE_LINK(WM_LBUTTONDOWN, pchannel, this, &control_bar::_001OnLButtonDown);
-      MESSAGE_LINK(WM_LBUTTONUP, pchannel, this, &control_bar::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_lbutton_down, pchannel, this, &control_bar::_001OnLButtonDown);
+      MESSAGE_LINK(e_message_lbutton_up, pchannel, this, &control_bar::_001OnLButtonUp);
       MESSAGE_LINK(WM_LBUTTONDBLCLK, pchannel, this, &control_bar::_001OnLButtonDblClk);
       MESSAGE_LINK(WM_MOUSEACTIVATE, pchannel, this, &control_bar::_001OnMouseActivate);
       MESSAGE_LINK(e_message_create, pchannel, this, &control_bar::_001OnCreate);
@@ -219,7 +219,7 @@ namespace user
 #define ID_TIMER_WAIT   0xE000  // timer while waiting to show status
 #define ID_TIMER_CHECK  0xE001  // timer to check for removal of status
 
-   void control_bar::ResetTimer(UINT nEvent, UINT nTime)
+   void control_bar::ResetTimer(::u32 nEvent, ::u32 nTime)
    {
       KillTimer(ID_TIMER_WAIT);
       KillTimer(ID_TIMER_CHECK);
@@ -229,7 +229,7 @@ namespace user
    void control_bar::_001OnTimer(::timer * ptimer)
    {
       UNREFERENCED_PARAMETER(ptimer);
-//      UINT uEvent = ptimer->m_uEvent;
+//      ::u32 uEvent = ptimer->m_uEvent;
 #ifdef WINDOWS_DESKTOP
       auto psession = Session;
 
@@ -289,13 +289,13 @@ namespace user
 
       SCAST_PTR(::message::base, pbase, pmessage);
 
-      UINT message;
+      ::u32 message;
 
       message = pbase->m_id.umessage();
 
       // handle CBRS_FLYBY style (status bar flyby help)
       if (((m_dwStyle & CBRS_FLYBY) ||
-            message == WM_LBUTTONDOWN || message == WM_LBUTTONUP) &&
+            message == e_message_lbutton_down || message == e_message_lbutton_up) &&
             ((message >= WM_MOUSEFIRST && message <= WM_MOUSELAST)))
 //          (message >= WM_NCMOUSEFIRST && message <= WM_NCMOUSELAST)))
       {
@@ -344,7 +344,7 @@ namespace user
 
       LRESULT lResult;
 
-      UINT message;
+      ::u32 message;
 
       message = pbase->m_id.umessage();
 
@@ -630,7 +630,7 @@ namespace user
 //       SCAST_PTR(::message::base, pbase, pmessage);
 //       // handle delay hide/show
 //       bool bVis = (GetStyle() & WS_VISIBLE) != 0;
-//       UINT swpFlags = 0;
+//       ::u32 swpFlags = 0;
 //       if ((m_nStateFlags & delayHide) && bVis)
 //          swpFlags = SWP_HIDEWINDOW;
 //       else if ((m_nStateFlags & delayShow) && !bVis)
@@ -703,7 +703,7 @@ namespace user
 //      // handle delay hide/show
 ////      if (m_nStateFlags & (delayHide|delayShow))
 //      {
-//         UINT swpFlags = 0;
+//         ::u32 swpFlags = 0;
 //         //if (m_nStateFlags & delayHide)
 //         //{
 //         //   ASSERT((m_nStateFlags & delayShow) == 0);
@@ -895,9 +895,9 @@ namespace user
       ::rect rect1, rect2;
       rect1 = rect;
       rect2 = rect;
-      //   COLORREF clr = afxData.bWin4 ? afxData.clrBtnShadow : afxData.clrWindowFrame;
-//      COLORREF clr = afxData.clrBtnShadow;
-      COLORREF clr;
+      //   color32_t clr = afxData.bWin4 ? afxData.clrBtnShadow : afxData.clrWindowFrame;
+//      color32_t clr = afxData.clrBtnShadow;
+      color32_t clr;
       clr = RGB(128, 128, 123);
 
 

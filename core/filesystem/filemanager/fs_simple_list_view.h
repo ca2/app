@@ -79,7 +79,7 @@ namespace filemanager
             public:
 
                string             m_strFile;
-               UINT              m_uiTimer;
+               ::u32              m_uiTimer;
 
             };
 
@@ -128,7 +128,7 @@ namespace filemanager
             void install_message_routing(::channel * pchannel) override;
 
 
-            static UINT c_cdecl ThreadProcFillTask(LPVOID pParameter);
+            static ::u32 c_cdecl ThreadProcFillTask(LPVOID pParameter);
 
 
 

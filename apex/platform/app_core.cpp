@@ -1895,7 +1895,7 @@ __result(::apex::application) app_core::get_new_application(::object* pobjectCon
 
    WCHAR wsz[1024];
 
-   DWORD dwSize = sizeof(wsz) / sizeof(WCHAR);
+   ::u32 dwSize = sizeof(wsz) / sizeof(WCHAR);
 
    GetUserNameW(wsz, &dwSize);
 

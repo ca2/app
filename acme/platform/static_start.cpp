@@ -14,6 +14,13 @@ os_local * g_poslocal;
 #endif
 
 
+extern natural_meta_data < string_meta_data < ansichar > > * g_pansistringNil;
+
+extern natural_meta_data < string_meta_data < wd16char > > * g_pwd16stringNil;
+
+extern natural_meta_data < string_meta_data < wd32char > > * g_pwd32stringNil;
+
+
 static void delete_all_release_on_end();
 
 
@@ -197,7 +204,7 @@ namespace acme
 
 #endif
 
-   //map < ITHREAD, ITHREAD, ITHREAD, ITHREAD > * g_pmapThreadOn;
+   //map < ithread_t, ithread_t, ithread_t, ithread_t > * g_pmapThreadOn;
 
 #ifdef WINDOWS
 
@@ -365,7 +372,7 @@ namespace acme
 
 #endif
 
-      //map < ITHREAD, ITHREAD, ITHREAD, ITHREAD > * g_pmapThreadOn;
+      //map < ithread_t, ithread_t, ithread_t, ithread_t > * g_pmapThreadOn;
 
 #ifdef WINDOWS
 
@@ -573,7 +580,7 @@ namespace acme
 
       //g_pmutexThreadOn = new ::mutex();
 
-      //g_pmapThreadOn = new ::map < ITHREAD, ITHREAD, ITHREAD, ITHREAD >;
+      //g_pmapThreadOn = new ::map < ithread_t, ithread_t, ithread_t, ithread_t >;
 
       g_pmutexSystemHeap = new critical_section();
 
@@ -1130,7 +1137,7 @@ namespace acme
 
 
 
-CLASS_DECL_ACME COLORREF dk_red() // <3 tbs
+CLASS_DECL_ACME color32_t dk_red() // <3 tbs
 {
    return ARGB(255, 200, 16, 46);
 }

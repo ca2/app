@@ -68,7 +68,7 @@ CLASS_DECL_ACME int_bool is_window(oswindow oswindow)
 //
 //   }
 //
-//   DWORD dwThread = GetWindowThreadProcessId(hwndForeground, nullptr);
+//   ::u32 dwThread = GetWindowThreadProcessId(hwndForeground, nullptr);
 //
 //   xxf_zerop(pinfo);
 //
@@ -77,7 +77,7 @@ CLASS_DECL_ACME int_bool is_window(oswindow oswindow)
 //   if (!::GetGUIThreadInfo(dwThread, pinfo))
 //   {
 //
-//      DWORD dwLastError = ::GetLastError();
+//      ::u32 dwLastError = ::GetLastError();
 //
 //      return false;
 //
@@ -269,7 +269,7 @@ CLASS_DECL_ACME int_bool is_window(oswindow oswindow)
 ////}
 ////
 //
-////int_bool point_is_window_origin(POINT ptHitTest, oswindow oswindowExclude, int iMargin)
+////int_bool point_is_window_origin(POINT32 ptHitTest, oswindow oswindowExclude, int iMargin)
 ////{
 ////
 ////   auto poswindowa = get_top_level_windows();
@@ -360,7 +360,7 @@ CLASS_DECL_ACME string message_box_result_to_string(int iResult);
 //
 
 
-CLASS_DECL_ACME ::estatus _os_message_box(oswindow oswindow, const char* pszMessage, const char* pszTitle, ::emessagebox emessagebox, const ::future & future)
+CLASS_DECL_ACME ::estatus _os_message_box(oswindow oswindow, const char* pszMessage, const char* pszTitle, ::emessagebox emessagebox, const ::futurevar & futurevar)
 {
 
    string strMessage(pszMessage);
@@ -375,14 +375,14 @@ CLASS_DECL_ACME ::estatus _os_message_box(oswindow oswindow, const char* pszMess
 
    string strResult = message_box_result_to_string(iResult);
 
-   future(strResult);
+   futurevar(strResult);
 
    return ::success;
 
 }
 //
 //
-CLASS_DECL_ACME ::estatus os_message_box(oswindow oswindow, const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox, const ::future & future)
+CLASS_DECL_ACME ::estatus os_message_box(oswindow oswindow, const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox, const ::futurevar & futurevar)
 {
 
    //if (System.is_dedicated_thread())
@@ -399,7 +399,7 @@ CLASS_DECL_ACME ::estatus os_message_box(oswindow oswindow, const char * pszMess
 
    //}
 
-   return _os_message_box(oswindow, pszMessage, pszTitle, emessagebox, future);
+   return _os_message_box(oswindow, pszMessage, pszTitle, emessagebox, futurevar);
 
 }
 //
@@ -434,7 +434,7 @@ CLASS_DECL_ACME bool windows_register_class(WNDCLASSEXW* pwndclass)
    if (!::RegisterClassExW(pwndclass))
    {
 
-      DWORD dw = GetLastError();
+      ::u32 dw = GetLastError();
 
       return FALSE;
 
@@ -450,7 +450,7 @@ CLASS_DECL_ACME bool windows_register_class(WNDCLASSEXW* pwndclass)
 
 
 
-LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
+LRESULT CALLBACK WndProc(HWND hWnd, ::u32 message, WPARAM wParam, LPARAM lParam);
 
 WNDPROC g_pwindowprocedure = &WndProc;
 

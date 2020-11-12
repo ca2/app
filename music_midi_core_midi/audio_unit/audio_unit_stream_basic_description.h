@@ -55,10 +55,10 @@ namespace music
                SetFrom(desc);
             }
             
-            CAStreamBasicDescription(		double inSampleRate,		UInt32 inFormatID,
-                                     UInt32 inBytesPerPacket,	UInt32 inFramesPerPacket,
-                                     UInt32 inBytesPerFrame,		UInt32 inChannelsPerFrame,
-                                     UInt32 inBitsPerChannel,	UInt32 inFormatFlags);
+            CAStreamBasicDescription(		double inSampleRate,		::u32 inFormatID,
+                                     ::u32 inBytesPerPacket,	::u32 inFramesPerPacket,
+                                     ::u32 inBytesPerFrame,		::u32 inChannelsPerFrame,
+                                     ::u32 inBitsPerChannel,	::u32 inFormatFlags);
             
             //	Assignment
             CAStreamBasicDescription&	operator=(const AudioStreamBasicDescription& v) { SetFrom(v); return *this; }
@@ -96,15 +96,15 @@ namespace music
             }
             
             // for sanity with interleaved/deinterleaved possibilities, never access mChannelsPerFrame, use these:
-            UInt32	NumberInterleavedChannels() const	{ return IsInterleaved() ? mChannelsPerFrame : 1; }
-            UInt32	NumberChannelStreams() const		{ return IsInterleaved() ? 1 : mChannelsPerFrame; }
-            UInt32	NumberChannels() const				{ return mChannelsPerFrame; }
-            UInt32	SampleWordSize() const				{
+            ::u32	NumberInterleavedChannels() const	{ return IsInterleaved() ? mChannelsPerFrame : 1; }
+            ::u32	NumberChannelStreams() const		{ return IsInterleaved() ? 1 : mChannelsPerFrame; }
+            ::u32	NumberChannels() const				{ return mChannelsPerFrame; }
+            ::u32	SampleWordSize() const				{
                return (mBytesPerFrame > 0 && NumberInterleavedChannels()) ? mBytesPerFrame / NumberInterleavedChannels() :  0;
             }
             
-            UInt32	FramesToBytes(UInt32 nframes) const	{ return nframes * mBytesPerFrame; }
-            UInt32	BytesToFrames(UInt32 nbytes) const	{
+            ::u32	FramesToBytes(::u32 nframes) const	{ return nframes * mBytesPerFrame; }
+            ::u32	BytesToFrames(::u32 nbytes) const	{
                //Assert(mBytesPerFrame > 0, "bytesPerFrame must be > 0 in BytesToFrames");
                return nbytes / mBytesPerFrame;
             }
@@ -118,7 +118,7 @@ namespace music
             //
             //	manipulation
             
-            void	SetCanonical(UInt32 nChannels, bool interleaved)
+            void	SetCanonical(::u32 nChannels, bool interleaved)
             // note: leaves sample rate untouched
             {
                mFormatID = kAudioFormatLinearPCM;
@@ -138,12 +138,12 @@ namespace music
             bool	IsCanonical() const
             {
                if (mFormatID != kAudioFormatLinearPCM) return false;
-               UInt32 reqFormatFlags;
-               UInt32 flagsMask = (kLinearPCMFormatFlagIsFloat | kLinearPCMFormatFlagIsBigEndian | kLinearPCMFormatFlagIsSignedInteger | kLinearPCMFormatFlagIsPacked | kLinearPCMFormatFlagIsAlignedHigh | kLinearPCMFormatFlagsSampleFractionMask);
+               ::u32 reqFormatFlags;
+               ::u32 flagsMask = (kLinearPCMFormatFlagIsFloat | kLinearPCMFormatFlagIsBigEndian | kLinearPCMFormatFlagIsSignedInteger | kLinearPCMFormatFlagIsPacked | kLinearPCMFormatFlagIsAlignedHigh | kLinearPCMFormatFlagsSampleFractionMask);
                bool interleaved = (mFormatFlags & kAudioFormatFlagIsNonInterleaved) == 0;
                unsigned sampleSize = sizeof(CoreAudioSampleType);
                reqFormatFlags = kAudioFormatFlagIsFloat | kAudioFormatFlagsNativeEndian | kAudioFormatFlagIsPacked;
-               UInt32 reqFrameSize = interleaved ? (mChannelsPerFrame * sampleSize) : sampleSize;
+               ::u32 reqFrameSize = interleaved ? (mChannelsPerFrame * sampleSize) : sampleSize;
                
                return ((mFormatFlags & flagsMask) == reqFormatFlags
                        && mBitsPerChannel == 8 * sampleSize
@@ -152,7 +152,7 @@ namespace music
                        && mBytesPerPacket == reqFrameSize);
             }
             
-            void	SetAUCanonical(UInt32 nChannels, bool interleaved)
+            void	SetAUCanonical(::u32 nChannels, bool interleaved)
             {
                mFormatID = kAudioFormatLinearPCM;
          #if CA_PREFER_FIXED_POINT
@@ -171,11 +171,11 @@ namespace music
                }
             }
             
-            void	ChangeNumberChannels(UInt32 nChannels, bool interleaved)
+            void	ChangeNumberChannels(::u32 nChannels, bool interleaved)
             // alter an existing format
             {
                //Assert(IsPCM(), "ChangeNumberChannels only works for PCM formats");
-               UInt32 wordSize = SampleWordSize();	// get this before changing ANYTHING
+               ::u32 wordSize = SampleWordSize();	// get this before changing ANYTHING
                if (wordSize == 0)
                   wordSize = (mBitsPerChannel + 7) / 8;
                mChannelsPerFrame = nChannels;
@@ -230,7 +230,7 @@ namespace music
             static void			NormalizeLinearPCMFormat(AudioStreamBasicDescription& ioDescription);
             static void			ResetFormat(AudioStreamBasicDescription& ioDescription);
             static void			FillOutFormat(AudioStreamBasicDescription& ioDescription, const AudioStreamBasicDescription& inTemplateDescription);
-            static void			GetSimpleName(const AudioStreamBasicDescription& inDescription, char* outName, UInt32 inMaxNameLength, bool inAbbreviate);
+            static void			GetSimpleName(const AudioStreamBasicDescription& inDescription, char* outName, ::u32 inMaxNameLength, bool inAbbreviate);
          #if CoreAudio_Debug
             static void			PrintToLog(const AudioStreamBasicDescription& inDesc);
          #endif

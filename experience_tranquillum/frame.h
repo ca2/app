@@ -45,18 +45,18 @@
                //::draw2d::font_pointer                m_fontCaption;
                e_style                          m_estyle;
                //::user::front_end_schema         m_schema;
-               COLORREF                         m_crFrameBorder;
-               COLORREF                         m_crMoveableBorderHilight;
-               COLORREF                         m_crMoveableBorderDkShadow;
-               COLORREF                         m_crCaptionTextBk;
-               COLORREF                         m_crActiveCaptionTextBk;
-               COLORREF                         m_crCaptionText;
+               color32_t                         m_crFrameBorder;
+               color32_t                         m_crMoveableBorderHilight;
+               color32_t                         m_crMoveableBorderDkShadow;
+               color32_t                         m_crCaptionTextBk;
+               color32_t                         m_crActiveCaptionTextBk;
+               color32_t                         m_crCaptionText;
                ::draw2d::pen_pointer                 m_penText1;
                ::draw2d::pen_pointer                 m_penFace1;
                ::draw2d::pen_pointer                 m_penHilight1;
                ::draw2d::pen_pointer                 m_penShadow1;
                ::draw2d::pen_pointer                 m_penDkShadow1;
-               COLORREF                         m_crDkShadow;
+               color32_t                         m_crDkShadow;
                size                             m_minSize;
 
                ::draw2d::pen_pointer                 m_penHollow1;
@@ -71,19 +71,19 @@
 
                virtual ~frame();
 
-               virtual COLORREF get_border_main_body_color() override;
+               virtual color32_t get_border_main_body_color() override;
 
                virtual bool is_translucid_style(e_style estyle);
 
-               virtual void set_moveable_border_color(COLORREF cr);
+               virtual void set_moveable_border_color(color32_t cr);
 
-               virtual void set_button_color_schema_001(COLORREF crMoveableBorder);
+               virtual void set_button_color_schema_001(color32_t crMoveableBorder);
 
                virtual void set_frame_color_system_default_001();
 
                virtual void on_style_change_001_and_002();
 
-               virtual COLORREF get_style_moveable_border_color(e_style estyle);
+               virtual color32_t get_style_moveable_border_color(e_style estyle);
 
                virtual void OnMove(__pointer(::user::interaction) pframewindow) override;
 
@@ -101,7 +101,7 @@
 
                virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-               virtual bool get_element_rect(RECT * prect, e_element eelement) override;
+               virtual bool get_element_rect(RECT32 * prect, e_element eelement) override;
 
 
                virtual bool hit_test(const point &point, e_element &eelementParam);
@@ -109,12 +109,12 @@
                virtual void Glass(::draw2d::graphics_pointer & pgraphics, const ::rect & rect);
 
 
-               virtual void ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::rect & rect, COLORREF cr, BYTE bAlpha);
+               virtual void ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::rect & rect, color32_t cr, byte bAlpha);
 
 
                //virtual ::user::front_end_schema * get_user_front_end_schema();
 
-               virtual void Draw3dRectSide(::draw2d::graphics_pointer & pgraphics, const ::rect & rect, e_border eborder, COLORREF crTopLeft, COLORREF crBottomRight);
+               virtual void Draw3dRectSide(::draw2d::graphics_pointer & pgraphics, const ::rect & rect, e_border eborder, color32_t crTopLeft, color32_t crBottomRight);
 
                virtual void on_draw_frame(::draw2d::graphics_pointer & pgraphics);
 

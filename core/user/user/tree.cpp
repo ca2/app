@@ -216,8 +216,8 @@ namespace user
 
          auto pointCursor=      psession->get_cursor_pos();
 
-         DWORD dwHoverIn = 384;
-         DWORD dwHoverOut = 1284;
+         ::u32 dwHoverIn = 384;
+         ::u32 dwHoverOut = 1284;
          _001ScreenToClient(&pointCursor);
          bool bTreeHover = rectClient.contains(pointCursor);
          if(bTreeHover)
@@ -236,11 +236,11 @@ namespace user
             }
             else
             {
-               DWORD dwCurve =  (DWORD) (255.0 * (1.0 - pow(2.718281, -3.3 * __double(m_tickHoverStart.elapsed()) / dwHoverIn)));
+               ::u32 dwCurve =  (::u32) (255.0 * (1.0 - pow(2.718281, -3.3 * __double(m_tickHoverStart.elapsed()) / dwHoverIn)));
                if(m_uchHoverAlphaInit + dwCurve > 255)
                   m_uchHoverAlpha = 255;
                else
-                  m_uchHoverAlpha =  (BYTE) (m_uchHoverAlphaInit + dwCurve);
+                  m_uchHoverAlpha =  (byte) (m_uchHoverAlphaInit + dwCurve);
             }
          }
          else
@@ -260,11 +260,11 @@ namespace user
             }
             else
             {
-               DWORD dwCurve =  (DWORD) (255.0 * (1.0 - pow(2.718281, -3.3 * __double(m_tickHoverEnd.elapsed()) / dwHoverOut)));
+               ::u32 dwCurve =  (::u32) (255.0 * (1.0 - pow(2.718281, -3.3 * __double(m_tickHoverEnd.elapsed()) / dwHoverOut)));
                if(m_uchHoverAlphaInit < dwCurve)
                   m_uchHoverAlpha = 0;
                else
-                  m_uchHoverAlpha = (BYTE) (m_uchHoverAlphaInit - dwCurve);
+                  m_uchHoverAlpha = (byte) (m_uchHoverAlphaInit - dwCurve);
             }
          }
 
@@ -302,11 +302,11 @@ namespace user
 
             drawitemdata.m_rect = drawitemdata.m_rectClient;
 
-            drawitemdata.m_rect.left = (LONG) (drawitemdata.m_iIndentation * pitem->m_iLevel);
+            drawitemdata.m_rect.left = (::i32) (drawitemdata.m_iIndentation * pitem->m_iLevel);
 
-            drawitemdata.m_rect.top = (LONG) (iItem * drawitemdata.m_iItemHeight);
+            drawitemdata.m_rect.top = (::i32) (iItem * drawitemdata.m_iItemHeight);
 
-            drawitemdata.m_rect.bottom = (LONG) (drawitemdata.m_rect.top + drawitemdata.m_iItemHeight);
+            drawitemdata.m_rect.bottom = (::i32) (drawitemdata.m_rect.top + drawitemdata.m_iItemHeight);
 
             drawitemdata.m_rect.right = m_iCurrentViewWidth;
 
@@ -460,7 +460,7 @@ namespace user
 
          //   class imaging & imaging = System.imaging();
 
-         //   COLORREF crTranslucid = RGB(0, 0, 0);
+         //   color32_t crTranslucid = RGB(0, 0, 0);
 
          //   imaging.color_blend(data.m_pdc,    rectUnion.left, rectUnion.top,
          //   rectUnion.width(), rectUnion.height(),
@@ -637,7 +637,7 @@ namespace user
 
       SCAST_PTR(::message::mouse, pmouse, pmessage);
 
-      m_uiLButtonUpFlags = (UINT) pmouse->m_nFlags;
+      m_uiLButtonUpFlags = (::u32) pmouse->m_nFlags;
 
       m_pointLButtonUp = pmouse->m_point;
 
@@ -837,10 +837,10 @@ namespace user
 
       MESSAGE_LINK(e_message_create, pchannel, this, &tree::_001OnCreate);
       MESSAGE_LINK(WM_LBUTTONDBLCLK, pchannel, this, &tree::_001OnLButtonDblClk);
-      MESSAGE_LINK(WM_LBUTTONUP, pchannel, this, &tree::_001OnLButtonUp);
-      MESSAGE_LINK(WM_LBUTTONDOWN, pchannel, this, &tree::_001OnLButtonDown);
-      MESSAGE_LINK(WM_RBUTTONUP, pchannel, this, &tree::_001OnRButtonUp);
-      MESSAGE_LINK(WM_RBUTTONDOWN, pchannel, this, &tree::_001OnRButtonDown);
+      MESSAGE_LINK(e_message_lbutton_up, pchannel, this, &tree::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_lbutton_down, pchannel, this, &tree::_001OnLButtonDown);
+      MESSAGE_LINK(e_message_rbutton_up, pchannel, this, &tree::_001OnRButtonUp);
+      MESSAGE_LINK(e_message_rbutton_down, pchannel, this, &tree::_001OnRButtonDown);
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &tree::_001OnMouseMove);
       MESSAGE_LINK(WM_MOUSELEAVE, pchannel, this, &tree::_001OnMouseLeave);
       MESSAGE_LINK(WM_HSCROLL, pchannel, this, &tree::_001OnHScroll);
@@ -858,7 +858,7 @@ namespace user
 
       sizeTotal.cx = m_iCurrentViewWidth;
 
-      sizeTotal.cy = (LONG)(get_proper_item_count() * _001GetItemHeight());
+      sizeTotal.cy = (::i32)(get_proper_item_count() * _001GetItemHeight());
 
       set_total_size(sizeTotal);
 
@@ -868,7 +868,7 @@ namespace user
 
 
    bool tree::_001GetItemElementRect(
-   RECT * prect,
+   RECT32 * prect,
 
    ::user::tree_draw_item &drawitem,
    ::user::e_tree_element eelement)

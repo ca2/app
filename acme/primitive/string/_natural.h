@@ -57,19 +57,14 @@ public:
 
 
 template < >
-inline natural_meta_data < string_meta_data < ansichar > > * __nil < natural_meta_data < string_meta_data < ansichar > > >();
+CLASS_DECL_ACME natural_meta_data < string_meta_data < ansichar > > * __nil < natural_meta_data < string_meta_data < ansichar > > >();
 
 template < >
-inline natural_meta_data < string_meta_data < wd16char > > * __nil < natural_meta_data < string_meta_data < wd16char > > >();
+CLASS_DECL_ACME natural_meta_data < string_meta_data < wd16char > > * __nil < natural_meta_data < string_meta_data < wd16char > > >();
 
 template < >
-inline natural_meta_data < string_meta_data < wd32char > > * __nil < natural_meta_data < string_meta_data < wd32char > > >();
+CLASS_DECL_ACME natural_meta_data < string_meta_data < wd32char > > * __nil < natural_meta_data < string_meta_data < wd32char > > >();
 
-extern natural_meta_data < string_meta_data < ansichar > > * g_pansistringNil;
-
-extern natural_meta_data < string_meta_data < wd16char > > * g_pwd16stringNil;
-
-extern natural_meta_data < string_meta_data < wd32char > > * g_pwd32stringNil;
 
 
 

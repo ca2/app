@@ -1670,7 +1670,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="..\..\platform-windows\version.rc">
+    <ResourceCompile Include="..\..\..\archive\platform-windows\version.rc">
       <Filter>Source Files\Resource Files</Filter>
     </ResourceCompile>
   </ItemGroup>

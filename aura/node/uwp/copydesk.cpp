@@ -18,75 +18,28 @@ namespace uwp
 
    copydesk::copydesk()
    {
+      
+      m_bHasFile = false;
+
+      m_bHasPlainText = false;
+
+      m_eventsink = ref new event_sink;
+
+      m_eventsink->m_pcopydesk = this;
+
    }
+
 
    copydesk::~copydesk()
    {
+
    }
 
 
    bool copydesk::_has_filea()
    {
 
-      bool bHasFile = false;
-
-      defer_main_thread([&bHasFile, this]()
-      {
-
-         ::Windows::ApplicationModel::DataTransfer::DataPackageView ^ view = ::Windows::ApplicationModel::DataTransfer::Clipboard::GetContent();
-
-         if(view == nullptr)
-         {
-
-            //iFileCount = 0;
-            return;
-
-         }
-
-         if(view->Contains(::Windows::ApplicationModel::DataTransfer::StandardDataFormats::ApplicationLink))
-         {
-
-            bHasFile = true;
-
-         }
-         //else if(view->Contains("FileDrop"))
-         //{
-
-         //   HGLOBAL hglobal;
-
-         //   ::Windows::Storage::Streams::IInputStream ^ stream = (::Windows::Storage::Streams::IInputStream ^):: wait(view->GetDataAsync("FileDrop"));
-
-         //   ::Windows::Storage::Streams::IBuffer ^ buffer = ref new ::Windows::Storage::Streams::Buffer(sizeof(HGLOBAL));
-
-         //   stream->ReadAsync(buffer, sizeof(HGLOBAL), ::Windows::Storage::Streams::InputStreamOptions::None);
-
-         //   memory memory;
-
-         //   memory.set_os_buffer(buffer);
-
-         //   ::memcpy_dup(&hglobal, memory.get_data(), sizeof(HGLOBAL));
-
-         //   //iCount = ::DragQueryFile(hglobal , 0xFFFFFFFF, nullptr, 0);
-
-         //   //__throw(todo());
-         //   // assumes true
-
-         //   bHasFile = true;
-
-         //}
-         else if(view->Contains(::Windows::ApplicationModel::DataTransfer::StandardDataFormats::StorageItems))
-         {
-
-            ::Windows::Foundation::Collections::IVectorView < ::Windows::Storage::IStorageItem ^ > ^ items = ::wait(view->GetStorageItemsAsync());
-
-            bHasFile = true;
-
-         }
-
-      });
-
-      return bHasFile;
-
+      return m_bHasFile;
 
    }
 
@@ -94,45 +47,41 @@ namespace uwp
    bool copydesk::_get_filea(::file::patha & patha, e_op & eop)
    {
 
-      bool bHasFile = false;
-
-      defer_main_thread([&bHasFile, &patha, this]()
+      defer_main_thread([&patha, this]()
       {
 
          ::Windows::ApplicationModel::DataTransfer::DataPackageView ^ view = ::Windows::ApplicationModel::DataTransfer::Clipboard::GetContent();
 
-         if (view == nullptr)
+         if (view != nullptr)
          {
 
-            return;
-
-         }
-
-         if (view->Contains(::Windows::ApplicationModel::DataTransfer::StandardDataFormats::ApplicationLink))
-         {
-
-            bHasFile = true;
-
-         }
-         else if (view->Contains(::Windows::ApplicationModel::DataTransfer::StandardDataFormats::StorageItems))
-         {
-
-            ::Windows::Foundation::Collections::IVectorView < ::Windows::Storage::IStorageItem ^ > ^ items = ::wait(view->GetStorageItemsAsync());
-
-            for (uptr u = 0; u < items->Size; u++)
+            if (view->Contains(::Windows::ApplicationModel::DataTransfer::StandardDataFormats::ApplicationLink))
             {
 
-               patha.add(items->GetAt(u)->Path->Begin());
+               m_bHasFile = true;
 
             }
+            else if (view->Contains(::Windows::ApplicationModel::DataTransfer::StandardDataFormats::StorageItems))
+            {
 
-            bHasFile = true;
+               ::Windows::Foundation::Collections::IVectorView < ::Windows::Storage::IStorageItem ^ > ^ items = ::wait(view->GetStorageItemsAsync());
+
+               for (uptr u = 0; u < items->Size; u++)
+               {
+
+                  patha.add(items->GetAt(u)->Path->Begin());
+
+               }
+
+               m_bHasFile = true;
+
+            }
 
          }
 
       });
 
-      return bHasFile;
+      return m_bHasFile;
 
    }
 
@@ -140,60 +89,18 @@ namespace uwp
    bool copydesk::_set_filea(const ::file::patha & patha, e_op eop)
    {
 
-#ifdef WINDOWS_DESKTOP
-
-      ASSERT(m_p->is_window());
-
-      strsize iLen = 0;
-
-      for(int i = 0; i < stra.get_size(); i++)
-      {
-         iLen += ::str::international::utf8_to_unicode_count(stra[i]) + 1;
-      }
-
-
-      HGLOBAL hglbCopy = ::GlobalAlloc(GMEM_MOVEABLE, sizeof(DROPFILES) + (iLen + 1) * sizeof(WCHAR));
-      LPDROPFILES pDropFiles = (LPDROPFILES) ::GlobalLock(hglbCopy);
-      pDropFiles->pFiles = sizeof(DROPFILES);
-      pDropFiles->point.x = pDropFiles->point.y = 0;
-      pDropFiles->fNC = TRUE;
-      pDropFiles->fWide = TRUE; // ANSI charset
-
-      ASSERT(m_p->is_window());
-      LPTSTR lptstrCopy = (char *) pDropFiles;
-      lptstrCopy += pDropFiles->pFiles;
-      unichar * lpwstrCopy = (unichar *) lptstrCopy;
-      for(int i = 0; i < stra.get_size(); i++)
-      {
-         ASSERT(m_p->is_window());
-         ::str::international::utf8_to_unicode(lpwstrCopy, ::str::international::utf8_to_unicode_count(stra[i]) + 1, stra[i]);
-         ASSERT(m_p->is_window());
-         lpwstrCopy += (stra[i].get_length() + 1);
-      }
-      ASSERT(m_p->is_window());
-      *lpwstrCopy = '\0';    // nullptr character
-      ASSERT(m_p->is_window());
-      ::GlobalUnlock(hglbCopy);
-      ASSERT(m_p->is_window());
-      if(!m_p->OpenClipboard())
-      {
-         ::GlobalFree(hglbCopy);
-         return;
-      }
-      EmptyClipboard();
-      SetClipboardData(CF_HDROP, hglbCopy);
-      VERIFY(::CloseClipboard());
-
-#else
-
       __throw(todo());
-
-#endif
 
       return false;
 
    }
 
+   void copydesk::event_sink::ContentChanged(Platform::Object ^ ,Platform::Object ^)
+   {
+
+      m_pcopydesk->on_content_changed();
+
+   }
 
    ::estatus copydesk::initialize(::layered * pobjectContext)
    {
@@ -206,6 +113,15 @@ namespace uwp
          return estatus;
 
       }
+
+      System.main_user_async(__procedure([this]()
+         {
+
+            on_content_changed();
+
+            ::Windows::ApplicationModel::DataTransfer::Clipboard::ContentChanged += ref new ::Windows::Foundation::EventHandler <::Platform::Object ^>(m_eventsink, &event_sink::ContentChanged);
+
+         }));
 
       return true;
 
@@ -258,24 +174,16 @@ namespace uwp
 
          auto dataPackage = ::Windows::ApplicationModel::DataTransfer::Clipboard::GetContent();
 
-         if (dataPackage == nullptr)
+         if (dataPackage != nullptr && dataPackage->Contains(::Windows::ApplicationModel::DataTransfer::StandardDataFormats::Text))
          {
 
-            return;
+            str = ::wait(dataPackage->GetTextAsync())->Begin();
+
+            bOk = true;
 
          }
 
-         if (!dataPackage->Contains(::Windows::ApplicationModel::DataTransfer::StandardDataFormats::Text))
-         {
-
-            return;
-
-         }
-
-         str = ::wait(dataPackage->GetTextAsync())->Begin();
-
-         bOk = true;
-
+         
       });
 
       return bOk;
@@ -286,32 +194,47 @@ namespace uwp
    bool copydesk::_has_plain_text()
    {
 
-      bool bOk = false;
+      return m_bHasPlainText;
 
-      defer_main_thread([&bOk, this]()
+   }
+
+
+   void copydesk::on_content_changed()
+   {
+
+      auto dataPackageView = ::Windows::ApplicationModel::DataTransfer::Clipboard::GetContent();
+
+      if (dataPackageView == nullptr)
       {
 
-         auto dataPackage = ::Windows::ApplicationModel::DataTransfer::Clipboard::GetContent();
+         return;
 
-         if (dataPackage == nullptr)
-         {
+      }
 
-            return;
+      auto pformats = dataPackageView->AvailableFormats;
 
-         }
+      m_bHasImage = ::papaya::array::contains_item(pformats, ::Windows::ApplicationModel::DataTransfer::StandardDataFormats::Bitmap);
 
-         if (!dataPackage->Contains(::Windows::ApplicationModel::DataTransfer::StandardDataFormats::Text))
-         {
+      if (::papaya::array::contains_item(pformats, ::Windows::ApplicationModel::DataTransfer::StandardDataFormats::ApplicationLink))
+      {
 
-            return;
+         m_bHasFile = true;
 
-         }
+      }
+      else if (::papaya::array::contains_item(pformats, ::Windows::ApplicationModel::DataTransfer::StandardDataFormats::StorageItems))
+      {
 
-         bOk = true;
+         m_bHasFile = true;
 
-      });
+      }
+      else
+      {
 
-      return bOk;
+         m_bHasFile = false;
+
+      }
+
+      m_bHasPlainText = ::papaya::array::contains_item(pformats, ::Windows::ApplicationModel::DataTransfer::StandardDataFormats::Text);
 
    }
 

@@ -285,7 +285,7 @@ namespace net
 #endif
 
 
-   CLASS_DECL_APEX address ipv4(u32 ui, port_t port = 0);
+   CLASS_DECL_APEX address ipv4(u32 u, port_t port = 0);
 
    CLASS_DECL_APEX address ipv6(void * p128bits, port_t port = 0);
 

@@ -36,17 +36,19 @@ typedef struct _ADDRESS_INFO
    PVOID pAddress;
 } ADDRESS_INFO;
 
-typedef LONG NTSTATUS;
 
+#ifndef WINDOWS_DESKTOP
+typedef ::i32 NTSTATUS;
+#endif
 
 
 typedef struct _SYSTEM_HANDLE
 {
    
    u32       dwProcessId;
-   BYTE		      bObjectType;
-   BYTE		      bFlags;
-   WORD		      wValue;
+   byte		      bObjectType;
+   byte		      bFlags;
+   ::u16		      wValue;
    PVOID          pAddress;
    u32       GrantedAccess;
 

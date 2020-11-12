@@ -25,7 +25,7 @@ namespace experience
 
                void draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::rect & rectClient, e_border eside);
 
-               void GetBorderRect(const ::rect & rectClient, RECT * prect, e_border eside);
+               void GetBorderRect(const ::rect & rectClient, RECT32 * prect, e_border eside);
 
                void DrawGripSet(::draw2d::graphics_pointer & pgraphics, const ::rect & rectClient);
 

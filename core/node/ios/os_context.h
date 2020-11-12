@@ -23,11 +23,11 @@ namespace ios
 
       virtual void terminate_processes_by_title(const char * pszName) override;
       virtual string get_module_path(HMODULE hmodule);
-      virtual bool get_pid_by_path(const char * pszName, DWORD & dwPid) override;
-      virtual bool get_pid_by_title(const char * pszName, DWORD & dwPid) override;
+      virtual bool get_pid_by_path(const char * pszName, ::u32 & dwPid) override;
+      virtual bool get_pid_by_title(const char * pszName, ::u32 & dwPid) override;
       virtual int get_pid() override;
       virtual void get_all_processes(u32_array & dwa) override;
-      virtual ::file::path get_process_path(DWORD dwPid) override;
+      virtual ::file::path get_process_path(::u32 dwPid) override;
 
       virtual var connection_settings_get_auto_detect() override;
       virtual var connection_settings_get_auto_config_url() override;
@@ -55,7 +55,7 @@ namespace ios
       virtual ::estatus start_service() override;
       virtual ::estatus stop_service() override;
 
-      void raise_exception( DWORD dwExceptionCode, DWORD dwExceptionFlags);
+      void raise_exception( ::u32 dwExceptionCode, ::u32 dwExceptionFlags);
 
       virtual bool is_remote_session() override;
 

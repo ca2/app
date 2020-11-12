@@ -148,7 +148,7 @@ void xfplayer_view_line::AddChar(WCHAR wch, strsize & index, draw2d::font * pFon
 }
 
 
-void xfplayer_view_line::GetPlacement(RECT * prect)
+void xfplayer_view_line::GetPlacement(RECT32 * prect)
 
 {
 
@@ -373,7 +373,7 @@ bool xfplayer_view_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bool
 }
 
 
-bool xfplayer_view_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bool bDraw, const ::rect & rect, rect_array & rectaModified, ::count * count, bool bRecalcLayout, COLORREF crColor, ::draw2d::pen_pointer sppen)
+bool xfplayer_view_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bool bDraw, const ::rect & rect, rect_array & rectaModified, ::count * count, bool bRecalcLayout, color32_t crColor, ::draw2d::pen_pointer sppen)
 {
 
    single_lock sl(m_pContainer->mutex());
@@ -388,8 +388,8 @@ bool xfplayer_view_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bool
 
    point iMargin;
    {
-      iMargin.x = (LONG)(sppen->m_dWidth / 2.0);
-      iMargin.y = (LONG)(sppen->m_dWidth / 2.0);
+      iMargin.x = (::i32)(sppen->m_dWidth / 2.0);
+      iMargin.y = (::i32)(sppen->m_dWidth / 2.0);
    }
 
    if (!IsVisible())
@@ -1107,7 +1107,7 @@ void xfplayer_view_line::SetEmbossPen(::draw2d::pen *pPen)
 
 }
 
-void xfplayer_view_line::SetForegroundColor(COLORREF cr)
+void xfplayer_view_line::SetForegroundColor(color32_t cr)
 {
 
    single_lock sl(m_pContainer->mutex());
@@ -1170,7 +1170,7 @@ i32 xfplayer_view_line::SetLyricPens(::draw2d::pen * ppenLeft, ::draw2d::pen * p
    return true;
 }
 
-i32 xfplayer_view_line::SetLyricColors(COLORREF crLeft, COLORREF crRight)
+i32 xfplayer_view_line::SetLyricColors(color32_t crLeft, color32_t crRight)
 {
 
    single_lock sl(m_pContainer->mutex());
@@ -1276,7 +1276,7 @@ bool xfplayer_view_line::IsVisible()
 }
 
 
-void xfplayer_view_line::EmbossedTextOut(::draw2d::graphics_pointer & pgraphics, const char * pcsz, i32 iLeft, i32 iTop, i32 iWidth, COLORREF cr, COLORREF crOutline, strsize iLen, double dBlend)
+void xfplayer_view_line::EmbossedTextOut(::draw2d::graphics_pointer & pgraphics, const char * pcsz, i32 iLeft, i32 iTop, i32 iWidth, color32_t cr, color32_t crOutline, strsize iLen, double dBlend)
 
 {
 
@@ -1298,7 +1298,7 @@ void xfplayer_view_line::EmbossedTextOut(::draw2d::graphics_pointer & pgraphics,
 }
 
 
-void xfplayer_view_line::EmbossedTextOut(::draw2d::graphics_pointer & pgraphics, ::image * pimageCache, const char * pcsz, i32 iLeft, i32 iTop, i32 iWidth, COLORREF cr, COLORREF crOutline, strsize iLen, double dBlend)
+void xfplayer_view_line::EmbossedTextOut(::draw2d::graphics_pointer & pgraphics, ::image * pimageCache, const char * pcsz, i32 iLeft, i32 iTop, i32 iWidth, color32_t cr, color32_t crOutline, strsize iLen, double dBlend)
 {
 
    single_lock sl(m_pContainer->mutex());
@@ -1355,9 +1355,9 @@ void xfplayer_view_line::EmbossedTextOut(::draw2d::graphics_pointer & pgraphics,
 
       ::point point;
 
-      point.x = (LONG) (iLeft - ((max(2.0, m_floatRateX * 8.0)) / 2));
+      point.x = (::i32) (iLeft - ((max(2.0, m_floatRateX * 8.0)) / 2));
 
-      point.y = (LONG) (iTop - ((max(2.0, m_floatRateX * 8.0)) / 2));
+      point.y = (::i32) (iTop - ((max(2.0, m_floatRateX * 8.0)) / 2));
 
       System.imaging().color_blend(pgraphics, point, m_pimageMain->get_size(), m_pimageMain->g(), ::point(), dBlend);
 
@@ -1412,7 +1412,7 @@ void xfplayer_view_line::EmbossedTextOut(::draw2d::graphics_pointer & pgraphics,
 
 
 
-void xfplayer_view_line::SetColors(COLORREF cr, COLORREF crOutline)
+void xfplayer_view_line::SetColors(color32_t cr, color32_t crOutline)
 {
 
    single_lock sl(m_pContainer->mutex());
@@ -1461,8 +1461,8 @@ void xfplayer_view_line::CacheEmboss(::draw2d::graphics_pointer & pgraphics, con
 
    m_dcextension.GetTextExtent(pgraphics, pcsz, iLen, size);
 
-   size.cx += (LONG)(2 * (max(2.0, m_floatRateX * 8.0)));
-   size.cy += (LONG)(2 * (max(2.0, m_floatRateX * 8.0)));
+   size.cx += (::i32)(2 * (max(2.0, m_floatRateX * 8.0)));
+   size.cy += (::i32)(2 * (max(2.0, m_floatRateX * 8.0)));
 
 
    pimageCache = create_image(size);
@@ -1771,7 +1771,7 @@ void xfplayer_view_line::OnMouseMove(::message::message * pmessage)
 
    }*/
 
-   if (GetSelection().OnMouseMove(*this, (UINT)pmouse->m_nFlags, pmouse->m_point))
+   if (GetSelection().OnMouseMove(*this, (::u32)pmouse->m_nFlags, pmouse->m_point))
    {
 
       pmouse->m_bRet = true;
@@ -1807,7 +1807,7 @@ void xfplayer_view_line::OnLButtonDown(::message::message * pmessage)
 
    SCAST_PTR(::message::mouse, pmouse, pmessage);
 
-   if (GetSelection().OnLButtonDown(*this, (UINT)pmouse->m_nFlags, pmouse->m_point))
+   if (GetSelection().OnLButtonDown(*this, (::u32)pmouse->m_nFlags, pmouse->m_point))
    {
 
       pmouse->m_bRet = true;
@@ -1848,7 +1848,7 @@ void xfplayer_view_line::OnLButtonUp(::message::message * pmessage)
 
    }
 
-   if (GetSelection().OnLButtonUp(*this, (UINT)pmouse->m_nFlags, pmouse->m_point))
+   if (GetSelection().OnLButtonUp(*this, (::u32)pmouse->m_nFlags, pmouse->m_point))
    {
 
       pmouse->m_bRet = true;

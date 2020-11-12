@@ -278,9 +278,9 @@ namespace uwp
          if (m_bCreated)
          {
 
-            //m_size.cx = (LONG)m_window->Bounds.Width;
+            //m_size.cx = (::i32)m_window->Bounds.Width;
 
-            //m_size.cy = (LONG)m_window->Bounds.Height;
+            //m_size.cy = (::i32)m_window->Bounds.Height;
 
 
 
@@ -330,21 +330,26 @@ namespace uwp
 
       }
 
-      m_pimpl->m_puserinteraction->start_layout();
+      if (m_pimpl->m_puserinteraction)
+      {
 
-      m_pimpl->m_puserinteraction->display(display_normal);
+         m_pimpl->m_puserinteraction->start_layout();
 
-      m_pimpl->m_puserinteraction->set_dim(0, 0, m_size.cx, m_size.cy);
+         m_pimpl->m_puserinteraction->display(display_normal);
 
-      defer_resize_top_level_windows();
+         m_pimpl->m_puserinteraction->set_dim(0, 0, m_size.cx, m_size.cy);
 
-      m_pimpl->m_puserinteraction->set_reposition();
+         defer_resize_top_level_windows();
 
-      m_pimpl->m_puserinteraction->set_need_layout();
+         m_pimpl->m_puserinteraction->set_reposition();
 
-      m_pimpl->m_puserinteraction->set_need_redraw();
+         m_pimpl->m_puserinteraction->set_need_layout();
 
-      m_pimpl->m_puserinteraction->post_redraw();
+         m_pimpl->m_puserinteraction->set_need_redraw();
+
+         m_pimpl->m_puserinteraction->post_redraw();
+
+      }
 
 
    }
@@ -370,23 +375,30 @@ namespace uwp
       if (System.has_property("client_only"))
       {
 
-         auto children = m_pimpl->m_puserinteraction->m_uiptraChild.m_interactiona;
+         auto puiptraChild = m_pimpl->m_puserinteraction->m_puiptraChild;
 
-         for (auto & pinteraction : children)
+         if (puiptraChild)
          {
 
-            if (pinteraction->is_window_visible())
+            auto children = puiptraChild->m_interactiona;
+
+            for (auto & pinteraction : children)
             {
 
-               pinteraction->order_top();
-               
-               pinteraction->set_dim(0, 0, m_size.cx, m_size.cy);
-               
-               pinteraction->display();
+               if (pinteraction->is_window_visible())
+               {
 
-               pinteraction->set_need_layout();
+                  pinteraction->order_top();
 
-               pinteraction->set_need_redraw();
+                  pinteraction->set_dim(0, 0, m_size.cx, m_size.cy);
+
+                  pinteraction->display();
+
+                  pinteraction->set_need_layout();
+
+                  pinteraction->set_need_redraw();
+
+               }
 
             }
 
@@ -542,7 +554,7 @@ namespace uwp
 
          // Create a depth stencil view for use with 3D rendering if needed.
          CD3D11_TEXTURE2D_DESC depthStencilDesc(
-         DXGI_FORMAT_D24_UNORM_S8_UINT,
+         DXGI_FORMAT_D24_UNORM_S8_::u32,
          backBufferDesc.Width,
          backBufferDesc.Height,
          1,

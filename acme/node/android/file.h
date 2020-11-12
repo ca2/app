@@ -100,7 +100,7 @@ namespace android
 
       virtual bool is_opened() const override;
 
-      //virtual u64 GetBufferPtr(UINT nCommand, u64 nCount = 0, void ** ppBufStart = nullptr, void ** ppBufMax = nullptr);
+      //virtual u64 GetBufferPtr(::u32 nCommand, u64 nCount = 0, void ** ppBufStart = nullptr, void ** ppBufMax = nullptr);
 
 
    };
@@ -110,9 +110,9 @@ namespace android
    //{
 
 
-   //   ::estatus PASCAL OsErrorToException(LONG lOsError);
+   //   ::estatus PASCAL OsErrorToException(::i32 lOsError);
    //   ::estatus PASCAL ErrnoToException(i32 nErrno);
-   //   void PASCAL ThrowOsError(::matter * pobject, LONG lOsError, const char * lpszFileName = nullptr);
+   //   void PASCAL ThrowOsError(::matter * pobject, ::i32 lOsError, const char * lpszFileName = nullptr);
    //   void PASCAL ThrowErrno(::matter * pobject, i32 nErrno, const char * lpszFileName = nullptr);
 
 

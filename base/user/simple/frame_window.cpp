@@ -136,7 +136,7 @@ void simple_frame_window::install_message_routing(::channel * pchannel)
    MESSAGE_LINK(WM_DDE_INITIATE, pchannel, this, &simple_frame_window::_001OnDdeInitiate);
 #endif
    MESSAGE_LINK(e_message_destroy, pchannel, this, &simple_frame_window::_001OnDestroy);
-   MESSAGE_LINK(WM_CLOSE, pchannel, this, &simple_frame_window::_001OnClose);
+   MESSAGE_LINK(e_message_close, pchannel, this, &simple_frame_window::_001OnClose);
    MESSAGE_LINK(e_message_size, pchannel, this, &simple_frame_window::_001OnSize);
    MESSAGE_LINK(e_message_move, pchannel, this, &simple_frame_window::_001OnMove);
    MESSAGE_LINK(WM_GETMINMAXINFO, pchannel, this, &simple_frame_window::_001OnGetMinMaxInfo);
@@ -146,10 +146,10 @@ void simple_frame_window::install_message_routing(::channel * pchannel)
    MESSAGE_LINK(WM_MOUSEACTIVATE, pchannel, this, &simple_frame_window::_001OnMouseActivate);
    MESSAGE_LINK(WM_NCHITTEST, pchannel, this, &simple_frame_window::_001OnNcHitTest);
 
-   MESSAGE_LINK(WM_KEYDOWN, pchannel, this, &simple_frame_window::_001OnKey);
-   MESSAGE_LINK(WM_SYSKEYDOWN, pchannel, this, &simple_frame_window::_001OnKey);
-   MESSAGE_LINK(WM_KEYUP, pchannel, this, &simple_frame_window::_001OnKey);
-   MESSAGE_LINK(WM_SYSKEYUP, pchannel, this, &simple_frame_window::_001OnKey);
+   MESSAGE_LINK(e_message_key_down, pchannel, this, &simple_frame_window::_001OnKey);
+   MESSAGE_LINK(e_message_sys_key_down, pchannel, this, &simple_frame_window::_001OnKey);
+   MESSAGE_LINK(e_message_key_up, pchannel, this, &simple_frame_window::_001OnKey);
+   MESSAGE_LINK(e_message_sys_key_up, pchannel, this, &simple_frame_window::_001OnKey);
 
    connect_command_probe("transparent_frame", &simple_frame_window::_001OnUpdateToggleTransparentFrame);
    connect_command("transparent_frame", &simple_frame_window::_001OnToggleTransparentFrame);
@@ -285,7 +285,7 @@ void simple_frame_window::defer_save_window_placement()
 
    m_tickLastSaveWindowRectRequest.Now();
 
-   defer_start_task("save_window_rect", __method([this]()
+   defer_start_task("save_window_rect", __procedure([this]()
       {
 
          _task_save_window_rect();
@@ -1158,7 +1158,7 @@ void simple_frame_window::on_reposition()
 }
 
 
-void simple_frame_window::ViewOnActivateFrame(__pointer(::user::impact) pview, UINT user, __pointer(::user::interaction) pframe)
+void simple_frame_window::ViewOnActivateFrame(__pointer(::user::impact) pview, ::u32 user, __pointer(::user::interaction) pframe)
 {
    UNREFERENCED_PARAMETER(pview);
    UNREFERENCED_PARAMETER(user);
@@ -1193,7 +1193,7 @@ void simple_frame_window::_001OnGetMinMaxInfo(::message::message * pmessage)
 void simple_frame_window::ShowControlBars(bool bShow, bool bLeaveFullScreenBarsOnHide)
 {
 
-   UINT nShow;
+   ::u32 nShow;
 
    if (bShow)
    {
@@ -1454,7 +1454,7 @@ void simple_frame_window::ActivateFrame(edisplay edisplay)
 }
 
 
-void simple_frame_window::GetBorderRect(RECT * prect)
+void simple_frame_window::GetBorderRect(RECT32 * prect)
 
 {
    *prect = m_rectBorder;
@@ -2643,7 +2643,7 @@ void simple_frame_window::on_after_set_parent()
 }
 
 
-bool simple_frame_window::get_client_rect(RECT * prect)
+bool simple_frame_window::get_client_rect(RECT32 * prect)
 {
 
    if (m_bWindowFrame && m_pframe != nullptr && !layout().is_full_screen() && !frame_is_transparent())
@@ -2902,13 +2902,13 @@ void simple_frame_window::OnDropFiles(HDROP hDropInfo)
 {
 
    SetActiveWindow();      // activate us first !
-   UINT nFiles = ::DragQueryFile(hDropInfo, (UINT)-1, nullptr, 0);
+   ::u32 nFiles = ::DragQueryFile(hDropInfo, (::u32)-1, nullptr, 0);
 
    ::file::patha patha;
 
    natural_wstring pwszFileName(char_count, _MAX_PATH);
 
-   for (UINT iFile = 0; iFile < nFiles; iFile++)
+   for (::u32 iFile = 0; iFile < nFiles; iFile++)
    {
 
       if (::DragQueryFileW(hDropInfo, iFile, pwszFileName, _MAX_PATH))
@@ -3048,12 +3048,12 @@ LRESULT simple_frame_window::OnDDEExecute(WPARAM wParam, LPARAM lParam)
    ::PostMessage((oswindow)wParam, WM_DDE_ACK, (WPARAM)get_handle(),
                  //IA64: Assume DDE LPARAMs are still 32-bit
                  ReuseDDElParam(lParam, WM_DDE_EXECUTE, WM_DDE_ACK,
-                                (UINT)0x8000, (uptr)hData));
+                                (::u32)0x8000, (uptr)hData));
 
-   // don't execute the command when the ui is disabled
+   // don't execute the command when the u is disabled
    if (!is_window_enabled())
    {
-      TRACE(trace_category_appmsg, trace_level_warning, "Warning: DDE command '%s' ignored because ui is disabled.\n",
+      TRACE(trace_category_appmsg, trace_level_warning, "Warning: DDE command '%s' ignored because u is disabled.\n",
             string(strCommand).c_str());
       return 0;
    }
@@ -3100,12 +3100,12 @@ void simple_frame_window::NotifyFloatingWindows(u32 dwFlags)
    ASSERT_VALID(this);
    // trans   ASSERT(get_handle() != nullptr);
 
-   // get top level parent frame ui first unless this is a child ui
+   // get top level parent frame u first unless this is a child u
    __pointer(::user::frame_window) pParent = (GetStyle() & WS_CHILD) ? this : GetTopLevelFrame();
    ASSERT(pParent != nullptr);
    //if (dwFlags & (FS_DEACTIVATE | FS_ACTIVATE))
    //{
-   //   // update parent ui activation state
+   //   // update parent u activation state
    //   bool bActivate = !(dwFlags & FS_DEACTIVATE);
    //   bool bEnabled = pParent->is_window_enabled();
 
@@ -3235,7 +3235,7 @@ string simple_frame_window::get_window_default_matter()
 //            pview->OnActivateFrame(WA_INACTIVE, pframe);
 //
 //         // finally, activate the frame
-//         // (send the default show command unless the main desktop ui)
+//         // (send the default show command unless the main desktop u)
 //         edisplay edisplay = display_default;      // default
 //         ::aura::application* pApp = &System;
 //         if (pApp != nullptr && pApp->m_puiMain == pframe)
@@ -3519,7 +3519,7 @@ void simple_frame_window::draw_frame(::draw2d::graphics_pointer & pgraphics)
 //void simple_frame_window::WfiOnClose()
 //{
 //
-//   post_message(WM_CLOSE);
+//   post_message(e_message_close);
 //
 //}
 //
@@ -3845,7 +3845,7 @@ void simple_frame_window::_001OnTimer(::timer * ptimer)
 }
 
 
-void simple_frame_window::OnNotifyIconContextMenu(UINT uiNotifyIcon)
+void simple_frame_window::OnNotifyIconContextMenu(::u32 uNotifyIcon)
 {
 
    auto psession = Session;
@@ -3861,7 +3861,7 @@ void simple_frame_window::OnNotifyIconContextMenu(UINT uiNotifyIcon)
 }
 
 
-void simple_frame_window::OnNotifyIconLButtonDblClk(UINT uiNotifyIcon)
+void simple_frame_window::OnNotifyIconLButtonDblClk(::u32 uNotifyIcon)
 {
 
    UNREFERENCED_PARAMETER(uiNotifyIcon);
@@ -3869,7 +3869,7 @@ void simple_frame_window::OnNotifyIconLButtonDblClk(UINT uiNotifyIcon)
 }
 
 
-void simple_frame_window::OnNotifyIconLButtonDown(UINT uiNotifyIcon)
+void simple_frame_window::OnNotifyIconLButtonDown(::u32 uNotifyIcon)
 {
 
    default_notify_icon_topic();
@@ -3996,7 +3996,7 @@ bool simple_frame_window::window_is_notify_icon_enabled()
 }
 
 
-//bool simple_frame_window::get_color(COLORREF & cr, ::user::e_color ecolor, ::user::interaction * pinteraction)
+//bool simple_frame_window::get_color(color32_t & cr, ::user::e_color ecolor, ::user::interaction * pinteraction)
 //{
 //
 //   if (m_pframe != nullptr)
@@ -4057,7 +4057,7 @@ void simple_frame_window::call_notification_area_action(const char * pszId)
 
    string strId(pszId);
 
-   post_method(__method([this, strId]()
+   post_procedure(__procedure([this, strId]()
    {
 
       notification_area_action(strId);

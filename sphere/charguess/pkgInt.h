@@ -51,19 +51,19 @@ typedef struct nsPkgInt {
   nsSftMsk  sftmsk;
   nsBitSft  bitsft;
   nsUnitMsk unitmsk;
-  PRUint32  *data;
+  PR::u32  *data;
 } nsPkgInt;
 
 
-#define PCK16BITS(a,b)            ((PRUint32)(((b) << 16) | (a)))
+#define PCK16BITS(a,b)            ((PR::u32)(((b) << 16) | (a)))
 
-#define PCK8BITS(a,b,c,d)         PCK16BITS( ((PRUint32)(((b) << 8) | (a))),  \
-                                             ((PRUint32)(((d) << 8) | (c))))
+#define PCK8BITS(a,b,c,d)         PCK16BITS( ((PR::u32)(((b) << 8) | (a))),  \
+                                             ((PR::u32)(((d) << 8) | (c))))
 
-#define PCK4BITS(a,b,c,d,e,f,g,h) PCK8BITS(  ((PRUint32)(((b) << 4) | (a))), \
-                                             ((PRUint32)(((d) << 4) | (c))), \
-                                             ((PRUint32)(((f) << 4) | (e))), \
-                                             ((PRUint32)(((h) << 4) | (g))) )
+#define PCK4BITS(a,b,c,d,e,f,g,h) PCK8BITS(  ((PR::u32)(((b) << 4) | (a))), \
+                                             ((PR::u32)(((d) << 4) | (c))), \
+                                             ((PR::u32)(((f) << 4) | (e))), \
+                                             ((PR::u32)(((h) << 4) | (g))) )
 
 #define GETFROMPCK(i, c) \
  (((((c).data)[(i)>>(c).idxsft])>>(((i)&(c).sftmsk)<<(c).bitsft))&(c).unitmsk)

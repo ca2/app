@@ -93,7 +93,7 @@ namespace user
       ASSERT(stra.get_count() >= 1);  // must be at least one of them
       //ASSERT(pIDArray == nullptr ||
 
-      //      __is_valid_address(pIDArray, sizeof(UINT) * nIDCount, FALSE));
+      //      __is_valid_address(pIDArray, sizeof(::u32) * nIDCount, FALSE));
 
       ASSERT(is_window());
 
@@ -330,7 +330,7 @@ namespace user
       return _GetPanePtr(nIndex)->m_id;
    }
 
-   void status_bar::GetItemRect(i32 nIndex, RECT * prect)
+   void status_bar::GetItemRect(i32 nIndex, RECT32 * prect)
 
    {
       ASSERT_VALID(this);
@@ -347,12 +347,12 @@ namespace user
 //#endif
    }
 //
-   UINT status_bar::GetPaneStyle(i32 nIndex)
+   ::u32 status_bar::GetPaneStyle(i32 nIndex)
    {
       return _GetPanePtr(nIndex)->nStyle;
    }
 //
-   void status_bar::SetPaneStyle(i32 nIndex, UINT nStyle)
+   void status_bar::SetPaneStyle(i32 nIndex, ::u32 nStyle)
    {
 //      __STATUSPANE* pSBP = _GetPanePtr(nIndex);
 //      if (pSBP->nStyle != nStyle)
@@ -372,7 +372,7 @@ namespace user
 //      }
    }
 
-   void status_bar::GetPaneInfo(i32 nIndex, id & id, UINT& nStyle,
+   void status_bar::GetPaneInfo(i32 nIndex, id & id, ::u32& nStyle,
                                 i32& cxWidth)
    {
       ASSERT_VALID(this);
@@ -383,7 +383,7 @@ namespace user
       cxWidth = pSBP->cxText;
    }
 
-   void status_bar::SetPaneInfo(i32 nIndex, id id, UINT nStyle, i32 cxWidth)
+   void status_bar::SetPaneInfo(i32 nIndex, id id, ::u32 nStyle, i32 cxWidth)
    {
       ASSERT_VALID(this);
 
@@ -471,7 +471,7 @@ namespace user
 
       pSBP->nFlags &= ~SBPF_UPDATE;
 //#ifdef WINDOWS_DESKTOP
-//      default_window_procedure(SB_SETTEXT, ((WORD)pSBP->nStyle)|nIndex,
+//      default_window_procedure(SB_SETTEXT, ((::u16)pSBP->nStyle)|nIndex,
 //                    (pSBP->nStyle & SBPS_DISABLED) ? 0 :
 //                    (LPARAM)(const char *)pSBP->strText);
 //#endif
@@ -531,7 +531,7 @@ namespace user
    void status_bar::_001OnNcHitTest(::message::message * pmessage)
    {
       //SCAST_PTR(::message::nchittest, pnchittest, pmessage);
-      //UINT nResult = (UINT)default_window_procedure();
+      //::u32 nResult = (::u32)default_window_procedure();
       //if (nResult == HTBOTTOMRIGHT)
       //{
       //   pnchittest->set_lresult(HTBOTTOMRIGHT);
@@ -820,7 +820,7 @@ namespace user
       ASSERT_KINDOF(status_bar, pStatusBar);
       ASSERT(m_iIndex < m_iCount);
 
-      UINT nNewStyle = pStatusBar->GetPaneStyle((i32) m_iIndex) & ~SBPS_DISABLED;
+      ::u32 nNewStyle = pStatusBar->GetPaneStyle((i32) m_iIndex) & ~SBPS_DISABLED;
       if (!bOn)
          nNewStyle |= SBPS_DISABLED;
       pStatusBar->SetPaneStyle((i32) m_iIndex, nNewStyle);
@@ -839,7 +839,7 @@ namespace user
 
       ASSERT(m_iIndex < m_iCount);
 
-      UINT nNewStyle = pStatusBar->GetPaneStyle((i32) m_iIndex) & ~SBPS_POPOUT;
+      ::u32 nNewStyle = pStatusBar->GetPaneStyle((i32) m_iIndex) & ~SBPS_POPOUT;
 
       if (echeck != ::check_unchecked)
       {
@@ -887,7 +887,7 @@ namespace user
       status_command state(get_context_object());
 
       state.m_puiOther = this;
-      state.m_iCount = (UINT)m_panea.get_count();
+      state.m_iCount = (::u32)m_panea.get_count();
       for (state.m_iIndex = 0; state.m_iIndex < state.m_iCount; state.m_iIndex++)
       {
          state.m_id = _GetPanePtr((i32) state.m_iIndex)->m_id;
@@ -977,7 +977,7 @@ namespace user
    }
 
 
-   void status_bar::SetPaneInfo(i32 nIndex, i32 iId, UINT nStyle, i32 cxWidth)
+   void status_bar::SetPaneInfo(i32 nIndex, i32 iId, ::u32 nStyle, i32 cxWidth)
    {
       UNREFERENCED_PARAMETER(nIndex);
       UNREFERENCED_PARAMETER(iId);
@@ -986,7 +986,7 @@ namespace user
       //SetPaneInfo(nIndex, iId, nStyle, cxWidth);
    }
 
-   void status_bar::SetPaneInfo(i32 nIndex, const char * pszId, UINT nStyle, i32 cxWidth)
+   void status_bar::SetPaneInfo(i32 nIndex, const char * pszId, ::u32 nStyle, i32 cxWidth)
    {
       UNREFERENCED_PARAMETER(nIndex);
       UNREFERENCED_PARAMETER(pszId);

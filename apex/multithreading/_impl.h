@@ -29,7 +29,7 @@ _AFXMT_INLINE CSingleLock::~CSingleLock()
 _AFXMT_INLINE int_bool CSingleLock::IsLocked()
 { return m_bAcquired; }
 
-_AFXMT_INLINE int_bool CMultiLock::IsLocked(DWORD dwObject)
+_AFXMT_INLINE int_bool CMultiLock::IsLocked(::u32 dwObject)
 {
    ASSERT(dwObject < m_dwCount);
    return m_bLockedArray[dwObject];
@@ -74,8 +74,8 @@ _AFXMT_INLINE int_bool critical_section::Lock()
    }
    return TRUE;
 }
-_AFXMT_INLINE int_bool critical_section::Lock(DWORD tickTimeout)
-{ ASSERT(tickTimeout == INFINITE); (void)tickTimeout; return Lock(); }
+_AFXMT_INLINE int_bool critical_section::Lock(::u32 tickTimeout)
+{ ASSERT(tickTimeout == U32_INFINITE_TIMEOUT); (void)tickTimeout; return Lock(); }
 _AFXMT_INLINE int_bool critical_section::Unlock()
 { ::LeaveCriticalSection(&m_sect); return TRUE; }
 
@@ -363,13 +363,13 @@ template < typename PRED >
 auto sync_pred(void (* pfnBranch )(::matter * pobjectTask, e_priority), PRED pred, ::duration durationTimeout, e_priority epriority)
 {
 
-   auto pmethod = __sync_method(pred);
+   auto pprocedure = __sync_procedure(pred);
 
-   pfnBranch(pmethod, epriority);
+   pfnBranch(pprocedure, epriority);
 
-   pmethod->sync_wait(durationTimeout);
+   pprocedure->sync_wait(durationTimeout);
 
-   return pmethod;
+   return pprocedure;
 
 }
 
@@ -398,7 +398,7 @@ auto sync_pred(void (* pfnBranch )(::matter * pobjectTask, e_priority), PRED pre
 //}
 //
 //
-//inline ::thread* get_task(ITHREAD idthread)
+//inline ::thread* get_task(ithread_t idthread)
 //{
 //
 //   return (::thread*) System.get_task(idthread);
@@ -521,7 +521,7 @@ template < typename PRED >
 inline ::thread_pointer object::fork(PRED pred)
 {
 
-   auto pmethod = __method(pred);
+   auto pmethod = __procedure(pred);
 
    auto pthread = __create_new < ::thread >();
 
@@ -536,12 +536,12 @@ inline ::thread_pointer object::fork(PRED pred)
 }
 
 
-inline ::thread_pointer object::launch(const ::method& method)
+inline ::thread_pointer object::launch(const ::procedure & procedure)
 {
 
    auto pthread = __create_new < ::thread >();
 
-   pthread->m_pmatter = method;
+   pthread->m_pmatter = procedure;
 
    pthread->m_id = pthread->m_pmatter->type_name();
 

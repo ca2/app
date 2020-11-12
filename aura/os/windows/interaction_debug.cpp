@@ -7,7 +7,7 @@
 #define STATE_WINDOW_DEACTIVATING 3
 #define STATE_WINDOW_ACTIVATING 4
 
-bool __windows_message_bypass(oswindow oswindow, const ::id & id, WPARAM wparam, LPARAM lparam, LRESULT & lresult, UINT * puia)
+bool __windows_message_bypass(oswindow oswindow, const ::id & id, WPARAM wparam, LPARAM lparam, LRESULT & lresult, ::u32 * puia)
 {
 
    for (int i = 0; puia[i] != -1; i++)

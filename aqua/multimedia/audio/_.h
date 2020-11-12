@@ -13,7 +13,7 @@
 //};
 //
 
-//static void CALLBACK rdpsnd_audio_callback_function(HWAVEOUT hwo, UINT uMsg, DWORD_PTR dwInstance, DWORD_PTR dwParam1, DWORD_PTR dwParam2)
+//static void CALLBACK rdpsnd_audio_callback_function(HWAVEOUT hwo, ::u32 uMsg, DWORD_PTR dwInstance, DWORD_PTR dwParam1, DWORD_PTR dwParam2)
 //
 //CLASS_DECL_AURA int out_push_packet(WAVE_OUT_PACKET * ppacket);
 //CLASS_DECL_AURA WAVE_OUT_PACKET * out_pop_packet(char chChannel);

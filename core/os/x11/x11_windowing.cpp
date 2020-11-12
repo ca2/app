@@ -212,7 +212,7 @@ void simple_ui_display::on_expose()
 
    GC gc = create_gc();
 
-   COLORREF crBk = get_simple_ui_color(::user::color_background);
+   color32_t crBk = get_simple_ui_color(::user::color_background);
 
    crBk = argb_swap_rb(crBk);
 
@@ -270,7 +270,7 @@ void simple_ui_display::on_expose()
 
    int y = iFontHeight * 2;
 
-   COLORREF crText = get_simple_ui_color(::user::color_text);
+   color32_t crText = get_simple_ui_color(::user::color_text);
 
    crText = argb_swap_rb(crText);
 

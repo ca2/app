@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "acme/os/console.h"
 #include "console.h"
+// sudo apt install ncurses-dev
 #include <ncurses.h>
 
 
@@ -51,7 +52,7 @@ namespace linux
 
    // maximum mumber of lines the output console should have
 
-   static const WORD MAX_CONSOLE_LINES = 500;
+   static const ::u16 MAX_CONSOLE_LINES = 500;
 
    void console::redirect_io()
    {
@@ -165,7 +166,7 @@ namespace linux
    void console::SetScreenColor(int color, int iLineStart, int iLineCount)
    {
 //      COORD coord ={0,iLineStart};
-//      DWORD dwWritten;
+//      ::u32 dwWritten;
 //      if(iLineCount < 0)
 //         iLineCount = m_iH + iLineCount + 1;
 //      if(iLineCount > m_iH - iLineStart)

@@ -4,6 +4,8 @@
 namespace factory
 {
 
+
+
    CLASS_DECL_ACME critical_section * g_pcsFactory = nullptr;
    CLASS_DECL_ACME factory_map * g_pfactorymap = nullptr;
    CLASS_DECL_ACME factory_array * g_pfactorya = nullptr;
@@ -23,18 +25,43 @@ namespace factory
    }
 
 
-   void factory_init()
-   {
+    CLASS_DECL_ACME factory_array * get_factory_array()
+    {
 
-      g_pcsFactory = new critical_section();
+       return g_pfactorya;
 
-      g_pfactorymap = new factory_map();
+    }
 
-      g_pfactorymap->InitHashTable(16189);
 
-      g_pfactorya = new factory_array();
+    CLASS_DECL_ACME critical_section * get_factory_critical_section()
+    {
 
-   }
+       return g_pcsFactory;
+
+    }
+
+
+    CLASS_DECL_ACME factory_map * get_factory_map()
+    {
+
+       return g_pfactorymap;
+
+    }
+
+
+
+    void factory_init()
+    {
+
+        g_pcsFactory = new critical_section();
+
+        g_pfactorymap = new factory_map();
+
+        g_pfactorymap->InitHashTable(16189);
+
+        g_pfactorya = new factory_array();
+
+    }
 
 
    void factory_close()

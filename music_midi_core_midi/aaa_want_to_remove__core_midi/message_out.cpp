@@ -24,7 +24,7 @@ namespace music
          
          static mach_timebase_info_data_t sTimebaseInfo;
 
-         UInt64 nano_to_absolute(UInt64 nano)
+         ::u3264 nano_to_absolute(::u3264 nano)
          {
             
             return nano * sTimebaseInfo.denom / sTimebaseInfo.numer;

@@ -2,7 +2,7 @@
 
 
 // interesting function
-/*int_bool CLASS_DECL_lnx AfxCustomLogFont(UINT nIDS, LOGFONT* pLogFont)
+/*int_bool CLASS_DECL_lnx AfxCustomLogFont(::u32 nIDS, LOGFONT* pLogFont)
  {
  ENSURE_ARG(pLogFont != nullptr);
  ASSERT(nIDS != 0);
@@ -25,12 +25,12 @@
  }*/
 
 /*
- int_bool CLASS_DECL_lnx _AfxIsComboBoxControl(oswindow hWnd, UINT nStyle)
+ int_bool CLASS_DECL_lnx _AfxIsComboBoxControl(oswindow hWnd, ::u32 nStyle)
  {
  if (hWnd == nullptr)
  return FALSE;
  // do cheap style compare first
- if ((UINT)(::GetWindowLong(hWnd, GWL_STYLE) & 0x0F) != nStyle)
+ if ((::u32)(::GetWindowLong(hWnd, GWL_STYLE) & 0x0F) != nStyle)
  return FALSE;
  
  // do expensive classname compare next
@@ -47,7 +47,7 @@
  return ::AfxInvariantStrICmp(szTemp, lpszClassName) == 0;
  }
  
- oswindow CLASS_DECL_lnx _AfxChildWindowFromPoint(oswindow hWnd, POINT pt)
+ oswindow CLASS_DECL_lnx _AfxChildWindowFromPoint(oswindow hWnd, POINT32 pt)
  {
  ASSERT(hWnd != nullptr);
  
@@ -56,7 +56,7 @@
  oswindow hWndChild = ::GetWindow(hWnd, GW_CHILD);
  for (; hWndChild != nullptr; hWndChild = ::GetWindow(hWndChild, GW_HWNDNEXT))
  {
- if (_AfxGetDlgCtrlID(hWndChild) != (WORD)0 &&
+ if (_AfxGetDlgCtrlID(hWndChild) != (::u16)0 &&
  (::GetWindowLong(hWndChild, GWL_STYLE) & WS_VISIBLE))
  {
  // see if point hits the child ::window
@@ -112,14 +112,14 @@ ENSURE(hWndCtrl);
  return;     // let input go to ::window with focus
  
  // focus is in part of a combo-box
- if (!_AfxIsComboBoxControl(hWndCancel, (UINT)CBS_DROPDOWNLIST))
+ if (!_AfxIsComboBoxControl(hWndCancel, (::u32)CBS_DROPDOWNLIST))
  {
  // check as a dropdown
  hWndCancel = ::GetParent(hWndCancel);   // parent of edit is combo
  if (hWndCancel == hWndRcvr)
  return;     // let input go to part of combo
  
- if (!_AfxIsComboBoxControl(hWndCancel, (UINT)CBS_DROPDOWN))
+ if (!_AfxIsComboBoxControl(hWndCancel, (::u32)CBS_DROPDOWN))
  return;     // not a combo-box that is active
  }
  
@@ -141,7 +141,7 @@ ENSURE(hWndCtrl);
  
  // avoid bogus warning error messages from various debugging tools
  ASSERT(GlobalFlags(hGlobal) != GMEM_INVALID_HANDLE);
- UINT nCount = GlobalFlags(hGlobal) & GMEM_LOCKCOUNT;
+ ::u32 nCount = GlobalFlags(hGlobal) & GMEM_LOCKCOUNT;
  while (nCount--)
  GlobalUnlock(hGlobal);
  

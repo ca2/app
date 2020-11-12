@@ -29,11 +29,11 @@ public:
    //point_type(const ::u32 u) noexcept : point_type((UNIT_TYPE) __u32x(u), (UNIT_TYPE)__u32y(u)) {}
    //point_type(const ::u64 u) noexcept : point_type((UNIT_TYPE)__u64x(u), (UNIT_TYPE)__u64y(u)) {}
    //point_type(const SIZE_TYPE & size) noexcept : point_type(size.cx, size.cy) {}
-   point_type(const POINT& t) noexcept { ::copy_point(this, &t); }
+   point_type(const POINT32& t) noexcept { ::copy_point(this, &t); }
    point_type(const POINT64& t) noexcept { ::copy_point(this, &t); }
    point_type(const POINTF& t) noexcept { ::copy_point(this, &t); }
    point_type(const POINTD& t) noexcept { ::copy_point(this, &t); }
-   point_type(const POINT* p) noexcept { ::copy_point(this, p); }
+   point_type(const POINT32* p) noexcept { ::copy_point(this, p); }
    point_type(const POINT64* p) noexcept { ::copy_point(this, p); }
    point_type(const POINTF* p) noexcept { ::copy_point(this, p); }
    point_type(const POINTD* p) noexcept { ::copy_point(this, p); }

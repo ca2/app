@@ -27,7 +27,7 @@ namespace user
 
       virtual bool message_queue_is_initialized();
 
-      virtual bool message_queue_set_timer(uptr uiId,DWORD dwMillis);
+      virtual bool message_queue_set_timer(uptr uiId,::u32 dwMillis);
 
       virtual bool message_queue_post_message(const ::id & id, WPARAM wparam = 0,lparam lparam = 0);
 

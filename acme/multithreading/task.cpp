@@ -100,7 +100,7 @@ bool task::thread_get_run() const
 bool task::task_active() const
 {
 
-   return m_hthread != (HTHREAD) 0;
+   return m_hthread != (hthread_t) 0;
 
 }
 
@@ -217,6 +217,14 @@ bool task::on_get_thread_name(string & strThreadName)
    }
 
    return true;
+
+}
+
+
+::estatus task::task_caller_on_init()
+{
+
+   return ::success;
 
 }
 
@@ -366,12 +374,12 @@ void task::term_task()
 
    m_id = pmatter->type_name();
 
-   return fork(epriority, nStackSize, uCreateFlags);
+   return begin_task(epriority, nStackSize, uCreateFlags);
 
 }
 
 
-::estatus task::fork(
+::estatus task::begin_task(
    ::e_priority epriority,
    u32 nStackSize,
    u32 uCreateFlags)
@@ -404,6 +412,15 @@ void task::term_task()
 
    }
 
+   auto estatus = task_caller_on_init();
+
+   if (!estatus)
+   {
+
+      return estatus;
+
+   }
+
    //if (m_pobjectParent && m_bitIsPred)
    //{
 
@@ -415,7 +432,7 @@ void task::term_task()
    //   if (pthreadParent)
    //   {
 
-   //      
+   //
 
    //   }
 
@@ -423,6 +440,8 @@ void task::term_task()
 
    // __task_procedure() should release this (pmatter)
    add_ref(OBJ_REF_DBG_THIS_FUNCTION_LINE);
+
+   
 
 #ifdef WINDOWS
 
@@ -467,7 +486,7 @@ void task::term_task()
 }
 
 
-::task_pointer task::launch(::matter * pmatter, ::e_priority epriority, UINT nStackSize, u32 uCreateFlags)
+::task_pointer task::launch(::matter * pmatter, ::e_priority epriority, ::u32 nStackSize, u32 uCreateFlags)
 {
 
    auto ptask = __new(task);
@@ -704,7 +723,7 @@ CLASS_DECL_ACME bool task_sleep(tick tick, sync* psync)
       if (::is_null(psync))
       {
 
-         if (__os(tick) == INFINITE)
+         if (__os(tick) == U32_INFINITE_TIMEOUT)
          {
 
          }
@@ -719,7 +738,7 @@ CLASS_DECL_ACME bool task_sleep(tick tick, sync* psync)
       else
       {
 
-         if (__os(tick) == INFINITE)
+         if (__os(tick) == U32_INFINITE_TIMEOUT)
          {
 
             return psync->lock();
@@ -741,7 +760,7 @@ CLASS_DECL_ACME bool task_sleep(tick tick, sync* psync)
    if (::is_null(psync))
    {
 
-      if (__os(tick) == INFINITE)
+      if (__os(tick) == U32_INFINITE_TIMEOUT)
       {
 
          return __task_sleep(pthread);
@@ -758,7 +777,7 @@ CLASS_DECL_ACME bool task_sleep(tick tick, sync* psync)
    else
    {
 
-      if (__os(tick) == INFINITE)
+      if (__os(tick) == U32_INFINITE_TIMEOUT)
       {
 
          return __task_sleep(pthread, psync);

@@ -52,12 +52,12 @@ namespace user
          string                        m_strExtension;
 
          //oswindow                      m_oswindow;
-         COLORREF                      m_cr;
+         color32_t                      m_cr;
 
 
          image_key();
          image_key(const image_key& imagekey);
-         image_key(const string& strPath, const string& strShellThemePrefix, e_file_attribute eattribute, e_icon eicon, COLORREF crBk = 0);
+         image_key(const string& strPath, const string& strShellThemePrefix, e_file_attribute eattribute, e_icon eicon, color32_t crBk = 0);
          virtual ~image_key();
 
 
@@ -129,7 +129,7 @@ namespace user
       ::mutex                                            m_mutexImage;
       //__pointer_array(thread)                            m_threadptra;
       tick                                               m_tickLastMax;
-      DWORD                                              m_bMax;
+      ::u32                                              m_bMax;
       bool                                               m_bInitialized;
 
       ::array < image_key >                              m_imagekeySchedule;
@@ -164,8 +164,8 @@ namespace user
       virtual void on_add_default_file_image();
 
 
-      virtual i32 get_file_extension_image(const string & strExtension, e_file_attribute eattribute, e_icon eicon, COLORREF crBk = 0);
-      virtual i32 get_file_image(const string & strPath, e_file_attribute eattribute, e_icon eicon, COLORREF crBk = 0);
+      virtual i32 get_file_extension_image(const string & strExtension, e_file_attribute eattribute, e_icon eicon, color32_t crBk = 0);
+      virtual i32 get_file_image(const string & strPath, e_file_attribute eattribute, e_icon eicon, color32_t crBk = 0);
       virtual i32 create_file_icon_image(const string & strPath, e_file_attribute eattribute, e_icon eicon, string strIcoLocation);
 
 
@@ -184,10 +184,10 @@ namespace user
       virtual e_folder get_folder_type(::object * pobject, const widechar * pcszPath);
       virtual e_folder get_folder_type(::object * pobject, const char * pcszPath);
 
-      int add_hover_image(int iSize, int iIndex, COLORREF crBk);
+      int add_hover_image(int iSize, int iIndex, color32_t crBk);
 
 
-      virtual i32 add_icon_path(::file::path path, COLORREF crBk, int iImage);
+      virtual i32 add_icon_path(::file::path path, color32_t crBk, int iImage);
 
 
       virtual ::estatus finish(::context_object * pcontextobject) override;

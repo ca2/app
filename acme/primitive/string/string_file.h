@@ -7,7 +7,7 @@ class CLASS_DECL_ACME string_file
 public:
 
    string_base < TYPE_CHAR >& m_str;
-   CHAR* m_pszBuffer;
+   char* m_pszBuffer;
    strsize m_nLength;
    strsize m_nBufferLength;
 

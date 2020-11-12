@@ -2947,7 +2947,7 @@ bool string_base < TYPE_CHAR >::getenv(const CHAR_TYPE* pszVar)
 //bool load_string(id id);
 
 // Load the string_base < TYPE_CHAR > from resource 'nID' in module 'hInstance'
-/*    bool load_string(HINSTANCE hInstance,UINT nID )
+/*    bool load_string(HINSTANCE hInstance,::u32 nID )
 {
 const STRINGRESOURCEIMAGE* pImage = gen_GetStringResourceImage( hInstance, nID );
 if( pImage == nullptr )
@@ -2964,7 +2964,7 @@ return( TRUE );
 }*/
 
 // Load the string_base < TYPE_CHAR > from resource 'nID' in module 'hInstance', using language 'wLanguageID'
-/*bool load_string(HINSTANCE hInstance,UINT nID,WORD wLanguageID )
+/*bool load_string(HINSTANCE hInstance,::u32 nID,::u16 wLanguageID )
 {
 const STRINGRESOURCEIMAGE* pImage = gen_GetStringResourceImage( hInstance, nID, wLanguageID );
 if( pImage == nullptr )

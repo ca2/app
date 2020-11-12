@@ -11,7 +11,7 @@
 
 
 
-CGColorRef cg_create_color(COLORREF cr)
+CGColorRef cg_create_color(color32_t cr)
 {
 
    // Create a color and add it as an attribute to the string.
@@ -256,7 +256,7 @@ CTFontRef CreateFontConvertedToFamily(CTFontRef iFont, CFStringRef iFamily)
 
 
 
-//void FillSolidRect_dup(HDC hdc, const ::rect & rect, COLORREF clr)
+//void FillSolidRect_dup(HDC hdc, const ::rect & rect, color32_t clr)
 
 //{
 //   CGColorRef color = cg_create_color(clr);

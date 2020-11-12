@@ -361,8 +361,8 @@ namespace draw2d
    ::draw2d::font * pfont,
    const ::e_align & e_align,
    const ::e_draw_text& edrawtext,
-   COLORREF crText,
-   COLORREF crGlow,
+   color32_t crText,
+   color32_t crGlow,
    int iSpreadRadius,
    int iBlurRadius,
    int iBlur,
@@ -412,7 +412,7 @@ namespace draw2d
    void draw2d::alpha_spread__24CC(
    byte * lpbDst, i32 xDest, i32 yDest, i32 wDest, i32 cx, i32 cy,
    byte * lpbSrc, i32 xSrc, i32 ySrc, i32 wSrc,
-   BYTE bMin, i32 iRadius)
+   byte bMin, i32 iRadius)
    {
       UNREFERENCED_PARAMETER(xDest);
       UNREFERENCED_PARAMETER(yDest);
@@ -424,12 +424,12 @@ namespace draw2d
       i32 iFilterHalfH = iFilterH / 2;
       i32 iFilterArea = iFilterW * iFilterH;
       i32 divisor;
-      BYTE *lpbSource;
-      BYTE *lpbSource_1;
-      BYTE *lpbSource_2;
-      BYTE *lpwDestination;
-      BYTE *lpFilter;
-      BYTE *pFilter;
+      byte *lpbSource;
+      byte *lpbSource_1;
+      byte *lpbSource_2;
+      byte *lpwDestination;
+      byte *lpFilter;
+      byte *pFilter;
 
 
       i32 i;
@@ -726,7 +726,7 @@ breakFilter:
    }
 
 
-   bool draw2d::channel_spread__32CC(::image * pimageDst, ::image * pimageSrc, i32 iChannel, i32 iRadius, COLORREF crSpreadSetColor)
+   bool draw2d::channel_spread__32CC(::image * pimageDst, ::image * pimageSrc, i32 iChannel, i32 iRadius, color32_t crSpreadSetColor)
    {
 
       pimageDst->map();
@@ -739,12 +739,12 @@ breakFilter:
       i32 iFilterHalfH = iRadius;
       i32 iFilterArea = iFilterW * iFilterH;
       i32 divisor = iFilterW * iFilterH;
-      BYTE *lpbSource;
-      BYTE *lpbSource_1;
-      BYTE *lpbSource_2;
-      BYTE *lpwDestination;
-      BYTE *lpFilter;
-      BYTE * pFilter;
+      byte *lpbSource;
+      byte *lpbSource_1;
+      byte *lpbSource_2;
+      byte *lpwDestination;
+      byte *lpFilter;
+      byte * pFilter;
 
       i32 i;
       i32 x;

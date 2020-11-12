@@ -217,9 +217,9 @@ SizingNone:;
 
                auto psession = Session;
 
-               COLORREF    crMoveableBorder;
-               COLORREF    crMoveableBorderHilight;
-               COLORREF    crMoveableBorderShadow;
+               color32_t    crMoveableBorder;
+               color32_t    crMoveableBorderHilight;
+               color32_t    crMoveableBorderShadow;
 
                if(pframewindow->m_fActive)
                {
@@ -399,7 +399,7 @@ SizingNone:;
 
             void frame_005::GetBorderRect(
             const ::rect & rectClient,
-            LPRECT lprect,
+            LPRECT32 lprect,
             e_border eside)
             {
                ::rect rectBig(rectClient);
@@ -446,7 +446,7 @@ SizingNone:;
             }
 
 
-            void frame_005::Draw3dRectSide(::draw2d::graphics_pointer & pgraphics,const ::rect & rectParam,e_border eborder,COLORREF crTopLeft,COLORREF crBottomRight)
+            void frame_005::Draw3dRectSide(::draw2d::graphics_pointer & pgraphics,const ::rect & rectParam,e_border eborder,color32_t crTopLeft,color32_t crBottomRight)
             {
 
                auto psession = Session;

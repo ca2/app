@@ -313,7 +313,7 @@ namespace hi5
       char szRand[oAuthLibDefaults::OAUTHLIB_BUFFSIZE];
       __memset( szTime, 0, oAuthLibDefaults::OAUTHLIB_BUFFSIZE );
       __memset( szRand, 0, oAuthLibDefaults::OAUTHLIB_BUFFSIZE );
-      srand((UINT) time( nullptr ) );
+      srand((::u32) time( nullptr ) );
       sprintf( szRand, "%x", rand()%1000 );
 #ifdef WINDOWS
       sprintf( szTime, "%ld", (i32) time( nullptr ) );

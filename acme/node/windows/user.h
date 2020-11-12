@@ -4,7 +4,7 @@
 //#include "interaction_impl.h"
 
 
-CLASS_DECL_ACME const unichar * __register_window_class(::matter * pobject, UINT nClassStyle, HCURSOR hCursor = 0, HBRUSH hbrBackground = 0, HICON hIcon = 0);
+CLASS_DECL_ACME const unichar * __register_window_class(::matter * pobject, ::u32 nClassStyle, HCURSOR hCursor = 0, HBRUSH hbrBackground = 0, HICON hIcon = 0);
 
 CLASS_DECL_ACME bool windows_register_class(WNDCLASSW * pwndclass);
 
@@ -17,7 +17,7 @@ extern CLASS_DECL_ACME const unichar gen_WndControlBar[]; // controls with gray 
 extern CLASS_DECL_ACME const unichar gen_WndMDIFrame[];
 extern CLASS_DECL_ACME const unichar gen_WndFrameOrView[];
 extern CLASS_DECL_ACME const unichar gen_WndOleControl[];
-CLASS_DECL_ACME bool __is_combo_box_control(oswindow oswindow, UINT nStyle);
+CLASS_DECL_ACME bool __is_combo_box_control(oswindow oswindow, ::u32 nStyle);
 CLASS_DECL_ACME bool __check_center_dialog(const char * pszResource);
 
 CLASS_DECL_ACME bool __compare_class_name(oswindow oswindow, const char * pszClassName);

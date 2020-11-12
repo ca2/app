@@ -102,8 +102,8 @@ namespace draw2d
    {
 
       interpolation_fast = 0,
-      interpolation_normal = COLORONCOLOR,
-      interpolation_high_quality = HALFTONE,
+      interpolation_normal,
+      interpolation_high_quality,
 
    };
 

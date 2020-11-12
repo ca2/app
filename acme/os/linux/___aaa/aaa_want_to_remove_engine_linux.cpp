@@ -42,7 +42,7 @@ struct BacktraceState
 static _Unwind_Reason_Code unwindCallback(struct _Unwind_Context* context,void* arg)
 {
    BacktraceState* state = static_cast<BacktraceState*>(arg);
-   uintptr_t pc = _Unwind_GetIP(context);
+   ::u32ptr_t pc = _Unwind_GetIP(context);
    if(pc)
    {
       if(state->current == state->end)
@@ -238,7 +238,7 @@ namespace exception
 #ifdef WINDOWS_DESKTOP
 
 
-   size_t engine::symbol(char * psz, int nCount, DWORD * pdisplacement)
+   size_t engine::symbol(char * psz, int nCount, ::u32 * pdisplacement)
    {
 
       if (!check())
@@ -317,7 +317,7 @@ namespace exception
 
 #if FAST_STACK_TRACE
 
-      UINT32 maxframes = c;
+      ::u32 maxframes = c;
       ULONG BackTraceHash;
       c = RtlCaptureStackBackTrace(0, maxframes, reinterpret_cast<PVOID*>(pinteraction), &BackTraceHash);
 
@@ -327,7 +327,7 @@ namespace exception
    {
 
 #if FAST_STACK_TRACE
-      UINT32 maxframes = sizeof(m_uia) / sizeof(m_uia[0]);
+      ::u32 maxframes = sizeof(m_uia) / sizeof(m_uia[0]);
       ULONG BackTraceHash;
       m_iAddressWrite = RtlCaptureStackBackTrace(0, maxframes, reinterpret_cast<PVOID*>(&m_uia), &BackTraceHash);
 #else
@@ -359,7 +359,7 @@ namespace exception
          bool r = StackWalk64(
                   dwType,   // __in      u32 MachineType,
                   hprocess,        // __in      HANDLE hProcess,
-                  get_current_hthread(),         // __in      HANDLE hThread,
+                  get_current_hthread(),         // __in      hthread_t hthread,
                   &m_stackframe,                       // __inout   LP STACKFRAME64 StackFrame,
                   &m_context,                  // __inout   PVOID ContextRecord,
                   My_ReadProcessMemory,                     // __in_opt  PREAD_PROCESS_MEMORY_ROUTINE64 ReadMemoryRoutine,
@@ -372,7 +372,7 @@ namespace exception
          bool r = StackWalk(
                   dwType,   // __in      u32 MachineType,
                   hprocess,        // __in      HANDLE hProcess,
-                  get_current_hthread(),         // __in      HANDLE hThread,
+                  get_current_hthread(),         // __in      hthread_t hthread,
                   &m_stackframe,                       // __inout   LP STACKFRAME64 StackFrame,
                   &m_context,                  // __inout   PVOID ContextRecord,
                   My_ReadProcessMemory32,                     // __in_opt  PREAD_PROCESS_MEMORY_ROUTINE64 ReadMemoryRoutine,
@@ -453,7 +453,7 @@ namespace exception
    }
 
 
-   bool engine::get_line_from_address (HANDLE hprocess, OS_DWORD uiAddress, DWORD * puiDisplacement, OS_IMAGEHLP_LINE * pline)
+   bool engine::get_line_from_address (HANDLE hprocess, OS_DWORD uiAddress, ::u32 * puiDisplacement, OS_IMAGEHLP_LINE * pline)
    {
 
       return engine_get_line_from_address(hprocess, uiAddress, puiDisplacement, pline);
@@ -481,7 +481,7 @@ namespace exception
 //#endif
    }
 //#else
-//   bool engine::get_line_from_address(HANDLE hprocess, DWORD64 uiAddress, DWORD * puiDisplacement, IMAGEHLP_LINE64 * pline)
+//   bool engine::get_line_from_address(HANDLE hprocess, DWORD64 uiAddress, ::u32 * puiDisplacement, IMAGEHLP_LINE64 * pline)
 //   {
 //
 //      return engine_get_line_from_address(hprocess, uiAddress, puiDisplacement, pline);
@@ -612,13 +612,13 @@ namespace exception
 //         {
 //            ENUMPROCESSMODULES fnEnumProcessModules =
 //            (ENUMPROCESSMODULES)GetProcAddress(hInst, "EnumProcessModules");
-//            DWORD cbNeeded = 0;
+//            ::u32 cbNeeded = 0;
 //            if (fnEnumProcessModules &&
 //                  fnEnumProcessModules(GetCurrentProcess(), 0, 0, &cbNeeded) &&
 //                  cbNeeded)
 //            {
 //               HMODULE * pmod = (HMODULE *)alloca(cbNeeded);
-//               DWORD cb = cbNeeded;
+//               ::u32 cb = cbNeeded;
 //               if (fnEnumProcessModules(GetCurrentProcess(), pmod, cb, &cbNeeded))
 //               {
 //                  m_iRef = 0;
@@ -815,7 +815,7 @@ namespace exception
       //   SymSetOptions (SYMOPT_UNDNAME|SYMOPT_LOAD_LINES);
       if (!::SymInitialize(hprocess, 0, TRUE))
       {
-         DWORD dw = ::GetLastError();
+         ::u32 dw = ::GetLastError();
          output_debug_string("Last Error = " + __str(dw));
          ASSERT(0);
 
@@ -1249,7 +1249,7 @@ namespace exception
    }
 
 #if OSBIT == 32
-   char * engine::stack_trace(DWORD * pinteraction, int c, const char * pszFormat)
+   char * engine::stack_trace(::u32 * pinteraction, int c, const char * pszFormat)
 #else
    char * engine::stack_trace(DWORD64 * pinteraction, int c, const char * pszFormat)
 #endif
@@ -1306,7 +1306,7 @@ namespace exception
       u32 uiLineDisplacement = 0;
       u32 uiLineNumber = 0;
 #if OSBIT == 32
-      DWORD uiSymbolDisplacement = 0;
+      ::u32 uiSymbolDisplacement = 0;
 #else
       DWORD64 uiSymbolDisplacement = 0;
 #endif
@@ -1421,7 +1421,7 @@ namespace exception
 
       cslock csl(&m_cs);
 
-      UINT32 maxframes = c;
+      ::u32 maxframes = c;
 
       c = ::backtrace(pinteraction, maxframes);
 
@@ -1527,7 +1527,7 @@ namespace exception
 //
 //      sync_lock sl(mutex());
 //
-//      UINT32 maxframes = c;
+//      ::u32 maxframes = c;
 //
 //      c = ::backtrace(ppui, maxframes);
 //

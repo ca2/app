@@ -34,9 +34,11 @@ namespace uwp
 
       ::draw2d::savedc k(pgraphics);
 
+      auto puiptraChild = m_puiptraChild;
+
       // while drawing layout can occur and change z-order.
       // keep this past z-order
-      auto uia = m_uiptraChild.m_interactiona;
+      auto uia = puiptraChild->m_interactiona;
 
       for (auto & pinteraction : uia)
       {

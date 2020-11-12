@@ -156,7 +156,7 @@ void apex_application_startup (GApplication *application)
 
    }
 
-   ::apex::system * psystem = (::apex::system *) ::get_context_system();
+   ::apex::system * psystem = &System;
 
    //psystem->m_strAppId = psystem->m_pmaindata->m_strAppId;
 

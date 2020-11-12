@@ -32,15 +32,15 @@ NSWindow * __nswindow(oswindow oswindow);
 #define GetWindowLong GetWindowLongA
 #define SetWindowLong SetWindowLongA
 
-int GetMainScreenRect(RECT * prect);
+int GetMainScreenRect(RECT32 * prect);
 
 
-int GetScreenRect(RECT * prect, int iMonitor);
+int GetScreenRect(RECT32 * prect, int iMonitor);
 
 
 int GetScreenCount();
 
-int GetWkspaceRect(RECT * prect, int iMonitor);
+int GetWkspaceRect(RECT32 * prect, int iMonitor);
 
 
 int GetWkspaceCount();
@@ -62,7 +62,7 @@ oswindow get_active_window();
 oswindow set_active_window(oswindow window);
 int_bool enable_window(oswindow hwnd, int_bool bEnable);
 
-//void GetMainScreenRect(RECT * prect);
+//void GetMainScreenRect(RECT32 * prect);
 
 
 int_bool SetForegroundWindow(oswindow window);
@@ -72,22 +72,22 @@ void ns_redraw_window(oswindow window);
 
 
 
-//void copy(CGRect & rect, const RECT * prect);
+//void copy(CGRect & rect, const RECT32 * prect);
 //
-//void copy(RECT * prect, const CGRect & rectSrc);
+//void copy(RECT32 * prect, const CGRect & rectSrc);
 //
-//void window_copy(CGRect & rect, const RECT * prect);
+//void window_copy(CGRect & rect, const RECT32 * prect);
 //
-//void window_copy(RECT * prect, const CGRect & rectSrc);
+//void window_copy(RECT32 * prect, const CGRect & rectSrc);
 //
 //#ifdef MM
-//void copy(NSRect & rect, const RECT * prect);
+//void copy(NSRect & rect, const RECT32 * prect);
 //
-//void copy(RECT * prect, const NSRect & rectSrc);
+//void copy(RECT32 * prect, const NSRect & rectSrc);
 //
-//void window_copy(NSRect & rect, const RECT * prect);
+//void window_copy(NSRect & rect, const RECT32 * prect);
 //
-//void window_copy(RECT * prect, const NSRect & rectSrc);
+//void window_copy(RECT32 * prect, const NSRect & rectSrc);
 //
 //#endif
 

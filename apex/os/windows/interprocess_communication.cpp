@@ -2,7 +2,7 @@
 #include "apex/platform/app_core.h"
 
 
-// typedef int (WINAPI * LPFN_ChangeWindowMessageFilter)(const ::id & id, DWORD dwFlag);
+// typedef int (WINAPI * LPFN_ChangeWindowMessageFilter)(const ::id & id, ::u32 dwFlag);
 
 
 //extern LPFN_ChangeWindowMessageFilter g_pfnChangeWindowMessageFilter;
@@ -152,7 +152,7 @@
 
             DWORD_PTR dwptr;
 
-            if(!::SendMessageTimeout(m_oswindow,WM_COPYDATA,(WPARAM)0,(LPARAM)&cds, SMTO_ABORTIFHUNG, (UINT)(durationTimeout.get_total_milliseconds()),&dwptr))
+            if(!::SendMessageTimeout(m_oswindow,WM_COPYDATA,(WPARAM)0,(LPARAM)&cds, SMTO_ABORTIFHUNG, (::u32)(durationTimeout.get_total_milliseconds()),&dwptr))
                return false;
 
             unsigned int dwError = ::get_last_error();
@@ -203,7 +203,7 @@
 
             DWORD_PTR dwptr;
 
-            if(!::SendMessageTimeout(m_oswindow,WM_COPYDATA,(WPARAM)0,(LPARAM)&cds,SMTO_BLOCK, (UINT)(durationTimeout.get_total_milliseconds()), &dwptr))
+            if(!::SendMessageTimeout(m_oswindow,WM_COPYDATA,(WPARAM)0,(LPARAM)&cds,SMTO_BLOCK, (::u32)(durationTimeout.get_total_milliseconds()), &dwptr))
                return false;
 
             unsigned int dwError = ::get_last_error();
@@ -386,7 +386,7 @@
       }
 
 
-      LRESULT CALLBACK s_rx_message_queue_proc(oswindow oswindow, UINT message,WPARAM wparam,LPARAM lparam)
+      LRESULT CALLBACK s_rx_message_queue_proc(oswindow oswindow, ::u32 message,WPARAM wparam,LPARAM lparam)
       {
 
          int iRet = 0;
@@ -438,7 +438,7 @@
       }
 
 
-      LRESULT rx::message_queue_proc(UINT message,WPARAM wparam,LPARAM lparam)
+      LRESULT rx::message_queue_proc(::u32 message,WPARAM wparam,LPARAM lparam)
       {
 
          if(message == WM_USER + 100)

@@ -14,8 +14,8 @@ WCHAR szTitle[MAX_LOADSTRING];                  // The title bar text
 // Forward declarations of functions included in this code module:
 CLASS_DECL_ACME ATOM                MyRegisterClass(HINSTANCE hInstance);
 BOOL                InitInstance(HINSTANCE, int);
-LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
-INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
+LRESULT CALLBACK    WndProc(HWND, ::u32, WPARAM, LPARAM);
+INT_PTR CALLBACK    About(HWND, ::u32, WPARAM, LPARAM);
 
 ////int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 ////   _In_opt_ HINSTANCE hPrevInstance,
@@ -115,7 +115,7 @@ CLASS_DECL_ACME ATOM MyRegisterClass(HINSTANCE hInstance)
 //}
 
 //
-//  FUNCTION: WndProc(HWND, UINT, WPARAM, LPARAM)
+//  FUNCTION: WndProc(HWND, ::u32, WPARAM, LPARAM)
 //
 //  PURPOSE: Processes messages for the main window.
 //
@@ -124,7 +124,7 @@ CLASS_DECL_ACME ATOM MyRegisterClass(HINSTANCE hInstance)
 //  e_message_destroy  - post a quit message and return
 //
 //
-LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
+LRESULT CALLBACK WndProc(HWND hWnd, ::u32 message, WPARAM wParam, LPARAM lParam)
 {
    switch (message)
    {
@@ -147,7 +147,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 }
 
 // Message handler for about box.
-INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
+INT_PTR CALLBACK About(HWND hDlg, ::u32 message, WPARAM wParam, LPARAM lParam)
 {
    
    UNREFERENCED_PARAMETER(lParam);

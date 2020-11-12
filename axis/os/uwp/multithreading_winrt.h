@@ -14,9 +14,9 @@ inline void waiter_null_result(bool & b)
 }
 
 template < >
-inline void waiter_null_result(unsigned int & ui)
+inline void waiter_null_result(unsigned int & u)
 {
-   ui = NULL;
+   u = NULL;
 }
 
 
@@ -58,7 +58,7 @@ public:
    }
 
 
-   T wait(unsigned int dwMillis = INFINITE, ::Windows::Foundation::AsyncStatus * pstatus = nullptr)
+   T wait(unsigned int dwMillis = U32_INFINITE_TIMEOUT, ::Windows::Foundation::AsyncStatus * pstatus = nullptr)
    {
 
       task_sleep(millis(dwMillis), &m_event);
@@ -94,7 +94,7 @@ public:
 internal:
 
    template < typename PRED >
-   void wait(PRED pred,unsigned int dwMillis = INFINITE, ::Windows::Foundation::AsyncStatus * pstatus = nullptr)
+   void wait(PRED pred,unsigned int dwMillis = U32_INFINITE_TIMEOUT, ::Windows::Foundation::AsyncStatus * pstatus = nullptr)
    {
 
       pred(wait(dwMillis, pstatus));
@@ -144,7 +144,7 @@ public:
    }
 
 
-   T wait(unsigned int dwMillis = INFINITE, ::Windows::Foundation::AsyncStatus * pstatus = nullptr)
+   T wait(unsigned int dwMillis = U32_INFINITE_TIMEOUT, ::Windows::Foundation::AsyncStatus * pstatus = nullptr)
    {
 
       m_event.wait(millis(dwMillis));
@@ -219,7 +219,7 @@ public:
    }
 
 
-   void wait(unsigned int dwMillis = INFINITE, ::Windows::Foundation::AsyncStatus * pstatus = nullptr)
+   void wait(unsigned int dwMillis = U32_INFINITE_TIMEOUT, ::Windows::Foundation::AsyncStatus * pstatus = nullptr)
    {
 
       auto pholdThis = this;
@@ -236,7 +236,7 @@ public:
 
 
 template < typename T, typename PRED >
-void fork_then(::object * pobject, ::Windows::Foundation::IAsyncOperation < T > ^ operation, PRED pred, DWORD dwMillis = INFINITE, CallbackContext callbackcontext = CallbackContext::Any)
+void fork_then(::object * pobject, ::Windows::Foundation::IAsyncOperation < T > ^ operation, PRED pred, ::u32 dwMillis = U32_INFINITE_TIMEOUT, CallbackContext callbackcontext = CallbackContext::Any)
 {
 
    pobject->fork([=]()
@@ -252,7 +252,7 @@ void fork_then(::object * pobject, ::Windows::Foundation::IAsyncOperation < T > 
 
 
 template < typename T, typename PRED >
-inline void wait_then(::Windows::Foundation::IAsyncOperation < T > ^ operation, PRED pred, DWORD dwMillis = INFINITE, ::Windows::Foundation::AsyncStatus * pstatus = nullptr, CallbackContext callbackcontext = CallbackContext::Any)
+inline void wait_then(::Windows::Foundation::IAsyncOperation < T > ^ operation, PRED pred, ::u32 dwMillis = U32_INFINITE_TIMEOUT, ::Windows::Foundation::AsyncStatus * pstatus = nullptr, CallbackContext callbackcontext = CallbackContext::Any)
 {
 
    auto pwaiter = ref new waiter_for_Windows_Foundation_IAsyncOperation < T >(operation, callbackcontext);
@@ -263,7 +263,7 @@ inline void wait_then(::Windows::Foundation::IAsyncOperation < T > ^ operation, 
 
 
 template < typename T >
-inline T wait(::Windows::Foundation::IAsyncOperation < T > ^ operation, DWORD dwMillis = INFINITE, ::Windows::Foundation::AsyncStatus * pstatus = nullptr, CallbackContext callbackcontext = CallbackContext::Any)
+inline T wait(::Windows::Foundation::IAsyncOperation < T > ^ operation, ::u32 dwMillis = U32_INFINITE_TIMEOUT, ::Windows::Foundation::AsyncStatus * pstatus = nullptr, CallbackContext callbackcontext = CallbackContext::Any)
 {
 
    auto pwaiter = ref new waiter_for_Windows_Foundation_IAsyncOperation < T >(operation, callbackcontext);
@@ -274,7 +274,7 @@ inline T wait(::Windows::Foundation::IAsyncOperation < T > ^ operation, DWORD dw
 
 
 template < typename T, typename T2 >
-inline T wait(::Windows::Foundation::IAsyncOperationWithProgress < T, T2 > ^ operation, DWORD dwMillis = INFINITE, ::Windows::Foundation::AsyncStatus * pstatus = nullptr, CallbackContext callbackcontext = CallbackContext::Any)
+inline T wait(::Windows::Foundation::IAsyncOperationWithProgress < T, T2 > ^ operation, ::u32 dwMillis = U32_INFINITE_TIMEOUT, ::Windows::Foundation::AsyncStatus * pstatus = nullptr, CallbackContext callbackcontext = CallbackContext::Any)
 {
 
    auto pwaiter = ref new waiter_for_Windows_Foundation_IAsyncOperationWithProgress < T, T2 > (operation, callbackcontext);
@@ -284,7 +284,7 @@ inline T wait(::Windows::Foundation::IAsyncOperationWithProgress < T, T2 > ^ ope
 }
 
 
-inline ::Windows::Foundation::AsyncStatus wait(::Windows::Foundation::IAsyncAction ^ action,  DWORD dwMillis = INFINITE, CallbackContext callbackcontext = CallbackContext::Any)
+inline ::Windows::Foundation::AsyncStatus wait(::Windows::Foundation::IAsyncAction ^ action,  ::u32 dwMillis = U32_INFINITE_TIMEOUT, CallbackContext callbackcontext = CallbackContext::Any)
 {
 
    ::Windows::Foundation::AsyncStatus status = ::Windows::Foundation::AsyncStatus::Canceled; // for time out

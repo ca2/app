@@ -50,7 +50,7 @@ namespace user
       //virtual void assert_valid() const;
       //virtual void dump(dump_context & dumpcontext) const;
 
-      //virtual bool get_color(COLORREF & cr, e_color ecolor, ::user::interaction * pinteraction) override;
+      //virtual bool get_color(color32_t & cr, e_color ecolor, ::user::interaction * pinteraction) override;
 
 
       virtual void install_message_routing(::channel * pchannel) override;

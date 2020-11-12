@@ -21,6 +21,7 @@ namespace user
       string      m_strClassName;
       string      m_strWindowName;
 #endif
+      ::user::interaction * m_puserinteractionOwner;
 
       create_struct(const create_struct &);
       
@@ -40,7 +41,7 @@ namespace user
 
       void set_rect(const ::rect & rect);
 
-      void get_rect(RECT * prect);
+      void get_rect(RECT32 * prect);
 
       void add_visible(bool bAdd = true);
 

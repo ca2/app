@@ -14,7 +14,7 @@
 #endif
 
 
-semaphore::semaphore(LONG lInitialCount, LONG lMaxCount, const char * pstrName, LPSECURITY_ATTRIBUTES psaAttributes)
+semaphore::semaphore(::i32 lInitialCount, ::i32 lMaxCount, const char * pstrName, LPSECURITY_ATTRIBUTES psaAttributes)
 {
 
    ASSERT(lMaxCount > 0);
@@ -308,14 +308,12 @@ sync_result semaphore::wait(const duration & durationTimeout)
 
 
 
-bool semaphore::unlock(LONG lCount, LPLONG pPrevCount)
-
+bool semaphore::unlock(::i32 lCount, ::i32 * pPrevCount)
 {
 
 #ifdef WINDOWS
 
-   return ::ReleaseSemaphore(m_hsync, lCount, pPrevCount) != FALSE;
-
+   return ::ReleaseSemaphore(m_hsync, lCount, (LPLONG) pPrevCount) != FALSE;
 
 #elif defined(ANDROID)
 

@@ -49,7 +49,7 @@ CLASS_DECL_BOOT u32 call_sync(const char * pszPath, const char * pszParam, const
 
    ::ShellExecuteExA(&infoa);
 
-   DWORD dwExitCode;
+   ::u32 dwExitCode;
 
    int iTry = 0;
 
@@ -150,12 +150,12 @@ int get_current_process_maximum_affinity()
 
 #ifdef WINDOWS_DESKTOP
 
-bool process_modules(string_array & stra, DWORD processID)
+bool process_modules(string_array & stra, ::u32 processID)
 {
 
    HANDLE hProcess;
 
-   DWORD cbNeeded;
+   ::u32 cbNeeded;
 
    unsigned int i;
 

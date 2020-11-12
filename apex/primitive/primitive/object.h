@@ -78,17 +78,17 @@ public:
    __pointer(BASE_TYPE) file_as(const var & varFile);
 
 
-   virtual void add_method(const ::id & id, const ::method & method);
-   virtual void add_future(const ::id & id, const ::future & future);
+   virtual void add_procedure(const ::id & id, const ::procedure & procedure);
+   virtual void add_futurevar(const ::id & id, const ::futurevar & futurevar);
 
-   virtual void add_methods_from(const ::id & id, ::object * pobjectSource);
-   virtual void add_futures_from(const ::id & id, ::object * pobjectSource);
+   virtual void add_procedures_from(const ::id & id, ::object * pobjectSource);
+   virtual void add_futurevars_from(const ::id & id, ::object * pobjectSource);
 
-   virtual array < ::method > * methods(const ::id & id);
-   virtual array < ::future > * futures(const ::id & id);
+   virtual array < ::procedure > * procedures(const ::id & id);
+   virtual array < ::futurevar > * futurevars(const ::id & id);
 
-   virtual void call_method(const ::id & id);
-   virtual void send_future(const ::id & id, const ::var & var);
+   virtual void call_procedure(const ::id & id);
+   virtual void send_futurevar(const ::id & id, const ::var & var);
 
 
    //template < typename METHOD >
@@ -433,23 +433,23 @@ public:
 
    virtual ::estatus do_request(::create * pcreate);
 
-   inline ::estatus message_box(const char* pszMessage, const char* pszTitle = nullptr, ::emessagebox emessagebox = message_box_ok, ::future future = ::future())
+   inline ::estatus message_box(const char* pszMessage, const char* pszTitle = nullptr, ::emessagebox emessagebox = message_box_ok, const ::futurevar & futurevar = ::futurevar())
    {
    
-      return message_box(nullptr, pszMessage, pszTitle, emessagebox, future);
+      return message_box(nullptr, pszMessage, pszTitle, emessagebox, futurevar);
 
    }
 
 
-   inline ::estatus message_box_timeout(const char* pszMessage, const char* pszTitle = nullptr, const ::duration& durationTimeout = ::duration::infinite(), ::emessagebox emessagebox = message_box_ok, ::future future = ::future())
+   inline ::estatus message_box_timeout(const char* pszMessage, const char* pszTitle = nullptr, const ::duration& durationTimeout = ::duration::infinite(), ::emessagebox emessagebox = message_box_ok, const ::futurevar & futurevar = ::futurevar())
    {
 
-      return message_box_timeout(nullptr, pszMessage, pszTitle, durationTimeout, emessagebox, future);
+      return message_box_timeout(nullptr, pszMessage, pszTitle, durationTimeout, emessagebox, futurevar);
 
    }
 
-   virtual ::estatus message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle = nullptr, ::emessagebox emessagebox = message_box_ok, ::future future = ::future());
-   virtual ::estatus message_box_timeout(::user::primitive* pwndOwner, const char* pszMessage, const char* pszTitle = nullptr, const ::duration& durationTimeout = ::duration::infinite(), ::emessagebox emessagebox = message_box_ok, ::future future = ::future());
+   virtual ::estatus message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle = nullptr, ::emessagebox emessagebox = message_box_ok, const ::futurevar & futurevar = ::futurevar());
+   virtual ::estatus message_box_timeout(::user::primitive* pwndOwner, const char* pszMessage, const char* pszTitle = nullptr, const ::duration& durationTimeout = ::duration::infinite(), ::emessagebox emessagebox = message_box_ok, const ::futurevar & futurevar = ::futurevar());
 
    virtual void release_references();
 
@@ -498,12 +498,12 @@ public:
    void start();
 
 
-   void single_fork(const method_array & methoda);
-   void multiple_fork(const method_array & methoda);
+   void single_fork(const procedure_array & procedurea);
+   void multiple_fork(const procedure_array & procedurea);
 
 
-   template < typename THREAD, typename METHOD >
-   inline __pointer(THREAD)& defer_start(__pointer(THREAD)& pthread, METHOD method)
+   template < typename THREAD, typename PROCEDURE >
+   inline __pointer(THREAD)& defer_start(__pointer(THREAD)& pthread, PROCEDURE procedure)
    {
 
       if (pthread && pthread->is_running())
@@ -513,7 +513,7 @@ public:
 
       }
 
-      pthread->start(method);
+      pthread->start(procedure);
 
       return pthread;
 
@@ -538,7 +538,7 @@ public:
    }
 
 
-   inline ::estatus defer_start(::thread_pointer& pthread, const ::method& method);
+   inline ::estatus defer_start(::thread_pointer& pthread, const ::procedure & procedure);
 
 
    //template < typename THREAD >
@@ -556,11 +556,11 @@ public:
    inline ::thread_pointer fork(PRED pred);
 
 
-   inline ::thread_pointer launch(const ::method & method);
+   inline ::thread_pointer launch(const ::procedure & procedure);
 
 
    //template < typename METHOD >
-   inline ::task_pointer opt_fork(const ::method& method)
+   inline ::task_pointer opt_fork(const ::procedure & procedure)
    {
 
       auto ptask = ::get_task();
@@ -570,13 +570,13 @@ public:
       if (ptask && ptask->m_bitIsPred)
       {
 
-         method();
+         procedure();
 
          return ptask;
 
       }
 
-      return launch(method);
+      return launch(procedure);
 
    }
 
@@ -608,7 +608,7 @@ public:
 
    ::thread_pointer begin(
       ::e_priority epriority = ::priority_normal,
-      UINT nStackSize = 0,
+      ::u32 nStackSize = 0,
       u32 dwCreateFlags = 0,
       LPSECURITY_ATTRIBUTES pSecurityAttrs = nullptr);
 
@@ -703,7 +703,7 @@ public:
 
 
 
-CLASS_DECL_APEX ::estatus call_sync(const method_array & methoda);
+CLASS_DECL_APEX ::estatus call_sync(const procedure_array & methoda);
 
 
 

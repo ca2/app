@@ -2,7 +2,7 @@
 
 
 extern "C" int APIENTRY
-DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
+DllMain(HINSTANCE hInstance, ::u32 dwReason, LPVOID lpReserved)
 {
    // remove this if you use lpReserved
    UNREFERENCED_PARAMETER(lpReserved);

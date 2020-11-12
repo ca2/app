@@ -26,13 +26,13 @@ namespace experience
 
                void draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::rect & rectClient, e_border eside);
 
-               void GetBorderRect(const ::rect & rectClient, RECT * prect, e_border eside);
+               void GetBorderRect(const ::rect & rectClient, RECT32 * prect, e_border eside);
 
 
                virtual e_hittest _001HitTest(const ::point & point) override;
-               COLORREF get_border_main_body_color() override;
+               color32_t get_border_main_body_color() override;
 
-               //virtual bool get_color(COLORREF & cr, ::user::e_color ecolor, ::user::style_context * pcontext) override;
+               //virtual bool get_color(color32_t & cr, ::user::e_color ecolor, ::user::style_context * pcontext) override;
 
 
             };

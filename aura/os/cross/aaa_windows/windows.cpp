@@ -20,21 +20,21 @@ static inline void FreeForBSTR(void *pv)
 }
 
 
-static UINT MyStringLen(const wd16char *s)
+static ::u32 MyStringLen(const wd16char *s)
 {
-  UINT i;
+  ::u32 i;
   for (i = 0; s[i] != '\0'; i++);
   return i;
 }
 
-BSTR SysAllocStringByteLen(LPCSTR psz, UINT len)
+BSTR SysAllocStringByteLen(const char * psz, ::u32 len)
 {
-  i32 realLen = len + sizeof(UINT) + sizeof(OLECHAR) + sizeof(OLECHAR);
+  i32 realLen = len + sizeof(::u32) + sizeof(OLECHAR) + sizeof(OLECHAR);
   void *point = AllocateForBSTR(realLen);
   if (point == 0)
     return 0;
-  *(UINT *)point = len;
-  BSTR bstr = (BSTR)((UINT *)point + 1);
+  *(::u32 *)point = len;
+  BSTR bstr = (BSTR)((::u32 *)point + 1);
   __memmov(bstr, psz, len);
   u8 *pb = ((u8 *)bstr) + len;
   for (i32 i = 0; less_than(i, sizeof(OLECHAR) * 2); i++)
@@ -46,13 +46,13 @@ BSTR SysAllocString(const OLECHAR *sz)
 {
   if (sz == 0)
     return 0;
-  UINT strLen = MyStringLen(sz);
-  UINT len = (strLen + 1) * sizeof(OLECHAR);
-  void *point = AllocateForBSTR(len + sizeof(UINT));
+  ::u32 strLen = MyStringLen(sz);
+  ::u32 len = (strLen + 1) * sizeof(OLECHAR);
+  void *point = AllocateForBSTR(len + sizeof(::u32));
   if (point == 0)
     return 0;
-  *(UINT *)point = strLen;
-  BSTR bstr = (BSTR)((UINT *)point + 1);
+  *(::u32 *)point = strLen;
+  BSTR bstr = (BSTR)((::u32 *)point + 1);
   __memmov(bstr, sz, len);
   return bstr;
 }
@@ -60,17 +60,17 @@ BSTR SysAllocString(const OLECHAR *sz)
 void SysFreeString(BSTR bstr)
 {
   if (bstr != 0)
-    FreeForBSTR((UINT *)bstr - 1);
+    FreeForBSTR((::u32 *)bstr - 1);
 }
 
-UINT SysStringByteLen(BSTR bstr)
+::u32 SysStringByteLen(BSTR bstr)
 {
   if (bstr == 0)
     return 0;
-  return *((UINT *)bstr - 1);
+  return *((::u32 *)bstr - 1);
 }
 
-UINT SysStringLen(BSTR bstr)
+::u32 SysStringLen(BSTR bstr)
 {
   return SysStringByteLen(bstr) / sizeof(OLECHAR);
 }
@@ -90,7 +90,7 @@ HRESULT VariantCopy(VARIANTARG *dest, VARIANTARG *src)
     return res;
   if (src->vt == VT_BSTR)
   {
-    dest->bstrVal = SysAllocStringByteLen((LPCSTR)src->bstrVal,
+    dest->bstrVal = SysAllocStringByteLen((const char *)src->bstrVal,
         SysStringByteLen(src->bstrVal));
     if (dest->bstrVal == 0)
       return E_OUTOFMEMORY;
@@ -101,7 +101,7 @@ HRESULT VariantCopy(VARIANTARG *dest, VARIANTARG *src)
   return S_OK;
 }
 
-LONG CompareFileTime(const FILETIME* ft1, const FILETIME* ft2)
+::i32 CompareFileTime(const FILETIME* ft1, const FILETIME* ft2)
 {
   if (ft1->dwHighDateTime < ft2->dwHighDateTime) return -1;
   if (ft1->dwHighDateTime > ft2->dwHighDateTime) return 1;
@@ -172,7 +172,7 @@ CLASS_DECL_AURA int_bool is_windows_nt_lesser_than_2000()
 
 
 #if !defined(_UWP)
-DWORD get_current_process_id()
+::u32 get_current_process_id()
 {
 
     return getpid();

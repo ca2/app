@@ -45,7 +45,7 @@ namespace file
       cflag < e_open >           m_eopen;
       ::file::path               m_path;
       cflag < e_filestate >      m_efilestate;
-      DWORD                      m_dwErrorBlockTimeout;
+      ::u32                      m_dwErrorBlockTimeout;
 
 
       file();

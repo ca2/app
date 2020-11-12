@@ -74,7 +74,7 @@ namespace user
 
       virtual bool has_action_hover();
 
-      virtual void set_current_item_by_data(uptr ui, const ::action_context & action_context);
+      virtual void set_current_item_by_data(uptr u, const ::action_context & action_context);
       
       virtual void set_current_item_by_string_value(const string & strValue, const ::action_context & action_context);
       
@@ -92,7 +92,7 @@ namespace user
 
       virtual bool create_control(class control_descriptor * pdescriptor) override;
 
-      virtual bool get_element_rect(RECT * prect, e_element eelement) override;
+      virtual bool get_element_rect(RECT32 * prect, e_element eelement) override;
 
       virtual void on_hit_test(::user::item & item) override;
 
@@ -138,10 +138,10 @@ namespace user
       LCID SetLocale(LCID nNewLocale);
       index GetTopIndex();
       index SetTopIndex(index nIndex);
-      index InitStorage(::count nItems, UINT nBytes);
-      void SetHorizontalExtent(UINT nExtent);
-      UINT GetHorizontalExtent();
-      i32 SetDroppedWidth(UINT nWidth);
+      index InitStorage(::count nItems, ::u32 nBytes);
+      void SetHorizontalExtent(::u32 nExtent);
+      ::u32 GetHorizontalExtent();
+      i32 SetDroppedWidth(::u32 nWidth);
       i32 GetDroppedWidth();
 
 #if defined(WINDOWS_DESKTOP) && (WINVER >= 0x0500)
@@ -163,13 +163,13 @@ namespace user
       void GetLBText(index nIndex, string & rString);
       strsize GetLBTextLen(index nIndex);
 
-      i32 SetItemHeight(index nIndex, UINT cyItemHeight);
+      i32 SetItemHeight(index nIndex, ::u32 cyItemHeight);
       i32 GetItemHeight(index nIndex);
       index FindStringExact(index nIndexStart, const char * pszFind);
 
       i32 SetExtendedUI(bool bExtended = TRUE);
       bool GetExtendedUI();
-      void GetDroppedControlRect(RECT * prect);
+      void GetDroppedControlRect(RECT32 * prect);
 
       bool GetDroppedState();
 
@@ -212,7 +212,7 @@ namespace user
       virtual bool OnChildNotify(::message::base * pbase) override;
 
 
-      //virtual COLORREF get_action_hover_border_color() override;
+      //virtual color32_t get_action_hover_border_color() override;
 
 
 

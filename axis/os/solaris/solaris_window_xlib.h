@@ -25,7 +25,7 @@ public:
    virtual void create(oswindow window, i64 cx, i64 cy, int iStride = -1);
    virtual void destroy();
 
-   virtual void update_window(oswindow window, COLORREF * pOsBitmapData, LPCRECT lpcrect, int iStride = -1);
+   virtual void update_window(oswindow window, color32_t * pOsBitmapData, LPCRECT32 lpcrect, int iStride = -1);
 
 };
 

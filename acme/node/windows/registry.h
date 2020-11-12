@@ -41,18 +41,18 @@ namespace windows
          void close();
 
          
-         void value(void * pvalue, const char * pcszValueName, DWORD & dwType, DWORD & cbValue);
-         estatus _value(void * pvalue, const char* pcszValueName, DWORD& dwType, DWORD& cbValue);
+         void value(void * pvalue, const char * pcszValueName, ::u32 & dwType, ::u32 & cbValue);
+         estatus _value(void * pvalue, const char* pcszValueName, ::u32& dwType, ::u32& cbValue);
 
-         estatus _set_value(const void* pvalue, const char* pcszValueName, DWORD dwType, DWORD cbValue);
-
-
-         void value_type_and_size(const char * pcszValueName, DWORD & dwType, DWORD & cbValue);
-         estatus _value_type_and_size(const char* pcszValueName, DWORD& dwType, DWORD& cbValue) { return _value(nullptr, pcszValueName, dwType, cbValue); }
+         estatus _set_value(const void* pvalue, const char* pcszValueName, ::u32 dwType, ::u32 cbValue);
 
 
-         void get(const char * pcszValueName, DWORD & dwValue);
-         estatus _get(const char * pcszValueName, DWORD & dwValue);
+         void value_type_and_size(const char * pcszValueName, ::u32 & dwType, ::u32 & cbValue);
+         estatus _value_type_and_size(const char* pcszValueName, ::u32& dwType, ::u32& cbValue) { return _value(nullptr, pcszValueName, dwType, cbValue); }
+
+
+         void get(const char * pcszValueName, ::u32 & dwValue);
+         estatus _get(const char * pcszValueName, ::u32 & dwValue);
 
          
          void get(const char * pcszValueName, string & strValue);
@@ -66,8 +66,8 @@ namespace windows
          inline var get(const char* pcszValueName);
 
 
-         void set(const char * pcszValueName, DWORD dwValue);
-         estatus _set(const char * pcszValueName, DWORD dwValue);
+         void set(const char * pcszValueName, ::u32 dwValue);
+         estatus _set(const char * pcszValueName, ::u32 dwValue);
 
 
          void set(const char * pcszValueName, const string & strValue);

@@ -77,7 +77,7 @@ namespace user
    }
 
 
-   bool message_queue::message_queue_set_timer(uptr uiId,DWORD dwMillis)
+   bool message_queue::message_queue_set_timer(uptr uiId,::u32 dwMillis)
    {
 
       return SetTimer(uiId,dwMillis,nullptr) != FALSE;

@@ -79,7 +79,7 @@ namespace path
 
       wstring wstr(get_buffer, MAX_PATH * 8);
 
-      GetModuleFileNameW(hmodule,wstr,(DWORD) wstr.length());
+      GetModuleFileNameW(hmodule,wstr,(::u32) wstr.length());
 
       return solve_relative(string(wstr.release_string_buffer()));
 

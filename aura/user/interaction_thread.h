@@ -49,6 +49,9 @@ namespace user
       manual_reset_event                     m_evApplyVisual;
       __pointer_array(::message::base)       m_messagebasea;
 
+
+      //bool                                   m_bCreateNativeWindowOnInteractionThread;
+
       thread();
       virtual ~thread();
 
@@ -75,7 +78,7 @@ namespace user
       virtual void term_thread() override;
 
 #ifdef WINDOWS_DESKTOP
-      virtual int _GetMessage(LPMSG lpMsg, HWND hWnd, UINT wMsgFilterMin, UINT wMsgFilterMax) override;
+      virtual int _GetMessage(LPMSG lpMsg, HWND hWnd, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax) override;
 #endif
 
       virtual bool pump_message() override;
@@ -97,6 +100,8 @@ namespace user
       virtual ::estatus set_finish_composites(::context_object * pcontextobjectFinish) override;
 
       void start_window_visual();
+
+      virtual ::estatus task_caller_on_init() override;
 
 
    };

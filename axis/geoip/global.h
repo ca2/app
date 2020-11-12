@@ -16,11 +16,11 @@ The following makes PROTOTYPES default to 0 if it has not already
 /* POINTER defines a matter pointer type */
 typedef uchar *POINTER;
 
-/* UINT2 defines a two byte u16 */
-typedef u16 UINT2;
+/* ::u16 defines a two byte u16 */
+typedef u16 ::u16;
 
-/* UINT4 defines a four byte u16 */
-typedef u32 UINT4;
+/* ::u32 defines a four byte u16 */
+typedef u32 ::u32;
 
 /* PROTO_LIST is defined depending on how PROTOTYPES is defined above.
 If using PROTOTYPES, then PROTO_LIST returns the list, otherwise it

@@ -435,10 +435,10 @@ namespace user
 
 #ifdef WINDOWS_DESKTOP
                   CHOOSECOLOR cc;
-                  COLORREF crCustColors[16];
+                  color32_t crCustColors[16];
 
                   // init-int this array did not affect the mouse problem
-                  // uint idx ;
+                  // ::u32 idx ;
                   // for (idx=0; idx<16; idx++) {
                   // crCustColors[idx] = RGB(idx, idx, idx) ;
                   // }

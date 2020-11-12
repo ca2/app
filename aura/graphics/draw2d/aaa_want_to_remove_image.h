@@ -37,7 +37,7 @@ public:
 
    virtual bool create_thumbnail(const char * pszPath) override;
 
-   virtual bool create(::layered * pobjectContext, COLORREF * pcolorref, int w, int h, int scan);
+   virtual bool create(::layered * pobjectContext, color32_t * pcolorref, int w, int h, int scan);
 
    //virtual void defer_save_to_cache() override;
 
@@ -125,8 +125,8 @@ public:
    virtual bool rate_rgb(int iMul, int iDiv) override;
    virtual bool dc_select(bool bSelect = true) override;
 
-   virtual COLORREF GetAverageColor() override;
-   virtual COLORREF GetAverageOpaqueColor() override;
+   virtual color32_t GetAverageColor() override;
+   virtual color32_t GetAverageOpaqueColor() override;
    virtual bool blend(::image * pimage, ::image * pimageRate) override;
    virtual bool Blend(::image * pimage, ::image * pimageA, i32 A) override;
    virtual bool Blend(::image * pimage, ::image * pimageA) override;
@@ -140,7 +140,7 @@ public:
    virtual bool fork_blend(const ::point & pointDst, ::image * pimageAlf, const ::point & pointAlf, const ::size & size, byte bA) override;
    virtual bool bitmap_blend(::draw2d::graphics_pointer & pgraphics, const ::rect & rect) override;
 
-   virtual bool color_blend(COLORREF cr, BYTE bAlpha) override;
+   virtual bool color_blend(color32_t cr, byte bAlpha) override;
    virtual bool BitBlt(::image * pimage, i32 op) override;
    virtual bool BitBlt(int cxParam, int cyParam, ::image * pimage, i32 op) override;
    virtual i32 cos(i32 i, i32 iAngle) override;
@@ -165,8 +165,8 @@ public:
    virtual bool do_xor(::image * pimage) override;
 
    virtual bool ToAlpha(i32 i) override;
-   virtual bool ToAlphaAndFill(i32 i, COLORREF cr) override;
-   virtual bool GrayToARGB(COLORREF cr) override;
+   virtual bool ToAlphaAndFill(i32 i, color32_t cr) override;
+   virtual bool GrayToARGB(color32_t cr) override;
 
    virtual bool from_alpha() override;
    virtual bool mult_alpha(::image * pimageWork, bool bPreserveAlpha = true) override;
@@ -198,7 +198,7 @@ public:
    virtual bool rotate270flipx() override;
 
 
-   virtual bool set_rgb(COLORREF cr) override;
+   virtual bool set_rgb(color32_t cr) override;
    virtual bool set_rgb(i32 R, i32 G, i32 B) override;
    virtual bool tint(::image * pimage, const rgb & rgb) override;
    virtual bool set_rgb_pre_alpha(i32 R, i32 G, i32 B, i32 A) override;
@@ -212,22 +212,22 @@ public:
 
 
    virtual bool SetIconMask(::draw2d::icon * picon, i32 cx, i32 cy) override;
-   virtual bool RadialFill(BYTE a, BYTE rect, BYTE g, BYTE b, i32 x, i32 y, i32 iRadius) override;
+   virtual bool RadialFill(byte a, byte rect, byte g, byte b, i32 x, i32 y, i32 iRadius) override;
    virtual bool RadialFill(
-   BYTE a1, BYTE r1, BYTE g1, BYTE b1, // center colors
-   BYTE a2, BYTE r2, BYTE g2, BYTE b2, // border colors
+   byte a1, byte r1, byte g1, byte b1, // center colors
+   byte a2, byte r2, byte g2, byte b2, // border colors
    i32 x, i32 y, i32 iRadius) override;
 
-   virtual bool gradient_fill(COLORREF clr1, COLORREF clr2, const point & point1, const point & point2) override;
-   virtual bool gradient_horizontal_fill(COLORREF clr1, COLORREF clr2, int start, int end) override;
-   virtual bool gradient_vertical_fill(COLORREF clr1, COLORREF clr2, int start, int end) override;
-   virtual bool gradient_horizontal_fill(COLORREF clr1, COLORREF clr2) override;
-   virtual bool gradient_vertical_fill(COLORREF clr1, COLORREF clr2) override;
+   virtual bool gradient_fill(color32_t clr1, color32_t clr2, const point & point1, const point & point2) override;
+   virtual bool gradient_horizontal_fill(color32_t clr1, color32_t clr2, int start, int end) override;
+   virtual bool gradient_vertical_fill(color32_t clr1, color32_t clr2, int start, int end) override;
+   virtual bool gradient_horizontal_fill(color32_t clr1, color32_t clr2) override;
+   virtual bool gradient_vertical_fill(color32_t clr1, color32_t clr2) override;
 
    virtual u32 GetPixel(i32 x, i32 y) override;
    inline u32 GetPixel(const ::point & point) { return GetPixel(point.x, point.y); }
-   virtual bool Mask(COLORREF crMask, COLORREF crInMask, COLORREF crOutMask) override;
-   virtual bool channel_mask(BYTE uchFind, BYTE uchSet, BYTE uchUnset, color::e_channel echannel) override;
+   virtual bool Mask(color32_t crMask, color32_t crInMask, color32_t crOutMask) override;
+   virtual bool channel_mask(byte uchFind, byte uchSet, byte uchUnset, color::e_channel echannel) override;
    virtual bool transparent_color(color color) override;
 
    virtual bool create(const ::size & size, ::eobject eobjectCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1) override;
@@ -284,7 +284,7 @@ public:
    virtual bool fill_channel(i32 C, color::e_channel echannel) override;
    virtual bool white_fill_channel(i32 C, color::e_channel echannel) override;
    virtual bool fill_byte(uchar uch) override;
-   virtual bool fill(COLORREF level) override;
+   virtual bool fill(color32_t level) override;
    virtual bool fill(i32 A, i32 R, i32 G, i32 B) override;
    //      virtual bool Fill(i32 R, i32 G, i32 B)
    //virtual bool set(i32 R, i32 G, i32 B) override;
@@ -325,7 +325,7 @@ public:
    virtual bool copy(::image * pimage, i32 x, i32 y) override;
    virtual bool PasteRect(::image * pimage, i32 x, i32 y) override;
 
-   virtual bool fill_rect(const ::rect & rect, COLORREF cr) override;
+   virtual bool fill_rect(const ::rect & rect, color32_t cr) override;
 
    virtual bool fill_rect(const ::rect & rect, i32 R, i32 G, i32 B) override;
 
@@ -357,7 +357,7 @@ public:
 
 
    virtual bool create_circle(::image * pimage, int diameter) override;
-   virtual bool create_framed_square(::image * pimage, int inner, int outer, COLORREF cr) override;
+   virtual bool create_framed_square(::image * pimage, int inner, int outer, color32_t cr) override;
 
 
    virtual bool invert_rgb(const ::rect & rect) override;
@@ -380,8 +380,8 @@ public:
    bool operator != (const image & image) const;
 
 
-   inline COLORREF * get_data() const;
-   inline COLORREF * colorref() const;
+   inline color32_t * get_data() const;
+   inline color32_t * colorref() const;
 
    inline int line(int line);
 
@@ -391,12 +391,12 @@ public:
    inline const ::rect rect(const ::point & point = nullptr) const;
 
 
-   inline COLORREF pixel(int x, int y);
+   inline color32_t pixel(int x, int y);
    inline i64 area() const;
    inline int scan_size() const;
    inline int width() const;
    inline int height() const;
-   inline LONG scan_area() override;
+   inline ::i32 scan_area() override;
 
 
    inline bool is_ok() const

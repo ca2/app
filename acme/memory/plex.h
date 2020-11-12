@@ -5,7 +5,7 @@
 struct CLASS_DECL_ACME plex     // warning var length structure
 {
    plex*                            pNext;
-   // BYTE data[maxNum*elementSize];
+   // byte data[maxNum*elementSize];
 
    void * data() { return ((byte*)(this+1)) + CA2_PALACE_SAFE_ZONE_BORDER_SIZE; }
 

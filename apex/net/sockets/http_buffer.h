@@ -16,7 +16,7 @@ namespace sockets
       virtual ~http_buffer();
 
 
-      virtual ::status::result open(const ::file::path & pszFileName, UINT nOpenFlags);
+      virtual ::status::result open(const ::file::path & pszFileName, ::u32 nOpenFlags);
 
 
 

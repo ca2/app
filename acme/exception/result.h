@@ -13,7 +13,6 @@ namespace status
    public:
 
 
-      static i32 s_iSkipCallStack;
 
       /// Curitiba, 2 de abril de 2019
       ///
@@ -60,6 +59,7 @@ namespace status
 
 
       static void set_skip_callstack(i32 iStack);
+      static i32 get_skip_callstack();
 
       void set(const ::estatus & estatus) { set(estatus.m_estatus);}
 
@@ -74,23 +74,7 @@ namespace status
 
       void add(const ::estatus & estatus) { add(estatus.m_estatus);}
 
-      void add(::enum_status estatus)
-      {
-
-         if (m_estatus == undefined)
-         {
-
-            m_estatus = estatus;
-
-         }
-         else
-         {
-
-            add(__new(::exception::exception(estatus, s_iSkipCallStack)));
-
-         }
-
-      }
+      void add(::enum_status estatus);
 
       void add(::exception::exception * pe)
       {
@@ -173,7 +157,7 @@ namespace status
             if (::failed(m_estatus))
             {
 
-               return __new(::exception::exception(m_estatus, s_iSkipCallStack));
+               return __new(::exception::exception(m_estatus, get_skip_callstack()));
 
             }
 

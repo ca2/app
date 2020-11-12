@@ -66,10 +66,10 @@ namespace experience
          return;
 
       }
-      else if (pmessage->m_id == WM_KEYDOWN
-         || pmessage->m_id == WM_KEYUP
-         || pmessage->m_id == WM_SYSKEYDOWN
-         || pmessage->m_id == WM_SYSKEYUP)
+      else if (pmessage->m_id == e_message_key_down
+         || pmessage->m_id == e_message_key_up
+         || pmessage->m_id == e_message_sys_key_down
+         || pmessage->m_id == e_message_sys_key_up)
       {
 
          SCAST_PTR(::message::key, pkey, pmessage);
@@ -79,7 +79,7 @@ namespace experience
          if (pkey->userinteraction() == this)
          {
 
-            if (pmessage->m_id == WM_KEYDOWN || pmessage->m_id == WM_SYSKEYDOWN)
+            if (pmessage->m_id == e_message_key_down || pmessage->m_id == e_message_sys_key_down)
             {
 
                if (!m_bFullScreenOnMaximize)
@@ -131,7 +131,7 @@ namespace experience
                }
 
             }
-            else if (pmessage->m_id == WM_KEYUP || pmessage->m_id == WM_SYSKEYUP)
+            else if (pmessage->m_id == e_message_key_up || pmessage->m_id == e_message_sys_key_up)
             {
 
                if (pkey->m_ekey == ::user::key_return)
@@ -526,7 +526,7 @@ namespace experience
    }
 
 
-   void frame_window::GetRegionClientRect(RECT * prect)
+   void frame_window::GetRegionClientRect(RECT32 * prect)
    {
 
       ASSERT(m_pframe != nullptr);
@@ -536,7 +536,7 @@ namespace experience
    }
 
 
-   void frame_window::get_draw_client_rect(RECT * prect)
+   void frame_window::get_draw_client_rect(RECT32 * prect)
    {
 
       ASSERT(m_pframe != nullptr);
@@ -650,7 +650,7 @@ namespace experience
 
             TRACE("button_clicked : button_close");
 
-            post_message(WM_CLOSE);
+            post_message(e_message_close);
 
             set_need_redraw();
 
@@ -773,7 +773,7 @@ namespace experience
          {
          case ::experience::button_close:
 
-            post_message(WM_CLOSE);
+            post_message(e_message_close);
 
             set_need_redraw();
 
@@ -1040,7 +1040,7 @@ namespace experience
    //  define System flags que serão usados para posicionar ou
    //  dimensionar pelo uso da função set_window_pos
 
-   void frame_window::SetSWPFlags(UINT uiFlags)
+   void frame_window::SetSWPFlags(::u32 uFlags)
    {
 
       m_uiSWPFlags = uiFlags;
@@ -1257,8 +1257,8 @@ namespace experience
 
       ::user::frame_window::install_message_routing(pchannel);
 
-      MESSAGE_LINK(WM_LBUTTONDOWN,pchannel,this,&frame_window::_001OnLButtonDown);
-      MESSAGE_LINK(WM_LBUTTONUP,pchannel,this,&frame_window::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_lbutton_down,pchannel,this,&frame_window::_001OnLButtonDown);
+      MESSAGE_LINK(e_message_lbutton_up,pchannel,this,&frame_window::_001OnLButtonUp);
       MESSAGE_LINK(e_message_mouse_move,pchannel,this,&frame_window::_001OnMouseMove);
       MESSAGE_LINK(WM_NCLBUTTONDOWN,pchannel,this,&frame_window::_001OnNcLButtonDown);
       MESSAGE_LINK(WM_NCLBUTTONUP,pchannel,this,&frame_window::_001OnNcLButtonUp);
@@ -1503,7 +1503,7 @@ namespace experience
       //if(m_pframe != nullptr)
       //{
 
-      //   if(!m_pframe->_001OnTimer((UINT) ptimer->m_uEvent))
+      //   if(!m_pframe->_001OnTimer((::u32) ptimer->m_uEvent))
       //   {
 
       //      ptimer->finalize();
@@ -1515,7 +1515,7 @@ namespace experience
    }
 
 
-   void frame_window::OnNcCalcSize(RECT * prect)
+   void frame_window::OnNcCalcSize(RECT32 * prect)
    {
 
       ASSERT(m_pframe != nullptr);

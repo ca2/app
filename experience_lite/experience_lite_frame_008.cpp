@@ -208,7 +208,7 @@ SizingNone:
 
 
 
-            void frame_008::draw_border_side(::draw2d::graphics_pointer & pgraphics, const RECT & lpcrectClient, e_border eside)
+            void frame_008::draw_border_side(::draw2d::graphics_pointer & pgraphics, const RECT32 & lpcrectClient, e_border eside)
             {
 
                auto pframewindow = m_pframewindow;
@@ -216,9 +216,9 @@ SizingNone:
                if(pframewindow == nullptr)
                   return;
 
-               COLORREF    crMoveableBorder;
-               COLORREF    crMoveableBorderHilight;
-               COLORREF    crMoveableBorderShadow;
+               color32_t    crMoveableBorder;
+               color32_t    crMoveableBorderHilight;
+               color32_t    crMoveableBorderShadow;
 
                if(pframewindow->m_fActive)
                {
@@ -371,7 +371,7 @@ SizingNone:
             }
 
 
-            void frame_008::DrawBorder(::draw2d::graphics_pointer & pgraphics, const RECT & lpcrectClient)
+            void frame_008::DrawBorder(::draw2d::graphics_pointer & pgraphics, const RECT32 & lpcrectClient)
             {
 
                auto pmovemanager = m_pframewindow->move_manager();
@@ -490,8 +490,8 @@ SizingNone:
             }
 
             void frame_008::GetBorderRect(
-            const RECT & lpcrectClient,
-            LPRECT lprect,
+            const RECT32 & lpcrectClient,
+            LPRECT32 lprect,
             e_border eside)
             {
                ::rect rectBig(lpcrectClient);
@@ -583,7 +583,7 @@ SizingNone:
             }
 
 
-            COLORREF frame_008::get_border_main_body_color()
+            color32_t frame_008::get_border_main_body_color()
             {
 
                if (m_estyle == StyleRedOrange)
@@ -602,7 +602,7 @@ SizingNone:
             }
 
 
-            bool frame_008::get_color(COLORREF & cr, ::user::e_color ecolor, ::user::style_context * pcontext)
+            bool frame_008::get_color(color32_t & cr, ::user::e_color ecolor, ::user::style_context * pcontext)
             {
 
                //if (m_estyle == StyleLightGreen)

@@ -30,18 +30,12 @@ namespace app_shader
    }
 
 
-
-
-
-
    ::estatus application::init_instance()
    {
 
       set_local_data();
 
       create_factory <::app_shader::window >();
-
-    
 
       if (!::aura::application::init_instance())
       {

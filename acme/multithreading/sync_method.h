@@ -1,22 +1,23 @@
 #pragma once
 
 
-class sync_method;
+class sync_procedure;
 
 
-inline __pointer(sync_method) ___sync_method(const method& method);
+inline __pointer(sync_procedure) ___sync_procedure(const procedure & procedure);
 
 
-class CLASS_DECL_ACME sync_method :
+class CLASS_DECL_ACME sync_procedure :
    public ::sync
 {
 protected:
 
-   friend __pointer(sync_method) ___sync_method(const method& method);
+
+   friend __pointer(sync_procedure) ___sync_procedure(const procedure & procedure);
 
 
-   sync_method(const method& method) :
-      m_method(method)
+   sync_procedure(const procedure & procedure) :
+      m_procedure(procedure)
    {
 
       __defer_construct(m_peventCompletion);
@@ -27,22 +28,23 @@ protected:
 public:
 
 
-   method                                 m_method;
+   procedure                              m_procedure;
    __pointer(manual_reset_event)          m_peventCompletion;
    ::duration                             m_duration;
+   ::estatus                              m_estatus;
 
 
-   virtual ~sync_method() {}
+   virtual ~sync_procedure() {}
    
 
    inline virtual ::estatus operator()() override
    {
 
-      auto estatus = m_method();
+      m_estatus = m_procedure();
 
       m_peventCompletion->SetEvent();
 
-      return estatus;
+      return m_estatus;
 
    }
 
@@ -59,9 +61,9 @@ public:
 
 
 
-inline __pointer(sync_method) ___sync_method(const method& method)
+inline __pointer(sync_procedure) ___sync_procedure(const procedure & procedure)
 {
 
-   return __new(sync_method(method));
+   return __new(sync_procedure(procedure));
 
 }

@@ -7,7 +7,7 @@
 
 #else
 
-#define mutant_size  SIZE
+#define mutant_size  SIZE32
 
 #endif
 
@@ -23,7 +23,7 @@ struct image_header
 {
 
    e_image_type         m_etype;
-   COLORREF             m_cr;
+   color32_t             m_cr;
    mutant_size          m_size;
 
 

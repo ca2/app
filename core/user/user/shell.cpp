@@ -41,7 +41,7 @@ namespace user
       }
 
 
-      shell::image_key::image_key(const string & strPath, const string & strShellThemePrefix, e_file_attribute eattribute, e_icon eicon, COLORREF crBk)
+      shell::image_key::image_key(const string & strPath, const string & strShellThemePrefix, e_file_attribute eattribute, e_icon eicon, color32_t crBk)
       {
 
          if (colorref_get_a_value(crBk) != 255)
@@ -556,7 +556,7 @@ namespace user
       }
 
 
-      i32 shell::get_file_image(const string & strPath, e_file_attribute eattribute, e_icon eicon, COLORREF crBk)
+      i32 shell::get_file_image(const string & strPath, e_file_attribute eattribute, e_icon eicon, color32_t crBk)
       {
 
          sync_lock sl(mutex());
@@ -568,7 +568,7 @@ namespace user
       }
 
 
-      i32 shell::get_file_extension_image(const string & strExtension, e_file_attribute eattribute, e_icon eicon, COLORREF crBk)
+      i32 shell::get_file_extension_image(const string & strExtension, e_file_attribute eattribute, e_icon eicon, color32_t crBk)
       {
 
          //i32 iImage = 0x80000000;
@@ -750,7 +750,7 @@ namespace user
       }
 
 
-      i32 shell::add_icon_path(::file::path path, COLORREF crBk, int iImage)
+      i32 shell::add_icon_path(::file::path path, color32_t crBk, int iImage)
       {
 
          return -1;
@@ -780,7 +780,7 @@ namespace user
 
 
 
-   //int shell::add_hover_image(int iSize, int iImage, COLORREF crBk)
+   //int shell::add_hover_image(int iSize, int iImage, color32_t crBk)
    //{
 
    //   sync_lock sl(m_pilHover[iSize]->mutex());
@@ -838,7 +838,7 @@ namespace user
 
    //}
 
-   int shell::add_hover_image(int iSize, int iImage, COLORREF crBk)
+   int shell::add_hover_image(int iSize, int iImage, color32_t crBk)
    {
 
       sync_lock sl(m_pilHover[iSize]->mutex());

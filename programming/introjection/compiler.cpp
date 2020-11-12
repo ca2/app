@@ -29,7 +29,7 @@ string vs_build()
 #endif
 
 
-DWORD RunSilent(const char* strFunct, char* strstrParams);
+::u32 RunSilent(const char* strFunct, char* strstrParams);
 
 
 namespace introjection
@@ -551,7 +551,7 @@ namespace introjection
 
       }
       else if(!bNew)
-//         if(get_file_time(strFilePath) == lib->m_filetime)
+//         if(get_filetime(strFilePath) == lib->m_filetime)
       {
 
 //          bNew = false;
@@ -582,7 +582,7 @@ namespace introjection
 
       bNew = true;
 
-      plibrary->m_filetime = get_file_time(strFilePath);
+      plibrary->m_filetime = get_filetime(strFilePath);
 
       ::file::path strName(strFilePath);
 
@@ -1432,7 +1432,7 @@ auto tickStart = ::tick::now();
 }
 
 
-DWORD RunSilent(const char* strFunct, char* strstrParams)
+::u32 RunSilent(const char* strFunct, char* strstrParams)
 {
 
 #if defined(_UWP)
@@ -1498,7 +1498,7 @@ DWORD RunSilent(const char* strFunct, char* strstrParams)
 
    }
 
-   WaitForSingleObject(ProcessInfo.hProcess, INFINITE);
+   WaitForSingleObject(ProcessInfo.hProcess, U32_INFINITE_TIMEOUT);
 
    if (!GetExitCodeProcess(ProcessInfo.hProcess, &rc))
    {
@@ -1507,7 +1507,7 @@ DWORD RunSilent(const char* strFunct, char* strstrParams)
 
    }
 
-   CloseHandle(ProcessInfo.hThread);
+   CloseHandle(ProcessInfo.hthread);
 
    CloseHandle(ProcessInfo.hProcess);
 

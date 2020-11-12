@@ -26,7 +26,7 @@
 
 
 
-DWORD ::get_tick();
+::u32 ::get_tick();
 
 
 
@@ -36,17 +36,17 @@ DWORD ::get_tick();
 
 
 /*
-#define STATUS_WAIT_0            ((DWORD   ) 0x00000000L)
-#define STATUS_ABANDONED_WAIT_0  ((DWORD   ) 0x00000080L)
-#define STATUS_USER_APC          ((DWORD   ) 0x000000C0L)
-#define STATUS_TIMEOUT           ((DWORD   ) 0x00000102L)
+#define STATUS_WAIT_0            ((::u32   ) 0x00000000L)
+#define STATUS_ABANDONED_WAIT_0  ((::u32   ) 0x00000080L)
+#define STATUS_USER_APC          ((::u32   ) 0x000000C0L)
+#define STATUS_TIMEOUT           ((::u32   ) 0x00000102L)
  */
 
-#define WAIT_FAILED              ((DWORD   ) 0xFFFFFFFFL)
-#define WAIT_OBJECT_0            ((DWORD   ) STATUS_WAIT_0 + 0)
+#define WAIT_FAILED              ((::u32   ) 0xFFFFFFFFL)
+#define WAIT_OBJECT_0            ((::u32   ) STATUS_WAIT_0 + 0)
 
-#define WAIT_ABANDONED           ((DWORD   ) STATUS_ABANDONED_WAIT_0 + 0)
-#define WAIT_ABANDONED_0         ((DWORD   ) STATUS_ABANDONED_WAIT_0 + 0)
+#define WAIT_ABANDONED           ((::u32   ) STATUS_ABANDONED_WAIT_0 + 0)
+#define WAIT_ABANDONED_0         ((::u32   ) STATUS_ABANDONED_WAIT_0 + 0)
 
 #define WAIT_IO_COMPLETION                   STATUS_USER_APC
 
@@ -62,8 +62,8 @@ DWORD ::get_tick();
 
 
 
-CLASS_DECL_AXIS DWORD get_last_error();
-CLASS_DECL_AXIS void set_last_error(DWORD dw);
+CLASS_DECL_AXIS ::u32 get_last_error();
+CLASS_DECL_AXIS void set_last_error(::u32 dw);
 
 
 CLASS_DECL_AXIS bool _istlead(i32 ch);

@@ -284,7 +284,7 @@ namespace html
 
       m_element.implement(this);
 
-      MESSAGE_LINK(WM_KEYDOWN, m_puserinteraction, this, &core_data::_001OnKeyDown);
+      MESSAGE_LINK(e_message_key_down, m_puserinteraction, this, &core_data::_001OnKeyDown);
 
       m_bImplemented = true;
 

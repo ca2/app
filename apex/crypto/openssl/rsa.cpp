@@ -323,45 +323,6 @@ namespace openssl
 } // namespace openssl
 
 
-namespace crypto
-{
-
-
-   int rsa::public_encrypt(memory& out, const memory& in, string& strError)
-   {
-
-      return -1;
-
-   }
-
-
-   int rsa::private_decrypt(memory& out, const memory& in, string& strError)
-   {
-
-      return -1;
-
-   }
-
-
-   int rsa::private_encrypt(memory& out, const memory& in, string& strError)
-   {
-
-      return -1;
-
-   }
-
-
-   int rsa::public_decrypt(memory& out, const memory& in, string& strError)
-   {
-
-      return -1;
-
-   }
-
-
-} // namespace crypto
-
-
 __pointer(::crypto::rsa) __create_rsa(const string& str)
 {
 

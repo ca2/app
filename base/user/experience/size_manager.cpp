@@ -37,7 +37,7 @@ namespace experience
    bool size_manager::_001OnLButtonDown(::message::mouse * pmouse)
    {
 
-      ASSERT(pmouse->m_id == WM_LBUTTONDOWN || pmouse->m_id == WM_NCLBUTTONDOWN);
+      ASSERT(pmouse->m_id == e_message_lbutton_down || pmouse->m_id == WM_NCLBUTTONDOWN);
 
       if(!m_pframewindow->is_sizing_enabled())
       {
@@ -69,7 +69,7 @@ namespace experience
       if(ehittest != hittest_none)
       {
 
-         UINT nHitTest = HTCLIENT;
+         ::u32 nHitTest = HTCLIENT;
 
          switch(ehittest)
          {
@@ -305,7 +305,7 @@ namespace experience
    }
 
 
-   void size_manager::SetSWPFlags(UINT uiFlags)
+   void size_manager::SetSWPFlags(::u32 uFlags)
    {
 
       m_uiSWPFlags = uiFlags;

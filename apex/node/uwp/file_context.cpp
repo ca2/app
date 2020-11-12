@@ -76,7 +76,7 @@ namespace uwp
    }
 
 
-   UINT file_context::GetFileName(const char* pszPathName, string& str)
+   ::u32 file_context::GetFileName(const char* pszPathName, string& str)
 
    {
       int nMax = MAX_PATH * 8;
@@ -84,7 +84,7 @@ namespace uwp
       wstrPathName = ::str::international::utf8_to_unicode(pszPathName);
 
       wstring wstrTitle;
-      //UINT user = vfxGetFileName(wstrPathName, wstrTitle.alloc(nMax), nMax);
+      //::u32 user = vfxGetFileName(wstrPathName, wstrTitle.alloc(nMax), nMax);
       str = ::str::international::unicode_to_utf8(wstrTitle);
       //return user;
       return 0;

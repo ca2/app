@@ -63,7 +63,7 @@
 #define _swab swab
 
 
-DWORD get_current_process_id(void);
+::u32 get_current_process_id(void);
 
 
 

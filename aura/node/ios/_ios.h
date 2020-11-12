@@ -22,7 +22,7 @@
 //};
 
 
-string get_error_message(DWORD dwError);
+string get_error_message(::u32 dwError);
 
 ::aura::application *     ios_instantiate_application(::aura::application * pappSystem, const char * pszId);
 
@@ -65,24 +65,24 @@ CLASS_DECL_AURA void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg);
 // int_bool PeekMessage(
 // LPMESSAGE lpMsg,
 // oswindow hWnd,
-// UINT wMsgFilterMin,
-// UINT wMsgFilterMax,
-// UINT wRemoveMsg);
+// ::u32 wMsgFilterMin,
+// ::u32 wMsgFilterMax,
+// ::u32 wRemoveMsg);
 
 // int_bool GetMessage(
 // LPMESSAGE lpMsg,
 // oswindow hWnd,
-// UINT wMsgFilterMin,
-// UINT wMsgFilterMax);
+// ::u32 wMsgFilterMin,
+// ::u32 wMsgFilterMax);
 
 
 
 i32 CLASS_DECL_AURA __ios_main(i32 argc, char * argv[]);
 
 
-CLASS_DECL_AURA void vfxThrowFileException(::object * pobject, const ::estatus & estatus, LONG lOsError, const char * lpszFileName = nullptr);
+CLASS_DECL_AURA void vfxThrowFileException(::object * pobject, const ::estatus & estatus, ::i32 lOsError, const char * lpszFileName = nullptr);
 
-CLASS_DECL_AURA ::file::exception * get_FileException(::object * pobject, const ::estatus & estatus, LONG lOsError, const char * lpszFileName = nullptr);
+CLASS_DECL_AURA ::file::exception * get_FileException(::object * pobject, const ::estatus & estatus, ::i32 lOsError, const char * lpszFileName = nullptr);
 
 
 

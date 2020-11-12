@@ -7,7 +7,13 @@ natural_meta_data < string_meta_data < ansichar > > * g_pansistringNil = nullptr
 
 
 
+template < >
+CLASS_DECL_ACME natural_meta_data < string_meta_data < ansichar > > * __nil < natural_meta_data < string_meta_data < ansichar > > >()
+{
 
+    return g_pansistringNil;
+
+}
 
 
 
@@ -510,7 +516,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //
 //   strsize nLen = ::MultiByteToWideChar2(_gen_GetConversionACP(),0,pchData,(i32)nDataLength,nullptr,0);
 //
-//   BSTR bstr = ::SysAllocStringLen(nullptr,(UINT)nLen);
+//   BSTR bstr = ::SysAllocStringLen(nullptr,(::u32)nLen);
 //
 //   if(bstr != nullptr)
 //   {
@@ -526,7 +532,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //
 //   strsize nLen = ::MultiByteToWideChar2(_gen_GetConversionACP(),0,pchData,(i32)nDataLength,nullptr,0);
 //
-//   bool bSuccess = ::SysReAllocStringLen(pbstr,nullptr,(UINT)nLen) != 0;
+//   bool bSuccess = ::SysReAllocStringLen(pbstr,nullptr,(::u32)nLen) != 0;
 //
 //   if(bSuccess)
 //   {
@@ -539,7 +545,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //
 //#endif
 //
-//u32 __cdecl char_traits::format_message(u32 dwFlags,LPCVOID pSource,u32 dwMessageID,u32 dwLanguageID,char * pszBuffer,u32 nSize,va_list* pArguments) noexcept
+//u32 __cdecl char_traits::format_message(u32 dwFlags,const void * pSource,u32 dwMessageID,u32 dwLanguageID,char * pszBuffer,u32 nSize,va_list* pArguments) noexcept
 //{
 //
 //#ifdef WINDOWS
@@ -556,7 +562,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //
 //}
 //
-//u32 __cdecl char_traits::format_message(u32 dwFlags,LPCVOID pSource,u32 dwMessageID,u32 dwLanguageID,char * pszBuffer,u32 nSize,va_list* pArguments) noexcept
+//u32 __cdecl char_traits::format_message(u32 dwFlags,const void * pSource,u32 dwMessageID,u32 dwLanguageID,char * pszBuffer,u32 nSize,va_list* pArguments) noexcept
 //{
 //
 //#ifdef WINDOWS
@@ -3113,7 +3119,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 ////bool load_string(id id);
 //
 //// Load the string from resource 'nID' in module 'hInstance'
-///*    bool load_string(HINSTANCE hInstance,UINT nID )
+///*    bool load_string(HINSTANCE hInstance,::u32 nID )
 //{
 //const STRINGRESOURCEIMAGE* pImage = gen_GetStringResourceImage( hInstance, nID );
 //if( pImage == nullptr )
@@ -3130,7 +3136,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //}*/
 //
 //// Load the string from resource 'nID' in module 'hInstance', using language 'wLanguageID'
-///*bool load_string(HINSTANCE hInstance,UINT nID,WORD wLanguageID )
+///*bool load_string(HINSTANCE hInstance,::u32 nID,::u16 wLanguageID )
 //{
 //const STRINGRESOURCEIMAGE* pImage = gen_GetStringResourceImage( hInstance, nID, wLanguageID );
 //if( pImage == nullptr )

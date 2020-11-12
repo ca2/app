@@ -21,7 +21,7 @@ public:
 
    sync_result lock(const duration & tickTimeout = duration::infinite(), bool bWaitForAll = TRUE, u32 dwWakeMask = 0);
    bool unlock();
-   bool unlock(LONG lCount, LPLONG lPrevCount = nullptr);
+   bool unlock(::i32 lCount, ::i32 * lPrevCount = nullptr);
    bool IsLocked(index dwItem);
 
 };

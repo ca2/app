@@ -48,7 +48,7 @@ void defer_term_ui();
 //extern ::mutex * &System.m_mutexLibrary;
 //extern string_map < PFN_NEW_AURA_LIBRARY >* g_pmapNewAuraLibrary;
 
-int_bool point_is_window_origin(POINT ptHitTest, oswindow oswindowExclude, int iMargin);
+int_bool point_is_window_origin(POINT32 ptHitTest, oswindow oswindowExclude, int iMargin);
 
 #ifdef _UWP
 
@@ -500,7 +500,7 @@ namespace axis
 //
 //      WCHAR wsz[1024];
 //
-//      DWORD dwSize = sizeof(wsz) / sizeof(WCHAR);
+//      ::u32 dwSize = sizeof(wsz) / sizeof(WCHAR);
 //
 //      GetUserNameW(wsz, &dwSize);
 //

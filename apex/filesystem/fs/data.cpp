@@ -193,7 +193,7 @@ namespace fs
    //}
 
 
-   file_result data::get_file(const ::file::path & varFile, UINT nOpenFlags)
+   file_result data::get_file(const ::file::path & varFile, ::u32 nOpenFlags)
    {
 
       UNREFERENCED_PARAMETER(varFile);

@@ -5,7 +5,7 @@
 VOID
 WINAPI
 output_debug_string_a(
-_In_opt_ LPCSTR pOutputString
+_In_opt_ const char * pOutputString
 
 )
 {
@@ -32,7 +32,7 @@ typedef WINBASEAPI
 VOID
 WINAPI
 FN_OutputDebugStringA(
-_In_opt_ LPCSTR pOutputString
+_In_opt_ const char * pOutputString
 
 );
 
@@ -129,7 +129,7 @@ namespace process
 
    WCHAR wszPath[8192];
 
-   DWORD dw = GetFullPathNameW(L"\\\\?\\"+wstring(path), sizeof(wszPath) / sizeof(WCHAR), wszPath, nullptr);
+   ::u32 dw = GetFullPathNameW(L"\\\\?\\"+wstring(path), sizeof(wszPath) / sizeof(WCHAR), wszPath, nullptr);
 
    return wszPath;
 
@@ -137,7 +137,7 @@ namespace process
 
 
 
-CLASS_DECL_ACME DWORD get_current_process_id()
+CLASS_DECL_ACME ::u32 get_current_process_id()
 {
 
    return ::GetCurrentProcessId();

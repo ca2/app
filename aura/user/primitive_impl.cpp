@@ -159,7 +159,7 @@ namespace user
    }
 
 
-   void primitive_impl::RepositionBars(UINT nIDFirst, UINT nIDLast, id idLeft, UINT nFlags, RECT * prectParam, const rect & rectClient, bool bStretch)
+   void primitive_impl::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, id idLeft, ::u32 nFlags, RECT32 * prectParam, const rect & rectClient, bool bStretch)
    {
 
       if (!_is_window())
@@ -299,6 +299,30 @@ namespace user
    }
 
 
+   ::estatus primitive_impl::main_async(const procedure & procedure, e_priority epriority)
+   {
+
+      if (!m_puserinteraction)
+      {
+
+         return ::error_failed;
+
+      }
+
+      auto pwnd = m_puserinteraction->get_wnd();
+
+      if (!pwnd)
+      {
+
+          return ::error_failed;
+
+      }
+
+      return pwnd->main_async(procedure, epriority);
+
+   }
+
+
    void primitive_impl::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
@@ -389,7 +413,7 @@ namespace user
    }
 
 
-   void primitive_impl::viewport_client_to_screen(POINT * ppt)
+   void primitive_impl::viewport_client_to_screen(POINT32 * ppt)
    {
 
       if (m_puserinteraction)
@@ -402,7 +426,7 @@ namespace user
    }
 
 
-   void primitive_impl::viewport_screen_to_client(POINT * ppt)
+   void primitive_impl::viewport_screen_to_client(POINT32 * ppt)
    {
 
       if (m_puserinteraction)
@@ -415,25 +439,25 @@ namespace user
    }
 
 
-   void primitive_impl::viewport_client_to_screen(RECT * prect)
+   void primitive_impl::viewport_client_to_screen(RECT32 * prect)
    {
 
-      viewport_client_to_screen((POINT *)& prect->left);
-      viewport_client_to_screen((POINT *)& prect->right);
+      viewport_client_to_screen((POINT32 *)& prect->left);
+      viewport_client_to_screen((POINT32 *)& prect->right);
 
    }
 
 
-   void primitive_impl::viewport_screen_to_client(RECT * prect)
+   void primitive_impl::viewport_screen_to_client(RECT32 * prect)
    {
 
-      viewport_screen_to_client((POINT *)& prect->left);
-      viewport_screen_to_client((POINT *)& prect->right);
+      viewport_screen_to_client((POINT32 *)& prect->left);
+      viewport_screen_to_client((POINT32 *)& prect->right);
 
    }
 
 
-   bool primitive_impl::RedrawWindow(const ::rect & rectUpdate, ::draw2d::region * prgnUpdate, UINT flags)
+   bool primitive_impl::RedrawWindow(const ::rect & rectUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
    {
 
       if (!m_puserinteraction)
@@ -464,14 +488,14 @@ namespace user
    }
 
 
-   bool primitive_impl::ModifyStyle(u32 dwRemove, u32 dwAdd, UINT nFlags)
+   bool primitive_impl::ModifyStyle(u32 dwRemove, u32 dwAdd, ::u32 nFlags)
    {
 
-      LONG l = GetStyle();
+      ::i32 l = GetStyle();
 
       l |= dwAdd;
 
-      LONG lRemove = ~dwRemove;
+      ::i32 lRemove = ~dwRemove;
 
       l &= lRemove;
 
@@ -482,7 +506,7 @@ namespace user
    }
 
 
-   bool primitive_impl::ModifyStyleEx(u32 dwRemove, u32 dwAdd, UINT nFlags)
+   bool primitive_impl::ModifyStyleEx(u32 dwRemove, u32 dwAdd, ::u32 nFlags)
    {
 
       set_window_long(GWL_EXSTYLE, (GetExStyle() | dwAdd) & ~dwRemove);
@@ -492,18 +516,18 @@ namespace user
    }
 
 
-   LONG primitive_impl::get_window_long(i32 nIndex) const
+   ::i32 primitive_impl::get_window_long(i32 nIndex) const
    {
 
-      return (LONG)get_window_long_ptr(nIndex);
+      return (::i32)get_window_long_ptr(nIndex);
 
    }
 
 
-   LONG primitive_impl::set_window_long(i32 nIndex, LONG lValue)
+   ::i32 primitive_impl::set_window_long(i32 nIndex, ::i32 lValue)
    {
 
-      return (LONG)set_window_long_ptr(nIndex, lValue);
+      return (::i32)set_window_long_ptr(nIndex, lValue);
 
    }
 
@@ -683,7 +707,7 @@ namespace user
    }
 
 
-   UINT primitive_impl::ArrangeIconicWindows()
+   ::u32 primitive_impl::ArrangeIconicWindows()
    {
 
       //      return m_puserinteraction->ArrangeIconicWindows();
@@ -785,7 +809,7 @@ namespace user
    }
 
 
-   ::user::interaction * primitive_impl::get_wnd(UINT nCmd) const
+   ::user::interaction * primitive_impl::get_wnd(::u32 nCmd) const
    {
 
       if (!m_puserinteraction)
@@ -1127,7 +1151,7 @@ namespace user
    }
 
 
-   bool primitive_impl::get_rect_normal(RECT * prect)
+   bool primitive_impl::get_rect_normal(RECT32 * prect)
    {
 
       m_puserinteraction->layout().sketch().screen_rect(prect);
@@ -1137,7 +1161,7 @@ namespace user
    }
 
 
-   bool primitive_impl::SetTimer(uptr uEvent, UINT nEllapse, PFN_TIMER pfnTimer)
+   bool primitive_impl::SetTimer(uptr uEvent, ::u32 nEllapse, PFN_TIMER pfnTimer)
    {
 
       if (nEllapse < 500)
@@ -1400,7 +1424,7 @@ namespace user
    bool primitive_impl::post_message(const ::id & id, WPARAM wparam, lparam lparam)
    {
 
-      m_puserinteraction->post_method(__method(call_message_handler_task(m_puserinteraction, id, wparam, lparam)));
+      m_puserinteraction->post_procedure(__procedure(call_message_handler_task(m_puserinteraction, id, wparam, lparam)));
 
       return true;
 
@@ -1494,7 +1518,7 @@ namespace user
       }
 
       m_puserinteraction->run_property("on_create");
-      m_puserinteraction->call_method(CREATE_METHOD);
+      m_puserinteraction->call_procedure(CREATE_PROCEDURE);
 
    }
 

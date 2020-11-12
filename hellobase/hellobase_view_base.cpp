@@ -289,7 +289,7 @@ auto m_tickRoll = ::tick::now();
             }
 
 
-            COLORREF cr;
+            color32_t cr;
 
             byte a, r, g, b, rm, gm, bm;
 
@@ -308,16 +308,16 @@ auto m_tickRoll = ::tick::now();
 
             int w = (s.cx / 3) * 3;
 
-/*            int rstride = pimage->scan_size() / sizeof(COLORREF);
+/*            int rstride = pimage->scan_size() / sizeof(color32_t);
 
-/*            COLORREF * pdata = pimage->get_data();
+/*            color32_t * pdata = pimage->get_data();
 
             int i1;
             int i2;
             int i3;
-            COLORREF cr1;
-            COLORREF cr2;
-            COLORREF cr3;
+            color32_t cr1;
+            color32_t cr2;
+            color32_t cr3;
 
             for (int i = 0; i < h; i += 3)
             {

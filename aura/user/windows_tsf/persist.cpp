@@ -42,7 +42,7 @@
 //                pStream->Seek(li, STREAM_SEEK_SET, NULL);
 //                
 //                //write the contents of the stream to the file
-//                BYTE    buffer[BLOCK_SIZE];
+//                byte    buffer[BLOCK_SIZE];
 //                ULONG   uRead;
 //                HRESULT hr;
 //
@@ -50,7 +50,7 @@
 //                hr = pStream->Read(buffer, BLOCK_SIZE, &uRead);
 //                while(uRead > 0)
 //                {
-//                    DWORD   dwWritten;
+//                    ::u32   dwWritten;
 //                    
 //                    WriteFile(hFile, buffer, uRead, &dwWritten, NULL);
 //                    
@@ -80,7 +80,7 @@
 //        
 //        //write the plain UNICODE text into the stream
 //        LPWSTR          pwsz;
-//        LONG            cch;
+//        ::i32            cch;
 //        ULONG           uWritten;
 //        LARGE_INTEGER   li;
 //        ULONG           uSize;
@@ -210,7 +210,7 @@
 //                pStream->Seek(li, STREAM_SEEK_SET, NULL);
 //                
 //                //write the contents of the stream to the file
-//                BYTE    buffer[BLOCK_SIZE];
+//                byte    buffer[BLOCK_SIZE];
 //                ULONG   uRead;
 //                HRESULT hr;
 //

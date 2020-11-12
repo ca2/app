@@ -91,7 +91,7 @@ namespace user
    bool form_control::OnCommand(WPARAM wparam,LPARAM lparam)
    {
 
-      UINT uiNotificationCode = HIWORD(wparam);
+      ::u32 uNotificationCode = HIWORD(wparam);
 
       ::id id(LOWORD(wparam));
 
@@ -131,7 +131,7 @@ namespace user
    }
 
 
-   bool form_control::OnCommandButton(::user::interaction * pinteraction,UINT uiNotificationCode,LPARAM lparam)
+   bool form_control::OnCommandButton(::user::interaction * pinteraction,::u32 uNotificationCode,LPARAM lparam)
 
    {
 
@@ -168,7 +168,7 @@ namespace user
    }
 
 
-   bool form_control::OnCommandCheckBox(::user::interaction * pinteraction,UINT uiNotificationCode,LPARAM lparam)
+   bool form_control::OnCommandCheckBox(::user::interaction * pinteraction,::u32 uNotificationCode,LPARAM lparam)
 
    {
 
@@ -204,7 +204,7 @@ namespace user
    }
 
 
-   bool form_control::OnCommandComboBox(::user::interaction * pinteraction,UINT uiNotificationCode,LPARAM lparam)
+   bool form_control::OnCommandComboBox(::user::interaction * pinteraction,::u32 uNotificationCode,LPARAM lparam)
 
    {
 
@@ -248,7 +248,7 @@ namespace user
    }
 
 
-   bool form_control::OnCommandEdit(::user::interaction * pinteraction,UINT uiNotificationCode,LPARAM lparam)
+   bool form_control::OnCommandEdit(::user::interaction * pinteraction,::u32 uNotificationCode,LPARAM lparam)
 
    {
 
@@ -686,8 +686,8 @@ namespace user
       MESSAGE_LINK(e_message_create, pchannel,this,&form_control::_001OnCreate);
       MESSAGE_LINK(e_message_pos_create, pchannel,this,&form_control::_000OnPosCreate);
       MESSAGE_LINK(e_message_language, pchannel,this,&form_control::_001OnAppLanguage);
-      //MESSAGE_LINK(WM_KEYDOWN                     , pchannel,this,&form_control::_001OnKeyDown);
-      //MESSAGE_LINK(WM_KEYUP                       , pchannel,this,&form_control::_001OnKeyUp);
+      //MESSAGE_LINK(e_message_key_down                     , pchannel,this,&form_control::_001OnKeyDown);
+      //MESSAGE_LINK(e_message_key_up                       , pchannel,this,&form_control::_001OnKeyUp);
       MESSAGE_LINK(WM_USER + 123, pchannel,this,&form_control::_001OnUser123);
 
       install_update_data_message_routing(pchannel);
@@ -875,7 +875,7 @@ namespace user
    void form_control::WfiOnClose()
    {
 
-      post_message(WM_CLOSE);
+      post_message(e_message_close);
 
    }
 
@@ -1417,7 +1417,7 @@ namespace user
    //}
 
 
-   void form_control::control_get_window_rect(::user::interaction * pinteraction,RECT * prect)
+   void form_control::control_get_window_rect(::user::interaction * pinteraction,RECT32 * prect)
 
    {
 
@@ -1426,7 +1426,7 @@ namespace user
 
    }
 
-   void form_control::control_get_client_rect(::user::interaction * pinteraction,RECT * prect)
+   void form_control::control_get_client_rect(::user::interaction * pinteraction,RECT32 * prect)
 
    {
 

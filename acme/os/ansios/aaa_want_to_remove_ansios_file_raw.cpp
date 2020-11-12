@@ -150,7 +150,7 @@ string file_line_dup(const char * path, index iLine)
    if (file == nullptr)
    {
 
-      DWORD dw = ::get_last_error();
+      ::u32 dw = ::get_last_error();
 
       return "";
 
@@ -228,7 +228,7 @@ bool file_set_line_dup(const char * pszPath, index iLine, const char * pszLine)
    if (file == nullptr)
    {
 
-      DWORD dw = ::get_last_error();
+      ::u32 dw = ::get_last_error();
 
       return false;
 

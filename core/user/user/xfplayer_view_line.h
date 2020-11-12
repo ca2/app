@@ -61,8 +61,8 @@ public:
    ::draw2d::font_pointer                    m_font;
    ::draw2d::font_pointer                    m_fontPrefix;
    ::draw2d::font_pointer                    m_fontLink;
-   COLORREF                         m_cr;
-   COLORREF                         m_crOutline;
+   color32_t                         m_cr;
+   color32_t                         m_crOutline;
    ::rect                           m_rectClient;
    double                           m_floatRateX;
    //LOGFONTW                          m_logfont;
@@ -89,12 +89,12 @@ public:
    double                           m_dAnimateProgressIncrement;
    i32                              m_iTextEffect;
    ::draw2d::pen *                      m_lpPenEmboss;
-   COLORREF                         m_crForeground;
+   color32_t                         m_crForeground;
    ::draw2d::pen *                      m_ppenLyricLeft;
    ::draw2d::pen *                      m_ppenLyricRight;
    ::size                             m_sizeLyricMargin;
-   COLORREF                         m_crLyricLeft;
-   COLORREF                         m_crLyricRight;
+   color32_t                         m_crLyricLeft;
+   color32_t                         m_crLyricRight;
 
    xfplayer_view_line();
    xfplayer_view_line(const xfplayer_view_line & line);
@@ -122,7 +122,7 @@ public:
    void CalcCharsPositions(::draw2d::graphics_pointer & pgraphics, const ::rect & rect);
 
 
-   void SetColors(COLORREF cr, COLORREF crOutline);
+   void SetColors(color32_t cr, color32_t crOutline);
 
    void EmbossedTextOut(
    ::draw2d::graphics_pointer & pgraphics,
@@ -131,8 +131,8 @@ public:
    i32 left,
    i32 top,
    i32 ignore1,
-   COLORREF cr,
-   COLORREF crOutline,
+   color32_t cr,
+   color32_t crOutline,
    strsize iLen,
    double dBlend);
 
@@ -144,8 +144,8 @@ public:
    i32 iLeft,
    i32 iTop,
    i32 iWidth,
-   COLORREF cr,
-   COLORREF crOutline,
+   color32_t cr,
+   color32_t crOutline,
    strsize iLen,
    double dBlend);
 
@@ -163,14 +163,14 @@ public:
    //void AddVmsFont(draw2d::font * pfont);
    //i32 GetVmsFontCount();
    void SetPlacement(const ::rect & rect);
-   i32 SetLyricColors(COLORREF crLeft, COLORREF crRight);
+   i32 SetLyricColors(color32_t crLeft, color32_t crRight);
    i32 SetLyricPens(::draw2d::pen * ppenLeft, ::draw2d::pen * ppenRight);
    void SetRenderCriticalSection(::critical_section *pcs);
    void SetAnimateIncrement(double dIncrement);
    i32 MapToFontEffect(i32 iLineEffect);
 
 
-   void SetForegroundColor(COLORREF cr);
+   void SetForegroundColor(color32_t cr);
    void SetEmbossPen(::draw2d::pen * pPen);
 
    void SetTextEffect(i32 iTextEffect);
@@ -181,7 +181,7 @@ public:
 
    void Show(bool bShow = true);
    virtual xfplayer_view_line & operator = (const xfplayer_view_line & src);
-   void GetPlacement(RECT * prect);
+   void GetPlacement(RECT32 * prect);
 
    void SetPlaement(const ::rect & rect);
    void SetAlign(i32 iAlign);
@@ -206,7 +206,7 @@ public:
 
    bool _001OnDraw(::draw2d::graphics_pointer & pgraphics, bool bDraw, const ::rect & rect, rect_array & rectaModified, bool bRecalcLayout);
 
-   bool _001OnDraw(::draw2d::graphics_pointer & pgraphics, bool bDraw, const ::rect & rect, rect_array & rectaModified, strsize * count, bool bRecalcLayout, COLORREF crColor, ::draw2d::pen_pointer sppen);
+   bool _001OnDraw(::draw2d::graphics_pointer & pgraphics, bool bDraw, const ::rect & rect, rect_array & rectaModified, strsize * count, bool bRecalcLayout, color32_t crColor, ::draw2d::pen_pointer sppen);
 
 
    DECL_GEN_SIGNAL(OnMouseMove);

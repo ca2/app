@@ -41,7 +41,7 @@ namespace multimedia
 
          virtual bool initialize_thread() override;
          virtual i32 exit_instance();
-         virtual bool on_idle(LONG lCount);
+         virtual bool on_idle(::i32 lCount);
          virtual void pre_translate_message(::message::message * pmessage);
 
 

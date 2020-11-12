@@ -13,13 +13,38 @@ enum enum_message : ::i64
    e_message_activate = 6,
    e_message_set_focus = 7,
    e_message_kill_focus = 8,
+   e_message_close = 16,
    e_message_quit = 18,
+
+
+   e_message_key_first = 256,
+   e_message_key_down = 256,
+   e_message_key_up = 257,
+   e_message_char = 258,
+   e_message_dead_char = 259,
+   e_message_sys_key_down = 260,
+   e_message_sys_key_up = 261,
+   e_message_sys_char = 262,
+   e_message_sys_dead_char = 263,
+   e_message_uni_char = 265,
+   e_message_key_last = 265,
 
 
    e_message_non_client_mouse_move = 160,
 
    e_message_mouse_first = 512,
    e_message_mouse_move = 512,
+   e_message_lbutton_down = 513,
+   e_message_lbutton_up = 514,
+   e_message_lbutton_dbl_clk = 515,
+   e_message_rbutton_down = 516,
+   e_message_rbutton_up = 517,
+   e_message_rbutton_dbl_clk = 518,
+   e_message_mbutton_down = 519,
+   e_message_mbutton_up = 520,
+   e_message_mbutton_dbl_clk = 521,
+   e_message_mouse_wheel = 522,
+
 
 
 

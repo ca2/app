@@ -189,30 +189,30 @@ namespace plugin
 
    }
 
-   //void copy_colorref(int cxParam,int cyParam,COLORREF * pcolorrefDst,COLORREF * pcolorrefSrc,int iStrideDst, int iStrideSrc)
+   //void copy_colorref(int cxParam,int cyParam,color32_t * pcolorrefDst,color32_t * pcolorrefSrc,int iStrideDst, int iStrideSrc)
    //{
 
    //   if(iStrideDst <= 0)
    //   {
 
-   //      iStrideDst = cxParam * sizeof(COLORREF);
+   //      iStrideDst = cxParam * sizeof(color32_t);
 
    //   }
 
    //   if(iStrideSrc <= 0)
    //   {
 
-   //      iStrideDst = cxParam * sizeof(COLORREF);
+   //      iStrideDst = cxParam * sizeof(color32_t);
 
    //   }
 
-   //   int wsrc = iStrideSrc / sizeof(COLORREF);
-   //   int wdst = iStrideDst / sizeof(COLORREF);
-   //   int cw = cxParam * sizeof(COLORREF);
+   //   int wsrc = iStrideSrc / sizeof(color32_t);
+   //   int wdst = iStrideDst / sizeof(color32_t);
+   //   int cw = cxParam * sizeof(color32_t);
 
 
-   //   COLORREF * psrc = pcolorrefSrc;
-   //   COLORREF * pdst = pcolorrefDst;
+   //   color32_t * psrc = pcolorrefSrc;
+   //   color32_t * pdst = pcolorrefDst;
 
    //   for(int i = 0; i < cyParam; i++)
    //   {
@@ -283,10 +283,10 @@ namespace plugin
          //   copy_colorref(
          //      min(pimage->width(),m_sizeBitmap.cx),
          //      min(pimage->height(),m_sizeBitmap.cy),
-         //      (COLORREF *) m_memBitmap.get_data(),
+         //      (color32_t *) m_memBitmap.get_data(),
          //      pimage->m_pcolorref,
-         //      abs_dup(m_sizeBitmap.cx) * sizeof(COLORREF),
-         //      abs_dup(pimage->width()) * sizeof(COLORREF));
+         //      abs_dup(m_sizeBitmap.cx) * sizeof(color32_t),
+         //      abs_dup(pimage->width()) * sizeof(color32_t));
 
          //}
 
@@ -533,7 +533,7 @@ namespace plugin
 
          //Sleep(15 * 1000);
 
-         LPSTR pszAlloc = (LPSTR) (void *) psz;
+         char * pszAlloc = (char *) (void *) psz;
 
 
          if(psz == nullptr)
@@ -590,9 +590,9 @@ namespace plugin
          }
          else
          {
-            LPSTR pszStart = pszAlloc;
+            char * pszStart = pszAlloc;
 
-            LPSTR pszEnd = nullptr;
+            char * pszEnd = nullptr;
 
             i32 i = 0;
             for(; i < iCount; i++)

@@ -15,7 +15,7 @@ namespace ftp
       close();
    }
 
-   bool file::Open(const string& strFileName, UINT uiMode)
+   bool file::Open(const string& strFileName, ::u32 uMode)
    {
 
       m_strFileName = strFileName;
@@ -85,9 +85,9 @@ namespace ftp
 
       }
 
-      memsize uiRead = m_file->read(pBuffer, itemSize * itemCount);
+      memsize uRead = m_file->read(pBuffer, itemSize * itemCount);
 
-      return (memsize)(uiRead / itemSize);
+      return (memsize)(uRead / itemSize);
 
    }
 
@@ -98,7 +98,7 @@ namespace ftp
    }
 
 
-   UINT file::GetLocalStreamSize() const
+   ::u32 file::GetLocalStreamSize() const
    {
 
       if (m_file.is_null())
@@ -108,12 +108,12 @@ namespace ftp
 
       }
 
-      return (UINT) m_file->get_size();
+      return (::u32) m_file->get_size();
 
    }
 
 
-   void file::SetLocalStreamOffset(DWORD dwOffsetFromBeginOfStream)
+   void file::SetLocalStreamOffset(::u32 dwOffsetFromBeginOfStream)
    {
       Seek(dwOffsetFromBeginOfStream, ::file::seek_begin);
    }

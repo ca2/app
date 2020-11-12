@@ -81,13 +81,13 @@ public:
 
    __pointer(::task_pool)                             m_ptaskpool;
 
-   UINT                                               m_nDisablePumpCount;
+   ::u32                                               m_nDisablePumpCount;
 
-   UINT                                               m_dwFinishTimeout;
+   ::u32                                               m_dwFinishTimeout;
    bool                                               m_bThreadClosed;
 
-   
-   method_array                                       m_methoda;
+
+   procedure_array                                    m_procedurea;
 
 
    __pointer(manual_reset_event)                      m_pevent1;
@@ -129,14 +129,15 @@ public:
    virtual void assert_valid() const override;
    virtual void dump(dump_context & dumpcontext) const override;
 
-   using task::fork;
-   using channel::fork;
+   
+   //using task::fork;
+   //using channel::fork;
 
    inline mq* get_mq() { return m_pmq ? m_pmq : _get_mq(); }
    mq* _get_mq();
 
-   int_bool peek_message(LPMESSAGE pMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg);
-   int_bool get_message(LPMESSAGE pMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax);
+   int_bool peek_message(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg);
+   int_bool get_message(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax);
    int_bool post_message(oswindow oswindow, const ::id & id, WPARAM wParam, LPARAM lParam);
 
    user_interaction_ptr_array & uiptra();
@@ -159,13 +160,13 @@ public:
 
    // file related stuff
    file_info * get_file_info();
-   DWORD get_file_sharing_violation_timeout_total_milliseconds();
+   ::u32 get_file_sharing_violation_timeout_total_milliseconds();
    ::duration set_file_sharing_violation_timeout(::duration duration);
 
    virtual bool is_running() const;
    //virtual void dependant_add(::layered * pobjectContext) override;
 
- 
+
 
    virtual ::estatus start(
       ::matter * pmatter,
@@ -174,8 +175,8 @@ public:
       u32 dwCreateFlags = 0) override;
 
 
-   virtual HTHREAD get_hthread() const;
-   virtual ITHREAD get_ithread() const;
+   virtual hthread_t get_hthread() const;
+   virtual ithread_t get_ithread() const;
 
 
    virtual bool task_active() const;
@@ -183,7 +184,7 @@ public:
 
    virtual void set_current_handles();
 
-   virtual HTHREAD get_os_handle() const;
+   virtual hthread_t get_os_handle() const;
 
    //virtual bool thread_active() const;
    virtual bool is_dedicated_thread() const;
@@ -192,7 +193,7 @@ public:
    //virtual bool is_running() const override;
 
    //virtual void set_os_data(void * pvoidOsData);
-   //virtual void set_os_int(ITHREAD iData);
+   //virtual void set_os_int(ithread_t iData);
 
 
    //static __pointer(thread) start(
@@ -241,8 +242,8 @@ public:
 
    virtual bool send_object(const ::id & id, WPARAM wParam, lparam lParam, ::duration durationTimeout = ::duration::infinite());
 
-   virtual bool post_task(const ::method & method);
-   virtual bool send_task(const ::method & method, ::duration durationTimeout = ::duration::infinite());
+   virtual bool post_task(const ::procedure & procedure);
+   virtual bool send_task(const ::procedure & procedure, ::duration durationTimeout = ::duration::infinite());
 
    template < typename PRED >
    bool pred(PRED pred)
@@ -253,14 +254,14 @@ public:
    template < typename PRED >
    bool post_pred(PRED pred)
    {
-      return post_object(e_message_system, system_message_method, __method(pred));
+      return post_object(e_message_system, system_message_method, __procedure(pred));
    }
 
 
-   bool send_method(const ::method & method, ::duration durationTimeout = ::duration::infinite())
+   bool send_procedure(const ::procedure & procedure, ::duration durationTimeout = ::duration::infinite())
    {
 
-      return send_object(e_message_system, system_message_method, method, durationTimeout);
+      return send_object(e_message_system, system_message_method, procedure, durationTimeout);
 
    }
 
@@ -268,36 +269,34 @@ public:
    template < typename PRED >
    bool schedule_pred(PRED pred)
    {
+
       return post_pred(pred);
+
    }
 
 
-
-   bool sync_pred(const ::method & method, ::duration durationTimeout = ::duration::infinite())
+   bool sync_procedure(const ::procedure & procedure, ::duration durationTimeout = ::duration::infinite())
    {
 
       if (this == ::get_task())
       {
 
-         method();
+         procedure();
 
          return true;
 
       }
 
-      return send_method(method, durationTimeout);
+      return send_procedure(procedure, durationTimeout);
 
    }
-
-
-   
 
 
    //virtual bool final_handle_exception(::exception_pointer e);
    __pointer(::matter) running(const char * pszTag) const override;
 
    ///virtual void relay_exception(::exception_pointer e, e_thread ethreadSource = thread_none);
-   virtual int _GetMessage(LPMESSAGE lpMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax);
+   virtual int _GetMessage(LPMESSAGE lpMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax);
 
    virtual bool has_step() const;
    virtual bool has_raw_message() const;
@@ -322,8 +321,8 @@ public:
    //virtual void process_window_message(::message::base * pbase);
    virtual ::estatus process_message();     // route message
    virtual ::estatus raw_process_message();     // route message
-   // virtual bool on_idle(LONG lCount); // return TRUE if more idle processing
-   virtual ::estatus on_thread_on_idle(::thread * pthread, LONG lCount);
+   // virtual bool on_idle(::i32 lCount); // return TRUE if more idle processing
+   virtual ::estatus on_thread_on_idle(::thread * pthread, ::i32 lCount);
    virtual bool is_idle_message(::message::message * pmessage);  // checks for special messages
    virtual bool is_idle_message();  // checks for special messages
 
@@ -343,7 +342,7 @@ public:
    //virtual void remove(::user::primitive * pinteraction);
    //virtual ::count get_ui_count();
    //virtual ::user::primitive * get_ui(index iIndex);
-   //virtual void set_timer(::user::primitive * pinteraction, uptr uEvent, UINT nEllapse);
+   //virtual void set_timer(::user::primitive * pinteraction, uptr uEvent, ::u32 nEllapse);
    //virtual void unset_timer(::user::primitive * pinteraction, uptr uEvent);
    //virtual void set_auto_delete(bool bAutoDelete = true);
    virtual ::user::primitive * get_active_ui();
@@ -428,7 +427,7 @@ public:
    virtual ::estatus on_thread_term();
    //virtual ::estatus     on_thread_end();
    //virtual void thread_delete();
-   operator HTHREAD() const;
+   operator hthread_t() const;
 
 
    virtual ::estatus initialize(::layered * pobjectContext) override;
@@ -447,7 +446,7 @@ public:
    virtual bool begin_thread(
    bool bSynchInitialization = false,
    ::e_priority epriority = ::priority_normal,
-   UINT nStackSize = 0,
+   ::u32 nStackSize = 0,
    u32 uiCreateFlags = 0,
    LPSECURITY_ATTRIBUTES psa = nullptr);
 
@@ -455,14 +454,14 @@ public:
 
    virtual bool begin(
    ::e_priority epriority = ::priority_normal,
-   UINT nStackSize = 0,
+   ::u32 nStackSize = 0,
    u32 uiCreateFlags = 0,
    LPSECURITY_ATTRIBUTES psa = nullptr);
 
 
    virtual bool begin_synch(
    ::e_priority epriority = ::priority_normal,
-   UINT nStackSize = 0,
+   ::u32 nStackSize = 0,
    u32 uiCreateFlags = 0,
    LPSECURITY_ATTRIBUTES psa = nullptr);
 
@@ -567,9 +566,9 @@ CLASS_DECL_APEX bool is_active(::thread * pthread);
 
 
 
-CLASS_DECL_APEX bool is_thread_on(ITHREAD id);
-CLASS_DECL_APEX void set_thread_on(ITHREAD id);
-CLASS_DECL_APEX void set_thread_off(ITHREAD id);
+CLASS_DECL_APEX bool is_thread_on(ithread_t id);
+CLASS_DECL_APEX void set_thread_on(ithread_t id);
+CLASS_DECL_APEX void set_thread_off(ithread_t id);
 
 
 

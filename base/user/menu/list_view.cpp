@@ -76,7 +76,7 @@ namespace user
    }
 
 
-   //bool menu_list_view::add_menu(::xml::node * pnode, ::user::interaction * puiNotify, UINT uiCallbackMessage)
+   //bool menu_list_view::add_menu(::xml::node * pnode, ::user::interaction * puiNotify, ::u32 uCallbackMessage)
    //{
 
    //   destroy_menu();

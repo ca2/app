@@ -47,7 +47,7 @@
 
 //#define DEBUG_CLIENT_FILE	1
 
-static BYTE BOM_UTF16_LE[2] = { 0xFF, 0xFE };
+static byte BOM_UTF16_LE[2] = { 0xFF, 0xFE };
 static WCHAR CR_LF_STR_W[] = { '\r', '\n', '\0' };
 
 #define INVALID_INTEGER_VALUE		0xFFFFFFFF
@@ -203,7 +203,7 @@ static int freerdp_client_rdp_file_set_integer(rdpFile* file, const char* name, 
 		file->lines[index].name = _strdup(name);
 		if (!file->lines[index].name)
 			return -1;
-		file->lines[index].iValue = (DWORD) value;
+		file->lines[index].iValue = (::u32) value;
 
 		file->lines[index].flags = RDP_FILE_LINE_FLAG_FORMATTED;
 		file->lines[index].flags |= RDP_FILE_LINE_FLAG_TYPE_INTEGER;
@@ -271,7 +271,7 @@ static BOOL freerdp_client_parse_rdp_file_integer_ascii(rdpFile* file, const cha
 static int freerdp_client_rdp_file_set_string(rdpFile* file, const char* name, const char* value, int index)
 {
 	int standard = 0;
-	LPSTR *tmp = nullptr;
+	char * *tmp = nullptr;
 
 #ifdef DEBUG_CLIENT_FILE
 	WLog_DBG(TAG,  "%s:s:%s", name, value);
@@ -490,7 +490,7 @@ static BOOL freerdp_client_parse_rdp_file_option_ascii(rdpFile* file, char* opti
 	return freerdp_client_add_option(file, option);
 }
 
-static BOOL freerdp_client_parse_rdp_file_buffer_ascii(rdpFile* file, const BYTE* buffer, size_t size)
+static BOOL freerdp_client_parse_rdp_file_buffer_ascii(rdpFile* file, const byte* buffer, size_t size)
 {
 	int index;
 	int length;
@@ -570,7 +570,7 @@ next_line:
 	return TRUE;
 }
 
-static BOOL freerdp_client_parse_rdp_file_buffer_unicode(rdpFile* file, const BYTE* buffer, size_t size)
+static BOOL freerdp_client_parse_rdp_file_buffer_unicode(rdpFile* file, const byte* buffer, size_t size)
 {
 	int index;
 	int length;
@@ -649,7 +649,7 @@ next_line:
 	return TRUE;
 }
 
-BOOL freerdp_client_parse_rdp_file_buffer(rdpFile* file, const BYTE* buffer, size_t size)
+BOOL freerdp_client_parse_rdp_file_buffer(rdpFile* file, const byte* buffer, size_t size)
 {
 	if (size < 2)
 		return FALSE;
@@ -663,7 +663,7 @@ BOOL freerdp_client_parse_rdp_file_buffer(rdpFile* file, const BYTE* buffer, siz
 BOOL freerdp_client_parse_rdp_file(rdpFile* file, const char* name)
 {
 	BOOL status;
-	BYTE* buffer;
+	byte* buffer;
 	FILE* fp = nullptr;
 	size_t read_size;
 	long int filesize;
@@ -683,7 +683,7 @@ BOOL freerdp_client_parse_rdp_file(rdpFile* file, const char* name)
 		return FALSE;
 	}
 
-	buffer = (BYTE*) malloc(filesize + 2);
+	buffer = (byte*) malloc(filesize + 2);
 	if (!buffer)
 	{
 		fclose(fp);
@@ -800,7 +800,7 @@ BOOL freerdp_client_write_rdp_file(const rdpFile* file, const char* name, BOOL u
 			ConvertToUnicode(CP_UTF8, 0, buffer, length, &unicodestr, 0);
 
 			/* Write multi-byte header */
-			if (fwrite(BOM_UTF16_LE, sizeof(BYTE), 2, fp) != 2 ||
+			if (fwrite(BOM_UTF16_LE, sizeof(byte), 2, fp) != 2 ||
 					fwrite(unicodestr, 2, length, fp) != length)
 			{
 				free(buffer);
@@ -907,7 +907,7 @@ BOOL freerdp_client_populate_settings_from_rdp_file(rdpFile* file, rdpSettings* 
 			return FALSE;
 
 		if (port > 0)
-			freerdp_set_param_uint32(settings, FreeRDP_ServerPort, (UINT32) port);
+			freerdp_set_param_uint32(settings, FreeRDP_ServerPort, (::u32) port);
 
 		free(host);
 	}
@@ -967,7 +967,7 @@ BOOL freerdp_client_populate_settings_from_rdp_file(rdpFile* file, rdpSettings* 
 
 	if (~((size_t) file->LoadBalanceInfo))
 	{
-		settings->LoadBalanceInfo = (BYTE*) _strdup(file->LoadBalanceInfo);
+		settings->LoadBalanceInfo = (byte*) _strdup(file->LoadBalanceInfo);
 		if (!settings->LoadBalanceInfo)
 			return FALSE;
 		settings->LoadBalanceInfoLength = (int) strlen((char*) settings->LoadBalanceInfo);
@@ -1029,7 +1029,7 @@ BOOL freerdp_client_populate_settings_from_rdp_file(rdpFile* file, rdpSettings* 
 			return FALSE;
 
 		if (port > 0)
-			freerdp_set_param_uint32(settings, FreeRDP_GatewayPort, (UINT32) port);
+			freerdp_set_param_uint32(settings, FreeRDP_GatewayPort, (::u32) port);
 
 		free(host);
 	}
@@ -1347,7 +1347,7 @@ int freerdp_client_rdp_file_get_integer_option(rdpFile* file, const char* name)
 	return line->iValue;
 }
 
-static void freerdp_client_file_string_check_free(LPSTR str)
+static void freerdp_client_file_string_check_free(char * str)
 {
 	if (~((size_t) str))
 		free(str);

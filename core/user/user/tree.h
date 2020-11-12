@@ -27,14 +27,14 @@ namespace user
       ::draw2d::graphics_extension              m_dcextension;
       index                                     m_dwFirstVisibleItem;
       index                                     m_iItemCount;
-      UINT                                      m_uiLButtonUpFlags;
+      ::u32                                      m_uiLButtonUpFlags;
       point                                     m_pointLButtonUp;
       ::data::tree_item *                       m_pitemFirstVisible;
       index                                     m_iFirstVisibleItemProperIndex;
       i32                                       m_iCurrentViewWidth;
-      //COLORREF                                m_crTextSelected;
-      //COLORREF                                m_crTextHighlight;
-      //COLORREF                                m_crTextSelectedHighlight;
+      //color32_t                                m_crTextSelected;
+      //color32_t                                m_crTextHighlight;
+      //color32_t                                m_crTextSelectedHighlight;
       u32_array                                 m_dwaItemState;
       __pointer(::image_list)                   m_pimagelist;
       index                                     m_iImageCollapse;
@@ -50,8 +50,8 @@ namespace user
       bool                                      m_bHoverStart;
       tick                                      m_tickHoverStart;
       tick                                      m_tickHoverEnd;
-      BYTE                                      m_uchHoverAlpha;
-      BYTE                                      m_uchHoverAlphaInit;
+      byte                                      m_uchHoverAlpha;
+      byte                                      m_uchHoverAlphaInit;
       manual_reset_event                        m_evExpand;
       manual_reset_event                        m_evOpen;
       ptr_array < ::data::tree_item >           m_treeitemaExpand;
@@ -94,7 +94,7 @@ namespace user
       void _001ExpandItem(::data::tree_item * pitem, const ::action_context & action_context, bool bExpand = true, bool bRedraw = true, bool bLayout = true);
       virtual void _001OnItemExpand(::data::tree_item * pitem, const ::action_context & action_context);
       virtual void _001OnItemCollapse(::data::tree_item * pitem, const ::action_context & action_context);
-      virtual bool _001GetItemElementRect(RECT * prect, tree_draw_item & drawitem, ::user::e_tree_element eelement);
+      virtual bool _001GetItemElementRect(RECT32 * prect, tree_draw_item & drawitem, ::user::e_tree_element eelement);
 
       virtual void install_message_routing(::channel * pchannel) override;
       i32 _001GetItemHeight();

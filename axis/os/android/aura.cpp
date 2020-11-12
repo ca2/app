@@ -2,7 +2,7 @@
 
 
 
-//DWORD get_nanos()
+//::u32 get_nanos()
 //{
 //   timeval ts;
 //   gettimeofday(&ts,0);
@@ -10,10 +10,10 @@
 //
 //}
 //
-//thread_int_ptr < DWORD > t_dwLastError;
+//thread_int_ptr < ::u32 > t_dwLastError;
 
 
-//CLASS_DECL_AXIS DWORD get_last_error()
+//CLASS_DECL_AXIS ::u32 get_last_error()
 //{
 //
 //   tick t_tickLastError;
@@ -21,7 +21,7 @@
 //}
 //
 //
-//CLASS_DECL_AXIS void set_last_error(DWORD dw)
+//CLASS_DECL_AXIS void set_last_error(::u32 dw)
 //{
 //
 //   t_dwLastError = dw;
@@ -37,7 +37,7 @@ CLASS_DECL_AXIS bool _istlead(i32 ch)
 }
 
 
-void Sleep(DWORD dwMillis)
+void Sleep(::u32 dwMillis)
 {
    timespec t;
    t.tv_sec = dwMillis / 1000;

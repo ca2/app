@@ -45,10 +45,10 @@ CLASS_DECL_ACME void * __alloc_memory_debug(size_t nSize, bool bIsObject,  const
 
 CLASS_DECL_ACME void __free_memory_debug(void * pbData, bool bIsObject);
 
-CLASS_DECL_ACME bool __default_alloc_hook(size_t, bool, LONG);
+CLASS_DECL_ACME bool __default_alloc_hook(size_t, bool, ::i32);
 
 // A failure hook returns whether to permit allocation
-typedef bool (* __ALLOC_HOOK)(size_t nSize, bool bObject, LONG lRequestNumber);
+typedef bool (* __ALLOC_HOOK)(size_t nSize, bool bObject, ::i32 lRequestNumber);
 
 // set new hook, return old (never nullptr)
 //CLASS_DECL_ACME __ALLOC_HOOK __set_alloc_hook(__ALLOC_HOOK pfnAllocHook);

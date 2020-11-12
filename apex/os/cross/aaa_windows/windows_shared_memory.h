@@ -17,8 +17,8 @@ struct CLASS_DECL_APEX hglobal
 typedef struct hglobal * HGLOBAL;
 
 
-HGLOBAL WINAPI GlobalAlloc(UINT uFlags, SIZE_T dwBytes);
-HGLOBAL WINAPI GlobalReAlloc(HGLOBAL hMem, SIZE_T dwBytes, UINT uFlags);
+HGLOBAL WINAPI GlobalAlloc(::u32 uFlags, SIZE_T dwBytes);
+HGLOBAL WINAPI GlobalReAlloc(HGLOBAL hMem, SIZE_T dwBytes, ::u32 uFlags);
 HGLOBAL WINAPI GlobalFree(HGLOBAL hMem);
 
 LPVOID WINAPI GlobalLock(HGLOBAL hMem);

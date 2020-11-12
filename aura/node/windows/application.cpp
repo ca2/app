@@ -78,9 +78,9 @@ namespace aura
    //   GetModuleFileNameW(nullptr, pszModuleFilePath, MAX_PATH + 1);
 
 
-   //   DWORD dw;
+   //   ::u32 dw;
 
-   //   DWORD dwResSize = GetFileVersionInfoSizeW(
+   //   ::u32 dwResSize = GetFileVersionInfoSizeW(
    //                     pszModuleFilePath,
 
    //                     &dw);
@@ -101,11 +101,11 @@ namespace aura
    //         memory.get_data()))
 
    //      {
-   //         UINT cbTranslate;
+   //         ::u32 cbTranslate;
    //         struct LANGANDCODEPAGE
    //         {
-   //            WORD wLanguage;
-   //            WORD wCodePage;
+   //            ::u16 wLanguage;
+   //            ::u16 wCodePage;
    //         } *pTranslate;
 
 
@@ -118,12 +118,12 @@ namespace aura
 
    //         string strKey;
 
-   //         for( UINT u = 0; u < (cbTranslate/sizeof(struct LANGANDCODEPAGE)); u++ )
+   //         for( ::u32 u = 0; u < (cbTranslate/sizeof(struct LANGANDCODEPAGE)); u++ )
    //         {
 
    //            LPTSTR psz;
 
-   //            UINT uiSize;
+   //            ::u32 uSize;
 
    //            //strKey.Format(
    //            //"\\StringFileInfo\\%04x%04x\\FileDescription",

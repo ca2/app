@@ -60,18 +60,18 @@ namespace datetime
       {
          double angle = System.math().GetPi() / 2.0 - i * System.math().GetPi() * 2.0 / (60.0);
          point pointInt;
-         point pointExt((LONG)(cos(angle) * dRExt),(LONG)(-sin(angle) * dRExt));
+         point pointExt((::i32)(cos(angle) * dRExt),(::i32)(-sin(angle) * dRExt));
          pointExt.offset(pointCenter);
          if(i % 5 == 0)
          {
-            pointInt.x = (LONG)(cos(angle) * dRIntH);
-            pointInt.y = (LONG)(-sin(angle) * dRIntH);
+            pointInt.x = (::i32)(cos(angle) * dRIntH);
+            pointInt.y = (::i32)(-sin(angle) * dRIntH);
             pgraphics->set(penHour);
          }
          else
          {
-            pointInt.x = (LONG)(cos(angle) * dRIntM);
-            pointInt.y = (LONG)(-sin(angle) * dRIntM);
+            pointInt.x = (::i32)(cos(angle) * dRIntM);
+            pointInt.y = (::i32)(-sin(angle) * dRIntM);
             pgraphics->set(penMinute);
          }
          pointInt.offset(pointCenter);
@@ -90,14 +90,14 @@ namespace datetime
       pgraphics->move_to(pointCenter);
       {
          double angle = System.math().GetPi() / 2.0 - timeNow.GetHour() * System.math().GetPi() * 2.0 / (12.0);
-         point pointHour((LONG)(cos(angle) * dRHour),(LONG)(-sin(angle) * dRHour));
+         point pointHour((::i32)(cos(angle) * dRHour),(::i32)(-sin(angle) * dRHour));
          pointHour.offset(pointCenter);
          pgraphics->line_to(pointHour);
       }
       pgraphics->move_to(pointCenter);
       {
          double angle = System.math().GetPi() / 2.0 - timeNow.GetMinute() * System.math().GetPi() * 2.0 / (60.0);
-         point pointMinute((LONG)(cos(angle) * dRMinute),(LONG)(-sin(angle) * dRMinute));
+         point pointMinute((::i32)(cos(angle) * dRMinute),(::i32)(-sin(angle) * dRMinute));
          pointMinute.offset(pointCenter);
          pgraphics->line_to(pointMinute);
       }
@@ -107,7 +107,7 @@ namespace datetime
       pgraphics->move_to(pointCenter);
       {
          double angle = System.math().GetPi() / 2.0 - timeNow.GetSecond() * System.math().GetPi() * 2.0 / (60.0);
-         point pointSecond((LONG)(cos(angle) * dRSecond),(LONG)(-sin(angle) * dRSecond));
+         point pointSecond((::i32)(cos(angle) * dRSecond),(::i32)(-sin(angle) * dRSecond));
          pointSecond.offset(pointCenter);
          pgraphics->line_to(pointSecond);
       }
@@ -118,7 +118,7 @@ namespace datetime
 
 
 
-   void graphics::GetRect(LPRECT lprect,enum enum_element eelement)
+   void graphics::GetRect(LPRECT32 lprect,enum enum_element eelement)
    {
       if(eelement == e_element_clock)
       {

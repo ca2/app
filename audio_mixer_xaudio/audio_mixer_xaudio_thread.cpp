@@ -140,7 +140,7 @@ namespace multimedia
 
 
 
-      bool thread::on_idle(LONG lCount)
+      bool thread::on_idle(::i32 lCount)
       {
          // TODO: add your specialized code here and/or call the base class
          return ::thread::on_idle(lCount);

@@ -64,11 +64,11 @@ void window_android::destroy()
 }
 
 
-void window_android::update_window(oswindow interaction_impl, COLORREF * pOsBitmapData, const ::rect & rect, int iStride)
+void window_android::update_window(oswindow interaction_impl, color32_t * pOsBitmapData, const ::rect & rect, int iStride)
 {
 
 
-   copy_colorref((COLORREF *) m_mem.get_data(), pOsBitmapData, iStride);
+   copy_colorref((color32_t *) m_mem.get_data(), pOsBitmapData, iStride);
 
 
 }

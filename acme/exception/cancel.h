@@ -13,7 +13,7 @@ public:
    virtual ~cancel_exception();
 
 
-   //virtual bool get_error_message(string & str,PUINT pnHelpContext = nullptr);
+   //virtual bool get_error_message(string & str,P::u32 pnHelpContext = nullptr);
 
 
 };

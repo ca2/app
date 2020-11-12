@@ -8,7 +8,7 @@
 
 
 
-CLASS_DECL_ACME mq * get_mq(ITHREAD idthread, bool bCreate);
+CLASS_DECL_ACME mq * get_mq(ithread_t idthread, bool bCreate);
 
 
 ::mutex * g_pmutexThreadWaitClose = nullptr;
@@ -33,7 +33,7 @@ index engine_fileline(DWORD_PTR dwAddress, char * psz, int nCount, u32 * pline, 
 
 #ifdef LINUX
 
-int SetThreadAffinityMask(HTHREAD h, unsigned int dwThreadAffinityMask);
+int SetThreadAffinityMask(hthread_t h, unsigned int dwThreadAffinityMask);
 
 #endif
 
@@ -150,7 +150,7 @@ thread::thread()
 
    m_bDupHandle = false;
 
-   //m_hthread = (HTHREAD) nullptr;
+   //m_hthread = (hthread_t) nullptr;
 
    //m_ithread = 0;
 
@@ -212,7 +212,7 @@ thread::~thread()
 }
 
 
-HTHREAD thread::get_os_handle() const
+hthread_t thread::get_os_handle() const
 {
 
    return get_hthread();
@@ -604,7 +604,7 @@ bool thread::thread_step()
    {
 
       output_debug_string("session");
-    
+
    }
    else if(strType.contains("wave_player"))
    {
@@ -706,16 +706,16 @@ bool thread::pump_runnable()
    while(thread_get_run())
    {
 
-      if (m_methoda.isEmpty())
+      if (m_procedurea.isEmpty())
       {
 
          return false;
 
       }
 
-      auto method = m_methoda.first();
+      auto method = m_procedurea.first();
 
-      m_methoda.remove_at(0);
+      m_procedurea.remove_at(0);
 
       if (method)
       {
@@ -779,7 +779,7 @@ __pointer(::matter) thread::running(const char * pszTag) const
 }
 
 
-int thread::_GetMessage(LPMESSAGE pmessage, oswindow oswindow, UINT wMsgFilterMin,UINT wMsgFilterMax)
+int thread::_GetMessage(LPMESSAGE pmessage, oswindow oswindow, ::u32 wMsgFilterMin,::u32 wMsgFilterMax)
 {
 
    __throw(exception::exception);
@@ -1180,7 +1180,7 @@ bool thread::defer_pump_message()
 }
 
 
-::estatus thread::on_thread_on_idle(thread *pimpl, LONG lCount)
+::estatus thread::on_thread_on_idle(thread *pimpl, ::i32 lCount)
 {
 
    return ::success;
@@ -1498,7 +1498,7 @@ void thread::task_remove(::task * ptask)
 void thread::finalize()
 {
 
-   call_method(DESTROY_METHOD);
+   call_procedure(DESTROY_PROCEDURE);
 
    string strType = type_name();
 
@@ -1899,16 +1899,16 @@ void thread::wait()
 sync_result thread::wait(const duration & duration)
 {
 
-   ITHREAD ithread = m_ithread;
+   ithread_t ithread = m_ithread;
 
    try
    {
 
 #if defined(WINDOWS)
 
-      DWORD timeout = duration.is_pos_infinity() ? INFINITE : static_cast<DWORD>(duration.total_milliseconds());
+      ::u32 timeout = duration.is_pos_infinity() ? U32_INFINITE_TIMEOUT : static_cast<::u32>(duration.total_milliseconds());
 
-      HTHREAD hthread = m_hthread;
+      hthread_t hthread = m_hthread;
 
       if (hthread == NULL || hthread == INVALID_HANDLE_VALUE)
       {
@@ -1935,7 +1935,7 @@ sync_result thread::wait(const duration & duration)
       else
       {
 
-         tick tickDelay = (DWORD) duration.total_milliseconds();
+         tick tickDelay = (::u32) duration.total_milliseconds();
 
          auto dwStep = min(max(tickDelay / 10, 1), 100);
 
@@ -2096,13 +2096,13 @@ namespace thread_util
    inline bool IsEnterKey(::message::message * pmessage)
    {
       SCAST_PTR(::message::base,pbase,pmessage);
-      return pbase->m_id == WM_KEYDOWN && pbase->m_id == VK_RETURN;
+      return pbase->m_id == e_message_key_down && pbase->m_id == VK_RETURN;
    }
 
    inline bool IsButtonUp(::message::message * pmessage)
    {
       SCAST_PTR(::message::base,pbase,pmessage);
-      return pbase->m_id == WM_LBUTTONUP;
+      return pbase->m_id == e_message_lbutton_up;
    }
 
 }
@@ -2159,12 +2159,12 @@ size_t engine_symbol(char * sz, int n, DWORD_PTR * pdisplacement, DWORD_PTR dwAd
 //}
 
 
-bool thread::begin_thread(bool bSynchInitialization, ::e_priority epriority, UINT nStackSize, u32 uiCreateFlags, LPSECURITY_ATTRIBUTES psa)
+bool thread::begin_thread(bool bSynchInitialization, ::e_priority epriority, ::u32 nStackSize, u32 uiCreateFlags, LPSECURITY_ATTRIBUTES psa)
 {
 
    clear_finish_bit();
 
-   ENSURE(m_hthread == (HTHREAD) nullptr);
+   ENSURE(m_hthread == (hthread_t) nullptr);
 
    if(m_id.is_empty())
    {
@@ -2192,7 +2192,7 @@ bool thread::begin_thread(bool bSynchInitialization, ::e_priority epriority, UIN
 
       dwDisplacement = 0;
 
-      UINT32 maxframes = sizeof(uia) / sizeof(uia[0]);
+      ::u32 maxframes = sizeof(uia) / sizeof(uia[0]);
 
       ULONG BackTraceHash;
 
@@ -2241,7 +2241,7 @@ bool thread::begin_thread(bool bSynchInitialization, ::e_priority epriority, UIN
 
    }
 
-   auto estatus = fork(epriority, nStackSize, uiCreateFlags);
+   auto estatus = begin_task(epriority, nStackSize, uiCreateFlags);
 
    if(m_hthread == 0)
    {
@@ -2301,7 +2301,7 @@ bool thread::begin_thread(bool bSynchInitialization, ::e_priority epriority, UIN
 
 
 
-bool thread::begin(::e_priority epriority, UINT nStackSize, u32 uiCreateFlags, LPSECURITY_ATTRIBUTES psa)
+bool thread::begin(::e_priority epriority, ::u32 nStackSize, u32 uiCreateFlags, LPSECURITY_ATTRIBUTES psa)
 {
 
    if(!begin_thread(false, epriority, nStackSize, uiCreateFlags, psa))
@@ -2316,7 +2316,7 @@ bool thread::begin(::e_priority epriority, UINT nStackSize, u32 uiCreateFlags, L
 }
 
 
-bool thread::begin_synch(::e_priority epriority, UINT nStackSize, u32 uiCreateFlags, LPSECURITY_ATTRIBUTES psa)
+bool thread::begin_synch(::e_priority epriority, ::u32 nStackSize, u32 uiCreateFlags, LPSECURITY_ATTRIBUTES psa)
 {
 
    if(!begin_thread(true, epriority, nStackSize, uiCreateFlags, psa))
@@ -2373,7 +2373,7 @@ bool thread::begin_synch(::e_priority epriority, UINT nStackSize, u32 uiCreateFl
 }
 
 
-HTHREAD thread::get_hthread() const
+hthread_t thread::get_hthread() const
 {
 
    return m_hthread;
@@ -2381,7 +2381,7 @@ HTHREAD thread::get_hthread() const
 }
 
 
-ITHREAD thread::get_ithread() const
+ithread_t thread::get_ithread() const
 {
 
    return m_ithread;
@@ -2392,7 +2392,7 @@ ITHREAD thread::get_ithread() const
 bool thread::task_active() const
 {
 
-   return !m_bThreadClosed && m_hthread != (HTHREAD)0;
+   return !m_bThreadClosed && m_hthread != (hthread_t)0;
 
 }
 
@@ -2796,10 +2796,10 @@ void thread::post_to_all_threads(const ::id & id, WPARAM wparam, LPARAM lparam)
 }
 
 
-bool thread::post_task(const ::method& method)
+bool thread::post_task(const ::procedure & procedure)
 {
 
-   if (!method)
+   if (!procedure)
    {
 
       return false;
@@ -2808,7 +2808,7 @@ bool thread::post_task(const ::method& method)
 
    sync_lock sl(mutex());
 
-   m_methoda.add(method);
+   m_procedurea.add(procedure);
 
    kick_idle();
 
@@ -2817,10 +2817,10 @@ bool thread::post_task(const ::method& method)
 }
 
 
-bool thread::send_task(const ::method & method, ::duration durationTimeout)
+bool thread::send_task(const ::procedure & procedure, ::duration durationTimeout)
 {
 
-   return send_object(e_message_system, system_message_method, method, durationTimeout);
+   return send_object(e_message_system, system_message_method, procedure, durationTimeout);
 
 }
 
@@ -2936,7 +2936,7 @@ bool thread::send_object(const ::id & id, WPARAM wParam, lparam lParam, ::durati
 
    }
 
-   if (m_hthread == (HTHREAD)nullptr || !thread_get_run())
+   if (m_hthread == (hthread_t)nullptr || !thread_get_run())
    {
 
       if (lParam != 0)
@@ -3038,23 +3038,23 @@ bool thread::send_message(const ::id & id, WPARAM wParam, lparam lParam, ::durat
 //
 //#else
 //
-//   m_hthread = (HTHREAD)pvoidOsData;
+//   m_hthread = (hthread_t)pvoidOsData;
 //
 //#endif
 //
 //}
 
 
-//void thread::set_os_int(ITHREAD ithread)
+//void thread::set_os_int(ithread_t ithread)
 //{
 //
 //#ifdef WINDOWS_DESKTOP
 //
-//   m_uThread = (DWORD) ithread;
+//   m_uThread = (::u32) ithread;
 //
 //#else
 //
-//   m_uThread = (ITHREAD) ithread;
+//   m_uThread = (ithread_t) ithread;
 //
 //#endif
 //
@@ -3295,7 +3295,7 @@ mq* thread::_get_mq()
 
 }
 
-int_bool thread::peek_message(LPMESSAGE pMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg)
+int_bool thread::peek_message(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg)
 {
 
    if (m_pmq)
@@ -3581,7 +3581,7 @@ int_bool thread::peek_message(LPMESSAGE pMsg, oswindow oswindow, UINT wMsgFilter
 }
 
 
-int_bool thread::get_message(LPMESSAGE pMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax)
+int_bool thread::get_message(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax)
 {
 
    bool bQuit = false;
@@ -3640,7 +3640,7 @@ int_bool thread::get_message(LPMESSAGE pMsg, oswindow oswindow, UINT wMsgFilterM
       if (iRet == -1)
       {
 
-         DWORD dwLastError = ::GetLastError();
+         ::u32 dwLastError = ::GetLastError();
 
          ::output_debug_string("Last Error : " + __str(dwLastError) + "\n");
 
@@ -3806,10 +3806,10 @@ void thread::dump(dump_context & dumpcontext) const
 }
 
 
-thread::operator HTHREAD() const
+thread::operator hthread_t() const
 {
 
-   return is_null(this) ? (HTHREAD) nullptr : m_hthread;
+   return is_null(this) ? (hthread_t) nullptr : m_hthread;
 
 }
 
@@ -3958,9 +3958,9 @@ void thread::message_handler(::message::base * pbase)
          else if (msg.wParam == system_message_method)
          {
 
-            ::method method(msg.lParam);
+            ::procedure procedure(msg.lParam);
 
-            method();
+            procedure();
 
          }
          //else if (msg.wParam == system_message_runnable)
@@ -4310,9 +4310,9 @@ bool thread::kick_thread()
 
 //::mutex * g_pmutexThreadOn = nullptr;
 
-//map < ITHREAD, ITHREAD, ITHREAD, ITHREAD > * g_pmapThreadOn = nullptr;
+//map < ithread_t, ithread_t, ithread_t, ithread_t > * g_pmapThreadOn = nullptr;
 
-CLASS_DECL_APEX bool is_thread_on(ITHREAD id)
+CLASS_DECL_APEX bool is_thread_on(ithread_t id)
 {
 
    sync_lock sl(&System.m_mutexTaskOn);
@@ -4336,7 +4336,7 @@ CLASS_DECL_APEX bool is_active(::thread * pthread)
 
 }
 
-CLASS_DECL_APEX void set_thread_on(ITHREAD id)
+CLASS_DECL_APEX void set_thread_on(ithread_t id)
 {
 
    sync_lock sl(&System.m_mutexTaskOn);
@@ -4346,7 +4346,7 @@ CLASS_DECL_APEX void set_thread_on(ITHREAD id)
 }
 
 
-CLASS_DECL_APEX void set_thread_off(ITHREAD id)
+CLASS_DECL_APEX void set_thread_off(ithread_t id)
 {
 
    sync_lock sl(&System.m_mutexTaskOn);
@@ -4427,7 +4427,7 @@ thread_ptra::~thread_ptra()
 
 }
 
-CLASS_DECL_APEX bool thread_pump_sleep(DWORD dwMillis, sync * psync)
+CLASS_DECL_APEX bool thread_pump_sleep(::u32 dwMillis, sync * psync)
 {
 
    int iTenths = dwMillis / 100;
@@ -4661,10 +4661,10 @@ thread::file_info* thread::get_file_info()
 }
 
 
-DWORD thread::get_file_sharing_violation_timeout_total_milliseconds()
+::u32 thread::get_file_sharing_violation_timeout_total_milliseconds()
 {
 
-   return (DWORD)get_file_info()->m_durationFileSharingViolationTimeout.get_total_milliseconds();
+   return (::u32)get_file_info()->m_durationFileSharingViolationTimeout.get_total_milliseconds();
 
 }
 

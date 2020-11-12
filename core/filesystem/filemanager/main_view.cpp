@@ -59,7 +59,7 @@ namespace filemanager
 
       //auto pstyle = get_style(pgraphics);
 
-      //COLORREF crBackground = get_color(pstyle, ::user::element_background);
+      //color32_t crBackground = get_color(pstyle, ::user::element_background);
 
       //if ((crBackground & ARGB(255, 0, 0, 0)) != 0)
       //{

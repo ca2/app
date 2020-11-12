@@ -24,7 +24,7 @@ namespace axis
 
       bool                                                  m_bMatterFromHttpCache;
 
-      DWORD                                                 m_dwLongPhRESSingTime;
+      ::u32                                                 m_dwLongPhRESSingTime;
 
 
       session();
@@ -63,7 +63,7 @@ namespace axis
       virtual size get_window_minimum_size() override;
 
 
-      //virtual void  get_cursor_pos(LPPOINT ppoint);
+      //virtual void  get_cursor_pos(POINT32 * ppoint);
 
 
 
@@ -78,7 +78,7 @@ namespace axis
 
       // Long PhRESSing time
       // time in milliseconds that a pressing is considered a double click
-      virtual DWORD get_Long_PhRESSing_time();
+      virtual ::u32 get_Long_PhRESSing_time();
 
       virtual void defer_initialize_user_presence() override;
 

@@ -21,8 +21,8 @@ namespace uwp
    const char * lpSubKey,
    string &str)
    {
-      DWORD cbValue;
-      DWORD dwType;
+      ::u32 cbValue;
+      ::u32 dwType;
       if(ERROR_SUCCESS != ::RegQueryValueEx(hKey, lpSubKey, nullptr, &dwType, nullptr, &cbValue))
          return false;
       if(dwType != REG_SZ)
@@ -93,8 +93,8 @@ namespace uwp
    const char * lpcszValueName,
    string &str)
    {
-      DWORD cbValue;
-      DWORD dwType;
+      ::u32 cbValue;
+      ::u32 dwType;
       if(ERROR_SUCCESS != ::RegQueryValueEx(m_hkey, lpcszValueName, nullptr, &dwType, nullptr, &cbValue))
          return false;
       if(dwType != REG_SZ)
@@ -112,8 +112,8 @@ namespace uwp
 
    bool registry::Key::QueryValue(const char * lpcszValueName, memory & mem)
    {
-      DWORD cbValue;
-      DWORD dwType;
+      ::u32 cbValue;
+      ::u32 dwType;
       if(ERROR_SUCCESS != ::RegQueryValueEx(m_hkey, lpcszValueName, nullptr, &dwType, nullptr, &cbValue))
          return false;
       if(dwType != REG_BINARY)
@@ -157,7 +157,7 @@ namespace uwp
 
    ::count registry::Key::EnumKey(string_array & stra)
    {
-      DWORD dwMaxSubKeyLen;
+      ::u32 dwMaxSubKeyLen;
       RegQueryInfoKey(
       m_hkey,
       nullptr,
@@ -191,11 +191,11 @@ namespace uwp
 
    ::count registry::Key::EnumValueName(string_array & stra)
    {
-      DWORD dwMaxValueNameLen = 16384;
+      ::u32 dwMaxValueNameLen = 16384;
       char * pszBuf = (char *) malloc(dwMaxValueNameLen);
-      LONG l;
-      DWORD dwIndex = 0;
-      DWORD dwLen = dwMaxValueNameLen;
+      ::i32 l;
+      ::u32 dwIndex = 0;
+      ::u32 dwLen = dwMaxValueNameLen;
       while(ERROR_SUCCESS == (l = RegEnumValue(
                                   m_hkey,
                                   dwIndex,

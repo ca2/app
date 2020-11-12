@@ -24,7 +24,7 @@ namespace ios
          close();
    }
 
-   ::status::result stdio_file::open(const ::file::path & lpszFileName, UINT nOpenFlags)
+   ::status::result stdio_file::open(const ::file::path & lpszFileName, ::u32 nOpenFlags)
    {
       //      ASSERT(lpszFileName != nullptr);
       //ASSERT(AfxIsValidString(lpszFileName));
@@ -115,7 +115,7 @@ namespace ios
 
       size_t nRead = 0;
 
-      if ((nRead = fread(lpBuf, sizeof(BYTE), nCount, m_pStream)) == 0 && !feof(m_pStream))
+      if ((nRead = fread(lpBuf, sizeof(byte), nCount, m_pStream)) == 0 && !feof(m_pStream))
          vfxThrowFileexception(::file::exception::type_generic, errno, m_strFileName);
       if (ferror(m_pStream))
       {
@@ -131,7 +131,7 @@ namespace ios
       ASSERT(m_pStream != nullptr);
       //   ASSERT(fx_is_valid_address(lpBuf, nCount, FALSE));
 
-      if (fwrite(lpBuf, sizeof(BYTE), nCount, m_pStream) != nCount)
+      if (fwrite(lpBuf, sizeof(byte), nCount, m_pStream) != nCount)
          vfxThrowFileexception(::file::exception::type_generic, errno, m_strFileName);
    }
 
@@ -144,7 +144,7 @@ namespace ios
          vfxThrowFileexception(::file::exception::diskFull, errno, m_strFileName);
    }
 
-   LPTSTR stdio_file::read_string(LPTSTR lpsz, UINT nMax)
+   LPTSTR stdio_file::read_string(LPTSTR lpsz, ::u32 nMax)
    {
       ASSERT(lpsz != nullptr);
       //   ASSERT(fx_is_valid_address(lpsz, nMax));
@@ -213,7 +213,7 @@ namespace ios
     vfxThrowFileexception(::file::exception::diskFull, errno, m_strFileName);
     }*/
 
-   /*unichar * stdio_file::read_string(unichar * lpsz, UINT nMax)
+   /*unichar * stdio_file::read_string(unichar * lpsz, ::u32 nMax)
     {
     ASSERT(lpsz != nullptr);
     ASSERT(fx_is_valid_address(lpsz, nMax));
@@ -289,7 +289,7 @@ namespace ios
       if (m_pStream != nullptr)
          nErr = fclose(m_pStream);
 
-      //   m_hFile = (UINT) hFileNull;
+      //   m_hFile = (::u32) hFileNull;
       //      m_bCloseOnDelete = FALSE;
       m_pStream = nullptr;
 
@@ -305,7 +305,7 @@ namespace ios
       //      if (m_pStream != nullptr && m_bCloseOnDelete)
       if (m_pStream != nullptr)
          fclose(m_pStream);  // close but ignore errors
-      //   m_hFile = (UINT) hFileNull;
+      //   m_hFile = (::u32) hFileNull;
       m_pStream = nullptr;
       //      m_bCloseOnDelete = FALSE;
    }

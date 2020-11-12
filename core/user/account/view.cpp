@@ -11,8 +11,8 @@ namespace account
 {
 
 
-   //UINT c_cdecl thread_proc_pre_login(void * p);
-   //   UINT c_cdecl thread_proc_defer_translate_login(void * p);
+   //::u32 c_cdecl thread_proc_pre_login(void * p);
+   //   ::u32 c_cdecl thread_proc_defer_translate_login(void * p);
 
 
    view::view()
@@ -229,7 +229,7 @@ namespace account
 
 
 
-      COLORREF crOut, crIn, crBorderOut, crBorderIn, cr, crBk;
+      color32_t crOut, crIn, crBorderOut, crBorderIn, cr, crBk;
 
       //       if (is_hover() || m_bDown || m_bMouseMove)
       /*       {
@@ -441,7 +441,7 @@ namespace account
 
 
 
-   //UINT c_cdecl thread_proc_pre_login(void * p)
+   //::u32 c_cdecl thread_proc_pre_login(void * p)
    //{
 
    //   ::aura::application * papp = (::aura::application *) point;

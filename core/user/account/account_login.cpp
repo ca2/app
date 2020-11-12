@@ -196,7 +196,7 @@ namespace account
 
       draw.simple_ui_draw_frame_window_rect(r, pgraphics);
 
-      COLORREF crOut, crIn, crBorderOut, crBorderIn, cr, crBk;
+      color32_t crOut, crIn, crBorderOut, crBorderIn, cr, crBk;
 
       //       if (is_hover() || m_bDown || m_bMouseMove)
       /*       {

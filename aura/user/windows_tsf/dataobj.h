@@ -29,7 +29,7 @@
 class CTSFDataObject : public IDataObject
 {
 private:
-    DWORD       m_ObjRefCount;
+    ::u32       m_ObjRefCount;
     FORMATETC   m_FormatEtc;
     LPWSTR      m_pwszText;
    
@@ -39,8 +39,8 @@ public:
 
     //IUnknown methods
     STDMETHODIMP QueryInterface(REFIID, LPVOID FAR *);
-    STDMETHODIMP_(DWORD) AddRef();
-    STDMETHODIMP_(DWORD) Release();
+    STDMETHODIMP_(::u32) AddRef();
+    STDMETHODIMP_(::u32) Release();
 
     //IDataObject methods
     STDMETHODIMP GetData(LPFORMATETC, LPSTGMEDIUM);
@@ -48,9 +48,9 @@ public:
     STDMETHODIMP QueryGetData(LPFORMATETC);
     STDMETHODIMP GetCanonicalFormatEtc(LPFORMATETC, LPFORMATETC);
     STDMETHODIMP SetData(LPFORMATETC, LPSTGMEDIUM, BOOL);
-    STDMETHODIMP EnumFormatEtc(DWORD, IEnumFORMATETC**);
-    STDMETHODIMP DAdvise(LPFORMATETC, DWORD, IAdviseSink*, LPDWORD);
-    STDMETHODIMP DUnadvise(DWORD dwConnection);
+    STDMETHODIMP EnumFormatEtc(::u32, IEnumFORMATETC**);
+    STDMETHODIMP DAdvise(LPFORMATETC, ::u32, IAdviseSink*, LPDWORD);
+    STDMETHODIMP DUnadvise(::u32 dwConnection);
     STDMETHODIMP EnumDAdvise(IEnumSTATDATA** ppEnumAdvise);
 
     //utility methods

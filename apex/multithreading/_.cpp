@@ -8,7 +8,7 @@ namespace multithreading
 {
 
 
-   //CLASS_DECL_APEX comparable_eq_array<ITHREAD> * s_piaThread2 = nullptr;
+   //CLASS_DECL_APEX comparable_eq_array<ithread_t> * s_piaThread2 = nullptr;
    //CLASS_DECL_APEX __pointer_array(thread) * s_pthreadptra2 = nullptr;
    //CLASS_DECL_APEX::critical_section * s_pcs2 = nullptr;
 
@@ -18,7 +18,7 @@ namespace multithreading
 
       //s_pcs2 = new ::critical_section();
 
-      //s_piaThread2 = new comparable_eq_array<ITHREAD>;
+      //s_piaThread2 = new comparable_eq_array<ithread_t>;
 
       //s_pthreadptra2 = new __pointer_array(thread);
 
@@ -40,7 +40,7 @@ namespace multithreading
 
    }
 
-   CLASS_DECL_APEX bool thread_id_registered(ITHREAD id)
+   CLASS_DECL_APEX bool thread_id_registered(ithread_t id)
    {
 
       //cslock lock(s_pcs2);
@@ -60,7 +60,7 @@ namespace multithreading
    }
 
 
-   void thread_register(ITHREAD ithread, ::task * ptask)
+   void thread_register(ithread_t ithread, ::task * ptask)
    {
 
       System.set_task(ithread, ptask);
@@ -68,7 +68,7 @@ namespace multithreading
    }
 
 
-   void thread_unregister(ITHREAD ithread, ::task * ptask)
+   void thread_unregister(ithread_t ithread, ::task * ptask)
    {
 
       auto psystem = ::get_context_system();

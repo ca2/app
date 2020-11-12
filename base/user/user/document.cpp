@@ -348,7 +348,7 @@ namespace user
 
       run_property("on_create");
 
-      call_method(CREATE_METHOD);
+      call_procedure(CREATE_PROCEDURE);
 
       //::database::client::initialize_data_client(Application.dataserver());
 
@@ -588,7 +588,7 @@ namespace user
    }
 
 
-   void document::show_all_frames(UINT nCmdShow)
+   void document::show_all_frames(::u32 nCmdShow)
    {
       ::count count = get_view_count();
       for (index index = 0; index < count; index++)

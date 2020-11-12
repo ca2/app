@@ -8,7 +8,7 @@ namespace linux
    LRESULT CALLBACK __send_message_hook(i32, WPARAM, LPARAM);
    // void _::ca2::StandardSubclass(oswindow);
    LRESULT CALLBACK __cbt_filter_hook(i32, WPARAM, LPARAM);
-   LRESULT __call_window_procedure(::user::interaction * pWnd, oswindow hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam);
+   LRESULT __call_window_procedure(::user::interaction * pWnd, oswindow hWnd, ::u32 nMsg, WPARAM wParam, LPARAM lParam);
 
 
    class x11data;
@@ -58,10 +58,10 @@ namespace linux
       bool operator==(const ::user::interaction_impl& wnd) const;
       bool operator!=(const ::user::interaction_impl& wnd) const;
 
-      DWORD GetStyle() const override;
-      DWORD GetExStyle() const override;
-      bool ModifyStyle(DWORD dwRemove, DWORD dwAdd, UINT nFlags = 0) override;
-      bool ModifyStyleEx(DWORD dwRemove, DWORD dwAdd, UINT nFlags = 0) override;
+      ::u32 GetStyle() const override;
+      ::u32 GetExStyle() const override;
+      bool ModifyStyle(::u32 dwRemove, ::u32 dwAdd, ::u32 nFlags = 0) override;
+      bool ModifyStyleEx(::u32 dwRemove, ::u32 dwAdd, ::u32 nFlags = 0) override;
 
       //virtual ::user::interaction * GetOwner();
       virtual void set_owner(::user::interaction * pOwnerWnd) override;
@@ -96,7 +96,7 @@ namespace linux
       // subclassing/unsubclassing functions
       virtual void pre_subclass_window() override;
 //      bool SubclassWindow(oswindow hWnd);
-//      //bool SubclassDlgItem(UINT nID, __pointer(::interaction_impl) pParent);
+//      //bool SubclassDlgItem(::u32 nID, __pointer(::interaction_impl) pParent);
 //      oswindow UnsubclassWindow();
 
       // handling of RT_DLGINIT resource (extension to RT_DIALOG)
@@ -115,7 +115,7 @@ namespace linux
 
 //      const char * pszWindowName,
 
-//      DWORD dwStyle,
+//      ::u32 dwStyle,
 //      const ::rect & rect,
 //      ::user::interaction * pParentWnd,
 //      id id,
@@ -144,7 +144,7 @@ namespace linux
 
       // Advanced: virtual AdjustWindowRect
 //      enum AdjustType { adjustBorder = 0, adjustOutside = 1 };
-//      virtual void CalcWindowRect(RECT * pClientRect, UINT nAdjustType = adjustBorder);
+//      virtual void CalcWindowRect(RECT32 * pClientRect, ::u32 nAdjustType = adjustBorder);
 
 
 
@@ -167,7 +167,7 @@ namespace linux
 
 #if(WINVER >= 0x0500)
 
-      ::user::interaction * GetAncestor(UINT gaFlags) const;
+      ::user::interaction * GetAncestor(::u32 gaFlags) const;
 
 #endif   // WINVER >= 0x0500
 
@@ -214,8 +214,8 @@ namespace linux
       virtual void _001OnExitZoomed() override;
 
 
-      //virtual bool set_window_pos(iptr z, i32 x, i32 y, i32 cx, i32 cy, UINT nFlags);
-//      virtual UINT ArrangeIconicWindows();
+      //virtual bool set_window_pos(iptr z, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags);
+//      virtual ::u32 ArrangeIconicWindows();
       //virtual bool BringWindowToTop();
 //      virtual bool get_window_rect(RECT64 * prect);
 
@@ -230,17 +230,17 @@ namespace linux
 
       //virtual ::point client_screen_top_left() override;
 
-//      virtual bool _001ClientToScreen(RECT * prect);
+//      virtual bool _001ClientToScreen(RECT32 * prect);
 
-//      virtual bool _001ClientToScreen(LPPOINT ppoint);
+//      virtual bool _001ClientToScreen(POINT32 * ppoint);
 
 //      virtual bool _001ClientToScreen(RECT64 * prect);
 
 //      virtual bool _001ClientToScreen(POINT64 * ppoint);
 
-//      virtual bool _001ScreenToClient(RECT * prect);
+//      virtual bool _001ScreenToClient(RECT32 * prect);
 
-//      virtual bool _001ScreenToClient(LPPOINT ppoint);
+//      virtual bool _001ScreenToClient(POINT32 * ppoint);
 
 //      virtual bool _001ScreenToClient(RECT64 * prect);
 
@@ -253,21 +253,21 @@ namespace linux
 
 
       // Coordinate Mapping Fufnctions
-//      virtual void MapWindowPoints(::user::interaction * pwndTo, LPPOINT pPoint, UINT nCount);
+//      virtual void MapWindowPoints(::user::interaction * pwndTo, POINT32 * pPoint, ::u32 nCount);
 //
-//      virtual void MapWindowPoints(::user::interaction * pwndTo, RECT * prect);
+//      virtual void MapWindowPoints(::user::interaction * pwndTo, RECT32 * prect);
 
 
       // Update/Painting Functions
 //      virtual ::draw2d::graphics * GetDC();
 //      virtual ::draw2d::graphics * GetWindowDC();
 //      virtual bool ReleaseDC(::image * pimage);
-//      virtual void Print(::draw2d::graphics_pointer & pgraphics, DWORD dwFlags) const;
-//      virtual void PrintClient(::draw2d::graphics_pointer & pgraphics, DWORD dwFlags) const;
+//      virtual void Print(::draw2d::graphics_pointer & pgraphics, ::u32 dwFlags) const;
+//      virtual void PrintClient(::draw2d::graphics_pointer & pgraphics, ::u32 dwFlags) const;
 
 //      virtual void UpdateWindow();
 //      virtual void SetRedraw(bool bRedraw = TRUE);
-//      virtual bool GetUpdateRect(RECT * prect, bool bErase = FALSE);
+//      virtual bool GetUpdateRect(RECT32 * prect, bool bErase = FALSE);
 //
 //      virtual i32 GetUpdateRgn(::draw2d::region* pRgn, bool bErase = FALSE);
 //      virtual void Invalidate(bool bErase = TRUE);
@@ -295,38 +295,38 @@ namespace linux
       //virtual bool _is_window_visible() override;
       //virtual void ShowOwnedPopups(bool bShow = TRUE);
 
-      //virtual ::draw2d::graphics * GetDCEx(::draw2d::region* prgnClip, DWORD flags);
+      //virtual ::draw2d::graphics * GetDCEx(::draw2d::region* prgnClip, ::u32 flags);
       //virtual bool LockWindowUpdate();
       //virtual void UnlockWindowUpdate();
 //      virtual bool RedrawWindow(const ::rect& rectUpdate = nullptr,
 //                                ::draw2d::region* prgnUpdate = nullptr,
-//                                UINT flags = RDW_INVALIDATE | RDW_ERASE);
-      // xxx      virtual bool EnableScrollBar(i32 nSBFlags, UINT nArrowFlags = ESB_ENABLE_BOTH);
+//                                ::u32 flags = RDW_INVALIDATE | RDW_ERASE);
+      // xxx      virtual bool EnableScrollBar(i32 nSBFlags, ::u32 nArrowFlags = ESB_ENABLE_BOTH);
 
       virtual void set_viewport_org(::draw2d::graphics_pointer & pgraphics) override;
 
 //
 //      //virtual bool DrawAnimatedRects(i32 idAni, CONST LPRECTprcFrom, CONST LPRECTlprcTo);
 //
-//      virtual bool DrawCaption(::draw2d::graphics_pointer & pgraphics, const rect & prc, UINT uFlags);
+//      virtual bool DrawCaption(::draw2d::graphics_pointer & pgraphics, const rect & prc, ::u32 uFlags);
 //
 //
 //#if(WINVER >= 0x0500)
 //
-//      virtual bool AnimateWindow(DWORD tick, DWORD dwFlags);
+//      virtual bool AnimateWindow(::u32 tick, ::u32 dwFlags);
 //
 //#endif   // WINVER >= 0x0500
 //
 //#if(_WIN32_WINNT >= 0x0501)
 //
-//      virtual bool PrintWindow(::draw2d::graphics_pointer & pgraphics, UINT nFlags) const;
+//      virtual bool PrintWindow(::draw2d::graphics_pointer & pgraphics, ::u32 nFlags) const;
 //
 //#endif   // _WIN32_WINNT >= 0x0501
 
 
 
 //      // Timer Functions
-//      virtual bool SetTimer(uptr uEvent, UINT nElapse, PFN_TIMER pfnTimer);
+//      virtual bool SetTimer(uptr uEvent, ::u32 nElapse, PFN_TIMER pfnTimer);
 //      virtual bool KillTimer(uptr uEvent);
 
       // oswindow State Functions
@@ -362,31 +362,31 @@ namespace linux
 
       // Dialog-Box Item Functions
       // (NOTE: Dialog-Box Items/Controls are not necessarily in dialog boxes!)
-//      virtual void CheckDlgButton(i32 nIDButton, UINT nCheck);
+//      virtual void CheckDlgButton(i32 nIDButton, ::u32 nCheck);
 //      virtual void CheckRadioButton(i32 nIDFirstButton, i32 nIDLastButton,
 //                                    i32 nIDCheckButton);
 //      virtual i32 GetCheckedRadioButton(i32 nIDFirstButton, i32 nIDLastButton);
 //      virtual i32 DlgDirList(LPTSTR pPathSpec, i32 nIDListBox,
 //
-//                             i32 nIDStaticPath, UINT nFileType);
+//                             i32 nIDStaticPath, ::u32 nFileType);
 //      virtual i32 DlgDirListComboBox(LPTSTR pPathSpec, i32 nIDComboBox,
 //
-//                                     i32 nIDStaticPath, UINT nFileType);
+//                                     i32 nIDStaticPath, ::u32 nFileType);
 //      virtual bool DlgDirSelect(LPTSTR pString, i32 nSize, i32 nIDListBox);
 //
 //      virtual bool DlgDirSelectComboBox(LPTSTR pString, i32 nSize, i32 nIDComboBox);
 
 
-      //virtual UINT GetChildByIdInt(i32 nID, bool * pTrans = nullptr, bool bSigned = TRUE) const;
+      //virtual ::u32 GetChildByIdInt(i32 nID, bool * pTrans = nullptr, bool bSigned = TRUE) const;
 
       //virtual i32 GetChildByIdText(i32 nID, LPTSTR pStr, i32 nMaxCount) const;
 
       //virtual i32 GetChildByIdText(i32 nID, string & rectString) const;
 //      virtual ::user::interaction * GetNextDlgGroupItem(::user::interaction * pWndCtl, bool bPrevious = FALSE) const;
 //      virtual ::user::interaction * GetNextDlgTabItem(::user::interaction * pWndCtl, bool bPrevious = FALSE) const;
-//      virtual UINT IsDlgButtonChecked(i32 nIDButton) const;
+//      virtual ::u32 IsDlgButtonChecked(i32 nIDButton) const;
 //      virtual LRESULT SendDlgItemMessage(i32 nID, const ::id & id, WPARAM wParam = 0, LPARAM lParam = 0);
-//      virtual void SetDlgItemInt(i32 nID, UINT nValue, bool bSigned = TRUE);
+//      virtual void SetDlgItemInt(i32 nID, ::u32 nValue, bool bSigned = TRUE);
 //      virtual void SetDlgItemText(i32 nID, const char * pszString);
 
 
@@ -401,7 +401,7 @@ namespace linux
 //      virtual i32 SetScrollPos(i32 nBar, i32 nPos, bool bRedraw = TRUE);
 //      virtual void SetScrollRange(i32 nBar, i32 nMinPos, i32 nMaxPos,
 //                                  bool bRedraw = TRUE);
-//      virtual void ShowScrollBar(UINT nBar, bool bShow = TRUE);
+//      virtual void ShowScrollBar(::u32 nBar, bool bShow = TRUE);
 //      virtual void EnableScrollBarCtrl(i32 nBar, bool bEnable = TRUE);
 //      //      virtual CScrollBar* GetScrollBarCtrl(i32 nBar) const;
 //      // return sibling scrollbar control (or nullptr if none)
@@ -409,26 +409,26 @@ namespace linux
 //      virtual i32 ScrollWindowEx(i32 dx, i32 dy,
 //                                 const rect & pRectScroll, const rect & lpRectClip,
 //
-//                                 ::draw2d::region* prgnUpdate, RECT * pRectUpdate, UINT flags);
+//                                 ::draw2d::region* prgnUpdate, RECT32 * pRectUpdate, ::u32 flags);
 
       //xxx      virtual bool SetScrollInfo(i32 nBar, LPSCROLLINFO pScrollInfo,
 
       //xxx         bool bRedraw = TRUE);
-      //xxx      virtual bool GetScrollInfo(i32 nBar, LPSCROLLINFO pScrollInfo, UINT nMask = SIF_ALL);
+      //xxx      virtual bool GetScrollInfo(i32 nBar, LPSCROLLINFO pScrollInfo, ::u32 nMask = SIF_ALL);
 
 //      virtual i32 GetScrollLimit(i32 nBar);
 //
 //      virtual ::user::interaction * ChildWindowFromPoint(const ::point & point);
-//      virtual ::user::interaction * ChildWindowFromPoint(const ::point & point, UINT nFlags);
+//      virtual ::user::interaction * ChildWindowFromPoint(const ::point & point, ::u32 nFlags);
 //      static::user::interaction * PASCAL FindWindow(const char * pszClassName, const char * pszWindowName);
 //
 //      static::user::interaction * FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * pszWindow);
 //
 //
-//      virtual ::user::interaction * GetNextWindow(UINT nFlag = GW_HWNDNEXT);
+//      virtual ::user::interaction * GetNextWindow(::u32 nFlag = GW_HWNDNEXT);
 //      virtual ::user::interaction * GetTopWindow() const;
 //
-//      virtual ::user::interaction * GetWindow(UINT nCmd);
+//      virtual ::user::interaction * GetWindow(::u32 nCmd);
 //
 //      virtual bool IsChild(::user::interaction *  pWnd);
 //      virtual ::user::interaction * GetParent();
@@ -437,7 +437,7 @@ namespace linux
 //      static::user::interaction * PASCAL oswindowFromPoint(const ::point & point);
 
 
-      //virtual i32 message_box(const char * pszText, const char * pszcaption = nullptr, UINT nType = MB_OK) override;
+      //virtual i32 message_box(const char * pszText, const char * pszcaption = nullptr, ::u32 nType = MB_OK) override;
 
 
 

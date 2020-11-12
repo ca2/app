@@ -117,7 +117,7 @@ namespace lite
 
       rcClient.top = rcTabs.bottom;
 
-      COLORREF crbk = ptab->_001GetColor(::user::color_tab_layout_background);
+      color32_t crbk = ptab->_001GetColor(::user::color_tab_layout_background);
 
       pgraphics->fill_rect(rcTabs, crbk);
 
@@ -466,7 +466,7 @@ namespace lite
    }
 
 
-   void theme::_001OnTabPaneDrawTitle(::user::tab_pane & pane,::user::tab * ptab,::draw2d::graphics_pointer & pgraphics,LPCRECT lpcrect,::draw2d::brush_pointer & brushText)
+   void theme::_001OnTabPaneDrawTitle(::user::tab_pane & pane,::user::tab * ptab,::draw2d::graphics_pointer & pgraphics,LPCRECT32 lpcrect,::draw2d::brush_pointer & brushText)
    {
 
       string_array & straTitle = pane.m_straTitle;
@@ -533,7 +533,7 @@ namespace lite
 
       {
 
-         //         DWORD dwTime2 = ::get_tick();
+         //         ::u32 dwTime2 = ::get_tick();
 
          //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
          //TRACE("usertab::on_layout call time1= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
@@ -857,13 +857,13 @@ namespace lite
 
       ::user::toolbar_item & item = ptoolbar->m_itema(iItem);
 
-      UINT nStyle = ptoolbar->GetButtonStyle(iItem);
+      ::u32 nStyle = ptoolbar->GetButtonStyle(iItem);
 
       bool bHover = iItem == ptoolbar->_001GetHoverItem();
 
       __pointer(::user::menu_central) pmenucentral = psession->userex()->menu();
 
-/*      UINT uiImage = pmenucentral->command_image(item.m_id);
+/*      ::u32 uImage = pmenucentral->command_image(item.m_id);
 
       ::user::toolbar::e_element eelement = ::user::toolbar::element_item;
 /*      ::user::toolbar::e_element eelementImage = ::user::toolbar::element_image;
@@ -1161,13 +1161,13 @@ namespace lite
 
       ::user::toolbar_item & item = ptoolbar->m_itema(iItem);
 
-      UINT nStyle = ptoolbar->GetButtonStyle(iItem);
+      ::u32 nStyle = ptoolbar->GetButtonStyle(iItem);
 
       bool bHover = iItem == ptoolbar->_001GetHoverItem();
 
       __pointer(::user::menu_central) pmenucentral = psession->userex()->menu();
 
-/*      UINT uiImage = pmenucentral->command_image(item.m_id);
+/*      ::u32 uImage = pmenucentral->command_image(item.m_id);
 
       ::user::toolbar::e_element eelement = ::user::toolbar::element_item;
 /*      ::user::toolbar::e_element eelementImage = ::user::toolbar::element_image;

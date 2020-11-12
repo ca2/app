@@ -56,27 +56,33 @@ namespace app_app
 
       __compose_new(m_pwindow);
 
-      ::rect rectWindow;
+      //::rect rectWindow;
 
-      m_pwindow->_001InitialFramePosition(rectWindow, {0.05, 0.05, 0.4, 0.4});
+      //bool bOk = m_pwindow->_001InitialFramePosition(rectWindow, );
 
-      ::user::create_struct cs(0, nullptr, "app_app", WS_VISIBLE, rectWindow);
+      m_pwindow->create_main_window();
 
-      m_pwindow->create_window_ex(cs);
 
-      m_pwindow->start_layout();
+//      if (bOk)
+  //    {
 
-      m_pwindow->display(display_normal);
+         m_pwindow->start_layout();
 
-      m_pwindow->place(rectWindow);
+         m_pwindow->display(display_normal);
 
-      m_pwindow->set_need_layout();
+    //     m_pwindow->place(rectWindow);
 
-      m_pwindow->set_need_redraw();
+         m_pwindow->set_need_layout();
 
-      m_pwindow->set_layout_ready();
+         m_pwindow->set_need_redraw();
 
-      m_pwindow->post_redraw();
+         m_pwindow->set_layout_ready();
+
+         m_pwindow->post_redraw();
+
+      //}
+
+
 
    }
 

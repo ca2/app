@@ -34,7 +34,7 @@ namespace draw2d
 
       glyph * GetGlyph(WCHAR wchar);
       glyph * GetGlyph(CHAR ch);
-      glyph * GetGlyph(UINT ui);
+      glyph * GetGlyph(::u32 u);
       //glyph * GetNewGlyph();
 
       void OnUpdateFont();
@@ -44,7 +44,7 @@ namespace draw2d
 
       bool AddGlyph(WCHAR wchar);
       bool AddGlyph(CHAR ch);
-      bool AddGlyph(UINT ui);
+      bool AddGlyph(::u32 u);
 
 
       void AddXFGlyphs(string2a & str2aTokens);

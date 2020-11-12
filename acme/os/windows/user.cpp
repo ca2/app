@@ -17,7 +17,7 @@ namespace user
 
          key.open(HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize");
 
-         DWORD dw;
+         ::u32 dw;
 
          auto estatus = key._get("SystemUseLightTheme", dw);
 
@@ -58,7 +58,7 @@ namespace user
 
          key.open(HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize");
 
-         DWORD dw;
+         ::u32 dw;
 
          auto estatus = key._get("AppsUseLightTheme", dw);
 
@@ -135,14 +135,14 @@ namespace user
 //CLASS_DECL_ACME HMONITOR GetPrimaryMonitorHandle()
 //{
 //
-//   const POINT pointZero = { 0,0 };
+//   const POINT32 pointZero = { 0,0 };
 //
 //   return MonitorFromPoint(pointZero, MONITOR_DEFAULTTOPRIMARY);
 //
 //}
 
 
-//CLASS_DECL_ACME bool GetPrimaryMonitorRect(LPRECT lprect)
+//CLASS_DECL_ACME bool GetPrimaryMonitorRect(LPRECT32 lprect)
 //{
 //
 //   MONITORINFO mi;

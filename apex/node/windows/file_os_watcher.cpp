@@ -95,7 +95,7 @@ namespace file
                                  FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, nullptr,
                                  OPEN_EXISTING, FILE_FLAG_BACKUP_SEMANTICS | FILE_FLAG_OVERLAPPED, nullptr);
 
-      DWORD dwLen = GetFinalPathNameByHandleW(m_hDirectory, nullptr, 0, 0);
+      ::u32 dwLen = GetFinalPathNameByHandleW(m_hDirectory, nullptr, 0, 0);
 
       if (dwLen > 0)
       {
@@ -145,7 +145,7 @@ namespace file
    }
 
 
-   void CALLBACK os_watch::callback(DWORD dwErrorCode,DWORD dwNumberOfBytesTransfered,LPOVERLAPPED pOverlapped)
+   void CALLBACK os_watch::callback(::u32 dwErrorCode,::u32 dwNumberOfBytesTransfered,LPOVERLAPPED pOverlapped)
 
    {
 

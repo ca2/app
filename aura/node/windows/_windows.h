@@ -5,7 +5,7 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "aura/user/_user.h"
 #endif
-
+#include "aura/os/windows/_windows.h"
 
 CLASS_DECL_AURA::file::path get_known_folder(REFKNOWNFOLDERID kfid);
 

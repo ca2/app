@@ -13,8 +13,8 @@ namespace user
    public:
 
 
-      LONG        m_iPage;
-      LONG        m_iLine;
+      ::i32        m_iPage;
+      ::i32        m_iLine;
       bool        m_bScroll;
       i32     m_iWidth;
       bool        m_bScrollEnable;
@@ -45,7 +45,7 @@ namespace user
 
       virtual void send_xscroll_message(int nSBCode);
 
-      //virtual void GetScrollRect(RECT * prect);
+      //virtual void GetScrollRect(RECT32 * prect);
 
       virtual void on_change_view_size() override;
       virtual void on_change_viewport_offset() override;
@@ -114,7 +114,7 @@ namespace user
       virtual void install_message_routing(::channel * pchannel) override;
 
 
-      //virtual void GetScrollRect(RECT * prect);
+      //virtual void GetScrollRect(RECT32 * prect);
 
       virtual void on_change_view_size() override;
       virtual void on_change_viewport_offset() override;
@@ -164,16 +164,16 @@ namespace user
 
       virtual void install_message_routing(::channel * pchannel) override;
 
-      //void GetScrollRect(RECT * prect);
+      //void GetScrollRect(RECT32 * prect);
 
 
-      //virtual bool get_client_rect(RECT * prect) override;
+      //virtual bool get_client_rect(RECT32 * prect) override;
 
 
-      virtual bool GetActiveClientRect(RECT * prect);
+      virtual bool GetActiveClientRect(RECT32 * prect);
 
 
-      virtual bool GetFocusRect(RECT * prect) override;
+      virtual bool GetFocusRect(RECT32 * prect) override;
 
 
 

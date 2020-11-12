@@ -89,11 +89,11 @@ namespace user
       virtual void _001OnButtonDrawBitmap(::draw2d::graphics_pointer & pgraphics);
       virtual void _001OnButtonDrawImageAndText(::draw2d::graphics_pointer & pgraphics);
       virtual void _001OnButtonDrawBackground(::draw2d::graphics_pointer & pgraphics);
-      virtual void _001OnButtonDrawTextLayer(::draw2d::graphics_pointer & pgraphics, RECT * prectText);
+      virtual void _001OnButtonDrawTextLayer(::draw2d::graphics_pointer & pgraphics, RECT32 * prectText);
 
       virtual void _001OnButtonDrawNormal(::draw2d::graphics_pointer & pgraphics);
 
-      virtual COLORREF _001GetButtonBackgroundColor();
+      virtual color32_t _001GetButtonBackgroundColor();
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
       virtual void _002OnDraw(::draw2d::graphics_pointer & pgraphics);
@@ -127,7 +127,7 @@ namespace user
       virtual void on_exit_button_style(e_style estyle);
 
       virtual void BaseToolTipRelayEvent(::message::message * pmessage);
-      virtual void BaseToolTipGetRect(RECT * prect);
+      virtual void BaseToolTipGetRect(RECT32 * prect);
 
       virtual i32 BaseToolTipGetIndex();
 
@@ -140,7 +140,7 @@ namespace user
       virtual void set_stock_icon(e_stock_icon eicon) override;
       virtual e_stock_icon get_stock_icon() override;
 
-      virtual COLORREF get_button_text_color();
+      virtual color32_t get_button_text_color();
 
 
       virtual void on_apply(::action * paction) override;

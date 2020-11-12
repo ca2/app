@@ -17,24 +17,24 @@ namespace draw2d
    public:
 
 
-      LONG        tmHeight;
-      LONG        tmAscent;
-      LONG        tmDescent;
-      LONG        tmInternalLeading;
-      LONG        tmExternalLeading;
-      LONG        tmWeight;
-      LONG        tmOverhang;
-      LONG        tmDigitizedAspectX;
-      LONG        tmDigitizedAspectY;
+      ::i32        tmHeight;
+      ::i32        tmAscent;
+      ::i32        tmDescent;
+      ::i32        tmInternalLeading;
+      ::i32        tmExternalLeading;
+      ::i32        tmWeight;
+      ::i32        tmOverhang;
+      ::i32        tmDigitizedAspectX;
+      ::i32        tmDigitizedAspectY;
       WCHAR       tmFirstChar;
       WCHAR       tmLastChar;
       WCHAR       tmDefaultChar;
       WCHAR       tmBreakChar;
-      BYTE        tmItalic;
-      BYTE        tmUnderlined;
-      BYTE        tmStruckOut;
-      BYTE        tmPitchAndFamily;
-      BYTE        tmCharSet;
+      byte        tmItalic;
+      byte        tmUnderlined;
+      byte        tmStruckOut;
+      byte        tmPitchAndFamily;
+      byte        tmCharSet;
 
    };
 

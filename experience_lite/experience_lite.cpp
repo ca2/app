@@ -5,7 +5,7 @@
 #ifdef _UWP
 [MTAThread]
 #endif
-BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
+BOOL WINAPI DllMain(HINSTANCE hInstance, ::u32 dwReason, LPVOID lpReserved)
 {
 
 

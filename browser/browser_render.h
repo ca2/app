@@ -83,7 +83,7 @@ namespace browser
 
       tick                            m_tickAnime;
       tick m_tickLastFast;
-      DWORD                            m_tickFastAnime;
+      ::u32                            m_tickFastAnime;
       ::image_pointer                            m_pimageFast;
 
 

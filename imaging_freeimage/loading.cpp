@@ -39,7 +39,7 @@ namespace imaging_freeimage
 
       int iSrcScan = FreeImage_GetPitch(image32);
 
-      int iLineSize = w * sizeof(COLORREF);
+      int iLineSize = w * sizeof(color32_t);
 
       pimage->map();
 
@@ -164,7 +164,7 @@ namespace imaging_freeimage
 
    ::aura::Resource resource;
 
-   if(!resource.ReadResource(*file.get_memory(), (UINT) MAKEINTRESOURCE(pszId), pszType))
+   if(!resource.ReadResource(*file.get_memory(), (::u32) MAKEINTRESOURCE(pszId), pszType))
 
    return false;
 
@@ -305,7 +305,7 @@ namespace imaging_freeimage
 
       }
 
-      FIMEMORY * pmem = FreeImage_OpenMemory(pmemory->get_data(), (DWORD) pmemory->get_size());
+      FIMEMORY * pmem = FreeImage_OpenMemory(pmemory->get_data(), (::u32) pmemory->get_size());
 
       if (pmem == nullptr)
       {

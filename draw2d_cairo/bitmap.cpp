@@ -23,7 +23,7 @@ namespace draw2d_cairo
    }
 
 
-   bool bitmap::CreateBitmap(::draw2d::graphics * pgraphics, i32 cx, i32 cy, UINT nPlanes, UINT nBitcount, const void * pdata, i32 iStrideParam)
+   bool bitmap::CreateBitmap(::draw2d::graphics * pgraphics, i32 cx, i32 cy, ::u32 nPlanes, ::u32 nBitcount, const void * pdata, i32 iStrideParam)
    {
 
       sync_lock ml(cairo_mutex());
@@ -119,7 +119,7 @@ namespace draw2d_cairo
          if(pstride)
          {
 
-            iScanWidth = *pstride / sizeof(COLORREF);
+            iScanWidth = *pstride / sizeof(color32_t);
 
          }
 
@@ -211,7 +211,7 @@ namespace draw2d_cairo
          if(ppdata != nullptr)
          {
 
-            *ppdata = (COLORREF *) m_mem.get_data();
+            *ppdata = (color32_t *) m_mem.get_data();
 
          }
 
@@ -241,7 +241,7 @@ namespace draw2d_cairo
    }
 
 
-   bool bitmap::CreateDIBitmap(::draw2d::graphics * pgraphics, int cx, int cy, DWORD flInit, const void *pjBits, UINT iUsage)
+   bool bitmap::CreateDIBitmap(::draw2d::graphics * pgraphics, int cx, int cy, ::u32 flInit, const void *pjBits, ::u32 iUsage)
    {
 
       return false;
@@ -249,7 +249,7 @@ namespace draw2d_cairo
    }
 
 
-   DWORD bitmap::SetBitmapBits(DWORD dwCount, const void * lpBits)
+   ::u32 bitmap::SetBitmapBits(::u32 dwCount, const void * lpBits)
    {
 
       return 0;
@@ -257,7 +257,7 @@ namespace draw2d_cairo
    }
 
 
-   DWORD bitmap::GetBitmapBits(DWORD dwCount, LPVOID lpBits) const
+   ::u32 bitmap::GetBitmapBits(::u32 dwCount, LPVOID lpBits) const
    {
 
       return false;
@@ -298,7 +298,7 @@ namespace draw2d_cairo
    }
 
 
-   bool bitmap::LoadBitmap(UINT nIDResource)
+   bool bitmap::LoadBitmap(::u32 nIDResource)
    {
 
       return false;
@@ -306,7 +306,7 @@ namespace draw2d_cairo
    }
 
 
-   bool bitmap::LoadOEMBitmap(UINT nIDBitmap)
+   bool bitmap::LoadOEMBitmap(::u32 nIDBitmap)
    {
 
       return false;
@@ -317,7 +317,7 @@ namespace draw2d_cairo
    bool bitmap::CreateCompatibleBitmap(::draw2d::graphics * pgraphics, i32 cx, i32 cy)
    {
 
-      if(!CreateBitmap(pgraphics, cx, cy, 1, 32, nullptr, cx * sizeof(COLORREF)))
+      if(!CreateBitmap(pgraphics, cx, cy, 1, 32, nullptr, cx * sizeof(color32_t)))
       {
 
          return false;
@@ -355,7 +355,7 @@ namespace draw2d_cairo
    }
 
 
-   void get_surface_size (cairo_surface_t * psurface, LONG * plongWidth, LONG * plongHeight)
+   void get_surface_size (cairo_surface_t * psurface, ::i32 * plongWidth, ::i32 * plongHeight)
    {
 
       sync_lock ml(cairo_mutex());

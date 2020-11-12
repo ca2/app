@@ -380,7 +380,7 @@ bool ftpfs::file_move(const ::file::path & pszDst, const ::file::path & pszSrc)
 }
 
 
-file_result ftpfs::get_file(const ::file::path & path, UINT nOpenFlags)
+file_result ftpfs::get_file(const ::file::path & path, ::u32 nOpenFlags)
 {
 
    if (is_dir(path))

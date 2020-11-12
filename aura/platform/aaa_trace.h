@@ -344,8 +344,8 @@ namespace aura
 
       //CLASS_DECL_AURA void __cdecl TRACE(const char * pszFormat,...);
       //CLASS_DECL_AURA void __cdecl TRACE(const unichar * pszFormat,...);
-      //CLASS_DECL_AURA void __cdecl TRACE(uptr dwCategory,UINT nLevel,const char * pszFormat,...);
-      //CLASS_DECL_AURA void __cdecl TRACE(uptr dwCategory,UINT nLevel,const unichar * pszFormat,...);
+      //CLASS_DECL_AURA void __cdecl TRACE(uptr dwCategory,::u32 nLevel,const char * pszFormat,...);
+      //CLASS_DECL_AURA void __cdecl TRACE(uptr dwCategory,::u32 nLevel,const unichar * pszFormat,...);
 
    } // namespace trace
 
@@ -353,7 +353,7 @@ namespace aura
 };  // namespace aura
 
 
-CLASS_DECL_AURA const char * get_windows_message_name(UINT nMsg);
+CLASS_DECL_AURA const char * get_windows_message_name(::u32 nMsg);
 
 
 

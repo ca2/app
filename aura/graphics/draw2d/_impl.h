@@ -9,7 +9,7 @@
 
 
 
-inline COLORREF get_pixel(const pixmap* ppixmap, int x, int y)
+inline color32_t get_pixel(const pixmap* ppixmap, int x, int y)
 {
 
    return ::draw2d::get_pixel(ppixmap->colorref(), ppixmap->scan_size(), ppixmap->height(), x, y);
@@ -17,7 +17,7 @@ inline COLORREF get_pixel(const pixmap* ppixmap, int x, int y)
 }
 
 
-inline COLORREF pixmap::get_pixel(int x, int y) const
+inline color32_t pixmap::get_pixel(int x, int y) const
 {
 
    return ::get_pixel(this, x, y);
@@ -29,14 +29,14 @@ inline COLORREF pixmap::get_pixel(int x, int y) const
 template < >
 inline uptr uptr_hash<const ::image_header&>(const ::image_header& key)
 {
-   UINT ui = (UINT)key.m_etype;
+   ::u32 u = (::u32)key.m_etype;
    if (key.m_etype == ::image_type_plain_color)
    {
-      ui |= key.m_cr;
+      u |= key.m_cr;
    }
-   ui |= key.m_size.cx << 16;
-   ui |= key.m_size.cy << 24;
-   return ui;
+   u |= key.m_size.cx << 16;
+   u |= key.m_size.cy << 24;
+   return u;
 }
 
 
@@ -132,7 +132,7 @@ inline ::rect image::rect(const ::point& point) const
 }
 
 
-inline COLORREF image::pixel(int x, int y) const
+inline color32_t image::pixel(int x, int y) const
 {
 
    if (::is_null(this))
@@ -241,7 +241,7 @@ inline ::draw2d::graphics* image::g() const
 }
 
 
-inline COLORREF* image::colorref()
+inline color32_t* image::colorref()
 {
 
    return m_pcolorref1;
@@ -249,7 +249,7 @@ inline COLORREF* image::colorref()
 }
 
 
-inline const COLORREF* image::colorref() const
+inline const color32_t* image::colorref() const
 {
 
 
@@ -258,7 +258,7 @@ inline const COLORREF* image::colorref() const
 }
 
 
-inline image::operator COLORREF* ()
+inline image::operator color32_t* ()
 {
 
    return colorref();
@@ -266,7 +266,7 @@ inline image::operator COLORREF* ()
 }
 
 
-inline image::operator const COLORREF* () const
+inline image::operator const color32_t* () const
 {
 
    return colorref();
@@ -448,16 +448,16 @@ namespace draw2d
 {
 
 
-   inline COLORREF get_pixel(const COLORREF * pdata, int iScan, int iHeight, int x, int y)
+   inline color32_t get_pixel(const color32_t * pdata, int iScan, int iHeight, int x, int y)
    {
 
 #ifdef APPLEOS
 
-      return ((COLORREF *)&((u8 *)pdata)[iScan * (iHeight - y - 1)])[x];
+      return ((color32_t *)&((u8 *)pdata)[iScan * (iHeight - y - 1)])[x];
 
 #else
 
-      return ((COLORREF *)&((u8 *)pdata)[iScan * y])[x];
+      return ((color32_t *)&((u8 *)pdata)[iScan * y])[x];
 
 #endif
 
@@ -472,7 +472,7 @@ namespace draw2d
    PRED pred,
    ::draw2d::fastblur & blur,
    ::image_pointer & pimageBlur,
-   COLORREF crGlow,
+   color32_t crGlow,
    int iSpreadRadius,
    int iBlurRadius,
    int iBlur,
@@ -486,10 +486,10 @@ namespace draw2d
       ::rect rectEmboss = rect;
 
 
-      rectEmboss.left -= (LONG)(iR * g_dEmboss);
-      rectEmboss.top -= (LONG)(iR * g_dEmboss);
-      rectEmboss.right += (LONG)(iR * g_dEmboss);
-      rectEmboss.bottom += (LONG)(iR * g_dEmboss);
+      rectEmboss.left -= (::i32)(iR * g_dEmboss);
+      rectEmboss.top -= (::i32)(iR * g_dEmboss);
+      rectEmboss.right += (::i32)(iR * g_dEmboss);
+      rectEmboss.bottom += (::i32)(iR * g_dEmboss);
 
       if (bUpdate || !pimageBlur->is_ok())
       {
@@ -506,8 +506,8 @@ namespace draw2d
 
          ::rect rectCache;
 
-         rectCache.left = (LONG)(iR * g_dEmboss);
-         rectCache.top = (LONG)(iR * g_dEmboss);
+         rectCache.left = (::i32)(iR * g_dEmboss);
+         rectCache.top = (::i32)(iR * g_dEmboss);
          rectCache.right = rectCache.left + rect.width();
 
          rectCache.bottom = rectCache.top + rect.height();

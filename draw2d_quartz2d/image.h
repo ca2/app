@@ -30,7 +30,7 @@ namespace draw2d_quartz2d
       virtual ::draw2d::bitmap_pointer detach_bitmap() override;
 
 
-      //virtual const COLORREF * get_data() const override;
+      //virtual const color32_t * get_data() const override;
 
       virtual bool stretch_image(::image * pimage) override;
 

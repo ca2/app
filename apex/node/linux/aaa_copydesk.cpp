@@ -105,7 +105,7 @@ void clipboard_image_received_func(GtkClipboard * clipboard, GdkPixbuf * pixbuf,
 
       int h = gdk_pixbuf_get_height(pixbuf);
 
-      COLORREF * pcolorrefSrc = (COLORREF *) gdk_pixbuf_read_pixels(pixbuf);
+      color32_t * pcolorrefSrc = (color32_t *) gdk_pixbuf_read_pixels(pixbuf);
 
       int iSrcScan = gdk_pixbuf_get_rowstride(pixbuf);
 
@@ -204,7 +204,7 @@ void clipboard_received_func(GtkClipboard * clipboard, GtkSelectionData * select
 }
 
 
-void clipboard_get_func(GtkClipboard * clipboard, GtkSelectionData * selection_data, guint info, gpointer user_data)
+void clipboard_get_func(GtkClipboard * clipboard, GtkSelectionData * selection_data, g::u32 info, gpointer user_data)
 {
 
    clipboard_data * pdata = (clipboard_data *) user_data;
@@ -407,7 +407,7 @@ gboolean clipboard_callback(gpointer data)
 //
 //            int h = gdk_pixbuf_get_height(pixbuf);
 //
-//            COLORREF * pcolorrefSrc = (COLORREF *) gdk_pixbuf_read_pixels(pixbuf);
+//            color32_t * pcolorrefSrc = (color32_t *) gdk_pixbuf_read_pixels(pixbuf);
 //
 //            int iSrcScan = gdk_pixbuf_get_rowstride(pixbuf);
 //

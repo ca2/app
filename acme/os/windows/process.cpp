@@ -349,7 +349,7 @@ u32 call_sync(const char * pszPath, const char * pszParam, const char * pszDir, 
 
    }
 
-   set["pid"] = ::GetProcessId(infoa.hProcess);
+   set["pid"] = (::u32) ::GetProcessId(infoa.hProcess);
 
    DWORD dwExitCode = (DWORD) -1;
 
@@ -391,7 +391,7 @@ u32 call_sync(const char * pszPath, const char * pszParam, const char * pszDir, 
          auto TerminateProcess_GetLastError = ::GetLastError();
 
          set["TerminateProcess_return"] = TerminateProcess_return;
-         set["TerminateProcess_GetLastError"] = TerminateProcess_GetLastError;
+         set["TerminateProcess_GetLastError"] = (::u32) TerminateProcess_GetLastError;
 
       }
 
@@ -885,7 +885,7 @@ CLASS_DECL_ACME bool is_shared_library_busy(const string_array & stra)
 
 
 
-CLASS_DECL_ACME bool process_contains_module(string & strImage, DWORD processID, const char * pszLibrary)
+CLASS_DECL_ACME bool process_contains_module(string & strImage, ::u32 processID, const char * pszLibrary)
 {
 
    HANDLE hProcess;
@@ -1027,7 +1027,7 @@ CLASS_DECL_ACME void shared_library_process(dword_array & dwa, string_array & st
 //
 //
 //
-//CLASS_DECL_ACME DWORD get_current_process_id()
+//CLASS_DECL_ACME ::u32 get_current_process_id()
 //{
 //
 //   return ::GetCurrentProcessId();
@@ -1362,7 +1362,7 @@ CLASS_DECL_ACME void shared_library_process(dword_array & dwa, string_array & st
 //
 
 
-CLASS_DECL_ACME int_bool is_process_running(DWORD pid)
+CLASS_DECL_ACME int_bool is_process_running(::u32 pid)
 {
 
    HANDLE process = OpenProcess(SYNCHRONIZE, FALSE, pid);

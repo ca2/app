@@ -581,7 +581,7 @@ namespace core
    }
 
 
-   ::estatus user::dialog_box(::layered * pobjectContext, const char * pszMatter, property_set & propertyset, ::future future)
+   ::estatus user::dialog_box(::layered * pobjectContext, const char * pszMatter, property_set & propertyset, const ::futurevar & futurevar)
    {
 
       auto pbox = __object(pobjectContext)->__create_new < class ::userex::message_box >();
@@ -595,14 +595,14 @@ namespace core
 
       }
 
-      future(pbox->m_idResponse);
+      futurevar(pbox->m_idResponse);
 
       return ::success;
 
    }
 
 
-   ::estatus user::ui_message_box(::layered* pobjectContext, ::user::primitive * puiOwner, const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox, ::future future)
+   ::estatus user::ui_message_box(::layered* pobjectContext, ::user::primitive * puiOwner, const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox, const ::futurevar & futurevar)
    {
 
       auto pbox = __object(pobjectContext)->__create_new < ::userex::message_box >();
@@ -611,7 +611,7 @@ namespace core
 
       propertyset["message"] = pszMessage;
 
-      pbox->add_future(DIALOG_RESULT_FUTURE, future);
+      pbox->add_futurevar(DIALOG_RESULT_FUTURE, futurevar);
 
       auto psession = Session;
 
@@ -725,7 +725,7 @@ namespace core
    }
 
 
-   ::estatus user::ui_message_box_timeout(::layered * pobjectContext, ::user::primitive * puiOwner, const char* pszMessage, const char* pszTitle, const ::duration & durationTimeout, ::emessagebox emessagebox, ::future future)
+   ::estatus user::ui_message_box_timeout(::layered * pobjectContext, ::user::primitive * puiOwner, const char* pszMessage, const char* pszTitle, const ::duration & durationTimeout, ::emessagebox emessagebox, const ::futurevar & futurevar)
    {
 
       UNREFERENCED_PARAMETER(puiOwner);
@@ -734,13 +734,13 @@ namespace core
 
       pbox->value("message") = pszMessage;
 
-      pbox->add_future(DIALOG_RESULT_FUTURE, future);
+      pbox->add_futurevar(DIALOG_RESULT_FUTURE, futurevar);
 
       string strTitle = App(__object(pobjectContext)).get_title();
 
       pbox->value("application_name") = strTitle;
 
-      pbox->m_tickDelay = (DWORD)durationTimeout.get_total_milliseconds();
+      pbox->m_tickDelay = (::u32)durationTimeout.get_total_milliseconds();
 
       string strMatter;
 
@@ -761,47 +761,8 @@ namespace core
       {
 
          return ::error_failed;
-         //__throw(resource_exception());
 
       }
-
-      //if (pbox->m_idResponse == "ok")
-      //{
-
-      //   return IDOK;
-
-      //}
-      //else if (pbox->m_idResponse == "yes")
-      //{
-
-      //   return IDYES;
-
-      //}
-      //else if (pbox->m_idResponse == "no")
-      //{
-
-      //   return IDNO;
-
-      //}
-      //else if (pbox->m_idResponse == "cancel")
-      //{
-
-      //   return IDCANCEL;
-
-      //}
-
-      //if (fuStyle & MB_YESNOCANCEL)
-      //{
-
-      //   return IDCANCEL;
-
-      //}
-      //else
-      //{
-
-      //   return 0;
-
-      //}
 
       return ::success;
 
@@ -925,10 +886,10 @@ namespace core
 #ifdef WINDOWS_DESKTOP
 
       CHOOSECOLOR cc;
-      COLORREF crCustColors[16];
+      color32_t crCustColors[16];
 
       // init-int this array did not affect the mouse problem
-      // uint idx ;
+      // ::u32 idx ;
       // for (idx=0; idx<16; idx++) {
       // crCustColors[idx] = RGB(idx, idx, idx) ;
       // }
@@ -1642,9 +1603,9 @@ namespace core
       wstring  wstr;
 
       wstr.get_string_buffer(MAX_PATH * 8);
-      //UINT uLen = pwsz.memsize();
+      //::u32 uLen = pwsz.memsize();
 
-      if (!SystemParametersInfoW(SPI_GETDESKWALLPAPER, (UINT)wstr.get_storage_length(), wstr.m_pdata, 0))
+      if (!SystemParametersInfoW(SPI_GETDESKWALLPAPER, (::u32)wstr.get_storage_length(), wstr.m_pdata, 0))
       {
          return "";
 
@@ -2064,7 +2025,7 @@ namespace core
    //}
 
 
-   //i32 application::sync_message_box(::user::primitive * puiOwner, const char * pszMessage, UINT fuStyle)
+   //i32 application::sync_message_box(::user::primitive * puiOwner, const char * pszMessage, ::u32 fuStyle)
    //{
 
    //   ::output_debug_string("\n\napp_message_box: " + string(pszMessage) + "\n\n");
@@ -2077,7 +2038,7 @@ namespace core
    //}
 
 
-   //i32 application::sync_message_box_timeout(::user::primitive * pwndOwner, var var, ::duration durationTimeOut, UINT fuStyle)
+   //i32 application::sync_message_box_timeout(::user::primitive * pwndOwner, var var, ::duration durationTimeOut, ::u32 fuStyle)
    //{
 
    //   if (psession->user() == nullptr)
@@ -2294,7 +2255,7 @@ namespace core
    }
 
 
-   //::estatus application::message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, UINT uFlags, ::function_arg function)
+   //::estatus application::message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, ::u32 uFlags, ::function_arg function)
    //{
 
    //   auto estatus = ui_message_box(puiOwner->get_safe_handle(), pszMessage, pszTitle, fuStyle, functionarg);

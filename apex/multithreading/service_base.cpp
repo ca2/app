@@ -227,7 +227,7 @@ void WINAPI service_base::ServiceMain(DWORD argumentCount, PWSTR * arguments)
 }
 
 
-void service_base::_main_server(DWORD argumentCount, PWSTR * arguments)
+void service_base::_main_server(::u32 argumentCount, PWSTR * arguments)
 {
 
    if (1 != argumentCount || 0 == arguments || 0 == arguments[0])

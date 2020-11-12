@@ -68,7 +68,7 @@ public:
 
    mq_message_array        m_messagea;
    manual_reset_event      m_eventNewMessage;
-   ITHREAD                 m_ithread;
+   ithread_t                 m_ithread;
    bool                    m_bKickIdle;
    bool                    m_bQuit;
 
@@ -76,8 +76,8 @@ public:
    mq();
    virtual ~mq();
 
-   int_bool peek_message(LPMESSAGE pMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg);
-   int_bool get_message(LPMESSAGE pMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax);
+   int_bool peek_message(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg);
+   int_bool get_message(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax);
    int_bool post_message(oswindow oswindow, const ::id & id, WPARAM wParam, LPARAM lParam);
    int_bool post_message(const mq_message & message);
 
@@ -85,8 +85,8 @@ public:
 };
 
 
-CLASS_DECL_ACME mq * get_mq(ITHREAD id, bool bCreate);
-CLASS_DECL_ACME void clear_mq(ITHREAD idthread);
+CLASS_DECL_ACME mq * get_mq(ithread_t id, bool bCreate);
+CLASS_DECL_ACME void clear_mq(ithread_t idthread);
 
 void _c_simple_message_loop();
 

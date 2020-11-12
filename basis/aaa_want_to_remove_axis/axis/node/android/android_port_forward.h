@@ -52,7 +52,7 @@ namespace android
       			   return m_dwRef;
       		   }
 
-      		   DWORD		m_dwRef;
+      		   ::u32		m_dwRef;
       		   ::ca2::port_forward_change_callbacks*	m_pointer;
       	   };
 
@@ -78,7 +78,7 @@ namespace android
       			   return m_dwRef;
       		   }
 
-      		   DWORD		m_dwRef;
+      		   ::u32		m_dwRef;
       		   ::ca2::port_forward_change_callbacks*	m_pointer;
       	   };
 
@@ -110,11 +110,11 @@ namespace android
       	   HRESULT GetNextMapping( IEnumVARIANT* piEnumerator, port_map & mappingContainer );
       	   HRESULT SetChangeEventcallbackPointer(::ca2::port_forward_change_callbacks *pcallbacks);
 
-      	   static UINT ThreadForPortRetrieval( LPVOID pVoid );
-      	   static UINT ThreadForDeviceInformationRetrieval( LPVOID pVoid );
-      	   static UINT ThreadToEditMapping( LPVOID pVoid );
-      	   static UINT ThreadToAddMapping( LPVOID pVoid );
-      	   static UINT ThreadToDeleteMapping( LPVOID pVoid );
+      	   static ::u32 ThreadForPortRetrieval( LPVOID pVoid );
+      	   static ::u32 ThreadForDeviceInformationRetrieval( LPVOID pVoid );
+      	   static ::u32 ThreadToEditMapping( LPVOID pVoid );
+      	   static ::u32 ThreadToAddMapping( LPVOID pVoid );
+      	   static ::u32 ThreadToDeleteMapping( LPVOID pVoid );
 
 
 

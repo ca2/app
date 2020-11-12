@@ -4,7 +4,7 @@
 //CLASS_DECL_CORE bool vfxFullPath(unichar * pszPathOut, const unichar * pszFileIn);
 
 //CLASS_DECL_CORE bool vfxFullPath(wstring & wstrFullPath, const wstring & wstrPath);
-//CLASS_DECL_CORE UINT vfxGetFileName(const unichar * pszPathName, unichar * pszTitle, UINT nMax);
+//CLASS_DECL_CORE ::u32 vfxGetFileName(const unichar * pszPathName, unichar * pszTitle, ::u32 nMax);
 
 //CLASS_DECL_CORE void vfxGetModuleShortFileName(HINSTANCE hInst, string & strShortName);
 //CLASS_DECL_CORE void vfxGetModuleShortFileName(HINSTANCE hInst, string& strShortName);

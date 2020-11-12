@@ -34,7 +34,7 @@ class ID3_CPP_EXPORT ID3_Reader
 {
    public:
       typedef strsize size_type;
-      typedef uint8  char_type;
+      typedef ::u328  char_type;
       typedef filesize pos_type;
       typedef  filesize off_type;
       typedef  int16 int_type;
@@ -102,12 +102,12 @@ class ID3_CPP_EXPORT ID3_Reader
        **/
       virtual size_type skipChars(size_type len)
       {
-         const size_type SIZE = 1024;
-         char_type bytes[SIZE];
+         const size_type SIZE32 = 1024;
+         char_type bytes[SIZE32];
          size_type remaining = len;
          while (!this->atEnd() && remaining > 0)
          {
-            remaining -= this->readChars(bytes, (remaining < SIZE ? remaining : SIZE));
+            remaining -= this->readChars(bytes, (remaining < SIZE32 ? remaining : SIZE32));
          }
          return len - remaining;
       }

@@ -17,7 +17,7 @@
 #define GRIP_CENTER_SMALL_CY 7
 
 
-COLORREF SetAValue(BYTE a, COLORREF cr)
+color32_t SetAValue(byte a, color32_t cr)
 {
 
    return ARGB(a, colorref_get_r_value(cr), colorref_get_g_value(cr), colorref_get_b_value(cr));
@@ -206,16 +206,16 @@ SizingNone:;
 
 
 
-            void frame_002::draw_border_side(::draw2d::graphics_pointer & pgraphics, const RECT & lpcrectClient, e_border eside)
+            void frame_002::draw_border_side(::draw2d::graphics_pointer & pgraphics, const RECT32 & lpcrectClient, e_border eside)
             {
 
 
 
                auto pframewindow = m_pframewindow;
 
-               COLORREF    crMoveableBorder;
-               COLORREF    crMoveableBorderHilight;
-               COLORREF    crMoveableBorderShadow;
+               color32_t    crMoveableBorder;
+               color32_t    crMoveableBorderHilight;
+               color32_t    crMoveableBorderShadow;
 
                if(pframewindow->m_fActive)
                {
@@ -376,7 +376,7 @@ SizingNone:;
             }
 
 
-            void frame_002::DrawBorder(::draw2d::graphics_pointer & pgraphics, const RECT & lpcrectClient)
+            void frame_002::DrawBorder(::draw2d::graphics_pointer & pgraphics, const RECT32 & lpcrectClient)
             {
 
 
@@ -413,8 +413,8 @@ SizingNone:;
             }
 
             void frame_002::GetBorderRect(
-            const RECT & lpcrectClient,
-            LPRECT lprect,
+            const RECT32 & lpcrectClient,
+            LPRECT32 lprect,
             e_border eside)
             {
                ::rect rectBig(lpcrectClient);
@@ -467,7 +467,7 @@ SizingNone:;
 
             void frame_002::DrawGrip(
             ::draw2d::graphics_pointer & pgraphics,
-            const RECT & lpcrectClient,
+            const RECT32 & lpcrectClient,
             e_grip egrip)
             {
                //            const i32 size1 = 14;
@@ -956,7 +956,7 @@ SizingNone:;
 
             }
 
-            void frame_002::DrawRectGrip(::draw2d::graphics_pointer & pgraphics,const RECT & rectParam)
+            void frame_002::DrawRectGrip(::draw2d::graphics_pointer & pgraphics,const RECT32 & rectParam)
             {
 
 
@@ -982,7 +982,7 @@ SizingNone:;
             }
 
 
-            void frame_002::DrawGripSet(::draw2d::graphics_pointer & pgraphics, const RECT & lpcrectClient)
+            void frame_002::DrawGripSet(::draw2d::graphics_pointer & pgraphics, const RECT32 & lpcrectClient)
             {
 
                size_manager * psizenager = m_pframewindow->size_manager();
@@ -1032,7 +1032,7 @@ SizingNone:;
             }
 
 
-            COLORREF frame_002::get_border_main_body_color()
+            color32_t frame_002::get_border_main_body_color()
             {
 
                return m_crMoveableBorder;

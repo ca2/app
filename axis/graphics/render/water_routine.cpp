@@ -66,7 +66,7 @@ namespace draw2d
       __memset(m_iHeightField1,0,(m_iWidth*m_iHeight)*sizeof(i32));
       __memset(m_iHeightField2,0,(m_iWidth*m_iHeight)*sizeof(i32));
    }
-   void water_routine::to(COLORREF * pSrcImage, COLORREF * pTargetImage)
+   void water_routine::to(color32_t * pSrcImage, color32_t * pTargetImage)
    {
       // Yes they have to be the same size...(for now)
       if(m_bDrawWithLight == FALSE)
@@ -464,7 +464,7 @@ namespace draw2d
       }
    }
 
-   void water_routine::DrawWaterNoLight(i32 page, COLORREF * pSrcImage, COLORREF * pTargetImage)
+   void water_routine::DrawWaterNoLight(i32 page, color32_t * pSrcImage, color32_t * pTargetImage)
    {
       UNREFERENCED_PARAMETER(page);
       //  i32 ox, oy;
@@ -504,7 +504,7 @@ namespace draw2d
       }
    }
 
-   void water_routine::DrawWaterWithLight(i32 page, i32 LightModifier,COLORREF * pSrcImage, COLORREF * pTargetImage)
+   void water_routine::DrawWaterWithLight(i32 page, i32 LightModifier,color32_t * pSrcImage, color32_t * pTargetImage)
    {
       UNREFERENCED_PARAMETER(page);
       UNREFERENCED_PARAMETER(LightModifier);
@@ -555,7 +555,7 @@ namespace draw2d
       }
 
    }
-   inline COLORREF water_routine::GetShiftedColor(COLORREF color,i32 shift)
+   inline color32_t water_routine::GetShiftedColor(color32_t color,i32 shift)
    {
       long R;
       long G;

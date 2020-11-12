@@ -71,7 +71,7 @@ INPUT_RECORD ir;
         };
         if (len < 0 || X >= csbi.dwSize.X) continue;
         if (len+X > csbi.dwSize.X) len = csbi.dwSize.X-X;
-        WORD color = (WORD)(l1->styled()->fore + (l1->styled()->back<<4));
+        ::u16 color = (::u16)(l1->styled()->fore + (l1->styled()->back<<4));
         if (!l1->styled()->bfore) color = (color&0xF0) + (background&0xF);
         if (!l1->styled()->bback) color = (color&0xF) + (background&0xF0);
         for(int li = 0; li < len; li++)
@@ -93,7 +93,7 @@ INPUT_RECORD ir;
 
     // managing the keyboard
     do{
-      DWORD tmp;
+      ::u32 tmp;
       ReadConsoleInput(hConI, &ir, 1, &tmp);
       if (ir.EventType == WINDOW_BUFFER_SIZE_EVENT){
         GetConsoleScreenBufferInfo(hCon, &csbi);

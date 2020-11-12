@@ -44,7 +44,7 @@ namespace app_shader
       ::user::main_window::install_message_routing(psender);
       MESSAGE_LINK(e_message_create,psender,this,&window::_001OnCreate);
       MESSAGE_LINK(e_message_destroy, psender, this, &window::_001OnDestroy);
-      MESSAGE_LINK(WM_KEYDOWN, psender, this, &window::_001OnKeyDown);
+      MESSAGE_LINK(e_message_key_down, psender, this, &window::_001OnKeyDown);
 
    }
 

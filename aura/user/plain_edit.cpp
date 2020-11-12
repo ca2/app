@@ -239,15 +239,15 @@ namespace user
 #endif
 #endif
       MESSAGE_LINK(e_message_create, pchannel, this, &plain_edit::_001OnCreate);
-      MESSAGE_LINK(WM_LBUTTONDOWN, pchannel, this, &plain_edit::_001OnLButtonDown);
-      MESSAGE_LINK(WM_LBUTTONUP, pchannel, this, &plain_edit::_001OnLButtonUp);
-      MESSAGE_LINK(WM_RBUTTONDOWN, pchannel, this, &plain_edit::_001OnRButtonDown);
-      MESSAGE_LINK(WM_RBUTTONUP, pchannel, this, &plain_edit::_001OnRButtonUp);
+      MESSAGE_LINK(e_message_lbutton_down, pchannel, this, &plain_edit::_001OnLButtonDown);
+      MESSAGE_LINK(e_message_lbutton_up, pchannel, this, &plain_edit::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_rbutton_down, pchannel, this, &plain_edit::_001OnRButtonDown);
+      MESSAGE_LINK(e_message_rbutton_up, pchannel, this, &plain_edit::_001OnRButtonUp);
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &plain_edit::_001OnMouseMove);
       MESSAGE_LINK(WM_MOUSELEAVE, pchannel, this, &plain_edit::_001OnMouseLeave);
-      MESSAGE_LINK(WM_KEYDOWN, pchannel, this, &plain_edit::_001OnKeyDown);
-      MESSAGE_LINK(WM_KEYUP, pchannel, this, &plain_edit::_001OnKeyUp);
-      MESSAGE_LINK(WM_UNICHAR, pchannel, this, &plain_edit::_001OnUniChar);
+      MESSAGE_LINK(e_message_key_down, pchannel, this, &plain_edit::_001OnKeyDown);
+      MESSAGE_LINK(e_message_key_up, pchannel, this, &plain_edit::_001OnKeyUp);
+      MESSAGE_LINK(e_message_uni_char, pchannel, this, &plain_edit::_001OnUniChar);
 
       MESSAGE_LINK(e_message_size, pchannel, this, &::user::plain_edit::_001OnSize);
 
@@ -360,14 +360,14 @@ namespace user
 
       pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
 
-      COLORREF crBk;
-      COLORREF crBkSel;
-      COLORREF crSel;
-      COLORREF cr;
+      color32_t crBk;
+      color32_t crBkSel;
+      color32_t crSel;
+      color32_t cr;
 
       auto rectClient = get_client_rect();
 
-      COLORREF crEditBackground = get_color(pstyle, element_background);
+      color32_t crEditBackground = get_color(pstyle, element_background);
 
       pgraphics->fill_rect(rectClient, crEditBackground);
 
@@ -587,7 +587,7 @@ namespace user
          //else
          {
 
-            COLORREF crOverride = ARGB(255, 0, 0, 0);
+            color32_t crOverride = ARGB(255, 0, 0, 0);
 
             bool bOverride = false;
 
@@ -2741,7 +2741,7 @@ namespace user
 
                }
 
-               sizeLast.cx = (LONG) size.cx;
+               sizeLast.cx = (::i32) size.cx;
 
                for (int j = 0; j < iLen; j++)
                {
@@ -2778,7 +2778,7 @@ namespace user
       if (iLineUpdate < 0)
       {
 
-         m_sizeTotal.cy = (LONG) ((((i32)m_iaLineLen.get_count() + (m_bMultiLine ? max(5, m_iLineCount) : 0)) * m_iLineHeight));
+         m_sizeTotal.cy = (::i32) ((((i32)m_iaLineLen.get_count() + (m_bMultiLine ? max(5, m_iLineCount) : 0)) * m_iLineHeight));
 
          ::sized sizePage;
 
@@ -2854,7 +2854,7 @@ namespace user
    }
 
 
-   bool plain_edit::plain_edit_caret_rect(::draw2d::graphics_pointer& pgraphics, LPRECT lprect, strsize iSel)
+   bool plain_edit::plain_edit_caret_rect(::draw2d::graphics_pointer& pgraphics, LPRECT32 lprect, strsize iSel)
    {
 
       int x = 0;
@@ -2877,7 +2877,7 @@ namespace user
    }
 
 
-   bool plain_edit::plain_edit_index_range(::draw2d::graphics_pointer& pgraphics, LPRECT lprect, strsize iSel)
+   bool plain_edit::plain_edit_index_range(::draw2d::graphics_pointer& pgraphics, LPRECT32 lprect, strsize iSel)
    {
 
       index iLine = plain_edit_char_to_line(pgraphics, iSel);
@@ -2887,7 +2887,7 @@ namespace user
    }
 
 
-   bool plain_edit::plain_edit_line_range(::draw2d::graphics_pointer& pgraphics, LPRECT lprect, ::index iLine)
+   bool plain_edit::plain_edit_line_range(::draw2d::graphics_pointer& pgraphics, LPRECT32 lprect, ::index iLine)
    {
 
       if(iLine < 0)
@@ -2897,9 +2897,9 @@ namespace user
 
       }
 
-      lprect->top = (LONG) (iLine * m_iItemHeight);
+      lprect->top = (::i32) (iLine * m_iItemHeight);
 
-      lprect->bottom = (LONG) (lprect->top + m_iItemHeight);
+      lprect->bottom = (::i32) (lprect->top + m_iItemHeight);
 
       return true;
 
@@ -3476,7 +3476,7 @@ end:
 
       char * buf = (char *)m.get_data();
 
-      memsize uiRead;
+      memsize uRead;
 
       char * psz;
 
@@ -3500,7 +3500,7 @@ end:
 
       int iLastR = 0;
 
-      while ((uiRead = m_ptree->m_peditfile->read(buf, m.get_size())) > 0)
+      while ((uRead = m_ptree->m_peditfile->read(buf, m.get_size())) > 0)
       {
 
          uiPos = 0;
@@ -3508,7 +3508,7 @@ end:
          psz = buf;
 
 
-         while (uiPos < uiRead)
+         while (uiPos < uRead)
          {
 
             if (*psz == '\r')
@@ -3650,7 +3650,7 @@ end:
 
       char * buf = (char *)m.get_data();
 
-      memsize uiRead;
+      memsize uRead;
 
       char * psz;
 
@@ -3671,7 +3671,7 @@ end:
 
       bool bSet = false;
 
-      while ((uiRead = m_ptree->m_peditfile->read(buf, m.get_size())) > 0)
+      while ((uRead = m_ptree->m_peditfile->read(buf, m.get_size())) > 0)
       {
 
          uiPos = 0;
@@ -3679,7 +3679,7 @@ end:
          psz = buf;
 
 
-         while (uiPos < uiRead)
+         while (uiPos < uRead)
          {
 
             if (*psz == '\r')
@@ -4611,8 +4611,8 @@ finished_update:
                {
                   char buf[32];
                   m_ptree->m_peditfile->seek(m_ptree->m_iSelEnd, ::file::seek_begin);
-                  memsize uiRead = m_ptree->m_peditfile->read(buf, 32);
-                  if (uiRead == 2 &&
+                  memsize uRead = m_ptree->m_peditfile->read(buf, 32);
+                  if (uRead == 2 &&
                         buf[0] == '\r' &&
                         buf[1] == '\n')
                   {
@@ -4657,8 +4657,8 @@ finished_update:
                      char * psz;
                      m_ptree->m_peditfile->seek(max(0, m_ptree->m_iSelEnd - 32), ::file::seek_begin);
                      psz = &buf[min(32, m_ptree->m_iSelEnd)];
-                     memsize uiRead = m_ptree->m_peditfile->read(buf, 64);
-                     if (uiRead == 2 &&
+                     memsize uRead = m_ptree->m_peditfile->read(buf, 64);
+                     if (uRead == 2 &&
                            psz[0] == '\r' &&
                            psz[1] == '\n')
                      {
@@ -4912,11 +4912,11 @@ finished_update:
 
       index y = (index) ((iLine)* m_iLineHeight - get_viewport_offset().y);
       index y2 = y + m_iLineHeight;
-      ::point point((LONG)x,(LONG) y);
+      ::point point((::i32)x,(::i32) y);
       get_client_rect(rect);
-      rect.left =(LONG) x;
-      rect.top = (LONG)y;
-      rect.bottom = (LONG)y2;
+      rect.left =(::i32) x;
+      rect.top = (::i32)y;
+      rect.bottom = (::i32)y2;
       _001ClientToScreen(rect);
       get_wnd()->_001ScreenToClient(rect);
 
@@ -5156,7 +5156,7 @@ finished_update:
    void plain_edit::on_text_composition_done()
    {
 
-#ifdef WINDOWS
+#ifdef WINDOWS_DESKTOP
 
       imm_client::on_text_composition_done();
 
@@ -5281,7 +5281,7 @@ finished_update:
       /*   char flag;
          m_iViewOffset = 0;
          i32 iLineSize;
-         UINT uiRead;
+         ::u32 uRead;
          i32 iPos = 0;
          i32 iLineStart = -1;
          i32 iLineEnd = -1;
@@ -5772,16 +5772,26 @@ finished_update:
    {
 
       if (m_bPassword)
+      {
+
          return;
+
+      }
+      
       string str;
+      
       _001GetSelText(str);
+
       str.replace("\r", "\r\n");
+      
       auto psession = Session;
 
       psession->copydesk().set_plain_text(str);
+
    }
 
-   bool plain_edit::get_line_color(COLORREF & cr, const string & strLine)
+
+   bool plain_edit::get_line_color(color32_t & cr, const string & strLine)
    {
 
       return false;

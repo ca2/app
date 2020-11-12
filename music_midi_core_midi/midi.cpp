@@ -17,7 +17,7 @@ namespace music
 
          CFStringRef ConnectedEndpointName(MIDIEndpointRef endpoint);
 
-         UInt64 nano_to_absolute(UInt64 nano);
+         ::u3264 nano_to_absolute(::u3264 nano);
 
          // The following is copied from: http://developer.apple.com/qa/qa2004/qa1374.html
          CFStringRef EndpointName(MIDIEndpointRef endpoint, bool isExternal);
@@ -360,7 +360,7 @@ namespace music
                      virtual ::estatus note_on(int iChannel, unsigned char uchNote, unsigned char uchVelocity) override
          {
             
-            int noteOnCommand = UInt32(0x90 | iChannel);
+            int noteOnCommand = ::u32(0x90 | iChannel);
             OSStatus result=MusicDeviceMIDIEvent (m_unitSynth, noteOnCommand, uchNote, uchVelocity, 0);
             
             if (noErr != result)
@@ -373,7 +373,7 @@ namespace music
          }
          virtual ::estatus note_off(int iChannel, unsigned char uchNote, unsigned char uchVelocity) override
          {
-            int noteOnCommand = UInt32(0x80 | iChannel);
+            int noteOnCommand = ::u32(0x80 | iChannel);
                 OSStatus result=    MusicDeviceMIDIEvent (m_unitSynth, noteOnCommand, uchNote, uchVelocity, 0);
                     
                     if (noErr != result)

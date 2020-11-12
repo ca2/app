@@ -8,9 +8,9 @@ namespace factory
    inline __pointer(factory_interface) & get_factory(const ::id & id)
    {
 
-      cslock cs(g_pcsFactory);
+      cslock cs(get_factory_critical_section());
 
-      return (*g_pfactorymap)[id];
+      return (*get_factory_map())[id];
 
    }
 
@@ -18,9 +18,9 @@ namespace factory
    inline void set_factory(const ::id & id, const __pointer(factory_interface) & pfactory)
    {
 
-      cslock cs(g_pcsFactory);
+      cslock cs(get_factory_critical_section());
 
-      g_pfactorymap->set_at(id, pfactory);
+      get_factory_map()->set_at(id, pfactory);
 
    }
 
@@ -135,8 +135,6 @@ namespace factory
 
 
 } // namespace factory
-
-
 
 
 template < typename BASE_TYPE >
@@ -404,19 +402,8 @@ inline __pointer(TYPE) __create_new(::matter * pobjectContext)
 
 //    return pobject->__compose_new(pcomposite);
 
+
 // }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 // template < typename OBJECT, typename BASE_TYPE >
@@ -441,22 +428,8 @@ inline __pointer(TYPE) __create_new(::matter * pobjectContext)
 // inline ::estatus __defer_compose_new(OBJECT && pobject, __composite(BASE_TYPE) & pcomposite) { return !pcomposite ? __compose_new(pobject, pcomposite) : ::success; }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // __compose __reference
+
 
 //
 //template < typename OBJECT, typename BASE_TYPE >
@@ -474,17 +447,24 @@ inline __pointer(TYPE) __create_new(::matter * pobjectContext)
 //
 //}
 
+
 template < typename OBJECT, typename BASE_TYPE, typename SOURCE >
 inline ::estatus __refer(OBJECT && pobject, __reference(BASE_TYPE) & preference, const __pointer(SOURCE) & psource)
 {
+
    return __refer(pobject, preference, psource.m_p);
+
 }
+
 
 template < typename OBJECT, typename BASE_TYPE, typename SOURCE >
 inline ::estatus __refer(OBJECT && pobject, __reference(BASE_TYPE) & preference, const ::primitive::member < SOURCE > & psource)
 {
+
    return __refer(pobject, preference, psource.operator SOURCE * ());
+
 }
+
 
 template < typename OBJECT, typename BASE_TYPE, typename SOURCE >
 inline ::estatus __refer(OBJECT && pobject, __reference(BASE_TYPE) & preference, const SOURCE * psource)
@@ -518,7 +498,6 @@ inline ::estatus __refer(OBJECT && pobject, __reference(BASE_TYPE) & preference,
 //
 //template < typename OBJECT, typename BASE_TYPE, typename SOURCE >
 //inline ::estatus __defer_refer(OBJECT && pobject, __reference(BASE_TYPE) & preference, const ::member < SOURCE > & psource) {}
-
 
 
 //
@@ -570,9 +549,8 @@ inline ::estatus __refer(OBJECT && pobject, __reference(BASE_TYPE) & preference,
 //}
 
 
-
-
 // __construct
+
 
 template < typename BASE_TYPE >
 inline ::estatus __construct(__pointer(BASE_TYPE) & pbase)
@@ -615,6 +593,7 @@ inline ::estatus __construct(__pointer(BASE_TYPE) & pbase)
    return ::success;
 
 }
+
 
 template < typename BASE_TYPE >
 inline ::estatus __defer_construct(__pointer(BASE_TYPE) & pbase)
@@ -703,4 +682,6 @@ inline ::estatus __defer_construct_new(__pointer(TYPE) & ptype)
    return !ptype ? __construct_new(ptype) : ::estatus(::success);
 
 }
+
+
 

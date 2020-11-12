@@ -27,10 +27,10 @@ namespace simple_ui
 
       ::user::plain_edit::install_message_routing(pchannel);
 
-      MESSAGE_LINK(WM_KEYDOWN, pchannel, this, &edit_box::_001OnKeyDown);
-      MESSAGE_LINK(WM_KEYUP, pchannel, this, &edit_box::_001OnKeyDown);
-      MESSAGE_LINK(WM_LBUTTONDOWN, pchannel, this, &edit_box::_001OnLButtonDown);
-      MESSAGE_LINK(WM_LBUTTONUP, pchannel, this, &edit_box::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_key_down, pchannel, this, &edit_box::_001OnKeyDown);
+      MESSAGE_LINK(e_message_key_up, pchannel, this, &edit_box::_001OnKeyDown);
+      MESSAGE_LINK(e_message_lbutton_down, pchannel, this, &edit_box::_001OnLButtonDown);
+      MESSAGE_LINK(e_message_lbutton_up, pchannel, this, &edit_box::_001OnLButtonUp);
 
    }
 

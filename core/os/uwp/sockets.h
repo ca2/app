@@ -18,7 +18,7 @@ typedef unsigned int    u_int;
 typedef unsigned long   u_long;
 
 #if(_WIN32_WINNT >= 0x0501)
-typedef unsigned __int64 u_int64;
+typedef ::u64 u_int64;
 #endif //(_WIN32_WINNT >= 0x0501)
 
 #ifdef __cplusplus

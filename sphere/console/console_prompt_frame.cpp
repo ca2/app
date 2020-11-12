@@ -46,7 +46,7 @@ namespace console
 
       simple_frame_window::_001OnTimer(ptimer);;
 
-//      UINT uEvent = ptimer->m_uEvent;
+//      ::u32 uEvent = ptimer->m_uEvent;
 //      static float theta;
 //      if(uEvent == 3)
 //      {
@@ -146,7 +146,7 @@ namespace console
 
    void prompt_frame::ShowControlBars(bool bShow)
    {
-      UINT nShow;
+      ::u32 nShow;
       if(bShow)
       {
          nShow = display_normal;
@@ -211,7 +211,7 @@ namespace console
    {
       simple_frame_window::install_message_routing(pchannel);
       MESSAGE_LINK(e_message_create, pchannel, this, &prompt_frame::_001OnCreate);
-      MESSAGE_LINK(WM_CLOSE, pchannel, this, &prompt_frame::_001OnClose);
+      MESSAGE_LINK(e_message_close, pchannel, this, &prompt_frame::_001OnClose);
 //      //MESSAGE_LINK(WM_TIMER, pchannel, this, &prompt_frame::_001OnTimer);
       MESSAGE_LINK(e_message_move, pchannel, this, &prompt_frame::_001OnMove);
       MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &prompt_frame::_001OnShowWindow);

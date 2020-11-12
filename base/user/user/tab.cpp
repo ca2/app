@@ -109,7 +109,7 @@ namespace user
 
    }
 
-   /*bool tab::add_tab(UINT uiIdTitle, i32 iId)
+   /*bool tab::add_tab(::u32 uIdTitle, i32 iId)
    {
       tab_pane tab_pane;
       tab_pane.m_uiId = uiIdTitle;
@@ -1188,7 +1188,7 @@ namespace user
    }
 
 
-   void tab::GetTabClientRect(RECT * prect)
+   void tab::GetTabClientRect(RECT32 * prect)
 
    {
 
@@ -1510,7 +1510,7 @@ namespace user
 
       {
 
-//               DWORD dwTime2 = ::get_tick();
+//               ::u32 dwTime2 = ::get_tick();
 
          //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
          //TRACE("usertab::on_layout call time2= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
@@ -1863,7 +1863,7 @@ namespace user
    }
 
 
-   bool tab::get_element_rect(::index iTab, RECT * prect, e_element eelement)
+   bool tab::get_element_rect(::index iTab, RECT32 * prect, e_element eelement)
    {
 
       point ptOffset(0,0);
@@ -1894,7 +1894,7 @@ namespace user
 
 #endif
 
-               prect->bottom = rect.top + (LONG) (8.0f * fDensity);
+               prect->bottom = rect.top + (::i32) (8.0f * fDensity);
 
             }
             else
@@ -1912,7 +1912,7 @@ namespace user
 
 #endif
 
-               prect->right = rect.left + (LONG)(8.0f * fDensity);
+               prect->right = rect.left + (::i32)(8.0f * fDensity);
 
                prect->bottom = rect.bottom;
 
@@ -1937,7 +1937,7 @@ namespace user
 
 #endif
 
-               prect->top = rect.bottom - (LONG)(8.0f* fDensity);
+               prect->top = rect.bottom - (::i32)(8.0f* fDensity);
 
                prect->right = rect.right;
 
@@ -1955,7 +1955,7 @@ namespace user
 
 #endif
 
-               prect->left = rect.right - (LONG) (8.0f * fDensity);
+               prect->left = rect.right - (::i32) (8.0f * fDensity);
 
                prect->top = rect.top;
 
@@ -2157,7 +2157,7 @@ namespace user
 
          prect->left   = rect.left;
 
-         prect->top    = (LONG) (rect.top +  iTab * get_data()->m_iTabHeight);
+         prect->top    = (::i32) (rect.top +  iTab * get_data()->m_iTabHeight);
 
          prect->right  = rect.right;
 
@@ -2430,7 +2430,7 @@ namespace user
    }
 
    /*
-   bool tab::create(::user::interaction * pchannel, UINT uiId)
+   bool tab::create(::user::interaction * pchannel, ::u32 uId)
    {
       if(!m_puserinteraction->create(
          pchannel,
@@ -2524,8 +2524,8 @@ namespace user
 
       install_simple_ui_default_mouse_handling(pchannel);
 
-      MESSAGE_LINK(WM_LBUTTONDOWN, pchannel, this, &tab::_001OnLButtonDown);
-      MESSAGE_LINK(WM_LBUTTONUP, pchannel, this, &tab::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_lbutton_down, pchannel, this, &tab::_001OnLButtonDown);
+      MESSAGE_LINK(e_message_lbutton_up, pchannel, this, &tab::_001OnLButtonUp);
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &tab::_001OnMouseMove);
       MESSAGE_LINK(WM_MOUSELEAVE, pchannel, this, &tab::_001OnMouseLeave);
       MESSAGE_LINK(e_message_create, pchannel, this, &tab::_001OnCreate);
@@ -3336,7 +3336,7 @@ namespace user
    }
 
 
-   void tab::GetDragRect(RECT * prect, e_position eposition)
+   void tab::GetDragRect(RECT32 * prect, e_position eposition)
 
    {
       switch(eposition)
@@ -3417,7 +3417,7 @@ namespace user
    }
 
 
-   void tab::get_child_rect(RECT* prect)
+   void tab::get_child_rect(RECT32* prect)
    {
 
       if (::is_null(prect))
@@ -3595,7 +3595,7 @@ namespace user
 
             _001ClientToScreen(rectTabScreen);
 
-            if ((pmouse->m_id == WM_LBUTTONDOWN || pmouse->m_id == WM_LBUTTONUP) && rectTabScreen.contains(pmouse->m_point))
+            if ((pmouse->m_id == e_message_lbutton_down || pmouse->m_id == e_message_lbutton_up) && rectTabScreen.contains(pmouse->m_point))
             {
 
                route_message(pmouse);

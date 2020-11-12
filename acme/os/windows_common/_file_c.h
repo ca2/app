@@ -1,7 +1,7 @@
 #pragma once
 
 
-CLASS_DECL_ACME DWORD windows_get_file_attributes(const char* path);
+CLASS_DECL_ACME ::u32 windows_get_file_attributes(const char* path);
 CLASS_DECL_ACME int_bool windows_create_directory(const char* pszPath, LPSECURITY_ATTRIBUTES lpSecurityAttributes);
 
 
@@ -29,11 +29,11 @@ inline int_bool is_ok(hfile hfile)
 
 CLASS_DECL_ACME hfile hfile_create(
 const char *            pFileName,
-DWORD                   dwDesiredAccess,
-DWORD                   dwShareMode,
+::u32                   dwDesiredAccess,
+::u32                   dwShareMode,
 LPSECURITY_ATTRIBUTES   pSecurityAttributes,
-DWORD                   dwCreationDisposition,
-DWORD                   dwFlagsAndAttributes,
+::u32                   dwCreationDisposition,
+::u32                   dwFlagsAndAttributes,
 HANDLE                  hTemplateFile
 );
 

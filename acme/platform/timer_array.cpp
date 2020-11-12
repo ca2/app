@@ -25,7 +25,7 @@ namespace apex
    }
 
 
-   bool timer_array::create_timer(uptr uEvent,UINT nEllapse, PFN_TIMER pfnTimer, bool bPeriodic, void * pvoidData)
+   bool timer_array::create_timer(uptr uEvent,::u32 nEllapse, PFN_TIMER pfnTimer, bool bPeriodic, void * pvoidData)
    {
 
       sync_lock sl(mutex());
@@ -79,7 +79,7 @@ namespace apex
    }
 
 
-   bool timer_array::set_timer(uptr uEvent, UINT nEllapse, PFN_TIMER pfnTimer, bool bPeriodic, void * pvoidData)
+   bool timer_array::set_timer(uptr uEvent, ::u32 nEllapse, PFN_TIMER pfnTimer, bool bPeriodic, void * pvoidData)
    {
 
       if (!create_timer(uEvent, nEllapse, pfnTimer, bPeriodic, pvoidData))

@@ -28,7 +28,7 @@ namespace experience
       bool                                         m_bFullScreenOnMaximize;
 
 
-      UINT                                         m_uiSWPFlags;
+      ::u32                                         m_uiSWPFlags;
 
       __composite(class move_manager)              m_pmovemanager;
       __composite(class size_manager)              m_psizemanager;
@@ -91,7 +91,7 @@ namespace experience
 
       virtual void experience_on_start_dock(::message::mouse * pmouse);
 
-      //virtual bool WfiOnBeginSizing(UINT nType, const ::point & point);
+      //virtual bool WfiOnBeginSizing(::u32 nType, const ::point & point);
       //virtual bool WfiOnBeginMoving(const ::point & point);
 
       virtual void frame_experience_restore();
@@ -124,7 +124,7 @@ namespace experience
 
 
 
-      void OnNcCalcSize(RECT * prect);
+      void OnNcCalcSize(RECT32 * prect);
 
       class dock_manager * dock_manager();
       class move_manager * move_manager();
@@ -171,11 +171,11 @@ namespace experience
 
       void Setframe_Style(i32 nStyle);
       void SetActiveFlag(bool fActive);
-      void SetSWPFlags(UINT uiFlags);
+      void SetSWPFlags(::u32 uFlags);
 
-      void GetRegionClientRect(RECT * prect);
+      void GetRegionClientRect(RECT32 * prect);
 
-      void get_draw_client_rect(RECT * prect);
+      void get_draw_client_rect(RECT32 * prect);
 
 
       void relay_event(::message::message * pmessage);

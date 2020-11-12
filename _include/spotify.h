@@ -44,10 +44,10 @@ extern "C" {
 #include <stddef.h>
 
 #ifdef _WIN32
-typedef unsigned __int64 sp_uint64;
+typedef ::u64 sp_::u3264;
 #else
 #include <stdint.h>
-typedef uint64_t sp_uint64;
+typedef ::u3264_t sp_::u3264;
 #endif
 
 /* General types */
@@ -348,21 +348,21 @@ typedef struct sp_offline_sync_status {
    * operation
    */
   int queued_tracks;
-  sp_uint64 queued_bytes;
+  sp_::u3264 queued_bytes;
 
   /**
    * Done tracks/bytes is things marked for sync that existed on
    * device before current sync operation
    */
   int done_tracks;
-  sp_uint64 done_bytes;
+  sp_::u3264 done_bytes;
 
   /**
    * Copied tracks/bytes is things that has been copied in
    * current sync operation
    */
   int copied_tracks;
-  sp_uint64 copied_bytes;
+  sp_::u3264 copied_bytes;
 
   /**
    * Tracks that are marked as synced but will not be copied
@@ -3470,7 +3470,7 @@ SP_LIBEXPORT(sp_error) sp_playlistcontainer_playlist_folder_name(sp_playlistcont
  *
  * @sa sp_session_playlistcontainer()
  */
-SP_LIBEXPORT(sp_uint64) sp_playlistcontainer_playlist_folder_id(sp_playlistcontainer *pc, int index);
+SP_LIBEXPORT(sp_::u3264) sp_playlistcontainer_playlist_folder_id(sp_playlistcontainer *pc, int index);
 
 /**
  * Add an empty playlist at the end of the playlist container.

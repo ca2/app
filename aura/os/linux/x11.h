@@ -3,7 +3,7 @@
 
 
 extern __pointer(::thread) g_pthreadXlib;
-extern ITHREAD g_ithreadXlib;
+extern ithread_t g_ithreadXlib;
 
 
 void x11_kick_idle();
@@ -26,7 +26,7 @@ void x11_fork(PRED pred)
 
    }
 
-   auto prunnable = __method(pred);
+   auto prunnable = __procedure(pred);
 
    x11_async_runnable(prunnable);
 

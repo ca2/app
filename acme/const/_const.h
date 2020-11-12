@@ -163,8 +163,8 @@ enum enum_type
    type_filetime,
    type_prop,
    type_pvar,
-   type_method,
-   type_future,
+   type_procedure,
+   type_futurevar,
 
    // matter classes
    type_element = 8000,
@@ -586,6 +586,7 @@ enum e_window_flag
    window_flag_loading_window_rect = 1 << 24,
    window_flag_main_frame = 1 << 25,
    window_flag_destroying = 1 << 26,
+   window_flag_not_visible = 1 << 27,
 
 };
 
@@ -641,21 +642,21 @@ enum enum_future
 
 */
 
-#ifndef WINDOWS_DESKTOP
-#include "acme/os/cross/windows/message_box.h"
-#endif
+//#ifndef WINDOWS_DESKTOP
+//#include "acme/os/cross/windows/message_box.h"
+//#endif
 
 
 enum enum_message_box
 {
 
-   message_box_ok = MB_OK,
-   message_box_yes_no = MB_YESNO,
-   message_box_yes_no_cancel = MB_YESNOCANCEL,
-   message_box_icon_error = MB_ICONERROR,
-   message_box_icon_exclamation = MB_ICONEXCLAMATION,
-   message_box_icon_question = MB_ICONQUESTION,
-   message_box_icon_asterisk = MB_ICONASTERISK,
+   message_box_ok = 0x00000000L,
+   message_box_yes_no = 0x00000003L,
+   message_box_yes_no_cancel = 0x00000003L,
+   message_box_icon_error = 0x00000010L,
+   message_box_icon_exclamation = 0x00000030L,
+   message_box_icon_question = 0x00000020L,
+   message_box_icon_asterisk = 0x00000040L,
    message_box_icon_hand = message_box_icon_error,
    message_box_icon_warning = message_box_icon_exclamation,
    message_box_icon_information = message_box_icon_asterisk,

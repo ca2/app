@@ -17,15 +17,15 @@ CLASS_DECL_AXIS void __cdecl __pre_translate_message(::message::message * pmessa
 int_bool PeekMessage(
 LPMESSAGE lpMsg,
 oswindow hWnd,
-UINT wMsgFilterMin,
-UINT wMsgFilterMax,
-UINT wRemoveMsg);
+::u32 wMsgFilterMin,
+::u32 wMsgFilterMax,
+::u32 wRemoveMsg);
 
 int_bool GetMessage(
 LPMESSAGE lpMsg,
 oswindow hWnd,
-UINT wMsgFilterMin,
-UINT wMsgFilterMax);
+::u32 wMsgFilterMin,
+::u32 wMsgFilterMax);
 
 
 

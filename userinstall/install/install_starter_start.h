@@ -21,7 +21,7 @@ namespace install
 
       starter_start(::layered * pobjectContext);
 
-      UINT start();
+      ::u32 start();
 
    };
 

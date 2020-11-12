@@ -66,7 +66,7 @@ namespace dami
       ID3_C_EXPORT u32      readLENumber(ID3_Reader&, size_t);
       ID3_C_EXPORT u32      readBENumber(ID3_Reader&, size_t);
       ID3_C_EXPORT ID3String      readTrailingSpaces(ID3_Reader&, size_t);
-      ID3_C_EXPORT u32      readUInt28(ID3_Reader&);
+      ID3_C_EXPORT u32      read::u3228(ID3_Reader&);
 
       ID3_C_EXPORT size_t      writeString(ID3_Writer&, ID3String);
       ID3_C_EXPORT size_t      writeText(ID3_Writer&, ID3String);
@@ -74,7 +74,7 @@ namespace dami
       ID3_C_EXPORT size_t      writeUnicodeText(ID3_Writer&, ID3String, bool = true);
       ID3_C_EXPORT size_t      writeBENumber(ID3_Writer&, u32 val, size_t);
       ID3_C_EXPORT size_t      writeTrailingSpaces(ID3_Writer&, ID3String, size_t);
-      ID3_C_EXPORT size_t      writeUInt28(ID3_Writer&, u32);
+      ID3_C_EXPORT size_t      write::u3228(ID3_Writer&, u32);
    };
 };
 

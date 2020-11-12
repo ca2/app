@@ -69,7 +69,7 @@ class single_lock;
 class multi_lock;
 
 
-CLASS_DECL_ACME ::estatus __call(const ::method & method);
+CLASS_DECL_ACME ::estatus __call(const ::procedure & procedure);
 
 
 
@@ -123,7 +123,7 @@ CLASS_DECL_ACME ::estatus __call(const ::method & method);
 
 
 CLASS_DECL_ACME bool set_thread_name(const char * psz);
-CLASS_DECL_ACME bool set_thread_name(HTHREAD hthread, const char* pszName);
+CLASS_DECL_ACME bool set_thread_name(hthread_t hthread, const char* pszName);
 
 
 typedef ::estatus     (*__THREADPROC)(void *);
@@ -289,11 +289,11 @@ namespace multithreading
 
 
    CLASS_DECL_ACME bool task_registered(::task * ptask);
-   CLASS_DECL_ACME bool task_id_registered(ITHREAD id);
+   CLASS_DECL_ACME bool task_id_registered(ithread_t id);
 
-   CLASS_DECL_ACME void task_register(ITHREAD itask, ::task * ptask);
+   CLASS_DECL_ACME void task_register(ithread_t itask, ::task * ptask);
 
-   CLASS_DECL_ACME void task_unregister(ITHREAD itask, ::task * ptask);
+   CLASS_DECL_ACME void task_unregister(ithread_t itask, ::task * ptask);
 
 
 } // namespace multithreading
@@ -312,7 +312,7 @@ namespace multithreading
 
 CLASS_DECL_ACME::task* get_task();
 CLASS_DECL_ACME ::thread* get_thread();
-//CLASS_DECL_ACME ::thread* get_task(ITHREAD idthread);
+//CLASS_DECL_ACME ::thread* get_task(ithread_t idthread);
 CLASS_DECL_ACME void set_task(task * ptask OBJ_REF_DBG_COMMA_PARAMS);
 CLASS_DECL_ACME void thread_release(OBJ_REF_DBG_PARAMS);
 
@@ -324,8 +324,8 @@ CLASS_DECL_ACME bool __simple_task_sleep();
 CLASS_DECL_ACME bool __simple_task_sleep(tick tick);
 CLASS_DECL_ACME bool __simple_task_sleep(::sync* psync);
 CLASS_DECL_ACME bool __simple_task_sleep(tick tick, ::sync* psync);
-CLASS_DECL_ACME bool task_sleep(tick tick = INFINITE, ::sync * psync = nullptr);
-//CLASS_DECL_ACME bool acme_task_sleep(tick tick = INFINITE, ::sync* psync = nullptr);
+CLASS_DECL_ACME bool task_sleep(tick tick = U32_INFINITE_TIMEOUT, ::sync * psync = nullptr);
+//CLASS_DECL_ACME bool acme_task_sleep(tick tick = U32_INFINITE_TIMEOUT, ::sync* psync = nullptr);
 //CLASS_DECL_ACME void set_taskhread_sleep(PFN_task_sleep pfnThreadSleep);
 
 #ifdef _UWP
@@ -335,7 +335,7 @@ CLASS_DECL_ACME bool task_sleep(tick tick = INFINITE, ::sync * psync = nullptr);
 #endif
 
 
-string get_task_name(HTHREAD hthread);
+string get_task_name(hthread_t hthread);
 
 #include "acme/primitive/collection/runnable_array.h"
 
@@ -350,7 +350,7 @@ string get_thread_name(::thread* pthread);
 
 CLASS_DECL_ACME void thread_name_abbreviate(string & strName, int len);
 
-CLASS_DECL_ACME bool set_thread_name(HTHREAD hthread, const char * psz);
+CLASS_DECL_ACME bool set_thread_name(hthread_t hthread, const char * psz);
 CLASS_DECL_ACME bool set_thread_name(const char * psz);
 
 //#include "update_task_item_array.h"
@@ -377,7 +377,7 @@ CLASS_DECL_ACME bool task_sleep(tick tick, sync* psync);
 #include "sync_future.h"
 
 
-#include "pred_sync_method.h"
+#include "pred_sync_procedure.h"
 
 
 

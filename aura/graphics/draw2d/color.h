@@ -26,7 +26,7 @@
 //
 //   rgb(e_zero_init) : m_iR(0), m_iG(0), m_iB(0) {}
 //
-//   rgb(COLORREF cr) : m_iR(colorref_get_r_value(cr)), m_iG(colorref_get_r_value(cr)), m_iB(colorref_get_r_value(cr)) {}
+//   rgb(color32_t cr) : m_iR(colorref_get_r_value(cr)), m_iG(colorref_get_r_value(cr)), m_iB(colorref_get_r_value(cr)) {}
 //
 //   rgb(int iR, int iG, int iB) : m_iR(iR), m_iG(iG), m_iB(iB) {}
 //
@@ -44,10 +44,10 @@
 //};
 //
 //
-//auto inline red(COLORREF rgba) { return ((byte)(rgba & 0xff)); }
-//auto inline green(COLORREF rgba) { return ((byte)((rgba >> 8) & 0xff)); }
-//auto inline blue(COLORREF rgba) { return ((byte)((rgba >> 16) & 0xff)); }
-//auto inline opacity(COLORREF rgba) { return ((byte)((rgba >> 24) & 0xff)); }
+//auto inline red(color32_t rgba) { return ((byte)(rgba & 0xff)); }
+//auto inline green(color32_t rgba) { return ((byte)((rgba >> 8) & 0xff)); }
+//auto inline blue(color32_t rgba) { return ((byte)((rgba >> 16) & 0xff)); }
+//auto inline opacity(color32_t rgba) { return ((byte)((rgba >> 24) & 0xff)); }
 //
 //class rgba :
 //   public rgb
@@ -59,7 +59,7 @@
 //   rgba() {}
 //   rgba(e_zero_init) : rgb(zero_init), m_iA(0) {}
 //   rgba(int iR, int iG, int iB, int iA) : rgb(iR, iG, iB), m_iA(iA) {}
-//   rgba(COLORREF cr) : rgb(cr), m_iA(colorref_get_a_value(cr)) {}
+//   rgba(color32_t cr) : rgb(cr), m_iA(colorref_get_a_value(cr)) {}
 //   rgba(const ::rgb & rgb) : ::rgb(rgb), m_iA(255) { }
 //   rgba(const ::rgba & rgba) : ::rgb(rgba), m_iA(rgba.m_iA) { }
 //
@@ -130,7 +130,7 @@
 //   color(const color & color);
 //   color(enum_color ecolor, int A = 255);
 //   color(const hls & hls, int A = 255);
-//   color(COLORREF cr);
+//   color(color32_t cr);
 //   color(int R, int G, int B, int A = 255);
 //   ~color();
 //
@@ -140,8 +140,8 @@
 //
 //   void hls_mult(double dRateH, double dRateL, double dRateS);
 //   void hls_rate(double dRateH, double dRateL, double dRateS);
-//   void set_rgb(COLORREF cr);
-//   void set_argb(COLORREF cr);
+//   void set_rgb(color32_t cr);
+//   void set_argb(color32_t cr);
 //   void set_bgr(u32 dw);
 //   void get_hls(double & dHue, double & dLightness, double & dSaturation) const;
 //
@@ -166,16 +166,16 @@
 //   void set(int R, int G, int B);
 //   void set(int R, int G, int B, int A);
 //
-//   operator COLORREF() const;
+//   operator color32_t() const;
 //
 //   color & operator = (const color & color);
-//   color & operator = (COLORREF cr);
+//   color & operator = (color32_t cr);
 //   color & operator = (enum_color ecolor);
 //   color & operator = (const hls & hls);
 //
 //   bool parse_color(const char * psz);
 //
-//   void set_COLORREF(COLORREF cr);
+//   void set_COLORREF(color32_t cr);
 //
 //   void hue_offset(double dRadians);
 //
@@ -183,8 +183,8 @@
 //   inline static bool similar_color_component(double d1, double d2) { return fabs(d2 - d1) < (1.0 / 255.0); }
 //
 //   bool operator == (const color & color) const { return memcmp(this, &color, sizeof(color)) == 0; }
-//   bool operator == (COLORREF cr) const { return this->operator COLORREF() == cr; }
-//   bool operator == (enum_color ecolor) const { return this->operator COLORREF() == ::color(ecolor).operator COLORREF(); }
+//   bool operator == (color32_t cr) const { return this->operator color32_t() == cr; }
+//   bool operator == (enum_color ecolor) const { return this->operator color32_t() == ::color(ecolor).operator color32_t(); }
 //   bool operator == (const hls & hls) const
 //   {
 //
@@ -195,7 +195,7 @@
 //         && similar_color_component(hlsThis.m_dS, hls.m_dS);
 //   }
 //   bool operator != (const color& color) const { return !operator == (color); }
-//   bool operator != (COLORREF cr) const { return !operator == (cr); }
+//   bool operator != (color32_t cr) const { return !operator == (cr); }
 //   bool operator != (enum_color ecolor) const { return !operator == (ecolor); }
 //   bool operator != (const hls& hls) const { return !operator == (hls); }
 //
@@ -204,11 +204,11 @@
 //};
 //
 //
-//CLASS_DECL_AURA COLORREF alpha_color(BYTE bAlpha, COLORREF cr);
-//CLASS_DECL_AURA COLORREF alpha_color(BYTE bAlpha, enum_color ecolor);
-//CLASS_DECL_AURA COLORREF opaque_color(COLORREF cr);
-//CLASS_DECL_AURA COLORREF pure_color(enum_color ecolor);
-//CLASS_DECL_AURA COLORREF opaque_color(enum_color ecolor);
+//CLASS_DECL_AURA color32_t alpha_color(byte bAlpha, color32_t cr);
+//CLASS_DECL_AURA color32_t alpha_color(byte bAlpha, enum_color ecolor);
+//CLASS_DECL_AURA color32_t opaque_color(color32_t cr);
+//CLASS_DECL_AURA color32_t pure_color(enum_color ecolor);
+//CLASS_DECL_AURA color32_t opaque_color(enum_color ecolor);
 //
 //
 //#define rgb_get_r_value(rgb)      (LOBYTE(rgb))

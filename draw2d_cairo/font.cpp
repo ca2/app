@@ -19,7 +19,7 @@ namespace draw2d_cairo
    int CALLBACK EnumFamCallBack(
    _In_ ENUMLOGFONTW   *lpelf,
    _In_ NEWTEXTMETRICW *lpntm,
-   _In_ DWORD         FontType,
+   _In_ ::u32         FontType,
    _In_ LPARAM        lParam
    )
    {

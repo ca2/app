@@ -1321,8 +1321,8 @@ u32 len)
                                          pfile_in_zip_read_info->stream.next_out,
                                          (u32) uDoCopy);
          pfile_in_zip_read_info->rest_read_uncompressed-=uDoCopy;
-         pfile_in_zip_read_info->stream.avail_in -= (uInt) uDoCopy;
-         pfile_in_zip_read_info->stream.avail_out -= (uInt) uDoCopy;
+         pfile_in_zip_read_info->stream.avail_in -= (::u32) uDoCopy;
+         pfile_in_zip_read_info->stream.avail_out -= (::u32) uDoCopy;
          pfile_in_zip_read_info->stream.next_out += uDoCopy;
          pfile_in_zip_read_info->stream.next_in += uDoCopy;
          pfile_in_zip_read_info->stream.total_out += (uLong) uDoCopy;

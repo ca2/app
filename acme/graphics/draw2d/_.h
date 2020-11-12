@@ -1,7 +1,7 @@
 #pragma once
 
 
-CLASS_DECL_ACME COLORREF make_colorref(i32 a, i32 rect, i32 g, i32 b);
+CLASS_DECL_ACME color32_t make_colorref(i32 a, i32 rect, i32 g, i32 b);
 
 
 inline byte clampAndConvert(double v)
@@ -17,7 +17,7 @@ inline byte clampAndConvert(double v)
 
 }
 
-CLASS_DECL_ACME COLORREF argb_swap_rb(COLORREF cr);
+CLASS_DECL_ACME color32_t argb_swap_rb(color32_t cr);
 
 
 #include "_const.h"

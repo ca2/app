@@ -526,7 +526,7 @@ namespace linux
          if(!::dir::mkdir(stra[i]))
          {
 
-            DWORD dwError = ::get_last_error();
+            ::u32 dwError = ::get_last_error();
 
             if(dwError == ERROR_ALREADY_EXISTS)
             {

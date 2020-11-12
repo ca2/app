@@ -299,8 +299,8 @@ namespace multimedia
          xxf_zero(b);
 
          b.pContext = pbuffer;
-         b.AudioBytes = (UINT32) (pwbuffer->m_uiBufferSize);
-         b.pAudioData = (const BYTE *)pbuffer->m_pData;
+         b.AudioBytes = (::u32) (pwbuffer->m_uiBufferSize);
+         b.pAudioData = (const byte *)pbuffer->m_pData;
          b.Flags = m_bEOS ? XAUDIO2_END_OF_STREAM : 0;
 
          //single_lock sLock(mutex(),TRUE);
@@ -612,7 +612,7 @@ namespace multimedia
       //
       // Callback handlers, only implement the buffer events for maintaining play state
       //
-      void out::OnVoiceProcessingPassStart(UINT32 /*bytesRequired*/)
+      void out::OnVoiceProcessingPassStart(::u32 /*bytesRequired*/)
       {
       }
       void out::OnVoiceProcessingPassEnd()
@@ -638,10 +638,10 @@ namespace multimedia
 
          //}
 
-         unsigned __int64 freq;
+         ::u64 freq;
          QueryPerformanceFrequency((LARGE_INTEGER*)&freq);
          double timerFrequency = (1.0 / freq);
-         unsigned __int64 startTime;
+         ::u64 startTime;
          QueryPerformanceCounter((LARGE_INTEGER *)&startTime);
 
 
@@ -653,7 +653,7 @@ namespace multimedia
 
          m_psynththread->on_free(iBuffer);
 
-         unsigned __int64 endTime;
+         ::u64 endTime;
          QueryPerformanceCounter((LARGE_INTEGER *)&endTime);
          double timeDifferenceInseconds = ((endTime - startTime) * timerFrequency);
          if(timeDifferenceInseconds > 0.040)

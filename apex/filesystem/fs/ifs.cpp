@@ -336,7 +336,7 @@ bool ifs::file_move(const ::file::path & pszDst,const ::file::path & pszSrc)
 }
 
 
-file_result ifs::get_file(const ::file::path & path, UINT nOpenFlags)
+file_result ifs::get_file(const ::file::path & path, ::u32 nOpenFlags)
 {
 
    auto pfile = __new(ifs_file( path));

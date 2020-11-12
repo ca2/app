@@ -59,9 +59,9 @@ static void TraceDDE(const char * pszPrefix, const MESSAGE* pMsg)
 
       char szFormat[80];
       szFormat[0] = '\0';
-      if (((UINT)0xC000 <= (UINT)pAdvise->cfFormat) &&
+      if (((::u32)0xC000 <= (::u32)pAdvise->cfFormat) &&
 
-            ((UINT)pAdvise->cfFormat <= (UINT)0xFFFF))
+            ((::u32)pAdvise->cfFormat <= (::u32)0xFFFF))
 
       {
          ::GetClipboardFormatName(pAdvise->cfFormat,

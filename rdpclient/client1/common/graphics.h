@@ -5,7 +5,7 @@
 struct axisrdp_bitmap
 {
    rdpBitmap _bitmap;
-   BYTE* pdata;
+   byte* pdata;
 };
 
 
@@ -26,14 +26,14 @@ struct axisrdp_context:
    int client_y;
    int client_width;
    int client_height;
-   UINT32 bitmap_size;
-   BYTE* bitmap_buffer;
+   ::u32 bitmap_size;
+   byte* bitmap_buffer;
 
    //axisrdp_bitmap* primary;
    //axisrdp_bitmap* drawing;
 
-   UINT16 srcBpp;
-   UINT16 dstBpp;
+   ::u3216 srcBpp;
+   ::u3216 dstBpp;
    rdpCodecs* codecs;
    freerdp* instance;
 

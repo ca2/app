@@ -12,7 +12,7 @@ namespace sockets
 
    }
 
-      
+
    ::estatus     resolv_server::initialize_resolv_server(::object * pobjectParent, port_t port)
    {
 
@@ -27,7 +27,7 @@ namespace sockets
 
       m_port = port;
 
-      fork();
+      begin_task();
 
       return estatus;
 

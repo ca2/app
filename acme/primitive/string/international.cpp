@@ -18,18 +18,18 @@ namespace str
    {
 
 
-      bool UnicodeToMultiByte(UINT uiCodePage, ansichar * pstrMultiByte, strsize nCount, const widechar * pcsz)
+      bool UnicodeToMultiByte(::u32 uCodePage, ansichar * pstrMultiByte, strsize nCount, const widechar * pcsz)
       {
 
-         return WideCharToMultiByte2(uiCodePage, 0, pcsz, -1, pstrMultiByte, (i32) nCount, nullptr, nullptr) != FALSE;
+         return WideCharToMultiByte2(uCodePage, 0, pcsz, -1, pstrMultiByte, (i32) nCount, nullptr, nullptr) != FALSE;
 
       }
 
 
-      bool UnicodeToMultiByte(UINT uiCodePage, ansichar * pstrMultiByte, strsize iMultiByteCount, const widechar * pcsz, strsize iCount)
+      bool UnicodeToMultiByte(::u32 uCodePage, ansichar * pstrMultiByte, strsize iMultiByteCount, const widechar * pcsz, strsize iCount)
       {
 
-         if (CP_UTF8 == uiCodePage)
+         if (CP_UTF8 == uCodePage)
          {
 
             unichar_to_utf8(pstrMultiByte, pcsz, iCount);
@@ -38,12 +38,12 @@ namespace str
 
          }
 
-         return WideCharToMultiByte2(uiCodePage, 0, pcsz, (i32) iCount, pstrMultiByte, (i32) iMultiByteCount, nullptr, nullptr) != FALSE;
+         return WideCharToMultiByte2(uCodePage, 0, pcsz, (i32) iCount, pstrMultiByte, (i32) iMultiByteCount, nullptr, nullptr) != FALSE;
 
       }
 
 
-      bool UnicodeToMultiByte(UINT uiCodePage, string &str, const widechar * pcsz)
+      bool UnicodeToMultiByte(::u32 uCodePage, string &str, const widechar * pcsz)
       {
 
          auto srclen = ::str::string_safe_length(pcsz);
@@ -57,11 +57,11 @@ namespace str
 
          }
 
-         strsize iCount = UnicodeToMultiByteCount(uiCodePage, pcsz, srclen);
+         strsize iCount = UnicodeToMultiByteCount(uCodePage, pcsz, srclen);
 
-         LPSTR psz = str.get_string_buffer(iCount);
+         char * psz = str.get_string_buffer(iCount);
 
-         if(UnicodeToMultiByte(uiCodePage, psz, iCount + 1, pcsz, srclen))
+         if(UnicodeToMultiByte(uCodePage, psz, iCount + 1, pcsz, srclen))
          {
 
             str.release_string_buffer(iCount);
@@ -85,7 +85,7 @@ namespace str
       }
 
 
-      bool UnicodeToMultiByte(UINT uiCodePage, string &str, const widechar * pcsz, strsize iCount)
+      bool UnicodeToMultiByte(::u32 uCodePage, string &str, const widechar * pcsz, strsize iCount)
       {
 
          if(pcsz == nullptr || *pcsz == '\0' || iCount <= 0)
@@ -97,11 +97,11 @@ namespace str
 
          }
 
-         strsize iMultiByteCount = UnicodeToMultiByteCount(uiCodePage, pcsz, iCount);
+         strsize iMultiByteCount = UnicodeToMultiByteCount(uCodePage, pcsz, iCount);
 
-         LPSTR psz = str.get_string_buffer(iMultiByteCount);
+         char * psz = str.get_string_buffer(iMultiByteCount);
 
-         if(UnicodeToMultiByte(uiCodePage, psz, iMultiByteCount + 1, pcsz, iCount))
+         if(UnicodeToMultiByte(uCodePage, psz, iMultiByteCount + 1, pcsz, iCount))
          {
 
             str.release_string_buffer(iMultiByteCount);
@@ -126,7 +126,7 @@ namespace str
       bool unicode_to_utf8(string & str, const widechar * pcsz, strsize iCount)
       {
 
-         LPSTR psz = str.get_string_buffer(iCount * 4); // worst guess?!?
+         char * psz = str.get_string_buffer(iCount * 4); // worst guess?!?
 
          strsize iLen = unichar_to_utf8(psz, pcsz, iCount);
 
@@ -137,18 +137,18 @@ namespace str
       }
 
 
-      strsize UnicodeToMultiByteCount(UINT uiCodePage, const widechar * pcsz)
+      strsize UnicodeToMultiByteCount(::u32 uCodePage, const widechar * pcsz)
       {
 
-         return UnicodeToMultiByteCount(uiCodePage, pcsz, ::str::string_safe_length(pcsz));
+         return UnicodeToMultiByteCount(uCodePage, pcsz, ::str::string_safe_length(pcsz));
 
       }
 
 
-      strsize UnicodeToMultiByteCount(UINT uiCodePage, const widechar * pcsz, strsize iCount)
+      strsize UnicodeToMultiByteCount(::u32 uCodePage, const widechar * pcsz, strsize iCount)
       {
 
-         if (CP_UTF8 == uiCodePage)
+         if (CP_UTF8 == uCodePage)
          {
 
             return unichar_to_utf8_len(pcsz, iCount);
@@ -160,13 +160,13 @@ namespace str
             if (iCount == -1)
             {
 
-               return WideCharToMultiByte2(uiCodePage, 0, pcsz, (i32)iCount, nullptr, 0, nullptr, nullptr) - 1;
+               return WideCharToMultiByte2(uCodePage, 0, pcsz, (i32)iCount, nullptr, 0, nullptr, nullptr) - 1;
 
             }
             else
             {
 
-               return WideCharToMultiByte2(uiCodePage, 0, pcsz, (i32)iCount, nullptr, 0, nullptr, nullptr);
+               return WideCharToMultiByte2(uCodePage, 0, pcsz, (i32)iCount, nullptr, 0, nullptr, nullptr);
 
             }
 
@@ -175,15 +175,15 @@ namespace str
       }
 
 
-      strsize Utf8ToMultiByteCount(UINT uiCodePage, const char * pcsz)
+      strsize Utf8ToMultiByteCount(::u32 uCodePage, const char * pcsz)
       {
 
-         return WideCharToMultiByte2(uiCodePage, 0, MultiByteToUnicode(uiCodePage, pcsz), -1, nullptr, 0, nullptr, nullptr) - 1;
+         return WideCharToMultiByte2(uCodePage, 0, MultiByteToUnicode(uCodePage, pcsz), -1, nullptr, 0, nullptr, nullptr) - 1;
 
       }
 
 
-      bool MultiByteToUnicode(UINT uiCodePage, widechar * pwsz, strsize iBuffer, const char * pcsz, strsize iCount)
+      bool MultiByteToUnicode(::u32 uCodePage, widechar * pwsz, strsize iBuffer, const char * pcsz, strsize iCount)
       {
 
          if(pwsz == nullptr)
@@ -199,47 +199,47 @@ namespace str
                return true;
          }
 
-         return MultiByteToWideChar2(uiCodePage, 0, pcsz, (i32) iCount, pwsz, (i32) iBuffer) != 0;
+         return MultiByteToWideChar2(uCodePage, 0, pcsz, (i32) iCount, pwsz, (i32) iBuffer) != 0;
 
       }
 
 
-      bool MultiByteToUnicode(UINT uiCodePage, widechar * pwsz, strsize iBuffer, const char * pcsz)
+      bool MultiByteToUnicode(::u32 uCodePage, widechar * pwsz, strsize iBuffer, const char * pcsz)
       {
 
-         return MultiByteToUnicode(uiCodePage, pwsz, iBuffer, pcsz, -1);
+         return MultiByteToUnicode(uCodePage, pwsz, iBuffer, pcsz, -1);
 
       }
 
 
-      strsize MultiByteToUnicodeCount(UINT uiCodePage, const char * pcsz, strsize iCount)
+      strsize MultiByteToUnicodeCount(::u32 uCodePage, const char * pcsz, strsize iCount)
       {
 
-         return MultiByteToWideChar2(uiCodePage, 0, pcsz, (i32) iCount, nullptr, 0);
+         return MultiByteToWideChar2(uCodePage, 0, pcsz, (i32) iCount, nullptr, 0);
 
       }
 
 
-      strsize MultiByteToUnicodeCount(UINT uiCodePage, const char * pcsz)
+      strsize MultiByteToUnicodeCount(::u32 uCodePage, const char * pcsz)
       {
 
-         return MultiByteToUnicodeCount(uiCodePage, pcsz, -1);
+         return MultiByteToUnicodeCount(uCodePage, pcsz, -1);
 
       }
 
 
-      wstring MultiByteToUnicode(UINT uiCodePage, const char * pcsz)
+      wstring MultiByteToUnicode(::u32 uCodePage, const char * pcsz)
       {
 
-         return MultiByteToUnicode(uiCodePage, pcsz, -1);
+         return MultiByteToUnicode(uCodePage, pcsz, -1);
 
       }
 
 
-      wstring MultiByteToUnicode(UINT uiCodePage, const char * pcsz, strsize nCount)
+      wstring MultiByteToUnicode(::u32 uCodePage, const char * pcsz, strsize nCount)
       {
 
-         strsize iBuffer = MultiByteToUnicodeCount(uiCodePage, pcsz, nCount);
+         strsize iBuffer = MultiByteToUnicodeCount(uCodePage, pcsz, nCount);
 
          if(iBuffer == ERROR_NO_UNICODE_TRANSLATION)
          {
@@ -253,7 +253,7 @@ namespace str
          }
          wstring wstr;
          auto pwsz = wstr.get_string_buffer(iBuffer);
-         if(MultiByteToUnicode(uiCodePage, pwsz, iBuffer + 1, pcsz, nCount))
+         if(MultiByteToUnicode(uCodePage, pwsz, iBuffer + 1, pcsz, nCount))
 
          {
             wstr.release_string_buffer(iBuffer);
@@ -263,9 +263,9 @@ namespace str
          return push;
       }
 
-      wstring MultiByteToUnicode(UINT uiCodePage, const string & str)
+      wstring MultiByteToUnicode(::u32 uCodePage, const string & str)
       {
-         //if(uiCodePage == CP_UTF8)
+         //if(uCodePage == CP_UTF8)
          {
            // return wstring(str);
          }
@@ -274,7 +274,7 @@ namespace str
             widechar push[]={0};
             return push;
          }
-         strsize iBuffer = MultiByteToUnicodeCount(uiCodePage, str, (strsize) str.get_length());
+         strsize iBuffer = MultiByteToUnicodeCount(uCodePage, str, (strsize) str.get_length());
          if(iBuffer == ERROR_NO_UNICODE_TRANSLATION)
          {
             widechar push[]={0};
@@ -290,7 +290,7 @@ namespace str
 
          widechar * pwsz = wstr.get_string_buffer(iBuffer);
 
-         if(MultiByteToUnicode(uiCodePage,pwsz, iBuffer + 1, str, (strsize) str.get_length()))
+         if(MultiByteToUnicode(uCodePage,pwsz, iBuffer + 1, str, (strsize) str.get_length()))
          {
 
             wstr.release_string_buffer(iBuffer);
@@ -306,59 +306,59 @@ namespace str
       }
 
 
-      bool MultiByteToMultiByte(UINT uiCodePageDst, string & str, UINT uiCodePageSrc, const char * pcsz)
+      bool MultiByteToMultiByte(::u32 uCodePageDst, string & str, ::u32 uCodePageSrc, const char * pcsz)
       {
 
-         if(uiCodePageDst == uiCodePageSrc)
+         if(uCodePageDst == uCodePageSrc)
          {
             str = pcsz;
 
             return true;
          }
          else
-            return UnicodeToMultiByte(uiCodePageDst, str, MultiByteToUnicode(uiCodePageSrc, pcsz));
+            return UnicodeToMultiByte(uCodePageDst, str, MultiByteToUnicode(uCodePageSrc, pcsz));
 
       }
 
-      bool MultiByteToMultiByte(UINT uiCodePageDst, char * psz, strsize nCount, UINT uiCodePageSrc, const char * pcsz)
+      bool MultiByteToMultiByte(::u32 uCodePageDst, char * psz, strsize nCount, ::u32 uCodePageSrc, const char * pcsz)
 
       {
-         return UnicodeToMultiByte(uiCodePageDst, psz, nCount, MultiByteToUnicode(uiCodePageSrc, pcsz));
+         return UnicodeToMultiByte(uCodePageDst, psz, nCount, MultiByteToUnicode(uCodePageSrc, pcsz));
 
       }
 
-      bool MultiByteToMultiByte(UINT uiCodePageDst, string & str, UINT uiCodePageSrc, const char * pcsz, strsize nCount)
+      bool MultiByteToMultiByte(::u32 uCodePageDst, string & str, ::u32 uCodePageSrc, const char * pcsz, strsize nCount)
 
       {
-         return UnicodeToMultiByte(uiCodePageDst, str, MultiByteToUnicode(uiCodePageSrc, pcsz, nCount));
+         return UnicodeToMultiByte(uCodePageDst, str, MultiByteToUnicode(uCodePageSrc, pcsz, nCount));
 
       }
 
-      //bool MultiByteToOEM(UINT uiCodePage, string & str, const char * pcsz)
+      //bool MultiByteToOEM(::u32 uCodePage, string & str, const char * pcsz)
 
       //{
-      //   return MultiByteToMultiByte(::GetOEMCP(), str, uiCodePage, pcsz);
+      //   return MultiByteToMultiByte(::GetOEMCP(), str, uCodePage, pcsz);
 
       //}
 
-      //bool MultiByteToOEM(UINT uiCodePage, string & str, const char * pcsz, strsize nCount)
+      //bool MultiByteToOEM(::u32 uCodePage, string & str, const char * pcsz, strsize nCount)
 
       //{
-      //   return MultiByteToMultiByte(::GetOEMCP(), str, uiCodePage, pcsz, nCount);
+      //   return MultiByteToMultiByte(::GetOEMCP(), str, uCodePage, pcsz, nCount);
 
       //}
 
-      //bool OEMToMultiByte(UINT uiCodePage, string & str, const char * pcsz)
+      //bool OEMToMultiByte(::u32 uCodePage, string & str, const char * pcsz)
 
       //{
-      //   return MultiByteToMultiByte(uiCodePage, str, ::GetOEMCP(), pcsz);
+      //   return MultiByteToMultiByte(uCodePage, str, ::GetOEMCP(), pcsz);
 
       //}
 
-      //bool OEMToMultiByte(UINT uiCodePage, string & str, const char * pcsz, strsize nCount)
+      //bool OEMToMultiByte(::u32 uCodePage, string & str, const char * pcsz, strsize nCount)
 
       //{
-      //   return MultiByteToMultiByte(uiCodePage, str, ::GetOEMCP(), pcsz, nCount);
+      //   return MultiByteToMultiByte(uCodePage, str, ::GetOEMCP(), pcsz, nCount);
 
       //}
 
@@ -384,40 +384,40 @@ namespace str
 //
 //#endif
 
-      bool MultiByteToMultiByte(UINT uiCodePageDst, memory & str, UINT uiCodePageSrc, const char * pcsz)
+      bool MultiByteToMultiByte(::u32 uCodePageDst, memory & str, ::u32 uCodePageSrc, const char * pcsz)
 
       {
-         return UnicodeToMultiByte(uiCodePageDst, str, MultiByteToUnicode(uiCodePageSrc, pcsz));
+         return UnicodeToMultiByte(uCodePageDst, str, MultiByteToUnicode(uCodePageSrc, pcsz));
 
       }
 
-      bool MultiByteToMultiByte(UINT uiCodePageDst, memory & str, UINT uiCodePageSrc, const char * pcsz, strsize nCount)
+      bool MultiByteToMultiByte(::u32 uCodePageDst, memory & str, ::u32 uCodePageSrc, const char * pcsz, strsize nCount)
 
       {
-         return UnicodeToMultiByte(uiCodePageDst, str, MultiByteToUnicode(uiCodePageSrc, pcsz, nCount));
+         return UnicodeToMultiByte(uCodePageDst, str, MultiByteToUnicode(uCodePageSrc, pcsz, nCount));
 
       }
 
-      bool UnicodeToMultiByte(UINT uiCodePage, memory & memstorage, const widechar * pcsz)
+      bool UnicodeToMultiByte(::u32 uCodePage, memory & memstorage, const widechar * pcsz)
 
       {
-         memstorage.set_size(UnicodeToMultiByteCount(uiCodePage, pcsz));
+         memstorage.set_size(UnicodeToMultiByteCount(uCodePage, pcsz));
 
-         return UnicodeToMultiByte(uiCodePage, (char *) memstorage.get_data(), (strsize) memstorage.get_size(), pcsz);
+         return UnicodeToMultiByte(uCodePage, (char *) memstorage.get_data(), (strsize) memstorage.get_size(), pcsz);
 
       }
 
-      //bool OEMToMultiByte(UINT uiCodePage, memory & str, const char * pcsz)
+      //bool OEMToMultiByte(::u32 uCodePage, memory & str, const char * pcsz)
 
       //{
-      //   return MultiByteToMultiByte(uiCodePage, str, ::GetOEMCP(), pcsz);
+      //   return MultiByteToMultiByte(uCodePage, str, ::GetOEMCP(), pcsz);
 
       //}
 
-      //bool OEMToMultiByte(UINT uiCodePage, memory & str, const char * pcsz, strsize nCount)
+      //bool OEMToMultiByte(::u32 uCodePage, memory & str, const char * pcsz, strsize nCount)
 
       //{
-      //   return MultiByteToMultiByte(uiCodePage, str, ::GetOEMCP(), pcsz, nCount);
+      //   return MultiByteToMultiByte(uCodePage, str, ::GetOEMCP(), pcsz, nCount);
 
       //}
 
@@ -425,11 +425,11 @@ namespace str
       // ACP ( GetACP() function) conversion
       ///////////////////////////////////////////////////////////////
 
-      string UnicodeToMultiByte(UINT uiCodePage, const widechar * pcsz)
+      string UnicodeToMultiByte(::u32 uCodePage, const widechar * pcsz)
 
       {
          string str;
-         UnicodeToMultiByte(uiCodePage, str, pcsz);
+         UnicodeToMultiByte(uCodePage, str, pcsz);
 
          return str;
       }
@@ -574,12 +574,12 @@ namespace str
       }
 
 
-      string multibyte_to_utf8(UINT uiCodePageSrc, const char * pcsz)
+      string multibyte_to_utf8(::u32 uCodePageSrc, const char * pcsz)
       {
 
          string str;
 
-         if (!MultiByteToMultiByte(CP_UTF8, str, uiCodePageSrc, pcsz))
+         if (!MultiByteToMultiByte(CP_UTF8, str, uCodePageSrc, pcsz))
 
          {
 
@@ -592,17 +592,17 @@ namespace str
       }
 
 
-      bool multibyte_to_utf8(UINT uiCodePageSrc, string & str, const char * pcsz)
+      bool multibyte_to_utf8(::u32 uCodePageSrc, string & str, const char * pcsz)
 
       {
-         return MultiByteToMultiByte(CP_UTF8, str, uiCodePageSrc, pcsz);
+         return MultiByteToMultiByte(CP_UTF8, str, uCodePageSrc, pcsz);
 
       }
 
-      bool multibyte_to_utf8(UINT uiCodePageSrc, string & str, const char * pcsz, strsize nCount)
+      bool multibyte_to_utf8(::u32 uCodePageSrc, string & str, const char * pcsz, strsize nCount)
 
       {
-         return MultiByteToMultiByte(CP_UTF8, str, uiCodePageSrc, pcsz, nCount);
+         return MultiByteToMultiByte(CP_UTF8, str, uCodePageSrc, pcsz, nCount);
 
       }
 
@@ -642,24 +642,24 @@ namespace str
 
       }
 
-      bool utf8_to_multibyte(UINT uiCodePage, string & str, const char * pcsz)
+      bool utf8_to_multibyte(::u32 uCodePage, string & str, const char * pcsz)
 
       {
-         return MultiByteToMultiByte(CodePageUtf8, str, uiCodePage, pcsz);
+         return MultiByteToMultiByte(CodePageUtf8, str, uCodePage, pcsz);
 
       }
 
-      bool utf8_to_multibyte(UINT uiCodePage, string & str, const char * pcsz, strsize nCount)
+      bool utf8_to_multibyte(::u32 uCodePage, string & str, const char * pcsz, strsize nCount)
 
       {
-         return MultiByteToMultiByte(CodePageUtf8, str, uiCodePage, pcsz, nCount);
+         return MultiByteToMultiByte(CodePageUtf8, str, uCodePage, pcsz, nCount);
 
       }
 
-      bool utf8_to_multibyte(UINT uiCodePage, char * psz, strsize nCount, const char * pcsz)
+      bool utf8_to_multibyte(::u32 uCodePage, char * psz, strsize nCount, const char * pcsz)
 
       {
-         return MultiByteToMultiByte(CodePageUtf8, psz, nCount, uiCodePage, pcsz);
+         return MultiByteToMultiByte(CodePageUtf8, psz, nCount, uCodePage, pcsz);
 
       }
 

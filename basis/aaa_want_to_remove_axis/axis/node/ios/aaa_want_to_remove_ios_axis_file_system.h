@@ -20,7 +20,7 @@ namespace ios
 
          file_system(::layered * pobjectContext);
 
-         virtual file_pointer get_file(var varFile,UINT nOpenFlags,::status::result * pfesp,::aura::application * papp);
+         virtual file_pointer get_file(var varFile,::u32 nOpenFlags,::status::result * pfesp,::aura::application * papp);
 
 
       };

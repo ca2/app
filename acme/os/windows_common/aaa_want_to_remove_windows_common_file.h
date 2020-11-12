@@ -4,12 +4,12 @@
 CLASS_DECL_ACME HANDLE create_file(
 const char *            pFileName,
 
-DWORD                   dwDesiredAccess,
-DWORD                   dwShareMode,
+::u32                   dwDesiredAccess,
+::u32                   dwShareMode,
 LPSECURITY_ATTRIBUTES   pSecurityAttributes,
 
-DWORD                   dwCreationDisposition,
-DWORD                   dwFlagsAndAttributes,
+::u32                   dwCreationDisposition,
+::u32                   dwFlagsAndAttributes,
 HANDLE                  hTemplateFile
 );
 

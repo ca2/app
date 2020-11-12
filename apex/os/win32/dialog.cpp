@@ -79,7 +79,7 @@ namespace win32
 
 #ifdef WINDOWS
 
-   INT_PTR CALLBACK dialog::DialogProc(HWND hwnd, UINT message, WPARAM wparam, LPARAM lparam)
+   INT_PTR CALLBACK dialog::DialogProc(HWND hwnd, ::u32 message, WPARAM wparam, LPARAM lparam)
    {
 
       dialog * pdialog;
@@ -161,7 +161,7 @@ namespace win32
          on_notify((NMHDR *)lparam);
 
       }
-      else if (id == WM_CLOSE)
+      else if (id == e_message_close)
       {
 
          on_close();

@@ -766,7 +766,7 @@ namespace ftp
    /// @lparam[in] dwByteOffset Server marker at which file transfer is to be restarted.
    /// @lparam[in] Observer Object for observing the execution of the command.
    bool client_socket::ExecuteDatachannelCommand(const command& crDatachannelCmd, const string& strPath, const representation& representation,
-         bool fPasv, DWORD dwByteOffset, itransfer_notification& Observer)
+         bool fPasv, ::u32 dwByteOffset, itransfer_notification& Observer)
    {
       if (!crDatachannelCmd.IsDatachannelCommand())
       {
@@ -868,9 +868,9 @@ namespace ftp
 
       }
 
-      //DWORD tickStart = ::get_tick();
+      //::u32 tickStart = ::get_tick();
 
-      //UINT nSeconds = 10;
+      //::u32 nSeconds = 10;
 
       //if (pbasesocket.is_set() && !pbasesocket->IsDetached())
       //{
@@ -954,7 +954,7 @@ namespace ftp
    /// @lparam[in] crDatachannelCmd Command to be executeted.
    /// @lparam[in] strPath Parameter for the command usually a path.
    /// @lparam[in] dwByteOffset Server marker at which file transfer is to be restarted.
-   bool client_socket::OpenActiveDataConnection(::sockets::socket & sckDataConnectionParam, const command& crDatachannelCmd, const string& strPath, DWORD dwByteOffset)
+   bool client_socket::OpenActiveDataConnection(::sockets::socket & sckDataConnectionParam, const command& crDatachannelCmd, const string& strPath, ::u32 dwByteOffset)
    {
       if (!crDatachannelCmd.IsDatachannelCommand())
       {
@@ -1051,7 +1051,7 @@ namespace ftp
    /// @lparam[in] crDatachannelCmd Command to be executeted.
    /// @lparam[in] strPath Parameter for the command usually a path.
    /// @lparam[in] dwByteOffset Server marker at which file transfer is to be restarted.
-   bool client_socket::OpenPassiveDataConnection(::sockets::socket & sckDataConnectionParam, const command& crDatachannelCmd, const string& strPath, DWORD dwByteOffset)
+   bool client_socket::OpenPassiveDataConnection(::sockets::socket & sckDataConnectionParam, const command& crDatachannelCmd, const string& strPath, ::u32 dwByteOffset)
    {
 
       if (m_econnectiontype == connection_type_tls_implicit)
@@ -1779,7 +1779,7 @@ auto tickStart = ::tick::now();
    /// @lparam[in] representation see Documentation of nsFTP::representation
    /// @lparam[in] iSize Indicates Bytesize for type LocalByte.
    /// @return see return values of client_socket::SimpleErrorCheck
-   int client_socket::RepresentationType(const representation& representation, DWORD dwSize)
+   int client_socket::RepresentationType(const representation& representation, ::u32 dwSize)
    {
       // check representation
       if (m_apCurrentRepresentation.is_set() && representation == *m_apCurrentRepresentation)
@@ -1805,7 +1805,7 @@ auto tickStart = ::tick::now();
    /// @lparam[in] representation see Documentation of nsFTP::representation
    /// @lparam[in] dwSize Indicates Bytesize for type LocalByte.
    /// @return see return values of client_socket::SimpleErrorCheck
-   int client_socket::_RepresentationType(const representation& representation, DWORD dwSize)
+   int client_socket::_RepresentationType(const representation& representation, ::u32 dwSize)
    {
       string_array Arguments({ representation.Type().AsString() });
 
@@ -2050,7 +2050,7 @@ auto tickStart = ::tick::now();
    /// @lparam[in] dwPosition Represents the server marker at which file transfer
    ///                       is to be restarted.
    /// @return see return values of client_socket::SimpleErrorCheck
-   int client_socket::Restart(DWORD dwPosition)
+   int client_socket::Restart(::u32 dwPosition)
    {
       reply Reply;
       if (!SendCommand(command::REST(), { __str((u32)dwPosition) }, Reply))
@@ -2075,7 +2075,7 @@ auto tickStart = ::tick::now();
    int client_socket::FileSize(const string& strPath, long& lSize)
    {
       reply Reply;
-      if (!SendCommand(command::SIZE(), { strPath } , Reply))
+      if (!SendCommand(command::SIZE32(), { strPath } , Reply))
          return FTP_ERROR;
       lSize = atoi(Reply.Value().substr(4));
       return SimpleErrorCheck(Reply);
@@ -2137,7 +2137,7 @@ auto tickStart = ::tick::now();
    /// @lparam[in] strErrorMsg Error message which is reported to all observers.
    /// @lparam[in] Name of the sourcecode file where the error occurred.
    /// @lparam[in] Line number in th sourcecode file where the error occurred.
-   void client_socket::ReportError(const string& strErrorMsg, const string& strFile, DWORD dwLineNr)
+   void client_socket::ReportError(const string& strErrorMsg, const string& strFile, ::u32 dwLineNr)
    {
       for (auto * point : (observer_array &)m_setObserver)
          point->OnInternalError(strErrorMsg, strFile, dwLineNr);

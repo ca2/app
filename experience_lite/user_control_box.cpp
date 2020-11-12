@@ -44,7 +44,7 @@ void MetaControlBox::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
    pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-   COLORREF crBackground;
+   color32_t crBackground;
 
    if(GetTopLevel()->frame_is_transparent())
    {
@@ -103,8 +103,8 @@ void MetaControlBox::install_message_routing(::channel * pchannel)
    ::experience::control_box::install_message_routing(pchannel);
 
    MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &MetaControlBox::_001OnShowWindow);
-   MESSAGE_LINK(WM_LBUTTONDOWN, pchannel, this, &MetaControlBox::_001OnLButtonDown);
-   MESSAGE_LINK(WM_LBUTTONUP, pchannel, this, &MetaControlBox::_001OnLButtonUp);
+   MESSAGE_LINK(e_message_lbutton_down, pchannel, this, &MetaControlBox::_001OnLButtonDown);
+   MESSAGE_LINK(e_message_lbutton_up, pchannel, this, &MetaControlBox::_001OnLButtonUp);
 //   MESSAGE_LINK(e_message_size, pchannel, this, &MetaControlBox::_001OnSize);
 //   //MESSAGE_LINK(WM_TIMER, pchannel, this, &MetaControlBox::_001OnTimer);
 

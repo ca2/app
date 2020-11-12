@@ -47,13 +47,26 @@ namespace user
 
       m_bMessageThread = true;
 
+//#ifdef WINDOWS_DESKTOP
+//
+//      m_bCreateNativeWindowOnInteractionThread = true;
+//
+//#else
+//
+//      m_bCreateNativeWindowOnInteractionThread = false;
+//
+//#endif
+
+
    }
 
    thread::~thread()
    {
 
    }
-   ::estatus     thread::initialize_user_thread(interaction_impl * pimpl, ::user::create_struct & createstruct)
+
+
+   ::estatus thread::initialize_user_thread(interaction_impl * pimpl, ::user::create_struct & createstruct)
    {
 
       auto estatus = initialize(pimpl);
@@ -163,6 +176,34 @@ namespace user
 
 #endif
 
+   ::estatus thread::task_caller_on_init()
+   {
+
+      //if (!m_bCreateNativeWindowOnInteractionThread)
+      //{
+
+      //   if (!m_pimpl->_native_create_window_ex(*m_pcreatestruct))
+      //   {
+
+      //      //delete m_pcreatestruct;
+
+      //      m_pcreatestruct = nullptr;
+
+      //      m_estatus = error_failed;
+
+      //      finish();
+
+      //      return ::error_failed;
+
+      //   }
+
+      //}
+
+
+      return ::success;
+
+   }
+
    ::estatus thread::init_thread()
    {
 
@@ -217,27 +258,43 @@ namespace user
 
       //  });
 
-      if (!m_pimpl->_native_create_window_ex(*m_pcreatestruct))
-      {
+      //if (m_bCreateNativeWindowOnInteractionThread)
+      //{
 
-         //delete m_pcreatestruct;
+         if (!m_pimpl->_native_create_window_ex(*m_pcreatestruct))
+         {
 
-         m_pcreatestruct = nullptr;
+            //delete m_pcreatestruct;
 
-         return false;
+            m_pcreatestruct = nullptr;
 
-      }
+            m_estatus = error_failed;
 
+            finish();
 
-      //m_himc = ImmGetContext(m_pimpl->get_handle());
+            return false;
 
-      __bind(this, m_pprodevian, m_pimpl->m_pprodevian);
+         }
 
-      m_oswindow = m_pimpl->m_oswindow;
+      //}
+      //else
+      //{ 
+      //
+      //   __refer(m_pimpl->m_puserinteraction->m_pthreadUserInteraction, this);
 
-      //delete m_pcreatestruct;
+      //   uiptra().add(m_pimpl->m_puserinteraction);
 
-      m_pcreatestruct = nullptr;
+      //}
+
+            //m_himc = ImmGetContext(m_pimpl->get_handle());
+
+            __bind(this, m_pprodevian, m_pimpl->m_pprodevian);
+
+            m_oswindow = m_pimpl->m_oswindow;
+
+            //delete m_pcreatestruct;
+
+            m_pcreatestruct = nullptr;
 
       return true;
 
@@ -338,13 +395,13 @@ namespace user
          }
 
 
-         if(m_message.message == WM_LBUTTONDOWN)
+         if(m_message.message == e_message_lbutton_down)
          {
 
             ::output_debug_string("::user::thread::LBUTTONDOWN\n");
 
          }
-         else if(m_message.message == WM_LBUTTONUP)
+         else if(m_message.message == e_message_lbutton_up)
          {
 
             ::output_debug_string("::user::thread::LBUTTONUP\n");
@@ -653,7 +710,7 @@ catch(...)
             //{
             //   fResult = FALSE;
             //}
-            //else if (WM_KEYDOWN == msg.message)
+            //else if (e_message_key_down == msg.message)
             //{
             //   // does an ime want it?
             //   if (pKeyMgr->TestKeyDown(msg.wParam, msg.lParam, &fEaten) == S_OK && fEaten &&
@@ -662,7 +719,7 @@ catch(...)
             //      continue;
             //   }
             //}
-            //else if (WM_KEYUP == msg.message)
+            //else if (e_message_key_up == msg.message)
             //{
             //   // does an ime want it?
             //   if (pKeyMgr->TestKeyUp(msg.wParam, msg.lParam, &fEaten) == S_OK && fEaten &&
@@ -735,7 +792,7 @@ catch(...)
 #ifdef WINDOWS_DESKTOP
 
 
-   int thread::_GetMessage(LPMESSAGE lpMsg, HWND hWnd, UINT wMsgFilterMin, UINT wMsgFilterMax)
+   int thread::_GetMessage(LPMESSAGE lpMsg, HWND hWnd, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax)
    {
 
 #ifdef ENABLE_TEXT_SERVICES_FRAMEWORK
@@ -756,7 +813,7 @@ catch(...)
 
             BOOL    fEaten;
 
-            if (WM_KEYDOWN == lpMsg->message)
+            if (e_message_key_down == lpMsg->message)
             {
                // does an ime want it?
                if (m_pkeystrokemgr->TestKeyDown(lpMsg->wParam, lpMsg->lParam, &fEaten) == S_OK && fEaten &&
@@ -765,7 +822,7 @@ catch(...)
                   continue;
                }
             }
-            else if (WM_KEYUP == lpMsg->message)
+            else if (e_message_key_up == lpMsg->message)
             {
                // does an ime want it?
                if (m_pkeystrokemgr->TestKeyUp(lpMsg->wParam, lpMsg->lParam, &fEaten) == S_OK && fEaten &&

@@ -39,13 +39,16 @@ namespace aura
    //   return m_pimpl->_001OpenDocumentFile(varFile);
    //}
 
-   void application::_001EnableShellOpen()
-   {
-      //ASSERT(m_atomApp == nullptr && m_atomSystemTopic == nullptr); // do once
-      /*
-            m_atomApp            = ::GlobalAddAtomW(::str::international::utf8_to_unicode(m_strAppName));
-            m_atomSystemTopic    = ::GlobalAddAtomW(L"system");*/
-   }
+   //::estatus application::_001InitializeShellOpen()
+   //{
+   //   //ASSERT(m_atomApp == nullptr && m_atomSystemTopic == nullptr); // do once
+   //   /*
+   //         m_atomApp            = ::GlobalAddAtomW(::str::international::utf8_to_unicode(m_strAppName));
+   //         m_atomSystemTopic    = ::GlobalAddAtomW(L"system");*/
+
+   //   return ::success;
+
+   //}
 
    //bool application::_001OnDDECommand(const char * pcsz)
    //{
@@ -57,86 +60,86 @@ namespace aura
    //{
    //   return nullptr;
    //}
-
-   string application::get_version()
-   {
-#ifdef WINDOWS_DESKTOP
-      char lpszModuleFilePath[MAX_PATH + 1];
-      GetModuleFileName(nullptr, lpszModuleFilePath, MAX_PATH + 1);
-
-      DWORD dw;
-
-      DWORD dwResSize = GetFileVersionInfoSize(
-                        lpszModuleFilePath,
-                        &dw);
-
-
-      if(dwResSize > 0)
-      {
-         LPVOID lpdata = new BYTE[dwResSize];
-         if(GetFileVersionInfo(
-               lpszModuleFilePath,
-               0,
-               dwResSize,
-               lpdata))
-         {
-            UINT cbTranslate;
-            struct LANGANDCODEPAGE
-            {
-               WORD wLanguage;
-               WORD wCodePage;
-            } *lpTranslate;
-
-            // read the list of languages and code pages.
-
-            VerQueryValue(lpdata,
-                          TEXT("\\VarFileInfo\\Translation"),
-                          (LPVOID*)&lpTranslate,
-                          &cbTranslate);
-
-            string strKey;
-            //for( i=0; i < (cbTranslate/sizeof(struct LANGANDCODEPAGE)); i++ )
-            for(int i=0; i < 1; i++ )
-            {
-               LPTSTR lpsz;
-               UINT uiSize;
-
-               strKey.Format(
-               TEXT("\\StringFileInfo\\%04x%04x\\FileDescription"),
-               lpTranslate[i].wLanguage,
-               lpTranslate[i].wCodePage);
-
-
-
-
-               strKey.Format(
-               TEXT("\\StringFileInfo\\%04x%04x\\FileVersion"),
-               lpTranslate[i].wLanguage,
-               lpTranslate[i].wCodePage);
-
-               // Retrieve file description for language and code page "i".
-               VerQueryValue(lpdata,
-                             (LPTSTR) (const char *) strKey,
-                             (LPVOID *)&lpsz,
-                             &uiSize);
-
-
-               string strVersion(lpsz, uiSize);
-
-               return strVersion;
-            }
-         }
-         delete [] (LPBYTE) lpdata;
-      }
-
-
-      return "";
-#else
-      TRACE("returning hard coded default 1.0 version for uwp::application::get_version");
-      return "1.0";
-#endif
-
-   }
+//
+//   string application::get_version()
+//   {
+//#ifdef WINDOWS_DESKTOP
+//      char lpszModuleFilePath[MAX_PATH + 1];
+//      GetModuleFileName(nullptr, lpszModuleFilePath, MAX_PATH + 1);
+//
+//      ::u32 dw;
+//
+//      ::u32 dwResSize = GetFileVersionInfoSize(
+//                        lpszModuleFilePath,
+//                        &dw);
+//
+//
+//      if(dwResSize > 0)
+//      {
+//         LPVOID lpdata = new byte[dwResSize];
+//         if(GetFileVersionInfo(
+//               lpszModuleFilePath,
+//               0,
+//               dwResSize,
+//               lpdata))
+//         {
+//            ::u32 cbTranslate;
+//            struct LANGANDCODEPAGE
+//            {
+//               ::u16 wLanguage;
+//               ::u16 wCodePage;
+//            } *lpTranslate;
+//
+//            // read the list of languages and code pages.
+//
+//            VerQueryValue(lpdata,
+//                          TEXT("\\VarFileInfo\\Translation"),
+//                          (LPVOID*)&lpTranslate,
+//                          &cbTranslate);
+//
+//            string strKey;
+//            //for( i=0; i < (cbTranslate/sizeof(struct LANGANDCODEPAGE)); i++ )
+//            for(int i=0; i < 1; i++ )
+//            {
+//               LPTSTR lpsz;
+//               ::u32 uSize;
+//
+//               strKey.Format(
+//               TEXT("\\StringFileInfo\\%04x%04x\\FileDescription"),
+//               lpTranslate[i].wLanguage,
+//               lpTranslate[i].wCodePage);
+//
+//
+//
+//
+//               strKey.Format(
+//               TEXT("\\StringFileInfo\\%04x%04x\\FileVersion"),
+//               lpTranslate[i].wLanguage,
+//               lpTranslate[i].wCodePage);
+//
+//               // Retrieve file description for language and code page "i".
+//               VerQueryValue(lpdata,
+//                             (LPTSTR) (const char *) strKey,
+//                             (LPVOID *)&lpsz,
+//                             &uiSize);
+//
+//
+//               string strVersion(lpsz, uiSize);
+//
+//               return strVersion;
+//            }
+//         }
+//         delete [] (LPBYTE) lpdata;
+//      }
+//
+//
+//      return "";
+//#else
+//      TRACE("returning hard coded default 1.0 version for uwp::application::get_version");
+//      return "1.0";
+//#endif
+//
+//   }
 
 
 
@@ -335,36 +338,36 @@ namespace aura
    }
 
 
-   string application::veriwell_multimedia_music_midi_get_default_library_name()
-   {
+   //string application::veriwell_multimedia_music_midi_get_default_library_name()
+   //{
 
-      return "music_midi_winrt";
+   //   return "music_midi_winrt";
 
-   }
-
-
-   string application::multimedia_audio_mixer_get_default_library_name()
-   {
-
-      return "";
-
-   }
+   //}
 
 
-   string application::multimedia_audio_get_default_library_name()
-   {
+   //string application::multimedia_audio_mixer_get_default_library_name()
+   //{
 
-      return "audio_xaudio";
+   //   return "";
 
-   }
+   //}
 
 
-   bool application::os_on_start_application()
-   {
+   //string application::multimedia_audio_get_default_library_name()
+   //{
 
-      return true;
+   //   return "audio_xaudio";
 
-   }
+   //}
+
+
+   //bool application::os_on_start_application()
+   //{
+
+   //   return true;
+
+   //}
 
    
    int_bool application::window_set_mouse_cursor(oswindow, HCURSOR hcursor)

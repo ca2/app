@@ -60,7 +60,7 @@ namespace ftp
 
    }
 
-   void output::OnInternalError(const string& strErrorMsg, const string& strFileName, DWORD dwLineNr)
+   void output::OnInternalError(const string& strErrorMsg, const string& strFileName, ::u32 dwLineNr)
    {
 
       string strMessage;

@@ -18,7 +18,7 @@ namespace user
       virtual ~margin_base();
 
 
-      virtual void get_margin_rect(RECT * prectMargin) override;
+      virtual void get_margin_rect(RECT32 * prectMargin) override;
 
 
 
@@ -53,7 +53,7 @@ namespace user
 
       }
 
-//      void _001ScreenToClient(RECT * prect)
+//      void _001ScreenToClient(RECT32 * prect)
 
       //    {
 

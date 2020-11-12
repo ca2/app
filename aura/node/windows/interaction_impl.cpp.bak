@@ -1469,12 +1469,12 @@ namespace windows
 
       }
 
-      if (emessage == WM_KEYDOWN ||
-            emessage == WM_KEYUP ||
-            emessage == WM_CHAR ||
-            emessage == WM_SYSKEYDOWN ||
-            emessage == WM_SYSKEYUP ||
-            emessage == WM_SYSCHAR ||
+      if (emessage == e_message_key_down ||
+            emessage == e_message_key_up ||
+            emessage == e_message_char ||
+            emessage == e_message_sys_key_down ||
+            emessage == e_message_sys_key_up ||
+            emessage == e_message_sys_char ||
             emessage == WM_IME_KEYDOWN ||
             emessage == WM_IME_KEYUP ||
             emessage == WM_IME_CHAR ||
@@ -1498,14 +1498,14 @@ namespace windows
 
          SCAST_PTR(::message::key, pkey, pbase);
 
-         if (emessage == WM_KEYDOWN)
+         if (emessage == e_message_key_down)
          {
 
             output_debug_string("\n Key Down Event ");
 
          }
 
-         if (emessage == WM_KEYDOWN || emessage == WM_SYSKEYDOWN)
+         if (emessage == e_message_key_down || emessage == e_message_sys_key_down)
          {
             try
             {
@@ -1515,7 +1515,7 @@ namespace windows
             {
             }
          }
-         else if (emessage == WM_KEYUP || emessage == WM_SYSKEYUP)
+         else if (emessage == e_message_key_up || emessage == e_message_sys_key_up)
          {
 
             try
@@ -1561,7 +1561,7 @@ namespace windows
       {
          //         m_puserinteraction->m_papp->step_timer();
       }
-      else if (emessage == WM_LBUTTONDOWN)
+      else if (emessage == e_message_lbutton_down)
       {
          ::rect rectClient;
          ::GetClientRect(get_handle(), rectClient);
@@ -1675,16 +1675,16 @@ namespace windows
 
       }
 
-      if (emessage == WM_LBUTTONDOWN ||
-            emessage == WM_LBUTTONUP ||
+      if (emessage == e_message_lbutton_down ||
+            emessage == e_message_lbutton_up ||
             emessage == WM_MBUTTONDOWN ||
             emessage == WM_MBUTTONUP ||
-            emessage == WM_RBUTTONDOWN ||
-            emessage == WM_RBUTTONUP ||
+            emessage == e_message_rbutton_down ||
+            emessage == e_message_rbutton_up ||
             emessage == WM_LBUTTONDBLCLK ||
             emessage == e_message_mouse_move ||
             emessage == e_message_non_client_mouse_move ||
-            emessage == WM_MOUSEWHEEL)
+            emessage == e_message_mouse_wheel)
       {
 
          message::mouse * pmouse = dynamic_cast <::message::mouse * > (pbase);
@@ -1716,10 +1716,10 @@ namespace windows
          }
 
 
-         if (emessage == WM_LBUTTONDOWN)
+         if (emessage == e_message_lbutton_down)
          {
 
-            TRACE("WM_LBUTTONDOWN");
+            TRACE("e_message_lbutton_down");
 
          }
 
@@ -1784,12 +1784,12 @@ namespace windows
          }
          return;
       }
-      if (emessage == WM_KEYDOWN ||
-            emessage == WM_KEYUP ||
-            emessage == WM_CHAR ||
-            emessage == WM_SYSKEYDOWN ||
-            emessage == WM_SYSKEYUP ||
-            emessage == WM_SYSCHAR ||
+      if (emessage == e_message_key_down ||
+            emessage == e_message_key_up ||
+            emessage == e_message_char ||
+            emessage == e_message_sys_key_down ||
+            emessage == e_message_sys_key_up ||
+            emessage == e_message_sys_char ||
             emessage == WM_IME_KEYDOWN ||
             emessage == WM_IME_KEYUP ||
             emessage == WM_IME_CHAR ||
@@ -1812,9 +1812,9 @@ namespace windows
          {
             output_debug_string("WM_IME_NOTIFY");
          }
-         else if (emessage == WM_CHAR)
+         else if (emessage == e_message_char)
          {
-            output_debug_string("WM_CHAR");
+            output_debug_string("e_message_char");
          }
 
          if (puiFocus && puiFocus->is_window() && puiFocus != m_puserinteraction)
@@ -5743,10 +5743,10 @@ LRESULT CALLBACK __window_procedure(oswindow oswindow, const ::id & id, WPARAM w
       output_debug_string("WM_WINDOWPOSCHANGED");
 
    }
-   else if (message == WM_LBUTTONDOWN)
+   else if (message == e_message_lbutton_down)
    {
 
-      output_debug_string("WM_LBUTTONDOWN()");
+      output_debug_string("e_message_lbutton_down()");
 
    }
    else if (message == e_message_destroy)

@@ -87,7 +87,7 @@ namespace str
    string CLASS_DECL_ACME if_null(const ansichar * psz, const ansichar * pszIfNull = nullptr);
 
 
-   FORCEINLINE  const ansichar * __utf8_inc(const ansichar * psz) { return psz + 1 + trailingBytesForUTF8(*psz); }
+   inline const ansichar * __utf8_inc(const ansichar * psz) { return psz + 1 + trailingBytesForUTF8(*psz); }
 
    inline e_err           err() { return g_eerr; }
    inline void            set_err(e_err eerr) { g_eerr = eerr; }

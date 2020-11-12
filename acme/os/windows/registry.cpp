@@ -19,7 +19,7 @@ LSTATUS
 LPFN_RegGetValueW g_pfnRegGetValueW = nullptr;
 
 
-int WinRegGetValueW(HKEY hkey, LPCWSTR pSubKey, LPCWSTR lpValue, DWORD dwFlags, LPDWORD pdwType, PVOID pvData, LPDWORD pcbData)
+int WinRegGetValueW(HKEY hkey, LPCWSTR pSubKey, LPCWSTR lpValue, ::u32 dwFlags, LPDWORD pdwType, PVOID pvData, LPDWORD pcbData)
 {
 
    if (g_pfnRegGetValueW != nullptr)

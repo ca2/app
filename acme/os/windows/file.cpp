@@ -8,7 +8,7 @@
 
 
 
-int_bool read_resource_as_file(const char * pszFile, HINSTANCE hinstance, UINT nID, LPCTSTR pcszType)
+int_bool read_resource_as_file(const char * pszFile, HINSTANCE hinstance, DWORD nID, LPCTSTR pcszType)
 
 {
 
@@ -17,7 +17,7 @@ int_bool read_resource_as_file(const char * pszFile, HINSTANCE hinstance, UINT n
    HGLOBAL hglobalResource;
    u32 dwResourseSize;
    int_bool bOk;
-   UINT FAR* pResource;
+   DWORD FAR* pResource;
    FILE * file;
 
    if(hrsrc == nullptr)
@@ -35,7 +35,7 @@ int_bool read_resource_as_file(const char * pszFile, HINSTANCE hinstance, UINT n
 
       bOk = FALSE;
 
-      pResource = (UINT FAR*) LockResource(hglobalResource);
+      pResource = (DWORD FAR*) LockResource(hglobalResource);
 
       dir::mk(dir::name(pszFile));
 
@@ -122,13 +122,13 @@ filesize file_length_dup(const char * path)
 
    DWORD dwHi = 0;
 
-   u64 ui = GetFileSize(hfile, &dwHi);
+   u64 u = GetFileSize(hfile, &dwHi);
 
-   ui |= ((u64)dwHi) << 32ULL;
+   u |= ((u64)dwHi) << 32ULL;
 
    CloseHandle(hfile);
 
-   return ui;
+   return u;
 
 }
 
@@ -303,7 +303,7 @@ string file_as_string(const char * path, strsize iReadAtMostByteCount)
 
    iReadAtMostByteCount = iReadAtMostByteCount < 0 ? dwSize :  min(iReadAtMostByteCount, (::strsize)dwSize);
 
-   LPSTR psz = str.get_string_buffer(iReadAtMostByteCount);
+   char * psz = str.get_string_buffer(iReadAtMostByteCount);
 
    ::size_t iPos = 0;
 
@@ -544,7 +544,7 @@ struct PROCESS_INFO_t
 ////  IN ULONG              SystemInformationLength,
 ////  OUT   PULONG                ReturnLength OPTIONAL );
 //
-////UINT g_CurrentIndex = 0;
+////DWORD g_CurrentIndex = 0;
 ////struct THREAD_PARAMS
 ////{
 ////   PSYSTEM_HANDLE_INFORMATION pSysHandleInformation;
@@ -562,13 +562,13 @@ struct PROCESS_INFO_t
 ////
 ////   THREAD_PARAMS * pThreadParam = (THREAD_PARAMS *) p;
 ////
-////   FILE_NAME_INFO * pinfo = (FILE_NAME_INFO *)new BYTE[MAX_PATH * 8];
+////   FILE_NAME_INFO * pinfo = (FILE_NAME_INFO *)new byte[MAX_PATH * 8];
 ////
 ////   GetFinalPathNameByHandleDef pGetFinalPathNameByHandle = pThreadParam->pGetFinalPathNameByHandle;
 ////   for( g_CurrentIndex; g_CurrentIndex < pThreadParam->pSysHandleInformation->dwCount;  )
 ////   {
 ////
-////      WaitForSingleObject( pThreadParam->hStartEvent, INFINITE );
+////      WaitForSingleObject( pThreadParam->hStartEvent, U32_INFINITE_TIMEOUT );
 ////      ResetEvent( pThreadParam->hStartEvent );
 ////      pThreadParam->bStatus = false;
 ////      SYSTEM_HANDLE& sh = pThreadParam->pSysHandleInformation->Handles[g_CurrentIndex];
@@ -602,7 +602,7 @@ struct PROCESS_INFO_t
 ////      SetEvent( pThreadParam->hFinishedEvent );
 ////
 ////   }
-////   delete[] (BYTE *) pinfo;
+////   delete[] (byte *) pinfo;
 ////   return ::success;
 ////}
 //
@@ -620,7 +620,7 @@ struct PROCESS_INFO_t
 ////      nFileType = XP_FILETYPE;
 ////   }
 ////
-////   LPCSTR pPath = csPath;
+////   const char * pPath = csPath;
 ////
 ////   wstring csShortName;
 ////   GetShortPathNameW( wstring(csPath), csShortName.get_buffer( MAX_PATH), MAX_PATH );
@@ -628,7 +628,7 @@ struct PROCESS_INFO_t
 ////   string strShortName(csShortName);
 ////   strShortName.make_lower();
 ////   bool bShortPath = false;
-////   LPCSTR pShortPath = strShortName;
+////   const char * pShortPath = strShortName;
 ////
 ////   if(string( csShortName )!= csPath && FALSE == csShortName.is_empty())
 ////   {
@@ -657,7 +657,7 @@ struct PROCESS_INFO_t
 ////      // The previously supplied buffer wasn't enough.
 ////      delete pSysHandleInformation;
 ////      size = needed + 1024;
-////      pSysHandleInformation = (PSYSTEM_HANDLE_INFORMATION)new BYTE[size];
+////      pSysHandleInformation = (PSYSTEM_HANDLE_INFORMATION)new byte[size];
 ////      status = NtQuerySystemInformation( SystemHandleInformation, pSysHandleInformation, size, &needed );
 ////      if( !NT_SUCCESS(status))
 ////      {
@@ -854,7 +854,7 @@ struct PROCESS_INFO_t
 ////   }
 ////
 ////   u32 dwsize = 300;
-////   PDWORD pDwId = (PDWORD)new BYTE[dwsize];
+////   PDWORD pDwId = (PDWORD)new byte[dwsize];
 ////   DWORD dwReturned = dwsize;
 ////   // Enum all the process first
 ////   while( 1 )
@@ -866,7 +866,7 @@ struct PROCESS_INFO_t
 ////      }
 ////      delete pDwId;
 ////      dwsize += 50;
-////      pDwId = (PDWORD)new BYTE[dwsize];
+////      pDwId = (PDWORD)new byte[dwsize];
 ////   }
 ////   i32 nCount = dwReturned / sizeof(u32);
 ////   i32 nItemCount = -1;
@@ -1387,7 +1387,7 @@ bool GetDrive(const char * pszDosName, string& csDrive, bool bDriveLetterOnly)
 
 
 
-CLASS_DECL_ACME bool read_resource_as_memory(memory & m, HINSTANCE hinstance, UINT nID, const char * pcszType, strsize iReadAtMostByteCount)
+CLASS_DECL_ACME bool read_resource_as_memory(memory & m, HINSTANCE hinstance, DWORD nID, const char * pcszType, strsize iReadAtMostByteCount)
 
 {
 
@@ -1431,7 +1431,7 @@ CLASS_DECL_ACME bool read_resource_as_memory(memory & m, HINSTANCE hinstance, UI
    HGLOBAL hglobalResource;
    strsize dwResourceSize;
    int_bool bOk;
-   UINT FAR* pResource;
+   DWORD FAR* pResource;
 
    if (hrsrc == nullptr)
       return FALSE;
@@ -1448,7 +1448,7 @@ CLASS_DECL_ACME bool read_resource_as_memory(memory & m, HINSTANCE hinstance, UI
 
       bOk = TRUE;
 
-      pResource = (UINT FAR*) LockResource(hglobalResource);
+      pResource = (DWORD FAR*) LockResource(hglobalResource);
 
       auto iSize = min_non_neg(dwResourceSize, iReadAtMostByteCount);
 
@@ -1467,12 +1467,12 @@ CLASS_DECL_ACME bool read_resource_as_memory(memory & m, HINSTANCE hinstance, UI
 CLASS_DECL_ACME HANDLE hfile_create(
 const char *            pFileName,
 
-DWORD                   dwDesiredAccess,
-DWORD                   dwShareMode,
+::u32                   dwDesiredAccess,
+::u32                   dwShareMode,
 LPSECURITY_ATTRIBUTES   pSecurityAttributes,
 
-DWORD                   dwCreationDisposition,
-DWORD                   dwFlagsAndAttributes,
+::u32                   dwCreationDisposition,
+::u32                   dwFlagsAndAttributes,
 HANDLE                  hTemplateFile
 )
 {

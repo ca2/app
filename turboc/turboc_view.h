@@ -55,7 +55,7 @@ namespace turboc
       tick                   m_tickAnime;
       bool                    m_bNewLayout;
       tick m_tickLastFast;
-      DWORD                   m_tickFastAnime;
+      ::u32                   m_tickFastAnime;
       bool                    m_bFast;
       bool                    m_bFirstDone;
       bool                    m_bFastOnEmpty;
@@ -101,7 +101,7 @@ namespace turboc
       virtual void turboc_draw();
       virtual void full_render();
 
-      static UINT thread_proc_render(void * pparam);
+      static ::u32 thread_proc_render(void * pparam);
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
 

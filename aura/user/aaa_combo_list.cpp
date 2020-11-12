@@ -60,15 +60,15 @@ namespace user
 
       MESSAGE_LINK(e_message_set_focus, pchannel, this, &combo_list::_001OnSetFocus);
       MESSAGE_LINK(e_message_kill_focus, pchannel, this, &combo_list::_001OnKillFocus);
-      MESSAGE_LINK(WM_CLOSE, pchannel, this, &combo_list::_001OnClose);
+      MESSAGE_LINK(e_message_close, pchannel, this, &combo_list::_001OnClose);
       MESSAGE_LINK(WM_MOUSEACTIVATE, pchannel, this, &combo_list::_001OnMouseActivate);
-      MESSAGE_LINK(WM_KEYDOWN, pchannel, this, &combo_list::_001OnKeyDown);
-      MESSAGE_LINK(WM_KEYUP, pchannel, this, &combo_list::_001OnKeyUp);
-      MESSAGE_LINK(WM_LBUTTONDOWN, pchannel, this, &combo_list::_001OnLButtonDown);
+      MESSAGE_LINK(e_message_key_down, pchannel, this, &combo_list::_001OnKeyDown);
+      MESSAGE_LINK(e_message_key_up, pchannel, this, &combo_list::_001OnKeyUp);
+      MESSAGE_LINK(e_message_lbutton_down, pchannel, this, &combo_list::_001OnLButtonDown);
       MESSAGE_LINK(WM_NCLBUTTONDOWN, pchannel, this, &combo_list::_001OnLButtonDown);
-      MESSAGE_LINK(WM_LBUTTONUP, pchannel, this, &combo_list::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_lbutton_up, pchannel, this, &combo_list::_001OnLButtonUp);
       MESSAGE_LINK(WM_MBUTTONDOWN, pchannel, this, &combo_list::_001OnMButtonDown);
-      MESSAGE_LINK(WM_RBUTTONDOWN, pchannel, this, &combo_list::_001OnRButtonDown);
+      MESSAGE_LINK(e_message_rbutton_down, pchannel, this, &combo_list::_001OnRButtonDown);
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &combo_list::_001OnMouseMove);
       MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &combo_list::_001OnShowWindow);
 
@@ -151,9 +151,9 @@ namespace user
 
          rectItem.bottom = rectItem.top + _001GetItemHeight();
 
-         COLORREF crBk;
+         color32_t crBk;
 
-         COLORREF cr;
+         color32_t cr;
 
          string strDebug;
 
@@ -231,9 +231,9 @@ namespace user
 
       }
 
-      //COLORREF crBorder = _001GetColor(::user::color_border);
+      //color32_t crBorder = _001GetColor(::user::color_border);
 
-      COLORREF crBorder = ARGB(255, 0, 0, 0);
+      color32_t crBorder = ARGB(255, 0, 0, 0);
 
       ::draw2d::pen_pointer pen(e_create);
 
@@ -366,7 +366,7 @@ namespace user
 
       }
 
-      psize->cy = (LONG)(_001GetItemHeight() * (m_pcombo->_001GetListCount() + iAddUp));
+      psize->cy = (::i32)(_001GetItemHeight() * (m_pcombo->_001GetListCount() + iAddUp));
 
       psize->cx += m_iBorder * 2;
 
@@ -399,7 +399,7 @@ namespace user
          && iItem >= 0 && iItem < m_pcombo->_001GetListCount())
       {
 
-         m_pointScroll.y = (LONG) (iItem * _001GetItemHeight());
+         m_pointScroll.y = (::i32) (iItem * _001GetItemHeight());
 
       }
       else

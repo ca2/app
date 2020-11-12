@@ -10,17 +10,17 @@ public:
 
 #if defined(ANDROID)
 
-   LONG              m_lMaxCount;
+   ::i32              m_lMaxCount;
    sem_t *           m_psem;
 
 #elif defined(LINUX) || defined(APPLEOS)
 
-   LONG              m_lMaxCount;
+   ::i32              m_lMaxCount;
    i32           m_hsync;
 
 #endif
 
-   semaphore(LONG lInitialCount = 1, LONG lMaxCount = 1, const char * pstrName=nullptr, LPSECURITY_ATTRIBUTES psaAttributes = nullptr);
+   semaphore(::i32 lInitialCount = 1, ::i32 lMaxCount = 1, const char * pstrName=nullptr, LPSECURITY_ATTRIBUTES psaAttributes = nullptr);
 
    virtual ~semaphore();
 
@@ -31,7 +31,7 @@ public:
 #endif
 
    virtual bool unlock() override;
-   virtual bool unlock(LONG lCount, LPLONG prevCount = nullptr) override;
+   virtual bool unlock(::i32 lCount, ::i32 * prevCount = nullptr) override;
 
 
 };

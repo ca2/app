@@ -16,7 +16,7 @@ namespace acme
       task_map                                           m_taskmap;
       task_id_map                                        m_taskidmap;
       ::mutex                                            m_mutexTaskOn;
-      isomap < ITHREAD, ITHREAD >                        m_mapTaskOn;
+      isomap < ithread_t, ithread_t >                        m_mapTaskOn;
 
 
       ::apex::system *                                   m_papexsystem;
@@ -38,10 +38,15 @@ namespace acme
       virtual void on_apply(::action * paction) override;
 
 
-      ::task * get_task(ITHREAD ithread);
-      ITHREAD get_task_id(::task * ptask);
-      void set_task(ITHREAD ithread, ::task * ptask);
-      void unset_task(ITHREAD ithread, ::task * ptask);
+      virtual ::estatus main_user_async(const ::procedure & procedure, ::e_priority epriority = priority_normal);
+
+      virtual ::estatus main_user_sync(const procedure & procedure, const ::duration & duration = one_minute(), e_priority epriority = priority_normal);
+
+
+      ::task * get_task(ithread_t ithread);
+      ithread_t get_task_id(::task * ptask);
+      void set_task(ithread_t ithread, ::task * ptask);
+      void unset_task(ithread_t ithread, ::task * ptask);
 
 
    };

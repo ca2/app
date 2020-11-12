@@ -2,6 +2,27 @@
 
 
 
+template < typename ITERABLE >
+inline ::count __iterable_count(const ITERABLE & iterable);
+
+
+#ifdef _UWP
+
+
+template < typename T >
+inline ::count __iterable_count(Windows::Foundation::Collections::IVectorView < T > ^ a)
+{
+
+   return a.Size;
+
+}
+
+
+
+
+#endif
+
+
 class strid_array;
 
 
@@ -181,9 +202,9 @@ class pointer_list;             // list of void *
 class object_list;              // list of matter*
 
 //   // Maps (aka Dictionaries)
-//   class CMapWordToOb;         // map from WORD to matter*
-//   class CMapWordToPtr;        // map from WORD to void *
-//   class CMapPtrToWord;        // map from void * to WORD
+//   class CMapWordToOb;         // map from ::u16 to matter*
+//   class CMapWordToPtr;        // map from ::u16 to void *
+//   class CMapPtrToWord;        // map from void * to ::u16
 //   class map_ptr_to_ptr;         // map from void * to void *
 //
 //   // Special string variants
@@ -198,18 +219,18 @@ class object_list;              // list of matter*
 #include "string_list.h"
 
 
-class CLASS_DECL_ACME map_word_to_ptr :
-   virtual public map < WORD, WORD, void *, void * >
+class CLASS_DECL_ACME map_u16_to_ptr :
+   virtual public map < ::u16, ::u16, void *, void * >
 {
 public:
-   map_word_to_ptr();
+   map_u16_to_ptr();
 };
 
-class CLASS_DECL_ACME map_ptr_to_word :
-   virtual public map < void *, void *, WORD, WORD >
+class CLASS_DECL_ACME map_ptr_to_u16 :
+   virtual public map < void *, void *, ::u16, ::u16 >
 {
 public:
-   map_ptr_to_word();
+   map_ptr_to_u16();
 };
 
 
@@ -221,7 +242,7 @@ public:
 };
 
 class CLASS_DECL_ACME map_word_to_ob :
-   virtual public map < WORD, WORD, matter *, matter * >
+   virtual public map < ::u16, ::u16, matter *, matter * >
 {
 public:
    map_word_to_ob();

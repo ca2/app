@@ -103,7 +103,7 @@
 ; BOOL EndPaint(HWND hWnd, CONST PAINTSTRUCT *lpPaint);
 !define sysEndPaint "user32::EndPaint(p, p) i"
 
-; BOOL SystemParametersInfo(UINT uiAction, UINT uiParam, PVOID pvParam, UINT fWinIni);
+; BOOL SystemParametersInfo(::u32 uAction, ::u32 uParam, PVOID pvParam, UINT fWinIni);
 !define sysSystemParametersInfo "user32::SystemParametersInfo(i, i, p, i) i"
 
 ; UINT_PTR SetTimer(HWND hWnd, UINT_PTR uEvent, UINT uElapse, TIMERPROC lpTimerFunc);

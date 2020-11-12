@@ -8,7 +8,7 @@ unsigned DLL_CALLCONV  __ReadProc2(void * buffer, unsigned size, unsigned count,
 
    ::file::file * pfile = (::file::file *) handle;
 
-   DWORD dwTotal = count * size;
+   ::u32 dwTotal = count * size;
 
    dwRead = pfile->read(buffer, dwTotal);
 

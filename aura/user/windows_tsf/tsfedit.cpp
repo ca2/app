@@ -434,7 +434,7 @@ HRESULT edit_window::_OnGetPreservedKey()
 **************************************************************************/
 
 //LRESULT CALLBACK edit_window::_WndProc( HWND hWnd, 
-//                                        UINT uMessage, 
+//                                        ::u32 uMessage,
 //                                        WPARAM wParam, 
 //                                        LPARAM lParam)
 //{
@@ -531,7 +531,7 @@ LRESULT edit_window::_OnDestroy(VOID)
 
 **************************************************************************/
 
-//LRESULT edit_window::_OnCommand(WORD wID, WORD wCmd, HWND hWnd)
+//LRESULT edit_window::_OnCommand(::u16 wID, ::u16 wCmd, HWND hWnd)
 //{
 //    switch(wID)
 //    {
@@ -602,7 +602,7 @@ LRESULT edit_window::_OnEditChange(void)
 {
     if(m_fNotify && m_AdviseSink.pTextStoreACPSink && (m_AdviseSink.dwMask & TS_AS_TEXT_CHANGE))
     {
-        DWORD           dwFlags;
+        ::u32           dwFlags;
         TS_TEXTCHANGE   tc;
         ULONG           cch;
 
@@ -658,7 +658,7 @@ LRESULT edit_window::_OnEditKillFocus(VOID)
 
 **************************************************************************/
 
-//LRESULT edit_window::_OnNotify(UINT, LPNMHDR)
+//LRESULT edit_window::_OnNotify(::u32, LPNMHDR)
 //{
 //    return 0;
 //}
@@ -674,7 +674,7 @@ LRESULT edit_window::_OnEditKillFocus(VOID)
 //    //adjust the size and location of the status bar
 //    //SendMessage(m_hwndStatus, e_message_size, wParam, lParam);
 //
-//    RECT    rc;
+//    RECT32    rc;
 //
 //    //GetWindowRect(m_hwndStatus, &rc);
 //    
@@ -696,7 +696,7 @@ LRESULT edit_window::_OnEditKillFocus(VOID)
 
 **************************************************************************/
 
-BOOL edit_window::_IsLocked(DWORD dwLockType) 
+BOOL edit_window::_IsLocked(::u32 dwLockType)
 { 
     if(m_dwInternalLockType)
     {
@@ -737,7 +737,7 @@ HRESULT edit_window::_ClearAdviseSink(PADVISE_SINK pAdviseSink)
 
 **************************************************************************/
 
-BOOL edit_window::_LockDocument(DWORD dwLockFlags)
+BOOL edit_window::_LockDocument(::u32 dwLockFlags)
 {
     if(m_fLocked)
     {
@@ -756,7 +756,7 @@ BOOL edit_window::_LockDocument(DWORD dwLockFlags)
 
 **************************************************************************/
 
-BOOL edit_window::_InternalLockDocument(DWORD dwLockFlags)
+BOOL edit_window::_InternalLockDocument(::u32 dwLockFlags)
 {
     m_dwInternalLockType = dwLockFlags;
     
@@ -855,7 +855,7 @@ void edit_window::_UpdateStatusBar(void)
     int     nParts[2];
     HDC     hdc;
     //HFONT   hFont;
-    SIZE    size;
+    SIZE32    size;
     TCHAR   szComposition[MAX_PATH];
 
     //hdc = GetDC(m_hwndStatus);
@@ -978,7 +978,7 @@ void edit_window::_ClearText(void)
 
 HRESULT edit_window::_GetText(LPWSTR *ppwsz, LPLONG pcch)
 {
-    DWORD   cch;
+    ::u32   cch;
     LPWSTR  pwszText;
     
     *ppwsz = NULL;
@@ -1030,7 +1030,7 @@ void edit_window::_GetDisplayAttributes(void)
     if(SUCCEEDED(hr))
     {
         ITfRangeACP *pRangeAllText;
-        LONG        acpEnd;
+        ::i32        acpEnd;
 
         //get the range of the entire text
         //acpEnd = GetWindowTextLength(m_hwndEdit);
@@ -1163,7 +1163,7 @@ void edit_window::_GetTextOwner(void)
     if(SUCCEEDED(hr))
     {
         ITfRangeACP *pRangeAllText;
-        LONG        acpEnd;
+        ::i32        acpEnd;
 
         //get the range of the entire text
         //acpEnd = GetWindowTextLength(m_hwndEdit);
@@ -1274,7 +1274,7 @@ void edit_window::_GetReadingText(void)
     if(SUCCEEDED(hr))
     {
         ITfRangeACP *pRangeAllText;
-        LONG        acpEnd;
+        ::i32        acpEnd;
 
         //get the range of the entire text
         //acpEnd = GetWindowTextLength(m_hwndEdit);
@@ -1383,7 +1383,7 @@ void edit_window::_GetComposing(void)
     if(SUCCEEDED(hr))
     {
         ITfRangeACP *pRangeAllText;
-        LONG        acpEnd;
+        ::i32        acpEnd;
 
         //get the range of the entire text
         //acpEnd = GetWindowTextLength(m_hwndEdit);
@@ -1758,7 +1758,7 @@ STDMETHODIMP edit_window::QueryInterface(REFIID riid, LPVOID *ppReturn)
 
 **************************************************************************/
 
-STDMETHODIMP_(DWORD) edit_window::AddRef()
+STDMETHODIMP_(::u32) edit_window::AddRef()
 {
     return ++m_ObjRefCount;
 }
@@ -1770,7 +1770,7 @@ STDMETHODIMP_(DWORD) edit_window::AddRef()
 
 **************************************************************************/
 
-STDMETHODIMP_(DWORD) edit_window::Release()
+STDMETHODIMP_(::u32) edit_window::Release()
 {
     if(--m_ObjRefCount == 0)
     {

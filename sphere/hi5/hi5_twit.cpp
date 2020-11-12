@@ -345,16 +345,16 @@ namespace hi5
 
          //mem.set_size(iSize);
 
-         //memsize uiRead;
+         //memsize uRead;
 
          //i64 iPos = 0;
 
-         //DWORD tickStart = ::get_tick();
+         //::u32 tickStart = ::get_tick();
 
-         //while ((uiRead = pfile->read(&mem.get_data()[iPos], mem.get_size() - iPos)) > 0)
+         //while ((uRead = pfile->read(&mem.get_data()[iPos], mem.get_size() - iPos)) > 0)
          //{
          //
-         //   iPos += uiRead;
+         //   iPos += uRead;
 
          //   if (iPos == mem.get_size())
          //   {

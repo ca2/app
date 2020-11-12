@@ -2,7 +2,7 @@
 
 
 // interesting function
-/*int_bool CLASS_DECL_lnx AfxCustomLogFont(UINT nIDS, LOGFONT* pLogFont)
+/*int_bool CLASS_DECL_lnx AfxCustomLogFont(::u32 nIDS, LOGFONT* pLogFont)
 {
    ENSURE_ARG(pLogFont != nullptr);
    ASSERT(nIDS != 0);
@@ -25,12 +25,12 @@
 }*/
 
 /*
-int_bool CLASS_DECL_lnx _AfxIsComboBoxControl(oswindow hWnd, UINT nStyle)
+int_bool CLASS_DECL_lnx _AfxIsComboBoxControl(oswindow hWnd, ::u32 nStyle)
 {
    if (hWnd == nullptr)
       return FALSE;
    // do cheap style compare first
-   if ((UINT)(::GetWindowLong(hWnd, GWL_STYLE) & 0x0F) != nStyle)
+   if ((::u32)(::GetWindowLong(hWnd, GWL_STYLE) & 0x0F) != nStyle)
       return FALSE;
 
    // do expensive classname compare next
@@ -47,7 +47,7 @@ int_bool CLASS_DECL_lnx _AfxCompareClassName(oswindow hWnd, const char * lpszCla
    return ::AfxInvariantStrICmp(szTemp, lpszClassName) == 0;
 }
 
-oswindow CLASS_DECL_lnx _AfxChildWindowFromPoint(oswindow hWnd, POINT pt)
+oswindow CLASS_DECL_lnx _AfxChildWindowFromPoint(oswindow hWnd, POINT32 pt)
 {
    ASSERT(hWnd != nullptr);
 
@@ -56,7 +56,7 @@ oswindow CLASS_DECL_lnx _AfxChildWindowFromPoint(oswindow hWnd, POINT pt)
    oswindow hWndChild = ::GetWindow(hWnd, GW_CHILD);
    for (; hWndChild != nullptr; hWndChild = ::GetWindow(hWndChild, GW_HWNDNEXT))
    {
-      if (_AfxGetDlgCtrlID(hWndChild) != (WORD)0 &&
+      if (_AfxGetDlgCtrlID(hWndChild) != (::u16)0 &&
          (::GetWindowLong(hWndChild, GWL_STYLE) & WS_VISIBLE))
       {
          // see if point hits the child ::interaction_impl
@@ -96,14 +96,14 @@ void CLASS_DECL_lnx AfxcancelModes(oswindow hWndRcvr)
       return;     // let input go to ::interaction_impl with focus
 
    // focus is in part of a combo-box
-   if (!_AfxIsComboBoxControl(hWndcancel, (UINT)CBS_DROPDOWNLIST))
+   if (!_AfxIsComboBoxControl(hWndcancel, (::u32)CBS_DROPDOWNLIST))
    {
       // check as a dropdown
       hWndcancel = ::GetParent(hWndcancel);   // parent of edit is combo
       if (hWndcancel == hWndRcvr)
          return;     // let input go to part of combo
 
-      if (!_AfxIsComboBoxControl(hWndcancel, (UINT)CBS_DROPDOWN))
+      if (!_AfxIsComboBoxControl(hWndcancel, (::u32)CBS_DROPDOWN))
          return;     // not a combo-box that is active
    }
 
@@ -125,7 +125,7 @@ void CLASS_DECL_lnx AfxGlobalFree(HGLOBAL hGlobal)
 
    // avoid bogus warning error messages from various debugging tools
    ASSERT(GlobalFlags(hGlobal) != GMEM_INVALID_HANDLE);
-   UINT nCount = GlobalFlags(hGlobal) & GMEM_LOCKCOUNT;
+   ::u32 nCount = GlobalFlags(hGlobal) & GMEM_LOCKCOUNT;
    while (nCount--)
       GlobalUnlock(hGlobal);
 

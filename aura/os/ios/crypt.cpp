@@ -86,7 +86,7 @@ int crypt_encrypt(memory & storageEncrypt, const memory & storageDecrypt, memory
 
    unsigned char iv[8] = {1,2,3,4,5,6,7,8};
 
-   CFDataRef dataIv = CFDataCreate(kCFAllocatorDefault, (const UInt8 *) iv, sizeof(iv));
+   CFDataRef dataIv = CFDataCreate(kCFAllocatorDefault, (const ::u328 *) iv, sizeof(iv));
 
    SecTransformSetAttribute(transform, kSecIVKey, dataIv, &error);
 
@@ -258,7 +258,7 @@ int crypt_decrypt(memory & storageDecrypt, const memory & storageEncrypt, memory
 
    unsigned char iv[8] = {1,2,3,4,5,6,7,8};
 
-   CFDataRef dataIv = CFDataCreate(kCFAllocatorDefault, (const UInt8 *) iv, sizeof(iv));
+   CFDataRef dataIv = CFDataCreate(kCFAllocatorDefault, (const ::u328 *) iv, sizeof(iv));
 
    SecTransformSetAttribute(transform, kSecIVKey, dataIv, &error);
 

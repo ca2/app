@@ -77,7 +77,7 @@ namespace datetime
    ::datetime::time_span value::GetSpan() const
    {
       ASSERT(m_bSpan);
-      return ::datetime::time_span((LONG) (m_iDay + m_iMonth * (365.0 * 4.0 + 1.0) /(12.0 *4.0) + m_iYear *(365.0 * 4.0 + 1.0) /(4.0)), m_iHour, m_iMinute, m_iSecond);
+      return ::datetime::time_span((::i32) (m_iDay + m_iMonth * (365.0 * 4.0 + 1.0) /(12.0 *4.0) + m_iYear *(365.0 * 4.0 + 1.0) /(4.0)), m_iHour, m_iMinute, m_iSecond);
    }
 
    value & value::operator = (const ::datetime::time & time)

@@ -56,7 +56,7 @@ using serial::PortNotOpenedException;
 using serial::IOException;
 
 
-MillisecondTimer::MillisecondTimer (const uint32_t millis)
+MillisecondTimer::MillisecondTimer (const ::u32 millis)
   : expiry(timespec_now())
 {
   int64_t tv_nsec = expiry.tv_nsec + (millis * 1e6);
@@ -97,7 +97,7 @@ MillisecondTimer::timespec_now ()
 }
 
 timespec
-timespec_from_ms (const uint32_t millis)
+timespec_from_ms (const ::u32 millis)
 {
   timespec time;
   time.tv_sec = millis / 1e3;
@@ -357,7 +357,7 @@ Serial::SerialImpl::reconfigurePort ()
   if (stopbits_ == stopbits_one)
     options.c_cflag &= (tcflag_t) ~(CSTOPB);
   else if (stopbits_ == stopbits_one_point_five)
-    // ONE POINT FIVE same as TWO.. there is no POSIX support for 1.5
+    // ONE POINT32 FIVE same as TWO.. there is no POSIX support for 1.5
     options.c_cflag |=  (CSTOPB);
   else if (stopbits_ == stopbits_two)
     options.c_cflag |=  (CSTOPB);
@@ -441,7 +441,7 @@ Serial::SerialImpl::reconfigurePort ()
   ::tcsetattr (fd_, TCSANOW, &options);
 
   // Update byte_time_ based on the new settings.
-  uint32_t bit_time_ns = 1e9 / baudrate_;
+  ::u32 bit_time_ns = 1e9 / baudrate_;
   byte_time_ns_ = bit_time_ns * (1 + bytesize_ + parity_ + stopbits_);
 
   // Compensate for the stopbits_one_point_five enum being equal to int 3,
@@ -489,7 +489,7 @@ Serial::SerialImpl::available ()
 }
 
 bool
-Serial::SerialImpl::waitReadable (uint32_t timeout)
+Serial::SerialImpl::waitReadable (::u32 timeout)
 {
   // Setup a select call to block for serial data or a timeout
   fd_set readfds;
@@ -527,7 +527,7 @@ Serial::SerialImpl::waitByteTimes (size_t count)
 }
 
 size_t
-Serial::SerialImpl::read (uint8_t *buf, size_t size)
+Serial::SerialImpl::read (::u328_t *buf, size_t size)
 {
   // If the port is not open, __throw(
   if (!is_open_) {
@@ -538,7 +538,7 @@ Serial::SerialImpl::read (uint8_t *buf, size_t size)
   // Calculate total timeout in milliseconds t_c + (t_m * N)
   long total_timeout_ms = timeout_.read_timeout_constant;
   total_timeout_ms += timeout_.read_timeout_multiplier * static_cast<long> (size);
-  MillisecondTimer total_timeout((uint32_t)total_timeout_ms);
+  MillisecondTimer total_timeout((::u32)total_timeout_ms);
 
   // Pre-fill buffer with available bytes
   {
@@ -556,7 +556,7 @@ Serial::SerialImpl::read (uint8_t *buf, size_t size)
     }
     // Timeout for the next select is whichever is less of the remaining
     // total read timeout and the inter-byte timeout.
-    uint32_t timeout = std::min(static_cast<uint32_t> (timeout_remaining_ms),
+    ::u32 timeout = std::min(static_cast<::u32> (timeout_remaining_ms),
                                 timeout_.inter_byte_timeout);
     // Wait for the device to be readable, and then attempt to read.
     if (waitReadable(timeout)) {
@@ -603,7 +603,7 @@ Serial::SerialImpl::read (uint8_t *buf, size_t size)
 }
 
 size_t
-Serial::SerialImpl::write (const uint8_t *data, size_t length)
+Serial::SerialImpl::write (const ::u328_t *data, size_t length)
 {
   if (is_open_ == false) {
     __throw(PortNotOpenedException ("Serial::write"));
@@ -614,7 +614,7 @@ Serial::SerialImpl::write (const uint8_t *data, size_t length)
   // Calculate total timeout in milliseconds t_c + (t_m * N)
   long total_timeout_ms = timeout_.write_timeout_constant;
   total_timeout_ms += timeout_.write_timeout_multiplier * static_cast<long> (length);
-  MillisecondTimer total_timeout((uint32_t)total_timeout_ms);
+  MillisecondTimer total_timeout((::u32)total_timeout_ms);
 
   bool first_iteration = true;
   while (bytes_written < length) {
@@ -627,7 +627,7 @@ Serial::SerialImpl::write (const uint8_t *data, size_t length)
     }
     first_iteration = false;
 
-    timespec timeout(timespec_from_ms((uint32_t)timeout_remaining_ms));
+    timespec timeout(timespec_from_ms((::u32)timeout_remaining_ms));
 
     FD_ZERO (&writefds);
     FD_SET (fd_, &writefds);

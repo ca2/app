@@ -109,12 +109,12 @@ namespace user
          MESSAGE_LINK(e_message_create, pchannel, this, &edit_impl::_001OnCreate);
          MESSAGE_LINK(e_message_destroy, pchannel, this, &edit_impl::_001OnDestroy);
          MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &edit_impl::_001OnShowWindow);
-         MESSAGE_LINK(WM_LBUTTONDOWN, pchannel, this, &edit_impl::_001OnLButtonDown);
-         MESSAGE_LINK(WM_LBUTTONUP, pchannel, this, &edit_impl::_001OnLButtonUp);
+         MESSAGE_LINK(e_message_lbutton_down, pchannel, this, &edit_impl::_001OnLButtonDown);
+         MESSAGE_LINK(e_message_lbutton_up, pchannel, this, &edit_impl::_001OnLButtonUp);
          MESSAGE_LINK(e_message_mouse_move, pchannel, this, &edit_impl::_001OnMouseMove);
          MESSAGE_LINK(WM_MOUSELEAVE, pchannel, this, &edit_impl::_001OnMouseLeave);
-         MESSAGE_LINK(WM_KEYDOWN, pchannel, this, &edit_impl::_001OnKeyDown);
-         MESSAGE_LINK(WM_KEYUP, pchannel, this, &edit_impl::_001OnKeyUp);
+         MESSAGE_LINK(e_message_key_down, pchannel, this, &edit_impl::_001OnKeyDown);
+         MESSAGE_LINK(e_message_key_up, pchannel, this, &edit_impl::_001OnKeyUp);
          MESSAGE_LINK(e_message_set_focus, pchannel, this, &edit_impl::_001OnSetFocus);
          MESSAGE_LINK(e_message_kill_focus, pchannel, this, &edit_impl::_001OnKillFocus);
 
@@ -520,7 +520,7 @@ namespace user
       }
 
 
-      bool edit_impl::get_element_rect(RECT * prect, index i, e_element eelement)
+      bool edit_impl::get_element_rect(RECT32 * prect, index i, e_element eelement)
 
       {
 
@@ -558,7 +558,7 @@ namespace user
 
       }
 
-      bool edit_impl::get_item_rect(RECT * prect, index i)
+      bool edit_impl::get_item_rect(RECT32 * prect, index i)
 
       {
 
@@ -670,7 +670,7 @@ namespace user
 
          //   pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-         //   COLORREF crBackground = _001GetColor(::user::color_background, ARGB(128, 255, 255, 255));
+         //   color32_t crBackground = _001GetColor(::user::color_background, ARGB(128, 255, 255, 255));
 
          //   //if (colorref_get_r_value(crBackground) != 255)
          //   //{
@@ -694,7 +694,7 @@ namespace user
 
          //   pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-         //   COLORREF crBackground = _001GetColor(m_ecolorBackground, ARGB(200, 255, 255, 255));
+         //   color32_t crBackground = _001GetColor(m_ecolorBackground, ARGB(200, 255, 255, 255));
 
          //   //if (colorref_get_r_value(crBackground) != 255)
          //   //{

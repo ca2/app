@@ -76,7 +76,7 @@ namespace hotplugin
 
       i32 iRate1 = 25;
 
-      BYTE bA;
+      byte bA;
 
       {
 
@@ -94,15 +94,15 @@ namespace hotplugin
          else
          bA = 184 * 2 - iA;*/
 
-         bA = min(255, max(0, (BYTE)((184.0 * ((sin(w * t) + 1.0) / 2.0)) + 23.0)));
+         bA = min(255, max(0, (byte)((184.0 * ((sin(w * t) + 1.0) / 2.0)) + 23.0)));
 
 
 
       }
 
-      BYTE uchR;
-      BYTE uchG;
-      BYTE uchB;
+      byte uchR;
+      byte uchG;
+      byte uchB;
 
       //graphics2.SetCompositingMode(Gdiplus::CompositingModeSourceOver);
 

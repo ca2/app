@@ -377,8 +377,8 @@ namespace experience
       MESSAGE_LINK(WM_SHOWWINDOW, pframewindow, this, &control_box::_001OnShowWindow);
       MESSAGE_LINK(e_message_create, pframewindow, this, &control_box::_001OnCreate);
       MESSAGE_LINK(e_message_mouse_move, pframewindow, this, &control_box::_001OnMouseMove);
-      MESSAGE_LINK(WM_LBUTTONDOWN, pframewindow, this, &control_box::_001OnLButtonDown);
-      MESSAGE_LINK(WM_LBUTTONUP, pframewindow, this, &control_box::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_lbutton_down, pframewindow, this, &control_box::_001OnLButtonDown);
+      MESSAGE_LINK(e_message_lbutton_up, pframewindow, this, &control_box::_001OnLButtonUp);
       MESSAGE_LINK(e_message_move, pframewindow, this, &control_box::_001OnMove);
       MESSAGE_LINK(e_message_size, pframewindow, this, &control_box::_001OnSize);
 
@@ -1466,7 +1466,7 @@ namespace experience
       catch (...)
       {
 
-         __throw(::exception::exception("no more a ui"));
+         __throw(::exception::exception("no more a u"));
 
       }
 

@@ -12,7 +12,7 @@ namespace install
    }
 
 
-   UINT starter_start::start()
+   ::u32 starter_start::start()
    {
 
       bool bHostStarterStartFoo = false;
@@ -147,7 +147,7 @@ namespace install
       starter_start * pstart = (starter_start *)pvoid;
 
 
-      UINT uiRet = pstart->start();
+      ::u32 uRet = pstart->start();
 
 
       if (uiRet != 0)

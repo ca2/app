@@ -753,7 +753,7 @@ namespace html
             }
 
 
-            //COLORREF cr;
+            //color32_t cr;
 
             pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
@@ -763,7 +763,7 @@ namespace html
             //   if (m_pelemental->get_color(cr, ::user::color_background, pdata->m_pcoredata->m_pform))
             //   {
 
-            //      App(pdata->get_context_application()).imaging().color_blend(pgraphics, rect, cr, max(0, min(255, (BYTE)(d * 255))));
+            //      App(pdata->get_context_application()).imaging().color_blend(pgraphics, rect, cr, max(0, min(255, (byte)(d * 255))));
 
             //   }
 
@@ -910,7 +910,7 @@ namespace html
       }
 
 
-      bool element::get_color(COLORREF & cr)
+      bool element::get_color(color32_t & cr)
       {
 
          cr = ARGB(255, 0, 0, 0);

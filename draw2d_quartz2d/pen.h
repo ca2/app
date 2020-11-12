@@ -17,15 +17,15 @@ namespace draw2d_quartz2d
       //i32                  m_iStock;
       //i32                  m_iStyle;
       //i32                  m_iWidth;
-      //COLORREF             m_color;
+      //color32_t             m_color;
       
       
       pen();
       virtual ~pen();
-      /*virtual void construct(i32 nPenStyle, double nWidth, COLORREF crColor);
-       virtual void construct(i32 nPenStyle, double nWidth, const LOGBRUSH* pLogBrush, i32 nStyleCount = 0, const DWORD* lpStyle = nullptr);
-       bool CreatePen(i32 nPenStyle, double nWidth, COLORREF crColor);
-       bool CreatePen(i32 nPenStyle, double nWidth, const LOGBRUSH* pLogBrush, i32 nStyleCount = 0, const DWORD* lpStyle = nullptr);*/
+      /*virtual void construct(i32 nPenStyle, double nWidth, color32_t crColor);
+       virtual void construct(i32 nPenStyle, double nWidth, const LOGBRUSH* pLogBrush, i32 nStyleCount = 0, const ::u32* lpStyle = nullptr);
+       bool CreatePen(i32 nPenStyle, double nWidth, color32_t crColor);
+       bool CreatePen(i32 nPenStyle, double nWidth, const LOGBRUSH* pLogBrush, i32 nStyleCount = 0, const ::u32* lpStyle = nullptr);*/
       
       
       //      virtual void * get_os_data() const;

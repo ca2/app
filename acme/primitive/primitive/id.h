@@ -961,7 +961,7 @@ template < >
 inline uptr uptr_hash< const id & >(const id & key)
 {
 
-   return ((((UINT)(uptr)key.m_iType) << 24) & 0xffffffffu) | ((((UINT)(uptr)key.m_iBody) >> 8) & 0xffffffffu);
+   return ((((::u32)(uptr)key.m_iType) << 24) & 0xffffffffu) | ((((::u32)(uptr)key.m_iBody) >> 8) & 0xffffffffu);
 
 }
 

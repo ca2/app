@@ -8,7 +8,7 @@ namespace dynamic_source
 {
 
    
-   UINT ThreadProcRsa(LPVOID lp);
+   ::u32 ThreadProcRsa(LPVOID lp);
 
 
    //script_instance * get_seed_instance()
@@ -276,7 +276,7 @@ namespace dynamic_source
 
       pmain->run_property("on_create");
 
-      pmain->call_method(CREATE_METHOD);
+      pmain->call_procedure(CREATE_PROCEDURE);
 
       pmain->m_pmain = pmain;
       
@@ -292,7 +292,7 @@ namespace dynamic_source
 
       pinstance->run_property("on_create");
 
-      pinstance->call_method(CREATE_METHOD);
+      pinstance->call_procedure(CREATE_PROCEDURE);
 
       auto pthread = pdssocket->get_context_thread();
 
@@ -527,7 +527,7 @@ namespace dynamic_source
 
             pimpl->run_property("on_create");
             
-            pimpl->call_method(CREATE_METHOD);
+            pimpl->call_procedure(CREATE_PROCEDURE);
 
             pimpl->init1();
 
@@ -537,7 +537,7 @@ namespace dynamic_source
 
             pinstance->run_property("on_create");
             
-            pinstance->call_method(CREATE_METHOD);
+            pinstance->call_procedure(CREATE_PROCEDURE);
 
             if (pinstanceParent->m_pmain->m_iDebug > 0)
             {
@@ -1130,7 +1130,7 @@ namespace dynamic_source
    }
 
 
-   UINT ThreadProcRsa(LPVOID lp)
+   ::u32 ThreadProcRsa(LPVOID lp)
    {
       script_manager * pmanager = (script_manager *) lp;
       pmanager->calc_rsa_key();

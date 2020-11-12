@@ -8,7 +8,7 @@ namespace message
    class simple_command;
 
 
-   inline UINT translate_to_os_message(const ::id& id) { return id.u32(); }
+   inline ::u32 translate_to_os_message(const ::id& id) { return id.u32(); }
 
 
    class base;
@@ -50,7 +50,7 @@ namespace message
    };
 
 
-   CLASS_DECL_APEX e_prototype get_message_prototype(UINT_PTR emessage, UINT uiCode);
+   CLASS_DECL_APEX e_prototype get_message_prototype(enum_message emessage, ::u32 uCode);
 
 //   class ::channel * CreateSignal();
 

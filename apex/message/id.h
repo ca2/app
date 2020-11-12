@@ -147,6 +147,6 @@
 //inline uptr uptr_hash < const ::id & >(const ::id & key)
 //{
 //
-//   return (UINT) (((i64)key.m_emessagetype) ^ uptr_hash < const ::id & >((const ::id &) key));
+//   return (::u32) (((i64)key.m_emessagetype) ^ uptr_hash < const ::id & >((const ::id &) key));
 //
 //}

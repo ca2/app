@@ -7,7 +7,7 @@ CLASS_DECL_ACME::Windows::Storage::StorageFolder^ winrt_folder(string& strPath, 
 #endif
 
 
-DWORD windows_get_file_attributes(const char* path)
+::u32 windows_get_file_attributes(const char* path)
 {
 
    wstring wstr(path);

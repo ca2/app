@@ -16,7 +16,7 @@
 
 CLASS_DECL_APEX void apex_generate_random_bytes(void* p, memsize s);
 
-int GetMainScreenRect(LPRECT lprect);
+int GetMainScreenRect(LPRECT32 lprect);
 
 
 const char* g_pszMultimediaLibraryName = nullptr;
@@ -81,7 +81,7 @@ void dappy(const char * psz);
 string get_user_name()
 {
    WCHAR wsz[1024];
-   DWORD dwSize = sizeof(wsz) / sizeof(WCHAR);
+   ::u32 dwSize = sizeof(wsz) / sizeof(WCHAR);
    ::GetUserNameW(wsz,&dwSize);
    return string(wsz);
 }
@@ -107,7 +107,7 @@ namespace apex
 
       //set_context_system(this OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
 
-      
+
 
       common_construct();
 
@@ -1716,14 +1716,14 @@ namespace apex
 
       }
 
-      estatus = initial_check_directrix();
+      //estatus = process_creation_requests();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+        // return estatus;
 
-      }
+      //}
 
       return true;
 
@@ -1813,7 +1813,7 @@ namespace apex
    }
 
 
-   ::estatus system::initial_check_directrix()
+   ::estatus system::post_create_requests()
    {
 
       //while(auto pcreate = get_command()->get_create())
@@ -1978,6 +1978,15 @@ namespace apex
       //::multithreading::wait_threads(1_min, { this });
 
    }
+
+
+   bool system::thread_get_run() const
+   {
+
+      return ::apex::context_thread::thread_get_run();
+
+   }
+
 
 
    void system::term1()
@@ -2195,7 +2204,7 @@ namespace apex
    }
 
 
-   UINT system::os_post_to_all_threads(const ::id & id,WPARAM wparam,lparam lparam)
+   ::u32 system::os_post_to_all_threads(const ::id & id,WPARAM wparam,lparam lparam)
    {
 
       post_to_all_threads(id,wparam,lparam);
@@ -3523,7 +3532,7 @@ namespace apex
 //   }
 //
 //
-//   CLASS_DECL_APEX bool get_window_rect(::apex::system_window ^ pwindow, RECT * prect)
+//   CLASS_DECL_APEX bool get_window_rect(::apex::system_window ^ pwindow, RECT32 * prect)
 //   {
 //
 //      ::rectd rect;
@@ -4410,7 +4419,7 @@ namespace apex
    }
 
 
-//   ::thread* system::get_task(ITHREAD ithread)
+//   ::thread* system::get_task(ithread_t ithread)
 //   {
 //
 //      sync_lock sl(&m_mutexThread);
@@ -4420,12 +4429,12 @@ namespace apex
 //   }
 //
 //
-//   ITHREAD system::get_thread_id(::thread* pthread)
+//   ithread_t system::get_thread_id(::thread* pthread)
 //   {
 //
 //      sync_lock sl(&m_mutexThread);
 //
-//      ITHREAD ithread = NULL_ITHREAD;
+//      ithread_t ithread = NULL_ITHREAD;
 //
 //      if (!m_threadidmap.lookup(pthread, ithread))
 //      {
@@ -4439,7 +4448,7 @@ namespace apex
 //   }
 //
 //
-//   void system::set_thread(ITHREAD ithread, ::thread* pthread)
+//   void system::set_thread(ithread_t ithread, ::thread* pthread)
 //   {
 //
 //      sync_lock sl(&m_mutexThread);
@@ -4451,7 +4460,7 @@ namespace apex
 //   }
 //
 //
-//   void system::unset_thread(ITHREAD ithread, ::thread * pthread)
+//   void system::unset_thread(ithread_t ithread, ::thread * pthread)
 //   {
 //
 //      sync_lock sl(&m_mutexThread);
@@ -4714,7 +4723,7 @@ typedef void BASECORE_INIT();
 namespace apex
 {
 
-   CLASS_DECL_APEX void black_body(float* r, float* g, float* b, DWORD dwTemp);
+   CLASS_DECL_APEX void black_body(float* r, float* g, float* b, ::u32 dwTemp);
 
    /*  bool system::on_application_menu_action(const char * pszCommand)
      {
@@ -5313,7 +5322,7 @@ namespace apex
 
    }
 
-   
+
    bool system::is_thread() const
    {
 
@@ -5375,7 +5384,7 @@ namespace apex
 #ifdef _UWP
 
 
-   bool system::get_window_rect(RECT* prect)
+   bool system::get_window_rect(RECT32* prect)
    {
 
       if (::is_null(get_context_session()))
@@ -5615,12 +5624,12 @@ string get_bundle_app_library_name();
    auto psystem = dynamic_cast<::apex::system*>(pobject);
 
    if(!psystem)
-   { 
-   
+   {
+
       delete pobject;
 
       return nullptr;
-   
+
    }
 
    return psystem;

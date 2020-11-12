@@ -67,7 +67,7 @@ namespace message
    }
 
 
-//   UINT translate_to_os_message(const ::id & id)
+//   ::u32 translate_to_os_message(const ::id & id)
 //   {
 //
 ////#ifdef WINDOWS
@@ -75,7 +75,7 @@ namespace message
 ////      if (id.m_etype == ::id::e_type_message)
 ////      {
 ////
-////         return (UINT) id.m_emessage;
+////         return (::u32) id.m_emessage;
 ////
 ////      }
 ////
@@ -99,7 +99,7 @@ namespace message
 //   }
 
 
-   e_prototype get_message_prototype(UINT_PTR emessage, UINT uiCode)
+   e_prototype get_message_prototype(enum_message emessage, ::u32 uCode)
    {
       switch (emessage)
       {
@@ -135,11 +135,11 @@ namespace message
          //}
          //}
       case e_message_mouse_move:
-      case WM_LBUTTONDOWN:
-      case WM_LBUTTONUP:
+      case e_message_lbutton_down:
+      case e_message_lbutton_up:
       case WM_LBUTTONDBLCLK:
-      case WM_RBUTTONDOWN:
-      case WM_RBUTTONUP:
+      case e_message_rbutton_down:
+      case e_message_rbutton_up:
       case WM_RBUTTONDBLCLK:
       case WM_MBUTTONDOWN:
       case WM_MBUTTONUP:
@@ -149,23 +149,23 @@ namespace message
       case WM_NCLBUTTONUP:
          return PrototypeMouse;
 #ifdef WINDOWS
-      case WM_MOUSEWHEEL:
+      case e_message_mouse_wheel:
          return PrototypeMouseWheel;
 #endif
       case WM_NCACTIVATE:
          return PrototypeNcActivate;
       case WM_TIMER:
          return PrototypeTimer;
-      case WM_KEYDOWN:
-      case WM_KEYUP:
-      case WM_CHAR:
-      case WM_DEADCHAR:
-      case WM_SYSKEYDOWN:
-      case WM_SYSKEYUP:
-      case WM_SYSCHAR:
-      case WM_SYSDEADCHAR:
+      case e_message_key_down:
+      case e_message_key_up:
+      case e_message_char:
+      case e_message_dead_char:
+      case e_message_sys_key_down:
+      case e_message_sys_key_up:
+      case e_message_sys_char:
+      case e_message_sys_dead_char:
 #if(_WIN32_WINNT >= 0x0501)
-      case WM_UNICHAR:
+      case e_message_uni_char:
 #endif
          return PrototypeKey;
       case WM_NCHITTEST:

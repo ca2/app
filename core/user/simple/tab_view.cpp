@@ -44,7 +44,7 @@ void simple_tab_view::on_layout(::draw2d::graphics_pointer & pgraphics)
 
 
 
-bool simple_tab_view::get_client_rect(RECT * prect)
+bool simple_tab_view::get_client_rect(RECT32 * prect)
 {
 
    ::user::impact::get_client_rect(prect);

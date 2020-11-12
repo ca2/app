@@ -206,11 +206,11 @@ namespace uwp
       VERIFY(FindClose(hFind));
 
       // strip attribute of NORMAL bit, our API doesn't have a "normal" bit.
-      rStatus.m_attribute = (BYTE)(findnative_bufferData.dwnative_bufferAttributes & ~native_buffer_ATTRIBUTE_NORMAL);
+      rStatus.m_attribute = (byte)(findnative_bufferData.dwnative_bufferAttributes & ~native_buffer_ATTRIBUTE_NORMAL);
 
-      // get just the low DWORD of the native_buffer size
+      // get just the low ::u32 of the native_buffer size
       ASSERT(findnative_bufferData.nnative_bufferSizeHigh == 0);
-      rStatus.m_size = (LONG)findnative_bufferData.nnative_bufferSizeLow;
+      rStatus.m_size = (::i32)findnative_bufferData.nnative_bufferSizeLow;
 
       // convert times as appropriate
       rStatus.m_ctime = ::datetime::time(findnative_bufferData.ftCreationTime);
@@ -341,7 +341,7 @@ namespace uwp
       }
 
       m_bCloseOnDelete = FALSE;
-      //m_hnative_buffer = (UINT)hnative_bufferNull;
+      //m_hnative_buffer = (::u32)hnative_bufferNull;
       m_strFileName.Empty();
 
       m_strFileName  = path;
@@ -352,7 +352,7 @@ namespace uwp
 
       // ::map read/write mode
       ASSERT((::file::mode_read | ::file::mode_write | ::file::mode_read_write) == 3);
-      DWORD dwAccess = 0;
+      ::u32 dwAccess = 0;
       switch(efileopen & 3)
       {
       case ::file::mode_read:
@@ -370,7 +370,7 @@ namespace uwp
       }
 
       // ::map share mode
-      //DWORD dwShareMode = 0;
+      //::u32 dwShareMode = 0;
       //switch(nOpenFlags & 0x70)    // ::map compatibility mode to exclusive
       //{
       //default:
@@ -506,9 +506,9 @@ namespace uwp
 
       ::Windows::Storage::Streams::IBuffer ^ buffer = memory.get_os_buffer();
 
-      unsigned int ui = ::wait(m_stream->WriteAsync(buffer));
+      unsigned int u = ::wait(m_stream->WriteAsync(buffer));
 
-      if (ui != nCount)
+      if (u != nCount)
       {
 
          __throw(io_exception());
@@ -574,11 +574,11 @@ namespace uwp
    //void native_buffer::Abort()
    //{
    //   //ASSERT_VALID(this);
-   //   //if(m_hnative_buffer != (UINT)hnative_bufferNull)
+   //   //if(m_hnative_buffer != (::u32)hnative_bufferNull)
    //   //{
    //   //   // close but ignore errors
    //   //   ::CloseHandle((HANDLE)m_hnative_buffer);
-   //   //   m_hnative_buffer = (UINT)hnative_bufferNull;
+   //   //   m_hnative_buffer = (::u32)hnative_bufferNull;
    //   //}
    //   //m_strFileName.Empty();
    //}
@@ -586,30 +586,30 @@ namespace uwp
    void native_buffer::lock(filesize dwPos,filesize dwCount)
    {
       //ASSERT_VALID(this);
-      //ASSERT(m_hnative_buffer != (UINT)hnative_bufferNull);
+      //ASSERT(m_hnative_buffer != (::u32)hnative_bufferNull);
 
       ////      if (!::Locknative_buffer((HANDLE)m_hnative_buffer, LODWORD(dwPos), HIDWORD(dwPos), LODWORD(dwCount), HIDWORD(dwCount)))
-      ////       WinFileException::ThrowOsError(get_context_application(), (LONG)::get_last_error());
+      ////       WinFileException::ThrowOsError(get_context_application(), (::i32)::get_last_error());
    }
 
    void native_buffer::unlock(filesize dwPos,filesize dwCount)
    {
       //ASSERT_VALID(this);
-      //ASSERT(m_hnative_buffer != (UINT)hnative_bufferNull);
+      //ASSERT(m_hnative_buffer != (::u32)hnative_bufferNull);
 
       ////  if (!::Unlocknative_buffer((HANDLE)m_hnative_buffer,  LODWORD(dwPos), HIDWORD(dwPos), LODWORD(dwCount), HIDWORD(dwCount)))
-      ////   WinFileException::ThrowOsError(get_context_application(), (LONG)::get_last_error());
+      ////   WinFileException::ThrowOsError(get_context_application(), (::i32)::get_last_error());
    }
 
    void native_buffer::set_size(filesize dwNewLen)
    {
       //ASSERT_VALID(this);
-      //ASSERT(m_hnative_buffer != (UINT)hnative_bufferNull);
+      //ASSERT(m_hnative_buffer != (::u32)hnative_bufferNull);
 
-      //seek((LONG)dwNewLen,(::file::e_seek)::file::seek_begin);
+      //seek((::i32)dwNewLen,(::file::e_seek)::file::seek_begin);
 
       //if(!::SetEndOfnative_buffer((HANDLE)m_hnative_buffer))
-      //   WinFileException::ThrowOsError(get_context_application(),(LONG)::get_last_error());
+      //   WinFileException::ThrowOsError(get_context_application(),(::i32)::get_last_error());
    }
 
 
@@ -630,7 +630,7 @@ namespace uwp
    }
 
    //// native_buffer does not support direct buffering (CMemnative_buffer does)
-   //u64 native_buffer::GetBufferPtr(UINT nCommand,u64 /*nCount*/,
+   //u64 native_buffer::GetBufferPtr(::u32 nCommand,u64 /*nCount*/,
    //                                     void ** /*ppBufStart*/,void ** /*ppBufMax*/)
    //{
    //   ASSERT(nCommand == bufferCheck);
@@ -645,7 +645,7 @@ namespace uwp
    {
    if (!::Movenative_buffer((LPTSTR)pszOldName, (LPTSTR)pszNewName))
 
-   WinFileException::ThrowOsError(get_context_application(), (LONG)::get_last_error());
+   WinFileException::ThrowOsError(get_context_application(), (::i32)::get_last_error());
    }
 
    void native_buffer::remove(const char * pszfileName)
@@ -653,7 +653,7 @@ namespace uwp
    {
    if (!::Deletenative_buffer((LPTSTR)pszfileName))
 
-   WinFileException::ThrowOsError(get_context_application(), (LONG)::get_last_error());
+   WinFileException::ThrowOsError(get_context_application(), (::i32)::get_last_error());
    }
    */
 

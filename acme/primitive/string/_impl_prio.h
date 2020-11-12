@@ -1,29 +1,6 @@
 #pragma once
 
 
-template < >
-inline natural_meta_data < string_meta_data < ansichar > > * __nil < natural_meta_data < string_meta_data < ansichar > > >()
-{
-
-   return g_pansistringNil;
-
-}
-
-template < >
-inline natural_meta_data < string_meta_data < wd16char > > * __nil < natural_meta_data < string_meta_data < wd16char > > >()
-{
-
-   return g_pwd16stringNil;
-
-}
-
-template < >
-inline natural_meta_data < string_meta_data < wd32char > > * __nil < natural_meta_data < string_meta_data < wd32char > > >()
-{
-
-   return g_pwd32stringNil;
-
-}
 
 CLASS_DECL_ACME i64 strtoi(const char * psz);
 CLASS_DECL_ACME i64 strtoi(const widechar * psz);
@@ -74,14 +51,14 @@ inline T FormatArgument(T value) noexcept
 
 }
 
-
-inline UINT _gen_GetConversionACP()
+#ifdef WINDOWS
+inline ::u32 _gen_GetConversionACP()
 {
 
    return CP_UTF8;
 
 }
-
+#endif
 
 class fixed_alloc_array;
 

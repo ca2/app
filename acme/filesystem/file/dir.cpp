@@ -184,7 +184,7 @@ namespace dir
 
       }
 
-      if (!GetModuleFileNameW(hmodule, wstrModuleFilePath, (DWORD)wstrModuleFilePath.length()))
+      if (!GetModuleFileNameW(hmodule, wstrModuleFilePath, (::u32)wstrModuleFilePath.length()))
       {
 
          return "";
@@ -195,7 +195,7 @@ namespace dir
 
       LPWSTR pszModuleFileName;
 
-      if (!GetFullPathNameW(wstrModuleFilePath, (DWORD)wstrModuleFilePath.length(), wstrModuleFolder, &pszModuleFileName))
+      if (!GetFullPathNameW(wstrModuleFilePath, (::u32)wstrModuleFilePath.length(), wstrModuleFolder, &pszModuleFileName))
       {
 
          return "";
@@ -347,7 +347,7 @@ namespace dir
 
       }
 
-      if(!GetModuleFileNameW(hmodule,wstrModuleFilePath, (DWORD) wstrModuleFilePath.length()))
+      if(!GetModuleFileNameW(hmodule,wstrModuleFilePath, (::u32) wstrModuleFilePath.length()))
       {
 
          return "";
@@ -356,7 +356,7 @@ namespace dir
 
       LPWSTR pszModuleFileName;
 
-      if (!GetFullPathNameW(wstrModuleFilePath, (DWORD) wstrModuleFilePath.length(), wstrModuleFolder, &pszModuleFileName))
+      if (!GetFullPathNameW(wstrModuleFilePath, (::u32) wstrModuleFilePath.length(), wstrModuleFolder, &pszModuleFileName))
       {
 
          return "";
@@ -747,7 +747,7 @@ namespace dir
          else
          {
 
-            DWORD dwError = ::get_last_error();
+            ::u32 dwError = ::get_last_error();
 
             if (dwError == ERROR_ALREADY_EXISTS)
             {
@@ -890,7 +890,7 @@ namespace dir
 
       wstring path(get_buffer, MAX_PATH * 8);
 
-      if(!GetModuleFileNameW(nullptr, path, (DWORD) path.size()))
+      if(!GetModuleFileNameW(nullptr, path, (::u32) path.size()))
       {
 
          return "";
@@ -957,7 +957,7 @@ namespace dir
 
 
 
-         DWORD dwLastError = ::get_last_error();
+         ::u32 dwLastError = ::get_last_error();
 
          string strPrefix;
 
@@ -1416,16 +1416,16 @@ namespace dir
 
       auto a = ::wait(folder->GetItemsAsync());
 
-      for(u32 ui = 0; ui < a->Size; ui++)
+      for(u32 u = 0; u < a->Size; u++)
       {
 
-         string strPath = string(begin(a->GetAt(ui)->Path));
+         string strPath = string(begin(a->GetAt(u)->Path));
 
          ::file::path path(strPath);
 
          string str = path;
 
-         path.m_iDir = a->GetAt(ui)->IsOfType( ::Windows::Storage::StorageItemTypes::Folder) ? 1 :0;
+         path.m_iDir = a->GetAt(u)->IsOfType( ::Windows::Storage::StorageItemTypes::Folder) ? 1 :0;
 
          stra.add(path);
 
@@ -1507,9 +1507,9 @@ namespace dir
 
       ::Windows::Foundation::Collections::IVectorView < ::Windows::Storage::StorageFolder ^ > ^ a = wait(folder->GetFoldersAsync());
 
-      for(u32 ui = 0; ui < a->Size; ui++)
+      for(u32 u = 0; u < a->Size; u++)
       {
-         stra.add(begin(a->GetAt(ui)->Path));
+         stra.add(begin(a->GetAt(u)->Path));
       }
 
 
@@ -1589,9 +1589,9 @@ namespace dir
 
       ::Windows::Foundation::Collections::IVectorView < ::Windows::Storage::StorageFolder ^ > ^ a = wait(folder->GetFoldersAsync());
 
-      for(u32 ui = 0; ui < a->Size; ui++)
+      for(u32 u = 0; u < a->Size; u++)
       {
-         stra.add(begin(a->GetAt(ui)->Path));
+         stra.add(begin(a->GetAt(u)->Path));
       }
 
 

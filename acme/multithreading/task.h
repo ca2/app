@@ -2,8 +2,8 @@
 
 
 typedef __pointer_array(::matter) object_array;
-typedef isomap < ITHREAD, __pointer(task) > task_map;
-typedef isomap < task *, ITHREAD > task_id_map;
+typedef isomap < ithread_t, __pointer(task) > task_map;
+typedef isomap < task *, ithread_t > task_id_map;
 
 
 class CLASS_DECL_ACME task :
@@ -22,8 +22,8 @@ public:
    int                              m_bitCoInitialize : 1;
 
 
-   HTHREAD                          m_hthread;
-   ITHREAD                          m_ithread;
+   hthread_t                          m_hthread;
+   ithread_t                          m_ithread;
    string                           m_strTaskName;
    string                           m_strTaskTag;
    __pointer(::context_object)      m_pobjectParent;
@@ -31,8 +31,9 @@ public:
    __pointer(::matter)              m_pmatter;
    __pointer(manual_reset_event)    m_pevSleep;
 
+#ifdef WINDOWS
    HRESULT                          m_hresultCoInitialize;
-
+#endif
 
 
    task();
@@ -67,6 +68,8 @@ public:
    virtual void remove_notify(::matter* pmatter);
 
 
+   virtual ::estatus task_caller_on_init();
+
    virtual bool on_get_thread_name(string & strThreadName);
 
 
@@ -76,7 +79,7 @@ public:
    virtual ::estatus on_task() override;
 
 
-   virtual ::estatus fork(
+   virtual ::estatus begin_task(
       ::e_priority epriority = priority_normal,
       u32 nStackSize = 0,
       u32 dwCreateFlags = 0);

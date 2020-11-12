@@ -11,7 +11,7 @@ public:
    string                           m_strTitle;
    ::emessagebox                    m_emessagebox;
    ::duration                       m_durationTimeout;
-   future                           m_future;
+   futurevar                        m_future;
 
 
    message_box();
@@ -63,7 +63,7 @@ inline var operator + (const char* psz, const ::enum_message_box& emessagebox)
 }
 
 
-CLASS_DECL_ACME ::estatus os_message_box(const char* pszText, const char* pszTitle = nullptr, ::emessagebox emessagebox = message_box_ok, const ::future & future = ::future());
+CLASS_DECL_ACME ::estatus os_message_box(const char* pszText, const char* pszTitle = nullptr, ::emessagebox emessagebox = message_box_ok, const ::futurevar & future = ::futurevar());
 
 
 

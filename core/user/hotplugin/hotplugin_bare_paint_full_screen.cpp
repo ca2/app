@@ -46,7 +46,7 @@ namespace hotplugin
 
       {
 
-         BYTE uchR, uchG, uchB;
+         byte uchR, uchG, uchB;
          ::rect rectDraw;
          get_progress_color(uchR, uchG, uchB, dRate, 0);
          br->create_solid(ARGB(255, uchR, uchG, uchB));

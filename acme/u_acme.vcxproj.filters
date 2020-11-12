@@ -256,10 +256,10 @@
     <ClCompile Include="primitive\datetime\duration.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\datetime\file_time.cpp">
+    <ClCompile Include="primitive\datetime\filetime.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\datetime\file_time_span.cpp">
+    <ClCompile Include="primitive\datetime\filetime_span.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
     <ClCompile Include="primitive\datetime\mktime.cpp">
@@ -1447,6 +1447,9 @@
     <ClCompile Include="platform\timer_task.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
+    <ClCompile Include="platform\system.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="astr.h">
@@ -1494,10 +1497,10 @@
     <ClInclude Include="primitive\datetime\duration.h">
       <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\datetime\file_time.h">
+    <ClInclude Include="primitive\datetime\filetime.h">
       <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\datetime\file_time_span.h">
+    <ClInclude Include="primitive\datetime\filetime_span.h">
       <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
     <ClInclude Include="primitive\datetime\time.h">
@@ -3129,7 +3132,7 @@
     <ClInclude Include="multithreading\pred_holder.h">
       <Filter>Header Files\multithreading</Filter>
     </ClInclude>
-    <ClInclude Include="multithreading\method_array.h">
+    <ClInclude Include="multithreading\procedure_array.h">
       <Filter>Header Files\multithreading</Filter>
     </ClInclude>
     <ClInclude Include="multithreading\retry.h">
@@ -3508,6 +3511,9 @@
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\timer_task.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\system.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
   </ItemGroup>

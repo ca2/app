@@ -153,7 +153,7 @@ i64 div128_64(i64 hi, u64 lo, i64 div, u64 & remainder)
 typedef struct  {
     u32 l : 32;
     u32 h : 32;
-} uint64_uint32;
+} ::u64_u32;
 
 /**
  * determine the msb of a value in O(log log n)

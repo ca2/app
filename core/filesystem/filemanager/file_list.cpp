@@ -37,7 +37,7 @@ namespace filemanager
 
       MESSAGE_LINK(WM_HSCROLL, pchannel, this, &file_list::_001OnHScroll);
       MESSAGE_LINK(WM_VSCROLL, pchannel, this, &file_list::_001OnVScroll);
-      MESSAGE_LINK(WM_RBUTTONUP, pchannel, this, &file_list::_001OnContextMenu);
+      MESSAGE_LINK(e_message_rbutton_up, pchannel, this, &file_list::_001OnContextMenu);
       MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &file_list::_001OnShowWindow);
       MESSAGE_LINK(e_message_set_focus, pchannel, this, &file_list::_001OnSetFocus);
       MESSAGE_LINK(e_message_kill_focus, pchannel, this, &file_list::_001OnKillFocus);
@@ -1851,13 +1851,13 @@ namespace filemanager
    }
 
 
-   //COLORREF file_list::get_background_color()
+   //color32_t file_list::get_background_color()
    //{
 
    //   if (filemanager_data() != nullptr && filemanager_data()->is_topic())
    //   {
    //      return ARGB(255, 255, 255, 255);
-   //      //COLORREF cr;
+   //      //color32_t cr;
    //      //if (filemanager_document()->m_emode == document::mode_saving)
    //      //{
 

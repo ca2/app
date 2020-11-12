@@ -143,7 +143,7 @@ bool timer_task::start(const ::duration& duration, bool bPeriodic)
 
       m_id = m_strDebugNote;
 
-      if (!fork())
+      if (!begin_task())
       {
 
          return false;

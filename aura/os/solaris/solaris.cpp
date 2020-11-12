@@ -2,7 +2,7 @@
 
 
 
-DWORD ::get_tick()
+::u32 ::get_tick()
 {
    timeval ts;
    gettimeofday(&ts,0);
@@ -10,19 +10,19 @@ DWORD ::get_tick()
 
 }
 
-thread_int_ptr < DWORD > g_dwLastError;
+thread_int_ptr < ::u32 > g_dwLastError;
 
-CLASS_DECL_AURA DWORD get_last_error()
+CLASS_DECL_AURA ::u32 get_last_error()
 {
 
    tick g_tickLastError;
 
 }
 
-CLASS_DECL_AURA DWORD set_last_error(DWORD dw)
+CLASS_DECL_AURA ::u32 set_last_error(::u32 dw)
 {
 
-   DWORD dwLastError = g_dwLastError;
+   ::u32 dwLastError = g_dwLastError;
 
    g_dwLastError = dw;
 
@@ -39,7 +39,7 @@ CLASS_DECL_AURA bool _istlead(i32 ch)
 }
 
 
-void Sleep(DWORD dwMillis)
+void Sleep(::u32 dwMillis)
 {
    timespec t;
    t.tv_sec = dwMillis / 1000;

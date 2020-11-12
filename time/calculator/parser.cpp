@@ -17,18 +17,18 @@ namespace datetime
    {
    }
 
-   matter * parser::new_node()
+   element * parser::new_node()
    {
 
-      auto pmatter = __new(::datetime::matter);
+      auto pelement = __new(::datetime::element);
       
-      m_elementa.add(pmatter);
+      m_elementa.add(pelement);
 
-      return pmatter;
+      return pelement;
 
    }
 
-   //matter * parser::parse(const char * psz)
+   //element * parser::parse(const char * psz)
 /********************************************/
 /* Parsing functions */
 
@@ -41,9 +41,9 @@ namespace datetime
 */
 
 
-matter * parser::parse(const char * psz)
+element * parser::parse(const char * psz)
  {
-   ::datetime::matter *node;
+   ::datetime::element *node;
    m_scanner.initialize(psz);
    node = expr(term(factor()));
    if(m_scanner.m_ptoken->m_etoken != e_token_end)
@@ -51,9 +51,9 @@ matter * parser::parse(const char * psz)
    return node;
 }
 
-matter * parser::expr(::datetime::matter * pelement1)
+element * parser::expr(::datetime::element * pelement1)
 {
-   ::datetime::matter * top_node;
+   ::datetime::element * top_node;
    m_scanner.peek();
    if(m_scanner.m_ptoken->m_etoken == e_token_addition || m_scanner.m_ptoken->m_etoken == e_token_subtraction)
    {
@@ -67,9 +67,9 @@ matter * parser::expr(::datetime::matter * pelement1)
    return pelement1;
 }
 
-   matter *parser::term(::datetime::matter *m_pelement1)
+   element *parser::term(::datetime::element *m_pelement1)
    {
-      ::datetime::matter *top_node;
+      ::datetime::element *top_node;
       m_scanner.peek();
       if(m_scanner.m_ptoken->m_etoken == e_token_multiplication || m_scanner.m_ptoken->m_etoken == e_token_division)
       {
@@ -84,9 +84,9 @@ matter * parser::expr(::datetime::matter * pelement1)
    }
 
 
-   matter *parser::factor()
+   element *parser::factor()
    {
-      ::datetime::matter *node;
+      ::datetime::element *node;
       m_scanner.peek();
       if(m_scanner.m_ptoken->m_etoken == e_token_identifier)
       {

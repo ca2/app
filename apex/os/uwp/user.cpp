@@ -7,10 +7,10 @@
 CLASS_DECL_APEX int g_iMouse = -1;
 
 
-//CLASS_DECL_APEX int_bool GetCursorPos(LPPOINT lppoint);
+//CLASS_DECL_APEX int_bool GetCursorPos(POINT32 * lppoint);
 
 //
-//CLASS_DECL_APEX int_bool ui_get_cursor_pos(POINT * ppt)
+//CLASS_DECL_APEX int_bool ui_get_cursor_pos(POINT32 * ppt)
 //{
 //
 //   if (ppt == nullptr)
@@ -52,7 +52,7 @@ CLASS_DECL_APEX int g_iMouse = -1;
 //int g_iMouseY = 0;
 //
 
-//CLASS_DECL_APEX int_bool GetCursorPos(LPPOINT lppoint)
+//CLASS_DECL_APEX int_bool GetCursorPos(POINT32 * lppoint)
 //{
 //
 //   lppoint->x = g_iMouseX;
@@ -68,19 +68,19 @@ CLASS_DECL_APEX int g_iMouse = -1;
 //
 //      Windows::Foundation::Collections::IVectorView < Windows::Devices::Input::PointerDevice ^ > ^ deva = ::Windows::Devices::Input::PointerDevice::GetPointerDevices();
 //
-//      for (unsigned int ui = 0; ui < deva->Size; ui++)
+//      for (unsigned int u = 0; u < deva->Size; u++)
 //      {
 //
-//         Windows::Devices::Input::PointerDevice ^ dev = deva->GetAt(ui);
+//         Windows::Devices::Input::PointerDevice ^ dev = deva->GetAt(u);
 //
 //         if (dev->PointerDeviceType == ::Windows::Devices::Input::PointerDeviceType::Mouse)
 //         {
 //
 //            Windows::UI::Input::PointerPoint ^ pointerPoint = ::Windows::UI::Input::PointerPoint::GetCurrentPoint(g_iMouse);
 //
-//            g_iMouseX = (LONG)pointerPoint->RawPosition.X;
+//            g_iMouseX = (::i32)pointerPoint->RawPosition.X;
 //
-//            g_iMouseY = (LONG)pointerPoint->RawPosition.Y;
+//            g_iMouseY = (::i32)pointerPoint->RawPosition.Y;
 //
 //         }
 //
@@ -525,7 +525,7 @@ uptr virtualkey_to_code(::Windows::System::VirtualKey e)
 }
 
 
-//UINT system_main(::apex::system * psystem)
+//::u32 system_main(::apex::system * psystem)
 //{
 //
 //   try
@@ -580,12 +580,12 @@ namespace user
 
    /*::color g_colorSystemAppBackground;
 
-   CLASS_DECL_APEX COLORREF set_system_app_background_color()
+   CLASS_DECL_APEX color32_t set_system_app_background_color()
 
-   CLASS_DECL_APEX COLORREF get_system_app_background_color()
+   CLASS_DECL_APEX color32_t get_system_app_background_color()
    {
 
-      auto color = System.get_context_session()->m_directxapplication->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
+      auto color = System.get_context_session()->m_frameworkview->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
 
       auto r = color.R;
 
@@ -600,7 +600,7 @@ namespace user
    //CLASS_DECL_APEX double get_system_app_luminance()
    //{
 
-   //   auto color = System.get_context_session()->m_directxapplication->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
+   //   auto color = System.get_context_session()->m_frameworkview->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
 
    //   double r = color.R;
 
@@ -620,7 +620,7 @@ namespace user
    //   {
 
 
-   //      auto color = System.get_context_session()->m_directxapplication->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
+   //      auto color = System.get_context_session()->m_frameworkview->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
 
    //      auto r = color.R;
 
@@ -637,7 +637,7 @@ namespace user
    //   {
 
 
-   //      auto color = System.get_context_session()->m_directxapplication->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
+   //      auto color = System.get_context_session()->m_frameworkview->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
 
    //      double r = color.R;
 

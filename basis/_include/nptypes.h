@@ -47,9 +47,9 @@
    * is predefined tho, both in C and C++.
    */
   //typedef short int16_t;
-  //typedef unsigned short uint16_t;
+  //typedef unsigned short ::u3216_t;
   //typedef int int32_t;
-  //typedef unsigned int uint32_t;
+  //typedef unsigned int ::u32;
 #elif defined(_AIX) || defined(__sun) || defined(__osf__) || defined(IRIX) || defined(HPUX)
   /*
    * AIX and SunOS ship a inttypes.h header that defines [u]int32_t,
@@ -70,10 +70,10 @@
   #include <sys/types.h>
 
   /*
-   * BSD/OS ships no header that defines uint32_t, nor bool (for C)
+   * BSD/OS ships no header that defines ::u32, nor bool (for C)
    */
   #if defined(bsdi)
-  typedef u_int32_t uint32_t;
+  typedef u_int32_t ::u32;
 
   #if !defined(__cplusplus)
     typedef int bool;
@@ -82,7 +82,7 @@
   #endif
   #else
   /*
-   * FreeBSD and OpenBSD define uint32_t and bool.
+   * FreeBSD and OpenBSD define ::u32 and bool.
    */
     #include "_inttypes.h"
     #include <stdbool.h

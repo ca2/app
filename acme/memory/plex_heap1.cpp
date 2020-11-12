@@ -39,7 +39,7 @@ void Alloc_check_pointer_in_cpp(void * p);
 void Free_check_pointer_in_cpp(void * p);
 
 
-plex_heap_alloc_sync::plex_heap_alloc_sync(memsize nAllocSize, UINT nBlockSize)
+plex_heap_alloc_sync::plex_heap_alloc_sync(memsize nAllocSize, ::u32 nBlockSize)
 {
 
    if (nBlockSize <= 1)
@@ -90,7 +90,7 @@ plex_heap_alloc_sync::~plex_heap_alloc_sync()
 }
 
 
-plex_heap_alloc::plex_heap_alloc(memsize nAllocSize, UINT nBlockSize)
+plex_heap_alloc::plex_heap_alloc(memsize nAllocSize, ::u32 nBlockSize)
 {
 
    i32 iShareCount = 1;
@@ -823,7 +823,7 @@ void plex_heap::FreeDataChain()     // free this one and links
    while (pheap != NULL)
    {
 
-      BYTE * pbytes = (BYTE *) pheap;
+      byte * pbytes = (byte *) pheap;
 
       auto pheapNext = pheap->m_pheapNext;
 
@@ -864,7 +864,7 @@ void plex_heap_alloc_sync::NewBlock()
 
    cslock sl(&m_protect);
 
-   UINT nAllocSize = m_nAllocSize;
+   ::u32 nAllocSize = m_nAllocSize;
 
    plex_heap * pnewblock = plex_heap::create(m_pBlocks, m_nBlockSize, nAllocSize);
 

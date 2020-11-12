@@ -109,7 +109,7 @@
 #define VK_PACKET   0xE7   /* Windows 2000/XP: Used to pass Unicode characters as if they were keystrokes. */
 /* The #define VK_PACKET key is the low word of a 32-bit Virtual Key value used */
 /* for non-keyboard input methods. For more information, */
-/* see Remark in KEYBDINPUT, SendInput, WM_KEYDOWN, and WM_KEYUP */
+/* see Remark in KEYBDINPUT, SendInput, e_message_key_down, and e_message_key_up */
 
 /* 0xE8 is unassigned */
 /* 0xE9 to 0xF5 are OEM specific */

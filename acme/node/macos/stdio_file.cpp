@@ -30,7 +30,7 @@ namespace macos
    }
 
 
-   ::status::result stdio_file::open(const ::file::path & lpszFileName, UINT nOpenFlags)
+   ::status::result stdio_file::open(const ::file::path & lpszFileName, ::u32 nOpenFlags)
    {
 
       if ((nOpenFlags & ::file::defer_create_directory) && (nOpenFlags & ::file::mode_write))
@@ -125,7 +125,7 @@ namespace macos
 
       size_t nRead = 0;
 
-      if ((nRead = fread(lpBuf, sizeof(BYTE), nCount, m_pStream)) == 0 && !feof(m_pStream))
+      if ((nRead = fread(lpBuf, sizeof(byte), nCount, m_pStream)) == 0 && !feof(m_pStream))
          ::file::throw_status(error_file, errno, m_strFileName);
       if (ferror(m_pStream))
       {
@@ -141,7 +141,7 @@ namespace macos
       ASSERT(m_pStream != nullptr);
       //   ASSERT(fx_is_valid_address(lpBuf, nCount, FALSE));
 
-      if (fwrite(lpBuf, sizeof(BYTE), nCount, m_pStream) != nCount)
+      if (fwrite(lpBuf, sizeof(byte), nCount, m_pStream) != nCount)
          ::file::throw_status(error_file, errno, m_strFileName);
    }
 
@@ -154,7 +154,7 @@ namespace macos
          ::file::throw_status(error_disk_full, errno, m_strFileName);
    }
 
-   LPTSTR stdio_file::read_string(LPTSTR lpsz, UINT nMax)
+   LPTSTR stdio_file::read_string(LPTSTR lpsz, ::u32 nMax)
    {
       ASSERT(lpsz != nullptr);
       //   ASSERT(fx_is_valid_address(lpsz, nMax));
@@ -288,7 +288,7 @@ namespace macos
       if (m_pStream != nullptr)
          nErr = fclose(m_pStream);
 
-      //   m_hFile = (UINT) hFileNull;
+      //   m_hFile = (::u32) hFileNull;
 //      m_bCloseOnDelete = FALSE;
       m_pStream = nullptr;
 
@@ -304,7 +304,7 @@ namespace macos
 //      if (m_pStream != nullptr && m_bCloseOnDelete)
       if (m_pStream != nullptr)
          fclose(m_pStream);  // close but ignore errors
-      //   m_hFile = (UINT) hFileNull;
+      //   m_hFile = (::u32) hFileNull;
       m_pStream = nullptr;
 //      m_bCloseOnDelete = FALSE;
    }

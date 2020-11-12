@@ -530,7 +530,7 @@ Seq_Open_File_Cleanup:
                if (estatus != ::success)
                {
 
-                  TRACE( "midiStreamProperty() -> %04X", (WORD)estatus);
+                  TRACE( "midiStreamProperty() -> %04X", (::u16)estatus);
 
                   midiStreamClose(m_hstream);
 
@@ -1248,7 +1248,7 @@ seq_Preroll_Cleanup:
                      ::file::byte_stream_memory_file memFile(get_context_application(), (LPBYTE) &lpdwParam[1], pheader->m_dwLength - sizeof(u32));
                      for(i32 i = 0; i < m_iaLevel.get_size(); i++)
                      {
-                        BYTE b;
+                        byte b;
                         memFile >> b;
                         m_iaLevel.element_at(i) = b;
                      }
@@ -1272,7 +1272,7 @@ seq_Preroll_Cleanup:
 
          }
 
-         void CALLBACK sequence::MidiOutProc(HMIDIOUT hmo, UINT wMsg, DWORD_PTR dwInstance, DWORD_PTR dwParam1, DWORD_PTR dwParam2)
+         void CALLBACK sequence::MidiOutProc(HMIDIOUT hmo, ::u32 wMsg, DWORD_PTR dwInstance, DWORD_PTR dwParam1, DWORD_PTR dwParam2)
          {
 
             UNREFERENCED_PARAMETER(hmo);

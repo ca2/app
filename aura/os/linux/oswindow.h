@@ -3,10 +3,10 @@
 
 // define portable types for 32-bit / 64-bit OS
 //typedef i32 int_bool;
-typedef u8 BYTE;
-//typedef u16 WORD;
-typedef u32 DWORD;
-//typedef i32 LONG;
+typedef u8 byte;
+//typedef u16 ::u16;
+typedef u32 ::u32;
+//typedef i32 ::i32;
 
 
 #undef FAR
@@ -129,7 +129,7 @@ public:
    bool                                   m_bMessageOnlyWindow;
    __pointer(::user::interaction_impl)    m_pimpl;
    __pointer(mq)                          m_pmq;
-   HTHREAD                                m_hthread;
+   hthread_t                                m_hthread;
    Colormap                               m_colormap;
    tick                                   m_tickLastMouseMove;
    Window                                 m_parent;
@@ -252,9 +252,9 @@ public:
    bool show_window(int iShow);
    LONG_PTR get_window_long_ptr(i32 nIndex);
    LONG_PTR set_window_long_ptr(i32 nIndex, LONG_PTR l);
-   bool _001ClientToScreen(LPPOINT ppoint);
+   bool _001ClientToScreen(POINT32 * ppoint);
 
-   bool _001ScreenToClient(LPPOINT ppoint);
+   bool _001ScreenToClient(POINT32 * ppoint);
 
 
    Atom intern_atom(const char * pszAtomName, bool bCreate);
@@ -265,8 +265,8 @@ public:
       return ::is_null(this);
    }
 
-   bool set_window_pos(class ::zorder zorder, i32 x, i32 y, i32 cx, i32 cy, UINT nFlags);
-   bool _set_window_pos(class ::zorder zorder, i32 x, i32 y, i32 cx, i32 cy, UINT nFlags);
+   bool set_window_pos(class ::zorder zorder, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags);
+   bool _set_window_pos(class ::zorder zorder, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags);
 
    bool is_destroying();
 

@@ -1396,8 +1396,8 @@ static LRESULT CALLBACK cliprdr_proc(HWND hWnd, UINT Msg, WPARAM wParam,
 
 			break;
 
-		case WM_CLOSE:
-			DEBUG_CLIPRDR("info: WM_CLOSE");
+		case e_message_close:
+			DEBUG_CLIPRDR("info: e_message_close");
 
 			if (!clipboard->legacyApi)
 				clipboard->RemoveClipboardFormatListener(hWnd);

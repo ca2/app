@@ -55,39 +55,39 @@ namespace android
       //virtual void open_folder(oswindow oswindow, const string & strFolder);
       //virtual void close_folder(const string & strFolder);
 
-      virtual i32 get_file_extension_image(const string & strExtension, e_file_attribute eattribute, e_icon eicon, COLORREF crBk = 0) override;
+      virtual i32 get_file_extension_image(const string & strExtension, e_file_attribute eattribute, e_icon eicon, color32_t crBk = 0) override;
       virtual i32 impl_get_file_image( const image_key& imagekey) override;
 
       virtual ::user::shell::e_folder get_folder_type(::object * pobject, const widechar * lpcszPath) override;
       virtual ::user::shell::e_folder get_folder_type(::object * pobject, const char * lpcszPath) override;
 
-      //         int add_icon_set(per_fork * pfork, SHFILEINFOW * pinfo16, SHFILEINFOW * pinfo48, COLORREF crBk, bool & bUsedImageList16, bool & bUsedImageList48);
+      //         int add_icon_set(per_fork * pfork, SHFILEINFOW * pinfo16, SHFILEINFOW * pinfo48, color32_t crBk, bool & bUsedImageList16, bool & bUsedImageList48);
       //
-      //         int add_icon(int iSize, HICON hicon, COLORREF crBk);
+      //         int add_icon(int iSize, HICON hicon, color32_t crBk);
       //
-      //         int add_icon_path(::file::path path, COLORREF crBk);
+      //         int add_icon_path(::file::path path, color32_t crBk);
       //
-      //         int add_icon_info(per_fork * pfork, int iSize, SHFILEINFOW * pinfo16, SHFILEINFOW * pinfo48, COLORREF crBk, bool & bUsedImageList16, bool & bUsedImageList48);
+      //         int add_icon_info(per_fork * pfork, int iSize, SHFILEINFOW * pinfo16, SHFILEINFOW * pinfo48, color32_t crBk, bool & bUsedImageList16, bool & bUsedImageList48);
       //
-      //         int add_system_icon(int iSize, IImageList * plist, SHFILEINFOW * pinfo, COLORREF crBck, bool & bUsedImageList);
+      //         int add_system_icon(int iSize, IImageList * plist, SHFILEINFOW * pinfo, color32_t crBck, bool & bUsedImageList);
 
 
       //virtual bool do_call();
-      //i32 calc_image_foo(oswindow oswindow, const string & strExtension, e_file_attribute eattribute, e_icon eicon, COLORREF crBk = 0);
-      //i32 calc_get_image(oswindow oswindow, const string & strPath, e_file_attribute eattribute, e_icon eicon, COLORREF crBk = 0);
+      //i32 calc_image_foo(oswindow oswindow, const string & strExtension, e_file_attribute eattribute, e_icon eicon, color32_t crBk = 0);
+      //i32 calc_get_image(oswindow oswindow, const string & strPath, e_file_attribute eattribute, e_icon eicon, color32_t crBk = 0);
 
 
 
 
-      i32 get_image(per_fork * pfork, image_key key, const widechar * lpcszExtra, COLORREF crBk);
-      i32 get_image_by_extension(per_fork * pfork, image_key & key, COLORREF crBk);
+      i32 get_image(per_fork * pfork, image_key key, const widechar * lpcszExtra, color32_t crBk);
+      i32 get_image_by_extension(per_fork * pfork, image_key & key, color32_t crBk);
       //bool get_icon(oswindow oswindow, const char * pcsz, const unichar * lpcszExtra, e_icon eicon, HICON * phicon16, HICON * phicon48);
       //bool get_icon(oswindow oswindow, IShellFolder * lpsf, LPITEMIDLIST lpiidlAbsolute, LPITEMIDLIST lpiidlChild, const unichar * lpcszExtra, e_icon eicon, HICON * phicon16, HICON * phicon48);
       //bool get_icon(per_fork * pfork, oswindow oswindow, LPITEMIDLIST lpiidlAbsolute, const unichar * lpcszExtra, e_icon eicon, HICON * phicon16, HICON * phicon48);
       //         i32 get_image(oswindow oswindow, IShellFolder * lpsf, const char * pszPath, LPITEMIDLIST lpiidlChild, const unichar * lpcszExtra, e_icon eicon);
-      //         i32 get_image(per_fork * pfork, oswindow oswindow, image_key key, LPITEMIDLIST lpiidlAbsolute, LPITEMIDLIST lpiidlChild, const unichar * lpcszExtra, COLORREF crBk);
-      //         //i32 get_image(per_fork * pfork, oswindow oswindow, image_key key, LPITEMIDLIST lpiidlAbsolute, const unichar * lpcszExtra, COLORREF crBk);
-      i32 get_foo_image(per_fork * pfork, oswindow oswindow, image_key key, COLORREF crBk);
+      //         i32 get_image(per_fork * pfork, oswindow oswindow, image_key key, LPITEMIDLIST lpiidlAbsolute, LPITEMIDLIST lpiidlChild, const unichar * lpcszExtra, color32_t crBk);
+      //         //i32 get_image(per_fork * pfork, oswindow oswindow, image_key key, LPITEMIDLIST lpiidlAbsolute, const unichar * lpcszExtra, color32_t crBk);
+      i32 get_foo_image(per_fork * pfork, oswindow oswindow, image_key key, color32_t crBk);
 
 
 

@@ -188,7 +188,7 @@ namespace dynamic_source
 
       virtual void clear_include_matches(::file::path path);
       virtual void clear_include_matches();
-      static UINT c_cdecl clear_include_matches_FolderWatchThread(LPVOID lpParam); // thread procedure
+      static ::u32 c_cdecl clear_include_matches_FolderWatchThread(LPVOID lpParam); // thread procedure
 
       virtual ::file::path real_path(const ::file::path & str);
       virtual ::file::path real_path(const ::file::path & strBase,const ::file::path & str);

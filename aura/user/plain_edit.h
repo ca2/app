@@ -214,7 +214,7 @@ namespace user
       virtual void clipboard_copy();
       virtual void clipboard_paste();
 
-      virtual bool get_line_color(COLORREF & crOverride, const string & strLine);
+      virtual bool get_line_color(color32_t & crOverride, const string & strLine);
 
       virtual void pre_translate_message(::message::message * pmessage) override;
 
@@ -293,9 +293,9 @@ namespace user
       strsize plain_edit_line_column_to_sel(::draw2d::graphics_pointer& pgraphics, index iLine, index iColumn) override;
       strsize plain_edit_line_x_to_sel(::draw2d::graphics_pointer& pgraphics, index iLine, i32 x) override;
       index plain_edit_char_to_line(::draw2d::graphics_pointer& pgraphics, strsize iSel) override;
-      bool plain_edit_caret_rect(::draw2d::graphics_pointer& pgraphics, LPRECT lprect, strsize iSel);
-      bool plain_edit_index_range(::draw2d::graphics_pointer& pgraphics, LPRECT lprect, strsize iSel);
-      bool plain_edit_line_range(::draw2d::graphics_pointer& pgraphics, LPRECT lprect, ::index iLine);
+      bool plain_edit_caret_rect(::draw2d::graphics_pointer& pgraphics, LPRECT32 lprect, strsize iSel);
+      bool plain_edit_index_range(::draw2d::graphics_pointer& pgraphics, LPRECT32 lprect, strsize iSel);
+      bool plain_edit_line_range(::draw2d::graphics_pointer& pgraphics, LPRECT32 lprect, ::index iLine);
 
       void plain_edit_one_line_up(::draw2d::graphics_pointer& pgraphics);
 

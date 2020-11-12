@@ -60,7 +60,7 @@ namespace html
    }
 
 
-   style * style_sheet_array::rfind_border_color(e_tag etag, const string & strClass, const string & strSubClass, id idName, COLORREF & cr)
+   style * style_sheet_array::rfind_border_color(e_tag etag, const string & strClass, const string & strSubClass, id idName, color32_t & cr)
    {
 
       style * pstyle = nullptr;

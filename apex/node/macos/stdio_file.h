@@ -20,13 +20,13 @@ namespace macos
       
 
       virtual void write_string(const char * lpsz);
-      virtual char * read_string(char * lpsz, UINT nMax);
+      virtual char * read_string(char * lpsz, ::u32 nMax);
       virtual bool read_string(string & rString);
 
       void dump(dump_context & dumpcontext) const;
 
       virtual filesize get_position() const;
-      virtual ::status::result open(const ::file::path & lpszFileName, UINT nOpenFlags);
+      virtual ::status::result open(const ::file::path & lpszFileName, ::u32 nOpenFlags);
       virtual memsize read(void * lpBuf, memsize nCount);
       virtual void write(const void * lpBuf, memsize nCount);
       virtual filesize seek(filesize lOff, ::file::e_seek nFrom);

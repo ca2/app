@@ -51,7 +51,7 @@ CLASS_DECL_AURA bool windows_load_image_from_file(::image * pimage, Windows::Sto
    {
       return false;
    }
-   //DWORD dw2 =::get_tick();
+   //::u32 dw2 =::get_tick();
    //TRACE("InPath %d ms\n",dw2 - dw1);
    //dwLast = dw2;
 
@@ -113,7 +113,7 @@ CLASS_DECL_AURA bool node_save_image(const ::image * pimage, Windows::Storage::S
    {
       return false;
    }
-   //DWORD dw2 =::get_tick();
+   //::u32 dw2 =::get_tick();
    //TRACE("InPath %d ms\n",dw2 - dw1);
    //dwLast = dw2;
 

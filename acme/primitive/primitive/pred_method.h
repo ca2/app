@@ -57,15 +57,17 @@
 
 
 template < typename PRED >
-class pred_method :
+class pred_procedure :
    virtual public ::matter
 {
 public:
 
+
    PRED m_pred;
 
-   pred_method(PRED pred) : m_pred(pred) { }
-   virtual ~pred_method() {}
+
+   pred_procedure(PRED pred) : m_pred(pred) { }
+   virtual ~pred_procedure() {}
    //method(const ::matter_pointer & pmatter) : matter_pointer(pmatter) { }
    //method(const ::method & method) : matter_pointer(method) { }
 
@@ -94,10 +96,10 @@ public:
 
 
 template < typename PRED >
-method __method(PRED pred)
+procedure __procedure(PRED pred)
 {
 
-   return __new(pred_method<PRED>(pred));
+   return __new(pred_procedure<PRED>(pred));
 
 }
 

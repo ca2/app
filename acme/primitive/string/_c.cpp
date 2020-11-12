@@ -373,18 +373,18 @@
 //}
 //
 //
-//void ansi_from_u64(char* sz, u64 ui, i32 iBase)
+//void ansi_from_u64(char* sz, u64 u, i32 iBase)
 //{
-//   if (ui == 0)
+//   if (u == 0)
 //   {
 //      sz[0] = '0';
 //      sz[1] = '\0';
 //      return;
 //   }
 //   i32 iIndex = 0;
-//   while (ui > 0)
+//   while (u > 0)
 //   {
-//      i32 iDigit = (ui % iBase);
+//      i32 iDigit = (u % iBase);
 //      char ch;
 //      if (iDigit <= 9)
 //      {
@@ -395,7 +395,7 @@
 //         ch = iDigit - 10 + 'a';
 //      }
 //      sz[iIndex] = ch;
-//      ui = ui / iBase;
+//      u = u / iBase;
 //      iIndex++;
 //   }
 //   sz[iIndex] = '\0';

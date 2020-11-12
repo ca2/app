@@ -2,12 +2,13 @@
 
 
 
+template < typename ITERABLE >
+inline ::count __iterable_count(const ITERABLE & iterable)
+{
 
+   return iterable.get_count();
 
-
-
-
-
+}
 
 
 
@@ -42,7 +43,7 @@ namespace gen
       //    AFX_MANAGE_STATE(AfxGetStaticModuleState())
           ASSERT(pvar->vt == (VT_ARRAY | VT_I4));
           ar.remove_all();
-          UINT uiDim;
+          ::u32 uDim;
 
           if(1 != (uiDim = SafeArrayGetDim(pvar->parray)))
           {
@@ -64,7 +65,7 @@ namespace gen
               return false;
           }
 
-          DWORD dw;
+          ::u32 dw;
           for(i32 i = lLBound; i <= lUBound; i++)
           {
               SafeArrayGetElement(pvar->parray, (long *) &i, &dw);

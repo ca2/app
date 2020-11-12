@@ -16,7 +16,7 @@ namespace draw2d_direct2d
 
 
       int get_object(int nCount, LPVOID lpObject) const;
-      UINT GetObjectType() const;
+      ::u32 GetObjectType() const;
       bool CreateStockObject(int nIndex);
       bool UnrealizeObject();
       bool operator==(const object& obj) const;

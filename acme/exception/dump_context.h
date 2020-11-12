@@ -33,13 +33,13 @@ public:
    void write(const ::matter * pobject) ;
    void write(const ::matter & matter) ;
    void write(char i) ;
-   void write(uchar ui) ;
+   void write(uchar u) ;
    void write(i16 i) ;
-   void write(u16 ui) ;
+   void write(u16 u) ;
    void write(i32 i) ;
-   void write(u32 ui) ;
+   void write(u32 u) ;
    void write(i64 i) ;
-   void write(u64 ui) ;
+   void write(u64 u) ;
    void hex_dump(i8 i);
    void hex_dump(u8 i);
    void hex_dump(i16 i);
@@ -60,7 +60,7 @@ public:
 
 #endif
 
-   void hex_dump(const char * pszLine, BYTE* pby, i32 nBytes, i32 nWidth);
+   void hex_dump(const char * pszLine, byte* pby, i32 nBytes, i32 nWidth);
 
    void flush();
 

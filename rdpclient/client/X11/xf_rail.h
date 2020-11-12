@@ -25,8 +25,8 @@
 
 #include <freerdp/client/rail.h>
 
-void xf_rail_paint(xfContext* xfc, INT32 uleft, INT32 utop, UINT32 uright, UINT32 ubottom);
-void xf_rail_send_client_system_command(xfContext* xfc, UINT32 windowId, UINT16 command);
+void xf_rail_paint(xfContext* xfc, INT32 uleft, INT32 utop, ::u32 uright, ::u32 ubottom);
+void xf_rail_send_client_system_command(xfContext* xfc, ::u32 windowId, ::u3216 command);
 void xf_rail_send_activate(xfContext* xfc, Window xwindow, BOOL enabled);
 void xf_rail_adjust_position(xfContext* xfc, xfAppWindow* appWindow);
 void xf_rail_end_local_move(xfContext* xfc, xfAppWindow* appWindow);

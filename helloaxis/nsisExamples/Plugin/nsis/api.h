@@ -34,7 +34,7 @@ enum NSPIM
 // Prototype for callbacks registered with extra_parameters->RegisterPluginCallback()
 // Return nullptr for unknown messages
 // Should always be __cdecl for future expansion possibilities
-typedef UINT_PTR (*NSISPLUGINCALLBACK)(enum NSPIM);
+typedef ::u32_PTR (*NSISPLUGINCALLBACK)(enum NSPIM);
 
 // extra_parameters data structures containing other interesting stuff
 // but the stack, variables and HWND passed on to plug-ins.

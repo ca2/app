@@ -696,7 +696,7 @@ namespace android
 
    //   bool bIsDir;
 
-   //   DWORD dwLastError;
+   //   ::u32 dwLastError;
 
    //   if(m_isdirmap.lookup(strPath, bIsDir, dwLastError))
    //   {
@@ -886,7 +886,7 @@ namespace android
 
             if (!::dir::_mk(stra[i]))
             {
-               DWORD dwError = ::get_last_error();
+               ::u32 dwError = ::get_last_error();
                if (dwError == ERROR_ALREADY_EXISTS)
                {
                   string str;

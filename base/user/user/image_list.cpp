@@ -468,9 +468,9 @@ namespace user
 
                rectSel.inflate(5, 5);
 
-               COLORREF crBorder = 0;
+               color32_t crBorder = 0;
 
-               COLORREF crSel = 0;
+               color32_t crSel = 0;
 
                bool bSel;
 

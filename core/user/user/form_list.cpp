@@ -38,7 +38,7 @@ namespace user
    void form_list::install_message_routing(::channel *pchannel)
    {
 
-      MESSAGE_LINK(WM_KEYDOWN,pchannel,this,&form_list::_001OnKeyDown);
+      MESSAGE_LINK(e_message_key_down,pchannel,this,&form_list::_001OnKeyDown);
 
       form_mesh::install_message_routing(pchannel);
 
@@ -1084,7 +1084,7 @@ break_click:;
    }
 
 
-   bool form_list::_001OnMouseActivate(::user::interaction_impl * pDesktopWnd,UINT nHitTest,const ::id & id,LRESULT & iResult)
+   bool form_list::_001OnMouseActivate(::user::interaction_impl * pDesktopWnd,::u32 nHitTest,const ::id & id,LRESULT & iResult)
    {
       UNREFERENCED_PARAMETER(pDesktopWnd);
       UNREFERENCED_PARAMETER(nHitTest);
@@ -1369,7 +1369,7 @@ break_click:;
 
       _001ScreenToClient(point);
 
-      if (pmouse->m_id == WM_LBUTTONDOWN)
+      if (pmouse->m_id == e_message_lbutton_down)
       {
 
          index iItem;
@@ -1418,7 +1418,7 @@ break_click:;
 
       }
 
-      //else if(emessage == WM_LBUTTONUP)
+      //else if(emessage == e_message_lbutton_up)
       //{
       //i32 iItem;
       //i32 iSubItem;
@@ -1489,7 +1489,7 @@ break_click:;
 
       //::point point = pmouse->m_point;
       //_001ScreenToClient(point);
-      ///*      if(emessage == WM_LBUTTONDOWN)
+      ///*      if(emessage == e_message_lbutton_down)
       //      {
       //      i32 iItem;
       //      i32 iSubItem;
@@ -1509,7 +1509,7 @@ break_click:;
       //      }
       //      }
       //      }
-      //      else if(emessage == WM_LBUTTONUP)
+      //      else if(emessage == e_message_lbutton_up)
       //      {
       //      i32 iItem;
       //      i32 iSubItem;
@@ -1577,7 +1577,7 @@ break_click:;
    }
 
 
-   void form_list::control_get_client_rect(::user::interaction * pinteraction,RECT * prect)
+   void form_list::control_get_client_rect(::user::interaction * pinteraction,RECT32 * prect)
 
    {
 
@@ -1638,7 +1638,7 @@ break_click:;
    }
 
 
-   void form_list::control_get_window_rect(::user::interaction * pinteraction,RECT * prect)
+   void form_list::control_get_window_rect(::user::interaction * pinteraction,RECT32 * prect)
 
    {
 

@@ -37,7 +37,7 @@ namespace html
 
 
 
-   COLORREF style::parse_color(const char * psz)
+   color32_t style::parse_color(const char * psz)
    {
 
       color c;
@@ -450,16 +450,16 @@ namespace html
       index iTopW          = -1;
       index iRightW        = -1;
       index iBottomW       = -1;
-      COLORREF cr              = 0;
-      COLORREF crLeft          = 0;
-      COLORREF crTop           = 0;
-      COLORREF crRight         = 0;
-      COLORREF crBottom        = 0;
-      COLORREF crW             = 0;
-      COLORREF crLeftW         = 0;
-      COLORREF crTopW          = 0;
-      COLORREF crRightW        = 0;
-      COLORREF crBottomW       = 0;
+      color32_t cr              = 0;
+      color32_t crLeft          = 0;
+      color32_t crTop           = 0;
+      color32_t crRight         = 0;
+      color32_t crBottom        = 0;
+      color32_t crW             = 0;
+      color32_t crLeftW         = 0;
+      color32_t crTopW          = 0;
+      color32_t crRightW        = 0;
+      color32_t crBottomW       = 0;
 
       if(m_propertyset.has_property(idName) && parse_border_color(m_propertyset[idName], cr))
          pstyle = this;
@@ -594,7 +594,7 @@ namespace html
    }
 
 
-   bool style::get_color(id idName, const string & strSubClass, html_data * pdata, const ::html::element * pelement, COLORREF & cr)
+   bool style::get_color(id idName, const string & strSubClass, html_data * pdata, const ::html::element * pelement, color32_t & cr)
    {
 
       e_tag etag = pelement->m_etag;
@@ -896,7 +896,7 @@ namespace html
    }
 
 
-   bool style::matches_border_color(e_tag etag, const string & strClass, const string & strSubClass, id idName, COLORREF & cr)
+   bool style::matches_border_color(e_tag etag, const string & strClass, const string & strSubClass, id idName, color32_t & cr)
    {
 
       if (etag != tag_none && m_etag != tag_none)
@@ -1130,7 +1130,7 @@ namespace html
       return true;
    }
 
-   bool style::parse_border_color(const char * pszParam, COLORREF & cr)
+   bool style::parse_border_color(const char * pszParam, color32_t & cr)
    {
 
       if(pszParam == nullptr)

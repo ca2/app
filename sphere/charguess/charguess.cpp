@@ -41,7 +41,7 @@ const char* GuessChardet(charguess_det p,const string & str)
    nsUniversalDetector* det = (nsUniversalDetector*) p;
 
    det->Reset();
-   det->HandleData(str, (PRUint32) str.length());
+   det->HandleData(str, (PR::u32) str.length());
    det->DataEnd();
 
    return det->GetCharset();

@@ -29,8 +29,8 @@ typedef struct wlf_input wlfInput;
 struct wlf_input
 {
 	rdpInput* input;
-	UINT16 last_x;
-	UINT16 last_y;
+	::u3216 last_x;
+	::u3216 last_y;
 
 	struct wl_pointer* pointer;
 	struct wl_keyboard* keyboard;

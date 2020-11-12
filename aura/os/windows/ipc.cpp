@@ -2,7 +2,7 @@
 #include "aura/platform/app_core.h"
 
 
-typedef int (WINAPI * LPFN_ChangeWindowMessageFilter)(const ::id & id, DWORD dwFlag);
+typedef int (WINAPI * LPFN_ChangeWindowMessageFilter)(const ::id & id, ::u32 dwFlag);
 
 
 
@@ -152,7 +152,7 @@ namespace aura
 
             DWORD_PTR dwptr;
 
-            if(!::SendMessageTimeout(m_oswindow,WM_COPYDATA,(WPARAM)0,(LPARAM)&cds, SMTO_ABORTIFHUNG, (UINT)(durationTimeout.get_total_milliseconds()),&dwptr))
+            if(!::SendMessageTimeout(m_oswindow,WM_COPYDATA,(WPARAM)0,(LPARAM)&cds, SMTO_ABORTIFHUNG, (::u32)(durationTimeout.get_total_milliseconds()),&dwptr))
                return false;
 
             unsigned int dwError = ::get_last_error();
@@ -203,7 +203,7 @@ namespace aura
 
             DWORD_PTR dwptr;
 
-            if(!::SendMessageTimeout(m_oswindow,WM_COPYDATA,(WPARAM)0,(LPARAM)&cds,SMTO_BLOCK, (UINT)(durationTimeout.get_total_milliseconds()), &dwptr))
+            if(!::SendMessageTimeout(m_oswindow,WM_COPYDATA,(WPARAM)0,(LPARAM)&cds,SMTO_BLOCK, (::u32)(durationTimeout.get_total_milliseconds()), &dwptr))
                return false;
 
             unsigned int dwError = ::get_last_error();

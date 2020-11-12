@@ -33,7 +33,7 @@
 //void x11_defer_check_configuration(oswindow oswindow);
 
 
-mq * get_mq(ITHREAD idthread, bool bCreate);
+mq * get_mq(ithread_t idthread, bool bCreate);
 
 
 void oswindow_set_active_window(oswindow oswindow);
@@ -151,7 +151,7 @@ Window g_windowX11Client = 0;
 
 
 
-int_bool _x11_get_cursor_pos(Display * d, LPPOINT ppointCursor);
+int_bool _x11_get_cursor_pos(Display * d, POINT32 * ppointCursor);
 
 
 
@@ -167,7 +167,7 @@ void wm_state_hidden_raw(oswindow w, bool bSet);
 CLASS_DECL_AURA int_bool mq_remove_window_from_all_queues(oswindow oswindow);
 
 
-int_bool x11_get_cursor_pos(LPPOINT ppointCursor);
+int_bool x11_get_cursor_pos(POINT32 * ppointCursor);
 
 #if !defined(RASPBIAN)
 
@@ -466,7 +466,7 @@ void unmapped_net_state_raw(Display * d, Window w, ...)
 }
 
 
-int_bool x11_get_window_rect(Display * d, Window window, RECT * prect)
+int_bool x11_get_window_rect(Display * d, Window window, RECT32 * prect)
 
 {
 
@@ -911,7 +911,7 @@ bool x11_window_list(Display *disp, array < Window > & windowa)
 
 }
 
-bool point_is_window_origin(POINT pointHitTest, oswindow oswindowExclude, int iMargin)
+bool point_is_window_origin(POINT32 pointHitTest, oswindow oswindowExclude, int iMargin)
 {
 
    bool bIsOrigin = false;
@@ -1805,7 +1805,7 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 #define SIZEY  50
 
 
-//void message_box_paint(::draw2d::graphics_pointer & pgraphics, string_array & stra, bool_array  & baTab, int_array  & ya,SIZE * psize)
+//void message_box_paint(::draw2d::graphics_pointer & pgraphics, string_array & stra, bool_array  & baTab, int_array  & ya,SIZE32 * psize)
 //{
 //
 //   sync_lock sl(x11_mutex());
@@ -2848,8 +2848,8 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e);
 void x11_post_message(MESSAGE & msg);
 
 bool g_bSkipMouseMessageInXcess = true;
-DWORD g_dwLastMotion = 0;
-DWORD g_dwMotionSkipTimeout = 23;
+::u32 g_dwLastMotion = 0;
+::u32 g_dwMotionSkipTimeout = 23;
 
 #ifdef XDISPLAY_LOCK_LOG
 
@@ -3672,7 +3672,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 
             ::output_debug_string("ButtonPress::Button1\n");
 
-            msg.message = WM_LBUTTONDOWN;
+            msg.message = e_message_lbutton_down;
 
          }
          else if(e.xbutton.button == Button2)
@@ -3684,7 +3684,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
          else if(e.xbutton.button == Button3)
          {
 
-            msg.message = WM_RBUTTONDOWN;
+            msg.message = e_message_rbutton_down;
 
          }
          else
@@ -3703,7 +3703,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 
             ::output_debug_string("ButtonRelease::Button1\n");
 
-            msg.message = WM_LBUTTONUP;
+            msg.message = e_message_lbutton_up;
 
          }
          else if(e.xbutton.button == Button2)
@@ -3715,7 +3715,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
          else if(e.xbutton.button == Button3)
          {
 
-            msg.message = WM_RBUTTONUP;
+            msg.message = e_message_rbutton_up;
 
          }
          else
@@ -3784,7 +3784,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
       if(e.xkey.type == KeyPress)
       {
 
-         msg.message = WM_KEYDOWN;
+         msg.message = e_message_key_down;
 
          Window window = msg.hwnd->m_window;
 
@@ -3985,7 +3985,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
       else if(e.xkey.type == KeyRelease)
       {
 
-         msg.message = WM_KEYUP;
+         msg.message = e_message_key_up;
 
       }
       else
@@ -4250,7 +4250,7 @@ namespace user
 //} // namespace aura
 //
 
-int_bool set_window_pos(oswindow hwnd, oswindow hwndInsertAfter, i32 x, i32 y, i32 cx, i32 cy, UINT nFlags)
+int_bool set_window_pos(oswindow hwnd, oswindow hwndInsertAfter, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags)
 {
 
    sync_lock sl(x11_mutex());
@@ -4263,7 +4263,7 @@ int_bool set_window_pos(oswindow hwnd, oswindow hwndInsertAfter, i32 x, i32 y, i
 
 
 
-int_bool get_window_rect(oswindow hwnd, RECT * prect)
+int_bool get_window_rect(oswindow hwnd, RECT32 * prect)
 {
 
    sync_lock sl(x11_mutex());
@@ -4284,7 +4284,7 @@ int_bool get_window_rect(oswindow hwnd, RECT * prect)
 }
 
 
-int_bool get_client_rect(oswindow window, RECT * prect)
+int_bool get_client_rect(oswindow window, RECT32 * prect)
 {
 
    sync_lock sl(x11_mutex());
@@ -4326,7 +4326,7 @@ int_bool get_client_rect(oswindow window, RECT * prect)
 }
 
 
-int_bool ca2_GetClientRect(oswindow window, RECT * prect)
+int_bool ca2_GetClientRect(oswindow window, RECT32 * prect)
 {
 
    sync_lock sl(window->m_pimpl->m_puserinteraction->mutex());
@@ -4342,7 +4342,7 @@ int_bool ca2_GetClientRect(oswindow window, RECT * prect)
 
 
 
-int_bool x11_get_cursor_pos(LPPOINT ppointCursor)
+int_bool x11_get_cursor_pos(POINT32 * ppointCursor)
 {
 
    Window root_return;
@@ -4387,7 +4387,7 @@ int_bool x11_get_cursor_pos(LPPOINT ppointCursor)
 }
 
 
-int_bool GetCursorPos(LPPOINT ppointCursor)
+int_bool GetCursorPos(POINT32 * ppointCursor)
 {
 
    x11_sync([&]()
@@ -4776,7 +4776,7 @@ HCURSOR context_image::CreateAlphaCursor(oswindow window, const ::image * pimage
 
 
 
-int_bool WINAPI SetWindowPos(oswindow hWnd,oswindow hWndInsertAfter,i32 X,i32 Y,i32 cx,i32 cy,UINT uFlags)
+int_bool WINAPI SetWindowPos(oswindow hWnd,oswindow hWndInsertAfter,i32 X,i32 Y,i32 cx,i32 cy,::u32 uFlags)
 {
 
    return hWnd->set_window_pos(hWndInsertAfter, X, Y, cx, cy, uFlags);
@@ -4944,7 +4944,7 @@ void x11_thread(osdisplay_data * pdisplaydata);
 //pthread_t g_pthreadX11;
 
 __pointer(::thread) g_pthreadXlib;
-ITHREAD g_ithreadXlib;
+ithread_t g_ithreadXlib;
 
 //void * x11_thread_proc(void * p)
 //{
@@ -4974,7 +4974,7 @@ void x11_start()
 
    auto psystem = ::get_context_system();
 
-   auto psession = psystem->get_context_session();
+   auto psession = System.get_context_session();
 
    g_pthreadXlib = psession->fork([]()
    {
@@ -5294,16 +5294,16 @@ bool post_ui_message(const MESSAGE & message)
 
    }
 
-   if(message.message == WM_LBUTTONDOWN)
+   if(message.message == e_message_lbutton_down)
    {
 
-      output_debug_string("post_ui_message::WM_LBUTTONDOWN\n");
+      output_debug_string("post_ui_message::e_message_lbutton_down\n");
 
    }
-   else if(message.message == WM_LBUTTONUP)
+   else if(message.message == e_message_lbutton_up)
    {
 
-      output_debug_string("post_ui_message::WM_LBUTTONUP\n");
+      output_debug_string("post_ui_message::e_message_lbutton_up\n");
 
    }
 

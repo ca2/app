@@ -4,7 +4,7 @@
 #include "apex/user/interaction_prodevian.h"
 
 
-int SetMainScreenRect(LPCRECT lpcrect);
+int SetMainScreenRect(LPCRECT32 lpcrect);
 
 extern "C"
 JNIEXPORT void JNICALL Java_com_android_1app_impact_render_1impact(JNIEnv * env, jobject  obj, jobject bitmap, jlong  time_ms, jobject result)
@@ -108,7 +108,7 @@ JNIEXPORT void JNICALL Java_com_android_1app_impact_keyPreImeDown(JNIEnv * env, 
 
    set_context(env);
 
-   android_key(WM_KEYDOWN, keyCode, iUni);
+   android_key(e_message_key_down, keyCode, iUni);
 
 }
 
@@ -119,7 +119,7 @@ JNIEXPORT void JNICALL Java_com_android_1app_impact_keyPreImeUp(JNIEnv * env, jo
 
    set_context(env);
 
-   android_key(WM_KEYUP, keyCode, iUni);
+   android_key(e_message_key_up, keyCode, iUni);
 
 }
 
@@ -148,7 +148,7 @@ JNIEXPORT void JNICALL Java_com_android_1app_impact_lButtonDown(JNIEnv * env, jo
 
    set_context(env);
 
-   android_mouse(WM_LBUTTONDOWN, x, y);
+   android_mouse(e_message_lbutton_down, x, y);
 
 }
 
@@ -207,7 +207,7 @@ JNIEXPORT void JNICALL Java_com_android_1app_impact_lButtonUp(JNIEnv * env, jobj
 
    set_context(env);
 
-   android_mouse(WM_LBUTTONUP, x, y);
+   android_mouse(e_message_lbutton_up, x, y);
 
 }
 

@@ -52,7 +52,7 @@ struct lparam_dbg :
 
 };
 
-extern lparam_dbg g_lparamdbg;
+CLASS_DECL_ACME lparam_dbg & lparam_debug();
 
 inline lparam::lparam(const ::matter * p)
 {
@@ -66,7 +66,7 @@ inline lparam::lparam(const ::matter * p)
 
    }
 
-   ((matter *) p)->add_ref(OBJ_REF_DBG_PTR(&g_lparamdbg));
+   ((matter *) p)->add_ref(OBJ_REF_DBG_PTR(&lparam_debug()));
 
    m_lparam = (LPARAM)p;
 
@@ -192,7 +192,7 @@ public:
 //} // namespace acme
 
 
-inline bool IsDirSep(WCHAR ch)
+inline bool IsDirSep(widechar ch)
 {
 
    return (ch == '\\' || ch == '/');

@@ -43,7 +43,7 @@ namespace experience
 
       }
 
-      COLORREF crText;
+      color32_t crText;
 
       if (!is_window_enabled())
       {
@@ -231,8 +231,8 @@ namespace experience
    {
       ::user::button::install_message_routing(pchannel);
       MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &orto_button::_001OnShowWindow);
-      MESSAGE_LINK(WM_LBUTTONDOWN, pchannel, this, &orto_button::_001OnLButtonDown);
-      MESSAGE_LINK(WM_LBUTTONUP, pchannel, this, &orto_button::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_lbutton_down, pchannel, this, &orto_button::_001OnLButtonDown);
+      MESSAGE_LINK(e_message_lbutton_up, pchannel, this, &orto_button::_001OnLButtonUp);
       //MESSAGE_LINK(e_message_size, pchannel, this, &orto_button::_001OnSize);
       //   //MESSAGE_LINK(WM_TIMER, pchannel, this,&orto_button::_001OnTimer);
    }

@@ -7,7 +7,7 @@
 
 #if defined(LINUX) // || defined(ANDROID)
 
-void set_defer_process_x_message(bool (* pfn)(HTHREAD hthread,LPMESSAGE lpMsg,oswindow oswindow,bool bPeek));
+void set_defer_process_x_message(bool (* pfn)(hthread_t hthread,LPMESSAGE lpMsg,oswindow oswindow,bool bPeek));
 
 #endif
 
@@ -20,34 +20,34 @@ void set_defer_process_x_message(bool (* pfn)(HTHREAD hthread,LPMESSAGE lpMsg,os
 class sync_object;
 
 
-DWORD WaitForMultipleObjectsEx(DWORD dwSize, sync_object ** pwaitableptra, int_bool bWaitForAll, DWORD tickTimeout, int_bool bAlertable);
+::u32 WaitForMultipleObjectsEx(::u32 dwSize, sync_object ** pwaitableptra, int_bool bWaitForAll, ::u32 tickTimeout, int_bool bAlertable);
 
-DWORD WaitForMultipleObjects(DWORD dwSize, sync_object ** pwaitableptra, int_bool bWaitForAll, DWORD tickTimeout);
+::u32 WaitForMultipleObjects(::u32 dwSize, sync_object ** pwaitableptra, int_bool bWaitForAll, ::u32 tickTimeout);
 
-DWORD MsgWaitForMultipleObjects(DWORD dwSize, sync_object ** pwaitableptra, int_bool bWaitForAll, DWORD tickTimeout, DWORD dwWakeMask);
+::u32 MsgWaitForMultipleObjects(::u32 dwSize, sync_object ** pwaitableptra, int_bool bWaitForAll, ::u32 tickTimeout, ::u32 dwWakeMask);
 
-DWORD MsgWaitForMultipleObjectsEx(DWORD dwSize, sync_object ** pwaitableptra, DWORD tickTimeout, DWORD dwWakeMask, DWORD dwFlags);
+::u32 MsgWaitForMultipleObjectsEx(::u32 dwSize, sync_object ** pwaitableptra, ::u32 tickTimeout, ::u32 dwWakeMask, ::u32 dwFlags);
 
-DWORD WaitForSingleObject(sync_object * pwaitable, DWORD dwMilliseconds);
+::u32 WaitForSingleObject(sync_object * pwaitable, ::u32 dwMilliseconds);
 
-DWORD WaitForSingleObjectEx(sync_object * pwaitable, DWORD dwMilliseconds, int_bool bAlertable);
+::u32 WaitForSingleObjectEx(sync_object * pwaitable, ::u32 dwMilliseconds, int_bool bAlertable);
 
 
 #endif
 
 
 /*
-#define STATUS_WAIT_0            ((DWORD   ) 0x00000000L)
-#define STATUS_ABANDONED_WAIT_0  ((DWORD   ) 0x00000080L)
-#define STATUS_USER_APC          ((DWORD   ) 0x000000C0L)
-#define STATUS_TIMEOUT           ((DWORD   ) 0x00000102L)
+#define STATUS_WAIT_0            ((::u32   ) 0x00000000L)
+#define STATUS_ABANDONED_WAIT_0  ((::u32   ) 0x00000080L)
+#define STATUS_USER_APC          ((::u32   ) 0x000000C0L)
+#define STATUS_TIMEOUT           ((::u32   ) 0x00000102L)
  */
 
-#define WAIT_FAILED              ((DWORD   ) 0xFFFFFFFFL)
-#define WAIT_OBJECT_0            ((DWORD   ) STATUS_WAIT_0 + 0)
+#define WAIT_FAILED              ((::u32   ) 0xFFFFFFFFL)
+#define WAIT_OBJECT_0            ((::u32   ) STATUS_WAIT_0 + 0)
 
-#define WAIT_ABANDONED           ((DWORD   ) STATUS_ABANDONED_WAIT_0 + 0)
-#define WAIT_ABANDONED_0         ((DWORD   ) STATUS_ABANDONED_WAIT_0 + 0)
+#define WAIT_ABANDONED           ((::u32   ) STATUS_ABANDONED_WAIT_0 + 0)
+#define WAIT_ABANDONED_0         ((::u32   ) STATUS_ABANDONED_WAIT_0 + 0)
 
 #define WAIT_IO_COMPLETION                   STATUS_USER_APC
 

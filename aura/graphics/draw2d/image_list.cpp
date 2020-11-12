@@ -46,7 +46,7 @@ bool image_list::create(i32 cx, i32 cy)
 }
 
 
-bool image_list::create(i32 cx, i32 cy, UINT nFlags, i32 nInitial, i32 nGrow)
+bool image_list::create(i32 cx, i32 cy, ::u32 nFlags, i32 nInitial, i32 nGrow)
 {
 
    UNREFERENCED_PARAMETER(nFlags);
@@ -141,7 +141,7 @@ bool image_list::draw(::draw2d::graphics* pgraphics, i32 iImage, const ::point &
 }
 
 
-bool image_list::draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point & point, i32 iFlag, BYTE alpha)
+bool image_list::draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point & point, i32 iFlag, byte alpha)
 {
 
    sync_lock sl(mutex());

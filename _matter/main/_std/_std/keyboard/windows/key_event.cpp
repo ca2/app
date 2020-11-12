@@ -1,5 +1,5 @@
-if(pkey->m_uiMessage == WM_KEYDOWN ||
-   pkey->m_uiMessage == WM_KEYUP)
+if(pkey->m_uiMessage == e_message_key_down ||
+   pkey->m_uiMessage == e_message_key_up)
 {
 
    switch(pkey->m_nChar)

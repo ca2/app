@@ -63,7 +63,7 @@ namespace calculator
 
 
 
-   void frame::OnTimer(UINT uEvent)
+   void frame::OnTimer(::u32 uEvent)
    {
       static float theta;
       if(uEvent == 3)
@@ -110,7 +110,7 @@ namespace calculator
 
    void frame::ShowControlBars(bool bShow)
    {
-      UINT nShow;
+      ::u32 nShow;
       if(bShow)
       {
          nShow = display_normal;

@@ -29,8 +29,8 @@ namespace user
       ::user::interaction::install_message_routing(pchannel);
       MESSAGE_LINK(e_message_create, pchannel, this, &elastic_slider::_001OnCreate);
       ////MESSAGE_LINK(WM_TIMER, pchannel, this, &elastic_slider::_001OnTimer);
-      MESSAGE_LINK(WM_LBUTTONDOWN, pchannel, this, &elastic_slider::_001OnLButtonDown);
-      MESSAGE_LINK(WM_LBUTTONUP, pchannel, this, &elastic_slider::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_lbutton_down, pchannel, this, &elastic_slider::_001OnLButtonDown);
+      MESSAGE_LINK(e_message_lbutton_up, pchannel, this, &elastic_slider::_001OnLButtonUp);
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &elastic_slider::_001OnMouseMove);
    }
 
@@ -265,8 +265,8 @@ namespace user
       i32 iWidth = 16;
       rect.top = rectClient.top;
       rect.bottom = rectClient.bottom;
-      rect.left = (LONG) min(rectClient.right, m_dPosition * (rectClient.width() - iWidth));
-      rect.right = (LONG) min(rectClient.right, m_dPosition * ((rectClient.width() - iWidth)) + iWidth);
+      rect.left = (::i32) min(rectClient.right, m_dPosition * (rectClient.width() - iWidth));
+      rect.right = (::i32) min(rectClient.right, m_dPosition * ((rectClient.width() - iWidth)) + iWidth);
    }
 
 } // namespace user

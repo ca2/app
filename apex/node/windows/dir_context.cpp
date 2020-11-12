@@ -113,7 +113,7 @@ namespace windows
    //      return pszFolder;
 
    //   string strPath;
-   //   LPSTR psz;
+   //   char * psz;
 
 
    //   if(bEmptyRelative)
@@ -328,7 +328,7 @@ namespace windows
 
    ::file::listing & dir_context::root_ones(::file::listing & listing)
    {
-      DWORD dwSize = ::GetLogicalDriveStringsW(0, nullptr);
+      ::u32 dwSize = ::GetLogicalDriveStringsW(0, nullptr);
       ::acme::malloc < LPWSTR > pszAlloc;
 
       pszAlloc.alloc((dwSize + 1) * sizeof(WCHAR));
@@ -745,7 +745,7 @@ namespace windows
       }
 
 
-      DWORD dwAttrib;
+      ::u32 dwAttrib;
 
       dwAttrib = windows_get_file_attributes(pcszPath);
 
@@ -801,7 +801,7 @@ namespace windows
 
       }
 
-      DWORD dwAttrib;
+      ::u32 dwAttrib;
 
       dwAttrib = windows_get_file_attributes(str);
 
@@ -930,7 +930,7 @@ namespace windows
          else
          {
 
-            DWORD dwError = ::get_last_error();
+            ::u32 dwError = ::get_last_error();
 
             if (dwError == ERROR_ALREADY_EXISTS)
             {
@@ -1241,11 +1241,11 @@ namespace windows
    //   VERIFY(FindClose(hFind));
 
    //   // strip attribute of NORMAL bit, our API doesn't have a "normal" bit.
-   //   rStatus.m_attribute = (BYTE)(findFileData.dwFileAttributes & ~FILE_ATTRIBUTE_NORMAL);
+   //   rStatus.m_attribute = (byte)(findFileData.dwFileAttributes & ~FILE_ATTRIBUTE_NORMAL);
 
-   //   // get just the low DWORD of the file size
+   //   // get just the low ::u32 of the file size
    //   ASSERT(findFileData.nFileSizeHigh == 0);
-   //   rStatus.m_size = (LONG)findFileData.nFileSizeLow;
+   //   rStatus.m_size = (::i32)findFileData.nFileSizeLow;
 
    //   // convert times as appropriate
    //   rStatus.m_ctime = ::datetime::time(findFileData.ftCreationTime);

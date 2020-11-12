@@ -29,11 +29,11 @@ namespace account
       spa_login            m_login;
       simple_graphics      m_graphics;
       simple_bitmap        m_bitmap;
-      SIZE                 m_size;
-      POINT                m_point;
+      SIZE32                 m_size;
+      POINT32                m_point;
       bool                 m_bLButtonDown;
-      POINT                m_pointLButtonDown;
-      POINT                m_pointLButtonDownPos;
+      POINT32                m_pointLButtonDown;
+      POINT32                m_pointLButtonDownPos;
 
       oswindow             m_oswindow;
 
@@ -52,17 +52,17 @@ namespace account
 
       virtual ~account();
 
-      virtual string show_auth_window(LPRECT lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strFontopusServer);
+      virtual string show_auth_window(LPRECT32 lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strFontopusServer);
 
       virtual bool prepare_window(bool bShow);
 
-      virtual void _001ClientToScreen(POINT * ppt);
+      virtual void _001ClientToScreen(POINT32 * ppt);
 
-      virtual void _001ScreenToClient(POINT * ppt);
+      virtual void _001ScreenToClient(POINT32 * ppt);
 
-      virtual void get_window_rect(RECT * prect);
+      virtual void get_window_rect(RECT32 * prect);
 
-      virtual void get_client_rect(RECT * prect);
+      virtual void get_client_rect(RECT32 * prect);
 
       virtual void draw_dark_glass(simple_graphics & g);
       virtual void draw_pestana(simple_graphics &g);
@@ -370,7 +370,7 @@ namespace account
    {
    }
 
-   string account::show_auth_window(LPRECT lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strRequestingServer)
+   string account::show_auth_window(LPRECT32 lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strRequestingServer)
    {
 
       if (lprect == nullptr)
@@ -535,12 +535,12 @@ namespace account
 
 
 
-   void account::_001ClientToScreen(POINT * ppt)
+   void account::_001ClientToScreen(POINT32 * ppt)
    {
       ::_001ClientToScreen(m_oswindow, ppt);
    }
 
-   void account::_001ScreenToClient(POINT * ppt)
+   void account::_001ScreenToClient(POINT32 * ppt)
    {
       ::_001ScreenToClient(m_oswindow, ppt);
    }
@@ -587,7 +587,7 @@ namespace account
             {
       ::rect rectWindow;
       m_login.get_window_rect(&rectWindow);
-      POINT pointCursor;
+      POINT32 pointCursor;
       ::GetCursorPos(&pointCursor);
       if (rectWindow.is_empty().contains(pointCursor))
       DestroyWindow(hWnd);
@@ -606,7 +606,7 @@ namespace account
          if (!m_bDrag)
          {
             m_bDrag = true;
-            POINT ptNow;
+            POINT32 ptNow;
             ::GetCursorPos(&ptNow);
             m_point.x = ptNow.x - m_pointLButtonDown.x + m_pointLButtonDownPos.x;
             m_point.y = ptNow.y - m_pointLButtonDown.y + m_pointLButtonDownPos.y;
@@ -624,11 +624,11 @@ namespace account
    }
 
 
-   void account::get_window_rect(RECT * prect)
+   void account::get_window_rect(RECT32 * prect)
    {
       ::get_window_rect(m_oswindow, prect);
    }
-   void account::get_client_rect(RECT * prect)
+   void account::get_client_rect(RECT32 * prect)
    {
 
       ::get_client_rect(m_oswindow, prect);
@@ -672,7 +672,7 @@ namespace account
       int iCount = rectWindow.width();
       int jCount = rectWindow.height();
 
-      BYTE * p = (BYTE *) m_bitmap.m_pdata;
+      byte * p = (byte *) m_bitmap.m_pdata;
 
       for (i = 0; i < iCount; i++)
       {
@@ -787,7 +787,7 @@ namespace account
 
    account account::s_account;
 
-   string CLASS_DECL_BOOT show_auth_window(LPRECT lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strFontopusServer)
+   string CLASS_DECL_BOOT show_auth_window(LPRECT32 lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strFontopusServer)
    {
 
       return ::account::account::s_account.show_auth_window(lprect, strUsername, strSessId, strServerId, strLoginUrl, strFontopusServer);

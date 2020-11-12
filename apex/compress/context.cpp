@@ -140,7 +140,7 @@ bool compress_context::compress(memory & memoryOut, const ::memory & memoryIn)
 
    uLongf ulDestSize = (uLongf)memoryOut.get_size();
 
-   i32 i = ::compress(memoryOut.get_data(), &ulDestSize, (BYTE *)memoryIn.get_data(), (uLongf)memoryIn.get_size());
+   i32 i = ::compress(memoryOut.get_data(), &ulDestSize, (byte *)memoryIn.get_data(), (uLongf)memoryIn.get_size());
 
    if (i != Z_OK)
    {
@@ -161,7 +161,7 @@ bool compress_context::uncompress(memory& memoryOut, const ::memory& memoryIn)
 
    uLongf ulDestSize = (uLongf)memoryOut.get_size();
 
-   i32 i = ::uncompress(memoryOut.get_data(), &ulDestSize, (BYTE*)memoryIn.get_data(), (uLongf)memoryIn.get_size());
+   i32 i = ::uncompress(memoryOut.get_data(), &ulDestSize, (byte*)memoryIn.get_data(), (uLongf)memoryIn.get_size());
 
    if (i != Z_OK)
    {

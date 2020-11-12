@@ -16,28 +16,28 @@ string CLASS_DECL_ACME operator + (const char * psz, const property & prop);
 var CLASS_DECL_ACME operator - (i32 i, const property & prop);
 var CLASS_DECL_ACME operator - (u32 user, const property & prop);
 var CLASS_DECL_ACME operator - (i64 i, const property & prop);
-var CLASS_DECL_ACME operator - (u64 ui, const property & prop);
+var CLASS_DECL_ACME operator - (u64 u, const property & prop);
 var CLASS_DECL_ACME operator - (double d, const property & prop);
 var CLASS_DECL_ACME operator - (const var & var, const property & prop);
 
 var CLASS_DECL_ACME operator + (i32 i, const property & prop);
 var CLASS_DECL_ACME operator + (u32 user, const property & prop);
 var CLASS_DECL_ACME operator + (i64 i, const property & prop);
-var CLASS_DECL_ACME operator + (u64 ui, const property & prop);
+var CLASS_DECL_ACME operator + (u64 u, const property & prop);
 var CLASS_DECL_ACME operator + (double d, const property & prop);
 var CLASS_DECL_ACME operator + (const var & var, const property & prop);
 
 var CLASS_DECL_ACME operator / (i32 i, const property & prop);
 var CLASS_DECL_ACME operator / (u32 user, const property & prop);
 var CLASS_DECL_ACME operator / (i64 i, const property & prop);
-var CLASS_DECL_ACME operator / (u64 ui, const property & prop);
+var CLASS_DECL_ACME operator / (u64 u, const property & prop);
 var CLASS_DECL_ACME operator / (double d, const property & prop);
 var CLASS_DECL_ACME operator / (const var & var, const property & prop);
 
 var CLASS_DECL_ACME operator * (i32 i, const property & prop);
 var CLASS_DECL_ACME operator * (u32 user, const ::property & prop);
 var CLASS_DECL_ACME operator * (i64 i, const property & prop);
-var CLASS_DECL_ACME operator * (u64 ui, const property & prop);
+var CLASS_DECL_ACME operator * (u64 u, const property & prop);
 var CLASS_DECL_ACME operator * (double d, const property & prop);
 var CLASS_DECL_ACME operator * (const var & var, const property & prop);
 
@@ -450,13 +450,13 @@ public:
 ////
 ////#ifdef WINDOWS
 ////
-////   property & operator =(LONG l)
+////   property & operator =(::i32 l)
 ////   {
 ////      m_var = l;
 ////      return *this;
 ////   }
 ////
-////   property & operator =(DWORD dw)
+////   property & operator =(::u32 dw)
 ////   {
 ////      m_var = dw;
 ////      return *this;
@@ -464,9 +464,9 @@ public:
 ////
 ////#endif
 ////
-////   property & operator =(::u32 ui)
+////   property & operator =(::u32 u)
 ////   {
-////      m_var = ui;
+////      m_var = u;
 ////      return *this;
 ////   }
 ////
@@ -477,9 +477,9 @@ public:
 ////      return *this;
 ////   }
 ////
-////   property & operator =(::u64 ui)
+////   property & operator =(::u64 u)
 ////   {
-////      m_var = ui;
+////      m_var = u;
 ////      return *this;
 ////   }
 ////
@@ -643,8 +643,8 @@ public:
 ////
 ////#ifdef WINDOWS
 ////
-////   operator LONG() { return operator LONG(); }
-////   operator LONG() const { return operator LONG(); }
+////   operator ::i32() { return operator ::i32(); }
+////   operator ::i32() const { return operator ::i32(); }
 ////
 ////#endif
 ////
@@ -757,35 +757,35 @@ public:
 ////   var operator - (::i32 i) const;
 ////   var operator - (::u32 user) const;
 ////   var operator - (::i64 i) const;
-////   var operator - (::u64 ui) const;
+////   var operator - (::u64 u) const;
 ////   var operator - (double d) const;
 ////   var operator - (const var & var) const;
 ////
 ////   var operator + (::i32 i) const;
 ////   var operator + (::u32 user) const;
 ////   var operator + (::i64 i) const;
-////   var operator + (::u64 ui) const;
+////   var operator + (::u64 u) const;
 ////   var operator + (double d) const;
 ////   var operator + (const var & var) const;
 ////
 ////   var operator / (::i32 i) const;
 ////   var operator / (::u32 user) const;
 ////   var operator / (::i64 i) const;
-////   var operator / (::u64 ui) const;
+////   var operator / (::u64 u) const;
 ////   var operator / (double d) const;
 ////   var operator / (const var & var) const;
 ////
 ////   var operator * (::i32 i) const;
 ////   var operator * (::u32 user) const;
 ////   var operator * (::i64 i) const;
-////   var operator * (::u64 ui) const;
+////   var operator * (::u64 u) const;
 ////   var operator * (double d) const;
 ////   var operator * (const var & var) const;
 ////
 ////   property & operator -= (::i32 i);
 ////   property & operator -= (::u32 user);
 ////   property & operator -= (::i64 i);
-////   property & operator -= (::u64 ui);
+////   property & operator -= (::u64 u);
 ////   property & operator -= (double d);
 ////   property & operator -= (const var & var);
 ////   property & operator -= (const property & prop);
@@ -793,7 +793,7 @@ public:
 ////   property & operator += (::i32 i);
 ////   property & operator += (::u32 user);
 ////   property & operator += (::i64 i);
-////   property & operator += (::u64 ui);
+////   property & operator += (::u64 u);
 ////   property & operator += (double d);
 ////   property & operator += (const var & var);
 ////   property & operator += (const property & prop);
@@ -803,7 +803,7 @@ public:
 ////   property & operator /= (::i32 i);
 ////   property & operator /= (::u32 user);
 ////   property & operator /= (::i64 i);
-////   property & operator /= (::u64 ui);
+////   property & operator /= (::u64 u);
 ////   property & operator /= (double d);
 ////   property & operator /= (const var & var);
 ////   property & operator /= (const property & prop);
@@ -811,7 +811,7 @@ public:
 ////   property & operator *= (::i32 i);
 ////   property & operator *= (::u32 user);
 ////   property & operator *= (::i64 i);
-////   property & operator *= (::u64 ui);
+////   property & operator *= (::u64 u);
 ////   property & operator *= (double d);
 ////   property & operator *= (const var & var);
 ////   property & operator *= (const property & prop);
@@ -860,28 +860,28 @@ using property_ptra = ptr_array < ::property >;
 inline var CLASS_DECL_ACME operator - (i32 i, const property& prop) { return operator - (i, (const ::var &) prop); }
 inline var CLASS_DECL_ACME operator - (u32 user, const property& prop) { return operator - (user, (const ::var &)prop); }
 inline var CLASS_DECL_ACME operator - (i64 i, const property& prop) { return operator - (i, (const ::var &)prop); }
-inline var CLASS_DECL_ACME operator - (u64 ui, const property& prop) { return operator - (ui, (const ::var &)prop); }
+inline var CLASS_DECL_ACME operator - (u64 u, const property& prop) { return operator - (u, (const ::var &)prop); }
 inline var CLASS_DECL_ACME operator - (double d, const property& prop) { return operator - (d, (const ::var &)prop); }
 inline var CLASS_DECL_ACME operator - (const var& var, const property& prop) { return operator - (var, (const ::var &)prop); }
 
 inline var CLASS_DECL_ACME operator + (i32 i, const property& prop) { return operator + (i, (const ::var &) prop); }
 inline var CLASS_DECL_ACME operator + (u32 user, const property& prop) { return operator + (user, (const ::var &)prop); }
 inline var CLASS_DECL_ACME operator + (i64 i, const property& prop) { return operator + (i, (const ::var &)prop); }
-inline var CLASS_DECL_ACME operator + (u64 ui, const property& prop) { return operator + (ui, (const ::var &)prop); }
+inline var CLASS_DECL_ACME operator + (u64 u, const property& prop) { return operator + (u, (const ::var &)prop); }
 inline var CLASS_DECL_ACME operator + (double d, const property& prop) { return operator + (d, (const ::var &)prop); }
 inline var CLASS_DECL_ACME operator + (const var& var, const property& prop) { return operator + (var, (const ::var &)prop); }
 
 inline var CLASS_DECL_ACME operator / (i32 i, const property& prop) { return operator / (i, (const ::var &)prop); }
 inline var CLASS_DECL_ACME operator / (u32 user, const property& prop) { return operator / (user, (const ::var &)prop); }
 inline var CLASS_DECL_ACME operator / (i64 i, const property& prop) { return operator / (i, (const ::var&)prop); }
-inline var CLASS_DECL_ACME operator / (u64 ui, const property& prop) { return operator / (ui, (const ::var&)prop); }
+inline var CLASS_DECL_ACME operator / (u64 u, const property& prop) { return operator / (u, (const ::var&)prop); }
 inline var CLASS_DECL_ACME operator / (double d, const property& prop) { return operator / (d, (const ::var&) prop); }
 inline var CLASS_DECL_ACME operator / (const var& var, const property& prop) { return operator / (var, (const ::var&) prop); }
 
 inline var CLASS_DECL_ACME operator * (i32 i, const property& prop) { return operator * (i, (const ::var&) prop); }
 inline var CLASS_DECL_ACME operator * (u32 user, const ::property& prop) { return operator * (user, (const ::var&) prop); }
 inline var CLASS_DECL_ACME operator * (i64 i, const property& prop) { return operator * (i, (const ::var&) prop); }
-inline var CLASS_DECL_ACME operator * (u64 ui, const property& prop) { return operator * (ui, (const ::var&)prop); }
+inline var CLASS_DECL_ACME operator * (u64 u, const property& prop) { return operator * (u, (const ::var&)prop); }
 inline var CLASS_DECL_ACME operator * (double d, const property& prop) { return operator * (d, (const ::var&)prop); }
 inline var CLASS_DECL_ACME operator * (const var& var, const property& prop) { return operator * (var, (const ::var&)prop); }
 

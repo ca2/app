@@ -194,11 +194,11 @@ SizingNone:;
 
                auto psession = Session;
 
-               COLORREF    crMoveableBorder;
+               color32_t    crMoveableBorder;
 
-               COLORREF    crMoveableBorderHilight;
+               color32_t    crMoveableBorderHilight;
 
-               COLORREF    crMoveableBorderShadow;
+               color32_t    crMoveableBorderShadow;
 
                if(pframewindow->is_active())
                {
@@ -378,7 +378,7 @@ SizingNone:;
 
             }
 
-            void frame_001::GetBorderRect(const ::rect & rectClient, RECT * prect, e_border eside)
+            void frame_001::GetBorderRect(const ::rect & rectClient, RECT32 * prect, e_border eside)
 
             {
 

@@ -311,7 +311,7 @@ namespace music
       };
       */
 
-      double GetNoteFrequency(double dA3Frequency, BYTE bNote)
+      double GetNoteFrequency(double dA3Frequency, byte bNote)
       {
 
          return dA3Frequency * pow(2.0, (double) (bNote - 69) / 12);
@@ -362,7 +362,7 @@ namespace music
       }
 
 
-      i32 GetMessageLen(BYTE bEvent)
+      i32 GetMessageLen(byte bEvent)
       {
          return grbChanMsgLen[(bEvent >> 4) & 0x0F];
       }
@@ -371,7 +371,7 @@ namespace music
       u32 GetVDWord(byte * &hpbMidiStream, u32 dwLeft, u32 &dwValueParam)
       {
 
-         BYTE                    b;
+         byte                    b;
          u32                   dwUsed  = 0;
          byte * &            hpbImage = hpbMidiStream;
          u32               dwValue;

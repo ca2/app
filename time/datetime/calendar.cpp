@@ -44,7 +44,7 @@ namespace datetime
       }
 
 
-      void calendar::GetRectDay(::datetime::time& time, LPRECT lprect)
+      void calendar::GetRectDay(::datetime::time& time, LPRECT32 lprect)
       {
 
          int32_t iWeekDay = time.GetDayOfWeek();
@@ -54,7 +54,7 @@ namespace datetime
       }
 
 
-      void calendar::GetRectDay(int32_t iWeekDay, int32_t iLine, LPRECT lprect)
+      void calendar::GetRectDay(int32_t iWeekDay, int32_t iLine, LPRECT32 lprect)
       {
 
          UNREFERENCED_PARAMETER(iWeekDay);
@@ -64,7 +64,7 @@ namespace datetime
       }
 
 
-      void calendar::GetRect(LPRECT lprect, enum enum_element eelement)
+      void calendar::GetRect(LPRECT32 lprect, enum enum_element eelement)
       {
 
          UNREFERENCED_PARAMETER(lprect);

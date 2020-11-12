@@ -33,12 +33,12 @@ namespace user
       virtual void message_handler(::message::base * pbase) override;
 
       //using ::user::primitive::set_window_pos;
-      //virtual bool set_window_pos(iptr z,i32 x,i32 y,i32 cx,i32 cy,UINT nFlags = SWP_SHOWWINDOW) override;
+      //virtual bool set_window_pos(iptr z,i32 x,i32 y,i32 cx,i32 cy,::u32 nFlags = SWP_SHOWWINDOW) override;
 
 
       // Advanced: virtual AdjustWindowRect
       enum AdjustType { adjustBorder = 0,adjustOutside = 1 };
-      virtual void CalcWindowRect(RECT * pClientRect,UINT nAdjustType = adjustBorder) override;
+      virtual void CalcWindowRect(RECT32 * pClientRect,::u32 nAdjustType = adjustBorder) override;
 
       virtual bool start_window_visual() override;
 
@@ -102,7 +102,7 @@ namespace user
 
       virtual void set_viewport_org(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual bool RedrawWindow(const ::rect& rectUpdate,::draw2d::region* prgnUpdate,UINT flags) override;
+      virtual bool RedrawWindow(const ::rect& rectUpdate,::draw2d::region* prgnUpdate,::u32 flags) override;
 
       virtual ::user::interaction * SetOwner(::user::interaction * pinteraction) override;
       virtual ::user::interaction * GetOwner() const override;
@@ -114,25 +114,25 @@ namespace user
 
       //virtual bool _001ClientToScreen(RECTD * prect) override;
 
-      //virtual bool _001ClientToScreen(RECT * prect) override;
+      //virtual bool _001ClientToScreen(RECT32 * prect) override;
 
       //virtual bool _001ClientToScreen(RECT64 * prect) override;
 
       //virtual bool _001ClientToScreen(POINTD * ppoint) override;
 
-      //virtual bool _001ClientToScreen(LPPOINT ppoint) override;
+      //virtual bool _001ClientToScreen(POINT32 * ppoint) override;
 
       //virtual bool _001ClientToScreen(POINT64 * ppoint) override;
 
       //virtual bool _001ScreenToClient(RECTD * prect) override;
 
-      //virtual bool _001ScreenToClient(RECT * prect) override;
+      //virtual bool _001ScreenToClient(RECT32 * prect) override;
 
       //virtual bool _001ScreenToClient(RECT64 * prect) override;
 
       //virtual bool _001ScreenToClient(POINTD * ppoint) override;
 
-      //virtual bool _001ScreenToClient(LPPOINT ppoint) override;
+      //virtual bool _001ScreenToClient(POINT32 * ppoint) override;
 
       //virtual bool _001ScreenToClient(POINT64 * ppoint) override;
 

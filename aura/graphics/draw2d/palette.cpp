@@ -39,7 +39,7 @@ namespace draw2d
    }
 
 
-   UINT palette::GetPaletteEntries(UINT nStartIndex, UINT nNumEntries, LPPALETTEENTRY pPaletteColors) const
+   ::u32 palette::GetPaletteEntries(::u32 nStartIndex, ::u32 nNumEntries, LPPALETTEENTRY pPaletteColors) const
 
    {
       UNREFERENCED_PARAMETER(nStartIndex);
@@ -50,7 +50,7 @@ namespace draw2d
       return 0;
    }
 
-   UINT palette::SetPaletteEntries(UINT nStartIndex, UINT nNumEntries, LPPALETTEENTRY pPaletteColors)
+   ::u32 palette::SetPaletteEntries(::u32 nStartIndex, ::u32 nNumEntries, LPPALETTEENTRY pPaletteColors)
 
    {
       UNREFERENCED_PARAMETER(nStartIndex);
@@ -61,7 +61,7 @@ namespace draw2d
       return 0;
    }
 
-   void palette::AnimatePalette(UINT nStartIndex, UINT nNumEntries, LPPALETTEENTRY pPaletteColors)
+   void palette::AnimatePalette(::u32 nStartIndex, ::u32 nNumEntries, LPPALETTEENTRY pPaletteColors)
 
    {
       UNREFERENCED_PARAMETER(nStartIndex);
@@ -72,14 +72,14 @@ namespace draw2d
 
    }
 
-   UINT palette::GetNearestPaletteIndex(COLORREF crColor) const
+   ::u32 palette::GetNearestPaletteIndex(color32_t crColor) const
    {
       UNREFERENCED_PARAMETER(crColor);
       ::exception::throw_interface_only();
       return 0;
    }
 
-   bool palette::ResizePalette(UINT nNumEntries)
+   bool palette::ResizePalette(::u32 nNumEntries)
    {
       UNREFERENCED_PARAMETER(nNumEntries);
       ::exception::throw_interface_only();

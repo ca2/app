@@ -12,9 +12,9 @@ bool draw2d_gif_antialias_8bit(image & imageCompose, image_frame_array * pimagep
 
    return true;
 
-//   COLORREF cr;
+//   color32_t cr;
 //
-//   COLORREF crBack = imagea.m_crTransparent;
+//   color32_t crBack = imagea.m_crTransparent;
 //
 //   double dA1 = colorref_get_a_value(crBack);
 //
@@ -38,7 +38,7 @@ bool draw2d_gif_antialias_8bit(image & imageCompose, image_frame_array * pimagep
 //
 //   double dTransparent = 4.0;
 //
-//   int w = pointer->m_pimage->m_iScan / sizeof(COLORREF);
+//   int w = pointer->m_pimage->m_iScan / sizeof(color32_t);
 //
 //   int i = 0;
 //

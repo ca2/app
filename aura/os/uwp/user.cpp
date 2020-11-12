@@ -7,10 +7,10 @@
 CLASS_DECL_AURA int g_iMouse = -1;
 
 
-CLASS_DECL_AURA int_bool get_cursor_pos(LPPOINT lppoint);
+CLASS_DECL_AURA int_bool get_cursor_pos(POINT32 * lppoint);
 
 
-CLASS_DECL_AURA int_bool ui_get_cursor_pos(POINT * ppt)
+CLASS_DECL_AURA int_bool ui_get_cursor_pos(POINT32 * ppt)
 {
 
    if (ppt == nullptr)
@@ -52,7 +52,7 @@ int g_iMouseX = 0;
 int g_iMouseY = 0;
 
 
-CLASS_DECL_AURA int_bool get_cursor_pos(LPPOINT lppoint)
+CLASS_DECL_AURA int_bool get_cursor_pos(POINT32 * lppoint)
 {
 
    lppoint->x = g_iMouseX;
@@ -68,19 +68,19 @@ CLASS_DECL_AURA int_bool get_cursor_pos(LPPOINT lppoint)
 
       Windows::Foundation::Collections::IVectorView < Windows::Devices::Input::PointerDevice ^ > ^ deva = ::Windows::Devices::Input::PointerDevice::GetPointerDevices();
 
-      for (unsigned int ui = 0; ui < deva->Size; ui++)
+      for (unsigned int u = 0; u < deva->Size; u++)
       {
 
-         Windows::Devices::Input::PointerDevice ^ dev = deva->GetAt(ui);
+         Windows::Devices::Input::PointerDevice ^ dev = deva->GetAt(u);
 
          if (dev->PointerDeviceType == ::Windows::Devices::Input::PointerDeviceType::Mouse)
          {
 
             Windows::UI::Input::PointerPoint ^ pointerPoint = ::Windows::UI::Input::PointerPoint::GetCurrentPoint(g_iMouse);
 
-            g_iMouseX = (LONG)pointerPoint->RawPosition.X;
+            g_iMouseX = (::i32)pointerPoint->RawPosition.X;
 
-            g_iMouseY = (LONG)pointerPoint->RawPosition.Y;
+            g_iMouseY = (::i32)pointerPoint->RawPosition.Y;
 
          }
 
@@ -525,7 +525,7 @@ using namespace Windows::System::Threading;
 //}
 //
 
-//UINT system_main(::aura::system * psystem)
+//::u32 system_main(::aura::system * psystem)
 //{
 //
 //   try
@@ -582,7 +582,9 @@ namespace user
    CLASS_DECL_AURA ::color calc_system_app_background_color()
    {
 
-      auto color = psession->m_directxapplication->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
+      auto psystem = ::get_context_system()->m_paurasystem;
+
+      auto color = psystem->m_pimplMain->m_frameworkview->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
 
       auto r = color.R;
 
@@ -598,7 +600,9 @@ namespace user
    CLASS_DECL_AURA double calc_system_app_luminance()
    {
 
-      auto color = psession->m_directxapplication->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
+      auto psystem = ::get_context_system()->m_paurasystem;
+
+      auto color = psystem->m_pimplMain->m_frameworkview->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
 
       double r = color.R;
 
@@ -621,10 +625,12 @@ namespace user
 
 
 
-int GetMainScreenRect(LPRECT lprect)
+int GetMainScreenRect(LPRECT32 lprect)
 {
 
-   auto puiHost = __user_interaction(System.get_context_session()->m_puiHost);
+   auto psession = Session;
+
+   auto puiHost = __user_interaction(psession->m_puiHost);
 
    *lprect = puiHost->m_pimpl->cast < ::user::interaction_impl >()->m_rectWindowScreen;
 

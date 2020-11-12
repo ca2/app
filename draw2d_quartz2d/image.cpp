@@ -82,7 +82,7 @@ namespace draw2d_quartz2d
       
       //m_iScan = 0;
       
-      COLORREF * pcolorref = nullptr;
+      color32_t * pcolorref = nullptr;
       
       i32 iScan = iGoodStride;
 
@@ -263,14 +263,14 @@ namespace draw2d_quartz2d
       nullptr,
       DI_MASK);
 
-      BYTE * r1=(BYTE*)pimage1->colorref();
-      BYTE * r2=(BYTE*)pimage2->colorref();
-      BYTE * srcM=(BYTE*)pimageM->colorref();
-      BYTE * dest=(BYTE*)colorref();
+      byte * r1=(byte*)pimage1->colorref();
+      byte * r2=(byte*)pimage2->colorref();
+      byte * srcM=(byte*)pimageM->colorref();
+      byte * dest=(byte*)colorref();
       i32 iSize = cx*cy;
 
-      BYTE b;
-      BYTE bMax;
+      byte b;
+      byte bMax;
       while ( iSize-- > 0)
       {
          if(srcM[0] == 255)
@@ -280,11 +280,11 @@ namespace draw2d_quartz2d
          else
          {
             bMax = 0;
-            b =(BYTE)(r1[0]  - r2[0]);
+            b =(byte)(r1[0]  - r2[0]);
             bMax = max(b, bMax);
-            b =(BYTE)(r1[1]  - r2[1]);
+            b =(byte)(r1[1]  - r2[1]);
             bMax = max(b, bMax);
-            b =(BYTE)(r1[2]  - r2[2]);
+            b =(byte)(r1[2]  - r2[2]);
             bMax = max(b, bMax);
             bMax = 255 - bMax;
          }
@@ -435,15 +435,15 @@ namespace draw2d_quartz2d
       byte * psrc2;
 
 #ifdef APPLEOS
-      byte * pdst = &((byte *)pimplDst->colorref())[scanDst * (pimplDst->height() - pointDst.y - yEnd) + pointDst.x * sizeof(COLORREF)];
+      byte * pdst = &((byte *)pimplDst->colorref())[scanDst * (pimplDst->height() - pointDst.y - yEnd) + pointDst.x * sizeof(color32_t)];
 
-      byte * psrc = &((byte *)pimplSrc->colorref())[scanSrc * (pimplSrc->height() - pointSrc.y - yEnd) + pointSrc.x * sizeof(COLORREF)];
+      byte * psrc = &((byte *)pimplSrc->colorref())[scanSrc * (pimplSrc->height() - pointSrc.y - yEnd) + pointSrc.x * sizeof(color32_t)];
 
 #else
 
-      byte * pdst = &((byte *)imageDst.m_pcolorref)[scanDst * pointDst.y + pointDst.x * sizeof(COLORREF)];
+      byte * pdst = &((byte *)imageDst.m_pcolorref)[scanDst * pointDst.y + pointDst.x * sizeof(color32_t)];
 
-      byte * psrc = &((byte *)imageSrc.m_pcolorref)[scanSrc *  pointSrc.y + pointSrc.x * sizeof(COLORREF)];
+      byte * psrc = &((byte *)imageSrc.m_pcolorref)[scanSrc *  pointSrc.y + pointSrc.x * sizeof(color32_t)];
 
 #endif
 
@@ -580,7 +580,7 @@ namespace draw2d_quartz2d
                   else if(alpha == 0)
                   {
 
-                     *((COLORREF *)pdst2) = 0;
+                     *((color32_t *)pdst2) = 0;
 
                   }
                   else

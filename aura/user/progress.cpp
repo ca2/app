@@ -61,7 +61,7 @@ namespace user
 
       rect.deflate(1, 1);
 
-      rect.right = (LONG) (rect.width() * m_dRate + rect.left);
+      rect.right = (::i32) (rect.width() * m_dRate + rect.left);
 
       pgraphics->fill_rect(rect, ARGB(255, 100, 220,180));
 

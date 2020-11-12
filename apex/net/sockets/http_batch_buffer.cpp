@@ -14,7 +14,7 @@ namespace sockets
    }
 
 
-   ::status::result http_batch_buffer::open(const char * pszFileName, UINT nOpenFlags)
+   ::status::result http_batch_buffer::open(const char * pszFileName, ::u32 nOpenFlags)
    {
 
       m_strPath = pszFileName;

@@ -254,7 +254,7 @@ LRESULT CALLBACK floatbar_proc(HWND hWnd, UINT Msg, WPARAM wParam,
 			EndPaint(hWnd, &ps);
 			break;
 
-		case WM_LBUTTONDOWN:
+		case e_message_lbutton_down:
 			pos_x = lParam & 0xffff;
 			pos_y = (lParam >> 16) & 0xffff;
 			button = floatbar_get_button(floatbar, pos_x, pos_y);
@@ -270,7 +270,7 @@ LRESULT CALLBACK floatbar_proc(HWND hWnd, UINT Msg, WPARAM wParam,
 
 			break;
 
-		case WM_LBUTTONUP:
+		case e_message_lbutton_up:
 			pos_x = lParam & 0xffff;
 			pos_y = (lParam >> 16) & 0xffff;
 			ReleaseCapture();

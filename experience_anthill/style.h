@@ -37,7 +37,7 @@ namespace experience
 
       virtual ::color get_color(const ::user::interaction* pinteraction, ::user::e_element eelement, ::user::estate estate) const override;
 
-//      virtual bool get_color(COLORREF & cr, ::user::e_color ecolor, ::user::interaction * pframewindow) override;
+//      virtual bool get_color(color32_t & cr, ::user::e_color ecolor, ::user::interaction * pframewindow) override;
       //    virtual bool get_font(::draw2d::font_pointer & font, ::user::e_font efont, ::user::interaction * pframewindow) override;
       //  virtual bool get_translucency(::user::e_translucency & etranslucency, ::user::e_element eelement, ::user::interaction * pframewindow) override;
 

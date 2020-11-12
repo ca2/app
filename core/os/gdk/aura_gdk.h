@@ -4,6 +4,6 @@
 #include <gdk/gdk.h>
 
 
-void copy(RECT * prectTarget, const GdkRectangle * prectSource);
-void copy(GdkRectangle * prectTarget, const RECT * prectSource);
+void copy(RECT32 * prectTarget, const GdkRectangle * prectSource);
+void copy(GdkRectangle * prectTarget, const RECT32 * prectSource);
 

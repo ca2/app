@@ -15,8 +15,8 @@ namespace user
       index                      m_iImage;
       ::image_pointer            m_pimage;
       id                         m_id;
-      BYTE                       m_fsState;
-      BYTE                       m_fsStyle;
+      byte                       m_fsState;
+      byte                       m_fsStyle;
       string                     m_str;
       ::rect                     m_rect;
       bool                       m_bEnableIfHasCommandHandler;
@@ -61,7 +61,7 @@ namespace user
       ::size               m_sizeImage;  // current image size
       ::size               m_sizeButton; // current button size
       bool                 m_bSimpleLayout;
-      string_to_ptr *      m_pStringMap;  // used as CMapStringToUInt
+      string_to_ptr *      m_pStringMap;  // used as CMapStringTo::u32
       index                m_iButtonPressItem;
 
 
@@ -81,28 +81,28 @@ namespace user
       // call after SetSizes, height overrides bitmap size
       //bool LoadToolBar(const char * pszResourceName);
 
-      //bool LoadToolBar(UINT nIDResource);
+      //bool LoadToolBar(::u32 nIDResource);
       //bool LoadBitmap(const char * pszResourceName);
 
-      //bool LoadBitmap(UINT nIDResource);
+      //bool LoadBitmap(::u32 nIDResource);
       bool from(HBITMAP hbmImageWell);
-      bool SetButtons(const UINT* pIDArray, index nIDCount);
+      bool SetButtons(const ::u32* pIDArray, index nIDCount);
 
       // pIDArray can be nullptr to allocate is_empty buttons
 
       virtual ::user::estate get_button_state(int iItem);
 
       // standard control bar things
-      index CommandToIndex(UINT nIDFind);
-      UINT GetItemID(index nIndex);
-      virtual void GetItemRect(index nIndex, RECT * prect);
+      index CommandToIndex(::u32 nIDFind);
+      ::u32 GetItemID(index nIndex);
+      virtual void GetItemRect(index nIndex, RECT32 * prect);
 
-      UINT GetButtonStyle(index nIndex);
-      void SetButtonStyle(index nIndex, UINT nStyle);
+      ::u32 GetButtonStyle(index nIndex);
+      void SetButtonStyle(index nIndex, ::u32 nStyle);
 
       // for changing button info
-      void GetButtonInfo(index nIndex, UINT& nID, UINT& nStyle, index& iImage);
-      void SetButtonInfo(index nIndex, UINT nID, UINT nStyle, index iImage);
+      void GetButtonInfo(index nIndex, ::u32& nID, ::u32& nStyle, index& iImage);
+      void SetButtonInfo(index nIndex, ::u32 nID, ::u32 nStyle, index iImage);
       bool SetButtonText(index nIndex, const char * pszText);
 
       string GetButtonText(index nIndex) const;
@@ -125,9 +125,9 @@ namespace user
 
       virtual bool LoadXmlToolBar(const char * pszFileName);
 
-      virtual bool _001GetItemRect(index iItem,RECT * prect);
+      virtual bool _001GetItemRect(index iItem,RECT32 * prect);
 
-      virtual bool _001GetElementRect(index iItem,RECT * prect,e_element eelement, estate estate);
+      virtual bool _001GetElementRect(index iItem,RECT32 * prect,e_element eelement, estate estate);
 
       virtual bool _001SetItem(index iItem, toolbar_item * pitem);
       virtual toolbar_item * _001GetItem(index iItem);

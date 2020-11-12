@@ -94,7 +94,7 @@ namespace music
                                   MusicTimeStamp	sequenceLength,
                                   bool              shouldPrint,
                                   AUGraph			inGraph,
-                                  UInt32			numFrames,
+                                  ::u32			numFrames,
                                   MusicPlayer		player,
                                   string_array&    errorMessages)
             {
@@ -106,7 +106,7 @@ namespace music
                }
                
                OSStatus result = 0;
-               UInt32 size;
+               ::u32 size;
                
                CAStreamBasicDescription outputFormat;
                outputFormat.mChannelsPerFrame = 2;
@@ -149,7 +149,7 @@ namespace music
                outputFormat.Print();
                //}
                
-               CFURLRef url = CFURLCreateFromFileSystemRepresentation(nullptr, (const UInt8*)outputFilePath,
+               CFURLRef url = CFURLCreateFromFileSystemRepresentation(nullptr, (const ::u328*)outputFilePath,
                                                                       strlen(outputFilePath), false);
                
                ExtAudioFileRef outfile;
@@ -158,13 +158,13 @@ namespace music
                CHECK_RETURN_CODE("ExtAudioFileCreateWithURL");
                
                AudioUnit outputUnit = 0;
-               UInt32 nodeCount;
+               ::u32 nodeCount;
                result = AUGraphGetNodeCount (inGraph, &nodeCount);
                CHECK_RETURN_CODE("AUGraphGetNodeCount");
                
                if (nodeCount == 0) printf("[CoreAudioOutput] WARNING : 0 nodes??\n");
                
-               for (UInt32 i = 0; i < nodeCount; ++i)
+               for (::u32 i = 0; i < nodeCount; ++i)
                {
                   AUNode node;
                   result = AUGraphGetIndNode(inGraph, i, &node);
@@ -190,10 +190,10 @@ namespace music
                   CAStreamBasicDescription clientFormat = CAStreamBasicDescription();
                   
                   /*
-                   double inSampleRate,		UInt32 inFormatID,
-                   UInt32 inBytesPerPacket,	UInt32 inFramesPerPacket,
-                   UInt32 inBytesPerFrame,		UInt32 inChannelsPerFrame,
-                   UInt32 inBitsPerChannel,	UInt32 inFormatFlags)
+                   double inSampleRate,		::u32 inFormatID,
+                   ::u32 inBytesPerPacket,	::u32 inFramesPerPacket,
+                   ::u32 inBytesPerFrame,		::u32 inChannelsPerFrame,
+                   ::u32 inBitsPerChannel,	::u32 inFormatFlags)
                    */
                   
                   result = AudioUnitGetProperty(outputUnit,
@@ -258,7 +258,7 @@ namespace music
             }
 
             // Code by Apple, from http://developer.apple.com/library/mac/#samplecode/PlaySequence/Introduction/Intro.html
-            OSStatus SetUpGraph (AUGraph &inGraph, UInt32 numFrames, Float64 &sampleRate, bool isOffline)
+            OSStatus SetUpGraph (AUGraph &inGraph, ::u32 numFrames, Float64 &sampleRate, bool isOffline)
             {
                OSStatus result = noErr;
                AudioUnit outputUnit = 0;
@@ -267,7 +267,7 @@ namespace music
                // the frame size is the I/O size to the device
                // the device is going to run at a sample rate it is set at
                // so, when we set this, we also have to set the max frames for the graph nodes
-               UInt32 nodeCount;
+               ::u32 nodeCount;
                result = AUGraphGetNodeCount (inGraph, &nodeCount);
                if (result != 0)
                {
@@ -319,7 +319,7 @@ namespace music
                             */
                            
                            // if we're rendering to the device, then we render at its sample rate
-                           UInt32 theSize;
+                           ::u32 theSize;
                            theSize = sizeof(sampleRate);
                            
                            require_noerr (result = AudioUnitGetProperty (outputUnit,
@@ -391,7 +391,7 @@ namespace music
                   
                }
                
-               CFDataRef cfdata = CFDataCreate(kCFAllocatorDefault, (const UInt8*)data, dataSize);
+               CFDataRef cfdata = CFDataCreate(kCFAllocatorDefault, (const ::u328*)data, dataSize);
                
                result = MusicSequenceFileLoadData (sequence, cfdata, kMusicSequenceFile_MIDIType, loadFlags);
                
@@ -412,13 +412,13 @@ namespace music
             OSStatus GetSynthFromGraph (AUGraph& inGraph, AudioUnit& outSynth)
             {
                
-               UInt32 nodeCount;
+               ::u32 nodeCount;
                
                OSStatus result = noErr;
                
                require_noerr (result = AUGraphGetNodeCount (inGraph, &nodeCount), fail);
                
-               for (UInt32 i = 0; i < nodeCount; ++i)
+               for (::u32 i = 0; i < nodeCount; ++i)
                {
                   
                   AUNode node;
@@ -493,7 +493,7 @@ namespace music
                   
                   FSRef fsRef;
                   
-                  result = FSPathMakeRef ((const UInt8*)m_strCustomSoundFont.c_str(), &fsRef, 0);
+                  result = FSPathMakeRef ((const ::u328*)m_strCustomSoundFont.c_str(), &fsRef, 0);
                   
                   CHECK_RETURN_CODE("FSPathMakeRef");
                   
@@ -508,7 +508,7 @@ namespace music
             #endif
                
                // need to tell synth that is going to render a file.
-               UInt32 value = 1;
+               ::u32 value = 1;
                
                result = AudioUnitSetProperty(theSynth,
                                              kAudioUnitProperty_OfflineRender,
@@ -516,7 +516,7 @@ namespace music
                                              &value, sizeof(value));
                CHECK_RETURN_CODE("AudioUnitSetProperty[kAudioUnitProperty_OfflineRender]");
                
-               UInt32 numFrames = 512;
+               ::u32 numFrames = 512;
                
                Float64 sample_rate = 44100;
                
@@ -534,18 +534,18 @@ namespace music
                CHECK_RETURN_CODE("MusicPlayerSetSequence");
                
                // figure out sequence length
-               UInt32 ntracks;
+               ::u32 ntracks;
                result = MusicSequenceGetTrackCount (sequence, &ntracks);
                CHECK_RETURN_CODE("MusicSequenceGetTrackCount");
                
                MusicTimeStamp sequenceLength = 0;
                
-               for (UInt32 i = 0; i < ntracks; ++i)
+               for (::u32 i = 0; i < ntracks; ++i)
                {
                   
                   MusicTrack track;
                   MusicTimeStamp trackLength;
-                  UInt32 propsize = sizeof(MusicTimeStamp);
+                  ::u32 propsize = sizeof(MusicTimeStamp);
                   result = MusicSequenceGetIndTrack(sequence, i, &track);
                   CHECK_RETURN_CODE("MusicSequenceGetIndTrack");
                   
@@ -707,7 +707,7 @@ namespace music
             //{
             //   FSRef fsRef;
             //   OSStatus result;
-            //   result = FSPathMakeRef ((const UInt8*)filename, &fsRef, 0);
+            //   result = FSPathMakeRef ((const ::u328*)filename, &fsRef, 0);
             //   if (result != 0)
             //   {
             //      fprintf(stderr, "FSPathMakeRef failed\n");
@@ -804,7 +804,7 @@ namespace music
                if (custom_sound_font != nullptr)
                {
                   FSRef fsRef;
-                  result = FSPathMakeRef ((const UInt8*)custom_sound_font, &fsRef, 0);
+                  result = FSPathMakeRef ((const ::u328*)custom_sound_font, &fsRef, 0);
                   if (result != 0)
                   {
                      //wxMessageBox( _("Sorry, failed to set custom soundfont.") );
@@ -891,7 +891,7 @@ namespace music
             void output::note_on(int iChannel, unsigned char uchNote, unsigned char uchVelocity)
             {
                
-               UInt32 noteOnCommand = kMidiMessage_NoteOn << 4 | iChannel;
+               ::u32 noteOnCommand = kMidiMessage_NoteOn << 4 | iChannel;
                
                // note on
                auto result = MusicDeviceMIDIEvent(m_synth_unit, noteOnCommand, uchNote, uchVelocity, 0);
@@ -908,7 +908,7 @@ namespace music
             void output::note_off(int iChannel, unsigned char uchNote, unsigned char uchVelocity)
             {
 
-               UInt32 noteOnCommand = kMidiMessage_NoteOn << 4 | iChannel;
+               ::u32 noteOnCommand = kMidiMessage_NoteOn << 4 | iChannel;
                
                // note off
                auto result = MusicDeviceMIDIEvent(m_synth_unit, noteOnCommand, uchNote, 0, 0);
@@ -927,7 +927,7 @@ namespace music
             void output::program_change(int iChannel, unsigned char uchProgram)
             {
 
-               UInt32 progamChange = kMidiMessage_ProgramChange << 4 | iChannel;
+               ::u32 progamChange = kMidiMessage_ProgramChange << 4 | iChannel;
                
                // set instrument
                auto result = MusicDeviceMIDIEvent(m_synth_unit, progamChange, uchProgram, 0, 0);

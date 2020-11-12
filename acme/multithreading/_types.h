@@ -6,8 +6,8 @@
 
 #ifdef WINDOWS
 
-typedef u32 ITHREAD;
-typedef DWORD thread_data_index;
+typedef u32 ithread_t;
+typedef ::u32 thread_data_index;
 
 #else
 
@@ -19,29 +19,29 @@ using thread_data_index = ::u32;
 #ifdef WINDOWS
 
 
-typedef HANDLE HTHREAD;
+typedef HANDLE hthread_t;
 
-//typedef uint32 ITHREAD;
-
-
-#define NULL_HTHREAD ((HTHREAD)0)
-#define NULL_ITHREAD ((ITHREAD)0)
+//typedef ::u32 ithread_t;
 
 
-inline int ithread_equals(ITHREAD a, ITHREAD b) { return a == b; }
+#define NULL_HTHREAD ((hthread_t)0)
+#define NULL_ITHREAD ((ithread_t)0)
+
+
+inline int ithread_equals(ithread_t a, ithread_t b) { return a == b; }
 
 #else
 
 
 
-#define HTHREAD pthread_t
+#define hthread_t pthread_t
 
-#define ITHREAD pthread_t
+#define ithread_t pthread_t
 
-#define NULL_HTHREAD ((HTHREAD)0)
-#define NULL_ITHREAD ((ITHREAD)0)
+#define NULL_HTHREAD ((hthread_t)0)
+#define NULL_ITHREAD ((ithread_t)0)
 
-inline int ithread_equals(ITHREAD a, ITHREAD b) { return pthread_equal(a, b); }
+inline int ithread_equals(ithread_t a, ithread_t b) { return pthread_equal(a, b); }
 
 
 #endif

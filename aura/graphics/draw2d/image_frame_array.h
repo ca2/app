@@ -13,9 +13,9 @@ public:
    ::index              m_iLoop;
    int                  m_iTransparentIndex;
    bool                 m_bTransparent;
-   COLORREF             m_crTransparent;
-   COLORREF             m_crBack;
-   BYTE                 m_backgroundIndex;
+   color32_t             m_crTransparent;
+   color32_t             m_crBack;
+   byte                 m_backgroundIndex;
    ::size               m_sizeLogical;
    ::size               m_size;
    ::image_pointer      m_pimageCompose;

@@ -29,7 +29,7 @@ class nsLatin1Prober: public nsCharSetProber {
 public:
   nsLatin1Prober(void){Reset();};
   virtual ~nsLatin1Prober(void){};
-  nsProbingState HandleData(const char* aBuf, PRUint32 aLen);
+  nsProbingState HandleData(const char* aBuf, PR::u32 aLen);
   const char* GetCharSetName() {return "windows-1252";};
   nsProbingState GetState(void) {return mState;};
   void      Reset(void);
@@ -37,11 +37,11 @@ public:
   void      SetOpion() {};
 
 protected:
-  PRBool FilterWithEnglishLetters(const char* aBuf, PRUint32 aLen, char** newBuf, PRUint32& newLen);
+  PRBool FilterWithEnglishLetters(const char* aBuf, PR::u32 aLen, char** newBuf, PR::u32& newLen);
   
   nsProbingState mState;
   char mLastCharClass;
-  PRUint32 mFreqCounter[FREQ_CAT_NUM];
+  PR::u32 mFreqCounter[FREQ_CAT_NUM];
 };
 
 

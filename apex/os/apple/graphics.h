@@ -8,7 +8,7 @@
 #pragma once
 //
 //
-//CGColorRef cg_create_color(COLORREF crText);
+//CGColorRef cg_create_color(color32_t crText);
 //int_bool cg_release_color(CGColorRef colorref);
 //
 

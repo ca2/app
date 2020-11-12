@@ -49,7 +49,7 @@ namespace user
 
       MESSAGE_LINK(e_message_create, pchannel, this, &menu_list_window::_001OnCreate);
       MESSAGE_LINK(e_message_destroy, pchannel, this, &menu_list_window::_001OnDestroy);
-      MESSAGE_LINK(WM_CLOSE, pchannel, this, &menu_list_window::_001OnClose);
+      MESSAGE_LINK(e_message_close, pchannel, this, &menu_list_window::_001OnClose);
 
    }
 
@@ -212,7 +212,7 @@ namespace user
    }
 
 
-   void menu_list_window::layout_buttons(menu_item * pitemParent, i32 iMaxWidth, RECT * prect, const ::rect & rectBound)
+   void menu_list_window::layout_buttons(menu_item * pitemParent, i32 iMaxWidth, RECT32 * prect, const ::rect & rectBound)
    {
 
       if (!m_bMenuOk)

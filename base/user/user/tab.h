@@ -234,7 +234,7 @@ namespace user
       virtual id get_current_id();
 
 
-      virtual void get_child_rect(RECT * prect) override;
+      virtual void get_child_rect(RECT32 * prect) override;
 
 
       virtual void _001OnRemoveTab(tab_pane * ptab);
@@ -249,9 +249,9 @@ namespace user
       virtual ::user::interaction * GetNotifyWnd();
       virtual void on_hit_test(::user::item & item) override;
       virtual e_position DragHitTest(const ::point & point);
-      virtual void GetDragRect(RECT * prect, e_position eposition);
+      virtual void GetDragRect(RECT32 * prect, e_position eposition);
 
-      virtual bool get_element_rect(::index iTab, RECT * prect, e_element eelement);
+      virtual bool get_element_rect(::index iTab, RECT32 * prect, e_element eelement);
 
 
       virtual void get_title(int iPane,string_array & stra);
@@ -259,7 +259,7 @@ namespace user
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
       virtual void layout_pane(index iPane, bool bDisplay = false);
 
-      virtual void GetTabClientRect(RECT * prect);
+      virtual void GetTabClientRect(RECT32 * prect);
 
       virtual void GetTabClientRect(RECT64 * prect);
 

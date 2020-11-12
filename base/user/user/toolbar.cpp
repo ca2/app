@@ -186,9 +186,9 @@ namespace user
          //cyHeight -= afxData.cyBorder2;
          cyHeight -= 2;
 
-      m_rectBorder.bottom = (LONG) ((cyHeight - m_sizeButton.cy) / 2);
+      m_rectBorder.bottom = (::i32) ((cyHeight - m_sizeButton.cy) / 2);
       // if there is an extra pixel, m_rectBorder.top will get it
-      m_rectBorder.top = (LONG) (cyHeight - m_sizeButton.cy - m_rectBorder.bottom);
+      m_rectBorder.top = (::i32) (cyHeight - m_sizeButton.cy - m_rectBorder.bottom);
       if (m_rectBorder.top < 0)
       {
          TRACE("Warning: toolbar::SetHeight(%d) is smaller than button.",
@@ -230,7 +230,7 @@ namespace user
             {
                TBADDBITMAP addBitmap;
                addBitmap.hInst = nullptr; // makes TBADDBITMAP::nID behave a HBITMAP
-               addBitmap.nID = (UINT)hbmImageWell;
+               addBitmap.nID = (::u32)hbmImageWell;
                bResult =  default_window_procedure(TB_ADDBITMAP,
                   bitmap.bmWidth / m_sizeImage.cx, (LPARAM)&addBitmap) == 0;
             }
@@ -238,9 +238,9 @@ namespace user
             {
                TBREPLACEBITMAP replaceBitmap;
                replaceBitmap.hInstOld = nullptr;
-               replaceBitmap.nIDOld = (UINT)m_hbmImageWell;
+               replaceBitmap.nIDOld = (::u32)m_hbmImageWell;
                replaceBitmap.hInstNew = nullptr;
-               replaceBitmap.nIDNew = (UINT)hbmImageWell;
+               replaceBitmap.nIDNew = (::u32)hbmImageWell;
                replaceBitmap.nButtons = bitmap.bmWidth / m_sizeImage.cx;
                bResult = default_window_procedure(TB_REPLACEBITMAP, 0, (LPARAM)&replaceBitmap) != FALSE;
             }
@@ -256,7 +256,7 @@ namespace user
       return bResult;
    }
 
-   bool toolbar::SetButtons(const UINT* pIDArray, index nIDCount)
+   bool toolbar::SetButtons(const ::u32* pIDArray, index nIDCount)
    {
 
 //#ifdef WINDOWS_DESKTOP
@@ -265,7 +265,7 @@ namespace user
 //
 //      ASSERT(nIDCount >= 1);  // must be at least one of them
 //
-//      ASSERT(pIDArray == nullptr || __is_valid_address(pIDArray, sizeof(UINT) * nIDCount, FALSE));
+//      ASSERT(pIDArray == nullptr || __is_valid_address(pIDArray, sizeof(::u32) * nIDCount, FALSE));
 //
 //      // delete all existing buttons
 //      index nCount = (index)default_window_procedure(TB_BUTTONCOUNT, 0, 0);
@@ -396,7 +396,7 @@ namespace user
 ////
 ////#endif
 ////
-////   index toolbar::CommandToIndex(UINT nIDFind)
+////   index toolbar::CommandToIndex(::u32 nIDFind)
 ////   {
 ////      ASSERT_VALID(this);
 ////      ASSERT(is_window());
@@ -409,7 +409,7 @@ namespace user
 ////#endif
 //   }
 
-   UINT toolbar::GetItemID(index nIndex)
+   ::u32 toolbar::GetItemID(index nIndex)
    {
       ASSERT_VALID(this);
       ASSERT(is_window());
@@ -424,7 +424,7 @@ namespace user
       return 0;
    }
 
-   void toolbar::GetItemRect(index nIndex, RECT * prect)
+   void toolbar::GetItemRect(index nIndex, RECT32 * prect)
 
    {
       ASSERT_VALID(this);
@@ -463,10 +463,10 @@ namespace user
       //   ((toolbar*)this)->CalcDynamicLayout(0, LM_VERTDOCK | LM_COMMIT);
    }
 
-   UINT toolbar::GetButtonStyle(index nIndex)
+   ::u32 toolbar::GetButtonStyle(index nIndex)
    {
 
-//      UINT nStyle = 0;
+//      ::u32 nStyle = 0;
 //
 //      __pointer(::user::interaction) pwnd = GetOwner();
 //
@@ -489,7 +489,7 @@ namespace user
 
 
 
-   void toolbar::SetButtonStyle(index nIndex, UINT nStyle)
+   void toolbar::SetButtonStyle(index nIndex, ::u32 nStyle)
    {
 //      ASSERT_VALID(this);
 //      ASSERT(is_window());
@@ -497,10 +497,10 @@ namespace user
 //#ifdef WINDOWS_DESKTOP
 //      TBBUTTON button;
 //      _GetButton(nIndex, &button);
-//      if (button.fsStyle != (BYTE)LOWORD(nStyle) || button.fsState != (BYTE)HIWORD(nStyle))
+//      if (button.fsStyle != (byte)LOWORD(nStyle) || button.fsState != (byte)HIWORD(nStyle))
 //      {
-//         button.fsStyle = (BYTE)LOWORD(nStyle);
-//         button.fsState = (BYTE)HIWORD(nStyle);
+//         button.fsStyle = (byte)LOWORD(nStyle);
+//         button.fsState = (byte)HIWORD(nStyle);
 //         _SetButton(nIndex, &button);
 //         m_bDelayedButtonLayout = TRUE;
 //      }
@@ -592,7 +592,7 @@ namespace user
 //      //   {
 //      //      // a separator represents either a height or width
 //      //      if (pData[i].fsState & TBSTATE_WRAP)
-//      //         sizeResult.cy = (LONG) max(cur.y + m_sizeButton.cy + cySep, sizeResult.cy);
+//      //         sizeResult.cy = (::i32) max(cur.y + m_sizeButton.cy + cySep, sizeResult.cy);
 //      //      else
 //      //         sizeResult.cx = max(cur.x + pData[i].iBitmap, sizeResult.cx);
 //      //   }
@@ -968,7 +968,7 @@ namespace user
 //
 //               buttona.dwMask = TBIF_COMMAND | TBIF_STYLE | TBIF_SIZE;
 //
-//               UINT uiID = GetItemID(i);
+//               ::u32 uID = GetItemID(i);
 //
 //               GetToolBarCtrl().GetButtonInfo(uiID, &buttona);
 //
@@ -1063,7 +1063,7 @@ return { 0,0 };
    }
 
 
-   void toolbar::GetButtonInfo(index nIndex, UINT& nID, UINT& nStyle, index& iImage)
+   void toolbar::GetButtonInfo(index nIndex, ::u32& nID, ::u32& nStyle, index& iImage)
    {
 //#ifdef WINDOWS_DESKTOP
 //      ASSERT_VALID(this);
@@ -1079,7 +1079,7 @@ return { 0,0 };
 //#endif
    }
 
-   void toolbar::SetButtonInfo(index nIndex, UINT nID, UINT nStyle, index iImage)
+   void toolbar::SetButtonInfo(index nIndex, ::u32 nID, ::u32 nStyle, index iImage)
    {
       ASSERT_VALID(this);
 //#ifdef WINDOWS_DESKTOP
@@ -1089,8 +1089,8 @@ return { 0,0 };
 //      ::memcpy_dup(&save, &button, sizeof(save));
 //      button.idCommand = nID;
 //      button.iBitmap = iImage;
-//      button.fsStyle = (BYTE)LOWORD(nStyle);
-//      button.fsState = (BYTE)HIWORD(nStyle);
+//      button.fsStyle = (byte)LOWORD(nStyle);
+//      button.fsState = (byte)HIWORD(nStyle);
 //      if (__memcmp(&save, &button, sizeof(save)) != 0)
 //      {
 //         _SetButton(nIndex, &button);
@@ -1144,7 +1144,7 @@ return { 0,0 };
       //   TBBUTTONINFOW button;
       //   __memset(&button, 0, sizeof(button));
       //   button.cbSize = sizeof(button);
-      //   UINT uiID = GetItemID(nIndex);
+      //   ::u32 uID = GetItemID(nIndex);
       //   button.pszText = (unichar *) (const unichar *) wstrText;
       //   button.cchText = wstrText.get_length();
       //   button.dwMask |= TBIF_TEXT;
@@ -1446,7 +1446,7 @@ return { 0,0 };
       tool_command state;
       state.m_pOther = this;
 
-      state.m_iCount = (UINT)default_window_procedure(TB_BUTTONCOUNT, 0, 0);
+      state.m_iCount = (::u32)default_window_procedure(TB_BUTTONCOUNT, 0, 0);
       for (state.m_iIndex = 0; state.m_iIndex < state.m_iCount; state.m_iIndex++)
       {
          // get buttons state
@@ -1497,9 +1497,9 @@ return { 0,0 };
    {
       ::user::control_bar::dump(dumpcontext);
 
-//      dumpcontext << "m_hbmImageWell = " << (UINT)m_hbmImageWell;
-//      dumpcontext << "\nm_hInstImageWell = " << (UINT)m_hInstImageWell;
-//      dumpcontext << "\nm_hRsrcImageWell = " << (UINT)m_hRsrcImageWell;
+//      dumpcontext << "m_hbmImageWell = " << (::u32)m_hbmImageWell;
+//      dumpcontext << "\nm_hInstImageWell = " << (::u32)m_hInstImageWell;
+//      dumpcontext << "\nm_hRsrcImageWell = " << (::u32)m_hRsrcImageWell;
       dumpcontext << "\nm_sizeButton = " << m_sizeButton;
       dumpcontext << "\nm_sizeImage = " << m_sizeImage;
 
@@ -1624,9 +1624,9 @@ return { 0,0 };
 
    toolbar_control& toolbar::GetToolBarCtrl() const
    { return *(toolbar_control*)this; }
-   /*bool toolbar::LoadToolBar(UINT nIDResource)
+   /*bool toolbar::LoadToolBar(::u32 nIDResource)
       { return LoadToolBar(MAKEINTRESOURCE(nIDResource)); }
-   bool toolbar::LoadBitmap(UINT nIDResource)
+   bool toolbar::LoadBitmap(::u32 nIDResource)
       { return LoadBitmap(MAKEINTRESOURCE(nIDResource)); }*/
 
    index toolbar::_001GetItemCount()
@@ -1637,7 +1637,7 @@ return { 0,0 };
    }
 
 
-   bool toolbar::_001GetItemRect(index iItem,RECT * prect)
+   bool toolbar::_001GetItemRect(index iItem,RECT32 * prect)
    {
 
       //// handle any delayed on_layout
@@ -1663,7 +1663,7 @@ return { 0,0 };
    }
 
 
-   bool toolbar::_001GetElementRect(index iItem,RECT * prect,e_element eelement, estate estate)
+   bool toolbar::_001GetElementRect(index iItem,RECT32 * prect,e_element eelement, estate estate)
    {
 
       return false;

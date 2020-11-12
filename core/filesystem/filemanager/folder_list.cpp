@@ -149,7 +149,7 @@ namespace filemanager
       if (pcolumn->m_iSubItem == 1)
       {
          //      char szPath[MAX_PATH * 4];
-         //      UINT uiFlags;
+         //      ::u32 uFlags;
          if (pcolumn->m_pil == nullptr)
          {
             pcolumn->m_pil = __new(::image_list);
@@ -331,13 +331,13 @@ namespace filemanager
    }
 
 
-   COLORREF folder_list::get_background_color()
+   color32_t folder_list::get_background_color()
    {
 
       if (filemanager_data()->is_topic())
       {
 
-         COLORREF cr = 0;
+         color32_t cr = 0;
 
          if (filemanager_document()->m_emode == ::userfs::mode_saving)
          {

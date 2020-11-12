@@ -86,7 +86,7 @@ namespace datetime
 
       float_time_span(double dblSpanSrc) RELEASENOTHROW;
       float_time_span(
-      LONG lDays,
+      ::i32 lDays,
       int32_t nHours,
       int32_t nMins,
       int32_t nSecs) RELEASENOTHROW;
@@ -103,10 +103,10 @@ namespace datetime
       double GetTotalMinutes() const RELEASENOTHROW; // span in minutes (about -5.26e9 to 5.26e9)
       double GetTotalSeconds() const RELEASENOTHROW; // span in seconds (about -3.16e11 to 3.16e11)
 
-      LONG GetDays() const RELEASENOTHROW;       // component days in span
-      LONG GetHours() const RELEASENOTHROW;      // component hours in span (-23 to 23)
-      LONG GetMinutes() const RELEASENOTHROW;    // component minutes in span (-59 to 59)
-      LONG GetSeconds() const RELEASENOTHROW;    // component seconds in span (-59 to 59)
+      ::i32 GetDays() const RELEASENOTHROW;       // component days in span
+      ::i32 GetHours() const RELEASENOTHROW;      // component hours in span (-23 to 23)
+      ::i32 GetMinutes() const RELEASENOTHROW;    // component minutes in span (-59 to 59)
+      ::i32 GetSeconds() const RELEASENOTHROW;    // component seconds in span (-59 to 59)
 
       // Operations
       float_time_span& operator=(double dblSpanSrc) RELEASENOTHROW;
@@ -128,14 +128,14 @@ namespace datetime
       operator double() const RELEASENOTHROW;
 
       void SetDateTimeSpan(
-      LONG lDays,
+      ::i32 lDays,
       int32_t nHours,
       int32_t nMins,
       int32_t nSecs) RELEASENOTHROW;
 
       // formatting
       string Format(LPCTSTR pFormat) const;
-      string Format(UINT nID) const;
+      string Format(::u32 nID) const;
 
       // Implementation
       void check_range();
@@ -171,7 +171,7 @@ namespace datetime
       int32_t nHour,
       int32_t nMin,
       int32_t nSec) RELEASENOTHROW;
-      float_time(WORD wDosDate, WORD wDosTime) RELEASENOTHROW;
+      float_time(::u16 wDosDate, ::u16 wDosTime) RELEASENOTHROW;
 #ifdef _ATL_USE_WINAPI_FAMILY_DESKTOP_APP
       float_time(const DBTIMESTAMP& dbts) RELEASENOTHROW;
       _Success_(return != false) bool GetAsDBTIMESTAMP(DBTIMESTAMP& dbts) const RELEASENOTHROW;
@@ -246,13 +246,13 @@ namespace datetime
       int32_t SetDate(int32_t nYear, int32_t nMonth, int32_t nDay) RELEASENOTHROW;
       int32_t SetTime(int32_t nHour, int32_t nMin, int32_t nSec) RELEASENOTHROW;
 #ifndef APPLEOS
-      bool ParseDateTime(const char * lpszDate, uint32_t dwFlags = 0, LCID lcid = LANG_USER_DEFAULT) RELEASENOTHROW;
+      bool ParseDateTime(const char * lpszDate, ::u32 dwFlags = 0, LCID lcid = LANG_USER_DEFAULT) RELEASENOTHROW;
 #endif
 #ifdef _ATL_USE_WINAPI_FAMILY_DESKTOP_APP
       // formatting
-      string Format(uint32_t dwFlags = 0, LCID lcid = LANG_USER_DEFAULT) const;
+      string Format(::u32 dwFlags = 0, LCID lcid = LANG_USER_DEFAULT) const;
       string Format(LPCTSTR lpszFormat) const;
-      string Format(UINT nFormatID) const;
+      string Format(::u32 nFormatID) const;
 #endif // _ATL_USE_WINAPI_FAMILY_DESKTOP_APP
 
    protected:
@@ -276,7 +276,7 @@ inline float_time_span::float_time_span(double dblSpanSrc) RELEASENOTHROW :
    }
 
    inline float_time_span::float_time_span(
-   LONG lDays,
+   ::i32 lDays,
    int32_t nHours,
    int32_t nMins,
    int32_t nSecs) RELEASENOTHROW
@@ -297,53 +297,53 @@ inline float_time_span::float_time_span(double dblSpanSrc) RELEASENOTHROW :
    inline double float_time_span::GetTotalDays() const RELEASENOTHROW
    {
       ASSERT(get_status() == e_status_valid);
-      return (double)LONGLONG(m_span + (m_span < 0 ?
+      return (double)::i64(m_span + (m_span < 0 ?
                                         -FLOAT_TIME_HALF_SECOND : FLOAT_TIME_HALF_SECOND));
    }
 
    inline double float_time_span::GetTotalHours() const RELEASENOTHROW
    {
       ASSERT(get_status() == e_status_valid);
-      return (double)LONGLONG((m_span + (m_span < 0 ?
+      return (double)::i64((m_span + (m_span < 0 ?
                                          -FLOAT_TIME_HALF_SECOND : FLOAT_TIME_HALF_SECOND)) * 24);
    }
 
    inline double float_time_span::GetTotalMinutes() const RELEASENOTHROW
    {
       ASSERT(get_status() == e_status_valid);
-      return (double)LONGLONG((m_span + (m_span < 0 ?
+      return (double)::i64((m_span + (m_span < 0 ?
                                          -FLOAT_TIME_HALF_SECOND : FLOAT_TIME_HALF_SECOND)) * (24 * 60));
    }
 
    inline double float_time_span::GetTotalSeconds() const RELEASENOTHROW
    {
       ASSERT(get_status() == e_status_valid);
-      return (double)LONGLONG((m_span + (m_span < 0 ?
+      return (double)::i64((m_span + (m_span < 0 ?
                                          -FLOAT_TIME_HALF_SECOND : FLOAT_TIME_HALF_SECOND)) * (24 * 60 * 60));
    }
 
-   inline LONG float_time_span::GetDays() const RELEASENOTHROW
+   inline ::i32 float_time_span::GetDays() const RELEASENOTHROW
    {
       ASSERT(get_status() == e_status_valid);
-      return LONG(GetTotalDays());
+      return ::i32(GetTotalDays());
    }
 
-   inline LONG float_time_span::GetHours() const RELEASENOTHROW
+   inline ::i32 float_time_span::GetHours() const RELEASENOTHROW
    {
       double dPartialDayHours = GetTotalHours() - (GetTotalDays() * 24);
-      return LONG(dPartialDayHours) % 24;
+      return ::i32(dPartialDayHours) % 24;
    }
 
-   inline LONG float_time_span::GetMinutes() const RELEASENOTHROW
+   inline ::i32 float_time_span::GetMinutes() const RELEASENOTHROW
    {
       double dPartialHourMinutes = GetTotalMinutes() - (GetTotalHours() * 60);
-      return LONG(dPartialHourMinutes) % 60;
+      return ::i32(dPartialHourMinutes) % 60;
    }
 
-   inline LONG float_time_span::GetSeconds() const RELEASENOTHROW
+   inline ::i32 float_time_span::GetSeconds() const RELEASENOTHROW
    {
       double dPartialMinuteSeconds = GetTotalSeconds() - (GetTotalMinutes() * 60);
-      return LONG(dPartialMinuteSeconds) % 60;
+      return ::i32(dPartialMinuteSeconds) % 60;
    }
 
    inline float_time_span& float_time_span::operator=(double dblSpanSrc) RELEASENOTHROW
@@ -499,7 +499,7 @@ inline float_time_span::float_time_span(double dblSpanSrc) RELEASENOTHROW :
    }
 
    inline void float_time_span::SetDateTimeSpan(
-   LONG lDays,
+   ::i32 lDays,
    int32_t nHours,
    int32_t nMins,
    int32_t nSecs) RELEASENOTHROW
@@ -586,8 +586,8 @@ inline float_time::float_time(const FILETIME& filetimeSrc) RELEASENOTHROW :
 
 #ifdef _ATL_USE_WINAPI_FAMILY_DESKTOP_APP
    inline float_time::float_time(
-   WORD wDosDate,
-   WORD wDosTime) RELEASENOTHROW
+   ::u16 wDosDate,
+   ::u16 wDosTime) RELEASENOTHROW
    {
       m_estatus = ::DosDateTimeToVariantTime(wDosDate, wDosTime, &m_dt) ?
       e_status_valid : e_status_invalid;
@@ -721,13 +721,13 @@ inline float_time::float_time(const FILETIME& filetimeSrc) RELEASENOTHROW :
 
 #endif
 
-      timeDest.wYear = (WORD) (1900 + ttm.tm_year);
-      timeDest.wMonth = (WORD) (1 + ttm.tm_mon);
-      timeDest.wDayOfWeek = (WORD) ttm.tm_wday;
-      timeDest.wDay = (WORD) ttm.tm_mday;
-      timeDest.wHour = (WORD) ttm.tm_hour;
-      timeDest.wMinute = (WORD) ttm.tm_min;
-      timeDest.wSecond = (WORD) ttm.tm_sec;
+      timeDest.wYear = (::u16) (1900 + ttm.tm_year);
+      timeDest.wMonth = (::u16) (1 + ttm.tm_mon);
+      timeDest.wDayOfWeek = (::u16) ttm.tm_wday;
+      timeDest.wDay = (::u16) ttm.tm_mday;
+      timeDest.wHour = (::u16) ttm.tm_hour;
+      timeDest.wMinute = (::u16) ttm.tm_min;
+      timeDest.wSecond = (::u16) ttm.tm_sec;
       timeDest.wMilliseconds = 0;
 
       return true;
@@ -741,13 +741,13 @@ inline float_time::float_time(const FILETIME& filetimeSrc) RELEASENOTHROW :
 #ifdef APPLEOS
    inline bool GetAsSystemTimeHelper(const time_t& timeSrc, SYSTEMTIME& timeDest);
 #else
-   inline bool GetAsSystemTimeHelper(const __time64_t& timeSrc, SYSTEMTIME& timeDest);
+   inline bool GetAsSystemTimeHelper(const time_t& timeSrc, SYSTEMTIME& timeDest);
 #endif
 #endif
 #ifndef APPLEOS
    inline float_time& float_time::operator=(const __time32_t& timeSrc) RELEASENOTHROW
    {
-      return operator=(static_cast<__time64_t>(timeSrc));
+      return operator=(static_cast<time_t>(timeSrc));
    }
 #endif
    inline float_time& float_time::operator=(const time_t& timeSrc) RELEASENOTHROW
@@ -775,7 +775,7 @@ inline float_time::float_time(const FILETIME& filetimeSrc) RELEASENOTHROW :
 #ifdef APPLEOS
    inline bool GetAsSystemTimeHelper(const time_t& timeSrc, SYSTEMTIME& timeDest)
 #else
-   inline bool GetAsSystemTimeHelper(const __time64_t& timeSrc, SYSTEMTIME& timeDest)
+   inline bool GetAsSystemTimeHelper(const time_t& timeSrc, SYSTEMTIME& timeDest)
 #endif
    {
       struct tm ttm;
@@ -797,13 +797,13 @@ inline float_time::float_time(const FILETIME& filetimeSrc) RELEASENOTHROW :
 
 #endif
 
-      timeDest.wYear = (WORD) (1900 + ttm.tm_year);
-      timeDest.wMonth = (WORD) (1 + ttm.tm_mon);
-      timeDest.wDayOfWeek = (WORD) ttm.tm_wday;
-      timeDest.wDay = (WORD) ttm.tm_mday;
-      timeDest.wHour = (WORD) ttm.tm_hour;
-      timeDest.wMinute = (WORD) ttm.tm_min;
-      timeDest.wSecond = (WORD) ttm.tm_sec;
+      timeDest.wYear = (::u16) (1900 + ttm.tm_year);
+      timeDest.wMonth = (::u16) (1 + ttm.tm_mon);
+      timeDest.wDayOfWeek = (::u16) ttm.tm_wday;
+      timeDest.wDay = (::u16) ttm.tm_mday;
+      timeDest.wHour = (::u16) ttm.tm_hour;
+      timeDest.wMinute = (::u16) ttm.tm_min;
+      timeDest.wSecond = (::u16) ttm.tm_sec;
       timeDest.wMilliseconds = 0;
 
       return true;
@@ -972,12 +972,12 @@ inline float_time::float_time(const FILETIME& filetimeSrc) RELEASENOTHROW :
       SYSTEMTIME st;
       ::memset(&st, 0, sizeof(SYSTEMTIME));
 
-      st.wYear = WORD(nYear);
-      st.wMonth = WORD(nMonth);
-      st.wDay = WORD(nDay);
-      st.wHour = WORD(nHour);
-      st.wMinute = WORD(nMin);
-      st.wSecond = WORD(nSec);
+      st.wYear = ::u16(nYear);
+      st.wMonth = ::u16(nMonth);
+      st.wDay = ::u16(nDay);
+      st.wHour = ::u16(nHour);
+      st.wMinute = ::u16(nMin);
+      st.wSecond = ::u16(nSec);
 
       m_estatus = ConvertSystemTimeToFloatTime(st) ? e_status_valid : e_status_invalid;
       return m_estatus;
@@ -1036,7 +1036,7 @@ inline float_time::float_time(const FILETIME& filetimeSrc) RELEASENOTHROW :
    }
 
 #ifndef APPLEOS
-   inline bool float_time::ParseDateTime(const char * lpszDate, uint32_t dwFlags, LCID lcid) RELEASENOTHROW
+   inline bool float_time::ParseDateTime(const char * lpszDate, ::u32 dwFlags, LCID lcid) RELEASENOTHROW
    {
 
       const char * pszDate = (lpszDate == NULL) ? "" : lpszDate;
@@ -1090,7 +1090,7 @@ inline float_time::float_time(const FILETIME& filetimeSrc) RELEASENOTHROW :
 
 #if defined(_UNICODE) || !defined(_CSTRING_DISABLE_NARROW_WIDE_CONVERSION)
    inline string float_time::Format(
-   uint32_t dwFlags,
+   ::u32 dwFlags,
    LCID lcid) const
    {
       // If NULL, return empty string
@@ -1165,7 +1165,7 @@ inline float_time::float_time(const FILETIME& filetimeSrc) RELEASENOTHROW :
       return strDate;
    }
 
-   inline string float_time_span::Format(UINT nFormatID) const
+   inline string float_time_span::Format(::u32 nFormatID) const
    {
       string strFormat;
       if (!strFormat.LoadString(nFormatID))
@@ -1173,7 +1173,7 @@ inline float_time::float_time(const FILETIME& filetimeSrc) RELEASENOTHROW :
       return Format(strFormat);
    }
 
-   inline string float_time::Format(UINT nFormatID) const
+   inline string float_time::Format(::u32 nFormatID) const
    {
       string strFormat;
       ATLENSURE(strFormat.LoadString(nFormatID));
@@ -1185,12 +1185,12 @@ inline float_time::float_time(const FILETIME& filetimeSrc) RELEASENOTHROW :
       SYSTEMTIME st;
       ::ZeroMemory(&st, sizeof(SYSTEMTIME));
 
-      st.wYear = WORD(dbts.year);
-      st.wMonth = WORD(dbts.month);
-      st.wDay = WORD(dbts.day);
-      st.wHour = WORD(dbts.hour);
-      st.wMinute = WORD(dbts.minute);
-      st.wSecond = WORD(dbts.second);
+      st.wYear = ::u16(dbts.year);
+      st.wMonth = ::u16(dbts.month);
+      st.wDay = ::u16(dbts.day);
+      st.wHour = ::u16(dbts.hour);
+      st.wMinute = ::u16(dbts.minute);
+      st.wSecond = ::u16(dbts.second);
 
       m_estatus = ::SystemTimeToVariantTime(&st, &m_dt) ? e_status_valid : e_status_invalid;
    }

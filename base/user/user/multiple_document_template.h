@@ -13,7 +13,7 @@ namespace user
 
 
       __pointer_array(::user::document) m_docptra;          // open documents of this type
-      UINT m_nUntitledCount;   // start at 0, for "Document1" title
+      ::u32 m_nUntitledCount;   // start at 0, for "Document1" title
 
 
       multiple_document_template(const char * pszMatter, ::type pDocClass, ::type pFrameClass, ::type pViewClass);

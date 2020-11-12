@@ -640,7 +640,7 @@ namespace filemanager
       }
 
 
-      opt_fork(__method([=]()
+      opt_fork(__procedure([=]()
       {
 
          full_browse(pitem, context);

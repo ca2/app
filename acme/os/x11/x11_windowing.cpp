@@ -46,7 +46,7 @@ GC x11_create_gc(Colormap colormap, Display* pdisplay, Window window, byte a, by
 
    GC gc = XCreateGC(pdisplay, window, 0, 0);
 
-   COLORREF cr = ARGB(a, r * a / 255, g * a / 255, b * a / 255);
+   color32_t cr = ARGB(a, r * a / 255, g * a / 255, b * a / 255);
 
    XSetForeground (pdisplay, gc, cr);
 
@@ -70,7 +70,7 @@ int x11_message_box(const string & str, const string & strTitle, ::emessagebox e
 
 CLASS_DECL_ACME string message_box_result_to_string(int iResult);
 
-CLASS_DECL_ACME void x11_message_box(const string & strMessage, const string & strTitle, ::emessagebox emessagebox, ::future future);
+CLASS_DECL_ACME void x11_message_box(const string & strMessage, const string & strTitle, ::emessagebox emessagebox, const ::futurevar & futurevar);
 
 //::estatus os_message_box(oswindow oswindow, const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox, ::future future)
 //{

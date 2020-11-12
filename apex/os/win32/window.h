@@ -35,7 +35,7 @@ namespace win32
 
       virtual void get_dlg_item(window & w, int iItem, string strText = "");
 
-      virtual void on_command(UINT nID);
+      virtual void on_command(::u32 nID);
 
       iptr send_message(const ::id & id, WPARAM wparam = 0, LPARAM lparam = 0);
       iptr send_message_w(const ::id & id, WPARAM wparam = 0, LPARAM lparam = 0);

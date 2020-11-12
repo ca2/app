@@ -30,7 +30,7 @@ namespace uwp
 {
 
 
-   directx_application::directx_application(::aura::system * psystem, ::String ^ strId)
+   directx_framework_view::directx_framework_view(::aura::system * psystem, ::String ^ strId)
    {
 
       draw2d_direct2d::direct2d_initialize();
@@ -55,20 +55,20 @@ namespace uwp
       if (!main_initialize())
       {
 
-         __throw(::exception::exception("Failed to run main_initialize at directx_application constructor."));
+         __throw(::exception::exception("Failed to run main_initialize at directx_framework_view constructor."));
 
       }
 
       m_psystem = psystem;
 
-//      psystem->get_context_session()->m_directxapplication = this;
+//      psystem->get_context_session()->m_frameworkview = this;
 
       m_pdxi = __new(directx_interaction);
 
    }
 
 
-   directx_application::~directx_application()
+   directx_framework_view::~directx_framework_view()
    {
 
       ::draw2d_direct2d::direct2d_finalize();
@@ -76,7 +76,7 @@ namespace uwp
    }
 
 
-   void directx_application::initialize_directx_application()
+   void directx_framework_view::initialize_directx_application()
    {
 
       int nReturnCode = 0;
@@ -97,7 +97,7 @@ namespace uwp
 
       }
 
-      m_psystem->get_context_session()->m_directxapplication = this;
+      m_psystem->get_context_session()->m_frameworkview = this;
 
       m_psystem->get_context_session()->m_puiHost = m_pdxi;
 
@@ -122,7 +122,7 @@ namespace uwp
 
       auto puwpui = pimpl->cast < ::uwp::interaction_impl >();
 
-      puwpui->m_directxapplication = this;
+      puwpui->m_frameworkview = this;
 
       puwpui->m_window = m_window;
 
@@ -144,55 +144,55 @@ namespace uwp
    }
 
 
-   void directx_application::Initialize(CoreApplicationView ^ applicationView)
+   void directx_framework_view::Initialize(CoreApplicationView ^ applicationView)
    {
 
       impact::Initialize(applicationView);
 
-      applicationView->Activated += ref new TypedEventHandler<CoreApplicationView^, IActivatedEventArgs^>(this, &directx_application::OnActivated);
+      applicationView->Activated += ref new TypedEventHandler<CoreApplicationView^, IActivatedEventArgs^>(this, &directx_framework_view::OnActivated);
 
-      CoreApplication::Suspending += ref new EventHandler<SuspendingEventArgs^>(this, &directx_application::OnSuspending);
+      CoreApplication::Suspending += ref new EventHandler<SuspendingEventArgs^>(this, &directx_framework_view::OnSuspending);
 
-      CoreApplication::Resuming += ref new EventHandler<Object^>(this, &directx_application::OnResuming);
+      CoreApplication::Resuming += ref new EventHandler<Object^>(this, &directx_framework_view::OnResuming);
 
    }
 
 
-   void directx_application::install_directx_application_message_routing()
+   void directx_framework_view::install_directx_application_message_routing()
    {
       
-      m_puisettings->ColorValuesChanged += ref new TypedEventHandler<Windows::UI::ViewManagement::UISettings^, Platform::Object^> (this, &directx_application::OnUISettingsColorValuesChange);
+      m_puisettings->ColorValuesChanged += ref new TypedEventHandler<Windows::UI::ViewManagement::UISettings^, Platform::Object^> (this, &directx_framework_view::OnUISettingsColorValuesChange);
 
       CoreWindow ^ window = m_window.Get();
 
-      window->VisibilityChanged += ref new TypedEventHandler<CoreWindow^, VisibilityChangedEventArgs^>(this, &directx_application::OnWindowVisibilityChanged);
+      window->VisibilityChanged += ref new TypedEventHandler<CoreWindow^, VisibilityChangedEventArgs^>(this, &directx_framework_view::OnWindowVisibilityChanged);
 
       window->PointerCursor = ref new CoreCursor(CoreCursorType::Arrow, 0);
 
-      window->SizeChanged += ref new TypedEventHandler<CoreWindow^, WindowSizeChangedEventArgs^>(this, &directx_application::OnWindowSizeChanged);
+      window->SizeChanged += ref new TypedEventHandler<CoreWindow^, WindowSizeChangedEventArgs^>(this, &directx_framework_view::OnWindowSizeChanged);
 
-      window->PointerMoved += ref new TypedEventHandler < CoreWindow^, PointerEventArgs^>(this, &directx_application::OnPointerMoved);
+      window->PointerMoved += ref new TypedEventHandler < CoreWindow^, PointerEventArgs^>(this, &directx_framework_view::OnPointerMoved);
 
-      window->CharacterReceived += ref new TypedEventHandler<CoreWindow^, CharacterReceivedEventArgs^>(this, &directx_application::OnCharacterReceived);
+      window->CharacterReceived += ref new TypedEventHandler<CoreWindow^, CharacterReceivedEventArgs^>(this, &directx_framework_view::OnCharacterReceived);
 
-      window->KeyDown += ref new TypedEventHandler < CoreWindow^, KeyEventArgs^>(this, &directx_application::OnKeyDown);
+      window->KeyDown += ref new TypedEventHandler < CoreWindow^, KeyEventArgs^>(this, &directx_framework_view::OnKeyDown);
 
-      window->KeyUp += ref new TypedEventHandler < CoreWindow^, KeyEventArgs^>( this, &directx_application::OnKeyUp);
+      window->KeyUp += ref new TypedEventHandler < CoreWindow^, KeyEventArgs^>( this, &directx_framework_view::OnKeyUp);
 
-      window->PointerPressed += ref new TypedEventHandler<CoreWindow^, PointerEventArgs^>(this, &directx_application::OnPointerPressed);
+      window->PointerPressed += ref new TypedEventHandler<CoreWindow^, PointerEventArgs^>(this, &directx_framework_view::OnPointerPressed);
 
-      window->PointerReleased += ref new TypedEventHandler<CoreWindow^, PointerEventArgs^>(this, &directx_application::OnPointerReleased);
+      window->PointerReleased += ref new TypedEventHandler<CoreWindow^, PointerEventArgs^>(this, &directx_framework_view::OnPointerReleased);
 
       ::Windows::Graphics::Display::DisplayInformation ^ displayinformation = ::Windows::Graphics::Display::DisplayInformation::GetForCurrentView();
 
-      displayinformation->DpiChanged += ref new TypedEventHandler < DisplayInformation ^, Object ^ >(this, &directx_application::DpiChanged);
+      displayinformation->DpiChanged += ref new TypedEventHandler < DisplayInformation ^, Object ^ >(this, &directx_framework_view::DpiChanged);
 
-      displayinformation->DisplayContentsInvalidated += ref new TypedEventHandler < DisplayInformation ^, Object ^ >(this, &directx_application::DisplayContentsInvalidated);
+      displayinformation->DisplayContentsInvalidated += ref new TypedEventHandler < DisplayInformation ^, Object ^ >(this, &directx_framework_view::DisplayContentsInvalidated);
 
    }
 
 
-   void directx_application::SetWindow(CoreWindow^ window)
+   void directx_framework_view::SetWindow(CoreWindow^ window)
    {
 
       impact::SetWindow(window);
@@ -214,13 +214,13 @@ namespace uwp
    }
 
 
-   void directx_application::Load(String^ entryPoint)
+   void directx_framework_view::Load(String^ entryPoint)
    {
 
    }
 
 
-   void directx_application::Run()
+   void directx_framework_view::Run()
    {
 
       m_window->Dispatcher->ProcessEvents(CoreProcessEventsOption::ProcessUntilQuit);
@@ -228,13 +228,13 @@ namespace uwp
    }
 
 
-   void directx_application::Uninitialize()
+   void directx_framework_view::Uninitialize()
    {
 
    }
 
 
-   void directx_application::OnUISettingsColorValuesChange(Windows::UI::ViewManagement::UISettings^ uisettings, Platform::Object^)
+   void directx_framework_view::OnUISettingsColorValuesChange(Windows::UI::ViewManagement::UISettings^ uisettings, Platform::Object^)
    {
 
       ::user::os_update_dark_mode();
@@ -242,7 +242,7 @@ namespace uwp
    }
 
 
-   void directx_application::OnWindowSizeChanged(CoreWindow ^ sender, WindowSizeChangedEventArgs ^ args)
+   void directx_framework_view::OnWindowSizeChanged(CoreWindow ^ sender, WindowSizeChangedEventArgs ^ args)
    {
 
       m_directx->m_size.set_size((i32) args->Size.Width, (i32)args->Size.Height);
@@ -256,7 +256,7 @@ namespace uwp
    }
 
 
-   void directx_application::DpiChanged(::Windows::Graphics::Display::DisplayInformation ^ sender, Object ^ obj)
+   void directx_framework_view::DpiChanged(::Windows::Graphics::Display::DisplayInformation ^ sender, Object ^ obj)
    {
 
       m_rectLastWindowRect = m_window->Bounds;
@@ -267,7 +267,7 @@ namespace uwp
    }
 
 
-   void directx_application::DisplayContentsInvalidated(::Windows::Graphics::Display::DisplayInformation ^ sender, Object ^ obj)
+   void directx_framework_view::DisplayContentsInvalidated(::Windows::Graphics::Display::DisplayInformation ^ sender, Object ^ obj)
    {
 
       // Ensure the D3D Device is available for rendering.
@@ -277,7 +277,7 @@ namespace uwp
    }
 
 
-   void directx_application::OnActivated(CoreApplicationView^ applicationView, IActivatedEventArgs^ args)
+   void directx_framework_view::OnActivated(CoreApplicationView^ applicationView, IActivatedEventArgs^ args)
    {
 
       m_window->Activate();
@@ -319,19 +319,19 @@ namespace uwp
    }
 
 
-   void directx_application::OnSuspending(Object ^ sender, SuspendingEventArgs ^ args)
+   void directx_framework_view::OnSuspending(Object ^ sender, SuspendingEventArgs ^ args)
    {
 
    }
 
 
-   void directx_application::OnResuming(Object ^ sender, Object ^ args)
+   void directx_framework_view::OnResuming(Object ^ sender, Object ^ args)
    {
 
    }
 
 
-   void directx_application::OnCharacterReceived(Windows::UI::Core::CoreWindow ^, Windows::UI::Core::CharacterReceivedEventArgs ^ args)
+   void directx_framework_view::OnCharacterReceived(Windows::UI::Core::CoreWindow ^, Windows::UI::Core::CharacterReceivedEventArgs ^ args)
    {
 
       if(m_psystem->get_context_session() == nullptr)
@@ -349,7 +349,7 @@ namespace uwp
 
       spbase = pkey;
 
-      pkey->m_id = WM_CHAR;
+      pkey->m_id = e_message_char;
       pkey->m_puserinteraction = m_psystem->get_context_session()->m_puiHost;
       pkey->m_nChar = keycode_to_char(args->KeyCode);
 
@@ -358,7 +358,7 @@ namespace uwp
    }
 
 
-   void directx_application::OnKeyDown(Windows::UI::Core::CoreWindow ^, Windows::UI::Core::KeyEventArgs ^ args)
+   void directx_framework_view::OnKeyDown(Windows::UI::Core::CoreWindow ^, Windows::UI::Core::KeyEventArgs ^ args)
    {
       if (args->VirtualKey == ::Windows::System::VirtualKey::Shift)
       {
@@ -390,7 +390,7 @@ namespace uwp
          || m_psystem->get_context_session()->is_key_pressed(::user::key_alt))
       {
 
-         pkey->m_id                 = WM_KEYDOWN;
+         pkey->m_id                 = e_message_key_down;
          pkey->m_puserinteraction       = m_psystem->get_context_session()->m_puiHost;
          pkey->m_nChar              = virtualkey_to_char(args->VirtualKey);
          pkey->m_ekey               = ekey;
@@ -411,7 +411,7 @@ namespace uwp
 
    }
 
-   void directx_application::OnKeyUp(Windows::UI::Core::CoreWindow ^, Windows::UI::Core::KeyEventArgs ^ args)
+   void directx_framework_view::OnKeyUp(Windows::UI::Core::CoreWindow ^, Windows::UI::Core::KeyEventArgs ^ args)
    {
 
       if(m_psystem == nullptr)
@@ -444,7 +444,7 @@ namespace uwp
       if (bSpecialKey || !bTextFocus)
       {
 
-         pkey->m_id = WM_KEYUP;
+         pkey->m_id = e_message_key_up;
          pkey->m_puserinteraction = m_psystem->get_context_session()->m_puiHost;
          pkey->m_nChar = virtualkey_to_char(args->VirtualKey);
          pkey->m_ekey = ekey;
@@ -492,7 +492,7 @@ namespace uwp
 
    }
 
-   void directx_application::OnWindowVisibilityChanged(Windows::UI::Core::CoreWindow^, Windows::UI::Core::VisibilityChangedEventArgs^ args)
+   void directx_framework_view::OnWindowVisibilityChanged(Windows::UI::Core::CoreWindow^, Windows::UI::Core::VisibilityChangedEventArgs^ args)
    {
 
       if (args->Visible)
@@ -509,7 +509,7 @@ namespace uwp
 
    }
 
-   void directx_application::OnPointerMoved(Windows::UI::Core::CoreWindow ^, Windows::UI::Core::PointerEventArgs ^ args)
+   void directx_framework_view::OnPointerMoved(Windows::UI::Core::CoreWindow ^, Windows::UI::Core::PointerEventArgs ^ args)
    {
 
       if (m_dwMouseMoveThrottle && m_tickLastMouseMove.elapsed() < m_dwMouseMoveThrottle)
@@ -538,8 +538,8 @@ namespace uwp
 
       spbase = pmouse;
 
-      pmouse->m_point.x       = (LONG) pointerPoint->RawPosition.X;
-      pmouse->m_point.y       = (LONG) pointerPoint->RawPosition.Y;
+      pmouse->m_point.x       = (::i32) pointerPoint->RawPosition.X;
+      pmouse->m_point.y       = (::i32) pointerPoint->RawPosition.Y;
       pmouse->m_id            = e_message_mouse_move;
       pmouse->m_puserinteraction  = m_psystem->get_context_session()->m_puiHost;
 
@@ -552,7 +552,7 @@ namespace uwp
    }
 
 
-   void directx_application::OnPointerPressed(Windows::UI::Core::CoreWindow ^, Windows::UI::Core::PointerEventArgs ^ args)
+   void directx_framework_view::OnPointerPressed(Windows::UI::Core::CoreWindow ^, Windows::UI::Core::PointerEventArgs ^ args)
    {
 
       if(m_psystem == nullptr)
@@ -574,14 +574,14 @@ namespace uwp
 
       spbase = pmouse;
 
-      pmouse->m_point.x = (LONG) pointerPoint->RawPosition.X;
+      pmouse->m_point.x = (::i32) pointerPoint->RawPosition.X;
 
-      pmouse->m_point.y = (LONG) pointerPoint->RawPosition.Y;
+      pmouse->m_point.y = (::i32) pointerPoint->RawPosition.Y;
 
       if(args->CurrentPoint->Properties->IsLeftButtonPressed && !m_bLeftButton)
       {
 
-         pmouse->m_id     = WM_LBUTTONDOWN;
+         pmouse->m_id     = e_message_lbutton_down;
 
          m_bLeftButton           = true;
          m_bMiddleButton         = false;
@@ -591,7 +591,7 @@ namespace uwp
       else if(args->CurrentPoint->Properties->IsRightButtonPressed && !m_bRightButton)
       {
 
-         pmouse->m_id     = WM_RBUTTONDOWN;
+         pmouse->m_id     = e_message_rbutton_down;
 
          m_bLeftButton           = false;
          m_bMiddleButton         = false;
@@ -618,7 +618,7 @@ namespace uwp
    }
 
 
-   void directx_application::OnPointerReleased(Windows::UI::Core::CoreWindow ^, Windows::UI::Core::PointerEventArgs ^ args)
+   void directx_framework_view::OnPointerReleased(Windows::UI::Core::CoreWindow ^, Windows::UI::Core::PointerEventArgs ^ args)
    {
 
       if (m_psystem == nullptr)
@@ -638,21 +638,21 @@ namespace uwp
 
       spbase = pmouse;
 
-      pmouse->m_point.x = (LONG) pointerPoint->RawPosition.X;
+      pmouse->m_point.x = (::i32) pointerPoint->RawPosition.X;
 
-      pmouse->m_point.y = (LONG) pointerPoint->RawPosition.Y;
+      pmouse->m_point.y = (::i32) pointerPoint->RawPosition.Y;
 
       if(m_bLeftButton && !args->CurrentPoint->Properties->IsLeftButtonPressed)
       {
 
-         pmouse->m_id     = WM_LBUTTONUP;
+         pmouse->m_id     = e_message_lbutton_up;
          m_bLeftButton           = false;
 
       }
       else if(m_bRightButton && !args->CurrentPoint->Properties->IsRightButtonPressed)
       {
 
-         pmouse->m_id     = WM_RBUTTONUP;
+         pmouse->m_id     = e_message_rbutton_up;
          m_bRightButton          = false;
 
       }
@@ -700,7 +700,7 @@ namespace uwp
    Windows::ApplicationModel::Core::IFrameworkView^ directx_application_source::CreateView()
    {
 
-      return ref new directx_application(m_psystem,m_strId);
+      return ref new directx_framework_view(m_psystem,m_strId);
 
    }
 
@@ -719,7 +719,7 @@ namespace uwp
    }
 
    
-   Windows::Foundation::Rect directx_application::get_input_content_rect()
+   Windows::Foundation::Rect directx_framework_view::get_input_content_rect()
    {
 
       Windows::Foundation::Rect rect = m_rectInputContentRect;
@@ -729,7 +729,7 @@ namespace uwp
    }
 
 
-   Windows::Foundation::Rect directx_application::get_input_selection_rect()
+   Windows::Foundation::Rect directx_framework_view::get_input_selection_rect()
    {
 
       Windows::Foundation::Rect rect = m_rectInputSelectionRect;
@@ -739,7 +739,7 @@ namespace uwp
    }
 
 
-   Windows::Foundation::Rect directx_application::get_window_rect()
+   Windows::Foundation::Rect directx_framework_view::get_window_rect()
    {
 
       Windows::Foundation::Rect rect = m_rectLastWindowRect;
@@ -767,7 +767,7 @@ namespace uwp
 
    }
 
-   Windows::Foundation::Point directx_application::get_cursor_pos()
+   Windows::Foundation::Point directx_framework_view::get_cursor_pos()
    {
 
       single_lock sl(&m_mutex, true);
@@ -787,10 +787,10 @@ namespace uwp
 
                   Windows::Foundation::Collections::IVectorView < Windows::Devices::Input::PointerDevice ^ > ^ deva = ::Windows::Devices::Input::PointerDevice::GetPointerDevices();
 
-                  for(unsigned int ui = 0; ui < deva->Size; ui++)
+                  for(unsigned int u = 0; u < deva->Size; u++)
                   {
 
-                     Windows::Devices::Input::PointerDevice ^ dev = deva->GetAt(ui);
+                     Windows::Devices::Input::PointerDevice ^ dev = deva->GetAt(u);
 
                      if(dev->PointerDeviceType == ::Windows::Devices::Input::PointerDeviceType::Mouse)
                      {

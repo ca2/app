@@ -84,9 +84,9 @@ namespace user
       };
 
 
-      static const UINT MESSAGE_ENDCOLUMNHEADERDRAG;
-      static const UINT MESSAGE_COLUMNHEADERTRACK;
-      static const UINT MESSAGE_ENDCOLUMNHEADERTRACK;
+      static const ::u32 MESSAGE_ENDCOLUMNHEADERDRAG;
+      static const ::u32 MESSAGE_COLUMNHEADERTRACK;
+      static const ::u32 MESSAGE_ENDCOLUMNHEADERTRACK;
 
       // Simple Filter Implementation
       // Base Mesh Side
@@ -181,7 +181,7 @@ namespace user
       uptr                             m_uiLButtonDownFlags;
       uptr                             m_uiLButtonUpFlags;
       point                            m_pointLButtonUp;
-      UINT                             m_uiRButtonUpFlags;
+      ::u32                             m_uiRButtonUpFlags;
       point                            m_pointRButtonUp;
       __pointer(regex)                 m_pregexFilter1;
       i32                              m_iFilter1Step;
@@ -533,7 +533,7 @@ namespace user
 
       //virtual rect get_scroll_margin();
 
-      //virtual bool get_client_rect(RECT * prect);
+      //virtual bool get_client_rect(RECT32 * prect);
 
       virtual ::sized get_page_size() override;
       //virtual ::sized get_total_size() override;

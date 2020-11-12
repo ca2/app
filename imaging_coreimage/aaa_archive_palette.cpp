@@ -44,7 +44,7 @@ namespace draw2d_gdiplus
       return FALSE;
 
    }
-   UINT palette::GetPaletteEntries(UINT nStartIndex, UINT nNumEntries,
+   ::u32 palette::GetPaletteEntries(::u32 nStartIndex, ::u32 nNumEntries,
                                    LPPALETTEENTRY pPaletteColors) const
 
    {
@@ -52,7 +52,7 @@ namespace draw2d_gdiplus
                                             nNumEntries, pPaletteColors);
 
    }
-   UINT palette::SetPaletteEntries(UINT nStartIndex, UINT nNumEntries,
+   ::u32 palette::SetPaletteEntries(::u32 nStartIndex, ::u32 nNumEntries,
                                    LPPALETTEENTRY pPaletteColors)
 
    {
@@ -60,7 +60,7 @@ namespace draw2d_gdiplus
                                             nNumEntries, pPaletteColors);
 
    }
-   void palette::AnimatePalette(UINT nStartIndex, UINT nNumEntries,
+   void palette::AnimatePalette(::u32 nStartIndex, ::u32 nNumEntries,
                                 LPPALETTEENTRY pPaletteColors)
 
    {
@@ -68,10 +68,10 @@ namespace draw2d_gdiplus
             pPaletteColors);
 
    }
-   UINT palette::GetNearestPaletteIndex(COLORREF crColor) const
+   ::u32 palette::GetNearestPaletteIndex(color32_t crColor) const
    { ASSERT(get_os_data() != nullptr); return ::GetNearestPaletteIndex((HPALETTE)get_os_data(), crColor); }
 
-   bool palette::ResizePalette(UINT nNumEntries)
+   bool palette::ResizePalette(::u32 nNumEntries)
    {
       ASSERT(get_os_data() != nullptr);
       return ::ResizePalette((HPALETTE)get_os_data(), nNumEntries) != FALSE;
@@ -79,8 +79,8 @@ namespace draw2d_gdiplus
 
    i32 palette::GetEntryCount()
    {
-      ASSERT(get_os_data() != nullptr); WORD nEntries;
-      ::GetObject((HANDLE) get_os_data(), sizeof(WORD), &nEntries); return (i32)nEntries;
+      ASSERT(get_os_data() != nullptr); ::u16 nEntries;
+      ::GetObject((HANDLE) get_os_data(), sizeof(::u16), &nEntries); return (i32)nEntries;
    }
 
 } // namespace draw2d_gdiplus

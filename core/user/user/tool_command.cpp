@@ -30,7 +30,7 @@ namespace user
       ASSERT(pToolBar != nullptr);
       ASSERT_KINDOF(toolbar, pToolBar);
       ASSERT(m_iIndex < m_iCount);
-      UINT nNewStyle = pToolBar->GetButtonStyle((i32) m_iIndex) & ~TBBS_DISABLED;
+      ::u32 nNewStyle = pToolBar->GetButtonStyle((i32) m_iIndex) & ~TBBS_DISABLED;
       if (!bOn)
       {
          nNewStyle |= TBBS_DISABLED;
@@ -56,7 +56,7 @@ namespace user
       ASSERT(pToolBar != nullptr);
       ASSERT_KINDOF(toolbar, pToolBar);
       ASSERT(m_iIndex < m_iCount);
-      UINT nNewStyle = pToolBar->GetButtonStyle((i32) m_iIndex) & ~(TBBS_CHECKED | TBBS_INDETERMINATE);
+      ::u32 nNewStyle = pToolBar->GetButtonStyle((i32) m_iIndex) & ~(TBBS_CHECKED | TBBS_INDETERMINATE);
       if (nCheck == 1)
          nNewStyle |= TBBS_CHECKED;
       else if (nCheck == 2)

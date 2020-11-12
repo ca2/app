@@ -235,7 +235,7 @@ namespace simple_ui
 
       get_client_rect(rectClient);
 
-      COLORREF crBk = get_simple_ui_color(::user::element_background);
+      color32_t crBk = get_simple_ui_color(::user::element_background);
 
       pgraphics->fill_rect(rectClient,crBk);
 
@@ -249,7 +249,7 @@ namespace simple_ui
 
       pgraphics->get_text_metrics(&tm);
 
-      COLORREF crText = get_simple_ui_color(::user::element_text);
+      color32_t crText = get_simple_ui_color(::user::element_text);
 
       pgraphics->set_text_color(crText);
 

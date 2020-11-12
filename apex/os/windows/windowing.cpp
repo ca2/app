@@ -65,7 +65,7 @@ CLASS_DECL_APEX bool get_gui_thread_info(PGUITHREADINFO pinfo)
 
    }
 
-   DWORD dwThread = GetWindowThreadProcessId(hwndForeground, nullptr);
+   ::u32 dwThread = GetWindowThreadProcessId(hwndForeground, nullptr);
 
    xxf_zerop(pinfo);
 
@@ -74,7 +74,7 @@ CLASS_DECL_APEX bool get_gui_thread_info(PGUITHREADINFO pinfo)
    if (!::GetGUIThreadInfo(dwThread, pinfo))
    {
 
-      DWORD dwLastError = ::GetLastError();
+      ::u32 dwLastError = ::GetLastError();
 
       return false;
 
@@ -266,7 +266,7 @@ CLASS_DECL_APEX int_bool show_window(oswindow oswindow, int iShowCmd)
 //}
 //
 //
-//int_bool point_is_window_origin(POINT ptHitTest, oswindow oswindowExclude, int iMargin)
+//int_bool point_is_window_origin(POINT32 ptHitTest, oswindow oswindowExclude, int iMargin)
 //{
 //
 //   auto poswindowa = get_top_level_windows();
@@ -377,10 +377,10 @@ CLASS_DECL_APEX int_bool show_window(oswindow oswindow, int iShowCmd)
 //}
 //
 
-CLASS_DECL_ACME::estatus _os_message_box(oswindow oswindow, const char* pszMessage, const char* pszTitle, ::emessagebox emessagebox, const ::future & future);
+CLASS_DECL_ACME::estatus _os_message_box(oswindow oswindow, const char* pszMessage, const char* pszTitle, ::emessagebox emessagebox, const ::futurevar & futurevar);
 
 
-CLASS_DECL_APEX ::estatus apex_os_message_box(oswindow oswindow, const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox, const ::future & future)
+CLASS_DECL_APEX ::estatus apex_os_message_box(oswindow oswindow, const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox, const ::futurevar & futurevar)
 {
 
    if (System.is_dedicated_thread())
@@ -389,7 +389,7 @@ CLASS_DECL_APEX ::estatus apex_os_message_box(oswindow oswindow, const char * ps
       System.fork([=]()
          {
 
-            _os_message_box(oswindow, pszMessage, pszTitle, emessagebox, future);
+            _os_message_box(oswindow, pszMessage, pszTitle, emessagebox, futurevar);
 
          });
 
@@ -397,7 +397,7 @@ CLASS_DECL_APEX ::estatus apex_os_message_box(oswindow oswindow, const char * ps
 
    }
 
-   return _os_message_box(oswindow, pszMessage, pszTitle, emessagebox, future);
+   return _os_message_box(oswindow, pszMessage, pszTitle, emessagebox, futurevar);
 
 }
 

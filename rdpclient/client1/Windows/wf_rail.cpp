@@ -28,14 +28,14 @@
 
 #define TAG CLIENT_TAG("windows")
 
-#define GET_X_LPARAM(lParam) ((UINT16) (lParam & 0xFFFF))
-#define GET_Y_LPARAM(lParam) ((UINT16) ((lParam >> 16) & 0xFFFF))
+#define GET_X_LPARAM(lParam) ((::u3216) (lParam & 0xFFFF))
+#define GET_Y_LPARAM(lParam) ((::u3216) ((lParam >> 16) & 0xFFFF))
 
 /* RemoteApp Core Protocol Extension */
 
 struct _WINDOW_STYLE
 {
-	UINT32 style;
+	::u32 style;
 	const char* name;
 	BOOL multi;
 };
@@ -98,7 +98,7 @@ static const WINDOW_STYLE EXTENDED_WINDOW_STYLES[] =
 	{ WS_EX_WINDOWEDGE, "WS_EX_WINDOWEDGE", FALSE }
 };
 
-void PrintWindowStyles(UINT32 style)
+void PrintWindowStyles(::u32 style)
 {
 	int i;
 	
@@ -118,7 +118,7 @@ void PrintWindowStyles(UINT32 style)
 	}
 }
 
-void PrintExtendedWindowStyles(UINT32 style)
+void PrintExtendedWindowStyles(::u32 style)
 {
 	int i;
 	
@@ -221,7 +221,7 @@ void PrintRailWindowState(WINDOW_ORDER_INFO* orderInfo, WINDOW_STATE_ORDER* wind
 
 	if (orderInfo->fieldFlags & WINDOW_ORDER_FIELD_WND_RECTS)
 	{
-		UINT32 index;
+		::u32 index;
 		RECTANGLE_16* rect;
 
 		WLog_INFO(TAG, "\tnumWindowRects: %d", windowState->numWindowRects);
@@ -243,7 +243,7 @@ void PrintRailWindowState(WINDOW_ORDER_INFO* orderInfo, WINDOW_STATE_ORDER* wind
 
 	if (orderInfo->fieldFlags & WINDOW_ORDER_FIELD_VISIBILITY)
 	{
-		UINT32 index;
+		::u32 index;
 		RECTANGLE_16* rect;
 
 		WLog_INFO(TAG, "\tnumVisibilityRects: %d", windowState->numVisibilityRects);
@@ -281,16 +281,16 @@ static void PrintRailIconInfo(WINDOW_ORDER_INFO* orderInfo, ICON_INFO* iconInfo)
 	WLog_INFO(TAG, "}");
 }
 
-//LRESULT CALLBACK wf_RailWndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
+//LRESULT CALLBACK wf_RailWndProc(HWND hWnd, ::u32 msg, WPARAM wParam, LPARAM lParam)
 //{
 //	HDC hDC;
 //	int x, y;
 //	int width;
 //	int height;
-//	UINT32 xPos;
-//	UINT32 yPos;
+//	::u32 xPos;
+//	::u32 yPos;
 //	PAINTSTRUCT ps;
-//	UINT32 inputFlags;
+//	::u32 inputFlags;
 //	wfContext* wfc = nullptr;
 //	rdpInput* input = nullptr;
 //	rdpContext* context = nullptr;
@@ -328,7 +328,7 @@ static void PrintRailIconInfo(WINDOW_ORDER_INFO* orderInfo, ICON_INFO* iconInfo)
 //			}
 //			break;
 //
-//		case WM_LBUTTONDOWN:
+//		case e_message_lbutton_down:
 //			{
 //				if (!railWindow || !input)
 //					return 0;
@@ -342,7 +342,7 @@ static void PrintRailIconInfo(WINDOW_ORDER_INFO* orderInfo, ICON_INFO* iconInfo)
 //			}
 //			break;
 //
-//		case WM_LBUTTONUP:
+//		case e_message_lbutton_up:
 //			{
 //				if (!railWindow || !input)
 //					return 0;
@@ -356,7 +356,7 @@ static void PrintRailIconInfo(WINDOW_ORDER_INFO* orderInfo, ICON_INFO* iconInfo)
 //			}
 //			break;
 //
-//		case WM_RBUTTONDOWN:
+//		case e_message_rbutton_down:
 //			{
 //				if (!railWindow || !input)
 //					return 0;
@@ -370,7 +370,7 @@ static void PrintRailIconInfo(WINDOW_ORDER_INFO* orderInfo, ICON_INFO* iconInfo)
 //			}
 //			break;
 //
-//		case WM_RBUTTONUP:
+//		case e_message_rbutton_up:
 //			{
 //				if (!railWindow || !input)
 //					return 0;
@@ -398,10 +398,10 @@ static void PrintRailIconInfo(WINDOW_ORDER_INFO* orderInfo, ICON_INFO* iconInfo)
 //			}
 //			break;
 //
-//		case WM_MOUSEWHEEL:
+//		case e_message_mouse_wheel:
 //			break;
 //
-//		case WM_CLOSE:
+//		case e_message_close:
 //			DestroyWindow(hWnd);
 //			break;
 //
@@ -425,7 +425,7 @@ static void PrintRailIconInfo(WINDOW_ORDER_INFO* orderInfo, ICON_INFO* iconInfo)
 //	wfRailWindow* railWindow = nullptr;
 //	wfContext* wfc = (wfContext*) context;
 //	RailClientContext* rail = wfc->rail;
-//	UINT32 fieldFlags = orderInfo->fieldFlags;
+//	::u32 fieldFlags = orderInfo->fieldFlags;
 //
 //	PrintRailWindowState(orderInfo, windowState);
 //
@@ -503,7 +503,7 @@ static void PrintRailIconInfo(WINDOW_ORDER_INFO* orderInfo, ICON_INFO* iconInfo)
 //
 //		SetWindowLongPtr(railWindow->hWnd, GWLP_USERDATA, (LONG_PTR) railWindow);
 //
-//		HashTable_Add(wfc->railWindows, (void*) (UINT_PTR) orderInfo->windowId, (void*) railWindow);
+//		HashTable_Add(wfc->railWindows, (void*) (::u32_PTR) orderInfo->windowId, (void*) railWindow);
 //
 //		free(titleW);
 //
@@ -514,7 +514,7 @@ static void PrintRailIconInfo(WINDOW_ORDER_INFO* orderInfo, ICON_INFO* iconInfo)
 //	else
 //	{
 //		railWindow = (wfRailWindow*) HashTable_GetItemValue(wfc->railWindows,
-//			(void*) (UINT_PTR) orderInfo->windowId);
+//			(void*) (::u32_PTR) orderInfo->windowId);
 //	}
 //
 //	if (!railWindow)
@@ -555,8 +555,8 @@ static void PrintRailIconInfo(WINDOW_ORDER_INFO* orderInfo, ICON_INFO* iconInfo)
 //		railWindow->dwExStyle = windowState->extendedStyle;
 //		railWindow->dwExStyle &= ~RAIL_DISABLED_EXTENDED_WINDOW_STYLES;
 //
-//		SetWindowLongPtr(railWindow->hWnd, GWL_STYLE, (LONG) railWindow->dwStyle);
-//		SetWindowLongPtr(railWindow->hWnd, GWL_EXSTYLE, (LONG) railWindow->dwExStyle);
+//		SetWindowLongPtr(railWindow->hWnd, GWL_STYLE, (::i32) railWindow->dwStyle);
+//		SetWindowLongPtr(railWindow->hWnd, GWL_EXSTYLE, (::i32) railWindow->dwExStyle);
 //	}
 //
 //	if (fieldFlags & WINDOW_ORDER_FIELD_SHOW)
@@ -609,7 +609,7 @@ static void PrintRailIconInfo(WINDOW_ORDER_INFO* orderInfo, ICON_INFO* iconInfo)
 //
 //	if (fieldFlags & WINDOW_ORDER_FIELD_WND_RECTS)
 //	{
-//		UINT32 index;
+//		::u32 index;
 //		HRGN hWndRect;
 //		HRGN hWndRects;
 //		RECTANGLE_16* rect;
@@ -655,12 +655,12 @@ static BOOL wf_rail_window_delete(rdpContext* context, WINDOW_ORDER_INFO* orderI
 	WLog_DBG(TAG, "RailWindowDelete");
 
 	railWindow = (wfRailWindow*) HashTable_GetItemValue(wfc->railWindows,
-			(void*) (UINT_PTR) orderInfo->windowId);
+			(void*) (::u32_PTR) orderInfo->windowId);
 
 	if (!railWindow)
 		return TRUE;
 
-	HashTable_Remove(wfc->railWindows, (void*) (UINT_PTR) orderInfo->windowId);
+	HashTable_Remove(wfc->railWindows, (void*) (::u32_PTR) orderInfo->windowId);
 
 	DestroyWindow(railWindow->hWnd);
 
@@ -688,7 +688,7 @@ static BOOL wf_rail_window_icon(rdpContext* context, WINDOW_ORDER_INFO* orderInf
 	PrintRailIconInfo(orderInfo, windowIcon->iconInfo);
 
 	railWindow = (wfRailWindow*) HashTable_GetItemValue(wfc->railWindows,
-			(void*) (UINT_PTR) orderInfo->windowId);
+			(void*) (::u32_PTR) orderInfo->windowId);
 
 	if (!railWindow)
 		return TRUE;
@@ -965,7 +965,7 @@ void wf_rail_invalidate_region(wfContext* wfc, REGION16* invalidRegion)
 {
 	int index;
 	int count;
-	RECT updateRect;
+	RECT32 updateRect;
 	RECTANGLE_16 windowRect;
 	ULONG_PTR* pKeys = nullptr;
 	wfRailWindow* railWindow;

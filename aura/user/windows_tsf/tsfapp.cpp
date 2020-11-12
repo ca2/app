@@ -25,7 +25,7 @@
    Local Function Prototypes
 **************************************************************************/
 
-int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int);
+int WINAPI WinMain(HINSTANCE, HINSTANCE, char *, int);
 
 /**************************************************************************
    Global Variables
@@ -41,7 +41,7 @@ ITfThreadMgr    *g_pThreadMgr;
 
 int WINAPI WinMain( HINSTANCE hInstance,
                     HINSTANCE hPrevInstance,
-                    LPSTR lpCmdLine,
+                    char * lpCmdLine,
                     int nCmdShow)
 {
     CTSFMainWnd *pMainWnd;
@@ -81,7 +81,7 @@ int WINAPI WinMain( HINSTANCE hInstance,
                     {
                         fResult = FALSE;
                     }
-                    else if(WM_KEYDOWN == msg.message)
+                    else if(e_message_key_down == msg.message)
                     {
                         // does an ime want it?
                         if (pKeyMgr->TestKeyDown(msg.wParam, msg.lParam, &fEaten) == S_OK && fEaten &&
@@ -90,7 +90,7 @@ int WINAPI WinMain( HINSTANCE hInstance,
                             continue;
                         }
                     }
-                    else if(WM_KEYUP == msg.message)
+                    else if(e_message_key_up == msg.message)
                     {
                         // does an ime want it?
                         if (pKeyMgr->TestKeyUp(msg.wParam, msg.lParam, &fEaten) == S_OK && fEaten &&

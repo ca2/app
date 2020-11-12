@@ -34,7 +34,7 @@ unsigned
 getpixel (int x, int y)
 {
     unsigned RetVal = 0;
-   COLORREF cr = TcPixmaps[TcVisualPage]->GetPixel(x,y);
+   color32_t cr = TcPixmaps[TcVisualPage]->GetPixel(x,y);
 
     gint i, maxi, ClosestS, s;
 

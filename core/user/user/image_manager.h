@@ -15,18 +15,18 @@ namespace user
 
       __pointer(::image_list) m_pimagelist;
       __pointer(::image_list) m_pimagelistDisable;
-      ///CBaseNumericDiscreteRelation < UINT, UINT, UINT, UINT > m_rel;
+      ///CBaseNumericDiscreteRelation < ::u32, ::u32, ::u32, ::u32 > m_rel;
       id_map < int > m_rel;
 
 
       image_manager();
       virtual ~image_manager();
 
-      //void LoadToolbar(toolbar & toolbar, UINT * user);
-      //void LoadToolbar(simple_toolbar & toolbar, UINT * user);
+      //void LoadToolbar(toolbar & toolbar, ::u32 * user);
+      //void LoadToolbar(simple_toolbar & toolbar, ::u32 * user);
       ::image_list & GetImageList();
       ::image_list & GetImageListDisable();
-      bool Initialize(::object * pobject, UINT uiaMenuV003Map[][2]);
+      bool Initialize(::object * pobject, ::u32 uaMenuV003Map[][2]);
 
 
    };

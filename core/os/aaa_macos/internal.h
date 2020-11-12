@@ -27,15 +27,15 @@
 
 typedef LPWINDOW oswindow;
 
-typedef int LONG;
+typedef int ::i32;
 
 typedef struct tagRECT
 {
-   LONG    left;
-   LONG    top;
-   LONG    right;
-   LONG    bottom;
-} const rect &, *PRECT, NEAR *NPRECT, FAR *RECT *;
+   ::i32    left;
+   ::i32    top;
+   ::i32    right;
+   ::i32    bottom;
+} const rect &, *PRECT, NEAR *NPRECT, FAR *RECT32 *;
 
 typedef const rect & FAR* const rect &;
 
@@ -47,7 +47,7 @@ typedef const rect & FAR* const rect &;
 CGContextRef get_nswindow_cgcontext(oswindow pnswindow);
 
 
-int_bool get_nswindow_rect(oswindow hwnd, RECT * prect);
+int_bool get_nswindow_rect(oswindow hwnd, RECT32 * prect);
 
 
 
@@ -63,7 +63,7 @@ inline int wxRound(double x)
 
 
 
-CGColorRef cg_create_color(COLORREF crText);
+CGColorRef cg_create_color(color32_t crText);
 int_bool cg_release_color(CGColorRef colorref);
 
 

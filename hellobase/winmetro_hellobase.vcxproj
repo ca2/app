@@ -45,15 +45,15 @@
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\platform-windows\Common.props" />
+    <Import Project="..\..\..\archive\platform-windows\Common.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\platform-windows\Common.props" />
+    <Import Project="..\..\..\archive\platform-windows\Common.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\platform-windows\Common.props" />
+    <Import Project="..\..\..\archive\platform-windows\Common.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
@@ -105,7 +105,7 @@
     <ClCompile>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(SolutionDir)../../;$(SolutionDir)../../app;$(SolutionDir)../../app;$(SolutionDir)../../;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)/local/include;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(SolutionDir)../../../source/app;$(SolutionDir)../../../;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">CUBE;_AQUA_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">/bigobj %(AdditionalOptions)</AdditionalOptions>
       <ExceptionHandling Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Async</ExceptionHandling>
@@ -155,19 +155,19 @@
     <ClCompile Include="winmetro_hellobase.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\app\aura\charguess\m_auracharguess.vcxproj">
+    <ProjectReference Include="..\..\..\source\app\aura\charguess\m_auracharguess.vcxproj">
       <Project>{67c95418-596b-4860-afae-b53262ae5e43}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\app\aura\sqlite\m_aurasqlite.vcxproj">
+    <ProjectReference Include="..\..\..\source\app\aura\sqlite\m_aurasqlite.vcxproj">
       <Project>{5da9963d-5824-48a8-b869-ba93618da5f4}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\app\axis\bzip2\m_axisbzip2.vcxproj">
+    <ProjectReference Include="..\..\..\source\app\axis\bzip2\m_axisbzip2.vcxproj">
       <Project>{802c98ed-0844-4be7-ae30-f417a92207bd}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\app\axis\idn\m_axisidn.vcxproj">
+    <ProjectReference Include="..\..\..\source\app\axis\idn\m_axisidn.vcxproj">
       <Project>{f9917855-9c31-41a0-85b1-8ba8dfd6e3b6}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\app\axis\zlib\m_axiszlib.vcxproj">
+    <ProjectReference Include="..\..\..\source\app\axis\zlib\m_axiszlib.vcxproj">
       <Project>{7ebfd809-20d7-4744-81c0-9f3ff41a070f}</Project>
     </ProjectReference>
   </ItemGroup>

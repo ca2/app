@@ -177,7 +177,7 @@ namespace tranquillum
 
       auto pstyle = pframe->get_style(pgraphics);
 
-      COLORREF crBackground = pframe->get_color(pstyle, ::user::element_background);
+      color32_t crBackground = pframe->get_color(pstyle, ::user::element_background);
 
       //crBackground = ARGB(255, 200, 180, 180);
 
@@ -493,7 +493,7 @@ namespace tranquillum
 
       auto pstyle = ptab->get_style(pgraphics);
 
-      COLORREF crbk = ptab->get_color(pstyle, ::user::element_tab_layout_background);
+      color32_t crbk = ptab->get_color(pstyle, ::user::element_tab_layout_background);
 
       pgraphics->fill_rect(rcTabs, crbk);
 
@@ -946,11 +946,11 @@ namespace tranquillum
 
    //   ::user::toolbar_item & item = ptoolbar->m_itema(iItem);
 
-   //   UINT nStyle = ptoolbar->GetButtonStyle(iItem);
+   //   ::u32 nStyle = ptoolbar->GetButtonStyle(iItem);
 
    //   bool bHover = ptoolbar->m_itemHover == iItem;
 
-   //   UINT uiImage = psession->userex()->menu()->command_image(item.m_id);
+   //   ::u32 uImage = psession->userex()->menu()->command_image(item.m_id);
 
    //   ::user::toolbar::e_element eelement = ::user::toolbar::element_item;
    //   ::user::toolbar::e_element eelementImage = ::user::toolbar::element_image;
@@ -1252,11 +1252,11 @@ namespace tranquillum
 
    //   ::user::toolbar_item & item = ptoolbar->m_itema(iItem);
 
-   //   UINT nStyle = ptoolbar->GetButtonStyle(iItem);
+   //   ::u32 nStyle = ptoolbar->GetButtonStyle(iItem);
 
    //   bool bHover = ptoolbar->m_itemHover == iItem;
 
-   //   UINT uiImage = psession->userex()->menu()->command_image(item.m_id);
+   //   ::u32 uImage = psession->userex()->menu()->command_image(item.m_id);
 
    //   ::user::toolbar::e_element eelement = ::user::toolbar::element_item;
    //   ::user::toolbar::e_element eelementImage = ::user::toolbar::element_image;

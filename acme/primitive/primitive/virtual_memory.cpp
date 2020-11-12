@@ -63,7 +63,7 @@
    }
 
 
-   virtual_memory::virtual_memory(memory_container * pcontainer, double dAllocationRateUp, UINT nAllocFlags)
+   virtual_memory::virtual_memory(memory_container * pcontainer, double dAllocationRateUp, ::u32 nAllocFlags)
    {
 
       UNREFERENCED_PARAMETER(nAllocFlags);

@@ -69,7 +69,7 @@ bool compress_bz::transfer(::file::file * pfileBzFileCompressed, ::file::file * 
    class memory memIn;
    memIn.set_size(1024 * 64);
 
-   i64 uiRead             = pfileUncompressed->read(memIn.get_data(), memIn.get_size());
+   i64 uRead             = pfileUncompressed->read(memIn.get_data(), memIn.get_size());
 
    iBlockSize                 = max(1, min(9, iBlockSize));
    iVerbosity                 = max(0, min(4, iVerbosity));
@@ -85,7 +85,7 @@ bool compress_bz::transfer(::file::file * pfileBzFileCompressed, ::file::file * 
    zstream.bzfree = (bzfree)0;
    zstream.opaque = (void *)0;
    zstream.next_in = (char *)memIn.get_data();
-   zstream.avail_in = (u32)uiRead;
+   zstream.avail_in = (u32)uRead;
    zstream.next_out = nullptr;
    zstream.avail_out = 0;
    m_z_err = BZ_OK;
@@ -140,9 +140,9 @@ bool compress_bz::transfer(::file::file * pfileBzFileCompressed, ::file::file * 
       }
       while (zstream.avail_out == 0);
 
-      uiRead = pfileUncompressed->read(memIn.get_data(), memIn.get_size());
+      uRead = pfileUncompressed->read(memIn.get_data(), memIn.get_size());
 
-      if (uiRead == 0)
+      if (uRead == 0)
       {
 
          iState = BZ_FINISH;
@@ -157,7 +157,7 @@ bool compress_bz::transfer(::file::file * pfileBzFileCompressed, ::file::file * 
 
          zstream.next_in = (char *)memIn.get_data();
 
-         zstream.avail_in = (u32)uiRead;
+         zstream.avail_in = (u32)uRead;
 
       }
 
@@ -196,12 +196,12 @@ bool uncompress_bz::transfer(::file::file * pfileOut, ::file::file * pfileIn)
    class memory memIn;
    memIn.set_size(1024 * 8);
 
-   i64 uiRead = pfileIn->read(memIn.get_data(), memIn.get_size());
+   i64 uRead = pfileIn->read(memIn.get_data(), memIn.get_size());
 
    bz_stream zstream;
    xxf_zero(zstream);
    zstream.next_in = (char *)memIn.get_data();
-   zstream.avail_in = (u32)uiRead;
+   zstream.avail_in = (u32)uRead;
 
    class memory memory;
    memory.set_size(1024 * 256);
@@ -245,18 +245,18 @@ bool uncompress_bz::transfer(::file::file * pfileOut, ::file::file * pfileIn)
       }
       while (zstream.avail_out == 0);
 
-      if (uiRead == 0)
+      if (uRead == 0)
       {
 
          break;
 
       }
 
-      uiRead = pfileIn->read(memIn.get_data(), memIn.get_size());
+      uRead = pfileIn->read(memIn.get_data(), memIn.get_size());
 
       zstream.next_in = (char *)memIn.get_data();
 
-      zstream.avail_in = (u32)uiRead;
+      zstream.avail_in = (u32)uRead;
 
    }
 
@@ -282,7 +282,7 @@ stop1:
 //
 //
 //
-//i32 bzuncompress(LPCSTR pcszUncompressed, LPCSTR lpcszGzFileCompressed)
+//i32 bzuncompress(const char * pcszUncompressed, const char * lpcszGzFileCompressed)
 
 //{
 //   if (g_pchGzUncompressBuffer == nullptr)

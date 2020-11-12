@@ -9,6 +9,8 @@ namespace app_app
    window::window()
    {
 
+      m_rectInitialRateOrSize = { 0.05, 0.05, 0.4, 0.4 };
+
       m_dBreathPeriod = 60.0;
 
       m_dStartTime = ::get_secs();
@@ -45,13 +47,20 @@ namespace app_app
    void window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
-
-      pgraphics->set_smooth_mode(::draw2d::smooth_mode_none);
-
       ::rect rectClient;
 
       get_client_rect(rectClient);
+
+      if (rectClient.is_empty())
+      {
+
+         return;
+
+      }
+
+      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+
+      pgraphics->set_smooth_mode(::draw2d::smooth_mode_none);
 
       pgraphics->fill_rect(rectClient, ARGB(127, 255, 255, 255));
 
@@ -67,7 +76,7 @@ namespace app_app
 
       pgraphics->fill_solid_rect_dim(x, y + dBase * 6.0, dBase * 11.0, dBase * 5.0, ARGB(127, 255, 110, 150));
 
-      rectClient.deflate((LONG) dBase);
+      rectClient.deflate((::i32) dBase);
 
       for (int i = 0; i < dBase; i++)
       {

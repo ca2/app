@@ -35,9 +35,9 @@ public:
 
 
    bool create(i32 cx, i32 cy);
-   bool create(i32 cx, i32 cy, UINT nFlags, i32 nInitial, i32 nGrow);
+   bool create(i32 cx, i32 cy, ::u32 nFlags, i32 nInitial, i32 nGrow);
    bool realize(::draw2d::graphics * pgraphics) const;
-   //bool create(const char * pszBitmapID, i32 cx, i32 nGrow, COLORREF crMask);
+   //bool create(const char * pszBitmapID, i32 cx, i32 nGrow, color32_t crMask);
 
 
    i32 reserve_image(int iItem = -1);
@@ -72,7 +72,7 @@ public:
 
 
    bool draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point & point, i32 iFlag);
-   bool draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point & point, i32 iFlag, BYTE alpha);
+   bool draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point & point, i32 iFlag, byte alpha);
    bool draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point & point, size sz, const ::point & pointOffset, i32 iFlag);
    i32 get_image_count() const;
 

@@ -124,7 +124,7 @@ namespace core
 
       //bool                                                  m_bMatterFromHttpCache;
 
-      //DWORD                                                 m_dwLongPhRESSingTime;
+      //::u32                                                 m_dwLongPhRESSingTime;
 
 
       //__composite(::userex::userex)                         m_puserex;
@@ -153,12 +153,12 @@ namespace core
 
       virtual ::user::shell* shell();
 
-      virtual ::estatus dialog_box(::layered * pobjectContext, const char * pszMatter, property_set & propertyset, ::future future = ::future());
+      virtual ::estatus dialog_box(::layered * pobjectContext, const char * pszMatter, property_set & propertyset, const ::futurevar & futurevar = ::futurevar());
 
 
-      virtual ::estatus ui_message_box(::layered * pobjectContext, ::user::primitive * puiOwner, const char * pszMessage, const char * pszTitle = nullptr, ::emessagebox emessagebox = message_box_ok, ::future future = ::future());
-      virtual ::estatus ui_message_box_timeout(::layered * pobjectContext, ::user::primitive * puiOwner, const char* pszMessage, const char * pszTitle = nullptr, const ::duration & durationTimeout = ::duration::infinite(), ::emessagebox emessagebox = message_box_ok, ::future future = ::future());
-      //virtual ::estatus ui_message_box_timeout(::object* pobjectContext, ::user::primitive* puiOwner, var var, ::duration durationTimeout, UINT fuStyle = MB_OK, ::aura::application* papp = nullptr, const function_arg& functionargResult = function_arg());
+      virtual ::estatus ui_message_box(::layered * pobjectContext, ::user::primitive * puiOwner, const char * pszMessage, const char * pszTitle = nullptr, ::emessagebox emessagebox = message_box_ok, const ::futurevar & futurevar = ::futurevar());
+      virtual ::estatus ui_message_box_timeout(::layered * pobjectContext, ::user::primitive * puiOwner, const char* pszMessage, const char * pszTitle = nullptr, const ::duration & durationTimeout = ::duration::infinite(), ::emessagebox emessagebox = message_box_ok, const ::futurevar & futurevar = ::futurevar());
+      //virtual ::estatus ui_message_box_timeout(::object* pobjectContext, ::user::primitive* puiOwner, var var, ::duration durationTimeout, ::u32 fuStyle = MB_OK, ::aura::application* papp = nullptr, const function_arg& functionargResult = function_arg());
 
       virtual void on_file_manager_open(::filemanager::data* pdata, ::file::item_array& itema);
 
@@ -200,7 +200,7 @@ namespace core
 
       virtual void term_instance() override;
 
-      void LoadStdProfileSettings(UINT nMaxMRU = 10);
+      void LoadStdProfileSettings(::u32 nMaxMRU = 10);
 
       ::count get_template_count() const;
       __pointer(::user::impact_system) get_template(index index) const;
@@ -311,7 +311,7 @@ namespace core
       //virtual size get_window_minimum_size();
 
 
-      ////virtual void  get_cursor_pos(LPPOINT ppoint);
+      ////virtual void  get_cursor_pos(POINT32 * ppoint);
 
       //virtual bool on_get_thread_name(string& strThreadName) override;
 
@@ -327,7 +327,7 @@ namespace core
 
       //// Long PhRESSing time
       //// time in milliseconds that a pressing is considered a double click
-      //virtual DWORD get_Long_PhRESSing_time();
+      //virtual ::u32 get_Long_PhRESSing_time();
 
       //virtual void defer_initialize_user_presence();
 
@@ -394,7 +394,7 @@ namespace core
 
       //virtual __pointer(::user::menu_interaction) create_menu_button(::user::style_pointer & pstyle, ::user::menu_item * pitem) override;
 
-      //virtual COLORREF get_default_color(u64 ui);
+      //virtual color32_t get_default_color(u64 u);
 
       ////virtual ::size get_window_minimum_size();
 
@@ -458,51 +458,51 @@ namespace core
       ////virtual void translate_os_key_message(::user::key * pkey);
       ////virtual bool on_create_frame_window();
 
-      //virtual void get_cursor_pos(LPPOINT ppoint);
+      //virtual void get_cursor_pos(POINT32 * ppoint);
       //inline ::point get_cursor_pos() {::point point; get_cursor_pos(&point); return point;}
 
       //virtual void set_cursor_pos(const ::point & point);
 
-      //virtual index get_main_monitor(RECT * prect = nullptr);
+      //virtual index get_main_monitor(RECT32 * prect = nullptr);
 
       //virtual bool set_main_monitor(index iMonitor);
       //virtual ::count get_monitor_count();
-      //virtual bool  get_monitor_rect(index iMonitor, RECT * prect);
+      //virtual bool  get_monitor_rect(index iMonitor, RECT32 * prect);
 
-      //virtual index get_main_wkspace(RECT * prect = nullptr);
+      //virtual index get_main_wkspace(RECT32 * prect = nullptr);
 
       //virtual bool set_main_wkspace(index iWkspace);
       //virtual ::count get_wkspace_count();
-      //virtual bool  get_wkspace_rect(index iWkspace, RECT * prect);
+      //virtual bool  get_wkspace_rect(index iWkspace, RECT32 * prect);
 
-      //virtual bool wkspace_to_monitor(RECT * prect, index iMonitor, index iWkspace);
+      //virtual bool wkspace_to_monitor(RECT32 * prect, index iMonitor, index iWkspace);
 
-      //virtual bool monitor_to_wkspace(RECT * prect, index iWkspace, index iMonitor);
+      //virtual bool monitor_to_wkspace(RECT32 * prect, index iWkspace, index iMonitor);
 
-      //virtual bool wkspace_to_monitor(RECT * prect);
+      //virtual bool wkspace_to_monitor(RECT32 * prect);
 
-      //virtual bool monitor_to_wkspace(RECT * prect);
+      //virtual bool monitor_to_wkspace(RECT32 * prect);
 
       //virtual ::count get_desk_monitor_count();
-      //virtual bool  get_desk_monitor_rect(index iMonitor, RECT * prect);
+      //virtual bool  get_desk_monitor_rect(index iMonitor, RECT32 * prect);
 
       //virtual void  get_monitor(rect_array & rectaMonitor, rect_array & rectaIntersect, const ::rect & rect);
 
-      //virtual index initial_frame_position(RECT * prect, const ::rect & rect, bool bMove, ::user::interaction * pinteraction);
+      //virtual index initial_frame_position(RECT32 * prect, const ::rect & rect, bool bMove, ::user::interaction * pinteraction);
 
       //virtual index _get_best_zoneing(edisplay * pedisplay, ::rect * prect, const ::rect & rect, bool bPreserveSize = false);
 
-      //virtual index get_best_monitor(RECT * prect, const ::rect & rect, ::eactivation eactivation = activation_none);
+      //virtual index get_best_monitor(RECT32 * prect, const ::rect & rect, ::eactivation eactivation = activation_none);
 
       //virtual index get_best_wkspace(::rect * prect, const ::rect& rect, ::eactivation eactivation = activation_none);
 
-      //virtual index get_good_iconify(RECT * prect, const ::rect & rect);
+      //virtual index get_good_iconify(RECT32 * prect, const ::rect & rect);
 
-      //virtual index get_window_restore_1(RECT * prect, const ::rect & rect, ::user::interaction * pinteraction, edisplay edisplayRestore);
+      //virtual index get_window_restore_1(RECT32 * prect, const ::rect & rect, ::user::interaction * pinteraction, edisplay edisplayRestore);
 
-      //virtual index get_window_restore_2(RECT* prect, const ::rect& rect, ::user::interaction* pinteraction, edisplay edisplayRestore);
+      //virtual index get_window_restore_2(RECT32* prect, const ::rect& rect, ::user::interaction* pinteraction, edisplay edisplayRestore);
 
-      //virtual index get_good_move(RECT * prect, const ::rect & rect, ::user::interaction * pinteraction);
+      //virtual index get_good_move(RECT32 * prect, const ::rect & rect, ::user::interaction * pinteraction);
 
       //virtual index get_ui_wkspace(::user::interaction * pinteraction);
 
@@ -620,7 +620,7 @@ namespace core
 
       //virtual ::estatus     main() override;
 
-      //virtual ::estatus defer_initialize_host_window(LPCRECT lprect = nullptr);
+      //virtual ::estatus defer_initialize_host_window(LPCRECT32 lprect = nullptr);
 
       ////virtual service_base * allocate_new_service() override;
 
@@ -649,7 +649,7 @@ namespace core
       ////virtual ::draw2d::cursor* get_default_cursor() override;
 
       ////virtual ::count   get_monitor_count() override;
-      ////virtual bool      get_monitor_rect(index iMonitor, RECT* prect) override;
+      ////virtual bool      get_monitor_rect(index iMonitor, RECT32* prect) override;
 
 
       ////virtual void on_user_logon(::account::user* puser) override;

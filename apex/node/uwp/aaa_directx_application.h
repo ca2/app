@@ -5,7 +5,7 @@ namespace uwp
 {
 
 
-   ref class directx_application :
+   ref class directx_framework_view :
       public impact
    {
    internal:
@@ -15,7 +15,7 @@ namespace uwp
 
       Windows::Foundation::Point                m_pointLastCursor;
 
-      DWORD                                     m_dwMouseMoveThrottle;
+      ::u32                                     m_dwMouseMoveThrottle;
 
       tick m_tickLastMouseMove;
 
@@ -51,7 +51,7 @@ namespace uwp
       Windows::Foundation::Rect                 m_rectInputSelectionRect;
 
 
-      directx_application(::apex::system * psystem,String ^ strId);
+      directx_framework_view(::apex::system * psystem,String ^ strId);
 
 
       void install_directx_application_message_routing();
@@ -83,7 +83,7 @@ namespace uwp
       virtual Windows::Foundation::Rect get_input_selection_rect() override;
 
 
-      virtual ~directx_application();
+      virtual ~directx_framework_view();
 
    private:
 

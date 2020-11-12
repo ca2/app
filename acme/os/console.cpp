@@ -6,11 +6,11 @@
 void std_out_buffer::write(const void * pdata,memsize nCount)
 {
 
-   DWORD dw;
-
 #ifdef WINDOWS
 
-   WriteFile(GetStdHandle(STD_OUTPUT_HANDLE), pdata, (DWORD) nCount, &dw, nullptr);
+   DWORD dw;
+
+   WriteFile(GetStdHandle(STD_OUTPUT_HANDLE), pdata, (::u32) nCount, &dw, nullptr);
 
 
 #else

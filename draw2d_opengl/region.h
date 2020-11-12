@@ -30,7 +30,7 @@ namespace draw2d_opengl
       //bool EqualRgn(const ::draw2d::region* pRgn) const;
       i32 OffsetRgn(i32 x, i32 y);
       //i32 OffsetRgn(const ::point & point);
-      bool get_bounding_box(RECT * prect) const;
+      bool get_bounding_box(RECT32 * prect) const;
       //bool PtInRegion(i32 x, i32 y) const;
       bool contains(const ::point & point) const;
       //bool RectInRegion(const ::rect & rect) const;

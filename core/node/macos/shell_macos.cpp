@@ -33,7 +33,7 @@ namespace macos
    }
 
 
-   i32 shell::get_image_by_extension(image_key & key, COLORREF crBk)
+   i32 shell::get_image_by_extension(image_key & key, color32_t crBk)
    {
 
       return 0x80000000;
@@ -42,7 +42,7 @@ namespace macos
 
 
 
-   i32 shell::get_foo_image(image_key imagekey, COLORREF crBk)
+   i32 shell::get_foo_image(image_key imagekey, color32_t crBk)
    {
 
       i32 iImage = -1;
@@ -86,7 +86,7 @@ namespace macos
    }
 
 
-   i32 shell::get_image(image_key imagekey, const unichar * lpcszExtra, COLORREF crBk)
+   i32 shell::get_image(image_key imagekey, const unichar * lpcszExtra, color32_t crBk)
    {
 
       i32 iImage = 0x80000000;

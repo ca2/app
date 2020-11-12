@@ -5,19 +5,19 @@
 #include "aura/message.h"
 
 
-UINT g_puiaMessageTrace[] =
+::u32 g_puiaMessageTrace[] =
 {
    e_message_move,
    e_message_size,
    e_message_activate,
    e_message_set_focus,
    e_message_kill_focus,
-   (UINT)-1
+   (::u32)-1
 };
 
-CLASS_DECL_APEX string get_message_text(UINT uMessage, bool bWithNumbers);
+CLASS_DECL_APEX string get_message_text(::u32 uMessage, bool bWithNumbers);
 
-bool __windows_message_bypass(HWND oswindow, UINT message, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
+bool __windows_message_bypass(HWND oswindow, ::u32 message, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
 {
 
    if (message == WM_NCCREATE)
@@ -70,13 +70,13 @@ bool __windows_message_bypass(HWND oswindow, UINT message, WPARAM wparam, LPARAM
    return false;
 
 }
-extern UINT g_puiaMessageMouseMove[];
-extern UINT g_puiaMessageWindowDeactivating[];
-extern UINT g_puiaMessageWindowActivating[];
-extern UINT f[];
-extern UINT g_puiaMessageWindowCreated[];
-extern UINT g_puiaMessageInputLanguageChange[];
-extern UINT g_puiaMessageTrace[];
+extern ::u32 g_puiaMessageMouseMove[];
+extern ::u32 g_puiaMessageWindowDeactivating[];
+extern ::u32 g_puiaMessageWindowActivating[];
+extern ::u32 f[];
+extern ::u32 g_puiaMessageWindowCreated[];
+extern ::u32 g_puiaMessageInputLanguageChange[];
+extern ::u32 g_puiaMessageTrace[];
 
 #define STATE_WINDOW_CREATION 0
 #define STATE_WINDOW_CREATED 1
@@ -84,7 +84,7 @@ extern UINT g_puiaMessageTrace[];
 #define STATE_WINDOW_DEACTIVATING 3
 #define STATE_WINDOW_ACTIVATING 4
 
-bool __windows_message_bypass(HWND oswindow, UINT message, WPARAM wparam, LPARAM lparam, LRESULT & lresult, UINT * puia)
+bool __windows_message_bypass(HWND oswindow, ::u32 message, WPARAM wparam, LPARAM lparam, LRESULT & lresult, ::u32 * puia)
 {
 
    for (int i = 0; puia[i] != -1; i++)
@@ -116,7 +116,7 @@ namespace windows
 {
 
 
-   bool interaction_impl::__windows_message_bypass(HWND oswindow, UINT message, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
+   bool interaction_impl::__windows_message_bypass(HWND oswindow, ::u32 message, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
    {
 
       //if (message == e_message_mouse_move)

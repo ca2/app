@@ -68,7 +68,7 @@ CLASS_DECL_AURA void os_term_windowing()
 //
 //   }
 //
-//   DWORD dwThread = GetWindowThreadProcessId(hwndForeground, nullptr);
+//   ::u32 dwThread = GetWindowThreadProcessId(hwndForeground, nullptr);
 //
 //   xxf_zerop(pinfo);
 //
@@ -77,7 +77,7 @@ CLASS_DECL_AURA void os_term_windowing()
 //   if (!::GetGUIThreadInfo(dwThread, pinfo))
 //   {
 //
-//      DWORD dwLastError = ::GetLastError();
+//      ::u32 dwLastError = ::GetLastError();
 //
 //      return false;
 //
@@ -269,7 +269,7 @@ BOOL CALLBACK top_level_enum::EnumWindowsProc(oswindow oswindow, LPARAM lParam)
 }
 
 
-int_bool point_is_window_origin(POINT ptHitTest, oswindow oswindowExclude, int iMargin)
+int_bool point_is_window_origin(POINT32 ptHitTest, oswindow oswindowExclude, int iMargin)
 {
 
    auto poswindowa = get_top_level_windows();
@@ -479,7 +479,7 @@ void defer_term_ui()
 
 
 
-int_bool get_cursor_pos(LPPOINT ppoint)
+int_bool get_cursor_pos(POINT32 * ppoint)
 {
 
    return ::GetCursorPos(ppoint);

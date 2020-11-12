@@ -44,7 +44,7 @@
 //      inline void set_cxy(::sizef sz);
 //      inline void set_cxy(::sizef sz);
 //      inline void set_pos_dim(float x, float y, float cx, float cy);
-//      inline RECT * get(RECT * prect) const;
+//      inline RECT32 * get(RECT32 * prect) const;
 //
 //      inline float get_cx() const;
 //      inline float get_cy() const;
@@ -147,7 +147,7 @@
 //      set_xy((float) ::pointf.x, (float) ::pointf.y);
 //   }
 //
-//   inline RECT * ::rectf::get(RECT * prect) const
+//   inline RECT32 * ::rectf::get(RECT32 * prect) const
 //
 //   {
 //      prect->left      = (i32) left;

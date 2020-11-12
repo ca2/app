@@ -61,8 +61,8 @@ namespace user
 
       ::file::path                  m_strMatter;                 // IDR_ for frame/menu/accel as well
       //string                m_strServerMatter;           // IDR_ for OLE inplace frame/menu/accel
-      //UINT                  m_nIDEmbeddingResource;        // IDR_ for OLE open frame/menu/accel
-      //UINT                  m_nIDContainerResource;        // IDR_ for container frame/menu/accel
+      //::u32                  m_nIDEmbeddingResource;        // IDR_ for OLE open frame/menu/accel
+      //::u32                  m_nIDContainerResource;        // IDR_ for container frame/menu/accel
 
       ::type               m_typeDocument;         // class for creating new documents
       ::type               m_typeFrame;       // class for creating new frames

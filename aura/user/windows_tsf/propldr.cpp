@@ -31,7 +31,7 @@ CTSFPersistentPropertyLoader::CTSFPersistentPropertyLoader(TF_PERSISTENT_PROPERT
 {
     m_ObjRefCount = 1;
     m_hdr = *pHdr;
-    m_pb = (BYTE *)GlobalAlloc(GPTR, pHdr->cb);
+    m_pb = (byte *)GlobalAlloc(GPTR, pHdr->cb);
     if(m_pb)
     {
         pStream->Read(m_pb, pHdr->cb, NULL);

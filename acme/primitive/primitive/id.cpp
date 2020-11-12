@@ -3,11 +3,11 @@
 
 
 //
-//id::id(uptr ui)
+//id::id(uptr u)
 //{
 //   m_all ={};
 //
-//   operator = ((iptr)ui);
+//   operator = ((iptr)u);
 //}
 //
 //#if defined(_LP64) || defined(_AMD64_)
@@ -18,11 +18,11 @@
 //   operator = (i);
 //}
 //
-//id::id(u32 ui)
+//id::id(u32 u)
 //{
 //   m_all ={};
 //
-//   operator = ((iptr)ui);
+//   operator = ((iptr)u);
 //}
 //#endif
 

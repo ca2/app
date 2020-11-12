@@ -792,7 +792,7 @@ namespace aura
    }
 
 
-   bool application::CreateFileFromRawResource(UINT nID, const char * pcszType, const char * pcszFilePath)
+   bool application::CreateFileFromRawResource(::u32 nID, const char * pcszType, const char * pcszFilePath)
    {
 
       UNREFERENCED_PARAMETER(nID);
@@ -838,7 +838,7 @@ namespace aura
    }
 
 
-   bool application::GetResourceData(UINT nID, const char * pcszType, memory &storage)
+   bool application::GetResourceData(::u32 nID, const char * pcszType, memory &storage)
 
    {
 
@@ -854,7 +854,7 @@ namespace aura
 
 #ifdef WINDOWS_DESKTOP
 
-   HENHMETAFILE application::LoadEnhMetaFile(UINT uiResource)
+   HENHMETAFILE application::LoadEnhMetaFile(::u32 uResource)
    {
 
       memory storage;
@@ -866,7 +866,7 @@ namespace aura
 
       }
 
-      return SetEnhMetaFileBits((UINT)storage.get_size(), storage.get_data());
+      return SetEnhMetaFileBits((::u32)storage.get_size(), storage.get_data());
 
    }
 
@@ -895,7 +895,7 @@ namespace aura
    }
 
 
-   bool application::on_idle(LONG lCount)
+   bool application::on_idle(::i32 lCount)
    {
 
       return false;
@@ -932,7 +932,7 @@ namespace aura
       }
 
       // handle all the rest
-      //linux UINT nIDP = __IDP_INTERNAL_FAILURE;   // matter message string
+      //linux ::u32 nIDP = __IDP_INTERNAL_FAILURE;   // matter message string
       const char * nIDP = "Internal Failure";
       pbase->m_lresult = 0;        // sensible default
       if (pbase->m_id == WM_COMMAND)
@@ -1025,7 +1025,7 @@ namespace aura
    void application::memory_to_hex(string & strHex, memory & memory)
    {
    ::count count = memory.get_size();
-   LPSTR psz = strHex.get_string_buffer(count * 2);
+   char * psz = strHex.get_string_buffer(count * 2);
 
    for(index i = 0; i < count; i++)
    {
@@ -1233,9 +1233,9 @@ namespace aura
 #ifdef WINDOWS_DESKTOP
 
       HKEY hkPolicy = nullptr;
-      DWORD dwValue = 0;
-      DWORD dwDataLen = sizeof(dwValue);
-      DWORD dwType = 0;
+      ::u32 dwValue = 0;
+      ::u32 dwDataLen = sizeof(dwValue);
+      ::u32 dwType = 0;
 
       //// clear current policy settings.
       //m_dwPolicies = ___SYSPOLICY_NOTINITIALIZED;
@@ -1301,7 +1301,7 @@ namespace aura
       //                  pData->szPolicyName,
       //                  nullptr,
       //                  &dwType,
-      //                  (BYTE*)&dwValue,
+      //                  (byte*)&dwValue,
       //                  &dwDataLen))
       //         {
       //            if (dwType == REG_DWORD)
@@ -1351,7 +1351,7 @@ namespace aura
 
 
 
-   /*   void application::LoadStdProfileSettings(UINT nMaxMRU)
+   /*   void application::LoadStdProfileSettings(::u32 nMaxMRU)
    {
    UNREFERENCED_PARAMETER(nMaxMRU);
    ASSERT_VALID(this);
@@ -1512,7 +1512,7 @@ namespace aura
 //   // WinHelp Helper
 //
 //
-//   void application::WinHelp(uptr dwData, UINT nCmd)
+//   void application::WinHelp(uptr dwData, ::u32 nCmd)
 //   {
 //      UNREFERENCED_PARAMETER(dwData);
 //      UNREFERENCED_PARAMETER(nCmd);
@@ -1527,7 +1527,7 @@ namespace aura
 //   /////////////////////////////////////////////////////////////////////////////
 //   // HtmlHelp Helper
 //
-//   void application::HtmlHelp(uptr dwData, UINT nCmd)
+//   void application::HtmlHelp(uptr dwData, ::u32 nCmd)
 //   {
 //
 //      UNREFERENCED_PARAMETER(dwData);
@@ -1542,7 +1542,7 @@ namespace aura
 //   }
 //
 //
-//   void application::WinHelpInternal(uptr dwData, UINT nCmd)
+//   void application::WinHelpInternal(uptr dwData, ::u32 nCmd)
 //   {
 //      UNREFERENCED_PARAMETER(dwData);
 //      UNREFERENCED_PARAMETER(nCmd);
@@ -1666,14 +1666,14 @@ namespace aura
 
 
 
-   /*void ::aura::FormatString1(string & rString, UINT nIDS, const char * psz1)
+   /*void ::aura::FormatString1(string & rString, ::u32 nIDS, const char * psz1)
 
    {
    __format_strings(rString, nIDS, &psz1, 1);
 
    }
 
-   void ::aura::FormatString2(string & rString, UINT nIDS, const char * psz1,
+   void ::aura::FormatString2(string & rString, ::u32 nIDS, const char * psz1,
 
    const char * psz2)
 
@@ -1846,7 +1846,7 @@ namespace aura
 
       ASSERT(m_puiMain1 != nullptr);
 
-      m_puiMain1->m_puiThis->send_message(WM_CLOSE);
+      m_puiMain1->m_puiThis->send_message(e_message_close);
 
    }
 
@@ -1940,7 +1940,7 @@ namespace aura
    }
 
 
-   //i32 application::DoMessageBox(const char * pszPrompt, UINT nType, UINT nIDPrompt)
+   //i32 application::DoMessageBox(const char * pszPrompt, ::u32 nType, ::u32 nIDPrompt)
    //{
 
    //   UNREFERENCED_PARAMETER(nIDPrompt);
@@ -1953,7 +1953,7 @@ namespace aura
 
 //#ifndef VARIADIC_TEMPLATE
 //
-//   i32 application::message_box(::user::primitive * pwndOwner, UINT fuStyle, const char * pszFormat, ...)
+//   i32 application::message_box(::user::primitive * pwndOwner, ::u32 fuStyle, const char * pszFormat, ...)
 //   {
 //      va_list va;
 //      va_start(va, pszFormat);
@@ -1967,7 +1967,7 @@ namespace aura
 //
 //
    // Helper for message boxes; can work when no application can be found
-   //i32 application::ShowAppMessageBox(__pointer(application)pApp, const char * pszPrompt, UINT nType, UINT nIDPrompt)
+   //i32 application::ShowAppMessageBox(__pointer(application)pApp, const char * pszPrompt, ::u32 nType, ::u32 nIDPrompt)
 
    //{
 
@@ -1976,7 +1976,7 @@ namespace aura
    //}
 
 
-   /* i32 ::aura::message_box(const char * pszText, UINT nType, UINT nIDHelp)
+   /* i32 ::aura::message_box(const char * pszText, ::u32 nType, ::u32 nIDHelp)
 
    {
    application* papp = &System;
@@ -1993,7 +1993,7 @@ namespace aura
    }
    */
 
-   /*i32 System.message_box(UINT nIDPrompt, UINT nType, UINT nIDHelp)
+   /*i32 System.message_box(::u32 nIDPrompt, ::u32 nType, ::u32 nIDHelp)
    {
    string string;
    if (!string.load_string(nIDPrompt))
@@ -2002,7 +2002,7 @@ namespace aura
    nIDPrompt);
    ASSERT(FALSE);
    }
-   if (nIDHelp == (UINT)-1)
+   if (nIDHelp == (::u32)-1)
    nIDHelp = nIDPrompt;
    return System.message_box(string, nType, nIDHelp);
    }*/
@@ -2066,7 +2066,7 @@ namespace aura
       ////__enable_memory_tracking(bEnable);
    }
 
-   void application::SetRegistryKey(UINT nIDRegistryKey)
+   void application::SetRegistryKey(::u32 nIDRegistryKey)
    {
       //UNREFERENCED_PARAMETER(nIDRegistryKey);
       //ASSERT(m_pszRegistryKey == nullptr);
@@ -2093,7 +2093,7 @@ namespace aura
       //if(RegOpenKeyEx(HKEY_CURRENT_USER,"software",0,KEY_WRITE | KEY_READ,
       //   &hSoftKey) == ERROR_SUCCESS)
       //{
-      //   DWORD dw;
+      //   ::u32 dw;
       //   if(RegCreateKeyEx(hSoftKey,m_pszRegistryKey,0,REG_NONE,
       //      REG_OPTION_NON_VOLATILE,KEY_WRITE | KEY_READ,nullptr,
       //      &hCompanyKey,&dw) == ERROR_SUCCESS)
@@ -2128,7 +2128,7 @@ namespace aura
       if (hAppKey == nullptr)
          return nullptr;
 
-      DWORD dw;
+      ::u32 dw;
       RegCreateKeyExW(hAppKey,wstring( pszSection), 0, REG_NONE, REG_OPTION_NON_VOLATILE, KEY_WRITE | KEY_READ, nullptr, &hSectionKey, &dw);
 
       RegCloseKey(hAppKey);
@@ -2137,7 +2137,7 @@ namespace aura
 
 #endif
 
-   /*   UINT application::GetProfileInt(const char * pszSection, const char * pszEntry,
+   /*   ::u32 application::GetProfileInt(const char * pszSection, const char * pszEntry,
 
    i32 nDefault)
    {
@@ -2154,7 +2154,7 @@ namespace aura
    u32 dwValue;
    u32 dwType;
    u32 dwCount = sizeof(u32);
-   LONG lResult = RegQueryValueEx(hSecKey, (LPTSTR)pszEntry, nullptr, &dwType,
+   ::i32 lResult = RegQueryValueEx(hSecKey, (LPTSTR)pszEntry, nullptr, &dwType,
 
    (byte *)&dwValue, &dwCount);
    RegCloseKey(hSecKey);
@@ -2162,7 +2162,7 @@ namespace aura
    {
    ASSERT(dwType == REG_DWORD);
    ASSERT(dwCount == sizeof(dwValue));
-   return (UINT)dwValue;
+   return (::u32)dwValue;
    }
    return nDefault;
    }
@@ -2194,7 +2194,7 @@ namespace aura
    string strValue;
    u32 dwType=REG_NONE;
    u32 dwCount=0;
-   LONG lResult = RegQueryValueEx(hSecKey, (LPTSTR)pszEntry, nullptr, &dwType,
+   ::i32 lResult = RegQueryValueEx(hSecKey, (LPTSTR)pszEntry, nullptr, &dwType,
 
    nullptr, &dwCount);
    if (lResult == ERROR_SUCCESS)
@@ -2234,7 +2234,7 @@ namespace aura
 
    bool application::GetProfileBinary(const char * pszSection, const char * pszEntry,
 
-   BYTE** ppData, UINT* pBytes)
+   byte** ppData, ::u32* pBytes)
    {
    ASSERT(pszSection != nullptr);
 
@@ -2259,13 +2259,13 @@ namespace aura
 
    u32 dwType=0;
    u32 dwCount=0;
-   LONG lResult = RegQueryValueEx(hSecKey, (LPTSTR)pszEntry, nullptr, &dwType, nullptr, &dwCount);
+   ::i32 lResult = RegQueryValueEx(hSecKey, (LPTSTR)pszEntry, nullptr, &dwType, nullptr, &dwCount);
 
    *pBytes = dwCount;
    if (lResult == ERROR_SUCCESS)
    {
    ASSERT(dwType == REG_BINARY);
-   *ppData = new BYTE[*pBytes];
+   *ppData = new byte[*pBytes];
    lResult = RegQueryValueEx(hSecKey, (LPTSTR)pszEntry, nullptr, &dwType,
 
    *ppData, &dwCount);
@@ -2292,11 +2292,11 @@ namespace aura
    return FALSE;
    ASSERT(str.get_length()%2 == 0);
    iptr nLen = str.get_length();
-   *pBytes = UINT(nLen)/2;
-   *ppData = new BYTE[*pBytes];
+   *pBytes = ::u32(nLen)/2;
+   *ppData = new byte[*pBytes];
    for (i32 i=0;i<nLen;i+=2)
    {
-   (*ppData)[i/2] = (BYTE)
+   (*ppData)[i/2] = (byte)
    (((str[i+1] - 'A') << 4) + (str[i] - 'A'));
    }
    return TRUE;
@@ -2318,7 +2318,7 @@ namespace aura
 
    if (hSecKey == nullptr)
    return FALSE;
-   LONG lResult = RegSetValueEx(hSecKey, pszEntry, nullptr, REG_DWORD,
+   ::i32 lResult = RegSetValueEx(hSecKey, pszEntry, nullptr, REG_DWORD,
 
    (byte *)&nValue, sizeof(nValue));
    RegCloseKey(hSecKey);
@@ -2345,7 +2345,7 @@ namespace aura
 
    if (m_pszRegistryKey != nullptr)
    {
-   LONG lResult;
+   ::i32 lResult;
    if (pszEntry == nullptr) //delete whole department
 
    {
@@ -2394,13 +2394,13 @@ namespace aura
 
    bool application::WriteProfileBinary(const char * pszSection, const char * pszEntry,
 
-   byte * pData, UINT nBytes)
+   byte * pData, ::u32 nBytes)
    {
    ASSERT(pszSection != nullptr);
 
    if (m_pszRegistryKey != nullptr)
    {
-   LONG lResult;
+   ::i32 lResult;
    HKEY hSecKey = GetSectionKey(pszSection);
 
    if (hSecKey == nullptr)
@@ -2415,7 +2415,7 @@ namespace aura
    // convert to string and write out
    LPTSTR psz = new char[nBytes*2+1];
 
-   UINT i;
+   ::u32 i;
    for (i = 0; i < nBytes; i++)
    {
    psz[i*2] = (char)((pData[i] & 0x0F) + 'A'); //low nibble
@@ -2641,7 +2641,7 @@ namespace aura
       dumpcontext << "\nm_hDevNames = " << (void *)m_hDevNames;
 #endif
 
-      dumpcontext << "\nm_dwPromptContext = " << (UINT)m_dwPromptContext;
+      dumpcontext << "\nm_dwPromptContext = " << (::u32)m_dwPromptContext;
       //      dumpcontext << "\nm_eHelpType = " << m_eHelpType;
 
 
@@ -3340,7 +3340,7 @@ m_tickHeartBeat.Now();
 
 
 
-   file_pointer application::friendly_get_file(var varFile, UINT nOpenFlags)
+   file_pointer application::friendly_get_file(var varFile, ::u32 nOpenFlags)
    {
 
       try
@@ -3910,7 +3910,7 @@ m_tickHeartBeat.Now();
       case MSGF_DIALOGBOX:    // handles message boxes as well.
          //pMainWnd = __get_main_window();
          if (code == MSGF_DIALOGBOX && m_puiActive != nullptr &&
-            pbase->m_id >= WM_KEYFIRST && pbase->m_id <= WM_KEYLAST)
+            pbase->m_id >= e_message_key_first && pbase->m_id <= e_message_key_last)
          {
          }
          break;
@@ -4001,7 +4001,7 @@ m_tickHeartBeat.Now();
    //}
 
 
-   bool application::on_thread_on_idle(::thread * pthread, LONG lCount)
+   bool application::on_thread_on_idle(::thread * pthread, ::i32 lCount)
    {
 
       if (lCount <= 0)

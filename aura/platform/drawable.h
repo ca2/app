@@ -59,8 +59,8 @@ namespace aura
 
 
 
-   //   //virtual bool _get_client_rect(RECT * prect) = 0;
-   //   //virtual bool _get_window_rect(RECT * prect) = 0;
+   //   //virtual bool _get_client_rect(RECT32 * prect) = 0;
+   //   //virtual bool _get_window_rect(RECT32 * prect) = 0;
    //   
    //   //virtual ::point _client_parent_top_left() = 0;
    //   //virtual ::point _client_screen_top_left() = 0;

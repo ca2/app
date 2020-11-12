@@ -177,7 +177,7 @@ namespace acme
       virtual ::draw2d::cursor * get_default_cursor() override;
 
       virtual ::count   get_monitor_count() override;
-      virtual bool      get_monitor_rect(index iMonitor,RECT * prect) override;
+      virtual bool      get_monitor_rect(index iMonitor,RECT32 * prect) override;
 
 
       virtual void on_user_logon(::account::user * puser) override;

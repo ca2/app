@@ -48,7 +48,7 @@ namespace acme
 
       ATOM                                   m_atomApp;
       ATOM                                   m_atomSystemTopic;   // for DDE open
-      UINT                                   m_nNumPreviewPages; // number of default printed pages
+      ::u32                                   m_nNumPreviewPages; // number of default printed pages
 
       string                                 m_strId;
 
@@ -93,7 +93,7 @@ namespace acme
 
       virtual u32 guess_code_page(const string& str);
 
-      virtual i32 _sync_message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, UINT fuStyle) override;
+      virtual i32 _sync_message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, ::u32 fuStyle) override;
 
       virtual bool is_serviceable() const override;
 
@@ -142,14 +142,14 @@ namespace acme
       virtual void on_request(::create * pcreate) override;
 
       // overrides for implementation
-      virtual bool on_idle(LONG lCount); // return TRUE if more idle processing
+      virtual bool on_idle(::i32 lCount); // return TRUE if more idle processing
       virtual void process_window_procedure_exception(::exception::exception * pexception, ::message::message * pmessage) override;
 
       void EnableModelessEx(bool bEnable);
 #ifdef WINDOWS
-      HENHMETAFILE LoadEnhMetaFile(UINT uiResource);
+      HENHMETAFILE LoadEnhMetaFile(::u32 uResource);
 #endif
-      bool GetResourceData(UINT nID,const char * lcszType,memory & storage);
+      bool GetResourceData(::u32 nID,const char * lcszType,memory & storage);
 
 #ifdef WINDOWS
       virtual bool OnMessageWindowMessage(LPMESSAGE pmsg);
@@ -158,7 +158,7 @@ namespace acme
       virtual bool OnX11WindowMessage(void * pev);
 #endif
 
-      bool CreateFileFromRawResource(UINT nID,const char * lcszType,const char * pcszFilePath);
+      bool CreateFileFromRawResource(::u32 nID,const char * lcszType,const char * pcszFilePath);
 
       virtual LRESULT GetPaintMsgProc(i32 nCode,WPARAM wParam,LPARAM lParam);
 
@@ -174,8 +174,8 @@ namespace acme
       void EnableHtmlHelp();
 
 
-      //virtual i32 sync_message_box_timeout(::user::primitive * puiOwner,var var, const char * pszTitle, ::duration durationTimeout,UINT fuStyle = MB_OK) override;
-      //virtual i32 sync_message_box(::user::primitive * puiOwner,const char * pszMessage, const char * pszTitle, UINT fuStyle = MB_OK) override;
+      //virtual i32 sync_message_box_timeout(::user::primitive * puiOwner,var var, const char * pszTitle, ::duration durationTimeout,::u32 fuStyle = MB_OK) override;
+      //virtual i32 sync_message_box(::user::primitive * puiOwner,const char * pszMessage, const char * pszTitle, ::u32 fuStyle = MB_OK) override;
       
 
       //bool on_exclusive_instance_conflict(bool & bHandled, EExclusiveInstance eexclusive, string strId) override;
@@ -203,7 +203,7 @@ namespace acme
       // profile member functions; prevents writing to an INI spfile->
       void SetRegistryKey(const char * pszRegistryKey);
 
-      void SetRegistryKey(UINT nIDRegistryKey);
+      void SetRegistryKey(::u32 nIDRegistryKey);
 
 
       void RegisterShellFileTypes(bool bCompat = FALSE);
@@ -243,7 +243,7 @@ namespace acme
       virtual void close(::acme::e_end eend) override; // close documents before exiting
 
       // Advanced: to override message boxes and other hooks
-      //virtual i32 DoMessageBox(const char * pszPrompt,UINT nType,UINT nIDPrompt);
+      //virtual i32 DoMessageBox(const char * pszPrompt,::u32 nType,::u32 nIDPrompt);
 
 
       // Advanced: process async DDE request
@@ -252,9 +252,9 @@ namespace acme
 
 //#ifdef WINDOWS_DESKTOP
 //      // Advanced: Help support
-//      virtual void WinHelp(uptr dwData,UINT nCmd = HELP_CONTEXT);
-//      virtual void HtmlHelp(uptr dwData,UINT nCmd = 0x000F);
-//      virtual void WinHelpInternal(uptr dwData,UINT nCmd = HELP_CONTEXT);
+//      virtual void WinHelp(uptr dwData,::u32 nCmd = HELP_CONTEXT);
+//      virtual void HtmlHelp(uptr dwData,::u32 nCmd = 0x000F);
+//      virtual void WinHelpInternal(uptr dwData,::u32 nCmd = HELP_CONTEXT);
 //#endif
 
       // Command Handlers
@@ -292,7 +292,7 @@ namespace acme
 
 
       // Helper for message boxes; can work when no application can be found
-      //static i32 ShowAppMessageBox(__pointer(application)pApp,const char * pszPrompt,UINT nType,UINT nIDPrompt);
+      //static i32 ShowAppMessageBox(__pointer(application)pApp,const char * pszPrompt,::u32 nType,::u32 nIDPrompt);
 
       static void DoEnableModeless(bool bEnable); // to disable OLE in-place dialogs
 
@@ -440,10 +440,10 @@ namespace acme
 
       /*
       virtual ::count get_monitor_count();
-      virtual bool  get_monitor_rect(index i, RECT * prect);
+      virtual bool  get_monitor_rect(index i, RECT32 * prect);
 
       virtual ::count get_desk_monitor_count();
-      virtual bool  get_desk_monitor_rect(index i, RECT * prect);
+      virtual bool  get_desk_monitor_rect(index i, RECT32 * prect);
 
       */
 
@@ -507,7 +507,7 @@ namespace acme
       }
 
       // get a file and if there are exceptions, should show end user friendly messages
-      virtual file_pointer friendly_get_file(var varFile,UINT nOpenFlags);
+      virtual file_pointer friendly_get_file(var varFile,::u32 nOpenFlags);
 
 
       virtual void data_on_after_change(::message::message * pmessage);
@@ -584,7 +584,7 @@ namespace acme
 
       //virtual __pointer(::user::user) create_user();
 
-      virtual bool on_thread_on_idle(::thread* pthread, LONG lCount) override;
+      virtual bool on_thread_on_idle(::thread* pthread, ::i32 lCount) override;
 
 
 
@@ -627,7 +627,7 @@ namespace acme
 } // namespace acme
 
 
-CLASS_DECL_ACME UINT c_cdecl application_thread_procedure(LPVOID pvoid);
+CLASS_DECL_ACME ::u32 c_cdecl application_thread_procedure(LPVOID pvoid);
 
 typedef __pointer(::acme::application) (*LPFN_instantiate_application)(__pointer(::acme::application) pappParent, const char * pszId);
 

@@ -162,7 +162,7 @@ namespace user
 
       //::rect rect;
 
-      //COLORREF cr = ARGB(190, 92, 92, 80);
+      //color32_t cr = ARGB(190, 92, 92, 80);
 
       //for(i = 0; i < get_pane_count(); i++)
       //{

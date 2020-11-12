@@ -57,7 +57,7 @@ namespace experience
 
       }
 
-      COLORREF crText;
+      color32_t crText;
 
       pgraphics->set_smooth_mode(::draw2d::smooth_mode_high);
 
@@ -136,12 +136,12 @@ namespace experience
       {
 
          m_brush->create_solid(::is_set(pgraphics->get_current_pen())
-                               ? (COLORREF) pgraphics->get_current_pen()->m_color : ARGB(255, 255, 255, 255));
+                               ? (color32_t) pgraphics->get_current_pen()->m_color : ARGB(255, 255, 255, 255));
 
          pgraphics->set(m_brush);
 
          m_pen->create_solid(1.0, ::is_set(pgraphics->get_current_pen())
-                             ? (COLORREF) pgraphics->get_current_pen()->m_color : ARGB(255, 255, 255, 255));
+                             ? (color32_t) pgraphics->get_current_pen()->m_color : ARGB(255, 255, 255, 255));
 
          pgraphics->set(m_pen);
 

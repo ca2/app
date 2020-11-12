@@ -29,7 +29,7 @@ void plex::FreeDataChain()     // free this one and links
       plex* point = this;
       while (point != nullptr)
       {
-         BYTE* bytes = (BYTE*) point;
+         byte* bytes = (byte*) point;
          plex* pNextLocal = point->pNext;
          memory_free(bytes);
          //pPrevious = point;

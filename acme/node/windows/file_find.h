@@ -48,7 +48,7 @@ namespace windows
       virtual bool GetLastAccessTime(::datetime::time& refTime) const;
       virtual bool GetCreationTime(::datetime::time& refTime) const;
 
-      bool MatchesMask(DWORD dwMask) const;
+      bool MatchesMask(::u32 dwMask) const;
 
       virtual bool IsDots() const;
       // these aren't virtual because they all use MatchesMask(), which is
@@ -63,7 +63,7 @@ namespace windows
 
       // Operations
       void close();
-      virtual bool find_file(const char * pstrName = nullptr, DWORD dwUnused = 0);
+      virtual bool find_file(const char * pstrName = nullptr, ::u32 dwUnused = 0);
       virtual bool find_next_file();
 
       virtual void CloseContext();
@@ -128,7 +128,7 @@ namespace windows
 
    }
 
-   inline bool file_find::MatchesMask(DWORD dwMask) const
+   inline bool file_find::MatchesMask(::u32 dwMask) const
    {
 
 

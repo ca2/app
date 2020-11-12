@@ -85,7 +85,7 @@ public:
 
 
    // get a file and if there are exceptions, should show end user friendly messages
-   virtual file_pointer friendly_get_file(var varFile, UINT nOpenFlags);
+   virtual file_pointer friendly_get_file(var varFile, ::u32 nOpenFlags);
 
 
    virtual bool os_resolve_alias(::file::path & path, const char * psz, bool bNoUI = false, bool bNoMount = false);

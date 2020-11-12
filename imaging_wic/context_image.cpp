@@ -83,7 +83,7 @@ namespace imaging_wic
 
       bool bOk = true;
 
-      main_sync([&]()
+      System.main_user_sync(__procedure([&]()
          {
 
             auto dataPackage = ::Windows::ApplicationModel::DataTransfer::Clipboard::GetContent();
@@ -173,7 +173,7 @@ namespace imaging_wic
                pimage->width(),
                pimage->height(),
                pimage->scan_size(),
-               (COLORREF*)&m.get_data()[_->bmiHeader.biSize],
+               (color32_t*)&m.get_data()[_->bmiHeader.biSize],
                _->bmiHeader.biSizeImage / _->bmiHeader.biHeight);
 
 
@@ -191,7 +191,7 @@ namespace imaging_wic
 
             //}
 
-         });
+         }));
 
       return bOk;
 
@@ -202,28 +202,11 @@ namespace imaging_wic
 
       bool bOk = false;
 
-      main_sync([&bOk]()
+      System.main_user_sync(__procedure([&bOk]()
          {
 
-            auto dataPackage = ::Windows::ApplicationModel::DataTransfer::Clipboard::GetContent();
 
-            if (dataPackage == nullptr)
-            {
-
-               return;
-
-            }
-
-            if (dataPackage->Contains(::Windows::ApplicationModel::DataTransfer::StandardDataFormats::Bitmap))
-            {
-
-               bOk = true;
-
-               return;
-
-            }
-
-         });
+         }));
 
       return bOk;
 

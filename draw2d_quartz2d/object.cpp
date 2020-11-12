@@ -42,7 +42,7 @@ namespace draw2d_quartz2d
    }
    
    
-   UINT object::GetObjectType() const
+   ::u32 object::GetObjectType() const
    {
    
       return 0;

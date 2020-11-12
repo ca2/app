@@ -33,11 +33,11 @@
 #define OS64BIT
 #endif
 
-#if !defined(_MSC_VER) && !defined(__int64)
+#if !defined(_MSC_VER) && !defined(::i64)
 # if defined(OS64BIT) && !defined(__MINGW64__)
-#   define __int64 long
+#   define ::i64 long
 # else
-#   define __int64 long long
+#   define ::i64 long long
 # endif
 #endif
 
@@ -107,26 +107,26 @@ typedef u32 __msvcrt_ulong;
 /*
 #ifndef _INTPTR_T_DEFINED
 #ifdef  OS64BIT
-typedef __int64 intptr_t;
+typedef ::i64 intptr_t;
 #else
 typedef i32 intptr_t;
 #endif
 #define _INTPTR_T_DEFINED
 #endif
 
-#ifndef _UINTPTR_T_DEFINED
+#ifndef _::u32PTR_T_DEFINED
 #ifdef  OS64BIT
-typedef unsigned __int64 uintptr_t;
+typedef ::u64 ::u32ptr_t;
 #else
-typedef u32 uintptr_t;
+typedef u32 ::u32ptr_t;
 #endif
-#define _UINTPTR_T_DEFINED
+#define _::u32PTR_T_DEFINED
 #endif
  */
 
 #ifndef _PTRDIFF_T_DEFINED
 #ifdef OS64BIT
-typedef __int64 ptrdiff_t;
+typedef ::i64 ptrdiff_t;
 #else
 typedef i32 ptrdiff_t;
 #endif
@@ -136,7 +136,7 @@ typedef i32 ptrdiff_t;
 /*
 #ifndef _SIZE_T_DEFINED
 #ifdef OS64BIT
-typedef unsigned __int64 size_t;
+typedef ::u64 size_t;
 #else
 typedef u32 size_t;
 #endif
@@ -150,7 +150,7 @@ typedef __msvcrt_long __time32_t;
 #endif
 
 #ifndef _TIME64_T_DEFINED
-typedef __int64 DECLSPEC_ALIGN(8) __time64_t;
+typedef ::i64 DECLSPEC_ALIGN(8) time_t;
 #define _TIME64_T_DEFINED
 #endif
 
@@ -167,7 +167,7 @@ typedef __int64 DECLSPEC_ALIGN(8) __time64_t;
 #ifdef _USE_32BIT_TIME_T
 typedef __time32_t time_t;
 #else
-typedef __time64_t time_t;
+typedef time_t time_t;
 #endif
 #define _TIME_T_DEFINED
 #endif

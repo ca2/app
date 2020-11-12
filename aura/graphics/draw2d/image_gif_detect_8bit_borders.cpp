@@ -9,9 +9,9 @@
 //
 //   return true;
 //
-////   COLORREF cr;
+////   color32_t cr;
 ////
-////   COLORREF crBack = 0;
+////   color32_t crBack = 0;
 ////
 ////   ::count cTransparent = 0;
 ////

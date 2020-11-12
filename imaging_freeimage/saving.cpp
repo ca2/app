@@ -41,19 +41,19 @@ namespace imaging_freeimage
 
       int iWidth;
       int iHeight;
-      COLORREF * pcolorref;
+      color32_t * pcolorref;
       int iStrideDst;
 
       iWidth = FreeImage_GetWidth(fi);
 
       iHeight = FreeImage_GetHeight(fi);
 
-      pcolorref = (COLORREF *)FreeImage_GetBits(fi);
+      pcolorref = (color32_t *)FreeImage_GetBits(fi);
 
       if (FreeImage_GetInfo(fi)->bmiHeader.biSizeImage <= 0)
       {
 
-         iStrideDst = iWidth * sizeof(COLORREF);
+         iStrideDst = iWidth * sizeof(color32_t);
 
       }
       else
@@ -63,9 +63,9 @@ namespace imaging_freeimage
 
       }
 
-      COLORREF * pdst = pcolorref;
+      color32_t * pdst = pcolorref;
 
-      const COLORREF * psrc = pimage->colorref();
+      const color32_t * psrc = pimage->colorref();
 
 #if  defined(ANDROID)
 
@@ -133,7 +133,7 @@ namespace imaging_freeimage
 
       pbDst = &((u8 *) pimage->get_data())[pimage->scan_size() * (pimage->height() - i - 1)];
 
-      pbSrc = &((u8 *) pdata)[pbi->bmiHeader.biWidth * sizeof(COLORREF) * i];
+      pbSrc = &((u8 *) pdata)[pbi->bmiHeader.biWidth * sizeof(color32_t) * i];
 
       for(int j = 0; j < pimage->width(); j++)
       {
@@ -285,8 +285,8 @@ namespace imaging_freeimage
 
       bOk = FreeImage_SaveToMemory(eformat, pfi8, pfm1, iFreeImageSave) != FALSE;
 
-      BYTE * pbData = nullptr;
-      DWORD dwSize = 0;
+      byte * pbData = nullptr;
+      ::u32 dwSize = 0;
       if (bOk)
          bOk = FreeImage_AcquireMemory(pfm1, &pbData, &dwSize) != FALSE;
       if (bOk)

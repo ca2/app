@@ -15,7 +15,7 @@ public:
 
 #ifdef WINDOWS
 
-   static DWORD WINAPI s_os_thread_proc(void* p);
+   static ::u32 WINAPI s_os_thread_proc(void* p);
 
 #else
 
@@ -30,8 +30,8 @@ public:
       ::e_priority epriority = priority_normal,
       u32 nStackSize = 0,
       u32 dwCreateFlags = 0,
-      ITHREAD* pithread = nullptr,
-      HTHREAD* phthread = nullptr);
+      ithread_t* pithread = nullptr,
+      hthread_t* phthread = nullptr);
 
 
 };

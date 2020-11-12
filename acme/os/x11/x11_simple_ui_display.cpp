@@ -347,7 +347,7 @@ void simple_ui_display::on_expose(Display * pdisplay)
 
          //GC gc = create_gc();
 
-         COLORREF crBk = get_simple_ui_color(::user::element_background);
+         color32_t crBk = get_simple_ui_color(::user::element_background);
 
 //         crBk = argb_swap_rb(crBk);
 //
@@ -359,7 +359,7 @@ void simple_ui_display::on_expose(Display * pdisplay)
 //
 //         auto gcontext = XGContextFromGC(gc);
 //
-//         COLORREF crText = get_simple_ui_color(::user::element_text);
+//         color32_t crText = get_simple_ui_color(::user::element_text);
 //
 //         crText = argb_swap_rb(crText);
 //
@@ -685,7 +685,11 @@ void simple_ui_display::on_layout(Display * pdisplay)
    for(auto & str : m_stra)
    {
 
-      XftTextExtentsUtf8(pdisplay, m_pfont, (FcChar8 *) str.c_str(), str.get_length(), &info);
+      string strMeasure;
+
+      strMeasure = "!" + str;
+
+      XftTextExtentsUtf8(pdisplay, m_pfont, (FcChar8 *) strMeasure.c_str(), strMeasure.get_length(), &info);
 
       size.cx = max(size.cx, info.width + m_iMargin * 2);
 

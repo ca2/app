@@ -42,7 +42,7 @@
 
 #define TAG CLIENT_TAG("windows.gdi")
 
-const BYTE wf_rop2_table[] =
+const byte wf_rop2_table[] =
 {
 	R2_BLACK,       /* 0 */
 	R2_NOTMERGEPEN, /* DPon */
@@ -87,19 +87,19 @@ void wf_glyph_free(wfBitmap* glyph)
 	wf_image_free(glyph);
 }
 
-BYTE* wf_glyph_convert(wfContext* wfc, int width, int height, BYTE* data)
+byte* wf_glyph_convert(wfContext* wfc, int width, int height, byte* data)
 {
 	int indexx;
 	int indexy;
-	BYTE* src;
-	BYTE* dst;
-	BYTE* cdata;
+	byte* src;
+	byte* dst;
+	byte* cdata;
 	int src_bytes_per_row;
 	int dst_bytes_per_row;
 
 	src_bytes_per_row = (width + 7) / 8;
 	dst_bytes_per_row = src_bytes_per_row + (src_bytes_per_row % 2);
-	cdata = (BYTE *) malloc(dst_bytes_per_row * height);
+	cdata = (byte *) malloc(dst_bytes_per_row * height);
 
 	src = data;
 	for (indexy = 0; indexy < height; indexy++)
@@ -118,13 +118,13 @@ BYTE* wf_glyph_convert(wfContext* wfc, int width, int height, BYTE* data)
 	return cdata;
 }
 
-//HBRUSH wf_create_brush(wfContext* wfc, rdpBrush* brush, UINT32 color, int bpp)
+//HBRUSH wf_create_brush(wfContext* wfc, rdpBrush* brush, ::u32 color, int bpp)
 //{
 //	int i;
 //	HBRUSH br;
 //	LOGBRUSH lbr;
-//	BYTE* cdata;
-//	BYTE ipattern[8];
+//	byte* cdata;
+//	byte ipattern[8];
 //	HBITMAP pattern = nullptr;
 //
 //	lbr.lbStyle = brush->style;
@@ -170,7 +170,7 @@ BYTE* wf_glyph_convert(wfContext* wfc, int width, int height, BYTE* data)
 //	return br;
 //}
 
-void wf_scale_rect(wfContext* wfc, RECT* source)
+void wf_scale_rect(wfContext* wfc, RECT32* source)
 {
 	int ww, wh, dw, dh;
 
@@ -207,7 +207,7 @@ void wf_scale_rect(wfContext* wfc, RECT* source)
 
 void wf_invalidate_region(wfContext* wfc, int x, int y, int width, int height)
 {
-	RECT rect;
+	RECT32 rect;
 
 	wfc->update_rect.left = x + wfc->offset_x;
 	wfc->update_rect.top = y + wfc->offset_y;
@@ -353,14 +353,14 @@ void wf_toggle_fullscreen(wfContext* wfc)
 //	int nWidth;
 //	int nHeight;
 //	HBITMAP dib;
-//	UINT32 index;
-//	BYTE* pSrcData;
-//	BYTE* pDstData;
-//	UINT32 SrcSize;
+//	::u32 index;
+//	byte* pSrcData;
+//	byte* pDstData;
+//	::u32 SrcSize;
 //	BOOL compressed;
-//	UINT32 SrcFormat;
-//	UINT32 bitsPerPixel;
-//	UINT32 bytesPerPixel;
+//	::u32 SrcFormat;
+//	::u32 bitsPerPixel;
+//	::u32 bytesPerPixel;
 //	BITMAP_DATA* bitmap;
 //	rdpCodecs* codecs = context->codecs;
 //	wfContext* wfc = (wfContext*) context;
@@ -391,10 +391,10 @@ void wf_toggle_fullscreen(wfContext* wfc)
 //
 //		SrcFormat = gdi_get_pixel_format(bitsPerPixel, TRUE);
 //
-//		if (wfc->bitmap_size < (UINT32) (nWidth * nHeight * 4))
+//		if (wfc->bitmap_size < (::u32) (nWidth * nHeight * 4))
 //		{
 //			wfc->bitmap_size = nWidth * nHeight * 4;
-//			wfc->bitmap_buffer = (BYTE*) _aligned_realloc(wfc->bitmap_buffer, wfc->bitmap_size, 16);
+//			wfc->bitmap_buffer = (byte*) _aligned_realloc(wfc->bitmap_buffer, wfc->bitmap_size, 16);
 //
 //			if (!wfc->bitmap_buffer)
 //				return FALSE;
@@ -495,10 +495,10 @@ void wf_gdi_palette_update(wfContext* wfc, PALETTE_UPDATE* palette)
 //	HBRUSH brush;
 //	HBRUSH org_brush;
 //	int org_bkmode;
-//	UINT32 fgcolor;
-//	UINT32 bgcolor;
-//	COLORREF org_bkcolor;
-//	COLORREF org_textcolor;
+//	::u32 fgcolor;
+//	::u32 bgcolor;
+//	color32_t org_bkcolor;
+//	color32_t org_textcolor;
 //
 //	fgcolor = freerdp_color_convert_bgr(patblt->foreColor, wfc->srcBpp, wfc->dstBpp, wfc->clrconv);
 //	bgcolor = freerdp_color_convert_bgr(patblt->backColor, wfc->srcBpp, wfc->dstBpp, wfc->clrconv);
@@ -535,9 +535,9 @@ void wf_gdi_palette_update(wfContext* wfc, PALETTE_UPDATE* palette)
 //
 //void wf_gdi_opaque_rect(wfContext* wfc, OPAQUE_RECT_ORDER* opaque_rect)
 //{
-//	RECT rect;
+//	RECT32 rect;
 //	HBRUSH brush;
-//	UINT32 brush_color;
+//	::u32 brush_color;
 //
 //	brush_color = freerdp_color_convert_var_bgr(opaque_rect->color, wfc->srcBpp, wfc->dstBpp, wfc->clrconv);
 //
@@ -556,9 +556,9 @@ void wf_gdi_palette_update(wfContext* wfc, PALETTE_UPDATE* palette)
 //void wf_gdi_multi_opaque_rect(wfContext* wfc, MULTI_OPAQUE_RECT_ORDER* multi_opaque_rect)
 //{
 //	int i;
-//	RECT rect;
+//	RECT32 rect;
 //	HBRUSH brush;
-//	UINT32 brush_color;
+//	::u32 brush_color;
 //	DELTA_RECT* rectangle;
 //
 //	brush_color = freerdp_color_convert_var_rgb(multi_opaque_rect->color, wfc->srcBpp, wfc->dstBpp, wfc->clrconv);
@@ -587,7 +587,7 @@ void wf_gdi_palette_update(wfContext* wfc, PALETTE_UPDATE* palette)
 //	HPEN pen;
 //	HPEN org_pen;
 //	int x, y, w, h;
-//	UINT32 pen_color;
+//	::u32 pen_color;
 //
 //	pen_color = freerdp_color_convert_var_bgr(line_to->penColor, wfc->srcBpp, wfc->dstBpp, wfc->clrconv);
 //
@@ -616,7 +616,7 @@ void wf_gdi_palette_update(wfContext* wfc, PALETTE_UPDATE* palette)
 //	int org_rop2;
 //	HPEN hpen;
 //	HPEN org_hpen;
-//	UINT32 pen_color;
+//	::u32 pen_color;
 //
 //	pen_color = freerdp_color_convert_var_bgr(polyline->penColor, wfc->srcBpp, wfc->dstBpp, wfc->clrconv);
 //
@@ -626,13 +626,13 @@ void wf_gdi_palette_update(wfContext* wfc, PALETTE_UPDATE* palette)
 //
 //	if (polyline->numDeltaEntries > 0)
 //	{
-//		POINT  *pts;
-//		POINT  temp;
+//		POINT32  *pts;
+//		POINT32  temp;
 //		int    numPoints;
 //		int    i;
 //
 //		numPoints = polyline->numDeltaEntries + 1;
-//		pts = (POINT*) malloc(sizeof(POINT) * numPoints);
+//		pts = (POINT32*) malloc(sizeof(POINT32) * numPoints);
 //		pts[0].x = temp.x = polyline->xStart;
 //		pts[0].y = temp.y = polyline->yStart;
 //
@@ -811,7 +811,7 @@ void wf_gdi_palette_update(wfContext* wfc, PALETTE_UPDATE* palette)
 //
 //void wf_update_canvas_diff(wfContext* wfc)
 //{
-//	RECT rc_client, rc_wnd;
+//	RECT32 rc_client, rc_wnd;
 //	int dx, dy;
 //
 //	get_client_rect(wfc->hwnd, &rc_client);

@@ -166,7 +166,7 @@ sync_result condition::wait()
 {
 #ifdef WINDOWS
 
-   SleepConditionVariableCS(&m_var, &m_sect, INFINITE);
+   SleepConditionVariableCS(&m_var, &m_sect, U32_INFINITE_TIMEOUT);
 
 #elif defined(ANDROID)
 

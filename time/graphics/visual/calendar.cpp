@@ -41,7 +41,7 @@ namespace datetime
          int32_t iYear = m_iYear;
          ::datetime::time time(iYear,iMonth,1,0,0,0);
          ::datetime::time_span timespan(1,0,0,0);
-         COLORREF crBorder;
+         color32_t crBorder;
          rect rectDay;
          int32_t iDay;
          for(iDay = 1; iDay <= 7; iDay++)
@@ -138,7 +138,7 @@ namespace datetime
       }
 
 
-      void graphics::GetRectDay(::datetime::time & time,LPRECT lprect)
+      void graphics::GetRectDay(::datetime::time & time,LPRECT32 lprect)
       {
          int32_t iWeekDay = time.GetDayOfWeek();
          ::datetime::time timeMonth(m_iYear,m_iMonth,1,0,0,0);
@@ -146,7 +146,7 @@ namespace datetime
          GetRectDay(iWeekDay,iWeek + 1,lprect);
       }
 
-      void graphics::GetRectDay(int32_t iWeekDay,int32_t iLine,LPRECT lprect)
+      void graphics::GetRectDay(int32_t iWeekDay,int32_t iLine,LPRECT32 lprect)
       {
          lprect->left = m_point.x + m_iColWidth * (iWeekDay - 1);
          lprect->right = lprect->left + m_iColWidth + 1;
@@ -154,7 +154,7 @@ namespace datetime
          lprect->bottom = lprect->top + m_iLineHeight + 1;
       }
 
-      void graphics::GetRect(LPRECT lprect,enum enum_element eelement)
+      void graphics::GetRect(LPRECT32 lprect,enum enum_element eelement)
       {
          if(eelement == e_element_month_title)
          {

@@ -38,9 +38,9 @@
 
 
 #ifdef _WIN32
-typedef UINT ITHREAD;
+typedef ::u32 ithread_t;
 #else
-typedef pthread_t ITHREAD;
+typedef pthread_t ithread_t;
 #endif
 
 
@@ -50,7 +50,7 @@ CLASS_DECL_AXIS_RDPCLIENT BOOL ca2rdp_pre_connect(freerdp* instance);
 
 #ifdef _WIN32
 #else
-typedef unsigned int COLORREF;
+typedef unsigned int color32_t;
 #endif
 
 namespace aura
@@ -105,7 +105,7 @@ struct ca2rdp_context :
 
 
 #ifdef _WIN32
-   DWORD mainThreadId;
+   ::u32 mainThreadId;
 #else
    pthread_t mainThreadId;
 #endif
@@ -117,7 +117,7 @@ struct ca2rdp_context :
 };
 
 CLASS_DECL_AXIS_RDPCLIENT ::draw2d::graphics * ca2rdp_ctx_get_graphics(ca2rdp_context * pcontext);
-CLASS_DECL_AXIS_RDPCLIENT COLORREF * ca2rdp_ctx_get_primary(ca2rdp_context * pcontext);
+CLASS_DECL_AXIS_RDPCLIENT color32_t * ca2rdp_ctx_get_primary(ca2rdp_context * pcontext);
 CLASS_DECL_AXIS_RDPCLIENT int ca2rdp_ctx_get_bitmap_size(ca2rdp_context * pcontext);
 
 typedef struct ca2rdp_context ca2rdpContext;
@@ -126,8 +126,8 @@ struct ca2rdp_pointer
 {
    rdpPointer pointer;
    ::draw2d::cursor * m_pcursor;
-   UINT32 xhot;
-   UINT32 yhot;
+   ::u32 xhot;
+   ::u32 yhot;
 };
 typedef struct ca2rdp_pointer ca2rdpPointer;
 

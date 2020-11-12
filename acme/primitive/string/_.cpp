@@ -3,7 +3,7 @@
 
 #ifdef WINDOWS_DESKTOP
 
-string read_resource_as_string(HINSTANCE hinst, UINT nID, const char * pcszType, strsize iReadAtMostByteCount)
+string read_resource_as_string(HINSTANCE hinst, ::u32 nID, const char * pcszType, strsize iReadAtMostByteCount)
 {
 
    HRSRC hrsrc = ::FindResourceW(hinst, MAKEINTRESOURCEW(nID), wstring(pcszType));
@@ -25,7 +25,7 @@ string read_resource_as_string(HINSTANCE hinst, UINT nID, const char * pcszType,
    if (hres != nullptr)
    {
 
-      UINT FAR * pnRes = (UINT FAR *)::LockResource(hres);
+      ::u32 FAR * pnRes = (::u32 FAR *)::LockResource(hres);
 
       iReadAtMostByteCount = iReadAtMostByteCount < 0 ? dwResSize : min(iReadAtMostByteCount, (strsize) dwResSize);
 

@@ -46,7 +46,7 @@ namespace user
       };
 
 
-      UINT     m_uiId;
+      ::u32     m_uiId;
       bool     m_bCreated;
       string   m_strId;
 #ifdef WINDOWS_DESKTOP
@@ -84,7 +84,7 @@ namespace user
 
       bool ModifyIcon(__pointer(::draw2d::icon) picon, bool bForce = false);
 
-      virtual bool create_notify_icon(UINT id, notify_icon_listener * plistener, ::draw2d::icon * picon);
+      virtual bool create_notify_icon(::u32 id, notify_icon_listener * plistener, ::draw2d::icon * picon);
 
       DECL_GEN_SIGNAL(_001OnNotifyIconMessage);
       DECL_GEN_SIGNAL(_001OnDestroy);

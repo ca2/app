@@ -3,7 +3,7 @@
 
 #include "aura/node/android/android.h"
 
-string get_error_message(DWORD dwError);
+string get_error_message(::u32 dwError);
 
 ::aura::application *     win_instantiate_application(::aura::application * pappSystem, const char * pszId);
 

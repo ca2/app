@@ -10,7 +10,7 @@
 //}
 //
 //
-//bool null(RECT * prectDest)
+//bool null(RECT32 * prectDest)
 //{
 //
 //   prectDest->left      = 0;
@@ -22,7 +22,7 @@
 //}
 //
 //
-//bool x_intersect_rect(RECT * prect, const rect & prect1, const rect & prect2)
+//bool x_intersect_rect(RECT32 * prect, const rect & prect1, const rect & prect2)
 //{
 //
 //   prect->left   = max(prect1->left, prect2->left);
@@ -45,7 +45,7 @@
 //}
 //
 //
-//bool y_intersect_rect(RECT * prect,const rect & prect1,const rect & prect2)
+//bool y_intersect_rect(RECT32 * prect,const rect & prect1,const rect & prect2)
 //{
 //
 //   prect->top     = max(prect1->top,prect2->top);
@@ -70,7 +70,7 @@
 //}
 //
 //
-//bool x_null_intersect_rect(RECT * prect,const rect & rect1,const rect & rect2)
+//bool x_null_intersect_rect(RECT32 * prect,const rect & rect1,const rect & rect2)
 //{
 //
 //   prect->left    = max(rect1.left,rect2.left);
@@ -97,7 +97,7 @@
 //}
 //
 //
-//bool y_null_intersect_rect(RECT * prect,const rect & rect1,const rect & rect2)
+//bool y_null_intersect_rect(RECT32 * prect,const rect & rect1,const rect & rect2)
 //{
 //
 //   prect->top     = max(rect1.top,rect2.top);
@@ -124,7 +124,7 @@
 //}
 //
 //
-//CLASS_DECL_ACME bool null_intersect_rect(RECT * prect,const rect & rect1,const rect & rect2)
+//CLASS_DECL_ACME bool null_intersect_rect(RECT32 * prect,const rect & rect1,const rect & rect2)
 //{
 //
 //   if(x_null_intersect_rect(prect,rect1,rect2) && y_null_intersect_rect(prect,rect1,rect2))
@@ -145,7 +145,7 @@
 //}
 //
 //
-//bool x_left_null_intersect_rect(RECT * prect,const rect & rect1,const rect & rect2)
+//bool x_left_null_intersect_rect(RECT32 * prect,const rect & rect1,const rect & rect2)
 //{
 //
 //   prect->left    = max(rect1.left,rect2.left);
@@ -172,7 +172,7 @@
 //}
 //
 //
-//bool y_top_null_intersect_rect(RECT * prect,const rect & rect1, const rect & rect2)
+//bool y_top_null_intersect_rect(RECT32 * prect,const rect & rect1, const rect & rect2)
 //{
 //
 //   prect->top     = max(rect1.top, rect2.top);
@@ -197,7 +197,7 @@
 //}
 //
 //
-//CLASS_DECL_ACME bool top_left_null_intersect_rect(RECT * prect,const rect & rect1,const rect & rect2)
+//CLASS_DECL_ACME bool top_left_null_intersect_rect(RECT32 * prect,const rect & rect1,const rect & rect2)
 //
 //{
 //   if(x_left_null_intersect_rect(prect,rect1,rect2)
@@ -230,14 +230,14 @@
 //   return TRUE;
 //}
 //
-//bool copy(RECT * prectDest, const RECTD * prectSrc)
+//bool copy(RECT32 * prectDest, const RECTD * prectSrc)
 //{
 //   if(!is32integer(prectSrc->left) || !is32integer(prectSrc->top) || !is32integer(prectSrc->right) || !is32integer(prectSrc->bottom))
 //      return FALSE;
-//   prectDest->left      = (LONG) prectSrc->left;
-//   prectDest->top       = (LONG) prectSrc->top;
-//   prectDest->right     = (LONG) prectSrc->right;
-//   prectDest->bottom    = (LONG) prectSrc->bottom;
+//   prectDest->left      = (::i32) prectSrc->left;
+//   prectDest->top       = (::i32) prectSrc->top;
+//   prectDest->right     = (::i32) prectSrc->right;
+//   prectDest->bottom    = (::i32) prectSrc->bottom;
 //   return TRUE;
 //}
 //
@@ -254,10 +254,10 @@
 //
 //bool copy(RECT64 * prectDest, const RECTD * prectSrc)
 //{
-//   prectDest->left      = (LONG) prectSrc->left;
-//   prectDest->top       = (LONG) prectSrc->top;
-//   prectDest->right     = (LONG) prectSrc->right;
-//   prectDest->bottom    = (LONG) prectSrc->bottom;
+//   prectDest->left      = (::i32) prectSrc->left;
+//   prectDest->top       = (::i32) prectSrc->top;
+//   prectDest->right     = (::i32) prectSrc->right;
+//   prectDest->bottom    = (::i32) prectSrc->bottom;
 //   return TRUE;
 //}
 //bool is_empty(const RECTD * prect)
@@ -506,14 +506,14 @@
 //   return TRUE;
 //}
 //
-//bool copy(RECT * prectDest, const RECT64 * prectSrc)
+//bool copy(RECT32 * prectDest, const RECT64 * prectSrc)
 //{
 //   if(!is32integer(prectSrc->left) || !is32integer(prectSrc->top) || !is32integer(prectSrc->right) || !is32integer(prectSrc->bottom))
 //      return FALSE;
-//   prectDest->left      = (LONG) prectSrc->left;
-//   prectDest->top       = (LONG) prectSrc->top;
-//   prectDest->right     = (LONG) prectSrc->right;
-//   prectDest->bottom    = (LONG) prectSrc->bottom;
+//   prectDest->left      = (::i32) prectSrc->left;
+//   prectDest->top       = (::i32) prectSrc->top;
+//   prectDest->right     = (::i32) prectSrc->right;
+//   prectDest->bottom    = (::i32) prectSrc->bottom;
 //   return TRUE;
 //}
 //bool is_empty(const RECT64 * prect)
@@ -710,7 +710,7 @@
 //
 //
 //
-//CLASS_DECL_ACME bool deflate(RECT * prect, const ::rect & rect)
+//CLASS_DECL_ACME bool deflate(RECT32 * prect, const ::rect & rect)
 //
 //{
 //   prect->left    += pcrect->left;
@@ -724,7 +724,7 @@
 //   return true;
 //}
 //
-//CLASS_DECL_ACME bool deflate(RECT * prect,const ::rect & rect)
+//CLASS_DECL_ACME bool deflate(RECT32 * prect,const ::rect & rect)
 //{
 //   return deflate(prect, &rect);
 //}
@@ -746,14 +746,14 @@
 //}
 //
 //
-//CLASS_DECL_ACME bool copy(LPPOINT pptDst,const POINT64 * lpptSrc)
+//CLASS_DECL_ACME bool copy(POINT32 * pptDst,const POINT64 * lpptSrc)
 //
 //{
 //
-//   pptDst->x = (LONG)lpptSrc->x;
+//   pptDst->x = (::i32)lpptSrc->x;
 //
 //
-//   pptDst->y = (LONG)lpptSrc->y;
+//   pptDst->y = (::i32)lpptSrc->y;
 //
 //
 //   return true;
@@ -778,7 +778,7 @@
 //}
 //
 //
-//void copy(RECT * prectDst, const CGRect & rectSrc)
+//void copy(RECT32 * prectDst, const CGRect & rectSrc)
 //
 //{
 //   prectDst->left = rectSrc.origin.x;

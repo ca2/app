@@ -815,9 +815,9 @@ namespace datetime
       bool bSolved = false;
       string strTime;
       string str;
-      __int64 iSecDiff = (timeNow - time).GetTotalSeconds();
-      __int64 iMinDiff = (timeNow - time).GetTotalMinutes();
-      __int64 iHouDiff = (timeNow - time).GetTotalHours();
+      ::i64 iSecDiff = (timeNow - time).GetTotalSeconds();
+      ::i64 iMinDiff = (timeNow - time).GetTotalMinutes();
+      ::i64 iHouDiff = (timeNow - time).GetTotalHours();
       if (iSecDiff <= 59)
       {
          bSolved = true;

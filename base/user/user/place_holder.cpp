@@ -414,7 +414,7 @@ namespace user
    }
 
 
-   void place_holder::get_child_rect(RECT* prect)
+   void place_holder::get_child_rect(RECT32* prect)
    {
 
       GetParent()->get_child_rect(prect);

@@ -15,7 +15,7 @@ CLASS_DECL_ACME bool EnforceFilter( bool bEnforce );
 // modifies virtual memory protection attributes of the target memory page
 // to make sure that it is writeable.
 //
-CLASS_DECL_ACME bool WriteMemory( BYTE* pTarget, const BYTE* pSource, u32 size );
+CLASS_DECL_ACME bool WriteMemory( byte* pTarget, const byte* pSource, u32 size );
 
 
 

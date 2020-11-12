@@ -406,11 +406,11 @@ namespace exception
 
 
 
-//   i32 exception::report_error(UINT nType /* = MB_OK */, const char * pszMessageId /* = nullptr */)
+//   i32 exception::report_error(::u32 nType /* = MB_OK */, const char * pszMessageId /* = nullptr */)
 //   {
 //      string   strErrorMessage;
 //      i32     nDisposition;
-////      UINT    nHelpContext;
+////      ::u32    nHelpContext;
 //
 //      // nHelpContext should come with the message "<helpcontext id=\"123\" />"
 //      strErrorMessage = get_message();
@@ -482,26 +482,6 @@ namespace exception
 //
 //}
 //
-
-
-namespace status
-{
-
-
-   i32 result::s_iSkipCallStack = SKIP_callstack;
-
-
-   void result::set_skip_callstack(i32 iSkip)
-   {
-
-      s_iSkipCallStack = iSkip;
-
-   }
-
-
-} // namespace status
-
-
 
 
 

@@ -43,7 +43,7 @@ namespace userstack
       MESSAGE_LINK(e_message_create, pchannel, this, &view::_001OnCreate);
       MESSAGE_LINK(WM_CONTEXTMENU, pchannel, this, &view::_001OnContextMenu);
       MESSAGE_LINK(WM_SETCURSOR, pchannel, this, &view::_001OnSetCursor);
-      MESSAGE_LINK(WM_LBUTTONUP, pchannel, this, &view::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_lbutton_up, pchannel, this, &view::_001OnLButtonUp);
 
 //
 
@@ -241,7 +241,7 @@ namespace userstack
    }
 
 
-   void view::GetAreaThumbRect(LPRECT lprect, i32 iArea)
+   void view::GetAreaThumbRect(LPRECT32 lprect, i32 iArea)
    {
       
       ::rect rectClient = get_client_rect();
@@ -347,7 +347,7 @@ namespace userstack
    }
 
 
-   UINT c_cdecl view::ThreadProcShowWindow(LPVOID lpparam)
+   ::u32 c_cdecl view::ThreadProcShowWindow(LPVOID lpparam)
    {
       UNREFERENCED_PARAMETER(lpparam);
       return 0;

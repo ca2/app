@@ -1429,7 +1429,7 @@ m_tickHeartBeat.Now();
 
 
 
-   //i32 application::message_box(::user::primitive * puiOwner,const char * pszMessage,UINT fuStyle)
+   //i32 application::message_box(::user::primitive * puiOwner,const char * pszMessage,::u32 fuStyle)
    //{
 
    //   return ::message_box(puiOwner->get_safe_handle(),pszMessage,m_strAppName,fuStyle);
@@ -1437,7 +1437,7 @@ m_tickHeartBeat.Now();
    //}
 
 
-   //i32 application::message_box(const char * pszMessage,UINT fuStyle)
+   //i32 application::message_box(const char * pszMessage,::u32 fuStyle)
    //{
 
    //   return ::message_box(nullptr,pszMessage,m_strAppName,fuStyle);

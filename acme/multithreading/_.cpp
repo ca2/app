@@ -16,7 +16,7 @@ namespace multithreading
    }
 
 
-   void task_register(ITHREAD itask, ::task * ptask)
+   void task_register(ithread_t itask, ::task * ptask)
    {
 
       System.set_task(itask, ptask);
@@ -24,7 +24,7 @@ namespace multithreading
    }
 
 
-   void task_unregister(ITHREAD itask, ::task * ptask)
+   void task_unregister(ithread_t itask, ::task * ptask)
    {
 
       auto psystem = ::get_context_system();
@@ -34,7 +34,7 @@ namespace multithreading
    }
 
 
-   //CLASS_DECL_ACME comparable_eq_array<ITHREAD> * s_piaThread2 = nullptr;
+   //CLASS_DECL_ACME comparable_eq_array<ithread_t> * s_piaThread2 = nullptr;
    //CLASS_DECL_ACME __pointer_array(thread) * s_pthreadptra2 = nullptr;
    //CLASS_DECL_ACME::critical_section * s_pcs2 = nullptr;
 
@@ -44,7 +44,7 @@ namespace multithreading
 
    //   //s_pcs2 = new ::critical_section();
 
-   //   //s_piaThread2 = new comparable_eq_array<ITHREAD>;
+   //   //s_piaThread2 = new comparable_eq_array<ithread_t>;
 
    //   //s_pthreadptra2 = new __pointer_array(thread);
 
@@ -66,7 +66,7 @@ namespace multithreading
 
    //}
 
-   //CLASS_DECL_ACME bool thread_id_registered(ITHREAD id)
+   //CLASS_DECL_ACME bool thread_id_registered(ithread_t id)
    //{
 
    //   //cslock lock(s_pcs2);
@@ -86,7 +86,7 @@ namespace multithreading
    //}
 
 
-   //void thread_register(ITHREAD ithread, ::thread * pthread)
+   //void thread_register(ithread_t ithread, ::thread * pthread)
    //{
 
    //   System.set_thread(ithread, pthread);
@@ -94,7 +94,7 @@ namespace multithreading
    //}
 
 
-   //void thread_unregister(ITHREAD ithread, ::thread * pthread)
+   //void thread_unregister(ithread_t ithread, ::thread * pthread)
    //{
 
    //   auto psystem = ::get_context_system();
@@ -441,7 +441,7 @@ namespace multithreading
 
 
 
-CLASS_DECL_ACME ::estatus call(const ::method & method)
+CLASS_DECL_ACME ::estatus call(const ::procedure & procedure)
 {
 
    ::estatus estatus;
@@ -449,7 +449,7 @@ CLASS_DECL_ACME ::estatus call(const ::method & method)
    try
    {
 
-      estatus = method();
+      estatus = procedure();
 
    }
    catch (...)
@@ -716,10 +716,10 @@ void thread_name_abbreviate(string & strName, int len)
 
 
 
-::estatus     run_runnable(const ::method & method)
+::estatus run_runnable(const ::procedure & procedure)
 {
 
-   ::estatus     estatus = error_exception;
+   ::estatus estatus = error_exception;
 
    try
    {
@@ -729,7 +729,7 @@ void thread_name_abbreviate(string & strName, int len)
       try
       {
 
-         estatus = method();
+         estatus = procedure();
 
       }
       catch (...)

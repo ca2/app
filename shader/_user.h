@@ -1,11 +1,21 @@
 #pragma once
 
+//
+//#ifndef _APP_SHADER_LIBRARY
+//#include "_.h"
+//#endif
 
-#include "_.h"
+
 #include "aura/user/_user.h"
 
 
+#include "aura/gpu/gpu/_.h"
+
+
+#include "render.h"
+
 
 #include "window.h"
+
 
 

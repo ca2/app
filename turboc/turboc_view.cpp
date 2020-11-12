@@ -517,7 +517,7 @@ namespace turboc
          {
 
 
-            //          DWORD dwTime2 = ::get_tick();
+            //          ::u32 dwTime2 = ::get_tick();
 
             //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
 //            TRACE("hello_view::lyot call timeA= %d ms",(u64) (dwTime2 - t_time1.operator DWORD_PTR()));
@@ -568,7 +568,7 @@ namespace turboc
          }
          {
 
-//            DWORD dwTime2 = ::get_tick();
+//            ::u32 dwTime2 = ::get_tick();
 
             //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
             //TRACE("hello_view::lyot call timeB= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
@@ -608,7 +608,7 @@ namespace turboc
 /*         pimage->g()->StretchBlt(0,0,pimage->width() / iMult,pimage->height() / iMult,pimage->g(),0,0,pimage->width(),pimage->height(),SRCCOPY);
 /*         pimage->g()->StretchBlt(0,0,pimage->width(),pimage->height(),pimage->g(),0,0,pimage->width() / iMult,pimage->height() / iMult,SRCCOPY);
 
-         COLORREF cr;
+         color32_t cr;
 
          byte a,r,g,b,rm,gm,bm;
 
@@ -700,7 +700,7 @@ namespace turboc
    }
 
 
-   UINT view::thread_proc_render(void * pparam)
+   ::u32 view::thread_proc_render(void * pparam)
    {
 
       view * pviewParam = (view *)pparam;

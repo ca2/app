@@ -66,7 +66,7 @@ struct wf_bitmap :
 	HDC hdc;
 	HBITMAP bitmap;
 	HBITMAP org_bitmap;
-	BYTE* pdata;
+	byte* pdata;
 };
 typedef struct wf_bitmap wfBitmap;
 
@@ -96,19 +96,19 @@ struct wf_context :
 	HCURSOR hDefaultCursor;
 
 	HWND hwnd;
-	POINT diff;
+	POINT32 diff;
 	HGDI_DC hdc;
 
 //	HCLRCONV clrconv;
 	HCURSOR cursor;
 	HBRUSH brush;
 	HBRUSH org_brush;
-	RECT update_rect;
-	RECT scale_update_rect;
+	RECT32 update_rect;
+	RECT32 scale_update_rect;
 
 	wfBitmap* tile;
-	DWORD mainThreadId;
-	DWORD keyboardThreadId;
+	::u32 mainThreadId;
+	::u32 keyboardThreadId;
 
 	rdpFile* connectionRdpFile;
 
@@ -140,7 +140,7 @@ struct wf_context :
 
 FREERDP_API int RdpClientEntry(RDP_CLIENT_ENTRY_POINTS* pEntryPoints);
 FREERDP_API int freerdp_client_set_window_size(wfContext* wfc, int width, int height);
-FREERDP_API void wf_size_scrollbars(wfContext* wfc, UINT32 client_width, UINT32 client_height);
+FREERDP_API void wf_size_scrollbars(wfContext* wfc, ::u32 client_width, ::u32 client_height);
 
 #ifdef __cplusplus
 }

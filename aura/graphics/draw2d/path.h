@@ -42,11 +42,11 @@ namespace draw2d
 
       //   virtual bool expand_bounding_rect(RECTD* prectd) const;
 
-      //   virtual bool expand_bounding_rect(RECT* prectd) const;
+      //   virtual bool expand_bounding_rect(RECT32* prectd) const;
 
       //   virtual bool get_bounding_rect(RECTD* prectd) const;
 
-      //   virtual bool get_bounding_rect(RECT* prectd) const;
+      //   virtual bool get_bounding_rect(RECT32* prectd) const;
 
       //   virtual bool contains(const ::pointd& point) const;
 
@@ -254,11 +254,11 @@ namespace draw2d
       virtual bool harc(const ::pointd & point, double w, const ::angle & angle);
 
       
-      virtual bool add_lines(const POINT * ppoint, ::count nCount);
+      virtual bool add_lines(const POINT32 * ppoint, ::count nCount);
       virtual bool add_lines(const POINTD * ppoint, ::count nCount);
 
 
-      virtual bool add_polygon(const POINT* ppoint, ::count nCount);
+      virtual bool add_polygon(const POINT32* ppoint, ::count nCount);
       virtual bool add_polygon(const POINTD* ppoint, ::count nCount);
 
       
@@ -277,7 +277,7 @@ namespace draw2d
 
 
       virtual bool get_bounding_rect(RECTD* prectd) const;
-      virtual bool get_bounding_rect(RECT * prect) const;
+      virtual bool get_bounding_rect(RECT32 * prect) const;
 
 
 

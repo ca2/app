@@ -57,16 +57,16 @@ namespace user
 
 
       string                     m_strMatterHelp;             // Help ID (0 for none, see HID_BASE_RESOURCE)
-      UINT                       m_nIDTracking;         // tracking command ID or string IDS
-      UINT                       m_nIDLastMessage;      // last displayed message string IDS
+      ::u32                       m_nIDTracking;         // tracking command ID or string IDS
+      ::u32                       m_nIDLastMessage;      // last displayed message string IDS
       ::user::impact *           m_pviewActive;       // current active ::user::impact
-      UINT                       m_cModalStack;         // BeginModalState depth
+      ::u32                       m_cModalStack;         // BeginModalState depth
       ::user::interaction_ptra   m_uiptraDisable;       // windows disabled because of BeginModalState
       HMENU                      m_hMenuAlt;           // menu to update to (nullptr means default)
       bool                       m_bInRecalcLayout;     // avoid recursion in on_layout
       ::type                     m_pFloatingFrameClass;
 
-      UINT                       m_nIdleFlags;          // set of bit flags for idle processing
+      ::u32                       m_nIdleFlags;          // set of bit flags for idle processing
 
       ::user::impact *           m_pviewMain;
 
@@ -108,7 +108,7 @@ namespace user
 
 
       virtual void SetBorderRect(const ::rect & rect);
-      virtual void GetBorderRect(RECT * prect);
+      virtual void GetBorderRect(RECT32 * prect);
 
       virtual bool _001IsFrameWnd();
 
@@ -152,7 +152,7 @@ namespace user
       virtual __pointer(::user::frame_window) GetActiveFrame();
 
       // For customizing the default messages on the status bar
-      virtual void GetMessageString(UINT nID, string & rMessage) const;
+      virtual void GetMessageString(::u32 nID, string & rMessage) const;
 
       bool m_bAutoMenuEnable;
       // TRUE => menu items without handlers will be disabled
@@ -168,9 +168,9 @@ namespace user
       // to set text of standard status bar
       void SetMessageText(const char * pszText);
 
-      void SetMessageText(UINT nID);
+      void SetMessageText(::u32 nID);
 
-      ::user::control_bar* GetControlBar(UINT nID);
+      ::user::control_bar* GetControlBar(::u32 nID);
 
       // frame interaction_impl based modality
       virtual void BeginModalState();
@@ -183,13 +183,13 @@ namespace user
 
       // border space negotiation
       enum BorderCmd { borderGet = 1, borderRequest = 2, borderSet = 3 };
-      virtual bool NegotiateBorderSpace(UINT nBorderCmd, RECT * pRectBorder);
+      virtual bool NegotiateBorderSpace(::u32 nBorderCmd, RECT32 * pRectBorder);
 
       virtual bool on_create_client(::user::create_struct * pcs, ::create * pcreate);
 
       void OnContextHelp();   // for Shift+F1 help
       void OnUpdateControlBarMenu(::user::command* pCmdUI);
-      bool OnBarCheck(UINT nID);
+      bool OnBarCheck(::u32 nID);
 
       virtual bool LoadToolBar(id idToolBar, const char * pszToolBar, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP) override;
 
@@ -238,19 +238,19 @@ namespace user
       LRESULT OnSetMessageString(WPARAM wParam, LPARAM lParam);
       LRESULT OnHelpPromptAddr(WPARAM wParam, LPARAM lParam);
       //void OnIdleUpdateCmdUI(::message::message * pmessage);
-      void OnEnterIdle(UINT nWhy, __pointer(::user::interaction) pWho);
+      void OnEnterIdle(::u32 nWhy, __pointer(::user::interaction) pWho);
       void OnSetFocus(__pointer(::user::interaction) pOldWnd);
-      void OnSize(UINT nType, i32 cx, i32 cy);
+      void OnSize(::u32 nType, i32 cx, i32 cy);
       bool OnEraseBkgnd(::image * pimage);
-      //void OnActivate(UINT nState, __pointer(::user::interaction) pWndOther, bool bMinimized);
+      //void OnActivate(::u32 nState, __pointer(::user::interaction) pWndOther, bool bMinimized);
       //bool OnNcActivate(bool bActive);
-      void OnSysCommand(UINT nID, LPARAM lParam);
+      void OnSysCommand(::u32 nID, LPARAM lParam);
       bool OnQueryEndSession();
       void OnEndSession(bool bEnding);
 #ifdef WINDOWS_DESKTOP
       virtual void OnDropFiles(HDROP hDropInfo);
 #endif
-      bool OnSetCursor(__pointer(::user::interaction) pwindow, UINT nHitTest, const ::id & id);
+      bool OnSetCursor(__pointer(::user::interaction) pwindow, ::u32 nHitTest, const ::id & id);
       //LRESULT OnCommandHelp(WPARAM wParam, LPARAM lParam);
       //LRESULT OnHelpHitTest(WPARAM wParam, LPARAM lParam);
       LRESULT OnActivateTopLevel(WPARAM wParam, LPARAM lParam);

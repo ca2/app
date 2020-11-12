@@ -17,7 +17,7 @@ namespace file
       virtual void write_string(const char * psz);
 
       virtual bool read_string(string & str);
-      virtual UINT read_full_string(string & str);
+      virtual ::u32 read_full_string(string & str);
 
       inline text_file & operator << (const char * psz)
 

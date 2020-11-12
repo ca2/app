@@ -16,11 +16,11 @@ namespace os
 
       int                        m_w;
       int                        m_h;
-      SIZE                       m_size;
-      POINT                      m_point;
+      SIZE32                       m_size;
+      POINT32                      m_point;
       bool                       m_bLButtonDown;
-      POINT                      m_pointLButtonDown;
-      POINT                      m_pointLButtonDownPos;
+      POINT32                      m_pointLButtonDown;
+      POINT32                      m_pointLButtonDownPos;
 
       bool                       m_bShiftKey;
 
@@ -41,18 +41,18 @@ namespace os
 
 
 
-      virtual void get_cursor_pos(POINT * ppt);
+      virtual void get_cursor_pos(POINT32 * ppt);
 
       //void draw(ID2D1DeviceContext * pctx);
 
 
 
-      //virtual string interactive_auth(LPRECT lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strFontopusServer);
+      //virtual string interactive_auth(LPRECT32 lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strFontopusServer);
 
 
-      virtual bool create_window(LPCRECT lpcrect);
+      virtual bool create_window(LPCRECT32 lpcrect);
 
-      virtual bool prepare_window(LPCRECT lpcrect);
+      virtual bool prepare_window(LPCRECT32 lpcrect);
 
 
       virtual bool show_window(bool bShow = true);
@@ -63,8 +63,8 @@ namespace os
       virtual bool run_loop();
 
 
-      virtual void get_window_rect(RECT * prect);
-      virtual void get_client_rect(RECT * prect);
+      virtual void get_window_rect(RECT32 * prect);
+      virtual void get_client_rect(RECT32 * prect);
 
 
       /*
@@ -81,16 +81,16 @@ namespace os
       virtual bool set_window_pos(int x, int y, int cx, int cy, bool bShow);
       virtual bool move_window(int x, int y);
 
-      void viewport_client_to_screen(POINT * ppt);
-      void viewport_screen_to_client(POINT * ppt);
+      void viewport_client_to_screen(POINT32 * ppt);
+      void viewport_screen_to_client(POINT32 * ppt);
 
-      void _001ClientToScreen(POINT * ppt);
-      void _001ScreenToClient(POINT * ppt);
+      void _001ClientToScreen(POINT32 * ppt);
+      void _001ScreenToClient(POINT32 * ppt);
 
-      void _001ClientToScreen(RECT * prect);
-      void _001ScreenToClient(RECT * prect);
+      void _001ClientToScreen(RECT32 * prect);
+      void _001ScreenToClient(RECT32 * prect);
 
-      void get_window_rect(RECT * prect);
+      void get_window_rect(RECT32 * prect);
 
       virtual void set_capture();
       virtual void release_capture();

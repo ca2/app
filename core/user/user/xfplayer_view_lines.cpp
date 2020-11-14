@@ -143,10 +143,10 @@ index xfplayer_view_linea::FindLine(xfplayer_view_line * pline)
 void xfplayer_view_linea::install_message_routing(::channel * pchannel)
 {
    MESSAGE_LINK(e_message_mouse_move, pchannel, this, &xfplayer_view_linea::OnMouseMove);
-   MESSAGE_LINK(WM_SETCURSOR, pchannel, this, &xfplayer_view_linea::OnSetCursor);
-   //MESSAGE_LINK(WM_TIMER,        pchannel, this, &xfplayer_view_linea::OnTimer);
-   MESSAGE_LINK(e_message_lbutton_down, pchannel, this, &xfplayer_view_linea::OnLButtonDown);
-   MESSAGE_LINK(e_message_lbutton_up, pchannel, this, &xfplayer_view_linea::OnLButtonUp);
+   MESSAGE_LINK(e_message_set_cursor, pchannel, this, &xfplayer_view_linea::OnSetCursor);
+   //MESSAGE_LINK(e_message_timer,        pchannel, this, &xfplayer_view_linea::OnTimer);
+   MESSAGE_LINK(e_message_left_button_down, pchannel, this, &xfplayer_view_linea::OnLButtonDown);
+   MESSAGE_LINK(e_message_left_button_up, pchannel, this, &xfplayer_view_linea::OnLButtonUp);
 }
 
 void xfplayer_view_linea::OnMouseMove(::message::message * pmessage)

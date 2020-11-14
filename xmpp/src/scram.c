@@ -86,7 +86,7 @@ static void SCRAM_SHA1_Hi(const u8 *text, size_t len,
 
     static u8 int1[] = {0x0, 0x0, 0x0, 0x1};
 
-    /* assume salt + INT(1) isn't longer than sizeof(tmp) */
+    /* assume salt + ::i32(1) isn't longer than sizeof(tmp) */
     assert(salt_len <= sizeof(tmp) - sizeof(int1));
 
     memset(digest, 0, SHA1_DIGEST_SIZE);

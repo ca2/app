@@ -213,10 +213,10 @@ LRESULT CALLBACK CTSFMainWnd::_WndProc( HWND hWnd,
     case e_message_activate:
         return pThis->_OnActivate(wParam);
 
-    case WM_INITMENUPOPUP:
+    case e_message_initialize_menu_popup:
         return pThis->_OnInitMenuPopup(wParam, lParam);
 
-    case WM_COMMAND:
+    case e_message_command:
         return pThis->_OnCommand(   GET_WM_COMMAND_ID(wParam, lParam), 
                                     GET_WM_COMMAND_CMD(wParam, lParam), 
                                     GET_WM_COMMAND_HWND(wParam, lParam));
@@ -285,7 +285,7 @@ LRESULT CTSFMainWnd::_OnCommand(::u16 wID, ::u16 wCmd, HWND hWnd)
         break;
     
     case IDM_ABOUT:
-        MessageBox(m_hWnd, TEXT(""), g_szTSFAppTitle, MB_OK | MB_ICONINFORMATION);
+        MessageBox(m_hWnd, TEXT(""), g_szTSFAppTitle, e_message_box_ok | MB_ICONINFORMATION);
         break;
     
     case IDM_GETPRESERVEDKEY:

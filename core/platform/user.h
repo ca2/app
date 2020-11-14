@@ -454,16 +454,16 @@
 //      //// os_* functions generally
 //      //// reserves a lot of surprises from each
 //      //// operating system specific behavior
-//      //virtual ::estatus os_message_box(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, ::emessagebox emessagebox = message_box_ok, ::callback callback = ::callback());
+//      //virtual ::estatus os_message_box(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, ::emessagebox emessagebox = e_message_box_ok, ::callback callback = ::callback());
 //
 //
-//      //virtual ::estatus ui_message_box(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, ::emessagebox emessagebox = message_box_ok, ::callback callback = ::callback());
-//      //virtual ::estatus ui_message_box_timeout(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, const ::duration& durationTimeOut = duration::infinite(), ::emessagebox emessagebox = message_box_ok, ::callback callback = ::callback());
+//      //virtual ::estatus ui_message_box(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, ::emessagebox emessagebox = e_message_box_ok, ::callback callback = ::callback());
+//      //virtual ::estatus ui_message_box_timeout(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, const ::duration& durationTimeOut = duration::infinite(), ::emessagebox emessagebox = e_message_box_ok, ::callback callback = ::callback());
 //
 //
 //      //using ::aura::context_thread::message_box;
-//      //virtual ::estatus message_box(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, ::emessagebox emessagebox = message_box_ok, ::callback callback = ::callback());
-//      //virtual ::estatus message_box_timeout(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, const ::duration& durationTimeOut = duration::infinite(), ::emessagebox emessagebox = message_box_ok, ::callback callback = ::callback());
+//      //virtual ::estatus message_box(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, ::emessagebox emessagebox = e_message_box_ok, ::callback callback = ::callback());
+//      //virtual ::estatus message_box_timeout(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, const ::duration& durationTimeOut = duration::infinite(), ::emessagebox emessagebox = e_message_box_ok, ::callback callback = ::callback());
 //
 //      
 //      virtual void on_file_new();
@@ -963,8 +963,8 @@
 //      void EnableHtmlHelp();
 //
 //
-//      //virtual i32 sync_message_box_timeout(::user::primitive * puiOwner,var var, const char * pszTitle, ::duration durationTimeout,::u32 fuStyle = MB_OK) override;
-//      //virtual i32 sync_message_box(::user::primitive * puiOwner,const char * pszMessage, const char * pszTitle, ::u32 fuStyle = MB_OK) override;
+//      //virtual i32 sync_message_box_timeout(::user::primitive * puiOwner,var var, const char * pszTitle, ::duration durationTimeout,::u32 fuStyle = e_message_box_ok) override;
+//      //virtual i32 sync_message_box(::user::primitive * puiOwner,const char * pszMessage, const char * pszTitle, ::u32 fuStyle = e_message_box_ok) override;
 //
 //
 //      //bool on_exclusive_instance_conflict(bool & bHandled, EExclusiveInstance eexclusive, string strId) override;

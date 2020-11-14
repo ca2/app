@@ -33,7 +33,7 @@ namespace draw2d
       virtual ~font();
 
       glyph * GetGlyph(WCHAR wchar);
-      glyph * GetGlyph(CHAR ch);
+      glyph * GetGlyph(char ch);
       glyph * GetGlyph(::u32 u);
       //glyph * GetNewGlyph();
 
@@ -43,7 +43,7 @@ namespace draw2d
       void AddGlyphs(const char * pStr);
 
       bool AddGlyph(WCHAR wchar);
-      bool AddGlyph(CHAR ch);
+      bool AddGlyph(char ch);
       bool AddGlyph(::u32 u);
 
 

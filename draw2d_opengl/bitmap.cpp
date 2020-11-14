@@ -425,7 +425,7 @@ namespace draw2d_opengl
       case e_message_nchittest:
          return HTCAPTION;   // allows dragging of the window
 
-      case WM_TIMER:
+      case e_message_timer:
          //         _stprintf(szBuffer, _TEXT("%d FPS"), g_frames);
          //set_window_text(hWnd, szBuffer);
          //         g_frames = 0;
@@ -711,13 +711,13 @@ namespace draw2d_opengl
 
       if (!wglDestroyPbufferARB || !wglQueryPbufferARB || !wglGetPbufferDCARB || !wglCreatePbufferARB || !wglReleasePbufferDCARB)
       {
-         MessageBox(0, _T("Required extension WGL_ARB_pbuffer not supported"), _T("Error"), MB_ICONSTOP);
+         MessageBox(0, _T("Required extension WGL_ARB_pbuffer not supported"), _T("Error"), e_message_box_icon_stop);
          return false;
       }
 
       if (!wglChoosePixelFormatARB || !wglGetPixelFormatAttribfvARB || !wglGetPixelFormatAttribivARB)
       {
-         MessageBox(0, _T("Required extension WGL_ARB_pixel_format not supported"), _T("Error"), MB_ICONSTOP);
+         MessageBox(0, _T("Required extension WGL_ARB_pixel_format not supported"), _T("Error"), e_message_box_icon_stop);
          return false;
       }
 #endif
@@ -750,25 +750,25 @@ namespace draw2d_opengl
 
       if (!wglChoosePixelFormatARB(g_hDC, attribList, 0, 1, &format, &matchingFormats))
       {
-         MessageBox(0, _T("wglChoosePixelFormatARB() failed"), _T("Error"), MB_ICONSTOP);
+         MessageBox(0, _T("wglChoosePixelFormatARB() failed"), _T("Error"), e_message_box_icon_stop);
          return false;
       }
 
       if (!(g_hPBuffer = wglCreatePbufferARB(g_hDC, format, m_sizeOut.cx, m_sizeOut.cy, 0)))
       {
-         MessageBox(0, _T("wglCreatePbufferARB() failed"), _T("Error"), MB_ICONSTOP);
+         MessageBox(0, _T("wglCreatePbufferARB() failed"), _T("Error"), e_message_box_icon_stop);
          return false;
       }
 
       if (!(g_hPBufferDC = wglGetPbufferDCARB(g_hPBuffer)))
       {
-         MessageBox(0, _T("wglGetPbufferDCARB() failed"), _T("Error"), MB_ICONSTOP);
+         MessageBox(0, _T("wglGetPbufferDCARB() failed"), _T("Error"), e_message_box_icon_stop);
          return false;
       }
 
       if (!(g_hPBufferRC = wglCreateContext(g_hPBufferDC)))
       {
-         MessageBox(0, _T("wglCreateContext() failed for PBuffer"), _T("Error"), MB_ICONSTOP);
+         MessageBox(0, _T("wglCreateContext() failed for PBuffer"), _T("Error"), e_message_box_icon_stop);
          return false;
       }
 #endif

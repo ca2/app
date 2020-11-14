@@ -217,7 +217,7 @@ namespace user
 #ifdef _UWP
       createstruct.pCreateParams = (LPVOID)pcreate;
 #else
-      createstruct.lpCreateParams = (LPVOID)pcreate;
+      createstruct.lpCreateParams = (void *) pcreate;
 #endif
 
       return create_window_ex(pinteraction, createstruct, puiParent, id);
@@ -246,7 +246,7 @@ namespace user
 
       MESSAGE_LINK(e_message_destroy, pchannel, this, &interaction_child::_001OnDestroy);
 
-      MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &interaction_child::_001OnShowWindow);
+      MESSAGE_LINK(e_message_show_window, pchannel, this, &interaction_child::_001OnShowWindow);
 
       m_puserinteraction->install_message_routing(pchannel);
 
@@ -407,7 +407,7 @@ namespace user
    }
 
 
-   LONG_PTR interaction_child::get_window_long_ptr(i32 nIndex) const
+   iptr interaction_child::get_window_long_ptr(i32 nIndex) const
    {
 
       return m_longptr[nIndex];
@@ -415,7 +415,7 @@ namespace user
    }
 
 
-   LONG_PTR interaction_child::set_window_long_ptr(i32 nIndex, LONG_PTR lValue)
+   iptr interaction_child::set_window_long_ptr(i32 nIndex, iptr lValue)
    {
 
       auto & l = m_longptr[nIndex];
@@ -476,7 +476,7 @@ namespace user
 
             ModifyStyle(0, WS_VISIBLE);
 
-            m_puserinteraction->send_message(WM_SHOWWINDOW, 1);
+            m_puserinteraction->send_message(e_message_show_window, 1);
 
          }
          else
@@ -484,7 +484,7 @@ namespace user
 
             ModifyStyle(WS_VISIBLE, 0);
 
-            m_puserinteraction->send_message(WM_SHOWWINDOW, 0);
+            m_puserinteraction->send_message(e_message_show_window, 0);
 
          }
 

@@ -141,8 +141,8 @@ void simple_frame_window::install_message_routing(::channel * pchannel)
    MESSAGE_LINK(e_message_move, pchannel, this, &simple_frame_window::_001OnMove);
    MESSAGE_LINK(WM_GETMINMAXINFO, pchannel, this, &simple_frame_window::_001OnGetMinMaxInfo);
    MESSAGE_LINK(e_message_mouse_move, pchannel, this, &simple_frame_window::_001OnMouseMove);
-   MESSAGE_LINK(WM_DISPLAYCHANGE, pchannel, this, &simple_frame_window::_001OnDisplayChange);
-   MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &simple_frame_window::_001OnShowWindow);
+   MESSAGE_LINK(e_message_display_change, pchannel, this, &simple_frame_window::_001OnDisplayChange);
+   MESSAGE_LINK(e_message_show_window, pchannel, this, &simple_frame_window::_001OnShowWindow);
    MESSAGE_LINK(e_message_mouse_activate, pchannel, this, &simple_frame_window::_001OnMouseActivate);
    MESSAGE_LINK(e_message_nchittest, pchannel, this, &simple_frame_window::_001OnNcHitTest);
 
@@ -1421,13 +1421,13 @@ void simple_frame_window::_001OnUpdateToggleTransparentFrame(::message::message 
    //if (GetTopLevelFrame()->frame_is_transparent())
    //{
 
-   //   MessageBox(nullptr, "ft", "", MB_OK);
+   //   MessageBox(nullptr, "ft", "", e_message_box_ok);
 
    //}
    //else
    //{
 
-   //   MessageBox(nullptr, "fnt", "", MB_OK);
+   //   MessageBox(nullptr, "fnt", "", e_message_box_ok);
 
    //}
 
@@ -2544,7 +2544,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
          if(m_pimageBlur->is_ok())
          {
 
-            m_pimageBlur->g()->BitBlt(0,0,rectClient.width(),rectClient.height(),pgraphics,0,0,SRCCOPY);
+            m_pimageBlur->g()->BitBlt(0,0,rectClient.width(),rectClient.height(),pgraphics,0,0);
             m_blur.blur(m_pimageBlur, 2);
             imaging.bitmap_blend(
             m_pimageBlur->g(),

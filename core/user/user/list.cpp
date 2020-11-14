@@ -81,19 +81,19 @@ namespace user
       MESSAGE_LINK(e_message_size, pchannel, this, &list::_001OnSize);
       MESSAGE_LINK(e_message_vscroll, pchannel, this, &list::_001OnVScroll);
       MESSAGE_LINK(e_message_hscroll, pchannel, this, &list::_001OnHScroll);
-      MESSAGE_LINK(WM_MOUSELEAVE, pchannel, this, &list::_001OnMouseLeave);
+      MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &list::_001OnMouseLeave);
 
-      MESSAGE_LINK(e_message_lbutton_down, pchannel, this, &list::_001OnLButtonDown);
-      MESSAGE_LINK(e_message_lbutton_up, pchannel, this, &list::_001OnLButtonUp);
-      MESSAGE_LINK(WM_LBUTTONDBLCLK, pchannel, this, &list::_001OnLButtonDblClk);
-      MESSAGE_LINK(e_message_rbutton_down, pchannel, this, &list::_001OnRButtonDown);
+      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &list::_001OnLButtonDown);
+      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &list::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &list::_001OnLButtonDblClk);
+      MESSAGE_LINK(e_message_right_button_down, pchannel, this, &list::_001OnRButtonDown);
 
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &list::_001OnMouseMove);
 
       MESSAGE_LINK(e_message_key_down, pchannel, this, &list::_001OnKeyDown);
 
       MESSAGE_LINK(e_message_create, pchannel, this, &list::_001OnCreate);
-      //      //MESSAGE_LINK(WM_TIMER,           pchannel, this, &list::_001OnTimer);
+      //      //MESSAGE_LINK(e_message_timer,           pchannel, this, &list::_001OnTimer);
       connect_command("list_view_auto_arrange", &list::_001OnListViewAutoArrange);
       connect_command_probe("list_view_auto_arrange", &list::_001OnUpdateListViewAutoArrange);
    }
@@ -4037,7 +4037,7 @@ namespace user
                   else
                   {
 
-                     send_message(WM_LBUTTONDBLCLK, pmouse->m_nFlags, MAKELPARAM(point.x, point.y));
+                     send_message(e_message_left_button_double_click, pmouse->m_nFlags, MAKELPARAM(point.x, point.y));
 
                   }
 

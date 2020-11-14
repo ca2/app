@@ -296,7 +296,7 @@ bool image::create_isotropic(::image * pimage)
    else
    {
 
-      pimage->g()->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
+      pimage->g()->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
       pimage->g()->StretchBlt(0, 0, cx, cy, get_graphics(), 0, 0, width(), height());
 
@@ -406,8 +406,7 @@ bool image::stretch_image(::image * pimage)
                                      pimage->g(),
                                      0, 0,
                                      pimage->width(),
-                                     pimage->height(),
-                                     SRCCOPY);
+                                     pimage->height());
 
 }
 
@@ -490,10 +489,14 @@ bool image::from(::draw2d::graphics * pgraphics, const ::size & size)
 
 }
 
+
 bool image::from(const ::point & pointDst, ::draw2d::graphics * pgraphics, const ::point & pointSrc, const ::size & size)
 {
+
    return get_graphics()->from(pointDst, size, pgraphics, pointSrc) != FALSE;
+
 }
+
 
 bool image::from(const ::point & pointDstParam, ::image * pimageSrc, const ::point & pointSrcParam, const ::size & sizeParam)
 {
@@ -3963,7 +3966,7 @@ bool image::fill_rect(const ::rect & rect, color32_t cr)
    else
    {
 
-      ::draw2d::e_alpha_mode emodeOld = get_graphics()->m_ealphamode;
+      ::draw2d::enum_alpha_mode emodeOld = get_graphics()->m_ealphamode;
 
       if (get_graphics()->m_ealphamode != ::draw2d::alpha_mode_set)
       {
@@ -5891,9 +5894,9 @@ bool image::do_xor(::image * pimage)
    }
 
    i32 iCount = width() * height();
-   LPDWORD pd1 = (LPDWORD)get_data();
+   ::u32* pd1 = (::u32*)get_data();
 
-   LPDWORD pd2 = (LPDWORD)pimage->get_data();
+   ::u32* pd2 = (::u32 *)pimage->get_data();
 
    for (i32 i = 0; i < iCount; i++)
    {
@@ -6288,7 +6291,7 @@ bool image::_set_mipmap(::draw2d::e_mipmap emipmap)
 
       }
 
-      get_graphics()->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
+      get_graphics()->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
       int x = cxSource;
 
@@ -6626,7 +6629,7 @@ bool image::set_font_factor(double dFactor)
 }
 
 
-bool image::set_alpha_mode(::draw2d::e_alpha_mode emode)
+bool image::set_alpha_mode(::draw2d::enum_alpha_mode emode)
 {
 
    m_ealphamode = emode;

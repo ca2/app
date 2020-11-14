@@ -34,7 +34,7 @@ namespace user
 
       MESSAGE_LINK(e_message_destroy, pchannel, this, &system_interaction_impl::_001OnDestroy);
       MESSAGE_LINK(WM_SETTINGCHANGE, pchannel,this,&system_interaction_impl::_001OnMessage);
-      MESSAGE_LINK(WM_DISPLAYCHANGE, pchannel,this,&system_interaction_impl::_001OnMessage);
+      MESSAGE_LINK(e_message_display_change, pchannel,this,&system_interaction_impl::_001OnMessage);
       MESSAGE_LINK(WM_FONTCHANGE, pchannel, this, &system_interaction_impl::_001OnMessage);
 
    }
@@ -109,7 +109,7 @@ namespace user
          System.apply_update(id_dark_mode);
 
       }
-         else if (pbase->m_id == WM_DISPLAYCHANGE ||
+         else if (pbase->m_id == e_message_display_change ||
                (pbase->m_id == WM_SETTINGCHANGE &&
                 (pbase->m_wparam == SPI_SETWORKAREA)))
          {

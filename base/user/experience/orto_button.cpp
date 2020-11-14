@@ -230,11 +230,11 @@ namespace experience
    void orto_button::install_message_routing(::channel * pchannel)
    {
       ::user::button::install_message_routing(pchannel);
-      MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &orto_button::_001OnShowWindow);
-      MESSAGE_LINK(e_message_lbutton_down, pchannel, this, &orto_button::_001OnLButtonDown);
-      MESSAGE_LINK(e_message_lbutton_up, pchannel, this, &orto_button::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_show_window, pchannel, this, &orto_button::_001OnShowWindow);
+      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &orto_button::_001OnLButtonDown);
+      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &orto_button::_001OnLButtonUp);
       //MESSAGE_LINK(e_message_size, pchannel, this, &orto_button::_001OnSize);
-      //   //MESSAGE_LINK(WM_TIMER, pchannel, this,&orto_button::_001OnTimer);
+      //   //MESSAGE_LINK(e_message_timer, pchannel, this,&orto_button::_001OnTimer);
    }
 
 

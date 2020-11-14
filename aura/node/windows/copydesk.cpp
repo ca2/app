@@ -232,7 +232,7 @@ namespace windows
    HGLOBAL copydesk::hglobal_get_utf8_text(const string & str)
    {
 
-      HGLOBAL hglb = ::GlobalAlloc(GMEM_MOVEABLE, (SIZE_T) (sizeof(CHAR) * (str.length() + 1)));
+      HGLOBAL hglb = ::GlobalAlloc(GMEM_MOVEABLE, (SIZE_T) (sizeof(char) * (str.length() + 1)));
       char * psz = (char *) ::GlobalLock(hglb);
 
       strcpy(psz, str);

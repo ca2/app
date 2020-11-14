@@ -60,15 +60,15 @@ namespace user
       }
 
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &combo_box::_001OnMouseMove);
-      MESSAGE_LINK(WM_MOUSELEAVE, pchannel, this, &combo_box::_001OnMouseLeave);
-      MESSAGE_LINK(e_message_lbutton_down, pchannel, this, &combo_box::_001OnLButtonDown);
-      MESSAGE_LINK(e_message_lbutton_up, pchannel, this, &combo_box::_001OnLButtonUp);
-      MESSAGE_LINK(WM_LBUTTONDBLCLK, pchannel, this, &combo_box::_001OnLButtonDblClk);
+      MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &combo_box::_001OnMouseLeave);
+      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &combo_box::_001OnLButtonDown);
+      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &combo_box::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &combo_box::_001OnLButtonDblClk);
       MESSAGE_LINK(e_message_key_down,pchannel,this,&combo_box::_001OnKeyDown);
       MESSAGE_LINK(e_message_key_up,pchannel,this,&combo_box::_001OnKeyUp);
       MESSAGE_LINK(e_message_set_focus,pchannel,this,&combo_box::_001OnSetFocus);
       MESSAGE_LINK(e_message_kill_focus, pchannel, this, &combo_box::_001OnKillFocus);
-      MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &combo_box::_001OnShowWindow);
+      MESSAGE_LINK(e_message_show_window, pchannel, this, &combo_box::_001OnShowWindow);
       MESSAGE_LINK(e_message_move, pchannel, this, &combo_box::_001OnMove);
 
    }
@@ -982,7 +982,7 @@ namespace user
          __throw(todo());
 #endif
          break;
-      case WM_MEASUREITEM:
+      case e_message_measure_item:
 #ifdef WINODWSEX
          MeasureItem((LPMEASUREITEMSTRUCT)pbase->m_lparam);
 #else

@@ -206,7 +206,7 @@ namespace experience
          if (GetTopLevel()->layout().is_moving())
          {
 
-            //TRACE("experience control_box : top level is moving : ignoring WM_TIMER");
+            //TRACE("experience control_box : top level is moving : ignoring e_message_timer");
 
             return;
 
@@ -214,7 +214,7 @@ namespace experience
          else if (GetTopLevel()->layout().is_sizing())
          {
 
-            //TRACE("experience control_box : top level is sizing : ignoring WM_TIMER");
+            //TRACE("experience control_box : top level is sizing : ignoring e_message_timer");
 
             return;
 
@@ -374,11 +374,11 @@ namespace experience
 
       ::user::interaction::install_message_routing(pframewindow);
 
-      MESSAGE_LINK(WM_SHOWWINDOW, pframewindow, this, &control_box::_001OnShowWindow);
+      MESSAGE_LINK(e_message_show_window, pframewindow, this, &control_box::_001OnShowWindow);
       MESSAGE_LINK(e_message_create, pframewindow, this, &control_box::_001OnCreate);
       MESSAGE_LINK(e_message_mouse_move, pframewindow, this, &control_box::_001OnMouseMove);
-      MESSAGE_LINK(e_message_lbutton_down, pframewindow, this, &control_box::_001OnLButtonDown);
-      MESSAGE_LINK(e_message_lbutton_up, pframewindow, this, &control_box::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_left_button_down, pframewindow, this, &control_box::_001OnLButtonDown);
+      MESSAGE_LINK(e_message_left_button_up, pframewindow, this, &control_box::_001OnLButtonUp);
       MESSAGE_LINK(e_message_move, pframewindow, this, &control_box::_001OnMove);
       MESSAGE_LINK(e_message_size, pframewindow, this, &control_box::_001OnSize);
 
@@ -1044,31 +1044,31 @@ namespace experience
       switch (ebutton)
       {
       case button_close:
-         strCaption = (CHAR)114;
+         strCaption = (char)114;
          break;
       case button_up:
-         strCaption = (CHAR)53;
+         strCaption = (char)53;
          break;
       case button_down:
-         strCaption = (CHAR)54;
+         strCaption = (char)54;
          break;
       case button_minimize:
-         strCaption = (CHAR)48;
+         strCaption = (char)48;
          break;
       case button_maximize:
-         strCaption = (CHAR)49;
+         strCaption = (char)49;
          break;
       case button_restore:
-         strCaption = (CHAR)50;
+         strCaption = (char)50;
          break;
       case button_notify_icon:
-         strCaption = (CHAR)0x69;
+         strCaption = (char)0x69;
          break;
       case button_transparent_frame:
-         strCaption = (CHAR)' ';
+         strCaption = (char)' ';
          break;
       case button_dock:
-         strCaption = (CHAR)0x6E;
+         strCaption = (char)0x6E;
          break;
 
       default:

@@ -85,8 +85,8 @@ public:
    TYPE & get_minimum_value();
 
 
-   template < typename INT >
-   INT & mask(INT & i)
+   template < typename ::i32 >
+   ::i32 & mask(::i32 & i)
    {
 
       i = 0;
@@ -726,15 +726,15 @@ get_minimum_value()
    return this->element_at(find_first_minimum_value());
 }
 
-template < typename INT >
-inline INT get_integer_mean(const INT * point, ::count N)
+template < typename INTEGER >
+inline INTEGER get_integer_mean(const INTEGER * p, ::count N)
 {
    i64 x = 0;
    i64 y = 0;
    ::count c = N;
    while (c > 0)
    {
-      i64 a = *point;
+      i64 a = *p;
       x += a / N;
       if (a >= 0)
       {
@@ -763,7 +763,7 @@ inline INT get_integer_mean(const INT * point, ::count N)
          }
       }
       c--;
-      point++;
+      p++;
    }
    return (int) (x + y / N);
 

@@ -83,7 +83,7 @@ duration::duration(e_duration eduration)
 
 
 
-void duration::set(i64 i, e_unit eunit)
+void duration::set(i64 i, enum_unit eunit)
 {
 
    switch (eunit)
@@ -113,7 +113,7 @@ void duration::set(i64 i, e_unit eunit)
 
 }
 
-void duration::set(long double d, e_unit eunit)
+void duration::set(long double d, enum_unit eunit)
 {
 
    switch (eunit)

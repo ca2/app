@@ -20,9 +20,9 @@ namespace xml
       //   ::text_stream ostring;
       //   //ostring << (const char *)m_strName << "='" << (const char *)m_strValue << "' ";
 
-      //   ostring << (const char *)m_strName << L"=" << (CHAR)opt->m_chQuote
+      //   ostring << (const char *)m_strName << L"=" << (char)opt->m_chQuote
       //      << (const char *)(opt->reference_value&&opt->m_pentities?opt->m_pentities->entity_to_ref(m_strValue):m_strValue)
-      //      << (CHAR)opt->m_chQuote << L" ";
+      //      << (char)opt->m_chQuote << L" ";
       //   return ostring.str();
 
       if (opt == nullptr)

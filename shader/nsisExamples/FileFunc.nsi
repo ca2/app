@@ -56,7 +56,7 @@ Function ShowCustom
 	ShowWindow $1 0
 	GetDlgItem $1 $HWND 1206
 	EnableWindow $1 0
-	SendMessage $1 ${WM_ENABLE} 1 0
+	SendMessage $1 ${e_message_enable} 1 0
 	StrCpy $LOCATE1 $DOCUMENTS
 	StrCpy $LOCATE2 '/L=FD /M=*.* /S=0B /G=1 /B=0'
 	StrCpy $GETSIZE1 '$WINDIR'
@@ -333,7 +333,7 @@ Function LeaveCustom
 	GetDlgItem $1 $HWND 1201
 	ShowWindow $1 1
 	EnableWindow $1 0
-	SendMessage $1 ${WM_ENABLE} 1 0
+	SendMessage $1 ${e_message_enable} 1 0
 	SendMessage $1 ${WM_SETTEXT} 1 "STR:ALL"
 	GetDlgItem $1 $HWND 1202
 	ShowWindow $1 1
@@ -357,7 +357,7 @@ Function LeaveCustom
 	GetDlgItem $1 $HWND 1201
 	ShowWindow $1 1
 	EnableWindow $1 0
-	SendMessage $1 ${WM_ENABLE} 1 0
+	SendMessage $1 ${e_message_enable} 1 0
 	GetDlgItem $1 $HWND 1202
 	ShowWindow $1 1
 	EnableWindow $1 0

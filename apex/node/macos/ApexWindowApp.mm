@@ -212,7 +212,7 @@ if(str != nil)
 {
    
    //set_apex_system_as_thread();
-   //MessageBox(NULL, "applicationDidFinishLaunching", "applicationDidFinishLaunching", MB_OK);
+   //MessageBox(NULL, "applicationDidFinishLaunching", "applicationDidFinishLaunching", e_message_box_ok);
    
    //defer_run_system();
    
@@ -222,7 +222,7 @@ if(str != nil)
 - (BOOL)applicationShouldHandleReopen:(NSApplication *)sender hasVisibleWindows:(BOOL)flag
 {
    
-   //MessageBox(NULL, "applicationShouldHandleReopen", "applicationShouldHandleReopen", MB_OK);
+   //MessageBox(NULL, "applicationShouldHandleReopen", "applicationShouldHandleReopen", e_message_box_ok);
    
    system_call_update_app_activated();
 
@@ -242,7 +242,7 @@ if(str != nil)
 {
    
    file_put_contents("/eco/001.txt", "applicationOpenUntitledFile");
-   //MessageBox(NULL, "applicationOpenUntitledFile", "applicationOpenUntitledFile", MB_OK);
+   //MessageBox(NULL, "applicationOpenUntitledFile", "applicationOpenUntitledFile", e_message_box_ok);
    
    defer_run_system();
    
@@ -260,7 +260,7 @@ if(str != nil)
    file_put_contents("/eco/002.txt", "applicationOpenFile");
    file_put_contents("/eco/003.txt", [filename UTF8String]);
 
-   //MessageBox(NULL, "application: openFile", "application: openFile", MB_OK);
+   //MessageBox(NULL, "application: openFile", "application: openFile", e_message_box_ok);
    
    defer_run_system([filename UTF8String]);
    
@@ -302,7 +302,7 @@ if(str != nil)
    file_put_contents("/eco/006.txt", "open");
    file_add_contents_raw("/eco/006.txt", [[url absoluteString] UTF8String]);
    
-   //MessageBox(NULL, "application: openFile", "application: openFile", MB_OK);
+   //MessageBox(NULL, "application: openFile", "application: openFile", e_message_box_ok);
    
    defer_run_system([[url absoluteString] UTF8String]);
 }
@@ -313,7 +313,7 @@ if(str != nil)
    file_put_contents("/eco/007.txt", "openFileWithoutUI");
    file_add_contents_raw("/eco/007.txt", [filename UTF8String]);
    
-   //MessageBox(NULL, "application: openFile", "application: openFile", MB_OK);
+   //MessageBox(NULL, "application: openFile", "application: openFile", e_message_box_ok);
    
    defer_run_system([filename UTF8String]);
 }
@@ -685,7 +685,7 @@ void os_begin_system();
 //{
 //   
 //   set_apex_system_as_thread();
-//   //MessageBox(NULL, "applicationDidFinishLaunching", "applicationDidFinishLaunching", MB_OK);
+//   //MessageBox(NULL, "applicationDidFinishLaunching", "applicationDidFinishLaunching", e_message_box_ok);
 //   
 //   defer_run_system();
 //   
@@ -695,7 +695,7 @@ void os_begin_system();
 //- (BOOL)applicationShouldHandleReopen:(NSApplication *)sender hasVisibleWindows:(BOOL)flag
 //{
 //   
-//   //MessageBox(NULL, "applicationShouldHandleReopen", "applicationShouldHandleReopen", MB_OK);
+//   //MessageBox(NULL, "applicationShouldHandleReopen", "applicationShouldHandleReopen", e_message_box_ok);
 //   
 //   system_call_update_app_activated();
 //
@@ -715,7 +715,7 @@ void os_begin_system();
 //{
 //   
 //   file_put_contents("/eco/001.txt", "applicationOpenUntitledFile");
-//   //MessageBox(NULL, "applicationOpenUntitledFile", "applicationOpenUntitledFile", MB_OK);
+//   //MessageBox(NULL, "applicationOpenUntitledFile", "applicationOpenUntitledFile", e_message_box_ok);
 //   
 //   defer_run_system();
 //   
@@ -733,7 +733,7 @@ void os_begin_system();
 //   file_put_contents("/eco/002.txt", "applicationOpenFile");
 //   file_put_contents("/eco/003.txt", [filename UTF8String]);
 //
-//   //MessageBox(NULL, "application: openFile", "application: openFile", MB_OK);
+//   //MessageBox(NULL, "application: openFile", "application: openFile", e_message_box_ok);
 //   
 //   defer_run_system([filename UTF8String]);
 //   
@@ -775,7 +775,7 @@ void os_begin_system();
 //   file_put_contents("/eco/006.txt", "open");
 //   file_add_contents_raw("/eco/006.txt", [[url absoluteString] UTF8String]);
 //   
-//   //MessageBox(NULL, "application: openFile", "application: openFile", MB_OK);
+//   //MessageBox(NULL, "application: openFile", "application: openFile", e_message_box_ok);
 //   
 //   defer_run_system([[url absoluteString] UTF8String]);
 //}
@@ -786,7 +786,7 @@ void os_begin_system();
 //   file_put_contents("/eco/007.txt", "openFileWithoutUI");
 //   file_add_contents_raw("/eco/007.txt", [filename UTF8String]);
 //   
-//   //MessageBox(NULL, "application: openFile", "application: openFile", MB_OK);
+//   //MessageBox(NULL, "application: openFile", "application: openFile", e_message_box_ok);
 //   
 //   defer_run_system([filename UTF8String]);
 //}

@@ -1051,7 +1051,7 @@ namespace draw2d
    }
 
 
-   bool graphics::DrawIcon(i32 x, i32 y, ::draw2d::icon * picon, i32 cx, i32 cy, ::u32 istepIfAniCur,  ::u32 diFlags)
+   bool graphics::DrawIcon(i32 x, i32 y, ::draw2d::icon * picon, i32 cx, i32 cy, ::u32 istepIfAniCur)
    {
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
@@ -1060,41 +1060,42 @@ namespace draw2d
       UNREFERENCED_PARAMETER(cy);
       UNREFERENCED_PARAMETER(istepIfAniCur);
 //      UNREFERENCED_PARAMETER(hbrFlickerFreeDraw);
-      UNREFERENCED_PARAMETER(diFlags);
+//      UNREFERENCED_PARAMETER(diFlags);
 
 
       return false;
 
    }
 
-
-   bool graphics::DrawState(const ::point & point, const ::size & size, HBITMAP hBitmap, ::u32 nFlags, HBRUSH hBrush)
-   {
-
-      UNREFERENCED_PARAMETER(point);
-      UNREFERENCED_PARAMETER(size);
-      UNREFERENCED_PARAMETER(hBitmap);
-      UNREFERENCED_PARAMETER(nFlags);
-      UNREFERENCED_PARAMETER(hBrush);
-
-
-      return false;
-
-   }
-
-
-   bool graphics::DrawState(const ::point & point, const ::size & size, ::draw2d::bitmap* pBitmap, ::u32 nFlags, ::draw2d::brush* pBrush)
-   {
-
-      UNREFERENCED_PARAMETER(point);
-      UNREFERENCED_PARAMETER(size);
-      UNREFERENCED_PARAMETER(pBitmap);
-      UNREFERENCED_PARAMETER(nFlags);
-      UNREFERENCED_PARAMETER(pBrush);
-
-
-      return false;
-   }
+//
+//
+//   bool graphics::DrawState(const ::point & point, const ::size & size, HBITMAP hBitmap, ::u32 nFlags, HBRUSH hBrush)
+//   {
+//
+//      UNREFERENCED_PARAMETER(point);
+//      UNREFERENCED_PARAMETER(size);
+//      UNREFERENCED_PARAMETER(hBitmap);
+//      UNREFERENCED_PARAMETER(nFlags);
+//      UNREFERENCED_PARAMETER(hBrush);
+//
+//
+//      return false;
+//
+//   }
+//
+//
+//   bool graphics::DrawState(const ::point & point, const ::size & size, ::draw2d::bitmap* pBitmap, ::u32 nFlags, ::draw2d::brush* pBrush)
+//   {
+//
+//      UNREFERENCED_PARAMETER(point);
+//      UNREFERENCED_PARAMETER(size);
+//      UNREFERENCED_PARAMETER(pBitmap);
+//      UNREFERENCED_PARAMETER(nFlags);
+//      UNREFERENCED_PARAMETER(pBrush);
+//
+//
+//      return false;
+//   }
 
 #ifdef WINDOWS
 
@@ -1131,22 +1132,22 @@ namespace draw2d
 #endif
 
 
-   bool graphics::DrawState(const ::point & point, const ::size & size, const char * pszText, ::u32 nFlags, bool bPrefixText, i32 nTextLen, HBRUSH hBrush)
-   {
-
-      UNREFERENCED_PARAMETER(point);
-      UNREFERENCED_PARAMETER(size);
-      UNREFERENCED_PARAMETER(pszText);
-
-      UNREFERENCED_PARAMETER(nFlags);
-      UNREFERENCED_PARAMETER(bPrefixText);
-      UNREFERENCED_PARAMETER(nTextLen);
-      UNREFERENCED_PARAMETER(hBrush);
-
-
-      return false;
-
-   }
+//   bool graphics::DrawState(const ::point & point, const ::size & size, const char * pszText, ::u32 nFlags, bool bPrefixText, i32 nTextLen)
+//   {
+//
+//      UNREFERENCED_PARAMETER(point);
+//      UNREFERENCED_PARAMETER(size);
+//      UNREFERENCED_PARAMETER(pszText);
+//
+//      UNREFERENCED_PARAMETER(nFlags);
+//      UNREFERENCED_PARAMETER(bPrefixText);
+//      UNREFERENCED_PARAMETER(nTextLen);
+//      UNREFERENCED_PARAMETER(hBrush);
+//
+//
+//      return false;
+//
+//   }
 
 
    bool graphics::DrawState(const ::point & point, const ::size & size, const char * pszText, ::u32 nFlags, bool bPrefixText, i32 nTextLen, ::draw2d::brush* pBrush)
@@ -1666,29 +1667,30 @@ namespace draw2d
    }
 
 
-   bool graphics::PatBlt(i32 x, i32 y, i32 nWidth, i32 nHeight, u32 dwRop)
+   bool graphics::PatBlt(i32 x, i32 y, i32 nWidth, i32 nHeight)
    {
+
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
       UNREFERENCED_PARAMETER(nWidth);
       UNREFERENCED_PARAMETER(nHeight);
-      UNREFERENCED_PARAMETER(dwRop);
 
       return false;
+
    }
 
 
-   bool graphics::draw(const ::rect & rect, ::image * pimage, const ::point & point, u32 dwRop)
+   bool graphics::draw(const ::rect & rect, ::image * pimage, const ::point & point)
    {
 
       pimage->defer_update_image();
 
-      return draw(rect, pimage->g(), point, dwRop);
+      return draw(rect, pimage->g(), point);
 
    }
 
 
-   bool graphics::draw(const ::rect & rect, ::draw2d::graphics * pgraphicsSrc, const ::point & point, u32 dwRop)
+   bool graphics::draw(const ::rect & rect, ::draw2d::graphics * pgraphicsSrc, const ::point & point)
    {
 
       if(::is_null(pgraphicsSrc))
@@ -1708,7 +1710,6 @@ namespace draw2d
       i32 ySrc = point.y;
       i32 nWidth = rect.width();
       i32 nHeight = rect.height();
-
 
       if(m_bPat)
       {
@@ -1773,10 +1774,10 @@ namespace draw2d
 
                   }
 
-                  if (!BitBltAlphaBlend(x + i, y + j, w, h, pgraphicsSrc, xs, ys, dwRop))
+                  if (!BitBltAlphaBlend(x + i, y + j, w, h, pgraphicsSrc, xs, ys))
                   {
 
-                     if (!BitBltRaw(x + i, y + j, w, h, pgraphicsSrc, xs, ys, dwRop))
+                     if (!BitBltRaw(x + i, y + j, w, h, pgraphicsSrc, xs, ys))
                      {
 
                      }
@@ -1794,14 +1795,14 @@ namespace draw2d
 
       }
 
-      if (BitBltAlphaBlend(x, y, nWidth, nHeight, pgraphicsSrc, xSrc, ySrc, dwRop))
+      if (BitBltAlphaBlend(x, y, nWidth, nHeight, pgraphicsSrc, xSrc, ySrc))
       {
 
          return true;
 
       }
 
-      if (BitBltRaw(x, y, nWidth, nHeight, pgraphicsSrc, xSrc, ySrc, dwRop))
+      if (BitBltRaw(x, y, nWidth, nHeight, pgraphicsSrc, xSrc, ySrc))
       {
 
          return true;
@@ -1813,8 +1814,7 @@ namespace draw2d
    }
 
 
-
-   bool graphics::BitBltRaw(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, u32 dwRop)
+   bool graphics::BitBltRaw(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc)
    {
 
       return false;
@@ -1822,10 +1822,10 @@ namespace draw2d
    }
 
 
-   bool graphics::BitBltAlphaBlend(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, u32 dwRop)
+   bool graphics::BitBltAlphaBlend(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc)
    {
 
-      // return ::draw2d::graphics::BitBltAlphaBlend(x, y, nWidth, nHeight, pgraphicsSrc, xSrc, ySrc, dwRop);
+      // return ::draw2d::graphics::BitBltAlphaBlend(x, y, nWidth, nHeight, pgraphicsSrc, xSrc, ySrc);
 
       if (m_pimageAlphaBlend)
       {
@@ -1892,7 +1892,7 @@ namespace draw2d
 
                pimage1->blend(::point(), m_pimageAlphaBlend, point((int)max(0, x - m_pointAlphaBlend.x), (int)max(0, y - m_pointAlphaBlend.y)), rectBlt.size());
 
-               BitBltRaw(x, y, nWidth, nHeight, pimage1->get_graphics(), 0, 0, dwRop);
+               BitBltRaw(x, y, nWidth, nHeight, pimage1->get_graphics(), 0, 0);
 
             }
 
@@ -1935,44 +1935,43 @@ namespace draw2d
    }
 
 
-   bool graphics::draw(const ::rect & rectDst, ::image * pimage, const ::rect & rectSrc, u32 dwRop)
+   bool graphics::draw(const ::rect & rectDst, ::image * pimage, const ::rect & rectSrc)
    {
 
       pimage->defer_update_image();
 
-      return draw(rectDst, pimage->g(), rectSrc, dwRop);
+      return draw(rectDst, pimage->g(), rectSrc);
 
    }
 
 
-   bool graphics::draw(const ::rect & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rect & rectSrc, u32 dwRop)
+   bool graphics::draw(const ::rect & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rect & rectSrc)
    {
 
-      return StretchBlt((rect) rectDst, pgraphicsSrc, (rect)rectSrc, dwRop);
+      return StretchBlt((rect) rectDst, pgraphicsSrc, (rect)rectSrc);
 
    }
 
 
-   bool graphics::draw(const rectd & rectDst, ::image * pimage, const ::rect & rectSrc, u32 dwRop)
+   bool graphics::draw(const rectd & rectDst, ::image * pimage, const ::rect & rectSrc)
    {
 
       pimage->defer_update_image();
 
-      return draw(rectDst, pimage->g(), rectSrc, dwRop);
+      return draw(rectDst, pimage->g(), rectSrc);
 
    }
 
 
-   bool graphics::draw(const rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rect & rectSrc, u32 dwRop)
+   bool graphics::draw(const rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rect & rectSrc)
    {
 
-      return StretchBlt((rectd)rectDst, pgraphicsSrc, (rect)rectSrc, dwRop);
-
+      return StretchBlt((rectd)rectDst, pgraphicsSrc, (rect)rectSrc);
 
    }
 
 
-   bool graphics::StretchBlt(const ::rect & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rect & rectSrc, u32 dwRop)
+   bool graphics::StretchBlt(const ::rect & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rect & rectSrc)
    {
 
       return StretchBlt(
@@ -1984,13 +1983,12 @@ namespace draw2d
              rectSrc.left,
              rectSrc.top,
              rectSrc.width(),
-             rectSrc.height(),
-             dwRop);
+             rectSrc.height());
 
    }
 
 
-   bool graphics::StretchBlt(const ::rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rect & rectSrc, u32 dwRop)
+   bool graphics::StretchBlt(const ::rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rect & rectSrc)
    {
 
       return StretchBlt(
@@ -2002,23 +2000,22 @@ namespace draw2d
              rectSrc.left,
              rectSrc.top,
              rectSrc.width(),
-             rectSrc.height(),
-             dwRop);
+             rectSrc.height());
 
    }
 
 
-   bool graphics::StretchBlt(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight, u32 dwRop)
+   bool graphics::StretchBlt(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight)
    {
 
-      if (StretchBltAlphaBlend(x, y, nWidth, nHeight, pgraphicsSrc, xSrc, ySrc, nSrcWidth, nSrcHeight, dwRop))
+      if (StretchBltAlphaBlend(x, y, nWidth, nHeight, pgraphicsSrc, xSrc, ySrc, nSrcWidth, nSrcHeight))
       {
 
          return true;
 
       }
 
-      if (StretchBltRaw(x, y, nWidth, nHeight, pgraphicsSrc, xSrc, ySrc, nSrcWidth, nSrcHeight, dwRop))
+      if (StretchBltRaw(x, y, nWidth, nHeight, pgraphicsSrc, xSrc, ySrc, nSrcWidth, nSrcHeight))
       {
 
          return true;
@@ -2030,17 +2027,17 @@ namespace draw2d
    }
 
 
-   bool graphics::StretchBlt(double x, double y, double nWidth, double nHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight, u32 dwRop)
+   bool graphics::StretchBlt(double x, double y, double nWidth, double nHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight)
    {
 
-      if (StretchBltAlphaBlend(x, y, nWidth, nHeight, pgraphicsSrc, xSrc, ySrc, nSrcWidth, nSrcHeight, dwRop))
+      if (StretchBltAlphaBlend(x, y, nWidth, nHeight, pgraphicsSrc, xSrc, ySrc, nSrcWidth, nSrcHeight))
       {
 
          return true;
 
       }
 
-      if (StretchBltRaw(x, y, nWidth, nHeight, pgraphicsSrc, xSrc, ySrc, nSrcWidth, nSrcHeight, dwRop))
+      if (StretchBltRaw(x, y, nWidth, nHeight, pgraphicsSrc, xSrc, ySrc, nSrcWidth, nSrcHeight))
       {
 
          return true;
@@ -2052,7 +2049,7 @@ namespace draw2d
    }
 
 
-   bool graphics::StretchBltAlphaBlend(i32 xDst, i32 yDst, i32 nDstWidth, i32 nDstHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight, u32 dwRop)
+   bool graphics::StretchBltAlphaBlend(i32 xDst, i32 yDst, i32 nDstWidth, i32 nDstHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight)
    {
 
       return StretchBltAlphaBlend(
@@ -2064,13 +2061,12 @@ namespace draw2d
              xSrc,
              ySrc,
              nSrcWidth,
-             nSrcHeight,
-             dwRop);
+             nSrcHeight);
 
    }
 
 
-   bool graphics::StretchBltAlphaBlend(double xDst, double yDst, double nDstWidth, double nDstHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight, u32 dwRop)
+   bool graphics::StretchBltAlphaBlend(double xDst, double yDst, double nDstWidth, double nDstHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight)
    {
 
       if (m_pimageAlphaBlend->is_ok())
@@ -2145,7 +2141,7 @@ namespace draw2d
    }
 
 
-   bool graphics::StretchBltRaw(i32 xDst, i32 yDst, i32 nDstWidth, i32 nDstHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight, u32 dwRop)
+   bool graphics::StretchBltRaw(i32 xDst, i32 yDst, i32 nDstWidth, i32 nDstHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight)
    {
 
       return StretchBltRaw(
@@ -2157,13 +2153,12 @@ namespace draw2d
              xSrc,
              ySrc,
              nSrcWidth,
-             nSrcHeight,
-             dwRop);
+             nSrcHeight);
 
    }
 
 
-   bool graphics::StretchBltRaw(double x, double y, double nWidth, double nHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight, u32 dwRop)
+   bool graphics::StretchBltRaw(double x, double y, double nWidth, double nHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight)
    {
 
       return false;
@@ -2179,11 +2174,14 @@ namespace draw2d
       return 0;
    }
 
+
    ::color graphics::GetPixel(const ::point & point)
    {
+
       UNREFERENCED_PARAMETER(point);
 
       return 0;
+
    }
 
 
@@ -2476,20 +2474,20 @@ namespace draw2d
    }
 
 
-   bool graphics::GrayString(::draw2d::brush* pBrush, bool (CALLBACK* pfnOutput)(HDC, LPARAM, i32), LPARAM pData, i32 nCount, i32 x, i32 y, i32 nWidth, i32 nHeight)
-   {
-
-      UNREFERENCED_PARAMETER(pBrush);
-      UNREFERENCED_PARAMETER(pfnOutput);
-      UNREFERENCED_PARAMETER(pData);
-      UNREFERENCED_PARAMETER(nCount);
-      UNREFERENCED_PARAMETER(x);
-      UNREFERENCED_PARAMETER(y);
-      UNREFERENCED_PARAMETER(nWidth);
-      UNREFERENCED_PARAMETER(nHeight);
-
-      return false;
-   }
+//   bool graphics::GrayString(::draw2d::brush* pBrush, bool (CALLBACK* pfnOutput)(HDC, LPARAM, i32), LPARAM pData, i32 nCount, i32 x, i32 y, i32 nWidth, i32 nHeight)
+//   {
+//
+//      UNREFERENCED_PARAMETER(pBrush);
+//      UNREFERENCED_PARAMETER(pfnOutput);
+//      UNREFERENCED_PARAMETER(pData);
+//      UNREFERENCED_PARAMETER(nCount);
+//      UNREFERENCED_PARAMETER(x);
+//      UNREFERENCED_PARAMETER(y);
+//      UNREFERENCED_PARAMETER(nWidth);
+//      UNREFERENCED_PARAMETER(nHeight);
+//
+//      return false;
+//   }
 
    ::u32 graphics::GetTextAlign()
    {
@@ -2780,14 +2778,14 @@ namespace draw2d
       return -1;
    }
 
-   i32 graphics::SetAbortProc(bool (CALLBACK* pfn)(HDC, i32))
-
-   {
-      UNREFERENCED_PARAMETER(pfn);
-
-
-      return -1;
-   }
+//   i32 graphics::SetAbortProc(bool (CALLBACK* pfn)(HDC, i32))
+//
+//   {
+//      UNREFERENCED_PARAMETER(pfn);
+//
+//
+//      return -1;
+//   }
 
    i32 graphics::AbortDoc()
    {
@@ -2895,7 +2893,7 @@ namespace draw2d
    }
 
 
-   bool graphics::PolyPolyline(const POINT32 * ppoints, const INT * pPolyPoints, count nCount)
+   bool graphics::PolyPolyline(const POINT32 * ppoints, const ::i32 * pPolyPoints, count nCount)
 
 
    {
@@ -3254,16 +3252,16 @@ namespace draw2d
       return false;
    }
 
-   bool graphics::GradientFill(TRIVERTEX* pVertices, WINULONG nVertices, void * pMesh, WINULONG nMeshElements, u32 dwMode)
-   {
-      UNREFERENCED_PARAMETER(pVertices);
-      UNREFERENCED_PARAMETER(nVertices);
-      UNREFERENCED_PARAMETER(pMesh);
-      UNREFERENCED_PARAMETER(nMeshElements);
-      UNREFERENCED_PARAMETER(dwMode);
-
-      return false;
-   }
+//   bool graphics::GradientFill(TRIVERTEX* pVertices, WINULONG nVertices, void * pMesh, WINULONG nMeshElements, u32 dwMode)
+//   {
+//      UNREFERENCED_PARAMETER(pVertices);
+//      UNREFERENCED_PARAMETER(nVertices);
+//      UNREFERENCED_PARAMETER(pMesh);
+//      UNREFERENCED_PARAMETER(nMeshElements);
+//      UNREFERENCED_PARAMETER(dwMode);
+//
+//      return false;
+//   }
 
 //#ifdef WINDOWS
 //
@@ -3554,14 +3552,14 @@ namespace draw2d
    }
 
 
-   i32 graphics::set_interpolation_mode(i32 nStretchMode)
-   {
-
-      UNREFERENCED_PARAMETER(nStretchMode);
-
-      return -1;
-
-   }
+//   i32 graphics::set_interpolation_mode(i32 nStretchMode)
+//   {
+//
+//      UNREFERENCED_PARAMETER(nStretchMode);
+//
+//      return -1;
+//
+//   }
 
 
    i32 graphics::SetGraphicsMode(i32 iMode)
@@ -4690,7 +4688,7 @@ namespace draw2d
 #ifndef _UWP
 
 
-   bool graphics::draw_text_ex(const string & str, const rect & rect, const ::e_align& ealign, const ::e_draw_text& edrawtext, LPDRAWTEXTPARAMS pDTParams)
+   bool graphics::draw_text_ex(const string & str, const rect & rect, const ::e_align& ealign, const ::e_draw_text& edrawtext)
    {
 
       UNREFERENCED_PARAMETER(str);
@@ -4698,22 +4696,19 @@ namespace draw2d
 
       UNREFERENCED_PARAMETER(ealign);
       UNREFERENCED_PARAMETER(edrawtext);
-      UNREFERENCED_PARAMETER(pDTParams);
 
       return false;
 
    }
 
 
-   bool graphics::draw_text_ex(const string & str, const rectd & rect, const ::e_align& ealign, const ::e_draw_text& edrawtext, LPDRAWTEXTPARAMS pDTParams)
+   bool graphics::draw_text_ex(const string & str, const rectd & rect, const ::e_align& ealign, const ::e_draw_text& edrawtext)
    {
 
       UNREFERENCED_PARAMETER(str);
       UNREFERENCED_PARAMETER(rect);
-
       UNREFERENCED_PARAMETER(ealign);
       UNREFERENCED_PARAMETER(edrawtext);
-      UNREFERENCED_PARAMETER(pDTParams);
 
       return false;
 
@@ -4723,26 +4718,26 @@ namespace draw2d
 #endif
 
 
-   bool graphics::from(const ::point & pointDst, const ::size & size, ::draw2d::graphics * pgraphicsSrc, const ::point & pointSrc, u32 dwRop)
+   bool graphics::from(const ::point & pointDst, const ::size & size, ::draw2d::graphics * pgraphicsSrc, const ::point & pointSrc)
    {
 
-      return BitBlt(pointDst.x, pointDst.y, size.cx, size.cy, pgraphicsSrc, pointSrc.x, pointSrc.y, dwRop) != FALSE;
+      return BitBlt(pointDst.x, pointDst.y, size.cx, size.cy, pgraphicsSrc, pointSrc.x, pointSrc.y) != FALSE;
 
    }
 
 
-   bool graphics::from(const ::size & size, ::draw2d::graphics * pgraphicsSrc, const ::point & pointSrc, u32 dwRop)
+   bool graphics::from(const ::size & size, ::draw2d::graphics * pgraphicsSrc, const ::point & pointSrc)
    {
 
-      return from(nullptr, size, pgraphicsSrc, pointSrc, dwRop);
+      return from(nullptr, size, pgraphicsSrc, pointSrc);
 
    }
 
 
-   bool graphics::from(const ::size & size, ::draw2d::graphics * pgraphicsSrc, u32 dwRop)
+   bool graphics::from(const ::size & size, ::draw2d::graphics * pgraphicsSrc)
    {
 
-      return from(size, pgraphicsSrc, nullptr, dwRop);
+      return from(size, pgraphicsSrc, nullptr);
 
    }
 
@@ -5003,7 +4998,7 @@ namespace draw2d
    }
 
 
-   bool graphics::set_alpha_mode(e_alpha_mode ealphamode)
+   bool graphics::set_alpha_mode(enum_alpha_mode ealphamode)
    {
 
       m_ealphamode = ealphamode;
@@ -5023,7 +5018,7 @@ namespace draw2d
    }
 
 
-   bool graphics::set_interpolation_mode(e_interpolation_mode einterpolationmode)
+   bool graphics::set_interpolation_mode(enum_interpolation_mode einterpolationmode)
    {
 
       m_einterpolationmode = einterpolationmode;

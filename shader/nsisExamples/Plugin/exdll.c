@@ -28,7 +28,7 @@ void __declspec(dllexport) myFunction(HWND hwndParent, int string_size,
     if (msgbuf)
     {
       wsprintf(msgbuf, TEXT("$0=%s"), getuservariable(INST_0));
-      MessageBox(g_hwndParent, msgbuf, TEXT("Message from example plugin"), MB_OK);
+      MessageBox(g_hwndParent, msgbuf, TEXT("Message from example plugin"), e_message_box_ok);
       GlobalFree(msgbuf);
     }
   }

@@ -105,7 +105,7 @@ validate:
   StrCmp $0 1 done
   ReadINIStr $0 "$PLUGINSDIR\test.ini" "Field 4" "State"
   StrCmp $0 1 done
-    MessageBox MB_ICONEXCLAMATION|MB_OK "You must select at least one install option!"
+    MessageBox e_message_box_icon_exclamation|e_message_box_ok "You must select at least one install option!"
     Abort
 done:
 

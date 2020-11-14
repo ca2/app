@@ -43,11 +43,11 @@ namespace filemanager
          void list_view::install_message_routing(::channel * pchannel)
          {
             simple_list_view::install_message_routing(pchannel);
-            MESSAGE_LINK(WM_LBUTTONDBLCLK, pchannel, this, &list_view::_001OnLButtonDblClk);
-//            //MESSAGE_LINK(WM_TIMER, pchannel, this, &list_view::_001OnTimer);
+            MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &list_view::_001OnLButtonDblClk);
+//            //MESSAGE_LINK(e_message_timer, pchannel, this, &list_view::_001OnTimer);
             MESSAGE_LINK(e_message_size, pchannel, this, &list_view::_001OnSize);
             MESSAGE_LINK(WM_CONTEXTMENU, pchannel, this, &list_view::_001OnContextMenu);
-            MESSAGE_LINK(WM_ERASEBKGND, pchannel, this, &list_view::_001OnEraseBkgnd);
+            MESSAGE_LINK(e_message_erase_background, pchannel, this, &list_view::_001OnEraseBkgnd);
             MESSAGE_LINK(WM_USER + 1217, pchannel, this, &list_view::_001OnFillTaskResponse);
 
          }

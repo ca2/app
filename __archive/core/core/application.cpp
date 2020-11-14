@@ -935,7 +935,7 @@ namespace acme
       //linux ::u32 nIDP = __IDP_INTERNAL_FAILURE;   // matter message string
       const char * nIDP = "Internal Failure";
       pbase->m_lresult = 0;        // sensible default
-      if (pbase->m_id == WM_COMMAND)
+      if (pbase->m_id == e_message_command)
       {
          if (pbase->m_lparam == 0)
             //linux nIDP = __IDP_COMMAND_FAILURE; // command (not from a control)
@@ -947,7 +947,7 @@ namespace acme
 
       if (pbaseexception.is < memory_exception >())
       {
-         report_error(pbaseexception, MB_ICONEXCLAMATION | MB_SYSTEMMODAL, nIDP);
+         report_error(pbaseexception, e_message_box_icon_exclamation | e_message_box_system_modal, nIDP);
 
       }
       else if (pbaseexception.is < user_exception >())
@@ -955,7 +955,7 @@ namespace acme
 
          // ::account::user has not been alerted yet of this catastrophic problem
 
-         report_error(pbaseexception, MB_ICONSTOP, nIDP);
+         report_error(pbaseexception, e_message_box_icon_stop, nIDP);
 
       }
 
@@ -3899,7 +3899,7 @@ m_tickHeartBeat.Now();
                //pMainWnd = __get_main_window();
                //if((m_puiMain != nullptr) && (IsEnterKey(pbase) || IsButtonUp(pbase)))
                //{
-               //   //                  pMainWnd->SendMessage(WM_COMMAND, ID_HELP);
+               //   //                  pMainWnd->SendMessage(e_message_command, ID_HELP);
                //   pbase->m_bRet = true;
                //   return;
                //}

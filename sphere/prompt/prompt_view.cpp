@@ -31,20 +31,20 @@ namespace prompt
       MESSAGE_LINK(e_message_paint, pchannel, this, &view::_001OnPaint);
       MESSAGE_LINK(e_message_create, pchannel, this, &view::_001OnCreate);
       MESSAGE_LINK(WM_CONTEXTMENU, pchannel, this, &view::_001OnContextMenu);
-      MESSAGE_LINK(WM_SETCURSOR, pchannel, this, &view::_001OnSetCursor);
+      MESSAGE_LINK(e_message_set_cursor, pchannel, this, &view::_001OnSetCursor);
 
-      //   MESSAGE_LINK(e_message_lbutton_down, pchannel, this, &::user::interaction::_001OnLButtonDown);
-      //MESSAGE_LINK(e_message_lbutton_up, pchannel, this, &::user::interaction::_001OnLButtonUp);
+      //   MESSAGE_LINK(e_message_left_button_down, pchannel, this, &::user::interaction::_001OnLButtonDown);
+      //MESSAGE_LINK(e_message_left_button_up, pchannel, this, &::user::interaction::_001OnLButtonUp);
       //MESSAGE_LINK(e_message_key_down, pchannel, this, &::user::interaction::_001OnKeyDown);
       //MESSAGE_LINK(e_message_key_up, pchannel, this, &::user::interaction::_001OnKeyUp);
 
-      MESSAGE_LINK(e_message_lbutton_down, pchannel, this, &view::_001OnLButtonDown);
-      MESSAGE_LINK(e_message_lbutton_up, pchannel, this, &view::_001OnLButtonUp);
-      MESSAGE_LINK(e_message_rbutton_up, pchannel, this, &view::_001OnRButtonUp);
+      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &view::_001OnLButtonDown);
+      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &view::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_right_button_up, pchannel, this, &view::_001OnRButtonUp);
 //
 
       MESSAGE_LINK(MessageOp, pchannel, this, &view::_001OnOp);
-      MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &view::_001OnShowWindow);
+      MESSAGE_LINK(e_message_show_window, pchannel, this, &view::_001OnShowWindow);
 
 
 

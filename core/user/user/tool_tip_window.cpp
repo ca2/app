@@ -301,7 +301,7 @@ namespace user
    // Function Name: OnTimer()
    //
    // Purpose:
-   // Handler for WM_TIMER message
+   // Handler for e_message_timer message
    //
    // Output:
    // none

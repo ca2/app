@@ -273,7 +273,7 @@ typedef struct
 
 #if((_WIN32_WINNT >= 0x0400) || (WINVER >= 0x0500))
 #define WM_MOUSEHOVER                   0x02A1
-#define WM_MOUSELEAVE                   0x02A3
+#define e_message_mouse_leave                   0x02A3
 #endif
 #if(WINVER >= 0x0500)
 #define WM_NCMOUSEHOVER                 0x02A0
@@ -483,7 +483,7 @@ const widechar * lpString);
 #define SWP_HIDEWINDOW      0x0080
 #define SWP_NOCOPYBITS      0x0100
 #define SWP_NOOWNERZORDER   0x0200  /* Don't do owner Z ordering */
-#define SWP_NOSENDCHANGING  0x0400  /* Don't send WM_WINDOWPOSCHANGING */
+#define SWP_NOSENDCHANGING  0x0400  /* Don't send e_message_window_position_changing */
 
 #define SWP_DRAWFRAME       SWP_FRAMECHANGED
 #define SWP_NOREPOSITION    SWP_NOOWNERZORDER
@@ -766,7 +766,7 @@ oswindow hWnd);
 //#define SHOW_OPENNOACTIVATE 4
 //
 ///*
-//* Identifiers for the WM_SHOWWINDOW message
+//* Identifiers for the e_message_show_window message
 //*/
 //#define SW_PARENTCLOSING    1
 //#define SW_OTHERZOOM        2
@@ -815,7 +815,7 @@ oswindow hWnd);
 ///*
 //* MessageBox() Flags
 //*/
-//#define MB_OK                       0x00000000L
+//#define e_message_box_ok                       0x00000000L
 //#define MB_OKCANCEL                 0x00000001L
 //#define MB_ABORTRETRYIGNORE         0x00000002L
 //#define MB_YESNOCANCEL              0x00000003L
@@ -828,17 +828,17 @@ oswindow hWnd);
 //
 //#define MB_ICONHAND                 0x00000010L
 //#define MB_ICONQUESTION             0x00000020L
-//#define MB_ICONEXCLAMATION          0x00000030L
+//#define e_message_box_icon_exclamation          0x00000030L
 //#define MB_ICONASTERISK             0x00000040L
 //
 ////#if(WINVER >= 0x0400)
 //#define MB_USERICON                 0x00000080L
-//#define MB_ICONWARNING              MB_ICONEXCLAMATION
+//#define MB_ICONWARNING              e_message_box_icon_exclamation
 //#define MB_ICONERROR                MB_ICONHAND
 ////#endif /* WINVER >= 0x0400 */
 //
 //#define MB_ICONINFORMATION          MB_ICONASTERISK
-//#define MB_ICONSTOP                 MB_ICONHAND
+//#define e_message_box_icon_stop                 MB_ICONHAND
 //
 //#define MB_DEFBUTTON1               0x00000000L
 //#define MB_DEFBUTTON2               0x00000100L
@@ -848,7 +848,7 @@ oswindow hWnd);
 ////#endif /* WINVER >= 0x0400 */
 //
 //#define MB_APPLMODAL                0x00000000L
-//#define MB_SYSTEMMODAL              0x00001000L
+//#define e_message_box_system_modal              0x00001000L
 //#define MB_TASKMODAL                0x00002000L
 //#if(WINVER >= 0x0400)
 //#define MB_HELP                     0x00004000L // Help Button
@@ -1586,7 +1586,7 @@ oswindow hWnd);
 // * Window Messages
 // */
 //
-//#define WM_NULL                         0x0000
+//#define e_message_null                         0x0000
 //#define e_message_create                       0x0001
 //#define e_message_destroy                      0x0002
 //#define e_message_move                         0x0003
@@ -1602,7 +1602,7 @@ oswindow hWnd);
 //
 //#define e_message_set_focus                     0x0007
 //#define e_message_kill_focus                    0x0008
-//#define WM_ENABLE                       0x000A
+//#define e_message_enable                       0x000A
 //#define WM_SETREDRAW                    0x000B
 //#define WM_SETTEXT                      0x000C
 //#define WM_GETTEXT                      0x000D
@@ -1615,9 +1615,9 @@ oswindow hWnd);
 //#define WM_ENDSESSION                   0x0016
 ////#endif
 //#define e_message_quit                         0x0012
-//#define WM_ERASEBKGND                   0x0014
+//#define e_message_erase_background                   0x0014
 //#define WM_SYSCOLORCHANGE               0x0015
-//#define WM_SHOWWINDOW                   0x0018
+//#define e_message_show_window                   0x0018
 //#define WM_WININICHANGE                 0x001A
 ////#if(WINVER >= 0x0400)
 //#define WM_SETTINGCHANGE                WM_WININICHANGE
@@ -1629,7 +1629,7 @@ oswindow hWnd);
 //#define WM_FONTCHANGE                   0x001D
 //#define WM_TIMECHANGE                   0x001E
 //#define WM_CANCELMODE                   0x001F
-//#define WM_SETCURSOR                    0x0020
+//#define e_message_set_cursor                    0x0020
 //#define e_message_mouse_activate                0x0021
 //#define WM_CHILDACTIVATE                0x0022
 //#define WM_QUEUESYNC                    0x0023
@@ -1652,7 +1652,7 @@ oswindow hWnd);
 //#define WM_NEXTDLGCTL                   0x0028
 //#define WM_SPOOLERSTATUS                0x002A
 //#define WM_DRAWITEM                     0x002B
-//#define WM_MEASUREITEM                  0x002C
+//#define e_message_measure_item                  0x002C
 //#define WM_DELETEITEM                   0x002D
 //#define WM_VKEYTOITEM                   0x002E
 //#define WM_CHARTOITEM                   0x002F
@@ -1669,8 +1669,8 @@ oswindow hWnd);
 ////#endif /* WINVER >= 0x0500 */
 //#define WM_COMPACTING                   0x0041
 //#define WM_COMMNOTIFY                   0x0044  /* no longer suported */
-//#define WM_WINDOWPOSCHANGING            0x0046
-//#define WM_WINDOWPOSCHANGED             0x0047
+//#define e_message_window_position_changing            0x0046
+//#define e_message_window_position_changed             0x0047
 //
 //#define WM_POWER                        0x0048
 ///*
@@ -1723,7 +1723,7 @@ oswindow hWnd);
 //#define WM_CONTEXTMENU                  0x007B
 //#define WM_STYLECHANGING                0x007C
 //#define WM_STYLECHANGED                 0x007D
-//#define WM_DISPLAYCHANGE                0x007E
+//#define e_message_display_change                0x007E
 //#define WM_GETICON                      0x007F
 //#define WM_SETICON                      0x0080
 ////#endif /* WINVER >= 0x0400 */
@@ -1739,8 +1739,8 @@ oswindow hWnd);
 //#define WM_SYNCPAINT                    0x0088
 ////#endif
 //#define e_message_non_client_mouse_move                  0x00A0
-//#define WM_NCLBUTTONDOWN                0x00A1
-//#define WM_NCLBUTTONUP                  0x00A2
+//#define e_message_non_client_left_button_down                0x00A1
+//#define e_message_non_client_left_button_up                  0x00A2
 //#define WM_NCLBUTTONDBLCLK              0x00A3
 //#define WM_NCRBUTTONDOWN                0x00A4
 //#define WM_NCRBUTTONUP                  0x00A5
@@ -1791,13 +1791,13 @@ oswindow hWnd);
 ////#endif /* WINVER >= 0x0400 */
 //
 //#define WM_INITDIALOG                   0x0110
-//#define WM_COMMAND                      0x0111
+//#define e_message_command                      0x0111
 //#define WM_SYSCOMMAND                   0x0112
-//#define WM_TIMER                        0x0113
+//#define e_message_timer                        0x0113
 //#define e_message_hscroll                      0x0114
 //#define e_message_vscroll                      0x0115
 //#define WM_INITMENU                     0x0116
-//#define WM_INITMENUPOPUP                0x0117
+//#define e_message_initialize_menu_popup                0x0117
 ////#if(WINVER >= 0x0601)
 //#define WM_GESTURE                      0x0119
 //#define WM_GESTURENOTIFY                0x011A
@@ -1853,13 +1853,13 @@ oswindow hWnd);
 //#define e_message_mouse_move                    0x0200
 //#define WM_LBUTTONDOWN                  0x0201
 //#define WM_LBUTTONUP                    0x0202
-//#define WM_LBUTTONDBLCLK                0x0203
+//#define e_message_left_button_double_click                0x0203
 //#define WM_RBUTTONDOWN                  0x0204
 //#define WM_RBUTTONUP                    0x0205
-//#define WM_RBUTTONDBLCLK                0x0206
-//#define WM_MBUTTONDOWN                  0x0207
-//#define WM_MBUTTONUP                    0x0208
-//#define WM_MBUTTONDBLCLK                0x0209
+//#define e_message_right_button_double_click                0x0206
+//#define e_message_middle_button_down                  0x0207
+//#define e_message_middle_button_up                    0x0208
+//#define e_message_middle_button_double_click                0x0209
 ////#if (_WIN32_WINNT >= 0x0400) || (_WIN32_WINDOWS > 0x0400)
 //#define WM_MOUSEWHEEL                   0x020A
 ////#endif
@@ -2038,7 +2038,7 @@ oswindow hWnd);
 //
 ////#if((_WIN32_WINNT >= 0x0400) || (WINVER >= 0x0500))
 //#define WM_MOUSEHOVER                   0x02A1
-//#define WM_MOUSELEAVE                   0x02A3
+//#define e_message_mouse_leave                   0x02A3
 ////#endif
 ////#if(WINVER >= 0x0500)
 //#define WM_NCMOUSEHOVER                 0x02A0
@@ -2264,7 +2264,7 @@ oswindow hWnd);
 ////#if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
 //
 ///*
-// * WM_WINDOWPOSCHANGING/CHANGED struct pointed to by lParam
+// * e_message_window_position_changing/CHANGED struct pointed to by lParam
 // */
 //typedef struct tagWINDOWPOS
 //{

@@ -359,7 +359,7 @@ namespace turboc
       else
       {
 
-/*         pgraphics->from(pimage->get_size(),pimage->g(),SRCCOPY);
+/*         pgraphics->from(pimage->get_size(),pimage->g());
 
       }
 
@@ -392,7 +392,7 @@ namespace turboc
 
       pdcScreen->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-      pdcScreen->from(::point(),m_pimagePost->m_size,m_pimagePost.get_graphics(),::point(),SRCCOPY);
+      pdcScreen->from(::point(),m_pimagePost->m_size,m_pimagePost.get_graphics(),::point());
 
 //      pdcScreen->FillSolidRect(500,200,100,100,ARGB(255,255,210,0));
 
@@ -605,8 +605,8 @@ namespace turboc
          int iFactor = 3;
          int iMult = 1 << iFactor;
 
-/*         pimage->g()->StretchBlt(0,0,pimage->width() / iMult,pimage->height() / iMult,pimage->g(),0,0,pimage->width(),pimage->height(),SRCCOPY);
-/*         pimage->g()->StretchBlt(0,0,pimage->width(),pimage->height(),pimage->g(),0,0,pimage->width() / iMult,pimage->height() / iMult,SRCCOPY);
+/*         pimage->g()->StretchBlt(0,0,pimage->width() / iMult,pimage->height() / iMult,pimage->g(),0,0,pimage->width(),pimage->height());
+/*         pimage->g()->StretchBlt(0,0,pimage->width(),pimage->height(),pimage->g(),0,0,pimage->width() / iMult,pimage->height() / iMult);
 
          color32_t cr;
 
@@ -879,7 +879,7 @@ namespace turboc
 
          rectImage.FitOnCenterOf(rectWork);
 
-/*         pimage->g()->StretchBlt(rectImage.left,rectImage.top,rectImage.width(),rectImage.height(),m_pimagepimage->g(),0,0,m_pimageImage->width(),m_pimageImage->height(),SRCCOPY);
+/*         pimage->g()->StretchBlt(rectImage.left,rectImage.top,rectImage.width(),rectImage.height(),m_pimagepimage->g(),0,0,m_pimageImage->width(),m_pimageImage->height());
 
 
       }

@@ -476,7 +476,7 @@ namespace windows
 
       // virtual bool FlashWindow(bool bInvert);
 
-      //virtual void message_box(const char * pszText, const char * pszTitle = nullptr, ::u32 nType = MB_OK, const function_arg & functionarg = function_arg());
+      //virtual void message_box(const char * pszText, const char * pszTitle = nullptr, ::u32 nType = e_message_box_ok, const function_arg & functionarg = function_arg());
 
 
 //

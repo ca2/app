@@ -2557,7 +2557,7 @@ i32 graphics::GetArcDirection()
 }
 
 
-bool graphics::PolyPolyline(const POINT32* lpPoints, const INT * lpPolyPoints, count nCount)
+bool graphics::PolyPolyline(const POINT32* lpPoints, const ::i32 * lpPolyPoints, count nCount)
 {
 
    ::exception::throw_not_implemented();
@@ -4550,7 +4550,7 @@ bool graphics::draw_line(const ::pointd & point1, const ::pointd & point2, ::dra
 }
 
 
-bool graphics::set_alpha_mode(::draw2d::e_alpha_mode ealphamode)
+bool graphics::set_alpha_mode(::draw2d::enum_alpha_mode ealphamode)
 {
 
     sync_lock ml(cairo_mutex());

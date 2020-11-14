@@ -7,10 +7,10 @@
 #include "interaction_prodevian.h"
 
 
-int windows_desktop1_main(HINSTANCE hInstance, int       nCmdShow);
-
-
 #ifdef WINDOWS_DESKTOP
+
+
+int windows_desktop1_main(HINSTANCE hInstance, int       nCmdShow);
 
 
 void verisimple_message_loop()
@@ -395,13 +395,13 @@ namespace user
          }
 
 
-         if(m_message.message == e_message_lbutton_down)
+         if(m_message.message == e_message_left_button_down)
          {
 
             ::output_debug_string("::user::thread::LBUTTONDOWN\n");
 
          }
-         else if(m_message.message == e_message_lbutton_up)
+         else if(m_message.message == e_message_left_button_up)
          {
 
             ::output_debug_string("::user::thread::LBUTTONUP\n");

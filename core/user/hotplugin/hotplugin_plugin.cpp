@@ -1126,10 +1126,10 @@ namespace hotplugin
    void plugin::plugin_message_handler(MESSAGE * pmsg,bool bEnsureTx)
    {
 
-      if(pmsg->message == WM_WINDOWPOSCHANGED)
+      if(pmsg->message == e_message_window_position_changed)
          return;
 
-      if(pmsg->message == WM_WINDOWPOSCHANGING)
+      if(pmsg->message == e_message_window_position_changing)
          return;
 
 #ifndef _UWP

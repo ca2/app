@@ -20,24 +20,24 @@ Section
 	UserInfo::GetOriginalAccountType
 	Pop $2
 	StrCmp $1 "Admin" 0 +3
-		MessageBox MB_OK 'User "$0" is in the Administrators group${REALMSG}'
+		MessageBox e_message_box_ok 'User "$0" is in the Administrators group${REALMSG}'
 		Goto done
 	StrCmp $1 "Power" 0 +3
-		MessageBox MB_OK 'User "$0" is in the Power Users group${REALMSG}'
+		MessageBox e_message_box_ok 'User "$0" is in the Power Users group${REALMSG}'
 		Goto done
 	StrCmp $1 "User" 0 +3
-		MessageBox MB_OK 'User "$0" is just a regular user${REALMSG}'
+		MessageBox e_message_box_ok 'User "$0" is just a regular user${REALMSG}'
 		Goto done
 	StrCmp $1 "Guest" 0 +3
-		MessageBox MB_OK 'User "$0" is a guest${REALMSG}'
+		MessageBox e_message_box_ok 'User "$0" is a guest${REALMSG}'
 		Goto done
-	MessageBox MB_OK "Unknown error"
+	MessageBox e_message_box_ok "Unknown error"
 	Goto done
 
 	Win9x:
 		# This one means you don't need to care about admin or
 		# not admin because Windows 9x doesn't either
-		MessageBox MB_OK "Error! This DLL can't run under Windows 9x!"
+		MessageBox e_message_box_ok "Error! This DLL can't run under Windows 9x!"
 
 	done:
 SectionEnd

@@ -37,7 +37,7 @@ namespace console
       MESSAGE_LINK(e_message_create,pchannel,this,&prompt_impact::_001OnCreate);
       MESSAGE_LINK(e_message_key_down,pchannel,this,&prompt_impact::_001OnKeyDown);
       MESSAGE_LINK(e_message_key_up,pchannel,this,&prompt_impact::_001OnKeyUp);
-      MESSAGE_LINK(WM_SHOWWINDOW,pchannel,this,&prompt_impact::_001OnShowWindow);
+      MESSAGE_LINK(e_message_show_window,pchannel,this,&prompt_impact::_001OnShowWindow);
 
    }
 

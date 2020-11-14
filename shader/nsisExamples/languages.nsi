@@ -116,36 +116,36 @@ LangString Message ${LANG_SLOVAK} "Slovak message"
 ;Section names set by Language strings
 ;It works with ! too
 Section !$(Sec1Name) sec1
-	MessageBox MB_OK $(Message)
+	MessageBox e_message_box_ok $(Message)
 SectionEnd
 
 ; The old, slow, wasteful way
 ; Look at this section and see why LangString is so much easier
 Section "Section number two"
 	StrCmp $LANGUAGE ${LANG_ENGLISH} 0 +2
-		MessageBox MB_OK "Installing English stuff"
+		MessageBox e_message_box_ok "Installing English stuff"
 	StrCmp $LANGUAGE ${LANG_CZECH} 0 +2
-		MessageBox MB_OK "Installing Czech stuff"
+		MessageBox e_message_box_ok "Installing Czech stuff"
 	StrCmp $LANGUAGE ${LANG_DUTCH} 0 +2
-		MessageBox MB_OK "Installing Dutch stuff"
+		MessageBox e_message_box_ok "Installing Dutch stuff"
 	StrCmp $LANGUAGE ${LANG_FRENCH} 0 +2
-		MessageBox MB_OK "Installing French stuff"
+		MessageBox e_message_box_ok "Installing French stuff"
 	StrCmp $LANGUAGE ${LANG_GERMAN} 0 +2
-		MessageBox MB_OK "Installing German stuff"
+		MessageBox e_message_box_ok "Installing German stuff"
 	StrCmp $LANGUAGE ${LANG_KOREAN} 0 +2
-		MessageBox MB_OK "Installing Korean stuff"
+		MessageBox e_message_box_ok "Installing Korean stuff"
 	StrCmp $LANGUAGE ${LANG_RUSSIAN} 0 +2
-		MessageBox MB_OK "Installing Russian stuff"
+		MessageBox e_message_box_ok "Installing Russian stuff"
 	StrCmp $LANGUAGE ${LANG_SPANISH} 0 +2
-		MessageBox MB_OK "Installing Spanish stuff"
+		MessageBox e_message_box_ok "Installing Spanish stuff"
 	StrCmp $LANGUAGE ${LANG_SWEDISH} 0 +2
-		MessageBox MB_OK "Installing Swedish stuff"
+		MessageBox e_message_box_ok "Installing Swedish stuff"
 	StrCmp $LANGUAGE ${LANG_TRADCHINESE} 0 +2
-		MessageBox MB_OK "Installing Traditional Chinese stuff"
+		MessageBox e_message_box_ok "Installing Traditional Chinese stuff"
 	StrCmp $LANGUAGE ${LANG_SIMPCHINESE} 0 +2
-		MessageBox MB_OK "Installing Simplified Chinese stuff"
+		MessageBox e_message_box_ok "Installing Simplified Chinese stuff"
 	StrCmp $LANGUAGE ${LANG_SLOVAK} 0 +2
-		MessageBox MB_OK "Installing Slovak stuff"
+		MessageBox e_message_box_ok "Installing Slovak stuff"
 SectionEnd
 
 ;--------------------------------

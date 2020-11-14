@@ -328,7 +328,7 @@ static void PrintRailIconInfo(WINDOW_ORDER_INFO* orderInfo, ICON_INFO* iconInfo)
 //			}
 //			break;
 //
-//		case e_message_lbutton_down:
+//		case e_message_left_button_down:
 //			{
 //				if (!railWindow || !input)
 //					return 0;
@@ -342,7 +342,7 @@ static void PrintRailIconInfo(WINDOW_ORDER_INFO* orderInfo, ICON_INFO* iconInfo)
 //			}
 //			break;
 //
-//		case e_message_lbutton_up:
+//		case e_message_left_button_up:
 //			{
 //				if (!railWindow || !input)
 //					return 0;
@@ -356,7 +356,7 @@ static void PrintRailIconInfo(WINDOW_ORDER_INFO* orderInfo, ICON_INFO* iconInfo)
 //			}
 //			break;
 //
-//		case e_message_rbutton_down:
+//		case e_message_right_button_down:
 //			{
 //				if (!railWindow || !input)
 //					return 0;
@@ -370,7 +370,7 @@ static void PrintRailIconInfo(WINDOW_ORDER_INFO* orderInfo, ICON_INFO* iconInfo)
 //			}
 //			break;
 //
-//		case e_message_rbutton_up:
+//		case e_message_right_button_up:
 //			{
 //				if (!railWindow || !input)
 //					return 0;

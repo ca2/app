@@ -276,7 +276,7 @@ namespace windows
 
    /*   BOOL shell::_SHGetPathFromIDList(LPCITEMIDLIST pidl, unichar * pszPath)
       {
-         CHAR pszPathA[MAX_PATH * 2];
+         char pszPathA[MAX_PATH * 2];
          if(!::SHGetPathFromIDListA(pidl, pszPathA))
             return FALSE;
          return ::str::international::utf8_to_unicode(pszPath, MAX_PATH * 2, pszPathA) ? TRUE : FALSE;
@@ -420,7 +420,7 @@ namespace windows
    //   unichar ** pFilePart)
 
    //{
-   //   CHAR pszPathA[MAX_PATH * 2];
+   //   char pszPathA[MAX_PATH * 2];
    //   ::str::international::UnicodeToACP(pszPathA, MAX_PATH * 2, pFileName);
 
    //   string str;

@@ -38,7 +38,7 @@ namespace draw2d_direct2d
       virtual void destroy() override;
 
 
-      //virtual bool internal_begin_figure(bool bFill, ::draw2d::e_fill_mode efillmode);
+      //virtual bool internal_begin_figure(bool bFill, ::draw2d::enum_fill_mode efillmode);
       virtual bool internal_end_figure(bool bClose);
 
 

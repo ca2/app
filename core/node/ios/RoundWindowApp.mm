@@ -41,7 +41,7 @@ plane_system * create_plane_system();
 //   m_psystem->plane_system_begin();
    
    //set_apex_system_as_thread();
-   //MessageBox(NULL, "applicationDidFinishLaunching", "applicationDidFinishLaunching", MB_OK);
+   //MessageBox(NULL, "applicationDidFinishLaunching", "applicationDidFinishLaunching", e_message_box_ok);
    
    //defer_run_system();
    

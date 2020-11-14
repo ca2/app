@@ -274,7 +274,7 @@ namespace message
 
 
    // e_message_paint -> aura
-   // WM_MOUSELEAVE -> aura
+   // e_message_mouse_leave -> aura
 
 
    class CLASS_DECL_AURA nchittest: public ::message::base

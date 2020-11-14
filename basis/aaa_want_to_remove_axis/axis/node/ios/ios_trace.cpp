@@ -23,7 +23,7 @@ static const __MAP_MESSAGE allMessages[] =
    DEFINE_MESSAGE(e_message_activate),
    DEFINE_MESSAGE(e_message_set_focus),
    DEFINE_MESSAGE(e_message_kill_focus),
-   DEFINE_MESSAGE(WM_ENABLE),
+   DEFINE_MESSAGE(e_message_enable),
    DEFINE_MESSAGE(WM_SETREDRAW),
    DEFINE_MESSAGE(WM_SETTEXT),
    DEFINE_MESSAGE(WM_GETTEXT),
@@ -33,10 +33,10 @@ static const __MAP_MESSAGE allMessages[] =
    DEFINE_MESSAGE(WM_QUERYENDSESSION),
    DEFINE_MESSAGE(e_message_quit),
    DEFINE_MESSAGE(WM_QUERYOPEN),
-   DEFINE_MESSAGE(WM_ERASEBKGND),
+   DEFINE_MESSAGE(e_message_erase_background),
    DEFINE_MESSAGE(WM_SYSCOLORCHANGE),
    DEFINE_MESSAGE(WM_ENDSESSION),
-   DEFINE_MESSAGE(WM_SHOWWINDOW),
+   DEFINE_MESSAGE(e_message_show_window),
    DEFINE_MESSAGE(WM_CTLCOLORMSGBOX),
    DEFINE_MESSAGE(WM_CTLCOLOREDIT),
    DEFINE_MESSAGE(WM_CTLCOLORLISTBOX),
@@ -51,7 +51,7 @@ static const __MAP_MESSAGE allMessages[] =
    DEFINE_MESSAGE(WM_FONTCHANGE),
    DEFINE_MESSAGE(WM_TIMECHANGE),
    DEFINE_MESSAGE(WM_CANCELMODE),
-   DEFINE_MESSAGE(WM_SETCURSOR),
+   DEFINE_MESSAGE(e_message_set_cursor),
    DEFINE_MESSAGE(e_message_mouse_activate),
    DEFINE_MESSAGE(WM_CHILDACTIVATE),
    DEFINE_MESSAGE(WM_QUEUESYNC),
@@ -60,7 +60,7 @@ static const __MAP_MESSAGE allMessages[] =
    DEFINE_MESSAGE(WM_NEXTDLGCTL),
    DEFINE_MESSAGE(WM_SPOOLERSTATUS),
    DEFINE_MESSAGE(WM_DRAWITEM),
-   DEFINE_MESSAGE(WM_MEASUREITEM),
+   DEFINE_MESSAGE(e_message_measure_item),
    DEFINE_MESSAGE(WM_DELETEITEM),
    DEFINE_MESSAGE(WM_VKEYTOITEM),
    DEFINE_MESSAGE(WM_CHARTOITEM),
@@ -77,8 +77,8 @@ static const __MAP_MESSAGE allMessages[] =
    DEFINE_MESSAGE(e_message_ncactivate),
    DEFINE_MESSAGE(WM_GETDLGCODE),
    DEFINE_MESSAGE(e_message_non_client_mouse_move),
-   DEFINE_MESSAGE(WM_NCLBUTTONDOWN),
-   DEFINE_MESSAGE(WM_NCLBUTTONUP),
+   DEFINE_MESSAGE(e_message_non_client_left_button_down),
+   DEFINE_MESSAGE(e_message_non_client_left_button_up),
    DEFINE_MESSAGE(WM_NCLBUTTONDBLCLK),
    DEFINE_MESSAGE(WM_NCRBUTTONDOWN),
    DEFINE_MESSAGE(WM_NCRBUTTONUP),
@@ -96,27 +96,27 @@ static const __MAP_MESSAGE allMessages[] =
    DEFINE_MESSAGE(e_message_sys_dead_char),
    DEFINE_MESSAGE(e_message_key_last),
    DEFINE_MESSAGE(WM_INITDIALOG),
-   DEFINE_MESSAGE(WM_COMMAND),
+   DEFINE_MESSAGE(e_message_command),
    DEFINE_MESSAGE(WM_SYSCOMMAND),
-   DEFINE_MESSAGE(WM_TIMER),
+   DEFINE_MESSAGE(e_message_timer),
    DEFINE_MESSAGE(e_message_hscroll),
    DEFINE_MESSAGE(e_message_vscroll),
    DEFINE_MESSAGE(WM_INITMENU),
-   DEFINE_MESSAGE(WM_INITMENUPOPUP),
+   DEFINE_MESSAGE(e_message_initialize_menu_popup),
    DEFINE_MESSAGE(WM_MENUSELECT),
    DEFINE_MESSAGE(WM_MENUCHAR),
    DEFINE_MESSAGE(WM_ENTERIDLE),
    DEFINE_MESSAGE(e_message_mouse_wheel),
    DEFINE_MESSAGE(e_message_mouse_move),
-   DEFINE_MESSAGE(e_message_lbutton_down),
-   DEFINE_MESSAGE(e_message_lbutton_up),
-   DEFINE_MESSAGE(WM_LBUTTONDBLCLK),
-   DEFINE_MESSAGE(e_message_rbutton_down),
-   DEFINE_MESSAGE(e_message_rbutton_up),
-   DEFINE_MESSAGE(WM_RBUTTONDBLCLK),
-   DEFINE_MESSAGE(WM_MBUTTONDOWN),
-   DEFINE_MESSAGE(WM_MBUTTONUP),
-   DEFINE_MESSAGE(WM_MBUTTONDBLCLK),
+   DEFINE_MESSAGE(e_message_left_button_down),
+   DEFINE_MESSAGE(e_message_left_button_up),
+   DEFINE_MESSAGE(e_message_left_button_double_click),
+   DEFINE_MESSAGE(e_message_right_button_down),
+   DEFINE_MESSAGE(e_message_right_button_up),
+   DEFINE_MESSAGE(e_message_right_button_double_click),
+   DEFINE_MESSAGE(e_message_middle_button_down),
+   DEFINE_MESSAGE(e_message_middle_button_up),
+   DEFINE_MESSAGE(e_message_middle_button_double_click),
    DEFINE_MESSAGE(WM_PARENTNOTIFY),
    DEFINE_MESSAGE(WM_MDICREATE),
    DEFINE_MESSAGE(WM_MDIDESTROY),
@@ -160,8 +160,8 @@ static const __MAP_MESSAGE allMessages[] =
    */
    DEFINE_MESSAGE(WM_DROPFILES),
    DEFINE_MESSAGE(WM_POWER),
-   DEFINE_MESSAGE(WM_WINDOWPOSCHANGED),
-   DEFINE_MESSAGE(WM_WINDOWPOSCHANGING),
+   DEFINE_MESSAGE(e_message_window_position_changed),
+   DEFINE_MESSAGE(e_message_window_position_changing),
    // ca2 API specific messages
    DEFINE_MESSAGE(WM_SIZEPARENT),
    DEFINE_MESSAGE(WM_SETMESSAGESTRING),
@@ -187,7 +187,7 @@ static const __MAP_MESSAGE allMessages[] =
    DEFINE_MESSAGE(WM_GETICON),
    DEFINE_MESSAGE(WM_EXITMENULOOP),
    DEFINE_MESSAGE(WM_ENTERMENULOOP),
-   DEFINE_MESSAGE(WM_DISPLAYCHANGE),
+   DEFINE_MESSAGE(e_message_display_change),
    DEFINE_MESSAGE(WM_STYLECHANGED),
    DEFINE_MESSAGE(WM_STYLECHANGING),
    DEFINE_MESSAGE(WM_GETICON),
@@ -280,7 +280,7 @@ void __trace_message(const char * lpszPrefix, ::message::message * pmessage)
    SCAST_PTR(::message::base, pbase, pmessage);
 
    if (pbase->m_id == e_message_mouse_move || pbase->m_id == e_message_non_client_mouse_move ||
-         pbase->m_id == e_message_nchittest || pbase->m_id == WM_SETCURSOR ||
+         pbase->m_id == e_message_nchittest || pbase->m_id == e_message_set_cursor ||
          pbase->m_id == WM_CTLCOLORBTN ||
          pbase->m_id == WM_CTLCOLORDLG ||
          pbase->m_id == WM_CTLCOLOREDIT ||
@@ -363,7 +363,7 @@ void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg)
    ENSURE_ARG(lpmsg != nullptr);
 
    if (lpmsg->message == e_message_mouse_move || lpmsg->message == e_message_non_client_mouse_move ||
-         lpmsg->message == e_message_nchittest || lpmsg->message == WM_SETCURSOR ||
+         lpmsg->message == e_message_nchittest || lpmsg->message == e_message_set_cursor ||
          lpmsg->message == WM_CTLCOLORBTN ||
          lpmsg->message == WM_CTLCOLORDLG ||
          lpmsg->message == WM_CTLCOLOREDIT ||

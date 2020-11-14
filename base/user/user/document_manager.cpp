@@ -641,7 +641,7 @@ namespace user
       // open the document, then print it.
       pDoc = System.open_document_file(get_context_application(), cmdInfo.m_varFile);
       //System.m_pCmdInfo = &cmdInfo;
-      System.m_puiMain->SendMessage(WM_COMMAND, ID_FILE_PRINT_DIRECT);
+      System.m_puiMain->SendMessage(e_message_command, ID_FILE_PRINT_DIRECT);
       //System.m_pCmdInfo = nullptr;
 
       // close the document if it wasn't open previously (based on doc count)

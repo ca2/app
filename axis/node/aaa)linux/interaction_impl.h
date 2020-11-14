@@ -460,7 +460,7 @@ namespace linux
 //      static::user::interaction * PASCAL oswindowFromPoint(const ::point & point);
 
 
-      //virtual i32 message_box(const char * pszText, const char * pszcaption = nullptr, ::u32 nType = MB_OK) override;
+      //virtual i32 message_box(const char * pszText, const char * pszcaption = nullptr, ::u32 nType = e_message_box_ok) override;
 
 
 

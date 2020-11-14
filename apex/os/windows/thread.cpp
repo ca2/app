@@ -72,7 +72,7 @@ bool __os_init_thread()
    ////      if(FAILED(thread_set("hresult_co_initialize")))
    ////      {
 
-   ////         ::message_box(nullptr,"Failed to ::CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED) at __node_pre_init","__node_pre_init failure",MB_ICONEXCLAMATION);
+   ////         ::message_box(nullptr,"Failed to ::CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED) at __node_pre_init","__node_pre_init failure",e_message_box_icon_exclamation);
 
    ////         return false;
 
@@ -82,7 +82,7 @@ bool __os_init_thread()
    ////   else
    ////   {
 
-   ////      ::message_box(nullptr,"Failed to ::CoInitializeEx(nullptr, COINIT_MULTITHREADED) at __node_pre_init","__node_pre_init failure",MB_ICONEXCLAMATION);
+   ////      ::message_box(nullptr,"Failed to ::CoInitializeEx(nullptr, COINIT_MULTITHREADED) at __node_pre_init","__node_pre_init failure",e_message_box_icon_exclamation);
 
    ////      return false;
 

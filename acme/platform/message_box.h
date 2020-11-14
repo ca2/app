@@ -63,7 +63,7 @@ inline var operator + (const char* psz, const ::enum_message_box& emessagebox)
 }
 
 
-CLASS_DECL_ACME ::estatus os_message_box(const char* pszText, const char* pszTitle = nullptr, ::emessagebox emessagebox = message_box_ok, const ::futurevar & future = ::futurevar());
+CLASS_DECL_ACME ::estatus os_message_box(const char* pszText, const char* pszTitle = nullptr, ::emessagebox emessagebox = e_message_box_ok, const ::futurevar & future = ::futurevar());
 
 
 

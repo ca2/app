@@ -640,7 +640,7 @@ namespace draw2d_opengl
       //      ppoints[i].Y = lpPoints[i].y;
       //   }
 
-      //   bOk1 = m_pgraphics->DrawLines(gl2d_pen(),ppoints,(INT) nCount) == plusplus::Status::Ok;
+      //   bOk1 = m_pgraphics->DrawLines(gl2d_pen(),ppoints,(::i32) nCount) == plusplus::Status::Ok;
 
       //}
       //catch(...)
@@ -1200,7 +1200,7 @@ namespace draw2d_opengl
       //      set_smooth_mode(::draw2d::smooth_mode_high);
 
 
-      //      bOk1 = m_pgraphics->FillPolygon(gl2d_brush(), ppoints, (INT) nCount, gl2d_get_fill_mode()) == plusplus::Status::Ok;
+      //      bOk1 = m_pgraphics->FillPolygon(gl2d_brush(), ppoints, (::i32) nCount, gl2d_get_fill_mode()) == plusplus::Status::Ok;
 
       //   }
       //   catch(...)
@@ -1244,7 +1244,7 @@ namespace draw2d_opengl
 
       //      m_pgraphics->SetInterpolationMode(plusplus::InterpolationModeHighQualityBicubic);
 
-      //      bOk1 = m_pgraphics->FillPolygon(gl2d_brush(), ppoints, (INT)  nCount, gl2d_get_fill_mode()) == plusplus::Status::Ok;
+      //      bOk1 = m_pgraphics->FillPolygon(gl2d_brush(), ppoints, (::i32)  nCount, gl2d_get_fill_mode()) == plusplus::Status::Ok;
 
       //   }
       //   catch(...)
@@ -1290,7 +1290,7 @@ namespace draw2d_opengl
 
       //   set_smooth_mode(::draw2d::smooth_mode_high);
 
-      //   bOk1 = m_pgraphics->DrawPolygon(gl2d_pen(), ppoints, (INT) nCount) == plusplus::Status::Ok;
+      //   bOk1 = m_pgraphics->DrawPolygon(gl2d_pen(), ppoints, (::i32) nCount) == plusplus::Status::Ok;
 
       //}
       //catch (...)
@@ -1333,7 +1333,7 @@ namespace draw2d_opengl
 
       //   m_pgraphics->SetInterpolationMode(plusplus::InterpolationModeHighQualityBicubic);
 
-      //   bOk1 = m_pgraphics->DrawPolygon(gl2d_pen(),ppoints,(INT) nCount) == plusplus::Status::Ok;
+      //   bOk1 = m_pgraphics->DrawPolygon(gl2d_pen(),ppoints,(::i32) nCount) == plusplus::Status::Ok;
 
       //}
       //catch(...)
@@ -1383,9 +1383,9 @@ namespace draw2d_opengl
       //   m_pgraphics->SetInterpolationMode(plusplus::InterpolationModeHighQualityBicubic);
 
 
-      //   bOk1 = m_pgraphics->FillPolygon(gl2d_brush(), ppoints, (INT) nCount, gl2d_get_fill_mode()) == plusplus::Status::Ok;
+      //   bOk1 = m_pgraphics->FillPolygon(gl2d_brush(), ppoints, (::i32) nCount, gl2d_get_fill_mode()) == plusplus::Status::Ok;
 
-      //   bOk2 = m_pgraphics->DrawPolygon(gl2d_pen(), ppoints, (INT) nCount) == plusplus::Status::Ok;
+      //   bOk2 = m_pgraphics->DrawPolygon(gl2d_pen(), ppoints, (::i32) nCount) == plusplus::Status::Ok;
 
       //}
       //catch(...)
@@ -1408,13 +1408,13 @@ namespace draw2d_opengl
    }
 
 
-   bool graphics::poly_polygon(const POINT32* lpPoints, const INT* lpPolyCounts,count nCount)
+   bool graphics::poly_polygon(const POINT32* lpPoints, const ::i32* lpPolyCounts,count nCount)
    {
 
       // ASSERT(m_hdc != nullptr);
 
 
-      //return ::PolyPolygon(m_hdc, lpPoints, (const INT *) lpPolyCounts, (int) nCount) != FALSE;
+      //return ::PolyPolygon(m_hdc, lpPoints, (const ::i32 *) lpPolyCounts, (int) nCount) != FALSE;
       return false;
 
    }
@@ -1473,9 +1473,9 @@ namespace draw2d_opengl
       //   }
 
 
-      //   bOk1 = m_pgraphics->FillPolygon(gl2d_brush(),ppoints,(INT) nCount,gl2d_get_fill_mode()) == plusplus::Status::Ok;
+      //   bOk1 = m_pgraphics->FillPolygon(gl2d_brush(),ppoints,(::i32) nCount,gl2d_get_fill_mode()) == plusplus::Status::Ok;
 
-      //   bOk2 = m_pgraphics->DrawPolygon(gl2d_pen(),ppoints,(INT) nCount) == plusplus::Status::Ok;
+      //   bOk2 = m_pgraphics->DrawPolygon(gl2d_pen(),ppoints,(::i32) nCount) == plusplus::Status::Ok;
 
       //}
       //catch(...)
@@ -1624,7 +1624,7 @@ namespace draw2d_opengl
          return FALSE;
       }
 //
-//      //return ::BitBlt(m_hdc, x, y, nWidth, nHeight, GL2D_HDC(pgraphicsSrc), xSrc, ySrc, dwRop);
+//      //return ::BitBlt(m_hdc, x, y, nWidth, nHeight, GL2D_HDC(pgraphicsSrc), xSrc, ySrc);
 //
 //gdi_fallback:
 //
@@ -1681,7 +1681,7 @@ namespace draw2d_opengl
 
       //return FALSE;
 
-      ////return ::StretchBlt(m_hdc, x, y, nWidth, nHeight, GL2D_HDC(pgraphicsSrc), xSrc, ySrc, nSrcWidth, nSrcHeight, dwRop);
+      ////return ::StretchBlt(m_hdc, x, y, nWidth, nHeight, GL2D_HDC(pgraphicsSrc), xSrc, ySrc, nSrcWidth, nSrcHeight);
 
       return true;
 
@@ -1869,7 +1869,7 @@ namespace draw2d_opengl
 
       //pfont->GetFamily(&family);
 
-      //INT iStyle = pfont->GetStyle();
+      //::i32 iStyle = pfont->GetStyle();
 
       //double dHeight = family.GetEmHeight(iStyle);
 
@@ -1895,7 +1895,7 @@ namespace draw2d_opengl
       //plusplus::RectF rect2;
       //plusplus::PointF origin(0, 0);
 
-      //m_pgraphics->MeasureString(wstr, (INT) wstr.get_length(), ((graphics * )this)->gl2d_font(), origin, &rect);
+      //m_pgraphics->MeasureString(wstr, (::i32) wstr.get_length(), ((graphics * )this)->gl2d_font(), origin, &rect);
 
 
       ///*wstr = L"";
@@ -2263,7 +2263,7 @@ namespace draw2d_opengl
    }
 
 
-   bool graphics::PolyPolyline(const POINT32* lpPoints, const INT * lpPolyPoints, count nCount)
+   bool graphics::PolyPolyline(const POINT32* lpPoints, const ::i32 * lpPolyPoints, count nCount)
    {
 
       // ASSERT(m_hdc != nullptr);
@@ -5092,7 +5092,7 @@ namespace draw2d_opengl
    }
 
 
-   bool graphics::set_alpha_mode(::draw2d::e_alpha_mode ealphamode)
+   bool graphics::set_alpha_mode(::draw2d::enum_alpha_mode ealphamode)
    {
 
       try

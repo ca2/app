@@ -39,12 +39,12 @@ namespace plugin
       MESSAGE_LINK(e_message_create, pchannel, this, &host_interaction::_001OnCreate);
 
       /*
-      MESSAGE_LINK(WM_WINDOWPOSCHANGED  , pchannel, this, &host_interaction::on_ignore_message);
+      MESSAGE_LINK(e_message_window_position_changed  , pchannel, this, &host_interaction::on_ignore_message);
       MESSAGE_LINK(e_message_size              , pchannel, this, &host_interaction::on_ignore_message);
       MESSAGE_LINK(e_message_move              , pchannel, this, &host_interaction::on_ignore_message);
-      //MESSAGE_LINK(WM_TIMER             , pchannel, this, &host_interaction::on_ignore_message);
+      //MESSAGE_LINK(e_message_timer             , pchannel, this, &host_interaction::on_ignore_message);
       MESSAGE_LINK(WM_IME_SETCONTEXT    , pchannel, this, &host_interaction::on_ignore_message);
-      MESSAGE_LINK(WM_WINDOWPOSCHANGING , pchannel, this, &host_interaction::on_ignore_message);
+      MESSAGE_LINK(e_message_window_position_changing , pchannel, this, &host_interaction::on_ignore_message);
       MESSAGE_LINK(WM_CHILDACTIVATE     , pchannel, this, &host_interaction::on_ignore_message);
       */
 
@@ -333,8 +333,8 @@ namespace plugin
       if (emessage == e_message_nccreate || emessage == e_message_create)
          /*      || emessage == e_message_size
                || emessage == e_message_move
-               || emessage == WM_WINDOWPOSCHANGING
-               || emessage == WM_WINDOWPOSCHANGED)*/
+               || emessage == e_message_window_position_changing
+               || emessage == e_message_window_position_changed)*/
       {
 
          //return ::user::interaction::default_window_procedure(emessage, wparam, lparam);

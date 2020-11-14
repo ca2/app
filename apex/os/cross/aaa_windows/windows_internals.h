@@ -495,7 +495,7 @@ typedef struct _FILE_BOTH_DIRECTORY_INFORMATION
    WINULONG FileAttributes;
    WINULONG FileNameLength;
    WINULONG EaSize;
-   CHAR ShortNameLength;
+   char ShortNameLength;
    WCHAR ShortName[12];
    WCHAR FileName[ANYSIZE_ARRAY];
 } FILE_BOTH_DIRECTORY_INFORMATION, *PFILE_BOTH_DIRECTORY_INFORMATION,
@@ -514,7 +514,7 @@ typedef struct _FILE_ID_BOTH_DIRECTORY_INFORMATION
    WINULONG FileAttributes;
    WINULONG FileNameLength;
    WINULONG EaSize;
-   CHAR ShortNameLength;
+   char ShortNameLength;
    WCHAR ShortName[12];
    LARGE_INTEGER FileId;
    WCHAR FileName[ANYSIZE_ARRAY];
@@ -617,7 +617,7 @@ typedef struct _FILE_FULL_EA_INFORMATION
    WINUCHAR Flags;
    WINUCHAR EaNameLength;
    WINUSHORT EaValueLength;
-   CHAR EaName[1];
+   char EaName[1];
 } FILE_FULL_EA_INFORMATION, *PFILE_FULL_EA_INFORMATION;
 
 typedef struct _FILE_MODE_INFORMATION
@@ -1154,7 +1154,7 @@ typedef struct _RTL_RWLOCK
    HANDLE hExclusiveReleaseSemaphore;
    ::u32 uExclusiveWaiters;
 
-   INT iNumberActive;
+   ::i32 iNumberActive;
    HANDLE hOwningThreadId;
    ::u32 tickTimeoutBoost;
    PVOID pDebugInfo;
@@ -1543,7 +1543,7 @@ typedef struct _DEBUG_MODULE_INFORMATION
    WINUSHORT Unknown;
    WINUSHORT LoadCount;
    WINUSHORT ModuleNameOffset;
-   CHAR ImageName[256];
+   char ImageName[256];
 } DEBUG_MODULE_INFORMATION, *PDEBUG_MODULE_INFORMATION;
 
 typedef struct _DEBUG_HEAP_INFORMATION
@@ -2407,7 +2407,7 @@ CLASS_DECL_APEX WINULONG WINAPI RtlCompactHeap(HANDLE, WINULONG);
 CLASS_DECL_APEX ::i32 WINAPI RtlCompareString(const STRING*, const STRING*, int_bool);
 CLASS_DECL_APEX ::i32 WINAPI RtlCompareUnicodeString(const UNICODE_STRING*, const UNICODE_STRING*, int_bool);
 CLASS_DECL_APEX NTSTATUS WINAPI RtlCompressBuffer(WINUSHORT, PWINUCHAR, WINULONG, PWINUCHAR, WINULONG, WINULONG, PWINULONG, PVOID);
-CLASS_DECL_APEX ::u32 WINAPI RtlComputeCrc32(::u32, const byte*, INT);
+CLASS_DECL_APEX ::u32 WINAPI RtlComputeCrc32(::u32, const byte*, ::i32);
 CLASS_DECL_APEX NTSTATUS WINAPI RtlConvertSidToUnicodeString(PUNICODE_STRING, PSID, int_bool);
 CLASS_DECL_APEX void WINAPI RtlCopyLuid(PLUID, const LUID*);
 //    CLASS_DECL_APEX void WINAPI RtlCopyLuidAndAttributesArray(WINULONG, const LUID_AND_ATTRIBUTES*, PLUID_AND_ATTRIBUTES);
@@ -2537,7 +2537,7 @@ CLASS_DECL_APEX NTSTATUS WINAPI RtlIntegerToUnicodeString(WINULONG, WINULONG, UN
 CLASS_DECL_APEX int_bool WINAPI RtlIsActivationContextActive(HANDLE);
 CLASS_DECL_APEX WINULONG WINAPI RtlIsDosDeviceName_U(PCWSTR);
 CLASS_DECL_APEX int_bool WINAPI RtlIsNameLegalDOS8Dot3(const UNICODE_STRING*, POEM_STRING, PBOOLEAN);
-CLASS_DECL_APEX int_bool WINAPI RtlIsTextUnicode(const void *, INT, INT *);
+CLASS_DECL_APEX int_bool WINAPI RtlIsTextUnicode(const void *, ::i32, ::i32 *);
 CLASS_DECL_APEX int_bool WINAPI RtlIsValidHandle(const RTL_HANDLE_TABLE *, const RTL_HANDLE *);
 CLASS_DECL_APEX int_bool WINAPI RtlIsValidIndexHandle(const RTL_HANDLE_TABLE *, WINULONG Index, RTL_HANDLE **);
 CLASS_DECL_APEX NTSTATUS WINAPI RtlLeaveCriticalSection(RTL_CRITICAL_SECTION *);
@@ -2642,7 +2642,7 @@ CLASS_DECL_APEX NTSTATUS WINAPI RtlUpcaseUnicodeStringToOemString(STRING*, const
 CLASS_DECL_APEX NTSTATUS WINAPI RtlUpcaseUnicodeToMultiByteN(char *, ::u32, LPDWORD, const widechar *, ::u32);
 CLASS_DECL_APEX NTSTATUS WINAPI RtlUpcaseUnicodeToOemN(char *, ::u32, LPDWORD, const widechar *, ::u32);
 CLASS_DECL_APEX NTSTATUS WINAPI RtlUpdateTimer(HANDLE, HANDLE, ::u32, ::u32);
-CLASS_DECL_APEX CHAR WINAPI RtlUpperChar(CHAR);
+CLASS_DECL_APEX char WINAPI RtlUpperChar(char);
 CLASS_DECL_APEX void WINAPI RtlUpperString(STRING *, const STRING *);
 CLASS_DECL_APEX NTSTATUS WINAPI RtlValidSecurityDescriptor(PSECURITY_DESCRIPTOR);
 CLASS_DECL_APEX int_bool WINAPI RtlValidAcl(PACL);
@@ -2665,18 +2665,18 @@ CLASS_DECL_APEX NTSTATUS WINAPI RtlpUnWaitCriticalSection(RTL_CRITICAL_SECTION *
 #ifndef _WIN64
 CLASS_DECL_APEX ::i64 WINAPI RtlConvertLongToLargeInteger(::i32);
 CLASS_DECL_APEX ULONGLONG WINAPI RtlConvertUlongToLargeInteger(WINULONG);
-CLASS_DECL_APEX ::i64 WINAPI RtlEnlargedIntegerMultiply(INT, INT);
+CLASS_DECL_APEX ::i64 WINAPI RtlEnlargedIntegerMultiply(::i32, ::i32);
 CLASS_DECL_APEX ULONGLONG WINAPI RtlEnlargedUnsignedMultiply(::u32, ::u32);
 CLASS_DECL_APEX ::u32 WINAPI RtlEnlargedUnsignedDivide(ULONGLONG, ::u32, ::u32 *);
-CLASS_DECL_APEX ::i64 WINAPI RtlExtendedMagicDivide(::i64, ::i64, INT);
-CLASS_DECL_APEX ::i64 WINAPI RtlExtendedIntegerMultiply(::i64, INT);
-CLASS_DECL_APEX ::i64 WINAPI RtlExtendedLargeIntegerDivide(::i64, INT, INT *);
+CLASS_DECL_APEX ::i64 WINAPI RtlExtendedMagicDivide(::i64, ::i64, ::i32);
+CLASS_DECL_APEX ::i64 WINAPI RtlExtendedIntegerMultiply(::i64, ::i32);
+CLASS_DECL_APEX ::i64 WINAPI RtlExtendedLargeIntegerDivide(::i64, ::i32, ::i32 *);
 CLASS_DECL_APEX ::i64 WINAPI RtlLargeIntegerAdd(::i64, ::i64);
-CLASS_DECL_APEX ::i64 WINAPI RtlLargeIntegerArithmeticShift(::i64, INT);
+CLASS_DECL_APEX ::i64 WINAPI RtlLargeIntegerArithmeticShift(::i64, ::i32);
 CLASS_DECL_APEX ULONGLONG WINAPI RtlLargeIntegerDivide(ULONGLONG, ULONGLONG, ULONGLONG *);
 CLASS_DECL_APEX ::i64 WINAPI RtlLargeIntegerNegate(::i64);
-CLASS_DECL_APEX ::i64 WINAPI RtlLargeIntegerShiftLeft(::i64, INT);
-CLASS_DECL_APEX ::i64 WINAPI RtlLargeIntegerShiftRight(::i64, INT);
+CLASS_DECL_APEX ::i64 WINAPI RtlLargeIntegerShiftLeft(::i64, ::i32);
+CLASS_DECL_APEX ::i64 WINAPI RtlLargeIntegerShiftRight(::i64, ::i32);
 CLASS_DECL_APEX ::i64 WINAPI RtlLargeIntegerSubtract(::i64, ::i64);
 CLASS_DECL_APEX NTSTATUS WINAPI RtlLargeIntegerToChar(const ULONGLONG *, WINULONG, WINULONG, PCHAR);
 #endif

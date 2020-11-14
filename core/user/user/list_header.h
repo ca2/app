@@ -24,7 +24,7 @@
 // end_r_commctrl
 
 #define HDFT_ISSTRING       0x0000      // HD_ITEM.pvFilter points to a HD_TEXTFILTER
-#define HDFT_ISNUMBER       0x0001      // HD_ITEM.pvFilter points to a INT
+#define HDFT_ISNUMBER       0x0001      // HD_ITEM.pvFilter points to a ::i32
 #define HDFT_ISDATE         0x0002      // HD_ITEM.pvFilter points to a ::u32 (dos date)
 
 #define HDFT_HASNOVALUE     0x8000      // clear the filter, by setting this bit

@@ -67,7 +67,7 @@ namespace user
 
       MESSAGE_LINK(e_message_create, pchannel, this, &box::_001OnCreate);
       MESSAGE_LINK(e_message_size, pchannel, this, &box::_001OnSize);
-      MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &box::_001OnShowWindow);
+      MESSAGE_LINK(e_message_show_window, pchannel, this, &box::_001OnShowWindow);
 
    }
 

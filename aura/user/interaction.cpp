@@ -8,6 +8,7 @@
 #include "acme/const/id.h"
 #include "apex/message/simple_command.h"
 #include "interaction_thread.h"
+#include "acme/os/cross/windows/_windows.h"
 
 
 #define TEST_PRINT_BUFFER
@@ -1043,17 +1044,17 @@ namespace user
          MESSAGE_LINK(e_message_size, pchannel, this, &interaction::_001OnSize);
          MESSAGE_LINK(e_message_move, pchannel, this, &interaction::_001OnMove);
          MESSAGE_LINK(e_message_nccalcsize, pchannel, this, &interaction::_001OnNcCalcSize);
-         MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &interaction::_001OnShowWindow);
+         MESSAGE_LINK(e_message_show_window, pchannel, this, &interaction::_001OnShowWindow);
          MESSAGE_LINK(e_message_kill_focus, pchannel, this, &interaction::_001OnKillFocus);
          MESSAGE_LINK(e_message_set_focus, pchannel, this, &interaction::_001OnSetFocus);
-         MESSAGE_LINK((enum_message)WM_DISPLAYCHANGE, pchannel, this, &interaction::_001OnDisplayChange);
-         MESSAGE_LINK(e_message_lbutton_down, pchannel, this, &interaction::_001OnLButtonDown);
+         MESSAGE_LINK((enum_message)e_message_display_change, pchannel, this, &interaction::_001OnDisplayChange);
+         MESSAGE_LINK(e_message_left_button_down, pchannel, this, &interaction::_001OnLButtonDown);
          MESSAGE_LINK(e_message_key_down, pchannel, this, &::user::interaction::_001OnKeyDown);
-         MESSAGE_LINK(WM_ENABLE, pchannel, this, &::user::interaction::_001OnEnable);
+         MESSAGE_LINK(e_message_enable, pchannel, this, &::user::interaction::_001OnEnable);
 
       }
 
-      MESSAGE_LINK(WM_COMMAND, pchannel, this, &interaction::_001OnCommand);
+      MESSAGE_LINK(e_message_command, pchannel, this, &interaction::_001OnCommand);
       MESSAGE_LINK(e_message_simple_command, pchannel, this, &interaction::_001OnSimpleCommand);
 
       if (m_bSimpleUIDefaultMouseHandling)
@@ -1416,7 +1417,7 @@ namespace user
                      if (puiptraChild->interaction_at(i).is_set())
                      {
 
-                        puiptraChild->interaction_at(i)->send_message(WM_SHOWWINDOW, 0, 1);
+                        puiptraChild->interaction_at(i)->send_message(e_message_show_window, 0, 1);
 
                      }
 
@@ -1497,7 +1498,7 @@ namespace user
          if (mouse_hover_remove(this))
          {
 
-            call_message_handler(WM_MOUSELEAVE);
+            call_message_handler(e_message_mouse_leave);
 
          }
 
@@ -1965,7 +1966,7 @@ namespace user
             for (auto & puserinteraction : puiptraChild->interactiona())
             {
 
-               puserinteraction->post_message((enum_message)WM_DISPLAYCHANGE);
+               puserinteraction->post_message((enum_message)e_message_display_change);
 
             }
 
@@ -5073,7 +5074,7 @@ namespace user
 
 }
 
-   LONG_PTR interaction::get_window_long_ptr(i32 nIndex) const
+   iptr interaction::get_window_long_ptr(i32 nIndex) const
    {
 
       if (m_pimpl == nullptr)
@@ -5088,7 +5089,7 @@ namespace user
    }
 
 
-   LONG_PTR interaction::set_window_long_ptr(i32 nIndex, LONG_PTR lValue)
+   iptr interaction::set_window_long_ptr(i32 nIndex, iptr lValue)
    {
 
       if (m_pimpl == nullptr)
@@ -11340,7 +11341,7 @@ restart:
       //            if (pui && pui->is_this_visible())
       //            {
 
-      //               pui->send_message(WM_SHOWWINDOW, 1, SW_PARENTOPENING);
+      //               pui->send_message(e_message_show_window, 1, SW_PARENTOPENING);
 
       //            }
 
@@ -11365,7 +11366,7 @@ restart:
       //            if (uiptra[i].is_set() && uiptra[i]->is_this_visible())
       //            {
 
-      //               uiptra[i]->send_message(WM_SHOWWINDOW, 0, SW_PARENTCLOSING);
+      //               uiptra[i]->send_message(e_message_show_window, 0, SW_PARENTCLOSING);
 
       //            }
 
@@ -12162,7 +12163,7 @@ restart:
 
                   get_impl()->mouse_hover_remove(this);
 
-                  send_message(WM_MOUSELEAVE);
+                  send_message(e_message_mouse_leave);
 
                   set_need_redraw();
 
@@ -12698,12 +12699,12 @@ restart:
 
       m_bSimpleUIDefaultMouseHandling = true;
 
-      MESSAGE_LINK((enum_message) e_message_lbutton_down, pchannel, this, &interaction::_001OnLButtonDown);
-      MESSAGE_LINK((enum_message)e_message_lbutton_up, pchannel, this, &interaction::_001OnLButtonUp);
-      MESSAGE_LINK((enum_message)WM_MBUTTONDOWN, pchannel, this, &interaction::_001OnMButtonDown);
-      MESSAGE_LINK((enum_message)WM_MBUTTONUP, pchannel, this, &interaction::_001OnMButtonUp);
+      MESSAGE_LINK((enum_message) e_message_left_button_down, pchannel, this, &interaction::_001OnLButtonDown);
+      MESSAGE_LINK((enum_message)e_message_left_button_up, pchannel, this, &interaction::_001OnLButtonUp);
+      MESSAGE_LINK((enum_message)e_message_middle_button_down, pchannel, this, &interaction::_001OnMButtonDown);
+      MESSAGE_LINK((enum_message)e_message_middle_button_up, pchannel, this, &interaction::_001OnMButtonUp);
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &interaction::_001OnMouseMove);
-      MESSAGE_LINK((enum_message)WM_MOUSELEAVE, pchannel, this, &interaction::_001OnMouseLeave);
+      MESSAGE_LINK((enum_message)e_message_mouse_leave, pchannel, this, &interaction::_001OnMouseLeave);
 
    }
 

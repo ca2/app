@@ -77,7 +77,7 @@ Section
 	# we have to redraw to reflect the changes
 	BgImage::Redraw
 
-	MessageBox MB_OK "Mike the llama"
+	MessageBox e_message_box_ok "Mike the llama"
 
 	# clear everything
 	BgImage::Clear

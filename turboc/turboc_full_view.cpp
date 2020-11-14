@@ -338,9 +338,9 @@ namespace turboc
 
                      pgraphics->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
 
-/*                     pgraphics->StretchBlt(0,0,pimage->width() / 40,pimage->height() / 40,pimage->get_graphics(),0,0,pimage->width(),pimage->height(),SRCCOPY);
+/*                     pgraphics->StretchBlt(0,0,pimage->width() / 40,pimage->height() / 40,pimage->get_graphics(),0,0,pimage->width(),pimage->height());
 
-/*                     pgraphics->StretchBlt(0,m_cy - pimage->height() / 40,pimage->width() / 40,pimage->height() / 40,pimage->get_graphics(),0,0,pimage->width(),pimage->height(),SRCCOPY);
+/*                     pgraphics->StretchBlt(0,m_cy - pimage->height() / 40,pimage->width() / 40,pimage->height() / 40,pimage->get_graphics(),0,0,pimage->width(),pimage->height());
 
                   }
 
@@ -389,9 +389,9 @@ namespace turboc
 
                      pgraphics->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
 
-/*                     pgraphics->StretchBlt(m_cx - pimage->width() / 32,0,pimage->width() / 32,pimage->height() / 32,pimage->get_graphics(),0,0,pimage->width(),pimage->height(),SRCCOPY);
+/*                     pgraphics->StretchBlt(m_cx - pimage->width() / 32,0,pimage->width() / 32,pimage->height() / 32,pimage->get_graphics(),0,0,pimage->width(),pimage->height());
 
-/*                     pgraphics->StretchBlt(m_cx - pimage->width() / 32,m_cy - pimage->height() / 32,pimage->width() / 32,pimage->height() / 32,pimage->get_graphics(),0,0,pimage->width(),pimage->height(),SRCCOPY);
+/*                     pgraphics->StretchBlt(m_cx - pimage->width() / 32,m_cy - pimage->height() / 32,pimage->width() / 32,pimage->height() / 32,pimage->get_graphics(),0,0,pimage->width(),pimage->height());
 
                   }
 

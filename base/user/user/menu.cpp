@@ -82,8 +82,8 @@ namespace user
       MESSAGE_LINK(e_message_destroy, pchannel, this, &menu::_001OnDestroy);
       MESSAGE_LINK(e_message_ncactivate, pchannel, this, &menu::_001OnNcActivate);
       MESSAGE_LINK(e_message_nccalcsize, pchannel, this, &menu::_001OnNcCalcSize);
-      MESSAGE_LINK(WM_ENABLE, pchannel, this, &menu::_001OnEnable);
-      MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &menu::_001OnShowWindow);
+      MESSAGE_LINK(e_message_enable, pchannel, this, &menu::_001OnEnable);
+      MESSAGE_LINK(e_message_show_window, pchannel, this, &menu::_001OnShowWindow);
       MESSAGE_LINK(e_message_close, pchannel, this, &menu::_001OnClose);
       MESSAGE_LINK(e_message_mouse_activate, pchannel, this, &menu::_001OnMouseActivate);
       MESSAGE_LINK(e_message_activate, pchannel, this, &menu::_001OnActivate);
@@ -1129,7 +1129,7 @@ namespace user
          //      if(puiTarget != nullptr)
          //      {
          //         /* xxx if(pwndParent->on_command(0,
-         //          MAKELONG((i32)CN_UPDATE_::user::command, WM_COMMAND+WM_REFLECT_BASE),
+         //          MAKELONG((i32)CN_UPDATE_::user::command, e_message_command+WM_REFLECT_BASE),
          //          &commandui, nullptr))
          //          continue;*/
          //         if(puiTarget->_001SendUpdateCmdUi(&commandui))
@@ -1188,7 +1188,7 @@ namespace user
    //             {
    //                /*
    //                 if(pwndParent->on_command(0,
-   //                 MAKELONG((i32)CN_UPDATE_::user::command, WM_COMMAND+WM_REFLECT_BASE),
+   //                 MAKELONG((i32)CN_UPDATE_::user::command, e_message_command+WM_REFLECT_BASE),
    //                 &commandui, nullptr))
    //                 continue;
    //                 */

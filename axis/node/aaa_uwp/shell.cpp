@@ -330,7 +330,7 @@ namespace uwp
 
 ///*   BOOL shell::_SHGetPathFromIDList(LPCITEMIDLIST pidl, unichar * pszPath)
 //   {
-//      CHAR pszPathA[MAX_PATH * 2];
+//      char pszPathA[MAX_PATH * 2];
 //      if(!::SHGetPathFromIDListA(pidl, pszPathA))
 //         return FALSE;
 //      return ::str::international::ACPToUnicode(pszPath, MAX_PATH * 2, pszPathA) ? TRUE : FALSE;
@@ -346,7 +346,7 @@ namespace uwp
 //
 //   HANDLE shell::_FindFirstFile(const unichar * pcsz, WIN32_FIND_DATAW * lpdata)
 //   {
-//      CHAR pszPathA[MAX_PATH * 2];
+//      char pszPathA[MAX_PATH * 2];
 //      ::str::international::UnicodeToACP(pszPathA, MAX_PATH * 2, pcsz);
 //      WIN32_FIND_DATAA data;
 //      HANDLE handle = ::FindFirstFileA(pszPathA, &data);
@@ -445,7 +445,7 @@ namespace uwp
 //      unichar * lpBuffer,
 //      unichar ** lpFilePart)
 //   {
-//      CHAR pszPathA[MAX_PATH * 2];
+//      char pszPathA[MAX_PATH * 2];
 //      ::str::international::UnicodeToACP(pszPathA, MAX_PATH * 2, lpFileName);
 //      string str;
 //      char * lpsz = str.GetBuffer(nBufferLength * 2);

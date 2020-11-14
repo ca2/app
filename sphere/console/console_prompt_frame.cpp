@@ -212,9 +212,9 @@ namespace console
       simple_frame_window::install_message_routing(pchannel);
       MESSAGE_LINK(e_message_create, pchannel, this, &prompt_frame::_001OnCreate);
       MESSAGE_LINK(e_message_close, pchannel, this, &prompt_frame::_001OnClose);
-//      //MESSAGE_LINK(WM_TIMER, pchannel, this, &prompt_frame::_001OnTimer);
+//      //MESSAGE_LINK(e_message_timer, pchannel, this, &prompt_frame::_001OnTimer);
       MESSAGE_LINK(e_message_move, pchannel, this, &prompt_frame::_001OnMove);
-      MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &prompt_frame::_001OnShowWindow);
+      MESSAGE_LINK(e_message_show_window, pchannel, this, &prompt_frame::_001OnShowWindow);
       MESSAGE_LINK(WM_APP + 2000, pchannel, this, &prompt_frame::_001OnApp2000);
    }
 

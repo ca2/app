@@ -67,58 +67,14 @@ namespace message
    }
 
 
-
-
 } // namespace message
-
-
-
-
-
-
-
-
-
-
 
 
 namespace message
 {
 
 
-//   ::u32 translate_to_os_message(const ::id & id)
-//   {
-//
-//#ifdef WINDOWS
-//
-//      switch (emessage)
-//      {
-//      case e_message_create:
-//         return e_message_create;
-//      default:
-//         return emessage;
-//      };
-//#elif defined(LINUX) ||  defined(__APPLE__) || defined(ANDROID)
-//      switch (emessage)
-//      {
-//      case e_message_create:
-//         return e_message_create;
-//      default:
-//         return emessage;
-//      };
-//
-//#else
-//      switch (emessage)
-//      {
-//      default:
-//         return emessage;
-//      };
-//#endif
-//
-//   }
-
-
-   e_prototype get_message_prototype(UINT_PTR emessage, ::u32 uCode)
+   e_prototype get_message_prototype(enum_message emessage, ::u32 uCode)
    {
       switch (emessage)
       {
@@ -136,36 +92,27 @@ namespace message
          return PrototypeActivate;
       case e_message_mouse_activate:
          return PrototypeMouseActivate;
-      case WM_MEASUREITEM:
+      case e_message_measure_item:
          return PrototypeMeasureItem;
 #ifdef WINDOWS
       case WM_NOTIFY:
          return PrototypeNotify;
 #endif
-      case WM_COMMAND:
+      case e_message_command:
          return PrototypeCommand;
-         //{
-         //switch (uiCode)
-         //{
-         //case CN_UPDATE_::user::command:
-         //    return PrototypeUpdateCommandUserInterface;
-         //default:
-         //return PrototypeCommand;
-         //}
-         //}
       case e_message_mouse_move:
-      case e_message_lbutton_down:
-      case e_message_lbutton_up:
-      case WM_LBUTTONDBLCLK:
-      case e_message_rbutton_down:
-      case e_message_rbutton_up:
-      case WM_RBUTTONDBLCLK:
-      case WM_MBUTTONDOWN:
-      case WM_MBUTTONUP:
-      case WM_MBUTTONDBLCLK:
+      case e_message_left_button_down:
+      case e_message_left_button_up:
+      case e_message_left_button_double_click:
+      case e_message_right_button_down:
+      case e_message_right_button_up:
+      case e_message_right_button_double_click:
+      case e_message_middle_button_down:
+      case e_message_middle_button_up:
+      case e_message_middle_button_double_click:
       case e_message_non_client_mouse_move:
-      case WM_NCLBUTTONDOWN:
-      case WM_NCLBUTTONUP:
+      case e_message_non_client_left_button_down:
+      case e_message_non_client_left_button_up:
          return PrototypeMouse;
 #ifdef WINDOWS
       case e_message_mouse_wheel:
@@ -173,7 +120,7 @@ namespace message
 #endif
       case e_message_ncactivate:
          return PrototypeNcActivate;
-      case WM_TIMER:
+      case e_message_timer:
          return PrototypeTimer;
       case e_message_key_down:
       case e_message_key_up:
@@ -189,15 +136,15 @@ namespace message
          return PrototypeKey;
       case e_message_nchittest:
          return PrototypeNcHitTest;
-      case WM_SETCURSOR:
+      case e_message_set_cursor:
          return PrototypeSetCursor;
-      case WM_ERASEBKGND:
+      case e_message_erase_background:
          return PrototypeEraseBkgnd;
-      case WM_SHOWWINDOW:
+      case e_message_show_window:
          return PrototypeShowWindow;
-      case WM_INITMENUPOPUP:
+      case e_message_initialize_menu_popup:
          return PrototypeInitMenuPopup;
-      case WM_ENABLE:
+      case e_message_enable:
          return PrototypeEnable;
          /*#ifdef WINDOWS
          case WM_CTLCOLOR:
@@ -210,8 +157,8 @@ namespace message
          return PrototypeKillFocus;
       case e_message_set_focus:
          return PrototypeSetFocus;
-      case WM_WINDOWPOSCHANGING:
-      case WM_WINDOWPOSCHANGED:
+      case e_message_window_position_changing:
+      case e_message_window_position_changed:
          return PrototypeWindowPos;
       case e_message_nccalcsize:
          return PrototypeNcCalcSize;

@@ -118,7 +118,7 @@ namespace introjection
 
             strMessage = "There is a hole here. You should fill it with fullfillment. Missing f**k " + path;
 
-            os_message_box(strMessage, strMessage, MB_OK);
+            os_message_box(strMessage, strMessage, e_message_box_ok);
 
          }
 

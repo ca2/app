@@ -110,7 +110,7 @@ bool __node_apex_pre_init()
 
    defer_init_winsock();
 
-   //xxdebug_box("__node_apex_pre_init","box",MB_OK);
+   //xxdebug_box("__node_apex_pre_init","box",e_message_box_ok);
 
    //g_pgdiplusStartupInput = new Gdiplus::GdiplusStartupInput();
 
@@ -155,7 +155,7 @@ bool __node_apex_pre_init()
    //    catch (...)
    //    {
 
-   //       ::message_box(nullptr, "Failure to initialize FreeImage (::apex::init_core)", "FreeImage_Initialise failure", MB_ICONEXCLAMATION);
+   //       ::message_box(nullptr, "Failure to initialize FreeImage (::apex::init_core)", "FreeImage_Initialise failure", e_message_box_icon_exclamation);
 
    //       return false;
 
@@ -742,7 +742,7 @@ int GetVersion_ex1()
 //bool __node_apex_pre_init()
 //{
 //
-//   //xxdebug_box("__node_acme_pre_init","box",MB_OK);
+//   //xxdebug_box("__node_acme_pre_init","box",e_message_box_ok);
 //
 //   //g_pgdiplusStartupInput = new Gdiplus::GdiplusStartupInput();
 //
@@ -787,7 +787,7 @@ int GetVersion_ex1()
 //   ////    catch (...)
 //   ////    {
 //
-//   ////       ::message_box(nullptr, "Failure to initialize FreeImage (::acme::init_core)", "FreeImage_Initialise failure", MB_ICONEXCLAMATION);
+//   ////       ::message_box(nullptr, "Failure to initialize FreeImage (::acme::init_core)", "FreeImage_Initialise failure", e_message_box_icon_exclamation);
 //
 //   ////       return false;
 //

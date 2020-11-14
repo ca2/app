@@ -25,19 +25,19 @@ namespace user
 
       switch(message)
       {
-      case e_message_rbutton_down:
+      case e_message_right_button_down:
 
          OnNotifyIconContextMenu(uNotifyIcon);
 
          break;
 
-      case WM_LBUTTONDBLCLK:
+      case e_message_left_button_double_click:
 
          OnNotifyIconLButtonDblClk(uNotifyIcon);
 
          break;
 
-      case e_message_lbutton_down:
+      case e_message_left_button_down:
 
          OnNotifyIconLButtonDown(uNotifyIcon);
 

@@ -45,7 +45,7 @@
 //
 ////      _term_args();
 //
-//      //::message_box(nullptr,"t3=" + __str(m_iErrorCode),"t3",MB_OK);
+//      //::message_box(nullptr,"t3=" + __str(m_iErrorCode),"t3",e_message_box_ok);
 //
 //
 //      return m_iErrorCode;

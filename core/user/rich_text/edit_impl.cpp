@@ -108,11 +108,11 @@ namespace user
 
          MESSAGE_LINK(e_message_create, pchannel, this, &edit_impl::_001OnCreate);
          MESSAGE_LINK(e_message_destroy, pchannel, this, &edit_impl::_001OnDestroy);
-         MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &edit_impl::_001OnShowWindow);
-         MESSAGE_LINK(e_message_lbutton_down, pchannel, this, &edit_impl::_001OnLButtonDown);
-         MESSAGE_LINK(e_message_lbutton_up, pchannel, this, &edit_impl::_001OnLButtonUp);
+         MESSAGE_LINK(e_message_show_window, pchannel, this, &edit_impl::_001OnShowWindow);
+         MESSAGE_LINK(e_message_left_button_down, pchannel, this, &edit_impl::_001OnLButtonDown);
+         MESSAGE_LINK(e_message_left_button_up, pchannel, this, &edit_impl::_001OnLButtonUp);
          MESSAGE_LINK(e_message_mouse_move, pchannel, this, &edit_impl::_001OnMouseMove);
-         MESSAGE_LINK(WM_MOUSELEAVE, pchannel, this, &edit_impl::_001OnMouseLeave);
+         MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &edit_impl::_001OnMouseLeave);
          MESSAGE_LINK(e_message_key_down, pchannel, this, &edit_impl::_001OnKeyDown);
          MESSAGE_LINK(e_message_key_up, pchannel, this, &edit_impl::_001OnKeyUp);
          MESSAGE_LINK(e_message_set_focus, pchannel, this, &edit_impl::_001OnSetFocus);

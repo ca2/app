@@ -432,7 +432,7 @@ namespace uwp
    string CLASS_DECL_AXIS vfxStringFromCLSID(REFCLSID rclsid)
    {
 
-      CHAR szCLSID[256];
+      char szCLSID[256];
 
       sprintf(szCLSID, "{%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X}",
               rclsid.Data1, rclsid.Data2, rclsid.Data3,

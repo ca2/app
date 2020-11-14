@@ -56,7 +56,7 @@ void menu_view::install_message_routing(::channel * pchannel)
 {
    ::user::form::install_message_routing(pchannel);
    MESSAGE_LINK(e_message_create, pchannel, this, &menu_view::_001OnCreate);
-//   //MESSAGE_LINK(WM_TIMER, pchannel, this, &menu_view::_001OnTimer);
+//   //MESSAGE_LINK(e_message_timer, pchannel, this, &menu_view::_001OnTimer);
    //MESSAGE_LINK(WM_USER + 123, pchannel, this, &menu_view::_001OnUser123);
 
 }

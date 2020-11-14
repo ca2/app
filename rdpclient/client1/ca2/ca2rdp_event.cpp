@@ -181,22 +181,22 @@ void ca2rdp_send_mouse_button_event(rdpInput* input, const ::id & id, POINT32 pt
    case e_message_mouse_move:
       flags = PTR_FLAGS_MOVE;
       break;
-   case e_message_lbutton_down:
+   case e_message_left_button_down:
       flags = PTR_FLAGS_DOWN | PTR_FLAGS_BUTTON1;
       break;
-   case e_message_lbutton_up:
+   case e_message_left_button_up:
       flags = PTR_FLAGS_BUTTON1;
       break;
-   case e_message_rbutton_down:
+   case e_message_right_button_down:
       flags = PTR_FLAGS_DOWN | PTR_FLAGS_BUTTON2;
       break;
-   case e_message_rbutton_up:
+   case e_message_right_button_up:
       flags = PTR_FLAGS_BUTTON2;
       break;
-   case WM_MBUTTONDOWN:
+   case e_message_middle_button_down:
       flags = PTR_FLAGS_DOWN | PTR_FLAGS_BUTTON3;
       break;
-   case WM_MBUTTONUP:
+   case e_message_middle_button_up:
       flags = PTR_FLAGS_BUTTON3;
       break;
    default:

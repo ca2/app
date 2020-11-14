@@ -1528,7 +1528,7 @@ bool file_context::get_status(const ::file::path & path, ::file::file_status & s
    }
    //if (strFail.has_char())
    //{
-   //   App(papp).message_box(nullptr, strFail, MB_ICONEXCLAMATION);
+   //   App(papp).message_box(nullptr, strFail, e_message_box_icon_exclamation);
    //}
 
    return e;

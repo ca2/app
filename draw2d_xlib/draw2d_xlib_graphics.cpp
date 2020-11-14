@@ -1250,7 +1250,7 @@ namespace draw2d_xlib
    }
 
 
-   bool graphics::PolyPolygon(const POINT32* lpPoints, const INT* lpPolyCounts, i32 nCount)
+   bool graphics::PolyPolygon(const POINT32* lpPoints, const ::i32* lpPolyCounts, i32 nCount)
    {
 
       __throw(not_implemented());
@@ -1504,7 +1504,7 @@ namespace draw2d_xlib
 
       }
 
-      //return ::BitBlt(get_handle1(), x, y, nWidth, nHeight, WIN_HDC(pgraphicsSrc), xSrc, ySrc, dwRop);
+      //return ::BitBlt(get_handle1(), x, y, nWidth, nHeight, WIN_HDC(pgraphicsSrc), xSrc, ySrc);
 
    }
 
@@ -1579,7 +1579,7 @@ namespace draw2d_xlib
 
             return true;*/
 
-      //return ::StretchBlt(get_handle1(), x, y, nWidth, nHeight, WIN_HDC(pgraphicsSrc), xSrc, ySrc, nSrcWidth, nSrcHeight, dwRop);
+      //return ::StretchBlt(get_handle1(), x, y, nWidth, nHeight, WIN_HDC(pgraphicsSrc), xSrc, ySrc, nSrcWidth, nSrcHeight);
 
    }
 
@@ -5041,7 +5041,7 @@ namespace draw2d_xlib
    }
 
 
-   void graphics::set_alpha_mode(::draw2d::e_alpha_mode ealphamode)
+   void graphics::set_alpha_mode(::draw2d::enum_alpha_mode ealphamode)
    {
 
       sync_lock ml(&xlib_mutex());
@@ -5170,7 +5170,7 @@ namespace draw2d_xlib
       }*/
 
 
-//   ::aura::e_fill_mode graphics::gdiplus_get_fill_mode()
+//   ::aura::enum_fill_mode graphics::gdiplus_get_fill_mode()
    // {
 //      return ::draw2d::fill_mode_winding;
    // }

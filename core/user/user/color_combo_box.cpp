@@ -31,11 +31,11 @@ namespace user
       ::user::interaction::install_message_routing(psender);
 
       MESSAGE_LINK(e_message_create, psender, this, &::user::color_combo_box::_001OnCreate);
-      MESSAGE_LINK(e_message_lbutton_down, psender, this, &::user::color_combo_box::_001OnLButtonDown);
-      MESSAGE_LINK(e_message_lbutton_up, psender, this, &::user::color_combo_box::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_left_button_down, psender, this, &::user::color_combo_box::_001OnLButtonDown);
+      MESSAGE_LINK(e_message_left_button_up, psender, this, &::user::color_combo_box::_001OnLButtonUp);
       MESSAGE_LINK(e_message_mouse_move, psender, this, &::user::color_combo_box::_001OnMouseMove);
-      MESSAGE_LINK(WM_MOUSELEAVE, psender, this, &::user::color_combo_box::_001OnMouseLeave);
-      MESSAGE_LINK(WM_SHOWWINDOW, psender, this, &::user::color_combo_box::_001OnShowWindow);
+      MESSAGE_LINK(e_message_mouse_leave, psender, this, &::user::color_combo_box::_001OnMouseLeave);
+      MESSAGE_LINK(e_message_show_window, psender, this, &::user::color_combo_box::_001OnShowWindow);
 
    }
 

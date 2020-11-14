@@ -195,7 +195,7 @@ PTIME_FIELDS TimeFields)
       TimeFields->Year = (CSHORT) (years + 1525);
    }
    /* calculation of day of month is based on the wonderful
-    * sequence of INT( n * 30.6): it reproduces the
+    * sequence of ::i32( n * 30.6): it reproduces the
     * 31-30-31-30-31-31 month lengths exactly for small n's */
    TimeFields->Day = (CSHORT) (yearday - (1959 * months) / 64);
    return;
@@ -453,7 +453,7 @@ void WINAPI RtlSecondsSince1980ToTime( ::u32 Seconds, LARGE_INTEGER *Time )
 void WINAPI RtlTimeToElapsedTimeFields( const LARGE_INTEGER *Time, PTIME_FIELDS TimeFields )
 {
    ::i64 time;
-   INT rem;
+   ::i32 rem;
 
    time = Time->QuadPart / TICKSPERSEC;
    TimeFields->Milliseconds = (CSHORT) ((Time->QuadPart % TICKSPERSEC) / TICKSPERMSEC);

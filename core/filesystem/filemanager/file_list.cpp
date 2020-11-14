@@ -37,8 +37,8 @@ namespace filemanager
 
       MESSAGE_LINK(e_message_hscroll, pchannel, this, &file_list::_001OnHScroll);
       MESSAGE_LINK(e_message_vscroll, pchannel, this, &file_list::_001OnVScroll);
-      MESSAGE_LINK(e_message_rbutton_up, pchannel, this, &file_list::_001OnContextMenu);
-      MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &file_list::_001OnShowWindow);
+      MESSAGE_LINK(e_message_right_button_up, pchannel, this, &file_list::_001OnContextMenu);
+      MESSAGE_LINK(e_message_show_window, pchannel, this, &file_list::_001OnShowWindow);
       MESSAGE_LINK(e_message_set_focus, pchannel, this, &file_list::_001OnSetFocus);
       MESSAGE_LINK(e_message_kill_focus, pchannel, this, &file_list::_001OnKillFocus);
 

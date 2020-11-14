@@ -226,7 +226,7 @@ bool db_server::create_message_queue()
 
    //   //SetTimer(1258477, 484, nullptr);
 
-   //   ////MESSAGE_LINK(WM_TIMER, m_pimpl, this, &db_server::_001OnTimer);
+   //   ////MESSAGE_LINK(e_message_timer, m_pimpl, this, &db_server::_001OnTimer);
 
    //}
 

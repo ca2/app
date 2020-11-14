@@ -2524,16 +2524,16 @@ namespace user
 
       install_simple_ui_default_mouse_handling(pchannel);
 
-      MESSAGE_LINK(e_message_lbutton_down, pchannel, this, &tab::_001OnLButtonDown);
-      MESSAGE_LINK(e_message_lbutton_up, pchannel, this, &tab::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &tab::_001OnLButtonDown);
+      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &tab::_001OnLButtonUp);
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &tab::_001OnMouseMove);
-      MESSAGE_LINK(WM_MOUSELEAVE, pchannel, this, &tab::_001OnMouseLeave);
+      MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &tab::_001OnMouseLeave);
       MESSAGE_LINK(e_message_create, pchannel, this, &tab::_001OnCreate);
-      MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &tab::_001OnShowWindow);
+      MESSAGE_LINK(e_message_show_window, pchannel, this, &tab::_001OnShowWindow);
       MESSAGE_LINK(e_message_language, pchannel, this, &tab::_001OnAppLanguage);
       MESSAGE_LINK(message_start_tab_drag, pchannel, this,&tab::_001OnStartTabDrag);
 
-      ////MESSAGE_LINK(WM_TIMER, pchannel, this, &tab::_001OnTimer);
+      ////MESSAGE_LINK(e_message_timer, pchannel, this, &tab::_001OnTimer);
 
    }
 
@@ -3595,7 +3595,7 @@ namespace user
 
             _001ClientToScreen(rectTabScreen);
 
-            if ((pmouse->m_id == e_message_lbutton_down || pmouse->m_id == e_message_lbutton_up) && rectTabScreen.contains(pmouse->m_point))
+            if ((pmouse->m_id == e_message_left_button_down || pmouse->m_id == e_message_left_button_up) && rectTabScreen.contains(pmouse->m_point))
             {
 
                route_message(pmouse);

@@ -380,7 +380,7 @@ extern "C++" { \
 //typedef VOID           *PVOID;
 typedef VOID           *PVOID64;
 typedef byte            WINBOOLEAN,    *PBOOLEAN;
-typedef char            CHAR,       *PCHAR;
+typedef char            char,       *PCHAR;
 typedef short           SHORT,      *PSHORT;
 #ifdef _MSC_VER
 typedef long            ::i32,       *PLONG;
@@ -417,10 +417,10 @@ typedef ULONGLONG   DECLSPEC_ALIGN(8) DWORDLONG,   *PDWORDLONG;
 #endif
 
 /* ANSI string types */
-typedef CHAR           *PCH,        *LPCH;
-typedef const CHAR     *PCCH,       *LPCCH;
-typedef CHAR           *PSTR,       *char *,     *NPSTR;
-typedef const CHAR     *PCSTR,      *const char *;
+typedef char           *PCH,        *LPCH;
+typedef const char     *PCCH,       *LPCCH;
+typedef char           *PSTR,       *char *,     *NPSTR;
+typedef const char     *PCSTR,      *const char *;
 
 /* Unicode string types */
 typedef WCHAR          *PWCH,       *LPWCH;
@@ -444,7 +444,7 @@ typedef const widechar *         PCTSTR,      LPCTSTR;
 #  define __TEXT(string) L##string
 # else  /* UNICODE */
 # ifndef _TCHAR_DEFINED
-typedef CHAR            TCHAR,      *PTCHAR;
+typedef char            TCHAR,      *PTCHAR;
 # define _TCHAR_DEFINED
 # endif
 typedef char *           PTSTR,       char *;
@@ -3608,7 +3608,7 @@ typedef struct _IMAGE_RESOURCE_DIRECTORY_ENTRY {
 
 typedef struct _IMAGE_RESOURCE_DIRECTORY_STRING {
 	::u16	Length;
-	CHAR	NameString[ 1 ];
+	char	NameString[ 1 ];
 } IMAGE_RESOURCE_DIRECTORY_STRING,*PIMAGE_RESOURCE_DIRECTORY_STRING;
 
 typedef struct _IMAGE_RESOURCE_DIR_STRING_U {
@@ -5380,7 +5380,7 @@ typedef VOID (NTAPI * PFLS_CALLBACK_FUNCTION) ( PVOID );
 //	::u32 dwMinorVersion;
 //	::u32 dwBuildNumber;
 //	::u32 dwPlatformId;
-//	CHAR szCSDVersion[128];
+//	char szCSDVersion[128];
 //} OSVERSIONINFOA, *POSVERSIONINFOA, *LPOSVERSIONINFOA;
 
 typedef struct {

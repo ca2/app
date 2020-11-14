@@ -3185,7 +3185,7 @@ namespace apex
    //            rectText.right = rectText.left + sSep.cx;
    //            rectEmp = rectText;
    //            rectEmp.deflate(1, 1);
-   //            ::draw2d::e_alpha_mode emode = pgraphics->m_ealphamode;
+   //            ::draw2d::enum_alpha_mode emode = pgraphics->m_ealphamode;
    //            pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
    //            if (ptab->m_itemHover == (::user::e_element)(::user::element_split + i))
    //            {

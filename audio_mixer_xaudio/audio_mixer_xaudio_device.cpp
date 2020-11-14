@@ -56,7 +56,7 @@ namespace multimedia
             if(::success != mmrct)
             {
 
-               System.message_box(nullptr, MB_OK | MB_ICONEXCLAMATION, "mixerClose() failed on hmx=%.04Xh, mmr=%u!", m_hMixer, mmrct);
+               System.message_box(nullptr, e_message_box_ok | e_message_box_icon_exclamation, "mixerClose() failed on hmx=%.04Xh, mmr=%u!", m_hMixer, mmrct);
 
             }
 
@@ -67,7 +67,7 @@ namespace multimedia
          if(::success != mmrc)
          {
 
-            System.message_box(nullptr, MB_OK | MB_ICONEXCLAMATION, "mixerGetDevCaps() failed on uMxId=%u, mmr=%u!", uiMixerId, mmrc);
+            System.message_box(nullptr, e_message_box_ok | e_message_box_icon_exclamation, "mixerGetDevCaps() failed on uMxId=%u, mmr=%u!", uiMixerId, mmrc);
 
             return mmrc;
 
@@ -78,7 +78,7 @@ namespace multimedia
          if(::success != mmrc)
          {
 
-            System.message_box(nullptr, MB_OK | MB_ICONEXCLAMATION, "mixerOpen() failed on uMxId=%u, mmr=%u!", uiMixerId, mmrc);
+            System.message_box(nullptr, e_message_box_ok | e_message_box_icon_exclamation, "mixerOpen() failed on uMxId=%u, mmr=%u!", uiMixerId, mmrc);
 
             return mmrc;
 
@@ -107,7 +107,7 @@ namespace multimedia
          if(::success != mmrc)
          {
 
-            System.message_box(nullptr, MB_OK | MB_ICONEXCLAMATION, "mixerGetDevCaps() failed on uMxId=%u, mmr=%u!", m_uiMixerID, mmrc);
+            System.message_box(nullptr, e_message_box_ok | e_message_box_icon_exclamation, "mixerGetDevCaps() failed on uMxId=%u, mmr=%u!", m_uiMixerID, mmrc);
 
             return mmrc;
 

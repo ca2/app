@@ -118,21 +118,21 @@ namespace draw2d
 
 
 
-   enum e_alpha_mode
+   enum enum_alpha_mode
    {
       alpha_mode_set,
       alpha_mode_blend
    };
 
 
-   enum e_fill_mode
+   enum enum_fill_mode
    {
       fill_mode_winding,
       fill_mode_alternate
    };
 
 
-   enum e_unit
+   enum enum_unit
    {
 
       unit_pixel,

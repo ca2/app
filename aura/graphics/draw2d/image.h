@@ -44,7 +44,7 @@ public:
 
    virtual bool SetViewportOrg(const ::point & point);
    virtual bool set_font_factor(double dFactor);
-   virtual bool set_alpha_mode(::draw2d::e_alpha_mode e_alpha_mode);
+   virtual bool set_alpha_mode(::draw2d::enum_alpha_mode enum_alpha_mode);
 
 
    virtual bool create_helper_map();

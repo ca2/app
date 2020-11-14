@@ -1992,7 +1992,7 @@ namespace apex
 
 //          var["prefix_html"] = "<img src=\"matter://system/exclusive.png\" width=80 height=80 style=\"display:block;\"><br/><br/>";
 
-            message_box_timeout(var, m_strAppName, durationTimeout, message_box_icon_asterisk);
+            message_box_timeout(var, m_strAppName, durationTimeout, e_message_box_icon_asterisk);
 
             INFO("apex::application::init_application exit");
 
@@ -7189,7 +7189,7 @@ retry_license:
          if (mutex.already_exists())
          {
 
-            //            message_box("Could not launch spa installer. It is already running.", MB_OK);
+            //            message_box("Could not launch spa installer. It is already running.", e_message_box_ok);
 
             return -35;
 
@@ -7709,7 +7709,7 @@ namespace apex
       //linux ::u32 nIDP = __IDP_INTERNAL_FAILURE;   // matter message string
       const char* nIDP = "Internal Failure";
       pbase->m_lresult = 0;        // sensible default
-      if (pbase->m_id == WM_COMMAND)
+      if (pbase->m_id == e_message_command)
       {
          if (pbase->m_lparam == 0)
             //linux nIDP = __IDP_COMMAND_FAILURE; // command (not from a control)
@@ -7720,7 +7720,7 @@ namespace apex
       if (pe.is < memory_exception >())
       {
 
-         report_error(pe, MB_ICONEXCLAMATION | MB_SYSTEMMODAL, nIDP);
+         report_error(pe, e_message_box_icon_exclamation | e_message_box_system_modal, nIDP);
 
       }
       else if (pe.is < user_exception >())
@@ -7728,7 +7728,7 @@ namespace apex
 
          // ::account::user has not been alerted yet of this catastrophic problem
 
-         report_error(pe, MB_ICONSTOP, nIDP);
+         report_error(pe, e_message_box_icon_stop, nIDP);
 
       }
 
@@ -10430,7 +10430,7 @@ namespace apex
       //         //pMainWnd = __get_main_window();
       //         //if((m_puiMain != nullptr) && (IsEnterKey(pbase) || IsButtonUp(pbase)))
       //         //{
-      //         //   //                  pMainWnd->SendMessage(WM_COMMAND, ID_HELP);
+      //         //   //                  pMainWnd->SendMessage(e_message_command, ID_HELP);
       //         //   pbase->m_bRet = true;
       //         //   return;
       //         //}

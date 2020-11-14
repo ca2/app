@@ -1046,7 +1046,7 @@ namespace install
 //template < typename TYPE > inline TYPE __random();
 //inline float __random(float f1, float f2);
 //inline double __random(double d1, double d2);
-//template < typename INT > inline INT __random_int(INT i1, INT i2);
+//template < typename ::i32 > inline ::i32 __random_int(::i32 i1, ::i32 i2);
 //inline i64 __random(i64 i1, i64 i2);
 //inline i32 __random(i32 i1, i32 i2);
 

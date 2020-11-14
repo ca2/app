@@ -406,7 +406,7 @@ namespace macos
 
       bool FlashWindow(bool bInvert);
 
-      //virtual i32 message_box(const char * lpszText, const char * lpszCaption = nullptr, ::u32 nType = MB_OK) override;
+      //virtual i32 message_box(const char * lpszText, const char * lpszCaption = nullptr, ::u32 nType = e_message_box_ok) override;
 
 
 #if(WINVER >= 0x0500)

@@ -21,7 +21,7 @@ namespace lnx
       virtual bool has_current_point();
       virtual point last_point();
 
-      virtual bool begin_figure(bool bFill, ::ca::e_fill_mode efillmode);
+      virtual bool begin_figure(bool bFill, ::ca::enum_fill_mode efillmode);
       virtual bool end_figure(bool bClose);
 
       virtual bool add_arc(const RECT & rect, i32 iStart, i32 iAngle);

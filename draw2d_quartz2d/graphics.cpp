@@ -1617,7 +1617,7 @@ namespace draw2d_quartz2d
 
             set_alpha_mode(::draw2d::alpha_mode_blend);
 
-            BitBltRaw(x, y, nWidth, nHeight, pimage1->get_graphics(), 0, 0, dwRop);
+            BitBltRaw(x, y, nWidth, nHeight, pimage1->get_graphics(), 0, 0);
 
             return true;
 
@@ -4602,7 +4602,7 @@ namespace draw2d_quartz2d
    }
 
 
-   bool graphics::set_alpha_mode(::draw2d::e_alpha_mode ealphamode)
+   bool graphics::set_alpha_mode(::draw2d::enum_alpha_mode ealphamode)
    {
 
       try

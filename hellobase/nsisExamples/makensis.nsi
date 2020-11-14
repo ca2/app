@@ -995,7 +995,7 @@ Function PageLeaveReinstall
           Quit ; ...yes, already installed, we are done
         Abort
       ${EndIf}
-      MessageBox MB_ICONEXCLAMATION "Unable to uninstall!"
+      MessageBox e_message_box_icon_exclamation "Unable to uninstall!"
       Abort
     ${Else}
       StrCpy $0 $R1 1

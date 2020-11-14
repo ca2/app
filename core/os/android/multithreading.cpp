@@ -71,7 +71,7 @@ bool defer_process_x_message(hthread_t hthread, LPMESSAGE lpMsg, oswindow intera
                   {
                      if(j == i)
                         continue;
-                     PostMessage(::oswindow_data::s_pdataptra->element_at(j), WM_DISPLAYCHANGE, 0, 0);
+                     PostMessage(::oswindow_data::s_pdataptra->element_at(j), e_message_display_change, 0, 0);
                   }
                   continue;
                }
@@ -86,15 +86,15 @@ bool defer_process_x_message(hthread_t hthread, LPMESSAGE lpMsg, oswindow intera
                {
                   if(e.xbutton.button == Button1)
                   {
-                     lpMsg->message = e_message_lbutton_down;
+                     lpMsg->message = e_message_left_button_down;
                   }
                   else if(e.xbutton.button == Button2)
                   {
-                     lpMsg->message = WM_MBUTTONDOWN;
+                     lpMsg->message = e_message_middle_button_down;
                   }
                   else if(e.xbutton.button == Button3)
                   {
-                     lpMsg->message = e_message_rbutton_down;
+                     lpMsg->message = e_message_right_button_down;
                   }
                   else
                   {
@@ -106,15 +106,15 @@ bool defer_process_x_message(hthread_t hthread, LPMESSAGE lpMsg, oswindow intera
                {
                   if(e.xbutton.button == Button1)
                   {
-                     lpMsg->message = e_message_lbutton_up;
+                     lpMsg->message = e_message_left_button_up;
                   }
                   else if(e.xbutton.button == Button2)
                   {
-                     lpMsg->message = WM_MBUTTONUP;
+                     lpMsg->message = e_message_middle_button_up;
                   }
                   else if(e.xbutton.button == Button3)
                   {
-                     lpMsg->message = e_message_rbutton_up;
+                     lpMsg->message = e_message_right_button_up;
                   }
                   else
                   {

@@ -23,7 +23,7 @@ Function StartMenuGroupSelect
 	StrCmp $R1 "success" success
 	StrCmp $R1 "cancel" done
 		; error
-		MessageBox MB_OK $R1
+		MessageBox e_message_box_ok $R1
 		StrCpy $R0 "StartMenu.dll test" # use default
 		Return
 	success:

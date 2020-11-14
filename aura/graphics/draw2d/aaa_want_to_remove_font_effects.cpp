@@ -198,7 +198,7 @@ namespace draw2d
    }
 
 
-   bool font::AddGlyph(CHAR tch)
+   bool font::AddGlyph(char tch)
    {
 
       return AddGlyph((::u32) tch);
@@ -297,7 +297,7 @@ namespace draw2d
 
 
 
-   glyph * font::GetGlyph(CHAR ch)
+   glyph * font::GetGlyph(char ch)
    {
       return GetGlyph((::u32) ch);
    }

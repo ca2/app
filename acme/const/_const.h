@@ -650,17 +650,18 @@ enum enum_future
 enum enum_message_box
 {
 
-   message_box_ok = 0x00000000L,
-   message_box_yes_no = 0x00000003L,
-   message_box_yes_no_cancel = 0x00000003L,
-   message_box_icon_error = 0x00000010L,
-   message_box_icon_exclamation = 0x00000030L,
-   message_box_icon_question = 0x00000020L,
-   message_box_icon_asterisk = 0x00000040L,
-   message_box_icon_hand = message_box_icon_error,
-   message_box_icon_warning = message_box_icon_exclamation,
-   message_box_icon_information = message_box_icon_asterisk,
-   message_box_icon_stop = message_box_icon_asterisk,
+   e_message_box_ok = 0x00000000L,
+   e_message_box_yes_no = 0x00000003L,
+   e_message_box_yes_no_cancel = 0x00000003L,
+   e_message_box_icon_error = 0x00000010L,
+   e_message_box_icon_exclamation = 0x00000030L,
+   e_message_box_icon_question = 0x00000020L,
+   e_message_box_icon_asterisk = 0x00000040L,
+   e_message_box_icon_hand = e_message_box_icon_error,
+   e_message_box_icon_warning = e_message_box_icon_exclamation,
+   e_message_box_icon_information = e_message_box_icon_asterisk,
+   e_message_box_icon_stop = e_message_box_icon_asterisk,
+   e_message_box_system_modal = 0x00001000L,
 
 };
 

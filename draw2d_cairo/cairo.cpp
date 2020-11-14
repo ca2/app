@@ -79,7 +79,7 @@ void init_cairo_mutex()
 //BOOL WINAPI DllMain(HINSTANCE hInstance,::u32 dwReason,LPVOID lpReserved)
 //{
 //
-//   xxdebug_box("draw2d_cairo.dll DllMain (0)","box",MB_OK);
+//   xxdebug_box("draw2d_cairo.dll DllMain (0)","box",e_message_box_ok);
 //
 //   UNREFERENCED_PARAMETER(hInstance);
 //   UNREFERENCED_PARAMETER(lpReserved);
@@ -93,7 +93,7 @@ void init_cairo_mutex()
 //
 //      output_debug_string(L"draw2d_cairo.dll initializing!\n");
 //
-//      xxdebug_box("draw2d_cairo.dll DllMain","box",MB_OK);
+//      xxdebug_box("draw2d_cairo.dll DllMain","box",e_message_box_ok);
 //
 //   }
 //   else if(dwReason == DLL_PROCESS_DETACH)

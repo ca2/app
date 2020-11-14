@@ -243,7 +243,7 @@ namespace filemanager
 
                   });
 
-               message_box("Do you want to replace the existing file " + strPath + "?", nullptr, message_box_yes_no, pfuture);
+               message_box("Do you want to replace the existing file " + strPath + "?", nullptr, e_message_box_yes_no, pfuture);
 
             }
             else

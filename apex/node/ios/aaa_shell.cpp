@@ -370,7 +370,7 @@ namespace ios
 ////
 ////         string strFilePath(imagekey.m_strPath);
 ////
-////         CHAR szPath[_MAX_PATH * 6];
+////         char szPath[_MAX_PATH * 6];
 ////         WCHAR wszPath[_MAX_PATH * 6];
 ////         string strPath;
 ////
@@ -1024,7 +1024,7 @@ namespace ios
    //      lpiidlAbsolute,
    //      szFilePath);
 
-   //   CHAR szPath[_MAX_PATH * 10];
+   //   char szPath[_MAX_PATH * 10];
    //   string strPath;
    //   //   i32 iImage = 0x80000000;
 

@@ -26,14 +26,14 @@ namespace user
       ::user::box::install_message_routing(pchannel);
 
       //MESSAGE_LINK(WM_VIEW, pchannel, this, &impact::_001OnView);
-      MESSAGE_LINK(e_message_lbutton_down, pchannel, this, &impact::_001OnLButtonDown);
-      MESSAGE_LINK(e_message_lbutton_up, pchannel, this, &impact::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &impact::_001OnLButtonDown);
+      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &impact::_001OnLButtonUp);
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &impact::_001OnMouseMove);
       MESSAGE_LINK(e_message_create, pchannel, this, &impact::_001OnCreate);
       MESSAGE_LINK(e_message_destroy, pchannel, this, &impact::_001OnDestroy);
-      //      MESSAGE_LINK(e_message_lbutton_down    , pchannel, this, &impact::_001OnRButtonDown);
-      MESSAGE_LINK(WM_MBUTTONDOWN, pchannel, this, &impact::_001OnMButtonDown);
-      MESSAGE_LINK(e_message_rbutton_down, pchannel, this, &impact::_001OnRButtonDown);
+      //      MESSAGE_LINK(e_message_left_button_down    , pchannel, this, &impact::_001OnRButtonDown);
+      MESSAGE_LINK(e_message_middle_button_down, pchannel, this, &impact::_001OnMButtonDown);
+      MESSAGE_LINK(e_message_right_button_down, pchannel, this, &impact::_001OnRButtonDown);
 
 
       MESSAGE_LINK(e_message_mouse_activate, pchannel, this, &impact::_001OnMouseActivate);
@@ -1043,7 +1043,7 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // ::user::impact second phase construction - bind to document
 
-   //const CHAR _vfxWndFrameOrView[] = __WNDFRAMEORVIEW;
+   //const char _vfxWndFrameOrView[] = __WNDFRAMEORVIEW;
 
 
 

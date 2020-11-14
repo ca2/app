@@ -23,7 +23,7 @@ namespace draw2d_direct2d
    }
 
 
-   //bool path::internal_begin_figure(bool bFill, ::draw2d::e_fill_mode efillmode)
+   //bool path::internal_begin_figure(bool bFill, ::draw2d::enum_fill_mode efillmode)
    //{
 
    //   if(m_psink != nullptr)

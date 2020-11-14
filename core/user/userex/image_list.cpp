@@ -213,9 +213,9 @@ namespace userex
 
       MESSAGE_LINK(e_message_create, pchannel, this, &image_list_view::_001OnCreate);
       MESSAGE_LINK(e_message_destroy, pchannel, this, &image_list_view::_001OnDestroy);
-//      MESSAGE_LINK(e_message_lbutton_down, pchannel, this, &image_list_view::_001OnLButtonDown);
+//      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &image_list_view::_001OnLButtonDown);
       //    MESSAGE_LINK(e_message_mouse_move, pchannel, this, &image_list_view::_001OnMouseMove);
-      //  MESSAGE_LINK(WM_MOUSELEAVE, pchannel, this, &image_list_view::_001OnMouseLeave);
+      //  MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &image_list_view::_001OnMouseLeave);
 
    }
 

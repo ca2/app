@@ -145,7 +145,7 @@ namespace draw2d
       //{
       //public:
 
-      //   ::draw2d::e_fill_mode         m_efillmode;
+      //   ::draw2d::enum_fill_mode         m_efillmode;
       //   pointd_array                  m_pointa;
 
 
@@ -217,7 +217,7 @@ namespace draw2d
       bool                             m_bHasPoint;
       pointd                           m_pointBeg;
       pointd                           m_pointEnd;
-      ::draw2d::e_fill_mode            m_efillmode;
+      ::draw2d::enum_fill_mode            m_efillmode;
       pointd                           m_pointOffset;
       
 
@@ -231,8 +231,8 @@ namespace draw2d
       inline bool set_current_point(double x, double y) { return set_current_point({ x, y }); }
       virtual bool set_current_point(const ::pointd & point);
 
-      virtual void set_fill_mode(::draw2d::e_fill_mode efillmode);
-      virtual ::draw2d::e_fill_mode get_fill_mode();
+      virtual void set_fill_mode(::draw2d::enum_fill_mode efillmode);
+      virtual ::draw2d::enum_fill_mode get_fill_mode();
 
       virtual bool begin_figure();
       virtual bool close_figure();

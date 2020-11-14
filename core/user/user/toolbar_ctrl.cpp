@@ -807,14 +807,14 @@ namespace user
    }
 
 
-   INT toolbar_control::GetMaxTextRows()
+   ::i32 toolbar_control::GetMaxTextRows()
    {
 
 #ifdef WINDOWS_DESKTOP
 
       ASSERT(is_window()); 
       
-      return (INT) send_message(TB_GETTEXTROWS);
+      return (::i32) send_message(TB_GETTEXTROWS);
 
 #else
 

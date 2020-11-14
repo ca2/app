@@ -2666,7 +2666,7 @@ bool x11_process_message(Display * pdisplay)
    case UnmapNotify:
    {
 
-      msg.message       = WM_SHOWWINDOW;
+      msg.message       = e_message_show_window;
       msg.wParam        = e.type == MapNotify;
       msg.lParam        = 0;
 
@@ -2746,7 +2746,7 @@ bool x11_process_message(Display * pdisplay)
          for(int j = 0; j < ::oswindow_data::s_pdataptra->get_count(); j++)
          {
 
-            ::oswindow_data::s_pdataptra->element_at(j)->m_pimpl->m_puserinteraction->post_message(WM_DISPLAYCHANGE);
+            ::oswindow_data::s_pdataptra->element_at(j)->m_pimpl->m_puserinteraction->post_message(e_message_display_change);
 
          }
 
@@ -2768,19 +2768,19 @@ bool x11_process_message(Display * pdisplay)
          if(e.xbutton.button == Button1)
          {
 
-            msg.message = e_message_lbutton_down;
+            msg.message = e_message_left_button_down;
 
          }
          else if(e.xbutton.button == Button2)
          {
 
-            msg.message = WM_MBUTTONDOWN;
+            msg.message = e_message_middle_button_down;
 
          }
          else if(e.xbutton.button == Button3)
          {
 
-            msg.message = e_message_rbutton_down;
+            msg.message = e_message_right_button_down;
 
          }
          else
@@ -2797,19 +2797,19 @@ bool x11_process_message(Display * pdisplay)
          if(e.xbutton.button == Button1)
          {
 
-            msg.message = e_message_lbutton_up;
+            msg.message = e_message_left_button_up;
 
          }
          else if(e.xbutton.button == Button2)
          {
 
-            msg.message = WM_MBUTTONUP;
+            msg.message = e_message_middle_button_up;
 
          }
          else if(e.xbutton.button == Button3)
          {
 
-            msg.message = e_message_rbutton_up;
+            msg.message = e_message_right_button_up;
 
          }
          else

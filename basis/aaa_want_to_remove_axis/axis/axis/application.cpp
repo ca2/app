@@ -1467,7 +1467,7 @@ m_tickHeartBeat.Now();
          if (mutex.already_exists())
          {
 
-//            message_box("Could not launch spa installer. It is already running.", MB_OK);
+//            message_box("Could not launch spa installer. It is already running.", e_message_box_ok);
 
             return -35;
 

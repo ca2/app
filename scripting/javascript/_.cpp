@@ -390,7 +390,7 @@ string CScriptLex::getTokenStr(i32 token)
    {
    case LEX_EOF : return "EOF";
    case LEX_ID : return "ID";
-   case LEX_INT : return "INT";
+   case LEX_INT : return "::i32";
    case LEX_FLOAT : return "FLOAT";
    case LEX_STR : return "STRING";
    case LEX_EQUAL : return "==";

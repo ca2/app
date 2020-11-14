@@ -469,7 +469,7 @@ namespace http
    string application::get_locale_schema(const char * pszUrl,const char * pszLocale,const char * pszSchema)
    {
 
-      Application.message_box(nullptr, "What?!", MB_OK);
+      Application.message_box(nullptr, "What?!", e_message_box_ok);
 
       string strUrl = locale_schema_url(pszUrl, pszLocale, pszSchema);
 

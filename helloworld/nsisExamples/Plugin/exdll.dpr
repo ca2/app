@@ -106,8 +106,8 @@ begin
   g_variables := variables;
   // end global variable setup
 
-  NSISDialog(GetUserVariable(INST_0), 'The value of $0', MB_OK);
-  NSISDialog(PopString, 'pop', MB_OK);
+  NSISDialog(GetUserVariable(INST_0), 'The value of $0', e_message_box_ok);
+  NSISDialog(PopString, 'pop', e_message_box_ok);
   PushString('Hello, this is a push');
   SetUserVariable(INST_0, 'This is user var $0');
 end;

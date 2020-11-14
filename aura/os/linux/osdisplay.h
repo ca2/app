@@ -13,7 +13,7 @@ public:
    Atom                    m_atomLongStyleEx;
    Atom                    m_atomWmState;
    Atom                    m_atomNetWmState;
-   ATOM                    m_atomaNetWmState[net_wm_state_count];
+   Atom                    m_atomaNetWmState[net_wm_state_count];
    iptr                    m_countReference;
    //array < MESSAGE >     m_messsageaInput;
    //::mutex *               m_pmutexInput;

@@ -213,7 +213,7 @@ namespace prompt
       MESSAGE_LINK(e_message_close, pchannel, this, &frame::_001OnClose);
 //
       MESSAGE_LINK(e_message_move, pchannel, this, &frame::_001OnMove);
-      MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &frame::_001OnShowWindow);
+      MESSAGE_LINK(e_message_show_window, pchannel, this, &frame::_001OnShowWindow);
       MESSAGE_LINK(WM_APP + 2000, pchannel, this, &frame::_001OnApp2000);
    }
 

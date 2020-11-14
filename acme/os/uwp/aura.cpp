@@ -503,7 +503,7 @@ bool __node_aura_pre_init()
          if(FAILED(hresult))
          {
 
-            os_message_box("Failed to ::CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED) at __node_pre_init","__node_pre_init failure",MB_ICONEXCLAMATION);
+            os_message_box("Failed to ::CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED) at __node_pre_init","__node_pre_init failure",e_message_box_icon_exclamation);
 
             return false;
 
@@ -513,7 +513,7 @@ bool __node_aura_pre_init()
       else
       {
 
-         os_message_box("Failed to ::CoInitializeEx(nullptr, COINIT_MULTITHREADED) at __node_pre_init","__node_pre_init failure",MB_ICONEXCLAMATION);
+         os_message_box("Failed to ::CoInitializeEx(nullptr, COINIT_MULTITHREADED) at __node_pre_init","__node_pre_init failure",e_message_box_icon_exclamation);
 
          return false;
 

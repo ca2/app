@@ -159,7 +159,7 @@ namespace draw2d_opengl
    //   //         plusplus::Color c1(colorref_get_a_value(m_color1),colorref_get_r_value(m_color1),colorref_get_g_value(m_color1),colorref_get_b_value(m_color1));
    //   //         plusplus::Color c2(colorref_get_a_value(m_color2),colorref_get_r_value(m_color2),colorref_get_g_value(m_color2),colorref_get_b_value(m_color2));
 
-   //   //            INT c = 1;
+   //   //            ::i32 c = 1;
 
    //   //            pgb->SetCenterPoint(plusplus::PointF((plusplus::REAL) m_point.x,(plusplus::REAL) m_point.y));
    //   //         pgb->SetCenterColor(c1);

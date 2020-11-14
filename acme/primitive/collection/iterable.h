@@ -4691,8 +4691,8 @@ public:
 
    }
 
-   template < typename INT, typename INT2 >
-   Container islice(INT first, INT2 count = -1)
+   template < typename ::i32, typename INT2 >
+   Container islice(::i32 first, INT2 count = -1)
    {
 
       Container iterableSlice;

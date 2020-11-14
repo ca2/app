@@ -335,7 +335,7 @@ void wf_sizing(wfContext* wfc, WPARAM wParam, LPARAM lParam)
 //				wf_size_scrollbars(wfc, wfc->client_width, wfc->client_height);
 //				break;
 //
-//			case WM_ERASEBKGND:
+//			case e_message_erase_background:
 //				/* Say we handled it - prevents flickering */
 //				return (LRESULT) 1;
 //
@@ -352,19 +352,19 @@ void wf_sizing(wfContext* wfc, WPARAM wParam, LPARAM lParam)
 //				EndPaint(hWnd, &ps);
 //				break;
 //
-//			case e_message_lbutton_down:
+//			case e_message_left_button_down:
 //				wf_scale_mouse_event(wfc, input, PTR_FLAGS_DOWN | PTR_FLAGS_BUTTON1, X_POS(lParam) - wfc->offset_x, Y_POS(lParam) - wfc->offset_y);
 //				break;
 //
-//			case e_message_lbutton_up:
+//			case e_message_left_button_up:
 //				wf_scale_mouse_event(wfc, input, PTR_FLAGS_BUTTON1, X_POS(lParam) - wfc->offset_x, Y_POS(lParam) - wfc->offset_y);
 //				break;
 //
-//			case e_message_rbutton_down:
+//			case e_message_right_button_down:
 //				wf_scale_mouse_event(wfc, input, PTR_FLAGS_DOWN | PTR_FLAGS_BUTTON2, X_POS(lParam) - wfc->offset_x, Y_POS(lParam) - wfc->offset_y);
 //				break;
 //
-//			case e_message_rbutton_up:
+//			case e_message_right_button_up:
 //				wf_scale_mouse_event(wfc, input, PTR_FLAGS_BUTTON2, X_POS(lParam) - wfc->offset_x, Y_POS(lParam) - wfc->offset_y);
 //				break;
 //
@@ -376,7 +376,7 @@ void wf_sizing(wfContext* wfc, WPARAM wParam, LPARAM lParam)
 //				wf_event_process_WM_MOUSEWHEEL(wfc, hWnd, Msg, wParam, lParam);
 //				break;
 //
-//			case WM_SETCURSOR:
+//			case e_message_set_cursor:
 //				if (LOWORD(lParam) == HTCLIENT)
 //					SetCursor(wfc->cursor);
 //				else
@@ -563,7 +563,7 @@ void wf_sizing(wfContext* wfc, WPARAM wParam, LPARAM lParam)
 //			PostQuitMessage(e_message_quit);
 //			break;
 //
-//		case WM_SETCURSOR:
+//		case e_message_set_cursor:
 //			if (LOWORD(lParam) == HTCLIENT)
 //				SetCursor(wfc->hDefaultCursor);
 //			else

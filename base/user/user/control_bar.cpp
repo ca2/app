@@ -48,11 +48,11 @@ namespace user
       MESSAGE_LINK(WM_CTLCOLOR, pchannel, this, &control_bar::_001OnCtlColor);
 #endif
       MESSAGE_LINK(WM_SIZEPARENT, pchannel, this, &control_bar::_001OnSizeParent);
-      MESSAGE_LINK(WM_WINDOWPOSCHANGING, pchannel, this, &control_bar::_001OnWindowPosChanging);
+      MESSAGE_LINK(e_message_window_position_changing, pchannel, this, &control_bar::_001OnWindowPosChanging);
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &control_bar::_001OnMouseMove);
-      MESSAGE_LINK(e_message_lbutton_down, pchannel, this, &control_bar::_001OnLButtonDown);
-      MESSAGE_LINK(e_message_lbutton_up, pchannel, this, &control_bar::_001OnLButtonUp);
-      MESSAGE_LINK(WM_LBUTTONDBLCLK, pchannel, this, &control_bar::_001OnLButtonDblClk);
+      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &control_bar::_001OnLButtonDown);
+      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &control_bar::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &control_bar::_001OnLButtonDblClk);
       MESSAGE_LINK(e_message_mouse_activate, pchannel, this, &control_bar::_001OnMouseActivate);
       MESSAGE_LINK(e_message_create, pchannel, this, &control_bar::_001OnCreate);
       MESSAGE_LINK(e_message_destroy, pchannel, this, &control_bar::_001OnDestroy);
@@ -295,7 +295,7 @@ namespace user
 
       // handle CBRS_FLYBY style (status bar flyby help)
       if (((m_dwStyle & CBRS_FLYBY) ||
-            message == e_message_lbutton_down || message == e_message_lbutton_up) &&
+            message == e_message_left_button_down || message == e_message_left_button_up) &&
             ((message >= WM_MOUSEFIRST && message <= WM_MOUSELAST)))
 //          (message >= WM_NCMOUSEFIRST && message <= WM_NCMOUSELAST)))
       {
@@ -351,9 +351,9 @@ namespace user
       switch (message)
       {
       case WM_NOTIFY:
-      case WM_COMMAND:
+      case e_message_command:
       case WM_DRAWITEM:
-      case WM_MEASUREITEM:
+      case e_message_measure_item:
       case WM_DELETEITEM:
       case WM_COMPAREITEM:
       case WM_VKEYTOITEM:
@@ -510,7 +510,7 @@ namespace user
 
          // erase parts not drawn
          spgraphics->IntersectClipRect(rectWindow);
-         SendMessage(WM_ERASEBKGND, (WPARAM)spgraphics->get_handle1());
+         SendMessage(e_message_erase_background, (WPARAM)spgraphics->get_handle1());
 
          // draw gripper in non-client area
          DrawGripper(&spgraphics, rectWindow);*/
@@ -537,7 +537,7 @@ namespace user
 
       // erase parts not drawn
       //pgraphics->IntersectClipRect(rectWindow);
-      //SendMessage(WM_ERASEBKGND, (WPARAM)spgraphics->get_handle1());
+      //SendMessage(e_message_erase_background, (WPARAM)spgraphics->get_handle1());
       pgraphics->reset_clip();
       pgraphics->fill_solid_rect_dim(
       0,

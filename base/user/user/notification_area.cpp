@@ -184,19 +184,19 @@ namespace user
 
    void notification_area::DoubleClick(i32 iItem)
    {
-      PostMessageToTrayIcon(iItem, WM_LBUTTONDBLCLK);
+      PostMessageToTrayIcon(iItem, e_message_left_button_double_click);
    }
 
    void notification_area::LeftClick(i32 iItem)
    {
-      PostMessageToTrayIcon(iItem, e_message_lbutton_down);
-      PostMessageToTrayIcon(iItem, e_message_lbutton_up);
+      PostMessageToTrayIcon(iItem, e_message_left_button_down);
+      PostMessageToTrayIcon(iItem, e_message_left_button_up);
    }
 
    void notification_area::RightClick(i32 iItem)
    {
-      PostMessageToTrayIcon(iItem, e_message_rbutton_down);
-      PostMessageToTrayIcon(iItem, e_message_rbutton_up);
+      PostMessageToTrayIcon(iItem, e_message_right_button_down);
+      PostMessageToTrayIcon(iItem, e_message_right_button_up);
    }
 
    void notification_area::PostMessageToTrayIcon(i32 iItem, LPARAM lParam)

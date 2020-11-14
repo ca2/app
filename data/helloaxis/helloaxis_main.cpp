@@ -109,7 +109,7 @@ BOOL InitInstance(::object * pobject, HINSTANCE hInstance, int nCmdShow)
 //
 //  PURPOSE:  Processes messages for the main window.
 //
-//  WM_COMMAND  - process the application menu
+//  e_message_command  - process the application menu
 //  e_message_paint    - Paint the main window
 //  e_message_destroy  - post a quit message and return
 //
@@ -128,7 +128,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, const ::id & id, WPARAM wParam, LPARAM lPara
    }
    switch (message)
    {
-   case WM_COMMAND:
+   case e_message_command:
    {
       int wmId = LOWORD(wParam);
       // Parse the menu selections:
@@ -172,7 +172,7 @@ INT_PTR CALLBACK About(HWND hDlg, const ::id & id, WPARAM wParam, LPARAM lParam)
    case WM_INITDIALOG:
       return (INT_PTR)TRUE;
 
-   case WM_COMMAND:
+   case e_message_command:
       if (LOWORD(wParam) == IDOK || LOWORD(wParam) == IDCANCEL)
       {
          EndDialog(hDlg, LOWORD(wParam));

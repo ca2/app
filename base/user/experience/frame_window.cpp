@@ -1257,15 +1257,15 @@ namespace experience
 
       ::user::frame_window::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_lbutton_down,pchannel,this,&frame_window::_001OnLButtonDown);
-      MESSAGE_LINK(e_message_lbutton_up,pchannel,this,&frame_window::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_left_button_down,pchannel,this,&frame_window::_001OnLButtonDown);
+      MESSAGE_LINK(e_message_left_button_up,pchannel,this,&frame_window::_001OnLButtonUp);
       MESSAGE_LINK(e_message_mouse_move,pchannel,this,&frame_window::_001OnMouseMove);
-      MESSAGE_LINK(WM_NCLBUTTONDOWN,pchannel,this,&frame_window::_001OnNcLButtonDown);
-      MESSAGE_LINK(WM_NCLBUTTONUP,pchannel,this,&frame_window::_001OnNcLButtonUp);
+      MESSAGE_LINK(e_message_non_client_left_button_down,pchannel,this,&frame_window::_001OnNcLButtonDown);
+      MESSAGE_LINK(e_message_non_client_left_button_up,pchannel,this,&frame_window::_001OnNcLButtonUp);
       MESSAGE_LINK(e_message_non_client_mouse_move,pchannel,this,&frame_window::_001OnNcMouseMove);
       MESSAGE_LINK(e_message_nchittest,pchannel,this,&frame_window::_001OnNcHitTest);
       MESSAGE_LINK(e_message_activate,pchannel,this,&frame_window::_001OnActivate);
-      MESSAGE_LINK(WM_COMMAND,pchannel,this,&frame_window::_001OnCommand);
+      MESSAGE_LINK(e_message_command,pchannel,this,&frame_window::_001OnCommand);
       MESSAGE_LINK(WM_SYSCOMMAND, pchannel, this, &frame_window::_001OnSysCommand);
       MESSAGE_LINK(e_message_size, pchannel, this, &frame_window::_001OnSize);
 

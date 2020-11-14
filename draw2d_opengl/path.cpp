@@ -62,7 +62,7 @@ namespace draw2d_opengl
    }
 
 
-   bool path::internal_begin_figure(bool bFill, ::draw2d::e_fill_mode efillmode)
+   bool path::internal_begin_figure(bool bFill, ::draw2d::enum_fill_mode efillmode)
    {
 
       //return m_ppath->StartFigure() == plusplus::Status::Ok;

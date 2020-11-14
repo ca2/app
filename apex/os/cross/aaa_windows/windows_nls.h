@@ -947,7 +947,7 @@ typedef struct _cpinfoexA
    byte    LeadByte[MAX_LEADBYTES];        // lead byte ranges
    WCHAR   UnicodeDefaultChar;             // default character (Unicode)
    ::u32    CodePage;                       // code page id
-   CHAR    CodePageName[MAX_PATH];         // code page name (Unicode)
+   char    CodePageName[MAX_PATH];         // code page name (Unicode)
 } CPINFOEXA, *LPCPINFOEXA;
 typedef struct _cpinfoexW
 {
@@ -1870,7 +1870,7 @@ NLS_FUNCTION     Function,
 ::u32            dwFlags,
 LPNLSVERSIONINFO lpVersionInformation,
 const widechar *          lpString,
-INT              cchStr);
+::i32              cchStr);
 
 // For Windows Vista and above IsValidLocaleName is preferred
 //xxx linux WINAXISAPI

@@ -1245,7 +1245,7 @@ namespace user
    }
 
 
-   LONG_PTR primitive::get_window_long_ptr(i32 nIndex) const
+   iptr primitive::get_window_long_ptr(i32 nIndex) const
    {
 
       ::exception::throw_interface_only();
@@ -3250,7 +3250,7 @@ namespace user
       case ::message::PrototypeTimer:
       {
          
-         //__throw(::exception::exception("do not use WM_TIMER or Windows SetTimer/KillTimer"));
+         //__throw(::exception::exception("do not use e_message_timer or Windows SetTimer/KillTimer"));
          
          pbase = __new(::message::timer);
 

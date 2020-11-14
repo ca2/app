@@ -1941,7 +1941,7 @@ retry:
 
          path += ".exe";
 
-         //MessageBox(nullptr, path, "pathProgram", MB_OK);
+         //MessageBox(nullptr, path, "pathProgram", e_message_box_ok);
 
          strParam = strDefault.Mid(iFind + 5);
 
@@ -2119,7 +2119,7 @@ retry:
          //      SE_ERR_SHARE
          //      A sharing violation occurred.*/
 
-         //   message_box(nullptr, "Error opening file \"" + path + "\"", "Could not open file", MB_ICONEXCLAMATION);
+         //   message_box(nullptr, "Error opening file \"" + path + "\"", "Could not open file", e_message_box_icon_exclamation);
 
          //}
 
@@ -3626,7 +3626,7 @@ repeat:
 //                properties.
 
 
-HRESULT win_create_link(const widechar * pszPathObj, const widechar * pszPathLink, const widechar * pszDesc, const widechar * pszIconPath, INT iIcon)
+HRESULT win_create_link(const widechar * pszPathObj, const widechar * pszPathLink, const widechar * pszDesc, const widechar * pszIconPath, ::i32 iIcon)
 
 {
 

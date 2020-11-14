@@ -895,7 +895,7 @@ namespace user
 //#endif
 
 
-         MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &interaction_impl::_001OnShowWindow);
+         MESSAGE_LINK(e_message_show_window, pchannel, this, &interaction_impl::_001OnShowWindow);
          MESSAGE_LINK(e_message_kill_focus, pchannel, this, &interaction_impl::_001OnKillFocus);
          MESSAGE_LINK(e_message_set_focus, pchannel, this, &interaction_impl::_001OnSetFocus);
 
@@ -951,7 +951,7 @@ namespace user
             try
             {
 
-               pinteraction->send_message(WM_MOUSELEAVE);
+               pinteraction->send_message(e_message_mouse_leave);
 
             }
             catch (...)
@@ -1000,7 +1000,7 @@ namespace user
 
       }
 
-      if (pmouse->m_id == e_message_lbutton_up)
+      if (pmouse->m_id == e_message_left_button_up)
       {
 
          ::output_debug_string("lbutton_up");
@@ -1043,7 +1043,7 @@ namespace user
          for(auto & pinteraction : uia.interactiona())
          {
 
-            pinteraction->send_message((enum_message) WM_MOUSELEAVE);
+            pinteraction->send_message((enum_message) e_message_mouse_leave);
 
          }
 
@@ -1069,7 +1069,7 @@ namespace user
       {
 
 
-         if (pmouse->m_id == e_message_lbutton_up)
+         if (pmouse->m_id == e_message_left_button_up)
          {
 
             ::output_debug_string("lbutton_up");
@@ -1132,7 +1132,7 @@ namespace user
       {
 
 
-         if (pmouse->m_id == e_message_lbutton_up)
+         if (pmouse->m_id == e_message_left_button_up)
          {
 
             ::output_debug_string("lbutton_up");
@@ -3066,7 +3066,7 @@ namespace user
       for(auto & pinteraction : uiptra)
       {
 
-         pinteraction->send_message(WM_MOUSELEAVE);
+         pinteraction->send_message(e_message_mouse_leave);
 
       }
 
@@ -3262,7 +3262,7 @@ namespace user
                try
                {
 
-                  pinteraction->send_message(WM_MOUSELEAVE);
+                  pinteraction->send_message(e_message_mouse_leave);
 
                }
                catch (...)
@@ -3302,7 +3302,7 @@ namespace user
                try
                {
 
-                  pinteraction->send_message(WM_SHOWWINDOW, 0, SW_PARENTCLOSING);
+                  pinteraction->send_message(e_message_show_window, 0, SW_PARENTCLOSING);
 
                }
                catch (...)

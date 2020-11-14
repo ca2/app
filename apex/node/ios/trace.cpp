@@ -91,7 +91,7 @@
 //   SCAST_PTR(::message::base, pbase, pmessage);
 //
 //   if (pbase->m_id == e_message_mouse_move || pbase->m_id == e_message_non_client_mouse_move ||
-//       pbase->m_id == e_message_nchittest || pbase->m_id == WM_SETCURSOR ||
+//       pbase->m_id == e_message_nchittest || pbase->m_id == e_message_set_cursor ||
 //       pbase->m_id == WM_CTLCOLORBTN ||
 //       pbase->m_id == WM_CTLCOLORDLG ||
 //       pbase->m_id == WM_CTLCOLOREDIT ||
@@ -174,7 +174,7 @@
 //   ENSURE_ARG(lpmsg != nullptr);
 //
 //   if (lpmsg->message == e_message_mouse_move || lpmsg->message == e_message_non_client_mouse_move ||
-//       lpmsg->message == e_message_nchittest || lpmsg->message == WM_SETCURSOR ||
+//       lpmsg->message == e_message_nchittest || lpmsg->message == e_message_set_cursor ||
 //       lpmsg->message == WM_CTLCOLORBTN ||
 //       lpmsg->message == WM_CTLCOLORDLG ||
 //       lpmsg->message == WM_CTLCOLOREDIT ||

@@ -156,9 +156,9 @@ namespace core
       virtual ::estatus dialog_box(::layered * pobjectContext, const char * pszMatter, property_set & propertyset, const ::futurevar & futurevar = ::futurevar());
 
 
-      virtual ::estatus ui_message_box(::layered * pobjectContext, ::user::primitive * puiOwner, const char * pszMessage, const char * pszTitle = nullptr, ::emessagebox emessagebox = message_box_ok, const ::futurevar & futurevar = ::futurevar());
-      virtual ::estatus ui_message_box_timeout(::layered * pobjectContext, ::user::primitive * puiOwner, const char* pszMessage, const char * pszTitle = nullptr, const ::duration & durationTimeout = ::duration::infinite(), ::emessagebox emessagebox = message_box_ok, const ::futurevar & futurevar = ::futurevar());
-      //virtual ::estatus ui_message_box_timeout(::object* pobjectContext, ::user::primitive* puiOwner, var var, ::duration durationTimeout, ::u32 fuStyle = MB_OK, ::aura::application* papp = nullptr, const function_arg& functionargResult = function_arg());
+      virtual ::estatus ui_message_box(::layered * pobjectContext, ::user::primitive * puiOwner, const char * pszMessage, const char * pszTitle = nullptr, ::emessagebox emessagebox = e_message_box_ok, const ::futurevar & futurevar = ::futurevar());
+      virtual ::estatus ui_message_box_timeout(::layered * pobjectContext, ::user::primitive * puiOwner, const char* pszMessage, const char * pszTitle = nullptr, const ::duration & durationTimeout = ::duration::infinite(), ::emessagebox emessagebox = e_message_box_ok, const ::futurevar & futurevar = ::futurevar());
+      //virtual ::estatus ui_message_box_timeout(::object* pobjectContext, ::user::primitive* puiOwner, var var, ::duration durationTimeout, ::u32 fuStyle = e_message_box_ok, ::aura::application* papp = nullptr, const function_arg& functionargResult = function_arg());
 
       virtual void on_file_manager_open(::filemanager::data* pdata, ::file::item_array& itema);
 

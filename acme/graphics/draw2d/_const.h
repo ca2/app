@@ -98,16 +98,6 @@ namespace draw2d
    };
 
 
-   enum e_interpolation
-   {
-
-      interpolation_fast = 0,
-      interpolation_normal,
-      interpolation_high_quality,
-
-   };
-
-
    enum e_smooth_mode
    {
       smooth_mode_none,
@@ -116,12 +106,17 @@ namespace draw2d
       smooth_mode_anti_alias_8x8,
    };
 
-   enum e_interpolation_mode
+
+   enum enum_interpolation_mode
    {
-      interpolation_mode_none,
-      interpolation_mode_low_quality,
-      interpolation_mode_high_quality,
+
+      e_interpolation_mode_none = 0,
+      e_interpolation_mode_nearest_neighbor,
+      e_interpolation_mode_low_quality,
+      e_interpolation_mode_high_quality_bicubic,
+
    };
+
 
    enum e_compositing_quality
    {
@@ -159,23 +154,26 @@ namespace draw2d
    };
 
 
-
-   enum e_alpha_mode
+   enum enum_alpha_mode
    {
+
       alpha_mode_none,
       alpha_mode_set,
       alpha_mode_blend
+
    };
 
 
-   enum e_fill_mode
+   enum enum_fill_mode
    {
+
       fill_mode_winding,
       fill_mode_alternate
+
    };
 
 
-   enum e_unit
+   enum enum_unit
    {
 
       unit_pixel,

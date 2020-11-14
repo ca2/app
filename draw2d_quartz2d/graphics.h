@@ -500,7 +500,7 @@ namespace draw2d_quartz2d
       virtual void assert_valid() const override;
       virtual void dump(dump_context & dumpcontext) const override;
 
-      virtual bool set_alpha_mode(::draw2d::e_alpha_mode ealphamode) override;
+      virtual bool set_alpha_mode(::draw2d::enum_alpha_mode ealphamode) override;
 
       virtual bool set_text_rendering_hint(::draw2d::e_text_rendering_hint etextrenderinghint) override;
 

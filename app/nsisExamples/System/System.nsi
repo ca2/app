@@ -15,7 +15,7 @@ Section "ThisNameIsIgnoredSoWhyBother?"
 
      ; there are no default beeps for custom message boxes, use sysMessageBeep
      ; in case you need it (see next message box example)
-     !insertmacro smMessageBox "i 0" "Message box with custom icon!" "System Example 1a" ${MB_OK} "i 103"
+     !insertmacro smMessageBox "i 0" "Message box with custom icon!" "System Example 1a" ${e_message_box_ok} "i 103"
      ; i 0 - installer exe as module
      ; i 103 - icon ID
 
@@ -73,7 +73,7 @@ enumex: ; End of drives or user cancel
      ; ----- Sample 3 ----- Direct proc defenition -----
 
      ; Direct specification demo
-     System::Call 'user32::MessageBox(p $HWNDPARENT, t "Just direct MessageBox specification demo ;)", t "System Example 3", i ${MB_OK}) i.s'
+     System::Call 'user32::MessageBox(p $HWNDPARENT, t "Just direct MessageBox specification demo ;)", t "System Example 3", i ${e_message_box_ok}) i.s'
      Pop $0
 
      ; ----- Sample 4 ----- Int64, mixed definition demo -----
@@ -96,7 +96,7 @@ enumex: ; End of drives or user cancel
      ; Read data from structure   
      System::Call "*$1(i .r2, &t10 .r3, &i1 .r4, &i2 .r5, &l0 .r6)"
      ; Show data and delete structure
-     MessageBox MB_OK "Structure example: $\nint == $2 $\nstring == $3 $\nbyte == $4 $\nshort == $5 $\nsize == $6"
+     MessageBox e_message_box_ok "Structure example: $\nint == $2 $\nstring == $3 $\nbyte == $4 $\nshort == $5 $\nsize == $6"
      System::Free $1
 
      ; ----- Sample 6 ----- systemGetFileSysTime demo -----
@@ -106,7 +106,7 @@ enumex: ; End of drives or user cancel
      !insertmacro smGetFileSysTime $0
      System::Call '*$R0${stSYSTEMTIME}(.r1, .r2, .r3, .r4, .r5, .r6, .r7, .r8)'
  
-     MessageBox MB_OK "GetFileSysTime example: file '$0', year $1, month $2, dow $3, day $4, hour $5, min $6, sec $7, ms $8"     
+     MessageBox e_message_box_ok "GetFileSysTime example: file '$0', year $1, month $2, dow $3, day $4, hour $5, min $6, sec $7, ms $8"
 
      ; free memory from SYSTEMTIME
      System::Free $R0   
@@ -130,7 +130,7 @@ enumex: ; End of drives or user cancel
 
      ; Display splash result
      pop $0
-     MessageBox MB_OK "Splash (callbacks) demo result $R0"
+     MessageBox e_message_box_ok "Splash (callbacks) demo result $R0"
 
 SectionEnd 
 

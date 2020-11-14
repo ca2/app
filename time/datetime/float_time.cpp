@@ -73,7 +73,7 @@ static inline HRESULT FLOATTIME_MakeDate(DATEPARSE *dp, ::u32 iDate, ::u32 offse
  *  Success: TRUE. *pDateOut contains the converted value.
  *  Failure: FALSE, if lpSt cannot be represented in VT_DATE format.
  */
-CLASS_DECL_CA2_TIME INT SystemTimeToFloatTime(LPSYSTEMTIME lpSt, double *pDateOut)
+CLASS_DECL_CA2_TIME ::i32 SystemTimeToFloatTime(LPSYSTEMTIME lpSt, double *pDateOut)
 {
   UDATE ud;
 
@@ -102,7 +102,7 @@ CLASS_DECL_CA2_TIME INT SystemTimeToFloatTime(LPSYSTEMTIME lpSt, double *pDateOu
 *  Success: TRUE. *lpSt contains the converted value.
 *  Failure: FALSE, if dateIn is too large or small.
 */
-INT WINAPI FloatTimeToSystemTime(double dateIn, LPSYSTEMTIME lpSt)
+::i32 WINAPI FloatTimeToSystemTime(double dateIn, LPSYSTEMTIME lpSt)
 {
   UDATE ud;
 

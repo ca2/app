@@ -19,7 +19,7 @@ int main_posix(int argc, char* argv[])
    if (!papexmain)
    {
 
-      message_box("Please!!\n\nImplement entry function with the macro \n\n__main\n{\n\n\t<\"Main Body\">\n\n}\n\n." + message_box_icon_error);
+      message_box("Please!!\n\nImplement entry function with the macro \n\n__main\n{\n\n\t<\"Main Body\">\n\n}\n\n." + e_message_box_icon_error);
 
       return -1;
 

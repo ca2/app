@@ -1244,8 +1244,8 @@ namespace user
          //   ::aura::FormatString1(prompt, nIDP, strTitle);*/
          //}
 
-         //System.message_box(prompt, MB_ICONEXCLAMATION, nHelpContext);
-         message_box(strPrompt, nullptr, message_box_icon_exclamation);
+         //System.message_box(prompt, e_message_box_icon_exclamation, nHelpContext);
+         message_box(strPrompt, nullptr, e_message_box_icon_exclamation);
 
       }
       catch (...)

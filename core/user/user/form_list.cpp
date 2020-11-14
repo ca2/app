@@ -1369,7 +1369,7 @@ break_click:;
 
       _001ScreenToClient(point);
 
-      if (pmouse->m_id == e_message_lbutton_down)
+      if (pmouse->m_id == e_message_left_button_down)
       {
 
          index iItem;
@@ -1418,7 +1418,7 @@ break_click:;
 
       }
 
-      //else if(emessage == e_message_lbutton_up)
+      //else if(emessage == e_message_left_button_up)
       //{
       //i32 iItem;
       //i32 iSubItem;
@@ -1489,7 +1489,7 @@ break_click:;
 
       //::point point = pmouse->m_point;
       //_001ScreenToClient(point);
-      ///*      if(emessage == e_message_lbutton_down)
+      ///*      if(emessage == e_message_left_button_down)
       //      {
       //      i32 iItem;
       //      i32 iSubItem;
@@ -1509,7 +1509,7 @@ break_click:;
       //      }
       //      }
       //      }
-      //      else if(emessage == e_message_lbutton_up)
+      //      else if(emessage == e_message_left_button_up)
       //      {
       //      i32 iItem;
       //      i32 iSubItem;

@@ -483,7 +483,7 @@ HRESULT edit_window::_OnGetPreservedKey()
 //    case e_message_kill_focus:
 //        return pThis->_OnKillFocus();
 //
-//    case WM_COMMAND:
+//    case e_message_command:
 //        return pThis->_OnCommand(   GET_WM_COMMAND_ID(wParam, lParam), 
 //                                    GET_WM_COMMAND_CMD(wParam, lParam), 
 //                                    GET_WM_COMMAND_HWND(wParam, lParam));

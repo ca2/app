@@ -44,7 +44,7 @@ Function OnTimer3
 	SendMessage $PROGBAR3 ${PBM_GETPOS} 0 0 $1
 	${If} $1 >= 100
 		${NSD_KillTimer} OnTimer3
-		MessageBox MB_OK "Timer 3 killed"
+		MessageBox e_message_box_ok "Timer 3 killed"
 	${Else}
 		SendMessage $PROGBAR3 ${PBM_DELTAPOS} 2 0
 	${EndIf}

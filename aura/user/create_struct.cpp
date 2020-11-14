@@ -31,7 +31,7 @@ namespace user
    }
 
 
-   create_struct::create_struct(u32 uiExStyle, const char * pszClassName, const char * pszWindowName, u32 uStyle, ::rect rect, LPVOID pvCreateParams) :
+   create_struct::create_struct(u32 uiExStyle, const char * pszClassName, const char * pszWindowName, u32 uStyle, ::rect rect, void * pvCreateParams) :
    create_struct(rect)
    {
 

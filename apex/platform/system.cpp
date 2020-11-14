@@ -3614,7 +3614,7 @@ namespace apex
 
          strMessage.Format("protocol: ca2project\nbase: %s\nAppId: %s\nquery: %s\n", strBase, strAppId, strQuery);
 
-         //message_box(strMessage, MB_OK);
+         //message_box(strMessage, e_message_box_ok);
 
          string strParams;
 
@@ -3773,7 +3773,7 @@ namespace apex
       if (strProfile.is_empty() && strTarget.is_empty() && strBrowser.is_empty())
       {
 
-         //::os_message_box(NULL, strUrl, strUrl, MB_OK);
+         //::os_message_box(NULL, strUrl, strUrl, e_message_box_ok);
 
          Context.os().link_open(strUrl);
 
@@ -4040,7 +4040,7 @@ namespace apex
 
             strParam = " -c \"" + strCmd + "\"";
 
-            //MessageBox(nullptr, strParam, path, MB_OK);
+            //MessageBox(nullptr, strParam, path, e_message_box_ok);
 
             call_async(shell, strParam, pathHome, display_default, false);
 
@@ -5585,7 +5585,7 @@ string get_bundle_app_library_name();
 
             auto pfuture = __sync_future();
 
-            os_message_box(strMessage, "Could not open required library. Want to give an yes/no answer insted of pression cancel?", MB_ICONEXCLAMATION | MB_YESNOCANCEL, pfuture);
+            os_message_box(strMessage, "Could not open required library. Want to give an yes/no answer insted of pression cancel?", e_message_box_icon_exclamation | MB_YESNOCANCEL, pfuture);
 
             pfuture->wait(10_s);
 

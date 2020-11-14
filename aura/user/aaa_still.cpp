@@ -38,12 +38,12 @@ namespace user
       ::user::interaction::install_message_routing(pchannel);
 
       MESSAGE_LINK(e_message_create, pchannel, this, &still::_001OnCreate);
-      //MESSAGE_LINK(e_message_lbutton_down, pchannel, this, &still::_001OnLButtonDown);
-      //MESSAGE_LINK(e_message_lbutton_up, pchannel, this, &still::_001OnLButtonUp);
-      //MESSAGE_LINK(WM_MBUTTONDOWN, pchannel, this, &still::_001OnMButtonDown);
-      //MESSAGE_LINK(WM_MBUTTONUP, pchannel, this, &still::_001OnMButtonUp);
+      //MESSAGE_LINK(e_message_left_button_down, pchannel, this, &still::_001OnLButtonDown);
+      //MESSAGE_LINK(e_message_left_button_up, pchannel, this, &still::_001OnLButtonUp);
+      //MESSAGE_LINK(e_message_middle_button_down, pchannel, this, &still::_001OnMButtonDown);
+      //MESSAGE_LINK(e_message_middle_button_up, pchannel, this, &still::_001OnMButtonUp);
       //MESSAGE_LINK(e_message_mouse_move, pchannel, this, &still::_001OnMouseMove);
-      //MESSAGE_LINK(WM_MOUSELEAVE, pchannel, this, &still::_001OnMouseLeave);
+      //MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &still::_001OnMouseLeave);
       MESSAGE_LINK(e_message_key_down, pchannel, this, &still::_001OnKeyDown);
 
    }

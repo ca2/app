@@ -389,7 +389,7 @@ namespace uwp
 
       bool FlashWindow(bool bInvert);
 
-      //virtual int message_box(const char * lpszText, const char * lpszCaption = nullptr, ::u32 nType = MB_OK);
+      //virtual int message_box(const char * lpszText, const char * lpszCaption = nullptr, ::u32 nType = e_message_box_ok);
 
 
 #if(WINVER >= 0x0500)

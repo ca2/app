@@ -254,7 +254,7 @@ LRESULT CALLBACK floatbar_proc(HWND hWnd, UINT Msg, WPARAM wParam,
 			EndPaint(hWnd, &ps);
 			break;
 
-		case e_message_lbutton_down:
+		case e_message_left_button_down:
 			pos_x = lParam & 0xffff;
 			pos_y = (lParam >> 16) & 0xffff;
 			button = floatbar_get_button(floatbar, pos_x, pos_y);
@@ -270,7 +270,7 @@ LRESULT CALLBACK floatbar_proc(HWND hWnd, UINT Msg, WPARAM wParam,
 
 			break;
 
-		case e_message_lbutton_up:
+		case e_message_left_button_up:
 			pos_x = lParam & 0xffff;
 			pos_y = (lParam >> 16) & 0xffff;
 			ReleaseCapture();
@@ -331,7 +331,7 @@ LRESULT CALLBACK floatbar_proc(HWND hWnd, UINT Msg, WPARAM wParam,
 			dragging = FALSE;
 			break;
 
-		case WM_MOUSELEAVE:
+		case e_message_mouse_leave:
 			{
 				int i;
 
@@ -344,7 +344,7 @@ LRESULT CALLBACK floatbar_proc(HWND hWnd, UINT Msg, WPARAM wParam,
 				break;
 			}
 
-		case WM_TIMER:
+		case e_message_timer:
 			switch (wParam)
 			{
 				case TIMER_HIDE:

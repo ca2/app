@@ -518,7 +518,7 @@ namespace user
 
       bool FlashWindow(bool bInvert);
 
-      //virtual i32 message_box(const char * pszText,const char * pszCaption = nullptr,::u32 nType = MB_OK);
+      //virtual i32 message_box(const char * pszText,const char * pszCaption = nullptr,::u32 nType = e_message_box_ok);
 
 
 #if(WINVER >= 0x0500)

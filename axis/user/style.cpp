@@ -759,7 +759,7 @@ namespace axis
    //}
 
 
-   //bool style::create_rect_coord(e_rect erect, double l, double t, double r, double b, ::draw2d::e_unit eunit)
+   //bool style::create_rect_coord(e_rect erect, double l, double t, double r, double b, ::draw2d::enum_unit eunit)
    //{
 
    //   if (userstyle()->m_mapRect.is_null())
@@ -776,7 +776,7 @@ namespace axis
    //}
 
 
-   //bool style::create_rect_dim(e_rect erect, double l, double t, double w, double h, ::draw2d::e_unit eunit)
+   //bool style::create_rect_dim(e_rect erect, double l, double t, double w, double h, ::draw2d::enum_unit eunit)
    //{
 
    //   return create_rect_coord(erect, l, t, l + w, t + h, eunit);
@@ -784,7 +784,7 @@ namespace axis
    //}
 
 
-   //bool style::create_rect(e_rect erect, ::rectd rect, ::draw2d::e_unit eunit)
+   //bool style::create_rect(e_rect erect, ::rectd rect, ::draw2d::enum_unit eunit)
    //{
 
    //   return create_rect_coord(erect, rect.left, rect.top, rect.right, rect.bottom, eunit);
@@ -1360,7 +1360,7 @@ namespace axis
       //}
 
 
-      //bool style::create_rect_coord(e_rect erect, double l, double t, double r, double b, ::draw2d::e_unit eunit)
+      //bool style::create_rect_coord(e_rect erect, double l, double t, double r, double b, ::draw2d::enum_unit eunit)
       //{
 
       //   if (userstyle()->m_mapRect.is_null())
@@ -1377,7 +1377,7 @@ namespace axis
       //}
 
 
-      //bool style::create_rect_dim(e_rect erect, double l, double t, double w, double h, ::draw2d::e_unit eunit)
+      //bool style::create_rect_dim(e_rect erect, double l, double t, double w, double h, ::draw2d::enum_unit eunit)
       //{
 
       //   return create_rect_coord(erect, l, t, l + w, t + h, eunit);
@@ -1385,7 +1385,7 @@ namespace axis
       //}
 
 
-      //bool style::create_rect(e_rect erect, ::rectd rect, ::draw2d::e_unit eunit)
+      //bool style::create_rect(e_rect erect, ::rectd rect, ::draw2d::enum_unit eunit)
       //{
 
       //   return create_rect_coord(erect, rect.left, rect.top, rect.right, rect.bottom, eunit);

@@ -716,18 +716,18 @@ namespace linux
 
       if(!m_puserinteraction->m_bMessageWindow)
       {
-         MESSAGE_LINK(WM_SETCURSOR, pchannel, this,&interaction_impl::_001OnSetCursor);
-         //MESSAGE_LINK(WM_ERASEBKGND, pchannel, this,&interaction_impl::_001OnEraseBkgnd);
+         MESSAGE_LINK(e_message_set_cursor, pchannel, this,&interaction_impl::_001OnSetCursor);
+         //MESSAGE_LINK(e_message_erase_background, pchannel, this,&interaction_impl::_001OnEraseBkgnd);
          //MESSAGE_LINK(e_message_size, pchannel, this,&interaction_impl::_001OnSize);
          //MESSAGE_LINK(e_message_nccalcsize, pchannel, this,&interaction_impl::_001OnNcCalcSize);
 
          // linux
          MESSAGE_LINK(e_message_move, pchannel, this, &interaction_impl::_001OnMove);
          MESSAGE_LINK(e_message_size, pchannel, this, &interaction_impl::_001OnSize);
-         MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &interaction_impl::_001OnShowWindow);
+         MESSAGE_LINK(e_message_show_window, pchannel, this, &interaction_impl::_001OnShowWindow);
 
-         //MESSAGE_LINK(WM_WINDOWPOSCHANGING, pchannel, this,&interaction_impl::_001OnWindowPosChanging);
-         //MESSAGE_LINK(WM_WINDOWPOSCHANGED, pchannel, this,&interaction_impl::_001OnWindowPosChanged);
+         //MESSAGE_LINK(e_message_window_position_changing, pchannel, this,&interaction_impl::_001OnWindowPosChanging);
+         //MESSAGE_LINK(e_message_window_position_changed, pchannel, this,&interaction_impl::_001OnWindowPosChanged);
          //MESSAGE_LINK(WM_GETMINMAXINFO, pchannel, this,&interaction_impl::_001OnGetMinMaxInfo);
          //MESSAGE_LINK(e_message_set_focus, pchannel, this,&interaction_impl::_001OnSetFocus);
          //MESSAGE_LINK(e_message_kill_focus, pchannel, this,&interaction_impl::_001OnKillFocus);
@@ -1357,22 +1357,22 @@ namespace linux
    void interaction_impl::message_handler(::message::base * pbase)
    {
 
-      if(pbase->m_id == WM_TIMER)
+      if(pbase->m_id == e_message_timer)
       {
 
          //m_pthread->step_timer();
 
       }
-      else if(pbase->m_id == e_message_lbutton_down)
+      else if(pbase->m_id == e_message_left_button_down)
       {
 
-         output_debug_string("linux::interaction_impl::e_message_lbutton_down\n");
+         output_debug_string("linux::interaction_impl::e_message_left_button_down\n");
 
       }
-      else if(pbase->m_id == e_message_lbutton_up)
+      else if(pbase->m_id == e_message_left_button_up)
       {
 
-         output_debug_string("linux::interaction_impl::e_message_lbutton_up\n");
+         output_debug_string("linux::interaction_impl::e_message_left_button_up\n");
 
       }
       else if(pbase->m_id == e_message_mouse_move)
@@ -1388,10 +1388,10 @@ namespace linux
       {
 
       }
-      else if(pbase->m_id == e_message_lbutton_up)
+      else if(pbase->m_id == e_message_left_button_up)
       {
 
-         TRACE("e_message_lbutton_up (0)");
+         TRACE("e_message_left_button_up (0)");
 
       }
 
@@ -1501,7 +1501,7 @@ namespace linux
 
       pbase->m_lresult = 0;
 
-      if(pbase->m_id == WM_MOUSELEAVE)
+      if(pbase->m_id == e_message_mouse_leave)
       {
 
          _000OnMouseLeave(pbase);
@@ -1510,12 +1510,12 @@ namespace linux
 
       }
 
-      if(pbase->m_id == e_message_lbutton_down ||
-            pbase->m_id == e_message_lbutton_up ||
-            pbase->m_id == WM_MBUTTONDOWN ||
-            pbase->m_id == WM_MBUTTONUP ||
-            pbase->m_id == e_message_rbutton_down ||
-            pbase->m_id == e_message_rbutton_up ||
+      if(pbase->m_id == e_message_left_button_down ||
+            pbase->m_id == e_message_left_button_up ||
+            pbase->m_id == e_message_middle_button_down ||
+            pbase->m_id == e_message_middle_button_up ||
+            pbase->m_id == e_message_right_button_down ||
+            pbase->m_id == e_message_right_button_up ||
             pbase->m_id == e_message_mouse_move ||
             pbase->m_id == e_message_mouse_move)
 //         pbase->m_id == e_message_mouse_wheel)
@@ -2137,7 +2137,7 @@ namespace linux
 //      case e_message_vscroll:
 //      case WM_PARENTNOTIFY:
 //      case WM_DRAWITEM:
-//      case WM_MEASUREITEM:
+//      case e_message_measure_item:
 //      case WM_DELETEITEM:
 //      case WM_VKEYTOITEM:
 //      case WM_CHARTOITEM:
@@ -2147,12 +2147,12 @@ namespace linux
 //
 //         return FALSE;
 //
-//      // special case for WM_COMMAND
-//      case WM_COMMAND:
+//      // special case for e_message_command
+//      case e_message_command:
 //      {
 //         // reflect the message through the message ::collection::map as OCM_COMMAND
 //         /* xxx         i32 nCode = HIWORD(wparam);
-//         if (interaction_impl::_001OnCommand(0, MAKELONG(nCode, WM_REFLECT_BASE+WM_COMMAND), nullptr, nullptr))
+//         if (interaction_impl::_001OnCommand(0, MAKELONG(nCode, WM_REFLECT_BASE+e_message_command), nullptr, nullptr))
 //         {
 //         if (pResult != nullptr)
 //         *pResult = 1;

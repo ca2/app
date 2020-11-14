@@ -23,21 +23,21 @@ LPSTR tr_esc_str(LPCSTR arg)
 	/* Prepare a initial buffer with the size of the result string. */
 	ds = s + 1;
 	if(s)
-		tmp = (LPSTR)realloc(tmp, ds * sizeof(CHAR));
+		tmp = (LPSTR)realloc(tmp, ds * sizeof(char));
 	if(NULL == tmp)
 	{
 		WLog_ERR(TAG,  "Could not allocate string buffer.");
 		exit(-2);
 	}
 	/* Copy character for character and check, if it is necessary to escape. */
-	memset(tmp, 0, ds * sizeof(CHAR));
+	memset(tmp, 0, ds * sizeof(char));
 	for(x=0; x<s; x++)
 	{
 		switch(arg[x])
 		{
 			case '<':
 				ds += 3;
-				tmp = (LPSTR)realloc(tmp, ds * sizeof(CHAR));
+				tmp = (LPSTR)realloc(tmp, ds * sizeof(char));
 				if(NULL == tmp)
 				{
 					WLog_ERR(TAG,  "Could not reallocate string buffer.");
@@ -50,7 +50,7 @@ LPSTR tr_esc_str(LPCSTR arg)
 				break;
 			case '>':
 				ds += 3;
-				tmp = (LPSTR)realloc(tmp, ds * sizeof(CHAR));
+				tmp = (LPSTR)realloc(tmp, ds * sizeof(char));
 				if(NULL == tmp)
 				{
 					WLog_ERR(TAG,  "Could not reallocate string buffer.");
@@ -63,7 +63,7 @@ LPSTR tr_esc_str(LPCSTR arg)
 				break;
 			case '\'':
 				ds += 5;
-				tmp = (LPSTR)realloc(tmp, ds * sizeof(CHAR));
+				tmp = (LPSTR)realloc(tmp, ds * sizeof(char));
 				if(NULL == tmp)
 				{
 					WLog_ERR(TAG,  "Could not reallocate string buffer.");
@@ -78,7 +78,7 @@ LPSTR tr_esc_str(LPCSTR arg)
 				break;
 			case '"':
 				ds += 5;
-				tmp = (LPSTR)realloc(tmp, ds * sizeof(CHAR));
+				tmp = (LPSTR)realloc(tmp, ds * sizeof(char));
 				if(NULL == tmp)
 				{
 					WLog_ERR(TAG,  "Could not reallocate string buffer.");
@@ -93,7 +93,7 @@ LPSTR tr_esc_str(LPCSTR arg)
 				break;
 			case '&':
 				ds += 4;
-				tmp = (LPSTR)realloc(tmp, ds * sizeof(CHAR));
+				tmp = (LPSTR)realloc(tmp, ds * sizeof(char));
 				if(NULL == tmp)
 				{
 					WLog_ERR(TAG,  "Could not reallocate string buffer.");

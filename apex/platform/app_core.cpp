@@ -365,12 +365,12 @@ CLASS_DECL_APEX void set_debug_pointer(void * p);
 
       uid_t uid = atoi(strUid);
 
-      os_message_box("going to seteuid to: " + __str(uid), "going to seteuid", MB_OK);
+      os_message_box("going to seteuid to: " + __str(uid), "going to seteuid", e_message_box_ok);
 
       if (seteuid(uid) == 0)
       {
 
-         os_message_box("uid=" + __str(uid), "seteuid success", MB_OK);
+         os_message_box("uid=" + __str(uid), "seteuid success", e_message_box_ok);
 
       }
       else
@@ -382,7 +382,7 @@ CLASS_DECL_APEX void set_debug_pointer(void * p);
 
          strError.Format("errno=%d uid=%d", iErr);
 
-         os_message_box(strError, "seteuid failed", MB_ICONEXCLAMATION);
+         os_message_box(strError, "seteuid failed", e_message_box_icon_exclamation);
 
       }
 
@@ -700,7 +700,7 @@ void app_core::set_command_line(const char * psz)
 //      //   if (pfnDeferTerm == nullptr)
 //      //   {
 //
-//      //      message_box("Missing corresponding defer_*_term for the defer_*_init backbone library." + message_box_icon_error);
+//      //      message_box("Missing corresponding defer_*_term for the defer_*_init backbone library." + e_message_box_icon_error);
 //
 //      //      on_result(error_failed);
 //
@@ -1841,7 +1841,7 @@ __result(::apex::application) app_core::get_new_application(::object* pobjectCon
 
 #ifndef _UWP
 
-            message_box("Application \"" + strAppId + "\" cannot be created.\n\nThe library \"" + strLibrary + "\" could not be loaded. " + plibrary->m_strMessage, "ca2", message_box_icon_error);
+            message_box("Application \"" + strAppId + "\" cannot be created.\n\nThe library \"" + strLibrary + "\" could not be loaded. " + plibrary->m_strMessage, "ca2", e_message_box_icon_error);
 
 #endif
 

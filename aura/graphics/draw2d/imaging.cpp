@@ -96,11 +96,11 @@ i32                 cy)
 
    auto psession = Session;
 
-   if(crShadow == (color32_t)-1)
-      crShadow = psession->get_default_color(COLOR_BTNSHADOW);
-
-   if(crText == (color32_t)-1)
-      crText = psession->get_default_color(COLOR_BTNTEXT);
+//   if(crShadow == (color32_t)-1)
+//      crShadow = psession->get_default_color(COLOR_BTNSHADOW);
+//
+//   if(crText == (color32_t)-1)
+//      crText = psession->get_default_color(COLOR_BTNTEXT);
 
    /* setup the DC, saving off the old values
    */
@@ -1611,7 +1611,7 @@ byte bAlpha)
 
    pimage->DivideRGB(bAlpha);
 
-   return pdcDst->BitBlt(pointDst.x,pointDst.y,size.cx,size.cy,pimage->g(),pointSrc.x,pointSrc.y,SRCCOPY);
+   return pdcDst->BitBlt(pointDst.x,pointDst.y,size.cx,size.cy,pimage->g(),pointSrc.x,pointSrc.y);
 
 }
 
@@ -2097,7 +2097,7 @@ bool imaging::color_blend(::draw2d::graphics * pgraphics,const ::point & point,c
 }
 
 
-bool imaging::CreateBitmap(::draw2d::graphics * pgraphics, ::draw2d::graphics * pdcScreen, ::draw2d::bitmap * pbitmap, ::draw2d::bitmap * pbitmapOld, BITMAP * pmp, i32 cx, i32 cy)
+bool imaging::CreateBitmap(::draw2d::graphics * pgraphics, ::draw2d::graphics * pdcScreen, ::draw2d::bitmap * pbitmap, ::draw2d::bitmap * pbitmapOld, i32 cx, i32 cy)
 {
    
    i32 cxout = cx;
@@ -2165,7 +2165,7 @@ bool imaging::CreateBitmap(::draw2d::graphics * pgraphics, ::draw2d::graphics * 
 }
 
 
-bool imaging::CreateBitmap(::draw2d::graphics *pgraphics,::draw2d::bitmap * pitmapOld,::draw2d::bitmap *pitmap,BITMAP *pmp,i32 cx,i32 cy)
+bool imaging::CreateBitmap(::draw2d::graphics *pgraphics,::draw2d::bitmap * pitmapOld,::draw2d::bitmap *pitmap,i32 cx,i32 cy)
 {
 
    i32 cxout = cx;
@@ -4070,7 +4070,7 @@ bool imaging::channel_gray_blur_32CC(::image * pimageDst, ::image * pimageSrc,
 bool imaging::color_blend(::draw2d::graphics * pgraphics,const ::rect & rect,::draw2d::graphics * pdcColorAlpha,const ::point & pointAlpha, ::image * pimageWork)
 {
 
-   return pgraphics->BitBlt(rect.left,rect.top, rect.width(), rect.height(),pdcColorAlpha,pointAlpha.x,pointAlpha.y,SRCCOPY);
+   return pgraphics->BitBlt(rect.left,rect.top, rect.width(), rect.height(),pdcColorAlpha,pointAlpha.x,pointAlpha.y);
 
 }
 
@@ -4078,7 +4078,7 @@ bool imaging::color_blend(::draw2d::graphics * pgraphics,const ::rect & rect,::d
 bool imaging::true_blend(::draw2d::graphics * pgraphics,const ::rect & rect,::draw2d::graphics * pdcColorAlpha,const ::point & pointAlpha, ::image * pimageWork, ::image * pimageWork2, ::image * pimageWork3)
 {
 
-   return pgraphics->BitBlt(rect.left,rect.top,rect.width(),rect.height(),pdcColorAlpha,pointAlpha.x,pointAlpha.y,SRCCOPY);
+   return pgraphics->BitBlt(rect.left,rect.top,rect.width(),rect.height(),pdcColorAlpha,pointAlpha.x,pointAlpha.y);
 
 }
 
@@ -4120,7 +4120,7 @@ bool imaging::color_blend(::draw2d::graphics * pgraphics,const ::point & pointPa
    if(dBlend >= 1.0)
    {
 
-      return pgraphics->BitBlt(point.x,point.y,size.cx,size.cy,pdcColorAlpha,pointAlpha.x,pointAlpha.y,SRCCOPY) != FALSE;
+      return pgraphics->BitBlt(point.x,point.y,size.cx,size.cy,pdcColorAlpha,pointAlpha.x,pointAlpha.y) != FALSE;
 
    }
    else
@@ -4141,7 +4141,7 @@ bool imaging::color_blend(::draw2d::graphics * pgraphics,const ::point & pointPa
 
       pimage->channel_multiply(dBlend, ::color::channel_alpha);
 
-      return pgraphics->BitBlt(point.x,point.y,size.cx,size.cy,pimage->get_graphics(),0,0,SRCCOPY) != FALSE;
+      return pgraphics->BitBlt(point.x,point.y,size.cx,size.cy,pimage->get_graphics(),0,0) != FALSE;
 
    }
 
@@ -4386,7 +4386,7 @@ i32 w3)
 //         __throw(::exception::exception("integer_exception" + __str($1)));
 //      ::draw2d::bitmap * pmpMemOld = graphicsMem->set(bitmapDst);
 
-//      if(!pdcDst->BitBlt(pointDst.x,pointDst.y,size.cx,size.cy,graphicsMem,pointSrc.x,pointSrc.y,SRCCOPY))
+//      if(!pdcDst->BitBlt(pointDst.x,pointDst.y,size.cx,size.cy,graphicsMem,pointSrc.x,pointSrc.y))
 //      {
 //         ASSERT(FALSE);
 //      }
@@ -4565,7 +4565,7 @@ i32 w3)
 //         __throw(::exception::exception("integer_exception" + __str($1)));
 //      ::draw2d::bitmap * pmpMemOld = graphicsMem->set(bitmapDest);
 
-//      if(!pdcDst->BitBlt(pointDst.x,pointDst.y,size.cx,size.cy,graphicsMem,pointSrc.x,pointSrc.y,SRCCOPY))
+//      if(!pdcDst->BitBlt(pointDst.x,pointDst.y,size.cx,size.cy,graphicsMem,pointSrc.x,pointSrc.y))
 //      {
 //         ASSERT(FALSE);
 //      }
@@ -5648,7 +5648,7 @@ breakFilter2:
 //         __throw(::exception::exception("integer_exception" + __str($1)));
 //      ::draw2d::bitmap * pmpMemOld = graphicsMem->set(bitmapDest);
 
-//      if(!pdcDst->BitBlt(xDest,yDest,cx,cy,graphicsMem,xSrc,ySrc,SRCCOPY))
+//      if(!pdcDst->BitBlt(xDest,yDest,cx,cy,graphicsMem,xSrc,ySrc))
 //      {
 //         ASSERT(FALSE);
 //      }
@@ -6228,7 +6228,7 @@ i32      iSize)
 //         __throw(::exception::exception("integer_exception" + __str($1)));
 //      ::draw2d::bitmap * pmpMemOld = graphicsMem->set(bitmapDest);
 
-//      if(!pdcDst->BitBlt(xDest,yDest,cx,cy,graphicsMem,xDest,yDest,SRCCOPY))
+//      if(!pdcDst->BitBlt(xDest,yDest,cx,cy,graphicsMem,xDest,yDest))
 //      {
 //         ASSERT(FALSE);
 //      }

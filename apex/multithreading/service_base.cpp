@@ -93,7 +93,7 @@ void service_base::_server()
 
    };
 
-   //::MessageBox(nullptr,"attach","attach",MB_OK);
+   //::MessageBox(nullptr,"attach","attach",e_message_box_ok);
 
    if (!::StartServiceCtrlDispatcherW(serviceTable))
    {

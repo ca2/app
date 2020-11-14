@@ -139,8 +139,8 @@ namespace hex
    }
 
 
-   template < typename INT >
-   inline string lower_pad_from(INT iValue,int iWidth)
+   template < typename ::i32 >
+   inline string lower_pad_from(::i32 iValue,int iWidth)
    {
       string str = lower_from(iValue);
       while(str.get_length() < iWidth)
@@ -150,8 +150,8 @@ namespace hex
       return str;
    }
 
-   template < typename INT >
-   inline string upper_pad_from(INT iValue,int iWidth)
+   template < typename ::i32 >
+   inline string upper_pad_from(::i32 iValue,int iWidth)
    {
       string str = upper_from(iValue);
       while(str.get_length() < iWidth)

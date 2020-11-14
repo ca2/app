@@ -26,7 +26,7 @@ namespace acme
       CLASS_DECL_ACME void init()
       {
 
-         xxdebug_box("acme.dll base_static_start (0)", "box", MB_OK);
+         xxdebug_box("acme.dll base_static_start (0)", "box", e_message_box_ok);
 
 //#ifdef ANDROID
 //

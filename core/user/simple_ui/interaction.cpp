@@ -38,7 +38,7 @@ namespace simple_ui
 //
 //      ::user::interaction::install_message_routing(pchannel);
 //
-//      MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &::user::interaction::_001OnShowWindow);
+//      MESSAGE_LINK(e_message_show_window, pchannel, this, &::user::interaction::_001OnShowWindow);
 //
 //   }
 //   
@@ -46,12 +46,12 @@ namespace simple_ui
 //   void interaction::install_simple_ui_default_mouse_handling(::channel * pchannel)
 //   {
 //      
-//      MESSAGE_LINK(e_message_lbutton_down  , pchannel, this, &interaction::_001OnLButtonDown);
-//      MESSAGE_LINK(e_message_lbutton_up    , pchannel, this, &interaction::_001OnLButtonUp);
-//      MESSAGE_LINK(WM_MBUTTONDOWN  , pchannel, this, &interaction::_001OnMButtonDown);
-//      MESSAGE_LINK(WM_MBUTTONUP    , pchannel, this, &interaction::_001OnMButtonUp);
+//      MESSAGE_LINK(e_message_left_button_down  , pchannel, this, &interaction::_001OnLButtonDown);
+//      MESSAGE_LINK(e_message_left_button_up    , pchannel, this, &interaction::_001OnLButtonUp);
+//      MESSAGE_LINK(e_message_middle_button_down  , pchannel, this, &interaction::_001OnMButtonDown);
+//      MESSAGE_LINK(e_message_middle_button_up    , pchannel, this, &interaction::_001OnMButtonUp);
 //      MESSAGE_LINK(e_message_mouse_move    , pchannel, this, &interaction::_001OnMouseMove);
-//      MESSAGE_LINK(WM_MOUSELEAVE   , pchannel, this, &interaction::_001OnMouseLeave);
+//      MESSAGE_LINK(e_message_mouse_leave   , pchannel, this, &interaction::_001OnMouseLeave);
 //
 //   }
 //

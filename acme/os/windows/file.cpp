@@ -472,7 +472,7 @@ struct PROCESS_INFO_t
 //
 //   if(!LIBCALL(shlwapi, PathFileExistsW)(csFilePath))
 //   {
-//      message_box(nullptr,"Cannot find driver " + string(csFilePath),"Cannot find driver " + string(csFilePath),MB_OK);
+//      message_box(nullptr,"Cannot find driver " + string(csFilePath),"Cannot find driver " + string(csFilePath),e_message_box_ok);
 //      return 0;
 //   }
 //
@@ -1311,7 +1311,7 @@ bool GetDrive(const char * pszDosName, string& csDrive, bool bDriveLetterOnly)
 //
 //      if (!LIBCALL(shlwapi, PathFileExistsW)(csFilePath))
 //      {
-//         message_box(nullptr, "Cannot find driver " + string(csFilePath), "Cannot find driver " + string(csFilePath), MB_OK);
+//         message_box(nullptr, "Cannot find driver " + string(csFilePath), "Cannot find driver " + string(csFilePath), e_message_box_ok);
 //         return 0;
 //      }
 //

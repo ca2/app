@@ -256,7 +256,7 @@ namespace draw2d_opengl
 
       bool PolyDraw(const POINT32* lpPoints, const byte* lpTypes,count nCount);
       bool PolylineTo(const POINT32* lpPoints,count nCount);
-      bool PolyPolyline(const POINT32* lpPoints, const INT * lpPolyPoints,count nCount);
+      bool PolyPolyline(const POINT32* lpPoints, const ::i32 * lpPolyPoints,count nCount);
 
       bool PolyBezier(const POINT32* lpPoints,count nCount);
       bool PolyBezierTo(const POINT32* lpPoints,count nCount);
@@ -508,7 +508,7 @@ namespace draw2d_opengl
 
       HGDIOBJ SelectObject(HGDIOBJ);      // do not use for regions
 
-      virtual bool set_alpha_mode(::draw2d::e_alpha_mode ealphamode);
+      virtual bool set_alpha_mode(::draw2d::enum_alpha_mode ealphamode);
 
       virtual bool set_smooth_mode(::draw2d::e_smooth_mode esmoothmode);
 

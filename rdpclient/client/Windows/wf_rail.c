@@ -318,7 +318,7 @@ LRESULT CALLBACK wf_RailWndProc(HWND hWnd, UINT msg, WPARAM wParam,
 			}
 			break;
 
-		case e_message_lbutton_down:
+		case e_message_left_button_down:
 			{
 				if (!railWindow || !input)
 					return 0;
@@ -332,7 +332,7 @@ LRESULT CALLBACK wf_RailWndProc(HWND hWnd, UINT msg, WPARAM wParam,
 			}
 			break;
 
-		case e_message_lbutton_up:
+		case e_message_left_button_up:
 			{
 				if (!railWindow || !input)
 					return 0;
@@ -346,7 +346,7 @@ LRESULT CALLBACK wf_RailWndProc(HWND hWnd, UINT msg, WPARAM wParam,
 			}
 			break;
 
-		case e_message_rbutton_down:
+		case e_message_right_button_down:
 			{
 				if (!railWindow || !input)
 					return 0;
@@ -360,7 +360,7 @@ LRESULT CALLBACK wf_RailWndProc(HWND hWnd, UINT msg, WPARAM wParam,
 			}
 			break;
 
-		case e_message_rbutton_up:
+		case e_message_right_button_up:
 			{
 				if (!railWindow || !input)
 					return 0;

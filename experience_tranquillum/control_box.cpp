@@ -106,11 +106,11 @@ void control_box::install_message_routing(::channel * pchannel)
 
    ::experience::control_box::install_message_routing(pchannel);
 
-   MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &control_box::_001OnShowWindow);
-   MESSAGE_LINK(e_message_lbutton_down, pchannel, this, &control_box::_001OnLButtonDown);
-   MESSAGE_LINK(e_message_lbutton_up, pchannel, this, &control_box::_001OnLButtonUp);
+   MESSAGE_LINK(e_message_show_window, pchannel, this, &control_box::_001OnShowWindow);
+   MESSAGE_LINK(e_message_left_button_down, pchannel, this, &control_box::_001OnLButtonDown);
+   MESSAGE_LINK(e_message_left_button_up, pchannel, this, &control_box::_001OnLButtonUp);
 //   MESSAGE_LINK(e_message_size, pchannel, this, &control_box::_001OnSize);
-//   //MESSAGE_LINK(WM_TIMER, pchannel, this, &control_box::_001OnTimer);
+//   //MESSAGE_LINK(e_message_timer, pchannel, this, &control_box::_001OnTimer);
 
 }
 

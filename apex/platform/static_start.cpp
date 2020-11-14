@@ -463,7 +463,7 @@ namespace apex
 
       //g_iFirstNano = get_nanos();
 
-      ////xxdebug_box("apex.dll base_static_start (0)", "box", MB_OK);
+      ////xxdebug_box("apex.dll base_static_start (0)", "box", e_message_box_ok);
 
       //g_pexceptionengine = new ::PLATFORM_NAMESPACE::exception_engine();
 
@@ -1062,7 +1062,7 @@ namespace apex
 //      CLASS_DECL_APEX void init()
 //      {
 //
-//         xxdebug_box("axis.dll axis_static_start (0)", "box", MB_OK);
+//         xxdebug_box("axis.dll axis_static_start (0)", "box", e_message_box_ok);
 
 //         sqlite3_config(SQLITE_CONFIG_MULTITHREAD);
 
@@ -1200,7 +1200,7 @@ namespace apex
 ////      CLASS_DECL_APEX void init()
 ////      {
 ////
-////         xxdebug_box("apex.dll base_static_start (0)", "box", MB_OK);
+////         xxdebug_box("apex.dll base_static_start (0)", "box", e_message_box_ok);
 ////
 ////         //#ifdef ANDROID
 ////         //

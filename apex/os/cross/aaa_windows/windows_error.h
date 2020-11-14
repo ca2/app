@@ -694,7 +694,7 @@
 //
 // MessageText:
 //
-// Fail on INT 24.
+// Fail on ::i32 24.
 //
 #define ERROR_FAIL_I24                   83L
 
@@ -36843,7 +36843,7 @@
 //
 // MessageText:
 //
-// The operating system asynchronously destroyed the monitor which corresponds to this handle because the operating system's state changed. This error typically occurs because the monitor PDO associated with this handle was removed, the monitor PDO associated with this handle was stopped, or a display mode change occurred. A display mode change occurs when windows sends a WM_DISPLAYCHANGE windows message to appliCAtions.
+// The operating system asynchronously destroyed the monitor which corresponds to this handle because the operating system's state changed. This error typically occurs because the monitor PDO associated with this handle was removed, the monitor PDO associated with this handle was stopped, or a display mode change occurred. A display mode change occurs when windows sends a e_message_display_change windows message to appliCAtions.
 //
 #define ERROR_GRAPHICS_MONITOR_NO_LONGER_EXISTS _HRESULT_TYPEDEF_(0xC026258DL)
 

@@ -110,7 +110,7 @@ public:
 
    virtual bool SetViewportOrg(const ::point & point) override;
    virtual bool set_font_factor(double dFactor) override;
-   virtual bool set_alpha_mode(::draw2d::e_alpha_mode e_alpha_mode) override;
+   virtual bool set_alpha_mode(::draw2d::enum_alpha_mode enum_alpha_mode) override;
 
 
    virtual bool create_helper_map() override;

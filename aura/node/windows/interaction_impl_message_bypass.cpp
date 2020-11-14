@@ -46,7 +46,7 @@ bool __windows_message_bypass(HWND oswindow, ::u32 message, WPARAM wparam, LPARA
       return true;
 
    }
-   else if (message == WM_SETCURSOR)
+   else if (message == e_message_set_cursor)
    {
 
       output_debug_string("sc.");
@@ -129,7 +129,7 @@ namespace windows
       //   return true;
 
       //}
-      //else if (message == WM_SETCURSOR)
+      //else if (message == e_message_set_cursor)
       //{
 
       //   //output_debug_string("sc.");
@@ -243,7 +243,7 @@ namespace windows
 
          }
 
-         if (message == WM_WINDOWPOSCHANGING)
+         if (message == e_message_window_position_changing)
          {
 
             pimpl->m_iState1 = STATE_WINDOW_ACTIVATING;

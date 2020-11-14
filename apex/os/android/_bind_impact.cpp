@@ -148,7 +148,7 @@ JNIEXPORT void JNICALL Java_com_android_1app_impact_lButtonDown(JNIEnv * env, jo
 
    set_context(env);
 
-   android_mouse(e_message_lbutton_down, x, y);
+   android_mouse(e_message_left_button_down, x, y);
 
 }
 
@@ -207,7 +207,7 @@ JNIEXPORT void JNICALL Java_com_android_1app_impact_lButtonUp(JNIEnv * env, jobj
 
    set_context(env);
 
-   android_mouse(e_message_lbutton_up, x, y);
+   android_mouse(e_message_left_button_up, x, y);
 
 }
 
@@ -282,7 +282,7 @@ JNIEXPORT void JNICALL Java_com_android_1app_impact_apex_1size_1changed(JNIEnv *
       try
       {
 
-         puserinteraction->send_message(WM_DISPLAYCHANGE);
+         puserinteraction->send_message(e_message_display_change);
 
          //__pointer(::user::interaction_impl) pimpl = puserinteraction->m_pimpl;
 

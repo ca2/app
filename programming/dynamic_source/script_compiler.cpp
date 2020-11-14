@@ -91,7 +91,7 @@ namespace dynamic_source
 
             strMessage = "There is a hole here. You should fill it with fullfillment. Missing f**k " + path;
 
-            os_message_box(strMessage, strMessage, message_box_ok);
+            os_message_box(strMessage, strMessage, e_message_box_ok);
 
          }
 

@@ -11,19 +11,19 @@ Function .onInit
         #optional
         #File /oname=$PLUGINSDIR\splash.wav "C:\myprog\sound.wav"
 
-        MessageBox MB_OK "Fading"
+        MessageBox e_message_box_ok "Fading"
 
         advsplash::show 1000 600 400 -1 $PLUGINSDIR\splash
 
         Pop $0          ; $0 has '1' if the user closed the splash screen early,
                         ; '0' if everything closed normally, and '-1' if some error occurred.
 
-        MessageBox MB_OK "Transparency"
+        MessageBox e_message_box_ok "Transparency"
         File /oname=$PLUGINSDIR\splash.bmp "${NSISDIR}\Contrib\Graphics\Wizard\orange-uninstall.bmp"
         advsplash::show 2000 0 0 0x1856B1 $PLUGINSDIR\splash
         Pop $0 
 
-        MessageBox MB_OK "Transparency/Fading"
+        MessageBox e_message_box_ok "Transparency/Fading"
         File /oname=$PLUGINSDIR\splash.bmp "${NSISDIR}\Contrib\Graphics\Wizard\llama.bmp"
         advsplash::show 1000 600 400 0x04025C $PLUGINSDIR\splash
         Pop $0 

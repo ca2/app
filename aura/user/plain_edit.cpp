@@ -239,12 +239,12 @@ namespace user
 #endif
 #endif
       MESSAGE_LINK(e_message_create, pchannel, this, &plain_edit::_001OnCreate);
-      MESSAGE_LINK(e_message_lbutton_down, pchannel, this, &plain_edit::_001OnLButtonDown);
-      MESSAGE_LINK(e_message_lbutton_up, pchannel, this, &plain_edit::_001OnLButtonUp);
-      MESSAGE_LINK(e_message_rbutton_down, pchannel, this, &plain_edit::_001OnRButtonDown);
-      MESSAGE_LINK(e_message_rbutton_up, pchannel, this, &plain_edit::_001OnRButtonUp);
+      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &plain_edit::_001OnLButtonDown);
+      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &plain_edit::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_right_button_down, pchannel, this, &plain_edit::_001OnRButtonDown);
+      MESSAGE_LINK(e_message_right_button_up, pchannel, this, &plain_edit::_001OnRButtonUp);
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &plain_edit::_001OnMouseMove);
-      MESSAGE_LINK(WM_MOUSELEAVE, pchannel, this, &plain_edit::_001OnMouseLeave);
+      MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &plain_edit::_001OnMouseLeave);
       MESSAGE_LINK(e_message_key_down, pchannel, this, &plain_edit::_001OnKeyDown);
       MESSAGE_LINK(e_message_key_up, pchannel, this, &plain_edit::_001OnKeyUp);
       MESSAGE_LINK(e_message_uni_char, pchannel, this, &plain_edit::_001OnUniChar);

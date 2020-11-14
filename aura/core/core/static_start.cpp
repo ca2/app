@@ -26,7 +26,7 @@ namespace aura
       CLASS_DECL_AURA void init()
       {
 
-         xxdebug_box("aura.dll base_static_start (0)", "box", MB_OK);
+         xxdebug_box("aura.dll base_static_start (0)", "box", e_message_box_ok);
 
 //#ifdef ANDROID
 //

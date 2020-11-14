@@ -22,7 +22,7 @@ namespace draw2d_quartz2d
    }
    
    
-   bool path::internal_begin_figure(bool bFill, ::draw2d::e_fill_mode efillmode)
+   bool path::internal_begin_figure(bool bFill, ::draw2d::enum_fill_mode efillmode)
    {
       
       m_bBegin = true;

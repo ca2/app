@@ -3480,7 +3480,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
    case UnmapNotify:
    {
 
-      msg.message       = WM_SHOWWINDOW;
+      msg.message       = e_message_show_window;
       msg.wParam        = e.type == MapNotify;
       msg.lParam        = 0;
 
@@ -3604,7 +3604,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
                      try
                      {
 
-                        pframe->post_message(WM_DISPLAYCHANGE);
+                        pframe->post_message(e_message_display_change);
 
                      }
                      catch(...)
@@ -3648,19 +3648,19 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 
             ::output_debug_string("ButtonPress::Button1\n");
 
-            msg.message = e_message_lbutton_down;
+            msg.message = e_message_left_button_down;
 
          }
          else if(e.xbutton.button == Button2)
          {
 
-            msg.message = WM_MBUTTONDOWN;
+            msg.message = e_message_middle_button_down;
 
          }
          else if(e.xbutton.button == Button3)
          {
 
-            msg.message = e_message_rbutton_down;
+            msg.message = e_message_right_button_down;
 
          }
          else
@@ -3679,19 +3679,19 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 
             ::output_debug_string("ButtonRelease::Button1\n");
 
-            msg.message = e_message_lbutton_up;
+            msg.message = e_message_left_button_up;
 
          }
          else if(e.xbutton.button == Button2)
          {
 
-            msg.message = WM_MBUTTONUP;
+            msg.message = e_message_middle_button_up;
 
          }
          else if(e.xbutton.button == Button3)
          {
 
-            msg.message = e_message_rbutton_up;
+            msg.message = e_message_right_button_up;
 
          }
          else
@@ -5226,16 +5226,16 @@ bool post_ui_message(const MESSAGE & message)
 
    }
 
-   if(message.message == e_message_lbutton_down)
+   if(message.message == e_message_left_button_down)
    {
 
-      output_debug_string("post_ui_message::e_message_lbutton_down\n");
+      output_debug_string("post_ui_message::e_message_left_button_down\n");
 
    }
-   else if(message.message == e_message_lbutton_up)
+   else if(message.message == e_message_left_button_up)
    {
 
-      output_debug_string("post_ui_message::e_message_lbutton_up\n");
+      output_debug_string("post_ui_message::e_message_left_button_up\n");
 
    }
 

@@ -119,7 +119,7 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
 //
 //  PURPOSE: Processes messages for the main window.
 //
-//  WM_COMMAND  - process the application menu
+//  e_message_command  - process the application menu
 //  e_message_paint    - Paint the main window
 //  e_message_destroy  - post a quit message and return
 //
@@ -155,7 +155,7 @@ INT_PTR CALLBACK About(HWND hDlg, const ::id & id, WPARAM wParam, LPARAM lParam)
    case WM_INITDIALOG:
       return (INT_PTR)TRUE;
 
-   case WM_COMMAND:
+   case e_message_command:
       if (LOWORD(wParam) == IDOK || LOWORD(wParam) == IDCANCEL)
       {
          EndDialog(hDlg, LOWORD(wParam));

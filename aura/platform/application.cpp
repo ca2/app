@@ -7,8 +7,11 @@
 #include "apex/compress/zip/context.h"
 
 
+#ifdef WINDOWS_DESKTOP
+
 int windows_desktop1_main(HINSTANCE hInstance, int nCmdShow);
 
+#endif
 
 extern ::app_core * g_pappcore;
 
@@ -1054,6 +1057,8 @@ namespace aura
    //}
 
 
+#ifdef WINDOWS_DESKTOP
+
    void application::TermThread(HINSTANCE hInstTerm)
    {
 
@@ -1061,6 +1066,8 @@ namespace aura
 
    }
 
+
+#endif
 
 
    //bool application::_001OnDDECommand(const char * pcsz)
@@ -2311,7 +2318,7 @@ retry_license:
 
             TRACE("context_image required but missing");
 
-            ::os_message_box("context_image required but missing", "context_image missing", ::message_box_ok);
+            ::os_message_box("context_image required but missing", "context_image missing", ::e_message_box_ok);
 
             return estatus;
 
@@ -4273,7 +4280,7 @@ retry_license:
         if (pmsg->message == 126)
         {
 
-           TRACE("WM_DISPLAYCHANGE");
+           TRACE("e_message_display_change");
 
         }
 
@@ -5731,7 +5738,7 @@ retry_license:
 //         if (mutex.already_exists())
 //         {
 //
-//            //            message_box("Could not launch spa installer. It is already running.", MB_OK);
+//            //            message_box("Could not launch spa installer. It is already running.", e_message_box_ok);
 //
 //            return -35;
 //
@@ -6279,7 +6286,7 @@ namespace aura
       //linux ::u32 nIDP = __IDP_INTERNAL_FAILURE;   // matter message string
       const char* nIDP = "Internal Failure";
       pbase->m_lresult = 0;        // sensible default
-      if (pbase->m_id == WM_COMMAND)
+      if (pbase->m_id == e_message_command)
       {
          if (pbase->m_lparam == 0)
             //linux nIDP = __IDP_COMMAND_FAILURE; // command (not from a control)
@@ -6290,7 +6297,7 @@ namespace aura
       if (pe.is < memory_exception >())
       {
 
-         report_error(pe, MB_ICONEXCLAMATION | MB_SYSTEMMODAL, nIDP);
+         report_error(pe, e_message_box_icon_exclamation | e_message_box_system_modal, nIDP);
 
       }
       else if (pe.is < user_exception >())
@@ -6298,7 +6305,7 @@ namespace aura
 
          // ::account::user has not been alerted yet of this catastrophic problem
 
-         report_error(pe, MB_ICONSTOP, nIDP);
+         report_error(pe, e_message_box_icon_stop, nIDP);
 
       }
 
@@ -7149,13 +7156,23 @@ namespace aura
    {
    }
 
+
+#ifdef WINDOWS_DESKTOP
+
+
    void application::SelectPrinter(HANDLE hDevNames, HANDLE hDevMode, bool bFreeOld)
    {
+
       UNREFERENCED_PARAMETER(hDevNames);
       UNREFERENCED_PARAMETER(hDevMode);
       UNREFERENCED_PARAMETER(bFreeOld);
       ::exception::throw_not_implemented();
+
    }
+
+
+#endif
+
 
    ::draw2d::graphics* application::CreatePrinterDC()
    {
@@ -7753,7 +7770,7 @@ namespace aura
 
          auto puiMain1 = __user_interaction(m_puiMain1);
 
-         puiMain1->m_puiThis->display(SW_SHOWNORMAL);
+         puiMain1->m_puiThis->display(display_normal);
 
       }
 
@@ -8106,6 +8123,8 @@ namespace aura
    void application::EnableShellOpen()
    {
 
+#ifdef WINDOWS_DESKTOP
+
       ASSERT(m_atomApp == 0 && m_atomSystemTopic == 0); // do once
 
       if (m_atomApp != 0 || m_atomSystemTopic != 0)
@@ -8130,6 +8149,8 @@ namespace aura
 
       //      m_atomApp = ::GlobalAddAtom(strFileName);
       //    m_atomSystemTopic = ::GlobalAddAtom("system");
+
+#endif
 
    }
 
@@ -8927,7 +8948,7 @@ namespace aura
       //         //pMainWnd = __get_main_window();
       //         //if((m_puiMain != nullptr) && (IsEnterKey(pbase) || IsButtonUp(pbase)))
       //         //{
-      //         //   //                  pMainWnd->SendMessage(WM_COMMAND, ID_HELP);
+      //         //   //                  pMainWnd->SendMessage(e_message_command, ID_HELP);
       //         //   pbase->m_bRet = true;
       //         //   return;
       //         //}

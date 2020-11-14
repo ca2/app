@@ -456,8 +456,8 @@ DECLARE_HANDLE(HGPUNV);
 
 typedef struct _GPU_DEVICE {
     ::u32  cb;
-    CHAR   DeviceName[32];
-    CHAR   DeviceString[128];
+    char   DeviceName[32];
+    char   DeviceString[128];
     ::u32  Flags;
     RECT32   rcVirtualScreen;
 } GPU_DEVICE, *PGPU_DEVICE;
@@ -864,7 +864,7 @@ typedef BOOL (WINAPI * PFNWGLDELETEDCNVPROC) (HDC hdc);
 #define WGL_AMD_gpu_association 1
 #ifdef WGL_WGLEXT_PROTOTYPES
 extern ::u32 WINAPI wglGetGPUIDsAMD (::u32 maxCount, ::u32 *ids);
-extern INT WINAPI wglGetGPUInfoAMD (::u32 id, int property, GLenum dataType, ::u32 size, void *data);
+extern ::i32 WINAPI wglGetGPUInfoAMD (::u32 id, int property, GLenum dataType, ::u32 size, void *data);
 extern ::u32 WINAPI wglGetContextGPUIDAMD (HGLRC hglrc);
 extern HGLRC WINAPI wglCreateAssociatedContextAMD (::u32 id);
 extern HGLRC WINAPI wglCreateAssociatedContextAttribsAMD (::u32 id, HGLRC hShareContext, const int *attribList);
@@ -874,7 +874,7 @@ extern HGLRC WINAPI wglGetCurrentAssociatedContextAMD (void);
 extern VOID WINAPI wglBlitContextFramebufferAMD (HGLRC dstCtx, GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLint dstX0, GLint dstY0, GLint dstX1, GLint dstY1, GLbitfield mask, GLenum filter);
 #endif /* WGL_WGLEXT_PROTOTYPES */
 typedef ::u32 (WINAPI * PFNWGLGETGPUIDSAMDPROC) (::u32 maxCount, ::u32 *ids);
-typedef INT (WINAPI * PFNWGLGETGPUINFOAMDPROC) (::u32 id, int property, GLenum dataType, ::u32 size, void *data);
+typedef ::i32 (WINAPI * PFNWGLGETGPUINFOAMDPROC) (::u32 id, int property, GLenum dataType, ::u32 size, void *data);
 typedef ::u32 (WINAPI * PFNWGLGETCONTEXTGPUIDAMDPROC) (HGLRC hglrc);
 typedef HGLRC (WINAPI * PFNWGLCREATEASSOCIATEDCONTEXTAMDPROC) (::u32 id);
 typedef HGLRC (WINAPI * PFNWGLCREATEASSOCIATEDCONTEXTATTRIBSAMDPROC) (::u32 id, HGLRC hShareContext, const int *attribList);

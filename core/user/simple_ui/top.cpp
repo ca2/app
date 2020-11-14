@@ -28,8 +28,8 @@ namespace simple_ui
       ::user::interaction::install_message_routing(pchannel);
 
       MESSAGE_LINK(e_message_create, pchannel, this, &top::_001OnCreate);
-      MESSAGE_LINK(e_message_lbutton_down,pchannel,this,&top::_001OnLButtonDown);
-      MESSAGE_LINK(e_message_lbutton_up,pchannel,this,&top::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_left_button_down,pchannel,this,&top::_001OnLButtonDown);
+      MESSAGE_LINK(e_message_left_button_up,pchannel,this,&top::_001OnLButtonUp);
       MESSAGE_LINK(e_message_mouse_move,pchannel,this,&top::_001OnMouseMove);
 
       MESSAGE_LINK(e_message_activate, pchannel, this, &top::_001OnActivate);

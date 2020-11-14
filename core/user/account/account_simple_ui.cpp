@@ -79,8 +79,8 @@ namespace account
 
       MESSAGE_LINK(e_message_create,pchannel,this,&simple_ui::_001OnCreate);
       MESSAGE_LINK(e_message_char,pchannel,this,&simple_ui::_001OnChar);
-//      MESSAGE_LINK(e_message_lbutton_down,pchannel,this,&simple_ui::_001OnLButtonDown);
-//      MESSAGE_LINK(e_message_lbutton_up,pchannel,this,&simple_ui::_001OnLButtonUp);
+//      MESSAGE_LINK(e_message_left_button_down,pchannel,this,&simple_ui::_001OnLButtonDown);
+//      MESSAGE_LINK(e_message_left_button_up,pchannel,this,&simple_ui::_001OnLButtonUp);
 //      MESSAGE_LINK(e_message_mouse_move,pchannel,this,&simple_ui::_001OnMouseMove);
 
    }

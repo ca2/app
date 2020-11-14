@@ -36,11 +36,11 @@ namespace experience
 
       }
 
-      if(pbase->m_id == e_message_rbutton_down)
+      if(pbase->m_id == e_message_right_button_down)
       {
          m_enumState = StateMBDown;
       }
-      else if(pbase->m_id == e_message_rbutton_up)
+      else if(pbase->m_id == e_message_right_button_up)
       {
          if(m_enumState == StateMBDown)
          {
@@ -66,7 +66,7 @@ namespace experience
 
       switch(pbase->m_id)
       {
-      case WM_LBUTTONDBLCLK:
+      case e_message_left_button_double_click:
       {
                               auto point = __point(pbase->m_lparam);
                               if(OnLButtonDblClk((::u32)pbase->m_wparam, point))
@@ -83,15 +83,15 @@ namespace experience
       }
       }
 
-      if(pbase->m_id == e_message_rbutton_down)
+      if(pbase->m_id == e_message_right_button_down)
       {
          m_enumState = StateMBDown;
       }
-      if(pbase->m_id == e_message_rbutton_down)
+      if(pbase->m_id == e_message_right_button_down)
       {
          m_enumState = StateMBDown;
       }
-      else if(pbase->m_id == e_message_rbutton_up)
+      else if(pbase->m_id == e_message_right_button_up)
       {
          if(m_enumState == StateMBDown)
          {

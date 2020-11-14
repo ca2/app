@@ -37,9 +37,9 @@ namespace draw2d
 
       pointd                              m_point;
 
-      e_alpha_mode                        m_ealphamode;
+      enum_alpha_mode                        m_ealphamode;
       e_smooth_mode                       m_esmoothmode;
-      e_interpolation_mode                m_einterpolationmode;
+      enum_interpolation_mode             m_einterpolationmode;
       e_compositing_quality               m_ecompositingquality;
       e_text_rendering_hint               m_etextrenderinghint;
       double                              m_dFontFactor;
@@ -141,12 +141,11 @@ namespace draw2d
       virtual ::apex::str_context * str_context();
       virtual ::aura::draw_context * draw_context();
 
-
-      virtual bool set_alpha_mode(e_alpha_mode ealphamode);
+      virtual bool set_alpha_mode(enum_alpha_mode ealphamode);
 
       virtual bool set_smooth_mode(e_smooth_mode esmoothmode);
 
-      virtual bool set_interpolation_mode(e_interpolation_mode einterpolationmode);
+      virtual bool set_interpolation_mode(enum_interpolation_mode einterpolationmode);
 
       virtual bool set_compositing_quality(e_compositing_quality ecompositingquality);
 
@@ -228,7 +227,7 @@ namespace draw2d
 
       virtual i32 SetPolyFillMode(i32 nPolyFillMode);
       virtual i32 SetROP2(i32 nDrawMode);
-      virtual i32 set_interpolation_mode(enum_interpolation_mode einterpolationmode);
+//      virtual bool set_interpolation_mode(enum_interpolation_mode einterpolationmode);
 
 
       virtual bool flush();
@@ -427,7 +426,7 @@ namespace draw2d
       virtual void invert_rect(const ::rect & rect);
       virtual bool DrawIcon(i32 x, i32 y, ::draw2d::icon * picon);
       virtual bool DrawIcon(const ::point & point, ::draw2d::icon * picon);
-      virtual bool DrawIcon(i32 x, i32 y, ::draw2d::icon * picon, i32 cx, i32 cy, ::u32 istepIfAniCur, ::u32 diFlags);
+      virtual bool DrawIcon(i32 x, i32 y, ::draw2d::icon * picon, i32 cx, i32 cy, ::u32 istepIfAniCur);
 //      virtual bool DrawState(const ::point & point, const ::size & size, HBITMAP hBitmap, ::u32 nFlags, HBRUSH hBrush = nullptr);
       virtual bool DrawState(const ::point & point, const ::size & size, ::draw2d::bitmap* pBitmap, ::u32 nFlags,::draw2d::brush* pBrush = nullptr);
 #ifdef WINDOWS
@@ -512,10 +511,10 @@ namespace draw2d
       virtual bool round_rect(const ::rectd & rectd, const ::pointd & point);
 
 
-      virtual bool from(const point & pDst, const ::size & size, ::draw2d::graphics * pgraphicsSrc, const point & pSrc, u32 dwRop);
-      virtual bool from(const ::size & size, ::draw2d::graphics * pgraphicsSrc, const point & pSrc, u32 dwRop);
-      virtual bool from(const ::size & size, ::draw2d::graphics * pgraphicsSrc, u32 dwRop);
-      virtual bool PatBlt(i32 x, i32 y, i32 nWidth, i32 nHeight, u32 dwRop);
+      virtual bool from(const ::point & pointDst, const ::size & size, ::draw2d::graphics * pgraphicsSrc, const ::point & pointSrc);
+      virtual bool from(const ::size & size, ::draw2d::graphics * pgraphicsSrc, const point & pSrc);
+      virtual bool from(const ::size & size, ::draw2d::graphics * pgraphicsSrc);
+      virtual bool PatBlt(i32 x, i32 y, i32 nWidth, i32 nHeight);
 
       virtual bool BitBltRaw(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc = 0, i32 ySrc = 0);
       virtual bool BitBltAlphaBlend(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc = 0, i32 ySrc = 0);

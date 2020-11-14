@@ -35,7 +35,7 @@ namespace user
       place_holder_container::install_message_routing(pchannel);
 
       MESSAGE_LINK(e_message_create, pchannel, this, &split_layout::_001OnCreate);
-      MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &split_layout::_001OnShowWindow);
+      MESSAGE_LINK(e_message_show_window, pchannel, this, &split_layout::_001OnShowWindow);
 
    }
 
@@ -241,7 +241,7 @@ namespace user
       CalcSplitBarRect(iIndex, &splitRect);
       ::point pointCursor = pMsg->pt;
 
-      if(pMsg->message == e_message_lbutton_down)
+      if(pMsg->message == e_message_left_button_down)
 
       {
 
@@ -255,7 +255,7 @@ namespace user
             m_iState = stateDragging;
          }
       }
-      else if(pMsg->message == e_message_lbutton_up)
+      else if(pMsg->message == e_message_left_button_up)
 
       {
 
@@ -1146,7 +1146,7 @@ namespace user
 
       CalcSplitBarRect(iSplitBar, &splitRect);
 
-      if(emessage == e_message_lbutton_down)
+      if(emessage == e_message_left_button_down)
       {
 
          i32   fwKeys = (i32) wParam;        // key flags
@@ -1160,7 +1160,7 @@ namespace user
             m_iState = stateDragging;
          }
       }
-      else if(emessage == e_message_lbutton_up)
+      else if(emessage == e_message_left_button_up)
       {
 //         i32   fwKeys = wParam;        // key flags
 //         i32 xPos = splitRect.left + (i16) LOWORD(lParam);  // horizontal position of cursor

@@ -406,7 +406,7 @@ namespace exception
 
 
 
-//   i32 exception::report_error(::u32 nType /* = MB_OK */, const char * pszMessageId /* = nullptr */)
+//   i32 exception::report_error(::u32 nType /* = e_message_box_ok */, const char * pszMessageId /* = nullptr */)
 //   {
 //      string   strErrorMessage;
 //      i32     nDisposition;

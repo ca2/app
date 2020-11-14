@@ -94,7 +94,7 @@ CLASS_DECL_AURA e_rotate_flip exif_orientation_rotate_flip(int orientation);
 //
 //   virtual bool SetViewportOrg(const ::point & point)= 0;
 //   virtual bool set_font_factor(double dFactor)= 0;
-//   virtual bool set_alpha_mode(::draw2d::e_alpha_mode e_alpha_mode)= 0;
+//   virtual bool set_alpha_mode(::draw2d::enum_alpha_mode enum_alpha_mode)= 0;
 //
 //   virtual bool create_helper_map()= 0;
 //

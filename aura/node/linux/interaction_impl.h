@@ -5,10 +5,10 @@ namespace linux
 {
 
 
-   LRESULT CALLBACK __send_message_hook(i32, WPARAM, LPARAM);
-   // void _::ca2::StandardSubclass(oswindow);
-   LRESULT CALLBACK __cbt_filter_hook(i32, WPARAM, LPARAM);
-   LRESULT __call_window_procedure(::user::interaction * pWnd, oswindow hWnd, ::u32 nMsg, WPARAM wParam, LPARAM lParam);
+//   LRESULT CALLBACK __send_message_hook(i32, WPARAM, LPARAM);
+//   // void _::ca2::StandardSubclass(oswindow);
+//   LRESULT CALLBACK __cbt_filter_hook(i32, WPARAM, LPARAM);
+//   LRESULT __call_window_procedure(::user::interaction * pWnd, oswindow hWnd, ::u32 nMsg, WPARAM wParam, LPARAM lParam);
 
 
    class x11data;
@@ -49,9 +49,7 @@ namespace linux
       virtual void dump(dump_context & dumpcontext) const override;
 
 
-      //virtual void on_delete(::object * poc);
-
-      static const MESSAGE* PASCAL GetCurrentMessage();
+      static const MESSAGE * GetCurrentMessage();
 
       virtual void install_message_routing(::channel * pchannel) override;
 
@@ -247,9 +245,9 @@ namespace linux
 //      virtual bool _001ScreenToClient(POINT64 * ppoint);
 
 
-      virtual bool GetWindowPlacement(WINDOWPLACEMENT* pwndpl);
-
-      virtual bool SetWindowPlacement(const WINDOWPLACEMENT* pwndpl);
+//      virtual bool GetWindowPlacement(WINDOWPLACEMENT* pwndpl);
+//
+//      virtual bool SetWindowPlacement(const WINDOWPLACEMENT* pwndpl);
 
 
       // Coordinate Mapping Fufnctions
@@ -354,7 +352,7 @@ namespace linux
       virtual ::user::interaction * GetFocus() override;
       virtual bool SetFocus() override;
 
-      static::user::interaction * PASCAL get_desktop_window();
+      static::user::interaction * get_desktop_window();
 
       // Obsolete and non-portable APIs - not recommended for new code
 //      virtual void CloseWindow();
@@ -437,7 +435,7 @@ namespace linux
 //      static::user::interaction * PASCAL oswindowFromPoint(const ::point & point);
 
 
-      //virtual i32 message_box(const char * pszText, const char * pszcaption = nullptr, ::u32 nType = MB_OK) override;
+      //virtual i32 message_box(const char * pszText, const char * pszcaption = nullptr, ::u32 nType = e_message_box_ok) override;
 
 
 
@@ -466,8 +464,8 @@ namespace linux
 
       //static void get_app_wnda(user::oswindow_array & wnda);
 
-      virtual LONG_PTR get_window_long_ptr(i32 nIndex) const override;
-      virtual LONG_PTR set_window_long_ptr(i32 nIndex, LONG_PTR lValue) override;
+      virtual iptr get_window_long_ptr(i32 nIndex) const override;
+      virtual iptr set_window_long_ptr(i32 nIndex, iptr lValue) override;
 
       //void _001OnTriggerMouseInside();
 

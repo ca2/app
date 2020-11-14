@@ -136,7 +136,7 @@ namespace win32
          return true;
 
       }
-      else if (id == WM_COMMAND)
+      else if (id == e_message_command)
       {
 
          if (m_bCreated)

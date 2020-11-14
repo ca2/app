@@ -16,7 +16,7 @@ public:
    };
 
 
-   enum e_unit
+   enum enum_unit
    {
 
       unit_nanos,
@@ -59,8 +59,8 @@ public:
    static inline duration fcreate(long double dSeconds, double dNanoseconds);
 
 
-   void set(i64 i, e_unit eunit);
-   void set(long double d, e_unit eunit);
+   void set(i64 i, enum_unit eunit);
+   void set(long double d, enum_unit eunit);
 
 
    inline i64 get_total_nanoseconds() const;

@@ -460,6 +460,8 @@ namespace message
    }
 
 
+#ifdef WINDOWS_DESKTOP
+
    void window_pos::set(::layered * playeredUserPrimitive,const ::id & id,WPARAM wparam,::lparam lparam)
    {
 
@@ -486,6 +488,9 @@ namespace message
       return m_wparam != FALSE;
 
    }
+
+
+#endif
 
 
    bool enable::get_enable()

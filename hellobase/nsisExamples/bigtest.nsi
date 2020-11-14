@@ -86,15 +86,15 @@ SectionEnd
 Section "TempTest"
 
 SectionIn 1 2 3
-  Start: MessageBox MB_OK "Start:"
+  Start: MessageBox e_message_box_ok "Start:"
 
   MessageBox MB_YESNO "Goto MyLabel" IDYES MyLabel
 
-  MessageBox MB_OK "Right before MyLabel:"
+  MessageBox e_message_box_ok "Right before MyLabel:"
 
-  MyLabel: MessageBox MB_OK "MyLabel:"
+  MyLabel: MessageBox e_message_box_ok "MyLabel:"
   
-  MessageBox MB_OK "Right after MyLabel:"
+  MessageBox e_message_box_ok "Right after MyLabel:"
 
   MessageBox MB_YESNO "Goto Start:?" IDYES Start
 
@@ -124,16 +124,16 @@ SectionIn 1 4 3
 
   ReadINIStr $1 "$INSTDIR\test.ini" "MySectionIni" "Value1"
   StrCmp $1 "" INIDelSuccess
-    MessageBox MB_OK "DeleteINISec failed"
+    MessageBox e_message_box_ok "DeleteINISec failed"
   INIDelSuccess:
 
   ClearErrors
   ReadRegStr $1 HKCR "software\microsoft" xyz_cc_does_not_exist
   IfErrors 0 NoError
-    MessageBox MB_OK "could not read from HKCR\software\microsoft\xyz_cc_does_not_exist"
+    MessageBox e_message_box_ok "could not read from HKCR\software\microsoft\xyz_cc_does_not_exist"
     Goto ErrorYay
   NoError:
-    MessageBox MB_OK "read '$1' from HKCR\software\microsoft\xyz_cc_does_not_exist"
+    MessageBox e_message_box_ok "read '$1' from HKCR\software\microsoft\xyz_cc_does_not_exist"
   ErrorYay:
   
 SectionEnd
@@ -213,7 +213,7 @@ Section "Test Exec functions" TESTIDX
   
   SearchPath $1 notepad.exe
 
-  MessageBox MB_OK "notepad.exe=$1"
+  MessageBox e_message_box_ok "notepad.exe=$1"
   Exec '"$1"'
   ExecShell "open" '"$INSTDIR"'
   Sleep 500
@@ -248,7 +248,7 @@ FunctionEnd
 Function myfunc
 
   StrCpy $2 "MyTestVar=$1"
-  MessageBox MB_OK "myfunc: $2"
+  MessageBox e_message_box_ok "myfunc: $2"
 
 FunctionEnd
 
@@ -256,7 +256,7 @@ Function MyFunctionTest
 
   ReadINIStr $1 "$INSTDIR\test.ini" "MySectionIni" "Value1"
   StrCmp $1 $8 NoFailedMsg
-    MessageBox MB_OK "WriteINIStr failed"
+    MessageBox e_message_box_ok "WriteINIStr failed"
   
   NoFailedMsg:
 
@@ -302,7 +302,7 @@ Section "Uninstall"
   RMDir "$INSTDIR"
 
   IfFileExists "$INSTDIR" 0 NoErrorMsg
-    MessageBox MB_OK "Note: $INSTDIR could not be removed!" IDOK 0 ; skipped if file doesn't exist
+    MessageBox e_message_box_ok "Note: $INSTDIR could not be removed!" IDOK 0 ; skipped if file doesn't exist
   NoErrorMsg:
 
 SectionEnd

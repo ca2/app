@@ -1305,7 +1305,7 @@ CLASS_DECL_ACME void shared_library_process(dword_array & dwa, string_array & st
 //      DWORD dwError = ::get_last_error();
 //      string str;
 //      str.Format("lookup Privilege value Error: %u\n", dwError);
-//      message_box(str, "Help Me", MB_OK);
+//      message_box(str, "Help Me", e_message_box_ok);
 //      return FALSE;
 //   }
 //   if (!DuplicateTokenEx(hUserToken, TOKEN_ALL_ACCESS, nullptr, SecurityDelegation, TokenPrimary, &hUserTokenDup))

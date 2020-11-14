@@ -58,7 +58,7 @@ namespace draw2d_direct2d
       bool                                               m_bPrinting;
 
       HDC                                                m_hdcAttach;
-      ::draw2d::e_alpha_mode                             m_ealphamodeDevice;
+      ::draw2d::enum_alpha_mode                             m_ealphamodeDevice;
 
 
       graphics();
@@ -292,7 +292,7 @@ namespace draw2d_direct2d
 
       bool PolyDraw(const POINT32* lpPoints, const byte* lpTypes,count nCount) override;
       bool PolylineTo(const POINT32* lpPoints,count nCount) override;
-      bool PolyPolyline(const POINT32* lpPoints, const INT * lpPolyPoints,count nCount) override;
+      bool PolyPolyline(const POINT32* lpPoints, const ::i32 * lpPolyPoints,count nCount) override;
 
       bool PolyBezier(const POINT32* lpPoints,count nCount) override;
       bool PolyBezierTo(const POINT32* lpPoints,count nCount) override;
@@ -525,7 +525,7 @@ namespace draw2d_direct2d
       virtual void dump(dump_context & dumpcontext) const override;
 
 
-      virtual bool set_alpha_mode(::draw2d::e_alpha_mode ealphamode) override;
+      virtual bool set_alpha_mode(::draw2d::enum_alpha_mode ealphamode) override;
 
 
       virtual HDC get_handle() const;

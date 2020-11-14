@@ -250,8 +250,8 @@ public:
    bool is_iconic();
    bool is_window_visible();
    bool show_window(int iShow);
-   LONG_PTR get_window_long_ptr(i32 nIndex);
-   LONG_PTR set_window_long_ptr(i32 nIndex, LONG_PTR l);
+   iptr get_window_long_ptr(i32 nIndex);
+   iptr set_window_long_ptr(i32 nIndex, iptr l);
    bool _001ClientToScreen(POINT32 * ppoint);
 
    bool _001ScreenToClient(POINT32 * ppoint);

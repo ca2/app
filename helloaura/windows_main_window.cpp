@@ -113,7 +113,7 @@ BOOL InitInstance(::helloaura::render * prender, HINSTANCE hInstance, int nCmdSh
 //
 //  PURPOSE:  Processes messages for the main window.
 //
-//  WM_COMMAND  - process the application menu
+//  e_message_command  - process the application menu
 //  e_message_paint    - Paint the main window
 //  e_message_destroy  - post a quit message and return
 //
@@ -144,7 +144,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, const ::id & id, WPARAM wParam, LPARAM lPara
 
    switch (message)
    {
-   case WM_COMMAND:
+   case e_message_command:
    {
       int wmId = LOWORD(wParam);
       // Parse the menu selections:
@@ -161,7 +161,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, const ::id & id, WPARAM wParam, LPARAM lPara
       }
    }
    break;
-   case WM_TIMER:
+   case e_message_timer:
    {
       if (wParam == 123)
       {
@@ -171,7 +171,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, const ::id & id, WPARAM wParam, LPARAM lPara
    }
    break
    ;
-   case WM_ERASEBKGND:
+   case e_message_erase_background:
       return 1;
    case e_message_paint:
    {
@@ -238,7 +238,7 @@ INT_PTR CALLBACK About(HWND hDlg, const ::id & id, WPARAM wParam, LPARAM lParam)
    case WM_INITDIALOG:
       return (INT_PTR)TRUE;
 
-   case WM_COMMAND:
+   case e_message_command:
       if (LOWORD(wParam) == IDOK || LOWORD(wParam) == IDCANCEL)
       {
          EndDialog(hDlg, LOWORD(wParam));

@@ -41,7 +41,7 @@ namespace user
       MESSAGE_LINK(e_message_nchittest, pchannel, this, &status_bar::_001OnNcHitTest);
       MESSAGE_LINK(e_message_nccalcsize, pchannel, this, &status_bar::_001OnNcCalcSize);
       MESSAGE_LINK(e_message_size, pchannel, this, &status_bar::_001OnSize);
-      MESSAGE_LINK(WM_WINDOWPOSCHANGING, pchannel, this, &status_bar::_001OnWindowPosChanging);
+      MESSAGE_LINK(e_message_window_position_changing, pchannel, this, &status_bar::_001OnWindowPosChanging);
       MESSAGE_LINK(WM_SETTEXT, pchannel, this, &status_bar::_001OnSetText);
       MESSAGE_LINK(WM_GETTEXT, pchannel, this, &status_bar::_001OnGetText);
       MESSAGE_LINK(WM_GETTEXTLENGTH, pchannel, this, &status_bar::_001OnGetTextLength);

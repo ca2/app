@@ -24,7 +24,9 @@
 #include "aura/os/linux/_linux.h"
 #include "aura/os/linux/_user.h"
 #include "aura/os/ansios/_ansios.h"
-#include "acme/os/cross/windows_common/windows.h"
+#ifndef WINDOWS
+#include "acme/os/cross/windows/windows.h"
+#endif
 
 #elif defined(_UWP)
 

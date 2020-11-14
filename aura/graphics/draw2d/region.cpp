@@ -96,7 +96,7 @@ namespace draw2d
    }
 
 
-   bool region::create_polygon(const POINTD * ppoints, i32 nCount, ::draw2d::e_fill_mode efillmode)
+   bool region::create_polygon(const POINTD * ppoints, i32 nCount, ::draw2d::enum_fill_mode efillmode)
    {
 
       if(m_eregion != e_region_none)
@@ -119,7 +119,7 @@ namespace draw2d
    }
 
 
-   bool region::create_polygon(const POINT32 * ppoints, i32 nCount, ::draw2d::e_fill_mode efillmode)
+   bool region::create_polygon(const POINT32 * ppoints, i32 nCount, ::draw2d::enum_fill_mode efillmode)
    {
 
       if(m_eregion != e_region_none)
@@ -151,7 +151,7 @@ namespace draw2d
    }
 
 
-   bool region::create_poly_polygon(const POINTD * ppoints, const i32 * ppolycounts, i32 nCount, ::draw2d::e_fill_mode efillmode)
+   bool region::create_poly_polygon(const POINTD * ppoints, const i32 * ppolycounts, i32 nCount, ::draw2d::enum_fill_mode efillmode)
    {
 
       if(m_eregion != e_region_none)
@@ -165,9 +165,9 @@ namespace draw2d
 
       m_nCount = nCount;
 
-      m_lppolycounts = new INT[m_nCount];
+      m_lppolycounts = new int[m_nCount];
 
-      ::memcpy_dup(m_lppolycounts, ppolycounts, sizeof(INT) * m_nCount);
+      ::memcpy_dup(m_lppolycounts, ppolycounts, sizeof(int) * m_nCount);
 
       i32 iTotalCount = 0;
 
@@ -189,7 +189,7 @@ namespace draw2d
    }
 
 
-   bool region::create_poly_polygon(const POINT32 * ppoints, const i32 * ppolycounts,i32 nCount,::draw2d::e_fill_mode efillmode)
+   bool region::create_poly_polygon(const POINT32 * ppoints, const i32 * ppolycounts,i32 nCount,::draw2d::enum_fill_mode efillmode)
    {
 
       if(m_eregion != e_region_none)
@@ -203,9 +203,9 @@ namespace draw2d
 
       m_nCount = nCount;
 
-      m_lppolycounts = new INT[m_nCount];
+      m_lppolycounts = new int[m_nCount];
 
-      ::memcpy_dup(m_lppolycounts,ppolycounts,sizeof(INT)* m_nCount);
+      ::memcpy_dup(m_lppolycounts,ppolycounts,sizeof(int)* m_nCount);
 
       i32 iTotalCount = 0;
 
@@ -295,8 +295,8 @@ namespace draw2d
       case e_region_poly_polygon:
       {
          m_nCount = regionSrc.m_nCount;
-         m_lppolycounts = new INT[m_nCount];
-         ::memcpy_dup(m_lppolycounts, regionSrc.m_lppolycounts, sizeof(INT) * m_nCount);
+         m_lppolycounts = new int[m_nCount];
+         ::memcpy_dup(m_lppolycounts, regionSrc.m_lppolycounts, sizeof(int) * m_nCount);
          i32 iTotalCount = 0;
          for(i32 i = 0; i < m_nCount; i++)
          {

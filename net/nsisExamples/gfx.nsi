@@ -76,7 +76,7 @@ FunctionEnd
 
 Function customPage
 	!insertmacro BIMAGE "${NSISDIR}\Contrib\Graphics\Checks\modern.bmp" /RESIZETOFIT
-	MessageBox MB_OK 'This is a nice custom "page" with yet another image :P'
+	MessageBox e_message_box_ok 'This is a nice custom "page" with yet another image :P'
 	#insert install options/start menu/<insert plugin name here> here
 FunctionEnd
 
@@ -102,7 +102,7 @@ FunctionEnd
 
 Function un.customPage
 	!insertmacro BIMAGE "${NSISDIR}\Contrib\Graphics\Header\win.bmp" /RESIZETOFIT
-	MessageBox MB_OK 'This is a nice uninstaller custom "page" with yet another image :P'
+	MessageBox e_message_box_ok 'This is a nice uninstaller custom "page" with yet another image :P'
 	#insert install options/start menu/<insert plugin name here> here
 FunctionEnd
 
@@ -118,6 +118,6 @@ FunctionEnd
 UninstallText "Another page..."
 
 Section uninstall
-	MessageBox MB_OK "Bla"
+	MessageBox e_message_box_ok "Bla"
 SectionEnd
 

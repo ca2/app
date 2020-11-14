@@ -446,7 +446,7 @@ namespace user
 
       ENSURE_ARG(pmessage != nullptr);
       // check for special cancel modes for combo interactiones
-      //if (pMsg->message == e_message_lbutton_down || pMsg->message == WM_NCLBUTTONDOWN)
+      //if (pMsg->message == e_message_left_button_down || pMsg->message == e_message_non_client_left_button_down)
       //   __cancel_modes(pMsg->oswindow);    // filter clicks
 
       __pointer(::message::key) pkey = pmessage;
@@ -655,7 +655,7 @@ namespace user
    //   {
    //   // route as help
    //   if (!SendMessage(WM_COMMANDHELP, 0, HID_BASE_COMMAND+nID))
-   //   SendMessage(WM_COMMAND, ID_DEFAULT_HELP);
+   //   SendMessage(e_message_command, ID_DEFAULT_HELP);
    //   return TRUE;
    //   }
    //   */
@@ -1836,7 +1836,7 @@ namespace user
          case SC_TASKLIST:
          if (!SendMessage(WM_COMMANDHELP, 0,
          HID_BASE_COMMAND+ID_COMMAND_FROM_SC(nItemID)))
-         SendMessage(WM_COMMAND, ID_DEFAULT_HELP);
+         SendMessage(e_message_command, ID_DEFAULT_HELP);
          return;
          }*/
       }

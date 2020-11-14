@@ -1575,7 +1575,7 @@ namespace user
       }
 
       g_p->set_at((iptr)this, ::str::demangle(m_puserinteraction->type_name()) + "xxx" + type_name());
-      MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &primitive_impl::_001OnShowWindow);
+      MESSAGE_LINK(e_message_show_window, pchannel, this, &primitive_impl::_001OnShowWindow);
       MESSAGE_LINK(e_message_destroy, pchannel, this, &primitive_impl::_001OnDestroy);
       MESSAGE_LINK(e_message_ncdestroy, pchannel, this, &primitive_impl::_001OnNcDestroy);
       MESSAGE_LINK(e_message_create, pchannel, this, &primitive_impl::_001OnPrioCreate);

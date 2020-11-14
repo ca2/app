@@ -47,7 +47,7 @@ int APIENTRY app_browser_deferred_run(HINSTANCE hInstance,
    sandbox_info = scoped_sandbox.sandbox_info();
 #endif
 
-   //MessageBox(nullptr, lpCmdLine, "test", MB_OK);
+   //MessageBox(nullptr, lpCmdLine, "test", e_message_box_ok);
 
    // Provide CEF with command-line arguments.
    CefMainArgs main_args(hInstance);

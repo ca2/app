@@ -122,16 +122,16 @@ namespace user
       MESSAGE_LINK(e_message_size, pchannel, this,&mesh::_001OnSize);
       MESSAGE_LINK(e_message_vscroll, pchannel, this,&mesh::_001OnVScroll);
       MESSAGE_LINK(e_message_hscroll, pchannel, this,&mesh::_001OnHScroll);
-      MESSAGE_LINK(WM_MOUSELEAVE, pchannel, this,&mesh::_001OnMouseLeave);
+      MESSAGE_LINK(e_message_mouse_leave, pchannel, this,&mesh::_001OnMouseLeave);
 
       if (!bList)
       {
-         MESSAGE_LINK(e_message_lbutton_down, pchannel, this, &mesh::_001OnLButtonDown);
-         MESSAGE_LINK(e_message_lbutton_up, pchannel, this, &mesh::_001OnLButtonUp);
-         MESSAGE_LINK(WM_LBUTTONDBLCLK, pchannel, this, &mesh::_001OnLButtonDblClk);
+         MESSAGE_LINK(e_message_left_button_down, pchannel, this, &mesh::_001OnLButtonDown);
+         MESSAGE_LINK(e_message_left_button_up, pchannel, this, &mesh::_001OnLButtonUp);
+         MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &mesh::_001OnLButtonDblClk);
       }
-      MESSAGE_LINK(e_message_rbutton_down, pchannel, this,&mesh::_001OnRButtonDown);
-      MESSAGE_LINK(e_message_rbutton_down, pchannel, this, &mesh::_001OnRButtonUp);
+      MESSAGE_LINK(e_message_right_button_down, pchannel, this,&mesh::_001OnRButtonDown);
+      MESSAGE_LINK(e_message_right_button_down, pchannel, this, &mesh::_001OnRButtonUp);
 
       MESSAGE_LINK(e_message_mouse_move, pchannel, this,&mesh::_001OnMouseMove);
 
@@ -2870,7 +2870,7 @@ namespace user
                   else
                   {
 
-                     send_message(WM_LBUTTONDBLCLK, pmouse->m_nFlags, MAKELPARAM(point.x, point.y));
+                     send_message(e_message_left_button_double_click, pmouse->m_nFlags, MAKELPARAM(point.x, point.y));
 
                   }
 

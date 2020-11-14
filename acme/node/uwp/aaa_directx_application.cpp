@@ -581,7 +581,7 @@ namespace uwp
       if(args->CurrentPoint->Properties->IsLeftButtonPressed && !m_bLeftButton)
       {
 
-         pmouse->m_id     = e_message_lbutton_down;
+         pmouse->m_id     = e_message_left_button_down;
 
          m_bLeftButton           = true;
          m_bMiddleButton         = false;
@@ -591,7 +591,7 @@ namespace uwp
       else if(args->CurrentPoint->Properties->IsRightButtonPressed && !m_bRightButton)
       {
 
-         pmouse->m_id     = e_message_rbutton_down;
+         pmouse->m_id     = e_message_right_button_down;
 
          m_bLeftButton           = false;
          m_bMiddleButton         = false;
@@ -601,7 +601,7 @@ namespace uwp
       else if(args->CurrentPoint->Properties->IsMiddleButtonPressed && !m_bMiddleButton)
       {
 
-         pmouse->m_id     = WM_MBUTTONDOWN;
+         pmouse->m_id     = e_message_middle_button_down;
 
          m_bLeftButton           = false;
          m_bMiddleButton         = true;
@@ -645,21 +645,21 @@ namespace uwp
       if(m_bLeftButton && !args->CurrentPoint->Properties->IsLeftButtonPressed)
       {
 
-         pmouse->m_id     = e_message_lbutton_up;
+         pmouse->m_id     = e_message_left_button_up;
          m_bLeftButton           = false;
 
       }
       else if(m_bRightButton && !args->CurrentPoint->Properties->IsRightButtonPressed)
       {
 
-         pmouse->m_id     = e_message_rbutton_up;
+         pmouse->m_id     = e_message_right_button_up;
          m_bRightButton          = false;
 
       }
       else if(m_bMiddleButton && !args->CurrentPoint->Properties->IsMiddleButtonPressed)
       {
 
-         pmouse->m_id     = WM_MBUTTONUP;
+         pmouse->m_id     = e_message_middle_button_up;
          m_bMiddleButton         = false;
 
       }

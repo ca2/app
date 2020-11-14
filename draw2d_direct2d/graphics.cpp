@@ -294,7 +294,7 @@ namespace draw2d_direct2d
    bool graphics::BitBltAlphaBlend(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, u32 dwRop)
    {
 
-      //return ::draw2d::graphics::BitBltAlphaBlend(x, y, nWidth, nHeight, pgraphicsSrc, xSrc, ySrc, dwRop);
+      //return ::draw2d::graphics::BitBltAlphaBlend(x, y, nWidth, nHeight, pgraphicsSrc, xSrc, ySrc);
 
       //if (m_pimageAlphaBlend->is_set())
       //{
@@ -391,7 +391,7 @@ namespace draw2d_direct2d
 
       //      set_alpha_mode(::draw2d::alpha_mode_blend);
 
-      //      BitBltRaw(x, y, nWidth, nHeight, pimage2->get_graphics(), 0, 0, dwRop);
+      //      BitBltRaw(x, y, nWidth, nHeight, pimage2->get_graphics(), 0, 0);
 
       //      return true;
 
@@ -473,7 +473,7 @@ namespace draw2d_direct2d
 
                pimage1->blend2(::point(), m_pimageAlphaBlend, point(x - m_pointAlphaBlend.x, y - m_pointAlphaBlend.y), rectBlt.size(), 255);
 
-               BitBltRaw(x, y, nWidth, nHeight, pimage1->get_graphics(), 0, 0, dwRop);
+               BitBltRaw(x, y, nWidth, nHeight, pimage1->get_graphics(), 0, 0);
 
             }
 
@@ -2370,7 +2370,7 @@ namespace draw2d_direct2d
 
    }
 
-   bool graphics::PolyPolyline(const POINT32* lpPoints, const INT * lpPolyPoints, count nCount)
+   bool graphics::PolyPolyline(const POINT32* lpPoints, const ::i32 * lpPolyPoints, count nCount)
    {
 
       __throw(todo());
@@ -4923,7 +4923,7 @@ namespace draw2d_direct2d
    }
 
 
-   bool graphics::set_alpha_mode(::draw2d::e_alpha_mode ealphamode)
+   bool graphics::set_alpha_mode(::draw2d::enum_alpha_mode ealphamode)
    {
 
       if (m_ealphamode != ealphamode)

@@ -298,7 +298,7 @@ namespace draw2d_xlib
 
       using ::draw2d::graphics::Polygon;
       bool Polygon(const POINT32* lpPoints, i32 nCount);
-      bool PolyPolygon(const POINT32* lpPoints, const INT* lpPolyCounts, i32 nCount);
+      bool PolyPolygon(const POINT32* lpPoints, const ::i32* lpPolyCounts, i32 nCount);
       bool Rectangle(i32 x1, i32 y1, i32 x2, i32 y2);
       bool Rectangle(const ::rect & rect);
       virtual bool DrawRectangle(i32 x1, i32 y1, i32 x2, i32 y2);
@@ -500,7 +500,7 @@ namespace draw2d_xlib
 
 //      HGDIOBJ SelectObject(HGDIOBJ);      // do not use for regions
 
-      virtual void set_alpha_mode(::draw2d::e_alpha_mode ealphamode);
+      virtual void set_alpha_mode(::draw2d::enum_alpha_mode ealphamode);
 
       virtual void set_text_rendering_hint(::draw2d::e_text_rendering_hint_hint etextrendering);
 

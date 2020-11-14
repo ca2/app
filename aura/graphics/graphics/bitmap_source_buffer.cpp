@@ -64,7 +64,7 @@ namespace graphics
 
       m_strBitmapSource = m_pimpl->m_puserinteraction->value("bitmap-source");
 
-      CHAR szName[] = "Local\\bitmap-source-%s";
+      char szName[] = "Local\\bitmap-source-%s";
 
       string strPath;
 

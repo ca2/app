@@ -573,14 +573,14 @@ namespace windows
       MESSAGE_LINK(e_message_create, pchannel, this, &interaction_impl::_001OnCreate);
       if (!m_puserinteraction->m_bMessageWindow)
       {
-         MESSAGE_LINK(WM_SETCURSOR, pchannel, this, &interaction_impl::_001OnSetCursor);
-         MESSAGE_LINK(WM_ERASEBKGND, pchannel, this, &interaction_impl::_001OnEraseBkgnd);
+         MESSAGE_LINK(e_message_set_cursor, pchannel, this, &interaction_impl::_001OnSetCursor);
+         MESSAGE_LINK(e_message_erase_background, pchannel, this, &interaction_impl::_001OnEraseBkgnd);
          MESSAGE_LINK(e_message_nccalcsize, pchannel, this, &interaction_impl::_001OnNcCalcSize);
-         MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &interaction_impl::_001OnShowWindow);
+         MESSAGE_LINK(e_message_show_window, pchannel, this, &interaction_impl::_001OnShowWindow);
          MESSAGE_LINK(e_message_move, pchannel, this, &interaction_impl::_001OnMove);
          MESSAGE_LINK(e_message_size, pchannel, this, &interaction_impl::_001OnSize);
-         MESSAGE_LINK(WM_WINDOWPOSCHANGING, pchannel, this,&interaction_impl::_001OnWindowPosChanging);
-         MESSAGE_LINK(WM_WINDOWPOSCHANGED, pchannel, this,&interaction_impl::_001OnWindowPosChanged);
+         MESSAGE_LINK(e_message_window_position_changing, pchannel, this,&interaction_impl::_001OnWindowPosChanging);
+         MESSAGE_LINK(e_message_window_position_changed, pchannel, this,&interaction_impl::_001OnWindowPosChanged);
          MESSAGE_LINK(WM_GETMINMAXINFO, pchannel, this,&interaction_impl::_001OnGetMinMaxInfo);
          MESSAGE_LINK(e_message_set_focus, pchannel, this, &interaction_impl::_001OnSetFocus);
          MESSAGE_LINK(e_message_kill_focus, pchannel, this, &interaction_impl::_001OnKillFocus);
@@ -590,7 +590,7 @@ namespace windows
       }
 
       MESSAGE_LINK(e_message_destroy, pchannel, this, &interaction_impl::_001OnDestroy);
-      MESSAGE_LINK(WM_ENABLE, pchannel, this, &interaction_impl::_001OnEnable);
+      MESSAGE_LINK(e_message_enable, pchannel, this, &interaction_impl::_001OnEnable);
 
    }
 
@@ -1432,10 +1432,10 @@ namespace windows
 
       bool bUserElementalOk = !m_bDestroyImplOnly && m_puserinteraction->m_bUserPrimitiveOk;
 
-      if (emessage == WM_ENABLE)
+      if (emessage == e_message_enable)
       {
 
-         //TRACE("WM_ENABLE enable = " + string(pbase->m_wparam ? "true" : "false"));
+         //TRACE("e_message_enable enable = " + string(pbase->m_wparam ? "true" : "false"));
 
       }
       if (emessage == WM_GETTEXTLENGTH)
@@ -1557,11 +1557,11 @@ namespace windows
       //   }
       //}
 
-      if (emessage == WM_TIMER)
+      if (emessage == e_message_timer)
       {
          //         m_puserinteraction->m_papp->step_timer();
       }
-      else if (emessage == e_message_lbutton_down)
+      else if (emessage == e_message_left_button_down)
       {
          ::rect rectClient;
          ::GetClientRect(get_handle(), rectClient);
@@ -1586,7 +1586,7 @@ namespace windows
       {
          //output_debug_string("\nMMV");
       }
-      else if(emessage == WM_SETCURSOR
+      else if(emessage == e_message_set_cursor
                || emessage == e_message_non_client_mouse_move)
       {
          //output_debug_string(".");
@@ -1603,12 +1603,12 @@ namespace windows
                TRACE("e_message_create wparam=%08x lparam=%08x", pbase->m_wparam, pbase->m_lparam);
 
                break;
-            case WM_WINDOWPOSCHANGING:
-               TRACE("WM_WINDOWPOSCHANGING wparam=%08x lparam=%08x", pbase->m_wparam, pbase->m_lparam);
+            case e_message_window_position_changing:
+               TRACE("e_message_window_position_changing wparam=%08x lparam=%08x", pbase->m_wparam, pbase->m_lparam);
 
                break;
-            case WM_WINDOWPOSCHANGED:
-               TRACE("WM_WINDOWPOSCHANGED wparam=%08x lparam=%08x", pbase->m_wparam, pbase->m_lparam);
+            case e_message_window_position_changed:
+               TRACE("e_message_window_position_changed wparam=%08x lparam=%08x", pbase->m_wparam, pbase->m_lparam);
 
                break;
             case e_message_activate:
@@ -1666,7 +1666,7 @@ namespace windows
       }*/
       pbase->set_lresult(0);
 
-      if (emessage == WM_MOUSELEAVE)
+      if (emessage == e_message_mouse_leave)
       {
 
          _000OnMouseLeave(pbase);
@@ -1675,13 +1675,13 @@ namespace windows
 
       }
 
-      if (emessage == e_message_lbutton_down ||
-            emessage == e_message_lbutton_up ||
-            emessage == WM_MBUTTONDOWN ||
-            emessage == WM_MBUTTONUP ||
-            emessage == e_message_rbutton_down ||
-            emessage == e_message_rbutton_up ||
-            emessage == WM_LBUTTONDBLCLK ||
+      if (emessage == e_message_left_button_down ||
+            emessage == e_message_left_button_up ||
+            emessage == e_message_middle_button_down ||
+            emessage == e_message_middle_button_up ||
+            emessage == e_message_right_button_down ||
+            emessage == e_message_right_button_up ||
+            emessage == e_message_left_button_double_click ||
             emessage == e_message_mouse_move ||
             emessage == e_message_non_client_mouse_move ||
             emessage == e_message_mouse_wheel)
@@ -1716,10 +1716,10 @@ namespace windows
          }
 
 
-         if (emessage == e_message_lbutton_down)
+         if (emessage == e_message_left_button_down)
          {
 
-            TRACE("e_message_lbutton_down");
+            TRACE("e_message_left_button_down");
 
          }
 
@@ -2160,7 +2160,7 @@ namespace windows
       case e_message_vscroll:
       case WM_PARENTNOTIFY:
       case WM_DRAWITEM:
-      case WM_MEASUREITEM:
+      case e_message_measure_item:
       case WM_DELETEITEM:
       case WM_VKEYTOITEM:
       case WM_CHARTOITEM:
@@ -2169,8 +2169,8 @@ namespace windows
          //return interaction_impl::OnWndMsg(WM_REFLECT_BASE+uMsg, wParam, lParam, pResult);
          return FALSE;
 
-      // special case for WM_COMMAND
-      case WM_COMMAND:
+      // special case for e_message_command
+      case e_message_command:
       {
          // reflect the message through the message map as OCM_COMMAND
          __keep(&pbase->m_bReflect, true);
@@ -2321,7 +2321,7 @@ namespace windows
       if (!(GetStyle() & WS_CHILD))
       {
          //         const MSG* pMsg = GetCurrentMessage();
-         send_message_to_descendants(WM_DISPLAYCHANGE, wparam, lparam, TRUE, TRUE);
+         send_message_to_descendants(e_message_display_change, wparam, lparam, TRUE, TRUE);
 
       }
 
@@ -5725,28 +5725,28 @@ LRESULT CALLBACK __window_procedure(oswindow oswindow, const ::id & id, WPARAM w
 
 #if 0
 
-   if (message == WM_SHOWWINDOW)
+   if (message == e_message_show_window)
    {
 
-      output_debug_string("WM_SHOWWINDOW");
+      output_debug_string("e_message_show_window");
 
    }
-   else if (message == WM_WINDOWPOSCHANGING)
+   else if (message == e_message_window_position_changing)
    {
 
-      output_debug_string("WM_WINDOWPOSCHANGING");
+      output_debug_string("e_message_window_position_changing");
 
    }
-   else if (message == WM_WINDOWPOSCHANGED)
+   else if (message == e_message_window_position_changed)
    {
 
-      output_debug_string("WM_WINDOWPOSCHANGED");
+      output_debug_string("e_message_window_position_changed");
 
    }
-   else if (message == e_message_lbutton_down)
+   else if (message == e_message_left_button_down)
    {
 
-      output_debug_string("e_message_lbutton_down()");
+      output_debug_string("e_message_left_button_down()");
 
    }
    else if (message == e_message_destroy)
@@ -5808,14 +5808,14 @@ LRESULT CALLBACK __window_procedure(oswindow oswindow, const ::id & id, WPARAM w
       else if (puserinteraction->m_bMoving || puserinteraction->m_bMoveWindow)
       {
 
-         if (message == WM_WINDOWPOSCHANGING)
+         if (message == e_message_window_position_changing)
          {
 
             return ::DefWindowProc(oswindow, message, wparam, lparam);
 
 
          }
-         else if (message == WM_WINDOWPOSCHANGED)
+         else if (message == e_message_window_position_changed)
          {
 
             return ::DefWindowProc(oswindow, message, wparam, lparam);

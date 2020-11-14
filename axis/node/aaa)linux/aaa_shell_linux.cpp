@@ -238,7 +238,7 @@ namespace linux
       //      lpiidlAbsolute,
       //      szFilePath);
 
-      //   CHAR szPath[_MAX_PATH * 10];
+      //   char szPath[_MAX_PATH * 10];
       //   string strPath;
       //   //   i32 iImage = 0x80000000;
 

@@ -836,17 +836,17 @@ namespace user
       ::user::scroll_base::install_message_routing(pchannel);
 
       MESSAGE_LINK(e_message_create, pchannel, this, &tree::_001OnCreate);
-      MESSAGE_LINK(WM_LBUTTONDBLCLK, pchannel, this, &tree::_001OnLButtonDblClk);
-      MESSAGE_LINK(e_message_lbutton_up, pchannel, this, &tree::_001OnLButtonUp);
-      MESSAGE_LINK(e_message_lbutton_down, pchannel, this, &tree::_001OnLButtonDown);
-      MESSAGE_LINK(e_message_rbutton_up, pchannel, this, &tree::_001OnRButtonUp);
-      MESSAGE_LINK(e_message_rbutton_down, pchannel, this, &tree::_001OnRButtonDown);
+      MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &tree::_001OnLButtonDblClk);
+      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &tree::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &tree::_001OnLButtonDown);
+      MESSAGE_LINK(e_message_right_button_up, pchannel, this, &tree::_001OnRButtonUp);
+      MESSAGE_LINK(e_message_right_button_down, pchannel, this, &tree::_001OnRButtonDown);
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &tree::_001OnMouseMove);
-      MESSAGE_LINK(WM_MOUSELEAVE, pchannel, this, &tree::_001OnMouseLeave);
+      MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &tree::_001OnMouseLeave);
       MESSAGE_LINK(e_message_hscroll, pchannel, this, &tree::_001OnHScroll);
       MESSAGE_LINK(e_message_vscroll, pchannel, this, &tree::_001OnVScroll);
       MESSAGE_LINK(e_message_change_experience, pchannel, this, &tree::_001OnChangeExperience);
-//      //MESSAGE_LINK(WM_TIMER         , pchannel, this, &tree::_001OnTimer);
+//      //MESSAGE_LINK(e_message_timer         , pchannel, this, &tree::_001OnTimer);
 
    }
 

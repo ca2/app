@@ -210,7 +210,7 @@ namespace draw2d
    }
 
 
-   void font::set_size(double dSize, e_unit eunit)
+   void font::set_size(double dSize, enum_unit eunit)
    {
 
       m_dFontSize       = dSize;
@@ -609,7 +609,7 @@ namespace draw2d
 //   }
 //
 //
-//   bool font::AddGlyph(CHAR tch)
+//   bool font::AddGlyph(char tch)
 //   {
 //
 //      return AddGlyph((::u32)tch);
@@ -708,7 +708,7 @@ namespace draw2d
 //
 //
 //
-//   glyph * font::GetGlyph(CHAR ch)
+//   glyph * font::GetGlyph(char ch)
 //   {
 //      return GetGlyph((::u32)ch);
 //   }

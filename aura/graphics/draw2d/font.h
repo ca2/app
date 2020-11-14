@@ -83,7 +83,7 @@ namespace draw2d
       string                  m_strFontFamilyName;
       double                  m_dFontSize;
       double                  m_dFontWidth;
-      e_unit                  m_eunitFontSize;
+      enum_unit               m_eunitFontSize;
       i32                     m_iFontWeight;
       bool                    m_bItalic;
       bool                    m_bUnderline;
@@ -126,7 +126,7 @@ namespace draw2d
       font & operator = (const font & font);
 
       virtual void set_family_name(const char * pszFamilyName);
-      virtual void set_size(double dSize, e_unit = unit_point);
+      virtual void set_size(double dSize, enum_unit = unit_point);
       virtual void set_bold(bool bBold = true);
       virtual void set_italic(bool bItalic = true);
       virtual void set_underline(bool bUnderline = true);

@@ -167,8 +167,8 @@ Function LeaveCustom
 	FileWrite $0 '	$7TextCompare} "$R1" "$R2" "$R3" "$R5"$\r$\n'
 	FileWrite $0 '	IfErrors error$\r$\n'
 	FileWrite $0 '	StrCmp $$R0 NotEqual 0 +2$\r$\n'
-	FileWrite $0 '	MessageBox MB_OK "             Files differ" IDOK +2$\r$\n'
-	FileWrite $0 '	MessageBox MB_OK "           Files identical"$\r$\n'
+	FileWrite $0 '	MessageBox e_message_box_ok "             Files differ" IDOK +2$\r$\n'
+	FileWrite $0 '	MessageBox e_message_box_ok "           Files identical"$\r$\n'
 	FileWrite $0 '	goto end$\r$\n$\r$\n'
 	goto endoninit
 	TextCompareExample235:
@@ -213,7 +213,7 @@ Function LeaveCustom
 	FileWrite $0 '	goto end$\r$\n$\r$\n'
 	endoninit:
 	FileWrite $0 '	error:$\r$\n'
-	FileWrite $0 '	MessageBox MB_OK "Error"$\r$\n$\r$\n'
+	FileWrite $0 '	MessageBox e_message_box_ok "Error"$\r$\n$\r$\n'
 	FileWrite $0 '	end:$\r$\n'
 	FileWrite $0 '	Quit$\r$\n'
 	FileWrite $0 'FunctionEnd$\r$\n$\r$\n'
@@ -447,7 +447,7 @@ Function LeaveCustom
 	StrCmp $R4 "Example7" 0 +9
 	GetDlgItem $0 $HWND 1203
 	EnableWindow $0 0
-	SendMessage $0 ${WM_ENABLE} 1 0
+	SendMessage $0 ${e_message_enable} 1 0
 	SendMessage $0 ${WM_SETTEXT} 1 "STR:/NUL"
 	GetDlgItem $0 $HWND 1204
 	EnableWindow $0 0
@@ -594,7 +594,7 @@ Function LeaveCustom
 	GetDlgItem $0 $HWND 1205
 	ShowWindow $0 1
 	EnableWindow $0 0
-	SendMessage $0 ${WM_ENABLE} 1 0
+	SendMessage $0 ${e_message_enable} 1 0
 	SendMessage $0 ${WM_SETTEXT} 1 "STR:$TEXTCOMPARE3"
 	GetDlgItem $0 $HWND 1208
 	ShowWindow $0 1
@@ -745,7 +745,7 @@ Function LeaveCustom
 	Delete $PROJECT.exe
 	StrCpy $PROJECT ''
 	goto done
-	MessageBox MB_YESNO|MB_ICONEXCLAMATION "Compile error. Open log?" IDNO +2
+	MessageBox MB_YESNO|e_message_box_icon_exclamation "Compile error. Open log?" IDNO +2
 	Exec 'notepad.exe $LOG'
 	StrCpy $0 "Compile Error"
 	goto send

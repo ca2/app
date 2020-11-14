@@ -110,7 +110,7 @@ LPDWORD pcbData
 bool __node_aura_pre_init()
 {
 
-   //xxdebug_box("__node_aura_pre_init","box",MB_OK);
+   //xxdebug_box("__node_aura_pre_init","box",e_message_box_ok);
 
    //g_pgdiplusStartupInput     = new Gdiplus::GdiplusStartupInput();
 
@@ -155,7 +155,7 @@ bool __node_aura_pre_init()
 //    catch (...)
 //    {
 
-//       ::message_box(nullptr, "Failure to initialize FreeImage (::aura::init_core)", "FreeImage_Initialise failure", MB_ICONEXCLAMATION);
+//       ::message_box(nullptr, "Failure to initialize FreeImage (::aura::init_core)", "FreeImage_Initialise failure", e_message_box_icon_exclamation);
 
 //       return false;
 

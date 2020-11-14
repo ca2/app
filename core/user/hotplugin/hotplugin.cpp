@@ -43,7 +43,7 @@ namespace hotplugin
 //         if(file_exists(::dir::system() / "config\\plugin\\npca2_beg_debug_box.txt"))
 //         {
 
-//            debug_box("hotplugin boxmain NP_Initialize","ZZZzzz hotplugin box",MB_OK);
+//            debug_box("hotplugin boxmain NP_Initialize","ZZZzzz hotplugin box",e_message_box_ok);
 
 //         }
 //         if(file_exists(::dir::system() / "config\\plugin\\npca2_beg_sleep.txt"))

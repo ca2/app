@@ -28,10 +28,10 @@ FunctionEnd
 
 Section
   IfSilent 0 +2
-    MessageBox MB_OK|MB_ICONINFORMATION 'This is a "silent" installer'
+    MessageBox e_message_box_ok|MB_ICONINFORMATION 'This is a "silent" installer'
 
   # there is no need to use IfSilent for this one because the /SD switch takes care of that
-  MessageBox MB_OK|MB_ICONINFORMATION "This is not a silent installer" /SD IDOK
+  MessageBox e_message_box_ok|MB_ICONINFORMATION "This is not a silent installer" /SD IDOK
 
   # when `SetOverwrite on' (which is the default) is used, the installer will show a message
   # if it can't open a file for writing. On silent installers, the ignore option will be
@@ -50,7 +50,7 @@ Section
 
   # this will always show on silent installers because ignore is the option automatically
   # selected when a file can't be opened for writing on a silent installer
-  MessageBox MB_OK|MB_ICONINFORMATION "This message box always shows if the installer is silent"
+  MessageBox e_message_box_ok|MB_ICONINFORMATION "This message box always shows if the installer is silent"
 
   AllowSkipFiles off
 

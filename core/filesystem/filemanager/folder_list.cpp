@@ -26,7 +26,7 @@ namespace filemanager
 
       ::user::impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(WM_LBUTTONDBLCLK, pchannel, this, &folder_list::_001OnLButtonDblClk);
+      MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &folder_list::_001OnLButtonDblClk);
 
       MESSAGE_LINK(WM_CANCELMODE, pchannel, this, &folder_list::_001OnCancelMode);
 

@@ -26,7 +26,7 @@ namespace draw2d_opengl
       virtual pointd internal_current_point();
 
 
-      virtual bool internal_begin_figure(bool bFill, ::draw2d::e_fill_mode efillmode);
+      virtual bool internal_begin_figure(bool bFill, ::draw2d::enum_fill_mode efillmode);
       virtual bool internal_end_figure(bool bClose);
 
       virtual bool internal_add_line(i32 x1, i32 y1, i32 x2, i32 y2);

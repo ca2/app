@@ -177,7 +177,7 @@ namespace ios
             ::str::international::utf8_to_unicode(lpwstrCopy, iCount, str);
             ::GlobalUnlock(hglbCopy);
 
-            HGLOBAL hglbCopy2 = ::GlobalAlloc(GMEM_MOVEABLE, sizeof(CHAR) * (strlen(psz) + 1));
+            HGLOBAL hglbCopy2 = ::GlobalAlloc(GMEM_MOVEABLE, sizeof(char) * (strlen(psz) + 1));
             char * lpstrCopy  = (char *) ::GlobalLock(hglbCopy2);
             strcpy(lpstrCopy, psz);
             ::GlobalUnlock(hglbCopy2);

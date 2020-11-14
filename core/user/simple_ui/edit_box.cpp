@@ -29,8 +29,8 @@ namespace simple_ui
 
       MESSAGE_LINK(e_message_key_down, pchannel, this, &edit_box::_001OnKeyDown);
       MESSAGE_LINK(e_message_key_up, pchannel, this, &edit_box::_001OnKeyDown);
-      MESSAGE_LINK(e_message_lbutton_down, pchannel, this, &edit_box::_001OnLButtonDown);
-      MESSAGE_LINK(e_message_lbutton_up, pchannel, this, &edit_box::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &edit_box::_001OnLButtonDown);
+      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &edit_box::_001OnLButtonUp);
 
    }
 

@@ -37,7 +37,7 @@ namespace experience
    bool size_manager::_001OnLButtonDown(::message::mouse * pmouse)
    {
 
-      ASSERT(pmouse->m_id == e_message_lbutton_down || pmouse->m_id == WM_NCLBUTTONDOWN);
+      ASSERT(pmouse->m_id == e_message_left_button_down || pmouse->m_id == e_message_non_client_left_button_down);
 
       if(!m_pframewindow->is_sizing_enabled())
       {

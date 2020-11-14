@@ -175,7 +175,7 @@ __pointer(::message::base) channel::get_message_base(LPMESSAGE pmsg)
    //   if (pmsg->message == 126)
    //   {
 
-   //      TRACE("WM_DISPLAYCHANGE");
+   //      TRACE("e_message_display_change");
 
    //   }
 

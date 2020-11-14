@@ -21,7 +21,7 @@ public:
    bool                             m_bReduced; // optionally used by implementation
    point                            m_point;
    double                           m_dFontFactor;
-   ::draw2d::e_alpha_mode           m_ealphamode;
+   ::draw2d::enum_alpha_mode        m_ealphamode;
    bool                             m_bOwn;
    ::draw2d::e_mipmap               m_emipmap;
    bool                             m_bColorMatrix;

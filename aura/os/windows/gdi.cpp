@@ -449,7 +449,7 @@ namespace draw2d
      else
      {
 
-        output_debug_string("OTHER CHAR SET");
+        output_debug_string("OTHER char SET");
 
      }
 

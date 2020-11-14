@@ -534,12 +534,12 @@ namespace macos
       if (!m_puserinteraction->m_bMessageWindow)
       {
 
-//         MESSAGE_LINK(WM_SETCURSOR, pchannel, this, &interaction_impl::_001OnSetCursor);
-//         MESSAGE_LINK(WM_ERASEBKGND, pchannel, this,&interaction_impl::_001OnEraseBkgnd);
+//         MESSAGE_LINK(e_message_set_cursor, pchannel, this, &interaction_impl::_001OnSetCursor);
+//         MESSAGE_LINK(e_message_erase_background, pchannel, this,&interaction_impl::_001OnEraseBkgnd);
          //         MESSAGE_LINK(e_message_nccalcsize, pchannel, this,&interaction_impl::_001OnNcCalcSize);
 //         MESSAGE_LINK(e_message_size, pchannel, this, &interaction_impl::_001OnSize);
-         //         MESSAGE_LINK(WM_WINDOWPOSCHANGING, pchannel, this,&interaction_impl::_001OnWindowPosChanging);
-         //         MESSAGE_LINK(WM_WINDOWPOSCHANGED, pchannel, this,&interaction_impl::_001OnWindowPosChanged);
+         //         MESSAGE_LINK(e_message_window_position_changing, pchannel, this,&interaction_impl::_001OnWindowPosChanging);
+         //         MESSAGE_LINK(e_message_window_position_changed, pchannel, this,&interaction_impl::_001OnWindowPosChanged);
          //         MESSAGE_LINK(WM_GETMINMAXINFO, pchannel, this,&interaction_impl::_001OnGetMinMaxInfo);
          //         MESSAGE_LINK(e_message_set_focus, pchannel, this,&interaction_impl::_001OnSetFocus);
          //         MESSAGE_LINK(e_message_kill_focus, pchannel, this,&interaction_impl::_001OnKillFocus);
@@ -558,13 +558,13 @@ namespace macos
       //         m_puserinteraction->install_message_routing(pchannel);
       //      }
       //      MESSAGE_LINK(e_message_create            , pchannel, this, &interaction_impl::_001OnCreate);
-      //      MESSAGE_LINK(WM_SETCURSOR         , pchannel, this, &interaction_impl::_001OnSetCursor);
-      //      MESSAGE_LINK(WM_ERASEBKGND        , pchannel, this, &interaction_impl::_001OnEraseBkgnd);
+      //      MESSAGE_LINK(e_message_set_cursor         , pchannel, this, &interaction_impl::_001OnSetCursor);
+      //      MESSAGE_LINK(e_message_erase_background        , pchannel, this, &interaction_impl::_001OnEraseBkgnd);
       //      MESSAGE_LINK(e_message_move              , pchannel, this, &interaction_impl::_001OnMove);
       //      MESSAGE_LINK(e_message_size              , pchannel, this, &interaction_impl::_001OnSize);
-      MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &interaction_impl::_001OnShowWindow);
+      MESSAGE_LINK(e_message_show_window, pchannel, this, &interaction_impl::_001OnShowWindow);
       //      MESSAGE_LINK(ca2m_PRODEVIAN_SYNCH , pchannel, this, &interaction_impl::_001OnProdevianSynch);
-      ////      //MESSAGE_LINK(WM_TIMER             , pchannel, this, &interaction_impl::_001OnTimer);
+      ////      //MESSAGE_LINK(e_message_timer             , pchannel, this, &interaction_impl::_001OnTimer);
    }
 
 
@@ -1165,11 +1165,11 @@ namespace macos
 
       }
 
-      if (pbase->m_id == WM_TIMER)
+      if (pbase->m_id == e_message_timer)
       {
          //         get_context_application()->get_context_application()->step_timer();
       }
-      else if (pbase->m_id == e_message_lbutton_down)
+      else if (pbase->m_id == e_message_left_button_down)
       {
          //  g_pwndLastLButtonDown = this;
       }
@@ -1190,20 +1190,20 @@ namespace macos
       pbase->m_lresult = 0;
 
 
-      if (pbase->m_id == e_message_lbutton_down ||
-            pbase->m_id == e_message_lbutton_up ||
-            pbase->m_id == WM_MBUTTONDOWN ||
-            pbase->m_id == WM_MBUTTONUP ||
-            pbase->m_id == e_message_rbutton_down ||
-            pbase->m_id == e_message_rbutton_up ||
-            pbase->m_id == WM_RBUTTONDBLCLK ||
-            pbase->m_id == WM_LBUTTONDBLCLK ||
+      if (pbase->m_id == e_message_left_button_down ||
+            pbase->m_id == e_message_left_button_up ||
+            pbase->m_id == e_message_middle_button_down ||
+            pbase->m_id == e_message_middle_button_up ||
+            pbase->m_id == e_message_right_button_down ||
+            pbase->m_id == e_message_right_button_up ||
+            pbase->m_id == e_message_right_button_double_click ||
+            pbase->m_id == e_message_left_button_double_click ||
             pbase->m_id == e_message_mouse_move ||
             pbase->m_id == e_message_mouse_move ||
             pbase->m_id == e_message_mouse_wheel)
       {
 
-         if (pbase->m_id == e_message_lbutton_down)
+         if (pbase->m_id == e_message_left_button_down)
          {
 
             //output_debug_string("\nWM_LBUTTONDOWN");
@@ -1667,7 +1667,7 @@ namespace macos
 //      case e_message_vscroll:
 //      case WM_PARENTNOTIFY:
 //      case WM_DRAWITEM:
-//      case WM_MEASUREITEM:
+//      case e_message_measure_item:
 //      case WM_DELETEITEM:
 //      case WM_VKEYTOITEM:
 //      case WM_CHARTOITEM:
@@ -1676,12 +1676,12 @@ namespace macos
 //         //return interaction_impl::OnWndMsg(WM_REFLECT_BASE+uMsg, wparam, lparam, pResult);
 //         return FALSE;
 //
-//      // special case for WM_COMMAND
-//      case WM_COMMAND:
+//      // special case for e_message_command
+//      case e_message_command:
 //      {
 //         // reflect the message through the message ::collection::map as OCM_COMMAND
 //         /* xxx         i32 nCode = HIWORD(wparam);
-//          if (interaction_impl::_001OnCommand(0, MAKELONG(nCode, WM_REFLECT_BASE+WM_COMMAND), nullptr, nullptr))
+//          if (interaction_impl::_001OnCommand(0, MAKELONG(nCode, WM_REFLECT_BASE+e_message_command), nullptr, nullptr))
 //          {
 //          if (pResult != nullptr)
 //          *pResult = 1;
@@ -1817,7 +1817,7 @@ namespace macos
    //            GetKeyState(VK_CONTROL) >= 0 &&
    //            GetKeyState(VK_MENU) >= 0)
    //         {
-   //            //            pMainWnd->SendMessage(WM_COMMAND, ID_HELP);
+   //            //            pMainWnd->SendMessage(e_message_command, ID_HELP);
    //            return TRUE;
    //         }
    //      }
@@ -2353,7 +2353,7 @@ namespace macos
        {
        // call it directly to disable any routing
        if (MAC_WINDOW(pWnd)->interaction_impl::_001OnCommand(0, MAKELONG(0xffff,
-       WM_COMMAND+WM_REFLECT_BASE), &state, nullptr))
+       e_message_command+WM_REFLECT_BASE), &state, nullptr))
        continue;
        }
 
@@ -2599,7 +2599,7 @@ namespace macos
 ////
 ////         ::show_window(get_handle(), nCmdShow);
 ////
-////         //m_puserinteraction->send_message(WM_SHOWWINDOW, ::IsWindowVisible(get_handle()));
+////         //m_puserinteraction->send_message(e_message_show_window, ::IsWindowVisible(get_handle()));
 ////
 ////      }
 ////
@@ -4585,13 +4585,13 @@ namespace macos
          if (iButton == 1)
          {
 
-            message = e_message_rbutton_down;
+            message = e_message_right_button_down;
 
          }
          else
          {
 
-            message = e_message_lbutton_down;
+            message = e_message_left_button_down;
 
          }
 
@@ -4617,13 +4617,13 @@ namespace macos
       if (iButton == 1)
       {
 
-         message = e_message_rbutton_up;
+         message = e_message_right_button_up;
 
       }
       else
       {
 
-         message = e_message_lbutton_up;
+         message = e_message_left_button_up;
 
       }
 
@@ -4650,13 +4650,13 @@ namespace macos
       if (iButton == 1)
       {
 
-         message = WM_RBUTTONDBLCLK;
+         message = e_message_right_button_double_click;
 
       }
       else
       {
 
-         message = WM_LBUTTONDBLCLK;
+         message = e_message_left_button_double_click;
 
       }
 
@@ -5273,7 +5273,7 @@ namespace macos
 
       m_tickLastExposureAddUp.Now();
 
-      m_puserinteraction->message_call(WM_SHOWWINDOW, 1);
+      m_puserinteraction->message_call(e_message_show_window, 1);
 
       //m_puserinteraction->user_interaction_update_visibility_cache(true);
 
@@ -5326,7 +5326,7 @@ namespace macos
 
       }
       
-      m_puserinteraction->message_call(WM_SHOWWINDOW, 0);
+      m_puserinteraction->message_call(e_message_show_window, 0);
 
    }
 
@@ -5348,7 +5348,7 @@ namespace macos
 
       }
 
-      //m_puserinteraction->message_call(WM_SHOWWINDOW, 0);
+      //m_puserinteraction->message_call(e_message_show_window, 0);
 
       //m_puserinteraction->user_interaction_update_visibility_cache(false);
 
@@ -5449,8 +5449,8 @@ namespace macos
 
       __throw(not_implemented());
       //   if (nHitTest == HTERROR &&
-      //      (nMsg == e_message_lbutton_down || nMsg == WM_MBUTTONDOWN ||
-      //      nMsg == e_message_rbutton_down))
+      //      (nMsg == e_message_left_button_down || nMsg == e_message_middle_button_down ||
+      //      nMsg == e_message_right_button_down))
       //   {
       //      // activate the last active user::interaction if not active
       //      ::user::interaction * pLastActive = MAC_WINDOW(pWnd)->GetTopLevelParent();
@@ -5502,7 +5502,7 @@ namespace macos
       //            ::macos::interaction_impl::from_handle((oswindow)lparam));
       //         break;
       //
-      //      case WM_SETCURSOR:
+      //      case e_message_set_cursor:
       //         bCallDefault = !__handle_set_cursor(::macos::interaction_impl::from_handle(hWnd),
       //            (short)LOWORD(lparam), HIWORD(lparam));
       //         break;

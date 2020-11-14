@@ -16,7 +16,7 @@ namespace axis
       CLASS_DECL_AXIS void init()
       {
 
-         xxdebug_box("axis.dll axis_static_start (0)", "box", MB_OK);
+         xxdebug_box("axis.dll axis_static_start (0)", "box", e_message_box_ok);
 
 
 #if defined(LINUX)

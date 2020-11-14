@@ -206,8 +206,8 @@ inline double __random(double d1, double d2)
 }
 
 
-template < typename INT >
-INT __random_int(INT i1, INT i2)
+template < typename INTEGER >
+INTEGER __random_int(INTEGER i1, INTEGER i2)
 {
 
    if (i1 == i2) return i1;
@@ -222,7 +222,7 @@ INT __random_int(INT i1, INT i2)
 
    __random(u);
 
-   return (INT)((u % ((u64)iRange + 1)) + (i64)iMin);
+   return (INTEGER)((u % ((u64)iRange + 1)) + (i64)iMin);
 
 }
 

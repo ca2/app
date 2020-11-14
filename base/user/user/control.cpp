@@ -42,7 +42,7 @@
 //      //
 //      //#ifdef WINDOWS
 //      //
-//      //      MESSAGE_LINK(WM_MOUSELEAVE, pchannel, this, &::user::interaction::_001OnMouseLeave);
+//      //      MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &::user::interaction::_001OnMouseLeave);
 //      //
 //      //#else
 //      //
@@ -52,7 +52,7 @@
 //      //
 //      MESSAGE_LINK(e_message_key_down, pchannel, this, &::user::interaction::_001OnKeyDown);
 //
-//      MESSAGE_LINK(WM_ENABLE, pchannel, this, &::user::interaction::_001OnEnable);
+//      MESSAGE_LINK(e_message_enable, pchannel, this, &::user::interaction::_001OnEnable);
 //      MESSAGE_LINK(e_message_set_focus, pchannel, this, &::user::interaction::_001OnSetFocus);
 //      MESSAGE_LINK(e_message_kill_focus, pchannel, this, &::user::interaction::_001OnKillFocus);
 //

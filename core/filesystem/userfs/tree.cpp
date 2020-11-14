@@ -93,7 +93,7 @@ namespace userfs
    {
 
       MESSAGE_LINK(e_message_create, pchannel, this, &tree::_001OnCreate);
-      MESSAGE_LINK(WM_LBUTTONDBLCLK, pchannel, this, &tree::_001OnLButtonDblClk);
+      MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &tree::_001OnLButtonDblClk);
       MESSAGE_LINK(WM_CONTEXTMENU, pchannel, this, &tree::_001OnContextMenu);
 
    }

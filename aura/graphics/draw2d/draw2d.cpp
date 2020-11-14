@@ -345,7 +345,7 @@ namespace draw2d
       catch (...)
       {
 
-         message_box("except", "except", message_box_ok);
+         message_box("except", "except", e_message_box_ok);
 
       }
 

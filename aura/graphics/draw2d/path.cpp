@@ -331,7 +331,7 @@ namespace draw2d
    }
 
 
-   void path::set_fill_mode(::draw2d::e_fill_mode efillmode)
+   void path::set_fill_mode(::draw2d::enum_fill_mode efillmode)
    {
 
       m_efillmode = efillmode;
@@ -339,7 +339,7 @@ namespace draw2d
    }
 
 
-   ::draw2d::e_fill_mode path::get_fill_mode()
+   ::draw2d::enum_fill_mode path::get_fill_mode()
    {
 
       return m_efillmode;

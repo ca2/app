@@ -417,7 +417,7 @@ namespace user
 
       SCAST_PTR(::message::base, pbase, pmessage);
 
-      if (pbase->m_lparam == e_message_lbutton_down)
+      if (pbase->m_lparam == e_message_left_button_down)
       {
 
          while (m_wndptraHidden.get_size() > 0)

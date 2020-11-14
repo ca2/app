@@ -11,21 +11,21 @@ namespace draw2d
    public:
 
 
-      enum_region                      m_eregion;
-      double                           m_x1;
-      double                           m_y1;
-      double                           m_x2;
-      double                           m_y2;
-      double                           m_x3;
-      double                           m_y3;
-      POINTD *                         m_lppoints;
-      int *                            m_lppolycounts;
-      i32                              m_nCount;
-      ::draw2d::e_fill_mode            m_efillmode;
-      __pointer(::draw2d::region)      m_pregion1;
-      __pointer(::draw2d::region)      m_pregion2;
-      enum_combine                     m_ecombine;
-      ::point                          m_pointOffset;
+      enum_region                         m_eregion;
+      double                              m_x1;
+      double                              m_y1;
+      double                              m_x2;
+      double                              m_y2;
+      double                              m_x3;
+      double                              m_y3;
+      POINTD *                            m_lppoints;
+      int *                               m_lppolycounts;
+      i32                                 m_nCount;
+      ::draw2d::enum_fill_mode            m_efillmode;
+      __pointer(::draw2d::region)   m_pregion1;
+      __pointer(::draw2d::region)   m_pregion2;
+      enum_combine                        m_ecombine;
+      ::point                             m_pointOffset;
 
 
       region();
@@ -38,13 +38,13 @@ namespace draw2d
       virtual bool create_oval(const ::rect & rect);
       
 
-      virtual bool create_polygon(const POINT32 * pPoints, i32 nCount, ::draw2d::e_fill_mode efillmode);
+      virtual bool create_polygon(const POINT32 * pPoints, i32 nCount, ::draw2d::enum_fill_mode efillmode);
 
-      virtual bool create_polygon(const POINTD * pPoints, i32 nCount,::draw2d::e_fill_mode efillmode);
+      virtual bool create_polygon(const POINTD * pPoints, i32 nCount,::draw2d::enum_fill_mode efillmode);
 
-      virtual bool create_poly_polygon(const POINTD * pPoints, const i32 * lpPolyCounts, i32 nCount, ::draw2d::e_fill_mode efillmode);
+      virtual bool create_poly_polygon(const POINTD * pPoints, const i32 * lpPolyCounts, i32 nCount, ::draw2d::enum_fill_mode efillmode);
 
-      virtual bool create_poly_polygon(const POINT32 * pPoints, const i32 * lpPolyCounts, i32 nCount,::draw2d::e_fill_mode efillmode);
+      virtual bool create_poly_polygon(const POINT32 * pPoints, const i32 * lpPolyCounts, i32 nCount,::draw2d::enum_fill_mode efillmode);
 
       
       virtual bool combine(const ::draw2d::region * prgn1, const ::draw2d::region * prgn2, enum_combine ecombine, ::draw2d::graphics * pgraphics = nullptr);

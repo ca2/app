@@ -1459,7 +1459,7 @@ return { 0,0 };
          {
             // allow reflections
             if (::user::interaction::on_command(0,
-               MAKELONG((index)CN_UPDATE_::user::command, WM_COMMAND+WM_REFLECT_BASE),
+               MAKELONG((index)CN_UPDATE_::user::command, e_message_command+WM_REFLECT_BASE),
                &state, nullptr))
                continue;
 

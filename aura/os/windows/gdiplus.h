@@ -54,8 +54,8 @@ inline auto copy(RECTD * prectTarget, const Gdiplus::RectF * prectSource) { retu
 inline void copy(Gdiplus::Point * ppoint1, const POINTD * ppoint2)
 {
 
-   ppoint1->X = (INT)ppoint2->x;
-   ppoint1->Y = (INT)ppoint2->y;
+   ppoint1->X = (::i32)ppoint2->x;
+   ppoint1->Y = (::i32)ppoint2->y;
 
 }
 
@@ -63,8 +63,8 @@ inline void copy(Gdiplus::Point * ppoint1, const POINTD * ppoint2)
 inline void copy(Gdiplus::Point * ppoint1, const POINT32 * ppoint2)
 {
 
-   ppoint1->X = (INT)ppoint2->x;
-   ppoint1->Y = (INT)ppoint2->y;
+   ppoint1->X = (::i32)ppoint2->x;
+   ppoint1->Y = (::i32)ppoint2->y;
 
 }
 

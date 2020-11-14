@@ -141,7 +141,7 @@ typedef struct tagMIXERcaPSA
    ::u16            wMid;                   /* manufacturer id */
    ::u16            wPid;                   /* product id */
    MMVERSION       vDriverVersion;         /* version of the driver */
-   CHAR            szPname[MAXPNAMELEN];   /* product name */
+   char            szPname[MAXPNAMELEN];   /* product name */
    ::u32           fdwSupport;             /* misc. support bits */
    ::u32           cDestinations;          /* count of destinations */
 } MIXERcaPSA, *PMIXERcaPSA, *LPMIXERcaPSA;
@@ -168,7 +168,7 @@ typedef struct tagMIXERcaPS2A
    ::u16            wMid;                   /* manufacturer id */
    ::u16            wPid;                   /* product id */
    MMVERSION       vDriverVersion;         /* version of the driver */
-   CHAR            szPname[MAXPNAMELEN];   /* product name */
+   char            szPname[MAXPNAMELEN];   /* product name */
    ::u32           fdwSupport;             /* misc. support bits */
    ::u32           cDestinations;          /* count of destinations */
    GUID            ManufacturerGuid;       /* for extensible MID mapping */
@@ -225,8 +225,8 @@ typedef struct tagMIXERLINEA
    ::u32       cChannels;              /* number of channels line supports */
    ::u32       cConnections;           /* number of connections [possible] */
    ::u32       cControls;              /* number of controls at this line */
-   CHAR        szShortName[MIXER_SHORT_NAME_CHARS];
-   CHAR        szName[MIXER_LONG_NAME_CHARS];
+   char        szShortName[MIXER_SHORT_NAME_CHARS];
+   char        szName[MIXER_LONG_NAME_CHARS];
    struct
    {
       ::u32       dwType;                 /* MIXERLINE_TARGETTYPE_xxxx */
@@ -234,7 +234,7 @@ typedef struct tagMIXERLINEA
       ::u16        wMid;                   /* of target device */
       ::u16        wPid;                   /*      " */
       MMVERSION   vDriverVersion;         /*      " */
-      CHAR        szPname[MAXPNAMELEN];   /*      " */
+      char        szPname[MAXPNAMELEN];   /*      " */
    } Target;
 } MIXERLINEA, *PMIXERLINEA, *LPMIXERLINEA;
 typedef struct tagMIXERLINEW
@@ -280,8 +280,8 @@ typedef struct tagMIXERCONTROLA
    ::u32           dwControlType;      /* MIXERCONTROL_CONTROLTYPE_xxx */
    ::u32           fdwControl;         /* MIXERCONTROL_CONTROLF_xxx */
    ::u32           cMultipleItems;     /* if MIXERCONTROL_CONTROLF_MULTIPLE set */
-   CHAR            szShortName[MIXER_SHORT_NAME_CHARS];
-   CHAR            szName[MIXER_LONG_NAME_CHARS];
+   char            szShortName[MIXER_SHORT_NAME_CHARS];
+   char            szName[MIXER_LONG_NAME_CHARS];
    union
    {
       struct

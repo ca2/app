@@ -15,7 +15,7 @@ namespace user
       m_scrolldataHorz.m_iPage = 0;
       m_scrolldataHorz.m_iLine = 0;
       m_scrolldataHorz.m_bScrollEnable = true;
-      m_scrolldataHorz.m_iWidth = GetSystemMetrics(SM_CXHSCROLL);
+      //m_scrolldataHorz.m_iWidth = GetSystemMetrics(SM_CXHSCROLL);
 
    }
 

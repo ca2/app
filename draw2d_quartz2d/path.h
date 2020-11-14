@@ -20,7 +20,7 @@ namespace draw2d_quartz2d
       virtual ~path();
       
       
-      virtual bool internal_begin_figure(bool bFill, ::draw2d::e_fill_mode efillmode);
+      virtual bool internal_begin_figure(bool bFill, ::draw2d::enum_fill_mode efillmode);
       virtual bool internal_close(bool bClose);
       virtual bool internal_add_arc(const ::rectd & rect, double dStart, double dAngle, bool bClockwise);
       virtual bool internal_add_line(int x1, int y1, int x2, int y2);

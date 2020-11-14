@@ -160,7 +160,7 @@ typedef ::u32 far           *LPDWORD;
 typedef void far            *LPVOID;
 typedef CONST void far      *const void *;
 
-typedef i32                 INT;
+typedef i32                 ::i32;
 typedef u32        ::u32;
 typedef u32        *P::u32;
 
@@ -383,7 +383,7 @@ struct tagHandle
 //typedef void far            *LPVOID;
 //typedef CONST void far      *const void *;
 
-//typedef i32                 INT;
+//typedef i32                 ::i32;
 //typedef u32        ::u32;
 //typedef u32        *P::u32;
 
@@ -409,10 +409,10 @@ typedef char * char *;
 
 #ifndef VOID
 #define VOID void
-typedef char CHAR;
+typedef char char;
 typedef short SHORT;
 typedef i32 ::i32;
-typedef i32 INT;
+typedef i32 ::i32;
 #endif
 
 //
@@ -462,20 +462,20 @@ typedef  CONST WCHAR UNALIGNED *PCUNZWCH;
 //
 // ANSI (Multi-byte Character) types
 //
-//typedef CHAR *PCHAR, *LPCH, *PCH;
-//typedef CONST CHAR *LPCCH, *PCCH;
+//typedef char *PCHAR, *LPCH, *PCH;
+//typedef CONST char *LPCCH, *PCCH;
 
-//typedef  CHAR *NPSTR, *char *, *PSTR;
+//typedef  char *NPSTR, *char *, *PSTR;
 typedef  PSTR *PZPSTR;
 typedef  CONST PSTR *PCZPSTR;
-//typedef  CONST CHAR *const char *, *PCSTR;
+//typedef  CONST char *const char *, *PCSTR;
 typedef  PCSTR *PZPCSTR;
 
-typedef  CHAR *PZZSTR;
-typedef  CONST CHAR *PCZZSTR;
+typedef  char *PZZSTR;
+typedef  CONST char *PCZZSTR;
 
-typedef  CHAR *PNZCH;
-typedef  CONST CHAR *PCNZCH;
+typedef  char *PNZCH;
+typedef  CONST char *PCNZCH;
 
 
 
@@ -578,7 +578,7 @@ MY_EXTERN_C void set_last_error(::u32 dw);
 
 
 /*
-typedef char CHAR;
+typedef char char;
 typedef uchar WINUCHAR;
 
 #undef byte
@@ -591,7 +591,7 @@ typedef u16 WINUSHORT;
 typedef u16 ::u16;*/
 typedef i16 VARIANT_BOOL;
 /*
-typedef i32 INT;
+typedef i32 ::i32;
 typedef i32 INT32;
 typedef u32 ::u32;
 typedef u32 ::u32;
@@ -608,8 +608,8 @@ typedef ::u32 u32;
 //typedef u64 ULONGLONG;
 
 #ifndef _UWP
-typedef const CHAR *const char *;
-typedef CHAR TCHAR;
+typedef const char *const char *;
+typedef char TCHAR;
 #endif
 typedef const TCHAR *LPCTSTR;
 typedef unichar WCHAR;
@@ -726,13 +726,13 @@ typedef struct tagPROPVARIANT
    PROPVAR_PAD3 wReserved3;
    union
    {
-      CHAR cVal;
+      char cVal;
       WINUCHAR bVal;
       SHORT iVal;
       WINUSHORT uiVal;
       ::i32 lVal;
       WINULONG ulVal;
-      INT intVal;
+      ::i32 intVal;
       ::u32 untVal;
       LARGE_INTEGER hVal;
       ULARGE_INTEGER updateVal;

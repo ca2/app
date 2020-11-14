@@ -1089,7 +1089,7 @@ void android_mouse(unsigned int message, float x, float y)
 // void android_l_button_down(float x, float y)
 // {
 
-//    android_mouse(e_message_lbutton_down, x, y);
+//    android_mouse(e_message_left_button_down, x, y);
 
 // }
 
@@ -1113,7 +1113,7 @@ void android_mouse(unsigned int message, float x, float y)
 // void android_l_button_up(float x, float y)
 // {
 
-//    android_mouse(e_message_lbutton_up, x, y);
+//    android_mouse(e_message_left_button_up, x, y);
 
 // }
 
@@ -1487,7 +1487,7 @@ CLASS_DECL_APEX ::estatus os_message_box(oswindow oswindow, const char * pText, 
 
    switch(emessagebox & 7)
    {
-   case MB_OK:
+   case e_message_box_ok:
       iButton = 1;
       break;
    case MB_OKCANCEL:

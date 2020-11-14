@@ -93,10 +93,10 @@ BOOL ca2rdp_end_paint(rdpContext* context)
       g->CreateCompatibleDC(nullptr);
       g->Attach(gdi->primary->hdc->alpha);
       ca2rdpi->primary->get_graphics()->BitBlt(ca2rdpi->update_rect.left,ca2rdpi->update_rect.top,
-         ca2rdpi->update_rect.width(),ca2rdpi->update_rect.height,g,0, 0,SRCCOPY);
+         ca2rdpi->update_rect.width(),ca2rdpi->update_rect.height,g,0, 0);
       g->Detach();
    #else
-      ca2rdpi->primary->BitBlt(ca2rdpi->surface,SRCCOPY);
+      ca2rdpi->primary->BitBlt(ca2rdpi->surface);
    #endif*/
    return 1;
 }

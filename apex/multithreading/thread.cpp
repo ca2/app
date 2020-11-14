@@ -2104,7 +2104,7 @@ namespace thread_util
    inline bool IsButtonUp(::message::message * pmessage)
    {
       SCAST_PTR(::message::base,pbase,pmessage);
-      return pbase->m_id == e_message_lbutton_up;
+      return pbase->m_id == e_message_left_button_up;
    }
 
 }
@@ -3909,7 +3909,7 @@ void thread::message_handler(::message::base * pbase)
 
 #ifdef WINDOWS_DESKTOP
 
-      if (msg.hwnd != nullptr || msg.message == WM_TIMER)
+      if (msg.hwnd != nullptr || msg.message == e_message_timer)
       {
 
          ::TranslateMessage(&msg);

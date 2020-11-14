@@ -647,17 +647,17 @@
 //enum enum_message_box
 //{
 //
-//   message_box_ok = MB_OK,
-//   message_box_yes_no = MB_YESNO,
-//   message_box_yes_no_cancel = MB_YESNOCANCEL,
-//   message_box_icon_error = MB_ICONERROR,
-//   message_box_icon_exclamation = MB_ICONEXCLAMATION,
-//   message_box_icon_question = MB_ICONQUESTION,
-//   message_box_icon_asterisk = MB_ICONASTERISK,
-//   message_box_icon_hand = message_box_icon_error,
-//   message_box_icon_warning = message_box_icon_exclamation,
-//   message_box_icon_information = message_box_icon_asterisk,
-//   message_box_icon_stop = message_box_icon_asterisk,
+//   e_message_box_ok = e_message_box_ok,
+//   e_message_box_yes_no = MB_YESNO,
+//   e_message_box_yes_no_cancel = MB_YESNOCANCEL,
+//   e_message_box_icon_error = MB_ICONERROR,
+//   e_message_box_icon_exclamation = e_message_box_icon_exclamation,
+//   e_message_box_icon_question = MB_ICONQUESTION,
+//   e_message_box_icon_asterisk = MB_ICONASTERISK,
+//   e_message_box_icon_hand = e_message_box_icon_error,
+//   e_message_box_icon_warning = e_message_box_icon_exclamation,
+//   e_message_box_icon_information = e_message_box_icon_asterisk,
+//   e_message_box_icon_stop = e_message_box_icon_asterisk,
 //
 //};
 

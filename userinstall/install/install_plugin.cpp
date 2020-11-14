@@ -458,7 +458,7 @@ namespace install
       if(bTimedOut)
       {
 
-         //::message_box(nullptr," - " + set["app"].get_string() + "\nhas timed out while trying to run.\n\nFor developers it is recommended to\nfix this timeout problem.\n\nYou may kill it manually :\n - \"" + strPath + "\"\nif it it does not come up.","Error Message",MB_ICONINFORMATION | MB_OK);
+         //::message_box(nullptr," - " + set["app"].get_string() + "\nhas timed out while trying to run.\n\nFor developers it is recommended to\nfix this timeout problem.\n\nYou may kill it manually :\n - \"" + strPath + "\"\nif it it does not come up.","Error Message",MB_ICONINFORMATION | e_message_box_ok);
 
          //m_phost->m_pbasecomposer->m_strEntryHallText = "Starting Application...";
 
@@ -472,7 +472,7 @@ namespace install
       else if((int) dwExitCode >= 0)
       {
 
-         //  ::message_box(nullptr,"Successfully run : " + strPath,"Debug only message, please install.",MB_ICONINFORMATION | MB_OK);
+         //  ::message_box(nullptr,"Successfully run : " + strPath,"Debug only message, please install.",MB_ICONINFORMATION | e_message_box_ok);
 
          m_phost->m_pbasecomposer->m_strEntryHallText = "***Application started.";
 
@@ -482,7 +482,7 @@ namespace install
       else
       {
 
-         //::message_box(nullptr,strPath + "\n\nFailed return code : " + __str(dwExitCode),"Error Message",MB_ICONINFORMATION | MB_OK);
+         //::message_box(nullptr,strPath + "\n\nFailed return code : " + __str(dwExitCode),"Error Message",MB_ICONINFORMATION | e_message_box_ok);
 
          //m_phost->m_pbasecomposer->m_strEntryHallText = "***Failed to start application.";
 

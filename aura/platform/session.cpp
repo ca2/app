@@ -6,7 +6,7 @@
 #include "apex/platform/app_core.h"
 #include "apex/platform/static_setup.h"
 #include "apex/platform/str_context.h"
-
+#include "acme/os/cross/windows/_windows.h"
 
 #ifdef LINUX
 void enum_display_monitors(::aura::session * psession);
@@ -1528,12 +1528,12 @@ the file README-colorramp for more information. */
 
    //   i64 iMessage = pmouse->m_id;
 
-   //   if(iMessage == e_message_lbutton_down
-   //    //|| iMessage == e_message_lbutton_up
-   //    || iMessage == e_message_rbutton_down
-   //    //|| iMessage == e_message_rbutton_up
-   //    || iMessage == WM_MBUTTONDOWN
-   //    //|| iMessage == WM_MBUTTONUP
+   //   if(iMessage == e_message_left_button_down
+   //    //|| iMessage == e_message_left_button_up
+   //    || iMessage == e_message_right_button_down
+   //    //|| iMessage == e_message_right_button_up
+   //    || iMessage == e_message_middle_button_down
+   //    //|| iMessage == e_message_middle_button_up
    //    )
    //    {
 

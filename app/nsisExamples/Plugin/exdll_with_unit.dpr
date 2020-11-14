@@ -43,8 +43,8 @@ begin
   // set up global variables
   Init(hwndParent, string_size, variables, stacktop);
 
-  NSISDialog(GetUserVariable(INST_0), 'The value of $0', MB_OK);
-  NSISDialog(PopString, 'pop', MB_OK);
+  NSISDialog(GetUserVariable(INST_0), 'The value of $0', e_message_box_ok);
+  NSISDialog(PopString, 'pop', e_message_box_ok);
   PushString('Hello, this is a push');
   SetUserVariable(INST_0, 'This is user var $0');
 end;
@@ -66,7 +66,7 @@ begin
   Result := nil;
   if NSPIM = NSPIM_UNLOAD then
     begin
-      NSISDialog(PChar('NSPIM_UNLOAD is the final callback, goodbye...'), PChar('mynsiscallback'), MB_OK);
+      NSISDialog(PChar('NSPIM_UNLOAD is the final callback, goodbye...'), PChar('mynsiscallback'), e_message_box_ok);
     end;
 end;
 

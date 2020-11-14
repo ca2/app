@@ -433,7 +433,7 @@ public:
 
    virtual ::estatus do_request(::create * pcreate);
 
-   inline ::estatus message_box(const char* pszMessage, const char* pszTitle = nullptr, ::emessagebox emessagebox = message_box_ok, const ::futurevar & futurevar = ::futurevar())
+   inline ::estatus message_box(const char* pszMessage, const char* pszTitle = nullptr, ::emessagebox emessagebox = e_message_box_ok, const ::futurevar & futurevar = ::futurevar())
    {
    
       return message_box(nullptr, pszMessage, pszTitle, emessagebox, futurevar);
@@ -441,15 +441,15 @@ public:
    }
 
 
-   inline ::estatus message_box_timeout(const char* pszMessage, const char* pszTitle = nullptr, const ::duration& durationTimeout = ::duration::infinite(), ::emessagebox emessagebox = message_box_ok, const ::futurevar & futurevar = ::futurevar())
+   inline ::estatus message_box_timeout(const char* pszMessage, const char* pszTitle = nullptr, const ::duration& durationTimeout = ::duration::infinite(), ::emessagebox emessagebox = e_message_box_ok, const ::futurevar & futurevar = ::futurevar())
    {
 
       return message_box_timeout(nullptr, pszMessage, pszTitle, durationTimeout, emessagebox, futurevar);
 
    }
 
-   virtual ::estatus message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle = nullptr, ::emessagebox emessagebox = message_box_ok, const ::futurevar & futurevar = ::futurevar());
-   virtual ::estatus message_box_timeout(::user::primitive* pwndOwner, const char* pszMessage, const char* pszTitle = nullptr, const ::duration& durationTimeout = ::duration::infinite(), ::emessagebox emessagebox = message_box_ok, const ::futurevar & futurevar = ::futurevar());
+   virtual ::estatus message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle = nullptr, ::emessagebox emessagebox = e_message_box_ok, const ::futurevar & futurevar = ::futurevar());
+   virtual ::estatus message_box_timeout(::user::primitive* pwndOwner, const char* pszMessage, const char* pszTitle = nullptr, const ::duration& durationTimeout = ::duration::infinite(), ::emessagebox emessagebox = e_message_box_ok, const ::futurevar & futurevar = ::futurevar());
 
    virtual void release_references();
 

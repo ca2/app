@@ -152,15 +152,15 @@ void html_form::install_message_routing(::channel * pchannel)
 
    MESSAGE_LINK(e_message_create, pchannel, this, &html_form::_001OnCreate);
 
-   //MESSAGE_LINK(e_message_lbutton_down, pchannel, this, &::user::interaction::_001OnLButtonDown);
-   //MESSAGE_LINK(e_message_lbutton_up, pchannel, this, &::user::interaction::_001OnLButtonUp);
+   //MESSAGE_LINK(e_message_left_button_down, pchannel, this, &::user::interaction::_001OnLButtonDown);
+   //MESSAGE_LINK(e_message_left_button_up, pchannel, this, &::user::interaction::_001OnLButtonUp);
    MESSAGE_LINK(e_message_key_down, pchannel, this, &::html_form::_001OnKeyDown);
    //MESSAGE_LINK(e_message_key_up, pchannel, this, &::user::interaction::_001OnKeyUp);
 
-   MESSAGE_LINK(e_message_lbutton_down, pchannel, this, &html_form::_001OnLButtonDown);
+   MESSAGE_LINK(e_message_left_button_down, pchannel, this, &html_form::_001OnLButtonDown);
    MESSAGE_LINK(e_message_mouse_move, pchannel, this, &html_form::_001OnMouseMove);
-   MESSAGE_LINK(WM_MOUSELEAVE, pchannel, this, &html_form::_001OnMouseLeave);
-   MESSAGE_LINK(e_message_lbutton_up, pchannel, this, &html_form::_001OnLButtonUp);
+   MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &html_form::_001OnMouseLeave);
+   MESSAGE_LINK(e_message_left_button_up, pchannel, this, &html_form::_001OnLButtonUp);
 
    MESSAGE_LINK(html::message_on_image_loaded, pchannel, this, &html_form::_001OnImageLoaded);
 

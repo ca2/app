@@ -237,7 +237,7 @@ namespace draw2d_cairo
 
       bool PolyDraw(const POINT32* lpPoints, const byte* lpTypes, count nCount) override;
       bool PolylineTo(const POINT32* lpPoints, count nCount) override;
-      bool PolyPolyline(const POINT32* lpPoints, const INT * lpPolyPoints, count nCount) override;
+      bool PolyPolyline(const POINT32* lpPoints, const ::i32 * lpPolyPoints, count nCount) override;
 
       bool PolyBezier(const POINT32* lpPoints, count nCount) override;
       bool PolyBezierTo(const POINT32* lpPoints, count nCount) override;
@@ -488,7 +488,7 @@ namespace draw2d_cairo
 
       //      HGDIOBJ SelectObject(HGDIOBJ) override;      // do not use for regions
 
-      virtual bool set_alpha_mode(::draw2d::e_alpha_mode ealphamode) override;
+      virtual bool set_alpha_mode(::draw2d::enum_alpha_mode ealphamode) override;
 
       virtual bool set_text_rendering_hint(::draw2d::e_text_rendering_hint etextrenderinghint) override;
 

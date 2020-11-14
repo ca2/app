@@ -102,10 +102,10 @@ void simple_toolbar::install_message_routing(::channel * pchannel)
 
    MESSAGE_LINK(e_message_create       , pchannel, this, &simple_toolbar::_001OnCreate);
    //MESSAGE_LINK(e_message_mouse_move    , pchannel, this, &simple_toolbar::_001OnMouseMove);
-   //MESSAGE_LINK(e_message_lbutton_down  , pchannel, this, &simple_toolbar::_001OnLButtonDown);
-   //MESSAGE_LINK(e_message_lbutton_up    , pchannel, this, &simple_toolbar::_001OnLButtonUp);
+   //MESSAGE_LINK(e_message_left_button_down  , pchannel, this, &simple_toolbar::_001OnLButtonDown);
+   //MESSAGE_LINK(e_message_left_button_up    , pchannel, this, &simple_toolbar::_001OnLButtonUp);
    //MESSAGE_LINK(e_message_nchittest    , pchannel, this, &simple_toolbar::_001OnNcHitTest);
-   //MESSAGE_LINK(WM_MOUSELEAVE   , pchannel, this, &simple_toolbar::_001OnMouseLeave);
+   //MESSAGE_LINK(e_message_mouse_leave   , pchannel, this, &simple_toolbar::_001OnMouseLeave);
 
    install_simple_ui_default_mouse_handling(pchannel);
    
@@ -377,7 +377,7 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 //
 //   // erase parts not drawn
 //   //pgraphics->IntersectClipRect(rectWindow);
-//   //SendMessage(WM_ERASEBKGND, (WPARAM)pgraphics->get_handle1());
+//   //SendMessage(e_message_erase_background, (WPARAM)pgraphics->get_handle1());
 //
 //   // draw gripper in non-client area
 //   DrawGripper(pgraphics, rectWindow);
@@ -418,7 +418,7 @@ void simple_toolbar::on_command_probe(::user::frame_window * ptarget, bool bDisa
 
          // allow reflections
          //if (::user::interaction::on_command(0,
-         //   MAKELONG((index)CN_UPDATE_::user::command, WM_COMMAND+WM_REFLECT_BASE),
+         //   MAKELONG((index)CN_UPDATE_::user::command, e_message_command+WM_REFLECT_BASE),
          //   &state, nullptr))
          //   continue;
 

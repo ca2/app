@@ -22,7 +22,7 @@ else __msg_entry(e_message_size)
 else __msg_entry(e_message_activate)
 else __msg_entry(e_message_set_focus)
 else __msg_entry(e_message_kill_focus)
-else __msg_entry(WM_ENABLE)
+else __msg_entry(e_message_enable)
 else __msg_entry(WM_SETREDRAW)
 else __msg_entry(WM_SETTEXT)
 else __msg_entry(WM_GETTEXT)
@@ -33,9 +33,9 @@ else __msg_entry(WM_QUERYENDSESSION)
 else __msg_entry(WM_QUERYOPEN)
 else __msg_entry(WM_ENDSESSION)
 else __msg_entry(e_message_quit)
-else __msg_entry(WM_ERASEBKGND)
+else __msg_entry(e_message_erase_background)
 else __msg_entry(WM_SYSCOLORCHANGE)
-else __msg_entry(WM_SHOWWINDOW)
+else __msg_entry(e_message_show_window)
 else __msg_entry(WM_WININICHANGE)
 else __msg_entry(WM_SETTINGCHANGE)
 else __msg_entry(WM_DEVMODECHANGE)
@@ -43,7 +43,7 @@ else __msg_entry(WM_ACTIVATEAPP)
 else __msg_entry(WM_FONTCHANGE)
 else __msg_entry(WM_TIMECHANGE)
 else __msg_entry(WM_CANCELMODE)
-else __msg_entry(WM_SETCURSOR)
+else __msg_entry(e_message_set_cursor)
 else __msg_entry(e_message_mouse_activate)
 else __msg_entry(WM_CHILDACTIVATE)
 else __msg_entry(WM_QUEUESYNC)
@@ -53,7 +53,7 @@ else __msg_entry(WM_ICONERASEBKGND)
 else __msg_entry(WM_NEXTDLGCTL)
 else __msg_entry(WM_SPOOLERSTATUS)
 else __msg_entry(WM_DRAWITEM)
-else __msg_entry(WM_MEASUREITEM)
+else __msg_entry(e_message_measure_item)
 else __msg_entry(WM_DELETEITEM)
 else __msg_entry(WM_VKEYTOITEM)
 else __msg_entry(WM_CHARTOITEM)
@@ -68,8 +68,8 @@ else __msg_entry(WM_GETOBJECT) // 0x003D 61
 
 else __msg_entry(WM_COMPACTING)
 else __msg_entry(WM_COMMNOTIFY)
-else __msg_entry(WM_WINDOWPOSCHANGING)
-else __msg_entry(WM_WINDOWPOSCHANGED)
+else __msg_entry(e_message_window_position_changing)
+else __msg_entry(e_message_window_position_changed)
 
 else __msg_entry(WM_POWER)// 0x0048
 
@@ -92,7 +92,7 @@ else __msg_entry(WM_NOTIFYFORMAT)//    0x0055
 else __msg_entry(WM_CONTEXTMENU)
 else __msg_entry(WM_STYLECHANGING)
 else __msg_entry(WM_STYLECHANGED)
-else __msg_entry(WM_DISPLAYCHANGE)
+else __msg_entry(e_message_display_change)
 else __msg_entry(WM_GETICON)
 else __msg_entry(WM_SETICON)
 else __msg_entry(e_message_nccreate)
@@ -107,8 +107,8 @@ else __msg_entry(WM_GETDLGCODE)
 else __msg_entry(WM_SYNCPAINT)//)//      0x0088
 
 else __msg_entry(e_message_non_client_mouse_move)//)//      0x00A0
-else __msg_entry(WM_NCLBUTTONDOWN)//)//      0x00A1
-else __msg_entry(WM_NCLBUTTONUP)//)//      0x00A2
+else __msg_entry(e_message_non_client_left_button_down)//)//      0x00A1
+else __msg_entry(e_message_non_client_left_button_up)//)//      0x00A2
 else __msg_entry(WM_NCLBUTTONDBLCLK)//)//      0x00A3
 else __msg_entry(WM_NCRBUTTONDOWN)//)//      0x00A4
 else __msg_entry(WM_NCRBUTTONUP)//           0x00A5
@@ -134,13 +134,13 @@ else __msg_entry(e_message_key_last)      //            0x0109
 
 
 else __msg_entry(WM_INITDIALOG)      //             0x0110
-else __msg_entry(WM_COMMAND)      //             0x0111
+else __msg_entry(e_message_command)      //             0x0111
 else __msg_entry(WM_SYSCOMMAND)      //             0x0112
-else __msg_entry(WM_TIMER)      //             0x0113
+else __msg_entry(e_message_timer)      //             0x0113
 else __msg_entry(e_message_hscroll)      //             0x0114
 else __msg_entry(e_message_vscroll)      //             0x0115
 else __msg_entry(WM_INITMENU)      //             0x0116
-else __msg_entry(WM_INITMENUPOPUP)      //             0x0117
+else __msg_entry(e_message_initialize_menu_popup)      //             0x0117
 
 else __msg_entry(WM_IME_SETCONTEXT) //)//  0x281
 else __msg_entry(WM_IME_NOTIFY)
@@ -189,7 +189,7 @@ return str;
 {
 
    e_message_mouse_move,
-   WM_SETCURSOR,
+   e_message_set_cursor,
    e_message_nchittest,
    e_message_non_client_mouse_move,
    (::u32)-1
@@ -210,8 +210,8 @@ return str;
 ::u32 g_puiaMessageWindowActivating[] =
 {
    // 2019-06-28-00-33
-   WM_WINDOWPOSCHANGING,
-   WM_WINDOWPOSCHANGED,
+   e_message_window_position_changing,
+   e_message_window_position_changed,
    WM_ACTIVATEAPP,
    e_message_ncactivate,
    WM_SYSCOMMAND,
@@ -237,8 +237,8 @@ return str;
    WM_SETTEXT,
    e_message_size,
    e_message_move,
-   WM_SHOWWINDOW,
-   WM_WINDOWPOSCHANGING,
+   e_message_show_window,
+   e_message_window_position_changing,
    WM_ACTIVATEAPP,
    e_message_ncactivate,
    e_message_activate,
@@ -246,8 +246,8 @@ return str;
    WM_IME_NOTIFY,
    e_message_set_focus,
    e_message_ncpaint,
-   WM_ERASEBKGND,
-   WM_WINDOWPOSCHANGED,
+   e_message_erase_background,
+   e_message_window_position_changed,
    WM_GETICON,
    WM_DWMNCRENDERINGCHANGED,
    e_message_paint,

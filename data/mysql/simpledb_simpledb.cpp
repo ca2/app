@@ -36,7 +36,7 @@ namespace simpledb
 
       if(!m_pserver->initialize())
       {
-         Platform.userex()->message_box(nullptr, "Could not initialize simpledb.", MB_OK);
+         Platform.userex()->message_box(nullptr, "Could not initialize simpledb.", e_message_box_ok);
          return false;
       }
 

@@ -64,13 +64,13 @@ namespace user
       MESSAGE_LINK(e_message_mouse_activate, pchannel, this, &combo_list::_001OnMouseActivate);
       MESSAGE_LINK(e_message_key_down, pchannel, this, &combo_list::_001OnKeyDown);
       MESSAGE_LINK(e_message_key_up, pchannel, this, &combo_list::_001OnKeyUp);
-      MESSAGE_LINK(e_message_lbutton_down, pchannel, this, &combo_list::_001OnLButtonDown);
-      MESSAGE_LINK(WM_NCLBUTTONDOWN, pchannel, this, &combo_list::_001OnLButtonDown);
-      MESSAGE_LINK(e_message_lbutton_up, pchannel, this, &combo_list::_001OnLButtonUp);
-      MESSAGE_LINK(WM_MBUTTONDOWN, pchannel, this, &combo_list::_001OnMButtonDown);
-      MESSAGE_LINK(e_message_rbutton_down, pchannel, this, &combo_list::_001OnRButtonDown);
+      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &combo_list::_001OnLButtonDown);
+      MESSAGE_LINK(e_message_non_client_left_button_down, pchannel, this, &combo_list::_001OnLButtonDown);
+      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &combo_list::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_middle_button_down, pchannel, this, &combo_list::_001OnMButtonDown);
+      MESSAGE_LINK(e_message_right_button_down, pchannel, this, &combo_list::_001OnRButtonDown);
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &combo_list::_001OnMouseMove);
-      MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &combo_list::_001OnShowWindow);
+      MESSAGE_LINK(e_message_show_window, pchannel, this, &combo_list::_001OnShowWindow);
 
    }
 

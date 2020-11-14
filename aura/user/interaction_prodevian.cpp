@@ -382,7 +382,7 @@ bool prodevian::prodevian_iteration()
 
 #endif
 
-         if (m_message.message == WM_NULL)
+         if (m_message.message == e_message_null)
          {
 
             return true;
@@ -410,7 +410,7 @@ bool prodevian::prodevian_iteration()
          while (peek_message(&m_message, NULL, 0, 0, PM_REMOVE))
          {
 
-            if (m_message.message == WM_NULL)
+            if (m_message.message == e_message_null)
             {
 
                return true;

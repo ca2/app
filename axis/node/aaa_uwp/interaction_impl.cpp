@@ -323,13 +323,13 @@ namespace uwp
          m_puserinteraction->install_message_routing(pchannel);
       }
       MESSAGE_LINK(e_message_create, pchannel, this,&interaction_impl::_001OnCreate);
-      MESSAGE_LINK(WM_SETCURSOR, pchannel, this,&interaction_impl::_001OnSetCursor);
-      MESSAGE_LINK(WM_ERASEBKGND, pchannel, this,&interaction_impl::_001OnEraseBkgnd);
+      MESSAGE_LINK(e_message_set_cursor, pchannel, this,&interaction_impl::_001OnSetCursor);
+      MESSAGE_LINK(e_message_erase_background, pchannel, this,&interaction_impl::_001OnEraseBkgnd);
       MESSAGE_LINK(e_message_move, pchannel, this,&interaction_impl::_001OnMove);
       MESSAGE_LINK(e_message_size, pchannel, this,&interaction_impl::_001OnSize);
       MESSAGE_LINK(e_message_set_focus, pchannel, this, &interaction_impl::_001OnSetFocus);
       MESSAGE_LINK(e_message_kill_focus, pchannel, this, &interaction_impl::_001OnKillFocus);
-      //MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this,&interaction_impl::_001OnShowWindow);
+      //MESSAGE_LINK(e_message_show_window, pchannel, this,&interaction_impl::_001OnShowWindow);
 //      MESSAGE_LINK(ca2m_PRODEVIAN_SYNCH, pchannel, this,&interaction_impl::_001OnProdevianSynch);
       prio_install_message_routing(pchannel);
    }
@@ -937,11 +937,11 @@ namespace uwp
          }
       }
 
-      if(pbase->m_id == WM_TIMER)
+      if(pbase->m_id == e_message_timer)
       {
 //         m_puserinteraction->get_context_application()->step_timer();
       }
-      else if(pbase->m_id == e_message_lbutton_down)
+      else if(pbase->m_id == e_message_left_button_down)
       {
          //g_pwndLastLButtonDown = m_puserinteraction;
       }
@@ -959,12 +959,12 @@ namespace uwp
 
       //_000OnMouseLeave(pbase);
 
-      if(pbase->m_id == e_message_lbutton_down ||
-            pbase->m_id == e_message_lbutton_up ||
-            pbase->m_id == WM_MBUTTONDOWN ||
-            pbase->m_id == WM_MBUTTONUP ||
-            pbase->m_id == e_message_rbutton_down ||
-            pbase->m_id == e_message_rbutton_up ||
+      if(pbase->m_id == e_message_left_button_down ||
+            pbase->m_id == e_message_left_button_up ||
+            pbase->m_id == e_message_middle_button_down ||
+            pbase->m_id == e_message_middle_button_up ||
+            pbase->m_id == e_message_right_button_down ||
+            pbase->m_id == e_message_right_button_up ||
             pbase->m_id == e_message_mouse_move ||
             pbase->m_id == e_message_mouse_wheel)
       {
@@ -974,10 +974,10 @@ namespace uwp
          if (pbase)
          {
 
-            if (pbase->m_id == e_message_lbutton_up)
+            if (pbase->m_id == e_message_left_button_up)
             {
 
-               output_debug_string("e_message_lbutton_up");
+               output_debug_string("e_message_left_button_up");
 
             }
 
@@ -1129,7 +1129,7 @@ namespace uwp
    mmf.pfn = 0;
    CInternalGlobalLock winMsgLock;
    // special case for commands
-   if (message == WM_COMMAND)
+   if (message == e_message_command)
    {
    if (OnCommand(wParam, lParam))
    {
@@ -1153,7 +1153,7 @@ namespace uwp
    __handle_activate(this, wParam, ::uwp::interaction_impl::from_handle((oswindow)lParam));
 
    // special case for set cursor HTERROR
-   if (message == WM_SETCURSOR &&
+   if (message == e_message_set_cursor &&
    __handle_set_cursor(this, (short)LOWORD(lParam), HIWORD(lParam)))
    {
    lResult = 1;
@@ -2004,7 +2004,7 @@ return TRUE;
       case e_message_vscroll:
       case WM_PARENTNOTIFY:
       case WM_DRAWITEM:
-      case WM_MEASUREITEM:
+      case e_message_measure_item:
       case WM_DELETEITEM:
       case WM_VKEYTOITEM:
       case WM_CHARTOITEM:
@@ -2013,12 +2013,12 @@ return TRUE;
          //return interaction_impl::OnWndMsg(WM_REFLECT_BASE+uMsg, wParam, lParam, pResult);
          return FALSE;
 
-      // special case for WM_COMMAND
-      case WM_COMMAND:
+      // special case for e_message_command
+      case e_message_command:
       {
          // reflect the message through the message ::map as OCM_COMMAND
          /* xxx         int nCode = HIWORD(wParam);
-         if (interaction_impl::_001OnCommand(0, MAKELONG(nCode, WM_REFLECT_BASE+WM_COMMAND), nullptr, nullptr))
+         if (interaction_impl::_001OnCommand(0, MAKELONG(nCode, WM_REFLECT_BASE+e_message_command), nullptr, nullptr))
          {
          if (pResult != nullptr)
          *pResult = 1;
@@ -2157,7 +2157,7 @@ return TRUE;
                GetKeyState(VK_CONTROL) >= 0 &&
                GetKeyState(VK_MENU) >= 0)
          {
-            //            pMainWnd->SendMessage(WM_COMMAND, ID_HELP);
+            //            pMainWnd->SendMessage(e_message_command, ID_HELP);
             return TRUE;
          }
       }
@@ -2623,7 +2623,7 @@ return TRUE;
       {
       // call it directly to disable any routing
       if (WIN_WINDOW(pWnd)->interaction_impl::_001OnCommand(0, MAKELONG(0xffff,
-      WM_COMMAND+WM_REFLECT_BASE), &state, nullptr))
+      e_message_command+WM_REFLECT_BASE), &state, nullptr))
       continue;
       }
 
@@ -5563,8 +5563,8 @@ __STATIC bool CLASS_DECL_BASE
 __handle_set_cursor(::user::interaction_impl * pWnd, ::u32 nHitTest, ::u32 nMsg)
 {
    if (nHitTest == HTERROR &&
-         (nMsg == e_message_lbutton_down || nMsg == WM_MBUTTONDOWN ||
-          nMsg == e_message_rbutton_down))
+         (nMsg == e_message_left_button_down || nMsg == e_message_middle_button_down ||
+          nMsg == e_message_right_button_down))
    {
       // activate the last active interaction_impl if not active
       ::user::interaction * pLastActive = WIN_WINDOW(pWnd)->GetTopLevel();
@@ -5762,7 +5762,7 @@ __activation_window_procedure(oswindow hWnd, ::u32 nMsg, WPARAM wParam, LPARAM l
                            ::uwp::interaction_impl::from_handle((oswindow)lParam));
          break;
 
-      case WM_SETCURSOR:
+      case e_message_set_cursor:
          bCallDefault = !__handle_set_cursor(::uwp::interaction_impl::from_handle(hWnd),
                                              (short)LOWORD(lParam), HIWORD(lParam));
          break;

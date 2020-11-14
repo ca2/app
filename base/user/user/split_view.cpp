@@ -31,7 +31,7 @@ namespace user
       MESSAGE_LINK(e_message_create, pchannel, this, &split_view::_001OnCreate);
 
       //MESSAGE_LINK(e_message_size, pchannel, this, &split_view::_001OnSize);
-      //MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &split_view::_001OnShowWindow);
+      //MESSAGE_LINK(e_message_show_window, pchannel, this, &split_view::_001OnShowWindow);
 
    }
 
@@ -88,7 +88,7 @@ namespace user
          strMessage.Format("split_view::on_create_impact failed to create views for split view %s", typeid(this).raw_name());
 #endif
 
-         message_box_timeout(strMessage, nullptr, 10_s, message_box_icon_exclamation);
+         message_box_timeout(strMessage, nullptr, 10_s, e_message_box_icon_exclamation);
 
       }
 

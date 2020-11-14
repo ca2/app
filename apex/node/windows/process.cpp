@@ -26,10 +26,10 @@ namespace windows
 
       }
 
-      if(m_pi.hthread != INVALID_HANDLE_VALUE && m_pi.hthread != nullptr)
+      if(m_pi.hThread != INVALID_HANDLE_VALUE && m_pi.hThread != nullptr)
       {
 
-         CloseHandle(m_pi.hthread);
+         CloseHandle(m_pi.hThread);
 
       }
 
@@ -173,7 +173,7 @@ namespace windows
    bool process::has_exited()
    {
 
-      ::u32 dwExitCode;
+      DWORD dwExitCode;
 
       bool bExited;
 
@@ -213,7 +213,7 @@ namespace windows
    bool process::synch_elevated(const char * pszCmdLine,int iShow,const ::duration & durationTimeOut,bool * pbTimeOut)
    {
 
-      ::u32 dwExitCode = 0;
+      DWORD dwExitCode = 0;
 
       HANDLE h = nullptr;
 
@@ -248,9 +248,10 @@ namespace windows
       }
 
       bool bTimedOut = true;
-auto tickStart = ::tick::now();
 
-      ::u32 tickTimeout = durationTimeOut.tick_duration();
+      auto tickStart = ::tick::now();
+
+      auto tickTimeout = durationTimeOut.tick_duration();
 
       while(tickStart.elapsed() < tickTimeout)
       {

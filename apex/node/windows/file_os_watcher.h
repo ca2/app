@@ -33,7 +33,7 @@ namespace file
       HANDLE               m_hDirectory;
       byte                 m_buffer[32 * 1024];
       LPARAM               m_lparam;
-      u32             m_dwNotify;
+      DWORD                m_dwNotify;
       bool                 m_bRefresh;
 
 
@@ -42,7 +42,7 @@ namespace file
 
       virtual bool open(const ::file::path & pathFolder, bool bRecursive) override;
 
-      static void CALLBACK callback(::u32 dwErrorCode, ::u32 dwNumberOfBytesTransfered, LPOVERLAPPED pOverlapped);
+      static void CALLBACK callback(DWORD dwErrorCode, DWORD dwNumberOfBytesTransfered, LPOVERLAPPED pOverlapped);
 
 
       virtual bool step() override;

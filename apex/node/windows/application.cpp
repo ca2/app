@@ -89,14 +89,11 @@ namespace apex
 
       GetModuleFileNameW(nullptr, pszModuleFilePath, MAX_PATH + 1);
 
-
-      ::u32 dw;
+      DWORD dw;
 
       ::u32 dwResSize = GetFileVersionInfoSizeW(
                         pszModuleFilePath,
-
                         &dw);
-
 
       if (dwResSize > 0)
       {
@@ -135,7 +132,7 @@ namespace apex
 
                char * psz;
 
-               ::u32 uSize;
+               UINT uSize;
 
                //strKey.Format(
                //"\\StringFileInfo\\%04x%04x\\FileDescription",
@@ -152,10 +149,10 @@ namespace apex
                if (VerQueryValue(memory.get_data(),
                   (char *)(const char*)strKey,
                   (LPVOID*)&psz,
-                  &uiSize))
+                  &uSize))
                {
 
-                  string strVersion(psz, uiSize);
+                  string strVersion(psz, uSize);
 
                   return strVersion;
 

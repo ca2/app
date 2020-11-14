@@ -7641,7 +7641,7 @@ namespace apex
 
       memory storage;
 
-      if (!GetResourceData(uiResource, "EnhMetaFile", storage))
+      if (!GetResourceData(uResource, "EnhMetaFile", storage))
       {
 
          return nullptr;
@@ -8832,21 +8832,29 @@ namespace apex
    // creating it if it doesn't exist.
    // responsibility of the caller to call RegCloseKey() on the returned HKEY
    HKEY application::GetSectionKey(const char* pszSection)
-
    {
+
       ASSERT(pszSection != nullptr);
 
-
       HKEY hSectionKey = nullptr;
+
       HKEY hAppKey = GetAppRegistryKey();
+
       if (hAppKey == nullptr)
+      {
+
          return nullptr;
 
-      ::u32 dw;
+      }
+
+      DWORD dw;
+
       RegCreateKeyExW(hAppKey, wstring(pszSection), 0, REG_NONE, REG_OPTION_NON_VOLATILE, KEY_WRITE | KEY_READ, nullptr, &hSectionKey, &dw);
 
       RegCloseKey(hAppKey);
+
       return hSectionKey;
+
    }
 
 #endif

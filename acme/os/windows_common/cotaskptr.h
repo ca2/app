@@ -129,7 +129,7 @@ class sec_cotaskptr :
 public:
 
 
-   ::u32         m_size;
+   DWORD         m_size;
 
 
    sec_cotaskptr()

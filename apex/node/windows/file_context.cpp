@@ -445,14 +445,17 @@ namespace windows
       // last modification time
       if (status.m_mtime.get_time() != 0)
       {
-         lastWriteTime = status.m_mtime.to_filetime();
-         pLastWriteTime = &lastWriteTime;
+         
+         lastWriteTime = __FILETIME(status.m_mtime);
 
+         pLastWriteTime = &lastWriteTime;
 
          // last access time
          if (status.m_atime.get_time() != 0)
          {
-            lastAccessTime = status.m_atime.to_filetime();
+
+            lastAccessTime = __FILETIME(status.m_atime);
+
             pLastAccessTime = &lastAccessTime;
 
          }
@@ -460,7 +463,9 @@ namespace windows
          // create time
          if (status.m_ctime.get_time() != 0)
          {
-            creationTime = status.m_ctime.to_filetime();
+
+            creationTime = __FILETIME(status.m_ctime);
+
             pCreationTime = &creationTime;
 
          }

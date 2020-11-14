@@ -145,8 +145,7 @@ namespace file
    }
 
 
-   void CALLBACK os_watch::callback(::u32 dwErrorCode,::u32 dwNumberOfBytesTransfered,LPOVERLAPPED pOverlapped)
-
+   void CALLBACK os_watch::callback(DWORD dwErrorCode, DWORD dwNumberOfBytesTransfered,LPOVERLAPPED pOverlapped)
    {
 
       //TCHAR szFile[MAX_PATH];

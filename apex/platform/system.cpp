@@ -80,13 +80,22 @@ void dappy(const char * psz);
 
 
 #ifdef WINDOWS_DESKTOP
+
+#include <Lmcons.h>
+
 string get_user_name()
 {
-   WCHAR wsz[1024];
-   ::u32 dwSize = sizeof(wsz) / sizeof(WCHAR);
+   
+   WCHAR wsz[UNLEN * 2];
+
+   DWORD dwSize = sizeof(wsz) / sizeof(WCHAR);
+
    ::GetUserNameW(wsz,&dwSize);
+
    return string(wsz);
+
 }
+
 #include "acme/os/windows/_c.h"
 #endif
 

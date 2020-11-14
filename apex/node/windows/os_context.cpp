@@ -215,18 +215,24 @@ namespace windows
 
       if (nullptr != hProcess )
       {
+         
          HMODULE hMod;
-         ::u32 cbNeeded;
 
-         if(EnumProcessModules( hProcess, &hMod, sizeof(hMod),
-                                &cbNeeded) )
+         DWORD cbNeeded;
+
+         if(EnumProcessModules(hProcess, &hMod, sizeof(hMod), &cbNeeded))
          {
+            
             strName = get_module_path(hMod);
+
          }
+
       }
 
       CloseHandle( hProcess );
+
       return strName;
+
    }
 
 
@@ -237,14 +243,14 @@ namespace windows
 
       ua.allocate(0);
 
-      ::u32 cbNeeded = 0;
+      DWORD cbNeeded = 0;
 
       while(cbNeeded == natural(ua.get_count()))
       {
 
          ua.allocate(ua.get_count() + 1024);
 
-         if(!EnumProcesses((::u32 *) ua.get_data(), (::u32) (ua.get_count() * sizeof(::u32)), &cbNeeded))
+         if(!EnumProcesses((DWORD *) ua.get_data(), (DWORD) (ua.get_count() * sizeof(::u32)), &cbNeeded))
          {
 
             return;
@@ -797,13 +803,17 @@ namespace windows
       TOKEN_USER tokenUser;
       byte buffer[SECURITY_MAX_SID_SIZE];
    };
+
+
    HRESULT GetCurrentUserIdentity(TOKEN_INFO & tokenInfo)
    {
+
       // Declare variables.
       bool bOk = true;
-      HANDLE tokenHandle = nullptr;
-      ::u32 bytesReturned = 0;
 
+      HANDLE tokenHandle = nullptr;
+
+      DWORD bytesReturned = 0;
 
       // Open the access token associated with the
       // current process
@@ -848,9 +858,9 @@ namespace windows
    PSID *Sid
    )
    {
-      char * ReferencedDomain=nullptr;
-      ::u32 cbSid=128;    // initial allocation attempt
-      ::u32 cchReferencedDomain=16; // initial allocation size
+      LPTSTR ReferencedDomain=nullptr;
+      DWORD cbSid=128;    // initial allocation attempt
+      DWORD cchReferencedDomain=16; // initial allocation size
       SID_NAME_USE peUse;
       BOOL bSuccess=FALSE; // assume this function will fail
 
@@ -1118,9 +1128,9 @@ retry:
       if(dwResult == NO_ERROR)
       {
 
-         ::u32 lenName = maxLenName;
-         ::u32 lenDomain = maxLenDomain;
-         ::u32 lenPass = maxLenPass;
+         DWORD lenName = maxLenName;
+         DWORD lenDomain = maxLenDomain;
+         DWORD lenPass = maxLenPass;
 
          bOk = LIBCALL(credui, CredUnPackAuthenticationBufferW)(CRED_PACK_PROTECTED_CREDENTIALS,
                pvAuthBlob,
@@ -3075,7 +3085,7 @@ repeat:
                   if (SUCCEEDED(hr))
                   {
 
-                     ::u32 dwNumItems = 0; // number of items in multiple selection
+                     DWORD dwNumItems = 0; // number of items in multiple selection
 
                      hr = pitema->GetCount(&dwNumItems);  // get number of selected items
 

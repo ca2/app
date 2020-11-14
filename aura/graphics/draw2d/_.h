@@ -1,6 +1,10 @@
 #pragma once
 
 
+
+#include "_const.h"
+
+
 using edock = cflag < e_dock >;
 using eborder = cflag < e_border >;
 using egrip = cflag < e_grip >;

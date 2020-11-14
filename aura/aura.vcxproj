@@ -1317,6 +1317,7 @@
     <ClInclude Include="gpu\gpu\shader.h" />
     <ClInclude Include="gpu\gpu\_.h" />
     <ClInclude Include="graphics\draw2d\context_image.h" />
+    <ClInclude Include="graphics\draw2d\_const.h" />
     <ClInclude Include="graphics\draw2d\_draw2d.h" />
     <ClInclude Include="graphics\text\bounding_rect.h" />
     <ClInclude Include="graphics\text\contains.h" />

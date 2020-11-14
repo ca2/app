@@ -1255,7 +1255,7 @@ namespace user
    }
 
 
-   LONG_PTR primitive::set_window_long_ptr(i32 nIndex,LONG_PTR lValue)
+   iptr primitive::set_window_long_ptr(i32 nIndex, iptr lValue)
    {
 
       ::exception::throw_interface_only();

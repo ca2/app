@@ -90,6 +90,9 @@ using HSYNC = HANDLE;
 #define LOBYTE(w)           ((byte)(((dword_ptr)(w)) & 0xff))
 #define HIBYTE(w)           ((byte)((((dword_ptr)(w)) >> 8) & 0xff))
 
+#define MAKEWPARAM(l, h)      ((WPARAM)(::u32)MAKELONG(l, h))
+#define MAKELPARAM(l, h)      ((LPARAM)(::u32)MAKELONG(l, h))
+#define MAKELRESULT(l, h)     ((LRESULT)(::u32)MAKELONG(l, h))
 
 
 #define WS_CHILD            0x40000000L

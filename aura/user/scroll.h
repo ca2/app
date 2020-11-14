@@ -50,7 +50,7 @@ namespace user
       virtual void on_change_view_size() override;
       virtual void on_change_viewport_offset() override;
       virtual void create_x_scroll_bar(const ::rect & rect);
-      virtual void layout_scroll_bar() override;
+      virtual void layout_scroll_bar(::draw2d::graphics_pointer & pgraphics) override;
       virtual void _001DeferCreateXScrollBar();
       virtual void _001OnDeferCreateXScrollBar();
       virtual bool validate_viewport_offset(point & point) override;

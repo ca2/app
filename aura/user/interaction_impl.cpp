@@ -86,7 +86,7 @@ namespace user
 
       m_uCodePage = 0;
 
-      m_langid = 0;
+      m_iLangId = 0;
 
       m_bPendingRedraw = false;
 

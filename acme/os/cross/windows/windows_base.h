@@ -7,7 +7,7 @@ typedef void * LPSECURITY_ATTRIBUTES;
 #define CREATE_SUSPENDED 0x00000004
 
 #define IGNORE              0       // Ignore signal
-#define U32_INFINITE_TIMEOUT            0xFFFFFFFF  // Infinite timeout
+//#define U32_INFINITE_TIMEOUT            0xFFFFFFFF  // Infinite timeout
 
 
 

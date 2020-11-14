@@ -68,7 +68,7 @@ typedef LRESULT(CALLBACK* HOOKPROC)(i32 code,WPARAM wParam,LPARAM lParam);
 typedef VOID(CALLBACK* SENDASYNCPROC)(oswindow,::u32,ulong_ptr,LRESULT);
 
 typedef int_bool(CALLBACK* PROPENUMPROca)(oswindow,const char *,HANDLE);
-typedef int_bool(CALLBACK* PROPENUMPROCW)(oswindow,LPCWSTR,HANDLE);
+typedef int_bool(CALLBACK* PROPENUMPROCW)(oswindow,const widechar *,HANDLE);
 
 typedef int_bool(CALLBACK* PROPENUMPROCEXA)(oswindow,char *,HANDLE,ulong_ptr);
 typedef int_bool(CALLBACK* PROPENUMPROCEXW)(oswindow,LPWSTR,HANDLE,ulong_ptr);
@@ -273,7 +273,7 @@ typedef struct
 
 #if((_WIN32_WINNT >= 0x0400) || (WINVER >= 0x0500))
 #define WM_MOUSEHOVER                   0x02A1
-#define WM_MOUSELEAVE                   0x02A3
+#define e_message_mouse_leave                   0x02A3
 #endif
 #if(WINVER >= 0x0500)
 #define WM_NCMOUSEHOVER                 0x02A0
@@ -296,12 +296,12 @@ typedef struct
 #define WM_RENDERALLFORMATS             0x0306
 #define WM_DESTROYCLIPBOARD             0x0307
 #define WM_DRAWCLIPBOARD                0x0308
-#define WM_PAINTCLIPBOARD               0x0309
-#define WM_VSCROLLCLIPBOARD             0x030A
+#define e_message_paintCLIPBOARD               0x0309
+#define e_message_vscrollCLIPBOARD             0x030A
 #define WM_SIZECLIPBOARD                0x030B
 #define WM_ASKCBFORMATNAME              0x030C
 #define WM_CHANGECBCHAIN                0x030D
-#define WM_HSCROLLCLIPBOARD             0x030E
+#define e_message_hscrollCLIPBOARD             0x030E
 #define WM_QUERYNEWPALETTE              0x030F
 #define WM_PALETTEISCHANGING            0x0310
 #define WM_PALETTECHANGED               0x0311
@@ -383,7 +383,7 @@ typedef struct
 #ifndef NONCMESSAGES
 
 /*
-* WM_NCHITTEST and MOUSEHOOKSTRUCT Mouse Position Codes
+* e_message_nchittest and MOUSEHOOKSTRUCT Mouse Position Codes
 */
 #define HTERROR             (-2)
 #define HTTRANSPARENT       (-1)
@@ -434,7 +434,7 @@ typedef struct
 #endif /* !NONCMESSAGES */
 
 /*
-* WM_MOUSEACTIVATE Return Codes
+* e_message_mouse_activate Return Codes
 */
 #define MA_ACTIVATE         1
 #define MA_ACTIVATEANDEAT   2
@@ -461,7 +461,7 @@ const char * lpString);
 ::u32
 WINAPI
 RegisterWindowMessageW(
-LPCWSTR lpString);
+const widechar * lpString);
 #ifdef UNICODE
 #define RegisterWindowMessage  RegisterWindowMessageW
 #else
@@ -478,12 +478,12 @@ LPCWSTR lpString);
 #define SWP_NOZORDER        0x0004
 #define SWP_NOREDRAW        0x0008
 #define SWP_NOACTIVATE      0x0010
-#define SWP_FRAMECHANGED    0x0020  /* The frame changed: send WM_NCCALCSIZE */
+#define SWP_FRAMECHANGED    0x0020  /* The frame changed: send e_message_nccalcsize */
 #define SWP_SHOWWINDOW      0x0040
 #define SWP_HIDEWINDOW      0x0080
 #define SWP_NOCOPYBITS      0x0100
 #define SWP_NOOWNERZORDER   0x0200  /* Don't do owner Z ordering */
-#define SWP_NOSENDCHANGING  0x0400  /* Don't send WM_WINDOWPOSCHANGING */
+#define SWP_NOSENDCHANGING  0x0400  /* Don't send e_message_window_position_changing */
 
 #define SWP_DRAWFRAME       SWP_FRAMECHANGED
 #define SWP_NOREPOSITION    SWP_NOOWNERZORDER
@@ -674,7 +674,7 @@ typedef struct tagDRAWTEXTPARAMS
 
 
 /*
-* WM_NCCALCSIZE "window valid rect" return values
+* e_message_nccalcsize "window valid rect" return values
 */
 #define WVR_ALIGNTOP        0x0010
 #define WVR_ALIGNLEFT       0x0020
@@ -717,7 +717,7 @@ typedef struct tagDRAWTEXTPARAMS
 #define SHOW_OPENNOACTIVATE 4
 
 /*
-* Identifiers for the WM_SHOWWINDOW message
+* Identifiers for the e_message_show_window message
 */
 #define SW_PARENTCLOSING    1
 #define SW_OTHERZOOM        2
@@ -766,7 +766,7 @@ oswindow hWnd,
 /*
 * MessageBox() Flags
 */
-#define MB_OK                       0x00000000L
+#define e_message_box_ok                       0x00000000L
 #define MB_OKCANCEL                 0x00000001L
 #define MB_ABORTRETRYIGNORE         0x00000002L
 #define MB_YESNOCANCEL              0x00000003L
@@ -779,17 +779,17 @@ oswindow hWnd,
 
 #define MB_ICONHAND                 0x00000010L
 #define MB_ICONQUESTION             0x00000020L
-#define MB_ICONEXCLAMATION          0x00000030L
+#define e_message_box_icon_exclamation          0x00000030L
 #define MB_ICONASTERISK             0x00000040L
 
 //#if(WINVER >= 0x0400)
 #define MB_USERICON                 0x00000080L
-#define MB_ICONWARNING              MB_ICONEXCLAMATION
+#define MB_ICONWARNING              e_message_box_icon_exclamation
 #define MB_ICONERROR                MB_ICONHAND
 //#endif /* WINVER >= 0x0400 */
 
 #define MB_ICONINFORMATION          MB_ICONASTERISK
-#define MB_ICONSTOP                 MB_ICONHAND
+#define e_message_box_icon_stop                 MB_ICONHAND
 
 #define MB_DEFBUTTON1               0x00000000L
 #define MB_DEFBUTTON2               0x00000100L
@@ -799,7 +799,7 @@ oswindow hWnd,
 //#endif /* WINVER >= 0x0400 */
 
 #define MB_APPLMODAL                0x00000000L
-#define MB_SYSTEMMODAL              0x00001000L
+#define e_message_box_system_modal              0x00001000L
 #define MB_TASKMODAL                0x00002000L
 #if(WINVER >= 0x0400)
 #define MB_HELP                     0x00004000L // Help Button
@@ -849,14 +849,14 @@ oswindow hWnd,
 
 #define COLOR_SCROLLBAR         0
 #define COLOR_BACKGROUND        1
-#define COLOR_ACTIVEcaPTION     2
-#define COLOR_INACTIVEcaPTION   3
+#define COLOR_ACTIVECAPTION     2
+#define COLOR_INACTIVECAPTION   3
 #define COLOR_MENU              4
 #define COLOR_WINDOW            5
 #define COLOR_WINDOWFRAME       6
 #define COLOR_MENUTEXT          7
 #define COLOR_WINDOWTEXT        8
-#define COLOR_caPTIONTEXT       9
+#define COLOR_CAPTIONTEXT       9
 #define COLOR_ACTIVEBORDER      10
 #define COLOR_INACTIVEBORDER    11
 #define COLOR_APPWORKSPACE      12
@@ -866,7 +866,7 @@ oswindow hWnd,
 #define COLOR_BTNSHADOW         16
 #define COLOR_GRAYTEXT          17
 #define COLOR_BTNTEXT           18
-#define COLOR_INACTIVEcaPTIONTEXT 19
+#define COLOR_INACTIVECAPTIONTEXT 19
 #define COLOR_BTNHIGHLIGHT      20
 
 #if(WINVER >= 0x0400)
@@ -878,8 +878,8 @@ oswindow hWnd,
 
 #if(WINVER >= 0x0500)
 #define COLOR_HOTLIGHT          26
-#define COLOR_GRADIENTACTIVEcaPTION 27
-#define COLOR_GRADIENTINACTIVEcaPTION 28
+#define COLOR_GRADIENTACTIVECAPTION 27
+#define COLOR_GRADIENTINACTIVECAPTION 28
 #if(WINVER >= 0x0501)
 #define COLOR_MENUHILIGHT       29
 #define COLOR_MENUBAR           30
@@ -970,21 +970,7 @@ typedef struct tagPAINTSTRUCT
 } PAINTSTRUCT,*PPAINTSTRUCT,*NPPAINTSTRUCT,*LPPAINTSTRUCT;
 
 
-typedef struct tagCREATESTRUCTA
-{
-   LPVOID      lpCreateParams;
-   HINSTANCE   hInstance;
-   HMENU       hMenu;
-   oswindow        hwndParent;
-   i32         cy;
-   i32         cx;
-   i32         y;
-   i32         x;
-   ::i32        style;
-   const char *      lpszName;
-   const char *      lpszClass;
-   ::u32       dwExStyle;
-} CREATESTRUCTA,*LPCREATESTRUCTA;
+
 typedef struct tagCREATESTRUCTW
 {
    LPVOID      lpCreateParams;
@@ -996,8 +982,8 @@ typedef struct tagCREATESTRUCTW
    i32         y;
    i32         x;
    ::i32        style;
-   LPCWSTR     lpszName;
-   LPCWSTR     lpszClass;
+   const widechar *     lpszName;
+   const widechar *     lpszClass;
    ::u32       dwExStyle;
 } CREATESTRUCTW,*LPCREATESTRUCTW;
 #ifdef UNICODE
@@ -1189,9 +1175,9 @@ int_bool WINAPI IsIconic(oswindow hWnd);
 #ifndef _UWP
 typedef struct tagNMHDR
 {
-   oswindow      hwndFrom;
-   ::u32_PTR  idFrom;
-   ::u32      code;         // NM_ code
+   oswindow     hwndFrom;
+   UINT_PTR     idFrom;
+   UINT         code;
 }   NMHDR;
 
 
@@ -1529,7 +1515,7 @@ typedef struct tagSTYLESTRUCT
  * Window Messages
  */
 
-#define WM_NULL                         0x0000
+#define e_message_null                         0x0000
 //#define e_message_create                       0x0001
 //#define e_message_destroy                      0x0002
 //#define e_message_move                         0x0003
@@ -1545,12 +1531,12 @@ typedef struct tagSTYLESTRUCT
 
 //#define e_message_set_focus                     0x0007
 //#define e_message_kill_focus                    0x0008
-#define WM_ENABLE                       0x000A
+#define e_message_enable                       0x000A
 #define WM_SETREDRAW                    0x000B
 #define WM_SETTEXT                      0x000C
 #define WM_GETTEXT                      0x000D
 #define WM_GETTEXTLENGTH                0x000E
-#define WM_PAINT                        0x000F
+#define e_message_paint                        0x000F
 #define WM_CLOSE                        0x0010
 //#ifndef _WIN32_WCE
 #define WM_QUERYENDSESSION              0x0011
@@ -1558,9 +1544,9 @@ typedef struct tagSTYLESTRUCT
 #define WM_ENDSESSION                   0x0016
 //#endif
 //#define e_message_quit                         0x0012
-#define WM_ERASEBKGND                   0x0014
+#define e_message_erase_background                   0x0014
 #define WM_SYSCOLORCHANGE               0x0015
-#define WM_SHOWWINDOW                   0x0018
+#define e_message_show_window                   0x0018
 #define WM_WININICHANGE                 0x001A
 //#if(WINVER >= 0x0400)
 #define WM_SETTINGCHANGE                WM_WININICHANGE
@@ -1572,8 +1558,8 @@ typedef struct tagSTYLESTRUCT
 #define WM_FONTCHANGE                   0x001D
 #define WM_TIMECHANGE                   0x001E
 #define WM_CANCELMODE                   0x001F
-#define WM_SETCURSOR                    0x0020
-#define WM_MOUSEACTIVATE                0x0021
+#define e_message_set_cursor                    0x0020
+#define e_message_mouse_activate                0x0021
 #define WM_CHILDACTIVATE                0x0022
 #define WM_QUEUESYNC                    0x0023
 
@@ -1590,12 +1576,12 @@ typedef struct tagMINMAXINFO
    POINT32 pointMaxTrackSize;
 } MINMAXINFO, *PMINMAXINFO, *LPMINMAXINFO;
 
-#define WM_PAINTICON                    0x0026
+#define e_message_paintICON                    0x0026
 #define WM_ICONERASEBKGND               0x0027
 #define WM_NEXTDLGCTL                   0x0028
 #define WM_SPOOLERSTATUS                0x002A
 #define WM_DRAWITEM                     0x002B
-#define WM_MEASUREITEM                  0x002C
+#define e_message_measure_item                  0x002C
 #define WM_DELETEITEM                   0x002D
 #define WM_VKEYTOITEM                   0x002E
 #define WM_CHARTOITEM                   0x002F
@@ -1612,8 +1598,8 @@ typedef struct tagMINMAXINFO
 //#endif /* WINVER >= 0x0500 */
 #define WM_COMPACTING                   0x0041
 #define WM_COMMNOTIFY                   0x0044  /* no longer suported */
-#define WM_WINDOWPOSCHANGING            0x0046
-#define WM_WINDOWPOSCHANGED             0x0047
+#define e_message_window_position_changing            0x0046
+#define e_message_window_position_changed             0x0047
 
 #define WM_POWER                        0x0048
 /*
@@ -1666,24 +1652,24 @@ typedef struct tagMDINEXTMENU
 #define WM_CONTEXTMENU                  0x007B
 #define WM_STYLECHANGING                0x007C
 #define WM_STYLECHANGED                 0x007D
-#define WM_DISPLAYCHANGE                0x007E
+#define e_message_display_change                0x007E
 #define WM_GETICON                      0x007F
 #define WM_SETICON                      0x0080
 //#endif /* WINVER >= 0x0400 */
 
-#define WM_NCCREATE                     0x0081
-#define WM_NCDESTROY                    0x0082
-#define WM_NCCALCSIZE                   0x0083
-#define WM_NCHITTEST                    0x0084
-#define WM_NCPAINT                      0x0085
-#define WM_NCACTIVATE                   0x0086
+#define e_message_nccreate                     0x0081
+#define e_message_ncdestroy                    0x0082
+#define e_message_nccalcsize                   0x0083
+#define e_message_nchittest                    0x0084
+#define e_message_ncpaint                      0x0085
+#define e_message_ncactivate                   0x0086
 #define WM_GETDLGCODE                   0x0087
 //#ifndef _WIN32_WCE
 #define WM_SYNCPAINT                    0x0088
 //#endif
 #define e_message_non_client_mouse_move                  0x00A0
-#define WM_NCLBUTTONDOWN                0x00A1
-#define WM_NCLBUTTONUP                  0x00A2
+#define e_message_non_client_left_button_down                0x00A1
+#define e_message_non_client_left_button_up                  0x00A2
 #define WM_NCLBUTTONDBLCLK              0x00A3
 #define WM_NCRBUTTONDOWN                0x00A4
 #define WM_NCRBUTTONUP                  0x00A5
@@ -1734,13 +1720,13 @@ typedef struct tagMDINEXTMENU
 //#endif /* WINVER >= 0x0400 */
 
 #define WM_INITDIALOG                   0x0110
-#define WM_COMMAND                      0x0111
+#define e_message_command                      0x0111
 #define WM_SYSCOMMAND                   0x0112
-#define WM_TIMER                        0x0113
-#define WM_HSCROLL                      0x0114
-#define WM_VSCROLL                      0x0115
+#define e_message_timer                        0x0113
+#define e_message_hscroll                      0x0114
+#define e_message_vscroll                      0x0115
 #define WM_INITMENU                     0x0116
-#define WM_INITMENUPOPUP                0x0117
+#define e_message_initialize_menu_popup                0x0117
 //#if(WINVER >= 0x0601)
 #define WM_GESTURE                      0x0119
 #define WM_GESTURENOTIFY                0x011A
@@ -1796,13 +1782,13 @@ typedef struct tagMDINEXTMENU
 //#define e_message_mouse_move                    0x0200
 #define WM_LBUTTONDOWN                  0x0201
 #define WM_LBUTTONUP                    0x0202
-#define WM_LBUTTONDBLCLK                0x0203
+#define e_message_left_button_double_click                0x0203
 #define WM_RBUTTONDOWN                  0x0204
 #define WM_RBUTTONUP                    0x0205
-#define WM_RBUTTONDBLCLK                0x0206
-#define WM_MBUTTONDOWN                  0x0207
-#define WM_MBUTTONUP                    0x0208
-#define WM_MBUTTONDBLCLK                0x0209
+#define e_message_right_button_double_click                0x0206
+#define e_message_middle_button_down                  0x0207
+#define e_message_middle_button_up                    0x0208
+#define e_message_middle_button_double_click                0x0209
 //#if (_WIN32_WINNT >= 0x0400) || (_WIN32_WINDOWS > 0x0400)
 #define WM_MOUSEWHEEL                   0x020A
 //#endif
@@ -1981,7 +1967,7 @@ typedef struct
 
 //#if((_WIN32_WINNT >= 0x0400) || (WINVER >= 0x0500))
 #define WM_MOUSEHOVER                   0x02A1
-#define WM_MOUSELEAVE                   0x02A3
+#define e_message_mouse_leave                   0x02A3
 //#endif
 //#if(WINVER >= 0x0500)
 #define WM_NCMOUSEHOVER                 0x02A0
@@ -2004,12 +1990,12 @@ typedef struct
 #define WM_RENDERALLFORMATS             0x0306
 #define WM_DESTROYCLIPBOARD             0x0307
 #define WM_DRAWCLIPBOARD                0x0308
-#define WM_PAINTCLIPBOARD               0x0309
-#define WM_VSCROLLCLIPBOARD             0x030A
+#define e_message_paintCLIPBOARD               0x0309
+#define e_message_vscrollCLIPBOARD             0x030A
 #define WM_SIZECLIPBOARD                0x030B
 #define WM_ASKCBFORMATNAME              0x030C
 #define WM_CHANGECBCHAIN                0x030D
-#define WM_HSCROLLCLIPBOARD             0x030E
+#define e_message_hscrollCLIPBOARD             0x030E
 #define WM_QUERYNEWPALETTE              0x030F
 #define WM_PALETTEISCHANGING            0x0310
 #define WM_PALETTECHANGED               0x0311
@@ -2091,7 +2077,7 @@ typedef struct
 //#ifndef NONCMESSAGES
 
 /*
- * WM_NCHITTEST and MOUSEHOOKSTRUCT Mouse Position Codes
+ * e_message_nchittest and MOUSEHOOKSTRUCT Mouse Position Codes
  */
 #define HTERROR             (-2)
 #define HTTRANSPARENT       (-1)
@@ -2144,7 +2130,7 @@ typedef struct
 //#endif /* !NONCMESSAGES */
 
 /*
- * WM_MOUSEACTIVATE Return Codes
+ * e_message_mouse_activate Return Codes
  */
 #define MA_ACTIVATE         1
 #define MA_ACTIVATEANDEAT   2
@@ -2173,7 +2159,7 @@ const char * lpString);
 ::u32
 WINAPI
 RegisterWindowMessageW(
-LPCWSTR lpString);
+const widechar * lpString);
 //#ifdef UNICODE
 #define RegisterWindowMessage  RegisterWindowMessageW
 //#else
@@ -2206,34 +2192,37 @@ LPCWSTR lpString);
 //#pragma region Desktop Family
 //#if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
 
+
 /*
- * WM_WINDOWPOSCHANGING/CHANGED struct pointed to by lParam
+ * e_message_window_position_changing/CHANGED struct pointed to by lParam
  */
-typedef struct tagWINDOWPOS
+typedef struct _tagWINDOWPOS
 {
    oswindow    hwnd;
    oswindow    hwndInsertAfter;
-   i32     x;
-   i32     y;
-   i32     cx;
-   i32     cy;
-   ::u32    flags;
-} WINDOWPOS, *LPWINDOWPOS, *PWINDOWPOS;
+   i32         x;
+   i32         y;
+   i32         cx;
+   i32         cy;
+   ::u32       flags;
+} WINDOWPOS, *PWINDOWPOS, *LPWINDOWPOS;
+
+
 
 /*
- * WM_NCCALCSIZE parameter structure
+ * e_message_nccalcsize parameter structure
  */
 typedef struct tagNCCALCSIZE_PARAMS
 {
-   RECT32       rgrc[3];
-   PWINDOWPOS lppos;
+   RECT32         rgrc[3];
+   PWINDOWPOS     lppos;
 } NCCALCSIZE_PARAMS, *LPNCCALCSIZE_PARAMS;
 
 //#endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP) */
 //#pragma endregion
 
 /*
- * WM_NCCALCSIZE "interaction_impl valid rect" return values
+ * e_message_nccalcsize "interaction_impl valid rect" return values
  */
 #define WVR_ALIGNTOP        0x0010
 #define WVR_ALIGNLEFT       0x0020
@@ -2335,9 +2324,9 @@ LPTRACKMOUSEEVENT lpEventTrack);
 #define SM_CXFULLSCREEN         16
 #define SM_CYFULLSCREEN         17
 #define SM_CYKANJIWINDOW        18
-#define SM_MOUSEPRESENT         19
-#define SM_CYVSCROLL            20
-#define SM_CXHSCROLL            21
+#define SM_MOUSEPRESENT         19 \
+//#define SM_CYVSCROLL            20
+//#define SM_CXHSCROLL            21
 #define SM_DEBUG                22
 #define SM_SWAPBUTTON           23
 #define SM_RESERVED1            24
@@ -2706,21 +2695,21 @@ CLASS_DECL_ACME int_bool SubtractRect(LPRECT32 prect, LPCRECT32 prect1, LPCRECT3
 
 //typedef struct oswindow_data *   oswindow;
 
-/*
-* Message structure
-*/
-typedef struct tagMESSAGE
-{
-   oswindow    hwnd;
-   ::u32        message;
-   WPARAM      wParam;
-   LPARAM      lParam;
-   ::u32       time;
-   POINT32       pt;
-#ifdef _MAC
-   ::u32       lPrivate;
-#endif
-} MESSAGE, *PMESSAGE, NEAR *NPMESSAGE, FAR *LPMESSAGE;
+///*
+//* Message structure
+//*/
+//typedef struct tagMESSAGE
+//{
+//   oswindow    hwnd;
+//   ::u32        message;
+//   WPARAM      wParam;
+//   LPARAM      lParam;
+//   ::u32       time;
+//   POINT32       pt;
+//#ifdef _MAC
+//   ::u32       lPrivate;
+//#endif
+//} MESSAGE, *PMESSAGE, NEAR *NPMESSAGE, FAR *LPMESSAGE;
 
 CLASS_DECL_ACME int_bool TranslateMessage(const MESSAGE * pmsg);
 CLASS_DECL_ACME LRESULT DispatchMessage(const MESSAGE * pmsg);

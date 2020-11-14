@@ -33,13 +33,13 @@
 #define OS64BIT
 #endif
 
-#if !defined(_MSC_VER) && !defined(::i64)
-# if defined(OS64BIT) && !defined(__MINGW64__)
-#   define ::i64 long
-# else
-#   define ::i64 long long
-# endif
-#endif
+//#if !defined(_MSC_VER) && !defined(INT64)
+//# if defined(OS64BIT) && !defined(__MINGW64__)
+//#   define INT64 long
+//# else
+//#   define INT64 long long
+//# endif
+//#endif
 
 #ifndef __stdcall
 # ifdef __i386__

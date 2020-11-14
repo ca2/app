@@ -1432,9 +1432,9 @@ WINAPI
 FindNLSString(
 LCID Locale,
 ::u32 dwFindNLSStringFlags,
-LPCWSTR lpStringSource,
+const widechar * lpStringSource,
 i32 cchSource,
-LPCWSTR lpStringValue,
+const widechar * lpStringValue,
 i32 cchValue,
 LPINT pcchFound);
 
@@ -1447,9 +1447,9 @@ i32
 WINAPI
 FindStringOrdinal(
 ::u32 dwFindStringOrdinalFlags,
-LPCWSTR lpStringSource,
+const widechar * lpStringSource,
 i32 cchSource,
-LPCWSTR lpStringValue,
+const widechar * lpStringValue,
 i32 cchValue,
 int_bool bIgnoreCase);
 
@@ -1473,7 +1473,7 @@ WINAPI
 LCMapStringW(
 LCID     Locale,
 ::u32    dwMapFlags,
-LPCWSTR  lpSrcStr,
+const widechar *  lpSrcStr,
 i32      cchSrc,
 LPWSTR  lpDestStr,
 i32      cchDest);
@@ -1520,7 +1520,7 @@ WINAPI
 SetLocaleInfoW(
 LCID     Locale,
 LCTYPE   LCType,
-LPCWSTR  lpLCData);
+const widechar *  lpLCData);
 #ifdef UNICODE
 #define SetLocaleInfo  SetLocaleInfoW
 #else
@@ -1571,7 +1571,7 @@ SetCalendarInfoW(
 LCID     Locale,
 CALID    Calendar,
 CALTYPE  CalType,
-LPCWSTR  lpCalData);
+const widechar *  lpCalData);
 #ifdef UNICODE
 #define SetCalendarInfo  SetCalendarInfoW
 #else
@@ -1593,7 +1593,7 @@ WINAXISAPI
 LCID
 WINAPI
 LocaleNameToLCID(
-LPCWSTR lpName,
+const widechar * lpName,
 ::u32 dwFlags);
 
 #endif  // (WINVER >= 0x0600)
@@ -1617,7 +1617,7 @@ GetTimeFormatW(
 LCID             Locale,
 ::u32            dwFlags,
 CONST SYSTEMTIME *lpTime,
-LPCWSTR          lpFormat,
+const widechar *          lpFormat,
 LPWSTR          lpTimeStr,
 i32              cchTime);
 #ifdef UNICODE
@@ -1637,7 +1637,7 @@ LCID             Locale,
 ::u32            dwFlags,
 CONST SYSTEMTIME *lpDuration,
 ULONGLONG ullDuration,
-LPCWSTR          lpFormat,
+const widechar *          lpFormat,
 __out_ecount_opt(cchDuration) LPWSTR          lpDurationStr,
 i32              cchDuration);
 #endif //(WINVER >= 0x0600)
@@ -1661,7 +1661,7 @@ GetDateFormatW(
 LCID             Locale,
 ::u32            dwFlags,
 CONST SYSTEMTIME *lpDate,
-LPCWSTR          lpFormat,
+const widechar *          lpFormat,
 LPWSTR          lpDateStr,
 i32              cchDate);
 #ifdef UNICODE
@@ -1688,7 +1688,7 @@ WINAPI
 GetNumberFormatW(
 LCID             Locale,
 ::u32            dwFlags,
-LPCWSTR          lpValue,
+const widechar *          lpValue,
 CONST NUMBERFMTW *lpFormat,
 LPWSTR          lpNumberStr,
 i32              cchNumber);
@@ -1716,7 +1716,7 @@ WINAPI
 GetCurrencyFormatW(
 LCID               Locale,
 ::u32              dwFlags,
-LPCWSTR            lpValue,
+const widechar *            lpValue,
 CONST CURRENCYFMTW *lpFormat,
 LPWSTR            lpCurrencyStr,
 i32                cchCurrency);
@@ -1869,8 +1869,8 @@ IsNLSDefinedString(
 NLS_FUNCTION     Function,
 ::u32            dwFlags,
 LPNLSVERSIONINFO lpVersionInformation,
-LPCWSTR          lpString,
-INT              cchStr);
+const widechar *          lpString,
+::i32              cchStr);
 
 // For Windows Vista and above IsValidLocaleName is preferred
 //xxx linux WINAXISAPI
@@ -2120,7 +2120,7 @@ WINAPI
 GetStringTypeExW(
 LCID       Locale,
 ::u32      dwInfoType,
-LPCWSTR   lpSrcStr,
+const widechar *   lpSrcStr,
 i32        cchSrc,
 LPWORD     lpCharType);
 #ifdef UNICODE
@@ -2155,7 +2155,7 @@ int_bool
 WINAPI
 GetStringTypeW(
 ::u32    dwInfoType,
-LPCWSTR  lpSrcStr,
+const widechar *  lpSrcStr,
 i32      cchSrc,
 LPWORD  lpCharType);
 
@@ -2174,7 +2174,7 @@ i32
 WINAPI
 FoldStringW(
 ::u32    dwMapFlags,
-LPCWSTR  lpSrcStr,
+const widechar *  lpSrcStr,
 i32      cchSrc,
 LPWSTR  lpDestStr,
 i32      cchDest);
@@ -2293,7 +2293,7 @@ CODEPAGE_ENUMPROCW lpCodePageEnumProc,
 WINNORMALIZEAPI
 i32
 WINAPI NormalizeString(                          NORM_FORM NormForm,
-      __in_ecount(cwSrcLength)      LPCWSTR   lpSrcString,
+      __in_ecount(cwSrcLength)      const widechar *   lpSrcString,
       i32       cwSrcLength,
       __out_ecount_opt(cwDstLength) LPWSTR    lpDstString,
       i32       cwDstLength );
@@ -2301,7 +2301,7 @@ WINAPI NormalizeString(                          NORM_FORM NormForm,
 WINNORMALIZEAPI
 int_bool
 WINAPI IsNormalizedString(                   NORM_FORM NormForm,
-      __in_ecount(cwLength)  LPCWSTR   lpString,
+      __in_ecount(cwLength)  const widechar *   lpString,
       i32       cwLength );
 
 //
@@ -2310,7 +2310,7 @@ WINAPI IsNormalizedString(                   NORM_FORM NormForm,
 WINNORMALIZEAPI
 i32
 WINAPI IdnToAscii(                          ::u32    dwFlags,
-      __in_ecount(cchUnicodeChar) 	 LPCWSTR  lpUnicodeCharStr,
+      __in_ecount(cchUnicodeChar) 	 const widechar *  lpUnicodeCharStr,
       i32      cchUnicodeChar,
       __out_ecount_opt(cchASCIIChar) LPWSTR   lpASCIICharStr,
       i32      cchASCIIChar);
@@ -2318,7 +2318,7 @@ WINAPI IdnToAscii(                          ::u32    dwFlags,
 WINNORMALIZEAPI
 i32
 WINAPI IdnToNameprepUnicode(                           	::u32   dwFlags,
-      __in_ecount(cchUnicodeChar)     	LPCWSTR lpUnicodeCharStr,
+      __in_ecount(cchUnicodeChar)     	const widechar * lpUnicodeCharStr,
       i32     cchUnicodeChar,
       __out_ecount_opt(cchNameprepChar)   LPWSTR  lpNameprepCharStr,
       i32     cchNameprepChar);
@@ -2326,7 +2326,7 @@ WINAPI IdnToNameprepUnicode(                           	::u32   dwFlags,
 WINNORMALIZEAPI
 i32
 WINAPI IdnToUnicode(                        	 ::u32   dwFlags,
-      __in_ecount(cchASCIIChar)    	 LPCWSTR lpASCIICharStr,
+      __in_ecount(cchASCIIChar)    	 const widechar * lpASCIICharStr,
       i32     cchASCIIChar,
       __out_ecount_opt(cchUnicodeChar) LPWSTR  lpUnicodeCharStr,
       i32     cchUnicodeChar);
@@ -2335,16 +2335,16 @@ WINAXISAPI
 int_bool
 WINAPI VerifyScripts(
 ::u32   dwFlags,            // optional behavior flags
-LPCWSTR lpLocaleScripts,    // Locale list of scripts string
+const widechar * lpLocaleScripts,    // Locale list of scripts string
 i32     cchLocaleScripts,   // size of locale script list string
-LPCWSTR lpTestScripts,      // test scripts string
+const widechar * lpTestScripts,      // test scripts string
 i32     cchTestScripts);    // size of test list string
 
 WINAXISAPI
 i32
 WINAPI GetStringScripts(
 ::u32   dwFlags,        // optional behavior flags
-LPCWSTR lpString,       // Unicode character input string
+const widechar * lpString,       // Unicode character input string
 i32     cchString,      // size of input string
 __out_ecount_opt(cchScripts) LPWSTR  lpScripts,      // Script list output string
 i32     cchScripts);    // size of output string
@@ -2364,7 +2364,7 @@ WINAXISAPI
 i32
 WINAPI
 GetLocaleInfoEx(
-LPCWSTR lpLocaleName,
+const widechar * lpLocaleName,
 LCTYPE LCType,
 LPWSTR lpLCData,
 i32 cchData
@@ -2374,9 +2374,9 @@ WINAXISAPI
 i32
 WINAPI
 GetCalendarInfoEx(
-LPCWSTR lpLocaleName,
+const widechar * lpLocaleName,
 CALID Calendar,
-LPCWSTR lpReserved,
+const widechar * lpReserved,
 CALTYPE CalType,
 LPWSTR lpCalData,
 i32 cchData,
@@ -2388,10 +2388,10 @@ WINAXISAPI
 i32
 WINAPI
 GetTimeFormatEx(
-LPCWSTR lpLocaleName,
+const widechar * lpLocaleName,
 ::u32 dwFlags,
 CONST SYSTEMTIME *lpTime,
-LPCWSTR lpFormat,
+const widechar * lpFormat,
 LPWSTR lpTimeStr,
 i32 cchTime
 );
@@ -2400,24 +2400,24 @@ WINAXISAPI
 i32
 WINAPI
 GetDateFormatEx(
-LPCWSTR lpLocaleName,
+const widechar * lpLocaleName,
 ::u32 dwFlags,
 CONST SYSTEMTIME *lpDate,
-LPCWSTR lpFormat,
+const widechar * lpFormat,
 LPWSTR lpDateStr,
 i32 cchDate,
-LPCWSTR lpCalendar
+const widechar * lpCalendar
 );
 
 WINAXISAPI
 i32
 WINAPI
 GetDurationFormatEx(
-LPCWSTR lpLocaleName,
+const widechar * lpLocaleName,
 ::u32 dwFlags,
 CONST SYSTEMTIME *lpDuration,
 ULONGLONG ullDuration,
-LPCWSTR lpFormat,
+const widechar * lpFormat,
 __out_ecount_opt(cchDuration) LPWSTR lpDurationStr,
 i32 cchDuration
 );
@@ -2426,9 +2426,9 @@ WINAXISAPI
 i32
 WINAPI
 GetNumberFormatEx(
-LPCWSTR lpLocaleName,
+const widechar * lpLocaleName,
 ::u32 dwFlags,
-LPCWSTR lpValue,
+const widechar * lpValue,
 CONST NUMBERFMTW *lpFormat,
 LPWSTR lpNumberStr,
 i32 cchNumber
@@ -2438,9 +2438,9 @@ WINAXISAPI
 i32
 WINAPI
 GetCurrencyFormatEx(
-LPCWSTR lpLocaleName,
+const widechar * lpLocaleName,
 ::u32 dwFlags,
-LPCWSTR lpValue,
+const widechar * lpValue,
 CONST CURRENCYFMTW *lpFormat,
 LPWSTR lpCurrencyStr,
 i32 cchCurrency
@@ -2467,7 +2467,7 @@ int_bool
 WINAPI
 GetNLSVersionEx(
 NLS_FUNCTION function,
-LPCWSTR lpLocaleName,
+const widechar * lpLocaleName,
 LPNLSVERSIONINFOEX lpVersionInformation
 );
 
@@ -2475,11 +2475,11 @@ WINAXISAPI
 i32
 WINAPI
 CompareStringEx(
-LPCWSTR lpLocaleName,
+const widechar * lpLocaleName,
 ::u32 dwCmpFlags,
-LPCWSTR lpString1,
+const widechar * lpString1,
 i32 cchCount1,
-LPCWSTR lpString2,
+const widechar * lpString2,
 i32 cchCount2,
 LPNLSVERSIONINFO lpVersionInformation,
 LPVOID lpReserved,
@@ -2490,11 +2490,11 @@ WINAXISAPI
 i32
 WINAPI
 FindNLSStringEx(
-LPCWSTR lpLocaleName,
+const widechar * lpLocaleName,
 ::u32 dwFindNLSStringFlags,
-__in_ecount(cchSource) LPCWSTR lpStringSource,
+__in_ecount(cchSource) const widechar * lpStringSource,
 i32 cchSource,
-__in_ecount(cchValue) LPCWSTR lpStringValue,
+__in_ecount(cchValue) const widechar * lpStringValue,
 i32 cchValue,
 LPINT pcchFound,
 LPNLSVERSIONINFO lpVersionInformation,
@@ -2507,9 +2507,9 @@ WINAXISAPI
 i32
 WINAPI
 LCMapStringEx(
-LPCWSTR lpLocaleName,
+const widechar * lpLocaleName,
 ::u32 dwMapFlags,
-LPCWSTR lpSrcStr,
+const widechar * lpSrcStr,
 i32 cchSrc,
 LPWSTR lpDestStr,
 i32 cchDest,
@@ -2522,9 +2522,9 @@ WINAXISAPI
 i32
 WINAPI
 CompareStringOrdinal(
-LPCWSTR lpString1,
+const widechar * lpString1,
 i32     cchCount1,
-LPCWSTR lpString2,
+const widechar * lpString2,
 i32     cchCount2,
 int_bool    bIgnoreCase
 );
@@ -2533,7 +2533,7 @@ WINAXISAPI
 int_bool
 WINAPI
 IsValidLocaleName(
-LPCWSTR lpLocaleName
+const widechar * lpLocaleName
 );
 
 typedef int_bool (CALLBACK* CALINFO_ENUMPROCEXEX)(LPWSTR, CALID, LPWSTR, LPARAM);
@@ -2543,9 +2543,9 @@ int_bool
 WINAPI
 EnumCalendarInfoExEx(
 CALINFO_ENUMPROCEXEX pCalInfoEnumProcExEx,
-LPCWSTR lpLocaleName,
+const widechar * lpLocaleName,
 CALID Calendar,
-LPCWSTR lpReserved,
+const widechar * lpReserved,
 CALTYPE CalType,
 LPARAM lParam
 );
@@ -2557,7 +2557,7 @@ int_bool
 WINAPI
 EnumDateFormatsExEx(
 DATEFMT_ENUMPROCEXEX lpDateFmtEnumProcExEx,
-LPCWSTR lpLocaleName,
+const widechar * lpLocaleName,
 ::u32 dwFlags,
 LPARAM lParam
 );
@@ -2569,7 +2569,7 @@ int_bool
 WINAPI
 EnumTimeFormatsEx(
 TIMEFMT_ENUMPROCEX lpTimeFmtEnumProcEx,
-LPCWSTR lpLocaleName,
+const widechar * lpLocaleName,
 ::u32 dwFlags,
 LPARAM lParam
 );
@@ -2594,7 +2594,7 @@ LPVOID lpReserved
 i32
 WINAPI
 ResolveLocaleName(
-LPCWSTR lpNameToResolve,
+const widechar * lpNameToResolve,
 LPWSTR  lpLocaleName,
 i32     cchLocaleName
 );

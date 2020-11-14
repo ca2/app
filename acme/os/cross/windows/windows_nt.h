@@ -378,14 +378,14 @@ extern "C++" { \
 #define VOID void
 #endif
 //typedef VOID           *PVOID;
-typedef VOID           *PVOID64;
-typedef byte            WINBOOLEAN,    *PBOOLEAN;
-typedef char            char,       *PCHAR;
-typedef short           SHORT,      *PSHORT;
+typedef VOID * PVOID64;
+typedef byte WINBOOLEAN, * PBOOLEAN;
+typedef char CHAR, * PCHAR;
+typedef short SHORT, * PSHORT;
 #ifdef _MSC_VER
 typedef long            ::i32,       *PLONG;
 #else
-typedef i32             ::i32,       *PLONG;
+typedef i32 LONG, * PLONG;
 #endif
 
 /* Some systems might have unichar, but we really need 16 bit characters */
@@ -402,9 +402,9 @@ typedef unsigned short  WCHAR,      *PWCHAR;
 typedef signed ::i64   ::i64,  *PLONGLONG;
 typedef ::u64 ULONGLONG, *PULONGLONG;
 # else
-typedef signed ::i64   DECLSPEC_ALIGN(8) ::i64,   *PLONGLONG;
-typedef ::u64 DECLSPEC_ALIGN(8) ULONGLONG,  *PULONGLONG;
-# endif
+typedef signed long long DECLSPEC_ALIGN(8) LONGLONG, * PLONGLONG;
+typedef unsigned long long DECLSPEC_ALIGN(8) ULONGLONG, * PULONGLONG;
+#endif
 #endif
 
 #ifndef _DWORDLONG_
@@ -412,15 +412,15 @@ typedef ::u64 DECLSPEC_ALIGN(8) ULONGLONG,  *PULONGLONG;
 # ifdef _MSC_VER
 typedef ULONGLONG DWORDLONG, *PDWORDLONG;
 # else
-typedef ULONGLONG   DECLSPEC_ALIGN(8) DWORDLONG,   *PDWORDLONG;
+typedef ULONGLONG DECLSPEC_ALIGN(8) DWORDLONG,   *PDWORDLONG;
 # endif
 #endif
 
 /* ANSI string types */
 typedef char           *PCH,        *LPCH;
 typedef const char     *PCCH,       *LPCCH;
-typedef char           *PSTR,       *char *,     *NPSTR;
-typedef const char     *PCSTR,      *const char *;
+typedef char           *PSTR,       *LPSTR,     *NPSTR;
+typedef const char     *PCSTR,      *LPCSTR;
 
 /* Unicode string types */
 typedef WCHAR          *PWCH,       *LPWCH;
@@ -439,15 +439,15 @@ typedef const WCHAR    *PCWSTR,     *LPCWSTR;
 typedef WCHAR           TCHAR,      *PTCHAR;
 # define _TCHAR_DEFINED
 #endif
-typedef LPWSTR          PTSTR,       LPTSTR;
-typedef LPCWSTR         PCTSTR,      LPCTSTR;
+typedef LPWSTR          PTSTR,       char *;
+typedef const widechar *         PCTSTR,      LPCTSTR;
 #  define __TEXT(string) L##string
 # else  /* UNICODE */
 # ifndef _TCHAR_DEFINED
 typedef char            TCHAR,      *PTCHAR;
 # define _TCHAR_DEFINED
 # endif
-typedef char *           PTSTR,       LPTSTR;
+typedef char *           PTSTR,       char *;
 typedef const char *          PCTSTR,      LPCTSTR;
 #  define __TEXT(string) string
 # endif /* UNICODE */
@@ -483,10 +483,10 @@ typedef ::u32 FLONG;
 
 #ifndef WIN32_NO_STATUS
 
-#define STATUS_WAIT_0                    ((int) 0x00000000)
-#define STATUS_ABANDONED_WAIT_0          ((int) 0x00000080)
-#define STATUS_USER_APC                  ((int) 0x000000C0)
-#define STATUS_TIMEOUT                   ((int) 0x00000102)
+//#define STATUS_WAIT_0                    ((int) 0x00000000)
+//#define STATUS_ABANDONED_WAIT_0          ((int) 0x00000080)
+//#define STATUS_USER_APC                  ((int) 0x000000C0)
+//#define STATUS_TIMEOUT                   ((int) 0x00000102)
 #define STATUS_PENDING                   ((int) 0x00000103)
 #define STATUS_SEGMENT_NOTIFICATION      ((int) 0x40000005)
 #define STATUS_GUARD_PAGE_VIOLATION      ((int) 0x80000001)
@@ -3093,7 +3093,7 @@ typedef struct _IMAGE_SECTION_HEADER {
 #define IMAGE_SYM_TYPE_MOE                  0x000B
 #define IMAGE_SYM_TYPE_BYTE                 0x000C
 #define IMAGE_SYM_TYPE_WORD                 0x000D
-#define IMAGE_SYM_TYPE_::u32                 0x000E
+#define IMAGE_SYM_TYPE_UINT                 0x000E
 #define IMAGE_SYM_TYPE_DWORD                0x000F
 #define IMAGE_SYM_TYPE_PCODE                0x8000
 
@@ -4296,11 +4296,11 @@ typedef enum {
 /*
  * TOKEN_USER
  */
-
+#ifdef XTRAS
 typedef struct _TOKEN_USER {
     SID_AND_ATTRIBUTES User;
 } TOKEN_USER, *PTOKEN_USER;
-
+#endif
 /*
  * TOKEN_GROUPS
  */

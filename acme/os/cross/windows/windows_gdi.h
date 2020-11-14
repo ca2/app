@@ -19,14 +19,17 @@ struct tagLOGBRUSH;
 
 struct tagLOGRGN;
 
-
-typedef struct tagPOINT
-{
-   ::i32  x;
-   ::i32  y;
-} POINT32,*PPOINT,NEAR *NPPOINT,FAR *POINT32 *;
-
-
+//
+//struct POINT32
+//{
+//
+//   ::i32  x;
+//   ::i32  y;
+//
+//};
+//
+//
+//typedef POINT32 * LPPOINT32;
 
 
 /* Ternary raster operations */
@@ -295,15 +298,15 @@ typedef LPFONT HFONT;
 #define FW_THIN             100
 #define FW_EXTRALIGHT       200
 #define FW_LIGHT            300
-#define FW_NORMAL           400
+#define e_font_weight_normal           400
 #define FW_MEDIUM           500
 #define FW_SEMIBOLD         600
-#define FW_BOLD             700
+#define e_font_weight_bold             700
 #define FW_EXTRABOLD        800
 #define FW_HEAVY            900
 
 #define FW_ULTRALIGHT       FW_EXTRALIGHT
-#define FW_REGULAR          FW_NORMAL
+#define FW_REGULAR          e_font_weight_normal
 #define FW_DEMIBOLD         FW_SEMIBOLD
 #define FW_ULTRABOLD        FW_EXTRABOLD
 #define FW_BLACK            FW_HEAVY
@@ -447,11 +450,11 @@ typedef LPEXTLOGPEN HPEN;
 #define AD_COUNTERCLOCKWISE 1
 #define AD_CLOCKWISE        2
 
-#define RGB(r,g,b)          ((color32_t)(((byte)(r)|((::u16)((byte)(g))<<8))|(((::u32)(byte)(b))<<16)))
+//#define RGB(r,g,b)          ((color32_t)(((byte)(r)|((::u16)((byte)(g))<<8))|(((::u32)(byte)(b))<<16)))
 
-#define GetRValue(rgb)      (LOBYTE(rgb))
-#define GetGValue(rgb)      (LOBYTE(((::u16)(rgb)) >> 8))
-#define GetBValue(rgb)      (LOBYTE((rgb)>>16))
+//#define GetRValue(rgb)      (LOBYTE(rgb))
+//#define GetGValue(rgb)      (LOBYTE(((::u16)(rgb)) >> 8))
+//#define GetBValue(rgb)      (LOBYTE((rgb)>>16))
 
 /* Background Modes */
 #define TRANSPARENT         1
@@ -795,7 +798,7 @@ typedef struct tagENHMETAHEADER
 #define BLACKONWHITE                 1
 #define WHITEONBLACK                 2
 #define COLORONCOLOR                 3
-#define HALFTONE                     4
+#define e_interpolation_mode_high_quality_bicubic                     4
 #define MAXSTRETCHBLTMODE            4
 
 
@@ -803,7 +806,7 @@ typedef struct tagENHMETAHEADER
 #define BLACKONWHITE                 1
 #define WHITEONBLACK                 2
 #define COLORONCOLOR                 3
-#define HALFTONE                     4
+#define e_interpolation_mode_high_quality_bicubic                     4
 #define MAXSTRETCHBLTMODE            4
 
 

@@ -1552,23 +1552,7 @@
 #ifndef _UWP
 
 
-thread_local ::u32 t_dwLastError;
 
-
-CLASS_DECL_ACME ::u32 get_last_error()
-{
-
-   return t_dwLastError;
-
-}
-
-
-CLASS_DECL_ACME void set_last_error(::u32 dw)
-{
-
-   t_dwLastError = dw;
-
-}
 
 
 #endif // _UWP

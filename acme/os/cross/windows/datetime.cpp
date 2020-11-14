@@ -24,6 +24,7 @@
  */
 
 #include "framework.h"
+#include "os/cross/windows/_windows.h"
 
 
 #if !defined(WINDOWS)
@@ -36,6 +37,7 @@
 #define STATUS_PRIVILEGE_NOT_HELD        ((NTSTATUS) 0xC0000061)
 #endif
 //#include <time.h>
+
 
 #define server_start_time 0
 
@@ -83,10 +85,6 @@ extern "C" int settimeofday (const struct timeval *__tv, const struct timezone *
 ////#include "ca/ca/ca_verisimple_string.h"
 ////#include "ca/ca/ca_mutex.h"
 ////#include "ca/ca/ca_synch_lock.h"
-
-
-
-
 
 
 static i32 init_tz_info(RTL_TIME_ZONE_INFORMATION *tzi);
@@ -195,7 +193,7 @@ PTIME_FIELDS TimeFields)
       TimeFields->Year = (CSHORT) (years + 1525);
    }
    /* calculation of day of month is based on the wonderful
-    * sequence of INT( n * 30.6): it reproduces the
+    * sequence of ::i32( n * 30.6): it reproduces the
     * 31-30-31-30-31-31 month lengths exactly for small n's */
    TimeFields->Day = (CSHORT) (yearday - (1959 * months) / 64);
    return;
@@ -453,7 +451,7 @@ void WINAPI RtlSecondsSince1980ToTime( ::u32 Seconds, LARGE_INTEGER *Time )
 void WINAPI RtlTimeToElapsedTimeFields( const LARGE_INTEGER *Time, PTIME_FIELDS TimeFields )
 {
    ::i64 time;
-   INT rem;
+   ::i32 rem;
 
    time = Time->QuadPart / TICKSPERSEC;
    TimeFields->Milliseconds = (CSHORT) ((Time->QuadPart % TICKSPERSEC) / TICKSPERMSEC);
@@ -661,7 +659,7 @@ int_bool match_tz_info(const RTL_TIME_ZONE_INFORMATION *tzi, const RTL_TIME_ZONE
 
 /*
 
-static int_bool reg_query_value(HKEY hkey, LPCWSTR name, ::u32 type, void *data, ::u32 count)
+static int_bool reg_query_value(HKEY hkey, const widechar * name, ::u32 type, void *data, ::u32 count)
 {
     UNICODE_STRING nameW;
     char buf[256];
@@ -931,7 +929,7 @@ CLASS_DECL_ACME int_bool WINAPI LocalFileTimeToFileTime( const FILETIME *localft
    else
    {
       //set_last_error( RtlNtStatusToDosError(status) );
-      set_last_error(1);
+      set_last_status(1);
 
    }
 
@@ -956,7 +954,7 @@ CLASS_DECL_ACME int_bool WINAPI FileTimeToLocalFileTime( const FILETIME *utcft, 
    else
    {
       //set_last_error( RtlNtStatusToDosError(status) );
-      set_last_error( 1);
+      set_last_status( 1);
    }
 
 
@@ -1008,7 +1006,7 @@ int_bool WINAPI SystemTimeToFileTime( const SYSTEMTIME *syst, LPFILETIME ft )
 
    if( !RtlTimeFieldsToTime(&tf, &t))
    {
-      set_last_error( ERROR_INVALID_PARAMETER);
+      set_last_status( ERROR_INVALID_PARAMETER);
       return FALSE;
    }
    ft->dwLowDateTime = t.u.LowPart;

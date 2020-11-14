@@ -249,8 +249,8 @@ typedef struct tagTBSAVEPARAMSA {
 
 typedef struct tagTBSAVEPARAMSW {
    HKEY hkr;
-   LPCWSTR pszSubKey;
-   LPCWSTR pszValueName;
+   const widechar * pszSubKey;
+   const widechar * pszValueName;
 } TBSAVEPARAMSW,*LPTBSAVEPARAMW;
 
 #ifdef UNICODE
@@ -327,7 +327,7 @@ typedef struct {
 #define TB_SETINSERTMARK        (WM_USER + 80)  // lParam == LPTBINSERTMARK
 #define TB_INSERTMARKHITTEST    (WM_USER + 81)  // wParam == POINT32 * lParam == LPTBINSERTMARK
 #define TB_MOVEBUTTON           (WM_USER + 82)
-#define TB_GETMAXSIZE           (WM_USER + 83)  // lParam == LPSIZE
+#define TB_GETMAXSIZE           (WM_USER + 83)  // lParam == LPSIZE32
 #define TB_SETEXTENDEDSTYLE     (WM_USER + 84)  // For TBSTYLE_EX_*
 #define TB_GETEXTENDEDSTYLE     (WM_USER + 85)  // For TBSTYLE_EX_*
 #define TB_GETPADDING           (WM_USER + 86)
@@ -348,12 +348,15 @@ typedef struct {
 #define TB_MAPACCELERATOR       TB_MAPACCELERATORA
 #endif
 
-typedef struct {
+typedef struct
+{
+
    HINSTANCE       hInstOld;
-   ::u32_PTR        nIDOld;
+   UINT_PTR        nIDOld;
    HINSTANCE       hInstNew;
-   ::u32_PTR        nIDNew;
+   UINT_PTR        nIDNew;
    int             nButtons;
+
 } TBREPLACEBITMAP,*LPTBREPLACEBITMAP;
 
 #ifdef _WIN32
@@ -1069,7 +1072,7 @@ typedef struct tagTOOLINFOA {
    ::u32 cbSize;
    ::u32 uFlags;
    oswindow hwnd;
-   ::u32_PTR uId;
+   UINT_PTR uId;
    RECT32 rect;
    HINSTANCE hinst;
    char * lpszText;
@@ -1083,7 +1086,7 @@ typedef struct tagTOOLINFOW {
    ::u32 cbSize;
    ::u32 uFlags;
    oswindow hwnd;
-   ::u32_PTR uId;
+   UINT_PTR uId;
    RECT32 rect;
    HINSTANCE hinst;
    LPWSTR lpszText;
@@ -1344,10 +1347,10 @@ typedef struct tagNMTTDISPINFOW {
 // end_r_commctrl
 
 //WINCOMMCTRLAPI void WINAPI DrawStatusTextA(HDC hDC,LPCRECT32 lprc,const char * pszText,::u32 uFlags);
-//WINCOMMCTRLAPI void WINAPI DrawStatusTextW(HDC hDC,LPCRECT32 lprc,LPCWSTR pszText,::u32 uFlags);
+//WINCOMMCTRLAPI void WINAPI DrawStatusTextW(HDC hDC,LPCRECT32 lprc,const widechar * pszText,::u32 uFlags);
 
 //WINCOMMCTRLAPI oswindow WINAPI CreateStatusWindowA(::i32 style,const char * lpszText,oswindow hwndParent,::u32 wID);
-//WINCOMMCTRLAPI oswindow WINAPI CreateStatusWindowW(::i32 style,LPCWSTR lpszText,oswindow hwndParent,::u32 wID);
+//WINCOMMCTRLAPI oswindow WINAPI CreateStatusWindowW(::i32 style,const widechar * lpszText,oswindow hwndParent,::u32 wID);
 
 #ifdef UNICODE
 #define CreateStatusWindow      CreateStatusWindowW
@@ -1431,7 +1434,7 @@ typedef struct tagNMTTDISPINFOW {
 
 //WINCOMMCTRLAPI void WINAPI MenuHelp(::u32 uMsg,WPARAM wParam,LPARAM lParam,HMENU hMainMenu,HINSTANCE hInst,oswindow hwndStatus,_In_reads_(_Inexpressible_(2 + 2n && n >= 1)) ::u32 *lpwIDs);
 //WINCOMMCTRLAPI int_bool WINAPI ShowHideMenuCtl(_In_ oswindow hWnd,_In_ ::u32_PTR uFlags,_In_z_ LPINT lpInfo);
-//WINCOMMCTRLAPI void WINAPI GetEffectiveClientRect(_In_ oswindow hWnd,_Out_ LPRECT32 lprc,_In_z_ const INT *lpInfo);
+//WINCOMMCTRLAPI void WINAPI GetEffectiveClientRect(_In_ oswindow hWnd,_Out_ LPRECT32 lprc,_In_z_ const ::i32 *lpInfo);
 
 #define MINSYSCOMMAND   SC_SIZE
 

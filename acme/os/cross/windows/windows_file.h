@@ -8,11 +8,7 @@
 #define _MAX_PATH   260
 #endif
 
-#ifdef WINDOWS
-#define INVALID_HSYNC_VALUE ((HANDLE)(iptr)-1)
-#else
-#define INVALID_HSYNC_VALUE ((HSYNC)nullptr)
-#endif
+
 
 
 #ifndef _UWP

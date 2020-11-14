@@ -33,18 +33,8 @@ extern "C" {
  * AXISTYPES is defined in ntdef.h if these types are already defined
  */
 
-#ifndef AXISTYPES
-#define AXISTYPES
-typedef unsigned long WINULONG;
-typedef WINULONG *PWINULONG;
-typedef unsigned short WINUSHORT;
-typedef WINUSHORT *PWINUSHORT;
-typedef char *PSZ;
-typedef unsigned char WINUCHAR;
-typedef WINUCHAR *PWINUCHAR;
-#endif  /* !AXISTYPES */
 
-#define MAX_PATH          260
+//#define MAX_PATH          260
 
 #ifndef NULL
 #ifdef __cplusplus
@@ -140,29 +130,29 @@ typedef WINUCHAR *PWINUCHAR;
 #define CONST               const
 #endif
 
-typedef u32       ::u32;
-//typedef i32                 int_bool;
+typedef unsigned int        u32;
 typedef unsigned char       byte;
-typedef unsigned short      ::u16;
+typedef unsigned short      u16;
 typedef float               FLOAT;
-typedef FLOAT               *PFLOAT;
-typedef int_bool near           *PBOOL;
-typedef int_bool far            *int_bool *;
-typedef byte near           *PBYTE;
-typedef byte far            *LPBYTE;
-typedef i32 near            *PINT;
-typedef i32 far             *LPINT;
-typedef ::u16 near           *PWORD;
-typedef ::u16 far            *LPWORD;
-typedef i32 far            *LPLONG;
-typedef ::u32 near          *PDWORD;
-typedef ::u32 far           *LPDWORD;
-typedef void far            *LPVOID;
-typedef CONST void far      *const void *;
+typedef FLOAT *             PFLOAT;
+typedef int_bool near *     PBOOL;
+typedef int_bool far *      LPBOOL;
+typedef byte near *         PBYTE;
+typedef byte far *          LPBYTE;
+typedef i32 near *          PINT;
+typedef i32 far *           LPINT;
+typedef ::u16 near *        PWORD;
+typedef ::u16 far *         LPWORD;
+typedef i32 far *           LPLONG;
+typedef ::u32 near *        PDWORD;
+typedef ::u32 far *         LPDWORD;
+typedef void far *          LPVOID;
+typedef CONST void far *    LPCVOID;
+
 
 typedef i32                 INT;
-typedef u32        ::u32;
-typedef u32        *P::u32;
+typedef u32                 UINT;
+typedef u32 *               PUINT;
 
 
 typedef struct win_handle * HANDLE;
@@ -182,12 +172,6 @@ typedef iptr            LPARAM;
 typedef iptr            LRESULT;
 
 
-#define MAKEWORD(a, b)      ((::u16)(((byte)(((dword_ptr)(a)) & 0xff)) | ((::u16)((byte)(((dword_ptr)(b)) & 0xff))) << 8))
-#define MAKELONG(a, b)      ((::i32)(((::u16)(((dword_ptr)(a)) & 0xffff)) | ((::u32)((::u16)(((dword_ptr)(b)) & 0xffff))) << 16))
-#define LOWORD(l)           ((::u16)(((dword_ptr)(l)) & 0xffff))
-#define HIWORD(l)           ((::u16)((((dword_ptr)(l)) >> 16) & 0xffff))
-#define LOBYTE(w)           ((byte)(((dword_ptr)(w)) & 0xff))
-#define HIBYTE(w)           ((byte)((((dword_ptr)(w)) >> 8) & 0xff))
 
 
 #ifndef WIN_INTERNAL
@@ -237,15 +221,6 @@ typedef ::u32   *LPCOLORREF;
 
 #define HFILE_ERROR ((HFILE)-1)
 
-typedef struct tagRECT
-{
-   ::i32    left;
-   ::i32    top;
-   ::i32    right;
-   ::i32    bottom;
-} RECT32, *PRECT, NEAR *NPRECT, FAR *LPRECT32;
-
-typedef const RECT32 FAR* LPCRECT32;
 
 typedef struct _RECTL       /* rcl */
 {
@@ -269,14 +244,14 @@ typedef struct _POINTL      /* ptl  */
    ::i32  y;
 } POINTL, *PPOINTL;
 
-typedef struct tagSIZE
-{
-   ::i32        cx;
-   ::i32        cy;
-} SIZE32, *PSIZE, *LPSIZE;
+//typedef struct tagSIZE
+//{
+//   ::i32        cx;
+//   ::i32        cy;
+//} SIZE32, *PSIZE, *LPSIZE32;
 
 typedef SIZE32               SIZEL;
-typedef SIZE32               *PSIZEL, *LPSIZEL;
+typedef SIZE32               *PSIZEL, *LPSIZE32L;
 
 typedef struct tagPOINTS
 {
@@ -287,7 +262,7 @@ typedef struct tagPOINTS
    SHORT   y;
    SHORT   x;
 #endif
-} POINTS, *PPOINTS, *POINT32 *S;
+} POINTS, *PPOINTS, *POINT32S;
 
 //
 //  File System time stamps are represented with the following structure:
@@ -345,7 +320,7 @@ typedef struct _FILETIME
 
 
 
-#define MAX_PATH          260
+//#define MAX_PATH          260
 
 #define near
 #define far
@@ -383,7 +358,7 @@ struct tagHandle
 //typedef void far            *LPVOID;
 //typedef CONST void far      *const void *;
 
-//typedef i32                 INT;
+//typedef i32                 ::i32;
 //typedef u32        ::u32;
 //typedef u32        *P::u32;
 
@@ -399,7 +374,7 @@ struct tagHandle
 //typedef const char * const char *;
 typedef const char * LPCTSTR;
 //typedef char * char *;
-typedef char * LPTSTR;
+//typedef char * LPCSTR;
 
 
 
@@ -412,7 +387,7 @@ typedef char * LPTSTR;
 typedef char char;
 typedef short SHORT;
 typedef i32 ::i32;
-typedef i32 INT;
+typedef i32 ::i32;
 #endif
 
 //
@@ -444,7 +419,7 @@ typedef unsigned short WCHAR;    // wc,   16-bit UNICODE character
 typedef  PWSTR *PZPWSTR;
 typedef  CONST PWSTR *PCZPWSTR;
 typedef  WCHAR UNALIGNED *LPUWSTR, *PUWSTR;
-//typedef  CONST WCHAR *LPCWSTR, *PCWSTR;
+//typedef  CONST WCHAR *const widechar *, *PCWSTR;
 typedef  PCWSTR *PZPCWSTR;
 typedef  CONST WCHAR UNALIGNED *LPCUWSTR, *PCUWSTR;
 
@@ -479,15 +454,15 @@ typedef  CONST char *PCNZCH;
 
 
 
-#ifndef _TCHAR_DEFINED
-typedef char TCHAR, *PTCHAR;
-typedef unsigned char TBYTE, *PTBYTE ;
-#define _TCHAR_DEFINED
-#endif /* !_TCHAR_DEFINED */
+//#ifndef _TCHAR_DEFINED
+//typedef char TCHAR, *PTCHAR;
+//typedef unsigned char TBYTE, *PTBYTE ;
+//#define _TCHAR_DEFINED
+//#endif /* !_TCHAR_DEFINED */
 
 typedef LPCH LPTCH, PTCH;
 typedef LPCCH LPCTCH, PCTCH;
-//typedef char * PTSTR, LPTSTR, PUTSTR, LPUTSTR;
+//typedef char * PTSTR, char *, PUTSTR, LPUTSTR;
 //typedef const char * PCTSTR, LPCTSTR, PCUTSTR, LPCUTSTR;
 typedef PZZSTR PZZTSTR, PUZZTSTR;
 typedef PCZZSTR PCZZTSTR, PCUZZTSTR;
@@ -571,7 +546,7 @@ MY_EXTERN_C void set_last_error(::u32 dw);
 #define _T(psz) psz
 
 
-#define c_cdecl __cdecl
+//#define c_cdecl __cdecl
 
 //#define c_decl __cdecl
 
@@ -591,7 +566,7 @@ typedef u16 WINUSHORT;
 typedef u16 ::u16;*/
 typedef i16 VARIANT_BOOL;
 /*
-typedef i32 INT;
+typedef i32 ::i32;
 typedef i32 INT32;
 typedef u32 ::u32;
 typedef u32 ::u32;
@@ -613,7 +588,7 @@ typedef char TCHAR;
 #endif
 typedef const TCHAR *LPCTSTR;
 typedef unichar WCHAR;
-typedef const WCHAR *LPCWSTR;
+typedef const WCHAR *const widechar *;
 */
 typedef WCHAR OLECHAR;
 typedef OLECHAR *BSTR;
@@ -703,7 +678,7 @@ enum VARENUM
    VT_I8 = 20,
    VT_UI8 = 21,
    VT_INT = 22,
-   VT_::u32 = 23,
+   VT_UINT = 23,
    VT_VOID = 24,
    VT_HRESULT = 25,
    VT_FILETIME = 64
@@ -732,7 +707,7 @@ typedef struct tagPROPVARIANT
       WINUSHORT uiVal;
       ::i32 lVal;
       WINULONG ulVal;
-      INT intVal;
+      ::i32 intVal;
       ::u32 untVal;
       LARGE_INTEGER hVal;
       ULARGE_INTEGER updateVal;
@@ -834,3 +809,13 @@ struct win_handle
 
 VARIANT_BOOL BoolToVARIANT_BOOL(int_bool v);
 int_bool VARIANT_BOOLToBool(VARIANT_BOOL v);
+
+
+//#define INVALID_HSYNC_VALUE ((::sync *) nullptr)
+
+class sync;
+
+typedef ::sync * HSYNC;
+
+
+

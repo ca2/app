@@ -605,7 +605,7 @@ namespace browser
 
       }
 
-      pgraphics->SetStretchBltMode(HALFTONE);
+      pgraphics->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
@@ -840,7 +840,7 @@ namespace browser
 
          }
 
-         pgraphics->SetStretchBltMode(HALFTONE);
+         pgraphics->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
 
          pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
@@ -934,11 +934,11 @@ namespace browser
 
 /*                     draw_freetype_bitmap(pimage->m_p, 0, 0, &face->glyph->bitmap, 0, 0, a, R, g, b);
 
-                     pgraphics->SetStretchBltMode(HALFTONE);
+                     pgraphics->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
 
-/*                     pgraphics->StretchBlt(0, 0, pimage->width() / 40, pimage->height() / 40, pimage->get_graphics(), 0, 0, pimage->width(), pimage->height(), SRCCOPY);
+/*                     pgraphics->StretchBlt(0, 0, pimage->width() / 40, pimage->height() / 40, pimage->get_graphics(), 0, 0, pimage->width(), pimage->height());
 
-/*                     pgraphics->StretchBlt(0, m_cy - pimage->height() / 40, pimage->width() / 40, pimage->height() / 40, pimage->get_graphics(), 0, 0, pimage->width(), pimage->height(), SRCCOPY);
+/*                     pgraphics->StretchBlt(0, m_cy - pimage->height() / 40, pimage->width() / 40, pimage->height() / 40, pimage->get_graphics(), 0, 0, pimage->width(), pimage->height());
 
                   }
 
@@ -985,11 +985,11 @@ namespace browser
 
 /*                     draw_freetype_bitmap(pimage->m_p, 0, 0, &face->glyph->bitmap, 0, 0, a, R, g, b);
 
-                     pgraphics->SetStretchBltMode(HALFTONE);
+                     pgraphics->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
 
-/*                     pgraphics->StretchBlt(m_cx - pimage->width() / 32, 0, pimage->width() / 32, pimage->height() / 32, pimage->get_graphics(), 0, 0, pimage->width(), pimage->height(), SRCCOPY);
+/*                     pgraphics->StretchBlt(m_cx - pimage->width() / 32, 0, pimage->width() / 32, pimage->height() / 32, pimage->get_graphics(), 0, 0, pimage->width(), pimage->height());
 
-/*                     pgraphics->StretchBlt(m_cx - pimage->width() / 32, m_cy - pimage->height() / 32, pimage->width() / 32, pimage->height() / 32, pimage->get_graphics(), 0, 0, pimage->width(), pimage->height(), SRCCOPY);
+/*                     pgraphics->StretchBlt(m_cx - pimage->width() / 32, m_cy - pimage->height() / 32, pimage->width() / 32, pimage->height() / 32, pimage->get_graphics(), 0, 0, pimage->width(), pimage->height());
 
                   }
 
@@ -1079,7 +1079,7 @@ namespace browser
 
                ::draw2d::font_pointer font(e_create);
 
-               font->create_pixel_font(FONT_SANS, fHeight, FW_BOLD);
+               font->create_pixel_font(FONT_SANS, fHeight, e_font_weight_bold);
 
                pgraphics->set_font(font);
 
@@ -1089,7 +1089,7 @@ namespace browser
 
                double ratey = fHeight * 0.84 / size.cy;
 
-               font->create_pixel_font(FONT_SANS, min(m_cy * ratey, m_cx * size.cy * ratey / size.cx), FW_BOLD);
+               font->create_pixel_font(FONT_SANS, min(m_cy * ratey, m_cx * size.cy * ratey / size.cx), e_font_weight_bold);
 
                m_font = font;
 
@@ -1217,7 +1217,7 @@ namespace browser
       else
       {
 
-/*         pgraphics->from(::point(), pimage->get_size(), pimage->g(), ::point(), SRCCOPY);
+/*         pgraphics->from(::point(), pimage->get_size(), pimage->g(), ::point());
 
       }
 
@@ -1335,7 +1335,7 @@ namespace browser
 
       ::draw2d::font_pointer font(e_create);
 
-      font->create_pixel_font(m_pview->m_prender->m_strFont, fHeight, FW_BOLD);
+      font->create_pixel_font(m_pview->m_prender->m_strFont, fHeight, e_font_weight_bold);
 
       pgraphics->set_font(font);
 
@@ -1345,7 +1345,7 @@ namespace browser
 
       double ratey = fHeight * 0.84 / size.cy;
 
-      font->create_pixel_font(m_pview->m_prender->m_strFont, min(m_cy * ratey, m_cx * size.cy * ratey / size.cx), FW_BOLD);
+      font->create_pixel_font(m_pview->m_prender->m_strFont, min(m_cy * ratey, m_cx * size.cy * ratey / size.cx), e_font_weight_bold);
 
       m_dMinRadius = max(1.0, min(m_cy * ratey, m_cx * size.cy * ratey / size.cx) / 46.0);
 

@@ -2,7 +2,7 @@
 
 
 
-::u32 ::get_tick()
+::u32 get_tick()
 {
    timeval ts;
    gettimeofday(&ts,0);

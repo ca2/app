@@ -138,7 +138,7 @@ void apex_main_data::system_construct(os_local* poslocal, const ::edisplay& edis
 #ifdef WINDOWS_DESKTOP
 
 
-void apex_main_data::system_construct(HINSTANCE hinstance, HINSTANCE hPrevInstance, LPTSTR pCmdLine, i32 nCmdShow)
+void apex_main_data::system_construct(HINSTANCE hinstance, HINSTANCE hPrevInstance, char * pCmdLine, i32 nCmdShow)
 {
 
    m_hinstance = hinstance;

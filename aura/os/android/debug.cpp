@@ -60,7 +60,7 @@ CLASS_DECL_AURA void simple_debug_print(const char * psz)
 
 
 
-VOID WINAPI output_debug_string(LPCWSTR lpOutputString)
+VOID WINAPI output_debug_string(const widechar * lpOutputString)
 {
 
 

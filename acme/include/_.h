@@ -4,10 +4,10 @@
 //   
 //    
 //        ------------------ - --/ ------------------------ - ----/ -------------------------------------- - --
-//        DOMAS_89 > ThomasBS_ / ------ - ---/ aura.dll Release(Win32) / aura.lib Static Release(Win32) / helloaura.exe Static Release(Win32)---- - --
+//        DOMAS_16-09-89 > ThomasBS_ / ------ - ---/ aura.dll Release(Win32) / aura.lib Static Release(Win32)   ø      helloaura.exe     Static     Release(Win32)   ----   -    --
 //        2020 - 08 - 18 01:38 / 17, 180kb---- - ---/ 189, 893kb-------- - ---/ 12, 187kb------------------ - --
 //        2020 - 08 - 20 07:41 / 13, 915kb / 137, 668kb / 9, 715kb------------------ - --
-//        rebuild mark / ---------------- - ------------------------- - ------------------------------------ - --
+//        rebuild mark / ---------------- - ------------------------- - -------------------------------- - --
 //        ------------------ - --
 //
 //
@@ -101,7 +101,7 @@ CLASS_DECL_ACME void acme_ref();
 
 #ifdef WINDOWS_DESKTOP
 
-typedef i32 WINAPI __MAIN_DEFERRED_RUN(HINSTANCE hinstance, HINSTANCE hPrevInstance, LPTSTR pCmdLine, i32 nCmdShow);
+typedef i32 WINAPI __MAIN_DEFERRED_RUN(HINSTANCE hinstance, HINSTANCE hPrevInstance, char * pCmdLine, i32 nCmdShow);
 
 #else
 
@@ -222,7 +222,6 @@ CLASS_DECL_ACME void throw_todo(void);
 
 CLASS_DECL_ACME void set_last_status(const ::estatus & estatus);
 CLASS_DECL_ACME void windowing_output_debug_string(const char * pszDebugString);
-//CLASS_DECL_ACME void c_function_call(void * p);
 
 
 namespace acme
@@ -508,8 +507,8 @@ CLASS_DECL_ACME void    ansi_get_errno(i32 * perrno);
 CLASS_DECL_ACME void    ansi_unlink(const char * psz);
 
 
-CLASS_DECL_ACME ::u32 get_last_error();
-CLASS_DECL_ACME void set_last_error(::u32 dw);
+CLASS_DECL_ACME ::estatus get_last_status();
+//CLASS_DECL_ACME void set_last_status(::estatus estatus);
 
 typedef char ansichar;
 
@@ -1989,20 +1988,6 @@ namespace acme
 
 class image_list;
 
-
-
-
-//struct SIZEPARENTPARAMS
-//{
-//
-//   RECT32  rect;       // parent client rectangle (trim as appropriate)
-//   SIZE32  sizeTotal;  // total size on each side as on_layout proceeds
-//   bool  bStretch;   // should stretch to fill all space
-//
-//};
-
-
-typedef struct RECTD RECTD;
 
 
 namespace acme
@@ -3660,6 +3645,8 @@ return __str(value);
 // C++ Includes
 #include "acme/os/_.h"
 #include "acme/node/_.h"
+
+
 
 
 i32 CLASS_DECL_ACME MultiByteToWideChar2(::u32 CodePage, ::u32 dwFlags, const ansichar* pMultByteStr, i32 cbMultiByte, widechar* pWideCharStr, i32 cchWideChar);

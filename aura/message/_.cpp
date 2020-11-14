@@ -33,8 +33,8 @@ namespace message
          return TRUE;
       }
 
-      // WM_PAINT and WM_SYSTIMER (caret blink)
-      return pbase->m_id != WM_PAINT && pbase->m_id != 0x0118;
+      // e_message_paint and WM_SYSTIMER (caret blink)
+      return pbase->m_id != e_message_paint && pbase->m_id != 0x0118;
 
    }
 
@@ -60,8 +60,8 @@ namespace message
          return true;
       }
 
-      // WM_PAINT and WM_SYSTIMER (caret blink)
-      return pmsg->message != WM_PAINT && pmsg->message != 0x0118;
+      // e_message_paint and WM_SYSTIMER (caret blink)
+      return pmsg->message != e_message_paint && pmsg->message != 0x0118;
 
 
    }
@@ -118,23 +118,23 @@ namespace message
 //   }
 
 
-   e_prototype get_message_prototype(::u32_PTR emessage, ::u32 uCode)
+   e_prototype get_message_prototype(UINT_PTR emessage, ::u32 uCode)
    {
       switch (emessage)
       {
       case e_message_size:
          return PrototypeSize;
-      case WM_HSCROLL:
-      case WM_VSCROLL:
+      case e_message_hscroll:
+      case e_message_vscroll:
          return PrototypeScroll;
       case e_message_create:
-      case WM_NCCREATE:
+      case e_message_nccreate:
          return PrototypeCreate;
       case e_message_move:
          return PrototypeMove;
       case e_message_activate:
          return PrototypeActivate;
-      case WM_MOUSEACTIVATE:
+      case e_message_mouse_activate:
          return PrototypeMouseActivate;
       case WM_MEASUREITEM:
          return PrototypeMeasureItem;
@@ -171,7 +171,7 @@ namespace message
       case e_message_mouse_wheel:
          return PrototypeMouseWheel;
 #endif
-      case WM_NCACTIVATE:
+      case e_message_ncactivate:
          return PrototypeNcActivate;
       case WM_TIMER:
          return PrototypeTimer;
@@ -187,7 +187,7 @@ namespace message
       case e_message_uni_char:
 #endif
          return PrototypeKey;
-      case WM_NCHITTEST:
+      case e_message_nchittest:
          return PrototypeNcHitTest;
       case WM_SETCURSOR:
          return PrototypeSetCursor;
@@ -213,11 +213,11 @@ namespace message
       case WM_WINDOWPOSCHANGING:
       case WM_WINDOWPOSCHANGED:
          return PrototypeWindowPos;
-      case WM_NCCALCSIZE:
+      case e_message_nccalcsize:
          return PrototypeNcCalcSize;
       case e_message_simple_command:
          return PrototypeSimpleCommand;
-      case WM_PAINT:
+      case e_message_paint:
          return PrototypeNone;
       default:
          return PrototypeNone;

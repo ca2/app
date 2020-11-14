@@ -9,7 +9,9 @@
 #include "apex/platform/static_setup.h"
 #include "acme/os/_os.h"
 #include "apex/id.h"
-
+#ifndef WINDOWS
+#include "acme/os/cross/windows/_windows.h"
+#endif
 
 
 //extern ::apex::system* g_papexsystem;

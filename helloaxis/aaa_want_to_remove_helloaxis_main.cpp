@@ -110,7 +110,7 @@ BOOL InitInstance(::object * pobject, HINSTANCE hInstance, int nCmdShow)
 //  PURPOSE:  Processes messages for the main window.
 //
 //  WM_COMMAND  - process the application menu
-//  WM_PAINT    - Paint the main window
+//  e_message_paint    - Paint the main window
 //  e_message_destroy  - post a quit message and return
 //
 //
@@ -145,7 +145,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, const ::id & id, WPARAM wParam, LPARAM lPara
       }
    }
    break;
-   case WM_PAINT:
+   case e_message_paint:
    {
       PAINTSTRUCT ps;
       HDC hdc = BeginPaint(hWnd, &ps);

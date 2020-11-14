@@ -104,7 +104,7 @@ void simple_toolbar::install_message_routing(::channel * pchannel)
    //MESSAGE_LINK(e_message_mouse_move    , pchannel, this, &simple_toolbar::_001OnMouseMove);
    //MESSAGE_LINK(e_message_lbutton_down  , pchannel, this, &simple_toolbar::_001OnLButtonDown);
    //MESSAGE_LINK(e_message_lbutton_up    , pchannel, this, &simple_toolbar::_001OnLButtonUp);
-   //MESSAGE_LINK(WM_NCHITTEST    , pchannel, this, &simple_toolbar::_001OnNcHitTest);
+   //MESSAGE_LINK(e_message_nchittest    , pchannel, this, &simple_toolbar::_001OnNcHitTest);
    //MESSAGE_LINK(WM_MOUSELEAVE   , pchannel, this, &simple_toolbar::_001OnMouseLeave);
 
    install_simple_ui_default_mouse_handling(pchannel);
@@ -292,7 +292,7 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 //
 //
 //
-//   m_pimageDraft->get_graphics()->BitBlt(0, 0, 7, 7, pgraphics, 0, 0, SRCCOPY);
+//   m_pimageDraft->get_graphics()->BitBlt(0, 0, 7, 7, pgraphics, 0, 0);
 //
 //   ::rect rectWindow;
 //   get_window_rect(rectWindow);
@@ -364,7 +364,7 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 //   pgraphics->SetPixel(6, 0, m_pimageDraft->GetPixel(6, 0));
 //
 //
-//   //pgraphics->BitBlt(0, 0, 7, 7, &m_dcDraft, 0, 0, SRCCOPY);
+//   //pgraphics->BitBlt(0, 0, 7, 7, &m_dcDraft, 0, 0);
 //
 //   //
 //
@@ -823,21 +823,21 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
             }
 
-            if (uiImage != 0xffffffffu)
+            if (uImage != 0xffffffffu)
             {
 
                if (!(estate & ::user::e_state_disabled))
                {
 
                   // button is enabled
-                  pmenucentral->MenuV033GetImageListBlend()->draw(pgraphics, uiImage, rectImage.top_left(), 0);
+                  pmenucentral->MenuV033GetImageListBlend()->draw(pgraphics, uImage, rectImage.top_left(), 0);
 
                }
                else
                {
 
                   // button is disabled
-                  pmenucentral->MenuV033GetImageListHueLight()->draw(pgraphics, uiImage, rectImage.top_left(), 0);
+                  pmenucentral->MenuV033GetImageListHueLight()->draw(pgraphics, uImage, rectImage.top_left(), 0);
 
                }
 
@@ -880,16 +880,16 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
                System.imaging().color_blend(pgraphics, rect.top_left(), rect.size(), item.m_pimage->g(), nullptr, 0.85);
 
             }
-            else if (uiImage != 0xffffffffu)
+            else if (uImage != 0xffffffffu)
             {
 
                ::rect rect;
 
                _001GetElementRect(iItem, rect, ::user::element_image, estate);
 
-               pmenucentral->MenuV033GetImageListHue()->draw(pgraphics, uiImage, rect.top_left(), 0);
+               pmenucentral->MenuV033GetImageListHue()->draw(pgraphics, uImage, rect.top_left(), 0);
 
-               pmenucentral->MenuV033GetImageList()->draw(pgraphics, uiImage, rectImage.top_left(), 0);
+               pmenucentral->MenuV033GetImageList()->draw(pgraphics, uImage, rectImage.top_left(), 0);
 
             }
 
@@ -928,10 +928,10 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
             System.imaging().color_blend(pgraphics, rect.top_left(), rect.size(), item.m_pimage->g(), nullptr, 1.0);
 
          }
-         else if (uiImage != 0xffffffff)
+         else if (uImage != 0xffffffff)
          {
 
-            pmenucentral->MenuV033GetImageList()->draw(pgraphics, uiImage, rectImage.top_left(), 0);
+            pmenucentral->MenuV033GetImageList()->draw(pgraphics, uImage, rectImage.top_left(), 0);
 
          }
 
@@ -977,19 +977,19 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
             }
 
          }
-         else if (uiImage != 0xffffffff)
+         else if (uImage != 0xffffffff)
          {
 
             if (!(estate & ::user::e_state_disabled))
             {
 
-               pmenucentral->MenuV033GetImageListBlend()->draw(pgraphics, uiImage, rectImage.top_left(), 0);
+               pmenucentral->MenuV033GetImageListBlend()->draw(pgraphics, uImage, rectImage.top_left(), 0);
 
             }
             else
             {
 
-               pmenucentral->MenuV033GetImageListHueLight()->draw(pgraphics, uiImage, rectImage.top_left(), 0);
+               pmenucentral->MenuV033GetImageListHueLight()->draw(pgraphics, uImage, rectImage.top_left(), 0);
 
             }
 

@@ -820,6 +820,7 @@ namespace file
 
    }
 
+
    void file::to(::file::file * pfileOut, memsize uiBufMax)
    {
 
@@ -910,33 +911,10 @@ namespace file
    }
 
 
-   //filesize file::get_position() const
-   //{
-   //   ::exception::throw_interface_only();
-   //   return 0;
-   //}
-
-
-   //bool file::get_length(filesize & size) const
-   //{
-
-   //   return false;
-
-   //}
-
-   //
-   //::filesize file::get_left() const
-   //{
-
-   //   return get_length() - get_position();
-
-   //}
-
-
    static const memsize kBlockSize = ((u32)1 << 31);
 
 
-   HRESULT read(::file::file * pfileIn, void * data, memsize * sizeRead)
+   ::estatus read(::file::file * pfileIn, void * data, memsize * sizeRead)
    {
 
       memsize size = *sizeRead;
@@ -950,7 +928,7 @@ namespace file
 
          memsize processedSizeLoc;
 
-         HRESULT res = S_OK;
+         ::estatus estatus = ::success;
 
          try
          {
@@ -961,7 +939,7 @@ namespace file
          catch(...)
          {
 
-            res = E_FAIL;
+             estatus = error_failed;
 
          }
 
@@ -971,18 +949,22 @@ namespace file
 
          size -= processedSizeLoc;
 
-         RINOK(res);
+         if(!estatus)
+         {
+
+
+         }
 
          if (processedSizeLoc == 0)
          {
 
-            return S_OK;
+            return ::success;
 
          }
 
       }
 
-      return S_OK;
+      return ::success;
 
    }
 
@@ -1224,29 +1206,42 @@ namespace file
    */
 
 
-   HRESULT write(file * pwriter, const void * data, memsize size)
-   {
-      HRESULT res = S_OK;
-      try
-      {
-         pwriter->write(data, size);
-      }
-      catch(...)
-      {
-         res = E_FAIL;
-      }
-      RINOK(res);
-      return res;
-   }
+    ::estatus write(file * pwriter, const void * data, memsize size)
+    {
+
+        ::estatus estatus = ::success;
+
+        try
+        {
+
+            pwriter->write(data, size);
+
+        }
+        catch(...)
+        {
+
+            estatus = error_failed;
+
+        }
+
+        if(!estatus)
+        {
+
+            return estatus;
+
+        }
+
+        return estatus;
+
+    }
 
 
+    filesize file::get_left() const
+    {
 
-   filesize file::get_left() const
-   {
+        return get_size() - get_position();
 
-      return get_size() - get_position();
-
-   }
+    }
 
 
    void file::to_string(const class string_exchange & str) const

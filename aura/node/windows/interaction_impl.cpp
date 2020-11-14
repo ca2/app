@@ -714,7 +714,7 @@ namespace windows
 
       if (!m_puserinteraction->m_bMessageWindow)
       {
-         MESSAGE_LINK(WM_PAINT, pchannel, this, &interaction_impl::_001OnPaint);
+         MESSAGE_LINK(e_message_paint, pchannel, this, &interaction_impl::_001OnPaint);
          MESSAGE_LINK(WM_PRINT, pchannel, this, &interaction_impl::_001OnPrint);
       }
       m_puserinteraction->install_message_routing(pchannel);
@@ -723,7 +723,7 @@ namespace windows
       {
          MESSAGE_LINK(WM_SETCURSOR, pchannel, this, &interaction_impl::_001OnSetCursor);
          MESSAGE_LINK(WM_ERASEBKGND, pchannel, this, &interaction_impl::_001OnEraseBkgnd);
-         MESSAGE_LINK(WM_NCCALCSIZE, pchannel, this, &interaction_impl::_001OnNcCalcSize);
+         MESSAGE_LINK(e_message_nccalcsize, pchannel, this, &interaction_impl::_001OnNcCalcSize);
          MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &interaction_impl::_001OnShowWindow);
          MESSAGE_LINK(e_message_activate, pchannel, this, &interaction_impl::_001OnActivate);
          MESSAGE_LINK(WM_DWMNCRENDERINGCHANGED, pchannel, this, &interaction_impl::_001OnDwmNcRenderingChanged);
@@ -1710,8 +1710,8 @@ namespace windows
       switch (message)
       {
       // normal messages (just wParam, lParam through OnWndMsg)
-      case WM_HSCROLL:
-      case WM_VSCROLL:
+      case e_message_hscroll:
+      case e_message_vscroll:
       case WM_PARENTNOTIFY:
       case WM_DRAWITEM:
       case WM_MEASUREITEM:
@@ -1842,7 +1842,7 @@ namespace windows
 //      interaction_impl::OnDisplayChange(0, 0);    // to update system metrics, etc.
 //   }
 //
-//   void interaction_impl::OnDevModeChange(__in LPTSTR pDeviceName)
+//   void interaction_impl::OnDevModeChange(__in char * pDeviceName)
 //
 //   {
 //      UNREFERENCED_PARAMETER(pDeviceName);
@@ -2129,7 +2129,7 @@ namespace windows
 
       auto & buffer = pbuffer->m_osbuffera[!pbuffer->m_iCurrentBuffer];
 
-      ::BitBlt(hdc, rectUpdate.left, rectUpdate.top, rectUpdate.width(), rectUpdate.height(), buffer.m_hdc, 0, 0, SRCCOPY);
+      ::BitBlt(hdc, rectUpdate.left, rectUpdate.top, rectUpdate.width(), rectUpdate.height(), buffer.m_hdc, 0, 0);
 
       //if (m_spgraphics.is_set())
       //{
@@ -2161,7 +2161,7 @@ namespace windows
 
       //            pgraphics->SetViewportOrg(0, 0);
 
-      //            g->BitBlt(rectPaint.left, rectPaint.top, rectPaint.width(), rectPaint.height(), pgraphics, rectUpdate.left, rectUpdate.top, SRCCOPY);
+      //            g->BitBlt(rectPaint.left, rectPaint.top, rectPaint.width(), rectPaint.height(), pgraphics, rectUpdate.left, rectUpdate.top);
 
       //         }
 
@@ -3454,7 +3454,7 @@ namespace windows
    }
 
 
-   i32 interaction_impl::DlgDirList(LPTSTR pPathSpec, i32 nIDListBox, i32 nIDStaticPath, ::u32 nFileType)
+   i32 interaction_impl::DlgDirList(char * pPathSpec, i32 nIDListBox, i32 nIDStaticPath, ::u32 nFileType)
 
    {
 
@@ -3466,7 +3466,7 @@ namespace windows
    }
 
 
-   i32 interaction_impl::DlgDirListComboBox(LPTSTR pPathSpec, i32 nIDComboBox, i32 nIDStaticPath, ::u32 nFileType)
+   i32 interaction_impl::DlgDirListComboBox(char * pPathSpec, i32 nIDComboBox, i32 nIDStaticPath, ::u32 nFileType)
 
    {
 
@@ -3478,7 +3478,7 @@ namespace windows
    }
 
 
-   bool interaction_impl::DlgDirSelect(LPTSTR pString, i32 nSize, i32 nIDListBox)
+   bool interaction_impl::DlgDirSelect(char * pString, i32 nSize, i32 nIDListBox)
 
    {
 
@@ -3490,7 +3490,7 @@ namespace windows
    }
 
 
-   bool interaction_impl::DlgDirSelectComboBox(LPTSTR pString, i32 nSize, i32 nIDComboBox)
+   bool interaction_impl::DlgDirSelectComboBox(char * pString, i32 nSize, i32 nIDComboBox)
 
    {
 
@@ -3526,7 +3526,7 @@ namespace windows
    }
 
 
-   i32 interaction_impl::GetChildByIdText(i32 nID, LPTSTR pStr, i32 nMaxCount) const
+   i32 interaction_impl::GetChildByIdText(i32 nID, char * pStr, i32 nMaxCount) const
 
    {
 
@@ -4356,7 +4356,7 @@ namespace windows
 //   {
 //      Default();
 //   }
-//   void interaction_impl::OnAskCbFormatName(__in ::u32 nMaxCount, __out_ecount_z(nMaxCount) LPTSTR lpszName)
+//   void interaction_impl::OnAskCbFormatName(__in ::u32 nMaxCount, __out_ecount_z(nMaxCount) char * lpszName)
 //   {
 //      (nMaxCount);
 //      if (nMaxCount > 0)
@@ -5006,7 +5006,7 @@ namespace windows
          ::GetWindowInfo(get_safe_handle(), &wi);
 
          /* Maximized windows always have a non-client border that hangs over
-         the edge of the screen, so the size proposed by WM_NCCALCSIZE is
+         the edge of the screen, so the size proposed by e_message_nccalcsize is
          fine. Just adjust the top border to remove the u title. */
          pncsp->rgrc[0].left = client.left;
 
@@ -5049,7 +5049,7 @@ namespace windows
       else
       {
          /* For the non-maximized case, set the output const rect & to what it was
-         before WM_NCCALCSIZE modified it. This will make the client size the
+         before e_message_nccalcsize modified it. This will make the client size the
          same as the non-client size. */
          pncsp->rgrc[0] = nonclient;
 
@@ -5664,12 +5664,12 @@ namespace windows
                TRACE("WM_ACTIVATEAPP wparam=%08x lparam=%08x", pbase->m_wparam, pbase->m_lparam);
 
                break;
-            case WM_MOUSEACTIVATE:
-               TRACE("WM_MOUSEACTIVATE wparam=%08x lparam=%08x", pbase->m_wparam, pbase->m_lparam);
+            case e_message_mouse_activate:
+               TRACE("e_message_mouse_activate wparam=%08x lparam=%08x", pbase->m_wparam, pbase->m_lparam);
 
                break;
-            case WM_NCACTIVATE:
-               TRACE("WM_NCACTIVATE wparam=%08x lparam=%08x", pbase->m_wparam, pbase->m_lparam);
+            case e_message_ncactivate:
+               TRACE("e_message_ncactivate wparam=%08x lparam=%08x", pbase->m_wparam, pbase->m_lparam);
 
                break;
             case e_message_set_focus:

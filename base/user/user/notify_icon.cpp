@@ -79,7 +79,7 @@ namespace user
 
       }
 
-      m_strId.Format("user::notify_icon - %d", uiId);
+      m_strId.Format("user::notify_icon - %d", uId);
 
       m_strId = "ca2-" + pvisualicon->m_strAppTrayIcon + "-" + m_strId;
 
@@ -94,12 +94,12 @@ namespace user
 
 #endif
 
-      m_uiId                     = uiId;
+      m_uiId                     = uId;
 
 #ifdef WINDOWS_DESKTOP
 
       m_nid.hWnd                 = get_safe_handle();
-      m_nid.uID                  = uiId;
+      m_nid.uID                  = uId;
       m_nid.hIcon                = *pvisualicon;
       m_nid.uFlags               = NIF_ICON | NIF_MESSAGE;
       m_nid.uCallbackMessage     = MessageNotifyIcon;

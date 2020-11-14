@@ -178,7 +178,7 @@ public:
 
    virtual bool is_link(string strPath);
 
-   virtual bool get_last_write_time(FILETIME * pfiletime, const string & strFilename);
+   virtual bool get_last_write_time(filetime_t * pfiletime, const string & strFilename);
 
    //virtual void dtf(const ::file::path & pszFile, const ::file::path & pszDir);
 

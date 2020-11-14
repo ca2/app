@@ -541,7 +541,7 @@ void ns_main_async(dispatch_block_t block);
 //
 //      w->m_pimpl->m_puserinteraction->post_message(e_message_destroy);
 //
-//      w->m_pimpl->m_puserinteraction->post_message(WM_NCDESTROY);
+//      w->m_pimpl->m_puserinteraction->post_message(e_message_ncdestroy);
 //
 //   }
 //   else
@@ -552,7 +552,7 @@ void ns_main_async(dispatch_block_t block);
 //
 //         w->m_pimpl->call_message_handler(e_message_destroy, 0, 0);
 //
-//         w->m_pimpl->call_message_handler(WM_NCDESTROY, 0, 0);
+//         w->m_pimpl->call_message_handler(e_message_ncdestroy, 0, 0);
 //
 //      });
 //

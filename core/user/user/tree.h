@@ -109,7 +109,7 @@ namespace user
 
       virtual void perform_click();
 
-      virtual void perform_right_click(uptr uiFlags, const ::point & point);
+      virtual void perform_right_click(uptr uFlags, const ::point & point);
 
       virtual i32 get_wheel_scroll_delta() override;
 

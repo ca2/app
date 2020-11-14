@@ -225,7 +225,7 @@ mutex::mutex(enum_create_new, bool bInitiallyOwn, const char * pstrName, LPSECUR
    if(pstrName != nullptr && *pstrName != '\0')
    {
 
-      set_last_error(0);
+      set_last_status(::success);
 
       ::file::path path;
 
@@ -1536,7 +1536,7 @@ __pointer(mutex) open_mutex(const char * lpszName)
 
    }
 
-   set_last_error(0);
+   set_last_status(::success);
 
    ::file::path path;
 
@@ -1628,10 +1628,10 @@ void wait_until_mutex_does_not_exist(const char * lpszName)
 
    __pointer(mutex) pmutex = __new(mutex(e_create_new, false, "Global\\::ca::account::ca2_spa::7807e510-5579-11dd-ae16-0800200c7784"));
 
-   if(::get_last_error() == ERROR_ALREADY_EXISTS)
+   if(::get_last_status() == ::error_already_exists)
    {
 
-      while(::get_last_error() == ERROR_ALREADY_EXISTS && ::thread_get_run())
+      while(::get_last_status() == ::error_already_exists && ::thread_get_run())
       {
 
          pmutex.release();

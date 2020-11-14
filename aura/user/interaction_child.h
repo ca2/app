@@ -78,10 +78,8 @@ namespace user
 
       virtual bool create_window_ex(::user::interaction * pinteraction, ::user::create_struct & cs, ::user::interaction * puiParent, id id) override;
 
-
-      virtual LONG_PTR get_window_long_ptr(i32 nIndex) const override;
-      virtual LONG_PTR set_window_long_ptr(i32 nIndex, LONG_PTR lValue) override;
-
+      virtual iptr get_window_long_ptr(i32 nIndex) const override;
+      virtual iptr set_window_long_ptr(i32 nIndex, iptr lValue) override;
 
       virtual bool is_this_visible(e_layout elayout) override;
 

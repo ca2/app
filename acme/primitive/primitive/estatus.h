@@ -53,7 +53,9 @@ public:
    estatus & operator =(enum_status estatus) { m_estatus = estatus; return *this; }
    estatus & operator =(const estatus & estatus) { m_estatus = estatus; return *this; }
    estatus & operator =(bool b) { m_estatus = b ? success : error_failed; return *this; }
-   
+
+
+
    
 };
 

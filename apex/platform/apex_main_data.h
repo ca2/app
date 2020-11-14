@@ -45,7 +45,7 @@ public:
 
 #ifdef WINDOWS_DESKTOP
 
-   void system_construct(HINSTANCE hinstance, HINSTANCE hPrevInstance, LPTSTR pCmdLine, i32 nCmdShow);
+   void system_construct(HINSTANCE hinstance, HINSTANCE hPrevInstance, char * pCmdLine, i32 nCmdShow);
 
 #elif defined(_UWP)
 

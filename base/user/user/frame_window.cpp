@@ -171,7 +171,7 @@ namespace user
       MESSAGE_LINK(e_message_size, pchannel, this, &frame_window::_001OnSize);
       MESSAGE_LINK(e_message_set_focus, pchannel, this, &frame_window::_001OnSetFocus);
       MESSAGE_LINK(e_message_activate, pchannel, this, &frame_window::_001OnActivate);
-      MESSAGE_LINK(WM_NCACTIVATE, pchannel, this, &frame_window::_001OnNcActivate);
+      MESSAGE_LINK(e_message_ncactivate, pchannel, this, &frame_window::_001OnNcActivate);
       MESSAGE_LINK(WM_SYSCOMMAND, pchannel, this, &frame_window::_001OnSysCommand);
       MESSAGE_LINK(WM_QUERYENDSESSION, pchannel, this, &frame_window::_001OnQueryEndSession);
 
@@ -348,8 +348,8 @@ namespace user
    ON_MESSAGE(WM_HELPPROMPTADDR, &frame_window::OnHelpPromptAddr)
    ON_MESSAGE_VOID(WM_IDLEUPDATECMDUI, frame_window::OnIdleUpdateCmdUI)
    ON_WM_ENTERIDLE()
-   ON_WM_HSCROLL()
-   ON_WM_VSCROLL()
+   ON_e_message_hscroll()
+   ON_e_message_vscroll()
    ON_WM_SETFOCUS()
 
    ON_WM_DESTROY()
@@ -357,7 +357,7 @@ namespace user
    ON_WM_SIZE()
    ON_WM_ERASEBKGND()
    ON_WM_ACTIVATE()
-   ON_WM_NCACTIVATE()
+   ON_e_message_ncactivate()
    ON_WM_DROPFILES()
    ON_WM_QUERYENDSESSION()
    ON_WM_ENDSESSION()
@@ -483,7 +483,7 @@ namespace user
 
                   sync_lock sl(psync);
 
-                  pimage1->get_graphics()->BitBlt(0, 0, rect.width(), rect.height(), pgraphics, 0, 0, SRCCOPY);
+                  pimage1->get_graphics()->BitBlt(0, 0, rect.width(), rect.height(), pgraphics, 0, 0);
 
                   psession->copydesk().image_to_desk(pimage1);
 
@@ -509,9 +509,9 @@ namespace user
 
                   }
 
-                  pimage2->get_graphics()->SetStretchBltMode(HALFTONE);
+                  pimage2->get_graphics()->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
 
-                  pimage2->get_graphics()->StretchBlt(0, 0, pimage2->width(), pimage2->height(), pimage1->get_graphics(), 0, 0, rect.size().cx, rect.size().cy, SRCCOPY);
+                  pimage2->get_graphics()->StretchBlt(0, 0, pimage2->width(), pimage2->height(), pimage1->get_graphics(), 0, 0, rect.size().cx, rect.size().cy);
 
                   Application.image().save_image(::dir::system() / "control_alt_p_w300.png", pimage2);
 
@@ -798,10 +798,10 @@ namespace user
       //      send_message(e_message_activate, WA_ACTIVE);
       //}
 
-      //// force WM_NCACTIVATE because Windows may think it is unecessary
+      //// force e_message_ncactivate because Windows may think it is unecessary
       //if (bEnable && (m_nFlags & WF_STAYACTIVE))
-      //   send_message(WM_NCACTIVATE, TRUE);
-      //// force WM_NCACTIVATE for floating windows too
+      //   send_message(e_message_ncactivate, TRUE);
+      //// force e_message_ncactivate for floating windows too
    }
 
 
@@ -1690,7 +1690,7 @@ namespace user
       if (pActiveView != nullptr)
       {
          // trans const MESSAGE* pMsg = GetCurrentMessage();
-         // trans pActiveView->SendMessage(WM_HSCROLL, pMsg->wParam, pMsg->lParam);
+         // trans pActiveView->SendMessage(e_message_hscroll, pMsg->wParam, pMsg->lParam);
       }
    }
 
@@ -1700,7 +1700,7 @@ namespace user
       if (pActiveView != nullptr)
       {
          // trans      const MESSAGE* pMsg = GetCurrentMessage();
-         // trans      pActiveView->SendMessage(WM_VSCROLL, pMsg->wParam, pMsg->lParam);
+         // trans      pActiveView->SendMessage(e_message_vscroll, pMsg->wParam, pMsg->lParam);
       }
    }
    */
@@ -1999,7 +1999,7 @@ namespace user
       UNREFERENCED_PARAMETER(rMessage);
       // load appropriate string
       ::exception::throw_not_implemented();
-      /*   LPTSTR psz = rMessage.GetBuffer(255);
+      /*   char * psz = rMessage.GetBuffer(255);
 
       if (::aura::LoadString(nID, psz) != 0)
 

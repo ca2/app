@@ -378,7 +378,7 @@ namespace introjection
       str = str + strItem + ";";
 #ifdef WINDOWS_DESKTOP
       u32 dwSize = GetEnvironmentVariableW(L"PATH",nullptr,0);
-      LPTSTR lpsz = new wchar_t[dwSize + 1];
+      char * lpsz = new wchar_t[dwSize + 1];
       dwSize = GetEnvironmentVariableW(L"PATH",lpsz,dwSize + 1);
       str += lpsz;
       delete lpsz;

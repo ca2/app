@@ -201,7 +201,7 @@ namespace turboc
 
 
 
-            m_font->create_pixel_font(FONT_SANS,fHeight,FW_BOLD);
+            m_font->create_pixel_font(FONT_SANS,fHeight,e_font_weight_bold);
 
             pgraphics->set_font(m_font);
 
@@ -211,7 +211,7 @@ namespace turboc
 
             double ratey = fHeight * 0.84 / size.cy;
 
-            m_font->create_pixel_font(FONT_SANS,min(m_cy * ratey,m_cx * size.cy * ratey / size.cx),FW_BOLD);
+            m_font->create_pixel_font(FONT_SANS,min(m_cy * ratey,m_cx * size.cy * ratey / size.cx),e_font_weight_bold);
 
             //m_dMinRadius = max(1.0,m_font->m_dFontSize / 23.0);
 
@@ -425,7 +425,7 @@ namespace turboc
 
       float fHeight = 100.0;
 
-      m_font->create_pixel_font(FONT_SANS,fHeight,FW_BOLD);
+      m_font->create_pixel_font(FONT_SANS,fHeight,e_font_weight_bold);
 
       pgraphics->set_font(m_font);
 
@@ -435,7 +435,7 @@ namespace turboc
 
       double ratey = fHeight * 0.84 / size.cy;
 
-      m_font->create_pixel_font(FONT_SANS,min(m_cy * ratey,m_cx * size.cy * ratey / size.cx),FW_BOLD);
+      m_font->create_pixel_font(FONT_SANS,min(m_cy * ratey,m_cx * size.cy * ratey / size.cx),e_font_weight_bold);
 
       m_dMinRadius = max(1.0,m_font->m_dFontSize / 23.0);
 

@@ -486,7 +486,7 @@ string file_module_path_dup()
 // //       return 0;
 // //    }
 // //    string csFilePath;
-// //    LPTSTR lpPath = csFilePath.GetBuffer(MAX_PATH);
+// //    char * lpPath = csFilePath.GetBuffer(MAX_PATH);
 // //    GetModuleFileName(hModule,lpPath,MAX_PATH);
 // //    PathRemoveFileSpec(lpPath);
 // //    csFilePath.ReleaseBuffer();
@@ -517,7 +517,7 @@ string file_module_path_dup()
 // // }
 
 
-// // extern "C" CLASS_DECL_AXIS void GetOpenedFiles(LPCWSTR lpPath,OF_TYPE Filter,OF_CALLBACK CallBackProc,uptr pUserContext)
+// // extern "C" CLASS_DECL_AXIS void GetOpenedFiles(const widechar * lpPath,OF_TYPE Filter,OF_CALLBACK CallBackProc,uptr pUserContext)
 // // {
 // //    string csPath = lpPath;
 // //    csPath.make_lower();
@@ -1085,7 +1085,7 @@ int_bool ensure_file_size_handle(HANDLE h,u64 iSize)
 //int_bool file_move(const char * lpszNewName,const char * lpszOldName)
 //{
 //
-//   if(!::MoveFile((LPTSTR)lpszOldName,(LPTSTR)lpszNewName))
+//   if(!::MoveFile((char *)lpszOldName,(char *)lpszNewName))
 //      return FALSE;
 //
 //   return TRUE;
@@ -1096,7 +1096,7 @@ int_bool file_delete(const char * lpszFileName)
 {
 
 
-   if(!::DeleteFile((LPTSTR)lpszFileName))
+   if(!::DeleteFile((char *)lpszFileName))
       return FALSE;
 
    return TRUE;

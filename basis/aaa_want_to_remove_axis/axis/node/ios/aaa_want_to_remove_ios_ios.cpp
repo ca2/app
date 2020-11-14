@@ -9,7 +9,7 @@
 
 /////////////////////////////////////////////////////////////////////////////
 // export WinMain to force linkage to this module
-extern i32 CLASS_DECL_AXIS __win_main(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLine, i32 nCmdShow);
+extern i32 CLASS_DECL_AXIS __win_main(HINSTANCE hInstance, HINSTANCE hPrevInstance, char * lpCmdLine, i32 nCmdShow);
 
 
 

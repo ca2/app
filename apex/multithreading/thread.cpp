@@ -5,7 +5,9 @@
 #include "apex/os/_.h"
 #include "apex/os/_os.h"
 #include "acme/multithreading/mq.h"
-
+#ifndef WINDOWS
+#include "acme/os/cross/windows/_windows.h"
+#endif
 
 
 CLASS_DECL_ACME mq * get_mq(ithread_t idthread, bool bCreate);
@@ -130,7 +132,7 @@ thread::thread()
 
    m_bTemporary = false;
 
-   m_dwThreadAffinityMask = 0;
+   m_uThreadAffinityMask = 0;
 
    m_tickHeartBeat.Now();
 
@@ -2074,10 +2076,10 @@ void thread::process_window_procedure_exception(::exception_pointer pe,::message
       pbase->m_lresult = -1;
 
    }
-   else if(pbase->m_id == WM_PAINT)
+   else if(pbase->m_id == e_message_paint)
    {
 
-      // force validation of interaction_impl to prevent getting WM_PAINT again
+      // force validation of interaction_impl to prevent getting e_message_paint again
 
 #ifdef WIDOWSEX
       ValidateRect(pbase->m_puserinteraction->get_safe_handle(),nullptr);
@@ -2096,7 +2098,7 @@ namespace thread_util
    inline bool IsEnterKey(::message::message * pmessage)
    {
       SCAST_PTR(::message::base,pbase,pmessage);
-      return pbase->m_id == e_message_key_down && pbase->m_id == VK_RETURN;
+      return pbase->m_id == e_message_key_down && pbase->m_wparam == VK_RETURN;
    }
 
    inline bool IsButtonUp(::message::message * pmessage)
@@ -2426,12 +2428,12 @@ iptr thread::item() const
 void thread::__priority_and_affinity()
 {
 
-   if (m_dwThreadAffinityMask != 0)
+   if (m_uThreadAffinityMask != 0)
    {
 
 #if defined(WINDOWS_DESKTOP) || defined(LINUX)
 
-      int_bool bOk = ::SetThreadAffinityMask(m_hthread, m_dwThreadAffinityMask) != 0;
+      int_bool bOk = ::SetThreadAffinityMask(m_hthread, m_uThreadAffinityMask) != 0;
 
       if (bOk)
       {
@@ -4114,9 +4116,9 @@ bool thread::set_thread_priority(::e_priority epriority)
    if (!bOk)
    {
 
-      u32 dwLastError = ::get_last_error();
+      estatus estatus = ::get_last_status();
 
-      output_debug_string("thread::SetThreadPriority LastError = " + __str(dwLastError));
+      output_debug_string("thread::SetThreadPriority LastError = " + __str(estatus));
 
    }
 

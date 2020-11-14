@@ -17,7 +17,7 @@ namespace win32
    }
 
 
-   dialog::dialog(::layered* pobjectContext, LPCWSTR pszResource)
+   dialog::dialog(::layered* pobjectContext, const widechar * pszResource)
    {
 
       m_bCreated = false;
@@ -35,7 +35,7 @@ namespace win32
 
    }
 
-   ::estatus dialog::initialize_dialog(::layered * pobjectContext, LPCWSTR pszResource) 
+   ::estatus dialog::initialize_dialog(::layered * pobjectContext, const widechar * pszResource)
    {
 
       auto estatus = ::object::initialize(pobjectContext);

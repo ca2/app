@@ -142,7 +142,7 @@ namespace draw2d_gdiplus
          return nullptr;
       if (m_hdc != nullptr)
          return nullptr;
-      m_hdc = ::CreateDCW(L"WINSPOOL", (LPCWSTR)wstring(m_pdevmode->dmDeviceName), nullptr, m_pdevmode);
+      m_hdc = ::CreateDCW(L"WINSPOOL", (const widechar *)wstring(m_pdevmode->dmDeviceName), nullptr, m_pdevmode);
       ::draw2d::graphics_pointer g(e_create);
       g->AttachPrinter(m_hdc);
       return g.detach();

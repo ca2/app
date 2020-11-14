@@ -393,20 +393,20 @@ namespace windows
       virtual void CheckDlgButton(i32 nIDButton, ::u32 nCheck);
       virtual void CheckRadioButton(i32 nIDFirstButton, i32 nIDLastButton, i32 nIDCheckButton);
       virtual i32 GetCheckedRadioButton(i32 nIDFirstButton, i32 nIDLastButton);
-      virtual i32 DlgDirList(__inout_z LPTSTR pPathSpec, __in i32 nIDListBox,
+      virtual i32 DlgDirList(__inout_z char * pPathSpec, __in i32 nIDListBox,
 
                              __in i32 nIDStaticPath, __in ::u32 nFileType);
-      virtual i32 DlgDirListComboBox(__inout_z LPTSTR pPathSpec, __in i32 nIDComboBox,
+      virtual i32 DlgDirListComboBox(__inout_z char * pPathSpec, __in i32 nIDComboBox,
 
                                      __in i32 nIDStaticPath, __in ::u32 nFileType);
-      virtual bool DlgDirSelect(__out_ecount_z(nSize) LPTSTR pString, __in i32 nSize, __in i32 nIDListBox);
+      virtual bool DlgDirSelect(__out_ecount_z(nSize) char * pString, __in i32 nSize, __in i32 nIDListBox);
 
-      virtual bool DlgDirSelectComboBox(__out_ecount_z(nSize) LPTSTR pString, __in i32 nSize, __in i32 nIDComboBox);
+      virtual bool DlgDirSelectComboBox(__out_ecount_z(nSize) char * pString, __in i32 nSize, __in i32 nIDComboBox);
 
 
       virtual ::u32 GetChildByIdInt(i32 nID, BOOL * pTrans = nullptr, bool bSigned = TRUE) const;
 
-      virtual i32 GetChildByIdText(__in i32 nID, __out_ecount_part_z(nMaxCount, return +1) LPTSTR pStr, __in i32 nMaxCount) const;
+      virtual i32 GetChildByIdText(__in i32 nID, __out_ecount_part_z(nMaxCount, return +1) char * pStr, __in i32 nMaxCount) const;
 
       virtual i32 GetChildByIdText(i32 nID, string & rectString) const;
       //virtual ::user::interaction * GetNextDlgGroupItem(::user::interaction * pWndCtl, bool bPrevious = FALSE) const;
@@ -602,7 +602,7 @@ namespace windows
       //void OnSysKeyDown(::u32 nChar, ::u32 nRepCnt, ::u32 nFlags);
       //void OnSysKeyUp(::u32 nChar, ::u32 nRepCnt, ::u32 nFlags);
       //void OnCompacting(::u32 nCpuTime);
-      //void OnDevModeChange(__in_z LPTSTR pDeviceName);
+      //void OnDevModeChange(__in_z char * pDeviceName);
 
       //void OnFontChange();
       //void OnPaletteChanged(::user::interaction_impl * pFocusWnd);
@@ -641,7 +641,7 @@ namespace windows
       //void OnInitMenuPopup(::user::menu* pPopupMenu, ::u32 nIndex, bool bSysMenu);
 
       //// Clipboard message handler member functions
-      //void OnAskCbFormatName(__in ::u32 nMaxCount, __out_ecount_z(nMaxCount) LPTSTR pszString);
+      //void OnAskCbFormatName(__in ::u32 nMaxCount, __out_ecount_z(nMaxCount) char * pszString);
 
       //void OnChangeCbChain(oswindow oswindow_Remove, oswindow oswindow_After);
       //void OnDestroyClipboard();

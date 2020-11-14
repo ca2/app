@@ -21,6 +21,8 @@
 class CLASS_DECL_ACME sync_result
 {
 public:
+
+
    enum e_result : ::index
    {
       result_abandon0 = -10,		/// waiting abandoned because thread stopped
@@ -46,7 +48,11 @@ public:
    ///  \brief		constructor with result value and matter ::count passed (Windows only)
    ///  \lparam		value waiting result value as passed by Windows API function
    ///  \lparam		objectCount number of items in event_collection
-   explicit sync_result(u32 value, ::count objectCount = 1);
+
+
+   explicit sync_result(::u32 uStatus, ::count objectCount = 1);
+
+
 //#endif
    ///  \brief		constructor with result value passed
    ///  \lparam		value waiting result value as passed by Windows API function

@@ -782,9 +782,9 @@ CLASS_DECL_AURA int_bool is_window(oswindow oswindow);
 
 
 extern "C"
-CLASS_DECL_AURA i32 os_message_box_w(oswindow oswindow, const WCHAR * pszText, const WCHAR * pszCaption, u32 uiFlags)
+CLASS_DECL_AURA i32 os_message_box_w(oswindow oswindow, const WCHAR * pszText, const WCHAR * pszCaption, u32 uFlags)
 {
 
-   return ::os_message_box(oswindow, string(pszText), string(pszCaption), uiFlags);
+   return ::os_message_box(oswindow, string(pszText), string(pszCaption), uFlags);
 
 }

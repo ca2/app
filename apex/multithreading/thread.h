@@ -98,9 +98,9 @@ public:
    string                                             m_strFile;
    int                                                m_iLine;
 
-   DWORD_PTR                                          m_dwThreadAffinityMask;
+   uptr                                               m_uThreadAffinityMask;
    bool                                               m_bTemporary;
-   __pointer(::object)                                m_pobjectScript;
+   __pointer(::object)                          m_pobjectScript;
 
 
 #ifdef MACOS

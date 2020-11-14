@@ -44,9 +44,9 @@ namespace user
 
       list::install_message_routing(pchannel);
 
-      MESSAGE_LINK(WM_VSCROLL, pchannel, this, &form_list::_001OnVScroll);
+      MESSAGE_LINK(e_message_vscroll, pchannel, this, &form_list::_001OnVScroll);
 
-      MESSAGE_LINK(WM_HSCROLL, pchannel, this, &form_list::_001OnHScroll);
+      MESSAGE_LINK(e_message_hscroll, pchannel, this, &form_list::_001OnHScroll);
 
    }
 

@@ -1316,7 +1316,7 @@ namespace user
       try
       {
 
-         send_message(WM_NCDESTROY);
+         send_message(e_message_ncdestroy);
 
       }
       catch (...)
@@ -1577,7 +1577,7 @@ namespace user
       g_p->set_at((iptr)this, ::str::demangle(m_puserinteraction->type_name()) + "xxx" + type_name());
       MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &primitive_impl::_001OnShowWindow);
       MESSAGE_LINK(e_message_destroy, pchannel, this, &primitive_impl::_001OnDestroy);
-      MESSAGE_LINK(WM_NCDESTROY, pchannel, this, &primitive_impl::_001OnNcDestroy);
+      MESSAGE_LINK(e_message_ncdestroy, pchannel, this, &primitive_impl::_001OnNcDestroy);
       MESSAGE_LINK(e_message_create, pchannel, this, &primitive_impl::_001OnPrioCreate);
 
       if (m_puserinteraction && ::str::demangle(m_puserinteraction->type_name()).contains("notify_icon"))

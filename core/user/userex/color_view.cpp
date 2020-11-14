@@ -705,7 +705,7 @@ namespace userex
 
       get_client_rect(rC);
 
-      pgraphics->SetStretchBltMode(HALFTONE);
+      pgraphics->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
 
       ::rect r1;
 

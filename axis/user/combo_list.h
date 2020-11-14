@@ -43,7 +43,7 @@ namespace user
       //virtual void _002OnDrawVerisimple(::draw2d::graphics_pointer & pgraphics);
       virtual void _001OnDrawComboList(::draw2d::graphics_pointer & pgraphics);
 
-      virtual void query_full_size(::draw2d::graphics_pointer& pgraphics, LPSIZE psize);
+      virtual void query_full_size(::draw2d::graphics_pointer& pgraphics, LPSIZE32 psize);
 
 
       virtual ::draw2d::font_pointer get_font(style* pstyle, e_element eelement = element_none, estate estate = e_state_none) const override;

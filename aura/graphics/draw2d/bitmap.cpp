@@ -55,14 +55,14 @@ namespace draw2d
    }
 
 
-   bool bitmap::CreateBitmapIndirect(::draw2d::graphics * pgraphics,LPBITMAP pBitmap)
-   {
-
-      UNREFERENCED_PARAMETER(pBitmap);
-
-      ::exception::throw_not_implemented();
-      return false;
-   }
+//   bool bitmap::CreateBitmapIndirect(::draw2d::graphics * pgraphics,LPBITMAP pBitmap)
+//   {
+//
+//      UNREFERENCED_PARAMETER(pBitmap);
+//
+//      ::exception::throw_not_implemented();
+//      return false;
+//   }
 
 
 //   bool bitmap::CreateDIBSection(::draw2d::graphics * pgraphics,const BITMAPINFO * pbmi,::u32 usage,void **ppvBits,int * stride,HANDLE hSection,u32 offset)
@@ -160,9 +160,11 @@ namespace draw2d
       ::exception::throw_not_implemented();
       return 0;
    }
-   u32 bitmap::GetBitmapBits(u32 dwCount,LPVOID pBits) const
 
+
+   u32 bitmap::GetBitmapBits(u32 dwCount,void * pBits) const
    {
+
       UNREFERENCED_PARAMETER(dwCount);
       UNREFERENCED_PARAMETER(pBits);
 

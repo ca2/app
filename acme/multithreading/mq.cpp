@@ -164,7 +164,7 @@ int_bool mq::get_message(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMsgFilterMin,
 }
 
 
-int_bool mq::peek_message(LPMESSAGE pMsg,oswindow oswindow,::u32 wMsgFilterMin,::u32 wMsgFilterMax,::u32 wRemoveMsg)
+int_bool mq::peek_message(MESSAGE * pMsg, oswindow oswindow,::u32 wMsgFilterMin,::u32 wMsgFilterMax,::u32 wRemoveMsg)
 {
 
    if(wMsgFilterMax == 0)

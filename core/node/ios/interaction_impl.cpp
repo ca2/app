@@ -620,7 +620,7 @@ namespace ios
             if (!m_puserinteraction->m_bMessageWindow)
             {
 
-               MESSAGE_LINK(WM_PAINT, pchannel, this, &interaction_impl::_001OnPaint);
+               MESSAGE_LINK(e_message_paint, pchannel, this, &interaction_impl::_001OnPaint);
                MESSAGE_LINK(WM_PRINT, pchannel, this, &interaction_impl::_001OnPrint);
 
             }
@@ -634,7 +634,7 @@ namespace ios
 
       //         MESSAGE_LINK(WM_SETCURSOR, pchannel, this, &interaction_impl::_001OnSetCursor);
       //         MESSAGE_LINK(WM_ERASEBKGND, pchannel, this,&interaction_impl::_001OnEraseBkgnd);
-               //         MESSAGE_LINK(WM_NCCALCSIZE, pchannel, this,&interaction_impl::_001OnNcCalcSize);
+               //         MESSAGE_LINK(e_message_nccalcsize, pchannel, this,&interaction_impl::_001OnNcCalcSize);
       //         MESSAGE_LINK(e_message_size, pchannel, this, &interaction_impl::_001OnSize);
                //         MESSAGE_LINK(WM_WINDOWPOSCHANGING, pchannel, this,&interaction_impl::_001OnWindowPosChanging);
                //         MESSAGE_LINK(WM_WINDOWPOSCHANGED, pchannel, this,&interaction_impl::_001OnWindowPosChanged);
@@ -649,7 +649,7 @@ namespace ios
             //      ::user::interaction_impl::install_message_routing(pchannel);
             //      //m_pbuffer->InstallMessageHandling(pinterface);
             //      MESSAGE_LINK(e_message_destroy           , pchannel, this, &interaction_impl::_001OnDestroy);
-            //      MESSAGE_LINK(WM_PAINT             , pchannel, this, &interaction_impl::_001OnPaint);
+            //      MESSAGE_LINK(e_message_paint             , pchannel, this, &interaction_impl::_001OnPaint);
             //      MESSAGE_LINK(WM_PRINT             , pchannel, this, &interaction_impl::_001OnPrint);
             //      if(m_puserinteraction != nullptr)
             //      {
@@ -669,7 +669,7 @@ namespace ios
 //      ::user::interaction_impl::install_message_routing(pchannel);
 //      //m_pbuffer->InstallMessageHandling(pinterface);
 //      MESSAGE_LINK(e_message_destroy, pchannel, this, &interaction_impl::_001OnDestroy);
-//      MESSAGE_LINK(WM_PAINT, pchannel, this, &interaction_impl::_001OnPaint);
+//      MESSAGE_LINK(e_message_paint, pchannel, this, &interaction_impl::_001OnPaint);
 //      MESSAGE_LINK(WM_PRINT, pchannel, this, &interaction_impl::_001OnPrint);
 //
 //      if(m_puserinteraction != nullptr)
@@ -1789,8 +1789,8 @@ namespace ios
       switch (uMsg)
       {
       // normal messages (just wparam, lparam through OnWndMsg)
-      case WM_HSCROLL:
-      case WM_VSCROLL:
+      case e_message_hscroll:
+      case e_message_vscroll:
       case WM_PARENTNOTIFY:
       case WM_DRAWITEM:
       case WM_MEASUREITEM:
@@ -1914,7 +1914,7 @@ namespace ios
       interaction_impl::OnDisplayChange(0, 0);    // to update system metrics, etc.
    }
 
-   /*   void interaction_impl::OnDevModeChange(__in LPTSTR lpDeviceName)
+   /*   void interaction_impl::OnDevModeChange(__in char * lpDeviceName)
     {
     UNREFERENCED_PARAMETER(lpDeviceName);
     __throw(not_implemented());
@@ -3770,7 +3770,7 @@ namespace ios
 
    }
 
-   i32 interaction_impl::DlgDirList(LPTSTR lpPathSpec, i32 nIDListBox, i32 nIDStaticPath, ::u32 nFileType)
+   i32 interaction_impl::DlgDirList(char * lpPathSpec, i32 nIDListBox, i32 nIDStaticPath, ::u32 nFileType)
    {
 
       __throw(not_implemented());
@@ -3779,7 +3779,7 @@ namespace ios
 
    }
 
-   i32 interaction_impl::DlgDirListComboBox(LPTSTR lpPathSpec, i32 nIDComboBox, i32 nIDStaticPath, ::u32 nFileType)
+   i32 interaction_impl::DlgDirListComboBox(char * lpPathSpec, i32 nIDComboBox, i32 nIDStaticPath, ::u32 nFileType)
    {
 
       __throw(not_implemented());
@@ -3788,7 +3788,7 @@ namespace ios
 
    }
 
-   bool interaction_impl::DlgDirSelect(LPTSTR lpString, i32 nSize, i32 nIDListBox)
+   bool interaction_impl::DlgDirSelect(char * lpString, i32 nSize, i32 nIDListBox)
    {
 
       __throw(not_implemented());
@@ -3797,7 +3797,7 @@ namespace ios
 
    }
 
-   bool interaction_impl::DlgDirSelectComboBox(LPTSTR lpString, i32 nSize, i32 nIDComboBox)
+   bool interaction_impl::DlgDirSelectComboBox(char * lpString, i32 nSize, i32 nIDComboBox)
    {
 
       __throw(not_implemented());
@@ -3828,7 +3828,7 @@ namespace ios
     }
     */
 
-   //   i32 interaction_impl::GetDlgItemText(i32 nID, LPTSTR lpStr, i32 nMaxCount) const
+   //   i32 interaction_impl::GetDlgItemText(i32 nID, char * lpStr, i32 nMaxCount) const
    //   {
    //
    //      __throw(not_implemented());
@@ -4600,7 +4600,7 @@ namespace ios
       
       
    }
-   void interaction_impl::OnAskCbFormatName(::u32 nMaxCount, LPTSTR pszName)
+   void interaction_impl::OnAskCbFormatName(::u32 nMaxCount, char * pszName)
    {
       //Default();
       
@@ -5111,7 +5111,7 @@ namespace ios
       
       int h = pimage->height();
 
-      g->BitBlt(0, 0, w, h, pimage->get_graphics(), 0, 0, SRCCOPY);
+      g->BitBlt(0, 0, w, h, pimage->get_graphics(), 0, 0);
 
    }
 
@@ -5511,7 +5511,7 @@ namespace ios
 
             auto pmouseactivate = __new(::message::mouse_activate());
 
-            pmouseactivate->m_id = WM_MOUSEACTIVATE;
+            pmouseactivate->m_id = e_message_mouse_activate;
 
             spbase = pmouseactivate;
 

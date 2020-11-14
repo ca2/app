@@ -843,12 +843,12 @@ namespace windows
    }
    BOOL
    GetAccountSid(
-   LPTSTR SystemName,
-   LPTSTR AccountName,
+   char * SystemName,
+   char * AccountName,
    PSID *Sid
    )
    {
-      LPTSTR ReferencedDomain=nullptr;
+      char * ReferencedDomain=nullptr;
       ::u32 cbSid=128;    // initial allocation attempt
       ::u32 cchReferencedDomain=16; // initial allocation size
       SID_NAME_USE peUse;
@@ -866,7 +866,7 @@ namespace windows
                   cbSid
                   )) == nullptr) __leave;
 
-         if((ReferencedDomain=(LPTSTR)HeapAlloc(
+         if((ReferencedDomain=(char *)HeapAlloc(
                               GetProcessHeap(),
                               0,
                               cchReferencedDomain * sizeof(TCHAR)
@@ -897,7 +897,7 @@ namespace windows
                         cbSid
                         )) == nullptr) __leave;
 
-               if((ReferencedDomain=(LPTSTR)HeapReAlloc(
+               if((ReferencedDomain=(char *)HeapReAlloc(
                                     GetProcessHeap(),
                                     0,
                                     ReferencedDomain,
@@ -1788,7 +1788,7 @@ retry:
 
                wstr.release_string_buffer();
 
-               string strLink = ::str::international::unicode_to_utf8((LPCWSTR)wstr);
+               string strLink = ::str::international::unicode_to_utf8((const widechar *)wstr);
 
                if (strLink.is_empty())
                {
@@ -1815,7 +1815,7 @@ retry:
 
                   wstr.release_string_buffer();
 
-                  *pstrDirectory = ::str::international::unicode_to_utf8((LPCWSTR)wstr);
+                  *pstrDirectory = ::str::international::unicode_to_utf8((const widechar *)wstr);
 
                }
 
@@ -1831,7 +1831,7 @@ retry:
 
                   wstr.release_string_buffer();
 
-                  *pstrParams = ::str::international::unicode_to_utf8((LPCWSTR)wstr);
+                  *pstrParams = ::str::international::unicode_to_utf8((const widechar *)wstr);
 
                }
 
@@ -3626,7 +3626,7 @@ repeat:
 //                properties.
 
 
-HRESULT win_create_link(LPCWSTR pszPathObj, LPCWSTR pszPathLink, LPCWSTR pszDesc, LPCWSTR pszIconPath, INT iIcon)
+HRESULT win_create_link(const widechar * pszPathObj, const widechar * pszPathLink, const widechar * pszDesc, const widechar * pszIconPath, INT iIcon)
 
 {
 

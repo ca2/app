@@ -347,6 +347,7 @@ namespace draw2d
 
    }
 
+/*
    i32 graphics::EnumObjects(i32 nObjectType, i32 (CALLBACK* pfn)(LPVOID, LPARAM), LPARAM pData)
 
    {
@@ -360,6 +361,7 @@ namespace draw2d
       return -1;
 
    }
+   */
 
 
    ::estatus graphics::set(::draw2d::bitmap* pbitmap)
@@ -1048,7 +1050,8 @@ namespace draw2d
 
    }
 
-   bool graphics::DrawIcon(i32 x, i32 y, ::draw2d::icon * picon, i32 cx, i32 cy, ::u32 istepIfAniCur, HBRUSH hbrFlickerFreeDraw, ::u32 diFlags)
+
+   bool graphics::DrawIcon(i32 x, i32 y, ::draw2d::icon * picon, i32 cx, i32 cy, ::u32 istepIfAniCur,  ::u32 diFlags)
    {
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
@@ -1056,7 +1059,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(cx);
       UNREFERENCED_PARAMETER(cy);
       UNREFERENCED_PARAMETER(istepIfAniCur);
-      UNREFERENCED_PARAMETER(hbrFlickerFreeDraw);
+//      UNREFERENCED_PARAMETER(hbrFlickerFreeDraw);
       UNREFERENCED_PARAMETER(diFlags);
 
 
@@ -2119,7 +2122,7 @@ namespace draw2d
 
             //pimage1->channel_multiply(::color::channel_alpha, pimage2);
 
-            //BitBltRaw(pointDst.x, pointDst.y, sizeDst.cx, sizeDst.cy, pimage1->get_graphics(), pointSrc.x, pointSrc.y, SRCCOPY);
+            //BitBltRaw(pointDst.x, pointDst.y, sizeDst.cx, sizeDst.cy, pimage1->get_graphics(), pointSrc.x, pointSrc.y);
 
             auto pimage1 = create_image({::size(nSrcWidth,  nSrcHeight)});
 
@@ -2129,7 +2132,7 @@ namespace draw2d
 
             pimage1->blend2(::point(), m_pimageAlphaBlend, ::point((::i32)(xDst-m_pointAlphaBlend.x), (::i32)(yDst-m_pointAlphaBlend.y)), ::size(nSrcWidth, nSrcHeight), 255);
 
-            StretchBltRaw(xDst, yDst, nDstWidth, nDstHeight, pimage1->g(), 0, 0, nSrcWidth, nSrcHeight, SRCCOPY);
+            StretchBltRaw(xDst, yDst, nDstWidth, nDstHeight, pimage1->g(), 0, 0, nSrcWidth, nSrcHeight);
 
             return true;
 
@@ -2344,7 +2347,7 @@ namespace draw2d
 
          pimage1->blend(nullptr, m_pimageAlphaBlend, point((int)max(0, x - m_pointAlphaBlend.x), (int)max(0, y - m_pointAlphaBlend.y)), rectText.size());
 
-         BitBltRaw((int)x, (int)y, rectText.width(), rectText.height(), pimage1->get_graphics(), 0, 0, SRCCOPY);
+         BitBltRaw((int)x, (int)y, rectText.width(), rectText.height(), pimage1->get_graphics(), 0, 0);
 
          return true;
 
@@ -2494,7 +2497,7 @@ namespace draw2d
       return -1;
    }
 
-   i32 graphics::GetTextFace(count nCount, LPTSTR pszFacename)
+   i32 graphics::GetTextFace(count nCount, char * pszFacename)
 
    {
       UNREFERENCED_PARAMETER(nCount);
@@ -3322,7 +3325,7 @@ namespace draw2d
 //
 //#endif
 //
-//   bool graphics::GetTextExtentExPointI(LPWORD pgiIn, i32 cgi, i32 nMaxExtent, i32 * pnFit, i32 * alpDx, LPSIZE pSize)
+//   bool graphics::GetTextExtentExPointI(LPWORD pgiIn, i32 cgi, i32 nMaxExtent, i32 * pnFit, i32 * alpDx, LPSIZE32 pSize)
 //
 //
 //   {
@@ -3338,7 +3341,7 @@ namespace draw2d
 //      return false;
 //   }
 //
-//   bool graphics::GetTextExtentPointI(LPWORD pgiIn, i32 cgi, LPSIZE pSize)
+//   bool graphics::GetTextExtentPointI(LPWORD pgiIn, i32 cgi, LPSIZE32 pSize)
 //
 //   {
 //      UNREFERENCED_PARAMETER(pgiIn);
@@ -3351,7 +3354,7 @@ namespace draw2d
 //
 //#endif
 
-   void graphics::DPtoHIMETRIC(LPSIZE pSize)
+   void graphics::DPtoHIMETRIC(LPSIZE32 pSize)
 
    {
       UNREFERENCED_PARAMETER(pSize);
@@ -3359,7 +3362,7 @@ namespace draw2d
 
    }
 
-   void graphics::HIMETRICtoDP(LPSIZE pSize)
+   void graphics::HIMETRICtoDP(LPSIZE32 pSize)
 
    {
       UNREFERENCED_PARAMETER(pSize);
@@ -3367,7 +3370,7 @@ namespace draw2d
 
    }
 
-   void graphics::LPtoHIMETRIC(LPSIZE pSize)
+   void graphics::LPtoHIMETRIC(LPSIZE32 pSize)
 
    {
       UNREFERENCED_PARAMETER(pSize);
@@ -3375,7 +3378,7 @@ namespace draw2d
 
    }
 
-   void graphics::HIMETRICtoLP(LPSIZE pSize)
+   void graphics::HIMETRICtoLP(LPSIZE32 pSize)
 
    {
       UNREFERENCED_PARAMETER(pSize);
@@ -3551,7 +3554,7 @@ namespace draw2d
    }
 
 
-   i32 graphics::SetStretchBltMode(i32 nStretchMode)
+   i32 graphics::set_interpolation_mode(i32 nStretchMode)
    {
 
       UNREFERENCED_PARAMETER(nStretchMode);
@@ -4339,7 +4342,7 @@ namespace draw2d
    /////////////////////////////////////////////////////////////////////////////
    // Coordinate transforms
 
-   void graphics::LPtoDP(LPSIZE pSize)
+   void graphics::LPtoDP(LPSIZE32 pSize)
 
    {
       UNREFERENCED_PARAMETER(pSize);
@@ -4348,7 +4351,7 @@ namespace draw2d
    }
 
 
-   void graphics::DPtoLP(LPSIZE pSize)
+   void graphics::DPtoLP(LPSIZE32 pSize)
 
    {
 
@@ -4801,13 +4804,13 @@ namespace draw2d
          if (nSrcHeight == nDstHeight && nSrcWidth == nDstWidth)
          {
 
-            return BitBlt(xDst, yDst, nDstWidth, nDstHeight, pgraphicsSrc, xSrc, ySrc, SRCCOPY);
+            return BitBlt(xDst, yDst, nDstWidth, nDstHeight, pgraphicsSrc, xSrc, ySrc);
 
          }
          else
          {
 
-            return StretchBlt(xDst, yDst, nDstWidth, nDstHeight, pgraphicsSrc, xSrc, ySrc, nSrcWidth, nSrcHeight, SRCCOPY);
+            return StretchBlt(xDst, yDst, nDstWidth, nDstHeight, pgraphicsSrc, xSrc, ySrc, nSrcWidth, nSrcHeight);
 
          }
 
@@ -4889,7 +4892,7 @@ namespace draw2d
          if (nSrcHeight == nDstHeight && nSrcWidth == nDstWidth)
          {
 
-            return BitBlt(xDst, yDst, nDstWidth, nDstHeight, pimage, xSrc, ySrc, SRCCOPY);
+            return BitBlt(xDst, yDst, nDstWidth, nDstHeight, pimage, xSrc, ySrc);
 
          }
          else
@@ -4897,7 +4900,7 @@ namespace draw2d
 
             pimage->defer_update_image();
 
-            return StretchBlt(xDst, yDst, nDstWidth, nDstHeight, pimage->g(), xSrc, ySrc, nSrcWidth, nSrcHeight, SRCCOPY);
+            return StretchBlt(xDst, yDst, nDstWidth, nDstHeight, pimage->g(), xSrc, ySrc, nSrcWidth, nSrcHeight);
 
          }
 
@@ -4987,7 +4990,7 @@ namespace draw2d
 
             pimage1->channel_multiply(::color::channel_alpha, pimage2);
 
-            BitBltRaw(pointDst.x, pointDst.y, size.cx, size.cy, pimage1->g(), pointSrc.x, pointSrc.y, SRCCOPY);
+            BitBltRaw(pointDst.x, pointDst.y, size.cx, size.cy, pimage1->g(), pointSrc.x, pointSrc.y);
 
             return true;
 

@@ -127,4 +127,24 @@ void simple_debug_print(const char* psz)
 
 #endif
 
+//
+//thread_local ::estatus t_estatusLast = ::success;
+//
+//
+//CLASS_DECL_ACME ::estatus get_last_status()
+//{
+//
+//    return t_estatusLast;
+//
+//}
+//
+//
+//CLASS_DECL_ACME void set_last_error(::estatus estatus)
+//{
+//
+//    t_estatusLast = estatus;
+//
+//}
+
+
 

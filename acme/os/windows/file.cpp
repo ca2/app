@@ -434,9 +434,9 @@ struct PROCESS_INFO_t
 ////void EnumerateLoadedModules( string& csPath, OF_CALLBACK CallBackProc, uptr pUserContext );
 ////void EnumerateOpenedFiles( string& csPath, OF_CALLBACK CallBackProc, uptr pUserContext, HANDLE hDriver, GetFinalPathNameByHandleDef pGetFinalPathNameByHandle );
 //
-//const LPCWSTR DRV_DOS_NAME = L"\\\\.\\ListFileDrv";
-//const LPCWSTR DRV_NAME = L"ListOpenedFileDrv";
-//const LPCWSTR DRV_FILE_NAME = L"ListOpenedFileDrv.sys";
+//const const widechar * DRV_DOS_NAME = L"\\\\.\\ListFileDrv";
+//const const widechar * DRV_NAME = L"ListOpenedFileDrv";
+//const const widechar * DRV_FILE_NAME = L"ListOpenedFileDrv.sys";
 //
 //#define DRIVER_FILE_NAME_32 L"\\ListOpenedFileDrv_32.sys"
 //#define DRIVER_FILE_NAME_64 L"\\ListOpenedFileDrv_64.sys"
@@ -488,7 +488,7 @@ struct PROCESS_INFO_t
 //}
 //
 //
-////extern "C" CLASS_DECL_ACME void GetOpenedFiles(LPCWSTR pPath, OF_TYPE Filter, OF_CALLBACK CallBackProc, uptr pUserContext)
+////extern "C" CLASS_DECL_ACME void GetOpenedFiles(const widechar * pPath, OF_TYPE Filter, OF_CALLBACK CallBackProc, uptr pUserContext)
 ////
 ////{
 ////   string csPath = pPath;
@@ -1078,7 +1078,7 @@ int_bool file_move(const char * pszNewName, const char * pszOldName)
 
 {
 
-   if(!::MoveFile((LPTSTR)pszOldName,(LPTSTR)pszNewName))
+   if(!::MoveFile((char *)pszOldName,(char *)pszNewName))
 
       return FALSE;
 

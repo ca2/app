@@ -45,7 +45,7 @@ namespace draw2d
       virtual bool create_null();
       virtual bool create_solid(color color);
       virtual bool CreateHatchBrush(i32 nIndex, color color);
-      virtual bool CreateBrushIndirect(const LOGBRUSH* pLogBrush);
+      //virtual bool CreateBrushIndirect(const LOGBRUSH* pLogBrush);
 
       virtual bool CreatePatternBrush(::image * pimage);
 #ifdef WINDOWS
@@ -60,7 +60,7 @@ namespace draw2d
       virtual bool CreateLinearGradientBrush(pointd point1,pointd point2,const color & color1,const color & color2);
       virtual bool CreateRadialGradientBrush(pointd point,sized s,const color & color1,const color & color2);
 
-      virtual i32 GetLogBrush(LOGBRUSH* pLogBrush);
+      //virtual i32 GetLogBrush(LOGBRUSH* pLogBrush);
 
       brush & operator = (const ::draw2d::brush & brushSrc);
 

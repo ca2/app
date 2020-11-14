@@ -1158,7 +1158,7 @@ inline float_time::float_time(const FILETIME& filetimeSrc) RELEASENOTHROW :
       tmTemp.tm_isdst	= 0;
 
       string strDate;
-      LPTSTR lpszTemp = strDate.GetBufferSetLength(256);
+      char * lpszTemp = strDate.GetBufferSetLength(256);
       _tcsftime(lpszTemp, strDate.GetLength(), pFormat, &tmTemp);
       strDate.ReleaseBuffer();
 

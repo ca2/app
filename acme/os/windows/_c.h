@@ -25,7 +25,7 @@ CLASS_DECL_ACME ithread_t get_main_ithread();
 //CLASS_DECL_ACME bool GetPrimaryMonitorRect(RECT32 * prect);
 
 
-CLASS_DECL_ACME int WinRegGetValueW(HKEY hkey, LPCWSTR pSubKey, LPCWSTR lpValue, ::u32 dwFlags, LPDWORD pdwType, PVOID pvData, LPDWORD pcbData);
+CLASS_DECL_ACME int WinRegGetValueW(HKEY hkey, const widechar * pSubKey, const widechar * lpValue, ::u32 dwFlags, LPDWORD pdwType, PVOID pvData, LPDWORD pcbData);
 
 
 

@@ -61,8 +61,7 @@ namespace draw2d
       double               dRateX,
       double               dHeight,
       const char *         psz,
-      LPINT                  piCharsPositions,
-
+      int *                piCharsPositions,
       i32                  iCharsPositions,
       i32                  iOffset);
 
@@ -85,7 +84,7 @@ namespace draw2d
       double            dRateX,
       double            dHeight,
       const char *      psz,
-      LPINT               piCharsPositions,
+      int *             piCharsPositions,
 
       i32               iCharsPositions,
       i32               iOffset);

@@ -133,7 +133,7 @@ namespace apex
             for( ::u32 u = 0; u < (cbTranslate/sizeof(struct LANGANDCODEPAGE)); u++ )
             {
 
-               LPTSTR psz;
+               char * psz;
 
                ::u32 uSize;
 
@@ -150,7 +150,7 @@ namespace apex
 
                // Retrieve file description for language and code page "i".
                if (VerQueryValue(memory.get_data(),
-                  (LPTSTR)(const char*)strKey,
+                  (char *)(const char*)strKey,
                   (LPVOID*)&psz,
                   &uiSize))
                {
@@ -242,7 +242,7 @@ namespace apex
 
 
 //
-//void __node_init_main_data(::object * pobject, HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR pCmdLine, ::display edisplay)
+//void __node_init_main_data(::object * pobject, HINSTANCE hInstance, HINSTANCE hPrevInstance, char * pCmdLine, ::display edisplay)
 
 //{
 //

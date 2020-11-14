@@ -230,7 +230,7 @@ namespace draw2d_opengl
    //   if (m_pgraphics.is_null())
    //      return false;
 
-   //   return m_pgraphics->BitBlt(ptDest, sz, pgraphics, point, SRCCOPY) != FALSE;
+   //   return m_pgraphics->BitBlt(ptDest, sz, pgraphics, point) != FALSE;
 
    //}
 

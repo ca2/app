@@ -583,12 +583,12 @@ namespace draw2d
 
 
    inline bool graphics::draw(::image * pimage) { return draw(rect(pimage->get_size()), pimage); }
-   inline bool graphics::draw(const point & pDst, const ::size & size, ::image * pimage, const point & pSrc, u32 dwRop) { return draw(rect(pDst, size), pimage, pSrc, dwRop); }
+   inline bool graphics::draw(const point & pDst, const ::size & size, ::image * pimage, const point & pSrc) { return draw(rect(pDst, size), pimage, pSrc); }
 
-   inline bool graphics::draw(const ::size & size, ::image * pimage, const point & pSrc, u32 dwRop) { return draw(rect(size), pimage, pSrc, dwRop); }
+   inline bool graphics::draw(const ::size & size, ::image * pimage, const point & pSrc) { return draw(rect(size), pimage, pSrc); }
 
-   inline bool graphics::draw_dim(i32 x, i32 y, i32 w, i32 h, ::image * pimage, i32 xSrc, i32 ySrc, u32 dwRop) { return draw(rect_dim(x, y, w, h), pimage, ::point(xSrc, ySrc), dwRop); }
-   inline bool graphics::BitBlt (i32 x, i32 y, i32 w, i32 h, ::image * pimage, i32 xSrc, i32 ySrc, u32 dwRop) { return draw_dim(x, y, w, h, pimage, xSrc, ySrc, dwRop); }
+   inline bool graphics::draw_dim(i32 x, i32 y, i32 w, i32 h, ::image * pimage, i32 xSrc, i32 ySrc) { return draw(rect_dim(x, y, w, h), pimage, ::point(xSrc, ySrc)); }
+   inline bool graphics::BitBlt (i32 x, i32 y, i32 w, i32 h, ::image * pimage, i32 xSrc, i32 ySrc) { return draw_dim(x, y, w, h, pimage, xSrc, ySrc); }
 
 
 } // namespace draw2d

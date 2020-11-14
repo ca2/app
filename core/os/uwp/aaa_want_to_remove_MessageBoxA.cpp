@@ -13,7 +13,7 @@ public:
 
    message_box_a();
 
-   int do_modal(String ^ text, String ^ caption, unsigned int uiFlags);
+   int do_modal(String ^ text, String ^ caption, unsigned int uFlags);
 
    
 };
@@ -26,12 +26,12 @@ message_box_a::message_box_a()
 #define create_a_button(id,text) \
    msg->Commands->Append(ref new UICommand(text,nullptr,id));
 
-int message_box_a::do_modal(String ^ text,String ^ caption,unsigned int uiFlags)
+int message_box_a::do_modal(String ^ text,String ^ caption,unsigned int uFlags)
 {
 
    MessageDialog^ msg = ref new MessageDialog(text, caption);
 
-   u32 uiType = uiFlags & MB_TYPEMASK;
+   u32 uiType = uFlags & MB_TYPEMASK;
 
    switch(uiType)
    {
@@ -177,14 +177,14 @@ int message_box_a::do_modal(String ^ text,String ^ caption,unsigned int uiFlags)
 
 
 
-i32 WINAPI MessageBoxA(oswindow interaction_impl,const char * lpText,const char * lpCaption,u32 uiFlags)
+i32 WINAPI MessageBoxA(oswindow interaction_impl,const char * lpText,const char * lpCaption,u32 uFlags)
 {
 
    UNREFERENCED_PARAMETER(interaction_impl);
 
    message_box_a a;
 
-   int iResult = a.do_modal(string(lpText),string(lpCaption),uiFlags);
+   int iResult = a.do_modal(string(lpText),string(lpCaption),uFlags);
 
 
    return iResult;

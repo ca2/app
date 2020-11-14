@@ -128,7 +128,7 @@ static int button_paint(Button* button, HDC hdc)
 	FloatBar* floatbar = button->floatbar;
 
 	SelectObject(floatbar->hdcmem, button->active ? button->bmp_act : button->bmp);
-	StretchBlt(hdc, button->x, button->y, button->w, button->h, floatbar->hdcmem, 0, 0, button->w, button->h, SRCCOPY);
+	StretchBlt(hdc, button->x, button->y, button->w, button->h, floatbar->hdcmem, 0, 0, button->w, button->h);
 
 	return 0;
 }
@@ -194,7 +194,7 @@ static int floatbar_paint(FloatBar* floatbar, HDC hdc)
 
 	/* paint background */
 	SelectObject(floatbar->hdcmem, floatbar->background);
-	StretchBlt(hdc, 0, 0, BACKGROUND_W, BACKGROUND_H, floatbar->hdcmem, 0, 0, BACKGROUND_W, BACKGROUND_H, SRCCOPY);
+	StretchBlt(hdc, 0, 0, BACKGROUND_W, BACKGROUND_H, floatbar->hdcmem, 0, 0, BACKGROUND_W, BACKGROUND_H);
 
 	/* paint buttons */
 	for (i = 0; i < BTN_MAX; i++)
@@ -249,7 +249,7 @@ LRESULT CALLBACK floatbar_proc(HWND hWnd, ::u32 Msg, WPARAM wParam, LPARAM lPara
 			SetTimer(hWnd, TIMER_HIDE, 3000, nullptr);
 			break;
 
-		case WM_PAINT:
+		case e_message_paint:
 			hdc = BeginPaint(hWnd, &ps);
 			floatbar_paint(floatbar, hdc);
 			EndPaint(hWnd, &ps);

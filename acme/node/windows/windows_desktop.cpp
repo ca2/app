@@ -120,7 +120,7 @@ CLASS_DECL_ACME ATOM MyRegisterClass(HINSTANCE hInstance)
 //  PURPOSE: Processes messages for the main window.
 //
 //  WM_COMMAND  - process the application menu
-//  WM_PAINT    - Paint the main window
+//  e_message_paint    - Paint the main window
 //  e_message_destroy  - post a quit message and return
 //
 //
@@ -129,7 +129,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, ::u32 message, WPARAM wParam, LPARAM lParam)
    switch (message)
    {
 
-   //case WM_PAINT:
+   //case e_message_paint:
    //{
    //   PAINTSTRUCT ps;
    //   HDC hdc = BeginPaint(hWnd, &ps);

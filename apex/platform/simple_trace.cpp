@@ -29,21 +29,21 @@ CLASS_DECL_APEX void __simple_tracev(::matter * pobjectContext, e_trace_level el
 //}
 
 
-void TRACELASTERROR()
+void TRACELASTSTATUS()
 {
 
-   auto error = ::get_last_error();
+   auto estatus = ::get_last_status();
 
-   if (!error)
+   if (!estatus)
    {
 
       return;
 
    }
 
-   string strErrorMessage = ::get_system_error_message(error);
+   string strStatusMessage = ::get_system_error_message(estatus);
 
-   TRACE("Error Message :\n%s\n", strErrorMessage.c_str());
+   TRACE("Status Message :\n%s\n", strStatusMessage.c_str());
 
 }
 

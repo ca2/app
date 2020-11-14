@@ -22,7 +22,7 @@ namespace tranquillum
 
 //      m_fontEdit->create_point_font("MS Sans Serif", 9.0);
 
-      //    m_fontList->create_point_font("Segoe UI", 10, FW_BOLD);
+      //    m_fontList->create_point_font("Segoe UI", 10, e_font_weight_bold);
 
       //theme_current_control(::user::control_none);
 
@@ -1042,21 +1042,21 @@ namespace tranquillum
 
    //            }
 
-   //            if (uiImage != 0xffffffffu)
+   //            if (uImage != 0xffffffffu)
    //            {
 
    //               if ((nStyle & TBBS_DISABLED) == 0)
    //               {
 
    //                  // button is enabled
-   //                  psession->userex()->menu()->MenuV033GetImageListBlend()->draw(pgraphics, uiImage, rectImage.top_left(), 0);
+   //                  psession->userex()->menu()->MenuV033GetImageListBlend()->draw(pgraphics, uImage, rectImage.top_left(), 0);
 
    //               }
    //               else
    //               {
 
    //                  // button is disabled
-   //                  psession->userex()->menu()->MenuV033GetImageListHueLight()->draw(pgraphics, uiImage, rectImage.top_left(), 0);
+   //                  psession->userex()->menu()->MenuV033GetImageListHueLight()->draw(pgraphics, uImage, rectImage.top_left(), 0);
 
    //               }
 
@@ -1099,16 +1099,16 @@ namespace tranquillum
    //               System.imaging().color_blend(pgraphics, rect.top_left(), rect.size(), item.m_pimage->g(), nullptr, 0.80);
 
    //            }
-   //            else if (uiImage != 0xffffffffu)
+   //            else if (uImage != 0xffffffffu)
    //            {
 
    //               ::rect rect;
 
    //               ptoolbar->_001GetElementRect(iItem, rect, ::user::toolbar::element_item_hover);
 
-   //               psession->userex()->menu()->MenuV033GetImageListHue()->draw(pgraphics, uiImage, rect.top_left(), 0);
+   //               psession->userex()->menu()->MenuV033GetImageListHue()->draw(pgraphics, uImage, rect.top_left(), 0);
 
-   //               psession->userex()->menu()->MenuV033GetImageList()->draw(pgraphics, uiImage, rectImage.top_left(), 0);
+   //               psession->userex()->menu()->MenuV033GetImageList()->draw(pgraphics, uImage, rectImage.top_left(), 0);
    //            }
 
    //         }
@@ -1144,10 +1144,10 @@ namespace tranquillum
    //            System.imaging().color_blend(pgraphics, rect.top_left(), rect.size(), item.m_pimage->g(), nullptr, 1.0);
 
    //         }
-   //         else if (uiImage != 0xffffffff)
+   //         else if (uImage != 0xffffffff)
    //         {
 
-   //            psession->userex()->menu()->MenuV033GetImageList()->draw(pgraphics, uiImage, rectImage.top_left(), 0);
+   //            psession->userex()->menu()->MenuV033GetImageList()->draw(pgraphics, uImage, rectImage.top_left(), 0);
 
    //         }
 
@@ -1181,19 +1181,19 @@ namespace tranquillum
    //            System.imaging().color_blend(pgraphics, rect.top_left(), rect.size(), item.m_pimage->g(), nullptr, 0.20);
 
    //         }
-   //         else if (uiImage != 0xffffffff)
+   //         else if (uImage != 0xffffffff)
    //         {
 
    //            if ((nStyle & TBBS_DISABLED) == 0)
    //            {
 
-   //               psession->userex()->menu()->MenuV033GetImageListBlend()->draw(pgraphics, uiImage, rectImage.top_left(), 0);
+   //               psession->userex()->menu()->MenuV033GetImageListBlend()->draw(pgraphics, uImage, rectImage.top_left(), 0);
 
    //            }
    //            else
    //            {
 
-   //               psession->userex()->menu()->MenuV033GetImageListHueLight()->draw(pgraphics, uiImage, rectImage.top_left(), 0);
+   //               psession->userex()->menu()->MenuV033GetImageListHueLight()->draw(pgraphics, uImage, rectImage.top_left(), 0);
 
    //            }
 
@@ -1348,21 +1348,21 @@ namespace tranquillum
 
    //            }
 
-   //            if (uiImage != 0xffffffffu)
+   //            if (uImage != 0xffffffffu)
    //            {
 
    //               if ((nStyle & TBBS_DISABLED) == 0)
    //               {
 
    //                  // button is enabled
-   //                  psession->userex()->menu()->MenuV033GetImageListBlend()->draw(pgraphics, uiImage, rectImage.top_left(), 0);
+   //                  psession->userex()->menu()->MenuV033GetImageListBlend()->draw(pgraphics, uImage, rectImage.top_left(), 0);
 
    //               }
    //               else
    //               {
 
    //                  // button is disabled
-   //                  psession->userex()->menu()->MenuV033GetImageListHueLight()->draw(pgraphics, uiImage, rectImage.top_left(), 0);
+   //                  psession->userex()->menu()->MenuV033GetImageListHueLight()->draw(pgraphics, uImage, rectImage.top_left(), 0);
 
    //               }
 
@@ -1403,16 +1403,16 @@ namespace tranquillum
    //               System.imaging().color_blend(pgraphics, rect.top_left(), rect.size(), item.m_pimage->g(), nullptr, 0.80);
 
    //            }
-   //            else if (uiImage != 0xffffffffu)
+   //            else if (uImage != 0xffffffffu)
    //            {
 
    //               ::rect rect;
 
    //               ptoolbar->_001GetElementRect(iItem, rect, ::user::toolbar::element_item_hover);
 
-   //               psession->userex()->menu()->MenuV033GetImageListHue()->draw(pgraphics, uiImage, rect.top_left(), 0);
+   //               psession->userex()->menu()->MenuV033GetImageListHue()->draw(pgraphics, uImage, rect.top_left(), 0);
 
-   //               psession->userex()->menu()->MenuV033GetImageList()->draw(pgraphics, uiImage, rectImage.top_left(), 0);
+   //               psession->userex()->menu()->MenuV033GetImageList()->draw(pgraphics, uImage, rectImage.top_left(), 0);
    //            }
 
    //         }
@@ -1448,10 +1448,10 @@ namespace tranquillum
    //            System.imaging().color_blend(pgraphics, rect.top_left(), rect.size(), item.m_pimage->g(), nullptr, 1.0);
 
    //         }
-   //         else if (uiImage != 0xffffffff)
+   //         else if (uImage != 0xffffffff)
    //         {
 
-   //            psession->userex()->menu()->MenuV033GetImageList()->draw(pgraphics, uiImage, rectImage.top_left(), 0);
+   //            psession->userex()->menu()->MenuV033GetImageList()->draw(pgraphics, uImage, rectImage.top_left(), 0);
 
    //         }
 
@@ -1508,19 +1508,19 @@ namespace tranquillum
    //            System.imaging().color_blend(pgraphics, rect.top_left(), rect.size(), item.m_pimage->g(), nullptr, 0.20);
 
    //         }
-   //         else if (uiImage != 0xffffffff)
+   //         else if (uImage != 0xffffffff)
    //         {
 
    //            if ((nStyle & TBBS_DISABLED) == 0)
    //            {
 
-   //               psession->userex()->menu()->MenuV033GetImageListBlend()->draw(pgraphics, uiImage, rectImage.top_left(), 0);
+   //               psession->userex()->menu()->MenuV033GetImageListBlend()->draw(pgraphics, uImage, rectImage.top_left(), 0);
 
    //            }
    //            else
    //            {
 
-   //               psession->userex()->menu()->MenuV033GetImageListHueLight()->draw(pgraphics, uiImage, rectImage.top_left(), 0);
+   //               psession->userex()->menu()->MenuV033GetImageListHueLight()->draw(pgraphics, uImage, rectImage.top_left(), 0);
 
    //            }
 

@@ -183,7 +183,6 @@ namespace user
       m_bIdBound = false;
       // Control Member Variables END
 
-
    }
 
 
@@ -1043,7 +1042,7 @@ namespace user
          MESSAGE_LINK(e_message_close, pchannel, this, &interaction::_001OnClose);
          MESSAGE_LINK(e_message_size, pchannel, this, &interaction::_001OnSize);
          MESSAGE_LINK(e_message_move, pchannel, this, &interaction::_001OnMove);
-         MESSAGE_LINK(WM_NCCALCSIZE, pchannel, this, &interaction::_001OnNcCalcSize);
+         MESSAGE_LINK(e_message_nccalcsize, pchannel, this, &interaction::_001OnNcCalcSize);
          MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &interaction::_001OnShowWindow);
          MESSAGE_LINK(e_message_kill_focus, pchannel, this, &interaction::_001OnKillFocus);
          MESSAGE_LINK(e_message_set_focus, pchannel, this, &interaction::_001OnSetFocus);
@@ -3315,6 +3314,7 @@ namespace user
 
    void interaction::on_create_user_interaction()
    {
+
 
 
    }

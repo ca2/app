@@ -1,12 +1,8 @@
 #pragma once
 
 
-
-
-CLASS_DECL_ACME ::u32 get_last_error();
-CLASS_DECL_ACME void set_last_error(::u32 dw);
-
-
+CLASS_DECL_ACME ::estatus get_last_status();
+CLASS_DECL_ACME void set_last_status(const ::estatus & estatus);
 
 
 /// Class with static functions to get information about an error.
@@ -37,7 +33,7 @@ class CLASS_DECL_ACME sys_error
 {
 public:
 
-   static ::u32 get_last_error() { return ::get_last_error(); }
+   static ::u32 get_last_error() { return ::get_last_status(); }
 
    static string GetErrorDescription(int iErrorCode = get_last_error())
    {
@@ -45,13 +41,13 @@ public:
 
       format_message(FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
                     nullptr, iErrorCode, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), // Default language
-                    reinterpret_cast<LPTSTR>(&pMsgBuf), 0, nullptr);
+                    reinterpret_cast<char *>(&pMsgBuf), 0, nullptr);
 
       string strErrorDescription;
       if (pMsgBuf)
 
       {
-         strErrorDescription = reinterpret_cast<LPTSTR>(pMsgBuf);
+         strErrorDescription = reinterpret_cast<char *>(pMsgBuf);
 
          LocalFree(pMsgBuf);
 

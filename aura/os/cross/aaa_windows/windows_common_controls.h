@@ -249,8 +249,8 @@ typedef struct tagTBSAVEPARAMSA {
 
 typedef struct tagTBSAVEPARAMSW {
    HKEY hkr;
-   LPCWSTR pszSubKey;
-   LPCWSTR pszValueName;
+   const widechar * pszSubKey;
+   const widechar * pszValueName;
 } TBSAVEPARAMSW,*LPTBSAVEPARAMW;
 
 #ifdef UNICODE
@@ -327,7 +327,7 @@ typedef struct {
 #define TB_SETINSERTMARK        (WM_USER + 80)  // lParam == LPTBINSERTMARK
 #define TB_INSERTMARKHITTEST    (WM_USER + 81)  // wParam == POINT32 * lParam == LPTBINSERTMARK
 #define TB_MOVEBUTTON           (WM_USER + 82)
-#define TB_GETMAXSIZE           (WM_USER + 83)  // lParam == LPSIZE
+#define TB_GETMAXSIZE           (WM_USER + 83)  // lParam == LPSIZE32
 #define TB_SETEXTENDEDSTYLE     (WM_USER + 84)  // For TBSTYLE_EX_*
 #define TB_GETEXTENDEDSTYLE     (WM_USER + 85)  // For TBSTYLE_EX_*
 #define TB_GETPADDING           (WM_USER + 86)
@@ -1344,10 +1344,10 @@ typedef struct tagNMTTDISPINFOW {
 // end_r_commctrl
 
 //WINCOMMCTRLAPI void WINAPI DrawStatusTextA(HDC hDC,LPCRECT32 lprc,const char * pszText,::u32 uFlags);
-//WINCOMMCTRLAPI void WINAPI DrawStatusTextW(HDC hDC,LPCRECT32 lprc,LPCWSTR pszText,::u32 uFlags);
+//WINCOMMCTRLAPI void WINAPI DrawStatusTextW(HDC hDC,LPCRECT32 lprc,const widechar * pszText,::u32 uFlags);
 
 //WINCOMMCTRLAPI oswindow WINAPI CreateStatusWindowA(::i32 style,const char * lpszText,oswindow hwndParent,::u32 wID);
-//WINCOMMCTRLAPI oswindow WINAPI CreateStatusWindowW(::i32 style,LPCWSTR lpszText,oswindow hwndParent,::u32 wID);
+//WINCOMMCTRLAPI oswindow WINAPI CreateStatusWindowW(::i32 style,const widechar * lpszText,oswindow hwndParent,::u32 wID);
 
 #ifdef UNICODE
 #define CreateStatusWindow      CreateStatusWindowW

@@ -95,6 +95,7 @@ target_link_directories(draw2d_cairo PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../.
 target_link_directories(draw2d_cairo PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/storage-${PLATFORM_NAME}/third/library/x64/basis)
 
 
+target_include_directories(apex PRIVATE .)
 target_include_directories(draw2d_cairo PRIVATE $ENV{HOME}/__config)
 target_include_directories(draw2d_cairo PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 target_include_directories(draw2d_cairo PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)

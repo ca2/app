@@ -6,7 +6,7 @@
 
 #else
 
-#include "acme/os/cross/windows/e.h"
+//#include "acme/os/cross/windows/e.h"
 
 #endif
 
@@ -29,7 +29,7 @@ namespace str
       bool UnicodeToMultiByte(::u32 uCodePage, ansichar * pstrMultiByte, strsize iMultiByteCount, const widechar * pcsz, strsize iCount)
       {
 
-         if (CP_UTF8 == uCodePage)
+         if (65001 == uCodePage)
          {
 
             unichar_to_utf8(pstrMultiByte, pcsz, iCount);
@@ -148,7 +148,7 @@ namespace str
       strsize UnicodeToMultiByteCount(::u32 uCodePage, const widechar * pcsz, strsize iCount)
       {
 
-         if (CP_UTF8 == uCodePage)
+         if (65001 == uCodePage)
          {
 
             return unichar_to_utf8_len(pcsz, iCount);
@@ -235,6 +235,7 @@ namespace str
 
       }
 
+#define ERROR_NO_UNICODE_TRANSLATION     1113L
 
       wstring MultiByteToUnicode(::u32 uCodePage, const char * pcsz, strsize nCount)
       {
@@ -579,7 +580,7 @@ namespace str
 
          string str;
 
-         if (!MultiByteToMultiByte(CP_UTF8, str, uCodePageSrc, pcsz))
+         if (!MultiByteToMultiByte(65001, str, uCodePageSrc, pcsz))
 
          {
 
@@ -595,14 +596,14 @@ namespace str
       bool multibyte_to_utf8(::u32 uCodePageSrc, string & str, const char * pcsz)
 
       {
-         return MultiByteToMultiByte(CP_UTF8, str, uCodePageSrc, pcsz);
+         return MultiByteToMultiByte(65001, str, uCodePageSrc, pcsz);
 
       }
 
       bool multibyte_to_utf8(::u32 uCodePageSrc, string & str, const char * pcsz, strsize nCount)
 
       {
-         return MultiByteToMultiByte(CP_UTF8, str, uCodePageSrc, pcsz, nCount);
+         return MultiByteToMultiByte(65001, str, uCodePageSrc, pcsz, nCount);
 
       }
 
@@ -624,14 +625,14 @@ namespace str
       wstring utf8_to_unicode(const char * pcsz, strsize iCount)
 
       {
-         return MultiByteToUnicode(CP_UTF8, pcsz, (strsize) iCount);
+         return MultiByteToUnicode(65001, pcsz, (strsize) iCount);
 
       }
 
       bool utf8_to_unicode(widechar * pwsz, strsize iBuffer, const char * pcsz, strsize iCount)
 
       {
-         return MultiByteToUnicode(CP_UTF8, pwsz, (strsize) iBuffer, pcsz, (strsize) iCount);
+         return MultiByteToUnicode(65001, pwsz, (strsize) iBuffer, pcsz, (strsize) iCount);
 
       }
 
@@ -664,7 +665,7 @@ namespace str
       }
 
 
-      //bool AcpToUtf8(LPTSTR pstrUnicode, strsize nCount, const char * pcsz)
+      //bool AcpToUtf8(char * pstrUnicode, strsize nCount, const char * pcsz)
 
       //{
       //   return MultiByteToMultiByte(CP_UTF8, pstrUnicode, nCount, g_uiACP, pcsz);

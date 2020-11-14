@@ -54,7 +54,7 @@ thread_group::thread_group(::object * pobject, ::e_priority epriority) :
 
       ptoolthread->m_iThread = iThread;
 
-      ptoolthread->m_dwThreadAffinityMask = translate_processor_affinity((int) (ptoolthread->m_iThread));
+      ptoolthread->m_uThreadAffinityMask = translate_processor_affinity((int) (ptoolthread->m_iThread));
 
       if (epriority == ::priority_none)
       {

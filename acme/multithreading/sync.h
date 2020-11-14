@@ -1,18 +1,8 @@
 #pragma once
 
 
-#ifdef WINDOWS
-
-using HSYNC = HANDLE;
-
-#define INVALID_HSYNC_VALUE INVALID_HANDLE_VALUE
-
-#else
-
-class sync;
-
-using HSYNC = sync *;
-
+#ifndef WINDOWS
+using HSYNC = ::sync *;
 #endif
 
 

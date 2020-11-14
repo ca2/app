@@ -149,7 +149,7 @@ i32                 cy)
 }
 
 
-void imaging::GetMultiLineTextExtent(HDC hDC,string_array * pArray,LPSIZE pSize)
+void imaging::GetMultiLineTextExtent(HDC hDC,string_array * pArray,LPSIZE32 pSize)
 
 {
 
@@ -1799,7 +1799,7 @@ bool imaging::ColorInvert(::draw2d::graphics * pgraphics,i32 x,i32 y,i32 cx,i32 
    &bmi,
    DIB_RGB_COLORS))
    __throw(::exception::exception("integer_exception" + __str($1)));
-   pgraphics->BitBlt(x, y, cx, cy, graphicsMem, 0, 0, SRCCOPY);
+   pgraphics->BitBlt(x, y, cx, cy, graphicsMem, 0, 0);
    graphicsMem->set(pmpMemOld);
 
    graphicsMem->DeleteDC();
@@ -5474,8 +5474,8 @@ breakFilter2:
 //   }
 //   imageB.get_graphics()->set(bitmapB);
 //
-//   imageB.get_graphics()->SetStretchBltMode(HALFTONE);
-//   imageB.get_graphics()->StretchBlt(0, 0, cxDest, cyDest, pdcSrc, xSrc, ySrc, cx, cy, SRCCOPY);
+//   imageB.get_graphics()->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
+//   imageB.get_graphics()->StretchBlt(0, 0, cxDest, cyDest, pdcSrc, xSrc, ySrc, cx, cy);
 //
 //   i32 x1 = xDest;
 //   i32 x2 = xDest + iSize;

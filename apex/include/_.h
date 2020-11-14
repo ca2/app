@@ -38,7 +38,7 @@ CLASS_DECL_APEX void apex_ref();
 
 //#ifdef WINDOWS_DESKTOP
 //
-//typedef i32 WINAPI __MAIN_DEFERRED_RUN(HINSTANCE hinstance, HINSTANCE hPrevInstance, LPTSTR pCmdLine, i32 nCmdShow);
+//typedef i32 WINAPI __MAIN_DEFERRED_RUN(HINSTANCE hinstance, HINSTANCE hPrevInstance, char * pCmdLine, i32 nCmdShow);
 //
 //#else
 //

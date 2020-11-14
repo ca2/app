@@ -486,7 +486,7 @@ CLASS_DECL_AXIS string message_box_result_to_string(int iResult);
 }
 
 
-int_bool MessageBox(oswindow interaction_impl, const char * psz, const widechar * pszTitle, u32 uiFlags)
+int_bool MessageBox(oswindow interaction_impl, const char * psz, const widechar * pszTitle, u32 uFlags)
 {
 
    string_array straSep;

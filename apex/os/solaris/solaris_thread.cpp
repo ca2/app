@@ -48,7 +48,7 @@ bool defer_process_x_message(hthread_t hthread, LPMESSAGE lpMsg, oswindow window
             if(e.type == Expose)
             {
 
-               lpMsg->message       = WM_PAINT;
+               lpMsg->message       = e_message_paint;
                lpMsg->hwnd          = oswindow_get(display, e.xbutton.window);
                lpMsg->lParam        = 0;
                lpMsg->wParam        = 0;

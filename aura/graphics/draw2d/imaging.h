@@ -137,7 +137,7 @@ public:
    ::draw2d::graphics * pgraphics,
    ::draw2d::bitmap * pbitmapOld,
    ::draw2d::bitmap * pbitmap,
-   BITMAP * pbmp,
+//  BITMAP * pbmp,
    i32 cx,
    i32 cy);
 
@@ -146,7 +146,7 @@ public:
    ::draw2d::graphics * pdcScreen,
    ::draw2d::bitmap * pbitmap,
    ::draw2d::bitmap * pbitmapOld,
-   BITMAP * pbmp,
+   //BITMAP * pbmp,
    i32 cx,
    i32 cy);
 
@@ -329,7 +329,7 @@ public:
    i32                 cx,
    i32                 cy);
 
-   void GetMultiLineTextExtent(HDC hDC, string_array *pArray, LPSIZE pSize);
+   void GetMultiLineTextExtent(HDC hDC, string_array *pArray, LPSIZE32 pSize);
 
    void DrawMultiLineText(HDC hDC, string_array *pArray);
 

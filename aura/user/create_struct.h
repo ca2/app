@@ -31,7 +31,7 @@ namespace user
                   const char * pszWindowName = 0,
                   u32 uStyle = 0,
                   ::rect rect = nullptr,
-                  LPVOID pvCreateParams = nullptr);
+                  void * pvCreateParams = nullptr);
 
       create_struct(const ::rect & rect);
       

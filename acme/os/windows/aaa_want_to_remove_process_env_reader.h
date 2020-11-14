@@ -30,7 +30,7 @@ inline void SAFE_ARRAY_CLEANUP(void* pData)
 **/
 struct _ENVSTRING_t
 {
-   LPCWSTR pData;
+   const widechar * pData;
    int nSize;
 
    _ENVSTRING_t() // Ctor of structure
@@ -87,9 +87,9 @@ public:
    static void LoadIconFromProcess(HANDLE hProcess,HICON& hIconSmall,HICON& hIconLarge);
 
    /* String helper functions */
-   static void ConvertUnicodeToMBCS(LPCWSTR pStringToConvert,int nLen,string& csMBCSStr);
+   static void ConvertUnicodeToMBCS(const widechar * pStringToConvert,int nLen,string& csMBCSStr);
 
-   static void ParseEnvironmentStrings(LPCWSTR pStringToConvert,int nLen,string_array& EnvStrArr);
+   static void ParseEnvironmentStrings(const widechar * pStringToConvert,int nLen,string_array& EnvStrArr);
 
    static void SeparateVariablesAndValues(const string_array& EnvStrArray,EnvVarValArray& varValArr);
 

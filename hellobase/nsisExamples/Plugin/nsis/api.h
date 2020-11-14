@@ -60,14 +60,14 @@ typedef struct
 #ifndef NSISCALL
 #  define NSISCALL __stdcall
 #endif
-#if !defined(_WIN32) && !defined(LPTSTR)
-#  define LPTSTR TCHAR*
+#if !defined(_WIN32) && !defined(char *)
+#  define char * TCHAR*
 #endif
 
 typedef struct {
   exec_flags_t *exec_flags;
   int (NSISCALL *ExecuteCodeSegment)(int, HWND);
-  void (NSISCALL *validate_filename)(LPTSTR);
+  void (NSISCALL *validate_filename)(char *);
   int (NSISCALL *RegisterPluginCallback)(HMODULE, NSISPLUGINCALLBACK); // returns 0 on success, 1 if already registered and < 0 on errors
 } extra_parameters;
 

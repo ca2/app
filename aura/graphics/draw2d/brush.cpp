@@ -109,16 +109,16 @@ namespace draw2d
    }
 
 
-   bool brush::CreateBrushIndirect(const LOGBRUSH* pLogBrush)
-   {
-
-      UNREFERENCED_PARAMETER(pLogBrush);
-
-      ::exception::throw_interface_only();
-
-      return false;
-
-   }
+//   bool brush::CreateBrushIndirect(const LOGBRUSH* pLogBrush)
+//   {
+//
+//      UNREFERENCED_PARAMETER(pLogBrush);
+//
+//      ::exception::throw_interface_only();
+//
+//      return false;
+//
+//   }
 
 
    bool brush::CreatePatternBrush(::image * pimage)
@@ -166,16 +166,16 @@ namespace draw2d
    }
 
 
-   i32 brush::GetLogBrush(LOGBRUSH* pLogBrush)
-   {
-
-      UNREFERENCED_PARAMETER(pLogBrush);
-
-      ::exception::throw_interface_only();
-
-      return 0;
-
-   }
+//   i32 brush::GetLogBrush(LOGBRUSH* pLogBrush)
+//   {
+//
+//      UNREFERENCED_PARAMETER(pLogBrush);
+//
+//      ::exception::throw_interface_only();
+//
+//      return 0;
+//
+//   }
 
 
    bool brush::CreateLinearGradientBrush(const point & point1,const point & point2,const color & color1,const color & color2)

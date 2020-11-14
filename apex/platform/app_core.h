@@ -23,9 +23,17 @@ class raw_fail {};
 
 
 class os_local;
-typedef int MAIN_RUNNER(HINSTANCE hInstance);
-typedef MAIN_RUNNER * LPFN_MAIN_RUNNER;
+class main_runner_data
+{
+public:
+   void *      m_p;
+#ifdef WINDOWS
+   HINSTANCE m_hinstance;
+#endif
 
+};
+typedef int MAIN_RUNNER(main_runner_data * pmainrunnerdata);
+typedef MAIN_RUNNER * LPFN_MAIN_RUNNER;
 
 #include "apex_main_data.h"
 
@@ -59,7 +67,7 @@ public:
 
    bool on_result(const ::estatus & estatus);
 
-   static ::u32 WINAPI MAIN(LPVOID pvoid);
+   static ::u32 WINAPI MAIN(void * pvoid);
 
    //bool system_beg();
 
@@ -97,7 +105,7 @@ CLASS_DECL_APEX long apex_apex(::apex::system * pmaindata);
 
 CLASS_DECL_APEX bool node_fill(::apex::system * pappcore);
 
-//CLASS_DECL_APEX i32 apex_entry_point(HINSTANCE hinstance, HINSTANCE hPrevInstance, LPTSTR pCmdLine, int nCmdShow, PFN_NEW_APEX_APPLICATION pfnNewAuraApplication = nullptr, PFN_NEW_APEX_LIBRARY pfnNewLibrary = nullptr);
+//CLASS_DECL_APEX i32 apex_entry_point(HINSTANCE hinstance, HINSTANCE hPrevInstance, char * pCmdLine, int nCmdShow, PFN_NEW_APEX_APPLICATION pfnNewAuraApplication = nullptr, PFN_NEW_APEX_LIBRARY pfnNewLibrary = nullptr);
 
 //CLASS_DECL_APEX int apex_entry_point(int argc, char* argv[], char* pszCommandLin, PFN_NEW_APEX_APPLICATION pfnNewAuraApplication = nullptr, PFN_NEW_APEX_LIBRARY pfnNewLibrary = nullptr);
 

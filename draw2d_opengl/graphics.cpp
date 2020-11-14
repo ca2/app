@@ -1809,7 +1809,7 @@ namespace draw2d_opengl
    }
 
 
-   i32 graphics::GetTextFace(count nCount, LPTSTR lpszFacename)
+   i32 graphics::GetTextFace(count nCount, char * lpszFacename)
    {
 
       // ASSERT(m_hdc != nullptr);
@@ -2693,7 +2693,7 @@ namespace draw2d_opengl
 //         keep < image > keep(&m_pimageAlphaBlend, nullptr, m_pimageAlphaBlend, true);
 //
 //
-//         return BitBlt(ptDest.x, ptDest.y, size.cx, size.cy, imageWork.get_graphics(), pointSrc.x, pointSrc.y, SRCCOPY);
+//         return BitBlt(ptDest.x, ptDest.y, size.cx, size.cy, imageWork.get_graphics(), pointSrc.x, pointSrc.y);
 //
 //
 //      }
@@ -2919,21 +2919,21 @@ namespace draw2d_opengl
    }
 
 
-   //inline bool graphics::GetTextExtentExPointI(LPWORD pgiIn, i32 cgi, i32 nMaxExtent, LPINT lpnFit, LPINT alpDx, LPSIZE lpSize) const
+   //inline bool graphics::GetTextExtentExPointI(LPWORD pgiIn, i32 cgi, i32 nMaxExtent, LPINT lpnFit, LPINT alpDx, LPSIZE32 LPSIZE32) const
    //{
-   //   ENSURE(lpSize != nullptr);
+   //   ENSURE(LPSIZE32 != nullptr);
    //   // ASSERT(m_hdc != nullptr);
-   //   //return ::GetTextExtentExPointI(m_hdc, pgiIn, cgi, nMaxExtent, lpnFit, alpDx, lpSize) != FALSE;
+   //   //return ::GetTextExtentExPointI(m_hdc, pgiIn, cgi, nMaxExtent, lpnFit, alpDx, LPSIZE32) != FALSE;
    //   return false;
 
    //}
 
 
-   //inline bool graphics::GetTextExtentPointI(LPWORD pgiIn, i32 cgi, LPSIZE lpSize) const
+   //inline bool graphics::GetTextExtentPointI(LPWORD pgiIn, i32 cgi, LPSIZE32 LPSIZE32) const
    //{
-   //   ENSURE(lpSize != nullptr);
+   //   ENSURE(LPSIZE32 != nullptr);
    //   // ASSERT(m_hdc != nullptr);
-   //   //return ::GetTextExtentPointI(m_hdc, pgiIn, cgi, lpSize) != FALSE;
+   //   //return ::GetTextExtentPointI(m_hdc, pgiIn, cgi, LPSIZE32) != FALSE;
    //   return false;
 
    //}
@@ -2941,9 +2941,9 @@ namespace draw2d_opengl
 
 #define HIMETRIC_INCH   2540    // HIMETRIC units per inch
 
-   void graphics::DPtoHIMETRIC(LPSIZE lpSize) const
+   void graphics::DPtoHIMETRIC(LPSIZE32 LPSIZE32) const
    {
-//      ASSERT(__is_valid_address(lpSize, sizeof(SIZE32)));
+//      ASSERT(__is_valid_address(LPSIZE32, sizeof(SIZE32)));
 //
 //      i32 nMapMode;
 //      if (this != nullptr && (nMapMode = GetMapMode()) < MM_ISOTROPIC &&
@@ -2951,7 +2951,7 @@ namespace draw2d_opengl
 //      {
 //         // when using a constrained map mode, map against physical inch
 //         ((::draw2d::graphics *)this)->SetMapMode(MM_HIMETRIC);
-//         DPtoLP(lpSize);
+//         DPtoLP(LPSIZE32);
 //         ((::draw2d::graphics *)this)->SetMapMode(nMapMode);
 //      }
 //      else
@@ -2971,15 +2971,15 @@ namespace draw2d_opengl
 //            //          cyPerInch = afxData.cyPixelsPerInch;
 //         }
 //         ASSERT(cxPerInch != 0 && cyPerInch != 0);
-//         lpSize->cx = MulDiv(lpSize->cx, HIMETRIC_INCH, cxPerInch);
-//         lpSize->cy = MulDiv(lpSize->cy, HIMETRIC_INCH, cyPerInch);
+//         LPSIZE32->cx = MulDiv(LPSIZE32->cx, HIMETRIC_INCH, cxPerInch);
+//         LPSIZE32->cy = MulDiv(LPSIZE32->cy, HIMETRIC_INCH, cyPerInch);
 //      }
    }
 
 
-   void graphics::HIMETRICtoDP(LPSIZE lpSize) const
+   void graphics::HIMETRICtoDP(LPSIZE32 LPSIZE32) const
    {
-//      ASSERT(__is_valid_address(lpSize, sizeof(SIZE32)));
+//      ASSERT(__is_valid_address(LPSIZE32, sizeof(SIZE32)));
 //
 //      i32 nMapMode;
 //      if (this != nullptr && (nMapMode = GetMapMode()) < MM_ISOTROPIC &&
@@ -2987,7 +2987,7 @@ namespace draw2d_opengl
 //      {
 //         // when using a constrained map mode, map against physical inch
 //         ((::draw2d::graphics *)this)->SetMapMode(MM_HIMETRIC);
-//         LPtoDP(lpSize);
+//         LPtoDP(LPSIZE32);
 //         ((::draw2d::graphics *)this)->SetMapMode(nMapMode);
 //      }
 //      else
@@ -3007,27 +3007,27 @@ namespace draw2d_opengl
 //            //          cyPerInch = afxData.cyPixelsPerInch;
 //         }
 //         ASSERT(cxPerInch != 0 && cyPerInch != 0);
-//         lpSize->cx = MulDiv(lpSize->cx, cxPerInch, HIMETRIC_INCH);
-//         lpSize->cy = MulDiv(lpSize->cy, cyPerInch, HIMETRIC_INCH);
+//         LPSIZE32->cx = MulDiv(LPSIZE32->cx, cxPerInch, HIMETRIC_INCH);
+//         LPSIZE32->cy = MulDiv(LPSIZE32->cy, cyPerInch, HIMETRIC_INCH);
 //      }
    }
 
 
-   void graphics::LPtoHIMETRIC(LPSIZE lpSize) const
+   void graphics::LPtoHIMETRIC(LPSIZE32 LPSIZE32) const
    {
-      //ASSERT(__is_valid_address(lpSize, sizeof(SIZE32)));
+      //ASSERT(__is_valid_address(LPSIZE32, sizeof(SIZE32)));
 
-      //LPtoDP(lpSize);
-      //DPtoHIMETRIC(lpSize);
+      //LPtoDP(LPSIZE32);
+      //DPtoHIMETRIC(LPSIZE32);
    }
 
 
-   void graphics::HIMETRICtoLP(LPSIZE lpSize) const
+   void graphics::HIMETRICtoLP(LPSIZE32 LPSIZE32) const
    {
-      //ASSERT(__is_valid_address(lpSize, sizeof(SIZE32)));
+      //ASSERT(__is_valid_address(LPSIZE32, sizeof(SIZE32)));
 
-      //HIMETRICtoDP(lpSize);
-      //DPtoLP(lpSize);
+      //HIMETRICtoDP(LPSIZE32);
+      //DPtoLP(LPSIZE32);
 
    }
 
@@ -3597,7 +3597,7 @@ namespace draw2d_opengl
    }
 
 
-   i32 graphics::SetStretchBltMode(i32 nStretchMode)
+   i32 graphics::set_interpolation_mode(i32 nStretchMode)
    {
 
       //if(m_pgraphics == nullptr)
@@ -3611,7 +3611,7 @@ namespace draw2d_opengl
       //{
       //   m_pgraphics->SetInterpolationMode(plusplus::InterpolationModeNearestNeighbor);
       //}
-      //else if(nStretchMode == HALFTONE)
+      //else if(nStretchMode == e_interpolation_mode_high_quality_bicubic)
       //{
       //   m_pgraphics->SetInterpolationMode(plusplus::InterpolationModeHighQualityBicubic);
       //}
@@ -3625,9 +3625,9 @@ namespace draw2d_opengl
 
       /*i32 nRetVal = 0;
       if(m_hdc != nullptr && m_hdc != m_hdc)
-         nRetVal = ::SetStretchBltMode(m_hdc, nStretchMode);
+         nRetVal = ::set_interpolation_mode(m_hdc, nStretchMode);
       if(m_hdc != nullptr)
-         nRetVal = ::SetStretchBltMode(m_hdc, nStretchMode);
+         nRetVal = ::set_interpolation_mode(m_hdc, nStretchMode);
       return nRetVal;*/
    }
 
@@ -4433,28 +4433,28 @@ namespace draw2d_opengl
    // Coordinate transforms
 
    
-   void graphics::LPtoDP(LPSIZE lpSize) const
+   void graphics::LPtoDP(LPSIZE32 LPSIZE32) const
    {
 
-      //ASSERT(__is_valid_address(lpSize, sizeof(SIZE32)));
+      //ASSERT(__is_valid_address(LPSIZE32, sizeof(SIZE32)));
 
       //size sizeWinExt = GetWindowExt();
       //size sizeVpExt = GetViewportExt();
-      //lpSize->cx = MulDiv(lpSize->cx, abs(sizeVpExt.cx), abs(sizeWinExt.cx));
-      //lpSize->cy = MulDiv(lpSize->cy, abs(sizeVpExt.cy), abs(sizeWinExt.cy));
+      //LPSIZE32->cx = MulDiv(LPSIZE32->cx, abs(sizeVpExt.cx), abs(sizeWinExt.cx));
+      //LPSIZE32->cy = MulDiv(LPSIZE32->cy, abs(sizeVpExt.cy), abs(sizeWinExt.cy));
 
    }
 
 
-   void graphics::DPtoLP(LPSIZE lpSize) const
+   void graphics::DPtoLP(LPSIZE32 LPSIZE32) const
    {
 
-      //ASSERT(__is_valid_address(lpSize, sizeof(SIZE32)));
+      //ASSERT(__is_valid_address(LPSIZE32, sizeof(SIZE32)));
 
       //size sizeWinExt = GetWindowExt();
       //size sizeVpExt = GetViewportExt();
-      //lpSize->cx = MulDiv(lpSize->cx, abs(sizeWinExt.cx), abs(sizeVpExt.cx));
-      //lpSize->cy = MulDiv(lpSize->cy, abs(sizeWinExt.cy), abs(sizeVpExt.cy));
+      //LPSIZE32->cx = MulDiv(LPSIZE32->cx, abs(sizeWinExt.cx), abs(sizeVpExt.cx));
+      //LPSIZE32->cy = MulDiv(LPSIZE32->cy, abs(sizeWinExt.cy), abs(sizeVpExt.cy));
 
    }
 

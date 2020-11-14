@@ -58,13 +58,13 @@ __INST_LAST
 
 extern unsigned int g_stringsize;
 extern stack_t **g_stacktop;
-extern LPTSTR g_variables;
+extern char * g_variables;
 
 void NSISCALL pushstring(LPCTSTR str);
 void NSISCALL pushintptr(INT_PTR value);
 #define pushint(v) pushintptr((INT_PTR)(v))
-int NSISCALL popstring(LPTSTR str); // 0 on success, 1 on empty stack
-int NSISCALL popstringn(LPTSTR str, int maxlen); // with length limit, pass 0 for g_stringsize
+int NSISCALL popstring(char * str); // 0 on success, 1 on empty stack
+int NSISCALL popstringn(char * str, int maxlen); // with length limit, pass 0 for g_stringsize
 INT_PTR NSISCALL popintptr();
 #define popint() ( (int) popintptr() )
 int NSISCALL popint_or(); // with support for or'ing (2|4|8)
@@ -72,7 +72,7 @@ INT_PTR NSISCALL nsishelper_str_to_ptr(LPCTSTR s);
 #define myatoi(s) ( (int) nsishelper_str_to_ptr(s) ) // converts a string to an integer
 unsigned int NSISCALL myatou(LPCTSTR s); // converts a string to an unsigned integer, decimal only
 int NSISCALL myatoi_or(LPCTSTR s); // with support for or'ing (2|4|8)
-LPTSTR NSISCALL getuservariable(const int varnum);
+char * NSISCALL getuservariable(const int varnum);
 void NSISCALL setuservariable(const int varnum, LPCTSTR var);
 
 #ifdef UNICODE
@@ -97,7 +97,7 @@ int  NSISCALL PopStringW(LPWSTR wideStr);
 void NSISCALL PushStringW(LPWSTR wideStr);
 void NSISCALL GetUserVariableW(const int varnum, LPWSTR wideStr);
 void NSISCALL GetUserVariableA(const int varnum, char * ansiStr);
-void NSISCALL SetUserVariableW(const int varnum, LPCWSTR wideStr);
+void NSISCALL SetUserVariableW(const int varnum, const widechar * wideStr);
 
 #endif
 

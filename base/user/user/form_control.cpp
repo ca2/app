@@ -107,19 +107,19 @@ namespace user
       switch(pinteraction->descriptor().get_control_type())
       {
       case control_type_button:
-         OnCommandButton(pinteraction,uiNotificationCode,lparam);
+         OnCommandButton(pinteraction,uNotificationCode,lparam);
 
          break;
       case control_type_check_box:
-         OnCommandCheckBox(pinteraction,uiNotificationCode,lparam);
+         OnCommandCheckBox(pinteraction,uNotificationCode,lparam);
 
          break;
       case control_type_combo_box:
-         OnCommandComboBox(pinteraction,uiNotificationCode,lparam);
+         OnCommandComboBox(pinteraction,uNotificationCode,lparam);
 
          break;
       case control_type_edit:
-         OnCommandEdit(pinteraction,uiNotificationCode,lparam);
+         OnCommandEdit(pinteraction,uNotificationCode,lparam);
 
          break;
       default:
@@ -599,10 +599,10 @@ namespace user
    }
 
 
-   bool form_control::_001GetData(id uiId,bool &bData)
+   bool form_control::_001GetData(id uId,bool &bData)
    {
 
-      __pointer(::user::interaction) pinteraction = m_controldescriptorset.get_control(this, uiId);
+      __pointer(::user::interaction) pinteraction = m_controldescriptorset.get_control(this, uId);
 
       if(pinteraction == nullptr)
       {
@@ -627,10 +627,10 @@ namespace user
    }
 
 
-   bool form_control::_001SetData(id uiId,bool bData)
+   bool form_control::_001SetData(id uId,bool bData)
    {
 
-      __pointer(::user::interaction) pinteraction = m_controldescriptorset.get_control(this, uiId);
+      __pointer(::user::interaction) pinteraction = m_controldescriptorset.get_control(this, uId);
 
       if(pinteraction == nullptr)
       {

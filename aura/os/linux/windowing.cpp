@@ -1688,7 +1688,7 @@ int_bool destroy_window(oswindow window)
 
          mq_remove_window_from_all_queues(window);
 
-         pinteraction->send_message(WM_NCDESTROY, 0, 0);
+         pinteraction->send_message(e_message_ncdestroy, 0, 0);
 
       }
       else
@@ -2771,89 +2771,65 @@ bool wm_add_remove_list_raw(oswindow w, Atom atomList, Atom atomFlag, bool bSet)
 
 }
 
-__pointer_array(x11_hook) g_x11hooka;
-
-//LPFN_X11_PROCESS_EVENT g_x11processeventa[8];
-
-::estatus x11_hook::hook()
-{
-
-   sync_lock sl(x11_mutex());
-
-   g_x11hooka.add(this);
-
-   return ::success;
-
-}
-
-::estatus x11_hook::unhook()
-{
-
-   sync_lock sl(x11_mutex());
-
-   g_x11hooka.remove(this);
-
-   return ::success;
-
-}
 
 //
-//bool __x11_hook_process_event(osdisplay_data * pdisplaydata, XEvent & e, XGenericEventCookie * cookie)
+//::estatus x11_hook::hook()
 //{
 //
-//   for(auto & phook : g_x11hooka)
-//   {
+//   sync_lock sl(x11_mutex());
 //
-//      if(phook->process_event(pdisplaydata, e, cookie))
-//      {
+//   g_x11hooka.add(this);
 //
-//         return true;
-//
-//      }
-//
-//   }
-//
-//   return false;
+//   return ::success;
 //
 //}
 //
-//   for(int i = 0; i < g_cX11; i++)
-//   {
+//::estatus x11_hook::unhook()
+//{
 //
-//      if(g_x11processeventa[i] == pfn)
-//      {
+//   sync_lock sl(x11_mutex());
 //
-//         memmove(g_x11processeventa + i, g_x11processeventa + i + 1, g_cX11 - i - 1);
+//   g_x11hooka.remove(this);
 //
-//         g_cX11--;
-//
-//         return ::success;
-//
-//      }
-//
-//   }
-//
-//   return ::error_failed;
+//   return ::success;
 //
 //}
+
+
+
 
 #if !defined(RASPBIAN)
+
+
 bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e, XGenericEventCookie * cookie);
+
+
 #else
+
+
 bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e);
+
+
 #endif
 
-//bool __x11_hook_process_event(osdisplay_data * pdisplaydata, XEvent & e);
 
 void x11_post_message(MESSAGE & msg);
 
+
 bool g_bSkipMouseMessageInXcess = true;
+
+
 ::u32 g_dwLastMotion = 0;
+
+
 ::u32 g_dwMotionSkipTimeout = 23;
+
 
 #ifdef XDISPLAY_LOCK_LOG
 
+
 extern bool b_prevent_xdisplay_lock_log;
+
 
 #endif
 
@@ -3004,11 +2980,11 @@ void x11_thread(osdisplay_data * pdisplaydata)
 
 #if !defined(RASPBIAN)
 
-               x11_process_event(pdisplaydata, e, cookie);
+                  x11_process_event(pdisplaydata, e, cookie);
 
 #else
 
-               x11_process_event(pdisplaydata, e);
+                  x11_process_event(pdisplaydata, e);
 
 #endif
 
@@ -3366,7 +3342,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
       if(e.xexpose.count == 0)
       {
 
-         msg.message       = WM_PAINT;
+         msg.message       = e_message_paint;
          msg.lParam        = 0;
          msg.wParam        = 0;
 
@@ -4784,50 +4760,6 @@ int_bool WINAPI SetWindowPos(oswindow hWnd,oswindow hWndInsertAfter,i32 X,i32 Y,
 }
 
 
-//void x11_kick_idle()
-//{
-//
-//   if(!g_pdisplayX11)
-//   {
-//
-//      return;
-//
-//   }
-//
-//   if(!g_windowX11Client)
-//   {
-//
-//      return;
-//
-//   }
-//
-//   //sync_lock sl(x11_mutex());
-//
-//   char ch = 1;
-//
-//   ::write(g_fdX11[1], &ch, 1);
-//
-////   windowing_output_debug_string("\n::x11_kick_idle");
-////
-////   xdisplay d(g_pdisplayX11);
-////
-////   XClientMessageEvent dummyEvent;
-////
-////   memset(&dummyEvent, 0, sizeof(XClientMessageEvent));
-////
-////   dummyEvent.message_type = g_atomKickIdle;
-////
-////   dummyEvent.type = ClientMessage;
-////
-////   dummyEvent.window = g_windowX11Client;
-////
-////   dummyEvent.format = 32;
-////
-////   XSendEvent(g_pdisplayX11, g_windowX11Client, 0, 0, (XEvent*)&dummyEvent);
-////
-////   XFlush(g_pdisplayX11);
-////
-//}
 
 
 extern ::mutex * g_pmutexX11Runnable;

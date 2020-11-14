@@ -27,7 +27,7 @@ i32
 WideCharToMultiByte2(
 ::u32     CodePage,
 ::u32    dwFlags,
-LPCWSTR  pWideCharStr,
+const widechar *  pWideCharStr,
 
 i32      cchWideChar,
 char *   pMultiByteStr,

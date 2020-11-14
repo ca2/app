@@ -982,7 +982,7 @@ namespace windows
 
                char * pszError;
 
-               FormatMessageW(FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM, nullptr, dwError, 0, (LPTSTR)&pszError, 8, nullptr);
+               FormatMessageW(FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM, nullptr, dwError, 0, (char *)&pszError, 8, nullptr);
 
                //TRACE("dir_context::mk CreateDirectoryW last error(%d)=%s", dwError, pszError);
 
@@ -1234,7 +1234,7 @@ namespace windows
    //   ::str::international::unicode_to_utf8(rStatus.m_strFullName,wstrFullName);
 
    //   WIN32_FIND_DATA findFileData;
-   //   HANDLE hFind = FindFirstFile((LPTSTR)pszFileName,&findFileData);
+   //   HANDLE hFind = FindFirstFile((char *)pszFileName,&findFileData);
 
    //   if(hFind == INVALID_HANDLE_VALUE)
    //      return FALSE;

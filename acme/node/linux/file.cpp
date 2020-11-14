@@ -192,11 +192,11 @@ namespace linux
 
          int iError = errno;
 
-         ::u32 dwLastError = ::get_last_error();
+         ::estatus estatus = ::get_last_status();
 
          //return //::fesp(get_context_application(), file_exception::os_error_to_exception(dwLastError), dwLastError, m_path);
 
-         return ::file::errno_to_status(iError);
+         return ::file::errno_to_status(estatus);
 
       }
 
@@ -795,7 +795,8 @@ bool CLASS_DECL_ACME vfxFullPath(wstring & wstrFullPath, const wstring & wstrPat
    return true;
 }
 
-CLASS_DECL_ACME void vfxGetModuleShortFileName(HINSTANCE hInst, string& strShortName)
+
+CLASS_DECL_ACME void vfxGetModuleShortFileName(void * hInst, string& strShortName)
 {
 
    link_map * plm;

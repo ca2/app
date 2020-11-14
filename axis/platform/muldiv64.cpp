@@ -150,10 +150,10 @@ i64 div128_64(i64 hi, u64 lo, i64 div, u64 & remainder)
 
 
 /** the two 32 bit parts of an 64 bit integer */
-typedef struct  {
+struct  u64_u32{
     u32 l : 32;
     u32 h : 32;
-} ::u64_u32;
+};
 
 /**
  * determine the msb of a value in O(log log n)

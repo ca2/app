@@ -70,9 +70,9 @@ namespace multimedia
       if (m_plibrary.is_null())
       {
 
-         u32 dwLastError = get_last_error();
+         ::estatus estatus = get_last_status();
 
-         TRACE("LoadLibrary failed to open library %s %d %s", pszTitle, dwLastError, win::error_message(dwLastError).c_str());
+         TRACE("LoadLibrary failed to open library %s %d %s", pszTitle, estatus, __str(estatus).c_str());
 
          return false;
 

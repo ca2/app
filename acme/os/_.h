@@ -5,6 +5,9 @@
 CLASS_DECL_ACME bool is_verbose();
 
 
+#include "acme/os/_c.h"
+
+
 #if defined(MACOS)
 
 #include "acme/os/ansios/_.h"
@@ -113,30 +116,6 @@ CLASS_DECL_ACME locale_t get_c_locale();
 
 CLASS_DECL_ACME void output_debug_string(const char * psz);
 CLASS_DECL_ACME void output_debug_string(const wchar_t * psz);
-
-//#include 
-//int process_get_status();
-//
-//void process_set_status(int iStatus);
-//
-//void process_set_args(int argc, TCHAR ** argv);
-//
-//int * process_get_pargc();
-//
-//TCHAR *** process_get_pargv();
-//
-//int process_get_argc();
-//
-//TCHAR ** process_get_argv();
-
-
-//struct update_task;
-//update_task * os_dark_mode_change();
-
-//void os_register_dark_mode_change(::matter * pmatter, bool * pbChanged);
-//void os_unregister_dark_mode_change(::matter * pmatter);
-
-//void os_destroy_dark_mode_change();
 
 
 

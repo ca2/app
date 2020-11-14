@@ -3,8 +3,8 @@
 
 
 
-CLASS_DECL_AURA ::u32 get_last_error();
-CLASS_DECL_AURA void set_last_error(::u32 dw);
+//CLASS_DECL_AURA ::u32 get_last_error();
+//CLASS_DECL_AURA void set_last_error(::u32 dw);
 
 
 
@@ -45,13 +45,13 @@ public:
 
       format_message(FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
                     nullptr, iErrorCode, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), // Default language
-                    reinterpret_cast<LPTSTR>(&pMsgBuf), 0, nullptr);
+                    reinterpret_cast<char *>(&pMsgBuf), 0, nullptr);
 
       string strErrorDescription;
       if (pMsgBuf)
 
       {
-         strErrorDescription = reinterpret_cast<LPTSTR>(pMsgBuf);
+         strErrorDescription = reinterpret_cast<char *>(pMsgBuf);
 
          LocalFree(pMsgBuf);
 

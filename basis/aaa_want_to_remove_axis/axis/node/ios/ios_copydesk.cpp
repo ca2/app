@@ -81,7 +81,7 @@ namespace ios
             pDropFiles->fWide = TRUE; // ANSI charset
 
             ASSERT(m_p->is_window());
-            LPTSTR lptstrCopy = (char *) pDropFiles;
+            char * lptstrCopy = (char *) pDropFiles;
             lptstrCopy += pDropFiles->pFiles;
             unichar * lpwstrCopy = (unichar *) lptstrCopy;
             for(i32 i = 0; i < stra.get_size(); i++)
@@ -250,7 +250,7 @@ namespace ios
                size sz = bitmap->GetBitmapDimension();
 /*               if(pimage = create_image(sz))
                {
-/*                  bOk = pimage->g()->BitBlt(0, 0, sz.cx, sz.cy, g, 0, 0, SRCCOPY) != FALSE;
+/*                  bOk = pimage->g()->BitBlt(0, 0, sz.cx, sz.cy, g, 0, 0) != FALSE;
                }
             }
             catch(...)

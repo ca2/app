@@ -515,7 +515,7 @@ namespace windows
    estatus registry::key::_delete_value(const char * pcszValueName)
    {
 
-      if (ERROR_SUCCESS != ::RegDeleteValue(m_hkey, (LPTSTR)pcszValueName))
+      if (ERROR_SUCCESS != ::RegDeleteValue(m_hkey, (char *)pcszValueName))
       {
 
          return error_failed;

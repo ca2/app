@@ -422,7 +422,7 @@ namespace draw2d_opengl
       }
       break;
 
-      case WM_NCHITTEST:
+      case e_message_nchittest:
          return HTCAPTION;   // allows dragging of the window
 
       case WM_TIMER:
@@ -472,7 +472,7 @@ namespace draw2d_opengl
 //               TranslateMessage(&msg);
 //               DispatchMessage(&msg);
 //
-//               if (msg.message == WM_NCDESTROY)
+//               if (msg.message == e_message_ncdestroy)
 //                  break;
 //
 //            }

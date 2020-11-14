@@ -436,7 +436,7 @@ void wf_toggle_fullscreen(wfContext* wfc)
 //		nWidth = bitmap->destRight - bitmap->destLeft + 1; /* clip width */
 //		nHeight = bitmap->destBottom - bitmap->destTop + 1; /* clip height */
 //
-//		BitBlt(wfc->primary->hdc, nXDst, nYDst, nWidth, nHeight, hdc, 0, 0, SRCCOPY);
+//		BitBlt(wfc->primary->hdc, nXDst, nYDst, nWidth, nHeight, hdc, 0, 0);
 //
 //		gdi_InvalidateRegion(wfc->hdc, nXDst, nYDst, nWidth, nHeight);
 //
@@ -704,7 +704,7 @@ void wf_gdi_palette_update(wfContext* wfc, PALETTE_UPDATE* palette)
 //					surface_bits_command->destTop + message->rects[j].y,
 //					message->rects[j].width, message->rects[j].height);
 //
-//				BitBlt(wfc->primary->hdc, tx, ty, 64, 64, wfc->tile->hdc, 0, 0, SRCCOPY);
+//				BitBlt(wfc->primary->hdc, tx, ty, 64, 64, wfc->tile->hdc, 0, 0);
 //			}
 //		}
 //

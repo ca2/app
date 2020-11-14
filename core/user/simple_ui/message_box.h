@@ -60,7 +60,7 @@ namespace simple_ui
 
 
 
-CLASS_DECL_CORE i32 simple_ui_message_box(oswindow interaction_impl, const char * pText,const char * lpCaption, u32 uiFlags);
+CLASS_DECL_CORE i32 simple_ui_message_box(oswindow interaction_impl, const char * pText,const char * lpCaption, u32 uFlags);
 
 
 

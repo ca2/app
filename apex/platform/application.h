@@ -145,8 +145,11 @@ namespace apex
 
       string                                          m_strProfileName;
 
+#ifdef WINDOWS
       ATOM                                            m_atomApp;
       ATOM                                            m_atomSystemTopic;   // for DDE open
+#endif
+
       ::u32                                            m_nNumPreviewPages; // number of default printed pages
 
       string                                          m_strId;
@@ -326,9 +329,9 @@ namespace apex
 
 
 
-
+#ifdef WINDOWS
       virtual void TermThread(HINSTANCE hInstTerm);
-
+#endif
 
       //virtual void set_env_var(const string & var, const string & value) override;
 
@@ -1009,9 +1012,10 @@ namespace apex
       void UnregisterShellFileTypes();
 
 
-
+#ifdef WINDOWS
       // Printer DC Setup routine, 'struct tagPD' is a PRINTDLG structure.
       void SelectPrinter(HANDLE hDevNames, HANDLE hDevMode, bool bFreeOld = TRUE);
+#endif
 
       // create a DC for the system default printer.
       ::draw2d::graphics* CreatePrinterDC();
@@ -1076,7 +1080,7 @@ namespace apex
 
 
 
-      void DevModeChange(LPTSTR pDeviceName);
+      void DevModeChange(char * pDeviceName);
 
 
       // Finds number of opened document items owned by templates
@@ -1442,7 +1446,7 @@ namespace apex
 
 
 
-CLASS_DECL_APEX ::u32 c_cdecl application_thread_procedure(LPVOID pvoid);
+CLASS_DECL_APEX ::u32 c_cdecl application_thread_procedure(void * pvoid);
 
 typedef __pointer(::apex::application) (*LPFN_instantiate_application)(__pointer(::apex::application) pappParent, const char* pszId);
 

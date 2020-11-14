@@ -163,7 +163,7 @@ dirbuf,
 * get the current directory string and its length
 */
 /*            len = GetCurrentDirectory( sizeof(dirbuf) / sizeof(_TSCHAR),
-(LPTSTR)dirbuf );
+(char *)dirbuf );
 }
 
 /* API call failed, or buffer not large enough */
@@ -424,9 +424,9 @@ namespace windows
    //   ::str::international::UnicodeToACP(pszPathA, MAX_PATH * 2, pFileName);
 
    //   string str;
-   //   LPTSTR psz = str.GetBuffer(nBufferLength * 2);
+   //   char * psz = str.GetBuffer(nBufferLength * 2);
 
-   //   LPTSTR pszFilePart;
+   //   char * pszFilePart;
 
    //   ::u32 dw = ::GetFullPathName(pszPathA, nBufferLength, psz, &pszFilePart);
 
@@ -529,7 +529,7 @@ namespace windows
    //      iCount = ::str::international::UnicodeToMultiByteCount(uCodePage, pSrcStr);
 
    //   string str;
-   //   LPTSTR psz = str.GetBuffer(iCount);
+   //   char * psz = str.GetBuffer(iCount);
 
    //   if(::str::international::UnicodeToMultiByte(uCodePage, psz, iCount, lpSrcStr))
 

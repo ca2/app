@@ -2,7 +2,9 @@
 #include "apex/const/id.h"
 #include "apex/platform/app_core.h"
 #include "apex/platform/static_setup.h"
-
+#ifndef WINDOWS
+#include "acme/os/cross/windows/_windows.h"
+#endif
 
 
 #if defined(APPLE_IOS)
@@ -316,6 +318,10 @@ namespace apex
    color32_t session::get_default_color(u64 u)
    {
 
+
+#ifdef WINDOWS
+
+
       switch (u)
       {
       case COLOR_3DFACE:
@@ -333,6 +339,8 @@ namespace apex
       default:
          break;
       }
+
+#endif
 
       return ARGB(127, 0, 0, 0);
 

@@ -41,24 +41,25 @@
 
 ::file::path * g_ppathInstallFolder = nullptr;
 
+
 void TranslateLastError()
 {
 
    if(errno == EEXIST)
    {
 
-      set_last_error(ERROR_ALREADY_EXISTS);
+      set_last_status(error_already_exists);
 
    }
    else
    {
 
-      set_last_error(0);
+      set_last_status(::success);
 
    }
 
-
 }
+
 
 #ifdef WINDOWS
 
@@ -747,9 +748,9 @@ namespace dir
          else
          {
 
-            ::u32 dwError = ::get_last_error();
+            auto estatus = ::get_last_status();
 
-            if (dwError == ERROR_ALREADY_EXISTS)
+            if (estatus == ::error_already_exists)
             {
 
                try
@@ -787,7 +788,7 @@ namespace dir
                else
                {
 
-                  dwError = ::get_last_error();
+                  estatus = ::get_last_status();
 
                }
 
@@ -797,7 +798,7 @@ namespace dir
 
             char * pszError;
 
-            FormatMessage(FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM, nullptr, dwError, 0, (LPTSTR)&pszError, 8, nullptr);
+            FormatMessage(FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM, nullptr, dwError, 0, (char *)&pszError, 8, nullptr);
 
             //TRACE("dir::mk CreateDirectoryW last error(%d)=%s", dwError, pszError);
 

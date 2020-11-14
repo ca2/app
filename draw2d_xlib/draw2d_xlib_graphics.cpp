@@ -32,7 +32,7 @@ namespace draw2d_xlib
       m_pfont->m_dFontSize = 12.0;
 
 
-      m_nStretchBltMode = HALFTONE;
+      m_nStretchBltMode = e_interpolation_mode_high_quality_bicubic;
 
    }
 
@@ -49,7 +49,7 @@ namespace draw2d_xlib
 //      m_etextrenderinghint  = ::draw2d::text_rendering_hint_anti_alias_grid_fit;
 //
 //
-//      m_nStretchBltMode = HALFTONE;
+//      m_nStretchBltMode = e_interpolation_mode_high_quality_bicubic;
 //
 //   }
 
@@ -1561,7 +1561,7 @@ namespace draw2d_xlib
                {
                   xlib_pattern_set_filter(xlib_get_source(m_pdc), CAIRO_FILTER_NEAREST);
                }
-               else if(m_nStretchBltMode == HALFTONE)
+               else if(m_nStretchBltMode == e_interpolation_mode_high_quality_bicubic)
                {
                   xlib_pattern_set_filter(xlib_get_source(m_pdc), CAIRO_FILTER_GOOD);
                }
@@ -1755,7 +1755,7 @@ namespace draw2d_xlib
 
                keep < image > keep(&m_pimageAlphaBlend, nullptr, m_pimageAlphaBlend, true);
 
-               return BitBlt((i32) x, (i32) y, rectText.width(), rectText.height(), pimage1->get_graphics(), 0, 0, SRCCOPY);
+               return BitBlt((i32) x, (i32) y, rectText.width(), rectText.height(), pimage1->get_graphics(), 0, 0);
 
                /*BLENDFUNCTION bf;
                bf.BlendOp     = AC_SRC_OVER;
@@ -1886,7 +1886,7 @@ namespace draw2d_xlib
 
    }
 
-   i32 graphics::GetTextFace(i32 nCount, LPTSTR lpszFacename) const
+   i32 graphics::GetTextFace(i32 nCount, char * lpszFacename) const
    {
 
       __throw(not_implemented());
@@ -2713,7 +2713,7 @@ namespace draw2d_xlib
    bool graphics::alpha_blend(i32 xDst, i32 yDst, i32 nDstWidth, i32 nDstHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight, double dRate)
    {
 
-      return this->BitBlt(xDst, yDst, nDstWidth, nDstHeight, pgraphicsSrc, xSrc, ySrc, SRCCOPY);
+      return this->BitBlt(xDst, yDst, nDstWidth, nDstHeight, pgraphicsSrc, xSrc, ySrc);
 
       //sync_lock ml(&xlib_mutex());
 
@@ -3029,28 +3029,28 @@ namespace draw2d_xlib
 
 #if (_WIN32_WINNT >= 0x0500)
 
-   bool graphics::GetTextExtentExPointI(LPWORD pgiIn, i32 cgi, i32 nMaxExtent, LPINT lpnFit, LPINT alpDx, LPSIZE lpSize) const
+   bool graphics::GetTextExtentExPointI(LPWORD pgiIn, i32 cgi, i32 nMaxExtent, LPINT lpnFit, LPINT alpDx, LPSIZE32 LPSIZE32) const
    {
 
       __throw(not_implemented());
       return false;
 
-//      ENSURE(lpSize != nullptr);
+//      ENSURE(LPSIZE32 != nullptr);
 //      ASSERT(get_handle1() != nullptr);
-//      return ::GetTextExtentExPointI(get_handle1(), pgiIn, cgi, nMaxExtent, lpnFit, alpDx, lpSize) != FALSE;
+//      return ::GetTextExtentExPointI(get_handle1(), pgiIn, cgi, nMaxExtent, lpnFit, alpDx, LPSIZE32) != FALSE;
 
    }
 
 
-   bool graphics::GetTextExtentPointI(LPWORD pgiIn, i32 cgi, LPSIZE lpSize) const
+   bool graphics::GetTextExtentPointI(LPWORD pgiIn, i32 cgi, LPSIZE32 LPSIZE32) const
    {
 
       __throw(not_implemented());
       return false;
 
-//      ENSURE(lpSize != nullptr);
+//      ENSURE(LPSIZE32 != nullptr);
 //      ASSERT(get_handle1() != nullptr);
-//      return ::GetTextExtentPointI(get_handle1(), pgiIn, cgi, lpSize) != FALSE;
+//      return ::GetTextExtentPointI(get_handle1(), pgiIn, cgi, LPSIZE32) != FALSE;
 
    }
 
@@ -3063,20 +3063,20 @@ namespace draw2d_xlib
 
 #define HIMETRIC_INCH   2540    // HIMETRIC units per inch
 
-   void graphics::DPtoHIMETRIC(LPSIZE lpSize) const
+   void graphics::DPtoHIMETRIC(LPSIZE32 LPSIZE32) const
    {
 
       __throw(not_implemented());
 
       /*
-            ASSERT(__is_valid_address(lpSize, sizeof(SIZE32)));
+            ASSERT(__is_valid_address(LPSIZE32, sizeof(SIZE32)));
 
             i32 nMapMode;
             if (this != nullptr && (nMapMode = GetMapMode()) < MM_ISOTROPIC && nMapMode != MM_TEXT)
             {
                // when using a constrained ::collection::map mode, ::collection::map against physical inch
                ((::draw2d::graphics *)this)->SetMapMode(MM_HIMETRIC);
-               DPtoLP(lpSize);
+               DPtoLP(LPSIZE32);
                ((::draw2d::graphics *)this)->SetMapMode(nMapMode);
             }
             else
@@ -3096,20 +3096,20 @@ namespace draw2d_xlib
         //          cyPerInch = afxData.cyPixelsPerInch;
                }
                ASSERT(cxPerInch != 0 && cyPerInch != 0);
-               lpSize->cx = MulDiv(lpSize->cx, HIMETRIC_INCH, cxPerInch);
-               lpSize->cy = MulDiv(lpSize->cy, HIMETRIC_INCH, cyPerInch);
+               LPSIZE32->cx = MulDiv(LPSIZE32->cx, HIMETRIC_INCH, cxPerInch);
+               LPSIZE32->cy = MulDiv(LPSIZE32->cy, HIMETRIC_INCH, cyPerInch);
             }
 
       */
 
    }
 
-   void graphics::HIMETRICtoDP(LPSIZE lpSize) const
+   void graphics::HIMETRICtoDP(LPSIZE32 LPSIZE32) const
    {
 
       __throw(not_implemented());
 
-      /*      ASSERT(__is_valid_address(lpSize, sizeof(SIZE32)));
+      /*      ASSERT(__is_valid_address(LPSIZE32, sizeof(SIZE32)));
 
             i32 nMapMode;
             if (this != nullptr && (nMapMode = GetMapMode()) < MM_ISOTROPIC &&
@@ -3117,7 +3117,7 @@ namespace draw2d_xlib
             {
                // when using a constrained ::collection::map mode, ::collection::map against physical inch
                ((::draw2d::graphics *)this)->SetMapMode(MM_HIMETRIC);
-               LPtoDP(lpSize);
+               LPtoDP(LPSIZE32);
                ((::draw2d::graphics *)this)->SetMapMode(nMapMode);
             }
             else
@@ -3137,28 +3137,28 @@ namespace draw2d_xlib
         //          cyPerInch = afxData.cyPixelsPerInch;
                }
                ASSERT(cxPerInch != 0 && cyPerInch != 0);
-               lpSize->cx = MulDiv(lpSize->cx, cxPerInch, HIMETRIC_INCH);
-               lpSize->cy = MulDiv(lpSize->cy, cyPerInch, HIMETRIC_INCH);
+               LPSIZE32->cx = MulDiv(LPSIZE32->cx, cxPerInch, HIMETRIC_INCH);
+               LPSIZE32->cy = MulDiv(LPSIZE32->cy, cyPerInch, HIMETRIC_INCH);
             }
 
       */
 
    }
 
-   void graphics::LPtoHIMETRIC(LPSIZE lpSize) const
+   void graphics::LPtoHIMETRIC(LPSIZE32 LPSIZE32) const
    {
-      ASSERT(__is_valid_address(lpSize, sizeof(SIZE32)));
+      ASSERT(__is_valid_address(LPSIZE32, sizeof(SIZE32)));
 
-      LPtoDP(lpSize);
-      DPtoHIMETRIC(lpSize);
+      LPtoDP(LPSIZE32);
+      DPtoHIMETRIC(LPSIZE32);
    }
 
-   void graphics::HIMETRICtoLP(LPSIZE lpSize) const
+   void graphics::HIMETRICtoLP(LPSIZE32 LPSIZE32) const
    {
-      ASSERT(__is_valid_address(lpSize, sizeof(SIZE32)));
+      ASSERT(__is_valid_address(LPSIZE32, sizeof(SIZE32)));
 
-      HIMETRICtoDP(lpSize);
-      DPtoLP(lpSize);
+      HIMETRICtoDP(LPSIZE32);
+      DPtoLP(LPSIZE32);
    }
 
    /////////////////////////////////////////////////////////////////////////////
@@ -3631,7 +3631,7 @@ namespace draw2d_xlib
 
    }
 
-   i32 graphics::SetStretchBltMode(i32 nStretchMode)
+   i32 graphics::set_interpolation_mode(i32 nStretchMode)
    {
 
       //__throw(not_implemented());
@@ -3642,9 +3642,9 @@ namespace draw2d_xlib
 
       /*i32 nRetVal = 0;
       if(get_handle1() != nullptr && get_handle1() != get_handle2())
-         nRetVal = ::SetStretchBltMode(get_handle1(), nStretchMode);
+         nRetVal = ::set_interpolation_mode(get_handle1(), nStretchMode);
       if(get_handle2() != nullptr)
-         nRetVal = ::SetStretchBltMode(get_handle2(), nStretchMode);
+         nRetVal = ::set_interpolation_mode(get_handle2(), nStretchMode);
       return nRetVal;*/
    }
 
@@ -4471,36 +4471,36 @@ namespace draw2d_xlib
    /////////////////////////////////////////////////////////////////////////////
    // Coordinate transforms
 
-   void graphics::LPtoDP(LPSIZE lpSize) const
+   void graphics::LPtoDP(LPSIZE32 LPSIZE32) const
    {
 
       __throw(not_implemented());
       return;
 
       /*
-            ASSERT(__is_valid_address(lpSize, sizeof(SIZE32)));
+            ASSERT(__is_valid_address(LPSIZE32, sizeof(SIZE32)));
 
             size sizeWinExt = GetWindowExt();
             size sizeVpExt = GetViewportExt();
-            lpSize->cx = MulDiv(lpSize->cx, abs(sizeVpExt.cx), abs(sizeWinExt.cx));
-            lpSize->cy = MulDiv(lpSize->cy, abs(sizeVpExt.cy), abs(sizeWinExt.cy));
+            LPSIZE32->cx = MulDiv(LPSIZE32->cx, abs(sizeVpExt.cx), abs(sizeWinExt.cx));
+            LPSIZE32->cy = MulDiv(LPSIZE32->cy, abs(sizeVpExt.cy), abs(sizeWinExt.cy));
       */
 
    }
 
-   void graphics::DPtoLP(LPSIZE lpSize) const
+   void graphics::DPtoLP(LPSIZE32 LPSIZE32) const
    {
 
       __throw(not_implemented());
       return;
 
       /*
-            ASSERT(__is_valid_address(lpSize, sizeof(SIZE32)));
+            ASSERT(__is_valid_address(LPSIZE32, sizeof(SIZE32)));
 
             size sizeWinExt = GetWindowExt();
             size sizeVpExt = GetViewportExt();
-            lpSize->cx = MulDiv(lpSize->cx, abs(sizeWinExt.cx), abs(sizeVpExt.cx));
-            lpSize->cy = MulDiv(lpSize->cy, abs(sizeWinExt.cy), abs(sizeVpExt.cy));
+            LPSIZE32->cx = MulDiv(LPSIZE32->cx, abs(sizeWinExt.cx), abs(sizeVpExt.cx));
+            LPSIZE32->cy = MulDiv(LPSIZE32->cy, abs(sizeWinExt.cy), abs(sizeVpExt.cy));
       */
 
    }
@@ -4620,7 +4620,7 @@ namespace draw2d_xlib
 
    }
 
-   i32 graphics::draw_text_ex(LPTSTR lpszString, i32 nCount, RECT32 * prect, const ::e_align & ealign, const ::e_draw_text & edrawtext, LPDRAWTEXTPARAMS lpDTParams)
+   i32 graphics::draw_text_ex(char * lpszString, i32 nCount, RECT32 * prect, const ::e_align & ealign, const ::e_draw_text & edrawtext, LPDRAWTEXTPARAMS lpDTParams)
    {
 
       __throw(not_implemented());

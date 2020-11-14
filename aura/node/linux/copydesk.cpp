@@ -204,7 +204,7 @@ void clipboard_received_func(GtkClipboard * clipboard, GtkSelectionData * select
 }
 
 
-void clipboard_get_func(GtkClipboard * clipboard, GtkSelectionData * selection_data, g::u32 info, gpointer user_data)
+void clipboard_get_func(GtkClipboard * clipboard, GtkSelectionData * selection_data, guint info, gpointer user_data)
 {
 
    clipboard_data * pdata = (clipboard_data *) user_data;

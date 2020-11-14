@@ -197,7 +197,7 @@ namespace filemanager
                szPath,
                sizeof(szPath),
                &iIcon,
-               &uiFlags);
+               &uFlags);
                if(hr == S_OK)
                {
                HICON hicon = nullptr;

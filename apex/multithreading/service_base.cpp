@@ -10,9 +10,9 @@
 //*****************************************************************************
 #include "framework.h"
 
-
+#ifdef WINDOWS
 u32 Win32FromHResult(HRESULT value);
-
+#endif
 
 //
 // The single, static service instance pointer.
@@ -106,6 +106,7 @@ void service_base::_server()
 
 }
 
+#ifdef WINDOWS
 u32 Win32FromHResult(HRESULT value)
 {
 
@@ -114,7 +115,7 @@ u32 Win32FromHResult(HRESULT value)
    return value & ~0x80070000;
 
 }
-
+#endif
 
 //*****************************************************************************
 //
@@ -123,6 +124,7 @@ u32 Win32FromHResult(HRESULT value)
 //                      and notifies the service control manager of the change.
 //
 //*****************************************************************************
+#ifdef WINDOWS
 void service_base::UpdateState(u32 state, HRESULT errorCode)
 {
 
@@ -155,7 +157,7 @@ void service_base::UpdateState(u32 state, HRESULT errorCode)
 
 
 }
-
+#endif
 //*****************************************************************************
 //
 //      Name:           SetServiceStatus

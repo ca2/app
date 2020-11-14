@@ -700,7 +700,7 @@ namespace linux
 
       if(!m_puserinteraction->m_bMessageWindow)
       {
-         MESSAGE_LINK(WM_PAINT, pchannel, this,&interaction_impl::_001OnPaint);
+         MESSAGE_LINK(e_message_paint, pchannel, this,&interaction_impl::_001OnPaint);
          MESSAGE_LINK(WM_PRINT, pchannel, this,&interaction_impl::_001OnPrint);
       }
 
@@ -714,7 +714,7 @@ namespace linux
          MESSAGE_LINK(WM_SETCURSOR, pchannel, this,&interaction_impl::_001OnSetCursor);
          //MESSAGE_LINK(WM_ERASEBKGND, pchannel, this,&interaction_impl::_001OnEraseBkgnd);
          //MESSAGE_LINK(e_message_size, pchannel, this,&interaction_impl::_001OnSize);
-         //MESSAGE_LINK(WM_NCCALCSIZE, pchannel, this,&interaction_impl::_001OnNcCalcSize);
+         //MESSAGE_LINK(e_message_nccalcsize, pchannel, this,&interaction_impl::_001OnNcCalcSize);
 
          // linux
          MESSAGE_LINK(e_message_move, pchannel, this, &interaction_impl::_001OnMove);
@@ -1145,7 +1145,7 @@ namespace linux
 
          send_message(e_message_destroy, 0, 0);
 
-         send_message(WM_NCDESTROY, 0, 0);
+         send_message(e_message_ncdestroy, 0, 0);
 
          ::oswindow_remove_message_only_window(this);
 
@@ -1372,7 +1372,7 @@ namespace linux
          //printf("g_iMouseMove = %d\n", g_iMouseMove);
 
       }
-      else if(pbase->m_id == WM_PAINT)
+      else if(pbase->m_id == e_message_paint)
       {
 
       }
@@ -2127,8 +2127,8 @@ namespace linux
 //      {
 //      // normal messages (just wparam, lparam through OnWndMsg)
 //
-//      case WM_HSCROLL:
-//      case WM_VSCROLL:
+//      case e_message_hscroll:
+//      case e_message_vscroll:
 //      case WM_PARENTNOTIFY:
 //      case WM_DRAWITEM:
 //      case WM_MEASUREITEM:
@@ -3242,7 +3242,7 @@ namespace linux
    }
 
 
-//   strsize interaction_impl::GetWindowText(LPTSTR pszString, strsize nMaxCount)
+//   strsize interaction_impl::GetWindowText(char * pszString, strsize nMaxCount)
 
 //   {
 //
@@ -3899,7 +3899,7 @@ namespace linux
 //
 //   }
 //
-//   i32 interaction_impl::DlgDirList(LPTSTR pPathSpec, i32 nIDListBox, i32 nIDStaticPath, ::u32 nFileType)
+//   i32 interaction_impl::DlgDirList(char * pPathSpec, i32 nIDListBox, i32 nIDStaticPath, ::u32 nFileType)
 //
 //   {
 //
@@ -3910,7 +3910,7 @@ namespace linux
 //
 //   }
 //
-//   i32 interaction_impl::DlgDirListComboBox(LPTSTR pPathSpec, i32 nIDComboBox, i32 nIDStaticPath, ::u32 nFileType)
+//   i32 interaction_impl::DlgDirListComboBox(char * pPathSpec, i32 nIDComboBox, i32 nIDStaticPath, ::u32 nFileType)
 //
 //   {
 //
@@ -3921,7 +3921,7 @@ namespace linux
 //
 //   }
 //
-//   bool interaction_impl::DlgDirSelect(LPTSTR pString, i32 nSize, i32 nIDListBox)
+//   bool interaction_impl::DlgDirSelect(char * pString, i32 nSize, i32 nIDListBox)
 //
 //   {
 //
@@ -3932,7 +3932,7 @@ namespace linux
 //
 //   }
 //
-//   bool interaction_impl::DlgDirSelectComboBox(LPTSTR pString, i32 nSize, i32 nIDComboBox)
+//   bool interaction_impl::DlgDirSelectComboBox(char * pString, i32 nSize, i32 nIDComboBox)
 //
 //   {
 //
@@ -3967,7 +3967,7 @@ namespace linux
 //      }
 //   */
 //
-////   i32 interaction_impl::GetDlgItemText(i32 nID, LPTSTR pStr, i32 nMaxCount) const
+////   i32 interaction_impl::GetDlgItemText(i32 nID, char * pStr, i32 nMaxCount) const
 //
 ////   {
 ////
@@ -4549,7 +4549,7 @@ namespace linux
 //   { Default(); }
 //   void interaction_impl::OnInitMenuPopup(::user::menu*, ::u32, bool)
 //   { Default(); }
-//   void interaction_impl::OnAskCbFormatName(::u32 nMaxCount, LPTSTR lpszName)
+//   void interaction_impl::OnAskCbFormatName(::u32 nMaxCount, char * lpszName)
 //   {
 //      (nMaxCount);
 //      if(nMaxCount>0)

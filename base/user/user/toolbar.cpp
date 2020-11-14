@@ -68,8 +68,8 @@ namespace user
 
       ::user::control_bar::install_message_routing(pchannel);
 
-      MESSAGE_LINK(WM_NCHITTEST, pchannel, this, &toolbar::_001OnNcHitTest);
-      MESSAGE_LINK(WM_NCCALCSIZE, pchannel, this, &toolbar::_001OnNcCalcSize);
+      MESSAGE_LINK(e_message_nchittest, pchannel, this, &toolbar::_001OnNcHitTest);
+      MESSAGE_LINK(e_message_nccalcsize, pchannel, this, &toolbar::_001OnNcCalcSize);
 #ifdef WINDOWS_DESKTOP
       MESSAGE_LINK(TB_SETBITMAPSIZE, pchannel, this, &toolbar::_001OnSetBitmapSize);
       MESSAGE_LINK(TB_SETBUTTONSIZE, pchannel, this, &toolbar::_001OnSetButtonSize);

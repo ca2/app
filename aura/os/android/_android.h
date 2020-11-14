@@ -63,8 +63,8 @@ union semun
 
 #endif
 
-CLASS_DECL_AURA ::u32 get_last_error();
-CLASS_DECL_AURA void set_last_error(::u32 dw);
+//CLASS_DECL_AURA ::u32 get_last_error();
+//CLASS_DECL_AURA void set_last_error(::u32 dw);
 
 
 CLASS_DECL_AURA bool _istlead(i32 ch);

@@ -186,8 +186,8 @@ inline c_number<T> operator - (const c_number<T> & n1, const c_number<T> & n2)
 
 
 //#ifdef WINDOWS
-DEFINE_UNIT(CLASS_DECL_ACME,lock_duration,u32)
-DEFINE_UNIT(CLASS_DECL_ACME,tick_duration,u32)
+DEFINE_UNIT(CLASS_DECL_ACME, lock_duration, u32)
+DEFINE_UNIT(CLASS_DECL_ACME, tick_duration, u32)
 //#endif
 
 //DEFINE_C_NUMBER(CLASS_DECL_ACME, filesize        , u64)

@@ -195,7 +195,7 @@ namespace draw2d_xlib
    bool image::to(::draw2d::graphics * pgraphics, const ::point & point, ::size size, const ::point & pointSrc)
    {
 
-      return pgraphics->BitBlt(point.x, point.y, size.cx, size.cy, get_graphics(), pointSrc.x, pointSrc.y, SRCCOPY) != FALSE;
+      return pgraphics->BitBlt(point.x, point.y, size.cx, size.cy, get_graphics(), pointSrc.x, pointSrc.y) != FALSE;
 
       /*  return SetDIBitsToDevice(
            (dynamic_cast<::win::graphics * >(pgraphics))->get_handle1(),
@@ -228,7 +228,7 @@ namespace draw2d_xlib
 
    bool image::from(point ptDest, ::draw2d::graphics * pgraphics, const ::point & point, ::size sz)
    {
-      return m_spgraphics->BitBlt(ptDest.x, ptDest.y, sz.cx, sz.cy, pgraphics, point.x, point.y, SRCCOPY) != FALSE;
+      return m_spgraphics->BitBlt(ptDest.x, ptDest.y, sz.cx, sz.cy, pgraphics, point.x, point.y) != FALSE;
    }
 
    //void image::Fill ( i32 R, i32 G, i32 B )

@@ -441,8 +441,6 @@ void task::term_task()
    // __task_procedure() should release this (pmatter)
    add_ref(OBJ_REF_DBG_THIS_FUNCTION_LINE);
 
-   
-
 #ifdef WINDOWS
 
    DWORD dwThread = 0;
@@ -470,7 +468,7 @@ void task::term_task()
       &m_hthread,
       &taskAttr,
       &task::s_os_task,
-      (LPVOID)(::task*) this);
+      this);
 
 #endif
 

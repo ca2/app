@@ -47,7 +47,7 @@ void simple_scroll_bar::install_message_routing(::channel * pchannel)
    MESSAGE_LINK(e_message_mouse_move, pchannel, this, &simple_scroll_bar::_001OnMouseMove);
    MESSAGE_LINK(e_message_lbutton_down, pchannel, this, &simple_scroll_bar::_001OnLButtonDown);
    MESSAGE_LINK(e_message_lbutton_up, pchannel, this, &simple_scroll_bar::_001OnLButtonUp);
-   MESSAGE_LINK(WM_HSCROLL, pchannel, this, &simple_scroll_bar::_001OnHScroll);
+   MESSAGE_LINK(e_message_hscroll, pchannel, this, &simple_scroll_bar::_001OnHScroll);
 
 }
 
@@ -960,11 +960,11 @@ m_scrollinfo.nPos = nPos;
 
 if(m_eorientation == orientation_horizontal)
 {
-puiParent->SendMessage(WM_HSCROLL, MAKEWPARAM(SB_LINERIGHT, m_scrollinfo.nPos), (LPARAM) this->get_handle());
+puiParent->SendMessage(e_message_hscroll, MAKEWPARAM(SB_LINERIGHT, m_scrollinfo.nPos), (LPARAM) this->get_handle());
 }
 else
 {
-puiParent->SendMessage(WM_VSCROLL, MAKEWPARAM(SB_LINEDOWN, m_scrollinfo.nPos), (LPARAM) this->get_handle());
+puiParent->SendMessage(e_message_vscroll, MAKEWPARAM(SB_LINEDOWN, m_scrollinfo.nPos), (LPARAM) this->get_handle());
 }*/
 
 //}
@@ -1703,7 +1703,7 @@ void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics_pointer & pgraphi
 
    pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-   pgraphics->SetStretchBltMode(HALFTONE);
+   pgraphics->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
 
    pgraphics->alpha_blend(rectDraw.top_left(), rectDraw.size(), m_pimageDots->g(), point((::i32)iDiv, (::i32)iDiv), m_pimageDots->get_size() - ::size((::i32)(iDiv * 2), (::i32)(iDiv * 2)), uchAlpha / 255.0);
 

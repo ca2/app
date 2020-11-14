@@ -53,7 +53,7 @@ namespace user
       MESSAGE_LINK(e_message_lbutton_down, pchannel, this, &control_bar::_001OnLButtonDown);
       MESSAGE_LINK(e_message_lbutton_up, pchannel, this, &control_bar::_001OnLButtonUp);
       MESSAGE_LINK(WM_LBUTTONDBLCLK, pchannel, this, &control_bar::_001OnLButtonDblClk);
-      MESSAGE_LINK(WM_MOUSEACTIVATE, pchannel, this, &control_bar::_001OnMouseActivate);
+      MESSAGE_LINK(e_message_mouse_activate, pchannel, this, &control_bar::_001OnMouseActivate);
       MESSAGE_LINK(e_message_create, pchannel, this, &control_bar::_001OnCreate);
       MESSAGE_LINK(e_message_destroy, pchannel, this, &control_bar::_001OnDestroy);
       MESSAGE_LINK(WM_HELPHITTEST, pchannel, this, &control_bar::_001OnHelpHitTest);

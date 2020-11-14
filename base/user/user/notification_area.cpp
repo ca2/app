@@ -173,7 +173,7 @@ namespace user
             OpenClipboard();
             EmptyClipboard();
             HGLOBAL hText = GlobalAlloc(GMEM_MOVEABLE, sizeof char * 512);
-            LPTSTR pStr = (LPTSTR)GlobalLock(hText);
+            char * pStr = (char *)GlobalLock(hText);
             _stprintf(pStr, "Tray Tip : %s\r\nOwner : %s",
                m_infoa[index].sTip, m_infoa[index].sProcessPath);
             GlobalUnlock(hText);

@@ -273,7 +273,7 @@ namespace message
    };
 
 
-   // WM_PAINT -> aura
+   // e_message_paint -> aura
    // WM_MOUSELEAVE -> aura
 
 
@@ -359,9 +359,9 @@ namespace message
    public:
 
 
-      HBRUSH                     m_hbrush;
+      void *                     m_hbrush;
       ::draw2d::graphics *       m_pdc;
-      ::u32                       m_nCtlType;
+      ::u32                      m_nCtlType;
 
       ctl_color() { }
 
@@ -384,6 +384,7 @@ namespace message
    };
 
 
+#ifdef WINDOWS_DESKTOP
 
    class CLASS_DECL_AURA window_pos: public ::message::base
    {
@@ -403,10 +404,6 @@ namespace message
    };
 
 
-
-#ifdef WINDOWS_DESKTOP
-
-
    class CLASS_DECL_AURA measure_item: public ::message::base
    {
    public:
@@ -419,9 +416,6 @@ namespace message
 
 
    };
-
-
-#endif
 
 
    class CLASS_DECL_AURA nc_calc_size: public ::message::base
@@ -443,6 +437,9 @@ namespace message
 
    };
 
+
+#endif
+   
 
    class CLASS_DECL_AURA enable: public ::message::base
    {

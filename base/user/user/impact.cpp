@@ -36,7 +36,7 @@ namespace user
       MESSAGE_LINK(e_message_rbutton_down, pchannel, this, &impact::_001OnRButtonDown);
 
 
-      MESSAGE_LINK(WM_MOUSEACTIVATE, pchannel, this, &impact::_001OnMouseActivate);
+      MESSAGE_LINK(e_message_mouse_activate, pchannel, this, &impact::_001OnMouseActivate);
       //      MESSAGE_LINK(e_message_destroy        , pchannel, this, &impact::_001OnDestroy);
       //    MESSAGE_LINK(e_message_create        , pchannel, this, &impact::_001OnCreate);
 
@@ -54,7 +54,7 @@ namespace user
       // special command for Initial Update
 
 
-      /* ON_WM_MOUSEACTIVATE()
+      /* ON_e_message_mouse_activate()
 
       // Standard commands for split pane
       ON_COMMAND_EX(ID_WINDOW_SPLIT, &impact::OnSplitCmd)

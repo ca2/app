@@ -14,7 +14,7 @@
 // struct OF_INFO_t
 // {
 // 	u32 dwPID;
-// 	LPCWSTR pFile;
+// 	const widechar * pFile;
 
 // 	HANDLE hFile;
 // };
@@ -23,9 +23,9 @@
 
 
 
-// extern "C" CLASS_DECL_ACME void ShowOpenedFiles( LPCWSTR pPath );
+// extern "C" CLASS_DECL_ACME void ShowOpenedFiles( const widechar * pPath );
 
-// extern "C" CLASS_DECL_ACME void GetOpenedFiles( LPCWSTR pPath, 
+// extern "C" CLASS_DECL_ACME void GetOpenedFiles( const widechar * pPath,
 
 // 													  OF_TYPE Filter,
 // 													  OF_CALLBACK CallBackProc,

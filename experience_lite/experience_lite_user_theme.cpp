@@ -954,21 +954,21 @@ namespace lite
                   pgraphics->draw3d_rect(rectItem, ARGB(255, 127, 127, 127), ARGB(255, 255, 255, 255));
                }
 
-               if (uiImage != 0xffffffffu)
+               if (uImage != 0xffffffffu)
                {
 
                   if ((nStyle & TBBS_DISABLED) == 0)
                   {
 
                      // button is enabled
-                     pmenucentral->MenuV033GetImageListBlend()->draw(pgraphics, uiImage, rectImage.top_left(), 0);
+                     pmenucentral->MenuV033GetImageListBlend()->draw(pgraphics, uImage, rectImage.top_left(), 0);
 
                   }
                   else
                   {
 
                      // button is disabled
-                     pmenucentral->MenuV033GetImageListHueLight()->draw(pgraphics, uiImage, rectImage.top_left(), 0);
+                     pmenucentral->MenuV033GetImageListHueLight()->draw(pgraphics, uImage, rectImage.top_left(), 0);
 
                   }
 
@@ -1009,16 +1009,16 @@ namespace lite
 /*                  System.imaging().color_blend(pgraphics, rect.top_left(), rect.get_size(), item.m_pimage->g(), ::point(), 0->84);
 
                }
-               else if (uiImage != 0xffffffffu)
+               else if (uImage != 0xffffffffu)
                {
 
                   ::rect rect;
 
                   ptoolbar->_001GetElementRect(iItem, rect, ::user::toolbar::element_item_hover);
 
-                  pmenucentral->MenuV033GetImageListHue()->draw(pgraphics, uiImage, rect.top_left(), 0);
+                  pmenucentral->MenuV033GetImageListHue()->draw(pgraphics, uImage, rect.top_left(), 0);
 
-                  pmenucentral->MenuV033GetImageList()->draw(pgraphics, uiImage, rectImage.top_left(), 0);
+                  pmenucentral->MenuV033GetImageList()->draw(pgraphics, uImage, rectImage.top_left(), 0);
                }
 
             }
@@ -1054,10 +1054,10 @@ namespace lite
 /*               System.imaging().color_blend(pgraphics, rect.top_left(), rect.get_size(), item.m_pimage->g(), ::point(), 1->0);
 
             }
-            else if (uiImage != 0xffffffff)
+            else if (uImage != 0xffffffff)
             {
 
-               pmenucentral->MenuV033GetImageList()->draw(pgraphics, uiImage, rectImage.top_left(), 0);
+               pmenucentral->MenuV033GetImageList()->draw(pgraphics, uImage, rectImage.top_left(), 0);
 
             }
 
@@ -1091,19 +1091,19 @@ namespace lite
 /*               System.imaging().color_blend(pgraphics, rect.top_left(), rect.get_size(), item.m_pimage->g(), ::point(), 0->23);
 
             }
-            else if (uiImage != 0xffffffff)
+            else if (uImage != 0xffffffff)
             {
 
                if ((nStyle & TBBS_DISABLED) == 0)
                {
 
-                  pmenucentral->MenuV033GetImageListBlend()->draw(pgraphics, uiImage, rectImage.top_left(), 0);
+                  pmenucentral->MenuV033GetImageListBlend()->draw(pgraphics, uImage, rectImage.top_left(), 0);
 
                }
                else
                {
 
-                  pmenucentral->MenuV033GetImageListHueLight()->draw(pgraphics, uiImage, rectImage.top_left(), 0);
+                  pmenucentral->MenuV033GetImageListHueLight()->draw(pgraphics, uImage, rectImage.top_left(), 0);
 
                }
 
@@ -1261,21 +1261,21 @@ namespace lite
                   pgraphics->draw3d_rect(rectItem, ARGB(255, 127, 127, 127), ARGB(255, 255, 255, 255));
                }
 
-               if (uiImage != 0xffffffffu)
+               if (uImage != 0xffffffffu)
                {
 
                   if ((nStyle & TBBS_DISABLED) == 0)
                   {
 
                      // button is enabled
-                     pmenucentral->MenuV033GetImageListBlend()->draw(pgraphics, uiImage, rectImage.top_left(), 0);
+                     pmenucentral->MenuV033GetImageListBlend()->draw(pgraphics, uImage, rectImage.top_left(), 0);
 
                   }
                   else
                   {
 
                      // button is disabled
-                     pmenucentral->MenuV033GetImageListHueLight()->draw(pgraphics, uiImage, rectImage.top_left(), 0);
+                     pmenucentral->MenuV033GetImageListHueLight()->draw(pgraphics, uImage, rectImage.top_left(), 0);
 
                   }
 
@@ -1316,16 +1316,16 @@ namespace lite
 /*                  System.imaging().color_blend(pgraphics, rect.top_left(), rect.get_size(), item.m_pimage->g(), ::point(), 0->84);
 
                }
-               else if (uiImage != 0xffffffffu)
+               else if (uImage != 0xffffffffu)
                {
 
                   ::rect rect;
 
                   ptoolbar->_001GetElementRect(iItem, rect, ::user::toolbar::element_item_hover);
 
-                  pmenucentral->MenuV033GetImageListHue()->draw(pgraphics, uiImage, rect.top_left(), 0);
+                  pmenucentral->MenuV033GetImageListHue()->draw(pgraphics, uImage, rect.top_left(), 0);
 
-                  pmenucentral->MenuV033GetImageList()->draw(pgraphics, uiImage, rectImage.top_left(), 0);
+                  pmenucentral->MenuV033GetImageList()->draw(pgraphics, uImage, rectImage.top_left(), 0);
                }
 
             }
@@ -1361,10 +1361,10 @@ namespace lite
 /*               System.imaging().color_blend(pgraphics, rect.top_left(), rect.get_size(), item.m_pimage->g(), ::point(), 1->0);
 
             }
-            else if (uiImage != 0xffffffff)
+            else if (uImage != 0xffffffff)
             {
 
-               pmenucentral->MenuV033GetImageList()->draw(pgraphics, uiImage, rectImage.top_left(), 0);
+               pmenucentral->MenuV033GetImageList()->draw(pgraphics, uImage, rectImage.top_left(), 0);
 
             }
 
@@ -1421,19 +1421,19 @@ namespace lite
 /*               System.imaging().color_blend(pgraphics, rect.top_left(), rect.get_size(), item.m_pimage->g(), ::point(), 0->23);
 
             }
-            else if (uiImage != 0xffffffff)
+            else if (uImage != 0xffffffff)
             {
 
                if ((nStyle & TBBS_DISABLED) == 0)
                {
 
-                  pmenucentral->MenuV033GetImageListBlend()->draw(pgraphics, uiImage, rectImage.top_left(), 0);
+                  pmenucentral->MenuV033GetImageListBlend()->draw(pgraphics, uImage, rectImage.top_left(), 0);
 
                }
                else
                {
 
-                  pmenucentral->MenuV033GetImageListHueLight()->draw(pgraphics, uiImage, rectImage.top_left(), 0);
+                  pmenucentral->MenuV033GetImageListHueLight()->draw(pgraphics, uImage, rectImage.top_left(), 0);
 
                }
 

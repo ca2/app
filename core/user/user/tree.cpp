@@ -843,8 +843,8 @@ namespace user
       MESSAGE_LINK(e_message_rbutton_down, pchannel, this, &tree::_001OnRButtonDown);
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &tree::_001OnMouseMove);
       MESSAGE_LINK(WM_MOUSELEAVE, pchannel, this, &tree::_001OnMouseLeave);
-      MESSAGE_LINK(WM_HSCROLL, pchannel, this, &tree::_001OnHScroll);
-      MESSAGE_LINK(WM_VSCROLL, pchannel, this, &tree::_001OnVScroll);
+      MESSAGE_LINK(e_message_hscroll, pchannel, this, &tree::_001OnHScroll);
+      MESSAGE_LINK(e_message_vscroll, pchannel, this, &tree::_001OnVScroll);
       MESSAGE_LINK(e_message_change_experience, pchannel, this, &tree::_001OnChangeExperience);
 //      //MESSAGE_LINK(WM_TIMER         , pchannel, this, &tree::_001OnTimer);
 

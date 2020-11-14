@@ -182,7 +182,7 @@ string file_line_dup(const char * path, index iLine)
    if (file == nullptr)
    {
 
-      ::u32 dw = ::get_last_error();
+      ::estatus estatus = ::get_last_status();
 
       return "";
 
@@ -260,7 +260,7 @@ bool file_set_line_dup(const char * pszPath, index iLine, const char * pszLine)
    if (file == nullptr)
    {
 
-      ::u32 dw = ::get_last_error();
+      ::estatus estatus = ::get_last_status();
 
       return false;
 

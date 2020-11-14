@@ -21,7 +21,7 @@ namespace draw2d_direct2d
       if(is_opened())
          close();
 #ifndef _UWP
-      return OpenPrinterW((LPWSTR) (LPCWSTR) wstring(pszDeviceName), &m_hPrinter, nullptr) != FALSE && m_hPrinter != nullptr;
+      return OpenPrinterW((LPWSTR) (const widechar *) wstring(pszDeviceName), &m_hPrinter, nullptr) != FALSE && m_hPrinter != nullptr;
 #else
       __throw(todo());
       return false;
@@ -80,7 +80,7 @@ namespace draw2d_direct2d
 #ifndef _UWP
       int iSize = DocumentPropertiesW(nullptr, pprinter->m_hPrinter, (LPWSTR)(LPWSTR)wstring(pprinter->m_strName), nullptr, nullptr, 0);
       m_pdevmode = (DEVMODE *) malloc(iSize);
-      if(!DocumentPropertiesW(nullptr, pprinter->m_hPrinter, (LPWSTR) (LPCWSTR) wstring(pprinter->m_strName), m_pdevmode, nullptr, DM_OUT_BUFFER))
+      if(!DocumentPropertiesW(nullptr, pprinter->m_hPrinter, (LPWSTR) (const widechar *) wstring(pprinter->m_strName), m_pdevmode, nullptr, DM_OUT_BUFFER))
       {
          __throw(::exception::exception("failed to get printer DocumentProperties"));
          return false;
@@ -123,7 +123,7 @@ namespace draw2d_direct2d
       if(m_hdc != nullptr)
          return nullptr;
 #ifndef _UWP
-      m_hdc = ::CreateDCW(L"WINSPOOL", (LPCWSTR) wstring(m_pdevmode->dmDeviceName), nullptr, m_pdevmode);
+      m_hdc = ::CreateDCW(L"WINSPOOL", (const widechar *) wstring(m_pdevmode->dmDeviceName), nullptr, m_pdevmode);
       ::draw2d::graphics_pointer g(e_create);
       g->attach_hdc(m_hdc);
       return g.detach();

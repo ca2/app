@@ -243,8 +243,8 @@ namespace android
       //void dir::root_ones(string_array & straPath, string_array & straTitle, ::aura::application * papp)
       //{
       //   ::u32 dwSize = ::GetLogicalDriveStrings(0, nullptr);
-      //   LPTSTR lpszAlloc = (LPTSTR) malloc(dwSize + 1);
-      //   LPTSTR lpsz = lpszAlloc;
+      //   char * lpszAlloc = (char *) malloc(dwSize + 1);
+      //   char * lpsz = lpszAlloc;
       //   dwSize = ::GetLogicalDriveStrings(dwSize + 1, lpsz);
 
       //   string str;

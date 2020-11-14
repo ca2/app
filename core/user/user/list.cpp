@@ -79,8 +79,8 @@ namespace user
       ::user::mesh::install_message_routing(pchannel);
 
       MESSAGE_LINK(e_message_size, pchannel, this, &list::_001OnSize);
-      MESSAGE_LINK(WM_VSCROLL, pchannel, this, &list::_001OnVScroll);
-      MESSAGE_LINK(WM_HSCROLL, pchannel, this, &list::_001OnHScroll);
+      MESSAGE_LINK(e_message_vscroll, pchannel, this, &list::_001OnVScroll);
+      MESSAGE_LINK(e_message_hscroll, pchannel, this, &list::_001OnHScroll);
       MESSAGE_LINK(WM_MOUSELEAVE, pchannel, this, &list::_001OnMouseLeave);
 
       MESSAGE_LINK(e_message_lbutton_down, pchannel, this, &list::_001OnLButtonDown);
@@ -1600,7 +1600,7 @@ namespace user
 
             //hditem.mask = HDI_WIDTH | HDI_TEXT | HDI_LPARAM | HDI_ORDER;
             //str.load_string(_001GetColumnTextId(iColumn));
-            //hditem.pszText = (LPTSTR) (const char *) str;
+            //hditem.pszText = (char *) (const char *) str;
             //hditem.pszText = LPSTR_TEXTCALLBACK;
             //hditem.cchTextMax = str.get_length();
 

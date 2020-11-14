@@ -1,7 +1,8 @@
 #include "framework.h"
 #include "_linux.h"
 //#include "acme/platform/app_core.h"
-
+#include <sys/types.h>
+#include <unistd.h>
 #include <signal.h>
 #undef USE_MISC
 
@@ -759,3 +760,14 @@ CLASS_DECL_ACME ::file::path core_app_path(string strApp)
    return "/xcore/time/x64/basis/" + strApp;
 
 }
+
+
+::u32 get_current_process_id()
+{
+
+    return getpid();
+
+}
+
+
+

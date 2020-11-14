@@ -5,7 +5,7 @@
 //typedef i32 int_bool;
 typedef u8 byte;
 //typedef u16 ::u16;
-typedef u32 ::u32;
+typedef unsigned int u32;
 //typedef i32 ::i32;
 
 

@@ -30,8 +30,8 @@
 
 
 
-CLASS_DECL_APEX ::u32 get_last_error();
-CLASS_DECL_APEX void set_last_error(::u32 dw);
+//CLASS_DECL_APEX ::u32 get_last_error();
+//CLASS_DECL_APEX void set_last_error(::u32 dw);
 
 
 CLASS_DECL_APEX bool _istlead(i32 ch);

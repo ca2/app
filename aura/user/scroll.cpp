@@ -239,7 +239,7 @@ namespace user
    void scroll_x_base::install_message_routing(::channel * pchannel)
    {
 
-      MESSAGE_LINK(WM_HSCROLL, pchannel, this, &scroll_x_base::_001OnHScroll);
+      MESSAGE_LINK(e_message_hscroll, pchannel, this, &scroll_x_base::_001OnHScroll);
 
    }
 
@@ -615,7 +615,7 @@ namespace user
 
       interaction::install_message_routing(pchannel);
 
-      MESSAGE_LINK(WM_VSCROLL, pchannel, this, &scroll_y_base::_001OnVScroll);
+      MESSAGE_LINK(e_message_vscroll, pchannel, this, &scroll_y_base::_001OnVScroll);
       MESSAGE_LINK(e_message_mouse_wheel, pchannel, this, &scroll_y_base::_001OnMouseWheel);
 
    }
@@ -878,7 +878,7 @@ namespace user
 
       }
 
-      pscroll->m_id = WM_HSCROLL;
+      pscroll->m_id = e_message_hscroll;
 
       send(pscroll);
 
@@ -964,7 +964,7 @@ namespace user
 
       }
 
-      pscroll->m_id = WM_VSCROLL;
+      pscroll->m_id = e_message_vscroll;
 
       send(pscroll);
 

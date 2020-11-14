@@ -1,5 +1,5 @@
 #include "framework.h"
-
+#include "os/cross/windows/_windows.h"
 
 //namespace datetime
 //{
@@ -21,11 +21,19 @@
    filetime filetime::get_current_time() noexcept
    {
 
+#ifdef WINDOWS_DESKTOP
+
       FILETIME filetime;
 
       GetSystemTimeAsFileTime(&filetime);
 
       return filetime;
+
+#else
+
+      return 0;
+
+#endif
 
    }
 
@@ -96,7 +104,7 @@
    }
 
 
-   ULONGLONG filetime::get_time() const noexcept
+   filetime_t filetime::get_time() const noexcept
    {
 
       return m_filetime;
@@ -104,12 +112,15 @@
    }
 
 
-   void filetime::SetTime(ULONGLONG nTime) noexcept
+   void filetime::SetTime(filetime_t nTime) noexcept
    {
 
       m_filetime = nTime;
 
    }
+
+
+#ifdef WINDOWS
 
 
    filetime filetime::UTCToLocal() const noexcept
@@ -139,27 +150,20 @@
 
    }
 
+#endif
 
-   const ULONGLONG filetime::Millisecond = 10000;
-   const ULONGLONG filetime::Second = Millisecond * static_cast<ULONGLONG>(1000);
-   const ULONGLONG filetime::Minute = Second * static_cast<ULONGLONG>(60);
-   const ULONGLONG filetime::Hour = Minute * static_cast<ULONGLONG>(60);
-   const ULONGLONG filetime::Day = Hour * static_cast<ULONGLONG>(24);
-   const ULONGLONG filetime::Week = Day * static_cast<ULONGLONG>(7);
+
+   const filetime_t filetime::Millisecond = 10000;
+   const filetime_t filetime::Second = Millisecond * static_cast<filetime_t>(1000);
+   const filetime_t filetime::Minute = Second * static_cast<filetime_t>(60);
+   const filetime_t filetime::Hour = Minute * static_cast<filetime_t>(60);
+   const filetime_t filetime::Day = Hour * static_cast<filetime_t>(24);
+   const filetime_t filetime::Week = Day * static_cast<filetime_t>(7);
 
 //
 //}
 //
 //
-
-
-
-
-
-
-
-
-
 
 
 CLASS_DECL_ACME bool file_modified_timeout(const char * path, int iSeconds)
@@ -264,7 +268,7 @@ CLASS_DECL_ACME bool set_modified_filetime(const char* psz, const filetime & fil
 #elif defined(_UWP)
 
 
-bool get_filetime(const char * psz,FILETIME & creation,FILETIME & modified)
+bool get_filetime_set(const char * psz,FILETIME & creation,FILETIME & modified)
 {
 
    hfile hfile = hfile_create(psz, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, nullptr, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr);
@@ -305,20 +309,16 @@ bool get_filetime(const char * psz,FILETIME & creation,FILETIME & modified)
 #undef USE_MISC
 
 
-
-
-bool get_filetime(const char * psz,FILETIME & creation,FILETIME & modified)
+bool get_filetime_set(const char * psz, filetime & creation, filetime & modified)
 {
 
    struct stat st;
 
    stat(psz, &st);
 
-   creation.dwLowDateTime = LODWORD(st.st_ctime);
-   creation.dwHighDateTime = HIDWORD(st.st_ctime);
+   creation.m_filetime = st.st_ctime;
 
-   modified.dwLowDateTime = LODWORD(st.st_mtime);
-   modified.dwHighDateTime = HIDWORD(st.st_mtime);
+   modified.m_filetime = st.st_mtime;
 
    return true;
 

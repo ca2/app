@@ -45,7 +45,7 @@ output_debug_string(
 VOID
 WINAPI
 output_debug_string(
-                   LPCWSTR lpOutputString
+                   const widechar * lpOutputString
                    )
 {
 

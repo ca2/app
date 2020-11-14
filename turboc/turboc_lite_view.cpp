@@ -257,7 +257,7 @@ namespace turboc
 
       }
 
-      pgraphics->SetStretchBltMode(HALFTONE);
+      pgraphics->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 

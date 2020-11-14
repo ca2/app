@@ -596,13 +596,13 @@ namespace android
    /*
    void PASCAL file::Rename(const char * lpszOldName, const char * lpszNewName)
    {
-   if (!::MoveFile((LPTSTR)lpszOldName, (LPTSTR)lpszNewName))
+   if (!::MoveFile((char *)lpszOldName, (char *)lpszNewName))
    ::win::file::throw_os_error( (::i32)::get_last_error());
    }
 
    void PASCAL file::remove(const char * lpszFileName)
    {
-   if (!::DeleteFile((LPTSTR)lpszFileName))
+   if (!::DeleteFile((char *)lpszFileName))
    ::win::file::throw_os_error( (::i32)::get_last_error());
    }
    */

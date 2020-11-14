@@ -91,7 +91,7 @@ namespace simple_ui
 //      }
 //      if(m_fastblur.is_set() && m_fastblur->get_graphics() != nullptr)
 //      {
-//      m_fastblur->get_graphics()->BitBlt(0, 0, rectClient.width(), rectClient.height(), pgraphics, 0, 0, SRCCOPY);
+//      m_fastblur->get_graphics()->BitBlt(0, 0, rectClient.width(), rectClient.height(), pgraphics, 0, 0);
 //      m_fastblur.blur();
 //      imaging.bitmap_blend(
 //      m_fastblur->get_graphics(),

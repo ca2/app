@@ -249,7 +249,7 @@ CLASS_DECL_APEX ithread_t get_current_ithread()
 void __node_init_multithreading()
 {
 
-   __node_init_cross_windows_threading();
+   //__node_init_cross_windows_threading();
 
 }
 
@@ -257,7 +257,7 @@ void __node_init_multithreading()
 void __node_term_multithreading()
 {
 
-   __node_term_cross_windows_threading();
+   //__node_term_cross_windows_threading();
 
 }
 
@@ -301,7 +301,7 @@ void set_defer_process_x_message(bool (*pfn)(hthread_t hthread, LPMESSAGE pMsg, 
 
 
 extern "C"
-void * os_thread_thread_proc(LPVOID pparameter);
+void * os_thread_thread_proc(void * pparameter);
 
 
 
@@ -511,7 +511,7 @@ bool on_term_thread()
 }
 
 
-CLASS_DECL_APEX DWORD_PTR translate_processor_affinity(int iOrder)
+CLASS_DECL_APEX uptr translate_processor_affinity(int iOrder)
 {
 
    return 1 << iOrder;

@@ -485,10 +485,10 @@ namespace simple_ui
 
 
 //extern "C"
-//CLASS_DECL_CORE void system_message_box(oswindow oswindow, const char * pszText, const char * pszCaption,u32 uiFlags)
+//CLASS_DECL_CORE void system_message_box(oswindow oswindow, const char * pszText, const char * pszCaption,u32 uFlags)
 //{
 //
-//   return os_message_box(oswindow, pszText, pszCaption, uiFlags, function);
+//   return os_message_box(oswindow, pszText, pszCaption, uFlags, function);
 //
 //}
 
@@ -523,14 +523,14 @@ namespace simple_ui
 //}
 
 
-//i32 ui_message_box(oswindow oswindow, const char * pszMessage, const char * pszTitle, u32 uiFlags, const ::function_arg & function)
+//i32 ui_message_box(oswindow oswindow, const char * pszMessage, const char * pszTitle, u32 uFlags, const ::function_arg & function)
 //{
 //
 //   i32 iResult = 0;
 //
 //   {
 //
-//      __pointer(::simple_ui::message_box) pmessagebox = __new(::simple_ui::message_box(get_context_application(),pText,lpCaption,uiFlags));
+//      __pointer(::simple_ui::message_box) pmessagebox = __new(::simple_ui::message_box(get_context_application(),pText,lpCaption,uFlags));
 //
 //      try
 //      {

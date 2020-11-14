@@ -163,17 +163,14 @@ void duration::fset(long double d)
 }
 
 
-
 CLASS_DECL_ACME void Sleep(const duration & duration)
 {
 
    auto tickDuration = duration.tick_duration();
 
-   ::Sleep(tickDuration);
+   ::Sleep((::u32)tickDuration);
 
 }
-
-
 
 
 

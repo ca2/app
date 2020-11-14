@@ -6,7 +6,7 @@
 
 // removed baseclass CObject
 // removed baseclass CException
-// removed all LPCTSTR LPTSTR
+// removed all LPCTSTR char *
 // _select only defined to avoid compiler warning in WIN32
 // make it run on linux
 

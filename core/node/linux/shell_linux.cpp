@@ -308,7 +308,7 @@ namespace linux
       //         szPath,
       //         sizeof(szPath),
       //         &iIcon,
-      //         &uiFlags)))
+      //         &uFlags)))
       //      {
       //         strPath = szPath;
       //         if (strPath == "*")
@@ -382,11 +382,11 @@ namespace linux
       //         iIcon = imagekey.m_iIcon;
       //         bool bExtract = false;
       //         //HGLOBAL hglobal = ::GlobalAlloc(GPTR, strPath.get_length() + 1);
-      //         //LPTSTR lpsz = (LPTSTR) ::GlobalLock(hglobal);
+      //         //char * lpsz = (char *) ::GlobalLock(hglobal);
       //         //strcpy(lpsz, strPath);
       //         try
       //         {
-      //            if ((hrIconLocation == S_OK && !(uiFlags & GIL_NOTFILENAME))
+      //            if ((hrIconLocation == S_OK && !(uFlags & GIL_NOTFILENAME))
       //               && lpiextracticon.is_null()
       //               && (NOERROR == (hrExtract = lpiextracticon->Extract(
       //                  strPath,
@@ -813,11 +813,11 @@ namespace linux
 
             }
 
-            pimage->get_graphics()->SetStretchBltMode(HALFTONE);
+            pimage->get_graphics()->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
 
             pimage->get_graphics()->StretchBlt(0, 0, 16, 16, pimage1->get_graphics(), 0, 0, pimage1->width(), pimage1->height());
 
-            pimage->get_graphics()->SetStretchBltMode(HALFTONE);
+            pimage->get_graphics()->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
 
             pimage->get_graphics()->StretchBlt(0, 0, 48, 48, pimage->get_graphics(), 0, 0, pimage->width(), pimage->height());
 

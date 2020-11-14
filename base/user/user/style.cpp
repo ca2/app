@@ -57,7 +57,7 @@ namespace base
    }
 
 
-   bool style::_001OnDrawMen::u32eraction(::draw2d::graphics_pointer& pgraphics, ::user::menu_interaction* pbutton)
+   bool style::_001OnDrawMenuInteraction(::draw2d::graphics_pointer& pgraphics, ::user::menu_interaction* pbutton)
    {
 
       return false;
@@ -150,7 +150,7 @@ namespace base
 //
 //      theme_current_control(control_menu_popup);
 //
-//      create_point_font(font_default, FONT_SANS, 9.0, FW_BOLD);
+//      create_point_font(font_default, FONT_SANS, 9.0, e_font_weight_bold);
 //      create_color(color_text_normal, alpha_color(200, ::color_black));
 //      create_session_default_color(color_text_press, 200, COLOR_HIGHLIGHT);
 //      create_color(color_text_disabled, alpha_color(200, ::color_gray));

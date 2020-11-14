@@ -353,7 +353,7 @@ namespace user
    }
 
 
-   void font_list::query_full_size(::draw2d::graphics_pointer & pgraphics, LPSIZE psize)
+   void font_list::query_full_size(::draw2d::graphics_pointer & pgraphics, LPSIZE32 psize)
    {
 
       *psize = m_pfontlist->m_size;

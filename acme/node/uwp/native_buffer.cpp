@@ -199,7 +199,7 @@ namespace uwp
       ::str::international::unicode_to_utf8(rStatus.m_strFullName, wstrFullName);
 
       WIN32_FIND_DATA findnative_bufferData;
-      HANDLE hFind = FindFirstnative_buffer((LPTSTR)pszfileName, &findnative_bufferData);
+      HANDLE hFind = FindFirstnative_buffer((char *)pszfileName, &findnative_bufferData);
 
       if (hFind == INVALID_HANDLE_VALUE)
          return FALSE;
@@ -643,7 +643,7 @@ namespace uwp
    void native_buffer::Rename(const char * pszOldName, const char * pszNewName)
 
    {
-   if (!::Movenative_buffer((LPTSTR)pszOldName, (LPTSTR)pszNewName))
+   if (!::Movenative_buffer((char *)pszOldName, (char *)pszNewName))
 
    WinFileException::ThrowOsError(get_context_application(), (::i32)::get_last_error());
    }
@@ -651,7 +651,7 @@ namespace uwp
    void native_buffer::remove(const char * pszfileName)
 
    {
-   if (!::Deletenative_buffer((LPTSTR)pszfileName))
+   if (!::Deletenative_buffer((char *)pszfileName))
 
    WinFileException::ThrowOsError(get_context_application(), (::i32)::get_last_error());
    }

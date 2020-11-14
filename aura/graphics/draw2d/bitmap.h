@@ -47,7 +47,7 @@ namespace draw2d
 
       virtual bool CreateBitmap(::draw2d::graphics * pgraphics, const ::size & size, ::u32 nPlanes, ::u32 nBitcount, const void * pBits, i32 stride);
 
-      virtual bool CreateBitmapIndirect(::draw2d::graphics * pgraphics, LPBITMAP pBitmap);
+      //virtual bool CreateBitmapIndirect(::draw2d::graphics * pgraphics, LPBITMAP pBitmap);
 
       virtual bool CreateCompatibleBitmap(::draw2d::graphics * pgraphics, i32 nWidth, i32 nHeight);
       virtual bool CreateDiscardableBitmap(::draw2d::graphics * pgraphics, i32 nWidth, i32 nHeight);
@@ -69,7 +69,7 @@ namespace draw2d
       // Operations
       virtual u32 SetBitmapBits(u32 dwCount, const void * pBits);
 
-      virtual u32 GetBitmapBits(u32 dwCount, LPVOID pBits) const;
+      virtual u32 GetBitmapBits(u32 dwCount, void * pBits) const;
 
 
 

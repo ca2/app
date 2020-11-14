@@ -435,7 +435,7 @@ namespace hellobase
          m_pimagePost->get_graphics()->StretchBlt(rectImage.left, rectImage->top, rectImage->width(), rectImage->height(),
 /*                                                m_prender->m_pimagepimage->g(), 0, 0,
                                                 m_prender->m_pimageImage->get_size()->cx,
-                                                m_prender->m_pimageImage->get_size()->cy, SRCCOPY);
+                                                m_prender->m_pimageImage->get_size()->cy);
 
 
       }

@@ -5,6 +5,7 @@ class CLASS_DECL_ACME duration
 {
 public:
 
+
    enum e_duration
    {
 
@@ -13,6 +14,7 @@ public:
       duration_infinite,
 
    };
+
 
    enum e_unit
    {
@@ -39,7 +41,8 @@ public:
    duration(i32 iSeconds, i64 iNanoseconds = 0) : duration((::i64) iSeconds, iNanoseconds) {}
    duration(u32 uSeconds, i64 iNanoseconds = 0) : duration((::i64) uSeconds, iNanoseconds) {}
    duration(e_duration eduration);
-   duration(const class ::tick& tick);
+   duration(const class ::tick_duration & tickduration);
+   duration(const class ::tick & tick);
    duration(const class ::duration& duration);
 
 
@@ -50,9 +53,11 @@ public:
    static inline duration create(i64 iSeconds, i64 iNanoseconds);
    static inline duration create_null();
 
+
    void fset(long double dSeconds);
    void fset(long double dSeconds, double dNanoseconds);
    static inline duration fcreate(long double dSeconds, double dNanoseconds);
+
 
    void set(i64 i, e_unit eunit);
    void set(long double d, e_unit eunit);
@@ -78,8 +83,10 @@ public:
 
    void normalize();
 
+
    inline class lock_duration lock_duration() const;
    inline operator class lock_duration() const;
+
 
    inline class tick_duration tick_duration() const;
    inline operator class tick_duration() const;
@@ -251,14 +258,21 @@ inline lock_duration duration::lock_duration() const
 
 inline duration::operator ::lock_duration() const
 {
-   return ::duration::lock_duration();
+
+    return ::duration::lock_duration();
+
 }
+
 
 inline tick_duration duration::tick_duration() const
 {
 
    if(is_pos_infinity())
-      return 0xffffffff;
+   {
+
+       return 0xffffffff;
+
+   }
 
    auto uTotal = get_total_milliseconds();
 
@@ -409,6 +423,15 @@ public:
 //const char32_t *, std::size_t
 
 inline millis operator "" _ms(unsigned long long int u) { return (::u64) u; }
+
+
+inline duration::duration(const ::tick_duration & tickduration)
+{
+
+    operator=(::millis(tickduration));
+
+}
+
 
 inline  duration::duration(const ::tick& tick)
 {

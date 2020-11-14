@@ -207,7 +207,7 @@ auto m_tickRoll = ::tick::now();
 
          ::draw2d::graphics_pointer & pgraphics = m_pimageTime->get_graphics();
 
-         pdcParam->from(size, pgraphics, SRCCOPY);
+         pdcParam->from(size, pgraphics);
 
       }
 
@@ -308,7 +308,7 @@ auto m_tickRoll = ::tick::now();
 
          m_pimage1->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
 
-         m_pimage1->get_graphics()->StretchBlt(0, 0, size2.cx, size2->cy, pgraphics, 0, 0, size->cx, size->cy, SRCCOPY);
+         m_pimage1->get_graphics()->StretchBlt(0, 0, size2.cx, size2->cy, pgraphics, 0, 0, size->cx, size->cy);
 
          //if (0)
          {
@@ -318,7 +318,7 @@ auto m_tickRoll = ::tick::now();
 
                pgraphics->set_alpha_mode(::draw2d::alpha_mode_set);
 
-               pgraphics->StretchBlt(0, 0, size.cx, size.cy, m_pimage1->get_graphics(), 0, 0, size2->cx, size2->cy, SRCCOPY);
+               pgraphics->StretchBlt(0, 0, size.cx, size.cy, m_pimage1->get_graphics(), 0, 0, size2->cx, size2->cy);
 
             }
             else
@@ -328,7 +328,7 @@ auto m_tickRoll = ::tick::now();
 
                m_pimage2->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
 
-               m_pimage2->get_graphics()->StretchBlt(0, 0, size.cx, size.cy, m_pimage1->get_graphics(), 0, 0, size2->cx, size2->cy, SRCCOPY);
+               m_pimage2->get_graphics()->StretchBlt(0, 0, size.cx, size.cy, m_pimage1->get_graphics(), 0, 0, size2->cx, size2->cy);
 
             }
 
@@ -399,7 +399,7 @@ auto m_tickRoll = ::tick::now();
             if (pgraphics->m_pimage->is_null())
             {
 
-               pgraphics->BitBlt(0, 0, size.cx, size.cy, m_pimage2->get_graphics(), 0, 0, SRCCOPY);
+               pgraphics->BitBlt(0, 0, size.cx, size.cy, m_pimage2->get_graphics(), 0, 0);
 
             }
             else

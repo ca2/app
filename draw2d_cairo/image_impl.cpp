@@ -232,7 +232,7 @@ namespace draw2d_cairo
    bool image::to(::draw2d::graphics * pgraphics, const ::point & point, const ::size & size, const ::point & ptSrc)
    {
 
-      return pgraphics->BitBlt(point.x, point.y, size.cx, size.cy, get_graphics(), ptSrc.x, ptSrc.y, SRCCOPY) != FALSE;
+      return pgraphics->BitBlt(point.x, point.y, size.cx, size.cy, get_graphics(), ptSrc.x, ptSrc.y) != FALSE;
 
       /*  return SetDIBitsToDevice(
            (dynamic_cast<::win::graphics * >(pgraphics))->get_handle1(),
@@ -267,7 +267,7 @@ namespace draw2d_cairo
 //   bool image::from(const ::point & pointDest, ::draw2d::graphics * pgraphics, const ::point & point, const ::size & size)
 //   {
 //
-//      return m_spgraphics->BitBlt(pointDest.x, pointDest.y, sz.cx, sz.cy, pgraphics, point.x, point.y, SRCCOPY);
+//      return m_spgraphics->BitBlt(pointDest.x, pointDest.y, sz.cx, sz.cy, pgraphics, point.x, point.y);
 //
 //   }
 
@@ -678,7 +678,7 @@ namespace draw2d_cairo
    bool image::stretch_image(::image * pimage)
    {
 
-      if (!get_graphics()->draw(rect(), pimage->g(), pimage->rect(), SRCCOPY))
+      if (!get_graphics()->draw(rect(), pimage->g(), pimage->rect()))
       {
 
          return false;

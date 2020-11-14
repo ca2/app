@@ -46,7 +46,7 @@ CLASS_DECL_AURA bool __node_aura_pos_init()
 CLASS_DECL_AURA bool __node_aura_pre_term()
 {
 
-   __node_term_cross_windows_threading();
+   //__node_term_cross_windows_threading();
 
    return true;
 

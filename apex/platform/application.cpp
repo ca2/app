@@ -8,15 +8,19 @@
 #include "apex/platform/app_core.h"
 #include "acme/platform/profiler.h"
 #include "apex/compress/zip/_.h"
-
-
-int windows_desktop1_main(HINSTANCE hInstance, int nCmdShow);
+#ifndef WINDOWS
+#include "acme/os/cross/windows/_windows.h"
+#endif
 
 
 #include "apex/node/_node.h"
 #include "apex/os/_os.h"
 
 #ifdef WINDOWS_DESKTOP
+
+int windows_desktop1_main(HINSTANCE hInstance, int nCmdShow);
+
+
 
 #include "apex/os/windows/_.h"
 
@@ -1357,6 +1361,9 @@ namespace apex
    //}
 
 
+#ifdef WINDOWS
+
+
    void application::TermThread(HINSTANCE hInstTerm)
    {
 
@@ -1364,6 +1371,8 @@ namespace apex
 
    }
 
+
+#endif
 
 
    bool application::_001OnDDECommand(const char * pcsz)
@@ -7690,7 +7699,7 @@ namespace apex
       switch (pbase->m_id)
       {
       case e_message_create:
-      case WM_PAINT:
+      case e_message_paint:
 
          return thread::process_window_procedure_exception(pe, pmessage);
 
@@ -8328,7 +8337,7 @@ namespace apex
       /////////////////////////////////////////////////////////////////////////////
       // application idle processing
 
-   void application::DevModeChange(LPTSTR pDeviceName)
+   void application::DevModeChange(char * pDeviceName)
 
    {
       UNREFERENCED_PARAMETER(pDeviceName);
@@ -8570,6 +8579,9 @@ namespace apex
    {
    }
 
+
+#ifdef WINDOWS
+
    void application::SelectPrinter(HANDLE hDevNames, HANDLE hDevMode, bool bFreeOld)
    {
       UNREFERENCED_PARAMETER(hDevNames);
@@ -8577,6 +8589,9 @@ namespace apex
       UNREFERENCED_PARAMETER(bFreeOld);
       ::exception::throw_not_implemented();
    }
+
+
+#endif
 
    ::draw2d::graphics* application::CreatePrinterDC()
    {
@@ -8662,7 +8677,7 @@ namespace apex
 
 
 
-   //   bool application::OnDDECommand(LPTSTR pszCommand)
+   //   bool application::OnDDECommand(char * pszCommand)
    //
    //   {
    //      /*      if (m_pdocmanager != nullptr)
@@ -8853,7 +8868,7 @@ namespace apex
    u32 dwValue;
    u32 dwType;
    u32 dwCount = sizeof(u32);
-   ::i32 lResult = RegQueryValueEx(hSecKey, (LPTSTR)pszEntry, nullptr, &dwType,
+   ::i32 lResult = RegQueryValueEx(hSecKey, (char *)pszEntry, nullptr, &dwType,
 
    (byte *)&dwValue, &dwCount);
    RegCloseKey(hSecKey);
@@ -8893,13 +8908,13 @@ namespace apex
    string strValue;
    u32 dwType=REG_NONE;
    u32 dwCount=0;
-   ::i32 lResult = RegQueryValueEx(hSecKey, (LPTSTR)pszEntry, nullptr, &dwType,
+   ::i32 lResult = RegQueryValueEx(hSecKey, (char *)pszEntry, nullptr, &dwType,
 
    nullptr, &dwCount);
    if (lResult == ERROR_SUCCESS)
    {
    ASSERT(dwType == REG_SZ);
-   lResult = RegQueryValueEx(hSecKey, (LPTSTR)pszEntry, nullptr, &dwType,
+   lResult = RegQueryValueEx(hSecKey, (char *)pszEntry, nullptr, &dwType,
 
    (byte *)strValue.GetBuffer(dwCount/sizeof(char)), &dwCount);
    strValue.ReleaseBuffer();
@@ -8958,14 +8973,14 @@ namespace apex
 
    u32 dwType=0;
    u32 dwCount=0;
-   ::i32 lResult = RegQueryValueEx(hSecKey, (LPTSTR)pszEntry, nullptr, &dwType, nullptr, &dwCount);
+   ::i32 lResult = RegQueryValueEx(hSecKey, (char *)pszEntry, nullptr, &dwType, nullptr, &dwCount);
 
    *pBytes = dwCount;
    if (lResult == ERROR_SUCCESS)
    {
    ASSERT(dwType == REG_BINARY);
    *ppData = new byte[*pBytes];
-   lResult = RegQueryValueEx(hSecKey, (LPTSTR)pszEntry, nullptr, &dwType,
+   lResult = RegQueryValueEx(hSecKey, (char *)pszEntry, nullptr, &dwType,
 
    *ppData, &dwCount);
    }
@@ -9063,7 +9078,7 @@ namespace apex
    if (hSecKey == nullptr)
    return FALSE;
    // necessary to cast away const below
-   lResult = ::RegDeleteValue(hSecKey, (LPTSTR)pszEntry);
+   lResult = ::RegDeleteValue(hSecKey, (char *)pszEntry);
 
    RegCloseKey(hSecKey);
    }
@@ -9112,7 +9127,7 @@ namespace apex
    }
 
    // convert to string and write out
-   LPTSTR psz = new char[nBytes*2+1];
+   char * psz = new char[nBytes*2+1];
 
    ::u32 i;
    for (i = 0; i < nBytes; i++)
@@ -9523,6 +9538,8 @@ namespace apex
    void application::EnableShellOpen()
    {
 
+#ifdef WINDOWS
+
       ASSERT(m_atomApp == 0 && m_atomSystemTopic == 0); // do once
 
       if (m_atomApp != 0 || m_atomSystemTopic != 0)
@@ -9541,12 +9558,14 @@ namespace apex
       // strip out path
       //string strFileName = ::PathFindFileName(strShortName);
       // strip out extension
-      //LPTSTR pszFileName = strFileName.GetBuffer();
+      //char * pszFileName = strFileName.GetBuffer();
       //::PathRemoveExtension(pszFileName);
       //strFileName.ReleaseBuffer();
 
       //      m_atomApp = ::GlobalAddAtom(strFileName);
       //    m_atomSystemTopic = ::GlobalAddAtom("system");
+
+#endif
 
    }
 

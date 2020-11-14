@@ -675,8 +675,8 @@ if(WIN32)
         os/cross/windows/windows_thread_impl.h
         os/cross/cross.h
         os/winpr_input.h
-        os/winpr_keycode.cpp
-        os/winpr_scancode.cpp
+        #os/winpr_keycode.cpp
+        #os/winpr_scancode.cpp
             )
 
 endif()
@@ -1376,6 +1376,7 @@ target_link_directories(apex PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archiv
 target_link_directories(apex PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/storage-${PLATFORM_NAME}/third/library/x64/basis)
 
 
+target_include_directories(apex PRIVATE .)
 target_include_directories(apex PRIVATE $ENV{HOME}/__config)
 target_include_directories(apex PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 target_include_directories(apex PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)

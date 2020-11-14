@@ -426,7 +426,7 @@ typedef const CHAR     *PCSTR,      *const char *;
 typedef WCHAR          *PWCH,       *LPWCH;
 typedef const WCHAR    *PCWCH,      *LPCWCH;
 typedef WCHAR          *PWSTR,      *LPWSTR,    *NWPSTR;
-typedef const WCHAR    *PCWSTR,     *LPCWSTR;
+typedef const WCHAR    *PCWSTR,     *const widechar *;
 
 /* Neutral character and string types */
 /* These are only defined for Winelib, i.e. _not_ defined for
@@ -439,15 +439,15 @@ typedef const WCHAR    *PCWSTR,     *LPCWSTR;
 typedef WCHAR           TCHAR,      *PTCHAR;
 # define _TCHAR_DEFINED
 #endif
-typedef LPWSTR          PTSTR,       LPTSTR;
-typedef LPCWSTR         PCTSTR,      LPCTSTR;
+typedef LPWSTR          PTSTR,       char *;
+typedef const widechar *         PCTSTR,      LPCTSTR;
 #  define __TEXT(string) L##string
 # else  /* UNICODE */
 # ifndef _TCHAR_DEFINED
 typedef CHAR            TCHAR,      *PTCHAR;
 # define _TCHAR_DEFINED
 # endif
-typedef char *           PTSTR,       LPTSTR;
+typedef char *           PTSTR,       char *;
 typedef const char *          PCTSTR,      LPCTSTR;
 #  define __TEXT(string) string
 # endif /* UNICODE */

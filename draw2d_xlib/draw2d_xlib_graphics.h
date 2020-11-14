@@ -133,7 +133,7 @@ namespace draw2d_xlib
 
       i32 SetPolyFillMode(i32 nPolyFillMode);
       i32 SetROP2(i32 nDrawMode);
-      i32 SetStretchBltMode(i32 nStretchMode);
+      i32 set_interpolation_mode(i32 nStretchMode);
 
 // xxx      bool GetColorAdjustment(LPCOLORADJUSTMENT lpColorAdjust) const;
 // xxx      bool SetColorAdjustment(const COLORADJUSTMENT* lpColorAdjust);
@@ -187,16 +187,16 @@ namespace draw2d_xlib
       // Coordinate Functions
       void DPtoLP(POINT32 * lpPoints, i32 nCount = 1) const;
       void DPtoLP(RECT32 * prect) const;
-      void DPtoLP(LPSIZE lpSize) const;
+      void DPtoLP(LPSIZE32 LPSIZE32) const;
       void LPtoDP(POINT32 * lpPoints, i32 nCount = 1) const;
       void LPtoDP(RECT32 * prect) const;
-      void LPtoDP(LPSIZE lpSize) const;
+      void LPtoDP(LPSIZE32 LPSIZE32) const;
 
       // Special Coordinate Functions (useful for dealing with metafiles and OLE)
-      void DPtoHIMETRIC(LPSIZE lpSize) const;
-      void LPtoHIMETRIC(LPSIZE lpSize) const;
-      void HIMETRICtoDP(LPSIZE lpSize) const;
-      void HIMETRICtoLP(LPSIZE lpSize) const;
+      void DPtoHIMETRIC(LPSIZE32 LPSIZE32) const;
+      void LPtoHIMETRIC(LPSIZE32 LPSIZE32) const;
+      void HIMETRICtoDP(LPSIZE32 LPSIZE32) const;
+      void HIMETRICtoLP(LPSIZE32 LPSIZE32) const;
 
       // Region Functions
       bool FillRgn(::draw2d::region* pRgn, ::draw2d::brush* pBrush);
@@ -360,7 +360,7 @@ namespace draw2d_xlib
       virtual i32 draw_text(const string & str, RECT32 * prect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none);
 
       using ::draw2d::graphics::draw_text_ex;
-      virtual i32 draw_text_ex(LPTSTR lpszString, i32 nCount, RECT32 * prect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, LPDRAWTEXTPARAMS lpDTParams);
+      virtual i32 draw_text_ex(char * lpszString, i32 nCount, RECT32 * prect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, LPDRAWTEXTPARAMS lpDTParams);
       virtual i32 draw_text_ex(const string & str, RECT32 * prect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, LPDRAWTEXTPARAMS lpDTParams);
 
       size GetTextExtent(const char * lpszString, strsize nCount, i32 iIndex) const;
@@ -380,7 +380,7 @@ namespace draw2d_xlib
                               i32 nCount, i32 x, i32 y, i32 nWidth, i32 nHeight);
       ::u32 GetTextAlign() const;
       ::u32 SetTextAlign(::u32 nFlags);
-      i32 GetTextFace(i32 nCount, LPTSTR lpszFacename) const;
+      i32 GetTextFace(i32 nCount, char * lpszFacename) const;
       i32 GetTextFace(string & rString) const;
       bool get_text_metrics(::draw2d::text_metric * lpMetrics) const;
       bool get_output_text_metrics(::draw2d::text_metric * lpMetrics) const;
@@ -393,8 +393,8 @@ namespace draw2d_xlib
 
 #if (_WIN32_WINNT >= 0x0500)
 
-      bool GetTextExtentExPointI(LPWORD pgiIn, i32 cgi, i32 nMaxExtent, LPINT lpnFit, LPINT alpDx, __out_opt LPSIZE lpSize) const;
-      bool GetTextExtentPointI(LPWORD pgiIn, i32 cgi, __out_opt LPSIZE lpSize) const;
+      bool GetTextExtentExPointI(LPWORD pgiIn, i32 cgi, i32 nMaxExtent, LPINT lpnFit, LPINT alpDx, __out_opt LPSIZE32 LPSIZE32) const;
+      bool GetTextExtentPointI(LPWORD pgiIn, i32 cgi, __out_opt LPSIZE32 LPSIZE32) const;
 
 #endif
 

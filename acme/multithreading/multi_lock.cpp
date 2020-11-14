@@ -1,6 +1,4 @@
 #include "framework.h"
-#include "acme/os/_c.h"
-#include "acme/os/_.h"
 #include "acme/os/_os.h"
 
 
@@ -76,14 +74,14 @@ multi_lock::~multi_lock()
 sync_result multi_lock::lock(const duration & duration, bool bWaitForAll, u32 dwWakeMask)
 {
 
-   u32 iResult;
-
    if (m_synca.m_hsyncaCache.is_empty())
    {
 
       return sync_result(sync_result::result_error);
 
    }
+
+   ::i32 iResult;
 
    if (dwWakeMask == 0)
    {
@@ -103,7 +101,7 @@ sync_result multi_lock::lock(const duration & duration, bool bWaitForAll, u32 dw
    if(iResult == WAIT_FAILED)
    {
 
-      ::u32 dw = ::get_last_error();
+      ::estatus estatus = ::get_last_status();
 
       // TRACELASTERROR();
 

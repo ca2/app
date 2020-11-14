@@ -259,7 +259,7 @@ namespace macos
             else
             {
 
-               pimage16->get_graphics()->SetStretchBltMode(HALFTONE);
+               pimage16->get_graphics()->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
 
                pimage16->get_graphics()->StretchBlt(0, 0, 48, 48, pimage48->get_graphics(), 0, 0, pimage48->width(), pimage48->height());
 

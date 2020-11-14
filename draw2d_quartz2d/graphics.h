@@ -117,7 +117,7 @@ namespace draw2d_quartz2d
       i32 SetBkMode(i32 nBkMode);
       i32 SetPolyFillMode(i32 nPolyFillMode) override;
       i32 SetROP2(i32 nDrawMode) override;
-      i32 SetStretchBltMode(i32 nStretchMode) override;
+      i32 set_interpolation_mode(i32 nStretchMode) override;
 
       // xxx      bool GetColorAdjustment(LPCOLORADJUSTMENT lpColorAdjust) const;
       // xxx      bool SetColorAdjustment(const COLORADJUSTMENT* lpColorAdjust);
@@ -171,16 +171,16 @@ namespace draw2d_quartz2d
       // Coordinate Functions
       void DPtoLP(POINT32 * lpPoints, i32 nCount = 1) const;
       void DPtoLP(RECT32 * prect) override;
-      void DPtoLP(LPSIZE lpSize) override;
+      void DPtoLP(LPSIZE32 LPSIZE32) override;
       void LPtoDP(POINT32 * lpPoints, i32 nCount = 1) const;
       void LPtoDP(RECT32 * prect) override;
-      void LPtoDP(LPSIZE lpSize) override;
+      void LPtoDP(LPSIZE32 LPSIZE32) override;
 
       // Special Coordinate Functions (useful for dealing with metafiles and OLE)
-      void DPtoHIMETRIC(LPSIZE lpSize) override;
-      void LPtoHIMETRIC(LPSIZE lpSize) override;
-      void HIMETRICtoDP(LPSIZE lpSize) override;
-      void HIMETRICtoLP(LPSIZE lpSize) override;
+      void DPtoHIMETRIC(LPSIZE32 LPSIZE32) override;
+      void LPtoHIMETRIC(LPSIZE32 LPSIZE32) override;
+      void HIMETRICtoDP(LPSIZE32 LPSIZE32) override;
+      void HIMETRICtoLP(LPSIZE32 LPSIZE32) override;
 
       // Region Functions
       bool FillRgn(::draw2d::region* pRgn, ::draw2d::brush* pBrush) override;
@@ -368,7 +368,7 @@ namespace draw2d_quartz2d
       virtual bool draw_text(const string & str, const ::rectd & rect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none) override;
       virtual bool draw_text(const string & strParam,const ::rect & rect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none) override;
 
-      virtual i32 draw_text_ex(LPTSTR lpszString, i32 nCount, const ::rectd & rect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, LPDRAWTEXTPARAMS lpDTParams);
+      virtual i32 draw_text_ex(char * lpszString, i32 nCount, const ::rectd & rect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, LPDRAWTEXTPARAMS lpDTParams);
       virtual bool draw_text_ex(const string & str, const ::rectd & rect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, LPDRAWTEXTPARAMS lpDTParams) override;
 
       sized GetTextExtent(const char * lpszString, strsize nCount, i32 iIndex);
@@ -388,7 +388,7 @@ namespace draw2d_quartz2d
                               i32 nCount, i32 x, i32 y, i32 nWidth, i32 nHeight) override;
       ::u32 GetTextAlign() override;
       ::u32 SetTextAlign(::u32 nFlags) override;
-      i32 GetTextFace(i32 nCount, LPTSTR lpszFacename);
+      i32 GetTextFace(i32 nCount, char * lpszFacename);
       i32 GetTextFace(string & rString) override;
       bool get_text_metrics(::draw2d::text_metric * lpMetrics) override;
       bool get_output_text_metrics(::draw2d::text_metric * lpMetrics) override;
@@ -401,8 +401,8 @@ namespace draw2d_quartz2d
 
 //#if (_WIN32_WINNT >= 0x0500)
 //
-//      bool GetTextExtentExPointI(LPWORD pgiIn, i32 cgi, i32 nMaxExtent, LPINT lpnFit, LPINT alpDx, __out_opt LPSIZE lpSize) const;
-//      bool GetTextExtentPointI(LPWORD pgiIn, i32 cgi, __out_opt LPSIZE lpSize) const;
+//      bool GetTextExtentExPointI(LPWORD pgiIn, i32 cgi, i32 nMaxExtent, LPINT lpnFit, LPINT alpDx, __out_opt LPSIZE32 LPSIZE32) const;
+//      bool GetTextExtentPointI(LPWORD pgiIn, i32 cgi, __out_opt LPSIZE32 LPSIZE32) const;
 //
 //#endif
 

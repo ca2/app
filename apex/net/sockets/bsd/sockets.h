@@ -30,7 +30,9 @@ namespace sockets
       resolv_socket::timeout_t         m_resolvtimeout;
       ::mutex                          m_mutexResolvCache;
       __pointer(::sockets::net)        m_pnet;
+#ifdef WINDOWS
       ::net::port_forward_pointer      m_pportforward;
+#endif
 
       ::mutex                          m_mutexPool;
       socket_map                       m_pool; ///< Active sockets map

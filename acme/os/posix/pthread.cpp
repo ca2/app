@@ -249,12 +249,18 @@ CLASS_DECL_ACME ithread_t get_current_ithread()
 }
 
 
+void __node_init_cross_windows_threading();
+
+
 void __node_init_multithreading()
 {
 
    __node_init_cross_windows_threading();
 
 }
+
+
+void __node_term_cross_windows_threading();
 
 
 void __node_term_multithreading()
@@ -304,7 +310,7 @@ void set_defer_process_x_message(bool (*pfn)(hthread_t hthread, LPMESSAGE pMsg, 
 
 
 extern "C"
-void * os_thread_thread_proc(LPVOID pparameter);
+void * os_thread_thread_proc(void * pparameter);
 
 
 
@@ -514,7 +520,7 @@ int g_iDebug_post_thread_msg_time;
 //}
 
 
-CLASS_DECL_ACME DWORD_PTR translate_processor_affinity(int iOrder)
+CLASS_DECL_ACME ::u64 translate_processor_affinity(int iOrder)
 {
 
    return 1 << iOrder;

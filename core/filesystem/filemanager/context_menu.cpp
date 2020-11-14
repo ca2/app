@@ -90,7 +90,7 @@ namespace filemanager
       CMINVOKECOMMANDINFO info;
 
       string wstrVerb;
-      GetVerb(uiId, wstrVerb);
+      GetVerb(uId, wstrVerb);
 
       info.cbSize = sizeof(info);
       info.fMask = CMIC_MASK_ASYNCOK;
@@ -101,7 +101,7 @@ namespace filemanager
       auto psession = Session;
 
       info.hwnd = psession->get_active_ui()->m_puiThis->get_handle();
-      info.lpVerb = MAKEINTRESOURCEA(uiId - 0x1000);
+      info.lpVerb = MAKEINTRESOURCEA(uId - 0x1000);
 
       info.nShow = SW_SHOWNORMAL;
 

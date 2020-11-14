@@ -143,8 +143,8 @@ void simple_frame_window::install_message_routing(::channel * pchannel)
    MESSAGE_LINK(e_message_mouse_move, pchannel, this, &simple_frame_window::_001OnMouseMove);
    MESSAGE_LINK(WM_DISPLAYCHANGE, pchannel, this, &simple_frame_window::_001OnDisplayChange);
    MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &simple_frame_window::_001OnShowWindow);
-   MESSAGE_LINK(WM_MOUSEACTIVATE, pchannel, this, &simple_frame_window::_001OnMouseActivate);
-   MESSAGE_LINK(WM_NCHITTEST, pchannel, this, &simple_frame_window::_001OnNcHitTest);
+   MESSAGE_LINK(e_message_mouse_activate, pchannel, this, &simple_frame_window::_001OnMouseActivate);
+   MESSAGE_LINK(e_message_nchittest, pchannel, this, &simple_frame_window::_001OnNcHitTest);
 
    MESSAGE_LINK(e_message_key_down, pchannel, this, &simple_frame_window::_001OnKey);
    MESSAGE_LINK(e_message_sys_key_down, pchannel, this, &simple_frame_window::_001OnKey);
@@ -697,9 +697,6 @@ void simple_frame_window::_001OnCreate(::message::message * pmessage)
 
    }
 
-   //auto pinteractionParent = GetParent();
-
-
    __pointer(::user::place_holder) pplaceholder = GetParent();
 
    if (pplaceholder != nullptr)
@@ -904,13 +901,6 @@ void simple_frame_window::_001OnCreate(::message::message * pmessage)
          post_message(e_message_update_notify_icon);
 
       }
-
-   }
-
-   if (pmessage->previous())
-   {
-
-      return;
 
    }
 
@@ -3112,14 +3102,14 @@ void simple_frame_window::NotifyFloatingWindows(u32 dwFlags)
    //   if (bActivate && bEnabled && pParent != this)
    //   {
    //      // Excel will try to Activate itself when it receives a
-   //      // WM_NCACTIVATE so we need to keep it from doing that here.
+   //      // e_message_ncactivate so we need to keep it from doing that here.
    //      //m_nFlags |= WF_KEEPMINIACTIVE;
-   //      pParent->send_message(WM_NCACTIVATE, TRUE);
+   //      pParent->send_message(e_message_ncactivate, TRUE);
    //      //m_nFlags &= ~WF_KEEPMINIACTIVE;
    //   }
    //   else
    //   {
-   //      pParent->send_message(WM_NCACTIVATE, FALSE);
+   //      pParent->send_message(e_message_ncactivate, FALSE);
    //   }
    //}
 
@@ -3864,7 +3854,7 @@ void simple_frame_window::OnNotifyIconContextMenu(::u32 uNotifyIcon)
 void simple_frame_window::OnNotifyIconLButtonDblClk(::u32 uNotifyIcon)
 {
 
-   UNREFERENCED_PARAMETER(uiNotifyIcon);
+   UNREFERENCED_PARAMETER(uNotifyIcon);
 
 }
 
@@ -3874,7 +3864,7 @@ void simple_frame_window::OnNotifyIconLButtonDown(::u32 uNotifyIcon)
 
    default_notify_icon_topic();
 
-   UNREFERENCED_PARAMETER(uiNotifyIcon);
+   UNREFERENCED_PARAMETER(uNotifyIcon);
 
 }
 

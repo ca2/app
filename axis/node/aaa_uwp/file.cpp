@@ -462,7 +462,7 @@ namespace uwp
             if (RegOpenKey(hKeyCLSID, "InProcServer32", &hKeyInProc) ==
                   ERROR_SUCCESS)
             {
-               LPTSTR lpsz = str.GetBuffer(_MAX_PATH);
+               char * lpsz = str.GetBuffer(_MAX_PATH);
                ::u32 dwSize = _MAX_PATH * sizeof(char);
                ::u32 dwType;
                ::i32 lRes = ::RegQueryValueEx(hKeyInProc, "",
@@ -1015,7 +1015,7 @@ namespace uwp
 //      ::str::international::unicode_to_utf8(rStatus.m_strFullName, wstrFullName);
 //
 //      WIN32_FIND_DATA findFileData;
-//      HANDLE hFind = FindFirstFile((LPTSTR)lpszFileName, &findFileData);
+//      HANDLE hFind = FindFirstFile((char *)lpszFileName, &findFileData);
 //      if (hFind == INVALID_HANDLE_VALUE)
 //         return FALSE;
 //      VERIFY(FindClose(hFind));
@@ -1171,7 +1171,7 @@ bool CLASS_DECL_AXIS vfxResolveShortcut(string & strTarget, const char * pszSour
             {
                bOk = true;
                wstrFileOut.release_string_buffer();
-               strTarget = ::str::international::unicode_to_utf8((LPCWSTR) wstrFileOut);
+               strTarget = ::str::international::unicode_to_utf8((const widechar *) wstrFileOut);
             }
             else
             {

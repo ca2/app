@@ -563,10 +563,10 @@ namespace windows
       last_install_message_routing(pchannel);
       ::user::interaction_impl::install_message_routing(pchannel);
 
-      MESSAGE_LINK(WM_NCDESTROY, pchannel, this, &interaction_impl::_001OnNcDestroy);
+      MESSAGE_LINK(e_message_ncdestroy, pchannel, this, &interaction_impl::_001OnNcDestroy);
       if (!m_puserinteraction->m_bMessageWindow)
       {
-         MESSAGE_LINK(WM_PAINT, pchannel, this, &interaction_impl::_001OnPaint);
+         MESSAGE_LINK(e_message_paint, pchannel, this, &interaction_impl::_001OnPaint);
          MESSAGE_LINK(WM_PRINT, pchannel, this, &interaction_impl::_001OnPrint);
       }
       m_puserinteraction->install_message_routing(pchannel);
@@ -575,7 +575,7 @@ namespace windows
       {
          MESSAGE_LINK(WM_SETCURSOR, pchannel, this, &interaction_impl::_001OnSetCursor);
          MESSAGE_LINK(WM_ERASEBKGND, pchannel, this, &interaction_impl::_001OnEraseBkgnd);
-         MESSAGE_LINK(WM_NCCALCSIZE, pchannel, this, &interaction_impl::_001OnNcCalcSize);
+         MESSAGE_LINK(e_message_nccalcsize, pchannel, this, &interaction_impl::_001OnNcCalcSize);
          MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &interaction_impl::_001OnShowWindow);
          MESSAGE_LINK(e_message_move, pchannel, this, &interaction_impl::_001OnMove);
          MESSAGE_LINK(e_message_size, pchannel, this, &interaction_impl::_001OnSize);
@@ -806,7 +806,7 @@ namespace windows
    }
 
 
-   // WM_NCDESTROY is the absolute LAST message sent.
+   // e_message_ncdestroy is the absolute LAST message sent.
    void interaction_impl::_001OnNcDestroy(::message::message * pmessage)
    {
 
@@ -1410,10 +1410,10 @@ namespace windows
       m_wparam = pbase->m_wparam;
       m_lparam = pbase->m_lparam;
 
-      if (emessage == WM_NCCALCSIZE)
+      if (emessage == e_message_nccalcsize)
       {
 
-         output_debug_string("WM_NCCALCSIZE");
+         output_debug_string("e_message_nccalcsize");
 
       }
 
@@ -1456,10 +1456,10 @@ namespace windows
          //TRACE("e_message_create");
 
       }
-      if (emessage == WM_NCCREATE)
+      if (emessage == e_message_nccreate)
       {
 
-         //TRACE("WM_NCCREATE");
+         //TRACE("e_message_nccreate");
 
       }
       if (emessage == e_message_size || emessage == e_message_move)
@@ -1619,12 +1619,12 @@ namespace windows
                TRACE("WM_ACTIVATEAPP wparam=%08x lparam=%08x", pbase->m_wparam, pbase->m_lparam);
 
                break;
-            case WM_MOUSEACTIVATE:
-               TRACE("WM_MOUSEACTIVATE wparam=%08x lparam=%08x", pbase->m_wparam, pbase->m_lparam);
+            case e_message_mouse_activate:
+               TRACE("e_message_mouse_activate wparam=%08x lparam=%08x", pbase->m_wparam, pbase->m_lparam);
 
                break;
-            case WM_NCACTIVATE:
-               TRACE("WM_NCACTIVATE wparam=%08x lparam=%08x", pbase->m_wparam, pbase->m_lparam);
+            case e_message_ncactivate:
+               TRACE("e_message_ncactivate wparam=%08x lparam=%08x", pbase->m_wparam, pbase->m_lparam);
 
                break;
             case e_message_set_focus:
@@ -2156,8 +2156,8 @@ namespace windows
       switch (emessage)
       {
       // normal messages (just wParam, lParam through OnWndMsg)
-      case WM_HSCROLL:
-      case WM_VSCROLL:
+      case e_message_hscroll:
+      case e_message_vscroll:
       case WM_PARENTNOTIFY:
       case WM_DRAWITEM:
       case WM_MEASUREITEM:
@@ -2288,7 +2288,7 @@ namespace windows
       interaction_impl::OnDisplayChange(0, 0);    // to update system metrics, etc.
    }
 
-   void interaction_impl::OnDevModeChange(__in LPTSTR pDeviceName)
+   void interaction_impl::OnDevModeChange(__in char * pDeviceName)
 
    {
       UNREFERENCED_PARAMETER(pDeviceName);
@@ -2563,7 +2563,7 @@ namespace windows
 
 
       ::BitBlt(hdc, rectUpdate.left, rectUpdate.top, rectUpdate.width(), rectUpdate.height(),
-         pbuffer->m_hdc, 0, 0, SRCCOPY);
+         pbuffer->m_hdc, 0, 0);
 
       //if (m_spgraphics.is_set())
       //{
@@ -2595,7 +2595,7 @@ namespace windows
 
       //            pgraphics->SetViewportOrg(0, 0);
 
-      //            g->BitBlt(rectPaint.left, rectPaint.top, rectPaint.width(), rectPaint.height(), pgraphics, rectUpdate.left, rectUpdate.top, SRCCOPY);
+      //            g->BitBlt(rectPaint.left, rectPaint.top, rectPaint.width(), rectPaint.height(), pgraphics, rectUpdate.left, rectUpdate.top);
 
       //         }
 
@@ -2892,9 +2892,9 @@ namespace windows
                COMBOBOXEXITEM item = { 0 };
                item.mask = CBEIF_TEXT;
                item.iItem = -1;
-               string strText(reinterpret_cast<LPTSTR>(pnRes));
+               string strText(reinterpret_cast<char *>(pnRes));
 
-               item.pszText = const_cast<LPTSTR>(strText.GetString());
+               item.pszText = const_cast<char *>(strText.GetString());
                if (::SendDlgItemMessage(get_handle(), nIDC, nMsg, 0, (LPARAM)&item) == -1)
                   bSuccess = FALSE;
             }
@@ -4232,7 +4232,7 @@ namespace windows
    }
 
 
-   i32 interaction_impl::DlgDirList(LPTSTR pPathSpec, i32 nIDListBox, i32 nIDStaticPath, UINT nFileType)
+   i32 interaction_impl::DlgDirList(char * pPathSpec, i32 nIDListBox, i32 nIDStaticPath, UINT nFileType)
 
    {
 
@@ -4244,7 +4244,7 @@ namespace windows
    }
 
 
-   i32 interaction_impl::DlgDirListComboBox(LPTSTR pPathSpec, i32 nIDComboBox, i32 nIDStaticPath, UINT nFileType)
+   i32 interaction_impl::DlgDirListComboBox(char * pPathSpec, i32 nIDComboBox, i32 nIDStaticPath, UINT nFileType)
 
    {
 
@@ -4256,7 +4256,7 @@ namespace windows
    }
 
 
-   bool interaction_impl::DlgDirSelect(LPTSTR pString, i32 nSize, i32 nIDListBox)
+   bool interaction_impl::DlgDirSelect(char * pString, i32 nSize, i32 nIDListBox)
 
    {
 
@@ -4268,7 +4268,7 @@ namespace windows
    }
 
 
-   bool interaction_impl::DlgDirSelectComboBox(LPTSTR pString, i32 nSize, i32 nIDComboBox)
+   bool interaction_impl::DlgDirSelectComboBox(char * pString, i32 nSize, i32 nIDComboBox)
 
    {
 
@@ -4304,7 +4304,7 @@ namespace windows
    }
 
 
-   i32 interaction_impl::GetChildByIdText(i32 nID, LPTSTR pStr, i32 nMaxCount) const
+   i32 interaction_impl::GetChildByIdText(i32 nID, char * pStr, i32 nMaxCount) const
 
    {
 
@@ -5067,7 +5067,7 @@ namespace windows
    {
       Default();
    }
-   void interaction_impl::OnAskCbFormatName(__in UINT nMaxCount, __out_ecount_z(nMaxCount) LPTSTR lpszName)
+   void interaction_impl::OnAskCbFormatName(__in UINT nMaxCount, __out_ecount_z(nMaxCount) char * lpszName)
    {
       (nMaxCount);
       if (nMaxCount > 0)
@@ -5755,10 +5755,10 @@ LRESULT CALLBACK __window_procedure(oswindow oswindow, const ::id & id, WPARAM w
       output_debug_string("e_message_destroy");
 
    }
-   else if (message == WM_NCCREATE)
+   else if (message == e_message_nccreate)
    {
 
-      output_debug_string("WM_NCCREATE()");
+      output_debug_string("e_message_nccreate()");
 
    }
 

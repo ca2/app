@@ -23,7 +23,7 @@
 // Entry point function for all processes.
 //int APIENTRY cef_main(HINSTANCE hInstance,
 //                      HINSTANCE hPrevInstance,
-//                      LPTSTR lpCmdLine,
+//                      char * lpCmdLine,
 //                      int nCmdShow)
 //{
 //   UNREFERENCED_PARAMETER(hPrevInstance);
@@ -31,7 +31,7 @@
 
 int APIENTRY app_browser_deferred_run(HINSTANCE hInstance,
                                       HINSTANCE hPrevInstance,
-                                      LPTSTR lpCmdLine,
+                                      char * lpCmdLine,
                                       int nCmdShow)
 {
 
@@ -74,7 +74,7 @@ int APIENTRY app_browser_deferred_run(HINSTANCE hInstance,
 // Entry point function for all processes.
 //int APIENTRY cef_main(HINSTANCE hInstance,
 //                      HINSTANCE hPrevInstance,
-//                      LPTSTR lpCmdLine,
+//                      char * lpCmdLine,
 //                      int nCmdShow)
 //{
 //   UNREFERENCED_PARAMETER(hPrevInstance);

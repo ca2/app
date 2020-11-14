@@ -505,7 +505,7 @@ bool oswindow_data::set_icon(::image * pimage)
 
    }
 
-   d1->g()->SetStretchBltMode(HALFTONE);
+   d1->g()->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
 
    d1->g()->StretchBlt(d1->rect(), pimage->g(), pimage->rect());
 
@@ -567,7 +567,7 @@ bool oswindow_data::set_icon(::image * pimage)
 
    }
 
-   d1->get_graphics()->SetStretchBltMode(HALFTONE);
+   d1->get_graphics()->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
 
    d1->get_graphics()->StretchBlt(0, 0, d1.width(), d1.height(), point->get_graphics(), 0, 0, point.width(), point.height());
 
@@ -580,7 +580,7 @@ bool oswindow_data::set_icon(::image * pimage)
 
    }
 
-   d2->get_graphics()->SetStretchBltMode(HALFTONE);
+   d2->get_graphics()->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
 
    d2->get_graphics()->StretchBlt(0, 0, d2.width(), d2.height(), point->get_graphics(), 0, 0, point.width(), point.height());
 

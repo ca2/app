@@ -210,16 +210,17 @@ CLASS_DECL_ACME color32_t opaque_color(color32_t cr);
 CLASS_DECL_ACME color32_t pure_color(enum_color ecolor);
 CLASS_DECL_ACME color32_t opaque_color(enum_color ecolor);
 
+#define lower_byte(b) ((b) & 0xff)
 
-#define rgb_get_r_value(rgb)      (LOBYTE(rgb))
-#define rgb_get_g_value(rgb)      (LOBYTE((rgb)>>8))
-#define rgb_get_b_value(rgb)      (LOBYTE((rgb)>>16))
-#define rgb_get_a_value(rgb)      (LOBYTE((rgb)>>24))
+#define rgb_get_r_value(rgb)      (lower_byte(rgb))
+#define rgb_get_g_value(rgb)      (lower_byte((rgb)>>8))
+#define rgb_get_b_value(rgb)      (lower_byte((rgb)>>16))
+#define rgb_get_a_value(rgb)      (lower_byte((rgb)>>24))
 
-#define bgr_get_b_value(bgr)      (LOBYTE(bgr))
-#define bgr_get_g_value(bgr)      (LOBYTE((bgr)>>8))
-#define bgr_get_r_value(bgr)      (LOBYTE((bgr)>>16))
-#define bgr_get_a_value(bgr)      (LOBYTE((bgr)>>24))
+#define bgr_get_b_value(bgr)      (lower_byte(bgr))
+#define bgr_get_g_value(bgr)      (lower_byte((bgr)>>8))
+#define bgr_get_r_value(bgr)      (lower_byte((bgr)>>16))
+#define bgr_get_a_value(bgr)      (lower_byte((bgr)>>24))
 
 
 

@@ -27,13 +27,13 @@ namespace user
 
       virtual bool message_queue_is_initialized();
 
-      virtual bool message_queue_set_timer(uptr uiId,::u32 dwMillis);
+      virtual bool message_queue_set_timer(uptr uId,::u32 dwMillis);
 
       virtual bool message_queue_post_message(const ::id & id, WPARAM wparam = 0,lparam lparam = 0);
 
       virtual LRESULT message_queue_send_message(const ::id & id, WPARAM wparam = 0,lparam lparam = 0);
 
-      virtual bool message_queue_del_timer(uptr uiId);
+      virtual bool message_queue_del_timer(uptr uId);
 
       virtual bool message_queue_destroy();
 

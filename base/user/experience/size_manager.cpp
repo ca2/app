@@ -308,7 +308,7 @@ namespace experience
    void size_manager::SetSWPFlags(::u32 uFlags)
    {
 
-      m_uiSWPFlags = uiFlags;
+      m_uiSWPFlags = uFlags;
       m_uiSWPFlags &= ~SWP_NOSIZE & ~SWP_NOMOVE;
 
    }

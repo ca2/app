@@ -27,19 +27,19 @@ namespace user
       {
       case e_message_rbutton_down:
 
-         OnNotifyIconContextMenu(uiNotifyIcon);
+         OnNotifyIconContextMenu(uNotifyIcon);
 
          break;
 
       case WM_LBUTTONDBLCLK:
 
-         OnNotifyIconLButtonDblClk(uiNotifyIcon);
+         OnNotifyIconLButtonDblClk(uNotifyIcon);
 
          break;
 
       case e_message_lbutton_down:
 
-         OnNotifyIconLButtonDown(uiNotifyIcon);
+         OnNotifyIconLButtonDown(uNotifyIcon);
 
          break;
 
@@ -51,7 +51,7 @@ namespace user
    void notify_icon_listener::OnNotifyIconContextMenu(::u32 uNotifyIcon)
    {
 
-      UNREFERENCED_PARAMETER(uiNotifyIcon);
+      UNREFERENCED_PARAMETER(uNotifyIcon);
 
    }
 
@@ -59,7 +59,7 @@ namespace user
    void notify_icon_listener::OnNotifyIconLButtonDblClk(::u32 uNotifyIcon)
    {
 
-      UNREFERENCED_PARAMETER(uiNotifyIcon);
+      UNREFERENCED_PARAMETER(uNotifyIcon);
 
    }
 
@@ -67,7 +67,7 @@ namespace user
    void notify_icon_listener::OnNotifyIconLButtonDown(::u32 uNotifyIcon)
    {
 
-      UNREFERENCED_PARAMETER(uiNotifyIcon);
+      UNREFERENCED_PARAMETER(uNotifyIcon);
 
    }
 

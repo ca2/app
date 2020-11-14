@@ -72,7 +72,7 @@ namespace path
    }
 
 
-   ::file::path module(HMODULE hmodule)
+   ::file::path module(void * hmodule)
    {
 
 #ifdef WINDOWS_DESKTOP

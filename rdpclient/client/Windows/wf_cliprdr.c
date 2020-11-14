@@ -1522,10 +1522,10 @@ static LRESULT CALLBACK cliprdr_proc(HWND hWnd, UINT Msg, WPARAM wParam,
 
 		case WM_DESTROYCLIPBOARD:
 		case WM_ASKCBFORMATNAME:
-		case WM_HSCROLLCLIPBOARD:
-		case WM_PAINTCLIPBOARD:
+		case e_message_hscrollCLIPBOARD:
+		case e_message_paintCLIPBOARD:
 		case WM_SIZECLIPBOARD:
-		case WM_VSCROLLCLIPBOARD:
+		case e_message_vscrollCLIPBOARD:
 		default:
 			return DefWindowProc(hWnd, Msg, wParam, lParam);
 	}

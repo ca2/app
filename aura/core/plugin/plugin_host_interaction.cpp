@@ -330,7 +330,7 @@ namespace plugin
 
    {
 
-      if (emessage == WM_NCCREATE || emessage == e_message_create)
+      if (emessage == e_message_nccreate || emessage == e_message_create)
          /*      || emessage == e_message_size
                || emessage == e_message_move
                || emessage == WM_WINDOWPOSCHANGING

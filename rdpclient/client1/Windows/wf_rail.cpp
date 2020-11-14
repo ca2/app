@@ -309,7 +309,7 @@ static void PrintRailIconInfo(WINDOW_ORDER_INFO* orderInfo, ICON_INFO* iconInfo)
 //
 //	switch (msg)
 //	{
-//		case WM_PAINT:
+//		case e_message_paint:
 //			{
 //				if (!wfc)
 //					return 0;
@@ -322,7 +322,7 @@ static void PrintRailIconInfo(WINDOW_ORDER_INFO* orderInfo, ICON_INFO* iconInfo)
 //				height = ps.rcPaint.bottom - ps.rcPaint.top + 1;
 //
 //				BitBlt(hDC, x, y, width, height, wfc->primary->hdc,
-//					railWindow->x + x, railWindow->y + y, SRCCOPY);
+//					railWindow->x + x, railWindow->y + y);
 //
 //				EndPaint(hWnd, &ps);
 //			}

@@ -245,7 +245,7 @@ namespace draw2d_opengl
       if (m_spgraphics.is_null())
          return false;
 
-      return m_spgraphics->BitBlt(ptDest, sz, pgraphics, point, SRCCOPY) != FALSE;
+      return m_spgraphics->BitBlt(ptDest, sz, pgraphics, point) != FALSE;
 
    }
 

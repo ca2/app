@@ -9,10 +9,10 @@ namespace xml
 
 
 
-   static const CHAR chXMLTagOpen      = '<';
-   static const CHAR chXMLTagClose   = '>';
-   static const CHAR chXMLTagPre   = '/';
-   static const CHAR chXMLEscape = '\\';   // for m_strValue field escape
+   static const char chXMLTagOpen      = '<';
+   static const char chXMLTagClose   = '>';
+   static const char chXMLTagPre   = '/';
+   static const char chXMLEscape = '\\';   // for m_strValue field escape
 
 
    node::node()
@@ -379,7 +379,7 @@ namespace xml
             }
 
             // XML Attr Name
-            const CHAR* pszEnd = ansi_scan( xml, " =" );
+            const char* pszEnd = ansi_scan( xml, " =" );
 
             if( pszEnd == nullptr )
             {
@@ -436,7 +436,7 @@ namespace xml
 
                      bool trim = pparseinfo->m_bTrimValue;
 
-                     //CHAR escape = pparseinfo->m_chEscapeValue;
+                     //char escape = pparseinfo->m_chEscapeValue;
 
                      string strValue;
 
@@ -549,7 +549,7 @@ namespace xml
          pnode->m_enode = ::data::e_node_xml_pi;
 
          xml += astr.XMLPIOpen.get_length();
-         const CHAR* pTagEnd = ansi_scan( xml, " ?>" );
+         const char* pTagEnd = ansi_scan( xml, " ?>" );
          _SetString( xml, pTagEnd, &pnode->m_strName );
          xml = pTagEnd;
 
@@ -592,7 +592,7 @@ namespace xml
                return xml;
 
             // XML Attr Name
-            const CHAR* pszEnd = ansi_scan( xml, " =" );
+            const char* pszEnd = ansi_scan( xml, " =" );
             if( pszEnd == nullptr )
             {
                // error
@@ -637,7 +637,7 @@ namespace xml
                      }
 
                      bool trim = pparseinfo->m_bTrimValue;
-                     CHAR escape = pparseinfo->m_chEscapeValue;
+                     char escape = pparseinfo->m_chEscapeValue;
                      //_SetString( xml, pszEnd, &attr->m_strValue, trim, chXMLEscape );
                      string strValue;
                      _SetString( xml, pszEnd, &strValue, trim, escape );
@@ -914,8 +914,8 @@ namespace xml
 
       // XML Node Tag Name open
       xml++;
-      //CHAR* pTagEnd = ansi_scan( xml, " />\t\r\n" );
-      const CHAR* pTagEnd = end_open_tag_name(xml);
+      //char* pTagEnd = ansi_scan( xml, " />\t\r\n" );
+      const char* pTagEnd = end_open_tag_name(xml);
       _SetString( xml, pTagEnd, &m_strName );
       xml = pTagEnd;
       // Generate XML Attributte List
@@ -951,7 +951,7 @@ namespace xml
             if(::str::trimmed_is_empty(m_strValue))
             {
                // Text Value
-               const CHAR* pszEnd = _tcsechr( ++xml, chXMLTagOpen, chXMLEscape );
+               const char* pszEnd = _tcsechr( ++xml, chXMLTagOpen, chXMLEscape );
                if( pszEnd == nullptr )
                {
                   if( pparseinfo->m_bErrorOccur == false )
@@ -966,7 +966,7 @@ namespace xml
                }
 
                bool trim = pparseinfo->m_bTrimValue;
-               CHAR escape = pparseinfo->m_chEscapeValue;
+               char escape = pparseinfo->m_chEscapeValue;
                //_SetString( xml, pszEnd, &m_strValue, trim, chXMLEscape );
                pszEnd = xml;
                while(*pszEnd != '<' && *pszEnd != '\0')
@@ -1019,7 +1019,7 @@ namespace xml
                   if( (xml = _tcsskip( xml )) )
                   {
                      string closename;
-                     const  CHAR* pszEnd = ansi_scan( xml, " >" );
+                     const  char* pszEnd = ansi_scan( xml, " >" );
                      if( pszEnd == nullptr )
                      {
                         if( pparseinfo->m_bErrorOccur == false )
@@ -1068,7 +1068,7 @@ namespace xml
                   if( xml && ::str::trimmed_is_empty(m_strValue) && *xml !=chXMLTagOpen )
                   {
                      // Text Value
-                     const CHAR* pszEnd = _tcsechr( xml, chXMLTagOpen, chXMLEscape );
+                     const char* pszEnd = _tcsechr( xml, chXMLTagOpen, chXMLEscape );
                      if( pszEnd == nullptr )
                      {
                         // error cos not exist CloseTag </TAG>
@@ -1083,7 +1083,7 @@ namespace xml
                      }
 
                      bool trim = pparseinfo->m_bTrimValue;
-                     CHAR escape = pparseinfo->m_chEscapeValue;
+                     char escape = pparseinfo->m_chEscapeValue;
                      //_SetString( xml, pszEnd, &m_strValue, trim, chXMLEscape );
                      pszEnd = xml;
                      //while(*pszEnd != '<' && *pszEnd != '\0' && pszEnd < pszEndXml)

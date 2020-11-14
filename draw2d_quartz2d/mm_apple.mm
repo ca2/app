@@ -39,10 +39,10 @@
 //#define FW_THIN             100
 //#define FW_EXTRALIGHT       200
 //#define FW_LIGHT            300
-//#define FW_NORMAL           400
+//#define e_font_weight_normal           400
 //#define FW_MEDIUM           500
 //#define FW_SEMIBOLD         600
-//#define FW_BOLD             700
+//#define e_font_weight_bold             700
 //#define FW_EXTRABOLD        800
 //#define FW_HEAVY            900
 
@@ -70,7 +70,7 @@ double nsfont_get_ctweight(int iWeight)
       dCoreTextWeight = kCTFontWeightLight;
       
    }
-   else if (iWeight < FW_NORMAL + 50)
+   else if (iWeight < e_font_weight_normal + 50)
    {
 
       dCoreTextWeight = kCTFontWeightRegular;
@@ -88,7 +88,7 @@ double nsfont_get_ctweight(int iWeight)
       dCoreTextWeight = kCTFontWeightSemibold;
       
    }
-   else if (iWeight < FW_BOLD + 50)
+   else if (iWeight < e_font_weight_bold + 50)
    {
       
       dCoreTextWeight = kCTFontWeightBold;

@@ -256,7 +256,7 @@ namespace acme
 //      __throw(user_exception());*/
 //
 //      /*
-//       LPTSTR lpszExt = ::PathFindExtension(szBuff);
+//       char * lpszExt = ::PathFindExtension(szBuff);
 //       ASSERT(lpszExt != nullptr);
 //       if( lpszExt == nullptr )
 //       __throw(user_exception());

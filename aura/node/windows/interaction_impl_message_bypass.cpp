@@ -20,10 +20,10 @@ CLASS_DECL_APEX string get_message_text(::u32 uMessage, bool bWithNumbers);
 bool __windows_message_bypass(HWND oswindow, ::u32 message, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
 {
 
-   if (message == WM_NCCREATE)
+   if (message == e_message_nccreate)
    {
 
-      output_debug_string("WM_NCCREATE");
+      output_debug_string("e_message_nccreate");
 
       return false;
 
@@ -56,7 +56,7 @@ bool __windows_message_bypass(HWND oswindow, ::u32 message, WPARAM wparam, LPARA
       return true;
 
    }
-   else if (message == WM_NCHITTEST)
+   else if (message == e_message_nchittest)
    {
 
       output_debug_string("ht.");
@@ -139,7 +139,7 @@ namespace windows
       //   return true;
 
       //}
-      //else if (message == WM_NCHITTEST)
+      //else if (message == e_message_nchittest)
       //{
 
       //   //output_debug_string("ht.");
@@ -166,7 +166,7 @@ namespace windows
          if (__windows_message_bypass(oswindow, message, wparam, lparam, lresult, g_puiaMessageTopLevelCreation))
          {
 
-            if (message == WM_PAINT)
+            if (message == e_message_paint)
             {
 
                pimpl->m_iState1 = STATE_WINDOW_CREATED;
@@ -194,7 +194,7 @@ namespace windows
             pimpl->m_iState1 = STATE_INPUT_LANGUAGE_CHANGING;
 
          }
-         else if (message == WM_NCACTIVATE && wparam == 0)
+         else if (message == e_message_ncactivate && wparam == 0)
          {
 
             pimpl->m_iState1 = STATE_WINDOW_DEACTIVATING;
@@ -224,7 +224,7 @@ namespace windows
             return true;
 
          }
-         else if (message == WM_NCACTIVATE && wparam == 0)
+         else if (message == e_message_ncactivate && wparam == 0)
          {
 
             pimpl->m_iState1 = STATE_WINDOW_DEACTIVATING;

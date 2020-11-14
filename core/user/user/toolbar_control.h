@@ -81,7 +81,7 @@ namespace user
       void GetInsertMark(TBINSERTMARK* ptbim);
       void SetInsertMark(TBINSERTMARK* ptbim);
 #endif
-      bool GetMaxSize(LPSIZE pSize);
+      bool GetMaxSize(LPSIZE32 pSize);
 #ifdef WINDOWS_DESKTOP
       bool InsertMarkHitTest(POINT32 * ppt, LPTBINSERTMARK ptbim);
 #endif

@@ -302,7 +302,7 @@ LRESULT CALLBACK wf_RailWndProc(HWND hWnd, UINT msg, WPARAM wParam,
 
 	switch (msg)
 	{
-		case WM_PAINT:
+		case e_message_paint:
 			{
 				if (!wfc)
 					return 0;
@@ -313,7 +313,7 @@ LRESULT CALLBACK wf_RailWndProc(HWND hWnd, UINT msg, WPARAM wParam,
 				width = ps.rcPaint.right - ps.rcPaint.left + 1;
 				height = ps.rcPaint.bottom - ps.rcPaint.top + 1;
 				BitBlt(hDC, x, y, width, height, wfc->primary->hdc,
-				       railWindow->x + x, railWindow->y + y, SRCCOPY);
+				       railWindow->x + x, railWindow->y + y);
 				EndPaint(hWnd, &ps);
 			}
 			break;

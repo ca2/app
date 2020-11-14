@@ -612,10 +612,12 @@ void color::hue_offset(double dRadians)
 
 void color::set_bgr(u32 bgr)
 {
+
    m_iR = bgr_get_r_value(bgr);
    m_iG = bgr_get_g_value(bgr);
    m_iB = bgr_get_b_value(bgr);
    m_iA = bgr_get_a_value(bgr);
+
 }
 
 
@@ -1010,31 +1012,31 @@ CLASS_DECL_ACME color32_t pure_color(enum_color ecolor)
    switch (ecolor)
    {
    case e_color_black:
-      cr = RGB(0, 0, 0);
+      cr = ARGB(255, 0, 0, 0);
       break;
    case e_color_red:
-      cr = RGB(255, 0, 0);
+      cr = ARGB(255, 255, 0, 0);
       break;
    case e_color_green:
-      cr = RGB(0, 255, 0);
+      cr = ARGB(255, 0, 255, 0);
       break;
    case e_color_blue:
-      cr = RGB(0, 0, 255);
+      cr = ARGB(255, 0, 0, 255);
       break;
    case e_color_white:
-      cr = RGB(255, 255, 255);
+      cr = ARGB(255, 255, 255, 255);
       break;
    case e_color_yellow:
-      cr = RGB(255, 255, 0);
+      cr = ARGB(255, 255, 255, 0);
       break;
    case e_color_magenta:
-      cr = RGB(255, 0, 255);
+      cr = ARGB(255, 255, 0, 255);
       break;
    case e_color_cyan:
-      cr = RGB(0, 255, 255);
+      cr = ARGB(255, 0, 255, 255);
       break;
    case e_color_gray:
-      cr = RGB(127, 127, 127);
+      cr = ARGB(255, 127, 127, 127);
    default:
       cr = 0;
       break;
@@ -1081,6 +1083,7 @@ void color::set(int R, int G, int B)
 }
 
 
+#ifdef WINDOWS
 
 
 CLASS_DECL_ACME void cra_from_quada(colorref_array & colorrefa, RGBQUAD * prgbquad, int iCount)
@@ -1107,4 +1110,8 @@ CLASS_DECL_ACME void cra_from_quada(colorref_array & colorrefa, RGBQUAD * prgbqu
    }
 
 }
+
+#endif
+
+
 

@@ -348,7 +348,7 @@ namespace user
    {
    // set the default extension
    *pstrDefaultExt = strExtension.Mid( 1 );  // skip the '.'
-   ofn.pstrDefExt = const_cast< LPTSTR >((const char *)(*pstrDefaultExt));
+   ofn.pstrDefExt = const_cast< char * >((const char *)(*pstrDefaultExt));
 
    ofn.nFilterIndex = ofn.nMaxCustFilter + 1;  // 1 based number
    }
@@ -498,7 +498,7 @@ namespace user
       return nCount;
    }
 
-   bool document_manager::OnDDECommand(LPTSTR pszCommand)
+   bool document_manager::OnDDECommand(char * pszCommand)
 
    {
       UNREFERENCED_PARAMETER(pszCommand);
@@ -769,7 +769,7 @@ namespace user
       ++pszFileName;
 
       ::aura::tcsncpy_s(szTemp, _countof(szTemp), varFileName, _TRUNCATE);
-      LPTSTR pszLast = _tcsrchr(szTemp, '\"');
+      char * pszLast = _tcsrchr(szTemp, '\"');
 
       if (pszLast != nullptr)
 

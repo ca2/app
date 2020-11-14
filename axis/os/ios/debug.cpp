@@ -96,7 +96,7 @@ const char * lpOutputString
 VOID
 WINAPI
 output_debug_string(
-LPCWSTR lpOutputString
+const widechar * lpOutputString
 )
 {
 

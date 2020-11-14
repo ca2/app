@@ -96,7 +96,7 @@ namespace user
       if (pstyle)
       {
 
-         pstyle->_001OnDrawMen::u32eraction(pgraphics, this);
+         pstyle->_001OnDrawMenuInteraction(pgraphics, this);
 
       }
 

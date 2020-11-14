@@ -295,15 +295,15 @@ typedef LPFONT HFONT;
 #define FW_THIN             100
 #define FW_EXTRALIGHT       200
 #define FW_LIGHT            300
-#define FW_NORMAL           400
+#define e_font_weight_normal           400
 #define FW_MEDIUM           500
 #define FW_SEMIBOLD         600
-#define FW_BOLD             700
+#define e_font_weight_bold             700
 #define FW_EXTRABOLD        800
 #define FW_HEAVY            900
 
 #define FW_ULTRALIGHT       FW_EXTRALIGHT
-#define FW_REGULAR          FW_NORMAL
+#define FW_REGULAR          e_font_weight_normal
 #define FW_DEMIBOLD         FW_SEMIBOLD
 #define FW_ULTRABOLD        FW_EXTRABOLD
 #define FW_BLACK            FW_HEAVY
@@ -795,7 +795,7 @@ HBRUSH CreateSolidBrush(color32_t color);
 #define BLACKONWHITE                 1
 #define WHITEONBLACK                 2
 #define COLORONCOLOR                 3
-#define HALFTONE                     4
+#define e_interpolation_mode_high_quality_bicubic                     4
 #define MAXSTRETCHBLTMODE            4
 
 
@@ -803,7 +803,7 @@ HBRUSH CreateSolidBrush(color32_t color);
 #define BLACKONWHITE                 1
 #define WHITEONBLACK                 2
 #define COLORONCOLOR                 3
-#define HALFTONE                     4
+#define e_interpolation_mode_high_quality_bicubic                     4
 #define MAXSTRETCHBLTMODE            4
 
 

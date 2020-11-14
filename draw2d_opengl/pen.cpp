@@ -149,7 +149,7 @@ namespace draw2d_opengl
 
             // Make the upper left corner pixel the "transparent" pixel
             cr = graphicsMem->SetBkColor(graphicsMem->GetPixel(0, 0));
-            graphicsMask->BitBlt(0, 0, bm.bmWidth, bm.bmHeight, graphicsMem, 0, 0, SRCCOPY);
+            graphicsMask->BitBlt(0, 0, bm.bmWidth, bm.bmHeight, graphicsMem, 0, 0);
             // Make white pixels transparent too
             graphicsMem->SetBkColor(RGB(255, 255, 255));
             graphicsMask->BitBlt(0, 0, bm.bmWidth, bm.bmHeight, graphicsMem, 0, 0, NOTSRCERASE);
@@ -203,7 +203,7 @@ namespace draw2d_opengl
             return;
 
          cr = graphicsMem->SetBkColor(graphicsMem->GetPixel(0, 0));
-         graphicsMask->BitBlt(0, 0, bm.bmWidth, bm.bmHeight, graphicsMem, 0, 0, SRCCOPY);
+         graphicsMask->BitBlt(0, 0, bm.bmWidth, bm.bmHeight, graphicsMem, 0, 0);
          graphicsMem->SetBkColor(RGB(255, 255, 255));
          graphicsMask->BitBlt(0, 0, bm.bmWidth, bm.bmHeight, graphicsMem, 0, 0, NOTSRCERASE);
 
@@ -263,7 +263,7 @@ namespace draw2d_opengl
 
                // Make the upper left corner pixel of the source a "transparent" color
                cr = graphicsSrc->SetBkColor(graphicsSrc->GetPixel(0, 0));
-               graphicsMask->BitBlt(0, 0, bm.bmWidth, bm.bmHeight, graphicsSrc, 0, 0, SRCCOPY);
+               graphicsMask->BitBlt(0, 0, bm.bmWidth, bm.bmHeight, graphicsSrc, 0, 0);
                // Make white pixels of the source "transparent" too
                graphicsSrc->SetBkColor(RGB(255, 255, 255));
                graphicsMask->BitBlt(0, 0, bm.bmWidth, bm.bmHeight, graphicsSrc, 0, 0, SRCPAINT);
@@ -327,7 +327,7 @@ namespace draw2d_opengl
 
          // Make the upper left corner pixel of the source a "transparent" color
          cr = graphicsSrc->SetBkColor(graphicsSrc->GetPixel(0, 0));
-         graphicsMask->BitBlt(0, 0, bm.bmWidth, bm.bmHeight, graphicsSrc, 0, 0, SRCCOPY);
+         graphicsMask->BitBlt(0, 0, bm.bmWidth, bm.bmHeight, graphicsSrc, 0, 0);
          // Make white pixels of the source "transparent" too
          graphicsSrc->SetBkColor(RGB(255, 255, 255));
          graphicsMask->BitBlt(0, 0, bm.bmWidth, bm.bmHeight, graphicsSrc, 0, 0, SRCPAINT);

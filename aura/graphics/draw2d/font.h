@@ -4,6 +4,22 @@
 #include "aura/const/charset.h"
 
 
+enum enum_font_weight
+{
+
+   e_font_weight_dont_care =           0,
+   e_font_weight_thin =                100,
+   e_font_weight_extra_light =         200,
+   e_font_weight_light =               300,
+   e_font_weight_normal =              400,
+   e_font_weight_medium =              500,
+   e_font_weight_semibold =            600,
+   e_font_weight_bold =                700,
+   e_font_weight_extra_bold =          800,
+   e_font_weight_heavy =               900,
+
+};
+
 typedef comparable_array < e_char_set > char_set_array;
 
 
@@ -17,24 +33,24 @@ namespace draw2d
    public:
 
 
-      ::i32        tmHeight;
-      ::i32        tmAscent;
-      ::i32        tmDescent;
-      ::i32        tmInternalLeading;
-      ::i32        tmExternalLeading;
-      ::i32        tmWeight;
-      ::i32        tmOverhang;
-      ::i32        tmDigitizedAspectX;
-      ::i32        tmDigitizedAspectY;
-      WCHAR       tmFirstChar;
-      WCHAR       tmLastChar;
-      WCHAR       tmDefaultChar;
-      WCHAR       tmBreakChar;
-      byte        tmItalic;
-      byte        tmUnderlined;
-      byte        tmStruckOut;
-      byte        tmPitchAndFamily;
-      byte        tmCharSet;
+      ::i32          tmHeight;
+      ::i32          tmAscent;
+      ::i32          tmDescent;
+      ::i32          tmInternalLeading;
+      ::i32          tmExternalLeading;
+      ::i32          tmWeight;
+      ::i32          tmOverhang;
+      ::i32          tmDigitizedAspectX;
+      ::i32          tmDigitizedAspectY;
+      widechar       tmFirstChar;
+      widechar       tmLastChar;
+      widechar       tmDefaultChar;
+      widechar       tmBreakChar;
+      byte           tmItalic;
+      byte           tmUnderlined;
+      byte           tmStruckOut;
+      byte           tmPitchAndFamily;
+      byte           tmCharSet;
 
    };
 
@@ -216,7 +232,7 @@ namespace draw2d
    using enum_item_array = __pointer_array(font_enum_item);
 
 
-   inline font_pointer point_font(const char * pszFontName, double dFontSize, int iFontWeight = FW_NORMAL)
+   inline font_pointer point_font(const char * pszFontName, double dFontSize, int iFontWeight = e_font_weight_normal)
    {
 
       auto pfont = ::__create < font >();

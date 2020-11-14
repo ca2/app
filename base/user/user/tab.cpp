@@ -2434,7 +2434,7 @@ namespace user
    {
       if(!m_puserinteraction->create(
          pchannel,
-         uiId))
+         uId))
          return false;
       m_bCreated = true;
       on_layout(::draw2d::graphics_pointer & pgraphics);

@@ -18,7 +18,7 @@ void colorref_array::create_web_palette()
 
    // Do nothing
    const u32 STANDARD_PALETTE[] = {00,51,102,153,204,255};
-   const INT STANDARD_COLOR_SIZE = 6;
+   const i32 STANDARD_COLOR_SIZE = 6;
 //   const INT STANDARD_PALETTE_VAL_DIF = 51;
    allocate(216);
 //   u32 dwColorMapTable[216] = {0};

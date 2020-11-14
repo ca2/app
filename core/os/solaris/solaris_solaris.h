@@ -62,8 +62,8 @@
 
 
 
-CLASS_DECL_CORE ::u32 get_last_error();
-CLASS_DECL_CORE void set_last_error(::u32 dw);
+//CLASS_DECL_CORE ::u32 get_last_error();
+//CLASS_DECL_CORE void set_last_error(::u32 dw);
 
 
 CLASS_DECL_CORE bool _istlead(i32 ch);

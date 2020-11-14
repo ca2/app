@@ -236,7 +236,7 @@ namespace user
    // Function Name: OnPaint
    //
    // Purpose:
-   // WM_PAINT message handler.
+   // e_message_paint message handler.
    //
    // Output:
    // See aura API documentation.

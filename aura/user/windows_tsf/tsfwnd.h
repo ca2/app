@@ -64,7 +64,7 @@ private:
     LRESULT _OnSize(::u16, ::u16);
     LRESULT _OnActivate(WPARAM);
     LRESULT _OnInitMenuPopup(WPARAM, LPARAM);
-    BOOL _GetFileName(HWND hwndOwner, LPTSTR lpszFileName, ULONG uChars, BOOL fOpen);
+    BOOL _GetFileName(HWND hwndOwner, char * lpszFileName, ULONG uChars, BOOL fOpen);
 
 };
 

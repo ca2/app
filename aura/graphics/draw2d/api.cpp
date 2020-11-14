@@ -118,15 +118,14 @@ namespace draw2d
    }
 
    void api::EmbossedTextOut(
-   ::draw2d::graphics_pointer & pgraphics,
-   const rect &            rect,
-   double            dRateX,
-   double            dHeight,
-   const char *      psz,
-   LPINT             piCharsPositions,
-
-   i32               iCharsPositions,
-   i32               iOffset)
+   ::draw2d::graphics_pointer &  pgraphics,
+   const rect &                  rect,
+   double                        dRateX,
+   double                        dHeight,
+   const char *                  psz,
+   int *                         piCharsPositions,
+   i32                           iCharsPositions,
+   i32                           iOffset)
    {
       ::rect clipRect;
 
@@ -228,16 +227,14 @@ namespace draw2d
    }
 
    void api::SimpleTextOut(
-   ::draw2d::graphics_pointer & pgraphics,
-   const rect &        pcrect,
-
-   double         dRateX,
-   double         dHeight,
-   const char *   psz,
-   LPINT          piCharsPositions,
-
-   i32            iCharsPositions,
-   i32            iOffset)
+   ::draw2d::graphics_pointer &  pgraphics,
+   const rect &                  pcrect,
+   double                        dRateX,
+   double                        dHeight,
+   const char *                  psz,
+   int *                         piCharsPositions,
+   i32                           iCharsPositions,
+   i32                           iOffset)
    {
       UNREFERENCED_PARAMETER(dRateX);
       UNREFERENCED_PARAMETER(dHeight);

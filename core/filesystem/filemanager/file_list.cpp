@@ -35,8 +35,8 @@ namespace filemanager
 
       ::userfs::list::install_message_routing(pchannel);
 
-      MESSAGE_LINK(WM_HSCROLL, pchannel, this, &file_list::_001OnHScroll);
-      MESSAGE_LINK(WM_VSCROLL, pchannel, this, &file_list::_001OnVScroll);
+      MESSAGE_LINK(e_message_hscroll, pchannel, this, &file_list::_001OnHScroll);
+      MESSAGE_LINK(e_message_vscroll, pchannel, this, &file_list::_001OnVScroll);
       MESSAGE_LINK(e_message_rbutton_up, pchannel, this, &file_list::_001OnContextMenu);
       MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &file_list::_001OnShowWindow);
       MESSAGE_LINK(e_message_set_focus, pchannel, this, &file_list::_001OnSetFocus);

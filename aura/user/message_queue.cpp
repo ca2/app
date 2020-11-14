@@ -77,17 +77,17 @@ namespace user
    }
 
 
-   bool message_queue::message_queue_set_timer(uptr uiId,::u32 dwMillis)
+   bool message_queue::message_queue_set_timer(uptr uId,::u32 dwMillis)
    {
 
-      return SetTimer(uiId,dwMillis,nullptr) != FALSE;
+      return SetTimer(uId,dwMillis,nullptr) != FALSE;
 
    }
 
-   bool message_queue::message_queue_del_timer(uptr uiId)
+   bool message_queue::message_queue_del_timer(uptr uId)
    {
 
-      return KillTimer(uiId) != FALSE;
+      return KillTimer(uId) != FALSE;
 
    }
 

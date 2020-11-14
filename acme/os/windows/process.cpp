@@ -1194,7 +1194,7 @@ CLASS_DECL_ACME void shared_library_process(dword_array & dwa, string_array & st
 //   return 0;
 //}
 
-//CLASS_DECL_ACME bool enable_windows_token_privilege(HANDLE h, LPTSTR pcszName)
+//CLASS_DECL_ACME bool enable_windows_token_privilege(HANDLE h, char * pcszName)
 //{
 //
 //   TOKEN_PRIVILEGES tp;

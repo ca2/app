@@ -61,7 +61,7 @@ namespace user
 
       virtual bool do_prompt_file_name(var & varFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument);
 
-      virtual bool OnDDECommand(LPTSTR pszCommand);
+      virtual bool OnDDECommand(char * pszCommand);
 
       virtual void _001OnFileNew();
       virtual void on_file_open();

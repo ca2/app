@@ -34,8 +34,8 @@ namespace userfs
    {
 
       ::user::form_list_view::install_message_routing(pchannel);
-      MESSAGE_LINK(WM_HSCROLL, pchannel, this, &list::_001OnHScroll);
-      MESSAGE_LINK(WM_VSCROLL, pchannel, this, &list::_001OnVScroll);
+      MESSAGE_LINK(e_message_hscroll, pchannel, this, &list::_001OnHScroll);
+      MESSAGE_LINK(e_message_vscroll, pchannel, this, &list::_001OnVScroll);
       MESSAGE_LINK(WM_SHOWWINDOW, pchannel, this, &list::_001OnShowWindow);
       MESSAGE_LINK(e_message_create, pchannel, this, &list::_001OnCreate);
       MESSAGE_LINK(WM_LBUTTONDBLCLK, pchannel, this, &list::_001OnLButtonDblClk);

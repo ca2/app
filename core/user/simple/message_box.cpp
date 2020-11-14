@@ -4,7 +4,7 @@
 #endif
 
 
-//CLASS_DECL_CORE void aura_message_box(oswindow interaction_impl,const char * pText,const char * lpCaption,u32 uiFlags, function_arg functionargResult);
+//CLASS_DECL_CORE void aura_message_box(oswindow interaction_impl,const char * pText,const char * lpCaption,u32 uFlags, function_arg functionargResult);
 
 
 //i32(*g_pfn_message_box)(oswindow,const char *,const char *,u32, const function_arg &) = nullptr;
@@ -76,10 +76,10 @@
 //}
 
 
-//CLASS_DECL_CORE void aura_message_box(oswindow interaction_impl,const char * pText,const char * lpCaption,u32 uiFlags)
+//CLASS_DECL_CORE void aura_message_box(oswindow interaction_impl,const char * pText,const char * lpCaption,u32 uFlags)
 //{
 //
-//   ::os_message_box(interaction_impl,pText,lpCaption,uiFlags);
+//   ::os_message_box(interaction_impl,pText,lpCaption,uFlags);
 //
 //}
 

@@ -1449,7 +1449,7 @@ namespace dynamic_source
 //#ifdef WINDOWS_DESKTOP
 //   {
 //      u32 dwSize = GetEnvironmentVariable("PATH", nullptr, 0);
-//      LPTSTR lpsz = new char[dwSize + 1];
+//      char * lpsz = new char[dwSize + 1];
 //      dwSize = GetEnvironmentVariable("PATH", lpsz, dwSize + 1);
 //      delete lpsz;
 //   }
@@ -1523,7 +1523,7 @@ namespace dynamic_source
 //   #ifdef WINDOWS_DESKTOP
 //   {
 //      u32 dwSize = GetEnvironmentVariable("PATH", nullptr, 0);
-//      LPTSTR lpsz = new char[dwSize + 1];
+//      char * lpsz = new char[dwSize + 1];
 //      dwSize = GetEnvironmentVariable("PATH", lpsz, dwSize + 1);
 //      delete lpsz;
 //   }

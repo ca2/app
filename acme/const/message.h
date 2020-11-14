@@ -4,7 +4,7 @@
 enum enum_message : ::i64
 {
 
-   e_message_null,
+   e_message_null = 0,
 
    e_message_create = 1,
    e_message_destroy = 2,
@@ -13,9 +13,11 @@ enum enum_message : ::i64
    e_message_activate = 6,
    e_message_set_focus = 7,
    e_message_kill_focus = 8,
+   e_message_paint = 15,
    e_message_close = 16,
    e_message_quit = 18,
 
+   e_message_mouse_activate = 0x0021,
 
    e_message_key_first = 256,
    e_message_key_down = 256,
@@ -28,6 +30,17 @@ enum enum_message : ::i64
    e_message_sys_dead_char = 263,
    e_message_uni_char = 265,
    e_message_key_last = 265,
+
+   e_message_hscroll = 0x0114,
+   e_message_vscroll = 0x0115,
+
+   e_message_nccreate    =                 0x0081,
+   e_message_ncdestroy    =                0x0082,
+   e_message_nccalcsize   =                0x0083,
+   e_message_nchittest     =               0x0084,
+   e_message_ncpaint      =                0x0085,
+   e_message_ncactivate   =                0x0086,
+
 
 
    e_message_non_client_mouse_move = 160,

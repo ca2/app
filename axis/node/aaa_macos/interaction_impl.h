@@ -162,7 +162,7 @@ namespace macos
 
       // oswindow Text Functions
       void set_window_text(const char * lpszString) override;
-      //strsize GetWindowText(LPTSTR lpszStringBuf, strsize nMaxCount);
+      //strsize GetWindowText(char * lpszStringBuf, strsize nMaxCount);
       void get_window_text(string & str) override;
       //strsize GetWindowTextLength();
 //      void SetFont(::draw2d::font* pFont, bool bRedraw = TRUE);
@@ -339,15 +339,15 @@ namespace macos
       virtual void CheckDlgButton(i32 nIDButton, ::u32 nCheck) override;
       virtual void CheckRadioButton(i32 nIDFirstButton, i32 nIDLastButton, i32 nIDCheckButton) override;
       virtual i32 GetCheckedRadioButton(i32 nIDFirstButton, i32 nIDLastButton) override;
-      virtual i32 DlgDirList(LPTSTR lpPathSpec, i32 nIDListBox,
+      virtual i32 DlgDirList(char * lpPathSpec, i32 nIDListBox,
                              i32 nIDStaticPath, ::u32 nFileType) override;
-      virtual i32 DlgDirListComboBox(LPTSTR lpPathSpec, i32 nIDComboBox,
+      virtual i32 DlgDirListComboBox(char * lpPathSpec, i32 nIDComboBox,
                                      i32 nIDStaticPath, ::u32 nFileType) override;
-      virtual bool DlgDirSelect(LPTSTR lpString, i32 nSize, i32 nIDListBox) override;
-      virtual bool DlgDirSelectComboBox(LPTSTR lpString, i32 nSize, i32 nIDComboBox) override;
+      virtual bool DlgDirSelect(char * lpString, i32 nSize, i32 nIDListBox) override;
+      virtual bool DlgDirSelectComboBox(char * lpString, i32 nSize, i32 nIDComboBox) override;
 
       //virtual ::u32 GetChildByIdInt(i32 nID, bool * lpTrans = nullptr, bool bSigned = TRUE) const;
-      //virtual i32 GetChildByIdText(i32 nID, LPTSTR lpStr, i32 nMaxCount) const;
+      //virtual i32 GetChildByIdText(i32 nID, char * lpStr, i32 nMaxCount) const;
       //virtual i32 GetChildByIdText(i32 nID, string & rectString) const;
       virtual ::user::interaction * GetNextDlgGroupItem(::user::interaction * pWndCtl, bool bPrevious = FALSE) const;
       virtual ::user::interaction * GetNextDlgTabItem(::user::interaction * pWndCtl, bool bPrevious = FALSE) const;
@@ -526,7 +526,7 @@ namespace macos
 //      void OnSysKeyDown(::u32 nChar, ::u32 nRepCnt, ::u32 nFlags);
 //      void OnSysKeyUp(::u32 nChar, ::u32 nRepCnt, ::u32 nFlags);
 //      void OnCompacting(::u32 nCpuTime);
-//      void OnDevModeChange(LPTSTR lpDeviceName);
+//      void OnDevModeChange(char * lpDeviceName);
 //      void OnFontChange();
 //      void OnPaletteChanged(::user::interaction * pFocusWnd);
 //      void OnSpoolerStatus(::u32 nStatus, ::u32 nJobs);
@@ -563,7 +563,7 @@ namespace macos
 //      void OnInitMenuPopup(::user::menu* pPopupMenu, ::u32 nIndex, bool bSysMenu);
 
       // Clipboard message handler member functions
-//      void OnAskCbFormatName(::u32 nMaxCount, LPTSTR lpszString);
+//      void OnAskCbFormatName(::u32 nMaxCount, char * lpszString);
 //      void OnChangeCbChain(oswindow hWndRemove, oswindow hWndAfter);
 //      void OnDestroyClipboard();
 //      void OnDrawClipboard();

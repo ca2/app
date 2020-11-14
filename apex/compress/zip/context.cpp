@@ -166,7 +166,7 @@ namespace str
          while(true)
          {
 
-            CHAR szTitle[_MAX_PATH];
+            char szTitle[_MAX_PATH];
 
             unzGetCurrentFileInfo(
             pf,
@@ -372,7 +372,7 @@ namespace str
          while(true)
          {
 
-            CHAR szTitle[_MAX_PATH];
+            char szTitle[_MAX_PATH];
 
             unzGetCurrentFileInfo(
             pf,

@@ -231,7 +231,7 @@ void preview_dc::MirrorAttributes()
       SetBkMode(GetBkMode());
       SetTextAlign(GetTextAlign());
       SetPolyFillMode(GetPolyFillMode());
-      SetStretchBltMode(GetStretchBltMode());
+      set_interpolation_mode(GetStretchBltMode());
       SetTextColor(GetNearestColor(GetTextColor()));
       SetBkColor(GetNearestColor(GetBkColor()));
    }
@@ -296,7 +296,7 @@ void preview_dc::MirrorFont()
 
    TEXTMETRICW tm;
 
-   GetTextFace(LF_FACESIZE, (LPTSTR)&logFont.lfFaceName[0]);
+   GetTextFace(LF_FACESIZE, (char *)&logFont.lfFaceName[0]);
    GetTextMetrics(&tm);
 
    // Set real values based on the Printer's text metrics.
@@ -493,7 +493,7 @@ __STATIC i32 CLASS_DECL_DRAW2D_XLIB _AfxComputeNextTab(i32 x, ::u32 nTabStops, L
 // font characters where the printer characters will appear on the page
 size preview_dc::ComputeDeltas(i32& x, const char * lpszString, ::u32 &nCount,
    int_bool bTabbed, ::u32 nTabStops, LPINT lpnTabStops, i32 nTabOrigin,
-   __out_z LPTSTR lpszOutputString, i32* pnDxWidths, i32& nRightFixup)
+   __out_z char * lpszOutputString, i32* pnDxWidths, i32& nRightFixup)
 {
    ASSERT_VALID(this);
 
@@ -650,7 +650,7 @@ int_bool preview_dc::ExtTextOut(i32 x, i32 y, ::u32 nOptions, const ::rect & rec
    ASSERT(fx_is_valid_address(lpszString, nCount, FALSE));
 
    i32* pDeltas = nullptr;
-   LPTSTR pOutputString = nullptr;
+   char * pOutputString = nullptr;
    i32 nRightFixup = 0;
 
    if (lpDxWidths == nullptr)
@@ -671,7 +671,7 @@ int_bool preview_dc::ExtTextOut(i32 x, i32 y, ::u32 nOptions, const ::rect & rec
       }
 
 
-      ComputeDeltas(x, (LPTSTR)lpszString, nCount, FALSE, 0, nullptr, 0,
+      ComputeDeltas(x, (char *)lpszString, nCount, FALSE, 0, nullptr, 0,
                               pOutputString, pDeltas, nRightFixup);
 
       lpDxWidths = pDeltas;
@@ -707,7 +707,7 @@ size preview_dc::TabbedTextOut(i32 x, i32 y, const char * lpszString, i32 nCount
       return (::u32) 0;         // nCount is zero, there is nothing to print
 
    i32* pDeltas = nullptr;
-   LPTSTR pOutputString = nullptr;
+   char * pOutputString = nullptr;
    i32 nRightFixup;
 
    try
@@ -765,7 +765,7 @@ i32 preview_dc::DrawText(const char * lpszString, i32 nCount, RECT32 * prect,
    return retVal;
 }
 
-i32 preview_dc::DrawTextEx(__in_ecount(nCount) LPTSTR lpszString, i32 nCount, RECT32 * prect,
+i32 preview_dc::DrawTextEx(__in_ecount(nCount) char * lpszString, i32 nCount, RECT32 * prect,
    ::u32 nFormat, LPDRAWTEXTPARAMS lpDTParams)
 {
    ASSERT(get_handle2() != nullptr);

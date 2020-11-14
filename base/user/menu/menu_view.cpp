@@ -388,7 +388,7 @@ namespace user
 
       }
 
-      pgraphics->SetStretchBltMode(HALFTONE);
+      pgraphics->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
 
       pgraphics->draw(m_pimageLogo->rect({ 10, 10 }), m_pimageLogo->get_graphics());
 

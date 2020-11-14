@@ -389,7 +389,7 @@ inline void fork_release(::object * pobjectParent, __pointer(T) & t)
 }
 
 
-CLASS_DECL_APEX DWORD_PTR translate_processor_affinity(int i);
+CLASS_DECL_APEX uptr translate_processor_affinity(int i);
 
 
 template < typename PRED >
@@ -497,7 +497,7 @@ public:
    void construct()
    {
 
-      m_dwThreadAffinityMask = translate_processor_affinity(int (m_iOrder));
+      m_uThreadAffinityMask = translate_processor_affinity(int (m_iOrder));
 
    }
 
@@ -647,7 +647,7 @@ public:
    void construct()
    {
 
-      m_dwThreadAffinityMask = translate_processor_affinity(int(m_iOrder));
+      m_uThreadAffinityMask = translate_processor_affinity(int(m_iOrder));
 
    }
 
@@ -792,7 +792,7 @@ __pointer_array(::thread) fork_proc(::object * pobjectParent, PRED pred, index i
 
       ::thread * pthread = dynamic_cast < ::thread * > (ppredthread);
 
-      pthread->m_dwThreadAffinityMask = translate_processor_affinity(random_processor_index_generator() % iProcCount);
+      pthread->m_uThreadAffinityMask = translate_processor_affinity(random_processor_index_generator() % iProcCount);
 
       pthread->m_bThreadToolsForIncreasedFps = false;
 

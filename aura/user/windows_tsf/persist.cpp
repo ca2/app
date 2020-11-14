@@ -8,7 +8,7 @@
 
 //#define BLOCK_SIZE  256
 //
-//void CTSFEditWnd::_SaveToFile(LPTSTR pszFile)
+//void CTSFEditWnd::_SaveToFile(char * pszFile)
 //{
 //    if(pszFile)
 //    {
@@ -181,7 +181,7 @@
 
 **************************************************************************/
 
-//void CTSFEditWnd::_LoadFromFile(LPTSTR pszFile)
+//void CTSFEditWnd::_LoadFromFile(char * pszFile)
 //{
 //    if(pszFile)
 //    {

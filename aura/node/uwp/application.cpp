@@ -101,7 +101,7 @@ namespace aura
 //            //for( i=0; i < (cbTranslate/sizeof(struct LANGANDCODEPAGE)); i++ )
 //            for(int i=0; i < 1; i++ )
 //            {
-//               LPTSTR lpsz;
+//               char * lpsz;
 //               ::u32 uSize;
 //
 //               strKey.Format(
@@ -119,7 +119,7 @@ namespace aura
 //
 //               // Retrieve file description for language and code page "i".
 //               VerQueryValue(lpdata,
-//                             (LPTSTR) (const char *) strKey,
+//                             (char *) (const char *) strKey,
 //                             (LPVOID *)&lpsz,
 //                             &uiSize);
 //

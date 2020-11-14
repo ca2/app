@@ -1674,7 +1674,7 @@ int_bool destroy_window(oswindow window)
 
          mq_remove_window_from_all_queues(window);
 
-         pinteraction->send_message(WM_NCDESTROY, 0, 0);
+         pinteraction->send_message(e_message_ncdestroy, 0, 0);
 
       }
       else
@@ -3292,7 +3292,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e, XGenericEventC
       if(e.xexpose.count == 0)
       {
 
-         msg.message       = WM_PAINT;
+         msg.message       = e_message_paint;
          msg.lParam        = 0;
          msg.wParam        = 0;
 

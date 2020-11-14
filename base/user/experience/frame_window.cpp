@@ -1043,7 +1043,7 @@ namespace experience
    void frame_window::SetSWPFlags(::u32 uFlags)
    {
 
-      m_uiSWPFlags = uiFlags;
+      m_uiSWPFlags = uFlags;
 
       m_pmovemanager->SetSWPFlags(m_uiSWPFlags);
 
@@ -1263,7 +1263,7 @@ namespace experience
       MESSAGE_LINK(WM_NCLBUTTONDOWN,pchannel,this,&frame_window::_001OnNcLButtonDown);
       MESSAGE_LINK(WM_NCLBUTTONUP,pchannel,this,&frame_window::_001OnNcLButtonUp);
       MESSAGE_LINK(e_message_non_client_mouse_move,pchannel,this,&frame_window::_001OnNcMouseMove);
-      MESSAGE_LINK(WM_NCHITTEST,pchannel,this,&frame_window::_001OnNcHitTest);
+      MESSAGE_LINK(e_message_nchittest,pchannel,this,&frame_window::_001OnNcHitTest);
       MESSAGE_LINK(e_message_activate,pchannel,this,&frame_window::_001OnActivate);
       MESSAGE_LINK(WM_COMMAND,pchannel,this,&frame_window::_001OnCommand);
       MESSAGE_LINK(WM_SYSCOMMAND, pchannel, this, &frame_window::_001OnSysCommand);

@@ -162,7 +162,7 @@ dirbuf,
 * get the current directory string and its length
 */
 /*            len = GetCurrentDirectory( sizeof(dirbuf) / sizeof(_TSCHAR),
-(LPTSTR)dirbuf );
+(char *)dirbuf );
 }
 
 /* API call failed, or buffer not large enough */
@@ -448,8 +448,8 @@ namespace uwp
 //      CHAR pszPathA[MAX_PATH * 2];
 //      ::str::international::UnicodeToACP(pszPathA, MAX_PATH * 2, lpFileName);
 //      string str;
-//      LPTSTR lpsz = str.GetBuffer(nBufferLength * 2);
-//      LPTSTR lpszFilePart;
+//      char * lpsz = str.GetBuffer(nBufferLength * 2);
+//      char * lpszFilePart;
 //      ::u32 dw = ::GetFullPathName(pszPathA, nBufferLength, lpsz, &lpszFilePart);
 //      str.ReleaseBuffer();
 //      ::str::international::ACPToUnicode(lpBuffer, nBufferLength, str);
@@ -533,7 +533,7 @@ namespace uwp
 //      if(iCount < 0)
 //         iCount = ::str::international::UnicodeToMultiByteCount(uCodePage, lpSrcStr);
 //      string str;
-//      LPTSTR lpsz = str.GetBuffer(iCount);
+//      char * lpsz = str.GetBuffer(iCount);
 //      if(::str::international::UnicodeToMultiByte(uCodePage, lpsz, iCount, lpSrcStr))
 //      {
 //         //str.ReleaseBuffer();

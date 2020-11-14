@@ -614,7 +614,7 @@ int_bool is_window_occluded(oswindow oswindow)
 int_bool WINAPI SetWindowPos(oswindow pdata, oswindow pdataAfter, int x, int y, int cx, int cy, ::u32 uFlags)
 {
 
-   return pdata->m_pimpl->m_puserinteraction->set_window_pos((iptr)pdataAfter, x, y, cx, cy, uiFlags);
+   return pdata->m_pimpl->m_puserinteraction->set_window_pos((iptr)pdataAfter, x, y, cx, cy, uFlags);
 
 }
 

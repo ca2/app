@@ -127,7 +127,7 @@ bool image_list::draw(::draw2d::graphics* pgraphics, i32 iImage, const ::point &
 
       UNREFERENCED_PARAMETER(iFlag);
 
-      return pgraphics->BitBlt(point.x, point.y, m_size.cx, m_size.cy, m_pimage->get_graphics(), iImage * m_size.cx, 0, SRCCOPY);
+      return pgraphics->BitBlt(point.x, point.y, m_size.cx, m_size.cy, m_pimage->get_graphics(), iImage * m_size.cx, 0);
 
    }
    catch(...)
@@ -186,7 +186,7 @@ bool image_list::draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point 
    pointOffset.x = min(m_size.cx, pointOffset.x);
    pointOffset.y = min(m_size.cy, pointOffset.y);
 
-   return pgraphics->BitBlt(point.x, point.y, sz.cx, sz.cy, m_pimage->g(), iImage * m_size.cx + pointOffset.x, pointOffset.y, SRCCOPY);
+   return pgraphics->BitBlt(point.x, point.y, sz.cx, sz.cy, m_pimage->g(), iImage * m_size.cx + pointOffset.x, pointOffset.y);
 
 }
 
@@ -319,7 +319,7 @@ i32 image_list::add_file(var varFile, int iItem)
 
          m_pimage->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
 
-         m_pimage->get_graphics()->BitBlt(iItem * m_size.cx, 0, m_size.cx, m_size.cy, pimage->get_graphics(), 0, 0, SRCCOPY);
+         m_pimage->get_graphics()->BitBlt(iItem * m_size.cx, 0, m_size.cx, m_size.cy, pimage->get_graphics(), 0, 0);
 
       });
 
@@ -348,7 +348,7 @@ i32 image_list::add_image(::image * pimage, int x, int y, int iItem)
 
    m_pimage->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-   m_pimage->get_graphics()->BitBlt(iItem * m_size.cx, 0, m_size.cx, m_size.cy, pimage->g(), x, y, SRCCOPY);
+   m_pimage->get_graphics()->BitBlt(iItem * m_size.cx, 0, m_size.cx, m_size.cy, pimage->g(), x, y);
 
    return iItem;
 

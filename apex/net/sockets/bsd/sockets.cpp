@@ -68,7 +68,11 @@ namespace sockets
 
       //}
 
+
+#ifdef WINDOWS
       m_pportforward.create();
+#endif
+
 
       //m_pajpaxissocketinit = new AjpBaseSocket::Initializer;
 
@@ -109,6 +113,8 @@ namespace sockets
 
       }
 
+#ifdef WINDOWS
+
       try
       {
 
@@ -137,6 +143,8 @@ namespace sockets
       {
 
       }
+
+#endif
 
       if (m_pnet)
       {

@@ -2077,7 +2077,7 @@ string file_context::nessie(const var & varFile)
 }
 
 
-bool file_context::get_last_write_time(FILETIME * pfiletime, const string & strFilename)
+bool file_context::get_last_write_time(filetime_t * pfiletime, const string & strFilename)
 {
 
    __throw(interface_only_exception());

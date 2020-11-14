@@ -660,6 +660,8 @@ list(APPEND acme_source
     os/console.h
     os/file.h
     os/graphics.h
+    os/cross/windows/user.cpp
+    os/cross/windows/datetime.cpp
     os/ios/base_internal.h
     os/ios/cross_win_gdi.h
     os/ios/exception_engine.h
@@ -1825,7 +1827,7 @@ else()
 endif()
 
 
-add_library(acme SHARED ${acme_source})
+add_library(acme SHARED ${acme_source} primitive/primitive/estatus.cpp)
 
 target_precompile_headers(acme PRIVATE framework.h)
 
@@ -1854,6 +1856,7 @@ target_link_directories(acme PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archiv
 target_link_directories(acme PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/storage-${PLATFORM_NAME}/third/library/x64/basis)
 
 
+target_include_directories(acme PRIVATE .)
 target_include_directories(acme PRIVATE $ENV{HOME}/__config)
 target_include_directories(acme PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 target_include_directories(acme PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)

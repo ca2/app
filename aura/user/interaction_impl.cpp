@@ -870,6 +870,8 @@ namespace user
 
       ::user::primitive_impl::prio_install_message_routing(pchannel);
 
+      MESSAGE_LINK(e_message_create, pchannel, this, &interaction_impl::_001OnPrioCreate);
+
    }
 
 
@@ -1858,7 +1860,7 @@ namespace user
 //   }
 //
 //#ifdef WINDOWS
-//   void interaction_impl::OnDevModeChange(__in LPTSTR pDeviceName)
+//   void interaction_impl::OnDevModeChange(__in char * pDeviceName)
 
 //   {
 //      UNREFERENCED_PARAMETER(pDeviceName);
@@ -2775,7 +2777,7 @@ namespace user
       ::exception::throw_interface_only();
    }
 
-   i32 interaction_impl::DlgDirList(LPTSTR pPathSpec,i32 nIDListBox,i32 nIDStaticPath,::u32 nFileType)
+   i32 interaction_impl::DlgDirList(char * pPathSpec,i32 nIDListBox,i32 nIDStaticPath,::u32 nFileType)
 
    {
       UNREFERENCED_PARAMETER(pPathSpec);
@@ -2787,7 +2789,7 @@ namespace user
       return 0;
    }
 
-   i32 interaction_impl::DlgDirListComboBox(LPTSTR pPathSpec,i32 nIDComboBox,i32 nIDStaticPath,::u32 nFileType)
+   i32 interaction_impl::DlgDirListComboBox(char * pPathSpec,i32 nIDComboBox,i32 nIDStaticPath,::u32 nFileType)
 
    {
       UNREFERENCED_PARAMETER(pPathSpec);
@@ -2800,7 +2802,7 @@ namespace user
       return 0;
    }
 
-   bool interaction_impl::DlgDirSelect(LPTSTR pString,i32 nSize,i32 nIDListBox)
+   bool interaction_impl::DlgDirSelect(char * pString,i32 nSize,i32 nIDListBox)
 
    {
       UNREFERENCED_PARAMETER(pString);
@@ -2812,7 +2814,7 @@ namespace user
       return false;
    }
 
-   bool interaction_impl::DlgDirSelectComboBox(LPTSTR pString,i32 nSize,i32 nIDComboBox)
+   bool interaction_impl::DlgDirSelectComboBox(char * pString,i32 nSize,i32 nIDComboBox)
 
    {
       UNREFERENCED_PARAMETER(pString);
@@ -2836,7 +2838,7 @@ namespace user
       return 0;
    }
 
-   i32 interaction_impl::GetChildByIdText(i32 nID,LPTSTR pStr,i32 nMaxCount) const
+   i32 interaction_impl::GetChildByIdText(i32 nID,char * pStr,i32 nMaxCount) const
 
    {
       UNREFERENCED_PARAMETER(nID);
@@ -3196,6 +3198,13 @@ namespace user
 
       m_puiThis = m_puserinteraction;
 
+   }
+
+
+   void interaction_impl::_001OnPrioCreate(::message::message * pmessage)
+   {
+
+      m_puserinteraction->on_create_user_interaction();
 
    }
 
@@ -4375,20 +4384,20 @@ namespace user
       //if (bLayered)
       {
 
-         uiFlags |= SWP_ASYNCWINDOWPOS | SWP_NOREDRAW | SWP_NOCOPYBITS | SWP_DEFERERASE;
+         uFlags |= SWP_ASYNCWINDOWPOS | SWP_NOREDRAW | SWP_NOCOPYBITS | SWP_DEFERERASE;
 
       }
       //else
       //{
 
-      //   uiFlags |= SWP_ASYNCWINDOWPOS  | SWP_NOREDRAW | SWP_NOCOPYBITS | SWP_DEFERERASE;
+      //   uFlags |= SWP_ASYNCWINDOWPOS  | SWP_NOREDRAW | SWP_NOCOPYBITS | SWP_DEFERERASE;
 
       //}
 
       if (eactivationOutput & activation_no_activate)
       {
 
-         uiFlags |= SWP_NOACTIVATE;
+         uFlags |= SWP_NOACTIVATE;
 
       }
 
@@ -4414,13 +4423,13 @@ namespace user
 
          bSize = false;
 
-         uiFlags |= SWP_NOSIZE;
+         uFlags |= SWP_NOSIZE;
 
       }
       else
       {
 
-         uiFlags |= SWP_ASYNCWINDOWPOS | SWP_FRAMECHANGED | SWP_NOREDRAW | SWP_NOCOPYBITS | SWP_DEFERERASE;
+         uFlags |= SWP_ASYNCWINDOWPOS | SWP_FRAMECHANGED | SWP_NOREDRAW | SWP_NOCOPYBITS | SWP_DEFERERASE;
 
       }
 
@@ -4431,7 +4440,7 @@ namespace user
 
          bMove = false;
 
-         uiFlags |= SWP_NOMOVE;
+         uFlags |= SWP_NOMOVE;
 
       }
 
@@ -4445,13 +4454,13 @@ namespace user
          if (shouldGetVisible)
          {
 
-            uiFlags |= SWP_SHOWWINDOW;
+            uFlags |= SWP_SHOWWINDOW;
 
          }
          else
          {
 
-            uiFlags |= SWP_HIDEWINDOW;
+            uFlags |= SWP_HIDEWINDOW;
 
          }
 
@@ -4462,7 +4471,7 @@ namespace user
       if (!bZ)
       {
 
-         uiFlags |= SWP_NOZORDER;
+         uFlags |= SWP_NOZORDER;
 
       }
 
@@ -4504,7 +4513,7 @@ namespace user
             //#ifdef WINDOWS_DESKTOP
             //               !bLayered
             //#else
-                           //(uiFlags & (SWP_NOMOVE | SWP_NOSIZE)) != (SWP_NOMOVE | SWP_NOSIZE)
+                           //(uFlags & (SWP_NOMOVE | SWP_NOSIZE)) != (SWP_NOMOVE | SWP_NOSIZE)
             //#endif
             bMove
             || bSize
@@ -4533,9 +4542,9 @@ namespace user
          //if(m_puserinteraction->m_ewindowflag & window_flag_postpone_visual_update)
          //{
 
-         //   m_bEatMoveEvent = !(uiFlags & SWP_NOMOVE) || !(uiFlags & SWP_NOSIZE);
+         //   m_bEatMoveEvent = !(uFlags & SWP_NOMOVE) || !(uFlags & SWP_NOSIZE);
 
-         //   m_bEatSizeEvent = !(uiFlags & SWP_NOSIZE);
+         //   m_bEatSizeEvent = !(uFlags & SWP_NOSIZE);
 
          //}
 
@@ -4554,7 +4563,7 @@ namespace user
          ::SetWindowPos(m_oswindow, oswindowInsertAfter,
             pointOutput.x, pointOutput.y,
             sizeOutput.cx, sizeOutput.cy,
-            uiFlags);
+            uFlags);
 
          if (g_pointLastBottomRight != pointBottomRight)
          {

@@ -144,7 +144,7 @@ namespace draw2d_opengl
 
       i32 SetPolyFillMode(i32 nPolyFillMode);
       i32 SetROP2(i32 nDrawMode);
-      i32 SetStretchBltMode(i32 nStretchMode);
+      i32 set_interpolation_mode(i32 nStretchMode);
 
       bool GetColorAdjustment(LPCOLORADJUSTMENT lpColorAdjust) const;
       bool SetColorAdjustment(const COLORADJUSTMENT* lpColorAdjust);
@@ -198,16 +198,16 @@ namespace draw2d_opengl
       // Coordinate Functions
       void DPtoLP(POINT32 * lpPoints,count nCount = 1) const;
       void DPtoLP(RECT32 * prect) const;
-      void DPtoLP(LPSIZE lpSize) const;
+      void DPtoLP(LPSIZE32 LPSIZE32) const;
       void LPtoDP(POINT32 * lpPoints,count nCount = 1) const;
       void LPtoDP(RECT32 * prect) const;
-      void LPtoDP(LPSIZE lpSize) const;
+      void LPtoDP(LPSIZE32 LPSIZE32) const;
 
       // Special Coordinate Functions (useful for dealing with metafiles and OLE)
-      void DPtoHIMETRIC(LPSIZE lpSize) const;
-      void LPtoHIMETRIC(LPSIZE lpSize) const;
-      void HIMETRICtoDP(LPSIZE lpSize) const;
-      void HIMETRICtoLP(LPSIZE lpSize) const;
+      void DPtoHIMETRIC(LPSIZE32 LPSIZE32) const;
+      void LPtoHIMETRIC(LPSIZE32 LPSIZE32) const;
+      void HIMETRICtoDP(LPSIZE32 LPSIZE32) const;
+      void HIMETRICtoLP(LPSIZE32 LPSIZE32) const;
 
       // Region Functions
       bool FillRgn(::draw2d::region* pRgn, ::draw2d::brush* pBrush);
@@ -389,7 +389,7 @@ namespace draw2d_opengl
       virtual bool GrayString(::draw2d::brush* pBrush, bool (CALLBACK* lpfnOutput)(HDC, LPARAM, i32), LPARAM lpData, i32 nCount, i32 x, i32 y, i32 nWidth, i32 nHeight);
       virtual ::u32 GetTextAlign();
       virtual ::u32 SetTextAlign(::u32 nFlags);
-      virtual i32 GetTextFace(count nCount, LPTSTR lpszFacename);
+      virtual i32 GetTextFace(count nCount, char * lpszFacename);
       virtual i32 GetTextFace(string & rString);
       virtual bool get_text_metrics(::draw2d::text_metric * lpMetrics);
       virtual bool get_output_text_metrics(::draw2d::text_metric * lpMetrics);
@@ -402,8 +402,8 @@ namespace draw2d_opengl
 
 //#if (_WIN32_WINNT >= 0x0500)
 //
-//      bool GetTextExtentExPointI(LPWORD pgiIn, i32 cgi, i32 nMaxExtent, LPINT lpnFit, LPINT alpDx, __out_opt LPSIZE lpSize) const;
-//      bool GetTextExtentPointI(LPWORD pgiIn, i32 cgi, __out_opt LPSIZE lpSize) const;
+//      bool GetTextExtentExPointI(LPWORD pgiIn, i32 cgi, i32 nMaxExtent, LPINT lpnFit, LPINT alpDx, __out_opt LPSIZE32 LPSIZE32) const;
+//      bool GetTextExtentPointI(LPWORD pgiIn, i32 cgi, __out_opt LPSIZE32 LPSIZE32) const;
 //
 //#endif
 

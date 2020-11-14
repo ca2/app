@@ -35,7 +35,7 @@ CLASS_DECL_AXIS bool GetPrimaryMonitorRect(RECT32 * prect);
 
 
 
-CLASS_DECL_AXIS int WinRegGetValueW(HKEY hkey, LPCWSTR pSubKey, LPCWSTR lpValue, ::u32 dwFlags, LPDWORD pdwType, PVOID pvData, LPDWORD pcbData);
+CLASS_DECL_AXIS int WinRegGetValueW(HKEY hkey, const widechar * pSubKey, const widechar * lpValue, ::u32 dwFlags, LPDWORD pdwType, PVOID pvData, LPDWORD pcbData);
 
 
 

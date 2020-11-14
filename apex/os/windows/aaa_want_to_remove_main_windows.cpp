@@ -4,7 +4,7 @@
 #include "apex/os/_application.h"
 
 
-//CLASS_DECL_APEX i32 main_windows(HINSTANCE hinstance, HINSTANCE hPrevInstance, LPTSTR pCmdLine, int nCmdShow)
+//CLASS_DECL_APEX i32 main_windows(HINSTANCE hinstance, HINSTANCE hPrevInstance, char * pCmdLine, int nCmdShow)
 //{
 //
 //   int iStatus = -1;

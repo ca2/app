@@ -45,9 +45,9 @@ typedef
 LSTATUS
 ( APIENTRY * LPFN_RegGetValueW) (
 HKEY hkey,
-LPCWSTR pSubKey,
+const widechar * pSubKey,
 
-LPCWSTR pValue,
+const widechar * pValue,
 
 u32 dwFlags,
 LPDWORD pdwType,
@@ -248,7 +248,7 @@ bool __node_aura_pos_term()
 }
 
 
-//int WinRegGetValueW(HKEY hkey, LPCWSTR pSubKey, LPCWSTR lpValue, ::u32 dwFlags, LPDWORD pdwType, PVOID pvData, LPDWORD pcbData)
+//int WinRegGetValueW(HKEY hkey, const widechar * pSubKey, const widechar * lpValue, ::u32 dwFlags, LPDWORD pdwType, PVOID pvData, LPDWORD pcbData)
 //
 //{
 //

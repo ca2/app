@@ -242,7 +242,7 @@ namespace user
             }
 
             m_font->create_point_font(m_strFontFamily, dFontSize,
-                                      m_bBold ? FW_BOLD : FW_NORMAL,
+                                      m_bBold ? e_font_weight_bold : e_font_weight_normal,
                                       m_bItalic,
                                       m_bUnderline);
 

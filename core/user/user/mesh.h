@@ -469,7 +469,7 @@ namespace user
 
 
       virtual bool on_click(const ::user::item & item) override;
-      virtual bool _001OnRightClick(uptr uiFlags,const ::point & point);
+      virtual bool _001OnRightClick(uptr uFlags,const ::point & point);
 
       virtual void _001GetSelection(range& selection);
 

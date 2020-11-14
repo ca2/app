@@ -12,11 +12,11 @@ namespace win32
 
       bool m_bCreated;
       bool  m_bNew;
-      LPCWSTR m_pszResource;
+      const widechar * m_pszResource;
 
 
       dialog();
-      dialog(::object * pobject, LPCWSTR pszResource);
+      dialog(::object * pobject, const widechar * pszResource);
       virtual ~dialog();
 
 

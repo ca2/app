@@ -160,7 +160,7 @@ namespace uwp
       pDropFiles->fWide = TRUE; // ANSI charset
 
       ASSERT(m_p->is_window());
-      LPTSTR lptstrCopy = (char *) pDropFiles;
+      char * lptstrCopy = (char *) pDropFiles;
       lptstrCopy += pDropFiles->pFiles;
       unichar * lpwstrCopy = (unichar *) lptstrCopy;
       for(int i = 0; i < stra.get_size(); i++)

@@ -249,7 +249,7 @@ namespace experience
 
       void move_manager::SetSWPFlags(::u32 uFlags)
       {
-         m_uiSWPFlags = uiFlags;
+         m_uiSWPFlags = uFlags;
          m_uiSWPFlags |= SWP_NOSIZE;
          m_uiSWPFlags |= SWP_FRAMECHANGED;
          m_uiSWPFlags &= ~SWP_NOMOVE;

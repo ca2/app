@@ -162,7 +162,7 @@ i32 __cdecl _validdrive (
 //        get the current directory string and its length
 //
 //            len = GetCurrentDirectory( sizeof(dirbuf) / sizeof(_TSCHAR),
-//                                       (LPTSTR)dirbuf );
+//                                       (char *)dirbuf );
 //        }
 //
 //         API call failed, or buffer not large enough

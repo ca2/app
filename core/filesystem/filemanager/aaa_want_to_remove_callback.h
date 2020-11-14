@@ -25,7 +25,7 @@ namespace filemanager
       virtual bool GetFileManagerItemCallback(::filemanager::data * pdata, id id, const ::file::item_array & itema);
       virtual void OnFileManagerItemUpdate(::filemanager::data * pdata, ::user::command * pcommand, const ::file::item_array & itema);
       virtual void OnFileManagerItemCommand(::filemanager::data * pdata, id pszId, const ::file::item_array & itema);
-      virtual void OnFileManagerInitializeFormPreData(::filemanager::data * pdata, id uiId, ::user::form * pform);
+      virtual void OnFileManagerInitializeFormPreData(::filemanager::data * pdata, id uId, ::user::form * pform);
 
 
    };

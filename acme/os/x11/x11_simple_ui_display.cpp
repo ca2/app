@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "os/cross/windows/_windows.h"
 #include "acme/id.h"
 #include "_x11.h"
 
@@ -9,7 +10,7 @@ void acme_defer_os_init_windowing();
 simple_ui_display::simple_ui_display(const string & strMessageParam, const string & strTitle, ::emessagebox emessagebox):
    m_strTitle(strTitle),
    m_strFontName("serif"),
-   m_size(300, 200),
+   m_size(100, 40),
    m_bDarkModeModified(false),
    m_bInvalidated(false)
 {
@@ -90,10 +91,15 @@ i64 simple_ui_display::release(OBJ_REF_DBG_PARAMS_DEF)
 void simple_ui_display::common_construct()
 {
 
-   m_iMargin = 10;
-   m_iMarginTop = 40;
-   m_iMarginLine = 10;
-   //m_listMissingCharset = NULL;
+   m_iMarginTop = 20;
+   m_iMarginLeft = 20;
+   m_iMarginRight = 20;
+   m_iLineSpacing = 4;
+   m_iButtonHSpacing = 20;
+   m_iButtonHPadding = 20;
+   m_iButtonVPadding = 8;
+   m_iMidSpacing = 20;
+   m_iMarginBottom = 20;
 
 }
 
@@ -111,8 +117,8 @@ simple_ui_display::~ simple_ui_display()
 
    on_free_colors(pdisplay);
 
-//   XFreeStringList(m_listMissingCharset);
    XDestroyWindow(pdisplay, m_window);
+
    XFreeColormap(pdisplay, m_colormap);
 
    XUnlockDisplay(pdisplay);
@@ -192,59 +198,6 @@ void simple_ui_display::on_colors(Display * pdisplay)
 }
 
 
-
-// create_gc from https://github.com/QMonkey/Xlib-demo/blob/master/src/simple-text.c
-GC simple_ui_display::create_gc()
-{
-
-   sync_lock sl(x11_mutex());
-
-   //windowing_output_debug_string("\n::get_window_rect 1");
-
-   Display * pdisplay = x11_get_display();
-
-   XLockDisplay(pdisplay);
-
-   GC gc;
-
-   try
-   {
-
-      unsigned long valuemask = 0;		/* which values in 'values' to  */
-                  /* check when creating the GC.  */
-      XGCValues values;			/* initial values for the GC.   */
-      unsigned int line_width = 2;		/* line width for the GC.       */
-      int line_style = LineSolid;		/* style for lines drawing and  */
-      int cap_style = CapButt;		/* style of the line's edje and */
-      int join_style = JoinBevel;		/*  joined lines.		*/
-      int screen_num = DefaultScreen(pdisplay);
-
-      gc = XCreateGC(pdisplay, m_window, valuemask, &values);
-
-      if (gc == nullptr)
-      {
-
-         return nullptr;
-
-      }
-
-      XSetLineAttributes(pdisplay, gc, line_width, line_style, cap_style, join_style);
-
-      XSetFillStyle(pdisplay, gc, FillSolid);
-
-   }
-   catch(...)
-   {
-
-   }
-
-   XUnlockDisplay(pdisplay);
-
-   return gc;
-
-}
-
-
 void simple_ui_display::call_expose(Display * pdisplay)
 {
 
@@ -309,12 +262,6 @@ void simple_ui_display::on_idle(Display * pdisplay)
 void simple_ui_display::on_expose(Display * pdisplay)
 {
 
-   //sync_lock sl(x11_mutex());
-
-   //Display * pdisplay = x11_get_display();
-
-   //XLockDisplay(pdisplay);
-
    if(m_bDarkModeModified)
    {
 
@@ -336,57 +283,11 @@ void simple_ui_display::on_expose(Display * pdisplay)
 
          XftDrawRect(m_pdraw, &m_colorBack, 0, 0, m_size.cx, m_size.cy);
 
-         //XftDrawStringUtf8(m_pdraw, &m_colorFore, m_pfont, 20, 20, (XftChar8 *)buf, strlen(buf));
-
-         //XFlush(pdisplay);
-
       }
-      //else
+
       {
 
-
-         //GC gc = create_gc();
-
          color32_t crBk = get_simple_ui_color(::user::element_background);
-
-//         crBk = argb_swap_rb(crBk);
-//
-//         XSetForeground(pdisplay, gc, crBk);
-//
-//         XFillRectangle(pdisplay, m_window, gc, 0, 0, m_size.cx, m_size.cy);
-//
-//         int iFontHeight;
-//
-//         auto gcontext = XGContextFromGC(gc);
-//
-//         color32_t crText = get_simple_ui_color(::user::element_text);
-//
-//         crText = argb_swap_rb(crText);
-//
-//         XSetForeground(pdisplay, gc, crText);
-//
-//         if(::user::is_app_dark_mode())
-//         {
-//
-//            m_gcText = x11_create_gc(m_colormap, pdisplay, m_window, 255, 255, 255, 255);
-//            m_gcTextHover = x11_create_gc(m_colormap, pdisplay, m_window, 255, 220, 170, 150);
-//            //m_gcBar = x11_create_gc(m_colormap, pdisplay, m_window, 255, 240, 240, 240);
-//            m_gcButton = x11_create_gc(m_colormap, pdisplay, m_window, 255, 120, 120, 120);
-//            m_gcButtonHover = x11_create_gc(m_colormap, pdisplay, m_window, 255, 130, 130, 130);
-//            m_gcButtonPress = x11_create_gc(m_colormap, pdisplay, m_window, 255, 140, 140, 140);
-//
-//         }
-//         else
-//         {
-//
-//            m_gcText = x11_create_gc(m_colormap, pdisplay, m_window, 255, 0, 0, 0);
-//            m_gcTextHover = x11_create_gc(m_colormap, pdisplay, m_window, 255, 220, 170, 150);
-//            //m_gcBar = x11_create_gc(m_colormap, pdisplay, m_window, 255, 240, 240, 240);
-//            m_gcButton = x11_create_gc(m_colormap, pdisplay, m_window, 255, 190, 190, 190);
-//            m_gcButtonHover = x11_create_gc(m_colormap, pdisplay, m_window, 255, 200, 200, 200);
-//            m_gcButtonPress = x11_create_gc(m_colormap, pdisplay, m_window, 255, 210, 210, 210);
-//
-//         }
 
          int iY = m_iMarginTop;
 
@@ -395,18 +296,15 @@ void simple_ui_display::on_expose(Display * pdisplay)
 
             str.trim_right();
 
-            XftDrawStringUtf8(m_pdraw, &m_colorFore, m_pfont, m_iMarginLine, iY, (FcChar8 *)str.c_str(), str.get_length());
+            XftDrawStringUtf8(m_pdraw, &m_colorFore, m_pfont, m_iMarginLeft, iY + m_iTextAscent, (FcChar8 *)str.c_str(), str.get_length());
 
-            iY += m_iButtonHeight;
+            iY += m_iLineHeight;
+
+            iY += m_iLineSpacing;
 
          }
 
-         int iBarTop = m_iButtonTop - m_iMarginLine * 2;
-
-         //XFillRectangle(pdisplay, m_window, m_gcBar,
-         //0, iBarTop, m_size.cx, m_size.cy - iBarTop);
-
-         int right = m_size.cx - 10;
+         int right = m_size.cx - m_iMarginRight;
 
          XftColor colorFore;
          XftColor colorBack;
@@ -422,7 +320,7 @@ void simple_ui_display::on_expose(Display * pdisplay)
             ::rect & rButtonOuter = pbutton->m_rect;
 
             rButtonOuter.right = right;
-            rButtonOuter.left = right - m_iButtonWidth - (m_iMarginLine * 6);
+            rButtonOuter.left = right - m_iButtonWidth;
             rButtonOuter.top = m_iButtonTop;
             rButtonOuter.bottom = m_iButtonTop + m_iButtonHeight;
 
@@ -500,37 +398,22 @@ void simple_ui_display::on_expose(Display * pdisplay)
 
             }
 
-
             XftDrawRect(m_pdraw, &colorBorder, rButtonOuter.left, rButtonOuter.top, rButtonOuter.width(), rButtonOuter.height());
 
             XftDrawRect(m_pdraw, &colorBack, rButton.left, rButton.top, rButton.width(), rButton.height());
 
             ::rect rectText(rButton);
 
-            rectText.deflate(m_iMarginLine * 3, m_iMarginLine);
+            rectText.deflate(m_iButtonHPadding, m_iButtonVPadding);
 
             XftDrawStringUtf8(m_pdraw, &colorFore, m_pfont,
             rectText.left + (rectText.width() - rText.width) / 2,
-            rectText.top + m_iButtonHeight - m_iMarginLine * 2.5,
+            rectText.top + m_iTextAscent,
             (FcChar8 *)pbutton->m_strLabel.c_str(), pbutton->m_strLabel.get_length());
 
-//            XftDrawText(pdisplay, m_window, m_fs, gc,
-//                        rectText.left + (rectText.width() - rText.width) / 2, rectText.top + m_iButtonHeight - m_iMarginLine * 2,
-//                        pbutton->m_wstrLabel, pbutton->m_wstrLabel.get_length());
-//
-            right = rButton.left - 10;
+            right = rButton.left - m_iButtonHSpacing;
 
          }
-
-//         XFreeGC(pdisplay, m_gcText);
-//         XFreeGC(pdisplay, m_gcTextHover);
-//         //XFreeGC(pdisplay, m_gcBar);
-//         XFreeGC(pdisplay, m_gcButton);
-//         XFreeGC(pdisplay, m_gcButtonHover);
-//         XFreeGC(pdisplay, m_gcButtonPress);
-
-
-//         XFreeGC(pdisplay, gc);
 
       }
 
@@ -539,9 +422,6 @@ void simple_ui_display::on_expose(Display * pdisplay)
    {
 
    }
-
-   //XUnlockDisplay(pdisplay);
-
 
 }
 
@@ -646,8 +526,6 @@ int simple_ui_display::show()
 
          on_alloc_colors(pdisplay);
 
-         //system_update(id_dark_mode, this);
-
          on_layout(pdisplay);
 
          XMapWindow(pdisplay, m_window);
@@ -678,26 +556,36 @@ int simple_ui_display::show()
 void simple_ui_display::on_layout(Display * pdisplay)
 {
 
-   ::size size;
+   ::size sizeLine;
+
+   XGlyphInfo infoDummy;
+
+   m_iTextAscent = 0;
+
+   string strMeasure;
+
+   strMeasure = "Áj";
+
+   XftTextExtentsUtf8(pdisplay, m_pfont, (FcChar8 *) strMeasure.c_str(), strMeasure.get_length(), &infoDummy);
 
    XGlyphInfo info;
 
    for(auto & str : m_stra)
    {
 
-      string strMeasure;
-
-      strMeasure = "!" + str;
+      strMeasure = "Áj" + str;
 
       XftTextExtentsUtf8(pdisplay, m_pfont, (FcChar8 *) strMeasure.c_str(), strMeasure.get_length(), &info);
 
-      size.cx = max(size.cx, info.width + m_iMargin * 2);
+      sizeLine.cx = max(sizeLine.cx, info.x + info.width - infoDummy.width);
 
-      size.cy = max(size.cy, info.height + m_iMargin);
+      m_iTextAscent = max(m_iTextAscent, info.y);
+
+      sizeLine.cy = max(sizeLine.cy, info.height);
 
    }
 
-   int iMaxButtonWidth = 50;
+   int iMaxButtonTextWidth = 50;
 
    for(index iButton = m_buttona.get_upper_bound(); iButton >= 0; iButton--)
    {
@@ -711,30 +599,49 @@ void simple_ui_display::on_layout(Display * pdisplay)
 
          pbutton->m_bTextRect = true;
 
-         XftTextExtentsUtf8(pdisplay, m_pfont, (FcChar8 *) pbutton->m_strLabel.c_str(), pbutton->m_strLabel.get_length(), &infoText);
+         string strMeasure = "Áj" + pbutton->m_strLabel;
+
+         XftTextExtentsUtf8(pdisplay, m_pfont, (FcChar8 *) strMeasure.c_str(), strMeasure.get_length(), &infoText);
+
+         infoText.width -=  infoDummy.width;
 
       }
 
-      iMaxButtonWidth = max(iMaxButtonWidth, infoText.width);
+      iMaxButtonTextWidth = max(iMaxButtonTextWidth, infoText.width);
+
+      m_iTextAscent = max(m_iTextAscent, info.y);
+
+      sizeLine.cy = max(sizeLine.cy, infoText.height);
 
    }
 
-   m_iButtonWidth = iMaxButtonWidth;
+   m_iButtonWidth = m_iButtonHPadding + iMaxButtonTextWidth + m_iButtonHPadding;
 
-   size.cy *= (m_stra.get_count() + 2);
+   m_iLineHeight = sizeLine.cy;
 
-   m_iButtonHeight = size.cy / (m_stra.get_count() + 2)  + m_iMarginLine;
+   m_iButtonHeight = m_iButtonVPadding + m_iLineHeight + m_iButtonVPadding;
 
-   size.cy += m_iMarginTop + m_iMarginLine;
+   ::size sizeTotal;
+
+   sizeTotal.cx = max(m_iMarginLeft + sizeLine.cx + m_iMarginRight, m_iMarginLeft + m_iButtonWidth * m_buttona.get_count() + (m_iButtonHSpacing) * (m_buttona.get_count() - 1) + m_iMarginRight);
+
+   sizeTotal.cy = m_iMarginTop;
+
+   sizeTotal.cy += m_iLineHeight * m_stra.get_count();
+
+   sizeTotal.cy += m_iLineSpacing * (m_stra.get_count() - 1);
+
+   sizeTotal.cy += m_iMidSpacing;
+
+   m_iButtonTop = sizeTotal.cy;
+
+   sizeTotal.cy += m_iButtonHeight;
+
+   sizeTotal.cy += m_iMarginBottom;
 
    int iButtonWidth = 100;
 
-   m_size.cx = max(m_size.cx, m_iButtonWidth * m_buttona.get_count() + (m_iMarginLine * 6) * (m_buttona.get_count() + 1));
-
-   m_size = m_size.max(size);
-
-
-   m_iButtonTop = m_size.cy - m_iButtonHeight - m_iMarginLine * 2;
+   m_size = m_size.max(sizeTotal);
 
    int iScreenCount = 0;
 

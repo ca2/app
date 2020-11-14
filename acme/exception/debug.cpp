@@ -54,7 +54,7 @@ misc_exception::~misc_exception()
 }
 
 
-
+/*
 
 
 namespace win
@@ -71,6 +71,8 @@ namespace win
 
 } // namespace win
 
+
+*/
 
 
 

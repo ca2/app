@@ -226,7 +226,7 @@ namespace draw2d_direct2d
    bool image::to(::draw2d::graphics* pgraphics, const ::point & point, const ::size & size, const ::point & pointSrc)
    {
 
-      return pgraphics->BitBlt(point.x, point.y, size.cx, size.cy, get_graphics(), pointSrc.x, pointSrc.y, SRCCOPY) != FALSE;
+      return pgraphics->BitBlt(point.x, point.y, size.cx, size.cy, get_graphics(), pointSrc.x, pointSrc.y) != FALSE;
 
    }
 
@@ -266,7 +266,7 @@ namespace draw2d_direct2d
    bool image::from(const ::point & pointDest, ::draw2d::graphics* pgraphics, const ::point & point, const ::size & sz)
    {
 
-      return m_pgraphics->BitBlt(pointDest.x, pointDest.y, sz.cx, sz.cy, pgraphics, point.x, point.y, SRCCOPY) != FALSE;
+      return m_pgraphics->BitBlt(pointDest.x, pointDest.y, sz.cx, sz.cy, pgraphics, point.x, point.y) != FALSE;
 
    }
 

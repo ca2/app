@@ -135,7 +135,7 @@ comptr < IWICImagingFactory > wic_get_imaging_factory()
 //
 //}
 //
-//HRESULT get_query_reader(LPCWSTR wszPath, IWICMetadataQueryReader * pqueryreaderParent, comptr<IWICMetadataQueryReader> & pqueryreader)
+//HRESULT get_query_reader(const widechar * wszPath, IWICMetadataQueryReader * pqueryreaderParent, comptr<IWICMetadataQueryReader> & pqueryreader)
 //{
 //
 //   PROPVARIANT value;

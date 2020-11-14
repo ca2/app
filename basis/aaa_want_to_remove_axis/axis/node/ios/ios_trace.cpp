@@ -28,7 +28,7 @@ static const __MAP_MESSAGE allMessages[] =
    DEFINE_MESSAGE(WM_SETTEXT),
    DEFINE_MESSAGE(WM_GETTEXT),
    DEFINE_MESSAGE(WM_GETTEXTLENGTH),
-   DEFINE_MESSAGE(WM_PAINT),
+   DEFINE_MESSAGE(e_message_paint),
    DEFINE_MESSAGE(e_message_close),
    DEFINE_MESSAGE(WM_QUERYENDSESSION),
    DEFINE_MESSAGE(e_message_quit),
@@ -52,7 +52,7 @@ static const __MAP_MESSAGE allMessages[] =
    DEFINE_MESSAGE(WM_TIMECHANGE),
    DEFINE_MESSAGE(WM_CANCELMODE),
    DEFINE_MESSAGE(WM_SETCURSOR),
-   DEFINE_MESSAGE(WM_MOUSEACTIVATE),
+   DEFINE_MESSAGE(e_message_mouse_activate),
    DEFINE_MESSAGE(WM_CHILDACTIVATE),
    DEFINE_MESSAGE(WM_QUEUESYNC),
    DEFINE_MESSAGE(WM_GETMINMAXINFO),
@@ -69,12 +69,12 @@ static const __MAP_MESSAGE allMessages[] =
    DEFINE_MESSAGE(WM_QUERYDRAGICON),
    DEFINE_MESSAGE(WM_COMPAREITEM),
    DEFINE_MESSAGE(WM_COMPACTING),
-   DEFINE_MESSAGE(WM_NCCREATE),
-   DEFINE_MESSAGE(WM_NCDESTROY),
-   DEFINE_MESSAGE(WM_NCCALCSIZE),
-   DEFINE_MESSAGE(WM_NCHITTEST),
-   DEFINE_MESSAGE(WM_NCPAINT),
-   DEFINE_MESSAGE(WM_NCACTIVATE),
+   DEFINE_MESSAGE(e_message_nccreate),
+   DEFINE_MESSAGE(e_message_ncdestroy),
+   DEFINE_MESSAGE(e_message_nccalcsize),
+   DEFINE_MESSAGE(e_message_nchittest),
+   DEFINE_MESSAGE(e_message_ncpaint),
+   DEFINE_MESSAGE(e_message_ncactivate),
    DEFINE_MESSAGE(WM_GETDLGCODE),
    DEFINE_MESSAGE(e_message_non_client_mouse_move),
    DEFINE_MESSAGE(WM_NCLBUTTONDOWN),
@@ -99,8 +99,8 @@ static const __MAP_MESSAGE allMessages[] =
    DEFINE_MESSAGE(WM_COMMAND),
    DEFINE_MESSAGE(WM_SYSCOMMAND),
    DEFINE_MESSAGE(WM_TIMER),
-   DEFINE_MESSAGE(WM_HSCROLL),
-   DEFINE_MESSAGE(WM_VSCROLL),
+   DEFINE_MESSAGE(e_message_hscroll),
+   DEFINE_MESSAGE(e_message_vscroll),
    DEFINE_MESSAGE(WM_INITMENU),
    DEFINE_MESSAGE(WM_INITMENUPOPUP),
    DEFINE_MESSAGE(WM_MENUSELECT),
@@ -139,12 +139,12 @@ static const __MAP_MESSAGE allMessages[] =
    DEFINE_MESSAGE(WM_RENDERALLFORMATS),
    DEFINE_MESSAGE(WM_DESTROYCLIPBOARD),
    DEFINE_MESSAGE(WM_DRAWCLIPBOARD),
-   DEFINE_MESSAGE(WM_PAINTCLIPBOARD),
-   DEFINE_MESSAGE(WM_VSCROLLCLIPBOARD),
+   DEFINE_MESSAGE(e_message_paintCLIPBOARD),
+   DEFINE_MESSAGE(e_message_vscrollCLIPBOARD),
    DEFINE_MESSAGE(WM_SIZECLIPBOARD),
    DEFINE_MESSAGE(WM_ASKCBFORMATNAME),
    DEFINE_MESSAGE(WM_CHANGECBCHAIN),
-   DEFINE_MESSAGE(WM_HSCROLLCLIPBOARD),
+   DEFINE_MESSAGE(e_message_hscrollCLIPBOARD),
    DEFINE_MESSAGE(WM_QUERYNEWPALETTE),
    DEFINE_MESSAGE(WM_PALETTEISCHANGING),
    DEFINE_MESSAGE(WM_PALETTECHANGED),
@@ -280,7 +280,7 @@ void __trace_message(const char * lpszPrefix, ::message::message * pmessage)
    SCAST_PTR(::message::base, pbase, pmessage);
 
    if (pbase->m_id == e_message_mouse_move || pbase->m_id == e_message_non_client_mouse_move ||
-         pbase->m_id == WM_NCHITTEST || pbase->m_id == WM_SETCURSOR ||
+         pbase->m_id == e_message_nchittest || pbase->m_id == WM_SETCURSOR ||
          pbase->m_id == WM_CTLCOLORBTN ||
          pbase->m_id == WM_CTLCOLORDLG ||
          pbase->m_id == WM_CTLCOLOREDIT ||
@@ -363,7 +363,7 @@ void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg)
    ENSURE_ARG(lpmsg != nullptr);
 
    if (lpmsg->message == e_message_mouse_move || lpmsg->message == e_message_non_client_mouse_move ||
-         lpmsg->message == WM_NCHITTEST || lpmsg->message == WM_SETCURSOR ||
+         lpmsg->message == e_message_nchittest || lpmsg->message == WM_SETCURSOR ||
          lpmsg->message == WM_CTLCOLORBTN ||
          lpmsg->message == WM_CTLCOLORDLG ||
          lpmsg->message == WM_CTLCOLOREDIT ||

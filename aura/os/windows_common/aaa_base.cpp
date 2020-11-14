@@ -18,7 +18,7 @@ _In_opt_ const char * pOutputString
 VOID
 WINAPI
 output_debug_string_w(
-_In_opt_ LPCWSTR pOutputString
+_In_opt_ const widechar * pOutputString
 
 )
 {
@@ -40,7 +40,7 @@ typedef WINBASEAPI
 VOID
 WINAPI
 FN_OutputDebugStringW(
-_In_opt_ LPCWSTR pOutputString
+_In_opt_ const widechar * pOutputString
 
 );
 

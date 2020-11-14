@@ -3,6 +3,7 @@
 //#include "apex/user/_user.h"
 #endif
 #include "apex/message.h"
+#include "acme/os/cross/windows/_windows.h"
 
 #define __msg_entry(x) if(uMessage == (x)) { str = (#x); }
 
@@ -13,7 +14,7 @@ CLASS_DECL_APEX string get_message_text(::u32 uMessage, bool bWithNumbers)
    {
       str = "-1";
    }
-   else __msg_entry(WM_NULL)
+   else __msg_entry(e_message_null)
 else __msg_entry(e_message_create)
 else __msg_entry(e_message_destroy)
 else __msg_entry(e_message_move)
@@ -26,7 +27,7 @@ else __msg_entry(WM_SETREDRAW)
 else __msg_entry(WM_SETTEXT)
 else __msg_entry(WM_GETTEXT)
 else __msg_entry(WM_GETTEXTLENGTH)
-else __msg_entry(WM_PAINT)
+else __msg_entry(e_message_paint)
 else __msg_entry(e_message_close)
 else __msg_entry(WM_QUERYENDSESSION)
 else __msg_entry(WM_QUERYOPEN)
@@ -43,11 +44,11 @@ else __msg_entry(WM_FONTCHANGE)
 else __msg_entry(WM_TIMECHANGE)
 else __msg_entry(WM_CANCELMODE)
 else __msg_entry(WM_SETCURSOR)
-else __msg_entry(WM_MOUSEACTIVATE)
+else __msg_entry(e_message_mouse_activate)
 else __msg_entry(WM_CHILDACTIVATE)
 else __msg_entry(WM_QUEUESYNC)
 else __msg_entry(WM_GETMINMAXINFO)
-else __msg_entry(WM_PAINTICON)
+else __msg_entry(e_message_paintICON)
 else __msg_entry(WM_ICONERASEBKGND)
 else __msg_entry(WM_NEXTDLGCTL)
 else __msg_entry(WM_SPOOLERSTATUS)
@@ -94,12 +95,12 @@ else __msg_entry(WM_STYLECHANGED)
 else __msg_entry(WM_DISPLAYCHANGE)
 else __msg_entry(WM_GETICON)
 else __msg_entry(WM_SETICON)
-else __msg_entry(WM_NCCREATE)
-else __msg_entry(WM_NCDESTROY)
-else __msg_entry(WM_NCCALCSIZE)
-else __msg_entry(WM_NCHITTEST)
-else __msg_entry(WM_NCPAINT)
-else __msg_entry(WM_NCACTIVATE)
+else __msg_entry(e_message_nccreate)
+else __msg_entry(e_message_ncdestroy)
+else __msg_entry(e_message_nccalcsize)
+else __msg_entry(e_message_nchittest)
+else __msg_entry(e_message_ncpaint)
+else __msg_entry(e_message_ncactivate)
 else __msg_entry(WM_GETDLGCODE)
 
 
@@ -136,8 +137,8 @@ else __msg_entry(WM_INITDIALOG)      //             0x0110
 else __msg_entry(WM_COMMAND)      //             0x0111
 else __msg_entry(WM_SYSCOMMAND)      //             0x0112
 else __msg_entry(WM_TIMER)      //             0x0113
-else __msg_entry(WM_HSCROLL)      //             0x0114
-else __msg_entry(WM_VSCROLL)      //             0x0115
+else __msg_entry(e_message_hscroll)      //             0x0114
+else __msg_entry(e_message_vscroll)      //             0x0115
 else __msg_entry(WM_INITMENU)      //             0x0116
 else __msg_entry(WM_INITMENUPOPUP)      //             0x0117
 
@@ -189,7 +190,7 @@ return str;
 
    e_message_mouse_move,
    WM_SETCURSOR,
-   WM_NCHITTEST,
+   e_message_nchittest,
    e_message_non_client_mouse_move,
    (::u32)-1
 };
@@ -197,7 +198,7 @@ return str;
 ::u32 g_puiaMessageWindowDeactivating[] =
 {
    // 2019-06-28-00-28
-   WM_NCACTIVATE,
+   e_message_ncactivate,
    e_message_activate,
    WM_ACTIVATEAPP,
    e_message_kill_focus,
@@ -212,7 +213,7 @@ return str;
    WM_WINDOWPOSCHANGING,
    WM_WINDOWPOSCHANGED,
    WM_ACTIVATEAPP,
-   WM_NCACTIVATE,
+   e_message_ncactivate,
    WM_SYSCOMMAND,
    e_message_activate,
    WM_IME_SETCONTEXT,
@@ -229,8 +230,8 @@ return str;
    // Viagem da Mummi... : Yakissoba delicioso!!
    // 2019-06-27-22-36
    WM_GETMINMAXINFO,
-   WM_NCCREATE,
-   WM_NCCALCSIZE,
+   e_message_nccreate,
+   e_message_nccalcsize,
    e_message_create,
    WM_SETICON,
    WM_SETTEXT,
@@ -239,17 +240,17 @@ return str;
    WM_SHOWWINDOW,
    WM_WINDOWPOSCHANGING,
    WM_ACTIVATEAPP,
-   WM_NCACTIVATE,
+   e_message_ncactivate,
    e_message_activate,
    WM_IME_SETCONTEXT,
    WM_IME_NOTIFY,
    e_message_set_focus,
-   WM_NCPAINT,
+   e_message_ncpaint,
    WM_ERASEBKGND,
    WM_WINDOWPOSCHANGED,
    WM_GETICON,
    WM_DWMNCRENDERINGCHANGED,
-   WM_PAINT,
+   e_message_paint,
    e_message_redraw,
    (::u32)-1
 };

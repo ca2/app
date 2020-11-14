@@ -11,7 +11,7 @@
    if (!AfxLoadString(nIDS, szFontInfo,_countof(szFontInfo)))
       return FALSE;
 
-   LPTSTR lpszSize = _tcschr(szFontInfo, '\n');
+   char * lpszSize = _tcschr(szFontInfo, '\n');
    if (lpszSize != nullptr)
    {
       // get point size and convert to pixels

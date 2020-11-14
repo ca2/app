@@ -511,7 +511,7 @@ namespace android
 
       if(!m_puserinteraction->m_bMessageWindow)
       {
-         MESSAGE_LINK(WM_PAINT, pchannel, this,&interaction_impl::_001OnPaint);
+         MESSAGE_LINK(e_message_paint, pchannel, this,&interaction_impl::_001OnPaint);
          MESSAGE_LINK(WM_PRINT, pchannel, this,&interaction_impl::_001OnPrint);
       }
       m_puserinteraction->install_message_routing(pchannel);
@@ -539,7 +539,7 @@ namespace android
 
       MESSAGE_LINK(e_message_destroy, pchannel, this,&interaction_impl::_001OnDestroy);
 
-      MESSAGE_LINK(WM_NCCALCSIZE, pchannel, this,&interaction_impl::_001OnNcCalcSize);
+      MESSAGE_LINK(e_message_nccalcsize, pchannel, this,&interaction_impl::_001OnNcCalcSize);
 
    }
 
@@ -1635,8 +1635,8 @@ namespace android
 //   switch (uMsg)
 //   {
 //      // normal messages (just wparam, lparam through OnWndMsg)
-//   case WM_HSCROLL:
-//   case WM_VSCROLL:
+//   case e_message_hscroll:
+//   case e_message_vscroll:
 //   case WM_PARENTNOTIFY:
 //   case WM_DRAWITEM:
 //   case WM_MEASUREITEM:
@@ -3538,7 +3538,7 @@ namespace android
 
    }
 
-   i32 interaction_impl::DlgDirList(LPTSTR lpPathSpec, i32 nIDListBox, i32 nIDStaticPath, ::u32 nFileType)
+   i32 interaction_impl::DlgDirList(char * lpPathSpec, i32 nIDListBox, i32 nIDStaticPath, ::u32 nFileType)
    {
 
       __throw(not_implemented());
@@ -3547,7 +3547,7 @@ namespace android
 
    }
 
-   i32 interaction_impl::DlgDirListComboBox(LPTSTR lpPathSpec, i32 nIDComboBox, i32 nIDStaticPath, ::u32 nFileType)
+   i32 interaction_impl::DlgDirListComboBox(char * lpPathSpec, i32 nIDComboBox, i32 nIDStaticPath, ::u32 nFileType)
    {
 
       __throw(not_implemented());
@@ -3556,7 +3556,7 @@ namespace android
 
    }
 
-   bool interaction_impl::DlgDirSelect(LPTSTR lpString, i32 nSize, i32 nIDListBox)
+   bool interaction_impl::DlgDirSelect(char * lpString, i32 nSize, i32 nIDListBox)
    {
 
       __throw(not_implemented());
@@ -3565,7 +3565,7 @@ namespace android
 
    }
 
-   bool interaction_impl::DlgDirSelectComboBox(LPTSTR lpString, i32 nSize, i32 nIDComboBox)
+   bool interaction_impl::DlgDirSelectComboBox(char * lpString, i32 nSize, i32 nIDComboBox)
    {
 
       __throw(not_implemented());
@@ -3596,7 +3596,7 @@ namespace android
    }
    */
 
-//   i32 interaction_impl::GetDlgItemText(i32 nID, LPTSTR lpStr, i32 nMaxCount) const
+//   i32 interaction_impl::GetDlgItemText(i32 nID, char * lpStr, i32 nMaxCount) const
 //   {
 //
 //      __throw(not_implemented());
@@ -4262,7 +4262,7 @@ namespace android
    {
       Default();
    }
-   void interaction_impl::OnAskCbFormatName(::u32 nMaxCount, LPTSTR pszName)
+   void interaction_impl::OnAskCbFormatName(::u32 nMaxCount, char * pszName)
    {
       (nMaxCount);
       if (nMaxCount>0)

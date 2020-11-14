@@ -76,7 +76,7 @@ namespace windows
       si.cb = sizeof(si);
       si.dwFlags = STARTF_USESHOWWINDOW;
       si.wShowWindow = display_none; */
-      //         if(!::CreateProcess(nullptr, (LPTSTR) (const char *) Context.dir().appdata("production\\build.bat"), nullptr, nullptr, FALSE, CREATE_NEW_CONSOLE, nullptr, nullptr, &si, &pi))
+      //         if(!::CreateProcess(nullptr, (char *) (const char *) Context.dir().appdata("production\\build.bat"), nullptr, nullptr, FALSE, CREATE_NEW_CONSOLE, nullptr, nullptr, &si, &pi))
       m_si.dwFlags |= STARTF_USESHOWWINDOW;
       m_si.wShowWindow = display_none;
 

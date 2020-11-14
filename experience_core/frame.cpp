@@ -118,7 +118,7 @@ namespace experience
 
                point -= pointInflate;
 
-               bool b = pimage2->g()->draw(::rect(pimage1->get_size()), pgraphics, point, SRCCOPY);
+               bool b = pimage2->g()->draw(::rect(pimage1->get_size()), pgraphics, point);
 
                b = imaging.blur(pimage2, 2);
 
@@ -145,7 +145,7 @@ namespace experience
                rectWindow.height(),
                bf);*/
 
-               pgraphics->draw(rectClient, pimage2->g(), pointInflate, SRCCOPY);
+               pgraphics->draw(rectClient, pimage2->g(), pointInflate);
 
             }
 

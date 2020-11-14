@@ -143,14 +143,14 @@
 //   }
 //
 //
-//   LPTSTR stdio_file::read_string(LPTSTR lpsz, ::u32 nMax)
+//   char * stdio_file::read_string(char * lpsz, ::u32 nMax)
 //   {
 //
 //      ASSERT(lpsz != nullptr);
 //
 //      ASSERT(m_pStream != nullptr);
 //
-//      LPTSTR lpszResult = fgets(lpsz, nMax, m_pStream);
+//      char * lpszResult = fgets(lpsz, nMax, m_pStream);
 //
 //      if (lpszResult == nullptr && !feof(m_pStream))
 //      {

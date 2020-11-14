@@ -177,14 +177,14 @@ LRESULT CALLBACK CTSFMainWnd::_WndProc( HWND hWnd,
 {
     CTSFMainWnd *pThis = (CTSFMainWnd*)GetWindowLongPtr(hWnd, THIS_POINTER_OFFSET);
 
-    if((NULL == pThis) && (uMessage != WM_NCCREATE))
+    if((NULL == pThis) && (uMessage != e_message_nccreate))
     {
         return default_window_procedure(hWnd, uMessage, wParam, lParam);
     }
     
     switch (uMessage)
     {
-    case WM_NCCREATE:
+    case e_message_nccreate:
         {
             LPCREATESTRUCT lpcs = (LPCREATESTRUCT)lParam;
             pThis = (CTSFMainWnd*)(lpcs->lpCreateParams);
@@ -221,7 +221,7 @@ LRESULT CALLBACK CTSFMainWnd::_WndProc( HWND hWnd,
                                     GET_WM_COMMAND_CMD(wParam, lParam), 
                                     GET_WM_COMMAND_HWND(wParam, lParam));
 
-    case WM_NCDESTROY:
+    case e_message_ncdestroy:
         pThis->m_hWnd = NULL;
         break;
 
@@ -428,7 +428,7 @@ LRESULT CTSFMainWnd::_OnInitMenuPopup(WPARAM wParam, LPARAM lParam)
 
 **************************************************************************/
 
-BOOL CTSFMainWnd::_GetFileName(HWND hwndOwner, LPTSTR lpszFile, ULONG uChars, BOOL fOpen)
+BOOL CTSFMainWnd::_GetFileName(HWND hwndOwner, char * lpszFile, ULONG uChars, BOOL fOpen)
 {
     OPENFILENAME    ofn;
     BOOL            fReturn = FALSE;

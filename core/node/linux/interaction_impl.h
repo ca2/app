@@ -197,7 +197,7 @@ namespace linux
       // oswindow Text Functions
       void set_window_text(const char * pszString) override;
 
-      //strsize GetWindowText(LPTSTR pszStringBuf, strsize nMaxCount);
+      //strsize GetWindowText(char * pszStringBuf, strsize nMaxCount);
 
       void get_window_text(string & str) override;
       //strsize GetWindowTextLength();
@@ -389,20 +389,20 @@ namespace linux
 //      virtual void CheckRadioButton(i32 nIDFirstButton, i32 nIDLastButton,
 //                                    i32 nIDCheckButton);
 //      virtual i32 GetCheckedRadioButton(i32 nIDFirstButton, i32 nIDLastButton);
-//      virtual i32 DlgDirList(LPTSTR pPathSpec, i32 nIDListBox,
+//      virtual i32 DlgDirList(char * pPathSpec, i32 nIDListBox,
 //
 //                             i32 nIDStaticPath, ::u32 nFileType);
-//      virtual i32 DlgDirListComboBox(LPTSTR pPathSpec, i32 nIDComboBox,
+//      virtual i32 DlgDirListComboBox(char * pPathSpec, i32 nIDComboBox,
 //
 //                                     i32 nIDStaticPath, ::u32 nFileType);
-//      virtual bool DlgDirSelect(LPTSTR pString, i32 nSize, i32 nIDListBox);
+//      virtual bool DlgDirSelect(char * pString, i32 nSize, i32 nIDListBox);
 //
-//      virtual bool DlgDirSelectComboBox(LPTSTR pString, i32 nSize, i32 nIDComboBox);
+//      virtual bool DlgDirSelectComboBox(char * pString, i32 nSize, i32 nIDComboBox);
 
 
       //virtual ::u32 GetChildByIdInt(i32 nID, bool * pTrans = nullptr, bool bSigned = TRUE) const;
 
-      //virtual i32 GetChildByIdText(i32 nID, LPTSTR pStr, i32 nMaxCount) const;
+      //virtual i32 GetChildByIdText(i32 nID, char * pStr, i32 nMaxCount) const;
 
       //virtual i32 GetChildByIdText(i32 nID, string & rectString) const;
 //      virtual ::user::interaction * GetNextDlgGroupItem(::user::interaction * pWndCtl, bool bPrevious = FALSE) const;

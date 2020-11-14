@@ -25,27 +25,40 @@ namespace datetime
    }
 
 
-   bool time::is_valid_FILETIME(const FILETIME& fileTime) noexcept
+#ifdef WINDOWS
+
+
+   bool time::is_valid_FILETIME(const FILETIME & fileTime) noexcept
    {
+
       FILETIME localTime;
+
       if (!FileTimeToLocalFileTime(&fileTime, &localTime))
       {
-         return FALSE;
+
+          return FALSE;
+
       }
 
       // then convert that time to system time
       SYSTEMTIME sysTime;
+
       if (!FileTimeToSystemTime(&localTime, &sysTime))
       {
-         return FALSE;
+
+          return FALSE;
+
       }
 
       return TRUE;
+
    }
 
 
-   time::time(i32 nYear, i32 nMonth, i32 nDay, i32 nHour, i32 nMin, i32 nSec,
-              i32 nDST)
+#endif
+
+
+   time::time(i32 nYear, i32 nMonth, i32 nDay, i32 nHour, i32 nMin, i32 nSec, i32 nDST)
    {
 #pragma warning (push)
 #pragma warning (disable: 4127)  // conditional expression constant
@@ -84,9 +97,16 @@ namespace datetime
       ASSUME(m_time != -1);   */    // indicates an illegal input time
       if(m_time == -1)
       {
+
          __throw(invalid_argument_exception());
+
       }
+
    }
+
+
+#ifdef WINDOWS
+
 
    time::time(::u16 wDosDate, ::u16 wDosTime, i32 nDST)
    {
@@ -117,6 +137,7 @@ namespace datetime
          __throw(invalid_argument_exception());
 
    }
+
 
    time::time(const SYSTEMTIME& sysTime, i32 nDST)
    {
@@ -173,6 +194,9 @@ namespace datetime
    }
 
 
+#endif
+
+
    ::datetime::time & time::operator=(const time & time) noexcept
    {
 
@@ -219,34 +243,44 @@ namespace datetime
       return *this;
    }
 
+
    ::datetime::time& time::operator-=( date_span span )
    {
-      UNREFERENCED_PARAMETER(span);
+
+       UNREFERENCED_PARAMETER(span);
+
       __throw(not_implemented());
 
       return *this;
+
    }
 
 
    ::datetime::time time::operator-( date_span span ) const
    {
-      UNREFERENCED_PARAMETER(span);
+
+       UNREFERENCED_PARAMETER(span);
+
       __throw(not_implemented());
+
    }
+
 
    ::datetime::time time::operator+( date_span span ) const
    {
-      UNREFERENCED_PARAMETER(span);
-      __throw(not_implemented());
-   }
 
+       UNREFERENCED_PARAMETER(span);
+
+      __throw(not_implemented());
+
+   }
 
 
    struct tm* time::GetGmtTm(struct tm* ptm) const
    {
+
       if (ptm != nullptr)
       {
-
 
 #ifdef WINDOWS
 
@@ -294,6 +328,7 @@ namespace datetime
 
 
    }
+
 
    struct tm* time::GetLocalTm(struct tm* ptm) const
    {
@@ -347,8 +382,13 @@ namespace datetime
 
    }
 
+
+#ifdef WINDOWS
+
+
    bool time::get_as_system_time(SYSTEMTIME& timeDest) const noexcept
    {
+
       struct tm ttm;
       struct tm* ptm;
 
@@ -366,12 +406,20 @@ namespace datetime
       timeDest.wMilliseconds = 0;
 
       return true;
+
    }
+
+
+#endif
+
 
    time_t time::get_time() const noexcept
    {
-      return( m_time );
+
+       return( m_time );
+
    }
+
 
    i32 time::GetYear() const noexcept
    {
@@ -771,13 +819,7 @@ stream & operator <<(stream & os, ::datetime::time & time)
 //}
 
 
-
-
-
-
-
-
-
+#ifdef WINDOWS
 
 
 CLASS_DECL_ACME SYSTEMTIME __SYSTEMTIME(const ::datetime::time & time)
@@ -802,13 +844,10 @@ CLASS_DECL_ACME SYSTEMTIME __SYSTEMTIME(const ::datetime::time & time)
 
    return st;
 
-
-
 }
 
 
-
-filetime __filetime(const ::datetime::time & time) 
+filetime __filetime(const ::datetime::time & time)
 {
 
    SYSTEMTIME systemtime = __SYSTEMTIME(time);
@@ -833,3 +872,9 @@ filetime __filetime(const ::datetime::time & time)
    return filetime;
 
 }
+
+
+#endif
+
+
+

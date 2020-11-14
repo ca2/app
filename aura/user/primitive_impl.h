@@ -197,8 +197,8 @@ virtual bool setWMClass(const char * psz);
       virtual ::i32 get_window_long(i32 nIndex) const override;
       virtual ::i32 set_window_long(i32 nIndex,::i32 lValue) override;
 
-      virtual LONG_PTR get_window_long_ptr(i32 nIndex) const override;
-      virtual LONG_PTR set_window_long_ptr(i32 nIndex,LONG_PTR lValue) override;
+      virtual iptr get_window_long_ptr(i32 nIndex) const override;
+      virtual iptr set_window_long_ptr(i32 nIndex, iptr lValue) override;
 
       virtual id GetDlgCtrlId() const override;
       virtual id SetDlgCtrlId(::id id) override;

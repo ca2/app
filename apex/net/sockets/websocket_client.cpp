@@ -15,7 +15,7 @@
 *      Number of bytes required.
 */
 static inline memsize
-::u32_size(u32 v)
+u32_size(u32 v)
 {
    if (v < (1UL << 7))
    {
@@ -52,7 +52,7 @@ static inline memsize
 *      Number of bytes written to `out`.
 */
 static inline memsize
-::u32_pack(u32 value, u8 *out)
+u32_pack(u32 value, u8 *out)
 {
    unsigned rv = 0;
 

@@ -19,12 +19,14 @@ public:
    ::point                          m_point;
    ::size                           m_size;
 
+   int                              m_iLineHeight;
+   int                              m_iTextAscent;
+
    __pointer_array(x11_button)      m_buttona;
 
    int                              m_iButtonTop;
    int                              m_iButtonHeight;
    int                              m_iButtonWidth;
-   int                              m_iMargin;
 
    XftFont *                        m_pfont;
    XftDraw *                        m_pdraw;
@@ -47,7 +49,14 @@ public:
    int                              m_iScreen;
    Visual *                         m_pvisual;
    int                              m_iMarginTop;
-   int                              m_iMarginLine;
+   int                              m_iMarginLeft;
+   int                              m_iMarginRight;
+   int                              m_iMarginBottom;
+   int                              m_iLineSpacing;
+   int                              m_iButtonHSpacing;
+   int                              m_iButtonHPadding;
+   int                              m_iButtonVPadding;
+   int                              m_iMidSpacing;
 
    XftColor                         m_colorBack;
    XftColor                         m_colorFace;
@@ -70,7 +79,7 @@ public:
 
    void common_construct();
 
-   GC create_gc();
+   //GC create_gc();
 
    virtual void invalidate();
 

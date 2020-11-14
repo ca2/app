@@ -21,7 +21,7 @@ namespace http
 } // namespace http
 
 
-typedef LPVOID HINTERNET;
+typedef void * HINTERNET;
 
 
 class tinyjs;

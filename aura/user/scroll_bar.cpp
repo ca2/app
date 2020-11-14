@@ -50,13 +50,13 @@ namespace user
       if(m_eorientation == orientation_horizontal)
       {
 
-         pscroll->m_id = (enum_message) WM_HSCROLL;
+         pscroll->m_id = (enum_message) e_message_hscroll;
 
       }
       else
       {
 
-         pscroll->m_id = (enum_message) WM_VSCROLL;
+         pscroll->m_id = (enum_message) e_message_vscroll;
 
       }
 

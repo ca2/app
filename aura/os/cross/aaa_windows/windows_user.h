@@ -68,7 +68,7 @@ typedef LRESULT(CALLBACK* HOOKPROC)(i32 code,WPARAM wParam,LPARAM lParam);
 typedef VOID(CALLBACK* SENDASYNCPROC)(oswindow,::u32,ulong_ptr,LRESULT);
 
 typedef int_bool(CALLBACK* PROPENUMPROca)(oswindow,const char *,HANDLE);
-typedef int_bool(CALLBACK* PROPENUMPROCW)(oswindow,LPCWSTR,HANDLE);
+typedef int_bool(CALLBACK* PROPENUMPROCW)(oswindow,const widechar *,HANDLE);
 
 typedef int_bool(CALLBACK* PROPENUMPROCEXA)(oswindow,char *,HANDLE,ulong_ptr);
 typedef int_bool(CALLBACK* PROPENUMPROCEXW)(oswindow,LPWSTR,HANDLE,ulong_ptr);
@@ -296,12 +296,12 @@ typedef struct
 #define WM_RENDERALLFORMATS             0x0306
 #define WM_DESTROYCLIPBOARD             0x0307
 #define WM_DRAWCLIPBOARD                0x0308
-#define WM_PAINTCLIPBOARD               0x0309
-#define WM_VSCROLLCLIPBOARD             0x030A
+#define e_message_paintCLIPBOARD               0x0309
+#define e_message_vscrollCLIPBOARD             0x030A
 #define WM_SIZECLIPBOARD                0x030B
 #define WM_ASKCBFORMATNAME              0x030C
 #define WM_CHANGECBCHAIN                0x030D
-#define WM_HSCROLLCLIPBOARD             0x030E
+#define e_message_hscrollCLIPBOARD             0x030E
 #define WM_QUERYNEWPALETTE              0x030F
 #define WM_PALETTEISCHANGING            0x0310
 #define WM_PALETTECHANGED               0x0311
@@ -383,7 +383,7 @@ typedef struct
 #ifndef NONCMESSAGES
 
 /*
-* WM_NCHITTEST and MOUSEHOOKSTRUCT Mouse Position Codes
+* e_message_nchittest and MOUSEHOOKSTRUCT Mouse Position Codes
 */
 #define HTERROR             (-2)
 #define HTTRANSPARENT       (-1)
@@ -434,7 +434,7 @@ typedef struct
 #endif /* !NONCMESSAGES */
 
 /*
-* WM_MOUSEACTIVATE Return Codes
+* e_message_mouse_activate Return Codes
 */
 #define MA_ACTIVATE         1
 #define MA_ACTIVATEANDEAT   2
@@ -461,7 +461,7 @@ const char * lpString);
 ::u32
 WINAPI
 RegisterWindowMessageW(
-LPCWSTR lpString);
+const widechar * lpString);
 #ifdef UNICODE
 #define RegisterWindowMessage  RegisterWindowMessageW
 #else
@@ -478,7 +478,7 @@ LPCWSTR lpString);
 #define SWP_NOZORDER        0x0004
 #define SWP_NOREDRAW        0x0008
 #define SWP_NOACTIVATE      0x0010
-#define SWP_FRAMECHANGED    0x0020  /* The frame changed: send WM_NCCALCSIZE */
+#define SWP_FRAMECHANGED    0x0020  /* The frame changed: send e_message_nccalcsize */
 #define SWP_SHOWWINDOW      0x0040
 #define SWP_HIDEWINDOW      0x0080
 #define SWP_NOCOPYBITS      0x0100
@@ -687,8 +687,8 @@ const char * lpWindowName);
 oswindow
 WINAPI
 FindWindowW(
-LPCWSTR lpClassName,
-LPCWSTR lpWindowName);*/
+const widechar * lpClassName,
+const widechar * lpWindowName);*/
 #ifdef UNICODE
 #define FindWindow  FindWindowW
 #else
@@ -717,7 +717,7 @@ LPCWSTR lpWindowName);*/
 
 
 /*
-* WM_NCCALCSIZE "window valid rect" return values
+* e_message_nccalcsize "window valid rect" return values
 */
 #define WVR_ALIGNTOP        0x0010
 #define WVR_ALIGNLEFT       0x0020
@@ -1047,8 +1047,8 @@ typedef struct tagCREATESTRUCTW
    i32         y;
    i32         x;
    ::i32        style;
-   LPCWSTR     lpszName;
-   LPCWSTR     lpszClass;
+   const widechar *     lpszName;
+   const widechar *     lpszClass;
    ::u32       dwExStyle;
 } CREATESTRUCTW,*LPCREATESTRUCTW;
 #ifdef UNICODE
@@ -1601,7 +1601,7 @@ typedef struct tagSTYLESTRUCT
 #define WM_SETTEXT                      0x000C
 #define WM_GETTEXT                      0x000D
 #define WM_GETTEXTLENGTH                0x000E
-#define WM_PAINT                        0x000F
+#define e_message_paint                        0x000F
 #define WM_CLOSE                        0x0010
 //#ifndef _WIN32_WCE
 #define WM_QUERYENDSESSION              0x0011
@@ -1624,7 +1624,7 @@ typedef struct tagSTYLESTRUCT
 #define WM_TIMECHANGE                   0x001E
 #define WM_CANCELMODE                   0x001F
 #define WM_SETCURSOR                    0x0020
-#define WM_MOUSEACTIVATE                0x0021
+#define e_message_mouse_activate                0x0021
 #define WM_CHILDACTIVATE                0x0022
 #define WM_QUEUESYNC                    0x0023
 
@@ -1641,7 +1641,7 @@ typedef struct tagMINMAXINFO
    POINT32 pointMaxTrackSize;
 } MINMAXINFO, *PMINMAXINFO, *LPMINMAXINFO;
 
-#define WM_PAINTICON                    0x0026
+#define e_message_paintICON                    0x0026
 #define WM_ICONERASEBKGND               0x0027
 #define WM_NEXTDLGCTL                   0x0028
 #define WM_SPOOLERSTATUS                0x002A
@@ -1722,12 +1722,12 @@ typedef struct tagMDINEXTMENU
 #define WM_SETICON                      0x0080
 //#endif /* WINVER >= 0x0400 */
 
-#define WM_NCCREATE                     0x0081
-#define WM_NCDESTROY                    0x0082
-#define WM_NCCALCSIZE                   0x0083
-#define WM_NCHITTEST                    0x0084
-#define WM_NCPAINT                      0x0085
-#define WM_NCACTIVATE                   0x0086
+#define e_message_nccreate                     0x0081
+#define e_message_ncdestroy                    0x0082
+#define e_message_nccalcsize                   0x0083
+#define e_message_nchittest                    0x0084
+#define e_message_ncpaint                      0x0085
+#define e_message_ncactivate                   0x0086
 #define WM_GETDLGCODE                   0x0087
 //#ifndef _WIN32_WCE
 #define WM_SYNCPAINT                    0x0088
@@ -1788,8 +1788,8 @@ typedef struct tagMDINEXTMENU
 #define WM_COMMAND                      0x0111
 #define WM_SYSCOMMAND                   0x0112
 #define WM_TIMER                        0x0113
-#define WM_HSCROLL                      0x0114
-#define WM_VSCROLL                      0x0115
+#define e_message_hscroll                      0x0114
+#define e_message_vscroll                      0x0115
 #define WM_INITMENU                     0x0116
 #define WM_INITMENUPOPUP                0x0117
 //#if(WINVER >= 0x0601)
@@ -2055,12 +2055,12 @@ typedef struct
 #define WM_RENDERALLFORMATS             0x0306
 #define WM_DESTROYCLIPBOARD             0x0307
 #define WM_DRAWCLIPBOARD                0x0308
-#define WM_PAINTCLIPBOARD               0x0309
-#define WM_VSCROLLCLIPBOARD             0x030A
+#define e_message_paintCLIPBOARD               0x0309
+#define e_message_vscrollCLIPBOARD             0x030A
 #define WM_SIZECLIPBOARD                0x030B
 #define WM_ASKCBFORMATNAME              0x030C
 #define WM_CHANGECBCHAIN                0x030D
-#define WM_HSCROLLCLIPBOARD             0x030E
+#define e_message_hscrollCLIPBOARD             0x030E
 #define WM_QUERYNEWPALETTE              0x030F
 #define WM_PALETTEISCHANGING            0x0310
 #define WM_PALETTECHANGED               0x0311
@@ -2142,7 +2142,7 @@ typedef struct
 //#ifndef NONCMESSAGES
 
 /*
- * WM_NCHITTEST and MOUSEHOOKSTRUCT Mouse Position Codes
+ * e_message_nchittest and MOUSEHOOKSTRUCT Mouse Position Codes
  */
 #define HTERROR             (-2)
 #define HTTRANSPARENT       (-1)
@@ -2195,7 +2195,7 @@ typedef struct
 //#endif /* !NONCMESSAGES */
 
 /*
- * WM_MOUSEACTIVATE Return Codes
+ * e_message_mouse_activate Return Codes
  */
 #define MA_ACTIVATE         1
 #define MA_ACTIVATEANDEAT   2
@@ -2224,7 +2224,7 @@ const char * lpString);
 ::u32
 WINAPI
 RegisterWindowMessageW(
-LPCWSTR lpString);
+const widechar * lpString);
 //#ifdef UNICODE
 #define RegisterWindowMessage  RegisterWindowMessageW
 //#else
@@ -2272,7 +2272,7 @@ typedef struct tagWINDOWPOS
 } WINDOWPOS, *LPWINDOWPOS, *PWINDOWPOS;
 
 /*
- * WM_NCCALCSIZE parameter structure
+ * e_message_nccalcsize parameter structure
  */
 typedef struct tagNCCALCSIZE_PARAMS
 {
@@ -2284,7 +2284,7 @@ typedef struct tagNCCALCSIZE_PARAMS
 //#pragma endregion
 
 /*
- * WM_NCCALCSIZE "interaction_impl valid rect" return values
+ * e_message_nccalcsize "interaction_impl valid rect" return values
  */
 #define WVR_ALIGNTOP        0x0010
 #define WVR_ALIGNLEFT       0x0020

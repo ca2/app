@@ -1,9 +1,7 @@
 #include "framework.h"
 
 
-#if !defined(_UWP)
-
-
+#ifdef WINDOWS_DESKTOP
 
 
    shared_memory::shared_memory(const memory_base & s)
@@ -351,7 +349,7 @@
 
    void shared_memory::to_string(string & str)
    {
-      LPTSTR psz = str.get_string_buffer(this->get_size() + 1);
+      char * psz = str.get_string_buffer(this->get_size() + 1);
 
       ::memcpy_dup(psz, get_data(), this->get_size());
 

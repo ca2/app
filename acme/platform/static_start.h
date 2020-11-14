@@ -67,7 +67,7 @@ namespace acme
 
 #else
 
-   extern DWORD_PTR g_tlsindexLastError;
+   //extern DWORD_PTR g_tlsindexLastError;
    extern char* g_pszDemangle;
    extern critical_section* g_pcsDemangle;
 

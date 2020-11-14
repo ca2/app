@@ -138,7 +138,7 @@ namespace multimedia
             //  wsprintf(ach, gszLineFormatList,
             //         (char *)szLineTypeDst,
             //       (MIXERLINE_LINEF_ACTIVE & mxl.fdwLine) ? '*' : ' ',
-            //     (LPTSTR)szComponent,
+            //     (char *)szComponent,
             //   mxl.dwLineID,
             //   mxl.fdwLine,
             // mxl.cControls,

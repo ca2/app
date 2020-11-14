@@ -144,9 +144,7 @@ va_list *Arguments
 }
 
 
-
-
-VOID WINAPI output_debug_string(const char * pOutputString)
+void WINAPI output_debug_string(const char * pOutputString)
 {
 
    if(::acme::g_bOutputDebugString)
@@ -170,7 +168,7 @@ VOID WINAPI output_debug_string(const char * pOutputString)
 
 
 
-VOID WINAPI output_debug_string(LPCWSTR pOutputString)
+void WINAPI output_debug_string(const widechar * pOutputString)
 {
 
    if(::acme::g_bOutputDebugString)

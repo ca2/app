@@ -38,7 +38,7 @@ namespace simpledb
    const char * pszDatabase,
    i32 iPort,
    const char * pszSocketName,
-   u32 uiFlags)
+   u32 uFlags)
    {
       return false;
    }

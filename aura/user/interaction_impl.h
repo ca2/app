@@ -75,8 +75,8 @@ namespace user
       ::rect                              m_rectWindowScreen;
       ::rect                              m_rectClientScreen;
       int                                 m_iState1;
-      ::u32                                m_uCodePage;
-      LANGID                              m_langid;
+      ::u32                               m_uCodePage;
+      int                                 m_iLangId;
       bool                                m_bEatSizeEvent;
       bool                                m_bEatMoveEvent;
       tick                                m_tickLastExposureAddUp;
@@ -242,7 +242,7 @@ namespace user
       // handling of RT_DLGINIT resource (extension to RT_DIALOG)
       virtual bool ExecuteDlgInit(const char * pszResourceName);
 
-      virtual bool ExecuteDlgInit(LPVOID pResource);
+      virtual bool ExecuteDlgInit(void * pResource);
 
 
 
@@ -449,20 +449,20 @@ namespace user
       virtual void CheckRadioButton(i32 nIDFirstButton,i32 nIDLastButton,
                                     i32 nIDCheckButton);
       virtual i32 GetCheckedRadioButton(i32 nIDFirstButton,i32 nIDLastButton);
-      virtual i32 DlgDirList(LPTSTR pPathSpec,i32 nIDListBox,
+      virtual i32 DlgDirList(char * pPathSpec,i32 nIDListBox,
 
                              i32 nIDStaticPath,::u32 nFileType);
-      virtual i32 DlgDirListComboBox(LPTSTR pPathSpec,i32 nIDComboBox,
+      virtual i32 DlgDirListComboBox(char * pPathSpec,i32 nIDComboBox,
 
                                      i32 nIDStaticPath,::u32 nFileType);
-      virtual bool DlgDirSelect(LPTSTR pString,i32 nSize,i32 nIDListBox);
+      virtual bool DlgDirSelect(char * pString,i32 nSize,i32 nIDListBox);
 
-      virtual bool DlgDirSelectComboBox(LPTSTR pString,i32 nSize,i32 nIDComboBox);
+      virtual bool DlgDirSelectComboBox(char * pString,i32 nSize,i32 nIDComboBox);
 
 
       virtual ::u32 GetChildByIdInt(i32 nID,bool* pTrans = nullptr,bool bSigned = TRUE) const;
 
-      virtual i32 GetChildByIdText(i32 nID,LPTSTR pStr,i32 nMaxCount) const;
+      virtual i32 GetChildByIdText(i32 nID,char * pStr,i32 nMaxCount) const;
 
       virtual i32 GetChildByIdText(i32 nID,string & rString) const;
       virtual ::user::interaction_impl * GetNextDlgGroupItem(::user::interaction_impl * pWndCtl,bool bPrevious = FALSE) const;
@@ -474,7 +474,7 @@ namespace user
 
 
       virtual i32 GetScrollPos(i32 nBar) const;
-      virtual void GetScrollRange(i32 nBar,LPINT pMinPos,LPINT lpMaxPos) const;
+      virtual void GetScrollRange(i32 nBar, int * pMinPos, int * lpMaxPos) const;
       virtual void ScrollWindow(i32 xAmount,i32 yAmount,
          LPCRECT32 rect = nullptr,
          LPCRECT32 pClipRect = nullptr);
@@ -552,6 +552,7 @@ namespace user
       DECL_GEN_SIGNAL(_001OnPaint);
       DECL_GEN_SIGNAL(_001OnPrint);
       DECL_GEN_SIGNAL(_001OnCaptureChanged);
+      DECL_GEN_SIGNAL(_001OnPrioCreate);
 
 
 #ifdef WINDOWS_DESKTOP
@@ -609,13 +610,10 @@ namespace user
 
       virtual ::i32 get_window_long(i32 nIndex) const override;
       virtual ::i32 set_window_long(i32 nIndex,::i32 lValue) override;
-      virtual LONG_PTR get_window_long_ptr(i32 nIndex) const override;
-      virtual LONG_PTR set_window_long_ptr(i32 nIndex,LONG_PTR lValue) override;
-
-
+      virtual iptr get_window_long_ptr(i32 nIndex) const override;
+      virtual iptr set_window_long_ptr(i32 nIndex, iptr lValue) override;
 
       virtual interaction_impl * get_impl() const override;
-
 
       virtual void _001UpdateWindow() override;
 

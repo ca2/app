@@ -139,7 +139,7 @@ namespace user
       if (pbasestyle)
       {
 
-         if (pbasestyle->_001OnDrawMen::u32eraction(pgraphics, this))
+         if (pbasestyle->_001OnDrawMenuInteraction(pgraphics, this))
          {
 
             return;
@@ -214,7 +214,7 @@ namespace user
                if (pmenu)
                {
 
-                  uiImage = pmenu->command_image(m_pmenuitem->m_id);
+                  uImage = pmenu->command_image(m_pmenuitem->m_id);
 
                }
 
@@ -224,7 +224,7 @@ namespace user
 
       }
 
-      if(uiImage != 0xffffffffu)
+      if(uImage != 0xffffffffu)
       {
 
 
@@ -265,7 +265,7 @@ namespace user
          if (pimagelist)
          {
 
-            pimagelist->get_image_info(uiImage, &ii);
+            pimagelist->get_image_info(uImage, &ii);
 
             ::rect & rectImageInfo(ii.m_rect);
             rectImage.offset(1, 1);
@@ -283,7 +283,7 @@ namespace user
 
             }
 
-            pimagelist->draw(pgraphics, uiImage, rectImage.top_left(), 0);
+            pimagelist->draw(pgraphics, uImage, rectImage.top_left(), 0);
 
          }
 

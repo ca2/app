@@ -1003,7 +1003,7 @@ run_install:
 
       //pgraphics->create_from_bitmap(b);
 
-      //pgraphics->bit_blt(0, 0, cx, cy, pgraphics, ::hotplugin::plugin::m_rect.left, ::hotplugin::plugin::m_rect.top, SRCCOPY);
+      //pgraphics->bit_blt(0, 0, cx, cy, pgraphics, ::hotplugin::plugin::m_rect.left, ::hotplugin::plugin::m_rect.top);
 
 //      HFONT hfontOld = nullptr;
 //      HFONT hfont = nullptr;
@@ -1059,7 +1059,7 @@ run_install:
 
       pgraphics->SetViewportOrg(0, 0);
       //pgraphics.bit_blt(lprect->left                , lprect->top                 , lprect->right - lprect->left, lprect->bottom - lprect->top,
-      //     pgraphics         , lprect->left - ::hotplugin::plugin::m_rect.left  , lprect.top - ::hotplugin::plugin::m_rect.top    , SRCCOPY);
+      //     pgraphics         , lprect->left - ::hotplugin::plugin::m_rect.left  , lprect.top - ::hotplugin::plugin::m_rect.top    );
 
       /*string strx = ansi_string_from_i64(lprect->left);
       string stry = ansi_string_from_i64(lprect->top);
@@ -1070,8 +1070,8 @@ run_install:
       text_out(hdcWindow, lprect->left + 210, lprect->top + 10, strx2, strx2.get_length());
       text_out(hdcWindow, lprect->left + 310, lprect->top + 10, stry2, stry2.get_length());
       */
-      //hdc,       lprect->left, lprect->top, SRCCOPY);
-      //::BitBlt(hdcWindow, m_rect.left, m_rect.top, cx, cy, hdc, 0, 0, SRCCOPY);
+      //hdc,       lprect->left, lprect->top);
+      //::BitBlt(hdcWindow, m_rect.left, m_rect.top, cx, cy, hdc, 0, 0);
 
 #endif
 

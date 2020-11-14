@@ -112,15 +112,15 @@ namespace experience
    }
 
 
-   ::experience::experience * department::get_experience2(::layered * pobjectContext, const char * psz::u32eraction)
+   ::experience::experience * department::get_experience2(::layered * pobjectContext, const char * pszUinteraction)
    {
 
-      auto & pexperience = m_mapExperience[psz::u32eraction];
+      auto & pexperience = m_mapExperience[pszUinteraction];
 
       if(pexperience == nullptr)
       {
 
-         __compose(pexperience, get_new_experience2(pobjectContext, psz::u32eraction));
+         __compose(pexperience, get_new_experience2(pobjectContext, pszUinteraction));
 
       }
 

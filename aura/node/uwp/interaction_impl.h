@@ -600,7 +600,7 @@ namespace uwp
       LRESULT Default();
       virtual LRESULT DefWindowProc(::u32 message, WPARAM wParam, lparam lParam);
 
-      // for custom cleanup after WM_NCDESTROY
+      // for custom cleanup after e_message_ncdestroy
       virtual void PostNcDestroy();
 
       // for notifications from parent

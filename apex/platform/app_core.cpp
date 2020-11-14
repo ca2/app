@@ -6,6 +6,10 @@
 #include "apex/platform/static_start.h"
 #include <stdio.h>
 #include <time.h>
+#ifndef WINDOWS
+#include "acme/os/cross/windows/_windows.h"
+#endif
+
 
 CLASS_DECL_ACME bool is_verbose();
 

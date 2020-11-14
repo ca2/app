@@ -1662,7 +1662,7 @@ namespace draw2d_quartz2d
 
             set_alpha_mode(::draw2d::alpha_mode_blend);
 
-            BitBltRaw((int)x, (int)y, rectText.width(), rectText.height(), pimage1->get_graphics(), 0, 0, SRCCOPY);
+            BitBltRaw((int)x, (int)y, rectText.width(), rectText.height(), pimage1->get_graphics(), 0, 0);
 
          }
          
@@ -1855,7 +1855,7 @@ namespace draw2d_quartz2d
 
    }
 
-   i32 graphics::GetTextFace(i32 nCount, LPTSTR lpszFacename)
+   i32 graphics::GetTextFace(i32 nCount, char * lpszFacename)
    {
 
       __throw(not_implemented());
@@ -2771,14 +2771,14 @@ namespace draw2d_quartz2d
 //         ::keep < image > keep2(&m_pimageAlphaBlend, nullptr, m_pimageAlphaBlend, true);
 //
 //
-//         return BitBlt(pointDest.x, ptDest.y, size.cx, size.cy, imageWork.get_graphics(), pointSrc.x, pointSrc.y, SRCCOPY);
+//         return BitBlt(pointDest.x, ptDest.y, size.cx, size.cy, imageWork.get_graphics(), pointSrc.x, pointSrc.y);
 //
 //
 //      }
 
 
       CGContextSetAlpha(m_pdc, (CGFloat) dRate);
-      StretchBltRaw(xDst, yDst, nDstWidth, nDstHeight, pgraphicsSrc, xSrc, ySrc, nSrcWidth, nSrcHeight, SRCCOPY);
+      StretchBltRaw(xDst, yDst, nDstWidth, nDstHeight, pgraphicsSrc, xSrc, ySrc, nSrcWidth, nSrcHeight);
       CGContextSetAlpha(m_pdc, (CGFloat) 1.f);
 
       return true;
@@ -2894,20 +2894,20 @@ namespace draw2d_quartz2d
 
 #define HIMETRIC_INCH   2540    // HIMETRIC units per inch
 
-   void graphics::DPtoHIMETRIC(LPSIZE lpSize)
+   void graphics::DPtoHIMETRIC(LPSIZE32 LPSIZE32)
    {
 
       __throw(not_implemented());
 
       /*
-       ASSERT(__is_valid_address(lpSize, sizeof(SIZE32)));
+       ASSERT(__is_valid_address(LPSIZE32, sizeof(SIZE32)));
 
        i32 nMapMode;
        if (this != nullptr && (nMapMode = GetMapMode()) < MM_ISOTROPIC && nMapMode != MM_TEXT)
        {
        // when using a constrained ::collection::map mode, ::collection::map against physical inch
        ((::draw2d::graphics *)this)->SetMapMode(MM_HIMETRIC);
-       DPtoLP(lpSize);
+       DPtoLP(LPSIZE32);
        ((::draw2d::graphics *)this)->SetMapMode(nMapMode);
        }
        else
@@ -2927,20 +2927,20 @@ namespace draw2d_quartz2d
        //          cyPerInch = afxData.cyPixelsPerInch;
        }
        ASSERT(cxPerInch != 0 && cyPerInch != 0);
-       lpSize->cx = MulDiv(lpSize->cx, HIMETRIC_INCH, cxPerInch);
-       lpSize->cy = MulDiv(lpSize->cy, HIMETRIC_INCH, cyPerInch);
+       LPSIZE32->cx = MulDiv(LPSIZE32->cx, HIMETRIC_INCH, cxPerInch);
+       LPSIZE32->cy = MulDiv(LPSIZE32->cy, HIMETRIC_INCH, cyPerInch);
        }
 
        */
 
    }
 
-   void graphics::HIMETRICtoDP(LPSIZE lpSize)
+   void graphics::HIMETRICtoDP(LPSIZE32 LPSIZE32)
    {
 
       __throw(not_implemented());
 
-      /*      ASSERT(__is_valid_address(lpSize, sizeof(SIZE32)));
+      /*      ASSERT(__is_valid_address(LPSIZE32, sizeof(SIZE32)));
 
        i32 nMapMode;
        if (this != nullptr && (nMapMode = GetMapMode()) < MM_ISOTROPIC &&
@@ -2948,7 +2948,7 @@ namespace draw2d_quartz2d
        {
        // when using a constrained ::collection::map mode, ::collection::map against physical inch
        ((::draw2d::graphics *)this)->SetMapMode(MM_HIMETRIC);
-       LPtoDP(lpSize);
+       LPtoDP(LPSIZE32);
        ((::draw2d::graphics *)this)->SetMapMode(nMapMode);
        }
        else
@@ -2968,28 +2968,28 @@ namespace draw2d_quartz2d
        //          cyPerInch = afxData.cyPixelsPerInch;
        }
        ASSERT(cxPerInch != 0 && cyPerInch != 0);
-       lpSize->cx = MulDiv(lpSize->cx, cxPerInch, HIMETRIC_INCH);
-       lpSize->cy = MulDiv(lpSize->cy, cyPerInch, HIMETRIC_INCH);
+       LPSIZE32->cx = MulDiv(LPSIZE32->cx, cxPerInch, HIMETRIC_INCH);
+       LPSIZE32->cy = MulDiv(LPSIZE32->cy, cyPerInch, HIMETRIC_INCH);
        }
 
        */
 
    }
 
-   void graphics::LPtoHIMETRIC(LPSIZE lpSize)
+   void graphics::LPtoHIMETRIC(LPSIZE32 LPSIZE32)
    {
-      ASSERT(__is_valid_address(lpSize, sizeof(SIZE32)));
+      ASSERT(__is_valid_address(LPSIZE32, sizeof(SIZE32)));
 
-      LPtoDP(lpSize);
-      DPtoHIMETRIC(lpSize);
+      LPtoDP(LPSIZE32);
+      DPtoHIMETRIC(LPSIZE32);
    }
 
-   void graphics::HIMETRICtoLP(LPSIZE lpSize)
+   void graphics::HIMETRICtoLP(LPSIZE32 LPSIZE32)
    {
-      ASSERT(__is_valid_address(lpSize, sizeof(SIZE32)));
+      ASSERT(__is_valid_address(LPSIZE32, sizeof(SIZE32)));
 
-      HIMETRICtoDP(lpSize);
-      DPtoLP(lpSize);
+      HIMETRICtoDP(LPSIZE32);
+      DPtoLP(LPSIZE32);
    }
 
    /////////////////////////////////////////////////////////////////////////////
@@ -3429,7 +3429,7 @@ namespace draw2d_quartz2d
 
    }
 
-   i32 graphics::SetStretchBltMode(i32 nStretchMode)
+   i32 graphics::set_interpolation_mode(i32 nStretchMode)
    {
 
 //      __throw(not_implemented());
@@ -3442,7 +3442,7 @@ namespace draw2d_quartz2d
          CGContextSetInterpolationQuality(m_pdc, kCGInterpolationDefault);
 
       }
-      else if(nStretchMode == HALFTONE)
+      else if(nStretchMode == e_interpolation_mode_high_quality_bicubic)
       {
 
          CGContextSetInterpolationQuality(m_pdc, kCGInterpolationHigh);
@@ -3459,9 +3459,9 @@ namespace draw2d_quartz2d
 
       /*i32 nRetVal = 0;
        if(get_handle1() != nullptr && get_handle1() != get_handle2())
-       nRetVal = ::SetStretchBltMode(get_handle1(), nStretchMode);
+       nRetVal = ::set_interpolation_mode(get_handle1(), nStretchMode);
        if(get_handle2() != nullptr)
-       nRetVal = ::SetStretchBltMode(get_handle2(), nStretchMode);
+       nRetVal = ::set_interpolation_mode(get_handle2(), nStretchMode);
        return nRetVal;*/
    }
 
@@ -4315,24 +4315,24 @@ namespace draw2d_quartz2d
 //   }
 
 
-   void graphics::LPtoDP(LPSIZE lpSize)
+   void graphics::LPtoDP(LPSIZE32 LPSIZE32)
    {
 
       __throw(not_implemented());
       return;
 
       /*
-       ASSERT(__is_valid_address(lpSize, sizeof(SIZE32)));
+       ASSERT(__is_valid_address(LPSIZE32, sizeof(SIZE32)));
 
        size sizeWinExt = GetWindowExt();
        size sizeVpExt = GetViewportExt();
-       lpSize->cx = MulDiv(lpSize->cx, abs(sizeVpExt.cx), abs(sizeWinExt.cx));
-       lpSize->cy = MulDiv(lpSize->cy, abs(sizeVpExt.cy), abs(sizeWinExt.cy));
+       LPSIZE32->cx = MulDiv(LPSIZE32->cx, abs(sizeVpExt.cx), abs(sizeWinExt.cx));
+       LPSIZE32->cy = MulDiv(LPSIZE32->cy, abs(sizeVpExt.cy), abs(sizeWinExt.cy));
        */
 
    }
 
-   void graphics::DPtoLP(LPSIZE lpSize)
+   void graphics::DPtoLP(LPSIZE32 LPSIZE32)
    {
 
       __throw(not_implemented());
@@ -4360,7 +4360,7 @@ namespace draw2d_quartz2d
    }
 
 
-   i32 graphics::draw_text_ex(LPTSTR lpszString, i32 nCount, const ::rectd & rect, const ::e_align & ealign, const ::e_draw_text & edrawtext, LPDRAWTEXTPARAMS lpDTParams)
+   i32 graphics::draw_text_ex(char * lpszString, i32 nCount, const ::rectd & rect, const ::e_align & ealign, const ::e_draw_text & edrawtext, LPDRAWTEXTPARAMS lpDTParams)
    {
 
       __throw(not_implemented());

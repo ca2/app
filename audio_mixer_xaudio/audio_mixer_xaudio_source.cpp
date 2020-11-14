@@ -118,7 +118,7 @@ namespace multimedia
                //
                //            wsprintf(ach, gszLineControlsFormatList,
                //                  u,
-               //                (LPTSTR)szControlType,
+               //                (char *)szControlType,
                //              pamxctrl[u].dwControlID,
                //            pamxctrl[u].fdwControl,
                //          pamxctrl[u].cMultipleItems,

@@ -38,8 +38,8 @@ namespace user
 
    void status_bar::install_message_routing(::channel * pchannel)
    {
-      MESSAGE_LINK(WM_NCHITTEST, pchannel, this, &status_bar::_001OnNcHitTest);
-      MESSAGE_LINK(WM_NCCALCSIZE, pchannel, this, &status_bar::_001OnNcCalcSize);
+      MESSAGE_LINK(e_message_nchittest, pchannel, this, &status_bar::_001OnNcHitTest);
+      MESSAGE_LINK(e_message_nccalcsize, pchannel, this, &status_bar::_001OnNcCalcSize);
       MESSAGE_LINK(e_message_size, pchannel, this, &status_bar::_001OnSize);
       MESSAGE_LINK(WM_WINDOWPOSCHANGING, pchannel, this, &status_bar::_001OnWindowPosChanging);
       MESSAGE_LINK(WM_SETTEXT, pchannel, this, &status_bar::_001OnSetText);
@@ -708,7 +708,7 @@ namespace user
 
       }
 
-      LPTSTR pszDest = (LPTSTR) pbase->m_lparam.m_lparam;
+      char * pszDest = (char *) pbase->m_lparam.m_lparam;
 
       index nLen = 0;
 

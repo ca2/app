@@ -228,7 +228,7 @@ namespace str
       return true;
    }
 
-   /*bool  tokenizer::_01Read(LPTSTR psz)
+   /*bool  tokenizer::_01Read(char * psz)
 
    {
    string str;

@@ -142,7 +142,7 @@ void wf_Bitmap_Free(wfContext* wfc, rdpBitmap* bitmap)
 //	height = bitmap->bottom - bitmap->top + 1;
 //
 //	BitBlt(wfc->primary->hdc, bitmap->left, bitmap->top,
-//		width, height, wf_bitmap->hdc, 0, 0, SRCCOPY);
+//		width, height, wf_bitmap->hdc, 0, 0);
 //
 //	wf_invalidate_region(wfc, bitmap->left, bitmap->top, width, height);
 //}

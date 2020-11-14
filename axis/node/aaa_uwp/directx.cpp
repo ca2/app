@@ -792,7 +792,7 @@ namespace uwp
 
    //   //      //pgraphics->fill_solid_rect_dim(300, 300, 100, 100, ARGB(255, 200, 60, 80));
 
-   //   //      dc->from(sz, pgraphics, SRCCOPY);
+   //   //      dc->from(sz, pgraphics);
 
    //   //   }
 
@@ -802,8 +802,8 @@ namespace uwp
 
    //   ////Sys(::get_context_system()).m_possystemwindow->m_puserinteraction->_000OnDraw(m_pimage->g());
 
-   //   ////dc->from(m_pimage->get_size(), m_pimage->g(), SRCCOPY);
-   //   ////dc->from(m_pimage->get_size(), m_pimage->g(), SRCCOPY);
+   //   ////dc->from(m_pimage->get_size(), m_pimage->g());
+   //   ////dc->from(m_pimage->get_size(), m_pimage->g());
 
    //   ////sl.lock();
 

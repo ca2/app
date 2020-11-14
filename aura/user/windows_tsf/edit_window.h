@@ -122,8 +122,8 @@ namespace tsf
       void _Playback(void);
       void _OnUpdate(void);
       //LRESULT _OnInitMenuPopup(WPARAM, LPARAM);
-      //void _SaveToFile(LPTSTR pszFile);
-      //void _LoadFromFile(LPTSTR pszFile);
+      //void _SaveToFile(char * pszFile);
+      //void _LoadFromFile(char * pszFile);
 
       //IUnknown methods
       STDMETHOD(QueryInterface)(REFIID, LPVOID *);

@@ -342,7 +342,7 @@ LRESULT CALLBACK wf_event_proc(HWND hWnd, UINT Msg, WPARAM wParam,
 				/* Say we handled it - prevents flickering */
 				return (LRESULT) 1;
 
-			case WM_PAINT:
+			case e_message_paint:
 				hdc = BeginPaint(hWnd, &ps);
 				x = ps.rcPaint.left;
 				y = ps.rcPaint.top;
@@ -350,7 +350,7 @@ LRESULT CALLBACK wf_event_proc(HWND hWnd, UINT Msg, WPARAM wParam,
 				h = ps.rcPaint.bottom - ps.rcPaint.top + 1;
 				wf_scale_blt(wfc, hdc, x, y, w, h, wfc->primary->hdc,
 				             x - wfc->offset_x + wfc->xCurrentScroll,
-				             y - wfc->offset_y + wfc->yCurrentScroll, SRCCOPY);
+				             y - wfc->offset_y + wfc->yCurrentScroll);
 				EndPaint(hWnd, &ps);
 				break;
 
@@ -391,7 +391,7 @@ LRESULT CALLBACK wf_event_proc(HWND hWnd, UINT Msg, WPARAM wParam,
 
 				break;
 
-			case WM_HSCROLL:
+			case e_message_hscroll:
 				{
 					int xDelta;     // xDelta = new_pos - current_pos
 					int xNewPos;    // new position
@@ -460,7 +460,7 @@ LRESULT CALLBACK wf_event_proc(HWND hWnd, UINT Msg, WPARAM wParam,
 				}
 				break;
 
-			case WM_VSCROLL:
+			case e_message_vscroll:
 				{
 					int xDelta = 0;
 					int yDelta;     // yDelta = new_pos - current_pos
@@ -652,13 +652,13 @@ BOOL wf_scale_blt(wfContext* wfc, HDC hdc, int x, int y, int w, int h,
 	if (wfc->fullscreen || !wfc->context.settings->SmartSizing || (ww == dw
 	        && wh == dh))
 	{
-		return BitBlt(hdc, x, y, w, h, wfc->primary->hdc, x1, y1, SRCCOPY);
+		return BitBlt(hdc, x, y, w, h, wfc->primary->hdc, x1, y1);
 	}
 	else
 	{
-		SetStretchBltMode(hdc, HALFTONE);
+		set_interpolation_mode(hdc, e_interpolation_mode_high_quality_bicubic);
 		SetBrushOrgEx(hdc, 0, 0, NULL);
-		return StretchBlt(hdc, 0, 0, ww, wh, wfc->primary->hdc, 0, 0, dw, dh, SRCCOPY);
+		return StretchBlt(hdc, 0, 0, ww, wh, wfc->primary->hdc, 0, 0, dw, dh);
 	}
 
 	return TRUE;

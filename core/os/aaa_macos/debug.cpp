@@ -110,7 +110,7 @@ void output_debug_string(const char * pszOutputString)
 VOID
 WINAPI
 output_debug_string(
-LPCWSTR pOutputString
+const widechar * pOutputString
 
 )
 {

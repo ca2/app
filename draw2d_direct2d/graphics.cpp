@@ -561,7 +561,7 @@ namespace draw2d_direct2d
 
          set_alpha_mode(::draw2d::alpha_mode_blend);
 
-         BitBltRaw((int)x, (int)y, rectText.width(), rectText.height(), pimage1->get_graphics(), 0, 0, SRCCOPY);
+         BitBltRaw((int)x, (int)y, rectText.width(), rectText.height(), pimage1->get_graphics(), 0, 0);
 
          return true;
 
@@ -1875,7 +1875,7 @@ namespace draw2d_direct2d
    }
 
 
-   int graphics::GetTextFace(count nCount, LPTSTR lpszFacename)
+   int graphics::GetTextFace(count nCount, char * lpszFacename)
    {
 
       __throw(todo());
@@ -2985,26 +2985,26 @@ namespace draw2d_direct2d
 
    //}
 
-   //inline bool graphics::GetTextExtentExPointI(LPWORD pgiIn, int cgi, int nMaxExtent, LPINT lpnFit, LPINT alpDx, LPSIZE lpSize)
+   //inline bool graphics::GetTextExtentExPointI(LPWORD pgiIn, int cgi, int nMaxExtent, LPINT lpnFit, LPINT alpDx, LPSIZE32 LPSIZE32)
    //{
 
    //   __throw(todo());
 
-   //   //ENSURE(lpSize != nullptr);
+   //   //ENSURE(LPSIZE32 != nullptr);
    //   //ASSERT(get_handle1() != nullptr);
-   //   //return ::GetTextExtentExPointI(get_handle1(), pgiIn, cgi, nMaxExtent, lpnFit, alpDx, lpSize) != FALSE;
+   //   //return ::GetTextExtentExPointI(get_handle1(), pgiIn, cgi, nMaxExtent, lpnFit, alpDx, LPSIZE32) != FALSE;
 
    //}
 
 
-   //inline bool graphics::GetTextExtentPointI(LPWORD pgiIn, int cgi, LPSIZE lpSize)
+   //inline bool graphics::GetTextExtentPointI(LPWORD pgiIn, int cgi, LPSIZE32 LPSIZE32)
    //{
 
    //   __throw(todo());
 
-   //   //ENSURE(lpSize != nullptr);
+   //   //ENSURE(LPSIZE32 != nullptr);
    //   //ASSERT(get_handle1() != nullptr);
-   //   //return ::GetTextExtentPointI(get_handle1(), pgiIn, cgi, lpSize) != FALSE;
+   //   //return ::GetTextExtentPointI(get_handle1(), pgiIn, cgi, LPSIZE32) != FALSE;
 
    //}
 
@@ -3017,10 +3017,10 @@ namespace draw2d_direct2d
 
 #define HIMETRIC_INCH   2540    // HIMETRIC units per inch
 
-   void graphics::DPtoHIMETRIC(LPSIZE lpSize)
+   void graphics::DPtoHIMETRIC(LPSIZE32 LPSIZE32)
    {
 #ifdef WINDOWS_DESKTOP
-      ASSERT(__is_valid_address(lpSize, sizeof(SIZE32)));
+      ASSERT(__is_valid_address(LPSIZE32, sizeof(SIZE32)));
 
       int nMapMode;
       if (this != nullptr && (nMapMode = GetMapMode()) < MM_ISOTROPIC &&
@@ -3028,7 +3028,7 @@ namespace draw2d_direct2d
       {
          // when using a constrained ::map mode, ::map against physical inch
          ((::draw2d::graphics *)this)->SetMapMode(MM_HIMETRIC);
-         DPtoLP(lpSize);
+         DPtoLP(LPSIZE32);
          ((::draw2d::graphics *)this)->SetMapMode(nMapMode);
       }
       else
@@ -3048,16 +3048,16 @@ namespace draw2d_direct2d
             //          cyPerInch = afxData.cyPixelsPerInch;
          }
          ASSERT(cxPerInch != 0 && cyPerInch != 0);
-         lpSize->cx = MulDiv(lpSize->cx, HIMETRIC_INCH, cxPerInch);
-         lpSize->cy = MulDiv(lpSize->cy, HIMETRIC_INCH, cyPerInch);
+         LPSIZE32->cx = MulDiv(LPSIZE32->cx, HIMETRIC_INCH, cxPerInch);
+         LPSIZE32->cy = MulDiv(LPSIZE32->cy, HIMETRIC_INCH, cyPerInch);
       }
 #endif
    }
 
-   void graphics::HIMETRICtoDP(LPSIZE lpSize)
+   void graphics::HIMETRICtoDP(LPSIZE32 LPSIZE32)
    {
 #ifdef WINDOWS_DESKTOP
-      ASSERT(__is_valid_address(lpSize, sizeof(SIZE32)));
+      ASSERT(__is_valid_address(LPSIZE32, sizeof(SIZE32)));
 
       int nMapMode;
       if (this != nullptr && (nMapMode = GetMapMode()) < MM_ISOTROPIC &&
@@ -3065,7 +3065,7 @@ namespace draw2d_direct2d
       {
          // when using a constrained ::map mode, ::map against physical inch
          ((::draw2d::graphics *)this)->SetMapMode(MM_HIMETRIC);
-         LPtoDP(lpSize);
+         LPtoDP(LPSIZE32);
          ((::draw2d::graphics *)this)->SetMapMode(nMapMode);
       }
       else
@@ -3085,26 +3085,26 @@ namespace draw2d_direct2d
             //          cyPerInch = afxData.cyPixelsPerInch;
          }
          ASSERT(cxPerInch != 0 && cyPerInch != 0);
-         lpSize->cx = MulDiv(lpSize->cx, cxPerInch, HIMETRIC_INCH);
-         lpSize->cy = MulDiv(lpSize->cy, cyPerInch, HIMETRIC_INCH);
+         LPSIZE32->cx = MulDiv(LPSIZE32->cx, cxPerInch, HIMETRIC_INCH);
+         LPSIZE32->cy = MulDiv(LPSIZE32->cy, cyPerInch, HIMETRIC_INCH);
       }
 #endif
    }
 
-   void graphics::LPtoHIMETRIC(LPSIZE lpSize)
+   void graphics::LPtoHIMETRIC(LPSIZE32 LPSIZE32)
    {
-      ASSERT(__is_valid_address(lpSize, sizeof(SIZE32)));
+      ASSERT(__is_valid_address(LPSIZE32, sizeof(SIZE32)));
 
-      LPtoDP(lpSize);
-      DPtoHIMETRIC(lpSize);
+      LPtoDP(LPSIZE32);
+      DPtoHIMETRIC(LPSIZE32);
    }
 
-   void graphics::HIMETRICtoLP(LPSIZE lpSize)
+   void graphics::HIMETRICtoLP(LPSIZE32 LPSIZE32)
    {
-      ASSERT(__is_valid_address(lpSize, sizeof(SIZE32)));
+      ASSERT(__is_valid_address(LPSIZE32, sizeof(SIZE32)));
 
-      HIMETRICtoDP(lpSize);
-      DPtoLP(lpSize);
+      HIMETRICtoDP(LPSIZE32);
+      DPtoLP(LPSIZE32);
    }
 
    /////////////////////////////////////////////////////////////////////////////
@@ -3385,14 +3385,14 @@ namespace draw2d_direct2d
       //return nRetVal;
    }
 
-   int graphics::SetStretchBltMode(int nStretchMode)
+   int graphics::set_interpolation_mode(int nStretchMode)
    {
       if(nStretchMode == 0)
       {
          m_bitmapinterpolationmode     = D2D1_BITMAP_INTERPOLATION_MODE_NEAREST_NEIGHBOR;
          m_interpolationmode           = D2D1_INTERPOLATION_MODE_NEAREST_NEIGHBOR;;
       }
-      else if(nStretchMode == HALFTONE)
+      else if(nStretchMode == e_interpolation_mode_high_quality_bicubic)
       {
          m_bitmapinterpolationmode     = D2D1_BITMAP_INTERPOLATION_MODE_LINEAR;
          m_interpolationmode           = D2D1_INTERPOLATION_MODE_HIGH_QUALITY_CUBIC;
@@ -3405,9 +3405,9 @@ namespace draw2d_direct2d
       return 1;
       /*int nRetVal = 0;
       if(get_handle1() != nullptr && get_handle1() != get_handle2())
-      nRetVal = ::SetStretchBltMode(get_handle1(), nStretchMode);
+      nRetVal = ::set_interpolation_mode(get_handle1(), nStretchMode);
       if(get_handle2() != nullptr)
-      nRetVal = ::SetStretchBltMode(get_handle2(), nStretchMode);
+      nRetVal = ::set_interpolation_mode(get_handle2(), nStretchMode);
       return nRetVal;*/
    }
 
@@ -4283,28 +4283,28 @@ namespace draw2d_direct2d
    }
 
 
-   void graphics::LPtoDP(LPSIZE lpSize)
+   void graphics::LPtoDP(LPSIZE32 LPSIZE32)
    {
 
-      ASSERT(__is_valid_address(lpSize, sizeof(SIZE32)));
+      ASSERT(__is_valid_address(LPSIZE32, sizeof(SIZE32)));
 
       size sizeWinExt = GetWindowExt();
       size sizeVpExt = GetViewportExt();
-      lpSize->cx = MulDiv(lpSize->cx, abs(sizeVpExt.cx), abs(sizeWinExt.cx));
-      lpSize->cy = MulDiv(lpSize->cy, abs(sizeVpExt.cy), abs(sizeWinExt.cy));
+      LPSIZE32->cx = MulDiv(LPSIZE32->cx, abs(sizeVpExt.cx), abs(sizeWinExt.cx));
+      LPSIZE32->cy = MulDiv(LPSIZE32->cy, abs(sizeVpExt.cy), abs(sizeWinExt.cy));
 
    }
 
 
-   void graphics::DPtoLP(LPSIZE lpSize)
+   void graphics::DPtoLP(LPSIZE32 LPSIZE32)
    {
    
-      ASSERT(__is_valid_address(lpSize, sizeof(SIZE32)));
+      ASSERT(__is_valid_address(LPSIZE32, sizeof(SIZE32)));
 
       size sizeWinExt = GetWindowExt();
       size sizeVpExt = GetViewportExt();
-      lpSize->cx = MulDiv(lpSize->cx, abs(sizeWinExt.cx), abs(sizeVpExt.cx));
-      lpSize->cy = MulDiv(lpSize->cy, abs(sizeWinExt.cy), abs(sizeVpExt.cy));
+      LPSIZE32->cx = MulDiv(LPSIZE32->cx, abs(sizeWinExt.cx), abs(sizeVpExt.cx));
+      LPSIZE32->cy = MulDiv(LPSIZE32->cy, abs(sizeWinExt.cy), abs(sizeVpExt.cy));
 
    }
 
@@ -4834,7 +4834,7 @@ namespace draw2d_direct2d
 
       }
 
-      LPCWSTR lpcwsz = text.m_wstr;
+      const widechar * lpcwsz = text.m_wstr;
 
       strsize uiLen = text.m_wstr.get_length();
 
@@ -5645,7 +5645,7 @@ namespace draw2d_direct2d
          if(SUCCEEDED(hr))
          {
 
-            string strName = string((LPCWSTR)(name));
+            string strName = string((const widechar *)(name));
 
             itema.add(__new(::draw2d::font_enum_item(strName, strName)));
 

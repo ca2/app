@@ -6269,7 +6269,7 @@ namespace aura
       switch (pbase->m_id)
       {
       case e_message_create:
-      case WM_PAINT:
+      case e_message_paint:
 
          return thread::process_window_procedure_exception(pe, pmessage);
 
@@ -6907,7 +6907,7 @@ namespace aura
       /////////////////////////////////////////////////////////////////////////////
       // application idle processing
 
-   void application::DevModeChange(LPTSTR pDeviceName)
+   void application::DevModeChange(char * pDeviceName)
 
    {
       UNREFERENCED_PARAMETER(pDeviceName);
@@ -7243,7 +7243,7 @@ namespace aura
 
 
 
-   //   bool application::OnDDECommand(LPTSTR pszCommand)
+   //   bool application::OnDDECommand(char * pszCommand)
    //
    //   {
    //      /*      if (m_pdocmanager != nullptr)
@@ -7434,7 +7434,7 @@ namespace aura
    u32 dwValue;
    u32 dwType;
    u32 dwCount = sizeof(u32);
-   ::i32 lResult = RegQueryValueEx(hSecKey, (LPTSTR)pszEntry, nullptr, &dwType,
+   ::i32 lResult = RegQueryValueEx(hSecKey, (char *)pszEntry, nullptr, &dwType,
 
    (byte *)&dwValue, &dwCount);
    RegCloseKey(hSecKey);
@@ -7474,13 +7474,13 @@ namespace aura
    string strValue;
    u32 dwType=REG_NONE;
    u32 dwCount=0;
-   ::i32 lResult = RegQueryValueEx(hSecKey, (LPTSTR)pszEntry, nullptr, &dwType,
+   ::i32 lResult = RegQueryValueEx(hSecKey, (char *)pszEntry, nullptr, &dwType,
 
    nullptr, &dwCount);
    if (lResult == ERROR_SUCCESS)
    {
    ASSERT(dwType == REG_SZ);
-   lResult = RegQueryValueEx(hSecKey, (LPTSTR)pszEntry, nullptr, &dwType,
+   lResult = RegQueryValueEx(hSecKey, (char *)pszEntry, nullptr, &dwType,
 
    (byte *)strValue.GetBuffer(dwCount/sizeof(char)), &dwCount);
    strValue.ReleaseBuffer();
@@ -7539,14 +7539,14 @@ namespace aura
 
    u32 dwType=0;
    u32 dwCount=0;
-   ::i32 lResult = RegQueryValueEx(hSecKey, (LPTSTR)pszEntry, nullptr, &dwType, nullptr, &dwCount);
+   ::i32 lResult = RegQueryValueEx(hSecKey, (char *)pszEntry, nullptr, &dwType, nullptr, &dwCount);
 
    *pBytes = dwCount;
    if (lResult == ERROR_SUCCESS)
    {
    ASSERT(dwType == REG_BINARY);
    *ppData = new byte[*pBytes];
-   lResult = RegQueryValueEx(hSecKey, (LPTSTR)pszEntry, nullptr, &dwType,
+   lResult = RegQueryValueEx(hSecKey, (char *)pszEntry, nullptr, &dwType,
 
    *ppData, &dwCount);
    }
@@ -7644,7 +7644,7 @@ namespace aura
    if (hSecKey == nullptr)
    return FALSE;
    // necessary to cast away const below
-   lResult = ::RegDeleteValue(hSecKey, (LPTSTR)pszEntry);
+   lResult = ::RegDeleteValue(hSecKey, (char *)pszEntry);
 
    RegCloseKey(hSecKey);
    }
@@ -7693,7 +7693,7 @@ namespace aura
    }
 
    // convert to string and write out
-   LPTSTR psz = new char[nBytes*2+1];
+   char * psz = new char[nBytes*2+1];
 
    ::u32 i;
    for (i = 0; i < nBytes; i++)
@@ -8124,7 +8124,7 @@ namespace aura
       // strip out path
       //string strFileName = ::PathFindFileName(strShortName);
       // strip out extension
-      //LPTSTR pszFileName = strFileName.GetBuffer();
+      //char * pszFileName = strFileName.GetBuffer();
       //::PathRemoveExtension(pszFileName);
       //strFileName.ReleaseBuffer();
 

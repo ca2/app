@@ -1126,7 +1126,7 @@ namespace user
 #endif
 
 
-   bool toolbar_control::GetMaxSize(LPSIZE pSize)
+   bool toolbar_control::GetMaxSize(LPSIZE32 pSize)
    {
 #ifdef WINDOWS_DESKTOP
 

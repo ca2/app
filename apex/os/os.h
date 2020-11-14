@@ -28,9 +28,7 @@ CLASS_DECL_APEX void defer_dock_application(int_bool bDock);
 
 #ifdef cplusplus
 
-inline bool IsDirSep(WCHAR ch);
-
-
+inline bool IsDirSep(widechar wch);
 
 #endif
 

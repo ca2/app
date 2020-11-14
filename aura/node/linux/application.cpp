@@ -124,7 +124,7 @@ namespace aura
 //                  //for( i=0; i < (cbTranslate/sizeof(struct LANGANDCODEPAGE)); i++ )
 //                  for(i32 i=0; i < 1; i++ )
 //                  {
-//                     LPTSTR psz;
+//                     char * psz;
 //
 //                     ::u32 uSize;
 //
@@ -148,7 +148,7 @@ namespace aura
 //                     // Retrieve file description for language and code page "i".
 //                     VerQueryValue(pdata,
 //
-//                        (LPTSTR) (const char *) strKey,
+//                        (char *) (const char *) strKey,
 //                        (LPVOID *)&psz,
 //
 //                        &uiSize);
@@ -366,7 +366,7 @@ namespace aura
 //         __throw(aura_exception());*/
 //
 //      /*
-//      LPTSTR pszExt = ::PathFindExtension(szBuff);
+//      char * pszExt = ::PathFindExtension(szBuff);
 
 //      ASSERT(pszExt != nullptr);
 

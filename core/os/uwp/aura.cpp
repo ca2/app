@@ -98,8 +98,8 @@ typedef
 LSTATUS
 ( APIENTRY * LPFN_RegGetValueW) (
     HKEY hkey,
-    LPCWSTR lpSubKey,
-    LPCWSTR lpValue,
+    const widechar * lpSubKey,
+    const widechar * lpValue,
     ::u32 dwFlags,
     LPDWORD pdwType,
 	 PVOID pvData,
@@ -158,8 +158,8 @@ LSTATUS
 APIENTRY
 WinRegGetValueW(
     HKEY hkey,
-    LPCWSTR lpSubKey,
-    LPCWSTR lpValue,
+    const widechar * lpSubKey,
+    const widechar * lpValue,
     ::u32 dwFlags,
     LPDWORD pdwType,
 	 PVOID pvData,
@@ -402,7 +402,7 @@ string get_system_error_message(u32 dwError)
 //CreateMutexW(
 //   _In_opt_ LPSECURITY_ATTRIBUTES lpMutexAttributes,
 //   _In_ BOOL bInitialOwner,
-//   _In_opt_ LPCWSTR lpName
+//   _In_opt_ const widechar * lpName
 //   )
 //{
 //   return ::CreateMutexEx(lpMutexAttributes, lpName, bInitialOwner ?  CREATE_MUTEX_INITIAL_OWNER : 0, DELETE | SYNCHRONIZE);

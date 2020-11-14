@@ -946,7 +946,7 @@ namespace base
 //
 //
 //
-//      void DevModeChange(LPTSTR pDeviceName);
+//      void DevModeChange(char * pDeviceName);
 //
 //
 //      // Finds number of opened document items owned by templates

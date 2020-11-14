@@ -66,7 +66,7 @@ namespace windows
       //   return true;
 
       //}
-      //else if (message == WM_NCHITTEST)
+      //else if (message == e_message_nchittest)
       //{
 
       //   //output_debug_string("ht.");
@@ -93,7 +93,7 @@ namespace windows
          if (__windows_message_bypass(oswindow, message, wparam, lparam, lresult, g_puiaMessageTopLevelCreation))
          {
 
-            if (message == WM_PAINT)
+            if (message == e_message_paint)
             {
 
                pimpl->m_iState1 = STATE_WINDOW_CREATED;
@@ -121,7 +121,7 @@ namespace windows
             pimpl->m_iState1 = STATE_INPUT_LANGUAGE_CHANGING;
 
          }
-         else if (message == WM_NCACTIVATE && wparam == 0)
+         else if (message == e_message_ncactivate && wparam == 0)
          {
 
             pimpl->m_iState1 = STATE_WINDOW_DEACTIVATING;
@@ -151,7 +151,7 @@ namespace windows
             return true;
 
          }
-         else if (message == WM_NCACTIVATE && wparam == 0)
+         else if (message == e_message_ncactivate && wparam == 0)
          {
 
             pimpl->m_iState1 = STATE_WINDOW_DEACTIVATING;

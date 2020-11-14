@@ -46,8 +46,8 @@ namespace user
       DECL_GEN_SIGNAL(_001OnMessageNotify);
       virtual void _001GetSelection(::database::key & key, ::database::selection & selection) override;
       virtual void Update(bool bSave);
-      virtual bool _001SetData(id uiId, bool bData);
-      virtual bool _001GetData(id uiId, bool & bData);
+      virtual bool _001SetData(id uId, bool bData);
+      virtual bool _001GetData(id uId, bool & bData);
       virtual index _001AddControl(control_descriptor * pdescriptor);
       virtual void _001FillCombo(interaction * pinteraction);
 

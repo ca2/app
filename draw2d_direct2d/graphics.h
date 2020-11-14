@@ -162,7 +162,7 @@ namespace draw2d_direct2d
 
       int SetPolyFillMode(int nPolyFillMode) override;
       int SetROP2(int nDrawMode) override;
-      int SetStretchBltMode(int nStretchMode) override;
+      int set_interpolation_mode(int nStretchMode) override;
 
 
 //#if (_WIN32_WINNT >= 0x0500)
@@ -227,16 +227,16 @@ namespace draw2d_direct2d
       // Coordinate Functions
       void DPtoLP(POINT32 * lpPoints,count nCount = 1) override;
       void DPtoLP(RECT32 * prect) override;
-      void DPtoLP(LPSIZE lpSize) override;
+      void DPtoLP(LPSIZE32 LPSIZE32) override;
       void LPtoDP(POINT32 * lpPoints,count nCount = 1) override;
       void LPtoDP(RECT32 * prect) override;
-      void LPtoDP(LPSIZE lpSize) override;
+      void LPtoDP(LPSIZE32 LPSIZE32) override;
 
       // Special Coordinate Functions (useful for dealing with metafiles and OLE)
-      void DPtoHIMETRIC(LPSIZE lpSize) override;
-      void LPtoHIMETRIC(LPSIZE lpSize) override;
-      void HIMETRICtoDP(LPSIZE lpSize) override;
-      void HIMETRICtoLP(LPSIZE lpSize) override;
+      void DPtoHIMETRIC(LPSIZE32 LPSIZE32) override;
+      void LPtoHIMETRIC(LPSIZE32 LPSIZE32) override;
+      void HIMETRICtoDP(LPSIZE32 LPSIZE32) override;
+      void HIMETRICtoLP(LPSIZE32 LPSIZE32) override;
 
       // Region Functions
       bool FillRgn(::draw2d::region* pRgn, ::draw2d::brush* pBrush) override;
@@ -400,7 +400,7 @@ namespace draw2d_direct2d
       //virtual bool draw_text(const char * lpszString, strsize nCount, const ::rect & rect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none) override;
       virtual bool draw_text(const string & str,const ::rect & rect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none) override;
 
-//      virtual int draw_text_ex(LPTSTR lpszString, int nCount, RECT32 * prect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, LPDRAWTEXTPARAMS lpDTParams) override;
+//      virtual int draw_text_ex(char * lpszString, int nCount, RECT32 * prect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, LPDRAWTEXTPARAMS lpDTParams) override;
       //    virtual int draw_text_ex(const string & str, RECT32 * prect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, LPDRAWTEXTPARAMS lpDTParams) override;
 
       virtual sized GetTextExtent(const char * lpszString, strsize nCount, strsize iIndex) override;
@@ -418,7 +418,7 @@ namespace draw2d_direct2d
       virtual bool GrayString(::draw2d::brush* pBrush, bool (CALLBACK* lpfnOutput)(HDC, LPARAM, int), LPARAM lpData, int nCount, int x, int y, int nWidth, int nHeight) override;
       virtual ::u32 GetTextAlign() override;
       virtual ::u32 SetTextAlign(::u32 nFlags) override;
-      virtual int GetTextFace(count nCount, LPTSTR lpszFacename) override;
+      virtual int GetTextFace(count nCount, char * lpszFacename) override;
       virtual int GetTextFace(string & rString) override;
       virtual bool get_text_metrics(::draw2d::text_metric * lpMetrics) override;
       virtual bool get_output_text_metrics(::draw2d::text_metric * lpMetrics) override;
@@ -431,8 +431,8 @@ namespace draw2d_direct2d
 
 //#if (_WIN32_WINNT >= 0x0500)
 //
-//      bool GetTextExtentExPointI(LPWORD pgiIn, int cgi, int nMaxExtent, LPINT lpnFit, LPINT alpDx, __out_opt LPSIZE lpSize) override;
-//      bool GetTextExtentPointI(LPWORD pgiIn, int cgi, __out_opt LPSIZE lpSize) override;
+//      bool GetTextExtentExPointI(LPWORD pgiIn, int cgi, int nMaxExtent, LPINT lpnFit, LPINT alpDx, __out_opt LPSIZE32 LPSIZE32) override;
+//      bool GetTextExtentPointI(LPWORD pgiIn, int cgi, __out_opt LPSIZE32 LPSIZE32) override;
 //
 //#endif
 

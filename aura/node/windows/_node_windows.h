@@ -153,7 +153,7 @@ CLASS_DECL_AURA HINSTANCE __find_string_resource_handle(::u32 nID);
 
 
 
-CLASS_DECL_AURA i32 app_main(::aura::system * psystem, HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR pCmdLine, ::edisplay edisplay);
+CLASS_DECL_AURA i32 app_main(::aura::system * psystem, HINSTANCE hInstance, HINSTANCE hPrevInstance, char * pCmdLine, ::edisplay edisplay);
 
 
 

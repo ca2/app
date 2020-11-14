@@ -19,7 +19,7 @@ namespace draw2d
       double                           m_x3;
       double                           m_y3;
       POINTD *                         m_lppoints;
-      LPINT                            m_lppolycounts;
+      int *                            m_lppolycounts;
       i32                              m_nCount;
       ::draw2d::e_fill_mode            m_efillmode;
       __pointer(::draw2d::region)      m_pregion1;

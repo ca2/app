@@ -24,6 +24,8 @@ extern natural_meta_data < string_meta_data < wd32char > > * g_pwd32stringNil;
 static void delete_all_release_on_end();
 
 
+
+
 enum_platform_level g_eplatformlevel = ::e_platform_level_acme;
 
 
@@ -136,7 +138,7 @@ namespace acme
 //
 //#else
 
-   DWORD_PTR g_tlsindexLastError;
+   //DWORD_PTR g_tlsindexLastError;
    char* g_pszDemangle;
    critical_section* g_pcsDemangle;
 
@@ -304,7 +306,7 @@ namespace acme
 
 #if !defined(WINDOWS)
 
-      g_tlsindexLastError = 0;
+      //g_tlsindexLastError = 0;
 
       g_pszDemangle = nullptr;
 
@@ -1154,7 +1156,7 @@ CLASS_DECL_ACME void set_last_status(const ::estatus & estatus)
 }
 
 
-CLASS_DECL_ACME ::estatus  get_last_status()
+CLASS_DECL_ACME ::estatus get_last_status()
 {
 
    return t_estatus;

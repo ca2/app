@@ -30,7 +30,7 @@ namespace str
       bool _01Read(::u32 & user);
       bool _01ReadHex(i32 & i);
       bool _01ReadHex(::u32 & user);
-      //bool _01Read(LPTSTR psz);
+      //bool _01Read(char * psz);
 
       bool _01Read(string & str);
       bool ExtractFolderPath(const char * pcszFilePath);

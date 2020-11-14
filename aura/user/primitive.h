@@ -194,8 +194,8 @@ namespace user
       virtual ::i32 get_window_long(i32 nIndex) const;
       virtual ::i32 set_window_long(i32 nIndex,::i32 lValue);
 
-      virtual LONG_PTR get_window_long_ptr(i32 nIndex) const;
-      virtual LONG_PTR set_window_long_ptr(i32 nIndex,LONG_PTR lValue);
+      virtual iptr get_window_long_ptr(i32 nIndex) const;
+      virtual iptr set_window_long_ptr(i32 nIndex, iptr lValue);
 
       virtual ::user::interaction * first_child();
       virtual ::user::interaction * last_child();
@@ -727,7 +727,7 @@ namespace user
 
 #endif
 
-      virtual bool SetPlacement(const ::rect & rect, ::u32 nFlags = SWP_SHOWWINDOW);
+      //virtual bool SetPlacement(const ::rect & rect, ::u32 nFlags = SWP_SHOWWINDOW);
 
       virtual i32 get_total_page_count(::change * pchange);
 

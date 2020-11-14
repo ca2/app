@@ -32,9 +32,9 @@ typedef struct tagCREATESTRUCTW
    i32         y;
    i32         x;
    ::i32        style;
-   LPCWSTR     lpszName;
+   const widechar *     lpszName;
 
-   LPCWSTR     lpszClass;
+   const widechar *     lpszClass;
 
    u32       dwExStyle;
 } CREATESTRUCTW,*LPCREATESTRUCTW;

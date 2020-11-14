@@ -183,9 +183,13 @@ namespace user
       /*static void ExcludeChild(interaction_array & wndpa);*/
       /*static void SortByZOrder(interaction_array & wndpa);*/
       static void SortByZOrder(oswindow_array & oswindowa);
+
+#ifdef WINDOWS
       static HRGN GetAClipRgn(oswindow oswindow, const point & pointOffset, bool bExludeChilren);
       static void ExcludeChildren(oswindow oswindow, HRGN hrgn, const point & pointOffset);
-      
+#endif
+
+
       
       window_util();
       virtual ~window_util();

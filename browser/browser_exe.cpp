@@ -4,7 +4,7 @@
 
 extern int APIENTRY app_browser_deferred_run(HINSTANCE hInstance,
       HINSTANCE hPrevInstance,
-      LPTSTR lpCmdLine,
+      char * lpCmdLine,
       int nCmdShow);
 
 //int app_browser_runner(HINSTANCE hInstance);

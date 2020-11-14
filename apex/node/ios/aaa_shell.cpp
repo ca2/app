@@ -252,7 +252,7 @@ namespace ios
             else
             {
 
-               pimage16->get_graphics()->SetStretchBltMode(HALFTONE);
+               pimage16->get_graphics()->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
 
                pimage16->get_graphics()->StretchBlt(0, 0, 48, 48, pimage48->get_graphics(), 0, 0, pimage48->width(), pimage48->height());
 
@@ -1068,7 +1068,7 @@ namespace ios
    //         szPath,
    //         sizeof(szPath),
    //         &iIcon,
-   //         &uiFlags)))
+   //         &uFlags)))
    //      {
    //         strPath = szPath;
    //         if (strPath == "*")
@@ -1142,11 +1142,11 @@ namespace ios
    //         iIcon = imagekey.m_iIcon;
    //         bool bExtract = false;
    //         //HGLOBAL hglobal = ::GlobalAlloc(GPTR, strPath.get_length() + 1);
-   //         //LPTSTR lpsz = (LPTSTR) ::GlobalLock(hglobal);
+   //         //char * lpsz = (char *) ::GlobalLock(hglobal);
    //         //strcpy(lpsz, strPath);
    //         try
    //         {
-   //            if ((hrIconLocation == S_OK && !(uiFlags & GIL_NOTFILENAME))
+   //            if ((hrIconLocation == S_OK && !(uFlags & GIL_NOTFILENAME))
    //               && lpiextracticon.is_null()
    //               && (NOERROR == (hrExtract = lpiextracticon->Extract(
    //                  strPath,
@@ -1603,7 +1603,7 @@ namespace ios
 //            else
 //            {
 //
-//               pimage->get_graphics()->SetStretchBltMode(HALFTONE);
+//               pimage->get_graphics()->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
 //
 //               pimage->get_graphics()->StretchBlt(0, 0, 48, 48, pimage->get_graphics(), 0, 0, pimage->width(), pimage->height());
 //

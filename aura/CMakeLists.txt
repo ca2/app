@@ -704,9 +704,6 @@ if(LINUX OR APPLE OR SOLARIS)
     list(APPEND aura_source
             node/posix/_posix.h
             node/posix/application.cpp
-            os/winpr_input.h
-            os/winpr_keycode.cpp
-            os/winpr_scancode.cpp
             )
 
     endif()

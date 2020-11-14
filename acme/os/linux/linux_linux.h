@@ -30,8 +30,8 @@
 
 
 
-CLASS_DECL_ACME ::u32 get_last_error();
-CLASS_DECL_ACME void set_last_error(::u32 dw);
+CLASS_DECL_ACME ::e_status get_last_status();
+CLASS_DECL_ACME void set_last_status(::e_status estatus);
 
 
 CLASS_DECL_ACME bool _istlead(i32 ch);

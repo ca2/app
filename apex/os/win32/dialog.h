@@ -12,15 +12,15 @@ namespace win32
 
       bool m_bCreated;
       bool  m_bNew;
-      LPCWSTR m_pszResource;
+      const widechar * m_pszResource;
 
 
       dialog();
-      dialog(::layered* pobjectContext, LPCWSTR pszResource);
+      dialog(::layered* pobjectContext, const widechar * pszResource);
       virtual ~dialog();
 
 
-      virtual ::estatus initialize_dialog(::layered * pobjectContext, LPCWSTR pszResource);
+      virtual ::estatus initialize_dialog(::layered * pobjectContext, const widechar * pszResource);
 
       bool create_dialog(window * pwindow = nullptr);
 

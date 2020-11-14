@@ -255,8 +255,8 @@ namespace user
       MESSAGE_LINK(e_message_kill_focus, pchannel, this, &::user::plain_edit::_001OnKillFocus);
 
 
-      MESSAGE_LINK(WM_VSCROLL, pchannel, this, &::user::plain_edit::_001OnVScroll);
-      MESSAGE_LINK(WM_HSCROLL, pchannel, this, &::user::plain_edit::_001OnHScroll);
+      MESSAGE_LINK(e_message_vscroll, pchannel, this, &::user::plain_edit::_001OnVScroll);
+      MESSAGE_LINK(e_message_hscroll, pchannel, this, &::user::plain_edit::_001OnHScroll);
 
 
 

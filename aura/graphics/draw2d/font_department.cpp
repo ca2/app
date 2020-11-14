@@ -66,7 +66,7 @@ bool font_department::is_initialized()
 
    //m_fontMenu->create_point_font(FONTFACENAME_MENU, 9);
 
-   //m_font->create_point_font(FONTFACENAME_LUCIDA, 11, FW_BOLD);
+   //m_font->create_point_font(FONTFACENAME_LUCIDA, 11, e_font_weight_bold);
 
    //m_fontStandard->create_point_font(FONTFACENAME_LUCIDA, 8);
 

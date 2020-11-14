@@ -400,6 +400,9 @@ var::var(const ::datetime::time & time)
 }
 
 
+#ifdef WINDOWS
+
+
 var::var(const FILETIME & filetime)
 {
 
@@ -414,6 +417,9 @@ var::var(const SYSTEMTIME & systemtime)
    m_etype = type_time;
    m_time = ::datetime::time(systemtime).m_time;
 }
+
+
+#endif
 
 
 var::~var()
@@ -715,65 +721,103 @@ class var & var::operator = (bool * pb)
    return *this;
 }
 
+
 class var & var::operator = (::i32 i)
 {
-   if(get_type() == type_pi32)
+
+    if(get_type() == type_pi32)
    {
-      *m_pi32 = i;
+
+       *m_pi32 = i;
+
    }
    else if(get_type() == type_pvar)
    {
-      *m_pvar = i;
+
+       *m_pvar = i;
+
    }
    else if (get_type() == type_prop)
    {
-      *m_pprop = i;
+
+       *m_pprop = i;
+
    }
    else
    {
-      set_type(type_i32, false);
+
+       set_type(type_i32, false);
+
       m_i32 = i;
+
    }
+
    return *this;
+
 }
-
-
 
 
 class var & var::operator = (::i32 * pi)
 {
+
    set_type(type_pi32, false);
+
    m_pi32 = pi;
+
    return *this;
+
 }
+
 
 class var & var::operator = (::u32 * pinteraction)
 {
-   set_type(type_pu32, false);
+
+    set_type(type_pu32, false);
+
    m_pu32 = pinteraction;
+
    return *this;
+
 }
+
 
 class var & var::operator = (::i64 * pi)
 {
-   set_type(type_pi64, false);
+
+    set_type(type_pi64, false);
+
    m_pi64 = pi;
+
    return *this;
+
 }
+
 
 class var & var::operator = (::u64 * pinteraction)
 {
-   set_type(type_pu64, false);
+
+    set_type(type_pu64, false);
+
    m_pu64 = pinteraction;
+
    return *this;
+
 }
+
 
 class var & var::operator = (const ::datetime::time & time)
 {
-   set_type(type_time, false);
+
+    set_type(type_time, false);
+
    m_time = time.get_time();
+
    return *this;
+
 }
+
+
+#ifdef WINDOWS
 
 
 class var & var::operator = (const FILETIME & filetime)
@@ -786,6 +830,9 @@ class var & var::operator = (const FILETIME & filetime)
    return *this;
 
 }
+
+
+#endif
 
 
 class var & var::operator = (::i64 i)

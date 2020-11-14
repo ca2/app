@@ -120,8 +120,8 @@ namespace user
       bool bList = dynamic_cast <list *> (this) != nullptr;
 
       MESSAGE_LINK(e_message_size, pchannel, this,&mesh::_001OnSize);
-      MESSAGE_LINK(WM_VSCROLL, pchannel, this,&mesh::_001OnVScroll);
-      MESSAGE_LINK(WM_HSCROLL, pchannel, this,&mesh::_001OnHScroll);
+      MESSAGE_LINK(e_message_vscroll, pchannel, this,&mesh::_001OnVScroll);
+      MESSAGE_LINK(e_message_hscroll, pchannel, this,&mesh::_001OnHScroll);
       MESSAGE_LINK(WM_MOUSELEAVE, pchannel, this,&mesh::_001OnMouseLeave);
 
       if (!bList)

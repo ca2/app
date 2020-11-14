@@ -105,7 +105,7 @@ namespace windows
          //__throw(not_implemented());
          /*
          // execute the command
-         if (!System.OnDDECommand( (LPTSTR)(const wchar_t *)str))
+         if (!System.OnDDECommand( (char *)(const wchar_t *)str))
             TRACE1("Error: failed to execute DDE command '%S'.\n", str);
          */
          //

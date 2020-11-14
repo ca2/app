@@ -309,9 +309,9 @@ namespace aura
 
 
 
-
+#ifdef WINDOWS
       virtual void TermThread(HINSTANCE hInstTerm) override;
-
+#endif
 
       //virtual void set_env_var(const string & var, const string & value) override;
 
@@ -996,7 +996,9 @@ namespace aura
 
 
       // Printer DC Setup routine, 'struct tagPD' is a PRINTDLG structure.
+#ifdef WINDOWS
       void SelectPrinter(HANDLE hDevNames, HANDLE hDevMode, bool bFreeOld = TRUE);
+#endif
 
       // create a DC for the system default printer.
       ::draw2d::graphics* CreatePrinterDC();
@@ -1061,7 +1063,7 @@ namespace aura
 
 
 
-      void DevModeChange(LPTSTR pDeviceName);
+      void DevModeChange(char * pDeviceName);
 
 
       // Finds number of opened document items owned by templates
@@ -1418,7 +1420,7 @@ namespace aura
       virtual HCURSOR load_default_cursor(e_cursor ecursor);
 
 #ifdef WINDOWS_DESKTOP
-      virtual LPTSTR windows_get_system_cursor(e_cursor ecursor);
+      virtual char * windows_get_system_cursor(e_cursor ecursor);
 #endif
 
 #ifdef LINUX

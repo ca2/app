@@ -1,6 +1,9 @@
 #pragma once
 
 
+#ifdef WINDOWS
+
+
 namespace net
 {
 
@@ -122,6 +125,8 @@ namespace net
 
 } // namespace net
 
+
+#endif
 
 
 

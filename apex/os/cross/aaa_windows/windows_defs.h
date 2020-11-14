@@ -273,10 +273,10 @@ typedef struct tagSIZE
 {
    ::i32        cx;
    ::i32        cy;
-} SIZE32, *PSIZE, *LPSIZE;
+} SIZE32, *PSIZE, *LPSIZE32;
 
 typedef SIZE32               SIZEL;
-typedef SIZE32               *PSIZEL, *LPSIZEL;
+typedef SIZE32               *PSIZEL, *LPSIZE32L;
 
 typedef struct tagPOINTS
 {
@@ -399,7 +399,7 @@ struct tagHandle
 //typedef const char * const char *;
 typedef const char * LPCTSTR;
 //typedef char * char *;
-typedef char * LPTSTR;
+typedef char * char *;
 
 
 
@@ -444,7 +444,7 @@ typedef unsigned short WCHAR;    // wc,   16-bit UNICODE character
 typedef  PWSTR *PZPWSTR;
 typedef  CONST PWSTR *PCZPWSTR;
 typedef  WCHAR UNALIGNED *LPUWSTR, *PUWSTR;
-//typedef  CONST WCHAR *LPCWSTR, *PCWSTR;
+//typedef  CONST WCHAR *const widechar *, *PCWSTR;
 typedef  PCWSTR *PZPCWSTR;
 typedef  CONST WCHAR UNALIGNED *LPCUWSTR, *PCUWSTR;
 
@@ -487,7 +487,7 @@ typedef unsigned char TBYTE, *PTBYTE ;
 
 typedef LPCH LPTCH, PTCH;
 typedef LPCCH LPCTCH, PCTCH;
-//typedef char * PTSTR, LPTSTR, PUTSTR, LPUTSTR;
+//typedef char * PTSTR, char *, PUTSTR, LPUTSTR;
 //typedef const char * PCTSTR, LPCTSTR, PCUTSTR, LPCUTSTR;
 typedef PZZSTR PZZTSTR, PUZZTSTR;
 typedef PCZZSTR PCZZTSTR, PCUZZTSTR;
@@ -613,7 +613,7 @@ typedef CHAR TCHAR;
 #endif
 typedef const TCHAR *LPCTSTR;
 typedef unichar WCHAR;
-typedef const WCHAR *LPCWSTR;
+typedef const WCHAR *const widechar *;
 */
 typedef WCHAR OLECHAR;
 typedef OLECHAR *BSTR;

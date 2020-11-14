@@ -526,9 +526,9 @@ namespace linux
          if(!::dir::mkdir(stra[i]))
          {
 
-            ::u32 dwError = ::get_last_error();
+            ::estatus estatus = ::get_last_status();
 
-            if(dwError == ERROR_ALREADY_EXISTS)
+            if(estatus == ::error_already_exists)
             {
 
                string str;
@@ -570,7 +570,7 @@ namespace linux
                else
                {
 
-                  dwError = ::get_last_error();
+                  estatus = ::get_last_status();
 
                }
 

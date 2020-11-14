@@ -13,11 +13,22 @@ bool set_thread_name(hthread_t hthread, const char * psz)
 }
 
 
-
 bool set_thread_name(const char * psz)
 {
 
    return set_thread_name(pthread_self(), psz);
+
+}
+
+
+void __node_init_cross_windows_threading()
+{
+
+}
+
+
+void __node_term_cross_windows_threading()
+{
 
 }
 

@@ -360,7 +360,7 @@ namespace uwp
             else
             {
 
-               pimage48->get_graphics()->SetStretchBltMode(HALFTONE);
+               pimage48->get_graphics()->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
 
                pimage48->get_graphics()->StretchBlt(0, 0, 48, 48, pimage16->get_graphics(), 0, 0, pimage16->width(), pimage16->height());
 

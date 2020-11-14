@@ -225,7 +225,7 @@ namespace draw2d
 
          }
 
-         ::EnumFontFamiliesW(m_hdc, (LPCWSTR)nullptr, (FONTENUMPROCW)&wingdi_font_enum::callback, (LPARAM)this);
+         ::EnumFontFamiliesW(m_hdc, (const widechar *)nullptr, (FONTENUMPROCW)&wingdi_font_enum::callback, (LPARAM)this);
 
          for (auto & pitem : m_itema.ptra())
          {

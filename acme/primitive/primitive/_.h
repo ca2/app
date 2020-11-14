@@ -148,4 +148,4 @@ inline stream & operator << (stream & s, const memory_base & mem);
 inline stream & operator >> (stream & s, memory_base & mem);
 
 
-
+CLASS_DECL_ACME string __str(const ::estatus & estatus);

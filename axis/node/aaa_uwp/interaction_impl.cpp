@@ -316,7 +316,7 @@ namespace uwp
       last_install_message_routing(pchannel);
       //m_pbuffer->InstallMessageHandling(pinterface);
       MESSAGE_LINK(e_message_destroy, pchannel, this,&interaction_impl::_001OnDestroy);
-      MESSAGE_LINK(WM_PAINT, pchannel, this,&interaction_impl::_001OnPaint);
+      MESSAGE_LINK(e_message_paint, pchannel, this,&interaction_impl::_001OnPaint);
       MESSAGE_LINK(WM_PRINT, pchannel, this,&interaction_impl::_001OnPrint);
       if(m_puserinteraction != nullptr)
       {
@@ -1354,7 +1354,7 @@ LOWORD(lParam), HIWORD(lParam));
 break;
 
 case ::ca2::Sig_i_v_s:
-lResult = (this->*mmf.pfn_i_s)(reinterpret_cast<LPTSTR>(lParam));
+lResult = (this->*mmf.pfn_i_s)(reinterpret_cast<char *>(lParam));
 break;
 
 case ::ca2::Sig_l_w_l:
@@ -1453,9 +1453,9 @@ break;
 case ::ca2::Sig_SCROLL:
 case ::ca2::Sig_SCROLL_REFLECT:
 {
-// special case for WM_VSCROLL and WM_HSCROLL
-ASSERT(message == WM_VSCROLL || message == WM_HSCROLL ||
-message == WM_VSCROLL+WM_REFLECT_BASE || message == WM_HSCROLL+WM_REFLECT_BASE);
+// special case for e_message_vscroll and e_message_hscroll
+ASSERT(message == e_message_vscroll || message == e_message_hscroll ||
+message == e_message_vscroll+WM_REFLECT_BASE || message == e_message_hscroll+WM_REFLECT_BASE);
 int nScrollCode = (short)LOWORD(wParam);
 int nPos = (short)HIWORD(wParam);
 if (lpEntry->nSig == ::ca2::Sig_SCROLL)
@@ -1467,7 +1467,7 @@ else
 break;
 
 case ::ca2::Sig_v_v_s:
-(this->*mmf.pfn_v_s)(reinterpret_cast<LPTSTR>(lParam));
+(this->*mmf.pfn_v_s)(reinterpret_cast<char *>(lParam));
 break;
 
 case ::ca2::Sig_v_u_cs:
@@ -1475,12 +1475,12 @@ case ::ca2::Sig_v_u_cs:
 break;
 
 case ::ca2::Sig_OWNERDRAW:
-(this->*mmf.pfn_v_i_s)(static_cast<int>(wParam), reinterpret_cast<LPTSTR>(lParam));
+(this->*mmf.pfn_v_i_s)(static_cast<int>(wParam), reinterpret_cast<char *>(lParam));
 lResult = TRUE;
 break;
 
 case ::ca2::Sig_i_i_s:
-lResult = (this->*mmf.pfn_i_i_s)(static_cast<int>(wParam), reinterpret_cast<LPTSTR>(lParam));
+lResult = (this->*mmf.pfn_i_i_s)(static_cast<int>(wParam), reinterpret_cast<char *>(lParam));
 break;
 
 case ::ca2::Sig_u_v_p:
@@ -2000,8 +2000,8 @@ return TRUE;
       switch(uMsg)
       {
       // normal messages (just wParam, lParam through OnWndMsg)
-      case WM_HSCROLL:
-      case WM_VSCROLL:
+      case e_message_hscroll:
+      case e_message_vscroll:
       case WM_PARENTNOTIFY:
       case WM_DRAWITEM:
       case WM_MEASUREITEM:
@@ -4043,7 +4043,7 @@ ExitModal:
 
 #ifdef WINDOWS_DESKTOP
 
-   int interaction_impl::DlgDirList(__inout_z LPTSTR lpPathSpec, __in int nIDListBox, __in int nIDStaticPath, __in ::u32 nFileType)
+   int interaction_impl::DlgDirList(__inout_z char * lpPathSpec, __in int nIDListBox, __in int nIDStaticPath, __in ::u32 nFileType)
    {
 
       __throw(todo());
@@ -4054,7 +4054,7 @@ ExitModal:
 
    }
 
-   int interaction_impl::DlgDirListComboBox(__inout_z LPTSTR lpPathSpec, __in int nIDComboBox,  __in int nIDStaticPath, __in ::u32 nFileType)
+   int interaction_impl::DlgDirListComboBox(__inout_z char * lpPathSpec, __in int nIDComboBox,  __in int nIDStaticPath, __in ::u32 nFileType)
    {
 
       __throw(todo());
@@ -4065,7 +4065,7 @@ ExitModal:
 
    }
 
-   bool interaction_impl::DlgDirSelect(LPTSTR lpString, int nSize, int nIDListBox)
+   bool interaction_impl::DlgDirSelect(char * lpString, int nSize, int nIDListBox)
    {
 
       __throw(todo());
@@ -4076,7 +4076,7 @@ ExitModal:
 
    }
 
-   bool interaction_impl::DlgDirSelectComboBox(LPTSTR lpString, int nSize, int nIDComboBox)
+   bool interaction_impl::DlgDirSelectComboBox(char * lpString, int nSize, int nIDComboBox)
    {
 
       __throw(todo());
@@ -4113,7 +4113,7 @@ ExitModal:
 
 #ifdef WINDOWS_DESKTOP
 
-   int interaction_impl::GetDlgItemText(__in int nID, __out_ecount_part_z(nMaxCount, return + 1) LPTSTR lpStr, __in int nMaxCount) const
+   int interaction_impl::GetDlgItemText(__in int nID, __out_ecount_part_z(nMaxCount, return + 1) char * lpStr, __in int nMaxCount) const
    {
 
       __throw(todo());
@@ -4866,7 +4866,7 @@ ExitModal:
 
 #ifdef WINDOWS_DESKTOP
 
-   void interaction_impl::OnAskCbFormatName(__in ::u32 nMaxCount, __out_ecount_z(nMaxCount) LPTSTR pszName)
+   void interaction_impl::OnAskCbFormatName(__in ::u32 nMaxCount, __out_ecount_z(nMaxCount) char * pszName)
    {
       (nMaxCount);
       if(nMaxCount>0)
@@ -5481,7 +5481,7 @@ CLASS_DECL_BASE const char * __register_window_class(::u32 nClassStyle,
 {
    // Returns a temporary string name for the class
    //  Save in a string if you want to use it for a long time
-   LPTSTR lpszName = __get_thread_state()->m_szTempClassName;
+   char * lpszName = __get_thread_state()->m_szTempClassName;
 
    // generate a synthetic name for this class
    HINSTANCE hInst = Sys(::uwp::get_task()->get_context_application()).m_hInstance;
@@ -5767,7 +5767,7 @@ __activation_window_procedure(oswindow hWnd, ::u32 nMsg, WPARAM wParam, LPARAM l
                                              (short)LOWORD(lParam), HIWORD(lParam));
          break;
 
-      case WM_NCDESTROY:
+      case e_message_ncdestroy:
          SetWindowLongPtr(hWnd, GWLP_WNDPROC, reinterpret_cast<iptr>(oldWndProc));
          RemoveProp(hWnd, gen_OldWndProc);
          GlobalDeleteAtom(GlobalFindAtom(gen_OldWndProc));

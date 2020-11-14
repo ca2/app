@@ -40,7 +40,7 @@ namespace simpledb
       const char * pszDatabase,
       i32 iPort = 0,
       const char * pszSocketName = nullptr,
-      u32 uiFlags = 0);
+      u32 uFlags = 0);
 
       virtual bool close();
 

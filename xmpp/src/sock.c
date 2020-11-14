@@ -704,7 +704,7 @@ int sock_srv_lookup(const char *service, const char *proto, const char *domain, 
 				DWORD len = 512;
 				HKEY searchentry;
 
-				RegEnumKeyEx(searchlist, i, (LPTSTR)name, &len, NULL, NULL, NULL, NULL);
+				RegEnumKeyEx(searchlist, i, (char *)name, &len, NULL, NULL, NULL, NULL);
 
 				if (RegOpenKeyEx(searchlist, name, 0, KEY_READ, &searchentry) == ERROR_SUCCESS)
 				{

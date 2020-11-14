@@ -27,7 +27,7 @@ namespace uwp
          return false;
       if(dwType != REG_SZ)
          return false;
-      LPTSTR lpsz = str.GetBuffer(cbValue);
+      char * lpsz = str.GetBuffer(cbValue);
       if(ERROR_SUCCESS != ::RegQueryValueEx(hKey, lpSubKey, nullptr, &dwType, (LPBYTE) lpsz, &cbValue))
       {
          str.ReleaseBuffer();
@@ -99,7 +99,7 @@ namespace uwp
          return false;
       if(dwType != REG_SZ)
          return false;
-      LPTSTR lpsz = str.GetBuffer(cbValue);
+      char * lpsz = str.GetBuffer(cbValue);
       if(ERROR_SUCCESS != ::RegQueryValueEx(m_hkey, lpcszValueName, nullptr, &dwType, (LPBYTE) lpsz, &cbValue))
       {
          str.ReleaseBuffer();
@@ -142,7 +142,7 @@ namespace uwp
    const char * lpcszValueName)
    {
       return ERROR_SUCCESS ==
-             ::RegDeleteValue(m_hkey, (LPTSTR)lpcszValueName);
+             ::RegDeleteValue(m_hkey, (char *)lpcszValueName);
    }
 
    bool registry::Key::DeleteKey()

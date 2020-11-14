@@ -64,7 +64,7 @@ Serial::SerialImpl::open ()
 
    // See: https://github.com/wjwwood/serial/issues/84
    wstring port_with_prefix = _prefix_port_if_needed(m_wstrPort);
-   LPCWSTR p_port = port_with_prefix.c_str();
+   const widechar * p_port = port_with_prefix.c_str();
 
    m_hFile = CreateFileW(p_port,
 

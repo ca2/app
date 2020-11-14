@@ -53,7 +53,9 @@ public:
 
    virtual void Stop(u32 control) = 0;
 
+#ifdef WINDOWS
    virtual void UpdateState(u32 state, HRESULT errorCode = S_OK);
+#endif
 
    virtual string get_service_name() const;
 

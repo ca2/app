@@ -162,7 +162,7 @@ namespace linux
          ::file::throw_status(error_disk_full, errno, m_path);
    }
 
-   LPTSTR stdio_file::read_string(LPTSTR psz, ::u32 nMax)
+   char * stdio_file::read_string(char * psz, ::u32 nMax)
 
    {
       ASSERT(psz != nullptr);
@@ -171,7 +171,7 @@ namespace linux
 
       ASSERT(m_pStream != nullptr);
 
-      LPTSTR pszResult = fgets(psz, nMax, m_pStream);
+      char * pszResult = fgets(psz, nMax, m_pStream);
 
       if (pszResult == nullptr && !feof(m_pStream))
 

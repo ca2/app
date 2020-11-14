@@ -2233,7 +2233,7 @@ namespace music
 //
 //         ASSERT(lpcFilePath != nullptr);
 //
-//         LPTSTR lpFilePath = _tcsdup(lpcFilePath);
+//         char * lpFilePath = _tcsdup(lpcFilePath);
 //
 //         /* Verify that the file can be opened or created
 //         */

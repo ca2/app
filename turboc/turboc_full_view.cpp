@@ -235,7 +235,7 @@ namespace turboc
 
          }
 
-         pgraphics->SetStretchBltMode(HALFTONE);
+         pgraphics->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
 
          pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
@@ -336,7 +336,7 @@ namespace turboc
 
 /*                     draw_freetype_bitmap(pimage->m_p,0,0,&face->glyph->bitmap,0,0,a,R,g,b);
 
-                     pgraphics->SetStretchBltMode(HALFTONE);
+                     pgraphics->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
 
 /*                     pgraphics->StretchBlt(0,0,pimage->width() / 40,pimage->height() / 40,pimage->get_graphics(),0,0,pimage->width(),pimage->height(),SRCCOPY);
 
@@ -387,7 +387,7 @@ namespace turboc
 
 /*                     draw_freetype_bitmap(pimage->m_p,0,0,&face->glyph->bitmap,0,0,a,R,g,b);
 
-                     pgraphics->SetStretchBltMode(HALFTONE);
+                     pgraphics->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
 
 /*                     pgraphics->StretchBlt(m_cx - pimage->width() / 32,0,pimage->width() / 32,pimage->height() / 32,pimage->get_graphics(),0,0,pimage->width(),pimage->height(),SRCCOPY);
 

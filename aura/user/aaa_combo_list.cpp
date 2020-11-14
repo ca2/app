@@ -61,7 +61,7 @@ namespace user
       MESSAGE_LINK(e_message_set_focus, pchannel, this, &combo_list::_001OnSetFocus);
       MESSAGE_LINK(e_message_kill_focus, pchannel, this, &combo_list::_001OnKillFocus);
       MESSAGE_LINK(e_message_close, pchannel, this, &combo_list::_001OnClose);
-      MESSAGE_LINK(WM_MOUSEACTIVATE, pchannel, this, &combo_list::_001OnMouseActivate);
+      MESSAGE_LINK(e_message_mouse_activate, pchannel, this, &combo_list::_001OnMouseActivate);
       MESSAGE_LINK(e_message_key_down, pchannel, this, &combo_list::_001OnKeyDown);
       MESSAGE_LINK(e_message_key_up, pchannel, this, &combo_list::_001OnKeyUp);
       MESSAGE_LINK(e_message_lbutton_down, pchannel, this, &combo_list::_001OnLButtonDown);
@@ -290,7 +290,7 @@ namespace user
    }
 
 
-   void combo_list::query_full_size(::draw2d::graphics_pointer& pgraphics, LPSIZE psize)
+   void combo_list::query_full_size(::draw2d::graphics_pointer& pgraphics, LPSIZE32 psize)
    {
 
       sync_lock sl(mutex());

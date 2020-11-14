@@ -296,7 +296,7 @@ bool image::create_isotropic(::image * pimage)
    else
    {
 
-      pimage->g()->SetStretchBltMode(HALFTONE);
+      pimage->g()->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
 
       pimage->g()->StretchBlt(0, 0, cx, cy, get_graphics(), 0, 0, width(), height());
 
@@ -492,7 +492,7 @@ bool image::from(::draw2d::graphics * pgraphics, const ::size & size)
 
 bool image::from(const ::point & pointDst, ::draw2d::graphics * pgraphics, const ::point & pointSrc, const ::size & size)
 {
-   return get_graphics()->from(pointDst, size, pgraphics, pointSrc, SRCCOPY) != FALSE;
+   return get_graphics()->from(pointDst, size, pgraphics, pointSrc) != FALSE;
 }
 
 bool image::from(const ::point & pointDstParam, ::image * pimageSrc, const ::point & pointSrcParam, const ::size & sizeParam)
@@ -3826,7 +3826,7 @@ bool image::copy_from(::image * pimage, i32 x, i32 y)
    if (s.area() > 0)
    {
 
-      if (!g()->BitBlt(0, 0, s.cx, s.cy, pimage, x, y, SRCCOPY))
+      if (!g()->BitBlt(0, 0, s.cx, s.cy, pimage, x, y))
       {
 
          return false;
@@ -6288,7 +6288,7 @@ bool image::_set_mipmap(::draw2d::e_mipmap emipmap)
 
       }
 
-      get_graphics()->SetStretchBltMode(HALFTONE);
+      get_graphics()->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
 
       int x = cxSource;
 
@@ -8318,7 +8318,7 @@ bool image::create_circle(::image * pimage, int diameter)
 
       get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
 
-      get_graphics()->StretchBlt(0, 0, diameter, diameter, pimage->g(), 0, 0, pimage->width(), pimage->height(), SRCCOPY);
+      get_graphics()->StretchBlt(0, 0, diameter, diameter, pimage->g(), 0, 0, pimage->width(), pimage->height());
 
    }
 
@@ -8385,7 +8385,7 @@ bool image::create_framed_square(::image * pimage, int inner, int outer, color32
 
    fill(cr);
 
-   get_graphics()->StretchBlt(outer, outer, inner, inner, pimage->g(), 0, 0, pimage->width(), pimage->height(), SRCCOPY);
+   get_graphics()->StretchBlt(outer, outer, inner, inner, pimage->g(), 0, 0, pimage->width(), pimage->height());
 
    return true;
 

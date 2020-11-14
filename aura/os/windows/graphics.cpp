@@ -181,6 +181,6 @@ namespace draw2d
 //
 //}
 
-CLASS_DECL_AURA LPTSTR windows_get_system_cursor(e_cursor ecursor);
+CLASS_DECL_AURA char * windows_get_system_cursor(e_cursor ecursor);
 
 

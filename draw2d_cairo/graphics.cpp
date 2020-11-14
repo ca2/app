@@ -156,7 +156,7 @@ graphics::graphics()
    m_pfont->m_dFontSize = 12.0;
    m_iSaveDCPositiveClip = -1;
 
-   m_nStretchBltMode = HALFTONE;
+   m_nStretchBltMode = e_interpolation_mode_high_quality_bicubic;
 
 }
 
@@ -1718,7 +1718,7 @@ bool graphics::StretchBltRaw(double xDst, double yDst, double nDstWidth, double 
         cairo_pattern_set_filter(cairo_get_source(m_pdc), CAIRO_FILTER_NEAREST);
 
     }
-    else if (m_nStretchBltMode == HALFTONE)
+    else if (m_nStretchBltMode == e_interpolation_mode_high_quality_bicubic)
     {
 
         cairo_pattern_set_filter(cairo_get_source(m_pdc), CAIRO_FILTER_GOOD);
@@ -1936,7 +1936,7 @@ bool graphics::GrayString(::draw2d::brush* pBrush, bool (CALLBACK* lpfnOutput)(H
 }
 
 
-i32 graphics::GetTextFace(count nCount, LPTSTR lpszFacename)
+i32 graphics::GetTextFace(count nCount, char * lpszFacename)
 {
 
     ::exception::throw_not_implemented();
@@ -2472,7 +2472,7 @@ bool graphics::PlgBlt(POINT32 * lpPoint, ::draw2d::graphics * pgraphicsSrc, i32 
       cairo_pattern_set_filter(cairo_get_source(m_pdc), CAIRO_FILTER_NEAREST);
 
    }
-   else if (m_nStretchBltMode == HALFTONE)
+   else if (m_nStretchBltMode == e_interpolation_mode_high_quality_bicubic)
    {
 
       cairo_pattern_set_filter(cairo_get_source(m_pdc), CAIRO_FILTER_GOOD);
@@ -3053,7 +3053,7 @@ bool graphics::GetCharWidthI(::u32 giFirst, ::u32 cgi, LPWORD pgi, LPINT lpBuffe
 #if (_WIN32_WINNT >= 0x0500)
 
 
-bool graphics::GetTextExtentExPointI(LPWORD pgiIn, i32 cgi, i32 nMaxExtent, LPINT lpnFit, LPINT alpDx, LPSIZE lpSize)
+bool graphics::GetTextExtentExPointI(LPWORD pgiIn, i32 cgi, i32 nMaxExtent, LPINT lpnFit, LPINT alpDx, LPSIZE32 LPSIZE32)
 {
 
     ::exception::throw_not_implemented();
@@ -3063,7 +3063,7 @@ bool graphics::GetTextExtentExPointI(LPWORD pgiIn, i32 cgi, i32 nMaxExtent, LPIN
 }
 
 
-bool graphics::GetTextExtentPointI(LPWORD pgiIn, i32 cgi, LPSIZE lpSize)
+bool graphics::GetTextExtentPointI(LPWORD pgiIn, i32 cgi, LPSIZE32 LPSIZE32)
 {
 
     ::exception::throw_not_implemented();
@@ -3083,7 +3083,7 @@ bool graphics::GetTextExtentPointI(LPWORD pgiIn, i32 cgi, LPSIZE lpSize)
 #define HIMETRIC_INCH   2540    // HIMETRIC units per inch
 
 
-void graphics::DPtoHIMETRIC(LPSIZE lpSize)
+void graphics::DPtoHIMETRIC(LPSIZE32 LPSIZE32)
 {
 
     ::exception::throw_not_implemented();
@@ -3091,7 +3091,7 @@ void graphics::DPtoHIMETRIC(LPSIZE lpSize)
 }
 
 
-void graphics::HIMETRICtoDP(LPSIZE lpSize)
+void graphics::HIMETRICtoDP(LPSIZE32 LPSIZE32)
 {
 
     ::exception::throw_not_implemented();
@@ -3099,26 +3099,26 @@ void graphics::HIMETRICtoDP(LPSIZE lpSize)
 }
 
 
-void graphics::LPtoHIMETRIC(LPSIZE lpSize)
+void graphics::LPtoHIMETRIC(LPSIZE32 LPSIZE32)
 {
 
-    ASSERT(__is_valid_address(lpSize, sizeof(SIZE32)));
+    ASSERT(__is_valid_address(LPSIZE32, sizeof(SIZE32)));
 
-    LPtoDP(lpSize);
+    LPtoDP(LPSIZE32);
 
-    DPtoHIMETRIC(lpSize);
+    DPtoHIMETRIC(LPSIZE32);
 
 }
 
 
-void graphics::HIMETRICtoLP(LPSIZE lpSize)
+void graphics::HIMETRICtoLP(LPSIZE32 LPSIZE32)
 {
 
-    ASSERT(__is_valid_address(lpSize, sizeof(SIZE32)));
+    ASSERT(__is_valid_address(LPSIZE32, sizeof(SIZE32)));
 
-    HIMETRICtoDP(lpSize);
+    HIMETRICtoDP(LPSIZE32);
 
-    DPtoLP(lpSize);
+    DPtoLP(LPSIZE32);
 
 }
 
@@ -3345,7 +3345,7 @@ i32 graphics::SetROP2(i32 nDrawMode)
 }
 
 
-i32 graphics::SetStretchBltMode(i32 nStretchMode)
+i32 graphics::set_interpolation_mode(i32 nStretchMode)
 {
 
     m_nStretchBltMode = nStretchMode;
@@ -3729,7 +3729,7 @@ bool graphics::SelectClipPath(i32 nMode)
 //}
 
 
-void graphics::LPtoDP(LPSIZE lpSize)
+void graphics::LPtoDP(LPSIZE32 LPSIZE32)
 {
 
     ::exception::throw_not_implemented();
@@ -3739,7 +3739,7 @@ void graphics::LPtoDP(LPSIZE lpSize)
 }
 
 
-void graphics::DPtoLP(LPSIZE lpSize)
+void graphics::DPtoLP(LPSIZE32 LPSIZE32)
 {
 
     ::exception::throw_not_implemented();

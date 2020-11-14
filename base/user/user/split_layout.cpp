@@ -498,7 +498,7 @@ namespace user
 
       ::u32 uBaseFlags = SWP_NOZORDER;
 
-      ::u32 uFlags = uiBaseFlags;
+      ::u32 uFlags = uBaseFlags;
 
       for(i = 0; i < iSplitBarCount; i++)
       {
@@ -516,8 +516,7 @@ namespace user
 
          CalcSplitBarRect(i, &rectBar);
 
-         uiFlags = uiBaseFlags;
-
+         uFlags = uBaseFlags;
 
          if (bIsWindowVisible)
          {

@@ -251,6 +251,10 @@ inline ::micros duration::micros() const
 inline nanos duration::nanos() const
 {
 
+   return m_iNanoseconds + m_iSeconds * 1'000'000'000;
+
+}
+
    return ::duration::;
 
 }

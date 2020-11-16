@@ -849,26 +849,26 @@ namespace draw2d_quartz2d
 
     */
 
-   bool graphics::DrawEdge(RECT32 * prect, ::u32 nEdge, ::u32 nFlags)
-   {
-
-      __throw(not_implemented());
-      return false;
-
-      //      ASSERT(get_handle1() != nullptr);
-      //      return ::DrawEdge(get_handle1(), rect, nEdge, nFlags) != FALSE;
-
-   }
-
-   bool graphics::DrawFrameControl(RECT32 * prect, ::u32 nType, ::u32 nState)
-   {
-
-      __throw(not_implemented());
-      return false;
-      //      ASSERT(get_handle1() != nullptr);
-      //      return ::DrawFrameControl(get_handle1(), rect, nType, nState) != FALSE;
-
-   }
+//   bool graphics::DrawEdge(RECT32 * prect, ::u32 nEdge, ::u32 nFlags)
+//   {
+//
+//      __throw(not_implemented());
+//      return false;
+//
+//      //      ASSERT(get_handle1() != nullptr);
+//      //      return ::DrawEdge(get_handle1(), rect, nEdge, nFlags) != FALSE;
+//
+//   }
+//
+//   bool graphics::DrawFrameControl(RECT32 * prect, ::u32 nType, ::u32 nState)
+//   {
+//
+//      __throw(not_implemented());
+//      return false;
+//      //      ASSERT(get_handle1() != nullptr);
+//      //      return ::DrawFrameControl(get_handle1(), rect, nType, nState) != FALSE;
+//
+//   }
 
    bool graphics::Chord(i32 x1, i32 y1, i32 x2, i32 y2, i32 x3, i32 y3, i32 x4, i32 y4)
    {
@@ -1589,7 +1589,7 @@ namespace draw2d_quartz2d
 //   }
 
 
-   bool graphics::BitBltAlphaBlend(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, u32 dwRop)
+   bool graphics::BitBltAlphaBlend(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc)
    {
 
       if (m_pimageAlphaBlend->is_set())
@@ -2177,27 +2177,27 @@ namespace draw2d_quartz2d
 
    }
 
-   bool graphics::MaskBlt(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, ::draw2d::bitmap& maskBitmap, i32 xMask, i32 yMask, ::u32 dwRop)
-   {
-
-      __throw(not_implemented());
-      return false;
-
-      //      ASSERT(get_handle1() != nullptr);
-      //      return ::MaskBlt(get_handle1(), x, y, nWidth, nHeight, WIN_HDC(pgraphicsSrc), xSrc, ySrc,  (HBITMAP)maskBitmap.get_os_data(), xMask, yMask, dwRop) != FALSE;
-
-   }
-
-   bool graphics::PlgBlt(POINT32 * lpPoint, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nWidth, i32 nHeight, ::draw2d::bitmap& maskBitmap, i32 xMask, i32 yMask)
-   {
-
-      __throw(not_implemented());
-      return false;
-
-      //      ASSERT(get_handle1() != nullptr);
-      //      return ::PlgBlt(get_handle1(), lpPoint, WIN_HDC(pgraphicsSrc), xSrc, ySrc, nWidth, nHeight, (HBITMAP)maskBitmap.get_os_data(), xMask, yMask) != FALSE;
-
-   }
+//   bool graphics::MaskBlt(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, ::draw2d::bitmap& maskBitmap, i32 xMask, i32 yMask, ::u32 dwRop)
+//   {
+//
+//      __throw(not_implemented());
+//      return false;
+//
+//      //      ASSERT(get_handle1() != nullptr);
+//      //      return ::MaskBlt(get_handle1(), x, y, nWidth, nHeight, WIN_HDC(pgraphicsSrc), xSrc, ySrc,  (HBITMAP)maskBitmap.get_os_data(), xMask, yMask, dwRop) != FALSE;
+//
+//   }
+//
+//   bool graphics::PlgBlt(POINT32 * lpPoint, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nWidth, i32 nHeight, ::draw2d::bitmap& maskBitmap, i32 xMask, i32 yMask)
+//   {
+//
+//      __throw(not_implemented());
+//      return false;
+//
+//      //      ASSERT(get_handle1() != nullptr);
+//      //      return ::PlgBlt(get_handle1(), lpPoint, WIN_HDC(pgraphicsSrc), xSrc, ySrc, nWidth, nHeight, (HBITMAP)maskBitmap.get_os_data(), xMask, yMask) != FALSE;
+//
+//   }
 
    bool graphics::SetPixelV(i32 x, i32 y, const ::color & color)
    {

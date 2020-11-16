@@ -2414,7 +2414,7 @@ namespace user
 
          m_sizeTotal = rectClient.size();
 
-         on_change_view_size();
+         on_change_view_size(pgraphics);
 
          return;
 
@@ -2793,7 +2793,7 @@ namespace user
 
       }
 
-      on_change_view_size();
+      on_change_view_size(pgraphics);
 
       m_bCalcLayoutHintNoTextChange = false;
 

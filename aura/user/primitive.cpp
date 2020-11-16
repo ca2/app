@@ -1295,35 +1295,39 @@ namespace user
    }
 
 
-   ::user::interaction * primitive::get_next_window(::u32 nFlag)
+   ::user::interaction * primitive::get_next_window(bool bIgnoreChildren, ::user::interaction * puiInteractionStop)
    {
-
-      if(nFlag == GW_HWNDNEXT)
-      {
-
-         return get_next(true, nullptr);
-
-      }
-      else
-      {
-
-         ::exception::throw_interface_only();
-
-         return nullptr;
-
-      }
-
-   }
-
-
-   ::user::interaction * primitive::get_next(bool bIgnoreChildren,i32 * piLevel)
-   {
-
-      ::exception::throw_interface_only();
 
       return nullptr;
 
    }
+
+//      if(nFlag == GW_HWNDNEXT)
+//      {
+//
+//         return get_next(true, nullptr);
+//
+//      }
+//      else
+//      {
+//
+//         ::exception::throw_interface_only();
+//
+//         return nullptr;
+//
+//      }
+
+   ///}
+
+
+//   ::user::interaction * primitive::get_next_window(bool bIgnoreChildren)
+//   {
+//
+//      ::exception::throw_interface_only();
+//
+//      return nullptr;
+//
+//   }
 
 
    bool primitive::is_message_only_window() const
@@ -2657,7 +2661,35 @@ namespace user
    }
 
 
-   ::user::interaction * primitive::get_focusable_descendant(::user::interaction * pinteraction)
+   ::estatus primitive::set_tool_window(bool bSet)
+   {
+
+      UNREFERENCED_PARAMETER(bSet);
+
+      __throw(interface_only_exception);
+
+      return error_not_implemented;
+
+   }
+
+
+   ::user::interaction * primitive::get_first_child_window() const
+   {
+
+      return nullptr;
+
+   }
+
+
+   ::user::interaction * primitive::get_next_sibling_window()
+   {
+
+      return nullptr;
+
+   }
+
+
+   ::user::interaction * primitive::get_focusable_descendant()
    {
 
       ::exception::throw_interface_only();
@@ -3475,15 +3507,15 @@ namespace user
    //}
 
 
-   bool primitive::SetPlacement(const ::rect & rect, ::u32 nFlags)
-   {
-
-      UNREFERENCED_PARAMETER(rect);
-      UNREFERENCED_PARAMETER(nFlags);
-
-      return false;
-
-   }
+//   bool primitive::SetPlacement(const ::rect & rect, ::u32 nFlags)
+//   {
+//
+//      UNREFERENCED_PARAMETER(rect);
+//      UNREFERENCED_PARAMETER(nFlags);
+//
+//      return false;
+//
+//   }
 
 
    i32 primitive::get_total_page_count(::change * pchange)
@@ -3758,7 +3790,7 @@ namespace user
          if (puiThis->GetParent() != nullptr)
          {
 
-            pinteraction = puiThis->get_parent()->keyboard_get_next_focusable(puiFocus, true);
+            pinteraction = puiThis->get_parent_window()->keyboard_get_next_focusable(puiFocus, true);
 
             if (pinteraction.is_set())
                return pinteraction;
@@ -3867,7 +3899,7 @@ namespace user
    }
 
 
-   ::user::interaction * primitive::get_parent() const
+   ::user::interaction * primitive::get_parent_window() const
    {
 
       return nullptr;

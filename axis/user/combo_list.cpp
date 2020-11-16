@@ -479,6 +479,8 @@ namespace user
    bool combo_list::pre_create_window(::user::create_struct & cs)
    {
 
+#ifdef WINDOWS_DESKTOP
+
       if (cs.style & WS_BORDER)
       {
 #ifdef WINDOWS_DESKTOP
@@ -486,10 +488,12 @@ namespace user
 #endif
          cs.style &= ~WS_BORDER;
       }
-
-      cs.dwExStyle |= WS_EX_LAYERED;
       cs.dwExStyle |= WS_EX_TOOLWINDOW;
       cs.dwExStyle |= WS_EX_TOPMOST;
+
+#endif
+
+      cs.dwExStyle |= WS_EX_LAYERED;
       //cs.dwExStyle |= WS_EX_NOACTIVATE;
 
       return TRUE;
@@ -604,9 +608,9 @@ namespace user
 
       SCAST_PTR(::message::activate, pactivate, pmessage);
 
-      __pointer(::user::interaction) pActive = (pactivate->m_nState == WA_INACTIVE ? pactivate->m_pWndOther : this);
+      __pointer(::user::interaction) pActive = (pactivate->m_eactivate == e_activate_inactive ? pactivate->m_pWndOther : this);
 
-      if (pactivate->m_nState == WA_INACTIVE)
+      if (pactivate->m_eactivate == e_activate_inactive)
       {
 
          auto psession = Session;

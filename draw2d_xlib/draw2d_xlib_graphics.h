@@ -260,18 +260,18 @@ namespace draw2d_xlib
       bool DrawIcon(i32 x, i32 y, ::draw2d::icon * picon);
       bool DrawIcon(const ::point & point, ::draw2d::icon * picon);
       bool DrawIcon(i32 x, i32 y, ::draw2d::icon * picon, i32 cx, i32 cy, ::u32 istepIfAniCur, HBRUSH hbrFlickerFreeDraw, ::u32 diFlags);
-      bool DrawState(const ::point & point, const ::size & size, HBITMAP hBitmap, ::u32 nFlags,
-                     HBRUSH hBrush = nullptr);
-      bool DrawState(const ::point & point, const ::size & size, ::draw2d::bitmap* pBitmap, ::u32 nFlags,
-                     ::draw2d::brush* pBrush = nullptr);
+      //bool DrawState(const ::point & point, const ::size & size, HBITMAP hBitmap, ::u32 nFlags,
+        //             HBRUSH hBrush = nullptr);
+//      bool DrawState(const ::point & point, const ::size & size, ::draw2d::bitmap* pBitmap, ::u32 nFlags,
+//                     ::draw2d::brush* pBrush = nullptr);
       /*      bool DrawState(const ::point & point, const ::size & size, HICON hIcon, ::u32 nFlags,
                HBRUSH hBrush = nullptr);
             bool DrawState(const ::point & point, const ::size & size, HICON hIcon, ::u32 nFlags,
                ::draw2d::brush* pBrush = nullptr);*/
-      bool DrawState(const ::point & point, const ::size & size, const char * lpszText, ::u32 nFlags,
-                     bool bPrefixText = TRUE, i32 nTextLen = 0, HBRUSH hBrush = nullptr);
-      bool DrawState(const ::point & point, const ::size & size, const char * lpszText, ::u32 nFlags,
-                     bool bPrefixText = TRUE, i32 nTextLen = 0, ::draw2d::brush* pBrush = nullptr);
+//      bool DrawState(const ::point & point, const ::size & size, const char * lpszText, ::u32 nFlags,
+//                     bool bPrefixText = TRUE, i32 nTextLen = 0, HBRUSH hBrush = nullptr);
+//      bool DrawState(const ::point & point, const ::size & size, const char * lpszText, ::u32 nFlags,
+//                     bool bPrefixText = TRUE, i32 nTextLen = 0, ::draw2d::brush* pBrush = nullptr);
 //xxx      bool DrawState(const ::point & point, const ::size & size, DRAWSTATEPROC lpDrawProc,
 //xxx         LPARAM lData, ::u32 nFlags, HBRUSH hBrush = nullptr);
 //xxx      bool DrawState(const ::point & point, const ::size & size, DRAWSTATEPROC lpDrawProc,
@@ -309,30 +309,30 @@ namespace draw2d_xlib
       bool RoundRect(const ::rect & rect, const ::point & point);
 
       // Bitmap Functions
-      bool PatBlt(i32 x, i32 y, i32 nWidth, i32 nHeight, u32 dwRop);
+      bool PatBlt(i32 x, i32 y, i32 nWidth, i32 nHeight);
       using ::draw2d::graphics::BitBlt;
       bool BitBlt(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc,
-                  i32 xSrc, i32 ySrc, u32 dwRop);
+                  i32 xSrc, i32 ySrc);
       bool StretchBlt(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc,
-                      i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight, u32 dwRop);
+                      i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight);
       color32_t GetPixel(i32 x, i32 y) const;
       color32_t GetPixel(const ::point & point) const;
       color32_t SetPixel(i32 x, i32 y, color32_t crColor);
       color32_t SetPixel(const ::point & point, color32_t crColor);
-      bool FloodFill(i32 x, i32 y, color32_t crColor);
-      bool ExtFloodFill(i32 x, i32 y, color32_t crColor, ::u32 nFillType);
-      bool MaskBlt(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc,
-                   i32 xSrc, i32 ySrc, ::draw2d::bitmap& maskBitmap, i32 xMask, i32 yMask,
-                   u32 dwRop);
-      bool PlgBlt(POINT32 * lpPoint, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc,
-                  i32 nWidth, i32 nHeight, ::draw2d::bitmap& maskBitmap, i32 xMask, i32 yMask);
+//      bool FloodFill(i32 x, i32 y, color32_t crColor);
+//      bool ExtFloodFill(i32 x, i32 y, color32_t crColor, ::u32 nFillType);
+//      bool MaskBlt(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc,
+//                   i32 xSrc, i32 ySrc, ::draw2d::bitmap& maskBitmap, i32 xMask, i32 yMask,
+//                   u32 dwRop);
+//      bool PlgBlt(POINT32 * lpPoint, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc,
+//                  i32 nWidth, i32 nHeight, ::draw2d::bitmap& maskBitmap, i32 xMask, i32 yMask);
       bool SetPixelV(i32 x, i32 y, color32_t crColor);
       bool SetPixelV(const ::point & point, color32_t crColor);
-      bool GradientFill(TRIVERTEX* pVertices, ULONG nVertices,
-                        void * pMesh, ULONG nMeshElements, u32 dwMode);
-      bool TransparentBlt(i32 xDest, i32 yDest, i32 nDestWidth, i32 nDestHeight,
-                          ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight,
-                          ::u32 clrTransparent);
+//      bool GradientFill(TRIVERTEX* pVertices, ULONG nVertices,
+//                        void * pMesh, ULONG nMeshElements, u32 dwMode);
+//      bool TransparentBlt(i32 xDest, i32 yDest, i32 nDestWidth, i32 nDestHeight,
+//                          ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight,
+//                          ::u32 clrTransparent);
 
       using ::draw2d::graphics::alpha_blend;
       virtual bool alpha_blend(i32 xDest, i32 yDest, i32 nDestWidth, i32 nDestHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight, double dOpacity);
@@ -400,9 +400,9 @@ namespace draw2d_xlib
 
 
 
-      // Advanced Drawing
-      bool DrawEdge(RECT32 * prect, ::u32 nEdge, ::u32 nFlags);
-      bool DrawFrameControl(RECT32 * prect, ::u32 nType, ::u32 nState);
+//      // Advanced Drawing
+//      bool DrawEdge(RECT32 * prect, ::u32 nEdge, ::u32 nFlags);
+//      bool DrawFrameControl(RECT32 * prect, ::u32 nType, ::u32 nState);
 
       // Scrolling Functions
       bool ScrollDC(i32 dx, i32 dy, rect lpRectScroll, const ::rect & rectClip,

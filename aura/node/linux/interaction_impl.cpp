@@ -68,8 +68,9 @@ void CLASS_DECL_AURA __pre_init_dialog(
 
 void CLASS_DECL_AURA __post_init_dialog(
 ::user::interaction * pWnd, const rect & rectOld, ::u32 dwStyleOld);
-LRESULT CALLBACK
-__activation_window_procedure(oswindow hWnd, ::u32 nMsg, WPARAM wparam, LPARAM lparam);
+
+//LRESULT CALLBACK
+//__activation_window_procedure(oswindow hWnd, ::u32 nMsg, WPARAM wparam, LPARAM lparam);
 
 
 const char gen_OldWndProc[] = "::ca2::OldWndProc423";
@@ -169,13 +170,13 @@ namespace linux
    }
 
 
-   const MESSAGE* PASCAL interaction_impl::GetCurrentMessage()
-   {
-
-      return nullptr;
-
-   }
-
+//   const MESSAGE* PASCAL interaction_impl::GetCurrentMessage()
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
 
 //   LRESULT interaction_impl::Default()
 //   {
@@ -593,12 +594,13 @@ namespace linux
 
             }
 
-            if(cs.dwExStyle & WS_EX_TOOLWINDOW)
-            {
 
-               m_oswindow->set_window_long_ptr(GWL_EXSTYLE, m_oswindow->get_window_long_ptr(GWL_EXSTYLE) |  WS_EX_TOOLWINDOW);
-
-            }
+//            if(cs.dwExStyle & WS_EX_TOOLWINDOW)
+//            {
+//
+//               m_oswindow->set_window_long_ptr(GWL_EXSTYLE, m_oswindow->get_window_long_ptr(GWL_EXSTYLE) |  WS_EX_TOOLWINDOW);
+//
+//            }
 
             _wm_nodecorations(m_oswindow, 0);
 
@@ -624,11 +626,13 @@ namespace linux
                   if(is_docking_appearance(m_puserinteraction->layout().sketch().display()))
                   {
 
+                     // Context: Linux 201*
                      // window managers generally "don't like" windows that starts "docked/snapped".
                      // initial (XCreateWindow) size and position maybe not be honored.
                      // so requesting the same change again in a effort to set the "docked/snapped" size and position.
 
-                     m_oswindow->set_window_pos(zorder_top, cs.x, cs.y, cs.cx, cs.cy, SWP_SHOWWINDOW);
+                     //m_oswindow->set_window_pos(zorder_top, cs.x, cs.y, cs.cx, cs.cy, SWP_SHOWWINDOW);
+                     m_oswindow->set_window_pos(zorder_top, cs.x, cs.y, cs.cx, cs.cy, 0);
 
                   }
 
@@ -706,7 +710,7 @@ namespace linux
       if(!m_puserinteraction->m_bMessageWindow)
       {
          MESSAGE_LINK(e_message_paint, pchannel, this,&interaction_impl::_001OnPaint);
-         MESSAGE_LINK(WM_PRINT, pchannel, this,&interaction_impl::_001OnPrint);
+//         MESSAGE_LINK(WM_PRINT, pchannel, this,&interaction_impl::_001OnPrint);
       }
 
       m_puserinteraction->install_message_routing(pchannel);
@@ -1241,27 +1245,27 @@ namespace linux
       }
    */
 
-   bool interaction_impl::GetWindowPlacement(WINDOWPLACEMENT* pwndpl)
-
-   {
-      /*    ASSERT(::is_window((oswindow) get_handle()));
-          pwndpl->length = sizeof(WINDOWPLACEMENT);
-
-          return ::GetWindowPlacement(get_handle(), pwndpl) != FALSE;*/
-
-      return false;
-   }
-
-   bool interaction_impl::SetWindowPlacement(const WINDOWPLACEMENT* pwndpl)
-
-   {
-      /*      ASSERT(::is_window((oswindow) get_handle()));
-            ((WINDOWPLACEMENT*)pwndpl)->length = sizeof(WINDOWPLACEMENT);
-
-            return ::SetWindowPlacement(get_handle(), pwndpl) != FALSE;*/
-
-      return false;
-   }
+//   bool interaction_impl::GetWindowPlacement(WINDOWPLACEMENT* pwndpl)
+//
+//   {
+//      /*    ASSERT(::is_window((oswindow) get_handle()));
+//          pwndpl->length = sizeof(WINDOWPLACEMENT);
+//
+//          return ::GetWindowPlacement(get_handle(), pwndpl) != FALSE;*/
+//
+//      return false;
+//   }
+//
+//   bool interaction_impl::SetWindowPlacement(const WINDOWPLACEMENT* pwndpl)
+//
+//   {
+//      /*      ASSERT(::is_window((oswindow) get_handle()));
+//            ((WINDOWPLACEMENT*)pwndpl)->length = sizeof(WINDOWPLACEMENT);
+//
+//            return ::SetWindowPlacement(get_handle(), pwndpl) != FALSE;*/
+//
+//      return false;
+//   }
 
    /////////////////////////////////////////////////////////////////////////////
    // interaction_impl will delegate owner draw messages to self drawing controls
@@ -3100,7 +3104,7 @@ namespace linux
    }
 
 
-   LONG_PTR interaction_impl::get_window_long_ptr(i32 nIndex) const
+   iptr interaction_impl::get_window_long_ptr(i32 nIndex) const
    {
 
       return get_window_long(nIndex);
@@ -3108,7 +3112,7 @@ namespace linux
    }
 
 
-   LONG_PTR interaction_impl::set_window_long_ptr(i32 nIndex, LONG_PTR lValue)
+   iptr interaction_impl::set_window_long_ptr(i32 nIndex, iptr lValue)
    {
 
       return set_window_long(nIndex, lValue);
@@ -3835,13 +3839,17 @@ namespace linux
    }
 
 
-   ::user::interaction * PASCAL interaction_impl::GetFocus()
+   ::user::interaction * interaction_impl::GetFocus()
    {
 
       oswindow w = ::get_focus();
 
       if(w == nullptr)
+      {
+
          return nullptr;
+
+      }
 
       return w->m_pimpl->m_puserinteraction;
 
@@ -3865,7 +3873,7 @@ namespace linux
    }
 
 
-   ::user::interaction * PASCAL interaction_impl::get_desktop_window()
+   ::user::interaction * interaction_impl::get_desktop_window()
    {
       /*
             return ::linux::interaction_impl::from_handle(::get_desktop_window());
@@ -4801,7 +4809,7 @@ namespace linux
          if(m_puserinteraction->m_bWorkspaceFullScreen)
          {
 
-            ::show_window(m_oswindow, SW_MAXIMIZE);
+            ::show_window(m_oswindow, display_zoomed);
 
          }
          else
@@ -4933,6 +4941,15 @@ namespace linux
    {
 
       upper_window_rects(get_safe_handle(), recta);
+
+   }
+
+   ::estatus interaction_impl::set_tool_window(bool bSet)
+   {
+
+      wm_toolwindow(m_oswindow, bSet);
+
+      return ::success;
 
    }
 

@@ -158,6 +158,7 @@ namespace user
       int_top_level_drawing_order,
       int_button_press_shift_cx,
       int_button_press_shift_cy,
+      int_scroll_bar_width,
 
    };
 

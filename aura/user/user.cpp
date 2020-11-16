@@ -338,18 +338,19 @@ namespace user
 //   }
 
 
-   CLASS_DECL_AURA __pointer(::user::interaction) create_virtual_window(::object * pobject, u32 dwExStyle, const char * pClassName, const char * lpWindowName, u32 uStyle, const ::rect & rect, ::user::interaction * puiParent, id id, HINSTANCE hInstance, LPVOID pParam);
+   //CLASS_DECL_AURA __pointer(::user::interaction) create_virtual_window(::object * pobject, u32 dwExStyle, const char * pClassName, const char * lpWindowName, u32 uStyle, const ::rect & rect, ::user::interaction * puiParent, id id, HINSTANCE hInstance, LPVOID pParam);
 
 
-   CLASS_DECL_AURA __pointer(::user::interaction) create_virtual_window(::object * pobject, u32 dwExStyle, const char * pClassName, const char * pWindowName, u32 uStyle, ::user::interaction * puiParent, id id, HINSTANCE hInstance, LPVOID pParam)
+   //CLASS_DECL_AURA __pointer(::user::interaction) create_virtual_window(::object * pobject, u32 dwExStyle, const char * pClassName, const char * pWindowName, u32 uStyle, ::user::interaction * puiParent, id id, HINSTANCE hInstance, LPVOID pParam)
+   CLASS_DECL_AURA __pointer(::user::interaction) create_virtual_window(::object * pobject, u32 dwExStyle, const char * pClassName, const char * pWindowName, u32 uStyle, ::user::interaction * puiParent, id id)
    {
 
       UNREFERENCED_PARAMETER(dwExStyle);
       UNREFERENCED_PARAMETER(pClassName);
       UNREFERENCED_PARAMETER(pWindowName);
       UNREFERENCED_PARAMETER(uStyle);
-      UNREFERENCED_PARAMETER(hInstance);
-      UNREFERENCED_PARAMETER(pParam);
+      //UNREFERENCED_PARAMETER(hInstance);
+      //UNREFERENCED_PARAMETER(pParam);
 
       auto pinteraction = __new(::user::interaction);
 

@@ -65,7 +65,7 @@ namespace draw2d_direct2d
       virtual ~graphics();
 
       virtual bool TextOutAlphaBlend(double x, double y, const string & str) override;
-      virtual bool BitBltAlphaBlend(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, u32 dwRop) override;
+      virtual bool BitBltAlphaBlend(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc) override;
 
       bool IsPrinting() override;            // TRUE if being used for printing
 
@@ -306,18 +306,18 @@ namespace draw2d_direct2d
       bool DrawIcon(int x, int y, ::draw2d::icon * picon) override;
       bool DrawIcon(const ::point & point, ::draw2d::icon * picon) override;
       bool DrawIcon(int x, int y, ::draw2d::icon * picon, int cx, int cy, ::u32 istepIfAniCur, HBRUSH hbrFlickerFreeDraw, ::u32 diFlags) override;
-      bool DrawState(const ::point & point, const ::size & size, HBITMAP hBitmap, ::u32 nFlags,
-                     HBRUSH hBrush = nullptr) override;
-      bool DrawState(const ::point & point, const ::size & size, ::draw2d::bitmap* pBitmap, ::u32 nFlags,
-                     ::draw2d::brush* pBrush = nullptr) override;
-      bool DrawState(const ::point & point, const ::size & size, HICON hIcon, ::u32 nFlags,
-                     HBRUSH hBrush = nullptr) override;
-      bool DrawState(const ::point & point, const ::size & size, HICON hIcon, ::u32 nFlags,
-                     ::draw2d::brush* pBrush = nullptr) override;
-      bool DrawState(const ::point & point, const ::size & size, const char * lpszText, ::u32 nFlags,
-                     bool bPrefixText = TRUE, int nTextLen = 0, HBRUSH hBrush = nullptr) override;
-      bool DrawState(const ::point & point, const ::size & size, const char * lpszText, ::u32 nFlags,
-                     bool bPrefixText = TRUE, int nTextLen = 0, ::draw2d::brush* pBrush = nullptr) override;
+//      bool DrawState(const ::point & point, const ::size & size, HBITMAP hBitmap, ::u32 nFlags,
+//                     HBRUSH hBrush = nullptr) override;
+//      bool DrawState(const ::point & point, const ::size & size, ::draw2d::bitmap* pBitmap, ::u32 nFlags,
+//                     ::draw2d::brush* pBrush = nullptr) override;
+//      bool DrawState(const ::point & point, const ::size & size, HICON hIcon, ::u32 nFlags,
+//                     HBRUSH hBrush = nullptr) override;
+//      bool DrawState(const ::point & point, const ::size & size, HICON hIcon, ::u32 nFlags,
+//                     ::draw2d::brush* pBrush = nullptr) override;
+//      bool DrawState(const ::point & point, const ::size & size, const char * lpszText, ::u32 nFlags,
+//                     bool bPrefixText = TRUE, int nTextLen = 0, HBRUSH hBrush = nullptr) override;
+//      bool DrawState(const ::point & point, const ::size & size, const char * lpszText, ::u32 nFlags,
+//                     bool bPrefixText = TRUE, int nTextLen = 0, ::draw2d::brush* pBrush = nullptr) override;
 //      bool DrawState(const ::point & point, const ::size & size, DRAWSTATEPROC lpDrawProc,
       //       LPARAM lData, ::u32 nFlags, HBRUSH hBrush = nullptr) override;
       //  bool DrawState(const ::point & point, const ::size & size, DRAWSTATEPROC lpDrawProc,
@@ -357,29 +357,29 @@ namespace draw2d_direct2d
 
 
       // Bitmap Functions
-      bool PatBlt(int x, int y, int nWidth, int nHeight, u32 dwRop) override;
+      bool PatBlt(int x, int y, int nWidth, int nHeight) override;
       bool BitBltRaw(int x, int y, int nWidth, int nHeight, ::draw2d::graphics * pgraphicsSrc,
-                     int xSrc, int ySrc, u32 dwRop) override;
+                     int xSrc, int ySrc) override;
       bool StretchBltRaw(double x, double y, double nWidth, double nHeight, ::draw2d::graphics * pgraphicsSrc,
-                         int xSrc, int ySrc, int nSrcWidth, int nSrcHeight, u32 dwRop) override;
+                         int xSrc, int ySrc, int nSrcWidth, int nSrcHeight) override;
       ::color GetPixel(int x, int y) override;
       ::color GetPixel(const ::point & point) override;
       ::color SetPixel(int x, int y, const ::color & color) override;
       ::color SetPixel(const ::point & point, const ::color & color) override;
-      bool FloodFill(int x, int y, const ::color & color) override;
-      bool ExtFloodFill(int x, int y, const ::color & color, ::u32 nFillType) override;
-      bool MaskBlt(int x, int y, int nWidth, int nHeight, ::draw2d::graphics * pgraphicsSrc,
-                   int xSrc, int ySrc, ::draw2d::bitmap& maskBitmap, int xMask, int yMask,
-                   u32 dwRop) override;
-      bool PlgBlt(POINT32 * lpPoint, ::draw2d::graphics * pgraphicsSrc, int xSrc, int ySrc,
-                  int nWidth, int nHeight, ::draw2d::bitmap& maskBitmap, int xMask, int yMask) override;
+//      bool FloodFill(int x, int y, const ::color & color) override;
+//      bool ExtFloodFill(int x, int y, const ::color & color, ::u32 nFillType) override;
+//      bool MaskBlt(int x, int y, int nWidth, int nHeight, ::draw2d::graphics * pgraphicsSrc,
+//                   int xSrc, int ySrc, ::draw2d::bitmap& maskBitmap, int xMask, int yMask,
+//                   u32 dwRop) override;
+//      bool PlgBlt(POINT32 * lpPoint, ::draw2d::graphics * pgraphicsSrc, int xSrc, int ySrc,
+//                  int nWidth, int nHeight, ::draw2d::bitmap& maskBitmap, int xMask, int yMask) override;
       bool SetPixelV(int x, int y, const ::color & color) override;
       bool SetPixelV(const ::point & point, const ::color & color) override;
-      bool GradientFill(TRIVERTEX* pVertices, ULONG nVertices,
-                        void * pMesh, ULONG nMeshElements, u32 dwMode) override;
-      bool TransparentBlt(int xDest, int yDest, int nDestWidth, int nDestHeight,
-                          ::draw2d::graphics * pgraphicsSrc, int xSrc, int ySrc, int nSrcWidth, int nSrcHeight,
-                          ::u32 clrTransparent) override;
+//      bool GradientFill(TRIVERTEX* pVertices, ULONG nVertices,
+//                        void * pMesh, ULONG nMeshElements, u32 dwMode) override;
+//      bool TransparentBlt(int xDest, int yDest, int nDestWidth, int nDestHeight,
+//                          ::draw2d::graphics * pgraphicsSrc, int xSrc, int ySrc, int nSrcWidth, int nSrcHeight,
+//                          ::u32 clrTransparent) override;
 
       virtual bool alpha_blendRaw(int xDest, int yDest, int nDestWidth, int nDestHeight, ::draw2d::graphics * pgraphicsSrc, int xSrc, int ySrc, int nSrcWidth, int nSrcHeight, double dOpacity) override;
 

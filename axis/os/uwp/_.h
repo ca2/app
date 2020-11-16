@@ -38,7 +38,7 @@ CLASS_DECL_AXIS ::u32 get_main_ithread();
 CLASS_DECL_AXIS oswindow get_focus();
 CLASS_DECL_AXIS oswindow set_focus(oswindow oswindow);
 
-CLASS_DECL_AXIS oswindow get_window(oswindow oswindow, int iWindow);
+//CLASS_DECL_AXIS oswindow get_window(oswindow oswindow, int iWindow);
 
 CLASS_DECL_AXIS void attach_thread_input_to_main_thread(int_bool bAttach);
 

@@ -505,7 +505,7 @@ bool oswindow_data::set_icon(::image * pimage)
 
    }
 
-   d1->g()->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
+   d1->g()->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
    d1->g()->StretchBlt(d1->rect(), pimage->g(), pimage->rect());
 
@@ -836,7 +836,7 @@ void oswindow_data::send_client_event(Atom atom, unsigned int numArgs, ...)
 }
 
 
-bool oswindow_data::show_window(int iShow)
+bool oswindow_data::show_window(::edisplay edisplay)
 {
 
    windowing_output_debug_string("\n::oswindow_data::show_window 1");
@@ -865,18 +865,7 @@ bool oswindow_data::show_window(int iShow)
 
    }
 
-   if(iShow <= SW_HIDE)
-   {
-
-      if(attr.map_state != IsUnmapped)
-      {
-
-         XWithdrawWindow(d, m_window, m_iScreen);
-
-      }
-
-   }
-   else if(iShow == SW_MAXIMIZE)
+   if(edisplay == display_zoomed)
    {
 
       if(attr.map_state == IsUnmapped)
@@ -891,19 +880,30 @@ bool oswindow_data::show_window(int iShow)
                            intern_atom(net_wm_state_maximized_vert, false));
 
    }
-   else if(iShow == SW_MINIMIZE || iShow == SW_SHOWMINNOACTIVE)
+   else if(edisplay == display_iconic)
    {
 
       wm_iconify_window(this);
 
    }
-   else
+   else if(::is_visible(edisplay))
    {
 
       if(attr.map_state == IsUnmapped)
       {
 
          XMapWindow(d, m_window);
+
+      }
+
+   }
+   else
+   {
+
+      if(attr.map_state != IsUnmapped)
+      {
+
+         XWithdrawWindow(d, m_window, m_iScreen);
 
       }
 
@@ -1101,7 +1101,7 @@ void oswindow_data::exit_zoomed()
 }
 
 
-LONG_PTR oswindow_data::get_window_long_ptr(i32 nIndex)
+iptr oswindow_data::get_window_long_ptr(i32 nIndex)
 {
 
    return m_plongmap->operator[](nIndex);
@@ -1109,26 +1109,26 @@ LONG_PTR oswindow_data::get_window_long_ptr(i32 nIndex)
 }
 
 
-LONG_PTR oswindow_data::set_window_long_ptr(i32 nIndex, LONG_PTR l)
+iptr oswindow_data::set_window_long_ptr(i32 nIndex, iptr i)
 {
 
-   LONG_PTR lOld = m_plongmap->operator[](nIndex);
+   iptr iOld = m_plongmap->operator[](nIndex);
 
-   if(nIndex == GWL_EXSTYLE)
-   {
+//   if(nIndex == GWL_EXSTYLE)
+//   {
+//
+//      if(is_different((l & WS_EX_TOOLWINDOW), (m_plongmap->operator[](nIndex) & WS_EX_TOOLWINDOW)))
+//      {
+//
+//         wm_toolwindow(this, (l & WS_EX_TOOLWINDOW) != 0);
+//
+//      }
+//
+//   }
 
-      if(is_different((l & WS_EX_TOOLWINDOW), (m_plongmap->operator[](nIndex) & WS_EX_TOOLWINDOW)))
-      {
+   m_plongmap->operator[](nIndex) = i;
 
-         wm_toolwindow(this, (l & WS_EX_TOOLWINDOW) != 0);
-
-      }
-
-   }
-
-   m_plongmap->operator[](nIndex)= l;
-
-   return lOld;
+   return iOld;
 
 }
 

@@ -1,25 +1,8 @@
 #pragma once
 
 
-
-
-class prodevian;
-
-
 namespace user
 {
-
-
-   class control_bar;
-
-
-   enum e_interaction
-   {
-
-      interaction_wfi_up_down_loading = 1 << 0,
-      interaction_wfi_up_tool_window = 1 << 1,
-
-   };
 
 
    class CLASS_DECL_AURA interaction :
@@ -49,6 +32,7 @@ namespace user
 
       };
 
+      int                                       m_bitToolWindow:1;
 
       ewindowflag                               m_ewindowflag;
       bool                                      m_bDerivedHeight;
@@ -340,6 +324,8 @@ namespace user
       virtual string default_id_prefix() const;
 
       interaction * get_tooltip();
+
+      virtual ::estatus set_tool_window(bool bSet = true);
 
       virtual double get_rotate();
       virtual ::user::form * get_form();
@@ -974,10 +960,12 @@ namespace user
       virtual ::user::interaction* get_wnd() const override;
       virtual ::user::interaction* get_wnd(::u32 nCmd) const override;
 
-      virtual ::user::interaction* SetParent(::user::interaction* pinteraction) override;
-      virtual ::user::interaction* SetOwner(::user::interaction* pinteraction) override;
+      virtual ::user::interaction * SetParent(::user::interaction* pinteraction) override;
+      virtual ::user::interaction * SetOwner(::user::interaction* pinteraction) override;
 
-      virtual ::user::interaction* get_parent() const override;
+      virtual ::user::interaction * get_parent_window() const override;
+
+      virtual ::user::interaction * get_first_child_window() const override;
 
       virtual bool is_host_top_level() const;
 
@@ -1004,26 +992,24 @@ namespace user
 
 
       virtual i32 get_descendant_level(::user::interaction* pinteraction) override;
+
+
       virtual bool is_descendant(::user::interaction* pinteraction, bool bIncludeSelf = false) override;
 
       virtual oswindow GetParentHandle() const;
 
-      virtual ::user::interaction* get_focusable_descendant(::user::interaction* pinteraction = nullptr) override;
+      virtual ::user::interaction* get_focusable_descendant() override;
 
       virtual void RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::id idLeftOver, ::u32 nFlag = reposDefault, RECT32* prectParam = nullptr, const ::rect& rectClient = nullptr, bool bStretch = true) override;
 
       virtual ::user::interaction* ChildWindowFromPoint(const ::point& point) override;
       virtual ::user::interaction* ChildWindowFromPoint(const ::point& point, ::u32 nFlags) override;
 
-#ifdef WINDOWS_DESKTOP
-      virtual ::user::interaction* get_next_window(::u32 nFlag = GW_HWNDNEXT);
-#else
-      virtual ::user::interaction* get_next_window(::u32 nFlag = 0) override;
-#endif
+      virtual ::user::interaction* get_next_sibling_window() override;
+
+      virtual ::user::interaction* get_next_window(bool bIgnoreChildren = false, ::user::interaction * puiInteractionStop = nullptr) override;
 
       virtual ::user::interaction* GetTopWindow();
-
-      virtual ::user::interaction* get_next(bool bIgnoreChildren = false, i32* piLevel = nullptr) override;
 
       virtual ::user::interaction* GetLastActivePopup() override;
 
@@ -1196,7 +1182,7 @@ namespace user
       virtual void on_viewport_offset(::draw2d::graphics_pointer & pgraphics);
       virtual ::point get_viewport_offset();
       virtual ::sized get_total_size();
-      virtual void on_change_view_size();
+      virtual void on_change_view_size(::draw2d::graphics_pointer & pgraphics);
       virtual ::sized get_page_size();
       virtual ::estatus set_total_size(const ::sized& size);
       virtual ::estatus set_page_size(const ::sized& size);
@@ -1251,7 +1237,7 @@ namespace user
 
       virtual void _001GetXScrollInfo(scroll_info& info);
       virtual void _001GetYScrollInfo(scroll_info& info);
-      virtual void layout_scroll_bar();
+      virtual void layout_scroll_bar(::draw2d::graphics_pointer & pgraphics);
 
 
       virtual void on_apply(::action * paction) override;

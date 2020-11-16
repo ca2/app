@@ -317,18 +317,18 @@ namespace draw2d_quartz2d
       ::color SetPixel(const ::point & point, const ::color & color) override;
 //      bool FloodFill(i32 x, i32 y, const ::color & color) override;
 //      bool ExtFloodFill(i32 x, i32 y, const ::color & color, ::u32 nFillType) override;
-      bool MaskBlt(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc,
-                   i32 xSrc, i32 ySrc, ::draw2d::bitmap& maskBitmap, i32 xMask, i32 yMask,
-                   ::u32 dwRop) override;
-      bool PlgBlt(POINT32 * lpPoint, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc,
-                  i32 nWidth, i32 nHeight, ::draw2d::bitmap& maskBitmap, i32 xMask, i32 yMask) override;
+//      bool MaskBlt(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc,
+//                   i32 xSrc, i32 ySrc, ::draw2d::bitmap& maskBitmap, i32 xMask, i32 yMask,
+//                   ::u32 dwRop) override;
+//      bool PlgBlt(POINT32 * lpPoint, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc,
+//                  i32 nWidth, i32 nHeight, ::draw2d::bitmap& maskBitmap, i32 xMask, i32 yMask) override;
       bool SetPixelV(i32 x, i32 y, const ::color & color) override;
       bool SetPixelV(const ::point & point, const ::color & color) override;
-      bool GradientFill(TRIVERTEX* pVertices, WINULONG nVertices,
-                        void * pMesh, WINULONG nMeshElements, ::u32 dwMode) override;
-      bool TransparentBlt(i32 xDest, i32 yDest, i32 nDestWidth, i32 nDestHeight,
-                          ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight,
-                          ::u32 clrTransparent) override;
+//      bool GradientFill(TRIVERTEX* pVertices, WINULONG nVertices,
+//                        void * pMesh, WINULONG nMeshElements, ::u32 dwMode) override;
+//      bool TransparentBlt(i32 xDest, i32 yDest, i32 nDestWidth, i32 nDestHeight,
+//                          ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight,
+//                          ::u32 clrTransparent) override;
 
       virtual bool alpha_blendRaw(i32 xDest, i32 yDest, i32 nDestWidth, i32 nDestHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight, double dOpacity) override;
 
@@ -347,7 +347,7 @@ namespace draw2d_quartz2d
 
       void internal_draw_text(CGTextDrawingMode emode, double x, double y, CTLineRef line, ::draw2d::brush * pbrush);
 
-      virtual bool BitBltAlphaBlend(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, u32 dwRop) override;
+      virtual bool BitBltAlphaBlend(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc) override;
 
       virtual bool draw_line(const ::pointd & point1, const ::pointd & point2, ::draw2d::pen * ppen) override;
       virtual bool text_out(i32 x, i32 y, const char * lpszString, strsize nCount) override;
@@ -408,9 +408,9 @@ namespace draw2d_quartz2d
 
 
 
-      // Advanced Drawing
-      bool DrawEdge(RECT32 * prect, ::u32 nEdge, ::u32 nFlags);
-      bool DrawFrameControl(RECT32 * prect, ::u32 nType, ::u32 nState);
+//      // Advanced Drawing
+//      bool DrawEdge(RECT32 * prect, ::u32 nEdge, ::u32 nFlags);
+//      bool DrawFrameControl(RECT32 * prect, ::u32 nType, ::u32 nState);
 
 //      // Scrolling Functions
 //      bool ScrollDC(i32 dx, i32 dy, const ::rect & rectScroll, const ::rect & rectClip,

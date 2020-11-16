@@ -506,11 +506,13 @@ namespace user
       virtual ::user::interaction * ChildWindowFromPoint(const ::point & point) override;
       virtual ::user::interaction * ChildWindowFromPoint(const ::point & point,::u32 nFlags) override;
 
-#ifdef WINDOWS_DESKTOP
-      virtual ::user::interaction * get_next_window(::u32 nFlag = GW_HWNDNEXT);
-#else
-      virtual ::user::interaction * get_next_window(::u32 nFlag = 0) override;
-#endif
+//#ifdef WINDOWS_DESKTOP
+  //    virtual ::user::interaction * get_next_window(::u32 nFlag = GW_HWNDNEXT);
+//#else
+//      virtual ::user::interaction * get_next_window(::u32 nFlag = 0) override;
+//#endif
+
+
 
       virtual ::user::interaction * GetTopWindow();
 

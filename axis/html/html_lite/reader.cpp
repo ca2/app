@@ -530,8 +530,9 @@ strsize lite_html_reader::read_html_file(i32 fd)
    {
 
       // determine file size
-      dwBufLen = ::get_file_size(fd);
-      if (dwBufLen == INVALID_FILE_SIZE)
+      auto iFileSize = ::get_file_size(fd);
+
+      if (iFileSize < 0)
       {
          TRACE("(Error) lite_html_reader::read: GetFileSize() failed; get_last_error() returns 0x%08x.\n", ::get_last_status());
          return 0;

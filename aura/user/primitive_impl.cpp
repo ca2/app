@@ -230,12 +230,10 @@ namespace user
 
          ASSERT(prectParam != nullptr);
 
-
          if (bStretch)
          {
 
-            ::CopyRect(prectParam, &sizeparentparams.rect);
-
+            ::copy_rect(prectParam, &sizeparentparams.rect);
 
          }
          else
@@ -532,7 +530,7 @@ namespace user
    }
 
 
-   LONG_PTR primitive_impl::get_window_long_ptr(i32 nIndex) const
+   iptr primitive_impl::get_window_long_ptr(i32 nIndex) const
    {
 
       return 0;
@@ -557,7 +555,7 @@ namespace user
    }
 
 
-   LONG_PTR primitive_impl::set_window_long_ptr(i32 nIndex, LONG_PTR lValue)
+   iptr primitive_impl::set_window_long_ptr(i32 nIndex, iptr lValue)
    {
 
 //      if (nIndex == GWL_STYLE)

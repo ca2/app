@@ -11,29 +11,29 @@ namespace user
    public:
 
 
-      ::user::interaction_impl *          m_pinteractionimpl;
-      ::user::interaction_child *         m_pinteractionchild;
-      //__reference(::thread)               m_pthreadUserImpl;
+      ::user::interaction_impl *                m_pinteractionimpl;
+      ::user::interaction_child *               m_pinteractionchild;
+      //__reference(::thread)                   m_pthreadUserImpl;
 
-      bool                                m_bDrawFlagsReady;
-      bool                                m_bDestroyImplOnly;
-      bool                                m_bDestroying;
-      int                                 m_iPendingRectMatch;
+      bool                                      m_bDrawFlagsReady;
+      bool                                      m_bDestroyImplOnly;
+      bool                                      m_bDestroying;
+      int                                       m_iPendingRectMatch;
       __pointer(::user::interaction)      m_puserinteraction;
       __pointer(::user::box)              m_puserbox;
-      bool                                m_bIgnoreSizeEvent;
-      bool                                m_bIgnoreMoveEvent;
-      ap(critical_section)                m_pcsDisplay;
+      bool                                      m_bIgnoreSizeEvent;
+      bool                                      m_bIgnoreMoveEvent;
+      ap(critical_section)                      m_pcsDisplay;
 
       __composite(::apex::timer_array)    m_ptimerarray;
 
-      const char *                        m_pszInteractionImplBaseDebug;
+      const char *                              m_pszInteractionImplBaseDebug;
 
-      bool                                m_bPendingRedraw;
-      u32                                 m_uiLastRedraw;
-      bool                                m_bUpdatingBuffer;
+      bool                                      m_bPendingRedraw;
+      u32                                       m_uiLastRedraw;
+      bool                                      m_bUpdatingBuffer;
 
-      ::rect                              m_rect;
+      ::rect                                    m_rect;
 
 
 

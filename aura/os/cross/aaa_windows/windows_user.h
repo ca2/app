@@ -436,10 +436,10 @@ typedef struct
 /*
 * e_message_mouse_activate Return Codes
 */
-#define MA_ACTIVATE         1
-#define MA_ACTIVATEANDEAT   2
-#define MA_NOACTIVATE       3
-#define MA_NOACTIVATEANDEAT 4
+//#define MA_ACTIVATE         1
+//#define MA_ACTIVATEANDEAT   2
+//#define MA_NOACTIVATE       3
+//#define MA_NOACTIVATEANDEAT 4
 
 /*
 * WM_SETICON / WM_GETICON Type Codes

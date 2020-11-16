@@ -1111,64 +1111,64 @@ bool graphics::DrawIcon(i32 x, i32 y, ::draw2d::icon * picon, i32 cx, i32 cy, ::
 }
 
 
-bool graphics::DrawState(const ::point & point, const ::size & size, HBITMAP hBitmap, ::u32 nFlags, HBRUSH hBrush)
-{
-
-    ::exception::throw_not_implemented();
-
-    return false;
-
-}
-
-
-bool graphics::DrawState(const ::point & point, const ::size & size, ::draw2d::bitmap* pBitmap, ::u32 nFlags, ::draw2d::brush* pBrush)
-{
-
-    ::exception::throw_not_implemented();
-
-    return false;
-
-}
-
-
-bool graphics::DrawState(const ::point & point, const ::size & size, const char * lpszText, ::u32 nFlags, bool bPrefixText, i32 nTextLen, HBRUSH hBrush)
-{
-
-    ::exception::throw_not_implemented();
-
-    return false;
-
-}
-
-
-bool graphics::DrawState(const ::point & point, const ::size & size, const char * lpszText, ::u32 nFlags, bool bPrefixText, i32 nTextLen, ::draw2d::brush* pBrush)
-{
-
-    ::exception::throw_not_implemented();
-
-    return false;
-
-}
-
-
-bool graphics::DrawEdge(const ::rect & rect, ::u32 nEdge, ::u32 nFlags)
-{
-
-    ::exception::throw_not_implemented();
-
-    return false;
-
-}
+//bool graphics::DrawState(const ::point & point, const ::size & size, HBITMAP hBitmap, ::u32 nFlags, HBRUSH hBrush)
+//{
+//
+//    ::exception::throw_not_implemented();
+//
+//    return false;
+//
+//}
+//
+//
+//bool graphics::DrawState(const ::point & point, const ::size & size, ::draw2d::bitmap* pBitmap, ::u32 nFlags, ::draw2d::brush* pBrush)
+//{
+//
+//    ::exception::throw_not_implemented();
+//
+//    return false;
+//
+//}
+//
+//
+//bool graphics::DrawState(const ::point & point, const ::size & size, const char * lpszText, ::u32 nFlags, bool bPrefixText, i32 nTextLen, HBRUSH hBrush)
+//{
+//
+//    ::exception::throw_not_implemented();
+//
+//    return false;
+//
+//}
+//
+//
+//bool graphics::DrawState(const ::point & point, const ::size & size, const char * lpszText, ::u32 nFlags, bool bPrefixText, i32 nTextLen, ::draw2d::brush* pBrush)
+//{
+//
+//    ::exception::throw_not_implemented();
+//
+//    return false;
+//
+//}
 
 
-bool graphics::DrawFrameControl(const ::rect & rect, ::u32 nType, ::u32 nState)
-{
-
-    ::exception::throw_not_implemented();
-
-    return false;
-
-}
+//bool graphics::DrawEdge(const ::rect & rect, ::u32 nEdge, ::u32 nFlags)
+//{
+//
+//    ::exception::throw_not_implemented();
+//
+//    return false;
+//
+//}
+//
+//
+//bool graphics::DrawFrameControl(const ::rect & rect, ::u32 nType, ::u32 nState)
+//{
+//
+//    ::exception::throw_not_implemented();
+//
+//    return false;
+//
+//}
 
 
 bool graphics::Chord(i32 x1, i32 y1, i32 x2, i32 y2, i32 x3, i32 y3, i32 x4, i32 y4)
@@ -1503,7 +1503,7 @@ bool graphics::round_rect(const ::rect & rect, const ::point & point)
 }
 
 
-bool graphics::PatBlt(i32 x, i32 y, i32 nWidth, i32 nHeight, u32 dwRop)
+bool graphics::PatBlt(i32 x, i32 y, i32 nWidth, i32 nHeight)
 {
 
     ::exception::throw_not_implemented();
@@ -1536,7 +1536,7 @@ bool graphics::PatBlt(i32 x, i32 y, i32 nWidth, i32 nHeight, u32 dwRop)
 //}
 
 
-bool graphics::BitBltRaw(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, u32 dwRop)
+bool graphics::BitBltRaw(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc)
 {
 
    sync_lock ml(cairo_mutex());
@@ -1646,7 +1646,7 @@ bool graphics::BitBltRaw(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphi
 }
 
 
-bool graphics::StretchBltRaw(double xDst, double yDst, double nDstWidth, double nDstHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight, u32 dwRop)
+bool graphics::StretchBltRaw(double xDst, double yDst, double nDstWidth, double nDstHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight)
 {
 
     sync_lock ml(cairo_mutex());
@@ -1793,24 +1793,24 @@ bool graphics::StretchBltRaw(double xDst, double yDst, double nDstWidth, double 
 }
 
 
-bool graphics::FloodFill(i32 x, i32 y, const ::color & color)
-{
-
-    ::exception::throw_not_implemented();
-
-    return false;
-
-}
-
-
-bool graphics::ExtFloodFill(i32 x, i32 y, const ::color & color, ::u32 nFillType)
-{
-
-    ::exception::throw_not_implemented();
-
-    return false;
-
-}
+//bool graphics::FloodFill(i32 x, i32 y, const ::color & color)
+//{
+//
+//    ::exception::throw_not_implemented();
+//
+//    return false;
+//
+//}
+//
+//
+//bool graphics::ExtFloodFill(i32 x, i32 y, const ::color & color, ::u32 nFillType)
+//{
+//
+//    ::exception::throw_not_implemented();
+//
+//    return false;
+//
+//}
 
 
 // true blend
@@ -2241,14 +2241,14 @@ i32 graphics::EndDoc()
 }
 
 
-bool graphics::MaskBlt(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, ::draw2d::bitmap& maskBitmap, i32 xMask, i32 yMask, u32 dwRop)
-{
-
-    ::exception::throw_not_implemented();
-
-    return false;
-
-}
+//bool graphics::MaskBlt(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, ::draw2d::bitmap& maskBitmap, i32 xMask, i32 yMask)
+//{
+//
+//    ::exception::throw_not_implemented();
+//
+//    return false;
+//
+//}
 
 
 bool graphics::PlgBlt(POINT32 * lpPoint, ::draw2d::graphics * pgraphicsSrc, i32 nXSrc, i32 nYSrc, i32 nWidth, i32 nHeight, ::draw2d::bitmap& maskBitmap, i32 xMask, i32 yMask)
@@ -2957,24 +2957,24 @@ bool graphics::alpha_blendRaw(i32 xDst, i32 yDst, i32 nDstWidth, i32 nDstHeight,
 }
 
 
-bool graphics::TransparentBlt(i32 xDest, i32 yDest, i32 nDestWidth, i32 nDestHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight, ::u32 crTransparent)
-{
-
-    ::exception::throw_not_implemented();
-
-    return false;
-
-}
-
-
-bool graphics::GradientFill(TRIVERTEX* pVertices, WINULONG nVertices, void * pMesh, WINULONG nMeshElements, u32 dwMode)
-{
-
-    ::exception::throw_not_implemented();
-
-    return false;
-
-}
+//bool graphics::TransparentBlt(i32 xDest, i32 yDest, i32 nDestWidth, i32 nDestHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight, ::u32 crTransparent)
+//{
+//
+//    ::exception::throw_not_implemented();
+//
+//    return false;
+//
+//}
+//
+//
+//bool graphics::GradientFill(TRIVERTEX* pVertices, WINULONG nVertices, void * pMesh, WINULONG nMeshElements, u32 dwMode)
+//{
+//
+//    ::exception::throw_not_implemented();
+//
+//    return false;
+//
+//}
 
 
 #if (_WIN32_WINNT >= 0x0500)

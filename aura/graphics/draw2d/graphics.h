@@ -428,25 +428,25 @@ namespace draw2d
       virtual bool DrawIcon(const ::point & point, ::draw2d::icon * picon);
       virtual bool DrawIcon(i32 x, i32 y, ::draw2d::icon * picon, i32 cx, i32 cy, ::u32 istepIfAniCur);
 //      virtual bool DrawState(const ::point & point, const ::size & size, HBITMAP hBitmap, ::u32 nFlags, HBRUSH hBrush = nullptr);
-      virtual bool DrawState(const ::point & point, const ::size & size, ::draw2d::bitmap* pBitmap, ::u32 nFlags,::draw2d::brush* pBrush = nullptr);
-#ifdef WINDOWS
-      virtual bool DrawState(const ::point & point, const ::size & size, HICON hIcon, ::u32 nFlags, HBRUSH hBrush = nullptr);
-      virtual bool DrawState(const ::point & point, const ::size & size, HICON hIcon, ::u32 nFlags, ::draw2d::brush* pBrush = nullptr);
-#endif
+//      virtual bool DrawState(const ::point & point, const ::size & size, ::draw2d::bitmap* pBitmap, ::u32 nFlags,::draw2d::brush* pBrush = nullptr);
+//#ifdef WINDOWS
+//      virtual bool DrawState(const ::point & point, const ::size & size, HICON hIcon, ::u32 nFlags, HBRUSH hBrush = nullptr);
+//      virtual bool DrawState(const ::point & point, const ::size & size, HICON hIcon, ::u32 nFlags, ::draw2d::brush* pBrush = nullptr);
+//#endif
 //      virtual bool DrawState(const ::point & point, const ::size & size, const char * pszText, ::u32 nFlags,
 
   //                           bool bPrefixText = TRUE, i32 nTextLen = 0, HBRUSH hBrush = nullptr);
-      virtual bool DrawState(const ::point & point, const ::size & size, const char * pszText, ::u32 nFlags,
-
-                             bool bPrefixText = TRUE, i32 nTextLen = 0, ::draw2d::brush* pBrush = nullptr);
-#ifdef WINDOWS_DESKTOP
-      virtual bool DrawState(const ::point & point, const ::size & size, DRAWSTATEPROC pDrawProc,
-
-                             LPARAM lData, ::u32 nFlags, HBRUSH hBrush = nullptr);
-      virtual bool DrawState(const ::point & point, const ::size & size, DRAWSTATEPROC pDrawProc,
-
-                             LPARAM lData, ::u32 nFlags, ::draw2d::brush* pBrush = nullptr);
-#endif
+//      virtual bool DrawState(const ::point & point, const ::size & size, const char * pszText, ::u32 nFlags,
+//
+//                             bool bPrefixText = TRUE, i32 nTextLen = 0, ::draw2d::brush* pBrush = nullptr);
+//#ifdef WINDOWS_DESKTOP
+//      virtual bool DrawState(const ::point & point, const ::size & size, DRAWSTATEPROC pDrawProc,
+//
+//                             LPARAM lData, ::u32 nFlags, HBRUSH hBrush = nullptr);
+//      virtual bool DrawState(const ::point & point, const ::size & size, DRAWSTATEPROC pDrawProc,
+//
+//                             LPARAM lData, ::u32 nFlags, ::draw2d::brush* pBrush = nullptr);
+//#endif
       // Ellipse and Polygon Functions
       virtual bool Chord(i32 x1, i32 y1, i32 x2, i32 y2, i32 x3, i32 y3,
                          i32 x4, i32 y4);
@@ -547,21 +547,21 @@ namespace draw2d
       virtual ::color SetPixel(i32 x, i32 y, const ::color & color);
       virtual ::color SetPixel(const ::point & point, const ::color & color);
       virtual ::color blend_pixel(const ::point& point, const ::color& color);
-      virtual bool FloodFill(i32 x, i32 y, const ::color & color);
-      virtual bool ExtFloodFill(i32 x, i32 y, const ::color & color, ::u32 nFillType);
-      virtual bool MaskBlt(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc,
-                           i32 xSrc, i32 ySrc, ::draw2d::bitmap& maskBitmap, i32 xMask, i32 yMask,
-                           u32 dwRop);
-      virtual bool PlgBlt(POINT32 * pPoint, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc,
-
-                          i32 nWidth, i32 nHeight, ::draw2d::bitmap& maskBitmap, i32 xMask, i32 yMask);
+//      virtual bool FloodFill(i32 x, i32 y, const ::color & color);
+//      virtual bool ExtFloodFill(i32 x, i32 y, const ::color & color, ::u32 nFillType);
+//      virtual bool MaskBlt(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc,
+//                           i32 xSrc, i32 ySrc, ::draw2d::bitmap& maskBitmap, i32 xMask, i32 yMask,
+//                           u32 dwRop);
+//      virtual bool PlgBlt(POINT32 * pPoint, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc,
+//
+//                          i32 nWidth, i32 nHeight, ::draw2d::bitmap& maskBitmap, i32 xMask, i32 yMask);
       virtual bool SetPixelV(i32 x, i32 y, const ::color & color);
       virtual bool SetPixelV(const ::point & point, const ::color & color);
       //virtual bool GradientFill(TRIVERTEX* pVertices, WINULONG nVertices,
       //void * pMesh, WINULONG nMeshElements, u32 dwMode);
-      virtual bool TransparentBlt(i32 xDest, i32 yDest, i32 nDestWidth, i32 nDestHeight,
-                                  ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight,
-                                  ::u32 clrTransparent);
+//      virtual bool TransparentBlt(i32 xDest, i32 yDest, i32 nDestWidth, i32 nDestHeight,
+//                                  ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight,
+//                                  ::u32 clrTransparent);
 
       virtual bool alpha_blend(i32 xDest, i32 yDest, i32 nDestWidth, i32 nDestHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight, double dOpacity);
       virtual bool alpha_blend(const point & pDst, const size & sizeDst,::draw2d::graphics * pgraphicsSrc, const point & pSrc, size szSrc, double dOpacity);
@@ -709,13 +709,13 @@ namespace draw2d
 
 // #endif
 
-
-
-      // Advanced Drawing
-      virtual bool DrawEdge(const ::rect & prect,::u32 nEdge,::u32 nFlags);
-
-      virtual bool DrawFrameControl(const ::rect & prect,::u32 nType,::u32 nState);
-
+//
+//
+//  /*    // Advanced Drawing
+//      virtual bool DrawEdge(const ::rect & prect,::u32 nEdge,::u32 nFlags);
+//
+//      virtual bool DrawFrameControl(const ::rect & prect,::u32 nType,::u32 nState);
+//*/
 
       //// Scolorolling Functions
       //virtual bool ScrollDC(i32 dx, i32 dy, const ::rect &  pRectScoloroll, const ::rect &  lpRectClip,

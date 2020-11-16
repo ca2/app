@@ -477,7 +477,7 @@ namespace user
 
       virtual i32 get_descendant_level(::user::interaction * pinteraction);
       virtual bool is_descendant(::user::interaction * pinteraction,bool bIncludeSelf = false);
-      virtual ::user::interaction * get_focusable_descendant(::user::interaction * pinteraction = nullptr);
+      virtual ::user::interaction * get_focusable_descendant();
 
       virtual void RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::id idLeftOver, ::u32 nFlag = reposDefault, RECT32 * prectParam = nullptr, const ::rect & rectClient = nullptr, bool bStretch = true);
 
@@ -485,13 +485,18 @@ namespace user
       virtual ::user::interaction * ChildWindowFromPoint(const ::point & point,::u32 nFlags);
 
 
-#ifdef WINDOWS_DESKTOP
-      virtual ::user::interaction * get_next_window(::u32 nFlag = GW_HWNDNEXT);
-#else
-      virtual ::user::interaction * get_next_window(::u32 nFlag = 0);
-#endif
+//#ifdef WINDOWS_DESKTOP
+  //    virtual ::user::interaction * get_next_window(::u32 nFlag = GW_HWNDNEXT);
+//#else
+      //virtual ::user::interaction * get_next_window(::u32 nFlag = 0);
 
-      virtual ::user::interaction * get_next(bool bIgnoreChildren = false,i32 * piLevel = nullptr);
+      virtual ::user::interaction * get_next_sibling_window();
+
+//#endif
+
+      virtual ::estatus set_tool_window(bool bSet = true);
+
+      virtual ::user::interaction * get_next_window(bool bIgnoreChildren = false, ::user::interaction * puiInteractionStop = nullptr);
 
       virtual ::user::interaction * GetLastActivePopup();
 
@@ -682,7 +687,10 @@ namespace user
       __pointer(T) GetTypedParent() const;
 
       
-      virtual ::user::interaction * get_parent() const;
+      virtual ::user::interaction * get_parent_window() const;
+
+
+      virtual ::user::interaction * get_first_child_window() const;
 
 
       virtual bool keyboard_focus_is_focusable();

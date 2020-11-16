@@ -533,6 +533,31 @@ namespace user
    }
 
 
+   ::estatus interaction::set_tool_window(bool bSet)
+   {
+
+      if(is_null(m_pimpl))
+      {
+
+         return ::error_failed;
+
+      }
+
+      auto estatus = m_pimpl->set_tool_window(bSet);
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      m_bitToolWindow = bSet;
+
+      return ::success;
+
+   }
+
    void interaction::set_reposition(bool bSetThis)
    {
 
@@ -792,7 +817,7 @@ namespace user
    }
 
 
-   interaction * interaction::get_parent() const
+   interaction * interaction::get_parent_window() const
    {
 
       return GetParent();
@@ -1681,7 +1706,7 @@ namespace user
    }
 
 
-   void interaction::layout_scroll_bar()
+   void interaction::layout_scroll_bar(::draw2d::graphics_pointer & pgraphics)
    {
 
    }
@@ -5149,42 +5174,61 @@ namespace user
    }
 
 
-   ::user::interaction * interaction::get_next_window(::u32 nFlag)
+   ::user::interaction * interaction::get_first_child_window() const
    {
 
-      if (m_pimpl == nullptr)
+      auto pchildren = m_puiptraChild;
+
+      if(::is_null(pchildren) || pchildren->has_no_interaction())
       {
 
          return nullptr;
 
       }
 
-      return m_pimpl->get_next_window(nFlag);
+      return pchildren->get_first_interaction();
 
    }
 
 
-   ::user::interaction * interaction::get_next(bool bIgnoreChildren, i32 * piLevel)
+   ::user::interaction * interaction::get_next_sibling_window()
    {
 
-      if (!bIgnoreChildren)
+      auto pparent = get_parent_window();
+
+      if(pparent == nullptr)
       {
 
-//         sync_lock slChildren(::user::mutex_children());
+         return nullptr;
+
+      }
+
+      auto puiptraChild = pparent->m_puiptraChild;
+
+      ::index iFind = puiptraChild->find_first_interaction(this);
+
+      if(iFind + 1 >= puiptraChild->interaction_count())
+      {
+
+         return nullptr;
+
+      }
+
+      return puiptraChild->interaction_at(iFind + 1);
+
+   }
+
+
+   ::user::interaction * interaction::get_next_window(bool bIgnoreChildren, ::user::interaction * puiInteractionStop)
+   {
+
+      if(!bIgnoreChildren)
+      {
 
          auto puiptraChild = m_puiptraChild;
 
-
-
-         if (puiptraChild->has_interaction())
+         if (puiptraChild && puiptraChild->has_interaction())
          {
-
-            if (piLevel != nullptr)
-            {
-
-               (*piLevel)++;
-
-            }
 
             return puiptraChild->first_interaction();
 
@@ -5192,56 +5236,16 @@ namespace user
 
       }
 
-      if (GetParent() == nullptr)
+      auto pnext = get_next_window();
+
+      if(pnext)
       {
 
-         // todo, reached desktop or similar very top system interaction_impl
-         return nullptr;
+         return pnext;
 
       }
 
-      //sync_lock slChildren(::user::mutex_children());
-
-      auto puiptraChild = GetParent()->m_puiptraChild;
-
-
-
-      index iFind = puiptraChild->interactiona().find_first(this);
-
-      if (iFind < 0)
-      {
-
-         __throw(::exception::exception("not expected situation"));
-
-      }
-
-      //auto puiptraChild = GetParent()->m_puiptraChild;
-
-
-
-      if (iFind < puiptraChild->interaction_last_index())
-      {
-
-         return GetParent()->m_puiptraChild->get_interaction(iFind + 1);
-
-      }
-
-      if (GetParent()->GetParent() == nullptr)
-      {
-
-         // todo, reached desktop or similar very top system interaction_impl
-         return nullptr;
-
-      }
-
-      if (piLevel != nullptr)
-      {
-
-         (*piLevel)--;
-
-      }
-
-      return GetParent()->GetParent()->get_next(true, piLevel);
+      return pnext->get_next_window(true);
 
    }
 
@@ -5609,7 +5613,7 @@ namespace user
 
          }
 
-         pinteraction = pinteraction->get_parent();
+         pinteraction = pinteraction->get_parent_window();
 
       }
       while (pinteraction != nullptr);
@@ -5622,7 +5626,7 @@ namespace user
    ::user::frame * interaction::GetParentFrame() const
    {
 
-      ::user::interaction * pinteraction = get_parent();
+      ::user::interaction * pinteraction = get_parent_window();
 
       if (pinteraction == nullptr)
       {
@@ -7206,7 +7210,7 @@ namespace user
 
       layout_tooltip();
 
-      on_change_view_size();
+      on_change_view_size(pgraphics);
 
       m_pathFocusRect1.release();
       m_pathFocusRect2.release();
@@ -9386,41 +9390,32 @@ restart:
       }
    }
 
-   ::user::interaction * interaction::get_focusable_descendant(::user::interaction * pinteraction)
+
+   ::user::interaction * interaction::get_focusable_descendant()
    {
-      i32 iLevel = 0;
-      if (pinteraction == nullptr)
-      {
-         pinteraction = this;
-      }
-      else if (pinteraction != this)
-      {
-         iLevel = get_descendant_level(pinteraction);
-         if (iLevel < 0)
-         {
-            return nullptr;
-         }
-      }
 
-      __pointer(::user::interaction) puiFocusable;
-
-      i32 iPreviousLevel = iLevel;
+      auto pinteraction = this;
 
       while (true)
       {
-         iPreviousLevel = iLevel;
-         pinteraction = pinteraction->get_next(false, &iLevel);
-         if (iLevel == 0)
-            break;
-         if (iLevel <= iPreviousLevel && puiFocusable != nullptr)
-            break;
-         if (pinteraction == nullptr)
-            break;
-         if (pinteraction->keyboard_focus_is_focusable())
-            puiFocusable = pinteraction;
+
+         pinteraction = pinteraction->get_next_window(false, this);
+
+         if(::is_null(pinteraction))
+         {
+
+            return nullptr;
+
+         }
+         else if(pinteraction->keyboard_focus_is_focusable())
+         {
+
+            return pinteraction;
+
+         }
 
       }
-      return puiFocusable;
+
    }
 
 
@@ -11180,7 +11175,7 @@ restart:
    }
 
 
-   void interaction::on_change_view_size()
+   void interaction::on_change_view_size(::draw2d::graphics_pointer & pgraphics)
    {
 
    }

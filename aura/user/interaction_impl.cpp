@@ -2146,7 +2146,7 @@ namespace user
    }
 
 
-   LONG_PTR interaction_impl::get_window_long_ptr(i32 nIndex) const
+   iptr interaction_impl::get_window_long_ptr(i32 nIndex) const
    {
 
       return ::get_window_long_ptr(m_oswindow, nIndex);
@@ -2154,7 +2154,7 @@ namespace user
    }
 
 
-   LONG_PTR interaction_impl::set_window_long_ptr(i32 nIndex,LONG_PTR lValue)
+   iptr interaction_impl::set_window_long_ptr(i32 nIndex, iptr lValue)
    {
 
       return ::set_window_long_ptr(m_oswindow, nIndex, lValue);
@@ -2970,16 +2970,16 @@ namespace user
    }
 
 
-   ::user::interaction * interaction_impl::get_next_window(::u32 nFlag)
-   {
-
-      UNREFERENCED_PARAMETER(nFlag);
-
-      ::exception::throw_interface_only();
-
-      return nullptr;
-
-   }
+//   ::user::interaction * interaction_impl::get_next_window(::u32 nFlag)
+//   {
+//
+//      UNREFERENCED_PARAMETER(nFlag);
+//
+//      ::exception::throw_interface_only();
+//
+//      return nullptr;
+//
+//   }
 
 
    ::user::interaction * interaction_impl::GetTopWindow()

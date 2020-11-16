@@ -925,103 +925,103 @@ namespace draw2d_opengl
 
    }
 
-   bool graphics::DrawState(const ::point & point, const ::size & size, HBITMAP hBitmap, ::u32 nFlags, HBRUSH hBrush)
-   {
+//   bool graphics::DrawState(const ::point & point, const ::size & size, HBITMAP hBitmap, ::u32 nFlags, HBRUSH hBrush)
+//   {
+//
+//      // ASSERT(m_hdc != nullptr);
+//      //return ::DrawState(m_hdc, hBrush, nullptr, (LPARAM)hBitmap, 0, point.x, point.y, size.cx, size.cy, nFlags|DST_BITMAP) != FALSE;
+//      return false;
+//
+//   }
 
-      // ASSERT(m_hdc != nullptr);
-      //return ::DrawState(m_hdc, hBrush, nullptr, (LPARAM)hBitmap, 0, point.x, point.y, size.cx, size.cy, nFlags|DST_BITMAP) != FALSE;
-      return false;
+//   bool graphics::DrawState(const ::point & point, const ::size & size, ::draw2d::bitmap* pBitmap, ::u32 nFlags, ::draw2d::brush* pBrush)
+//   {
+//
+//      // ASSERT(m_hdc != nullptr);
+//      //return ::DrawState(m_hdc, (HBRUSH)pBrush->get_os_data(), nullptr, (LPARAM)pBitmap->get_os_data(), 0, point.x, point.y, size.cx, size.cy, nFlags|DST_BITMAP) != FALSE;
+//
+//      return false;
+//
+//   }
+//
+//   bool graphics::DrawState(const ::point & point, const ::size & size, HICON hIcon, ::u32 nFlags, HBRUSH hBrush)
+//   {
+//
+//      // ASSERT(m_hdc != nullptr);
+//      //return ::DrawState(m_hdc, hBrush, nullptr, (LPARAM)hIcon, 0, point.x, point.y, size.cx, size.cy, nFlags|DST_ICON) != FALSE;
+//
+//      return false;
+//
+//   }
+//
+//
+//   bool graphics::DrawState(const ::point & point, const ::size & size, HICON hIcon, ::u32 nFlags, ::draw2d::brush* pBrush)
+//   {
+//
+//      // ASSERT(m_hdc != nullptr);
+//      //return ::DrawState(m_hdc, (HBRUSH)pBrush->get_os_data(), nullptr, (LPARAM)hIcon, 0, point.x, point.y, size.cx, size.cy, nFlags|DST_ICON) != FALSE;
+//      return false;
+//
+//   }
+//
+//
+//   bool graphics::DrawState(const ::point & point, const ::size & size, const char * lpszText, ::u32 nFlags, bool bPrefixText, i32 nTextLen, HBRUSH hBrush)
+//   {
+//
+//      // ASSERT(m_hdc != nullptr);
+//      //return ::DrawState(m_hdc, hBrush,  nullptr, (LPARAM)lpszText, (WPARAM)nTextLen, point.x, point.y, size.cx, size.cy, nFlags|(bPrefixText ? DST_PREFIXTEXT : DST_TEXT)) != FALSE;
+//      return false;
+//
+//   }
+//
+//
+//   bool graphics::DrawState(const ::point & point, const ::size & size, const char * lpszText, ::u32 nFlags, bool bPrefixText, i32 nTextLen, ::draw2d::brush* pBrush)
+//   {
+//
+//      // ASSERT(m_hdc != nullptr);
+//      //return ::DrawState(m_hdc, (HBRUSH)pBrush->get_os_data(), nullptr, (LPARAM)lpszText, (WPARAM)nTextLen, point.x, point.y, size.cx, size.cy, nFlags|(bPrefixText ? DST_PREFIXTEXT : DST_TEXT)) != FALSE;
+//      return false;
+//
+//   }
+//
+//
+//   bool graphics::DrawState(const ::point & point, const ::size & size, DRAWSTATEPROC lpDrawProc, LPARAM lData, ::u32 nFlags, HBRUSH hBrush)
+//   {
+//      // ASSERT(m_hdc != nullptr);
+//      //return ::DrawState(m_hdc, hBrush,
+//          //               lpDrawProc, lData, 0, point.x, point.y, size.cx, size.cy, nFlags|DST_COMPLEX) != FALSE;
+//      return false;
+//
+//   }
+//
+//
+//   bool graphics::DrawState(const ::point & point, const ::size & size, DRAWSTATEPROC lpDrawProc, LPARAM lData, ::u32 nFlags, ::draw2d::brush* pBrush)
+//   {
+//      // ASSERT(m_hdc != nullptr);
+//      //return ::DrawState(m_hdc, (HBRUSH)pBrush->get_os_data(),
+//        //                 lpDrawProc, lData, 0, point.x, point.y, size.cx, size.cy, nFlags|DST_COMPLEX) != FALSE;
+//      return false;
+//
+//   }
+//
 
-   }
+//   bool graphics::DrawEdge(const ::rect & rectParam,::u32 nEdge,::u32 nFlags)
+//   {
+//
+//      // ASSERT(m_hdc != nullptr);
+//      //return ::DrawEdge(m_hdc,(LPRECT32)&rectParam,nEdge,nFlags) != FALSE;
+//      return false;
+//
+//   }
+//
 
-   bool graphics::DrawState(const ::point & point, const ::size & size, ::draw2d::bitmap* pBitmap, ::u32 nFlags, ::draw2d::brush* pBrush)
-   {
-
-      // ASSERT(m_hdc != nullptr);
-      //return ::DrawState(m_hdc, (HBRUSH)pBrush->get_os_data(), nullptr, (LPARAM)pBitmap->get_os_data(), 0, point.x, point.y, size.cx, size.cy, nFlags|DST_BITMAP) != FALSE;
-
-      return false;
-
-   }
-
-   bool graphics::DrawState(const ::point & point, const ::size & size, HICON hIcon, ::u32 nFlags, HBRUSH hBrush)
-   {
-
-      // ASSERT(m_hdc != nullptr);
-      //return ::DrawState(m_hdc, hBrush, nullptr, (LPARAM)hIcon, 0, point.x, point.y, size.cx, size.cy, nFlags|DST_ICON) != FALSE;
-
-      return false;
-
-   }
-
-
-   bool graphics::DrawState(const ::point & point, const ::size & size, HICON hIcon, ::u32 nFlags, ::draw2d::brush* pBrush)
-   {
-
-      // ASSERT(m_hdc != nullptr);
-      //return ::DrawState(m_hdc, (HBRUSH)pBrush->get_os_data(), nullptr, (LPARAM)hIcon, 0, point.x, point.y, size.cx, size.cy, nFlags|DST_ICON) != FALSE;
-      return false;
-
-   }
-
-
-   bool graphics::DrawState(const ::point & point, const ::size & size, const char * lpszText, ::u32 nFlags, bool bPrefixText, i32 nTextLen, HBRUSH hBrush)
-   {
-
-      // ASSERT(m_hdc != nullptr);
-      //return ::DrawState(m_hdc, hBrush,  nullptr, (LPARAM)lpszText, (WPARAM)nTextLen, point.x, point.y, size.cx, size.cy, nFlags|(bPrefixText ? DST_PREFIXTEXT : DST_TEXT)) != FALSE;
-      return false;
-
-   }
-
-
-   bool graphics::DrawState(const ::point & point, const ::size & size, const char * lpszText, ::u32 nFlags, bool bPrefixText, i32 nTextLen, ::draw2d::brush* pBrush)
-   {
-
-      // ASSERT(m_hdc != nullptr);
-      //return ::DrawState(m_hdc, (HBRUSH)pBrush->get_os_data(), nullptr, (LPARAM)lpszText, (WPARAM)nTextLen, point.x, point.y, size.cx, size.cy, nFlags|(bPrefixText ? DST_PREFIXTEXT : DST_TEXT)) != FALSE;
-      return false;
-
-   }
-
-
-   bool graphics::DrawState(const ::point & point, const ::size & size, DRAWSTATEPROC lpDrawProc, LPARAM lData, ::u32 nFlags, HBRUSH hBrush)
-   {
-      // ASSERT(m_hdc != nullptr);
-      //return ::DrawState(m_hdc, hBrush,
-          //               lpDrawProc, lData, 0, point.x, point.y, size.cx, size.cy, nFlags|DST_COMPLEX) != FALSE;
-      return false;
-
-   }
-
-
-   bool graphics::DrawState(const ::point & point, const ::size & size, DRAWSTATEPROC lpDrawProc, LPARAM lData, ::u32 nFlags, ::draw2d::brush* pBrush)
-   {
-      // ASSERT(m_hdc != nullptr);
-      //return ::DrawState(m_hdc, (HBRUSH)pBrush->get_os_data(),
-        //                 lpDrawProc, lData, 0, point.x, point.y, size.cx, size.cy, nFlags|DST_COMPLEX) != FALSE;
-      return false;
-
-   }
-
-
-   bool graphics::DrawEdge(const ::rect & rectParam,::u32 nEdge,::u32 nFlags)
-   {
-      
-      // ASSERT(m_hdc != nullptr);
-      //return ::DrawEdge(m_hdc,(LPRECT32)&rectParam,nEdge,nFlags) != FALSE;
-      return false;
-
-   }
-
-
-   bool graphics::DrawFrameControl(const ::rect & rectParam,::u32 nType,::u32 nState)
-   {
-      // ASSERT(m_hdc != nullptr);
-      //return ::DrawFrameControl(m_hdc,(LPRECT32) &rectParam,nType,nState) != FALSE;
-      return false;
-
-   }
+//   bool graphics::DrawFrameControl(const ::rect & rectParam,::u32 nType,::u32 nState)
+//   {
+//      // ASSERT(m_hdc != nullptr);
+//      //return ::DrawFrameControl(m_hdc,(LPRECT32) &rectParam,nType,nState) != FALSE;
+//      return false;
+//
+//   }
 
 
    bool graphics::Chord(i32 x1, i32 y1, i32 x2, i32 y2, i32 x3, i32 y3, i32 x4, i32 y4)
@@ -1570,7 +1570,7 @@ namespace draw2d_opengl
    }
 
 
-   bool graphics::PatBlt(i32 x, i32 y, i32 nWidth, i32 nHeight, u32 dwRop)
+   bool graphics::PatBlt(i32 x, i32 y, i32 nWidth, i32 nHeight)
    {
       //// ASSERT(m_hdc != nullptr);
       //return ::PatBlt(m_hdc, x, y, nWidth, nHeight, dwRop) != FALSE;
@@ -1580,7 +1580,7 @@ namespace draw2d_opengl
    }
 
 
-   bool graphics::BitBltRaw(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, u32 dwRop)
+   bool graphics::BitBltRaw(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc)
    {
 //      if (m_pgraphics == nullptr)
 //         return FALSE;
@@ -1657,7 +1657,7 @@ namespace draw2d_opengl
    }
 
 
-   bool graphics::StretchBltRaw(i32 xDst, i32 yDst, i32 nDstWidth, i32 nDstHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight, u32 dwRop)
+   bool graphics::StretchBltRaw(i32 xDst, i32 yDst, i32 nDstWidth, i32 nDstHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight)
    {
 
       //if(pgraphicsSrc == nullptr)
@@ -1724,25 +1724,25 @@ namespace draw2d_opengl
    }
 
    
-   bool graphics::FloodFill(i32 x, i32 y, color32_t crColor)
-   {
-   
-      // ASSERT(m_hdc != nullptr);
-      //return ::FloodFill(m_hdc, x, y, crColor) != FALSE;
-      return 0;
-
-   }
-
-
-   bool graphics::ExtFloodFill(i32 x, i32 y, color32_t crColor, ::u32 nFillType)
-   {
-      
-      // ASSERT(m_hdc != nullptr);
-      //return ::ExtFloodFill(m_hdc, x, y, crColor, nFillType) != FALSE;
-
-      return 0;
-
-   }
+//   bool graphics::FloodFill(i32 x, i32 y, color32_t crColor)
+//   {
+//
+//      // ASSERT(m_hdc != nullptr);
+//      //return ::FloodFill(m_hdc, x, y, crColor) != FALSE;
+//      return 0;
+//
+//   }
+//
+//
+//   bool graphics::ExtFloodFill(i32 x, i32 y, color32_t crColor, ::u32 nFillType)
+//   {
+//
+//      // ASSERT(m_hdc != nullptr);
+//      //return ::ExtFloodFill(m_hdc, x, y, crColor, nFillType) != FALSE;
+//
+//      return 0;
+//
+//   }
 
 
    size graphics::GetTabbedTextExtent(const char * lpszString, strsize nCount, count nTabPositions, LPINT lpnTabStopPositions)
@@ -2165,53 +2165,53 @@ namespace draw2d_opengl
    }
 
 
-   bool graphics::MaskBlt(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc,
-                          i32 xSrc, i32 ySrc, ::draw2d::bitmap& maskBitmap, i32 xMask, i32 yMask, u32 dwRop)
-   {
-      // ASSERT(m_hdc != nullptr);
-      //return ::MaskBlt(m_hdc, x, y, nWidth, nHeight, GL2D_HDC(pgraphicsSrc),
-        //               xSrc, ySrc,  (HBITMAP)maskBitmap.get_os_data(), xMask, yMask, dwRop) != FALSE;
-      return 0;
-
-   }
-
-
-   bool graphics::PlgBlt(POINT32 * lpPoint, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc,
-                         i32 nWidth, i32 nHeight, ::draw2d::bitmap& maskBitmap, i32 xMask, i32 yMask)
-   {
-
-      /*try
-      {
-
-         if(pgraphicsSrc == nullptr)
-            return FALSE;
-
-         if(pgraphicsSrc->get_current_bitmap() == nullptr)
-            return false;
-
-         if(pgraphicsSrc->get_current_bitmap()->get_os_data() == nullptr)
-            return false;
-
-         plusplus::Point p[3];
-
-         p[0].X = lpPoint[0].x;
-         p[0].Y = lpPoint[0].y;
-         p[1].X = lpPoint[1].x;
-         p[1].Y = lpPoint[1].y;
-         p[2].X = lpPoint[2].x;
-         p[2].Y = lpPoint[2].y;
-
-         return m_pgraphics->DrawImage((plusplus::Bitmap *) pgraphicsSrc->get_current_bitmap()->get_os_data(), p, 3) == plusplus::Status::Ok;
-
-      }
-      catch(...)
-      {
-         return FALSE;
-      }
-      */
-      return true;
-
-   }
+//   bool graphics::MaskBlt(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc,
+//                          i32 xSrc, i32 ySrc, ::draw2d::bitmap& maskBitmap, i32 xMask, i32 yMask)
+//   {
+//      // ASSERT(m_hdc != nullptr);
+//      //return ::MaskBlt(m_hdc, x, y, nWidth, nHeight, GL2D_HDC(pgraphicsSrc),
+//        //               xSrc, ySrc,  (HBITMAP)maskBitmap.get_os_data(), xMask, yMask, dwRop) != FALSE;
+//      return 0;
+//
+//   }
+//
+//
+//   bool graphics::PlgBlt(POINT32 * lpPoint, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc,
+//                         i32 nWidth, i32 nHeight, ::draw2d::bitmap& maskBitmap, i32 xMask, i32 yMask)
+//   {
+//
+//      /*try
+//      {
+//
+//         if(pgraphicsSrc == nullptr)
+//            return FALSE;
+//
+//         if(pgraphicsSrc->get_current_bitmap() == nullptr)
+//            return false;
+//
+//         if(pgraphicsSrc->get_current_bitmap()->get_os_data() == nullptr)
+//            return false;
+//
+//         plusplus::Point p[3];
+//
+//         p[0].X = lpPoint[0].x;
+//         p[0].Y = lpPoint[0].y;
+//         p[1].X = lpPoint[1].x;
+//         p[1].Y = lpPoint[1].y;
+//         p[2].X = lpPoint[2].x;
+//         p[2].Y = lpPoint[2].y;
+//
+//         return m_pgraphics->DrawImage((plusplus::Bitmap *) pgraphicsSrc->get_current_bitmap()->get_os_data(), p, 3) == plusplus::Status::Ok;
+//
+//      }
+//      catch(...)
+//      {
+//         return FALSE;
+//      }
+//      */
+//      return true;
+//
+//   }
 
 
 

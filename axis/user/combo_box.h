@@ -132,8 +132,8 @@ namespace user
       //::count get_count();
       //index current_item();
       //index set_current_item(index nSelect);
-      LCID GetLocale();
-      LCID SetLocale(LCID nNewLocale);
+//      LCID GetLocale();
+  //    LCID SetLocale(LCID nNewLocale);
       index GetTopIndex();
       index SetTopIndex(index nIndex);
       index InitStorage(::count nItems, ::u32 nBytes);

@@ -18,7 +18,7 @@ namespace draw2d
 
       //virtual bool CreatePalette(LPLOGPALETTE pLogPalette);
 
-      virtual bool CreateHalftonePalette(::draw2d::graphics_pointer & pgraphics);
+      //virtual bool CreateHalftonePalette(::draw2d::graphics_pointer & pgraphics);
 
 
       virtual i32 GetEntryCount();
@@ -33,8 +33,8 @@ namespace draw2d
 
       //virtual void AnimatePalette(::u32 nStartIndex, ::u32 nNumEntries, LPPALETTEENTRY pPaletteColors);
 
-      virtual ::u32 GetNearestPaletteIndex(color32_t crColor) const;
-      virtual bool ResizePalette(::u32 nNumEntries);
+      //virtual ::u32 GetNearestPaletteIndex(color32_t crColor) const;
+      //virtual bool ResizePalette(::u32 nNumEntries);
 
 
    };

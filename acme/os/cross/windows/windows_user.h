@@ -470,28 +470,28 @@ const widechar * lpString);
 */
 
 
-/*
-* set_window_pos Flags
-*/
-#define SWP_NOSIZE          0x0001
-#define SWP_NOMOVE          0x0002
-#define SWP_NOZORDER        0x0004
-#define SWP_NOREDRAW        0x0008
-#define SWP_NOACTIVATE      0x0010
-#define SWP_FRAMECHANGED    0x0020  /* The frame changed: send e_message_nccalcsize */
-#define SWP_SHOWWINDOW      0x0040
-#define SWP_HIDEWINDOW      0x0080
-#define SWP_NOCOPYBITS      0x0100
-#define SWP_NOOWNERZORDER   0x0200  /* Don't do owner Z ordering */
-#define SWP_NOSENDCHANGING  0x0400  /* Don't send e_message_window_position_changing */
-
-#define SWP_DRAWFRAME       SWP_FRAMECHANGED
-#define SWP_NOREPOSITION    SWP_NOOWNERZORDER
-
-//#if(WINVER >= 0x0400)
-#define SWP_DEFERERASE      0x2000
-#define SWP_ASYNCWINDOWPOS  0x4000
-//#endif /* WINVER >= 0x0400 */
+///*
+//* set_window_pos Flags
+//*/
+//#define SWP_NOSIZE          0x0001
+//#define SWP_NOMOVE          0x0002
+//#define SWP_NOZORDER        0x0004
+//#define SWP_NOREDRAW        0x0008
+//#define SWP_NOACTIVATE      0x0010
+//#define SWP_FRAMECHANGED    0x0020  /* The frame changed: send e_message_nccalcsize */
+//#define SWP_SHOWWINDOW      0x0040
+//#define SWP_HIDEWINDOW      0x0080
+//#define SWP_NOCOPYBITS      0x0100
+//#define SWP_NOOWNERZORDER   0x0200  /* Don't do owner Z ordering */
+//#define SWP_NOSENDCHANGING  0x0400  /* Don't send e_message_window_position_changing */
+//
+//#define SWP_DRAWFRAME       SWP_FRAMECHANGED
+//#define SWP_NOREPOSITION    SWP_NOOWNERZORDER
+//
+////#if(WINVER >= 0x0400)
+//#define SWP_DEFERERASE      0x2000
+//#define SWP_ASYNCWINDOWPOS  0x4000
+////#endif /* WINVER >= 0x0400 */
 
 
 
@@ -2464,7 +2464,7 @@ LPTRACKMOUSEEVENT lpEventTrack);
 //#pragma region Desktop Family
 //#if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
 
-CLASS_DECL_ACME i32 WINAPI GetSystemMetrics(i32 nIndex);
+//CLASS_DECL_ACME i32 WINAPI GetSystemMetrics(i32 nIndex);
 
 
 //#endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP) */

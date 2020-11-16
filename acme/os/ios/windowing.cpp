@@ -25,12 +25,12 @@ mutex * g_pmutexOsWindowData = nullptr;
 //}
 
 
-oswindow get_window(oswindow window, int iParentHood)
-{
-
-   return nullptr;
-
-}
+//oswindow get_window(oswindow window, int iParentHood)
+//{
+//
+//   return nullptr;
+//
+//}
 
 
 #include "framework.h"

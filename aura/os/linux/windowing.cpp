@@ -1271,78 +1271,13 @@ oswindow set_active_window(oswindow window)
 }
 
 
-oswindow oswindow_get_next_found(Display * pdisplay, long *array, int iStart, int numItems)
+oswindow oswindow_get_if_found(Window w)
 {
 
-   for(index i = iStart; i < numItems; i++)
+   if(::oswindow_find(w) >= 0)
    {
 
-      if(::oswindow_find(array[i]) >= 0)
-      {
-
-         return ::oswindow_get(array[i]);
-
-      }
-
-   }
-
-   return nullptr;
-
-}
-
-
-oswindow oswindow_get_previous_found(Display * pdisplay, long *array, int iStart)
-{
-
-   for(index i = iStart; i >= 0; i--)
-   {
-
-      if(::oswindow_find(array[i]) >= 0)
-      {
-
-         return ::oswindow_get(array[i]);
-
-      }
-
-   }
-
-   return nullptr;
-
-}
-
-
-oswindow oswindow_get_next_found(Window *array, int iStart, int numItems)
-{
-
-   for(index i = iStart; i < numItems; i++)
-   {
-
-      if(::oswindow_find(array[i]) >= 0)
-      {
-
-         return ::oswindow_get(array[i]);
-
-      }
-
-   }
-
-   return nullptr;
-
-}
-
-
-oswindow oswindow_get_previous_found(Window *array, int iStart)
-{
-
-   for(index i = iStart; i >= 0; i--)
-   {
-
-      if(::oswindow_find(array[i]) >= 0)
-      {
-
-         return ::oswindow_get(array[i]);
-
-      }
+      return ::oswindow_get(w);
 
    }
 
@@ -1354,309 +1289,247 @@ oswindow oswindow_get_previous_found(Window *array, int iStart)
 oswindow GetParent(oswindow oswindow);
 
 
-oswindow get_window(oswindow windowParam, int iParentHood)
+oswindow _get_window_relative(oswindow oswindowParam, enum_relative erelative, Window * windowa, int numItems)
 {
 
-   sync_lock sl(x11_mutex());
+   if(windowa == nullptr)
+   {
 
-   oswindow window = windowParam;
+      windowing_output_debug_string("\n::_get_window_relative");
 
-   if(window == nullptr)
+      return nullptr;
+
+   }
+
+   oswindow oswindow = nullptr;
+
+   switch(erelative)
+   {
+
+      case e_relative_first_sibling:
+      {
+
+         oswindow = oswindow_get_if_found(windowa[0]);
+
+      }
+      break;
+      case e_relative_last_sibling:
+      {
+
+         oswindow = oswindow_get_if_found(windowa[numItems - 1]);
+
+      }
+      break;
+      case e_relative_next_sibling:
+      case e_relative_previous_sibling:
+      {
+
+         int iFound = -1;
+
+         for(int i = 0; i < numItems; i++)
+         {
+
+            if(windowa[i] == oswindowParam->window())
+            {
+
+               iFound = i;
+
+               break;
+
+            }
+
+         }
+
+         if(iFound < 0)
+         {
+
+            return nullptr;
+
+         }
+
+         if(erelative == e_relative_next_sibling)
+         {
+
+            if(iFound + 1 >= numItems)
+            {
+
+               return nullptr;
+
+            }
+
+            oswindow = ::oswindow_get_if_found(windowa[iFound + 1]);
+
+         }
+         else if(erelative == e_relative_previous_sibling)
+         {
+
+            if(iFound - 1 < 0)
+            {
+
+               return nullptr;
+
+            }
+
+            oswindow = ::oswindow_get_if_found(windowa[iFound - 1]);
+
+         }
+         else
+         {
+
+            return nullptr;
+
+         }
+
+      }
+      default:
+      {
+
+         return nullptr;
+
+      }
+
+   }
+
+   return oswindow;
+
+}
+
+
+oswindow get_window(oswindow oswindowParam, enum_relative erelative)
+{
+
+   if(::is_null(oswindowParam))
    {
 
       return nullptr;
 
    }
 
+   sync_lock sl(x11_mutex());
+
+   oswindow oswindow = nullptr;
+
    windowing_output_debug_string("\n::get_window 1");
 
-   xdisplay d(window->display());
+   xdisplay d(oswindowParam->display());
 
-   Window w = window->window();
-
-   if(iParentHood == GW_HWNDFIRST || iParentHood == GW_HWNDLAST || iParentHood == GW_HWNDNEXT || iParentHood == GW_HWNDPREV)
+   if(erelative == e_relative_first_sibling ||
+   erelative == e_relative_last_sibling ||
+   erelative == e_relative_next_sibling ||
+   erelative == e_relative_previous_sibling)
    {
 
-      window = ::GetParent(window);
+      ::oswindow oswindowParent = ::GetParent(oswindowParam);
 
-      if(window == nullptr)
+      if(oswindowParent == nullptr)
       {
 
-         window = windowParam;
+         Atom atomNetClientListStacking = XInternAtom(oswindowParam->display(), "_NET_CLIENT_LIST_STACKING", False);
 
-         w = window->get_parent_handle();
-
-         Atom a = XInternAtom(windowParam->display(), "_NET_CLIENT_LIST_STACKING", False);
-
-         Atom actualType;
+         Atom atomActualType;
 
          int format;
 
          unsigned long numItems, bytesAfter;
 
-         unsigned char *data =0;
+         Window * windowa = 0;
 
          int status = XGetWindowProperty(
-                      windowParam->display(),
-                      RootWindow(windowParam->display(), windowParam->m_iScreen),
-                      a,
-                      0L,
-                      1024,
-                      false,
-                      AnyPropertyType,
-                      &actualType,
-                      &format,
-                      &numItems,
-                      &bytesAfter,
-                      &data);
+                  oswindowParam->display(),
+                  RootWindow(oswindowParam->display(), oswindowParam->m_iScreen),
+                  atomNetClientListStacking,
+                  0L,
+                  1024,
+                  false,
+                  AnyPropertyType,
+                  &atomActualType,
+                  &format,
+                  &numItems,
+                  &bytesAfter,
+                  (unsigned char **) &windowa);
 
          if (status >= Success && numItems)
          {
 
-            long * array = (long*) data;
-
-            switch(iParentHood)
-            {
-            case GW_CHILD:
-            case GW_HWNDFIRST:
-            {
-
-               if(data == nullptr)
-               {
-
-                  windowing_output_debug_string("\n::get_window 2");
-
-                  return nullptr;
-
-               }
-
-               window = oswindow_get_next_found(windowParam->display(), array, 0, numItems);
-
-            }
-            break;
-            case GW_HWNDLAST:
-            {
-
-               if(data == nullptr)
-               {
-
-                  windowing_output_debug_string("\n::get_window 3");
-
-                  return nullptr;
-
-               }
-
-               window = oswindow_get_previous_found(windowParam->display(), array, numItems - 1);
-
-            }
-            break;
-            case GW_HWNDNEXT:
-            case GW_HWNDPREV:
-            {
-
-               if(data == nullptr) // ????
-               {
-
-                  windowing_output_debug_string("\n::get_window 4");
-
-                  return nullptr;
-
-               }
-
-               int iFound = -1;
-
-               for(int i = 0; i < numItems; i++)
-               {
-
-                  if(array[i] == windowParam->window())
-                  {
-
-                     iFound = i;
-
-                     break;
-
-                  }
-
-               }
-
-               if(iFound < 0)
-               {
-
-                  XFree(data);
-
-                  windowing_output_debug_string("\n::get_window 5");
-
-                  return nullptr;
-
-               }
-
-               if(iParentHood == GW_HWNDNEXT)
-               {
-
-                  if(iFound + 1 >= numItems)
-                  {
-
-                     XFree(data);
-
-                     windowing_output_debug_string("\n::get_window 6");
-
-                     return nullptr;
-
-                  }
-
-                  window = ::oswindow_get_next_found(windowParam->display(), array, iFound + 1, numItems);
-
-               }
-               else
-               {
-
-                  if(iFound - 1 < 0)
-                  {
-
-                     XFree(data);
-
-                     windowing_output_debug_string("\n::get_window 7");
-
-                     return nullptr;
-
-                  }
-
-                  window = ::oswindow_get_previous_found(windowParam->display(), array, iFound - 1);
-
-               }
-
-            }
-
-            }
-
-            XFree(data);
-
-            windowing_output_debug_string("\n::get_window 8");
-
-            return window;
+            oswindow = _get_window_relative(oswindowParam, erelative, windowa, numItems);
 
          }
-      }
 
-   }
-
-   Window root = 0;
-   Window parent = 0;
-   Window * pchildren = nullptr;
-   u32 ncount = 0;
-
-
-   XQueryTree(window->display(), w, &root, &parent, &pchildren, &ncount);
-
-   switch(iParentHood)
-   {
-   case GW_CHILD:
-   case GW_HWNDFIRST:
-   {
-
-      if(pchildren == nullptr)
-      {
-
-         windowing_output_debug_string("\n::get_window 9");
-
-         return nullptr;
-
-      }
-
-      window = ::oswindow_get_next_found(pchildren, 0, ncount);
-
-   }
-   break;
-   case GW_HWNDLAST:
-   {
-
-      if(pchildren == nullptr)
-      {
-
-         windowing_output_debug_string("\n::get_window 10");
-
-         return nullptr;
-
-      }
-
-      window = ::oswindow_get_previous_found(pchildren, ncount - 1);
-
-   }
-   break;
-   case GW_HWNDNEXT:
-   case GW_HWNDPREV:
-   {
-
-      if(pchildren == nullptr) // ????
-      {
-
-         windowing_output_debug_string("\n::get_window 11");
-
-         return nullptr;
-
-      }
-
-      int iFound = -1;
-
-      for(int i = 0; i < ncount; i++)
-      {
-         if(pchildren[i] == windowParam->window())
-         {
-            iFound = i;
-            break;
-         }
-      }
-
-      if(iFound < 0)
-      {
-
-         windowing_output_debug_string("\n::get_window 12");
-
-         return nullptr;
-
-      }
-
-      if(iParentHood == GW_HWNDNEXT)
-      {
-
-         if(iFound + 1 >= ncount)
+         if(windowa != NULL)
          {
 
-            windowing_output_debug_string("\n::get_window 13");
-
-            return nullptr;
+            XFree(windowa);
 
          }
-
-         window = ::oswindow_get_next_found(pchildren, iFound + 1, ncount);
 
       }
       else
       {
 
-         if(iFound - 1 < 0)
+         Window root = 0;
+         Window parent = 0;
+         Window *pchildren = nullptr;
+         u32 numItems = 0;
+
+         int status = XQueryTree(oswindowParam->display(), oswindowParent->window(),
+                                 &root, &parent, &pchildren, &numItems);
+
+         if (status >= Success && numItems)
          {
 
-            windowing_output_debug_string("\n::get_window 14");
-
-            return nullptr;
+            oswindow = _get_window_relative(oswindowParam, erelative, pchildren, numItems);
 
          }
 
-         window = ::oswindow_get_previous_found(pchildren, iFound - 1);
+         if (pchildren != nullptr)
+         {
+
+            XFree(pchildren);
+
+         }
+
+      }
+
+   }
+   else
+   {
+
+      Window root = 0;
+      Window parent = 0;
+      Window * pchildren = nullptr;
+      u32 numItems = 0;
+
+      int status = XQueryTree(oswindowParam->display(), oswindowParam->window(),
+                              &root, &parent, &pchildren, &numItems);
+
+      if (status >= Success && numItems)
+      {
+
+         if(erelative == e_relative_first_child)
+         {
+
+            oswindow = oswindow_get_if_found(pchildren[0]);
+
+         }
+         else if(erelative == e_relative_last_child)
+         {
+
+            oswindow = oswindow_get_if_found(pchildren[numItems - 1]);
+
+         }
+
+      }
+
+      if (pchildren != nullptr)
+      {
+
+         XFree(pchildren);
 
       }
 
    }
 
-   }
-
-   if(pchildren != nullptr)
-      XFree(pchildren);
-
-   windowing_output_debug_string("\n::get_window 15");
-
-   return window;
+   return oswindow;
 
 }
 
@@ -1665,7 +1538,6 @@ int_bool destroy_window(oswindow window)
 {
 
    bool bOk = false;
-
 
    if(!is_window(window))
    {
@@ -2120,7 +1992,7 @@ void wm_state_hidden(oswindow w, bool bSet)
 void wm_toolwindow(oswindow w, bool bToolWindow)
 {
 
-   x11_sync([=]()
+   x11_fork([=]()
    {
 
       windowing_output_debug_string("\n::wm_toolwindow 1");
@@ -4309,7 +4181,7 @@ int_bool ca2_GetClientRect(oswindow window, RECT32 * prect)
 
    window->m_pimpl->m_puserinteraction->get_window_rect(prect);
 
-   OffsetRect(prect, -prect->left, -prect->top);
+   offset_rect(prect, -prect->left, -prect->top);
 
    return TRUE;
 

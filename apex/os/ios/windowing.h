@@ -64,7 +64,7 @@ void ns_redraw_window(oswindow window);
 void deactivate_window(oswindow window);
 
 
-oswindow get_window(oswindow window, int iParentHood);
+//oswindow get_window(oswindow window, int iParentHood);
 
 
 

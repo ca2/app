@@ -35,7 +35,7 @@ int_bool ensure_file_size_fd(i32 fd, size_t iSize)
 }
 
 
-size_t get_file_size(i32 fd)
+::i64 get_file_size(i32 fd)
 {
 
    struct stat st;

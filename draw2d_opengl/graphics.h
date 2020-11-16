@@ -269,22 +269,22 @@ namespace draw2d_opengl
       bool DrawIcon(i32 x, i32 y, ::draw2d::icon * picon);
       bool DrawIcon(const ::point & point, ::draw2d::icon * picon);
       bool DrawIcon(i32 x, i32 y, ::draw2d::icon * picon, i32 cx, i32 cy, ::u32 istepIfAniCur, HBRUSH hbrFlickerFreeDraw, ::u32 diFlags);
-      bool DrawState(const ::point & point, const ::size & size, HBITMAP hBitmap, ::u32 nFlags,
-                     HBRUSH hBrush = nullptr);
-      bool DrawState(const ::point & point, const ::size & size, ::draw2d::bitmap* pBitmap, ::u32 nFlags,
-                     ::draw2d::brush* pBrush = nullptr);
-      bool DrawState(const ::point & point, const ::size & size, HICON hIcon, ::u32 nFlags,
-                     HBRUSH hBrush = nullptr);
-      bool DrawState(const ::point & point, const ::size & size, HICON hIcon, ::u32 nFlags,
-                     ::draw2d::brush* pBrush = nullptr);
-      bool DrawState(const ::point & point, const ::size & size, const char * lpszText, ::u32 nFlags,
-                     bool bPrefixText = TRUE, i32 nTextLen = 0, HBRUSH hBrush = nullptr);
-      bool DrawState(const ::point & point, const ::size & size, const char * lpszText, ::u32 nFlags,
-                     bool bPrefixText = TRUE, i32 nTextLen = 0, ::draw2d::brush* pBrush = nullptr);
-      bool DrawState(const ::point & point, const ::size & size, DRAWSTATEPROC lpDrawProc,
-                     LPARAM lData, ::u32 nFlags, HBRUSH hBrush = nullptr);
-      bool DrawState(const ::point & point, const ::size & size, DRAWSTATEPROC lpDrawProc,
-                     LPARAM lData, ::u32 nFlags, ::draw2d::brush* pBrush = nullptr);
+//      bool DrawState(const ::point & point, const ::size & size, HBITMAP hBitmap, ::u32 nFlags,
+//                     HBRUSH hBrush = nullptr);
+//      bool DrawState(const ::point & point, const ::size & size, ::draw2d::bitmap* pBitmap, ::u32 nFlags,
+//                     ::draw2d::brush* pBrush = nullptr);
+//      bool DrawState(const ::point & point, const ::size & size, HICON hIcon, ::u32 nFlags,
+//                     HBRUSH hBrush = nullptr);
+//      bool DrawState(const ::point & point, const ::size & size, HICON hIcon, ::u32 nFlags,
+//                     ::draw2d::brush* pBrush = nullptr);
+//      bool DrawState(const ::point & point, const ::size & size, const char * lpszText, ::u32 nFlags,
+//                     bool bPrefixText = TRUE, i32 nTextLen = 0, HBRUSH hBrush = nullptr);
+//      bool DrawState(const ::point & point, const ::size & size, const char * lpszText, ::u32 nFlags,
+//                     bool bPrefixText = TRUE, i32 nTextLen = 0, ::draw2d::brush* pBrush = nullptr);
+//      bool DrawState(const ::point & point, const ::size & size, DRAWSTATEPROC lpDrawProc,
+//                     LPARAM lData, ::u32 nFlags, HBRUSH hBrush = nullptr);
+//      bool DrawState(const ::point & point, const ::size & size, DRAWSTATEPROC lpDrawProc,
+//                     LPARAM lData, ::u32 nFlags, ::draw2d::brush* pBrush = nullptr);
 
       // Ellipse and Polygon Functions
       bool Chord(i32 x1, i32 y1, i32 x2, i32 y2, i32 x3, i32 y3,
@@ -322,24 +322,24 @@ namespace draw2d_opengl
       bool RoundRect(const RECT32 &  rect, const ::point & point);
 
       // Bitmap Functions
-      bool PatBlt(i32 x, i32 y, i32 nWidth, i32 nHeight, u32 dwRop);
-      virtual bool BitBltRaw(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics* pgraphicsSrc, i32 xSrc, i32 ySrc, u32 dwRop) override;
-      virtual bool StretchBltRaw(i32 xDst, i32 yDst, i32 nDstWidth, i32 nDstHeight, ::draw2d::graphics* pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight, u32 dwRop) override;
+      bool PatBlt(i32 x, i32 y, i32 nWidth, i32 nHeight);
+      virtual bool BitBltRaw(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics* pgraphicsSrc, i32 xSrc, i32 ySrc) override;
+      virtual bool StretchBltRaw(i32 xDst, i32 yDst, i32 nDstWidth, i32 nDstHeight, ::draw2d::graphics* pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight) override;
 //      {
 
 //         bool StretchBlt(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc,
-  //                    i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight, u32 dwRop);
+  //                    i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight);
       color32_t GetPixel(i32 x, i32 y) const;
       color32_t GetPixel(const ::point & point) const;
       color32_t SetPixel(i32 x, i32 y, color32_t crColor);
       color32_t SetPixel(const ::point & point, color32_t crColor);
-      bool FloodFill(i32 x, i32 y, color32_t crColor);
-      bool ExtFloodFill(i32 x, i32 y, color32_t crColor, ::u32 nFillType);
-      bool MaskBlt(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc,
-                   i32 xSrc, i32 ySrc, ::draw2d::bitmap& maskBitmap, i32 xMask, i32 yMask,
-                   u32 dwRop);
-      bool PlgBlt(POINT32 * lpPoint, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc,
-                  i32 nWidth, i32 nHeight, ::draw2d::bitmap& maskBitmap, i32 xMask, i32 yMask);
+//      bool FloodFill(i32 x, i32 y, color32_t crColor);
+//      bool ExtFloodFill(i32 x, i32 y, color32_t crColor, ::u32 nFillType);
+//      bool MaskBlt(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc,
+//                   i32 xSrc, i32 ySrc, ::draw2d::bitmap& maskBitmap, i32 xMask, i32 yMask,
+//                   u32 dwRop);
+//      bool PlgBlt(POINT32 * lpPoint, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc,
+//                  i32 nWidth, i32 nHeight, ::draw2d::bitmap& maskBitmap, i32 xMask, i32 yMask);
       bool SetPixelV(i32 x, i32 y, color32_t crColor);
       bool SetPixelV(const ::point & point, color32_t crColor);
       bool GradientFill(TRIVERTEX* pVertices, ULONG nVertices,
@@ -409,9 +409,9 @@ namespace draw2d_opengl
 
 
 
-      // Advanced Drawing
-      bool DrawEdge(const ::rect & rect,::u32 nEdge,::u32 nFlags);
-      bool DrawFrameControl(const ::rect & rect,::u32 nType,::u32 nState);
+//      // Advanced Drawing
+//      bool DrawEdge(const ::rect & rect,::u32 nEdge,::u32 nFlags);
+//      bool DrawFrameControl(const ::rect & rect,::u32 nType,::u32 nState);
 
       // Scrolling Functions
       bool ScrollDC(i32 dx, i32 dy, const RECT32 &  lpRectScroll, const RECT32 &  lpRectClip,

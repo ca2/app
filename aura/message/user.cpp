@@ -121,16 +121,13 @@ namespace message
 
 
    void activate::set(::layered * playeredUserPrimitive,const ::id & id,WPARAM wparam,::lparam lparam)
-
    {
 
       base::set(playeredUserPrimitive, id, wparam, lparam);
 
-
-      m_nState = (::u32)(LOWORD(wparam));
+      m_eactivate = (enum_activate)(LOWORD(wparam));
 
       if(lparam == 0)
-
       {
 
          m_pWndOther = nullptr;
@@ -141,13 +138,11 @@ namespace message
 
          m_pWndOther = System.ui_from_handle(lparam.cast < void >());
 
-
       }
 
       m_bMinimized = HIWORD(wparam) != FALSE;
 
    }
-
 
 
    erase_bkgnd::erase_bkgnd()
@@ -158,7 +153,9 @@ namespace message
 
    void erase_bkgnd::set_result(bool bResult)
    {
+
       m_lresult = bResult;
+
    }
 
 

@@ -84,14 +84,14 @@ namespace draw2d
 //   }
 
 
-   bool palette::ResizePalette(::u32 nNumEntries)
-   {
-
-      UNREFERENCED_PARAMETER(nNumEntries);
-      ::exception::throw_interface_only();
-      return false;
-
-   }
+//   bool palette::ResizePalette(::u32 nNumEntries)
+//   {
+//
+//      UNREFERENCED_PARAMETER(nNumEntries);
+//      ::exception::throw_interface_only();
+//      return false;
+//
+//   }
 
 
    i32 palette::GetEntryCount()

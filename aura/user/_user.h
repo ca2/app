@@ -7,6 +7,26 @@
 #include "aura/platform/_platform.h"
 
 
+class prodevian;
+
+
+namespace user
+{
+
+
+   class control_bar;
+
+
+   enum e_interaction
+   {
+
+      interaction_wfi_up_down_loading = 1 << 0,
+      interaction_wfi_up_tool_window = 1 << 1,
+
+   };
+
+
+} // namespace user
 
 
 #define SWP_CHANGEVIEWPORTOFFSET  0x100000

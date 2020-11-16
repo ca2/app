@@ -26,6 +26,9 @@ void CLASS_DECL_AURA __cdecl _ca2_purecall()
 }
 
 
+#ifdef WINDOWS
+
+
 void __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers)
 {
 
@@ -34,6 +37,9 @@ void __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers)
    UNREFERENCED_PARAMETER(ppointers);
 
 }
+
+
+#endif
 
 
 string ca2_command_line()

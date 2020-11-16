@@ -47,7 +47,7 @@ namespace user
 
       //virtual void GetScrollRect(RECT32 * prect);
 
-      virtual void on_change_view_size() override;
+      virtual void on_change_view_size(::draw2d::graphics_pointer & pgraphics) override;
       virtual void on_change_viewport_offset() override;
       virtual void create_x_scroll_bar(const ::rect & rect);
       virtual void layout_scroll_bar(::draw2d::graphics_pointer & pgraphics) override;
@@ -113,14 +113,11 @@ namespace user
 
       virtual void install_message_routing(::channel * pchannel) override;
 
-
-      //virtual void GetScrollRect(RECT32 * prect);
-
-      virtual void on_change_view_size() override;
+      virtual void on_change_view_size(::draw2d::graphics_pointer & pgraphics) override;
       virtual void on_change_viewport_offset() override;
       virtual i32 get_wheel_scroll_delta() override;
       virtual void create_y_scroll_bar(const ::rect & rect);
-      virtual void layout_scroll_bar() override;
+      virtual void layout_scroll_bar(::draw2d::graphics_pointer & pgraphics) override;
       virtual void _001DeferCreateYScrollBar();
       virtual void _001OnDeferCreateYScrollBar();
       virtual bool validate_viewport_offset(point & point) override;
@@ -156,25 +153,19 @@ namespace user
       virtual ~scroll_base();
 
 
-
-      virtual void on_change_view_size() override;
+      virtual void on_change_view_size(::draw2d::graphics_pointer & pgraphics) override;
       virtual void on_change_viewport_offset() override;
       virtual bool validate_viewport_offset(point & point) override;
-      void layout_scroll_bar() override;
+      virtual void layout_scroll_bar(::draw2d::graphics_pointer & pgraphics) override;
+
 
       virtual void install_message_routing(::channel * pchannel) override;
-
-      //void GetScrollRect(RECT32 * prect);
-
-
-      //virtual bool get_client_rect(RECT32 * prect) override;
 
 
       virtual bool GetActiveClientRect(RECT32 * prect);
 
 
       virtual bool GetFocusRect(RECT32 * prect) override;
-
 
 
       virtual ::sized get_total_size() override;
@@ -185,6 +176,7 @@ namespace user
 
 
       virtual void defer_draw_scroll_gap(::draw2d::graphics_pointer & pgraphics);
+
 
    };
 

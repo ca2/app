@@ -73,7 +73,7 @@ list(APPEND axis_source
         compress/bz.cpp
         compress/bz.h
         compress/bzip.h
-        const/_const.h
+        #const/_const.h
         const/callback.h
         const/charset.h
         const/check.h

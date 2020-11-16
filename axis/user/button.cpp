@@ -779,7 +779,7 @@ namespace user
 
          rectAspect.Align(e_align_center, rectClient);
 
-         pgraphics->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
+         pgraphics->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
          pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
@@ -845,7 +845,7 @@ namespace user
 
             rectAspect.Align(e_align_bottom_left, rectPadded);
 
-            pgraphics->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
+            pgraphics->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
             pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 

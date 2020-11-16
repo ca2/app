@@ -76,11 +76,58 @@ using HSYNC = HANDLE;
 #else
 
 
+/*
+* set_window_pos Flags
+*/
+#define SWP_NOSIZE          0x0001
+#define SWP_NOMOVE          0x0002
+#define SWP_NOZORDER        0x0004
+#define SWP_NOREDRAW        0x0008
+#define SWP_NOACTIVATE      0x0010
+#define SWP_FRAMECHANGED    0x0020  /* The frame changed: send e_message_nccalcsize */
+#define SWP_SHOWWINDOW      0x0040
+#define SWP_HIDEWINDOW      0x0080
+#define SWP_NOCOPYBITS      0x0100
+#define SWP_NOOWNERZORDER   0x0200  /* Don't do owner Z ordering */
+#define SWP_NOSENDCHANGING  0x0400  /* Don't send e_message_window_position_changing */
+
+#define SWP_DRAWFRAME       SWP_FRAMECHANGED
+#define SWP_NOREPOSITION    SWP_NOOWNERZORDER
+
+//#if(WINVER >= 0x0400)
+#define SWP_DEFERERASE      0x2000
+#define SWP_ASYNCWINDOWPOS  0x4000
+//#endif /* WINVER >= 0x0400 */
+
+
+/*
+ * Key State Masks for Mouse Messages
+ */
+#define MK_LBUTTON          0x0001
+#define MK_RBUTTON          0x0002
+#define MK_SHIFT            0x0004
+#define MK_CONTROL          0x0008
+#define MK_MBUTTON          0x0010
+//#if(_WIN32_WINNT >= 0x0500)
+#define MK_XBUTTON1         0x0020
+#define MK_XBUTTON2         0x0040
+//#endif /* _WIN32_WINNT >= 0x0500 */
+
+
+#define MESSAGE_WINDOW_PARENT (::oswindow((void *) (iptr) 1))
+
+
 #define GWL_STYLE           (-16)
 #define GWL_EXSTYLE         (-20)
 
 
 #define WS_EX_LAYERED           0x00080000
+
+
+#define HWND_TOP        ((::oswindow)(::iptr)0)
+#define HWND_BOTTOM     ((::oswindow)(::iptr)1)
+#define HWND_TOPMOST    ((::oswindow)(::iptr)-1)
+#define HWND_NOTOPMOST  ((::oswindow)(::iptr)-2)
 
 
 #define MAKEWORD(a, b)      ((::u16)(((byte)(((dword_ptr)(a)) & 0xff)) | ((::u16)((byte)(((dword_ptr)(b)) & 0xff))) << 8))

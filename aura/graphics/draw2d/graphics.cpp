@@ -1096,40 +1096,40 @@ namespace draw2d
 //
 //      return false;
 //   }
-
-#ifdef WINDOWS
-
-
-   bool graphics::DrawState(const ::point & point, const ::size & size, HICON hIcon, ::u32 nFlags, HBRUSH hBrush)
-   {
-
-      UNREFERENCED_PARAMETER(point);
-      UNREFERENCED_PARAMETER(size);
-      UNREFERENCED_PARAMETER(hIcon);
-      UNREFERENCED_PARAMETER(nFlags);
-      UNREFERENCED_PARAMETER(hBrush);
-
-
-      return false;
-
-   }
-
-
-   bool graphics::DrawState(const ::point & point, const ::size & size, HICON hIcon, ::u32 nFlags, ::draw2d::brush* pBrush)
-   {
-
-      UNREFERENCED_PARAMETER(point);
-      UNREFERENCED_PARAMETER(size);
-      UNREFERENCED_PARAMETER(hIcon);
-      UNREFERENCED_PARAMETER(nFlags);
-      UNREFERENCED_PARAMETER(pBrush);
-
-
-      return false;
-
-   }
-
-#endif
+//
+//#ifdef WINDOWS
+//
+//
+//   bool graphics::DrawState(const ::point & point, const ::size & size, HICON hIcon, ::u32 nFlags, HBRUSH hBrush)
+//   {
+//
+//      UNREFERENCED_PARAMETER(point);
+//      UNREFERENCED_PARAMETER(size);
+//      UNREFERENCED_PARAMETER(hIcon);
+//      UNREFERENCED_PARAMETER(nFlags);
+//      UNREFERENCED_PARAMETER(hBrush);
+//
+//
+//      return false;
+//
+//   }
+//
+//
+//   bool graphics::DrawState(const ::point & point, const ::size & size, HICON hIcon, ::u32 nFlags, ::draw2d::brush* pBrush)
+//   {
+//
+//      UNREFERENCED_PARAMETER(point);
+//      UNREFERENCED_PARAMETER(size);
+//      UNREFERENCED_PARAMETER(hIcon);
+//      UNREFERENCED_PARAMETER(nFlags);
+//      UNREFERENCED_PARAMETER(pBrush);
+//
+//
+//      return false;
+//
+//   }
+//
+//#endif
 
 
 //   bool graphics::DrawState(const ::point & point, const ::size & size, const char * pszText, ::u32 nFlags, bool bPrefixText, i32 nTextLen)
@@ -1150,90 +1150,90 @@ namespace draw2d
 //   }
 
 
-   bool graphics::DrawState(const ::point & point, const ::size & size, const char * pszText, ::u32 nFlags, bool bPrefixText, i32 nTextLen, ::draw2d::brush* pBrush)
-   {
-
-      UNREFERENCED_PARAMETER(point);
-      UNREFERENCED_PARAMETER(size);
-      UNREFERENCED_PARAMETER(pszText);
-
-      UNREFERENCED_PARAMETER(nFlags);
-      UNREFERENCED_PARAMETER(bPrefixText);
-      UNREFERENCED_PARAMETER(nTextLen);
-      UNREFERENCED_PARAMETER(pBrush);
-
-
-      return false;
-
-
-   }
-
-
-#ifdef WINDOWS_DESKTOP
-
-
-   bool graphics::DrawState(const ::point & point, const ::size & size, DRAWSTATEPROC pDrawProc, LPARAM lData, ::u32 nFlags, HBRUSH hBrush)
-   {
-
-      UNREFERENCED_PARAMETER(point);
-      UNREFERENCED_PARAMETER(size);
-      UNREFERENCED_PARAMETER(pDrawProc);
-
-      UNREFERENCED_PARAMETER(lData);
-      UNREFERENCED_PARAMETER(nFlags);
-      UNREFERENCED_PARAMETER(hBrush);
-
-
-      return false;
-
-   }
-
-
-   bool graphics::DrawState(const ::point & point, const ::size & size, DRAWSTATEPROC pDrawProc, LPARAM lData, ::u32 nFlags, ::draw2d::brush* pBrush)
-   {
-
-      UNREFERENCED_PARAMETER(point);
-      UNREFERENCED_PARAMETER(size);
-      UNREFERENCED_PARAMETER(pDrawProc);
-
-      UNREFERENCED_PARAMETER(lData);
-      UNREFERENCED_PARAMETER(nFlags);
-      UNREFERENCED_PARAMETER(pBrush);
-
-
-      return false;
-
-   }
-
-
-#endif
-
-
-   bool graphics::DrawEdge(const rect & rect, ::u32 nEdge, ::u32 nFlags)
-   {
-
-      UNREFERENCED_PARAMETER(rect);
-      UNREFERENCED_PARAMETER(nEdge);
-      UNREFERENCED_PARAMETER(nFlags);
+//   bool graphics::DrawState(const ::point & point, const ::size & size, const char * pszText, ::u32 nFlags, bool bPrefixText, i32 nTextLen, ::draw2d::brush* pBrush)
+//   {
+//
+//      UNREFERENCED_PARAMETER(point);
+//      UNREFERENCED_PARAMETER(size);
+//      UNREFERENCED_PARAMETER(pszText);
+//
+//      UNREFERENCED_PARAMETER(nFlags);
+//      UNREFERENCED_PARAMETER(bPrefixText);
+//      UNREFERENCED_PARAMETER(nTextLen);
+//      UNREFERENCED_PARAMETER(pBrush);
+//
+//
+//      return false;
+//
+//
+//   }
+//
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//
+//   bool graphics::DrawState(const ::point & point, const ::size & size, DRAWSTATEPROC pDrawProc, LPARAM lData, ::u32 nFlags, HBRUSH hBrush)
+//   {
+//
+//      UNREFERENCED_PARAMETER(point);
+//      UNREFERENCED_PARAMETER(size);
+//      UNREFERENCED_PARAMETER(pDrawProc);
+//
+//      UNREFERENCED_PARAMETER(lData);
+//      UNREFERENCED_PARAMETER(nFlags);
+//      UNREFERENCED_PARAMETER(hBrush);
+//
+//
+//      return false;
+//
+//   }
+//
+//
+//   bool graphics::DrawState(const ::point & point, const ::size & size, DRAWSTATEPROC pDrawProc, LPARAM lData, ::u32 nFlags, ::draw2d::brush* pBrush)
+//   {
+//
+//      UNREFERENCED_PARAMETER(point);
+//      UNREFERENCED_PARAMETER(size);
+//      UNREFERENCED_PARAMETER(pDrawProc);
+//
+//      UNREFERENCED_PARAMETER(lData);
+//      UNREFERENCED_PARAMETER(nFlags);
+//      UNREFERENCED_PARAMETER(pBrush);
+//
+//
+//      return false;
+//
+//   }
+//
+//
+//#endif
 
 
-      return false;
-
-   }
-
-
-   bool graphics::DrawFrameControl(const rect & rect, ::u32 nType, ::u32 nState)
-   {
-
-      UNREFERENCED_PARAMETER(rect);
-      UNREFERENCED_PARAMETER(nType);
-      UNREFERENCED_PARAMETER(nState);
-
-
-
-      return false;
-
-   }
+//   bool graphics::DrawEdge(const rect & rect, ::u32 nEdge, ::u32 nFlags)
+//   {
+//
+//      UNREFERENCED_PARAMETER(rect);
+//      UNREFERENCED_PARAMETER(nEdge);
+//      UNREFERENCED_PARAMETER(nFlags);
+//
+//
+//      return false;
+//
+//   }
+//
+//
+//   bool graphics::DrawFrameControl(const rect & rect, ::u32 nType, ::u32 nState)
+//   {
+//
+//      UNREFERENCED_PARAMETER(rect);
+//      UNREFERENCED_PARAMETER(nType);
+//      UNREFERENCED_PARAMETER(nState);
+//
+//
+//
+//      return false;
+//
+//   }
 
 
    bool graphics::Chord(i32 x1, i32 y1, i32 x2, i32 y2, i32 x3, i32 y3, i32 x4, i32 y4)
@@ -2219,29 +2219,29 @@ namespace draw2d
    }
 
 
-   bool graphics::FloodFill(i32 x, i32 y, const ::color& color)
-   {
-
-      UNREFERENCED_PARAMETER(x);
-      UNREFERENCED_PARAMETER(y);
-      UNREFERENCED_PARAMETER(color);
-
-      return false;
-
-   }
-
-
-   bool graphics::ExtFloodFill(i32 x, i32 y, const ::color& color, ::u32 nFillType)
-   {
-
-      UNREFERENCED_PARAMETER(x);
-      UNREFERENCED_PARAMETER(y);
-      UNREFERENCED_PARAMETER(color);
-      UNREFERENCED_PARAMETER(nFillType);
-
-      return false;
-
-   }
+//   bool graphics::FloodFill(i32 x, i32 y, const ::color& color)
+//   {
+//
+//      UNREFERENCED_PARAMETER(x);
+//      UNREFERENCED_PARAMETER(y);
+//      UNREFERENCED_PARAMETER(color);
+//
+//      return false;
+//
+//   }
+//
+//
+//   bool graphics::ExtFloodFill(i32 x, i32 y, const ::color& color, ::u32 nFillType)
+//   {
+//
+//      UNREFERENCED_PARAMETER(x);
+//      UNREFERENCED_PARAMETER(y);
+//      UNREFERENCED_PARAMETER(color);
+//      UNREFERENCED_PARAMETER(nFillType);
+//
+//      return false;
+//
+//   }
 
 
    bool graphics::text_out(i32 x, i32 y, const char * pszString, strsize nCount)
@@ -2799,42 +2799,42 @@ namespace draw2d
       return -1;
    }
 
-   bool graphics::MaskBlt(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc,
-                          i32 xSrc, i32 ySrc, ::draw2d::bitmap& maskBitmap, i32 xMask, i32 yMask, u32 dwRop)
-   {
-      UNREFERENCED_PARAMETER(x);
-      UNREFERENCED_PARAMETER(y);
-      UNREFERENCED_PARAMETER(nWidth);
-      UNREFERENCED_PARAMETER(nHeight);
-      UNREFERENCED_PARAMETER(pgraphicsSrc);
-      UNREFERENCED_PARAMETER(xSrc);
-      UNREFERENCED_PARAMETER(ySrc);
-      UNREFERENCED_PARAMETER(maskBitmap);
-      UNREFERENCED_PARAMETER(xMask);
-      UNREFERENCED_PARAMETER(yMask);
-      UNREFERENCED_PARAMETER(dwRop);
-
-
-      return false;
-   }
-   bool graphics::PlgBlt(POINT32 * pPoint, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc,
-
-                         i32 nWidth, i32 nHeight, ::draw2d::bitmap& maskBitmap, i32 xMask, i32 yMask)
-   {
-      UNREFERENCED_PARAMETER(pPoint);
-
-      UNREFERENCED_PARAMETER(pgraphicsSrc);
-      UNREFERENCED_PARAMETER(xSrc);
-      UNREFERENCED_PARAMETER(ySrc);
-      UNREFERENCED_PARAMETER(nWidth);
-      UNREFERENCED_PARAMETER(nHeight);
-      UNREFERENCED_PARAMETER(maskBitmap);
-      UNREFERENCED_PARAMETER(xMask);
-      UNREFERENCED_PARAMETER(yMask);
-      UNREFERENCED_PARAMETER(ySrc);
-
-      return false;
-   }
+//   bool graphics::MaskBlt(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc,
+//                          i32 xSrc, i32 ySrc, ::draw2d::bitmap& maskBitmap, i32 xMask, i32 yMask)
+//   {
+//      UNREFERENCED_PARAMETER(x);
+//      UNREFERENCED_PARAMETER(y);
+//      UNREFERENCED_PARAMETER(nWidth);
+//      UNREFERENCED_PARAMETER(nHeight);
+//      UNREFERENCED_PARAMETER(pgraphicsSrc);
+//      UNREFERENCED_PARAMETER(xSrc);
+//      UNREFERENCED_PARAMETER(ySrc);
+//      UNREFERENCED_PARAMETER(maskBitmap);
+//      UNREFERENCED_PARAMETER(xMask);
+//      UNREFERENCED_PARAMETER(yMask);
+//      UNREFERENCED_PARAMETER(dwRop);
+//
+//
+//      return false;
+//   }
+//   bool graphics::PlgBlt(POINT32 * pPoint, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc,
+//
+//                         i32 nWidth, i32 nHeight, ::draw2d::bitmap& maskBitmap, i32 xMask, i32 yMask)
+//   {
+//      UNREFERENCED_PARAMETER(pPoint);
+//
+//      UNREFERENCED_PARAMETER(pgraphicsSrc);
+//      UNREFERENCED_PARAMETER(xSrc);
+//      UNREFERENCED_PARAMETER(ySrc);
+//      UNREFERENCED_PARAMETER(nWidth);
+//      UNREFERENCED_PARAMETER(nHeight);
+//      UNREFERENCED_PARAMETER(maskBitmap);
+//      UNREFERENCED_PARAMETER(xMask);
+//      UNREFERENCED_PARAMETER(yMask);
+//      UNREFERENCED_PARAMETER(ySrc);
+//
+//      return false;
+//   }
 
 
    bool graphics::SetPixelV(i32 x, i32 y, const ::color& color)
@@ -3235,22 +3235,22 @@ namespace draw2d
 
 #endif
 
-   bool graphics::TransparentBlt(i32 xDest, i32 yDest, i32 nDestWidth, i32 nDestHeight,
-                                 ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight, ::u32 crTransparent)
-   {
-      UNREFERENCED_PARAMETER(xDest);
-      UNREFERENCED_PARAMETER(yDest);
-      UNREFERENCED_PARAMETER(nDestWidth);
-      UNREFERENCED_PARAMETER(nDestHeight);
-      UNREFERENCED_PARAMETER(pgraphicsSrc);
-      UNREFERENCED_PARAMETER(xSrc);
-      UNREFERENCED_PARAMETER(ySrc);
-      UNREFERENCED_PARAMETER(nSrcWidth);
-      UNREFERENCED_PARAMETER(nSrcHeight);
-      UNREFERENCED_PARAMETER(crTransparent);
-
-      return false;
-   }
+//   bool graphics::TransparentBlt(i32 xDest, i32 yDest, i32 nDestWidth, i32 nDestHeight,
+//                                 ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight, ::u32 crTransparent)
+//   {
+//      UNREFERENCED_PARAMETER(xDest);
+//      UNREFERENCED_PARAMETER(yDest);
+//      UNREFERENCED_PARAMETER(nDestWidth);
+//      UNREFERENCED_PARAMETER(nDestHeight);
+//      UNREFERENCED_PARAMETER(pgraphicsSrc);
+//      UNREFERENCED_PARAMETER(xSrc);
+//      UNREFERENCED_PARAMETER(ySrc);
+//      UNREFERENCED_PARAMETER(nSrcWidth);
+//      UNREFERENCED_PARAMETER(nSrcHeight);
+//      UNREFERENCED_PARAMETER(crTransparent);
+//
+//      return false;
+//   }
 
 //   bool graphics::GradientFill(TRIVERTEX* pVertices, WINULONG nVertices, void * pMesh, WINULONG nMeshElements, u32 dwMode)
 //   {

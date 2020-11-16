@@ -759,7 +759,11 @@ namespace user
       ::oswindow oswindowOrder = nullptr;
 
       if (!::is_window(oswindow))
+      {
+
          return 0x7fffffff;
+
+      }
       
 #ifdef WINDOWS_DESKTOP
 
@@ -771,7 +775,7 @@ namespace user
       try
       {
 
-         oswindowOrder = ::get_window(oswindow, GW_HWNDFIRST);
+         oswindowOrder = ::get_window(oswindow, e_relative_first_child);
 
       }
       catch (...)
@@ -789,7 +793,7 @@ namespace user
          if (oswindow == oswindowOrder)
             return iOrder;
 
-         oswindowOrder = ::get_window(oswindowOrder, GW_HWNDNEXT);
+         oswindowOrder = ::get_window(oswindowOrder, e_relative_next_sibling);
 
          iOrder++;
 
@@ -852,81 +856,81 @@ namespace user
    }
    }*/
 
-   void window_util::ExcludeChildren(oswindow oswindow, HRGN hrgn, const point & pointOffset)
-   {
+//   void window_util::ExcludeChildren(oswindow oswindow, HRGN hrgn, const point & pointOffset)
+//   {
+//
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//      oswindow_array oswindowa;
+//
+//      EnumChildren(oswindow, oswindowa);
+//
+//      for (i32 i = 0; i < oswindowa.get_size(); i++)
+//      {
+//
+//         ::oswindow oswindowChild = oswindowa[i];
+//
+//         ::rect rectChild;
+//
+//         ::GetClientRect(oswindowChild, rectChild);
+//
+//         ::ClientToScreen(oswindowChild, &rectChild.top_left());
+//
+//         ::ClientToScreen(oswindowChild, &rectChild.bottom_right());
+//
+//         ::ScreenToClient(oswindow, &rectChild.top_left());
+//
+//         ::ScreenToClient(oswindow, &rectChild.bottom_right());
+//
+//         rectChild.offset(pointOffset);
+//
+//         HRGN hrgnChild = ::CreateRectRgnIndirect(rectChild);
+//
+//         ::CombineRgn(hrgn, hrgn, hrgnChild, ::draw2d::e_combine_exclude);
+//
+//         ::DeleteObject(hrgnChild);
+//
+//      }
+//
+//#else
+//
+//      __throw(todo());
+//
+//#endif
+//
+//
+//   }
 
-
-#ifdef WINDOWS_DESKTOP
-
-      oswindow_array oswindowa;
-
-      EnumChildren(oswindow, oswindowa);
-
-      for (i32 i = 0; i < oswindowa.get_size(); i++)
-      {
-
-         ::oswindow oswindowChild = oswindowa[i];
-
-         ::rect rectChild;
-
-         ::GetClientRect(oswindowChild, rectChild);
-
-         ::ClientToScreen(oswindowChild, &rectChild.top_left());
-
-         ::ClientToScreen(oswindowChild, &rectChild.bottom_right());
-
-         ::ScreenToClient(oswindow, &rectChild.top_left());
-
-         ::ScreenToClient(oswindow, &rectChild.bottom_right());
-
-         rectChild.offset(pointOffset);
-
-         HRGN hrgnChild = ::CreateRectRgnIndirect(rectChild);
-
-         ::CombineRgn(hrgn, hrgn, hrgnChild, ::draw2d::e_combine_exclude);
-
-         ::DeleteObject(hrgnChild);
-
-      }
-
-#else
-
-      __throw(todo());
-
-#endif
-
-
-   }
-
-   HRGN window_util::GetAClipRgn(oswindow oswindow, const point & pointOffset, bool bExludeChildren)
-   {
-
-#ifdef WINDOWS_DESKTOP
-
-      ::rect rectWnd;
-
-      ::GetClientRect(oswindow, rectWnd);
-
-      rectWnd.offset(pointOffset);
-
-      HRGN hrgn = ::CreateRectRgnIndirect(rectWnd);
-
-      if (bExludeChildren)
-      {
-
-         ExcludeChildren(oswindow, hrgn, pointOffset);
-
-      }
-
-      return hrgn;
-
-#else
-
-      __throw(todo());
-
-#endif
-
-   }
+//   HRGN window_util::GetAClipRgn(oswindow oswindow, const point & pointOffset, bool bExludeChildren)
+//   {
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//      ::rect rectWnd;
+//
+//      ::GetClientRect(oswindow, rectWnd);
+//
+//      rectWnd.offset(pointOffset);
+//
+//      HRGN hrgn = ::CreateRectRgnIndirect(rectWnd);
+//
+//      if (bExludeChildren)
+//      {
+//
+//         ExcludeChildren(oswindow, hrgn, pointOffset);
+//
+//      }
+//
+//      return hrgn;
+//
+//#else
+//
+//      __throw(todo());
+//
+//#endif
+//
+//   }
 
    bool window_util::IsAscendant(oswindow oswindowAscendant, oswindow oswindowDescendant)
    {

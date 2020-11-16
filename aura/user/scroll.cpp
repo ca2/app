@@ -2,6 +2,7 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "aura/user/_user.h"
 #endif
+#include "acme/os/cross/windows/_windows.h"
 
 
 namespace user
@@ -43,7 +44,7 @@ namespace user
    }
 
 
-   void scroll_x_base::layout_scroll_bar()
+   void scroll_x_base::layout_scroll_bar(::draw2d::graphics_pointer & pgraphics)
    {
 
       ::rect rectClient;
@@ -64,10 +65,12 @@ namespace user
 
             ::rect rectNewPos;
 
+            auto pstyle = get_style(pgraphics);
+
             rectNewPos.left = rectClient.left;
-            rectNewPos.top = rectClient.bottom - GetSystemMetrics(SM_CYHSCROLL);
+            rectNewPos.top = rectClient.bottom - get_int(pstyle,e_int_scroll_bar_width);
             rectNewPos.right = rectNewPos.left + rectClient.width() - get_final_y_scroll_bar_width();
-            rectNewPos.bottom = rectNewPos.top + GetSystemMetrics(SM_CYHSCROLL);
+            rectNewPos.bottom = rectClient.bottom;
 
             m_pscrollbarHorz->order(zorder_top);
 
@@ -128,7 +131,6 @@ namespace user
          }
 
       }
-
 
       if (bCreate)
       {
@@ -244,12 +246,14 @@ namespace user
    }
 
 
-   void scroll_x_base::on_change_view_size()
+   void scroll_x_base::on_change_view_size(::draw2d::graphics_pointer & pgraphics)
    {
 
       auto sizeTotal = get_total_size();
 
-      m_scrolldataHorz.m_iWidth = GetSystemMetrics(SM_CXHSCROLL);
+      auto pstyle = get_style(pgraphics);
+
+      m_scrolldataHorz.m_iWidth = get_int(pstyle, e_int_scroll_bar_width);
 
       ::rect rectClient;
 
@@ -265,7 +269,7 @@ namespace user
 
       //::i32 iScrollHeight = iClientHeight - GetSystemMetrics(SM_CYHSCROLL);
 
-      ::i32 iScrollWidth = iClientWidth - GetSystemMetrics(SM_CXVSCROLL);
+      ::i32 iScrollWidth = iClientWidth - get_int(pstyle, e_int_scroll_bar_width);;
 
       m_scrolldataHorz.m_bScroll = false;
 
@@ -298,7 +302,7 @@ namespace user
       if (validate_viewport_offset(m_pointScroll))
       {
 
-         layout_scroll_bar();
+         layout_scroll_bar(pgraphics);
 
          on_change_viewport_offset();
 
@@ -332,7 +336,7 @@ namespace user
       m_scrolldataVert.m_iPage = 0;
       m_scrolldataVert.m_iLine = 0;
       m_scrolldataVert.m_bScrollEnable = true;
-      m_scrolldataVert.m_iWidth = GetSystemMetrics(SM_CYVSCROLL);
+//      m_scrolldataVert.m_iWidth = GetSystemMetrics(SM_CYVSCROLL);
 
    }
 
@@ -358,7 +362,7 @@ namespace user
    }
 
 
-   void scroll_y_base::layout_scroll_bar()
+   void scroll_y_base::layout_scroll_bar(::draw2d::graphics_pointer & pgraphics)
    {
 
       ::rect rectClient = get_client_rect();
@@ -379,9 +383,11 @@ namespace user
 
             ::rect rectNewPos;
 
-            rectNewPos.left = rectClient.right - GetSystemMetrics(SM_CXVSCROLL);
+            auto pstyle = get_style(pgraphics);
+
+            rectNewPos.left = rectClient.right - get_int(pstyle,e_int_scroll_bar_width);
             rectNewPos.top = rectClient.top;
-            rectNewPos.right = rectNewPos.left + GetSystemMetrics(SM_CXVSCROLL);
+            rectNewPos.right = rectClient.right;
             rectNewPos.bottom = rectNewPos.top+ rectClient.height() - get_final_x_scroll_bar_width();
 
             m_pscrollbarVert->order(zorder_top);
@@ -621,12 +627,14 @@ namespace user
    }
 
 
-   void scroll_y_base::on_change_view_size()
+   void scroll_y_base::on_change_view_size(::draw2d::graphics_pointer & pgraphics)
    {
 
       auto sizeTotal = get_total_size();
 
-      m_scrolldataVert.m_iWidth = GetSystemMetrics(SM_CXVSCROLL);
+      auto pstyle = get_style(pgraphics);
+
+      m_scrolldataVert.m_iWidth = get_int(pstyle, e_int_scroll_bar_width);
 
       ::rect rectClient;
 
@@ -640,7 +648,7 @@ namespace user
 
       ::i32 iClientWidth = rectClient.width();
 
-      ::i32 iScrollHeight = iClientHeight - GetSystemMetrics(SM_CYHSCROLL);
+      ::i32 iScrollHeight = iClientHeight - get_int(pstyle, e_int_scroll_bar_width);
 
       //::i32 iscrollWidth = iClientWidth - GetSystemMetrics(SM_CXVSCROLL);
 
@@ -675,7 +683,7 @@ namespace user
       if (validate_viewport_offset(m_pointScroll))
       {
 
-         layout_scroll_bar();
+         layout_scroll_bar(pgraphics);
 
          on_change_viewport_offset();
 
@@ -743,17 +751,17 @@ namespace user
    }
 
 
-   void scroll_base::layout_scroll_bar()
+   void scroll_base::layout_scroll_bar(::draw2d::graphics_pointer & pgraphics)
    {
 
-      scroll_x_base::layout_scroll_bar();
+      scroll_x_base::layout_scroll_bar(pgraphics);
 
-      scroll_y_base::layout_scroll_bar();
+      scroll_y_base::layout_scroll_bar(pgraphics);
 
    }
 
 
-   void scroll_base::on_change_view_size()
+   void scroll_base::on_change_view_size(::draw2d::graphics_pointer & pgraphics)
    {
 
       m_scrolldataHorz.m_bScroll = false;
@@ -773,6 +781,8 @@ namespace user
 
       }
 
+      auto pstyle = get_style(pgraphics);
+
       ::i32 iTotalHeight = (::i32) sizeTotal.cy;
 
       ::i32 iTotalWidth = (::i32) sizeTotal.cx;
@@ -781,9 +791,9 @@ namespace user
 
       ::i32 iClientWidth = rectClient.width();
 
-      ::i32 iScrollHeight = iClientHeight - GetSystemMetrics(SM_CYHSCROLL);
+      ::i32 iScrollHeight = iClientHeight - get_int(pstyle, e_int_scroll_bar_width);;
 
-      ::i32 iscrollWidth = iClientWidth - GetSystemMetrics(SM_CXVSCROLL);
+      ::i32 iscrollWidth = iClientWidth - get_int(pstyle, e_int_scroll_bar_width);;
 
       if (iTotalWidth > iClientWidth)
       {
@@ -843,7 +853,7 @@ namespace user
       if (validate_viewport_offset(m_pointScroll))
       {
 
-         layout_scroll_bar();
+         layout_scroll_bar(pgraphics);
 
          on_change_viewport_offset();
 
@@ -851,7 +861,7 @@ namespace user
       else
       {
 
-         layout_scroll_bar();
+         layout_scroll_bar(pgraphics);
 
       }
 

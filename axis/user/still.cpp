@@ -142,9 +142,9 @@ namespace user
          if (m_estockicon == stock_icon_none)
          {
 
-            ::e_align ealign = get_int(pstyle, ::user::int_edit_text_align, ::e_align(e_align_left_center));
+            ::e_align ealign = get_int(pstyle, ::user::e_int_edit_text_align, ::e_align(e_align_left_center));
             
-            ::e_draw_text edrawtext = get_int(pstyle, ::user::int_edit_draw_text_flags, e_draw_text_single_line);
+            ::e_draw_text edrawtext = get_int(pstyle, ::user::e_int_edit_draw_text_flags, e_draw_text_single_line);
 
             if(m_pfont)
             {

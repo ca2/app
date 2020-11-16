@@ -7,6 +7,31 @@
 //
 //}
 
+enum enum_activate
+{
+
+   e_activate_inactive = 0,
+   e_activate_active = 0,
+   e_activate_click_active = 0,
+
+};
+
+#define MA_ACTIVATE         1
+#define MA_ACTIVATEANDEAT   2
+#define MA_NOACTIVATE       3
+#define MA_NOACTIVATEANDEAT 4
+
+enum enum_mouse_activate
+{
+
+   e_mouse_activate_not_set = 0,
+   e_mouse_activate = 1,
+   e_mouse_activate_and_eat = 2,
+   e_mouse_activate_no_activate = 3,
+   e_mouse_activate_no_activate_and_eat = 4,
+
+};
+
 
 #define MESSAGE_OLE_DRAGENTER WM_APP + 324
 #define MESSAGE_OLE_DRAGOVER WM_APP + 325
@@ -48,7 +73,7 @@ namespace message
    public:
 
 
-      ::u32  m_nState;
+      ::enum_activate   m_eactivate;
       ::user::interaction * m_pWndOther;
       bool  m_bMinimized;
 

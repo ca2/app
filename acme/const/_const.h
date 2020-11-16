@@ -666,6 +666,19 @@ enum enum_message_box
 };
 
 
+enum enum_relative
+{
+
+   e_relative_none,
+   e_relative_first_child,
+   e_relative_last_child,
+   e_relative_first_sibling,
+   e_relative_previous_sibling,
+   e_relative_next_sibling,
+   e_relative_last_sibling,
+
+};
+
 
 #include "message.h"
 

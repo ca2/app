@@ -131,8 +131,7 @@ bool oswindow_remove(nswindow window);
 //   return window->get_parent();
 //}
 
-
-oswindow get_window(oswindow window, int iParentHood);
+//oswindow get_window(oswindow window, int iParentHood);
 
 //inline oswindow SetParent(::oswindow window, ::oswindow oswindowNewParent)
 //{

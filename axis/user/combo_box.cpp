@@ -982,17 +982,18 @@ namespace user
    bool combo_box::OnChildNotify(::message::base * pbase)
    {
 
+#ifdef WINDOWS_DESKTOP
       switch (pbase->m_id)
       {
       case WM_DRAWITEM:
-#ifdef WINODWSEX
+#ifdef WINDOWSEX
          DrawItem((LPDRAWITEMSTRUCT)pbase->m_lparam);
 #else
          __throw(todo());
 #endif
          break;
       case e_message_measure_item:
-#ifdef WINODWSEX
+#ifdef WINDOWSEX
          MeasureItem((LPMEASUREITEMSTRUCT)pbase->m_lparam);
 #else
          __throw(todo());
@@ -1015,6 +1016,8 @@ namespace user
       default:
          return ::user::interaction::OnChildNotify(pbase);
       }
+#endif
+
       return TRUE;
    }
 
@@ -1344,27 +1347,27 @@ namespace user
 
    }
 
-   LCID combo_box::GetLocale()
-   {
-
-      //ASSERT(is_window());
-
-      //return (LCID)send_message( CB_GETLOCALE, 0, 0);
-
-      return -1; // everywhere
-
-   }
-
-   LCID combo_box::SetLocale(LCID nNewLocale)
-   {
-
-      //ASSERT(is_window());
-
-      //return (LCID)send_message( CB_SETLOCALE, (WPARAM)nNewLocale, 0);
-
-      return nNewLocale; // set where it is
-
-   }
+//   LCID combo_box::GetLocale()
+//   {
+//
+//      //ASSERT(is_window());
+//
+//      //return (LCID)send_message( CB_GETLOCALE, 0, 0);
+//
+//      return -1; // everywhere
+//
+//   }
+//
+//   LCID combo_box::SetLocale(LCID nNewLocale)
+//   {
+//
+//      //ASSERT(is_window());
+//
+//      //return (LCID)send_message( CB_SETLOCALE, (WPARAM)nNewLocale, 0);
+//
+//      return nNewLocale; // set where it is
+//
+//   }
 
    index combo_box::GetTopIndex()
    {

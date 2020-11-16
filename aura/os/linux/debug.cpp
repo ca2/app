@@ -144,9 +144,7 @@ va_list *Arguments
 }
 
 
-
-
-VOID WINAPI output_debug_string(const char * pOutputString)
+void output_debug_string(const char * pOutputString)
 {
 
    if(::acme::g_bOutputDebugString)
@@ -168,9 +166,7 @@ VOID WINAPI output_debug_string(const char * pOutputString)
 }
 
 
-
-
-VOID WINAPI output_debug_string(const widechar * pOutputString)
+void output_debug_string(const widechar * pOutputString)
 {
 
    if(::acme::g_bOutputDebugString)
@@ -184,24 +180,3 @@ VOID WINAPI output_debug_string(const widechar * pOutputString)
 
 
 
-
-
-////CLASS_DECL_AURA extern fixed_alloc_array * g_pfixedallocaWstring;
-//
-////CLASS_DECL_AURA fixed_alloc_array * new_wstring_manager();
-//
-//void CLASS_DECL_AURA __cdecl _ca2_purecall()
-//{
-//    __throw(::exception::exception());
-//}
-
-
-//void __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers);
-//
-//
-//
-//void __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers)
-//{
-//   UNREFERENCED_PARAMETER(uiCode);
-//   UNREFERENCED_PARAMETER(ppointers);
-//}

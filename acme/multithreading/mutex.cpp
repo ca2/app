@@ -41,7 +41,7 @@ mutex::mutex(enum_create_new, bool bInitiallyOwn)
 
    m_hsync = ::CreateMutexExW(nullptr, nullptr, bInitiallyOwn ? CREATE_MUTEX_INITIAL_OWNER : 0, MUTEX_ALL_ACCESS);
 
-   ::u32 dwLastError = ::get_last_error();
+   DWORD dwLastError = ::GetLastError();
 
    m_bAlreadyExists = dwLastError == ERROR_ALREADY_EXISTS;
 
@@ -104,14 +104,14 @@ mutex::mutex(enum_create_new, bool bInitiallyOwn, const char * pstrName, LPSECUR
 
    m_hsync = ::CreateMutexExW(psaAttribute, pwszName, bInitiallyOwn ?  CREATE_MUTEX_INITIAL_OWNER : 0, MUTEX_ALL_ACCESS);
 
-   ::u32 dwLastError = ::get_last_error();
+   DWORD dwLastError = ::GetLastError();
 
    m_bAlreadyExists = dwLastError == ERROR_ALREADY_EXISTS;
 
    if(m_hsync == nullptr)
    {
 
-      ::u32 dwError1 = ::get_last_error();
+      DWORD dwError1 = ::GetLastError();
 
       if(pstrName != nullptr)
       {
@@ -123,7 +123,7 @@ mutex::mutex(enum_create_new, bool bInitiallyOwn, const char * pstrName, LPSECUR
       if(m_hsync == nullptr)
       {
 
-         ::u32 dwError2 = ::get_last_error();
+         DWORD dwError2 = ::GetLastError();
 
          __throw(resource_exception());
 

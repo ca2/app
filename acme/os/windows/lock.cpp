@@ -20,7 +20,10 @@ i32 _c_lock(const char * lpszName, void ** pdata)
 {
 
    HANDLE hmutex = ::CreateMutexW(nullptr, FALSE, L"Global\\::ca::account::ca2_spa::7807e510-5579-11dd-ae16-0800200c7784");
-   if(::get_last_error() == ERROR_ALREADY_EXISTS)
+
+   DWORD dwLastError = ::GetLastError();
+
+   if(dwLastError == ERROR_ALREADY_EXISTS)
    {
       ::CloseHandle(hmutex);
       return 0;

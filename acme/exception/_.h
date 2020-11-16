@@ -29,6 +29,15 @@ namespace win
 }
 
 
+#ifdef WINDOWS
+
+
+CLASS_DECL_ACME ::estatus os_error_to_status(DWORD dwError);
+
+
+#endif
+
+
 namespace exception
 {
 

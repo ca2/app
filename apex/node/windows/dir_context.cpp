@@ -930,7 +930,7 @@ namespace windows
          else
          {
 
-            ::u32 dwError = ::get_last_error();
+            DWORD dwError = ::GetLastError();
 
             if (dwError == ERROR_ALREADY_EXISTS)
             {
@@ -978,7 +978,7 @@ namespace windows
 
                //   m_isdirmap.set(strDir, false, 0);
 
-               dwError = ::get_last_error();
+               dwError = ::GetLastError();
 
                char * pszError;
 

@@ -137,12 +137,15 @@ namespace windows
 
       // convert system time to local file time
       FILETIME localTime;
+
+      DWORD dwLastError = ::GetLastError();
+
       if(!SystemTimeToFileTime((LPSYSTEMTIME)&sysTime,&localTime))
-         ::file::throw_os_error((::i32)::get_last_error());
+         ::file::throw_os_error(dwLastError);
 
       // convert local file time to UTC file time
       if(!LocalFileTimeToFileTime(&localTime,pFileTime))
-         ::file::throw_os_error((::i32)::get_last_error());
+         ::file::throw_os_error(dwLastError);
 
    }
 

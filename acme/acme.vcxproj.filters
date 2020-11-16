@@ -213,6 +213,12 @@
     <Filter Include="Source Files\os\ansios">
       <UniqueIdentifier>{3e3eb7e6-b2d0-4ef9-8057-41cbc4350638}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\os\cross">
+      <UniqueIdentifier>{8b77f358-a956-42ad-947b-a06ac9ef253f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\os\cross\windows">
+      <UniqueIdentifier>{9d106340-a0d8-4ebe-ae50-41e34a7295d2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -2305,6 +2311,15 @@
     </ClInclude>
     <ClInclude Include="primitive\datetime\filetime_span.h">
       <Filter>Header Files\primitive\datetime</Filter>
+    </ClInclude>
+    <ClInclude Include="os\cross\_.h">
+      <Filter>Header Files\os\cross</Filter>
+    </ClInclude>
+    <ClInclude Include="os\cross\windows\_.h">
+      <Filter>Header Files\os\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="os\cross\windows\aaa_windows.h">
+      <Filter>Header Files\os\cross\windows</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

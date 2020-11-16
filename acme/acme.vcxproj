@@ -1659,6 +1659,9 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="os\chronometer.h" />
     <ClInclude Include="os\console.h" />
     <ClInclude Include="os\cross.h" />
+    <ClInclude Include="os\cross\windows\aaa_windows.h" />
+    <ClInclude Include="os\cross\windows\_.h" />
+    <ClInclude Include="os\cross\_.h" />
     <ClInclude Include="os\file.h" />
     <ClInclude Include="os\graphics.h" />
     <ClInclude Include="os\os_windowing2.h" />

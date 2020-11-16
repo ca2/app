@@ -291,7 +291,7 @@ string file_as_string(const char * path, strsize iReadAtMostByteCount)
    if (file == nullptr)
    {
 
-      DWORD dw = ::get_last_error();
+      DWORD dwLastError = ::GetLastError();
 
       return "";
 
@@ -1071,44 +1071,48 @@ int_bool file_set_length(const char * lpszName, size_t iSize)
 }
 
 
-
-
-
 int_bool file_move(const char * pszNewName, const char * pszOldName)
-
 {
 
-   if(!::MoveFile((char *)pszOldName,(char *)pszNewName))
+   wstring wstrOldName(pszOldName);
 
-      return FALSE;
+   wstring wstrNewName(pszNewName);
 
-   return TRUE;
+   if (!::MoveFileW(wstrOldName, wstrNewName))
+   {
+
+      return false;
+
+   }
+
+   return true;
 
 }
+
 
 int_bool file_delete(const char * pszFileName)
-
 {
 
+   wstring wstrFileName(pszFileName);
 
-   if(!::DeleteFileW(wstring(pszFileName)))
+   if (!::DeleteFileW(wstrFileName))
+   {
 
       return FALSE;
 
+   }
+
    return TRUE;
 
-
 }
-
-
 
 
 int_bool file_is_equal_path(const char * psz1,const char * psz2)
 {
 
-   wstring pwsz1 = ::str::international::utf8_to_unicode(psz1);
+   wstring wstr1(psz1);
 
-   wstring pwsz2 = ::str::international::utf8_to_unicode(psz2);
+   wstring wstr2(psz2);
 
    unichar * pwszFile1;
 
@@ -1118,16 +1122,16 @@ int_bool file_is_equal_path(const char * psz1,const char * psz2)
 
    ::acme::malloc < unichar * > pwszPath2;
 
-   pwszPath1.alloc((size_t)(pwsz1.get_length() * 2 * sizeof(unichar)));
+   pwszPath1.alloc((size_t)(wstr1.get_length() * 2 * sizeof(unichar)));
 
-   pwszPath2.alloc((size_t)(pwsz2.get_length() * 2 * sizeof(unichar)));
+   pwszPath2.alloc((size_t)(wstr2.get_length() * 2 * sizeof(unichar)));
 
    i32 iCmp = -1;
 
-   if(GetFullPathNameW(pwsz1, (DWORD)( pwszPath1.m_iSize / sizeof(unichar)), pwszPath1, &pwszFile1))
+   if(GetFullPathNameW(wstr1, (DWORD)( pwszPath1.m_iSize / sizeof(unichar)), pwszPath1, &pwszFile1))
    {
 
-      if(GetFullPathNameW(pwsz2, (DWORD) (pwszPath2.m_iSize / sizeof(unichar)), pwszPath2, &pwszFile2))
+      if(GetFullPathNameW(wstr2, (DWORD) (pwszPath2.m_iSize / sizeof(unichar)), pwszPath2, &pwszFile2))
       {
 
          iCmp = _wcsicmp(pwszPath1, pwszPath2);
@@ -1141,31 +1145,37 @@ int_bool file_is_equal_path(const char * psz1,const char * psz2)
 }
 
 
-
-
-
 char get_drive_letter(const char * pDevicePath)
-
 {
 
    wchar_t d = 'A';
 
    while(d <= L'Z')
    {
-      wchar_t szDeviceName[3] = {d,L':',L'\0'};
-      wchar_t szTarget[512] = {0};
-      if(QueryDosDeviceW(szDeviceName,szTarget,511) != 0)
-         if(wcscmp(wstring(pDevicePath),szTarget) == 0)
 
-            return (char) d;
+      wchar_t szDeviceName[3] = {d,L':',L'\0'};
+
+      wchar_t szTarget[512] = {0};
+
+      if (QueryDosDeviceW(szDeviceName, szTarget, 511) != 0)
+      {
+
+         if (wcscmp(wstring(pDevicePath), szTarget) == 0)
+         {
+
+            return (char)d;
+
+         }
+
+      }
+
       d++;
+   
    }
 
    return '\0';
 
 }
-
-
 
 
 memory file_as_memory(const char * path, memsize iReadAtMostByteCount)
@@ -1187,6 +1197,7 @@ memory file_as_memory(const char * path, memsize iReadAtMostByteCount)
       memsize iRead = file_as_memory(path, mem.get_data(), mem.get_size());
 
       mem.set_size(iRead);
+
    }
 
    return mem;

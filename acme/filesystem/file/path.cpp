@@ -72,23 +72,36 @@ namespace path
    }
 
 
-   ::file::path module(void * hmodule)
+#ifdef WINDOWS
+
+   
+   ::file::path module(HMODULE hmodule)
    {
 
-#ifdef WINDOWS_DESKTOP
+
+#if defined(_UWP)
+
+   return "m_app.exe";
+
+#else
 
       wstring wstr(get_buffer, MAX_PATH * 8);
 
-      GetModuleFileNameW(hmodule,wstr,(::u32) wstr.length());
+      ::GetModuleFileNameW(hmodule, wstr, (::u32)wstr.length());
 
       return solve_relative(string(wstr.release_string_buffer()));
 
+#endif
 
-#elif defined(_UWP)
 
-      return "m_app.exe";
+   }
+
 
 #else
+
+
+   ::file::path module()
+   {
 
       char * pszModuleFilePath = nullptr;
 
@@ -115,9 +128,11 @@ namespace path
 
       return strModuleFileName;
 
+   }
+
+
 #endif
 
-   }
 
    ::file::path install_log(string strPlatform, string strConfiguration)
    {

@@ -3930,7 +3930,7 @@ CLASS_DECL_ACME int trace_hr(const char * psz,HRESULT hr);
 
 CLASS_DECL_ACME string get_last_error_string();
 
-CLASS_DECL_ACME string get_error_string(u64 uiError);
+CLASS_DECL_ACME string get_error_string(DWORD dwError);
 
 //CLASS_DECL_ACME void set_acme(void * p,::acme::application * papp);
 //

@@ -77,16 +77,19 @@ Serial::SerialImpl::open ()
 
    if (m_hFile == INVALID_HANDLE_VALUE)
    {
-      ::u32 errno_ = get_last_error();
+
+      DWORD dwLastError = ::GetLastError();
+      
       string str;
-      switch (errno_)
+
+      switch (dwLastError)
       {
       case ERROR_FILE_NOT_FOUND:
          // Use this->getPort to convert to a std::string
          str.Format("Specified port, %d, does not exist.", this->getPort());
          THROW(IOException, str);
       default:
-         str.Format("Unknown error opening the serial port: %d",  errno_);
+         str.Format("Unknown error opening the serial port: %d", dwLastError);
          THROW(IOException, str);
       }
    }
@@ -393,7 +396,10 @@ Serial::SerialImpl::close ()
          {
             output_debug_string("\nSerial::serialimpl::close failed");
             string str;
-            str.Format("Error while closing serial port: %d", get_last_error());
+
+            DWORD dwLastError = ::GetLastError();
+
+            str.Format("Error while closing serial port: %d", dwLastError);
             THROW (IOException, str);
          }
          else
@@ -422,9 +428,15 @@ Serial::SerialImpl::available ()
    COMSTAT cs;
    if (!ClearCommError(m_hFile, nullptr, &cs))
    {
+      
       string str;
-      str.Format("Error while checking status of the serial port: %d", get_last_error());
+
+      DWORD dwLastError = ::GetLastError();
+
+      str.Format("Error while checking status of the serial port: %d", dwLastError);
+
       THROW (IOException, str);
+
    }
    return static_cast<size_t>(cs.cbInQue);
 }
@@ -459,9 +471,15 @@ Serial::SerialImpl::read (u8 *buf, size_t size)
 
    if (!ReadFile(m_hFile, buf, static_cast<::u32>(size), &bytes_read, nullptr))
    {
+      
       string ss;
-      ss.Format("Error while reading from the serial port: %d", get_last_error());
+
+      DWORD dwLastError = ::GetLastError();
+
+      ss.Format("Error while reading from the serial port: %d", dwLastError);
+
       THROW (IOException, ss);
+
    }
    return (size_t) (bytes_read);
 }
@@ -478,9 +496,15 @@ Serial::SerialImpl::write (const u8 *data, size_t length)
 
    if (!WriteFile(m_hFile, data, static_cast<::u32>(length), &bytes_written, nullptr))
    {
+      
       string str;
-      str.Format("Error while writing to the serial port: %d", get_last_error());
+
+      DWORD dwLastError = ::GetLastError();
+
+      str.Format("Error while writing to the serial port: %d", dwLastError);
+
       THROW (IOException, str);
+
    }
    return (size_t) (bytes_written);
 }

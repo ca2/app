@@ -12,11 +12,43 @@ using color32_t = ::u32;
 
 using dummy_pointer = void *;
 
+
+#ifdef WINDOWS
+
+
+using HSYNC = HANDLE;
+
+
+#define INVALID_HSYNC_VALUE INVALID_HANDLE_VALUE
+#define U32_INFINITE_TIMEOUT INFINITE
+
+
+using POINT32 = POINT;
+
+using SIZE32 = SIZE;
+
+using RECT32 = RECT;
+
+using MESSAGE = MSG;
+
+using MESSAGE = MSG;
+
+using PMESSAGE = MESSAGE *;
+
+using LPMESSAGE = MESSAGE *;
+
+typedef const MESSAGE * LPCMESSAGE;
+
+
+#else
+
+
+
 typedef struct _tagSIZE32
 {
 
-    ::i32 cx;
-    ::i32 cy;
+   ::i32 cx;
+   ::i32 cy;
 
 } SIZE32, * PSIZE32, * LPSIZE32;
 
@@ -26,8 +58,8 @@ typedef const SIZE32 * LPCSIZE32;
 typedef struct _tagPOINT32
 {
 
-    ::i32 x;
-    ::i32 y;
+   ::i32 x;
+   ::i32 y;
 
 } POINT32, * PPOINT32, * LPPOINT32;
 
@@ -38,42 +70,29 @@ typedef const POINT32 * LPCPOINT32;
 typedef struct _tagRECT32
 {
 
-    ::i32 left;
-    ::i32 top;
-    ::i32 right;
-    ::i32 bottom;
+   ::i32 left;
+   ::i32 top;
+   ::i32 right;
+   ::i32 bottom;
 
 } RECT32, * PRECT32, * LPRECT32;
-
-
-typedef const RECT32 * LPCRECT32;
 
 
 typedef struct _tagMESSAGE
 {
 
-    oswindow        hwnd;
-    ::u32           message;
-    WPARAM          wParam;
-    LPARAM          lParam;
-    ::u32           time;
-    POINT32         pt;
+   oswindow        hwnd;
+   ::u32           message;
+   WPARAM          wParam;
+   LPARAM          lParam;
+   ::u32           time;
+   POINT32         pt;
 
 } MESSAGE, * PMESSAGE, * LPMESSAGE;
 
 typedef const MESSAGE * LPCMESSAGE;
 
-
-#ifdef WINDOWS
-
-
-using HSYNC = HANDLE;
-
-
-#define INVALID_HSYNC_VALUE INVALID_HANDLE_VALUE
-
-
-#else
+typedef const RECT32 * LPCRECT32;
 
 
 /*

@@ -162,7 +162,7 @@ struct shell_execute :
 
       ::datetime::time timeEnd = ::datetime::time::get_current_time() + durationTimeout;
 
-      DWORD dwGetLastError = get_last_error();
+      DWORD dwError = ::GetLastError();
 
       DWORD dwExitCode = 0;
 
@@ -304,7 +304,7 @@ i32 call_async(const char * pszPath, const char * pszParam, const char * pszDir,
 
    }
 
-   DWORD dwGetLastError = get_last_error();
+   DWORD dwError = ::GetLastError();
 
    return iOk;
 
@@ -667,7 +667,9 @@ id_array module_path_get_pid(const char * pszModulePath, bool bModuleNameIsPrope
 
    PROCESSENTRY32 entry;
 
-   if (Process32First(process_snap, &entry) && ::get_last_error() != ERROR_NO_MORE_FILES)
+   DWORD dwError = ::GetLastError();
+
+   if (Process32First(process_snap, &entry) && dwError != ERROR_NO_MORE_FILES)
    {
 
 repeat_process:
@@ -696,9 +698,12 @@ repeat_process:
             iaPid.add((::i64) entry.th32ProcessID);
 
          }
+
       }
 
-      if (Process32Next(process_snap, &entry) && ::get_last_error() != ERROR_NO_MORE_FILES)
+      DWORD dwError = ::GetLastError();
+
+      if (Process32Next(process_snap, &entry) && dwError != ERROR_NO_MORE_FILES)
       {
 
          goto repeat_process;

@@ -78,6 +78,7 @@ public:
 
    }
 
+
    inline tick elapsed() const
    {
 

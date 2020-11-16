@@ -41,9 +41,9 @@ public:
    duration(i32 iSeconds, i64 iNanoseconds = 0) : duration((::i64) iSeconds, iNanoseconds) {}
    duration(u32 uSeconds, i64 iNanoseconds = 0) : duration((::i64) uSeconds, iNanoseconds) {}
    duration(e_duration eduration);
-   duration(const class ::tick_duration & tickduration);
-   duration(const class ::tick & tick);
-   duration(const class ::duration& duration);
+   duration(const class ::nanos & nanos);
+   duration(const class ::millis & millis);
+   duration(const class ::duration & duration);
 
 
    inline void raw_set(i64 iSeconds, i64 iNanoseconds = 0);
@@ -63,12 +63,12 @@ public:
    void set(long double d, enum_unit eunit);
 
 
-   inline i64 get_total_nanoseconds() const;
-   inline i64 total_nanoseconds() const;
-   inline i64 get_total_microseconds() const;
-   inline i64 total_microseconds() const;
-   inline i64 get_total_milliseconds() const;
-   inline i64 total_milliseconds() const;
+   //inline i64 get_total_nanoseconds() const;
+   //inline i64 total_nanoseconds() const;
+   //inline micros micros() const;
+   //inline i64 total_microseconds() const;
+   //inline i64 get_total_milliseconds() const;
+   //inline i64 total_milliseconds() const;
    inline i64 get_total_seconds() const;
    inline i64 total_seconds() const;
    inline bool is_pos_infinity() const;
@@ -84,29 +84,35 @@ public:
    void normalize();
 
 
-   inline class lock_duration lock_duration() const;
-   inline operator class lock_duration() const;
+   inline class millis millis() const;
+   inline operator class millis() const;
 
 
-   inline class tick_duration tick_duration() const;
-   inline operator class tick_duration() const;
+   inline class micros micros() const;
+   inline operator class micros() const;
 
 
-   inline class tick tick() const { return get_total_milliseconds(); }
-   inline operator class tick() const {return tick(); }
+   inline class nanos nanos() const;
+   inline operator class nanos() const;
+
 
    inline operator bool() const;
+
 
    inline duration & operator = (const ::datetime::time_span & span);
    inline duration & operator += (const ::datetime::time_span & duration);
    inline duration & operator -= (const ::datetime::time_span & duration);
 
+
    inline time_t GetTimeSpan() const;
+
 
    duration operator - (const duration & duration) const;
    duration operator + (const duration & duration) const;
 
+
    void sleep() const;
+
 
 };
 
@@ -218,7 +224,7 @@ inline duration duration::create_null()
 }
 
 
-inline i64 duration::get_total_milliseconds() const
+inline ::millis duration::millis() const
 {
 
    return m_iSeconds * 1000 + m_iNanoseconds / 1000000;
@@ -226,7 +232,7 @@ inline i64 duration::get_total_milliseconds() const
 }
 
 
-inline i64 duration::get_total_microseconds() const
+inline ::micros duration::micros() const
 {
 
    return m_iSeconds * 1000000 + m_iNanoseconds / 1000;
@@ -234,71 +240,43 @@ inline i64 duration::get_total_microseconds() const
 }
 
 
-inline i64 duration::get_total_nanoseconds() const
+inline duration::operator ::millis() const
 {
 
-   return m_iSeconds * 1000 * 1000 * 1000 + m_iNanoseconds;
+    return ::duration::millis();
 
 }
 
 
-inline lock_duration duration::lock_duration() const
+inline nanos duration::nanos() const
 {
 
-   if(is_pos_infinity())
-      return U32_INFINITE_TIMEOUT;
-
-   if(get_total_milliseconds() >= 0xffffffff)
-      return 0xfffffffe;
-
-   return (u32) get_total_milliseconds();
+   return ::duration::;
 
 }
 
 
-inline duration::operator ::lock_duration() const
+inline duration::operator ::nanos() const
 {
+   
+   return ::duration::nanos();
 
-    return ::duration::lock_duration();
-
-}
-
-
-inline tick_duration duration::tick_duration() const
-{
-
-   if(is_pos_infinity())
-   {
-
-       return 0xffffffff;
-
-   }
-
-   auto uTotal = get_total_milliseconds();
-
-   if(uTotal >= ::numeric_info < tick_duration::TYPE >::max())
-      return ::numeric_info < tick_duration::TYPE >::max();
-
-   return (tick_duration::TYPE) uTotal;
-
-}
-
-
-inline duration::operator ::tick_duration() const
-{
-   return ::duration::tick_duration();
 }
 
 
 inline i64 duration::total_milliseconds() const
 {
+
    return get_total_milliseconds();
+
 }
 
 
 inline i64 duration::total_microseconds() const
 {
+
    return get_total_microseconds();
+
 }
 
 
@@ -360,53 +338,53 @@ inline bool duration::operator == (const duration & duration) const
           && m_iNanoseconds == duration.m_iNanoseconds;
 }
 
-class CLASS_DECL_ACME nanos :
+class CLASS_DECL_ACME nanosecond :
    public duration
 {
 public:
 
 
-   inline nanos(i64 iNanos = 0);
-   inline nanos(u64 uNanos) : nanos((::i64)uNanos){}
-   inline nanos(i32 iNanos);
-   inline nanos(u32 dwNanos);
-   nanos(long double dNanos);
+   inline nanosecond(i64 iNanoseconds = 0);
+   inline nanosecond(u64 uNanoseconds) : nanosecond((::i64)uNanoseconds){}
+   inline nanosecond(i32 iNanoseconds);
+   inline nanosecond(u32 dwNanoseconds);
+   nanosecond(long double dNanoseconds);
 
 };
 
 
-inline nanos operator "" _ns(unsigned long long int u) { return (::u64) u; }
+inline nanosecond operator "" _ns(unsigned long long int u) { return (::u64) u; }
 
 
-class CLASS_DECL_ACME micros :
+class CLASS_DECL_ACME microsecond :
    public duration
 {
 public:
 
 
-   inline micros(i64 iMicros = 0);
-   inline micros(u64 u) :micros((::i64)u) {}
-   inline micros(i32 iMicros);
-   inline micros(u32 dwMicros);
-   micros(long double dMicros);
+   inline microsecond(i64 iMicroseconds = 0);
+   inline microsecond(u64 uMicroseconds) :microsecond((::u64)uMicroseconds) {}
+   inline microsecond(i32 iMicroseconds);
+   inline microsecond(u32 uMicroseconds);
+   microsecond(long double dMicroseconds);
 
 };
 
-inline micros operator "" _us(unsigned long long int u) { return (::u64) u; }
+inline microsecond operator "" _us(unsigned long long int u) { return (::u64) u; }
 
 
-class CLASS_DECL_ACME millis :
+class CLASS_DECL_ACME millisecond :
    public duration
 {
 public:
 
 
-   inline millis(i64 iMillis = 0);
-   inline millis(u64 uiMillis);
-   inline millis(i32 iMillis);
-   inline millis(u32 dwMillis);
-   inline millis(double dMillis);
-   millis(long double dMillis);
+   inline millisecond(i64 iMillisecond = 0);
+   inline millisecond(u64 uMillisecond);
+   inline millisecond(i32 iMillisecond);
+   inline millisecond(u32 uMillisecond);
+   inline millisecond(double dMillisecond);
+   millisecond(long double dMillisecond);
 
 };
 //
@@ -422,7 +400,7 @@ public:
 //const char16_t *, std::size_t
 //const char32_t *, std::size_t
 
-inline millis operator "" _ms(unsigned long long int u) { return (::u64) u; }
+inline millisecond operator "" _ms(unsigned long long int u) { return (::u64) u; }
 
 
 inline duration::duration(const ::tick_duration & tickduration)
@@ -842,6 +820,9 @@ inline duration __random(const duration & d1, const duration & d2)
 
 }
 
+
+inline millis & millis::operator = (const duration & duration) { m_iMilliseconds = duration.millis(); return *this; }
+inline nanos & nanos::operator = (const duration & duration) { m_iNanoseconds = duration.nanos(); return *this; }
 
 
 #ifdef WINDOWS

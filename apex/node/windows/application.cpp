@@ -130,7 +130,7 @@ namespace apex
             for( ::u32 u = 0; u < (cbTranslate/sizeof(struct LANGANDCODEPAGE)); u++ )
             {
 
-               char * psz;
+               WCHAR * psz;
 
                UINT uSize;
 
@@ -144,11 +144,12 @@ namespace apex
                pTranslate[u].wLanguage,
                pTranslate[u].wCodePage);
 
+               wstring wstrKey(strKey);
 
                // Retrieve file description for language and code page "i".
-               if (VerQueryValue(memory.get_data(),
-                  (char *)(const char*)strKey,
-                  (LPVOID*)&psz,
+               if (VerQueryValueW(memory.get_data(),
+                  (WCHAR *)(const WCHAR*)wstrKey,
+                  (LPVOID *)&psz,
                   &uSize))
                {
 

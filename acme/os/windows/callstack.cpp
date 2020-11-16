@@ -960,43 +960,54 @@ namespace windows
 
       for (i32 i = 0; i < m_iHa; i++)
       {
+
          if (m_ha[i] == hMod)
+         {
+
             return true;
+
+         }
+
       }
 
       m_ha[m_iHa++] = hMod;
 
       char filename[MAX_PATH];
+
       if (!GetModuleFileNameA(hMod, filename, MAX_PATH))
       {
 
          return false;
+
       }
 
       HANDLE hFile = CreateFileA(filename, GENERIC_READ, FILE_SHARE_READ, nullptr, OPEN_EXISTING, 0, 0);
+
       if (hFile == INVALID_HANDLE_VALUE)
       {
+
          return false;
+
       }
 
       // "Debugging Applications" John Robbins
       // For whatever reason, SymLoadModule can return zero, but it still loads the modules. Sheez.
-      set_last_error(ERROR_SUCCESS);
-      if (!SymLoadModule(hProcess, hFile, filename, 0, (uptr)hMod, 0) && ERROR_SUCCESS != get_last_error())
+      ::SetLastError(ERROR_SUCCESS);
+
+      if (!SymLoadModule(hProcess, hFile, filename, 0, (uptr)hMod, 0) && ERROR_SUCCESS != ::GetLastError())
       {
+         
          ::CloseHandle(hFile);
+         
          return false;
+
       }
 
       ::CloseHandle(hFile);
 
       return true;
+
    }
-
-
-
-
-
 
 
    bool callstack::stack_trace(CONTEXT * pcontext, iptr iSkip, const char * pszFormat, int iCount)
@@ -1019,16 +1030,6 @@ namespace windows
       return stack_trace(pcontext, iSkip, false, pszFormat);
 
    }
-
-
-
-
-
-
-
-
-
-
 
 
    /////////////////////////////////////////////

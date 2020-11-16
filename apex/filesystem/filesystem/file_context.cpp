@@ -1207,7 +1207,7 @@ bool file_context::put_contents_utf8(const var & varFile, const char * pcszConte
       ::str::international::utf8_to_unicode(pszNew)))
    {
 
-      u32 dwError = ::get_last_error();
+      DWORD dwError = ::GetLastError();
 
       if (dwError == ERROR_ALREADY_EXISTS)
       {
@@ -1221,7 +1221,7 @@ bool file_context::put_contents_utf8(const var & varFile, const char * pcszConte
             if (!::DeleteFileW(::str::international::utf8_to_unicode(psz)))
             {
 
-               dwError = ::get_last_error();
+               dwError = ::GetLastError();
 
                string strError;
 
@@ -1235,7 +1235,7 @@ bool file_context::put_contents_utf8(const var & varFile, const char * pcszConte
 
          }
 
-         dwError = ::get_last_error();
+         dwError = ::GetLastError();
 
       }
 
@@ -1323,12 +1323,22 @@ bool file_context::put_contents_utf8(const var & varFile, const char * pcszConte
 
    if (h == INVALID_HANDLE_VALUE)
    {
-      u32 dwError = ::get_last_error();
+      
+      DWORD dwError = ::GetLastError();
+
       if (dwError == 2) // the file does not exist, so delete "failed"
+      {
+
          return ::success;
+
+      }
+
       string strError;
+
       strError.Format("Failed to delete file \"%s\" error=%d", psz, dwError);
+
       return ::error_failed;
+
    }
    else
    {

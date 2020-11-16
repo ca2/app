@@ -13,7 +13,7 @@ namespace path
 #ifdef WINDOWS
    CLASS_DECL_ACME ::file::path module(HMODULE pmoduleosdata = nullptr);
 #else
-   CLASS_DECL_ACME ::file::path module(void * pmoduleosdata = nullptr);
+   CLASS_DECL_ACME ::file::path module();
 #endif
    CLASS_DECL_ACME ::file::path install_log(string strPlatform, string strConfiguration);
    CLASS_DECL_ACME string from(string str);

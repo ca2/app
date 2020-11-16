@@ -481,9 +481,9 @@ namespace apex
 
       //virtual ::estatus os_native_bergedge_start() override;
 
-      virtual ::estatus     main() override;
+      virtual ::estatus main() override;
 
-      virtual ::estatus defer_initialize_host_window(LPCRECT32 lprect = nullptr);
+      virtual ::estatus defer_initialize_host_window(RECT32 * lprect = nullptr);
 
       __pointer(::apex::application) get_current_application();
 

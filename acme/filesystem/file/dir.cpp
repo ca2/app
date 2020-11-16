@@ -670,6 +670,8 @@ namespace dir
    }
 
 
+#ifndef WINDOWS_DESKTOP
+
 
    bool _mk(const ::file::path & path)
    {
@@ -817,6 +819,9 @@ namespace dir
       return true;
 
    }
+
+
+#endif
 
 
    bool mkdir(const ::file::path & path)

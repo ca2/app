@@ -144,25 +144,33 @@ namespace windows
       // If an error occurs, exit the application.
       if (!bSuccess)
       {
-         ::u32 dwLastError = ::get_last_error();
+
+         DWORD dwLastError = ::GetLastError();
+
          string strMessage = get_system_error_message(dwLastError);
+
          output_debug_string(pwszCommandLine);
          output_debug_string("\r\n");
          output_debug_string("CreateProcessW Error!!");
          output_debug_string("\r\n");
          output_debug_string(strMessage + " (" + __str((u32) dwLastError) + ")");
          output_debug_string("\r\n");
+
          return false;
+
       }
       else
       {
+
          m_iPid = m_pi.dwProcessId;
+
          // close handles to the child process and its primary thread.
          // Some applications might keep these handles to monitor the status
          // of the child process, for example.
 
          //CloseHandle(m_pi.hProcess);
          //CloseHandle(m_pi.hthread);
+
       }
 
       return true;

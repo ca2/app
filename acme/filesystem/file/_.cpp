@@ -525,7 +525,7 @@ string get_temp_file_name_dup(const char * lpszName,const char * pszExtension)
    if (dwRetVal > sizeof(pPathBuffer) || (dwRetVal == 0))
    {
 
-      debug_print("GetTempPath failed (%d)\n", get_last_error());
+      debug_print("GetTempPath failed (%d)\n", ::GetLastError());
 
       return "";
 

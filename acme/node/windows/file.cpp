@@ -184,7 +184,7 @@ namespace windows
       if (handleFile == INVALID_HANDLE_VALUE)
       {
 
-         ::u32 dwLastError = ::get_last_error();
+         DWORD dwLastError = ::GetLastError();
 
          if (!(eopen & ::file::no_share_violation_wait))
          {
@@ -200,7 +200,7 @@ namespace windows
 
          }
 
-         ::estatus     estatus = ::file::os_error_to_status(dwLastError);
+         ::estatus estatus = ::os_error_to_status(dwLastError);
 
          if (::file::should_ignore_file_exception_callstack(estatus))
          {
@@ -243,7 +243,7 @@ namespace windows
       if (!::ReadFile((HANDLE)m_handleFile, pdata, (::u32)nCount, &dwRead, nullptr))
       {
 
-         ::file::throw_os_error((::i32)::get_last_error());
+         ::file::throw_os_error((::i32)::GetLastError());
 
       }
 
@@ -268,7 +268,9 @@ namespace windows
       if (!::WriteFile((HANDLE)m_handleFile, pdata, (::u32)nCount, &nWritten, nullptr))
       {
 
-         ::file::throw_os_error((::i32)::get_last_error(), m_path);
+         DWORD dwLastError = ::GetLastError();
+
+         ::file::throw_os_error(dwLastError, m_path);
 
       }
 
@@ -294,7 +296,13 @@ namespace windows
       filesize posNew = ::SetFilePointer((HANDLE)m_handleFile, lLoOffset, &lHiOffset, (::u32)nFrom);
       posNew |= ((filesize)lHiOffset) << 32;
       if (posNew == (filesize)-1)
-         ::file::throw_os_error((::i32)::get_last_error());
+      {
+
+         DWORD dwLastError = ::GetLastError();
+
+         ::file::throw_os_error(dwLastError);
+
+      }
 
       return posNew;
    }
@@ -310,7 +318,13 @@ namespace windows
       filesize pos = ::SetFilePointer((HANDLE)m_handleFile, lLoOffset, &lHiOffset, FILE_CURRENT);
       pos |= ((filesize)lHiOffset) << 32;
       if (pos == (filesize)-1)
-         ::file::throw_os_error((::i32)::get_last_error());
+      {
+
+         DWORD dwLastError = ::GetLastError();
+
+         ::file::throw_os_error(dwLastError);
+
+      }
 
       return pos;
    }
@@ -324,7 +338,9 @@ namespace windows
 
       if (!::FlushFileBuffers((HANDLE)m_handleFile))
       {
-         ::u32 dwLastError = ::get_last_error();
+         
+         DWORD dwLastError = ::GetLastError();
+
          if (dwLastError == ERROR_INVALID_HANDLE
             || dwLastError == ERROR_ACCESS_DENIED)
          {
@@ -348,11 +364,16 @@ namespace windows
       ::u32 dwLastError = 0;
       if (m_handleFile != INVALID_HANDLE_VALUE)
       {
+
          bError = !::CloseHandle((HANDLE)m_handleFile);
+
          if (bError)
          {
-            dwLastError = ::get_last_error();
+
+            dwLastError = ::GetLastError();
+
          }
+
       }
 
       m_handleFile = INVALID_HANDLE_VALUE;
@@ -371,7 +392,13 @@ namespace windows
       ASSERT(m_handleFile != INVALID_HANDLE_VALUE);
 
       if (!::LockFile((HANDLE)m_handleFile, LODWORD(dwPos), HIDWORD(dwPos), LODWORD(dwCount), HIDWORD(dwCount)))
-         ::file::throw_os_error((::i32)::get_last_error());
+      {
+
+         DWORD dwLastError = ::GetLastError();
+
+         ::file::throw_os_error(dwLastError);
+
+      }
    }
 
 
@@ -381,7 +408,13 @@ namespace windows
       ASSERT(m_handleFile != INVALID_HANDLE_VALUE);
 
       if (!::UnlockFile((HANDLE)m_handleFile, LODWORD(dwPos), HIDWORD(dwPos), LODWORD(dwCount), HIDWORD(dwCount)))
-         ::file::throw_os_error((::i32)::get_last_error());
+      {
+
+         DWORD dwLastError = ::GetLastError();
+
+         ::file::throw_os_error(dwLastError);
+
+      }
    }
 
 
@@ -394,7 +427,13 @@ namespace windows
       seek((::i32)dwNewLen, (::file::e_seek)::file::seek_begin);
 
       if (!::SetEndOfFile((HANDLE)m_handleFile))
-         ::file::throw_os_error((::i32)::get_last_error());
+      {
+
+         DWORD dwLastError = ::GetLastError();
+
+         ::file::throw_os_error(dwLastError);
+
+      }
 
    }
 

@@ -31,7 +31,7 @@ void os_impl_free(void * p)
    if (!::HeapFree(g_system_heap(), 0, p))
    {
 
-      u32 dw = ::get_last_error();
+      DWORD dwError = ::GetLastError();
 
       ::output_debug_string("system_heap_free : Failed to free memory");
 

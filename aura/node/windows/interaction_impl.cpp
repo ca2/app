@@ -1237,13 +1237,13 @@ namespace windows
    //   return ::GetTitleBarInfo(((interaction_impl *)this)->get_handle(), pti) != FALSE;
    //}
 
-   //bool interaction_impl::AnimateWindow(tick tick, u32 dwFlags)
+   //bool interaction_impl::AnimateWindow(millis millis, u32 dwFlags)
    //{
    //   ASSERT(::is_window(get_handle()));
-   //   return ::AnimateWindow(get_handle(), __os(tick), dwFlags) != FALSE;
+   //   return ::AnimateWindow(get_handle(), __os(millis), dwFlags) != FALSE;
    //}
 
-   //bool interaction_impl::FlashWindowEx(u32 dwFlags, ::u32  uCount, tick tickTimeout)
+   //bool interaction_impl::FlashWindowEx(u32 dwFlags, ::u32  uCount, millis tickTimeout)
    //{
    //   ASSERT(::is_window(get_handle()));
    //   FLASHWINFO fwi;
@@ -2001,7 +2001,7 @@ namespace windows
       HDC m_hdc;
 
 
-      print_window(::object * pobject, oswindow oswindow, HDC hdc, tick tickTimeout) :
+      print_window(::object * pobject, oswindow oswindow, HDC hdc, millis tickTimeout) :
          ::object(pobject)
       {
 

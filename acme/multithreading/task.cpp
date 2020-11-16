@@ -550,10 +550,10 @@ CLASS_DECL_ACME bool __task_sleep(task* task)
 }
 
 
-CLASS_DECL_ACME bool __task_sleep(task* pthread, tick tick)
+CLASS_DECL_ACME bool __task_sleep(task* pthread, millis tick)
 {
 
-   if (tick.m_i < 1000)
+   if (tick.m_iMilliseconds < 1000)
    {
 
       if (!pthread->thread_get_run())
@@ -569,9 +569,9 @@ CLASS_DECL_ACME bool __task_sleep(task* pthread, tick tick)
 
    }
 
-   auto iTenths = tick.m_i / 10;
+   auto iTenths = tick.m_iMilliseconds / 10;
 
-   auto iMillis = tick.m_i % 10;
+   auto iMillis = tick.m_iMilliseconds % 10;
 
    try
    {
@@ -658,10 +658,10 @@ CLASS_DECL_ACME bool __task_sleep(::task* pthread, sync* psync)
 }
 
 
-CLASS_DECL_ACME bool __task_sleep(task* pthread, tick tick, sync* psync)
+CLASS_DECL_ACME bool __task_sleep(task* pthread, millis tick, sync* psync)
 {
 
-   if (tick.m_i < 1000)
+   if (tick.m_iMilliseconds < 1000)
    {
 
       if (!pthread->thread_get_run())
@@ -677,9 +677,9 @@ CLASS_DECL_ACME bool __task_sleep(task* pthread, tick tick, sync* psync)
 
    }
 
-   auto iTenths = tick.m_i / 100;
+   auto iTenths = tick.m_iMilliseconds / 100;
 
-   auto iMillis = tick.m_i % 100;
+   auto iMillis = tick.m_iMilliseconds % 100;
 
    try
    {
@@ -710,7 +710,7 @@ CLASS_DECL_ACME bool __task_sleep(task* pthread, tick tick, sync* psync)
 }
 
 
-CLASS_DECL_ACME bool task_sleep(tick tick, sync* psync)
+CLASS_DECL_ACME bool task_sleep(millis tick, sync* psync)
 {
 
    auto pthread = ::get_task();

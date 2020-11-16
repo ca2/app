@@ -73,7 +73,7 @@ inline auto new_pred_thread(::layered * pobjectContext, PRED pred)
 //   ::thread_pointer                          m_pthread;
 //   bool                                         m_bExecuting;
 //   bool                                         m_bPending;
-//   ::tick                                       m_tickStart;
+//   ::millis                                       m_tickStart;
 //
 //   runner()
 //   {
@@ -94,7 +94,7 @@ inline auto new_pred_thread(::layered * pobjectContext, PRED pred)
 //   void operator()(::duration duration, PRED pred)
 //   {
 //
-//      m_tickStart = ::tick::now() + duration;
+//      m_tickStart = ::millis::now() + duration;
 //
 //      m_bPending = true;
 //

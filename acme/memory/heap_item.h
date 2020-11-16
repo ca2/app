@@ -23,7 +23,7 @@ public:
 
 
 #ifdef _UWP
-   inline heap_item(void * p,memsize iSize,DWORD64 tick)
+   inline heap_item(void * p,memsize iSize,DWORD64 millis)
 #else
    inline heap_item(void * p,memsize iSize,u32 tick)
 #endif

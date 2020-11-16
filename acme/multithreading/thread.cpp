@@ -16,10 +16,10 @@ CLASS_DECL_ACME bool __simple_task_sleep()
 }
 
 
-CLASS_DECL_ACME bool __simple_task_sleep(tick tick)
+CLASS_DECL_ACME bool __simple_task_sleep(millis tick)
 {
 
-   auto i = tick.m_i;
+   auto i = tick.m_iMilliseconds;
 
    while (i > 300)
    {
@@ -71,10 +71,10 @@ CLASS_DECL_ACME bool __simple_task_sleep(sync* psync)
 }
 
 
-CLASS_DECL_ACME bool __simple_task_sleep(tick tick, sync* psync)
+CLASS_DECL_ACME bool __simple_task_sleep(millis tick, sync* psync)
 {
 
-   auto i = tick.m_i;
+   auto i = tick.m_iMilliseconds;
 
    while (i > 300)
    {
@@ -116,7 +116,7 @@ CLASS_DECL_ACME bool __simple_task_sleep(tick tick, sync* psync)
 }
 
 
-CLASS_DECL_ACME bool acme_task_sleep(tick tick, sync* psync)
+CLASS_DECL_ACME bool acme_task_sleep(millis tick, sync* psync)
 {
 
    if (::is_null(psync))
@@ -158,10 +158,10 @@ CLASS_DECL_ACME bool acme_task_sleep(tick tick, sync* psync)
 
 //PFN_task_sleep g_pfnThreadSleep = acme_task_sleep;
 
-//CLASS_DECL_ACME bool tas_sleep(tick tick, sync* psync)
+//CLASS_DECL_ACME bool tas_sleep(millis millis, sync* psync)
 //{
 //
-//   return g_pfnThreadSleep(tick, psync);
+//   return g_pfnThreadSleep(millis, psync);
 //
 //}
 

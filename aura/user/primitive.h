@@ -73,7 +73,7 @@ namespace user
 
 
       bool                                m_bFocus;
-      tick                                m_tickFocusStart;
+      millis                                m_tickFocusStart;
       bool                                m_bUserPrimitiveOk;
 
 

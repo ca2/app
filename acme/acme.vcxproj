@@ -1767,7 +1767,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="platform\static_start.h" />
     <ClInclude Include="platform\status.h" />
     <ClInclude Include="platform\system.h" />
-    <ClInclude Include="platform\tick.h" />
+    <ClInclude Include="platform\millis.h" />
     <ClInclude Include="platform\timer.h" />
     <ClInclude Include="platform\timer_array.h" />
     <ClInclude Include="platform\timer_callback.h" />

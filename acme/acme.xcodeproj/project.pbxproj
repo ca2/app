@@ -168,7 +168,7 @@
 		9A68AD6825114434008DABD2 /* hyperlink.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68A5592511442E008DABD2 /* hyperlink.cpp */; };
 		9A68AD6925114434008DABD2 /* math.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68A55A2511442E008DABD2 /* math.cpp */; };
 		9A68AD6A25114434008DABD2 /* fixed_alloc_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A55B2511442E008DABD2 /* fixed_alloc_impl.h */; };
-		9A68AD6B25114434008DABD2 /* tick.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A55C2511442E008DABD2 /* tick.h */; };
+		9A68AD6B25114434008DABD2 /* millis.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A55C2511442E008DABD2 /* millis.h */; };
 		9A68AD6C25114434008DABD2 /* flags.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A55E2511442F008DABD2 /* flags.h */; };
 		9A68AD6D25114434008DABD2 /* keep.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A55F2511442F008DABD2 /* keep.h */; };
 		9A68AD6E25114434008DABD2 /* message_box.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A5602511442F008DABD2 /* message_box.h */; };
@@ -1477,7 +1477,7 @@
 		9AD68F6B251A753A00C0EBD7 /* dir.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A7CD25114430008DABD2 /* dir.h */; };
 		9AD68F6C251A753A00C0EBD7 /* point_array.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A6152511442F008DABD2 /* point_array.h */; };
 		9AD68F6D251A753A00C0EBD7 /* bstring.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A70B2511442F008DABD2 /* bstring.h */; };
-		9AD68F6E251A753A00C0EBD7 /* tick.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A55C2511442E008DABD2 /* tick.h */; };
+		9AD68F6E251A753A00C0EBD7 /* millis.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A55C2511442E008DABD2 /* millis.h */; };
 		9AD68F6F251A753A00C0EBD7 /* multithreading.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A8D225114430008DABD2 /* multithreading.h */; };
 		9AD68F70251A753A00C0EBD7 /* _text_stream_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A79A2511442F008DABD2 /* _text_stream_impl.h */; };
 		9AD68F71251A753A00C0EBD7 /* _app_impl1.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A7FA25114430008DABD2 /* _app_impl1.h */; };
@@ -2481,7 +2481,7 @@
 		9A68A5592511442E008DABD2 /* hyperlink.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = hyperlink.cpp; sourceTree = "<group>"; };
 		9A68A55A2511442E008DABD2 /* math.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = math.cpp; sourceTree = "<group>"; };
 		9A68A55B2511442E008DABD2 /* fixed_alloc_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fixed_alloc_impl.h; sourceTree = "<group>"; };
-		9A68A55C2511442E008DABD2 /* tick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tick.h; sourceTree = "<group>"; };
+		9A68A55C2511442E008DABD2 /* millis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = millis.h; sourceTree = "<group>"; };
 		9A68A55E2511442F008DABD2 /* flags.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = flags.h; sourceTree = "<group>"; };
 		9A68A55F2511442F008DABD2 /* keep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = keep.h; sourceTree = "<group>"; };
 		9A68A5602511442F008DABD2 /* message_box.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = message_box.h; sourceTree = "<group>"; };
@@ -3956,7 +3956,7 @@
 				9A68A5432511442E008DABD2 /* static_start.h */,
 				9A68A54A2511442E008DABD2 /* status.h */,
 				9A68A54E2511442E008DABD2 /* text.cpp */,
-				9A68A55C2511442E008DABD2 /* tick.h */,
+				9A68A55C2511442E008DABD2 /* millis.h */,
 				9A68A5892511442F008DABD2 /* timeout.h */,
 				9A68A5552511442E008DABD2 /* title.h */,
 				9A68A5852511442F008DABD2 /* trace_category.cpp */,
@@ -5708,7 +5708,7 @@
 				9A68AFC125114436008DABD2 /* dir.h in Headers */,
 				9A68AE1C25114435008DABD2 /* point_array.h in Headers */,
 				9A68AF0A25114435008DABD2 /* bstring.h in Headers */,
-				9A68AD6B25114434008DABD2 /* tick.h in Headers */,
+				9A68AD6B25114434008DABD2 /* millis.h in Headers */,
 				9A68B09C25114436008DABD2 /* multithreading.h in Headers */,
 				9A68AF8E25114436008DABD2 /* _text_stream_impl.h in Headers */,
 				9A68AFE625114436008DABD2 /* _app_impl1.h in Headers */,
@@ -6481,7 +6481,7 @@
 				9AD68F6B251A753A00C0EBD7 /* dir.h in Headers */,
 				9AD68F6C251A753A00C0EBD7 /* point_array.h in Headers */,
 				9AD68F6D251A753A00C0EBD7 /* bstring.h in Headers */,
-				9AD68F6E251A753A00C0EBD7 /* tick.h in Headers */,
+				9AD68F6E251A753A00C0EBD7 /* millis.h in Headers */,
 				9AD68F6F251A753A00C0EBD7 /* multithreading.h in Headers */,
 				9AD68F70251A753A00C0EBD7 /* _text_stream_impl.h in Headers */,
 				9AD68F71251A753A00C0EBD7 /* _app_impl1.h in Headers */,

@@ -755,7 +755,7 @@ namespace str
    inline void from(string & str, const tick & tick)
    {
 
-      str.Format(__prtick, tick.m_i);
+      str.Format(__prtick, tick.m_iMilliseconds);
 
    }
 

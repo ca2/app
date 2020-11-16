@@ -207,32 +207,39 @@ sync_result condition::wait()
 ///  \return	waiting action result as WaitResult
 sync_result condition::wait(const duration& duration)
 {
-   u32 timeout = duration.lock_duration();
 
 #ifdef WINDOWS
+
+   u32 timeout = duration.u32_millis();
 
    return sync_result(SleepConditionVariableCS(&m_var, &m_sect, timeout));
 
 #elif defined(ANDROID)
 
+   u32 timeout = duration.u32_millis();
+
    pthread_mutex_lock(&m_mutex);
 
    m_iHold++;
 
-   tick start;
+   millis start;
 
    start.Now();
 
    while (!m_bSignaled)
    {
+
       pthread_cond_wait(&m_cond, &m_mutex);
 
       if (start.elapsed() > duration)
       {
+
          m_iHold--;
 
          return ::sync_result(::sync_result::result_timeout);
+
       }
+
    }
 
    m_iHold--;
@@ -243,15 +250,17 @@ sync_result condition::wait(const duration& duration)
 
 #else
 
-   auto start = ::tick::now();
+   auto start = ::millis::now();
 
    timespec delay;
 
    delay.tv_sec = 0;
+
    delay.tv_nsec = 1000000;
 
    while (duration.is_pos_infinity() || start.elapsed() < timeout)
    {
+
       sembuf sb;
 
       sb.sem_op = -1;
@@ -262,25 +271,36 @@ sync_result condition::wait(const duration& duration)
 
       if (ret < 0)
       {
+
          if (ret == EPERM)
          {
+
             nanosleep(&delay, nullptr);
+
          }
          else
          {
+
             return ::sync_result::result_error;
+
          }
+
       }
       else
       {
+
          return ::sync_result::result_event0;
+
       }
+
    }
 
    return sync_result(sync_result::result_timeout);
 
 #endif
+
 }
+
 
 //*****************************************************************************
 //
@@ -322,7 +342,7 @@ bool condition::lock(const duration& durationTimeout)
 {
 #ifdef WINDOWS
 
-   if (SleepConditionVariableCS(&m_var, &m_sect, durationTimeout.lock_duration()) != FALSE)
+   if (SleepConditionVariableCS(&m_var, &m_sect, durationTimeout.u32_millis()) != FALSE)
       return true;
    else
       return false;
@@ -333,9 +353,9 @@ bool condition::lock(const duration& durationTimeout)
 
 #else
 
-   u32 timeout = durationTimeout.lock_duration();
+   u32 timeout = durationTimeout.u32_millis();
 
-   auto start = ::tick::now();
+   auto start = ::millis::now();
 
    timespec delay;
 

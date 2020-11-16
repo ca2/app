@@ -1868,7 +1868,7 @@
     <ClInclude Include="aura\aura\system.h" />
     <ClInclude Include="aura\aura\system_heap.h" />
     <ClInclude Include="aura\aura\system_str.h" />
-    <ClInclude Include="aura\aura\tick.h" />
+    <ClInclude Include="aura\aura\millis.h" />
     <ClInclude Include="aura\aura\timer.h" />
     <ClInclude Include="aura\aura\timer_array.h" />
     <ClInclude Include="aura\aura\timer_callback.h" />

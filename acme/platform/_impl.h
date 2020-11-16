@@ -394,10 +394,10 @@ namespace str
 {
 
 
-   inline void from(string & str, const tick & tick)
+   inline void from(string & str, const millis & tick)
    {
 
-      str.Format(__prtick, tick.m_i);
+      str.Format(__prtick, tick.m_iMilliseconds);
 
    }
 

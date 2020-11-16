@@ -1937,7 +1937,7 @@ sync_result thread::wait(const duration & duration)
       else
       {
 
-         tick tickDelay = (::u32) duration.total_milliseconds();
+         millis tickDelay = (::u32) duration.total_milliseconds();
 
          auto dwStep = min(max(tickDelay / 10, 1), 100);
 
@@ -4498,7 +4498,7 @@ CLASS_DECL_APEX bool thread_pump_sleep(::u32 dwMillis, sync * psync)
 }
 
 
-CLASS_DECL_APEX bool app_sleep(tick tick)
+CLASS_DECL_APEX bool app_sleep(millis tick)
 {
 
    ::thread * pthread = ::get_thread();

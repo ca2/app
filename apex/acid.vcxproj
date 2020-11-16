@@ -1868,7 +1868,7 @@
     <ClInclude Include="apex\apex\system.h" />
     <ClInclude Include="apex\apex\system_heap.h" />
     <ClInclude Include="apex\apex\system_str.h" />
-    <ClInclude Include="apex\apex\tick.h" />
+    <ClInclude Include="apex\apex\millis.h" />
     <ClInclude Include="apex\apex\timer.h" />
     <ClInclude Include="apex\apex\timer_array.h" />
     <ClInclude Include="apex\apex\timer_callback.h" />

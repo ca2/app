@@ -353,7 +353,7 @@ u32 call_sync(const char * pszPath, const char * pszParam, const char * pszDir, 
 
    DWORD dwExitCode = (DWORD) -1;
 
-   ::tick tick;
+   ::millis tick;
 
    tick.Now();
 

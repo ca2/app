@@ -368,7 +368,7 @@ namespace draw2d
       int s = m_p->m_iScan / 4;
 
       {
-auto tickA0 = ::tick::now();
+auto tickA0 = ::millis::now();
 
          for(index y = 0; y < h; y++)
          {
@@ -378,7 +378,7 @@ auto tickA0 = ::tick::now();
                t[y * w + x] = vector4(point[0],point[1],point[2],point[3]);
             }
          }
-auto tickA1 = ::tick::now();
+auto tickA1 = ::millis::now();
          ::u32 dwA2 = dwA1 - dwA0;
          string str;
 
@@ -389,7 +389,7 @@ auto tickA1 = ::tick::now();
 
 
       {
-auto tick1 = ::tick::now();
+auto tick1 = ::millis::now();
 
          try
          {
@@ -409,7 +409,7 @@ auto tick1 = ::tick::now();
          {
 
          }
-auto tick2 = ::tick::now();
+auto tick2 = ::millis::now();
          ::u32 dw3 = dw2 - dw1;
 
          string str1;
@@ -431,7 +431,7 @@ auto tick2 = ::tick::now();
       }
 
       {
-auto tickC0 = ::tick::now();
+auto tickC0 = ::millis::now();
 
          for(index y = 0; y < h; y++)
          {
@@ -445,7 +445,7 @@ auto tickC0 = ::tick::now();
                point[3] = (byte)t->z;
             }
          }
-auto tickC1 = ::tick::now();
+auto tickC1 = ::millis::now();
          ::u32 dwC2 = dwC1 - dwC0;
          string str;
 
@@ -470,7 +470,7 @@ auto tickC1 = ::tick::now();
       int s = pimage->scan_size() / 4;
 
       {
-auto tickA0 = ::tick::now();
+auto tickA0 = ::millis::now();
 
          for(index y = 0; y < hj; y++)
          {
@@ -481,7 +481,7 @@ auto tickA0 = ::tick::now();
             }
          }
          
-         auto tickA1 = ::tick::now();
+         auto tickA1 = ::millis::now();
 
          auto tickA2 = tickA1 - tickA0;
 
@@ -494,7 +494,7 @@ auto tickA0 = ::tick::now();
 
       {
 
-         auto tick1 = ::tick::now();
+         auto tick1 = ::millis::now();
 
          try
          {
@@ -515,7 +515,7 @@ auto tickA0 = ::tick::now();
 
          }
          
-         auto tick2 = ::tick::now();
+         auto tick2 = ::millis::now();
 
          auto tick3 = tick2 - tick1;
 
@@ -544,7 +544,7 @@ auto tickA0 = ::tick::now();
       }
 
       {
-auto tickC0 = ::tick::now();
+auto tickC0 = ::millis::now();
 
          for(index y = 0; y < h; y++)
          {
@@ -559,7 +559,7 @@ auto tickC0 = ::tick::now();
             }
          }
          
-         auto tickC1 = ::tick::now();
+         auto tickC1 = ::millis::now();
          
          auto tickC2 = tickC1 - tickC0;
 
@@ -608,7 +608,7 @@ auto tickC0 = ::tick::now();
       }
 
       /*
-auto tick2 = ::tick::now();
+auto tick2 = ::millis::now();
       ::u32 dw3 = dw2 - dw1;
       string str1;
       str1.Format("| Parameters: w=%d h=%d rect=%d  \n",m_size.cx,m_size.cy,m_iRadius);

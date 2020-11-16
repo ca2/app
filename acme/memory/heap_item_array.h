@@ -7,7 +7,7 @@ class CLASS_DECL_ACME heap_item_array:
 public:
 
 #ifdef _UWP
-   tick m_tickLastCleanup;
+   millis m_tickLastCleanup;
 #else
    tick m_tickLastCleanup;
 #endif

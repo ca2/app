@@ -955,7 +955,7 @@
 		<Unit filename="platform/system.cpp" />
 		<Unit filename="platform/system.h" />
 		<Unit filename="platform/text.cpp" />
-		<Unit filename="platform/tick.h" />
+		<Unit filename="platform/millis.h" />
 		<Unit filename="platform/timeout.h" />
 		<Unit filename="platform/timer.cpp" />
 		<Unit filename="platform/timer.h" />

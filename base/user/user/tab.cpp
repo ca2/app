@@ -14,7 +14,7 @@
 #define MAGIC_PALACE_TAB_SIZE "-/-"
 #define MAGIC_PALACE_TAB_TEXT "/"
 
-tick g_tickDragStart;
+millis g_tickDragStart;
 namespace user
 {
 

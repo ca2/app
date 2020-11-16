@@ -407,7 +407,7 @@ namespace user
    }
 
 
-   bool interaction_impl::AnimateWindow(tick tick,u32 dwFlags)
+   bool interaction_impl::AnimateWindow(millis tick,u32 dwFlags)
    {
       UNREFERENCED_PARAMETER(tick);
       UNREFERENCED_PARAMETER(dwFlags);
@@ -415,7 +415,7 @@ namespace user
       return false;
    }
 
-   bool interaction_impl::FlashWindowEx(u32 dwFlags,::u32 uCount,tick tickTimeout)
+   bool interaction_impl::FlashWindowEx(u32 dwFlags,::u32 uCount,millis tickTimeout)
    {
       UNREFERENCED_PARAMETER(dwFlags);
       UNREFERENCED_PARAMETER(uCount);

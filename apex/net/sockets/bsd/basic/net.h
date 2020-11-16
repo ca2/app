@@ -107,7 +107,7 @@ namespace sockets
 
 
          in_addr           m_ipaddr;
-         tick m_tickLastChecked;
+         millis m_tickLastChecked;
          bool              m_bOk;
          bool              m_bTimeout;
 
@@ -130,7 +130,7 @@ namespace sockets
 
          ::net::address    m_address;
          string            m_strReverse;
-         tick              m_tickLastChecked;
+         millis              m_tickLastChecked;
          bool              m_bOk;
          bool              m_bTimeout;
          bool              m_bProcessing;

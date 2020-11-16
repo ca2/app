@@ -257,7 +257,7 @@ namespace windows
 
       bool bTimedOut = true;
 
-      auto tickStart = ::tick::now();
+      auto tickStart = ::millis::millis();
 
       auto tickTimeout = durationTimeOut.tick_duration();
 

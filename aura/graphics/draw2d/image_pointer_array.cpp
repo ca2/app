@@ -82,7 +82,7 @@ image_frame_array::~image_frame_array()
 
       tick %= m_tickTotal;
 
-      ::tick tickUpperBound;
+      ::millis tickUpperBound;
 
       index iFrame = 0;
 

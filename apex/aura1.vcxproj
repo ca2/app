@@ -2270,7 +2270,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="platform\system_str.h" />
     <ClInclude Include="platform\theme.h" />
     <ClInclude Include="platform\this_build_number.h" />
-    <ClInclude Include="platform\tick.h" />
+    <ClInclude Include="platform\millis.h" />
     <ClInclude Include="platform\timer.h" />
     <ClInclude Include="platform\timer_array.h" />
     <ClInclude Include="platform\timer_callback.h" />

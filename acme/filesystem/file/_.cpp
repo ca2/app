@@ -660,8 +660,7 @@ bool write_memory_to_file(FILE * file,const void * pdata,memsize nCount,memsize 
 }
 
 
-
-CLASS_DECL_ACME bool file_append_wait(const string & strFile, const char * psz, strsize s, ::u32 tickTimeout)
+CLASS_DECL_ACME bool file_append_wait(const string & strFile, const char * psz, strsize s, const ::millis & millisTimeout)
 {
 
    ::dir::mk(::dir::name(strFile));
@@ -677,7 +676,7 @@ CLASS_DECL_ACME bool file_append_wait(const string & strFile, const char * psz, 
 
    FILE * pfile = nullptr;
 
-   auto tickStart = ::tick::now();
+   auto millisStart = ::millis::now();
 
    while (true)
    {
@@ -695,7 +694,7 @@ CLASS_DECL_ACME bool file_append_wait(const string & strFile, const char * psz, 
 
       }
 
-      if (tickStart.elapsed() > tickTimeout)
+      if (millisStart.elapsed() > millisTimeout)
       {
 
          return false;
@@ -730,42 +729,13 @@ CLASS_DECL_ACME bool file_append(const string & strFile, const char * psz, strsi
 
 }
 
+
 bool file_append(const string & strFile, const string & str)
 {
 
    return file_append(strFile, str, str.get_length());
 
 }
-
-
-
-
-
-
-
-//#ifdef WINDOWS_DESKTOP
-//
-//
-//bool  SHGetSpecialFolderPath(oswindow oswindow, ::file::path & path, i32 csidl, bool fCreate)
-//{
-//
-//   string str;
-//
-//   if (::SHGetSpecialFolderPathW(oswindow, wtostring(str, MAX_PATH * 8), csidl, fCreate) == FALSE)
-//   {
-//
-//      return false;
-//
-//   }
-//
-//   path = str;
-//
-//   return true;
-//
-//}
-//
-//
-//#endif
 
 
 #ifdef WINDOWS

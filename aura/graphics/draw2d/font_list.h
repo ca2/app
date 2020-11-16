@@ -88,7 +88,7 @@ namespace draw2d
 
       ::rect                                          m_rectMargin;
       int                                             m_iBaseSizeLayout;
-      tick                                            m_tickLastLayout;
+      millis                                            m_tickLastLayout;
       __pointer(::thread)                             m_pthreadLayout;
       bool                                            m_bLayoutWideStillIntersect;
       int_array                                       m_iaSize;

@@ -2045,7 +2045,7 @@
     <ClInclude Include="acme\acme\system_str.h">
       <Filter>Header Files\acme\acme</Filter>
     </ClInclude>
-    <ClInclude Include="acme\acme\tick.h">
+    <ClInclude Include="acme\acme\millis.h">
       <Filter>Header Files\acme\acme</Filter>
     </ClInclude>
     <ClInclude Include="acme\acme\timer.h">

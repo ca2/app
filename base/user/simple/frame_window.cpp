@@ -2382,7 +2382,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 
    {
 
-      tick t1 = tick::now();
+      millis t1 = millis::millis();
 
       //pinteraction->_001OnDraw(pgraphics);
       if(dAlpha > 0.0)
@@ -2421,7 +2421,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 
 #endif
 
-         tick d1 = t1.elapsed();
+         millis d1 = t1.elapsed();
 
          string strType = type_name();
 
@@ -2443,11 +2443,11 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
          else
          {
 
-            tick t1 = tick::now();
+            millis t1 = millis::millis();
 
             draw_frame_and_control_box_over(pgraphics);
 
-            tick d1 = t1.elapsed();
+            millis d1 = t1.elapsed();
 
             if(d1 > 50)
             {
@@ -3308,11 +3308,11 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
                   {
 
-                     tick t1 = tick::now();
+                     millis t1 = millis::millis();
 
                      pinteraction->_000CallOnDraw(pgraphics);
 
-                     tick d1 = t1.elapsed();
+                     millis d1 = t1.elapsed();
 
                      if(d1 > 50)
                      {
@@ -3348,11 +3348,11 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
    {
 
-      tick t1 = tick::now();
+      millis t1 = millis::millis();
 
       _001DrawThis(pgraphics);
 
-      tick d1 = t1.elapsed();
+      millis d1 = t1.elapsed();
 
       if(d1 > 50)
       {
@@ -3363,15 +3363,15 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
    }
 
-   tick tx = tick::now();
+   millis tx = millis::millis();
 
    bool bTransparentFrame = frame_is_transparent();
 
    bool bActive = is_active();
 
-   tick taxw = tick::now();
+   millis taxw = millis::millis();
 
-   tick daxw = taxw.elapsed();
+   millis daxw = taxw.elapsed();
 
    if(daxw > 50)
    {
@@ -3380,7 +3380,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
    }
 
-   tick txx = tick::now();
+   millis txx = millis::millis();
 
    if (m_bWindowFrame && (!bTransparentFrame || bActive))
    {
@@ -3421,11 +3421,11 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
                   {
 
-                     tick t1 = tick::now();
+                     millis t1 = millis::millis();
 
                      pinteraction->_000CallOnDraw(pgraphics);
 
-                     tick d1 = t1.elapsed();
+                     millis d1 = t1.elapsed();
 
                      if(d1 > 50)
                      {
@@ -3468,11 +3468,11 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
    {
 
-      tick t1 = tick::now();
+      millis t1 = millis::millis();
 
       _008CallOnDraw(pgraphics);
 
-      tick d1 = t1.elapsed();
+      millis d1 = t1.elapsed();
 
       if(d1 > 50)
       {

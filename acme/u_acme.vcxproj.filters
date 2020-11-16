@@ -2964,7 +2964,7 @@
     <ClInclude Include="platform\status.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="platform\tick.h">
+    <ClInclude Include="platform\millis.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\trace_category.h">

@@ -409,7 +409,7 @@ namespace sockets
 
       }
 
-      tick tick1, tick2;
+      millis tick1, tick2;
 
 start_processing_adding:
 
@@ -512,9 +512,9 @@ end_processing_adding:
 
       i32 n = 0;
 
-      tick1 = ::tick::now();
+      tick1 = ::millis::millis();
 
-      tick tickRWENull;
+      millis tickRWENull;
 
       if (psetR == nullptr && psetW == nullptr && psetE == nullptr)
       {
@@ -555,7 +555,7 @@ end_processing_adding:
       if (n < 0)
       {
 
-         auto tickNow = ::tick::now();
+         auto tickNow = ::millis::millis();
 
          /*
             EBADF  An invalid file descriptor was given in one of the sets.

@@ -26,7 +26,7 @@ namespace net
 
       socket.m_pemail = pemail;
 
-      auto tickStart = ::tick::now();
+      auto tickStart = ::millis::millis();
 
       handler.add(&socket);
 

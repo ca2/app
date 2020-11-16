@@ -26,3 +26,11 @@ public:
 
 };
 
+
+
+inline millis & millis::operator = (const micros & micros) { m_iMilliseconds = micros.m_iMicroseconds / 1'000; return *this; }
+
+
+inline secs & secs::operator = (const micros & micros) { m_iSeconds = micros.m_iMicroseconds / 1'000'000; return *this; }
+
+

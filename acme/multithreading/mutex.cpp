@@ -699,9 +699,9 @@ sync_result mutex::wait(const duration & duration)
 
       }
 
-      auto tickTimeout = duration.tick();
+      auto tickTimeout = duration.millis();
 
-      auto tickStart = ::tick::now();
+      auto tickStart = ::millis::now();
 
       while (true)
       {

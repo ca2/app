@@ -61,13 +61,13 @@ namespace user
       public:
          strsize                          m_iStart;
          strsize                          m_iEnd;
-         tick                             m_tick;
+         millis                             m_tick;
          string                           m_strMessage;
       };
 
       //::rect                              m_rectPadding;
       int                                 m_iDrawTextFlags;
-      tick                                m_tickLastDraw;
+      millis                                m_tickLastDraw;
       array < error >                     m_errora;
       __pointer(::message::key)           m_pmessagekeyLast;
 
@@ -94,7 +94,7 @@ namespace user
       bool                                m_bLMouseDown;
       bool                                m_bRMouseDown;
       point                               m_pointSelStart;
-      tick                                m_tickCaretPeriod;
+      millis                                m_tickCaretPeriod;
       index                               m_iLineOffset;
       string_array                             m_straLines;
       i32                                 m_y;

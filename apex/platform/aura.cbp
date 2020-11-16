@@ -575,7 +575,7 @@
 		<Unit filename="apex/template.cpp" />
 		<Unit filename="apex/theme.cpp" />
 		<Unit filename="apex/theme.h" />
-		<Unit filename="apex/tick.h" />
+		<Unit filename="apex/millis.h" />
 		<Unit filename="apex/timer.cpp" />
 		<Unit filename="apex/timer.h" />
 		<Unit filename="apex/timer_array.cpp" />

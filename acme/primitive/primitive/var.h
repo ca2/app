@@ -65,6 +65,14 @@ public:
       filetime_t                 m_filetime;
       id *                       m_pid;
       property *                 m_pprop;
+      class secs                 m_secs;
+      class secs *               m_psecs;
+      class millis               m_millis;
+      class millis *             m_pmillis;
+      class micros               m_micros;
+      class micros *             m_pmicros;
+      class nanos                m_nanos;
+      class nanos *              m_pnanos;
       class duration             m_duration;
       class duration *           m_pduration;
       ::estatus                  m_estatus;
@@ -271,8 +279,14 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
 
    ::u32                            u32(::u32 uiDefault = 0)  const;
    ::i64                            i64(::i64 iDefault = 0)  const;
-   inline ::tick                    tick(::tick tickDefault = 0)  const { return i64(); }
-   inline ::tick &                  tick() { if (get_type() != type_i64)set_type(type_i64); return (::tick &) m_i64; }
+   inline ::secs                    secs()  const { return duration().secs(); }
+   inline ::secs &                  secs() { if (get_type() != type_secs)set_type(type_secs); return m_secs; }
+   inline ::millis                  millis()  const { return duration().millis(); }
+   inline ::millis &                millis() { if (get_type() != type_millis)set_type(type_millis); return m_millis; }
+   inline ::micros                  micros()  const { return duration().micros(); }
+   inline ::micros &                micros() { if (get_type() != type_micros)set_type(type_micros); return m_micros; }
+   inline ::nanos                   nanos()  const { return duration().nanos(); }
+   inline ::nanos &                 nanos() { if (get_type() != type_nanos)set_type(type_nanos); return m_nanos; }
    ::u64                            u64(::u64 uiDefault = 0)  const;
    inline ::iptr                    iptr(iptr iDefault = 0)  const;
    inline ::uptr                    uptr(uptr uiDefault = 0)  const;
@@ -385,6 +399,10 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
    operator float() const;
    operator double() const;
    operator ::estatus() const;
+   operator class secs() const;
+   operator class millis() const;
+   operator class micros() const;
+   operator class nanos() const;
    operator class duration() const;
    operator ::filetime() const;
    operator ::datetime::time() const;
@@ -963,21 +981,29 @@ inline var::operator ::u64() const
 // returns 0.0 for unknown conversions?
 inline var::operator float() const
 {
+
    return get_float();
+
 }
 
 
 // returns 0.0 for unknown conversions?
 inline var::operator double() const
 {
+
    return get_double();
+
 }
+
 
 // returns 0.0 for unknown conversions?
 inline var::operator ::estatus() const
 {
+
    return estatus();
+
 }
+
 
 inline var::operator class duration() const
 {
@@ -987,12 +1013,37 @@ inline var::operator class duration() const
 }
 
 
-inline var::operator class tick() const
+inline var::operator class secs() const
 {
 
-   return tick();
+   return secs();
 
 }
+
+
+inline var::operator class millis() const
+{
+
+   return millis();
+
+}
+
+
+inline var::operator class micros() const
+{
+
+   return micros();
+
+}
+
+
+inline var::operator class nanos() const
+{
+
+   return nanos();
+
+}
+
 
 inline iptr var::iptr(::iptr iDefault) const
 {

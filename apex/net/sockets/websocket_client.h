@@ -27,9 +27,9 @@ namespace sockets
       memory      m_memResponse;
       memory      m_memReceivedData;
       bool        m_bUseMask;
-      tick m_tickLastPing;
-      tick m_tickLastPong;
-      tick m_tickLastSpontaneousPong;
+      millis m_tickLastPing;
+      millis m_tickLastPong;
+      millis m_tickLastSpontaneousPong;
       e_ping      m_eping;
       memory      m_memPong;
 

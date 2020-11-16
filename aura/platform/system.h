@@ -131,8 +131,8 @@ namespace aura
 //      string                                             m_strInstallVersion;
 //      string                                             m_strInstallPlatform;
 //
-//      tick                                               m_tickMainStart;
-//      tick                                               m_tickAfterApplicationFirstRequest;
+//      millis                                               m_tickMainStart;
+//      millis                                               m_tickAfterApplicationFirstRequest;
 //
 //
 //
@@ -153,7 +153,7 @@ namespace aura
 //
 //      string_array                                            m_straCommandLineAccumul;
 //      string_array                                            m_straCommandLineExtra;
-//      tick                                               m_tickCommandLineLast;
+//      millis                                               m_tickCommandLineLast;
 //      int                                                m_iCommandLineDelay;
 //      __pointer(::thread)                                m_pthreadCommandLine;
 //
@@ -880,7 +880,7 @@ namespace aura
 
 
 
-//      virtual bool wait_twf(tick tickTimeout = U32_INFINITE_TIMEOUT);
+//      virtual bool wait_twf(millis tickTimeout = U32_INFINITE_TIMEOUT);
 
 
 

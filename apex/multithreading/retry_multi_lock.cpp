@@ -59,7 +59,7 @@ sync_result retry_multi_lock::lock(bool bWaitForAll, u32 dwWakeMask /* = 0 */)
       if (dwWakeMask == 0)
       {
 
-         iResult = ::WaitForMultipleObjectsEx((u32)m_hsynca.get_count(), m_hsynca.get_data(), bWaitForAll, m_durationLock.lock_duration(), FALSE);
+         iResult = ::WaitForMultipleObjectsEx((u32)m_hsynca.get_count(), m_hsynca.get_data(), bWaitForAll, m_durationLock.u32_millis(), FALSE);
 
       }
 #ifdef _UWP
@@ -73,7 +73,7 @@ sync_result retry_multi_lock::lock(bool bWaitForAll, u32 dwWakeMask /* = 0 */)
       else
       {
 
-         iResult = ::MsgWaitForMultipleObjects((u32)m_hsynca.get_count(), m_hsynca.get_data(), bWaitForAll, m_durationLock.lock_duration(), dwWakeMask);
+         iResult = ::MsgWaitForMultipleObjects((u32)m_hsynca.get_count(), m_hsynca.get_data(), bWaitForAll, m_durationLock.u32_millis(), dwWakeMask);
 
       }
 #endif

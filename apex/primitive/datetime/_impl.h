@@ -1,10 +1,10 @@
 #pragma once
 
 
-//inline duration& duration::operator = (const ::tick& tick)
+//inline duration& duration::operator = (const ::millis& millis)
 //{
 //
-//   operator = (::millis(tick.m_i));
+//   operator = (::millis(millis.m_i));
 //
 //   return *this;
 //
@@ -28,7 +28,7 @@
 //}
 //
 ////
-////inline tick & tick::operator = (const duration & duration)
+////inline millis & millis::operator = (const duration & duration)
 ////{
 ////
 ////   m_i = duration.get_total_milliseconds();
@@ -38,7 +38,7 @@
 ////}
 //
 ////
-////inline tick & tick::operator = (const ::datetime::time_span & span)
+////inline millis & millis::operator = (const ::datetime::time_span & span)
 ////{
 ////
 ////   m_i = span.GetTotalSeconds() * 1'000;

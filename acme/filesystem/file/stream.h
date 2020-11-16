@@ -791,7 +791,7 @@ namespace std
 //
 //inline stream & operator >> (stream & s, ::file::path & path);
 //
-//inline stream & operator >> (stream & s, ::tick & tick);
+//inline stream & operator >> (stream & s, ::millis & millis);
 //
 //inline stream & operator << (stream & s, const ::file::path & path);
 //
@@ -876,7 +876,7 @@ namespace std
 //template < typename TYPE >
 //inline stream & operator <<(stream & s, const __pointer_array(TYPE) & a);
 //
-//inline stream & operator <<(stream & s, const ::tick & tick);
+//inline stream & operator <<(stream & s, const ::millis & millis);
 //
 ////template < class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = allocator::nodef < TYPE > >
 ////inline stream & operator <<(stream & s, const ::array_base < TYPE, ARG_TYPE, ALLOCATOR > & a)

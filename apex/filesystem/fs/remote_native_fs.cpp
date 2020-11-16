@@ -209,7 +209,7 @@ namespace fs
       defer_initialize();
 
 
-      tick tickTimeout;
+      millis tickTimeout;
 
       if(m_mapfileTimeout.lookup(path,tickTimeout))
       {

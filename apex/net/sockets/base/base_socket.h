@@ -155,7 +155,7 @@ namespace sockets
       string                  m_line; ///< Current line in line protocol mode
 
       ::estatus                    m_estatus;
-      tick m_tickStart;
+      millis m_tickStart;
 
 #if !defined(BSD_STYLE_SOCKETS)
       bool                    m_bErrorWriting;

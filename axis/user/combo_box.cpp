@@ -617,7 +617,7 @@ namespace user
          if (eelementHit.is_set() && (!m_bEdit || eelementHit == element_drop_down))
          {
 
-            tick tickLastVisibilityChangeElapsed;
+            millis tickLastVisibilityChangeElapsed;
 
             if (m_plist.is_set())
             {

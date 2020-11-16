@@ -15,7 +15,7 @@ CLASS_DECL_ACME i64 get_nanos();
 
 CLASS_DECL_ACME ::u32 get_fast_tick_count();
 
-/// tick, int milliseconds
+/// millis, int milliseconds
 inline i64 first_tick() { return nano_to_tick(first_nano()); }
 inline i64 get_tick() { return nano_to_tick(get_nanos()); }
 

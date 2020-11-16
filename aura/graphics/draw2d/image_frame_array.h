@@ -8,7 +8,7 @@ public:
 
 
    ::image_pointer      m_pimage;
-   tick                 m_tickTotal;
+   millis                 m_tickTotal;
    ::count              m_countLoop; // 0 - infinite loop
    ::index              m_iLoop;
    int                  m_iTransparentIndex;

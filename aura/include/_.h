@@ -2430,7 +2430,7 @@ CLASS_DECL_AURA bool __node_aura_pos_term();
 //#include "aura/primitive/math/math_clip.h"
 //
 //
-//#include "aura/platform/tick.h"
+//#include "aura/platform/millis.h"
 //
 //
 //#include "aura/primitive/datetime/duration.h"

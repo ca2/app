@@ -247,7 +247,7 @@ namespace sockets
          {
             l = item.m_ipaddr;
          }
-         //         tick tick2 = ::get_tick();
+         //         millis tick2 = ::get_tick();
          /*TRACE("Got from cache net::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
          (u32)((byte*)&pitem->m_ipaddr)[0],
          (u32)((byte*)&pitem->m_ipaddr)[1],
@@ -365,7 +365,7 @@ namespace sockets
 
    }
 
-//      tick tick2 = ::get_tick();
+//      millis tick2 = ::get_tick();
 //      TRACE("DNS lookup net::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
    //       (u32)((byte*)&pitem->m_ipaddr)[0],
    //     (u32)((byte*)&pitem->m_ipaddr)[1],

@@ -515,7 +515,7 @@ size_t Serial::SerialImpl::readline(string &buffer, size_t size, string eol)
    size_t eol_len = (size_t)eol.length();
    u8 *buffer_ = static_cast<u8*>
                       (alloca(size * sizeof(u8)));
-auto tickStart = ::tick::now();
+auto tickStart = ::tick::millis();
    size_t read_so_far = 0;
    while (true)
    {
@@ -535,7 +535,7 @@ auto tickStart = ::tick::now();
          }
          continue;
       }
-auto tickStart = ::tick::now();
+auto tickStart = ::tick::millis();
       if (string(reinterpret_cast<const char*>
                  (buffer_ + read_so_far - eol_len), eol_len) == eol)
       {

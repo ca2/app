@@ -354,7 +354,7 @@ namespace user
 
       m_tickLastDraw = ::get_tick();
 
-      tick t1 = tick::now();
+      millis t1 = millis::millis();
 
       auto pstyle = get_style(pgraphics);
 
@@ -607,9 +607,9 @@ namespace user
             if (m_errora.get_size() > 0)
             {
 
-               tick tickTimeout = 1000;
+               millis tickTimeout = 1000;
 
-               tick tickPeriod = 100;
+               millis tickPeriod = 100;
 
                if (m_errora[0].m_tick.elapsed() > tickTimeout)
                {
@@ -827,7 +827,7 @@ namespace user
       }
 
 
-      tick d1 = t1.elapsed();
+      millis d1 = t1.elapsed();
 
       if (d1 > 50)
       {
@@ -5238,7 +5238,7 @@ finished_update:
 
          //if(m_dwFocusStart + m_dwCaretTime < ::get_tick())
          //{
-         // auto m_tickFocusStart = ::tick::now();
+         // auto m_tickFocusStart = ::millis::now();
          //   m_bCaretOn = !m_bCaretOn;
          //   //set_need_redraw();
          //   set_need_redraw();

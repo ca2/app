@@ -117,7 +117,7 @@ namespace process
       else
       {
 
-         m_tickTimeout = (tick) dur.tick_duration();
+         m_tickTimeout = (millis) dur.tick_duration();
 
       }
 

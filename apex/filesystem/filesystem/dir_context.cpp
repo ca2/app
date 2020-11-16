@@ -1672,7 +1672,7 @@ void dir_context::matter_ls_file(const ::file::path & str, ::file::listing & str
       if (::str::begins_eat_ci(path, "itdoesntexist."))
       {
 
-         tick t = ansi_to_i64(path);
+         millis t = ansi_to_i64(path);
 
          auto elapsed = t.elapsed();
 
@@ -1861,7 +1861,7 @@ void dir_context::matter_ls_file(const ::file::path & str, ::file::listing & str
 
    }
 
-   path = "itdoesntexist." + __str(tick::now().m_i);
+   path = "itdoesntexist." + __str(millis::millis().m_iMilliseconds);
 
 ret:
 

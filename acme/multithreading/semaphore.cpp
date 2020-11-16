@@ -253,9 +253,9 @@ sync_result semaphore::wait(const duration & durationTimeout)
    }
 
 
-   tick tStart;
+   millis tStart;
 
-   tStart = tick::now();
+   tStart = millis::now();
 
    struct sembuf sb;
 
@@ -282,7 +282,7 @@ sync_result semaphore::wait(const duration & durationTimeout)
 
          Sleep(100);
 
-         tick tRemaining = durationTimeout - tStart.elapsed();
+         millis tRemaining = durationTimeout - tStart.elapsed();
 
          if(tRemaining > durationTimeout)
          {

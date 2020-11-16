@@ -53,7 +53,7 @@ namespace user
       ::sized                                   m_sizeWeight;
 
 
-      tick                                      m_tickLastSketchToDesign;
+      millis                                      m_tickLastSketchToDesign;
       e_layout_experience                       m_elayoutexperience;
 
 

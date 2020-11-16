@@ -197,75 +197,36 @@ class nanos;
 class duration;
 
 
-class CLASS_DECL_ACME millis
-{
-public:
 
 
-   ::i64       m_iMilliseconds;
+//class CLASS_DECL_ACME millis
+//{
+//public:
+//
+//
+//   ::i64       m_iMilliseconds;
+//
+//
+//   millis() { m_iMilliseconds = 0; }
+//   millis(::i64 i) { m_iMilliseconds = i; }
+//
+//
+//   millis & operator = (const secs & secs) { m_iMilliseconds = secs.m_iSeconds * 1'000; return *this; }
+//   millis & operator = (const millis & millis) { m_iMilliseconds = millis.m_iMilliseconds; return *this; }
+//   millis & operator = (const micros & micros);
+//   millis & operator = (const nanos & nanos);
+//   millis & operator = (const duration & duration);
+//   millis & operator = (::i64 i) { m_iMilliseconds = i; return *this; }
+//
+//
+//};
 
 
-   millis() { m_iMilliseconds = 0; }
-   millis(::i64 i) { m_iMilliseconds = i; }
 
 
-   millis & operator = (const millis & millis) { m_iMilliseconds = millis.m_iMilliseconds; return *this; }
-   millis & operator = (const micros & micros);
-   millis & operator = (const nanos & nanos);
-   millis & operator = (const duration & duration);
-   millis & operator = (::i64 i) { m_iMilliseconds = i; return *this; }
 
 
-};
 
-
-class CLASS_DECL_ACME micros
-{
-public:
-
-
-   ::i64       m_iMicroseconds;
-
-
-   micros() { m_iMicroseconds = 0; }
-   micros(::i64 i) { m_iMicroseconds = i; }
-
-
-   micros & operator = (const millis & millis) { m_iMicroseconds = millis.m_iMilliseconds; return *this; }
-   micros & operator = (const micros & micros) { m_iMicroseconds = micros.m_iMicroseconds; return *this; }
-   micros & operator = (const nanos & nanos);
-   micros & operator = (const duration & duration);
-   micros & operator = (::i64 i) { m_iMicroseconds = i; return *this; }
-
-
-};
-
-
-class CLASS_DECL_ACME nanos
-{
-public:
-
-
-   ::i16    m_iNanoseconds;
-
-
-   nanos() { m_iNanoseconds = 0; }
-   nanos(::i64 i) { m_iNanoseconds = i; }
-
-
-   nanos & operator = (const millis & millis) { m_iNanoseconds = millis.m_iMilliseconds * 1'000'000; return *this; }
-   nanos & operator = (const micros & micros) { m_iNanoseconds = micros.m_iMicroseconds * 1'000; return *this; }
-   nanos & operator = (const nanos & nanos) { m_iNanoseconds = nanos.m_iNanoseconds; return *this; }
-   nanos & operator = (const duration & duration);
-   nanos & operator = (::i64 i) { m_iNanoseconds = i; return *this; }
-
-
-};
-
-
-inline millis & millis::operator = (const nanos & nanos) { m_iMilliseconds = nanos.m_iNanoseconds / 1'000'000; return *this; }
-inline micros & micros::operator = (const nanos & nanos) { m_iMicroseconds = nanos.m_iNanoseconds / 1'000; return *this; }
-inline millis & millis::operator = (const micros & micros) { m_iMilliseconds = micros.m_iMicroseconds / 1'000; return *this; }
 
 
 ////#ifdef WINDOWS

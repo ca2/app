@@ -88,7 +88,7 @@ public:
 
 
 template < typename PRED >
-delay_thread * pred_delay(::object * pobject, tick tickDelay, PRED pred)
+delay_thread * pred_delay(::object * pobject, millis tickDelay, PRED pred)
 {
 
    auto point  = __new(pred_delay_thread < PRED >(pobject, pred, tickDelay));

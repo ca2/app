@@ -65,7 +65,7 @@ CLASS_DECL_ACME void press_any_key_to_exit(const char* psz = nullptr);
 namespace str
 {
 
-   string CLASS_DECL_ACME get_window_text_timeout(oswindow oswindow, tick tickTimeout = 1000);
+   string CLASS_DECL_ACME get_window_text_timeout(oswindow oswindow, millis tickTimeout = 1000);
 
 } // namespace str
 

@@ -2045,7 +2045,7 @@
     <ClInclude Include="aura\aura\system_str.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\tick.h">
+    <ClInclude Include="aura\aura\millis.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
     <ClInclude Include="aura\aura\timer.h">

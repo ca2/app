@@ -183,7 +183,7 @@ sync_result sync_array::wait(bool waitForAll, const duration & duration, bool bW
 
    u32 winResult;
 
-   lock_duration timeout = duration;
+   ::millis timeout = duration;
 
    if (m_synca.size() == m_hsyncaCache.size())
    {
@@ -215,7 +215,7 @@ sync_result sync_array::wait(bool waitForAll, const duration & duration, bool bW
 
    }
 
-   auto start = ::tick::now();
+   auto start = ::tick::millis();
 
    bool FoundExternal=false;
 
@@ -228,7 +228,7 @@ sync_result sync_array::wait(bool waitForAll, const duration & duration, bool bW
          do
          {
 
-            tick ticks = ::get_tick();
+            millis ticks = ::get_tick();
 
             if (ticks-start >= timeout)
             {

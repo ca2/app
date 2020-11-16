@@ -1960,7 +1960,7 @@
 		<Unit filename="platform/theme.cpp" />
 		<Unit filename="platform/theme.h" />
 		<Unit filename="platform/this_build_number.h" />
-		<Unit filename="platform/tick.h" />
+		<Unit filename="platform/millis.h" />
 		<Unit filename="platform/timer.cpp" />
 		<Unit filename="platform/timer.h" />
 		<Unit filename="platform/timer_array.cpp" />

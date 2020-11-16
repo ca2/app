@@ -575,7 +575,7 @@ bool prodevian::prodevian_iteration()
          if (msToWaitForNextFrame >= 2)
          {
 
-            ::tick tickWait;
+            ::millis tickWait;
 
             tickWait.Now();
 
@@ -586,13 +586,13 @@ bool prodevian::prodevian_iteration()
 
                //printf("msToWaitForNextFrame >= 50ms (%dms)\n", (::i32) (msToWaitForNextFrame - 1));
 
-               ::tick tick;
+               ::millis tick;
 
                tick.Now();
 
                m_synca.wait(false, millis(msToWaitForNextFrame - 1));
 
-               //printf("Actually waited %dms\n", (::i32) tick.elapsed().m_i);
+               //printf("Actually waited %dms\n", (::i32) millis.elapsed().m_i);
 
             }
             else

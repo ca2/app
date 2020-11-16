@@ -51,8 +51,8 @@ public:
    //string                           m_strCommandLine;
    string                           m_strProgName;
    PFN_DEFER_TERM                   m_pfnDeferTerm;
-   tick                             m_tickStart;
-   tick                             m_tickAfterApplicationFirstRequest;
+   millis                             m_tickStart;
+   millis                             m_tickAfterApplicationFirstRequest;
    //::apex::system *                    m_psystem;
    //__pointer(apex_main_data)        m_pmaindata;
    __pointer(::apex::library)       m_plibrary;

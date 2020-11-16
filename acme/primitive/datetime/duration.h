@@ -85,15 +85,15 @@ public:
 
 
    inline class millis millis() const;
-   inline operator class millis() const;
+   //inline operator class millis() const;
 
 
    inline class micros micros() const;
-   inline operator class micros() const;
+   //inline operator class micros() const;
 
 
    inline class nanos nanos() const;
-   inline operator class nanos() const;
+   //inline operator class nanos() const;
 
 
    inline operator bool() const;
@@ -240,12 +240,12 @@ inline ::micros duration::micros() const
 }
 
 
-inline duration::operator ::millis() const
-{
-
-    return ::duration::millis();
-
-}
+//inline duration::operator ::millis() const
+//{
+//
+//    return ::duration::millis();
+//
+//}
 
 
 inline nanos duration::nanos() const
@@ -256,34 +256,34 @@ inline nanos duration::nanos() const
 }
 
 
-inline duration::operator ::nanos() const
-{
-   
-   return ::duration::nanos();
-
-}
-
-
-inline i64 duration::total_milliseconds() const
-{
-
-   return get_total_milliseconds();
-
-}
+//inline duration::operator ::nanos() const
+//{
+//
+//   return ::duration::nanos();
+//
+//}
 
 
-inline i64 duration::total_microseconds() const
-{
-
-   return get_total_microseconds();
-
-}
-
-
-inline i64 duration::total_nanoseconds() const
-{
-   return get_total_nanoseconds();
-}
+//inline i64 duration::total_milliseconds() const
+//{
+//
+//   return get_total_milliseconds();
+//
+//}
+//
+//
+//inline i64 duration::total_microseconds() const
+//{
+//
+//   return get_total_microseconds();
+//
+//}
+//
+//
+//inline i64 duration::total_nanoseconds() const
+//{
+//   return get_total_nanoseconds();
+//}
 
 
 inline bool duration::is_pos_infinity() const

@@ -251,15 +251,7 @@ inline duration::operator ::millis() const
 inline nanos duration::nanos() const
 {
 
-   return ::duration::;
-
-}
-
-
-inline duration::operator ::nanos() const
-{
-   
-   return ::duration::nanos();
+   return m_iNanoseconds + m_iSeconds * 1'000'000'000;
 
 }
 

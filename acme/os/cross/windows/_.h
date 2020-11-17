@@ -25,9 +25,17 @@ using HSYNC = HANDLE;
 
 using POINT32 = POINT;
 
+using LPPOINT32 = LPPOINT;
+
 using SIZE32 = SIZE;
 
+using LPSIZE32 = LPSIZE;
+
 using RECT32 = RECT;
+
+using LPRECT32 = LPRECT;
+
+using LPCRECT32 = LPCRECT;
 
 using MESSAGE = MSG;
 

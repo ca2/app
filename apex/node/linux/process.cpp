@@ -414,7 +414,7 @@ namespace ansios
       //int status = posix_spawn(&m_iPid,argv[0],nullptr,nullptr,(char * const *)argv.get_data(),environ);
 
       debug_print("synch_elevated : posix_spawn return status %d", status);
-auto tickStart = ::tick::now();
+auto tickStart = ::millis::now();
 
       while(!has_exited() && tickStart.elapsed() < durationTimeOut.get_total_milliseconds())
       {

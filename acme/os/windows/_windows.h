@@ -1,6 +1,9 @@
 #pragma once
 
 
+CLASS_DECL_ACME void TRACELASTERROR();
+
+
 #include <fcntl.h>
 #include <VersionHelpers.h>
 #include <ddeml.h>

@@ -11,8 +11,8 @@ namespace userex
    public:
 
 
-      tick           m_tickStart;
-      tick           m_tickDelay;
+      millis           m_millisStart;
+      millis           m_millisDelay;
       id             m_idResponse;
       int            m_iSecond;
 
@@ -33,7 +33,7 @@ namespace userex
 
       virtual bool on_timeout_check();
       virtual bool on_timeout();
-      virtual void on_timer_soft_reload(tick tickTimeout);
+      virtual void on_timer_soft_reload(millis tickTimeout);
 
       
       //virtual void on_apply(::action * paction) override;

@@ -8,7 +8,7 @@
 
 
 ::point g_pointX11Cursor;
-::tick g_tickLastMouseMove;
+::millis g_tickLastMouseMove;
 
 
 void oswindow_set_active_window(oswindow oswindow);
@@ -2483,13 +2483,13 @@ bool x11_process_message(Display * pdisplay)
 
             pinteraction->m_pointMouseMove.y = e.xmotion.y_root;
 
-            if(pinteraction->m_tickMouseMovePeriod > 0)
+            if(pinteraction->m_millisMouseMovePeriod > 0)
             {
 
                ::size sizeDistance((pinteraction->m_pointMouseMoveSkip.x - pinteraction.m_pointMouseMove.x),
                (pinteraction->m_pointMouseMoveSkip.y - pinteraction.m_pointMouseMove.y));
 
-               if(!pinteraction->m_tickMouseMoveSkip.timeout(pinteraction->m_tickMouseMovePeriod)
+               if(!pinteraction->m_millisMouseMoveSkip.timeout(pinteraction->m_millisMouseMovePeriod)
                && sizeDistance.cx * sizeDistance.cx + sizeDistance.cy * sizeDistance.cy < pinteraction->m_iMouseMoveSkipSquareDistance)
                {
 

@@ -177,7 +177,7 @@ namespace interprocess_communication
 
       rx                      m_rx;
       string                  m_strChannel;
-      unsigned int            m_tickTimeout;
+      unsigned int            m_millisTimeout;
 
 
       interprocess_communication();

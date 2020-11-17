@@ -645,7 +645,7 @@ void object::child_post_quit_and_wait(const char * pszTag, const duration & dura
 
       pmatter->finalize();
 
-      pred_Sleep((int) duration.get_total_milliseconds(),
+      pred_Sleep(duration,
                  [=]()
       {
 

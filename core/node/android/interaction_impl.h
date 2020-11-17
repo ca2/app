@@ -305,7 +305,7 @@ namespace android
 
 #if(WINVER >= 0x0500)
 
-      virtual bool FlashWindowEx(u32 dwFlags,::u32  uCount,tick tickTimeout);
+      virtual bool FlashWindowEx(u32 dwFlags,::u32  uCount,millis tickTimeout);
 
 #endif   // WINVER >= 0x0500
 

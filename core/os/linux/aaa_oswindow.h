@@ -130,7 +130,7 @@ public:
    __pointer(mq)                          m_pmq;
    hthread_t                                m_hthread;
    Colormap                               m_colormap;
-   tick                                   m_tickLastMouseMove;
+   millis                                   m_millisLastMouseMove;
    Window                                 m_parent;
    ::rect                                 m_rect;
    string                                 m_strWMClass;

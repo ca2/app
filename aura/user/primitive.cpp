@@ -3926,7 +3926,7 @@ namespace user
    void primitive::on_reset_focus_start_tick()
    {
 
-      m_tickFocusStart.Now();
+      m_millisFocusStart.Now();
 
    }
 

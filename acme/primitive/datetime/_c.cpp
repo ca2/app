@@ -1,21 +1,20 @@
 #include "framework.h"
 
 
-
-
-CLASS_DECL_ACME i64 __first_tick()
+CLASS_DECL_ACME i64 __first_millis()
 {
 
-   return first_tick();
+   return first_millis();
 
 }
 
 
-CLASS_DECL_ACME i64 __get_tick()
+CLASS_DECL_ACME i64 __get_millis()
 {
 
-   return get_tick();
+   return get_millis();
 
 }
+
 
 

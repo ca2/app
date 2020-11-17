@@ -43,7 +43,7 @@ namespace windows
 
       edisplay                                  m_edisplayLayout;
       rect64                                    m_rectLastPos;
-      millis                                      m_tickLastPos;
+      millis                                      m_millisLastPos;
       string                                    m_strDebug;
 
       ::point                                   m_pointCursor;

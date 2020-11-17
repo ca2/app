@@ -54,7 +54,7 @@ namespace hotplugin
       string                        m_strBitmapChannel;
       ::point                         m_pointCursorPhase;
 
-      tick m_tickSync;
+      millis m_millisSync;
       i32                       m_iDelta;
 
 

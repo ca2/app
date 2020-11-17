@@ -313,8 +313,6 @@ list(APPEND aura_source
         user/box.h
         user/callback.cpp
         user/callback.h
-        user/composition_imm_client.cpp
-        user/composition_imm_client.h
         user/control_descriptor.cpp
         user/control_descriptor.h
         user/control_event.cpp
@@ -331,8 +329,6 @@ list(APPEND aura_source
         user/form_callback.h
         user/frame.cpp
         user/frame.h
-        user/imm_client.cpp
-        user/imm_client.h
         user/interaction.cpp
         user/interaction.h
         user/interaction_child.cpp
@@ -462,6 +458,8 @@ if(WIN32)
         os/windows/gdiplus.h
         os/windows/graphics.cpp
         os/windows/graphics.h
+        os/windows/imm_client.cpp
+        os/windows/imm_client.h
         os/windows/imm_context.cpp
         os/windows/imm_context.h
         os/windows/implementation.h
@@ -1080,7 +1078,7 @@ else()
 endif()
 
 
-add_library(aura SHARED ${aura_source} graphics/graphics/_graphics.h)
+add_library(aura SHARED ${aura_source} graphics/graphics/_graphics.h os/_user.h os/windows/_user.h)
 
 
 target_precompile_headers(aura PRIVATE framework.h)

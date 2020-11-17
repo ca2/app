@@ -660,7 +660,7 @@ bool write_memory_to_file(FILE * file,const void * pdata,memsize nCount,memsize 
 }
 
 
-CLASS_DECL_ACME bool file_append_wait(const string & strFile, const char * psz, strsize s, const ::millis & millisTimeout)
+CLASS_DECL_ACME bool file_append_wait(const string & strFile, const block & block, const ::duration & duration)
 {
 
    ::dir::mk(::dir::name(strFile));
@@ -694,7 +694,7 @@ CLASS_DECL_ACME bool file_append_wait(const string & strFile, const char * psz, 
 
       }
 
-      if (millisStart.elapsed() > millisTimeout)
+      if (millisStart.elapsed() > duration)
       {
 
          return false;
@@ -705,7 +705,7 @@ CLASS_DECL_ACME bool file_append_wait(const string & strFile, const char * psz, 
 
    }
 
-   fwrite(psz, (size_t)s, 1, pfile);
+   fwrite(block.get_data(), block.get_size(), 1, pfile);
 
    fclose(pfile);
 
@@ -714,26 +714,18 @@ CLASS_DECL_ACME bool file_append_wait(const string & strFile, const char * psz, 
 }
 
 
-bool file_append_wait(const string & strFile, const string & str, ::u32 tickTimeout)
+//bool file_append_wait(const string & strFile, const string & str, ::u32 tickTimeout)
+//{
+//
+//   return file_append_wait(strFile, str, str.get_length(), tickTimeout);
+//
+//}
+
+
+CLASS_DECL_ACME bool file_append(const string & strFile, const block & block)
 {
 
-   return file_append_wait(strFile, str, str.get_length(), tickTimeout);
-
-}
-
-
-CLASS_DECL_ACME bool file_append(const string & strFile, const char * psz, strsize s)
-{
-
-   return file_append_wait(strFile, psz, s, 0);
-
-}
-
-
-bool file_append(const string & strFile, const string & str)
-{
-
-   return file_append(strFile, str, str.get_length());
+   return file_append_wait(strFile, block, 0);
 
 }
 

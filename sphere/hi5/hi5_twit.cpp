@@ -349,7 +349,7 @@ namespace hi5
 
          //i64 iPos = 0;
 
-         //::u32 tickStart = ::get_tick();
+         //::u32 tickStart= ::millis::now();
 
          //while ((uRead = pfile->read(&mem.get_data()[iPos], mem.get_size() - iPos)) > 0)
          //{

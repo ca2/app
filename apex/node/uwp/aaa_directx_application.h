@@ -17,7 +17,7 @@ namespace uwp
 
       ::u32                                     m_dwMouseMoveThrottle;
 
-      tick m_tickLastMouseMove;
+      millis m_millisLastMouseMove;
 
       ::Windows::UI::ViewManagement::UISettings ^     m_puisettings;
 

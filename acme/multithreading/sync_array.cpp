@@ -183,23 +183,26 @@ sync_result sync_array::wait(bool waitForAll, const duration & duration, bool bW
 
    u32 winResult;
 
-   ::millis timeout = duration;
-
    if (m_synca.size() == m_hsyncaCache.size())
    {
 
 #ifdef WINDOWS_DESKTOP
+
       if (bWaitMessageQueue)
       {
 
-         winResult = ::MsgWaitForMultipleObjectsEx((u32)m_hsyncaCache.size(), m_hsyncaCache.get_data(), timeout, QS_ALLEVENTS, waitForAll ? MWMO_WAITALL : 0);
+         auto millis = duration.u32_millis();
+
+         winResult = ::MsgWaitForMultipleObjectsEx((u32)m_hsyncaCache.size(), m_hsyncaCache.get_data(), millis, QS_ALLEVENTS, waitForAll ? MWMO_WAITALL : 0);
 
       }
       else
 #endif
       {
 
-         winResult = ::WaitForMultipleObjectsEx((u32)m_hsyncaCache.size(), m_hsyncaCache.get_data(), waitForAll, timeout, bWaitMessageQueue);
+         auto millis = duration.u32_millis();
+
+         winResult = ::WaitForMultipleObjectsEx((u32)m_hsyncaCache.size(), m_hsyncaCache.get_data(), waitForAll, millis, bWaitMessageQueue);
 
       }
 
@@ -215,52 +218,40 @@ sync_result sync_array::wait(bool waitForAll, const duration & duration, bool bW
 
    }
 
-   auto start = ::tick::millis();
+   auto start = ::millis::now();
 
    bool FoundExternal=false;
 
    do
    {
 
-      if (timeout)
+      if (start.elapsed() > duration)
       {
 
-         do
+         winResult = WAIT_TIMEOUT;
+
+      }
+
+      do
+      {
+
+#ifdef WINDOWS_DESKTOP
+         if (bWaitMessageQueue)
          {
 
-            millis ticks = ::get_tick();
-
-            if (ticks-start >= timeout)
-            {
-
-               winResult = WAIT_TIMEOUT;
-
-            }
-#ifdef WINDOWS_DESKTOP
-            else if (bWaitMessageQueue)
-            {
-
-               winResult = ::MsgWaitForMultipleObjectsEx((u32)m_hsyncaCache.size(), m_hsyncaCache.get_data(),  __os(start + timeout - ticks), QS_ALLEVENTS, waitForAll ? MWMO_WAITALL : 0);
-
-            }
-#endif
-            else
-            {
-
-               winResult = ::WaitForMultipleObjectsEx((u32)m_hsyncaCache.size(), m_hsyncaCache.get_data(), waitForAll, __os(start + timeout - ticks), true);
-
-            }
+            winResult = ::MsgWaitForMultipleObjectsEx((u32)m_hsyncaCache.size(), m_hsyncaCache.get_data(),  __os(duration - start.elapsed()), QS_ALLEVENTS, waitForAll ? MWMO_WAITALL : 0);
 
          }
-         while (winResult == WAIT_IO_COMPLETION);
+#endif
+         else
+         {
+
+            winResult = ::WaitForMultipleObjectsEx((u32)m_hsyncaCache.size(), m_hsyncaCache.get_data(), waitForAll, __os(duration - start.elapsed()), true);
+
+         }
 
       }
-      else
-      {
-
-         winResult = ::WaitForMultipleObjectsEx((u32) m_hsyncaCache.size(),m_hsyncaCache.get_data(),waitForAll,0,FALSE);
-
-      }
+      while (winResult == WAIT_IO_COMPLETION);
 
       // TODO
 

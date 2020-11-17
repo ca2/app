@@ -389,7 +389,7 @@
       interprocess_communication::interprocess_communication()
       {
 
-         m_tickTimeout = (5000) * 11;
+         m_millisTimeout = (5000) * 11;
 
       }
 

@@ -358,7 +358,7 @@ namespace apex
 
       //m_purldepartment = nullptr;
 
-      m_tickAfterApplicationFirstRequest = 0;
+//      m_millisAfterApplicationFirstRequest = 0;
 
       estatus = __compose_new(m_purldepartment);
 
@@ -3256,7 +3256,7 @@ namespace apex
 
       sync_lock sl(mutex());
 
-      m_tickCommandLineLast.Now();
+      m_millisCommandLineLast.Now();
 
       m_iCommandLineDelay = 1000;
 

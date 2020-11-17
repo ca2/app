@@ -6,11 +6,11 @@ template < typename PRED >
 bool pred_retry(duration durationRetry, ::duration durationTimeout, PRED pred)
 {
 
-   ::millis tickStart = millis::millis();
+   auto tickStart = millis::now();
 
-   millis tickRetry = durationRetry.get_total_milliseconds();
+   auto tickRetry = durationRetry.u32_millis();
 
-   millis tickTimeout = durationTimeout.get_total_milliseconds();
+   auto tickTimeout = durationTimeout.u32_millis();
 
    while (true)
    {

@@ -1029,7 +1029,7 @@ namespace experience
          if (pbar->is_true("tracking_fade_in"))
          {
 
-            auto tickFade = pbar->value("tracking_start").tick().elapsed();
+            auto tickFade = pbar->value("tracking_start").millis().elapsed();
 
             if (tickFade < tickFadeIn)
             {
@@ -1050,7 +1050,7 @@ namespace experience
          else if (pbar->is_true("tracking_fade_out"))
          {
 
-            auto dwFade = pbar->value("tracking_start").tick().elapsed();
+            auto dwFade = pbar->value("tracking_start").millis().elapsed();
 
             if (dwFade < tickFadeOut)
             {

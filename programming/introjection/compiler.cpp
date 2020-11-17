@@ -1115,7 +1115,7 @@ namespace introjection
       strLog= file_as_string(strClog);
 
 #else
-auto tickStart = ::tick::now();
+auto tickStart = ::millis::now();
 
       while(::thread_get_run())
       {

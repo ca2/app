@@ -512,7 +512,7 @@ namespace uwp
    void directx_framework_view::OnPointerMoved(Windows::UI::Core::CoreWindow ^, Windows::UI::Core::PointerEventArgs ^ args)
    {
 
-      if (m_dwMouseMoveThrottle && m_tickLastMouseMove.elapsed() < m_dwMouseMoveThrottle)
+      if (m_dwMouseMoveThrottle && m_millisLastMouseMove.elapsed() < m_dwMouseMoveThrottle)
       {
 
          return;
@@ -547,7 +547,7 @@ namespace uwp
 
       m_psystem->get_context_session()->m_puiHost->m_pimpl->queue_message_handler(spbase);
 
-      m_tickLastMouseMove = ::get_tick();
+      m_millisLastMouseMove= ::millis::now();
 
    }
 

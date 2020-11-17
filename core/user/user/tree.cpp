@@ -178,7 +178,7 @@ namespace user
 
       {
 
-         tick tickStart;
+         millis tickStart;
 
          tickStart.Now();
 
@@ -199,7 +199,7 @@ namespace user
 
       {
 
-         tick tickStart;
+         millis tickStart;
 
          tickStart.Now();
 
@@ -227,16 +227,16 @@ namespace user
                m_bHoverStart = true;
                m_uchHoverAlphaInit = m_uchHoverAlpha;
 
-               m_tickHoverStart.Now();
+               m_millisHoverStart.Now();
 
             }
-            if(m_tickHoverStart.elapsed() > dwHoverIn)
+            if(m_millisHoverStart.elapsed() > dwHoverIn)
             {
                m_uchHoverAlpha = 255;
             }
             else
             {
-               ::u32 dwCurve =  (::u32) (255.0 * (1.0 - pow(2.718281, -3.3 * __double(m_tickHoverStart.elapsed()) / dwHoverIn)));
+               ::u32 dwCurve =  (::u32) (255.0 * (1.0 - pow(2.718281, -3.3 * __double(m_millisHoverStart.elapsed()) / dwHoverIn)));
                if(m_uchHoverAlphaInit + dwCurve > 255)
                   m_uchHoverAlpha = 255;
                else
@@ -250,17 +250,17 @@ namespace user
                m_bHoverStart = false;
                m_uchHoverAlphaInit = m_uchHoverAlpha;
 
-               m_tickHoverEnd.Now();
+               m_millisHoverEnd.Now();
 
             }
 
-            if(m_tickHoverEnd.elapsed()  > dwHoverOut)
+            if(m_millisHoverEnd.elapsed()  > dwHoverOut)
             {
                m_uchHoverAlpha = 0;
             }
             else
             {
-               ::u32 dwCurve =  (::u32) (255.0 * (1.0 - pow(2.718281, -3.3 * __double(m_tickHoverEnd.elapsed()) / dwHoverOut)));
+               ::u32 dwCurve =  (::u32) (255.0 * (1.0 - pow(2.718281, -3.3 * __double(m_millisHoverEnd.elapsed()) / dwHoverOut)));
                if(m_uchHoverAlphaInit < dwCurve)
                   m_uchHoverAlpha = 0;
                else
@@ -311,7 +311,7 @@ namespace user
             drawitemdata.m_rect.right = m_iCurrentViewWidth;
 
             {
-               tick tickItem;
+               millis tickItem;
                tickItem.Now();
                _001DrawItem(drawitemdata);
                auto tickElapsed = tickStart.elapsed();
@@ -358,9 +358,9 @@ namespace user
    void tree::_001DrawItem(tree_draw_item & data)
    {
 
-      tick tick;
+      millis millis;
 
-      tick.Now();
+      millis.Now();
 
       ::rect rect;
 
@@ -409,8 +409,8 @@ namespace user
 
       }
 
-      auto tickElapsed = tick.elapsed();
-      tick.Now();
+      auto tickElapsed = millis.elapsed();
+      millis.Now();
       if (tickElapsed > 2)
       {
 
@@ -418,7 +418,7 @@ namespace user
 
       }
 
-      //TRACE("(1)TreeItemElapsed %d", tick.elapsed());
+      //TRACE("(1)TreeItemElapsed %d", millis.elapsed());
 
       //      ::aura::savings & savings = psession->savings();
 

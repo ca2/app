@@ -7,19 +7,19 @@ class CLASS_DECL_ACME heap_item_array:
 public:
 
 #ifdef _UWP
-   millis m_tickLastCleanup;
+   millis m_millisLastCleanup;
 #else
-   tick m_tickLastCleanup;
+   millis m_millisLastCleanup;
 #endif
 
    inline void add_item(void * p,memsize iSize)
    {
 #ifdef _UWP
       add(heap_item(point,iSize,GetTickCount64()));
-      if(GetTickCount64() > m_tickLastCleanup + 10000)
+      if(GetTickCount64() > m_millisLastCleanup + 10000)
 #else
       add(heap_item(point,iSize,::get_tick()));
-      if(::get_tick() > m_tickLastCleanup + 10000)
+      if(::get_tick() > m_millisLastCleanup + 10000)
 #endif
       {
          cleanup();
@@ -31,7 +31,7 @@ public:
 #ifdef _UWP
       DWORD64 dwLimit = GetTickCount64() - 1000;
 #else
-      DWORD64 dwLimit = ::get_tick() - 1000;
+      DWORD64 dwLimit= ::millis::now() - 1000;
 #endif
       for(i32 i = 0; i < this->get_count();)
       {
@@ -45,9 +45,9 @@ public:
          }
       }
 #ifdef _UWP
-      m_tickLastCleanup = GetTickCount64();
+      m_millisLastCleanup = GetTickCount64();
 #else
-      m_tickLastCleanup = ::get_tick();
+      m_millisLastCleanup= ::millis::now();
 #endif
    }
 

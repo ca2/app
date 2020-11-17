@@ -241,13 +241,13 @@ namespace sockets
 
       single_lock sl(&m_mutexCache, true);
       dns_cache_item item;
-      if(m_mapCache.lookup(str, item) && (item.m_bOk && (!item.m_bTimeout || ((item.m_tickLastChecked.elapsed()) < (5 * 60 * 1000)))))
+      if(m_mapCache.lookup(str, item) && (item.m_bOk && (!item.m_bTimeout || ((item.m_millisLastChecked.elapsed()) < (5 * 60 * 1000)))))
       {
          if (item.m_bOk)
          {
             l = item.m_ipaddr;
          }
-         //         millis tick2 = ::get_tick();
+         //         millis tick2= ::millis::now();
          /*TRACE("Got from cache net::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
          (u32)((byte*)&pitem->m_ipaddr)[0],
          (u32)((byte*)&pitem->m_ipaddr)[1],
@@ -332,7 +332,7 @@ namespace sockets
          ERR(error + " for " + str);
          item.m_bOk = false;
          item.m_bTimeout = true;
-         item.m_tickLastChecked.Now();
+         item.m_millisLastChecked.Now();
          m_mapCache.set_at(str, item);
 
          return false;
@@ -355,7 +355,7 @@ namespace sockets
    }
    freeaddrinfo(res);
    item.m_ipaddr = sa.sin_addr;
-   item.m_tickLastChecked.Now();
+   item.m_millisLastChecked.Now();
    m_mapCache.set_at(str, item);
 
    //if(System.m_bGudoNetCache)
@@ -365,7 +365,7 @@ namespace sockets
 
    }
 
-//      millis tick2 = ::get_tick();
+//      millis tick2= ::millis::now();
 //      TRACE("DNS lookup net::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
    //       (u32)((byte*)&pitem->m_ipaddr)[0],
    //     (u32)((byte*)&pitem->m_ipaddr)[1],
@@ -949,7 +949,7 @@ bool net::reverse(string & hostname, const ::net::address & address)
 
    auto & pitem = m_mapReverseCache[address.get_display_number()];
 
-   if (pitem && !pitem->m_bProcessing && !pitem->m_bTimeout && pitem->m_tickLastChecked.elapsed() < 3600_min)
+   if (pitem && !pitem->m_bProcessing && !pitem->m_bTimeout && pitem->m_millisLastChecked.elapsed() < 3600_min)
    {
 
       hostname = pitem->m_strReverse;
@@ -1100,7 +1100,7 @@ bool net::reverse_sync(reverse_cache_item * pitem)
 
    pitem->m_strReverse = host;
    //item.m_strService = serv;
-   pitem->m_tickLastChecked.Now();
+   pitem->m_millisLastChecked.Now();
 
    //single_lock sl(&m_mutexCache, true);
 
@@ -1248,9 +1248,9 @@ net::dns_cache_item::dns_cache_item()
 {
 
    xxf_zero(m_ipaddr);
-   m_tickLastChecked = 0;
    m_bOk = false;
    m_bTimeout = true;
+
 }
 
 
@@ -1266,7 +1266,7 @@ stream & net::dns_cache_item::write(stream & stream) const
 {
 
    stream << m_ipaddr;
-   stream << m_tickLastChecked;
+   stream << m_millisLastChecked;
    stream << m_bOk;
    stream << m_bTimeout;
 
@@ -1279,7 +1279,7 @@ stream & net::dns_cache_item::read(stream & stream)
 {
 
    stream >> m_ipaddr;
-   stream >> m_tickLastChecked;
+   stream >> m_millisLastChecked;
    stream >> m_bOk;
    stream >> m_bTimeout;
 
@@ -1295,7 +1295,7 @@ net::dns_cache_item & net::dns_cache_item::operator = (const dns_cache_item & it
       return *this;
 
    ::memcpy_dup(&m_ipaddr,&item.m_ipaddr,sizeof(m_ipaddr));
-   m_tickLastChecked = item.m_tickLastChecked;
+   m_millisLastChecked = item.m_millisLastChecked;
    m_bOk = item.m_bOk;
    m_bTimeout = item.m_bTimeout;
 
@@ -1308,7 +1308,7 @@ net::reverse_cache_item::reverse_cache_item()
 {
 
    //xxf_zero(m_ipaddr);
-   m_tickLastChecked = 0;
+   //m_millisLastChecked = 0;
    m_bOk = false;
    m_bTimeout = true;
 
@@ -1328,7 +1328,7 @@ stream & net::reverse_cache_item::write(stream & stream) const
 
    stream << m_address;
    stream << m_strReverse;
-   stream << m_tickLastChecked;
+   stream << m_millisLastChecked;
    stream << m_bOk;
    stream << m_bTimeout;
    stream << m_bProcessing;
@@ -1343,7 +1343,7 @@ stream & net::reverse_cache_item::read(stream & stream)
 
    stream >> m_address;
    stream >> m_strReverse;
-   stream >> m_tickLastChecked;
+   stream >> m_millisLastChecked;
    stream >> m_bOk;
    stream >> m_bTimeout;
    stream >> m_bProcessing;
@@ -1360,7 +1360,7 @@ net::reverse_cache_item & net::reverse_cache_item::operator = (const reverse_cac
       return *this;
 
    m_address = item.m_address;
-   m_tickLastChecked = item.m_tickLastChecked;
+   m_millisLastChecked = item.m_millisLastChecked;
    m_strReverse = item.m_strReverse;
    m_bOk = item.m_bOk;
    m_bTimeout = item.m_bTimeout;

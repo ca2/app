@@ -560,7 +560,7 @@ namespace experience
             && m_pframewindow->m_bShowControlBox)
          {
 
-            tick tick1;
+            millis tick1;
 
             tick1.Now();
 
@@ -577,7 +577,7 @@ namespace experience
 
             ::rect rectIcon;
 
-            tick tick2;
+            millis tick2;
 
             tick2.Now();
 
@@ -597,7 +597,7 @@ namespace experience
 
             //printf("B. frame::on_draw_frame %d\n", tick2.elapsed().m_i);
 
-            tick tick3;
+            millis tick3;
 
             tick3.Now();
 
@@ -627,7 +627,7 @@ namespace experience
          else if (!m_pframewindow->layout().is_full_screen() && !m_pframewindow->frame_is_transparent() && m_pframewindow->m_bShowControlBox)
          {
 
-            tick tick2;
+            millis tick2;
 
             tick2.Now();
 
@@ -705,7 +705,7 @@ namespace experience
 
             //printf("D. frame::on_draw_frame %d\n", tick2.elapsed().m_i);
 
-            tick tick3;
+            millis tick3;
 
             tick3.Now();
 
@@ -746,7 +746,7 @@ namespace experience
 
             //printf("E. frame::on_draw_frame %d\n", tick3.elapsed().m_i);
 
-            tick tick4;
+            millis tick4;
 
             tick4.Now();
 
@@ -774,7 +774,7 @@ namespace experience
 
             //class font_department & fonts = System.draw2d().fonts();
 
-            tick tick5;
+            millis tick5;
 
             tick5.Now();
 

@@ -18,7 +18,7 @@ CLASS_DECL_ACME int32_t process_get_scheduling_priority(int iOsPolicy, const sch
    if(tickTimeout != (::u32) U32_INFINITE_TIMEOUT)
    {
 
-      start = ::get_tick();
+      start= ::millis::now();
 
    }
 

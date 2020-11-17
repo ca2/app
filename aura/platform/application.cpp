@@ -495,10 +495,10 @@ namespace aura
          }
 
          // Verry Sory for the per request overhead here for the needed information of only first request
-         if (::is_set(get_context_system()) && System.m_tickAfterApplicationFirstRequest == 0)
+         if (::is_set(get_context_system()) && System.m_millisAfterApplicationFirstRequest == 0)
          {
 
-            System.m_tickAfterApplicationFirstRequest.Now(); // cross your fingers that the first recorded is not 0, it will be cleaned up by other requests.
+            System.m_millisAfterApplicationFirstRequest.Now(); // cross your fingers that the first recorded is not 0, it will be cleaned up by other requests.
 
          }
 
@@ -1247,7 +1247,7 @@ namespace aura
 
    //   INFO("aura::application::term_thread");
 
-   //   m_tickHeartBeat.Now();
+   //   m_millisHeartBeat.Now();
 
    //   try
    //   {
@@ -1273,7 +1273,7 @@ namespace aura
 //      try
 //      {
 //
-//         m_tickHeartBeat.Now();
+//         m_millisHeartBeat.Now();
 //
 //         if(!application_pre_run())
 //         {
@@ -1315,7 +1315,7 @@ namespace aura
 //
 //         }
 //
-//         m_tickHeartBeat.Now();
+//         m_millisHeartBeat.Now();
 //
 //         if (!os_native_bergedge_start())
 //         {
@@ -1488,7 +1488,7 @@ namespace aura
       try
       {
 
-         m_tickHeartBeat.Now();
+         m_millisHeartBeat.Now();
 
          application_pos_run();
 
@@ -1601,7 +1601,7 @@ namespace aura
 
       }
 
-      m_tickHeartBeat.Now();
+      m_millisHeartBeat.Now();
 
       try
       {
@@ -2192,7 +2192,7 @@ retry_license:
 //
 //      //m_bAuraInitializeInstanceResult = false;
 //
-//      m_tickHeartBeat.Now();
+//      m_millisHeartBeat.Now();
 //
 //      if (!init1())
 //      {
@@ -2207,7 +2207,7 @@ retry_license:
 //
 //      //xxdebug_box("init1 ok", "init1 ok", MB_ICONINFORMATION);
 //
-//      m_tickHeartBeat.Now();
+//      m_millisHeartBeat.Now();
 //
 //      if (!init2())
 //      {
@@ -2222,7 +2222,7 @@ retry_license:
 //
 //      //xxdebug_box("init2 ok", "init2 ok", MB_ICONINFORMATION);
 //
-//      m_tickHeartBeat.Now();
+//      m_millisHeartBeat.Now();
 //
 //      if (!init3())
 //      {
@@ -2237,7 +2237,7 @@ retry_license:
 //
 //      //xxdebug_box("init3 ok", "init3 ok", MB_ICONINFORMATION);
 //
-//      m_tickHeartBeat.Now();
+//      m_millisHeartBeat.Now();
 //
 //      //dappy(string(typeid(*this).name()) + " : init3 ok : " + __str(m_iErrorCode));
 //
@@ -2328,7 +2328,7 @@ retry_license:
 
       INFO("start");
 
-      m_tickHeartBeat.Now();
+      m_millisHeartBeat.Now();
 
       return ::success;
 
@@ -6218,7 +6218,7 @@ namespace aura
 
       memory storage;
 
-      if (!GetResourceData(uiResource, "EnhMetaFile", storage))
+      if (!GetResourceData(uResource, "EnhMetaFile", storage))
       {
 
          return nullptr;
@@ -7415,22 +7415,31 @@ namespace aura
    // creating it if it doesn't exist.
    // responsibility of the caller to call RegCloseKey() on the returned HKEY
    HKEY application::GetSectionKey(const char* pszSection)
-
    {
+
       ASSERT(pszSection != nullptr);
 
-
       HKEY hSectionKey = nullptr;
+
       HKEY hAppKey = GetAppRegistryKey();
+
       if (hAppKey == nullptr)
+      {
+
          return nullptr;
 
-      ::u32 dw;
+      }
+
+      DWORD dw;
+
       RegCreateKeyExW(hAppKey, wstring(pszSection), 0, REG_NONE, REG_OPTION_NON_VOLATILE, KEY_WRITE | KEY_READ, nullptr, &hSectionKey, &dw);
 
       RegCloseKey(hAppKey);
+
       return hSectionKey;
+
    }
+
 
 #endif
 

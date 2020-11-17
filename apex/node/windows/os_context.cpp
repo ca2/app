@@ -8,6 +8,7 @@
 #include <shobjidl.h>
 #include "apex/const/id.h"
 #include "_node_windows_private.h"
+#include "acme/os/windows/_windows.h"
 
 
 CREDUIAPI
@@ -92,7 +93,7 @@ namespace windows
          TRACELASTERROR();
          return false;
       }
-      if (get_last_error() == ERROR_NOT_ALL_ASSIGNED)
+      if (GetLastError() == ERROR_NOT_ALL_ASSIGNED)
       {
          return false;
       }
@@ -108,7 +109,7 @@ namespace windows
          TRACELASTERROR();
          return false;
       }
-      if (get_last_error() == ERROR_NOT_ALL_ASSIGNED)
+      if (GetLastError() == ERROR_NOT_ALL_ASSIGNED)
       {
          return false;
       }
@@ -122,7 +123,7 @@ namespace windows
       /*if (!ExitWindowsEx(EWX_REBOOT | EWX_FORCE,
       SHTDN_REASON_MAJOR_SOFTWARE | SHTDN_REASON_MINOR_INSTALLATION))
       {
-      u32 dwLastError = ::get_last_error();
+      u32 dwLastError = ::GetLastError();
       return false;
       }*/
       //reset the previlages
@@ -822,7 +823,7 @@ namespace windows
             TOKEN_READ,                     // Read access only
             &tokenHandle))                  // Access token handle
       {
-         u32 win32Status = get_last_error();
+         u32 win32Status = GetLastError();
          debug_print("Cannot open token handle: %d\n",win32Status);
          bOk = false;
       }
@@ -839,7 +840,7 @@ namespace windows
             sizeof(tokenInfo),        // Size of the buffer
             &bytesReturned))                // Size needed
       {
-         u32 win32Status = get_last_error();
+         u32 win32Status = GetLastError();
          debug_print("Cannot query token information: %d\n",win32Status);
          bOk = false;
       }
@@ -853,8 +854,8 @@ namespace windows
    }
    BOOL
    GetAccountSid(
-   char * SystemName,
-   char * AccountName,
+   TCHAR * SystemName,
+   TCHAR * AccountName,
    PSID *Sid
    )
    {
@@ -876,7 +877,7 @@ namespace windows
                   cbSid
                   )) == nullptr) __leave;
 
-         if((ReferencedDomain=(char *)HeapAlloc(
+         if((ReferencedDomain=(TCHAR *)HeapAlloc(
                               GetProcessHeap(),
                               0,
                               cchReferencedDomain * sizeof(TCHAR)
@@ -895,7 +896,7 @@ namespace windows
                &peUse
                ))
          {
-            if(get_last_error() == ERROR_INSUFFICIENT_BUFFER)
+            if(GetLastError() == ERROR_INSUFFICIENT_BUFFER)
             {
                //
                // reallocate memory
@@ -907,7 +908,7 @@ namespace windows
                         cbSid
                         )) == nullptr) __leave;
 
-               if((ReferencedDomain=(char *)HeapReAlloc(
+               if((ReferencedDomain=(TCHAR *)HeapReAlloc(
                                     GetProcessHeap(),
                                     0,
                                     ReferencedDomain,
@@ -1034,7 +1035,7 @@ namespace windows
       //   &cchTmpDomain,    // Size of domain name
       //   &SidUse))         // Account type
       //{
-      //   dwResult = get_last_error();
+      //   dwResult = GetLastError();
       //   debug_print("\n getCredentialsForService LookupAccountSidLocalW failed: win32 error = 0x%x\n",dwResult);
       //   return false;
       //}
@@ -1061,9 +1062,9 @@ namespace windows
             szPassword,       // User Password
             nullptr,             // Packed credentials
             &pvInAuthBlob.m_size)    // Size, in bytes, of credentials
-            && get_last_error() != ERROR_INSUFFICIENT_BUFFER)
+            && GetLastError() != ERROR_INSUFFICIENT_BUFFER)
       {
-         dwResult = get_last_error();
+         dwResult = GetLastError();
          debug_print("\n getCredentialsForService CredPackAuthenticationBufferW (1) failed: win32 error = 0x%x\n",dwResult);
          return false;
       }
@@ -1089,7 +1090,7 @@ namespace windows
             (PBYTE)pvInAuthBlob.m_p,
             &pvInAuthBlob.m_size))
       {
-         dwResult = get_last_error();
+         dwResult = GetLastError();
          debug_print("\n CredPackAuthenticationBufferW (2) failed: win32 error = 0x%x\n",dwResult);
       }
 
@@ -1145,7 +1146,7 @@ retry:
 
          if(!bOk)
          {
-            dwLastError = ::get_last_error();
+            dwLastError = ::GetLastError();
             goto retry;
          }
 
@@ -1163,7 +1164,7 @@ retry:
 
          if(!bOk)
          {
-            dwLastError = ::get_last_error();
+            dwLastError = ::GetLastError();
             goto retry;
          }
 
@@ -1183,7 +1184,7 @@ retry:
          }
          else
          {
-            dwLastError = ::get_last_error();
+            dwLastError = ::GetLastError();
             goto retry;
          }
 
@@ -1283,7 +1284,7 @@ retry:
       if(hdlSCM == 0)
       {
 
-         u32 dwLastError = ::get_last_error();
+         u32 dwLastError = ::GetLastError();
 
          return false;
 
@@ -1374,7 +1375,7 @@ retry:
 
       if(hdlSCM == 0)
       {
-         //::get_last_error()
+         //::GetLastError()
          return false;
       }
 
@@ -1402,7 +1403,7 @@ retry:
 
       if(!hdlServ)
       {
-         u32 Ret = ::get_last_error();
+         u32 Ret = ::GetLastError();
          TRACELASTERROR();
          CloseServiceHandle(hdlSCM);
          return false;
@@ -1430,7 +1431,7 @@ retry:
 
       if(hdlSCM == 0)
       {
-         //::get_last_error();
+         //::GetLastError();
          return false;
       }
 
@@ -1442,7 +1443,7 @@ retry:
 
       if(!hdlServ)
       {
-         u32 Ret = ::get_last_error();
+         u32 Ret = ::GetLastError();
          CloseServiceHandle(hdlSCM);
          if(Ret == 1060) // O serviço já não existe. Service already doesn't exist.
             return true; // do self-healing
@@ -1451,7 +1452,7 @@ retry:
 
       if(!::DeleteService(hdlServ))
       {
-         u32 Ret = ::get_last_error();
+         u32 Ret = ::GetLastError();
          CloseServiceHandle(hdlServ);
          CloseServiceHandle(hdlSCM);
          return false;
@@ -1488,7 +1489,7 @@ retry:
 
       if(hdlSCM == 0)
       {
-         //::get_last_error();
+         //::GetLastError();
          return false;
       }
 
@@ -1501,7 +1502,7 @@ retry:
       if(!hdlServ)
       {
          CloseServiceHandle(hdlSCM);
-         //Ret = ::get_last_error();
+         //Ret = ::GetLastError();
          return FALSE;
       }
 
@@ -1523,7 +1524,7 @@ retry:
 
       if(hdlSCM == 0)
       {
-         //::get_last_error();
+         //::GetLastError();
          return false;
       }
 
@@ -1534,7 +1535,7 @@ retry:
 
       if(!hdlServ)
       {
-         // Ret = ::get_last_error();
+         // Ret = ::GetLastError();
          CloseServiceHandle(hdlSCM);
          return false;
       }
@@ -1589,7 +1590,7 @@ retry:
       if((wAttr = windows_get_file_attributes(pszFileName)) == (u32)-1L)
       {
 
-         ::file::throw_os_error( (::i32)get_last_error());
+         ::file::throw_os_error( (::i32)GetLastError());
 
       }
 
@@ -1603,7 +1604,7 @@ retry:
          if (!SetFileAttributesW(wstr, (u32)status.m_attribute))
          {
 
-            ::file::throw_os_error( (::i32)get_last_error());
+            ::file::throw_os_error( (::i32)GetLastError());
 
          }
 
@@ -1647,7 +1648,7 @@ retry:
       if(hFile == INVALID_HANDLE_VALUE)
       {
 
-         ::file::throw_os_error( (::i32)::get_last_error());
+         ::file::throw_os_error( (::i32)::GetLastError());
 
       }
 
@@ -1655,14 +1656,14 @@ retry:
 
       {
 
-         ::file::throw_os_error( (::i32)::get_last_error());
+         ::file::throw_os_error( (::i32)::GetLastError());
 
       }
 
       if(!::CloseHandle(hFile))
       {
 
-         ::file::throw_os_error( (::i32)::get_last_error());
+         ::file::throw_os_error( (::i32)::GetLastError());
 
       }
 
@@ -1672,7 +1673,7 @@ retry:
          if (!::SetFileAttributesW(wstr, (u32)status.m_attribute))
          {
 
-            ::file::throw_os_error( (::i32)get_last_error());
+            ::file::throw_os_error( (::i32)GetLastError());
 
          }
 
@@ -3692,10 +3693,7 @@ HRESULT win_create_link(const widechar * pszPathObj, const widechar * pszPathLin
 }
 
 
-
-
-
-CLASS_DECL_APEX HRESULT os_create_link(::file::path pathObj, ::file::path pathLnk, string strDesc, ::file::path pathIco, int iIcon)
+CLASS_DECL_APEX ::estatus os_create_link(::file::path pathObj, ::file::path pathLnk, string strDesc, ::file::path pathIco, int iIcon)
 {
 
    wstring wstrObj(pathObj);

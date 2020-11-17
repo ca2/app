@@ -16,7 +16,7 @@ CLASS_DECL_APEX i64 get_nanos();
 CLASS_DECL_APEX ::u32 get_fast_tick_count();
 
 /// millis, int milliseconds
-inline i64 first_tick() { return nano_to_tick(first_nano()); }
+inline i64 first_millis() { return nano_to_tick(first_nano()); }
 inline i64 get_tick() { return nano_to_tick(get_nanos()); }
 
 /// millis, double milliseconds

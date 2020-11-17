@@ -11,7 +11,7 @@ namespace experience
 
 
       ::experience::frame_window * m_pframewindow;
-      millis m_tickShow;
+      millis m_millisShow;
       bool                          m_bShowAttempt;
       bool                          m_bDrag;
       point                         m_pointDrag;

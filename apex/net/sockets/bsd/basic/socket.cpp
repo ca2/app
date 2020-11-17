@@ -27,7 +27,7 @@ namespace sockets
    {
 
       m_iBindPort    = -1;
-      m_tickStart.Now();
+      m_millisStart.Now();
       m_pcallback    = nullptr;
 
    }

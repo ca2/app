@@ -2665,7 +2665,7 @@
     <ClInclude Include="primitive\primitive\runnable.h" />
     <ClInclude Include="primitive\primitive\shared_memory.h" />
     <ClInclude Include="primitive\primitive\simple_object.h" />
-    <ClInclude Include="primitive\primitive\stick.h" />
+    <ClInclude Include="primitive\primitive\smillis.h" />
     <ClInclude Include="primitive\primitive\object_meta.h" />
     <ClInclude Include="primitive\primitive\str.h" />
     <ClInclude Include="primitive\primitive\trait.h" />

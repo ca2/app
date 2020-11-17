@@ -172,7 +172,7 @@ namespace sockets
             }
             else
             {
-               m_iFirstTime = ::get_tick();
+               m_iFirstTime= ::millis::now();
             }
 #else
 

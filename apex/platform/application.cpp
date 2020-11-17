@@ -799,10 +799,10 @@ namespace apex
          }
 
          // Verry Sory for the per request overhead here for the needed information of only first request
-         if (::is_set(get_context_system()) && System.m_tickAfterApplicationFirstRequest == 0)
+         if (::is_set(get_context_system()) && System.m_millisAfterApplicationFirstRequest == 0)
          {
 
-            System.m_tickAfterApplicationFirstRequest.Now(); // cross your fingers that the first recorded is not 0, it will be cleaned up by other requests.
+            System.m_millisAfterApplicationFirstRequest.Now(); // cross your fingers that the first recorded is not 0, it will be cleaned up by other requests.
 
          }
 
@@ -1606,7 +1606,7 @@ namespace apex
 
       INFO("apex::application::term_thread");
 
-      m_tickHeartBeat.Now();
+      m_millisHeartBeat.Now();
 
       try
       {
@@ -1632,7 +1632,7 @@ namespace apex
       try
       {
 
-         m_tickHeartBeat.Now();
+         m_millisHeartBeat.Now();
 
          if(!application_pre_run())
          {
@@ -1676,7 +1676,7 @@ namespace apex
 
          }
 
-         m_tickHeartBeat.Now();
+         m_millisHeartBeat.Now();
 
          if (!os_native_bergedge_start())
          {
@@ -1908,7 +1908,7 @@ namespace apex
       try
       {
 
-         m_tickHeartBeat.Now();
+         m_millisHeartBeat.Now();
 
          application_pos_run();
 
@@ -2391,7 +2391,7 @@ namespace apex
 
 #endif
 
-      m_tickHeartBeat.Now();
+      m_millisHeartBeat.Now();
 
       try
       {
@@ -2429,7 +2429,7 @@ namespace apex
 
       }
 
-      m_tickHeartBeat.Now();
+      m_millisHeartBeat.Now();
 
       try
       {
@@ -2465,7 +2465,7 @@ namespace apex
 
       System.install_progress_add_up();
 
-      m_tickHeartBeat.Now();
+      m_millisHeartBeat.Now();
 
       try
       {
@@ -2493,7 +2493,7 @@ namespace apex
 
       }
 
-      m_tickHeartBeat.Now();
+      m_millisHeartBeat.Now();
 
       try
       {
@@ -2586,7 +2586,7 @@ namespace apex
 
       }
 
-      m_tickHeartBeat.Now();
+      m_millisHeartBeat.Now();
 
       try
       {
@@ -3343,7 +3343,7 @@ retry_license:
 
       INFO("apex::application::init_application");
 
-      m_tickHeartBeat.Now();
+      m_millisHeartBeat.Now();
 
       if (!init1())
       {
@@ -3358,7 +3358,7 @@ retry_license:
 
       //xxdebug_box("init1 ok", "init1 ok", MB_ICONINFORMATION);
 
-      m_tickHeartBeat.Now();
+      m_millisHeartBeat.Now();
 
       if (!init2())
       {
@@ -3373,7 +3373,7 @@ retry_license:
 
       //xxdebug_box("init2 ok", "init2 ok", MB_ICONINFORMATION);
 
-      m_tickHeartBeat.Now();
+      m_millisHeartBeat.Now();
 
       if (!init3())
       {
@@ -3388,7 +3388,7 @@ retry_license:
 
       //xxdebug_box("init3 ok", "init3 ok", MB_ICONINFORMATION);
 
-      m_tickHeartBeat.Now();
+      m_millisHeartBeat.Now();
 
       //dappy(string(typeid(*this).name()) + " : init3 ok : " + __str(m_iErrorCode));
 
@@ -3485,7 +3485,7 @@ retry_license:
 
       }
 
-      m_tickHeartBeat.Now();
+      m_millisHeartBeat.Now();
 
       if (!notify_init1())
       {
@@ -3604,7 +3604,7 @@ retry_license:
 
       INFO("start");
 
-      m_tickHeartBeat.Now();
+      m_millisHeartBeat.Now();
 
       return ::success;
 
@@ -5245,7 +5245,8 @@ retry_license:
       sei.lpFile = wstr.c_str();
 
       ::ShellExecuteExW(&sei);
-      ::u32 dwGetLastError = get_last_error();
+
+      DWORD dwGetLastError = GetLastError();
 
 #endif
 
@@ -6563,7 +6564,7 @@ retry_license:
 
    //   //m_bAxisInitialize1Result = false;
 
-   //   m_tickHeartBeat.Now();
+   //   m_millisHeartBeat.Now();
 
    //   if (!::apex::application::init1())
    //   {
@@ -6619,7 +6620,7 @@ retry_license:
    ::estatus application::init()
    {
 
-      m_tickHeartBeat.Now();
+      m_millisHeartBeat.Now();
 
       if (has_property("install"))
       {
@@ -6670,7 +6671,7 @@ retry_license:
 #endif
       }
 
-      m_tickHeartBeat.Now();
+      m_millisHeartBeat.Now();
 
       ensure_app_interest();
 

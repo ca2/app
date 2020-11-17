@@ -25,3 +25,8 @@ public:
 
 };
 
+
+inline secs operator "" _s(unsigned long long int u) { return (::i64) u; }
+
+
+

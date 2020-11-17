@@ -20,8 +20,8 @@ namespace userpresence
       };
 
 
-      tick m_tickLastActivity;
-      tick m_tickLastPulse;
+      millis m_millisLastActivity;
+      millis m_millisLastPulse;
       i64        m_iShortStatusWayTag;
       string         m_strLongStatus;
 

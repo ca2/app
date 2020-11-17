@@ -1801,7 +1801,7 @@ namespace str
 
          DWORD_PTR lresult = 0;
 
-         auto tickStart = ::tick::millis();
+         auto tickStart = ::millis::now();
 
          tickTimeout = max(tickTimeout, 10);
 

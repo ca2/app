@@ -18,7 +18,7 @@ namespace filemanager
 
 
       ::user::list_cache               m_listcache;
-      tick m_tickLast123Update;
+      millis m_millisLast123Update;
 
 
       operation_list_view();

@@ -72,7 +72,7 @@ namespace dynamic_source
 
 
          string         m_strServer;
-         tick           m_tick;
+         millis           m_tick;
 
 
       };
@@ -122,7 +122,7 @@ namespace dynamic_source
 
       ::crypto::rsaptra                            m_rsaptra;
 
-      tick                                         m_tickLastRsa;
+      millis                                         m_millisLastRsa;
 
 
 

@@ -531,12 +531,12 @@ namespace user
       if (m_pcombo)
       {
 
-         bool bGoingToShow = m_pcombo->m_tickShowComboList.elapsed() < 300_ms;
+         bool bGoingToShow = m_pcombo->m_millisShowComboList.elapsed() < 300_ms;
 
          if (!bGoingToShow)
          {
 
-            m_tickKillFocus.Now();
+            m_millisKillFocus.Now();
 
             m_bPendingKillFocusHiding = true;
 
@@ -554,7 +554,7 @@ namespace user
             //   if (layout().sketch().is_screen_visible())
             //   {
 
-            //      m_tickLastVisibilityChange.Now();
+            //      m_millisLastVisibilityChange.Now();
 
             //      hide();
 

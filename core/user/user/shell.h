@@ -128,7 +128,7 @@ namespace user
       index                                              m_iThread;
       ::mutex                                            m_mutexImage;
       //__pointer_array(thread)                            m_threadptra;
-      tick                                               m_tickLastMax;
+      millis                                               m_millisLastMax;
       ::u32                                              m_bMax;
       bool                                               m_bInitialized;
 

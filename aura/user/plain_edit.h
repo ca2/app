@@ -67,7 +67,7 @@ namespace user
 
       //::rect                              m_rectPadding;
       int                                 m_iDrawTextFlags;
-      millis                                m_tickLastDraw;
+      millis                                m_millisLastDraw;
       array < error >                     m_errora;
       __pointer(::message::key)           m_pmessagekeyLast;
 
@@ -94,7 +94,7 @@ namespace user
       bool                                m_bLMouseDown;
       bool                                m_bRMouseDown;
       point                               m_pointSelStart;
-      millis                                m_tickCaretPeriod;
+      millis                                m_millisCaretPeriod;
       index                               m_iLineOffset;
       string_array                             m_straLines;
       i32                                 m_y;
@@ -143,7 +143,7 @@ namespace user
       virtual void set_callback(callback* pcallback);
 
 
-      inline bool is_caret_on() const { return m_tickFocusStart.on_off(m_tickCaretPeriod); }
+      inline bool is_caret_on() const { return m_millisFocusStart.on_off(m_millisCaretPeriod); }
 
 
       virtual void get_text_composition_area(::rect & r) override;

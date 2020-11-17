@@ -114,11 +114,11 @@ namespace userex
 
       string strType = "top_view";
 
-      tick t1 = tick::now();
+      millis t1 = millis::now();
 
       ::user::split_view::_001OnDraw(pgraphics);
 
-      tick d1 = t1.elapsed();
+      millis d1 = t1.elapsed();
 
       if(d1 > 50)
       {

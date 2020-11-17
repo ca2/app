@@ -740,7 +740,7 @@ namespace core
 
       pbox->value("application_name") = strTitle;
 
-      pbox->m_tickDelay = (::u32)durationTimeout.get_total_milliseconds();
+      pbox->m_millisDelay = (::u32)durationTimeout.get_total_milliseconds();
 
       string strMatter;
 

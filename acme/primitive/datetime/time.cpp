@@ -874,6 +874,33 @@ filetime __filetime(const ::datetime::time & time)
 }
 
 
+FILETIME __FILETIME(const ::datetime::time & time)
+{
+
+   SYSTEMTIME systemtime = __SYSTEMTIME(time);
+
+   FILETIME filetime = {};
+
+   if (!SystemTimeToFileTime(&systemtime, &filetime))
+   {
+
+#ifdef WINDOWS
+
+      DWORD dwLastError = ::GetLastError();
+
+#endif
+
+      //TRACELASTERROR();
+
+      xxf_zero(filetime);
+
+   }
+
+   return filetime;
+
+}
+
+
 #endif
 
 

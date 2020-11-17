@@ -48,7 +48,7 @@ duration duration::operator + (const duration & duration) const
 }
 
 
-nanos::nanos(long double d)
+nanosecond::nanosecond(long double d)
 {
 
    raw_set((i64)(d / (1000.0 * 1000.0 * 1000.0)), (i64)fmod(d, 1000.0 * 1000.0 * 1000.0));
@@ -56,7 +56,7 @@ nanos::nanos(long double d)
 }
 
 
-micros::micros(long double d)
+microsecond::microsecond(long double d)
 {
 
    raw_set((i64)(d / (1000.0 * 1000.0)), (i64)fmod(d * 1000.0, 1000.0 * 1000.0 * 1000.0));
@@ -64,7 +64,7 @@ micros::micros(long double d)
 }
 
 
-millis::millis(long double d)
+millisecond::millisecond(long double d)
 {
 
    raw_set((i64)(d / 1000.0), (i64)fmod(d * 1000 * 1000.0, 1000.0 * 1000.0 * 1000.0));
@@ -74,12 +74,12 @@ millis::millis(long double d)
 
 
 
-duration::duration(e_duration eduration)
-{
-
-   m_eduration = eduration;
-
-}
+//duration::duration(e_duration eduration)
+//{
+//
+//   m_eduration = eduration;
+//
+//}
 
 
 
@@ -166,7 +166,7 @@ void duration::fset(long double d)
 CLASS_DECL_ACME void Sleep(const duration & duration)
 {
 
-   auto tickDuration = duration.tick_duration();
+   auto tickDuration = duration.u32_millis();
 
    ::Sleep((::u32)tickDuration);
 

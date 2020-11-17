@@ -24,8 +24,8 @@ public:
    virtual ::task_pointer & defer_start(const ::id& id, const ::procedure & procedure);
 
 
-   virtual void start_clock(enum_clock eclock, duration duration);
-   virtual void _task_clock(enum_clock eclock, duration duration);
+   virtual void start_clock(enum_clock eclock, const duration & duration);
+   virtual void _task_clock(enum_clock eclock, const duration & duration);
    virtual void on_clock(enum_clock eclock);
 
 

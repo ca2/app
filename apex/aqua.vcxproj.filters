@@ -1160,7 +1160,7 @@
     <ClInclude Include="primitive\collection\_.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\stick.h">
+    <ClInclude Include="primitive\primitive\smillis.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive\topic_text_string.h">

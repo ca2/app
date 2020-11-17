@@ -137,7 +137,7 @@ void image_frame::_001Process(::image * pimageCompose, ::image * pimageFrame, im
 
    m_pimage->create_helper_map();
 
-   pframea->m_tickTotal += m_tick;
+   pframea->m_millisTotal += m_tick;
 
 }
 

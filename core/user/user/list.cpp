@@ -568,7 +568,7 @@ namespace user
 
 #ifdef _DEBUG
 
-            auto tickStart = tick::now();
+            auto tickStart = millis::now();
 
 #endif
 
@@ -576,9 +576,9 @@ namespace user
 
 #ifdef _DEBUG
 
-            auto tickEnd = tick::now();
+            auto tickEnd = millis::now();
 
-            tick tickElapsed = tickEnd - tickStart;
+            millis tickElapsed = tickEnd - tickStart;
 
             if (tickElapsed > 100)
             {
@@ -3553,14 +3553,14 @@ namespace user
 
       m_bLButtonDown = true;
 
-      auto tickNow = ::tick::now();
+      auto tickNow = ::millis::now();
 
-      if(tickNow - m_tickLButtonDownStart2 < DBLCLKMS)
+      if(tickNow - m_millisLButtonDownStart2 < DBLCLKMS)
       {
 
-         m_tickLButtonDownStart1 = m_tickLButtonDownStart2;
+         m_millisLButtonDownStart1 = m_millisLButtonDownStart2;
 
-         m_tickLButtonDownStart2 = tickNow;
+         m_millisLButtonDownStart2 = tickNow;
 
          m_pointLButtonDown1 = m_pointLButtonDown2;
 
@@ -3569,10 +3569,10 @@ namespace user
          m_iClick = 2;
 
       }
-      else if(tickNow - m_tickLButtonDownStart1 < DBLCLKMS)
+      else if(tickNow - m_millisLButtonDownStart1 < DBLCLKMS)
       {
 
-         m_tickLButtonDownStart2 = tickNow;
+         m_millisLButtonDownStart2 = tickNow;
 
          m_pointLButtonDown2 = point;
 
@@ -3582,7 +3582,7 @@ namespace user
       else
       {
 
-         m_tickLButtonDownStart1 = tickNow;
+         m_millisLButtonDownStart1 = tickNow;
 
          m_pointLButtonDown1 = point;
 
@@ -3604,14 +3604,14 @@ namespace user
       if (dynamic_cast <list *>(this) == nullptr)
       {
 
-         auto tickNow = ::tick::now();
+         auto tickNow = ::millis::now();
 
-         if (tickNow - m_tickLButtonDownStart2 < DBLCLKMS)
+         if (tickNow - m_millisLButtonDownStart2 < DBLCLKMS)
          {
 
-            m_tickLButtonDownStart1 = m_tickLButtonDownStart2;
+            m_millisLButtonDownStart1 = m_millisLButtonDownStart2;
 
-            m_tickLButtonDownStart2 = tickNow;
+            m_millisLButtonDownStart2 = tickNow;
 
             m_pointLButtonDown1 = m_pointLButtonDown2;
 
@@ -3620,10 +3620,10 @@ namespace user
             m_iClick = 2;
 
          }
-         else if (tickNow - m_tickLButtonDownStart1 < DBLCLKMS)
+         else if (tickNow - m_millisLButtonDownStart1 < DBLCLKMS)
          {
 
-            m_tickLButtonDownStart2 = tickNow;
+            m_millisLButtonDownStart2 = tickNow;
 
             m_pointLButtonDown2 = point;
 
@@ -3633,7 +3633,7 @@ namespace user
          else
          {
 
-            m_tickLButtonDownStart1 = tickNow;
+            m_millisLButtonDownStart1 = tickNow;
 
             m_pointLButtonDown1 = point;
 
@@ -6224,7 +6224,7 @@ namespace user
    bool list::Filter1Step()
    {
 
-      auto tickIn = ::tick::now();
+      auto tickIn = ::millis::now();
 
       TRACE("list::Filter1Step");
 
@@ -6297,7 +6297,7 @@ namespace user
 
       set_need_redraw();
 
-      auto tickOut = ::tick::now();
+      auto tickOut = ::millis::now();
 
       TRACE("tickOut = " __prtick, __pr(tickOut));
       TRACE("(delta) = " __prtick, __pr(tickOut - tickIn));

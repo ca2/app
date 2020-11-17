@@ -570,8 +570,8 @@ namespace user
 
 } // namespace user
 
+#include "aura/os/_user.h"
 
-#include "imm_client.h"
 
 
 //#include "aura/user/rich_text/edit.h"

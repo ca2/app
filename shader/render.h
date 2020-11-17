@@ -24,7 +24,7 @@ namespace app_shader
       ::image_pointer                     m_pimage1;
       ::image_pointer                     m_pimage2;
       ::hls                               m_hlsText;
-      ::millis                              m_tickStart;
+      ::millis                              m_millisStart;
       ::gpu::enum_shader_source           m_eshadersource;
 
       render();

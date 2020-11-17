@@ -19,8 +19,8 @@
 #define new ACME_NEW
 
 ::point g_pointX11Cursor;
-//::tick g_tickLastMouseMove;
-//::tick g_tickLastX11WindowConfigurationCheck;
+//::millis g_tickLastMouseMove;
+//::millis g_tickLastX11WindowConfigurationCheck;
 
 
 //void _x11_defer_check_configuration(oswindow oswindow);
@@ -3191,7 +3191,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e, XGenericEventC
          if(pinteraction.is_set())
          {
 
-            if(pinteraction->m_tickMouseMove.elapsed() < pinteraction->m_tickMouseMoveIgnore)
+            if(pinteraction->m_millisMouseMove.elapsed() < pinteraction->m_millisMouseMoveIgnore)
             {
 
                bOk = false;
@@ -3201,7 +3201,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e, XGenericEventC
             if(bOk)
             {
 
-               pinteraction->m_tickMouseMove.Now();
+               pinteraction->m_millisMouseMove.Now();
 
                pinteraction->m_pointMouseMove.x = e.xmotion.x_root;
 
@@ -3210,13 +3210,13 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e, XGenericEventC
                if(false)
                {
 
-                  if(pinteraction->m_tickMouseMovePeriod > 0)
+                  if(pinteraction->m_millisMouseMovePeriod > 0)
                   {
 
                      ::size sizeDistance((pinteraction->m_pointMouseMoveSkip.x - pinteraction->m_pointMouseMove.x),
                         (pinteraction->m_pointMouseMoveSkip.y - pinteraction->m_pointMouseMove.y));
 
-                     if(!pinteraction->m_tickMouseMoveSkip.timeout(pinteraction->m_tickMouseMovePeriod)
+                     if(!pinteraction->m_millisMouseMoveSkip.timeout(pinteraction->m_millisMouseMovePeriod)
                         && sizeDistance.cx * sizeDistance.cx + sizeDistance.cy * sizeDistance.cy < pinteraction->m_iMouseMoveSkipSquareDistance)
                      {
 
@@ -5081,8 +5081,8 @@ void x11_store_name(oswindow oswindow, const char * pszName)
 //
 //   auto point = rect.top_left();
 //
-//   tick tickLastMoveDiff = pinteraction->value("tickLastMoveDiff").i64();
-//   tick tickLastSizeDiff = pinteraction->value("tickLastSizeDiff").i64();
+//   millis tickLastMoveDiff = pinteraction->value("tickLastMoveDiff").i64();
+//   millis tickLastSizeDiff = pinteraction->value("tickLastSizeDiff").i64();
 //   bool bMoveDiff = pinteraction->value("bMoveDiff").get_bool();
 //   bool bSizeDiff = pinteraction->value("bsizeDiff").get_bool();
 //

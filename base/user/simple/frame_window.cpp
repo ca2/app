@@ -220,7 +220,7 @@ void simple_frame_window::_task_save_window_rect()
 
          }
 
-         if (m_tickLastSaveWindowRectRequest.elapsed() < 300_ms)
+         if (m_millisLastSaveWindowRectRequest.elapsed() < 300_ms)
          {
 
             Sleep(150_ms);
@@ -234,7 +234,7 @@ void simple_frame_window::_task_save_window_rect()
 
                _thread_save_window_placement();
 
-               m_tickLastSaveWindowRect.Now();
+               m_millisLastSaveWindowRect.Now();
 
             }
             catch (...)
@@ -243,7 +243,7 @@ void simple_frame_window::_task_save_window_rect()
             }
 
          }
-         else if (m_tickLastSaveWindowRect.elapsed() > 10_s)
+         else if (m_millisLastSaveWindowRect.elapsed() > 10_s)
          {
 
             break;
@@ -283,7 +283,7 @@ void simple_frame_window::defer_save_window_placement()
 
    m_bPendingSaveWindowRect = true;
 
-   m_tickLastSaveWindowRectRequest.Now();
+   m_millisLastSaveWindowRectRequest.Now();
 
    defer_start_task("save_window_rect", __procedure([this]()
       {
@@ -435,7 +435,7 @@ void simple_frame_window::_thread_save_window_placement()
 
       }
 
-      if (m_tickLastSaveWindowRect.elapsed() < 300)
+      if (m_millisLastSaveWindowRect.elapsed() < 300)
       {
 
          continue;
@@ -1022,7 +1022,7 @@ void simple_frame_window::_001OnSize(::message::message * pmessage)
 
    UNREFERENCED_PARAMETER(pmessage);
 
-   //m_tickLastVisualChange.Now();
+   //m_millisLastVisualChange.Now();
 
    //if (GetParent() == nullptr)
    //{
@@ -1039,7 +1039,7 @@ void simple_frame_window::_001OnMove(::message::message * pmessage)
 
    UNREFERENCED_PARAMETER(pmessage);
 
-   m_tickLastVisualChange.Now();
+   m_millisLastVisualChange.Now();
 
 
 }
@@ -1124,7 +1124,7 @@ void simple_frame_window::on_layout(::draw2d::graphics_pointer & pgraphics)
 
    }
 
-   m_tickLastVisualChange.Now();
+   m_millisLastVisualChange.Now();
 
 
 }
@@ -1142,7 +1142,7 @@ void simple_frame_window::on_reposition()
 
    ::user::frame_window::on_reposition();
 
-   m_tickLastVisualChange.Now();
+   m_millisLastVisualChange.Now();
 
 
 }

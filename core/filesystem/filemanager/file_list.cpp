@@ -1394,10 +1394,10 @@ namespace filemanager
    //   {
    //   case MessageMainPostCreateImageListItemStepSetRedraw:
    //   {
-   //      tick tickNow = ::get_tick();
-   //      if (tickNow - m_tickLastRedraw > 784)
+   //      millis tickNow= ::millis::now();
+   //      if (tickNow - m_millisLastRedraw > 784)
    //      {
-   //         m_tickLastRedraw = tickNow;
+   //         m_millisLastRedraw = tickNow;
    //         set_need_redraw();
    //      }
    //   }

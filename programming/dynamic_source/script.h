@@ -55,14 +55,14 @@ namespace dynamic_source
       filetime                        m_ftDs;
 
       bool                             m_bLastVersionCheck;
-      tick m_tickLastVersionCheck;
+      millis m_millisLastVersionCheck;
       ::file::path                     m_strSourcePath;
       ::file::path                     m_strSourceDir;
       ::file::path                     m_strCppPath;
       ::file::path                     m_strScriptPath;
       //::file::path                     m_strBuildBat;
       manual_reset_event               m_evCreationEnabled;
-      tick m_tickLastBuildTime;
+      millis m_millisLastBuildTime;
       bool                             m_bShouldBuild;
       bool                             m_bShouldCalcTempError;
       bool                             m_bHasTempError;

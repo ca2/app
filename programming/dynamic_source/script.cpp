@@ -89,12 +89,12 @@ namespace dynamic_source
    bool ds_script::DoesMatchVersion()
    {
 
-      if(m_tickLastVersionCheck.elapsed() < (5000))
+      if(m_millisLastVersionCheck.elapsed() < (5000))
       {
          return m_bLastVersionCheck;
       }
 
-      m_tickLastVersionCheck = ::get_tick();
+      m_millisLastVersionCheck= ::millis::now();
 
       sync_lock sl(mutex());
 
@@ -155,7 +155,7 @@ namespace dynamic_source
    bool ds_script::HasTimedOutLastBuild()
    {
       sync_lock sl(mutex());
-      return (m_tickLastBuildTime.elapsed()) >
+      return (m_millisLastBuildTime.elapsed()) >
              (m_pmanager->m_iBuildTimeWindow + __random(0, m_pmanager->m_iBuildTimeRandomWindow));
    }
 
@@ -427,7 +427,7 @@ namespace dynamic_source
 
       pinstance->m_pscript2 = this;
 
-      pinstance->m_dwCreate = ::tick::now().u32();
+      pinstance->m_dwCreate = ::millis::now().u32();
 
       if (m_bNew)
       {
@@ -525,7 +525,7 @@ namespace dynamic_source
 
       }
 
-      m_tickLastBuildTime = ::get_tick();
+      m_millisLastBuildTime= ::millis::now();
 
       m_ft = get_filetime(m_strSourcePath);
 

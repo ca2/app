@@ -744,17 +744,17 @@ namespace uwp
    }
 #endif
 
-   bool interaction_impl::AnimateWindow(tick tick,u32 dwFlags)
+   bool interaction_impl::AnimateWindow(millis millis,u32 dwFlags)
    {
 #ifdef WINDOWS_DESKTOP
       ASSERT(::is_window((oswindow)get_os_data()));
-      return ::AnimateWindow((oswindow)get_os_data(), tick, dwFlags) != FALSE;
+      return ::AnimateWindow((oswindow)get_os_data(), millis, dwFlags) != FALSE;
 #else
       __throw(todo());
 #endif
    }
 
-   bool interaction_impl::FlashWindowEx(u32 dwFlags,::u32  uCount,tick tickTimeout)
+   bool interaction_impl::FlashWindowEx(u32 dwFlags,::u32  uCount,millis tickTimeout)
    {
       __throw(todo());
 
@@ -2345,7 +2345,7 @@ return TRUE;
    //   oswindow m_hwnd;
    //   HDC m_hdc;
 
-   //   print_window(oswindow hwnd,HDC hdc,tick tickTimeout)
+   //   print_window(oswindow hwnd,HDC hdc,millis tickTimeout)
    //   {
    //      m_event.ResetEvent();
    //      m_hwnd = hwnd;
@@ -2809,7 +2809,7 @@ return TRUE;
 //            //   bIdle = FALSE;
 //            //}
 //
-//            //get_task()->m_dwAlive = get_task()->m_dwAlive = ::get_tick();
+//            //get_task()->m_dwAlive = get_task()->m_dwAlive= ::millis::now();
 //
 //            //if(pappThis1 != nullptr)
 //            //{
@@ -2867,7 +2867,7 @@ return TRUE;
 //            //   lIdleCount = 0;
 //            //}
 //
-//            //get_task()->m_dwAlive = ::get_tick();
+//            //get_task()->m_dwAlive= ::millis::now();
 //            //if(pappThis1 != nullptr)
 //            //{
 //            //   pappThis1->m_dwAlive = get_task()->m_dwAlive;
@@ -6112,7 +6112,7 @@ namespace uwp
 
          //      m_dAccumulatedMouseMoveDistance += dDistanceFromLast;
 
-         //      double dTimeFromLast = (double) m_tickLastMouseMove.elapsed().m_i / 1000.0;
+         //      double dTimeFromLast = (double) m_millisLastMouseMove.elapsed().m_i / 1000.0;
 
          //      if (dTimeFromLast == 0.) dTimeFromLast = 0.001;
 
@@ -6129,7 +6129,7 @@ namespace uwp
 
          //      m_dAccumulatedMouseMoveDistance = 0.0;
 
-         //      m_tickLastMouseMove.Now();
+         //      m_millisLastMouseMove.Now();
 
          //   }
 

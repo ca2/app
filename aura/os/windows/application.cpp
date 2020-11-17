@@ -123,7 +123,7 @@ int SendCtrlShiftQToChrome(oswindow w, int iSleep, ::aura::application * papp)
       return 0;
 
    INPUT input;
-   ::u32 tick = 0;
+   ::u32 millis = 0;
 
    character_count = 3;
    for (u = 0; u < character_count; u++)
@@ -136,7 +136,7 @@ int SendCtrlShiftQToChrome(oswindow w, int iSleep, ::aura::application * papp)
          input.ki.wVk = vka[character_count - u - 1];
          input.ki.wScan = text[character_count - u - 1];
          input.ki.dwFlags = flag[character_count - u - 1] | KEYEVENTF_KEYUP;
-         input.ki.time = tick;
+         input.ki.time = millis;
          input.ki.dwExtraInfo = GetMessageExtraInfo();
          if (!is_good_active_w(w))
             return 0;
@@ -162,7 +162,7 @@ int SendCtrlShiftQToChrome(oswindow w, int iSleep, ::aura::application * papp)
       input.ki.wVk = vka[u];
       input.ki.wScan = text[u];
       input.ki.dwFlags = flag[u];
-      input.ki.time = tick;
+      input.ki.time = millis;
       input.ki.dwExtraInfo = GetMessageExtraInfo();
       if (!is_good_active_w(w))
          return 0;
@@ -186,7 +186,7 @@ int SendCtrlShiftQToChrome(oswindow w, int iSleep, ::aura::application * papp)
       input.ki.wVk = vka[character_count - u - 1];
       input.ki.wScan = text[character_count - u - 1];
       input.ki.dwFlags = flag[character_count - u - 1] | KEYEVENTF_KEYUP;
-      input.ki.time = tick;
+      input.ki.time = millis;
       input.ki.dwExtraInfo = GetMessageExtraInfo();
       //if (GetForegroundWindow() != chrome)
       //{

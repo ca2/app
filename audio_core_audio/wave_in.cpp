@@ -472,7 +472,7 @@ namespace multimedia
 
          m_iBuffer--;
 
-         auto tickSampleTime = ::tick::now();
+         auto tickSampleTime = ::millis::now();
 
          int iBuffer = (int) m_Buffers.find_first(inBuffer);
 

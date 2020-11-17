@@ -15,7 +15,7 @@ namespace userfs
       index                      m_iNameSubItemText;
       index                      m_iSelectionSubItem;
       index                      m_iSizeSubItem;
-      tick m_tickLastFileSizeGet;
+      millis m_millisLastFileSizeGet;
 
       list_item_array            m_itema;
 

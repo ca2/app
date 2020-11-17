@@ -215,7 +215,7 @@ namespace user
       m_iViewSize = 0;
       m_bLMouseDown = false;
       m_bRMouseDown = false;
-      m_tickCaretPeriod = 1000;
+      m_millisCaretPeriod = 1000;
 
 
 
@@ -352,7 +352,7 @@ namespace user
    void plain_edit::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      m_tickLastDraw = ::get_tick();
+      m_millisLastDraw= ::millis::now();
 
       millis t1 = millis::millis();
 
@@ -5220,7 +5220,7 @@ finished_update:
       if (iTimer == 0)
       {
 
-         if (has_focus() && is_window_visible())// && m_tickLastDraw.elapsed() > m_tickCaretPeriod / 8)
+         if (has_focus() && is_window_visible())// && m_millisLastDraw.elapsed() > m_millisCaretPeriod / 8)
          {
 
             if (is_different(m_bLastCaret, is_caret_on()))
@@ -5238,7 +5238,7 @@ finished_update:
 
          //if(m_dwFocusStart + m_dwCaretTime < ::get_tick())
          //{
-         // auto m_tickFocusStart = ::millis::now();
+         // auto m_millisFocusStart = ::millis::now();
          //   m_bCaretOn = !m_bCaretOn;
          //   //set_need_redraw();
          //   set_need_redraw();

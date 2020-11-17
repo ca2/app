@@ -144,7 +144,7 @@ namespace fs
       //      if(pchild->get_name() != "folder")
       //         continue;
 
-      //      m_mapdirTimeout[listing.m_pathUser] = ::get_tick() + (15 * 1000);
+      //      m_mapdirTimeout[listing.m_pathUser]= ::millis::now() + (15 * 1000);
 
       //      m_mapfileTimeout.remove_key(listing.m_pathUser);
 
@@ -168,7 +168,7 @@ namespace fs
       //      if(pchild->get_name() != "file")
       //         continue;
 
-      //      m_mapfileTimeout[listing.m_pathUser] = ::get_tick() + (15 * 1000);
+      //      m_mapfileTimeout[listing.m_pathUser]= ::millis::now() + (15 * 1000);
 
       //      m_mapdirTimeout.remove_key(listing.m_pathUser);
 

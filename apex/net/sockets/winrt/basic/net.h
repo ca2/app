@@ -107,7 +107,7 @@ namespace sockets
 
 
          in_addr        m_ipaddr;
-         tick           m_tickLastChecked;
+         millis           m_millisLastChecked;
          bool           m_bOk;
 
 

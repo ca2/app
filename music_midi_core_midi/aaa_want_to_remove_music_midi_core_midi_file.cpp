@@ -344,12 +344,12 @@ namespace music
 //      * smfTicksToMillisecs
 //      *
 //      * This function returns the millisecond offset into the file given the
-//      * tick offset.
+//      * millis offset.
 //      *
 //      * hSmf                      - Specifies the open MIDI file to perform
 //      *                             the conversion on.
 //      *
-//      * tkOffset                  - Specifies the tick offset into the stream
+//      * tkOffset                  - Specifies the millis offset into the stream
 //      *                             to convert.
 //      *
 //      * Returns the number of milliseconds from the start of the stream.
@@ -393,7 +393,7 @@ namespace music
 //            return (u32)muldiv32((i32) tkOffset, 1000L, dwTicksPerSec);
 //         }
 //
-//         /* Walk the tempo map and find the nearest tick position. Linearly
+//         /* Walk the tempo map and find the nearest millis position. Linearly
 //         ** calculate the rest (using MATH.ASM)
 //         */
 //
@@ -417,7 +417,7 @@ namespace music
 //         else
 //            ptempo = &m_tempomap.element_at(idx);
 //
-//         /* ptempo is the tempo map entry preceding the requested tick offset.
+//         /* ptempo is the tempo map entry preceding the requested millis offset.
 //         */
 //
 //         return ptempo->msBase + muldiv32((i32)(tkOffset - ptempo->tkTempo), ptempo->dwTempo, 1000L * m_MusicTempoTimeDivision);
@@ -429,7 +429,7 @@ namespace music
 //      *
 //      * smfMillisecsToTicks
 //      *
-//      * This function returns the nearest tick offset into the file given the
+//      * This function returns the nearest millis offset into the file given the
 //      * millisecond offset.
 //      *
 //      * hSmf                      - Specifies the open MIDI file to perform the
@@ -441,10 +441,10 @@ namespace music
 //      * Returns the number of ticks from the start of the stream.
 //      *
 //      * The conversion is performed taking into ac::count the file's time division and
-//      * tempo map from the first track. Note that the same tick value
+//      * tempo map from the first track. Note that the same millis value
 //      * might not be valid at a later time if the tempo track is rewritten.
-//      * If the millisecond value does not exactly map to a tick value, then
-//      * the tick value will be rounded down.
+//      * If the millisecond value does not exactly map to a millis value, then
+//      * the millis value will be rounded down.
 //      *
 //      *****************************************************************************/
 //      imedia_time file::MillisecsToTicks(imedia_time msOffset)
@@ -496,7 +496,7 @@ namespace music
 //         }
 //         ptempo = &m_tempomap.element_at(--idx);
 //
-//         /* ptempo is the tempo map entry preceding the requested tick offset.
+//         /* ptempo is the tempo map entry preceding the requested millis offset.
 //         */
 //
 //         tkOffset = ptempo->tkTempo + muldiv32((i32) msOffset-ptempo->msBase, 1000L * m_MusicTempoTimeDivision, ptempo->dwTempo);
@@ -1478,7 +1478,7 @@ namespace music
 //      *
 //      * pSmf                      - Specifies the file to read data from.
 //      *
-//      * tkDelta                   - Specfices the tick delta for the data.
+//      * tkDelta                   - Specfices the millis delta for the data.
 //      *
 //      * lpmh                      - Contains information about the buffer to fill.
 //      *
@@ -1589,7 +1589,7 @@ namespace music
 //      * bus to bring the state up to date.
 //      *
 //      * The buffer is mean to be sent as a streaming buffer; i.e. immediately
-//      * followed by the first data buffer. If the requested tick position
+//      * followed by the first data buffer. If the requested millis position
 //      * does not exist in the file, the last event in the buffer
 //      * will be a MEVT_NOP with a delta time calculated to make sure that
 //      * the next stream event plays at the proper time.
@@ -1969,7 +1969,7 @@ namespace music
 //
 //         /* File looks OK. Now preparse, doing the following:
 //         ** (1) Build tempo map so we can convert to/from ticks quickly
-//         ** (2) Determine actual tick length of file
+//         ** (2) Determine actual millis length of file
 //         ** (3) Validate all events in all tracks
 //         */
 //         m_ptracks->m_tkPosition = 0;

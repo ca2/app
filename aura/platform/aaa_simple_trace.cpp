@@ -29,23 +29,6 @@ CLASS_DECL_AURA void __simple_tracev(::matter * pobjectContext, e_trace_level el
 //}
 
 
-void TRACELASTERROR()
-{
-
-   auto error = ::get_last_error();
-
-   if (!error)
-   {
-
-      return;
-
-   }
-
-   string strErrorMessage = ::get_system_error_message(error);
-
-   TRACE("Error Message :\n%s\n", strErrorMessage.c_str());
-
-}
 
 
 string FormatMessageFromSystem(u32 dwError)

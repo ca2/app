@@ -30,8 +30,10 @@ inline micros & micros::operator = (const nanos & nanos) { m_iMicroseconds = nan
 
 inline millis & millis::operator = (const nanos & nanos) { m_iMilliseconds = nanos.m_iNanoseconds / 1'000'000; return *this; }
 
-
 inline secs & secs::operator = (const nanos & nanos) { m_iSeconds = nanos.m_iNanoseconds / 1'000'000'000; return *this; }
+
+
+inline nanos operator "" _ns(unsigned long long int u) { return (::i64) u; }
 
 
 

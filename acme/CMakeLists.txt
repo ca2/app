@@ -387,8 +387,6 @@ list(APPEND acme_source
     const/thread.h
     const/timer.h
     const/_const.h
-    exception/aaa_want_to_remove_exception_verisimple.h
-    exception/aaa_want_to_remove_memory_state.h
     exception/assert.h
     exception/base.h
     exception/callstack.h
@@ -582,16 +580,6 @@ list(APPEND acme_source
     multithreading/_impl.h
     multithreading/_thread_os_create_impl.h
     multithreading/_types.h
-    node/android/aaa_dir_context.h
-    node/android/aaa_dir_system.h
-    node/android/aaa_file_context.h
-    node/android/aaa_file_system.h
-    node/android/aaa_host_interaction.h
-    node/android/aaa_os_context.h
-    node/android/aaa_shell.h
-    node/android/aaa_want_to_move_from_here_file_watcher.h
-    node/android/aaa_want_to_remove_shell.h
-    node/android/aaa_want_to_remove_stdio_file.h
     node/android/android1.h
     node/android/application.h
     node/android/buffer.h
@@ -604,16 +592,9 @@ list(APPEND acme_source
     node/android/thread.h
     node/android/_.h
     node/android/_android.h
-    node/apple/aaa_process.h
     node/serial.h
     node/_.h
     node/_node.h
-    os/android/aaa_cairo_keep.h
-    os/android/aaa_view_bitmap.h
-    os/android/aaa_vsnord_native_app_glue.h
-    os/android/aaa_want_to_remove_android_window_impl.h
-    os/android/aaa_windowing.h
-    os/android/aaa_window_android.h
     os/android/cross_win_file.h
     os/android/cross_win_gdi.h
     os/android/cross_win_gdi_internal.h
@@ -660,8 +641,6 @@ list(APPEND acme_source
     os/console.h
     os/file.h
     os/graphics.h
-    os/cross/windows/user.cpp
-    os/cross/windows/datetime.cpp
     os/ios/base_internal.h
     os/ios/cross_win_gdi.h
     os/ios/exception_engine.h
@@ -708,8 +687,6 @@ list(APPEND acme_source
     os/thread.h
     os/time.h
     os/user.h
-    os/uwp/aaa_oswindow.h
-    os/uwp/aaa_want_to_remove_window_impl.h
     os/uwp/base_file.h
     os/uwp/exception_engine.h
     os/uwp/file_winrt.h
@@ -725,12 +702,6 @@ list(APPEND acme_source
     os/uwp/_.h
     os/uwp/_uwp.h
     os/uwp/_winrt.h
-    os/windows/aaa_want_to_remove_ansios/ansios.h
-    os/windows/aaa_want_to_remove_ansios/ansios_file.h
-    os/windows/aaa_want_to_remove_ansios/ansios_multithreading.h
-    os/windows/aaa_want_to_remove_ansios/ansios_serial.h
-    os/windows/aaa_want_to_remove_ansios/ansios_thread.h
-    os/windows/aaa_want_to_remove_process_env_reader.h
     os/windows/api.h
     os/windows/callstack.h
     os/windows/d2d1_1.h
@@ -785,9 +756,6 @@ list(APPEND acme_source
     os/_impl.h
     os/_os.h
     os/_user.h
-    platform/aaa_history.h
-    platform/aaa_update.h
-    platform/aaa_update_item.h
     platform/acme_str_pool.h
     platform/all.h
     platform/aura_aura.h
@@ -860,7 +828,6 @@ list(APPEND acme_source
     platform/_platform.h
     primitive/api/api.h
     primitive/api/api_rotate.h
-    primitive/collection/aaa_want_to_remove_papaya_array_decl.h
     primitive/collection/address_array.h
     primitive/collection/array.h
     primitive/collection/array_base.h
@@ -1027,17 +994,6 @@ list(APPEND acme_source
     primitive/math/value.h
     primitive/math/_.h
     primitive/math/_impl.h
-    primitive/primitive/aaa_command_line.h
-    primitive/primitive/aaa_launch.h
-    primitive/primitive/aaa_want_to_remove_app_object.h
-    primitive/primitive/aaa_want_to_remove_array.h
-    primitive/primitive/aaa_want_to_remove_context_object.h
-    primitive/primitive/aaa_want_to_remove_object.h
-    primitive/primitive/aaa_want_to_remove_pointer1.h
-    primitive/primitive/aaa_want_to_remove_relation_set.h
-    primitive/primitive/aaa_want_to_remove_stick.h
-    primitive/primitive/aaa_want_to_remove_topic_text_string.h
-    primitive/primitive/aaa_want_to_remove_transport_object.h
     primitive/primitive/action.h
     primitive/primitive/action_context.h
     primitive/primitive/application_bias.h
@@ -1121,15 +1077,6 @@ list(APPEND acme_source
     primitive/primitive/_papaya.h
     primitive/primitive/_papaya_impl.h
     primitive/primitive/_var_impl.h
-    primitive/string/aaa_international_locale_schema.h
-    primitive/string/aaa_want_to_remove_001.h
-    primitive/string/aaa_want_to_remove_char_traits.h
-    primitive/string/aaa_want_to_remove_str_ch_class.h
-    primitive/string/aaa_want_to_remove_str_str.h
-    primitive/string/aaa_want_to_remove_str_str3.h
-    primitive/string/aaa_want_to_remove_str_tokenizer.h
-    primitive/string/aaa_want_to_remove_str_wstring.h
-    primitive/string/aaa_want_to_remove_str_x.h
     primitive/string/base64.h
     primitive/string/bstr.h
     primitive/string/bstring.h
@@ -1215,7 +1162,6 @@ list(APPEND acme_source
     process/process_pipe.h
     template/list.h
     update.h
-    user/aaa_action_item_exchange.h
     user/os_colors.h
     user/_.h
     user/_const.h
@@ -1261,33 +1207,6 @@ if(UWP)
         os/uwp/user.cpp)
 
     list(APPEND acme_source
-        node/uwp/aaa_application.h
-        node/uwp/aaa_buffer.h
-        node/uwp/aaa_command.h
-        node/uwp/aaa_copydesk.h
-        node/uwp/aaa_directx.h
-        node/uwp/aaa_directx_application.h
-        node/uwp/aaa_directx_impact.h
-        node/uwp/aaa_directx_interaction.h
-        node/uwp/aaa_dir_context.h
-        node/uwp/aaa_dir_system.h
-        node/uwp/aaa_file_context.h
-        node/uwp/aaa_file_system.h
-        node/uwp/aaa_file_watcher.h
-        node/uwp/aaa_implementation.h
-        node/uwp/aaa_internal.h
-        node/uwp/aaa_metrowin1.h
-        node/uwp/aaa_os.h
-        node/uwp/aaa_pen.h
-        node/uwp/aaa_printer.h
-        node/uwp/aaa_registry.h
-        node/uwp/aaa_shell.h
-        node/uwp/aaa_shell_uwp.h
-        node/uwp/aaa_thread.h
-        node/uwp/aaa_tts_speaker.h
-        node/uwp/aaa_uac_tools.h
-        node/uwp/aaa_want_to_remove_folder_watch.h
-        node/uwp/aaa_want_to_remove_stdio_file.h
         node/uwp/exception.h
         node/uwp/factory_exchange.h
         node/uwp/file.h
@@ -1348,8 +1267,6 @@ if(WIN32)
         os/windows/windowing.cpp)
 
     list(APPEND acme_source
-        node/windows/aaa_stdio_file.h
-        node/windows/aaa_tts_speaker.h
         node/windows/base/factory_exchange.h
         node/windows/base/implementation.h
         node/windows/base/print_job.h
@@ -1372,6 +1289,9 @@ if(WIN32)
 else()
 
     list(APPEND acme_source
+        os/cross/windows/user.cpp
+        os/cross/windows/datetime.cpp
+
         #os/cross/windows/crt.cpp
         #os/cross/windows/crt_debug.cpp
             #os/cross/windows/datetime.cpp
@@ -1476,23 +1396,12 @@ if(LINUX)
         os/linux/win_base.cpp)
 
     list(APPEND acme_source
-        node/linux/aaa_copydesk.h
-        node/linux/aaa_dir_context.h
-        node/linux/aaa_dir_system.h
-        node/linux/aaa_file_context.h
-        node/linux/aaa_file_system.h
-        node/linux/aaa_interaction_impl.h
-        node/linux/aaa_os_context.h
-        node/linux/aaa_process.h
-        node/linux/aaa_want_to_remove_application.h
         node/linux/application.h
         node/linux/console.h
         node/linux/factory_exchange.h
         node/linux/file.h
         node/linux/internal.h
         node/linux/root_tools.h
-        #node/linux/shell.h
-        #node/linux/shell_linux.h
         node/linux/stdio_file.h
         node/linux/thread.h
         node/linux/_.h
@@ -1512,22 +1421,6 @@ if(LINUX)
         os/linux/_c.h
         os/linux/_linux.h
         os/linux/_user.h
-        os/linux/___aaa/aaa_desktop_file.h
-        os/linux/___aaa/aaa_gnome.h
-        os/linux/___aaa/aaa_gnome_gnome.h
-        os/linux/___aaa/aaa_gnome_internal_glue.h
-        os/linux/___aaa/aaa_gnome_shared.h
-        os/linux/___aaa/aaa_graphics.h
-        os/linux/___aaa/aaa_graphics2.h
-        os/linux/___aaa/aaa_osdisplay.h
-        os/linux/___aaa/aaa_oswindow.h
-        os/linux/___aaa/aaa_windowing.h
-        os/linux/___aaa/aaa_window_cairo.h
-        os/linux/___aaa/aaa_window_xlib.h
-        os/linux/___aaa/aaa_x11.h
-        os/linux/___aaa/aaa_xdisplay.h
-        os/linux/___aaa/appindicator.h
-        os/linux/___aaa/bloat_pad.h
         )
 endif()
 
@@ -1657,13 +1550,6 @@ if(IOS)
             )
 
     list(APPEND acme_source
-            node/ios/aaa_application.h
-            node/ios/aaa_dir_context.h
-            node/ios/aaa_dir_system.h
-            node/ios/aaa_file_context.h
-            node/ios/aaa_file_os_watcher.h
-            node/ios/aaa_file_system.h
-            node/ios/aaa_host_interaction.h
             node/ios/factory_exchange.h
             node/ios/file.h
             node/ios/implementation.h
@@ -1794,9 +1680,6 @@ if(LINUX OR APPLE OR SOLARIS)
         )
 
     list(APPEND acme_source
-            node/posix/aaa_file_os_watcher.h
-            node/posix/aaa_want_to_remove_ansios.h
-            node/posix/aaa_want_to_remove_ansios_thread_impl.h
             node/posix/pipe.h
             node/posix/serial.h
             node/posix/_posix.h

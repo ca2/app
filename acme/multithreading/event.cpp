@@ -905,7 +905,7 @@ bool event::lock(const duration & durationTimeout)
 //
 //      u32 timeout = durationTimeout.u32_millis();
 //
-//      u32 start = ::get_tick();
+//      u32 start= ::millis::now();
 //
 //      while(start.elapsed() < timeout)
 //      {

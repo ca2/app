@@ -16,10 +16,10 @@ CLASS_DECL_ACME bool __simple_task_sleep()
 }
 
 
-CLASS_DECL_ACME bool __simple_task_sleep(millis tick)
+CLASS_DECL_ACME bool __simple_task_sleep(millis millis)
 {
 
-   auto i = tick.m_iMilliseconds;
+   auto i = millis.m_iMilliseconds;
 
    while (i > 300)
    {
@@ -71,10 +71,10 @@ CLASS_DECL_ACME bool __simple_task_sleep(sync* psync)
 }
 
 
-CLASS_DECL_ACME bool __simple_task_sleep(millis tick, sync* psync)
+CLASS_DECL_ACME bool __simple_task_sleep(millis millis, sync* psync)
 {
 
-   auto i = tick.m_iMilliseconds;
+   auto i = millis.m_iMilliseconds;
 
    while (i > 300)
    {
@@ -116,13 +116,13 @@ CLASS_DECL_ACME bool __simple_task_sleep(millis tick, sync* psync)
 }
 
 
-CLASS_DECL_ACME bool acme_task_sleep(millis tick, sync* psync)
+CLASS_DECL_ACME bool acme_task_sleep(millis millis, sync* psync)
 {
 
    if (::is_null(psync))
    {
 
-      if (__os(tick) == U32_INFINITE_TIMEOUT)
+      if (__os(millis) == U32_INFINITE_TIMEOUT)
       {
 
          return __simple_task_sleep();
@@ -131,7 +131,7 @@ CLASS_DECL_ACME bool acme_task_sleep(millis tick, sync* psync)
       else
       {
 
-         return __simple_task_sleep(tick);
+         return __simple_task_sleep(millis);
 
       }
 
@@ -139,7 +139,7 @@ CLASS_DECL_ACME bool acme_task_sleep(millis tick, sync* psync)
    else
    {
 
-      if (__os(tick) == U32_INFINITE_TIMEOUT)
+      if (__os(millis) == U32_INFINITE_TIMEOUT)
       {
 
          return __simple_task_sleep(psync);
@@ -148,7 +148,7 @@ CLASS_DECL_ACME bool acme_task_sleep(millis tick, sync* psync)
       else
       {
 
-         return __simple_task_sleep(tick, psync);
+         return __simple_task_sleep(millis, psync);
 
       }
 

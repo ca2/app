@@ -293,7 +293,7 @@ namespace music
    ////         set_status(state_playing);
    ////
    ////
-   ////         m_uiStart = ::get_tick();
+   ////         m_uiStart= ::millis::now();
    ////
    ////         return ::success;
    //
@@ -614,7 +614,7 @@ namespace music
           * seqMillisecsToTicks
           *
           * Given a millisecond offset in the output stream, returns the associated
-          * tick position.
+          * millis position.
           *
           * pSeq                      - The sequencer instance.
           *
@@ -632,12 +632,12 @@ namespace music
           *
           * seqTicksToMillisecs
           *
-          * Given a tick offset in the output stream, returns the associated
+          * Given a millis offset in the output stream, returns the associated
           * millisecond position.
           *
           * pSeq                      - The sequencer instance.
           *
-          * tkOffset                  - The tick offset into the stream.
+          * tkOffset                  - The millis offset into the stream.
           *
           * Returns the number of milliseconds into the stream.
           *

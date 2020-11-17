@@ -501,7 +501,7 @@ comptr < IWICImagingFactory > wic_get_imaging_factory();
 
          pframe->m_pimage->create_helper_map();
 
-         pframea->m_tickTotal += pframe->m_tick;
+         pframea->m_millisTotal += pframe->m_tick;
 
       }
 

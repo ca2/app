@@ -123,8 +123,8 @@ namespace apex
       string                                             m_strInstallVersion;
       string                                             m_strInstallPlatform;
 
-      millis                                               m_tickMainStart;
-      millis                                               m_tickAfterApplicationFirstRequest;
+      millis                                               m_millisMainStart;
+      millis                                               m_millisAfterApplicationFirstRequest;
 
       //__pointer(::mutex)                                 m_spmutexOpenweatherCity;
 
@@ -143,7 +143,7 @@ namespace apex
 
       string_array                                            m_straCommandLineAccumul;
       string_array                                            m_straCommandLineExtra;
-      millis                                               m_tickCommandLineLast;
+      millis                                               m_millisCommandLineLast;
       int                                                m_iCommandLineDelay;
       __pointer(::thread)                                m_pthreadCommandLine;
 

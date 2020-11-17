@@ -34,3 +34,7 @@ inline millis & millis::operator = (const micros & micros) { m_iMilliseconds = m
 inline secs & secs::operator = (const micros & micros) { m_iSeconds = micros.m_iMicroseconds / 1'000'000; return *this; }
 
 
+inline micros operator "" _us(unsigned long long int u) { return (::i64) u; }
+
+
+

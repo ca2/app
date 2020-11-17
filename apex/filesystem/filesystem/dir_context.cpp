@@ -49,7 +49,7 @@ dir_context::dir_context()
 
    //m_pziputil = nullptr;
 
-   //         m_isdirmap.m_tickTimeout = 180000;
+   //         m_isdirmap.m_millisTimeout = 180000;
 
 
 
@@ -1016,7 +1016,7 @@ bool dir_context::name_is(const ::file::path & strPath)
 //
 //         }
 //
-//         if (::get_fast_tick_count() > pdir->m_tickLastCheck + m_tickTimeout)
+//         if (::get_fast_tick_count() > pdir->m_millisLastCheck + m_millisTimeout)
 //         {
 //
 //            return false;
@@ -1177,7 +1177,7 @@ bool dir_context::name_is(const ::file::path & strPath)
 //         }
 //
 //end:
-//         if (::get_fast_tick_count() > pdir->m_tickLastCheck + m_tickTimeout)
+//         if (::get_fast_tick_count() > pdir->m_millisLastCheck + m_millisTimeout)
 //         {
 //
 //            return false;
@@ -1256,7 +1256,7 @@ bool dir_context::name_is(const ::file::path & strPath)
 //
 //                  pfind->m_dwError = dwLastError;
 //
-//                  pfind->m_tickLastCheck = ::get_fast_tick_count();
+//                  pfind->m_millisLastCheck = ::get_fast_tick_count();
 //
 //                  pdir->add(pfind);
 //
@@ -1290,7 +1290,7 @@ bool dir_context::name_is(const ::file::path & strPath)
 //
 //            }
 //
-//            pdir->m_tickLastCheck = ::get_fast_tick_count();
+//            pdir->m_millisLastCheck = ::get_fast_tick_count();
 //            iFind0 = iFind3 + 1;
 //         }
 //

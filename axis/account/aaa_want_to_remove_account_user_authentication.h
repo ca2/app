@@ -52,7 +52,7 @@ string_timeout< t_iTimeout > & string_timeout < t_iTimeout >::operator = (const 
 
    m_str = str;
 
-   m_dwExpire = ::get_tick() + t_iTimeout;
+   m_dwExpire= ::millis::now() + t_iTimeout;
 
    return *this;
 

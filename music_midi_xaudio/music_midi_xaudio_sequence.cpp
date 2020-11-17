@@ -418,7 +418,7 @@ Seq_Open_File_Cleanup:
          *
          * pSeq                      - The sequencer instance.
          *
-         * lpPreroll                 - Specifies the starting and ending tick
+         * lpPreroll                 - Specifies the starting and ending millis
          *                             positions to play between.
          *
          * Returns
@@ -1040,7 +1040,7 @@ seq_Preroll_Cleanup:
          * seqMillisecsToTicks
          *
          * Given a millisecond offset in the output stream, returns the associated
-         * tick position.
+         * millis position.
          *
          * pSeq                      - The sequencer instance.
          *
@@ -1058,12 +1058,12 @@ seq_Preroll_Cleanup:
          *
          * seqTicksToMillisecs
          *
-         * Given a tick offset in the output stream, returns the associated
+         * Given a millis offset in the output stream, returns the associated
          * millisecond position.
          *
          * pSeq                      - The sequencer instance.
          *
-         * tkOffset                  - The tick offset into the stream.
+         * tkOffset                  - The millis offset into the stream.
          *
          * Returns the number of milliseconds into the stream.
          *

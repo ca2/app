@@ -800,7 +800,7 @@ namespace dynamic_source
 
       //::system(str + " > " + "\"" + strClog + "\"");
 
-      auto tickStart = ::tick::now();
+      auto tickStart = ::millis::now();
 
       string strLog;
 
@@ -979,7 +979,7 @@ namespace dynamic_source
 
          process->create_child_process(strLinker,true,nullptr,::priority_highest);
 
-         auto tickStart = ::tick::now();
+         auto tickStart = ::millis::now();
 
          string strLog;
 
@@ -1461,7 +1461,7 @@ namespace dynamic_source
 //
 //   //   EnvVarValArray arrEnvVarVal;
 //
-//   //   tick tickStart = ::get_tick();
+//   //   millis tickStart= ::millis::now();
 //
 //   //   u32 dwExitCode;
 //
@@ -1493,7 +1493,7 @@ namespace dynamic_source
 //   //   }
 //   //process->write("\n");
 //   u32 dwExitCode;
-//   ::u32 tickStart = ::get_tick();
+//   ::u32 tickStart= ::millis::now();
 //   while(::thread_get_run() && thread_get_run())
 //   {
 //
@@ -1896,7 +1896,7 @@ namespace dynamic_source
          ::multithreading::set_priority(::priority_highest);
 
          process->create_child_process(str,true,nullptr,::priority_highest);
-auto tickStart = ::tick::now();
+auto tickStart = ::millis::now();
 
          //u32 dwExitCode;
 
@@ -2045,7 +2045,7 @@ auto tickStart = ::tick::now();
       ::multithreading::set_priority(::priority_highest);
 
       process->create_child_process(str,true,nullptr,::priority_highest);
-auto tickStart = ::tick::now();
+auto tickStart = ::millis::now();
 
       string strLog;
 
@@ -3031,7 +3031,7 @@ ch_else:
 //bool script_compiler::library_DoesMatchVersion()
 //{
 
-//   if(m_tickLastLibraryVersionCheck.elapsed() < (5000))
+//   if(m_millisLastLibraryVersionCheck.elapsed() < (5000))
 //   {
 //      return m_bLastLibraryVersionCheck;
 //   }
@@ -3059,7 +3059,7 @@ ch_else:
 //         || __memcmp(&m_ftaLibModified[i], &st.st_mtime, sizeof(__time_t)) != 0)
 //      {
 //         m_bLastLibraryVersionCheck = false;
-//         m_tickLastLibraryVersionCheck = ::get_tick();
+//         m_millisLastLibraryVersionCheck= ::millis::now();
 //         return false;
 
 //      }
@@ -3067,7 +3067,7 @@ ch_else:
 //   }
 
 //   m_bLastLibraryVersionCheck    = true;
-//   m_tickLastLibraryVersionCheck   = ::get_tick();
+//   m_millisLastLibraryVersionCheck  = ::millis::now();
 
 //   return true;
 

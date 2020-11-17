@@ -45,6 +45,7 @@ public:
    duration(const class ::nanos & nanos);
    duration(const class ::micros & micros);
    duration(const class ::millis & millis);
+   duration(const class ::secs & secs);
    duration(const class ::duration & duration);
 
 
@@ -77,7 +78,13 @@ public:
    inline static duration pos_infinity();
    inline static duration zero();
    inline bool operator == (const duration & duration) const;
-   duration & operator = (const ::duration & tick);
+
+
+   duration & operator = (const ::secs & secs);
+   duration & operator = (const ::millis & millis);
+   duration & operator = (const ::micros & micros);
+   duration & operator = (const ::nanos & nanos);
+   duration & operator = (const ::duration & duration);
 
 
    void normalize();
@@ -311,7 +318,7 @@ public:
 };
 
 
-inline nanosecond operator "" _ns(unsigned long long int u) { return (::u64) u; }
+//inline nanosecond operator "" _ns(unsigned long long int u) { return (::u64) u; }
 
 
 class CLASS_DECL_ACME microsecond :
@@ -329,7 +336,7 @@ public:
 };
 
 
-inline microsecond operator "" _us(unsigned long long int u) { return (::u64) u; }
+//inline micros operator "" _us(unsigned long long int u) { return (::u64) u; }
 
 
 class CLASS_DECL_ACME millisecond :
@@ -360,7 +367,7 @@ public:
 //const char32_t *, std::size_t
 
 
-inline millisecond operator "" _ms(unsigned long long int u) { return (::u64) u; }
+
 
 
 inline duration::duration(const ::millis & millis)
@@ -369,6 +376,16 @@ inline duration::duration(const ::millis & millis)
     m_iSeconds = millis.m_iMilliseconds / 1'000;
 
     m_iNanoseconds = (millis.m_iMilliseconds % 1'000) * 1'000'000;
+
+}
+
+
+inline duration::duration(const ::secs & secs)
+{
+
+   m_iSeconds = secs.m_iSeconds;
+
+   m_iNanoseconds = 0;
 
 }
 
@@ -409,7 +426,7 @@ public:
 };
 
 
-inline seconds operator "" _s(unsigned long long int u) { return (::u64) u; }
+//inline seconds operator "" _s(unsigned long long int u) { return (::u64) u; }
 inline seconds operator "" _s(long double d) { return d; }
 
 

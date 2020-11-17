@@ -1,8 +1,12 @@
 //
-// Created by camilo on 2020-11-17.
+// Created by camilo on 2020-11-17. <3tbs, Mummi and bilbo!!
 //
+#pragma once
 
-#ifndef BASIS__USER_H
-#define BASIS__USER_H
 
-#endif //BASIS__USER_H
+
+
+#include PLATFORM_INCLUDE(_user.h)
+
+
+

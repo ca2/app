@@ -408,7 +408,7 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
    operator ::datetime::time() const;
    operator block () const;
    operator block ();
-   operator class tick() const;
+   //operator class millis() const;
 
    operator const char * () const;
    operator string & ();
@@ -550,7 +550,15 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
 //   var & operator = (const string_composite & reference);
    var & operator = (const id & id);
    var & operator = (id * pid);
-   var & operator = (const class duration & pid);
+   var & operator = (const class secs & secs);
+   var & operator = (class secs * pduration);
+   var & operator = (const class millis & millis);
+   var & operator = (class millis * pmillis);
+   var & operator = (const class micros & micros);
+   var & operator = (class micros * pmicros);
+   var & operator = (const class nanos & nanos);
+   var & operator = (class nanos * pnanos);
+   var & operator = (const class duration & duration);
    var & operator = (class duration * pduration);
    var & operator = (const block & block);
 

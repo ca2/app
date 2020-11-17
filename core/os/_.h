@@ -59,7 +59,7 @@
 ////namespace str
 ////{
 ////
-////   //string CLASS_DECL_CORE get_window_text_timeout(oswindow oswindow, tick tickTimeout = 1000);
+////   //string CLASS_DECL_CORE get_window_text_timeout(oswindow oswindow, millis tickTimeout = 1000);
 ////
 ////} // namespace str
 ////

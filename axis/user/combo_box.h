@@ -34,7 +34,7 @@ namespace user
       ::size                     m_sizeFull;
       string                     m_strText;
       bool                       m_bCaseSensitiveMatch;
-      ::millis                     m_tickShowComboList;
+      ::millis                     m_millisShowComboList;
       __pointer(combo_list)             m_plist;
 
       ::type                   m_typeComboList;

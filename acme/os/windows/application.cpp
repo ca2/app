@@ -34,7 +34,7 @@ block_input::block_input( int iSleep) :
    m_bBlocked = ::BlockInput(TRUE) != FALSE;
    //{
 
-   //   ::u32 dw = ::get_last_error();
+   //   ::u32 dw = ::GetLastError();
    //   m_bBlocked = false;
    //   goto repeat;
    //}

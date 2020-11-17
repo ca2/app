@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "acme/node/windows/_windows.h"
+#include "acme/os/windows/_windows.h"
 //#include <stdio.h>
 //#include <stdarg.h>
 
@@ -211,3 +212,29 @@ CLASS_DECL_ACME void windows_install_crash_dump_reporting(const string & strModu
             return error_file;
     }
 }
+
+
+void TRACELASTERROR()
+{
+
+   auto error = ::GetLastError();
+
+   if (!error)
+   {
+
+      return;
+
+   }
+
+   string strErrorMessage = ::get_system_error_message(error);
+
+   string strError;
+
+   strError.Format("Error Message :\n%s\n", strErrorMessage.c_str());
+
+   ::output_debug_string(strError);
+
+}
+
+
+

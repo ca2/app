@@ -19,7 +19,7 @@ namespace userstack
       image_list  *              m_pimagelist;
       __pointer(::user::document)                 m_pdocument;
       bool                       m_bHoverMouse;
-      tick m_tickLastHover;
+      millis m_millisLastHover;
       bool                       m_bTimerOn;
 
       bool                       m_bMouseOver;

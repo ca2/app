@@ -168,7 +168,7 @@ namespace windows
       HANDLE handleFile = INVALID_HANDLE_VALUE;
 
       ::u32 dwWaitSharingViolation = 84;
-      auto tickStart = ::tick::millis();
+      auto tickStart = ::millis::now();
 
       //::u32 dwFileSharingViolationRetryTimeout = ::get_task() != nullptr ? ::get_task()->get_file_sharing_violation_timeout_total_milliseconds() : 0;
 

@@ -146,6 +146,12 @@ CLASS_DECL_ACME ::acme::system * get_context_system();
 
 //#include "acme/message/global.h"
 
+#define ___STR(s) #s
+#define __STR(s) ___STR(s)
+#define __IDENTIFIER(identifier) identifier
+#define PLATFORM_INCLUDE(include) __STR(__IDENTIFIER(PLATFORM_NAMESPACE)/include)
+
+
 
 #include "acme/exception/_c.h"
 

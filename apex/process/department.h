@@ -20,8 +20,8 @@ namespace process
          __pointer(process)                      m_spprocess;
          string *                         m_pstrRead;
          manual_reset_event *             m_pevReady;
-         millis m_tickTimeout;
-         millis m_tickStart;
+         millis m_millisTimeout;
+         millis m_millisStart;
          bool *                           m_pbInitFailure;
          bool *                           m_pbPotentialTimeout;
          exit_status *                    m_pexitstatus;

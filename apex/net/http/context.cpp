@@ -20,7 +20,7 @@ namespace http
 
       m_setHttp["max_http_post"] = 5 * 1024 * 1024; // 5MB;
 
-      value("dw") = ::get_tick();
+      value("dw")= ::millis::now();
 
       m_pmutexPac = nullptr;
       m_pmutexProxy = nullptr;
@@ -634,7 +634,7 @@ namespace http
 
       auto ppair = m_mapPac.plookup(pszUrl);
 
-      if (ppair == nullptr || (ppair->element2()->m_tickLastChecked.elapsed()) > (84 * 1000))
+      if (ppair == nullptr || (ppair->element2()->m_millisLastChecked.elapsed()) > (84 * 1000))
       {
          if (ppair != nullptr)
          {
@@ -644,7 +644,7 @@ namespace http
 
          auto ppac = __new(class pac(get_context_object()));
 
-         ppac->m_tickLastChecked = ::get_tick();
+         ppac->m_millisLastChecked= ::millis::now();
 
          ppac->m_strUrl = pszUrl;
 
@@ -676,7 +676,11 @@ namespace http
       }
 
       if (ppair->element2()->m_strAutoConfigScript.is_empty())
+      {
+
          return nullptr;
+
+      }
 
       return ppair->element2();
 
@@ -699,7 +703,7 @@ namespace http
 
       auto ppair = m_mapProxy.plookup(pszUrl);
 
-      if (ppair == nullptr || (ppair->element2()->m_tickLastChecked.elapsed()) > (84 * 1000))
+      if (ppair == nullptr || (ppair->element2()->m_millisLastChecked.elapsed()) > (84 * 1000))
       {
          if (ppair != nullptr)
          {
@@ -709,7 +713,7 @@ namespace http
 
          auto pproxy = __new(class ::http::context::proxy(get_context_object()));
 
-         pproxy->m_tickLastChecked = ::get_tick();
+         pproxy->m_millisLastChecked= ::millis::now();
 
          pproxy->m_strUrl = pszUrl;
 
@@ -1432,7 +1436,7 @@ namespace http
 
          TRACE("opening preparation context::request time(%d) = " __prtick, __pr(tickBegA.elapsed()));
 
-         tick1 = value("dw").tick();
+         tick1 = value("dw").millis();
 
          tick2.Now();
 
@@ -1502,7 +1506,7 @@ namespace http
 
 ///         keeplive.keep_alive();
 
-         (*this)["dw"].tick().Now();
+         (*this)["dw"].millis().Now();
 
          set["get_headers"] = psession->outheaders();
 

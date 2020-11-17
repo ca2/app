@@ -217,9 +217,9 @@ bool app_core::on_result(const ::estatus & estatus)
 //
 //#endif
 
-   m_tickStart = ::first_tick();
+   m_millisStart.Now();
 
-   m_tickAfterApplicationFirstRequest = m_tickStart;
+   m_millisAfterApplicationFirstRequest = m_millisStart;
 
    if (file_exists(::file::path(APP_CORE_BASE_DIR) / "wait_on_beg.txt"))
    {
@@ -543,7 +543,7 @@ CLASS_DECL_APEX void set_debug_pointer(void * p);
 
    // what could influence time before Main?
    // cold start (never previously called program and its Dlls...)?
-   System.m_tickMainStart = m_tickStart;
+   System.m_millisMainStart = m_millisStart;
 
    //xxdebug_box("box1", "box1", MB_ICONINFORMATION);
 
@@ -780,11 +780,11 @@ void app_core::system_end()
 
          sprintf(szTime, "%04d-%02d-%02d %02d:%02d:%02d", t.tm_year + 1900, t.tm_mon + 1, t.tm_mday, t.tm_hour, t.tm_min, t.tm_sec);
 
-         sprintf(szTimeMessage, "\n\n\n---------------------------------------------------------------------------------------------\n|\n|\n|  Just After First Application Request Completion %"  PRId64 " ms", (m_tickAfterApplicationFirstRequest - m_tickStart).m_iMilliseconds);
+         sprintf(szTimeMessage, "\n\n\n---------------------------------------------------------------------------------------------\n|\n|\n|  Just After First Application Request Completion %"  PRId64 " ms", (m_millisAfterApplicationFirstRequest - m_millisStart).m_iMilliseconds);
          ::output_debug_string(szTimeMessage);
          printf("%s", szTimeMessage);
 
-         millis iMillisecondsTotal = tickEnd - m_tickStart;
+         millis iMillisecondsTotal = tickEnd - m_millisStart;
 
          sprintf(szTimeMessage, "\n|  Total Elapsed Time %" PRId64 " ms", iMillisecondsTotal.m_iMilliseconds);
          ::output_debug_string(szTimeMessage);
@@ -880,7 +880,7 @@ void app_core::system_end()
 
             char szTimeMessage1[2048];
 
-            sprintf(szTimeMessage1, " Just After First Application Request Completion %" PRId64 " ms", (m_tickAfterApplicationFirstRequest - m_tickStart).m_iMilliseconds);
+            sprintf(szTimeMessage1, " Just After First Application Request Completion %" PRId64 " ms", (m_millisAfterApplicationFirstRequest - m_millisStart).m_iMilliseconds);
 
             if (file_length_raw(szEllapsed) > 0)
             {
@@ -897,7 +897,7 @@ void app_core::system_end()
 
             char szTimeMessage2[2048];
 
-            sprintf(szTimeMessage2, " Total Elapsed Time " __prtick, (tickEnd - m_tickStart).m_iMilliseconds);
+            sprintf(szTimeMessage2, " Total Elapsed Time " __prtick, (tickEnd - m_millisStart).m_iMilliseconds);
 
             file_add_contents_raw(szEllapsed, szUTCTime);
 

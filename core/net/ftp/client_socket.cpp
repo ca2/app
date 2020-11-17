@@ -868,7 +868,7 @@ namespace ftp
 
       }
 
-      //::u32 tickStart = ::get_tick();
+      //::u32 tickStart= ::millis::now();
 
       //::u32 nSeconds = 10;
 
@@ -1140,7 +1140,7 @@ namespace ftp
          memsize bytesRead = 0;
 
          Observer.OnPreBytesSend(m_vBuffer.get_data(), (memsize) m_vBuffer.size(), bytesRead);
-auto tickStart = ::tick::now();
+auto tickStart = ::millis::now();
 
          while (true)
          {
@@ -1176,7 +1176,7 @@ auto tickStart = ::tick::now();
             }
 
             Observer.OnPreBytesSend(m_vBuffer.get_data(), (memsize)m_vBuffer.size(), bytesRead);
-//auto tickStart = ::tick::now();
+//auto tickStart = ::millis::now();
 
          }
 
@@ -1231,7 +1231,7 @@ auto tickStart = ::tick::now();
          memsize iNumRead;
 
          memsize lTotalBytes = 0;
-auto tickStart = ::tick::now();
+auto tickStart = ::millis::now();
 
          while (true)
          {
@@ -1286,7 +1286,7 @@ auto tickStart = ::tick::now();
                Sleep(100);
 
             }
-//auto tickStart = ::tick::now();
+//auto tickStart = ::millis::now();
 
          }
 
@@ -1425,7 +1425,7 @@ auto tickStart = ::tick::now();
       try
       {
 
-         auto tickStart = ::tick::now();
+         auto tickStart = ::millis::now();
 
          // xxx yyy zzz
          //while (tickStart.elapsed() < 10 * 1000)

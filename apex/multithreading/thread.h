@@ -61,7 +61,7 @@ public:
    __pointer(manual_reset_event)                      m_pevReady;
 
    bool                                               m_bAuraMessageQueue;
-   ::millis                                             m_tickHeartBeat;
+   ::millis                                             m_millisHeartBeat;
    bool                                               m_bReady;
    ::status::result                                   m_result;
    __pointer(::layered)                               m_puiMain1;           // Main interaction_impl (usually same System.m_puiMain)
@@ -574,8 +574,8 @@ CLASS_DECL_APEX void set_thread_off(ithread_t id);
 
 
 //CLASS_DECL_APEX bool apex_task_sleep(millis millis, sync* psync = nullptr);
-CLASS_DECL_APEX bool thread_pump_sleep(millis tick, sync* psync = nullptr);
-CLASS_DECL_APEX bool app_sleep(millis tick);
+CLASS_DECL_APEX bool thread_pump_sleep(millis millis, sync* psync = nullptr);
+CLASS_DECL_APEX bool app_sleep(millis millis);
 
 
 

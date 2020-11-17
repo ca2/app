@@ -30,7 +30,7 @@ namespace http
          string         m_strUrl;
          string         m_strAutoConfigScript;
          tinyjs *       m_pjs;
-         tick m_tickLastChecked;
+         millis m_millisLastChecked;
 
 
          pac(::layered * pobjectContext);
@@ -50,7 +50,7 @@ namespace http
          bool           m_bDirect;
          string         m_strProxy;
          i32        m_iPort;
-         tick m_tickLastChecked;
+         millis m_millisLastChecked;
 
 
          proxy(::layered * pobjectContext);

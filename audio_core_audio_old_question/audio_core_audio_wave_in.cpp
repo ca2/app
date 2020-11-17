@@ -466,7 +466,7 @@ namespace multimedia
 
          m_iBuffer--;
 
-         u32 msSampleTime = ::get_tick();
+         u32 msSampleTime= ::millis::now();
 
          int iBuffer = (int) m_Buffers.find_first(inBuffer);
 

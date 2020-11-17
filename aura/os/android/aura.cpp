@@ -16,7 +16,7 @@
 //CLASS_DECL_AURA ::u32 get_last_error()
 //{
 //
-//   tick t_tickLastError;
+//   millis t_tickLastError;
 //
 //}
 //

@@ -48,8 +48,8 @@ namespace user
 
 
       bool                                      m_bHoverStart;
-      tick                                      m_tickHoverStart;
-      tick                                      m_tickHoverEnd;
+      millis                                      m_millisHoverStart;
+      millis                                      m_millisHoverEnd;
       byte                                      m_uchHoverAlpha;
       byte                                      m_uchHoverAlphaInit;
       manual_reset_event                        m_evExpand;

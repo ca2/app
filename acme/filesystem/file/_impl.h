@@ -75,10 +75,10 @@ inline void __exchange(stream & s, memory_base & memory)
 //   s.default_exchange(block);
 //}
 
-inline stream & operator <<(stream & s, const ::millis & tick)
+inline stream & operator <<(stream & s, const ::millis & millis)
 {
 
-   s << tick.m_iMilliseconds;
+   s << millis.m_iMilliseconds;
 
    return s;
 
@@ -86,10 +86,10 @@ inline stream & operator <<(stream & s, const ::millis & tick)
 
 
 
-inline stream & operator >>(stream & s, ::millis & tick)
+inline stream & operator >>(stream & s, ::millis & millis)
 {
 
-   s >> tick.m_iMilliseconds;
+   s >> millis.m_iMilliseconds;
 
    return s;
 

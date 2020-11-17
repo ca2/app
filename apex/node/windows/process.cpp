@@ -259,7 +259,7 @@ namespace windows
 
       auto tickStart = ::millis::millis();
 
-      auto tickTimeout = durationTimeOut.tick_duration();
+      auto tickTimeout = durationTimeOut.u32_millis();
 
       while(tickStart.elapsed() < tickTimeout)
       {

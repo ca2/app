@@ -5652,8 +5652,8 @@ add_executable(app
         aura/user/box.h
         aura/user/callback.cpp
         aura/user/callback.h
-        aura/user/composition_imm_client.cpp
-        aura/user/composition_imm_client.h
+        aura/user/aaa_composition_imm_client.cpp
+        aura/user/aaa_composition_imm_client.h
         aura/user/control_descriptor.cpp
         aura/user/control_descriptor.h
         aura/user/control_event.cpp

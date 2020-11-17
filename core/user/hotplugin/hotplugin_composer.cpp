@@ -354,11 +354,11 @@ namespace hotplugin
 
             m_bEntryHallTextStarted = true;
             
-            m_tickEntryHallTextStart.Now();
+            m_millisEntryHallTextStart.Now();
 
          }
 
-         //if(m_tickEntryHallTextStart.elapsed() > ((5000) / 3))
+         //if(m_millisEntryHallTextStart.elapsed() > ((5000) / 3))
          //{
 
          //   ::hotplugin::entry_hall_windows_on_paint(pgraphics,m_rect,m_strEntryHallText);

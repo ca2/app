@@ -266,7 +266,7 @@ namespace windows
 
    //   if((wAttr = windows_get_file_attributes((LPWSTR)(const widechar *)pszFileName)) == (::u32)-1L)
 
-   //      file_exception::throw_os_error((::i32)get_last_error());
+   //      file_exception::throw_os_error((::i32)GetLastError());
 
    //   if((::u32)status.m_attribute != wAttr && (wAttr & readOnly))
    //   {
@@ -276,7 +276,7 @@ namespace windows
 
    //      if(!SetFileAttributesW((LPWSTR)(const widechar *)pszFileName,(::u32)status.m_attribute))
 
-   //         file_exception::throw_os_error((::i32)get_last_error());
+   //         file_exception::throw_os_error((::i32)GetLastError());
    //   }
 
    //   // last modification time
@@ -308,21 +308,21 @@ namespace windows
    //         nullptr);
 
    //      if(hFile == INVALID_HANDLE_VALUE)
-   //         file_exception::throw_os_error((::i32)::get_last_error());
+   //         file_exception::throw_os_error((::i32)::GetLastError());
 
    //      if(!SetFileTime((HANDLE)hFile,pCreationTime,lpLastAccessTime,lpLastWriteTime))
 
-   //         file_exception::throw_os_error((::i32)::get_last_error());
+   //         file_exception::throw_os_error((::i32)::GetLastError());
 
    //      if(!::CloseHandle(hFile))
-   //         file_exception::throw_os_error((::i32)::get_last_error());
+   //         file_exception::throw_os_error((::i32)::GetLastError());
    //   }
 
    //   if((::u32)status.m_attribute != wAttr && !(wAttr & readOnly))
    //   {
    //      if(!SetFileAttributes((char *)pszFileName,(::u32)status.m_attribute))
 
-   //         file_exception::throw_os_error((::i32)get_last_error());
+   //         file_exception::throw_os_error((::i32)GetLastError());
    //   }
    //}
 
@@ -343,7 +343,7 @@ namespace windows
 
    //   if((wAttr = GetFileAttributes((char *)pszFileName)) == (::u32)-1L)
 
-   //      file_exception::throw_os_error((::i32)get_last_error());
+   //      file_exception::throw_os_error((::i32)GetLastError());
 
    //   if((::u32)status.m_attribute != wAttr && (wAttr & readOnly))
    //   {
@@ -353,7 +353,7 @@ namespace windows
 
    //      if(!SetFileAttributes((char *)pszFileName,(::u32)status.m_attribute))
 
-   //         file_exception::throw_os_error((::i32)get_last_error());
+   //         file_exception::throw_os_error((::i32)GetLastError());
    //   }
 
    //   // last modification time
@@ -385,21 +385,21 @@ namespace windows
    //         nullptr);
 
    //      if(hFile == INVALID_HANDLE_VALUE)
-   //         file_exception::throw_os_error((::i32)::get_last_error());
+   //         file_exception::throw_os_error((::i32)::GetLastError());
 
    //      if(!SetFileTime((HANDLE)hFile,pCreationTime,lpLastAccessTime,lpLastWriteTime))
 
-   //         file_exception::throw_os_error((::i32)::get_last_error());
+   //         file_exception::throw_os_error((::i32)::GetLastError());
 
    //      if(!::CloseHandle(hFile))
-   //         file_exception::throw_os_error((::i32)::get_last_error());
+   //         file_exception::throw_os_error((::i32)::GetLastError());
    //   }
 
    //   if((::u32)status.m_attribute != wAttr && !(wAttr & readOnly))
    //   {
    //      if(!SetFileAttributes((char *)pszFileName,(::u32)status.m_attribute))
 
-   //         file_exception::throw_os_error((::i32)get_last_error());
+   //         file_exception::throw_os_error((::i32)GetLastError());
    //   }
    //}
 
@@ -423,7 +423,7 @@ namespace windows
       if ((wAttr = windows_get_file_attributes(path)) == (::u32)INVALID_FILE_ATTRIBUTES)
       {
 
-         ::file::throw_os_error((::i32)get_last_error());
+         ::file::throw_os_error(::GetLastError());
 
       }
 
@@ -436,7 +436,7 @@ namespace windows
          if (!SetFileAttributesW((LPWSTR)(const widechar *)pszFileName, (::u32)status.m_attribute))
          {
 
-            ::file::throw_os_error((::i32)get_last_error());
+            ::file::throw_os_error(::GetLastError());
 
          }
 
@@ -478,21 +478,21 @@ namespace windows
          if (hFile == INVALID_HANDLE_VALUE)
          {
 
-            return ::file::os_error_to_status(::GetLastError());
+            return ::os_error_to_status(::GetLastError());
 
          }
 
          if (!SetFileTime((HANDLE)hFile, pCreationTime, pLastAccessTime, pLastWriteTime))
          {
 
-            return ::file::os_error_to_status(::GetLastError());
+            return ::os_error_to_status(::GetLastError());
 
          }
 
          if (!::CloseHandle(hFile))
          {
 
-            return ::file::os_error_to_status(::GetLastError());
+            return ::os_error_to_status(::GetLastError());
 
          }
 
@@ -504,7 +504,7 @@ namespace windows
          if (!SetFileAttributesW((LPWSTR)(const widechar *)pszFileName, (::u32)status.m_attribute))
          {
 
-            return ::file::os_error_to_status(::GetLastError());
+            return ::os_error_to_status(::GetLastError());
 
          }
 

@@ -27,7 +27,7 @@ namespace macos
       bool                             m_bNeedsUpdate;
       rect64                           m_rectLastOsPlacement;
       bool                             m_bEnabled;
-      tick                             m_tickLastAuraWindowDraw;
+      millis                             m_millisLastAuraWindowDraw;
 
 
       interaction_impl();
@@ -280,7 +280,7 @@ namespace macos
 
 #if(WINVER >= 0x0500)
 
-      virtual bool AnimateWindow(::u32 tick, ::u32 dwFlags);
+      virtual bool AnimateWindow(::u32 millis, ::u32 dwFlags);
 
 #endif   // WINVER >= 0x0500
 

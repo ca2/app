@@ -2000,7 +2000,7 @@ namespace ios
 ////                                         try
 ////                                         {
 ////
-//// auto tickStart = ::tick::now();
+//// auto tickStart = ::millis::now();
 ////
 ////                                            if(m_puserinteraction == nullptr)
 ////                                            {
@@ -2126,7 +2126,7 @@ namespace ios
 ////                                             try
 ////                                             {
 ////
-//// auto tickStart = ::tick::now();
+//// auto tickStart = ::millis::now();
 ////
 ////                                                if(m_puserinteraction == nullptr)
 ////                                                {
@@ -5718,7 +5718,7 @@ namespace ios
 
       m_puserinteraction->set_need_redraw();
       
-      m_tickLastExposureAddUp.Now();
+      m_millisLastExposureAddUp.Now();
 
    }
 

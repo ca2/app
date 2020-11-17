@@ -1,10 +1,12 @@
 #include "framework.h"
 
 
-CLASS_DECL_ACME void sleep(const ::duration& dur)
+CLASS_DECL_ACME void sleep(const ::duration& duration)
 {
 
-   Sleep((::u32)dur.total_milliseconds());
+   auto millis = duration.u32_millis();
+
+   ::Sleep(millis);
 
 }
 

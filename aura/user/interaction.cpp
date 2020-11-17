@@ -76,7 +76,7 @@ namespace user
 
       m_bUserInteractionSetFinish = false;
 
-      m_tickMouseMoveIgnore = 20_ms;
+      m_millisMouseMoveIgnore = 20_ms;
 
       m_bOverdraw = false;
 
@@ -96,7 +96,7 @@ namespace user
 
       m_iMouseMoveSkipSquareDistance = iMouseMoveTriggerDistance * iMouseMoveTriggerDistance;
 
-      m_tickMouseMovePeriod = 5;
+      m_millisMouseMovePeriod = 5;
 
       m_bOffScreenRender = false;
 
@@ -8144,7 +8144,7 @@ namespace user
       if (!is_equivalent(layout().sketch().display(), layout().design().display()))
       {
 
-         layout().m_tickLastSketchToDesign.Now();
+         layout().m_millisLastSketchToDesign.Now();
 
       }
 

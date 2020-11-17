@@ -376,7 +376,7 @@ namespace browser
 
                      }
                      m_pviewLast->m_dFps = d;
-                     m_pviewLast->m_tickRoll.Now();
+                     m_pviewLast->m_millisRoll.Now();
                   }
                   //if(fabs(d) < 0.0000000001)
                   //{
@@ -411,7 +411,7 @@ namespace browser
             //      else
             //      {
             //         m_pflagview->m_dFps = 1.0/ d;
-            //         m_pflagview->m_dwRoll = ::get_tick();
+            //         m_pflagview->m_dwRoll= ::millis::now();
             //         m_prollfps->_001SetText(__str(1.0 / d),::source_initialize);
             //      }
             //   }

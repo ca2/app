@@ -53,7 +53,7 @@ namespace user
 
       __pointer(control_descriptor)             m_pdescriptor;
 
-      tick                                      m_tickLastDisplayChange;
+      millis                                      m_millisLastDisplayChange;
       e_layout_experience                       m_elayoutexperience;
 
 

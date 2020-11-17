@@ -2182,7 +2182,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="primitive\primitive\pointer1.h" />
     <ClInclude Include="primitive\primitive\pointer2.h" />
     <ClInclude Include="primitive\primitive\simple_object.h" />
-    <ClInclude Include="primitive\primitive\stick.h" />
+    <ClInclude Include="primitive\primitive\smillis.h" />
     <ClInclude Include="primitive\primitive\topic_text_string.h" />
     <ClInclude Include="primitive\primitive\_.h" />
     <ClInclude Include="primitive\primitive\primitive_update.h" />

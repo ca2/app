@@ -353,9 +353,9 @@ u32 call_sync(const char * pszPath, const char * pszParam, const char * pszDir, 
 
    DWORD dwExitCode = (DWORD) -1;
 
-   ::millis tick;
+   ::millis millis;
 
-   tick.Now();
+   millis.Now();
 
    while (::thread_get_run())
    {
@@ -368,7 +368,7 @@ u32 call_sync(const char * pszPath, const char * pszParam, const char * pszDir, 
 
       }
 
-      if (tick.elapsed() > durationTimeout)
+      if (millis.elapsed() > durationTimeout)
       {
 
          set["timed_out"] = true;
@@ -1102,7 +1102,7 @@ CLASS_DECL_ACME void shared_library_process(dword_array & dwa, string_array & st
 //         }
 //         else
 //         {
-//            DWORD dwLastError = get_last_error();
+//            DWORD dwLastError = GetLastError();
 //
 //            //            TRACE(get_object())("%d", dwLastError);
 //         }
@@ -1127,7 +1127,7 @@ CLASS_DECL_ACME void shared_library_process(dword_array & dwa, string_array & st
 //      | TOKEN_DUPLICATE | TOKEN_ASSIGN_PRIMARY | TOKEN_ADJUST_SESSIONID
 //      | TOKEN_READ | TOKEN_WRITE, &hPToken))
 //   {
-//      int abcd = get_last_error();
+//      int abcd = GetLastError();
 //      debug_print("Process token open Error: %u\n", get_last_error());
 //   }
 //
@@ -1141,7 +1141,7 @@ CLASS_DECL_ACME void shared_library_process(dword_array & dwa, string_array & st
 //
 //   DuplicateTokenEx(hPToken, MAXIMUM_ALLOWED, nullptr,
 //      SecurityIdentification, TokenPrimary, &hUserTokenDup);
-//   int dup = get_last_error();
+//   int dup = GetLastError();
 //
 //   //Adjust Token privilege
 //   SetTokenInformation(hUserTokenDup,
@@ -1150,11 +1150,11 @@ CLASS_DECL_ACME void shared_library_process(dword_array & dwa, string_array & st
 //   if (!AdjustTokenPrivileges(hUserTokenDup, FALSE, &tp, sizeof(TOKEN_PRIVILEGES),
 //      (PTOKEN_PRIVILEGES)nullptr, nullptr))
 //   {
-//      int abc = get_last_error();
+//      int abc = GetLastError();
 //      debug_print("Adjust Privilege value Error: %u\n", get_last_error());
 //   }
 //
-//   if (get_last_error() == ERROR_NOT_ALL_ASSIGNED)
+//   if (GetLastError() == ERROR_NOT_ALL_ASSIGNED)
 //   {
 //      debug_print("Token does not have the provilege\n");
 //   }
@@ -1187,7 +1187,7 @@ CLASS_DECL_ACME void shared_library_process(dword_array & dwa, string_array & st
 //
 //   //get_last_error Shud be 0
 //
-//   int iResultOfCreateProcessAsUser = get_last_error();
+//   int iResultOfCreateProcessAsUser = GetLastError();
 //
 //   //Perform All the Close Handles tasks
 //
@@ -1207,7 +1207,7 @@ CLASS_DECL_ACME void shared_library_process(dword_array & dwa, string_array & st
 //   if (!LookupPrivilegeValue(nullptr, SE_DEBUG_NAME, &tp.Privileges[0].Luid))
 //   {
 //
-//      int iError = get_last_error();
+//      int iError = GetLastError();
 //
 //      debug_print("lookup Privilege value Error: %u\n", iError);
 //
@@ -1222,7 +1222,7 @@ CLASS_DECL_ACME void shared_library_process(dword_array & dwa, string_array & st
 //   if (!AdjustTokenPrivileges(h, FALSE, &tp, sizeof(TOKEN_PRIVILEGES), (PTOKEN_PRIVILEGES)nullptr, nullptr))
 //   {
 //
-//      int iError = get_last_error();
+//      int iError = GetLastError();
 //
 //      debug_print("Adjust Privilege value Error: %u\n", iError);
 //
@@ -1262,7 +1262,7 @@ CLASS_DECL_ACME void shared_library_process(dword_array & dwa, string_array & st
 //
 //   if (!::OpenProcessToken(hProcess, TOKEN_ALL_ACCESS, &hPToken))
 //   {
-//      int abcd = get_last_error();
+//      int abcd = GetLastError();
 //      debug_print("Process token open Error: %u\n", get_last_error());
 //   }
 //
@@ -1299,7 +1299,7 @@ CLASS_DECL_ACME void shared_library_process(dword_array & dwa, string_array & st
 //
 //   }
 //
-//   //if(get_last_error() == ERROR_NOT_ALL_ASSIGNED)
+//   //if(GetLastError() == ERROR_NOT_ALL_ASSIGNED)
 //   //{
 //   //   debug_print("Token does not have the provilege\n");
 //   //}
@@ -1307,7 +1307,7 @@ CLASS_DECL_ACME void shared_library_process(dword_array & dwa, string_array & st
 //   // "NETWORK SERVICE" or "NetworkService" ?
 //   if (!LogonUserW(L"LocalService", L"NT AUTHORITY", nullptr, LOGON32_LOGON_SERVICE, LOGON32_PROVIDER_DEFAULT, &hUserToken))
 //   {
-//      DWORD dwError = ::get_last_error();
+//      DWORD dwError = ::GetLastError();
 //      string str;
 //      str.Format("lookup Privilege value Error: %u\n", dwError);
 //      message_box(str, "Help Me", e_message_box_ok);
@@ -1315,7 +1315,7 @@ CLASS_DECL_ACME void shared_library_process(dword_array & dwa, string_array & st
 //   }
 //   if (!DuplicateTokenEx(hUserToken, TOKEN_ALL_ACCESS, nullptr, SecurityDelegation, TokenPrimary, &hUserTokenDup))
 //   {
-//      int dup = get_last_error();
+//      int dup = GetLastError();
 //      debug_print("DuplicateTokenEx Error: %u\n", get_last_error());
 //   }
 //
@@ -1353,7 +1353,7 @@ CLASS_DECL_ACME void shared_library_process(dword_array & dwa, string_array & st
 //
 //   //get_last_error Shud be 0
 //
-//   //int iResultOfCreateProcessAsUser = get_last_error();
+//   //int iResultOfCreateProcessAsUser = GetLastError();
 //
 //   //Perform All the Close Handles tasks
 //

@@ -166,11 +166,11 @@ namespace hotplugin
 
          try
          {
-            //::u32 dwTime1 = ::get_tick();
+            //::u32 dwTime1= ::millis::now();
 
             m_pplugin->on_paint(pgraphics, rect);
 
-            //::u32 dwTime9 = ::get_tick();
+            //::u32 dwTime9= ::millis::now();
 
             //TRACE("plugin->on_paint %d",dwTime9 - dwTime1);
 
@@ -191,19 +191,19 @@ namespace hotplugin
 
       if(::user::interaction::m_pimpl != nullptr && pgraphics != nullptr)
       {
-         //::u32 dwTime1 = ::get_tick();
+         //::u32 dwTime1= ::millis::now();
 
 
          ::user::interaction::m_pimpl->_001Print(pgraphics);
-         //::u32 dwTime9 = ::get_tick();
+         //::u32 dwTime9= ::millis::now();
 
          //TRACE("m_pimpl->_001Print %d",dwTime9 - dwTime1);
 
       }
-      //::u32 dwTime1 = ::get_tick();
+      //::u32 dwTime1= ::millis::now();
 
       deferred_prodevian_redraw();
-      //::u32 dwTime9 = ::get_tick();
+      //::u32 dwTime9= ::millis::now();
 
       //TRACE("deferred_prodevian_redraw %d",dwTime9 - dwTime1);
 

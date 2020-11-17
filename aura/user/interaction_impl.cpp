@@ -407,9 +407,9 @@ namespace user
    }
 
 
-   bool interaction_impl::AnimateWindow(millis tick,u32 dwFlags)
+   bool interaction_impl::AnimateWindow(millis millis,u32 dwFlags)
    {
-      UNREFERENCED_PARAMETER(tick);
+      UNREFERENCED_PARAMETER(millis);
       UNREFERENCED_PARAMETER(dwFlags);
       ::exception::throw_interface_only();
       return false;

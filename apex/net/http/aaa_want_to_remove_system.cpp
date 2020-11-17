@@ -17,7 +17,7 @@ namespace http
       ::object(pobject)
    {
 
-      set("dw") = ::get_tick();
+      set("dw")= ::millis::now();
 
       m_pmutexPac = nullptr;
       m_pmutexProxy = nullptr;
@@ -156,7 +156,7 @@ namespace http
 
       auto ppair = m_mapPac.plookup(pszUrl);
 
-      if(ppair == nullptr || (ppair->element2()->m_tickLastChecked.elapsed()) > (84 * 1000))
+      if(ppair == nullptr || (ppair->element2()->m_millisLastChecked.elapsed()) > (84 * 1000))
       {
          if(ppair != nullptr)
          {
@@ -166,7 +166,7 @@ namespace http
 
          auto ppac  = __new(class pac(get_object()));
 
-         ppac->m_tickLastChecked = ::get_tick();
+         ppac->m_millisLastChecked= ::millis::now();
 
          ppac->m_strUrl = pszUrl;
 
@@ -219,7 +219,7 @@ namespace http
 
       auto ppair = m_mapProxy.plookup(pszUrl);
 
-      if(ppair == nullptr || (ppair->element2()->m_tickLastChecked.elapsed()) > (84 * 1000))
+      if(ppair == nullptr || (ppair->element2()->m_millisLastChecked.elapsed()) > (84 * 1000))
       {
          if(ppair != nullptr)
          {
@@ -229,7 +229,7 @@ namespace http
 
          auto pproxy  = __new(class ::http::system::proxy(get_object()));
 
-         pproxy->m_tickLastChecked = ::get_tick();
+         pproxy->m_millisLastChecked= ::millis::now();
 
          pproxy->m_strUrl = pszUrl;
 
@@ -579,7 +579,7 @@ namespace http
    bool system::open(::sockets::socket_handler & handler, __pointer(::sockets::http_session) & psession, const char * pszHost, const char * pszProtocol, property_set & set, const char * pszVersion)
    {
 
-      auto tickTimeProfile1 = ::tick::now();
+      auto tickTimeProfile1 = ::millis::now();
 
       UNREFERENCED_PARAMETER(pszVersion);
 
@@ -647,7 +647,7 @@ namespace http
 
       }
 
-      auto tick1 = ::tick::now();
+      auto tick1 = ::millis::now();
 
       bool bConfigProxy = set.is_set_false("no_proxy_config");
 
@@ -681,9 +681,9 @@ namespace http
 
       TRACE("http system request : %s",pszRequest);
 
-      tick tick1;
+      millis tick1;
 
-      tick tick2;
+      millis tick2;
 
       bool bSeemsOk;
 
@@ -749,7 +749,7 @@ retry:
          try
          {
 
-            auto tickBeg = ::tick::now();
+            auto tickBeg = ::millis::now();
 
             if (!open(handler, psession, System.url().get_server(pszRequest), System.url().get_protocol(pszRequest), set, set["http_protocol_version"]))
             {
@@ -770,12 +770,12 @@ retry:
 
       }
 
-      auto tickBegA = ::tick::now();
+      auto tickBegA = ::millis::now();
 
       try
       {
 
-         auto tickTimeProfile1 = ::tick::now();
+         auto tickTimeProfile1 = ::millis::now();
 
          ::apex::application * papp = handler.get_context_application();
 
@@ -947,7 +947,7 @@ retry:
 
          TRACE("opening preparation system::request time(%d) = " __prtick, __pr(tickBegA.elapsed()));
 
-         tick1 = (*this)("dw").tick();
+         tick1 = (*this)("dw").millis();
 
          tick2.Now();
 
@@ -957,7 +957,7 @@ retry:
             //while(psession->get_count() > 0 && !psession->m_bRequestComplete) // should only exit in case of process exit signal
          {
 
-            tick1 = ::tick::now();
+            tick1 = ::millis::now();
 
             handler.select(240, 0);
 
@@ -1017,7 +1017,7 @@ retry:
 
          keeplive.keep_alive();
 
-         (*this)["dw"].tick().Now();
+         (*this)["dw"].millis().Now();
 
          set["get_headers"] = psession->outheaders();
 
@@ -1225,7 +1225,7 @@ retry:
 
       set["http_get_serial"] = iHttpGetSerial;
 
-      auto tickStart = tick::now();
+      auto tickStart = millis::now();
 
       int iTry = 0;
 
@@ -1257,7 +1257,7 @@ retry:
 
       iTry++;
 
-      auto tickTimeProfile1 = ::tick::now();
+      auto tickTimeProfile1 = ::millis::now();
 
       string strServer = System.url().get_root(pszUrl);
 
@@ -1505,11 +1505,11 @@ retry_session:
 
       }
 
-      auto tick1 = ::tick::now();
+      auto tick1 = ::millis::now();
 
       bool bConfigProxy = !set.has_property("no_proxy_config") || !(bool)set["no_proxy_config"];
 
-      tick tickTotalTimeout = set["timeout"].i64();
+      millis tickTotalTimeout = set["timeout"].i64();
 
       set["http_body_size_downloaded"] = &psocket->m_body_size_downloaded;
 
@@ -1547,7 +1547,7 @@ retry_session:
 
             set["get_status"] = (i64)error_http;
 
-            auto tick2 = ::tick::now();
+            auto tick2 = ::millis::now();
 
             TRACE(__prhttpget "Not Opened/Connected Result Total time ::http::system::get(\"%s\") " __prtick, iHttpGetSerial, strUrl.Left(min(255, strUrl.get_length())).c_str(), __pr(tick1.elapsed()));
 
@@ -1603,7 +1603,7 @@ retry_session:
 
       int iEnteredLoop = 0;
 
-      tick1 = ::tick::now();
+      tick1 = ::millis::now();
 
       while(handler.get_count() > 0 && (::get_task() == nullptr || ::thread_get_run()))
       {
@@ -1643,7 +1643,7 @@ retry_session:
             if(iBodySizeDownloaded > 0)
             {
 
-               tickStart = tick::now();
+               tickStart = millis::now();
 
             }
 
@@ -1766,7 +1766,7 @@ retry_session:
       else if(iStatusCode == 0)
       {
 
-         tick tickElapse = tickStart.elapsed();
+         millis tickElapse = tickStart.elapsed();
 
          if (iTry < iTryCount && tickElapse < tickTotalTimeout)
          {
@@ -1807,7 +1807,7 @@ retry_session:
          if(::str::begins_ci(strCa2Realm, "not licensed: "))
          {
 
-            auto tick2 = ::tick::now();
+            auto tick2 = ::millis::now();
 
             TRACE(__prhttpget "Not Licensed Result Total time ::http::system::get(\"%s\") " __prtick, iHttpGetSerial, strUrl.Left(min(255,strUrl.get_length())).c_str(), __pr(tick1.elapsed()));
 

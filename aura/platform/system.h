@@ -131,8 +131,8 @@ namespace aura
 //      string                                             m_strInstallVersion;
 //      string                                             m_strInstallPlatform;
 //
-//      millis                                               m_tickMainStart;
-//      millis                                               m_tickAfterApplicationFirstRequest;
+//      millis                                               m_millisMainStart;
+//      millis                                               m_millisAfterApplicationFirstRequest;
 //
 //
 //
@@ -153,7 +153,7 @@ namespace aura
 //
 //      string_array                                            m_straCommandLineAccumul;
 //      string_array                                            m_straCommandLineExtra;
-//      millis                                               m_tickCommandLineLast;
+//      millis                                               m_millisCommandLineLast;
 //      int                                                m_iCommandLineDelay;
 //      __pointer(::thread)                                m_pthreadCommandLine;
 //

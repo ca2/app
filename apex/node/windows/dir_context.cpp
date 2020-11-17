@@ -807,7 +807,7 @@ namespace windows
 
       bIsDir = (dwAttrib != INVALID_FILE_ATTRIBUTES) && (dwAttrib & FILE_ATTRIBUTE_DIRECTORY);
 
-      //      m_isdirmap.set(str.Left(iLast + 1), bIsDir, bIsDir ? 0 : ::get_last_error());
+      //      m_isdirmap.set(str.Left(iLast + 1), bIsDir, bIsDir ? 0 : ::GetLastError());
 
       return bIsDir;
 
@@ -980,13 +980,13 @@ namespace windows
 
                dwError = ::GetLastError();
 
-               char * pszError;
+               WCHAR * pwszError;
 
-               FormatMessageW(FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM, nullptr, dwError, 0, (char *)&pszError, 8, nullptr);
+               FormatMessageW(FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM, nullptr, dwError, 0, (WCHAR *) &pwszError, 8, nullptr);
 
                //TRACE("dir_context::mk CreateDirectoryW last error(%d)=%s", dwError, pszError);
 
-               ::LocalFree(pszError);
+               ::LocalFree(pwszError);
 
                //m_isdirmap.set(stra[i], false);
 

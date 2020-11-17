@@ -39,7 +39,7 @@ namespace experience
       void button::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
       {
 
-         tick t1 = tick::now();
+         millis t1 = millis::now();
 
          if ((GetTopLevel()->frame_is_transparent() && !GetTopLevel()->is_active()) || !GetTopLevelFrame()->m_bShowControlBox)
          {
@@ -48,7 +48,7 @@ namespace experience
 
          }
 
-         tick d1 = t1.elapsed();
+         millis d1 = t1.elapsed();
 
          if (d1 > 50)
          {
@@ -168,7 +168,7 @@ namespace experience
 
          }
 
-         tick d2 = t1.elapsed();
+         millis d2 = t1.elapsed();
 
          if (d2 > 50)
          {

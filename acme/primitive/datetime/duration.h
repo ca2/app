@@ -255,10 +255,6 @@ inline nanos duration::nanos() const
 
 }
 
-   return ::duration::;
-
-}
-
 
 //inline duration::operator ::nanos() const
 //{
@@ -367,7 +363,7 @@ public:
 
 
    inline microsecond(i64 iMicroseconds = 0);
-   inline microsecond(u64 uMicroseconds) :microsecond((::u64)uMicroseconds) {}
+   inline microsecond(u64 uMicroseconds) : microsecond((::i64)uMicroseconds) {}
    inline microsecond(i32 iMicroseconds);
    inline microsecond(u32 uMicroseconds);
    microsecond(long double dMicroseconds);

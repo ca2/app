@@ -111,13 +111,13 @@ namespace process
       if(dur.is_pos_infinity())
       {
 
-         m_tickTimeout = 0;
+         m_millisTimeout.Null();
 
       }
       else
       {
 
-         m_tickTimeout = (tick) dur.tick_duration();
+         m_millisTimeout = (millis) dur.u32_millis();
 
       }
 
@@ -176,7 +176,7 @@ namespace process
 
       }
 
-      m_tickStart.Now();
+      m_millisStart.Now();
 
       string strRead;
 
@@ -248,7 +248,7 @@ namespace process
    void department::process_thread::run_elevated()
    {
 
-      m_spprocess->synch_elevated(m_strCmdLine,display_none,m_tickTimeout,m_pbPotentialTimeout);
+      m_spprocess->synch_elevated(m_strCmdLine,display_none,m_millisTimeout,m_pbPotentialTimeout);
 
       m_result.add((::estatus    ) m_spprocess->m_exitstatus.m_iExitCode);
 
@@ -272,7 +272,7 @@ namespace process
    bool department::process_thread::retry()
    {
 
-      if(m_tickTimeout > 0 && m_tickStart.elapsed() > m_tickTimeout)
+      if(m_millisTimeout > 0 && m_millisStart.elapsed() > m_millisTimeout)
       {
 
          if(m_pbPotentialTimeout != nullptr)

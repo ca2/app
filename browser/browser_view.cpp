@@ -173,7 +173,7 @@ namespace browser
             if (m_bPendingImageChange)
             {
 
-               if (tick::now() - m_tickLastImageChange > 750)
+               if (millis::now() - m_millisLastImageChange > 750)
                {
 
                   m_bPendingImageChange = false;
@@ -528,7 +528,7 @@ namespace browser
 
             m_strImage = strImage.c_str();
 
-            m_tickLastImageChange = ::tick::now();
+            m_millisLastImageChange = ::millis::now();
 
             m_bPendingImageChange = true;
 

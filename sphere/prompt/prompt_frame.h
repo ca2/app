@@ -37,7 +37,7 @@ namespace prompt
 
 
       bool m_bHoverMouse;
-      tick m_tickLastHover;
+      millis m_millisLastHover;
 
       void OnHoverAction(bool bShowWinActionArea);
 

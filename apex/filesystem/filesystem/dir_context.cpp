@@ -49,7 +49,7 @@ dir_context::dir_context()
 
    //m_pziputil = nullptr;
 
-   //         m_isdirmap.m_tickTimeout = 180000;
+   //         m_isdirmap.m_millisTimeout = 180000;
 
 
 
@@ -1016,7 +1016,7 @@ bool dir_context::name_is(const ::file::path & strPath)
 //
 //         }
 //
-//         if (::get_fast_tick_count() > pdir->m_tickLastCheck + m_tickTimeout)
+//         if (::get_fast_tick_count() > pdir->m_millisLastCheck + m_millisTimeout)
 //         {
 //
 //            return false;
@@ -1177,7 +1177,7 @@ bool dir_context::name_is(const ::file::path & strPath)
 //         }
 //
 //end:
-//         if (::get_fast_tick_count() > pdir->m_tickLastCheck + m_tickTimeout)
+//         if (::get_fast_tick_count() > pdir->m_millisLastCheck + m_millisTimeout)
 //         {
 //
 //            return false;
@@ -1256,7 +1256,7 @@ bool dir_context::name_is(const ::file::path & strPath)
 //
 //                  pfind->m_dwError = dwLastError;
 //
-//                  pfind->m_tickLastCheck = ::get_fast_tick_count();
+//                  pfind->m_millisLastCheck = ::get_fast_tick_count();
 //
 //                  pdir->add(pfind);
 //
@@ -1290,7 +1290,7 @@ bool dir_context::name_is(const ::file::path & strPath)
 //
 //            }
 //
-//            pdir->m_tickLastCheck = ::get_fast_tick_count();
+//            pdir->m_millisLastCheck = ::get_fast_tick_count();
 //            iFind0 = iFind3 + 1;
 //         }
 //
@@ -1672,7 +1672,7 @@ void dir_context::matter_ls_file(const ::file::path & str, ::file::listing & str
       if (::str::begins_eat_ci(path, "itdoesntexist."))
       {
 
-         tick t = ansi_to_i64(path);
+         millis t = ansi_to_i64(path);
 
          auto elapsed = t.elapsed();
 
@@ -1861,7 +1861,7 @@ void dir_context::matter_ls_file(const ::file::path & str, ::file::listing & str
 
    }
 
-   path = "itdoesntexist." + __str(tick::now().m_i);
+   path = "itdoesntexist." + __str(millis::millis().m_iMilliseconds);
 
 ret:
 

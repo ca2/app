@@ -9,7 +9,7 @@ public:
 
    ::rect                        m_rect;
    ::image_pointer               m_pimage;
-   tick                          m_tick;
+   millis                          m_tick;
    index                         m_iFrame;
    ::draw2d::e_disposal          m_edisposal;
    color32_t                      m_crTransparent;

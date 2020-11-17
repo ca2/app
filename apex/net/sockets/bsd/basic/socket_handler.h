@@ -29,7 +29,7 @@ namespace sockets
       fd_set                     m_wfds; ///< file descriptor set monitored for write events
       fd_set                     m_efds; ///< file descriptor set monitored for exceptions
       i32                        m_iPreviousError; ///< debug select() error
-      tick                       m_tickLastError;
+      millis                       m_millisLastError;
       time_t                     m_tlast; ///< timeout control
 
       // state lists

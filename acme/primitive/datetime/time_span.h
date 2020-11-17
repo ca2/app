@@ -14,7 +14,7 @@ namespace datetime
 
       time_span() noexcept;
       time_span(time_t time) noexcept;
-      time_span(const ::tick & tick) noexcept;
+      time_span(const ::millis & millis) noexcept;
       time_span(i64 lDays,i32 nHours,i32 nMins,i32 nSecs) noexcept;
 
       i64 GetDays() const noexcept;
@@ -45,7 +45,7 @@ namespace datetime
          return seconds(GetTotalSeconds());
       }
 
-      operator tick() const
+      operator millis() const
       {
          return GetTotalSeconds() * 1000;
    }
@@ -66,8 +66,8 @@ namespace datetime
    {
    }
 
-   inline time_span::time_span(const ::tick & tick) noexcept :
-      m_timeSpan(tick.seconds())
+   inline time_span::time_span(const ::millis & millis) noexcept :
+      m_timeSpan(millis.seconds())
    {
    }
 

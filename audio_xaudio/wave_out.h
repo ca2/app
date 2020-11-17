@@ -46,7 +46,7 @@ namespace multimedia
 
 //         run_step_thread *                m_prunstepthread;
 
-         tick                             m_tickLastBuffer;
+         millis                             m_millisLastBuffer;
          int                              m_iBuffer;
 
          WAVEFORMATEX                     m_waveformatex;

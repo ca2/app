@@ -257,9 +257,9 @@ namespace windows
 
       bool bTimedOut = true;
 
-      auto tickStart = ::tick::now();
+      auto tickStart = ::millis::millis();
 
-      auto tickTimeout = durationTimeOut.tick_duration();
+      auto tickTimeout = durationTimeOut.u32_millis();
 
       while(tickStart.elapsed() < tickTimeout)
       {

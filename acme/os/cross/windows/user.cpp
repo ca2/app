@@ -123,73 +123,73 @@ CLASS_DECL_ACME color32_t GetSysColor(::u32 dw)
 //
 //}
 
+#
 
-
-CLASS_DECL_ACME int_bool CopyRect(RECT32 * prectDest, const RECT32 * rectSrc)
-{
-
-   prectDest->left      = rectSrc->left;
-   prectDest->top       = rectSrc->top;
-   prectDest->right     = rectSrc->right;
-   prectDest->bottom    = rectSrc->bottom;
-
-   return true;
-
-}
-
-CLASS_DECL_ACME int_bool PtInRect(const RECT32 * prect, const POINT32 *  ppoint)
-{
-   return ppoint->x >= prect->left && ppoint->x <= prect->right
-          && ppoint->y >= prect->top && ppoint->y <= prect->bottom;
-
-}
-
-CLASS_DECL_ACME int_bool SetRect(RECT32 * prect, i32 x1, i32 y1, i32 x2, i32 y2)
-{
-
-   prect->left = x1;
-   prect->top = y1;
-
-   prect->right = x2;
-   prect->bottom = y2;
-   return true;
-}
-
-
-CLASS_DECL_ACME int_bool SetRectEmpty(RECT32 * prect)
-{
-
-   SetRect(prect, 0, 0, 0, 0);
-   return true;
-}
-
-
-CLASS_DECL_ACME int_bool EqualRect(const RECT32 * prect1, const RECT32 * prect2)
-{
-   return prect1->left == prect2->left
-          &&  prect1->top == prect2->top
-          &&  prect1->right == prect2->right
-          &&  prect1->bottom == prect2->bottom;
-}
-
-
-CLASS_DECL_ACME int_bool InflateRect(RECT32 * prect, i32 x, i32 y)
-{
-   prect->left -= x;
-   prect->top -= y;
-   prect->right += x;
-   prect->bottom += y;
-   return true;
-}
-
-CLASS_DECL_ACME int_bool OffsetRect(RECT32 * prect, i32 x, i32 y)
-{
-   prect->left += x;
-   prect->top += y;
-   prect->right += x;
-   prect->bottom += y;
-   return true;
-}
+//CLASS_DECL_ACME int_bool CopyRect(RECT32 * prectDest, const RECT32 * rectSrc)
+//{
+//
+//   prectDest->left      = rectSrc->left;
+//   prectDest->top       = rectSrc->top;
+//   prectDest->right     = rectSrc->right;
+//   prectDest->bottom    = rectSrc->bottom;
+//
+//   return true;
+//
+//}
+//
+//CLASS_DECL_ACME int_bool PtInRect(const RECT32 * prect, const POINT32 *  ppoint)
+//{
+//   return ppoint->x >= prect->left && ppoint->x <= prect->right
+//          && ppoint->y >= prect->top && ppoint->y <= prect->bottom;
+//
+//}
+//
+//CLASS_DECL_ACME int_bool SetRect(RECT32 * prect, i32 x1, i32 y1, i32 x2, i32 y2)
+//{
+//
+//   prect->left = x1;
+//   prect->top = y1;
+//
+//   prect->right = x2;
+//   prect->bottom = y2;
+//   return true;
+//}
+//
+//
+//CLASS_DECL_ACME int_bool SetRectEmpty(RECT32 * prect)
+//{
+//
+//   SetRect(prect, 0, 0, 0, 0);
+//   return true;
+//}
+//
+//
+//CLASS_DECL_ACME int_bool EqualRect(const RECT32 * prect1, const RECT32 * prect2)
+//{
+//   return prect1->left == prect2->left
+//          &&  prect1->top == prect2->top
+//          &&  prect1->right == prect2->right
+//          &&  prect1->bottom == prect2->bottom;
+//}
+//
+//
+//CLASS_DECL_ACME int_bool InflateRect(RECT32 * prect, i32 x, i32 y)
+//{
+//   prect->left -= x;
+//   prect->top -= y;
+//   prect->right += x;
+//   prect->bottom += y;
+//   return true;
+//}
+//
+//CLASS_DECL_ACME int_bool OffsetRect(RECT32 * prect, i32 x, i32 y)
+//{
+//   prect->left += x;
+//   prect->top += y;
+//   prect->right += x;
+//   prect->bottom += y;
+//   return true;
+//}
 
 /*
 CLASS_DECL_ACME bool x_intersect_rect(RECT32 * prect, const RECT32 * prect1, const RECT32 * prect2)
@@ -207,41 +207,41 @@ CLASS_DECL_ACME bool y_intersect_rect(RECT32 * prect, const RECT32 * prect1, con
 }
 */
 
-CLASS_DECL_ACME int_bool IntersectRect(RECT32 * prect, const RECT32 * prect1, const RECT32 * prect2)
-{
-   int_bool bXIntersects = x_intersect_rect(prect, prect1, prect2);
-   int_bool bYIntersects = y_intersect_rect(prect, prect1, prect2);
-   return bXIntersects && bYIntersects;
-}
-
-
-CLASS_DECL_ACME int_bool UnionRect(RECT32 * prect, const RECT32 * prect1, const RECT32 * prect2)
-{
-   prect->left = min(prect1->left, prect2->left);
-   prect->top = min(prect1->top, prect2->top);
-   prect->right = max(prect1->right, prect2->right);
-   prect->bottom = max(prect1->bottom, prect2->bottom);
-   return ((prect->right - prect->left) > 0) && ((prect->bottom - prect->top) > 0);
-}
-
-
-CLASS_DECL_ACME int_bool SubtractRect(RECT32 * prect, const RECT32 * prect1, const RECT32 * prect2)
-{
-   RECT32 rect;
-   int_bool bXIntersects = x_intersect_rect(&rect, prect1, prect2);
-   int_bool bYIntersects = y_intersect_rect(&rect, prect1, prect2);
-   if(bXIntersects)
-   {
-      prect->left    = prect->left;
-      prect->right   = prect->right;
-   }
-   if(bYIntersects)
-   {
-      prect->top    = prect->top;
-      prect->bottom   = prect->bottom;
-   }
-   return bXIntersects || bYIntersects;
-}
+//CLASS_DECL_ACME int_bool IntersectRect(RECT32 * prect, const RECT32 * prect1, const RECT32 * prect2)
+//{
+//   int_bool bXIntersects = x_intersect_rect(prect, prect1, prect2);
+//   int_bool bYIntersects = y_intersect_rect(prect, prect1, prect2);
+//   return bXIntersects && bYIntersects;
+//}
+//
+//
+//CLASS_DECL_ACME int_bool UnionRect(RECT32 * prect, const RECT32 * prect1, const RECT32 * prect2)
+//{
+//   prect->left = min(prect1->left, prect2->left);
+//   prect->top = min(prect1->top, prect2->top);
+//   prect->right = max(prect1->right, prect2->right);
+//   prect->bottom = max(prect1->bottom, prect2->bottom);
+//   return ((prect->right - prect->left) > 0) && ((prect->bottom - prect->top) > 0);
+//}
+//
+//
+//CLASS_DECL_ACME int_bool SubtractRect(RECT32 * prect, const RECT32 * prect1, const RECT32 * prect2)
+//{
+//   RECT32 rect;
+//   int_bool bXIntersects = x_intersect_rect(&rect, prect1, prect2);
+//   int_bool bYIntersects = y_intersect_rect(&rect, prect1, prect2);
+//   if(bXIntersects)
+//   {
+//      prect->left    = prect->left;
+//      prect->right   = prect->right;
+//   }
+//   if(bYIntersects)
+//   {
+//      prect->top    = prect->top;
+//      prect->bottom   = prect->bottom;
+//   }
+//   return bXIntersects || bYIntersects;
+//}
 
 
 #ifndef _UWP

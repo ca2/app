@@ -144,7 +144,7 @@ namespace turboc
 
       }
 
-      double t = ::get_tick() / 1000.0;
+      double t= ::millis::now() / 1000.0;
 
       double w = 2.0 * 3.1415 / T;
 
@@ -152,7 +152,7 @@ namespace turboc
 
 //      double dBlur = m_dMinRadius + (m_dMaxRadius - m_dMinRadius) * r;
 
-      //i32 i = ::get_tick()  / 100 % iCount;
+      //i32 i= ::millis::now()  / 100 % iCount;
 
       //i32 iBlur;
 

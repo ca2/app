@@ -152,10 +152,10 @@
 
             DWORD_PTR dwptr;
 
-            if(!::SendMessageTimeout(m_oswindow,WM_COPYDATA,(WPARAM)0,(LPARAM)&cds, SMTO_ABORTIFHUNG, (::u32)(durationTimeout.get_total_milliseconds()),&dwptr))
+            if(!::SendMessageTimeout(m_oswindow,WM_COPYDATA,(WPARAM)0,(LPARAM)&cds, SMTO_ABORTIFHUNG, (::u32)(durationTimeout.u32_millis()),&dwptr))
                return false;
 
-            unsigned int dwError = ::get_last_error();
+            unsigned int dwError = ::GetLastError();
 
             if(dwError == ERROR_TIMEOUT)
                return false;
@@ -203,10 +203,10 @@
 
             DWORD_PTR dwptr;
 
-            if(!::SendMessageTimeout(m_oswindow,WM_COPYDATA,(WPARAM)0,(LPARAM)&cds,SMTO_BLOCK, (::u32)(durationTimeout.get_total_milliseconds()), &dwptr))
+            if(!::SendMessageTimeout(m_oswindow,WM_COPYDATA,(WPARAM)0,(LPARAM)&cds,SMTO_BLOCK, (::u32)(durationTimeout.u32_millis()), &dwptr))
                return false;
 
-            unsigned int dwError = ::get_last_error();
+            unsigned int dwError = ::GetLastError();
 
             if(dwError == ERROR_TIMEOUT)
                return false;
@@ -275,7 +275,7 @@
 
          if(m_oswindow == nullptr)
          {
-            unsigned int dwLastError = ::get_last_error();
+            unsigned int dwLastError = ::GetLastError();
             return false;
          }
 
@@ -512,7 +512,7 @@
       interprocess_communication::interprocess_communication()
       {
 
-         m_tickTimeout = (5000) * 11;
+         m_millisTimeout = (5000) * 11;
 
       }
 

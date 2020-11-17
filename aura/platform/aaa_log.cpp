@@ -383,7 +383,7 @@ namespace aura
       time = time.get_current_time();
       time.Format(strPre, "%Y-%m-%d %H:%M:%S");
       string strTick;
-      i64 uiTotalMillis = ::get_tick() - ::first_tick();
+      i64 uiTotalMillis= ::millis::now() - ::first_millis();
       i64 uiMillis = uiTotalMillis % 1000;
       i64 uiTotalSeconds = uiTotalMillis / 1000;
       i64 uiSeconds = uiTotalSeconds % 60;

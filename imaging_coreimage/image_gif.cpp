@@ -224,7 +224,7 @@ namespace coreimage_imaging
 
                p->m_pimage->create_helper_map();
 
-               pframea->m_tickTotal += p->m_tick;
+               pframea->m_millisTotal += p->m_tick;
 
             }
 

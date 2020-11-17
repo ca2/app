@@ -437,7 +437,7 @@ namespace draw2d
                //      previous curve's last point.
                //**********************************************
 
-               pointStart = *(POINT32 *FX)((char *)pCurve - sizeof(POINTFX));
+               pointStart = *(POINTFX *)((char *)pCurve - sizeof(POINTFX));
 
                if (pCurve->wType == TT_PRIM_LINE)
 

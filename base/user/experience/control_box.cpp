@@ -190,7 +190,7 @@ namespace experience
       if (pshow->m_bShow)
       {
 
-         m_tickShow.Now();
+         m_millisShow.Now();
 
       }
 
@@ -232,7 +232,7 @@ namespace experience
             if (m_bDrag)
             {
 
-               m_tickShow.Now();
+               m_millisShow.Now();
 
             }
             else
@@ -251,13 +251,13 @@ namespace experience
                      if (rectWindow.contains(pointCursor))
                      {
 
-                        m_tickShow.Now();
+                        m_millisShow.Now();
 
                      }
                      else
                      {
 
-                        if(m_tickShow.elapsed() > 1000)
+                        if(m_millisShow.elapsed() > 1000)
                         {
 
                            display(display_none);
@@ -275,7 +275,7 @@ namespace experience
          }
          else if (m_bShowAttempt)
          {
-            //if ((m_tickShowTime.elapsed()) > 284)
+            //if ((m_millisShowTime.elapsed()) > 284)
             {
                if (m_pframewindow != nullptr)
                {
@@ -339,7 +339,7 @@ namespace experience
 
                   m_bShowAttempt = true;
 
-                  m_tickShow.Now();
+                  m_millisShow.Now();
 
                }
 
@@ -1357,7 +1357,7 @@ namespace experience
 
          *m_pframewindow->m_pframe->get_control_box_rect() = rect;
 
-         m_pframewindow->m_tickLastVisualChange.Now();
+         m_pframewindow->m_millisLastVisualChange.Now();
 
          //auto pframe = m_pframewindow;
 

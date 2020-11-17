@@ -533,9 +533,9 @@ void FileSystemSizeWnd::ClientStartServer()
 
    db_server * pcentral = &System.m_simpledb.db();
 
-   if(m_tickLastStartTime.elapsed() > 2000)
+   if(m_millisLastStartTime.elapsed() > 2000)
    {
-      m_tickLastStartTime = ::get_tick();
+      m_millisLastStartTime= ::millis::now();
 
       simple_shell_launcher launcher(nullptr, nullptr, Context.dir().path(System.get_module_folder(), "winservice_filesystemsizeapp"), nullptr, nullptr, SW_HIDE);
 

@@ -1045,7 +1045,7 @@ namespace axis
 //
 //      //m_bAuraInitializeInstanceResult = false;
 //
-//      m_tickHeartBeat.Now();
+//      m_millisHeartBeat.Now();
 //
 //      if (!init1())
 //      {
@@ -1060,7 +1060,7 @@ namespace axis
 //
 //      //xxdebug_box("init1 ok", "init1 ok", MB_ICONINFORMATION);
 //
-//      m_tickHeartBeat.Now();
+//      m_millisHeartBeat.Now();
 //
 //      if (!init2())
 //      {
@@ -1075,7 +1075,7 @@ namespace axis
 //
 //      //xxdebug_box("init2 ok", "init2 ok", MB_ICONINFORMATION);
 //
-//      m_tickHeartBeat.Now();
+//      m_millisHeartBeat.Now();
 //
 //      if (!init3())
 //      {
@@ -1090,7 +1090,7 @@ namespace axis
 //
 //      //xxdebug_box("init3 ok", "init3 ok", MB_ICONINFORMATION);
 //
-//      m_tickHeartBeat.Now();
+//      m_millisHeartBeat.Now();
 //
 //      //dappy(string(typeid(*this).name()) + " : init3 ok : " + __str(m_iErrorCode));
 //
@@ -1206,7 +1206,7 @@ namespace axis
 
       ////}
 
-      //m_tickHeartBeat.Now();
+      //m_millisHeartBeat.Now();
 
       ////estatus = __compose(m_puserfs);
 
@@ -1990,7 +1990,7 @@ namespace axis
 
    //   //m_bAxisInitialize1Result = false;
 
-   //   m_tickHeartBeat.Now();
+   //   m_millisHeartBeat.Now();
 
    //   if (!::aura::application::init1())
    //   {

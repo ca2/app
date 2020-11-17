@@ -146,6 +146,12 @@ CLASS_DECL_ACME ::acme::system * get_context_system();
 
 //#include "acme/message/global.h"
 
+#define ___STR(s) #s
+#define __STR(s) ___STR(s)
+#define __IDENTIFIER(identifier) identifier
+#define PLATFORM_INCLUDE(include) __STR(__IDENTIFIER(PLATFORM_NAMESPACE)/include)
+
+
 
 #include "acme/exception/_c.h"
 
@@ -205,6 +211,9 @@ namespace opengl
 
 
 } // namespace opengl
+
+
+enum enum_normalize { e_normalize };
 
 
 struct INT_STRING
@@ -2439,7 +2448,16 @@ using wparam = c_number < WPARAM >;
 #include "acme/primitive/math/math_clip.h"
 
 
-#include "acme/platform/tick.h"
+#include "acme/primitive/datetime/secs.h"
+
+
+#include "acme/primitive/datetime/millis.h"
+
+
+#include "acme/primitive/datetime/micros.h"
+
+
+#include "acme/primitive/datetime/nanos.h"
 
 
 #include "acme/primitive/datetime/duration.h"

@@ -13,9 +13,9 @@ namespace console
 
 
       
-      tick                 m_tickCaretStart;
+      millis                 m_millisCaretStart;
 
-      tick                 m_tickCaretPeriod;
+      millis                 m_millisCaretPeriod;
 
       strsize              m_iCursor;
 
@@ -27,7 +27,7 @@ namespace console
 
       strsize              m_iNewChar;
 
-      tick m_tickLastError;
+      millis m_millisLastError;
 
       bool                 m_bOk;
 

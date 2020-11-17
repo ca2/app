@@ -11,7 +11,7 @@ namespace simpledb
    public:
 
       string            m_strKey;
-      tick              m_tick;
+      millis              m_tick;
       fork_block        m_block;
 
    };

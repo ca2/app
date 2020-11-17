@@ -12,8 +12,8 @@ public:
    bool                                            m_bProdevianFrame;
    __pointer(::user::tool_window)                  m_ptoolwindowFont;
    bool                                            m_bFirstShow;
-   tick                                            m_tickLastSaveWindowRect;
-   tick                                            m_tickLastSaveWindowRectRequest;
+   millis                                            m_millisLastSaveWindowRect;
+   millis                                            m_millisLastSaveWindowRectRequest;
    bool                                            m_bPendingSaveWindowRect;
    bool                                            m_bDefaultCreateToolbar;
    bool                                            m_bTransparentFrameEnable;

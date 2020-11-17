@@ -16,7 +16,7 @@ namespace userex
       
       virtual void on_show(const char * pszMatter) override;
       virtual bool on_timeout() override;
-      virtual void on_timer_soft_reload(tick tickTimeout) override;
+      virtual void on_timer_soft_reload(millis tickTimeout) override;
 
 
    };

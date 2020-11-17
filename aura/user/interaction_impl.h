@@ -79,7 +79,7 @@ namespace user
       int                                 m_iLangId;
       bool                                m_bEatSizeEvent;
       bool                                m_bEatMoveEvent;
-      tick                                m_tickLastExposureAddUp;
+      millis                                m_millisLastExposureAddUp;
       __composite(prodevian)              m_pprodevian;
       __composite(::user::thread)         m_puserthread;
       simple_object_ptra                  m_ptraProdevian;
@@ -125,7 +125,7 @@ namespace user
       lparam                              m_lparamLastMouseMove;
 
       bool                                m_bPendingRedraw;
-      tick                                m_tickLastRedraw;
+      millis                                m_millisLastRedraw;
 
 
       interaction_impl();
@@ -397,7 +397,7 @@ namespace user
 
 #if(WINVER >= 0x0500)
 
-      virtual bool AnimateWindow(tick tick,u32 dwFlags);
+      virtual bool AnimateWindow(millis millis,u32 dwFlags);
 
 #endif
 
@@ -525,7 +525,7 @@ namespace user
 
 #if(WINVER >= 0x0500)
 
-      virtual bool FlashWindowEx(u32 dwFlags,::u32  uCount,tick tickTimeout);
+      virtual bool FlashWindowEx(u32 dwFlags,::u32  uCount,millis tickTimeout);
 
 #endif   // WINVER >= 0x0500
 

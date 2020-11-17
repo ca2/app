@@ -17,7 +17,7 @@ namespace file
       public:
 
          bool           m_bIsDir;
-         tick m_tickLastCheck;
+         millis m_millisLastCheck;
          u32       m_dwError;
 
 
@@ -31,7 +31,7 @@ namespace file
 
 
          ::mutex                m_mutex;
-         tick m_tickTimeout;
+         millis m_millisTimeout;
 
 
          is_dir_map(::layered * pobjectContext);

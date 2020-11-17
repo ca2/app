@@ -153,8 +153,8 @@ namespace user
       bool                             m_bLButtonDown;
       point                            m_pointLButtonDown1;
       point                            m_pointLButtonDown2;
-      tick                             m_tickLButtonDownStart1;
-      tick                             m_tickLButtonDownStart2;
+      millis                             m_millisLButtonDownStart1;
+      millis                             m_millisLButtonDownStart2;
       index                    m_iDisplayItemLButtonDown1;
       index                    m_iDisplayItemLButtonDown2;
 

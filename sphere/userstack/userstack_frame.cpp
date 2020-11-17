@@ -122,14 +122,14 @@ namespace userstack
       else if(uEvent == 4033)
       {
          ::point point;
-         if(m_bHoverMouse && ::get_tick() > m_tickLastHover + 300)
+         if(m_bHoverMouse && ::get_tick() > m_millisLastHover + 300)
          {
             OnHoverAction();
          }
          point = psession->get_cursor_pos();
          if(!m_bHoverMouse && point.x == 0 && point.y == 0)
          {
-            m_tickLastHover = ::tick::now();
+            m_millisLastHover = ::millis::now();
             m_bHoverMouse = true;
 
          }

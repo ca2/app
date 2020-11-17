@@ -2013,7 +2013,7 @@
     <ClInclude Include="primitive\primitive\simple_object.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\stick.h">
+    <ClInclude Include="primitive\primitive\smillis.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive\topic_text_string.h">
@@ -2964,7 +2964,7 @@
     <ClInclude Include="platform\status.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="platform\tick.h">
+    <ClInclude Include="platform\millis.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\trace_category.h">

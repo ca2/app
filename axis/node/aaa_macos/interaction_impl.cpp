@@ -1858,7 +1858,7 @@ namespace macos
 //
 //         try
 //         {
-//auto tickStart = ::tick::now();
+//auto tickStart = ::millis::now();
 //
 //            if(m_puserinteraction == nullptr)
 //            {
@@ -4288,9 +4288,9 @@ namespace macos
 
 #endif
 
-      tick tickNow = tick::now();
+      millis tickNow = millis::now();
 
-      tick tickEllapsed = tickNow - m_tickLastRoundWindowDraw;
+      millis tickEllapsed = tickNow - m_millisLastRoundWindowDraw;
 
       if(tickEllapsed < 12)
       {
@@ -4300,7 +4300,7 @@ namespace macos
 
       }
 
-      m_tickLastRoundWindowDraw = tickNow;
+      m_millisLastRoundWindowDraw = tickNow;
 
       round_window_draw_life_time roundwindowdrawlifetime(this);
 
@@ -4395,7 +4395,7 @@ namespace macos
       
       m_bPendingRedraw = false;
       
-      m_tickLastRedraw.Now();
+      m_millisLastRedraw.Now();
 
    }
 
@@ -4684,7 +4684,7 @@ namespace macos
       if(pinteraction.is_set())
       {
 
-         if(pinteraction->m_tickMouseMove.elapsed() < pinteraction->m_tickMouseMoveIgnore)
+         if(pinteraction->m_millisMouseMove.elapsed() < pinteraction->m_millisMouseMoveIgnore)
          {
             
             //printf("mouse_move_ignored %f, %f\n", x, y);
@@ -4698,7 +4698,7 @@ namespace macos
 
 //            printf("mouse_move_\"accepted\" %f, %f\n", x, y);
 
-            pinteraction->m_tickMouseMove.Now();
+            pinteraction->m_millisMouseMove.Now();
 
             pinteraction->m_pointMouseMove.x = x;
 
@@ -4707,13 +4707,13 @@ namespace macos
 //            if(false)
 //            {
 //
-//               if(pinteraction->m_tickMouseMovePeriod > 0)
+//               if(pinteraction->m_millisMouseMovePeriod > 0)
 //               {
 //
 //                  ::size sizeDistance((pinteraction->m_pointMouseMoveSkip.x - pinteraction->m_pointMouseMove.x),
 //                     (pinteraction->m_pointMouseMoveSkip.y - pinteraction->m_pointMouseMove.y));
 //
-//                  if(!pinteraction->m_tickMouseMoveSkip.timeout(pinteraction->m_tickMouseMovePeriod)
+//                  if(!pinteraction->m_millisMouseMoveSkip.timeout(pinteraction->m_millisMouseMovePeriod)
 //                     && sizeDistance.cx * sizeDistance.cx + sizeDistance.cy * sizeDistance.cy < pinteraction->m_iMouseMoveSkipSquareDistance)
 //                  {
 //
@@ -5115,7 +5115,7 @@ namespace macos
          
       }
       
-      m_tickLastExposureAddUp.Now();
+      m_millisLastExposureAddUp.Now();
 
    }
 
@@ -5245,7 +5245,7 @@ namespace macos
 
       }
 
-      m_tickLastExposureAddUp.Now();
+      m_millisLastExposureAddUp.Now();
 
       m_puserinteraction->message_call(e_message_show_window, 1);
 

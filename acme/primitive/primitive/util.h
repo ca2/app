@@ -62,7 +62,7 @@ class CTimer
 {
 public:
 
-   tick     m_tick;
+   millis     m_tick;
 
    CTimer() { Restart(); }
 

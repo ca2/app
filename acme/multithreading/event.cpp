@@ -537,7 +537,7 @@ sync_result event::wait (const duration & durationTimeout)
 
 #ifdef WINDOWS
 
-   auto osduration = durationTimeout.lock_duration();
+   auto osduration = durationTimeout.u32_millis();
 
    result = sync_result((u32) ::WaitForSingleObjectEx(hsync(), osduration,FALSE));
 
@@ -683,9 +683,9 @@ sync_result event::wait (const duration & durationTimeout)
 
       delay.tv_nsec = 1000 * 1000;
 
-      u32 timeout = durationTimeout.lock_duration();
+      u32 timeout = durationTimeout.u32_millis();
 
-      auto start = ::tick::now();
+      auto start = ::millis::now();
 
       while(durationTimeout.is_pos_infinity() || start.elapsed() < timeout)
       {
@@ -839,7 +839,7 @@ bool event::lock(const duration & durationTimeout)
 
 //#ifdef WINDOWS
 //
-//   u32 dwRet = ::WaitForSingleObjectEx((HANDLE)m_hsync,durationTimeout.lock_duration(),FALSE);
+//   u32 dwRet = ::WaitForSingleObjectEx((HANDLE)m_hsync,durationTimeout.u32_millis(),FALSE);
 //
 //   if (dwRet == WAIT_OBJECT_0 || dwRet == WAIT_ABANDONED)
 //      return true;
@@ -903,9 +903,9 @@ bool event::lock(const duration & durationTimeout)
 //   else
 //   {
 //
-//      u32 timeout = durationTimeout.lock_duration();
+//      u32 timeout = durationTimeout.u32_millis();
 //
-//      u32 start = ::get_tick();
+//      u32 start= ::millis::now();
 //
 //      while(start.elapsed() < timeout)
 //      {

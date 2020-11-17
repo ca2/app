@@ -67,13 +67,13 @@ namespace simpledb
          if(strHost == "aura.am")
          {
             TRACE("simpledb::socket::send_response aura.am");
-//            u32 dw = ::get_tick();
+//            u32 dw= ::millis::now();
             //  debug_break();
          }
          if(strScript == "songs")
          {
             TRACE("simpledb::socket::send_response songs");
-            //u32 dw = ::get_tick();
+            //u32 dw= ::millis::now();
          }
          manager().handle(this);
       }

@@ -33,11 +33,11 @@ namespace userex
 //      if(set.has_property("message_box_timeout_ms"))
       {
          
-  //       m_tickDelay = set["message_box_timeout_ms"].i64();
+  //       m_millisDelay = set["message_box_timeout_ms"].i64();
          
       }
 
-      m_tickDelay = *fetch_property("message_box_timeout_ms");
+      m_millisDelay = *fetch_property("message_box_timeout_ms");
       
       wait_message_dialog::on_show(pszMatter);
       
@@ -51,7 +51,7 @@ namespace userex
    }
 
 
-   void message_box::on_timer_soft_reload(tick tickTimeout)
+   void message_box::on_timer_soft_reload(millis tickTimeout)
    {
       
       wait_message_dialog::on_timer_soft_reload(tickTimeout);

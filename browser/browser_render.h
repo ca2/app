@@ -22,7 +22,7 @@ namespace browser
       double                           m_dRenderFps;
       bool                             m_bDib1;
 
-      tick m_tickSlidePeriod;
+      millis m_millisSlidePeriod;
 
       bool                             m_bAlternate;
 
@@ -81,16 +81,16 @@ namespace browser
       view *                           m_pview;
 
 
-      tick                            m_tickAnime;
-      tick m_tickLastFast;
-      ::u32                            m_tickFastAnime;
+      millis                            m_millisAnime;
+      millis m_millisLastFast;
+      ::u32                            m_millisFastAnime;
       ::image_pointer                            m_pimageFast;
 
 
       image_array                      m_pimageaSlide;
       __pointer(::object)                     m_pslideshow;
 
-      tick m_tickLastOk;
+      millis m_millisLastOk;
 
 
       bool                             m_bFast;

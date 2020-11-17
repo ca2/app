@@ -57,7 +57,7 @@ bool ftpfs::fast_has_subdir(const ::file::path & path)
 
    sync_lock sl(mutex());
 
-   //   tick tickTimeout;
+   //   millis tickTimeout;
 
    dir_listing & dir = m_map[path];
 
@@ -77,7 +77,7 @@ bool ftpfs::has_subdir(const ::file::path & path)
 
    sync_lock sl(mutex());
 
-   //   tick tickTimeout;
+   //   millis tickTimeout;
 
    dir_listing & dir = m_map[path];
 
@@ -153,7 +153,7 @@ bool ftpfs::has_subdir(const ::file::path & path)
 
    }
 
-   //   tick tickTimeout;
+   //   millis tickTimeout;
 
    dir_listing & dir = m_map[listing.m_pathUser];
 
@@ -196,7 +196,7 @@ bool ftpfs::has_subdir(const ::file::path & path)
 
    //   }
 
-   //   dir.m_uiLsTimeout = ::get_tick() + ((5000) * 4);
+   //   dir.m_uiLsTimeout= ::millis::now() + ((5000) * 4);
 
    //   listing = failure;
 
@@ -340,7 +340,7 @@ int ftpfs::is_dir(const ::file::path & path)
    //defer_initialize();
 
 
-   //tick tickTimeout;
+   //millis tickTimeout;
 
    sync_lock sl(mutex());
 

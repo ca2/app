@@ -82,7 +82,7 @@ namespace user
 
          CalcTension(point);
          SetCapture();
-         m_tickLastTime = ::get_tick();
+         m_millisLastTime= ::millis::now();
          m_daScalar.set(0.0);
          m_iScalar = 0;
          m_bSlide = true;
@@ -157,15 +157,15 @@ namespace user
 
    double elastic_slider::CalcScalar()
    {
-      auto tickNow = ::tick::now();
-      if(tickNow - m_tickLastTime < 30)
+      auto tickNow = ::millis::now();
+      if(tickNow - m_millisLastTime < 30)
          return m_daScalar.GetMean();
       CalcTension();
       double dScalar;
       if(m_bSlide)
       {
          double dForce = GetForce();
-         auto dDeltaTime = tickNow - m_tickLastTime;
+         auto dDeltaTime = tickNow - m_millisLastTime;
          double dFilterLastScalar = m_daScalar.GetMean();
          double dRate = 1.0 / 100.0;
          dScalar = dForce * __double(dDeltaTime) * dRate + dFilterLastScalar;
@@ -176,7 +176,7 @@ namespace user
       }
       m_daScalar[m_iScalar] =  dScalar;
       m_iScalar = (m_iScalar + 1) % m_daScalar.get_size();
-      m_tickLastTime = tickNow;
+      m_millisLastTime = tickNow;
       return m_daScalar.GetMean(); // Low Pass Filter
    }
 

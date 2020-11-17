@@ -5154,7 +5154,7 @@
     <ClInclude Include="aura\aura\system_str.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\tick.h">
+    <ClInclude Include="aura\aura\millis.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
     <ClInclude Include="aura\aura\timer.h">
@@ -6225,7 +6225,7 @@
     <ClInclude Include="platform\this_build_number.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="platform\tick.h">
+    <ClInclude Include="platform\millis.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\timer.h">
@@ -6882,7 +6882,7 @@
     <ClInclude Include="primitive\primitive\simple_object.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\stick.h">
+    <ClInclude Include="primitive\primitive\smillis.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive\str.h">

@@ -38,7 +38,7 @@ namespace app_net
       ::draw2d::font_pointer  m_pfont;
       string                  m_strGet;
       bool                    m_bGettingUrl;
-      tick                    m_tickStartGettingUrl;
+      millis                    m_millisStartGettingUrl;
 
 
       window();

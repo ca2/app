@@ -10,7 +10,7 @@ namespace filemanager
 
    operation_list_view::operation_list_view()
    {
-      m_tickLast123Update = ::get_tick();
+      m_millisLast123Update= ::millis::now();
       m_pcache = &m_listcache;
    }
 
@@ -96,9 +96,9 @@ namespace filemanager
       BASE::_001OnTimer(ptimer);
       if(ptimer->m_uEvent == 123)
       {
-         /*if(m_tickLast123Update.elapsed() > 500)
+         /*if(m_millisLast123Update.elapsed() > 500)
          {
-         m_tickLast123Update = ::get_tick();
+         m_millisLast123Update= ::millis::now();
          _001OnUpdateItemCount();
          m_cache._001Invalidate();
          }*/
@@ -108,9 +108,9 @@ namespace filemanager
    void operation_list_view::OnFileOperationStep(i32 iOperation,bool bFinal)
    {
       UNREFERENCED_PARAMETER(iOperation);
-      if(bFinal || m_tickLast123Update.elapsed() > 184)
+      if(bFinal || m_millisLast123Update.elapsed() > 184)
       {
-         m_tickLast123Update = ::get_tick();
+         m_millisLast123Update= ::millis::now();
          _001OnUpdateItemCount();
          m_listcache._001Invalidate(this);
          ::count iItem = 0;

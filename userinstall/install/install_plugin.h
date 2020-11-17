@@ -45,8 +45,8 @@ namespace install
 
       thread_start_ca2     m_startca2;
       canvas               m_canvas;
-      tick m_tickLastInstallingCheck;
-      tick m_tickLastRestart;
+      millis m_millisLastInstallingCheck;
+      millis m_millisLastRestart;
       // logged in ? alarm comments
       bool                 m_bLogged;
       // in login process, login screen should be shown
@@ -60,7 +60,7 @@ namespace install
       bool                 m_bRestartCa2;
       bool                 m_bPendingRestartCa2;
       bool                 m_bPendingStream;
-      tick m_tickLastOk;
+      millis m_millisLastOk;
 
       bool                 m_bPluginShiftKey;
 

@@ -922,7 +922,7 @@
     <ClInclude Include="platform\static_start.h" />
     <ClInclude Include="platform\status.h" />
     <ClInclude Include="platform\system.h" />
-    <ClInclude Include="platform\tick.h" />
+    <ClInclude Include="platform\millis.h" />
     <ClInclude Include="platform\timer.h" />
     <ClInclude Include="platform\timer_array.h" />
     <ClInclude Include="platform\timer_callback.h" />
@@ -1134,7 +1134,7 @@
     <ClInclude Include="primitive\primitive\runnable.h" />
     <ClInclude Include="primitive\primitive\shared_memory.h" />
     <ClInclude Include="primitive\primitive\simple_object.h" />
-    <ClInclude Include="primitive\primitive\stick.h" />
+    <ClInclude Include="primitive\primitive\smillis.h" />
     <ClInclude Include="primitive\primitive\str.h" />
     <ClInclude Include="primitive\primitive\task.h" />
     <ClInclude Include="primitive\primitive\topic_text_string.h" />

@@ -93,7 +93,7 @@ namespace sockets
 #endif
       m_pmemfileInput = nullptr;
       m_iBindPort    = -1;
-      m_tickStart.Now();
+      m_millisStart.Now();
       m_pcallback    = nullptr;
       m_bEnablePool  = true;
 
@@ -787,7 +787,7 @@ namespace sockets
    bool base_socket::Retain()
    {
 
-      return m_bEnablePool && m_bRetain && (m_tickStart.elapsed() < 30 * 1000);
+      return m_bEnablePool && m_bRetain && (m_millisStart.elapsed() < 30 * 1000);
 
    }
 

@@ -761,7 +761,7 @@ namespace linux
    void interaction_impl::_thread_delayed_placement()
    {
 
-      while(m_tickLastPlacementEvent.elapsed() < 40 || m_puserinteraction->is_layout_experience_active())
+      while(m_millisLastPlacementEvent.elapsed() < 40 || m_puserinteraction->is_layout_experience_active())
       {
 
          if(!task_sleep(10))
@@ -1342,10 +1342,10 @@ namespace linux
 //   }
 //
 
-   tick     tickDebugmessage_handlerTime;
+   millis     tickDebugmessage_handlerTime;
    int      iDebugmessage_handlerTime;
-   tick     tickLastMouseMove;
-   tick     tickLastPaint;
+   millis     tickLastMouseMove;
+   millis     tickLastPaint;
 
 
    void interaction_impl::message_handler(::message::base * pbase)
@@ -2308,7 +2308,7 @@ namespace linux
 ////            while (::thread_get_run())
 ////            {
 ////
-//// auto tickStart = ::tick::now();
+//// auto tickStart = ::millis::now();
 ////
 ////               bool bUpdateScreen = false;
 ////

@@ -19,7 +19,7 @@ bool ifs::fast_has_subdir(const ::file::path & path)
 
    sync_lock sl(mutex());
 
-//   tick tickTimeout;
+//   millis tickTimeout;
 
    dir_listing & dir = m_map[path];
 
@@ -39,7 +39,7 @@ bool ifs::has_subdir(const ::file::path & path)
 
    sync_lock sl(mutex());
 
-//   tick tickTimeout;
+//   millis tickTimeout;
 
    dir_listing & dir = m_map[path];
 
@@ -87,7 +87,7 @@ bool ifs::has_subdir(const ::file::path & path)
 
    sync_lock sl(mutex());
 
-//   tick tickTimeout;
+//   millis tickTimeout;
 
    dir_listing & dir = m_map[listing.m_pathUser];
 
@@ -298,7 +298,7 @@ int ifs::is_dir(const ::file::path & path)
    defer_initialize();
 
 
-   //tick tickTimeout;
+   //millis tickTimeout;
 
    sync_lock sl(mutex());
 

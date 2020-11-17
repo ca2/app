@@ -43,7 +43,7 @@ namespace hotplugin
       ::rect                                 m_rect;
       bool                                   m_bResponsive;
       string                                 m_strEntryHallText;
-      tick m_tickEntryHallTextStart;
+      millis m_millisEntryHallTextStart;
       bool                                   m_bEntryHallTextStarted;
 
 

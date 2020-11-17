@@ -1,23 +1,60 @@
 #pragma once
 
 
-//inline duration& duration::operator = (const ::tick& tick)
-//{
-//
-//   operator = (::millis(tick.m_i));
-//
-//   return *this;
-//
-//}
+inline duration& duration::operator = (const class ::nanos & nanos)
+{
+
+   m_iSeconds = nanos.m_iNanoseconds / 1'000'000'000;
+
+   m_iNanoseconds = nanos.m_iNanoseconds % 1'000'000'000;
+
+   return *this;
+
+}
 
 
-inline duration& duration::operator = (const ::duration& duration)
+inline duration& duration::operator = (const class ::micros & micros)
+{
+
+   m_iSeconds = micros.m_iMicroseconds / 1'000'000;
+
+   m_iNanoseconds = (micros.m_iMicroseconds % 1'000'000) * 1'000;
+
+   return *this;
+
+}
+
+
+inline duration& duration::operator = (const class ::millis & millis)
+{
+
+   m_iSeconds = millis.m_iMilliseconds / 1'000;
+
+   m_iNanoseconds = (millis.m_iMilliseconds % 1'000) * 1'000'000;
+
+   return *this;
+
+}
+
+
+inline duration& duration::operator = (const class ::secs & secs)
+{
+
+   m_iSeconds = secs.m_iSeconds;
+
+   m_iNanoseconds = 0;
+
+   return *this;
+
+}
+
+
+inline duration& duration::operator = (const ::duration & duration)
 {
 
    if(this != &duration)
    {
 
-      m_eduration = duration.m_eduration;
       m_iSeconds = duration.m_iSeconds;
       m_iNanoseconds = duration.m_iNanoseconds;
 
@@ -27,29 +64,6 @@ inline duration& duration::operator = (const ::duration& duration)
 
 }
 
-//
-//inline tick & tick::operator = (const duration & duration)
-//{
-//
-//   m_i = duration.get_total_milliseconds();
-//
-//   return *this;
-//
-//}
-
-//
-//inline tick & tick::operator = (const ::datetime::time_span & span)
-//{
-//
-//   m_i = span.GetTotalSeconds() * 1'000;
-//
-//   return *this;
-//
-//}
-
-
-
-
 
 inline void duration::sleep() const
 {
@@ -57,7 +71,6 @@ inline void duration::sleep() const
    ::sleep(*this);
 
 }
-
 
 
 

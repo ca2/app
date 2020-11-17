@@ -347,7 +347,7 @@ namespace draw2d
          {
 
             bool bAllZeroAlpha = true;
-            bool bTheres::u32 = false;
+            bool bTheresUint32 = false;
 
             pixmap.map();
 
@@ -360,7 +360,7 @@ namespace draw2d
             {
                if (*pc != 0)
                {
-                  bTheres::u32 = true;
+                  bTheresUint32 = true;
                }
                if (*pA != 0)
                {
@@ -371,7 +371,7 @@ namespace draw2d
                pA += 4;
             }
 
-            if (bAllZeroAlpha && bTheres::u32)
+            if (bAllZeroAlpha && bTheresUint32)
             {
 
                pc = pixmap.colorref();
@@ -431,8 +431,6 @@ namespace draw2d
 
 
    }
-
-
 
 
 } // namespace draw2d

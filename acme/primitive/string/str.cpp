@@ -1789,7 +1789,7 @@ namespace str
 
    }
 
-   string get_window_text_timeout(oswindow oswindow, tick tickTimeout)
+   string get_window_text_timeout(oswindow oswindow, millis tickTimeout)
    {
 
       string str;
@@ -1801,7 +1801,7 @@ namespace str
 
          DWORD_PTR lresult = 0;
 
-         auto tickStart = ::tick::now();
+         auto tickStart = ::millis::now();
 
          tickTimeout = max(tickTimeout, 10);
 

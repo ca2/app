@@ -240,7 +240,7 @@ namespace app_shader
       //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
       //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-      m_tickStart.Now();
+      m_millisStart.Now();
 
       return ::success;
 
@@ -302,7 +302,7 @@ namespace app_shader
 
             {
 
-               double dElapsed = __double(m_tickStart.elapsed());
+               double dElapsed = __double(m_millisStart.elapsed());
 
                double dTime = dElapsed / 1000.0;
 

@@ -24,7 +24,7 @@ namespace user
    check_box::check_box(e_style estyle)
    {
 
-      m_tickAnimationPeriod = 300_ms;
+      m_millisAnimationPeriod = 300_ms;
 
       m_estyle = estyle;
 
@@ -346,7 +346,7 @@ namespace user
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-      double dRate = m_tickAnimationStart.period_rate(m_tickAnimationPeriod);
+      double dRate = m_millisAnimationStart.period_rate(m_millisAnimationPeriod);
 
       if (dRate < 1.0)
       {
@@ -559,7 +559,7 @@ namespace user
 
          post_redraw();
 
-         if (m_tickAnimationStart.elapsed() > m_tickAnimationPeriod)
+         if (m_millisAnimationStart.elapsed() > m_millisAnimationPeriod)
          {
 
             KillTimer(ptimer->m_uEvent);
@@ -621,7 +621,7 @@ namespace user
 
       m_dPosition = 0.0;
 
-      m_tickAnimationStart.Now();
+      m_millisAnimationStart.Now();
 
       SetTimer(e_timer_check_toggle_animation, 12);
 

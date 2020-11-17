@@ -21,7 +21,7 @@
 //
 //   if(dwTimeout != (::u32) U32_INFINITE_TIMEOUT)
 //   {
-//      start = ::get_tick();
+//      start= ::millis::now();
 //   }
 //
 //

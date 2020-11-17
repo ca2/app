@@ -166,7 +166,7 @@ namespace acme
 
       
 
-//      virtual bool wait_twf(tick tickTimeout = U32_INFINITE_TIMEOUT);
+//      virtual bool wait_twf(millis tickTimeout = U32_INFINITE_TIMEOUT);
 
 
 

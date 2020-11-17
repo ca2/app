@@ -889,11 +889,11 @@ namespace user
 
          {
 
-            tick t1 = tick::now();
+            millis t1 = millis::millis();
 
             _001DrawThis(pgraphics);
 
-            tick d1 = t1.elapsed();
+            millis d1 = t1.elapsed();
 
             if(d1 > 50)
             {

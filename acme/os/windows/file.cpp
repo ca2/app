@@ -1342,7 +1342,7 @@ bool GetDrive(const char * pszDosName, string& csDrive, bool bDriveLetterOnly)
 //
 //   if (!StartService(hService, 0, nullptr))
 //   {
-//      u32 dwLastError = get_last_error();
+//      u32 dwLastError = GetLastError();
 //      if (dwLastError != ERROR_SERVICE_ALREADY_RUNNING)
 //      {
 //         DeleteService(hService);

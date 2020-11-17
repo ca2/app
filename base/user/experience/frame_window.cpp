@@ -267,7 +267,7 @@ namespace experience
             display(display_default, activation_set_foreground);
 
          }
-         else if(m_pimpl2 && m_pimpl2->m_tickLastExposureAddUp.elapsed() < 300)
+         else if(m_pimpl2 && m_pimpl2->m_millisLastExposureAddUp.elapsed() < 300)
          {
 
             INFO("Ignored minituarize request (by toggle intent) because of recent full exposure.");

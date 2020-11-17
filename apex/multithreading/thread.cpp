@@ -134,7 +134,7 @@ thread::thread()
 
    m_uThreadAffinityMask = 0;
 
-   m_tickHeartBeat.Now();
+   m_millisHeartBeat.Now();
 
    defer_create_mutex();
 
@@ -381,7 +381,7 @@ void thread::term_thread()
 void thread::on_keep_alive()
 {
 
-   m_tickHeartBeat.Now();
+   m_millisHeartBeat.Now();
 
 }
 
@@ -402,7 +402,7 @@ bool thread::is_alive()
    //if (!m_bRun)
    //   return false;
 
-   //if ((m_tickHeartBeat.elapsed()) > ((5000) * 91))
+   //if ((m_millisHeartBeat.elapsed()) > ((5000) * 91))
    // return false;
 
    return true;
@@ -1908,7 +1908,7 @@ sync_result thread::wait(const duration & duration)
 
 #if defined(WINDOWS)
 
-      ::u32 timeout = duration.is_pos_infinity() ? U32_INFINITE_TIMEOUT : static_cast<::u32>(duration.total_milliseconds());
+      ::u32 timeout = duration.u32_millis();
 
       hthread_t hthread = m_hthread;
 
@@ -1937,7 +1937,7 @@ sync_result thread::wait(const duration & duration)
       else
       {
 
-         tick tickDelay = (::u32) duration.total_milliseconds();
+         millis tickDelay = (::u32) duration.total_milliseconds();
 
          auto dwStep = min(max(tickDelay / 10, 1), 100);
 
@@ -4498,7 +4498,7 @@ CLASS_DECL_APEX bool thread_pump_sleep(::u32 dwMillis, sync * psync)
 }
 
 
-CLASS_DECL_APEX bool app_sleep(tick tick)
+CLASS_DECL_APEX bool app_sleep(millis millis)
 {
 
    ::thread * pthread = ::get_thread();
@@ -4539,7 +4539,7 @@ CLASS_DECL_APEX bool app_sleep(tick tick)
          if (spev.is_set())
          {
 
-            pthread->m_pevSleep->wait(tick);
+            pthread->m_pevSleep->wait(millis);
 
             return ::thread_get_run();
 
@@ -4553,9 +4553,9 @@ CLASS_DECL_APEX bool app_sleep(tick tick)
 
    }
 
-   auto iTenths = __i64(tick) / 100;
+   auto iTenths = __i64(millis) / 100;
 
-   auto iMillis = __i64(tick) % 100;
+   auto iMillis = __i64(millis) % 100;
 
    while(iTenths > 0)
    {
@@ -4666,7 +4666,7 @@ thread::file_info* thread::get_file_info()
 ::u32 thread::get_file_sharing_violation_timeout_total_milliseconds()
 {
 
-   return (::u32)get_file_info()->m_durationFileSharingViolationTimeout.get_total_milliseconds();
+   return get_file_info()->m_durationFileSharingViolationTimeout.u32_millis();
 
 }
 

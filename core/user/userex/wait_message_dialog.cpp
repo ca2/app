@@ -14,9 +14,9 @@ namespace userex
       
       m_iSecond = -1;
 
-      m_tickStart = 0;
+      m_millisStart = 0;
 
-      m_tickDelay = 0;
+      m_millisDelay = 0;
 
    }
 
@@ -46,16 +46,16 @@ namespace userex
          if(pevent->m_eevent == ::user::event_create)
          {
             
-            if(m_tickDelay > 0)
+            if(m_millisDelay > 0)
             {
                
                m_pform->set_timer(e_timer_reload, 50_ms);
                
-               value("wait_message_dialog_timeout") = m_tickDelay.seconds();
+               value("wait_message_dialog_timeout") = m_millisDelay.seconds();
                
             }
             
-            m_tickStart.Now();
+            m_millisStart.Now();
 
          }
          else if(pevent->m_eevent == ::user::e_event_timer)
@@ -88,9 +88,9 @@ namespace userex
    bool wait_message_dialog::on_timeout_check()
    {
 
-      auto tickTimeout = m_tickStart.elapsed();
+      auto tickTimeout = m_millisStart.elapsed();
 
-      if (tickTimeout > (m_tickDelay - 500_ms))
+      if (tickTimeout > (m_millisDelay - 500_ms))
       {
 
          if (on_timeout())
@@ -125,10 +125,10 @@ namespace userex
    }
 
 
-   void wait_message_dialog::on_timer_soft_reload(tick tickTimeout)
+   void wait_message_dialog::on_timer_soft_reload(millis tickTimeout)
    {
 
-      auto iSecond = (m_tickDelay - tickTimeout).seconds();
+      auto iSecond = (m_millisDelay - tickTimeout).seconds();
       
       if(iSecond <= 0)
       {

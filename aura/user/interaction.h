@@ -103,14 +103,14 @@ namespace user
       bool                                      m_bSimpleUIDefaultMouseHandling;
       int                                       m_iMouseMoveSkipCount;
       int                                       m_iMouseMoveSkipSquareDistance;
-      ::tick                                    m_tickMouseMoveSkip;
+      ::millis                                    m_millisMouseMoveSkip;
       ::point                                   m_pointMouseMoveSkip;
-      ::tick                                    m_tickMouseMovePeriod;
+      ::millis                                    m_millisMouseMovePeriod;
       bool                                      m_bMouseMovePending;
       ::point                                   m_pointMouseMove;
       bool                                      m_bNeedLoadFormData;
       bool                                      m_bNeedSaveFormData;
-      tick                                      m_tickLastRedraw;
+      millis                                      m_millisLastRedraw;
       ::id                                      m_idView;
       __pointer(::user::form)                   m_pform;
       ::color                                   m_colorBackground;
@@ -131,17 +131,17 @@ namespace user
       //bool                                    m_bFreeHandMouseMove; this is the default
       // if high frequency mouse move notification is required
       // create a fast path/low latency callback system
-      ::tick                                    m_tickMouseMove;
-      ::tick                                    m_tickMouseMoveIgnore;
+      ::millis                                    m_millisMouseMove;
+      ::millis                                    m_millisMouseMoveIgnore;
       __pointer(alpha_source)                   m_palphasource;
       i32                                       m_iItemHeight;
       point                                     m_pointMoveCursor;
       bool                                      m_bDefaultWalkPreTranslateParentTree;
       __pointer(::aura::drawable)               m_pdrawableBackground;
       bool                                      m_bBackgroundBypass;
-      tick                                      m_tickLastFullUpdate;
+      millis                                      m_millisLastFullUpdate;
       bool                                      m_bSizeMove;
-      tick                                      m_tickLastVisualChange;
+      millis                                      m_millisLastVisualChange;
       __reference(::file::insert_item)          m_pitemComposing;
       __pointer(primitive_impl)                 m_pimpl;
       __pointer(interaction_impl)               m_pimpl2;

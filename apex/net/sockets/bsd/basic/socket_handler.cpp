@@ -409,7 +409,7 @@ namespace sockets
 
       }
 
-      tick tick1, tick2;
+      millis tick1, tick2;
 
 start_processing_adding:
 
@@ -512,9 +512,9 @@ end_processing_adding:
 
       i32 n = 0;
 
-      tick1 = ::tick::now();
+      tick1 = ::millis::millis();
 
-      tick tickRWENull;
+      millis tickRWENull;
 
       if (psetR == nullptr && psetW == nullptr && psetE == nullptr)
       {
@@ -550,12 +550,12 @@ end_processing_adding:
 
       }
 
-      tick2 = ::get_tick();
+      tick2= ::millis::now();
 
       if (n < 0)
       {
 
-         auto tickNow = ::tick::now();
+         auto tickNow = ::millis::millis();
 
          /*
             EBADF  An invalid file descriptor was given in one of the sets.
@@ -564,7 +564,7 @@ end_processing_adding:
             ENOMEM select was unable to allocate memory for internal tables.
          */
 
-         if (m_maxsock > 0 && (m_iSelectErrno != m_iPreviousError || tickNow - m_tickLastError > 5000))
+         if (m_maxsock > 0 && (m_iSelectErrno != m_iPreviousError || tickNow - m_millisLastError > 5000))
          {
 
 
@@ -764,7 +764,7 @@ end_processing_adding:
 
          m_iPreviousError = m_iSelectErrno;
 
-         m_tickLastError = tickNow;
+         m_millisLastError = tickNow;
 
       }
       else if(n == 0)

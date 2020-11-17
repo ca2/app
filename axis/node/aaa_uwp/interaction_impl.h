@@ -24,7 +24,7 @@ namespace uwp
       //::image_pointer              m_spimageMultAlphaWork;
       pointd                                    m_pointLastMouseMove;
       double                                    m_dAccumulatedMouseMoveDistance;
-      tick                                      m_tickLastMouseMove;
+      millis                                      m_millisLastMouseMove;
       Agile < Windows::UI::Core::CoreWindow >   m_window;
       ::thread *                                m_pthreadDraw;
       ::user::primitive* m_pbasewnd;
@@ -254,7 +254,7 @@ namespace uwp
 
 #if(WINVER >= 0x0500)
 
-      virtual bool AnimateWindow(tick tick, u32 dwFlags);
+      virtual bool AnimateWindow(millis millis, u32 dwFlags);
 
 #endif   // WINVER >= 0x0500
 
@@ -394,7 +394,7 @@ namespace uwp
 
 #if(WINVER >= 0x0500)
 
-      virtual bool FlashWindowEx(u32 dwFlags, ::u32  uCount, tick tickTimeout);
+      virtual bool FlashWindowEx(u32 dwFlags, ::u32  uCount, millis tickTimeout);
 
 #endif   // WINVER >= 0x0500
 

@@ -7,7 +7,7 @@ public:
 
 
    bool                 m_bStart;
-   tick                 m_tickStart;
+   millis                 m_millisStart;
    index                m_iFrame;
 
 

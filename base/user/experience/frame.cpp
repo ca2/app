@@ -1274,7 +1274,7 @@ namespace experience
          (::is_docking_appearance(edisplay) && iWkspace != m_pframewindow->m_windowrect.m_iWkspace))
       {
 
-         if (m_pframewindow->layout().m_tickLastSketchToDesign.elapsed() < 800_tick)
+         if (m_pframewindow->layout().m_millisLastSketchToDesign.elapsed() < 800_tick)
          {
 
             if (edisplay != m_pframewindow->layout().design().display())

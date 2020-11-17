@@ -711,7 +711,7 @@ resume_on_exception:
 
       //m_bAxisInitialize1Result = false;
 
-      m_tickHeartBeat.Now();
+      m_millisHeartBeat.Now();
 
       if (!::aura::application::init1())
       {
@@ -782,7 +782,7 @@ resume_on_exception:
 
       if(!signal.m_bOk)
          return false;
-m_tickHeartBeat.Now();
+m_millisHeartBeat.Now();
 
       if(is_system())
       {
@@ -846,7 +846,7 @@ m_tickHeartBeat.Now();
          }
 #endif
       }
-m_tickHeartBeat.Now();
+m_millisHeartBeat.Now();
 
       //if(is_system() 
       //      && !m_varTopicQuery["app"].get_string().begins_ci("app-core/netnode")
@@ -856,7 +856,7 @@ m_tickHeartBeat.Now();
       //{
       //   Context.http().defer_auto_initialize_proxy_configuration();
       //}
-m_tickHeartBeat.Now();
+m_millisHeartBeat.Now();
 
 //      m_bAxisInitializeResult = true;
 

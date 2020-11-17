@@ -1206,13 +1206,13 @@ namespace windows
       return ::GetTitleBarInfo(((interaction_impl *)this)->get_handle(), pti) != FALSE;
    }
 
-   bool interaction_impl::AnimateWindow(tick tick, u32 dwFlags)
+   bool interaction_impl::AnimateWindow(millis millis, u32 dwFlags)
    {
       ASSERT(::is_window(get_handle()));
-      return ::AnimateWindow(get_handle(), __os(tick), dwFlags) != FALSE;
+      return ::AnimateWindow(get_handle(), __os(millis), dwFlags) != FALSE;
    }
 
-   bool interaction_impl::FlashWindowEx(u32 dwFlags, UINT  uCount, tick tickTimeout)
+   bool interaction_impl::FlashWindowEx(u32 dwFlags, UINT  uCount, millis tickTimeout)
    {
       ASSERT(::is_window(get_handle()));
       FLASHWINFO fwi;
@@ -2441,7 +2441,7 @@ namespace windows
       oswindow m_oswindow;
       HDC m_hdc;
 
-      print_window(::object * pobject, oswindow oswindow, HDC hdc, tick tickTimeout) :
+      print_window(::object * pobject, oswindow oswindow, HDC hdc, millis tickTimeout) :
          ::object(pobject)
       {
 

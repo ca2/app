@@ -155,6 +155,14 @@ enum enum_type
    type_string = 4000,
    type_pstring,
    type_type,
+   type_secs,
+   type_psecs,
+   type_millis,
+   type_pmillis,
+   type_micros,
+   type_pmicros,
+   type_nanos,
+   type_pnanos,
    type_duration,
    type_pduration,
    type_id,
@@ -676,6 +684,7 @@ enum enum_relative
    e_relative_previous_sibling,
    e_relative_next_sibling,
    e_relative_last_sibling,
+   e_relative_owner,
 
 };
 

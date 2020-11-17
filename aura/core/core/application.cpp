@@ -241,7 +241,7 @@ namespace aura
          return false;
 
       }
-      m_tickHeartBeat.Now();
+      m_millisHeartBeat.Now();
 
       auto estatus = __compose(m_puserfs);
 
@@ -2770,7 +2770,7 @@ namespace aura
       xxdebug_box("m_pcalculator::initialize ok", "m_pcalculator::initialize ok", MB_ICONINFORMATION);
 
       xxdebug_box("m_pcolorertake5::initialize ok", "m_pcolorertake5::initialize ok", MB_ICONINFORMATION);
-m_tickHeartBeat.Now();
+m_millisHeartBeat.Now();
 
       if (!initialize_userex())
       {
@@ -2782,10 +2782,10 @@ m_tickHeartBeat.Now();
       xxdebug_box("m_pfilemanager::initialize ok", "m_pfilemanager::initialize ok", MB_ICONINFORMATION);
 
       xxdebug_box("m_pusermail::initialize ok", "m_pusermail::initialize ok", MB_ICONINFORMATION);
-m_tickHeartBeat.Now();
+m_millisHeartBeat.Now();
 
       xxdebug_box("register_bergedge_application ok", "register_bergedge_application ok", MB_ICONINFORMATION);
-m_tickHeartBeat.Now();
+m_millisHeartBeat.Now();
 
       ensure_app_interest();
 

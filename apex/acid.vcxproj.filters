@@ -2045,7 +2045,7 @@
     <ClInclude Include="apex\apex\system_str.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\tick.h">
+    <ClInclude Include="apex\apex\millis.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
     <ClInclude Include="apex\apex\timer.h">
@@ -3356,7 +3356,7 @@
     <ClInclude Include="primitive\primitive\simple_object.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\stick.h">
+    <ClInclude Include="primitive\primitive\smillis.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive\str.h">

@@ -450,7 +450,7 @@ namespace acme
       ipc::ipc()
       {
 
-         m_tickTimeout = (5000) * 11;
+         m_millisTimeout = (5000) * 11;
 
       }
 

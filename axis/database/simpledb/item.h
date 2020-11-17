@@ -10,7 +10,7 @@ namespace simpledb
    public:
 
 
-      tick              m_tick;
+      millis              m_tick;
       fork_block        m_block;
 
       item();

@@ -357,9 +357,9 @@ void imm_client::_001OnIme(::message::message * pmessage)
 
          imm_context imm(this);
 
-         ::u32 dwConversion = 0;
+         DWORD dwConversion = 0;
 
-         ::u32 dwSentence = 0;
+         DWORD dwSentence = 0;
 
          ImmGetConversionStatus(imm, &dwConversion, &dwSentence);
 

@@ -653,7 +653,7 @@ int GetVersion_ex1()
 //   {
 //      return TRUE;
 //   }
-//   ::u32 dwError = get_last_error();
+//   ::u32 dwError = GetLastError();
 //   if (dwError == ERROR_INSUFFICIENT_BUFFER || dwError == ERROR_MORE_DATA)
 //   {
 //      return TRUE;
@@ -662,7 +662,7 @@ int GetVersion_ex1()
 //   {
 //      return TRUE;
 //   }
-//   dwError = get_last_error();
+//   dwError = GetLastError();
 //   if (dwError == ERROR_INSUFFICIENT_BUFFER || dwError == ERROR_MORE_DATA)
 //   {
 //      return TRUE;
@@ -705,7 +705,7 @@ int GetVersion_ex1()
 //CLASS_DECL_APEX string get_last_error_string()
 //{
 //
-//   return get_error_string(::get_last_error());
+//   return get_error_string(::GetLastError());
 //
 //}
 

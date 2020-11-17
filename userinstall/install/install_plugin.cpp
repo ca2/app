@@ -99,7 +99,7 @@ namespace install
 
 #else
 
-      m_tickTimeout             = (5000) * 11;
+      m_millisTimeout             = (5000) * 11;
 
 #endif
 
@@ -108,7 +108,7 @@ namespace install
 
       m_bRestartCa2           = false;
       m_bPendingStream        = false;
-      m_tickLastRestart         = 0;
+      m_millisLastRestart         = 0;
 
       m_bPluginDownloaded     = false;
       m_bPluginTypeTested     = false;
@@ -158,10 +158,10 @@ namespace install
       if(!is_installing())
       {
 
-         if((m_tickLastRestart.elapsed()) > (5000) * 5)
+         if((m_millisLastRestart.elapsed()) > (5000) * 5)
          {
 
-            m_tickLastRestart = ::get_tick();
+            m_millisLastRestart= ::millis::now();
 
             start_ca2();
 
@@ -178,10 +178,10 @@ namespace install
       if(m_phost->m_bInstalling)
       {
 
-         if((m_tickLastInstallingCheck.elapsed()) > 2000)
+         if((m_millisLastInstallingCheck.elapsed()) > 2000)
          {
 
-            m_tickLastInstallingCheck = ::get_tick();
+            m_millisLastInstallingCheck= ::millis::now();
 
             try
             {
@@ -197,10 +197,10 @@ namespace install
          }
 
       }
-      else if((m_tickLastInstallingCheck.elapsed()) > ((5000) * 2))
+      else if((m_millisLastInstallingCheck.elapsed()) > ((5000) * 2))
       {
 
-         m_tickLastInstallingCheck = ::get_tick();
+         m_millisLastInstallingCheck= ::millis::now();
 
          try
          {
@@ -271,7 +271,7 @@ namespace install
          else if(is_rx_tx_ok())
          {
 
-            m_tickLastOk = ::get_tick();
+            m_millisLastOk= ::millis::now();
 
             m_bRestartCa2        = false;
 
@@ -280,7 +280,7 @@ namespace install
             bJob                 = true;
 
          }
-         else if(m_tickLastOk.elapsed() > ((5000) * 2))
+         else if(m_millisLastOk.elapsed() > ((5000) * 2))
          {
 
 
@@ -290,7 +290,7 @@ namespace install
                if (System.install().is_installing_ca2())
                {
 
-                  m_tickLastOk = ::get_tick();
+                  m_millisLastOk= ::millis::now();
 
                   return false; // "no job done"
 
@@ -334,7 +334,7 @@ namespace install
 
             bJob                 = true;
 
-            m_tickLastOk           = ::get_tick();
+            m_millisLastOk          = ::millis::now();
 
          }
 
@@ -833,14 +833,14 @@ run_install:
 
 #else
 
-      //::u32 dwTime1 = ::get_tick();
+      //::u32 dwTime1= ::millis::now();
 
 
 
       //if(!m_bLogin && (m_bLogged || m_bHasCred) && !m_bCa2Login && !m_bCa2Logout && !m_bNativeLaunch && !is_installing() && System.install().is_ca2_installed())
       if(!m_bLogin && !m_bCa2Login && !m_bCa2Logout && !m_bNativeLaunch && !is_installing() && System.install().is_ca2_installed())
       {
-         //::u32 dwTime3 = ::get_tick();
+         //::u32 dwTime3= ::millis::now();
 
          //TRACE("eval1 %d",dwTime3 - dwTime1);
 
@@ -848,7 +848,7 @@ run_install:
          if(ensure_tx(WM_APP+WM_USER,(void *)&lprect,sizeof(lprect)))
          {
 
-            //::u32 dwTime5 = ::get_tick();
+            //::u32 dwTime5= ::millis::now();
 
             //TRACE("ensure_tx %d",dwTime5 - dwTime3);
 
@@ -938,14 +938,14 @@ run_install:
 
             }
 
-            //::u32 dwTime7 = ::get_tick();
+            //::u32 dwTime7= ::millis::now();
 
             //TRACE("focus_update %d",dwTime7 - dwTime5);
 
 
             m_phost->blend_bitmap(pgraphics, lprect);
 
-            //::u32 dwTime9 = ::get_tick();
+            //::u32 dwTime9= ::millis::now();
 
             //TRACE("blend %d",dwTime9 - dwTime7);
 
@@ -1600,10 +1600,10 @@ restart:
       if((m_bLogin && !m_bLogged) || !m_phost->m_bOk || m_bNativeLaunch || m_bPendingRestartCa2)
       {
 
-         if((m_tickLastRestart.elapsed()) > (840 + 770))
+         if((m_millisLastRestart.elapsed()) > (840 + 770))
          {
 
-            m_tickLastRestart = ::get_tick();
+            m_millisLastRestart= ::millis::now();
 
             start_ca2();
 

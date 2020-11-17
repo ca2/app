@@ -389,9 +389,9 @@ namespace apex
       time = time.get_current_time();
       time.Format(strPre, "%Y-%m-%d %H:%M:%S");
       string strTick;
-      i64 uiTotalMillis = ::get_tick() - ::first_tick();
-      i64 uiMillis = uiTotalMillis % 1000;
-      i64 uiTotalSeconds = uiTotalMillis / 1000;
+      auto millisTotal = ::millis::now() - ::first_millis();
+      i64 uiMillis = millisTotal.m_iMilliseconds % 1000;
+      i64 uiTotalSeconds = millisTotal.m_iMilliseconds / 1000;
       i64 uiSeconds = uiTotalSeconds % 60;
       i64 uiTotalMinutes = uiTotalSeconds / 60;
       i64 uiMinutes = uiTotalMinutes % 60;

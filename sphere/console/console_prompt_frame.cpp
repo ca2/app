@@ -102,7 +102,7 @@ namespace console
 //            KillTimer(1001);
 //         }*/
 //         /*::point point;
-//         if(m_bHoverMouse && ::get_tick() > m_tickLastHover + 300)
+//         if(m_bHoverMouse && ::get_tick() > m_millisLastHover + 300)
 //         {
 //            OnHoverAction();
 //         }
@@ -110,7 +110,7 @@ namespace console
 //         {
 //            if(!m_bHoverMouse && point.x == 0 && point.y == 0)
 //            {
-//               m_tickLastHover = ::get_tick();
+//               m_millisLastHover= ::millis::now();
 //               m_bHoverMouse = true;
 //
 //            }

@@ -84,7 +84,7 @@ namespace app_net
 
          string strDots = "...";
 
-         auto elapsed = m_tickStartGettingUrl.elapsed();
+         auto elapsed = m_millisStartGettingUrl.elapsed();
 
          auto millis = duration(elapsed).get_total_milliseconds();
 
@@ -135,7 +135,7 @@ namespace app_net
 
       m_bGettingUrl = true;
 
-      m_tickStartGettingUrl.Now();
+      m_millisStartGettingUrl.Now();
 
       fork([this]()
          {

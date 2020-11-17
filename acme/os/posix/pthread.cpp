@@ -25,12 +25,12 @@ mq * get_mq(ithread_t idthread, bool bCreate);
 ::u32 MsgWaitForMultipleObjectsEx(::u32 dwSize, HSYNC * synca, ::u32 tickTimeout, ::u32 dwWakeMask, ::u32 dwFlags)
 {
 
-   tick start;
+   millis start;
 
    if (tickTimeout != (::u32)U32_INFINITE_TIMEOUT)
    {
 
-      start = ::tick::now();
+      start = ::millis::now();
 
    }
 

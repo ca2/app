@@ -35,7 +35,7 @@ namespace aura
       //   m_rx(pobject)
       //{
 
-      //   m_tickTimeout = (5000) * 11;
+      //   m_millisTimeout = (5000) * 11;
 
       //}
 

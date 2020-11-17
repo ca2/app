@@ -14,7 +14,7 @@
 #define MAGIC_PALACE_TAB_SIZE "-/-"
 #define MAGIC_PALACE_TAB_TEXT "/"
 
-tick g_tickDragStart;
+millis g_tickDragStart;
 namespace user
 {
 
@@ -1510,7 +1510,7 @@ namespace user
 
       {
 
-//               ::u32 dwTime2 = ::get_tick();
+//               ::u32 dwTime2= ::millis::now();
 
          //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
          //TRACE("usertab::on_layout call time2= %d ms",dwTime2 - t_time1.operator DWORD_PTR());

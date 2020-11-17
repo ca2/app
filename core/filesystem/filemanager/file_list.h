@@ -19,7 +19,7 @@ namespace filemanager
       bool                             m_bFileSize;
       bool                             m_bShow;
       index                            m_iSizeSubItem;
-      tick m_tickLastFileSizeGet;
+      millis m_millisLastFileSizeGet;
 
 
       //map < icon_key,const icon_key &,icon,icon & > m_iconmap;

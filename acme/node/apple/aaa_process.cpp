@@ -605,7 +605,7 @@ namespace apple
       //int status = posix_spawn(&m_iPid,argv[0],nullptr,nullptr,(char * const *)argv.get_data(),environ);
 
       debug_print("synch_elevated : posix_spawn return status %d", status);
-auto tickStart = ::tick::now();
+auto tickStart = ::millis::now();
 
       while(!has_exited() && tickStart.elapsed() < durationTimeOut.get_total_milliseconds())
       {
@@ -694,7 +694,7 @@ auto tickStart = ::tick::now();
 //         fread(&pptp_pid,sizeof(pptp_pid),1,pipe); // get pid
 //
 //          m_iPid = pptp_pid;
-auto tickStart = ::tick::now();
+auto tickStart = ::millis::now();
 
       ::u32 tickTimeout = (::u32) durationTimeOut.get_total_milliseconds();
 
@@ -841,7 +841,7 @@ auto tickStart = ::tick::now();
       //int status = posix_spawn(&m_iPid,argv[0],nullptr,nullptr,(char * const *)argv.get_data(),environ);
 
       debug_print("synch_elevated : posix_spawn return status %d", status);
-auto tickStart = ::tick::now();
+auto tickStart = ::millis::now();
 
       while(!has_exited() && tickStart.elapsed() < durationTimeOut.get_total_milliseconds())
       {

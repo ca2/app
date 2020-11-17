@@ -62,7 +62,7 @@ namespace process
 
    void process::wait_until_exit(i32 iWaitMax)
    {
-auto tickStart = ::tick::now();
+auto tickStart = ::millis::millis();
 
       i32 i = 1;
 

@@ -86,9 +86,9 @@ namespace helloworld
       //view *                           m_pview;
 
 
-      //tick                            m_tickAnime;
-      //tick m_tickLastFast;
-      //::u32                            m_tickFastAnime;
+      //millis                            m_millisAnime;
+      //millis m_millisLastFast;
+      //::u32                            m_millisFastAnime;
       //::image_pointer                 m_pimageFast;
 
 
@@ -102,7 +102,7 @@ namespace helloworld
       //::u32                            m_dw23;
 
       //array < bilbo >                  m_bilboa;
-      //tick m_tickLastOk;
+      //millis m_millisLastOk;
 
 
       //bool                             m_bFast;

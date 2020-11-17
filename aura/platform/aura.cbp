@@ -575,7 +575,7 @@
 		<Unit filename="aura/template.cpp" />
 		<Unit filename="aura/theme.cpp" />
 		<Unit filename="aura/theme.h" />
-		<Unit filename="aura/tick.h" />
+		<Unit filename="aura/millis.h" />
 		<Unit filename="aura/timer.cpp" />
 		<Unit filename="aura/timer.h" />
 		<Unit filename="aura/timer_array.cpp" />

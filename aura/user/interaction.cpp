@@ -76,7 +76,7 @@ namespace user
 
       m_bUserInteractionSetFinish = false;
 
-      m_tickMouseMoveIgnore = 20_ms;
+      m_millisMouseMoveIgnore = 20_ms;
 
       m_bOverdraw = false;
 
@@ -96,7 +96,7 @@ namespace user
 
       m_iMouseMoveSkipSquareDistance = iMouseMoveTriggerDistance * iMouseMoveTriggerDistance;
 
-      m_tickMouseMovePeriod = 5;
+      m_millisMouseMovePeriod = 5;
 
       m_bOffScreenRender = false;
 
@@ -2206,7 +2206,7 @@ namespace user
 
 #ifdef __DEBUG
 
-               auto tickStart = tick::now();
+               auto tickStart = millis::millis();
 
 #endif //__DEBUG
 
@@ -2215,14 +2215,14 @@ namespace user
 
 #ifdef __DEBUG
 
-               auto tickEnd = tick::now();
+               auto tickEnd = millis::millis();
 
-               tick tickElapsed = tickEnd - tickStart;
+               millis tickElapsed = tickEnd - tickStart;
 
                if (tickElapsed > 100)
                {
 
-                  output_debug_string("\ndrawing took " + __str(tickElapsed.m_i) + "!!");
+                  output_debug_string("\ndrawing took " + __str(tickElapsed.m_iMilliseconds) + "!!");
                   output_debug_string("\ndrawing took more than 100ms to complete!!");
                   output_debug_string("\n");
 
@@ -2244,7 +2244,7 @@ namespace user
 
 #ifdef __DEBUG
 
-            auto tickStart = tick::now();
+            auto tickStart = millis::millis();
 
 #endif //__DEBUG
 
@@ -2305,7 +2305,7 @@ namespace user
 
 #ifdef __DEBUG
 
-            auto tickStart = tick::now();
+            auto tickStart = millis::millis();
 
 #endif //__DEBUG
 
@@ -2314,14 +2314,14 @@ namespace user
 
 #ifdef __DEBUG
 
-            auto tickEnd = tick::now();
+            auto tickEnd = millis::millis();
 
-            tick tickElapsed = tickEnd - tickStart;
+            millis tickElapsed = tickEnd - tickStart;
 
             if (tickElapsed > 100)
             {
 
-               CINFO(prodevian)("\ndrawing took " + __str(tickElapsed.m_i) + "!!");
+               CINFO(prodevian)("\ndrawing took " + __str(tickElapsed.m_iMilliseconds) + "!!");
                CINFO(prodevian)("\ndrawing took more than 100ms more than 50ms to complete!!");
 
                // let's trye to see what happened?
@@ -2355,7 +2355,7 @@ namespace user
 
 #ifdef __DEBUG
 
-      auto tickStartWithLock = tick::now();
+      auto tickStartWithLock = millis::millis();
 
 #endif
 
@@ -2367,7 +2367,7 @@ namespace user
 
 #ifdef __DEBUG
 
-            auto tickStart = tick::now();
+            auto tickStart = millis::millis();
 
 #endif //__DEBUG
 
@@ -2383,15 +2383,15 @@ namespace user
 
             m_itemCurrent.set_drawn();
 
-            auto tickEnd = tick::now();
+            auto tickEnd = millis::millis();
 
-            tick tickElapsed = tickEnd - tickStart;
+            millis tickElapsed = tickEnd - tickStart;
 
             if (tickElapsed > 100)
             {
 
                output_debug_string("\ndrawing at " + string(type_name()) + "!!");
-               output_debug_string("\ndrawing took " + __str(tickElapsed.m_i) + "!!");
+               output_debug_string("\ndrawing took " + __str(tickElapsed.m_iMilliseconds) + "!!");
                output_debug_string("\ndrawing took more more than 100ms more than 50ms to complete!!");
                output_debug_string("\n");
 
@@ -2408,9 +2408,9 @@ namespace user
 
 #ifdef __DEBUG
 
-      auto tickEndWithLock = tick::now();
+      auto tickEndWithLock = millis::millis();
 
-      tick tickElapsedWithLock = tickEndWithLock - tickStartWithLock;
+      millis tickElapsedWithLock = tickEndWithLock - tickStartWithLock;
 
       if (tickElapsedWithLock > 3)
       {
@@ -2581,11 +2581,11 @@ namespace user
 
                      //{
 
-                     //   //tick t1 = tick::now();
+                     //   //millis t1 = millis::now();
 
                      //   pinteraction->_000OnDraw(pgraphics);
 
-                     //   ///tick d1 = t1.elapsed();
+                     //   ///millis d1 = t1.elapsed();
 
                      //   //if(d1.m_i > 50)
                      //   //{
@@ -3116,18 +3116,18 @@ namespace user
 
             {
 
-               tick t1 = tick::now();
+               millis t1 = millis::millis();
 
                _008CallOnDraw(pgraphics);
 
-               tick d1 = t1.elapsed();
+               millis d1 = t1.elapsed();
 
-               if (d1.m_i > 50)
+               if (d1.m_iMilliseconds > 50)
                {
 
                   string strType = type_name();
 
-                  CINFO(prodevian)("(more than 50ms) " + strType + "::_008CallOnDraw took " + __str(d1.m_i) + "millis.\n");
+                  CINFO(prodevian)("(more than 50ms) " + strType + "::_008CallOnDraw took " + __str(d1.m_iMilliseconds) + "millis.\n");
 
                }
 
@@ -8144,7 +8144,7 @@ namespace user
       if (!is_equivalent(layout().sketch().display(), layout().design().display()))
       {
 
-         layout().m_tickLastSketchToDesign.Now();
+         layout().m_millisLastSketchToDesign.Now();
 
       }
 

@@ -58,10 +58,10 @@ namespace helloaxis
       m_bFirst23 = false;
       m_bFastOnEmpty = true;
       m_bFast = true;
-      m_tickLastFast = 0;
-      m_tickAnime = 2000;
-      m_tickFastAnime = 500;
-      m_tickLastOk = 0;
+      m_millisLastFast = 0;
+      m_millisAnime = 2000;
+      m_millisFastAnime = 500;
+      m_millisLastOk = 0;
 
 
 
@@ -454,7 +454,7 @@ namespace helloaxis
 
       }
 
-      double t = ::get_tick() / 1000.0;
+      double t= ::millis::now() / 1000.0;
 
       double w = 2.0 * 3.1415 / T;
 
@@ -702,7 +702,7 @@ namespace helloaxis
 
       }
 
-      double t = ::get_tick() / 1000.0;
+      double t= ::millis::now() / 1000.0;
 
       double w = 2.0 * 3.1415 / T;
 
@@ -1018,7 +1018,7 @@ namespace helloaxis
 
             if (!m_bFirst23)
             {
-auto m_tick23 = ::tick::now();
+auto m_tick23 = ::millis::now();
                m_uiCurrent23 = 0;
                m_strLast23.Empty();
                m_strCurrent23.Empty();
@@ -1197,9 +1197,9 @@ auto m_tick23 = ::tick::now();
 
       }
 
-      //::u32 dw = ::get_tick();
+      //::u32 dw= ::millis::now();
 
-      if (m_bFast || !m_bFirstDone || m_tickLastFast.elapsed() < m_tickFastAnime)
+      if (m_bFast || !m_bFirstDone || m_millisLastFast.elapsed() < m_millisFastAnime)
       {
 
 //         sync_lock sl1(m_pview->get_wnd()->mutex());
@@ -1227,7 +1227,7 @@ auto m_tick23 = ::tick::now();
          if (m_bFast || !m_bFirstDone)
          {
 
-            m_tickLastFast = ::get_tick();
+            m_millisLastFast= ::millis::now();
 
          }
 
@@ -1248,7 +1248,7 @@ auto m_tick23 = ::tick::now();
 
       //   m_pview->m_bOkPending = false;
 
-      //   m_tickLastOk = ::get_tick();
+      //   m_millisLastOk= ::millis::now();
 
       //}
 
@@ -1267,12 +1267,12 @@ auto m_tick23 = ::tick::now();
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-      if (m_tickLastOk.elapsed() < m_tickAnime)
+      if (m_millisLastOk.elapsed() < m_millisAnime)
       {
 
          byte uchAlpha;
 
-         uchAlpha = byte(max(0, min(255, (m_tickLastOk.elapsed()) * 255 / m_tickAnime)));
+         uchAlpha = byte(max(0, min(255, (m_millisLastOk.elapsed()) * 255 / m_millisAnime)));
 
 /*         System.imaging().bitmap_blend(pgraphics, ::point(), pimage->get_size(), pimage->g(), ::point(), uchAlpha);
 
@@ -1369,9 +1369,9 @@ auto m_tick23 = ::tick::now();
 
    bool render::in_anime()
    {
-      if (m_bFast || m_tickLastFast.elapsed() < m_tickFastAnime)
+      if (m_bFast || m_millisLastFast.elapsed() < m_millisFastAnime)
          return true;
-      if (m_tickLastOk.elapsed() < m_tickAnime)
+      if (m_millisLastOk.elapsed() < m_millisAnime)
          return true;
       return false;
    }

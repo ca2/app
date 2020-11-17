@@ -3,7 +3,7 @@
 
 #ifdef WINDOWS_DESKTOP
 
-class CLASS_DECL_AURA composition_imm_client :
+class CLASS_DECL_AURA aaa_composition_imm_client :
    virtual public imm_client
 {
 public:

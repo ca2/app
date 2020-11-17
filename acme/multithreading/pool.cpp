@@ -46,7 +46,7 @@ task_pointer & task_pool::defer_start(const ::id& id, const ::procedure & proced
 }
 
 
-void task_pool::start_clock(enum_clock eclock, duration duration)
+void task_pool::start_clock(enum_clock eclock, const duration & duration)
 {
 
    defer_start(eclock, __procedure([&, eclock, duration]()
@@ -65,18 +65,15 @@ void task_pool::on_clock(enum_clock eclock)
 }
 
 
-
-
-
-void task_pool::_task_clock(enum_clock eclock, duration duration)
+void task_pool::_task_clock(enum_clock eclock, const duration & duration)
 {
 
-   auto timeout = duration.get_total_milliseconds();
+   ::millis millis = duration.millis();
 
    while (true)
    {
 
-      if (!task_sleep((u32)timeout))
+      if (!task_sleep(millis))
       {
 
          break;
@@ -97,5 +94,6 @@ void task_pool::_task_clock(enum_clock eclock, duration duration)
    }
 
 }
+
 
 

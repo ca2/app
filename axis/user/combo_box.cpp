@@ -617,12 +617,12 @@ namespace user
          if (eelementHit.is_set() && (!m_bEdit || eelementHit == element_drop_down))
          {
 
-            tick tickLastVisibilityChangeElapsed;
+            millis tickLastVisibilityChangeElapsed;
 
             if (m_plist.is_set())
             {
 
-               tickLastVisibilityChangeElapsed = m_plist->m_tickLastVisibilityChange.elapsed();
+               tickLastVisibilityChangeElapsed = m_plist->m_millisLastVisibilityChange.elapsed();
 
             }
 
@@ -734,10 +734,10 @@ namespace user
          //if (m_plist.is_set())
          //{
 
-         //   if (m_plist->m_tickLastHide.elapsed() < 300)
+         //   if (m_plist->m_millisLastHide.elapsed() < 300)
          //   {
 
-         //      m_plist->m_tickLastHide -= 300;
+         //      m_plist->m_millisLastHide -= 300;
 
          //      output_debug_string("asking to show too soon!! not going to show!!");
 
@@ -747,7 +747,7 @@ namespace user
 
          //}
 
-         m_tickShowComboList.Now();
+         m_millisShowComboList.Now();
 
          defer_create_combo_list();
 

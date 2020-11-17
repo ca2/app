@@ -918,7 +918,7 @@ namespace experience
 
       {
 
-         //         ::u32 dwTime2 = ::get_tick();
+         //         ::u32 dwTime2= ::millis::now();
 
          //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
          //TRACE("usertab::on_layout call time1= %d ms",dwTime2 - t_time1.operator DWORD_PTR());

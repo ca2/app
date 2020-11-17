@@ -664,10 +664,10 @@ namespace user
 
          //         m_bMax = true;
 
-         //         m_tickLastMax = ::get_tick();
+         //         m_millisLastMax= ::millis::now();
 
          //      }
-         //      else if (m_tickLastMax.elapsed() > 50)
+         //      else if (m_millisLastMax.elapsed() > 50)
          //      {
 
          //         add_thread();

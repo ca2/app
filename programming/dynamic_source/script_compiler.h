@@ -25,7 +25,7 @@ namespace dynamic_source
       ::file::patha                             m_straLibHppPath;
       ::file::path                              m_strLibraryPath;
 
-      tick m_tickLastLibraryVersionCheck;
+      millis m_millisLastLibraryVersionCheck;
       bool                                      m_bLastLibraryVersionCheck;
       __pointer(::apex::library)                       m_plibraryLib;
 

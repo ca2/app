@@ -300,7 +300,7 @@ namespace http
 
       auto time = ::time(nullptr);
 
-      time += duration.get_total_seconds();
+      time += duration.secs().m_iSeconds;
 
       struct tm tmstruct;
 

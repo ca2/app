@@ -334,9 +334,9 @@ public:
 ////   {
 ////      return i64(iDefault);
 ////   }
-////   ::tick tick(tick tickDefault = 0) const
+////   ::millis millis(millis tickDefault = 0) const
 ////   {
-////      return tick(tickDefault);
+////      return millis(tickDefault);
 ////   }
 ////
 ////   ::u64 u64(u64 uiDefault = 0) const

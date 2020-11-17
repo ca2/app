@@ -222,7 +222,7 @@ namespace aura
 
       //m_purldepartment = nullptr;
 
-      m_tickAfterApplicationFirstRequest = 0;
+      m_millisAfterApplicationFirstRequest = 0;
 
 
 
@@ -1471,7 +1471,7 @@ namespace aura
    ::estatus system::init()
    {
 
-      m_tickHeartBeat.Now();
+      m_millisHeartBeat.Now();
 
       auto psession = Session;
 
@@ -2957,7 +2957,7 @@ namespace aura
 
       sync_lock sl(mutex());
 
-      m_tickCommandLineLast.Now();
+      m_millisCommandLineLast.Now();
 
       m_iCommandLineDelay = 1000;
 

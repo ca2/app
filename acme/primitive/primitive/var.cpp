@@ -1249,9 +1249,104 @@ var::operator string & ()
 }*/
 
 
-class var & var::operator = (const ::duration & duration)
+class var & var::operator = (const ::secs & secs)
 {
 
+   set_type(type_secs);
+
+   m_secs = secs;
+
+   return *this;
+
+}
+
+
+class var & var::operator = (::secs * psecs)
+{
+
+   set_type(type_psecs);
+
+   m_psecs = psecs;
+
+   return *this;
+
+}
+
+
+class var & var::operator = (const ::millis & millis)
+{
+
+   set_type(type_millis);
+
+   m_millis = millis;
+
+   return *this;
+
+}
+
+
+class var & var::operator = (::millis * pmillis)
+{
+
+   set_type(type_pmillis);
+
+   m_pmillis = pmillis;
+
+   return *this;
+
+}
+
+
+class var & var::operator = (const ::micros & micros)
+{
+
+   set_type(type_micros);
+
+   m_micros = micros;
+
+   return *this;
+
+}
+
+
+class var & var::operator = (::micros * pmicros)
+{
+
+   set_type(type_pmicros);
+
+   m_pmicros = pmicros;
+
+   return *this;
+
+}
+
+
+class var & var::operator = (const ::nanos & nanos)
+{
+
+   set_type(type_nanos);
+
+   m_nanos = nanos;
+
+   return *this;
+
+}
+
+
+class var & var::operator = (::nanos * pnanos)
+{
+
+   set_type(type_pnanos);
+
+   m_pnanos = pnanos;
+
+   return *this;
+
+}
+
+
+class var & var::operator = (const ::duration & duration)
+{
 
    set_type(type_duration);
 
@@ -1264,7 +1359,6 @@ class var & var::operator = (const ::duration & duration)
 
 class var & var::operator = (::duration * pduration)
 {
-
 
    set_type(type_pduration);
 

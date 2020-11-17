@@ -36,7 +36,7 @@ namespace user
          strsize                       m_iSelEnd;
          index                         m_iSelLine;
          rich_text::edit_impl *        m_pedit;
-         tick                          m_tickCaretPeriod;
+         millis                          m_millisCaretPeriod;
          //index                         m_iFormatDefault;
          bool                          m_bCaretRight;
 

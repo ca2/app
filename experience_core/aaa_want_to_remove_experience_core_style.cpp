@@ -388,7 +388,7 @@ namespace experience_core
 
       {
 
-         //         ::u32 dwTime2 = ::get_tick();
+         //         ::u32 dwTime2= ::millis::now();
 
          //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
          //TRACE("usertab::on_layout call time1= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
@@ -731,7 +731,7 @@ namespace experience_core
 
          if ((bool)pbar->prop("tracking_fade_in"))
          {
-            ::u32 dwFade = pbar->prop("tracking_start").tick().elapsed();
+            ::u32 dwFade = pbar->prop("tracking_start").millis().elapsed();
             if (dwFade < tickFadeIn)
             {
                uchAlpha = (byte)min(255, max(0, (dwFade * 255 / tickFadeIn)));
@@ -745,7 +745,7 @@ namespace experience_core
          }
          else if ((bool)pbar->prop("tracking_fade_out"))
          {
-            ::u32 dwFade = pbar->prop("tracking_start").tick().elapsed();
+            ::u32 dwFade = pbar->prop("tracking_start").millis().elapsed();
             if (dwFade < tickFadeOut)
             {
                uchAlpha = (byte)(255 - min(255, max(0, (dwFade * 255 / tickFadeOut))));

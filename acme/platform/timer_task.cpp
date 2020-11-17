@@ -212,7 +212,7 @@ bool timer_task::task_active() const
 ::estatus timer_task::on_task()
 {
 
-   ::i64 iSleepMs = m_duration.get_total_milliseconds();
+   ::i64 iSleepMs = m_duration.u32_millis();
 
    ::i64 c100Ms = iSleepMs / 100;
 

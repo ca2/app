@@ -38,19 +38,19 @@ namespace user
       u64_array                              m_iaFrame;
       bool                                   m_bVisualUpdated;
 
-      tick                                   m_tickBeforeUpdateScreen;
-      tick                                   m_tickAfterUpdateScreen;
-      tick                                   m_tickDuringUpdateScreen;
-      tick                                   m_tickOufOfUpdateScreen;
+      millis                                   m_millisBeforeUpdateScreen;
+      millis                                   m_millisAfterUpdateScreen;
+      millis                                   m_millisDuringUpdateScreen;
+      millis                                   m_millisOufOfUpdateScreen;
 
 
-      tick                                   m_tickBeforeDrawing;
-      tick                                   m_tickAfterDrawing;
-      tick                                   m_tickDuringDrawing;
-      tick                                   m_tickOutOfDrawing;
+      millis                                   m_millisBeforeDrawing;
+      millis                                   m_millisAfterDrawing;
+      millis                                   m_millisDuringDrawing;
+      millis                                   m_millisOutOfDrawing;
 
       bool                                   m_bUpdatingScreen;
-      tick                                   m_tickLastScreenUpdate;
+      millis                                   m_millisLastScreenUpdate;
       ::procedure                            m_procedureUpdateScreen;
       ::procedure                            m_procedureWindowShow;
 

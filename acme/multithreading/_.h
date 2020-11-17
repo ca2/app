@@ -317,15 +317,15 @@ CLASS_DECL_ACME void set_task(task * ptask OBJ_REF_DBG_COMMA_PARAMS);
 CLASS_DECL_ACME void thread_release(OBJ_REF_DBG_PARAMS);
 
 
-//typedef bool task_sleep(tick tick, ::sync* psync);
+//typedef bool task_sleep(millis millis, ::sync* psync);
 //using PFN_task_sleep = task_sleep*;
 
 CLASS_DECL_ACME bool __simple_task_sleep();
-CLASS_DECL_ACME bool __simple_task_sleep(tick tick);
+CLASS_DECL_ACME bool __simple_task_sleep(millis millis);
 CLASS_DECL_ACME bool __simple_task_sleep(::sync* psync);
-CLASS_DECL_ACME bool __simple_task_sleep(tick tick, ::sync* psync);
-CLASS_DECL_ACME bool task_sleep(tick tick = U32_INFINITE_TIMEOUT, ::sync * psync = nullptr);
-//CLASS_DECL_ACME bool acme_task_sleep(tick tick = U32_INFINITE_TIMEOUT, ::sync* psync = nullptr);
+CLASS_DECL_ACME bool __simple_task_sleep(millis millis, ::sync* psync);
+CLASS_DECL_ACME bool task_sleep(millis millis = U32_INFINITE_TIMEOUT, ::sync * psync = nullptr);
+//CLASS_DECL_ACME bool acme_task_sleep(millis millis = U32_INFINITE_TIMEOUT, ::sync* psync = nullptr);
 //CLASS_DECL_ACME void set_taskhread_sleep(PFN_task_sleep pfnThreadSleep);
 
 #ifdef _UWP
@@ -362,13 +362,13 @@ CLASS_DECL_ACME bool set_thread_name(const char * psz);
 
 CLASS_DECL_ACME bool __task_sleep(task* task);
 
-CLASS_DECL_ACME bool __task_sleep(task* ptask, tick tick);
+CLASS_DECL_ACME bool __task_sleep(task* ptask, millis millis);
 
 CLASS_DECL_ACME bool __task_sleep(::task* ptask, sync* psync);
 
-CLASS_DECL_ACME bool __task_sleep(task* ptask, tick tick, sync* psync);
+CLASS_DECL_ACME bool __task_sleep(task* ptask, millis millis, sync* psync);
 
-CLASS_DECL_ACME bool task_sleep(tick tick, sync* psync);
+CLASS_DECL_ACME bool task_sleep(millis millis, sync* psync);
 
 
 #include "sync_method.h"

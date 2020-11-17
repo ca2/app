@@ -836,13 +836,13 @@ namespace android
    //   return ::GetTitleBarInfo(((interaction_impl *) this)->get_handle(),pti) != FALSE;
    //}
 
-   //bool interaction_impl::AnimateWindow(tick tick,u32 dwFlags)
+   //bool interaction_impl::AnimateWindow(millis millis,u32 dwFlags)
    //{
    //   ASSERT(::is_window(get_handle()));
-   //   return ::AnimateWindow(get_handle(),tick,dwFlags) != FALSE;
+   //   return ::AnimateWindow(get_handle(),millis,dwFlags) != FALSE;
    //}
 
-   //bool interaction_impl::FlashWindowEx(u32 dwFlags,::u32  uCount,tick tickTimeout)
+   //bool interaction_impl::FlashWindowEx(u32 dwFlags,::u32  uCount,millis tickTimeout)
    //{
    //   ASSERT(::is_window(get_handle()));
    //   FLASHWINFO fwi;
@@ -1831,7 +1831,7 @@ namespace android
          //   while (::thread_get_run())
          //   {
 
-         // auto tickStart = ::tick::now();
+         // auto tickStart = ::millis::now();
 
          //      if (!m_puserinteraction->m_bLockWindowUpdate)
          //      {

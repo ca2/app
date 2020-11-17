@@ -18,8 +18,8 @@ namespace fs
       bool                                m_bInitialized;
 
 
-      file_path_map < tick >              m_mapdirTimeout;
-      file_path_map < tick >              m_mapfileTimeout;
+      file_path_map < millis >              m_mapdirTimeout;
+      file_path_map < millis >              m_mapfileTimeout;
 
 
       remote_native(const char * pszRoot);

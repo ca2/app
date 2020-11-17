@@ -25,7 +25,7 @@ namespace browser
       color32_t                m_crDrawStatus;
 
       double                  m_dFps;
-      tick                    m_tickRoll;
+      millis                    m_millisRoll;
 
       __pointer(regex)               m_ppcre;
 

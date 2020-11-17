@@ -1446,7 +1446,7 @@
     <ClInclude Include="aura\aura\system.h" />
     <ClInclude Include="aura\aura\system_heap.h" />
     <ClInclude Include="aura\aura\system_str.h" />
-    <ClInclude Include="aura\aura\tick.h" />
+    <ClInclude Include="aura\aura\millis.h" />
     <ClInclude Include="aura\aura\timer.h" />
     <ClInclude Include="aura\aura\timer_array.h" />
     <ClInclude Include="aura\aura\timer_callback.h" />
@@ -2306,7 +2306,7 @@
     <ClInclude Include="platform\system_str.h" />
     <ClInclude Include="platform\theme.h" />
     <ClInclude Include="platform\this_build_number.h" />
-    <ClInclude Include="platform\tick.h" />
+    <ClInclude Include="platform\millis.h" />
     <ClInclude Include="platform\timer.h" />
     <ClInclude Include="platform\timer_array.h" />
     <ClInclude Include="platform\timer_callback.h" />
@@ -2569,7 +2569,7 @@
     <ClInclude Include="primitive\primitive\runnable.h" />
     <ClInclude Include="primitive\primitive\shared_memory.h" />
     <ClInclude Include="primitive\primitive\simple_object.h" />
-    <ClInclude Include="primitive\primitive\stick.h" />
+    <ClInclude Include="primitive\primitive\smillis.h" />
     <ClInclude Include="primitive\primitive\str.h" />
     <ClInclude Include="primitive\primitive\trait.h" />
     <ClInclude Include="primitive\primitive\traits.h" />

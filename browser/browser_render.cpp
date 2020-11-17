@@ -46,10 +46,10 @@ namespace browser
 
       m_bFastOnEmpty = true;
       m_bFast = true;
-      m_tickLastFast = 0;
-      m_tickAnime = 300;
-      m_tickFastAnime = 300;
-      m_tickLastOk = 0;
+      m_millisLastFast = 0;
+      m_millisAnime = 300;
+      m_millisFastAnime = 300;
+      m_millisLastOk = 0;
 
       m_strFontSel = FONT_SANS;
 
@@ -94,7 +94,7 @@ namespace browser
 
       m_cyCache1 = 0;
 
-      m_tickSlidePeriod = 5000;
+      m_millisSlidePeriod = 5000;
 
    }
 
@@ -448,7 +448,7 @@ namespace browser
 
       }
 
-      double t = ::get_tick() / 1000.0;
+      double t= ::millis::now() / 1000.0;
 
       double w = 2.0 * 3.1415 / T;
 
@@ -719,7 +719,7 @@ namespace browser
 
       }
 
-      double t = ::get_tick() / 1000.0;
+      double t= ::millis::now() / 1000.0;
 
       double w = 2.0 * 3.1415 / T;
 
@@ -1042,9 +1042,9 @@ namespace browser
       rectClient.bottom = m_cy;
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
-      tick tickPeriod = m_tickSlidePeriod;
-      tick tickRampUp = tickPeriod / 2;
-      tick tickSlide = 0;
+      millis tickPeriod = m_millisSlidePeriod;
+      millis tickRampUp = tickPeriod / 2;
+      millis tickSlide = 0;
 
       try
       {
@@ -1125,9 +1125,9 @@ namespace browser
 
       }
 
-      //::u32 dw = ::get_tick();
+      //::u32 dw= ::millis::now();
 
-      if (m_bFast || !m_bFirstDone || m_tickLastFast.elapsed() < m_tickFastAnime)
+      if (m_bFast || !m_bFirstDone || m_millisLastFast.elapsed() < m_millisFastAnime)
       {
 
          sync_lock sl1(m_pview->get_wnd()->mutex());
@@ -1159,7 +1159,7 @@ namespace browser
          if (m_bFast || !m_bFirstDone)
          {
 
-            m_tickLastFast = ::get_tick();
+            m_millisLastFast= ::millis::now();
 
          }
 
@@ -1183,7 +1183,7 @@ namespace browser
 
          m_pview->m_bOkPending = false;
 
-         m_tickLastOk = ::get_tick();
+         m_millisLastOk= ::millis::now();
 
       }
 
@@ -1202,12 +1202,12 @@ namespace browser
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-      if (m_tickLastOk.elapsed() < m_tickAnime)
+      if (m_millisLastOk.elapsed() < m_millisAnime)
       {
 
          byte uchAlpha;
 
-         uchAlpha = byte(max(0, min(255, (m_tickLastOk.elapsed()) * 255 / m_tickAnime)));
+         uchAlpha = byte(max(0, min(255, (m_millisLastOk.elapsed()) * 255 / m_millisAnime)));
 
 /*         System.imaging().bitmap_blend(pgraphics, ::point(), pimage->get_size(), pimage->g(), ::point(), uchAlpha);
 
@@ -1293,16 +1293,16 @@ namespace browser
 
       //}
 
-//      m_tickSlideStart = ::tick::now() - m_tickSlidePeriod + 50;
+//      m_millisSlideStart = ::millis::now() - m_millisSlidePeriod + 50;
 
    }
 
 
    bool render::in_anime()
    {
-      if (m_bFast || m_tickLastFast.elapsed() < m_tickFastAnime)
+      if (m_bFast || m_millisLastFast.elapsed() < m_millisFastAnime)
          return true;
-      if (m_tickLastOk.elapsed() < m_tickAnime)
+      if (m_millisLastOk.elapsed() < m_millisAnime)
          return true;
       return false;
    }

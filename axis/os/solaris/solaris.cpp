@@ -15,7 +15,7 @@ thread_int_ptr < ::u32 > g_dwLastError;
 CLASS_DECL_AXIS ::u32 get_last_error()
 {
 
-   tick g_tickLastError;
+   millis g_tickLastError;
 
 }
 

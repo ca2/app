@@ -23,14 +23,14 @@ public:
 
 
 #ifdef _UWP
-   inline heap_item(void * p,memsize iSize,DWORD64 tick)
+   inline heap_item(void * p,memsize iSize,DWORD64 millis)
 #else
-   inline heap_item(void * p,memsize iSize,u32 tick)
+   inline heap_item(void * p,memsize iSize,u32 millis)
 #endif
    {
       m_pbStart = (u8 *)point;
       m_pbEnd = ((u8 *)point) + max(iSize - 1,0);
-      m_dwTickCount = tick;
+      m_dwTickCount = millis;
    }
 
 

@@ -192,9 +192,9 @@ LRESULT DispatchMessage(const MESSAGE * pmessage)
 
 //    //   {
 //    //
-//    //      auto tickNow = ::tick::now();
+//    //      auto tickNow = ::millis::now();
 //    //
-//    //      if(tickNow - pmessage->hwnd->m_tickLastMouseMove <= 5)
+//    //      if(tickNow - pmessage->hwnd->m_millisLastMouseMove <= 5)
 
 //    //      {
 //    //
@@ -202,7 +202,7 @@ LRESULT DispatchMessage(const MESSAGE * pmessage)
 //    //
 //    //      }
 //    //
-//    //      pmessage->hwnd->m_tickLastMouseMove = tickNow;
+//    //      pmessage->hwnd->m_millisLastMouseMove = tickNow;
 
 //    //
 //    //   }
@@ -210,7 +210,7 @@ LRESULT DispatchMessage(const MESSAGE * pmessage)
 
 //    //   {
 //    //
-//    //      auto tickNow = ::tick::now();
+//    //      auto tickNow = ::millis::now();
 //    //
 //    //   }
 

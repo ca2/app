@@ -448,7 +448,7 @@ bool prodevian::prodevian_iteration()
    if(m_puserinteraction->m_ewindowflag & window_flag_postpone_visual_update)
    {
 
-      if(m_pimpl->m_bPendingRedraw && m_pimpl->m_tickLastRedraw.elapsed() < 100_ms)
+      if(m_pimpl->m_bPendingRedraw && m_pimpl->m_millisLastRedraw.elapsed() < 100_ms)
       {
 
          return true;
@@ -575,7 +575,7 @@ bool prodevian::prodevian_iteration()
          if (msToWaitForNextFrame >= 2)
          {
 
-            ::tick tickWait;
+            ::millis tickWait;
 
             tickWait.Now();
 
@@ -586,13 +586,13 @@ bool prodevian::prodevian_iteration()
 
                //printf("msToWaitForNextFrame >= 50ms (%dms)\n", (::i32) (msToWaitForNextFrame - 1));
 
-               ::tick tick;
+               ::millis millis;
 
-               tick.Now();
+               millis.Now();
 
                m_synca.wait(false, millis(msToWaitForNextFrame - 1));
 
-               //printf("Actually waited %dms\n", (::i32) tick.elapsed().m_i);
+               //printf("Actually waited %dms\n", (::i32) millis.elapsed().m_i);
 
             }
             else
@@ -710,10 +710,10 @@ bool prodevian::prodevian_iteration()
       else
       {
 
-         //if (!m_bUpdatingScreen || m_tickLastScreenUpdate.elapsed() > 200_ms)
+         //if (!m_bUpdatingScreen || m_millisLastScreenUpdate.elapsed() > 200_ms)
          {
 
-            m_tickLastScreenUpdate.Now();
+            m_millisLastScreenUpdate.Now();
 
             m_bUpdatingScreen = true;
 
@@ -974,9 +974,9 @@ bool prodevian::prodevian_iteration()
 
             sl.unlock();
 
-            m_tickBeforeDrawing.Now();
+            m_millisBeforeDrawing.Now();
 
-            m_tickOutOfDrawing = m_tickBeforeDrawing - m_tickAfterDrawing;
+            m_millisOutOfDrawing = m_millisBeforeDrawing - m_millisAfterDrawing;
 
             i64 i2 = get_nanos();
 
@@ -984,9 +984,9 @@ bool prodevian::prodevian_iteration()
 
             bUpdateBuffer = true;
 
-            m_tickAfterDrawing.Now();
+            m_millisAfterDrawing.Now();
 
-            m_tickDuringDrawing = m_tickAfterDrawing - m_tickBeforeDrawing;
+            m_millisDuringDrawing = m_millisAfterDrawing - m_millisBeforeDrawing;
 
             if (m_puserinteraction)
             {
@@ -1033,9 +1033,9 @@ bool prodevian::prodevian_iteration()
       try
       {
 
-         m_tickBeforeUpdateScreen.Now();
+         m_millisBeforeUpdateScreen.Now();
 
-         m_tickOufOfUpdateScreen = m_tickBeforeUpdateScreen - m_tickAfterUpdateScreen;
+         m_millisOufOfUpdateScreen = m_millisBeforeUpdateScreen - m_millisAfterUpdateScreen;
 
          if (!m_pimpl)
          {
@@ -1071,27 +1071,27 @@ bool prodevian::prodevian_iteration()
 
          m_iaFrame.add(m_nanosLastFrame);
 
-         m_tickAfterUpdateScreen.Now();
+         m_millisAfterUpdateScreen.Now();
 
-         m_tickDuringUpdateScreen = m_tickAfterUpdateScreen - m_tickBeforeUpdateScreen;
+         m_millisDuringUpdateScreen = m_millisAfterUpdateScreen - m_millisBeforeUpdateScreen;
 
-         if (m_tickDuringUpdateScreen > 60)
+         if (m_millisDuringUpdateScreen > 60)
          {
 
-            //output_debug_string("It took about " + __str(m_tickDuringUpdateScreen) + " to update screen\n");
+            //output_debug_string("It took about " + __str(m_millisDuringUpdateScreen) + " to update screen\n");
 
-            //output_debug_string("It took about " + __str(m_tickOufOfUpdateScreen) + " out of screen update\n");
+            //output_debug_string("It took about " + __str(m_millisOufOfUpdateScreen) + " out of screen update\n");
 
          }
 
-         m_tickDuringUpdateScreen = m_tickAfterUpdateScreen - m_tickBeforeUpdateScreen;
+         m_millisDuringUpdateScreen = m_millisAfterUpdateScreen - m_millisBeforeUpdateScreen;
 
-         if (m_tickOufOfUpdateScreen > 60)
+         if (m_millisOufOfUpdateScreen > 60)
          {
 
-            //output_debug_string("It took about " + __str(m_tickDuringUpdateScreen) + " to update screen\n");
+            //output_debug_string("It took about " + __str(m_millisDuringUpdateScreen) + " to update screen\n");
 
-            //output_debug_string("It took about " + __str(m_tickOufOfUpdateScreen) + " out of screen update\n");
+            //output_debug_string("It took about " + __str(m_millisOufOfUpdateScreen) + " out of screen update\n");
 
          }
 

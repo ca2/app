@@ -483,7 +483,7 @@ namespace apex
 
       virtual ::estatus main() override;
 
-      virtual ::estatus defer_initialize_host_window(RECT32 * lprect = nullptr);
+      virtual ::estatus defer_initialize_host_window(LPCRECT32 lpcrect = nullptr);
 
       __pointer(::apex::application) get_current_application();
 

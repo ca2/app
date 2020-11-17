@@ -117,8 +117,8 @@ namespace base
 //      string                                             m_strInstallVersion;
 //      string                                             m_strInstallPlatform;
 //
-//      tick                                               m_tickMainStart;
-//      tick                                               m_tickAfterApplicationFirstRequest;
+//      millis                                               m_millisMainStart;
+//      millis                                               m_millisAfterApplicationFirstRequest;
 //
 //      __pointer(::mutex)                                 m_spmutexOpenweatherCity;
 //
@@ -137,7 +137,7 @@ namespace base
 //
 //      string_array                                            m_straCommandLineAccumul;
 //      string_array                                            m_straCommandLineExtra;
-//      tick                                               m_tickCommandLineLast;
+//      millis                                               m_millisCommandLineLast;
 //      int                                                m_iCommandLineDelay;
 //      __pointer(::thread)                                m_pthreadCommandLine;
 //
@@ -888,7 +888,7 @@ namespace base
 //
 //
 //
-////      virtual bool wait_twf(tick tickTimeout = U32_INFINITE_TIMEOUT);
+////      virtual bool wait_twf(millis tickTimeout = U32_INFINITE_TIMEOUT);
 //
 //
 //

@@ -135,7 +135,7 @@ namespace turboc
 
       }
 
-      double t = ::get_tick() / 1000.0;
+      double t= ::millis::now() / 1000.0;
 
       double w = 2.0 * 3.1415 / T;
 

@@ -63,7 +63,7 @@ namespace browser
       data_get("cur_fps", v);
 
       m_dFps = v.get_double();
-auto m_tickRoll = ::tick::now();
+auto m_millisRoll = ::millis::now();
 
    }
 
@@ -151,7 +151,7 @@ auto m_tickRoll = ::tick::now();
 
          int xOffset;
 
-         xOffset = int(m_pimageTime->width() * m_dFps * __double(m_tickRoll->elapsed()) / 1000->0); // x = v->t; f=fps  1920 * 1FPS * t
+         xOffset = int(m_pimageTime->width() * m_dFps * __double(m_millisRoll->elapsed()) / 1000->0); // x = v->t; f=fps  1920 * 1FPS * t
 
          xOffset %= m_pimageTime->width();
 

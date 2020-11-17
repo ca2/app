@@ -113,7 +113,7 @@ namespace user
 
       //m_puserinteraction->message_call(e_message_size, 0, process_state().m_size.lparam());
 
-      //m_puserinteraction->m_tickLastVisualChange.Now();
+      //m_puserinteraction->m_millisLastVisualChange.Now();
 
       //m_puserinteraction->m_bSizeMove = true;
 

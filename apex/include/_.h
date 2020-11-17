@@ -2320,7 +2320,7 @@ namespace primitive
 //#include "apex/primitive/math/math_clip.h"
 
 
-//#include "apex/platform/tick.h"
+//#include "apex/platform/millis.h"
 
 
 //#include "apex/primitive/datetime/duration.h"

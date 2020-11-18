@@ -1108,6 +1108,7 @@
     <ClCompile Include="gpu\gpu\program.cpp" />
     <ClCompile Include="gpu\gpu\shader.cpp" />
     <ClCompile Include="graphics\draw2d\context_image.cpp" />
+    <ClCompile Include="graphics\graphics\monitor.cpp" />
     <ClCompile Include="include\_.cpp" />
     <ClCompile Include="message\timer.cpp" />
     <ClCompile Include="message\user.cpp" />
@@ -1127,8 +1128,10 @@
     <ClCompile Include="os\windows\aura.cpp" />
     <ClCompile Include="os\windows\gdi.cpp" />
     <ClCompile Include="os\windows\graphics.cpp" />
+    <ClCompile Include="os\windows\imm_client.cpp" />
     <ClCompile Include="os\windows\imm_context.cpp" />
     <ClCompile Include="os\windows\main.cpp" />
+    <ClCompile Include="os\windows\monitor.cpp" />
     <ClCompile Include="os\windows\windowing.cpp" />
     <ClCompile Include="os\windows_common\draw2d_direct2d_global.cpp" />
     <ClCompile Include="platform\application.cpp" />
@@ -1143,7 +1146,6 @@
     <ClCompile Include="platform\theme.cpp" />
     <ClCompile Include="user\box.cpp" />
     <ClCompile Include="user\callback.cpp" />
-    <ClCompile Include="user\composition_imm_client.cpp" />
     <ClCompile Include="user\control_descriptor.cpp" />
     <ClCompile Include="user\control_event.cpp" />
     <ClCompile Include="user\copydesk.cpp" />
@@ -1152,7 +1154,6 @@
     <ClCompile Include="user\form.cpp" />
     <ClCompile Include="user\form_callback.cpp" />
     <ClCompile Include="user\frame.cpp" />
-    <ClCompile Include="user\imm_client.cpp" />
     <ClCompile Include="user\interaction.cpp" />
     <ClCompile Include="user\interaction_child.cpp" />
     <ClCompile Include="user\interaction_impl.cpp" />
@@ -1413,9 +1414,6 @@
     <ClInclude Include="user.h" />
     <ClInclude Include="user\box.h" />
     <ClInclude Include="user\callback.h" />
-    <ClInclude Include="user\aaa_check.h" />
-    <ClInclude Include="user\aaa_command.h" />
-    <ClInclude Include="user\composition_imm_client.h" />
     <ClInclude Include="user\controller.h" />
     <ClInclude Include="user\control_descriptor.h" />
     <ClInclude Include="user\control_event.h" />
@@ -1425,7 +1423,6 @@
     <ClInclude Include="user\form.h" />
     <ClInclude Include="user\form_callback.h" />
     <ClInclude Include="user\frame.h" />
-    <ClInclude Include="user\imm_client.h" />
     <ClInclude Include="user\interaction.h" />
     <ClInclude Include="user\interaction_child.h" />
     <ClInclude Include="user\interaction_impl.h" />
@@ -1453,7 +1450,6 @@
     <ClInclude Include="user\scroll_info.h" />
     <ClInclude Include="user\style.h" />
     <ClInclude Include="user\style_base.h" />
-    <ClInclude Include="user\aaa_text.h" />
     <ClInclude Include="user\tool_window.h" />
     <ClInclude Include="user\user.h" />
     <ClInclude Include="user\wait_cursor.h" />
@@ -1465,7 +1461,6 @@
     <ClInclude Include="user\_const.h" />
     <ClInclude Include="user\_const_key.h" />
     <ClInclude Include="user\_data.h" />
-    <ClInclude Include="user\aaa_ewindowflag.h" />
     <ClInclude Include="user\_experience_const.h" />
     <ClInclude Include="user\_impl.h" />
     <ClInclude Include="user\_interaction_impl.h" />

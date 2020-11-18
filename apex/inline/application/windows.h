@@ -1,6 +1,6 @@
 
 
-i32 WINAPI _tWinMain(HINSTANCE hinstance, HINSTANCE hPrevInstance, char * pCmdLine, int nCmdShow)
+i32 WINAPI _tWinMain(HINSTANCE hinstance, HINSTANCE hPrevInstance, TCHAR * pCmdLine, int nCmdShow)
 {
 
    string strAppId = executable_get_app_id(hinstance);
@@ -18,7 +18,9 @@ i32 WINAPI _tWinMain(HINSTANCE hinstance, HINSTANCE hPrevInstance, char * pCmdLi
 
    application_common(psystem);
 
-   psystem->system_construct(hinstance, hPrevInstance, pCmdLine, nCmdShow);
+   string strCommandLine(pCmdLine);
+
+   psystem->system_construct(hinstance, hPrevInstance, strCommandLine, nCmdShow);
 
    psystem->set_current_handles();
 

@@ -298,7 +298,7 @@ bool image::create_isotropic(::image * pimage)
 
       pimage->g()->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
-      pimage->g()->StretchBlt(0, 0, cx, cy, get_graphics(), 0, 0, width(), height());
+      pimage->g()->draw_image(::rect_dim(0, 0, cx, cy), get_graphics(), ::rect_dim(0, 0, width(), height()));
 
    }
 
@@ -400,13 +400,13 @@ bool image::stretch_image(::image * pimage)
 
    //}
 
-   return get_graphics()->StretchBlt(0, 0,
+   return get_graphics()->draw_image(::rect_dim(0, 0,
                                      width(),
-                                     height(),
+                                     height()),
                                      pimage->g(),
-                                     0, 0,
+                                     ::rect_dim(0, 0,
                                      pimage->width(),
-                                     pimage->height());
+                                     pimage->height()));
 
 }
 
@@ -490,12 +490,12 @@ bool image::from(::draw2d::graphics * pgraphics, const ::size & size)
 }
 
 
-bool image::from(const ::point & pointDst, ::draw2d::graphics * pgraphics, const ::point & pointSrc, const ::size & size)
-{
-
-   return get_graphics()->from(pointDst, size, pgraphics, pointSrc) != FALSE;
-
-}
+//bool image::from(const ::point & pointDst, ::draw2d::graphics * pgraphics, const ::point & pointSrc, const ::size & size)
+//{
+//
+//   return get_graphics()->from(pointDst, size, pgraphics, pointSrc) != FALSE;
+//
+//}
 
 
 bool image::from(const ::point & pointDstParam, ::image * pimageSrc, const ::point & pointSrcParam, const ::size & sizeParam)

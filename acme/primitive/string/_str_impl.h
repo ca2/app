@@ -1258,20 +1258,22 @@ namespace str
 #ifdef WINDOWS
 
 
-   //inline void from(string& str, const ::i32& i)
-   //{
+   inline void from(string & str, const long & l)
+   {
 
-   //   str = i64toa_dup(i);
+      str = i64toa_dup(l);
 
-   //}
+   }
 
 
-   //inline void from(string& str, const ::u32& u)
-   //{
 
-   //   str = ui64toa_dup(u);
+   inline void from(string & str, const unsigned long &ul)
+   {
 
-   //}
+      str = ui64toa_dup(ul);
+
+   }
+
 
 #elif defined(__APPLE__)
 

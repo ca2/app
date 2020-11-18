@@ -303,7 +303,7 @@ namespace windows
             CF_TEXT,
          };
 
-         m_iPriorityTextFormat = ::GetPriorityClipboardFormat(uiaFormatPriorityList, ARRAYSIZE(uiaFormatPriorityList));
+         m_iPriorityTextFormat = ::GetPriorityClipboardFormat(uaFormatPriorityList, ARRAYSIZE(uaFormatPriorityList));
 
       }
 
@@ -392,7 +392,7 @@ namespace windows
 
          ::u32 uLen = ::DragQueryFileW(hdrop, (::u32) i, nullptr, 0);
 
-         wstring wstr(get_buffer, uiLen);
+         wstring wstr(get_buffer, uLen);
 
          ::DragQueryFileW(hdrop, (::u32) i, wstr, (::u32) wstr.length());
 

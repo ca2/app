@@ -242,7 +242,7 @@ namespace imaging_wic
 
       if (SUCCEEDED(hr))
       {
-         hr = pbitmapframeencode->SetSize(uiWidth, uiHeight);
+         hr = pbitmapframeencode->SetSize(uWidth, uHeight);
       }
 
       WICPixelFormatGUID formatGUID = GUID_WICPixelFormat32bppBGRA;
@@ -265,7 +265,7 @@ namespace imaging_wic
             if (SUCCEEDED(hr))
             {
 
-               hr = pbitmapframeencode->WritePixels(uiHeight, pimage->scan_size(), uiHeight * pimage->scan_size(), (byte *)pimage->get_data());
+               hr = pbitmapframeencode->WritePixels(uHeight, pimage->scan_size(), uHeight * pimage->scan_size(), (byte *)pimage->get_data());
 
             }
 

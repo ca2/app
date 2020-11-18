@@ -60,6 +60,7 @@ namespace aura
 
       virtual ::u32 get_monitor_color_temperature(index iMonitor);
       virtual bool adjust_monitor(index iMonitor, ::u32 dwTemperature, double dBrightness, double dwGamma);
+      virtual bool os_adjust_monitor(index iMonitor, ::u32 dwTemperature, double dBrightness, double dwGamma);
 
 
 #if defined(WINDOWS)

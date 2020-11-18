@@ -256,7 +256,7 @@ i32 image_list::add(::draw2d::icon * picon, int iItem)
 
 #else
 
-   m_pimage->get_graphics()->DrawIcon(iItem * m_size.cx, 0, picon, m_size.cx, m_size.cy, 0);
+   m_pimage->get_graphics()->DrawIcon({ iItem * m_size.cx , 0 }, picon, m_size);
 
 #endif
 

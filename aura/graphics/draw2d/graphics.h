@@ -234,6 +234,11 @@ namespace draw2d
       virtual bool sync_flush();
 
 
+      virtual ::size get_size();
+
+
+
+
 
 
 
@@ -424,9 +429,7 @@ namespace draw2d
 
       virtual void frame_rect(const ::rect & rect, ::draw2d::brush* pbrush);
       virtual void invert_rect(const ::rect & rect);
-      virtual bool DrawIcon(i32 x, i32 y, ::draw2d::icon * picon);
-      virtual bool DrawIcon(const ::point & point, ::draw2d::icon * picon);
-      virtual bool DrawIcon(i32 x, i32 y, ::draw2d::icon * picon, i32 cx, i32 cy, ::u32 istepIfAniCur);
+      virtual bool DrawIcon(const ::point & point, ::draw2d::icon * picon, const ::size & size);
 //      virtual bool DrawState(const ::point & point, const ::size & size, HBITMAP hBitmap, ::u32 nFlags, HBRUSH hBrush = nullptr);
 //      virtual bool DrawState(const ::point & point, const ::size & size, ::draw2d::bitmap* pBitmap, ::u32 nFlags,::draw2d::brush* pBrush = nullptr);
 //#ifdef WINDOWS
@@ -511,36 +514,44 @@ namespace draw2d
       virtual bool round_rect(const ::rectd & rectd, const ::pointd & point);
 
 
-      virtual bool from(const ::point & pointDst, const ::size & size, ::draw2d::graphics * pgraphicsSrc, const ::point & pointSrc);
-      virtual bool from(const ::size & size, ::draw2d::graphics * pgraphicsSrc, const point & pSrc);
-      virtual bool from(const ::size & size, ::draw2d::graphics * pgraphicsSrc);
-      virtual bool PatBlt(i32 x, i32 y, i32 nWidth, i32 nHeight);
-
-      virtual bool BitBltRaw(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc = 0, i32 ySrc = 0);
-      virtual bool BitBltAlphaBlend(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc = 0, i32 ySrc = 0);
-
-      virtual bool StretchBlt(const ::rect & rectDst, ::draw2d::graphics * pgraphicsSrc);
-
-      virtual bool draw(const ::rect & rect, ::draw2d::graphics * pgraphicsSrc, const ::point & pointSrc = nullptr);
-      virtual bool draw(const ::rect & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rect & rectSrc);
-      virtual bool draw(const ::rectd & rectdDst, ::draw2d::graphics * pgraphicsSrc, const ::rect & rectSrc);
+      //virtual bool from(const ::point & pointDst, const ::size & size, ::draw2d::graphics * pgraphicsSrc, const ::point & pointSrc);
+      //virtual bool from(const ::size & size, ::draw2d::graphics * pgraphicsSrc, const point & pSrc);
+      //virtual bool from(const ::size & size, ::draw2d::graphics * pgraphicsSrc);
+      //virtual bool PatBlt(i32 x, i32 y, i32 nWidth, i32 nHeight);
 
 
-      virtual bool draw(const ::rect & rect, ::image * pimage, const ::point & pointSrc = nullptr);
-      virtual bool draw(const ::rect & rectDst, ::image * pimage, const ::rect & rectSrc);
-      virtual bool draw(const ::rectd & rectdDst, ::image * pimage, const ::rect & rectSrc);
 
-      virtual bool StretchBlt(const ::rect & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rect & rectSrc);
-      virtual bool StretchBlt(const ::rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rect & rectSrc);
+      //virtual bool draw_image(const ::rect & rect, ::draw2d::graphics * pgraphicsSrc, const ::point & point);
+
+      //virtual bool draw_image(const ::rect & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rect & rect);
+      //virtual bool draw_image(const ::rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rect & rect);
+      //virtual bool draw_image(const ::rect & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rect & rectSrc);
+      // virtual bool draw_image(const ::rectd & rectdDst, ::draw2d::graphics * pgraphicsSrc, const ::rect & rectSrc);
 
 
-      virtual bool StretchBlt(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight);
-      virtual bool StretchBlt(double x, double y, double nWidth, double nHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight);
+      // bit block transfer (pixel-to-pixel)
+      virtual bool draw_image(const ::point & pointDst, ::draw2d::graphics * pgraphicsSrc, const ::point & pointSrc = ::point());
 
-      virtual bool StretchBltRaw(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight);
-      virtual bool StretchBltRaw(double x, double y, double nWidth, double nHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight);
-      virtual bool StretchBltAlphaBlend(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight);
-      virtual bool StretchBltAlphaBlend(double x, double y, double nWidth, double nHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight);
+
+      // bit block transfer (pixel-to-pixel)
+      virtual bool draw_image(const ::point & pointDst, ::draw2d::graphics * pgraphicsSrc, const ::rect & rectSrc = ::rect());
+      virtual bool draw_image_raw(const ::point & pointDst, ::draw2d::graphics * pgraphicsSrc, const ::rect & rectSrc = ::rect());
+      virtual bool draw_image_blend(const ::point & pointDst, ::draw2d::graphics * pgraphicsSrc, const ::rect & rectSrc = ::rect());
+
+
+      // potentially stretching
+      virtual bool draw_image(const ::rect & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rect & rectSrc = ::rect());
+      virtual bool draw_image_raw(const ::rect & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rect & rectSrc = ::rect());
+      virtual bool draw_image_blend(const ::rect & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rect & rectSrc = ::rect());
+
+
+      //virtual bool StretchBlt(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight);
+      //virtual bool StretchBlt(double x, double y, double nWidth, double nHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight);
+
+      //virtual bool StretchBltRaw(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight);
+      //virtual bool StretchBltRaw(double x, double y, double nWidth, double nHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight);
+      //virtual bool StretchBltAlphaBlend(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight);
+      //virtual bool StretchBltAlphaBlend(double x, double y, double nWidth, double nHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight);
 
       virtual ::color GetPixel(i32 x, i32 y);
       virtual ::color GetPixel(const ::point & point);

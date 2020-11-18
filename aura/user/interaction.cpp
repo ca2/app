@@ -7824,7 +7824,7 @@ namespace user
 
       _001OnTimer(&timer);
 
-      return SetTimer(uEvent, (::u32) durationElapse.get_total_milliseconds(), pfnTimer);
+      return SetTimer(uEvent, (::u32) durationElapse.u32_millis(), pfnTimer);
 
    }
 
@@ -7839,7 +7839,7 @@ namespace user
 
       }
 
-      return SetTimer(uEvent, (::u32) durationElapse.get_total_milliseconds(), pfnTimer);
+      return SetTimer(uEvent, (::u32) durationElapse.u32_millis(), pfnTimer);
 
    }
 

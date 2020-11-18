@@ -1029,43 +1029,19 @@ namespace draw2d
    }
 
 
-   bool graphics::DrawIcon(i32 x, i32 y, ::draw2d::icon * picon)
+   bool graphics::DrawIcon(const ::point & point, ::draw2d::icon * picon, const ::size & size)
    {
-      UNREFERENCED_PARAMETER(x);
-      UNREFERENCED_PARAMETER(y);
-      UNREFERENCED_PARAMETER(picon);
 
-
-      return false;
-   }
-
-   bool graphics::DrawIcon(const ::point & point, ::draw2d::icon * picon)
-   {
       UNREFERENCED_PARAMETER(point);
       UNREFERENCED_PARAMETER(picon);
-
-
-
-      return false;
-
-   }
-
-
-   bool graphics::DrawIcon(i32 x, i32 y, ::draw2d::icon * picon, i32 cx, i32 cy, ::u32 istepIfAniCur)
-   {
-      UNREFERENCED_PARAMETER(x);
-      UNREFERENCED_PARAMETER(y);
-      UNREFERENCED_PARAMETER(picon);
-      UNREFERENCED_PARAMETER(cx);
-      UNREFERENCED_PARAMETER(cy);
-      UNREFERENCED_PARAMETER(istepIfAniCur);
-//      UNREFERENCED_PARAMETER(hbrFlickerFreeDraw);
-//      UNREFERENCED_PARAMETER(diFlags);
-
+      UNREFERENCED_PARAMETER(size);
 
       return false;
 
    }
+
+
+
 
 //
 //
@@ -1667,355 +1643,160 @@ namespace draw2d
    }
 
 
-   bool graphics::PatBlt(i32 x, i32 y, i32 nWidth, i32 nHeight)
+   //bool graphics::PatBlt(i32 x, i32 y, i32 nWidth, i32 nHeight)
+   //{
+
+   //   UNREFERENCED_PARAMETER(x);
+   //   UNREFERENCED_PARAMETER(y);
+   //   UNREFERENCED_PARAMETER(nWidth);
+   //   UNREFERENCED_PARAMETER(nHeight);
+
+   //   return false;
+
+   //}
+
+
+   //bool graphics::draw_image(const ::rect & rect, ::image * pimage, const ::point & point)
+   //{
+
+   //   pimage->defer_update_image();
+
+   //   return draw(rect, pimage->g(), point);
+
+   //}
+
+   
+   bool graphics::draw_image(const ::point & pointDst, ::draw2d::graphics * pgraphicsSrc, const ::point & pointSrc)
    {
 
-      UNREFERENCED_PARAMETER(x);
-      UNREFERENCED_PARAMETER(y);
-      UNREFERENCED_PARAMETER(nWidth);
-      UNREFERENCED_PARAMETER(nHeight);
-
-      return false;
+      return draw_image(pointDst, pgraphicsSrc, { pointSrc, pgraphicsSrc->get_size() });
 
    }
 
 
-   bool graphics::draw(const ::rect & rect, ::image * pimage, const ::point & point)
+   bool graphics::draw_image(const ::point & pointDstParam, ::draw2d::graphics * pgraphicsSrc, const ::rect & rectSrcParam)
    {
 
-      pimage->defer_update_image();
-
-      return draw(rect, pimage->g(), point);
-
-   }
-
-
-   bool graphics::draw(const ::rect & rect, ::draw2d::graphics * pgraphicsSrc, const ::point & point)
-   {
-
-      if(::is_null(pgraphicsSrc))
+      if (::is_null(pgraphicsSrc))
       {
 
          return false;
 
       }
 
-      sync_lock slSource(pgraphicsSrc->mutex());
+      //::rect rectDst(rectDstParam);
 
-      i32 x = rect.left;
+      //::rect rectSrc(rectSrcParam);
 
-      i32 y = rect.top;
+      //sync_lock slSource(pgraphicsSrc->mutex());
 
-      i32 xSrc = point.x;
-      i32 ySrc = point.y;
-      i32 nWidth = rect.width();
-      i32 nHeight = rect.height();
+      //i32 xDst = rectDst.left;
 
-      if(m_bPat)
-      {
+      //i32 yDst = rectDst.top;
 
-         if(::is_set(pgraphicsSrc->m_pimage)
-            && pgraphicsSrc->m_pimage->is_ok())
-         {
+      //i32 xSrc = rectSrc.left;
+      //
+      //i32 ySrc = rectSrc.top;
 
-            int xs = 0;
+      //i32 nDstWidth = rectDst.width();
 
-            int ys = 0;
+      //i32 nDstHeight = rectDst.height();
 
-            i32 w1 = pgraphicsSrc->m_pimage->width();
+      //i32 nSrcWidth = rectSrc.width();
 
-            i32 h1 = pgraphicsSrc->m_pimage->height();
+      //i32 nSrcHeight = rectSrc.height();
 
-            i32 w0 = w1 - xSrc;
+      //if(m_bPat)
+      //{
 
-            i32 h0 = h1 - ySrc;
+      //   if(::is_set(pgraphicsSrc->m_pimage) && pgraphicsSrc->m_pimage->is_ok())
+      //   {
 
-            int w = w0;
+      //      int xs = 0;
 
-            int h = h0;
+      //      int ys = 0;
 
-            for(int i = 0; i < nWidth; i += w)
-            {
+      //      i32 w1 = pgraphicsSrc->m_pimage->width();
 
-               if(i == 0)
-               {
+      //      i32 h1 = pgraphicsSrc->m_pimage->height();
 
-                  w = w0;
+      //      i32 w0 = w1 - xSrc;
 
-                  xs = xSrc;
+      //      i32 h0 = h1 - ySrc;
 
-               }
-               else
-               {
+      //      int w = w0;
 
-                  w = w1;
+      //      int h = h0;
 
-                  xs = 0;
+      //      for(int i = 0; i < nWidth; i += w)
+      //      {
 
-               }
+      //         if(i == 0)
+      //         {
 
-               for(int j = 0; j < nHeight; j += h)
-               {
+      //            w = w0;
 
-                  if(j == 0)
-                  {
+      //            xs = xSrc;
 
-                     h = h0;
+      //         }
+      //         else
+      //         {
 
-                     ys = ySrc;
+      //            w = w1;
 
-                  }
-                  else
-                  {
+      //            xs = 0;
 
-                     h = h1;
+      //         }
 
-                     ys = 0;
+      //         for(int j = 0; j < nHeight; j += h)
+      //         {
 
-                  }
+      //            if(j == 0)
+      //            {
 
-                  if (!BitBltAlphaBlend(x + i, y + j, w, h, pgraphicsSrc, xs, ys))
-                  {
+      //               h = h0;
 
-                     if (!BitBltRaw(x + i, y + j, w, h, pgraphicsSrc, xs, ys))
-                     {
+      //               ys = ySrc;
 
-                     }
+      //            }
+      //            else
+      //            {
 
-                  }
+      //               h = h1;
 
+      //               ys = 0;
 
-               }
+      //            }
 
-            }
+      //            if (!draw_image_blend(::rect_dim( x + i, y + j, w, h ), pgraphicsSrc, { xs, ys }))
+      //            {
 
-            return true;
+      //               if (!draw_image_raw(::rect_dim(x + i, y + j, w, h), pgraphicsSrc, { xs, ys }))
+      //               {
 
-         }
+      //               }
 
-      }
+      //            }
 
-      if (BitBltAlphaBlend(x, y, nWidth, nHeight, pgraphicsSrc, xSrc, ySrc))
-      {
 
-         return true;
+      //         }
 
-      }
+      //      }
 
-      if (BitBltRaw(x, y, nWidth, nHeight, pgraphicsSrc, xSrc, ySrc))
-      {
+      //      return true;
 
-         return true;
+      //   }
 
-      }
+      //}
 
-      return false;
-
-   }
-
-
-   bool graphics::BitBltRaw(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc)
-   {
-
-      return false;
-
-   }
-
-
-   bool graphics::BitBltAlphaBlend(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc)
-   {
-
-      // return ::draw2d::graphics::BitBltAlphaBlend(x, y, nWidth, nHeight, pgraphicsSrc, xSrc, ySrc);
-
-      if (m_pimageAlphaBlend)
-      {
-
-         // Reference implementation
-
-         if (x < 0)
-         {
-
-            xSrc -= x;
-
-            nWidth += x;
-
-            x = 0;
-
-         }
-
-         if (y < 0)
-         {
-
-            ySrc -= y;
-
-            nHeight += y;
-
-            y = 0;
-
-         }
-
-         ::rect rectIntersect(m_pointAlphaBlend, m_pimageAlphaBlend->get_size());
-
-         ::rect rectBlt(point((::i32)x, (::i32)y), ::size(nWidth, nHeight));
-
-         if (rectIntersect.intersect(rectIntersect, rectBlt))
-         {
-
-            // The following commented out code does not work well when there is clipping
-            // and some calculations are not precise
-            //if (m_pimage != nullptr && pgraphicsSrc->m_pimage != nullptr)
-            //{
-
-            //   const ::point & pointOff = GetViewportOrg();
-
-            //   x += pointOff.x;
-
-            //   y += pointOff.y;
-
-            //   return m_ppimage->blend(::point(x, y), pgraphicsSrc->m_pimage, ::point(xSrc, ySrc), m_pimageAlphaBlend, point(m_pointAlphaBlend.x - x, m_pointAlphaBlend.y - y), rectBlt.size());
-
-            //}
-            //else
-            {
-
-               ::image_pointer pimage1;
-//#ifdef _UWP
-//               g_pimagea.add(pimage1);
-//#endif
-
-               pimage1 = create_image(rectBlt.size());
-
-               pimage1->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
-
-               if (!pimage1->from(nullptr, pgraphicsSrc, ::point(xSrc, ySrc), rectBlt.size()))
-                  return false;
-
-               pimage1->blend(::point(), m_pimageAlphaBlend, point((int)max(0, x - m_pointAlphaBlend.x), (int)max(0, y - m_pointAlphaBlend.y)), rectBlt.size());
-
-               BitBltRaw(x, y, nWidth, nHeight, pimage1->get_graphics(), 0, 0);
-
-            }
-
-            return true;
-
-         }
-
-
-
-      }
-
-      return false;
-
-   }
-
-
-   bool graphics::StretchBlt(const ::rect & rectDst, ::draw2d::graphics * pgraphicsSrc)
-   {
-
-      if(pgraphicsSrc == nullptr)
-      {
-
-         return false;
-
-      }
-
-      ::image_pointer pimage = pgraphicsSrc->m_pimage;
-
-      if(pimage->is_null())
-      {
-
-         return false;
-
-      }
-
-      ::rect rectSrc(nullptr, pimage->get_size());
-
-      return StretchBlt(rectDst, pgraphicsSrc, rectSrc);
-
-   }
-
-
-   bool graphics::draw(const ::rect & rectDst, ::image * pimage, const ::rect & rectSrc)
-   {
-
-      pimage->defer_update_image();
-
-      return draw(rectDst, pimage->g(), rectSrc);
-
-   }
-
-
-   bool graphics::draw(const ::rect & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rect & rectSrc)
-   {
-
-      return StretchBlt((rect) rectDst, pgraphicsSrc, (rect)rectSrc);
-
-   }
-
-
-   bool graphics::draw(const rectd & rectDst, ::image * pimage, const ::rect & rectSrc)
-   {
-
-      pimage->defer_update_image();
-
-      return draw(rectDst, pimage->g(), rectSrc);
-
-   }
-
-
-   bool graphics::draw(const rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rect & rectSrc)
-   {
-
-      return StretchBlt((rectd)rectDst, pgraphicsSrc, (rect)rectSrc);
-
-   }
-
-
-   bool graphics::StretchBlt(const ::rect & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rect & rectSrc)
-   {
-
-      return StretchBlt(
-             rectDst.left,
-             rectDst.top,
-             rectDst.width(),
-             rectDst.height(),
-             pgraphicsSrc,
-             rectSrc.left,
-             rectSrc.top,
-             rectSrc.width(),
-             rectSrc.height());
-
-   }
-
-
-   bool graphics::StretchBlt(const ::rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rect & rectSrc)
-   {
-
-      return StretchBlt(
-             rectDst.left,
-             rectDst.top,
-             rectDst.width(),
-             rectDst.height(),
-             pgraphicsSrc,
-             rectSrc.left,
-             rectSrc.top,
-             rectSrc.width(),
-             rectSrc.height());
-
-   }
-
-
-   bool graphics::StretchBlt(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight)
-   {
-
-      if (StretchBltAlphaBlend(x, y, nWidth, nHeight, pgraphicsSrc, xSrc, ySrc, nSrcWidth, nSrcHeight))
+      if (draw_image_blend(pointDstParam, pgraphicsSrc, rectSrcParam))
       {
 
          return true;
 
       }
 
-      if (StretchBltRaw(x, y, nWidth, nHeight, pgraphicsSrc, xSrc, ySrc, nSrcWidth, nSrcHeight))
+      if (draw_image_raw(pointDstParam, pgraphicsSrc, rectSrcParam))
       {
 
          return true;
@@ -2027,17 +1808,376 @@ namespace draw2d
    }
 
 
-   bool graphics::StretchBlt(double x, double y, double nWidth, double nHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight)
+
+   //bool graphics::draw_image(const ::rect & rectDstParam, ::draw2d::graphics * pgraphicsSrc, const ::rect & rectSrcParam)
+   //{
+
+   //   if(::is_null(pgraphicsSrc))
+   //   {
+
+   //      return false;
+
+   //   }
+
+   //   //::rect rectDst(rectDstParam);
+
+   //   //::rect rectSrc(rectSrcParam);
+
+   //   //sync_lock slSource(pgraphicsSrc->mutex());
+
+   //   //i32 xDst = rectDst.left;
+
+   //   //i32 yDst = rectDst.top;
+
+   //   //i32 xSrc = rectSrc.left;
+   //   //
+   //   //i32 ySrc = rectSrc.top;
+
+   //   //i32 nDstWidth = rectDst.width();
+
+   //   //i32 nDstHeight = rectDst.height();
+
+   //   //i32 nSrcWidth = rectSrc.width();
+
+   //   //i32 nSrcHeight = rectSrc.height();
+
+   //   //if(m_bPat)
+   //   //{
+
+   //   //   if(::is_set(pgraphicsSrc->m_pimage) && pgraphicsSrc->m_pimage->is_ok())
+   //   //   {
+
+   //   //      int xs = 0;
+
+   //   //      int ys = 0;
+
+   //   //      i32 w1 = pgraphicsSrc->m_pimage->width();
+
+   //   //      i32 h1 = pgraphicsSrc->m_pimage->height();
+
+   //   //      i32 w0 = w1 - xSrc;
+
+   //   //      i32 h0 = h1 - ySrc;
+
+   //   //      int w = w0;
+
+   //   //      int h = h0;
+
+   //   //      for(int i = 0; i < nWidth; i += w)
+   //   //      {
+
+   //   //         if(i == 0)
+   //   //         {
+
+   //   //            w = w0;
+
+   //   //            xs = xSrc;
+
+   //   //         }
+   //   //         else
+   //   //         {
+
+   //   //            w = w1;
+
+   //   //            xs = 0;
+
+   //   //         }
+
+   //   //         for(int j = 0; j < nHeight; j += h)
+   //   //         {
+
+   //   //            if(j == 0)
+   //   //            {
+
+   //   //               h = h0;
+
+   //   //               ys = ySrc;
+
+   //   //            }
+   //   //            else
+   //   //            {
+
+   //   //               h = h1;
+
+   //   //               ys = 0;
+
+   //   //            }
+
+   //   //            if (!draw_image_blend(::rect_dim( x + i, y + j, w, h ), pgraphicsSrc, { xs, ys }))
+   //   //            {
+
+   //   //               if (!draw_image_raw(::rect_dim(x + i, y + j, w, h), pgraphicsSrc, { xs, ys }))
+   //   //               {
+
+   //   //               }
+
+   //   //            }
+
+
+   //   //         }
+
+   //   //      }
+
+   //   //      return true;
+
+   //   //   }
+
+   //   //}
+
+   //   if (draw_image_blend(rectDstParam, pgraphicsSrc, rectSrcParam))
+   //   {
+
+   //      return true;
+
+   //   }
+
+   //   if (draw_image_raw(rectDstParam, pgraphicsSrc, rectSrcParam))
+   //   {
+
+   //      return true;
+
+   //   }
+
+   //   return false;
+
+   //}
+
+
+   bool graphics::draw_image_raw(const ::point & pointDst, ::draw2d::graphics * pgraphicsSrc, const ::rect & rectSrc)
    {
 
-      if (StretchBltAlphaBlend(x, y, nWidth, nHeight, pgraphicsSrc, xSrc, ySrc, nSrcWidth, nSrcHeight))
+      return false;
+
+   }
+
+
+   bool graphics::draw_image_blend(const ::point & pointDst, ::draw2d::graphics * pgraphicsSrc, const ::rect & rectSrc)
+   {
+
+//      ::rect rect(rectParam);
+//
+//      ::point point(pointParam);
+//
+//      // return ::draw2d::graphics::BitBltAlphaBlend(x, y, nWidth, nHeight, pgraphicsSrc, xSrc, ySrc);
+//
+//      if (m_pimageAlphaBlend)
+//      {
+//
+//         // Reference implementation
+//
+//         if (rect.left < 0)
+//         {
+//
+//            point.x -= rect.left;
+//
+//            rect.right += rect.left;
+//
+//            rect.left = 0;
+//
+//         }
+//
+//         if (rect.top < 0)
+//         {
+//
+//            point.y -= rect.top;
+//
+//            rect.bottom += rect.top;
+//
+//            rect.top = 0;
+//
+//         }
+//
+//         ::rect rectIntersect(m_pointAlphaBlend, m_pimageAlphaBlend->get_size());
+//
+//         if (rectIntersect.intersect(rectIntersect, rect))
+//         {
+//
+//            // The following commented out code does not work well when there is clipping
+//            // and some calculations are not precise
+//            //if (m_pimage != nullptr && pgraphicsSrc->m_pimage != nullptr)
+//            //{
+//
+//            //   const ::point & pointOff = GetViewportOrg();
+//
+//            //   x += pointOff.x;
+//
+//            //   y += pointOff.y;
+//
+//            //   return m_ppimage->blend(::point(x, y), pgraphicsSrc->m_pimage, ::point(xSrc, ySrc), m_pimageAlphaBlend, point(m_pointAlphaBlend.x - x, m_pointAlphaBlend.y - y), rectBlt.size());
+//
+//            //}
+//            //else
+//            {
+//
+//               ::image_pointer pimage1;
+////#ifdef _UWP
+////               g_pimagea.add(pimage1);
+////#endif
+//
+//               pimage1 = create_image(rect.size());
+//
+//               pimage1->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
+//
+//               if (!pimage1->from(nullptr, pgraphicsSrc, point, rect.size()))
+//                  return false;
+//
+//               pimage1->blend(::point(), m_pimageAlphaBlend,
+//                  {
+//                     (int)max(0, rect.left - m_pointAlphaBlend.x),
+//                     (int)max(0, rect.top - m_pointAlphaBlend.y)
+//                  }, rect.size());
+//
+//               draw_image(rect, pimage1->get_graphics());
+//
+//            }
+//
+//            return true;
+//
+//         }
+//
+//
+//
+//      }
+
+      return false;
+
+   }
+
+
+   bool graphics::draw_image_raw(const ::rect & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rect & rectSrc)
+   {
+
+      return false;
+
+   }
+
+
+   bool graphics::draw_image_blend(const ::rect & rectDstParam, ::draw2d::graphics * pgraphicsSrc, const ::rect & rectSrcParam)
+   {
+
+      //::rect rectDst(rectDstParam);
+
+      //::rect rectSrc(rectSrcParam);
+
+      //if (m_pimageAlphaBlend)
+      //{
+
+      //   if (rectDst.left < 0)
+      //   {
+
+      //      rectSrc.left -= rectDst.left;
+
+      //      rect.right += rect.left;
+
+      //      rect.left = 0;
+
+      //   }
+
+      //   if (rect.top < 0)
+      //   {
+
+      //      point.y -= rect.top;
+
+      //      rect.bottom += rect.top;
+
+      //      rect.top = 0;
+
+      //   }
+
+      //   ::rect rectIntersect(m_pointAlphaBlend, m_pimageAlphaBlend->get_size());
+
+      //   if (rectIntersect.intersect(rectIntersect, rect))
+      //   {
+
+      //      // The following commented out code does not work well when there is clipping
+      //      // and some calculations are not precise
+      //      //if (m_pimage != nullptr && pgraphicsSrc->m_pimage != nullptr)
+      //      //{
+
+      //      //   const ::point & pointOff = GetViewportOrg();
+
+      //      //   x += pointOff.x;
+
+      //      //   y += pointOff.y;
+
+      //      //   return m_ppimage->blend(::point(x, y), pgraphicsSrc->m_pimage, ::point(xSrc, ySrc), m_pimageAlphaBlend, point(m_pointAlphaBlend.x - x, m_pointAlphaBlend.y - y), rectBlt.size());
+
+      //      //}
+      //      //else
+      //      {
+
+      //         ::image_pointer pimage1;
+      //         //#ifdef _UWP
+      //         //               g_pimagea.add(pimage1);
+      //         //#endif
+
+      //         pimage1 = create_image(rect.size());
+
+      //         pimage1->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
+
+      //         if (!pimage1->from(nullptr, pgraphicsSrc, point, rect.size()))
+      //            return false;
+
+      //         pimage1->blend(::point(), m_pimageAlphaBlend,
+      //            {
+      //               (int)max(0, rect.left - m_pointAlphaBlend.x),
+      //               (int)max(0, rect.top - m_pointAlphaBlend.y)
+      //            }, rect.size());
+
+      //         draw_image(rect, pimage1->get_graphics());
+
+      //      }
+
+      //      return true;
+
+      //   }
+
+
+
+      //}
+
+      return false;
+
+   }
+
+
+   //bool graphics::draw_image(const ::rect & rectDst, ::draw2d::graphics * pgraphicsSrc)
+   //{
+
+   //   if(pgraphicsSrc == nullptr)
+   //   {
+
+   //      return false;
+
+   //   }
+
+   //   ::image_pointer pimage = pgraphicsSrc->m_pimage;
+
+   //   if(pimage->is_null())
+   //   {
+
+   //      return false;
+
+   //   }
+
+   //   ::rect rectSrc(nullptr, pimage->get_size());
+
+   //   return draw_image(rectDst, pgraphicsSrc, rectSrc);
+
+   //}
+
+
+   bool graphics::draw_image(const ::rect & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rect & rectSrc)
+   {
+
+      if (draw_image_blend(rectDst, pgraphicsSrc, rectSrc))
       {
 
          return true;
 
       }
 
-      if (StretchBltRaw(x, y, nWidth, nHeight, pgraphicsSrc, xSrc, ySrc, nSrcWidth, nSrcHeight))
+      if (draw_image_raw(rectDst, pgraphicsSrc, rectSrc))
       {
 
          return true;
@@ -2049,121 +2189,165 @@ namespace draw2d
    }
 
 
-   bool graphics::StretchBltAlphaBlend(i32 xDst, i32 yDst, i32 nDstWidth, i32 nDstHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight)
-   {
+   //bool graphics::StretchBlt(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight)
+   //{
 
-      return StretchBltAlphaBlend(
-             (double)xDst,
-             (double)yDst,
-             (double)nDstWidth,
-             (double)nDstHeight,
-             pgraphicsSrc,
-             xSrc,
-             ySrc,
-             nSrcWidth,
-             nSrcHeight);
+   //   if (StretchBltAlphaBlend(x, y, nWidth, nHeight, pgraphicsSrc, xSrc, ySrc, nSrcWidth, nSrcHeight))
+   //   {
 
-   }
+   //      return true;
 
+   //   }
 
-   bool graphics::StretchBltAlphaBlend(double xDst, double yDst, double nDstWidth, double nDstHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight)
-   {
+   //   if (StretchBltRaw(x, y, nWidth, nHeight, pgraphicsSrc, xSrc, ySrc, nSrcWidth, nSrcHeight))
+   //   {
 
-      if (m_pimageAlphaBlend->is_ok())
-      {
+   //      return true;
+
+   //   }
+
+   //   return false;
+
+   //}
 
 
+   //bool graphics::StretchBlt(double x, double y, double nWidth, double nHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight)
+   //{
 
-         ::rect rectIntersect(m_pointAlphaBlend, m_pimageAlphaBlend->get_size());
+   //   if (StretchBltAlphaBlend(x, y, nWidth, nHeight, pgraphicsSrc, xSrc, ySrc, nSrcWidth, nSrcHeight))
+   //   {
 
-         ::rect rectBlt(point((::i32)xDst, (::i32)yDst), size((::i32)nDstWidth, (::i32)nDstHeight));
+   //      return true;
 
-         if (rectIntersect.intersect(rectIntersect, rectBlt))
-         {
+   //   }
 
-            ::point pointSrc(xSrc, ySrc);
-            ::point pointDst((::i32)xDst, (::i32)yDst);
-            ::size sizeSrc(nSrcWidth, nSrcHeight);
-            ::size sizeDst((::i32)nDstWidth, (::i32)nDstHeight);
+   //   if (StretchBltRaw(x, y, nWidth, nHeight, pgraphicsSrc, xSrc, ySrc, nSrcWidth, nSrcHeight))
+   //   {
 
-            //::image_pointer pimage1 = create_image(sizeDst);
+   //      return true;
 
-            //if (!pimage1)
-            //{
+   //   }
 
-            //   return false;
+   //   return false;
 
-            //}
-
-            //if (!pimage1->g()->StretchBltRaw(0.0, 0.0, nDstWidth, nDstHeight, pgraphicsSrc, xSrc, ySrc, nSrcWidth, nSrcHeight))
-            //{
-
-            //   return false;
-
-            //}
-
-            //::image_pointer pimage2 = create_image(sizeDst);
-
-            //if (!pimage2)
-            //{
-
-            //   return false;
-
-            //}
-
-            //pimage2->fill(255, 0, 0, 0);
-
-            //pimage2->from(point((::i32)max(0, m_pointAlphaBlend.x - xDst), (::i32)max(0, m_pointAlphaBlend.y - yDst)),
-            //            m_pimageAlphaBlend->g(), point((::i32)max(0, xDst - m_pointAlphaBlend.x), (::i32)max(0, yDst - m_pointAlphaBlend.y)), sizeDst);
-
-            //pimage1->channel_multiply(::color::channel_alpha, pimage2);
-
-            //BitBltRaw(pointDst.x, pointDst.y, sizeDst.cx, sizeDst.cy, pimage1->get_graphics(), pointSrc.x, pointSrc.y);
-
-            auto pimage1 = create_image({::size(nSrcWidth,  nSrcHeight)});
-
-            pimage1->g()->set_alpha_mode(::draw2d::alpha_mode_set);
-
-            pimage1->from(nullptr, pgraphicsSrc, ::point(xSrc, ySrc), ::size(nSrcWidth, nSrcHeight));
-
-            pimage1->blend2(::point(), m_pimageAlphaBlend, ::point((::i32)(xDst-m_pointAlphaBlend.x), (::i32)(yDst-m_pointAlphaBlend.y)), ::size(nSrcWidth, nSrcHeight), 255);
-
-            StretchBltRaw(xDst, yDst, nDstWidth, nDstHeight, pimage1->g(), 0, 0, nSrcWidth, nSrcHeight);
-
-            return true;
-
-         }
-
-      }
-
-      return false;
-
-   }
+   //}
 
 
-   bool graphics::StretchBltRaw(i32 xDst, i32 yDst, i32 nDstWidth, i32 nDstHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight)
-   {
+   //bool graphics::StretchBltAlphaBlend(i32 xDst, i32 yDst, i32 nDstWidth, i32 nDstHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight)
+   //{
 
-      return StretchBltRaw(
-             (double)xDst,
-             (double)yDst,
-             (double)nDstWidth,
-             (double)nDstHeight,
-             pgraphicsSrc,
-             xSrc,
-             ySrc,
-             nSrcWidth,
-             nSrcHeight);
+   //   return StretchBltAlphaBlend(
+   //          (double)xDst,
+   //          (double)yDst,
+   //          (double)nDstWidth,
+   //          (double)nDstHeight,
+   //          pgraphicsSrc,
+   //          xSrc,
+   //          ySrc,
+   //          nSrcWidth,
+   //          nSrcHeight);
 
-   }
+   //}
 
 
-   bool graphics::StretchBltRaw(double x, double y, double nWidth, double nHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight)
-   {
+   //bool graphics::StretchBltAlphaBlend(double xDst, double yDst, double nDstWidth, double nDstHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight)
+   //{
 
-      return false;
+   //   if (m_pimageAlphaBlend->is_ok())
+   //   {
 
-   }
+
+
+   //      ::rect rectIntersect(m_pointAlphaBlend, m_pimageAlphaBlend->get_size());
+
+   //      ::rect rectBlt(point((::i32)xDst, (::i32)yDst), size((::i32)nDstWidth, (::i32)nDstHeight));
+
+   //      if (rectIntersect.intersect(rectIntersect, rectBlt))
+   //      {
+
+   //         ::point pointSrc(xSrc, ySrc);
+   //         ::point pointDst((::i32)xDst, (::i32)yDst);
+   //         ::size sizeSrc(nSrcWidth, nSrcHeight);
+   //         ::size sizeDst((::i32)nDstWidth, (::i32)nDstHeight);
+
+   //         //::image_pointer pimage1 = create_image(sizeDst);
+
+   //         //if (!pimage1)
+   //         //{
+
+   //         //   return false;
+
+   //         //}
+
+   //         //if (!pimage1->g()->StretchBltRaw(0.0, 0.0, nDstWidth, nDstHeight, pgraphicsSrc, xSrc, ySrc, nSrcWidth, nSrcHeight))
+   //         //{
+
+   //         //   return false;
+
+   //         //}
+
+   //         //::image_pointer pimage2 = create_image(sizeDst);
+
+   //         //if (!pimage2)
+   //         //{
+
+   //         //   return false;
+
+   //         //}
+
+   //         //pimage2->fill(255, 0, 0, 0);
+
+   //         //pimage2->from(point((::i32)max(0, m_pointAlphaBlend.x - xDst), (::i32)max(0, m_pointAlphaBlend.y - yDst)),
+   //         //            m_pimageAlphaBlend->g(), point((::i32)max(0, xDst - m_pointAlphaBlend.x), (::i32)max(0, yDst - m_pointAlphaBlend.y)), sizeDst);
+
+   //         //pimage1->channel_multiply(::color::channel_alpha, pimage2);
+
+   //         //BitBltRaw(pointDst.x, pointDst.y, sizeDst.cx, sizeDst.cy, pimage1->get_graphics(), pointSrc.x, pointSrc.y);
+
+   //         auto pimage1 = create_image({::size(nSrcWidth,  nSrcHeight)});
+
+   //         pimage1->g()->set_alpha_mode(::draw2d::alpha_mode_set);
+
+   //         pimage1->from(nullptr, pgraphicsSrc, ::point(xSrc, ySrc), ::size(nSrcWidth, nSrcHeight));
+
+   //         pimage1->blend2(::point(), m_pimageAlphaBlend, ::point((::i32)(xDst-m_pointAlphaBlend.x), (::i32)(yDst-m_pointAlphaBlend.y)), ::size(nSrcWidth, nSrcHeight), 255);
+
+   //         StretchBltRaw(xDst, yDst, nDstWidth, nDstHeight, pimage1->g(), 0, 0, nSrcWidth, nSrcHeight);
+
+   //         return true;
+
+   //      }
+
+   //   }
+
+   //   return false;
+
+   //}
+
+
+   //bool graphics::StretchBltRaw(i32 xDst, i32 yDst, i32 nDstWidth, i32 nDstHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight)
+   //{
+
+   //   return StretchBltRaw(
+   //          (double)xDst,
+   //          (double)yDst,
+   //          (double)nDstWidth,
+   //          (double)nDstHeight,
+   //          pgraphicsSrc,
+   //          xSrc,
+   //          ySrc,
+   //          nSrcWidth,
+   //          nSrcHeight);
+
+   //}
+
+
+   //bool graphics::StretchBltRaw(double x, double y, double nWidth, double nHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight)
+   //{
+
+   //   return false;
+
+   //}
 
 
    ::color graphics::GetPixel(i32 x, i32 y)
@@ -2345,7 +2529,7 @@ namespace draw2d
 
          pimage1->blend(nullptr, m_pimageAlphaBlend, point((int)max(0, x - m_pointAlphaBlend.x), (int)max(0, y - m_pointAlphaBlend.y)), rectText.size());
 
-         BitBltRaw((int)x, (int)y, rectText.width(), rectText.height(), pimage1->get_graphics(), 0, 0);
+         draw_image({ {(int)x, (int)y}, rectText.size() }, pimage1->get_graphics());
 
          return true;
 
@@ -4718,28 +4902,28 @@ namespace draw2d
 #endif
 
 
-   bool graphics::from(const ::point & pointDst, const ::size & size, ::draw2d::graphics * pgraphicsSrc, const ::point & pointSrc)
-   {
+   //bool graphics::from(const ::point & pointDst, const ::size & size, ::draw2d::graphics * pgraphicsSrc, const ::point & pointSrc)
+   //{
 
-      return BitBlt(pointDst.x, pointDst.y, size.cx, size.cy, pgraphicsSrc, pointSrc.x, pointSrc.y) != FALSE;
+   //   return BitBlt(pointDst.x, pointDst.y, size.cx, size.cy, pgraphicsSrc, pointSrc.x, pointSrc.y) != FALSE;
 
-   }
-
-
-   bool graphics::from(const ::size & size, ::draw2d::graphics * pgraphicsSrc, const ::point & pointSrc)
-   {
-
-      return from(nullptr, size, pgraphicsSrc, pointSrc);
-
-   }
+   //}
 
 
-   bool graphics::from(const ::size & size, ::draw2d::graphics * pgraphicsSrc)
-   {
+   //bool graphics::from(const ::size & size, ::draw2d::graphics * pgraphicsSrc, const ::point & pointSrc)
+   //{
 
-      return from(size, pgraphicsSrc, nullptr);
+   //   return from(nullptr, size, pgraphicsSrc, pointSrc);
 
-   }
+   //}
+
+
+   //bool graphics::from(const ::size & size, ::draw2d::graphics * pgraphicsSrc)
+   //{
+
+   //   return from(size, pgraphicsSrc, nullptr);
+
+   //}
 
 
    bool graphics::alpha_blend(const ::point & pointDst, const ::size & sizeDst,::draw2d::graphics * pgraphicsSrc, const ::point & pointSrc, size szSrc, double dOpacity)
@@ -4805,7 +4989,11 @@ namespace draw2d
          else
          {
 
-            return StretchBlt(xDst, yDst, nDstWidth, nDstHeight, pgraphicsSrc, xSrc, ySrc, nSrcWidth, nSrcHeight);
+            return draw_image(
+               ::rect_dim(xDst, yDst, nDstWidth, nDstHeight),
+               pgraphicsSrc, 
+               ::rect_dim(xSrc, ySrc, nSrcWidth, nSrcHeight)
+            );
 
          }
 
@@ -4895,7 +5083,11 @@ namespace draw2d
 
             pimage->defer_update_image();
 
-            return StretchBlt(xDst, yDst, nDstWidth, nDstHeight, pimage->g(), xSrc, ySrc, nSrcWidth, nSrcHeight);
+            return draw_image(
+               ::rect_dim(xDst, yDst, nDstWidth, nDstHeight),
+               pimage->g(),
+               ::rect_dim(xSrc, ySrc, nSrcWidth, nSrcHeight)
+               );
 
          }
 
@@ -4962,7 +5154,7 @@ namespace draw2d
 
             }
 
-            if (!pimage1->from(nullptr, pgraphicsSrc, pointSrc, size))
+            if (!pimage1->draw_image(nullptr, pgraphicsSrc->m_pimage, pointSrc, size))
             {
 
                return false;
@@ -4985,7 +5177,7 @@ namespace draw2d
 
             pimage1->channel_multiply(::color::channel_alpha, pimage2);
 
-            BitBltRaw(pointDst.x, pointDst.y, size.cx, size.cy, pimage1->g(), pointSrc.x, pointSrc.y);
+            draw_image({ pointDst, size }, pimage1->g(), { pointSrc, size });
 
             return true;
 
@@ -5122,6 +5314,20 @@ namespace draw2d
 
    }
 
+
+   ::size graphics::get_size()
+   {
+
+      if (::is_null(m_pimage))
+      {
+
+         return ::size();
+
+      }
+
+      return m_pimage->get_size();
+
+   }
 
 
    //=============================================================================

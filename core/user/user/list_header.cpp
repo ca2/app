@@ -58,7 +58,7 @@ namespace user
 
          rect.Align(::e_align_left_center, rC);
 
-         pgraphics->draw(rect, plist->m_columna.get_visible(iColumn)->m_pimageHeader->get_graphics());
+         pgraphics->stretch(rect, plist->m_columna.get_visible(iColumn)->m_pimageHeader->get_graphics());
 
          rectColumn.left = rect.right + m_iImageSpacing;
 

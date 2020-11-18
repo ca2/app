@@ -837,7 +837,7 @@ namespace user
 
       m_nDisplayCount   = _001CalcDisplayItemCount();
 
-      on_change_view_size();
+      on_change_view_size(pgraphics);
 
 
       //if (m_eview == impact_icon)
@@ -983,7 +983,9 @@ namespace user
 
       CacheHint();
 
-      on_change_view_size();
+      auto pgraphics = create_memory_graphics();
+
+      on_change_view_size(pgraphics);
 
       //TRACE("mesh::_001OnUpdateItemCount ItemCount %d\n",m_nItemCount);
       //if(m_bGroup)
@@ -995,7 +997,7 @@ namespace user
    }
 
 
-   void mesh::on_change_view_size()
+   void mesh::on_change_view_size(::draw2d::graphics_pointer & pgraphics)
    {
 
       ::size sizeTotal = get_total_size();
@@ -4166,7 +4168,9 @@ namespace user
 
       m_efilterstate = FilterStateFilter;
 
-      on_change_view_size();
+      auto pgraphics = create_memory_graphics();
+
+      on_change_view_size(pgraphics);
 
       set_need_layout();
 
@@ -4213,7 +4217,9 @@ namespace user
 
       }
 
-      on_change_view_size();
+      auto pgraphics = create_memory_graphics();
+
+      on_change_view_size(pgraphics);
 
       set_need_layout();
 
@@ -4352,7 +4358,9 @@ namespace user
 
       m_efilterstate = FilterStateFilter;
 
-      on_change_view_size();
+      auto pgraphics = create_memory_graphics();
+
+      on_change_view_size(pgraphics);
 
       set_need_layout();
 
@@ -4927,7 +4935,9 @@ namespace user
 
                m_nItemCount = min(m_nGridItemCount,m_nItemCount + (::count)(sizePage.cy / m_iItemHeight));
 
-               on_change_view_size();
+               auto pgraphics = create_memory_graphics();
+
+               on_change_view_size(pgraphics);
 
             }
 
@@ -4963,7 +4973,9 @@ namespace user
 /// 
                m_nColumnCount = m_nGridColumnCount;
 
-               on_change_view_size();
+               auto pgraphics = create_memory_graphics();
+
+               on_change_view_size(pgraphics);
 
             }
 

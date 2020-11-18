@@ -1036,13 +1036,13 @@ namespace user
       if (m_puserinteraction == nullptr)
       {
 
-         spbase = get_message_base(id, wparam, lparam);
+         spbase = get_message_base(get_handle(), id, wparam, lparam);
 
       }
       else
       {
 
-         spbase = m_puserinteraction->get_message_base(id, wparam, lparam);
+         spbase = m_puserinteraction->get_message_base(get_handle(), id, wparam, lparam);
 
       }
 

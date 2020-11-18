@@ -20,7 +20,7 @@ namespace ftp
 
       m_strFileName = strFileName;
 
-      m_file = Context.file().get_file(strFileName, uiMode);
+      m_file = Context.file().get_file(strFileName, uMode);
 
       return m_file.is_set();
 

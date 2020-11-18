@@ -3243,7 +3243,7 @@ namespace user
    }
 
 
-   __pointer(::message::base) primitive::get_message_base(const ::id & id, WPARAM wparam, lparam lparam)
+   __pointer(::message::base) primitive::get_message_base(oswindow oswindow, const ::id & id, WPARAM wparam, lparam lparam)
    {
 
       __pointer(::message::base) pbase;
@@ -3384,7 +3384,7 @@ namespace user
 
       }
 
-      pbase->set(this, id, wparam, lparam);
+      pbase->set(oswindow, this, id, wparam, lparam);
 
       return pbase;
 
@@ -3394,7 +3394,7 @@ namespace user
    bool primitive::call_message_handler(const ::id & id, WPARAM wparam, lparam lparam, LRESULT * plresult)
    {
 
-      auto pbase = get_message_base(id, wparam, lparam);
+      auto pbase = get_message_base(get_handle(), id, wparam, lparam);
 
       try
       {

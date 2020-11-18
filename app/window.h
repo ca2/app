@@ -16,6 +16,8 @@ namespace app_app
       //double      m_dLastTime;
       double      m_dPhaseShift;
 
+      int m_iCloseButtonDraw;
+
 
       window();
 

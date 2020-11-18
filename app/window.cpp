@@ -47,6 +47,8 @@ namespace app_app
    void window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
+      m_iCloseButtonDraw = 0;
+
       ::rect rectClient;
 
       get_client_rect(rectClient);
@@ -173,6 +175,15 @@ namespace app_app
       {
 
          ::user::draw_close_button(pgraphics, this, pitem);
+
+         m_iCloseButtonDraw++;
+
+         if (m_iCloseButtonDraw > 1)
+         {
+
+            ::output_debug_string("output");
+
+         }
 
       }
 

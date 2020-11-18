@@ -429,7 +429,7 @@ namespace draw2d
 
       virtual void frame_rect(const ::rect & rect, ::draw2d::brush* pbrush);
       virtual void invert_rect(const ::rect & rect);
-      virtual bool DrawIcon(const ::point & point, ::draw2d::icon * picon, const ::size & size);
+      
 //      virtual bool DrawState(const ::point & point, const ::size & size, HBITMAP hBitmap, ::u32 nFlags, HBRUSH hBrush = nullptr);
 //      virtual bool DrawState(const ::point & point, const ::size & size, ::draw2d::bitmap* pBitmap, ::u32 nFlags,::draw2d::brush* pBrush = nullptr);
 //#ifdef WINDOWS
@@ -530,19 +530,25 @@ namespace draw2d
 
 
       // bit block transfer (pixel-to-pixel)
-      virtual bool draw_image(const ::point & pointDst, ::draw2d::graphics * pgraphicsSrc, const ::point & pointSrc = ::point());
+      virtual bool draw(const ::point & pointDst, ::image * pimage, const ::point & pointSrc);
+      virtual bool draw(const ::point & pointDst, ::image_frame * pframe, const ::point & pointSrc);
+      virtual bool draw(const ::point & pointDst, ::draw2d::graphics * pgraphicsSrc, const ::point & pointSrc);
 
 
       // bit block transfer (pixel-to-pixel)
-      virtual bool draw_image(const ::point & pointDst, ::draw2d::graphics * pgraphicsSrc, const ::rect & rectSrc = ::rect());
-      virtual bool draw_image_raw(const ::point & pointDst, ::draw2d::graphics * pgraphicsSrc, const ::rect & rectSrc = ::rect());
-      virtual bool draw_image_blend(const ::point & pointDst, ::draw2d::graphics * pgraphicsSrc, const ::rect & rectSrc = ::rect());
+      virtual bool draw(const ::point & pointDst, ::image * pimage, const ::rect & recSrc = ::rect());
+      virtual bool draw(const ::point & pointDst, ::image_frame * pframe, const ::rect & recSrc = ::rect());
+      virtual bool draw(const ::point & pointDst, ::draw2d::graphics * pgraphicsSrc, const ::rect & rectSrc = ::rect());
+      virtual bool draw_raw(const ::point & pointDst, ::draw2d::graphics * pgraphicsSrc, const ::rect & rectSrc = ::rect());
+      virtual bool draw_blend(const ::point & pointDst, ::draw2d::graphics * pgraphicsSrc, const ::rect & rectSrc = ::rect());
 
 
       // potentially stretching
-      virtual bool draw_image(const ::rect & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rect & rectSrc = ::rect());
-      virtual bool draw_image_raw(const ::rect & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rect & rectSrc = ::rect());
-      virtual bool draw_image_blend(const ::rect & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rect & rectSrc = ::rect());
+      virtual bool stretch(const ::rect & rectDst, ::image * pimage, const ::rect & rectSrc = ::rect());
+      virtual bool stretch(const ::rect & rectDst, ::image_frame * pframe, const ::rect & rectSrc = ::rect());
+      virtual bool stretch(const ::rect & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rect & rectSrc = ::rect());
+      virtual bool stretch_raw(const ::rect & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rect & rectSrc = ::rect());
+      virtual bool stretch_blend(const ::rect & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rect & rectSrc = ::rect());
 
 
       //virtual bool StretchBlt(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight);
@@ -1014,18 +1020,20 @@ namespace draw2d
       inline void draw_rect_coord(double x1, double y1, double x2, double y2, const ::color& color) { return draw_rect(rectd(x1, y1, x2, y2), color); }
 
 
-      inline bool draw(::image * pimage);
-      inline bool draw(const point & pDst, const ::size & size, ::draw2d::graphics * pgraphicsSrc, const point & pSrc = nullptr) { return draw(::rect(pDst, size), pgraphicsSrc, pSrc); }
-      inline bool draw(const ::size & size, ::draw2d::graphics * pgraphicsSrc, const point & pSrc = nullptr) { return draw(::rect(size), pgraphicsSrc, pSrc); }
-      inline bool draw_dim(i32 x, i32 y, i32 w, i32 h, ::draw2d::graphics * pgraphicsSrc, i32 xSrc = 0, i32 ySrc = 0) { return draw(rect_dim(x, y, w, h), pgraphicsSrc, ::point(xSrc, ySrc)); }
-      inline bool BitBlt(i32 x, i32 y, i32 w, i32 h, ::draw2d::graphics * pgraphicsSrc, i32 xSrc = 0, i32 ySrc = 0) { return draw_dim(x, y, w, h, pgraphicsSrc, xSrc, ySrc); }
+      //inline bool draw(::image * pimage);
+      //inline bool draw(const point & pDst, const ::size & size, ::draw2d::graphics * pgraphicsSrc, const point & pSrc = nullptr) { return draw(::rect(pDst, size), pgraphicsSrc, pSrc); }
+      //inline bool draw(const ::size & size, ::draw2d::graphics * pgraphicsSrc, const point & pSrc = nullptr) { return draw(::rect(size), pgraphicsSrc, pSrc); }
+      //inline bool draw_dim(i32 x, i32 y, i32 w, i32 h, ::draw2d::graphics * pgraphicsSrc, i32 xSrc = 0, i32 ySrc = 0) { return draw(rect_dim(x, y, w, h), pgraphicsSrc, ::point(xSrc, ySrc)); }
+      //inline bool BitBlt(i32 x, i32 y, i32 w, i32 h, ::draw2d::graphics * pgraphicsSrc, i32 xSrc = 0, i32 ySrc = 0) { return draw_dim(x, y, w, h, pgraphicsSrc, xSrc, ySrc); }
 
 
       //inline bool draw::image * pimage;
-      inline bool draw(const point & pDst, const ::size & size, ::image * pimage, const point & pSrc = nullptr);
-      inline bool draw(const ::size & size, ::image * pimage, const point & pSrc = nullptr);
-      inline bool draw_dim(i32 x, i32 y, i32 w, i32 h, ::image * pimage, i32 xSrc = 0, i32 ySrc = 0);
-      inline bool BitBlt(i32 x, i32 y, i32 w, i32 h, ::image * pimage, i32 xSrc = 0, i32 ySrc = 0);
+      //inline bool draw(const point & pDst, const ::size & size, ::image * pimage, const point & pSrc = nullptr);
+      //inline bool draw(const ::size & size, ::image * pimage, const point & pSrc = nullptr);
+      //inline bool draw_dim(i32 x, i32 y, i32 w, i32 h, ::image * pimage, i32 xSrc = 0, i32 ySrc = 0);
+      //inline bool BitBlt(i32 x, i32 y, i32 w, i32 h, ::image * pimage, i32 xSrc = 0, i32 ySrc = 0);
+      virtual bool draw(const ::point & point, cursor * pcursor);
+      virtual bool draw(const ::point & point, icon * picon, const ::size & size);
 
    protected:
 

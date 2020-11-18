@@ -11,10 +11,10 @@ namespace userex
    public:
 
 
-      millis           m_millisStart;
-      millis           m_millisDelay;
-      id             m_idResponse;
-      int            m_iSecond;
+      millis            m_millisStart;
+      millis            m_millisDelay;
+      id                m_idResponse;
+      int               m_iSecond;
 
 
       wait_message_dialog();

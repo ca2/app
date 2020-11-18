@@ -2509,4 +2509,8 @@ void ___release(TYPE * & p OBJ_REF_DBG_COMMA_PARAMS_DEF)
 #endif
 
 
+inline bool millis::done(const ::millis & millis) const { return elapsed(millis) >= 0; }
+inline bool millis::done() const { return elapsed() >= 0; }
+
+
 

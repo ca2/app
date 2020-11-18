@@ -69,7 +69,7 @@ namespace user
       //virtual void OnPrepareDC(::draw2d::graphics_pointer & pgraphics, CPrintInfo* pInfo = nullptr);
 
       virtual void OnActivateView(bool bActivate, __pointer(impact) pActivateView, __pointer(impact) pDeactiveView);
-      virtual void OnActivateFrame(::u32 nState, __pointer(::user::frame_window) pFrameWnd);
+      virtual void OnActivateFrame(enum_activate eactivate,  __pointer(::user::frame_window) pFrameWnd);
 
 
       virtual void set_impact_title(const string & strImpactTitle);

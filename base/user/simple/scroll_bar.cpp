@@ -1703,7 +1703,7 @@ void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics_pointer & pgraphi
 
    pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-   pgraphics->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
+   pgraphics->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
    pgraphics->alpha_blend(rectDraw.top_left(), rectDraw.size(), m_pimageDots->g(), point((::i32)iDiv, (::i32)iDiv), m_pimageDots->get_size() - ::size((::i32)(iDiv * 2), (::i32)(iDiv * 2)), uchAlpha / 255.0);
 

@@ -19,21 +19,6 @@ image_frame::~image_frame()
 
 
 
-bool image_frame::to(::draw2d::graphics_pointer & pgraphics)
-{
-
-   pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
-
-   if (!m_pimage->to(pgraphics, m_rect.top_left(), m_rect.size()))
-   {
-
-      return false;
-
-   }
-
-   return true;
-
-}
 
 
 void image_frame::gif_set_disposal(int iDisposal)
@@ -77,7 +62,7 @@ void image_frame::_001Process(::image * pimageCompose, ::image * pimageFrame, im
 
          //pimageCompose->g()->set_alpha_mode(::draw2d::alpha_mode_set);
 
-         pimageCompose->from(pimageFrame);
+         pimageCompose->stretch(pimageFrame);
 
       }
       else
@@ -133,7 +118,7 @@ void image_frame::_001Process(::image * pimageCompose, ::image * pimageFrame, im
         }*/
 
 
-   m_pimage->from(pimageCompose);
+   m_pimage->stretch(pimageCompose);
 
    m_pimage->create_helper_map();
 

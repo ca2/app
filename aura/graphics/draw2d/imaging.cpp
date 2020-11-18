@@ -1607,11 +1607,11 @@ byte bAlpha)
 
    }
 
-   pimage->from(pdcSrc,size);
+   pimage->g()->draw(::point(), pdcSrc, ::rect(size));
 
    pimage->DivideRGB(bAlpha);
 
-   return pdcDst->BitBlt(pointDst.x,pointDst.y,size.cx,size.cy,pimage->g(),pointSrc.x,pointSrc.y);
+   return pdcDst->draw(pointDst, pimage->g(), { pointSrc, size });
 
 }
 
@@ -2969,8 +2969,12 @@ bool imaging::channel_gray_blur(::draw2d::graphics *pdcDst,const ::point & point
 
    pimageSrc->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
 
-   if(!pimageSrc->from(nullptr,pdcSrc,pointSrc,size))
+   if (!pdcSrc->draw(::point(), pdcSrc, ::rect(pointSrc, size)))
+   {
+
       return false;
+
+   }
 
    if(!channel_gray_blur_32CC(
          pimageDst,
@@ -2979,10 +2983,15 @@ bool imaging::channel_gray_blur(::draw2d::graphics *pdcDst,const ::point & point
          iRadius))
       return false;
 
-   if(!pimageDst->to(pdcDst,pointDst,size))
+   if (!pdcDst->draw(pointDst, pimageDst, ::rect(size)))
+   {
+
       return false;
 
+   }
+
    return true;
+
 }
 
 
@@ -3016,8 +3025,12 @@ bool imaging::channel_alpha_gray_blur(::draw2d::graphics *pdcDst,const ::point &
 
    pimageSrc->g()->set_alpha_mode(::draw2d::alpha_mode_set);
 
-   if(!pimageSrc->from(nullptr,pdcSrc,pointSrc,size))
+   if (!pimageSrc->g()->draw(::point(), pdcSrc, { pointSrc,size }))
+   {
+
       return false;
+
+   }
 
    if(!channel_alpha_gray_blur_32CC(
          pimageDst,
@@ -3026,7 +3039,7 @@ bool imaging::channel_alpha_gray_blur(::draw2d::graphics *pdcDst,const ::point &
          iRadius))
       return false;
 
-   if (!pimageDst->to(pdcDst, pointDst, size))
+   if (!pdcDst->draw(pointDst, pimageDst, { ::point(), size }))
    {
 
       return false;
@@ -3665,7 +3678,7 @@ byte * pFilter)
 
    }
 
-   if (!pimageSrc->from(nullptr, pdcSrc, pointSrc, size))
+   if (!pdcSrc->draw(::point(), pimageSrc, { pointSrc, size }))
    {
 
       return false;
@@ -3687,7 +3700,7 @@ byte * pFilter)
 
    }
 
-   if (!pimageDst->to(pdcDst, pointDst, size))
+   if (!pdcDst->draw(::point(), pimageDst, { pointDst, size }))
    {
 
       return false;
@@ -4070,7 +4083,7 @@ bool imaging::channel_gray_blur_32CC(::image * pimageDst, ::image * pimageSrc,
 bool imaging::color_blend(::draw2d::graphics * pgraphics,const ::rect & rect,::draw2d::graphics * pdcColorAlpha,const ::point & pointAlpha, ::image * pimageWork)
 {
 
-   return pgraphics->BitBlt(rect.left,rect.top, rect.width(), rect.height(),pdcColorAlpha,pointAlpha.x,pointAlpha.y);
+   return pgraphics->draw(rect.top_left(),pdcColorAlpha, ::rect(pointAlpha, rect.size()));
 
 }
 
@@ -4078,7 +4091,7 @@ bool imaging::color_blend(::draw2d::graphics * pgraphics,const ::rect & rect,::d
 bool imaging::true_blend(::draw2d::graphics * pgraphics,const ::rect & rect,::draw2d::graphics * pdcColorAlpha,const ::point & pointAlpha, ::image * pimageWork, ::image * pimageWork2, ::image * pimageWork3)
 {
 
-   return pgraphics->BitBlt(rect.left,rect.top,rect.width(),rect.height(),pdcColorAlpha,pointAlpha.x,pointAlpha.y);
+   return pgraphics->draw(rect.top_left(), pdcColorAlpha, { pointAlpha, rect.size() } );
 
 }
 
@@ -4120,7 +4133,7 @@ bool imaging::color_blend(::draw2d::graphics * pgraphics,const ::point & pointPa
    if(dBlend >= 1.0)
    {
 
-      return pgraphics->BitBlt(point.x,point.y,size.cx,size.cy,pdcColorAlpha,pointAlpha.x,pointAlpha.y) != FALSE;
+      return pgraphics->draw(point, pdcColorAlpha, { pointAlpha, size }) != FALSE;
 
    }
    else
@@ -4137,11 +4150,11 @@ bool imaging::color_blend(::draw2d::graphics * pgraphics,const ::point & pointPa
 
       pimage->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
 
-      pimage->from(nullptr,pdcColorAlpha,pointAlpha,size);
+      pimage->g()->draw(::point(), pdcColorAlpha, { pointAlpha,size });
 
       pimage->channel_multiply(dBlend, ::color::channel_alpha);
 
-      return pgraphics->BitBlt(point.x,point.y,size.cx,size.cy,pimage->get_graphics(),0,0) != FALSE;
+      return pgraphics->draw(point,pimage->get_graphics(),::rect(size)) != FALSE;
 
    }
 
@@ -4843,7 +4856,7 @@ color32_t cr)
 
    pimageSrc->g()->set_alpha_mode(::draw2d::alpha_mode_set);
 
-   if (!pimageSrc->from(nullptr, pdcSrc, pointSrc, size))
+   if (!pimageSrc->g()->draw(::point(), pdcSrc, { pointSrc, size }))
    {
 
       return false;
@@ -4861,7 +4874,7 @@ color32_t cr)
 
    }
 
-   if (!pimageDst->to(pdcDst, pointDst, size))
+   if (!pdcDst->draw(::point(), pimageDst, { pointDst, size }))
    {
 
       return false;
@@ -4927,7 +4940,7 @@ color32_t cr)
 
    pimageSrc->g()->set_alpha_mode(::draw2d::alpha_mode_set);
 
-   if (!pimageSrc->from(nullptr, pdcSrc, pointSrc, size))
+   if (!pimageSrc->g()->draw(::point(), pdcSrc, { pointSrc, size }))
    {
 
       return false;
@@ -4944,7 +4957,7 @@ color32_t cr)
 
    }
 
-   if (!pimageDst->to(pdcDst, pointDst, size))
+   if (!pdcDst->draw(::point(), pimageDst, { pointDst, size }))
    {
 
       return false;

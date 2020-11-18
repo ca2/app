@@ -147,7 +147,7 @@ namespace draw2d
 
       pgraphics->set(this);
 
-      pimage->get_graphics()->draw(pimage->rect(), pgraphics);
+      pimage->get_graphics()->stretch(pimage->rect(), pgraphics);
 
       return CreateHBITMAP(pimage);
 

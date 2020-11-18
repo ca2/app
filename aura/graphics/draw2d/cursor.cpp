@@ -47,14 +47,11 @@ namespace draw2d
    }
 
 
-   bool cursor::to(::draw2d::graphics_pointer & pgraphics, const ::point & point)
-   {
+   //bool cursor::to(::draw2d::graphics_pointer & pgraphics, const ::point & point)
+   //{
 
-      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-      return pgraphics->draw(point - m_szHotspotOffset, m_pimage->get_size(), m_pimage->g(), nullptr);
-
-   }
+   //}
 
 
    bool cursor::set_current(::user::interaction * pinteraction, ::aura::session * psession)

@@ -96,7 +96,7 @@ sync_result multi_lock::lock(const duration & duration, bool bWaitForAll, u32 dw
 
    }
 
-   ::u32 iUpperBound = WAIT_OBJECT_0 + (::u32) m_synca.m_hsyncaCache.get_count();
+   ::i32 iUpperBound = WAIT_OBJECT_0 + (::i32) m_synca.m_hsyncaCache.get_count();
 
    if(iResult == WAIT_FAILED)
    {

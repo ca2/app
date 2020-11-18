@@ -1029,14 +1029,10 @@ namespace draw2d
    }
 
 
-   bool graphics::DrawIcon(const ::point & point, ::draw2d::icon * picon, const ::size & size)
+   bool graphics::draw(const ::point & point, icon * picon, const ::size & size)
    {
 
-      UNREFERENCED_PARAMETER(point);
-      UNREFERENCED_PARAMETER(picon);
-      UNREFERENCED_PARAMETER(size);
-
-      return false;
+      return draw(point, picon->get_image(size), size);
 
    }
 
@@ -1642,6 +1638,20 @@ namespace draw2d
 
    }
 
+   
+   bool graphics::draw(const ::point & point, cursor * pcursor)
+   {
+   
+      set_alpha_mode(::draw2d::alpha_mode_blend);
+
+      ::point pointDst(point - pcursor->m_szHotspotOffset);
+
+      auto pimage = pcursor->m_pimage;
+
+      return draw(pointDst, pimage->g(), {::point(), pimage->size()});
+
+   }
+
 
    //bool graphics::PatBlt(i32 x, i32 y, i32 nWidth, i32 nHeight)
    //{
@@ -1666,15 +1676,47 @@ namespace draw2d
    //}
 
    
-   bool graphics::draw_image(const ::point & pointDst, ::draw2d::graphics * pgraphicsSrc, const ::point & pointSrc)
+   bool graphics::draw(const ::point & pointDst, ::image * pimage, const ::point & pointSrc)
    {
 
-      return draw_image(pointDst, pgraphicsSrc, { pointSrc, pgraphicsSrc->get_size() });
+      return draw(pointDst, pimage->g(), pointSrc);
 
    }
 
 
-   bool graphics::draw_image(const ::point & pointDstParam, ::draw2d::graphics * pgraphicsSrc, const ::rect & rectSrcParam)
+   bool graphics::draw(const ::point & pointDst, ::image_frame * pframe, const ::point & pointSrc)
+   {
+
+      return draw(pointDst, pframe->m_pimage, pointSrc);
+
+   }
+
+
+   bool graphics::draw(const ::point & pointDst, ::draw2d::graphics * pgraphicsSrc, const ::point & pointSrc)
+   {
+
+      return draw(pointDst, pgraphicsSrc, { pointSrc, pgraphicsSrc->get_size() });
+
+   }
+
+
+   bool graphics::draw(const ::point & pointDst, ::image * pimage, const ::rect & rectSrc)
+   {
+
+      return draw(pointDst, pimage->g(), rectSrc);
+
+   }
+
+
+   bool graphics::draw(const ::point & pointDst, ::image_frame * pframe, const ::rect & rectSrc)
+   {
+
+      return draw(pointDst, pframe->m_pimage, rectSrc);
+
+   }
+
+
+   bool graphics::draw(const ::point & pointDstParam, ::draw2d::graphics * pgraphicsSrc, const ::rect & rectSrcParam)
    {
 
       if (::is_null(pgraphicsSrc))
@@ -1789,14 +1831,14 @@ namespace draw2d
 
       //}
 
-      if (draw_image_blend(pointDstParam, pgraphicsSrc, rectSrcParam))
+      if (draw_blend(pointDstParam, pgraphicsSrc, rectSrcParam))
       {
 
          return true;
 
       }
 
-      if (draw_image_raw(pointDstParam, pgraphicsSrc, rectSrcParam))
+      if (draw_raw(pointDstParam, pgraphicsSrc, rectSrcParam))
       {
 
          return true;
@@ -1943,7 +1985,7 @@ namespace draw2d
    //}
 
 
-   bool graphics::draw_image_raw(const ::point & pointDst, ::draw2d::graphics * pgraphicsSrc, const ::rect & rectSrc)
+   bool graphics::draw_raw(const ::point & pointDst, ::draw2d::graphics * pgraphicsSrc, const ::rect & rectSrc)
    {
 
       return false;
@@ -1951,7 +1993,7 @@ namespace draw2d
    }
 
 
-   bool graphics::draw_image_blend(const ::point & pointDst, ::draw2d::graphics * pgraphicsSrc, const ::rect & rectSrc)
+   bool graphics::draw_blend(const ::point & pointDst, ::draw2d::graphics * pgraphicsSrc, const ::rect & rectSrc)
    {
 
 //      ::rect rect(rectParam);
@@ -2044,7 +2086,7 @@ namespace draw2d
    }
 
 
-   bool graphics::draw_image_raw(const ::rect & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rect & rectSrc)
+   bool graphics::stretch_raw(const ::rect & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rect & rectSrc)
    {
 
       return false;
@@ -2052,7 +2094,7 @@ namespace draw2d
    }
 
 
-   bool graphics::draw_image_blend(const ::rect & rectDstParam, ::draw2d::graphics * pgraphicsSrc, const ::rect & rectSrcParam)
+   bool graphics::stretch_blend(const ::rect & rectDstParam, ::draw2d::graphics * pgraphicsSrc, const ::rect & rectSrcParam)
    {
 
       //::rect rectDst(rectDstParam);
@@ -2167,17 +2209,33 @@ namespace draw2d
    //}
 
 
-   bool graphics::draw_image(const ::rect & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rect & rectSrc)
+   bool graphics::stretch(const ::rect & rectDst, ::image * pimage, const ::rect & rectSrc)
    {
 
-      if (draw_image_blend(rectDst, pgraphicsSrc, rectSrc))
+      return stretch(rectDst, pimage->g(), rectSrc);
+
+   }
+
+
+   bool graphics::stretch(const ::rect & rectDst, ::image_frame * pframe, const ::rect & rectSrc)
+   {
+
+      return stretch(rectDst, pframe->m_pimage, rectSrc);
+
+   }
+
+
+   bool graphics::stretch(const ::rect & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rect & rectSrc)
+   {
+
+      if (stretch_blend(rectDst, pgraphicsSrc, rectSrc))
       {
 
          return true;
 
       }
 
-      if (draw_image_raw(rectDst, pgraphicsSrc, rectSrc))
+      if (stretch_raw(rectDst, pgraphicsSrc, rectSrc))
       {
 
          return true;
@@ -2529,7 +2587,7 @@ namespace draw2d
 
          pimage1->blend(nullptr, m_pimageAlphaBlend, point((int)max(0, x - m_pointAlphaBlend.x), (int)max(0, y - m_pointAlphaBlend.y)), rectText.size());
 
-         draw_image({ {(int)x, (int)y}, rectText.size() }, pimage1->get_graphics());
+         stretch({ {(int)x, (int)y}, rectText.size() }, pimage1->get_graphics());
 
          return true;
 
@@ -4983,13 +5041,13 @@ namespace draw2d
          if (nSrcHeight == nDstHeight && nSrcWidth == nDstWidth)
          {
 
-            return BitBlt(xDst, yDst, nDstWidth, nDstHeight, pgraphicsSrc, xSrc, ySrc);
+            return draw(::point(xDst, yDst), pgraphicsSrc, ::rect_dim(xSrc, ySrc, nDstWidth, nDstHeight));
 
          }
          else
          {
 
-            return draw_image(
+            return stretch(
                ::rect_dim(xDst, yDst, nDstWidth, nDstHeight),
                pgraphicsSrc, 
                ::rect_dim(xSrc, ySrc, nSrcWidth, nSrcHeight)
@@ -5075,7 +5133,7 @@ namespace draw2d
          if (nSrcHeight == nDstHeight && nSrcWidth == nDstWidth)
          {
 
-            return BitBlt(xDst, yDst, nDstWidth, nDstHeight, pimage, xSrc, ySrc);
+            return draw(::point(xDst, yDst), pimage, ::rect_dim(xSrc, ySrc, nDstWidth, nDstHeight));
 
          }
          else
@@ -5083,7 +5141,7 @@ namespace draw2d
 
             pimage->defer_update_image();
 
-            return draw_image(
+            return stretch(
                ::rect_dim(xDst, yDst, nDstWidth, nDstHeight),
                pimage->g(),
                ::rect_dim(xSrc, ySrc, nSrcWidth, nSrcHeight)
@@ -5154,7 +5212,7 @@ namespace draw2d
 
             }
 
-            if (!pimage1->draw_image(nullptr, pgraphicsSrc->m_pimage, pointSrc, size))
+            if (!pimage1->draw(::point(), pgraphicsSrc->m_pimage, { pointSrc, size }))
             {
 
                return false;
@@ -5172,12 +5230,13 @@ namespace draw2d
 
             pimage2->fill(255, 0, 0, 0);
 
-            pimage2->from(point(max(0, m_pointAlphaBlend.x - xDest), max(0, m_pointAlphaBlend.y - yDest)),
-                        m_pimageAlphaBlend->get_graphics(), point(max(0, xDest - m_pointAlphaBlend.x), max(0, yDest - m_pointAlphaBlend.y)), size);
+            pimage2->g()->draw(point(max(0, m_pointAlphaBlend.x - xDest), max(0, m_pointAlphaBlend.y - yDest)),
+                        m_pimageAlphaBlend->get_graphics(),
+               { point(max(0, xDest - m_pointAlphaBlend.x), max(0, yDest - m_pointAlphaBlend.y)), size });
 
             pimage1->channel_multiply(::color::channel_alpha, pimage2);
 
-            draw_image({ pointDst, size }, pimage1->g(), { pointSrc, size });
+            stretch({ pointDst, size }, pimage1->g(), { pointSrc, size });
 
             return true;
 
@@ -6445,7 +6504,7 @@ namespace draw2d
 
          set_alpha_mode(::draw2d::alpha_mode_blend);
 
-         BitBlt(x1, h, pimage->width(), pimage->height(), pimage->get_graphics(),0,0);
+         draw(::point(x1, h), pimage->get_graphics(), { ::point(), pimage->size() });
 
       }
 

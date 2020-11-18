@@ -2824,7 +2824,7 @@ namespace user
 
                   pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-                  pcursor->to(pgraphics, pointCursor);
+                  pgraphics->draw(pointCursor, pcursor);
 
                }
 

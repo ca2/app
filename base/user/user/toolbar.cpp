@@ -970,7 +970,7 @@ namespace user
 //
 //               ::u32 uID = GetItemID(i);
 //
-//               GetToolBarCtrl().GetButtonInfo(uiID, &buttona);
+//               GetToolBarCtrl().GetButtonInfo(uId, &buttona);
 //
 //               TRACE("BUTTON.idCommand = %d\n", buttona.idCommand);
 //
@@ -1148,7 +1148,7 @@ return { 0,0 };
       //   button.pszText = (unichar *) (const unichar *) wstrText;
       //   button.cchText = wstrText.get_length();
       //   button.dwMask |= TBIF_TEXT;
-      //   GetToolBarCtrl().SetButtonInfo(uiID, &button);
+      //   GetToolBarCtrl().SetButtonInfo(uId, &button);
 
       //   string str;
       //   GetButtonText(nIndex, str);

@@ -75,7 +75,7 @@ namespace user
       virtual bool contains(::data::tree_item * pitem);
 
 
-      void on_change_view_size() override;
+      void on_change_view_size(::draw2d::graphics_pointer & pgraphics) override;
 
       void _001OnTreeDataChange();
       __pointer(::data::tree_item) CalcFirstVisibleItem(index & iProperIndex);

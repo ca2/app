@@ -298,7 +298,7 @@ bool image::create_isotropic(::image * pimage)
 
       pimage->g()->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
-      pimage->g()->draw_image(::rect_dim(0, 0, cx, cy), get_graphics(), ::rect_dim(0, 0, width(), height()));
+      pimage->g()->stretch(::rect_dim(0, 0, cx, cy), get_graphics(), ::rect_dim(0, 0, width(), height()));
 
    }
 
@@ -390,104 +390,109 @@ bool image::destroy()
 }
 
 
-bool image::stretch_image(::image * pimage)
+//bool image::draw(const ::image * pimage)
+//{
+//
+//   //if (::is_null(pimage))
+//   //{
+//
+//   //   return false;
+//
+//   //}
+//
+//   return get_graphics()->draw(::rect_dim(0, 0,
+//                                     width(),
+//                                     height()),
+//                                     pimage->g(),
+//                                     ::rect_dim(0, 0,
+//                                     pimage->width(),
+//                                     pimage->height()));
+//
+//}
+
+
+//bool image::to(::draw2d::graphics * pgraphics)
+//{
+//
+//   return to(pgraphics, nullptr, size());
+//
+//}
+//
+//
+//bool image::to(::draw2d::graphics * pgraphics, const ::point & point)
+//{
+//
+//   return to(pgraphics, point, size());
+//
+//}
+//
+//
+//bool image::to(::draw2d::graphics * pgraphics, const ::size & size)
+//{
+//
+//   return to(pgraphics, nullptr, size);
+//
+//}
+//
+//
+//bool image::to(::draw2d::graphics * pgraphics, const ::rect & rect)
+//{
+//
+//   return to(pgraphics, ::top_left(rect), ::size(rect));
+//
+//}
+//
+//
+//bool image::to(::draw2d::graphics * pgraphics, const ::point & point, const ::size & size)
+//{
+//
+//   return to(pgraphics, point, size, nullptr);
+//
+//}
+//
+//
+//bool image::to(::draw2d::graphics * pgraphics, const ::point & point, const ::size & size, const ::point & pointSrc)
+//{
+//
+//
+//   UNREFERENCED_PARAMETER(pgraphics);
+//   UNREFERENCED_PARAMETER(point);
+//   UNREFERENCED_PARAMETER(size);
+//   UNREFERENCED_PARAMETER(pointSrc);
+//   ::exception::throw_interface_only();
+//
+//   return false;
+//
+//}
+
+
+bool image::stretch(::draw2d::graphics * pgraphics)
 {
 
-   //if (::is_null(pimage))
-   //{
-
-   //   return false;
-
-   //}
-
-   return get_graphics()->draw_image(::rect_dim(0, 0,
-                                     width(),
-                                     height()),
-                                     pimage->g(),
-                                     ::rect_dim(0, 0,
-                                     pimage->width(),
-                                     pimage->height()));
+   return stretch(pgraphics->m_pimage);
 
 }
 
 
-bool image::to(::draw2d::graphics * pgraphics)
+bool image::stretch(const ::image * pimage)
 {
 
-   return to(pgraphics, nullptr, size());
+   return g()->stretch(::rect(this->size()), pimage->g(), ::rect(pimage->size()));
 
 }
 
 
-bool image::to(::draw2d::graphics * pgraphics, const ::point & point)
-{
 
-   return to(pgraphics, point, size());
-
-}
-
-
-bool image::to(::draw2d::graphics * pgraphics, const ::size & size)
-{
-
-   return to(pgraphics, nullptr, size);
-
-}
-
-
-bool image::to(::draw2d::graphics * pgraphics, const ::rect & rect)
-{
-
-   return to(pgraphics, ::top_left(rect), ::size(rect));
-
-}
-
-
-bool image::to(::draw2d::graphics * pgraphics, const ::point & point, const ::size & size)
-{
-
-   return to(pgraphics, point, size, nullptr);
-
-}
-
-
-bool image::to(::draw2d::graphics * pgraphics, const ::point & point, const ::size & size, const ::point & pointSrc)
-{
-
-
-   UNREFERENCED_PARAMETER(pgraphics);
-   UNREFERENCED_PARAMETER(point);
-   UNREFERENCED_PARAMETER(size);
-   UNREFERENCED_PARAMETER(pointSrc);
-   ::exception::throw_interface_only();
-
-   return false;
-
-}
-
-
-bool image::from(::draw2d::graphics * pgraphics)
-{
-
-   UNREFERENCED_PARAMETER(pgraphics);
-
-   ::exception::throw_interface_only();
-
-   return false;
-
-}
-
-
-bool image::from(::draw2d::graphics * pgraphics, const ::size & size)
-{
-
-   UNREFERENCED_PARAMETER(pgraphics);
-
-   ::exception::throw_interface_only();
-
-   return false;
-
-}
+//bool image::from(::draw2d::graphics * pgraphics, const ::size & size)
+//{
+//
+//   UNREFERENCED_PARAMETER(pgraphics);
+//
+//   ::exception::throw_interface_only();
+//
+//   return false;
+//
+//}
 
 
 //bool image::from(const ::point & pointDst, ::draw2d::graphics * pgraphics, const ::point & pointSrc, const ::size & size)
@@ -498,7 +503,7 @@ bool image::from(::draw2d::graphics * pgraphics, const ::size & size)
 //}
 
 
-bool image::from(const ::point & pointDstParam, ::image * pimageSrc, const ::point & pointSrcParam, const ::size & sizeParam)
+bool image::draw(const ::point & pointDstParam, ::image * pimageSrc, const ::rect & rectSrcParam)
 {
 
    ::image * pimageDst = this;
@@ -520,7 +525,7 @@ bool image::from(const ::point & pointDstParam, ::image * pimageSrc, const ::poi
 
       get_graphics()->set_alpha_mode(m_ealphamode);
 
-      return get_graphics()->draw(pointDstParam, sizeParam, pimageSrc->get_graphics(), pointSrcParam);
+      return get_graphics()->draw(pointDstParam, pimageSrc->get_graphics(), rectSrcParam);
 
    }
 
@@ -530,9 +535,9 @@ bool image::from(const ::point & pointDstParam, ::image * pimageSrc, const ::poi
 
    ::point pointDst(pointDstParam);
 
-   ::point pointSrc(pointSrcParam);
+   ::point pointSrc(rectSrcParam.top_left());
 
-   ::size size(sizeParam);
+   ::size size(rectSrcParam.size());
 
    pointDst += m_point;
 
@@ -616,7 +621,7 @@ bool image::from(const ::point & pointDstParam, ::image * pimageSrc, const ::poi
 }
 
 
-bool image::from(const ::point & pointDstParam, ::image * pimageSrc, const ::point & pointSrcParam, const ::size & sizeParam, byte bA)
+bool image::draw(const ::point & pointDstParam, ::image * pimageSrc, const ::rect & rectSrcParam, byte bA)
 {
 
    ::image * pimageDst = this;
@@ -627,9 +632,9 @@ bool image::from(const ::point & pointDstParam, ::image * pimageSrc, const ::poi
 
    ::point pointDst(pointDstParam);
 
-   ::point pointSrc(pointSrcParam);
+   ::point pointSrc(rectSrcParam.top_left());
 
-   ::size size(sizeParam);
+   ::size size(rectSrcParam.size());
 
    pointDst += m_point;
 
@@ -1587,14 +1592,15 @@ bool image::fork_blend(const ::point & pointDstParam, ::image * pimageSrc, const
 
 }
 
-bool image::from_ignore_alpha(const ::point & pointDstParam, ::image * pimage, const ::point & pointSrcParam, const ::size & sizeParam)
+
+bool image::draw_ignore_alpha(const ::point & pointDstParam, ::image * pimage, const ::rect & rectSrcParam)
 {
 
    ::point pointDst(pointDstParam);
 
-   ::point pointSrc(pointSrcParam);
+   ::point pointSrc(rectSrcParam.top_left());
 
-   ::size size(sizeParam);
+   ::size size(rectSrcParam.size());
 
    if (pointDst.x < 0)
    {
@@ -2671,7 +2677,7 @@ bool image::BitBlt(::image * pimage, i32 op)
    if (op == 123) // zero dest RGB, invert alpha, and OR src RGB
    {
 
-      from(pimage);
+      stretch(pimage);
 
    }
 
@@ -3389,22 +3395,22 @@ bool image::fill_stippled_glass(i32 R, i32 G, i32 B)
 }
 
 
-bool image::to(::image * pimage) const
-{
+//bool image::to(::image * pimage) const
+//{
+//
+//   if (::is_null(pimage))
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   return pimage->from(this);
+//
+//}
 
-   if (::is_null(pimage))
-   {
 
-      return false;
-
-   }
-
-   return pimage->from(this);
-
-}
-
-
-bool image::from(const ::image * pimage)
+bool image::copy(const ::image * pimage)
 {
 
    if (size() != pimage->size())
@@ -3425,7 +3431,9 @@ bool image::from(const ::image * pimage)
 
    if (m_iScan == pimage->m_iScan)
    {
+
       ::memcpy_dup(get_data(), pimage->get_data(), height() * m_iScan);
+
    }
    else
    {
@@ -3434,7 +3442,9 @@ bool image::from(const ::image * pimage)
 
       for (int i = 0; i < height(); i++)
       {
+
          ::memcpy_dup(&((u8 *)get_data())[m_iScan * i], &((u8 *)pimage->get_data())[pimage->m_iScan * i], iScan);
+
       }
 
    }
@@ -3445,10 +3455,9 @@ bool image::from(const ::image * pimage)
 
 
 bool image::bitmap_blend(::draw2d::graphics * pgraphics, const ::rect & rect)
-
 {
 
-   return pgraphics->draw(rect, get_graphics()) != FALSE;
+   return pgraphics->stretch(rect, get_graphics()) != FALSE;
 
 
 }
@@ -3829,7 +3838,7 @@ bool image::copy_from(::image * pimage, i32 x, i32 y)
    if (s.area() > 0)
    {
 
-      if (!g()->BitBlt(0, 0, s.cx, s.cy, pimage, x, y))
+      if (!g()->draw(::point(), pimage, ::rect_dim(x, y, s.cx, s.cy)))
       {
 
          return false;
@@ -6297,7 +6306,7 @@ bool image::_set_mipmap(::draw2d::e_mipmap emipmap)
 
       int y = 0;
 
-      get_graphics()->BitBlt(0, 0, cxSource, cySource, pimage->g());
+      get_graphics()->draw(::point(), pimage->g(), ::rect(::size(cxSource, cySource)));
 
       while (cx >= 1.0 && cy >= 1.0)
       {
@@ -6328,7 +6337,7 @@ bool image::_set_mipmap(::draw2d::e_mipmap emipmap)
          else
          {
 
-            get_graphics()->StretchBlt((i32)x, (i32)y, (i32) cx, (i32) cy, pimage->g(), 0, 0, (i32)cx, (i32)cy);
+            get_graphics()->stretch(::rect_dim((i32)x, (i32)y, (i32)cx, (i32)cy ), pimage->g(), ::rect_dim(0, 0, (i32)cx, (i32)cy ));
 
          }
 
@@ -6400,7 +6409,7 @@ bool image::_set_mipmap(::draw2d::e_mipmap emipmap)
             else
             {
 
-               get_graphics()->StretchBlt(x, y, dx, dy, pimage->get_graphics(), 0, 0, pimage->width(), pimage->height());
+               get_graphics()->stretch(::rect_dim( x, y, dx, dy ), pimage->get_graphics(), ::rect_dim( 0, 0, pimage->width(), pimage->height() ));
 
             }
 
@@ -8321,7 +8330,7 @@ bool image::create_circle(::image * pimage, int diameter)
 
       get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
 
-      get_graphics()->StretchBlt(0, 0, diameter, diameter, pimage->g(), 0, 0, pimage->width(), pimage->height());
+      get_graphics()->stretch(rect_dim(0, 0, diameter, diameter), pimage->g(), rect_dim(0, 0, pimage->width(), pimage->height()));
 
    }
 
@@ -8388,7 +8397,7 @@ bool image::create_framed_square(::image * pimage, int inner, int outer, color32
 
    fill(cr);
 
-   get_graphics()->StretchBlt(outer, outer, inner, inner, pimage->g(), 0, 0, pimage->width(), pimage->height());
+   get_graphics()->stretch(::rect_dim(outer, outer, inner, inner), pimage->g(), ::rect_dim(0, 0, pimage->width(), pimage->height()));
 
    return true;
 
@@ -8398,7 +8407,7 @@ bool image::create_framed_square(::image * pimage, int inner, int outer, color32
 void image_copy(::image * pimagethis, ::image * pimage)
 {
 
-   pimagethis->from(pimage);
+   pimagethis->copy(pimage);
 
 }
 
@@ -9151,7 +9160,7 @@ stream & image::read(::stream & stream)
 
    auto pimage = __create<::image>();
 
-   pimage->from(this);
+   pimage->copy(this);
 
    pimage->add_ref(OBJ_REF_DBG_THIS);
 

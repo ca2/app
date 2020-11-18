@@ -17,7 +17,7 @@ namespace message
       timer() {}
 
       using ::message::base::set;
-      virtual void set(::user::primitive* pwnd, const ::id & id, WPARAM wparam, ::lparam lparam);
+      virtual void set(oswindow oswindow, ::user::primitive* pwnd, const ::id & id, WPARAM wparam, ::lparam lparam);
 
 
 

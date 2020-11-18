@@ -1,7 +1,6 @@
 #pragma once
 
 
-
 class CLASS_DECL_AURA image :
    virtual public ::image_meta,
    virtual public ::context_object
@@ -227,16 +226,17 @@ public:
    //virtual bool stretch_image(::image * pimpl);
 
 
+   virtual bool stretch(::draw2d::graphics * pgraphics);
    //virtual bool to(::image * piml) const;
-   virtual bool copy_image(const ::image * pimage);
-   virtual bool draw_image(const ::image * pimage);
+   virtual bool copy(const ::image * pimage);
+   virtual bool stretch(const ::image * pimage);
    //virtual bool draw_image(::draw2d::graphics* pgraphics);
    //virtual bool draw_image(::draw2d::graphics* pgraphics, const ::size & size);
    //virtual bool from(const ::point & pointDst, ::draw2d::graphics* pgraphics, const ::point & pointSrc, const ::size & size);
-   virtual bool draw_image(const ::point & pointDst, ::image * pimage, const ::point & pointSrc, const ::size & size);
-   virtual bool draw_image(const ::point & pointDst, ::image * pimage, const ::point & pointSrc, const ::size & size, byte bA);
+   virtual bool draw(const ::point & pointDst, ::image * pimage, const ::rect & rectSrc);
+   virtual bool draw(const ::point & pointDst, ::image * pimage, const ::rect & rectSrc, byte bA);
    //virtual bool blend(const ::point & pointDst, ::image * piml, const ::point & pointSrc, const ::size & size);
-   virtual bool draw_image_ignore_alpha(const ::point & pointDst, ::image * pimage, const ::point & pointSrc, const ::size & size);
+   virtual bool draw_ignore_alpha(const ::point & pointDst, ::image * pimage, const ::rect & rectSrc);
 
    //virtual bool to(::draw2d::graphics* pgraphics);
    //virtual bool to(::draw2d::graphics* pgraphics, const ::point & point);

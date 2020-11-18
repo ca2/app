@@ -851,7 +851,7 @@ namespace user
    }
 
 
-   void tree::on_change_view_size()
+   void tree::on_change_view_size(::draw2d::graphics_pointer & pgraphics)
    {
 
       ::sized sizeTotal;
@@ -862,7 +862,7 @@ namespace user
 
       set_total_size(sizeTotal);
 
-      ::user::scroll_base::on_change_view_size();
+      ::user::scroll_base::on_change_view_size(pgraphics);
 
    }
 
@@ -1201,7 +1201,7 @@ namespace user
 
       set_total_size(sizeTotal);
 
-      on_change_view_size();
+      on_change_view_size(pgraphics);
 
       on_change_viewport_offset();
 

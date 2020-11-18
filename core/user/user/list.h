@@ -203,7 +203,7 @@ namespace user
 
       virtual bool _001OnUpdateItemCount(u32 dwFlags = 0) override;
 
-      virtual void on_change_view_size() override;
+      virtual void on_change_view_size(::draw2d::graphics_pointer & pgraphics) override;
 
 
       virtual void _001OnInitialize() override;

@@ -57,7 +57,7 @@ void simple_menu_bar::install_message_routing(::channel * pchannel)
 bool simple_menu_bar::LoadMenuBar(::u32 nIDResource)
 {
 
-   m_uiResourceID = nIDResource;
+   m_uResourceId = nIDResource;
 
    /*    m_menu.Initialize(
          m_pimagelist,
@@ -65,7 +65,7 @@ bool simple_menu_bar::LoadMenuBar(::u32 nIDResource)
          m_prel,
          &m_font);
 
-      m_menu.LoadMenu(m_uiResourceID);*/
+      m_menu.LoadMenu(m_uResourceId);*/
 
 
 #ifdef WINDOWS_DESKTOP
@@ -101,9 +101,9 @@ bool simple_menu_bar::LoadMenuBar(::u32 nIDResource)
    return true;
 }
 
-void simple_menu_bar::SetMenuID(::u32 uResourceID)
+void simple_menu_bar::SetMenuID(::u32 uResourceId)
 {
-   m_uiResourceID = uiResourceID;
+   m_uResourceId = uResourceId;
 }
 
 bool simple_menu_bar::pre_create_window(::user::create_struct& cs)
@@ -463,7 +463,7 @@ bool simple_menu_bar::ReloadMenuBar()
 
    send_message(WM_CANCELMODE);
 
-   if (!LoadMenuBar(m_uiResourceID))
+   if (!LoadMenuBar(m_uResourceId))
       return false;
 
    set_need_redraw();
@@ -906,7 +906,7 @@ bool simple_menu_bar::on_click(const ::user::item & item)
 //{
 //   SCAST_PTR(::message::base, pbase, pmessage);
 //   send_message(WM_CANCELMODE);
-//   LoadMenuBar(m_uiResourceID);
+//   LoadMenuBar(m_uResourceId);
 //   set_need_redraw();
 //   pbase->m_bRet = false;
 //}

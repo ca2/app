@@ -18,8 +18,13 @@ public:
    size_type(e_no_init) noexcept {}
    size_type(::std::nullptr_t) noexcept { this->cx = 0; this->cy = 0; }
    size_type(UNIT_TYPE cx, UNIT_TYPE cy) noexcept { this->cx = cx; this->cy = cy; }
-   size_type(::u32 u) noexcept : size_type(__u32xy(u)) {}
-   size_type(::u64 u) noexcept : size_type(__u64xy(u)) {}
+   size_type(::i32 i) noexcept { this->cx = (UNIT_TYPE) i; this->cy = (UNIT_TYPE) i; }
+   size_type(::u32 u) noexcept { this->cx = (UNIT_TYPE) u; this->cy = (UNIT_TYPE) u; }
+   size_type(::i64 i) noexcept { this->cx = (UNIT_TYPE) i; this->cy = (UNIT_TYPE) i; }
+   size_type(::u64 u) noexcept { this->cx = (UNIT_TYPE) u; this->cy = (UNIT_TYPE) u; }
+   size_type(float f) noexcept { this->cx = (UNIT_TYPE) f; this->cy = (UNIT_TYPE) f; }
+   size_type(double d) noexcept { this->cx = (UNIT_TYPE) d; this->cy = (UNIT_TYPE) d; }
+   size_type(const lparam & lparam) noexcept : size_type(lparam.x(), lparam.y()) {}
    size_type(const POINT_TYPE& point) noexcept;
    size_type(const RECT_TYPE& rect) noexcept;
    size_type(const SIZE32& size) noexcept : size_type((UNIT_TYPE)size.cx, (UNIT_TYPE)size.cy) {}
@@ -100,6 +105,7 @@ public:
       if (get_expand(s) == ::design::match_height) return aspect_height(s.cy); else return aspect_width(s.cx);
    }
 
+   inline size_type & operator=(const size_type & size) noexcept { this->cx = size.cx; this->cy = size.cy; return *this; }
 
    inline size_type & operator+=(const size_type & size) noexcept { this->cx += size.cx; this->cy += size.cy; return *this; }
    inline size_type & operator-=(const size_type & size) noexcept { this->cx -= size.cx; this->cy -= size.cy; return *this; }

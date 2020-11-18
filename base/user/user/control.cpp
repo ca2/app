@@ -682,7 +682,7 @@
 ////
 ////            id idControl = pwnd->GetDlgCtrlId();
 ////
-////            // xxx         state.m_nIndex = uiID;
+////            // xxx         state.m_nIndex = uId;
 ////            state.m_iCount = -1;
 ////            state.m_id = m_commandui.GetControlCommand(idControl);
 ////            state.m_bContinueRouting = FALSE;

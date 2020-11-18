@@ -25,7 +25,7 @@ namespace draw2d
       virtual ~cursor();
 
 
-      bool to(::draw2d::graphics_pointer & pgraphics, const ::point & point);
+      //bool to(::draw2d::graphics_pointer & pgraphics, const ::point & point);
 
       bool initialize_system_default();
 

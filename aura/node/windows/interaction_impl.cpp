@@ -116,7 +116,7 @@ namespace windows
    HRESULT STDMETHODCALLTYPE interaction_impl::DragEnter(IDataObject *pDataObj, DWORD grfKeyState, POINTL point, DWORD *pdwEffect)
    {
 
-      ::message::drag_and_drop m(this, MESSAGE_OLE_DRAGENTER);
+      ::message::drag_and_drop m(m_oswindow, this, MESSAGE_OLE_DRAGENTER);
 
       m.pDataObj = pDataObj;
       m.grfKeyState = grfKeyState;
@@ -156,7 +156,7 @@ namespace windows
    HRESULT STDMETHODCALLTYPE interaction_impl::DragOver(DWORD grfKeyState, POINTL point,  DWORD *pdwEffect)
    {
 
-      ::message::drag_and_drop m(this, MESSAGE_OLE_DRAGOVER);
+      ::message::drag_and_drop m(m_oswindow, this, MESSAGE_OLE_DRAGOVER);
 
       m.pDataObj = nullptr;
       m.grfKeyState = grfKeyState;
@@ -195,7 +195,7 @@ namespace windows
    HRESULT STDMETHODCALLTYPE interaction_impl::DragLeave(void)
    {
 
-      ::message::drag_and_drop m(this, MESSAGE_OLE_DRAGLEAVE);
+      ::message::drag_and_drop m(m_oswindow, this, MESSAGE_OLE_DRAGLEAVE);
 
       m.pDataObj = nullptr;
       m.grfKeyState = 0;
@@ -228,7 +228,7 @@ namespace windows
    HRESULT STDMETHODCALLTYPE interaction_impl::Drop(IDataObject * pDataObj, DWORD grfKeyState, POINTL point, DWORD * pdwEffect)
    {
 
-      ::message::drag_and_drop m(this, MESSAGE_OLE_DRAGDROP);
+      ::message::drag_and_drop m(m_oswindow, this, MESSAGE_OLE_DRAGDROP);
 
       m.pDataObj = pDataObj;
       m.grfKeyState = grfKeyState;
@@ -2663,20 +2663,21 @@ namespace windows
       return ::SetWindowLong(get_handle(), nIndex, lValue);
    }
 
-   LONG_PTR interaction_impl::get_window_long_ptr(i32 nIndex) const
+
+   iptr interaction_impl::get_window_long_ptr(i32 nIndex) const
    {
+
       return ::GetWindowLongPtr(get_handle(), nIndex);
+
    }
 
 
-   LONG_PTR interaction_impl::set_window_long_ptr(i32 nIndex, LONG_PTR lValue)
+   iptr interaction_impl::set_window_long_ptr(i32 nIndex, iptr lValue)
    {
 
       return ::SetWindowLongPtr(get_handle(), nIndex, lValue);
 
    }
-
-
 
 
 // interaction_impl
@@ -5142,6 +5143,13 @@ LRESULT CALLBACK __window_procedure(HWND oswindow, ::u32 message, WPARAM wparam,
 
    }
 
+   if (message == e_message_left_button_up)
+   {
+
+      ::output_debug_string("e_message_left_button_up");
+
+   }
+
    if (message == e_message_mouse_move)
    {
 
@@ -5212,7 +5220,7 @@ LRESULT CALLBACK __window_procedure(HWND oswindow, ::u32 message, WPARAM wparam,
    if (pimpl->m_bDestroyImplOnly || ::is_null(pinteraction))
    {
 
-      auto pbase = pimpl->get_message_base((enum_message) message, wparam, lparam);
+      auto pbase = pimpl->get_message_base(oswindow, (enum_message) message, wparam, lparam);
 
       try
       {
@@ -5257,7 +5265,7 @@ LRESULT CALLBACK __window_procedure(HWND oswindow, ::u32 message, WPARAM wparam,
 
       }
 
-      auto pbase = pinteraction->get_message_base((enum_message) message, wparam, lparam);
+      auto pbase = pinteraction->get_message_base(oswindow,(enum_message) message, wparam, lparam);
 
       try
       {

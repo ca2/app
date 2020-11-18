@@ -21,7 +21,7 @@ namespace user
    bool image_manager::Initialize(::object * pobject, ::u32 uaMenuV003Map [][2])
    {
       UNREFERENCED_PARAMETER(pobject);
-      UNREFERENCED_PARAMETER(uiaMenuV003Map);
+      UNREFERENCED_PARAMETER(uaMenuV003Map);
       ::exception::throw_not_implemented();
 
       return true;

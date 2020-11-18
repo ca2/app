@@ -25,8 +25,8 @@ namespace html
 
                m_pimage->defer_realize(pgraphics);
 
-               pgraphics->BitBlt((i32)left(), (i32)top(), (i32)width(), (i32)height(),
-                                 m_pimage->get_graphics(), 0, 0);
+               pgraphics->draw(::point((LONG) left(),(LONG) top()),
+                                 m_pimage->get_graphics(), ::rect(m_pimage->size()));
                
             }
 

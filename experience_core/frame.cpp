@@ -118,7 +118,7 @@ namespace experience
 
                point -= pointInflate;
 
-               bool b = pimage2->g()->draw(::rect(pimage1->get_size()), pgraphics, point);
+               bool b = pimage2->g()->stretch(::rect(pimage1->get_size()), pgraphics, ::rect(point, pimage1->get_size()));
 
                b = imaging.blur(pimage2, 2);
 
@@ -145,7 +145,7 @@ namespace experience
                rectWindow.height(),
                bf);*/
 
-               pgraphics->draw(rectClient, pimage2->g(), pointInflate);
+               pgraphics->stretch(rectClient, pimage2->g(), ::rect(pointInflate, rectClient.size()));
 
             }
 
@@ -597,7 +597,7 @@ namespace experience
                      if(picon != nullptr)
                      {
 
-                        pgraphics->DrawIcon(rectIcon.left,rectIcon.top,picon,rectIcon.width(),rectIcon.height(),0,nullptr,DI_NORMAL);
+                        pgraphics->draw(rectIcon.top_left(),picon,rectIcon.size());
 
                      }
 
@@ -678,7 +678,7 @@ namespace experience
 
                         pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-                        pgraphics->DrawIcon(rectIcon.left, rectIcon.top, picon, rectIcon.width(), rectIcon.height(), 0, nullptr, DI_NORMAL);
+                        pgraphics->draw(rectIcon.top_left(), picon, rectIcon.size());
 
                      }
 

@@ -2768,7 +2768,7 @@ namespace aura
 
       index iBestWkspace = get_window_restore_1(prect, rect, pinteraction, edisplayRestore);
 
-      bool bChangedSize = ::size(prect) != rectParam.size();
+      bool bChangedSize = ::size(*prect) != rectParam.size();
 
       if (iBestWkspace < 0 && !bChangedSize)
       {

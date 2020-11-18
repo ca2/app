@@ -39,7 +39,7 @@ namespace draw2d
       sizea.allocate(iLen);
       if(iLen > 0)
       {
-         sizea[0] = (u32) 0;
+         sizea[0] = 0;
       }
       for(i32 i = 1; i < iLen; i++)
       {

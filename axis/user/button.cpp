@@ -783,7 +783,7 @@ namespace user
 
          pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-         pgraphics->draw(rectAspect, pimage->g(), ::rect(pimage->get_size()));
+         pgraphics->stretch(rectAspect, pimage->g(), ::rect(pimage->get_size()));
 
       }
 
@@ -849,7 +849,7 @@ namespace user
 
             pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-            pgraphics->draw(rectAspect, pimage->g(), ::rect(pimage->get_size()));
+            pgraphics->stretch(rectAspect, pimage->g(), ::rect(pimage->get_size()));
 
             rectAspect.left = rectAspect.right + iPadding;
             rectAspect.right = rectPadded.right;

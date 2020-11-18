@@ -297,23 +297,7 @@ bool load_modules_diff(string_array & straOld, string_array & straNew, const cha
 
 #endif
 
-//
-//
-//int get_current_process_affinity_order()
-//{
-//
-//   return 1;
-//
-//
-//}
 
-
-DWORD_PTR translate_processor_affinity(int i)
-{
-
-   return 1;
-
-}
 
 #undef System
 

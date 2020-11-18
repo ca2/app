@@ -69,10 +69,12 @@ namespace message
    }
 
 
-   void message::set(::layered * playeredUserPrimitive, const ::id & id, WPARAM wparam, ::lparam lparam)
+   void message::set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, WPARAM wparam, ::lparam lparam)
    {
       
       initialize(playeredUserPrimitive);
+
+      m_oswindow = oswindow;
 
       m_id = id;
 

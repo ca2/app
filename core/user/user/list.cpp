@@ -991,7 +991,7 @@ namespace user
 
       LayoutHeaderCtrl();
 
-      on_change_view_size();
+      on_change_view_size(pgraphics);
 
       LayoutHeaderCtrl();
 
@@ -1102,7 +1102,7 @@ namespace user
    }
 
 
-   void list::on_change_view_size()
+   void list::on_change_view_size(::draw2d::graphics_pointer & pgraphics)
    {
 
       m_iTopDisplayIndex = _001CalcDisplayTopIndex();
@@ -1276,7 +1276,7 @@ namespace user
 
       set_total_size(rect.size());
 
-      ::user::scroll_base::on_change_view_size();
+      ::user::scroll_base::on_change_view_size(pgraphics);
 
    }
 
@@ -7309,7 +7309,7 @@ namespace user
          if (m_pcolumn->m_mapIcon.lookup((i32)m_iImage, picon))
          {
             m_pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
-            return m_pgraphics->DrawIcon(m_rectImage.top_left(), picon) != FALSE;
+            return m_pgraphics->draw(m_rectImage.top_left(), picon, m_rectImage.size()) != FALSE;
          }
       }
       else
@@ -7406,7 +7406,7 @@ namespace user
             ::rect rectDib(m_rectImage.top_left() - size(m_plist->m_iIconBlurRadius *iRate, m_plist->m_iIconBlurRadius * iRate),
                       m_rectImage.size() + size(m_plist->m_iIconBlurRadius *iRate * 2, m_plist->m_iIconBlurRadius * iRate * 2));
 
-            m_pgraphics->draw(rectDib, pimage->get_graphics());
+            m_pgraphics->draw(rectDib.top_left(), pimage->get_graphics(), rectDib.size());
 
             ::rect rectI;
 
@@ -7445,7 +7445,7 @@ namespace user
 
                m_pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-               m_pgraphics->draw(rectI, m_plist->m_pimageTime->get_graphics(), rect2.top_left());
+               m_pgraphics->draw(rectI.top_left(), m_plist->m_pimageTime->get_graphics(),::rect(rect2.top_left(), rectI.size()));
 
             }
 
@@ -7575,7 +7575,7 @@ namespace user
 
             auto pstyle = m_plist->get_style(m_pgraphics);
 
-            int iDrawTextFlags = m_plist->get_int(pstyle, int_list_item_draw_text_flags);
+            int iDrawTextFlags = m_plist->get_int(pstyle, e_int_list_item_draw_text_flags);
 
             m_pgraphics->draw_text(m_strText, m_rectText, iDrawTextFlags);
 

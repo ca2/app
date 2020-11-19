@@ -125,7 +125,7 @@ target_include_directories(experience_core PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/.
 target_include_directories(experience_core PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/third/include/include)
 
 
-target_compile_definitions(experience_core PRIVATE _EXPERIENCE_CORE_LIBRARY)
+target_compile_definitions(experience_core PRIVATE _APP_EXPERIENCE_CORE_LIBRARY)
 target_compile_definitions(experience_core PRIVATE UNICODE)
 target_compile_definitions(experience_core PRIVATE _UNICODE)
 

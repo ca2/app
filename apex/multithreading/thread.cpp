@@ -1937,9 +1937,9 @@ sync_result thread::wait(const duration & duration)
       else
       {
 
-         millis tickDelay = (::u32) duration.total_milliseconds();
+         auto millisDelay = duration.millis();
 
-         auto dwStep = min(max(tickDelay / 10, 1), 100);
+         auto dwStep = min(max(millisDelay / 10, 1), 100);
 
          while(is_thread_on(ithread))
          {

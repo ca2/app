@@ -231,7 +231,10 @@ list(APPEND acme_source
         primitive/datetime/duration.cpp
         primitive/datetime/filetime.cpp
         primitive/datetime/filetime_span.cpp
+        primitive/datetime/micros.h
         primitive/datetime/mktime.cpp
+        primitive/datetime/nanos.h
+        primitive/datetime/secs.h
         primitive/datetime/time.cpp
         primitive/datetime/time_span.cpp
         primitive/datetime/value.cpp
@@ -271,6 +274,7 @@ list(APPEND acme_source
         primitive/primitive/context_object.cpp
         primitive/primitive/context_object_traits.cpp
         primitive/primitive/edit.cpp
+        primitive/primitive/estatus.cpp
         primitive/primitive/element_array.cpp
         primitive/primitive/factory.cpp
         primitive/primitive/function.cpp
@@ -1670,6 +1674,7 @@ if(LINUX OR APPLE OR SOLARIS)
         node/node_serial.cpp
         os/posix/base_file.cpp
         os/posix/local_memory_map.cpp
+        os/posix/process.cpp
         os/posix/pthread.cpp
         os/posix/thread.cpp
         os/posix/time.cpp
@@ -1710,7 +1715,7 @@ else()
 endif()
 
 
-add_library(acme SHARED ${acme_source} primitive/primitive/estatus.cpp primitive/datetime/micros.h primitive/datetime/nanos.h primitive/datetime/secs.h)
+add_library(acme SHARED ${acme_source})
 
 target_precompile_headers(acme PRIVATE framework.h)
 

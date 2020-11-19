@@ -13,6 +13,10 @@ inline bool xxf_is_zerop(TYPE * p) { return ::is_zero(p, sizeof(TYPE)); }
 template < typename TYPE >
 inline bool xxf_is_zero(TYPE & t) { return ::is_zero(&t, sizeof(TYPE)); }
 
+
+// xxf_is_zero
+
+
 //template < typename TYPE1, typename TYPE2 >
 //inline void __copy(TYPE1 * p, const TYPE2 * pSrc) { ::copy(p, pSrc); }
 //

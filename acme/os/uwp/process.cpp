@@ -363,3 +363,15 @@ CLASS_DECL_ACME ::file::path core_app_path(string strApp)
 
 }
 
+
+
+CLASS_DECL_ACME string get_environment_variable(const char * pszEnvironmentVariable)
+{
+
+   string str;
+
+   __throw(todo());
+
+   return str;
+
+}

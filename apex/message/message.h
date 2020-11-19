@@ -22,6 +22,7 @@ namespace message
 
       __pointer(route_array)     m_proutea;
       __pointer(channel)         m_pchannel;
+      oswindow                   m_oswindow;
       wparam                     m_wparam;
       lparam                     m_lparam;
       LRESULT                    m_lresult;
@@ -68,7 +69,7 @@ namespace message
       bool previous(); // returns bRet
 
       virtual void set_lresult(LRESULT lresult);
-      virtual void set(::layered * playeredUserPrimitive, const ::id & id, WPARAM wparam, ::lparam lparam);
+      virtual void set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, WPARAM wparam, ::lparam lparam);
 
 
    };

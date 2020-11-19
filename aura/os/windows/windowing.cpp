@@ -488,3 +488,38 @@ int_bool get_cursor_pos(POINT32 * ppoint)
 
 
 
+CLASS_DECL_AURA int erelative_get_window(enum_relative erelative)
+{
+
+   switch (erelative)
+   {
+   case e_relative_first_child:
+      return GW_CHILD;
+   default:
+      return -1;
+
+   };
+
+
+}
+
+
+CLASS_DECL_AURA oswindow get_window(oswindow oswindow, enum_relative erelative)
+{
+
+   int iGetWindow = erelative_get_window(erelative);
+
+   if (iGetWindow < 0)
+   {
+
+      ::output_debug_string("Unknown Get Window (GW_*) for enum_relative");
+
+      return nullptr;
+
+   }
+
+   return ::GetWindow(oswindow, iGetWindow);
+
+}
+
+

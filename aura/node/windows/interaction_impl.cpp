@@ -113,10 +113,10 @@ namespace windows
    }
 
 
-   HRESULT STDMETHODCALLTYPE interaction_impl::DragEnter(IDataObject *pDataObj, ::u32 grfKeyState, POINTL point, ::u32 *pdwEffect)
+   HRESULT STDMETHODCALLTYPE interaction_impl::DragEnter(IDataObject *pDataObj, DWORD grfKeyState, POINTL point, DWORD *pdwEffect)
    {
 
-      ::message::drag_and_drop m(this, MESSAGE_OLE_DRAGENTER);
+      ::message::drag_and_drop m(m_oswindow, this, MESSAGE_OLE_DRAGENTER);
 
       m.pDataObj = pDataObj;
       m.grfKeyState = grfKeyState;
@@ -153,10 +153,10 @@ namespace windows
    }
 
 
-   HRESULT STDMETHODCALLTYPE interaction_impl::DragOver(::u32 grfKeyState, POINTL point,  ::u32 *pdwEffect)
+   HRESULT STDMETHODCALLTYPE interaction_impl::DragOver(DWORD grfKeyState, POINTL point,  DWORD *pdwEffect)
    {
 
-      ::message::drag_and_drop m(this, MESSAGE_OLE_DRAGOVER);
+      ::message::drag_and_drop m(m_oswindow, this, MESSAGE_OLE_DRAGOVER);
 
       m.pDataObj = nullptr;
       m.grfKeyState = grfKeyState;
@@ -195,7 +195,7 @@ namespace windows
    HRESULT STDMETHODCALLTYPE interaction_impl::DragLeave(void)
    {
 
-      ::message::drag_and_drop m(this, MESSAGE_OLE_DRAGLEAVE);
+      ::message::drag_and_drop m(m_oswindow, this, MESSAGE_OLE_DRAGLEAVE);
 
       m.pDataObj = nullptr;
       m.grfKeyState = 0;
@@ -225,10 +225,10 @@ namespace windows
    }
 
 
-   HRESULT STDMETHODCALLTYPE interaction_impl::Drop(IDataObject * pDataObj, ::u32 grfKeyState, POINTL point, ::u32 * pdwEffect)
+   HRESULT STDMETHODCALLTYPE interaction_impl::Drop(IDataObject * pDataObj, DWORD grfKeyState, POINTL point, DWORD * pdwEffect)
    {
 
-      ::message::drag_and_drop m(this, MESSAGE_OLE_DRAGDROP);
+      ::message::drag_and_drop m(m_oswindow, this, MESSAGE_OLE_DRAGDROP);
 
       m.pDataObj = pDataObj;
       m.grfKeyState = grfKeyState;
@@ -321,7 +321,7 @@ namespace windows
 
       m_uCodePage = CP_UTF8;
 
-      m_langid = LANG_USER_DEFAULT;
+      m_iLangId = LANG_USER_DEFAULT;
 
       m_pfnSuper = nullptr;
       m_bUseDnDHelper = false;
@@ -553,7 +553,7 @@ namespace windows
 
       //bool bUnicode = IsWindowUnicode(oswindow);
 
-      u32 dwLastError = get_last_error();
+      u32 dwLastError = ::GetLastError();
 
       //if (!unhook_window_create())
       //{
@@ -2129,7 +2129,7 @@ namespace windows
 
       auto & buffer = pbuffer->m_osbuffera[!pbuffer->m_iCurrentBuffer];
 
-      ::BitBlt(hdc, rectUpdate.left, rectUpdate.top, rectUpdate.width(), rectUpdate.height(), buffer.m_hdc, 0, 0);
+      ::BitBlt(hdc, rectUpdate.left, rectUpdate.top, rectUpdate.width(), rectUpdate.height(), buffer.m_hdc, 0, 0, SRCCOPY);
 
       //if (m_spgraphics.is_set())
       //{
@@ -2663,20 +2663,21 @@ namespace windows
       return ::SetWindowLong(get_handle(), nIndex, lValue);
    }
 
-   LONG_PTR interaction_impl::get_window_long_ptr(i32 nIndex) const
+
+   iptr interaction_impl::get_window_long_ptr(i32 nIndex) const
    {
+
       return ::GetWindowLongPtr(get_handle(), nIndex);
+
    }
 
 
-   LONG_PTR interaction_impl::set_window_long_ptr(i32 nIndex, LONG_PTR lValue)
+   iptr interaction_impl::set_window_long_ptr(i32 nIndex, iptr lValue)
    {
 
       return ::SetWindowLongPtr(get_handle(), nIndex, lValue);
 
    }
-
-
 
 
 // interaction_impl
@@ -3454,7 +3455,7 @@ namespace windows
    }
 
 
-   i32 interaction_impl::DlgDirList(char * pPathSpec, i32 nIDListBox, i32 nIDStaticPath, ::u32 nFileType)
+   i32 interaction_impl::DlgDirList(TCHAR * pPathSpec, i32 nIDListBox, i32 nIDStaticPath, ::u32 nFileType)
 
    {
 
@@ -3466,7 +3467,7 @@ namespace windows
    }
 
 
-   i32 interaction_impl::DlgDirListComboBox(char * pPathSpec, i32 nIDComboBox, i32 nIDStaticPath, ::u32 nFileType)
+   i32 interaction_impl::DlgDirListComboBox(TCHAR * pPathSpec, i32 nIDComboBox, i32 nIDStaticPath, ::u32 nFileType)
 
    {
 
@@ -3478,7 +3479,7 @@ namespace windows
    }
 
 
-   bool interaction_impl::DlgDirSelect(char * pString, i32 nSize, i32 nIDListBox)
+   bool interaction_impl::DlgDirSelect(TCHAR * pString, i32 nSize, i32 nIDListBox)
 
    {
 
@@ -3490,7 +3491,7 @@ namespace windows
    }
 
 
-   bool interaction_impl::DlgDirSelectComboBox(char * pString, i32 nSize, i32 nIDComboBox)
+   bool interaction_impl::DlgDirSelectComboBox(TCHAR * pString, i32 nSize, i32 nIDComboBox)
 
    {
 
@@ -3526,7 +3527,7 @@ namespace windows
    }
 
 
-   i32 interaction_impl::GetChildByIdText(i32 nID, char * pStr, i32 nMaxCount) const
+   i32 interaction_impl::GetChildByIdText(i32 nID, TCHAR * pStr, i32 nMaxCount) const
 
    {
 
@@ -4738,7 +4739,7 @@ namespace windows
    }
 
 
-   ::u32 WINAPI drop_target(LPVOID point)
+   DWORD WINAPI drop_target(LPVOID point)
 
    {
 
@@ -5142,6 +5143,13 @@ LRESULT CALLBACK __window_procedure(HWND oswindow, ::u32 message, WPARAM wparam,
 
    }
 
+   if (message == e_message_left_button_up)
+   {
+
+      ::output_debug_string("e_message_left_button_up");
+
+   }
+
    if (message == e_message_mouse_move)
    {
 
@@ -5212,7 +5220,7 @@ LRESULT CALLBACK __window_procedure(HWND oswindow, ::u32 message, WPARAM wparam,
    if (pimpl->m_bDestroyImplOnly || ::is_null(pinteraction))
    {
 
-      auto pbase = pimpl->get_message_base((enum_message) message, wparam, lparam);
+      auto pbase = pimpl->get_message_base(oswindow, (enum_message) message, wparam, lparam);
 
       try
       {
@@ -5257,7 +5265,7 @@ LRESULT CALLBACK __window_procedure(HWND oswindow, ::u32 message, WPARAM wparam,
 
       }
 
-      auto pbase = pinteraction->get_message_base((enum_message) message, wparam, lparam);
+      auto pbase = pinteraction->get_message_base(oswindow,(enum_message) message, wparam, lparam);
 
       try
       {

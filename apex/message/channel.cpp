@@ -123,7 +123,7 @@ void channel::route_message(::message::message * pmessage)
 }
 
 
-__pointer(::message::base) channel::get_message_base(const ::id & id, WPARAM wparam, lparam lparam)
+__pointer(::message::base) channel::get_message_base(oswindow oswindow, const ::id & id, WPARAM wparam, lparam lparam)
 {
 
    if (id.m_etype != ::id::e_type_message)
@@ -224,7 +224,7 @@ __pointer(::message::base) channel::get_message_base(LPMESSAGE pmsg)
 
    }
 
-   pbase->set(playeredUserPrimitive, (enum_message)pmsg->message, pmsg->wParam, pmsg->lParam);
+   pbase->set(pmsg->hwnd, playeredUserPrimitive, (enum_message)pmsg->message, pmsg->wParam, pmsg->lParam);
 
    return pbase;
 

@@ -69,22 +69,22 @@ namespace windows
 
       virtual HRESULT STDMETHODCALLTYPE DragEnter(
       /* [unique][in] */ __RPC__in_opt IDataObject *pDataObj,
-      /* [in] */ ::u32 grfKeyState,
+      /* [in] */ DWORD grfKeyState,
       /* [in] */ POINTL point,
-      /* [out][in] */ __RPC__inout ::u32 *pdwEffect);
+      /* [out][in] */ __RPC__inout DWORD *pdwEffect);
 
       virtual HRESULT STDMETHODCALLTYPE DragOver(
-      /* [in] */ ::u32 grfKeyState,
+      /* [in] */ DWORD grfKeyState,
       /* [in] */ POINTL point,
-      /* [out][in] */ __RPC__inout ::u32 *pdwEffect);
+      /* [out][in] */ __RPC__inout DWORD *pdwEffect);
 
       virtual HRESULT STDMETHODCALLTYPE DragLeave(void);
 
       virtual HRESULT STDMETHODCALLTYPE Drop(
       /* [unique][in] */ __RPC__in_opt IDataObject *pDataObj,
-      /* [in] */ ::u32 grfKeyState,
+      /* [in] */ DWORD grfKeyState,
       /* [in] */ POINTL point,
-      /* [out][in] */ __RPC__inout ::u32 *pdwEffect);
+      /* [out][in] */ __RPC__inout DWORD *pdwEffect);
 
 
       virtual void construct(oswindow oswindow);
@@ -393,20 +393,20 @@ namespace windows
       virtual void CheckDlgButton(i32 nIDButton, ::u32 nCheck);
       virtual void CheckRadioButton(i32 nIDFirstButton, i32 nIDLastButton, i32 nIDCheckButton);
       virtual i32 GetCheckedRadioButton(i32 nIDFirstButton, i32 nIDLastButton);
-      virtual i32 DlgDirList(__inout_z char * pPathSpec, __in i32 nIDListBox,
+      virtual i32 DlgDirList(__inout_z TCHAR * pPathSpec, __in i32 nIDListBox,
 
                              __in i32 nIDStaticPath, __in ::u32 nFileType);
-      virtual i32 DlgDirListComboBox(__inout_z char * pPathSpec, __in i32 nIDComboBox,
+      virtual i32 DlgDirListComboBox(__inout_z TCHAR * pPathSpec, __in i32 nIDComboBox,
 
                                      __in i32 nIDStaticPath, __in ::u32 nFileType);
-      virtual bool DlgDirSelect(__out_ecount_z(nSize) char * pString, __in i32 nSize, __in i32 nIDListBox);
+      virtual bool DlgDirSelect(__out_ecount_z(nSize) TCHAR * pString, __in i32 nSize, __in i32 nIDListBox);
 
-      virtual bool DlgDirSelectComboBox(__out_ecount_z(nSize) char * pString, __in i32 nSize, __in i32 nIDComboBox);
+      virtual bool DlgDirSelectComboBox(__out_ecount_z(nSize) TCHAR * pString, __in i32 nSize, __in i32 nIDComboBox);
 
 
       virtual ::u32 GetChildByIdInt(i32 nID, BOOL * pTrans = nullptr, bool bSigned = TRUE) const;
 
-      virtual i32 GetChildByIdText(__in i32 nID, __out_ecount_part_z(nMaxCount, return +1) char * pStr, __in i32 nMaxCount) const;
+      virtual i32 GetChildByIdText(__in i32 nID, __out_ecount_part_z(nMaxCount, return +1) TCHAR * pStr, __in i32 nMaxCount) const;
 
       virtual i32 GetChildByIdText(i32 nID, string & rectString) const;
       //virtual ::user::interaction * GetNextDlgGroupItem(::user::interaction * pWndCtl, bool bPrevious = FALSE) const;
@@ -757,8 +757,8 @@ namespace windows
 
       virtual ::i32 get_window_long(i32 nIndex) const;
       virtual ::i32 set_window_long(i32 nIndex, ::i32 lValue);
-      virtual LONG_PTR get_window_long_ptr(i32 nIndex) const;
-      virtual LONG_PTR set_window_long_ptr(i32 nIndex, LONG_PTR lValue);
+      virtual iptr get_window_long_ptr(i32 nIndex) const;
+      virtual iptr set_window_long_ptr(i32 nIndex, iptr lValue);
 
 
       void _001OnTriggerMouseInside();

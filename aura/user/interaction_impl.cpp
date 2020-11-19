@@ -2336,7 +2336,7 @@ namespace user
 
       ::___pointer < ::message::base > pbase;
 
-      pbase = m_puserinteraction->get_message_base(id, wparam, lparam);
+      pbase = m_puserinteraction->get_message_base(m_oswindow, id, wparam, lparam);
 
       if(m_puserinteraction->layout().is_moving())
       {
@@ -3204,7 +3204,7 @@ namespace user
    void interaction_impl::_001OnPrioCreate(::message::message * pmessage)
    {
 
-      m_puserinteraction->on_create_user_interaction();
+      //m_puserinteraction->on_create_user_interaction();
 
    }
 

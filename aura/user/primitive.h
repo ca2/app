@@ -95,7 +95,7 @@ namespace user
 
       //virtual bool create_native_window(::user::native_window_initialize * pinitialize);
 
-      __pointer(::message::base) get_message_base(const ::id & id, WPARAM wparam, lparam lparam) override;
+      __pointer(::message::base) get_message_base(oswindow oswindow, const ::id & id, WPARAM wparam, lparam lparam) override;
 
 
       virtual ::user::interaction* get_host_wnd();

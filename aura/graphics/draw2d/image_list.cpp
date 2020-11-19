@@ -127,7 +127,10 @@ bool image_list::draw(::draw2d::graphics* pgraphics, i32 iImage, const ::point &
 
       UNREFERENCED_PARAMETER(iFlag);
 
-      return pgraphics->BitBlt(point.x, point.y, m_size.cx, m_size.cy, m_pimage->get_graphics(), iImage * m_size.cx, 0);
+      return pgraphics->draw(
+         { point, m_size },
+         m_pimage->get_graphics(), 
+         {iImage * m_size.cx, 0});
 
    }
    catch(...)
@@ -186,7 +189,7 @@ bool image_list::draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point 
    pointOffset.x = min(m_size.cx, pointOffset.x);
    pointOffset.y = min(m_size.cy, pointOffset.y);
 
-   return pgraphics->BitBlt(point.x, point.y, sz.cx, sz.cy, m_pimage->g(), iImage * m_size.cx + pointOffset.x, pointOffset.y);
+   return pgraphics->draw({ point, sz }, m_pimage, {iImage * m_size.cx + pointOffset.x, pointOffset.y});
 
 }
 
@@ -256,7 +259,7 @@ i32 image_list::add(::draw2d::icon * picon, int iItem)
 
 #else
 
-   m_pimage->get_graphics()->DrawIcon(iItem * m_size.cx, 0, picon, m_size.cx, m_size.cy, 0);
+   m_pimage->get_graphics()->draw({ iItem * m_size.cx , 0 }, picon, m_size);
 
 #endif
 
@@ -319,7 +322,9 @@ i32 image_list::add_file(var varFile, int iItem)
 
          m_pimage->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
 
-         m_pimage->get_graphics()->BitBlt(iItem * m_size.cx, 0, m_size.cx, m_size.cy, pimage->get_graphics(), 0, 0);
+         m_pimage->get_graphics()->draw(
+            { ::point(iItem * m_size.cx, 0),  m_size },
+            pimage->get_graphics());
 
       });
 
@@ -335,7 +340,7 @@ i32 image_list::add_image(::image * pimage, int x, int y, int iItem)
 
    iItem = reserve_image(iItem);
 
-   if(!m_pimage)
+   if (!m_pimage)
    {
 
       return -1;
@@ -348,7 +353,8 @@ i32 image_list::add_image(::image * pimage, int x, int y, int iItem)
 
    m_pimage->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-   m_pimage->get_graphics()->BitBlt(iItem * m_size.cx, 0, m_size.cx, m_size.cy, pimage->g(), x, y);
+   m_pimage->get_graphics()->draw(
+      {::point(iItem * m_size.cx, 0), m_size}, pimage, {x, y});
 
    return iItem;
 

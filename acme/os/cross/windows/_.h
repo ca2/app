@@ -13,6 +13,10 @@ using color32_t = ::u32;
 using dummy_pointer = void *;
 
 
+#define U32_LO_I16(u) ((::i16)((((::uptr)(u))) & 0xffff))
+#define U32_HI_I16(u) ((::i16)((((::uptr)(u)) >> 16) & 0xffff))
+
+
 #ifdef WINDOWS
 
 

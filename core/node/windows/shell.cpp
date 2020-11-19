@@ -8,7 +8,7 @@
 
 
 
-CLASS_DECL_AURA HICON ExtractResourceIcon(string strPath, int& cx, int& cy, int iIcon);
+CLASS_DECL_AURA HICON ExtractResourceIcon(const string & strPath, int& cx, int& cy, int iIcon);
 
 
 namespace windows
@@ -196,7 +196,7 @@ namespace windows
                                           wszPath,
                                           sizeof(wszPath) / sizeof(wszPath[0]),
                                           &iIcon,
-                                          &uiExtractIconLocationFlags)))
+                                          &uExtractIconLocationFlags)))
          {
 
             if (wcscmp(wszPath, L"*") == 0)
@@ -241,10 +241,9 @@ namespace windows
 
             int iIndex = 0;
 
-            ::u32 dwFlags = 0;
+            DWORD dwFlags = 0;
 
             if (SUCCEEDED(hrGetOverlayInfo = pioverlay->GetOverlayInfo(
-
                                              wszPath,
                                              sizeof(wszPath),
                                              &iIndex,
@@ -294,9 +293,9 @@ namespace windows
 
                s.cy = 48;
 
-               ::u32 dwDepth = 32;
+               DWORD dwDepth = 32;
 
-               ::u32 dwFlags = 0;
+               DWORD dwFlags = 0;
 
                if (SUCCEEDED(hrGetLocation = piextractimage->GetLocation(
 
@@ -450,7 +449,7 @@ namespace windows
 
       }
 
-      if (uiExtractIconLocationFlags & GIL_NOTFILENAME)
+      if (uExtractIconLocationFlags & GIL_NOTFILENAME)
       {
 
          if (reserve_image(imagekey, iImage))

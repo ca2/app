@@ -896,7 +896,7 @@ namespace user
 
          rectAspect.Align(e_align_center, rectClient);
 
-        pgraphics->draw(rectClient, pimage->g(), ::rect(pimage->get_size()));
+         pgraphics->stretch(rectClient, pimage->g(), ::rect(pimage->get_size()));
 
       }
 

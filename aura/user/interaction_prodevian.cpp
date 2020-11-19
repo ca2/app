@@ -590,7 +590,7 @@ bool prodevian::prodevian_iteration()
 
                millis.Now();
 
-               m_synca.wait(false, millis(msToWaitForNextFrame - 1));
+               m_synca.wait(false, ::millis(msToWaitForNextFrame - 1));
 
                //printf("Actually waited %dms\n", (::i32) millis.elapsed().m_i);
 

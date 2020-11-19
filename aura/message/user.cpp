@@ -25,10 +25,10 @@ namespace message
 {
 
 
-   void create::set(::layered * playeredUserPrimitive,const ::id & id,WPARAM wparam,::lparam lparam)
+   void create::set(oswindow oswindow, ::layered * playeredUserPrimitive,const ::id & id,WPARAM wparam,::lparam lparam)
    {
 
-      base::set(playeredUserPrimitive, id,wparam,lparam);
+      base::set(oswindow, playeredUserPrimitive, id,wparam,lparam);
 
       m_lpcreatestruct = reinterpret_cast<::user::create_struct *>(lparam.m_lparam);
 
@@ -120,10 +120,10 @@ namespace message
    }
 
 
-   void activate::set(::layered * playeredUserPrimitive,const ::id & id,WPARAM wparam,::lparam lparam)
+   void activate::set(oswindow oswindow, ::layered * playeredUserPrimitive,const ::id & id,WPARAM wparam,::lparam lparam)
    {
 
-      base::set(playeredUserPrimitive, id, wparam, lparam);
+      base::set(oswindow, playeredUserPrimitive, id, wparam, lparam);
 
       m_eactivate = (enum_activate)(LOWORD(wparam));
 
@@ -207,10 +207,10 @@ namespace message
 #endif
 
 
-   void key::set(::layered * playeredUserPrimitive,const ::id & id,WPARAM wparam,::lparam lparam)
+   void key::set(oswindow oswindow, ::layered * playeredUserPrimitive,const ::id & id,WPARAM wparam,::lparam lparam)
    {
 
-      base::set(playeredUserPrimitive, id,wparam,lparam);
+      base::set(oswindow, playeredUserPrimitive, id,wparam,lparam);
 
       m_nChar = static_cast<::u32>(wparam);
 
@@ -245,30 +245,30 @@ namespace message
    }
 
 
-   void nc_activate::set(::layered * playeredUserPrimitive,const ::id & id,WPARAM wparam,::lparam lparam)
+   void nc_activate::set(oswindow oswindow, ::layered * playeredUserPrimitive,const ::id & id,WPARAM wparam,::lparam lparam)
    {
 
-      base::set(playeredUserPrimitive, id,wparam,lparam);
+      base::set(oswindow, playeredUserPrimitive, id,wparam,lparam);
 
       m_bActive = wparam != FALSE;
 
    }
 
 
-   void move::set(::layered * playeredUserPrimitive, const ::id & id, WPARAM wparam, ::lparam lparam)
+   void move::set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, WPARAM wparam, ::lparam lparam)
    {
 
-      base::set(playeredUserPrimitive, id, wparam, lparam);
+      base::set(oswindow, playeredUserPrimitive, id, wparam, lparam);
 
       m_point = __point(lparam);
 
    }
 
 
-   void size::set(::layered * playeredUserPrimitive,const ::id & id,WPARAM wparam,::lparam lparam)
+   void size::set(oswindow oswindow, ::layered * playeredUserPrimitive,const ::id & id,WPARAM wparam,::lparam lparam)
    {
 
-      base::set(playeredUserPrimitive, id,wparam,lparam);
+      base::set(oswindow, playeredUserPrimitive, id,wparam,lparam);
 
       m_nType     = static_cast < ::u32 > (wparam);
 
@@ -333,10 +333,10 @@ namespace message
    }
 
 
-   void mouse::set(::layered * playeredUserPrimitive,const ::id & id,WPARAM wparam,::lparam lparam)
+   void mouse::set(oswindow oswindow, ::layered * playeredUserPrimitive,const ::id & id,WPARAM wparam,::lparam lparam)
    {
 
-      base::set(playeredUserPrimitive, id,wparam,lparam);
+      base::set(oswindow, playeredUserPrimitive, id,wparam,lparam);
 
       m_nFlags   = wparam;
 
@@ -348,7 +348,9 @@ namespace message
 
 #elif defined(WINDOWS)
 
-      m_bTranslated = false; // not in root coordinates
+      m_bTranslated = true; // not in root coordinates
+
+      ::ClientToScreen(m_oswindow, &m_point);
 
 #else
 
@@ -359,10 +361,10 @@ namespace message
    }
 
 
-   void mouse_wheel::set(::layered * playeredUserPrimitive,const ::id & id,WPARAM wparam,::lparam lparam)
+   void mouse_wheel::set(oswindow oswindow, ::layered * playeredUserPrimitive,const ::id & id,WPARAM wparam,::lparam lparam)
    {
 
-      base::set(playeredUserPrimitive, id,wparam,lparam);
+      base::set(oswindow, playeredUserPrimitive, id,wparam,lparam);
 
       m_nFlags    = wparam;
 
@@ -409,10 +411,10 @@ namespace message
    }
 
 
-   void scroll::set(::layered * playeredUserPrimitive,const ::id & id,WPARAM wparam,::lparam lparam)
+   void scroll::set(oswindow oswindow, ::layered * playeredUserPrimitive,const ::id & id,WPARAM wparam,::lparam lparam)
    {
 
-      base::set(playeredUserPrimitive, id,wparam,lparam);
+      base::set(oswindow, playeredUserPrimitive, id,wparam,lparam);
 
       m_nSBCode = (i16)LOWORD(wparam);
 
@@ -423,10 +425,10 @@ namespace message
    }
 
 
-   void show_window::set(::layered * playeredUserPrimitive,const ::id & id,WPARAM wparam,::lparam lparam)
+   void show_window::set(oswindow oswindow, ::layered * playeredUserPrimitive,const ::id & id,WPARAM wparam,::lparam lparam)
    {
 
-      base::set(playeredUserPrimitive, id,wparam,lparam);
+      base::set(oswindow, playeredUserPrimitive, id,wparam,lparam);
 
       m_bShow = wparam != FALSE;
 
@@ -435,20 +437,20 @@ namespace message
    }
 
 
-   void kill_focus::set(::layered * playeredUserPrimitive, const ::id & id, WPARAM wparam, ::lparam lparam)
+   void kill_focus::set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, WPARAM wparam, ::lparam lparam)
    {
 
-      base::set(playeredUserPrimitive, id, wparam, lparam);
+      base::set(oswindow, playeredUserPrimitive, id, wparam, lparam);
 
-      m_oswindowNew = (oswindow) wparam;
+      m_oswindowNew = (::oswindow) wparam;
 
    }
 
 
-   void set_focus::set(::layered * playeredUserPrimitive,const ::id & id,WPARAM wparam,::lparam lparam)
+   void set_focus::set(oswindow oswindow, ::layered * playeredUserPrimitive,const ::id & id,WPARAM wparam,::lparam lparam)
    {
 
-      base::set(playeredUserPrimitive, id,wparam,lparam);
+      base::set(oswindow, playeredUserPrimitive, id,wparam,lparam);
 
       //m_puserinteraction = System.ui_from_handle(reinterpret_cast<oswindow>(wparam));
 
@@ -459,20 +461,20 @@ namespace message
 
 #ifdef WINDOWS_DESKTOP
 
-   void window_pos::set(::layered * playeredUserPrimitive,const ::id & id,WPARAM wparam,::lparam lparam)
+   void window_pos::set(oswindow oswindow, ::layered * playeredUserPrimitive,const ::id & id,WPARAM wparam,::lparam lparam)
    {
 
-      base::set(playeredUserPrimitive, id,wparam,lparam);
+      base::set(oswindow, playeredUserPrimitive, id,wparam,lparam);
 
       m_pwindowpos = reinterpret_cast<WINDOWPOS*>(lparam.m_lparam);
 
    }
 
 
-   void nc_calc_size::set(::layered * playeredUserPrimitive,const ::id & id,WPARAM wparam,::lparam lparam)
+   void nc_calc_size::set(oswindow oswindow, ::layered * playeredUserPrimitive,const ::id & id,WPARAM wparam,::lparam lparam)
    {
 
-      base::set(playeredUserPrimitive, id,wparam,lparam);
+      base::set(oswindow, playeredUserPrimitive, id,wparam,lparam);
 
       m_pparams = reinterpret_cast<NCCALCSIZE_PARAMS*>(lparam.m_lparam);
 

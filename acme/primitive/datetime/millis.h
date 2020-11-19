@@ -28,15 +28,17 @@ public:
    millis() { m_iMilliseconds = 0; }
    millis(enum e_tick_now) { m_iMilliseconds = get_tick(); }
    millis(enum e_no_init) {}
+   millis(i32 i) { m_iMilliseconds = i; }
+   millis(u32 u) { m_iMilliseconds = u; }
    millis(i64 i) { m_iMilliseconds = i; }
-   millis(const millis & count) { m_iMilliseconds = count.m_iMilliseconds; }
+   millis(u64 u) { m_iMilliseconds = u; }
+   millis(const secs & secs) { m_iMilliseconds = secs.m_iSeconds * 1'000; }
+   millis(const millis & millis) { m_iMilliseconds = millis.m_iMilliseconds; }
+   millis(const micros & micros);
+   millis(const nanos & nanos);
+   millis(const duration & duration);
 
-   millis & operator = (const secs & secs) { m_iMilliseconds = secs.m_iSeconds * 1'000; return *this; }
    millis & operator = (const millis & millis) { m_iMilliseconds = millis.m_iMilliseconds; return *this; }
-   millis & operator = (const micros & micros);
-   millis & operator = (const nanos & nanos);
-   millis & operator = (const duration & duration);
-   millis & operator = (::i64 i) { m_iMilliseconds = i; return *this;}
 
    inline static millis now() { return millis(::get_tick()); }
 
@@ -64,8 +66,8 @@ public:
 
    }
 
-   inline bool done(const ::millis & millis) const { return elapsed(millis) >= 0; }
-   inline bool done() const { return elapsed() >= 0; }
+   inline bool done(const ::millis & millis) const;
+   inline bool done() const;
 
 
    inline millis elapsed(const ::millis & millis) const
@@ -139,40 +141,40 @@ public:
 
    }
 
-   inline bool operator == (const ::duration& duration) const;
-   inline bool operator != (const ::duration& duration) const;
-   inline bool operator < (const ::duration& duration) const ;
-   inline bool operator <= (const ::duration& duration) const;
-   inline bool operator > (const ::duration& duration) const ;
-   inline bool operator >= (const ::duration& duration) const;
-   inline millis operator - (const ::duration& duration) const ;
-   inline millis operator + (const ::duration& duration) const ;
-   inline millis& operator -= (const ::duration& duration) ;
-   inline millis& operator += (const ::duration& duration) ;
+   //inline bool operator == (const ::duration& duration) const;
+   //inline bool operator != (const ::duration& duration) const;
+   //inline bool operator < (const ::duration& duration) const ;
+   //inline bool operator <= (const ::duration& duration) const;
+   //inline bool operator > (const ::duration& duration) const ;
+   //inline bool operator >= (const ::duration& duration) const;
+   //inline millis operator - (const ::duration& duration) const ;
+   //inline millis operator + (const ::duration& duration) const ;
+   //inline millis& operator -= (const ::duration& duration) ;
+   //inline millis& operator += (const ::duration& duration) ;
 
 
-   inline bool operator == (const ::millis & millis) const { return m_iMilliseconds == millis.m_iMilliseconds; }
-   inline bool operator != (const ::millis & millis) const { return m_iMilliseconds != millis.m_iMilliseconds; }
-   inline bool operator < (const ::millis & millis) const { return m_iMilliseconds < millis.m_iMilliseconds; }
-   inline bool operator <= (const ::millis & millis) const { return m_iMilliseconds <= millis.m_iMilliseconds; }
-   inline bool operator > (const ::millis & millis) const { return m_iMilliseconds > millis.m_iMilliseconds; }
-   inline bool operator >= (const ::millis & millis) const { return m_iMilliseconds >= millis.m_iMilliseconds; }
+   //inline bool operator == (const ::millis & millis) const { return m_iMilliseconds == millis.m_iMilliseconds; }
+   //inline bool operator != (const ::millis & millis) const { return m_iMilliseconds != millis.m_iMilliseconds; }
+   //inline bool operator < (const ::millis & millis) const { return m_iMilliseconds < millis.m_iMilliseconds; }
+   //inline bool operator <= (const ::millis & millis) const { return m_iMilliseconds <= millis.m_iMilliseconds; }
+   //inline bool operator > (const ::millis & millis) const { return m_iMilliseconds > millis.m_iMilliseconds; }
+   //inline bool operator >= (const ::millis & millis) const { return m_iMilliseconds >= millis.m_iMilliseconds; }
    inline millis operator - (const ::millis & millis) const { return m_iMilliseconds - millis.m_iMilliseconds; }
    inline millis operator + (const ::millis & millis) const { return m_iMilliseconds + millis.m_iMilliseconds; }
    inline millis& operator -= (const ::millis & millis) { m_iMilliseconds -= millis.m_iMilliseconds; return *this; }
    inline millis& operator += (const ::millis & millis) { m_iMilliseconds += millis.m_iMilliseconds; return *this; }
 
 
-   inline bool operator == (i64 i) const { return m_iMilliseconds == i; }
-   inline bool operator != (i64 i) const { return m_iMilliseconds != i; }
-   inline bool operator < (i64 i) const { return m_iMilliseconds < i; }
-   inline bool operator <= (i64 i) const{ return m_iMilliseconds <= i; }
-   inline bool operator > (i64 i) const { return m_iMilliseconds > i; }
-   inline bool operator >= (i64 i) const { return m_iMilliseconds >= i; }
-   inline millis operator - (i64 i) const { return m_iMilliseconds - i; }
-   inline millis operator + (i64 i) const { return m_iMilliseconds + i; }
-   inline millis& operator -= (i64 i) { m_iMilliseconds -= i; return *this; }
-   inline millis& operator += (i64 i) { m_iMilliseconds += i; return *this; }
+   //inline bool operator == (i64 i) const { return m_iMilliseconds == i; }
+   //inline bool operator != (i64 i) const { return m_iMilliseconds != i; }
+   //inline bool operator < (i64 i) const { return m_iMilliseconds < i; }
+   //inline bool operator <= (i64 i) const{ return m_iMilliseconds <= i; }
+   //inline bool operator > (i64 i) const { return m_iMilliseconds > i; }
+   //inline bool operator >= (i64 i) const { return m_iMilliseconds >= i; }
+   //inline millis operator - (i64 i) const { return m_iMilliseconds - i; }
+   //inline millis operator + (i64 i) const { return m_iMilliseconds + i; }
+   //inline millis& operator -= (i64 i) { m_iMilliseconds -= i; return *this; }
+   //inline millis& operator += (i64 i) { m_iMilliseconds += i; return *this; }
 
 
    inline millis operator * (double d) const { return (i64)(m_iMilliseconds * d); }
@@ -253,7 +255,7 @@ inline millis operator "" _tick(unsigned long long int u) { return u; }
 typedef CLASS_DECL_ACME numeric_array < millis > tick_array;
 
 
-inline secs & secs::operator = (const millis & millis) { m_iSeconds = millis.m_iMilliseconds / 1'000; return *this; }
+inline secs::secs(const millis & millis) { m_iSeconds = millis.m_iMilliseconds / 1'000; }
 
 
 inline millis operator "" _ms(unsigned long long int u) { return (::i64) u; }

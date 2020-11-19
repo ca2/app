@@ -15,10 +15,10 @@ namespace message
    }
 
 
-   void simple_command::set(::layered * playeredUserPrimitive, const ::id & id, WPARAM wparam, ::lparam lparam)
+   void simple_command::set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, WPARAM wparam, ::lparam lparam)
    {
 
-      ::message::base::set(playeredUserPrimitive, id, wparam, lparam);
+      ::message::base::set(oswindow, playeredUserPrimitive, id, wparam, lparam);
 
       m_esimplecommand = (e_simple_command)wparam;
 

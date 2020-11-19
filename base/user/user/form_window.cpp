@@ -179,7 +179,7 @@ namespace user
 
 #ifdef WINDOWS
 
-      switch(uiNotificationCode)
+      switch(uNotificationCode)
       {
       case BN_CLICKED:
       {
@@ -216,7 +216,7 @@ namespace user
 
 #ifdef WINDOWS
 
-      switch(uiNotificationCode)
+      switch(uNotificationCode)
       {
       case BN_CLICKED:
       {
@@ -252,7 +252,7 @@ namespace user
 
 #ifdef WINDOWS
 
-      switch(uiNotificationCode)
+      switch(uNotificationCode)
       {
       case CBN_SELCHANGE:
       {
@@ -296,7 +296,7 @@ namespace user
 
 #ifdef WINDOWS
 
-      switch(uiNotificationCode)
+      switch(uNotificationCode)
       {
       case EN_CHANGE:
       {

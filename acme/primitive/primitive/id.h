@@ -274,6 +274,7 @@ public:
    inline ::i64 i64() const;
    inline ::i32 i32() const { return (::i32) i64(); }
    inline ::u32 u32() const { return (::u32) i64(); }
+   inline ::index index() const { return (::index)i64(); }
    inline ::u32 umessage() const { return u32(); }
    inline operator const char* () const;
 

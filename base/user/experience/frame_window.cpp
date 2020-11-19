@@ -1205,7 +1205,7 @@ namespace experience
 
       SCAST_PTR(::message::activate,pactivate,pmessage);
 
-      __pointer(::user::interaction) pActive = (pactivate->m_nState == WA_INACTIVE ? pactivate->m_pWndOther : this);
+      __pointer(::user::interaction) pActive = (pactivate->m_eactivate == e_activate_inactive ? pactivate->m_pWndOther : this);
 
       if(pActive == nullptr)
       {
@@ -1231,7 +1231,7 @@ namespace experience
 
       pactivate->m_bRet = false;
 
-      SetActiveFlag(pactivate->m_nState == WA_ACTIVE || pactivate->m_nState == WA_CLICKACTIVE);
+      SetActiveFlag(pactivate->m_eactivate == e_activate_active || pactivate->m_eactivate == e_activate_click_active);
 
    }
 

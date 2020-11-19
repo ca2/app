@@ -21,7 +21,7 @@ public:
    virtual ~image_frame();
 
 
-   virtual bool to(::draw2d::graphics_pointer & pgraphics);
+   //virtual bool to(::draw2d::graphics_pointer & pgraphics);
 
    
    virtual void gif_set_disposal(int iDisposal);

@@ -474,9 +474,12 @@ namespace user
       }
    }
 
-   void impact::OnActivateFrame(::u32 /*nState*/, __pointer(::user::frame_window) /*pFrameWnd*/)
+
+   void impact::OnActivateFrame(enum_activate eactivate, __pointer(::user::frame_window) /*pFrameWnd*/)
    {
+
    }
+
 
    /* trans
    i32 impact::OnMouseActivate(::user::interaction_impl * pDesktopWnd, ::u32 nHitTest, const ::id & id)

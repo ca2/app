@@ -127,7 +127,7 @@ namespace filemanager
          if (paction->id() == id_pop)
          {
 
-            OnActivateFrame(WA_INACTIVE, GetParentFrame());
+            OnActivateFrame(e_activate_inactive, GetParentFrame());
 
             __pointer(::user::frame_window) spframewindow = GetParentFrame();
 

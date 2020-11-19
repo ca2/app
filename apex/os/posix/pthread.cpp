@@ -511,14 +511,6 @@ bool on_term_thread()
 }
 
 
-CLASS_DECL_APEX uptr translate_processor_affinity(int iOrder)
-{
-
-   return 1 << iOrder;
-
-}
-
-
 
 void get_os_priority(i32 * piPolicy, sched_param * pparam, ::e_priority epriority)
 {

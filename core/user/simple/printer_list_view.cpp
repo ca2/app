@@ -36,9 +36,9 @@ void simple_printer_list_view::_001OnCreate(::message::message * pmessage)
 
    pmessage->previous();
 
-   ::u32 cbNeeded = 0;
+   DWORD cbNeeded = 0;
 #ifdef WINDOWS_DESKTOP
-   ::u32 cbReturned = 0;
+   DWORD cbReturned = 0;
    ::EnumPrinters(PRINTER_ENUM_LOCAL | PRINTER_ENUM_CONNECTIONS, nullptr, 1, nullptr, 0, &cbNeeded, &cbReturned);
 #else
    //__throw(todo());

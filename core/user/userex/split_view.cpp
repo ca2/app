@@ -32,7 +32,7 @@ namespace userex
    bool split_view::on_new_view_creator_data(::user::impact_data * pimpactdata)
    {
 
-      ::index iPane = pimpactdata->m_id.i64();
+      ::index iPane = pimpactdata->m_id.index();
 
       if (iPane < 0)
       {

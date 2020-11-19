@@ -705,7 +705,7 @@ namespace userex
 
       get_client_rect(rC);
 
-      pgraphics->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
+      pgraphics->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
       ::rect r1;
 
@@ -728,7 +728,7 @@ namespace userex
 
       ::rect rCursor;
 
-      pgraphics->draw(r1, m_pimage, r2);
+      pgraphics->stretch(r1, m_pimage, r2);
 
       ::point point;
 
@@ -748,7 +748,7 @@ namespace userex
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-      pgraphics->draw(rectLum1, m_pimageLuminance->g(), r2);
+      pgraphics->stretch(rectLum1, m_pimageLuminance->g(), r2);
 
       r1.top_left() = m_rectColors.top_left() + ::size(m_pimage->width() - 1 + m_pimageLuminance->get_size().cx - 1, 0);
 
@@ -869,7 +869,7 @@ namespace userex
 
       m_pimage = create_image({m_rectColors.width() / 2,  m_rectColors.height()});
 
-      m_pimage->g()->draw(m_pimage->rect(), m_pimageTemplate->get_graphics(), m_pimageTemplate->rect());
+      m_pimage->g()->stretch(m_pimage->rect(), m_pimageTemplate->get_graphics(), m_pimageTemplate->rect());
 
       m_pimageLuminance = create_image({m_rectColors.width() / 8,  m_rectColors.height()});
 

@@ -68,7 +68,6 @@ namespace user
 
       pgraphics->draw_stock_icon(rectd, stock_icon_close);
 
-
    }
 
 

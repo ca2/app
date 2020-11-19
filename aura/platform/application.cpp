@@ -4316,7 +4316,7 @@ retry_license:
       if (pinteraction != nullptr)
       {
 
-         return pinteraction->get_message_base((enum_message) pmsg->message, pmsg->wParam, pmsg->lParam);
+         return pinteraction->get_message_base(pmsg->hwnd,(enum_message) pmsg->message, pmsg->wParam, pmsg->lParam);
 
       }
 
@@ -4329,7 +4329,7 @@ retry_license:
 
       }
 
-      pbase->set(pinteraction, (enum_message) pmsg->message, pmsg->wParam, pmsg->lParam);
+      pbase->set(pmsg->hwnd,pinteraction, (enum_message) pmsg->message, pmsg->wParam, pmsg->lParam);
 
 
       return pbase;

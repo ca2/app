@@ -784,7 +784,7 @@ namespace sockets
 
          m_memResponse.append(buf, len);
 
-         //u64 uiLen = 0;
+         //u64 uLen = 0;
 
          //int iOffset = 2;
 

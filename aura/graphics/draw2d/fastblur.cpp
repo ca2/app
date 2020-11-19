@@ -487,7 +487,7 @@ auto tickA0 = ::millis::now();
 
          string str;
 
-         str.Format(__prtick,tickA2.m_i);
+         str.Format(__prtick,tickA2.m_iMilliseconds);
 
       }
 
@@ -525,7 +525,7 @@ auto tickA0 = ::millis::now();
             string str1;
             str1.Format("| Parameters: w=%d h=%d rect=%d  \n",wj,hj,m_iRadius);
             string str2;
-            str2.Format("| time for calculating stack blur : " __prtick "\b",tick3.m_i);
+            str2.Format("| time for calculating stack blur : " __prtick "\b",tick3.m_iMilliseconds);
 
             output_debug_string("/-----------------------------------------\n");
             output_debug_string("| \n");
@@ -565,7 +565,7 @@ auto tickC0 = ::millis::now();
 
          string str;
 
-         str.Format(__prtick,tickC2.m_i);
+         str.Format(__prtick,tickC2.m_iMilliseconds);
       }
 
 #endif

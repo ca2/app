@@ -330,8 +330,8 @@ namespace ftp
                     ::u32 uNumberOfOptionalParameters, TSpecificationEnum enSpecification, enum_type enType) :
          m_strServerString(strServerString),
          m_strCompleteServerStringSyntax(strCompleteServerStringSyntax),
-         m_uiNumberOfParameters(uiNumberOfParameters),
-         m_uiNumberOfOptionalParameters(uiNumberOfOptionalParameters),
+         m_uNumberOfParameters(uNumberOfParameters),
+         m_uNumberOfOptionalParameters(uNumberOfOptionalParameters),
          m_enSpecification(enSpecification),
          m_etype(enType)
       {}
@@ -339,8 +339,8 @@ namespace ftp
       extended_info(const extended_info& src) :
          m_strServerString(src.m_strServerString),
          m_strCompleteServerStringSyntax(src.m_strCompleteServerStringSyntax),
-         m_uiNumberOfParameters(src.m_uiNumberOfParameters),
-         m_uiNumberOfOptionalParameters(src.m_uiNumberOfOptionalParameters),
+         m_uNumberOfParameters(src.m_uNumberOfParameters),
+         m_uNumberOfOptionalParameters(src.m_uNumberOfOptionalParameters),
          m_enSpecification(src.m_enSpecification),
          m_etype(src.m_etype)
       {
@@ -348,15 +348,15 @@ namespace ftp
 
       virtual const string& GetServerString() const override { return m_strServerString; }
       virtual const string& GetCompleteServerStringSyntax() const override { return m_strCompleteServerStringSyntax; }
-      virtual ::u32 GetNumberOfParameters() const override { return m_uiNumberOfParameters; }
-      virtual ::u32 GetNumberOfOptionalParameters() const override { return m_uiNumberOfOptionalParameters; }
+      virtual ::u32 GetNumberOfParameters() const override { return m_uNumberOfParameters; }
+      virtual ::u32 GetNumberOfOptionalParameters() const override { return m_uNumberOfOptionalParameters; }
       virtual TSpecificationEnum GetSpecification() const override { return m_enSpecification; }
       virtual enum_type GetType() const override { return m_etype; }
 
       const string            m_strServerString;
       const string            m_strCompleteServerStringSyntax;
-      const ::u32               m_uiNumberOfParameters;
-      const ::u32               m_uiNumberOfOptionalParameters;
+      const ::u32               m_uNumberOfParameters;
+      const ::u32               m_uNumberOfOptionalParameters;
       const TSpecificationEnum m_enSpecification;
       const enum_type          m_etype;
 

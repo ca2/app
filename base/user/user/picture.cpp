@@ -843,7 +843,7 @@ namespace user
 
             pimageDropShadow->fill(0);
 
-            pimageDropShadow->g()->draw(pimage->rect({ iShift, iShift }), pimage->g());
+            pimageDropShadow->g()->stretch(pimage->rect({ iShift, iShift }), pimage->g());
 
             pimageDropShadow->paint_rgb(m_ppictureimpl->m_hlsGlowDropShadow);
 
@@ -867,7 +867,7 @@ namespace user
 
          rectDropShadow.offset(m_ppictureimpl->m_iGlowDropShadowOffset, m_ppictureimpl->m_iGlowDropShadowOffset);
 
-         pgraphics->draw(rectDropShadow, pimageDropShadow->g(), pimageDropShadow->rect());
+         pgraphics->stretch(rectDropShadow, pimageDropShadow->g(), pimageDropShadow->rect());
 
       }
 

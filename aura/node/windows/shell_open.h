@@ -16,7 +16,7 @@ namespace windows
 
       HSZ               m_hszAppName;
       HSZ               m_hszSystemTopic;
-      ::u32             m_dwDde;
+      DWORD             m_dwDde;
 
       shell_open();
       virtual ~shell_open();

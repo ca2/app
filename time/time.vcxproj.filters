@@ -100,9 +100,6 @@
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="datetime\datetime_windows_filetime.cpp">
-      <Filter>Source Files\datetime</Filter>
-    </ClCompile>
     <ClCompile Include="calculator\parser.cpp">
       <Filter>Source Files\calculator</Filter>
     </ClCompile>

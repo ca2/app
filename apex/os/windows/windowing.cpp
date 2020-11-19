@@ -172,14 +172,6 @@ CLASS_DECL_APEX oswindow get_desktop_window()
 }
 
 
-CLASS_DECL_APEX oswindow get_window(oswindow oswindow, int iWindow)
-{
-
-   return ::GetWindow(oswindow, iWindow);
-
-}
-
-
 
 // void update_session_cursor(class user::interaction_impl * puiimpl)
 // {

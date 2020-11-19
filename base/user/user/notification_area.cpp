@@ -78,9 +78,14 @@ namespace user
          }
       }
 
-      ::u32 dwTrayPid = 0;
-      if(!GetWindowThreadProcessId(m_oswindowTray, &dwTrayPid))
+      DWORD dwTrayPid = 0;
+
+      if (!GetWindowThreadProcessId(m_oswindowTray, &dwTrayPid))
+      {
+
          return;
+
+      }
 
       if(dwTrayPid == 0)
          return;
@@ -98,7 +103,8 @@ namespace user
          data.ReadData(&tb);
          data.ReadData<TRAYDATA>(&tray,(const void *)tb.dwData);
 
-         ::u32 dwProcessId = 0;
+         DWORD dwProcessId = 0;
+
          GetWindowThreadProcessId(tray.m_oswindow,&dwProcessId);
 
          info.sProcessPath = module_path_from_pid(dwProcessId);

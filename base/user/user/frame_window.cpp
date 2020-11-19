@@ -483,7 +483,7 @@ namespace user
 
                   sync_lock sl(psync);
 
-                  pimage1->get_graphics()->BitBlt(0, 0, rect.width(), rect.height(), pgraphics, 0, 0);
+                  pimage1->get_graphics()->draw(rect.size(), pgraphics);
 
                   psession->copydesk().image_to_desk(pimage1);
 
@@ -509,9 +509,9 @@ namespace user
 
                   }
 
-                  pimage2->get_graphics()->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
+                  pimage2->get_graphics()->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
-                  pimage2->get_graphics()->StretchBlt(0, 0, pimage2->width(), pimage2->height(), pimage1->get_graphics(), 0, 0, rect.size().cx, rect.size().cy);
+                  pimage2->get_graphics()->stretch(::rect(pimage2->size()), pimage1->get_graphics(), ::rect(rect.size()));
 
                   Application.image().save_image(::dir::system() / "control_alt_p_w300.png", pimage2);
 
@@ -1151,7 +1151,7 @@ namespace user
          if (pview != nullptr)
          {
 
-            pview->OnActivateFrame(WA_INACTIVE, this);
+            pview->OnActivateFrame(e_activate_inactive, this);
 
          }
 
@@ -1732,7 +1732,7 @@ namespace user
    {
       SCAST_PTR(::message::activate, pactivate, pmessage);
 
-      __pointer(::user::interaction) pActive = (pactivate->m_nState == WA_INACTIVE ? pactivate->m_pWndOther : this);
+      __pointer(::user::interaction) pActive = (pactivate->m_eactivate == e_activate_inactive ? pactivate->m_pWndOther : this);
 
       pmessage->previous();
 
@@ -1765,11 +1765,11 @@ namespace user
       // when frame gets activated, re-activate current ::user::impact
       if (pActiveView != nullptr)
       {
-         if (pactivate->m_nState != WA_INACTIVE && !pactivate->m_bMinimized)
+         if (pactivate->m_eactivate != e_activate_inactive && !pactivate->m_bMinimized)
             pActiveView->OnActivateView(TRUE, pActiveView, pActiveView);
 
          // always notify the ::user::impact of frame activations
-         pActiveView->OnActivateFrame(pactivate->m_nState, this);
+         pActiveView->OnActivateFrame(pactivate->m_eactivate, this);
       }
 
       set_need_redraw();

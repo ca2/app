@@ -1420,7 +1420,7 @@ namespace aura
       virtual HCURSOR load_default_cursor(e_cursor ecursor);
 
 #ifdef WINDOWS_DESKTOP
-      virtual char * windows_get_system_cursor(e_cursor ecursor);
+      virtual TCHAR * windows_get_system_cursor(e_cursor ecursor);
 #endif
 
 #ifdef LINUX

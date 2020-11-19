@@ -890,9 +890,6 @@
     <ClInclude Include="user\callback.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\composition_imm_client.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\control_descriptor.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
@@ -906,9 +903,6 @@
       <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="user\create_struct.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\imm_client.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="user\interaction.h">
@@ -1032,18 +1026,6 @@
       <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="user\style_base.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\aaa_ewindowflag.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\aaa_check.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\aaa_text.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\aaa_command.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="os\windows_common\_.h">
@@ -1459,9 +1441,6 @@
     <ClCompile Include="user\callback.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\composition_imm_client.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\control_descriptor.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
@@ -1475,9 +1454,6 @@
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\create_struct.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\imm_client.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\interaction.cpp">
@@ -1659,6 +1635,15 @@
     </ClCompile>
     <ClCompile Include="platform\shell_open.cpp">
       <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\graphics\monitor.cpp">
+      <Filter>Source Files\graphics\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="os\windows\monitor.cpp">
+      <Filter>Source Files\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="os\windows\imm_client.cpp">
+      <Filter>Source Files\os\windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

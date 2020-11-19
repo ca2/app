@@ -388,9 +388,9 @@ namespace user
 
       }
 
-      pgraphics->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
+      pgraphics->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
-      pgraphics->draw(m_pimageLogo->rect({ 10, 10 }), m_pimageLogo->get_graphics());
+      pgraphics->stretch(m_pimageLogo->rect({ 10, 10 }), m_pimageLogo->get_graphics());
 
       ::rect rect;
 
@@ -534,7 +534,7 @@ namespace user
                   rectDib.top = rect.top + (rect.height() - pimage1->height()) / 2;
                   rectDib.set_size(pimage1->width(), pimage1->height());
 
-                  pgraphics->draw(rectDib, pimage1->g());
+                  pgraphics->stretch(rectDib, pimage1->g());
 
                }
 
@@ -603,7 +603,7 @@ namespace user
 
       }
 
-      pgraphicsParam->draw(rectClient, pimage1->get_graphics());
+      pgraphicsParam->stretch(rectClient, pimage1->get_graphics());
 
    }
 

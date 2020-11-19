@@ -26,7 +26,7 @@ public:
    i32_spreadset *                     m_prel;
    bool                                m_bTracking;
    index                               m_iTracking;
-   ::u32                                m_uiResourceID;
+   ::u32                                m_uResourceId;
    index                               m_iTopMenuCount;
    __composite(::user::menu)           m_pmenu;
 

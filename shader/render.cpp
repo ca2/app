@@ -331,7 +331,7 @@ namespace app_shader
          pgraphics->set(matrix);
 #endif
 
-         pgraphics->draw(m_rect, m_pcontext->m_pbuffer->m_pimage);
+         pgraphics->stretch(m_rect, m_pcontext->m_pbuffer->m_pimage);
 
 #if !defined(__APPLE__)
          pgraphics->set(matrixOriginal);

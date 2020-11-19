@@ -286,7 +286,7 @@ namespace imaging_freeimage
       bOk = FreeImage_SaveToMemory(eformat, pfi8, pfm1, iFreeImageSave) != FALSE;
 
       byte * pbData = nullptr;
-      ::u32 dwSize = 0;
+      DWORD dwSize = 0;
       if (bOk)
          bOk = FreeImage_AcquireMemory(pfm1, &pbData, &dwSize) != FALSE;
       if (bOk)

@@ -446,7 +446,7 @@ namespace user
                   ZeroMemory(&cc, sizeof(cc));
                   cc.lStructSize = sizeof(CHOOSECOLOR);
                   cc.rgbResult = RGB(0, 0, 0);
-                  cc.lpCustColors = crCustColors;
+                  cc.lpCustColors = (COLORREF *) crCustColors;
 
                   cc.Flags = CC_RGBINIT | CC_FULLOPEN;
                   cc.hwndOwner = get_safe_handle() ; // this hangs parent, as well as me

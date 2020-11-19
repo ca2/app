@@ -70,7 +70,7 @@ namespace imaging_wic
 
             ::u32 uCount = 0;
 
-            hr = pbitmapdecoder->GetFrameCount(&uiCount);
+            hr = pbitmapdecoder->GetFrameCount(&uCount);
 
             if (FAILED(hr))
             {
@@ -79,7 +79,7 @@ namespace imaging_wic
 
             }
 
-            cFrame = uiCount;
+            cFrame = uCount;
 
          }
 
@@ -177,7 +177,7 @@ namespace imaging_wic
 
             __defer_construct(pimageFrame);
 
-            estatus = pimageFrame->create(pframea->m_size);
+            estatus = pimageFrame->create(pframea->m_size, 0);
 
             if (!estatus)
             {
@@ -350,9 +350,9 @@ namespace imaging_wic
                         // Convert the delay retrieved in 10 ms units to a delay in 1 ms units
                         ::u32 uDelay;
 
-                        hr = ::u32Mult(propValue.uiVal, 10, &uiDelay);
+                        hr = UIntMult(propValue.uiVal, 10, &uDelay);
 
-                        pframe->m_tick = uiDelay;
+                        pframe->m_tick = uDelay;
 
                      }
 
@@ -768,7 +768,7 @@ namespace imaging_wic
                ::u32 u;
 
                // Convert the delay retrieved in 10 ms units to a delay in 1 ms units
-               hr = ::u32Mult(propValue.uiVal, 10, &u);
+               hr = UIntMult(propValue.uiVal, 10, &u);
 
                pframe->m_tick = u;
 

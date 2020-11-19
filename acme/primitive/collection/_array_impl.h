@@ -212,7 +212,7 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 inline const TYPE& array_base < TYPE, ARG_TYPE, ALLOCATOR > ::element_at(::index nIndex) const
 {
 
-   ASSERT(nIndex >= 0 && nIndex < __count(this->m_nSize));
+   ASSERT(nIndex >= 0 && nIndex < this->m_nSize);
 
    return m_pData[nIndex];
 
@@ -223,7 +223,7 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 inline TYPE& array_base < TYPE, ARG_TYPE, ALLOCATOR > ::element_at(::index nIndex)
 {
 
-   ASSERT(nIndex >= 0 && nIndex < __count(this->m_nSize));
+   ASSERT(nIndex >= 0 && nIndex < this->m_nSize);
 
    return m_pData[nIndex];
 
@@ -272,7 +272,7 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 inline ::index array < TYPE, ARG_TYPE, ALLOCATOR > ::add_item(ARG_TYPE newElement)
 {
 
-   ::index nIndex = (::index_cast) __count(this->m_nSize);
+   auto nIndex = this->m_nSize;
 
    this->allocate(nIndex + 1);
 
@@ -341,41 +341,32 @@ inline void array_base < TYPE, ARG_TYPE, ALLOCATOR > ::__swap(iterator it1, iter
 }
 
 
-//template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-//inline void array_base < TYPE, ARG_TYPE, ALLOCATOR > ::__swap(const_iterator it1, const_iterator it2)
-//{
-//   TYPE t = get_data()[it1.m_i];
-//   get_data()[it1.m_i] = get_data()[it2.m_i];
-//   get_data()[it2.m_i] = t;
-//}
-
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 inline array < TYPE, ARG_TYPE, ALLOCATOR >  & array < TYPE, ARG_TYPE, ALLOCATOR > ::operator = (const array & src)
 {
+
    if(&src != this)
    {
+
       copy(src);
+
    }
+
    return *this;
+
 }
 
-
-
-// out-of-line functions
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 array < TYPE, ARG_TYPE, ALLOCATOR > ::array(::matter * pobjectContext, ::count nGrowBy) //:
-   //::matter(pobject)
 {
-//   this->m_nGrowBy = max(0, nGrowBy);
-//   this->m_pData = nullptr;
-//   __count(this->m_nSize) = this->m_nMaxSize = 0;
+
+
 }
 
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-array < TYPE, ARG_TYPE, ALLOCATOR > ::array(const array & a) //:
-//   matter(a)
+array < TYPE, ARG_TYPE, ALLOCATOR > ::array(const array & a)
 {
 
    operator = (a);
@@ -386,10 +377,14 @@ array < TYPE, ARG_TYPE, ALLOCATOR > ::array(const array & a) //:
 template < class TYPE,class ARG_TYPE,class ALLOCATOR >
 inline array < TYPE,ARG_TYPE,ALLOCATOR > ::array(::std::initializer_list < TYPE >  l)
 {
+
    forallref(l)
    {
+
       add((ARG_TYPE) item);
+
    }
+
 }
 
 
@@ -405,22 +400,26 @@ array < TYPE, ARG_TYPE, ALLOCATOR > :: array(enum_create_new, ::count n)
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 array < TYPE, ARG_TYPE, ALLOCATOR > ::array(::count n, ARG_TYPE t)
 {
+
    while (n > 0)
    {
-      add(t);
-      n--;
-   }
-}
 
+      add(t);
+
+      n--;
+
+   }
+
+}
 
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 array < TYPE, ARG_TYPE, ALLOCATOR > ::~array()
 {
+
    this->remove_all(); // on_destruct_element is virtual and won't be available for array_base
+
 }
-
-
 
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
@@ -438,11 +437,10 @@ inline ::index array < TYPE, ARG_TYPE, ALLOCATOR > ::append(const array& src)
    return nOldSize;
 }
 
+
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 inline void array < TYPE, ARG_TYPE, ALLOCATOR >::copy(const array& src)
 {
-
-    // ASSERT_VALID(this);
 
    ASSERT(this != &src);
 
@@ -480,23 +478,34 @@ inline array < TYPE, ARG_TYPE, ALLOCATOR >  & array < TYPE, ARG_TYPE, ALLOCATOR 
 
    if(&a == this)
    {
+
       array < TYPE, ARG_TYPE, ALLOCATOR >  aCopy(a);
+
       add(aCopy);
+
    }
    else
    {
+
       add(a);
+
    }
+
    return *this;
 
 }
 
+
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 inline array < TYPE, ARG_TYPE, ALLOCATOR >  array < TYPE, ARG_TYPE, ALLOCATOR > ::operator + (const array & a) const
 {
+
    array < TYPE, ARG_TYPE, ALLOCATOR >  aNew(*this);
+
    aNew += a;
+
    return a;
+
 }
 
 
@@ -536,6 +545,7 @@ inline TYPE array_base < TYPE, ARG_TYPE, ALLOCATOR >::pop(::index n)
 
 }
 
+
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 inline void array_base < TYPE, ARG_TYPE, ALLOCATOR >::pop_back(::index n)
 {
@@ -544,17 +554,24 @@ inline void array_base < TYPE, ARG_TYPE, ALLOCATOR >::pop_back(::index n)
 
 }
 
+
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 inline ::index array_base < TYPE, ARG_TYPE, ALLOCATOR >::push(ARG_TYPE newElement,::index n)
 {
+
    return insert_at(this->get_upper_bound(n),newElement);
+
 }
+
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 inline void array_base < TYPE, ARG_TYPE, ALLOCATOR >::push_back(ARG_TYPE newElement,::index n)
 {
+
    insert_at(this->get_upper_bound(n),newElement);
+
 }
+
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 inline TYPE array_base < TYPE, ARG_TYPE, ALLOCATOR >::takeAt(::index i)
@@ -567,6 +584,8 @@ inline TYPE array_base < TYPE, ARG_TYPE, ALLOCATOR >::takeAt(::index i)
    return t;
 
 }
+
+
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 inline TYPE array_base < TYPE, ARG_TYPE, ALLOCATOR >::takeFirst(::index i)
 {
@@ -578,6 +597,7 @@ inline TYPE array_base < TYPE, ARG_TYPE, ALLOCATOR >::takeFirst(::index i)
    return t;
 
 }
+
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 inline TYPE array_base < TYPE, ARG_TYPE, ALLOCATOR >::takeLast(::index n)
@@ -592,8 +612,6 @@ inline TYPE array_base < TYPE, ARG_TYPE, ALLOCATOR >::takeLast(::index n)
    return t;
 
 }
-
-
 
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
@@ -615,8 +633,6 @@ array_base < TYPE, ARG_TYPE, ALLOCATOR >::array_base(const array_base & array)
    }
 
 }
-
-
 
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
@@ -659,6 +675,7 @@ inline array < TYPE,ARG_TYPE,ALLOCATOR > & array < TYPE,ARG_TYPE,ALLOCATOR >::mo
 
 }
 
+
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 inline array < TYPE, ARG_TYPE, ALLOCATOR > & array < TYPE, ARG_TYPE, ALLOCATOR >::operator = (array && a)
 {
@@ -668,25 +685,6 @@ inline array < TYPE, ARG_TYPE, ALLOCATOR > & array < TYPE, ARG_TYPE, ALLOCATOR >
    return *this;
 
 }
-
-
-
-//template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-//inline const TYPE& array_base < TYPE, ARG_TYPE, ALLOCATOR >::element_at(::index nIndex) const
-//{
-//
-//   return m_pData[nIndex];
-//
-//}
-//
-//
-//template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-//inline TYPE& array_base < TYPE, ARG_TYPE, ALLOCATOR >::element_at(::index nIndex)
-//{
-//
-//   return m_pData[nIndex];
-//
-//}
 
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
@@ -701,14 +699,18 @@ inline const TYPE& array_base < TYPE, ARG_TYPE, ALLOCATOR >::first(::index nInde
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 inline TYPE & array_base < TYPE, ARG_TYPE, ALLOCATOR >::first(::index nIndex)
 {
+
    return this->element_at(nIndex);
+
 }
 
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 inline const TYPE & array_base < TYPE, ARG_TYPE, ALLOCATOR >::last(::index i) const
 {
+
    return element_at(this->get_upper_bound(i));
+
 }
 
 
@@ -737,6 +739,7 @@ inline TYPE & array_base < TYPE, ARG_TYPE, ALLOCATOR >::middle(::index i)
    return element_at(this->get_middle_index(i));
 
 }
+
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 void  array_base < TYPE, ARG_TYPE, ALLOCATOR >::set_all(const TYPE & t)
@@ -772,13 +775,3 @@ inline array_base < TYPE, ARG_TYPE, ALLOCATOR > & array_base < TYPE, ARG_TYPE, A
 
 
 
-
-//template < typename PRED >
-//inline runnable_array & runnable_array::operator +=(PRED pred)
-//{
-//
-//   add(__new(pred_holder < PRED>(pred)));
-//
-//   return *this;
-//
-//}

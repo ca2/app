@@ -13,14 +13,14 @@ public:
 
    secs() { m_iSeconds = 0; }
    secs(::i64 i) { m_iSeconds = i; }
+   secs(const secs & secs) { m_iSeconds = secs.m_iSeconds; }
+   secs(const millis & millis);
+   secs(const micros & micros);
+   secs(const nanos & nanos);
+   secs(const duration & duration);
 
 
    secs & operator = (const secs & secs) { m_iSeconds = secs.m_iSeconds; return *this; }
-   secs & operator = (const millis & millis);
-   secs & operator = (const micros & micros);
-   secs & operator = (const nanos & nanos);
-   secs & operator = (const duration & duration);
-   secs & operator = (::i64 i) { m_iSeconds = i; return *this; }
 
 
 };

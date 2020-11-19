@@ -273,7 +273,7 @@ namespace aura
    }
 
 
-   char * application::windows_get_system_cursor(e_cursor ecursor)
+   TCHAR * application::windows_get_system_cursor(e_cursor ecursor)
    {
 
       switch (ecursor)

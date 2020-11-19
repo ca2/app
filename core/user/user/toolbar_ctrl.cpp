@@ -30,7 +30,7 @@ namespace user
       ASSERT(is_window());
       TBADDBITMAP tbab;
       tbab.hInst = nullptr;
-      tbab.nID = (::u32_PTR)pBitmap->get_os_data();
+      tbab.nID = (UINT_PTR)pBitmap->get_os_data();
       return (i32) send_message( TB_ADDBITMAP, (WPARAM)nNumButtons,
          (LPARAM)&tbab);
 #else
@@ -220,10 +220,10 @@ namespace user
       return TRUE;
    }
 
-   i32 toolbar_control::GetButtonText(::u32 uID, string &str)
+   i32 toolbar_control::GetButtonText(::u32 uId, string &str)
    {
 #ifdef WINDOWS_DESKTOP
-      UNREFERENCED_PARAMETER(uiID);
+      UNREFERENCED_PARAMETER(uId);
       UNREFERENCED_PARAMETER(str);
       TBBUTTONINFOW tbbi;
       tbbi.cbSize = sizeof(tbbi);
@@ -236,7 +236,7 @@ namespace user
          if(!tbbi.pszText)
          return 0;
          tbbi.cchText = nSize;
-         if(GetButtonInfo(uiID, &tbbi) != -1)
+         if(GetButtonInfo(uId, &tbbi) != -1)
          {
          str.ReleaseBuffer();
          return 1;

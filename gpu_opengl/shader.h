@@ -40,9 +40,9 @@ namespace opengl
 
       unsigned int create_shader(const char* pszVertex, GLenum type);
 
-      virtual ::estatus shader_compile_errors(GL::u32 shader, GLenum type, string & strSummary);
+      virtual ::estatus shader_compile_errors(GLuint shader, GLenum type, string & strSummary);
 
-      virtual ::estatus program_compile_errors(GL::u32 program, string & strSummary);
+      virtual ::estatus program_compile_errors(GLuint program, string & strSummary);
 
 
    };

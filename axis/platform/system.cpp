@@ -73,10 +73,15 @@ void dappy(const char * psz);
 #ifdef WINDOWS_DESKTOP
 string get_user_name()
 {
+   
    WCHAR wsz[1024];
-   ::u32 dwSize = sizeof(wsz) / sizeof(WCHAR);
+
+   DWORD dwSize = sizeof(wsz) / sizeof(WCHAR);
+
    ::GetUserNameW(wsz,&dwSize);
+
    return string(wsz);
+
 }
 #include "aura/os/windows/_c.h"
 #endif
@@ -490,7 +495,7 @@ namespace axis
 
 
 
-   CLASS_DECL_AXIS void black_body(float* r, float* g, float* b, ::u32 dwTemp);
+   //CLASS_DECL_AXIS void black_body(float* r, float* g, float* b, ::u32 dwTemp);
 
 
    

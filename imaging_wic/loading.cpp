@@ -382,7 +382,7 @@ namespace imaging_wic
 
       ::u32 uHeight;
 
-      hr = piBmp->GetSize(&uiWidth, &uiHeight);
+      hr = piBmp->GetSize(&uWidth, &uHeight);
 
       if (hr != S_OK)
       {
@@ -395,8 +395,8 @@ namespace imaging_wic
 
       rc.X = 0;
       rc.Y = 0;
-      rc.Width = uiWidth;
-      rc.Height = uiHeight;
+      rc.Width = uWidth;
+      rc.Height = uHeight;
 
       comptr < IWICBitmapLock > piLock;
 
@@ -424,7 +424,7 @@ namespace imaging_wic
 
       byte * pData;
 
-      hr = piLock->GetDataPointer(&uiArea, &pData);
+      hr = piLock->GetDataPointer(&uArea, &pData);
 
       if (hr != S_OK)
       {
@@ -433,7 +433,7 @@ namespace imaging_wic
 
       }
 
-      pimageFrame->create({ (int)uiWidth, (int)uiHeight });
+      pimageFrame->create({ (int)uWidth, (int)uHeight });
 
       if (pimageFrame->area() <= 0)
       {
@@ -444,7 +444,7 @@ namespace imaging_wic
 
       pimageFrame->map();
 
-      ::copy_colorref(pimageFrame->get_data(), uiWidth, uiHeight, pimageFrame->scan_size(), (color32_t *)pData, cbStride);
+      ::copy_colorref(pimageFrame->get_data(), uWidth, uHeight, pimageFrame->scan_size(), (color32_t *)pData, cbStride);
 
 
       return true;
@@ -748,7 +748,7 @@ namespace imaging_wic
       if (SUCCEEDED(hr))
       {
 
-         hr = piBitmapFrame->SetSize(uiWidth, uiHeight);
+         hr = piBitmapFrame->SetSize(uWidth, uHeight);
 
       }
 
@@ -787,7 +787,7 @@ namespace imaging_wic
             if (SUCCEEDED(hr))
             {
 
-               hr = piBitmapFrame->WritePixels(uiHeight, pimage->scan_size(), uiHeight * pimage->scan_size(), (byte *)pcr);
+               hr = piBitmapFrame->WritePixels(uHeight, pimage->scan_size(), uHeight * pimage->scan_size(), (byte *)pcr);
 
             }
 

@@ -2395,7 +2395,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
          if (!bBlurBackground)
          {
 
-            iDrawingOrder = get_int(pstyle, ::user::int_top_level_drawing_order);
+            iDrawingOrder = get_int(pstyle, ::user::e_int_top_level_drawing_order);
 
             if(pstyle)
             {
@@ -2544,7 +2544,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
          if(m_pimageBlur->is_ok())
          {
 
-            m_pimageBlur->g()->BitBlt(0,0,rectClient.width(),rectClient.height(),pgraphics,0,0);
+            m_pimageBlur->g()->draw(rectClient.size(), pgraphics);
             m_blur.blur(m_pimageBlur, 2);
             imaging.bitmap_blend(
             m_pimageBlur->g(),
@@ -2553,10 +2553,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
             m_pimageBk->g(),
             nullptr,
             49);
-            pgraphics->from(rectClient.size(),
-                            m_pimageBlur->g(),
-                            nullptr,
-                            SRCCOPY);
+            pgraphics->stretch(rectClient, m_pimageBlur->g());
 
          }
 

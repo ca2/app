@@ -285,12 +285,12 @@ bool xfplayer_view_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bool
 
                   //const ::point & point = pgraphics->GetViewportOrg();
                   //pimage->from(nullptr, pgraphics, point + rect.top_left(), rect.size());
-                  pimage->from(nullptr, pgraphics, rect.top_left(), rect.size());
+                  pimage->g()->draw(rect.size(), pgraphics, rect.top_left());
                   //pimage->get_graphics()->fill_rect(0, 0, 16, 16, ARGB(255, 255, 0, 255));
                   pimage->invert();
                   //pimage->fill_channel(0, ::color::channel_blue);
                   pimage->fill_channel(255, ::color::channel_alpha);
-                  pimage->to(pgraphics, rect.top_left(), rect.size(), nullptr);
+                  pgraphics->draw(rect, pimage);
                }
             }
          }

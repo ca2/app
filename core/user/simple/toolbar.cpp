@@ -1236,9 +1236,9 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
 
    auto pstyle = get_style(pgraphics);
 
-   m_sizePress.cx = get_int(pstyle, ::user::int_button_press_shift_cx, 2);
+   m_sizePress.cx = get_int(pstyle, ::user::e_int_button_press_shift_cx, 2);
 
-   m_sizePress.cy = get_int(pstyle, ::user::int_button_press_shift_cy, 2);
+   m_sizePress.cy = get_int(pstyle, ::user::e_int_button_press_shift_cy, 2);
 
    //m_bDelayedButtonLayout = false;
 
@@ -2405,7 +2405,7 @@ size simple_toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, u32 dwMo
             //    | TBIF_STYLE
             //    | TBIF_SIZE;
             // ::u32 uID = GetItemID(i);
-            // GetToolBarCtrl().GetButtonInfo(uiID, &buttona);
+            // GetToolBarCtrl().GetButtonInfo(uId, &buttona);
             // TRACE("BUTTON.m_id = %d\n", buttona.m_id  );
             // TRACE("BUTTON.m_fsStyle = %d\n", buttona.m_fsStyle  );
             // TRACE("BUTTON.cx = %d\n", buttona.cx );

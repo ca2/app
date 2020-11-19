@@ -287,11 +287,11 @@ namespace account
 
          double r = (double)(64) / (double)m_pimage->height();
 
-         pgraphics->StretchBlt(
-         (int)(49 * rx), (int)(49 * ry) + 2 - 11,
-         i32 (m_pimage->width() * r), i32 (m_pimage->height() * r),
+         pgraphics->stretch(
+         ::rect_dim((int)(49 * rx), (int)(49 * ry) + 2 - 11,
+         i32 (m_pimage->width() * r), i32 (m_pimage->height() * r)),
          m_pimage->g(),
-         0, 0, m_pimage->width(), m_pimage->height(), 0);
+         ::rect_dim(0, 0, m_pimage->width(), m_pimage->height()));
 
       }
       else if (m_bCred && m_strCred.has_char())
@@ -318,7 +318,7 @@ namespace account
 
          pgraphics->draw_ca2_border2((int)(49 * rx), (int)(49 * ry) - 11, (int)((91 + 2 + 2) * ry), 1, 1, crBk, cr, crBorderOut, crBorderIn);
 
-         pgraphics->DrawIcon((int)(49 * rx) + 2, (int)(49 * ry) + 2 - 11, m_picon95, (int)((91 + 2 + 2) * ry), (int)((91 + 2 + 2) * ry), 0, nullptr, 0);
+         pgraphics->draw(::point((int)(49 * rx) + 2, (int)(49 * ry) + 2 - 11), m_picon95, ::size((int)((91 + 2 + 2) * ry), (int)((91 + 2 + 2) * ry)));
 
       }
       else

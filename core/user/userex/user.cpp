@@ -740,7 +740,7 @@ namespace core
 
       pbox->value("application_name") = strTitle;
 
-      pbox->m_millisDelay = (::u32)durationTimeout.get_total_milliseconds();
+      pbox->m_millisDelay = durationTimeout;
 
       string strMatter;
 
@@ -899,7 +899,7 @@ namespace core
       ZeroMemory(&cc, sizeof(cc));
       cc.lStructSize = sizeof(CHOOSECOLOR);
       cc.rgbResult = c.get_rgb();
-      cc.lpCustColors = crCustColors;
+      cc.lpCustColors = (COLORREF*) crCustColors;
 
       cc.Flags = CC_RGBINIT | CC_FULLOPEN;
       cc.hwndOwner = puiOwner->get_safe_handle(); // this hangs parent, as well as me

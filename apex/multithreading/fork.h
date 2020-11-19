@@ -389,8 +389,6 @@ inline void fork_release(::object * pobjectParent, __pointer(T) & t)
 }
 
 
-CLASS_DECL_APEX uptr translate_processor_affinity(int i);
-
 
 template < typename PRED >
 class forking_count_pred :
@@ -494,12 +492,14 @@ public:
       construct();
    }
 
+   
    void construct()
    {
 
-      m_uThreadAffinityMask = translate_processor_affinity(int (m_iOrder));
+      m_uThreadAffinityMask = (::uptr) translate_processor_affinity(m_iOrder);
 
    }
+
 
    virtual ~forking_count_thread()
    {

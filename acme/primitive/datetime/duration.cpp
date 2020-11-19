@@ -32,42 +32,39 @@ void duration::normalize()
 
 
 
-duration duration::operator - (const duration & duration) const
-{
+//duration duration::operator - (const duration & duration) const
+//{
+//
+//   return ::duration(m_iSeconds - duration.m_iSeconds, m_iNanoseconds - duration.m_iNanoseconds);
+//
+//}
+//
+//
+//duration duration::operator + (const duration & duration) const
+//{
+//
+//   return ::duration(m_iSeconds + duration.m_iSeconds, m_iNanoseconds + duration.m_iNanoseconds);
+//
+//}
 
-   return ::duration(m_iSeconds - duration.m_iSeconds, m_iNanoseconds - duration.m_iNanoseconds);
+
+nanosecond::nanosecond(long double d) :
+   duration((i64)(d / (1000.0 * 1000.0 * 1000.0)), (i64)fmod(d, 1000.0 * 1000.0 * 1000.0))
+{
 
 }
 
 
-duration duration::operator + (const duration & duration) const
+microsecond::microsecond(long double d) :
+   duration(((i64)(d / (1000.0 * 1000.0)), (i64)fmod(d * 1000.0, 1000.0 * 1000.0 * 1000.0)))
 {
-
-   return ::duration(m_iSeconds + duration.m_iSeconds, m_iNanoseconds + duration.m_iNanoseconds);
 
 }
 
 
-nanosecond::nanosecond(long double d)
+millisecond::millisecond(long double d) :
+   duration((i64)(d / 1000.0), (i64)fmod(d * 1000 * 1000.0, 1000.0 * 1000.0 * 1000.0))
 {
-
-   raw_set((i64)(d / (1000.0 * 1000.0 * 1000.0)), (i64)fmod(d, 1000.0 * 1000.0 * 1000.0));
-
-}
-
-
-microsecond::microsecond(long double d)
-{
-
-   raw_set((i64)(d / (1000.0 * 1000.0)), (i64)fmod(d * 1000.0, 1000.0 * 1000.0 * 1000.0));
-
-}
-
-
-millisecond::millisecond(long double d)
-{
-
-   raw_set((i64)(d / 1000.0), (i64)fmod(d * 1000 * 1000.0, 1000.0 * 1000.0 * 1000.0));
 
 }
 

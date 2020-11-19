@@ -467,12 +467,4 @@ bool on_term_thread()
 }
 
 
-CLASS_DECL_AXIS DWORD_PTR translate_processor_affinity(int iOrder)
-{
-
-   return 1 << iOrder;
-
-}
-
-
 

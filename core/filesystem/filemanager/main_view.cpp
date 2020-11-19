@@ -205,7 +205,7 @@ namespace filemanager
          else if (paction->id() == id_pop)
          {
 
-            OnActivateFrame(WA_INACTIVE, ((GetParentFrame())));
+            OnActivateFrame(e_activate_inactive, ((GetParentFrame())));
 
             GetParentFrame()->ActivateFrame(display_normal);
 

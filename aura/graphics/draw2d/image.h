@@ -1,7 +1,6 @@
 #pragma once
 
 
-
 class CLASS_DECL_AURA image :
    virtual public ::image_meta,
    virtual public ::context_object
@@ -224,26 +223,28 @@ public:
    virtual bool DivideA(i32 iDivide);
 
 
-   virtual bool stretch_image(::image * pimpl);
+   //virtual bool stretch_image(::image * pimpl);
 
 
-   virtual bool to(::image * piml) const;
-   virtual bool from(const ::image * pimage);
-   virtual bool from(::draw2d::graphics* pgraphics);
-   virtual bool from(::draw2d::graphics* pgraphics, const ::size & size);
-   virtual bool from(const ::point & pointDst, ::draw2d::graphics* pgraphics, const ::point & pointSrc, const ::size & size);
-   virtual bool from(const ::point & pointDst, ::image * piml, const ::point & pointSrc, const ::size & size);
-   virtual bool from(const ::point & pointDst, ::image * piml, const ::point & pointSrc, const ::size & size, byte bA);
+   virtual bool stretch(::draw2d::graphics * pgraphics);
+   //virtual bool to(::image * piml) const;
+   virtual bool copy(const ::image * pimage, eobject eobjectCreate = e_object_success);
+   virtual bool stretch(const ::image * pimage);
+   //virtual bool draw_image(::draw2d::graphics* pgraphics);
+   //virtual bool draw_image(::draw2d::graphics* pgraphics, const ::size & size);
+   //virtual bool from(const ::point & pointDst, ::draw2d::graphics* pgraphics, const ::point & pointSrc, const ::size & size);
+   virtual bool draw(const ::rect & rectDst, ::image * pimage, const ::point & pointSrc = ::point());
+   virtual bool draw(const ::rect & rectDst, ::image * pimage, const ::point & pointSrc, byte bA);
    //virtual bool blend(const ::point & pointDst, ::image * piml, const ::point & pointSrc, const ::size & size);
-   virtual bool from_ignore_alpha(const ::point & pointDst, ::image * piml, const ::point & pointSrc, const ::size & size);
+   virtual bool draw_ignore_alpha(const ::point & pointDst, ::image * pimage, const ::rect & rectSrc);
 
-   virtual bool to(::draw2d::graphics* pgraphics);
-   virtual bool to(::draw2d::graphics* pgraphics, const ::point & point);
-   virtual bool to(::draw2d::graphics* pgraphics, const ::size & size);
-   virtual bool to(::draw2d::graphics* pgraphics, const ::point & point, const ::size & size);
-   virtual bool to(::draw2d::graphics* pgraphics, const ::rect & rect);
+   //virtual bool to(::draw2d::graphics* pgraphics);
+   //virtual bool to(::draw2d::graphics* pgraphics, const ::point & point);
+   //virtual bool to(::draw2d::graphics* pgraphics, const ::size & size);
+   //virtual bool to(::draw2d::graphics* pgraphics, const ::point & point, const ::size & size);
+   //virtual bool to(::draw2d::graphics* pgraphics, const ::rect & rect);
 
-   virtual bool to(::draw2d::graphics* pgraphics, const ::point & point, const ::size & size, const ::point & pointSrc);
+   //virtual bool to(::draw2d::graphics* pgraphics, const ::point & point, const ::size & size, const ::point & pointSrc);
 
 
    virtual bool pixelate(i32 iSize);

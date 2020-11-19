@@ -436,7 +436,7 @@ namespace account
 
       get_client_rect(rectClient);
 
-      m_plogin->SetPlacement(rectClient);
+      m_plogin->layout().sketch() = rectClient;
 
       //m_plogin->on_layout(::draw2d::graphics_pointer & pgraphics);
 

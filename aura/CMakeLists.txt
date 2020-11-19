@@ -188,6 +188,7 @@ list(APPEND aura_source
         graphics/graphics/graphics.cpp
         graphics/graphics/graphics.h
         graphics/graphics/image_console.h
+        graphics/graphics/monitor.cpp
         graphics/graphics/multiple_buffer.cpp
         graphics/graphics/multiple_buffer.h
         graphics/graphics/window.h

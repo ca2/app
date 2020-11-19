@@ -2,10 +2,10 @@
 
 
 template < typename TYPE >
-inline TYPE & xxf_zerop(TYPE * p) { ::zero(p, sizeof(TYPE)); return *p; }
+inline TYPE & ·zero_pointer(TYPE * p) { ::zero(p, sizeof(TYPE)); return *p; }
 
 template < typename TYPE >
-inline TYPE & xxf_zero(TYPE & t) { ::zero(&t, sizeof(TYPE)); return t; }
+inline TYPE & ·zero(TYPE & t) { ::zero(&t, sizeof(TYPE)); return t; }
 
 template < typename TYPE >
 inline bool xxf_is_zerop(TYPE * p) { return ::is_zero(p, sizeof(TYPE)); }

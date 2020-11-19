@@ -364,7 +364,7 @@ namespace linux
             else
             {
 
-               xxf_zero(m_px11data->m_visualinfo);
+               ·zero(m_px11data->m_visualinfo);
 
             }
 
@@ -372,7 +372,7 @@ namespace linux
 
             XSetWindowAttributes attr;
 
-            xxf_zero(attr);
+            ·zero(attr);
 
             attr.colormap = XCreateColormap( display, rootwin, vis, AllocNone);
 

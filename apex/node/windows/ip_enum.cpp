@@ -102,7 +102,7 @@ namespace windows
          struct addrinfo *result = nullptr;
          struct addrinfo *ptr = nullptr;
          struct addrinfo hints;
-         xxf_zero(hints);
+         ·zero(hints);
          hints.ai_family = AF_INET;
          hints.ai_socktype = SOCK_STREAM;
          hints.ai_protocol = IPPROTO_TCP;
@@ -180,7 +180,7 @@ namespace windows
          struct addrinfo *result = nullptr;
          struct addrinfo *ptr = nullptr;
          struct addrinfo hints;
-         xxf_zero(hints);
+         ·zero(hints);
          hints.ai_family = AF_INET6;
          hints.ai_socktype = SOCK_STREAM;
          hints.ai_protocol = IPPROTO_TCP;

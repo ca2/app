@@ -43,7 +43,7 @@ namespace introjection
 
       defer_create_mutex();
 
-      xxf_zero(m_filetime);
+      ·zero(m_filetime);
 
    }
 

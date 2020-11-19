@@ -554,7 +554,7 @@ namespace imaging_wic
       }
 
       STATSTG stg;
-      xxf_zero(stg);
+      ·zero(stg);
       pstream->Stat(&stg, STATFLAG_NONAME);
       LARGE_INTEGER l;
       l.QuadPart = 0;

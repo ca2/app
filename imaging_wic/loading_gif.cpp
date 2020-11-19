@@ -470,7 +470,7 @@ namespace imaging_wic
          HRESULT hr = pbitmapdecoder->GetFrame(iFrame, &pframe);
 
          WICPixelFormatGUID px;
-         xxf_zero(px);
+         ·zero(px);
          if (!pframe)
          {
             return false;

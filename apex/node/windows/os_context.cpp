@@ -995,7 +995,7 @@ namespace windows
 
 
       // Display a dialog box to request credentials.
-      xxf_zero(u);
+      ·zero(u);
       u.cbSize = sizeof(u);
       u.hwndParent = nullptr;
 
@@ -1727,7 +1727,7 @@ retry:
 
       SHFILEINFOW info;
 
-      xxf_zero(info);
+      ·zero(info);
 
       defer_co_initialize_ex(false);
 
@@ -2028,7 +2028,7 @@ retry:
 
          SHELLEXECUTEINFOW si;
 
-         xxf_zero(si);
+         ·zero(si);
 
          PeekMessage(nullptr, nullptr, 0, 0, 0);
 

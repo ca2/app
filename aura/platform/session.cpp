@@ -1826,7 +1826,7 @@ the file README-colorramp for more information. */
 
       m_monitorinfoa.allocate(m_monitorinfoa.get_size() + 1);
 
-      xxf_zero(m_monitorinfoa.last());
+      ·zero(m_monitorinfoa.last());
 
       m_hmonitora.add(hmonitor);
 

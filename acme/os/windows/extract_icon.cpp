@@ -106,7 +106,7 @@ CLASS_DECL_ACME HICON ExtractResourceIcon(string strPath, int& cx, int& cy, int 
 
    extract_resource_icon i;
 
-   xxf_zero(i);
+   ·zero(i);
 
    i.cx = cx;
 

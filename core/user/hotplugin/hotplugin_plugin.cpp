@@ -1109,7 +1109,7 @@ namespace hotplugin
 
       MESSAGE msg;
 
-      xxf_zero(msg);
+      ·zero(msg);
 
       msg.message = message;
 

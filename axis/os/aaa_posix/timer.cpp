@@ -13,7 +13,7 @@
 //void timer::impl_init()
 //{
 //
-//   //xxf_zero(m_sev);
+//   //·zero(m_sev);
 //
 //   // m_timerid = nullptr;
 //

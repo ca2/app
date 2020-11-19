@@ -358,7 +358,7 @@ int SendCtrlShiftQToChrome(oswindow w, int iSleep, ::aura::application * papp)
 //   INPUT input;
 //   if (iShift)
 //   {
-//      xxf_zero(input);
+//      ·zero(input);
 //      input.type = INPUT_KEYBOARD;
 //      input.ki.wVk = VK_SHIFT;
 //      input.ki.wScan = 0;
@@ -370,7 +370,7 @@ int SendCtrlShiftQToChrome(oswindow w, int iSleep, ::aura::application * papp)
 //
 //   }
 //
-//   xxf_zero(input);
+//   ·zero(input);
 //
 //   input.type = INPUT_KEYBOARD;
 //   input.ki.wVk = i - '0' + 0x30;
@@ -381,7 +381,7 @@ int SendCtrlShiftQToChrome(oswindow w, int iSleep, ::aura::application * papp)
 //   SendInput(1, &input, sizeof(input));
 //   Sleep(iSleep / 8);
 //
-//   xxf_zero(input);
+//   ·zero(input);
 //   input.type = INPUT_KEYBOARD;
 //   input.ki.wVk = i - '0' + 0x30;
 //   input.ki.wScan = 0;
@@ -392,7 +392,7 @@ int SendCtrlShiftQToChrome(oswindow w, int iSleep, ::aura::application * papp)
 //   Sleep(iSleep/8);
 //   if (iShift)
 //   {
-//      xxf_zero(input);
+//      ·zero(input);
 //      input.type = INPUT_KEYBOARD;
 //      input.ki.wVk = VK_SHIFT;
 //      input.ki.wScan = 0;
@@ -415,7 +415,7 @@ int SendCtrlShiftQToChrome(oswindow w, int iSleep, ::aura::application * papp)
 //{
 //   INPUT input;
 //
-//   xxf_zero(input);
+//   ·zero(input);
 //
 //   input.type = INPUT_KEYBOARD;
 //   input.ki.wVk = i - 'a' + 0x41;
@@ -426,7 +426,7 @@ int SendCtrlShiftQToChrome(oswindow w, int iSleep, ::aura::application * papp)
 //   SendInput(1, &input, sizeof(input));
 //   Sleep(iSleep / 8);
 //
-//   xxf_zero(input);
+//   ·zero(input);
 //   input.type = INPUT_KEYBOARD;
 //   input.ki.wVk = i - 'a' + 0x41;
 //   input.ki.wScan = 0;
@@ -447,7 +447,7 @@ int SendCtrlShiftQToChrome(oswindow w, int iSleep, ::aura::application * papp)
 //
 //   if (iShift)
 //   {
-//      xxf_zero(input);
+//      ·zero(input);
 //      input.type = INPUT_KEYBOARD;
 //      input.ki.wVk = VK_SHIFT;
 //      input.ki.wScan = 0;
@@ -459,7 +459,7 @@ int SendCtrlShiftQToChrome(oswindow w, int iSleep, ::aura::application * papp)
 //
 //   }
 //
-//   xxf_zero(input);
+//   ·zero(input);
 //
 //   input.type = INPUT_KEYBOARD;
 //   input.ki.wVk = i;
@@ -470,7 +470,7 @@ int SendCtrlShiftQToChrome(oswindow w, int iSleep, ::aura::application * papp)
 //   SendInput(1, &input, sizeof(input));
 //   Sleep(iSleep / 8);
 //
-//   xxf_zero(input);
+//   ·zero(input);
 //   input.type = INPUT_KEYBOARD;
 //   input.ki.wVk = i;
 //   input.ki.wScan = 0;
@@ -483,7 +483,7 @@ int SendCtrlShiftQToChrome(oswindow w, int iSleep, ::aura::application * papp)
 //
 //   if (iShift)
 //   {
-//      xxf_zero(input);
+//      ·zero(input);
 //      input.type = INPUT_KEYBOARD;
 //      input.ki.wVk = VK_SHIFT;
 //      input.ki.wScan = 0;
@@ -508,7 +508,7 @@ int SendCtrlShiftQToChrome(oswindow w, int iSleep, ::aura::application * papp)
 //
 //   if (iShift)
 //   {
-//      xxf_zero(input);
+//      ·zero(input);
 //      input.type = INPUT_KEYBOARD;
 //      input.ki.wVk = VK_SHIFT;
 //      input.ki.wScan = 0;
@@ -520,7 +520,7 @@ int SendCtrlShiftQToChrome(oswindow w, int iSleep, ::aura::application * papp)
 //
 //   }
 //
-//   xxf_zero(input);
+//   ·zero(input);
 //
 //   input.type = INPUT_KEYBOARD;
 //   input.ki.wVk = 0;
@@ -531,7 +531,7 @@ int SendCtrlShiftQToChrome(oswindow w, int iSleep, ::aura::application * papp)
 //   SendInput(1, &input, sizeof(input));
 //   Sleep(iSleep / 8);
 //
-//   xxf_zero(input);
+//   ·zero(input);
 //   input.type = INPUT_KEYBOARD;
 //   input.ki.wVk = 0;
 //   input.ki.wScan = i;
@@ -544,7 +544,7 @@ int SendCtrlShiftQToChrome(oswindow w, int iSleep, ::aura::application * papp)
 //
 //   if (iShift)
 //   {
-//      xxf_zero(input);
+//      ·zero(input);
 //      input.type = INPUT_KEYBOARD;
 //      input.ki.wVk = VK_SHIFT;
 //      input.ki.wScan = 0;
@@ -566,7 +566,7 @@ int SendCtrlShiftQToChrome(oswindow w, int iSleep, ::aura::application * papp)
 //bool send_input_caps_alpha(int i, int iSleep)
 //{
 //   INPUT input;
-//   xxf_zero(input);
+//   ·zero(input);
 //   input.type = INPUT_KEYBOARD;
 //   input.ki.wVk = VK_SHIFT;
 //   input.ki.wScan = 0;
@@ -578,7 +578,7 @@ int SendCtrlShiftQToChrome(oswindow w, int iSleep, ::aura::application * papp)
 //
 //   send_input_alpha(i + 'a' - 'A', iSleep / 8);
 //
-//   xxf_zero(input);
+//   ·zero(input);
 //   input.type = INPUT_KEYBOARD;
 //   input.ki.wVk = VK_SHIFT;
 //   input.ki.wScan = 0;

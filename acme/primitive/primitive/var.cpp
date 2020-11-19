@@ -296,7 +296,7 @@ var::var(const property & prop)
 {
 
    m_etype = type_new;
-   xxf_zero(m_all);
+   ·zero(m_all);
    operator = (prop);
 
 }
@@ -306,7 +306,7 @@ var::var(const procedure & procedure)
 {
 
     m_etype = type_new;
-    xxf_zero(m_all);
+    ·zero(m_all);
     set_type(type_procedure);
     m_procedure = procedure;
 
@@ -317,7 +317,7 @@ var::var(const ::futurevar & futurevar)
 {
 
    m_etype = type_new;
-   xxf_zero(m_all);
+   ·zero(m_all);
    set_type(type_futurevar);
    m_futurevar = futurevar;
 
@@ -6299,7 +6299,7 @@ var::operator ::datetime::time() const
    {                                               \
                                                    \
       m_etype = ::type_enum_ ## ENUMTYPE;              \
-      xxf_zero(m_all);   \
+      ·zero(m_all);   \
                                                    \
    }                                               \
                                                    \

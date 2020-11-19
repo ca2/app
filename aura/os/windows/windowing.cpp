@@ -70,7 +70,7 @@ CLASS_DECL_AURA void os_term_windowing()
 //
 //   ::u32 dwThread = GetWindowThreadProcessId(hwndForeground, nullptr);
 //
-//   xxf_zerop(pinfo);
+//   ·zero_pointer(pinfo);
 //
 //   pinfo->cbSize = sizeof(GUITHREADINFO);
 //

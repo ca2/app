@@ -4,6 +4,9 @@
 typedef ::u32 thread_data_index;
 
 
+CLASS_DECL_ACME string get_error_string(DWORD dwError);
+
+
 CLASS_DECL_ACME::estatus init_gdi_plus();
 CLASS_DECL_ACME void term_gdi_plus();
 

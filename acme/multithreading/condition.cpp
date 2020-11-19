@@ -258,7 +258,7 @@ sync_result condition::wait(const duration& duration)
 
    delay.tv_nsec = 1000000;
 
-   while (duration.is_pos_infinity() || start.elapsed() < timeout)
+   while (duration.is_pos_infinity() || start.elapsed() < duration)
    {
 
       sembuf sb;

@@ -188,7 +188,7 @@ namespace windows
 
       WIN32_FILE_ATTRIBUTE_DATA data;
 
-      xxf_zero(data);
+      ·zero(data);
 
       if (!GetFileAttributesExW(wstring(strFilename), GetFileExInfoStandard, &data))
       {

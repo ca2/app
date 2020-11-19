@@ -395,7 +395,7 @@ void mapped_net_state_raw(bool add, Display * d, Window w, int iScreen, Atom sta
 #define _NET_WM_STATE_ADD           1    /* add/set property */
 #define _NET_WM_STATE_TOGGLE        2    /* toggle property  */
 
-   xxf_zero(xclient);
+   ·zero(xclient);
    xclient.type = ClientMessage;
    xclient.window = w;
    xclient.message_type = XInternAtom(d, "_NET_WM_STATE", False);
@@ -424,7 +424,7 @@ void unmapped_net_state_raw(Display * d, Window w, ...)
 
    va_start(argp, w);
 
-   xxf_zero(xevent);
+   ·zero(xevent);
 
    array < Atom > atoms;
 
@@ -1235,7 +1235,7 @@ oswindow set_active_window(oswindow window)
 
       XEvent xev;
 
-      xxf_zero(xev);
+      ·zero(xev);
 
       Window windowRoot = window->root_window_raw();
 
@@ -1875,7 +1875,7 @@ void wm_add_remove_state_mapped_raw(oswindow w, e_net_wm_state estate, bool bSet
 
    XClientMessageEvent xclient;
 
-   xxf_zero(xclient);
+   ·zero(xclient);
 
    xclient.type            = ClientMessage;
    xclient.window          = window;
@@ -3114,7 +3114,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 
    MESSAGE msg;
 
-   xxf_zero(msg);
+   ·zero(msg);
 
    bool bRet = false;
 
@@ -3793,7 +3793,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 
                   XIMStyles * pximstyles = nullptr;
 
-                  xxf_zerop(pximstyles);
+                  ·zero_pointer(pximstyles);
 
                   XGetIMValues (xim, XNQueryInputStyle, &pximstyles, NULL, NULL);
 

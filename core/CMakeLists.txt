@@ -1342,7 +1342,7 @@ target_include_directories(core PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../arc
 target_include_directories(core PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/third/include/include)
 
 
-target_compile_definitions(core PRIVATE _core_LIBRARY)
+target_compile_definitions(core PRIVATE _CORE_LIBRARY)
 target_compile_definitions(core PRIVATE UNICODE)
 target_compile_definitions(core PRIVATE _UNICODE)
 

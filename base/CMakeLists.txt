@@ -345,7 +345,7 @@ target_include_directories(base PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../arc
 target_include_directories(base PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/third/include/include)
 
 
-target_compile_definitions(base PRIVATE _AXIS_LIBRARY)
+target_compile_definitions(base PRIVATE _BASE_LIBRARY)
 target_compile_definitions(base PRIVATE UNICODE)
 target_compile_definitions(base PRIVATE _UNICODE)
 

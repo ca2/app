@@ -6041,7 +6041,11 @@ finished_update:
 
       //EnableIME();
 
+#ifdef WINDOWS_DESKTOP
+
       on_text_composition_message(TEXT_COMPOSITION_MESSAGE_UPDATE_CARET);
+
+#endif
 
       string strText;
 

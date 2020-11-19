@@ -11,7 +11,7 @@ void os_alloc_check_bounds(u8 * point)
 
 	byte a[256];
 
-	xxf_zeroa(a);
+	·zeroa(a);
 
 	if (__memcmp(&point[sizeof(uptr)], a, sizeof(a)) != 0)
 	{

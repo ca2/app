@@ -685,7 +685,7 @@ namespace linux
 
       }
 
-      pimage->from(pdata->m_pimage);
+      pimage->copy(pdata->m_pimage);
 
       return true;
 

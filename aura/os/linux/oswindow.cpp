@@ -507,7 +507,7 @@ bool oswindow_data::set_icon(::image * pimage)
 
    d1->g()->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
-   d1->g()->StretchBlt(d1->rect(), pimage->g(), pimage->rect());
+   d1->g()->stretch(d1->rect(), pimage->g(), pimage->rect());
 
    memory m(m_pimpl->m_puserinteraction->get_context_application());
 

@@ -8,13 +8,13 @@ template < typename TYPE >
 inline TYPE & ·zero(TYPE & t) { ::zero(&t, sizeof(TYPE)); return t; }
 
 template < typename TYPE >
-inline bool xxf_is_zerop(TYPE * p) { return ::is_zero(p, sizeof(TYPE)); }
+inline bool ·is_zero_pointer(TYPE * p) { return ::is_zero(p, sizeof(TYPE)); }
 
 template < typename TYPE >
-inline bool xxf_is_zero(TYPE & t) { return ::is_zero(&t, sizeof(TYPE)); }
+inline bool ·is_zero(TYPE & t) { return ::is_zero(&t, sizeof(TYPE)); }
 
 
-// xxf_is_zero
+// ·is_zero
 
 
 //template < typename TYPE1, typename TYPE2 >

@@ -5,6 +5,6 @@
 CLASS_DECL_ACME void sleep(const duration & duration)
 {
 
-   usleep((useconds_t)duration.get_total_microseconds());
+   usleep((useconds_t)duration.micros().m_iMicroseconds);
 
 }

@@ -1,4 +1,4 @@
-﻿
+
 #include "framework.h" // from "base/apex/.h"
 #include <time.h>
 //#ifdef ANDROID

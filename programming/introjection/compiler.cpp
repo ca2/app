@@ -43,7 +43,7 @@ namespace introjection
 
       defer_create_mutex();
 
-      xxf_zero(m_filetimeset);
+      ·zero(m_filetimeset);
 
    }
 
@@ -572,7 +572,7 @@ namespace introjection
 
       bNew = true;
 
-      plibrary->m_filetime = get_filetime_set(strFilePath);
+      plibrary->m_filetimeset = get_filetime_set(strFilePath);
 
       ::file::path strName(strFilePath);
 
@@ -1484,7 +1484,7 @@ auto tickStart = ::millis::now();
                       &ProcessInfo))
    {
 
-      return get_last_error();
+      return ::GetLastError();
 
    }
 
@@ -1497,7 +1497,7 @@ auto tickStart = ::millis::now();
 
    }
 
-   CloseHandle(ProcessInfo.hthread);
+   CloseHandle(ProcessInfo.hThread);
 
    CloseHandle(ProcessInfo.hProcess);
 

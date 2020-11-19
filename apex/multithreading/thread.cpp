@@ -59,7 +59,7 @@ send_thread_message::send_thread_message(::layered * pobjectContext) :
    ::object(pobjectContext)
 {
 
-   ·zero(m_message);
+   Â·zero(m_message);
 
    m_ev.ResetEvent();
 
@@ -786,7 +786,7 @@ int thread::_GetMessage(LPMESSAGE pmessage, oswindow oswindow, ::u32 wMsgFilterM
 
    __throw(exception::exception);
 
-   //·zero_pointer(pmessage);
+   //Â·zero_pointer(pmessage);
 
    //return mq_get_message(pmessage, oswindow, wMsgFilterMin, wMsgFilterMax);
    return false;
@@ -2202,7 +2202,7 @@ bool thread::begin_thread(bool bSynchInitialization, ::e_priority epriority, ::u
 
       char sz[1024];
 
-      ·zero_pointer(sz);
+      Â·zero_pointer(sz);
 
       engine_symbol(sz, sizeof(sz), &dwDisplacement, uia[5]);
 

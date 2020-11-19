@@ -864,7 +864,7 @@ namespace macos
 
       char sz[2048];
 
-      xxf_zero(sz);
+      ·zero(sz);
 
       round_window_get_title(sz, sizeof(sz));
 

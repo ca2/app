@@ -135,7 +135,7 @@ __pointer(::message::base) channel::get_message_base(oswindow oswindow, const ::
 
    MESSAGE msg;
 
-   xxf_zero(msg);
+   ·zero(msg);
 
    msg.message = (::u32) id.m_emessage;
    msg.wParam = wparam;

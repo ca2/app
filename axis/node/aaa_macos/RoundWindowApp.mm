@@ -328,7 +328,7 @@ NSAppleEventManager *appleEventManager = [NSAppleEventManager sharedAppleEventMa
 //   
 //   char szEvent[128];
 //   
-//   xxf_zero(szEvent);
+//   ·zero(szEvent);
 //   
 //   if([theEvent type] == NSLeftMouseDown)
 //   {

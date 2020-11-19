@@ -339,7 +339,7 @@ bool __node_further_file_is_equal(file::path const & path1, file::path const & p
 
    char sz[4096];
 
-   xxf_zero(sz);
+   ·zero(sz);
 
    return realpath(path, sz);
 

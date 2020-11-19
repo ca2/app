@@ -272,7 +272,7 @@ namespace windows
 
       m_iHa = 0;
       m_iMa = 0;
-      xxf_zero(m_szaModule);
+      ·zero(m_szaModule);
 
    }
 

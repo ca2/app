@@ -12,7 +12,7 @@ CLASS_DECL_AURA void black_body(float * r, float * g, float * b, ::u32 dwTemp);
 //   if (plf == nullptr)
 //   {
 //      plf = &lF;
-//      xxf_zero(plf);
+//      ·zero(plf);
 //      plf->lfCharSet = DEFAULT_CHARSET;
 //
 //   }

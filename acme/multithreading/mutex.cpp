@@ -1662,14 +1662,14 @@ null_dacl_security_attributes::null_dacl_security_attributes()
 {
 
 
-   xxf_zero(m_securityattributes);
+   ·zero(m_securityattributes);
 
    m_securityattributes.nLength = sizeof(m_securityattributes);
 
    m_securityattributes.bInheritHandle = FALSE; // matter uninheritable
 
    // declare and initialize a security descriptor
-   xxf_zero(m_securitydescriptor);
+   ·zero(m_securitydescriptor);
 
    bool bInitOk = InitializeSecurityDescriptor(&m_securitydescriptor,SECURITY_DESCRIPTOR_REVISION) != FALSE;
 

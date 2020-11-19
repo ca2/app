@@ -354,7 +354,7 @@ if(str != nil)
 //
 //   char szEvent[128];
 //
-//   xxf_zero(szEvent);
+//   ·zero(szEvent);
 //
 //   if([theEvent type] == NSLeftMouseDown)
 //   {
@@ -827,7 +827,7 @@ void os_begin_system();
 ////   
 ////   char szEvent[128];
 ////   
-////   xxf_zero(szEvent);
+////   ·zero(szEvent);
 ////   
 ////   if([theEvent type] == NSLeftMouseDown)
 ////   {

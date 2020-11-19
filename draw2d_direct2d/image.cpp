@@ -67,7 +67,7 @@ namespace draw2d_direct2d
 
       }
 
-      xxf_zero(m_info);
+      ·zero(m_info);
 
       int iStride = size.cx * 4;
 
@@ -1129,7 +1129,7 @@ namespace draw2d_direct2d
 
       __pointer(::draw2d_direct2d::bitmap) pbitmap = m_pbitmap;
 
-      xxf_zero(pbitmap->m_map);
+      ·zero(pbitmap->m_map);
 
       hr = pbitmap1Map->Map(D2D1_MAP_OPTIONS_READ, &pbitmap->m_map);
 

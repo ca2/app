@@ -38,7 +38,7 @@ namespace draw2d
 #define DIB_BLEND_ZERO_BLOCK_SIZE 256
             color32_t craZero[DIB_BLEND_ZERO_BLOCK_SIZE];
 
-            xxf_zero(craZero);
+            ·zero(craZero);
 
             int scanDst = m_scanDst;
             int scanSrc = m_scanSrc;

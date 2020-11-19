@@ -91,7 +91,7 @@ namespace linux
 
       struct stat stat;
 
-      xxf_zero(stat);
+      ·zero(stat);
 
       if(lstat(strPath, &stat) != 0)
       {

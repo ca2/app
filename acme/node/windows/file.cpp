@@ -146,7 +146,7 @@ namespace windows
       if ((eopen & ::file::mode_no_inherit) != FALSE)
       {
          psa = &sa;
-         xxf_zero(sa);
+         ·zero(sa);
          sa.nLength = sizeof(sa);
          sa.lpSecurityDescriptor = nullptr;
 

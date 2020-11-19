@@ -75,11 +75,21 @@ namespace user
 
    bool control_bar::pre_create_window(::user::create_struct& cs)
    {
+
       if (!::user::interaction::pre_create_window(cs))
+      {
+
          return FALSE;
+
+      }
+
+
+#ifdef WINDOWS_DESKTOP
 
       // force clipsliblings (otherwise will cause repaint problems)
       cs.style |= WS_CLIPSIBLINGS;
+
+#endif
 
       // default border style translation for Win4
       //  (you can turn off this translation by setting CBRS_BORDER_3D)
@@ -340,6 +350,8 @@ namespace user
 
       }
 
+#ifdef WINDOWS_DESKTOP
+
       ASSERT_VALID(this);
 
       LRESULT lResult;
@@ -391,6 +403,8 @@ namespace user
          return;
       }
       }
+
+#endif
 
       // otherwise, just handle in default way
       ::user::interaction::message_handler(pbase);

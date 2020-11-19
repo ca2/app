@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "_windows.h"
 #include "acme/os/windows_common/_file_c.h"
 #include "acme/os/windows_common/file.h"
@@ -192,7 +192,7 @@ namespace windows
             if (dwLastError == ERROR_SHARING_VIOLATION && ::thread_get_run() && (tickStart.elapsed()) < m_dwErrorBlockTimeout)
             {
 
-               Sleep(max(m_dwErrorBlockTimeout / 10u, 50u));
+               millis_sleep(max(m_dwErrorBlockTimeout / 10u, 50u));
 
                goto retry;
 

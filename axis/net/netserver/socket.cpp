@@ -96,13 +96,13 @@ namespace netserver
 
       string strUrl = m_request.attr("http_protocol").get_string() + "://" + m_request.header("host").get_string() + m_request.attr("request_uri").get_string();
 
-      auto tickExecuteBeg = ::millis::millis();
+      auto tickExecuteBeg = ::millis::now();
 
       m_bEnd = false;
 
       send_response();
 
-      auto tickExecuteEnd = ::millis::millis();
+      auto tickExecuteEnd = ::millis::now();
 
       TRACE("=> " __prtick, __pr(tickExecuteEnd - tickExecuteBeg));
 

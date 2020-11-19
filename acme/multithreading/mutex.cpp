@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 
 
 #ifdef RASPBIAN
@@ -780,7 +780,7 @@ sync_result mutex::wait(const duration & duration)
 
             }
 
-            Sleep(min_max((tickTimeout - tickElapsed) / 50, 1, 1000));
+            millis_sleep(min_max((tickTimeout - tickElapsed) / 50, 1, 1000));
 
             rc = pthread_mutex_lock(&m_mutex);
 
@@ -1157,7 +1157,7 @@ bool mutex::lock()
 
          }
 
-         Sleep(100);
+         millis_sleep(100);
 
          rc = pthread_mutex_lock(&m_mutex);
 
@@ -1636,7 +1636,7 @@ void wait_until_mutex_does_not_exist(const char * lpszName)
 
          pmutex.release();
 
-         Sleep(200);
+         millis_sleep(200);
 
          pmutex = __new(mutex(e_create_new, false, "Global\\::ca::account::ca2_spa::7807e510-5579-11dd-ae16-0800200c7784"));
 

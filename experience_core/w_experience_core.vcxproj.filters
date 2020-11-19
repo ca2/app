@@ -109,7 +109,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="experience_core.def">
+    <None Include="experience_lite.def">
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>

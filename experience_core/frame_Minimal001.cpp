@@ -226,11 +226,13 @@ SizingNone:;
                else
                {
 
-                  crMoveableBorder = psession->get_default_color(COLOR_BTNFACE);
+                  auto pstyle = pframewindow->get_style(pgraphics);
 
-                  crMoveableBorderHilight = psession->get_default_color(COLOR_BTNHILIGHT);
+                  crMoveableBorder = pframewindow->get_color(pstyle, ::user::element_button_background);
 
-                  crMoveableBorderShadow = psession->get_default_color(COLOR_BTNSHADOW);
+                  crMoveableBorderHilight = pframewindow->get_color(pstyle, ::user::element_button_hilite);
+
+                  crMoveableBorderShadow = pframewindow->get_color(pstyle, ::user::element_button_shadow);
 
                }
 
@@ -1147,11 +1149,23 @@ SizingNone:;
 
                auto psession = Session;
 
-               pgraphics->draw_3drect(rect, psession->get_default_color(COLOR_BTNFACE) | 0xff000000, psession->get_default_color(COLOR_3DDKSHADOW) | 0xff000000);
+               auto pframewindow = m_pframewindow;
+
+               auto pstyle = pframewindow->get_style(pgraphics);
+
+               auto crButtonHilite = pframewindow->get_color(pstyle, ::user::element_button_hilite);
+
+               auto crButtonDarkShadow = pframewindow->get_color(pstyle, ::user::element_button_dark_shadow);
+
+               auto crButtonFace = pframewindow->get_color(pstyle, ::user::element_button_background);
+
+               auto crButtonShadow = pframewindow->get_color(pstyle, ::user::element_button_shadow);
+
+               pgraphics->draw_3drect(rect, crButtonFace | 0xff000000, crButtonDarkShadow | 0xff000000);
 
                rect.deflate(1, 1);
 
-               pgraphics->draw_3drect(rect, psession->get_default_color(COLOR_BTNHILIGHT) | 0xff000000, psession->get_default_color(COLOR_BTNSHADOW) | 0xff000000);
+               pgraphics->draw_3drect(rect, crButtonHilite | 0xff000000, crButtonShadow | 0xff000000);
 
                rect.deflate(1, 1);
 
@@ -1159,7 +1173,7 @@ SizingNone:;
 
                //rect.bottom--;
 
-               pgraphics->fill_rect(rect, psession->get_default_color(COLOR_BTNFACE) | 0xff000000);
+               pgraphics->fill_rect(rect, crButtonFace | 0xff000000);
 
             }
 

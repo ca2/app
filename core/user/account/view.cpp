@@ -71,7 +71,7 @@ namespace account
 
       }
 
-      Sleep(49);*/
+      millis_sleep(49);*/
 
       ::acme::del(m_plabelUser);
       ::acme::del(m_peditUser);

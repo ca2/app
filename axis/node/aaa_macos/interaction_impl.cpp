@@ -1943,7 +1943,7 @@ namespace macos
 //            if (dwSpan < 50)
 //            {
 //
-//               Sleep(50 - dwSpan);
+//               millis_sleep(50 - dwSpan);
 //
 //            }
 //

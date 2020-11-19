@@ -2,7 +2,7 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="experience_core" />
+		<Option title="experience_lite" />
 		<Option pch_mode="2" />
 		<Option compiler="clang" />
 		<Build>

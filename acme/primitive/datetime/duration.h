@@ -741,7 +741,7 @@ inline duration::operator bool() const
 }
 
 
-CLASS_DECL_ACME void Sleep(const duration & duration);
+//CLASS_DECL_ACME void millis_sleep(const duration & duration);
 
 
 inline bool operator == (const duration & duration1, const ::duration & duration2) { return duration1.m_iSeconds == duration2.m_iSeconds && duration1.m_iNanoseconds == duration2.m_iSeconds; }

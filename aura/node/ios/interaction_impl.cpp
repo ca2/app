@@ -2089,7 +2089,7 @@ namespace ios
 ////                                            if (dwSpan < 50)
 ////                                            {
 ////
-////                                               Sleep(50 - dwSpan);
+////                                               millis_sleep(50 - dwSpan);
 ////
 ////                                            }
 ////
@@ -2179,7 +2179,7 @@ namespace ios
 ////                                                if (dwSpan < 20)
 ////                                                {
 ////
-////                                                   Sleep(20 - dwSpan);
+////                                                   millis_sleep(20 - dwSpan);
 ////
 ////                                                }
 ////
@@ -5324,13 +5324,13 @@ namespace ios
 
             on_host_message_handler(spbase);
 
-            Sleep(100);
+            millis_sleep(100);
 
             pkey->m_ekey = (::user::e_key)(::user::key_a + strText[0] - 'A');
 
             on_host_message_handler(spbase);
 
-            Sleep(100);
+            millis_sleep(100);
 
             pkey->m_id = e_message_key_up;
 
@@ -5352,7 +5352,7 @@ namespace ios
 
          on_host_message_handler(spbase);
 
-         Sleep(100);
+         millis_sleep(100);
 
          pkey->m_id = e_message_key_up;
 

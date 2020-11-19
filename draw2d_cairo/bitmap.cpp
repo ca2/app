@@ -96,12 +96,18 @@ namespace draw2d_cairo
    }
 
 
+#ifdef WINDOWS_DESKTOP
+
+
    bool bitmap::CreateBitmapIndirect(::draw2d::graphics * pgraphics, LPBITMAP lpBitmap)
    {
 
       return false;
 
    }
+
+
+#endif
 
 
    bool bitmap::create_bitmap(::draw2d::graphics * pgraphics, const ::size & size, void ** ppdata, int * pstride)
@@ -257,7 +263,7 @@ namespace draw2d_cairo
    }
 
 
-   ::u32 bitmap::GetBitmapBits(::u32 dwCount, LPVOID lpBits) const
+   ::u32 bitmap::GetBitmapBits(::u32 dwCount, void * lpBits) const
    {
 
       return false;
@@ -337,12 +343,18 @@ namespace draw2d_cairo
    }
 
 
+#ifdef WINDOWS_DESKTOP
+
+
    i32 bitmap::GetBitmap(BITMAP* pBitMap)
    {
 
       return 0;
 
    }
+
+
+#endif
 
 
    void bitmap::dump(dump_context & dumpcontext) const

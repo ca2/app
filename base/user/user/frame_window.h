@@ -43,9 +43,10 @@ namespace user
       i32                                       m_nWindow;  // general purpose interaction_impl number - display as ":n"
       // -1 => unknown, 0 => only interaction_impl viewing ::user::document
       // 1 => first of many windows viewing ::user::document, 2=> second
-
+#ifdef WINDOWS_DESKTOP
       HMENU                      m_hMenuDefault;       // default menu resource for this frame
       HACCEL                     m_hAccelTable;       // accelerator table
+#endif
       u32                   m_dwPromptContext;    // current help prompt action_context for message box
       bool                       m_bHelpMode;           // if TRUE, then Shift+F1 help mode is active
       ::user::frame_window *     m_pNextFrameWnd; // next frame_window in cast global list
@@ -62,7 +63,9 @@ namespace user
       ::user::impact *           m_pviewActive;       // current active ::user::impact
       ::u32                       m_cModalStack;         // BeginModalState depth
       ::user::interaction_ptra   m_uiptraDisable;       // windows disabled because of BeginModalState
+#ifdef WINDOWS_DESKTOP
       HMENU                      m_hMenuAlt;           // menu to update to (nullptr means default)
+#endif
       bool                       m_bInRecalcLayout;     // avoid recursion in on_layout
       ::type                     m_pFloatingFrameClass;
 
@@ -198,11 +201,16 @@ namespace user
       virtual void route_command_message(::user::command* pcommand) override;
 
       virtual void on_update_frame_title(bool bAddToTitle);
+
+#ifdef WINDOWS_DESKTOP
       virtual void OnUpdateFrameMenu(HMENU hMenuAlt);
       virtual HACCEL GetDefaultAccelerator();
+#endif
       virtual void pre_translate_message(::message::message * pmessage) override;
 
+#ifdef WINDOWS_DESKTOP
       virtual void DelayUpdateFrameMenu(HMENU hMenuAlt);
+#endif
       void DelayUpdateFrameTitle();
       void DelayRecalcLayout(bool bNotify = TRUE);
 

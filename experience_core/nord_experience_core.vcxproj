@@ -23,8 +23,8 @@
     <Keyword>Android</Keyword>
     <ApplicationType>Android</ApplicationType>
     <ApplicationTypeRevision>3.0</ApplicationTypeRevision>
-    <ProjectName>experience_core</ProjectName>
-    <RootNamespace>experience_core</RootNamespace>
+    <ProjectName>experience_lite</ProjectName>
+    <RootNamespace>experience_lite</RootNamespace>
     <MinimumVisualStudioVersion>15.0</MinimumVisualStudioVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />

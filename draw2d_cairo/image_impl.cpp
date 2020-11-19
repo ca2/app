@@ -200,18 +200,30 @@ namespace draw2d_cairo
       return true;
    }
 
+
    ::estatus image::create(::draw2d::graphics * pgraphics)
    {
+
       ::draw2d::bitmap * pbitmap = (dynamic_cast < ::draw2d_cairo::graphics * > (pgraphics))->get_current_bitmap();
+
       if(pbitmap == nullptr)
+      {
+
          return FALSE;
+
+      }
+
       ::size size = pbitmap->get_size();
+
       if(!create(size))
       {
          return FALSE;
       }
-      from(pgraphics);
+
+      g()->draw(size, pgraphics);
+
       return TRUE;
+
    }
 
 
@@ -229,38 +241,39 @@ namespace draw2d_cairo
    }
 
 
-   bool image::to(::draw2d::graphics * pgraphics, const ::point & point, const ::size & size, const ::point & ptSrc)
+//   bool image::to(::draw2d::graphics * pgraphics, const ::point & point, const ::size & size, const ::point & ptSrc)
+//   {
+//
+//      return pgraphics->BitBlt(point, size.cx, size.cy, get_graphics(), ptSrc.x, ptSrc.y) != FALSE;
+//
+//      /*  return SetDIBitsToDevice(
+//           (dynamic_cast<::win::graphics * >(pgraphics))->get_handle1(),
+//           point.x, point.y,
+//           size.cx, size.cy,
+//           ptSrc.x, ptSrc.y, ptSrc.y, cy - ptSrc.y,
+//           m_pcolorrefMap, &m_info, 0)
+//              != FALSE; */
+//
+//   }
+
+   bool image::draw(const ::rect & rectDst, ::image * pimage, const ::point & pointSrc)
    {
-
-      return pgraphics->BitBlt(point.x, point.y, size.cx, size.cy, get_graphics(), ptSrc.x, ptSrc.y) != FALSE;
-
-      /*  return SetDIBitsToDevice(
-           (dynamic_cast<::win::graphics * >(pgraphics))->get_handle1(),
-           point.x, point.y,
-           size.cx, size.cy,
-           ptSrc.x, ptSrc.y, ptSrc.y, cy - ptSrc.y,
-           m_pcolorrefMap, &m_info, 0)
-              != FALSE; */
-
-   }
-
-   bool image::from(::draw2d::graphics * pgraphics)
-   {
-      ::draw2d::bitmap_pointer bitmap;
-      bitmap->CreateCompatibleBitmap(pgraphics, 1, 1);
-      auto estatus = pgraphics->set(bitmap);
-      if(!estatus)
-         return false;
-      ::size size = bitmap->get_size();
-      if(!create(size))
-      {
-         pgraphics->set(bitmap);
-         return false;
-      }
-      __throw(todo());
-      // xxx bool bOk = GetDIBits(LNX_HDC(pgraphics), (HBITMAP) pbitmap->get_os_data(), 0, cy, m_pcolorrefMap, &(m_info), DIB_RGB_COLORS) != FALSE;
-      // xxx pgraphics->SelectObject(pbitmap);
-      // xxx return bOk;
+      return g()->draw(rectDst, pimage, pointSrc);
+//      ::draw2d::bitmap_pointer bitmap;
+//      bitmap->CreateCompatibleBitmap(pgraphics, 1, 1);
+//      auto estatus = pgraphics->set(bitmap);
+//      if(!estatus)
+//         return false;
+//      ::size size = bitmap->get_size();
+//      if(!create(size))
+//      {
+//         pgraphics->set(bitmap);
+//         return false;
+//      }
+//      __throw(todo());
+//      // xxx bool bOk = GetDIBits(LNX_HDC(pgraphics), (HBITMAP) pbitmap->get_os_data(), 0, cy, m_pcolorrefMap, &(m_info), DIB_RGB_COLORS) != FALSE;
+//      // xxx pgraphics->SelectObject(pbitmap);
+//      // xxx return bOk;
    }
 
 
@@ -608,7 +621,7 @@ namespace draw2d_cairo
 
       pimage1->set_rgb(255, 255, 255);
 
-      pimage1->g()->DrawIcon(0, 0, picon, cx, cy, 0, nullptr, DI_IMAGE | DI_MASK);
+      pimage1->g()->draw(::point(), picon, ::size(cx, cy));
 
       // Black blend image_impl
       auto pimage2 = create_image({cx, cy});
@@ -622,7 +635,7 @@ namespace draw2d_cairo
 
       pimage2->fill(0, 0, 0, 0);
 
-      pimage2->g()->DrawIcon(0, 0, picon, cx, cy, 0, nullptr, DI_IMAGE | DI_MASK);
+      pimage2->g()->draw(::point(), picon, ::size(cx, cy));
 
       // Mask image_impl
       auto pimageM = create_image({cx, cy});
@@ -634,7 +647,7 @@ namespace draw2d_cairo
 
       }
 
-      pimageM->g()->DrawIcon(0, 0, picon, cx, cy, 0, nullptr, DI_MASK);
+      pimageM->g()->draw(::point(), picon, ::size(cx, cy));
 
       byte * r1=(byte*)pimage1->colorref();
       byte * r2=(byte*)pimage2->get_data();
@@ -675,10 +688,10 @@ namespace draw2d_cairo
    }
 
 
-   bool image::stretch_image(::image * pimage)
+   bool image::stretch(const ::image * pimage)
    {
 
-      if (!get_graphics()->draw(rect(), pimage->g(), pimage->rect()))
+      if (!get_graphics()->stretch(this->rect(), pimage->g(), pimage->rect()))
       {
 
          return false;

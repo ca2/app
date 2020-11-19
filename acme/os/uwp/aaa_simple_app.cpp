@@ -20,7 +20,7 @@
 //   int app::main()
 //   {
 //
-//      //Sleep(15 * 1000);
+//      //millis_sleep(15 * 1000);
 //
 //#ifdef WINDOWS_DESKTOP
 //

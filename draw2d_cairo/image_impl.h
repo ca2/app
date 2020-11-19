@@ -30,7 +30,7 @@ namespace draw2d_cairo
       virtual ::draw2d::bitmap_pointer get_bitmap() const override;
       virtual ::draw2d::bitmap_pointer detach_bitmap() override;
 
-      virtual bool stretch(::image * pimage_impl) override;
+      //virtual bool stretch(const ::image * pimage) override;
 
       bool dc_select(bool bSelect = true) override;
 
@@ -40,9 +40,10 @@ namespace draw2d_cairo
 
 
       virtual bool on_host_read_pixels(const ::pixmap * ppixmap) override;
-      bool from(::draw2d::graphics * pgraphics) override;
+      virtual bool stretch(const ::image * pimage) override;
+      virtual bool draw(const ::rect & rect, ::image * pimage, const ::point & point = ::point()) override;
 
-      bool to(::draw2d::graphics * pgraphics, const ::point & point, const ::size & size, const ::point & pointSrc) override;
+      //bool to(::draw2d::graphics * pgraphics, const ::point & point, const ::size & size, const ::point & pointSrc) override;
       virtual ::estatus SetIconMask(::draw2d::icon * picon, i32 cx, i32 cy) override;
 
 

@@ -420,7 +420,7 @@ namespace ansios
       while(!has_exited() && tickStart.elapsed() < durationTimeOut)
       {
 
-         Sleep(100);
+         millis_sleep(100);
 
       }
 

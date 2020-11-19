@@ -39,9 +39,9 @@ public:
 
    virtual void _001OnClip(::draw2d::graphics_pointer & pgraphics) override;
 
-   bool GetPageARect(RECT32 * pRectClient, RECT32 * lpRectTrack,  RECT32 * prect);
+   bool GetPageARect(RECT32 * pRectClient, RECT32 * lpRectTrack,  RECT32 * prect, ::draw2d::graphics_pointer & pgraphics);
 
-   bool GetPageBRect(RECT32 * pRectClient, RECT32 * lpRectTrack,  RECT32 * prect);
+   bool GetPageBRect(RECT32 * pRectClient, RECT32 * lpRectTrack,  RECT32 * prect, ::draw2d::graphics_pointer & pgraphics);
 
    void UpdateBitmaps();
    //void OnDisplayChange(i32 iBitsPerPixel, ::size sizeScreen);
@@ -53,11 +53,11 @@ public:
 
    virtual bool create_window(e_orientation eorientation, u32 uStyle, ::user::interaction * puiParent, ::id id) override;
 
-   i32 SetTrackingPos(const ::point & point);
-   i32 GetTrackSize(::size & size);
-   bool GetTrackClientRect(RECT32 * prect);
+   i32 SetTrackingPos(const ::point & point, ::draw2d::graphics_pointer & pgraphics);
+   i32 GetTrackSize(::size & size, ::draw2d::graphics_pointer & pgraphics);
+   bool GetTrackClientRect(RECT32 * prect, ::draw2d::graphics_pointer & pgraphics);
 
-   bool GetTrackRect(RECT32 * prect) override;
+   bool GetTrackRect(RECT32 * prect, ::draw2d::graphics_pointer & pgraphics) override;
 
    DECL_GEN_SIGNAL(_001OnMouseMove);
    DECL_GEN_SIGNAL(_001OnLButtonDown);
@@ -80,12 +80,12 @@ public:
    virtual void on_hit_test(::user::item & item) override;
    //virtual ::user::e_element _001HitTest(const ::point & point, index & iItem, index & iSubItem, index & iListItem) override;
 
-   virtual bool scrollbar_action(const ::user::item & item);
+   virtual bool scrollbar_action(const ::user::item & item, ::draw2d::graphics_pointer & pgraphics);
 
-   virtual bool scrollbar_lineA();
-   virtual bool scrollbar_lineB();
-   virtual bool scrollbar_pageB(const ::point & point);
-   virtual bool scrollbar_pageA(const ::point & point);
+   virtual bool scrollbar_lineA(::draw2d::graphics_pointer & pgraphics);
+   virtual bool scrollbar_lineB(::draw2d::graphics_pointer & pgraphics);
+   virtual bool scrollbar_pageB(const ::point & point, ::draw2d::graphics_pointer & pgraphics);
+   virtual bool scrollbar_pageA(const ::point & point, ::draw2d::graphics_pointer & pgraphics);
 
    virtual ::color scrollbar_color_strong(::user::style * pstyle, ::user::e_element eelement) override;
    virtual ::color scrollbar_color(::user::style* pstyle, ::user::e_element eelement)override;

@@ -16,7 +16,7 @@ namespace draw2d_cairo
       //delete_object();
    }
 
-   i32 object::get_object(i32 nCount, LPVOID lpObject) const
+   i32 object::get_object(i32 nCount, void * lpObject) const
    {
       //return ::GetObject(get_handle(), nCount, lpObject);
       return 0;
@@ -49,6 +49,9 @@ namespace draw2d_cairo
    }
 
 
+#ifdef WINDOWS_DESKTOP
+
+
    object * graphics_object_allocator(::object * pobject, HANDLE h)
    {
       /*switch(::GetObjectType(h))
@@ -69,6 +72,9 @@ namespace draw2d_cairo
       return new object();*/
       return nullptr;
    }
+
+
+#endif
 
 
    void object::dump(dump_context & dumpcontext) const

@@ -131,6 +131,10 @@ typedef const RECT32 * LPCRECT32;
 //#endif /* WINVER >= 0x0400 */
 
 
+#define WS_OVERLAPPEDWINDOW 0x00CF0000
+
+
+
 /*
  * Key State Masks for Mouse Messages
  */

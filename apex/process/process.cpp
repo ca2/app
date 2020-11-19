@@ -62,7 +62,7 @@ namespace process
 
    void process::wait_until_exit(i32 iWaitMax)
    {
-auto tickStart = ::millis::millis();
+auto tickStart = ::millis::now();
 
       i32 i = 1;
 
@@ -83,7 +83,7 @@ auto tickStart = ::millis::millis();
 
          }
 
-         Sleep(100);
+         millis_sleep(100);
 
          i++;
 

@@ -40,7 +40,12 @@ void simple_frame_window::defer_set_icon()
 
       auto pimage = &papp->image();
 
-      auto d = pimage->get_image("matter://icon.png");
+      if(::is_set(pimage))
+      {
+
+         auto d = pimage->get_image("matter://icon.png");
+
+      }
 
       //if(d.load_matter_icon(straMatter, "icon.png"))
       //{

@@ -1642,15 +1642,27 @@ namespace user
    }
 
 
+#ifdef WINDOWS_DESKTOP
+
+
    HMENU document::GetDefaultMenu()
    {
+
       return nullptr;    // just use original default
+
    }
+
 
    HACCEL document::GetDefaultAccelerator()
    {
+
       return nullptr;    // just use original default
+
    }
+
+
+#endif
+
 
    void document::on_idle()
    {

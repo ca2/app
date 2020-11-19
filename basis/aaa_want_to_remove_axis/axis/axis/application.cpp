@@ -1058,7 +1058,7 @@ m_millisHeartBeat.Now();
 
             }
 
-            Sleep(200);
+            millis_sleep(200);
 
          }
 

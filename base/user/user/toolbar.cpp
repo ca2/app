@@ -3,6 +3,7 @@
 #include "base/user/user/_user.h"
 #endif
 #include "aqua/xml.h"
+#include "acme/os/_os.h"
 #define CLR_TO_RGBQUAD(clr)     (RGB(::blue(clr), ::green(clr), ::red(clr)))
 
 struct __COLORMAP
@@ -73,10 +74,10 @@ namespace user
 #ifdef WINDOWS_DESKTOP
       MESSAGE_LINK(TB_SETBITMAPSIZE, pchannel, this, &toolbar::_001OnSetBitmapSize);
       MESSAGE_LINK(TB_SETBUTTONSIZE, pchannel, this, &toolbar::_001OnSetButtonSize);
-#endif
       MESSAGE_LINK(WM_SETTINGCHANGE, pchannel, this, &toolbar::_001OnPreserveZeroBorderHelper);
       MESSAGE_LINK(WM_SETFONT, pchannel, this, &toolbar::_001OnPreserveZeroBorderHelper);
       MESSAGE_LINK(WM_SYSCOLORCHANGE, pchannel, this, &toolbar::_001OnSysColorChange);
+#endif
 
    }
 
@@ -203,6 +204,8 @@ namespace user
    }
 
 
+#ifdef WINDOWS_DESKTOP
+
    bool toolbar::from(HBITMAP hbmImageWell)
    {
       ASSERT_VALID(this);
@@ -255,6 +258,8 @@ namespace user
       #endif*/
       return bResult;
    }
+
+#endif
 
    bool toolbar::SetButtons(const ::u32* pIDArray, index nIDCount)
    {

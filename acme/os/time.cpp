@@ -43,6 +43,6 @@ bool os_usleep::sleep(unsigned long usec)
 //CLASS_DECL_ACME void sleep(const ::duration& dur)
 //{
 //
-//   Sleep((::u32)dur.total_milliseconds());
+//   millis_sleep((::u32)dur.total_milliseconds());
 //
 //}

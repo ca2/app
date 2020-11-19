@@ -16,4 +16,4 @@ stage\basis\base.dll
 stage\basis\aura.dll
 [windows]stage\basis\draw2d_gdiplus.dll
 [linux]stage\basis\draw2d_cairo.dll
-stage\basis\experience_core.dll
+stage\basis\experience_lite.dll

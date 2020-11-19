@@ -363,7 +363,7 @@ bool mm1a_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const ch
       while(os->m_iIcon != 0)
       {
          
-         Sleep(5);
+         millis_sleep(5);
          
       }
 

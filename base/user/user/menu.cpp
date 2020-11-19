@@ -388,7 +388,7 @@ namespace user
 
       }
 
-      LPVOID pvoid = nullptr;
+      void * pvoid = nullptr;
 
       auto pgraphics = ::draw2d::create_memory_graphics();
 
@@ -446,7 +446,11 @@ namespace user
          if (puiParent == nullptr)
          {
 
+#ifdef WINDOWS_DESKTOP
+
             iStyleEx = WS_EX_LAYERED | WS_EX_TOOLWINDOW;
+
+#endif
 
          }
 
@@ -1349,9 +1353,13 @@ namespace user
    bool menu::pre_create_window(::user::create_struct& cs)
    {
 
+#ifdef WINDOWS_DESKTOP
+
       cs.dwExStyle = WS_EX_LAYERED | WS_EX_TOPMOST | WS_EX_TOOLWINDOW;
 
       cs.style &= ~WS_VISIBLE;
+
+#endif
 
       return TRUE;
 

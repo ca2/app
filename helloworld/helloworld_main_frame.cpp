@@ -65,7 +65,7 @@ namespace helloworld
 
 
 
-      //__pointer(::user::experience::main_frame::main_frame) pschema = Application.experience()->experience_get_frame("experience_core", "001");
+      //__pointer(::user::experience::main_frame::main_frame) pschema = Application.experience()->experience_get_frame("experience_lite", "001");
 
       auto pframe = Application.experience()->experience_get_frame(nullptr, "013");
 

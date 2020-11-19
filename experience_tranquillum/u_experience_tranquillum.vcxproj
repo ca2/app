@@ -92,7 +92,7 @@
     <ProjectGuid>{671B8C46-4264-45E4-9AEF-7D6302160339}</ProjectGuid>
     <Keyword>DynamicLibrary</Keyword>
     <ProjectName>experience_tranquillum</ProjectName>
-    <RootNamespace>experience_core</RootNamespace>
+    <RootNamespace>experience_lite</RootNamespace>
     <DefaultLanguage>en-US</DefaultLanguage>
     <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
     <AppContainerApplication>true</AppContainerApplication>

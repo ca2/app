@@ -3825,7 +3825,7 @@ retry_license:
 //
 //         iRetry--;
 //
-//         Sleep(100);
+//         millis_sleep(100);
 //
 //      }
 //
@@ -5355,7 +5355,7 @@ retry_license:
 
             }
 
-            Sleep(200);
+            millis_sleep(200);
 
          }
 

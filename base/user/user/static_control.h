@@ -46,8 +46,10 @@ namespace user
 
       virtual ::draw2d::font_pointer get_font(style* pstyle, e_element eelement = element_none, estate estate = e_state_none) const override;
 
+#ifdef WINDOWS_DESKTOP
       HENHMETAFILE SetEnhMetaFile(HENHMETAFILE hMetaFile);
       HENHMETAFILE GetEnhMetaFile();
+#endif
       void static_set_icon(::draw2d::icon * picon);
       ::draw2d::icon * static_get_icon();
       void static_set_bitmap(::draw2d::bitmap * pbitmap);

@@ -265,7 +265,7 @@ _AFXMT_INLINE int_bool critical_section::Unlock()
 //         if(!do_events())
 //         {
 //
-//            Sleep(100);
+//            millis_sleep(100);
 //
 //         }
 //
@@ -310,7 +310,7 @@ _AFXMT_INLINE int_bool critical_section::Unlock()
 //   if(iTime < 100)
 //   {
 //
-//      Sleep(100);
+//      millis_sleep(100);
 //
 //   }
 //   else
@@ -323,7 +323,7 @@ _AFXMT_INLINE int_bool critical_section::Unlock()
 //      for(index i = 0; i < iTime; i++)
 //      {
 //
-//         Sleep(100);
+//         millis_sleep(100);
 //
 //         if(!::thread_get_run() || !pred())
 //         {

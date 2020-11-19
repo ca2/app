@@ -227,7 +227,7 @@ namespace multimedia
 
             i++;
 
-            Sleep(100);
+            millis_sleep(100);
 
          }
 

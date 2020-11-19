@@ -13,7 +13,7 @@
 //    - CreateThread (returns a standard Win32 handle which can be waited on, then closed)
 //    - CREATE_SUSPENDED and ResumeThread
 //    - Partial support for SetThreadPriority (see below)
-//    - Sleep
+//    - millis_sleep
 //    - Thread local storage (TlsAlloc, TlsFree, thread_get_data, thread_set_data)
 //
 // Differences from Win32:
@@ -46,7 +46,7 @@ CLASS_DECL_AURA ::u32 WINAPI ResumeThread(hthread_t hthread);
 CLASS_DECL_AURA int_bool WINAPI SetThreadPriority(hthread_t hthread, i32 nPriority);
 CLASS_DECL_AURA i32 WINAPI GetThreadPriority(hthread_t hthread);
 
-CLASS_DECL_AURA VOID WINAPI Sleep(::u32 dwMilliseconds);
+//CLASS_DECL_AURA VOID WINAPI millis_sleep(::u32 dwMilliseconds);
 
 
 #endif

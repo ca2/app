@@ -97,7 +97,7 @@ i32                 cy)
    auto psession = Session;
 
 //   if(crShadow == (color32_t)-1)
-//      crShadow = psession->get_default_color(COLOR_BTNSHADOW);
+//      crShadow = crButtonShadow;
 //
 //   if(crText == (color32_t)-1)
 //      crText = psession->get_default_color(COLOR_BTNTEXT);
@@ -670,8 +670,8 @@ return pil;
 ////
 ////   byte br,bg,bb;
 ////
-////   //   color32_t crBtnFace = psession->get_default_color(COLOR_BTNFACE);
-////   //   color32_t crBtnShad = psession->get_default_color(COLOR_BTNSHADOW);
+////   //   color32_t crBtnFace = crButtonFace;
+////   //   color32_t crBtnShad = crButtonShadow;
 ////   //   color32_t crWndBack = psession->get_default_color(COLOR_WINDOW);
 ////
 ////   //   byte bRBtnFace = ::red(crBtnFace);

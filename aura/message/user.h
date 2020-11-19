@@ -11,8 +11,8 @@ enum enum_activate
 {
 
    e_activate_inactive = 0,
-   e_activate_active = 0,
-   e_activate_click_active = 0,
+   e_activate_active = 1,
+   e_activate_click_active = 2,
 
 };
 

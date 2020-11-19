@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9A415BB924738E8800EF2BCD /* libexperience_anthill.a in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A6FAB902304797D00340A3D /* libexperience_anthill.a */; };
-		9A415BBA24738E8800EF2BCD /* libios_experience_core.a in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A001AB52304CFF70004D603 /* libios_experience_core.a */; };
+		9A415BBA24738E8800EF2BCD /* libios_experience_lite.a in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A001AB52304CFF70004D603 /* libios_experience_lite.a */; };
 		9A415BFE2473931600EF2BCD /* libios_draw2d_quartz2d.a in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A6FABD52304797E00340A3D /* libios_draw2d_quartz2d.a */; };
 		9A415CA12473953200EF2BCD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A415C9C2473953100EF2BCD /* Images.xcassets */; };
 		9A449B022477382A0002A827 /* libios_aura.a in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A247CE92452C41700F23D28 /* libios_aura.a */; };
@@ -20,24 +20,24 @@
 /* Begin PBXContainerItemProxy section */
 		9A001AB22304CFF70004D603 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A001AAC2304CFF70004D603 /* experience_core.xcodeproj */;
+			containerPortal = 9A001AAC2304CFF70004D603 /* experience_lite.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9AEB75F416F78EDC0085103B;
-			remoteInfo = experience_core;
+			remoteInfo = experience_lite;
 		};
 		9A001AB42304CFF70004D603 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A001AAC2304CFF70004D603 /* experience_core.xcodeproj */;
+			containerPortal = 9A001AAC2304CFF70004D603 /* experience_lite.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9AE24E5A1904CFE2001AEFFB;
-			remoteInfo = ios_experience_core;
+			remoteInfo = ios_experience_lite;
 		};
 		9A001AB62304CFF70004D603 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A001AAC2304CFF70004D603 /* experience_core.xcodeproj */;
+			containerPortal = 9A001AAC2304CFF70004D603 /* experience_lite.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9AE24E691904CFE2001AEFFB;
-			remoteInfo = experience_core_iosTests;
+			remoteInfo = experience_lite_iosTests;
 		};
 		9A079229251A32590043C7B2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -114,7 +114,7 @@
 			containerPortal = 9A3E0B2B2309FA7F00B5459B /* experience_tranquillum.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9AE24E691904CFE2001AEFFB;
-			remoteInfo = experience_core_iosTests;
+			remoteInfo = experience_lite_iosTests;
 		};
 		9A415BAE24738E6300EF2BCD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -132,10 +132,10 @@
 		};
 		9A415BB224738E6300EF2BCD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A001AAC2304CFF70004D603 /* experience_core.xcodeproj */;
+			containerPortal = 9A001AAC2304CFF70004D603 /* experience_lite.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 9AE24E591904CFE2001AEFFB;
-			remoteInfo = ios_experience_core;
+			remoteInfo = ios_experience_lite;
 		};
 		9A415BB424738E6300EF2BCD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -170,7 +170,7 @@
 			containerPortal = 9A6FAB872304797D00340A3D /* experience_anthill.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9AE24E691904CFE2001AEFFB;
-			remoteInfo = experience_core_iosTests;
+			remoteInfo = experience_lite_iosTests;
 		};
 		9A6FABD22304797E00340A3D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -235,14 +235,14 @@
 				9A449B022477382A0002A827 /* libios_aura.a in CopyFiles */,
 				9A415BFE2473931600EF2BCD /* libios_draw2d_quartz2d.a in CopyFiles */,
 				9A415BB924738E8800EF2BCD /* libexperience_anthill.a in CopyFiles */,
-				9A415BBA24738E8800EF2BCD /* libios_experience_core.a in CopyFiles */,
+				9A415BBA24738E8800EF2BCD /* libios_experience_lite.a in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		9A001AAC2304CFF70004D603 /* experience_core.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = experience_core.xcodeproj; path = ../experience_core/experience_core.xcodeproj; sourceTree = "<group>"; };
+		9A001AAC2304CFF70004D603 /* experience_lite.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = experience_lite.xcodeproj; path = ../experience_lite/experience_lite.xcodeproj; sourceTree = "<group>"; };
 		9A079225251A32580043C7B2 /* acme.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = acme.xcodeproj; path = ../acme/acme.xcodeproj; sourceTree = "<group>"; };
 		9A07922B251A32680043C7B2 /* apex.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = apex.xcodeproj; path = ../apex/apex.xcodeproj; sourceTree = "<group>"; };
 		9A079231251A32930043C7B2 /* imaging_coreimage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = imaging_coreimage.xcodeproj; path = ../imaging_coreimage/imaging_coreimage.xcodeproj; sourceTree = "<group>"; };
@@ -270,7 +270,7 @@
 				9A247CE02452C41600F23D28 /* aura.xcodeproj */,
 				9A6FABCC2304797E00340A3D /* draw2d_quartz2d.xcodeproj */,
 				9A6FAB872304797D00340A3D /* experience_anthill.xcodeproj */,
-				9A001AAC2304CFF70004D603 /* experience_core.xcodeproj */,
+				9A001AAC2304CFF70004D603 /* experience_lite.xcodeproj */,
 				9A3E0B2B2309FA7F00B5459B /* experience_tranquillum.xcodeproj */,
 				9A079231251A32930043C7B2 /* imaging_coreimage.xcodeproj */,
 				9A415C9A2473953100EF2BCD /* ios */,
@@ -290,9 +290,9 @@
 		9A001AAD2304CFF70004D603 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A001AB32304CFF70004D603 /* libexperience_core.dylib */,
-				9A001AB52304CFF70004D603 /* libios_experience_core.a */,
-				9A001AB72304CFF70004D603 /* experience_core_iosTests.xctest */,
+				9A001AB32304CFF70004D603 /* libexperience_lite.dylib */,
+				9A001AB52304CFF70004D603 /* libios_experience_lite.a */,
+				9A001AB72304CFF70004D603 /* experience_lite_iosTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -340,7 +340,7 @@
 			children = (
 				9A3E0B442309FA7F00B5459B /* libexperience_tranquillum.dylib */,
 				9A3E0B462309FA7F00B5459B /* libios_experience_tranquillum.dylib */,
-				9A3E0B482309FA7F00B5459B /* experience_core_iosTests.xctest */,
+				9A3E0B482309FA7F00B5459B /* experience_lite_iosTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -362,7 +362,7 @@
 			children = (
 				9A6FAB8E2304797D00340A3D /* libexperience_anthill.dylib */,
 				9A6FAB902304797D00340A3D /* libexperience_anthill.a */,
-				9A6FAB922304797D00340A3D /* experience_core_iosTests.xctest */,
+				9A6FAB922304797D00340A3D /* experience_lite_iosTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -453,7 +453,7 @@
 				},
 				{
 					ProductGroup = 9A001AAD2304CFF70004D603 /* Products */;
-					ProjectRef = 9A001AAC2304CFF70004D603 /* experience_core.xcodeproj */;
+					ProjectRef = 9A001AAC2304CFF70004D603 /* experience_lite.xcodeproj */;
 				},
 				{
 					ProductGroup = 9A3E0B2C2309FA7F00B5459B /* Products */;
@@ -472,24 +472,24 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		9A001AB32304CFF70004D603 /* libexperience_core.dylib */ = {
+		9A001AB32304CFF70004D603 /* libexperience_lite.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = libexperience_core.dylib;
+			path = libexperience_lite.dylib;
 			remoteRef = 9A001AB22304CFF70004D603 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A001AB52304CFF70004D603 /* libios_experience_core.a */ = {
+		9A001AB52304CFF70004D603 /* libios_experience_lite.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libios_experience_core.a;
+			path = libios_experience_lite.a;
 			remoteRef = 9A001AB42304CFF70004D603 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A001AB72304CFF70004D603 /* experience_core_iosTests.xctest */ = {
+		9A001AB72304CFF70004D603 /* experience_lite_iosTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = experience_core_iosTests.xctest;
+			path = experience_lite_iosTests.xctest;
 			remoteRef = 9A001AB62304CFF70004D603 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -563,10 +563,10 @@
 			remoteRef = 9A3E0B452309FA7F00B5459B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A3E0B482309FA7F00B5459B /* experience_core_iosTests.xctest */ = {
+		9A3E0B482309FA7F00B5459B /* experience_lite_iosTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = experience_core_iosTests.xctest;
+			path = experience_lite_iosTests.xctest;
 			remoteRef = 9A3E0B472309FA7F00B5459B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -584,10 +584,10 @@
 			remoteRef = 9A6FAB8F2304797D00340A3D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A6FAB922304797D00340A3D /* experience_core_iosTests.xctest */ = {
+		9A6FAB922304797D00340A3D /* experience_lite_iosTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = experience_core_iosTests.xctest;
+			path = experience_lite_iosTests.xctest;
 			remoteRef = 9A6FAB912304797D00340A3D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -663,7 +663,7 @@
 		};
 		9A415BB324738E6300EF2BCD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = ios_experience_core;
+			name = ios_experience_lite;
 			targetProxy = 9A415BB224738E6300EF2BCD /* PBXContainerItemProxy */;
 		};
 		9A415BB524738E6300EF2BCD /* PBXTargetDependency */ = {

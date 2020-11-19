@@ -487,7 +487,7 @@ namespace http
       //         if(iAttempt > 11)
       //            return "";
       //
-      //         Sleep(iAttempt * 840);
+      //         millis_sleep(iAttempt * 840);
       //
       //      }
 
@@ -1066,7 +1066,7 @@ namespace http
    bool context::open(::sockets::socket_handler & handler, __pointer(::sockets::http_session) & psession, const char * pszHost, const char * pszProtocol, property_set & set, const char * pszVersion)
    {
 
-      auto tickTimeProfile1 = ::millis::millis();
+      auto tickTimeProfile1 = ::millis::now();
 
       UNREFERENCED_PARAMETER(pszVersion);
 
@@ -1134,7 +1134,7 @@ namespace http
 
       }
 
-      auto tick1 = ::millis::millis();
+      auto tick1 = ::millis::now();
 
       bool bConfigProxy = set.is_set_false("no_proxy_config");
 
@@ -1238,7 +1238,7 @@ namespace http
          try
          {
 
-            auto tickBeg = ::millis::millis();
+            auto tickBeg = ::millis::now();
 
             if (!open(handler, psession, System.url().get_server(pszRequest), System.url().get_protocol(pszRequest), set, set["http_protocol_version"]))
             {
@@ -1259,12 +1259,12 @@ namespace http
 
       }
 
-      auto tickBegA = ::millis::millis();
+      auto tickBegA = ::millis::now();
 
       try
       {
 
-         auto tickTimeProfile1 = ::millis::millis();
+         auto tickTimeProfile1 = ::millis::now();
 
          ::apex::application * papp = handler.get_context_application();
 
@@ -1446,7 +1446,7 @@ namespace http
             //while(psession->get_count() > 0 && !psession->m_bRequestComplete) // should only exit in case of process exit signal
          {
 
-            tick1 = ::millis::millis();
+            tick1 = ::millis::now();
 
             handler.select(240, 0);
 
@@ -1714,7 +1714,7 @@ namespace http
 
       set["http_get_serial"] = iHttpGetSerial;
 
-      auto tickStart = millis::millis();
+      auto tickStart = millis::now();
 
       int iTry = 0;
 
@@ -1746,7 +1746,7 @@ namespace http
 
       iTry++;
 
-      auto tickTimeProfile1 = ::millis::millis();
+      auto tickTimeProfile1 = ::millis::now();
 
       string strServer = System.url().get_root(pszUrl);
 
@@ -2003,7 +2003,7 @@ namespace http
 
       }
 
-      auto tick1 = ::millis::millis();
+      auto tick1 = ::millis::now();
 
       bool bConfigProxy = !set.has_property("no_proxy_config") || !(bool)set["no_proxy_config"];
 
@@ -2045,7 +2045,7 @@ namespace http
 
             set["get_status"] = (i64)error_http;
 
-            auto tick2 = ::millis::millis();
+            auto tick2 = ::millis::now();
 
             TRACE(__prhttpget "Not Opened/Connected Result Total time ::http::context::get(\"%s\") " __prtick, iHttpGetSerial, strUrl.Left(min(255, strUrl.get_length())).c_str(), __pr(tick1.elapsed()));
 
@@ -2115,7 +2115,7 @@ namespace http
 
       int iEnteredLoop = 0;
 
-      tick1 = ::millis::millis();
+      tick1 = ::millis::now();
 
       while (handler.get_count() > 0 && (::get_task() == nullptr || ::thread_get_run()))
       {
@@ -2155,7 +2155,7 @@ namespace http
             if (iBodySizeDownloaded > 0)
             {
 
-               tickStart = millis::millis();
+               tickStart = millis::now();
 
             }
 
@@ -2319,7 +2319,7 @@ namespace http
          if (::str::begins_ci(strCa2Realm, "not licensed: "))
          {
 
-            auto tick2 = ::millis::millis();
+            auto tick2 = ::millis::now();
 
             TRACE(__prhttpget "Not Licensed Result Total time ::http::context::get(\"%s\") " __prtick, iHttpGetSerial, strUrl.Left(min(255, strUrl.get_length())).c_str(), __pr(tick1.elapsed()));
 
@@ -2622,7 +2622,7 @@ namespace http
 
             sl.unlock();
 
-            Sleep(100);
+            millis_sleep(100);
 
             sl.lock();
 

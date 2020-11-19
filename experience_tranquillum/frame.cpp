@@ -370,11 +370,11 @@ namespace experience
          auto psession = Session;
 
          m_penText1->create_solid(1, ARGB(255, 255, 255, 255));
-         m_penFace1->create_solid(1, psession->get_default_color(COLOR_BTNFACE) | 0xff000000);
-         m_penHilight1->create_solid(1, psession->get_default_color(COLOR_BTNHILIGHT) | 0xff000000);
-         m_penShadow1->create_solid(1, psession->get_default_color(COLOR_BTNSHADOW) | 0xff000000);
-         m_penDkShadow1->create_solid(1, psession->get_default_color(COLOR_3DDKSHADOW) | 0xff000000);
-         m_crDkShadow = psession->get_default_color(COLOR_3DDKSHADOW);
+         m_penFace1->create_solid(1, crButtonFace | 0xff000000);
+         m_penHilight1->create_solid(1, crButtonHilite | 0xff000000);
+         m_penShadow1->create_solid(1, crButtonShadow | 0xff000000);
+         m_penDkShadow1->create_solid(1, crButtonDarkShadow | 0xff000000);
+         m_crDkShadow = crButtonDarkShadow;
          m_crFrameBorder = RGB(0, 0, 0) | 0xff000000;
 
 
@@ -736,11 +736,11 @@ namespace experience
             else
             {
 
-               crMoveableBorder = psession->get_default_color(COLOR_BTNFACE);
+               crMoveableBorder = crButtonFace;
 
-               crMoveableBorderHilight = psession->get_default_color(COLOR_BTNHILIGHT);
+               crMoveableBorderHilight = crButtonHilite;
 
-               crMoveableBorderShadow = psession->get_default_color(COLOR_BTNSHADOW);
+               crMoveableBorderShadow = crButtonShadow;
 
             }
 

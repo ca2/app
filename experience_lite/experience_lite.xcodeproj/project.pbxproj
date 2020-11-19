@@ -157,7 +157,7 @@
 		9ACB7A6220D23C1200C1C857 /* experience_lite_user_theme.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = experience_lite_user_theme.cpp; sourceTree = "<group>"; };
 		9AE24E5A1904CFE2001AEFFB /* libexperience_lite.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libexperience_lite.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AE24E5C1904CFE2001AEFFB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		9AE24E691904CFE2001AEFFB /* experience_core_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = experience_core_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AE24E691904CFE2001AEFFB /* experience_lite_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = experience_lite_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AE24E6A1904CFE2001AEFFB /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		9AE24E6D1904CFE2001AEFFB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		9AE24E741904CFE2001AEFFB /* app_core_uinteraction_iosTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "app_core_uinteraction_iosTests-Info.plist"; sourceTree = "<group>"; };
@@ -274,7 +274,7 @@
 			children = (
 				9AEB75F416F78EDC0085103B /* libexperience_lite.dylib */,
 				9AE24E5A1904CFE2001AEFFB /* libexperience_lite.dylib */,
-				9AE24E691904CFE2001AEFFB /* experience_core_iosTests.xctest */,
+				9AE24E691904CFE2001AEFFB /* experience_lite_iosTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -362,9 +362,9 @@
 			productReference = 9AE24E5A1904CFE2001AEFFB /* libexperience_lite.dylib */;
 			productType = "com.apple.product-type.library.static";
 		};
-		9AE24E681904CFE2001AEFFB /* experience_core_iosTests */ = {
+		9AE24E681904CFE2001AEFFB /* experience_lite_iosTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9AE24E851904CFE2001AEFFB /* Build configuration list for PBXNativeTarget "experience_core_iosTests" */;
+			buildConfigurationList = 9AE24E851904CFE2001AEFFB /* Build configuration list for PBXNativeTarget "experience_lite_iosTests" */;
 			buildPhases = (
 				9AE24E651904CFE2001AEFFB /* Sources */,
 				9AE24E661904CFE2001AEFFB /* Frameworks */,
@@ -375,9 +375,9 @@
 			dependencies = (
 				9AE24E701904CFE2001AEFFB /* PBXTargetDependency */,
 			);
-			name = experience_core_iosTests;
+			name = experience_lite_iosTests;
 			productName = app_core_uinteraction_iosTests;
-			productReference = 9AE24E691904CFE2001AEFFB /* experience_core_iosTests.xctest */;
+			productReference = 9AE24E691904CFE2001AEFFB /* experience_lite_iosTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		9AEB75F316F78EDC0085103B /* experience_lite */ = {
@@ -432,7 +432,7 @@
 			targets = (
 				9AEB75F316F78EDC0085103B /* experience_lite */,
 				9AE24E591904CFE2001AEFFB /* ios_experience_lite */,
-				9AE24E681904CFE2001AEFFB /* experience_core_iosTests */,
+				9AE24E681904CFE2001AEFFB /* experience_lite_iosTests */,
 			);
 		};
 /* End PBXProject section */
@@ -786,7 +786,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9AE24E851904CFE2001AEFFB /* Build configuration list for PBXNativeTarget "experience_core_iosTests" */ = {
+		9AE24E851904CFE2001AEFFB /* Build configuration list for PBXNativeTarget "experience_lite_iosTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9AE24E7C1904CFE2001AEFFB /* Debug */,

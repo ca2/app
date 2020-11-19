@@ -75,20 +75,29 @@ namespace user
 
    bool split_bar::pre_create_window(::user::create_struct& cs)
    {
+
+#ifdef WINDOWS_DESKTOP
+
       cs.style &= ~WS_BORDER;
 
+#endif
+
       return ::user::interaction::pre_create_window(cs);
+
    }
 
 
    void split_bar::install_message_routing(::channel * pchannel)
    {
+
       ::user::interaction::install_message_routing(pchannel);
+
       //MESSAGE_LINK(e_message_create, pchannel, this, &split_bar::_001OnCreate);
       //MESSAGE_LINK(e_message_size, pchannel, this, &split_bar::_001OnSize);
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &split_bar::_001OnLButtonDown);
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &split_bar::_001OnLButtonUp);
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &split_bar::_001OnMouseMove);
+
    }
 
 

@@ -524,6 +524,7 @@ namespace windows
       //virtual void WinHelpInternal(uptr dwData, ::u32 nCmd = HELP_CONTEXT);
 
 
+      virtual void _001OnSysCommand(::message::message * pmessage);
 
       // dialog support
       //void UpdateDialogControls(channel* pTarget, bool bDisableIfNoHndler);
@@ -733,6 +734,9 @@ namespace windows
       //bool _EnableToolTips(bool bEnable, ::u32 nFlag);
       virtual oswindow get_safe_owner(::oswindow oswindow, ::oswindow * pWndTop);
       //void PrepareForHelp();
+
+
+      virtual ::estatus set_tool_window(bool bSet);
 
 
       friend class frame_window;

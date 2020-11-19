@@ -81,13 +81,22 @@ namespace user
 
       ASSERT(cs.style & WS_CHILD);
 
+
+#ifdef WINDOWS_DESKTOP
+
+
       if (cs.style & WS_BORDER)
       {
-#ifdef WINDOWS_DESKTOP
+
          cs.dwExStyle |= WS_EX_CLIENTEDGE;
-#endif
+
          cs.style &= ~WS_BORDER;
+
       }
+
+
+#endif
+
 
       return TRUE;
 

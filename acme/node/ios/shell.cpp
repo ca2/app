@@ -1345,7 +1345,7 @@ namespace ios
    //      if (!do_call())
    //      {
 
-   //         Sleep(100);
+   //         millis_sleep(100);
 
    //      }
 
@@ -1383,7 +1383,7 @@ namespace ios
    //         //while (thread_get_run() && i >= 0)
    //         //{
 
-   //         //   Sleep(500);
+   //         //   millis_sleep(500);
 
    //         //   i--;
 
@@ -1700,7 +1700,7 @@ namespace ios
 //
 //            sl.unlock();
 //
-//            Sleep(100);
+//            millis_sleep(100);
 //
 //         }
 //         else
@@ -1957,7 +1957,7 @@ namespace ios
 
                sl.unlock();
 
-               Sleep(100);
+               millis_sleep(100);
 
             }
             else

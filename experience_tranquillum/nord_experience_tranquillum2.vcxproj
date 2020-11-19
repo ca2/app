@@ -23,7 +23,7 @@
     <Keyword>Android</Keyword>
     <ApplicationType>Android</ApplicationType>
     <ApplicationTypeRevision>1.0</ApplicationTypeRevision>
-    <ProjectName>experience_core</ProjectName>
+    <ProjectName>experience_lite</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'" Label="Configuration">
@@ -82,33 +82,33 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x86'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="experience_core_frame.cpp" />
-    <ClCompile Include="experience_core_frame_001.cpp" />
-    <ClCompile Include="experience_core_frame_002.cpp" />
-    <ClCompile Include="experience_core_frame_005.cpp" />
-    <ClCompile Include="experience_core_frame_008.cpp" />
-    <ClCompile Include="experience_core_frame_011.cpp" />
-    <ClCompile Include="experience_core_frame_013.cpp" />
-    <ClCompile Include="experience_core_frame_Minimal001.cpp" />
-    <ClCompile Include="experience_core_interaction.cpp" />
-    <ClCompile Include="experience_core_library.cpp" />
+    <ClCompile Include="experience_lite_frame.cpp" />
+    <ClCompile Include="experience_lite_frame_001.cpp" />
+    <ClCompile Include="experience_lite_frame_002.cpp" />
+    <ClCompile Include="experience_lite_frame_005.cpp" />
+    <ClCompile Include="experience_lite_frame_008.cpp" />
+    <ClCompile Include="experience_lite_frame_011.cpp" />
+    <ClCompile Include="experience_lite_frame_013.cpp" />
+    <ClCompile Include="experience_lite_frame_Minimal001.cpp" />
+    <ClCompile Include="experience_lite_interaction.cpp" />
+    <ClCompile Include="experience_lite_library.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h" />
-    <ClInclude Include="experience_core.h" />
-    <ClInclude Include="experience_core_frame.h" />
-    <ClInclude Include="experience_core_frame_001.h" />
-    <ClInclude Include="experience_core_frame_002.h" />
-    <ClInclude Include="experience_core_frame_005.h" />
-    <ClInclude Include="experience_core_frame_008.h" />
-    <ClInclude Include="experience_core_frame_011.h" />
-    <ClInclude Include="experience_core_frame_013.h" />
-    <ClInclude Include="experience_core_frame_Minimal001.h" />
-    <ClInclude Include="experience_core_interaction.h" />
-    <ClInclude Include="experience_core_library.h" />
+    <ClInclude Include="experience_lite.h" />
+    <ClInclude Include="experience_lite_frame.h" />
+    <ClInclude Include="experience_lite_frame_001.h" />
+    <ClInclude Include="experience_lite_frame_002.h" />
+    <ClInclude Include="experience_lite_frame_005.h" />
+    <ClInclude Include="experience_lite_frame_008.h" />
+    <ClInclude Include="experience_lite_frame_011.h" />
+    <ClInclude Include="experience_lite_frame_013.h" />
+    <ClInclude Include="experience_lite_frame_Minimal001.h" />
+    <ClInclude Include="experience_lite_interaction.h" />
+    <ClInclude Include="experience_lite_library.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="experience_core.def" />
+    <None Include="experience_lite.def" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\source\app\aura\nord_aura.vcxproj">

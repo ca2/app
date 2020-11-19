@@ -20,15 +20,17 @@ namespace user
       ::size                                 m_sizeMinimum;
       __pointer(menu)                        m_pmenuParent;
       __pointer(menu_item)                   m_pmenuitem;
-      __pointer(::user::interaction)         m_puserinteractionParent;
-      __pointer(::user::interaction)         m_puiMenuNotify;
+      __pointer(::user::interaction)   m_puserinteractionParent;
+      __pointer(::user::interaction)   m_puiMenuNotify;
+#ifdef WINDOWS_DESKTOP
       HMENU                                  m_hmenu;
+#endif
       bool                                   m_bOwnItem;
       ::size                                 m_size;
       i32                                    m_iCheckBoxSize;
       bool                                   m_bAutoDelete;
       i32                                    m_iHeaderHeight;
-      __pointer(::user::menu_item)           m_pitemClose;
+      __pointer(::user::menu_item)     m_pitemClose;
       id                                     m_idSubMenu;
       i32                                    m_iHoverSubMenu;
       u32                                    m_dwOut;

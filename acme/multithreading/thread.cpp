@@ -7,7 +7,7 @@ CLASS_DECL_ACME bool __simple_task_sleep()
    while (thread_get_run())
    {
 
-      Sleep(300);
+      millis_sleep(300);
 
    }
 
@@ -31,7 +31,7 @@ CLASS_DECL_ACME bool __simple_task_sleep(millis millis)
 
       }
 
-      Sleep(300);
+      millis_sleep(300);
 
       i -= 300;
 
@@ -44,7 +44,7 @@ CLASS_DECL_ACME bool __simple_task_sleep(millis millis)
 
    }
 
-   Sleep((::u32) i);
+   millis_sleep((::u32) i);
 
    return ::thread_get_run();
 

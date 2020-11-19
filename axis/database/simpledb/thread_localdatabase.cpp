@@ -59,7 +59,7 @@ namespace simpledb
 
                sl.unlock();
 
-               Sleep(300);
+               millis_sleep(300);
 
                continue;
 

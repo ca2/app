@@ -1383,7 +1383,7 @@ namespace acme
 
       bSuccess = GetPhysicalMonitorsFromHMONITOR(m_hmonitora[iMonitor], 1, &monitor);
 
-      Sleep(500);
+      millis_sleep(500);
 
       //MC_COLOR_TEMPERATURE e = kelvin_mc_color(dwTemperature);
 
@@ -1515,9 +1515,9 @@ namespace acme
 
          if (dwCurDriveR != dwMaxDriveR)
          {
-            Sleep(500);
+            millis_sleep(500);
             SetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_RED_DRIVE, dwMaxDriveR);
-            Sleep(500);
+            millis_sleep(500);
             bDifferent = true;
          }
 
@@ -1528,9 +1528,9 @@ namespace acme
 
          if (dwCurDriveG != dwMaxDriveG)
          {
-            Sleep(500);
+            millis_sleep(500);
             SetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_GREEN_DRIVE, dwMaxDriveG);
-            Sleep(500);
+            millis_sleep(500);
             bDifferent = true;
          }
 
@@ -1541,9 +1541,9 @@ namespace acme
 
          if (dwCurDriveB != dwMaxDriveB)
          {
-            Sleep(500);
+            millis_sleep(500);
             SetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_BLUE_DRIVE, dwMaxDriveB);
-            Sleep(500);
+            millis_sleep(500);
             bDifferent = true;
          }
 
@@ -1554,9 +1554,9 @@ namespace acme
 
          if (dwCurGainR != dwR)
          {
-            Sleep(500);
+            millis_sleep(500);
             SetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_RED_GAIN, dwR);
-            Sleep(500);
+            millis_sleep(500);
             bDifferent = true;
          }
 
@@ -1568,9 +1568,9 @@ namespace acme
 
          if (dwCurGainG != dwG)
          {
-            Sleep(500);
+            millis_sleep(500);
             SetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_GREEN_GAIN, dwG);
-            Sleep(500);
+            millis_sleep(500);
             bDifferent = true;
          }
 
@@ -1581,9 +1581,9 @@ namespace acme
 
          if (dwCurGainB != dwB)
          {
-            Sleep(500);
+            millis_sleep(500);
             SetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_BLUE_GAIN, dwB);
-            Sleep(500);
+            millis_sleep(500);
             bDifferent = true;
          }
 
@@ -1602,14 +1602,14 @@ namespace acme
          }
 
       }
-      Sleep(500);
+      millis_sleep(500);
    finalize:
       ;
       DestroyPhysicalMonitors(1, &monitor);
       return true;
    error:
       ;
-      Sleep(500);
+      millis_sleep(500);
       // Close the monitor handles.
       DestroyPhysicalMonitors(1, &monitor);
       return false;

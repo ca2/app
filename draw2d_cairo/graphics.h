@@ -251,8 +251,8 @@ namespace draw2d_cairo
       void frame_rect(const ::rect & rect, ::draw2d::brush* pBrush) override;
       void invert_rect(const ::rect & rect) override;
 
-      bool DrawIcon(i32 x, i32 y, ::draw2d::icon * picon) override;
-      bool DrawIcon(const ::point & point, ::draw2d::icon * picon) override;
+      //bool DrawIcon(i32 x, i32 y, ::draw2d::icon * picon) override;
+      //virtual bool draw(const ::point & point, ::draw2d::icon * picon, const ::size & size) override;
       //bool DrawIcon(i32 x, i32 y, ::draw2d::icon * picon, i32 cx, i32 cy, ::u32 istepIfAniCur, HBRUSH hbrFlickerFreeDraw, ::u32 diFlags) override;
       //bool DrawState(const ::point & point, const ::size & size, HBITMAP hBitmap, ::u32 nFlags,
         //             HBRUSH hBrush = nullptr) override;
@@ -305,10 +305,12 @@ namespace draw2d_cairo
 
       // Bitmap Functions
       //bool PatBlt(i32 x, i32 y, i32 nWidth, i32 nHeight) override;
-      bool BitBltRaw(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc,
-                     i32 xSrc, i32 ySrc) override;
-      bool StretchBltRaw(double x, double y, double nWidth, double nHeight, ::draw2d::graphics * pgraphicsSrc,
-                         i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight) override;
+
+
+      bool draw_raw(const ::rect & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::point & pointSrc) override;
+      bool stretch_raw(const ::rect & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rect & rectSrc) override;
+
+
       ::color GetPixel(i32 x, i32 y) override;
       ::color GetPixel(const ::point & point) override;
       ::color SetPixel(i32 x, i32 y, const ::color & color) override;

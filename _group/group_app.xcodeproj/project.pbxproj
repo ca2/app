@@ -19,7 +19,7 @@
 		9AE6498F252A648E00BED5B8 /* libbred.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AE64971252A643900BED5B8 /* libbred.dylib */; };
 		9AE649F1252A653E00BED5B8 /* libdraw2d_quartz2d.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AE64999252A64A700BED5B8 /* libdraw2d_quartz2d.dylib */; };
 		9AE649F2252A653E00BED5B8 /* libexperience_anthill.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AE649A8252A64B000BED5B8 /* libexperience_anthill.dylib */; };
-		9AE649F3252A653E00BED5B8 /* libexperience_core.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AE649B7252A64B600BED5B8 /* libexperience_core.dylib */; };
+		9AE649F3252A653E00BED5B8 /* libexperience_lite.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AE649B7252A64B600BED5B8 /* libexperience_lite.dylib */; };
 		9AE649F4252A653E00BED5B8 /* libexperience_tranquillum.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AE649C6252A64BC00BED5B8 /* libexperience_tranquillum.dylib */; };
 		9AE649F5252A653E00BED5B8 /* libgpu_opengl.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AE649D3252A64C600BED5B8 /* libgpu_opengl.dylib */; };
 		9AE649F6252A653E00BED5B8 /* libimaging_coreimage.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AE649E0252A650500BED5B8 /* libimaging_coreimage.dylib */; };
@@ -200,28 +200,28 @@
 			containerPortal = 9AE6499E252A64AF00BED5B8 /* experience_anthill.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9AE24E691904CFE2001AEFFB;
-			remoteInfo = experience_core_iosTests;
+			remoteInfo = experience_lite_iosTests;
 		};
 		9AE649B6252A64B600BED5B8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9AE649AD252A64B500BED5B8 /* experience_core.xcodeproj */;
+			containerPortal = 9AE649AD252A64B500BED5B8 /* experience_lite.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9AEB75F416F78EDC0085103B;
-			remoteInfo = experience_core;
+			remoteInfo = experience_lite;
 		};
 		9AE649B8252A64B600BED5B8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9AE649AD252A64B500BED5B8 /* experience_core.xcodeproj */;
+			containerPortal = 9AE649AD252A64B500BED5B8 /* experience_lite.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9AE24E5A1904CFE2001AEFFB;
-			remoteInfo = ios_experience_core;
+			remoteInfo = ios_experience_lite;
 		};
 		9AE649BA252A64B600BED5B8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9AE649AD252A64B500BED5B8 /* experience_core.xcodeproj */;
+			containerPortal = 9AE649AD252A64B500BED5B8 /* experience_lite.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9AE24E691904CFE2001AEFFB;
-			remoteInfo = experience_core_iosTests;
+			remoteInfo = experience_lite_iosTests;
 		};
 		9AE649C5252A64BC00BED5B8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -242,7 +242,7 @@
 			containerPortal = 9AE649BC252A64BC00BED5B8 /* experience_tranquillum.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9AE24E691904CFE2001AEFFB;
-			remoteInfo = experience_core_iosTests;
+			remoteInfo = experience_lite_iosTests;
 		};
 		9AE649D2252A64C600BED5B8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -302,10 +302,10 @@
 		};
 		9AE649E9252A651500BED5B8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9AE649AD252A64B500BED5B8 /* experience_core.xcodeproj */;
+			containerPortal = 9AE649AD252A64B500BED5B8 /* experience_lite.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 9AEB75F316F78EDC0085103B;
-			remoteInfo = experience_core;
+			remoteInfo = experience_lite;
 		};
 		9AE649EB252A651500BED5B8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -347,7 +347,7 @@
 				9AE649F9252A661800BED5B8 /* libcore.dylib in CopyFiles */,
 				9AE649F1252A653E00BED5B8 /* libdraw2d_quartz2d.dylib in CopyFiles */,
 				9AE649F2252A653E00BED5B8 /* libexperience_anthill.dylib in CopyFiles */,
-				9AE649F3252A653E00BED5B8 /* libexperience_core.dylib in CopyFiles */,
+				9AE649F3252A653E00BED5B8 /* libexperience_lite.dylib in CopyFiles */,
 				9AE649F4252A653E00BED5B8 /* libexperience_tranquillum.dylib in CopyFiles */,
 				9AE649F5252A653E00BED5B8 /* libgpu_opengl.dylib in CopyFiles */,
 				9AE649F6252A653E00BED5B8 /* libimaging_coreimage.dylib in CopyFiles */,
@@ -378,7 +378,7 @@
 		9AE64972252A643F00BED5B8 /* core.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = core.xcodeproj; path = ../core/core.xcodeproj; sourceTree = "<group>"; };
 		9AE64991252A64A700BED5B8 /* draw2d_quartz2d.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = draw2d_quartz2d.xcodeproj; path = ../draw2d_quartz2d/draw2d_quartz2d.xcodeproj; sourceTree = "<group>"; };
 		9AE6499E252A64AF00BED5B8 /* experience_anthill.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = experience_anthill.xcodeproj; path = ../experience_anthill/experience_anthill.xcodeproj; sourceTree = "<group>"; };
-		9AE649AD252A64B500BED5B8 /* experience_core.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = experience_core.xcodeproj; path = ../experience_core/experience_core.xcodeproj; sourceTree = "<group>"; };
+		9AE649AD252A64B500BED5B8 /* experience_lite.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = experience_lite.xcodeproj; path = ../experience_lite/experience_lite.xcodeproj; sourceTree = "<group>"; };
 		9AE649BC252A64BC00BED5B8 /* experience_tranquillum.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = experience_tranquillum.xcodeproj; path = ../experience_tranquillum/experience_tranquillum.xcodeproj; sourceTree = "<group>"; };
 		9AE649CB252A64C600BED5B8 /* gpu_opengl.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = gpu_opengl.xcodeproj; path = ../gpu_opengl/gpu_opengl.xcodeproj; sourceTree = "<group>"; };
 		9AE649D8252A650400BED5B8 /* imaging_coreimage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = imaging_coreimage.xcodeproj; path = ../imaging_coreimage/imaging_coreimage.xcodeproj; sourceTree = "<group>"; };
@@ -408,7 +408,7 @@
 				9AE64972252A643F00BED5B8 /* core.xcodeproj */,
 				9AE64991252A64A700BED5B8 /* draw2d_quartz2d.xcodeproj */,
 				9AE6499E252A64AF00BED5B8 /* experience_anthill.xcodeproj */,
-				9AE649AD252A64B500BED5B8 /* experience_core.xcodeproj */,
+				9AE649AD252A64B500BED5B8 /* experience_lite.xcodeproj */,
 				9AE649BC252A64BC00BED5B8 /* experience_tranquillum.xcodeproj */,
 				9AE649CB252A64C600BED5B8 /* gpu_opengl.xcodeproj */,
 				9AE649D8252A650400BED5B8 /* imaging_coreimage.xcodeproj */,
@@ -518,7 +518,7 @@
 			children = (
 				9AE649A8252A64B000BED5B8 /* libexperience_anthill.dylib */,
 				9AE649AA252A64B000BED5B8 /* libexperience_anthill.a */,
-				9AE649AC252A64B000BED5B8 /* experience_core_iosTests.xctest */,
+				9AE649AC252A64B000BED5B8 /* experience_lite_iosTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -526,9 +526,9 @@
 		9AE649AE252A64B500BED5B8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9AE649B7252A64B600BED5B8 /* libexperience_core.dylib */,
-				9AE649B9252A64B600BED5B8 /* libios_experience_core.a */,
-				9AE649BB252A64B600BED5B8 /* experience_core_iosTests.xctest */,
+				9AE649B7252A64B600BED5B8 /* libexperience_lite.dylib */,
+				9AE649B9252A64B600BED5B8 /* libios_experience_lite.a */,
+				9AE649BB252A64B600BED5B8 /* experience_lite_iosTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -538,7 +538,7 @@
 			children = (
 				9AE649C6252A64BC00BED5B8 /* libexperience_tranquillum.dylib */,
 				9AE649C8252A64BC00BED5B8 /* libios_experience_tranquillum.dylib */,
-				9AE649CA252A64BC00BED5B8 /* experience_core_iosTests.xctest */,
+				9AE649CA252A64BC00BED5B8 /* experience_lite_iosTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -666,7 +666,7 @@
 				},
 				{
 					ProductGroup = 9AE649AE252A64B500BED5B8 /* Products */;
-					ProjectRef = 9AE649AD252A64B500BED5B8 /* experience_core.xcodeproj */;
+					ProjectRef = 9AE649AD252A64B500BED5B8 /* experience_lite.xcodeproj */;
 				},
 				{
 					ProductGroup = 9AE649BD252A64BC00BED5B8 /* Products */;
@@ -808,31 +808,31 @@
 			remoteRef = 9AE649A9252A64B000BED5B8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9AE649AC252A64B000BED5B8 /* experience_core_iosTests.xctest */ = {
+		9AE649AC252A64B000BED5B8 /* experience_lite_iosTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = experience_core_iosTests.xctest;
+			path = experience_lite_iosTests.xctest;
 			remoteRef = 9AE649AB252A64B000BED5B8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9AE649B7252A64B600BED5B8 /* libexperience_core.dylib */ = {
+		9AE649B7252A64B600BED5B8 /* libexperience_lite.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = libexperience_core.dylib;
+			path = libexperience_lite.dylib;
 			remoteRef = 9AE649B6252A64B600BED5B8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9AE649B9252A64B600BED5B8 /* libios_experience_core.a */ = {
+		9AE649B9252A64B600BED5B8 /* libios_experience_lite.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libios_experience_core.a;
+			path = libios_experience_lite.a;
 			remoteRef = 9AE649B8252A64B600BED5B8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9AE649BB252A64B600BED5B8 /* experience_core_iosTests.xctest */ = {
+		9AE649BB252A64B600BED5B8 /* experience_lite_iosTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = experience_core_iosTests.xctest;
+			path = experience_lite_iosTests.xctest;
 			remoteRef = 9AE649BA252A64B600BED5B8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -850,10 +850,10 @@
 			remoteRef = 9AE649C7252A64BC00BED5B8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9AE649CA252A64BC00BED5B8 /* experience_core_iosTests.xctest */ = {
+		9AE649CA252A64BC00BED5B8 /* experience_lite_iosTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = experience_core_iosTests.xctest;
+			path = experience_lite_iosTests.xctest;
 			remoteRef = 9AE649C9252A64BC00BED5B8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -972,7 +972,7 @@
 		};
 		9AE649EA252A651500BED5B8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = experience_core;
+			name = experience_lite;
 			targetProxy = 9AE649E9252A651500BED5B8 /* PBXContainerItemProxy */;
 		};
 		9AE649EC252A651500BED5B8 /* PBXTargetDependency */ = {

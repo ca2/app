@@ -512,7 +512,7 @@ end_processing_adding:
 
       i32 n = 0;
 
-      tick1 = ::millis::millis();
+      tick1 = ::millis::now();
 
       millis tickRWENull;
 
@@ -555,7 +555,7 @@ end_processing_adding:
       if (n < 0)
       {
 
-         auto tickNow = ::millis::millis();
+         auto tickNow = ::millis::now();
 
          /*
             EBADF  An invalid file descriptor was given in one of the sets.

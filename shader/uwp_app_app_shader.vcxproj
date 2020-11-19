@@ -320,7 +320,7 @@
     <ProjectReference Include="..\..\..\source\app\draw2d_direct2d\w_draw2d_direct2d.vcxproj">
       <Project>{ba9bff50-1888-4722-8dee-73a3b5b32bcb}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\source\app\experience_core\u_experience_core.vcxproj">
+    <ProjectReference Include="..\..\..\source\app\experience_lite\u_experience_lite.vcxproj">
       <Project>{b2d7833b-9b59-4826-bbdf-c270a2115e86}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\source\app\wic_imaging\u_wic_imaging.vcxproj">

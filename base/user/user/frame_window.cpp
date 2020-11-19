@@ -30,14 +30,22 @@ namespace user
       m_nWindow = -1;                 // unknown interaction_impl ID
       m_bAutoMenuEnable = TRUE;       // auto enable on by default
       //m_lpfnCloseProc = nullptr;
+#ifdef WINDOWS_DESKTOP
       m_hMenuDefault = nullptr;
       m_hAccelTable = nullptr;
+#endif
       //m_nIDHelp = 0;
       m_nIDTracking = 0;
       m_nIDLastMessage = 0;
 
       m_cModalStack = 0;              // initialize modality support
+
+#ifdef WINDOWS_DESKTOP
+
       m_hMenuAlt = nullptr;
+
+#endif
+
       m_nIdleFlags = 0;               // no idle work at start
       m_rectBorder.Null();
 
@@ -172,8 +180,10 @@ namespace user
       MESSAGE_LINK(e_message_set_focus, pchannel, this, &frame_window::_001OnSetFocus);
       MESSAGE_LINK(e_message_activate, pchannel, this, &frame_window::_001OnActivate);
       MESSAGE_LINK(e_message_ncactivate, pchannel, this, &frame_window::_001OnNcActivate);
+#ifdef WINDOWS_DESKTOP
       MESSAGE_LINK(WM_SYSCOMMAND, pchannel, this, &frame_window::_001OnSysCommand);
       MESSAGE_LINK(WM_QUERYENDSESSION, pchannel, this, &frame_window::_001OnQueryEndSession);
+#endif
 
    }
 
@@ -320,7 +330,9 @@ namespace user
    {
       ::user::interaction::dump(dumpcontext);
 
+#ifdef WINDOWS_DESKTOP
       dumpcontext << "m_hAccelTable = " << (uptr)m_hAccelTable;
+#endif
       dumpcontext << "\nm_nWindow = " << m_nWindow;
       dumpcontext << "\nm_nIDHelp = " << m_strMatterHelp;
       dumpcontext << "\nm_nIDTracking = " << m_nIDTracking;
@@ -416,18 +428,26 @@ namespace user
    // Special processing etc
 
    bool frame_window::LoadAccelTable(const char * pszResourceName)
-
    {
+
+
       ASSERT(m_hAccelTable == nullptr);  // only do once
       ASSERT(pszResourceName != nullptr);
-
 
       /*   HINSTANCE hInst = ::aura::FindResourceHandle(pszResourceName, RT_ACCELERATOR);
 
       m_hAccelTable = ::LoadAccelerators(hInst, pszResourceName);*/
-
+#ifdef WINDOWS_DESKTOP
       return (m_hAccelTable != nullptr);
+#endif
+
+      return false;
+
    }
+
+
+#ifdef WINDOWS_DESKTOP
+
 
    HACCEL frame_window::GetDefaultAccelerator()
    {
@@ -440,6 +460,10 @@ namespace user
 
       return hAccelTable;
    }
+
+
+   #endif
+
 
    void frame_window::pre_translate_message(::message::message * pmessage)
    {
@@ -1094,6 +1118,9 @@ namespace user
    }
 
 
+#ifdef WINDOWS_DESKTOP
+
+
    void frame_window::OnUpdateFrameMenu(HMENU hMenuAlt)
    {
       if (hMenuAlt == nullptr)
@@ -1109,6 +1136,9 @@ namespace user
       // finally, set the menu
       // trans ::SetMenu(get_handle(), hMenuAlt);
    }
+
+
+#endif
 
 
    void frame_window::InitialUpdateFrame(::user::document * pDoc, bool bMakeVisible)
@@ -2269,11 +2299,21 @@ namespace user
       }
       */
 
+
+#ifdef WINDOWS_DESKTOP
+
+
    void frame_window::DelayUpdateFrameMenu(HMENU hMenuAlt)
    {
+
       m_hMenuAlt = hMenuAlt;
+
       m_nIdleFlags |= idleMenu;
+
    }
+
+
+#endif
 
 
    __pointer(::user::frame_window) frame_window::GetActiveFrame()
@@ -2361,15 +2401,19 @@ namespace user
             // original rect is is_empty & pRectBorder is nullptr, no recalc needed
 
             return FALSE;
-         }
-         if (!::EqualRect(m_rectBorder, pRectBorder))
 
+         }
+
+         if (m_rectBorder != *pRectBorder)
          {
+
             // the rects are different -- recalc needed
             m_rectBorder.copy(pRectBorder);
 
             return TRUE;
+
          }
+
          return FALSE;   // no recalc needed
 
       default:
@@ -2377,20 +2421,32 @@ namespace user
       }
 
       return TRUE;
+
    }
+
 
    void frame_window::OnSize(::u32 nType, i32 cx, i32 cy)
    {
+
    }
+
 
    bool frame_window::OnEraseBkgnd(::image * pimage)
    {
+
       UNREFERENCED_PARAMETER(pimage);
+
       if (m_pviewActive != nullptr)
+      {
+
          return TRUE;        // active ::user::impact will erase/paint itself
+
+      }
+
       // for ::user::impact-less frame just use the default background fill
       return TRUE;
       //   return user::frame_window::OnEraseBkgnd(pgraphics);
+
    }
 
    LRESULT frame_window::OnRegisteredMouseWheel(WPARAM wParam, LPARAM lParam)
@@ -2612,14 +2668,18 @@ namespace user
       m_nWindow = -1;                 // unknown interaction_impl ID
       m_bAutoMenuEnable = TRUE;       // auto enable on by default
 //      m_lpfnCloseProc = nullptr;
+#ifdef WINDOWS_DESKTOP
       m_hMenuDefault = nullptr;
       m_hAccelTable = nullptr;
+#endif
       //m_nIDHelp = 0;
       m_nIDTracking = 0;
       m_nIDLastMessage = 0;
 
       m_cModalStack = 0;              // initialize modality support
+#ifdef WINDOWS_DESKTOP
       m_hMenuAlt = nullptr;
+#endif
       m_nIdleFlags = 0;               // no idle work at start
       m_rectBorder.Null();
       m_dwPromptContext = 0;

@@ -363,7 +363,7 @@ namespace hi5
 
          //   }
 
-         //   Sleep(5);
+         //   millis_sleep(5);
 
          //   if (tickStart.elapsed() > 60 * 1000)
          //   {
@@ -431,7 +431,7 @@ namespace hi5
 
                log_line("PROCESSING: check after secs = " + strCheckAfterSecs);
 
-               Sleep(atoi(strCheckAfterSecs) * 1000);
+               millis_sleep(atoi(strCheckAfterSecs) * 1000);
 
             }
             else if (strState == "succeeded")

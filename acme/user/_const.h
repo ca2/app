@@ -275,6 +275,13 @@ namespace user
       element_image,
       element_close_button,
       element_close_icon,
+      element_hilite,
+      element_dark_shadow,
+      element_button_text,
+      element_button_background,
+      element_button_hilite,
+      element_button_shadow,
+      element_button_dark_shadow,
 
 
       element_split = 10'000,

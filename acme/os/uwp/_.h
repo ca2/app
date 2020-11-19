@@ -10,11 +10,11 @@
 #endif
 
 
-#ifndef _UWP
-
-CLASS_DECL_ACME void WINAPI Sleep(::u32 dwMilliseconds);
-
-#endif
+//#ifndef _UWP
+//
+//CLASS_DECL_ACME void WINAPI millis_sleep(::u32 dwMilliseconds);
+//
+//#endif
 
 /*#define GetAValue(rgb)      (LOBYTE((rgb)>>24))
 #define ARGB(a, r,g,b)          ((color32_t)(((byte)(r)|((::u16)((byte)(g))<<8))|(((::u32)(byte)(b))<<16)|(((::u32)(byte)(a))<<24)))*/

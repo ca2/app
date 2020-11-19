@@ -47,43 +47,43 @@
     </ClCompile>
     <ClCompile Include="user_button.cpp" />
     <ClCompile Include="user_control_box.cpp" />
-    <ClCompile Include="experience_core.cpp" />
-    <ClCompile Include="experience_core_frame.cpp" />
-    <ClCompile Include="experience_core_frame_001.cpp" />
-    <ClCompile Include="experience_core_frame_002.cpp" />
-    <ClCompile Include="experience_core_frame_005.cpp" />
-    <ClCompile Include="experience_core_frame_008.cpp" />
-    <ClCompile Include="experience_core_frame_011.cpp" />
-    <ClCompile Include="experience_core_frame_013.cpp" />
-    <ClCompile Include="experience_core_frame_Minimal001.cpp" />
-    <ClCompile Include="experience_core_interaction.cpp" />
-    <ClCompile Include="experience_core_library.cpp" />
-    <ClCompile Include="experience_core_user_style.cpp" />
+    <ClCompile Include="experience_lite.cpp" />
+    <ClCompile Include="experience_lite_frame.cpp" />
+    <ClCompile Include="experience_lite_frame_001.cpp" />
+    <ClCompile Include="experience_lite_frame_002.cpp" />
+    <ClCompile Include="experience_lite_frame_005.cpp" />
+    <ClCompile Include="experience_lite_frame_008.cpp" />
+    <ClCompile Include="experience_lite_frame_011.cpp" />
+    <ClCompile Include="experience_lite_frame_013.cpp" />
+    <ClCompile Include="experience_lite_frame_Minimal001.cpp" />
+    <ClCompile Include="experience_lite_interaction.cpp" />
+    <ClCompile Include="experience_lite_library.cpp" />
+    <ClCompile Include="experience_lite_user_style.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h" />
     <ClInclude Include="user_button.h" />
     <ClInclude Include="user_control_box.h" />
-    <ClInclude Include="experience_core.h" />
-    <ClInclude Include="experience_core_frame.h" />
-    <ClInclude Include="experience_core_frame_001.h" />
-    <ClInclude Include="experience_core_frame_002.h" />
-    <ClInclude Include="experience_core_frame_005.h" />
-    <ClInclude Include="experience_core_frame_008.h" />
-    <ClInclude Include="experience_core_frame_011.h" />
-    <ClInclude Include="experience_core_frame_013.h" />
-    <ClInclude Include="experience_core_frame_Minimal001.h" />
-    <ClInclude Include="experience_core_interaction.h" />
-    <ClInclude Include="experience_core_library.h" />
-    <ClInclude Include="experience_core_user_style.h" />
+    <ClInclude Include="experience_lite.h" />
+    <ClInclude Include="experience_lite_frame.h" />
+    <ClInclude Include="experience_lite_frame_001.h" />
+    <ClInclude Include="experience_lite_frame_002.h" />
+    <ClInclude Include="experience_lite_frame_005.h" />
+    <ClInclude Include="experience_lite_frame_008.h" />
+    <ClInclude Include="experience_lite_frame_011.h" />
+    <ClInclude Include="experience_lite_frame_013.h" />
+    <ClInclude Include="experience_lite_frame_Minimal001.h" />
+    <ClInclude Include="experience_lite_interaction.h" />
+    <ClInclude Include="experience_lite_library.h" />
+    <ClInclude Include="experience_lite_user_style.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="experience_core.def" />
+    <None Include="experience_lite.def" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectName>_experience_core</ProjectName>
+    <ProjectName>_experience_lite</ProjectName>
     <ProjectGuid>{E2D7833B-9B59-4826-BBDF-C270A2115E86}</ProjectGuid>
-    <RootNamespace>_experience_core</RootNamespace>
+    <RootNamespace>_experience_lite</RootNamespace>
     <Keyword>Win32Proj</Keyword>
     <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>

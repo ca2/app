@@ -192,12 +192,16 @@ namespace user
    bool static_control::OnChildNotify(::message::base * pbase)
    {
 
+#ifdef WINDOWS_DESKTOP
+
       if (pbase->m_id != WM_DRAWITEM)
          return ::user::interaction::OnChildNotify(pbase);
 
 #ifdef WINDOWS_DESKTOP
 
 //      DrawItem((LPDRAWITEMSTRUCT)pbase->m_lparam);
+
+#endif
 
 #endif
 
@@ -227,6 +231,9 @@ namespace user
    }
 
 
+#ifdef WINDOWS_DESKTOP
+
+
    HENHMETAFILE static_control::SetEnhMetaFile(HENHMETAFILE hMetaFile)
    {
 
@@ -249,6 +256,9 @@ namespace user
       return nullptr;
 
    }
+
+
+#endif
 
 
    void static_control::static_set_bitmap(::draw2d::bitmap * pbitmap)

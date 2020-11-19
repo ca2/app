@@ -96,7 +96,7 @@ namespace install
          if (System.install().is_installing_ca2())
          {
             
-            Sleep((5000) * 2);
+            millis_sleep((5000) * 2);
 
             continue;
 

@@ -460,7 +460,7 @@ namespace hellobase
 //         if (psession->savings().is_trying_to_save(::e_resource_display_bandwidth))
 //         {
 //
-//            Sleep(47);
+//            millis_sleep(47);
 //
 //         }
 //         else

@@ -69,6 +69,8 @@ namespace experience
       if(ehittest != hittest_none)
       {
 
+#ifdef WINDOWS_DESKTOP
+
          ::u32 nHitTest = HTCLIENT;
 
          switch(ehittest)
@@ -100,6 +102,8 @@ namespace experience
          default:
             break;
          }
+
+#endif
 
          //if(pframewindow->WfiOnBeginSizing(nHitTest, pointCursor))
          //   return true;

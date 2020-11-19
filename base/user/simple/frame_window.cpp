@@ -139,7 +139,13 @@ void simple_frame_window::install_message_routing(::channel * pchannel)
    MESSAGE_LINK(e_message_close, pchannel, this, &simple_frame_window::_001OnClose);
    MESSAGE_LINK(e_message_size, pchannel, this, &simple_frame_window::_001OnSize);
    MESSAGE_LINK(e_message_move, pchannel, this, &simple_frame_window::_001OnMove);
+
+#ifdef WINDOWS_DESKTOP
+
    MESSAGE_LINK(WM_GETMINMAXINFO, pchannel, this, &simple_frame_window::_001OnGetMinMaxInfo);
+
+#endif
+
    MESSAGE_LINK(e_message_mouse_move, pchannel, this, &simple_frame_window::_001OnMouseMove);
    MESSAGE_LINK(e_message_display_change, pchannel, this, &simple_frame_window::_001OnDisplayChange);
    MESSAGE_LINK(e_message_show_window, pchannel, this, &simple_frame_window::_001OnShowWindow);
@@ -160,8 +166,14 @@ void simple_frame_window::install_message_routing(::channel * pchannel)
    connect_command("notify_icon_topic", &simple_frame_window::_001OnNotifyIconTopic);
    connect_command("app_exit", &simple_frame_window::_001OnAppExit);
 
+#ifdef WINDOWS_DESKTOP
+
+
    MESSAGE_LINK(WM_APPEXIT, pchannel, this, &simple_frame_window::_001OnAppExit);
    MESSAGE_LINK(WM_ACTIVATEAPP, pchannel, this, &simple_frame_window::_001OnActivateApp);
+
+#endif
+
    MESSAGE_LINK(e_message_activate, pchannel, this, &simple_frame_window::_001OnActivate);
    MESSAGE_LINK(e_message_update_notify_icon, pchannel, this, &simple_frame_window::_001OnUpdateNotifyIcon);
 
@@ -223,7 +235,7 @@ void simple_frame_window::_task_save_window_rect()
          if (m_millisLastSaveWindowRectRequest.elapsed() < 300_ms)
          {
 
-            Sleep(150_ms);
+            millis_sleep(150_ms);
 
          }
          else if (m_bPendingSaveWindowRect)
@@ -252,7 +264,7 @@ void simple_frame_window::_task_save_window_rect()
          else
          {
 
-            Sleep(1_s);
+            millis_sleep(1_s);
 
          }
 
@@ -564,12 +576,12 @@ void simple_frame_window::_001OnDestroy(::message::message * pmessage)
             if(::is_set(pframe))
             {
 
-               if(GetExStyle() & WS_EX_TOOLWINDOW)
-               {
-
-                  //pschema->m_bHollow = false;
-
-               }
+//               if(GetExStyle() & WS_EX_TOOLWINDOW)
+//               {
+//
+//                  //pschema->m_bHollow = false;
+//
+//               }
 
                pframe->set_style(pschemaRef->m_strStyle);
 
@@ -1065,12 +1077,17 @@ bool simple_frame_window::pre_create_window(::user::create_struct& cs)
 
    }
 
+
+#ifdef WINDOWS_DESKTOP
+
    //cs.style = WS_OVERLAPPEDWINDOW & ~WS_THICKFRAME;
    //cs.style |= WS_OVERLAPPEDWINDOW;
    //cs.style |= WS_THICKFRAME;
    cs.style |= WS_POPUP;
    //cs.style &= ~WS_VISIBLE;
    cs.style |= WS_SYSMENU | WS_MINIMIZEBOX | WS_MAXIMIZEBOX;
+
+#endif
 
    ::create* pcreateContext = (::create*) cs.CREATE_STRUCT_P_CREATE_PARAMS;
 
@@ -1320,7 +1337,11 @@ void simple_frame_window::_001OnNcHitTest(::message::message * pmessage)
 
    //int y = GET_Y_LPARAM(pmessage->m_lparam.m_lparam);
 
+#ifdef WINDOWS_DESKTOP
+
    pbase->m_lresult = HTCLIENT;
+
+#endif
 
    pbase->m_bRet = true;
 
@@ -1609,7 +1630,9 @@ void simple_frame_window::_001OnClose(::message::message * pmessage)
 
 #endif // LINUX
 
-      ModifyStyleEx(0, WS_EX_TOOLWINDOW);
+      //ModifyStyleEx(0, WS_EX_TOOLWINDOW);
+
+      set_tool_window();
 
       return;
 
@@ -1618,7 +1641,7 @@ void simple_frame_window::_001OnClose(::message::message * pmessage)
    if (m_bModal)
    {
 
-      EndModalLoop(IDOK);
+      EndModalLoop(m_nModalResult);
 
       pmessage->m_bRet = true;
 
@@ -1628,7 +1651,7 @@ void simple_frame_window::_001OnClose(::message::message * pmessage)
    else if (GetTopLevelFrame() != nullptr && GetTopLevelFrame()->m_bModal)
    {
 
-      GetTopLevelFrame()->EndModalLoop(IDOK);
+      GetTopLevelFrame()->EndModalLoop(m_nModalResult);
 
       pmessage->m_bRet = true;
 
@@ -1790,9 +1813,9 @@ void simple_frame_window::_001OnActivate(::message::message * pmessage)
 
    pactivate->previous();
 
-   int iActive = LOWORD(pactivate->m_wparam);
+   auto eactivate = pactivate->m_eactivate;
 
-   if (iActive)
+   if (eactivate)
    {
 
       if (pactivate->m_bMinimized)
@@ -1809,7 +1832,7 @@ void simple_frame_window::_001OnActivate(::message::message * pmessage)
          if (GetExStyle() & WS_EX_LAYERED)
          {
 
-            if (iActive == WA_CLICKACTIVE)
+            if (eactivate == e_activate_click_active)
             {
 
                //   if (bMinimized || layout().is_iconic())
@@ -2382,7 +2405,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 
    {
 
-      millis t1 = millis::millis();
+      millis t1 = millis::now();
 
       //pinteraction->_001OnDraw(pgraphics);
       if(dAlpha > 0.0)
@@ -2443,7 +2466,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
          else
          {
 
-            millis t1 = millis::millis();
+            millis t1 = millis::now();
 
             draw_frame_and_control_box_over(pgraphics);
 
@@ -2859,7 +2882,7 @@ void simple_frame_window::design_up()
    if (m_pupdowntarget->m_uiUserInteractionFlags & ::user::interaction_wfi_up_tool_window)
    {
 
-      ModifyStyle(0, WS_EX_TOOLWINDOW, SWP_FRAMECHANGED);
+      set_tool_window();
 
    }
 
@@ -3305,7 +3328,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
                   {
 
-                     millis t1 = millis::millis();
+                     millis t1 = millis::now();
 
                      pinteraction->_000CallOnDraw(pgraphics);
 
@@ -3345,7 +3368,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
    {
 
-      millis t1 = millis::millis();
+      millis t1 = millis::now();
 
       _001DrawThis(pgraphics);
 
@@ -3360,13 +3383,13 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
    }
 
-   millis tx = millis::millis();
+   millis tx = millis::now();
 
    bool bTransparentFrame = frame_is_transparent();
 
    bool bActive = is_active();
 
-   millis taxw = millis::millis();
+   millis taxw = millis::now();
 
    millis daxw = taxw.elapsed();
 
@@ -3377,7 +3400,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
    }
 
-   millis txx = millis::millis();
+   millis txx = millis::now();
 
    if (m_bWindowFrame && (!bTransparentFrame || bActive))
    {
@@ -3418,7 +3441,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
                   {
 
-                     millis t1 = millis::millis();
+                     millis t1 = millis::now();
 
                      pinteraction->_000CallOnDraw(pgraphics);
 
@@ -3465,7 +3488,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
    {
 
-      millis t1 = millis::millis();
+      millis t1 = millis::now();
 
       _008CallOnDraw(pgraphics);
 

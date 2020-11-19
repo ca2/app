@@ -104,7 +104,7 @@ inline auto new_pred_thread(::layered * pobjectContext, PRED pred)
 //                while(true)
 //                {
 //
-//                   Sleep(100);
+//                   millis_sleep(100);
 //
 //                   if(!::thread_get_run())
 //                   {

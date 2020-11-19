@@ -160,14 +160,14 @@ void duration::fset(long double d)
 }
 
 
-CLASS_DECL_ACME void Sleep(const duration & duration)
-{
-
-   auto tickDuration = duration.u32_millis();
-
-   ::Sleep((::u32)tickDuration);
-
-}
+//CLASS_DECL_ACME void millis_sleep(const duration & duration)
+//{
+//
+//   auto tickDuration = duration.u32_millis();
+//
+//   ::millis_sleep((::u32)tickDuration);
+//
+//}
 
 
 

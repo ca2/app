@@ -224,7 +224,7 @@ bool app_core::on_result(const ::estatus & estatus)
    if (file_exists(::file::path(APP_CORE_BASE_DIR) / "wait_on_beg.txt"))
    {
 
-      Sleep(10000);
+      millis_sleep(10000);
 
    }
 
@@ -755,7 +755,7 @@ void app_core::system_end()
 
       ansi_count_copy(szEllapsed, ::file::path(APP_CORE_BASE_DIR) / "show_elapsed.txt", sizeof(szEllapsed));
 
-      auto tickEnd = ::millis::millis();
+      auto tickEnd = ::millis::now();
 
       char szTimeMessage[2108];
 

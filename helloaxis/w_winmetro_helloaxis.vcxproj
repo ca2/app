@@ -371,7 +371,7 @@
     <ProjectReference Include="..\..\..\source\app\sphere\w_sphere.vcxproj">
       <Project>{f20dcbae-5e9b-4a38-a236-b7fbcfe0fa44}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\experience_core\w_experience_core.vcxproj">
+    <ProjectReference Include="..\experience_lite\w_experience_lite.vcxproj">
       <Project>{b2d7833b-9b59-4826-bbdf-c270a2115e86}</Project>
     </ProjectReference>
     <ProjectReference Include="w_helloaxis.vcxproj">

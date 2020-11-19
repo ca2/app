@@ -353,7 +353,7 @@ namespace acme
                   {
                      if(!on_idle())
                      {
-                        Sleep(100);
+                        millis_sleep(100);
                      }
                   }
                   else

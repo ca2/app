@@ -27,11 +27,11 @@ DEF_CORE_APP(app_core_helloaura);
 
 /*
 
-DECL_LIB(experience_core);
+DECL_LIB(experience_lite);
 
 BEG_CORE_APP
 
-REG_LIB(experience_core);
+REG_LIB(experience_lite);
 
 END_CORE_APP
 

@@ -200,7 +200,7 @@ bool app_core::on_result(const ::estatus & estatus)
    if (file_exists(::file::path(APP_CORE_BASE_DIR) / "wait_on_beg.txt"))
    {
 
-      Sleep(10000);
+      millis_sleep(10000);
 
    }
 

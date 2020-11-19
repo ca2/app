@@ -428,6 +428,9 @@ namespace base
 //   }
 
 
+#ifdef WINDOWS_DESKTOP
+
+
    CLASS_DECL_BASE __pointer(::user::interaction) create_virtual_window(::object * pobject, u32 dwExStyle, const char * pClassName, const char * lpWindowName, u32 uStyle, const ::rect & rect, ::user::interaction * puiParent, id id, HINSTANCE hInstance, LPVOID pParam);
 
 
@@ -455,6 +458,9 @@ namespace base
       return nullptr;
 
    }
+
+
+#endif
 
 
 } // namespace user
@@ -1299,7 +1305,7 @@ namespace base
 
       }
 
-      straLibrary.add("experience_core");
+      straLibrary.add("experience_lite");
 
       straLibrary.add("experience_metro");
 

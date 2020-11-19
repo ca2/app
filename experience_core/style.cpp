@@ -946,7 +946,7 @@ namespace experience
 
       ::rect rectTrack;
 
-      pscrollbar->GetTrackRect(rectTrack);
+      pscrollbar->GetTrackRect(rectTrack, pgraphics);
 
       ::rect rectWindow;
 
@@ -1182,7 +1182,7 @@ namespace experience
       if (pbar->m_itemCurrent == ::user::element_scrollbar_pageA || pbar->m_itemHover == ::user::element_scrollbar_pageA)
       {
 
-         pbar->GetPageARect(rectClient, rectTrack, rect);
+         pbar->GetPageARect(rectClient, rectTrack, rect, pgraphics);
 
          pbar->m_brushDraw->create_solid(pbar->scrollbar_color(this, ::user::element_scrollbar_pageA));
 
@@ -1194,7 +1194,7 @@ namespace experience
       else if (pbar->m_itemCurrent == ::user::element_scrollbar_pageB || pbar->m_itemHover == ::user::element_scrollbar_pageB)
       {
 
-         pbar->GetPageBRect(rectClient, rectTrack, rect);
+         pbar->GetPageBRect(rectClient, rectTrack, rect, pgraphics);
 
          pbar->m_brushDraw->create_solid(pbar->scrollbar_color(this, ::user::element_scrollbar_pageB));
 

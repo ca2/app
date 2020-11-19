@@ -188,7 +188,7 @@ namespace account
 
       string strRsa;
 
-      auto tickGetLoginBeg = ::millis::millis();
+      auto tickGetLoginBeg = ::millis::now();
 
       strSessId = puser->m_strSessId;
 
@@ -208,7 +208,7 @@ namespace account
 
       }
 
-      auto tickGetLoginEnd = ::millis::millis();
+      auto tickGetLoginEnd = ::millis::now();
 
       TRACE("NetLogin: Get Login Millis = " __prtick,__pr(tickGetLoginEnd - tickGetLoginBeg));
 
@@ -216,7 +216,7 @@ namespace account
 
       string strAuth;
 
-      auto tickAuthBeg = ::millis::millis();
+      auto tickAuthBeg = ::millis::now();
 
       string strAuthUrl("https://ca2.cc/api/account/auth3");
 
@@ -263,7 +263,7 @@ namespace account
 
       set["cookies"] = puser->m_phttpcookies;
 
-      auto tickTimeProfile1 = ::millis::millis();
+      auto tickTimeProfile1 = ::millis::now();
 
       auto strResponse = Context.http().get(strAuthUrl, set);
 
@@ -328,7 +328,7 @@ namespace account
       try
       {
 
-         millis tickStart = ::millis::millis();
+         millis tickStart = ::millis::now();
 
          ::property_set set;
 
@@ -347,7 +347,7 @@ namespace account
 
          }
 
-         millis tickEnd = ::millis::millis();
+         millis tickEnd = ::millis::now();
 
          TRACE( "get_account_login HTTP GET time = %dms", set["http_get_serial"].i64(),  (tickEnd - tickStart).m_iMilliseconds);
 

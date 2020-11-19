@@ -798,7 +798,7 @@ typedef struct tagENHMETAHEADER
 #define BLACKONWHITE                 1
 #define WHITEONBLACK                 2
 #define COLORONCOLOR                 3
-#define e_interpolation_mode_high_quality_bicubic                     4
+//#define e_interpolation_mode_high_quality_bicubic                     4
 #define MAXSTRETCHBLTMODE            4
 
 
@@ -806,7 +806,7 @@ typedef struct tagENHMETAHEADER
 #define BLACKONWHITE                 1
 #define WHITEONBLACK                 2
 #define COLORONCOLOR                 3
-#define e_interpolation_mode_high_quality_bicubic                     4
+//#define e_interpolation_mode_high_quality_bicubic                     4
 #define MAXSTRETCHBLTMODE            4
 
 

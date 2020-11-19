@@ -187,7 +187,7 @@ struct shell_execute :
 
          }
 
-         Sleep(1000);
+         millis_sleep(1000);
 
       }
 

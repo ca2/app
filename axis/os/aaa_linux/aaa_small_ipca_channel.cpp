@@ -400,7 +400,7 @@ namespace axis
                if(errno == ENOMSG)
                {
 
-                  Sleep(100);
+                  millis_sleep(100);
 
                   continue;
 

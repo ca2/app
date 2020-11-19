@@ -38,7 +38,7 @@ list(APPEND imaging_freeimage_source
         fimemory.h
         framework.cpp
         framework.h
-        imaging_freeimage.cpp
+        #imaging_freeimage.cpp
         loading.cpp
         loading_gif.cpp
         saving.cpp)

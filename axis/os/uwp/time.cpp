@@ -28,6 +28,6 @@
 CLASS_DECL_AXIS void sleep(const ::duration & dur)
 {
 
-   Sleep((::u32) dur.total_milliseconds());
+   millis_sleep((::u32) dur.total_milliseconds());
 
 }

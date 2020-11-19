@@ -156,7 +156,7 @@ graphics::graphics()
    m_pfont->m_dFontSize = 12.0;
    m_iSaveDCPositiveClip = -1;
 
-   m_nStretchBltMode = e_interpolation_mode_high_quality_bicubic;
+   m_nStretchBltMode = ::draw2d::e_interpolation_mode_high_quality_bicubic;
 
 }
 
@@ -474,15 +474,15 @@ point graphics::SetBrushOrg(const ::point & point)
 
 }
 
-
-i32 graphics::EnumObjects(i32 nObjectType, i32(CALLBACK* lpfn)(LPVOID, LPARAM), LPARAM lpData)
-{
-
-    ::exception::throw_not_implemented();
-
-    return 0;
-
-}
+//
+//i32 graphics::EnumObjects(i32 nObjectType, i32(CALLBACK* lpfn)(LPVOID, LPARAM), LPARAM lpData)
+//{
+//
+//    ::exception::throw_not_implemented();
+//
+//    return 0;
+//
+//}
 
 
 ::estatus graphics::set(::draw2d::bitmap* pbitmap)
@@ -602,12 +602,12 @@ i32 graphics::GetGraphicsMode()
 }
 
 
-bool graphics::GetWorldTransform(XFORM* pXform)
-{
-
-    return 0;
-
-}
+//bool graphics::GetWorldTransform(XFORM* pXform)
+//{
+//
+//    return 0;
+//
+//}
 
 
 size graphics::GetViewportExt()
@@ -964,31 +964,31 @@ void graphics::invert_rect(const ::rect & rect)
 }
 
 
-bool graphics::DrawIcon(i32 x, i32 y, ::draw2d::icon * picon)
-{
+//bool graphics::DrawIcon(i32 x, i32 y, ::draw2d::icon * picon)
+//{
+//
+//    ::exception::throw_not_implemented();
+//
+//    return false;
+//
+//}
 
-    ::exception::throw_not_implemented();
 
-    return false;
+//bool graphics::DrawIcon(const ::point & point, ::draw2d::icon * picon)
+//{
+//
+//    ::exception::throw_not_implemented();
+//
+//    return false;
+//
+//}
 
-}
 
-
-bool graphics::DrawIcon(const ::point & point, ::draw2d::icon * picon)
-{
-
-    ::exception::throw_not_implemented();
-
-    return false;
-
-}
-
+#ifdef WINDOWS_DESKTOP
 
 bool graphics::DrawIcon(i32 x, i32 y, ::draw2d::icon * picon, i32 cx, i32 cy, ::u32 istepIfAniCur, HBRUSH hbrFlickerFreeDraw, ::u32 diFlags)
 {
 
-
-#ifdef WINDOWS
 
     try
     {
@@ -1104,11 +1104,12 @@ bool graphics::DrawIcon(i32 x, i32 y, ::draw2d::icon * picon, i32 cx, i32 cy, ::
     {
     }
 
-#endif
-
     return false;
 
 }
+
+
+#endif
 
 
 //bool graphics::DrawState(const ::point & point, const ::size & size, HBITMAP hBitmap, ::u32 nFlags, HBRUSH hBrush)
@@ -1503,14 +1504,14 @@ bool graphics::round_rect(const ::rect & rect, const ::point & point)
 }
 
 
-bool graphics::PatBlt(i32 x, i32 y, i32 nWidth, i32 nHeight)
-{
-
-    ::exception::throw_not_implemented();
-
-    return false;
-
-}
+//bool graphics::PatBlt(i32 x, i32 y, i32 nWidth, i32 nHeight)
+//{
+//
+//    ::exception::throw_not_implemented();
+//
+//    return false;
+//
+//}
 
 
 //void graphics::on_apply_clip_region()
@@ -1536,7 +1537,7 @@ bool graphics::PatBlt(i32 x, i32 y, i32 nWidth, i32 nHeight)
 //}
 
 
-bool graphics::BitBltRaw(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc)
+bool graphics::draw_raw(const ::rect & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::point & pointSrc)
 {
 
    sync_lock ml(cairo_mutex());
@@ -1553,7 +1554,7 @@ bool graphics::BitBltRaw(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphi
 
       }
 
-      if (nWidth <= 0 || nHeight <= 0)
+      if (rectDst.width() <= 0 || rectDst.height() <= 0)
       {
 
          return false;
@@ -1589,15 +1590,15 @@ bool graphics::BitBltRaw(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphi
 
       cairo_matrix_t matrixOld;
 
-      cairo_translate(m_pdc, x, y);
+      cairo_translate(m_pdc, rectDst.left, rectDst.top);
 
       cairo_pattern_get_matrix(ppattern, &matrixOld);
 
-      cairo_matrix_init_translate(&matrix, xSrc, ySrc);
+      cairo_matrix_init_translate(&matrix, pointSrc.x, pointSrc.y);
 
       cairo_pattern_set_matrix(ppattern, &matrix);
 
-      cairo_rectangle(m_pdc, 0, 0, nWidth, nHeight);
+      cairo_rectangle(m_pdc, 0, 0, rectDst.width(), rectDst.height());
 
       cairo_clip(m_pdc);
 
@@ -1646,7 +1647,7 @@ bool graphics::BitBltRaw(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphi
 }
 
 
-bool graphics::StretchBltRaw(double xDst, double yDst, double nDstWidth, double nDstHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight)
+bool graphics::stretch_raw(const ::rect & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rect & rectSrc)
 {
 
     sync_lock ml(cairo_mutex());
@@ -1659,6 +1660,22 @@ bool graphics::StretchBltRaw(double xDst, double yDst, double nDstWidth, double 
         return false;
 
     }
+
+    auto nSrcWidth = rectSrc.width();
+
+    auto nSrcHeight = rectSrc.height();
+
+    auto nDstWidth = rectDst.width();
+
+    auto nDstHeight = rectDst.height();
+
+    auto xSrc = rectSrc.left;
+
+    auto ySrc = rectSrc.top;
+
+    auto xDst = rectDst.left;
+
+    auto yDst = rectDst.top;
 
     if (nSrcWidth <= 0 || nSrcHeight <= 0 || nDstWidth <= 0 || nDstHeight <= 0)
     {
@@ -1718,7 +1735,7 @@ bool graphics::StretchBltRaw(double xDst, double yDst, double nDstWidth, double 
         cairo_pattern_set_filter(cairo_get_source(m_pdc), CAIRO_FILTER_NEAREST);
 
     }
-    else if (m_nStretchBltMode == e_interpolation_mode_high_quality_bicubic)
+    else if (m_nStretchBltMode == ::draw2d::e_interpolation_mode_high_quality_bicubic)
     {
 
         cairo_pattern_set_filter(cairo_get_source(m_pdc), CAIRO_FILTER_GOOD);
@@ -1836,7 +1853,7 @@ bool graphics::text_out(double x, double y, const string & str)
 }
 
 
-bool graphics::ExtTextOut(i32 x, i32 y, ::u32 nOptions, const ::rect & rect, const char * lpszString, strsize nCount, LPINT lpDxWidths)
+bool graphics::ExtTextOut(i32 x, i32 y, ::u32 nOptions, const ::rect & rect, const char * lpszString, strsize nCount, int * lpDxWidths)
 {
 
     ::exception::throw_not_implemented();
@@ -1846,7 +1863,7 @@ bool graphics::ExtTextOut(i32 x, i32 y, ::u32 nOptions, const ::rect & rect, con
 }
 
 
-bool graphics::ExtTextOut(i32 x, i32 y, ::u32 nOptions, const ::rect & rect, const string & str, LPINT lpDxWidths)
+bool graphics::ExtTextOut(i32 x, i32 y, ::u32 nOptions, const ::rect & rect, const string & str, int * lpDxWidths)
 {
 
     ::exception::throw_not_implemented();
@@ -1856,7 +1873,7 @@ bool graphics::ExtTextOut(i32 x, i32 y, ::u32 nOptions, const ::rect & rect, con
 }
 
 
-size graphics::TabbedTextOut(i32 x, i32 y, const char * lpszString, strsize nCount, count nTabPositions, LPINT lpnTabStopPositions, i32 nTabOrigin)
+size graphics::TabbedTextOut(i32 x, i32 y, const char * lpszString, strsize nCount, count nTabPositions, int * lpnTabStopPositions, i32 nTabOrigin)
 {
 
     ::exception::throw_not_implemented();
@@ -1866,7 +1883,7 @@ size graphics::TabbedTextOut(i32 x, i32 y, const char * lpszString, strsize nCou
 }
 
 
-size graphics::TabbedTextOut(i32 x, i32 y, const string & str, count nTabPositions, LPINT lpnTabStopPositions, i32 nTabOrigin)
+size graphics::TabbedTextOut(i32 x, i32 y, const string & str, count nTabPositions, int * lpnTabStopPositions, i32 nTabOrigin)
 {
 
     ::exception::throw_not_implemented();
@@ -1876,7 +1893,7 @@ size graphics::TabbedTextOut(i32 x, i32 y, const string & str, count nTabPositio
 }
 
 
-size graphics::GetTabbedTextExtent(const char * lpszString, strsize nCount, count nTabPositions, LPINT lpnTabStopPositions)
+size graphics::GetTabbedTextExtent(const char * lpszString, strsize nCount, count nTabPositions, int * lpnTabStopPositions)
 {
 
     ::exception::throw_not_implemented();
@@ -1886,7 +1903,7 @@ size graphics::GetTabbedTextExtent(const char * lpszString, strsize nCount, coun
 }
 
 
-size graphics::GetTabbedTextExtent(const string & str, count nTabPositions, LPINT lpnTabStopPositions)
+size graphics::GetTabbedTextExtent(const string & str, count nTabPositions, int * lpnTabStopPositions)
 {
 
     ::exception::throw_not_implemented();
@@ -1896,7 +1913,7 @@ size graphics::GetTabbedTextExtent(const string & str, count nTabPositions, LPIN
 }
 
 
-size graphics::GetOutputTabbedTextExtent(const char * lpszString, strsize nCount, count nTabPositions, LPINT lpnTabStopPositions)
+size graphics::GetOutputTabbedTextExtent(const char * lpszString, strsize nCount, count nTabPositions, int * lpnTabStopPositions)
 {
 
     ::exception::throw_not_implemented();
@@ -1906,7 +1923,7 @@ size graphics::GetOutputTabbedTextExtent(const char * lpszString, strsize nCount
 }
 
 
-size graphics::GetOutputTabbedTextExtent(const string & str, count nTabPositions, LPINT lpnTabStopPositions)
+size graphics::GetOutputTabbedTextExtent(const string & str, count nTabPositions, int * lpnTabStopPositions)
 {
 
     ::exception::throw_not_implemented();
@@ -1916,14 +1933,14 @@ size graphics::GetOutputTabbedTextExtent(const string & str, count nTabPositions
 }
 
 
-bool graphics::GrayString(::draw2d::brush* pBrush, bool (CALLBACK* lpfnOutput)(HDC, LPARAM, i32), LPARAM lpData, i32 nCount, i32 x, i32 y, i32 nWidth, i32 nHeight)
-{
-
-    ::exception::throw_not_implemented();
-
-    return false;
-
-}
+//bool graphics::GrayString(::draw2d::brush* pBrush, bool (CALLBACK* lpfnOutput)(HDC, LPARAM, i32), LPARAM lpData, i32 nCount, i32 x, i32 y, i32 nWidth, i32 nHeight)
+//{
+//
+//    ::exception::throw_not_implemented();
+//
+//    return false;
+//
+//}
 
 
 ::u32 graphics::GetTextAlign()
@@ -2211,14 +2228,14 @@ i32 graphics::EndPage()
 }
 
 
-i32 graphics::SetAbortProc(bool (CALLBACK* lpfn)(HDC, i32))
-{
-
-    ::exception::throw_not_implemented();
-
-    return 0;
-
-}
+//i32 graphics::SetAbortProc(bool (CALLBACK* lpfn)(HDC, i32))
+//{
+//
+//    ::exception::throw_not_implemented();
+//
+//    return 0;
+//
+//}
 
 
 i32 graphics::AbortDoc()
@@ -2251,260 +2268,260 @@ i32 graphics::EndDoc()
 //}
 
 
-bool graphics::PlgBlt(POINT32 * lpPoint, ::draw2d::graphics * pgraphicsSrc, i32 nXSrc, i32 nYSrc, i32 nWidth, i32 nHeight, ::draw2d::bitmap& maskBitmap, i32 xMask, i32 yMask)
-{
-
-    if (::is_null(m_pdc))
-    {
-
-        return true;
-
-    }
-
-    if(nWidth <= 0 || nHeight <= 0)
-    {
-
-        return false;
-
-    }
-
-
-
-//      cairo_matrix_t matrixOld;
+//bool graphics::PlgBlt(POINT32 * lpPoint, ::draw2d::graphics * pgraphicsSrc, i32 nXSrc, i32 nYSrc, i32 nWidth, i32 nHeight, ::draw2d::bitmap& maskBitmap, i32 xMask, i32 yMask)
+//{
 //
-//      cairo_pattern_get_matrix(ppattern, &matrixOld);
+//    if (::is_null(m_pdc))
+//    {
 //
-//      {
+//        return true;
 //
-//         cairo_matrix_t matrixSrc;
+//    }
 //
-//         cairo_matrix_init_translate(&matrixSrc, nXSrc, nYSrc);
+//    if(nWidth <= 0 || nHeight <= 0)
+//    {
 //
-//         cairo_pattern_set_matrix(ppattern, &matrixSrc);
+//        return false;
 //
-//      }
-
-    //cairo_matrix_scale(&matrixPlg, (double)dDstWidth / (double)dSrcWidth, (double)dDstHeight / (double)dSrcHeight);
-
-    cairo_matrix_t matrixShear;
-
-    double dWidth = nWidth;
-    double dHeight = nHeight;
-    double srcArea = dWidth * dHeight;
-
-    if(nWidth <= 0 || nHeight <= 0)
-    {
-
-        return false;
-
-    }
-
-
-
-    POINTD plg[3];
-
-
-    plg[0].x =lpPoint[0].x;
-    plg[0].y =lpPoint[0].y;
-    plg[1].x =lpPoint[1].x;
-    plg[1].y =lpPoint[1].y;
-    plg[2].x =lpPoint[2].x;
-    plg[2].y =lpPoint[2].y;
-
-
-    /* X components */
-//    xf.eM11 = (plg[1].x*(rect[2].y - rect[0].y) - plg[2].x*(rect[1].y - rect[0].y) - plg[0].x*(rect[2].y - rect[1].y)) / det;
-//    xf.eM21 = (rect[1].x*(plg[2].x - plg[0].x) - rect[2].x*(plg[1].x - plg[0].x) - rect[0].x*(plg[2].x - plg[1].x)) / det;
-//    xf.eDx  = (rect[0].x*(rect[1].y*plg[2].x - rect[2].y*plg[1].x) -
-//               rect[1].x*(rect[0].y*plg[2].x - rect[2].y*plg[0].x) +
-//               rect[2].x*(rect[0].y*plg[1].x - rect[1].y*plg[0].x)
-//               ) / det;
+//    }
 //
-//    xf.eM21 = (nSrcx*(plg[2].x - plg[0].x) + nWitdh(plg[2].x - plg[0].x) - nSrcX*(plg[1].x - plg[0].x) - nSrcx*(plg[2].x - plg[1].x)) / det;
-//    xf.eM21 = (+ nWitdh(plg[2].x - plg[0].x)  / det;
-//    xf.eDx  = (rect[0].x*(rect[1].y*plg[2].x - rect[2].y*plg[1].x) -
-//               rect[1].x*(nYSrc*plg[2].x - rect[2].y*plg[0].x) +
-//               rect[2].x*(nYSrc*plg[1].x - rect[1].y*plg[0].x)
-//               ) / det;
-//    xf.eDx  = (nXSrc*(rect[1].y*plg[2].x - rect[2].y*plg[1].x) -
-//               rect[1].x*(nYSrc*plg[2].x - nYSrc*plg[0].x) +
-//               rect[2].x*(nYSrc*plg[1].x - nYSrc*plg[0].x)
-//               ) / det;
-//    xf.eDx  = (nXSrc*(nYSrc*plg[2].x - rect[2].y*plg[1].x) -
-//               rect[1].x*(nYSrc*plg[2].x - nYSrc*plg[0].x) +
-//               nXSrc*(nYSrc*plg[1].x - nYSrc*plg[0].x)
-//               ) / det;
-//    xf.eDx  = (nXSrc*(nYSrc*plg[2].x - (nYSrc + nHeight)*plg[1].x) -
-//               (nXSrc + nWidth)*(nYSrc*plg[2].x - nYSrc*plg[0].x) +
-//               nXSrc*(nYSrc*plg[1].x - nYSrc*plg[0].x)
-//               ) / det;
-//    xf.eDx  = (nXSrc*(nYSrc*plg[2].x - (nYSrc + nHeight)*plg[1].x) -
-//               (nXSrc + nWidth)*(nYSrc*plg[2].x - nYSrc*plg[0].x) +
-//               nXSrc*(nYSrc*plg[1].x - nYSrc*plg[0].x)
-//               ) / det;
-    /* Y components */
-//    xf.eM12 = (plg[1].y*(rect[2].y - rect[0].y) - plg[2].y*(rect[1].y - rect[0].y) - plg[0].y*(rect[2].y - rect[1].y)) / det;
-//    xf.eM22 = (rect[1].x*(plg[2].y - plg[0].y) - rect[2].x*(plg[1].y - plg[0].y) - rect[0].x*(plg[2].y - plg[1].y)) / det;
-//    xf.eDy  = (rect[0].x*(rect[1].y*plg[2].y - rect[2].y*plg[1].y) -
-//               rect[1].x*(rect[0].y*plg[2].y - rect[2].y*plg[0].y) +
-//               rect[2].x*(rect[0].y*plg[1].y - rect[1].y*plg[0].y)
-//               ) / det;
-//    xf.eM22 = (rect[1].x*(plg[2].y - plg[0].y) - rect[2].x*(plg[1].y - plg[0].y) - rect[0].x*(plg[2].y - plg[1].y)) / det;
-//    xf.eM22 = (nXSrc*(plg[2].y - plg[0].y)+nWidth*(plg[2].y - plg[0].y) - nXSrc*(plg[1].y - plg[0].y) - nXSrc*(plg[2].y - plg[1].y)) / det;
-//    xf.eM22 = (nWidth*(plg[2].y - plg[0].y) - nXSrc*(plg[1].y ) - nXSrc*(- plg[1].y)) / det;
-//    xf.eM22 = (nWidth*(plg[2].y - plg[0].y) ) / det;
-
-
-    POINTD src[3];
-
-
-    src[0].x = nXSrc;
-    src[0].y = nYSrc;
-    src[1].x = nXSrc + nWidth;
-    src[1].y = nYSrc;
-    src[2].x = nXSrc;
-    src[2].y = nYSrc + nHeight;
-
-
-    //double dX = nXSrc;
-    //double dY = nYSrc;
-    double dA = nWidth * nHeight;
-    //double dX2 = nXSrc + nWidth;
-    //double dY2 = nYSrc + nHeight;
-
-
-    matrixShear.xx = (plg[1].x - plg[0].x) / dWidth;
-    matrixShear.xy = (plg[2].x - plg[0].x) / dHeight;
-    matrixShear.x0  = (src[0].x*(src[1].y*plg[2].x - src[2].y*plg[1].x) -
-                       src[1].x*(src[0].y*plg[2].x - src[2].y*plg[0].x) +
-                       src[2].x*(src[0].y*plg[1].x - src[1].y*plg[0].x)
-                      ) / dA;
-    //matrixShear.x0 = plg[0].x;
-    //matrixShear.x0 = 0;
-
-    matrixShear.yx = (plg[1].y - plg[0].y) / dWidth;
-    matrixShear.yy = (plg[2].y - plg[0].y) / dHeight;
-//      matrixShear.y0  = (src[0].x*(src[1].y*plg[2].y - src[2].y*plg[1].y) -
-//               src[1].x*(src[0].y*plg[2].y - src[2].y*plg[0].y) +
-//               src[2].x*(src[0].y*plg[1].y - src[1].y*plg[0].y)
-//               ) / dA;
-    matrixShear.y0  = (src[0].x*(src[1].y*plg[2].y - src[2].y*plg[1].y) -
-                       src[1].x*(src[0].y*plg[2].y - src[2].y*plg[0].y) +
-                       src[2].x*(src[0].y*plg[1].y - src[1].y*plg[0].y)
-                      ) / dA;
-
-    if(fabs(matrixShear.xx) <= 0.001)
-    {
-        return false;
-    }
-    if(fabs(matrixShear.yy) <= 0.001)
-    {
-        return false;
-    }
-
-//               if(fabs(matrixShear.xx) <=0.001)
-//               {
-//               matrixShear.xx = papaya::sgn(matrixShear.xx);
-//               }
-//               if(fabs(matrixShear.yy) <=0.001)
-//               {
-//               matrixShear.yy = papaya::sgn(matrixShear.yy);
-//               }
-
-
-    //matrixShear.y0 = plg[0].y;
-    //matrixShear.y0 = 0;
 //
-//      cairo_matrix_t matrix;
 //
-//      cairo_get_matrix(m_pdc, &matrix);
+////      cairo_matrix_t matrixOld;
+////
+////      cairo_pattern_get_matrix(ppattern, &matrixOld);
+////
+////      {
+////
+////         cairo_matrix_t matrixSrc;
+////
+////         cairo_matrix_init_translate(&matrixSrc, nXSrc, nYSrc);
+////
+////         cairo_pattern_set_matrix(ppattern, &matrixSrc);
+////
+////      }
 //
-//      cairo_matrix_multiply(&matrix, &matrix, &matrixShear);
-
-    sync_lock ml(cairo_mutex());
-
-    cairo_keep keep(m_pdc);
-
-    if (pgraphicsSrc == nullptr || pgraphicsSrc->get_os_data() == nullptr)
-    {
-
-        return false;
-
-    }
-
-    cairo_surface_t * psurface = cairo_get_target((cairo_t *)pgraphicsSrc->get_os_data());
-
-    if (psurface == nullptr)
-    {
-
-        return false;
-
-    }
-
-    cairo_pattern_t * ppattern = cairo_pattern_create_for_surface(psurface);
-
-    if (ppattern == nullptr)
-    {
-
-        return false;
-
-    }
-    cairo_transform(m_pdc, &matrixShear);
-
-    int cxImage = cairo_image_surface_get_width(psurface);
-
-    int cyImage = cairo_image_surface_get_height(psurface);
-
-    if(nXSrc > 0 || nYSrc > 0 || nWidth < cxImage || nHeight < cyImage)
-    {
-
-        cairo_rectangle(m_pdc, nXSrc, nYSrc, dWidth, dHeight);
-
-        cairo_clip(m_pdc);
-
-    }
-
-    cairo_set_source(m_pdc, ppattern);
-
-   if (m_nStretchBltMode == 0)
-   {
-
-      cairo_pattern_set_filter(cairo_get_source(m_pdc), CAIRO_FILTER_NEAREST);
-
-   }
-   else if (m_nStretchBltMode == e_interpolation_mode_high_quality_bicubic)
-   {
-
-      cairo_pattern_set_filter(cairo_get_source(m_pdc), CAIRO_FILTER_GOOD);
-
-   }
-   else
-   {
-
-      cairo_pattern_set_filter(cairo_get_source(m_pdc), CAIRO_FILTER_FAST);
-
-   }
-
-   if (m_pregion.is_set() && !m_pregion.cast < region >()->is_simple_positive_region())
-   {
-
-      m_pregion.cast < region >()->mask(m_pdc);
-
-   }
-   else
-   {
-
-      cairo_paint(m_pdc);
-
-   }
-
-   // cairo_pattern_set_matrix(ppattern, &matrixOld);
-
-   cairo_pattern_destroy(ppattern);
-
-   return true;
-
-}
+//    //cairo_matrix_scale(&matrixPlg, (double)dDstWidth / (double)dSrcWidth, (double)dDstHeight / (double)dSrcHeight);
+//
+//    cairo_matrix_t matrixShear;
+//
+//    double dWidth = nWidth;
+//    double dHeight = nHeight;
+//    double srcArea = dWidth * dHeight;
+//
+//    if(nWidth <= 0 || nHeight <= 0)
+//    {
+//
+//        return false;
+//
+//    }
+//
+//
+//
+//    POINTD plg[3];
+//
+//
+//    plg[0].x =lpPoint[0].x;
+//    plg[0].y =lpPoint[0].y;
+//    plg[1].x =lpPoint[1].x;
+//    plg[1].y =lpPoint[1].y;
+//    plg[2].x =lpPoint[2].x;
+//    plg[2].y =lpPoint[2].y;
+//
+//
+//    /* X components */
+////    xf.eM11 = (plg[1].x*(rect[2].y - rect[0].y) - plg[2].x*(rect[1].y - rect[0].y) - plg[0].x*(rect[2].y - rect[1].y)) / det;
+////    xf.eM21 = (rect[1].x*(plg[2].x - plg[0].x) - rect[2].x*(plg[1].x - plg[0].x) - rect[0].x*(plg[2].x - plg[1].x)) / det;
+////    xf.eDx  = (rect[0].x*(rect[1].y*plg[2].x - rect[2].y*plg[1].x) -
+////               rect[1].x*(rect[0].y*plg[2].x - rect[2].y*plg[0].x) +
+////               rect[2].x*(rect[0].y*plg[1].x - rect[1].y*plg[0].x)
+////               ) / det;
+////
+////    xf.eM21 = (nSrcx*(plg[2].x - plg[0].x) + nWitdh(plg[2].x - plg[0].x) - nSrcX*(plg[1].x - plg[0].x) - nSrcx*(plg[2].x - plg[1].x)) / det;
+////    xf.eM21 = (+ nWitdh(plg[2].x - plg[0].x)  / det;
+////    xf.eDx  = (rect[0].x*(rect[1].y*plg[2].x - rect[2].y*plg[1].x) -
+////               rect[1].x*(nYSrc*plg[2].x - rect[2].y*plg[0].x) +
+////               rect[2].x*(nYSrc*plg[1].x - rect[1].y*plg[0].x)
+////               ) / det;
+////    xf.eDx  = (nXSrc*(rect[1].y*plg[2].x - rect[2].y*plg[1].x) -
+////               rect[1].x*(nYSrc*plg[2].x - nYSrc*plg[0].x) +
+////               rect[2].x*(nYSrc*plg[1].x - nYSrc*plg[0].x)
+////               ) / det;
+////    xf.eDx  = (nXSrc*(nYSrc*plg[2].x - rect[2].y*plg[1].x) -
+////               rect[1].x*(nYSrc*plg[2].x - nYSrc*plg[0].x) +
+////               nXSrc*(nYSrc*plg[1].x - nYSrc*plg[0].x)
+////               ) / det;
+////    xf.eDx  = (nXSrc*(nYSrc*plg[2].x - (nYSrc + nHeight)*plg[1].x) -
+////               (nXSrc + nWidth)*(nYSrc*plg[2].x - nYSrc*plg[0].x) +
+////               nXSrc*(nYSrc*plg[1].x - nYSrc*plg[0].x)
+////               ) / det;
+////    xf.eDx  = (nXSrc*(nYSrc*plg[2].x - (nYSrc + nHeight)*plg[1].x) -
+////               (nXSrc + nWidth)*(nYSrc*plg[2].x - nYSrc*plg[0].x) +
+////               nXSrc*(nYSrc*plg[1].x - nYSrc*plg[0].x)
+////               ) / det;
+//    /* Y components */
+////    xf.eM12 = (plg[1].y*(rect[2].y - rect[0].y) - plg[2].y*(rect[1].y - rect[0].y) - plg[0].y*(rect[2].y - rect[1].y)) / det;
+////    xf.eM22 = (rect[1].x*(plg[2].y - plg[0].y) - rect[2].x*(plg[1].y - plg[0].y) - rect[0].x*(plg[2].y - plg[1].y)) / det;
+////    xf.eDy  = (rect[0].x*(rect[1].y*plg[2].y - rect[2].y*plg[1].y) -
+////               rect[1].x*(rect[0].y*plg[2].y - rect[2].y*plg[0].y) +
+////               rect[2].x*(rect[0].y*plg[1].y - rect[1].y*plg[0].y)
+////               ) / det;
+////    xf.eM22 = (rect[1].x*(plg[2].y - plg[0].y) - rect[2].x*(plg[1].y - plg[0].y) - rect[0].x*(plg[2].y - plg[1].y)) / det;
+////    xf.eM22 = (nXSrc*(plg[2].y - plg[0].y)+nWidth*(plg[2].y - plg[0].y) - nXSrc*(plg[1].y - plg[0].y) - nXSrc*(plg[2].y - plg[1].y)) / det;
+////    xf.eM22 = (nWidth*(plg[2].y - plg[0].y) - nXSrc*(plg[1].y ) - nXSrc*(- plg[1].y)) / det;
+////    xf.eM22 = (nWidth*(plg[2].y - plg[0].y) ) / det;
+//
+//
+//    POINTD src[3];
+//
+//
+//    src[0].x = nXSrc;
+//    src[0].y = nYSrc;
+//    src[1].x = nXSrc + nWidth;
+//    src[1].y = nYSrc;
+//    src[2].x = nXSrc;
+//    src[2].y = nYSrc + nHeight;
+//
+//
+//    //double dX = nXSrc;
+//    //double dY = nYSrc;
+//    double dA = nWidth * nHeight;
+//    //double dX2 = nXSrc + nWidth;
+//    //double dY2 = nYSrc + nHeight;
+//
+//
+//    matrixShear.xx = (plg[1].x - plg[0].x) / dWidth;
+//    matrixShear.xy = (plg[2].x - plg[0].x) / dHeight;
+//    matrixShear.x0  = (src[0].x*(src[1].y*plg[2].x - src[2].y*plg[1].x) -
+//                       src[1].x*(src[0].y*plg[2].x - src[2].y*plg[0].x) +
+//                       src[2].x*(src[0].y*plg[1].x - src[1].y*plg[0].x)
+//                      ) / dA;
+//    //matrixShear.x0 = plg[0].x;
+//    //matrixShear.x0 = 0;
+//
+//    matrixShear.yx = (plg[1].y - plg[0].y) / dWidth;
+//    matrixShear.yy = (plg[2].y - plg[0].y) / dHeight;
+////      matrixShear.y0  = (src[0].x*(src[1].y*plg[2].y - src[2].y*plg[1].y) -
+////               src[1].x*(src[0].y*plg[2].y - src[2].y*plg[0].y) +
+////               src[2].x*(src[0].y*plg[1].y - src[1].y*plg[0].y)
+////               ) / dA;
+//    matrixShear.y0  = (src[0].x*(src[1].y*plg[2].y - src[2].y*plg[1].y) -
+//                       src[1].x*(src[0].y*plg[2].y - src[2].y*plg[0].y) +
+//                       src[2].x*(src[0].y*plg[1].y - src[1].y*plg[0].y)
+//                      ) / dA;
+//
+//    if(fabs(matrixShear.xx) <= 0.001)
+//    {
+//        return false;
+//    }
+//    if(fabs(matrixShear.yy) <= 0.001)
+//    {
+//        return false;
+//    }
+//
+////               if(fabs(matrixShear.xx) <=0.001)
+////               {
+////               matrixShear.xx = papaya::sgn(matrixShear.xx);
+////               }
+////               if(fabs(matrixShear.yy) <=0.001)
+////               {
+////               matrixShear.yy = papaya::sgn(matrixShear.yy);
+////               }
+//
+//
+//    //matrixShear.y0 = plg[0].y;
+//    //matrixShear.y0 = 0;
+////
+////      cairo_matrix_t matrix;
+////
+////      cairo_get_matrix(m_pdc, &matrix);
+////
+////      cairo_matrix_multiply(&matrix, &matrix, &matrixShear);
+//
+//    sync_lock ml(cairo_mutex());
+//
+//    cairo_keep keep(m_pdc);
+//
+//    if (pgraphicsSrc == nullptr || pgraphicsSrc->get_os_data() == nullptr)
+//    {
+//
+//        return false;
+//
+//    }
+//
+//    cairo_surface_t * psurface = cairo_get_target((cairo_t *)pgraphicsSrc->get_os_data());
+//
+//    if (psurface == nullptr)
+//    {
+//
+//        return false;
+//
+//    }
+//
+//    cairo_pattern_t * ppattern = cairo_pattern_create_for_surface(psurface);
+//
+//    if (ppattern == nullptr)
+//    {
+//
+//        return false;
+//
+//    }
+//    cairo_transform(m_pdc, &matrixShear);
+//
+//    int cxImage = cairo_image_surface_get_width(psurface);
+//
+//    int cyImage = cairo_image_surface_get_height(psurface);
+//
+//    if(nXSrc > 0 || nYSrc > 0 || nWidth < cxImage || nHeight < cyImage)
+//    {
+//
+//        cairo_rectangle(m_pdc, nXSrc, nYSrc, dWidth, dHeight);
+//
+//        cairo_clip(m_pdc);
+//
+//    }
+//
+//    cairo_set_source(m_pdc, ppattern);
+//
+//   if (m_nStretchBltMode == 0)
+//   {
+//
+//      cairo_pattern_set_filter(cairo_get_source(m_pdc), CAIRO_FILTER_NEAREST);
+//
+//   }
+//   else if (m_nStretchBltMode == e_interpolation_mode_high_quality_bicubic)
+//   {
+//
+//      cairo_pattern_set_filter(cairo_get_source(m_pdc), CAIRO_FILTER_GOOD);
+//
+//   }
+//   else
+//   {
+//
+//      cairo_pattern_set_filter(cairo_get_source(m_pdc), CAIRO_FILTER_FAST);
+//
+//   }
+//
+//   if (m_pregion.is_set() && !m_pregion.cast < region >()->is_simple_positive_region())
+//   {
+//
+//      m_pregion.cast < region >()->mask(m_pdc);
+//
+//   }
+//   else
+//   {
+//
+//      cairo_paint(m_pdc);
+//
+//   }
+//
+//   // cairo_pattern_set_matrix(ppattern, &matrixOld);
+//
+//   cairo_pattern_destroy(ppattern);
+//
+//   return true;
+//
+//}
 
 
 bool graphics::SetPixelV(i32 x, i32 y, const ::color & color)
@@ -2716,15 +2733,15 @@ float graphics::GetMiterLimit()
 
 }
 
-
-i32 graphics::GetPath(POINT32 * lpPoints, byte * lpTypes, count nCount)
-{
-
-    ::exception::throw_not_implemented();
-
-    return 0;
-
-}
+//
+//i32 graphics::GetPath(POINT32 * lpPoints, byte * lpTypes, count nCount)
+//{
+//
+//    ::exception::throw_not_implemented();
+//
+//    return 0;
+//
+//}
 
 
 bool graphics::SetMiterLimit(float fMiterLimit)
@@ -3127,12 +3144,12 @@ void graphics::HIMETRICtoLP(LPSIZE32 LPSIZE32)
 // special graphics drawing primitives/helpers
 
 
-::draw2d::brush * PASCAL graphics::GetHalftoneBrush(::layered * pobjectContext)
-{
-
-    return nullptr;
-
-}
+//::draw2d::brush * PASCAL graphics::GetHalftoneBrush(::layered * pobjectContext)
+//{
+//
+//    return nullptr;
+//
+//}
 
 
 //   void graphics::DrawDragRect(const ::rect & rect, const ::size & size, const ::rect & rectLast, const ::size & sizeLast, ::draw2d::brush* pBrush, ::draw2d::brush* pBrushLast)
@@ -3345,12 +3362,17 @@ i32 graphics::SetROP2(i32 nDrawMode)
 }
 
 
-i32 graphics::set_interpolation_mode(i32 nStretchMode)
+bool graphics::set_interpolation_mode(::draw2d::enum_interpolation_mode einterpolationmode)
 {
 
-    m_nStretchBltMode = nStretchMode;
+    if(!::draw2d::graphics::set_interpolation_mode(einterpolationmode))
+    {
 
-    return 1;
+       return false;
+
+    }
+
+    return true;
 
 }
 
@@ -3365,24 +3387,24 @@ i32 graphics::SetGraphicsMode(i32 iMode)
 }
 
 
-bool graphics::SetWorldTransform(const XFORM* pXform)
-{
+//bool graphics::SetWorldTransform(const XFORM* pXform)
+//{
+//
+//    ::exception::throw_not_implemented();
+//
+//    return false;
+//
+//}
 
-    ::exception::throw_not_implemented();
 
-    return false;
-
-}
-
-
-bool graphics::ModifyWorldTransform(const XFORM* pXform, u32 iMode)
-{
-
-    ::exception::throw_not_implemented();
-
-    return false;
-
-}
+//bool graphics::ModifyWorldTransform(const XFORM* pXform, u32 iMode)
+//{
+//
+//    ::exception::throw_not_implemented();
+//
+//    return false;
+//
+//}
 
 
 i32 graphics::SetMapMode(i32 nMapMode)
@@ -4081,7 +4103,7 @@ bool graphics::internal_draw_text(const char * lpszString, strsize nCount, const
 #endif
 
 
-bool graphics::draw_text_ex(const string & str, const ::rect & rect, const ::e_align & ealign, const ::e_draw_text & edrawtext, LPDRAWTEXTPARAMS lpDTParams)
+bool graphics::draw_text_ex(const string & str, const ::rect & rect, const ::e_align & ealign, const ::e_draw_text & edrawtext)
 {
 
     ::exception::throw_not_implemented();

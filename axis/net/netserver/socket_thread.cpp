@@ -109,7 +109,7 @@ namespace netserver
 
                   TRACE(strMessage);
 
-                  Sleep(5000);
+                  millis_sleep(5000);
 
                   continue;
 

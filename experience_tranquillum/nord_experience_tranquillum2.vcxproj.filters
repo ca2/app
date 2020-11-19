@@ -4,34 +4,34 @@
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="experience_core_frame.cpp">
+    <ClCompile Include="experience_lite_frame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="experience_core_frame_001.cpp">
+    <ClCompile Include="experience_lite_frame_001.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="experience_core_frame_002.cpp">
+    <ClCompile Include="experience_lite_frame_002.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="experience_core_frame_005.cpp">
+    <ClCompile Include="experience_lite_frame_005.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="experience_core_frame_008.cpp">
+    <ClCompile Include="experience_lite_frame_008.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="experience_core_frame_011.cpp">
+    <ClCompile Include="experience_lite_frame_011.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="experience_core_frame_013.cpp">
+    <ClCompile Include="experience_lite_frame_013.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="experience_core_frame_Minimal001.cpp">
+    <ClCompile Include="experience_lite_frame_Minimal001.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="experience_core_interaction.cpp">
+    <ClCompile Include="experience_lite_interaction.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="experience_core_library.cpp">
+    <ClCompile Include="experience_lite_library.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -39,37 +39,37 @@
     <ClInclude Include="framework.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="experience_core.h">
+    <ClInclude Include="experience_lite.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="experience_core_frame.h">
+    <ClInclude Include="experience_lite_frame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="experience_core_frame_001.h">
+    <ClInclude Include="experience_lite_frame_001.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="experience_core_frame_002.h">
+    <ClInclude Include="experience_lite_frame_002.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="experience_core_frame_005.h">
+    <ClInclude Include="experience_lite_frame_005.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="experience_core_frame_008.h">
+    <ClInclude Include="experience_lite_frame_008.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="experience_core_frame_011.h">
+    <ClInclude Include="experience_lite_frame_011.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="experience_core_frame_013.h">
+    <ClInclude Include="experience_lite_frame_013.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="experience_core_frame_Minimal001.h">
+    <ClInclude Include="experience_lite_frame_Minimal001.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="experience_core_interaction.h">
+    <ClInclude Include="experience_lite_interaction.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="experience_core_library.h">
+    <ClInclude Include="experience_lite_library.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -82,7 +82,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="experience_core.def">
+    <None Include="experience_lite.def">
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>

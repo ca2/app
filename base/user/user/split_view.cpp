@@ -130,7 +130,11 @@ namespace user
    bool split_view::pre_create_window(::user::create_struct& cs)
    {
 
+#ifdef WINDOWS_DESKTOP
+
       cs.dwExStyle &= ~WS_EX_CLIENTEDGE;
+
+#endif
 
       return impact::pre_create_window(cs);
 

@@ -72,11 +72,11 @@ namespace simpledb
       while (get_run_service())
       {
 
-         Sleep(1000);
+         millis_sleep(1000);
 
       }
 
-      Sleep(10000);
+      millis_sleep(10000);
 
    }
 

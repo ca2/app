@@ -131,10 +131,17 @@ namespace user
 
    bool tab_view::pre_create_window(::user::create_struct& cs)
    {
+
+#ifdef WINDOWS_DESKTOP
+
       cs.dwExStyle &= ~WS_EX_CLIENTEDGE;
 
+#endif
+
       return impact::pre_create_window(cs);
+
    }
+
 
    void tab_view::rotate()
    {
@@ -889,7 +896,7 @@ namespace user
 
          {
 
-            millis t1 = millis::millis();
+            millis t1 = millis::now();
 
             _001DrawThis(pgraphics);
 

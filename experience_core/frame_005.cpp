@@ -46,7 +46,15 @@
 
                auto psession = Session;
 
-               m_brushTextCaption->create_solid(psession->get_default_color(COLOR_CAPTIONTEXT) | 0xff << 24);
+               auto pframewindow = m_pframewindow;
+
+               auto pgraphics = pframewindow->create_memory_graphics();
+
+               auto pstyle = pframewindow->get_style(pgraphics);
+
+               auto colorCaptionText = pframewindow->get_color(pstyle, ::user::element_window_title);
+
+               m_brushTextCaption->create_solid(colorCaptionText);
 
             }
 
@@ -231,9 +239,15 @@ SizingNone:;
                }
                else
                {
-                  crMoveableBorder = psession->get_default_color(COLOR_BTNFACE);
-                  crMoveableBorderHilight = psession->get_default_color(COLOR_BTNHILIGHT);
-                  crMoveableBorderShadow = psession->get_default_color(COLOR_BTNSHADOW);
+
+                  auto pstyle = pframewindow->get_style(pgraphics);
+
+                  crMoveableBorder = pframewindow->get_color(pstyle, ::user::element_button_background);
+
+                  crMoveableBorderHilight = pframewindow->get_color(pstyle, ::user::element_button_hilite);
+
+                  crMoveableBorderShadow = pframewindow->get_color(pstyle, ::user::element_button_shadow);
+
                }
 
                e_dock edock = m_pframewindow->dock_manager()->get_dock_mask();
@@ -703,21 +717,33 @@ SizingNone:;
 
                auto psession = Session;
 
-               pgraphics->draw_3drect(rect, psession->get_default_color(COLOR_BTNFACE), psession->get_default_color(COLOR_3DDKSHADOW));
+               auto pframewindow = m_pframewindow;
+
+               auto pstyle = pframewindow->get_style(pgraphics);
+
+               auto crMoveableBorder = pframewindow->get_color(pstyle, ::user::element_button_background);
+
+               auto crMoveableBorderHilight = pframewindow->get_color(pstyle, ::user::element_button_hilite);
+
+               auto crMoveableBorderDkShadow = pframewindow->get_color(pstyle, ::user::element_button_dark_shadow);
+
+               auto crMoveableBorderShadow = pframewindow->get_color(pstyle, ::user::element_button_shadow);
+
+               pgraphics->draw_3drect(rect, crMoveableBorder, crMoveableBorderDkShadow);
 
                rect.top++;
                rect.bottom--;
                rect.left++;
                rect.right--;
 
-               pgraphics->draw_3drect(rect, psession->get_default_color(COLOR_BTNHILIGHT), psession->get_default_color(COLOR_BTNSHADOW));
+               pgraphics->draw_3drect(rect,crMoveableBorderHilight, crMoveableBorderShadow);
 
                rect.top++;
                rect.bottom--;
                rect.left++;
                rect.right--;
 
-               pgraphics->fill_rect(rect, psession->get_default_color(COLOR_BTNFACE));
+               pgraphics->fill_rect(rect, crMoveableBorder);
 
             }
 

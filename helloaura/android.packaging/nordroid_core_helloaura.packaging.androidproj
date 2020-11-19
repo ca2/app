@@ -90,7 +90,7 @@
     <ProjectReference Include="..\..\..\..\app\aura\pixman\nord_aurapixman.vcxproj" />
     <ProjectReference Include="..\..\..\..\app\aura\zlib\nord_aurazlib.vcxproj" />
     <ProjectReference Include="..\..\..\..\platform\android.native_activity\android.native_activity.vcxproj" />
-    <ProjectReference Include="..\..\experience_core\nord_experience_core.vcxproj" />
+    <ProjectReference Include="..\..\experience_lite\nord_experience_lite.vcxproj" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\AndroidPackaging\Android.targets" />
   <ImportGroup Label="ExtensionTargets" />

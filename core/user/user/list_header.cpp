@@ -731,7 +731,7 @@ namespace user
 
          pgraphics->line_to(rectDivider.left, rectDivider.bottom);
 
-         //pgraphics->draw3d_rect(rectDivider, psession->get_default_color(COLOR_BTNSHADOW), psession->get_default_color(COLOR_BTNHIGHLIGHT));
+         //pgraphics->draw3d_rect(rectDivider, crButtonShadow, psession->get_default_color(COLOR_BTNHIGHLIGHT));
 
       }
 

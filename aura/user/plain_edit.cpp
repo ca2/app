@@ -354,7 +354,7 @@ namespace user
 
       m_millisLastDraw= ::millis::now();
 
-      millis t1 = millis::millis();
+      millis t1 = millis::now();
 
       auto pstyle = get_style(pgraphics);
 

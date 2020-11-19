@@ -2,7 +2,7 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="experience_core" />
+		<Option title="experience_lite" />
 		<Option pch_mode="2" />
 		<Option compiler="clang" />
 		<Build>
@@ -107,7 +107,7 @@
 			<Add directory="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
 		</Linker>
 		<Unit filename="_.h" />
-		<Unit filename="_experience_core.cpp" />
+		<Unit filename="_experience_lite.cpp" />
 		<Unit filename="button.cpp" />
 		<Unit filename="button.h" />
 		<Unit filename="control_box.cpp" />

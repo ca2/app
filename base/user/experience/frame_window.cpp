@@ -48,6 +48,8 @@ namespace experience
    void frame_window::pre_translate_message(::message::message * pmessage)
    {
 
+#ifdef WINDOWS_DESKTOP
+
       if (pmessage->m_id == WM_GETTEXT)
       {
 
@@ -60,7 +62,11 @@ namespace experience
          return;
 
       }
-      else if (pmessage->m_id == e_message_mouse_move)
+      else
+
+#endif
+
+         if (pmessage->m_id == e_message_mouse_move)
       {
 
          return;
@@ -293,7 +299,7 @@ namespace experience
       if (!is_window_visible() || _001GetTopLeftWeightedOccludedOpaqueRate() > 0.025 || layout().is_iconic())
       {
 
-         ModifyStyleEx(WS_EX_TOOLWINDOW, 0);
+         set_tool_window(false);
 
          if (!is_window_screen_visible())
          {
@@ -314,7 +320,7 @@ namespace experience
       else
       {
 
-         ModifyStyleEx(0, WS_EX_TOOLWINDOW);
+         set_tool_window();
 
          hide();
 
@@ -928,81 +934,6 @@ namespace experience
 
       SCAST_PTR(::message::base, pbase, pmessage);
 
-      if (pbase->m_wparam == SC_SCREENSAVE)
-      {
-
-         if (!_001CanEnterScreenSaver())
-         {
-
-            pbase->m_bRet = true;
-
-            pbase->m_lresult = 0;
-
-            return;
-
-         }
-
-      }
-
-      //if (m_bWindowFrame)
-      {
-
-         if (pbase->m_wparam == SC_MAXIMIZE)
-         {
-
-            INFO("SC_MAXIMIZE");
-
-            display(display_zoomed);
-
-            set_need_redraw();
-
-            pbase->m_bRet = true;
-
-            pbase->m_lresult = 0;
-
-         }
-         else if (pbase->m_wparam == SC_RESTORE)
-         {
-
-            INFO("SC_RESTORE");
-
-            if (m_edisplayRestore == display_default)
-            {
-
-               display_previous_restore();
-
-            }
-            else
-            {
-
-               display(m_edisplayRestore);
-
-            }
-
-            set_need_redraw();
-
-            pbase->m_bRet = true;
-
-            pbase->m_lresult = 0;
-
-         }
-         else if (pbase->m_wparam == SC_MINIMIZE)
-         {
-
-            INFO("SC_MINIMIZE");
-
-            display_system_minimize();
-
-            set_need_redraw();
-
-            pbase->m_bRet = true;
-
-            pbase->m_lresult = 0;
-
-         }
-
-      }
-
    }
 
 
@@ -1266,7 +1197,13 @@ namespace experience
       MESSAGE_LINK(e_message_nchittest,pchannel,this,&frame_window::_001OnNcHitTest);
       MESSAGE_LINK(e_message_activate,pchannel,this,&frame_window::_001OnActivate);
       MESSAGE_LINK(e_message_command,pchannel,this,&frame_window::_001OnCommand);
+
+#ifdef WINDOWS_DESKTOP
+
       MESSAGE_LINK(WM_SYSCOMMAND, pchannel, this, &frame_window::_001OnSysCommand);
+
+#endif
+
       MESSAGE_LINK(e_message_size, pchannel, this, &frame_window::_001OnSize);
 
    }

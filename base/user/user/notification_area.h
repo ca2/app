@@ -45,9 +45,9 @@ namespace user
       __pointer(::image_list)          m_pil16;
 #ifdef WINDOWS_DESKTOP
       __pointer_array(TrayItemInfo)    m_infoa;
-#endif
       HFONT                            m_hfontHidden;
       HFONT                            m_hfontRegular;
+#endif
 
 
       notification_area();

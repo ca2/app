@@ -75,7 +75,7 @@ namespace math
 
       i64 i0 = get_nanos();
 
-      sleep(millis(bLevel));
+      millis_sleep(millis(bLevel));
 
       i64 i1 = get_nanos();
 

@@ -383,12 +383,18 @@ namespace experience
 
                auto psession = Session;
 
-               m_penText1->create_solid(1, psession->get_default_color(COLOR_BTNTEXT) | 0xff000000);
-               m_penFace1->create_solid(1, psession->get_default_color(COLOR_BTNFACE) | 0xff000000);
-               m_penHilight1->create_solid(1, psession->get_default_color(COLOR_BTNHILIGHT) | 0xff000000);
-               m_penShadow1->create_solid(1, psession->get_default_color(COLOR_BTNSHADOW) | 0xff000000);
-               m_penDkShadow1->create_solid(1, psession->get_default_color(COLOR_3DDKSHADOW) | 0xff000000);
-               m_crDkShadow = psession->get_default_color(COLOR_3DDKSHADOW);
+               auto pframewindow = m_pframewindow;
+
+               auto pgraphics = pframewindow->create_memory_graphics();
+
+               auto pstyle = pframewindow->get_style(pgraphics);
+
+               m_penText1->create_solid(1, pframewindow->get_color(pstyle, ::user::element_button_text));
+               m_penFace1->create_solid(1, pframewindow->get_color(pstyle, ::user::element_button_background));
+               m_penHilight1->create_solid(1, pframewindow->get_color(pstyle, ::user::element_button_hilite));
+               m_penShadow1->create_solid(1, pframewindow->get_color(pstyle, ::user::element_button_shadow));
+               m_penDkShadow1->create_solid(1, pframewindow->get_color(pstyle, ::user::element_button_dark_shadow));
+               m_crDkShadow = pframewindow->get_color(pstyle, ::user::element_button_dark_shadow);
                m_crFrameBorder = RGB(0, 0, 0) | 0xff000000;
 
 
@@ -654,11 +660,13 @@ namespace experience
                   else
                   {
 
-                     crMoveableBorder = psession->get_default_color(COLOR_BTNFACE);
+                     auto pstyle = pframewindow->get_style(pgraphics);
 
-                     crMoveableBorderHilight = psession->get_default_color(COLOR_BTNHILIGHT);
+                     crMoveableBorder = pframewindow->get_color(pstyle, ::user::element_button_background);
 
-                     crMoveableBorderShadow = psession->get_default_color(COLOR_BTNSHADOW);
+                     crMoveableBorderHilight = pframewindow->get_color(pstyle, ::user::element_button_hilite);
+
+                     crMoveableBorderShadow = pframewindow->get_color(pstyle, ::user::element_button_shadow);
 
                   }
 

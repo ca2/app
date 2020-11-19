@@ -147,7 +147,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</ExcludedFromBuild>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</DeploymentContent>
     </None>
-    <None Include="..\..\..\stage\x86\experience_core.dll" />
+    <None Include="..\..\..\stage\x86\experience_lite.dll" />
     <None Include=".\winmetro_helloaxis.pfx" />
     <None Include="winmetro_app_core_helloaxis_TemporaryKey.pfx" />
   </ItemGroup>

@@ -2784,9 +2784,9 @@ namespace aura
          TRACE("reach app_core_hellomultiverse");
       }
 
-      if(!ansi_compare_ci(pszLibrary, "experience_core"))
+      if(!ansi_compare_ci(pszLibrary, "experience_lite"))
       {
-         TRACE("reach experience_core");
+         TRACE("reach experience_lite");
       }
 
       if(!ansi_compare_ci(pszLibrary, "app_core_hellomultiverse"))
@@ -2923,7 +2923,7 @@ namespace aura
 
          }
 
-         Sleep(50);
+         millis_sleep(50);
 
       }
 

@@ -31,7 +31,7 @@
 		9AF7615D1F84388800FDE7CC /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8181BE1F21C2F000FDAF74 /* CoreText.framework */; };
 		9AF7615E1F84389000FDE7CC /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8181C61F21C35100FDAF74 /* libsqlite3.tbd */; };
 		9AF7615F1F8438A000FDE7CC /* libios_axisfreetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2112171D8271BE000C4336 /* libios_axisfreetype.a */; };
-		9AF762881F84437F00FDE7CC /* libexperience_core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 07703CC81B6FF23D009026EA /* libexperience_core.a */; };
+		9AF762881F84437F00FDE7CC /* libexperience_lite.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 07703CC81B6FF23D009026EA /* libexperience_lite.a */; };
 		9AF762AE1F84888E00FDE7CC /* libapp_core_helloworld.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 07EDC3541B4ED13500AF8928 /* libapp_core_helloworld.a */; };
 		9AF762AF1F8488D600FDE7CC /* libios_sphere.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9578291F6220B300623508 /* libios_sphere.a */; };
 		9AF762B01F84890000FDE7CC /* libios_gcom.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE612631F22A6BD00F7CDC2 /* libios_gcom.a */; };
@@ -44,10 +44,10 @@
 /* Begin PBXContainerItemProxy section */
 		070276641C51868A00DAFE31 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 07703CAC1B6FF23C009026EA /* experience_core.xcodeproj */;
+			containerPortal = 07703CAC1B6FF23C009026EA /* experience_lite.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 9AE24E591904CFE2001AEFFB;
-			remoteInfo = ios_experience_core;
+			remoteInfo = ios_experience_lite;
 		};
 		07108A4F1B4C856B00A28F80 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -121,24 +121,24 @@
 		};
 		07703CC51B6FF23D009026EA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 07703CAC1B6FF23C009026EA /* experience_core.xcodeproj */;
+			containerPortal = 07703CAC1B6FF23C009026EA /* experience_lite.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9AEB75F416F78EDC0085103B;
-			remoteInfo = experience_core;
+			remoteInfo = experience_lite;
 		};
 		07703CC71B6FF23D009026EA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 07703CAC1B6FF23C009026EA /* experience_core.xcodeproj */;
+			containerPortal = 07703CAC1B6FF23C009026EA /* experience_lite.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9AE24E5A1904CFE2001AEFFB;
-			remoteInfo = ios_experience_core;
+			remoteInfo = ios_experience_lite;
 		};
 		07703CC91B6FF23D009026EA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 07703CAC1B6FF23C009026EA /* experience_core.xcodeproj */;
+			containerPortal = 07703CAC1B6FF23C009026EA /* experience_lite.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9AE24E691904CFE2001AEFFB;
-			remoteInfo = experience_core_iosTests;
+			remoteInfo = experience_lite_iosTests;
 		};
 		078C35491921758600354453 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -588,7 +588,7 @@
 		070276161C5173FF00DAFE31 /* libaurasqlite.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaurasqlite.dylib; path = "../../app/aura/sqlite/build/Debug-iphoneos/libaurasqlite.dylib"; sourceTree = "<group>"; };
 		07108A491B4C856B00A28F80 /* axis.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axis.xcodeproj; path = ../../app/axis/axis.xcodeproj; sourceTree = "<group>"; };
 		07108AE41B4C967700A28F80 /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../../app/aura/.xcodeproj; sourceTree = "<group>"; };
-		07703CAC1B6FF23C009026EA /* experience_core.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = experience_core.xcodeproj; path = "../../app/experience_core/experience_core.xcodeproj"; sourceTree = "<group>"; };
+		07703CAC1B6FF23C009026EA /* experience_lite.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = experience_lite.xcodeproj; path = "../../app/experience_lite/experience_lite.xcodeproj"; sourceTree = "<group>"; };
 		077A02081B4D5758001C85FF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		078C352F1921758500354453 /* ios_app_core_helloworld.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ios_app_core_helloworld.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		078C35451921758600354453 /* ios_app_core_helloworldTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ios_app_core_helloworldTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -652,7 +652,7 @@
 				9AF762B01F84890000FDE7CC /* libios_gcom.a in Frameworks */,
 				9AF762AF1F8488D600FDE7CC /* libios_sphere.a in Frameworks */,
 				9AF762AE1F84888E00FDE7CC /* libapp_core_helloworld.a in Frameworks */,
-				9AF762881F84437F00FDE7CC /* libexperience_core.a in Frameworks */,
+				9AF762881F84437F00FDE7CC /* libexperience_lite.a in Frameworks */,
 				9AF7615F1F8438A000FDE7CC /* libios_axisfreetype.a in Frameworks */,
 				9AF7615E1F84389000FDE7CC /* libsqlite3.tbd in Frameworks */,
 				9AF7615D1F84388800FDE7CC /* CoreText.framework in Frameworks */,
@@ -709,9 +709,9 @@
 		07703CAD1B6FF23C009026EA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				07703CC61B6FF23D009026EA /* libexperience_core.dylib */,
-				07703CC81B6FF23D009026EA /* libexperience_core.a */,
-				07703CCA1B6FF23D009026EA /* experience_core_iosTests.xctest */,
+				07703CC61B6FF23D009026EA /* libexperience_lite.dylib */,
+				07703CC81B6FF23D009026EA /* libexperience_lite.a */,
+				07703CCA1B6FF23D009026EA /* experience_lite_iosTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -872,7 +872,7 @@
 				9A2115731D8276DA000C4336 /* image_decode_jpeg.xcodeproj */,
 				9A21157F1D8276E0000C4336 /* image_decode_png.xcodeproj */,
 				9A9577FE1F6220B200623508 /* sphere.xcodeproj */,
-				07703CAC1B6FF23C009026EA /* experience_core.xcodeproj */,
+				07703CAC1B6FF23C009026EA /* experience_lite.xcodeproj */,
 				9A6716F31D15D8C10069A961 /* ios */,
 				078C354B1921758600354453 /* wiosapp_core_helloworldTests */,
 				9A5752B516AAE1D2000CC4EF /* Frameworks */,
@@ -1166,7 +1166,7 @@
 				},
 				{
 					ProductGroup = 07703CAD1B6FF23C009026EA /* Products */;
-					ProjectRef = 07703CAC1B6FF23C009026EA /* experience_core.xcodeproj */;
+					ProjectRef = 07703CAC1B6FF23C009026EA /* experience_lite.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -1227,24 +1227,24 @@
 			remoteRef = 07473E3E1B504F20004688C5 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		07703CC61B6FF23D009026EA /* libexperience_core.dylib */ = {
+		07703CC61B6FF23D009026EA /* libexperience_lite.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = libexperience_core.dylib;
+			path = libexperience_lite.dylib;
 			remoteRef = 07703CC51B6FF23D009026EA /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		07703CC81B6FF23D009026EA /* libexperience_core.a */ = {
+		07703CC81B6FF23D009026EA /* libexperience_lite.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libexperience_core.a;
+			path = libexperience_lite.a;
 			remoteRef = 07703CC71B6FF23D009026EA /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		07703CCA1B6FF23D009026EA /* experience_core_iosTests.xctest */ = {
+		07703CCA1B6FF23D009026EA /* experience_lite_iosTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = experience_core_iosTests.xctest;
+			path = experience_lite_iosTests.xctest;
 			remoteRef = 07703CC91B6FF23D009026EA /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -1613,7 +1613,7 @@
 /* Begin PBXTargetDependency section */
 		070276651C51868A00DAFE31 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = ios_experience_core;
+			name = ios_experience_lite;
 			targetProxy = 070276641C51868A00DAFE31 /* PBXContainerItemProxy */;
 		};
 		07108A8A1B4C954F00A28F80 /* PBXTargetDependency */ = {

@@ -2206,7 +2206,7 @@ namespace user
 
 #ifdef __DEBUG
 
-               auto tickStart = millis::millis();
+               auto tickStart = millis::now();
 
 #endif //__DEBUG
 
@@ -2215,7 +2215,7 @@ namespace user
 
 #ifdef __DEBUG
 
-               auto tickEnd = millis::millis();
+               auto tickEnd = millis::now();
 
                millis tickElapsed = tickEnd - tickStart;
 
@@ -2244,7 +2244,7 @@ namespace user
 
 #ifdef __DEBUG
 
-            auto tickStart = millis::millis();
+            auto tickStart = millis::now();
 
 #endif //__DEBUG
 
@@ -2305,7 +2305,7 @@ namespace user
 
 #ifdef __DEBUG
 
-            auto tickStart = millis::millis();
+            auto tickStart = millis::now();
 
 #endif //__DEBUG
 
@@ -2314,7 +2314,7 @@ namespace user
 
 #ifdef __DEBUG
 
-            auto tickEnd = millis::millis();
+            auto tickEnd = millis::now();
 
             millis tickElapsed = tickEnd - tickStart;
 
@@ -2355,7 +2355,7 @@ namespace user
 
 #ifdef __DEBUG
 
-      auto tickStartWithLock = millis::millis();
+      auto tickStartWithLock = millis::now();
 
 #endif
 
@@ -2367,7 +2367,7 @@ namespace user
 
 #ifdef __DEBUG
 
-            auto tickStart = millis::millis();
+            auto tickStart = millis::now();
 
 #endif //__DEBUG
 
@@ -2383,7 +2383,7 @@ namespace user
 
             m_itemCurrent.set_drawn();
 
-            auto tickEnd = millis::millis();
+            auto tickEnd = millis::now();
 
             millis tickElapsed = tickEnd - tickStart;
 
@@ -2408,7 +2408,7 @@ namespace user
 
 #ifdef __DEBUG
 
-      auto tickEndWithLock = millis::millis();
+      auto tickEndWithLock = millis::now();
 
       millis tickElapsedWithLock = tickEndWithLock - tickStartWithLock;
 
@@ -3116,7 +3116,7 @@ namespace user
 
             {
 
-               millis t1 = millis::millis();
+               millis t1 = millis::now();
 
                _008CallOnDraw(pgraphics);
 
@@ -9614,7 +9614,7 @@ restart:
          if (pimpl->m_pointCursor == pointCursor)
          {
 
-            Sleep(30);
+            millis_sleep(30);
 
             continue;
 
@@ -9633,7 +9633,7 @@ restart:
          if (!PtInRect(&rectClient, pointCursor))
          {
 
-            Sleep(100);
+            millis_sleep(100);
 
             continue;
 
@@ -12382,7 +12382,7 @@ restart:
 
          do_events();
 
-         Sleep(5);
+         millis_sleep(5);
 
       }
 

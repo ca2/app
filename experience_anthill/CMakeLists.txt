@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.17)
-project(experience_core CXX)
+project(experience_anthill CXX)
 
 
 set(CMAKE_CXX_STANDARD 14)
@@ -26,10 +26,10 @@ set(LIBRARY_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../time-${PLATFORM_NAM
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../time-${PLATFORM_NAME}/cmake)
 
 
-list(APPEND experience_core_source
+list(APPEND experience_anthill_source
         _.cpp
         _.h
-        #aaa_want_to_remove_experience_core_style.cpp
+        #aaa_want_to_remove_experience_anthill_style.cpp
         button.cpp
         button.h
         control_box.cpp
@@ -71,63 +71,63 @@ else()
 endif()
 
 
-add_library(experience_core SHARED ${experience_core_source})
+add_library(experience_anthill SHARED ${experience_anthill_source})
 
 
-target_precompile_headers(experience_core PRIVATE framework.h)
+target_precompile_headers(experience_anthill PRIVATE framework.h)
 
 
-set_target_properties(experience_core PROPERTIES LINKER_LANGUAGE CXX)
+set_target_properties(experience_anthill PROPERTIES LINKER_LANGUAGE CXX)
 
 
 if (MSVC)
-    target_compile_options(experience_core PRIVATE "/MD$<$<CONFIG:Debug>:d>")
-    target_link_options(experience_core PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
-    target_link_options(experience_core PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/experience_core.lib")
-    target_link_options(experience_core PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/experience_core.def")
-    target_link_libraries(experience_core PRIVATE acme apex aqua aura axis base)
+    target_compile_options(experience_anthill PRIVATE "/MD$<$<CONFIG:Debug>:d>")
+    target_link_options(experience_anthill PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
+    target_link_options(experience_anthill PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/experience_anthill.lib")
+    target_link_options(experience_anthill PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/experience_anthill.def")
+    target_link_libraries(experience_anthill PRIVATE acme apex aqua aura axis base)
 elseif(LINUX)
     pkg_check_modules(PKGCONFIG glib-2.0 gdk-3.0 gtk+-3.0 appindicator3-0.1)
     #pkg_check_modules(PKGCONFIG freetype2  )
-    target_compile_options(experience_core PRIVATE -fpermissive)
-    target_compile_options(experience_core PRIVATE ${PKGCONFIG_CFLAGS})
+    target_compile_options(experience_anthill PRIVATE -fpermissive)
+    target_compile_options(experience_anthill PRIVATE ${PKGCONFIG_CFLAGS})
 
-    #target_compile_options(experience_core PRIVATE -std=c++14)
-    #target_link_options(experience_core PRIVATE ${GTK_LDFLAGS})
-    target_link_options(experience_core PRIVATE -Wl,-rpath=\$ORIGIN)
-    #target_link_libraries(experience_core PRIVATE z  dl  rt  bfd  X11  X11-xcb  xcb  xcb-util  Xinerama  Xmu  Xrandr  Xext  Xxf86vm  Xrender  Xi  ncurses  idn  pthread  sn)
-    target_link_libraries(experience_core PRIVATE dl pthread X11 Xrandr Xrender Xinerama Xi ncurses sn)
-    target_link_libraries(experience_core PRIVATE ${PKGCONFIG_LIBRARIES})
-    target_link_libraries(experience_core PRIVATE acme apex aqua aura axis base)
-    target_link_options(experience_core PRIVATE -Wl,-z,defs)
+    #target_compile_options(experience_anthill PRIVATE -std=c++14)
+    #target_link_options(experience_anthill PRIVATE ${GTK_LDFLAGS})
+    target_link_options(experience_anthill PRIVATE -Wl,-rpath=\$ORIGIN)
+    #target_link_libraries(experience_anthill PRIVATE z  dl  rt  bfd  X11  X11-xcb  xcb  xcb-util  Xinerama  Xmu  Xrandr  Xext  Xxf86vm  Xrender  Xi  ncurses  idn  pthread  sn)
+    target_link_libraries(experience_anthill PRIVATE dl pthread X11 Xrandr Xrender Xinerama Xi ncurses sn)
+    target_link_libraries(experience_anthill PRIVATE ${PKGCONFIG_LIBRARIES})
+    target_link_libraries(experience_anthill PRIVATE acme apex aqua aura axis base)
+    target_link_options(experience_anthill PRIVATE -Wl,-z,defs)
     ##message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
 endif()
 
 
-target_link_directories(experience_core PRIVATE ${LIBRARY_OUTPUT_PATH})
-target_link_directories(experience_core PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/storage-${PLATFORM_NAME}/library/x64/basis)
-target_link_directories(experience_core PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/storage-${PLATFORM_NAME}/third/library/x64/basis)
+target_link_directories(experience_anthill PRIVATE ${LIBRARY_OUTPUT_PATH})
+target_link_directories(experience_anthill PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/storage-${PLATFORM_NAME}/library/x64/basis)
+target_link_directories(experience_anthill PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/storage-${PLATFORM_NAME}/third/library/x64/basis)
 
 
-target_include_directories(experience_core PRIVATE .)
-target_include_directories(experience_core PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
-target_include_directories(experience_core PRIVATE $ENV{HOME}/__config)
-target_include_directories(experience_core PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source)
-target_include_directories(experience_core PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive)
-target_include_directories(experience_core PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source)
-target_include_directories(experience_core PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/app)
-target_include_directories(experience_core PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/app/_include)
-target_include_directories(experience_core PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/include)
-target_include_directories(experience_core PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/platform-${PLATFORM_NAME})
-target_include_directories(experience_core PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/platform-${PLATFORM_NAME}/_include)
-target_include_directories(experience_core PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/include)
-target_include_directories(experience_core PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/third/include)
-target_include_directories(experience_core PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/third/include/include)
+target_include_directories(experience_anthill PRIVATE .)
+target_include_directories(experience_anthill PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(experience_anthill PRIVATE $ENV{HOME}/__config)
+target_include_directories(experience_anthill PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source)
+target_include_directories(experience_anthill PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive)
+target_include_directories(experience_anthill PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source)
+target_include_directories(experience_anthill PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/app)
+target_include_directories(experience_anthill PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/app/_include)
+target_include_directories(experience_anthill PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/include)
+target_include_directories(experience_anthill PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/platform-${PLATFORM_NAME})
+target_include_directories(experience_anthill PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/platform-${PLATFORM_NAME}/_include)
+target_include_directories(experience_anthill PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/include)
+target_include_directories(experience_anthill PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/third/include)
+target_include_directories(experience_anthill PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/third/include/include)
 
 
-target_compile_definitions(experience_core PRIVATE _APP_EXPERIENCE_CORE_LIBRARY)
-target_compile_definitions(experience_core PRIVATE UNICODE)
-target_compile_definitions(experience_core PRIVATE _UNICODE)
+target_compile_definitions(experience_anthill PRIVATE _APP_EXPERIENCE_CORE_LIBRARY)
+target_compile_definitions(experience_anthill PRIVATE UNICODE)
+target_compile_definitions(experience_anthill PRIVATE _UNICODE)
 
 
 

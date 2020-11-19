@@ -17,9 +17,12 @@ namespace user
 
    // notification_area
 
-   notification_area::notification_area() :
+   notification_area::notification_area()
+#ifdef WINDOWS_DESKTOP
+   :
       m_hfontHidden(nullptr),
       m_hfontRegular(nullptr)
+#endif
    {
       // TODO: add construction code here
 

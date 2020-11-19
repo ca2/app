@@ -516,7 +516,7 @@ namespace http
 //         if(iAttempt > 11)
 //            return "";
 //
-//         Sleep(iAttempt * 840);
+//         millis_sleep(iAttempt * 840);
 //
 //      }
 

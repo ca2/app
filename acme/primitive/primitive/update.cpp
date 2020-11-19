@@ -121,7 +121,7 @@ i64 update::release(OBJ_REF_DBG_PARAMS_DEF)
 
       }
 
-      ::Sleep(iPollMillis);
+      ::millis_sleep(iPollMillis);
 
    }
 

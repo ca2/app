@@ -57,8 +57,8 @@ namespace experience
       }
 
    
+      __namespace_library_factory("experience_lite");
       __namespace_library_factory("experience_core");
-      __namespace_library_factory("experience_aura");
    
 
    } // namespace aura
@@ -70,7 +70,7 @@ namespace experience
 //#ifdef CUBE
 //extern "C" ::apex::library * experience_get_new_library()
 //#else
-//extern "C" ::apex::library * experience_core_get_new_library()
+//extern "C" ::apex::library * experience_lite_get_new_library()
 //#endif
 //{
 //
@@ -79,7 +79,7 @@ namespace experience
 //}
 
 //
-//__namespace_library_factory2(experience, aura, "experience_core");
+//__namespace_library_factory2(experience, aura, "experience_lite");
 //
 //
 //

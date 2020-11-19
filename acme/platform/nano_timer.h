@@ -36,7 +36,7 @@ public:
       if (!SetWaitableTimer(m_hTimer, &li, 0, nullptr, nullptr, FALSE))
       {
 
-         Sleep(::u32(uWait / 1000000LL));
+         millis_sleep(::u32(uWait / 1000000LL));
 
       }
       else

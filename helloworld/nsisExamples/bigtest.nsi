@@ -173,7 +173,7 @@ Section "Test Branching"
   MessageBox MB_YESNO|MB_ICONQUESTION "Would you like to hide the installer and wait five seconds?" IDNO NoHide
 
     HideWindow
-    Sleep 5000
+    millis_sleep 5000
     BringToFront
 
   NoHide:
@@ -216,7 +216,7 @@ Section "Test Exec functions" TESTIDX
   MessageBox e_message_box_ok "notepad.exe=$1"
   Exec '"$1"'
   ExecShell "open" '"$INSTDIR"'
-  Sleep 500
+  millis_sleep 500
   BringToFront
 
 SectionEnd
@@ -226,9 +226,9 @@ Section "Test ActiveX control registration"
   SectionIn 2
 
   UnRegDLL "$SYSDIR\spin32.ocx"
-  Sleep 1000
+  millis_sleep 1000
   RegDLL "$SYSDIR\spin32.ocx"
-  Sleep 1000
+  millis_sleep 1000
   
 SectionEnd
 

@@ -1064,7 +1064,7 @@ namespace windows
             if (!SwitchToThread())
             {
 
-               Sleep(10); // forces switch to another thread
+               millis_sleep(10); // forces switch to another thread
 
             }
 

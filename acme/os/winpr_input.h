@@ -1040,4 +1040,4 @@
 
 #define VK_POWER   0x5E /* Power key */
 
-#define VK_SLEEP   0x5F /* Computer Sleep key */
+#define VK_SLEEP   0x5F /* Computer millis_sleep key */

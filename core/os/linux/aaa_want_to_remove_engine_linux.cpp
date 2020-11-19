@@ -1044,7 +1044,7 @@ namespace exception
          while(pcontext->signal && iPatience > 0)
          {
             if(!SwitchToThread())
-               Sleep(10); // forces switch to another thread
+               millis_sleep(10); // forces switch to another thread
             iPatience--;
          }
 

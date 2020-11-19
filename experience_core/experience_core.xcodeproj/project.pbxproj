@@ -54,7 +54,7 @@
 		9A8F88FC240BF0240097E249 /* frame_008.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8F88DD240BF0240097E249 /* frame_008.cpp */; };
 		9A8F88FD240BF0240097E249 /* control_box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8F88DE240BF0240097E249 /* control_box.cpp */; };
 		9AE24E6C1904CFE2001AEFFB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24E5C1904CFE2001AEFFB /* Foundation.framework */; };
-		9AE24E711904CFE2001AEFFB /* libios_experience_core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24E5A1904CFE2001AEFFB /* libios_experience_core.a */; };
+		9AE24E711904CFE2001AEFFB /* libios_experience_lite.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24E5A1904CFE2001AEFFB /* libios_experience_lite.a */; };
 		9AE64A01252A67AC00BED5B8 /* libaqua.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE64A00252A67AC00BED5B8 /* libaqua.dylib */; };
 		9AE64A02252A67AC00BED5B8 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A86868322CC3E6600186E72 /* libaura.dylib */; };
 		9AE64A0A252A67DE00BED5B8 /* libaxis.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE64A09252A67DE00BED5B8 /* libaxis.dylib */; };
@@ -130,12 +130,12 @@
 		9A8F88DC240BF0240097E249 /* frame_001.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = frame_001.cpp; sourceTree = "<group>"; };
 		9A8F88DD240BF0240097E249 /* frame_008.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = frame_008.cpp; sourceTree = "<group>"; };
 		9A8F88DE240BF0240097E249 /* control_box.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = control_box.cpp; sourceTree = "<group>"; };
-		9AE24E5A1904CFE2001AEFFB /* libios_experience_core.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libios_experience_core.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AE24E5A1904CFE2001AEFFB /* libios_experience_lite.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libios_experience_lite.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AE24E5C1904CFE2001AEFFB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		9AE24E691904CFE2001AEFFB /* experience_core_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = experience_core_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AE24E691904CFE2001AEFFB /* experience_lite_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = experience_lite_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AE64A00252A67AC00BED5B8 /* libaqua.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaqua.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AE64A09252A67DE00BED5B8 /* libaxis.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaxis.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9AEB75F416F78EDC0085103B /* libexperience_core.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libexperience_core.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AEB75F416F78EDC0085103B /* libexperience_lite.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libexperience_lite.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,7 +151,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9AE24E6C1904CFE2001AEFFB /* Foundation.framework in Frameworks */,
-				9AE24E711904CFE2001AEFFB /* libios_experience_core.a in Frameworks */,
+				9AE24E711904CFE2001AEFFB /* libios_experience_lite.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -193,7 +193,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		9AE5B38222741A9300BC7A2A /* experience_core */ = {
+		9AE5B38222741A9300BC7A2A /* experience_lite */ = {
 			isa = PBXGroup;
 			children = (
 				9A8F88D0240BF0240097E249 /* _.h */,
@@ -226,14 +226,14 @@
 				9A833BA224F5420100C079FB /* style.cpp */,
 				9A833BA324F5420100C079FB /* style.h */,
 			);
-			name = experience_core;
+			name = experience_lite;
 			sourceTree = "<group>";
 		};
 		9AEB75EB16F78EDC0085103B = {
 			isa = PBXGroup;
 			children = (
 				9A389A4D24F5412000185630 /* base.xcodeproj */,
-				9AE5B38222741A9300BC7A2A /* experience_core */,
+				9AE5B38222741A9300BC7A2A /* experience_lite */,
 				9AE24E5B1904CFE2001AEFFB /* Frameworks */,
 				9AEB75F516F78EDC0085103B /* Products */,
 			);
@@ -242,9 +242,9 @@
 		9AEB75F516F78EDC0085103B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9AEB75F416F78EDC0085103B /* libexperience_core.dylib */,
-				9AE24E5A1904CFE2001AEFFB /* libios_experience_core.a */,
-				9AE24E691904CFE2001AEFFB /* experience_core_iosTests.xctest */,
+				9AEB75F416F78EDC0085103B /* libexperience_lite.dylib */,
+				9AE24E5A1904CFE2001AEFFB /* libios_experience_lite.a */,
+				9AE24E691904CFE2001AEFFB /* experience_lite_iosTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -277,9 +277,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		9AE24E591904CFE2001AEFFB /* ios_experience_core */ = {
+		9AE24E591904CFE2001AEFFB /* ios_experience_lite */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9AE24E841904CFE2001AEFFB /* Build configuration list for PBXNativeTarget "ios_experience_core" */;
+			buildConfigurationList = 9AE24E841904CFE2001AEFFB /* Build configuration list for PBXNativeTarget "ios_experience_lite" */;
 			buildPhases = (
 				9AE24E561904CFE2001AEFFB /* Sources */,
 				9AE24E571904CFE2001AEFFB /* Frameworks */,
@@ -289,14 +289,14 @@
 			);
 			dependencies = (
 			);
-			name = ios_experience_core;
+			name = ios_experience_lite;
 			productName = app_core_uinteraction_ios;
-			productReference = 9AE24E5A1904CFE2001AEFFB /* libios_experience_core.a */;
+			productReference = 9AE24E5A1904CFE2001AEFFB /* libios_experience_lite.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		9AE24E681904CFE2001AEFFB /* experience_core_iosTests */ = {
+		9AE24E681904CFE2001AEFFB /* experience_lite_iosTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9AE24E851904CFE2001AEFFB /* Build configuration list for PBXNativeTarget "experience_core_iosTests" */;
+			buildConfigurationList = 9AE24E851904CFE2001AEFFB /* Build configuration list for PBXNativeTarget "experience_lite_iosTests" */;
 			buildPhases = (
 				9AE24E651904CFE2001AEFFB /* Sources */,
 				9AE24E661904CFE2001AEFFB /* Frameworks */,
@@ -307,14 +307,14 @@
 			dependencies = (
 				9AE24E701904CFE2001AEFFB /* PBXTargetDependency */,
 			);
-			name = experience_core_iosTests;
+			name = experience_lite_iosTests;
 			productName = app_core_uinteraction_iosTests;
-			productReference = 9AE24E691904CFE2001AEFFB /* experience_core_iosTests.xctest */;
+			productReference = 9AE24E691904CFE2001AEFFB /* experience_lite_iosTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		9AEB75F316F78EDC0085103B /* experience_core */ = {
+		9AEB75F316F78EDC0085103B /* experience_lite */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9AEB75F816F78EDC0085103B /* Build configuration list for PBXNativeTarget "experience_core" */;
+			buildConfigurationList = 9AEB75F816F78EDC0085103B /* Build configuration list for PBXNativeTarget "experience_lite" */;
 			buildPhases = (
 				9AEB75F016F78EDC0085103B /* Sources */,
 				9AEB75F116F78EDC0085103B /* Frameworks */,
@@ -325,9 +325,9 @@
 			dependencies = (
 				9A389A5624F5413A00185630 /* PBXTargetDependency */,
 			);
-			name = experience_core;
+			name = experience_lite;
 			productName = app_core_uinteraction;
-			productReference = 9AEB75F416F78EDC0085103B /* libexperience_core.dylib */;
+			productReference = 9AEB75F416F78EDC0085103B /* libexperience_lite.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 /* End PBXNativeTarget section */
@@ -344,7 +344,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 9AEB75EF16F78EDC0085103B /* Build configuration list for PBXProject "experience_core" */;
+			buildConfigurationList = 9AEB75EF16F78EDC0085103B /* Build configuration list for PBXProject "experience_lite" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -363,9 +363,9 @@
 			);
 			projectRoot = "";
 			targets = (
-				9AEB75F316F78EDC0085103B /* experience_core */,
-				9AE24E591904CFE2001AEFFB /* ios_experience_core */,
-				9AE24E681904CFE2001AEFFB /* experience_core_iosTests */,
+				9AEB75F316F78EDC0085103B /* experience_lite */,
+				9AE24E591904CFE2001AEFFB /* ios_experience_lite */,
+				9AE24E681904CFE2001AEFFB /* experience_lite_iosTests */,
 			);
 		};
 /* End PBXProject section */
@@ -449,7 +449,7 @@
 		};
 		9AE24E701904CFE2001AEFFB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 9AE24E591904CFE2001AEFFB /* ios_experience_core */;
+			target = 9AE24E591904CFE2001AEFFB /* ios_experience_lite */;
 			targetProxy = 9AE24E6F1904CFE2001AEFFB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -707,7 +707,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9AE24E841904CFE2001AEFFB /* Build configuration list for PBXNativeTarget "ios_experience_core" */ = {
+		9AE24E841904CFE2001AEFFB /* Build configuration list for PBXNativeTarget "ios_experience_lite" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9AE24E7A1904CFE2001AEFFB /* Debug */,
@@ -716,7 +716,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9AE24E851904CFE2001AEFFB /* Build configuration list for PBXNativeTarget "experience_core_iosTests" */ = {
+		9AE24E851904CFE2001AEFFB /* Build configuration list for PBXNativeTarget "experience_lite_iosTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9AE24E7C1904CFE2001AEFFB /* Debug */,
@@ -725,7 +725,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9AEB75EF16F78EDC0085103B /* Build configuration list for PBXProject "experience_core" */ = {
+		9AEB75EF16F78EDC0085103B /* Build configuration list for PBXProject "experience_lite" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9AEB75F616F78EDC0085103B /* Debug */,
@@ -734,7 +734,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9AEB75F816F78EDC0085103B /* Build configuration list for PBXNativeTarget "experience_core" */ = {
+		9AEB75F816F78EDC0085103B /* Build configuration list for PBXNativeTarget "experience_lite" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9AEB75F916F78EDC0085103B /* Debug */,

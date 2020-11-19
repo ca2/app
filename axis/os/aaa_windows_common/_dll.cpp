@@ -211,7 +211,7 @@ int_bool CLASS_DECL_AXIS _001DefaultDllMain(HINSTANCE hinstance, ::u32 dwReason,
       else if (intDelayMs.m_iProcessAttach)
       {
 
-         ::Sleep(intDelayMs.m_iProcessAttach);
+         ::millis_sleep(intDelayMs.m_iProcessAttach);
 
       }
 
@@ -229,7 +229,7 @@ int_bool CLASS_DECL_AXIS _001DefaultDllMain(HINSTANCE hinstance, ::u32 dwReason,
       else if (intDelayMs.m_iProcessDetach)
       {
 
-         ::Sleep(intDelayMs.m_iProcessDetach);
+         ::millis_sleep(intDelayMs.m_iProcessDetach);
 
       }
 
@@ -247,7 +247,7 @@ int_bool CLASS_DECL_AXIS _001DefaultDllMain(HINSTANCE hinstance, ::u32 dwReason,
       else if (intDelayMs.m_iThreadAttach)
       {
 
-         ::Sleep(intDelayMs.m_iThreadAttach);
+         ::millis_sleep(intDelayMs.m_iThreadAttach);
 
       }
 
@@ -265,7 +265,7 @@ int_bool CLASS_DECL_AXIS _001DefaultDllMain(HINSTANCE hinstance, ::u32 dwReason,
       else if (intDelayMs.m_iThreadDetach)
       {
 
-         ::Sleep(intDelayMs.m_iThreadDetach);
+         ::millis_sleep(intDelayMs.m_iThreadDetach);
 
       }
 

@@ -1986,9 +1986,6 @@ namespace user
 
          }
 
-
-
-
       }
 
       if (iTab < 0)
@@ -2090,7 +2087,7 @@ namespace user
 
          ::rect_deflate(prect, &get_data()->m_rectTextMargin);
 
-         //::OffsetRect(prect, ptOffset.x, ptOffset.y);
+         ::offset_rect(prect, ptOffset.x, ptOffset.y);
 
          return true;
 
@@ -2153,6 +2150,7 @@ namespace user
       {
 
          ::rect rect = get_data()->m_rectTab;
+
          rect.bottom = rect.top;
 
          prect->left   = rect.left;
@@ -2168,6 +2166,7 @@ namespace user
       {
 
          ::user::tab_pane & tab_pane = get_data()->m_panea(iTab);
+
          prect->left = tab_pane.m_point.x;
 
          prect->top = tab_pane.m_point.y;
@@ -2178,7 +2177,7 @@ namespace user
 
       }
 
-      ::OffsetRect(prect, ptOffset.x, ptOffset.y);
+      ::offset_rect(prect, ptOffset.x, ptOffset.y);
 
       return true;
 

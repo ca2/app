@@ -478,7 +478,7 @@ namespace draw2d_opengl
 //            }
 //            else
 //#else
-//            Sleep(5);
+//            millis_sleep(5);
 //#endif
 //            {
 //               if (bLayout)

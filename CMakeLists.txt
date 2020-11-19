@@ -417,7 +417,7 @@ include_directories(draw2d_opengl)
 include_directories(draw2d_quartz2d)
 include_directories(draw2d_xlib)
 include_directories(experience_anthill)
-include_directories(experience_core)
+include_directories(experience_lite)
 include_directories(experience_lite)
 include_directories(experience_tranquillum)
 include_directories(file)
@@ -8951,37 +8951,37 @@ add_executable(app
         experience_anthill/library.h
         experience_anthill/style.cpp
         experience_anthill/style.h
-        experience_core/_.cpp
-        experience_core/_.h
-        experience_core/aaa_want_to_remove_experience_core_style.cpp
-        experience_core/button.cpp
-        experience_core/button.h
-        experience_core/control_box.cpp
-        experience_core/control_box.h
-        experience_core/experience.cpp
-        experience_core/experience.h
-        experience_core/frame.cpp
-        experience_core/frame.h
-        experience_core/frame_001.cpp
-        experience_core/frame_001.h
-        experience_core/frame_002.cpp
-        experience_core/frame_002.h
-        experience_core/frame_005.cpp
-        experience_core/frame_005.h
-        experience_core/frame_008.cpp
-        experience_core/frame_008.h
-        experience_core/frame_011.cpp
-        experience_core/frame_011.h
-        experience_core/frame_013.cpp
-        experience_core/frame_013.h
-        experience_core/frame_Minimal001.cpp
-        experience_core/frame_Minimal001.h
-        experience_core/framework.cpp
-        experience_core/framework.h
-        experience_core/library.cpp
-        experience_core/library.h
-        experience_core/style.cpp
-        experience_core/style.h
+        experience_lite/_.cpp
+        experience_lite/_.h
+        experience_lite/aaa_want_to_remove_experience_lite_style.cpp
+        experience_lite/button.cpp
+        experience_lite/button.h
+        experience_lite/control_box.cpp
+        experience_lite/control_box.h
+        experience_lite/experience.cpp
+        experience_lite/experience.h
+        experience_lite/frame.cpp
+        experience_lite/frame.h
+        experience_lite/frame_001.cpp
+        experience_lite/frame_001.h
+        experience_lite/frame_002.cpp
+        experience_lite/frame_002.h
+        experience_lite/frame_005.cpp
+        experience_lite/frame_005.h
+        experience_lite/frame_008.cpp
+        experience_lite/frame_008.h
+        experience_lite/frame_011.cpp
+        experience_lite/frame_011.h
+        experience_lite/frame_013.cpp
+        experience_lite/frame_013.h
+        experience_lite/frame_Minimal001.cpp
+        experience_lite/frame_Minimal001.h
+        experience_lite/framework.cpp
+        experience_lite/framework.h
+        experience_lite/library.cpp
+        experience_lite/library.h
+        experience_lite/style.cpp
+        experience_lite/style.h
         experience_lite/experience_lite.cpp
         experience_lite/experience_lite.h
         experience_lite/experience_lite_frame.cpp

@@ -152,7 +152,7 @@ inline bool pred_Sleep(int iTime, PRED pred)
    if(iTime < 100)
    {
 
-      Sleep(100);
+      millis_sleep(100);
 
    }
    else
@@ -165,7 +165,7 @@ inline bool pred_Sleep(int iTime, PRED pred)
       for(index i = 0; i < iTime; i++)
       {
 
-         Sleep(100);
+         millis_sleep(100);
 
          if(!::thread_get_run() || !pred())
          {

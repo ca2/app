@@ -45,9 +45,9 @@ namespace turboc
    ::experience::frame * frame::experience_get_frame()
    {
 
-      //auto pframe = Application.experience()->experience_get_frame("experience_core", "001");
+      //auto pframe = Application.experience()->experience_get_frame("experience_lite", "001");
 
-      auto pframe = Application.experience()->experience_get_frame("experience_core","013");
+      auto pframe = Application.experience()->experience_get_frame("experience_lite","013");
 
       pframe->set_style("LightBlue");
 

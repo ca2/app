@@ -299,9 +299,12 @@ namespace user
       virtual void disconnect_views();
       virtual void call_initial_update();
 
+
+#ifdef WINDOWS_DESKTOP
       // overridables for implementation
       virtual HMENU GetDefaultMenu(); // get menu depending on state
       virtual HACCEL GetDefaultAccelerator();
+#endif
       virtual void on_idle();
       virtual void on_final_release();
 

@@ -226,9 +226,9 @@ SizingNone:;
                }
                else
                {
-                  crMoveableBorder = psession->get_default_color(COLOR_BTNFACE);
-                  crMoveableBorderHilight = psession->get_default_color(COLOR_BTNHILIGHT);
-                  crMoveableBorderShadow = psession->get_default_color(COLOR_BTNSHADOW);
+                  crMoveableBorder = crButtonFace;
+                  crMoveableBorderHilight = crButtonHilite;
+                  crMoveableBorderShadow = crButtonShadow;
                }
 
                e_dock edock = m_pframewindow->dock_manager()->get_dock_mask();
@@ -611,21 +611,21 @@ SizingNone:;
 
                ::rect rect(rectParam);
 
-               pgraphics->draw_3drect(rect, psession->get_default_color(COLOR_BTNFACE), psession->get_default_color(COLOR_3DDKSHADOW));
+               pgraphics->draw_3drect(rect, crButtonFace, crButtonDarkShadow);
 
                rect.top++;
                rect.bottom--;
                rect.left++;
                rect.right--;
 
-               pgraphics->draw_3drect(rect, psession->get_default_color(COLOR_BTNHILIGHT), psession->get_default_color(COLOR_BTNSHADOW));
+               pgraphics->draw_3drect(rect, crButtonHilite, crButtonShadow);
 
                rect.top++;
                rect.bottom--;
                rect.left++;
                rect.right--;
 
-               pgraphics->fill_rect(rect, psession->get_default_color(COLOR_BTNFACE));
+               pgraphics->fill_rect(rect, crButtonFace);
 
             }
 

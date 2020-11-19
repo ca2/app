@@ -36,7 +36,7 @@ namespace user
       virtual void _001OnClip(::draw2d::graphics_pointer & pgraphics) override;
 
 
-      virtual bool GetTrackRect(RECT32* prect);
+      virtual bool GetTrackRect(RECT32* prect, ::draw2d::graphics_pointer & pgraphics);
 
 
       virtual ::color scrollbar_color_strong(::user::style* pstyle, ::user::e_element eelement);

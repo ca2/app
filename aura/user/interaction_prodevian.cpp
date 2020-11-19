@@ -628,7 +628,7 @@ bool prodevian::prodevian_iteration()
          //   if (msDeltaPostRedraw >= 1)
          //   {
 
-         //      Sleep(msDeltaPostRedraw);
+         //      millis_sleep(msDeltaPostRedraw);
 
          //   }
 

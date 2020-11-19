@@ -233,9 +233,9 @@ SizingNone:
                }
                else
                {
-                  crMoveableBorder = psession->get_default_color(COLOR_BTNFACE);
-                  crMoveableBorderHilight = psession->get_default_color(COLOR_BTNHILIGHT);
-                  crMoveableBorderShadow = psession->get_default_color(COLOR_BTNSHADOW);
+                  crMoveableBorder = crButtonFace;
+                  crMoveableBorderHilight = crButtonHilite;
+                  crMoveableBorderShadow = crButtonShadow;
                }
 
                e_dock edock = m_pframewindow->dock_manager()->get_dock_mask();

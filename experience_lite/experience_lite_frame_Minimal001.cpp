@@ -225,11 +225,11 @@
                else
                {
 
-                  crMoveableBorder = psession->get_default_color(COLOR_BTNFACE);
+                  crMoveableBorder = crButtonFace;
 
-                  crMoveableBorderHilight = psession->get_default_color(COLOR_BTNHILIGHT);
+                  crMoveableBorderHilight = crButtonHilite;
 
-                  crMoveableBorderShadow = psession->get_default_color(COLOR_BTNSHADOW);
+                  crMoveableBorderShadow = crButtonShadow;
 
                }
 
@@ -1150,11 +1150,11 @@
 //
 //               //rect.bottom++;
 //
-//               pgraphics->Draw3dRect(rect, psession->get_default_color(COLOR_BTNFACE) | 0xff000000, psession->get_default_color(COLOR_3DDKSHADOW) | 0xff000000);
+//               pgraphics->Draw3dRect(rect, crButtonFace | 0xff000000, crButtonDarkShadow | 0xff000000);
 //
 //               rect.deflate(1, 1);
 //
-//               pgraphics->Draw3dRect(rect, psession->get_default_color(COLOR_BTNHILIGHT) | 0xff000000, psession->get_default_color(COLOR_BTNSHADOW) | 0xff000000);
+//               pgraphics->Draw3dRect(rect, crButtonHilite | 0xff000000, crButtonShadow | 0xff000000);
 //
 //               rect.deflate(1, 1);
 //
@@ -1162,7 +1162,7 @@
 //
 //               //rect.bottom--;
 //
-//               pgraphics->FillSolidRect(rect, psession->get_default_color(COLOR_BTNFACE) | 0xff000000);
+//               pgraphics->FillSolidRect(rect, crButtonFace | 0xff000000);
 
             }
 

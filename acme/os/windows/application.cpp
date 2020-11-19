@@ -143,7 +143,7 @@ bool is_good_active_w(oswindow w)
 //         if (!is_good_active_w(w))
 //            return 0;
 //
-//         Sleep(iSleep / 8);
+//         millis_sleep(iSleep / 8);
 //      }
 //   }
 //
@@ -168,7 +168,7 @@ bool is_good_active_w(oswindow w)
 //      SendInput(1, &input, sizeof(input));
 //      if (!is_good_active_w(w))
 //         return 0;
-//      Sleep(iSleep / 8);
+//      millis_sleep(iSleep / 8);
 //      if (!is_good_active_w(w))
 //         return 0;
 //   }
@@ -200,7 +200,7 @@ bool is_good_active_w(oswindow w)
 //      //   return 0;
 //
 //      //}
-//      Sleep(iSleep / 8);
+//      millis_sleep(iSleep / 8);
 //      //if (GetForegroundWindow() != chrome)
 //      //{
 //
@@ -221,7 +221,7 @@ bool is_good_active_w(oswindow w)
 //   //Send the keystrokes.
 //   //delete[] keystroke;
 //
-//   Sleep(iSleep);
+//   millis_sleep(iSleep);
 //
 //   //return keystrokes_sent == keystrokes_to_send;
 //   return 1;
@@ -246,7 +246,7 @@ bool is_good_active_w(oswindow w)
 //      input.ki.time = 0;
 //      input.ki.dwExtraInfo = GetMessageExtraInfo();
 //      SendInput(1, &input, sizeof(input));
-//      Sleep(iSleep);
+//      millis_sleep(iSleep);
 //
 //      input.type = INPUT_KEYBOARD;
 //      input.ki.wVk = VK_CAPITAL;
@@ -255,7 +255,7 @@ bool is_good_active_w(oswindow w)
 //      input.ki.time = 0;
 //      input.ki.dwExtraInfo = GetMessageExtraInfo();
 //      SendInput(1, &input, sizeof(input));
-//      Sleep(iSleep);
+//      millis_sleep(iSleep);
 //
 //   }
 //   return true;
@@ -270,7 +270,7 @@ bool is_good_active_w(oswindow w)
 //   input.ki.time = 0;
 //   input.ki.dwExtraInfo = GetMessageExtraInfo();
 //   SendInput(1, &input, sizeof(input));
-//   Sleep(iSleep);
+//   millis_sleep(iSleep);
 //
 //   input.type = INPUT_KEYBOARD;
 //   input.ki.wVk = 0x41 - 'A' + 'T';
@@ -279,7 +279,7 @@ bool is_good_active_w(oswindow w)
 //   input.ki.time = 0;
 //   input.ki.dwExtraInfo = GetMessageExtraInfo();
 //   SendInput(1, &input, sizeof(input));
-//   Sleep(iSleep);
+//   millis_sleep(iSleep);
 //
 //   input.type = INPUT_KEYBOARD;
 //   input.ki.wVk = 0x41 - 'A' + 'T';
@@ -288,7 +288,7 @@ bool is_good_active_w(oswindow w)
 //   input.ki.time = 0;
 //   input.ki.dwExtraInfo = GetMessageExtraInfo();
 //   SendInput(1, &input, sizeof(input));
-//   Sleep(iSleep);
+//   millis_sleep(iSleep);
 //
 //
 //   input.type = INPUT_KEYBOARD;
@@ -298,7 +298,7 @@ bool is_good_active_w(oswindow w)
 //   input.ki.time = 0;
 //   input.ki.dwExtraInfo = GetMessageExtraInfo();
 //   SendInput(1, &input, sizeof(input));
-//   Sleep(iSleep);
+//   millis_sleep(iSleep);
 //   return true;
 //
 //}
@@ -314,7 +314,7 @@ bool is_good_active_w(oswindow w)
 //      input.ki.time = 0;
 //      input.ki.dwExtraInfo = GetMessageExtraInfo();
 //      SendInput(1, &input, sizeof(input));
-//      Sleep(iSleep);
+//      millis_sleep(iSleep);
 //
 //      input.type = INPUT_KEYBOARD;
 //      input.ki.wVk = VK_F6;
@@ -323,7 +323,7 @@ bool is_good_active_w(oswindow w)
 //      input.ki.time = 0;
 //      input.ki.dwExtraInfo = GetMessageExtraInfo();
 //      SendInput(1, &input, sizeof(input));
-//      Sleep(iSleep);
+//      millis_sleep(iSleep);
 //
 //   }
 //   return true;
@@ -338,7 +338,7 @@ bool is_good_active_w(oswindow w)
 //   input.ki.time = 0;
 //   input.ki.dwExtraInfo = GetMessageExtraInfo();
 //   SendInput(1, &input, sizeof(input));
-//   Sleep(iSleep/8);
+//   millis_sleep(iSleep/8);
 //
 //   input.type = INPUT_KEYBOARD;
 //   input.ki.wVk = VK_RETURN;
@@ -347,7 +347,7 @@ bool is_good_active_w(oswindow w)
 //   input.ki.time = 0;
 //   input.ki.dwExtraInfo = GetMessageExtraInfo();
 //   SendInput(1, &input, sizeof(input));
-//   Sleep(iSleep);
+//   millis_sleep(iSleep);
 //   return true;
 //}
 //
@@ -365,7 +365,7 @@ bool is_good_active_w(oswindow w)
 //      input.ki.time = 0;
 //      input.ki.dwExtraInfo = GetMessageExtraInfo();
 //      SendInput(1, &input, sizeof(input));
-//      Sleep(iSleep / 8);
+//      millis_sleep(iSleep / 8);
 //
 //   }
 //
@@ -378,7 +378,7 @@ bool is_good_active_w(oswindow w)
 //   input.ki.time = 0;
 //   input.ki.dwExtraInfo = GetMessageExtraInfo();
 //   SendInput(1, &input, sizeof(input));
-//   Sleep(iSleep / 8);
+//   millis_sleep(iSleep / 8);
 //
 //   ·zero(input);
 //   input.type = INPUT_KEYBOARD;
@@ -388,7 +388,7 @@ bool is_good_active_w(oswindow w)
 //   input.ki.time = 0;
 //   input.ki.dwExtraInfo = GetMessageExtraInfo();
 //   SendInput(1, &input, sizeof(input));
-//   Sleep(iSleep/8);
+//   millis_sleep(iSleep/8);
 //   if (iShift)
 //   {
 //      ·zero(input);
@@ -399,11 +399,11 @@ bool is_good_active_w(oswindow w)
 //      input.ki.time = 0;
 //      input.ki.dwExtraInfo = GetMessageExtraInfo();
 //      SendInput(1, &input, sizeof(input));
-//      Sleep(iSleep / 8);
+//      millis_sleep(iSleep / 8);
 //
 //   }
 //
-//   Sleep(iSleep);
+//   millis_sleep(iSleep);
 //
 //
 //   return true;
@@ -423,7 +423,7 @@ bool is_good_active_w(oswindow w)
 //   input.ki.time = 0;
 //   input.ki.dwExtraInfo = GetMessageExtraInfo();
 //   SendInput(1, &input, sizeof(input));
-//   Sleep(iSleep / 8);
+//   millis_sleep(iSleep / 8);
 //
 //   ·zero(input);
 //   input.type = INPUT_KEYBOARD;
@@ -433,7 +433,7 @@ bool is_good_active_w(oswindow w)
 //   input.ki.time = 0;
 //   input.ki.dwExtraInfo = GetMessageExtraInfo();
 //   SendInput(1, &input, sizeof(input));
-//   Sleep(iSleep);
+//   millis_sleep(iSleep);
 //
 //
 //   return true;
@@ -454,7 +454,7 @@ bool is_good_active_w(oswindow w)
 //      input.ki.time = 0;
 //      input.ki.dwExtraInfo = GetMessageExtraInfo();
 //      SendInput(1, &input, sizeof(input));
-//      Sleep(iSleep / 8);
+//      millis_sleep(iSleep / 8);
 //
 //   }
 //
@@ -467,7 +467,7 @@ bool is_good_active_w(oswindow w)
 //   input.ki.time = 0;
 //   input.ki.dwExtraInfo = GetMessageExtraInfo();
 //   SendInput(1, &input, sizeof(input));
-//   Sleep(iSleep / 8);
+//   millis_sleep(iSleep / 8);
 //
 //   ·zero(input);
 //   input.type = INPUT_KEYBOARD;
@@ -477,7 +477,7 @@ bool is_good_active_w(oswindow w)
 //   input.ki.time = 0;
 //   input.ki.dwExtraInfo = GetMessageExtraInfo();
 //   SendInput(1, &input, sizeof(input));
-//   Sleep(iSleep / 8);
+//   millis_sleep(iSleep / 8);
 //
 //
 //   if (iShift)
@@ -490,11 +490,11 @@ bool is_good_active_w(oswindow w)
 //      input.ki.time = 0;
 //      input.ki.dwExtraInfo = GetMessageExtraInfo();
 //      SendInput(1, &input, sizeof(input));
-//      Sleep(iSleep / 8);
+//      millis_sleep(iSleep / 8);
 //
 //   }
 //
-//   Sleep(iSleep);
+//   millis_sleep(iSleep);
 //
 //
 //   return true;
@@ -515,7 +515,7 @@ bool is_good_active_w(oswindow w)
 //      input.ki.time = 0;
 //      input.ki.dwExtraInfo = GetMessageExtraInfo();
 //      SendInput(1, &input, sizeof(input));
-//      Sleep(iSleep / 8);
+//      millis_sleep(iSleep / 8);
 //
 //   }
 //
@@ -528,7 +528,7 @@ bool is_good_active_w(oswindow w)
 //   input.ki.time = 0;
 //   input.ki.dwExtraInfo = GetMessageExtraInfo();
 //   SendInput(1, &input, sizeof(input));
-//   Sleep(iSleep / 8);
+//   millis_sleep(iSleep / 8);
 //
 //   ·zero(input);
 //   input.type = INPUT_KEYBOARD;
@@ -538,7 +538,7 @@ bool is_good_active_w(oswindow w)
 //   input.ki.time = 0;
 //   input.ki.dwExtraInfo = GetMessageExtraInfo();
 //   SendInput(1, &input, sizeof(input));
-//   Sleep(iSleep / 8);
+//   millis_sleep(iSleep / 8);
 //
 //
 //   if (iShift)
@@ -551,11 +551,11 @@ bool is_good_active_w(oswindow w)
 //      input.ki.time = 0;
 //      input.ki.dwExtraInfo = GetMessageExtraInfo();
 //      SendInput(1, &input, sizeof(input));
-//      Sleep(iSleep / 8);
+//      millis_sleep(iSleep / 8);
 //
 //   }
 //
-//   Sleep(iSleep);
+//   millis_sleep(iSleep);
 //
 //
 //   return true;
@@ -573,7 +573,7 @@ bool is_good_active_w(oswindow w)
 //   input.ki.time = 0;
 //   input.ki.dwExtraInfo = GetMessageExtraInfo();
 //   SendInput(1, &input, sizeof(input));
-//   Sleep(iSleep/8);
+//   millis_sleep(iSleep/8);
 //
 //   send_input_alpha(i + 'a' - 'A', iSleep / 8);
 //
@@ -585,7 +585,7 @@ bool is_good_active_w(oswindow w)
 //   input.ki.time = 0;
 //   input.ki.dwExtraInfo = GetMessageExtraInfo();
 //   SendInput(1, &input, sizeof(input));
-//   Sleep(iSleep);
+//   millis_sleep(iSleep);
 //   return true;
 //
 //}
@@ -811,7 +811,7 @@ bool is_good_active_w(oswindow w)
 ////   Event[1].ki.wScan = ch;
 ////   //ia.add(Event);
 ////   SendInput(2, Event, sizeof(Event));
-////   Sleep(iSleep);
+////   millis_sleep(iSleep);
 ////
 ////   //const SHORT Vk = VkKeyScanExW(ch, hkl);
 ////   ////const ::u32 VKey = ::MapVirtualKey(LOBYTE(Vk), 0);
@@ -894,11 +894,11 @@ bool is_good_active_w(oswindow w)
 //
 //   send_ctrl_t(iSleep);
 //
-//   Sleep(500);
+//   millis_sleep(500);
 //
 //   send_f6(iSleep);
 //
-//   Sleep(500);
+//   millis_sleep(500);
 //
 //   send_input_string(strUrl, iSleep);
 //

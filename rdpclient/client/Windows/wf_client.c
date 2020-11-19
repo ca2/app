@@ -576,7 +576,7 @@ static BOOL wf_auto_reconnect(freerdp* instance)
 			return TRUE;
 		}
 
-		Sleep(5000);
+		millis_sleep(5000);
 	}
 
 	WLog_ERR(TAG, "Maximum reconnect retries exceeded");

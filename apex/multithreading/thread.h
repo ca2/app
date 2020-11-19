@@ -588,7 +588,7 @@ inline ::sync_result while_pred_Sleep(int iTime, PRED pred)
    for (index i = 0; i < iTime; i++)
    {
 
-      Sleep(100);
+      millis_sleep(100);
 
       if (!pred())
       {

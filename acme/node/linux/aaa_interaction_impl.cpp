@@ -2332,11 +2332,11 @@ namespace linux
 ////               if (dwDiff < 20)
 ////               {
 ////
-////                  Sleep(20 - dwDiff);
+////                  millis_sleep(20 - dwDiff);
 ////
 ////               }
 ////
-////               //Sleep(500);
+////               //millis_sleep(500);
 ////
 ////            }
 ////

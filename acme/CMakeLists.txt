@@ -1715,7 +1715,7 @@ else()
 endif()
 
 
-add_library(acme SHARED ${acme_source})
+add_library(acme SHARED ${acme_source} os/cross/_cross.h)
 
 target_precompile_headers(acme PRIVATE framework.h)
 

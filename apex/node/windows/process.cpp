@@ -257,7 +257,7 @@ namespace windows
 
       bool bTimedOut = true;
 
-      auto tickStart = ::millis::millis();
+      auto tickStart = ::millis::now();
 
       auto tickTimeout = durationTimeOut.u32_millis();
 
@@ -280,7 +280,7 @@ namespace windows
 
          }
 
-         Sleep(100);
+         millis_sleep(100);
 
       }
 

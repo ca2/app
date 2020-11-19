@@ -276,13 +276,13 @@ namespace user
          }
 
       }
+#ifdef WINDOWS_DESKTOP
       else if(pMsg->message == WM_CAPTURECHANGED)
-
       {
 
       }
+#endif
       else if(pMsg->message == e_message_mouse_move)
-
       {
 
          i32   fwKeys = (i32) pMsg->wParam;        // key flags
@@ -1192,9 +1192,11 @@ namespace user
          }
 
       }
+#ifdef WINDOWS_DESKTOP
       else if(id == WM_CAPTURECHANGED)
       {
       }
+#endif
       else if(id == e_message_mouse_move)
       {
          i32   fwKeys = (i32) wParam;        // key flags

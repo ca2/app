@@ -261,11 +261,11 @@ namespace filemanager
 
    //         i++;
 
-   //         Sleep(23);
+   //         millis_sleep(23);
 
    //      }
 
-   //      Sleep(100);
+   //      millis_sleep(100);
 
    //   }
 

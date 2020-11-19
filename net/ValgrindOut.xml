@@ -17303,10 +17303,10 @@
     </frame>
     <frame>
       <ip>0x263591FC</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::aura::experience::~experience()</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_experience.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_experience.cpp</file>
       <line>30</line>
     </frame>
     <frame>
@@ -28564,10 +28564,10 @@
     </frame>
     <frame>
       <ip>0x2637B842</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::apex::library::~library()</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_library.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_library.cpp</file>
       <line>25</line>
     </frame>
     <frame>
@@ -75261,42 +75261,42 @@
     </frame>
     <frame>
       <ip>0x263599E5</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>pointer&lt;thread&gt;&amp; fork&lt;experience::aura::experience::experience(object*)::{lambda()#1}&gt;(pointer&lt;thread&gt;, object*, experience::aura::experience::experience(object*)::{lambda()#1})</fn>
-      <dir>/xcore/app/experience_core/../aura/multithreading</dir>
+      <dir>/xcore/app/experience_lite/../aura/multithreading</dir>
       <file>multithreading_fork.h</file>
       <line>136</line>
     </frame>
     <frame>
       <ip>0x2635991A</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>thread* fork&lt;experience::aura::experience::experience(object*)::{lambda()#1}&gt;(object*, experience::aura::experience::experience(object*)::{lambda()#1})</fn>
-      <dir>/xcore/app/experience_core/../aura/multithreading</dir>
+      <dir>/xcore/app/experience_lite/../aura/multithreading</dir>
       <file>multithreading_fork.h</file>
       <line>171</line>
     </frame>
     <frame>
       <ip>0x263598E4</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>thread* object::fork&lt;experience::aura::experience::experience(object*)::{lambda()#1}&gt;(experience::aura::experience::experience(object*)::{lambda()#1})</fn>
-      <dir>/xcore/app/experience_core/../aura/multithreading</dir>
+      <dir>/xcore/app/experience_lite/../aura/multithreading</dir>
       <file>multithreading_fork.h</file>
       <line>180</line>
     </frame>
     <frame>
       <ip>0x26358E5D</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::aura::experience::experience(object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_experience.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_experience.cpp</file>
       <line>18</line>
     </frame>
     <frame>
       <ip>0x2637B8FA</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::apex::library::alloc(object*, char const*, object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_library.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_library.cpp</file>
       <line>34</line>
     </frame>
     <frame>
@@ -89736,50 +89736,50 @@
     </frame>
     <frame>
       <ip>0x26362100</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>pointer&lt;draw2d::pen&gt;&amp; pointer&lt;draw2d::pen&gt;::alloc&lt;experience::aura::frame&gt;(experience::aura::frame*)</fn>
-      <dir>/xcore/app/experience_core/../aura/</dir>
+      <dir>/xcore/app/experience_lite/../aura/</dir>
       <file>aura_system_smart_pointer.inl</file>
       <line>9</line>
     </frame>
     <frame>
       <ip>0x2636196E</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>pointer&lt;draw2d::pen&gt;::pointer&lt;experience::aura::frame&gt;(e_create_new, experience::aura::frame*)</fn>
-      <dir>/xcore/app/experience_core/../aura/</dir>
+      <dir>/xcore/app/experience_lite/../aura/</dir>
       <file>aura_smart_pointer2.h</file>
       <line>115</line>
     </frame>
     <frame>
       <ip>0x2635C3C1</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::aura::frame::frame(object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_frame.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_frame.cpp</file>
       <line>19</line>
     </frame>
     <frame>
       <ip>0x26373D19</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::aura::frame_008::frame_008(object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_frame_008.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_frame_008.cpp</file>
       <line>27</line>
     </frame>
     <frame>
       <ip>0x26378F75</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::aura::frame_013::frame_013(object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_frame_013.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_frame_013.cpp</file>
       <line>14</line>
     </frame>
     <frame>
       <ip>0x26359607</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::aura::experience::experience_get_frame(char const*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_experience.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_experience.cpp</file>
       <line>78</line>
     </frame>
     <frame>
@@ -89842,50 +89842,50 @@
     </frame>
     <frame>
       <ip>0x26362100</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>pointer&lt;draw2d::pen&gt;&amp; pointer&lt;draw2d::pen&gt;::alloc&lt;experience::aura::frame&gt;(experience::aura::frame*)</fn>
-      <dir>/xcore/app/experience_core/../aura/</dir>
+      <dir>/xcore/app/experience_lite/../aura/</dir>
       <file>aura_system_smart_pointer.inl</file>
       <line>9</line>
     </frame>
     <frame>
       <ip>0x2636196E</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>pointer&lt;draw2d::pen&gt;::pointer&lt;experience::aura::frame&gt;(e_create_new, experience::aura::frame*)</fn>
-      <dir>/xcore/app/experience_core/../aura/</dir>
+      <dir>/xcore/app/experience_lite/../aura/</dir>
       <file>aura_smart_pointer2.h</file>
       <line>115</line>
     </frame>
     <frame>
       <ip>0x2635C3E0</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::aura::frame::frame(object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_frame.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_frame.cpp</file>
       <line>19</line>
     </frame>
     <frame>
       <ip>0x26373D19</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::aura::frame_008::frame_008(object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_frame_008.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_frame_008.cpp</file>
       <line>27</line>
     </frame>
     <frame>
       <ip>0x26378F75</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::aura::frame_013::frame_013(object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_frame_013.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_frame_013.cpp</file>
       <line>14</line>
     </frame>
     <frame>
       <ip>0x26359607</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::aura::experience::experience_get_frame(char const*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_experience.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_experience.cpp</file>
       <line>78</line>
     </frame>
     <frame>
@@ -89948,50 +89948,50 @@
     </frame>
     <frame>
       <ip>0x26362100</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>pointer&lt;draw2d::pen&gt;&amp; pointer&lt;draw2d::pen&gt;::alloc&lt;experience::aura::frame&gt;(experience::aura::frame*)</fn>
-      <dir>/xcore/app/experience_core/../aura/</dir>
+      <dir>/xcore/app/experience_lite/../aura/</dir>
       <file>aura_system_smart_pointer.inl</file>
       <line>9</line>
     </frame>
     <frame>
       <ip>0x2636196E</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>pointer&lt;draw2d::pen&gt;::pointer&lt;experience::aura::frame&gt;(e_create_new, experience::aura::frame*)</fn>
-      <dir>/xcore/app/experience_core/../aura/</dir>
+      <dir>/xcore/app/experience_lite/../aura/</dir>
       <file>aura_smart_pointer2.h</file>
       <line>115</line>
     </frame>
     <frame>
       <ip>0x2635C3FF</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::aura::frame::frame(object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_frame.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_frame.cpp</file>
       <line>19</line>
     </frame>
     <frame>
       <ip>0x26373D19</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::aura::frame_008::frame_008(object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_frame_008.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_frame_008.cpp</file>
       <line>27</line>
     </frame>
     <frame>
       <ip>0x26378F75</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::aura::frame_013::frame_013(object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_frame_013.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_frame_013.cpp</file>
       <line>14</line>
     </frame>
     <frame>
       <ip>0x26359607</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::aura::experience::experience_get_frame(char const*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_experience.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_experience.cpp</file>
       <line>78</line>
     </frame>
     <frame>
@@ -90054,50 +90054,50 @@
     </frame>
     <frame>
       <ip>0x26362100</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>pointer&lt;draw2d::pen&gt;&amp; pointer&lt;draw2d::pen&gt;::alloc&lt;experience::aura::frame&gt;(experience::aura::frame*)</fn>
-      <dir>/xcore/app/experience_core/../aura/</dir>
+      <dir>/xcore/app/experience_lite/../aura/</dir>
       <file>aura_system_smart_pointer.inl</file>
       <line>9</line>
     </frame>
     <frame>
       <ip>0x2636196E</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>pointer&lt;draw2d::pen&gt;::pointer&lt;experience::aura::frame&gt;(e_create_new, experience::aura::frame*)</fn>
-      <dir>/xcore/app/experience_core/../aura/</dir>
+      <dir>/xcore/app/experience_lite/../aura/</dir>
       <file>aura_smart_pointer2.h</file>
       <line>115</line>
     </frame>
     <frame>
       <ip>0x2635C41E</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::aura::frame::frame(object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_frame.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_frame.cpp</file>
       <line>19</line>
     </frame>
     <frame>
       <ip>0x26373D19</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::aura::frame_008::frame_008(object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_frame_008.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_frame_008.cpp</file>
       <line>27</line>
     </frame>
     <frame>
       <ip>0x26378F75</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::aura::frame_013::frame_013(object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_frame_013.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_frame_013.cpp</file>
       <line>14</line>
     </frame>
     <frame>
       <ip>0x26359607</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::aura::experience::experience_get_frame(char const*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_experience.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_experience.cpp</file>
       <line>78</line>
     </frame>
     <frame>
@@ -90160,50 +90160,50 @@
     </frame>
     <frame>
       <ip>0x26362100</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>pointer&lt;draw2d::pen&gt;&amp; pointer&lt;draw2d::pen&gt;::alloc&lt;experience::aura::frame&gt;(experience::aura::frame*)</fn>
-      <dir>/xcore/app/experience_core/../aura/</dir>
+      <dir>/xcore/app/experience_lite/../aura/</dir>
       <file>aura_system_smart_pointer.inl</file>
       <line>9</line>
     </frame>
     <frame>
       <ip>0x2636196E</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>pointer&lt;draw2d::pen&gt;::pointer&lt;experience::aura::frame&gt;(e_create_new, experience::aura::frame*)</fn>
-      <dir>/xcore/app/experience_core/../aura/</dir>
+      <dir>/xcore/app/experience_lite/../aura/</dir>
       <file>aura_smart_pointer2.h</file>
       <line>115</line>
     </frame>
     <frame>
       <ip>0x2635C43D</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::aura::frame::frame(object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_frame.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_frame.cpp</file>
       <line>19</line>
     </frame>
     <frame>
       <ip>0x26373D19</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::aura::frame_008::frame_008(object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_frame_008.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_frame_008.cpp</file>
       <line>27</line>
     </frame>
     <frame>
       <ip>0x26378F75</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::aura::frame_013::frame_013(object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_frame_013.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_frame_013.cpp</file>
       <line>14</line>
     </frame>
     <frame>
       <ip>0x26359607</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::aura::experience::experience_get_frame(char const*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_experience.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_experience.cpp</file>
       <line>78</line>
     </frame>
     <frame>
@@ -90266,34 +90266,34 @@
     </frame>
     <frame>
       <ip>0x263768DA</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>pointer&lt;draw2d::pen&gt;&amp; pointer&lt;draw2d::pen&gt;::alloc&lt;experience::aura::frame_008&gt;(experience::aura::frame_008*)</fn>
-      <dir>/xcore/app/experience_core/../aura/</dir>
+      <dir>/xcore/app/experience_lite/../aura/</dir>
       <file>aura_system_smart_pointer.inl</file>
       <line>9</line>
     </frame>
     <frame>
       <ip>0x26373E6B</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::aura::frame_008::frame_008(object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_frame_008.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_frame_008.cpp</file>
       <line>34</line>
     </frame>
     <frame>
       <ip>0x26378F75</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::aura::frame_013::frame_013(object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_frame_013.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_frame_013.cpp</file>
       <line>14</line>
     </frame>
     <frame>
       <ip>0x26359607</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::aura::experience::experience_get_frame(char const*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_experience.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_experience.cpp</file>
       <line>78</line>
     </frame>
     <frame>
@@ -90372,34 +90372,34 @@
     </frame>
     <frame>
       <ip>0x263768DA</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>pointer&lt;draw2d::pen&gt;&amp; pointer&lt;draw2d::pen&gt;::alloc&lt;experience::aura::frame_008&gt;(experience::aura::frame_008*)</fn>
-      <dir>/xcore/app/experience_core/../aura/</dir>
+      <dir>/xcore/app/experience_lite/../aura/</dir>
       <file>aura_system_smart_pointer.inl</file>
       <line>9</line>
     </frame>
     <frame>
       <ip>0x26373E85</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::aura::frame_008::frame_008(object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_frame_008.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_frame_008.cpp</file>
       <line>35</line>
     </frame>
     <frame>
       <ip>0x26378F75</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::aura::frame_013::frame_013(object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_frame_013.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_frame_013.cpp</file>
       <line>14</line>
     </frame>
     <frame>
       <ip>0x26359607</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::aura::experience::experience_get_frame(char const*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_experience.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_experience.cpp</file>
       <line>78</line>
     </frame>
     <frame>
@@ -90478,34 +90478,34 @@
     </frame>
     <frame>
       <ip>0x263768DA</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>pointer&lt;draw2d::pen&gt;&amp; pointer&lt;draw2d::pen&gt;::alloc&lt;experience::aura::frame_008&gt;(experience::aura::frame_008*)</fn>
-      <dir>/xcore/app/experience_core/../aura/</dir>
+      <dir>/xcore/app/experience_lite/../aura/</dir>
       <file>aura_system_smart_pointer.inl</file>
       <line>9</line>
     </frame>
     <frame>
       <ip>0x26373E9F</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::aura::frame_008::frame_008(object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_frame_008.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_frame_008.cpp</file>
       <line>36</line>
     </frame>
     <frame>
       <ip>0x26378F75</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::aura::frame_013::frame_013(object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_frame_013.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_frame_013.cpp</file>
       <line>14</line>
     </frame>
     <frame>
       <ip>0x26359607</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::aura::experience::experience_get_frame(char const*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_experience.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_experience.cpp</file>
       <line>78</line>
     </frame>
     <frame>
@@ -90584,34 +90584,34 @@
     </frame>
     <frame>
       <ip>0x263768DA</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>pointer&lt;draw2d::pen&gt;&amp; pointer&lt;draw2d::pen&gt;::alloc&lt;experience::aura::frame_008&gt;(experience::aura::frame_008*)</fn>
-      <dir>/xcore/app/experience_core/../aura/</dir>
+      <dir>/xcore/app/experience_lite/../aura/</dir>
       <file>aura_system_smart_pointer.inl</file>
       <line>9</line>
     </frame>
     <frame>
       <ip>0x26373EB9</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::aura::frame_008::frame_008(object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_frame_008.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_frame_008.cpp</file>
       <line>37</line>
     </frame>
     <frame>
       <ip>0x26378F75</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::aura::frame_013::frame_013(object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_frame_013.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_frame_013.cpp</file>
       <line>14</line>
     </frame>
     <frame>
       <ip>0x26359607</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::aura::experience::experience_get_frame(char const*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_experience.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_experience.cpp</file>
       <line>78</line>
     </frame>
     <frame>
@@ -90690,34 +90690,34 @@
     </frame>
     <frame>
       <ip>0x263768DA</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>pointer&lt;draw2d::pen&gt;&amp; pointer&lt;draw2d::pen&gt;::alloc&lt;experience::aura::frame_008&gt;(experience::aura::frame_008*)</fn>
-      <dir>/xcore/app/experience_core/../aura/</dir>
+      <dir>/xcore/app/experience_lite/../aura/</dir>
       <file>aura_system_smart_pointer.inl</file>
       <line>9</line>
     </frame>
     <frame>
       <ip>0x26373ED3</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::aura::frame_008::frame_008(object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_frame_008.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_frame_008.cpp</file>
       <line>38</line>
     </frame>
     <frame>
       <ip>0x26378F75</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::aura::frame_013::frame_013(object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_frame_013.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_frame_013.cpp</file>
       <line>14</line>
     </frame>
     <frame>
       <ip>0x26359607</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::aura::experience::experience_get_frame(char const*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_experience.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_experience.cpp</file>
       <line>78</line>
     </frame>
     <frame>
@@ -90796,34 +90796,34 @@
     </frame>
     <frame>
       <ip>0x263768DA</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>pointer&lt;draw2d::pen&gt;&amp; pointer&lt;draw2d::pen&gt;::alloc&lt;experience::aura::frame_008&gt;(experience::aura::frame_008*)</fn>
-      <dir>/xcore/app/experience_core/../aura/</dir>
+      <dir>/xcore/app/experience_lite/../aura/</dir>
       <file>aura_system_smart_pointer.inl</file>
       <line>9</line>
     </frame>
     <frame>
       <ip>0x26373EED</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::aura::frame_008::frame_008(object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_frame_008.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_frame_008.cpp</file>
       <line>39</line>
     </frame>
     <frame>
       <ip>0x26378F75</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::aura::frame_013::frame_013(object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_frame_013.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_frame_013.cpp</file>
       <line>14</line>
     </frame>
     <frame>
       <ip>0x26359607</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::aura::experience::experience_get_frame(char const*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_experience.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_experience.cpp</file>
       <line>78</line>
     </frame>
     <frame>
@@ -90926,18 +90926,18 @@
     </frame>
     <frame>
       <ip>0x26351655</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::aura::control_box::control_box(object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_control_box.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_control_box.cpp</file>
       <line>15</line>
     </frame>
     <frame>
       <ip>0x2637B98E</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::apex::library::alloc(object*, char const*, object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_library.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_library.cpp</file>
       <line>40</line>
     </frame>
     <frame>
@@ -91032,18 +91032,18 @@
     </frame>
     <frame>
       <ip>0x26351655</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::aura::control_box::control_box(object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_control_box.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_control_box.cpp</file>
       <line>15</line>
     </frame>
     <frame>
       <ip>0x2637B98E</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::apex::library::alloc(object*, char const*, object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_library.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_library.cpp</file>
       <line>40</line>
     </frame>
     <frame>
@@ -91138,18 +91138,18 @@
     </frame>
     <frame>
       <ip>0x26351655</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::aura::control_box::control_box(object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_control_box.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_control_box.cpp</file>
       <line>15</line>
     </frame>
     <frame>
       <ip>0x2637B98E</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::apex::library::alloc(object*, char const*, object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_library.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_library.cpp</file>
       <line>40</line>
     </frame>
     <frame>
@@ -91244,18 +91244,18 @@
     </frame>
     <frame>
       <ip>0x26351655</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::aura::control_box::control_box(object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_control_box.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_control_box.cpp</file>
       <line>15</line>
     </frame>
     <frame>
       <ip>0x2637B98E</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::apex::library::alloc(object*, char const*, object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_library.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_library.cpp</file>
       <line>40</line>
     </frame>
     <frame>
@@ -93974,34 +93974,34 @@
     </frame>
     <frame>
       <ip>0x2634FAD6</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>pointer&lt;draw2d::region&gt;&amp; pointer&lt;draw2d::region&gt;::alloc&lt;experience::aura::button&gt;(experience::aura::button*)</fn>
-      <dir>/xcore/app/experience_core/../aura/</dir>
+      <dir>/xcore/app/experience_lite/../aura/</dir>
       <file>aura_system_smart_pointer.inl</file>
       <line>9</line>
     </frame>
     <frame>
       <ip>0x2634F7EA</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>pointer&lt;draw2d::region&gt;::pointer&lt;experience::aura::button&gt;(e_create_new, experience::aura::button*)</fn>
-      <dir>/xcore/app/experience_core/../aura/</dir>
+      <dir>/xcore/app/experience_lite/../aura/</dir>
       <file>aura_smart_pointer2.h</file>
       <line>115</line>
     </frame>
     <frame>
       <ip>0x2634C27A</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::aura::button::button(object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_button.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_button.cpp</file>
       <line>15</line>
     </frame>
     <frame>
       <ip>0x2637BA22</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::apex::library::alloc(object*, char const*, object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_library.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_library.cpp</file>
       <line>46</line>
     </frame>
     <frame>
@@ -94080,34 +94080,34 @@
     </frame>
     <frame>
       <ip>0x2634FAD6</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>pointer&lt;draw2d::region&gt;&amp; pointer&lt;draw2d::region&gt;::alloc&lt;experience::aura::button&gt;(experience::aura::button*)</fn>
-      <dir>/xcore/app/experience_core/../aura/</dir>
+      <dir>/xcore/app/experience_lite/../aura/</dir>
       <file>aura_system_smart_pointer.inl</file>
       <line>9</line>
     </frame>
     <frame>
       <ip>0x2634F7EA</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>pointer&lt;draw2d::region&gt;::pointer&lt;experience::aura::button&gt;(e_create_new, experience::aura::button*)</fn>
-      <dir>/xcore/app/experience_core/../aura/</dir>
+      <dir>/xcore/app/experience_lite/../aura/</dir>
       <file>aura_smart_pointer2.h</file>
       <line>115</line>
     </frame>
     <frame>
       <ip>0x2634C27A</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::aura::button::button(object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_button.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_button.cpp</file>
       <line>15</line>
     </frame>
     <frame>
       <ip>0x2637BA22</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::apex::library::alloc(object*, char const*, object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_library.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_library.cpp</file>
       <line>46</line>
     </frame>
     <frame>
@@ -94186,34 +94186,34 @@
     </frame>
     <frame>
       <ip>0x2634FAD6</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>pointer&lt;draw2d::region&gt;&amp; pointer&lt;draw2d::region&gt;::alloc&lt;experience::aura::button&gt;(experience::aura::button*)</fn>
-      <dir>/xcore/app/experience_core/../aura/</dir>
+      <dir>/xcore/app/experience_lite/../aura/</dir>
       <file>aura_system_smart_pointer.inl</file>
       <line>9</line>
     </frame>
     <frame>
       <ip>0x2634F7EA</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>pointer&lt;draw2d::region&gt;::pointer&lt;experience::aura::button&gt;(e_create_new, experience::aura::button*)</fn>
-      <dir>/xcore/app/experience_core/../aura/</dir>
+      <dir>/xcore/app/experience_lite/../aura/</dir>
       <file>aura_smart_pointer2.h</file>
       <line>115</line>
     </frame>
     <frame>
       <ip>0x2634C27A</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::aura::button::button(object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_button.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_button.cpp</file>
       <line>15</line>
     </frame>
     <frame>
       <ip>0x2637BA22</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::apex::library::alloc(object*, char const*, object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_library.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_library.cpp</file>
       <line>46</line>
     </frame>
     <frame>
@@ -94292,34 +94292,34 @@
     </frame>
     <frame>
       <ip>0x2634FAD6</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>pointer&lt;draw2d::region&gt;&amp; pointer&lt;draw2d::region&gt;::alloc&lt;experience::aura::button&gt;(experience::aura::button*)</fn>
-      <dir>/xcore/app/experience_core/../aura/</dir>
+      <dir>/xcore/app/experience_lite/../aura/</dir>
       <file>aura_system_smart_pointer.inl</file>
       <line>9</line>
     </frame>
     <frame>
       <ip>0x2634F7EA</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>pointer&lt;draw2d::region&gt;::pointer&lt;experience::aura::button&gt;(e_create_new, experience::aura::button*)</fn>
-      <dir>/xcore/app/experience_core/../aura/</dir>
+      <dir>/xcore/app/experience_lite/../aura/</dir>
       <file>aura_smart_pointer2.h</file>
       <line>115</line>
     </frame>
     <frame>
       <ip>0x2634C27A</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::aura::button::button(object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_button.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_button.cpp</file>
       <line>15</line>
     </frame>
     <frame>
       <ip>0x2637BA22</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::apex::library::alloc(object*, char const*, object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_library.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_library.cpp</file>
       <line>46</line>
     </frame>
     <frame>
@@ -94398,34 +94398,34 @@
     </frame>
     <frame>
       <ip>0x2634FAD6</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>pointer&lt;draw2d::region&gt;&amp; pointer&lt;draw2d::region&gt;::alloc&lt;experience::aura::button&gt;(experience::aura::button*)</fn>
-      <dir>/xcore/app/experience_core/../aura/</dir>
+      <dir>/xcore/app/experience_lite/../aura/</dir>
       <file>aura_system_smart_pointer.inl</file>
       <line>9</line>
     </frame>
     <frame>
       <ip>0x2634F7EA</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>pointer&lt;draw2d::region&gt;::pointer&lt;experience::aura::button&gt;(e_create_new, experience::aura::button*)</fn>
-      <dir>/xcore/app/experience_core/../aura/</dir>
+      <dir>/xcore/app/experience_lite/../aura/</dir>
       <file>aura_smart_pointer2.h</file>
       <line>115</line>
     </frame>
     <frame>
       <ip>0x2634C27A</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::aura::button::button(object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_button.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_button.cpp</file>
       <line>15</line>
     </frame>
     <frame>
       <ip>0x2637BA22</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::apex::library::alloc(object*, char const*, object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_library.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_library.cpp</file>
       <line>46</line>
     </frame>
     <frame>
@@ -94504,34 +94504,34 @@
     </frame>
     <frame>
       <ip>0x2634FAD6</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>pointer&lt;draw2d::region&gt;&amp; pointer&lt;draw2d::region&gt;::alloc&lt;experience::aura::button&gt;(experience::aura::button*)</fn>
-      <dir>/xcore/app/experience_core/../aura/</dir>
+      <dir>/xcore/app/experience_lite/../aura/</dir>
       <file>aura_system_smart_pointer.inl</file>
       <line>9</line>
     </frame>
     <frame>
       <ip>0x2634F7EA</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>pointer&lt;draw2d::region&gt;::pointer&lt;experience::aura::button&gt;(e_create_new, experience::aura::button*)</fn>
-      <dir>/xcore/app/experience_core/../aura/</dir>
+      <dir>/xcore/app/experience_lite/../aura/</dir>
       <file>aura_smart_pointer2.h</file>
       <line>115</line>
     </frame>
     <frame>
       <ip>0x2634C27A</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::aura::button::button(object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_button.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_button.cpp</file>
       <line>15</line>
     </frame>
     <frame>
       <ip>0x2637BA22</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::apex::library::alloc(object*, char const*, object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_library.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_library.cpp</file>
       <line>46</line>
     </frame>
     <frame>
@@ -94610,34 +94610,34 @@
     </frame>
     <frame>
       <ip>0x2634FAD6</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>pointer&lt;draw2d::region&gt;&amp; pointer&lt;draw2d::region&gt;::alloc&lt;experience::aura::button&gt;(experience::aura::button*)</fn>
-      <dir>/xcore/app/experience_core/../aura/</dir>
+      <dir>/xcore/app/experience_lite/../aura/</dir>
       <file>aura_system_smart_pointer.inl</file>
       <line>9</line>
     </frame>
     <frame>
       <ip>0x2634F7EA</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>pointer&lt;draw2d::region&gt;::pointer&lt;experience::aura::button&gt;(e_create_new, experience::aura::button*)</fn>
-      <dir>/xcore/app/experience_core/../aura/</dir>
+      <dir>/xcore/app/experience_lite/../aura/</dir>
       <file>aura_smart_pointer2.h</file>
       <line>115</line>
     </frame>
     <frame>
       <ip>0x2634C27A</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::aura::button::button(object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_button.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_button.cpp</file>
       <line>15</line>
     </frame>
     <frame>
       <ip>0x2637BA22</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::apex::library::alloc(object*, char const*, object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_library.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_library.cpp</file>
       <line>46</line>
     </frame>
     <frame>
@@ -94716,34 +94716,34 @@
     </frame>
     <frame>
       <ip>0x2634FAD6</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>pointer&lt;draw2d::region&gt;&amp; pointer&lt;draw2d::region&gt;::alloc&lt;experience::aura::button&gt;(experience::aura::button*)</fn>
-      <dir>/xcore/app/experience_core/../aura/</dir>
+      <dir>/xcore/app/experience_lite/../aura/</dir>
       <file>aura_system_smart_pointer.inl</file>
       <line>9</line>
     </frame>
     <frame>
       <ip>0x2634F7EA</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>pointer&lt;draw2d::region&gt;::pointer&lt;experience::aura::button&gt;(e_create_new, experience::aura::button*)</fn>
-      <dir>/xcore/app/experience_core/../aura/</dir>
+      <dir>/xcore/app/experience_lite/../aura/</dir>
       <file>aura_smart_pointer2.h</file>
       <line>115</line>
     </frame>
     <frame>
       <ip>0x2634C27A</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::aura::button::button(object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_button.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_button.cpp</file>
       <line>15</line>
     </frame>
     <frame>
       <ip>0x2637BA22</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::apex::library::alloc(object*, char const*, object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_library.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_library.cpp</file>
       <line>46</line>
     </frame>
     <frame>
@@ -94822,34 +94822,34 @@
     </frame>
     <frame>
       <ip>0x2634FAD6</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>pointer&lt;draw2d::region&gt;&amp; pointer&lt;draw2d::region&gt;::alloc&lt;experience::aura::button&gt;(experience::aura::button*)</fn>
-      <dir>/xcore/app/experience_core/../aura/</dir>
+      <dir>/xcore/app/experience_lite/../aura/</dir>
       <file>aura_system_smart_pointer.inl</file>
       <line>9</line>
     </frame>
     <frame>
       <ip>0x2634F7EA</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>pointer&lt;draw2d::region&gt;::pointer&lt;experience::aura::button&gt;(e_create_new, experience::aura::button*)</fn>
-      <dir>/xcore/app/experience_core/../aura/</dir>
+      <dir>/xcore/app/experience_lite/../aura/</dir>
       <file>aura_smart_pointer2.h</file>
       <line>115</line>
     </frame>
     <frame>
       <ip>0x2634C27A</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::aura::button::button(object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_button.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_button.cpp</file>
       <line>15</line>
     </frame>
     <frame>
       <ip>0x2637BA22</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::apex::library::alloc(object*, char const*, object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_library.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_library.cpp</file>
       <line>46</line>
     </frame>
     <frame>
@@ -97669,18 +97669,18 @@
     </frame>
     <frame>
       <ip>0x26351655</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::aura::control_box::control_box(object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_control_box.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_control_box.cpp</file>
       <line>15</line>
     </frame>
     <frame>
       <ip>0x2637B98E</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::apex::library::alloc(object*, char const*, object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_library.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_library.cpp</file>
       <line>40</line>
     </frame>
     <frame>
@@ -97775,18 +97775,18 @@
     </frame>
     <frame>
       <ip>0x26351655</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::aura::control_box::control_box(object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_control_box.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_control_box.cpp</file>
       <line>15</line>
     </frame>
     <frame>
       <ip>0x2637B98E</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::apex::library::alloc(object*, char const*, object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_library.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_library.cpp</file>
       <line>40</line>
     </frame>
     <frame>
@@ -97881,18 +97881,18 @@
     </frame>
     <frame>
       <ip>0x26351655</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::aura::control_box::control_box(object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_control_box.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_control_box.cpp</file>
       <line>15</line>
     </frame>
     <frame>
       <ip>0x2637B98E</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::apex::library::alloc(object*, char const*, object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_library.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_library.cpp</file>
       <line>40</line>
     </frame>
     <frame>
@@ -97987,18 +97987,18 @@
     </frame>
     <frame>
       <ip>0x26351655</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::aura::control_box::control_box(object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_control_box.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_control_box.cpp</file>
       <line>15</line>
     </frame>
     <frame>
       <ip>0x2637B98E</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::apex::library::alloc(object*, char const*, object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_library.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_library.cpp</file>
       <line>40</line>
     </frame>
     <frame>
@@ -102472,18 +102472,18 @@
     </frame>
     <frame>
       <ip>0x2637D0D6</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::aura::theme::theme(object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_theme.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_theme.cpp</file>
       <line>29</line>
     </frame>
     <frame>
       <ip>0x2637BAB6</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::apex::library::alloc(object*, char const*, object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_library.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_library.cpp</file>
       <line>52</line>
     </frame>
     <frame>
@@ -102578,18 +102578,18 @@
     </frame>
     <frame>
       <ip>0x2637D15A</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::aura::theme::theme(object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_theme.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_theme.cpp</file>
       <line>34</line>
     </frame>
     <frame>
       <ip>0x2637BAB6</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::apex::library::alloc(object*, char const*, object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_library.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_library.cpp</file>
       <line>52</line>
     </frame>
     <frame>
@@ -102684,18 +102684,18 @@
     </frame>
     <frame>
       <ip>0x2637D1A4</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::aura::theme::theme(object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_theme.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_theme.cpp</file>
       <line>37</line>
     </frame>
     <frame>
       <ip>0x2637BAB6</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::apex::library::alloc(object*, char const*, object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_library.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_library.cpp</file>
       <line>52</line>
     </frame>
     <frame>
@@ -102936,18 +102936,18 @@
     </frame>
     <frame>
       <ip>0x26351655</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::aura::control_box::control_box(object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_control_box.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_control_box.cpp</file>
       <line>15</line>
     </frame>
     <frame>
       <ip>0x2637B98E</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::apex::library::alloc(object*, char const*, object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_library.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_library.cpp</file>
       <line>40</line>
     </frame>
     <frame>
@@ -103139,18 +103139,18 @@
     </frame>
     <frame>
       <ip>0x2637CF35</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::aura::theme::theme(object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_theme.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_theme.cpp</file>
       <line>21</line>
     </frame>
     <frame>
       <ip>0x2637BAB6</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::apex::library::alloc(object*, char const*, object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_library.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_library.cpp</file>
       <line>52</line>
     </frame>
     <frame>
@@ -103229,18 +103229,18 @@
     </frame>
     <frame>
       <ip>0x2637D09C</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::aura::theme::theme(object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_theme.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_theme.cpp</file>
       <line>27</line>
     </frame>
     <frame>
       <ip>0x2637BAB6</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::apex::library::alloc(object*, char const*, object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_library.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_library.cpp</file>
       <line>52</line>
     </frame>
     <frame>
@@ -103335,18 +103335,18 @@
     </frame>
     <frame>
       <ip>0x2637D120</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::aura::theme::theme(object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_theme.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_theme.cpp</file>
       <line>32</line>
     </frame>
     <frame>
       <ip>0x2637BAB6</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::apex::library::alloc(object*, char const*, object*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_library.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_library.cpp</file>
       <line>52</line>
     </frame>
     <frame>
@@ -106507,18 +106507,18 @@
     </frame>
     <frame>
       <ip>0x2637FAC6</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::aura::theme::_001OnTabPaneDrawTitle(user::tab_pane&amp;, user::tab*, draw2d::graphics*, rect_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, pointer&lt;draw2d::brush&gt;&amp;)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_theme.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_theme.cpp</file>
       <line>392</line>
     </frame>
     <frame>
       <ip>0x2637F568</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::aura::theme::_001TabOnDrawSchema01(draw2d::graphics*, user::tab*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_theme.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_theme.cpp</file>
       <line>346</line>
     </frame>
   </stack>
@@ -106595,10 +106595,10 @@
     </frame>
     <frame>
       <ip>0x2637FAC6</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::aura::theme::_001OnTabPaneDrawTitle(user::tab_pane&amp;, user::tab*, draw2d::graphics*, rect_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, pointer&lt;draw2d::brush&gt;&amp;)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_theme.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_theme.cpp</file>
       <line>392</line>
     </frame>
   </stack>
@@ -106666,18 +106666,18 @@
     </frame>
     <frame>
       <ip>0x2637FAC6</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::aura::theme::_001OnTabPaneDrawTitle(user::tab_pane&amp;, user::tab*, draw2d::graphics*, rect_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, pointer&lt;draw2d::brush&gt;&amp;)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_theme.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_theme.cpp</file>
       <line>392</line>
     </frame>
     <frame>
       <ip>0x2637F568</ip>
-      <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
+      <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
       <fn>experience::aura::theme::_001TabOnDrawSchema01(draw2d::graphics*, user::tab*)</fn>
-      <dir>/xcore/app/experience_core</dir>
-      <file>experience_core_theme.cpp</file>
+      <dir>/xcore/app/experience_lite</dir>
+      <file>experience_lite_theme.cpp</file>
       <line>346</line>
     </frame>
     <frame>

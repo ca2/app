@@ -49,7 +49,7 @@ namespace hotplugin
 //         if(file_exists(::dir::system() / "config\\plugin\\npca2_beg_sleep.txt"))
 //         {
 
-//            Sleep(10000);
+//            millis_sleep(10000);
 
 //         }
 

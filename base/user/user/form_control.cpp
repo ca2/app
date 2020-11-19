@@ -4,6 +4,7 @@
 #endif
 #include "axis/user/validate.h"
 #include "aura/message.h"
+#include "acme/os/_os.h"
 
 
 namespace user
@@ -1513,16 +1514,24 @@ namespace user
 
       }
 
-      if(ptimer->m_uEvent == 24)
-      {
-         KillTimer(24);
-         GetTopLevelFrame()->EndModalLoop(IDOK);
-      }
+//      if(ptimer->m_uEvent == 24)
+//      {
+//
+//         KillTimer(24);
+//
+//         GetTopLevelFrame()->EndModalLoop(IDOK);
+//
+//      }
+
    }
+
 
    void form_control::_001OnUser123(::message::message * pmessage)
    {
       SCAST_PTR(::message::base,pbase,pmessage);
+
+#ifdef WINDOWS_DESKTOP
+
       if(pbase->m_wparam == 0x80000001)
       {
          if(GetTopLevel() != nullptr)
@@ -1531,6 +1540,9 @@ namespace user
          }
          return;
       }
+
+#endif
+
       //if(m_pcallback != nullptr)
       //{
       //   m_pcallback->OnUser123(pbase->m_wparam,pbase->m_lparam);

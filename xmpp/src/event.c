@@ -46,7 +46,7 @@
 #define ETIMEDOUT WSAETIMEDOUT
 #define ECONNRESET WSAECONNRESET
 #define ECONNABORTED WSAECONNABORTED
-#define _sleep(x) Sleep(x)
+#define _sleep(x) millis_sleep(x)
 #endif
 
 #include <strophe.h>

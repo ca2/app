@@ -14,8 +14,13 @@
 bool _set_reg_key(const widechar * pszKey, const widechar * pszValue, const widechar * pszValueName = nullptr);
 
 
+#ifdef WINDOWS_DESKTOP
+
+
 void __get_module_short_file_name(HINSTANCE hInst, string& strShortName);
 
+
+#endif
 
 
 #define DEFAULT_ICON_INDEX 0

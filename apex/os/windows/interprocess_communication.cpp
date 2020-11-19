@@ -94,7 +94,7 @@
                   {
                      return false;
                   }
-                  Sleep(25);
+                  millis_sleep(25);
                   k--;
                }
             }

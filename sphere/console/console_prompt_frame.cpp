@@ -486,7 +486,7 @@ namespace console
    __pointer(::experience::frame) prompt_frame::experience_get_frame()
    {
 
-      auto pframe = Application.experience()->experience_get_frame("experience_core","002");
+      auto pframe = Application.experience()->experience_get_frame("experience_lite","002");
 
       return pframe;
 

@@ -85,7 +85,9 @@ namespace user
       //bool LoadBitmap(const char * pszResourceName);
 
       //bool LoadBitmap(::u32 nIDResource);
+#ifdef WINDOWS_DESKTOP
       bool from(HBITMAP hbmImageWell);
+#endif
       bool SetButtons(const ::u32* pIDArray, index nIDCount);
 
       // pIDArray can be nullptr to allocate is_empty buttons
@@ -116,7 +118,13 @@ namespace user
       virtual ::size CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics, index nLength, u32 nMode);
       //virtual void OnUpdateCmdUI(__pointer(::user::frame_window) pTarget, bool bDisableIfNoHndler);
       __pointer(::user::interaction)  SetOwner(__pointer(::user::interaction) pOwnerWnd);
+
+
+#ifdef WINDOWS_DESKTOP
       bool AddReplaceBitmap(HBITMAP hbmImageWell);
+#endif
+
+
       virtual void OnBarStyleChange(u32 dwOldStyle, u32 dwNewStyle);
 
       virtual void assert_valid() const;

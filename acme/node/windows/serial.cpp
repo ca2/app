@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "acme/platform/serial.h"
 #include "serial.h"
 #include "acme/platform/serial_impl.h"
@@ -529,7 +529,7 @@ size_t Serial::SerialImpl::readline(string &buffer, size_t size, string eol)
             break;
          }
          // Timeout occured on reading 1 byte
-         Sleep(max(100u, m_timeout.read_timeout_constant / 10u));
+         millis_sleep(max(100u, m_timeout.read_timeout_constant / 10u));
          if (!::thread_get_run())
          {
             break;

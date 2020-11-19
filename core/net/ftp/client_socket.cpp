@@ -79,7 +79,7 @@ namespace ftp
    ///                         data via sockets. The size have an influence on
    ///                         the performance. Through empiric test i come to the
    ///                         conclusion that 2048 is a good size.
-   /// @lparam[in] uiResponseWait Sleep time between receive calls to socket when getting
+   /// @lparam[in] uiResponseWait millis_sleep time between receive calls to socket when getting
    ///                           the response. Sometimes the socket hangs if no wait time
    ///                           is set. Normally not wait time is necessary.
    client_socket::client_socket(::sockets::base_socket_handler & handler,
@@ -387,7 +387,7 @@ namespace ftp
 
                   plogon->m_bFailedBecauseOfSecurityLevelCanUpgrade = true;
 
-                  Sleep(1000);
+                  millis_sleep(1000);
 
                }
 
@@ -1283,7 +1283,7 @@ auto tickStart = ::millis::now();
             else
             {
 
-               Sleep(100);
+               millis_sleep(100);
 
             }
 //auto tickStart = ::millis::now();
@@ -1353,7 +1353,7 @@ auto tickStart = ::millis::now();
          const_cast<client_socket*>(this)->SetCloseAndDelete();
          return false;
       }
-      Sleep(200);
+      millis_sleep(200);
       return true;
    }
 
@@ -1448,7 +1448,7 @@ auto tickStart = ::millis::now();
             if (IsDetached())
             {
 
-               Sleep(100);
+               millis_sleep(100);
 
             }
             else
@@ -1459,7 +1459,7 @@ auto tickStart = ::millis::now();
                if (IsSSL())
                {
 
-                  //Sleep(200);
+                  //millis_sleep(200);
 
                }
 
@@ -1473,7 +1473,7 @@ auto tickStart = ::millis::now();
             //{
             //   iNum = receive(m_vBuffer.get_data(), static_cast<int>(m_vBuffer.size()) - 1, mc_uiTimeout);
             //   if (mc_uiResponseWait != 0)
-            //      Sleep(mc_uiResponseWait);
+            //      millis_sleep(mc_uiResponseWait);
             //   ((memory &)m_vBuffer)[iNum] = '\0';
             //   strTemp += m_vBuffer.to_string();
             //} while (iNum == static_cast<int>(m_vBuffer.size()) - 1);

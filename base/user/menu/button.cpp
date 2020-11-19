@@ -279,7 +279,13 @@ namespace user
 
                auto psession = Session;
 
-               pgraphics->draw_3drect(rectImageBorder, psession->get_default_color(COLOR_3DSHADOW), psession->get_default_color(COLOR_3DHILIGHT));
+               auto pstyle = get_style(pgraphics);
+
+               auto colorDarkShadow = pstyle->get_color(this, ::user::element_dark_shadow);
+
+               auto colorHilite = pstyle->get_color(this, ::user::element_hilite);
+
+               pgraphics->draw_3drect(rectImageBorder, colorDarkShadow, colorHilite);
 
             }
 

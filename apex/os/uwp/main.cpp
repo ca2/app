@@ -144,7 +144,7 @@ CLASS_DECL_APEX void __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_
 //      ::apex::system * psystem = new ::apex::system();
 //
 //
-//      //Sleep(30 * 1000);
+//      //millis_sleep(30 * 1000);
 //
 //
 //      ASSERT(hPrevInstance == nullptr);

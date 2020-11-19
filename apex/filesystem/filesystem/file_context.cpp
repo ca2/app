@@ -792,7 +792,7 @@ retry_get_file:
       if (estatus == error_file_sharing_violation)
       {
 
-         Sleep(300);
+         millis_sleep(300);
 
          iTry++;
 

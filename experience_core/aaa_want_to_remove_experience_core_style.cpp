@@ -9,7 +9,7 @@
 
 
 
-namespace experience_core
+namespace experience_lite
 {
 
 
@@ -1173,7 +1173,7 @@ namespace experience_core
    }
 
 
-} // namespace experience_core
+} // namespace experience_lite
 
 
 

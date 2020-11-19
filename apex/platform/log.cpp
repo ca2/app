@@ -549,7 +549,7 @@ namespace apex
             fork([this]()
                {
 
-                  sleep(1_s);
+                  millis_sleep(1_s);
 
                   if (!::file::app_module().contains_ci("logviewer") && file_exists(::dir::system() / "logviewer.txt"))
                   {

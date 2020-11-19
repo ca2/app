@@ -56,5 +56,5 @@ delay (g::u32 milliseconds)
   //EndTime = times (&Buf) + (milliseconds * 1LL * CLK_TCK) / 1000LL;
   //EndTime= ::millis::now() milliseconds;
   //while (times (&Buf) < EndTime);
-   Sleep(milliseconds);
+   millis_sleep(milliseconds);
 }

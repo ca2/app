@@ -1665,11 +1665,11 @@ namespace core
 
          }
 
-         Sleep(300);
+         millis_sleep(300);
 
          ::user::gsettings_sync();
 
-         Sleep(300);
+         millis_sleep(300);
 
          return bOk1 && bOk2;
 

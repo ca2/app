@@ -947,18 +947,23 @@ BOOL CALLBACK TerminateGuiAppEnum(HWND hwnd, LPARAM lParam);
 }
 
 
-
 BOOL CALLBACK TerminateGuiAppEnum(HWND hwnd, LPARAM lParam)
 {
-   ::u32 dwID;
+
+   DWORD dwID;
 
    GetWindowThreadProcessId(hwnd, &dwID);
 
    if (dwID == (::u32)lParam)
    {
+
       PostMessage(hwnd, e_message_close, 0, 0);
+
    }
 
    return TRUE;
+
 }
+
+
 

@@ -169,30 +169,30 @@ CLASS_DECL_AXIS u32 g_tickStartTime = 0;
 
 
 
-//extern "C"
-CLASS_DECL_AXIS void debug_print(const char* pszFormat, ...)
-{
-
-   if (is_ptr_null(pszFormat, 1024))
-   {
-
-      return;
-
-   }
-
-   va_list argList;
-
-   va_start(argList, pszFormat);
-
-   char sz[4096];
-
-   vsnprintf(sz, sizeof(sz), pszFormat, argList);
-
-   ::output_debug_string(sz);
-
-   va_end(argList);
-
-}
+////extern "C"
+//CLASS_DECL_AXIS void debug_print(const char* pszFormat, ...)
+//{
+//
+//   if (is_ptr_null(pszFormat, 1024))
+//   {
+//
+//      return;
+//
+//   }
+//
+//   va_list argList;
+//
+//   va_start(argList, pszFormat);
+//
+//   char sz[4096];
+//
+//   vsnprintf(sz, sizeof(sz), pszFormat, argList);
+//
+//   ::output_debug_string(sz);
+//
+//   va_end(argList);
+//
+//}
 
 //
 //void __post_quit_message(i32 nExitCode)

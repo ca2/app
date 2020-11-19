@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "_windows.h"
 #include "acme/os/windows_common/_file_c.h"
 #include "acme/os/windows_common/file.h"

@@ -59,7 +59,7 @@ send_thread_message::send_thread_message(::layered * pobjectContext) :
    ::object(pobjectContext)
 {
 
-   xxf_zero(m_message);
+   ·zero(m_message);
 
    m_ev.ResetEvent();
 

@@ -32,6 +32,7 @@ public:
    millis(u32 u) { m_iMilliseconds = u; }
    millis(i64 i) { m_iMilliseconds = i; }
    millis(u64 u) { m_iMilliseconds = u; }
+   millis(unsigned long long int u) { m_iMilliseconds = u; }
    millis(const secs & secs) { m_iMilliseconds = secs.m_iSeconds * 1'000; }
    millis(const millis & millis) { m_iMilliseconds = millis.m_iMilliseconds; }
    millis(const micros & micros);

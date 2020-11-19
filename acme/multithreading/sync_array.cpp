@@ -242,8 +242,8 @@ sync_result sync_array::wait(bool waitForAll, const duration & duration, bool bW
             winResult = ::MsgWaitForMultipleObjectsEx((u32)m_hsyncaCache.size(), m_hsyncaCache.get_data(),  __os(duration - start.elapsed()), QS_ALLEVENTS, waitForAll ? MWMO_WAITALL : 0);
 
          }
-#endif
          else
+#endif
          {
 
             winResult = ::WaitForMultipleObjectsEx((u32)m_hsyncaCache.size(), m_hsyncaCache.get_data(), waitForAll, __os(duration - start.elapsed()), true);

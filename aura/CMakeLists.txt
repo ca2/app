@@ -172,6 +172,7 @@ list(APPEND aura_source
         graphics/graphics/asset/close_icon.h
         graphics/graphics/graphics/_.h
         graphics/graphics/_.h
+        graphics/graphics/_graphics.h
         graphics/graphics/_impl.h
         graphics/graphics/bitmap_source_buffer.cpp
         graphics/graphics/bitmap_source_buffer.h
@@ -257,6 +258,7 @@ list(APPEND aura_source
         os/_c.h
         os/_impl.h
         os/_os.h
+        os/_user.h
         os/argcargv.cpp
         os/binreloc.cpp
         os/binreloc.h
@@ -448,6 +450,7 @@ if(WIN32)
         os/windows/-ehrror.cpp
         os/windows/_.h
         os/windows/_c.h
+        os/windows/_user.h
         os/windows/_windows.h
         os/windows/_windows_impl.h
         os/windows/application.cpp
@@ -626,6 +629,7 @@ if(LINUX)
             os/gdk/aura_gdk.h
             os/linux/_.h
             os/linux/_c.h
+            os/linux/_glib.h
             os/linux/_linux.h
             os/linux/_user.h
             os/linux/appindicator.cpp
@@ -664,6 +668,7 @@ if(LINUX)
             os/linux/list_serial_ports.cpp
             os/linux/lock.cpp
             os/linux/message_loop.cpp
+            os/linux/monitor.cpp
             os/linux/multithreading.cpp
             os/linux/os.cpp
             os/linux/osdisplay.cpp
@@ -1080,7 +1085,7 @@ else()
 endif()
 
 
-add_library(aura SHARED ${aura_source} graphics/graphics/_graphics.h os/_user.h os/windows/_user.h)
+add_library(aura SHARED ${aura_source})
 
 
 target_precompile_headers(aura PRIVATE framework.h)

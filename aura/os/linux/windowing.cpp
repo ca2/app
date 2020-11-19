@@ -22,6 +22,7 @@
 #define new ACME_NEW
 #include "aura/os/x11/_x11.h"
 #include "acme/multithreading/mq.h"
+#include "_glib.h"
 
 
 ::point g_pointX11Cursor;

@@ -11,7 +11,7 @@
 //#include <X11/Xatom.h>
 // // Ubuntu apt-get install libcairo2-dev
 
-#include <glib.h> // gtk3-devel
+//#include <glib.h> // gtk3-devel
 
 
 enum e_net_wm_state
@@ -125,9 +125,6 @@ public:
 //extern GMainContext * gtk_main_context;
 
 
-
-
-gboolean gdk_callback_run_runnable(gpointer pdata);
 
 
 

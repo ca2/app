@@ -123,7 +123,7 @@ target_include_directories(bred PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../arc
 target_include_directories(bred PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/third/include/include)
 
 
-target_compile_definitions(bred PRIVATE _bred_LIBRARY)
+target_compile_definitions(bred PRIVATE _BRED_LIBRARY)
 target_compile_definitions(bred PRIVATE UNICODE)
 target_compile_definitions(bred PRIVATE _UNICODE)
 

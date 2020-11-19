@@ -3768,7 +3768,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 
                   XIMStyles * pximstyles = nullptr;
 
-                  xxf_zerop(pximstyles);
+                  xxf_zero_pointer(pximstyles);
 
                   XGetIMValues (xim, XNQueryInputStyle, &pximstyles, NULL, NULL);
 

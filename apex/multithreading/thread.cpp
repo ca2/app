@@ -786,7 +786,7 @@ int thread::_GetMessage(LPMESSAGE pmessage, oswindow oswindow, ::u32 wMsgFilterM
 
    __throw(exception::exception);
 
-   //xxf_zerop(pmessage);
+   //xxf_zero_pointer(pmessage);
 
    //return mq_get_message(pmessage, oswindow, wMsgFilterMin, wMsgFilterMax);
    return false;
@@ -2202,7 +2202,7 @@ bool thread::begin_thread(bool bSynchInitialization, ::e_priority epriority, ::u
 
       char sz[1024];
 
-      xxf_zerop(sz);
+      xxf_zero_pointer(sz);
 
       engine_symbol(sz, sizeof(sz), &dwDisplacement, uia[5]);
 

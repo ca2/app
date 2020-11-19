@@ -20,6 +20,8 @@ CLASS_DECL_ACME i32 get_current_process_affinity_order();
 
 
 CLASS_DECL_ACME string expand_env(string str);
+CLASS_DECL_ACME string get_environment_variable(const char * pszEnvironmentVariable);
+
 
 CLASS_DECL_ACME string consume_param(const char * pszCommandLine, const char ** pszEndPtr);
 CLASS_DECL_ACME bool is_command_line_param_true(string& strValue, const char* pszCommandLine, const char* pszParam, bool bDefault = false);

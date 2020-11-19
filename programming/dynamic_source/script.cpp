@@ -100,7 +100,7 @@ namespace dynamic_source
 
       bool bMatches = false;
 
-      auto ft = get_filetime(m_strSourcePath);
+      auto ft = get_filetime_set(m_strSourcePath);
 
       bMatches = m_ft == ft;
 
@@ -322,7 +322,10 @@ namespace dynamic_source
 
 #endif
 
-            u32 dwMessageId = get_last_error();
+
+#ifdef WINDOWS_DESKTOP
+
+            u32 dwMessageId = GetLastError();
 
             if(dwMessageId == 0x139)
             {
@@ -333,13 +336,15 @@ namespace dynamic_source
 
             TRACE("Error Message Id: %d\n", dwMessageId);
 
-            string strError = get_system_error_message(::get_last_error());
+            string strError = get_system_error_message(dwMessageId);
 
             string str;
 
-            str.Format("%d - ", ::get_last_error());
+            str.Format("%d - ", dwMessageId);
 
-            m_streamError << strStagePath << " : LoadLibrary, get_last_error : " << str << strError;
+            m_streamError << strStagePath << " : LoadLibrary, get_last_error : " << str << dwMessageId;
+
+#endif
 
          }
 
@@ -527,7 +532,7 @@ namespace dynamic_source
 
       m_millisLastBuildTime= ::millis::now();
 
-      m_ft = get_filetime(m_strSourcePath);
+      m_ft = get_filetime_set(m_strSourcePath);
 
       Load();
 

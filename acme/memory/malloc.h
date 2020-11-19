@@ -147,6 +147,16 @@ namespace acme
 
       }
 
+      memory_alloc(memsize s)
+      {
+
+         m_iSize = 0;
+         m_p = nullptr;
+
+         alloc(s * sizeof(*m_p));
+
+      }
+
       ~memory_alloc()
       {
 
@@ -155,6 +165,8 @@ namespace acme
       }
 
       operator POINTER() { return (POINTER)m_p; }
+
+      operator const POINTER() const { return (const POINTER)m_p; }
 
 
       POINTER alloc(size_t size)
@@ -204,6 +216,20 @@ namespace acme
 
       }
 
+      memsize get_size() const
+      {
+
+         return m_iSize;
+
+      }
+
+      ::count get_count() const
+      {
+
+         return get_size() / sizeof(*m_p);
+
+      }
+
       void free()
       {
 
@@ -235,4 +261,21 @@ namespace acme
    };
 
 } // namespace acme
+
+
+namespace str
+{
+
+   template < typename POINTER >
+   inline void from(string & str, const ::acme::memory_alloc < POINTER > & memoryallocpointer)
+   {
+
+      from(str, memoryallocpointer.m_p);
+
+   }
+
+
+} // namespace str
+
+
 

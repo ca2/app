@@ -25,6 +25,9 @@ class script_manager;
 #include "session.h"
 
 
+#include "apex/filesystem/file/html_file.h"
+
+
 #include "script_interface.h"
 #include "script_composite.h"
 #include "script_instance.h"

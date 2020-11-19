@@ -13,9 +13,9 @@ namespace introjection
 
       __pointer(::apex::library)                m_plibrary;
       ::file::path                              m_pathScript;
-      ::string_stream                               m_memfileError;
+      ::string_stream                           m_memfileError;
       string                                    m_strError;
-      filetime                                 m_filetime;
+      filetime_set                              m_filetimeset;
 
 
       library(::layered * pobjectContext);

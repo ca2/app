@@ -2,7 +2,7 @@
 
 
 template < typename TYPE >
-inline TYPE & xxf_zerop(TYPE * p) { ::zero(p, sizeof(TYPE)); return *p; }
+inline TYPE & xxf_zero_pointer(TYPE * p) { ::zero(p, sizeof(TYPE)); return *p; }
 
 template < typename TYPE >
 inline TYPE & xxf_zero(TYPE & t) { ::zero(&t, sizeof(TYPE)); return t; }

@@ -43,7 +43,7 @@ namespace introjection
 
       defer_create_mutex();
 
-      xxf_zero(m_filetime);
+      xxf_zero(m_filetimeset);
 
    }
 
@@ -376,19 +376,9 @@ namespace introjection
 
       strItem = Context.dir().install() / m_strDynamicSourceStage / m_strStagePlatform / "introjection\\library";
       str = str + strItem + ";";
-#ifdef WINDOWS_DESKTOP
-      u32 dwSize = GetEnvironmentVariableW(L"PATH",nullptr,0);
-      char * lpsz = new wchar_t[dwSize + 1];
-      dwSize = GetEnvironmentVariableW(L"PATH",lpsz,dwSize + 1);
-      str += lpsz;
-      delete lpsz;
-#elif defined(_UWP)
 
-      __throw(todo());
+      str += get_environment_variable("PATH");
 
-#else
-      str += getenv("PATH");
-#endif
       bool bResult = FALSE;
 #ifdef WINDOWS_DESKTOP
       //bResult = SetEnvironmentVariable("PATH",str) != FALSE;
@@ -582,7 +572,7 @@ namespace introjection
 
       bNew = true;
 
-      plibrary->m_filetime = get_filetime(strFilePath);
+      plibrary->m_filetime = get_filetime_set(strFilePath);
 
       ::file::path strName(strFilePath);
 

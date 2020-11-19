@@ -67,7 +67,7 @@ CLASS_DECL_APEX bool get_gui_thread_info(PGUITHREADINFO pinfo)
 
    ::u32 dwThread = GetWindowThreadProcessId(hwndForeground, nullptr);
 
-   xxf_zerop(pinfo);
+   xxf_zero_pointer(pinfo);
 
    pinfo->cbSize = sizeof(GUITHREADINFO);
 

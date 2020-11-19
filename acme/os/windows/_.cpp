@@ -767,17 +767,6 @@ CLASS_DECL_ACME string get_error_string(DWORD dwError)
 }
 
 
-CLASS_DECL_ACME string expand_env(string str)
-{
-
-   wstring wstr;
-
-   ExpandEnvironmentStringsW(wstring(str), wstr.get_string_buffer(8192), (::u32)wstr.get_length());
-
-   return wstr;
-
-}
-
 
 
 bool __node_pos_init()

@@ -102,7 +102,7 @@ public:
 
    memory_base() {}
    memory_base(const memory_base & base) : m_memory(base.m_memory) {}
-   memory_base(memory_base && base) : m_memory(base.m_memory) { xxf_zero(base.m_memory); }
+   memory_base(memory_base && base) : m_memory(base.m_memory) { ·zero(base.m_memory); }
    virtual ~memory_base();
 
 

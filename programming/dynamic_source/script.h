@@ -48,21 +48,20 @@ namespace dynamic_source
    public:
 
 
-      __pointer(::apex::library)              m_plibrary;
+      __pointer(::apex::library)       m_plibrary;
 
 
-      filetime                        m_ft;
-      filetime                        m_ftDs;
+      filetime_set                     m_ft;
+      filetime_set                     m_ftDs;
 
       bool                             m_bLastVersionCheck;
-      millis m_millisLastVersionCheck;
+      millis                           m_millisLastVersionCheck;
       ::file::path                     m_strSourcePath;
       ::file::path                     m_strSourceDir;
       ::file::path                     m_strCppPath;
       ::file::path                     m_strScriptPath;
-      //::file::path                     m_strBuildBat;
       manual_reset_event               m_evCreationEnabled;
-      millis m_millisLastBuildTime;
+      millis                           m_millisLastBuildTime;
       bool                             m_bShouldBuild;
       bool                             m_bShouldCalcTempError;
       bool                             m_bHasTempError;
@@ -73,7 +72,7 @@ namespace dynamic_source
 
 
       ds_script();
-      ~ds_script();
+      virtual ~ds_script();
 
 
       virtual void defer_build();

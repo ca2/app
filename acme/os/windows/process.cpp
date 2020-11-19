@@ -1381,4 +1381,36 @@ CLASS_DECL_ACME int_bool is_process_running(::u32 pid)
 }
 
 
+CLASS_DECL_ACME string get_environment_variable(const char * pszEnvironmentVariable)
+{
+
+   string str;
+
+   wstring wstrEnvironmentVariable(pszEnvironmentVariable);
+
+   DWORD dwSize = GetEnvironmentVariableW(wstrEnvironmentVariable, nullptr, 0);
+
+   acme::memory_alloc < LPWSTR > lpwsz(dwSize + 1);
+
+   dwSize = GetEnvironmentVariableW(wstrEnvironmentVariable, lpwsz, lpwsz.get_size());
+
+   str = lpwsz;
+
+   return str;
+
+}
+
+
+CLASS_DECL_ACME string expand_env(string str)
+{
+
+   wstring wstr;
+
+   ExpandEnvironmentStringsW(wstring(str), wstr.get_string_buffer(8192), (::u32)wstr.get_length());
+
+   return wstr;
+
+}
+
+
 

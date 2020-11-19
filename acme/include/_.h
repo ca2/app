@@ -146,6 +146,12 @@ CLASS_DECL_ACME ::acme::system * get_context_system();
 
 //#include "acme/message/global.h"
 
+template < typename TYPE >
+inline TYPE & ·zero_pointer(TYPE * p);
+
+template < typename TYPE >
+inline TYPE & ·zero(TYPE & t);
+
 #define ___STR(s) #s
 #define __STR(s) ___STR(s)
 #define __IDENTIFIER(identifier) identifier

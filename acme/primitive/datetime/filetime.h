@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #define make64_from32(l, h) ((::u64) (l)) | (((::u64) (h)) << 32)
@@ -87,7 +87,7 @@ struct CLASS_DECL_ACME filetime_set
    filetime_set()
    {
       
-      �zero_pointer(this);
+      ·zero_pointer(this);
 
    }
 

@@ -53,9 +53,9 @@ namespace user
    {
 
 #ifdef WINDOWS_DESKTOP
-      xxf_zero_pointer((CREATESTRUCTW *) this);
+      ·zero_pointer((CREATESTRUCTW *) this);
 #else
-      xxf_zero_pointer((CREATESTRUCTA *) this);
+      ·zero_pointer((CREATESTRUCTA *) this);
 #endif
 
       set_rect(rect);

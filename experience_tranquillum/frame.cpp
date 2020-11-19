@@ -589,7 +589,7 @@ namespace experience
                if (picon != nullptr)
                {
 
-                  pgraphics->DrawIcon(rectIcon.left, rectIcon.top, picon, rectIcon.width(), rectIcon.height(), 0, nullptr, DI_NORMAL);
+                  pgraphics->draw(rectIcon.top_left(), picon, rectIcon.size());
 
                }
 
@@ -764,7 +764,7 @@ namespace experience
                if (picon != nullptr)
                {
 
-                  pgraphics->DrawIcon(rectIcon.left, rectIcon.top, picon, rectIcon.width(), rectIcon.height(), 0, nullptr, DI_NORMAL);
+                  pgraphics->draw(rectIcon.top_left(), picon, rectIcon.size());
 
                }
 

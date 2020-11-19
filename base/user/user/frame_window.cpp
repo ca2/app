@@ -483,7 +483,7 @@ namespace user
 
                   sync_lock sl(psync);
 
-                  pimage1->get_graphics()->draw(::point(), pgraphics, { ::point(), rect.size() });
+                  pimage1->get_graphics()->draw(rect.size(), pgraphics);
 
                   psession->copydesk().image_to_desk(pimage1);
 

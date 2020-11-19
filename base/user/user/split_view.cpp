@@ -224,7 +224,7 @@ namespace user
 
       //}
 
-      split_layout::Pane* ppane = m_panea[pimpactdata->m_id.i64()];
+      split_layout::Pane* ppane = m_panea[pimpactdata->m_id.index()];
 
       if (ppane != nullptr)
       {

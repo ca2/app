@@ -228,13 +228,13 @@ public:
 
    virtual bool stretch(::draw2d::graphics * pgraphics);
    //virtual bool to(::image * piml) const;
-   virtual bool copy(const ::image * pimage);
+   virtual bool copy(const ::image * pimage, eobject eobjectCreate = e_object_success);
    virtual bool stretch(const ::image * pimage);
    //virtual bool draw_image(::draw2d::graphics* pgraphics);
    //virtual bool draw_image(::draw2d::graphics* pgraphics, const ::size & size);
    //virtual bool from(const ::point & pointDst, ::draw2d::graphics* pgraphics, const ::point & pointSrc, const ::size & size);
-   virtual bool draw(const ::point & pointDst, ::image * pimage, const ::rect & rectSrc);
-   virtual bool draw(const ::point & pointDst, ::image * pimage, const ::rect & rectSrc, byte bA);
+   virtual bool draw(const ::rect & rectDst, ::image * pimage, const ::point & pointSrc = ::point());
+   virtual bool draw(const ::rect & rectDst, ::image * pimage, const ::point & pointSrc, byte bA);
    //virtual bool blend(const ::point & pointDst, ::image * piml, const ::point & pointSrc, const ::size & size);
    virtual bool draw_ignore_alpha(const ::point & pointDst, ::image * pimage, const ::rect & rectSrc);
 

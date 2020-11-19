@@ -2544,7 +2544,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
          if(m_pimageBlur->is_ok())
          {
 
-            m_pimageBlur->g()->draw(::point(0,0), pgraphics, { {0,0},  rectClient.size() });
+            m_pimageBlur->g()->draw(rectClient.size(), pgraphics);
             m_blur.blur(m_pimageBlur, 2);
             imaging.bitmap_blend(
             m_pimageBlur->g(),

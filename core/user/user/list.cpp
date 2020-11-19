@@ -7406,7 +7406,7 @@ namespace user
             ::rect rectDib(m_rectImage.top_left() - size(m_plist->m_iIconBlurRadius *iRate, m_plist->m_iIconBlurRadius * iRate),
                       m_rectImage.size() + size(m_plist->m_iIconBlurRadius *iRate * 2, m_plist->m_iIconBlurRadius * iRate * 2));
 
-            m_pgraphics->draw(rectDib.top_left(), pimage->get_graphics(), rectDib.size());
+            m_pgraphics->draw(rectDib, pimage->get_graphics());
 
             ::rect rectI;
 
@@ -7445,7 +7445,7 @@ namespace user
 
                m_pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-               m_pgraphics->draw(rectI.top_left(), m_plist->m_pimageTime->get_graphics(),::rect(rect2.top_left(), rectI.size()));
+               m_pgraphics->draw(rectI, m_plist->m_pimageTime->get_graphics(),rect2.top_left());
 
             }
 

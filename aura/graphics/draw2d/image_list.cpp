@@ -128,9 +128,9 @@ bool image_list::draw(::draw2d::graphics* pgraphics, i32 iImage, const ::point &
       UNREFERENCED_PARAMETER(iFlag);
 
       return pgraphics->draw(
-         point, 
+         { point, m_size },
          m_pimage->get_graphics(), 
-         { {iImage * m_size.cx, 0}, m_size });
+         {iImage * m_size.cx, 0});
 
    }
    catch(...)
@@ -189,7 +189,7 @@ bool image_list::draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point 
    pointOffset.x = min(m_size.cx, pointOffset.x);
    pointOffset.y = min(m_size.cy, pointOffset.y);
 
-   return pgraphics->draw(point, m_pimage, { {iImage * m_size.cx + pointOffset.x, pointOffset.y}, sz });
+   return pgraphics->draw({ point, sz }, m_pimage, {iImage * m_size.cx + pointOffset.x, pointOffset.y});
 
 }
 
@@ -323,9 +323,8 @@ i32 image_list::add_file(var varFile, int iItem)
          m_pimage->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
 
          m_pimage->get_graphics()->draw(
-            ::point(iItem * m_size.cx, 0),
-            pimage->get_graphics(), 
-            { ::point(), m_size });
+            { ::point(iItem * m_size.cx, 0),  m_size },
+            pimage->get_graphics());
 
       });
 
@@ -341,7 +340,7 @@ i32 image_list::add_image(::image * pimage, int x, int y, int iItem)
 
    iItem = reserve_image(iItem);
 
-   if(!m_pimage)
+   if (!m_pimage)
    {
 
       return -1;
@@ -355,9 +354,7 @@ i32 image_list::add_image(::image * pimage, int x, int y, int iItem)
    m_pimage->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_blend);
 
    m_pimage->get_graphics()->draw(
-      ::point(iItem * m_size.cx, 0), 
-      pimage->g(), 
-      { {x, y}, m_size });
+      {::point(iItem * m_size.cx, 0), m_size}, pimage, {x, y});
 
    return iItem;
 

@@ -39,7 +39,6 @@ public:
    bool                                               m_bClosedMq;
 
 
-   //::task_array                                       m_taska;
    MESSAGE                                            m_message;
    bool                                               m_bLastingThread;
    bool                                               m_bMessageThread;
@@ -61,12 +60,11 @@ public:
    __pointer(manual_reset_event)                      m_pevReady;
 
    bool                                               m_bAuraMessageQueue;
-   ::millis                                             m_millisHeartBeat;
+   ::millis                                           m_millisHeartBeat;
    bool                                               m_bReady;
    ::status::result                                   m_result;
    __pointer(::layered)                               m_puiMain1;           // Main interaction_impl (usually same System.m_puiMain)
    __pointer(::layered)                               m_puiActive;         // Active Main interaction_impl (may not be m_puiMain)
-   //string                                             m_strWorkUrl;
    bool                                               m_bSimpleMessageLoop;
    bool                                               m_bZipIsDir2;
 
@@ -81,9 +79,9 @@ public:
 
    __pointer(::task_pool)                             m_ptaskpool;
 
-   ::u32                                               m_nDisablePumpCount;
+   ::u32                                              m_nDisablePumpCount;
 
-   ::u32                                               m_dwFinishTimeout;
+   ::u32                                              m_dwFinishTimeout;
    bool                                               m_bThreadClosed;
 
 
@@ -98,9 +96,9 @@ public:
    string                                             m_strFile;
    int                                                m_iLine;
 
-   uptr                                               m_uThreadAffinityMask;
+   ::u64                                              m_uThreadAffinityMask;
    bool                                               m_bTemporary;
-   __pointer(::object)                          m_pobjectScript;
+   __pointer(::object)                                m_pobjectScript;
 
 
 #ifdef MACOS

@@ -871,7 +871,7 @@ namespace user
 
             m_pilHover[iSize]->draw(pgraphics, iImage, nullptr, 0);
             m_pilHover[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_set);
-            m_pilHover[iSize]->m_pimage->g()->draw(::point(iImage * 48,0 ), pimage->get_graphics(), ::rect(point(), size(48, 48)));
+            m_pilHover[iSize]->m_pimage->g()->draw({ ::point(iImage * 48,0), ::size(48, 48) }, pimage->get_graphics());
             m_pilHover[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_blend);
 
          }
@@ -883,10 +883,10 @@ namespace user
             pimage->create(d->size());
             pimage->fill(255, colorref_get_r_value(crBk), colorref_get_g_value(crBk), colorref_get_b_value(crBk));
             pimage->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_blend);
-            pimage->get_graphics()->draw(::point(), d->get_graphics(), d->size());
+            pimage->get_graphics()->draw(d->size(), d->get_graphics());
             pimage->get_graphics()->fill_solid_rect_dim(0, 0, d->size().cx, d->size().cy, ARGB(123, colorref_get_r_value(crBk), colorref_get_g_value(crBk), colorref_get_b_value(crBk)));
             m_pil[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_set);
-            m_pil[iSize]->m_pimage->g()->draw(d->rect().top_left(), pimage->get_graphics(), ::rect(d->rect().size()));
+            m_pil[iSize]->m_pimage->g()->draw(d->rect(), pimage->get_graphics());
             m_pil[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_blend);
 
          }

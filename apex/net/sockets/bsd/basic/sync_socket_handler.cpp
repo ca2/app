@@ -121,22 +121,22 @@ namespace sockets
 
       }
 
-      u32 uiLen = 0;
+      u32 uLen = 0;
 
-      if (read(&uiLen, 4) != 4)
+      if (read(&uLen, 4) != 4)
       {
 
          __throw(::exception::exception());
 
       }
 
-      uiLen = ntohl((u_long) uiLen);
+      uLen = ntohl((u_long) uLen);
 
       memory memory;
 
-      memory.set_size(uiLen);
+      memory.set_size(uLen);
 
-      if (read(memory, uiLen) != uiLen)
+      if (read(memory, uLen) != uLen)
       {
 
          __throw(::exception::exception());
@@ -152,10 +152,10 @@ namespace sockets
    {
       if(iTimeout < 0)
          iTimeout = m_iDefaultTimeout;
-      strsize uiLen = strlen(xml_payload);
-      u32 wf_total_length = htonl((u_long) uiLen);
+      strsize uLen = strlen(xml_payload);
+      u32 wf_total_length = htonl((u_long) uLen);
       write(&wf_total_length, 4);
-      write( (char *) xml_payload, (i32) uiLen);
+      write( (char *) xml_payload, (i32) uLen);
    }
 
 } // namespace sockets

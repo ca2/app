@@ -139,7 +139,7 @@ public:
    inline size_type operator -(double d) const noexcept { return size_type((UNIT_TYPE)(this->cx - d), (UNIT_TYPE)(this->cy - d)); }
 
 
-   inline size_type half_away(const size_type& size) { return (*this - size) / (UNIT_TYPE) 2; }
+   inline size_type half_away(const size_type& size) { return size_type((this->cx - size.cx) / (UNIT_TYPE) 2, (this->cy - size.cy) / (UNIT_TYPE)2); }
 
    inline bool operator==(::std::nullptr_t) const noexcept { return ::is_size_null(this); }
    inline bool operator!=(::std::nullptr_t) const noexcept { return !operator==(nullptr); }

@@ -20,13 +20,12 @@ namespace html
 
             pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
             
-            if(m_pimage)
+            if (m_pimage)
             {
 
                m_pimage->defer_realize(pgraphics);
 
-               pgraphics->draw(::point((LONG) left(),(LONG) top()),
-                                 m_pimage->get_graphics(), ::rect(m_pimage->size()));
+               pgraphics->draw({::point((LONG)left(), (LONG)top()), m_pimage->size()},m_pimage->get_graphics());
                
             }
 

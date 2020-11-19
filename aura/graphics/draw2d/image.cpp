@@ -477,33 +477,28 @@ bool image::stretch(::draw2d::graphics * pgraphics)
 bool image::stretch(const ::image * pimage)
 {
 
-   return g()->stretch(::rect(this->size()), pimage->g(), ::rect(pimage->size()));
+   auto pgraphics = get_graphics();
+
+   if (::is_null(pgraphics))
+   {
+
+      return false;
+
+   }
+
+   if (this->size().is_empty())
+   {
+
+      return false;
+
+   }
+
+   return pgraphics->stretch(this->size(), pimage->g(), pimage->size());
 
 }
 
 
-
-//bool image::from(::draw2d::graphics * pgraphics, const ::size & size)
-//{
-//
-//   UNREFERENCED_PARAMETER(pgraphics);
-//
-//   ::exception::throw_interface_only();
-//
-//   return false;
-//
-//}
-
-
-//bool image::from(const ::point & pointDst, ::draw2d::graphics * pgraphics, const ::point & pointSrc, const ::size & size)
-//{
-//
-//   return get_graphics()->from(pointDst, size, pgraphics, pointSrc) != FALSE;
-//
-//}
-
-
-bool image::draw(const ::point & pointDstParam, ::image * pimageSrc, const ::rect & rectSrcParam)
+bool image::draw(const ::rect & rectDstParam, ::image * pimageSrc, const ::point & pointSrcParam)
 {
 
    ::image * pimageDst = this;
@@ -525,7 +520,7 @@ bool image::draw(const ::point & pointDstParam, ::image * pimageSrc, const ::rec
 
       get_graphics()->set_alpha_mode(m_ealphamode);
 
-      return get_graphics()->draw(pointDstParam, pimageSrc->get_graphics(), rectSrcParam);
+      return get_graphics()->draw(rectDstParam, pimageSrc->get_graphics(), pointSrcParam);
 
    }
 
@@ -533,59 +528,85 @@ bool image::draw(const ::point & pointDstParam, ::image * pimageSrc, const ::rec
 
    pimageSrc->map();
 
-   ::point pointDst(pointDstParam);
+   ::rect rectDst(rectDstParam);
 
-   ::point pointSrc(rectSrcParam.top_left());
+   ::point pointSrc(pointSrcParam);
 
-   ::size size(rectSrcParam.size());
-
-   pointDst += m_point;
+   rectDst += m_point;
 
    if (pointSrc.x < 0)
    {
-      pointDst.x -= pointSrc.x;
+      
+      rectDst.left -= pointSrc.x;
+      
       pointSrc.x = 0;
+
    }
 
    if (pointSrc.y < 0)
    {
-      pointDst.y -= pointSrc.y;
+      
+      rectDst.top -= pointSrc.y;
+
       pointSrc.y = 0;
+
    }
 
-   if (pointDst.x < 0)
+   if (rectDst.left < 0)
    {
-      size.cx += pointDst.x;
-      pointDst.x = 0;
+
+      rectDst.right += rectDst.left;
+
+      rectDst.left = 0;
+
    }
 
-   if (size.cx < 0)
+   if (rectDst.width() < 0)
+   {
+
       return true;
 
-   if (pointDst.y < 0)
-   {
-      size.cy += pointDst.y;
-      pointDst.y = 0;
    }
 
-   if (size.cy < 0)
+   if (rectDst.top < 0)
+   {
+
+      rectDst.bottom += rectDst.top;
+
+      rectDst.top = 0;
+
+   }
+
+   if (rectDst.height() < 0)
+   {
+
       return true;
 
-   int xEnd = min(size.cx, min(pimageSrc->width() - pointSrc.x, pimageDst->width() - pointDst.x));
+   }
 
-   int yEnd = min(size.cy, min(pimageSrc->height() - pointSrc.y, pimageDst->height() - pointDst.y));
+   int xEnd = min(rectDst.width(), min(pimageSrc->width() - pointSrc.x, pimageDst->width() - rectDst.left));
+
+   int yEnd = min(rectDst.height(), min(pimageSrc->height() - pointSrc.y, pimageDst->height() - rectDst.top));
 
    if (xEnd < 0)
+   {
+
       return false;
 
+   }
+
    if (yEnd < 0)
+   {
+
       return false;
+
+   }
 
    i32 scanDst = pimageDst->m_iScan;
 
    i32 scanSrc = pimageSrc->m_iScan;
 
-   u8 * pdst = &((u8 *)pimageDst->colorref())[scanDst * pointDst.y + pointDst.x * sizeof(color32_t)];
+   u8 * pdst = &((u8 *)pimageDst->colorref())[scanDst * rectDst.top + rectDst.left * sizeof(color32_t)];
 
    u8 * psrc = &((u8 *)pimageSrc->colorref())[scanSrc * pointSrc.y + pointSrc.x * sizeof(color32_t)];
 
@@ -621,7 +642,7 @@ bool image::draw(const ::point & pointDstParam, ::image * pimageSrc, const ::rec
 }
 
 
-bool image::draw(const ::point & pointDstParam, ::image * pimageSrc, const ::rect & rectSrcParam, byte bA)
+bool image::draw(const ::rect & rectDstParam, ::image * pimageSrc, const ::point & pointSrcParam, byte bA)
 {
 
    ::image * pimageDst = this;
@@ -630,18 +651,18 @@ bool image::draw(const ::point & pointDstParam, ::image * pimageSrc, const ::rec
 
    pimageSrc->map();
 
-   ::point pointDst(pointDstParam);
+   ::rect rectDst(rectDstParam);
 
-   ::point pointSrc(rectSrcParam.top_left());
+   ::point pointSrc(pointSrcParam);
 
-   ::size size(rectSrcParam.size());
+   ::size size(rectDst.size());
 
-   pointDst += m_point;
+   rectDst +=m_point;
 
    if (pointSrc.x < 0)
    {
 
-      pointDst.x -= pointSrc.x;
+      rectDst.left-= pointSrc.x;
 
       pointSrc.x = 0;
 
@@ -650,18 +671,18 @@ bool image::draw(const ::point & pointDstParam, ::image * pimageSrc, const ::rec
    if (pointSrc.y < 0)
    {
 
-      pointDst.y -= pointSrc.y;
+      rectDst.top -= pointSrc.y;
 
       pointSrc.y = 0;
 
    }
 
-   if (pointDst.x < 0)
+   if (rectDst.left < 0)
    {
 
-      size.cx += pointDst.x;
+      size.cx += rectDst.left;
 
-      pointDst.x = 0;
+      rectDst.left = 0;
 
    }
 
@@ -672,12 +693,12 @@ bool image::draw(const ::point & pointDstParam, ::image * pimageSrc, const ::rec
 
    }
 
-   if (pointDst.y < 0)
+   if (rectDst.top < 0)
    {
 
-      size.cy += pointDst.y;
+      size.cy += rectDst.top;
 
-      pointDst.y = 0;
+      rectDst.top = 0;
 
    }
 
@@ -688,9 +709,9 @@ bool image::draw(const ::point & pointDstParam, ::image * pimageSrc, const ::rec
 
    }
 
-   int xEnd = min(size.cx, min(pimageSrc->width() - pointSrc.x, pimageDst->width() - pointDst.x));
+   int xEnd = min(size.cx, min(pimageSrc->width() - pointSrc.x, pimageDst->width() - rectDst.left));
 
-   int yEnd = min(size.cy, min(pimageSrc->height() - pointSrc.y, pimageDst->height() - pointDst.y));
+   int yEnd = min(size.cy, min(pimageSrc->height() - pointSrc.y, pimageDst->height() - rectDst.top));
 
    if (xEnd < 0)
    {
@@ -710,7 +731,7 @@ bool image::draw(const ::point & pointDstParam, ::image * pimageSrc, const ::rec
 
    i32 scanSrc = pimageSrc->m_iScan;
 
-   u8 * pdst = &((u8 *)pimageDst->colorref())[scanDst * pointDst.y + pointDst.x * sizeof(color32_t)];
+   u8 * pdst = &((u8 *)pimageDst->colorref())[scanDst * rectDst.top + rectDst.left * sizeof(color32_t)];
 
    u8 * psrc = &((u8 *)pimageSrc->colorref())[scanSrc * pointSrc.y + pointSrc.x * sizeof(color32_t)];
 
@@ -3410,13 +3431,19 @@ bool image::fill_stippled_glass(i32 R, i32 G, i32 B)
 //}
 
 
-bool image::copy(const ::image * pimage)
+bool image::copy(const ::image * pimage, ::eobject eobjectCreate)
 {
 
    if (size() != pimage->size())
    {
 
-      create(pimage->size());
+      create(pimage->size(), eobjectCreate);
+
+   }
+   else
+   {
+
+      m_eobject = eobjectCreate;
 
    }
 
@@ -3838,7 +3865,7 @@ bool image::copy_from(::image * pimage, i32 x, i32 y)
    if (s.area() > 0)
    {
 
-      if (!g()->draw(::point(), pimage, ::rect_dim(x, y, s.cx, s.cy)))
+      if (!g()->draw(s, pimage, { x, y }))
       {
 
          return false;
@@ -6306,7 +6333,7 @@ bool image::_set_mipmap(::draw2d::e_mipmap emipmap)
 
       int y = 0;
 
-      get_graphics()->draw(::point(), pimage->g(), ::rect(::size(cxSource, cySource)));
+      get_graphics()->draw(::size(cxSource, cySource), pimage->g());
 
       while (cx >= 1.0 && cy >= 1.0)
       {

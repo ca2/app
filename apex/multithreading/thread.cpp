@@ -2433,7 +2433,7 @@ void thread::__priority_and_affinity()
 
 #if defined(WINDOWS_DESKTOP) || defined(LINUX)
 
-      int_bool bOk = ::SetThreadAffinityMask(m_hthread, m_uThreadAffinityMask) != 0;
+      int_bool bOk = ::SetThreadAffinityMask(m_hthread, (DWORD_PTR) m_uThreadAffinityMask) != 0;
 
       if (bOk)
       {

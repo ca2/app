@@ -62,7 +62,7 @@ void image_frame::_001Process(::image * pimageCompose, ::image * pimageFrame, im
 
          //pimageCompose->g()->set_alpha_mode(::draw2d::alpha_mode_set);
 
-         pimageCompose->stretch(pimageFrame);
+         pimageCompose->copy(pimageFrame, 0);
 
       }
       else
@@ -118,7 +118,7 @@ void image_frame::_001Process(::image * pimageCompose, ::image * pimageFrame, im
         }*/
 
 
-   m_pimage->stretch(pimageCompose);
+   m_pimage->copy(pimageCompose, 0);
 
    m_pimage->create_helper_map();
 

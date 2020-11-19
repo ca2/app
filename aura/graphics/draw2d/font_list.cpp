@@ -214,7 +214,7 @@ namespace draw2d
 
          }
 
-         pgraphics->stretch(pbox->m_rect, pbox->m_pimage->g());
+         pgraphics->draw(pbox->m_rect, pbox->m_pimage);
 
       }
 
@@ -242,7 +242,7 @@ namespace draw2d
 
             }
 
-            pgraphics->stretch(pbox->m_rect, pbox->m_pimage->g());
+            pgraphics->draw(pbox->m_rect, pbox->m_pimage);
 
          }
 
@@ -272,7 +272,7 @@ namespace draw2d
 
             }
 
-            pgraphics->stretch(pbox->m_rect, pbox->m_pimage->g());
+            pgraphics->draw(pbox->m_rect, pbox->m_pimage);
 
          }
 
@@ -390,7 +390,7 @@ namespace draw2d
 
          }
 
-         pgraphics->stretch(pbox->m_rect, pbox->m_pimage->g());
+         pgraphics->draw(pbox->m_rect, pbox->m_pimage);
 
       }
 

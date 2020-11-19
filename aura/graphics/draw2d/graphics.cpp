@@ -1029,10 +1029,10 @@ namespace draw2d
    }
 
 
-   bool graphics::draw(const ::point & point, icon * picon, const ::size & size)
+   bool graphics::draw(const ::point & pointDst, icon * picon, const ::size & size)
    {
 
-      return draw(point, picon->get_image(size), size);
+      return draw(::rect(pointDst, size), picon->get_image(size));
 
    }
 
@@ -1648,7 +1648,7 @@ namespace draw2d
 
       auto pimage = pcursor->m_pimage;
 
-      return draw(pointDst, pimage->g(), {::point(), pimage->size()});
+      return draw(::rect(pointDst, pimage->size()), pimage->g());
 
    }
 
@@ -1676,47 +1676,71 @@ namespace draw2d
    //}
 
    
-   bool graphics::draw(const ::point & pointDst, ::image * pimage, const ::point & pointSrc)
+   bool graphics::draw_at(const ::point & pointDst, ::image * pimage)
    {
 
-      return draw(pointDst, pimage->g(), pointSrc);
+      return draw(::rect(pointDst, pimage->get_size()), pimage->g());
 
    }
 
 
-   bool graphics::draw(const ::point & pointDst, ::image_frame * pframe, const ::point & pointSrc)
+   bool graphics::draw_at(const ::point & pointDst, ::image_frame * pframe)
    {
 
-      return draw(pointDst, pframe->m_pimage, pointSrc);
+      return draw_at(pointDst, pframe->m_pimage);
 
    }
 
 
-   bool graphics::draw(const ::point & pointDst, ::draw2d::graphics * pgraphicsSrc, const ::point & pointSrc)
+   bool graphics::draw_at(const ::point & pointDst, ::draw2d::graphics * pgraphics)
    {
 
-      return draw(pointDst, pgraphicsSrc, { pointSrc, pgraphicsSrc->get_size() });
+      return draw_at(pointDst, pgraphics->m_pimage);
 
    }
 
 
-   bool graphics::draw(const ::point & pointDst, ::image * pimage, const ::rect & rectSrc)
+   bool graphics::draw(::image * pimage, const ::point & pointSrc)
    {
 
-      return draw(pointDst, pimage->g(), rectSrc);
+      return draw(::rect(::point(), pimage->get_size() - pointSrc), pimage, pointSrc);
 
    }
 
 
-   bool graphics::draw(const ::point & pointDst, ::image_frame * pframe, const ::rect & rectSrc)
+   bool graphics::draw(::image_frame * pframe, const ::point & pointSrc)
    {
 
-      return draw(pointDst, pframe->m_pimage, rectSrc);
+      return draw(pframe->m_pimage, pointSrc);
 
    }
 
 
-   bool graphics::draw(const ::point & pointDstParam, ::draw2d::graphics * pgraphicsSrc, const ::rect & rectSrcParam)
+   bool graphics::draw(::draw2d::graphics * pgraphicsSrc, const ::point & pointSrc)
+   {
+
+      return draw(pgraphicsSrc->m_pimage, pointSrc);
+
+   }
+
+   
+   bool graphics::draw(const ::rect & rectDst, ::image * pimage, const ::point & pointSrc)
+   {
+
+      return draw(rectDst, pimage->g(), pointSrc);
+
+   }
+
+
+   bool graphics::draw(const ::rect & rectDst, ::image_frame * pframe, const ::point & pointSrc)
+   {
+
+      return draw(rectDst, pframe->m_pimage, pointSrc);
+
+   }
+
+
+   bool graphics::draw(const ::rect & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::point & pointSrc)
    {
 
       if (::is_null(pgraphicsSrc))
@@ -1726,119 +1750,14 @@ namespace draw2d
 
       }
 
-      //::rect rectDst(rectDstParam);
-
-      //::rect rectSrc(rectSrcParam);
-
-      //sync_lock slSource(pgraphicsSrc->mutex());
-
-      //i32 xDst = rectDst.left;
-
-      //i32 yDst = rectDst.top;
-
-      //i32 xSrc = rectSrc.left;
-      //
-      //i32 ySrc = rectSrc.top;
-
-      //i32 nDstWidth = rectDst.width();
-
-      //i32 nDstHeight = rectDst.height();
-
-      //i32 nSrcWidth = rectSrc.width();
-
-      //i32 nSrcHeight = rectSrc.height();
-
-      //if(m_bPat)
-      //{
-
-      //   if(::is_set(pgraphicsSrc->m_pimage) && pgraphicsSrc->m_pimage->is_ok())
-      //   {
-
-      //      int xs = 0;
-
-      //      int ys = 0;
-
-      //      i32 w1 = pgraphicsSrc->m_pimage->width();
-
-      //      i32 h1 = pgraphicsSrc->m_pimage->height();
-
-      //      i32 w0 = w1 - xSrc;
-
-      //      i32 h0 = h1 - ySrc;
-
-      //      int w = w0;
-
-      //      int h = h0;
-
-      //      for(int i = 0; i < nWidth; i += w)
-      //      {
-
-      //         if(i == 0)
-      //         {
-
-      //            w = w0;
-
-      //            xs = xSrc;
-
-      //         }
-      //         else
-      //         {
-
-      //            w = w1;
-
-      //            xs = 0;
-
-      //         }
-
-      //         for(int j = 0; j < nHeight; j += h)
-      //         {
-
-      //            if(j == 0)
-      //            {
-
-      //               h = h0;
-
-      //               ys = ySrc;
-
-      //            }
-      //            else
-      //            {
-
-      //               h = h1;
-
-      //               ys = 0;
-
-      //            }
-
-      //            if (!draw_image_blend(::rect_dim( x + i, y + j, w, h ), pgraphicsSrc, { xs, ys }))
-      //            {
-
-      //               if (!draw_image_raw(::rect_dim(x + i, y + j, w, h), pgraphicsSrc, { xs, ys }))
-      //               {
-
-      //               }
-
-      //            }
-
-
-      //         }
-
-      //      }
-
-      //      return true;
-
-      //   }
-
-      //}
-
-      if (draw_blend(pointDstParam, pgraphicsSrc, rectSrcParam))
+      if (draw_blend(rectDst, pgraphicsSrc, pointSrc))
       {
 
          return true;
 
       }
 
-      if (draw_raw(pointDstParam, pgraphicsSrc, rectSrcParam))
+      if (draw_raw(rectDst, pgraphicsSrc, pointSrc))
       {
 
          return true;
@@ -1850,142 +1769,7 @@ namespace draw2d
    }
 
 
-
-   //bool graphics::draw_image(const ::rect & rectDstParam, ::draw2d::graphics * pgraphicsSrc, const ::rect & rectSrcParam)
-   //{
-
-   //   if(::is_null(pgraphicsSrc))
-   //   {
-
-   //      return false;
-
-   //   }
-
-   //   //::rect rectDst(rectDstParam);
-
-   //   //::rect rectSrc(rectSrcParam);
-
-   //   //sync_lock slSource(pgraphicsSrc->mutex());
-
-   //   //i32 xDst = rectDst.left;
-
-   //   //i32 yDst = rectDst.top;
-
-   //   //i32 xSrc = rectSrc.left;
-   //   //
-   //   //i32 ySrc = rectSrc.top;
-
-   //   //i32 nDstWidth = rectDst.width();
-
-   //   //i32 nDstHeight = rectDst.height();
-
-   //   //i32 nSrcWidth = rectSrc.width();
-
-   //   //i32 nSrcHeight = rectSrc.height();
-
-   //   //if(m_bPat)
-   //   //{
-
-   //   //   if(::is_set(pgraphicsSrc->m_pimage) && pgraphicsSrc->m_pimage->is_ok())
-   //   //   {
-
-   //   //      int xs = 0;
-
-   //   //      int ys = 0;
-
-   //   //      i32 w1 = pgraphicsSrc->m_pimage->width();
-
-   //   //      i32 h1 = pgraphicsSrc->m_pimage->height();
-
-   //   //      i32 w0 = w1 - xSrc;
-
-   //   //      i32 h0 = h1 - ySrc;
-
-   //   //      int w = w0;
-
-   //   //      int h = h0;
-
-   //   //      for(int i = 0; i < nWidth; i += w)
-   //   //      {
-
-   //   //         if(i == 0)
-   //   //         {
-
-   //   //            w = w0;
-
-   //   //            xs = xSrc;
-
-   //   //         }
-   //   //         else
-   //   //         {
-
-   //   //            w = w1;
-
-   //   //            xs = 0;
-
-   //   //         }
-
-   //   //         for(int j = 0; j < nHeight; j += h)
-   //   //         {
-
-   //   //            if(j == 0)
-   //   //            {
-
-   //   //               h = h0;
-
-   //   //               ys = ySrc;
-
-   //   //            }
-   //   //            else
-   //   //            {
-
-   //   //               h = h1;
-
-   //   //               ys = 0;
-
-   //   //            }
-
-   //   //            if (!draw_image_blend(::rect_dim( x + i, y + j, w, h ), pgraphicsSrc, { xs, ys }))
-   //   //            {
-
-   //   //               if (!draw_image_raw(::rect_dim(x + i, y + j, w, h), pgraphicsSrc, { xs, ys }))
-   //   //               {
-
-   //   //               }
-
-   //   //            }
-
-
-   //   //         }
-
-   //   //      }
-
-   //   //      return true;
-
-   //   //   }
-
-   //   //}
-
-   //   if (draw_image_blend(rectDstParam, pgraphicsSrc, rectSrcParam))
-   //   {
-
-   //      return true;
-
-   //   }
-
-   //   if (draw_image_raw(rectDstParam, pgraphicsSrc, rectSrcParam))
-   //   {
-
-   //      return true;
-
-   //   }
-
-   //   return false;
-
-   //}
-
-
-   bool graphics::draw_raw(const ::point & pointDst, ::draw2d::graphics * pgraphicsSrc, const ::rect & rectSrc)
+   bool graphics::draw_raw(const ::rect & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::point & pointSrc)
    {
 
       return false;
@@ -1993,93 +1777,8 @@ namespace draw2d
    }
 
 
-   bool graphics::draw_blend(const ::point & pointDst, ::draw2d::graphics * pgraphicsSrc, const ::rect & rectSrc)
+   bool graphics::draw_blend(const ::rect & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::point & pointSrc)
    {
-
-//      ::rect rect(rectParam);
-//
-//      ::point point(pointParam);
-//
-//      // return ::draw2d::graphics::BitBltAlphaBlend(x, y, nWidth, nHeight, pgraphicsSrc, xSrc, ySrc);
-//
-//      if (m_pimageAlphaBlend)
-//      {
-//
-//         // Reference implementation
-//
-//         if (rect.left < 0)
-//         {
-//
-//            point.x -= rect.left;
-//
-//            rect.right += rect.left;
-//
-//            rect.left = 0;
-//
-//         }
-//
-//         if (rect.top < 0)
-//         {
-//
-//            point.y -= rect.top;
-//
-//            rect.bottom += rect.top;
-//
-//            rect.top = 0;
-//
-//         }
-//
-//         ::rect rectIntersect(m_pointAlphaBlend, m_pimageAlphaBlend->get_size());
-//
-//         if (rectIntersect.intersect(rectIntersect, rect))
-//         {
-//
-//            // The following commented out code does not work well when there is clipping
-//            // and some calculations are not precise
-//            //if (m_pimage != nullptr && pgraphicsSrc->m_pimage != nullptr)
-//            //{
-//
-//            //   const ::point & pointOff = GetViewportOrg();
-//
-//            //   x += pointOff.x;
-//
-//            //   y += pointOff.y;
-//
-//            //   return m_ppimage->blend(::point(x, y), pgraphicsSrc->m_pimage, ::point(xSrc, ySrc), m_pimageAlphaBlend, point(m_pointAlphaBlend.x - x, m_pointAlphaBlend.y - y), rectBlt.size());
-//
-//            //}
-//            //else
-//            {
-//
-//               ::image_pointer pimage1;
-////#ifdef _UWP
-////               g_pimagea.add(pimage1);
-////#endif
-//
-//               pimage1 = create_image(rect.size());
-//
-//               pimage1->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
-//
-//               if (!pimage1->from(nullptr, pgraphicsSrc, point, rect.size()))
-//                  return false;
-//
-//               pimage1->blend(::point(), m_pimageAlphaBlend,
-//                  {
-//                     (int)max(0, rect.left - m_pointAlphaBlend.x),
-//                     (int)max(0, rect.top - m_pointAlphaBlend.y)
-//                  }, rect.size());
-//
-//               draw_image(rect, pimage1->get_graphics());
-//
-//            }
-//
-//            return true;
-//
-//         }
-//
-//
-//
-//      }
 
       return false;
 
@@ -2212,7 +1911,7 @@ namespace draw2d
    bool graphics::stretch(const ::rect & rectDst, ::image * pimage, const ::rect & rectSrc)
    {
 
-      return stretch(rectDst, pimage->g(), rectSrc);
+      return stretch(rectDst, pimage->g(), rectSrc.is_null() ? pimage->rect() : rectSrc);
 
    }
 
@@ -5041,7 +4740,7 @@ namespace draw2d
          if (nSrcHeight == nDstHeight && nSrcWidth == nDstWidth)
          {
 
-            return draw(::point(xDst, yDst), pgraphicsSrc, ::rect_dim(xSrc, ySrc, nDstWidth, nDstHeight));
+            return draw(::rect_dim(xDst, yDst, nDstWidth, nDstHeight), pgraphicsSrc, { xSrc, ySrc });
 
          }
          else
@@ -5133,7 +4832,7 @@ namespace draw2d
          if (nSrcHeight == nDstHeight && nSrcWidth == nDstWidth)
          {
 
-            return draw(::point(xDst, yDst), pimage, ::rect_dim(xSrc, ySrc, nDstWidth, nDstHeight));
+            return draw(::rect(xDst, yDst, nDstWidth, nDstHeight), pimage, {xSrc, ySrc});
 
          }
          else
@@ -5212,7 +4911,7 @@ namespace draw2d
 
             }
 
-            if (!pimage1->draw(::point(), pgraphicsSrc->m_pimage, { pointSrc, size }))
+            if (!pimage1->draw(size, pgraphicsSrc->m_pimage, pointSrc))
             {
 
                return false;
@@ -5230,9 +4929,9 @@ namespace draw2d
 
             pimage2->fill(255, 0, 0, 0);
 
-            pimage2->g()->draw(point(max(0, m_pointAlphaBlend.x - xDest), max(0, m_pointAlphaBlend.y - yDest)),
+            pimage2->g()->draw({ point(max(0, m_pointAlphaBlend.x - xDest), max(0, m_pointAlphaBlend.y - yDest)), size },
                         m_pimageAlphaBlend->get_graphics(),
-               { point(max(0, xDest - m_pointAlphaBlend.x), max(0, yDest - m_pointAlphaBlend.y)), size });
+               point(max(0, xDest - m_pointAlphaBlend.x), max(0, yDest - m_pointAlphaBlend.y)));
 
             pimage1->channel_multiply(::color::channel_alpha, pimage2);
 
@@ -6411,7 +6110,7 @@ namespace draw2d
 
          }
 
-         pimage->fill(0,0,0,0);
+         pimage->fill(0, 0, 0, 0);
 
          double dStep = 0.125;
          double dPeriod = 7.0;
@@ -6430,49 +6129,49 @@ namespace draw2d
 
          auto wscan = scan / sizeof(color32_t);
 
-         for(double dx = 0; dx < w; dx+=dStep)
+         for (double dx = 0; dx < w; dx += dStep)
          {
-            dCircleX = fmod(dx,(double)(dPeriod)) ;
-            double dSign = dCircleX < (dPeriod / 2.0)? 1.0 : -1.0;
+            dCircleX = fmod(dx, (double)(dPeriod));
+            double dSign = dCircleX < (dPeriod / 2.0) ? 1.0 : -1.0;
             dCircleX -= dPeriod / 2.0;
             dTint = dBaseTint * 0.51;
-            dCircleY = dSign*sqrt(dPeriod *dPeriod / 4.0 - dCircleX*dCircleX) * 0.05;
+            dCircleY = dSign * sqrt(dPeriod * dPeriod / 4.0 - dCircleX * dCircleX) * 0.05;
             {
-               double dy = (sin((double)dx * 2.0 * 3.1415 / dPeriod) - fmod(dx,(double)(dPeriod / 2.0)) / (dPeriod * dCurl)) + dCircleY;
+               double dy = (sin((double)dx * 2.0 * 3.1415 / dPeriod) - fmod(dx, (double)(dPeriod / 2.0)) / (dPeriod * dCurl)) + dCircleY;
                ;
                dy = (dy * dHalfH + dH - dHSpan);
                int x = (int)round(dx);
                int y = (int)round(dy);
-               if(x < 0 || y < 0 || x >= pimage->width() || y >= pimage->height())
+               if (x < 0 || y < 0 || x >= pimage->width() || y >= pimage->height())
                {
                }
                else
                {
                   int A = (colorref[x + wscan * y] >> 24) & 0xff;
-                  double fy = 1.0 - fmod(fabs(dy),1.0);
-                  double fx = 1.0 - fmod(fabs(dx),1.0);
-                  A = (int) (A + ((fx * fy) * 255.0 * dStep*dTint));
-                  A = min(A,255);
-                  colorref[x + wscan * y] =  ARGB((A * iA) / 255, iB, iG, iR);
+                  double fy = 1.0 - fmod(fabs(dy), 1.0);
+                  double fx = 1.0 - fmod(fabs(dx), 1.0);
+                  A = (int)(A + ((fx * fy) * 255.0 * dStep * dTint));
+                  A = min(A, 255);
+                  colorref[x + wscan * y] = ARGB((A * iA) / 255, iB, iG, iR);
                }
             }
             dTint = dBaseTint * 0.51;
             {
-               double dy = (sin((double)dx * 2.0 * 3.1415 / dPeriod) - fmod(dx,(double)(dPeriod / 2.0)) / (dPeriod * dCurl)) + dCircleY;
+               double dy = (sin((double)dx * 2.0 * 3.1415 / dPeriod) - fmod(dx, (double)(dPeriod / 2.0)) / (dPeriod * dCurl)) + dCircleY;
                dy = (dy * dHalfH + dH + dHSpan);
                int x = (int)round(dx);
                int y = (int)round(dy);
-               if(x < 0 || y < 0 || x >= pimage->width() || y >= pimage->height())
+               if (x < 0 || y < 0 || x >= pimage->width() || y >= pimage->height())
                {
                }
                else
                {
                   int A = (colorref[x + wscan * y] >> 24) & 0xff;
-                  double fy = 1.0 - fmod(fabs(dy),1.0);
-                  double fx = 1.0 - fmod(fabs(dx),1.0);
-                  A = (int) (A + ((fx * fy) * 255.0 * dStep*dTint));
-                  A = min(A,255);
-                  colorref[x + wscan * y] =  ARGB((A * iA) / 255, iB, iG, iR);
+                  double fy = 1.0 - fmod(fabs(dy), 1.0);
+                  double fx = 1.0 - fmod(fabs(dx), 1.0);
+                  A = (int)(A + ((fx * fy) * 255.0 * dStep * dTint));
+                  A = min(A, 255);
+                  colorref[x + wscan * y] = ARGB((A * iA) / 255, iB, iG, iR);
                }
 
             }
@@ -6480,21 +6179,21 @@ namespace draw2d
             dTint = dBaseTint * 2.3;
 
             {
-               double dy = (sin((double)dx * 2.0 * 3.1415 / dPeriod) - fmod(dx,(double)(dPeriod / 2.0)) / (dPeriod * dCurl)) + dCircleY;
+               double dy = (sin((double)dx * 2.0 * 3.1415 / dPeriod) - fmod(dx, (double)(dPeriod / 2.0)) / (dPeriod * dCurl)) + dCircleY;
                dy = (dy * dHalfH + dH);
                int x = (int)round(dx);
                int y = (int)round(dy);
-               if(x < 0 || y < 0 || x >= pimage->width() || y >= pimage->height())
+               if (x < 0 || y < 0 || x >= pimage->width() || y >= pimage->height())
                {
                }
                else
                {
                   int A = (colorref[x + wscan] >> 24) & 0xff;
-                  double fy = 1.0 - fmod(fabs(dy),1.0);
-                  double fx = 1.0 - fmod(fabs(dx),1.0);
-                  A = (int) (A + ((fx * fy) * 255.0 * dStep*dTint));
-                  A = min(A,255);
-                  colorref[x + wscan * y] =  ARGB((A * iA) / 255, iB, iG, iR);
+                  double fy = 1.0 - fmod(fabs(dy), 1.0);
+                  double fx = 1.0 - fmod(fabs(dx), 1.0);
+                  A = (int)(A + ((fx * fy) * 255.0 * dStep * dTint));
+                  A = min(A, 255);
+                  colorref[x + wscan * y] = ARGB((A * iA) / 255, iB, iG, iR);
 
                }
 
@@ -6504,7 +6203,7 @@ namespace draw2d
 
          set_alpha_mode(::draw2d::alpha_mode_blend);
 
-         draw(::point(x1, h), pimage->get_graphics(), { ::point(), pimage->size() });
+         draw({::point(x1, h), pimage->size() }, pimage->get_graphics());
 
       }
 

@@ -177,7 +177,7 @@ namespace imaging_wic
 
             __defer_construct(pimageFrame);
 
-            estatus = pimageFrame->create(pframea->m_size);
+            estatus = pimageFrame->create(pframea->m_size, 0);
 
             if (!estatus)
             {

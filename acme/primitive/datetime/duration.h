@@ -6,17 +6,6 @@ class CLASS_DECL_ACME duration
 public:
 
 
-   //enum e_duration
-   //{
-
-     // duration_finite,
-      //duration_dirac,
-      //duration_infinite,
-
-      //-1seconds = infinite
-   //};
-
-
    enum enum_unit
    {
 

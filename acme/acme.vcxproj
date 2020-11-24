@@ -1432,6 +1432,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="platform\math.cpp" />
     <ClCompile Include="platform\message_box.cpp" />
     <ClCompile Include="platform\muldiv64.cpp" />
+    <ClCompile Include="platform\nano_timer.cpp" />
     <ClCompile Include="platform\net.cpp" />
     <ClCompile Include="platform\obj_ref_dbg.cpp" />
     <ClCompile Include="platform\obj_typ_ctr.cpp" />

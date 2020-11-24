@@ -155,11 +155,11 @@ mutex::mutex(enum_create_new, bool bInitiallyOwn, const char * pstrName, LPSECUR
 
 #ifdef ANDROID
 
-         strName = ::file::path(System.m_pandroidinitdata->m_pszCacheDir) / "payload/tmp" / strName;
+         strName = ::file::path(System.m_pandroidinitdata->m_pszCacheDir) / "var/tmp" / strName;
 
 #else
 
-         strName = "/payload/tmp" / strName;
+         strName = "/var/tmp" / strName;
 
 #endif
 
@@ -1660,7 +1660,6 @@ CLASS_DECL_ACME mutex * get_ui_destroyed_mutex()
 
 null_dacl_security_attributes::null_dacl_security_attributes()
 {
-
 
    xxf_zero(m_securityattributes);
 

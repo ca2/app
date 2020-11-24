@@ -118,4 +118,13 @@ CLASS_DECL_ACME void output_debug_string(const char * psz);
 CLASS_DECL_ACME void output_debug_string(const wchar_t * psz);
 
 
+CLASS_DECL_ACME void sleep(const ::duration & duration);
+
+
+CLASS_DECL_ACME void secs_sleep(const ::secs & secs);
+CLASS_DECL_ACME void millis_sleep(const millis & millis);
+CLASS_DECL_ACME void micros_sleep(const micros & micros);
+CLASS_DECL_ACME void nanos_sleep(const nanos & nanos);
+
+
 

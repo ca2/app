@@ -42,7 +42,7 @@ CLASS_DECL_ACME i64 __get_tick(void);
 class duration;
 
 
-CLASS_DECL_ACME void millis_sleep(const millis & millis);
+
 
 
 

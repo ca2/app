@@ -167,7 +167,42 @@ void duration::fset(long double d)
 //
 //   ::millis_sleep((::u32)tickDuration);
 //
+
 //}
+
+
+
+
+
+void duration::sleep() const
+{
+
+   if (m_iSeconds >= 20)
+   {
+
+      secs_sleep(m_iSeconds);
+
+   }
+   else if (m_iSeconds > 0 || m_iNanoseconds > 20'000'000)
+   {
+
+      millis_sleep(millis());
+
+   }
+   else if (m_iNanoseconds > 20'000)
+   {
+
+      micro_sleep(micros());
+
+   }
+   else
+   {
+
+      nanos_sleep(nanos());
+
+   }
+
+}
 
 
 

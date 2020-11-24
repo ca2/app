@@ -512,7 +512,7 @@ typedef struct tagNMTBHOTITEM
    ::u32   dwFlags;           // HICF_*
 } NMTBHOTITEM,* LPNMTBHOTITEM;
 
-// Hot item change flags
+// Hot item machine flags
 #define HICF_OTHER          0x00000000
 #define HICF_MOUSE          0x00000001          // Triggered by mouse
 #define HICF_ARROWKEYS      0x00000002          // Triggered by arrow keys

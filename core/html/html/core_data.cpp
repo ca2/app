@@ -638,7 +638,7 @@ namespace html
    }
 
 
-   bool core_data::open_document(const var & varFile)
+   bool core_data::open_document(const payload & varFile)
    {
 
       //i32 iRetry = 0;
@@ -648,17 +648,17 @@ namespace html
    //restart:
 
 
-      //var var;
+      //payload payload;
 
-      //var = 1;
+      //payload = 1;
 
-      //var = 2;
+      //payload = 2;
 
-      //var[0] = 2;
+      //payload[0] = 2;
 
-      //var["element1"] = pelement1;
+      //payload["element1"] = pelement1;
 
-      //var = 3;
+      //payload = 3;
 
       ::file::path pathUrl = varFile.get_file_path();
 
@@ -814,7 +814,7 @@ namespace html
    }
 
 
-   //void core_data::on_before_navigate(var& varFile, u32 nFlags, const char* pszTargetFrameName, byte_array& baPostedData, const char* pszHeaders, bool* pbCancel)
+   //void core_data::on_before_navigate(payload& varFile, u32 nFlags, const char* pszTargetFrameName, byte_array& baPostedData, const char* pszHeaders, bool* pbCancel)
 
    //{
    //   if (m_pcallback != nullptr)

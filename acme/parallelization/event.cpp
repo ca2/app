@@ -13,7 +13,7 @@
 #endif
 #include "acme/os/ansios/_ansios.h"
 
-#ifdef ＿＿MACH__
+#ifdef __MACH__
 #include <mach/clock.h>
 #include <mach/mach.h>
 #endif
@@ -21,7 +21,7 @@
 void clock_getrealtime(struct timespec * pts)
 {
 
-#ifdef ＿＿MACH__ // OS X does not have clock_gettime, use clock_get_time
+#ifdef __MACH__ // OS X does not have clock_gettime, use clock_get_time
 
    clock_serv_t cclock;
    mach_timespec_t mts;
@@ -57,7 +57,7 @@ event::event(char * sz, bool bInitiallyOwn, bool bManualReset, const char * pstr
    if (m_hsync == NULL)
    {
 
-      ＿＿throw(resource_exception());
+      __throw(resource_exception());
 
    }
 
@@ -84,7 +84,7 @@ event::event(char * sz, bool bInitiallyOwn, bool bManualReset, const char * pstr
    if (m_hsync == nullptr)
    {
 
-      ＿＿throw(resource_exception());
+      __throw(resource_exception());
 
    }
 
@@ -107,7 +107,7 @@ event::event(char * sz, bool bInitiallyOwn, bool bManualReset, const char * pstr
       m_pmutex = new pthread_mutex_t;
       if((rc = pthread_mutex_init((pthread_mutex_t *) m_pmutex,&attr)))
       {
-         ＿＿throw(::exception::exception("RC_OBJECT_NOT_CREATED"));
+         __throw(::exception::exception("RC_OBJECT_NOT_CREATED"));
       }
 
 
@@ -370,7 +370,7 @@ bool event::ResetEvent()
    else
    {
 
-      ＿＿throw(::exception::exception("It does not make sense to Reset a Event that is Automatic. It can be only Pulsed/Broadcasted."));
+      __throw(::exception::exception("It does not make sense to Reset a Event that is Automatic. It can be only Pulsed/Broadcasted."));
 
    }
 
@@ -384,7 +384,7 @@ bool event::ResetEvent()
 sync_result event::wait ()
 {
 
-   //＿＿throw(todo("thread"));
+   //__throw(todo("thread"));
    //if(m_eobject & e_object_alertable_wait)
    //{
 
@@ -492,7 +492,7 @@ sync_result event::wait ()
 
 #endif
 
-   //＿＿throw(todo("thread"));
+   //__throw(todo("thread"));
    //if(m_eobject & e_object_alertable_wait)
    //{
 
@@ -519,7 +519,7 @@ sync_result event::wait (const duration & durationTimeout)
 
    sync_result result;
 
-   //＿＿throw(todo("thread"));
+   //__throw(todo("thread"));
    //if(durationTimeout > 1_s && m_eobject & e_object_alertable_wait)
    //{
 
@@ -724,7 +724,7 @@ sync_result event::wait (const duration & durationTimeout)
 
 #endif
 
-   ////＿＿throw(todo("thread"));
+   ////__throw(todo("thread"));
    //if(durationTimeout > 1_s && m_eobject & e_object_alertable_wait)
    //{
 

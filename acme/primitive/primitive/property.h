@@ -13,33 +13,33 @@ namespace xml
 
 string CLASS_DECL_ACME operator + (const char * psz, const property & prop);
 
-var CLASS_DECL_ACME operator - (i32 i, const property & prop);
-var CLASS_DECL_ACME operator - (u32 user, const property & prop);
-var CLASS_DECL_ACME operator - (i64 i, const property & prop);
-var CLASS_DECL_ACME operator - (u64 u, const property & prop);
-var CLASS_DECL_ACME operator - (double d, const property & prop);
-var CLASS_DECL_ACME operator - (const var & var, const property & prop);
+payload CLASS_DECL_ACME operator - (i32 i, const property & prop);
+payload CLASS_DECL_ACME operator - (u32 user, const property & prop);
+payload CLASS_DECL_ACME operator - (i64 i, const property & prop);
+payload CLASS_DECL_ACME operator - (u64 u, const property & prop);
+payload CLASS_DECL_ACME operator - (double d, const property & prop);
+payload CLASS_DECL_ACME operator - (const payload & payload, const property & prop);
 
-var CLASS_DECL_ACME operator + (i32 i, const property & prop);
-var CLASS_DECL_ACME operator + (u32 user, const property & prop);
-var CLASS_DECL_ACME operator + (i64 i, const property & prop);
-var CLASS_DECL_ACME operator + (u64 u, const property & prop);
-var CLASS_DECL_ACME operator + (double d, const property & prop);
-var CLASS_DECL_ACME operator + (const var & var, const property & prop);
+payload CLASS_DECL_ACME operator + (i32 i, const property & prop);
+payload CLASS_DECL_ACME operator + (u32 user, const property & prop);
+payload CLASS_DECL_ACME operator + (i64 i, const property & prop);
+payload CLASS_DECL_ACME operator + (u64 u, const property & prop);
+payload CLASS_DECL_ACME operator + (double d, const property & prop);
+payload CLASS_DECL_ACME operator + (const payload & payload, const property & prop);
 
-var CLASS_DECL_ACME operator / (i32 i, const property & prop);
-var CLASS_DECL_ACME operator / (u32 user, const property & prop);
-var CLASS_DECL_ACME operator / (i64 i, const property & prop);
-var CLASS_DECL_ACME operator / (u64 u, const property & prop);
-var CLASS_DECL_ACME operator / (double d, const property & prop);
-var CLASS_DECL_ACME operator / (const var & var, const property & prop);
+payload CLASS_DECL_ACME operator / (i32 i, const property & prop);
+payload CLASS_DECL_ACME operator / (u32 user, const property & prop);
+payload CLASS_DECL_ACME operator / (i64 i, const property & prop);
+payload CLASS_DECL_ACME operator / (u64 u, const property & prop);
+payload CLASS_DECL_ACME operator / (double d, const property & prop);
+payload CLASS_DECL_ACME operator / (const payload & payload, const property & prop);
 
-var CLASS_DECL_ACME operator * (i32 i, const property & prop);
-var CLASS_DECL_ACME operator * (u32 user, const ::property & prop);
-var CLASS_DECL_ACME operator * (i64 i, const property & prop);
-var CLASS_DECL_ACME operator * (u64 u, const property & prop);
-var CLASS_DECL_ACME operator * (double d, const property & prop);
-var CLASS_DECL_ACME operator * (const var & var, const property & prop);
+payload CLASS_DECL_ACME operator * (i32 i, const property & prop);
+payload CLASS_DECL_ACME operator * (u32 user, const ::property & prop);
+payload CLASS_DECL_ACME operator * (i64 i, const property & prop);
+payload CLASS_DECL_ACME operator * (u64 u, const property & prop);
+payload CLASS_DECL_ACME operator * (double d, const property & prop);
+payload CLASS_DECL_ACME operator * (const payload & payload, const property & prop);
 
 
 //namespace xml
@@ -58,18 +58,18 @@ var CLASS_DECL_ACME operator * (const var & var, const property & prop);
 //} // namespace xml
 
 
-//using property = var;
+//using property = payload;
 
 
-class CLASS_DECL_ACME property : public var
+class CLASS_DECL_ACME property : public payload
 {
 public:
 
 
    using TYPE1 = ::id;
    using ARG_TYPE1 = const ::id &;
-   using TYPE2 = ::var;
-   using ARG_TYPE2 = const ::var &;
+   using TYPE2 = ::payload;
+   using ARG_TYPE2 = const ::payload &;
 
 
    ::id              m_id;
@@ -77,17 +77,17 @@ public:
 
    property() {}
    property(const ::id & id) : m_id(id) {}
-   property(const ::id & id, const var & varValue) : m_id(id), var(varValue) {}
-   property(const ::property & property) : m_id(property.m_id), var(property) {}
-   property(::property && property) : m_id(::move(property.m_id)), var(::move(property)) {}
+   property(const ::id & id, const payload & varValue) : m_id(id), payload(varValue) {}
+   property(const ::property & property) : m_id(property.m_id), payload(property) {}
+   property(::property && property) : m_id(::move(property.m_id)), payload(::move(property)) {}
 
 
-   using var::operator =;
+   using payload::operator =;
 
    ::id& element1() { return m_id; };
    const ::id& element1() const { return m_id; };
-   ::var& element2() { return *this; };
-   const ::var& element2() const { return *this; };
+   ::payload& element2() { return *this; };
+   const ::payload& element2() const { return *this; };
 
    property & operator = (const property & property)
    {
@@ -95,7 +95,7 @@ public:
       if(this != &property)
       {
 
-         var::operator=((const var & )property);
+         payload::operator=((const payload & )property);
 
       }
 
@@ -106,7 +106,7 @@ public:
 
    inline property operator + (const string & str) const { return property(m_id, to_string() + str); }
    inline property operator + (const char * psz) const { return property(m_id, to_string() + psz); }
-   inline property operator + (const property & prop) const { return property(m_id, (const var &) *this + (const var &) prop); }
+   inline property operator + (const property & prop) const { return property(m_id, (const payload &) *this + (const payload &) prop); }
 
 
    ::id name() const { return m_id; }
@@ -117,7 +117,7 @@ public:
 // As of 2019-Nov, property had no base class(es)
 // As of 2020-Jan, property had no base class(es) again
 //    - plus: doesn't matter parent property set? m_ppropertyset
-//class CLASS_DECL_ACME property : public var
+//class CLASS_DECL_ACME property : public payload
 //   //virtual public matter
 //{
 //public:
@@ -127,7 +127,7 @@ public:
 //
 //   //__pointer(property_set)    m_ppropertyset;
 //   ::id                       m_id;
-//   ::var                      m_var;
+//   ::payload                      m_var;
 //
 ////   property() { }
 ////
@@ -142,7 +142,7 @@ public:
 ////   //property(const property * pproperty);
 ////   //property(const ::property * & pproperty) : property(pproperty.m_p) { }
 ////   //pr//operty(property_set * pset, const id & strName);
-////   //property(property_set * pset, const id & strName, const var & var, ::matter * pobject = nullptr);
+////   //property(property_set * pset, const id & strName, const payload & payload, ::matter * pobject = nullptr);
 ////   template < typename VALUE >
 ////   property(const ::id & id, const VALUE & value) : m_id(id), m_var(value) { }
 ////
@@ -176,12 +176,12 @@ public:
 ////      return m_id;
 ////   }
 ////
-////   inline var & element2()
+////   inline payload & element2()
 ////   {
 ////      return m_var;
 ////   }
 ////
-////   inline const var & element2() const
+////   inline const payload & element2() const
 ////   {
 ////      return m_var;
 ////   }
@@ -200,7 +200,7 @@ public:
 
       str += ": ";
 
-      var::get_json(str, bNewLine);
+      payload::get_json(str, bNewLine);
 
       return str;
 
@@ -239,32 +239,32 @@ public:
 ////
 ////
 ////
-////   inline var operator()(const id & id) const { return find_property(id); }
+////   inline payload operator()(const id & id) const { return find_property(id); }
 ////
-////   inline var operator()(const char * pszName) const { return find_property(::id(pszName)); }
+////   inline payload operator()(const char * pszName) const { return find_property(::id(pszName)); }
 ////
-////   inline var operator()(const string & strName) const { return find_property(::id(strName)); }
+////   inline payload operator()(const string & strName) const { return find_property(::id(strName)); }
 ////
-////   inline var operator()(::index iIndex) const { return find_property(::id(iIndex)); }
+////   inline payload operator()(::index iIndex) const { return find_property(::id(iIndex)); }
 ////
 ////   inline bool has_property(const ::id & id) const { return m_etype == type_propset ? has_property(id) : false; }
 ////
 ////   inline property & operator[](const id & id) { return get_property(id); }
-////   inline var operator[](const id & id) const { return find_property(id); }
+////   inline payload operator[](const id & id) const { return find_property(id); }
 ////
 ////   inline property & operator[](const char * pszName) { return get_property(::id(pszName)); }
-////   inline var operator[](const char * pszName) const { return find_property(::id(pszName)); }
+////   inline payload operator[](const char * pszName) const { return find_property(::id(pszName)); }
 ////
 ////   inline property & operator[](const string & strName) { return get_property(::id(strName)); }
-////   inline var operator[](const string & strName) const { return find_property(::id(strName)); }
+////   inline payload operator[](const string & strName) const { return find_property(::id(strName)); }
 ////
 ////   inline property & operator[](::index iIndex) { return get_property(::id(iIndex)); }
-////   inline var operator[](::index iIndex) const { return find_property(::id(iIndex)); }
+////   inline payload operator[](::index iIndex) const { return find_property(::id(iIndex)); }
 ////
 ////#ifdef OS64BIT
 ////
 ////   inline property & operator[](i32 iIndex) { return get_property(::id(iIndex)); }
-////   inline var operator[](i32 iIndex) const { return find_property((::id) iIndex); }
+////   inline payload operator[](i32 iIndex) const { return find_property((::id) iIndex); }
 ////
 ////#endif
 ////
@@ -279,26 +279,26 @@ public:
 ////   bool is_set_false() const;
 ////
 ////
-////   inline var & get_value()
+////   inline payload & get_value()
 ////   {
 ////      return m_var;
 ////   }
-////   inline const var & get_value() const
+////   inline const payload & get_value() const
 ////   {
 ////      return m_var;
 ////   }
-////   inline void set_value(const var & var)
+////   inline void set_value(const payload & payload)
 ////   {
-////      m_var = var;
+////      m_var = payload;
 ////   }
 ////
 ////   void unset();
 ////
 ////
-////   inline void   get_value(var & value);
-////   inline void   get(var & value);
-////   inline var &  get();
-////   inline void   set(const var & var);
+////   inline void   get_value(payload & value);
+////   inline void   get(payload & value);
+////   inline payload &  get();
+////   inline void   set(const payload & payload);
 ////
 ////
 ////   template < typename ENUM >
@@ -388,9 +388,9 @@ public:
 ////      return *this;
 ////   }
 ////
-////   property & operator =(const var & var)
+////   property & operator =(const payload & payload)
 ////   {
-////      m_var = var;
+////      m_var = payload;
 ////      return *this;
 ////   }
 ////
@@ -563,8 +563,8 @@ public:
 ////         release();
 ////         m_str.~string();
 ////         m_id.m_all = prop.m_id.m_all;
-////         ::memcpy_dup(&m_var, &prop, sizeof(var));
-////         ::memset(&prop, 0, sizeof(var));
+////         ::memcpy_dup(&m_var, &prop, sizeof(payload));
+////         ::memset(&prop, 0, sizeof(payload));
 ////      }
 ////
 ////      return *this;
@@ -660,8 +660,8 @@ public:
 ////   inline operator bool &() { return operator bool &(); }
 ////   inline operator bool() const { return operator bool(); }
 ////
-////   var equals_ci_get(const char * pszCompare, var varOnEqual, var varOnDifferent) const;
-////   var equals_ci_get(const char * pszCompare, var varOnEqual) const;
+////   payload equals_ci_get(const char * pszCompare, payload varOnEqual, payload varOnDifferent) const;
+////   payload equals_ci_get(const char * pszCompare, payload varOnEqual) const;
 ////
 ////   ::count get_count() const;
 ////   ::count array_get_count() const;
@@ -677,8 +677,8 @@ public:
 ////
 ////   inline string implode(const char * pszGlue) const;
 ////
-////   var element_at(index iIndex) const;
-////   var at(index iIndex) const;
+////   payload element_at(index iIndex) const;
+////   payload at(index iIndex) const;
 ////
 ////   ::i32 compare_value_ci(const char * psz) const;
 ////
@@ -687,7 +687,7 @@ public:
 ////   ::i32 str_compare(const property & prop) const;
 ////
 ////   bool strict_equal(const property & prop) const;
-////   bool strict_equal(const var & var) const;
+////   bool strict_equal(const payload & payload) const;
 ////   bool strict_equal(const char * psz) const;
 ////   bool strict_equal(const string & str) const;
 ////   bool strict_equal(double d) const;
@@ -695,7 +695,7 @@ public:
 ////   bool strict_equal(bool b) const;
 ////
 ////   bool strict_different(const property & prop) const;
-////   bool strict_different(const var & var) const;
+////   bool strict_different(const payload & payload) const;
 ////   bool strict_different(const char * psz) const;
 ////   bool strict_different(const string & str) const;
 ////   bool strict_different(double d) const;
@@ -703,42 +703,42 @@ public:
 ////   bool strict_different(bool b) const;
 ////
 ////   bool operator == (const property & prop) const;
-////   bool operator == (const var & var) const;
+////   bool operator == (const payload & payload) const;
 ////   bool operator == (const char * psz) const;
 ////   bool operator == (const string & str) const;
 ////   bool operator == (::i32 i) const;
 ////   bool operator == (bool b) const;
 ////
 ////   bool operator != (const property & prop) const;
-////   bool operator != (const var & var) const;
+////   bool operator != (const payload & payload) const;
 ////   bool operator != (const char * psz) const;
 ////   bool operator != (const string & str) const;
 ////   bool operator != (::i32 i) const;
 ////   bool operator != (bool b) const;
 ////
 ////   bool operator < (const property & prop) const;
-////   bool operator < (const var & var) const;
+////   bool operator < (const payload & payload) const;
 ////   bool operator < (const char * psz) const;
 ////   bool operator < (const string & str) const;
 ////   bool operator < (::i32 i) const;
 ////   bool operator < (bool b) const;
 ////
 ////   bool operator <= (const property & prop) const;
-////   bool operator <= (const var & var) const;
+////   bool operator <= (const payload & payload) const;
 ////   bool operator <= (const char * psz) const;
 ////   bool operator <= (const string & str) const;
 ////   bool operator <= (::i32 i) const;
 ////   bool operator <= (bool b) const;
 ////
 ////   bool operator >= (const property & prop) const;
-////   bool operator >= (const var & var) const;
+////   bool operator >= (const payload & payload) const;
 ////   bool operator >= (const char * psz) const;
 ////   bool operator >= (const string & str) const;
 ////   bool operator >= (::i32 i) const;
 ////   bool operator >= (bool b) const;
 ////
 ////   bool operator > (const property & prop) const;
-////   bool operator > (const var & var) const;
+////   bool operator > (const payload & payload) const;
 ////   bool operator > (const char * psz) const;
 ////   bool operator > (const string & str) const;
 ////   bool operator > (::i32 i) const;
@@ -751,43 +751,43 @@ public:
 ////   bool operator >= (::i64 i) const;
 ////   bool operator > (::i64 i) const;
 ////
-////   var operator + (const char * psz) const;
-////   var operator + (const string & str) const;
+////   payload operator + (const char * psz) const;
+////   payload operator + (const string & str) const;
 ////
-////   var operator - (::i32 i) const;
-////   var operator - (::u32 user) const;
-////   var operator - (::i64 i) const;
-////   var operator - (::u64 u) const;
-////   var operator - (double d) const;
-////   var operator - (const var & var) const;
+////   payload operator - (::i32 i) const;
+////   payload operator - (::u32 user) const;
+////   payload operator - (::i64 i) const;
+////   payload operator - (::u64 u) const;
+////   payload operator - (double d) const;
+////   payload operator - (const payload & payload) const;
 ////
-////   var operator + (::i32 i) const;
-////   var operator + (::u32 user) const;
-////   var operator + (::i64 i) const;
-////   var operator + (::u64 u) const;
-////   var operator + (double d) const;
-////   var operator + (const var & var) const;
+////   payload operator + (::i32 i) const;
+////   payload operator + (::u32 user) const;
+////   payload operator + (::i64 i) const;
+////   payload operator + (::u64 u) const;
+////   payload operator + (double d) const;
+////   payload operator + (const payload & payload) const;
 ////
-////   var operator / (::i32 i) const;
-////   var operator / (::u32 user) const;
-////   var operator / (::i64 i) const;
-////   var operator / (::u64 u) const;
-////   var operator / (double d) const;
-////   var operator / (const var & var) const;
+////   payload operator / (::i32 i) const;
+////   payload operator / (::u32 user) const;
+////   payload operator / (::i64 i) const;
+////   payload operator / (::u64 u) const;
+////   payload operator / (double d) const;
+////   payload operator / (const payload & payload) const;
 ////
-////   var operator * (::i32 i) const;
-////   var operator * (::u32 user) const;
-////   var operator * (::i64 i) const;
-////   var operator * (::u64 u) const;
-////   var operator * (double d) const;
-////   var operator * (const var & var) const;
+////   payload operator * (::i32 i) const;
+////   payload operator * (::u32 user) const;
+////   payload operator * (::i64 i) const;
+////   payload operator * (::u64 u) const;
+////   payload operator * (double d) const;
+////   payload operator * (const payload & payload) const;
 ////
 ////   property & operator -= (::i32 i);
 ////   property & operator -= (::u32 user);
 ////   property & operator -= (::i64 i);
 ////   property & operator -= (::u64 u);
 ////   property & operator -= (double d);
-////   property & operator -= (const var & var);
+////   property & operator -= (const payload & payload);
 ////   property & operator -= (const property & prop);
 ////
 ////   property & operator += (::i32 i);
@@ -795,7 +795,7 @@ public:
 ////   property & operator += (::i64 i);
 ////   property & operator += (::u64 u);
 ////   property & operator += (double d);
-////   property & operator += (const var & var);
+////   property & operator += (const payload & payload);
 ////   property & operator += (const property & prop);
 ////   property & operator += (const char * psz);
 ////   property & operator += (const string & str);
@@ -805,7 +805,7 @@ public:
 ////   property & operator /= (::i64 i);
 ////   property & operator /= (::u64 u);
 ////   property & operator /= (double d);
-////   property & operator /= (const var & var);
+////   property & operator /= (const payload & payload);
 ////   property & operator /= (const property & prop);
 ////
 ////   property & operator *= (::i32 i);
@@ -813,7 +813,7 @@ public:
 ////   property & operator *= (::i64 i);
 ////   property & operator *= (::u64 u);
 ////   property & operator *= (double d);
-////   property & operator *= (const var & var);
+////   property & operator *= (const payload & payload);
 ////   property & operator *= (const property & prop);
 ////
 ////
@@ -822,7 +822,7 @@ public:
 ////   void parse_json(const char * & pszJson,const char * pszEnd);
 ////
 ////
-////   var explode(const char * pszSeparator, bool bAddEmpty = true) const;
+////   payload explode(const char * pszSeparator, bool bAddEmpty = true) const;
 ////
 ////
 ////   void null() { null(); }
@@ -835,7 +835,7 @@ using property_pointer = ::property *;
 
 
 CLASS_DECL_ACME void property_parse_json_id(id & id, const char *& pszJson, const char * pszEnd);
-CLASS_DECL_ACME void property_parse_json_value(::var & var, const char *& pszJson, const char * pszEnd);
+CLASS_DECL_ACME void property_parse_json_value(::payload & payload, const char *& pszJson, const char * pszEnd);
 CLASS_DECL_ACME void property_skip_json_id(const char *& pszJson, const char * pszEnd);
 CLASS_DECL_ACME void property_skip_json_value(const char *& pszJson, const char * pszEnd);
 
@@ -845,7 +845,7 @@ CLASS_DECL_ACME void property_skip_json_value(const char *& pszJson, const char 
 
 using property_ptra = ptr_array < ::property >;
 
-//using property_map = map < ::id, const ::id &, ::var, const ::var &, ::property >;
+//using property_map = map < ::id, const ::id &, ::payload, const ::payload &, ::property >;
 
 
 //inline bool operator == (const string & str, const property & prop)
@@ -857,33 +857,33 @@ using property_ptra = ptr_array < ::property >;
 
 
 
-inline var CLASS_DECL_ACME operator - (i32 i, const property& prop) { return operator - (i, (const ::var &) prop); }
-inline var CLASS_DECL_ACME operator - (u32 user, const property& prop) { return operator - (user, (const ::var &)prop); }
-inline var CLASS_DECL_ACME operator - (i64 i, const property& prop) { return operator - (i, (const ::var &)prop); }
-inline var CLASS_DECL_ACME operator - (u64 u, const property& prop) { return operator - (u, (const ::var &)prop); }
-inline var CLASS_DECL_ACME operator - (double d, const property& prop) { return operator - (d, (const ::var &)prop); }
-inline var CLASS_DECL_ACME operator - (const var& var, const property& prop) { return operator - (var, (const ::var &)prop); }
+inline payload CLASS_DECL_ACME operator - (i32 i, const property& prop) { return operator - (i, (const ::payload &) prop); }
+inline payload CLASS_DECL_ACME operator - (u32 user, const property& prop) { return operator - (user, (const ::payload &)prop); }
+inline payload CLASS_DECL_ACME operator - (i64 i, const property& prop) { return operator - (i, (const ::payload &)prop); }
+inline payload CLASS_DECL_ACME operator - (u64 u, const property& prop) { return operator - (u, (const ::payload &)prop); }
+inline payload CLASS_DECL_ACME operator - (double d, const property& prop) { return operator - (d, (const ::payload &)prop); }
+inline payload CLASS_DECL_ACME operator - (const payload& payload, const property& prop) { return operator - (payload, (const ::payload &)prop); }
 
-inline var CLASS_DECL_ACME operator + (i32 i, const property& prop) { return operator + (i, (const ::var &) prop); }
-inline var CLASS_DECL_ACME operator + (u32 user, const property& prop) { return operator + (user, (const ::var &)prop); }
-inline var CLASS_DECL_ACME operator + (i64 i, const property& prop) { return operator + (i, (const ::var &)prop); }
-inline var CLASS_DECL_ACME operator + (u64 u, const property& prop) { return operator + (u, (const ::var &)prop); }
-inline var CLASS_DECL_ACME operator + (double d, const property& prop) { return operator + (d, (const ::var &)prop); }
-inline var CLASS_DECL_ACME operator + (const var& var, const property& prop) { return operator + (var, (const ::var &)prop); }
+inline payload CLASS_DECL_ACME operator + (i32 i, const property& prop) { return operator + (i, (const ::payload &) prop); }
+inline payload CLASS_DECL_ACME operator + (u32 user, const property& prop) { return operator + (user, (const ::payload &)prop); }
+inline payload CLASS_DECL_ACME operator + (i64 i, const property& prop) { return operator + (i, (const ::payload &)prop); }
+inline payload CLASS_DECL_ACME operator + (u64 u, const property& prop) { return operator + (u, (const ::payload &)prop); }
+inline payload CLASS_DECL_ACME operator + (double d, const property& prop) { return operator + (d, (const ::payload &)prop); }
+inline payload CLASS_DECL_ACME operator + (const payload& payload, const property& prop) { return operator + (payload, (const ::payload &)prop); }
 
-inline var CLASS_DECL_ACME operator / (i32 i, const property& prop) { return operator / (i, (const ::var &)prop); }
-inline var CLASS_DECL_ACME operator / (u32 user, const property& prop) { return operator / (user, (const ::var &)prop); }
-inline var CLASS_DECL_ACME operator / (i64 i, const property& prop) { return operator / (i, (const ::var&)prop); }
-inline var CLASS_DECL_ACME operator / (u64 u, const property& prop) { return operator / (u, (const ::var&)prop); }
-inline var CLASS_DECL_ACME operator / (double d, const property& prop) { return operator / (d, (const ::var&) prop); }
-inline var CLASS_DECL_ACME operator / (const var& var, const property& prop) { return operator / (var, (const ::var&) prop); }
+inline payload CLASS_DECL_ACME operator / (i32 i, const property& prop) { return operator / (i, (const ::payload &)prop); }
+inline payload CLASS_DECL_ACME operator / (u32 user, const property& prop) { return operator / (user, (const ::payload &)prop); }
+inline payload CLASS_DECL_ACME operator / (i64 i, const property& prop) { return operator / (i, (const ::payload&)prop); }
+inline payload CLASS_DECL_ACME operator / (u64 u, const property& prop) { return operator / (u, (const ::payload&)prop); }
+inline payload CLASS_DECL_ACME operator / (double d, const property& prop) { return operator / (d, (const ::payload&) prop); }
+inline payload CLASS_DECL_ACME operator / (const payload& payload, const property& prop) { return operator / (payload, (const ::payload&) prop); }
 
-inline var CLASS_DECL_ACME operator * (i32 i, const property& prop) { return operator * (i, (const ::var&) prop); }
-inline var CLASS_DECL_ACME operator * (u32 user, const ::property& prop) { return operator * (user, (const ::var&) prop); }
-inline var CLASS_DECL_ACME operator * (i64 i, const property& prop) { return operator * (i, (const ::var&) prop); }
-inline var CLASS_DECL_ACME operator * (u64 u, const property& prop) { return operator * (u, (const ::var&)prop); }
-inline var CLASS_DECL_ACME operator * (double d, const property& prop) { return operator * (d, (const ::var&)prop); }
-inline var CLASS_DECL_ACME operator * (const var& var, const property& prop) { return operator * (var, (const ::var&)prop); }
+inline payload CLASS_DECL_ACME operator * (i32 i, const property& prop) { return operator * (i, (const ::payload&) prop); }
+inline payload CLASS_DECL_ACME operator * (u32 user, const ::property& prop) { return operator * (user, (const ::payload&) prop); }
+inline payload CLASS_DECL_ACME operator * (i64 i, const property& prop) { return operator * (i, (const ::payload&) prop); }
+inline payload CLASS_DECL_ACME operator * (u64 u, const property& prop) { return operator * (u, (const ::payload&)prop); }
+inline payload CLASS_DECL_ACME operator * (double d, const property& prop) { return operator * (d, (const ::payload&)prop); }
+inline payload CLASS_DECL_ACME operator * (const payload& payload, const property& prop) { return operator * (payload, (const ::payload&)prop); }
 
 
 

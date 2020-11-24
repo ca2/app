@@ -75,20 +75,20 @@ public:
 
 
    template < typename BASE_TYPE >
-   __pointer(BASE_TYPE) file_as(const var & varFile);
+   __pointer(BASE_TYPE) file_as(const payload & varFile);
 
 
-   virtual void add_procedure(const ::id & id, const ::procedure & procedure);
+   virtual void add_procedure(const ::id & id, const ::routine & procedure);
    virtual void add_futurevar(const ::id & id, const ::futurevar & futurevar);
 
    virtual void add_procedures_from(const ::id & id, ::object * pobjectSource);
    virtual void add_futurevars_from(const ::id & id, ::object * pobjectSource);
 
-   virtual array < ::procedure > * procedures(const ::id & id);
+   virtual array < ::routine > * procedures(const ::id & id);
    virtual array < ::futurevar > * futurevars(const ::id & id);
 
    virtual void call_procedure(const ::id & id);
-   virtual void send_futurevar(const ::id & id, const ::var & var);
+   virtual void send_futurevar(const ::id & id, const ::payload & payload);
 
 
    //template < typename METHOD >
@@ -151,7 +151,7 @@ public:
 
    //}
 
-   inline var context_value(const var& var);
+   inline payload context_value(const payload& payload);
 
 
    //virtual ::index task_add(::task* ptask) override;
@@ -183,16 +183,16 @@ public:
 
 
    template < typename BASE_TYPE >
-   void save_to(const var & varFile, BASE_TYPE * pobject);
+   void save_to(const payload & varFile, BASE_TYPE * pobject);
 
    virtual ::estatus initialize(::layered * pobjectContext) override;
    virtual void finalize() override;
 
    inline const char * topic_text();
 
-   context& __context(const var& var);
+   context& __context(const payload& payload);
 
-   var __context_value(const var& var);
+   payload __context_value(const payload& payload);
 
    virtual void set_topic_text(const string & str);
 
@@ -216,7 +216,7 @@ public:
 
    ::apex::application * get_app() const { return get_context_application(); }
 
-   virtual string get_text(const var& var, const ::id& id) override;
+   virtual string get_text(const payload& payload, const ::id& id) override;
 
 #ifdef DEBUG
    virtual void set_context(::context* pcontext OBJ_REF_DBG_COMMA_PARAMS);
@@ -256,7 +256,7 @@ public:
 
    virtual void dev_log(string str) const;
 
-   ::object & operator = (const var & var);
+   ::object & operator = (const payload & payload);
 
    
 
@@ -269,7 +269,7 @@ public:
    //::image_result create_image();
    //::image_result create_image(const ::size & size, ::eobject eobjectCreate = OK, int iGoodStride = -1, bool bPreserve = false);
 
-   //::image_result get_image(const var & varFile, bool bCache = true, bool bSync = true);
+   //::image_result get_image(const payload & varFile, bool bCache = true, bool bSync = true);
    //::image_result matter_image(const string & strMatter, bool bCache = true, bool bSync = true);
 
    template < typename BASE_TYPE >
@@ -425,9 +425,9 @@ public:
 
    void _001OnUpdate(::message::message * pmessage);
 
-   virtual ::estatus request_file(const var& varFile);
+   virtual ::estatus request_file(const payload& varFile);
 
-   virtual ::estatus request_file(const var& varFile, var varQuery);
+   virtual ::estatus request_file(const payload& varFile, payload varQuery);
 
    virtual ::estatus request(arguments arguments);
 
@@ -469,8 +469,8 @@ public:
    //virtual ::user::document* open_new_document(::apex::application* pappOnBehalfOf);
    virtual void on_request(::create* pcreate);
    //virtual ::user::document* open_document_file(::apex::application* pappOnBehalfOf);
-   //virtual ::user::document* open_document_file(::apex::application* pappOnBehalfOf, const var& varFile, const var & varOptions, ::user::interaction* puiParent = nullptr, ewindowflag eflag = window_flag_none, ::id id = ::id());
-   //virtual ::user::document* open_document_file(::apex::application* pappOnBehalfOf, const var& varFile);
+   //virtual ::user::document* open_document_file(::apex::application* pappOnBehalfOf, const payload& varFile, const payload & varOptions, ::user::interaction* puiParent = nullptr, ewindowflag eflag = window_flag_none, ::id id = ::id());
+   //virtual ::user::document* open_document_file(::apex::application* pappOnBehalfOf, const payload& varFile);
    //virtual ::user::document* create_subdocument(::user::impact_data* pimpactdata);
 
 
@@ -481,12 +481,12 @@ public:
    virtual string __get_text(string str);
 
    //template < typename PRED >
-   //::image_result get_image(const var & varFile, ::u64 uTrait, PRED pred);
+   //::image_result get_image(const payload & varFile, ::u64 uTrait, PRED pred);
 
-   //virtual ::image_result load_image(const var & varFile, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
+   //virtual ::image_result load_image(const payload & varFile, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
    //virtual ::image_result load_matter_image(const char * pszMatter, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
    //virtual ::image_result load_matter_icon(string_array & straMatter, string strIcon);
-   //virtual ::image_result load_thumbnail(const var & varFile, int w, int h);
+   //virtual ::image_result load_thumbnail(const payload & varFile, int w, int h);
    //virtual ::image_result load_thumbnail(const char * pszPath);
    //virtual ::image_result load_dib(const ::file::path & pathDib);
 
@@ -538,7 +538,7 @@ public:
    }
 
 
-   inline ::estatus defer_start(::thread_pointer& pthread, const ::procedure & procedure);
+   inline ::estatus defer_start(::thread_pointer& pthread, const ::routine & procedure);
 
 
    //template < typename THREAD >
@@ -556,11 +556,11 @@ public:
    inline ::thread_pointer fork(PRED pred);
 
 
-   inline ::thread_pointer launch(const ::procedure & procedure);
+   inline ::thread_pointer launch(const ::routine & procedure);
 
 
    //template < typename METHOD >
-   inline ::task_pointer opt_fork(const ::procedure & procedure)
+   inline ::task_pointer opt_fork(const ::routine & procedure)
    {
 
       auto ptask = ::get_task();
@@ -618,16 +618,16 @@ public:
 //   virtual void ns_main_async(dispatch_block_t block);
 //#endif
 
-   //inline ::file_result get_reader(const ::var& varFile, const ::efileopen& efileopen = ::efileopen());
-   //inline ::file_result get_writer(const ::var& varFile, const ::efileopen& efileopen = ::efileopen());
+   //inline ::file_result get_reader(const ::payload& varFile, const ::efileopen& efileopen = ::efileopen());
+   //inline ::file_result get_writer(const ::payload& varFile, const ::efileopen& efileopen = ::efileopen());
 
 
    //virtual void to_string(string & str) const override;
 
 
-   virtual ::file_result get_file(const var& varFile, efileopen eopen);
-   inline ::file_result get_reader(const var& varFile, efileopen eopen = ::file::type_binary);
-   inline ::file_result get_writer(const var& varFile, efileopen eopen = ::file::type_binary | ::file::defer_create_directory | ::file::mode_create);
+   virtual ::file_result get_file(const payload& varFile, efileopen eopen);
+   inline ::file_result get_reader(const payload& varFile, efileopen eopen = ::file::type_binary);
+   inline ::file_result get_writer(const payload& varFile, efileopen eopen = ::file::type_binary | ::file::defer_create_directory | ::file::mode_create);
 
 
 

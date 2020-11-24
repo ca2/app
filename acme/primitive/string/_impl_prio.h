@@ -166,7 +166,7 @@ inline wstring operator+(const widechar * pwsz1, const wstring & wstr2)
 
 
 template < >
-inline string __str(const ::var & var) { return var.get_string(); }
+inline string __str(const ::payload & payload) { return payload.get_string(); }
 
 
 template < >

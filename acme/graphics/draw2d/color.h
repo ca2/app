@@ -32,7 +32,7 @@ public:
 
    rgb(const rgb & rgb) : m_iR(rgb.m_iR), m_iG(rgb.m_iG), m_iB(rgb.m_iB) { }
 
-   rgb & operator =(const ::var & var);
+   rgb & operator =(const ::payload & payload);
 
    float fr() const {return m_iR / 255.f;}
    float fg() const {return m_iG / 255.f;}
@@ -63,7 +63,7 @@ public:
    rgba(const ::rgb & rgb) : ::rgb(rgb), m_iA(255) { }
    rgba(const ::rgba & rgba) : ::rgb(rgba), m_iA(rgba.m_iA) { }
 
-   rgba & operator =(const ::var & var);
+   rgba & operator =(const ::payload & payload);
 
    float fa() const {return m_iA / 255.f;}
    double da() const {return m_iA / 255.;}
@@ -93,12 +93,12 @@ public:
    hls(e_zero_init): m_dH(0.0), m_dL(0.0), m_dS(0.0) {}
    hls(double dH, double dL = 0.5, double dS = 1.0) : m_dH(dH), m_dL(dL), m_dS(dS) {}
 
-   hls & operator =(const ::var & var);
+   hls & operator =(const ::payload & payload);
 
 
 };
 
-inline var & assign(var & var, const ::hls & hls);
+inline payload & assign(payload & payload, const ::hls & hls);
 
 class CLASS_DECL_ACME color :
    public rgba

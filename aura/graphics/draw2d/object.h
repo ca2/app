@@ -13,7 +13,7 @@ namespace draw2d
 
       void *         m_pthis;
       bool           m_bUpdated2;
-      void *         m_powner; // in a normal usage/flow I can change the object only if I am the owner, otherwise create another object
+      void *         m_powner; // in a normal usage/flow I can machine the object only if I am the owner, otherwise create another object
       void *         m_osdata[8];
 
 

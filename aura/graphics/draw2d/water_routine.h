@@ -34,7 +34,7 @@ namespace draw2d
       bool            m_bDrawWithLight;
       i32            m_iLightModifier;
       i32            m_iHpage;// The current heightfield
-      i32            m_density;// The water density - can change the density...
+      i32            m_density;// The water density - can machine the density...
       //  the height fields
       i32*            m_iHeightField1;
       i32*            m_iHeightField2;

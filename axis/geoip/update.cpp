@@ -153,7 +153,7 @@ void GeoIP_printf(void (*f)(char *), const char *str,...) {
 /* GeoIP Hostname where proxy forwards requests. */
 //static const char * GeoIPProxiedHost = "";
 
-/* read http_proxy env. var & parse it.
+/* read http_proxy env. payload & parse it.
  * -----------------------------------------
  * Allow only these formats:
  * "http://server.com", "http://server.com:8080"
@@ -733,7 +733,7 @@ i16 GeoIP_update_database_general (::object * pobject, char * user_id,char * lic
 //   MD5_Final (bufMd5, &context2);
 //   ::memcpy_dup(digest2, bufMd5,16);
 //   for (i = 0; i < 16; i++)
-//      snprintf (&hex_digest2[2*i], 3, "%02x", digest2[i]);// change the digest to a hex digest
+//      snprintf (&hex_digest2[2*i], 3, "%02x", digest2[i]);// machine the digest to a hex digest
 //   //strcpy(hex_digest2, ctx2.to_hex());
 //   ansi_lower(hex_digest2);
 //   if (verbose == 1) {

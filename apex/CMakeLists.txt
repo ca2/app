@@ -380,7 +380,7 @@ list(APPEND apex_source
         os/ansios/file.h
         os/ansios/file_c.h
         os/ansios/language.cpp
-        os/ansios/multithreading.h
+   os/ansios/parallelization.h
         os/ansios/process.cpp
         os/ansios/win.cpp
         os/_.h
@@ -875,7 +875,7 @@ if(LINUX)
         node/linux/root_tools.cpp
         node/linux/root_tools.h
         node/linux/thread.cpp
-        node/linux/thread.h
+       node/linux/parallelization.h
         node/linux/trace.cpp
         node/linux/util.cpp
         node/posix/file_os_watcher.cpp
@@ -917,7 +917,7 @@ if(LINUX)
         os/linux/lock.cpp
         os/linux/menu.cpp
         os/linux/message_loop.cpp
-        os/linux/multithreading.cpp
+       os/linux/parallelization.cpp
         os/linux/os.cpp
         os/linux/process.cpp
         os/linux/process.h

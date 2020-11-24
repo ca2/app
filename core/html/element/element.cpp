@@ -883,9 +883,9 @@ namespace html
 
       m_elementalptra.remove_all();
 
-      var var;
+      payload payload;
 
-      var.set_type(::type_string);
+      payload.set_type(::type_string);
 
       if (m_pbase->get_type() == base::type_tag)
       {

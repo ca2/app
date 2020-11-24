@@ -480,7 +480,7 @@ void html_form::set_need_load_form_data()
 }
 
 
-::estatus html_form::open_document(const var & varFile)
+::estatus html_form::open_document(const payload & varFile)
 {
 
    auto path = varFile.get_file_path();

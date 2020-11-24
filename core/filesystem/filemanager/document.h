@@ -71,7 +71,7 @@ namespace filemanager
       virtual void defer_check_manager_id(string strNewManagerId = "");
       virtual void on_request(::create * pcreate) override;
 
-      virtual bool do_prompt_file_name(var & varFile, string strTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument);
+      virtual bool do_prompt_file_name(payload & varFile, string strTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument);
 
       __pointer(::filemanager::data) create_file_manager_data(::create * pcreate = nullptr);
 
@@ -134,7 +134,7 @@ namespace filemanager
       virtual void on_command_probe(::user::command * pcommand) override;
 
       virtual bool on_new_document() override;
-      virtual bool on_open_document(const var & varFile) override;
+      virtual bool on_open_document(const payload & varFile) override;
 
       virtual bool HandleDefaultFileManagerItemCmdMsg(::user::command * pcommand,::file::item_array & itema);
 

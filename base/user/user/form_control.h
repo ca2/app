@@ -31,7 +31,7 @@ namespace user
 
 
       virtual string get_path();
-      virtual ::estatus open_document(const var & varFile) override;
+      virtual ::estatus open_document(const payload & varFile) override;
       //::type controltype_to_typeinfo(::user::e_control_type econtroltype);
 
       virtual ::estatus open_html(const ::string & str) override;
@@ -56,7 +56,7 @@ namespace user
       void _001UpdateFunctionStatic();
       virtual bool _001OnBeforeSave(::user::interaction * pinteraction);
       virtual void _001RemoveControls();
-      bool _001Validate(::user::interaction * pinteraction,var & var);
+      bool _001Validate(::user::interaction * pinteraction,payload & payload);
       bool _001SaveEdit(::user::interaction * pinteraction);
       virtual void on_command(::user::command * pcommand) override;
       DECL_GEN_SIGNAL(_001OnNotify);
@@ -101,7 +101,7 @@ namespace user
 
 
 
-      virtual void data_on_after_change(::database::client* pclient, const ::database::key& key, const var& var, ::action * paction = nullptr);
+      virtual void data_on_after_change(::database::client* pclient, const ::database::key& key, const payload& payload, ::action * paction = nullptr);
 
 
       virtual bool create_control(class control_descriptor * pdescriptor, index iItem) override;
@@ -145,7 +145,7 @@ namespace user
 
 
 
-      //virtual bool open_document(const var & varFile) override;
+      //virtual bool open_document(const payload & varFile) override;
 
 
    };

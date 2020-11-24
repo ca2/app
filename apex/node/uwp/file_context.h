@@ -22,9 +22,9 @@ namespace uwp
 
       virtual void GetModuleShortFileName(HINSTANCE hInst, string & strShortName);
 
-      virtual var length(const ::file::path & path) override;
+      virtual payload length(const ::file::path & path) override;
 
-      virtual file_result get_file(const var & varFile, const ::efileopen & efileopen) override;
+      virtual file_result get_file(const payload & varFile, const ::efileopen & efileopen) override;
 
 
 

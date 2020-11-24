@@ -57,7 +57,7 @@ namespace user
    }
 
 
-   void tab_view::on_apply(::action * paction)
+   void tab_view::on_apply(::subject * paction)
    {
 
       tab::on_apply(paction);
@@ -256,7 +256,7 @@ namespace user
 
          id id2 = ::user::tab::tab_id(iTab);
 
-         id id3 = var(id1).get_string() + "->:<-" + var(id2).get_string();
+         id id3 = payload(id1).get_string() + "->:<-" + payload(id2).get_string();
 
          ::user::tab_pane * ppane1 = get_pane_by_id(id1);
 

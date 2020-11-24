@@ -14,7 +14,7 @@ public:
 
 
    message_box();
-   message_box(const var & var);
+   message_box(const payload & payload);
    virtual ~message_box();
 
 
@@ -26,38 +26,38 @@ public:
 
 
 
-inline var operator + (var var, const ::enum_message_box& emessagebox)
+inline payload operator + (payload payload, const ::enum_message_box& emessagebox)
 {
 
-   if (var.get_type() != type_propset)
+   if (payload.get_type() != type_propset)
    {
 
-      var["message"] = var.get_string();
+      payload["message"] = payload.get_string();
 
    }
 
-   var["flags"] = (::i64) emessagebox;
+   payload["flags"] = (::i64) emessagebox;
 
-   return var;
+   return payload;
 
 }
 
 
 template < typename TYPE_CHAR >
-inline var operator +(const string_base < TYPE_CHAR >& str, const enum_message_box& e)
+inline payload operator +(const string_base < TYPE_CHAR >& str, const enum_message_box& e)
 {
 
-   return var(str) + e;
+   return payload(str) + e;
 
 }
 
 
 
 
-inline var operator + (const char* psz, const ::enum_message_box& emessagebox)
+inline payload operator + (const char* psz, const ::enum_message_box& emessagebox)
 {
 
-   return var(psz) + emessagebox;
+   return payload(psz) + emessagebox;
 
 }
 

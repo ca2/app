@@ -5,10 +5,10 @@ namespace comparison
 {
 
 
-   var_strict::var_strict(const class var & var)
+   var_strict::var_strict(const class payload & payload)
    {
       
-      m_pvar = &var;
+      m_pvar = &payload;
 
    }
 
@@ -21,9 +21,9 @@ namespace comparison
    }
 
 
-   bool var_strict::operator == (const class var & var) const
+   bool var_strict::operator == (const class payload & payload) const
    {
-      return m_pvar->strict_equal(var);
+      return m_pvar->strict_equal(payload);
    }
 
    bool var_strict::operator == (const char * psz) const
@@ -51,9 +51,9 @@ namespace comparison
       return m_pvar->strict_equal(b);
    }
 
-   bool var_strict::operator != (const class var & var) const
+   bool var_strict::operator != (const class payload & payload) const
    {
-      return m_pvar->strict_different(var);
+      return m_pvar->strict_different(payload);
    }
 
    bool var_strict::operator != (const char * psz) const
@@ -81,60 +81,60 @@ namespace comparison
       return m_pvar->strict_different(b);
    }
 
-   bool operator == (const char * psz, const var_strict & var)
+   bool operator == (const char * psz, const var_strict & payload)
    {
-      return strict_equal(psz, *var.m_pvar);
+      return strict_equal(psz, *payload.m_pvar);
    }
 
-   bool operator == (const string & str, const var_strict & var)
+   bool operator == (const string & str, const var_strict & payload)
    {
-      return strict_equal(str, *var.m_pvar);
+      return strict_equal(str, *payload.m_pvar);
    }
 
-   bool operator == (double d, const var_strict & var)
+   bool operator == (double d, const var_strict & payload)
    {
-      return strict_equal(d, *var.m_pvar);
+      return strict_equal(d, *payload.m_pvar);
    }
 
-   bool operator == (i32 i, const var_strict & var)
+   bool operator == (i32 i, const var_strict & payload)
    {
-      return strict_equal(i, *var.m_pvar);
+      return strict_equal(i, *payload.m_pvar);
    }
 
-   bool operator == (bool b, const var_strict & var)
+   bool operator == (bool b, const var_strict & payload)
    {
-      return strict_equal(b, *var.m_pvar);
+      return strict_equal(b, *payload.m_pvar);
    }
 
-   bool operator != (const char * psz, const var_strict & var)
+   bool operator != (const char * psz, const var_strict & payload)
    {
-      return strict_different(psz, *var.m_pvar);
+      return strict_different(psz, *payload.m_pvar);
    }
 
-   bool operator != (const string & str, const var_strict & var)
+   bool operator != (const string & str, const var_strict & payload)
    {
-      return strict_different(str, *var.m_pvar);
+      return strict_different(str, *payload.m_pvar);
    }
 
-   bool operator != (double d, const var_strict & var)
+   bool operator != (double d, const var_strict & payload)
    {
-      return strict_different(d, *var.m_pvar);
+      return strict_different(d, *payload.m_pvar);
    }
 
-   bool operator != (i32 i, const var_strict & var)
+   bool operator != (i32 i, const var_strict & payload)
    {
-      return strict_different(i, *var.m_pvar);
+      return strict_different(i, *payload.m_pvar);
    }
 
-   bool operator != (bool b, const var_strict & var)
+   bool operator != (bool b, const var_strict & payload)
    {
-      return strict_different(b, *var.m_pvar);
+      return strict_different(b, *payload.m_pvar);
    }
 
-   var_strict & var_strict::operator = (const class var_strict & var)
+   var_strict & var_strict::operator = (const class var_strict & payload)
    {
       
-      m_pvar = var.m_pvar;
+      m_pvar = payload.m_pvar;
       
       return *this;
 

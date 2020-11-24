@@ -40,7 +40,7 @@ namespace apex
          catch(::exit_exception &)
          {
 
-            ::multithreading::finish(&System);
+            ::parallelization::finish(&System);
 
          }
          catch(::exception::exception &)

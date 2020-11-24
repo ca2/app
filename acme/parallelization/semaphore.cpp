@@ -25,7 +25,7 @@ semaphore::semaphore(::i32 lInitialCount, ::i32 lMaxCount, const char * pstrName
    m_hsync = ::CreateSemaphoreExW(psaAttributes, lInitialCount, lMaxCount, pstrName == nullptr ? nullptr : (const wchar_t *)  ::str::international::utf8_to_unicode(pstrName), 0, SEMAPHORE_MODIFY_STATE | DELETE | SYNCHRONIZE);
 
    if (m_hsync == nullptr)
-      ＿＿throw(resource_exception());
+      __throw(resource_exception());
 
 #elif defined(ANDROID)
 
@@ -48,14 +48,14 @@ semaphore::semaphore(::i32 lInitialCount, ::i32 lMaxCount, const char * pstrName
       {
 
          if (errno != EEXIST)
-            ＿＿throw(resource_exception());
+            __throw(resource_exception());
 
          // We're not first.  Try again
 
          m_psem = sem_open(m_strName,0);
 
          if (m_psem == SEM_FAILED)
-            ＿＿throw(resource_exception());
+            __throw(resource_exception());
 
       }
 

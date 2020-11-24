@@ -186,7 +186,7 @@ namespace coreimage_imaging
 
 
 
-   ::estatus context_image::_load_image( ::image * pimage, const var & varFile, bool bSync, bool bCreateHelperMaps)
+   ::estatus context_image::_load_image( ::image * pimage, const payload & varFile, bool bSync, bool bCreateHelperMaps)
    {
       
       if(::is_null(pimage))

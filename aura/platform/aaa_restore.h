@@ -56,5 +56,5 @@ void restore<TYPE>::Restore()
 }
 
 
-#define __restore(var) ::restore < decltype(var) > TOKEN_CONCAT(restore, __COUNTER__) (&var)
-#define __set_restore(var, set) ::restore < decltype(var) > TOKEN_CONCAT(restore, __COUNTER__) (&var); var = set
+#define __restore(payload) ::restore < decltype(payload) > TOKEN_CONCAT(restore, __COUNTER__) (&payload)
+#define __set_restore(payload, set) ::restore < decltype(payload) > TOKEN_CONCAT(restore, __COUNTER__) (&payload); payload = set

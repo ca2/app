@@ -195,7 +195,7 @@ namespace hellobase
 
       return helloaxis::render::run();
 
-      //::multithreading::set_priority(::priority_time_critical);
+      //::parallelization::set_priority(::priority_time_critical);
 
       //double dFps = m_pview->get_wnd()->m_pimpl.cast < ::user::interaction_impl >()->m_dFps;
 
@@ -443,7 +443,7 @@ namespace hellobase
 //
 //         sync_lock slText(m_pmutexText);
 //
-//         strHelloBase = get_helloaura().c_str(); // rationale : string allocation fork *for multithreading*
+//         strHelloBase = get_helloaura().c_str(); // rationale : string allocation fork *for parallelization*
 //
 //      }
 //

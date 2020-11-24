@@ -4,7 +4,7 @@
 #include "apex/os/_c.h"
 #include "apex/os/_.h"
 #include "apex/os/_os.h"
-#include "acme/multithreading/mq.h"
+#include "acme/parallelization/mq.h"
 #ifndef WINDOWS
 #include "acme/os/cross/windows/_windows.h"
 #endif
@@ -59,7 +59,7 @@ send_thread_message::send_thread_message(::layered * pobjectContext) :
    ::object(pobjectContext)
 {
 
-   ·zero(m_message);
+   xxf_zero(m_message);
 
    m_ev.ResetEvent();
 
@@ -708,16 +708,16 @@ bool thread::pump_runnable()
    while(thread_get_run())
    {
 
-      if (m_procedurea.isEmpty())
+      if (m_routinea.isEmpty())
       {
 
          return false;
 
       }
 
-      auto method = m_procedurea.first();
+      auto method = m_routinea.first();
 
-      m_procedurea.remove_at(0);
+      m_routinea.remove_at(0);
 
       if (method)
       {
@@ -786,7 +786,7 @@ int thread::_GetMessage(LPMESSAGE pmessage, oswindow oswindow, ::u32 wMsgFilterM
 
    __throw(exception::exception);
 
-   //·zero_pointer(pmessage);
+   //xxf_zero_pointer(pmessage);
 
    //return mq_get_message(pmessage, oswindow, wMsgFilterMin, wMsgFilterMax);
    return false;
@@ -1410,7 +1410,7 @@ void thread::on_finish()
 //
 //      sync_lock slChild(ptask->mutex());
 //
-//      if (::multithreading::is_child(ptask) || ptask->m_pthreadParent)
+//      if (::parallelization::is_child(ptask) || ptask->m_pthreadParent)
 //      {
 //
 //         return false;
@@ -1794,12 +1794,12 @@ u32 __thread_entry(void * p);
 }
 
 
-//void thread::construct(thread_procedure procedure, thread_parameter parameter)
+//void thread::construct(thread_procedure routine, thread_parameter parameter)
 //{
 //
 //   CommonConstruct();
 //
-//   m_procedure = procedure;
+//   m_routine = routine;
 //
 //   m_parameter = parameter;
 //
@@ -2202,7 +2202,7 @@ bool thread::begin_thread(bool bSynchInitialization, ::e_priority epriority, ::u
 
       char sz[1024];
 
-      ·zero_pointer(sz);
+      xxf_zero_pointer(sz);
 
       engine_symbol(sz, sizeof(sz), &dwDisplacement, uia[5]);
 
@@ -2513,7 +2513,7 @@ void thread::__os_finalize()
 //::context_object* thread::calc_parent_thread()
 //{
 //
-//   return ::multithreading::calc_parent(this);
+//   return ::parallelization::calc_parent(this);
 //
 //}
 
@@ -2558,7 +2558,7 @@ void thread::__os_finalize()
 
    //{
 
-   //   auto pthreadParent = ::multithreading::calc_parent(this);
+   //   auto pthreadParent = ::parallelization::calc_parent(this);
 
    //   if (pthreadParent)
    //   {
@@ -2571,7 +2571,7 @@ void thread::__os_finalize()
 
    //            pthreadParent->task_remove(this);
 
-   //            pthreadParent = ::multithreading::calc_parent(pthreadParent);
+   //            pthreadParent = ::parallelization::calc_parent(pthreadParent);
 
    //            if (!pthreadParent->task_add(this))
    //            {
@@ -2648,7 +2648,7 @@ void thread::__set_thread_on()
 
    //auto id = ::get_current_ithread();
 
-   ::multithreading::task_register(m_ithread, this);
+   ::parallelization::task_register(m_ithread, this);
 
 
    // apex commented
@@ -2696,7 +2696,7 @@ void thread::__set_thread_off()
 
    ::thread * pthread = this;
 
-   ::multithreading::task_unregister(m_ithread, pthread);
+   ::parallelization::task_unregister(m_ithread, pthread);
 
    auto id = ::get_current_ithread();
 
@@ -2763,7 +2763,7 @@ bool thread::is_idle_message()
 void thread::post_quit_to_all_threads()
 {
 
-   ::multithreading::post_quit_to_all_threads();
+   ::parallelization::post_quit_to_all_threads();
 
 }
 
@@ -2787,18 +2787,18 @@ void thread::post_to_all_threads(const ::id & id, WPARAM wparam, LPARAM lparam)
    //if(id == e_message_quit)
    //{
 
-   //   ::multithreading::post_quit_to_all_threads();
+   //   ::parallelization::post_quit_to_all_threads();
 
    //   return;
 
    //}
 
-   ::multithreading::post_to_all_threads(id, wparam, lparam);
+   ::parallelization::post_to_all_threads(id, wparam, lparam);
 
 }
 
 
-bool thread::post_task(const ::procedure & procedure)
+bool thread::post_task(const ::routine & procedure)
 {
 
    if (!procedure)
@@ -2810,7 +2810,7 @@ bool thread::post_task(const ::procedure & procedure)
 
    sync_lock sl(mutex());
 
-   m_procedurea.add(procedure);
+   m_routinea.add(procedure);
 
    kick_idle();
 
@@ -2819,7 +2819,7 @@ bool thread::post_task(const ::procedure & procedure)
 }
 
 
-bool thread::send_task(const ::procedure & procedure, ::duration durationTimeout)
+bool thread::send_task(const ::routine & procedure, ::duration durationTimeout)
 {
 
    return send_object(e_message_system, system_message_method, procedure, durationTimeout);
@@ -3930,7 +3930,7 @@ void thread::message_handler(::message::base * pbase)
 
             auto paction = System.new_action(msg);
 
-            apply(paction);
+            process(paction);
 
          }
          //else
@@ -3960,7 +3960,7 @@ void thread::message_handler(::message::base * pbase)
          else if (msg.wParam == system_message_method)
          {
 
-            ::procedure procedure(msg.lParam);
+            ::routine procedure(msg.lParam);
 
             procedure();
 

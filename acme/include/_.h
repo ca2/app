@@ -62,7 +62,6 @@
 #pragma once
 
 
-
 #define __spin_namespace acme // back bone / four-letter "spin*" namespace name
 
 
@@ -105,12 +104,12 @@ typedef i32 WINAPI __MAIN_DEFERRED_RUN(HINSTANCE hinstance, HINSTANCE hPrevInsta
 
 #else
 
-typedef i32 __MAIN_DEFERRED_RUN(int argc, char ** argv);
+typedef i32 __MAIN_DEFERRED_RUN(int argc, char **argv);
 
 #endif
 
 
-typedef __MAIN_DEFERRED_RUN * __LPFN_MAIN_DEFERRED_RUN;
+typedef __MAIN_DEFERRED_RUN *__LPFN_MAIN_DEFERRED_RUN;
 extern CLASS_DECL_ACME __LPFN_MAIN_DEFERRED_RUN __main_deferred_run;
 
 
@@ -134,8 +133,7 @@ namespace acme
 class layered;
 
 
-
-CLASS_DECL_ACME ::acme::system * get_context_system();
+CLASS_DECL_ACME ::acme::system *get_context_system();
 //CLASS_DECL_ACME ::acme::system * get_context_system(::layered * pobjectContext);
 //CLASS_DECL_ACME inline ::acme::system * get_context_system(::acme::system * psystem);
 
@@ -146,18 +144,20 @@ CLASS_DECL_ACME ::acme::system * get_context_system();
 
 //#include "acme/message/global.h"
 
-template < typename TYPE >
-inline TYPE & ·zero_pointer(TYPE * p);
+template<typename TYPE>
+inline TYPE & xxf_zero_pointer(TYPE * p);
 
-template < typename TYPE >
-inline TYPE & ·zero(TYPE & t);
+template<typename TYPE>
+inline TYPE & xxf_zero(TYPE & t);
 
 #define ___STR(s) #s
 #define __STR(s) ___STR(s)
 #define __IDENTIFIER(identifier) identifier
 #define PLATFORM_INCLUDE(include) __STR(__IDENTIFIER(PLATFORM_NAMESPACE)/include)
 
-
+#ifndef  __STRING
+#  define   __STRING(x) "x"
+#endif
 
 #include "acme/exception/_c.h"
 
@@ -219,14 +219,17 @@ namespace opengl
 } // namespace opengl
 
 
-enum enum_normalize { e_normalize };
+enum enum_normalize
+{
+   e_normalize
+};
 
 
 struct INT_STRING
 {
 
-   int            m_i;
-   const char* m_psz;
+   int m_i;
+   const char *m_psz;
 
 };
 
@@ -235,8 +238,9 @@ struct INT_STRING
 CLASS_DECL_ACME void throw_todo(void);
 
 
-CLASS_DECL_ACME void set_last_status(const ::estatus & estatus);
-CLASS_DECL_ACME void windowing_output_debug_string(const char * pszDebugString);
+CLASS_DECL_ACME void set_last_status(const ::estatus &estatus);
+
+CLASS_DECL_ACME void windowing_output_debug_string(const char *pszDebugString);
 
 
 namespace acme
@@ -244,18 +248,22 @@ namespace acme
 
    class acme;
 
+
    extern CLASS_DECL_ACME bool g_bAcme;
 
 } // namespace acme
 
 
-CLASS_DECL_ACME int __assert_failed_line(const char * pszFileName,int iLineNumber);
+CLASS_DECL_ACME int __assert_failed_line(const char *pszFileName, int iLineNumber);
+
 CLASS_DECL_ACME int is_debugger_attached(void);
-CLASS_DECL_ACME void debug_print(const char * psz,...);
+
+CLASS_DECL_ACME void debug_print(const char *psz, ...);
 
 
-CLASS_DECL_ACME int throw_assert_exception(const char * pszFileName,int iLineNumber);
-CLASS_DECL_ACME void throw_what_exclamation_exclamation(const char * psz);
+CLASS_DECL_ACME int throw_assert_exception(const char *pszFileName, int iLineNumber);
+
+CLASS_DECL_ACME void throw_what_exclamation_exclamation(const char *psz);
 
 #define __pass_array(A) A, sizeof(A)
 
@@ -296,7 +304,7 @@ CLASS_DECL_ACME void throw_what_exclamation_exclamation(const char * psz);
 #endif
 
 
-#include "acme/multithreading/_types.h"
+#include "acme/parallelization/_types.h"
 
 
 #define low_byte(w)              ((byte)((w) & 0xff))
@@ -358,21 +366,26 @@ CLASS_DECL_ACME void throw_what_exclamation_exclamation(const char * psz);
 CLASS_DECL_ACME int trailingBytesForUTF8(char ch);
 
 
-class source;
-class update;
-class change;
-class action;
+namespace promise
+{
 
+
+   class backing;
+   class process;
+   class handler;
+   class subject;
+   class context;
+   class routine;
+   class process;
+
+
+} // namespace promise
 
 
 CLASS_DECL_ACME int trailingBytesForUTF8(char ch);
 
 
-CLASS_DECL_ACME int is_ptr_null(const void * p, size_t s);
-
-
-
-
+CLASS_DECL_ACME int is_ptr_null(const void *p, size_t s);
 
 
 #define void_ptr_is_null(p) (((uptr)(void *) p) < 4096)
@@ -393,6 +406,7 @@ namespace dynamic_source
 #include "acme/os/_c.h"
 #include "acme/memory/heap_c.h"
 
+
 enum enum_platform_level
 {
 
@@ -408,6 +422,7 @@ enum enum_platform_level
 
 
 CLASS_DECL_ACME void set_platform_level(enum_platform_level eplatformlevel);
+
 CLASS_DECL_ACME enum_platform_level get_platform_level();
 
 
@@ -421,15 +436,16 @@ CLASS_DECL_ACME enum_platform_level get_platform_level();
 
 
 #ifdef __cplusplus
+
 #include "acme/primitive/comparison/_c.h"
+
+
 #endif
 
 
 #define LIM(a, MIN, MAX) MIN(MAX, MAX(MIN, a))
-#define SORT_LIM(x,minmax,maxmin) ((minmax) < (maxmin) ? LIM(x,minmax,maxmin) : LIM(x,maxmin,minmax))
+#define SORT_LIM(x, minmax, maxmin) ((minmax) < (maxmin) ? LIM(x,minmax,maxmin) : LIM(x,maxmin,minmax))
 #define CLIP_USHRT(x) LIM(x,0,USHRT_MAX)
-
-
 
 
 #ifdef WINDOWS
@@ -444,8 +460,6 @@ CLASS_DECL_ACME enum_platform_level get_platform_level();
 #endif
 
 #endif
-
-
 
 
 #define __u16(a, b)                                   ((::u16)(((::u8)(((::uptr)(a)) & 0xff)) | ((::u16)((::u8)(((::uptr)(b)) & 0xff))) << 8))
@@ -507,7 +521,9 @@ CLASS_DECL_ACME enum_platform_level get_platform_level();
 typedef struct rdp_freerdp freerdp;
 
 
-CLASS_DECL_ACME int_bool freerdp_authenticate(void * instance, char** username,char** password,char** domain, const char * pszServerName, int bInteractive);
+CLASS_DECL_ACME int_bool
+freerdp_authenticate(void *instance, char **username, char **password, char **domain, const char *pszServerName,
+                     int bInteractive);
 
 
 #if !defined(O_BINARY) && !defined(WINDOWS)
@@ -515,18 +531,21 @@ CLASS_DECL_ACME int_bool freerdp_authenticate(void * instance, char** username,c
 #endif
 
 
-CLASS_DECL_ACME i32     ansi_open(const char * psz,i32 i);
-CLASS_DECL_ACME FILE *  ansi_fopen(const char * psz,const char * pszMode);
-CLASS_DECL_ACME int     ansi_file_flag(int iFlag);
-CLASS_DECL_ACME void    ansi_get_errno(i32 * perrno);
-CLASS_DECL_ACME void    ansi_unlink(const char * psz);
+CLASS_DECL_ACME i32 ansi_open(const char *psz, i32 i);
+
+CLASS_DECL_ACME FILE *ansi_fopen(const char *psz, const char *pszMode);
+
+CLASS_DECL_ACME int ansi_file_flag(int iFlag);
+
+CLASS_DECL_ACME void ansi_get_errno(i32 *perrno);
+
+CLASS_DECL_ACME void ansi_unlink(const char *psz);
 
 
 CLASS_DECL_ACME ::estatus get_last_status();
 //CLASS_DECL_ACME void set_last_status(::estatus estatus);
 
 typedef char ansichar;
-
 
 
 enum e_image_type
@@ -551,9 +570,6 @@ enum e_image_type
 #include "acme/const/thread.h"
 
 
-
-
-
 #if !defined(APPLEOS) && !defined(LINUX) && !defined(ANDROID)
 
 int ftruncate(int file, filesize len);
@@ -562,8 +578,11 @@ int ftruncate(int file, filesize len);
 
 
 CLASS_DECL_ACME i32 get_os_thread_priority(::e_priority epriority);
+
 CLASS_DECL_ACME i32 get_os_priority_class(::e_priority epriority);
+
 CLASS_DECL_ACME ::e_priority get_os_thread_scheduling_priority(i32 iCa2Priority);
+
 CLASS_DECL_ACME ::e_priority get_os_class_scheduling_priority(i32 iCa2Priority);
 
 
@@ -578,8 +597,8 @@ CLASS_DECL_ACME ::e_priority get_os_class_scheduling_priority(i32 iCa2Priority);
 class matter;
 
 
-template < typename T >
-void __finalize_and_release(T& p)
+template<typename T>
+void __finalize_and_release(T &p)
 {
 
    if (p)
@@ -594,11 +613,11 @@ void __finalize_and_release(T& p)
 }
 
 
-CLASS_DECL_ACME void release_on_end(::matter* pmatter);
+CLASS_DECL_ACME void release_on_end(::matter *pmatter);
 
 
-template < typename TYPE >
-TYPE * __release_on_end(TYPE * pmatter)
+template<typename TYPE>
+TYPE *__release_on_end(TYPE *pmatter)
 {
 
    release_on_end(pmatter);
@@ -606,7 +625,6 @@ TYPE * __release_on_end(TYPE * pmatter)
    return pmatter;
 
 }
-
 
 
 CLASS_DECL_ACME extern u32 g_tickStartTime;
@@ -629,10 +647,13 @@ CLASS_DECL_ACME extern u32 g_tickStartTime;
 //CLASS_DECL_ACME void __tracev(::matter * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, va_list vargs);
 
 
-CLASS_DECL_ACME const char * trace_category_name(e_trace_category ecategory);
-CLASS_DECL_ACME ::matter * trace_object(e_trace_category ecategory);
-CLASS_DECL_ACME const char * topic_text(::matter * pcontextobject);
-CLASS_DECL_ACME e_trace_category object_trace_category(::matter * pcontextobject);
+CLASS_DECL_ACME const char *trace_category_name(e_trace_category ecategory);
+
+CLASS_DECL_ACME ::matter *trace_object(e_trace_category ecategory);
+
+CLASS_DECL_ACME const char *topic_text(::matter *pcontextobject);
+
+CLASS_DECL_ACME e_trace_category object_trace_category(::matter *pcontextobject);
 
 
 //
@@ -652,9 +673,17 @@ namespace apex
 
 
    class theme;
+
+
    class idpool;
+
+
    class application;
+
+
    class session;
+
+
    class system;
 
 
@@ -665,7 +694,11 @@ namespace aqua
 {
 
    class system;
+
+
    class session;
+
+
    class application;
 
 } // namespace aqua
@@ -676,9 +709,17 @@ namespace aura
 
 
    class theme;
+
+
    class idpool;
+
+
    class application;
+
+
    class session;
+
+
    class system;
 
 
@@ -690,8 +731,14 @@ namespace axis
 
 
    class idpool;
+
+
    class application;
+
+
    class session;
+
+
    class system;
 
 
@@ -703,9 +750,17 @@ namespace base
 
 
    class idpool;
+
+
    class application;
+
+
    class session;
+
+
    class system;
+
+
    class user;
 
 
@@ -716,7 +771,11 @@ namespace bred
 {
 
    class system;
+
+
    class session;
+
+
    class application;
 
 } // namespace bred
@@ -727,8 +786,14 @@ namespace core
 
 
    class idpool;
+
+
    class application;
+
+
    class session;
+
+
    class system;
 
 
@@ -750,39 +815,50 @@ namespace core
 
 class eimpact;
 
+
 enum e_simple_command : ::i64;
 enum e_message : ::i64;
 enum e_impact : ::i64;
 enum e_id : ::u64;
-enum enum_check: ::i32;
+enum enum_check : ::i32;
 
-template <typename TYPE>
-struct remove_const_struct { // remove top-level const qualifier
+template<typename TYPE>
+struct remove_const_struct
+{ // remove top-level const qualifier
    using NON_CONST_TYPE = TYPE;
 };
 
-template <typename TYPE>
-struct remove_const_struct< TYPE &> {
+template<typename TYPE>
+struct remove_const_struct<TYPE &>
+{
    using NON_CONST_TYPE = TYPE &;
 };
 
 
-template <typename TYPE>
-struct remove_const_struct<const TYPE> {
+template<typename TYPE>
+struct remove_const_struct<const TYPE>
+{
    using NON_CONST_TYPE = TYPE;
 };
 
-template <typename TYPE>
-struct remove_const_struct<const TYPE &> {
+template<typename TYPE>
+struct remove_const_struct<const TYPE &>
+{
    using NON_CONST_TYPE = TYPE &;
 };
 
-template <class TYPE>
+template<class TYPE>
 using non_const = typename remove_const_struct<TYPE>::NON_CONST_TYPE;
 
-struct true_type { };
-struct false_type { };
-template < typename POINTER >
+struct true_type
+{
+};
+struct false_type
+{
+};
+
+
+template<typename POINTER>
 class raw_pointer
 {
 public:
@@ -791,7 +867,8 @@ public:
 
 };
 
-template < typename TYPE >
+
+template<typename TYPE>
 class raw_type
 {
 public:
@@ -800,35 +877,9 @@ public:
 
 };
 
-template < typename TYPE >
-class raw_type < TYPE * >
-{
-public:
 
-   using RAW_TYPE = TYPE;
-
-};
-
-template < typename TYPE >
-class raw_type < TYPE * & >
-{
-public:
-
-   using RAW_TYPE = TYPE;
-
-};
-
-template < typename TYPE >
-class raw_type < const TYPE * >
-{
-public:
-
-   using RAW_TYPE = TYPE;
-
-};
-
-template < typename TYPE >
-class raw_type < const TYPE * & >
+template<typename TYPE>
+class raw_type<TYPE *>
 {
 public:
 
@@ -837,8 +888,38 @@ public:
 };
 
 
-template < typename LEFT, typename RIGHT >
-inline void assign(LEFT & l, const RIGHT & r) { l = r; }
+template<typename TYPE>
+class raw_type<TYPE *&>
+{
+public:
+
+   using RAW_TYPE = TYPE;
+
+};
+
+
+template<typename TYPE>
+class raw_type<const TYPE *>
+{
+public:
+
+   using RAW_TYPE = TYPE;
+
+};
+
+
+template<typename TYPE>
+class raw_type<const TYPE *&>
+{
+public:
+
+   using RAW_TYPE = TYPE;
+
+};
+
+
+template<typename LEFT, typename RIGHT>
+inline void assign(LEFT &l, const RIGHT &r) { l = r; }
 
 
 //template < typename, typename >
@@ -895,7 +976,8 @@ inline bool returns_false(PRED pred, bool bOnVoid, Args... args)
 
 #endif
 
-template < typename CHAR_TYPE >
+
+template<typename CHAR_TYPE>
 class string_base;
 
 
@@ -905,29 +987,29 @@ struct pixmap;
 #define CONSIDER_AS(as, use) using use = as
 
 
-using ansistring = string_base < ansichar >;
-using wd16string = string_base < wd16char >;
-using wd32string = string_base < wd32char >;
-using widestring = string_base < widechar >;
+using ansistring = string_base<ansichar>;
+using wd16string = string_base<wd16char>;
+using wd32string = string_base<wd32char>;
+using widestring = string_base<widechar>;
 
 
-using string = string_base < ansichar >;
-using wstring = string_base < widechar >;
+using string = string_base<ansichar>;
+using wstring = string_base<widechar>;
 
 
-inline const ansichar* __c_str(const string& str);
+inline const ansichar *__c_str(const string &str);
 
 
 class machine_event_central;
 
 
-template < typename ARG_KEY >
-inline uptr uptr_hash(ARG_KEY key) { return (uptr)((uptr)key); }
+template<typename ARG_KEY>
+inline uptr uptr_hash(ARG_KEY key) { return (uptr) ((uptr) key); }
 
 //#if OSBIT == 64
 
-template < typename ARG_KEY >
-inline u32 u32_hash(ARG_KEY key) { return (u32)(uptr_hash<ARG_KEY>(key)); }
+template<typename ARG_KEY>
+inline u32 u32_hash(ARG_KEY key) { return (u32) (uptr_hash<ARG_KEY>(key)); }
 
 //#endif
 
@@ -943,11 +1025,12 @@ inline u32 u32_hash(ARG_KEY key) { return (u32)(uptr_hash<ARG_KEY>(key)); }
 
 typedef string __GET_TEXT(string str);
 
-using __PFN_GET_TEXT = __GET_TEXT*;
+using __PFN_GET_TEXT = __GET_TEXT *;
 
 
 
 CLASS_DECL_ACME void __set_get_text(__PFN_GET_TEXT pgettext);
+
 CLASS_DECL_ACME string __get_text(string str);
 
 
@@ -965,7 +1048,11 @@ CLASS_DECL_ACME string __get_text(string str);
 
 
 class trait;
+
+
 class create;
+
+
 class sync;
 
 
@@ -977,15 +1064,18 @@ class sync;
 //CLASS_DECL_ACME ::estatus acme_run_system_term(::acme::system * psystem);
 
 
-template < typename VAR >
-class var_type
+template<typename VAR>
+class payload_type
 {
 public:
 
    using VAR_TYPE = VAR;
 
-   VAR_TYPE * this_var() { return (VAR_TYPE *)this; }
-   const VAR_TYPE * this_var() const { return (const VAR_TYPE *)this; }
+
+   VAR_TYPE *this_var() { return (VAR_TYPE *) this; }
+
+
+   const VAR_TYPE *this_var() const { return (const VAR_TYPE *) this; }
 
 };
 
@@ -1075,7 +1165,11 @@ enum enum_command
 
 
 class composite_base;
+
+
 class matter;
+
+
 class matter;
 
 
@@ -1122,34 +1216,36 @@ struct remove_reference
 };
 
 template<class T>
-struct remove_reference<T&>
+struct remove_reference<T &>
 {
    typedef T TYPE;
 };
 
 template<class T>
-struct remove_reference<T&&>
+struct remove_reference<T &&>
 {
    typedef T TYPE;
 };
 
-template<class T> inline
-typename remove_reference<T>::TYPE&& move(T && t)
+
+template<class T>
+inline
+typename remove_reference<T>::TYPE &&move(T &&t)
 {
 
-   return (static_cast<typename remove_reference<T>::TYPE&&>(t));
+   return (static_cast<typename remove_reference<T>::TYPE &&>(t));
 
 }
-
 
 
 class task;
 
 
-template < class T >
+template<class T>
 class ___pointer;
 
-template < class T >
+
+template<class T>
 class pointer_array;
 
 
@@ -1160,17 +1256,25 @@ class pointer_array;
 #define __address_array(TYPE) ::comparable_array < TYPE * >
 
 
-using source_pointer = __pointer(source);
-using update_pointer = __pointer(update);
-using change_pointer = __pointer(change);
-using action_pointer = __pointer(action);
+namespace promise
+{
 
 
+   using backing_pointer = __pointer(backing);
+   using handler_pointer = __pointer(handler);
+   using subject_pointer = __pointer(subject);
+   using context_pointer = __pointer(context);
 
-template < typename THREAD_POINTER >
+
+} // namespace promise
+
+
+template<typename THREAD_POINTER>
 class ___task_pool;
 
+
 using task_pointer = __pointer(::task);
+
 
 class task_pool;
 //using task_pool = ___task_pool<::task_pointer>;
@@ -1182,66 +1286,83 @@ namespace draw2d
 
    class font_enum_item;
 
+
    using font_enum_item_array = __pointer_array(font_enum_item);
 
 } // namespace draw2d
 
-template < typename T >
+template<typename T>
 class result_pointer;
+
 
 #define __result(T) ::result_pointer < T >
 
-template < class TYPE >
-inline auto & __typed(TYPE & t) { return t; }
 
-template < class POINTER_TYPE >
-inline auto & __typed(POINTER_TYPE * p) { return *p; }
-
-template < class POINTER_POINTER_TYPE >
-inline auto & __typed(POINTER_POINTER_TYPE ** p) { return **p; }
+template<class TYPE>
+inline auto &__typed(TYPE &t) { return t; }
 
 
-template < class TYPE >
-inline auto & __typed_defer_new(TYPE & t) { return t; }
+template<class POINTER_TYPE>
+inline auto &__typed(POINTER_TYPE *p) { return *p; }
 
-template < class POINTER_TYPE >
-inline auto & __typed_defer_new(POINTER_TYPE *& p) { if (!p) p = new POINTER_TYPE; return *p; }
 
-template < class POINTER_POINTER_TYPE >
-inline auto & __typed_defer_new(POINTER_POINTER_TYPE ** p) { if (!*p) *p = new POINTER_POINTER_TYPE;  return **p; }
+template<class POINTER_POINTER_TYPE>
+inline auto &__typed(POINTER_POINTER_TYPE **p) { return **p; }
 
-template < class T >
-inline auto & __typed_defer_new(__pointer(T) & p) { if (!p) p = new T; return *p; }
 
-template < class T >
-inline auto & __typed_defer_create(__pointer(T) & p) { if (!p) __construct(p); return *p; }
+template<class TYPE>
+inline auto &__typed_defer_new(TYPE &t) { return t; }
 
-template < typename T >
-inline __pointer(T) move_transfer(T * p);
+
+template<class POINTER_TYPE>
+inline auto &__typed_defer_new(POINTER_TYPE *&p)
+{
+   if (!p) { p = new POINTER_TYPE; }
+   return *p;
+}
+
+
+template<class POINTER_POINTER_TYPE>
+inline auto &__typed_defer_new(POINTER_POINTER_TYPE **p)
+{
+   if (!*p) { *p = new POINTER_POINTER_TYPE; }
+   return **p;
+}
+
+
+template<class T>
+inline auto &__typed_defer_new(__pointer(T) &p)
+{
+   if (!p) { p = new T; }
+   return *p;
+}
+
+
+template<class T>
+inline auto &__typed_defer_create(__pointer(T) &p)
+{
+   if (!p) { __construct(p); }
+   return *p;
+}
+
+
+template<typename T>
+inline __pointer(T) move_transfer(T *p);
 
 #define __new(...) move_transfer( new __VA_ARGS__ )
 
 
-template < typename TYPE1, typename TYPE2 >
-inline void __dynamic_cast(TYPE1*& ptype1, const TYPE2* ptype2)
+template<typename TYPE1, typename TYPE2>
+inline void __dynamic_cast(TYPE1 *&ptype1, const TYPE2 *ptype2)
 {
 
-   ptype1 = dynamic_cast <TYPE2*> (ptype2);
+   ptype1 = dynamic_cast <TYPE2 *> (ptype2);
 
 }
 
 
-template < typename TYPE1, typename TYPE2 >
-inline void __dynamic_cast(__pointer(TYPE1)& ptype1, const TYPE2* ptype2)
-{
-
-   ptype1 = ptype2;
-
-}
-
-
-template < typename TYPE1, typename TYPE2 >
-inline void __dynamic_cast(__pointer(TYPE1)& ptype1, const __pointer(TYPE2)& ptype2)
+template<typename TYPE1, typename TYPE2>
+inline void __dynamic_cast(__pointer(TYPE1) &ptype1, const TYPE2 *ptype2)
 {
 
    ptype1 = ptype2;
@@ -1249,26 +1370,35 @@ inline void __dynamic_cast(__pointer(TYPE1)& ptype1, const __pointer(TYPE2)& pty
 }
 
 
-template < typename TYPE1, typename TYPE2 >
-inline void __dynamic_cast(TYPE1*& ptype1, const __pointer(TYPE2)& ptype2);
+template<typename TYPE1, typename TYPE2>
+inline void __dynamic_cast(__pointer(TYPE1) &ptype1, const __pointer(TYPE2) &ptype2)
+{
+
+   ptype1 = ptype2;
+
+}
 
 
-template < typename T >
-inline bool __found(const __pointer(T) & p);
+template<typename TYPE1, typename TYPE2>
+inline void __dynamic_cast(TYPE1 *&ptype1, const __pointer(TYPE2) &ptype2);
 
 
-template < typename T >
-inline bool __not_found(const __pointer(T) & p);
+template<typename T>
+inline bool __found(const __pointer(T) &p);
 
 
-template < typename TDST, typename TSRC >
-inline __pointer(TDST) & clone(__pointer(TDST) & dst, const __pointer(TSRC) & src);
-
-template < typename T >
-inline __pointer(T) clone(const __pointer(T) & t);
+template<typename T>
+inline bool __not_found(const __pointer(T) &p);
 
 
-template < class T >
+template<typename TDST, typename TSRC>
+inline __pointer(TDST) &clone(__pointer(TDST) &dst, const __pointer(TSRC) &src);
+
+template<typename T>
+inline __pointer(T) clone(const __pointer(T) &t);
+
+
+template<class T>
 class guard_pointer;
 
 
@@ -1281,17 +1411,29 @@ class guard_pointer;
 #define DOUBLE_PI 3.141592653589793238462643383279502884197169399375105820974944592307816406286208998628034825342117067982148086513282306647093844
 
 
-template < typename TYPE > inline TYPE* __random_bytes(TYPE* p, memsize s);
-template < typename TYPE > inline TYPE& __random(TYPE& t);
-template < typename TYPE > inline TYPE __random();
+template<typename TYPE>
+inline TYPE *__random_bytes(TYPE *p, memsize s);
+
+template<typename TYPE>
+inline TYPE &__random(TYPE &t);
+
+template<typename TYPE>
+inline TYPE __random();
+
 inline float __random(float f1, float f2);
+
 inline double __random(double d1, double d2);
-template < typename ::i32 > inline ::i32 __random_int(::i32 i1, ::i32 i2);
+
+template<typename ::i32>
+inline ::i32 __random_int(::i32 i1, ::i32 i2);
+
 inline i64 __random(i64 i1, i64 i2);
+
 inline i32 __random(i32 i1, i32 i2);
 
-template < typename TYPE >
-inline void swap(TYPE& a, TYPE& b)
+
+template<typename TYPE>
+inline void swap(TYPE &a, TYPE &b)
 {
    auto t = a;
    a = b;
@@ -1299,30 +1441,30 @@ inline void swap(TYPE& a, TYPE& b)
 
 }
 
-inline bool is_null(const void * p, size_t s)
+
+inline bool is_null(const void *p, size_t s)
 {
 
-   const auto MAX = (size_t)(-1);
+   const auto MAX = (size_t) (-1);
 
-   return ((size_t)p) <= s || ((size_t)p) >= (MAX - s);
+   return ((size_t) p) <= s || ((size_t) p) >= (MAX - s);
 
 }
 
 
-
-template < typename TYPE >
-inline bool is_null(const TYPE * p)
+template<typename TYPE>
+inline bool is_null(const TYPE *p)
 {
 
-   const auto MAX = (size_t)(-1) - 65536;
+   const auto MAX = (size_t) (-1) - 65536;
 
-   return ((size_t) p <= 65536) || ((size_t)p) >= (MAX);
+   return ((size_t) p <= 65536) || ((size_t) p) >= (MAX);
 
 }
 
 
-template < >
-inline bool is_null(const void * p)
+template<>
+inline bool is_null(const void *p)
 {
 
    return is_null(p, 65536);
@@ -1330,8 +1472,8 @@ inline bool is_null(const void * p)
 }
 
 
-template < typename TYPE >
-inline bool is_set(const TYPE * p)
+template<typename TYPE>
+inline bool is_set(const TYPE *p)
 {
 
    return !is_null(p);
@@ -1339,8 +1481,8 @@ inline bool is_set(const TYPE * p)
 }
 
 
-template < typename TYPE >
-inline bool is_ref_set(const TYPE & t)
+template<typename TYPE>
+inline bool is_ref_set(const TYPE &t)
 {
 
    return is_set(&t);
@@ -1348,15 +1490,17 @@ inline bool is_ref_set(const TYPE & t)
 }
 
 
-template < typename TYPE >
-inline bool is_ok(const TYPE* p)
+template<typename TYPE>
+inline bool is_ok(const TYPE *p)
 {
 
    return ::is_set(p);
 
 }
-template < typename TYPE >
-inline bool is_ok(const __pointer(TYPE) & p)
+
+
+template<typename TYPE>
+inline bool is_ok(const __pointer(TYPE) &p)
 {
 
    return ::is_ok(p.m_p);
@@ -1364,8 +1508,8 @@ inline bool is_ok(const __pointer(TYPE) & p)
 }
 
 
-template < typename TYPE >
-inline bool nok(const TYPE* p)
+template<typename TYPE>
+inline bool nok(const TYPE *p)
 {
 
    return !::is_ok(p);
@@ -1373,13 +1517,22 @@ inline bool nok(const TYPE* p)
 }
 
 
-
 class istring;
-class var;
+
+
+class payload;
+
+
 class property_set;
+
+
 class matter;
+
+
 //class base_edit;
 class var_array;
+
+
 class property;
 
 
@@ -1400,10 +1553,13 @@ namespace acme
 
 };
 
+
 class timer;
 
-typedef bool FN_TIMER(timer * ptimer);
-typedef FN_TIMER * PFN_TIMER;
+
+typedef bool FN_TIMER(timer *ptimer);
+
+typedef FN_TIMER *PFN_TIMER;
 
 #define NOK_IMAGE_OBJECT (NONE_ID)
 #define IMAGE_OBJECT_OK (SUCCESS)
@@ -1416,9 +1572,9 @@ typedef FN_TIMER * PFN_TIMER;
 
 
 inline bool is_impact_group(::u64 u, ::u64 uGroup) { return u >= uGroup && u < uGroup + 1000; }
+
+
 inline bool is_impact_subgroup(::u64 u, ::u64 uGroup) { return u >= uGroup && u < uGroup + 100; }
-
-
 
 
 class command_line;
@@ -1448,10 +1604,20 @@ namespace draw2d
 
 
    class icon;
+
+
    class cursor;
+
+
    class region;
+
+
    class brush;
+
+
    class font;
+
+
    using brush_pointer = __pointer(brush);
    using font_pointer = __pointer(font);
 
@@ -1461,17 +1627,21 @@ namespace draw2d
 
 
 
-template < typename T1, typename T2, typename ARG_T1 = const T1 &, typename ARG_T2 = const T2 & >
+template<typename T1, typename T2, typename ARG_T1 = const T1 &, typename ARG_T2 = const T2 &>
 class pair;
 
-template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE = const VALUE &, class PAIR = pair < KEY, VALUE, ARG_KEY, ARG_VALUE > >
+
+template<class KEY, class ARG_KEY, class VALUE, class ARG_VALUE = const VALUE &, class PAIR = pair<KEY, VALUE, ARG_KEY, ARG_VALUE> >
 class map;
 
-template < class ENUM >
+
+template<class ENUM>
 class flags;
 
-template < class EENUM, EENUM edefault = (EENUM)0 >
+
+template<class EENUM, EENUM edefault = (EENUM) 0>
 class base_enum;
+
 
 class form_property_set;
 
@@ -1527,7 +1697,10 @@ namespace acme
 
    class command;
 
+
    class str;
+
+
    class str_context;
 
 
@@ -1546,8 +1719,14 @@ namespace data
 
 
    class listener;
+
+
    class data;
+
+
    class simple_data;
+
+
    class data_container_base;
 
 
@@ -1575,18 +1754,38 @@ class compress_department; // only usable from axis.dll and dependants
 
 class channel;
 
+
 class dump_context;
 
+
 class id_space;
+
+
 class ptra;
+
+
 class factory_item_base;
+
+
 class fixed_alloc_no_sync;
+
+
 class critical_section;
+
+
 class var_array;
+
+
 //class thread;
 class channel;
+
+
 class critical_section;
+
+
 class mutex;
+
+
 class id;
 
 namespace colorertake5
@@ -1612,7 +1811,11 @@ namespace datetime
 
 
    class department;
+
+
    class time;
+
+
    class time_span;
 
 
@@ -1620,20 +1823,27 @@ namespace datetime
 
 
 
-template < typename Type,typename RawType = Type >
+template<typename Type, typename RawType = Type>
 class string_array_base;
 
 
-typedef string_array_base < string > string_array;
+typedef string_array_base<string> string_array;
 
 
 namespace file
 {
 
    class listing;
+
+
    class path;
-   typedef CLASS_DECL_ACME ::string_array_base < ::file::path,string > patha;
+
+
+   typedef CLASS_DECL_ACME ::string_array_base<::file::path, string> patha;
+
+
    class file;
+
 
    enum enum_type
    {
@@ -1654,6 +1864,8 @@ namespace hotplugin
 {
 
    class host;
+
+
    class plugin;
 
 }
@@ -1684,6 +1896,7 @@ namespace audio
 
 #include "acme/primitive/collection/forward.h"
 
+
 enum e_optional
 {
 
@@ -1698,80 +1911,137 @@ enum e_no_init
 
 };
 
+
 class CLASS_DECL_ACME set
 {
 public:
 
-   e_set    m_eset;
+   e_set m_eset;
+
 
    inline set(e_optional) { m_eset = set_none; }
+
+
    inline set() { m_eset = set_none; }
-   inline set(int i) { operator = (i); }
-   inline set(bool b) { operator = (b); }
-   inline set(const ::set & set) :m_eset(set_none){ if(!set.undefined()) m_eset = set.m_eset; }
+
+
+   inline set(int i) { operator=(i); }
+
+
+   inline set(bool b) { operator=(b); }
+
+
+   inline set(const ::set &set) : m_eset(set_none) { if (!set.undefined()) { m_eset = set.m_eset; }}
+
 
    inline bool isFalse() const { return is_false(); }
 
+
    inline bool is_false() const { return m_eset < set_empty; }
+
 
    inline bool undefined() const { return is_empty(); }
 
+
    inline bool is_empty() const { return m_eset == set_empty; }
+
 
    inline bool is_none() const { return is_empty(); }
 
+
    inline bool is_true() const { return m_eset > set_empty; }
+
 
    inline bool is_true(bool bDefault) const { return m_eset ? isTrue() : bDefault; }
 
+
    inline bool isTrue() const { return is_true(); }
+
 
    inline bool is_optional() const { return !m_eset; }
 
+
    inline bool isOptional() const { return is_optional(); }
+
 
    inline operator bool() const { return isTrue(); }
 
-   inline bool operator !() const { return isFalse(); }
 
-   inline bool operator < (int i) const { return (int)m_eset < i; }
+   inline bool operator!() const { return isFalse(); }
 
-   inline bool operator <= (int i) const { return (int)m_eset <= i; }
 
-   inline bool operator > (int i) const { return (int)m_eset > i; }
+   inline bool operator<(int i) const { return (int) m_eset < i; }
 
-   inline bool operator >= (int i) const { return (int)m_eset >= i; }
 
-   inline bool operator == (int i) const { return (int)m_eset == i; }
+   inline bool operator<=(int i) const { return (int) m_eset <= i; }
 
-   inline bool operator != (int i) const { return !operator ==(i); }
 
-   inline set & operator = (int i) { m_eset = (e_set)i; return *this; }
+   inline bool operator>(int i) const { return (int) m_eset > i; }
 
-   inline set & operator = (bool b) { m_eset = (b ? set_true : set_false); return *this; }
 
-   inline bool operator == (bool b) const { return (m_eset == set_true && b) || (m_eset == set_false && !b); }
+   inline bool operator>=(int i) const { return (int) m_eset >= i; }
 
-   inline bool operator != (bool b) const { return !operator ==(b); }
 
-   inline set& operator = (const ::set& set) { if (this != &set && !set.undefined()) { m_eset = set.m_eset; }; return *this; }
+   inline bool operator==(int i) const { return (int) m_eset == i; }
 
-   inline void defer(int i) { if(is_empty()) operator =(i); }
 
-   inline set deferred(int i) const { if(is_empty()) return i; else return m_eset; }
+   inline bool operator!=(int i) const { return !operator==(i); }
+
+
+   inline set &operator=(int i)
+   {
+      m_eset = (e_set) i;
+      return *this;
+   }
+
+
+   inline set &operator=(bool b)
+   {
+      m_eset = (b ? set_true : set_false);
+      return *this;
+   }
+
+
+   inline bool operator==(bool b) const { return (m_eset == set_true && b) || (m_eset == set_false && !b); }
+
+
+   inline bool operator!=(bool b) const { return !operator==(b); }
+
+
+   inline set &operator=(const ::set &set)
+   {
+      if (this != &set && !set.undefined()) { m_eset = set.m_eset; };
+      return *this;
+   }
+
+
+   inline void defer(int i) { if (is_empty()) { operator=(i); }}
+
+
+   inline set deferred(int i) const { if (is_empty()) { return i; } else { return m_eset; }}
+
 
    inline set operator()(int i) const { return deferred(i); }
 
 };
 
+
 inline bool __is_true(bool b) { return b; }
-inline bool __is_true(const ::set& set) { return set; }
+
+
+inline bool __is_true(const ::set &set) { return set; }
+
 
 inline bool __is_false(bool b) { return !b; }
-inline bool __is_false(const ::set& set) { return !set; }
+
+
+inline bool __is_false(const ::set &set) { return !set; }
+
 
 inline bool __is_optional(bool b) { return false; }
-inline bool __is_optional(const ::set& set) { return set.isOptional(); }
+
+
+inline bool __is_optional(const ::set &set) { return set.isOptional(); }
 
 
 #define __optional_is_true(flag, option) ((bool)(flag) || (__is_optional(flag) && (option)))
@@ -1782,24 +2052,21 @@ inline bool __is_optional(const ::set& set) { return set.isOptional(); }
 #include "acme/primitive/primitive/papaya.h"
 
 
-
-
-
-
-template <class t>
-inline void delptr(t *& p)
+template<class t>
+inline void delptr(t *&p)
 {
-   if(p != nullptr)
+   if (p != nullptr)
    {
       delete p;
       p = nullptr;
    }
 }
 
-template < typename T >
-inline int type_is_null(const T * p)
+
+template<typename T>
+inline int type_is_null(const T *p)
 {
-   return (((uptr)(void *)p) < MAX(4096, sizeof(T)));
+   return (((uptr) (void *) p) < MAX(4096, sizeof(T)));
 }
 
 
@@ -1809,14 +2076,11 @@ inline int type_is_null(const T * p)
 class allocer;
 
 
-
-
-
 namespace acme
 {
 
-   template < typename T >
-   inline void del(T * & p)
+   template<typename T>
+   inline void del(T *&p)
    {
 
       //Thank you Fiora a Eterna!!
@@ -1834,10 +2098,10 @@ namespace acme
 
          //Thank you Dunno_Aye for the is_null!!
 
-         if(!is_null(p))
+         if (!is_null(p))
          {
 
-            T * pdel = p;
+            T *pdel = p;
 
             p = nullptr;
 
@@ -1846,7 +2110,7 @@ namespace acme
          }
 
       }
-      catch(...)
+      catch (...)
       {
 
       }
@@ -1854,11 +2118,12 @@ namespace acme
    }
 
 
-   template < typename T >
-   inline void delobj(T * & p);
+   template<typename T>
+   inline void delobj(T *&p);
 
-   template < typename T >
-   inline void adel(T * & p)
+
+   template<typename T>
+   inline void adel(T *&p)
    {
 
       //Thank you Fiora a Eterna!!
@@ -1874,7 +2139,7 @@ namespace acme
       try
       {
 
-         if(p != nullptr)
+         if (p != nullptr)
          {
 
             delete[] p;
@@ -1884,7 +2149,7 @@ namespace acme
          }
 
       }
-      catch(...)
+      catch (...)
       {
 
       }
@@ -1892,8 +2157,8 @@ namespace acme
    }
 
 
-   template < typename T >
-   inline void free(T * & p)
+   template<typename T>
+   inline void free(T *&p)
    {
 
       //Thank you Mummi!!
@@ -1916,7 +2181,7 @@ namespace acme
          if (p != nullptr)
          {
 
-            void * pdel = (void *) p;
+            void *pdel = (void *) p;
 
             p = nullptr;
 
@@ -1933,8 +2198,8 @@ namespace acme
    }
 
 
-   template < typename T >
-   inline void memory_free(T * & p)
+   template<typename T>
+   inline void memory_free(T *&p)
    {
 
       //Thank you Mummi!!
@@ -1957,7 +2222,7 @@ namespace acme
          if (p != nullptr)
          {
 
-            void * pdel = (void *)p;
+            void *pdel = (void *) p;
 
             p = nullptr;
 
@@ -1974,8 +2239,8 @@ namespace acme
    }
 
 
-   template < typename T >
-   inline T * reset(T * & p, T * pNew)
+   template<typename T>
+   inline T *reset(T *&p, T *pNew)
    {
 
       ::acme::del(p);
@@ -1984,8 +2249,9 @@ namespace acme
 
    }
 
-   template < typename T >
-   inline T * reset(T * & p)
+
+   template<typename T>
+   inline T *reset(T *&p)
    {
 
       ::acme::del(p);
@@ -2002,7 +2268,6 @@ namespace acme
 
 
 class image_list;
-
 
 
 namespace acme
@@ -2061,7 +2326,11 @@ namespace base
 {
 
    class application;
+
+
    class session;
+
+
    class system;
 
 }
@@ -2106,6 +2375,8 @@ namespace xml
 
 
    class node;
+
+
    class document;
 
 
@@ -2195,7 +2466,7 @@ namespace html
 
 #ifndef WINDOWS_DESKTOP
 
-typedef void * HDWP;
+typedef void *HDWP;
 
 #endif
 
@@ -2205,19 +2476,24 @@ struct plane_system;
 
 #endif
 
-typedef  void(*PFN_factory_exchange)();
+typedef void(*PFN_factory_exchange)();
 
 #ifdef WINDOWS
 CLASS_DECL_ACME HRESULT defer_co_initialize_ex(bool bMultiThread, bool bDisableOleDDE = false);
 #endif
 
+
 class matter;
 
-class var;
 
-using argument = var;
+class payload;
+
+
+using argument = payload;
+
 
 class var_array;
+
 
 using arguments = var_array;
 
@@ -2230,9 +2506,11 @@ using arguments = var_array;
 //CLASS_DECL_ACME bool acme_term();
 
 CLASS_DECL_ACME bool __node_acme_pre_init();
+
 CLASS_DECL_ACME bool __node_acme_pos_init();
 
 CLASS_DECL_ACME bool __node_acme_pre_term();
+
 CLASS_DECL_ACME bool __node_acme_pos_term();
 
 
@@ -2242,7 +2520,9 @@ CLASS_DECL_ACME bool __node_acme_pos_term();
 #define ARRAY_SIZE(a) (sizeof(a)/sizeof(*(a)))
 
 
-class var;
+class payload;
+
+
 class id;
 
 
@@ -2271,6 +2551,7 @@ class cotaskptr;
 
 #endif
 
+
 class type;
 
 
@@ -2285,9 +2566,8 @@ class type;
 #include "acme/platform/muldiv64.h"
 
 
-
-
 #include "acme/platform/auto_pointer.h"
+
 
 #define __m_own(owner, member_reference, ...) (owner)->__compose(member_reference, __VA_ARGS__ )
 #define __own(owner, member, ...) __m_own(owner, (owner)->member, __VA_ARGS__ )
@@ -2295,6 +2575,8 @@ class type;
 #define __bind(referer, referee, ...) __m_bind(referer, (referer)->referee, __VA_ARGS__)
 #define __unbind(holder, ...) (holder)->__release((holder)-> __VA_ARGS__ )
 
+
+CLASS_DECL_ACME ::estatus __realize(::matter * pmatter, const ::promise::process & process);
 
 // C-includes
 //#include "acme/os/os.h"
@@ -2315,15 +2597,15 @@ namespace primitive
 {
 
 
-   template < typename TYPE >
+   template<typename TYPE>
    class member;
 
 
-   template < typename TYPE >
+   template<typename TYPE>
    class composite;
 
 
-   template < typename TYPE >
+   template<typename TYPE>
    class reference;
 
 
@@ -2335,26 +2617,17 @@ namespace primitive
 #define __reference(TYPE) ::primitive::reference < TYPE >
 
 
-
-
-template < typename TYPE >
-inline bool is_null(const __pointer(TYPE) & p)
+template<typename TYPE>
+inline bool is_null(const __pointer(TYPE) &p)
 {
 
    return ::is_null(p.m_p);
 
 }
 
-template < typename TYPE >
-inline bool is_null(const __composite(TYPE) & p)
-{
 
-   return p.is_null();
-
-}
-
-template < typename TYPE >
-inline bool is_null(const __reference(TYPE) & p)
+template<typename TYPE>
+inline bool is_null(const __composite(TYPE) &p)
 {
 
    return p.is_null();
@@ -2362,32 +2635,44 @@ inline bool is_null(const __reference(TYPE) & p)
 }
 
 
-template < typename TYPE >
-inline bool is_set(const __pointer(TYPE) & p)
+template<typename TYPE>
+inline bool is_null(const __reference(TYPE) &p)
+{
+
+   return p.is_null();
+
+}
+
+
+template<typename TYPE>
+inline bool is_set(const __pointer(TYPE) &p)
 {
 
    return p.is_set();
 
 }
 
-template < typename TYPE >
-inline bool is_set(const __composite(TYPE) & p)
+
+template<typename TYPE>
+inline bool is_set(const __composite(TYPE) &p)
 {
 
    return p.is_set();
 
 }
 
-template < typename TYPE >
-inline bool is_set(const __reference(TYPE) & p)
+
+template<typename TYPE>
+inline bool is_set(const __reference(TYPE) &p)
 {
 
    return p.is_set();
 
 }
 
-template < typename TYPE >
-inline bool is_null_ref(const TYPE & t)
+
+template<typename TYPE>
+inline bool is_null_ref(const TYPE &t)
 {
 
    return is_null(&t);
@@ -2395,60 +2680,75 @@ inline bool is_null_ref(const TYPE & t)
 }
 
 
-template < typename TYPE >
-inline bool is_set_ref(const TYPE & t)
+template<typename TYPE>
+inline bool is_set_ref(const TYPE &t)
 {
    return !is_null_ref(t);
 }
-
-
 
 
 #include "acme/primitive/primitive/pointer.h"
 #include "acme/primitive/primitive/pointer2.h"
 
 
+using matter_pointer = __pointer(::matter);
+
+
+#include "acme/primitive/promise_pred/pred_function_pointer.h"
+
+
+#include "acme/primitive/promise/routine.h"
+
+
+#include "acme/primitive/promise/process.h"
+
+
+
+
 //#include "acme/platform/_.h"
 
-template < class POINTER_TYPE >
-inline auto & __typed(__pointer(POINTER_TYPE) & p) { return *p; }
+template<class POINTER_TYPE>
+inline auto &__typed(__pointer(POINTER_TYPE) &p) { return *p; }
 
 
-#include "acme/multithreading/thread_parameter.h"
+#include "acme/parallelization/thread_parameter.h"
 
 #include "acme/platform/keep_true.h"
+
 
 using file_pointer = __pointer(::file::file);
 
 using file_result = __result(::file::file);
 
+
 class stream;
+
+
 class binary_stream;
 
-template < typename BASE_TYPE >
-inline stream & __save_object(stream & stream, BASE_TYPE * p);
 
-template < typename BASE_TYPE >
-inline stream & __save_object(stream & stream, const __pointer(BASE_TYPE) & p)
+template<typename BASE_TYPE>
+inline stream &__save_object(stream &stream, BASE_TYPE *p);
+
+
+template<typename BASE_TYPE>
+inline stream &__save_object(stream &stream, const __pointer(BASE_TYPE) &p)
 {
    return __save_object(stream, (BASE_TYPE *) p.m_p);
 }
 
-#include "acme/primitive/primitive/logic.h"
 
+#include "acme/primitive/primitive/logic.h"
 
 
 #include "acme/primitive/math/static_numeric_info.h"
 #include "acme/primitive/math/numeric_info.h"
 
 
-
-
 #include "acme/primitive/math/c_number.h"
 
-using wparam = c_number < WPARAM >;
 
-
+using wparam = c_number<WPARAM>;
 
 
 #include "acme/primitive/math/math_clip.h"
@@ -2482,9 +2782,6 @@ using wparam = c_number < WPARAM >;
 #include "acme/primitive/datetime/filetime.h"
 
 
-
-
-
 namespace status
 {
 
@@ -2500,6 +2797,7 @@ namespace message
 
 class parents;
 
+
 class children;
 
 
@@ -2507,6 +2805,8 @@ namespace exception
 {
 
    class exception;
+
+
    using exception_pointer = __pointer(exception);
 
 } // namespace exception
@@ -2516,6 +2816,8 @@ using exception_pointer = ::exception::exception_pointer;
 
 
 class event_map;
+
+
 class thread_ptra;
 //class traits;
 
@@ -2531,11 +2833,11 @@ namespace papaya
 class memory_base;
 
 
-
-template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename RECT_BASE_TYPE >
+template<typename BASE_TYPE, typename POINT_BASE_TYPE, typename RECT_BASE_TYPE>
 class size_type;
 
-using size = size_type < SIZE32, POINT32, RECT32 >;
+
+using size = size_type<SIZE32, POINT32, RECT32>;
 
 
 #include "acme/primitive/math/cast.h"
@@ -2557,6 +2859,8 @@ namespace user
 //
 
    class primitive;
+
+
    class create;
 
 } // namespace user
@@ -2570,13 +2874,11 @@ namespace user
 //using eobject = cflag < ::enum_object >;
 class action_context;
 
+
 #include "acme/primitive/primitive/eobject.h"
 
-using emessagebox = cflag < enum_message_box >;
 
-
-using matter_pointer = __pointer(::matter);
-
+using emessagebox = cflag<enum_message_box>;
 
 
 
@@ -2591,11 +2893,10 @@ namespace user
 
 #include "acme/platform/_global.h"
 
+
 class function;
-class procedure;
-template < typename FUTURE >
-class future;
-using futurevar = ::future < ::var >;
+
+
 
 
 namespace factory
@@ -2615,22 +2916,11 @@ namespace factory
 
 class manual_reset_event;
 
-#include "acme/primitive/primitive/function_pointer.h"
 
-
-#include "acme/primitive/primitive/procedure.h"
-
-
-#include "acme/primitive/primitive/future.h"
+//#include "acme/primitive/promiseλ/pred_pointer.h"
 
 
 #include "acme/primitive/primitive/work.h"
-
-
-
-
-
-
 
 
 #include "acme/primitive/primitive/compare_pred.h"
@@ -2639,23 +2929,28 @@ class manual_reset_event;
 #include "acme/platform/status.h"
 #include "acme/primitive/primitive/enumeration.h"
 
-using efileopen = cflag < ::file::e_open >;
 
-using eiostate = ::cflag < ::file::e_iostate >;
+using efileopen = cflag<::file::e_open>;
 
-using ecommand = ::enumeration < enum_command >;
+using eiostate = ::cflag<::file::e_iostate>;
 
-using echeck = ::enumeration < enum_check >;
+using ecommand = ::enumeration<enum_command>;
+
+using echeck = ::enumeration<enum_check>;
 
 
 typedef ::estatus THREAD_PROCEDURE(thread_parameter parameter);
 
 
-inline bool succeeded(const ::var & var);
-inline bool succeeded(const ::property & set);
+inline bool succeeded(const ::payload &payload);
 
-inline bool failed(const ::var & var) { return !::succeeded(var); }
-inline bool failed(const ::property & set) { return !::succeeded(set); }
+inline bool succeeded(const ::property &set);
+
+
+inline bool failed(const ::payload &payload) { return !::succeeded(payload); }
+
+
+inline bool failed(const ::property &set) { return !::succeeded(set); }
 
 
 #define __inner_release(outer, inner) ::release(outer, outer->inner)
@@ -2667,24 +2962,10 @@ inline bool failed(const ::property & set) { return !::succeeded(set); }
 #include "acme/primitive/primitive/member.h"
 
 
-
-
-
 #include "acme/primitive/primitive/trait.h"
 
 
-
-
-
-
-
 #include "acme/primitive/primitive/_papaya.h"
-
-
-
-
-
-
 
 
 #include "acme/primitive/geometry2d/_.h"
@@ -2728,7 +3009,7 @@ inline bool failed(const ::property & set) { return !::succeeded(set); }
 #include "acme/primitive/collection/address_array.h"
 
 
-using element_address_array = ::address_array < matter * >;
+using element_address_array = ::address_array<matter *>;
 
 
 #include "acme/primitive/collection/_papaya.h"
@@ -2739,9 +3020,10 @@ using element_address_array = ::address_array < matter * >;
 class sticker;
 
 
-inline ::matter * trace_object(::matter * pobjectContext) { return pobjectContext; }
+inline ::matter *trace_object(::matter *pobjectContext) { return pobjectContext; }
 
-template < typename POINTER_TYPE >
+
+template<typename POINTER_TYPE>
 class ptr_array;
 
 //using composite_ptra = __pointer_array(::matter); // Please use just for composition (ownership).
@@ -2763,7 +3045,6 @@ class object_meta;
 
 #define __composite_array(TYPE) ::array < __composite(TYPE) >
 #define __reference_array(TYPE) ::array < __reference(TYPE) >
-
 
 
 namespace http
@@ -2812,7 +3093,6 @@ using generic_pointer = __pointer(::matter);
 #endif
 
 
-
 namespace core
 {
 
@@ -2826,27 +3106,23 @@ namespace core
 class task;
 
 
-
-
-
 #include "acme/exception/_.h"
 
-using procedure_array = ::array < ::procedure >;
+namespace promise
+{
 
-using futurevar_array = ::array < ::futurevar >;
+   using routine_array = ::array < routine >;
 
-template < typename FUTURE >
-using future_array = ::array < ::future < FUTURE > >;
+   using process_array = ::array < process >;
+
+   template<typename PRED>
+   void add_routine(routine_array &array, PRED pred);
+
+   template<typename PRED>
+   void add_process(process_array &array, PRED pred);
 
 
-template < typename PRED >
-void add_procedure(procedure_array& array, PRED pred);
-
-template < typename PRED >
-void add_futurevar(futurevar_array& array, PRED pred);
-
-template < typename PRED, typename FUTURE >
-void add_future(future_array < FUTURE > & array, PRED pred);
+} // namespace promise
 
 
 #include "acme/primitive/primitive/context_object.h"
@@ -2859,20 +3135,16 @@ void add_future(future_array < FUTURE > & array, PRED pred);
 
 #include "acme/primitive/collection/_.h"
 
-//#include "acme/primitive/primitive/method.h"
+#include "primitive/promise_pred/pred_routine.h"
 
-//#include "acme/primitive/primitive/future.h"
+#include "primitive/promise_pred/pred_process.h"
 
-
-#include "acme/primitive/primitive/pred_method.h"
-
-#include "acme/primitive/primitive/pred_future.h"
-
-#include "acme/multithreading/pool.h"
+#include "acme/parallelization/pool.h"
 
 #include "acme/primitive/geometry2d/_collection.h"
 
 #include "acme/primitive/geometry3d/_.h"
+
 
 class message_box;
 
@@ -2894,9 +3166,9 @@ class message_box;
 
 #include "acme/primitive/primitive/request_interface.h"
 
-#include "acme/multithreading/sync_result.h"
+#include "acme/parallelization/sync_result.h"
 
-//#include "acme/multithreading/sync.h"
+//#include "acme/parallelization/sync.h"
 
 //#include "acme/xml/exportable.h"
 
@@ -2910,23 +3182,27 @@ class message_box;
 
 #include "acme/platform/string_exchange.h"
 
-CLASS_DECL_ACME string merge_colon_args(const array < string_array > & str2a);
+
+CLASS_DECL_ACME string merge_colon_args(const array<string_array> &str2a);
+
 
 class callstack;
 
-CLASS_DECL_ACME __pointer(callstack) get_callstack(const char* pszFormat = "%f(%l) %s\n", iptr iSkip = -1000, void* caller_address = nullptr, iptr iCount = -1);
+
+CLASS_DECL_ACME __pointer(callstack) get_callstack(const char *pszFormat = "%f(%l) %s\n", iptr iSkip = -1000,
+                                                   void *caller_address = nullptr, iptr iCount = -1);
 
 CLASS_DECL_ACME __pointer(callstack) get_callstack(e_callstack ecallstack, int iCallStackAddUp = 0);
 
-CLASS_DECL_ACME void set_callstack_mask(cflag < e_callstack > ecallstack);
+CLASS_DECL_ACME void set_callstack_mask(cflag<e_callstack> ecallstack);
 
 CLASS_DECL_ACME e_callstack get_callstack_mask();
 
-inline bool is_callstack_enabled(e_callstack ecallstack) { return (i64) get_callstack_mask()& (i64) ecallstack; }
+
+inline bool is_callstack_enabled(e_callstack ecallstack) { return (i64) get_callstack_mask() & (i64) ecallstack; }
 
 
 #include "acme/platform/fixed_alloc.h"
-
 
 
 #include "acme/memory/allocate.h"
@@ -2937,8 +3213,17 @@ inline bool is_callstack_enabled(e_callstack ecallstack) { return (i64) get_call
 
 
 inline bool is_filemanager(::id id) { return is_impact_group(id.i64(), FILEMANAGER_IMPACT); }
-inline bool is_filemanager_group(::id id, ::i64 iGroup) { return is_impact_subgroup(id.i64(), FILEMANAGER_IMPACT + iGroup); }
+
+
+inline bool is_filemanager_group(::id id, ::i64 iGroup)
+{
+   return is_impact_subgroup(id.i64(), FILEMANAGER_IMPACT + iGroup);
+}
+
+
 inline bool is_color_sel(::id id) { return is_impact_group(id.i64(), COLORSEL_IMPACT); }
+
+
 inline bool is_font_sel(::id id) { return is_impact_group(id.i64(), FONTSEL_IMPACT); }
 
 
@@ -2948,34 +3233,32 @@ inline bool is_font_sel(::id id) { return is_impact_group(id.i64(), FONTSEL_IMPA
 #include "acme/primitive/collection/composite_array.h"
 
 
-
 namespace acme
 {
 
-   inline ::id id(const class var& var);
-   inline ::id id(const property& prop);
-   inline ::id id(const ::std::type_info& info);
-   inline ::id id(const char* psz);
-   inline ::id id(const string& str);
+   inline ::id id(const class payload &payload);
+
+   inline ::id id(const property &prop);
+
+   inline ::id id(const ::std::type_info &info);
+
+   inline ::id id(const char *psz);
+
+   inline ::id id(const string &str);
+
    inline ::id id(i64 i);
-   inline id_space& id();
+
+   inline id_space &id();
 
 
 } //namespace acme
 
 
-template < class POINTER_TYPE >
-inline auto & __typed(__composite(POINTER_TYPE) * pp) { return *pp->operator POINTER_TYPE * (); }
-
-
-
-
+template<class POINTER_TYPE>
+inline auto &__typed(__composite(POINTER_TYPE) *pp) { return *pp->operator POINTER_TYPE *(); }
 
 
 #include "acme/platform/display.h"
-
-
-
 
 
 #include "acme/filesystem/file/file.h"
@@ -2988,7 +3271,8 @@ inline auto & __typed(__composite(POINTER_TYPE) * pp) { return *pp->operator POI
 
 #include "acme/exception/_dump_context.h"
 
-inline int read_char(u8 * & pdata, memsize & s, char * pch)
+
+inline int read_char(u8 *&pdata, memsize &s, char *pch)
 {
 
    if (s < 1)
@@ -2998,7 +3282,7 @@ inline int read_char(u8 * & pdata, memsize & s, char * pch)
 
    }
 
-   *pch = (char)*pdata;
+   *pch = (char) *pdata;
 
    pdata++;
 
@@ -3008,8 +3292,9 @@ inline int read_char(u8 * & pdata, memsize & s, char * pch)
 
 }
 
+
 template<class TYPE>
-inline void dump_elements(dump_context & dumpcontext, const TYPE* pElements, ::count nCount);
+inline void dump_elements(dump_context &dumpcontext, const TYPE *pElements, ::count nCount);
 
 
 //#include "acme/common.h"
@@ -3032,7 +3317,6 @@ inline void dump_elements(dump_context & dumpcontext, const TYPE* pElements, ::c
 #include "acme/const/source.h"
 #include "acme/const/context.h"
 #include "acme/primitive/primitive/action_context.h"
-
 
 
 #include "acme/platform/cmp.h"
@@ -3065,13 +3349,13 @@ inline void dump_elements(dump_context & dumpcontext, const TYPE* pElements, ::c
 #include "acme/platform/enum.h"
 
 
-#include "acme/multithreading/critical_section.h"
+#include "acme/parallelization/critical_section.h"
 
 
 #include "acme/primitive/primitive/factory.h"
 
 
-#include "acme/multithreading/_.h"
+#include "acme/parallelization/_.h"
 
 
 //namespace acme
@@ -3142,6 +3426,7 @@ inline void dump_elements(dump_context & dumpcontext, const TYPE* pElements, ::c
 
 #include "acme/os/ansios/_.h"
 
+
 #elif defined(_UWP)
 //
 //#include "acme/os/_UWP/_UWP.h"
@@ -3177,9 +3462,6 @@ inline void dump_elements(dump_context & dumpcontext, const TYPE* pElements, ::c
 //#error "not implemented!!"
 //
 #endif
-
-
-
 
 
 CLASS_DECL_ACME string get_system_error_message(u32 dwError);
@@ -3219,20 +3501,20 @@ CLASS_DECL_ACME string get_system_error_message(u32 dwError);
 //#include "acme/platform/department.h"
 //#include "acme/platform/department_container.h"
 
-//#include "acme/multithreading/threading.h"
+//#include "acme/parallelization/threading.h"
 
 class mq_base;
 
 //#include "acme/platform/live_signal.h"
-#include "acme/multithreading/pred_holder.h"
+//#include "acme/parallelization/pred_holder.h"
 //#include "acme/primitive/primitive/command.h"
-//#include "acme/multithreading/handler.h"
-//#include "acme/multithreading/service_base.h"
-//#include "acme/multithreading/service/plain_service.h"
-//#include "acme/multithreading/service/plain_service.h"
-//#include "acme/multithreading/fork.h"
-//#include "acme/multithreading/delay_thread.h"
-//#include "acme/multithreading/tools.h"
+//#include "acme/parallelization/handler.h"
+//#include "acme/parallelization/service_base.h"
+//#include "acme/parallelization/service/plain_service.h"
+//#include "acme/parallelization/service/plain_service.h"
+//#include "acme/parallelization/fork.h"
+//#include "acme/parallelization/delay_thread.h"
+//#include "acme/parallelization/tools.h"
 
 #include "acme/platform/timer_callback.h"
 #include "acme/platform/timer_item.h"
@@ -3242,11 +3524,11 @@ class mq_base;
 #include "acme/platform/timer_task.h"
 #include "acme/platform/timer_event.h"
 
-#include "acme/multithreading/thread_impl.h"
-//#include "acme/multithreading/simple_thread.h"
-//#include "acme/multithreading/go_thread.h"
-//#include "acme/multithreading/signal_thread.h"
-#include "acme/multithreading/procedure_array.h"
+#include "acme/parallelization/thread_impl.h"
+//#include "acme/parallelization/simple_thread.h"
+//#include "acme/parallelization/go_thread.h"
+//#include "acme/parallelization/signal_thread.h"
+#include "primitive/promise/routine_array.h"
 
 
 ///#include "acme/primitive/primitive/job.h"
@@ -3264,11 +3546,6 @@ class mq_base;
 #include "acme/primitive/primitive/shared_memory.h"
 #include "acme/primitive/primitive/virtual_memory.h"
 #include "acme/primitive/primitive/memory_container.h"
-
-
-
-
-
 
 
 #include "acme/filesystem/file/memory_file.h"
@@ -3378,7 +3655,7 @@ namespace file
 
 
 class CLASS_DECL_ACME ptra :
-   virtual public __pointer_array(matter)
+        virtual public __pointer_array(matter)
 {
 public:
 
@@ -3386,8 +3663,8 @@ public:
 };
 
 
-typedef ::map < __pointer(matter), __pointer(matter), __pointer(matter), __pointer(matter) > element_map;
-typedef ::map < __pointer(matter), __pointer(matter), ptra, ptra > map_many;
+typedef ::map<__pointer(matter), __pointer(matter), __pointer(matter), __pointer(matter) > element_map;
+typedef ::map<__pointer(matter), __pointer(matter), ptra, ptra> map_many;
 
 
 namespace zip
@@ -3402,6 +3679,7 @@ namespace zip
 
 #include "acme/os/text.h"
 
+
 #ifdef ANDROID
 
 #include "acme/os/android/_os_local.h"
@@ -3410,7 +3688,7 @@ namespace zip
 
 #include "acme/platform/regex.h"
 
-#include "acme/process/process.h"
+#include "parallelization/process.h"
 
 //#include "acme/filesystem/filesystem/file_watcher.h"
 
@@ -3453,7 +3731,11 @@ namespace fs
 {
 
    class remote_native;
+
+
    class fs;
+
+
    class data;
 
 }
@@ -3500,7 +3782,7 @@ class ifs;
 
 //#include "acme/platform/session.h"
 
-//#include "acme/multithreading/retry.h"
+//#include "acme/parallelization/retry.h"
 
 
 //CLASS_DECL_ACME::file::path application_installer_folder(const ::file::path & pathExe, string strAppId, const char * pszPlatform, const char * pszConfiguration, const char * pszLocale, const char * pszSchema);
@@ -3671,13 +3953,15 @@ return __str(value);
 #include "acme/node/_.h"
 
 
+i32 CLASS_DECL_ACME MultiByteToWideChar2(::u32 CodePage, ::u32 dwFlags, const ansichar *pMultByteStr, i32 cbMultiByte,
+                                         widechar *pWideCharStr, i32 cchWideChar);
+
+i32 CLASS_DECL_ACME WideCharToMultiByte2(::u32 CodePage, ::u32 dwFlags, const widechar *pWideCharStr, i32 cchWideChar,
+                                         ansichar *pMultByteStr, i32 cbMultiByte, const char *pDefaultChar,
+                                         int_bool *pUsedDefaultChar);
 
 
-i32 CLASS_DECL_ACME MultiByteToWideChar2(::u32 CodePage, ::u32 dwFlags, const ansichar* pMultByteStr, i32 cbMultiByte, widechar* pWideCharStr, i32 cchWideChar);
-i32 CLASS_DECL_ACME WideCharToMultiByte2(::u32 CodePage, ::u32 dwFlags, const widechar* pWideCharStr, i32 cchWideChar, ansichar* pMultByteStr, i32 cbMultiByte, const char * pDefaultChar, int_bool * pUsedDefaultChar);
-
-
-#include "acme/multithreading/data.h"
+#include "acme/parallelization/data.h"
 
 
 //#include "acme/platform/shell_launcher.h"
@@ -3703,15 +3987,15 @@ extern "C"
 {
 
 
-   i32 _c_lock_is_active(const char * lpszName);
-   i32 _c_lock(const char * lpszName,void ** pdata);
-   i32 _c_unlock(void ** pdata);
+i32 _c_lock_is_active(const char *lpszName);
+i32 _c_lock(const char *lpszName, void **pdata);
+i32 _c_unlock(void **pdata);
 
 
 }
 
 
-CLASS_DECL_ACME string _ca_get_file_name(const char * psz,bool bCreate = false,i32 * pfd = nullptr);
+CLASS_DECL_ACME string _ca_get_file_name(const char *psz, bool bCreate = false, i32 *pfd = nullptr);
 
 CLASS_DECL_ACME string get_system_error_message(u32 dwError);
 
@@ -3719,7 +4003,7 @@ CLASS_DECL_ACME string get_system_error_message(u32 dwError);
 #include "acme/platform/simple_app.h"
 
 
-//typedef void CALL_UPDATE(const ::id & id, const var & var);
+//typedef void CALL_UPDATE(const ::id & id, const payload & payload);
 //using PFN_CALL_UPDATE = CALL_UPDATE *;
 
 //typedef void SET_MODIFIED(const ::id& id);
@@ -3727,7 +4011,7 @@ CLASS_DECL_ACME string get_system_error_message(u32 dwError);
 
 
 //CLASS_DECL_ACME void set_system_update(PFN_CALL_UPDATE pfnCallUpdate);
-//CLASS_DECL_ACME void system_update(const ::id & id, const var & var = ::type_new);
+//CLASS_DECL_ACME void system_update(const ::id & id, const payload & payload = ::type_new);
 
 
 
@@ -3744,7 +4028,7 @@ CLASS_DECL_ACME string get_system_error_message(u32 dwError);
 namespace math
 {
 
-   template < typename T >
+   template<typename T>
    class complex;
 
 
@@ -3754,7 +4038,8 @@ namespace _std
 {
 
 
-   template <class T> void __swap(T& a, T& b)
+   template<class T>
+   void __swap(T &a, T &b)
    {
       T c(a);
       a = b;
@@ -3940,13 +4225,14 @@ namespace std
 }*/
 
 
-template < typename T >
-inline string & to_json(string & str, const T & value, bool bNewLine)
+template<typename T>
+inline string &to_json(string &str, const T &value, bool bNewLine)
 {
 
    return str = __str(value);
 
 }
+
 
 #ifdef WINDOWS
 CLASS_DECL_ACME int trace_hr(const char * psz,HRESULT hr);
@@ -4003,7 +4289,7 @@ CLASS_DECL_ACME string get_last_error_string();
 #include "acme/platform/message_box.h"
 
 
-//#include "acme/multithreading/pred_method.h"
+//#include "acme/parallelization/pred_method.h"
 
 
 
@@ -4024,7 +4310,6 @@ namespace draw2d
 #include "acme/user/_.h"
 
 
-
 #include "acme/platform/system.h"
 
 
@@ -4037,7 +4322,7 @@ namespace draw2d
 #include "acme/primitive/primitive/_defer.h"
 
 
-#include "acme/multithreading/_impl.h"
+#include "acme/parallelization/_impl.h"
 
 
 #include "acme/platform/_impl.h"

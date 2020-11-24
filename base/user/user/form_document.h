@@ -14,7 +14,7 @@ public:
 
    virtual ::form_data* get_form_data();
 
-   virtual bool on_open_document(const var & varFile) override;
+   virtual bool on_open_document(const payload & varFile) override;
    
    virtual void soft_reload();
 

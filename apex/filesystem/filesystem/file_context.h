@@ -22,7 +22,7 @@ public:
    virtual ::estatus update_module_path();
 
 
-   virtual ::status::result copy(var varTarget, var varSource, bool bFailIfExists = false, e_extract eextract = extract_first);
+   virtual ::status::result copy(payload varTarget, payload varSource, bool bFailIfExists = false, e_extract eextract = extract_first);
    virtual ::status::result move(const ::file::path & pszNew, const ::file::path & psz);
    virtual ::status::result del(const ::file::path & psz);
    virtual ::file::path duplicate(const ::file::path & psz);
@@ -39,13 +39,13 @@ public:
 
    //virtual bool exists(::file::path path);
 
-   virtual bool is_file_or_dir(const ::file::path & path, var * pvarQuery, ::file::enum_type * petype);
+   virtual bool is_file_or_dir(const ::file::path & path, payload * pvarQuery, ::file::enum_type * petype);
    virtual bool is_file_or_dir(const ::file::path & pszPath, ::file::enum_type * petype = nullptr);
 
 
-   virtual var length(const ::file::path & path);
+   virtual payload length(const ::file::path & path);
 
-   virtual var length(const ::file::path & path, var * pvarQuery);
+   virtual payload length(const ::file::path & path, payload * pvarQuery);
 
    virtual ::file::path module();
 
@@ -83,7 +83,7 @@ public:
 
 
    template < typename TYPE >
-   inline ::estatus binary_get(const ::var & varFile, TYPE & t)
+   inline ::estatus binary_get(const ::payload & varFile, TYPE & t)
    {
 
       auto preader = get_reader(varFile);
@@ -106,7 +106,7 @@ public:
    }
 
    template < typename TYPE >
-   inline ::estatus binary_set(const ::var & varFile, const TYPE & t)
+   inline ::estatus binary_set(const ::payload & varFile, const TYPE & t)
    {
 
       auto pwriter = get_writer(varFile);
@@ -132,25 +132,25 @@ public:
    virtual i32 filterex_time_square(const char * pszPrefix, ::file::patha & stra);
    virtual bool try_create_file(const ::file::path & path, bool bTryDelete);
 
-   virtual var as_json(const var & varFile);
-   virtual string as_string(const var & varFile);
-   virtual bool as_memory(const var & varFile, memory_base & mem);
+   virtual payload as_json(const payload & varFile);
+   virtual string as_string(const payload & varFile);
+   virtual bool as_memory(const payload & varFile, memory_base & mem);
 
-   virtual void lines(string_array & stra, const var & varFile);
-   virtual void put_lines(const var & varFile, const string_array & stra);
-   virtual void put_lines_utf8(const var & varFile, const string_array & stra);
+   virtual void lines(string_array & stra, const payload & varFile);
+   virtual void put_lines(const payload & varFile, const string_array & stra);
+   virtual void put_lines_utf8(const payload & varFile, const string_array & stra);
    virtual void _put_lines(::file::file * pfile, const string_array & stra);
 
-   virtual bool put_contents(const var & varFile, const void * pvoidContents, ::count count);
-   virtual bool put_contents(const var & varFile, const char * pcszContents);
+   virtual bool put_contents(const payload & varFile, const void * pvoidContents, ::count count);
+   virtual bool put_contents(const payload & varFile, const char * pcszContents);
 
-   virtual bool put_contents(const var & varFile, ::file::file * pfile);
-   virtual bool put_contents(const var & varFile, memory & mem);
-   virtual bool put_contents_utf8(const var & varFile, const char * pcszContents);
+   virtual bool put_contents(const payload & varFile, ::file::file * pfile);
+   virtual bool put_contents(const payload & varFile, memory & mem);
+   virtual bool put_contents_utf8(const payload & varFile, const char * pcszContents);
 
 
-   virtual bool add_contents(const var & varFile, const void * pvoidContents, ::count count);
-   virtual bool add_contents(const var & varFile, const char * pcszContents);
+   virtual bool add_contents(const payload & varFile, const void * pvoidContents, ::count count);
+   virtual bool add_contents(const payload & varFile, const char * pcszContents);
 
 
    virtual bool is_read_only(const ::file::path & psz);
@@ -166,13 +166,13 @@ public:
    virtual void normalize(string & str);
    virtual i32 cmp(const ::file::path & psz1, const ::file::path & psz2);
 
-   virtual string get_hash(const var& varFile, enum_hash ehash);
+   virtual string get_hash(const payload& varFile, enum_hash ehash);
 
    //virtual string md5(::file::file * pfile);
-   virtual string md5(const var & varFile);
+   virtual string md5(const payload & varFile);
 
    //virtual string nessie(::file::file * pfile);
-   virtual string nessie(const var & varFile);
+   virtual string nessie(const payload & varFile);
 
    virtual bool resolve_link(::file::path & pathTarget, const string & strSource, string * pstrDirectory = nullptr, string * pstrParams = nullptr);
 
@@ -200,15 +200,15 @@ public:
 
    virtual ::file_result zip_get_file(::file::file * pfile, const efileopen & eopen = ::file::mode_read | ::file::type_binary);
 
-   virtual ::file_result http_get_file(const var & varFile, const efileopen & eopen = ::file::mode_read | ::file::type_binary);
+   virtual ::file_result http_get_file(const payload & varFile, const efileopen & eopen = ::file::mode_read | ::file::type_binary);
 
-   virtual ::file_result get_file(const var & varFile, const efileopen & eopen);
+   virtual ::file_result get_file(const payload & varFile, const efileopen & eopen);
 
-   virtual ::file_result get_reader(const var & varFile, const efileopen & eopen = ::file::mode_read | ::file::type_binary);
+   virtual ::file_result get_reader(const payload & varFile, const efileopen & eopen = ::file::mode_read | ::file::type_binary);
 
-   virtual ::file_result shared_reader(const var & varFile, const efileopen & eopen = ::file::mode_read | ::file::type_binary);
+   virtual ::file_result shared_reader(const payload & varFile, const efileopen & eopen = ::file::mode_read | ::file::type_binary);
 
-   virtual ::file_result get_writer(const var & varFile, const efileopen & eopen = ::file::mode_write | ::file::mode_create | ::file::mode_no_truncate | ::file::defer_create_directory | ::file::type_binary);
+   virtual ::file_result get_writer(const payload & varFile, const efileopen & eopen = ::file::mode_write | ::file::mode_create | ::file::mode_no_truncate | ::file::defer_create_directory | ::file::type_binary);
 
    virtual bool post_output(::file::path pathOut, ::file::path pathDownloading);
 
@@ -223,7 +223,7 @@ public:
    virtual ::file::path onedrive_global_ini();
    virtual ::file::path onedrive_cid_ini();
 
-//   virtual ::status::result copy(var varTarget, var varSource, bool bFailIfExists = false, e_extract eextract = extract_first);
+//   virtual ::status::result copy(payload varTarget, payload varSource, bool bFailIfExists = false, e_extract eextract = extract_first);
    //virtual ::status::result move(const ::file::path & pszNew, const ::file::path & psz);
    //virtual ::status::result del(const ::file::path & psz);
    //virtual ::status::result rename(const ::file::path & pszNew, const ::file::path & psz);
@@ -238,7 +238,7 @@ public:
   virtual bool exists(const ::file::path & pszPath);
 
 
-  // virtual var length(const ::file::path & pszPath);
+  // virtual payload length(const ::file::path & pszPath);
 
 
    //::file::path time(const ::file::path & pszBasePath, i32 iDepth = 1, const string & pszPrefix = nullptr, const string & pszSuffix = nullptr);
@@ -249,12 +249,12 @@ public:
 
 
 
-   inline ::memory as_primitive_memory(const var & varFile) { ::memory m; as_memory(varFile, m); return m; }
-   inline ::memory as_memory(const var & varFile) { return as_primitive_memory(varFile); }
+   inline ::memory as_primitive_memory(const payload & varFile) { ::memory m; as_memory(varFile, m); return m; }
+   inline ::memory as_memory(const payload & varFile) { return as_primitive_memory(varFile); }
 
 
    template < class OBJECT >
-   ::estatus put(const var & varFile, OBJECT & a)
+   ::estatus put(const payload & varFile, OBJECT & a)
    {
 
       auto writer = get_writer(varFile);
@@ -267,7 +267,7 @@ public:
 
 
    template < class OBJECT >
-   ::estatus as(OBJECT & a, const var & varFile)
+   ::estatus as(OBJECT & a, const payload & varFile)
    {
 
       auto reader = get_reader(varFile);
@@ -280,7 +280,7 @@ public:
 
 
    template < class ARRAY >
-   bool to_array(ARRAY & a, const var & varFile)
+   bool to_array(ARRAY & a, const payload & varFile)
    {
 
       auto pfile = get_reader(varFile);
@@ -294,36 +294,36 @@ public:
    }
 
 
-   //virtual void lines(string_array & stra, const var & varFile);
-   //virtual void put_lines(const var & varFile, const string_array & stra);
+   //virtual void lines(string_array & stra, const payload & varFile);
+   //virtual void put_lines(const payload & varFile, const string_array & stra);
 
-   //virtual bool put_contents(const var & varFile, const void * pvoidContents, ::count count);
-   //virtual bool put_contents(const var & varFile, const char * pcszContents);
+   //virtual bool put_contents(const payload & varFile, const void * pvoidContents, ::count count);
+   //virtual bool put_contents(const payload & varFile, const char * pcszContents);
 
-   //virtual bool copy?(const var & varFile, const ::stream & stream);
-   //virtual bool put_contents(const var & varFile, memory & mem);
-   //virtual bool put_contents_utf8(const var & varFile, const char * pcszContents);
+   //virtual bool copy?(const payload & varFile, const ::stream & stream);
+   //virtual bool put_contents(const payload & varFile, memory & mem);
+   //virtual bool put_contents_utf8(const payload & varFile, const char * pcszContents);
 
 
-   //virtual bool add_contents(const var & varFile, const char * pcszContents);
+   //virtual bool add_contents(const payload & varFile, const char * pcszContents);
 
 
    string sys_temp(const char * lpszName, const char * pszExtension);
 
 
-   //virtual ::file_result get_file(const var & varFile, ::u32 nOpenFlags);
+   //virtual ::file_result get_file(const payload & varFile, ::u32 nOpenFlags);
 
 
    //virtual bool is_read_only(const ::file::path & psz);
 
-   inline auto open_for_reading(const var & varFile, ::u32 nOpenFlags = ::file::type_binary)
+   inline auto open_for_reading(const payload & varFile, ::u32 nOpenFlags = ::file::type_binary)
    {
 
       return get_file(varFile, nOpenFlags | ::file::mode_read);
 
    }
 
-   inline auto create_for_writing(const var & varFile, ::u32 nOpenFlags = ::file::type_binary | ::file::defer_create_directory)
+   inline auto create_for_writing(const payload & varFile, ::u32 nOpenFlags = ::file::type_binary | ::file::defer_create_directory)
    {
 
       return get_file(varFile, nOpenFlags | ::file::mode_create | ::file::mode_write);
@@ -332,7 +332,7 @@ public:
 
 
    // get a file and if there are exceptions, should show end user friendly messages
-   virtual rp(::file::file) friendly_get_file(const var & varFile, ::u32 nOpenFlags);
+   virtual rp(::file::file) friendly_get_file(const payload & varFile, ::u32 nOpenFlags);
 
 
    //void dtf(const ::file::path & pszFile, const ::file::path & pszDir);
@@ -340,12 +340,12 @@ public:
    //void ftd(const ::file::path & pszDir, const ::file::path & pszFile);
 
 
-   virtual bool crypto_set(const var & varFile, const char * pszData, const char * pszSalt);
-   virtual bool crypto_get(const var & varFile, string & str, const char * pszSalt);
+   virtual bool crypto_set(const payload & varFile, const char * pszData, const char * pszSalt);
+   virtual bool crypto_get(const payload & varFile, string & str, const char * pszSalt);
 
 
    template < typename TYPE >
-   bool save(const var & varFile, const TYPE & o)
+   bool save(const payload & varFile, const TYPE & o)
    {
 
       return put(varFile, o);
@@ -353,7 +353,7 @@ public:
 
 
    template < typename TYPE >
-   inline bool load(TYPE & o, const var & varFile)
+   inline bool load(TYPE & o, const payload & varFile)
    {
 
       return as(o, varFile);
@@ -361,16 +361,16 @@ public:
    }
 
 
-   virtual bool save_lines(const var & varFile, string_array & stra);
-   virtual bool load_lines(string_array & stra, const var & varFile);
+   virtual bool save_lines(const payload & varFile, string_array & stra);
+   virtual bool load_lines(string_array & stra, const payload & varFile);
 
 
 
    virtual bool touch(const ::file::path & path);
 
-   //virtual string md5(const var & varFile);
+   //virtual string md5(const payload & varFile);
 
-   //virtual string nessie(const var & varFile);
+   //virtual string nessie(const payload & varFile);
 
    //virtual ::file::path dropbox_info_json();
 

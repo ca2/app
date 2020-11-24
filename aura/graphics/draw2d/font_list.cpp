@@ -627,7 +627,7 @@ namespace draw2d
    }
 
 
-   void font_list::on_apply(::action * paction)
+   void font_list::on_apply(::subject * paction)
    {
 
       e_id eid = (e_id) paction->id().i64();

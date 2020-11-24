@@ -31,7 +31,7 @@ namespace sockets
 
       string set_cookie(
          const char * name,
-         var var,
+         payload payload,
          int iExpire,
          const char * path,
          const char * domain,

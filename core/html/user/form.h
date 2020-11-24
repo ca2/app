@@ -34,7 +34,7 @@ public:
 
    virtual string get_path() override;
 
-   virtual ::estatus open_document(const var & varFile) override;
+   virtual ::estatus open_document(const payload & varFile) override;
    virtual ::estatus open_html(const string & str) override;
 
 

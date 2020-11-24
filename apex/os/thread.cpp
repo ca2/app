@@ -6,7 +6,7 @@
 extern thread_data_index g_tlsindexLastError;
 #endif
 
-// namespace multithreading
+// namespace parallelization
 // {
 
 
@@ -57,7 +57,7 @@ extern thread_data_index g_tlsindexLastError;
 //    }
 
 
-// } // namespace multithreading
+// } // namespace parallelization
 
 
 //thread_local __pointer(property_set) t_ppropertyset;

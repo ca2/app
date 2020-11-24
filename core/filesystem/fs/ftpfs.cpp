@@ -477,7 +477,7 @@ bool ftpfs::file_exists(const ::file::path & pszPath)
 }
 
 
-var ftpfs::file_length(const ::file::path & pszPath)
+payload ftpfs::file_length(const ::file::path & pszPath)
 {
 
    return ::fs::data::file_length(pszPath);

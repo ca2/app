@@ -11,9 +11,9 @@ public:
    virtual ~image_array();
 
 
-   virtual bool explode(::object * pobject, var varFile, int cols, int rows, bool bCache = true, bool bCreateHelperMaps = false);
+   virtual bool explode(::object * pobject, payload varFile, int cols, int rows, bool bCache = true, bool bCreateHelperMaps = false);
 
-   virtual bool explode(::object * pobject, const ::size & size, var varFile, int cols, int rows, bool bCache = true, bool bCreateHelperMaps = false);
+   virtual bool explode(::object * pobject, const ::size & size, payload varFile, int cols, int rows, bool bCache = true, bool bCreateHelperMaps = false);
 
 
 };

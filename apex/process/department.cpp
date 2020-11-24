@@ -26,7 +26,7 @@ namespace process
    }
 
 
-   var department::get_output(const char * pszCmdLine,const ::duration & dur,::edisplay edisplay, bool * pbPotentialTimeout)
+   payload department::get_output(const char * pszCmdLine,const ::duration & dur,::edisplay edisplay, bool * pbPotentialTimeout)
    {
 
       string strRead;

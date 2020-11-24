@@ -465,7 +465,7 @@ int g_iDebug_post_thread_msg_time;
 // }
 
 
-namespace multithreading
+namespace parallelization
 {
 
    CLASS_DECL_CORE bool set_priority(::e_priority epriority)

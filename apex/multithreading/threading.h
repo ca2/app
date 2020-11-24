@@ -10,7 +10,7 @@
 // and hi5 contribution!! you and me and God make 5!!
 
 
-namespace multithreading
+namespace parallelization
 {
 
 
@@ -27,7 +27,7 @@ namespace multithreading
    };
 
 
-} // namespace multithreading
+} // namespace parallelization
 
 
 

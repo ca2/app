@@ -488,7 +488,7 @@
 //      }
 //   */
 //
-////   bool dataset::SetFieldValue(const char *f_name, const var &value)
+////   bool dataset::SetFieldValue(const char *f_name, const payload &value)
 ////   {
 ////      bool found = false;
 ////      if(m_edataset == ::database::dataset_select)
@@ -515,7 +515,7 @@
 //////      //  return false;
 ////   }
 ////
-////   bool dataset::SetFieldValue(index iFieldIndex, const var &value)
+////   bool dataset::SetFieldValue(index iFieldIndex, const payload &value)
 ////   {
 ////      if(m_edataset == ::database::dataset_select)
 ////      {
@@ -538,14 +538,14 @@
 ////      //  return false;
 ////   }
 ////
-////   var dataset::field_value_at(index iFieldIndex)
+////   payload dataset::field_value_at(index iFieldIndex)
 ////   {
 ////
 ////      return FieldValueAt(iFieldIndex);
 ////
 ////   }
 ////
-////   var dataset::FieldValueAt(index iFieldIndex)
+////   payload dataset::FieldValueAt(index iFieldIndex)
 ////   {
 ////      //if(m_edataset == dataset_select)
 ////      {
@@ -596,7 +596,7 @@
 ////   }
 //
 //
-//   //bool dataset::find_first(const char * fieldname, var & value)
+//   //bool dataset::find_first(const char * fieldname, payload & value)
 //   //{
 //   //   i32 iFound = -1;
 //   //   if(m_edataset == ::database::dataset_select)
@@ -720,7 +720,7 @@
 //
 //      database::row row;
 //
-//      var var;
+//      payload payload;
 //
 //      for (i32 i = 0; i < ncol; i++)
 //      {
@@ -728,17 +728,17 @@
 //         if (reslt[i] == nullptr)
 //         {
 //
-//            var.set_type(::e_type_null);
+//            payload.set_type(::e_type_null);
 //
 //         }
 //         else
 //         {
 //
-//            var = reslt[i];
+//            payload = reslt[i];
 //
 //         }
 //
-//         row.set_at_grow(i, var);
+//         row.set_at_grow(i, payload);
 //      }
 //
 //      rowa.set_at_grow(iCurrentLine, row);

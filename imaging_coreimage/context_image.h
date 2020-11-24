@@ -14,7 +14,7 @@ namespace coreimage_imaging
       context_image();
       virtual ~context_image();
 
-      virtual ::estatus _load_image(::image * pimageParam, const var & varFile, bool bSync, bool bCreateHelperMaps) override;
+      virtual ::estatus _load_image(::image * pimageParam, const payload & varFile, bool bSync, bool bCreateHelperMaps) override;
 
       virtual ::estatus _load_image(::image * pimage, __pointer(image_frame_array) & pframea, ::memory_pointer pmemory) override;
       virtual ::estatus save_image(memory & memory, const ::image * pimage, const ::save_image * psaveimage = nullptr) override;

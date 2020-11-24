@@ -2,7 +2,7 @@
 
 
 
-inline var::var()
+inline payload::payload()
 {
 
    m_etype = type_new;
@@ -11,7 +11,7 @@ inline var::var()
 }
 
 
-inline var::var(enum_type etype)
+inline payload::payload(enum_type etype)
 {
 
    m_etype = etype;
@@ -20,7 +20,7 @@ inline var::var(enum_type etype)
 }
 
 
-//inline var::var(const ::estatus & estatus)
+//inline payload::payload(const ::estatus & estatus)
 //{
 //
 //   set_type(type_enum_status);
@@ -30,7 +30,7 @@ inline var::var(enum_type etype)
 //}
 
 
-//inline var::var(enum_command ecommand)
+//inline payload::payload(enum_command ecommand)
 //{
 //
 //   set_type(type_enum_command);
@@ -40,7 +40,7 @@ inline var::var(enum_type etype)
 //}
 
 
-//inline var::var(enum_check echeck)
+//inline payload::payload(enum_check echeck)
 //{
 //
 //   set_type(type_enum_check);
@@ -50,7 +50,7 @@ inline var::var(enum_type etype)
 //}
 
 
-inline var::var(std::nullptr_t)
+inline payload::payload(std::nullptr_t)
 {
 
    m_etype = e_type_null;
@@ -58,7 +58,7 @@ inline var::var(std::nullptr_t)
 }
 
 
-inline ::count var::get_count() const
+inline ::count payload::get_count() const
 {
    switch (m_etype)
    {
@@ -83,40 +83,40 @@ inline ::count var::get_count() const
 }
 
 
-inline ::count var::array_get_count() const
+inline ::count payload::array_get_count() const
 {
    if (m_etype == type_new
       || m_etype == e_type_null
       || m_etype == type_empty
       || m_etype == type_empty_argument)
    {
-      return -1; // indicates that this var is not an array
+      return -1; // indicates that this payload is not an array
    }
    else if (is_array())
       return this->get_count();
    else
-      return 1; // this var is an scalar or object that can be retrieved through "array_" methods
+      return 1; // this payload is an scalar or object that can be retrieved through "array_" methods
 }
 
 
 
-inline index var::array_get_upper_bound() const
+inline index payload::array_get_upper_bound() const
 {
    if (m_etype == type_new
       || m_etype == e_type_null
       || m_etype == type_empty
       || m_etype == type_empty_argument)
    {
-      return -1; // indicates that this var is not an array
+      return -1; // indicates that this payload is not an array
    }
    else if (is_array())
       return this->get_count() - 1;
    else
-      return 0; // this var is an scalar or object that can be retrieved through "array_" methods
+      return 0; // this payload is an scalar or object that can be retrieved through "array_" methods
 }
 
 
-inline bool var::is_array() const
+inline bool payload::is_array() const
 {
 
    if (m_etype == type_stra
@@ -142,34 +142,34 @@ inline bool var::is_array() const
 
 
 
-inline bool operator == (const string& str, const var& var)
+inline bool operator == (const string& str, const payload& payload)
 {
 
-   return str == var.get_string();
+   return str == payload.get_string();
 
 }
 
 
 
-inline id& id::operator = (const var& var)
+inline id& id::operator = (const payload& payload)
 {
 
-   if (var.is_null())
+   if (payload.is_null())
    {
       m_all = {};
       return *this;
    }
-   else if (var.is_empty())
+   else if (payload.is_empty())
    {
       return operator =("");
    }
-   else if (var.is_integer())
+   else if (payload.is_integer())
    {
-      return operator = (var.iptr());
+      return operator = (payload.iptr());
    }
    else
    {
-      return operator = (var.get_string());
+      return operator = (payload.get_string());
    }
 
 }
@@ -177,15 +177,15 @@ inline id& id::operator = (const var& var)
 inline id& id::operator = (const property& prop)
 {
 
-   return operator = ((const var&)prop);
+   return operator = ((const payload&)prop);
 
 }
 
 
 
-inline id::id(const var& var)
+inline id::id(const payload& payload)
 {
    m_all = {};
-   operator = (var);
+   operator = (payload);
 
 }

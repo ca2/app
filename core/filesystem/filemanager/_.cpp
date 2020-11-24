@@ -9,7 +9,7 @@ namespace core
 {
 
 
-   bool user::do_prompt_file_name(var & varFile, string strTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument)
+   bool user::do_prompt_file_name(payload & varFile, string strTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument)
    {
 
       if (::is_set(pdocument))

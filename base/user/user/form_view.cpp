@@ -22,7 +22,7 @@ namespace user
    }
 
 
-   void form_view::on_apply(::action * paction)
+   void form_view::on_apply(::subject * paction)
    {
 
       ::user::impact::on_apply(paction);
@@ -55,7 +55,7 @@ namespace user
 
          paction->value(id_form) = this;
 
-         m_pcallback->apply(paction);
+         m_pcallback->process(paction);
 
       }
 
@@ -72,7 +72,7 @@ namespace user
    }
 
 
-   ::estatus form_view::open_document(const var & varFile)
+   ::estatus form_view::open_document(const payload & varFile)
    {
 
       System.defer_create_html();

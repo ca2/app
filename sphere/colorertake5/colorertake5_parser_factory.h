@@ -27,7 +27,7 @@ namespace colorertake5
     *   - /usr/local/share/colorer/catalog.xml
     *
     * @note
-    *   - \%NAME%, \$NAME - Environment var of the current process.
+    *   - \%NAME%, \$NAME - Environment payload of the current process.
 /*    *   - image_start_dir - Directory, where current image was started.
     *
     * @ingroup colorer

@@ -83,10 +83,10 @@ namespace aura
    }
 
 
-   void ipi::call::add_arg(const var & var)
+   void ipi::call::add_arg(const payload & payload)
    {
 
-      m_varaArgs.add(var);
+      m_varaArgs.add(payload);
 
    }
 
@@ -644,7 +644,7 @@ started:
 
       }
 
-      var varRet;
+      payload varRet;
 
       on_interprocess_call(varRet, strObject, strMember, vara);
 
@@ -708,7 +708,7 @@ started:
    }
 
 
-   void ipi::on_interprocess_call(var & var, const string & strObject, const string & strMember, var_array & vara)
+   void ipi::on_interprocess_call(payload & payload, const string & strObject, const string & strMember, var_array & vara)
    {
 
       if(strObject == "application")
@@ -729,7 +729,7 @@ started:
          else if(strMember == "on_additional_local_instance")
          {
 
-            var["continue"] = Application.on_additional_local_instance(var["handled"], vara[0], vara[1], vara[2]);
+            payload["continue"] = Application.on_additional_local_instance(payload["handled"], vara[0], vara[1], vara[2]);
 
          }
          else if (strMember == "on_new_instance")

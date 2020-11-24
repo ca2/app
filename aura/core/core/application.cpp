@@ -2534,9 +2534,9 @@ namespace aura
    void application::_001OnFileNew(::message::message * pmessage)
    {
 
-      var varFile;
+      payload varFile;
 
-      var varQuery;
+      payload varQuery;
 
       varQuery["command"] = "new_file";
 
@@ -2548,14 +2548,14 @@ namespace aura
 
 
 
-//   bool application::on_open_document_file(var varFile)
+//   bool application::on_open_document_file(payload varFile)
 //   {
 //
 //      return _001OpenDocumentFile(varFile);
 //
 //   }
 
-   ::user::document * application::_001OpenDocumentFile(var varFile)
+   ::user::document * application::_001OpenDocumentFile(payload varFile)
    {
 
       request_file(varFile);
@@ -2934,7 +2934,7 @@ m_millisHeartBeat.Now();
          if (!command() || !has_property("session_start"))
          {
 
-            ::multithreading::set_finish(&System);
+            ::parallelization::set_finish(&System);
 
          }
 
@@ -2942,7 +2942,7 @@ m_millisHeartBeat.Now();
       else
       {
 
-         ::multithreading::set_finish(&System);
+         ::parallelization::set_finish(&System);
 
       }
 
@@ -2981,7 +2981,7 @@ m_millisHeartBeat.Now();
          if (!command() && !has_property("session_start"))
          {
 
-            ::multithreading::set_finish(&System);
+            ::parallelization::set_finish(&System);
 
          }
 
@@ -2989,7 +2989,7 @@ m_millisHeartBeat.Now();
       else
       {
 
-         ::multithreading::set_finish(&System);
+         ::parallelization::set_finish(&System);
 
       }
 
@@ -3340,7 +3340,7 @@ m_millisHeartBeat.Now();
 
 
 
-   file_pointer application::friendly_get_file(var varFile, ::u32 nOpenFlags)
+   file_pointer application::friendly_get_file(payload varFile, ::u32 nOpenFlags)
    {
 
       try

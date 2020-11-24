@@ -225,10 +225,10 @@ namespace filemanager
             if (filemanager_document()->fs_data()->file_exists(strPath))
             {
 
-               auto pfuture = __futurevar([this, strPath](const ::var& var)
+               auto pfuture = __process([this, strPath](const ::payload& payload)
                   {
 
-                     if (var == "yes")
+                     if (payload == "yes")
                      {
 
                         save_document(strPath);

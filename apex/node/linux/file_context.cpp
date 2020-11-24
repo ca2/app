@@ -44,7 +44,7 @@ namespace linux
    }
 
 
-   file_result file_context::get_file(const var & varFile, const ::efileopen & eopen)
+   file_result file_context::get_file(const payload & varFile, const ::efileopen & eopen)
    {
 
       return ::file_context::get_file(varFile, eopen);

@@ -419,7 +419,7 @@ CLASS_DECL_APEX ithread_t GetCurrentThreadId()
 }
 
 
-namespace multithreading
+namespace parallelization
 {
 
 

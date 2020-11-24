@@ -42,7 +42,7 @@ CLASS_DECL_APEX const char * __get_app_name();
 
 
 
-#include "thread.h"
+#include "parallelization.h"
 #include "os_context.h"
 
 #define NULL_REF(class) (*((class *) nullptr))

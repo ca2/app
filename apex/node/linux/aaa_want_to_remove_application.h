@@ -23,7 +23,7 @@
 //      bool _001OnDDECommand(const char * pcsz);
 //
 //      virtual void _001EnableShellOpen();
-//      //virtual ::apex::document * _001OpenDocumentFile(var varFile);
+//      //virtual ::apex::document * _001OpenDocumentFile(payload varFile);
 //      virtual void _001OnFileNew();
 //
 //
@@ -95,7 +95,7 @@
 //
 //
 //      virtual void get_time(struct timeval *point);
-//      virtual void set_env_var(const string & var,const string & value);
+//      virtual void set_env_var(const string & payload,const string & value);
 //      virtual ithread_t get_thread_id();
 //      string draw2d_get_default_library_name();
 //

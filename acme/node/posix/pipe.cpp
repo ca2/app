@@ -55,15 +55,21 @@ namespace posix
    bool pipe::create(bool bBlock, bool bInherit)
    {
 
-      if (!::process::pipe::create(bBlock, bInherit))
+      if (!::os::pipe::create(bBlock, bInherit))
+      {
+
          return false;
+
+      }
 
       i32 iFlags = bBlock ? 0 : O_NONBLOCK;
 
       if (::pipe(m_fd))
       {
+
          // errno
          return false;
+
       }
 
       if (fcntl(m_fd[0], F_SETFL, iFlags))

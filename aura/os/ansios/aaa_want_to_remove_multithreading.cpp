@@ -1114,7 +1114,7 @@
 ////{
 ////
 ////
-////   mq * pmq = (mq *)TlsGetValue(h,::multithreading::slot_message_queue);
+////   mq * pmq = (mq *)TlsGetValue(h,::parallelization::slot_message_queue);
 ////
 ////   if(pmq != NULL)
 ////      return pmq;
@@ -1125,7 +1125,7 @@
 ////
 ////   pmq->m_uiId       = ::GetThreadId(h);
 ////
-////   TlsSetValue(h,::multithreading::slot_message_queue,pmq);
+////   TlsSetValue(h,::parallelization::slot_message_queue,pmq);
 ////
 ////   return pmq;
 ////

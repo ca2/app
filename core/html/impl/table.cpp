@@ -106,7 +106,7 @@ namespace html
 //
 //            strWidth.trim();
 //
-//            float percent = var(strWidth).get_float();
+//            float percent = payload(strWidth).get_float();
 //
 //            float cx = m_bound.get_cx();
 //

@@ -5,13 +5,10 @@ namespace promise
 {
 
 
-   class company;
-
-
    CLASS_DECL_ACME int os_get_system_update_poll_time(const ::id &id);
 
 
-   using matter_machine = isomap<＿＿pointer(::matter), ＿＿pointer(::promise::machine)>;
+   using matter_context = isomap<__pointer(::matter), __pointer(::promise::context)>;
 
 
    class CLASS_DECL_ACME handler :
@@ -20,17 +17,17 @@ namespace promise
    public:
 
 
-      ＿＿pointer(::promise::company)    m_pcompany;
-      ::promise::matter_machine              m_mattermachine;
-      ::user::e_key                          m_ekey;
-      ::var                                  m_var;
-      ::i64                                  m_iUpdateSerial;
-      bool                                   m_bModified;
-      int                                    m_iMillisSleep;
+      __pointer(::promise::backing)    m_pbacking;
+      ::promise::matter_context             m_mattercontext;
+      ::user::e_key                         m_ekey;
+      ::payload                             m_var;
+      ::i64                                 m_iUpdateSerial;
+      bool                                  m_bModified;
+      int                                   m_iMillisSleep;
 
 
       handler(const ::id &id);
-      handler(::promise::company * psource, const ::id & id);
+      handler(::promise::backing * pbacking, const ::id & id);
       virtual ~handler();
 
 
@@ -40,48 +37,38 @@ namespace promise
       virtual i64 release(OBJ_REF_DBG_PARAMS);
    #endif
 
+      virtual void process(const ::payload &payload);
 
-      using context_object::process;
+      virtual void process(const ::action_context &actioncontext);
 
-      virtual void perform(const ::var &var);
+      virtual void process();
 
-      virtual void perform(const ::action_context &actioncontext);
+      virtual void deliver(const ::action_context &actioncontext);
 
-      virtual void perform();
-
-      virtual void notify(const ::action_context &actioncontext);
-
-      virtual void notify();
+      virtual void deliver();
 
       virtual void add(::matter *pmatter, bool bForkWhenNotify = false);
 
       virtual void remove(::matter *pmatter);
 
-
       void set_modified();
 
-
-      virtual ::promise::machine * machine(::matter *pmatter);
-
+      virtual ::promise::context * context(::matter *pmatter);
 
       virtual ::estatus run() override;
 
-
       void post_destroy_all();
-
 
       inline bool is_ending()
       {
 
          sync_lock sl(mutex());
 
-         return m_mattermachine.is_empty();
+         return m_mattercontext.is_empty();
 
       }
 
-
       inline int poll_millis() { return os_get_system_update_poll_time(m_id); };
-
 
       static inline bool should_poll(int iMillis)
       {
@@ -89,7 +76,6 @@ namespace promise
          return iMillis >= 100;
 
       }
-
 
       ::promise::handler & operator=(const ::id &id)
       {
@@ -100,9 +86,7 @@ namespace promise
 
       }
 
-
       inline bool operator==(const ::id &id) const { return m_id == id || m_id == FULL_ID; }
-
 
       inline ::id &id();
 
@@ -112,7 +96,7 @@ namespace promise
    };
 
 
-   using manager_pointer = ＿＿pointer(promise::handler);
+   using manager_pointer = __pointer(promise::handler);
 
 
 } // namespace promise

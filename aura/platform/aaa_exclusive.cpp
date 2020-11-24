@@ -64,7 +64,7 @@ namespace aura
 
       ::file::path path;
 
-      path = "/var/tmp";
+      path = "/payload/tmp";
 
       path /= strId;
 

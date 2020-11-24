@@ -121,9 +121,9 @@ namespace user
 
       virtual bool add_menu(::xml::node * pnode);
 
-      virtual bool load_xml_menu(const var & varXml);
+      virtual bool load_xml_menu(const payload & varXml);
 
-      //virtual bool add_xml_menu(const var & varXml);
+      //virtual bool add_xml_menu(const payload & varXml);
 
       virtual void update_command(menu_item * pitemParent);
 

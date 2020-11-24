@@ -21,7 +21,7 @@
 #include <X11/XKBlib.h>
 #define new ACME_NEW
 #include "aura/os/x11/_x11.h"
-#include "acme/multithreading/mq.h"
+#include "acme/parallelization/mq.h"
 #include "_glib.h"
 
 
@@ -399,7 +399,7 @@ void mapped_net_state_raw(bool add, Display * d, Window w, int iScreen, Atom sta
 #define _NET_WM_STATE_ADD           1    /* add/set property */
 #define _NET_WM_STATE_TOGGLE        2    /* toggle property  */
 
-   ·zero(xclient);
+   xxf_zero(xclient);
    xclient.type = ClientMessage;
    xclient.window = w;
    xclient.message_type = XInternAtom(d, "_NET_WM_STATE", False);
@@ -428,7 +428,7 @@ void unmapped_net_state_raw(Display * d, Window w, ...)
 
    va_start(argp, w);
 
-   ·zero(xevent);
+   xxf_zero(xevent);
 
    array < Atom > atoms;
 
@@ -1243,7 +1243,7 @@ oswindow set_active_window(oswindow window)
 
       XEvent xev;
 
-      ·zero(xev);
+      xxf_zero(xev);
 
       Window windowRoot = window->root_window_raw();
 
@@ -1758,7 +1758,7 @@ void wm_add_remove_state_mapped_raw(oswindow w, e_net_wm_state estate, bool bSet
 
    XClientMessageEvent xclient;
 
-   ·zero(xclient);
+   xxf_zero(xclient);
 
    xclient.type            = ClientMessage;
    xclient.window          = window;
@@ -2995,7 +2995,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 
    MESSAGE msg;
 
-   ·zero(msg);
+   xxf_zero(msg);
 
    bool bRet = false;
 
@@ -3018,7 +3018,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
          if(g_pobjectaExtendedEventListener && g_pobjectaExtendedEventListener->get_count() > 0)
          {
 
-            ::action action;
+            ::subject action;
 
             e_id eid;
 
@@ -3049,7 +3049,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
             for(auto & p : *g_pobjectaExtendedEventListener)
             {
 
-               p->apply(&action);
+               p->process(&action);
 
             }
 
@@ -3624,7 +3624,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 
       char buf[32];
 
-      ·zeroa(buf);
+      xxf_zeroa(buf);
 
       string strText;
 
@@ -3680,7 +3680,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 
                   XIMStyles * pximstyles = nullptr;
 
-                  ·zero_pointer(pximstyles);
+                  xxf_zero_pointer(pximstyles);
 
                   XGetIMValues (xim, XNQueryInputStyle, &pximstyles, NULL, NULL);
 

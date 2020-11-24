@@ -2161,7 +2161,7 @@ namespace experience
 
 
 
-   void frame_window::on_apply(::action * paction)
+   void frame_window::on_apply(::subject * paction)
    {
 
       if(paction->id() == id_app_activated)

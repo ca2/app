@@ -479,7 +479,7 @@ namespace user
    }
 
 
-   bool document_manager::do_prompt_file_name(var & varFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument)
+   bool document_manager::do_prompt_file_name(payload & varFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument)
    {
 
       throw_todo();
@@ -887,7 +887,7 @@ namespace user
    }
 
 
-   void document_manager::on_apply(::action * paction)
+   void document_manager::on_apply(::subject * paction)
    {
 
       auto templateptra = m_templateptra;
@@ -895,7 +895,7 @@ namespace user
       for(auto & ptemplate : templateptra.ptra())
       {
 
-         ptemplate->apply(paction);
+         ptemplate->process(paction);
 
       }
 

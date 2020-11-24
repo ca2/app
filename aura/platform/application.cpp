@@ -127,7 +127,7 @@ namespace aura
 
 
       // default value for acid apps
-      // (but any acid app can have installer, just change this flag to true in the derived application class constructor).
+      // (but any acid app can have installer, just machine this flag to true in the derived application class constructor).
       m_bAppHasInstallerProtected = true;
       m_bAppHasInstallerChangedProtected = false;
 
@@ -598,7 +598,7 @@ namespace aura
    //}
 
 
-   //::estatus application::message_box(const var & var)
+   //::estatus application::message_box(const payload & payload)
    //{
 
    //   __pointer(::user::primitive) puiOwner;
@@ -613,21 +613,21 @@ namespace aura
 
    //   ::function_arg function;
 
-   //   if (var.get_type() != type_propset)
+   //   if (payload.get_type() != type_propset)
    //   {
 
-   //      strMessage = var;
+   //      strMessage = payload;
 
    //   }
    //   else
    //   {
 
-   //      puiOwner = var["owner"].cast < ::user::primitive >();
-   //      strMessage = var["message"];
-   //      strTitle = var["title"];
-   //      uFlags = var["flags"];
-   //      durationTimeout = var["duration"];
-   //      function = var["function_arg"];
+   //      puiOwner = payload["owner"].cast < ::user::primitive >();
+   //      strMessage = payload["message"];
+   //      strTitle = payload["title"];
+   //      uFlags = payload["flags"];
+   //      durationTimeout = payload["duration"];
+   //      function = payload["function_arg"];
 
    //   }
 
@@ -1082,7 +1082,7 @@ namespace aura
 
 
 
-   /*::user::document *  application::_001OpenDocumentFile(var varFile)
+   /*::user::document *  application::_001OpenDocumentFile(payload varFile)
    {
 
       ::exception::throw_interface_only();
@@ -1677,7 +1677,7 @@ namespace aura
 
       string strLicense = get_license_id();
 
-      //var & varTopicQuey = System.m_varTopicQuery;
+      //payload & varTopicQuey = System.m_varTopicQuery;
 
       bool bHasInstall = System.is_true("install");
 
@@ -3167,12 +3167,12 @@ retry_license:
    //}
 
 
-   ////i32 application::sync_message_box_timeout(::user::primitive * pwndOwner, var var, const char * pszTitle, ::duration durationTimeOut, ::u32 fuStyle)
+   ////i32 application::sync_message_box_timeout(::user::primitive * pwndOwner, payload payload, const char * pszTitle, ::duration durationTimeOut, ::u32 fuStyle)
    ////{
 
    ////   UNREFERENCED_PARAMETER(durationTimeOut);
 
-   ////   return sync_message_box(pwndOwner, var, pszTitle, fuStyle);
+   ////   return sync_message_box(pwndOwner, payload, pszTitle, fuStyle);
 
    ////}
 
@@ -3536,7 +3536,7 @@ retry_license:
    //}
 
 
-   //void application::play_audio(var varFile, bool bSynch)
+   //void application::play_audio(payload varFile, bool bSynch)
    //{
 
    //   UNREFERENCED_PARAMETER(varFile);
@@ -3723,7 +3723,7 @@ retry_license:
    //}
 
 
-   //bool application::on_open_document_file(var varFile)
+   //bool application::on_open_document_file(payload varFile)
    //{
 
    //   request_file(varFile);
@@ -5457,7 +5457,7 @@ retry_license:
    string application::matter_as_string(const char * pszMatter, const char * pszMatter2)
    {
 
-      var varFile;
+      payload varFile;
 
       varFile["disable_ca2_sessid"] = true;
 
@@ -5586,7 +5586,7 @@ retry_license:
 
 
 
-//   void application::set_env_var(const string & var,const string & value)
+//   void application::set_env_var(const string & payload,const string & value)
 //   {
 //
 //      ::exception::throw_interface_only();
@@ -5629,7 +5629,7 @@ retry_license:
 
    }
 
-   //bool application::do_prompt_file_name(var & varFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument)
+   //bool application::do_prompt_file_name(payload & varFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument)
    //{
 
    //   UNREFERENCED_PARAMETER(varFile);
@@ -5788,7 +5788,7 @@ retry_license:
    //}
 
 
-   //bool application::on_open_document(::user::document * pdocument, var varFile)
+   //bool application::on_open_document(::user::document * pdocument, payload varFile)
    //{
 
    //   UNREFERENCED_PARAMETER(pdocument);
@@ -5798,7 +5798,7 @@ retry_license:
    //}
 
 
-   //bool application::on_save_document(::user::document * pdocument, var varFile)
+   //bool application::on_save_document(::user::document * pdocument, payload varFile)
    //{
 
    //   UNREFERENCED_PARAMETER(pdocument);
@@ -7873,9 +7873,9 @@ namespace aura
    void application::_001OnFileNew(::message::message* pmessage)
    {
 
-      var varFile;
+      payload varFile;
 
-      var varQuery;
+      payload varQuery;
 
       varQuery["command"] = "new_file";
 
@@ -7887,14 +7887,14 @@ namespace aura
 
 
 
-   //   bool application::on_open_document_file(var varFile)
+   //   bool application::on_open_document_file(payload varFile)
    //   {
    //
    //      return _001OpenDocumentFile(varFile);
    //
    //   }
 
-   //::user::document* application::_001OpenDocumentFile(var varFile)
+   //::user::document* application::_001OpenDocumentFile(payload varFile)
    //{
 
    //   request_file(varFile);
@@ -8231,7 +8231,7 @@ namespace aura
          if (is_false("session_start"))
          {
 
-            ::multithreading::finish(&System);
+            ::parallelization::finish(&System);
 
          }
 
@@ -8239,7 +8239,7 @@ namespace aura
       else
       {
 
-         ::multithreading::finish(&System);
+         ::parallelization::finish(&System);
 
       }
 
@@ -8278,7 +8278,7 @@ namespace aura
          if (is_false("session_start"))
          {
 
-            ::multithreading::finish(&System);
+            ::parallelization::finish(&System);
 
          }
 
@@ -8286,7 +8286,7 @@ namespace aura
       else
       {
 
-         ::multithreading::finish(&System);
+         ::parallelization::finish(&System);
 
       }
 
@@ -8519,7 +8519,7 @@ namespace aura
 
 
 
-   void application::data_on_after_change(::database::client* pclient, const ::database::key& key, const var& var, ::action * paction)
+   void application::data_on_after_change(::database::client* pclient, const ::database::key& key, const payload& payload, ::subject * paction)
    {
 
    }
@@ -9367,7 +9367,7 @@ namespace aura
 
 
 
-   icon_result application::load_icon(const ::var& varFile)
+   icon_result application::load_icon(const ::payload& varFile)
    {
 
 #ifdef WINDOWS_DESKTOP

@@ -41,7 +41,7 @@ namespace imaging_wic
       node_save_image(pstream, pimage, psaveimage);
 
       STATSTG stg;
-      ·zero(stg);
+      xxf_zero(stg);
       pstream->Stat(&stg, STATFLAG_NONAME);
       LARGE_INTEGER l;
       l.QuadPart = 0;

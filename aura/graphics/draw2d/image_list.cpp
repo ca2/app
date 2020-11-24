@@ -268,7 +268,7 @@ i32 image_list::add(::draw2d::icon * picon, int iItem)
 }
 
 
-i32 image_list::add_icon(var varFile, int iItem)
+i32 image_list::add_icon(payload varFile, int iItem)
 {
 
    ::draw2d::icon icon;
@@ -301,7 +301,7 @@ i32 image_list::add_matter_icon(const char * pszMatter, int iItem)
 }
 
 
-i32 image_list::add_file(var varFile, int iItem)
+i32 image_list::add_file(payload varFile, int iItem)
 {
 
    sync_lock sl(mutex());

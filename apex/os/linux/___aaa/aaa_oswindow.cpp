@@ -2,7 +2,7 @@
 #include "_linux.h"
 #include "_user.h"
 #include "third/sn/sn.h"
-#include "acme/multithreading/mq.h"
+#include "acme/parallelization/mq.h"
 
 
 extern SnLauncheeContext* g_psncontext;
@@ -117,7 +117,7 @@ oswindow_data::oswindow_data()
 
    m_osdisplay             = nullptr;
 
-   ·zero(m_visual);
+   xxf_zero(m_visual);
 
    m_iDepth                = -1;
 
@@ -836,7 +836,7 @@ void oswindow_data::send_client_event(Atom atom, unsigned int numArgs, ...)
 
    va_start(argp, numArgs);
 
-   ·zero(xevent);
+   xxf_zero(xevent);
 
    xevent.xclient.type = ClientMessage;
    xevent.xclient.serial = 0;

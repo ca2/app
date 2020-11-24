@@ -11,37 +11,37 @@ public:
 
 
 
-inline var operator + (var var, const ::timeout& timeout)
+inline payload operator + (payload payload, const ::timeout& timeout)
 {
 
-   if (var.get_type() != type_propset)
+   if (payload.get_type() != type_propset)
    {
 
-      var["message"] = var.get_string();
+      payload["message"] = payload.get_string();
 
    }
 
-   var["timeout"] = (const ::duration&) timeout;
+   payload["timeout"] = (const ::duration&) timeout;
 
-   return var;
+   return payload;
 
 }
 
 
-inline var operator + (const char* psz, const ::timeout& timeout)
+inline payload operator + (const char* psz, const ::timeout& timeout)
 {
 
-   return var(psz) + timeout;
+   return payload(psz) + timeout;
 
 }
 
 
 
 template < typename TYPE_CHAR >
-inline var operator + (const string_base < TYPE_CHAR >& str, const ::timeout& timeout)
+inline payload operator + (const string_base < TYPE_CHAR >& str, const ::timeout& timeout)
 {
 
-   return var(str) + timeout;
+   return payload(str) + timeout;
 
 }
 

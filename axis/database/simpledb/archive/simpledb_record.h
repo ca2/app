@@ -13,7 +13,7 @@ namespace simpledb
 
       table *     m_ptable;
       string_array     m_straFields;
-      var         m_var;
+      payload         m_var;
 
 
       virtual void io(stream & stream);

@@ -364,7 +364,7 @@ namespace linux
             else
             {
 
-               ·zero(m_px11data->m_visualinfo);
+               xxf_zero(m_px11data->m_visualinfo);
 
             }
 
@@ -372,7 +372,7 @@ namespace linux
 
             XSetWindowAttributes attr;
 
-            ·zero(attr);
+            xxf_zero(attr);
 
             attr.colormap = XCreateColormap( display, rootwin, vis, AllocNone);
 
@@ -629,7 +629,7 @@ namespace linux
                      // Context: Linux 201*
                      // window managers generally "don't like" windows that starts "docked/snapped".
                      // initial (XCreateWindow) size and position maybe not be honored.
-                     // so requesting the same change again in a effort to set the "docked/snapped" size and position.
+                     // so requesting the same machine again in a effort to set the "docked/snapped" size and position.
 
                      //m_oswindow->set_window_pos(zorder_top, cs.x, cs.y, cs.cx, cs.cy, SWP_SHOWWINDOW);
                      m_oswindow->set_window_pos(zorder_top, cs.x, cs.y, cs.cx, cs.cy, 0);
@@ -1015,7 +1015,7 @@ namespace linux
 
       }
 
-//      ::multithreading::post_quit_and_wait(m_pthreadProDevian, seconds(10));
+//      ::parallelization::post_quit_and_wait(m_pthreadProDevian, seconds(10));
 
 //      if (m_puserinteraction->m_pthread != nullptr)
 //      {
@@ -1594,9 +1594,9 @@ namespace linux
 
          if(pbase->m_id == e_message_mouse_move)
          {
-            // We are at the message handler procedure.
+            // We are at the message handler routine.
             // mouse messages originated from message handler and that are mouse move events should end up with the correct cursor.
-            // So the procedure starts by setting to the default cursor,
+            // So the routine starts by setting to the default cursor,
             // what forces, at the end of message processing, setting the bergedge cursor to the default cursor, if no other
             // handler has set it to another one.
             pmouse->m_ecursor = cursor_default;

@@ -58,7 +58,7 @@ namespace browser
 
       pmessage->previous();
 
-      var v;
+      payload v;
 
       data_get("cur_fps", v);
 

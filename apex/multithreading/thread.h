@@ -13,7 +13,7 @@ namespace user { class frame;  }
 class CLASS_DECL_APEX thread :
    virtual public task,
    virtual public channel
-   , virtual public change
+   , virtual public machine
 #ifdef WINDOWS
    ,virtual public ::exception::translator
 #endif
@@ -85,7 +85,7 @@ public:
    bool                                               m_bThreadClosed;
 
 
-   procedure_array                                    m_procedurea;
+   procedure_array                                    m_routinea;
 
 
    __pointer(manual_reset_event)                      m_pevent1;
@@ -227,7 +227,7 @@ public:
    virtual ::task_pool* taskpool() override;
 
    //inline bool has_property(const ::id& id) const;
-   //inline var command_value(const ::id& id) const;
+   //inline payload command_value(const ::id& id) const;
    //inline bool command_value_is_true(const ::id& id) const;
 
 
@@ -498,7 +498,7 @@ protected:
 };
 
 
-namespace multithreading
+namespace parallelization
 {
 
 
@@ -517,7 +517,7 @@ namespace multithreading
       if (spthread.is_set())
       {
 
-         ::multithreading::finish(spthread.m_p);
+         ::parallelization::finish(spthread.m_p);
 
          spthread.release();
 
@@ -533,7 +533,7 @@ namespace multithreading
       if (spthread.is_set())
       {
 
-         if (!::multithreading::post_quit_and_wait(spthread.m_p, duration))
+         if (!::parallelization::post_quit_and_wait(spthread.m_p, duration))
          {
 
             return false;
@@ -551,7 +551,7 @@ namespace multithreading
 
 
 
-} // namespace multithreading
+} // namespace parallelization
 
 
 using id_thread_map = id_map < __pointer(thread) >;

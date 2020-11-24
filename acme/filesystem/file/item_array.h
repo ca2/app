@@ -17,9 +17,9 @@ namespace file
       virtual ~item_array();
 
 
-      var get_var_file() const;
-      var get_var_final_path() const;
-      var get_var_query() const;
+      payload get_var_file() const;
+      payload get_var_final_path() const;
+      payload get_var_query() const;
 
       item_array & operator = (const item_array & itema);
       item_array & operator = (item_array && itema);

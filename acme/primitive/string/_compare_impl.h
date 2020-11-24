@@ -166,10 +166,10 @@ namespace str
 
 
    template < typename PREFIX >
-   inline bool begins_eat(var & var, const PREFIX& strPrefix)
+   inline bool begins_eat(payload & payload, const PREFIX& strPrefix)
    {
 
-      string str = var.get_string();
+      string str = payload.get_string();
 
       if (!begins_eat(str, strPrefix))
       {
@@ -178,7 +178,7 @@ namespace str
 
       }
 
-      var = str;
+      payload = str;
 
       return true;
 
@@ -186,10 +186,10 @@ namespace str
 
 
    template < typename PREFIX >
-   inline bool begins_eat_ci(var & var, const PREFIX& strPrefix)
+   inline bool begins_eat_ci(payload & payload, const PREFIX& strPrefix)
    {
 
-      string str = var.get_string();
+      string str = payload.get_string();
 
       if (!begins_eat_ci(str, strPrefix))
       {
@@ -198,7 +198,7 @@ namespace str
 
       }
 
-      var = str;
+      payload = str;
 
       return true;
 
@@ -209,7 +209,7 @@ namespace str
    inline bool begins_eat(property & property, const PREFIX& strPrefix)
    {
 
-      return begins_eat((::var&)property, strPrefix);
+      return begins_eat((::payload&)property, strPrefix);
 
    }
 
@@ -219,7 +219,7 @@ namespace str
    inline bool begins_eat_ci(property & property, const PREFIX& strPrefix)
    {
 
-      return begins_eat_ci((::var&)property, strPrefix);
+      return begins_eat_ci((::payload&)property, strPrefix);
 
    }
 

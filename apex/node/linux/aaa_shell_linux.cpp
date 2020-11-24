@@ -56,7 +56,7 @@ namespace linux
 //            m_threadaGetImage.add(fork([&]()
 //            {
 //
-//               ::multithreading::set_priority(::priority_highest);
+//               ::parallelization::set_priority(::priority_highest);
 //
 //               shell_run();
 //

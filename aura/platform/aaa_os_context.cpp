@@ -92,7 +92,7 @@
 #endif
 
 
-   var os_context::connection_settings_get_auto_detect()
+   payload os_context::connection_settings_get_auto_detect()
    {
 
       return success;
@@ -100,7 +100,7 @@
    }
 
 
-   var os_context::connection_settings_get_auto_config_url()
+   payload os_context::connection_settings_get_auto_config_url()
    {
 
       return error_failed;
@@ -688,7 +688,7 @@
    }
 
 
-   ::icon_result os_context::load_icon(const ::var & varFile)
+   ::icon_result os_context::load_icon(const ::payload & varFile)
    {
 
 

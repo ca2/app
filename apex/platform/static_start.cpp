@@ -907,7 +907,7 @@ namespace apex
 
       }
 
-      ::multithreading::init_multithreading();
+      ::parallelization::init_multithreading();
 
       if (!__node_apex_pos_init())
       {
@@ -934,7 +934,7 @@ namespace apex
    ::estatus apex::term()
    {
 
-      //::multithreading::wait_threads(1_min);
+      //::parallelization::wait_threads(1_min);
 
       //if (g_axisontermthread)
       //{
@@ -945,7 +945,7 @@ namespace apex
 
       on_term_thread();
 
-      ::multithreading::term_multithreading();
+      ::parallelization::term_multithreading();
 
       __node_apex_pre_term();
 

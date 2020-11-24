@@ -176,7 +176,7 @@ property_set * html_document::form_document_get_property_set()
 //}
 
 
-bool html_document::on_open_document(const var & varFile)
+bool html_document::on_open_document(const payload & varFile)
 {
 
    auto phtmlform = get_typed_view < ::html_form >();
@@ -361,7 +361,7 @@ void html_document::on_command(::user::command * pcommand)
 }
 
 
-bool html_document::open_document(const var & varFile)
+bool html_document::open_document(const payload & varFile)
 {
 
    return on_open_document(varFile) != FALSE;

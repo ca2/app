@@ -18,7 +18,7 @@ namespace user
       ::user::rich_text::eattribute          m_eattribute;
       // an array just to hold one format
       // the one the tool is editing
-      __pointer_array(::user::rich_text::format)  m_formata; 
+      __pointer_array(::user::rich_text::format)  m_formata;
       __composite(::user::button)                         m_pbuttonBold;
       __composite(::user::button)                         m_pbuttonItalic;
       __composite(::user::button)                         m_pbuttonUnderline;

@@ -46,13 +46,13 @@
 //         unichar * pFileSystemNameBuffer,    // file system name buffer
 //
 //         ::u32 nFileSystemNameSize);         // length of file system name buffer
-//      static uptr __stdcall _SHGetFileInfo(      
+//      static uptr __stdcall _SHGetFileInfo(
 //         const unichar * pszPath,
 //         ::u32 dwFileAttributes,
 //         SHFILEINFOW *psfi,
 //         ::u32 cbFileInfo,
 //         ::u32 uFlags);
-//      static BOOL __stdcall _GetStringTypeEx(      
+//      static BOOL __stdcall _GetStringTypeEx(
 //         LCID Locale,
 //         ::u32 dwInfoType,
 //         const unichar * pSrcStr,
@@ -146,13 +146,13 @@
 //
 //         ::u32 nFileSystemNameSize);         // length of file system name buffer
 //
-//      DWORD_PTR (__stdcall * m_pfnSHGetFileInfo)(      
+//      DWORD_PTR (__stdcall * m_pfnSHGetFileInfo)(
 //         const unichar * pszPath,
 //         ::u32 dwFileAttributes,
 //         SHFILEINFOW *psfi,
 //         ::u32 cbFileInfo,
 //         ::u32 uFlags);
-//      BOOL (__stdcall * m_pfnGetStringTypeEx)(      
+//      BOOL (__stdcall * m_pfnGetStringTypeEx)(
 //         LCID Locale,
 //         ::u32 dwInfoType,
 //         const unichar * pSrcStr,

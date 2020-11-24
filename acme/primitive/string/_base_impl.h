@@ -2910,7 +2910,7 @@ BSTR string_base < TYPE_CHAR >::SetSysString(BSTR * pbstr) const
 
 #endif
 
-// set the string_base < TYPE_CHAR > to the value of environment var 'pszVar'
+// set the string_base < TYPE_CHAR > to the value of environment payload 'pszVar'
 template < typename TYPE_CHAR >
 bool string_base < TYPE_CHAR >::get_environment_variable(const CHAR_TYPE* pszVar)
 {

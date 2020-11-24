@@ -132,7 +132,7 @@ namespace linux
 
 #ifdef LINUX
 
-      m_pdirsystem->m_pathTimeFolder = "/var/tmp/ca2/time";
+      m_pdirsystem->m_pathTimeFolder = "/payload/tmp/ca2/time";
 
 #else
 

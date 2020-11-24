@@ -925,7 +925,7 @@ namespace aura
 
       }
 
-      ::multithreading::init_multithreading();
+      ::parallelization::init_multithreading();
 
       if (!__node_aura_pos_init())
       {
@@ -952,7 +952,7 @@ namespace aura
    ::estatus aura::term()
    {
 
-      //::multithreading::wait_threads(1_min);
+      //::parallelization::wait_threads(1_min);
 
       //if (g_axisontermthread)
       //{
@@ -963,7 +963,7 @@ namespace aura
 
       on_term_thread();
 
-      ::multithreading::term_multithreading();
+      ::parallelization::term_multithreading();
 
       __node_aura_pre_term();
 

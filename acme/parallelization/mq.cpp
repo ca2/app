@@ -220,7 +220,7 @@ int_bool mq::peek_message(MESSAGE * pMsg, oswindow oswindow,::u32 wMsgFilterMin,
 
 mutex * g_pmutexMq;
 
-map < ithread_t, ithread_t, ＿＿pointer(mq), ＿＿pointer(mq) > * g_pmapMq;
+map < ithread_t, ithread_t, __pointer(mq), __pointer(mq) > * g_pmapMq;
 
 
 mq * get_mq(ithread_t ithread, bool bCreate)
@@ -244,7 +244,7 @@ mq * get_mq(ithread_t ithread, bool bCreate)
 
    }
 
-   auto pmq = ＿＿new(mq);
+   auto pmq = __new(mq);
 
    pmq->m_ithread = ithread;
 
@@ -324,7 +324,7 @@ void clear_mq(ithread_t idthread)
 ////
 ////   ithread_t idthread = pinteraction->get_context_application()->get_os_int();
 ////
-////   mq * pmq = ＿＿get_mq(idthread, false);
+////   mq * pmq = __get_mq(idthread, false);
 ////
 ////   if(pmq == nullptr)
 ////   {
@@ -335,7 +335,7 @@ void clear_mq(ithread_t idthread)
 ////
 ////   sync_lock ml(&pmq->m_mutex);
 ////
-////   pmq->m_messagea.λremove([=](MESSAGE & item)
+////   pmq->m_messagea.pred_remove([=](MESSAGE & item)
 ////   {
 ////
 ////      return item.hwnd == oswindow;
@@ -372,7 +372,7 @@ int_bool mq_post_thread_message(ithread_t idthread, const ::id & id, WPARAM wpar
    if (id.m_etype != ::id::e_type_message)
    {
 
-      ＿＿throw(invalid_argument_exception);
+      __throw(invalid_argument_exception);
 
    }
 
@@ -448,7 +448,7 @@ void init_global_mq()
 
    g_pmutexMq = new mutex();
 
-   g_pmapMq = new map < ithread_t, ithread_t, ＿＿pointer(mq), ＿＿pointer(mq) >();
+   g_pmapMq = new map < ithread_t, ithread_t, __pointer(mq), __pointer(mq) >();
 
 }
 

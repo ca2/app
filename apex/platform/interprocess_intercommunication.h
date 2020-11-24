@@ -28,7 +28,7 @@
 
    //   auto tasks() { return typename pid_task::dereferenced_value_iterator(nullptr, &m_mapTask); }
 
-   //   void add_arg(const var& var);
+   //   void add_arg(const payload& payload);
    //   void add_args(const var_array& vara);
    //   void set_timeout(const duration& duration);
    //   void set_auto_launch(bool bSet = true);
@@ -58,7 +58,7 @@
    //   ::id                                m_idPid;
    //   ::i64                               m_iTask;
    //   __pointer(interprocess_call)               m_pcall;
-   //   var                                 m_var;
+   //   payload                                 m_var;
    //   __pointer(manual_reset_event)       m_pevReady;
 
 
@@ -124,7 +124,7 @@
 
       virtual string str_from_va(const var_array & va);
 
-      virtual void on_interprocess_call(var & var, const string & strObject, const string & strMember, var_array & vara);
+      virtual void on_interprocess_call(payload & payload, const string & strObject, const string & strMember, var_array & vara);
 
       using ::interprocess_communication::rx::receiver::on_interprocess_receive;
 

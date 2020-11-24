@@ -231,7 +231,7 @@ namespace exception
 
 #else
 
-         ·zero(m_sig.m_saSeg);
+         xxf_zero(m_sig.m_saSeg);
 
          m_sig.m_saSeg.sa_flags = SA_SIGINFO;
 
@@ -244,7 +244,7 @@ namespace exception
 
          }
 
-         ·zero(m_sig.m_saFpe);
+         xxf_zero(m_sig.m_saFpe);
 
          m_sig.m_saSeg.sa_flags = SA_SIGINFO;
 
@@ -257,7 +257,7 @@ namespace exception
 
          }
 
-         ·zero(m_sig.m_saPipe);
+         xxf_zero(m_sig.m_saPipe);
 
          m_sig.m_saSeg.sa_flags = SA_SIGINFO;
 

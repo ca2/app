@@ -299,7 +299,7 @@ void object::dev_log(string strMessage) const
 }
 
 
-array < ::procedure >* object::procedures(const ::id & id)
+array < ::routine >* object::procedures(const ::id & id)
 {
 
    if (m_pmeta)
@@ -358,7 +358,7 @@ void object::call_procedure(const ::id & id)
 }
 
 
-void object::send_futurevar(const ::id & idFuture, const ::var& var)
+void object::send_futurevar(const ::id & idFuture, const ::payload& payload)
 {
 
    auto pfuturevars = futurevars(idFuture);
@@ -366,14 +366,14 @@ void object::send_futurevar(const ::id & idFuture, const ::var& var)
    if(pfuturevars)
    {
 
-      pfuturevars->pred_each([&var](auto & futurevar) { futurevar(var); });
+      pfuturevars->pred_each([&payload](auto & futurevar) { futurevar(payload); });
 
    }
 
 }
 
 
-void object::add_procedure(const ::id & id, const ::procedure & procedure)
+void object::add_procedure(const ::id & id, const ::routine & procedure)
 {
 
    meta()->m_mapProcedure[id].add(procedure);
@@ -428,13 +428,13 @@ void object::add_futurevars_from(const ::id & id, ::object * pobjectSource)
 
 }
 
-context& object::__context(const var& var)
+context& object::__context(const payload& payload)
 {
 
-   if (var.has_property("value"))
+   if (payload.has_property("value"))
    {
 
-      auto pcontext = var["context"].cast < context >();
+      auto pcontext = payload["context"].cast < context >();
 
       if (pcontext)
       {
@@ -450,19 +450,19 @@ context& object::__context(const var& var)
 }
 
 
-var object::__context_value(const var& var)
+payload object::__context_value(const payload& payload)
 {
 
-   if (var.has_property("context") && var.has_property("value"))
+   if (payload.has_property("context") && payload.has_property("value"))
    {
 
-      return var["value"];
+      return payload["value"];
 
    }
    else
    {
 
-      return var;
+      return payload;
 
    }
 
@@ -712,7 +712,7 @@ void object::defer_update_object_id()
 }
 
 
-::estatus     object::request_file(const ::var & varFile)
+::estatus     object::request_file(const ::payload & varFile)
 {
 
    return request_file(varFile, type_new);
@@ -720,7 +720,7 @@ void object::defer_update_object_id()
 }
 
 
-::estatus     object::request_file(const ::var& varFile,var varQuery)
+::estatus     object::request_file(const ::payload& varFile,payload varQuery)
 {
 
    auto pcommandline = __create_new< command_line >();
@@ -772,7 +772,7 @@ void object::defer_update_object_id()
 }
 
 
-//::estatus object::message_box(const ::var& var)
+//::estatus object::message_box(const ::payload& payload)
 //{
 //
 //   __pointer(::user::primitive) pinteraction = get_context_object();
@@ -780,18 +780,18 @@ void object::defer_update_object_id()
 //   if (pinteraction)
 //   {
 //
-//      return pinteraction->message_box(var);
+//      return pinteraction->message_box(payload);
 //
 //   }
 //
 //   if (get_context_application())
 //   {
 //
-//      return get_context_application()->message_box(var);
+//      return get_context_application()->message_box(payload);
 //
 //   }
 //
-//   return ::os_message_box(var);
+//   return ::os_message_box(payload);
 //
 //}
 
@@ -1889,11 +1889,11 @@ void object::message_receiver_destruct()
 void object::_001OnUpdate(::message::message * pmessage)
 {
 
-  ::action action((::iptr)pmessage->m_wparam);
+  ::subject action((::iptr)pmessage->m_wparam);
 
   action.m_var = (::matter*) (::iptr) pmessage->m_lparam;
 
-  apply(action);
+   process(action);
 
 }
 
@@ -1914,7 +1914,7 @@ __pointer(::matter) object::running(const char * pszTag) const
    if (m_pcompositea)
    {
 
-      auto pobject = ::multithreading::array::is_running(*m_pcompositea, pszTag);
+      auto pobject = ::parallelization::array::is_running(*m_pcompositea, pszTag);
 
       if (pobject)
       {
@@ -1929,7 +1929,7 @@ __pointer(::matter) object::running(const char * pszTag) const
    if (m_preferencea)
    {
 
-      auto pobject = ::multithreading::array::is_running(*m_preferencea, pszTag);
+      auto pobject = ::parallelization::array::is_running(*m_preferencea, pszTag);
 
       if (pobject)
       {
@@ -2043,7 +2043,7 @@ __pointer(::matter) object::running(const char * pszTag) const
 //}
 
 
-::file_result object::get_file(const var & varFile, efileopen eopen)
+::file_result object::get_file(const payload & varFile, efileopen eopen)
 {
 
    return Context.file().get_file(varFile, eopen);
@@ -2172,17 +2172,17 @@ bool __no_continue(::estatus estatus)
 
 
 
-string object::get_text(const var& var, const ::id& id)
+string object::get_text(const payload& payload, const ::id& id)
 {
 
-   if (var.has_property(id) && var[id].has_char())
+   if (payload.has_property(id) && payload[id].has_char())
    {
 
-      return var[id];
+      return payload[id];
 
    }
 
-   string str = Context.file().as_string(var);
+   string str = Context.file().as_string(payload);
 
    if (str.has_char())
    {
@@ -2191,7 +2191,7 @@ string object::get_text(const var& var, const ::id& id)
 
    }
 
-   auto strExtension = var.get_file_path().extension();
+   auto strExtension = payload.get_file_path().extension();
 
    if (strExtension == __str(id))
    {
@@ -2200,7 +2200,7 @@ string object::get_text(const var& var, const ::id& id)
 
    }
 
-   return var.get_string();
+   return payload.get_string();
 
 }
 

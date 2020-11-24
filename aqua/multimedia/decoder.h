@@ -34,7 +34,7 @@ namespace multimedia
       virtual void               multimedia_set_origin_path(const string & strOriginPath);
 
 
-      virtual bool multimedia_get_attribute(::e_id attribute, var & var);
+      virtual bool multimedia_get_attribute(::e_id attribute, payload & payload);
 
       void FillTitleInfo(string_array & wstraFormat, string2a & wstr2aTitle);
 

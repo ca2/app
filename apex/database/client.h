@@ -38,13 +38,13 @@ namespace database
 //      DECL_GEN_SIGNAL(data_on_before_change);
       DECL_GEN_SIGNAL(data_on_after_change);
 
-      virtual bool data_on_before_change(client* pclient, const key& id, var& var, ::action * paction);
-      virtual void data_on_after_change(client* pclient, const key& id, const ::var & var, ::action * paction);
+      virtual bool data_on_before_change(client* pclient, const key& id, payload& payload, ::subject * paction);
+      virtual void data_on_after_change(client* pclient, const key& id, const ::payload & payload, ::subject * paction);
 
 
 
-      virtual bool _data_set(const key& key, const var & var, ::action * paction = nullptr);
-      virtual bool _data_set(const selection & selection, const var & var, ::action * paction = nullptr);
+      virtual bool _data_set(const key& key, const payload & payload, ::subject * paction = nullptr);
+      virtual bool _data_set(const selection & selection, const payload & payload, ::subject * paction = nullptr);
 
 
       template < typename TYPE >
@@ -77,7 +77,7 @@ namespace database
 
          }
 
-         if (!binary_set(key, stream.var()))
+         if (!binary_set(key, stream.payload()))
          {
 
             return false;
@@ -89,7 +89,7 @@ namespace database
       }
 
 
-      virtual bool _data_get(const key& key, var & var);
+      virtual bool _data_get(const key& key, payload & payload);
 
       template < typename TYPE >
       inline bool binary_get(const key & key, TYPE & t);
@@ -103,19 +103,19 @@ namespace database
       }
 
 
-      virtual var data_get(const key & key)
+      virtual payload data_get(const key & key)
       {
 
-         var var;
+         payload payload;
 
-         if (!_data_get(key, var))
+         if (!_data_get(key, payload))
          {
 
             return ::error_not_found;
 
          }
 
-         return var;
+         return payload;
 
       }
 
@@ -126,7 +126,7 @@ namespace database
 
          var_stream stream;
 
-         if (!binary_get(key, stream.var()))
+         if (!binary_get(key, stream.payload()))
          {
 
             return false;
@@ -150,7 +150,7 @@ namespace database
 
       virtual void default_data_save_handling(const ::id & id);
 
-      virtual bool data_pulse_change(const key & key, ::action * paction);
+      virtual bool data_pulse_change(const key & key, ::subject * paction);
 
 
       virtual void set_data_key_modifier(const key & key);

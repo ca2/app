@@ -18,17 +18,17 @@ task_pool::~task_pool()
 }
 
 
-task_pointer & task_pool::defer_start(const ::id& id, const ::procedure & procedure)
+task_pointer & task_pool::defer_start(const ::id& id, const ::promise::routine & routine)
 {
 
    auto& pthread = task(id);
 
-   auto estatus = ＿＿defer_construct(pthread);
+   auto estatus = __defer_construct(pthread);
 
    if (!estatus)
    {
 
-      pthread = ＿＿create_new < ::task >();
+      pthread = __create_new < ::task >();
 
    }
 
@@ -39,7 +39,7 @@ task_pointer & task_pool::defer_start(const ::id& id, const ::procedure & proced
 
    }
 
-   pthread->start(procedure);
+   pthread->start(routine);
 
    return pthread;
 
@@ -49,7 +49,7 @@ task_pointer & task_pool::defer_start(const ::id& id, const ::procedure & proced
 void task_pool::start_clock(enum_clock eclock, const duration & duration)
 {
 
-   defer_start(eclock, ＿＿procedure([&, eclock, duration]()
+   defer_start(eclock, __procedure([&, eclock, duration]()
       {
 
          _task_clock(eclock, duration);

@@ -595,7 +595,7 @@ namespace windows
 
             BITMAP bm;
 
-            ·zero(bm);
+            xxf_zero(bm);
 
             ::GetObject(hbitmap, sizeof(bm), &bm);
 

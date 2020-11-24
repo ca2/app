@@ -26,7 +26,7 @@ namespace linux
       virtual ::estatus init_context() override;
 
 
-      virtual ::file_result get_file(const var & varFile, const ::efileopen & eopen) override;
+      virtual ::file_result get_file(const payload & varFile, const ::efileopen & eopen) override;
 
 
       virtual bool is_link(string strPath) override;

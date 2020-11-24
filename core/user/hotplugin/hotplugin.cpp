@@ -177,7 +177,7 @@ namespace hotplugin
 
          //__wait_threading_count(minutes(1));
 
-         ::multithreading::wait_threads(1_min);
+         ::parallelization::wait_threads(1_min);
 
       }
 

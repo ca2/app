@@ -18,7 +18,7 @@ namespace windows
    }
 
    
-   var registry::key::get(const char * pcszValueName)
+   payload registry::key::get(const char * pcszValueName)
    {
 
       ::u32 dwType;
@@ -121,7 +121,7 @@ namespace windows
    void registry::key::open(HKEY hkey, const char * pcszSubKey, bool bCreate)
    { 
       
-      __defer_throw_estatus(_open(hkey, pcszSubKey, bCreate)); 
+      __defer_throw_estatus(_open(hkey, pcszSubKey, bCreate));
    
    }
 
@@ -176,7 +176,7 @@ namespace windows
    void registry::key::defer_create(HKEY hkey, const char * pcszSubKey) 
    { 
       
-      __defer_throw_estatus(_defer_create(hkey, pcszSubKey)); 
+      __defer_throw_estatus(_defer_create(hkey, pcszSubKey));
    
    }
 
@@ -447,7 +447,7 @@ namespace windows
 
       auto estatus = _set(pcszValueName, strValue);
       
-      __defer_throw_estatus(estatus); 
+      __defer_throw_estatus(estatus);
    
    }
 
@@ -467,7 +467,7 @@ namespace windows
 
       auto estatus = _set(pcszValueName, mem);
       
-      __defer_throw_estatus(estatus); 
+      __defer_throw_estatus(estatus);
    
    }
 
@@ -487,7 +487,7 @@ namespace windows
 
       auto estatus = _delete_key();
       
-      __defer_throw_estatus(estatus); 
+      __defer_throw_estatus(estatus);
    
    }
 
@@ -497,7 +497,7 @@ namespace windows
 
       auto estatus = _ls_key(stra);
       
-      __defer_throw_estatus(estatus); 
+      __defer_throw_estatus(estatus);
    
    }
 

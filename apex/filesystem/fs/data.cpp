@@ -217,7 +217,7 @@ namespace fs
    }
 
 
-   var data::file_length(const ::file::path & path)
+   payload data::file_length(const ::file::path & path)
    {
 
       ::file::listing listing;
@@ -227,7 +227,7 @@ namespace fs
       index iFind = listing.find_first_ci(path.name());
 
       if (iFind < 0)
-         return var(::e_type_null);
+         return payload(::e_type_null);
 
       return listing[iFind].m_iSize;
 

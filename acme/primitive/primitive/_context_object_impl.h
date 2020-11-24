@@ -158,7 +158,7 @@ template < typename TYPE > inline __pointer(TYPE) context_object::cast(const ::i
 }
 
 
-inline var & context_object::value(const id & id)
+inline payload & context_object::value(const id & id)
 {
 
    auto & set = get_property_set();
@@ -184,7 +184,7 @@ inline bool context_object::is_false(const ::id& id) const
 }
 
 
-inline bool context_object::is_true(const ::id & id, const var & varDefault, bool bDefault = false) const
+inline bool context_object::is_true(const ::id & id, const payload & varDefault, bool bDefault = false) const
 {
 
    return value(id).is_true(varDefault, bDefault);
@@ -192,21 +192,21 @@ inline bool context_object::is_true(const ::id & id, const var & varDefault, boo
 }
 
 
-inline var & context_object::operator[](const ::id & id) { return value(id); }
+inline payload & context_object::operator[](const ::id & id) { return value(id); }
 
-inline var context_object::operator[](const ::id & id) const { return find_property(id); }
+inline payload context_object::operator[](const ::id & id) const { return find_property(id); }
 
-inline var context_object::value(const ::id & id) const { return find_property(id); }
+inline payload context_object::value(const ::id & id) const { return find_property(id); }
 
-inline var context_object::value(const ::id & id, const var & varDefault) const { return operator()(id, varDefault); }
+inline payload context_object::value(const ::id & id, const payload & varDefault) const { return operator()(id, varDefault); }
 
-inline var context_object::operator()(const ::id & id) const { return find_value(id, ::error_not_found); }
+inline payload context_object::operator()(const ::id & id) const { return find_value(id, ::error_not_found); }
 
-inline var context_object::operator()(const ::id & id, const var & varDefault) const { return find_value(id, varDefault); }
+inline payload context_object::operator()(const ::id & id, const payload & varDefault) const { return find_value(id, varDefault); }
 
-inline var context_object::find_value(const ::id & id) const { return find_value(id, ::error_not_found); }
+inline payload context_object::find_value(const ::id & id) const { return find_value(id, ::error_not_found); }
 
-inline var context_object::find_value(const ::id & id, const var & varDefault) const
+inline payload context_object::find_value(const ::id & id, const payload & varDefault) const
 {
 
    auto pproperty = find_property(id);
@@ -222,7 +222,7 @@ inline var context_object::find_value(const ::id & id, const var & varDefault) c
 
 }
 
-inline var context_object::attribute(const ::id & id) { return value(id); }
+inline payload context_object::attribute(const ::id & id) { return value(id); }
 
 inline ::property * context_object::find_attribute(const ::id & id) { return find_property(id); }
 
@@ -246,7 +246,7 @@ inline bool context_object::find_attribute(const ::id & id, TYPE & t)
 }
 
 
-inline var & context_object::get_context_object(const ::id & id)
+inline payload & context_object::get_context_object(const ::id & id)
 {
 
    auto pproperty = &value(id);
@@ -265,7 +265,7 @@ inline var & context_object::get_context_object(const ::id & id)
 
 
 
-inline var context_object::topic(const ::id& id)
+inline payload context_object::topic(const ::id& id)
 {
 
    auto pproperty = fetch_property(id);

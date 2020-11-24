@@ -1211,7 +1211,7 @@ CLASS_DECL_AURA void aura_ref();
 //
 //
 //class istring;
-//class var;
+//class payload;
 //class property_set;
 //class object;
 ////class base_edit;
@@ -2166,9 +2166,9 @@ namespace draw2d
 //
 //class matter;
 //
-//class var;
+//class payload;
 //
-//using argument = var;
+//using argument = payload;
 //
 //class var_array;
 //
@@ -2226,7 +2226,7 @@ CLASS_DECL_AURA bool __node_aura_pos_term();
 //#define ARRAY_SIZE(a) (sizeof(a)/sizeof(*(a)))
 //
 //
-//class var;
+//class payload;
 //class id;
 //
 //
@@ -2390,7 +2390,7 @@ CLASS_DECL_AURA bool __node_aura_pos_term();
 //inline auto & __typed(__pointer(POINTER_TYPE) & p) { return *p; }
 //
 //
-//#include "aura/multithreading/thread_parameter.h"
+//#include "aura/parallelization/thread_parameter.h"
 //
 //#include "aura/platform/keep_true.h"
 //
@@ -2566,10 +2566,10 @@ namespace user
 //typedef ::estatus THREAD_PROCEDURE(thread_parameter parameter);
 //
 //
-//inline bool succeeded(const ::var & var);
+//inline bool succeeded(const ::payload & payload);
 //inline bool succeeded(const ::property & set);
 //
-//inline bool failed(const ::var & var) { return !::succeeded(var); }
+//inline bool failed(const ::payload & payload) { return !::succeeded(payload); }
 //inline bool failed(const ::property & set) { return !::succeeded(set); }
 //
 //
@@ -2704,7 +2704,7 @@ namespace draw2d
 //
 //#endif
 //
-//class procedure;
+//class routine;
 //class callback;
 //
 //
@@ -2728,7 +2728,7 @@ namespace draw2d
 //
 //#include "aura/primitive/collection/_.h"
 //
-//#include "aura/primitive/primitive/procedure.h"
+//#include "aura/primitive/primitive/routine.h"
 //
 //#include "aura/primitive/primitive/callback.h"
 //
@@ -2756,9 +2756,9 @@ namespace draw2d
 //
 //#include "aura/primitive/primitive/request_interface.h"
 //
-//#include "aura/multithreading/sync_result.h"
+//#include "aura/parallelization/sync_result.h"
 //
-////#include "aura/multithreading/sync.h"
+////#include "aura/parallelization/sync.h"
 //
 ////#include "aura/xml/exportable.h"
 //
@@ -2910,7 +2910,7 @@ namespace draw2d
 //#include "aura/platform/enum.h"
 //
 //
-//#include "aura/multithreading/_.h"
+//#include "aura/parallelization/_.h"
 
 
 //namespace aura
@@ -3044,28 +3044,28 @@ namespace draw2d
 //#include "aura/platform/department.h"
 ////#include "aura/platform/department_container.h"
 //
-//#include "aura/multithreading/threading.h"
+//#include "aura/parallelization/threading.h"
 //
 //class mq;
 //
 ////#include "aura/platform/live_signal.h"
-//#include "aura/multithreading/pred_holder.h"
+//#include "aura/parallelization/pred_holder.h"
 ////#include "aura/primitive/primitive/command.h"
-//#include "aura/multithreading/thread.h"
-//#include "aura/multithreading/handler.h"
-//#include "aura/multithreading/service_base.h"
-//#include "aura/multithreading/service/plain_service.h"
-//#include "aura/multithreading/service/plain_service.h"
-//#include "aura/multithreading/fork.h"
-//#include "aura/multithreading/delay_thread.h"
-//#include "aura/multithreading/tools.h"
+//#include "aura/parallelization/thread.h"
+//#include "aura/parallelization/handler.h"
+//#include "aura/parallelization/service_base.h"
+//#include "aura/parallelization/service/plain_service.h"
+//#include "aura/parallelization/service/plain_service.h"
+//#include "aura/parallelization/fork.h"
+//#include "aura/parallelization/delay_thread.h"
+//#include "aura/parallelization/tools.h"
 
 
-//#include "aura/multithreading/thread_impl.h"
-////#include "aura/multithreading/simple_thread.h"
-////#include "aura/multithreading/go_thread.h"
-////#include "aura/multithreading/signal_thread.h"
-//#include "aura/multithreading/procedure_array.h"
+//#include "aura/parallelization/thread_impl.h"
+////#include "aura/parallelization/simple_thread.h"
+////#include "aura/parallelization/go_thread.h"
+////#include "aura/parallelization/signal_thread.h"
+//#include "aura/parallelization/procedure_array.h"
 //
 //
 /////#include "aura/primitive/primitive/job.h"
@@ -3149,7 +3149,7 @@ namespace draw2d
 //
 #include "aura/platform/session.h"
 //
-//#include "aura/multithreading/retry.h"
+//#include "aura/parallelization/retry.h"
 //
 //
 //CLASS_DECL_AURA::file::path application_installer_folder(const ::file::path & pathExe, string strAppId, const char * pszPlatform, const char * pszConfiguration, const char * pszLocale, const char * pszSchema);
@@ -3314,7 +3314,7 @@ namespace draw2d
 //#include "aura/node/_.h"
 //
 //
-//#include "aura/multithreading/data.h"
+//#include "aura/parallelization/data.h"
 //
 //
 //#include "aura/platform/shell_launcher.h"
@@ -3633,7 +3633,7 @@ namespace draw2d
 //#include "aura/primitive/primitive/_defer.h"
 //
 //
-//#include "aura/multithreading/_impl.h"
+//#include "aura/parallelization/_impl.h"
 //
 //
 //#include "aura/platform/_impl.h"

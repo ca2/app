@@ -1,7 +1,7 @@
 #pragma once
 
 
-CLASS_DECL_ACME ＿＿pointer(::mutex) open_mutex(const char * lpszName);
+CLASS_DECL_ACME __pointer(::mutex) open_mutex(const char * lpszName);
 
 
 class CLASS_DECL_ACME mutex :
@@ -81,7 +81,7 @@ public:
    bool already_exists();
 
 
-   static ＿＿pointer(::mutex) open_mutex(const char * lpszName) {return ::open_mutex(lpszName);}
+   static __pointer(::mutex) open_mutex(const char * lpszName) {return ::open_mutex(lpszName);}
 
 
 };

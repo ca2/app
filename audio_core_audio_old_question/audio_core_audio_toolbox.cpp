@@ -22,7 +22,7 @@ namespace multimedia
          wave_base(pobject)
       {
 
-         ·zero(m_dataformat);
+         xxf_zero(m_dataformat);
 
          m_Queue           = nullptr;
          m_runloop         = nullptr;

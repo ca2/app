@@ -102,8 +102,8 @@ namespace userfs
             return false;
          if(iUItem >= pdata->m_itema.get_size())
             iUItem = pdata->m_itema.get_upper_bound();
-         var varFile;
-         var varQuery;
+         payload varFile;
+         payload varQuery;
          if(iUItem == iLItem)
          {
 

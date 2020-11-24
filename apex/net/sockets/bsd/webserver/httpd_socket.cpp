@@ -235,7 +235,7 @@ namespace sockets
    void httpd_socket::InitSSLServer()
    {
       // here's the server.pem file we just created above
-      // %! remember to change the password to the one you used for your server key
+      // %! remember to machine the password to the one you used for your server key
       //InitializeContext(m_strCat, m_strCat, "", SSLv23_server_method());
 
       string strId = m_strCat;

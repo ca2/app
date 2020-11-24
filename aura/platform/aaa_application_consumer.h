@@ -38,7 +38,7 @@ public:
 };
 
 
-#define __application_consumer ::application_consumer < application > 
+#define __application_consumer ::application_consumer < application >
 
 
 

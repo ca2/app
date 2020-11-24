@@ -342,26 +342,26 @@ inline image::operator const image_extension* () const
 inline __pointer(image_frame_array) image_meta::frames() { return m_pextension ? m_pextension->m_pframea : nullptr; }
 
 
-inline ::rgb& rgb::operator =(const ::var& var)
+inline ::rgb& rgb::operator =(const ::payload& payload)
 {
 
-   m_iR = var["red"];
-   m_iG = var["green"];
-   m_iB = var["blue"];
+   m_iR = payload["red"];
+   m_iG = payload["green"];
+   m_iB = payload["blue"];
 
    return *this;
 
 }
 
 
-inline var& assign(var& var, const rgb& rgb)
+inline payload& assign(payload& payload, const rgb& rgb)
 {
 
-   var["red"] = rgb.m_iR;
-   var["green"] = rgb.m_iG;
-   var["blue"] = rgb.m_iB;
+   payload["red"] = rgb.m_iR;
+   payload["green"] = rgb.m_iG;
+   payload["blue"] = rgb.m_iB;
 
-   return var;
+   return payload;
 
 }
 
@@ -375,26 +375,26 @@ inline void __exchange(::stream& s, ::rgb& rgb)
 }
 
 
-inline ::rgba& rgba::operator =(const ::var& var)
+inline ::rgba& rgba::operator =(const ::payload& payload)
 {
 
-   rgb::operator=(var);
+   rgb::operator=(payload);
 
-   m_iA = var["opacity"];
+   m_iA = payload["opacity"];
 
    return *this;
 
 }
 
 
-inline var& assign(var& var, const ::rgba& rgba)
+inline payload& assign(payload& payload, const ::rgba& rgba)
 {
 
-   assign(var, (const ::rgb&) rgba);
+   assign(payload, (const ::rgb&) rgba);
 
-   var["opacity"] = rgba.m_iA;
+   payload["opacity"] = rgba.m_iA;
 
-   return var;
+   return payload;
 
 }
 
@@ -408,26 +408,26 @@ inline void __exchange(::stream& s, ::rgba& rgba)
 }
 
 
-inline ::hls& hls::operator =(const ::var& var)
+inline ::hls& hls::operator =(const ::payload& payload)
 {
 
-   m_dH = var["hue"];
-   m_dL = var["lightness"];
-   m_dS = var["saturation"];
+   m_dH = payload["hue"];
+   m_dL = payload["lightness"];
+   m_dS = payload["saturation"];
 
    return *this;
 
 }
 
 
-inline var& assign(var& var, const ::hls& hls)
+inline payload& assign(payload& payload, const ::hls& hls)
 {
 
-   var["hue"] = hls.m_dH;
-   var["lightness"] = hls.m_dL;
-   var["saturation"] = hls.m_dS;
+   payload["hue"] = hls.m_dH;
+   payload["lightness"] = hls.m_dL;
+   payload["saturation"] = hls.m_dS;
 
-   return var;
+   return payload;
 
 }
 

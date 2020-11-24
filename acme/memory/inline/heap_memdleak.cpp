@@ -649,19 +649,19 @@ string get_mem_info_report1()
             print("<tr style=\"background-color:#e0ffd7;\">");
          }
          print("<td>");
-         print(var(bla[ia[i]]->m_iUse));
+         print(payload(bla[ia[i]]->m_iUse));
          print("</td>");
          print("<td>");
          print(bla[ia[i]]->m_strFile);
          print("</td>");
          print("<td>");
-         print(var(bla[ia[i]]->m_iLine));
+         print(payload(bla[ia[i]]->m_iLine));
          print("</td>");
          print("<td>");
-         print(var(bla[ia[i]]->m_iCount));
+         print(payload(bla[ia[i]]->m_iCount));
          print("</td>");
          print("<td>");
-         print(var(bla[ia[i]]->m_iSize));
+         print(payload(bla[ia[i]]->m_iSize));
          print("</td>");
          print("</tr>");;
       }

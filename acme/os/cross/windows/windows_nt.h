@@ -2477,64 +2477,64 @@ typedef struct _NT_TIB
 	struct _NT_TIB *Self;
 } NT_TIB, *PNT_TIB;
 
-struct _TEB;
-
-#if defined(__i386__) && defined(__GNUC__) && ((__GNUC__ > 3) || ((__GNUC__ == 3) && (__GNUC_MINOR__ >= 2)))
-static inline struct _TEB * WINAPI NtCurrentTeb(void)
-{
-    struct _TEB *teb;
-    __asm__(".byte 0x64\n\tmovl (0x18),%0" : "=r" (teb));
-    return teb;
-}
-#elif defined(__i386__) && defined(_MSC_VER)
-static inline struct _TEB * WINAPI NtCurrentTeb(void)
-{
-  struct _TEB *teb;
-  __asm mov eax, fs:[0x18];
-  __asm mov teb, eax;
-  return teb;
-}
-#elif defined(__x86_64__) && defined(__GNUC__)
-static inline struct _TEB * WINAPI NtCurrentTeb(void)
-{
-    struct _TEB *teb;
-    __asm__(".byte 0x65\n\tmovq (0x30),%0" : "=r" (teb));
-    return teb;
-}
-#elif defined(__x86_64__) && defined (_MSC_VER)
-static inline struct _TEB * WINAPI NtCurrentTeb(void)
-{
-  struct _TEB *teb;
-  __asm mov rax, gs:[0x30];
-  __asm mov teb, rax;
-  return teb;
-}
-#elif defined(LINUX) && !defined(RASPBIAN)
-#if defined(__x86_64__)
-static inline struct _TEB * WINAPI NtCurrentTeb(void)
-{
-    struct _TEB *teb;
-    __asm__(".byte 0x65\n\tmovq (0x30),%0" : "=r" (teb));
-    return teb;
-}
-#else
-static inline struct _TEB * WINAPI NtCurrentTeb(void)
-{
-    struct _TEB *teb;
-    __asm__(".byte 0x64\n\tmovl (0x18),%0" : "=r" (teb));
-    return teb;
-}
-#endif
-#else
-extern struct _TEB * WINAPI NtCurrentTeb(void);
-#endif
-
-#ifdef NONAMELESSUNION
-#define GetCurrentFiber()  (((NT_TIB *)NtCurrentTeb())->u.FiberData)
-#else
-#define GetCurrentFiber()  (((NT_TIB *)NtCurrentTeb())->FiberData)
-#endif
-#define GetFiberData()     (*(void **)GetCurrentFiber())
+//struct _TEB;
+//
+//#if defined(__i386__) && defined(__GNUC__) && ((__GNUC__ > 3) || ((__GNUC__ == 3) && (__GNUC_MINOR__ >= 2)))
+//static inline struct _TEB * WINAPI NtCurrentTeb(void)
+//{
+//    struct _TEB *teb;
+//    __asm__(".byte 0x64\n\tmovl (0x18),%0" : "=r" (teb));
+//    return teb;
+//}
+//#elif defined(__i386__) && defined(_MSC_VER)
+//static inline struct _TEB * WINAPI NtCurrentTeb(void)
+//{
+//  struct _TEB *teb;
+//  __asm mov eax, fs:[0x18];
+//  __asm mov teb, eax;
+//  return teb;
+//}
+//#elif defined(__x86_64__) && defined(__GNUC__)
+//static inline struct _TEB * WINAPI NtCurrentTeb(void)
+//{
+//    struct _TEB *teb;
+//    __asm__(".byte 0x65\n\tmovq (0x30),%0" : "=r" (teb));
+//    return teb;
+//}
+//#elif defined(__x86_64__) && defined (_MSC_VER)
+//static inline struct _TEB * WINAPI NtCurrentTeb(void)
+//{
+//  struct _TEB *teb;
+//  __asm mov rax, gs:[0x30];
+//  __asm mov teb, rax;
+//  return teb;
+//}
+//#elif defined(LINUX) && !defined(RASPBIAN)
+//#if defined(__x86_64__)
+//static inline struct _TEB * WINAPI NtCurrentTeb(void)
+//{
+//    struct _TEB *teb;
+//    __asm__(".byte 0x65\n\tmovq (0x30),%0" : "=r" (teb));
+//    return teb;
+//}
+//#else
+//static inline struct _TEB * WINAPI NtCurrentTeb(void)
+//{
+//    struct _TEB *teb;
+//    __asm__(".byte 0x64\n\tmovl (0x18),%0" : "=r" (teb));
+//    return teb;
+//}
+//#endif
+//#else
+//extern struct _TEB * WINAPI NtCurrentTeb(void);
+//#endif
+//
+//#ifdef NONAMELESSUNION
+//#define GetCurrentFiber()  (((NT_TIB *)NtCurrentTeb())->u.FiberData)
+//#else
+//#define GetCurrentFiber()  (((NT_TIB *)NtCurrentTeb())->FiberData)
+//#endif
+//#define GetFiberData()     (*(void **)GetCurrentFiber())
 
 #define TLS_MINIMUM_AVAILABLE 64
 

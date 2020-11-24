@@ -1406,7 +1406,7 @@ namespace user
 
          m_bDestroyImplOnly = true;
 
-         ::multithreading::finish(m_pprodevian);
+         ::parallelization::finish(m_pprodevian);
 
          if (::is_set(m_puserinteraction))
          {
@@ -3686,7 +3686,7 @@ namespace user
    }
 
    
-   ::estatus interaction_impl::main_async(const procedure & procedure, e_priority epriority)
+   ::estatus interaction_impl::main_async(const routine & procedure, e_priority epriority)
    {
 
       return ::error_interface_only;

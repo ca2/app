@@ -64,7 +64,7 @@ namespace acme
 
       ::file::path path;
 
-      path = "/var/tmp";
+      path = "/payload/tmp";
 
       path /= strId;
 

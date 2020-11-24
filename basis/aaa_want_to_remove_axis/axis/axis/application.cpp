@@ -1160,7 +1160,7 @@ m_millisHeartBeat.Now();
    string application::matter_as_string(const char * pszMatter,const char * pszMatter2)
    {
 
-      var varFile;
+      payload varFile;
 
       varFile["disable_ca2_sessid"] = true;
 
@@ -1289,7 +1289,7 @@ m_millisHeartBeat.Now();
 
 
 
-//   void application::set_env_var(const string & var,const string & value)
+//   void application::set_env_var(const string & payload,const string & value)
 //   {
 //
 //      ::exception::throw_interface_only();
@@ -1308,7 +1308,7 @@ m_millisHeartBeat.Now();
    }
 
 
-   bool application::do_prompt_file_name(var & varFile,string nIDSTitle,u32 lFlags,bool bOpenFileDialog,::user::impact_system * ptemplate,::user::document * pdocument)
+   bool application::do_prompt_file_name(payload & varFile,string nIDSTitle,u32 lFlags,bool bOpenFileDialog,::user::impact_system * ptemplate,::user::document * pdocument)
    {
 
       UNREFERENCED_PARAMETER(varFile);
@@ -1517,7 +1517,7 @@ m_millisHeartBeat.Now();
    }
 
 
-   bool application::on_open_document(::user::document * pdocument,var varFile)
+   bool application::on_open_document(::user::document * pdocument,payload varFile)
    {
 
       UNREFERENCED_PARAMETER(pdocument);
@@ -1527,7 +1527,7 @@ m_millisHeartBeat.Now();
    }
 
 
-   bool application::on_save_document(::user::document * pdocument,var varFile)
+   bool application::on_save_document(::user::document * pdocument,payload varFile)
    {
 
       UNREFERENCED_PARAMETER(pdocument);

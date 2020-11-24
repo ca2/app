@@ -238,8 +238,8 @@ namespace sockets
 
 
       /** Called by listen_socket after accept but before base_socket is added to handler.
-      * CTcpSocket uses this to create its ICrypt member var.
-      * The ICrypt member var is created by a virtual method, therefore
+      * CTcpSocket uses this to create its ICrypt member payload.
+      * The ICrypt member payload is created by a virtual method, therefore
       * it can't be called directly from the CTcpSocket constructor.
       * Also used to determine if incoming HTTP connection is normal (port 80)
       * or ssl (port 443).

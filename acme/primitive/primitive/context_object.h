@@ -142,13 +142,13 @@ public:
    template < typename TYPE >
    inline void get(const ::id & id, TYPE & t);
 
-   inline var topic(const ::id & id);
+   inline payload topic(const ::id & id);
 
    inline property * find_property(const ::id & id) const;
 
    ::status::result run_property(const ::id& id);
 
-   inline var attribute(const ::id & id);
+   inline payload attribute(const ::id & id);
    ::property * find_attribute(const ::id & id);
 
    template < typename TYPE >
@@ -157,22 +157,22 @@ public:
 
 
    //using matter::get_context_object;
-   inline var & get_context_object(const ::id & id);
+   inline payload & get_context_object(const ::id & id);
 
-   inline var operator()(const ::id & id) const;
-   inline var operator()(const ::id & id, const var & varDefault) const;
+   inline payload operator()(const ::id & id) const;
+   inline payload operator()(const ::id & id, const payload & varDefault) const;
 
-   inline var & operator[](const ::id & id);
+   inline payload & operator[](const ::id & id);
 
-   inline var operator[](const ::id & id) const;
+   inline payload operator[](const ::id & id) const;
 
-   inline var & value(const ::id & id);
+   inline payload & value(const ::id & id);
 
-   inline var value(const ::id & id) const;
-   inline var value(const ::id & id, const var & varDefault) const;
+   inline payload value(const ::id & id) const;
+   inline payload value(const ::id & id, const payload & varDefault) const;
 
-   inline var find_value(const ::id & id) const;
-   inline var find_value(const ::id & id, const var & varDefault) const;
+   inline payload find_value(const ::id & id) const;
+   inline payload find_value(const ::id & id, const payload & varDefault) const;
 
 
    inline string find_string(const ::id & id, const ansichar * pszDefault = nullptr) const;
@@ -189,9 +189,9 @@ public:
 
    inline bool is_true(const ::id & id) const;
    inline bool is_false(const ::id & id) const;
-   inline bool is_true(const ::id & id, const var & varDefault, bool bDefault) const;
+   inline bool is_true(const ::id & id, const payload & varDefault, bool bDefault) const;
 
-   virtual string get_text(const var & var, const ::id & id);
+   virtual string get_text(const payload & payload, const ::id & id);
 
    virtual property * parent_lookup_property(const id & id) const;
 
@@ -218,7 +218,7 @@ public:
 
    //virtual void call_update(const ::__id& id, const ::action_context& context) override;
    //virtual void call_update(const ::__id& id) override;
-   //virtual void call_update(::change * pchange) override;
+   //virtual void call_update(::machine * pchange) override;
 
 
 };

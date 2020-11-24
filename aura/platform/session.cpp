@@ -1491,7 +1491,7 @@ namespace aura
 
       m_monitorinfoa.allocate(m_monitorinfoa.get_size() + 1);
 
-      ·zero(m_monitorinfoa.last());
+      xxf_zero(m_monitorinfoa.last());
 
       m_hmonitora.add(hmonitor);
 
@@ -3641,7 +3641,7 @@ namespace aura
 
 
 
-   void session::request_topic_file(var& varQuery)
+   void session::request_topic_file(payload& varQuery)
    {
 
       auto psession = Session;

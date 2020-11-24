@@ -252,11 +252,11 @@ namespace sockets
 
             id & id = pproperty->m_id;
 
-            var & var = *pproperty;
+            payload & payload = *pproperty;
 
             strFields += "--" + m_boundary + "\r\nContent-Disposition: form-data; name=\"" + id.to_string() + "\"\r\n\r\n";
 
-            string value = var.get_string();
+            string value = payload.get_string();
 
             strFields += value + "\r\n";
 
@@ -369,13 +369,13 @@ namespace sockets
          //for(auto & property : m_fields)
          //{
          //   id & id = property.element1();
-         //   var & var = property.element2();
+         //   payload & payload = property.element2();
          //   tmp += "--" + m_boundary + "\r\nContent-Disposition: form-data; name=\"" + id.to_string() + "\"\r\n\r\n";
-         //   string value = var.get_string();
+         //   string value = payload.get_string();
          //   tmp += value + "\r\n";
-         //   //for(int j = 0; j < var.get_count(); j++)
+         //   //for(int j = 0; j < payload.get_count(); j++)
          //   //{
-         //     // string value = var[j].get_string();
+         //     // string value = payload[j].get_string();
          //      //tmp += value + "\r\n";
          //   //}
          //}

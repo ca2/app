@@ -363,7 +363,7 @@ bool ifs::file_exists(const ::file::path & pszPath)
 }
 
 
-var ifs::file_length(const ::file::path & pszPath)
+payload ifs::file_length(const ::file::path & pszPath)
 {
 
    return ::fs::data::file_length(pszPath);

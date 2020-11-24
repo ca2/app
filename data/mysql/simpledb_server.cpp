@@ -41,13 +41,13 @@ namespace simpledb
       return true;
    }
 
-   bool server::sql(const char * pszQuery, var & var)
+   bool server::sql(const char * pszQuery, payload & payload)
    {
       if(m_pbase == nullptr)
          return false;
       class ::simpledb::set * pset     = m_pbase->create_dataset();
       pset->exec(pszQuery);
-      var.propset()["::database::result_set"] = &pset->m_resultset;
+      payload.propset()["::database::result_set"] = &pset->m_resultset;
       return true;
    }
 

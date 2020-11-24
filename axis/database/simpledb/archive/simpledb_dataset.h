@@ -79,14 +79,14 @@ namespace simpledb
       virtual void prev();
       virtual void next();
 
-      virtual bool find_first(char * fieldname, var & value);
+      virtual bool find_first(char * fieldname, payload & value);
       /* Go to record No (starting with 0) */
       virtual bool seek(index pos=0);
 
-      virtual bool SetFieldValue(const char *f_name, const var &value);
-      virtual bool SetFieldValue(index iFieldIndex, const var &value);
+      virtual bool SetFieldValue(const char *f_name, const payload &value);
+      virtual bool SetFieldValue(index iFieldIndex, const payload &value);
 
-      virtual var & FieldValueAt(index iFieldIndex);
+      virtual payload & FieldValueAt(index iFieldIndex);
       virtual i32 GetFieldIndex(const char *f_name);
 
       database * get_database();

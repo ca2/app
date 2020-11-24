@@ -64,15 +64,15 @@ namespace filemanager
 
       void filemanager_save_project();
 
-      document * find_filemanager(var varFile);
+      document * find_filemanager(payload varFile);
 
-      document * restore_filemanager(var varFile, ::create * pcreate = nullptr, ::fs::data * pfsdata = nullptr, callback * pcallback = nullptr);
+      document * restore_filemanager(payload varFile, ::create * pcreate = nullptr, ::fs::data * pfsdata = nullptr, callback * pcallback = nullptr);
 
-      document * open_filemanager(var varFile, ::create * pcreate = nullptr, ::fs::data * pfsdata = nullptr, callback * pcallback = nullptr);
+      document * open_filemanager(payload varFile, ::create * pcreate = nullptr, ::fs::data * pfsdata = nullptr, callback * pcallback = nullptr);
 
       document * add_filemanager(const ::file::path & pathFolder, ::create * pcreate = nullptr, ::fs::data * pfsdata = nullptr, callback * pcallback = nullptr);
 
-      bool remove_filemanager(var varFile);
+      bool remove_filemanager(payload varFile);
 
       bool remove_filemanager(document * pdocument);
 

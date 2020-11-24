@@ -52,7 +52,7 @@ struct ftime
 //----------------------------------------------------------------------------
 // Function prototypes.
 
-__BEGIN_DECLS 
+__BEGIN_DECLS
 
 //
 extern int getftime (int handle, struct ftime *ftimep);

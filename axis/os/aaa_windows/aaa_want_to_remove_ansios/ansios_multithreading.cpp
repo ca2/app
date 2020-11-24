@@ -419,7 +419,7 @@ CLASS_DECL_AXIS ithread_t GetCurrentThreadId()
 }
 
 
-namespace multithreading
+namespace parallelization
 {
 
 

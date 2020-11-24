@@ -6,7 +6,7 @@
 
 
 critical_section * update::g_pcs = nullptr;
-::id_map < ＿＿pointer(update) > * update::g_pmap = nullptr;
+::id_map < __pointer(update) > * update::g_pmap = nullptr;
 bool update::g_bDestroyAll = false;
 
 
@@ -97,7 +97,7 @@ void update::notify()
 }
 
 
-＿＿pointer(update) & update::task(::i64 iUpdate)
+__pointer(update) & update::task(::i64 iUpdate)
 {
 
    cslock sl(g_pcs);
@@ -105,7 +105,7 @@ void update::notify()
    if(!g_pmap)
    {
 
-      g_pmap = new i64_map < ＿＿pointer(update) >;
+      g_pmap = new i64_map < __pointer(update) >;
 
    }
 

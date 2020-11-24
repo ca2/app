@@ -707,7 +707,7 @@ inline __pointer(T) & pointer < T >::clone(::layered * pobjectContext)
 
 
 template < typename PRED >
-::image_pointer get_image(::object * pobject, const var & varFile, bool bAsync = false)
+::image_pointer get_image(::object * pobject, const payload & varFile, bool bAsync = false)
 {
 
    ::file::path path = varFile.get_file_path();
@@ -1195,19 +1195,19 @@ namespace aura
 
 
    //template < typename VIEW >
-   //__pointer(::user::document) session::create_form(__pointer(::user::interaction) pwndParent, var var, ::var varArgs)
+   //__pointer(::user::document) session::create_form(__pointer(::user::interaction) pwndParent, payload payload, ::payload varArgs)
    //{
 
-   //   return create_form(__type(VIEW), pwndParent, var);
+   //   return create_form(__type(VIEW), pwndParent, payload);
 
    //}
 
 
    //template < typename VIEW >
-   //__pointer(::user::document) session::create_child_form(__pointer(::user::interaction) pwndParent, var var)
+   //__pointer(::user::document) session::create_child_form(__pointer(::user::interaction) pwndParent, payload payload)
    //{
 
-   //   return create_child_form(__type(VIEW), pwndParent, var);
+   //   return create_child_form(__type(VIEW), pwndParent, payload);
 
    //}
 

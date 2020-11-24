@@ -71,8 +71,8 @@ memory_file::memory_file(void * pMemory, memsize dwSize) :
 //
 //}
 
-memory_file::memory_file(var & var, ::u32 nFlags) :
-   memory_container(var)
+memory_file::memory_file(payload & payload, ::u32 nFlags) :
+   memory_container(payload)
 {
 
    m_eopen = nFlags;
@@ -467,7 +467,7 @@ void memory_file::dump(dump_context & dumpcontext) const
 }
 
 
-//void memory_file::full_load(var varFile)
+//void memory_file::full_load(payload varFile)
 //{
 //
 //   ASSERT(is_valid());

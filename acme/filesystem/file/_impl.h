@@ -41,7 +41,7 @@ inline void __object_string_exchange(::stream & s, TYPE & t)
 }
 
 
-inline void __string_exchange(stream & s, var & var) { s.default_exchange(var.get_ref_string()); }
+inline void __string_exchange(stream & s, payload & payload) { s.default_exchange(payload.get_ref_string()); }
 
 template < typename BLOCK_TYPE >
 inline void __exchange(stream & s, memory_template < BLOCK_TYPE > & memorytemplate)
@@ -593,7 +593,7 @@ inline stream & __save_object(stream & stream, BASE_TYPE * p)
 
 
 //template < typename BASE_TYPE >
-//void matter::save_to(const var & varFile, BASE_TYPE * pobject)
+//void matter::save_to(const payload & varFile, BASE_TYPE * pobject)
 //{
 //
 //   auto writer = Context.file().get_writer(varFile, ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::mode_truncate | ::file::defer_create_directory | ::file::share_exclusive);
@@ -603,7 +603,7 @@ inline stream & __save_object(stream & stream, BASE_TYPE * p)
 //}
 
 //
-//inline void __io(::stream & s, ::var & var) { s.io(var); }
+//inline void __io(::stream & s, ::payload & payload) { s.io(payload); }
 //
 //
 //inline void __io(::stream & s, const enum_type & etype) { s.io(etype); }
@@ -791,15 +791,15 @@ inline void __exchange_array(::stream & stream, ARRAY & array)
 }
 
 
-inline var_stream::var_stream() : m_pvar(new ::var) {}
-inline var_stream::var_stream(::var * pvar) : m_pvar(pvar) {}
+inline var_stream::var_stream() : m_pvar(new ::payload) {}
+inline var_stream::var_stream(::payload * pvar) : m_pvar(pvar) {}
 
-inline var & var_stream::var() { return *m_pvar; }
-inline const var & var_stream::var() const { return *m_pvar; }
+inline payload & var_stream::payload() { return *m_pvar; }
+inline const payload & var_stream::payload() const { return *m_pvar; }
 
 //void var_stream::write_object(const ::id & id, ::id & idFactory, ::matter * pobject)
 //{
-//   var_stream stream(new ::var(&var()[id].propset()));
+//   var_stream stream(new ::payload(&payload()[id].propset()));
 //   stream.exchange("", idFactory);
 //   pobject->exchange(stream);
 //}
@@ -807,7 +807,7 @@ inline const var & var_stream::var() const { return *m_pvar; }
 //
 //__pointer(::matter) var_stream::read_object(const ::id & id)
 //{
-//   var_stream stream(new ::var(&var()[id].propset()));
+//   var_stream stream(new ::payload(&payload()[id].propset()));
 //   ::id idFactory;
 //   stream.exchange("", idFactory);
 //   auto pobject = __id_create<::matter>(idFactory);
@@ -869,7 +869,7 @@ inline void __exchange(::stream & s, const char * psz) { s.write_only(psz); }
 inline void __exchange(::stream & s, string & str) { s.default_exchange(str); }
 inline void __exchange(::stream & s, ::file::path & path) { s.default_exchange(path); }
 inline void __exchange(::stream & s, ::id & id) { s.default_exchange(id); }
-inline void __exchange(::stream & s, ::var & var) { s.default_exchange(var); }
+inline void __exchange(::stream & s, ::payload & payload) { s.default_exchange(payload); }
 inline void __exchange(::stream & s, ::property & property) { s.default_exchange(property); }
 inline void __exchange(::stream & s, ::property_set & set) { s.default_exchange(set); }
 
@@ -1100,10 +1100,10 @@ inline ::file::file & operator << (::file::file & file, const TYPE & t)
 
 }
 
-inline void assign(::memory & memory, const ::var & var)
+inline void assign(::memory & memory, const ::payload & payload)
 {
 
-   memory = (const ::memory &) var;
+   memory = (const ::memory &) payload;
 
 }
 
@@ -1158,7 +1158,7 @@ void var_stream::write_only(TYPE & t)
   else
   {
 
-     var() = t;
+     payload() = t;
 
   }
 
@@ -1171,7 +1171,7 @@ template < typename TYPE >
 inline void var_stream::var_exchange(const ::id & id, TYPE & t)
 {
 
-  ::var * pvar = m_pvar;
+  ::payload * pvar = m_pvar;
 
   if (id.m_etype != id::e_type_null)
   {

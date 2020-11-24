@@ -31,8 +31,8 @@ namespace sphere
       ::userstack::pane_view *                     m_ppaneview;
 
 
-      var                                          m_varTopicFile;
-      var                                          m_varCurrentViewFile;
+      payload                                          m_varTopicFile;
+      payload                                          m_varCurrentViewFile;
 
       bool                                         m_bDrawCursor;
 
@@ -60,7 +60,7 @@ namespace sphere
 
       virtual void on_request(::create * pcreate) override;
 
-      ::user::document * _001OpenDocumentFile(var varFile) override;
+      ::user::document * _001OpenDocumentFile(payload varFile) override;
 
 
       virtual ::console::department * console();
@@ -96,7 +96,7 @@ namespace sphere
 
       void initialize_bergedge_application_interface();
 
-      virtual void request_topic_file(var & varQuery);
+      virtual void request_topic_file(payload & varQuery);
 
       virtual void request_topic_file();
 

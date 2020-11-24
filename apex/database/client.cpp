@@ -20,12 +20,12 @@ namespace database
 
       auto pproperty = fetch_property(id);
 
-      var var;
+      payload payload;
 
-      if(data_get(id, var))
+      if(data_get(id, payload))
       {
 
-         pproperty->convert(var);
+         pproperty->convert(payload);
 
       }
 
@@ -36,7 +36,7 @@ namespace database
 
             auto pproperty = fetch_property(id);
 
-            data_set(id, (const ::var &) *pproperty);
+            data_set(id, (const ::payload &) *pproperty);
 
          });
 
@@ -125,7 +125,7 @@ namespace database
    //}
 
 
-   bool client::_data_set(const key & key, const var & var, ::action * paction)
+   bool client::_data_set(const key & key, const payload & payload, ::subject * paction)
    {
 
       if(::is_null(m_pdataserver))
@@ -137,14 +137,14 @@ namespace database
 
       ::memory_stream os;
 
-      os << var;
+      os << payload;
 
       return m_pdataserver->_data_server_save(this, key, os->memory(), paction);
 
    }
 
 
-   bool client::_data_set(const selection & selection, const var & var, ::action * paction)
+   bool client::_data_set(const selection & selection, const payload & payload, ::subject * paction)
    {
 
       if (::is_null(m_pdataserver))
@@ -156,7 +156,7 @@ namespace database
 
       ::memory_stream os;
 
-      os << var;
+      os << payload;
 
       ::count iCount = selection.get_item_count();
 
@@ -181,16 +181,16 @@ namespace database
    }
 
 
-   bool client::_data_get(const key & key, var & var)
+   bool client::_data_get(const key & key, payload & payload)
    {
 
       if (m_pdataserver != nullptr)
       {
 
-         if (var.get_type() == ::type_memory)
+         if (payload.get_type() == ::type_memory)
          {
 
-            if (!m_pdataserver->_data_server_load(this, key, *var.m_pmemory))
+            if (!m_pdataserver->_data_server_load(this, key, *payload.m_pmemory))
             {
 
                return false;
@@ -212,7 +212,7 @@ namespace database
 
             is.set_context_object(this);
 
-            is >> var;
+            is >> payload;
 
             if (is.fail())
             {
@@ -232,7 +232,7 @@ namespace database
    }
 
 
-   bool client::data_pulse_change(const key & key, ::action * paction)
+   bool client::data_pulse_change(const key & key, ::subject * paction)
    {
 
       if(m_pdataserver != nullptr)
@@ -399,14 +399,14 @@ namespace database
    }
 
 
-   bool client::data_on_before_change(client* pclient, const key& id, var& var, ::action * paction)
+   bool client::data_on_before_change(client* pclient, const key& id, payload& payload, ::subject * paction)
    {
 
       return true;
 
    }
 
-   void client::data_on_after_change(client* pclient, const key& id, const var& var, ::action * paction)
+   void client::data_on_after_change(client* pclient, const key& id, const payload& payload, ::subject * paction)
    {
 
    }

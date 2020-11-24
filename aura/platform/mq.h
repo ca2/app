@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "acme/multithreading/mq.h"
+#include "acme/parallelization/mq.h"
 
 //class CLASS_DECL_AURA message_array :
 //   public raw_array < MESSAGE >

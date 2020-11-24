@@ -14,7 +14,7 @@ file_change_event::file_change_event(::matter * pobject, const char * path, bool
       sync(::FindFirstChangeNotificationW(::str::international::utf8_to_unicode(path), watchsubtree, filter))
 {
    if (hsync() == nullptr)
-      ＿＿throw(runtime_error("file_change_event: failed to create event"));
+      __throw(runtime_error("file_change_event: failed to create event"));
 }
 
 ///  \brief		destructor

@@ -17,7 +17,7 @@ namespace imaging_wic
       public:
 
 
-         var                        m_varFile;
+         payload                        m_varFile;
          ::image_pointer            m_pimage;
          __pointer(context_image)   m_pcontextimage;
 
@@ -45,13 +45,13 @@ namespace imaging_wic
       virtual ::estatus initialize(::layered * pobjectContext) override;
 
 
-      //virtual ::estatus _load_image(::context_image * pcontextimage, ::image * pimageParam, const var & varFile, bool bSync, bool bCreateHelperMaps) override;
-      virtual ::estatus _load_image(image* pimage, const ::var& varFile, bool bSync = true, bool bCreateHelperMaps = false);
+      //virtual ::estatus _load_image(::context_image * pcontextimage, ::image * pimageParam, const payload & varFile, bool bSync, bool bCreateHelperMaps) override;
+      virtual ::estatus _load_image(image* pimage, const ::payload& varFile, bool bSync = true, bool bCreateHelperMaps = false);
 
       virtual ::estatus _load_image(::image * pimage, __pointer(image_frame_array) & pframea, ::memory_pointer pmemory);
       virtual ::estatus save_image(memory & memory, const ::image * pimage, const ::save_image * psaveimage) override;
 
-      //virtual ::estatus _load_image(::image* pimage, const var& varFile, bool bSync, bool bCreateHelperMaps);
+      //virtual ::estatus _load_image(::image* pimage, const payload& varFile, bool bSync, bool bCreateHelperMaps);
 
 
       //virtual ::estatus _load_image(::image* pimage, __pointer(image_frame_array)& pframea, ::memory_pointer pmemory);

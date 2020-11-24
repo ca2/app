@@ -96,14 +96,14 @@ namespace http
       virtual bool exists(const char * pszUrl, property_set & set);
       virtual bool is_file_or_dir(const char * pszUrl, property_set & set, ::file::enum_type * petype = nullptr);
 
-      virtual var length(const char * pszUrl, property_set & set);
+      virtual payload length(const char * pszUrl, property_set & set);
 
       virtual bool get(const char * pszUrl, property_set & set);
 
       virtual bool request(const char * pszMethod, const char * pszUrl, property_set & set);
 
-      virtual bool download(::sockets::socket_handler & handler, __pointer(::sockets::http_session) & psession,const char * pszRequest, var varFile,property_set & set);
-      virtual bool download(const char * pszUrl, var varFile, property_set & set);
+      virtual bool download(::sockets::socket_handler & handler, __pointer(::sockets::http_session) & psession,const char * pszRequest, payload varFile,property_set & set);
+      virtual bool download(const char * pszUrl, payload varFile, property_set & set);
 
       virtual bool put(const char * pszUrl, memory_base & memory, property_set & set);
       virtual bool put(const char * pszUrl, file_pointer  pfile, property_set & set);

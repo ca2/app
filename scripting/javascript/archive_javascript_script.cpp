@@ -32,10 +32,10 @@
 #	define new DEBUG_NEW
 #endif //__DEBUG
 
-//const char *code = "var a = 5; if (a==5) a=4; else a=3;";
-//const char *code = "{ var a = 4; var b = 1; while (a>0) { b = b * 2; a = a - 1; } var c = 5; }";
-//const char *code = "{ var b = 1; for (var i=0;i<4;i=i+1) b = b * 2; }";
-const char *code = "function myfunc(x, y) { return x + y; } var a = myfunc(1,2); print(a);";
+//const char *code = "payload a = 5; if (a==5) a=4; else a=3;";
+//const char *code = "{ payload a = 4; payload b = 1; while (a>0) { b = b * 2; a = a - 1; } payload c = 5; }";
+//const char *code = "{ payload b = 1; for (payload i=0;i<4;i=i+1) b = b * 2; }";
+const char *code = "function myfunc(x, y) { return x + y; } payload a = myfunc(1,2); print(a);";
 
 void js_print(CScriptVar *v, void *UNUSED(userdata)) {
     printf("> %s\n", v->getParameter("text")->getString().c_str());
@@ -58,7 +58,7 @@ int main(int UNUSED(argc), char **UNUSED(argv))
   /* Execute out bit of code - we could call 'evaluate' here if
      we wanted something returned */
   try {
-    js->execute("var lets_quit = 0; function quit() { lets_quit = 1; }");
+    js->execute("payload lets_quit = 0; function quit() { lets_quit = 1; }");
     js->execute("print(\"Interactive mode... Type quit(); to exit, or print(...); to print something, or dump() to dump the symbol table!\");");
   } catch (CScriptException *e) {
     printf("ERROR: %s\n", e->text.c_str());

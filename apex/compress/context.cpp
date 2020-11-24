@@ -296,7 +296,7 @@ bool compress_context::zip(const ::file::path & psz, ::apex::application * pobje
 }
 
 
-bool compress_context::unzip(const var & varFile, const ::file::path & pathZipFileCompressed)
+bool compress_context::unzip(const payload & varFile, const ::file::path & pathZipFileCompressed)
 {
 
    auto pfileTarget = Context.file().get_writer(varFile);

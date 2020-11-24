@@ -1019,7 +1019,7 @@ namespace plugin
       try
       {
 
-         ::multithreading::set_finish(&System);
+         ::parallelization::set_finish(&System);
 
       }
       catch(...)

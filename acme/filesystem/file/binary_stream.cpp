@@ -160,10 +160,10 @@ void binary_stream::write(const id & id)
 }
 
 
-void binary_stream::write(const var & var)
+void binary_stream::write(const payload & payload)
 {
 
-   enum_type etype = var.get_type();
+   enum_type etype = payload.get_type();
 
    ::i32 i = etype;
 
@@ -181,100 +181,100 @@ void binary_stream::write(const var & var)
       break;
    case type_string:
    {
-      write(var.m_str);
+      write(payload.m_str);
    }
    break;
    case type_pstring:
    {
-      write(*var.m_pstr);
+      write(*payload.m_pstr);
    }
    break;
    case type_i8:
-      *this << var.m_i8;
+      *this << payload.m_i8;
       break;
    case type_i16:
-      *this << var.m_i16;
+      *this << payload.m_i16;
       break;
    case type_u8:
-      *this << var.m_u8;
+      *this << payload.m_u8;
       break;
    case type_u16:
-      *this << var.m_u16;
+      *this << payload.m_u16;
       break;
    case type_i32:
-      *this << var.m_i32;
+      *this << payload.m_i32;
       break;
    case type_i64:
-      *this << var.m_i64;
+      *this << payload.m_i64;
       break;
    case type_u32:
-      *this << var.m_u32;
+      *this << payload.m_u32;
       break;
    case type_u64:
-      *this << var.m_u64;
+      *this << payload.m_u64;
       break;
    case type_pi8:
-      *this << *var.m_pi8;
+      *this << *payload.m_pi8;
       break;
    case type_pi16:
-      *this << *var.m_pi16;
+      *this << *payload.m_pi16;
       break;
    case type_pu8:
-      *this << *var.m_pu8;
+      *this << *payload.m_pu8;
       break;
    case type_pu16:
-      *this << *var.m_pu16;
+      *this << *payload.m_pu16;
       break;
    case type_pi32:
-      *this << *var.m_pi32;
+      *this << *payload.m_pi32;
       break;
    case type_pi64:
-      *this << *var.m_pi64;
+      *this << *payload.m_pi64;
       break;
    case type_pu32:
-      *this << *var.m_pu32;
+      *this << *payload.m_pu32;
       break;
    case type_pu64:
-      *this << *var.m_pu64;
+      *this << *payload.m_pu64;
       break;
    case type_double:
-      *this << var.m_d;
+      *this << payload.m_d;
       break;
    case type_bool:
-      *this << var.m_b;
+      *this << payload.m_b;
       break;
    case type_inta:
-      *this << var.inta();
+      *this << payload.inta();
       break;
    case type_memory:
-      *this << *var.m_pmemory;
+      *this << *payload.m_pmemory;
       break;
    case type_stra:
-      *this << *var.m_pstra;
+      *this << *payload.m_pstra;
       break;
    case type_propset:
-      *this << *var.m_pset;
+      *this << *payload.m_pset;
       break;
    case type_i64a:
-      *this << *var.m_pi64a;
+      *this << *payload.m_pi64a;
       break;
    //case type_image:
-   //   *this << *var.m_pimage;
+   //   *this << *payload.m_pimage;
    //   break;
    case type_id:
-      *this << var.m_id;
+      *this << payload.m_id;
       break;
    case type_element:
    case type_path:
    {
 
-      __save_object(*this, var.cast < ::matter >());
+      __save_object(*this, payload.cast < ::matter >());
 
    }
    break;
    default:
-      write(var.m_all, sizeof(var.m_all));
-      //__throw(::exception::exception("var::write var type not recognized"));
+      write(payload.m_all, sizeof(payload.m_all));
+      //__throw(::exception::exception("payload::write payload type not recognized"));
    }
 
    return;
@@ -286,7 +286,7 @@ void binary_stream::write(const property & property)
 {
 
    write(property.m_id);
-   write((const var &) property);
+   write((const payload &) property);
 
    return;
 
@@ -785,14 +785,14 @@ void binary_stream::read(id & id)
 //}
 
 
-void binary_stream::read(var & var)
+void binary_stream::read(payload & payload)
 {
 
    enum_type etype = type_new;
 
    read_var_type(etype);
    
-   return read_var_body(var, etype);
+   return read_var_body(payload, etype);
 
 }
 
@@ -827,7 +827,7 @@ void binary_stream::save_var_type(enum_type etype)
 }
 
 
-void binary_stream::read_var_body(var & var, enum_type etype)
+void binary_stream::read_var_body(payload & payload, enum_type etype)
 {
 
    switch (etype)
@@ -841,7 +841,7 @@ void binary_stream::read_var_body(var & var, enum_type etype)
    case type_not_found:
    {
 
-      var.set_type(etype, false);
+      payload.set_type(etype, false);
 
       break;
 
@@ -850,9 +850,9 @@ void binary_stream::read_var_body(var & var, enum_type etype)
    case type_string:
    {
 
-      var.set_type(type_string, false);
+      payload.set_type(type_string, false);
 
-      read(var.m_str);
+      read(payload.m_str);
 
    }
    break;
@@ -860,9 +860,9 @@ void binary_stream::read_var_body(var & var, enum_type etype)
    case type_i32:
    {
 
-      var.set_type(type_i32, false);
+      payload.set_type(type_i32, false);
 
-      *this >> var.m_i32;
+      *this >> payload.m_i32;
 
    }
    break;
@@ -870,9 +870,9 @@ void binary_stream::read_var_body(var & var, enum_type etype)
    case type_i64:
    {
 
-      var.set_type(type_i64, false);
+      payload.set_type(type_i64, false);
 
-      *this >> var.m_i64;
+      *this >> payload.m_i64;
 
    }
    break;
@@ -880,9 +880,9 @@ void binary_stream::read_var_body(var & var, enum_type etype)
    case type_u32:
    {
 
-      var.set_type(::type_u32, false);
+      payload.set_type(::type_u32, false);
 
-      *this >> var.m_u32;
+      *this >> payload.m_u32;
 
    }
    break;
@@ -890,73 +890,73 @@ void binary_stream::read_var_body(var & var, enum_type etype)
    case type_u64:
    {
 
-      var.set_type(::type_u64, false);
+      payload.set_type(::type_u64, false);
 
-      *this >> var.m_u64;
+      *this >> payload.m_u64;
 
    }
    break;
    case type_bool:
    {
 
-      var.set_type(::type_bool, false);
+      payload.set_type(::type_bool, false);
 
-      *this >> var.m_b;
+      *this >> payload.m_b;
 
    }
    break;
    case type_double:
    {
 
-      var.set_type(::type_double, false);
+      payload.set_type(::type_double, false);
 
-      *this >> var.m_d;
+      *this >> payload.m_d;
 
    }
    break;
    case type_float:
    {
 
-      var.set_type(::type_float, false);
+      payload.set_type(::type_float, false);
 
-      *this >> var.m_d;
+      *this >> payload.m_d;
 
    }
    break;
    case type_inta:
    {
 
-      __exchange_save_array(*this, var.inta());
+      __exchange_save_array(*this, payload.inta());
 
    }
    break;
    case type_memory:
    {
 
-      *this >> var.memory();
+      *this >> payload.memory();
 
    }
    break;
    case type_stra:
    {
 
-      __exchange_load_array(*this, var.stra());
+      __exchange_load_array(*this, payload.stra());
 
    }
    break;
    case type_propset:
    {
 
-      __exchange_load_array(*this, var.propset());
+      __exchange_load_array(*this, payload.propset());
 
    }
    break;
    case type_id:
    {
 
-      var.set_type(::type_id, false);
+      payload.set_type(::type_id, false);
 
-      *this >> var.m_id;
+      *this >> payload.m_id;
 
    }
    break;
@@ -964,15 +964,15 @@ void binary_stream::read_var_body(var & var, enum_type etype)
    case type_path:
    {
 
-      var.set_element(::__load_object<::matter>(*this));
+      payload.set_element(::__load_object<::matter>(*this));
 
    }
    break;
    default:
    {
-      var.set_type(etype, false);
-      read(var.m_all, sizeof(var.m_all));
-      //var.release();
+      payload.set_type(etype, false);
+      read(payload.m_all, sizeof(payload.m_all));
+      //payload.release();
       //setstate(::file::failbit); // stream corrupt
       break;
    }
@@ -987,7 +987,7 @@ void binary_stream::read(property & property)
 {
 
    read(property.m_id);
-   read((var &) property);
+   read((payload &) property);
 
    return;
 

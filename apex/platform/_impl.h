@@ -550,19 +550,19 @@ CLASS_DECL_APEX inline ::apex::system * get_context_system(::apex::system * psys
 //
 //
 //   //template < typename VIEW >
-//   //__pointer(::user::document) session::create_form(__pointer(::user::interaction) pwndParent, var var, ::var varArgs)
+//   //__pointer(::user::document) session::create_form(__pointer(::user::interaction) pwndParent, payload payload, ::payload varArgs)
 //   //{
 //
-//   //   return create_form(__type(VIEW), pwndParent, var);
+//   //   return create_form(__type(VIEW), pwndParent, payload);
 //
 //   //}
 //
 //
 //   //template < typename VIEW >
-//   //__pointer(::user::document) session::create_child_form(__pointer(::user::interaction) pwndParent, var var)
+//   //__pointer(::user::document) session::create_child_form(__pointer(::user::interaction) pwndParent, payload payload)
 //   //{
 //
-//   //   return create_child_form(__type(VIEW), pwndParent, var);
+//   //   return create_child_form(__type(VIEW), pwndParent, payload);
 //
 //   //}
 //

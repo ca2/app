@@ -20,7 +20,7 @@ protected:
    element_array m_elementa;
 
 
-   static ＿＿pointer(update_task) & task(::i64 iUpdate);
+   static __pointer(update_task) & task(::i64 iUpdate);
 
    virtual void add(::matter * pmatter);
    virtual void remove(::matter * pmatter);
@@ -35,7 +35,7 @@ public:
 
 
    static ::critical_section * g_pcs;
-   static ::i64_map < ＿＿pointer(update_task) > * g_pmap;
+   static ::i64_map < __pointer(update_task) > * g_pmap;
    static bool g_bDestroyAll;
 
 

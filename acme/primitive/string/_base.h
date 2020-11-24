@@ -47,7 +47,7 @@ public:
    string_base(Object ^ o);
 #endif
 
-   string_base(const var& var);
+   string_base(const payload& payload);
    string_base(const property& property);
    string_base(const id& id);
 
@@ -837,10 +837,10 @@ public:
 
 #endif
 
-   // set the string_base to the value of environment var 'pszVar'
+   // set the string_base to the value of environment payload 'pszVar'
    bool get_environment_variable(const CHAR_TYPE* pszVar);
 
-   // set the string_base to the value of environment var 'pszVar'
+   // set the string_base to the value of environment payload 'pszVar'
    bool getenv(const CHAR_TYPE* pszVar);
 
    // Load the string_base from resource 'nID'

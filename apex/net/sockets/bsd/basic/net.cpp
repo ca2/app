@@ -1247,7 +1247,7 @@ string net::service_name(const ::net::address & address)
 net::dns_cache_item::dns_cache_item()
 {
 
-   ·zero(m_ipaddr);
+   xxf_zero(m_ipaddr);
    m_bOk = false;
    m_bTimeout = true;
 
@@ -1307,7 +1307,7 @@ net::dns_cache_item & net::dns_cache_item::operator = (const dns_cache_item & it
 net::reverse_cache_item::reverse_cache_item()
 {
 
-   //·zero(m_ipaddr);
+   //xxf_zero(m_ipaddr);
    //m_millisLastChecked = 0;
    m_bOk = false;
    m_bTimeout = true;

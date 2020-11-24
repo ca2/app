@@ -23,7 +23,7 @@ int GetMainScreenRect(LPRECT32 lprect);
 
 const char* g_pszMultimediaLibraryName = nullptr;
 
-void apex_system_update(const ::id & id, const ::var& var);
+void apex_system_update(const ::id & id, const ::payload& payload);
 
 void apex_system_set_modified(const ::id& id);
 
@@ -1986,7 +1986,7 @@ namespace apex
 
       //}
 
-      //::multithreading::wait_threads(1_min, { this });
+      //::parallelization::wait_threads(1_min, { this });
 
    }
 
@@ -3431,7 +3431,7 @@ namespace apex
    }
 
 
-   bool system::on_open_file(var varFile, string strExtra)
+   bool system::on_open_file(payload varFile, string strExtra)
    {
 
       auto psession = Session;
@@ -4540,7 +4540,7 @@ namespace apex
    }
 
 
-   __pointer(::action) system::new_action(const MESSAGE& message)
+   __pointer(::subject) system::new_action(const MESSAGE& message)
    {
 
       auto paction = action((::iptr) message.wParam);
@@ -5453,7 +5453,7 @@ namespace apex
    }
 
 
-   void system::on_apply(::action * paction)
+   void system::on_apply(::subject * paction)
    {
 
       if (paction->id() == id_open_hyperlink)
@@ -5690,10 +5690,10 @@ namespace apex
 } // namespace apex
 
 
-void apex_system_update(const ::id & id, const ::var& var)
+void apex_system_update(const ::id & id, const ::payload& payload)
 {
 
-   System.apply_update(id, var);
+   System.apply_update(id, payload);
 
 }
 

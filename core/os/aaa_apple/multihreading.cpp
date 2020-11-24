@@ -52,7 +52,7 @@ int get_processor_count()
 }
 
 
-namespace multithreading
+namespace parallelization
 {
 
 
@@ -64,7 +64,7 @@ namespace multithreading
 //   }
 
 
-} // namespace multithreading
+} // namespace parallelization
 
 
 

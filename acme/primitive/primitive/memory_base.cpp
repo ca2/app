@@ -1262,10 +1262,10 @@ void memory_base::from_string(const string & str)
 }
 
 
-void memory_base::from_string(const var & var)
+void memory_base::from_string(const payload & payload)
 {
 
-   from_string((const string &)var.get_string());
+   from_string((const string &)payload.get_string());
 
 }
 

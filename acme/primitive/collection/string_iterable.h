@@ -37,7 +37,7 @@ public:
 
    iterator add(unichar wch);
 
-   iterator add(const var & var);
+   iterator add(const payload & payload);
 
    iterator add(const property & prop);
 
@@ -184,44 +184,44 @@ typename string_iterable < ITERABLE >::iterator string_iterable < ITERABLE >::ad
 
 
 template < typename ITERABLE >
-typename ITERABLE::iterator string_iterable < ITERABLE >::add(const var & var)
+typename ITERABLE::iterator string_iterable < ITERABLE >::add(const payload & payload)
 {
-   if (var.is_empty())
+   if (payload.is_empty())
    {
       return end();
    }
-   else if (var.get_type() == ::type_stra)
+   else if (payload.get_type() == ::type_stra)
    {
-      ::papaya::array::add(*this, var.stra());
+      ::papaya::array::add(*this, payload.stra());
    }
-   else if (var.cast < string_array_base < Type > >() != nullptr)
+   else if (payload.cast < string_array_base < Type > >() != nullptr)
    {
-      ::papaya::array::add(*this, *var.cast < string_array_base < Type > >());
+      ::papaya::array::add(*this, *payload.cast < string_array_base < Type > >());
    }
-   else if (var.get_type() == ::type_vara)
+   else if (payload.get_type() == ::type_vara)
    {
-      for (i32 i = 0; i < var.vara().get_count(); i++)
+      for (i32 i = 0; i < payload.vara().get_count(); i++)
       {
-         add((Type) var.vara()[i].get_string());
+         add((Type) payload.vara()[i].get_string());
       }
    }
-   else if (var.get_type() == ::type_inta)
+   else if (payload.get_type() == ::type_inta)
    {
-      for (i32 i = 0; i < var.inta().get_count(); i++)
+      for (i32 i = 0; i < payload.inta().get_count(); i++)
       {
-         add((Type) __str(var.inta()[i]));
+         add((Type) __str(payload.inta()[i]));
       }
    }
-   else if (var.get_type() == ::type_propset)
+   else if (payload.get_type() == ::type_propset)
    {
-      for (auto assoc : var.propset())
+      for (auto assoc : payload.propset())
       {
          add((Type) assoc.get_string());
       }
    }
    else
    {
-      add((Type) var.get_string());
+      add((Type) payload.get_string());
    }
 
    return upper_bound();

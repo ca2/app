@@ -1012,7 +1012,7 @@ namespace axis
 //               if (System.thread::get_os_data() != nullptr)
 //               {
 //
-//                  ::multithreading::finish(&System);
+//                  ::parallelization::finish(&System);
 //
 //               }
 //

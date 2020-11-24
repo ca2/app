@@ -392,10 +392,10 @@ void stream::write(const id & id)
 }
 
 
-void stream::write(const var & var)
+void stream::write(const payload & payload)
 {
 
-   enum_type etype = var.get_type();
+   enum_type etype = payload.get_type();
 
    ::i32 i = etype;
 
@@ -413,93 +413,93 @@ void stream::write(const var & var)
       break;
    case type_string:
    {
-      write(var.m_str);
+      write(payload.m_str);
    }
    break;
    case type_pstring:
    {
-      write(*var.m_pstr);
+      write(*payload.m_pstr);
    }
    break;
    case type_i8:
-      *this << var.m_i8;
+      *this << payload.m_i8;
       break;
    case type_i16:
-      *this << var.m_i16;
+      *this << payload.m_i16;
       break;
    case type_u8:
-      *this << var.m_u8;
+      *this << payload.m_u8;
       break;
    case type_u16:
-      *this << var.m_u16;
+      *this << payload.m_u16;
       break;
    case type_i32:
-      *this << var.m_i32;
+      *this << payload.m_i32;
       break;
    case type_i64:
-      *this << var.m_i64;
+      *this << payload.m_i64;
       break;
    case type_u32:
-      *this << var.m_u32;
+      *this << payload.m_u32;
       break;
    case type_u64:
-      *this << var.m_u64;
+      *this << payload.m_u64;
       break;
    case type_pi8:
-      *this << *var.m_pi8;
+      *this << *payload.m_pi8;
       break;
    case type_pi16:
-      *this << *var.m_pi16;
+      *this << *payload.m_pi16;
       break;
    case type_pu8:
-      *this << *var.m_pu8;
+      *this << *payload.m_pu8;
       break;
    case type_pu16:
-      *this << *var.m_pu16;
+      *this << *payload.m_pu16;
       break;
    case type_pi32:
-      *this << *var.m_pi32;
+      *this << *payload.m_pi32;
       break;
    case type_pi64:
-      *this << *var.m_pi64;
+      *this << *payload.m_pi64;
       break;
    case type_pu32:
-      *this << *var.m_pu32;
+      *this << *payload.m_pu32;
       break;
    case type_pu64:
-      *this << *var.m_pu64;
+      *this << *payload.m_pu64;
       break;
    case type_double:
-      *this << var.m_d;
+      *this << payload.m_d;
       break;
    case type_bool:
-      *this << var.m_b;
+      *this << payload.m_b;
       break;
    case type_inta:
-      *this << var.inta();
+      *this << payload.inta();
       break;
    case type_memory:
-      *this << var.memory();
+      *this << payload.memory();
       break;
    case type_stra:
-      *this << var.stra();
+      *this << payload.stra();
       break;
    case type_propset:
-      *this << var.propset();
+      *this << payload.propset();
       break;
    case type_id:
-      *this << var.m_id;
+      *this << payload.m_id;
       break;
    case type_element:
    case type_path:
    {
 
-      __save_object(*this, var.cast <::matter>());
+      __save_object(*this, payload.cast <::matter>());
 
    }
    break;
    default:
-      __throw(::exception::exception("var::write var type not recognized"));
+      __throw(::exception::exception("payload::write payload type not recognized"));
    }
 
 }
@@ -509,7 +509,7 @@ void stream::write(const property & property)
 {
 
    write(property.m_id);
-   write((const var &) property);
+   write((const payload &) property);
 
 }
 
@@ -852,7 +852,7 @@ void stream::read(id & id)
 }
 
 
-void stream::read(var & var)
+void stream::read(payload & payload)
 {
 
    set_fail_bit();
@@ -868,7 +868,7 @@ void stream::read_var_type(enum_type & etype)
 }
 
 
-void stream::read_var_body(var & var, enum_type etype)
+void stream::read_var_body(payload & payload, enum_type etype)
 {
 
    set_fail_bit();
@@ -931,13 +931,13 @@ void stream::save_var_type(enum_type etype)
 }
 
 
-var & stream::options()
+payload & stream::options()
 {
 
    if (!m_pvarOptions)
    {
 
-      m_pvarOptions = new var();
+      m_pvarOptions = new payload();
 
    }
 
@@ -1015,10 +1015,10 @@ void stream::exchange(const ::id & id, ::id & idExchange)
 }
 
 
-void stream::exchange(const ::id & id, var & var)
+void stream::exchange(const ::id & id, payload & payload)
 {
 
-   stream_exchange(id, var);
+   stream_exchange(id, payload);
 
 }
 

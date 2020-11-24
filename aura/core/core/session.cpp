@@ -598,7 +598,7 @@ namespace aura
 //   }
 
 
-   void session::request_topic_file(var & varQuery)
+   void session::request_topic_file(payload & varQuery)
    {
 
       request_file(psession->m_varTopicFile, varQuery);
@@ -614,7 +614,7 @@ namespace aura
    }
 
 
-   /*void session::request_application(const char * pszId, var varFile, var varQuery, application_bias * papplicationbias)
+   /*void session::request_application(const char * pszId, payload varFile, payload varQuery, application_bias * papplicationbias)
    {
 
    ::aura::application_request request;
@@ -831,7 +831,7 @@ namespace aura
 //   }
 
 
-   /*void session::request_application(const char * pszId, var varFile, var varQuery, application_bias * papplicationbias)
+   /*void session::request_application(const char * pszId, payload varFile, payload varQuery, application_bias * papplicationbias)
    {
 
    ::aura::application_request request;
@@ -1249,55 +1249,55 @@ namespace aura
    //}
 
 
-    __pointer(::user::document) session::create_form(::user::form_callback * pcallback, __pointer(::user::interaction) pwndParent, var var, ::var varArgs)
+    __pointer(::user::document) session::create_form(::user::form_callback * pcallback, __pointer(::user::interaction) pwndParent, payload payload, ::payload varArgs)
     {
 
        return Sess(this).userex()->create_form(
           pcallback ? pcallback : pwndParent ? pwndParent : this, 
-          pcallback, pwndParent, var, varArgs);
+          pcallback, pwndParent, payload, varArgs);
 
     }
 
 
-    __pointer(::user::document) session::create_form(::type point, __pointer(::user::interaction) pwndParent, var var, ::var varArgs)
+    __pointer(::user::document) session::create_form(::type point, __pointer(::user::interaction) pwndParent, payload payload, ::payload varArgs)
     {
 
-       return Sess(this).userex()->create_form(this, point, pwndParent, var, varArgs);
+       return Sess(this).userex()->create_form(this, point, pwndParent, payload, varArgs);
 
     }
 
 
-    __pointer(::user::document) session::create_form(__pointer(::user::form) pview, ::user::form_callback * pcallback, __pointer(::user::interaction) pwndParent, var var, ::var varArgs)
+    __pointer(::user::document) session::create_form(__pointer(::user::form) pview, ::user::form_callback * pcallback, __pointer(::user::interaction) pwndParent, payload payload, ::payload varArgs)
     {
 
-       return Sess(this).userex()->create_form(this, pview, pcallback, pwndParent, var, varArgs);
+       return Sess(this).userex()->create_form(this, pview, pcallback, pwndParent, payload, varArgs);
 
     }
 
 
-    __pointer(::user::document) session::create_child_form(::user::form_callback * pcallback, __pointer(::user::interaction) pwndParent, var var, ::var varArgs)
+    __pointer(::user::document) session::create_child_form(::user::form_callback * pcallback, __pointer(::user::interaction) pwndParent, payload payload, ::payload varArgs)
     {
 
        return Sess(this).userex()->create_child_form(
           pcallback ? pcallback : pwndParent ? pwndParent : this,
-          pcallback, pwndParent, var, varArgs);
+          pcallback, pwndParent, payload, varArgs);
 
 
     }
 
 
-    __pointer(::user::document) session::create_child_form(::type point, __pointer(::user::interaction) pwndParent, var var)
+    __pointer(::user::document) session::create_child_form(::type point, __pointer(::user::interaction) pwndParent, payload payload)
     {
 
-       return Sess(this).userex()->create_child_form(this, point, pwndParent, var);
+       return Sess(this).userex()->create_child_form(this, point, pwndParent, payload);
 
     }
 
 
-    __pointer(::user::document) session::create_child_form(__pointer(::user::form) pview, ::user::form_callback * pcallback, __pointer(::user::interaction) pwndParent, var var)
+    __pointer(::user::document) session::create_child_form(__pointer(::user::form) pview, ::user::form_callback * pcallback, __pointer(::user::interaction) pwndParent, payload payload)
     {
 
-       return Sess(this).userex()->create_child_form(this, pview, pcallback, pwndParent, var);
+       return Sess(this).userex()->create_child_form(this, pview, pcallback, pwndParent, payload);
 
     }
 

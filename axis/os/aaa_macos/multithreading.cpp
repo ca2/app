@@ -250,7 +250,7 @@ bool __os_term_thread()
 
 
 
-namespace multithreading
+namespace parallelization
 {
 
 //
@@ -262,4 +262,4 @@ namespace multithreading
 //   }
 
 
-} // namespace multithreading
+} // namespace parallelization

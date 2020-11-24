@@ -340,7 +340,7 @@ namespace helloworld
 
 
                get_document()->on_open_document(m_strImage);
-               //   var varFile;
+               //   payload varFile;
                //
                //   varFile["url"] = strImage;
                //
@@ -460,7 +460,7 @@ namespace helloworld
          if (get_processed_helloworld() != m_prender->m_strHelloWorld)
          {
 
-            m_prender->m_strHelloWorld = get_processed_helloworld().c_str(); // rationale : string allocation fork *for multithreading*
+            m_prender->m_strHelloWorld = get_processed_helloworld().c_str(); // rationale : string allocation fork *for parallelization*
 
             sl.unlock();
 

@@ -72,13 +72,13 @@ bool dialog::show(const char * pszMatter)
 
    m_strMatter = ::file::path(strMatter);
 
-   var var;
+   payload payload;
 
-   var["url"] = strMatter;
+   payload["url"] = strMatter;
 
-   var["hold"] = false;
+   payload["hold"] = false;
 
-   ::var varArgs;
+   ::payload varArgs;
 
    varArgs["window_frame"] = true;
 
@@ -86,7 +86,7 @@ bool dialog::show(const char * pszMatter)
 
    auto psession = Session;
 
-   m_pdocument = puser->create_form(this, this, psession->m_puiHost.get(), var, varArgs);
+   m_pdocument = puser->create_form(this, this, psession->m_puiHost.get(), payload, varArgs);
 
    if(m_pdocument == nullptr)
    {

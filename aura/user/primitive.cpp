@@ -710,20 +710,20 @@ namespace user
    }
 
 
-   //i32 primitive::sync_message_box(var var)
+   //i32 primitive::sync_message_box(payload payload)
    //{
 
-   //   if (var.get_type() == type_string)
+   //   if (payload.get_type() == type_string)
    //   {
 
-   //      var["message"] = var;
+   //      payload["message"] = payload;
 
    //   }
 
-   //   var["parent"] = this;
-   //   var["title"] = get_title();
+   //   payload["parent"] = this;
+   //   payload["title"] = get_title();
 
-   //   return message_box(var);
+   //   return message_box(payload);
 
    //}
 
@@ -736,15 +736,15 @@ namespace user
    //}
 
 
-   //::estatus primitive::message_box(const ::var& varParam)
+   //::estatus primitive::message_box(const ::payload& varParam)
    //{
 
-   //   var var;
+   //   payload payload;
 
    //   if (varParam.get_type() == type_propset)
    //   {
 
-   //      var = varParam;
+   //      payload = varParam;
 
    //   }
    //   else
@@ -754,15 +754,15 @@ namespace user
 
    //      strMessage = varParam.get_string();
 
-   //      var["message"] = strMessage;
+   //      payload["message"] = strMessage;
 
    //   }
 
-   //   var["owner"] = this;
+   //   payload["owner"] = this;
 
-   //   var["title"] = get_title();
+   //   payload["title"] = get_title();
 
-   //   return Application.message_box(var);
+   //   return Application.message_box(payload);
 
    //}
 
@@ -2890,7 +2890,7 @@ namespace user
    //}
 
 
-   //__pointer(::user::menu) primitive::track_popup_xml_menu(const var & varXml,i32 iFlags, const ::point & point, const size & size)
+   //__pointer(::user::menu) primitive::track_popup_xml_menu(const payload & varXml,i32 iFlags, const ::point & point, const size & size)
    //{
 
    //   ::exception::throw_interface_only();
@@ -2910,7 +2910,7 @@ namespace user
    //}
 
 
-   //__pointer(::user::menu) primitive::track_popup_xml_menu_file(var varFile, i32 iFlags, const ::point & point, const ::size & sizeMinimum)
+   //__pointer(::user::menu) primitive::track_popup_xml_menu_file(payload varFile, i32 iFlags, const ::point & point, const ::size & sizeMinimum)
    //{
 
    //   ::exception::throw_interface_only();
@@ -3518,7 +3518,7 @@ namespace user
 //   }
 
 
-   i32 primitive::get_total_page_count(::change * pchange)
+   i32 primitive::get_total_page_count(::machine * pchange)
    {
 
       return 1;

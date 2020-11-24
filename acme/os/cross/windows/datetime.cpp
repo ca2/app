@@ -582,7 +582,7 @@ WINULONG WINAPI NtGetTickCount(void)
    return (CSHORT) ((now.QuadPart - server_start_time) / 10000);
 }
 
-/* calculate the mday of dst change date, so that for instance Sun 5 Oct 2007
+/* calculate the mday of dst machine date, so that for instance Sun 5 Oct 2007
  * (last Sunday in October of 2007) becomes Sun Oct 28 2007
  *
  * Note: year, day and month must be in unix format.

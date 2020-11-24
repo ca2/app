@@ -150,7 +150,7 @@ struct CLASS_DECL_ACME matter :
 
    virtual void dev_log(string str) const;
 
-   ::matter & operator = (const var & var);
+   ::matter & operator = (const payload & payload);
 
 
 
@@ -215,7 +215,7 @@ struct CLASS_DECL_ACME matter :
    //}
 
 
-   inline ::image_pointer get_image(const var & varFile, bool bCache = true, bool bSync = false);
+   inline ::image_pointer get_image(const payload & varFile, bool bCache = true, bool bSync = false);
    inline ::image_pointer matter_image(const string & strMatter, bool bCache = true, bool bSync = false);
 
 

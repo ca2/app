@@ -211,7 +211,7 @@ namespace user
       virtual void _001CloseTab(::index iTab);
 
 
-      virtual void on_apply(::action * paction) override;
+      virtual void on_apply(::subject * paction) override;
 
       virtual void rotate();
 
@@ -329,7 +329,7 @@ namespace user
 
       virtual bool has_restore_tab();
       virtual void get_restore_tab(var_array & vara);
-      virtual bool matches_restorable_tab(const var & varId, ::user::place_holder * pholder = nullptr);
+      virtual bool matches_restorable_tab(const payload & varId, ::user::place_holder * pholder = nullptr);
       virtual ::count open_tabs(const var_array & vara);
       virtual ::count restore_tabs();
       virtual void save_restorable_tabs();

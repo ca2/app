@@ -186,7 +186,7 @@
 //    )
 //{
 //
-//   wstring wstr = "/var/aura/time/";
+//   wstring wstr = "/payload/aura/time/";
 //
 //   ::count iLen = min(nBufferLength, wstr.get_length());
 //

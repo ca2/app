@@ -34,29 +34,29 @@ CLASS_DECL_ACME hthread_t get_current_hthread();
 //CLASS_DECL_ACME bool on_term_thread();
 //
 //
-//CLASS_DECL_ACME void ＿＿init_thread();
-//CLASS_DECL_ACME void ＿＿term_thread();
+//CLASS_DECL_ACME void __init_thread();
+//CLASS_DECL_ACME void __term_thread();
 //
 //
-//CLASS_DECL_ACME bool ＿＿os_init_thread();
-//CLASS_DECL_ACME bool ＿＿os_term_thread();
+//CLASS_DECL_ACME bool __os_init_thread();
+//CLASS_DECL_ACME bool __os_term_thread();
 //
 
-//CLASS_DECL_ACME bool ＿＿node_init_thread(::thread * pthread);
-//CLASS_DECL_ACME bool ＿＿node_term_thread(::thread * pthread);
+//CLASS_DECL_ACME bool __node_init_thread(::thread * pthread);
+//CLASS_DECL_ACME bool __node_term_thread(::thread * pthread);
 
 
-//CLASS_DECL_ACME void ＿＿init_threading_count();
-//CLASS_DECL_ACME void ＿＿term_threading_count();
+//CLASS_DECL_ACME void __init_threading_count();
+//CLASS_DECL_ACME void __term_threading_count();
 
 
-//CLASS_DECL_ACME void ＿＿inc_threading_count();
-//CLASS_DECL_ACME void ＿＿dec_threading_count();
+//CLASS_DECL_ACME void __inc_threading_count();
+//CLASS_DECL_ACME void __dec_threading_count();
 
 
 
 
-//#define ＿＿prevent_bad_status_exception ＿＿keep_thread_flag(id_thread_prevent_bad_status_exception)
+//#define __prevent_bad_status_exception __keep_thread_flag(id_thread_prevent_bad_status_exception)
 
 //CLASS_DECL_ACME cflag < e_thread_flag > & thread_flags();
 //CLASS_DECL_ACME void thread_set_flag(const cflag < e_thread_flag > & eflag, bool bSet = true);
@@ -70,8 +70,8 @@ CLASS_DECL_ACME hthread_t get_current_hthread();
 //CLASS_DECL_ACME bool thread_resolve_alias();
 
 
-//CLASS_DECL_ACME bool ＿＿wait_threading_count(::duration dur);
-//CLASS_DECL_ACME bool ＿＿wait_threading_count_except(::thread * pthread,::duration dur);
+//CLASS_DECL_ACME bool __wait_threading_count(::duration dur);
+//CLASS_DECL_ACME bool __wait_threading_count_except(::thread * pthread,::duration dur);
 
 
 //CLASS_DECL_ACME ::thread * get_task();
@@ -82,8 +82,8 @@ CLASS_DECL_ACME hthread_t get_current_hthread();
 CLASS_DECL_ACME bool thread_get_run();
 
 
-//CLASS_DECL_ACME void ＿＿node_init_multithreading();
-//CLASS_DECL_ACME void ＿＿node_term_multithreading();
+//CLASS_DECL_ACME void __node_init_multithreading();
+//CLASS_DECL_ACME void __node_term_multithreading();
 
 
 
@@ -108,12 +108,12 @@ CLASS_DECL_ACME bool thread_get_run();
 //
 //   //CLASS_DECL_ACME void post_to_all_threads(const ::id & id, WPARAM wparam, LPARAM lparam);
 //
-//   ////CLASS_DECL_ACME bool wait_threads(::duration duration, ＿＿pointer_array(::thread) threadaExcept = ＿＿pointer_array(::thread)());
+//   ////CLASS_DECL_ACME bool wait_threads(::duration duration, __pointer_array(::thread) threadaExcept = __pointer_array(::thread)());
 //
-//   //CLASS_DECL_ACME ＿＿pointer(::thread) calc_parent(::thread * pthread);
+//   //CLASS_DECL_ACME __pointer(::thread) calc_parent(::thread * pthread);
 //
-//   //CLASS_DECL_ACME void ＿＿node_on_init_thread(thread * pthread);
-//   //CLASS_DECL_ACME void ＿＿node_on_term_thread(thread * pthread);
+//   //CLASS_DECL_ACME void __node_on_init_thread(thread * pthread);
+//   //CLASS_DECL_ACME void __node_on_term_thread(thread * pthread);
 //
 //   //CLASS_DECL_ACME extern comparable_eq_array <ithread_t> * s_piaThread;
 //   //CLASS_DECL_ACME extern address_array < ::thread * > * s_pthreadptra;
@@ -124,9 +124,9 @@ CLASS_DECL_ACME bool thread_get_run();
 //
 
 
-//CLASS_DECL_ACME void ＿＿end_thread(::matter * pobject);
+//CLASS_DECL_ACME void __end_thread(::matter * pobject);
 
-//CLASS_DECL_ACME void ＿＿term_thread(::matter * pobject);
+//CLASS_DECL_ACME void __term_thread(::matter * pobject);
 
 
 

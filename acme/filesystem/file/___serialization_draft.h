@@ -28,11 +28,11 @@ int file_procedure()
 int var_procedure()
 {
 
-   var var;
+   payload payload;
 
    in_addr addr;
 
-   ::var_stream stream(var);
+   ::var_stream stream(payload);
 
    stream >> addr;
 
@@ -93,7 +93,7 @@ class var_stream
 {
 public:
 
-   var & var();
+   payload & payload();
 
    virtual void read(i8 & i) {}
    virtual void read(string & i) {}
@@ -114,14 +114,14 @@ public:
 
    virtual void write_object(const ::id & id, const ::id & idFactory, ::matter * pobject) override
    {
-      var_stream stream(new var(&var()[id].propset()));
+      var_stream stream(new payload(&payload()[id].propset()));
       stream.exchange("id", idFactory);
       stream.exchange("", pobject);
    }
 
    virtual __pointer(::contex_object) read_object(const ::id & id) override
    {
-      var_stream stream(new var(&var()[id].propset()));
+      var_stream stream(new payload(&payload()[id].propset()));
       ::id idFactory;
       stream.exchange("id", idFactory);
       auto pobject = __id_create<::matter>(idFactory);

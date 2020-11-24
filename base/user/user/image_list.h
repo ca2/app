@@ -111,7 +111,7 @@ namespace user
 
       virtual void install_message_routing(::channel * pchannel) override;
 
-      virtual void on_apply(::action * paction) override;
+      virtual void on_apply(::subject * paction) override;
 
 
 

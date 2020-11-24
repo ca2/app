@@ -3,7 +3,7 @@
 
 
 template < typename PRED >
-class __pred_callback :
+class __λcallback :
    virtual public ::matter
 {
 public:
@@ -13,14 +13,14 @@ public:
    __pointer(::matter)      m_pobjectHold;
 
 
-   __pred_callback(PRED pred, ::matter* pobjectHold = nullptr) :
+   __λcallback(PRED pred, ::matter* pobjectHold = nullptr) :
       m_pred(pred),
       m_pobjectHold(pobjectHold)
    {
 
    }
 
-   virtual ~__pred_callback()
+   virtual ~__λcallback()
    {
 
 
@@ -37,10 +37,10 @@ public:
    }
 
 
-   void receive_response(const ::var& var) override
+   void receive_response(const ::payload& payload) override
    {
 
-      m_pred(var);
+      m_pred(payload);
 
    }
 
@@ -54,6 +54,6 @@ template < typename PRED >
 inline auto __task_callback(PRED pred, ::matter* pobjectHold)
 {
 
-   return __new(__pred_callback < PRED >(pred, pobjectHold));
+   return __new(__λcallback < PRED >(pred, pobjectHold));
 
 }

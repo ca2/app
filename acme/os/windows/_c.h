@@ -4,7 +4,7 @@
 #include <shellapi.h>
 #include <wincrypt.h>
 
-#include "thread.h"
+#include "parallelization.h"
 #include "utils.h"
 //#include "graphics.h"
 

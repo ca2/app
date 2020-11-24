@@ -1016,7 +1016,7 @@ namespace acme
       }
 
       // acme commented for apex
-      //::multithreading::init_multithreading();
+      //::parallelization::init_multithreading();
 
       if (!__node_acme_pos_init())
       {
@@ -1047,7 +1047,7 @@ namespace acme
    ::estatus acme::term()
    {
 
-      //::multithreading::wait_threads(1_min);
+      //::parallelization::wait_threads(1_min);
 
       //if (g_axisontermthread)
       //{
@@ -1060,7 +1060,7 @@ namespace acme
       //on_term_thread();
 
       // acme commented for apex
-      //::multithreading::term_multithreading();
+      //::parallelization::term_multithreading();
 
       __node_acme_pre_term();
 

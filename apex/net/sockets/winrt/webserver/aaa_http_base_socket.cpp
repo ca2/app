@@ -220,7 +220,7 @@ namespace sockets
 
    string http_base_socket::set_cookie(
          const char * name,
-         var var,
+         payload payload,
          int iExpire,
          const char * path,
          const char * domain,
@@ -229,7 +229,7 @@ namespace sockets
 
       m_request.cookies().set_cookie(
          name,
-         var,
+         payload,
          iExpire,
          path,
          domain,

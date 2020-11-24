@@ -139,7 +139,7 @@ namespace helloaxis
 
       return ::helloaura::render::run();
 
-//      ::multithreading::set_priority(::priority_time_critical);
+//      ::parallelization::set_priority(::priority_time_critical);
 //
 ////      double dFps = m_pview->get_wnd()->m_pimpl.cast < ::user::interaction_impl >()->m_dFps;
 //
@@ -298,7 +298,7 @@ namespace helloaxis
 //
 //         sync_lock slText(m_pmutexText);
 //
-//         strHelloAXIS = get_helloaura().c_str(); // rationale : string allocation fork *for multithreading*
+//         strHelloAXIS = get_helloaura().c_str(); // rationale : string allocation fork *for parallelization*
 //
 //      }
 //

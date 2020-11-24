@@ -61,10 +61,10 @@ namespace acme
    }
 
 
-   void system::on_apply(::action * paction)
+   void system::on_subject_prepare(::promise::subject * psubject)
    {
 
-      if(paction->id() == id_dark_mode)
+      if(psubject->id() == id_dark_mode)
       {
 
          defer_calc_os_dark_mode();
@@ -74,7 +74,7 @@ namespace acme
    }
 
 
-   ::estatus system::main_user_async(const ::procedure & procedure, ::e_priority epriority)
+   ::estatus system::main_user_async(const ::promise::routine & procedure, ::e_priority epriority)
    {
 
       return ::error_interface_only;
@@ -82,14 +82,14 @@ namespace acme
    }
 
 
-   ::estatus system::main_user_sync(const procedure & procedure, const ::duration & duration, e_priority epriority)
+   ::estatus system::main_user_sync(const ::promise::routine & routine, const ::duration & duration, e_priority epriority)
    {
 
-      auto pmethod = ___sync_procedure(procedure);
+      auto proutine = ___sync_routine(routine);
 
-      main_user_async(pmethod, epriority);
+      main_user_async(proutine, epriority);
 
-      auto waitresult = pmethod->wait(duration);
+      auto waitresult = proutine->wait(duration);
 
       if (!waitresult.succeeded())
       {
@@ -98,7 +98,7 @@ namespace acme
 
       }
 
-      return pmethod->m_estatus;
+      return proutine->m_estatus;
 
    }
 

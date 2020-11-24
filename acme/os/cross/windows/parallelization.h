@@ -53,7 +53,7 @@
 
 
 
-#if defined(_UWP) && defined(＿＿cplusplus_winrt)
+#if defined(_UWP) && defined(__cplusplus_winrt)
 
 
 

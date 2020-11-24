@@ -174,7 +174,7 @@ namespace aura
       void EnableHtmlHelp();
 
 
-      //virtual i32 sync_message_box_timeout(::user::primitive * puiOwner,var var, const char * pszTitle, ::duration durationTimeout,::u32 fuStyle = e_message_box_ok) override;
+      //virtual i32 sync_message_box_timeout(::user::primitive * puiOwner,payload payload, const char * pszTitle, ::duration durationTimeout,::u32 fuStyle = e_message_box_ok) override;
       //virtual i32 sync_message_box(::user::primitive * puiOwner,const char * pszMessage, const char * pszTitle, ::u32 fuStyle = e_message_box_ok) override;
       
 
@@ -286,7 +286,7 @@ namespace aura
       // registered with the doc manager.
       i32 get_open_document_count();
 
-      virtual bool do_prompt_file_name(var & varFile,string strTitle,u32 lFlags,bool bOpenFileDialog, ::user::impact_system * ptemplate,::user::document * pdocument) override;
+      virtual bool do_prompt_file_name(payload & varFile,string strTitle,u32 lFlags,bool bOpenFileDialog, ::user::impact_system * ptemplate,::user::document * pdocument) override;
 
       void EnableModeless(bool bEnable); // to disable OLE in-place dialogs
 
@@ -347,8 +347,8 @@ namespace aura
       //      virtual ::aura::file_system & file_system();
       virtual bool _001OnDDECommand(const char * pcsz) override;
 
-      virtual ::user::document * _001OpenDocumentFile(var varFile);
-      //virtual bool on_open_document_file(var varFile) override;
+      virtual ::user::document * _001OpenDocumentFile(payload varFile);
+      //virtual bool on_open_document_file(payload varFile) override;
       DECL_GEN_SIGNAL(_001OnFileNew) override;
 
 
@@ -507,7 +507,7 @@ namespace aura
       }
 
       // get a file and if there are exceptions, should show end user friendly messages
-      virtual file_pointer friendly_get_file(var varFile,::u32 nOpenFlags);
+      virtual file_pointer friendly_get_file(payload varFile,::u32 nOpenFlags);
 
 
       virtual void data_on_after_change(::message::message * pmessage);

@@ -79,17 +79,17 @@ public:
 
    inline ::image_pointer frame(iptr i) const;
 
-   virtual image get_image(var varFile, bool bSync = false) override;
+   virtual image get_image(payload varFile, bool bSync = false) override;
    virtual image matter_image(string strMatter, bool bSync = false) override;
-   virtual image load_image(var varFile, bool bCreateHelperMaps = false) override;
+   virtual image load_image(payload varFile, bool bCreateHelperMaps = false) override;
    virtual image load_matter_image(const char * pszMatter, bool bCache = true, bool bCreateHelperMaps = false) override;
    virtual image load_matter_icon(string_array & straMatter, string strIcon) override;
-   virtual image load_thumbnail(var varFile, int w, int h) override;
+   virtual image load_thumbnail(payload varFile, int w, int h) override;
    virtual image load_thumbnail(const char * pszPath) override;
    virtual image load_dib(const ::file::path & pathDib) override;
 
 
-   virtual bool save_image(var varFile, ::save_image * psaveimage = nullptr) override;
+   virtual bool save_image(payload varFile, ::save_image * psaveimage = nullptr) override;
    virtual bool save_dib(const ::file::path & pathDib) override;
 
 
@@ -461,10 +461,10 @@ public:
 
    inline bool has_property(id id) const { return m_pimpl.is_set() && m_pimpl->has_property(id); }
    inline bool remove_key(id id) { return m_pimpl.is_set() && m_pimpl->remove_key(id); }
-   inline var value(id id) { return m_pimpl->value(id); }
-   inline var value(id id) const { return m_pimpl->value(id); }
+   inline payload value(id id) { return m_pimpl->value(id); }
+   inline payload value(id id) const { return m_pimpl->value(id); }
    inline property & set(id id) { return m_pimpl->set(id); }
-   inline var find_property(id id) const { return m_pimpl->find_property(id); }
+   inline payload find_property(id id) const { return m_pimpl->find_property(id); }
    inline property_set & propset() { return m_pimpl->propset(); }
 
    inline void clear_color_transform() { m_pimpl->m_bColorMatrix = false; }

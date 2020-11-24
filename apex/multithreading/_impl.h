@@ -249,7 +249,7 @@ _AFXMT_INLINE int_bool critical_section::Unlock()
 //
 //
 //
-//namespace multithreading
+//namespace parallelization
 //{
 //
 //
@@ -300,7 +300,7 @@ _AFXMT_INLINE int_bool critical_section::Unlock()
 //   }
 //
 //
-//} // namespace multithreading
+//} // namespace parallelization
 //
 //
 //template < typename PRED >

@@ -44,7 +44,7 @@ namespace draw2d
 
       virtual double font_similarity(const char * pszSystem, const char * pszUser);
 
-      e_format file_extension_to_format(const ::var & varFile);
+      e_format file_extension_to_format(const ::payload & varFile);
       e_format text_to_format(string str);
       
 

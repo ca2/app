@@ -91,10 +91,10 @@ namespace acme
    //}
 
 
-   //void application::set_env_var(const string & var,const string & value)
+   //void application::set_env_var(const string & payload,const string & value)
    //{
 
-   //   setenv(var, value, 1);
+   //   setenv(payload, value, 1);
 
    //}
 

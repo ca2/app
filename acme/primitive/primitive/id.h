@@ -126,7 +126,7 @@ public:
    id(::u64 u);
    id(const ::lparam & lparam);
    id(const string & str);
-   id(const var & var);
+   id(const payload & payload);
    id(const type & type);
    id(::id && id) { m_all = id.m_all; id.m_all = {}; }
 
@@ -254,7 +254,7 @@ public:
    inline bool operator >= (::e_id eid) const;
 
 
-   id & operator = (const var & var);
+   id & operator = (const payload & payload);
    id & operator = (const property & prop);
    id & operator = (const id & id);
    id & operator = (const char * psz);

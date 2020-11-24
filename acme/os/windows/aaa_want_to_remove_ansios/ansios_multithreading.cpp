@@ -419,7 +419,7 @@ CLASS_DECL_ACME ithread_t GetCurrentThreadId()
 }
 
 
-namespace multithreading
+namespace parallelization
 {
 
 

@@ -104,13 +104,13 @@ namespace data
    }
 
 
-   void data::on_apply(::action * paction)
+   void data::on_apply(::subject * paction)
    {
 
       if (m_pdatacontainerbase)
       {
 
-         m_pdatacontainerbase->apply(paction);
+         m_pdatacontainerbase->process(paction);
 
       }
 

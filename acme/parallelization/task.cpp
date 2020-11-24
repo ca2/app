@@ -116,7 +116,7 @@ bool task::is_running() const
 ::object * task::thread_parent()
 {
 
-   return ＿＿object(m_pobjectParent);
+   return __object(m_pobjectParent);
 
 }
 
@@ -152,7 +152,7 @@ void* task::s_os_task(void* p)
       if (pthread->m_countReference > 1)
       {
 
-         ＿＿check_pending_releases(pthread);
+         __check_pending_releases(pthread);
 
       }
 
@@ -406,7 +406,7 @@ void task::term_task()
    if (m_id.is_empty() || m_id == "task" || m_id == "thread")
    {
 
-      ＿＿throw(invalid_argument_exception);
+      __throw(invalid_argument_exception);
 
       return ::error_failed;
 
@@ -438,7 +438,7 @@ void task::term_task()
 
    //}
 
-   // ＿＿task_procedure() should release this (pmatter)
+   // __task_procedure() should release this (pmatter)
    add_ref(OBJ_REF_DBG_THIS_FUNCTION_LINE);
 
 #ifdef WINDOWS
@@ -487,7 +487,7 @@ void task::term_task()
 ::task_pointer task::launch(::matter * pmatter, ::e_priority epriority, ::u32 nStackSize, u32 uCreateFlags)
 {
 
-   auto ptask = ＿＿new(task);
+   auto ptask = __new(task);
 
    ptask->start(pmatter, epriority, nStackSize, uCreateFlags);
 
@@ -535,7 +535,7 @@ void task::kick_idle()
 
 
 
-CLASS_DECL_ACME bool ＿＿task_sleep(task* task)
+CLASS_DECL_ACME bool __task_sleep(task* task)
 {
 
    while (task->thread_get_run())
@@ -550,7 +550,7 @@ CLASS_DECL_ACME bool ＿＿task_sleep(task* task)
 }
 
 
-CLASS_DECL_ACME bool ＿＿task_sleep(task* pthread, millis millis)
+CLASS_DECL_ACME bool __task_sleep(task* pthread, millis millis)
 {
 
    if (millis.m_iMilliseconds < 1000)
@@ -576,7 +576,7 @@ CLASS_DECL_ACME bool ＿＿task_sleep(task* pthread, millis millis)
    try
    {
 
-      ＿＿pointer(manual_reset_event) spev;
+      __pointer(manual_reset_event) spev;
 
       {
 
@@ -585,7 +585,7 @@ CLASS_DECL_ACME bool ＿＿task_sleep(task* pthread, millis millis)
          if (pthread->m_pevSleep.is_null())
          {
 
-            pthread->m_pevSleep = ＿＿new(manual_reset_event());
+            pthread->m_pevSleep = __new(manual_reset_event());
 
             pthread->m_pevSleep->ResetEvent();
 
@@ -629,7 +629,7 @@ CLASS_DECL_ACME bool ＿＿task_sleep(task* pthread, millis millis)
 }
 
 
-CLASS_DECL_ACME bool ＿＿task_sleep(::task* pthread, sync* psync)
+CLASS_DECL_ACME bool __task_sleep(::task* pthread, sync* psync)
 {
 
    try
@@ -658,7 +658,7 @@ CLASS_DECL_ACME bool ＿＿task_sleep(::task* pthread, sync* psync)
 }
 
 
-CLASS_DECL_ACME bool ＿＿task_sleep(task* pthread, millis millis, sync* psync)
+CLASS_DECL_ACME bool __task_sleep(task* pthread, millis millis, sync* psync)
 {
 
    if (millis.m_iMilliseconds < 1000)
@@ -721,7 +721,7 @@ CLASS_DECL_ACME bool task_sleep(millis millis, sync* psync)
       if (::is_null(psync))
       {
 
-         if (＿＿os(millis) == U32_INFINITE_TIMEOUT)
+         if (__os(millis) == U32_INFINITE_TIMEOUT)
          {
 
          }
@@ -736,7 +736,7 @@ CLASS_DECL_ACME bool task_sleep(millis millis, sync* psync)
       else
       {
 
-         if (＿＿os(millis) == U32_INFINITE_TIMEOUT)
+         if (__os(millis) == U32_INFINITE_TIMEOUT)
          {
 
             return psync->lock();
@@ -758,16 +758,16 @@ CLASS_DECL_ACME bool task_sleep(millis millis, sync* psync)
    if (::is_null(psync))
    {
 
-      if (＿＿os(millis) == U32_INFINITE_TIMEOUT)
+      if (__os(millis) == U32_INFINITE_TIMEOUT)
       {
 
-         return ＿＿task_sleep(pthread);
+         return __task_sleep(pthread);
 
       }
       else
       {
 
-         return ＿＿task_sleep(pthread, millis);
+         return __task_sleep(pthread, millis);
 
       }
 
@@ -775,16 +775,16 @@ CLASS_DECL_ACME bool task_sleep(millis millis, sync* psync)
    else
    {
 
-      if (＿＿os(millis) == U32_INFINITE_TIMEOUT)
+      if (__os(millis) == U32_INFINITE_TIMEOUT)
       {
 
-         return ＿＿task_sleep(pthread, psync);
+         return __task_sleep(pthread, psync);
 
       }
       else
       {
 
-         return ＿＿task_sleep(pthread, millis, psync);
+         return __task_sleep(pthread, millis, psync);
 
       }
 

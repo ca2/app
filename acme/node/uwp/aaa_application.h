@@ -50,7 +50,7 @@
 //      virtual HINSTANCE GetHinstance();
 //      bool _001OnDDECommand(const char * pcsz);
 //      virtual void _001EnableShellOpen();
-////      virtual ::user::document * _001OpenDocumentFile(var varFile);
+////      virtual ::user::document * _001OpenDocumentFile(payload varFile);
 //      virtual void _001OnFileNew();
 //
 //      // Loads a cursor resource.
@@ -195,7 +195,7 @@
 //      //virtual __pointer(::user::interaction) FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow);
 //
 //      virtual void get_time(struct timeval *p);
-//      virtual void set_env_var(const string & var,const string & value);
+//      virtual void set_env_var(const string & payload,const string & value);
 //      virtual u32 get_thread_id();
 //
 //      //__pointer(::user::printer) get_printer(const char * pszDeviceName);

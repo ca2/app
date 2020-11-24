@@ -131,7 +131,7 @@ namespace geometry
    //
    // Purpose:
    // Change rectangle dimension using its dimensions and the specified
-   // rates. For example, the dLeftRate change the left position of the
+   // rates. For example, the dLeftRate machine the left position of the
    // rectangle. If 0.0, it remains the same as the original left.
    // If 1.0, it turns as the original right. If 0.4, it will be 40%
    // of the width from left to right.

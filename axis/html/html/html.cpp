@@ -672,12 +672,12 @@ namespace html
    }
 
 
-   bool html::defer_get_html(string& strHtml, ::file::path& pathHtml, ::object* pobjectContext, const ::var& var)
+   bool html::defer_get_html(string& strHtml, ::file::path& pathHtml, ::object* pobjectContext, const ::payload& payload)
    {
 
       bool bHtml = false;
 
-      strHtml = var.get_string();
+      strHtml = payload.get_string();
 
       if (strHtml.Left(2048).trimmed().contains_ci("<html"))
       {
@@ -691,7 +691,7 @@ namespace html
 
          strHtml.Empty();
 
-         pathHtml = var.get_file_path();
+         pathHtml = payload.get_file_path();
 
          bHtml = pathHtml.ends_ci(".html") || pathHtml.ends_ci(".htm") || pathHtml.ends_ci(".xhtml");
 
@@ -709,7 +709,7 @@ namespace html
    }
 
 
-   edisplay html::display_name_to_id(const var & varDisplay,e_tag e_tag)
+   edisplay html::display_name_to_id(const payload & varDisplay,e_tag e_tag)
    {
 
       if(varDisplay.is_empty())

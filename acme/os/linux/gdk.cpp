@@ -273,10 +273,10 @@ namespace user
    }
 
 
-   void wallpaper_change_notification (GSettings   *settings,             const gchar *key,             gpointer     data)
+   void wallpaper_change_notification (GSettings * settings, const gchar * key, gpointer data)
    {
 
-      System.apply_update(id_wallpaper_change);
+      System.process_subject(id_wallpaper_change);
 
    }
 

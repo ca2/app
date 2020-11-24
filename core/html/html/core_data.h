@@ -228,7 +228,7 @@ namespace html
       //virtual i64 dec_ref(OBJ_REF_DBG_PARAMS) override;
 
 
-      virtual bool open_document(const var & varFile) override;
+      virtual bool open_document(const payload & varFile) override;
 
 
       virtual ::estatus     open_html(const ::string & str) override;

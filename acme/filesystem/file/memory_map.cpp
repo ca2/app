@@ -51,7 +51,7 @@ namespace file
 
 #ifdef LINUX
 
-      ::file::path path("/var/tmp/ca2/");
+      ::file::path path("/payload/tmp/ca2/");
 
       string str = m_strName;
 

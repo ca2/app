@@ -15,7 +15,7 @@ namespace multimedia
       virtual ~file_application();
 
 
-      virtual file_pointer get_file(var varFile, u32 nOpenFlags);
+      virtual file_pointer get_file(payload varFile, u32 nOpenFlags);
 
 
    };

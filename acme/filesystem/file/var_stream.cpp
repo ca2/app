@@ -154,9 +154,9 @@ var_stream::~var_stream()
 //   {
 //      m_var = id;
 //   }
-//   void var_stream::write(var & var)
+//   void var_stream::write(payload & payload)
 //   {
-//      m_var = var;
+//      m_var = payload;
 //   }
 //   void var_stream::write(property & property)
 //   {
@@ -196,7 +196,7 @@ var_stream::~var_stream()
 
 //   void var_stream::read(const size & & size);
 //   void var_stream::read(id & id);
-//   void var_stream::read(var & var);
+//   void var_stream::read(payload & payload);
 //   void var_stream::read(property & property);
 //   void var_stream::read(string & str);
 //   void var_stream::read(matter * pobject);
@@ -225,7 +225,7 @@ var_stream::~var_stream()
 //void var_stream::write_object(const ::id & id, ::matter * pobject)
 //{
 //
-//   var_stream stream(new ::var(&var()[id].propset()));
+//   var_stream stream(new ::payload(&payload()[id].propset()));
 //
 //   ::id idType = pobject->type_name();
 //
@@ -243,7 +243,7 @@ var_stream::~var_stream()
 //__pointer(::matter) var_stream::read_object(const ::id & id)
 //{
 //
-//   var_stream stream(new ::var(&var()[id].propset()));
+//   var_stream stream(new ::payload(&payload()[id].propset()));
 //
 //   string strId;
 //

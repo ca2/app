@@ -20,7 +20,7 @@ namespace user
 
       virtual void on_request(::create* pcreate) override;
 
-      virtual ::user::document* open_document_file(::apex::application* pappOnBehalfOf, var varFile, bool bMakeVisible = true, ::user::interaction* puiParent = nullptr, ewindowflag eflag = ewindowflag(), ::id id = ::id());
+      virtual ::user::document* open_document_file(::apex::application* pappOnBehalfOf, payload varFile, bool bMakeVisible = true, ::user::interaction* puiParent = nullptr, ewindowflag eflag = ewindowflag(), ::id id = ::id());
 
       virtual ::user::document* create_subdocument(::user::impact_data* pimpactdata);
 

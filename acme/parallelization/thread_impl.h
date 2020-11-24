@@ -90,7 +90,7 @@ inline uptr uptr_hash(ithread_t key)
 
 #endif
 
-//CLASS_DECL_ACME ＿＿pointer(mq) ＿＿get_mq(ithread_t id, bool bCreate);
+//CLASS_DECL_ACME __pointer(mq) __get_mq(ithread_t id, bool bCreate);
 
 
 

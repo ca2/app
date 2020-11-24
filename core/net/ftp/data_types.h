@@ -440,7 +440,7 @@ namespace ftp
       public:
          code()
          {
-            ·zero(m_szCode);
+            xxf_zero(m_szCode);
          }
          const char * Value() const { return m_szCode; }
          bool Set(const string& strCode)
@@ -449,7 +449,7 @@ namespace ftp
                   strCode[0]<_T('1') || strCode[0]>_T('5') ||
                   strCode[1]<_T('0') || strCode[1]>_T('5') )
             {
-               ·zero(m_szCode);
+               xxf_zero(m_szCode);
                return false;
             }
             strcpy(m_szCode, strCode);

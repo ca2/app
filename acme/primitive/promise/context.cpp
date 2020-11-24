@@ -1,35 +1,42 @@
 #include "framework.h"
 
 
-machine::machine()
+namespace promise
 {
 
-   m_iUpdateSerial = -1;
-   m_bFork = false;
 
-}
+   context::context()
+   {
 
+      m_iUpdateSerial = -1;
+      m_bFork = false;
 
-machine::~machine()
-{
-
-}
+   }
 
 
-::estatus machine::start_task()
-{
+   context::~context()
+   {
 
-   return ::success_none;
-
-}
+   }
 
 
-void machine::set_up_to_date(::manager * pupdate)
-{
+   ::estatus context::start_task()
+   {
 
-   m_iUpdateSerial = pupdate->m_iUpdateSerial;
+      return ::success_none;
 
-}
+   }
+
+
+   void context::set_up_to_date(::promise::handler *phandler)
+   {
+
+      m_iUpdateSerial = phandler->m_iUpdateSerial;
+
+   }
+
+
+} // namespace promise
 
 
 

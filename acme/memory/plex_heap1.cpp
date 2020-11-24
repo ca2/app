@@ -764,13 +764,13 @@ void plex_heap_alloc_sync::Free(void * pParam)
 #undef new
 
 
-class CLASS_DECL_ACME plex_heap     // warning var length structure
+class CLASS_DECL_ACME plex_heap     // warning payload length structure
 {
 public:
 
 
    plex_heap *    m_pheapNext;
-   byte           m_data; // first data byte of this var length structure
+   byte           m_data; // first data byte of this payload length structure
 
 
    void * data() { return &m_data; }

@@ -192,7 +192,7 @@ namespace http
    }
 
 
-   bool application::is_file_or_dir(const char * pszUrl, var * pvarQuery, ::file::enum_type * petype, property_set & set)
+   bool application::is_file_or_dir(const char * pszUrl, payload * pvarQuery, ::file::enum_type * petype, property_set & set)
    {
 
       string strUrl(pszUrl);
@@ -332,7 +332,7 @@ namespace http
    }
 
 
-   var application::length(const char * pszUrl, property_set & set)
+   payload application::length(const char * pszUrl, property_set & set)
    {
 
       return length(pszUrl, nullptr, set);
@@ -340,7 +340,7 @@ namespace http
    }
 
 
-   var application::length(const char * pszUrl, var * pvarQuery, property_set & set)
+   payload application::length(const char * pszUrl, payload * pvarQuery, property_set & set)
    {
 
       string strUrl(pszUrl);
@@ -381,7 +381,7 @@ namespace http
 
       }
 
-      var len = Context.http().length(strUrl, process_set(set, pszUrl));
+      payload len = Context.http().length(strUrl, process_set(set, pszUrl));
 
       if (len.is_empty())
       {
@@ -411,7 +411,7 @@ namespace http
    }
 
 
-   bool application::download(::sockets::socket_handler & handler, __pointer(::sockets::http_session) & psession,const char * pszUrl,var varFile,property_set & set)
+   bool application::download(::sockets::socket_handler & handler, __pointer(::sockets::http_session) & psession,const char * pszUrl,payload varFile,property_set & set)
    {
 
       return Context.http().download(handler, psession, pszUrl,varFile,process_set(set,pszUrl));
@@ -419,7 +419,7 @@ namespace http
    }
 
 
-   bool application::download(const char * pszUrl, var varFile, property_set & set)
+   bool application::download(const char * pszUrl, payload varFile, property_set & set)
    {
       return Context.http().download(pszUrl, varFile, process_set(set, pszUrl));
    }

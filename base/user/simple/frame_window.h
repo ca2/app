@@ -31,7 +31,7 @@ public:
    bool                                            m_bShowTask;
    __pointer(::draw2d::icon)                       m_piconNotify;
    __pointer(::user::notify_icon)                  m_pnotifyicon;
-   var                                             m_varFrame;
+   payload                                             m_varFrame;
 
 
    simple_frame_window();

@@ -81,8 +81,8 @@ public:
    void _001OnUpdate(::message::message * pmessage);
 
 
-   virtual ::estatus     request_file(var varFile);
-   virtual ::estatus     request_file(var varFile, var varQuery);
+   virtual ::estatus     request_file(payload varFile);
+   virtual ::estatus     request_file(payload varFile, payload varQuery);
    virtual ::estatus     request(arguments arguments);
 
    virtual ::estatus     do_request(::create * pcreate);
@@ -123,13 +123,13 @@ public:
 
    
    template < typename PRED >
-   ::image_pointer get_image(const var & varFile, ::u64 uTrait, PRED pred);
+   ::image_pointer get_image(const payload & varFile, ::u64 uTrait, PRED pred);
 
 
-   virtual ::image_pointer load_image(const var & varFile, bool bCache = true, bool bCreateHelperMaps = false);
+   virtual ::image_pointer load_image(const payload & varFile, bool bCache = true, bool bCreateHelperMaps = false);
    virtual ::image_pointer load_matter_image(const char * pszMatter, bool bCache = true, bool bCreateHelperMaps = false);
    virtual ::image_pointer load_matter_icon(string_array & straMatter, string strIcon);
-   virtual ::image_pointer load_thumbnail(const var & varFile, int w, int h);
+   virtual ::image_pointer load_thumbnail(const payload & varFile, int w, int h);
    virtual ::image_pointer load_thumbnail(const char * pszPath);
    virtual ::image_pointer load_dib(const ::file::path & pathDib);
 

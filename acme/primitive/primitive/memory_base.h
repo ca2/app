@@ -102,7 +102,7 @@ public:
 
    memory_base() {}
    memory_base(const memory_base & base) : m_memory(base.m_memory) {}
-   memory_base(memory_base && base) : m_memory(base.m_memory) { ·zero(base.m_memory); }
+   memory_base(memory_base && base) : m_memory(base.m_memory) { xxf_zero(base.m_memory); }
    virtual ~memory_base();
 
 
@@ -190,7 +190,7 @@ public:
    void from_string(const widechar * pwsz);
    void from_string(const char * psz);
    void from_string(const string & str);
-   void from_string(const var & var);
+   void from_string(const payload & payload);
    //void to_string(string & str, memsize iStart = 0, memsize uiSize = -1) const;
    virtual void to_string(const string_exchange & str) const override;
    string to_string(memsize iStart, memsize uiSize = -1) const;

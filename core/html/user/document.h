@@ -27,7 +27,7 @@ public:
 
    DECL_GEN_SIGNAL(data_on_after_change);
 
-   virtual bool open_document(const var & varFile) override;
+   virtual bool open_document(const payload & varFile) override;
 
    virtual bool load_html(const string & str);
 
@@ -40,7 +40,7 @@ public:
    virtual void form_document_set_callback(::user::form_callback * pcallback);
 
    //bool open_document(::create * pcreate) override;
-   bool on_open_document(const var & varFile) override;
+   bool on_open_document(const payload & varFile) override;
 
    virtual void on_command_probe(::user::command * pcommand) override;
    virtual void on_command(::user::command * pcommand) override;

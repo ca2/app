@@ -186,7 +186,7 @@
 //    )
 //{
 //
-//   wstring wstr = "/var/apex/time/";
+//   wstring wstr = "/payload/apex/time/";
 //
 //   ::count iLen = min(nBufferLength, wstr.get_length());
 //

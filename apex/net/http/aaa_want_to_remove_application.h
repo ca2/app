@@ -29,10 +29,10 @@ namespace http
       virtual string api_get(const char * pszUrl);
 
       virtual bool exists(const char * pszUrl, property_set & set);
-      virtual bool is_file_or_dir(const char * pszUrl, var * pvarQuery, ::file::enum_type * petype, property_set & set);
+      virtual bool is_file_or_dir(const char * pszUrl, payload * pvarQuery, ::file::enum_type * petype, property_set & set);
 
-      virtual var length(const char * pszUrl, property_set & set);
-      virtual var length(const char * pszUrl, var * pvarQuery, property_set & set);
+      virtual payload length(const char * pszUrl, property_set & set);
+      virtual payload length(const char * pszUrl, payload * pvarQuery, property_set & set);
 
       virtual string get(const char * pszUrl, property_set & set);
       virtual ::estatus _get(const char * pszUrl, property_set & set);
@@ -42,8 +42,8 @@ namespace http
 
       virtual bool request(const char * pszRequest, const char * pszUrl, property_set & set);
 
-      virtual bool download(::sockets::socket_handler & handler, __pointer(::sockets::http_session) & psession,const char * pszUrl, var varFile,property_set & set);
-      virtual bool download(const char * pszUrl, var varFile, property_set & set);
+      virtual bool download(::sockets::socket_handler & handler, __pointer(::sockets::http_session) & psession,const char * pszUrl, payload varFile,property_set & set);
+      virtual bool download(const char * pszUrl, payload varFile, property_set & set);
 
 
       virtual bool put(const char * pszUrl, memory & memory, property_set & set);

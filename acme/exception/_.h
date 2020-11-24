@@ -133,7 +133,7 @@ CLASS_DECL_ACME dump_context & operator<<(dump_context & dumpcontext, const ::da
 CLASS_DECL_ACME bool __enable_memory_tracking(bool bTrack);
 
 // Turn on/off the global flag gen_MemoryLeakOverride. if bEnable is TRUE
-// then further calls to __enable_memory_tracking() wont change the current
+// then further calls to __enable_memory_tracking() wont machine the current
 // memory tracking state, until __enable_memory_leak_override(bool bEnable)
 // is called again with bEnable == FALSE.
 CLASS_DECL_ACME bool __enable_memory_leak_override(bool bEnable);

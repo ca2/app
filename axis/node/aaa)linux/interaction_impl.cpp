@@ -351,7 +351,7 @@ namespace linux
             else
             {
 
-               ·zero(m_px11data->m_visualinfo);
+               xxf_zero(m_px11data->m_visualinfo);
 
             }
 
@@ -359,7 +359,7 @@ namespace linux
 
             XSetWindowAttributes attr;
 
-            ·zero(attr);
+            xxf_zero(attr);
 
             attr.colormap = XCreateColormap( display, rootwin, vis, AllocNone);
 
@@ -1005,7 +1005,7 @@ namespace linux
 
       }
 
-//      ::multithreading::post_quit_and_wait(m_pthreadProDevian, seconds(10));
+//      ::parallelization::post_quit_and_wait(m_pthreadProDevian, seconds(10));
 
 //      if (m_puserinteraction->m_pthread != nullptr)
 //      {

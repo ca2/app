@@ -372,15 +372,15 @@ namespace aura
       virtual void finalize() override;
 
       //template < typename VIEW >
-      //__pointer(::user::document)   create_form(__pointer(::user::interaction) pwndParent = nullptr, var var = ::var(::type_empty_argument), ::var varArgs = ::var(::type_empty_argument));
-      //__pointer(::user::document)   create_form(::type point, __pointer(::user::interaction) pwndParent, var var = ::var(::type_empty_argument), ::var varArgs = ::var(::type_empty_argument));
-      //__pointer(::user::document)   create_form(::user::form_callback* pcallback, __pointer(::user::interaction) pwndParent, var var = ::var(::type_empty_argument), ::var varArgs = ::var(::type_empty_argument));
-      //__pointer(::user::document)   create_form(__pointer(::user::form) pview, ::user::form_callback* pcallback, __pointer(::user::interaction) pwndParent, var var = ::var(::type_empty_argument), ::var varArgs = ::var(::type_empty_argument));
-      //__pointer(::user::document)   create_child_form(::user::form_callback* pcallback, __pointer(::user::interaction) pwndParent, ::var var = ::var(::type_empty_argument), ::var varArgs = ::var(::type_empty_argument));
+      //__pointer(::user::document)   create_form(__pointer(::user::interaction) pwndParent = nullptr, payload payload = ::payload(::type_empty_argument), ::payload varArgs = ::payload(::type_empty_argument));
+      //__pointer(::user::document)   create_form(::type point, __pointer(::user::interaction) pwndParent, payload payload = ::payload(::type_empty_argument), ::payload varArgs = ::payload(::type_empty_argument));
+      //__pointer(::user::document)   create_form(::user::form_callback* pcallback, __pointer(::user::interaction) pwndParent, payload payload = ::payload(::type_empty_argument), ::payload varArgs = ::payload(::type_empty_argument));
+      //__pointer(::user::document)   create_form(__pointer(::user::form) pview, ::user::form_callback* pcallback, __pointer(::user::interaction) pwndParent, payload payload = ::payload(::type_empty_argument), ::payload varArgs = ::payload(::type_empty_argument));
+      //__pointer(::user::document)   create_child_form(::user::form_callback* pcallback, __pointer(::user::interaction) pwndParent, ::payload payload = ::payload(::type_empty_argument), ::payload varArgs = ::payload(::type_empty_argument));
       //template < typename VIEW >
-      //__pointer(::user::document)   create_child_form(__pointer(::user::interaction) pwndParent, var var = ::var(::type_empty_argument));
-      //__pointer(::user::document)   create_child_form(::type point, __pointer(::user::interaction) pwndParent, var var = ::var(::type_empty_argument));
-      //__pointer(::user::document)   create_child_form(__pointer(::user::form) pview, ::user::form_callback* pcallback, __pointer(::user::interaction) pwndParent, var var = ::var(::type_empty_argument));
+      //__pointer(::user::document)   create_child_form(__pointer(::user::interaction) pwndParent, payload payload = ::payload(::type_empty_argument));
+      //__pointer(::user::document)   create_child_form(::type point, __pointer(::user::interaction) pwndParent, payload payload = ::payload(::type_empty_argument));
+      //__pointer(::user::document)   create_child_form(__pointer(::user::form) pview, ::user::form_callback* pcallback, __pointer(::user::interaction) pwndParent, payload payload = ::payload(::type_empty_argument));
 
 
       //virtual __pointer(::user::menu_interaction) create_menu_button(::user::style_pointer & pstyle,::user::menu_item* pitem) override;
@@ -423,7 +423,7 @@ namespace aura
 
       virtual bool place(::user::main_frame* pmainframe, ::create* pcreate);
 
-      virtual void request_topic_file(var& varQuery) override;
+      virtual void request_topic_file(payload& varQuery) override;
 
       virtual void request_topic_file() override;
 

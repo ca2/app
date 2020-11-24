@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace multithreading
+namespace parallelization
 {
 
 
@@ -18,7 +18,7 @@ namespace multithreading
    }
 
 
-} // namespace multithreading
+} // namespace parallelization
 
 
 

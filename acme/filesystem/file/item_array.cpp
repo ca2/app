@@ -31,13 +31,13 @@ namespace file
    }
 
 
-   var item_array::get_var_file() const
+   payload item_array::get_var_file() const
    {
 
       if (this->get_count() <= 0)
       {
 
-         return ::var(::type_empty);
+         return ::payload(::type_empty);
 
       }
       else if (this->get_count() == 1)
@@ -60,7 +60,7 @@ namespace file
       else
       {
 
-         class var var;
+         class payload payload;
 
          for (index i = 0; i < this->get_count(); i++)
          {
@@ -68,32 +68,32 @@ namespace file
             if (this->element_at(i)->m_filepathUser.has_char())
             {
 
-               var.stra().add(this->element_at(i)->m_filepathUser);
+               payload.stra().add(this->element_at(i)->m_filepathUser);
 
             }
             else
             {
 
-               var.stra().add(this->element_at(i)->m_filepathFinal);
+               payload.stra().add(this->element_at(i)->m_filepathFinal);
 
             }
 
          }
 
-         return var;
+         return payload;
 
       }
 
    }
 
 
-   var item_array::get_var_final_path() const
+   payload item_array::get_var_final_path() const
    {
 
       if (this->get_count() <= 0)
       {
 
-         return ::var(::type_empty);
+         return ::payload(::type_empty);
 
       }
       else if (this->get_count() == 1)
@@ -116,7 +116,7 @@ namespace file
       else
       {
 
-         class var var;
+         class payload payload;
 
          for (index i = 0; i < this->get_count(); i++)
          {
@@ -124,61 +124,61 @@ namespace file
             if (this->element_at(i)->m_filepathFinal.has_char())
             {
 
-               var.stra().add(this->element_at(i)->m_filepathFinal);
+               payload.stra().add(this->element_at(i)->m_filepathFinal);
 
             }
             else
             {
 
-               var.stra().add(this->element_at(i)->m_filepathUser);
+               payload.stra().add(this->element_at(i)->m_filepathUser);
 
             }
 
          }
 
-         return var;
+         return payload;
 
       }
 
    }
 
 
-   var item_array::get_var_query() const
+   payload item_array::get_var_query() const
    {
 
       if (this->get_count() <= 0)
       {
 
-         return ::var(::type_empty);
+         return ::payload(::type_empty);
 
       }
       else if (this->get_count() == 1)
       {
 
-         class var var;
+         class payload payload;
 
-         var["FileManagerItem_flags"] = __new(flags < e_flag >(this->element_at(0)->m_flags));
+         payload["FileManagerItem_flags"] = __new(flags < e_flag >(this->element_at(0)->m_flags));
 
-         return var;
+         return payload;
 
       }
       else
       {
 
-         class var var;
+         class payload payload;
 
          for (index i = 0; i < this->get_count(); i++)
          {
 
-            class var varPropSet;
+            class payload varPropSet;
 
             varPropSet["FileManagerItem_flags"] = __new(flags < e_flag >(this->element_at(i)->m_flags));
 
-            var.vara().add(varPropSet);
+            payload.vara().add(varPropSet);
 
          }
 
-         return var;
+         return payload;
 
       }
 

@@ -8,7 +8,7 @@
 //
 //
 //   manual_reset_event               m_event;
-//   ＿＿pointer(::matter)      m_pobjectRunnable;
+//   __pointer(::matter)      m_pobjectRunnable;
 //
 //
 //   sync_task(::matter* pobjectRunnable);
@@ -22,10 +22,10 @@
 
 
 //template < typename PRED >
-//inline auto ＿＿sync_method(PRED pred)
+//inline auto __sync_method(PRED pred)
 //{
 //
-//   return ＿＿new(sync_method(method(pred)));
+//   return __new(sync_method(method(pred)));
 //
 //}
 

@@ -697,7 +697,7 @@ bool lite_html_reader::getBoolOption(ReaderOptionsEnum option, bool& bCurVal) co
 * true/false indicating if the specified option
 * was set successfully.
 *
-* @lparam option - option to change
+* @lparam option - option to machine
 *                 (one of the ReaderOptionsEnum constants)
 * @lparam bNewVal - value to set
 *

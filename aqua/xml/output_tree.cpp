@@ -65,19 +65,19 @@ namespace xml
    }
 
 
-   node * output_tree::export_node(const char * pcszName, var var)
+   node * output_tree::export_node(const char * pcszName, payload payload)
 
    {
-      m_varexchange.m_pvar = &var;
+      m_varexchange.m_pvar = &payload;
       return export_node(pcszName, m_varexchange);
 
    }
 
 
-   void output_tree::set_attribute(const ::id & id, const var & var)
+   void output_tree::set_attribute(const ::id & id, const payload & payload)
    {
 
-      m_pnode->set_attribute(id, var);
+      m_pnode->set_attribute(id, payload);
 
    }
 

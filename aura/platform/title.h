@@ -12,28 +12,28 @@ public:
 
 
 
-inline var operator + (var var, const ::title& title)
+inline payload operator + (payload payload, const ::title& title)
 {
 
-   if (var.get_type() != type_propset)
+   if (payload.get_type() != type_propset)
    {
 
-      var["message"] = var.get_string();
+      payload["message"] = payload.get_string();
 
    }
 
-   var["title"] = (const ::string&) title;
+   payload["title"] = (const ::string&) title;
 
-   return var;
+   return payload;
 
 }
 
 
 
-inline var operator + (const char* psz, const ::title& title)
+inline payload operator + (const char* psz, const ::title& title)
 {
 
-   return operator +((::var)psz, title);
+   return operator +((::payload)psz, title);
 
 }
 

@@ -6,7 +6,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 #include "framework.h"
 #include "_.h"
-#include "acme/multithreading/mq.h"
+#include "acme/parallelization/mq.h"
 
 
 #undef System

@@ -23,7 +23,7 @@ namespace draw2d
       virtual ::estatus initialize(::layered* pobjectContext) override;
 
 
-      virtual void on_apply(::action * paction) override;
+      virtual void on_apply(::subject * paction) override;
 
 
       virtual bool check_need_update();

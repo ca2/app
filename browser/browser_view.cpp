@@ -669,7 +669,7 @@ namespace browser
          if (m_strProcessedHellomultiverse != m_prender->m_strHelloBrowser)
          {
 
-            m_prender->m_strHelloBrowser = m_strProcessedHellomultiverse.c_str(); // rationale : string allocation fork *for multithreading*
+            m_prender->m_strHelloBrowser = m_strProcessedHellomultiverse.c_str(); // rationale : string allocation fork *for parallelization*
 
             sl.unlock();
 

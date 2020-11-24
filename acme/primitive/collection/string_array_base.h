@@ -419,7 +419,7 @@ public:
 
    //   void XFV001Expand();
 
-   string_array_base & operator =(const var var);
+   string_array_base & operator =(const payload payload);
 //   string_array_base & operator =(const string_array_base & stra);
    string_array_base & operator =(const i64_array & ia);
 //   string_array_base & operator =(const string_array_base & stra);

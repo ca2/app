@@ -239,7 +239,7 @@ public:
     * Registers an event handler with a lite_html_reader. If no
     * event handler is registered with the reader, all events
     * raised by the reader will be ignored. An application can
-    * change the event handler even when the parsing process
+    * machine the event handler even when the parsing process
     * is in progress.
     *
     * @lparam pNewHandler - pointer to an event handler.

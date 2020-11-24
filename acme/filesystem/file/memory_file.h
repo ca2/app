@@ -29,7 +29,7 @@ public:
    memory_file(const memory_file & file);
    memory_file(memory_file && file);
    memory_file(void * pMemory, memsize dwSize);
-   memory_file(var & var, ::u32 nFlags = 0);
+   memory_file(payload & payload, ::u32 nFlags = 0);
    memory_file(memory_base & memory, efileopen eopen = 0);
    memory_file(memory_base * pmemory, efileopen eopen = 0);
    template < typename MEMORY>
@@ -71,7 +71,7 @@ public:
 
    virtual void to_string(const string_exchange & str) const override;
 
-   //virtual void full_load(var varFile);
+   //virtual void full_load(payload varFile);
 
    using ::file::file::get_internal_data;
    virtual void * get_internal_data() override;

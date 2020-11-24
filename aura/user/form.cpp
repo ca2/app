@@ -46,7 +46,7 @@ namespace user
    }
 
 
-   ::estatus form::open_document(const var& varFile)
+   ::estatus form::open_document(const payload& varFile)
    {
 
       return ::error_interface_only;

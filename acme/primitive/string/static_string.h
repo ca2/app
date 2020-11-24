@@ -21,9 +21,12 @@ public:
       return m_psz;
    }
 
+
    static strsize __cdecl get_length()
    {
+
       return (t_nSize / sizeof(TYPE_CHAR)) - 1;
+
    }
 
 

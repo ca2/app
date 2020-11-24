@@ -61,7 +61,7 @@ namespace console
    }
 
 
-   bool prompt_document::on_open_document(const var & varFile)
+   bool prompt_document::on_open_document(const payload & varFile)
    {
 
       string str = Context.file().as_string(varFile);

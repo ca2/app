@@ -495,11 +495,11 @@ namespace papaya
 
 
       template < typename Type, typename RawType >
-      ::index add(string_array_base < Type, RawType > & array, const ::var & var);
+      ::index add(string_array_base < Type, RawType > & array, const ::payload & payload);
 
 
       template < typename Type, typename RawType >
-      ::index unfold_add(string_array_base < Type, RawType > & array, const ::var & var);
+      ::index unfold_add(string_array_base < Type, RawType > & array, const ::payload & payload);
 
       template < class TYPE >
       ::count ensure_sequence(::numeric_array < TYPE > & a, TYPE start, TYPE end, TYPE increment = 1);
@@ -597,7 +597,7 @@ namespace papaya
       inline ::index add(string_array & stra, const ansistring & str);
       inline ::index add(string_array & stra, const widestring & str);
       inline ::index add(string_array & stra, const ::file::path & path);
-      inline ::index add(string_array & stra, const ::var & var);
+      inline ::index add(string_array & stra, const ::payload & payload);
       inline ::index add(string_array & stra, const ::property & property);
       inline ::index add(string_array & stra, const ::property_set & propertyset);
 

@@ -59,7 +59,7 @@ bool machine_event::read(machine_event_data * pdata)
       if (pfile == nullptr)
       {
 
-         ·zero_pointer(pdata);
+         xxf_zero_pointer(pdata);
 
          return false;
 

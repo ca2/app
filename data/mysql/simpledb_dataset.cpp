@@ -90,7 +90,7 @@ namespace simpledb
 
 
       database::SqlRecord rec;
-      var v;
+      payload v;
 
       if (reslt != nullptr)
       {
@@ -173,7 +173,7 @@ namespace simpledb
 
 
       database::SqlRecord rec;
-      var v;
+      payload v;
 
       if (reslt != nullptr)
       {
@@ -782,7 +782,7 @@ namespace simpledb
       return true;
    }
 
-   bool set::SetFieldValue(const char *f_name, const var &value)
+   bool set::SetFieldValue(const char *f_name, const payload &value)
    {
       bool found = false;
       if(ds_state == database::dataset_select)
@@ -809,7 +809,7 @@ namespace simpledb
       //  return false;
    }
 
-   bool set::SetFieldValue(index iFieldIndex, const var &value)
+   bool set::SetFieldValue(index iFieldIndex, const payload &value)
    {
       if(ds_state == database::dataset_select)
       {
@@ -832,7 +832,7 @@ namespace simpledb
       //  return false;
    }
 
-   var & set::FieldValueAt(index iFieldIndex)
+   payload & set::FieldValueAt(index iFieldIndex)
    {
       //if(ds_state == dataset_select)
       {
@@ -868,7 +868,7 @@ namespace simpledb
       return -1;
    }
 
-   bool set::find_first(char * fieldname, var & value)
+   bool set::find_first(char * fieldname, payload & value)
    {
       index iFound = -1;
       if(ds_state == database::dataset_select)
@@ -972,7 +972,7 @@ namespace simpledb
 
 
       database::record rec;
-      var v;
+      payload v;
 
       if (reslt != nullptr)
       {

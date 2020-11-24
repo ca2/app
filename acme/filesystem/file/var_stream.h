@@ -23,7 +23,7 @@ inline void __exchange(::var_stream & s, const char * psz);
 inline void __exchange(::var_stream & s, string & str);
 inline void __exchange(::var_stream & s, ::file::path & path);
 inline void __exchange(::var_stream & s, ::id & id);
-inline void __exchange(::var_stream & s, ::var & var);
+inline void __exchange(::var_stream & s, ::payload & payload);
 inline void __exchange(::var_stream & s, ::property & property);
 inline void __exchange(::var_stream & s, ::property_set& set);
 inline void __exchange(::var_stream & s, ::block & block);
@@ -71,16 +71,16 @@ class CLASS_DECL_ACME var_stream :
 public:
 
 
-   class var *          m_pvar;
+   class payload *          m_pvar;
 
 
    var_stream();
-   var_stream(class ::var * pvar);
+   var_stream(class ::payload * pvar);
    virtual ~var_stream();
 
 
-   class var & var();
-   const class var & var() const;
+   class payload & payload();
+   const class payload & payload() const;
 
 
    template < typename TYPE >

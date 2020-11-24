@@ -79,7 +79,7 @@ public:
    virtual file_result get_file(const ::file::path & path, ::u32 nOpenFlags) override;
 
    virtual bool file_exists(const ::file::path & pszPath) override;
-   virtual var file_length(const ::file::path & pszPath) override;
+   virtual payload file_length(const ::file::path & pszPath) override;
 
    virtual bool is_zero_latency(const ::file::path & psz) override;
 

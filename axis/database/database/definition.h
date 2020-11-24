@@ -137,7 +137,7 @@ virtual ::stream & read(::stream & stream) override;
       row            m_row;
 
 
-      var & get_value(index i);
+      payload & get_value(index i);
       const char * get_key(index i);
       ::count get_size();
       bool is_empty();

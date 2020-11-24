@@ -72,10 +72,10 @@ namespace simpledb
    }
 
 
-   var database::query_item(const char * pszSql,var varDefault)
+   payload database::query_item(const char * pszSql,payload varDefault)
    {
 
-      return ::var(::e_type_null);
+      return ::payload(::e_type_null);
 
    }
 
@@ -88,42 +88,42 @@ namespace simpledb
    }
 
 
-   var database::query_items(const char * pszSql)
+   payload database::query_items(const char * pszSql)
    {
 
-      return ::var(::e_type_null);
+      return ::payload(::e_type_null);
 
    }
 
 
-   var database::query_row(const char * pszSql)
+   payload database::query_row(const char * pszSql)
    {
 
-      return ::var(::e_type_null);
+      return ::payload(::e_type_null);
 
    }
 
 
-   var database::query_rows(const char * pszSql)
+   payload database::query_rows(const char * pszSql)
    {
 
-      return ::var(::e_type_null);
+      return ::payload(::e_type_null);
 
    }
 
 
-   var database::query_table_item(const char * table,const char * item,const char *where,var notfound)
+   payload database::query_table_item(const char * table,const char * item,const char *where,payload notfound)
    {
 
-      return ::var(::e_type_null);
+      return ::payload(::e_type_null);
 
    }
 
 
-   var database::get_agent(const char * pszTable,const char * psz,const char * pszUser)
+   payload database::get_agent(const char * pszTable,const char * psz,const char * pszUser)
    {
 
-      return ::var(::e_type_null);
+      return ::payload(::e_type_null);
 
    }
 
@@ -144,7 +144,7 @@ namespace simpledb
    }
 
 
-   var database::get_insert_id()
+   payload database::get_insert_id()
    {
 
       return -1;

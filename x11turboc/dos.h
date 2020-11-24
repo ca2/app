@@ -61,7 +61,7 @@ struct time
 //----------------------------------------------------------------------------
 // Function prototypes.
 
-__BEGIN_DECLS 
+__BEGIN_DECLS
 
 //
 extern void gettime (struct time *timep);

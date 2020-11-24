@@ -118,7 +118,7 @@ namespace user
 
       //virtual bool has_action_hover() override;
 
-      bool LoadBitmaps(::var var,::var varSel = ::e_type_null,::var varFocus = ::e_type_null,::var varDisabled = ::e_type_null,::var varHover = ::e_type_null);
+      bool LoadBitmaps(::payload payload,::payload varSel = ::e_type_null,::payload varFocus = ::e_type_null,::payload varDisabled = ::e_type_null,::payload varHover = ::e_type_null);
 
 
       virtual void set_button_style(e_style estyle);

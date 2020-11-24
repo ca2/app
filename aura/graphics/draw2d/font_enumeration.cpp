@@ -42,7 +42,7 @@ namespace draw2d
    }
 
 
-   void font_enumeration::on_apply(::action * paction)
+   void font_enumeration::on_apply(::subject * paction)
    {
 
       if (paction->id() == id_os_font_change)

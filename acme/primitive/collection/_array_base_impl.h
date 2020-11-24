@@ -271,7 +271,7 @@ void array_base < TYPE, ARG_TYPE, ALLOCATOR >::copy(const array_base < TYPE, ARG
 
 
 
-// take in accptr that _001RemoveIndexes change
+// take in accptr that _001RemoveIndexes machine
 // the ::index raw_array by sorting it and returning
 // only the indexes that could be removed
 // without indexes duplicates

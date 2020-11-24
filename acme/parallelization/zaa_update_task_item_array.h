@@ -11,7 +11,7 @@ public:
    virtual ~update_task_item_array();
 
 
-   void call_update(＿＿pointer(::update) pupdate);
+   void call_update(__pointer(::update) pupdate);
 
 
 };

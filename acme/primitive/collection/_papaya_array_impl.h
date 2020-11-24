@@ -138,34 +138,34 @@ namespace papaya
 
 
       template < typename Type, typename RawType >
-      ::index add(string_array_base < Type, RawType > & array, const ::var & var)
+      ::index add(string_array_base < Type, RawType > & array, const ::payload & payload)
       {
 
          index i = -1;
 
-         if (var.is_empty())
+         if (payload.is_empty())
          {
 
          }
-         else if (var.get_type() == ::type_stra)
+         else if (payload.get_type() == ::type_stra)
          {
 
-            i = ::papaya::array::add(array, var.stra());
+            i = ::papaya::array::add(array, payload.stra());
 
          }
-         else if (var.cast < string_array_base < Type, RawType > >() != nullptr)
+         else if (payload.cast < string_array_base < Type, RawType > >() != nullptr)
          {
 
-            i = ::papaya::array::add(array, *var.cast < string_array_base < Type, RawType > >());
+            i = ::papaya::array::add(array, *payload.cast < string_array_base < Type, RawType > >());
 
          }
-         else if (var.get_type() == ::type_vara)
+         else if (payload.get_type() == ::type_vara)
          {
 
-            for (::index i = 0; i < var.vara().get_count(); i++)
+            for (::index i = 0; i < payload.vara().get_count(); i++)
             {
 
-               index iItem = ::papaya::array::add(array, var.vara()[i].get_string());
+               index iItem = ::papaya::array::add(array, payload.vara()[i].get_string());
 
                if (i < 0)
                {
@@ -177,13 +177,13 @@ namespace papaya
             }
 
          }
-         else if (var.get_type() == ::type_inta)
+         else if (payload.get_type() == ::type_inta)
          {
 
-            for (::index i = 0; i < var.inta().get_count(); i++)
+            for (::index i = 0; i < payload.inta().get_count(); i++)
             {
 
-               auto iItem = ::papaya::array::add(array, __str(var.inta()[i]));
+               auto iItem = ::papaya::array::add(array, __str(payload.inta()[i]));
 
                if (i < 0)
                {
@@ -195,10 +195,10 @@ namespace papaya
             }
 
          }
-         else if (var.get_type() == ::type_propset)
+         else if (payload.get_type() == ::type_propset)
          {
 
-            for (auto & value : var.propset().values())
+            for (auto & value : payload.propset().values())
             {
 
                auto iItem = ::papaya::array::add(array, value.get_string());
@@ -215,7 +215,7 @@ namespace papaya
          }
          else
          {
-            i = ::papaya::array::add(array, var.get_string());
+            i = ::papaya::array::add(array, payload.get_string());
 
          }
 
@@ -593,20 +593,20 @@ namespace papaya
       inline ::index add(::file::patha & patha, const ::file::path & path) { return patha.add_item(path); }
 
 
-      inline ::index add(string_array & stra, const ::var & var)
+      inline ::index add(string_array & stra, const ::payload & payload)
       {
 
          ::index iInsert = -1;
 
-         if (var.is_array())
+         if (payload.is_array())
          {
 
-            ::count c = var.array_get_count();
+            ::count c = payload.array_get_count();
 
             for (::index i = 0; i < c; i++)
             {
 
-               auto iItem = stra.add_item(var.at(i));
+               auto iItem = stra.add_item(payload.at(i));
 
                if (iInsert < 0)
                {
@@ -621,7 +621,7 @@ namespace papaya
          else
          {
 
-            iInsert = stra.add_item(var.get_string());
+            iInsert = stra.add_item(payload.get_string());
 
          }
 
@@ -632,7 +632,7 @@ namespace papaya
       inline ::index add(string_array & stra, const ::property & property)
       {
 
-         return add(stra, (const var & ) property);
+         return add(stra, (const payload & ) property);
 
       }
 

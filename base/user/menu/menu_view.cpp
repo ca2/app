@@ -209,10 +209,10 @@ namespace user
    }
 
 
-   void menu_view::on_apply(::action * paction)
+   void menu_view::on_apply(::subject * paction)
    {
 
-      ::user::impact::apply(paction);
+      ::user::impact::process(paction);
 
       if (paction->id() == id_after_change_text)
       {
@@ -629,7 +629,7 @@ namespace user
    }
 
 
-   bool menu_view::load_xml(var varFile)
+   bool menu_view::load_xml(payload varFile)
    {
 
       string str = Context.file().as_string(varFile);

@@ -171,8 +171,8 @@ enum enum_type
    type_filetime,
    type_prop,
    type_pvar,
-   type_procedure,
-   type_futurevar,
+   type_routine,
+   type_process,
 
    // matter classes
    type_element = 8000,

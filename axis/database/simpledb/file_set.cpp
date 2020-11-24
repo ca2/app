@@ -117,9 +117,9 @@ namespace simpledb
 
       ::file::set::clear_search();
 
-      data_set(::id(), ::var(type_new));
+      data_set(::id(), ::payload(type_new));
 
-      data_set("recursive", ::var(type_new));
+      data_set("recursive", ::payload(type_new));
 
    }
 

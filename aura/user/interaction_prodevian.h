@@ -51,8 +51,8 @@ namespace user
 
       bool                                   m_bUpdatingScreen;
       millis                                   m_millisLastScreenUpdate;
-      ::procedure                            m_procedureUpdateScreen;
-      ::procedure                            m_procedureWindowShow;
+      ::routine                            m_routineUpdateScreen;
+      ::routine                            m_routineWindowShow;
 
 
       prodevian();

@@ -13,7 +13,7 @@ extern locale_t g_localeC;
 #endif
 
 
-property_set::property_set(::std::initializer_list < var > list)
+property_set::property_set(::std::initializer_list < payload > list)
 {
 
    ::id id;
@@ -106,13 +106,13 @@ bool property_set::has_properties(::count countMinimum) const
 }
 
 
-property * property_set::find_value_ci(const var & var) const
+property * property_set::find_value_ci(const payload & payload) const
 {
 
    for(auto & pproperty : *this)
    {
 
-      if (pproperty->compare_ci(var) == 0)
+      if (pproperty->compare_ci(payload) == 0)
       {
 
          return pproperty;
@@ -148,13 +148,13 @@ property * property_set::find_value_ci(const char * psz) const
 
 
 
-property * property_set::find_value(const var & var) const
+property * property_set::find_value(const payload & payload) const
 {
 
    for(auto & pproperty : *this)
    {
 
-      if (*pproperty == var)
+      if (*pproperty == payload)
       {
 
          return pproperty;
@@ -188,10 +188,10 @@ property * property_set::find_value(const char * psz) const
 }
 
 
-bool property_set::contains_value_ci(const var & var, ::count countMin, ::count countMax) const
+bool property_set::contains_value_ci(const payload & payload, ::count countMin, ::count countMax) const
 {
    ::count count = 0;
-   while((count < countMin || (countMax >= 0 && count <= countMax)) && find_value_ci(var) != nullptr)
+   while((count < countMin || (countMax >= 0 && count <= countMax)) && find_value_ci(payload) != nullptr)
       count++;
    return count >= countMin && conditional(countMax >= 0, count <= countMax);
 }
@@ -208,10 +208,10 @@ bool property_set::contains_value_ci(const char * psz, ::count countMin, ::count
 }
 
 
-bool property_set::contains_value(const var & var, ::count countMin, ::count countMax) const
+bool property_set::contains_value(const payload & payload, ::count countMin, ::count countMax) const
 {
    ::count count = 0;
-   while((count < countMin || (countMax >= 0 && count <= countMax)) && (find_value(var)) != nullptr)
+   while((count < countMin || (countMax >= 0 && count <= countMax)) && (find_value(payload)) != nullptr)
       count++;
    return count >= countMin && conditional(countMax >= 0, count <= countMax);
 }
@@ -226,10 +226,10 @@ bool property_set::contains_value(const char * psz, ::count countMin, ::count co
 }
 
 
-bool property_set::remove_first_value_ci(const var & var)
+bool property_set::remove_first_value_ci(const payload & payload)
 {
 
-   property * pproperty = find_value_ci(var);
+   property * pproperty = find_value_ci(payload);
 
    if(pproperty != nullptr)
    {
@@ -260,10 +260,10 @@ bool property_set::remove_first_value_ci(const char * pcsz)
 }
 
 
-bool property_set::remove_first_value(const var & var)
+bool property_set::remove_first_value(const payload & payload)
 {
 
-   property * pproperty = find_value(var);
+   property * pproperty = find_value(payload);
 
    if(pproperty != nullptr)
    {
@@ -294,15 +294,15 @@ bool property_set::remove_first_value(const char * pcsz)
 }
 
 
-::count property_set::remove_value_ci(const var & var, ::count countMin, ::count countMax)
+::count property_set::remove_value_ci(const payload & payload, ::count countMin, ::count countMax)
 {
 
    ::count count = 0;
 
-   if (contains_value_ci(var, countMin, countMax))
+   if (contains_value_ci(payload, countMin, countMax))
    {
 
-      while (conditional(countMax >= 0, count < countMax) && (remove_first_value_ci(var)))
+      while (conditional(countMax >= 0, count < countMax) && (remove_first_value_ci(payload)))
       {
 
          count++;
@@ -338,15 +338,15 @@ bool property_set::remove_first_value(const char * pcsz)
 }
 
 
-::count property_set::remove_value(const var & var, ::count countMin, ::count countMax)
+::count property_set::remove_value(const payload & payload, ::count countMin, ::count countMax)
 {
 
    ::count count = 0;
 
-   if(contains_value(var,countMin,countMax))
+   if(contains_value(payload,countMin,countMax))
    {
 
-      while(conditional(countMax >= 0,count < countMax && remove_first_value(var)))
+      while(conditional(countMax >= 0,count < countMax && remove_first_value(payload)))
       {
 
          count++;
@@ -478,7 +478,7 @@ bool property_set::is_empty(const id & idName) const
 }
 
 
-void property_set::_008ParseCommandLine(const char * pszCmdLineParam, var & varFile)
+void property_set::_008ParseCommandLine(const char * pszCmdLineParam, payload & varFile)
 {
 
    string strApp;
@@ -488,7 +488,7 @@ void property_set::_008ParseCommandLine(const char * pszCmdLineParam, var & varF
 }
 
 
-void property_set::_008ParseCommandFork(const char * pszCmdLineParam, var & varFile, string & strApp)
+void property_set::_008ParseCommandFork(const char * pszCmdLineParam, payload & varFile, string & strApp)
 {
 
    _008Parse(true, pszCmdLineParam, varFile, strApp);
@@ -538,14 +538,14 @@ void property_set::_008Add(const char * pszKey, const char * pszValue)
    else
    {
 
-      pset->operator[](straKey[i])= var(pszValue);
+      pset->operator[](straKey[i])= payload(pszValue);
 
    }
 
 }
 
 
-void property_set::_008Parse(bool bApp, const char * pszCmdLine, var & varFile, string & strApp)
+void property_set::_008Parse(bool bApp, const char * pszCmdLine, payload & varFile, string & strApp)
 {
 
    if(pszCmdLine == nullptr)
@@ -1173,7 +1173,7 @@ property & property_set::at(index iIndex)
 }
 
 
-var property_set::at(index iIndex) const
+payload property_set::at(index iIndex) const
 {
 
    return operator[](iIndex);
@@ -1181,21 +1181,21 @@ var property_set::at(index iIndex) const
 }
 
 
-property_set& property_set::operator = (const var& var)
+property_set& property_set::operator = (const payload& payload)
 {
 
-   if (var.m_etype == type_propset)
+   if (payload.m_etype == type_propset)
    {
 
-      ::papaya::array::copy((property_ptra&)*this, (const property_ptra&)var.propset());
+      ::papaya::array::copy((property_ptra&)*this, (const property_ptra&)payload.propset());
 
    }
-   else if (var.m_etype == type_prop)
+   else if (payload.m_etype == type_prop)
    {
 
       remove_all();
 
-      set_at(var.m_pprop->m_id, *var.m_pprop);
+      set_at(payload.m_pprop->m_id, *payload.m_pprop);
 
    }
    else
@@ -1379,9 +1379,9 @@ property_set & property_set::operator |= (const property_set & set)
 //
 //      string strKey = set.pair_set_interface_get_key(i);
 //
-//      class var var = set.pair_set_interface_get_value(i);
+//      class payload payload = set.pair_set_interface_get_value(i);
 //
-//      set_at(strKey, var);
+//      set_at(strKey, payload);
 //   }
 //
 //   return *this;
@@ -1407,9 +1407,9 @@ property_set & property_set::operator |= (const property_set & set)
 //
 //      string strKey = set.str_str_interface_get_key(i);
 //
-//      class var var = set.str_str_interface_get_value(i);
+//      class payload payload = set.str_str_interface_get_value(i);
 //
-//      set_at(strKey, var);
+//      set_at(strKey, payload);
 //   }
 //
 //   return *this;
@@ -1608,7 +1608,7 @@ string & property_set::get_http_post(string & strPost) const
 //}
 //
 //
-//property & stable_property_set::set_at(const id & id, const var & var)
+//property & stable_property_set::set_at(const id & id, const payload & payload)
 //{
 //
 //   index iFind = find(id);
@@ -1628,7 +1628,7 @@ string & property_set::get_http_post(string & strPost) const
 //   else
 //   {
 //
-//      m_propertyptra[iFind]->m_var = var;
+//      m_propertyptra[iFind]->m_var = payload;
 //
 //      return *m_propertyptra[iFind];
 //

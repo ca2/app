@@ -92,7 +92,7 @@ namespace user
       virtual bool set_topic_view_by_id(const ::id & id);
 
 
-      virtual void update_active_document(::action * paction);
+      virtual void update_active_document(::subject * paction);
       virtual void update_active_document(const ::id & id);
 
 

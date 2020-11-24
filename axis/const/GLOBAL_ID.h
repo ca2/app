@@ -24,7 +24,7 @@ enum
    REDRAW_ID,
    COUNT_ID,
 
-   // procedure
+   // routine
    CREATE_PROCEDURE,
    DESTROY_PROCEDURE,
 

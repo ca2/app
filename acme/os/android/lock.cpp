@@ -27,7 +27,7 @@ i32 _c_lock(const char * pszName, void ** pdata)
 
    i32 fd;
 
-   _ca_get_file_name(::file::path("/var/lib/acme/") / pszName, true, &fd);
+   _ca_get_file_name(::file::path("/payload/lib/acme/") / pszName, true, &fd);
 
    if(fd == -1)
       return 0;

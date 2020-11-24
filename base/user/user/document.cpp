@@ -358,7 +358,7 @@ namespace user
    ::id document::get_topic_view_id()
    {
 
-      auto paction = action(id_get_topic_view_id);
+      auto paction = subject(id_get_topic_view_id);
 
       update_all_views(paction);
 
@@ -370,7 +370,7 @@ namespace user
    bool document::set_topic_view_by_id(::id id)
    {
 
-      auto paction = action(id_get_topic_view_id);
+      auto paction = subject(id_get_topic_view_id);
 
       paction->value(id_id) = id;
 
@@ -452,7 +452,7 @@ namespace user
 
       m_strTitle = pszTitle;
 
-      update_frame_counts();        // will cause name change in views
+      update_frame_counts();        // will cause name machine in views
 
    }
 
@@ -666,7 +666,7 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // File/Path commands
 
-   void document::set_path_name(var varFile, bool bAddToMRU)
+   void document::set_path_name(payload varFile, bool bAddToMRU)
    {
       UNREFERENCED_PARAMETER(bAddToMRU);
       string strPathName;
@@ -800,7 +800,7 @@ namespace user
    }
 
 
-   bool document::open_document(const var & varFile)
+   bool document::open_document(const payload & varFile)
    {
 
       delete_contents();
@@ -908,7 +908,7 @@ namespace user
    }
 
 
-   bool document::on_open_document(const var & varFile)
+   bool document::on_open_document(const payload & varFile)
    {
 
       auto preader = Context.file().get_reader(varFile, ::file::mode_read | ::file::share_deny_write | ::file::type_binary);
@@ -959,7 +959,7 @@ namespace user
    }
 
 
-   bool document::on_save_document(const var & varFile)
+   bool document::on_save_document(const payload & varFile)
    {
 
       auto pwriter = Context.file().get_writer(varFile, ::file::defer_create_directory | ::file::mode_create | ::file::mode_read | ::file::mode_write | ::file::share_exclusive);
@@ -1141,7 +1141,7 @@ namespace user
    }
 
 
-   void document::report_load_exception(const var & varFile, file_result presult, const char * pszDefault)
+   void document::report_load_exception(const payload & varFile, file_result presult, const char * pszDefault)
    {
 
       report_save_load_exception(varFile, presult, false, pszDefault);
@@ -1149,7 +1149,7 @@ namespace user
    }
 
 
-   void document::report_save_exception(const var & varFile, file_result presult, const char * pszDefault)
+   void document::report_save_exception(const payload & varFile, file_result presult, const char * pszDefault)
    {
 
       report_save_load_exception(varFile, presult, true, pszDefault);
@@ -1157,7 +1157,7 @@ namespace user
    }
 
 
-   void document::report_save_load_exception(const var & varFile, file_result presult, bool bSave, const char * pszDefault)
+   void document::report_save_load_exception(const payload & varFile, file_result presult, bool bSave, const char * pszDefault)
    {
 
       try
@@ -1403,7 +1403,7 @@ namespace user
    }
 
 
-   bool document::on_filemanager_open(::filemanager::document * pmanager, var varFile)
+   bool document::on_filemanager_open(::filemanager::document * pmanager, payload varFile)
    {
 
       return on_open_document(varFile);
@@ -1411,7 +1411,7 @@ namespace user
    }
 
 
-   bool document::on_filemanager_save(::filemanager::document * pmanager, var varFile, bool bReplace)
+   bool document::on_filemanager_save(::filemanager::document * pmanager, payload varFile, bool bReplace)
    {
 
       return do_save(varFile, bReplace);
@@ -1419,7 +1419,7 @@ namespace user
    }
 
 
-   bool document::do_save(var varFile, bool bReplace)
+   bool document::do_save(payload varFile, bool bReplace)
    // Save the document_interface data to a file
    // pszPathName = path name where to save document_interface file
 
@@ -1427,11 +1427,11 @@ namespace user
 
    // note: pszPathName can be different than 'm_strPathName'
 
-   // if 'bReplace' is TRUE will change file name if successful (SaveAs)
-   // if 'bReplace' is FALSE will not change path name (SaveCopyAs)
+   // if 'bReplace' is TRUE will machine file name if successful (SaveAs)
+   // if 'bReplace' is FALSE will not machine path name (SaveCopyAs)
    {
 
-      var newName = varFile;
+      payload newName = varFile;
 
       if (newName.is_empty())
       {
@@ -1495,7 +1495,7 @@ namespace user
          return FALSE;
       }
 
-      // reset the title and change the document_interface name
+      // reset the title and machine the document_interface name
       if (bReplace)
          set_path_name(newName);
 
@@ -1511,7 +1511,7 @@ namespace user
 
          // we do not have read-write access or the file does not (now) exist
 
-         if (!do_save(var(::type_empty)))
+         if (!do_save(payload(::type_empty)))
          {
 
             TRACE(trace_category_appmsg, trace_level_warning, "Warning: File save with new name failed.\n");
@@ -1752,7 +1752,7 @@ namespace user
    }
 
 
-   //void document::on_before_navigate(::form_data * pdata,var & varFile,u32 nFlags,const char * pszTargetFrameName,byte_array& baPostedData,const char * pszHeaders,bool* pbCancel)
+   //void document::on_before_navigate(::form_data * pdata,payload & varFile,u32 nFlags,const char * pszTargetFrameName,byte_array& baPostedData,const char * pszHeaders,bool* pbCancel)
    //{
 
    //   UNREFERENCED_PARAMETER(pdata);
@@ -1837,7 +1837,7 @@ namespace user
    }
 
 
-   void document::update_all_views(::action * paction)
+   void document::update_all_views(::subject * paction)
    {
 
       ASSERT(paction->m_psender == nullptr || !m_viewa.is_empty());
@@ -1850,7 +1850,7 @@ namespace user
          if (pview != paction->m_psender)
          {
 
-            pview->apply(paction);
+            pview->process(paction);
 
             if(paction->m_bRet)
             {
@@ -1866,7 +1866,7 @@ namespace user
    }
 
 
-   void document::on_apply(::action * paction)
+   void document::on_apply(::subject * paction)
    {
 
       update_all_views(paction);
@@ -1877,7 +1877,7 @@ namespace user
    void document::update_all_views(impact * pimpact, const ::id & id)
    {
 
-      ::action action(id);
+      ::subject action(id);
 
       action.m_psender = pimpact;
 

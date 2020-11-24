@@ -37,11 +37,11 @@ _AFXMT_INLINE int_bool CMultiLock::IsLocked(::u32 dwObject)
 
 _AFXMT_INLINE int_bool critical_section::Init()
 {
-   ＿＿try
+   __try
    {
       ::InitializeCriticalSection(&m_sect);
    }
-   ＿＿except(STATUS_NO_MEMORY == GetExceptionCode())
+   __except(STATUS_NO_MEMORY == GetExceptionCode())
    {
       return FALSE;
    }
@@ -55,7 +55,7 @@ _AFXMT_INLINE critical_section::critical_section() : sync < HANDLE > (nullptr)
 
    bSuccess = Init();
    if (!bSuccess)
-      ＿＿throw(memory_exception());
+      __throw(memory_exception());
 }
 
 _AFXMT_INLINE critical_section::operator CRITICAL_SECTION*()
@@ -64,13 +64,13 @@ _AFXMT_INLINE critical_section::~critical_section()
 { ::DeleteCriticalSection(&m_sect); }
 _AFXMT_INLINE int_bool critical_section::Lock()
 {
-   ＿＿try
+   __try
    {
       ::EnterCriticalSection(&m_sect);
    }
-   ＿＿except(STATUS_NO_MEMORY == GetExceptionCode())
+   __except(STATUS_NO_MEMORY == GetExceptionCode())
    {
-      ＿＿throw(memory_exception());
+      __throw(memory_exception());
    }
    return TRUE;
 }
@@ -93,7 +93,7 @@ inline bool sync_result::abandoned() const
 inline ::index sync_result::abandoned_index() const
 {
    if ( !abandoned() )
-      ＿＿throw(range_error("abandoned index out of range"));
+      __throw(range_error("abandoned index out of range"));
    return -(m_iEvent + (::index)result_abandon0);
 }
 
@@ -117,7 +117,7 @@ inline bool sync_result::succeeded() const
 inline ::index sync_result::signaled_index() const
 {
    if ( !signaled() )
-      ＿＿throw(range_error("signaled index out of range"));
+      __throw(range_error("signaled index out of range"));
    return m_iEvent;
 }
 
@@ -146,7 +146,7 @@ inline ::index sync_result::signaled_index() const
 
 
 template < typename PRED >
-inline bool λSleep(int iTime, PRED pred)
+inline bool pred_Sleep(int iTime, PRED pred)
 {
 
    if(iTime < 100)
@@ -203,7 +203,7 @@ inline bool λSleep(int iTime, PRED pred)
 //auto sync_pred(void (* pfnBranch )(::matter * pobjectTask, e_priority), PRED pred, ::duration durationTimeout, e_priority epriority)
 //{
 //
-//   auto pobjectTask = ＿＿sync_pred(pred);
+//   auto pobjectTask = __sync_pred(pred);
 //
 //   pfnBranch(pobjectTask, epriority);
 //
@@ -230,7 +230,7 @@ template < typename PRED >
 void async_pred(void (* pfnBranch )(::matter * pobjectTask, e_priority), PRED pred, e_priority epriority)
 {
 
-   auto pobjectTask = ＿＿procedure(pred);
+   auto pobjectTask = __procedure(pred);
 
    pfnBranch(pobjectTask, epriority);
 

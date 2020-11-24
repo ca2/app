@@ -130,7 +130,7 @@ namespace http
    }
 
 
-   var context::get(const char * pszUrl, property_set & set)
+   payload context::get(const char * pszUrl, property_set & set)
    {
 
       set["get_response"] = ""; // create get_response field
@@ -163,7 +163,7 @@ namespace http
    }
 
 
-   bool context::is_file_or_dir(const char * pszUrl, var * pvarQuery, ::file::enum_type * petype, property_set & set)
+   bool context::is_file_or_dir(const char * pszUrl, payload * pvarQuery, ::file::enum_type * petype, property_set & set)
    {
 
       string strUrl(pszUrl);
@@ -303,7 +303,7 @@ namespace http
    }
 
 
-   //var context::length(const char * pszUrl, property_set & set)
+   //payload context::length(const char * pszUrl, property_set & set)
    //{
 
    //   return length(pszUrl, nullptr, set);
@@ -311,7 +311,7 @@ namespace http
    //}
 
 
-   var context::length(const char * pszUrl, var * pvarQuery, property_set & set)
+   payload context::length(const char * pszUrl, payload * pvarQuery, property_set & set)
    {
 
       string strUrl(pszUrl);
@@ -352,7 +352,7 @@ namespace http
 
       }
 
-      var len = length(strUrl, process_set(set, pszUrl));
+      payload len = length(strUrl, process_set(set, pszUrl));
 
       if (len.is_empty())
       {
@@ -382,7 +382,7 @@ namespace http
    //}
 
 
-   //bool context::download(::sockets::socket_handler & handler, __pointer(::sockets::http_session) & psession, const char * pszUrl, var varFile, property_set & set)
+   //bool context::download(::sockets::socket_handler & handler, __pointer(::sockets::http_session) & psession, const char * pszUrl, payload varFile, property_set & set)
    //{
 
    //   return download(handler, psession, pszUrl, varFile, process_set(set, pszUrl));
@@ -390,7 +390,7 @@ namespace http
    //}
 
 
- /*  bool context::download(const char * pszUrl, var varFile, property_set & set)
+ /*  bool context::download(const char * pszUrl, payload varFile, property_set & set)
    {
       return download(pszUrl, varFile, process_set(set, pszUrl));
    }*/
@@ -648,7 +648,7 @@ namespace http
 
          ppac->m_strUrl = pszUrl;
 
-         var varFile;
+         payload varFile;
 
          varFile["url"] = ppac->m_strUrl;
          varFile["disable_ca2_sessid"] = true;
@@ -760,28 +760,28 @@ namespace http
 
       strHost = ad.get_display_number();
 
-      string var;
+      string payload;
       //__throw(todo("scripting"));
       //try
       //{
-      //   var = ppac->m_pjs->evaluate("FindProxyForURL('" + string(pszUrl) + "', '" + strHost + "');");
+      //   payload = ppac->m_pjs->evaluate("FindProxyForURL('" + string(pszUrl) + "', '" + strHost + "');");
       //}
       //catch (...)
       //{
       //   return false;
       //}
 
-      if (var.compare_ci("DIRECT") == 0)
+      if (payload.compare_ci("DIRECT") == 0)
       {
 
          pproxy->m_bDirect = true;
 
       }
-      else if (::str::begins_eat_ci(var, "PROXY"))
+      else if (::str::begins_eat_ci(payload, "PROXY"))
       {
-         var.trim();
+         payload.trim();
          string_array stra;
-         stra.explode(":", var);
+         stra.explode(":", payload);
          pproxy->m_bDirect = false;
          pproxy->m_strProxy = stra[0];
          pproxy->m_iPort = stra.get_size() > 1 ? ::atoi(stra[1]) : 80;
@@ -2537,7 +2537,7 @@ namespace http
    }
 
 
-   bool context::download(sockets::socket_handler & handler, __pointer(::sockets::http_session) & psession, const char * pszRequest, var varFile, property_set & set)
+   bool context::download(sockets::socket_handler & handler, __pointer(::sockets::http_session) & psession, const char * pszRequest, payload varFile, property_set & set)
    {
 
       file_pointer spfile = Context.file().get_file(varFile,
@@ -2554,7 +2554,7 @@ namespace http
    }
 
 
-   bool context::download(const char * pszUrl, var varFile, property_set & set)
+   bool context::download(const char * pszUrl, payload varFile, property_set & set)
    {
 
       ::sockets::socket_handler handler(get_context_object());
@@ -2704,7 +2704,7 @@ namespace http
    }
 
 
-   var context::length(const char * pszUrl, ::property_set & set)
+   payload context::length(const char * pszUrl, ::property_set & set)
    {
 
       ::sockets::socket_handler handler(get_context_object());
@@ -2744,7 +2744,7 @@ namespace http
       else
       {
 
-         return var(::e_type_null);
+         return payload(::e_type_null);
 
       }
 

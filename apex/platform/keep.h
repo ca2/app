@@ -1,7 +1,7 @@
 #pragma once
 
 
-inline var & thread_value(const ::id & id);
+inline payload & thread_value(const ::id & id);
 inline void thread_set(const ::id & id) { thread_value(id) = true; }
 inline void thread_unset(const ::id & id) { thread_value(id) = false; }
 inline bool thread_is_set(const ::id & id);
@@ -424,7 +424,7 @@ sl.unlock()
 //#pragma once
 
 
-//inline var & thread_value(const ::id & id);
+//inline payload & thread_value(const ::id & id);
 //inline void thread_set(const ::id & id) { thread_value(id) = true; }
 //inline void thread_unset(const ::id & id) { thread_value(id) = false; }
 //inline bool thread_is_set(const ::id & id);
@@ -896,7 +896,7 @@ sl.unlock()
 //   bool m_bChanged;
 //
 //
-//   ::var &      m_varThread;
+//   ::payload &      m_varThread;
 //
 //
 //   ___keep_thread_flag(const ::id & id) :
@@ -1040,7 +1040,7 @@ public:
    bool m_bChanged;
 
 
-   ::var &      m_varThread;
+   ::payload &      m_varThread;
 
 
    ___keep_thread_flag(const ::id & id) :

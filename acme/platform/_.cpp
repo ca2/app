@@ -180,7 +180,7 @@ CLASS_DECL_ACME u32 g_tickStartTime = 0;
 //
 //#else
 //
-//   ::multithreading::finish(::get_context_application());
+//   ::parallelization::finish(::get_context_application());
 //
 //#endif
 //
@@ -428,13 +428,13 @@ extern "C"
 //}
 //
 //
-//void system_update(const ::id & id, const var & var)
+//void system_update(const ::id & id, const payload & payload)
 //{
 //
 //   if(g_pfnCallUpdateSystem)
 //   {
 //
-//      g_pfnCallUpdateSystem(id, var);
+//      g_pfnCallUpdateSystem(id, payload);
 //
 //   }
 //   else if(id == id_dark_mode)
@@ -471,12 +471,12 @@ extern "C"
 //}
 
 
-void int_system_call_update(int iUpdate, int iArg)
-{
-
-   System.apply_update(iUpdate, iArg);
-
-}
+//void int_system_call_update(int iUpdate, int iArg)
+//{
+//
+//   System.apply_update(iUpdate, iArg);
+//
+//}
 
 
 

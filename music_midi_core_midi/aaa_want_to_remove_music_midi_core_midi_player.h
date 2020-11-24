@@ -46,7 +46,7 @@ namespace music
             //virtual bool ExecuteCommand(enum_command ecommand, u32 dwEllapse) override;
             virtual void OnMidiOutDeviceChange() override;
 
-            //virtual var get_midi_out_device() override;
+            //virtual payload get_midi_out_device() override;
             //void PostNotifyEvent(e_notify_event eevent) override;
 
             //imedia_time RateToTicks(double dRate) override;

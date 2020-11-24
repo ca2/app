@@ -432,7 +432,7 @@ void interprocess_intercommunication::on_interprocess_receive(::interprocess_com
 
    }
 
-   var varRet;
+   payload varRet;
 
    on_interprocess_call(varRet, strObject, strMember, vara);
 
@@ -496,7 +496,7 @@ __pointer(interprocess_call) interprocess_intercommunication::create_call(const 
 }
 
 
-void interprocess_intercommunication::on_interprocess_call(var & var, const string & strObject, const string & strMember, var_array & vara)
+void interprocess_intercommunication::on_interprocess_call(payload & payload, const string & strObject, const string & strMember, var_array & vara)
 {
 
    if(strObject == "application")
@@ -517,7 +517,7 @@ void interprocess_intercommunication::on_interprocess_call(var & var, const stri
       else if(strMember == "on_additional_local_instance")
       {
 
-         var["continue"] = Application.on_additional_local_instance(var["handled"], vara[0], vara[1], vara[2]);
+         payload["continue"] = Application.on_additional_local_instance(payload["handled"], vara[0], vara[1], vara[2]);
 
       }
       else if (strMember == "on_new_instance")

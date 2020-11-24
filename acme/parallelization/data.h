@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 
-//class CLASS_DECL_ACME ＿＿thread_data
+//class CLASS_DECL_ACME __thread_data
 //{
 //public:
 //
@@ -17,8 +17,8 @@
 //#endif
 //
 //
-//   ＿＿thread_data();
-//   ~＿＿thread_data();
+//   __thread_data();
+//   ~__thread_data();
 //
 //
 //   void * get();
@@ -29,17 +29,17 @@
 //
 //
 //template < class T >
-//class ＿＿thread_pointer :
-//   public ＿＿thread_data
+//class __thread_pointer :
+//   public __thread_data
 //{
 //public:
 //
 //
-//   static ＿＿thread_pointer < ＿＿pointer_array(::matter) > t_preferencea;
+//   static __thread_pointer < __pointer_array(::matter) > t_preferencea;
 //
 //   inline operator T *() { return (T *)get(); }
 //   inline T * operator ->() { return operator T *(); }
-//   inline ＿＿thread_pointer & operator = (const ＿＿pointer < T > & p)
+//   inline __thread_pointer & operator = (const __pointer < T > & p)
 //   {
 //
 //      auto pPrevious = operator T * ();
@@ -50,7 +50,7 @@
 //         if (t_preferencea.operator pointer_array<matter> * () == nullptr)
 //         {
 //
-//            t_preferencea = ＿＿new(＿＿pointer_array(::matter));
+//            t_preferencea = __new(__pointer_array(::matter));
 //
 //         }
 //
@@ -75,8 +75,8 @@
 //
 //
 //template < class T >
-//class ＿＿thread_iptr :
-//   public ＿＿thread_data
+//class __thread_iptr :
+//   public __thread_data
 //{
 //public:
 //

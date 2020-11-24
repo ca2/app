@@ -2500,12 +2500,12 @@ namespace user
       if(get_data()->m_matchanyRestore.m_itema.get_count() > 0)
       {
 
-         var var;
+         payload payload;
 
-         //if(data_get("restore_tab",var))
+         //if(data_get("restore_tab",payload))
          //{
 
-         //   c = open_tabs(var.vara());
+         //   c = open_tabs(payload.vara());
 
          //}
 
@@ -3441,7 +3441,7 @@ namespace user
    }
 
 
-   void tab::on_apply(::action * paction)
+   void tab::on_apply(::subject * paction)
    {
 
       ::user::interaction::on_apply(paction);
@@ -3910,7 +3910,7 @@ namespace user
    }
 
 
-   bool tab::matches_restorable_tab(const var & varId, ::user::place_holder * pholder)
+   bool tab::matches_restorable_tab(const payload & varId, ::user::place_holder * pholder)
    {
 
       ::match::any & matchany = get_data()->m_matchanyRestore;
@@ -3943,7 +3943,7 @@ namespace user
    void tab::get_restore_tab(var_array & vara)
    {
 
-      var varId;
+      payload varId;
 
       tab_pane_array & panea = get_data()->m_panea;
 
@@ -3971,7 +3971,7 @@ namespace user
 
       if(matchany.is_there_no_item())
          return false;
-      var varId;
+      payload varId;
       tab_pane_array & panea = get_data()->m_panea;
       for(i32 i = 0; i < panea.get_count(); i++)
       {

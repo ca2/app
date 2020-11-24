@@ -283,7 +283,7 @@ namespace hellobase
 
 
                get_document()->on_open_document(m_strImage);
-               //   var varFile;
+               //   payload varFile;
                //
                //   varFile["url"] = strImage;
                //
@@ -403,7 +403,7 @@ namespace hellobase
          if (get_processed_hellobase() != m_prender->m_strHelloBase)
          {
 
-            m_prender->m_strHelloBase = get_processed_hellobase().c_str(); // rationale : string allocation fork *for multithreading*
+            m_prender->m_strHelloBase = get_processed_hellobase().c_str(); // rationale : string allocation fork *for parallelization*
 
             sl.unlock();
 

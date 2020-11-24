@@ -1192,9 +1192,9 @@ namespace file
       ::exception::throw_interface_only();
    }
 
-   void file::write (const var & var)
+   void file::write (const payload & payload)
    {
-      UNREFERENCED_PARAMETER(var);
+      UNREFERENCED_PARAMETER(payload);
       ::exception::throw_interface_only();
    }
 
@@ -1263,19 +1263,19 @@ namespace file
    
    }
 
-   CLASS_DECL_ACME void set_no_cache(var& var)
+   CLASS_DECL_ACME void set_no_cache(payload& payload)
    {
 
-      if (var.get_type() == type_propset)
+      if (payload.get_type() == type_propset)
       {
 
-         var["nocache"] = true;
+         payload["nocache"] = true;
 
       }
       else
       {
 
-         var.operator path &() |= ::file::flag_bypass_cache;
+         payload.operator path &() |= ::file::flag_bypass_cache;
 
       }
 

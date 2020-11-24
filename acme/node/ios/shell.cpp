@@ -43,7 +43,7 @@ namespace ios
 //                                      [&]()
 //         {
 //
-//            ::multithreading::set_priority(::priority_highest);
+//            ::parallelization::set_priority(::priority_highest);
 //            shell_run();
 //
 //         }));

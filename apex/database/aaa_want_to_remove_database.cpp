@@ -43,7 +43,7 @@ namespace database
    }
 
 
-   //var database::query(const char * pszQuery, ::count iMaxRowCount, ::count iMaxColumnCount)
+   //payload database::query(const char * pszQuery, ::count iMaxRowCount, ::count iMaxColumnCount)
    //{
 
    //   return query_rows(pszQuery);
@@ -158,7 +158,7 @@ namespace database
       for (index i = 0; i < pset->m_prowa->get_count(); i++)
       {
 
-         pvara->add((const var &) pset->m_prowa->element_at(i));
+         pvara->add((const payload &) pset->m_prowa->element_at(i));
 
       }
 
@@ -167,7 +167,7 @@ namespace database
    }
 
 
-   var database::query_item(const char * pszQuery)
+   payload database::query_item(const char * pszQuery)
    {
 
       auto pset = query_result(pszQuery, 1, 1);
@@ -187,7 +187,7 @@ namespace database
    bool database::memory_query_item(get_memory getmemory, const char * pszQuery)
    {
 
-      var item = query_item(pszQuery);
+      payload item = query_item(pszQuery);
 
       if (!item)
       {
@@ -274,7 +274,7 @@ namespace database
    //}
 
 
-   //bool database::query_item(var & item, const char * pszQuery)
+   //bool database::query_item(payload & item, const char * pszQuery)
    //{
 
    //   auto pset = query_result(pszQuery, 1);

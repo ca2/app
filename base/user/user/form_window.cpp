@@ -348,16 +348,16 @@ namespace user
          return false;
       }
 
-      var var;
+      payload payload;
 
-      if(!pinteraction->get_data(pinteraction, var))
+      if(!pinteraction->get_data(pinteraction, payload))
       {
 
          return false;
 
       }
 
-      if(!_001Validate(pinteraction, var))
+      if(!_001Validate(pinteraction, payload))
       {
          return false;
       }
@@ -375,7 +375,7 @@ namespace user
 
          throw_todo();
 
-         //_data_set(selection, var, &update);
+         //_data_set(selection, payload, &update);
 
       }
 
@@ -384,7 +384,7 @@ namespace user
    }
 
 
-   void form_window::on_apply(::action * paction)
+   void form_window::on_apply(::subject * paction)
    {
       
       
@@ -531,7 +531,7 @@ namespace user
       if(pinteraction->descriptor().has_function(control_function_vms_data_edit))
       {
 
-         var var;
+         payload payload;
          ::database::selection selection;
          _001GetSelection(pinteraction->descriptor().m_datakey, selection);
          if(selection.get_item_count() > 0)
@@ -544,22 +544,22 @@ namespace user
 
             }
 
-            //if(data_get(pinteraction->descriptor().m_datakey + item.m_datakey, var))
+            //if(data_get(pinteraction->descriptor().m_datakey + item.m_datakey, payload))
             //{
 
-            //   switch(var.get_type())
+            //   switch(payload.get_type())
             //   {
             //   case ::type_string:
             //   {
             //      string str;
-            //      str = var.m_str;
+            //      str = payload.m_str;
             //      pinteraction->_001SetText(str, ::source_database);
             //   }
             //   break;
             //   case ::type_i32:
             //   {
             //      string str;
-            //      str.Format("%d", var.i32());
+            //      str.Format("%d", payload.i32());
             //      pinteraction->_001SetText(str, ::source_database);
             //   }
             //   break;
@@ -726,11 +726,11 @@ namespace user
    }
 
 
-   bool form_window::_001Validate(::user::interaction * pinteraction, var & var)
+   bool form_window::_001Validate(::user::interaction * pinteraction, payload & payload)
    {
 
       UNREFERENCED_PARAMETER(pinteraction);
-      UNREFERENCED_PARAMETER(var);
+      UNREFERENCED_PARAMETER(payload);
 
       return true;
 
@@ -757,7 +757,7 @@ namespace user
    }
 
 
-   void form_window::data_on_after_change(::database::client* pclient, const ::database::key& key, const var& var, ::action * paction)
+   void form_window::data_on_after_change(::database::client* pclient, const ::database::key& key, const payload& payload, ::subject * paction)
    {
 
       sync_lock sl(mutex());
@@ -949,13 +949,13 @@ namespace user
             {
                pinteraction->GetComboBox()->m_wstra.remove_all();
                pinteraction->GetComboBox()->m_dwaData.remove_all();
-               var var;
-               var.m_etype = ::type_element;
-               var.m_pca2 = pinteraction->GetComboBox();
+               payload payload;
+               payload.m_etype = ::type_element;
+               payload.m_pca2 = pinteraction->GetComboBox();
                VmsDataGet(
                   pinteraction->GetComboBox()->m_datakeyFill,
                   0, 0,
-                  var);
+                  payload);
                __pointer(::user::combo_box) pcombo = (__pointer(::user::combo_box)) pinteraction->m_puserinteraction;
                pcombo->ResetContent();
                string str;
@@ -1077,7 +1077,7 @@ namespace user
    }
 
 
-   ::estatus form_window::open_document(const var & varFile)
+   ::estatus form_window::open_document(const payload & varFile)
    {
 
       auto estatus = ::user::form_control::open_document(varFile);
@@ -1293,7 +1293,7 @@ namespace user
    }
 
 
-   //void form_window::on_before_navigate(var & varFile, u32 nFlags, const char * pszTargetFrameName, byte_array& baPostedData, const char * pszHeaders, bool* pbCancel)
+   //void form_window::on_before_navigate(payload & varFile, u32 nFlags, const char * pszTargetFrameName, byte_array& baPostedData, const char * pszHeaders, bool* pbCancel)
 
    //{
 

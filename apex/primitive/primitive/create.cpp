@@ -68,7 +68,7 @@ create::create()
 }
 
 
-::estatus create::initialize_create(string strAppId, var varFile, const var & varOptions, ::user::primitive * puiParent, ewindowflag ewindowflag, ::id id)
+::estatus create::initialize_create(string strAppId, payload varFile, const payload & varOptions, ::user::primitive * puiParent, ewindowflag ewindowflag, ::id id)
 {
 
    m_ewindowflag = ewindowflag;
@@ -106,7 +106,7 @@ create::~create()
 }
 
 
-void create::create_common_construct(const ::var & varOptions, ::user::primitive * puiParent)
+void create::create_common_construct(const ::payload & varOptions, ::user::primitive * puiParent)
 {
 
    m_bNew                              = true;

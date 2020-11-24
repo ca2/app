@@ -264,7 +264,7 @@ i32 get_os_priority_class(::e_priority epriority)
 }
 
 
-namespace multithreading
+namespace parallelization
 {
 
 

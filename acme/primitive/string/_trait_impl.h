@@ -819,10 +819,10 @@ namespace str
    }
 
 
-   inline ansistring & assign(ansistring & ansistrDst, const var & var)
+   inline ansistring & assign(ansistring & ansistrDst, const payload & payload)
    {
 
-      ansistrDst.assign(var.get_string());
+      ansistrDst.assign(payload.get_string());
 
       return ansistrDst;
 
@@ -858,19 +858,19 @@ namespace str
    }
 
 
-   inline wd16string & assign(wd16string & widestrDst, const var & var)
+   inline wd16string & assign(wd16string & widestrDst, const payload & payload)
    {
 
-      widestrDst.assign(var.get_string());
+      widestrDst.assign(payload.get_string());
 
       return widestrDst;
 
    }
 
-   inline wd32string& assign(wd32string& widestrDst, const var& var)
+   inline wd32string& assign(wd32string& widestrDst, const payload& payload)
    {
 
-      widestrDst.assign(var.get_string());
+      widestrDst.assign(payload.get_string());
 
       return widestrDst;
 

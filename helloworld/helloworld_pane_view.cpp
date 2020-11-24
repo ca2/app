@@ -330,7 +330,7 @@ namespace helloworld
 
                      {
 
-                        var v;
+                        payload v;
 
                         v = d;
 

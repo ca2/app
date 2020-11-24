@@ -17,7 +17,7 @@
 //inline void __var_exchange(var_stream & s, const ::id & id, ::file::path & path) { s.default_exchange(id, path); }
 //inline void __var_exchange(var_stream & s, const ::id & id, ::id & idId) { s.default_exchange(id, idId); }
 //inline void __var_exchange(var_stream & s, const ::id & id, ::block & block) { s.default_exchange(id, block); }
-//inline void __var_exchange(var_stream & s, const ::id & id, ::var & var) { s.default_exchange(id, var); }
+//inline void __var_exchange(var_stream & s, const ::id & id, ::payload & payload) { s.default_exchange(id, payload); }
 
 
 //inline void __exchange(::var_stream& s, ::file::patha& patha) { s.var_exchange(patha); }
@@ -43,7 +43,7 @@ inline void __exchange(::var_stream& s, const char* psz) { s.write_only(psz); }
 inline void __exchange(::var_stream& s, string& str) { s.default_exchange(str); }
 inline void __exchange(::var_stream& s, ::file::path& path) { s.default_exchange(path); }
 inline void __exchange(::var_stream& s, ::id& id) { s.default_exchange(id); }
-inline void __exchange(::var_stream& s, ::var& var) { s.default_exchange(var); }
+inline void __exchange(::var_stream& s, ::payload& payload) { s.default_exchange(payload); }
 inline void __exchange(::var_stream& s, ::property& property) { s.default_exchange(property); }
 inline void __exchange(::var_stream& s, ::property_set& set) { s.default_exchange(set); }
 inline void __exchange(::var_stream& s, ::block& block) { s.default_exchange(block); }

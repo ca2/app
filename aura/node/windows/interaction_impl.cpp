@@ -331,8 +331,8 @@ namespace windows
 
       set_handle(nullptr);
 
-      ·zero(m_size);
-      ·zero(m_point);
+      xxf_zero(m_size);
+      xxf_zero(m_point);
 
    }
 
@@ -470,7 +470,7 @@ namespace windows
 
       //}
 
-      // if window is not created, it may destroy this object, so keep the app as local var
+      // if window is not created, it may destroy this object, so keep the app as local payload
 
       thread_value("wnd_init") = this;
 
@@ -4739,7 +4739,7 @@ namespace windows
 
       WINDOWPLACEMENT wp;
 
-      ·zero(wp);
+      xxf_zero(wp);
 
       if (!GetWindowPlacement(&wp))
          return false;
@@ -5645,7 +5645,7 @@ namespace windows
          }
          ::DeleteObject(hrgn); /* finished with region */
          WINDOWPLACEMENT wp;
-         ·zero(wp);
+         xxf_zero(wp);
          wp.length = sizeof(WINDOWPLACEMENT);
          ::GetWindowPlacement(get_handle(), &wp);
          bool bZoomed = ::IsZoomed(get_handle()) != FALSE;

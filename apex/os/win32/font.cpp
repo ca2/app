@@ -38,7 +38,7 @@ namespace win32
       }
 
       LOGFONTW lf;
-      ·zero(lf);
+      xxf_zero(lf);
       lf.lfWeight = iWeight;
 
       m_hfont = wingdi_CreatePointFont(iPoint, pszFontFamily, hdc, &lf);

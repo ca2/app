@@ -134,8 +134,8 @@ namespace sockets
 
       bool     m_bReuseSession;
       i32 m_socks4_state; ///< socks4 support
-      char m_socks4_vn; ///< socks4 support, temporary var
-      char m_socks4_cd; ///< socks4 support, temporary var
+      char m_socks4_vn; ///< socks4 support, temporary payload
+      char m_socks4_cd; ///< socks4 support, temporary payload
       u16 m_socks4_dstport; ///< socks4 support
       u32 m_socks4_dstip; ///< socks4 support
 

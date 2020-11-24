@@ -38,9 +38,9 @@ namespace android
       //m_bEnabled           = true;
       m_pthreadDraw = nullptr;
 
-      //·zero(m_rectParentClient);
-      ·zero(m_size);
-      ·zero(m_point);
+      //xxf_zero(m_rectParentClient);
+      xxf_zero(m_size);
+      xxf_zero(m_point);
 
 
 
@@ -58,9 +58,9 @@ namespace android
    //   m_bUpdateGraphics    = false;
    //   m_bEnabled           = true;
    //   m_pthreadDraw = nullptr;
-   //   //·zero(m_rectParentClient);
-   //   ·zero(m_size);
-   //   ·zero(m_point);
+   //   //xxf_zero(m_rectParentClient);
+   //   xxf_zero(m_size);
+   //   xxf_zero(m_point);
 
    //   set_handle(oswindow);
 
@@ -78,9 +78,9 @@ namespace android
    //   m_bIgnoreMoveEvent   = false;
    //   m_bEnabled           = true;
    //   m_pthreadDraw = nullptr;
-   //   ·zero(m_rectParentClient);
-   //   ·zero(m_size);
-   //   ·zero(m_point);
+   //   xxf_zero(m_rectParentClient);
+   //   xxf_zero(m_size);
+   //   xxf_zero(m_point);
 
    //}
 
@@ -586,7 +586,7 @@ namespace android
 
       UNREFERENCED_PARAMETER(pmessage);
 
-      //::multithreading::post_quit_and_wait(m_pprodevian, seconds(10));
+      //::parallelization::post_quit_and_wait(m_pprodevian, seconds(10));
 
       //if (m_puserinteraction->m_pthreadUserInteraction != nullptr)
       //{
@@ -1135,7 +1135,7 @@ namespace android
          //}
          //::DeleteObject(hrgn); /* finished with region */
          //WINDOWPLACEMENT wp;
-         //·zero(wp);
+         //xxf_zero(wp);
          //wp.length = sizeof(WINDOWPLACEMENT);
          //::GetWindowPlacement(get_handle(),&wp);
          //bool bZoomed = ::IsZoomed(get_handle()) != FALSE;

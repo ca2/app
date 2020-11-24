@@ -21,13 +21,13 @@ bool set_thread_name(const char * psz)
 }
 
 
-void ＿＿node_init_cross_windows_threading()
+void __node_init_cross_windows_threading()
 {
 
 }
 
 
-void ＿＿node_term_cross_windows_threading()
+void __node_term_cross_windows_threading()
 {
 
 }

@@ -9,10 +9,10 @@ public:
 
    ::memory_file                        m_httpfile;
    ::memory_file                        m_memfile;
-   var                                          m_varFile;
+   payload                                          m_varFile;
 
 
-   ifs_file(var varFile);
+   ifs_file(payload varFile);
    virtual ~ifs_file();
 
    using ::sockets::http_batch_buffer::read;

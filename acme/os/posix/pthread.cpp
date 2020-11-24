@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "acme/os/ansios/_ansios.h"
-#include "acme/multithreading/mq.h"
+#include "acme/parallelization/mq.h"
 #ifdef LINUX
 #include "acme/os/linux/_user.h"
 
@@ -474,7 +474,7 @@ int g_iDebug_post_thread_msg_time;
 // }
 
 //
-//namespace multithreading
+//namespace parallelization
 //{
 //
 //   CLASS_DECL_ACME bool set_priority(::e_priority epriority)

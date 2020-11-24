@@ -144,7 +144,7 @@ void sync_array::remove(index index)
    if (index >= m_synca.size())
    {
 
-      ＿＿throw(range_error("sync_array::remove: index out of bounds"));
+      __throw(range_error("sync_array::remove: index out of bounds"));
 
    }
 
@@ -239,14 +239,14 @@ sync_result sync_array::wait(bool waitForAll, const duration & duration, bool bW
          if (bWaitMessageQueue)
          {
 
-            winResult = ::MsgWaitForMultipleObjectsEx((u32)m_hsyncaCache.size(), m_hsyncaCache.get_data(),  ＿＿os(duration - start.elapsed()), QS_ALLEVENTS, waitForAll ? MWMO_WAITALL : 0);
+            winResult = ::MsgWaitForMultipleObjectsEx((u32)m_hsyncaCache.size(), m_hsyncaCache.get_data(),  __os(duration - start.elapsed()), QS_ALLEVENTS, waitForAll ? MWMO_WAITALL : 0);
 
          }
          else
 #endif
          {
 
-            winResult = ::WaitForMultipleObjectsEx((u32)m_hsyncaCache.size(), m_hsyncaCache.get_data(), waitForAll, ＿＿os(duration - start.elapsed()), true);
+            winResult = ::WaitForMultipleObjectsEx((u32)m_hsyncaCache.size(), m_hsyncaCache.get_data(), waitForAll, __os(duration - start.elapsed()), true);
 
          }
 
@@ -325,7 +325,7 @@ sync_result sync_array::contains( const sync_result& result ) const
    throw todo();
 
    //if ( !result.abandoned() && !result.signaled() )
-   //   ＿＿throw(range_error("no matter signaled"));
+   //   __throw(range_error("no matter signaled"));
 
    //index position = result.abandoned() ? result.abandoned_index() : result.signaled_index();
 

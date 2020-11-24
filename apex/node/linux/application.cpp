@@ -39,7 +39,7 @@ namespace apex
 //   }
 
 
-//   ::apex::document * application::_001opendocumentfile(var varfile)
+//   ::apex::document * application::_001opendocumentfile(payload varfile)
 //   {
 //
 //      return m_pimpl->_001opendocumentfile(varfile);
@@ -397,26 +397,26 @@ namespace apex
    }
 
 
-//   void application::set_env_var(const string & var,const string & value)
+//   void application::set_env_var(const string & payload,const string & value)
 //   {
 //#if (defined(SOLARIS8) || defined(SOLARIS))
 //      {
 //         static std::collection::map<string, char *> vmap;
-//         if (vmap.find(var) != vmap.end())
+//         if (vmap.find(payload) != vmap.end())
 //         {
-//            delete[] vmap[var];
+//            delete[] vmap[payload];
 //         }
-//         vmap[var] = new char[var.get_length() + 1 + value.get_length() + 1];
-//         sprintf(vmap[var], "%s=%s", var, value);
-//         putenv( vmap[var] );
+//         vmap[payload] = new char[payload.get_length() + 1 + value.get_length() + 1];
+//         sprintf(vmap[payload], "%s=%s", payload, value);
+//         putenv( vmap[payload] );
 //      }
 //#elif defined _WIN32
 //      {
-//         string slask = var + "=" + value;
+//         string slask = payload + "=" + value;
 //         _putenv( (const char *)slask);
 //      }
 //#else
-//      setenv(var, value, 1);
+//      setenv(payload, value, 1);
 //#endif
 //   }
 

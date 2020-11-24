@@ -274,7 +274,7 @@ bool image::create_isotropic(::image * pimage)
 
    pimage->create({ cx, cy });
 
-   if (::multithreading::priority() == ::priority_idle)
+   if (::parallelization::priority() == ::priority_idle)
    {
 
       map();
@@ -1515,7 +1515,7 @@ bool image::fork_blend(const ::point & pointDstParam, ::image * pimageSrc, const
 
    u8 * psrc = &((u8 *)pimageSrc->colorref())[scanSrc * pointSrc.y + pointSrc.x * sizeof(color32_t)];
 
-   //u8 * pdst5; // dst opacity map if available // opacity map does not make sense for images that change
+   //u8 * pdst5; // dst opacity map if available // opacity map does not make sense for images that machine
 
    u8 * psrcOpacity; // src opacity map if available
 
@@ -6342,7 +6342,7 @@ bool image::_set_mipmap(::draw2d::e_mipmap emipmap)
 
          cy /= 2.0;
 
-         if (::multithreading::priority() == ::priority_idle)
+         if (::parallelization::priority() == ::priority_idle)
          {
 
             map();
@@ -6410,7 +6410,7 @@ bool image::_set_mipmap(::draw2d::e_mipmap emipmap)
          for (int y = 0, dy = (i32) cy; dy > 0; y += dy, dy /= 2)
          {
 
-            if (::multithreading::priority() == ::priority_idle)
+            if (::parallelization::priority() == ::priority_idle)
             {
 
                map();
@@ -8628,7 +8628,7 @@ bool image::on_exif_orientation()
 //}
 
 
-//bool image::save_to_file(var varFile, save_image * psaveimage)
+//bool image::save_to_file(payload varFile, save_image * psaveimage)
 //{
 //
 //   return write_to_file(varFile, psaveimage);
@@ -8648,7 +8648,7 @@ save_image::save_image()
 }
 
 
-save_image::save_image(const ::var & varFile, const ::var & varOptions)
+save_image::save_image(const ::payload & varFile, const ::payload & varOptions)
 {
 
    auto eformat = System.draw2d().text_to_format(varOptions["format"]);
@@ -9245,13 +9245,13 @@ stream & image::read(::stream & stream)
 
 /*
 http://www.sparkhound.com/blog/detect-image-file-types-through-byte-arrays
-var bmp = Encoding.ASCII.GetBytes("BM"); // BMP
-var gif = Encoding.ASCII.GetBytes("GIF"); // GIF
-var png = new byte[]{ 137, 80, 78, 71 }; // PNG
-var tiff = new byte[]{ 73, 73, 42 }; // TIFF
-var tiff2 = new byte[]{ 77, 80, 42 }; // TIFF
-var jpeg = new byte[]{ 255, 216, 255, 224 }; // jpeg
-var jpeg2 = new byte[]{ 255, 216, 255, 225 }; // jpeg canon
+payload bmp = Encoding.ASCII.GetBytes("BM"); // BMP
+payload gif = Encoding.ASCII.GetBytes("GIF"); // GIF
+payload png = new byte[]{ 137, 80, 78, 71 }; // PNG
+payload tiff = new byte[]{ 73, 73, 42 }; // TIFF
+payload tiff2 = new byte[]{ 77, 80, 42 }; // TIFF
+payload jpeg = new byte[]{ 255, 216, 255, 224 }; // jpeg
+payload jpeg2 = new byte[]{ 255, 216, 255, 225 }; // jpeg canon
 */
 
 

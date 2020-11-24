@@ -41,7 +41,7 @@ inline bool is_zero(void * p, memsize iSize)
 
 
 
-#define ·zeroa(array) (::zero(array, sizeof(array)))
+#define xxf_zeroa(array) (::zero(array, sizeof(array)))
 
 
 

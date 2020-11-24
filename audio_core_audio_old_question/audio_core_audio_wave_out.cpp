@@ -321,7 +321,7 @@ Opened:
          m_pwaveformat->nAvgBytesPerSec   = m_pwaveformat->nSamplesPerSec * m_pwaveformat->nBlockAlign;
          m_pwaveformat->cbSize            = 0;
 
-         ·zero_pointer(&m_dataformat);
+         xxf_zero_pointer(&m_dataformat);
 
          translate(*&m_dataformat, m_pwaveformat);
 

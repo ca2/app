@@ -75,7 +75,7 @@ namespace ios
    }
 
 
-   ::file_result file_context::get_file(const ::var & varFile, const ::efileopen & eopen)
+   ::file_result file_context::get_file(const ::payload & varFile, const ::efileopen & eopen)
    {
 
       ::file_result pfileresult;
@@ -94,10 +94,10 @@ namespace ios
    }
 
 
-   var file_context::length(const ::file::path & path, var * pvarQuery)
+   payload file_context::length(const ::file::path & path, payload * pvarQuery)
    {
 
-      var varRet;
+      payload varRet;
 
       struct stat stat;
 

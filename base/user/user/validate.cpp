@@ -14,7 +14,7 @@ namespace user
    //   m_iMin - integer min
    //   m_iMax - integer max
    //
-   //string_array validate::nok(const var & val)
+   //string_array validate::nok(const payload & val)
    //{
 
    //   string_array stra;

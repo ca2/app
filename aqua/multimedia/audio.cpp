@@ -19,7 +19,7 @@ namespace aqua
    }
 
 
-   void audio::play_audio(const var & varFile, bool bSynch)
+   void audio::play_audio(const payload & varFile, bool bSynch)
    {
 
       __throw(interface_only_exception());
@@ -77,7 +77,7 @@ namespace aqua
    }
 
 
-   ::file_pointer audio::get_rtp_file(const ::var & varFile)
+   ::file_pointer audio::get_rtp_file(const ::payload & varFile)
    {
 
       __throw(interface_only_exception());

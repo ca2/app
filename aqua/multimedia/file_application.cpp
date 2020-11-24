@@ -17,7 +17,7 @@ namespace multimedia
    }
 
 
-   file_pointer file_application::get_file(var varFile, u32 nOpenFlags)
+   file_pointer file_application::get_file(payload varFile, u32 nOpenFlags)
    {
 
       file_pointer spfile;

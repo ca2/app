@@ -33,8 +33,8 @@ namespace windows
       virtual int get_pid() override;
 
 
-      virtual var connection_settings_get_auto_detect() override;
-      virtual var connection_settings_get_auto_config_url() override;
+      virtual payload connection_settings_get_auto_detect() override;
+      virtual payload connection_settings_get_auto_config_url() override;
 
 
       virtual bool local_machine_set_run(const char * pszKey, const char * pszCommand, bool bSet) override;
@@ -105,7 +105,7 @@ namespace windows
 
       virtual void list_process(::file::patha & patha, u32_array & uaPid) override;
 
-      //virtual icon_result load_icon(const ::var & varFile) override;
+      //virtual icon_result load_icon(const ::payload & varFile) override;
 
 
    };

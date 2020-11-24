@@ -17,9 +17,9 @@ public:
    string                                                      m_strDescription;
    enum_command                                                m_ecommand;
    string                                                      m_strAppId;
-   var                                                         m_varFile;
-   var                                                         m_varArgs;
-   var                                                         m_varOptions;
+   payload                                                         m_varFile;
+   payload                                                         m_varArgs;
+   payload                                                         m_varOptions;
    string                                                      m_strExtra;
    ::estatus                                                   m_estatus;
 
@@ -42,10 +42,10 @@ public:
 
    
    virtual ::estatus initialize_create(arguments arguments);
-   virtual ::estatus initialize_create(string strAppId, var varFile, const var& varOptions = __visible(true), ::user::primitive* puiParent = nullptr, ewindowflag eflag = window_flag_none, ::id = ::id());
+   virtual ::estatus initialize_create(string strAppId, payload varFile, const payload& varOptions = __visible(true), ::user::primitive* puiParent = nullptr, ewindowflag eflag = window_flag_none, ::id = ::id());
 
 
-   void create_common_construct(const var & varOptions, ::user::primitive * puiParent);
+   void create_common_construct(const payload & varOptions, ::user::primitive * puiParent);
 
 
    ::apex::application* create_get_application(::apex::application* pappFallback = nullptr);

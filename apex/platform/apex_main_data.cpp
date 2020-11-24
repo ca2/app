@@ -112,7 +112,7 @@ void apex_main_data::system_construct(const char* pszCommandLine, const ::edispl
 
    //m_poslocal = nullptr;
 
-   ·zero(m_mainrunnera);
+   xxf_zero(m_mainrunnera);
 
 }
 
@@ -130,7 +130,7 @@ void apex_main_data::system_construct(os_local* poslocal, const ::edisplay& edis
 
    //m_poslocal = poslocal;
 
-   ·zero(m_mainrunnera);
+   xxf_zero(m_mainrunnera);
 
 }
 
@@ -159,7 +159,7 @@ void apex_main_data::system_construct(HINSTANCE hinstance, HINSTANCE hPrevInstan
 
    m_wargv = __wargv;
 
-   ·zero(m_mainrunnera);
+   xxf_zero(m_mainrunnera);
 
 }
 
@@ -188,7 +188,7 @@ void apex_main_data::system_construct(Array < String^ >^ refstra)
 
    m_edisplay = display_default;
 
-   ·zero(m_mainrunnera);
+   xxf_zero(m_mainrunnera);
 
 }
 

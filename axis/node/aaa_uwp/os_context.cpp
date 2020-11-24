@@ -265,7 +265,7 @@ namespace uwp
    }
 
 
-   var os_context::connection_settings_get_auto_detect()
+   payload os_context::connection_settings_get_auto_detect()
    {
 
       bool bAutoDetect = false;
@@ -293,7 +293,7 @@ namespace uwp
    }
 
 
-   var os_context::connection_settings_get_auto_config_url()
+   payload os_context::connection_settings_get_auto_config_url()
    {
 
       string strUrl;

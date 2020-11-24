@@ -126,7 +126,7 @@ namespace user
       __pointer(span) span::fork()
       { 
          
-         auto pspan = __new(class span(m_pdata)); 
+         auto pspan = __new(class span(m_pdata));
          
          pspan->m_pformat = m_pformat;
          

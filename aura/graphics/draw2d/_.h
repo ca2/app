@@ -96,7 +96,7 @@ public:
 
 
    save_image();
-   save_image(const ::var & varFile, const ::var & varOptions);
+   save_image(const ::payload & varFile, const ::payload & varOptions);
 
 
 };

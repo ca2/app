@@ -74,7 +74,7 @@ int x11_message_box(const string & str, const string & strTitle, ::emessagebox e
 
 CLASS_DECL_ACME string message_box_result_to_string(int iResult);
 
-CLASS_DECL_ACME void x11_message_box(const string & strMessage, const string & strTitle, ::emessagebox emessagebox, const ::futurevar & futurevar);
+CLASS_DECL_ACME void x11_message_box(const string & strMessage, const string & strTitle, ::emessagebox emessagebox, const ::promise::process & process);
 
 //::estatus os_message_box(oswindow oswindow, const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox, ::future future)
 //{

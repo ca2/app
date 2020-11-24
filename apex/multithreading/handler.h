@@ -11,7 +11,7 @@ public:
    bool                             m_bSingleThread;
    bool                             m_bUseDedicatedThread;
    __pointer(::thread)              m_pthread;
-   procedure_array                  m_procedurea;
+   procedure_array                  m_routinea;
    __pointer(manual_reset_event)    m_pevTaskOnQueue;
    int                              m_iAliveCount;
    int                              m_iAlive;

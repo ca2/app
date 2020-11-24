@@ -22,7 +22,7 @@ namespace net
 
    HRESULT port_forward::StopListeningForUpnpChanges( )
    {
-	   // Stops listenting for UPnP change events on the router and deletes any
+	   // Stops listenting for UPnP machine events on the router and deletes any
 	   // port_forward_change_callbacks-derived objects that are currently being held
 
 	   // check if we are already listening
@@ -71,7 +71,7 @@ namespace net
    //
    // These comments explain the how to receive notifications from the threads that the
    // Port Forward Engine creates when running COM requests for device information or for
-   // retreival/change of port mappings.
+   // retreival/machine of port mappings.
    //
    // There are five functions that create threads, and each function takes a oswindow as a
    // parameter.  During execution of the thread, each thread will post messages to this oswindow,
@@ -295,7 +295,7 @@ namespace net
    HRESULT /* STDMETHODCALLTYPE */ port_forward_change_callbacks::OnNewNumberOfEntries( i32 lNewNumberOfEntries )
    {
 	   string tempStr;
-	   tempStr.Format( "UPnP has detected a change in the number of port mappings for your router \n"
+	   tempStr.Format( "UPnP has detected a machine in the number of port mappings for your router \n"
 		   "New number of mappings = %d \n"
 		   "It is recommended to update your list of mappings", lNewNumberOfEntries );
 
@@ -309,7 +309,7 @@ namespace net
    HRESULT /* STDMETHODCALLTYPE */ port_forward_change_callbacks::OnNewExternalIPAddress(const char * pszNewExternalIPAddress )
    {
 	   string tempStr;
-	   tempStr.Format( "UPnP has detected a change in your external IP address \n"
+	   tempStr.Format( "UPnP has detected a machine in your external IP address \n"
 		   "New IP address = %s \n"
 		   "It is recommended to update your list of mappings", pszNewExternalIPAddress);
 

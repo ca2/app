@@ -17,30 +17,30 @@ namespace database
       server *          m_pserver;
       client *          m_pclient;
       key               m_datakey;
-      ::update *        m_pupdate;
+      ::manager *        m_pupdate;
       bool              m_bOk;
-      var *             m_pvar;
+      payload *             m_pvar;
 
       change_event();
-      change_event(var & var);
+      change_event(payload & payload);
 
 
-      bool _data_get(var & var);
+      bool _data_get(payload & payload);
 
 
-      inline var data_get()
+      inline payload data_get()
       {
 
-         var var;
+         payload payload;
 
-         if (!_data_get(var))
+         if (!_data_get(payload))
          {
 
             return ::type_not_found;
 
          }
 
-         return var;
+         return payload;
 
       }
 

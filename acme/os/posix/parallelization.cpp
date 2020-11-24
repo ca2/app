@@ -3,7 +3,7 @@
 #include <fcntl.h>
 #include <sys/time.h>
 
-//void ＿＿clear_mq(const char * pszDebug, bool bClose);
+//void __clear_mq(const char * pszDebug, bool bClose);
 
 namespace ansios
 {
@@ -27,14 +27,14 @@ namespace ansios
 
 
 
-// void ＿＿end_thread_impl(acme::application*, unsigned int, bool)
+// void __end_thread_impl(acme::application*, unsigned int, bool)
 
 // {
 
 // }
 
 
-// void ＿＿term_thread_impl(acme::application*, HINSTANCE__*)
+// void __term_thread_impl(acme::application*, HINSTANCE__*)
 // {
 // }
 
@@ -48,7 +48,7 @@ namespace ansios
 
 
 
-void CLASS_DECL_ACME ＿＿init_thread()
+void CLASS_DECL_ACME __init_thread()
 {
 
 }
@@ -58,7 +58,7 @@ void CLASS_DECL_ACME ＿＿init_thread()
 
 
 
-void CLASS_DECL_ACME ＿＿term_thread()
+void CLASS_DECL_ACME __term_thread()
 {
 
 }

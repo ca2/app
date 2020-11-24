@@ -100,7 +100,7 @@ namespace app_shader
    }
 
 
-   void window::on_apply(::action * paction)
+   void window::on_apply(::subject * paction)
    {
 
       if (paction->id() == id_simple_checkbox || paction->id() == id_no_client_frame)

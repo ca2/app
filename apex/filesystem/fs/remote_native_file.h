@@ -13,10 +13,10 @@ namespace fs
 
       ::memory_file            m_httpfile;
       ::memory_file            m_memfile;
-      var                              m_varFile;
+      payload                              m_varFile;
 
 
-      remote_native_file(var varFile);
+      remote_native_file(payload varFile);
       virtual ~remote_native_file();
 
       using ::sockets::http_batch_buffer::read;

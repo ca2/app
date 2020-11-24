@@ -178,7 +178,7 @@ namespace file
    };
 
    
-   CLASS_DECL_ACME void set_no_cache(var& var);
+   CLASS_DECL_ACME void set_no_cache(payload& payload);
 
 
  } // namespace file

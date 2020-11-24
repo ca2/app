@@ -22,8 +22,8 @@ namespace html
       const style * greater(const style * pstyle1, const style * pstyle2) const;
 
       // retunrs true if determined
-      bool greater(style *& pstyleRet, index & iRet, var & varRet, style * pstyle1, index i1, const var & var1, style * pstyle2, index i2, const var & var2) ;
-      bool greater(const style * & pstyleRet, index & iRet, var & varRet, const style * pstyle1, index i1, const var & var1, const style * pstyle2, index i2, const var & var2) const;
+      bool greater(style *& pstyleRet, index & iRet, payload & varRet, style * pstyle1, index i1, const payload & var1, style * pstyle2, index i2, const payload & var2) ;
+      bool greater(const style * & pstyleRet, index & iRet, payload & varRet, const style * pstyle1, index i1, const payload & var1, const style * pstyle2, index i2, const payload & var2) const;
 
    };
 

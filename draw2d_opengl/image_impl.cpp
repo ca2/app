@@ -12,7 +12,7 @@ namespace draw2d_opengl
       m_sizeWnd.cy         = 0;
       m_hbitmap            = nullptr;
       m_phost = nullptr;
-      ·zero(m_bitmapinfo);
+      xxf_zero(m_bitmapinfo);
 
    }
 

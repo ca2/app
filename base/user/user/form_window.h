@@ -18,7 +18,7 @@ namespace user
       virtual ~form_window();
 
       virtual string get_path() override;
-      virtual ::estatus open_document(const var & varFile) override;
+      virtual ::estatus open_document(const payload & varFile) override;
 
 
       //using ::user::interaction::_001IsPointInside;
@@ -39,7 +39,7 @@ namespace user
       void _001UpdateFunctionStatic();
       virtual bool _001OnBeforeSave(interaction * pinteraction) override;
       virtual void _001RemoveControls() override;
-      virtual bool _001Validate(interaction * pinteraction, var & var);
+      virtual bool _001Validate(interaction * pinteraction, payload & payload);
       virtual bool _001SaveEdit(interaction * pinteraction);
       virtual void on_command(::user::command * pcommand) override;
       DECL_GEN_SIGNAL(_001OnNotify);
@@ -58,7 +58,7 @@ namespace user
 
       virtual void install_message_routing(::channel * pchannel) override;
       virtual void _001InitializeFormPreData() override;
-      virtual void on_apply(::action * paction)  override;
+      virtual void on_apply(::subject * paction)  override;
       virtual void _001Update(interaction * pinteraction) override;
       virtual void _001UpdateCheckBox(interaction * pinteraction) override;
       virtual void _001UpdateComboBox(interaction * pinteraction) override;
@@ -82,7 +82,7 @@ namespace user
 
 
 
-      virtual void data_on_after_change(::database::client* pclient, const ::database::key& key, const var& var, ::action * paction = nullptr) override;
+      virtual void data_on_after_change(::database::client* pclient, const ::database::key& key, const payload& payload, ::subject * paction = nullptr) override;
 
 
       virtual bool create_control(class control_descriptor * pdescriptor, index iIndex) override;

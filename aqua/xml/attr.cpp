@@ -6,7 +6,7 @@
 //{
 //
 //
-//   attr_array::attr_array(::std::initializer_list < var > list) :
+//   attr_array::attr_array(::std::initializer_list < payload > list) :
 //      m_pnodeParent(nullptr),
 //      property_set(list)
 //   {

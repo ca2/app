@@ -1541,12 +1541,12 @@ namespace ios
 //      else
 //         lpszCaption = strCaption;
 //      
-//      var = var;
+//      payload = payload;
 //      
-//      var["oswindow"] = (i64) get_handle();
-//      var["message"] = lpszText;
-//      var["caption"] = lpszCaption;
-//      var["message_box_type"] = (i64) nType;
+//      payload["oswindow"] = (i64) get_handle();
+//      payload["message"] = lpszText;
+//      payload["caption"] = lpszCaption;
+//      payload["message_box_type"] = (i64) nType;
 //
 //      i32 nResult = message_box((oswindow)get_handle(), lpszText, lpszCaption, nType);
 //

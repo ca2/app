@@ -471,7 +471,7 @@ namespace dynamic_source
    }
 
 
-   var script_manager::get_output_internal(::dynamic_source::script_interface * pinstanceParent, const string & strNameParam)
+   payload script_manager::get_output_internal(::dynamic_source::script_interface * pinstanceParent, const string & strNameParam)
    {
 
       string strName = ::str::get_word(strNameParam, "?");
@@ -500,7 +500,7 @@ namespace dynamic_source
 
       }
 
-      var var;
+      payload payload;
 
       __pointer(script_interface) pimpl;
 
@@ -600,7 +600,7 @@ namespace dynamic_source
 
          pinstance->dinit();
 
-         var = pinstance->call_run();
+         payload = pinstance->call_run();
 
          try
          {
@@ -643,7 +643,7 @@ namespace dynamic_source
 
       }
 
-      return var;
+      return payload;
 
    }
 

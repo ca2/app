@@ -68,7 +68,7 @@ namespace process
       virtual ~department();
 
       // run process and get output
-      virtual var get_output(const char * pszCmdLine, const ::duration & dur = ::duration::infinite(), edisplay edisplay = display_default, bool * pbPotentialTimeout = nullptr);
+      virtual payload get_output(const char * pszCmdLine, const ::duration & dur = ::duration::infinite(), edisplay edisplay = display_default, bool * pbPotentialTimeout = nullptr);
       virtual exit_status retry(const char * pszCmdLine, const ::duration & dur, edisplay edisplay = display_default, bool * pbPotentialTimeout = nullptr);
       virtual exit_status synch(const char * pszCmdLine, edisplay edisplay = display_default, const ::duration & dur = ::duration::infinite(), bool * pbPotentialTimeout = nullptr);
       virtual bool launch(const char * pszCmdLine, edisplay edisplay = display_default, const char * pszDir = nullptr);

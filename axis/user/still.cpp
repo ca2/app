@@ -935,15 +935,15 @@ namespace user
 
 
 
-   bool still::LoadBitmaps(::var var, ::var varSel, ::var varFocus, ::var varDisabled, ::var varHover)
+   bool still::LoadBitmaps(::payload payload, ::payload varSel, ::payload varFocus, ::payload varDisabled, ::payload varHover)
    {
 
       set_button_style(style_image);
 
-      if (!var.is_empty())
+      if (!payload.is_empty())
       {
 
-         m_pimage = Application.image().get_image(var);
+         m_pimage = Application.image().get_image(payload);
 
       }
 

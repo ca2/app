@@ -5,7 +5,7 @@
 #include "aura/message.h"
 #include "interaction_prodevian.h"
 #include "interaction_thread.h"
-#include "acme/multithreading/mq.h"
+#include "acme/parallelization/mq.h"
 
 
 #ifdef LINUX
@@ -81,7 +81,7 @@ namespace user
 
       }
 
-      m_procedureUpdateScreen = __procedure([this]()
+      m_routineUpdateScreen = __procedure([this]()
          {
 
             if (!m_bitFinishing && !m_bitSetFinish)
@@ -95,7 +95,7 @@ namespace user
 
          });
 
-      m_procedureWindowShow = __procedure([this]()
+      m_routineWindowShow = __procedure([this]()
          {
 
             if (m_pimpl)
@@ -239,23 +239,23 @@ void prodevian::term_thread()
 
    m_puserinteraction.release();
 
-   if (m_procedureUpdateScreen)
+   if (m_routineUpdateScreen)
    {
 
-      m_procedureUpdateScreen->finalize();
+      m_routineUpdateScreen->finalize();
 
    }
 
-   m_procedureUpdateScreen.release(OBJ_REF_DBG_THIS);
+   m_routineUpdateScreen.release(OBJ_REF_DBG_THIS);
 
-   if (m_procedureWindowShow)
+   if (m_routineWindowShow)
    {
 
-      m_procedureWindowShow->finalize();
+      m_routineWindowShow->finalize();
 
    }
 
-   m_procedureWindowShow.release(OBJ_REF_DBG_THIS);
+   m_routineWindowShow.release(OBJ_REF_DBG_THIS);
 
 }
 
@@ -720,7 +720,7 @@ bool prodevian::prodevian_iteration()
             if(m_puserinteraction)
             {
 
-               m_puserinteraction->post_procedure(m_procedureUpdateScreen);
+               m_puserinteraction->post_procedure(m_routineUpdateScreen);
 
             }
 
@@ -743,7 +743,7 @@ bool prodevian::prodevian_iteration()
       if (bStartWindowVisual)
       {
 
-         m_puserinteraction->post_procedure(m_procedureWindowShow);
+         m_puserinteraction->post_procedure(m_routineWindowShow);
 
       }
       // ENDIF WINDOWS
@@ -1134,7 +1134,7 @@ bool prodevian::prodevian_iteration()
    }
 
 
-   void interaction::prodevian_post_procedure(const ::procedure & procedure)
+   void interaction::prodevian_post_procedure(const ::routine & procedure)
    {
 
       if (is_graphical())

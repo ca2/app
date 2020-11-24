@@ -123,8 +123,8 @@ namespace hi5
       string mediaUpload(file_pointer pfile, string strMimeType, string strCategory);
       string mediaUploadInit(int iTotalSize, string strMimeType, string strCategory);
       bool mediaUploadAppend(string strMediaId, index iIndex, file_pointer pfile, int iSize, string strMimeType, string & boundary_is_the_bounday_the_issue_i_e_should_it_be_the_same_across_appends);
-      var mediaUploadFinalize(string strMediaId);
-      var mediaUploadStatus(string strMediaId);
+      payload mediaUploadFinalize(string strMediaId);
+      payload mediaUploadStatus(string strMediaId);
 
       /* Twitter status APIs */
       bool statusUpdate(string & newStatus /* in */, string_array straMediaIds = {}, string strReplyStatusId = "");

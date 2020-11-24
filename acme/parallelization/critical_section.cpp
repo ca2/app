@@ -8,12 +8,12 @@
 
 bool critical_section::Init()
 {
-   ＿＿try
+   __try
    {
 //      ::InitializeCriticalSection(&m_sect);
       ::InitializeCriticalSectionEx(&m_sect, 4000, 0);
    }
-   ＿＿except(STATUS_NO_MEMORY == GetExceptionCode())
+   __except(STATUS_NO_MEMORY == GetExceptionCode())
    {
       return FALSE;
    }
@@ -27,7 +27,7 @@ critical_section::critical_section()
 
    bSuccess = Init();
    if (!bSuccess)
-      ＿＿throw(memory_exception());
+      __throw(memory_exception());
 }
 
 critical_section::operator CRITICAL_SECTION*()
@@ -87,7 +87,7 @@ critical_section::critical_section()
 
    bSuccess = Init();
    if (!bSuccess)
-      ＿＿throw(memory_exception());
+      __throw(memory_exception());
 }
 
 critical_section::operator pthread_mutex_t()
@@ -116,7 +116,7 @@ critical_section::~critical_section()
 //   catch(...)
 //   {
 //
-//      ＿＿throw(memory_exception());
+//      __throw(memory_exception());
 //
 //   }
 //

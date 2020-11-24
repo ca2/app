@@ -20,7 +20,7 @@ public:
 
 
    property_set() { }
-   property_set(::std::initializer_list < var > list);
+   property_set(::std::initializer_list < payload > list);
    property_set(const property_set & set);
    property_set(property_set && set);
    virtual ~property_set();
@@ -31,7 +31,7 @@ public:
 
    virtual ::matter * source_channel();
 
-   inline var operator()(const id & id, const var & varDefault = ::error_not_found) const;
+   inline payload operator()(const id & id, const payload & varDefault = ::error_not_found) const;
 
    string _001Replace(const string & str) const;
 
@@ -49,8 +49,8 @@ public:
    inline property & operator[](::index iIndex) { return operator [](::id(iIndex)); }
    inline const property & operator[](::index iIndex) const { return operator [](::id(iIndex)); }
 
-   inline property & operator[](const ::var & var) { return operator [](::id(var)); }
-   inline const property & operator[](const ::var & var) const { return operator [](::id(var)); }
+   inline property & operator[](const ::payload & payload) { return operator [](::id(payload)); }
+   inline const property & operator[](const ::payload & payload) const { return operator [](::id(payload)); }
 
 #ifdef OS64BIT
 
@@ -59,46 +59,46 @@ public:
 
 #endif
 
-   inline var topic(const id & id);
+   inline payload topic(const id & id);
 
-   var & set(const id & id);
+   payload & set(const id & id);
 
    property & at(index iId);
-   var at(index iId) const;
+   payload at(index iId) const;
 
-   property * find_value_ci(const var & var) const;
+   property * find_value_ci(const payload & payload) const;
    property * find_value_ci(const char * psz) const;
 
-   property * find_value(const var & var) const;
+   property * find_value(const payload & payload) const;
    property * find_value(const char * psz) const;
 
    property * str_find(const property & property) const;
 
-   bool contains_value_ci(const var & var) const { return find_value_ci(var) != nullptr; }
+   bool contains_value_ci(const payload & payload) const { return find_value_ci(payload) != nullptr; }
    bool contains_value_ci(const char * psz) const { return find_value_ci(psz) != nullptr; }
 
-   bool contains_value(const var & var) const { return find_value(var) != nullptr; }
+   bool contains_value(const payload & payload) const { return find_value(payload) != nullptr; }
    bool contains_value(const char * psz) const { return find_value(psz) != nullptr; }
 
-   bool contains_value_ci(const var & var, ::count countMin = 1, ::count countMax = -1) const;
+   bool contains_value_ci(const payload & payload, ::count countMin = 1, ::count countMax = -1) const;
    bool contains_value_ci(const char * psz, ::count countMin = 1, ::count countMax = -1) const;
 
-   bool contains_value(const var & var, ::count countMin = 1, ::count countMax = -1) const;
+   bool contains_value(const payload & payload, ::count countMin = 1, ::count countMax = -1) const;
    bool contains_value(const char * psz, ::count countMin = 1, ::count countMax = -1) const;
 
    bool str_contains(const property_set & set) const;
    bool contains(const property_set & set) const;
 
-   bool remove_first_value_ci(const var & var);
+   bool remove_first_value_ci(const payload & payload);
    bool remove_first_value_ci(const char * psz);
 
-   bool remove_first_value(const var & var);
+   bool remove_first_value(const payload & payload);
    bool remove_first_value(const char * psz);
 
-   ::count remove_value_ci(const  var & var, ::count countMin = 0, ::count countMax = -1);
+   ::count remove_value_ci(const  payload & payload, ::count countMin = 0, ::count countMax = -1);
    ::count remove_value_ci(const char * psz, ::count countMin = 0, ::count countMax = -1);
 
-   ::count remove_value(const var & var, ::count countMin = 0, ::count countMax = -1);
+   ::count remove_value(const payload & payload, ::count countMin = 0, ::count countMax = -1);
    ::count remove_value(const char * psz, ::count countMin = 0, ::count countMax = -1);
 
    bool has_property(id idName) const;
@@ -116,12 +116,12 @@ public:
    inline auto names(index iStart = 0, index iEnd = -1) const { return name_iterator(iStart, iEnd, this); }
 
 
-   inline property & set_at(const ::id & id, const var & var)
+   inline property & set_at(const ::id & id, const payload & payload)
    {
 
       auto & property = get(id);
 
-      property = var;
+      property = payload;
 
       return property;
 
@@ -129,11 +129,11 @@ public:
 
    inline bool get_string(string& strResult, const id & idKey) const;
 
-   inline var get_value(id idName);
+   inline payload get_value(id idName);
 
-   inline var value(id idName) const;
+   inline payload value(id idName) const;
 
-   inline var value(id idName, var varDefault) const;
+   inline payload value(id idName, payload varDefault) const;
 
    template < typename TYPE >
    inline void exchange(const ::id & id, TYPE & t)
@@ -243,9 +243,9 @@ public:
    }
 
 
-   void _008ParseCommandLine(const char * pszCmdLine, var & varFile);
-   void _008ParseCommandFork(const char * pszCmdLine, var & varFile, string & strApp);
-   void _008Parse(bool bApp, const char * pszCmdLine, var & varFile, string & strApp);
+   void _008ParseCommandLine(const char * pszCmdLine, payload & varFile);
+   void _008ParseCommandFork(const char * pszCmdLine, payload & varFile, string & strApp);
+   void _008Parse(bool bApp, const char * pszCmdLine, payload & varFile, string & strApp);
    void _008Add(const char * pszKey, const char * pszValue);
 
 
@@ -286,7 +286,7 @@ public:
    //::count get_count() const;
 
 
-   property_set & operator = (const var & var);
+   property_set & operator = (const payload & payload);
    property_set & operator = (const property_set & set);
 //   property_set & operator = (const pair_set_interface & set);
 //   property_set & operator = (const str_str_interface & set);

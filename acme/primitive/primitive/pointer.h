@@ -1,7 +1,7 @@
 #pragma once
 
 
-struct voidarg : public var_type < voidarg >{ voidarg(); };
+struct voidarg : public payload_type < voidarg >{ voidarg(); };
 
 #define TEMPLATE_TYPE typename __TEMPLATE_TYPE__ = nullptr_t
 #define TEMPLATE_ARG __TEMPLATE_TYPE__ t = nullptr
@@ -235,7 +235,7 @@ public:
    inline ___pointer & operator = (___pointer && t);
 
    template < typename VAR >
-   inline ___pointer & operator = (const var_type < VAR > & var);
+   inline ___pointer & operator = (const payload_type < VAR > & payload);
 
 
    template < class T2 >
@@ -368,7 +368,7 @@ public:
 
       auto pModified = __new(TYPE(*m_p));
 
-      pModified->apply(pobject, attribute);
+      pModified->process(pobject, attribute);
 
       return operator =(pcontainer->get_existing(pModified));
 

@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace process
+namespace os
 {
 
 
@@ -91,41 +91,7 @@ namespace process
 #endif
 
 
-} // namespace process
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+} // namespace os
 
 
 

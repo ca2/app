@@ -204,7 +204,7 @@ CLASS_DECL_AXIS u32 g_tickStartTime = 0;
 //
 //#else
 //
-//   ::multithreading::set_finish(::get_context_application());
+//   ::parallelization::set_finish(::get_context_application());
 //
 //#endif
 //

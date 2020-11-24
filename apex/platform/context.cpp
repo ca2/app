@@ -743,7 +743,7 @@ string context::defer_get_file_title(string strParam)
 
 
 
-file_pointer context::friendly_get_file(var varFile, ::u32 nOpenFlags)
+file_pointer context::friendly_get_file(payload varFile, ::u32 nOpenFlags)
 {
 
    try
@@ -1075,7 +1075,7 @@ void context::add_matter_locator(::apex::application * papp)
 
 
 
-::estatus context::_load_from_file(::matter* pobject, const ::var& varFile, const var& varOptions)
+::estatus context::_load_from_file(::matter* pobject, const ::payload& varFile, const payload& varOptions)
 {
 
    binary_stream reader(Context.file().get_reader(varFile));
@@ -1087,7 +1087,7 @@ void context::add_matter_locator(::apex::application * papp)
 }
 
 
-::estatus context::_save_to_file(const ::var& varFile, const var& varOptions, const ::matter * pobject)
+::estatus context::_save_to_file(const ::payload& varFile, const payload& varOptions, const ::matter * pobject)
 {
 
    binary_stream writer(Context.file().get_writer(varFile));

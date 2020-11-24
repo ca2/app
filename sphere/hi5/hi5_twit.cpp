@@ -403,7 +403,7 @@ namespace hi5
 
       }
 
-      var v = mediaUploadFinalize(strMediaId);
+      payload v = mediaUploadFinalize(strMediaId);
 
       if (v.is_new())
       {
@@ -506,7 +506,7 @@ namespace hi5
 
       bool bOk = performMultiPartPost(strUrl, post, false);
 
-      var v;
+      payload v;
 
       const char * p = m_strResponse;
 
@@ -609,7 +609,7 @@ namespace hi5
    }
 
 
-   var twit::mediaUploadFinalize(string strMediaId)
+   payload twit::mediaUploadFinalize(string strMediaId)
    {
 
       log_line("mediaUploadFinalize(\"" + strMediaId + "\")");
@@ -626,7 +626,7 @@ namespace hi5
 
       bool bOk = performMultiPartPost(strUrl, post, false);
 
-      var v;
+      payload v;
 
       const char * p = m_strResponse;
 
@@ -677,7 +677,7 @@ namespace hi5
    }
 
 
-   var twit::mediaUploadStatus(string strMediaId)
+   payload twit::mediaUploadStatus(string strMediaId)
    {
 
       log_line("mediaUploadFinalize(\"" + strMediaId + "\")");
@@ -690,7 +690,7 @@ namespace hi5
 
       bool bOk = performGet(strUrl);
 
-      var v;
+      payload v;
 
       const char * p = m_strResponse;
 

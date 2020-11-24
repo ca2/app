@@ -4,7 +4,7 @@
 #include "acme/const/id.h"
 
 
-namespace multithreading
+namespace parallelization
 {
 
 
@@ -35,7 +35,7 @@ namespace multithreading
 
 
    //CLASS_DECL_ACME comparable_eq_array<ithread_t> * s_piaThread2 = nullptr;
-   //CLASS_DECL_ACME ＿＿pointer_array(thread) * s_pthreadptra2 = nullptr;
+   //CLASS_DECL_ACME __pointer_array(thread) * s_pthreadptra2 = nullptr;
    //CLASS_DECL_ACME::critical_section * s_pcs2 = nullptr;
 
 
@@ -46,9 +46,9 @@ namespace multithreading
 
    //   //s_piaThread2 = new comparable_eq_array<ithread_t>;
 
-   //   //s_pthreadptra2 = new ＿＿pointer_array(thread);
+   //   //s_pthreadptra2 = new __pointer_array(thread);
 
-   //   ＿＿node_init_multithreading();
+   //   __node_init_multithreading();
 
    //}
 
@@ -56,7 +56,7 @@ namespace multithreading
    //CLASS_DECL_ACME void term_multithreading()
    //{
 
-   //   ＿＿node_term_multithreading();
+   //   __node_term_multithreading();
 
    //   //::acme::del(s_pthreadptra2);
 
@@ -197,7 +197,7 @@ namespace multithreading
    //}
 
 
-   //CLASS_DECL_ACME ＿＿pointer(::thread) calc_parent(::thread * pthread)
+   //CLASS_DECL_ACME __pointer(::thread) calc_parent(::thread * pthread)
    //{
 
    //   if (::is_null(pthread))
@@ -327,7 +327,7 @@ namespace multithreading
 //}
 
 
-namespace multithreading
+namespace parallelization
 {
 
 
@@ -375,7 +375,7 @@ namespace multithreading
    //bool post_quit_and_wait(::thread * pthreadParam, const duration & duration)
    //{
 
-   //   ＿＿pointer(::thread) pthread;
+   //   __pointer(::thread) pthread;
 
    //   try
    //   {
@@ -441,7 +441,7 @@ namespace multithreading
 
 
 
-CLASS_DECL_ACME ::estatus call(const ::procedure & procedure)
+CLASS_DECL_ACME ::estatus call(const ::promise::routine & routine)
 {
 
    ::estatus estatus;
@@ -449,7 +449,7 @@ CLASS_DECL_ACME ::estatus call(const ::procedure & procedure)
    try
    {
 
-      estatus = procedure();
+      estatus = routine();
 
    }
    catch (...)
@@ -715,8 +715,7 @@ void thread_name_abbreviate(string & strName, int len)
 }
 
 
-
-::estatus run_runnable(const ::procedure & procedure)
+::estatus run_routine(const ::promise::routine & routine)
 {
 
    ::estatus estatus = error_exception;
@@ -724,18 +723,7 @@ void thread_name_abbreviate(string & strName, int len)
    try
    {
 
-      //＿＿pointer(matter) pobject(e_move_transfer, pobjectTask);
-
-      try
-      {
-
-         estatus = procedure();
-
-      }
-      catch (...)
-      {
-
-      }
+      estatus = routine();
 
    }
    catch (...)
@@ -748,8 +736,7 @@ void thread_name_abbreviate(string & strName, int len)
 }
 
 
-thread_local ＿＿pointer(task) t_ptask;
-
+thread_local __pointer(task) t_ptask;
 
 
 CLASS_DECL_ACME ::task * get_task()

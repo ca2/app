@@ -49,3 +49,13 @@
 //}
 
 
+
+
+CLASS_DECL_ACME ::estatus __realize(::matter * pmatter, const ::promise::process & process)
+{
+
+   process(pmatter->realize());
+
+   return ::success;
+
+}

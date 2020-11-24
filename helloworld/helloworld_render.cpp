@@ -201,7 +201,7 @@ namespace helloworld
 
       return ::hellobase::render::run();
 
-      //::multithreading::set_priority(::priority_time_critical);
+      //::parallelization::set_priority(::priority_time_critical);
 
       //double dFps = m_pview->get_wnd()->m_pimpl.cast < ::user::interaction_impl >()->m_dFps;
 
@@ -447,7 +447,7 @@ namespace helloworld
 
          sync_lock slText(m_pmutexText);
 
-         strHelloWorld = get_helloworld().c_str(); // rationale : string allocation fork *for multithreading*
+         strHelloWorld = get_helloworld().c_str(); // rationale : string allocation fork *for parallelization*
 
       }
 

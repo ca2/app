@@ -288,7 +288,7 @@ inline string ___type_str()
 #define __type_str(TYPE) ::___type_str < TYPE >()
 
 
-#include "acme/primitive/primitive/var.h"
+#include "acme/primitive/primitive/payload.h"
 
 
 #include "var_array.h"

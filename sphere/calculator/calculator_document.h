@@ -26,7 +26,7 @@ namespace calculator
       virtual void dump(dump_context & dumpcontext) const;
 
 
-      bool on_open_document(const var & varFile) override;
+      bool on_open_document(const payload & varFile) override;
 
 
    };

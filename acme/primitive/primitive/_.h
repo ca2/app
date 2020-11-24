@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "acme/primitive/primitive/var.h"
+#include "acme/primitive/primitive/payload.h"
 #include "acme/primitive/primitive/property_set.h"
 //#include "acme/primitive/primitive/application_bias.h"
 //#include "acme/primitive/primitive/create.h"
@@ -62,19 +62,19 @@ void ___release(TYPE *& p OBJ_REF_DBG_COMMA_PARAMS);
 //CLASS_DECL_ACME void launch_action(action* paction);
 
 
-#include "acme/primitive/primitive/action.h"
+#include "primitive/promise/subject.h"
 
 
-#include "acme/primitive/primitive/change.h"
+#include "primitive/promise/context.h"
 
 
-#include "acme/primitive/primitive/update.h"
+#include "primitive/promise/handler.h"
 
 
-#include "acme/primitive/primitive/source.h"
+#include "primitive/promise/backing.h"
 
 
-#include "acme/primitive/primitive/promise.h"
+#include "primitive/promise/promise.h"
 
 
 // class CLASS_DECL_ACME parents :

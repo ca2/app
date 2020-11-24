@@ -181,7 +181,7 @@ namespace simpledb
 
          sync_lock sl(pdatabase->mutex());
 
-         var item = pdatabase->query_item("select COUNT(*) from sqlite_master where type like 'table' and name like '" + strTable + "'");
+         payload item = pdatabase->query_item("select COUNT(*) from sqlite_master where type like 'table' and name like '" + strTable + "'");
 
          if (item.i32() <= 0)
          {
@@ -230,7 +230,7 @@ namespace simpledb
    }
 
 
-   bool server::_data_server_load(::database::client * pclient, const ::database::key & id, get_memory getmemory, ::action * paction)
+   bool server::_data_server_load(::database::client * pclient, const ::database::key & id, get_memory getmemory, ::subject * paction)
    {
 
       ::database::key key;
@@ -258,7 +258,7 @@ namespace simpledb
    }
 
 
-   bool server::_data_server_save(::database::client * pclient, const ::database::key & id, block block, ::action * paction)
+   bool server::_data_server_save(::database::client * pclient, const ::database::key & id, block block, ::subject * paction)
    {
 
       ::database::key key;

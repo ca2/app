@@ -50,7 +50,7 @@
 
 
 
-//inline var & var::operator = (::image * pimage)
+//inline payload & payload::operator = (::image * pimage)
 //{
 //
 //  set_type(type_image, false);
@@ -62,7 +62,7 @@
 //}
 //
 //
-//inline var::var(::image * pimage)
+//inline payload::payload(::image * pimage)
 //{
 //
 //  m_etype = type_new;
@@ -144,7 +144,7 @@
 //
 //
 //template < typename PRED >
-//inline ::image_result object::get_image(const var & varFile, ::u64 uTrait, PRED pred)
+//inline ::image_result object::get_image(const payload & varFile, ::u64 uTrait, PRED pred)
 //{
 //
 //  return System.get_image(this, varFile, uTrait, pred);
@@ -212,7 +212,7 @@
 //}
 //
 //
-//inline var property_set::operator()(const ::id & id, const var & varDefault) const
+//inline payload property_set::operator()(const ::id & id, const payload & varDefault) const
 //{
 //
 //  auto pproperty = find(id);
@@ -229,7 +229,7 @@
 //}
 //
 //
-//inline var property_set::topic(const id & id)
+//inline payload property_set::topic(const id & id)
 //{
 //
 //  return &set(id);
@@ -237,7 +237,7 @@
 //}
 //
 //
-//inline var & property_set::set(const ::id & id)
+//inline payload & property_set::set(const ::id & id)
 //{
 //
 //  auto pproperty = find(id);
@@ -256,7 +256,7 @@
 //}
 //
 //
-//inline property * var::find_property(const ::id & id) const
+//inline property * payload::find_property(const ::id & id) const
 //{
 //
 //   if (!casts_to(type_propset))
@@ -271,7 +271,7 @@
 //}
 
 
-//inline property & var::get_property(const ::id & id)
+//inline property & payload::get_property(const ::id & id)
 //{
 //
 //   return propset().get(id);
@@ -405,7 +405,7 @@
 //}
 //
 //
-//inline var property_set::value(id idName) const
+//inline payload property_set::value(id idName) const
 //{
 //
 //  property * pproperty = find(idName);
@@ -422,7 +422,7 @@
 //}
 //
 //
-//inline var property_set::value(id idName, var varDefault) const
+//inline payload property_set::value(id idName, payload varDefault) const
 //{
 //
 //  property * pproperty = find(idName);
@@ -439,7 +439,7 @@
 //}
 //
 //
-//inline var var::first() const
+//inline payload payload::first() const
 //{
 //
 //  return at(0);
@@ -447,7 +447,7 @@
 //}
 //
 //
-//inline var var::last() const
+//inline payload payload::last() const
 //{
 //
 //  if (array_get_count() == 0)
@@ -466,7 +466,7 @@
 //}
 //
 //
-//inline var var::first()
+//inline payload payload::first()
 //{
 //
 //  return at(0);
@@ -474,7 +474,7 @@
 //}
 //
 //
-//inline var var::last()
+//inline payload payload::last()
 //{
 //
 //  if (array_get_count() == 0)
@@ -520,21 +520,21 @@
 //}
 //
 //
-//inline string CLASS_DECL_APEX operator + (const char * psz, const var & var)
+//inline string CLASS_DECL_APEX operator + (const char * psz, const payload & payload)
 //{
 //
-//  return __str(psz) + var.get_string();
+//  return __str(psz) + payload.get_string();
 //
 //}
 //
 //
-////inline class var & var::operator -= (const class property & property) { operator -=(property);  return *this; }
-////inline class var & var::operator += (const class property & property) { operator +=(property);  return *this; }
-////inline class var & var::operator /= (const class property & property) { operator /=(property);  return *this; }
-////inline class var & var::operator *= (const class property & property) { operator *=(property);  return *this; }
+////inline class payload & payload::operator -= (const class property & property) { operator -=(property);  return *this; }
+////inline class payload & payload::operator += (const class property & property) { operator +=(property);  return *this; }
+////inline class payload & payload::operator /= (const class property & property) { operator /=(property);  return *this; }
+////inline class payload & payload::operator *= (const class property & property) { operator *=(property);  return *this; }
 //
 //
-//inline ::property * var::find_property(const ::id & id) const
+//inline ::property * payload::find_property(const ::id & id) const
 //{
 //
 //  if (m_etype == type_pvar)
@@ -561,7 +561,7 @@
 //}
 //
 //
-//inline ::index var::property_index(const ::id & id) const
+//inline ::index payload::property_index(const ::id & id) const
 //{
 //
 //  if (m_etype == type_pvar)
@@ -588,7 +588,7 @@
 //}
 //
 //
-//inline property & var::get_property(const ::id & id)
+//inline property & payload::get_property(const ::id & id)
 //{
 //
 //  if (m_etype == type_pvar)
@@ -701,23 +701,23 @@
 //
 //template < class T >
 //template < typename VAR >
-//inline pointer < T >  & pointer < T >::operator = (const var_type < VAR > & var)
+//inline pointer < T >  & pointer < T >::operator = (const var_type < VAR > & payload)
 //{
 //
-//  if (var.this_var()->m_etype == type_element)
+//  if (payload.this_var()->m_etype == type_element)
 //  {
 //
-//     return operator = (var.this_var()->m_p);
+//     return operator = (payload.this_var()->m_p);
 //
 //  }
-//  else if (var.this_var()->m_etype == type_memory)
+//  else if (payload.this_var()->m_etype == type_memory)
 //  {
 //
 //     auto pfile = create_memory_file();
 //
 //     ::binary_stream stream(pfile);
 //
-//     stream << var.this_var()->memory();
+//     stream << payload.this_var()->memory();
 //
 //     string strText;
 //
@@ -823,19 +823,19 @@
 //}
 //
 //
-//inline bool succeeded(const ::var & var)
+//inline bool succeeded(const ::payload & payload)
 //{
 //
-//  if (var.m_etype == type_enum_status)
+//  if (payload.m_etype == type_enum_status)
 //  {
 //
-//     return ::succeeded(var.m_estatus);
+//     return ::succeeded(payload.m_estatus);
 //
 //  }
-//  else if (var.is_integer())
+//  else if (payload.is_integer())
 //  {
 //
-//     return ::succeeded(var.i64());
+//     return ::succeeded(payload.i64());
 //
 //  }
 //  else
@@ -851,7 +851,7 @@
 //inline bool succeeded(const ::property & property)
 //{
 //
-//  return ::succeeded((const ::var &) property);
+//  return ::succeeded((const ::payload &) property);
 //
 //}
 //
@@ -1506,14 +1506,14 @@ inline ::estatus object::add_reference(SOURCE * psource OBJ_REF_DBG_COMMA_PARAMS
 inline const char * object::topic_text() { return ::is_null(m_pmeta) ? nullptr : m_pmeta->m_strTopicText; }
 
 
-inline var object::context_value(const var& var)
+inline payload object::context_value(const payload& payload)
 {
 
-  ::var varContextValue;
+  ::payload varContextValue;
 
   varContextValue["context"] = get_context();
 
-  varContextValue["value"] = var;
+  varContextValue["value"] = payload;
 
   return varContextValue;
 
@@ -1625,7 +1625,7 @@ inline void object::defer_set_context_object(::layered * pobjectContext)
 //}
 //
 
-inline ::estatus context::load_from_file(::matter* pobject, const ::var& varFile, const var* pvarOptions)
+inline ::estatus context::load_from_file(::matter* pobject, const ::payload& varFile, const payload* pvarOptions)
 {
 
   if (pvarOptions)
@@ -1644,7 +1644,7 @@ inline ::estatus context::load_from_file(::matter* pobject, const ::var& varFile
 }
 
 
-inline ::estatus context::load_from_file(::matter* pobject, const ::var& varFile)
+inline ::estatus context::load_from_file(::matter* pobject, const ::payload& varFile)
 {
 
   return _load_from_file(pobject, varFile, type_empty_argument);
@@ -1652,7 +1652,7 @@ inline ::estatus context::load_from_file(::matter* pobject, const ::var& varFile
 }
 
 
-inline ::estatus context::save_to_file(const ::var& varFile, const var* pvarOptions, const ::matter * pobject)
+inline ::estatus context::save_to_file(const ::payload& varFile, const payload* pvarOptions, const ::matter * pobject)
 {
 
   if (pvarOptions)
@@ -1671,7 +1671,7 @@ inline ::estatus context::save_to_file(const ::var& varFile, const var* pvarOpti
 }
 
 
-inline ::estatus context::save_to_file(const ::var& varFile, const ::matter* pobject)
+inline ::estatus context::save_to_file(const ::payload& varFile, const ::matter* pobject)
 {
 
   return _save_to_file(varFile, type_empty_argument, pobject);
@@ -1681,7 +1681,7 @@ inline ::estatus context::save_to_file(const ::var& varFile, const ::matter* pob
 
 
 
-inline ::file_result object::get_reader(const var & varFile, efileopen eopen)
+inline ::file_result object::get_reader(const payload & varFile, efileopen eopen)
 {
 
   return get_file(varFile, eopen | ::file::mode_read) ;
@@ -1689,7 +1689,7 @@ inline ::file_result object::get_reader(const var & varFile, efileopen eopen)
 }
 
 
-inline ::file_result object::get_writer(const var & varFile, efileopen eopen)
+inline ::file_result object::get_writer(const payload & varFile, efileopen eopen)
 {
 
   return get_file(varFile, eopen | ::file::mode_write);
@@ -1758,7 +1758,7 @@ inline void context_object::get(const ::id & id, TYPE & t)
 }
 
 
-//inline var::operator string & ()
+//inline payload::operator string & ()
 //{
 //
 //  if (m_etype == ::type_pvar)
@@ -1793,7 +1793,7 @@ inline void context_object::get(const ::id & id, TYPE & t)
 //}
 //
 
-//inline var::operator string() const
+//inline payload::operator string() const
 //{
 //
 //    return get_string();
@@ -1801,7 +1801,7 @@ inline void context_object::get(const ::id & id, TYPE & t)
 //}
 
 #define IMPL_VAR_REF(TYPE, VAR, ENUM)        \
-  inline var::operator TYPE &()                  \
+  inline payload::operator TYPE &()                  \
   {                                         \
                                             \
      if(m_etype == ::type_pvar)        \
@@ -1906,7 +1906,7 @@ inline ::thread_pointer object::__start_thread(const ::id & id, void(TYPE:: * pf
 }
 
 //
-//inline var & var::operator = (::memory * pmemory)
+//inline payload & payload::operator = (::memory * pmemory)
 //{
 //
 //   set_element(pmemory);
@@ -1971,7 +1971,7 @@ inline void add_futurevar(futurevar_array & futurevara, PRED pred)
 }
 
 
-//inline var::operator ::memory & ()
+//inline payload::operator ::memory & ()
 //{
 //
 //  return this->memory();
@@ -1979,7 +1979,7 @@ inline void add_futurevar(futurevar_array & futurevara, PRED pred)
 //}
 //
 //
-//inline var::operator ::memory() const
+//inline payload::operator ::memory() const
 //{
 //
 //  return this->memory();
@@ -1990,7 +1990,7 @@ inline void add_futurevar(futurevar_array & futurevara, PRED pred)
 //
 //
 //
-//inline var::operator ::estatus &()
+//inline payload::operator ::estatus &()
 //{
 //
 //  if(m_etype == ::type_pvar)
@@ -2035,8 +2035,8 @@ inline void add_futurevar(futurevar_array & futurevara, PRED pred)
 //
 //
 //template < typename TYPE_CHAR >
-//inline string_base < TYPE_CHAR >::string_base(const var& var) :
-//  string_base(var.to_string())
+//inline string_base < TYPE_CHAR >::string_base(const payload& payload) :
+//  string_base(payload.to_string())
 //{
 //
 //
@@ -2066,7 +2066,7 @@ inline void add_futurevar(futurevar_array & futurevara, PRED pred)
 //
 //
 //  template < class T >
-//  inline __pointer(T) var::cast(T * pDefault)
+//  inline __pointer(T) payload::cast(T * pDefault)
 //  {
 //
 //     if (m_etype == type_pvar && m_pvar != nullptr)
@@ -2100,7 +2100,7 @@ inline void add_futurevar(futurevar_array & futurevara, PRED pred)
 //
 //
 //     template < class T >
-//  inline T & var::get_cast(T * pDefault)
+//  inline T & payload::get_cast(T * pDefault)
 //  {
 //
 //     if (m_etype == type_pvar && m_pvar != nullptr)
@@ -2140,7 +2140,7 @@ inline void add_futurevar(futurevar_array & futurevara, PRED pred)
 //
 //
 //     template < class T >
-//  inline __pointer(T) var::cast()
+//  inline __pointer(T) payload::cast()
 //  {
 //
 //     if(m_etype == type_pvar && m_pvar != nullptr)
@@ -2167,7 +2167,7 @@ inline void add_futurevar(futurevar_array & futurevara, PRED pred)
 
 
 //template < typename PRED >
-//void procedure::pred(PRED pred)
+//void routine::pred(PRED pred)
 //{
 //
 //  m_pobjectTask = __task_procedure(pred);
@@ -2201,7 +2201,7 @@ inline __pointer(TYPE) context_object::cast(const ::id & id)
 
 //
 //template < typename T >
-//inline __pointer(T) var::pointer() const
+//inline __pointer(T) payload::pointer() const
 //{
 //
 //  auto pproperty = find_pointer < T >();
@@ -2218,7 +2218,7 @@ inline __pointer(TYPE) context_object::cast(const ::id & id)
 //}
 
 //
-//inline var __visible(var varOptions, bool bVisible)
+//inline payload __visible(payload varOptions, bool bVisible)
 //{
 //
 //  varOptions["visible"] = bVisible;
@@ -2297,7 +2297,7 @@ inline ::count fork_count_end(::object* pobject, ::count iCount, PRED pred, inde
 }
 
 
-//inline void callback::receive_response(const var & var) const
+//inline void callback::receive_response(const payload & payload) const
 //{
 //
 //  if (!m_pobjectTask)
@@ -2307,7 +2307,7 @@ inline ::count fork_count_end(::object* pobject, ::count iCount, PRED pred, inde
 //
 //  }
 //
-//  return m_pobjectTask->receive_response(var);
+//  return m_pobjectTask->receive_response(payload);
 //
 //}
 
@@ -2340,9 +2340,9 @@ inline ::estatus context_object::__construct_new(__pointer(TYPE)& pbase)
 
 
 //template < typename PRED >
-//procedure::procedure(const ::id& id, PRED pred, ::matter* pobjectHold) : function_base(id, __new(__pred_procedure < PRED >(pred, pobjectHold))) { }
+//routine::routine(const ::id& id, PRED pred, ::matter* pobjectHold) : function_base(id, __new(__λprocedure < PRED >(pred, pobjectHold))) { }
 //template < typename PRED >
-//procedure::procedure(PRED pred, ::matter* pobjectHold) : procedure(::id(), pred, pobjectHold) { }
+//routine::routine(PRED pred, ::matter* pobjectHold) : routine(::id(), pred, pobjectHold) { }
 
 
 
@@ -2350,31 +2350,31 @@ inline ::estatus context_object::__construct_new(__pointer(TYPE)& pbase)
 ////{
 //
 //
-//  inline message_box::message_box(const var& var)
+//  inline message_box::message_box(const payload& payload)
 //  {
 //
-//     if (var.get_type() == type_string)
+//     if (payload.get_type() == type_string)
 //     {
 //
-//        m_strMessage = var;
+//        m_strMessage = payload;
 //
 //     }
-//     else if (var.has_property("message") && var["message"].has_char())
+//     else if (payload.has_property("message") && payload["message"].has_char())
 //     {
 //
-//        m_strMessage = var["message"];
+//        m_strMessage = payload["message"];
 //
 //     }
-//     else if (var.has_property("format") && var["format"].has_char())
+//     else if (payload.has_property("format") && payload["format"].has_char())
 //     {
 //
-//        m_strMessage = var.propset().format(var["format"]);
+//        m_strMessage = payload.propset().format(payload["format"]);
 //
 //     }
 //
-//     m_puserprimitive = __user_primitive(var["parent"].cast < ::layered >());
-//     m_strTitle = var["title"];
-//     m_emessagebox = (::emessagebox) var["flags"].i64();
+//     m_puserprimitive = __user_primitive(payload["parent"].cast < ::layered >());
+//     m_strTitle = payload["title"];
+//     m_emessagebox = (::emessagebox) payload["flags"].i64();
 //
 //     //if (m_puserprimitive)
 //     //{
@@ -2395,7 +2395,7 @@ inline ::estatus context_object::__construct_new(__pointer(TYPE)& pbase)
 
 
 
-inline ::estatus object::defer_start(::thread_pointer& pthread, const ::procedure & procedure)
+inline ::estatus object::defer_start(::thread_pointer& pthread, const ::routine & procedure)
 {
 
    auto estatus = __defer_construct(pthread);

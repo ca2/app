@@ -865,7 +865,7 @@ filetime __filetime(const ::datetime::time & time)
 
       //TRACELASTERROR();
 
-      ·zero(filetime);
+      xxf_zero(filetime);
 
    }
 
@@ -892,7 +892,7 @@ FILETIME __FILETIME(const ::datetime::time & time)
 
       //TRACELASTERROR();
 
-      ·zero(filetime);
+      xxf_zero(filetime);
 
    }
 

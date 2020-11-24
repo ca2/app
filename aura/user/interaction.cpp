@@ -2530,7 +2530,7 @@ namespace user
       //::draw2d::savedc k(pgraphics);
 
       //on_viewport_offset(pgraphics);
-      //// while drawing layout can occur and change z-order.
+      //// while drawing layout can occur and machine z-order.
       //// keep this past z-order
       //interaction_pointer_array uia;
 
@@ -3366,7 +3366,7 @@ namespace user
    }
 
    
-   ::estatus interaction::main_async(const ::procedure & procedure, e_priority epriority)
+   ::estatus interaction::main_async(const ::routine & procedure, e_priority epriority)
    {
 
       return m_pimpl->main_async(procedure, epriority);
@@ -3374,7 +3374,7 @@ namespace user
    }
 
 
-   ::estatus interaction::main_sync(const procedure & procedure, const ::duration & duration, e_priority epriority)
+   ::estatus interaction::main_sync(const routine & procedure, const ::duration & duration, e_priority epriority)
    {
 
       auto pprocedure = ___sync_procedure(procedure);
@@ -8225,7 +8225,7 @@ namespace user
 
       // mark sketch up-to-date
       // ensure no modifications are left ("overwriting")
-      // (it may leave sketch change requests not considered)
+      // (it may leave sketch machine requests not considered)
       // (so all changes should be recorded to
       // local variables above (at sketch_to_design function preparation))
       layout().design() = layout().sketch();
@@ -8248,7 +8248,7 @@ namespace user
          // only changes to display and appearance
          // will set window_flag_loading_window_rect here
          // (because they are "rare" and it seems
-         // good location to manage the change*)
+         // good location to manage the machine*)
          // (*instead of flagging window_flag_loading_window_rect
          // at every location display or appearance is changed)
          // (so while this is still applicable)
@@ -8322,7 +8322,7 @@ namespace user
          if (bDisplay)
          {
 
-            //output_debug_string(::str::from(++g_i_prodevian_update_visual) + "updvis dpy change\n");
+            //output_debug_string(::str::from(++g_i_prodevian_update_visual) + "updvis dpy machine\n");
 
          }
 
@@ -9887,7 +9887,7 @@ restart:
    //}
 
 
-   //__pointer(::user::menu) interaction::track_popup_xml_menu(const var & varXml, i32 iFlags, const ::point & point, const ::size & sizeMinimum)
+   //__pointer(::user::menu) interaction::track_popup_xml_menu(const payload & varXml, i32 iFlags, const ::point & point, const ::size & sizeMinimum)
    //{
 
    //   __pointer(::user::menu) pmenu = __create <  ::user::menu  > ();
@@ -9969,7 +9969,7 @@ restart:
    //}
 
 
-   //__pointer(::user::menu) interaction::track_popup_xml_menu_file(var varXmlFile, i32 iFlags, const ::point & point, const ::size & sizeMinimum)
+   //__pointer(::user::menu) interaction::track_popup_xml_menu_file(payload varXmlFile, i32 iFlags, const ::point & point, const ::size & sizeMinimum)
    //{
 
    //   string strXml = Context.file().as_string(varXmlFile);
@@ -12533,7 +12533,7 @@ restart:
    }
 
 
-   void interaction::post_procedure(const ::procedure & procedure)
+   void interaction::post_procedure(const ::routine & procedure)
    {
 
       if (::is_set(m_pthreadUserInteraction))
@@ -12600,7 +12600,7 @@ restart:
 #endif
 
 
-   void interaction::send_procedure(const ::procedure & procedure, ::duration durationTimeout)
+   void interaction::send_procedure(const ::routine & procedure, ::duration durationTimeout)
    {
 
       ::thread * pthread = get_wnd() == nullptr ? (::thread *) nullptr : get_wnd()->m_pthreadUserInteraction;
@@ -13455,7 +13455,7 @@ restart:
    }
 
 
-   void interaction::on_apply(::action * paction)
+   void interaction::on_apply(::subject * paction)
    {
 
       if (paction->id() == REDRAW_ID || paction->id() == m_id)
@@ -13674,7 +13674,7 @@ restart:
    }
 
 
-   bool interaction::get_data(__pointer(::user::interaction)pwnd, var& var)
+   bool interaction::get_data(__pointer(::user::interaction)pwnd, payload& payload)
    {
 
       string str;
@@ -13710,12 +13710,12 @@ restart:
       {
       case control_data_type_string:
       {
-         var = str;
+         payload = str;
       }
       return true;
       case control_data_type_natural:
       {
-         var = atoi(str);
+         payload = atoi(str);
          return true;
       }
       break;

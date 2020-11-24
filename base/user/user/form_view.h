@@ -24,9 +24,9 @@ namespace user
       virtual ~form_view();
 
 
-      virtual void on_apply(::action * paction) override;
+      virtual void on_apply(::subject * paction) override;
 
-      virtual ::estatus open_document(const var & varFile) override;
+      virtual ::estatus open_document(const payload & varFile) override;
       
       virtual ::estatus open_html(const string & str) override;
 

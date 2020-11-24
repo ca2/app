@@ -65,7 +65,7 @@ CLASS_DECL_AURA i32 WINAPI GetThreadPriority(hthread_t hthread);
 #endif
 
 
-namespace multithreading
+namespace parallelization
 {
 
    enum e_slot
@@ -76,7 +76,7 @@ namespace multithreading
 
    };
 
-} // namespace multithreading
+} // namespace parallelization
 
 
 #endif // CA2_APP_AXIS_OS_CROSS_WINDOWS_THREAD_H

@@ -136,7 +136,7 @@ namespace draw2d
 
    }
 
-   e_format draw2d::file_extension_to_format(const ::var & varFile)
+   e_format draw2d::file_extension_to_format(const ::payload & varFile)
    {
 
       return text_to_format(varFile.get_file_path().final_extension());

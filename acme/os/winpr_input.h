@@ -931,7 +931,7 @@
 #define VK_CONVERT   0x1C /* IME convert */
 #define VK_NONCONVERT   0x1D /* IME nonconvert */
 #define VK_ACCEPT   0x1E /* IME accept */
-#define VK_MODECHANGE   0x1F /* IME mode change request */
+#define VK_MODECHANGE   0x1F /* IME mode machine request */
 
 #define VK_SPACE   0x20 /* SPACEBAR */
 #define VK_PRIOR   0x21 /* PAGE UP key */

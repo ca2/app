@@ -677,17 +677,17 @@ property * context_object::fetch_property(const ::id & idParam, bool bCreate)
 //}
 
 
-string context_object::get_text(const var & var, const ::id & id)
+string context_object::get_text(const payload & payload, const ::id & id)
 {
 
-   if (var.has_property(id) && var[id].has_char())
+   if (payload.has_property(id) && payload[id].has_char())
    {
 
-      return var[id];
+      return payload[id];
 
    }
 
-   return var.get_string();
+   return payload.get_string();
 
 }
 

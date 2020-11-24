@@ -35,13 +35,13 @@ namespace uwp
       LPDWORD lpFileSystemFlags,        // file system options
       unichar * lpFileSystemNameBuffer,    // file system name buffer
       ::u32 nFileSystemNameSize);         // length of file system name buffer
-      static dword_ptr __stdcall _SHGetFileInfo(      
+      static dword_ptr __stdcall _SHGetFileInfo(
       const unichar * pszPath,
       ::u32 dwFileAttributes,
       SHFILEINFOW *psfi,
       ::u32 cbFileInfo,
       ::u32 uFlags);
-      static BOOL __stdcall _GetStringTypeEx(      
+      static BOOL __stdcall _GetStringTypeEx(
       LCID Locale,
       ::u32 dwInfoType,
       const unichar * lpSrcStr,

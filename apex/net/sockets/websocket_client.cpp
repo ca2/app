@@ -736,7 +736,7 @@ namespace sockets
    }
 
 
-   bool websocket_client::send_json(var varJson)
+   bool websocket_client::send_json(payload varJson)
    {
 
       string strJson;
@@ -874,7 +874,7 @@ namespace sockets
 
             }
 
-            ·zero(m_maskingkey);
+            xxf_zero(m_maskingkey);
 
             if (m_memResponse.get_size() < m_header_size)
             {

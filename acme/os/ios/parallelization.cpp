@@ -134,14 +134,14 @@ i32 thread_get_scheduling_priority(i32 iOsPolicy, const sched_param * pparam)
 void process_get_os_priority(i32 * piPolicy, sched_param * pparam, i32 nCa2Priority)
 {
 
-   ＿＿throw(::exception::exception("not applicable in Mac OS"));
+   __throw(::exception::exception("not applicable in Mac OS"));
 
 }
 
 i32 process_get_scheduling_priority(i32 iOsPolicy, const sched_param * pparam)
 {
 
-   ＿＿throw(::exception::exception("not applicable in Mac OS"));
+   __throw(::exception::exception("not applicable in Mac OS"));
 
 }
 
@@ -218,7 +218,7 @@ namespace parallelization
 //thread_pointer < void > g_ns_pool;
 
 
-void ＿＿node_init_thread()
+void __node_init_thread()
 {
 
    //g_ns_pool = new_ns_pool();
@@ -226,7 +226,7 @@ void ＿＿node_init_thread()
 }
 
 
-void ＿＿node_term_thread()
+void __node_term_thread()
 {
 
    //release_pool(g_ns_pool);
@@ -244,7 +244,7 @@ void ＿＿node_term_thread()
 
 
 
-bool ＿＿os_init_thread()
+bool __os_init_thread()
 {
 
    return true;
@@ -252,10 +252,10 @@ bool ＿＿os_init_thread()
 }
 
 
-bool ＿＿os_term_thread()
+bool __os_term_thread()
 {
 
-//   ＿＿clear_mq("＿＿os_term_thread", true);
+//   __clear_mq("__os_term_thread", true);
 
    //thread_shutdown();
 

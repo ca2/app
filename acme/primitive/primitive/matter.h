@@ -4,7 +4,7 @@
 class context_object;
 class task;
 class action_context;
-class var;
+class payload;
 class layered;
 class object;
 class dump_context;
@@ -42,6 +42,7 @@ public:
 
          bool     m_bitSetFinish : 1;
          bool     m_bitFinishing : 1;
+         bool     m_bitProcessed : 1;
 
       };
 
@@ -156,22 +157,30 @@ public:
    virtual ::estatus finalize_composite(::matter* pobject OBJ_REF_DBG_COMMA_PARAMS);
    virtual ::estatus release_reference(::matter* pobject OBJ_REF_DBG_COMMA_PARAMS);
 
+
    virtual ::estatus set_generic_object_name(const char* pszName);
+
 
    virtual ::matter * get_taskpool_container();
 
+
    virtual ::layered * taskpool();
 
-   virtual ::task* defer_start_task(const ::id & id, const ::procedure & procedure);
+
+   virtual ::task* defer_start_task(const ::id & id, const ::promise::routine & routine);
+
 
    virtual void delete_this();
+
 
    virtual const char* debug_note() const;
    virtual ::matter * clone() const;
 
+
    inline void set(const ::eobject & eobject) { m_eobject |= eobject; }
    inline void clear(const ::eobject& eobject) { m_eobject -= eobject; }
    inline void set(const ::eobject& eobject, bool bSet) { if (bSet) set(eobject); else clear(eobject); }
+
 
    inline bool has(const ::eobject& eobject) const { return m_eobject.has(eobject); }
    inline ::u64 get_object_flag() { return m_eobject; }
@@ -199,29 +208,37 @@ public:
    inline void set_nok(enum_object estatusFailure = e_object_failure) { clear(e_object_success); set(estatusFailure); }
    inline void set_modified(bool bModified = true) { set(e_object_changed, bModified); }
 
+
    inline void set_fail() { set(e_object_failure); clear(e_object_success); }
    inline void set_timeout() { set(e_object_timeout); }
    inline void set_persistent(bool bSet = true) { set(e_object_persist, bSet); }
+
 
    inline bool is_ok() const { return has(e_object_success); }
    inline bool nok() const { return has(e_object_failure) || has(e_object_timeout); }
    inline bool is_modified() const { return has(e_object_changed); }
    inline bool is_persistent() { return has(e_object_persist); }
 
+
    inline bool is_storing() const { return has(e_object_storing); }
    inline bool is_loading() const { return !is_storing(); }
+
 
    inline void set_storing() { set(e_object_storing); }
    inline void set_loading() { clear(e_object_storing); }
 
+
    inline void defer_set_storing() { if (!is_storing()) set_storing(); }
    inline void defer_set_loading() { if (!is_loading()) set_loading(); }
 
+
    inline ::matter * context_trace_object() const { return (::matter *)this; }
+
 
    virtual void __tracea(matter * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz);
    virtual void __tracef(matter * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, ...);
    virtual void __tracev(matter * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args);
+
 
    virtual e_trace_category trace_category(matter * pcontext);
    virtual e_trace_category trace_category();
@@ -233,15 +250,14 @@ public:
    virtual void sync_wait(const ::duration & duration);
 
 
-   virtual void apply(::action * paction);
-   virtual void on_apply(::action * paction);
+   virtual void on_subject_deliver(::promise::subject * psubject);
 
 
    virtual ::estatus operator()();
-   virtual void operator()(const ::var & var);
+   virtual void operator()(const ::payload & payload);
    virtual ::estatus run();
-   virtual ::var realize();
-   virtual void on_future(const ::var& var);
+   virtual ::payload realize();
+   virtual void on_future(const ::payload& payload);
 
    virtual void clear_member() { }
 
@@ -256,6 +272,7 @@ public:
    virtual void to_sz(char* sz, strsize len) const;
 
    virtual bool should_run_async() const;
+
 
 };
 

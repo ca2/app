@@ -16,19 +16,19 @@ public:
    /*class CLASS_DECL_CORE record
    {
    public:
-      var sender;
-      var recipient;
-      var sent;
-      var send_time;
-      var index;
-      var message;
+      payload sender;
+      payload recipient;
+      payload sent;
+      payload send_time;
+      payload index;
+      payload message;
    };*/
 
 
-   bool write(var record);
-   var get_since(var record);
-   var last(var user1, var user2);
-   var current();
+   bool write(payload record);
+   payload get_since(payload record);
+   payload last(payload user1, payload user2);
+   payload current();
 
 
 };

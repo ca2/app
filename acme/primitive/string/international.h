@@ -1,7 +1,7 @@
 #pragma once
 
 
-class var;
+class payload;
 
 
 namespace str

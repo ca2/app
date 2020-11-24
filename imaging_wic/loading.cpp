@@ -10,7 +10,7 @@ namespace imaging_wic
    bool windows_image_from_bitmap_source(::image * pimageFrame, IWICBitmapSource * pbitmapsource, IWICImagingFactory * pimagingfactory);
 
 
-   ::estatus context_image::_load_image(::image * pimageParam, const var & varFile, bool bSync, bool bCreateHelperMaps)
+   ::estatus context_image::_load_image(::image * pimageParam, const payload & varFile, bool bSync, bool bCreateHelperMaps)
    {
 
       auto ploadimage = __new(load_image(this));
@@ -65,9 +65,9 @@ namespace imaging_wic
       try
       {
          
-         ::var var = m_varFile;
+         ::payload payload = m_varFile;
 
-         ::file::path path = var.get_file_path();
+         ::file::path path = payload.get_file_path();
 
          bool bCache = true;
 
@@ -79,11 +79,11 @@ namespace imaging_wic
             if (!bCache)
             {
 
-               ::file::set_no_cache(var);
+               ::file::set_no_cache(payload);
 
             }
 
-            Context.file().as_memory(var, *pmemory);
+            Context.file().as_memory(payload, *pmemory);
 
             const char* psz = (const char*)pmemory->get_data();
 
@@ -554,7 +554,7 @@ namespace imaging_wic
       }
 
       STATSTG stg;
-      ·zero(stg);
+      xxf_zero(stg);
       pstream->Stat(&stg, STATFLAG_NONAME);
       LARGE_INTEGER l;
       l.QuadPart = 0;

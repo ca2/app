@@ -170,7 +170,7 @@ namespace http
 
          ppac->m_strUrl = pszUrl;
 
-         var varFile;
+         payload varFile;
 
          varFile["url"] = ppac->m_strUrl;
          varFile["disable_ca2_sessid"] = true;
@@ -276,27 +276,27 @@ namespace http
 
       strHost = ad.get_display_number();
 
-      string var;
+      string payload;
       try
       {
-         var = ppac->m_pjs->evaluate("FindProxyForURL('" + string(pszUrl) + "', '" +strHost +"');");
+         payload = ppac->m_pjs->evaluate("FindProxyForURL('" + string(pszUrl) + "', '" +strHost +"');");
       }
       catch(...)
       {
          return false;
       }
 
-      if(var.compare_ci("DIRECT") == 0)
+      if(payload.compare_ci("DIRECT") == 0)
       {
 
          pproxy->m_bDirect = true;
 
       }
-      else if(::str::begins_eat_ci(var, "PROXY"))
+      else if(::str::begins_eat_ci(payload, "PROXY"))
       {
-         var.trim();
+         payload.trim();
          string_array stra;
-         stra.explode(":", var);
+         stra.explode(":", payload);
          pproxy->m_bDirect = false;
          pproxy->m_strProxy = stra[0];
          pproxy->m_iPort = stra.get_size() > 1 ? ::atoi(stra[1]) : 80;
@@ -2014,7 +2014,7 @@ retry_session:
    }
 
 
-   bool system::download(sockets::socket_handler & handler, __pointer(::sockets::http_session) & psession,const char * pszRequest,var varFile,property_set & set)
+   bool system::download(sockets::socket_handler & handler, __pointer(::sockets::http_session) & psession,const char * pszRequest,payload varFile,property_set & set)
    {
 
       file_pointer spfile = set.cast < ::apex::application >("app",get_context_application())->get_context_session()->file().get_file(varFile,
@@ -2031,7 +2031,7 @@ retry_session:
    }
 
 
-   bool system::download(const char * pszUrl, var varFile, property_set & set)
+   bool system::download(const char * pszUrl, payload varFile, property_set & set)
    {
 
       ::sockets::socket_handler handler(get_object());
@@ -2181,7 +2181,7 @@ retry_session:
    }
 
 
-   var system::length(const char * pszUrl, ::property_set & set)
+   payload system::length(const char * pszUrl, ::property_set & set)
    {
 
       ::sockets::socket_handler handler(get_object());
@@ -2221,7 +2221,7 @@ retry_session:
       else
       {
 
-         return var(::e_type_null);
+         return payload(::e_type_null);
 
       }
 

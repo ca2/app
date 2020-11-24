@@ -27,7 +27,7 @@ veiev_post::~veiev_post()
 {
 }
 
-bool veiev_post::write(var rec)
+bool veiev_post::write(payload rec)
 {
 
    __pointer(::sqlite::database) pdb = db()->get_database();
@@ -71,7 +71,7 @@ bool veiev_post::write(var rec)
 }
 
 
-var veiev_post::last()
+payload veiev_post::last()
 {
 
    if(m_pdataserver == nullptr)
@@ -110,10 +110,10 @@ var veiev_post::last()
 }
 
 
-var veiev_post::current()
+payload veiev_post::current()
 {
 
-   var ret;
+   payload ret;
 
    ret.set_type(::type_propset);
    ret["sender"]     = m_pdataset->fv("sender");
@@ -128,7 +128,7 @@ var veiev_post::current()
 }
 
 
-var veiev_post::get_page(::index iPage, ::index iMessageCountPerPage)
+payload veiev_post::get_page(::index iPage, ::index iMessageCountPerPage)
 {
 
    if(m_pdataserver == nullptr)
@@ -138,7 +138,7 @@ var veiev_post::get_page(::index iPage, ::index iMessageCountPerPage)
 
    single_lock slDatabase(pdb->mutex());
 
-   class var var;
+   class payload payload;
 
    string strSql;
 
@@ -170,13 +170,13 @@ var veiev_post::get_page(::index iPage, ::index iMessageCountPerPage)
    while(!m_pdataset->eof())
    {
 
-      var.vara().add(current());
+      payload.vara().add(current());
 
       m_pdataset->next();
 
    }
 
-   return var;
+   return payload;
 
 }
 
@@ -191,7 +191,7 @@ i64 veiev_post::get_count()
 
    single_lock slDatabase(pdb->mutex());
 
-   class var var;
+   class payload payload;
 
    string strSql;
 

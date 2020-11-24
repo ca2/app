@@ -710,7 +710,7 @@ namespace data
    }
 
 
-   void tree::on_apply(::action * paction)
+   void tree::on_apply(::subject * paction)
    {
 
    }

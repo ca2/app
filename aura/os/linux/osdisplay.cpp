@@ -307,13 +307,13 @@ void enum_display_monitors(::aura::session * psession)
 
          GdkRectangle rect;
 
-         ·zero(rect);
+         xxf_zero(rect);
 
          gdk_monitor_get_workarea(pmonitor, &rect);
 
          __copy(rectWkspace, rect);
 
-         ·zero(rect);
+         xxf_zero(rect);
 
          gdk_monitor_get_geometry(pmonitor, &rect);
 

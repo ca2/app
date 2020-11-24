@@ -6,7 +6,7 @@ namespace posix
 
 
    class CLASS_DECL_ACME pipe :
-      virtual public ::process::pipe
+      virtual public ::os::pipe
    {
    public:
 

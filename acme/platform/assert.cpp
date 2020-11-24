@@ -30,7 +30,10 @@ CLASS_DECL_ACME int __cpp_assert_failed_line(const char * pszFileName, int iLine
 
 CLASS_DECL_ACME string message_box_result_to_string(int iResult);
 
+
 #ifndef _UWP
+
+
 namespace acme
 {
 
@@ -61,13 +64,13 @@ namespace acme
       }
 
 
-      virtual var realize() override;
+      virtual payload realize() override;
 
 
    };
 
 
-   var os_message_box::realize()
+   payload os_message_box::realize()
    {
 
       int iResult = ::_os_message_box(m_strText, m_strTitle, m_emessagebox);
@@ -78,22 +81,34 @@ namespace acme
 
 
 } // namespace acme
+
+
 #endif
 
 #ifdef _UWP
-::estatus os_message_box(const char * pszText, const char * pszTitle, ::emessagebox emessagebox, const ::future & future)
+
+
+::estatus os_message_box(const char * pszText, const char * pszTitle, ::emessagebox emessagebox, const ::promise::process & process)
 {
-   return _os_message_box(pszText, pszTitle, emessagebox, future);
+
+   return _os_message_box(pszText, pszTitle, emessagebox, process);
+
 }
+
+
 #else
-::estatus os_message_box(const char * pszText, const char * pszTitle, ::emessagebox emessagebox, const ::futurevar & futurevar)
+
+
+::estatus os_message_box(const char * pszText, const char * pszTitle, ::emessagebox emessagebox, const ::promise::process & process)
 {
 
    auto posmessagebox = __new(::acme::os_message_box(pszText, pszTitle, emessagebox));
 
-   return __realize(posmessagebox, futurevar);
+   return __realize(posmessagebox, process);
 
 }
+
+
 #endif
 
 CLASS_DECL_ACME int __assert_failed_line(const char * pszFileName, int iLineNumber)

@@ -131,7 +131,7 @@ public:
       add_update_route_pred(preceiver, id, [this, preceiver, id](::message::message * pmessage)
       {
 
-         preceiver->apply(action((const ::__id &) id, preceiver));
+         preceiver->process(action((const ::__id &) id, preceiver));
 
       });
 

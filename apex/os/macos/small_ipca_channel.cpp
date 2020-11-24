@@ -415,7 +415,7 @@ namespace interprocess_communication
 //            do
 //            {
 //
-//               ·zero(data);
+//               xxf_zero(data);
 //               if((result = msgrcv(m_iQueue,&data,length,2000,IPC_NOWAIT)) == -1)
 //               {
 //

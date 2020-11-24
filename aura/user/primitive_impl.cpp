@@ -297,7 +297,7 @@ namespace user
    }
 
 
-   ::estatus primitive_impl::main_async(const procedure & procedure, e_priority epriority)
+   ::estatus primitive_impl::main_async(const routine & procedure, e_priority epriority)
    {
 
       if (!m_puserinteraction)

@@ -84,7 +84,7 @@ inline string ___pointer < T >::type_str()
 //inline void matter::defer_propset() { if (!m_pset) ::__construct_new(m_pset); }
 //
 //
-//inline var & var::operator = (::image * pimage)
+//inline payload & payload::operator = (::image * pimage)
 //{
 //
 //   set_type(type_image, false);
@@ -96,7 +96,7 @@ inline string ___pointer < T >::type_str()
 //}
 
 //
-//inline var::var(::image * pimage)
+//inline payload::payload(::image * pimage)
 //{
 //
 //   m_etype = type_new;
@@ -107,15 +107,23 @@ inline string ___pointer < T >::type_str()
 //
 
 
-inline ::estatus procedure::operator()() const { return (*m_p)(); }
+namespace promise
+{
 
-inline bool procedure::should_run_async() const { return m_p->should_run_async(); }
 
-template < typename FUTURE >
-inline void future < FUTURE >::operator()(const FUTURE & future) const { if(m_p) (*m_p)(future); }
+   inline ::estatus routine::operator()() const { return (*m_p)(); }
 
-template < typename FUTURE >
-inline bool future < FUTURE >::should_run_async() const { return m_p->should_run_async(); }
+
+   inline bool routine::should_run_async() const { return m_p->should_run_async(); }
+
+
+   inline void process::operator()(const payload & payload) const { if (m_p) (*m_p)(payload); }
+
+
+   inline bool process::should_run_async() const { return m_p->should_run_async(); }
+
+
+} // namespace promise
 
 
 inline type::type(const ::matter * pobject)
@@ -192,7 +200,7 @@ inline bool get_memory::get_base64(const string & str)
 
 
 //template < typename PRED >
-//inline ::image_result matter::get_image(const var & varFile, ::u64 uTrait, PRED pred)
+//inline ::image_result matter::get_image(const payload & varFile, ::u64 uTrait, PRED pred)
 //{
 //
 //   return System.get_image(this, varFile, uTrait, pred);
@@ -203,7 +211,7 @@ inline bool get_memory::get_base64(const string & str)
 #include "acme/primitive/primitive/trait_pred.h"
 
 
-//inline var matter::topic(const ::id & id)
+//inline payload matter::topic(const ::id & id)
 //{
 //
 //   auto pproperty = fetch_property(id);
@@ -276,7 +284,7 @@ inline ::property * property_set::find(const ::id & id) const
 }
 
 
-inline var property_set::operator()(const ::id & id, const var & varDefault) const
+inline payload property_set::operator()(const ::id & id, const payload & varDefault) const
 {
 
    auto pproperty = find(id);
@@ -293,7 +301,7 @@ inline var property_set::operator()(const ::id & id, const var & varDefault) con
 }
 
 
-inline var property_set::topic(const id & id)
+inline payload property_set::topic(const id & id)
 {
 
    return &set(id);
@@ -301,7 +309,7 @@ inline var property_set::topic(const id & id)
 }
 
 
-inline var & property_set::set(const ::id & id)
+inline payload & property_set::set(const ::id & id)
 {
 
    auto pproperty = find(id);
@@ -320,7 +328,7 @@ inline var & property_set::set(const ::id & id)
 }
 
 
-//inline property * var::find_property(const ::id & id) const
+//inline property * payload::find_property(const ::id & id) const
 //{
 //
 //   if (!casts_to(type_propset))
@@ -335,7 +343,7 @@ inline var & property_set::set(const ::id & id)
 //}
 
 
-//inline property & var::get_property(const ::id & id)
+//inline property & payload::get_property(const ::id & id)
 //{
 //
 //   return propset().get(id);
@@ -469,7 +477,7 @@ inline bool property_set::is_true(id idName, bool bDefault) const
 }
 
 
-inline var property_set::value(id idName) const
+inline payload property_set::value(id idName) const
 {
 
    property * pproperty = find(idName);
@@ -486,7 +494,7 @@ inline var property_set::value(id idName) const
 }
 
 
-inline var property_set::value(id idName, var varDefault) const
+inline payload property_set::value(id idName, payload varDefault) const
 {
 
    property * pproperty = find(idName);
@@ -503,7 +511,7 @@ inline var property_set::value(id idName, var varDefault) const
 }
 
 
-inline var var::first() const
+inline payload payload::first() const
 {
 
    return at(0);
@@ -511,7 +519,7 @@ inline var var::first() const
 }
 
 
-inline var var::last() const
+inline payload payload::last() const
 {
 
    if (array_get_count() == 0)
@@ -530,7 +538,7 @@ inline var var::last() const
 }
 
 
-inline var var::first()
+inline payload payload::first()
 {
 
    return at(0);
@@ -538,7 +546,7 @@ inline var var::first()
 }
 
 
-inline var var::last()
+inline payload payload::last()
 {
 
    if (array_get_count() == 0)
@@ -584,21 +592,21 @@ inline __pointer(::handle::ini) operator ""_pini(const char * psz, size_t s)
 }
 
 
-inline string CLASS_DECL_ACME operator + (const char * psz, const var & var)
+inline string CLASS_DECL_ACME operator + (const char * psz, const payload & payload)
 {
 
-   return __str(psz) + var.get_string();
+   return __str(psz) + payload.get_string();
 
 }
 
 
-//inline class var & var::operator -= (const class property & property) { operator -=(property);  return *this; }
-//inline class var & var::operator += (const class property & property) { operator +=(property);  return *this; }
-//inline class var & var::operator /= (const class property & property) { operator /=(property);  return *this; }
-//inline class var & var::operator *= (const class property & property) { operator *=(property);  return *this; }
+//inline class payload & payload::operator -= (const class property & property) { operator -=(property);  return *this; }
+//inline class payload & payload::operator += (const class property & property) { operator +=(property);  return *this; }
+//inline class payload & payload::operator /= (const class property & property) { operator /=(property);  return *this; }
+//inline class payload & payload::operator *= (const class property & property) { operator *=(property);  return *this; }
 
 
-inline ::property * var::find_property(const ::id & id) const
+inline ::property * payload::find_property(const ::id & id) const
 {
 
    if (m_etype == type_pvar)
@@ -625,7 +633,7 @@ inline ::property * var::find_property(const ::id & id) const
 }
 
 
-inline ::index var::property_index(const ::id & id) const
+inline ::index payload::property_index(const ::id & id) const
 {
 
    if (m_etype == type_pvar)
@@ -652,7 +660,7 @@ inline ::index var::property_index(const ::id & id) const
 }
 
 
-inline property & var::get_property(const ::id & id)
+inline property & payload::get_property(const ::id & id)
 {
 
    if (m_etype == type_pvar)
@@ -765,23 +773,23 @@ inline bool id::begins_ci(const string & strPrefix) const
 
 template < class T >
 template < typename VAR >
-inline ___pointer < T >  & ___pointer < T >::operator = (const var_type < VAR > & var)
+inline ___pointer < T >  & ___pointer < T >::operator = (const payload_type < VAR > & payload)
 {
 
-   if (var.this_var()->m_etype == type_element)
+   if (payload.this_var()->m_etype == type_element)
    {
 
-      return operator = (var.this_var()->m_p);
+      return operator = (payload.this_var()->m_p);
 
    }
-   else if (var.this_var()->m_etype == type_memory)
+   else if (payload.this_var()->m_etype == type_memory)
    {
 
       auto pfile = create_memory_file();
 
       ::binary_stream stream(pfile);
 
-      stream << var.this_var()->memory();
+      stream << payload.this_var()->memory();
 
       string strText;
 
@@ -887,19 +895,19 @@ inline ___pointer < T >  & ___pointer < T >::operator = (const var_type < VAR > 
 }
 
 
-inline bool succeeded(const ::var & var)
+inline bool succeeded(const ::payload & payload)
 {
 
-   if (var.m_etype == type_enum_status)
+   if (payload.m_etype == type_enum_status)
    {
 
-      return ::succeeded(var.m_estatus);
+      return ::succeeded(payload.m_estatus);
 
    }
-   else if (var.is_integer())
+   else if (payload.is_integer())
    {
 
-      return ::succeeded(var.i64());
+      return ::succeeded(payload.i64());
 
    }
    else
@@ -915,7 +923,7 @@ inline bool succeeded(const ::var & var)
 inline bool succeeded(const ::property & property)
 {
 
-   return ::succeeded((const ::var &) property);
+   return ::succeeded((const ::payload &) property);
 
 }
 
@@ -1655,7 +1663,7 @@ inline stream & operator >> (stream & is, ___pointer < T > & sp)
 }
 
 
-//inline ::estatus context::load_from_file(::matter* pobject, const ::var& varFile, const var* pvarOptions)
+//inline ::estatus context::load_from_file(::matter* pobject, const ::payload& varFile, const payload* pvarOptions)
 //{
 //
 //   if (pvarOptions)
@@ -1674,7 +1682,7 @@ inline stream & operator >> (stream & is, ___pointer < T > & sp)
 //}
 //
 //
-//inline ::estatus context::load_from_file(::matter* pobject, const ::var& varFile)
+//inline ::estatus context::load_from_file(::matter* pobject, const ::payload& varFile)
 //{
 //
 //   return _load_from_file(pobject, varFile, type_empty_argument);
@@ -1682,7 +1690,7 @@ inline stream & operator >> (stream & is, ___pointer < T > & sp)
 //}
 //
 //
-//inline ::estatus context::save_to_file(const ::var& varFile, const var* pvarOptions, const ::matter * pobject)
+//inline ::estatus context::save_to_file(const ::payload& varFile, const payload* pvarOptions, const ::matter * pobject)
 //{
 //
 //   if (pvarOptions)
@@ -1701,7 +1709,7 @@ inline stream & operator >> (stream & is, ___pointer < T > & sp)
 //}
 //
 //
-//inline ::estatus context::save_to_file(const ::var& varFile, const ::matter* pobject)
+//inline ::estatus context::save_to_file(const ::payload& varFile, const ::matter* pobject)
 //{
 //
 //   return _save_to_file(varFile, type_empty_argument, pobject);
@@ -1711,7 +1719,7 @@ inline stream & operator >> (stream & is, ___pointer < T > & sp)
 //
 
 //
-//inline ::file_result matter::get_reader(const var & varFile, efileopen eopen)
+//inline ::file_result matter::get_reader(const payload & varFile, efileopen eopen)
 //{
 //
 //   return get_file(varFile, eopen | ::file::mode_read) ;
@@ -1719,7 +1727,7 @@ inline stream & operator >> (stream & is, ___pointer < T > & sp)
 //}
 //
 //
-//inline ::file_result matter::get_writer(const var & varFile, efileopen eopen)
+//inline ::file_result matter::get_writer(const payload & varFile, efileopen eopen)
 //{
 //
 //   return get_file(varFile, eopen | ::file::mode_write);
@@ -1788,7 +1796,7 @@ inline i64 matter::release(OBJ_REF_DBG_PARAMS_DEF)
 //}
 //
 
-inline var::operator string & ()
+inline payload::operator string & ()
 {
 
    if (m_etype == ::type_pvar)
@@ -1823,7 +1831,7 @@ inline var::operator string & ()
 }
 
 
-//inline var::operator string() const
+//inline payload::operator string() const
 //{
 //
 //    return get_string();
@@ -1831,7 +1839,7 @@ inline var::operator string & ()
 //}
 
 #define IMPL_VAR_REF(TYPE, VAR, ENUM)        \
-   inline var::operator TYPE &()                  \
+   inline payload::operator TYPE &()                  \
    {                                         \
                                              \
       if(m_etype == ::type_pvar)        \
@@ -1936,7 +1944,7 @@ IMPL_VAR_REF3(double, d);
 //}
 
 //
-//inline var & var::operator = (::memory * pmemory)
+//inline payload & payload::operator = (::memory * pmemory)
 //{
 //
 //   set_element(pmemory);
@@ -1989,7 +1997,7 @@ IMPL_VAR_REF3(double, d);
 
 
 
-inline var::operator ::memory & ()
+inline payload::operator ::memory & ()
 {
 
    return this->memory();
@@ -1997,7 +2005,7 @@ inline var::operator ::memory & ()
 }
 
 
-inline var::operator ::memory() const
+inline payload::operator ::memory() const
 {
 
    return this->memory();
@@ -2008,7 +2016,7 @@ inline var::operator ::memory() const
 
 
 
-inline var::operator ::estatus &()
+inline payload::operator ::estatus &()
 {
 
    if(m_etype == ::type_pvar)
@@ -2053,8 +2061,8 @@ inline bool type::operator == (const ::id& id) const
 
 
 template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR >::string_base(const var& var) :
-   string_base(var.to_string())
+inline string_base < TYPE_CHAR >::string_base(const payload& payload) :
+   string_base(payload.to_string())
 {
 
 
@@ -2084,7 +2092,7 @@ inline string_base < TYPE_CHAR >::string_base(const id& id) :
 
 
    template < class T >
-   inline __pointer(T) var::cast(T * pDefault)
+   inline __pointer(T) payload::cast(T * pDefault)
    {
 
       if (m_etype == type_pvar && m_pvar != nullptr)
@@ -2118,7 +2126,7 @@ inline string_base < TYPE_CHAR >::string_base(const id& id) :
 
 
       template < class T >
-   inline T & var::get_cast(T * pDefault)
+   inline T & payload::get_cast(T * pDefault)
    {
 
       if (m_etype == type_pvar && m_pvar != nullptr)
@@ -2158,7 +2166,7 @@ inline string_base < TYPE_CHAR >::string_base(const id& id) :
 
 
       template < class T >
-   inline __pointer(T) var::cast()
+   inline __pointer(T) payload::cast()
    {
 
       if(m_etype == type_pvar && m_pvar != nullptr)
@@ -2220,7 +2228,7 @@ if(m_etype == ENUM_TYPE) { return dynamic_cast < T * >(P); }
 
 
 template < typename T >
-inline __pointer(T) var::pointer() const
+inline __pointer(T) payload::pointer() const
 {
 
    auto pproperty = find_pointer < T >();
@@ -2237,7 +2245,7 @@ inline __pointer(T) var::pointer() const
 }
 
 
-inline var __visible(var varOptions, bool bVisible)
+inline payload __visible(payload varOptions, bool bVisible)
 {
 
    varOptions["visible"] = bVisible;
@@ -2316,7 +2324,7 @@ inline var __visible(var varOptions, bool bVisible)
 //}
 //
 
-//inline void future::operator()(const var & var) const
+//inline void future::operator()(const payload & payload) const
 //{
 //
 //   if (!m_pmatter)
@@ -2326,7 +2334,7 @@ inline var __visible(var varOptions, bool bVisible)
 //
 //   }
 //
-//   return m_pmatter->receive_response(var);
+//   return m_pmatter->receive_response(payload);
 //
 //}
 //
@@ -2340,31 +2348,31 @@ inline var __visible(var varOptions, bool bVisible)
 //future::future(PRED pred) : function(__new(pred_future < PRED >(pred))) { }
 
 
-inline message_box::message_box(const var& var)
+inline message_box::message_box(const payload& payload)
 {
 
-   if (var.get_type() == type_string)
+   if (payload.get_type() == type_string)
    {
 
-      m_strMessage = var;
+      m_strMessage = payload;
 
    }
-   else if (var.has_property("message") && var["message"].has_char())
+   else if (payload.has_property("message") && payload["message"].has_char())
    {
 
-      m_strMessage = var["message"];
+      m_strMessage = payload["message"];
 
    }
-   else if (var.has_property("format") && var["format"].has_char())
+   else if (payload.has_property("format") && payload["format"].has_char())
    {
 
-      m_strMessage = var.propset().format(var["format"]);
+      m_strMessage = payload.propset().format(payload["format"]);
 
    }
 
-   m_puserprimitive = var["parent"].cast < ::layered >();
-   m_strTitle = var["title"];
-   m_emessagebox = (::emessagebox) var["flags"].i64();
+   m_puserprimitive = payload["parent"].cast < ::layered >();
+   m_strTitle = payload["title"];
+   m_emessagebox = (::emessagebox) payload["flags"].i64();
 
    //if (m_puserprimitive)
    //{
@@ -2395,32 +2403,49 @@ inline bool property_set::get_string(string& strResult, const id& idKey) const
 }
 
 
-inline bool change::is_up_to_date(::update * pupdate) const
-{ 
+namespace promise
+{
 
-   if (m_iUpdateSerial < 0)
+
+   inline bool context::is_up_to_date(::promise::handler * phandler) const
    {
 
-      return false;
+      if (m_iUpdateSerial < 0)
+      {
+
+         return false;
+
+      }
+
+      if (phandler->m_iUpdateSerial < 0)
+      {
+
+         return false;
+
+      }
+
+      return m_iUpdateSerial == phandler->m_iUpdateSerial;
 
    }
 
-   if (pupdate->m_iUpdateSerial < 0)
+
+   inline ::id & handler::id()
    {
 
-      return false;
+      return m_pbacking->m_id;
 
    }
-   
-   return m_iUpdateSerial == pupdate->m_iUpdateSerial;
-
-}
 
 
-inline ::id& update::id() { return m_psource->m_id; }
-inline const ::id& update::id() const { return m_psource->m_id; }
+   inline const ::id & handler::id() const
+   {
+
+      return m_pbacking->m_id;
+
+   }
 
 
+} // namespace promise
 
 
 //inline ::estatus method::operator()() const
@@ -2431,40 +2456,37 @@ inline const ::id& update::id() const { return m_psource->m_id; }
 //}
 
 
-
-
-
-inline ::var operator + (::var var, const ::procedure & procedure)
+inline ::payload operator + (::payload payload, const ::promise::routine & routine)
 {
 
-   if (var.get_type() != type_propset)
+   if (payload.get_type() != type_propset)
    {
 
-      var["message"] = var.get_string();
+      payload["message"] = payload.get_string();
 
    }
 
-   var["procedure"] = procedure;
+   payload["routine"] = routine;
 
-   return var;
+   return payload;
 
 }
 
 
 
-inline var operator + (var var, const ::futurevar & futurevar)
+inline payload operator + (payload payload, const ::promise::process & process)
 {
 
-   if (var.get_type() != type_propset)
+   if (payload.get_type() != type_propset)
    {
 
-      var["message"] = var.get_string();
+      payload["message"] = payload.get_string();
 
    }
 
-   var["future"] = futurevar;
+   payload["process"] = process;
 
-   return var;
+   return payload;
 
 }
 

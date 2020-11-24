@@ -30,11 +30,11 @@ default:
 
 
 #define VAR_SET_ELEMENT(P, TYPE, ENUM_TYPE) \
-var.P = dynamic_cast < TYPE * >(pobject); \
-if(::is_set(var.m_pstra)) return ENUM_TYPE;
+payload.P = dynamic_cast < TYPE * >(pobject); \
+if(::is_set(payload.m_pstra)) return ENUM_TYPE;
 
 
-enum_type set_element(var & var, ::matter * pobject)
+enum_type set_element(payload & payload, ::matter * pobject)
 {
 
    VAR_SET_ELEMENT(m_pstra    , ::string_array             , ::type_stra);
@@ -46,14 +46,14 @@ enum_type set_element(var & var, ::matter * pobject)
    VAR_SET_ELEMENT(m_ppath    , ::file::path_object   , ::type_path);
    //VAR_SET_ELEMENT(m_pimage   , ::image               , ::type_image);
 
-   var.m_p = pobject;
+   payload.m_p = pobject;
 
    return ::type_element;
 
 }
 
 
-::enum_type var::set_element(::matter * pobject)
+::enum_type payload::set_element(::matter * pobject)
 {
 
    release();
@@ -67,7 +67,7 @@ enum_type set_element(var & var, ::matter * pobject)
 }
 
 
-::i64 var::release()
+::i64 payload::release()
 {
 
    if (!is_element())

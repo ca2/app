@@ -45,23 +45,23 @@ namespace simpledb
       return true;
    }
 
-   bool session::query(const char * pszQuery, var & var)
+   bool session::query(const char * pszQuery, payload & payload)
    {
       string_array stra;
       property_set dataset;
       dataset.parse_url_query(pszQuery);
       if(dataset["command"] == "open")
       {
-         var = open(dataset["database"]);
+         payload = open(dataset["database"]);
       }
       else if(dataset["command"] == "sql")
       {
-         if(!m_pserver->sql(pszQuery, var))
-            var = false;
+         if(!m_pserver->sql(pszQuery, payload))
+            payload = false;
       }
       else if(dataset["command"] == "close")
       {
-         var = close();
+         payload = close();
       }
       return true;
    }

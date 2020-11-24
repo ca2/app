@@ -29,21 +29,21 @@
 //}
 
 
-//CLASS_DECL_CORE ::estatus os_message_box(const var & varParam)
+//CLASS_DECL_CORE ::estatus os_message_box(const payload & varParam)
 //{
 //   
-//   var var;
+//   payload payload;
 //   
 //   if(varParam.get_type () != type_propset)
 //   {
 //      
-//      var["message"] = varParam.get_string();
+//      payload["message"] = varParam.get_string();
 //      
 //   }
 //   else
 //   {
 //      
-//      var = varParam;
+//      payload = varParam;
 //      
 //   }
 //
@@ -59,17 +59,17 @@
 //
 //   ::callback callback;
 //
-//   puiParent = var["parent"].cast < ::user::primitive >();
+//   puiParent = payload["parent"].cast < ::user::primitive >();
 //
-//   strMessage = var["message"];
+//   strMessage = payload["message"];
 //
-//   strTitle = var["title"];
+//   strTitle = payload["title"];
 //
-//   uFlags = var["flags"];
+//   uFlags = payload["flags"];
 //
-//   durationTimeout = var["duration"];
+//   durationTimeout = payload["duration"];
 //
-//   callback = var["callback"];
+//   callback = payload["callback"];
 //
 //   return ::os_message_box(puiParent->get_safe_handle(), strMessage.c_str(), strTitle.c_str(), uFlags, functionarg);
 //

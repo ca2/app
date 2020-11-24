@@ -335,7 +335,7 @@ namespace str
    }
 
 
-   bool zip_context::extract_all(const char * pszDir,var varFile, ::file::patha * ppatha, string_array * pstraFilter, bool_array * pbaBeginsFilterEat)
+   bool zip_context::extract_all(const char * pszDir,payload varFile, ::file::patha * ppatha, string_array * pstraFilter, bool_array * pbaBeginsFilterEat)
    {
 
       auto pfile = Context.file().get_file(varFile,::file::type_binary | ::file::mode_read);

@@ -29,7 +29,7 @@ namespace simpledb
       virtual bool close();
 
 
-      virtual bool sql(const char * pszQuery, var & var);
+      virtual bool sql(const char * pszQuery, payload & payload);
 
 
 
@@ -47,21 +47,21 @@ namespace simpledb
       virtual bool initialize();
 
       virtual __pointer(result) query(const char * pszSql);
-      virtual var query_item(const char * pszSql,var varDefault = false);
+      virtual payload query_item(const char * pszSql,payload varDefault = false);
       virtual bool query_blob(memory_base & memory,const char * pszSql);
-      virtual var query_items(const char * pszSql);
-      virtual var query_row(const char * pszSql);
-      virtual var query_rows(const char * pszSql);
+      virtual payload query_items(const char * pszSql);
+      virtual payload query_row(const char * pszSql);
+      virtual payload query_rows(const char * pszSql);
 
 
-      virtual var query_table_item(const char * table,const char * item,const char *where,var notfound = false);
+      virtual payload query_table_item(const char * table,const char * item,const char *where,payload notfound = false);
 
-      virtual var get_agent(const char * pszTable,const char * pszEmail,const char * pszUser);
+      virtual payload get_agent(const char * pszTable,const char * pszEmail,const char * pszUser);
 
       virtual string escape(void * p,strsize iLine);
       virtual string escape(const char * psz);
 
-      virtual var get_insert_id();
+      virtual payload get_insert_id();
 
       virtual string error1(const char * pszPrefix = nullptr);
       virtual void trace_error1(const char * pszPrefix = nullptr);

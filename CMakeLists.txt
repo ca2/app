@@ -29,7 +29,7 @@ include_directories(acme/inline/aaa_application)
 include_directories(acme/inline/aaa_console)
 include_directories(acme/ios_aura)
 include_directories(acme/memory)
-include_directories(acme/multithreading)
+include_directories(acme/parallelization)
 include_directories(acme/node)
 include_directories(acme/node/android)
 include_directories(acme/node/android/Kerr)
@@ -906,70 +906,70 @@ add_executable(app
         acme/memory/plex_heap1.cpp
         acme/memory/plex_heap1.h
         acme/memory/plex_heap_impl1.h
-        acme/multithreading/_.cpp
-        acme/multithreading/_.h
-        acme/multithreading/_impl.h
-        acme/multithreading/_thread_os_create_impl.h
-        acme/multithreading/_types.h
-        acme/multithreading/common.h
-        acme/multithreading/condition.cpp
-        acme/multithreading/condition.h
-        acme/multithreading/create_thread.h
-        acme/multithreading/critical_section.cpp
-        acme/multithreading/critical_section.h
-        acme/multithreading/data.h
-        acme/multithreading/event.cpp
-        acme/multithreading/event.h
-        acme/multithreading/file_change_event.cpp
-        acme/multithreading/file_change_event.h
-        acme/multithreading/initial_single_lock.h
-        acme/multithreading/manual_reset_event.cpp
-        acme/multithreading/manual_reset_event.h
-        acme/multithreading/method_array.h
-        acme/multithreading/mq.cpp
-        acme/multithreading/mq.h
-        acme/multithreading/multi_lock.cpp
-        acme/multithreading/multi_lock.h
-        acme/multithreading/mutex.cpp
-        acme/multithreading/mutex.h
-        acme/multithreading/pool.cpp
-        acme/multithreading/pool.h
-        acme/multithreading/pred_holder.cpp
-        acme/multithreading/pred_holder.h
-        acme/multithreading/pred_sync_method.h
-        acme/multithreading/procedure_array.cpp
-        acme/multithreading/semaphore.cpp
-        acme/multithreading/semaphore.h
-        acme/multithreading/set_event_on_exit.h
-        acme/multithreading/single_lock.cpp
-        acme/multithreading/single_lock.h
-        acme/multithreading/socket_event.cpp
-        acme/multithreading/socket_event.h
-        acme/multithreading/sync.cpp
-        acme/multithreading/sync.h
-        acme/multithreading/sync_array.cpp
-        acme/multithreading/sync_array.h
-        acme/multithreading/sync_future.cpp
-        acme/multithreading/sync_future.h
-        acme/multithreading/sync_lock.h
-        acme/multithreading/sync_method.cpp
-        acme/multithreading/sync_method.h
-        acme/multithreading/sync_result.cpp
-        acme/multithreading/sync_result.h
-        acme/multithreading/sync_task.cpp
-        acme/multithreading/sync_task.h
-        acme/multithreading/task.cpp
-        acme/multithreading/task.h
-        acme/multithreading/thread.cpp
-        acme/multithreading/thread_impl.h
-        acme/multithreading/thread_os.cpp
-        acme/multithreading/thread_os.h
-        acme/multithreading/thread_parameter.h
-        acme/multithreading/waitable.cpp
-        acme/multithreading/zaa_update.cpp
-        acme/multithreading/zaa_update_task.h
-        acme/multithreading/zaa_update_task_item.h
-        acme/multithreading/zaa_update_task_item_array.h
+   acme/parallelization/_.cpp
+   acme/parallelization/_.h
+   acme/parallelization/_impl.h
+   acme/parallelization/_thread_os_create_impl.h
+   acme/parallelization/_types.h
+   acme/parallelization/common.h
+   acme/parallelization/condition.cpp
+   acme/parallelization/condition.h
+   acme/parallelization/create_thread.h
+   acme/parallelization/critical_section.cpp
+   acme/parallelization/critical_section.h
+   acme/parallelization/data.h
+   acme/parallelization/event.cpp
+   acme/parallelization/event.h
+   acme/parallelization/file_change_event.cpp
+   acme/parallelization/file_change_event.h
+   acme/parallelization/initial_single_lock.h
+   acme/parallelization/manual_reset_event.cpp
+   acme/parallelization/manual_reset_event.h
+   acme/parallelization/method_array.h
+   acme/parallelization/mq.cpp
+   acme/parallelization/mq.h
+   acme/parallelization/multi_lock.cpp
+   acme/parallelization/multi_lock.h
+   acme/parallelization/mutex.cpp
+   acme/parallelization/mutex.h
+   acme/parallelization/pool.cpp
+   acme/parallelization/pool.h
+   acme/primitive/promisseλ/λholder.cpp
+   acme/primitive/promisseλ/λholder.h
+   acme/parallelization/pred_sync_method.h
+   acme/primitive/promise/routine_array.cpp
+   acme/parallelization/semaphore.cpp
+   acme/parallelization/semaphore.h
+   acme/parallelization/set_event_on_exit.h
+   acme/parallelization/single_lock.cpp
+   acme/parallelization/single_lock.h
+   acme/parallelization/socket_event.cpp
+   acme/parallelization/socket_event.h
+   acme/parallelization/sync.cpp
+   acme/parallelization/sync.h
+   acme/parallelization/sync_array.cpp
+   acme/parallelization/sync_array.h
+   acme/parallelization/sync_future.cpp
+   acme/parallelization/sync_future.h
+   acme/parallelization/sync_lock.h
+   acme/parallelization/sync_method.cpp
+   acme/parallelization/sync_method.h
+   acme/parallelization/sync_result.cpp
+   acme/parallelization/sync_result.h
+   acme/parallelization/sync_task.cpp
+   acme/parallelization/sync_task.h
+   acme/parallelization/task.cpp
+   acme/parallelization/task.h
+   acme/parallelization/thread.cpp
+   acme/parallelization/thread_impl.h
+   acme/parallelization/thread_os.cpp
+   acme/parallelization/thread_os.h
+   acme/parallelization/thread_parameter.h
+   acme/parallelization/waitable.cpp
+   acme/parallelization/zaa_update.cpp
+   acme/parallelization/zaa_update_task.h
+   acme/parallelization/zaa_update_task_item.h
+   acme/parallelization/zaa_update_task_item_array.h
         acme/node/android/Kerr/kerr.h
         acme/node/android/Kerr/LocalMemory.h
         acme/node/android/_.h
@@ -1323,7 +1323,7 @@ add_executable(app
         acme/os/ansios/file_std.cpp
         acme/os/ansios/language.cpp
         acme/os/ansios/memory.cpp
-        acme/os/ansios/multithreading.h
+   acme/os/ansios/parallelization.h
         acme/os/ansios/pmutex_lock.h
         acme/os/ansios/process.cpp
         acme/os/ansios/user.cpp
@@ -1346,7 +1346,7 @@ add_executable(app
         acme/os/apple/image_gif.cpp
         acme/os/apple/main.cpp
         acme/os/apple/main.h
-        acme/os/apple/multihreading.cpp
+   acme/os/apple/parallelization.cpp
         acme/os/apple/ns_exception.cpp
         acme/os/apple/ns_exception.h
         acme/os/apple/NSObject+DDExtensions.h
@@ -1394,7 +1394,7 @@ add_executable(app
         acme/os/cross/windows/windows_ntstatus.h
         acme/os/cross/windows/windows_ole_automation.h
         acme/os/cross/windows/windows_shared_memory.h
-        acme/os/cross/windows/windows_thread.h
+   acme/os/cross/windows/parallelization.h
         acme/os/cross/windows/windows_thread_impl.h
         acme/os/cross/windows/windows_time.h
         acme/os/cross/windows/windows_types.h
@@ -1437,8 +1437,8 @@ add_executable(app
         acme/os/ios/mm_oswindow.h
         acme/os/ios/mm_thread.mm
         acme/os/ios/mm_user.mm
-        acme/os/ios/multithreading.cpp
-        acme/os/ios/multithreading.h
+   acme/os/ios/parallelization.cpp
+   acme/os/ios/parallelization.h
         acme/os/ios/oswindow_data.cpp
         acme/os/ios/oswindow_data.h
         acme/os/ios/process.cpp
@@ -1518,7 +1518,7 @@ add_executable(app
         acme/os/linux/linux_linux.h
         acme/os/linux/list_serial_ports.cpp
         acme/os/linux/lock.cpp
-        acme/os/linux/multithreading.cpp
+   acme/os/linux/parallelization.cpp
         acme/os/linux/os.cpp
         acme/os/linux/process.cpp
         acme/os/linux/process.h
@@ -1584,7 +1584,7 @@ add_executable(app
         acme/os/posix/local_memory_map.cpp
         acme/os/posix/mq_base.h
         acme/os/posix/pthread.cpp
-        acme/os/posix/thread.cpp
+   acme/os/posix/parallelization.cpp
         acme/os/posix/time.cpp
         acme/os/posix/timer.cpp
         acme/os/solaris/linux_internal.h
@@ -1662,9 +1662,9 @@ add_executable(app
         acme/os/uwp/lock.cpp
         acme/os/uwp/main.cpp
         acme/os/uwp/metrowin_metrowin.h
-        acme/os/uwp/multithreading.cpp
-        acme/os/uwp/multithreading.h
-        acme/os/uwp/multithreading_winrt.h
+   acme/os/uwp/parallelization.cpp
+   acme/os/uwp/parallelization.h
+   acme/os/uwp/parallelization_winrt.h
         acme/os/uwp/os_message_box.cpp
         acme/os/uwp/process.cpp
         acme/os/uwp/process.h
@@ -1747,8 +1747,8 @@ add_executable(app
         acme/os/windows/shell1.h
         acme/os/windows/simple_app.cpp
         acme/os/windows/simple_hold_handle.h
-        acme/os/windows/thread.cpp
-        acme/os/windows/thread.h
+   acme/os/windows/parallelization.cpp
+   acme/os/windows/parallelization.h
         acme/os/windows/time.cpp
         acme/os/windows/user.cpp
         acme/os/windows/util.cpp
@@ -1782,8 +1782,8 @@ add_executable(app
         acme/os/windows_common/graphics.h
         acme/os/windows_common/net.cpp
         acme/os/windows_common/new_api.h
-        acme/os/windows_common/thread.cpp
-        acme/os/windows_common/thread.h
+   acme/os/windows_common/parallelization.cpp
+   acme/os/windows_common/parallelization.h
         acme/os/windows_common/time.cpp
         acme/os/windows_common/unicode.cpp
         acme/os/windows_common/variant.h
@@ -1824,8 +1824,8 @@ add_executable(app
         acme/os/process.cpp
         acme/os/process.h
         acme/os/text.h
-        acme/os/thread.cpp
-        acme/os/thread.h
+   acme/os/parallelization.cpp
+   acme/os/parallelization.h
         acme/os/time.cpp
         acme/os/time.h
         acme/os/user.h
@@ -2200,8 +2200,8 @@ add_executable(app
         acme/primitive/primitive/aaa_want_to_remove_stick.h
         acme/primitive/primitive/aaa_want_to_remove_topic_text_string.h
         acme/primitive/primitive/aaa_want_to_remove_transport_object.h
-        acme/primitive/primitive/action.cpp
-        acme/primitive/primitive/action.h
+        acme/primitive/promise/subject.cpp
+        acme/primitive/promise/subject.h
         acme/primitive/primitive/action_context.h
         acme/primitive/primitive/application_bias.cpp
         acme/primitive/primitive/application_bias.h
@@ -2212,8 +2212,8 @@ add_executable(app
         acme/primitive/primitive/block.h
         acme/primitive/primitive/block.inl
         acme/primitive/primitive/cflag.h
-        acme/primitive/primitive/change.cpp
-        acme/primitive/primitive/change.h
+   acme/primitive/promise/context.cpp
+   acme/primitive/promise/context.h
         acme/primitive/primitive/collection.h
         acme/primitive/primitive/collection_file.h
         acme/primitive/primitive/command.cpp
@@ -2231,10 +2231,10 @@ add_executable(app
         acme/primitive/primitive/estatus.h
         acme/primitive/primitive/factory.cpp
         acme/primitive/primitive/factory.h
-        acme/primitive/primitive/function.cpp
-        acme/primitive/primitive/function_pointer.h
-        acme/primitive/primitive/future.cpp
-        acme/primitive/primitive/future.h
+   acme/primitive/promisseλ/λ.cpp
+   acme/primitive/promisseλ/λpointer.h
+   acme/primitive/promise/process.cpp
+   acme/primitive/promise/process.h
         acme/primitive/primitive/handler.cpp
         acme/primitive/primitive/id.cpp
         acme/primitive/primitive/id.h
@@ -2271,12 +2271,12 @@ add_executable(app
         acme/primitive/primitive/papaya.h
         acme/primitive/primitive/pointer.h
         acme/primitive/primitive/pointer2.h
-        acme/primitive/primitive/pred_future.h
-        acme/primitive/primitive/pred_method.h
+   acme/primitive/promise/λfuture.h
+   acme/primitive/promisseλ/λroutine.h
         acme/primitive/primitive/primitive_update.h
-        acme/primitive/primitive/promise.cpp
-        acme/primitive/primitive/promise.h
-        acme/primitive/primitive/promise1.h
+   acme/primitive/promise/promise.cpp
+   acme/primitive/promise/promise.h
+   acme/primitive/promise/promise1.h
         acme/primitive/primitive/property.cpp
         acme/primitive/primitive/property.h
         acme/primitive/primitive/property_set.cpp
@@ -2291,8 +2291,8 @@ add_executable(app
         acme/primitive/primitive/shared_memory.cpp
         acme/primitive/primitive/shared_memory.h
         acme/primitive/primitive/simple_object.h
-        acme/primitive/primitive/source.cpp
-        acme/primitive/primitive/source.h
+   acme/primitive/promise/company.cpp
+   acme/primitive/promise/company.h
         acme/primitive/primitive/stick.h
         acme/primitive/primitive/str.h
         acme/primitive/primitive/trait.h
@@ -2302,12 +2302,12 @@ add_executable(app
         acme/primitive/primitive/type.cpp
         acme/primitive/primitive/type.h
         acme/primitive/primitive/uid.h
-        acme/primitive/primitive/update.cpp
-        acme/primitive/primitive/update.h
+        acme/primitive/promise/handler.cpp
+        acme/primitive/promise/handler.h
         acme/primitive/primitive/util.h
         acme/primitive/primitive/value.h
-        acme/primitive/primitive/var.cpp
-        acme/primitive/primitive/var.h
+        acme/primitive/primitive/payload.cpp
+        acme/primitive/primitive/payload.h
         acme/primitive/primitive/var2.h
         acme/primitive/primitive/var_element.cpp
         acme/primitive/primitive/virtual_memory.cpp
@@ -2437,12 +2437,12 @@ add_executable(app
         acme/primitive/string/tokenizer.h
         acme/primitive/string/x.cpp
         acme/primitive/string/x.h
-        acme/process/bidi_pipe.cpp
-        acme/process/exit_status.cpp
-        acme/process/pipe.cpp
-        acme/process/process.h
-        acme/process/process_bidi_pipe.h
-        acme/process/process_pipe.h
+        acme/os/bidirectional_pipe.cpp
+        acme/parallelization/exit_status.cpp
+        acme/os/pipe.cpp
+        acme/parallelization/process.h
+        acme/os/bidirectional_pipe.h.h
+        acme/os/pipe.h
         acme/template/list.h
         acme/user/_.h
         acme/user/_const.h
@@ -3074,7 +3074,7 @@ add_executable(app
         apex/node/linux/root_tools.cpp
         apex/node/linux/root_tools.h
         apex/node/linux/thread.cpp
-        apex/node/linux/thread.h
+   apex/node/linux/parallelization.h
         apex/node/linux/trace.cpp
         apex/node/linux/util.cpp
         apex/node/macos/_.h
@@ -3317,7 +3317,7 @@ add_executable(app
         apex/os/ansios/file_raw.cpp
         apex/os/ansios/file_raw.h
         apex/os/ansios/language.cpp
-        apex/os/ansios/multithreading.h
+   apex/os/ansios/parallelization.h
         apex/os/ansios/process.cpp
         apex/os/ansios/win.cpp
         apex/os/apple/_.cpp
@@ -3503,7 +3503,7 @@ add_executable(app
         apex/os/linux/lock.cpp
         apex/os/linux/menu.cpp
         apex/os/linux/message_loop.cpp
-        apex/os/linux/multithreading.cpp
+   apex/os/linux/parallelization.cpp
         apex/os/linux/os.cpp
         apex/os/linux/process.cpp
         apex/os/linux/process.h
@@ -4880,7 +4880,7 @@ add_executable(app
         aura/os/ansios/file.h
         aura/os/ansios/file_c.h
         aura/os/ansios/file_raw.h
-        aura/os/ansios/multithreading.h
+   aura/os/ansios/parallelization.h
         aura/os/apple/_.cpp
         aura/os/apple/_.h
         aura/os/apple/_apple.h

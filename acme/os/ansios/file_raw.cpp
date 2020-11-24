@@ -12,7 +12,7 @@ int_bool file_path_is_link(const char * pszPath)
 
    struct stat stat;
 
-   ·zero(stat);
+   xxf_zero(stat);
 
    if(lstat(pszPath, &stat) != 0)
    {

@@ -127,10 +127,10 @@ namespace dynamic_source
    }
 
 
-   inline void script_interface::uri_set_var(string& strUrl, const char* pszUrl, const char* pszKey, var var)
+   inline void script_interface::uri_set_var(string& strUrl, const char* pszUrl, const char* pszKey, payload payload)
    {
 
-      System.url().set_key(strUrl, pszUrl, pszKey, var);
+      System.url().set_key(strUrl, pszUrl, pszKey, payload);
 
    }
 
@@ -151,7 +151,7 @@ namespace dynamic_source
    }
 
 
-   inline var script_interface::query_get_var(const char* pszUrl, const char* pszKey)
+   inline payload script_interface::query_get_var(const char* pszUrl, const char* pszKey)
    {
 
       return System.url().get_var(pszUrl, pszKey);
@@ -172,13 +172,13 @@ namespace dynamic_source
    }
 
 
-   inline void script_interface::dprint_r(var var)
+   inline void script_interface::dprint_r(payload payload)
    {
 
       if (m_pmain != nullptr && m_pmain->m_iDebug > 0)
       {
 
-         print_r(var);
+         print_r(payload);
 
       }
 

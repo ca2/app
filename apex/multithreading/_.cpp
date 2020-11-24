@@ -4,7 +4,7 @@
 #include "apex/const/id.h"
 
 
-namespace multithreading
+namespace parallelization
 {
 
 
@@ -251,7 +251,7 @@ namespace multithreading
    }
 
 
-} // namespace multithreading
+} // namespace parallelization
 
 
 //CLASS_DECL_APEX ::thread * get_thread_raw()
@@ -289,7 +289,7 @@ bool apex_thread_get_run()
 }
 
 
-namespace multithreading
+namespace parallelization
 {
 
 
@@ -386,7 +386,7 @@ namespace multithreading
    }
 
 
-} // namespace multithreading
+} // namespace parallelization
 //
 //
 //::mutex * s_pmutexMessageDispatch = nullptr;
@@ -1059,7 +1059,7 @@ void __post_quit_message(i32 nExitCode)
 
 #else
 
-   ::multithreading::finish(::get_context_application());
+   ::parallelization::finish(::get_context_application());
 
 #endif
 

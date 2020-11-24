@@ -48,11 +48,11 @@ namespace user
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual void on_apply(::action * paction) override;
+      virtual void on_apply(::subject * paction) override;
 
       ::user::document * get_document();
 
-      bool load_xml(var varFile);
+      bool load_xml(payload varFile);
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 

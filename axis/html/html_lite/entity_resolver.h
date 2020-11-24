@@ -67,7 +67,7 @@ public:
     * Resolves a character or numeric entity context_object.
     *
     * @lparam rStr - entity to resolve
-    * @lparam ch - var that will receive the result
+    * @lparam ch - payload that will receive the result
     *
     * @return number of TCHARs used to resolve entity context_object
     * @since 1.0

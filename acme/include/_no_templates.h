@@ -30,8 +30,8 @@ typedef iptr strsize;
 
 //#define CLASS_DECL_ACME
 
-#include "acme/multithreading/_types.h"
-#include "acme/os/thread.h"
+#include "acme/parallelization/_types.h"
+#include "acme/os/parallelization.h"
 //#include "acme/platform/struct.h"
 //#include "acme/os/cross/_.h"
 //#include "acme/os/acme.h"

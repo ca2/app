@@ -1133,7 +1133,7 @@ namespace install
 //}
 
 //class istring;
-//class var;
+//class payload;
 //class property_set;
 //class object;
 ////class base_edit;
@@ -2101,7 +2101,7 @@ CLASS_DECL_APEX ::apex::system * get_context_system(::layered * pobjectContext);
 #define ARRAY_SIZE(a) (sizeof(a)/sizeof(*(a)))
 
 
-class var;
+class payload;
 class id;
 
 
@@ -2280,7 +2280,7 @@ namespace primitive
 //inline auto & __typed(__pointer(POINTER_TYPE) & p) { return *p; }
 //
 
-//#include "apex/multithreading/thread_parameter.h"
+//#include "apex/parallelization/thread_parameter.h"
 
 //#include "apex/platform/keep_true.h"
 
@@ -2456,10 +2456,10 @@ namespace primitive
 typedef ::estatus THREAD_PROCEDURE(thread_parameter parameter);
 
 
-//inline bool succeeded(const ::var & var);
+//inline bool succeeded(const ::payload & payload);
 //inline bool succeeded(const ::property & set);
 //
-//inline bool failed(const ::var & var) { return !::succeeded(var); }
+//inline bool failed(const ::payload & payload) { return !::succeeded(payload); }
 //inline bool failed(const ::property & set) { return !::succeeded(set); }
 //
 
@@ -2594,7 +2594,7 @@ using generic_pointer = __pointer(::matter);
 //
 //#endif
 
-class procedure;
+class routine;
 class callback;
 
 
@@ -2618,7 +2618,7 @@ namespace core
 
 //#include "apex/primitive/collection/_.h"
 
-//#include "apex/primitive/primitive/procedure.h"
+//#include "apex/primitive/primitive/routine.h"
 
 //#include "apex/primitive/primitive/callback.h"
 
@@ -2646,9 +2646,9 @@ namespace core
 
 //#include "apex/primitive/primitive/request_interface.h"
 
-//#include "apex/multithreading/sync_result.h"
+//#include "apex/parallelization/sync_result.h"
 
-//#include "apex/multithreading/sync.h"
+//#include "apex/parallelization/sync.h"
 
 //#include "apex/xml/exportable.h"
 
@@ -2800,7 +2800,7 @@ namespace core
 //#include "apex/platform/enum.h"
 
 
-#include "apex/multithreading/_.h"
+#include "apex/parallelization/_.h"
 
 
 //namespace apex
@@ -2948,27 +2948,27 @@ namespace core
 #include "apex/platform/department.h"
 //#include "apex/platform/department_container.h"
 
-#include "apex/multithreading/threading.h"
+#include "apex/parallelization/threading.h"
 
 class mq;
 
 //#include "apex/platform/live_signal.h"
-//#include "apex/multithreading/pred_holder.h"
+//#include "apex/parallelization/pred_holder.h"
 //#include "apex/primitive/primitive/command.h"
-#include "apex/multithreading/thread.h"
-#include "apex/multithreading/handler.h"
-#include "apex/multithreading/service_base.h"
-#include "apex/multithreading/service/plain_service.h"
-#include "apex/multithreading/service/plain_service.h"
-#include "apex/multithreading/fork.h"
-#include "apex/multithreading/delay_thread.h"
-#include "apex/multithreading/tools.h"
+#include "apex/parallelization/thread.h"
+#include "apex/parallelization/handler.h"
+#include "apex/parallelization/service_base.h"
+#include "apex/parallelization/service/plain_service.h"
+#include "apex/parallelization/service/plain_service.h"
+#include "apex/parallelization/fork.h"
+#include "apex/parallelization/delay_thread.h"
+#include "apex/parallelization/tools.h"
 
-#include "apex/multithreading/thread_impl.h"
-//#include "apex/multithreading/simple_thread.h"
-//#include "apex/multithreading/go_thread.h"
-//#include "apex/multithreading/signal_thread.h"
-//#include "apex/multithreading/procedure_array.h"
+#include "apex/parallelization/thread_impl.h"
+//#include "apex/parallelization/simple_thread.h"
+//#include "apex/parallelization/go_thread.h"
+//#include "apex/parallelization/signal_thread.h"
+//#include "apex/parallelization/procedure_array.h"
 
 
 ///#include "apex/primitive/primitive/job.h"
@@ -3286,7 +3286,7 @@ namespace apex
 
 #include "apex/platform/session.h"
 
-#include "apex/multithreading/retry.h"
+#include "apex/parallelization/retry.h"
 
 
 CLASS_DECL_APEX::file::path application_installer_folder(const ::file::path & pathExe, string strAppId, const char * pszPlatform, const char * pszConfiguration, const char * pszLocale, const char * pszSchema);
@@ -3463,7 +3463,7 @@ return __str(value);
 #include "apex/node/_.h"
 
 
-#include "apex/multithreading/data.h"
+#include "apex/parallelization/data.h"
 
 
 #include "apex/platform/shell_launcher.h"
@@ -3779,13 +3779,13 @@ namespace std
 #include "apex/platform/application.h"
 
 
-//#include "apex/multithreading/pred_procedure.h"
+//#include "apex/parallelization/pred_procedure.h"
 
 
 #include "apex/primitive/primitive/_defer.h"
 
 
-#include "apex/multithreading/_impl.h"
+#include "apex/parallelization/_impl.h"
 
 
 #include "apex/platform/_impl.h"

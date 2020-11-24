@@ -757,7 +757,7 @@ void  array_base < TYPE, ARG_TYPE, ALLOCATOR >::set_all(const TYPE & t)
 
 template < class TYPE, class ARG_TYPE , class ALLOCATOR >
 template < typename VAR >
-inline array_base < TYPE, ARG_TYPE, ALLOCATOR > & array_base < TYPE, ARG_TYPE, ALLOCATOR >::operator = (const var_type < VAR > & a)
+inline array_base < TYPE, ARG_TYPE, ALLOCATOR > & array_base < TYPE, ARG_TYPE, ALLOCATOR >::operator = (const payload_type < VAR > & a)
 {
 
    ::count c = a.this_var()->array_get_count();

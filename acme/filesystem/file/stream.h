@@ -60,7 +60,7 @@ inline ::file::file & operator << (::file::file & file, const TYPE & t);
  inline void __exchange(::stream & s, string & str);
  inline void __exchange(::stream & s, ::file::path & path);
  inline void __exchange(::stream & s, ::id & id);
- inline void __exchange(::stream & s, ::var & var);
+ inline void __exchange(::stream & s, ::payload & payload);
  inline void __exchange(::stream & s, ::property & property);
  inline void __exchange(::stream & s, ::matter & matter);
 
@@ -279,11 +279,11 @@ public:
 //public:
 //
 //
-//   var *          m_pvar;
+//   payload *          m_pvar;
 //
 //
 //   var_stream() : m_pvar(nullptr) { }
-//   var_stream(var & var) : m_pvar(&var) { }
+//   var_stream(payload & payload) : m_pvar(&payload) { }
 //
 //   virtual stream * branch(const ::id &);
 //
@@ -315,13 +315,13 @@ class CLASS_DECL_ACME stream :
 public:
 
 
-   ::var * m_pvarOptions;
+   ::payload * m_pvarOptions;
 
 
    stream():m_pvarOptions(nullptr) {}
    virtual ~stream();
 
-   inline var & options();
+   inline payload & options();
 
 
    virtual ::file::path get_file_path() const;
@@ -491,7 +491,7 @@ public:
    virtual void write(const unichar * wch) { write(string(wch)); }
 #endif
    virtual void write(const id & id);
-   virtual void write(const var & var);
+   virtual void write(const payload & payload);
    virtual void write(const property & property);
    virtual void write(const string & str) ;
    virtual void write(const ::matter * pobject);
@@ -535,9 +535,9 @@ public:
    //virtual void read(SIZE32 & size);
    //virtual void read(RECT32 & rect);
    virtual void read(id & id);
-   virtual void read(var & var);
+   virtual void read(payload & payload);
    virtual void read_var_type(enum_type & etype);
-   virtual void read_var_body(var & var, enum_type etype);
+   virtual void read_var_body(payload & payload, enum_type etype);
    virtual void read(property & property);
    virtual void read(string & str);
    //virtual void read(::matter * pobject);
@@ -580,7 +580,7 @@ public:
    virtual void exchange(const ::id & id, const unichar * wch);
 #endif
    virtual void exchange(const ::id & id, ::id & idExchange);
-   virtual void exchange(const ::id & id, var & var);
+   virtual void exchange(const ::id & id, payload & payload);
    virtual void exchange(const ::id & id, property & property);
    virtual void exchange(const ::id & id, string & str) ;
    virtual void exchange(const ::id & id, ::matter * pobject);
@@ -747,7 +747,7 @@ namespace std
 //
 //inline stream & operator >> (stream & s, ::id & id) { s.read(id); return s; }
 //
-//inline stream & operator >> (stream & s, var & var) { s.read(var); return s; }
+//inline stream & operator >> (stream & s, payload & payload) { s.read(payload); return s; }
 //
 //inline stream & operator >> (stream & s, property & property) { s.read(property); return s; }
 //
@@ -853,7 +853,7 @@ namespace std
 //
 //inline stream & operator << (stream & s, const id & id) { s.write(id); return s; }
 //
-//inline stream & operator << (stream & s, const var & var) { s.write(var); return s; }
+//inline stream & operator << (stream & s, const payload & payload) { s.write(payload); return s; }
 //
 //inline stream & operator << (stream & s, const property & property) { s.write(property); return s; }
 //

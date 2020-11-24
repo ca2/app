@@ -7,7 +7,7 @@ namespace datetime
    #define INITIALIZE_TABLE(table, function) if(table[0] == 0) function(table)
 
    /*
-   var:
+   payload:
    a(ad)*
    a = a-z, A-Z, _
    d = 0-9

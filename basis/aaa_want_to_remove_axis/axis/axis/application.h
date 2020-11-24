@@ -171,7 +171,7 @@ namespace axis
 
 
 
-      virtual bool do_prompt_file_name(var & varFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument);
+      virtual bool do_prompt_file_name(payload & varFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument);
 
 
       virtual void process_message_filter(i32 code, ::message::message * pmessage) override;
@@ -197,7 +197,7 @@ namespace axis
       virtual void TermThread(HINSTANCE hInstTerm) override;
 
 
-      //virtual void set_env_var(const string & var, const string & value) override;
+      //virtual void set_env_var(const string & payload, const string & value) override;
 
 
       virtual ::aura::printer * get_printer(const char * pszDeviceName);
@@ -223,8 +223,8 @@ namespace axis
 
 
 
-      virtual bool on_open_document(::user::document * pdocument, var varFile);
-      virtual bool on_save_document(::user::document * pdocument, var varFile);
+      virtual bool on_open_document(::user::document * pdocument, payload varFile);
+      virtual bool on_save_document(::user::document * pdocument, payload varFile);
 
 
 

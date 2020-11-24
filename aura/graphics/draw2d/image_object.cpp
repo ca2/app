@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-//::image_result con::get_image(const ::var & varFile, bool bCache, bool bSync)
+//::image_result con::get_image(const ::payload & varFile, bool bCache, bool bSync)
 //{
 //
 //   return Context.load_image(varFile, bCache, bSync);
@@ -17,7 +17,7 @@
 //}
 //
 //
-//::image_result object::load_image(const ::var & varFile, bool bSync, bool bFromCache, bool bCreateHelperMaps)
+//::image_result object::load_image(const ::payload & varFile, bool bSync, bool bFromCache, bool bCreateHelperMaps)
 //{
 //
 //   {
@@ -112,7 +112,7 @@
 //}
 //
 //
-//::image_result object::load_thumbnail(const ::var & varFile, int w, int h)
+//::image_result object::load_thumbnail(const ::payload & varFile, int w, int h)
 //{
 //
 //   auto pimage = create_image();

@@ -791,10 +791,10 @@ namespace str
 //
 //   }
 
-//   bool ends_ci(const var & var, const char * pcszSuffix)
+//   bool ends_ci(const payload & payload, const char * pcszSuffix)
 //
 //   {
-//      return ends_ci(var.get_string(), pcszSuffix);
+//      return ends_ci(payload.get_string(), pcszSuffix);
 //
 //   }
 
@@ -3965,7 +3965,7 @@ skip:
       return str;
    }
 
-   var ends_get(const char * pszSuffix, const char * psz)
+   payload ends_get(const char * pszSuffix, const char * psz)
    {
       if(pszSuffix == nullptr)
          return psz;
@@ -3981,7 +3981,7 @@ skip:
       return false;
    }
 
-   var ends_get_ci(const char * pszSuffix, const char * psz)
+   payload ends_get_ci(const char * pszSuffix, const char * psz)
    {
       if(pszSuffix == nullptr)
          return psz;

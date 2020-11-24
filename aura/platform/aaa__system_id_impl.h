@@ -5,9 +5,9 @@
 namespace aura
 {
 
-   inline id system::id(const class var & var)
+   inline id system::id(const class payload & payload)
    {
-      return ::id((const char *)(class var &) var);
+      return ::id((const char *)(class payload &) payload);
    }
 
    inline id system::id(const property & prop)

@@ -301,10 +301,10 @@ int_bool SetThreadName(::u32 dwThreadID, const char* threadName)
    info.dwFlags = 0;
 #pragma warning(push)
 #pragma warning(disable: 6320 6322)
-   ＿＿try {
+   __try {
       RaiseException(MS_VC_EXCEPTION, 0, sizeof(info) / sizeof(ULONG_PTR), (ULONG_PTR*)& info);
    }
-   ＿＿except (EXCEPTION_EXECUTE_HANDLER) {
+   __except (EXCEPTION_EXECUTE_HANDLER) {
    }
 #pragma warning(pop)
 

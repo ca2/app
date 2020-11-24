@@ -1,35 +1,32 @@
 #pragma once
 
 
-typedef ＿＿pointer_array(::matter) object_array;
-typedef isomap < ithread_t, ＿＿pointer(task) > task_map;
+typedef __pointer_array(::matter) object_array;
+typedef isomap < ithread_t, __pointer(task) > task_map;
 typedef isomap < task *, ithread_t > task_id_map;
 
 
 class CLASS_DECL_ACME task :
    virtual public context_object
 {
-protected:
-
-
 
 public:
 
 
-   int                              m_bitAvoidProcFork : 1;
-   int                              m_bitIsRunning : 1;
-   int                              m_bitIsPred : 1; // Is helper thread (as opposite to a "main" thread)
-   int                              m_bitCoInitialize : 1;
+   int                                 m_bitAvoidProcFork : 1;
+   int                                 m_bitIsRunning : 1;
+   int                                 m_bitIsPred : 1; // Is helper thread (as opposite to a "main" thread)
+   int                                 m_bitCoInitialize : 1;
 
 
-   hthread_t                          m_hthread;
-   ithread_t                          m_ithread;
-   string                           m_strTaskName;
-   string                           m_strTaskTag;
-   ＿＿pointer(::context_object)      m_pobjectParent;
+   hthread_t                           m_hthread;
+   ithread_t                           m_ithread;
+   string                              m_strTaskName;
+   string                              m_strTaskTag;
+   __pointer(::context_object)    m_pobjectParent;
 
-   ＿＿pointer(::matter)              m_pmatter;
-   ＿＿pointer(manual_reset_event)    m_pevSleep;
+   __pointer(::matter)            m_pmatter;
+   __pointer(manual_reset_event)       m_pevSleep;
 
 #ifdef WINDOWS
    HRESULT                          m_hresultCoInitialize;
@@ -95,7 +92,7 @@ public:
 
 
    //template < typename METHOD >
-   //inline static ::task_pointer ＿＿task(METHOD method)
+   //inline static ::task_pointer __task(METHOD method)
    //{
 
    //   auto pmethod = method(method);
@@ -137,7 +134,7 @@ public:
 };
 
 
-using task_array = ＿＿pointer_array(task);
+using task_array = __pointer_array(task);
 
 
 

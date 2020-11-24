@@ -3132,7 +3132,7 @@ namespace aura
    }
 
 
-   bool system::on_open_file(var varFile, string strExtra)
+   bool system::on_open_file(payload varFile, string strExtra)
    {
 
       auto psession = Session;
@@ -3653,7 +3653,7 @@ namespace aura
 
 
 
-   ::image_pointer system::get_cache_image(::layered * pobjectContext, const ::var & varFile)
+   ::image_pointer system::get_cache_image(::layered * pobjectContext, const ::payload & varFile)
    {
 
       ::file::path path = varFile.get_file_path();
@@ -3683,7 +3683,7 @@ namespace aura
    }
 
 
-   ::image_pointer system::get_image(::layered * pobjectContext, const ::var & varFile, bool bCache, bool bSync)
+   ::image_pointer system::get_image(::layered * pobjectContext, const ::payload & varFile, bool bCache, bool bSync)
    {
 
       auto pimage = get_cache_image(pobjectContext, varFile);
@@ -5715,7 +5715,7 @@ namespace aura
 //
 //      //__wait_threading_count(::millis((5000) * 8));
 //
-//      //::multithreading::wait_threads(40_s);
+//      //::parallelization::wait_threads(40_s);
 //
 ////#ifdef LINUX
 ////
@@ -6310,7 +6310,7 @@ namespace aura
    }
 
 
-   void system::on_apply(::action * paction)
+   void system::on_apply(::subject * paction)
    {
 
       ::aqua::system::on_apply(paction);
@@ -6653,12 +6653,12 @@ namespace aura
    //}
 
 
-   ::estatus system::main_user_async(const ::procedure & procedure, ::e_priority epriority)
+   ::estatus system::main_user_async(const ::routine & procedure, ::e_priority epriority)
    {
 
 #ifdef _UWP
 
-      return m_pimplMain->main_async(procedure, epriority);
+      return m_pimplMain->main_async(routine, epriority);
 
 #else
 

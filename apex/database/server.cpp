@@ -50,7 +50,7 @@ namespace database
    }
 
 
-   bool server::_data_server_load(client * pclient, const key & id, get_memory getmemory, ::action * paction)
+   bool server::_data_server_load(client * pclient, const key & id, get_memory getmemory, ::subject * paction)
    {
 
 #if MEMDLEAK
@@ -64,7 +64,7 @@ namespace database
    }
 
 
-   bool server::_data_server_save(client * pclient, const key & id, block block, ::action * paction)
+   bool server::_data_server_save(client * pclient, const key & id, block block, ::subject * paction)
    {
 
       return true;
@@ -72,7 +72,7 @@ namespace database
    }
 
 
-   bool server::data_pulse_change(client * pclient, const key & id, ::action * paction)
+   bool server::data_pulse_change(client * pclient, const key & id, ::subject * paction)
    {
 
       return on_after_data_change(pclient, id, paction);
@@ -80,10 +80,10 @@ namespace database
    }
 
 
-   bool server::on_before_data_change(client * pclient, const key & id, var & var, ::action * paction)
+   bool server::on_before_data_change(client * pclient, const key & id, payload & payload, ::subject * paction)
    {
 
-      //::database::change_event signal(var);
+      //::database::change_event signal(payload);
 
       //signal.m_pserver = this;
       //signal.m_pclient = pclient;
@@ -93,7 +93,7 @@ namespace database
       for(i32 i = 0; i < m_clienta.get_count(); i++)
       {
 
-         bool bOk = m_clienta.element_at(i)->data_on_before_change(pclient, id, var, paction);
+         bool bOk = m_clienta.element_at(i)->data_on_before_change(pclient, id, payload, paction);
 
          if(!bOk)
          {
@@ -109,7 +109,7 @@ namespace database
    }
 
 
-   bool server::on_after_data_change(client * pclient, const key & id, const ::var & var, ::action * paction)
+   bool server::on_after_data_change(client * pclient, const key & id, const ::payload & payload, ::subject * paction)
    {
 
       //::database::change_event signal;
@@ -128,7 +128,7 @@ namespace database
 
          }
 
-         m_clienta.element_at(i)->data_on_after_change(pclient, id, var, paction);
+         m_clienta.element_at(i)->data_on_after_change(pclient, id, payload, paction);
 
       }
 
@@ -137,7 +137,7 @@ namespace database
    }
 
 
-   var server::data_load(client * pclient, const key & id, ::action * paction)
+   payload server::data_load(client * pclient, const key & id, ::subject * paction)
    {
 
       ::memory_stream is;
@@ -153,21 +153,21 @@ namespace database
 
       }
 
-      var var;
+      payload payload;
 
-      is >> var;
+      is >> payload;
 
-      return var;
+      return payload;
 
    }
 
 
-   bool server::data_save(client * pclient, const key & id, var & var, ::action * paction)
+   bool server::data_save(client * pclient, const key & id, payload & payload, ::subject * paction)
    {
 
       ::memory_stream writer;
 
-      writer << var;
+      writer << payload;
 
       {
 

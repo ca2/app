@@ -4,9 +4,9 @@
 namespace acme
 {
 
-   inline ::id id(const class var& var)
+   inline ::id id(const class payload& payload)
    {
-      return ::id((const char*)(class var&)var);
+      return ::id((const char*)(class payload&)payload);
    }
 
    inline ::id id(const property& prop)
@@ -55,9 +55,9 @@ namespace acme
 //namespace acme
 //{
 //
-//   inline id system::id(const class var & var)
+//   inline id system::id(const class payload & payload)
 //   {
-//      return ::id((const char *)(class var &) var);
+//      return ::id((const char *)(class payload &) payload);
 //   }
 //
 //   inline id system::id(const property & prop)

@@ -1053,11 +1053,11 @@ void edit_window::_GetDisplayAttributes(void)
                 while((hr = pEnumRanges->Next(1, &pPropRange, &uFetched)) == S_OK && uFetched) 
                 {
                     //get the attribute property for the property range
-                    VARIANT var;
+                    VARIANT payload;
 
-                    VariantInit(&var);
+                    VariantInit(&payload);
 
-                    hr = pTrackProperty->GetValue(m_EditCookie, pPropRange, &var);
+                    hr = pTrackProperty->GetValue(m_EditCookie, pPropRange, &payload);
                     if(SUCCEEDED(hr))
                     {
                         /*
@@ -1066,7 +1066,7 @@ void edit_window::_GetDisplayAttributes(void)
                         */
                         IEnumTfPropertyValue    *pEnumPropertyVal;
 
-                        hr = var.punkVal->QueryInterface(IID_IEnumTfPropertyValue, (LPVOID*)&pEnumPropertyVal);
+                        hr = payload.punkVal->QueryInterface(IID_IEnumTfPropertyValue, (LPVOID*)&pEnumPropertyVal);
                         if(SUCCEEDED(hr))
                         {
                             TF_PROPERTYVAL tfPropVal;
@@ -1125,7 +1125,7 @@ void edit_window::_GetDisplayAttributes(void)
                             pEnumPropertyVal->Release();
                         }
                         
-                        VariantClear(&var);
+                        VariantClear(&payload);
                     }
                     
                     pPropRange->Release();
@@ -1186,11 +1186,11 @@ void edit_window::_GetTextOwner(void)
                 while((hr = pEnumRanges->Next(1, &pPropRange, &uFetched)) == S_OK && uFetched) 
                 {
                     //get the attribute property for the property range
-                    VARIANT var;
+                    VARIANT payload;
 
-                    VariantInit(&var);
+                    VariantInit(&payload);
 
-                    hr = pTrackProperty->GetValue(m_EditCookie, pPropRange, &var);
+                    hr = pTrackProperty->GetValue(m_EditCookie, pPropRange, &payload);
                     if(SUCCEEDED(hr))
                     {
                         /*
@@ -1199,7 +1199,7 @@ void edit_window::_GetTextOwner(void)
                         */
                         IEnumTfPropertyValue    *pEnumPropertyVal;
 
-                        hr = var.punkVal->QueryInterface(IID_IEnumTfPropertyValue, (LPVOID*)&pEnumPropertyVal);
+                        hr = payload.punkVal->QueryInterface(IID_IEnumTfPropertyValue, (LPVOID*)&pEnumPropertyVal);
                         if(SUCCEEDED(hr))
                         {
                             TF_PROPERTYVAL tfPropVal;
@@ -1236,7 +1236,7 @@ void edit_window::_GetTextOwner(void)
                             pEnumPropertyVal->Release();
                         }
                         
-                        VariantClear(&var);
+                        VariantClear(&payload);
                     }
                     
                     pPropRange->Release();
@@ -1297,11 +1297,11 @@ void edit_window::_GetReadingText(void)
                 while((hr = pEnumRanges->Next(1, &pPropRange, &uFetched)) == S_OK && uFetched) 
                 {
                     //get the attribute property for the property range
-                    VARIANT var;
+                    VARIANT payload;
 
-                    VariantInit(&var);
+                    VariantInit(&payload);
 
-                    hr = pTrackProperty->GetValue(m_EditCookie, pPropRange, &var);
+                    hr = pTrackProperty->GetValue(m_EditCookie, pPropRange, &payload);
                     if(SUCCEEDED(hr))
                     {
                         /*
@@ -1310,7 +1310,7 @@ void edit_window::_GetReadingText(void)
                         */
                         IEnumTfPropertyValue    *pEnumPropertyVal;
 
-                        hr = var.punkVal->QueryInterface(IID_IEnumTfPropertyValue, (LPVOID*)&pEnumPropertyVal);
+                        hr = payload.punkVal->QueryInterface(IID_IEnumTfPropertyValue, (LPVOID*)&pEnumPropertyVal);
                         if(SUCCEEDED(hr))
                         {
                             TF_PROPERTYVAL tfPropVal;
@@ -1345,7 +1345,7 @@ void edit_window::_GetReadingText(void)
                             pEnumPropertyVal->Release();
                         }
                         
-                        VariantClear(&var);
+                        VariantClear(&payload);
                     }
                     
                     pPropRange->Release();
@@ -1406,11 +1406,11 @@ void edit_window::_GetComposing(void)
                 while((hr = pEnumRanges->Next(1, &pPropRange, &uFetched)) == S_OK && uFetched) 
                 {
                     //get the attribute property for the property range
-                    VARIANT var;
+                    VARIANT payload;
 
-                    VariantInit(&var);
+                    VariantInit(&payload);
 
-                    hr = pTrackProperty->GetValue(m_EditCookie, pPropRange, &var);
+                    hr = pTrackProperty->GetValue(m_EditCookie, pPropRange, &payload);
                     if(SUCCEEDED(hr))
                     {
                         /*
@@ -1419,7 +1419,7 @@ void edit_window::_GetComposing(void)
                         */
                         IEnumTfPropertyValue    *pEnumPropertyVal;
 
-                        hr = var.punkVal->QueryInterface(IID_IEnumTfPropertyValue, (LPVOID*)&pEnumPropertyVal);
+                        hr = payload.punkVal->QueryInterface(IID_IEnumTfPropertyValue, (LPVOID*)&pEnumPropertyVal);
                         if(SUCCEEDED(hr))
                         {
                             TF_PROPERTYVAL tfPropVal;
@@ -1453,7 +1453,7 @@ void edit_window::_GetComposing(void)
                             pEnumPropertyVal->Release();
                         }
                         
-                        VariantClear(&var);
+                        VariantClear(&payload);
                     }
                     
                     pPropRange->Release();

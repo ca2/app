@@ -787,7 +787,7 @@ namespace apex
                      || System.has_property("uninstall"))
                {
 
-                  ::multithreading::finish(&System);
+                  ::parallelization::finish(&System);
 
                }
                else
@@ -800,7 +800,7 @@ namespace apex
                   if (c == 1 && System.value("app").at(0) == strApp)
                   {
 
-                     ::multithreading::finish(&System);
+                     ::parallelization::finish(&System);
 
                   }
 
@@ -2740,7 +2740,7 @@ namespace apex
 
 
 
-   void session::request_topic_file(var& varQuery)
+   void session::request_topic_file(payload& varQuery)
    {
 
       auto psession = Session;

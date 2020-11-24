@@ -2,7 +2,7 @@
 
 
 #ifdef RASPBIAN
-#define sync ＿＿unistd_sync
+#define sync __unistd_sync
 #include <sys/types.h>
 #include <unistd.h>
 #undef sync
@@ -125,7 +125,7 @@ mutex::mutex(enum_create_new, bool bInitiallyOwn, const char * pstrName, LPSECUR
 
          DWORD dwError2 = ::GetLastError();
 
-         ＿＿throw(resource_exception());
+         __throw(resource_exception());
 
       }
 
@@ -195,7 +195,7 @@ mutex::mutex(enum_create_new, bool bInitiallyOwn, const char * pstrName, LPSECUR
          if (err != EEXIST)
          {
 
-            ＿＿throw(resource_exception());
+            __throw(resource_exception());
 
          }
 
@@ -206,7 +206,7 @@ mutex::mutex(enum_create_new, bool bInitiallyOwn, const char * pstrName, LPSECUR
          if (m_psem == SEM_FAILED)
          {
 
-            ＿＿throw(resource_exception(););
+            __throw(resource_exception(););
 
          }
 
@@ -280,7 +280,7 @@ mutex::mutex(enum_create_new, bool bInitiallyOwn, const char * pstrName, LPSECUR
 
          const char * pszError = strerror(iErr);
 
-         ＿＿throw(resource_exception());
+         __throw(resource_exception());
 
       }
 
@@ -384,7 +384,7 @@ get_existing:
       if(m_semid < 0)
       {
 
-         ＿＿throw(resource_exception());
+         __throw(resource_exception());
 
       }
 
@@ -876,7 +876,7 @@ sync_result mutex::wait(const duration & duration)
 
 #elif defined(MACOS)
 
-            if (＿＿builtin_available(macOS 10.12, *))
+            if (__builtin_available(macOS 10.12, *))
             {
 
                clock_gettime(CLOCK_REALTIME, &abs_time);
@@ -1476,7 +1476,7 @@ bool mutex::unlock()
 
 
 
-＿＿pointer(mutex) open_mutex(const char * lpszName)
+__pointer(mutex) open_mutex(const char * lpszName)
 {
 
 #ifdef WINDOWS
@@ -1490,7 +1490,7 @@ bool mutex::unlock()
 
    }
 
-   auto pmutex  = ＿＿new(mutex(e_create_new, lpszName, h));
+   auto pmutex  = __new(mutex(e_create_new, lpszName, h));
 
    return pmutex;
 
@@ -1516,14 +1516,14 @@ bool mutex::unlock()
       if (psem == SEM_FAILED)
       {
 
-         //＿＿throw(resource_exception(papp,"failed to create named mutex"));
-         ＿＿throw(resource_exception());
+         //__throw(resource_exception(papp,"failed to create named mutex"));
+         __throw(resource_exception());
 
       }
 
    }
 
-   auto pmutex = ＿＿new(mutex(strName, psem, isCreator));
+   auto pmutex = __new(mutex(strName, psem, isCreator));
 
    return pmutex;
 
@@ -1574,7 +1574,7 @@ bool mutex::unlock()
    if (iFd < 0)
    {
 
-      ＿＿throw(resource_exception());
+      __throw(resource_exception());
 
    }
 
@@ -1588,7 +1588,7 @@ bool mutex::unlock()
 
    //pthread_mutex_init(&m_mutex, &attr);
 
-   auto pmutex = ＿＿new(mutex(e_create_new, lpszName, iFd, false));
+   auto pmutex = __new(mutex(e_create_new, lpszName, iFd, false));
 
    return pmutex;
 
@@ -1614,7 +1614,7 @@ bool mutex::unlock()
 
    }
 
-   auto pmutex = ＿＿new(mutex(strName, key, semid));
+   auto pmutex = __new(mutex(strName, key, semid));
 
    return pmutex;
 
@@ -1626,7 +1626,7 @@ bool mutex::unlock()
 void wait_until_mutex_does_not_exist(const char * lpszName)
 {
 
-   ＿＿pointer(mutex) pmutex = ＿＿new(mutex(e_create_new, false, "Global\\::ca::account::ca2_spa::7807e510-5579-11dd-ae16-0800200c7784"));
+   __pointer(mutex) pmutex = __new(mutex(e_create_new, false, "Global\\::ca::account::ca2_spa::7807e510-5579-11dd-ae16-0800200c7784"));
 
    if(::get_last_status() == ::error_already_exists)
    {
@@ -1638,7 +1638,7 @@ void wait_until_mutex_does_not_exist(const char * lpszName)
 
          millis_sleep(200);
 
-         pmutex = ＿＿new(mutex(e_create_new, false, "Global\\::ca::account::ca2_spa::7807e510-5579-11dd-ae16-0800200c7784"));
+         pmutex = __new(mutex(e_create_new, false, "Global\\::ca::account::ca2_spa::7807e510-5579-11dd-ae16-0800200c7784"));
 
       }
 
@@ -1662,14 +1662,14 @@ null_dacl_security_attributes::null_dacl_security_attributes()
 {
 
 
-   ·zero(m_securityattributes);
+   xxf_zero(m_securityattributes);
 
    m_securityattributes.nLength = sizeof(m_securityattributes);
 
    m_securityattributes.bInheritHandle = FALSE; // matter uninheritable
 
    // declare and initialize a security descriptor
-   ·zero(m_securitydescriptor);
+   xxf_zero(m_securitydescriptor);
 
    bool bInitOk = InitializeSecurityDescriptor(&m_securitydescriptor,SECURITY_DESCRIPTOR_REVISION) != FALSE;
 

@@ -200,7 +200,7 @@ namespace apex
 
 class source;
 class update;
-class change;
+class machine;
 
 
 

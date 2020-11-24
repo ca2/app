@@ -262,11 +262,11 @@ namespace str
 
    inline wd32string & assign(wd32string & widestrDst, wd32char wd32ch);
 
-   inline ansistring & assign(ansistring & ansistrDst, const var & var);
+   inline ansistring & assign(ansistring & ansistrDst, const payload & payload);
 
-   inline wd16string & assign(wd16string & widestrDst, const var & var);
+   inline wd16string & assign(wd16string & widestrDst, const payload & payload);
 
-   inline wd32string & assign(wd32string & widestrDst, const var& var);
+   inline wd32string & assign(wd32string & widestrDst, const payload& payload);
 
    inline ansistring & assign(ansistring & ansistrDst, const property & property);
 

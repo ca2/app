@@ -291,7 +291,7 @@ namespace user
    }
 
 
-   void plain_edit::on_apply(::action * paction)
+   void plain_edit::on_apply(::subject * paction)
    {
 
       if(paction->id() == id_current_text_changed)
@@ -378,7 +378,7 @@ namespace user
 
       m_pinternal->update(pgraphics, this);
 
-      //::change * pchange = pgraphics->m_ptask;
+      //::machine * pchange = pgraphics->m_ptask;
 
       //::user::print_task * pprinttask = nullptr;
 
@@ -6338,7 +6338,7 @@ finished_update:
    }
 
 
-   var plain_edit::get_ex_value()
+   payload plain_edit::get_ex_value()
    {
 
       string str;

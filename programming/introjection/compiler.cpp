@@ -43,7 +43,7 @@ namespace introjection
 
       defer_create_mutex();
 
-      ·zero(m_filetimeset);
+      xxf_zero(m_filetimeset);
 
    }
 
@@ -362,9 +362,9 @@ namespace introjection
 
       string strCommandLine = "\"" + m_strEnv + "\" " + m_strPlat2 + " " + vs_build();
 
-      var var = System.process().get_output(strCommandLine);
+      payload payload = System.process().get_output(strCommandLine);
 
-      TRACE("%s", var.get_string().c_str());
+      TRACE("%s", payload.get_string().c_str());
 
 #endif
 
@@ -653,7 +653,7 @@ namespace introjection
 
       }
 
-      ::dir::mk("/var/tmp/ca2/intermediate");
+      ::dir::mk("/payload/tmp/ca2/intermediate");
 
 #else
 

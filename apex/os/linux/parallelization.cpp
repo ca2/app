@@ -56,12 +56,12 @@ namespace process
 
 
 
-void ＿＿node_init_thread()
+void __node_init_thread()
 {
 
 }
 
-void ＿＿node_term_thread()
+void __node_term_thread()
 {
 
 }
@@ -79,10 +79,10 @@ void ＿＿node_term_thread()
 
 
 
-bool ＿＿os_init_thread()
+bool __os_init_thread()
 {
 
-   //＿＿thread_set_data((ithread_t) idthread, ::parallelization::slot_message_queue, 0);
+   //__thread_set_data((ithread_t) idthread, ::parallelization::slot_message_queue, 0);
 
    return true;
 
@@ -90,7 +90,7 @@ bool ＿＿os_init_thread()
 
 
 
-bool ＿＿os_term_thread()
+bool __os_term_thread()
 {
 
    //thread_shutdown();
@@ -124,9 +124,9 @@ bool ＿＿os_term_thread()
 CLASS_DECL_APEX void main_sync_runnable(::context_object * pobjectRunnable, ::duration durationTimeout)
 {
 
-   ＿＿pointer(context_object) prunnable = pobjectRunnable;
+   __pointer(context_object) prunnable = pobjectRunnable;
 
-   auto pevent = ＿＿new(manual_reset_event);
+   auto pevent = __new(manual_reset_event);
 
    gdk_fork([prunnable, pevent]()
    {
@@ -154,7 +154,7 @@ CLASS_DECL_APEX void main_sync_runnable(::context_object * pobjectRunnable, ::du
 CLASS_DECL_APEX void main_async_runnable(::context_object * prunnableParam)
 {
 
-   ＿＿pointer(context_object) prunnable = prunnableParam;
+   __pointer(context_object) prunnable = prunnableParam;
 
    gdk_fork([prunnable]()
    {

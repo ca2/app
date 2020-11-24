@@ -47,7 +47,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          socket_handler(::layered * pobjectContext, ::apex::log* plogger = nullptr);
 
          /** socket_handler threadsafe constructor.
-         \param ::mutex Externally declared ::mutex var
+         \param ::mutex Externally declared ::mutex payload
          \param log Optional log class pointer */
          //socket_handler(::object * pobject,::mutex & ::mutex,logger *log = nullptr);
 

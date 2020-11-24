@@ -8,7 +8,7 @@
 //
 //
 //   ::matter *                       m_pobjectRun;
-//   ＿＿pointer(manual_reset_event)    m_pevent;
+//   __pointer(manual_reset_event)    m_pevent;
 //
 //
 //};

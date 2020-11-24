@@ -368,7 +368,7 @@ namespace browser
 
                      {
 
-                        var v;
+                        payload v;
 
                         v = d;
 

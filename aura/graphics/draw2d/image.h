@@ -212,7 +212,7 @@ public:
    // realization is semantically const
    // image keeps an image and image will be the same,
    // besides the way the Device Context associated with the image (m_spgraphics)
-   // interprets or deals with it, may change
+   // interprets or deals with it, may machine
    virtual bool realize(::draw2d::graphics* pgraphics) const;
    virtual bool unrealize() const;
    virtual bool is_realized() const;
@@ -435,7 +435,7 @@ public:
 ////
 //// Compose, Construct, Create and Add_Reference Porngraphs
 ////
-//// __create      // return __pointer(BASE_TYPE) // _id id // _new TYPE 
+//// __create      // return __pointer(BASE_TYPE) // _id id // _new TYPE
 //// __compose     // __composite(BASE_TYPE) &    // _id id // _new TYPE // SOURCE psource
 //// __construct   // __pointer(BASE_TYPE) &      // _id id // _new TYPE // SOURCE psource
 //// add_reference // __reference(BASE_TYPE) & SOURCE psource

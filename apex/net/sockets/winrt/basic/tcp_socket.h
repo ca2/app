@@ -120,8 +120,8 @@ namespace sockets
       string m_password; ///< ssl password
 
       int m_socks4_state; ///< socks4 support
-      char m_socks4_vn; ///< socks4 support, temporary var
-      char m_socks4_cd; ///< socks4 support, temporary var
+      char m_socks4_vn; ///< socks4 support, temporary payload
+      char m_socks4_cd; ///< socks4 support, temporary payload
       unsigned short m_socks4_dstport; ///< socks4 support
       unsigned long m_socks4_dstip; ///< socks4 support
 

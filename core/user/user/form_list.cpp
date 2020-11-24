@@ -723,7 +723,7 @@ break_click:;
 
          }
 
-         //var var;
+         //payload payload;
          //::database::selection selection;
          //_001GetSelection(pinteraction->descriptor().m_dataid, selection);
          //if (selection.get_item_count() > 0)
@@ -740,21 +740,21 @@ break_click:;
          //   }
          //   if (ptext == nullptr)
          //      return;
-         //   if (data_get(pinteraction->descriptor().m_dataid.m_id + "." + item.m_id.m_id, var))
+         //   if (data_get(pinteraction->descriptor().m_dataid.m_id + "." + item.m_id.m_id, payload))
          //   {
-         //      switch (var.get_type())
+         //      switch (payload.get_type())
          //      {
          //      case ::type_string:
          //      {
          //         string str;
-         //         str = var.m_str;
+         //         str = payload.m_str;
          //         ptext->_001SetText(str, ::source_database);
          //      }
          //      break;
          //      case ::type_int32:
          //      {
          //         string str;
-         //         str.Format("%d", var.i32());
+         //         str.Format("%d", payload.i32());
          //         ptext->_001SetText(str, ::source_database);
          //      }
          //      break;
@@ -929,16 +929,16 @@ break_click:;
 
       }
 
-      var var;
+      payload payload;
 
-      if (!pinteraction->get_data(pinteraction, var))
+      if (!pinteraction->get_data(pinteraction, payload))
       {
 
          return false;
 
       }
 
-      if (!_001Validate(pinteraction, var))
+      if (!_001Validate(pinteraction, payload))
       {
 
          return false;
@@ -955,7 +955,7 @@ break_click:;
 
          item.m_iSubItem = pinteraction->descriptor().subitem_index();
 
-         item.m_strText = var.get_string();
+         item.m_strText = payload.get_string();
 
          _001SetItemText(&item);
 

@@ -32,8 +32,8 @@ namespace uwp
       virtual ::file::path get_process_path(u32 dwPid) override;
 
 
-      virtual var connection_settings_get_auto_detect() override;
-      virtual var connection_settings_get_auto_config_url() override;
+      virtual payload connection_settings_get_auto_detect() override;
+      virtual payload connection_settings_get_auto_config_url() override;
 
 
       virtual bool local_machine_set_run(const char * pszKey, const char * pszCommand, bool bSet) override;

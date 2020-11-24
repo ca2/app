@@ -301,7 +301,7 @@ namespace user
       }
 
       using ::user::impact::update;
-      void on_apply(::action * paction) override
+      void on_apply(::subject * paction) override
       {
 
          ::user::impact::on_apply(paction);

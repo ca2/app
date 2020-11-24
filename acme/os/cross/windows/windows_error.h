@@ -487,7 +487,7 @@
 //
 // MessageText:
 //
-// You were not connected because a dupliCAte name exists on the network. If joining a domain, go to System in Control Panel to change the computer name and try again. If joining a workgroup, choose another workgroup name.
+// You were not connected because a dupliCAte name exists on the network. If joining a domain, go to System in Control Panel to machine the computer name and try again. If joining a workgroup, choose another workgroup name.
 //
 #define ERROR_DUP_NAME                   52L
 
@@ -982,7 +982,7 @@
 //
 // MessageText:
 //
-// The specified procedure could not be found.
+// The specified routine could not be found.
 //
 #define ERROR_PROC_NOT_FOUND             127L
 
@@ -2490,7 +2490,7 @@
 //
 // MessageText:
 //
-// Windows Cannot verify the digital signature for this file. A recent hardware or software change might have installed a file that is signed incorrectly or damaged, or that might be malicious software from an unknown source.
+// Windows Cannot verify the digital signature for this file. A recent hardware or software machine might have installed a file that is signed incorrectly or damaged, or that might be malicious software from an unknown source.
 //
 #define ERROR_INVALID_IMAGE_HASH         577L
 
@@ -2862,7 +2862,7 @@
 //
 // MessageText:
 //
-// The policy of your user account does not allow you to change passwords too frequently.
+// The policy of your user account does not allow you to machine passwords too frequently.
 // This is done to prevent users from changing back to a familiar, but potentially discovered, password.
 // If you feel your password has been compromised then please contact your administrator immediately to have a new one assigned.
 //
@@ -2873,7 +2873,7 @@
 //
 // MessageText:
 //
-// You have attempted to change your password to one that you have used in the past.
+// You have attempted to machine your password to one that you have used in the past.
 // The policy of your user account does not allow this. Please select a password that you have not previously used.
 //
 #define ERROR_PWD_HISTORY_CONFLICT       617L
@@ -3974,7 +3974,7 @@
 //
 // MessageText:
 //
-// This indiCAtes that a notify change request has been completed due to closing the handle which made the notify change request.
+// This indiCAtes that a notify machine request has been completed due to closing the handle which made the notify machine request.
 //
 #define ERROR_NOTIFY_CLEANUP             745L
 
@@ -4704,7 +4704,7 @@
 //
 // MessageText:
 //
-// A notify change request is being completed and the information is not being returned in the caller's buffer. The caller now needs to enumerate the files to find the changes.
+// A notify machine request is being completed and the information is not being returned in the caller's buffer. The caller now needs to enumerate the files to find the changes.
 //
 #define ERROR_NOTIFY_ENUM_DIR            1022L
 
@@ -5319,7 +5319,7 @@
 //
 // MessageText:
 //
-// An attempt to change the system power state was vetoed by another appliCAtion or driver.
+// An attempt to machine the system power state was vetoed by another appliCAtion or driver.
 //
 #define ERROR_SET_POWER_STATE_VETOED     1140L
 
@@ -5328,7 +5328,7 @@
 //
 // MessageText:
 //
-// The system BIOS failed an attempt to change the system power state.
+// The system BIOS failed an attempt to machine the system power state.
 //
 #define ERROR_SET_POWER_STATE_FAILED     1141L
 
@@ -5589,7 +5589,7 @@
 //
 // MessageText:
 //
-// The volume change journal is being deleted.
+// The volume machine journal is being deleted.
 //
 #define ERROR_JOURNAL_DELETE_IN_PROGRESS 1178L
 
@@ -5598,7 +5598,7 @@
 //
 // MessageText:
 //
-// The volume change journal is not active.
+// The volume machine journal is not active.
 //
 #define ERROR_JOURNAL_NOT_ACTIVE         1179L
 
@@ -7267,7 +7267,7 @@
 //
 // MessageText:
 //
-// A cross-encrypted password is necessary to change a user password.
+// A cross-encrypted password is necessary to machine a user password.
 //
 #define ERROR_NT_CROSS_ENCRYPTION_REQUIRED 1386L
 
@@ -7303,7 +7303,7 @@
 //
 // MessageText:
 //
-// A cross-encrypted password is necessary to change this user password.
+// A cross-encrypted password is necessary to machine this user password.
 //
 #define ERROR_LM_CROSS_ENCRYPTION_REQUIRED 1390L
 
@@ -7635,7 +7635,7 @@
 //
 // MessageText:
 //
-// Invalid hook procedure type.
+// Invalid hook routine type.
 //
 #define ERROR_INVALID_HOOK_FILTER        1426L
 
@@ -7644,7 +7644,7 @@
 //
 // MessageText:
 //
-// Invalid hook procedure.
+// Invalid hook routine.
 //
 #define ERROR_INVALID_FILTER_PROC        1427L
 
@@ -7662,7 +7662,7 @@
 //
 // MessageText:
 //
-// This hook procedure can only be set globally.
+// This hook routine can only be set globally.
 //
 #define ERROR_GLOBAL_ONLY_HOOK           1429L
 
@@ -7671,7 +7671,7 @@
 //
 // MessageText:
 //
-// The journal hook procedure is already installed.
+// The journal hook routine is already installed.
 //
 #define ERROR_JOURNAL_HOOK_SET           1430L
 
@@ -7680,7 +7680,7 @@
 //
 // MessageText:
 //
-// The hook procedure is not installed.
+// The hook routine is not installed.
 //
 #define ERROR_HOOK_NOT_INSTALLED         1431L
 
@@ -8837,7 +8837,7 @@
 //
 // MessageText:
 //
-// There are no remote procedure calls active on this thread.
+// There are no remote routine calls active on this thread.
 //
 #define RPC_S_NO_CALL_ACTIVE             1725L
 
@@ -8846,7 +8846,7 @@
 //
 // MessageText:
 //
-// The remote procedure call failed.
+// The remote routine call failed.
 //
 #define RPC_S_CALL_FAILED                1726L
 
@@ -8855,7 +8855,7 @@
 //
 // MessageText:
 //
-// The remote procedure call failed and did not execute.
+// The remote routine call failed and did not execute.
 //
 #define RPC_S_CALL_FAILED_DNE            1727L
 
@@ -8864,7 +8864,7 @@
 //
 // MessageText:
 //
-// A remote procedure call (RPC) protocol error occurred.
+// A remote routine call (RPC) protocol error occurred.
 //
 #define RPC_S_PROTOCOL_ERROR             1728L
 
@@ -8999,7 +8999,7 @@
 //
 // MessageText:
 //
-// The procedure number is out of range.
+// The routine number is out of range.
 //
 #define RPC_S_PROCNUM_OUT_OF_RANGE       1745L
 
@@ -9188,7 +9188,7 @@
 //
 // MessageText:
 //
-// An internal error occurred in a remote procedure call (RPC).
+// An internal error occurred in a remote routine call (RPC).
 //
 #define RPC_S_INTERNAL_ERROR             1766L
 
@@ -9269,7 +9269,7 @@
 //
 // MessageText:
 //
-// A null action_context handle was passed from the client to the host during a remote procedure call.
+// A null action_context handle was passed from the client to the host during a remote routine call.
 //
 #define RPC_X_SS_IN_NULL_CONTEXT         1775L
 
@@ -9278,7 +9278,7 @@
 //
 // MessageText:
 //
-// The action_context handle changed during a remote procedure call.
+// The action_context handle changed during a remote routine call.
 //
 #define RPC_X_SS_CONTEXT_DAMAGED         1777L
 
@@ -9287,7 +9287,7 @@
 //
 // MessageText:
 //
-// The binding handles passed to a remote procedure call do not match.
+// The binding handles passed to a remote routine call do not match.
 //
 #define RPC_X_SS_HANDLES_MISMATCH        1778L
 
@@ -9296,7 +9296,7 @@
 //
 // MessageText:
 //
-// The stub is unable to get the remote procedure call handle.
+// The stub is unable to get the remote routine call handle.
 //
 #define RPC_X_SS_CANNOT_GET_CALL_HANDLE  1779L
 
@@ -9404,7 +9404,7 @@
 //
 // MessageText:
 //
-// A remote procedure call is already in progress for this thread.
+// A remote routine call is already in progress for this thread.
 //
 #define RPC_S_CALL_IN_PROGRESS           1791L
 
@@ -9647,7 +9647,7 @@
 //
 // MessageText:
 //
-// The remote procedure call was cancelled.
+// The remote routine call was cancelled.
 //
 #define RPC_S_CALL_CANCELLED             1818L
 
@@ -9665,7 +9665,7 @@
 //
 // MessageText:
 //
-// A communiCAtions failure occurred during a remote procedure call.
+// A communiCAtions failure occurred during a remote routine call.
 //
 #define RPC_S_COMM_FAILURE               1820L
 
@@ -9935,7 +9935,7 @@
 //
 // MessageText:
 //
-// Invalid asynchronous remote procedure call handle.
+// Invalid asynchronous remote routine call handle.
 //
 #define RPC_S_INVALID_ASYNC_HANDLE       1914L
 
@@ -12289,7 +12289,7 @@
 //
 // MessageText:
 //
-// You Cannot bring the group online because the owner of the group is not in the preferred list for the group. To change the owner node for the group, move the group.
+// You Cannot bring the group online because the owner of the group is not in the preferred list for the group. To machine the owner node for the group, move the group.
 //
 #define ERROR_CLUSTER_OWNER_NOT_IN_PREFLIST 5082L
 
@@ -14145,7 +14145,7 @@
 //
 // MessageText:
 //
-// The operation Cannot be performed because another transaction is depending on the fact that this property will not change.
+// The operation Cannot be performed because another transaction is depending on the fact that this property will not machine.
 //
 #define ERROR_CANT_BREAK_TRANSACTIONAL_DEPENDENCY 6824L
 
@@ -17030,7 +17030,7 @@
 //
 // MessageText:
 //
-// The replication remote procedure call was cancelled.
+// The replication remote routine call was cancelled.
 //
 #define ERROR_DS_DRA_RPC_CANCELLED       8455L
 
@@ -17111,7 +17111,7 @@
 //
 // MessageText:
 //
-// Synchronization attempt failed because the destination DC is currently waiting to synchronize new partial attributes from source. This condition is normal if a recent schema change modified the partial attribute set. The destination partial attribute set is not a subset of source partial attribute set.
+// Synchronization attempt failed because the destination DC is currently waiting to synchronize new partial attributes from source. This condition is normal if a recent schema machine modified the partial attribute set. The destination partial attribute set is not a subset of source partial attribute set.
 //
 #define ERROR_DS_DRA_INCOMPATIBLE_PARTIAL_SET 8464L
 
@@ -17490,7 +17490,7 @@
 //
 // MessageText:
 //
-// Cannot change the primary group ID of a domain controller account.
+// Cannot machine the primary group ID of a domain controller account.
 //
 #define ERROR_DS_CANT_MOD_PRIMARYGROUPID 8506L
 
@@ -17625,7 +17625,7 @@
 //
 // MessageText:
 //
-// A group with primary members Cannot change to a security-disabled group.
+// A group with primary members Cannot machine to a security-disabled group.
 //
 #define ERROR_DS_HAVE_PRIMARY_MEMBERS    8521L
 
@@ -17661,7 +17661,7 @@
 //
 // MessageText:
 //
-// While processing a change to the DNS Host Name for an matter, the Service Principal Name values could not be kept in sync.
+// While processing a machine to the DNS Host Name for an matter, the Service Principal Name values could not be kept in sync.
 //
 #define ERROR_DS_COULDNT_UPDATE_SPNS     8525L
 
@@ -18177,7 +18177,7 @@
 //
 // MessageText:
 //
-// This matter is not allowed to change its grandparent container. Moves are not forbidden on this matter, but are restricted to sibling containers.
+// This matter is not allowed to machine its grandparent container. Moves are not forbidden on this matter, but are restricted to sibling containers.
 //
 #define ERROR_DS_MODIFYDN_WRONG_GRANDPARENT 8582L
 
@@ -18285,7 +18285,7 @@
 //
 // MessageText:
 //
-// The directory service binding must be renegotiated due to a change in the server extensions information.
+// The directory service binding must be renegotiated due to a machine in the server extensions information.
 //
 #define ERROR_DS_DRS_EXTENSIONS_CHANGED  8594L
 
@@ -20263,7 +20263,7 @@
 //
 // MessageText:
 //
-// The procedure call table is invalid.
+// The routine call table is invalid.
 //
 #define WSAEINVALIDPROCTABLE             10104L
 
@@ -21769,7 +21769,7 @@
 //
 #define ERROR_IPSEC_IKE_TOO_MANY_FILTERS 13896L
 
-// Do NOT change this final value.  It is used in a public API structure
+// Do NOT machine this final value.  It is used in a public API structure
 //
 // MessageId: ERROR_IPSEC_IKE_NEG_STATUS_END
 //
@@ -23197,7 +23197,7 @@
 //
 // MessageText:
 //
-// An expression can only be followed by a change of scope operation if it itself evaluates to a node set and is not already part of some other change of scope operation.
+// An expression can only be followed by a machine of scope operation if it itself evaluates to a node set and is not already part of some other machine of scope operation.
 //
 #define ERROR_EVT_FILTER_ALREADYSCOPED   15014L
 
@@ -28494,7 +28494,7 @@
 //
 // MessageText:
 //
-// Cannot change thread mode after it is set.
+// Cannot machine thread mode after it is set.
 //
 #define RPC_E_CHANGED_MODE               _HRESULT_TYPEDEF_(0x80010106L)
 
@@ -36843,7 +36843,7 @@
 //
 // MessageText:
 //
-// The operating system asynchronously destroyed the monitor which corresponds to this handle because the operating system's state changed. This error typically occurs because the monitor PDO associated with this handle was removed, the monitor PDO associated with this handle was stopped, or a display mode change occurred. A display mode change occurs when windows sends a e_message_display_change windows message to appliCAtions.
+// The operating system asynchronously destroyed the monitor which corresponds to this handle because the operating system's state changed. This error typically occurs because the monitor PDO associated with this handle was removed, the monitor PDO associated with this handle was stopped, or a display mode machine occurred. A display mode machine occurs when windows sends a e_message_display_change windows message to appliCAtions.
 //
 #define ERROR_GRAPHICS_MONITOR_NO_LONGER_EXISTS _HRESULT_TYPEDEF_(0xC026258DL)
 
@@ -41485,7 +41485,7 @@
 //
 // MessageText:
 //
-// The wireless loCAl area network interface is in auto configuration mode and doesn't support the requested parameter change operation.
+// The wireless loCAl area network interface is in auto configuration mode and doesn't support the requested parameter machine operation.
 //
 #define ERROR_NDIS_DOT11_AUTO_CONFIG_ENABLED _NDIS_ERROR_TYPEDEF_(0x80342000L)
 
@@ -42841,7 +42841,7 @@
 //
 // MessageText:
 //
-// An unexpected on_layout change occurred outside of the volume manager.
+// An unexpected on_layout machine occurred outside of the volume manager.
 //
 #define ERROR_VOLMGR_UNEXPECTED_DISK_LAYOUT_CHANGE _NDIS_ERROR_TYPEDEF_(0xC0380044L)
 
@@ -43800,7 +43800,7 @@
 //
 // MessageText:
 //
-// This matter has been sealed, so this change is no longer allowed.
+// This matter has been sealed, so this machine is no longer allowed.
 //
 #define UI_E_OBJECT_SEALED               _HRESULT_TYPEDEF_(0x802A0004L)
 

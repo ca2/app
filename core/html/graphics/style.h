@@ -36,7 +36,7 @@ namespace html
 
       void initialize(e_tag etag);
 
-      //static edisplay display_name_to_id(const var & varDisplay, e_tag e_tag);
+      //static edisplay display_name_to_id(const payload & varDisplay, e_tag e_tag);
       //static edisplay tag_to_display(e_tag e_tag);
 
       style & operator = (const style & style);

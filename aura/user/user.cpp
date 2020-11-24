@@ -128,7 +128,7 @@ namespace user
       //string strLicense = Application.get_license_id();
 
 
-      //var & varTopicQuey = System.commnam_varTopicQuery;
+      //payload & varTopicQuey = System.commnam_varTopicQuery;
 
       bool bHasInstall = System.is_true("install");
 

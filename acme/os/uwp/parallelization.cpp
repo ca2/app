@@ -91,7 +91,7 @@ void _on_aura_thread_detach()
 //bool on_init_thread()
 //{
 //
-//   if(!＿＿os_init_thread())
+//   if(!__os_init_thread())
 //   {
 //
 //      return false;
@@ -106,31 +106,31 @@ void _on_aura_thread_detach()
 //bool on_term_thread()
 //{
 //
-//   bool bOk1 = ＿＿os_term_thread();
+//   bool bOk1 = __os_term_thread();
 //
 //   return bOk1;
 //
 //}
 
 
-//void ＿＿node_init_multithreading()
+//void __node_init_multithreading()
 //{
 //
-//   ＿＿node_init_cross_windows_threading();
+//   __node_init_cross_windows_threading();
 //
 //}
 //
 //
-//void ＿＿node_term_multithreading()
+//void __node_term_multithreading()
 //{
 //
-//   ＿＿node_term_cross_windows_threading();
+//   __node_term_cross_windows_threading();
 //
 //}
 
 //thread_int_ptr < HRESULT > thread_set("hresult_co_initialize");
 
-//bool ＿＿os_init_thread()
+//bool __os_init_thread()
 //{
 //
 //   return true;
@@ -138,7 +138,7 @@ void _on_aura_thread_detach()
 //}
 //
 //
-//bool ＿＿os_term_thread()
+//bool __os_term_thread()
 //{
 //
 //   //thread_shutdown();

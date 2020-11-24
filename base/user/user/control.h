@@ -61,7 +61,7 @@ namespace user
 
    //   control null() { return control(); }
    //   bool Validate(string & str);
-   //   bool get_data(__pointer(::user::interaction) pwnd, var & var);
+   //   bool get_data(__pointer(::user::interaction) pwnd, payload & payload);
    //   void SetEditItem(index iItem);
    //   void SetEditSubItem(index iItem);
    //   index GetEditSubItem();

@@ -90,7 +90,7 @@ namespace account
 //
 //      set["post"]["entered_license"] = m_strAppId;
 //
-//      var strAuth = Context.http().get(strAuthUrl, set);
+//      payload strAuth = Context.http().get(strAuthUrl, set);
 //
 //      xml::document doc;
 //

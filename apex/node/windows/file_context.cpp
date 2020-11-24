@@ -139,10 +139,10 @@ namespace windows
       vfxGetModuleShortFileName(hInst, strShortName);
    }
 
-   var file_context::length(const ::file::path & path)
+   payload file_context::length(const ::file::path & path)
    {
 
-      var varRet;
+      payload varRet;
 
       varRet = ::file_context::length(path);
 
@@ -188,7 +188,7 @@ namespace windows
 
       WIN32_FILE_ATTRIBUTE_DATA data;
 
-      ·zero(data);
+      xxf_zero(data);
 
       if (!GetFileAttributesExW(wstring(strFilename), GetFileExInfoStandard, &data))
       {
@@ -532,7 +532,7 @@ namespace windows
    }
 
 
-   file_result file_context::get_file(const var & varFile, const efileopen & eopenFlags)
+   file_result file_context::get_file(const payload & varFile, const efileopen & eopenFlags)
    {
 
       return ::file_context::get_file(varFile, eopenFlags);

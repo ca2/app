@@ -118,31 +118,31 @@ list(APPEND acme_source
         memory/new.cpp
         memory/plex.cpp
         memory/plex_heap1.cpp
-        multithreading/_.cpp
-        multithreading/condition.cpp
-        multithreading/critical_section.cpp
-        multithreading/event.cpp
-        multithreading/file_change_event.cpp
-        multithreading/manual_reset_event.cpp
-        multithreading/mq.cpp
-        multithreading/multi_lock.cpp
-        multithreading/mutex.cpp
-        multithreading/pool.cpp
-        multithreading/pred_holder.cpp
-        multithreading/procedure_array.cpp
-        multithreading/semaphore.cpp
-        multithreading/single_lock.cpp
-        multithreading/socket_event.cpp
-        multithreading/sync.cpp
-        multithreading/sync_array.cpp
-        multithreading/sync_future.cpp
-        multithreading/sync_method.cpp
-        multithreading/sync_result.cpp
-        multithreading/sync_task.cpp
-        multithreading/task.cpp
-        multithreading/thread.cpp
-        multithreading/thread_os.cpp
-        multithreading/waitable.cpp
+   parallelization/_.cpp
+   parallelization/condition.cpp
+   parallelization/critical_section.cpp
+   parallelization/event.cpp
+   parallelization/file_change_event.cpp
+   parallelization/manual_reset_event.cpp
+   parallelization/mq.cpp
+   parallelization/multi_lock.cpp
+   parallelization/mutex.cpp
+   parallelization/pool.cpp
+   primitive/promise_pred/pred_holder.cpp
+   primitive/promise/routine_array.cpp
+   parallelization/semaphore.cpp
+   parallelization/single_lock.cpp
+   parallelization/socket_event.cpp
+   parallelization/sync.cpp
+   parallelization/sync_array.cpp
+   parallelization/sync_process.cpp
+   parallelization/sync_routine.cpp
+   parallelization/sync_result.cpp
+   parallelization/sync_task.cpp
+   parallelization/task.cpp
+   parallelization/thread.cpp
+   parallelization/thread_os.cpp
+   parallelization/waitable.cpp
         os/ansios/base.cpp
         os/ansios/datetime.cpp
         os/ansios/exception_engine.cpp
@@ -162,7 +162,7 @@ list(APPEND acme_source
         os/file.cpp
         os/http.cpp
         os/process.cpp
-        os/thread.cpp
+   os/parallelization.cpp
         os/time.cpp
         os/windowing.cpp
         platform/_.cpp
@@ -264,12 +264,12 @@ list(APPEND acme_source
         primitive/math/scalar.cpp
         primitive/math/value.cpp
         primitive/primitive/_.cpp
-        primitive/primitive/action.cpp
+        primitive/promise/subject.cpp
         primitive/primitive/application_bias.cpp
         primitive/primitive/bit.cpp
         primitive/primitive/block.cpp
         primitive/primitive/block.inl
-        primitive/primitive/change.cpp
+        primitive/promise/context.cpp
         primitive/primitive/command.cpp
         primitive/primitive/context_object.cpp
         primitive/primitive/context_object_traits.cpp
@@ -277,8 +277,8 @@ list(APPEND acme_source
         primitive/primitive/estatus.cpp
         primitive/primitive/element_array.cpp
         primitive/primitive/factory.cpp
-        primitive/primitive/function.cpp
-        primitive/primitive/future.cpp
+        primitive/promise_pred/pred_function.cpp
+        primitive/promise/process.cpp
         primitive/primitive/handler.cpp
         primitive/primitive/id.cpp
         primitive/primitive/id_array.cpp
@@ -292,19 +292,19 @@ list(APPEND acme_source
         primitive/primitive/memory_base.cpp
         primitive/primitive/memory_c.cpp
         primitive/primitive/memory_container.cpp
-        primitive/primitive/procedure.cpp
-        primitive/primitive/promise.cpp
+        primitive/promise/routine.cpp
+   primitive/promise/promise.cpp
         primitive/primitive/property.cpp
         primitive/primitive/property_set.cpp
         primitive/primitive/property_set_composite.cpp
         primitive/primitive/property_set_papaya.cpp
         primitive/primitive/runnable.cpp
         primitive/primitive/shared_memory.cpp
-        primitive/primitive/source.cpp
+        primitive/promise/backing.cpp
         primitive/primitive/traits.cpp
         primitive/primitive/type.cpp
-        primitive/primitive/update.cpp
-        primitive/primitive/var.cpp
+        primitive/promise/handler.cpp
+        primitive/primitive/payload.cpp
         primitive/primitive/var_element.cpp
         primitive/primitive/virtual_memory.cpp
         primitive/primitive/work.cpp
@@ -339,9 +339,9 @@ list(APPEND acme_source
         primitive/string/to_integer.cpp
         primitive/string/tokenizer.cpp
         primitive/string/x.cpp
-        process/bidi_pipe.cpp
-        process/exit_status.cpp
-        process/pipe.cpp
+        os/bidirectional_pipe.cpp
+        parallelization/exit_status.cpp
+        os/pipe.cpp
         user/os_colors.cpp
         _.cpp
         __matter_ca2.cpp
@@ -546,44 +546,44 @@ list(APPEND acme_source
     memory/plex_heap1.h
     memory/plex_heap_impl1.h
     memory/_heap.h
-    multithreading/common.h
-    multithreading/condition.h
-    multithreading/create_thread.h
-    multithreading/critical_section.h
-    multithreading/data.h
-    multithreading/event.h
-    multithreading/file_change_event.h
-    multithreading/initial_single_lock.h
-    multithreading/manual_reset_event.h
-    multithreading/mq.h
-    multithreading/multi_lock.h
-    multithreading/mutex.h
-    multithreading/pool.h
-    multithreading/pred_holder.h
-    multithreading/pred_sync_procedure.h
-    multithreading/procedure_array.h
-    multithreading/semaphore.h
-    multithreading/set_event_on_exit.h
-    multithreading/single_lock.h
-    multithreading/socket_event.h
-    multithreading/sync.h
-    multithreading/sync_array.h
-    multithreading/sync_future.h
-    multithreading/sync_lock.h
-    multithreading/sync_method.h
-    multithreading/sync_result.h
-    multithreading/sync_task.h
-    multithreading/task.h
-    multithreading/thread_impl.h
-    multithreading/thread_os.h
-    multithreading/thread_parameter.h
-    multithreading/zaa_update_task.h
-    multithreading/zaa_update_task_item.h
-    multithreading/zaa_update_task_item_array.h
-    multithreading/_.h
-    multithreading/_impl.h
-    multithreading/_thread_os_create_impl.h
-    multithreading/_types.h
+   parallelization/common.h
+   parallelization/condition.h
+   parallelization/create_thread.h
+   parallelization/critical_section.h
+   parallelization/data.h
+   parallelization/event.h
+   parallelization/file_change_event.h
+   parallelization/initial_single_lock.h
+   parallelization/manual_reset_event.h
+   parallelization/mq.h
+   parallelization/multi_lock.h
+   parallelization/mutex.h
+   parallelization/pool.h
+   primitive/promise_pred/pred_holder.h
+   primitive/promise_pred/pred_sync_routine.h
+   primitive/promise/routine_array.h
+   parallelization/semaphore.h
+   parallelization/set_event_on_exit.h
+   parallelization/single_lock.h
+   parallelization/socket_event.h
+   parallelization/sync.h
+   parallelization/sync_array.h
+   parallelization/sync_process.h
+   parallelization/sync_lock.h
+   parallelization/sync_routine.h
+   parallelization/sync_result.h
+   parallelization/sync_task.h
+   parallelization/task.h
+   parallelization/thread_impl.h
+   parallelization/thread_os.h
+   parallelization/thread_parameter.h
+   parallelization/zaa_update_task.h
+   parallelization/zaa_update_task_item.h
+   parallelization/zaa_update_task_item_array.h
+   parallelization/_.h
+   parallelization/_impl.h
+   parallelization/_thread_os_create_impl.h
+   parallelization/_types.h
     node/android/android1.h
     node/android/application.h
     node/android/buffer.h
@@ -622,7 +622,7 @@ list(APPEND acme_source
     os/ansios/file.h
     os/ansios/file_c.h
     os/ansios/file_raw.h
-    os/ansios/multithreading.h
+   os/ansios/parallelization.h
     os/ansios/pmutex_lock.h
     os/ansios/_.h
     os/ansios/_ansios.h
@@ -653,7 +653,7 @@ list(APPEND acme_source
     os/ios/internal.h
     os/ios/mm_graphics.h
     os/ios/mm_oswindow.h
-    os/ios/multithreading.h
+   os/ios/parallelization.h
     os/ios/oswindow_data.h
     os/ios/process.h
     os/ios/window.h
@@ -688,7 +688,7 @@ list(APPEND acme_source
     os/solaris/solaris_user_impl.h
     os/solaris/solaris_window_xlib.h
     os/text.h
-    os/thread.h
+   os/parallelization.h
     os/time.h
     os/user.h
     os/uwp/base_file.h
@@ -697,8 +697,8 @@ list(APPEND acme_source
     os/uwp/gdi_winrt.h
     os/uwp/host_interaction.h
     os/uwp/metrowin_metrowin.h
-    os/uwp/multithreading.h
-    os/uwp/multithreading_winrt.h
+   os/uwp/parallelization.h
+   os/uwp/parallelization_winrt.h
     os/uwp/process.h
     os/uwp/simple_hold_handle.h
     os/uwp/simple_ui.h
@@ -726,7 +726,7 @@ list(APPEND acme_source
     os/windows/registry.h
     os/windows/shell1.h
     os/windows/simple_hold_handle.h
-    os/windows/thread.h
+   os/windows/parallelization.h
     os/windows/utils.h
     os/windows/windowing.h
     os/windows/_.h
@@ -739,7 +739,7 @@ list(APPEND acme_source
     os/windows_common/file.h
     os/windows_common/graphics.h
     os/windows_common/new_api.h
-    os/windows_common/thread.h
+   os/windows_common/parallelization.h
     os/windows_common/variant.h
     os/windows_common/_.h
     os/windows_common/_c.h
@@ -998,14 +998,14 @@ list(APPEND acme_source
     primitive/math/value.h
     primitive/math/_.h
     primitive/math/_impl.h
-    primitive/primitive/action.h
+    primitive/promise/subject.h
     primitive/primitive/action_context.h
     primitive/primitive/application_bias.h
     primitive/primitive/atomic.h
     primitive/primitive/bit.h
     primitive/primitive/block.h
     primitive/primitive/cflag.h
-    primitive/primitive/change.h
+   primitive/promise/context.h
     primitive/primitive/collection.h
     primitive/primitive/collection_file.h
     primitive/primitive/command.h
@@ -1017,8 +1017,7 @@ list(APPEND acme_source
     primitive/primitive/eobject.h
     primitive/primitive/estatus.h
     primitive/primitive/factory.h
-    primitive/primitive/function_pointer.h
-    primitive/primitive/future.h
+    primitive/promise_pred/pred_function_pointer.h
     primitive/primitive/id.h
     primitive/primitive/id_array.h
     primitive/primitive/id_space.h
@@ -1040,12 +1039,12 @@ list(APPEND acme_source
     primitive/primitive/papaya.h
     primitive/primitive/pointer.h
     primitive/primitive/pointer2.h
-    primitive/primitive/pred_future.h
-    primitive/primitive/pred_method.h
+    primitive/promise_pred/pred_process.h
+    primitive/promise_pred/pred_routine.h
     primitive/primitive/primitive_update.h
-    primitive/primitive/procedure.h
-    primitive/primitive/promise.h
-    primitive/primitive/promise1.h
+    primitive/promise/routine.h
+    primitive/promise/promise.h
+    primitive/promise/promise1.h
     primitive/primitive/property.h
     primitive/primitive/property_set.h
     primitive/primitive/property_set_papaya.h
@@ -1054,7 +1053,7 @@ list(APPEND acme_source
     primitive/primitive/runnable.h
     primitive/primitive/shared_memory.h
     primitive/primitive/simple_object.h
-    primitive/primitive/source.h
+    primitive/promise/backing.h
     primitive/primitive/stick.h
     primitive/primitive/str.h
     primitive/primitive/trait.h
@@ -1062,10 +1061,10 @@ list(APPEND acme_source
     primitive/primitive/trait_pred.h
     primitive/primitive/type.h
     primitive/primitive/uid.h
-    primitive/primitive/update.h
+   primitive/promise/handler.h
     primitive/primitive/util.h
     primitive/primitive/value.h
-    primitive/primitive/var.h
+    primitive/primitive/payload.h
     primitive/primitive/var2.h
     primitive/primitive/virtual_memory.h
     primitive/primitive/work.h
@@ -1161,9 +1160,9 @@ list(APPEND acme_source
     primitive/string/__c_wide_impl.h
     primitive/string/___ch_impl.h
     procedure.h
-    process/process.h
-    process/process_bidi_pipe.h
-    process/process_pipe.h
+    parallelization/process.h
+    os/bidirectional_pipe.h
+    os/pipe.h
     template/list.h
     update.h
     user/os_colors.h
@@ -1203,7 +1202,7 @@ if(UWP)
         os/uwp/language.cpp
         os/uwp/lock.cpp
         os/uwp/main.cpp
-        os/uwp/multithreading.cpp
+       os/uwp/parallelization.cpp
         os/uwp/os_message_box.cpp
         os/uwp/process.cpp
         os/uwp/sockets.cpp
@@ -1264,7 +1263,7 @@ if(WIN32)
         os/windows/process.cpp
         os/windows/registry.cpp
         os/windows/simple_app.cpp
-        os/windows/thread.cpp
+       os/windows/parallelization.cpp
         os/windows/time.cpp
         os/windows/user.cpp
         os/windows/util.cpp
@@ -1356,7 +1355,7 @@ if(WIN32 OR UWP)
         os/windows_common/file_c.cpp
         os/windows_common/graphics.cpp
         os/windows_common/net.cpp
-        os/windows_common/thread.cpp
+       os/windows_common/parallelization.cpp
         os/windows_common/time.cpp
         os/windows_common/unicode.cpp)
 
@@ -1390,7 +1389,7 @@ if(LINUX)
         os/linux/linux.inl
         os/linux/list_serial_ports.cpp
         os/linux/lock.cpp
-        os/linux/multithreading.cpp
+       os/linux/parallelization.cpp
         os/linux/os.cpp
         os/linux/process.cpp
         os/linux/process_pid.cpp
@@ -1539,7 +1538,7 @@ if(IOS)
             os/ios/mm_graphics.mm
             os/ios/mm_thread.mm
             os/ios/mm_user.mm
-            os/ios/multithreading.cpp
+       os/ios/parallelization.cpp
             os/ios/oswindow_data.cpp
             os/ios/process.cpp
             os/ios/process_pid.cpp
@@ -1588,7 +1587,7 @@ if(APPLE)
         os/apple/graphics.cpp
         os/apple/image_gif.cpp
         os/apple/main.cpp
-        os/apple/multihreading.cpp
+       os/apple/parallelization.cpp
         os/apple/ns_exception.cpp
         os/apple/NSObject+DDExtensions.mm
         os/apple/NSString+SymlinksAndAliases.mm
@@ -1676,7 +1675,7 @@ if(LINUX OR APPLE OR SOLARIS)
         os/posix/local_memory_map.cpp
         os/posix/process.cpp
         os/posix/pthread.cpp
-        os/posix/thread.cpp
+       os/posix/parallelization.cpp
         os/posix/time.cpp
         os/posix/timer.cpp
         os/winpr_keycode.cpp

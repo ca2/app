@@ -228,16 +228,16 @@ namespace simpledb
 
             //string strSql = "select `value` FROM stringtable WHERE `id` = '" + pdatabase->escape(strKey) + "'";
 
-            //var var = pdatabase->query_item(strSql);
+            //payload payload = pdatabase->query_item(strSql);
 
-            //if (!(bool)var)
+            //if (!(bool)payload)
             //{
 
             //   return false;
 
             //}
 
-            //return var.get_string();
+            //return payload.get_string();
 
             return false;
 

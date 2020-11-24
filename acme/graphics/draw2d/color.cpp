@@ -832,7 +832,7 @@ void CColor::set_hls(
          dMagic2 = dLightness + dSaturation - ((dLightness * dSaturation) + (HLSMAX/2.0))/HLSMAX;
       dMagic1 = 2.0 * dLightness- dMagic2;
 
-      // get RGB, change units from HLSMAX to RGBMAX
+      // get RGB, machine units from HLSMAX to RGBMAX
       dRed   = (HueToRGB(dMagic1, dMagic2, dHue+(HLSMAX/3.0))*RGBMAX +
          (HLSMAX/2.0))/HLSMAX;
       dGreen   = (HueToRGB(dMagic1, dMagic2, dHue)*RGBMAX + (HLSMAX/2.0)) / HLSMAX;
@@ -968,7 +968,7 @@ bool color::parse_color(const char * psz)
          if (::str::ends_eat_ci(str, ")"))
          {
             str.trim();
-            var a;
+            payload a;
             a.stra().explode(",", str);
             int_array & ia = a.inta();
             if (ia.get_count() == 3)

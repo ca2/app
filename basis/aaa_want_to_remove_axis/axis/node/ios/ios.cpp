@@ -14,7 +14,7 @@ namespace ios
    {
       //return ::GetTempPathW(MAX_PATH * 8,wtostring(str,MAX_PATH * 8));
       
-      str = "/var/tmp/ca2/";
+      str = "/payload/tmp/ca2/";
       
       return str.get_length();
       

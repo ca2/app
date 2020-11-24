@@ -2351,10 +2351,10 @@ LPTRACKMOUSEEVENT lpEventTrack);
 #define SM_CMOUSEBUTTONS        43
 
 //#if(WINVER >= 0x0400)
-#define SM_CXFIXEDFRAME           SM_CXDLGFRAME  /* ;win40 name change */
-#define SM_CYFIXEDFRAME           SM_CYDLGFRAME  /* ;win40 name change */
-#define SM_CXSIZEFRAME            SM_CXFRAME     /* ;win40 name change */
-#define SM_CYSIZEFRAME            SM_CYFRAME     /* ;win40 name change */
+#define SM_CXFIXEDFRAME           SM_CXDLGFRAME  /* ;win40 name machine */
+#define SM_CYFIXEDFRAME           SM_CYDLGFRAME  /* ;win40 name machine */
+#define SM_CXSIZEFRAME            SM_CXFRAME     /* ;win40 name machine */
+#define SM_CYSIZEFRAME            SM_CYFRAME     /* ;win40 name machine */
 
 #define SM_SECURE               44
 #define SM_CXEDGE               45

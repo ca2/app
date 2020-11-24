@@ -7,7 +7,7 @@ namespace simpledb
 
 //      table *     m_ptable;
   //    string_array     m_straFields;
-    //  var         m_var;
+    //  payload         m_var;
 
       void record_row::write(::file::output_stream & ostream) const
       {
@@ -23,14 +23,14 @@ namespace simpledb
                for(i32 i = 0; i < m_ptable->m_fielddefinition.get_count(); i++)
                {
                   database::field_definition_item & item = m_ptable->m_fielddefinition[i];
-                  var var = vara[i];
+                  payload payload = vara[i];
                   if(item.m_etype == database::field_definition_item::type_text)
                   {
                      if(item.m_iSize > 0)
                      {
-                        strsize iLen = min(255, var.get_string().get_length());
+                        strsize iLen = min(255, payload.get_string().get_length());
                         ostream << (char) iLen;
-                        ostream.write(var.get_string().Left(iLen), iLen);
+                        ostream.write(payload.get_string().Left(iLen), iLen);
                         if(iLen < item.m_iSize)
                         {
                            string str(' ', item.m_iSize - iLen);
@@ -52,7 +52,7 @@ namespace simpledb
             for(i32 i = 0; i < m_ptable->m_fielddefinition.get_count(); i++)
             {
                database::field_definition_item & item = m_ptable->m_fielddefinition[i];
-               var var;
+               payload payload;
                if(item.m_etype == database::field_definition_item::type_text)
                {
                   if(item.m_iSize > 0)
@@ -61,7 +61,7 @@ namespace simpledb
                      istream >> uchLen;
                      string str;
                      istream.read(str.get_string_buffer(uchLen), uchLen);
-                     var = str;
+                     payload = str;
                      str.ReleaseBuffer(uchLen);
                      if(uchLen < item.m_iSize)
                      {
@@ -70,7 +70,7 @@ namespace simpledb
                      }
                   }
                }
-               m_var.vara().add(var);
+               m_var.vara().add(payload);
             }
          }
       }

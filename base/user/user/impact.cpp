@@ -885,9 +885,9 @@ namespace user
 
          auto pdocument = pview->get_document();
 
-         ::action action(id_initial_update);
-         
-         pview->apply(action);
+         ::subject action(id_initial_update);
+
+         pview->process(action);
 
       }
 
@@ -963,7 +963,7 @@ namespace user
    //}
 
 
-   i32 impact::get_total_page_count(::change * pchange)
+   i32 impact::get_total_page_count(::machine * pchange)
    {
 
       return 1;

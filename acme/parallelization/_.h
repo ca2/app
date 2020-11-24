@@ -21,7 +21,7 @@
 
 
 //
-//thread_local ＿＿pointer(property_set) t_ppropertyset;
+//thread_local __pointer(property_set) t_ppropertyset;
 //
 //
 //
@@ -69,8 +69,7 @@ class single_lock;
 class multi_lock;
 
 
-CLASS_DECL_ACME ::estatus ＿＿call(const ::procedure & procedure);
-
+CLASS_DECL_ACME ::estatus __call(const ::promise::routine & routine);
 
 
 //namespace parallelization
@@ -81,15 +80,15 @@ CLASS_DECL_ACME ::estatus ＿＿call(const ::procedure & procedure);
 //   {
 //
 //      template < typename ARRAY >
-//      ＿＿pointer(::matter) is_running(ARRAY & array, const char * pszTag)
+//      __pointer(::matter) is_running(ARRAY & array, const char * pszTag)
 //      {
 //
 //         for (::index i = 0; i < array.get_size(); i++)
 //         {
 //
-//            ＿＿pointer(::matter) pobject;
+//            __pointer(::matter) pobject;
 //
-//            pobject = &＿＿typed(array[i]);
+//            pobject = &__typed(array[i]);
 //
 //            if (pobject && pobject->is_thread())
 //            {
@@ -126,7 +125,7 @@ CLASS_DECL_ACME bool set_thread_name(const char * psz);
 CLASS_DECL_ACME bool set_thread_name(hthread_t hthread, const char* pszName);
 
 
-typedef ::estatus     (*＿＿THREADPROC)(void *);
+typedef ::estatus     (*__THREADPROC)(void *);
 
 
 
@@ -134,14 +133,14 @@ class tool_thread;
 class thread_tool;
 class thread_tools;
 //class thread_toolset;
-//class λset;
+//class pred_set;
 //class replace_thread;
 
 
 class thread_startup;
 
 
-namespace multithreading
+namespace parallelization
 {
 
 
@@ -174,27 +173,27 @@ class sync_lock;
 
 
 //class CLASS_DECL_ACME thread_ptra :
-//   virtual public ＿＿pointer_array(thread)
+//   virtual public __pointer_array(thread)
 //{
 //public:
 //
 //
 //   thread_ptra();
-//   thread_ptra(const thread_ptra & ptra):＿＿pointer_array(thread)(ptra) {}
-//   thread_ptra(thread_ptra && ptra) :＿＿pointer_array(thread)(::move(ptra)) {}
+//   thread_ptra(const thread_ptra & ptra):__pointer_array(thread)(ptra) {}
+//   thread_ptra(thread_ptra && ptra) :__pointer_array(thread)(::move(ptra)) {}
 //   virtual ~thread_ptra();
 //
 //   virtual ::count get_count_except_current_thread();
 //   virtual void finish();
 //   virtual void wait(const duration & duration, ::sync_lock & sl);
 //
-//   thread_ptra & operator = (const thread_ptra & ptra) { ＿＿pointer_array(thread)::operator =(ptra); return *this; }
-//   thread_ptra & operator = (thread_ptra && ptra) { ＿＿pointer_array(thread)::operator =(::move(ptra)); return *this; }
+//   thread_ptra & operator = (const thread_ptra & ptra) { __pointer_array(thread)::operator =(ptra); return *this; }
+//   thread_ptra & operator = (thread_ptra && ptra) { __pointer_array(thread)::operator =(::move(ptra)); return *this; }
 //
 //};
 
 
-#include "primitive/promiseλ/λholder.h"
+#include "primitive/promise_pred/pred_holder.h"
 
 
 #include "sync.h"
@@ -233,7 +232,7 @@ class sync_lock;
 //#include "acme/parallelization/sync_future.h"
 
 
-#include "acme/multithreading/task.h"
+#include "acme/parallelization/task.h"
 
 
 #include "sync_task.h"
@@ -283,7 +282,7 @@ CLASS_DECL_ACME int_bool post_message(oswindow oswindow, const ::id & id, WPARAM
 class thread;
 
 
-namespace multithreading
+namespace parallelization
 {
 
 
@@ -319,10 +318,10 @@ CLASS_DECL_ACME void thread_release(OBJ_REF_DBG_PARAMS);
 //typedef bool task_sleep(millis millis, ::sync* psync);
 //using PFN_task_sleep = task_sleep*;
 
-CLASS_DECL_ACME bool ＿＿simple_task_sleep();
-CLASS_DECL_ACME bool ＿＿simple_task_sleep(millis millis);
-CLASS_DECL_ACME bool ＿＿simple_task_sleep(::sync* psync);
-CLASS_DECL_ACME bool ＿＿simple_task_sleep(millis millis, ::sync* psync);
+CLASS_DECL_ACME bool __simple_task_sleep();
+CLASS_DECL_ACME bool __simple_task_sleep(millis millis);
+CLASS_DECL_ACME bool __simple_task_sleep(::sync* psync);
+CLASS_DECL_ACME bool __simple_task_sleep(millis millis, ::sync* psync);
 CLASS_DECL_ACME bool task_sleep(millis millis = U32_INFINITE_TIMEOUT, ::sync * psync = nullptr);
 //CLASS_DECL_ACME bool acme_task_sleep(millis millis = U32_INFINITE_TIMEOUT, ::sync* psync = nullptr);
 //CLASS_DECL_ACME void set_taskhread_sleep(PFN_task_sleep pfnThreadSleep);
@@ -359,24 +358,24 @@ CLASS_DECL_ACME bool set_thread_name(const char * psz);
 
 
 
-CLASS_DECL_ACME bool ＿＿task_sleep(task* task);
+CLASS_DECL_ACME bool __task_sleep(task* task);
 
-CLASS_DECL_ACME bool ＿＿task_sleep(task* ptask, millis millis);
+CLASS_DECL_ACME bool __task_sleep(task* ptask, millis millis);
 
-CLASS_DECL_ACME bool ＿＿task_sleep(::task* ptask, sync* psync);
+CLASS_DECL_ACME bool __task_sleep(::task* ptask, sync* psync);
 
-CLASS_DECL_ACME bool ＿＿task_sleep(task* ptask, millis millis, sync* psync);
+CLASS_DECL_ACME bool __task_sleep(task* ptask, millis millis, sync* psync);
 
 CLASS_DECL_ACME bool task_sleep(millis millis, sync* psync);
 
 
-#include "sync_method.h"
+#include "sync_routine.h"
 
 
-#include "sync_future.h"
+#include "sync_process.h"
 
 
-#include "primitive/promiseλ/λsync_procedure.h"
+#include "primitive/promise_pred/pred_sync_routine.h"
 
 
 

@@ -38,7 +38,7 @@ namespace database
       string            m_strSqlExecute;
 
       string            m_strSqlEmpty;       // Executed when result dataset is is_empty
-      string            m_strSqlSelect;       // May be only single string var
+      string            m_strSqlSelect;       // May be only single string payload
 
       string_array           m_strSqlUpdate;       // May be an array in complex queries
       /* Field values for updating must has prefix :NEW_ and :OLD_ and field name
@@ -111,12 +111,12 @@ namespace database
       virtual ::database::row * proper_row();
 
 
-      //virtual bool set_field_value(const char *f, const var &v);
+      //virtual bool set_field_value(const char *f, const payload &v);
 
       virtual class field * field(const char * name);
-      virtual var field_value(const char * name);
-      virtual var select_field_value(index iField);
-      virtual var field_value_at(index i);
+      virtual payload field_value(const char * name);
+      virtual payload select_field_value(index iField);
+      virtual payload field_value_at(index i);
 
       virtual index field_index(const char * name);
 
@@ -139,11 +139,11 @@ namespace database
 
       virtual __pointer(row_array) query_rows(const char *query);
       virtual __pointer(var_array) query_items(const char *query);
-      virtual var query_item(const char *query);
+      virtual payload query_item(const char *query);
 
       virtual bool query_rows(__pointer(row_array) & rows, const char *query);
       virtual bool query_items(__pointer(var_array) & items, const char *query);
-      virtual bool query_item(var & item, const char *query);
+      virtual bool query_item(payload & item, const char *query);
 
    };
 

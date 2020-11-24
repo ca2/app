@@ -669,7 +669,7 @@ namespace user
 //    }
 
 
-   void control_bar::on_apply(::action * paction)
+   void control_bar::on_apply(::subject * paction)
    {
 
       // // update the indicators before becoming visible

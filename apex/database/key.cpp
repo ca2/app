@@ -13,24 +13,24 @@ namespace database
    }
 
 
-   key::key(const std::initializer_list < var > & list)
+   key::key(const std::initializer_list < payload > & list)
    {
 
       m_bLocalData = false;
 
-      for (auto & var : list)
+      for (auto & payload : list)
       {
 
-         if (var.get_type() == type_bool)
+         if (payload.get_type() == type_bool)
          {
 
-            m_bLocalData = (bool)(var);
+            m_bLocalData = (bool)(payload);
 
          }
          else
          {
 
-            m_strDataKey = var.get_string();
+            m_strDataKey = payload.get_string();
 
          }
 

@@ -63,7 +63,7 @@
 //   os_watcher::~os_watcher()
 //   {
 //
-//      multithreading::post_quit_and_wait(seconds(15));
+//      parallelization::post_quit_and_wait(seconds(15));
 //
 //      //for()
 //

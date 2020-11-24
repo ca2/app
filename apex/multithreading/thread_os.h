@@ -91,7 +91,7 @@ CLASS_DECL_APEX void __node_term_multithreading();
 
 
 
-namespace multithreading
+namespace parallelization
 {
 
 
@@ -123,7 +123,7 @@ namespace multithreading
    //CLASS_DECL_APEX extern ::mutex * s_pmutex;
 
 
-} // namespace multithreading
+} // namespace parallelization
 
 
 

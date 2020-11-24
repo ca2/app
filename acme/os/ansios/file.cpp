@@ -186,7 +186,7 @@
 //    )
 //{
 //
-//   wstring wstr = "/var/acme/time/";
+//   wstring wstr = "/payload/acme/time/";
 //
 //   ::count iLen = min(nBufferLength, wstr.get_length());
 //

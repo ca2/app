@@ -1043,11 +1043,11 @@ namespace tsf
                    while((hr = pEnumRanges->Next(1, &pPropRange, &uFetched)) == S_OK && uFetched) 
                    {
                        //get the attribute property for the property range
-                       VARIANT var;
+                       VARIANT payload;
 
-                       VariantInit(&var);
+                       VariantInit(&payload);
 
-                       hr = pTrackProperty->GetValue(m_EditCookie, pPropRange, &var);
+                       hr = pTrackProperty->GetValue(m_EditCookie, pPropRange, &payload);
                        if(SUCCEEDED(hr))
                        {
                            /*
@@ -1056,7 +1056,7 @@ namespace tsf
                            */
                            IEnumTfPropertyValue    *pEnumPropertyVal;
 
-                           hr = var.punkVal->QueryInterface(IID_IEnumTfPropertyValue, (LPVOID*)&pEnumPropertyVal);
+                           hr = payload.punkVal->QueryInterface(IID_IEnumTfPropertyValue, (LPVOID*)&pEnumPropertyVal);
                            if(SUCCEEDED(hr))
                            {
                                TF_PROPERTYVAL tfPropVal;
@@ -1117,7 +1117,7 @@ namespace tsf
                                pEnumPropertyVal->Release();
                            }
                         
-                           VariantClear(&var);
+                           VariantClear(&payload);
                        }
                     
                        pPropRange->Release();
@@ -1178,11 +1178,11 @@ namespace tsf
                    while((hr = pEnumRanges->Next(1, &pPropRange, &uFetched)) == S_OK && uFetched) 
                    {
                        //get the attribute property for the property range
-                       VARIANT var;
+                       VARIANT payload;
 
-                       VariantInit(&var);
+                       VariantInit(&payload);
 
-                       hr = pTrackProperty->GetValue(m_EditCookie, pPropRange, &var);
+                       hr = pTrackProperty->GetValue(m_EditCookie, pPropRange, &payload);
                        if(SUCCEEDED(hr))
                        {
                            /*
@@ -1191,7 +1191,7 @@ namespace tsf
                            */
                            IEnumTfPropertyValue    *pEnumPropertyVal;
 
-                           hr = var.punkVal->QueryInterface(IID_IEnumTfPropertyValue, (LPVOID*)&pEnumPropertyVal);
+                           hr = payload.punkVal->QueryInterface(IID_IEnumTfPropertyValue, (LPVOID*)&pEnumPropertyVal);
                            if(SUCCEEDED(hr))
                            {
                                TF_PROPERTYVAL tfPropVal;
@@ -1228,7 +1228,7 @@ namespace tsf
                                pEnumPropertyVal->Release();
                            }
                         
-                           VariantClear(&var);
+                           VariantClear(&payload);
                        }
                     
                        pPropRange->Release();
@@ -1289,11 +1289,11 @@ namespace tsf
                    while((hr = pEnumRanges->Next(1, &pPropRange, &uFetched)) == S_OK && uFetched) 
                    {
                        //get the attribute property for the property range
-                       VARIANT var;
+                       VARIANT payload;
 
-                       VariantInit(&var);
+                       VariantInit(&payload);
 
-                       hr = pTrackProperty->GetValue(m_EditCookie, pPropRange, &var);
+                       hr = pTrackProperty->GetValue(m_EditCookie, pPropRange, &payload);
                        if(SUCCEEDED(hr))
                        {
                            /*
@@ -1302,7 +1302,7 @@ namespace tsf
                            */
                            IEnumTfPropertyValue    *pEnumPropertyVal;
 
-                           hr = var.punkVal->QueryInterface(IID_IEnumTfPropertyValue, (LPVOID*)&pEnumPropertyVal);
+                           hr = payload.punkVal->QueryInterface(IID_IEnumTfPropertyValue, (LPVOID*)&pEnumPropertyVal);
                            if(SUCCEEDED(hr))
                            {
                                TF_PROPERTYVAL tfPropVal;
@@ -1337,7 +1337,7 @@ namespace tsf
                                pEnumPropertyVal->Release();
                            }
                         
-                           VariantClear(&var);
+                           VariantClear(&payload);
                        }
                     
                        pPropRange->Release();
@@ -1398,10 +1398,10 @@ namespace tsf
                    while((hr = pEnumRanges->Next(1, &pPropRange, &uFetched)) == S_OK && uFetched) 
                    {
                        //get the attribute property for the property range
-                       variant var;
+                       variant payload;
 
                        
-                       hr = pTrackProperty->GetValue(m_EditCookie, pPropRange, &var);
+                       hr = pTrackProperty->GetValue(m_EditCookie, pPropRange, &payload);
                        if(SUCCEEDED(hr))
                        {
                            /*
@@ -1410,7 +1410,7 @@ namespace tsf
                            */
                            comptr< IEnumTfPropertyValue  > pEnumPropertyVal;
 
-                           hr = var.punkVal->QueryInterface(IID_IEnumTfPropertyValue, (LPVOID*)&pEnumPropertyVal);
+                           hr = payload.punkVal->QueryInterface(IID_IEnumTfPropertyValue, (LPVOID*)&pEnumPropertyVal);
                            if(SUCCEEDED(hr))
                            {
                                TF_PROPERTYVAL tfPropVal;
@@ -1444,7 +1444,7 @@ namespace tsf
                             
                            }
                         
-                           //VariantClear(&var);
+                           //VariantClear(&payload);
                        }
                     
                        //pPropRange->Release();

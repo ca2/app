@@ -12,7 +12,7 @@ namespace user
       { 
          
       
-         return __new(class format(*m_pformat)); 
+         return __new(class format(*m_pformat));
       
       }
 

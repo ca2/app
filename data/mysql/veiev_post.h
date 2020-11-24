@@ -17,21 +17,21 @@ public:
    /*class CLASS_DECL_AURA record
    {
    public:
-      var sender;
-      var recipient;
-      var sent;
-      var send_time;
-      var index;
-      var message;
+      payload sender;
+      payload recipient;
+      payload sent;
+      payload send_time;
+      payload index;
+      payload message;
    };*/
 
 
-   bool write(var record);
-   var last();
-   var current();
+   bool write(payload record);
+   payload last();
+   payload current();
 
 
-   var get_page(::index iPage, ::count iMessageCountPerPage);
+   payload get_page(::index iPage, ::count iMessageCountPerPage);
    i64 get_count();
 
 

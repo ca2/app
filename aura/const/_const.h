@@ -166,7 +166,7 @@
 //   type_filetime,
 //   type_prop,
 //   type_pvar,
-//   type_procedure,
+//   type_routine,
 //   type_callback,
 //
 //   // context_object classes

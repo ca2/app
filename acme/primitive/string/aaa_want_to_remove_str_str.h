@@ -1,7 +1,7 @@
 #pragma once
 
 
-class var;
+class payload;
 class id;
 //class string_format;
 
@@ -119,10 +119,10 @@ namespace str
 
    bool CLASS_DECL_ACME begins_eat_ci(string & str, const char * pcszPrefix, const char * pszSeparator); // case insensitive
 
-   inline bool begins_eat(var & var,const string & strPrefix);
-   bool CLASS_DECL_ACME begins_eat_ci(var & var, const char * pcszPrefix); // case insensitive
+   inline bool begins_eat(payload & payload,const string & strPrefix);
+   bool CLASS_DECL_ACME begins_eat_ci(payload & payload, const char * pcszPrefix); // case insensitive
 
-   bool CLASS_DECL_ACME begins_eat_ci(var & var, const char * pcszPrefix, const char * pszSeparator); // case insensitive
+   bool CLASS_DECL_ACME begins_eat_ci(payload & payload, const char * pcszPrefix, const char * pszSeparator); // case insensitive
 
    inline bool begins_eat(property & property, const string & strPrefix);
    bool CLASS_DECL_ACME begins_eat_ci(property & property, const char * pcszPrefix); // case insensitive
@@ -139,7 +139,7 @@ namespace str
 
    bool CLASS_DECL_ACME ends_ci(const string & str, const char * pcszSuffix);
 
-   bool CLASS_DECL_ACME ends_ci(const var & var, const char * pcszSuffix);
+   bool CLASS_DECL_ACME ends_ci(const payload & payload, const char * pcszSuffix);
 
    bool CLASS_DECL_ACME ends_eat(string & str, const char * pcszSuffix);
 
@@ -275,7 +275,7 @@ namespace str
    inline CLASS_DECL_ACME string  from(u32 u);
    inline CLASS_DECL_ACME string  from(i64 i);
    inline CLASS_DECL_ACME string  from(u64 u);
-   inline CLASS_DECL_ACME string  from(const var & var);
+   inline CLASS_DECL_ACME string  from(const payload & payload);
    inline CLASS_DECL_ACME string  from(const id & id);
    inline CLASS_DECL_ACME string  from(double d);
    inline CLASS_DECL_ACME string  from(float f);*/
@@ -288,7 +288,7 @@ namespace str
       CLASS_DECL_ACME  string &       from(string & str, float f);
       CLASS_DECL_ACME  string &       from(string & str, double d);
       inline CLASS_DECL_ACME string & from(string & str, const id & id);
-      inline CLASS_DECL_ACME string & from(string & str, const var & var);
+      inline CLASS_DECL_ACME string & from(string & str, const payload & payload);
 
 
    #ifdef ANDROID
@@ -412,7 +412,7 @@ namespace str
 //   CLASS_DECL_ACME void format(string_format * pformat, const lparam & lparam);
 
 //
-//   CLASS_DECL_ACME void format(string_format * pformat, const var & var);
+//   CLASS_DECL_ACME void format(string_format * pformat, const payload & payload);
 //
 //   CLASS_DECL_ACME void format(string_format * pformat, const property & property);
 

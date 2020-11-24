@@ -784,7 +784,7 @@ namespace dynamic_source
 
       ::process::process_pointer process(e_create);
 
-      ::multithreading::set_priority(::priority_highest);
+      ::parallelization::set_priority(::priority_highest);
 
       //process->prop("inherit") = false;
 
@@ -968,7 +968,7 @@ namespace dynamic_source
 
          ::process::process_pointer process(e_create);
 
-         ::multithreading::set_priority(::priority_highest);
+         ::parallelization::set_priority(::priority_highest);
 
          string strLinker(str);
 
@@ -1893,7 +1893,7 @@ namespace dynamic_source
 
          ::process::process_pointer process(e_create);
 
-         ::multithreading::set_priority(::priority_highest);
+         ::parallelization::set_priority(::priority_highest);
 
          process->create_child_process(str,true,nullptr,::priority_highest);
 auto tickStart = ::millis::now();
@@ -2042,7 +2042,7 @@ auto tickStart = ::millis::now();
 
       ::process::process_pointer process(e_create);
 
-      ::multithreading::set_priority(::priority_highest);
+      ::parallelization::set_priority(::priority_highest);
 
       process->create_child_process(str,true,nullptr,::priority_highest);
 auto tickStart = ::millis::now();

@@ -5,33 +5,33 @@ namespace promise
 {
 
 
-   class CLASS_DECL_ACME machine :
-           virtual public matter
+   class CLASS_DECL_ACME context :
+      virtual public matter
    {
    public:
 
 
-      ::i64    m_iUpdateSerial;
-      bool     m_bFork;
+      ::i64       m_iUpdateSerial;
+      bool        m_bFork;
 
 
-      machine();
+      context();
 
-      virtual ~machine();
+      virtual ~context();
 
 
       virtual ::estatus start_task();
 
 
-      inline bool is_up_to_date(::promise::handler * pmanager) const;
+      inline bool is_up_to_date(::promise::handler * phandler) const;
 
-      virtual void set_up_to_date(::promise::handler * pmanager);
+      virtual void set_up_to_date(::promise::handler * phandler);
 
 
    };
 
 
-   using machine_pointer = ＿＿pointer(machine);
+   using context_pointer = __pointer(context);
 
 
 } // namespace promise

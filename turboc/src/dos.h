@@ -61,7 +61,7 @@ struct time
 //----------------------------------------------------------------------------
 // Function prototypes.
 
-__BEGIN_DECLS 
+__BEGIN_DECLS
 
 //
 CLASS_DECL_TURBOC void gettime (struct time *timep);

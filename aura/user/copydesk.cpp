@@ -250,7 +250,7 @@ namespace user
 
                   ::file::path path = straLines[iFind];
 
-                  var varFile;
+                  payload varFile;
 
                   varFile["url"] = path;
                   varFile["raw_http"] = true;
@@ -367,7 +367,7 @@ namespace user
 
             {
 
-               var varFile;
+               payload varFile;
 
                varFile["url"] = str;
                varFile["http_set"]["raw_http"] = true;

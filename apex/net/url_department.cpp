@@ -153,12 +153,12 @@ namespace url
 
    }
 
-   string department::object_set(const char * pszObject, const char * pszKey, var var)
+   string department::object_set(const char * pszObject, const char * pszKey, payload payload)
    {
 
       string strQuery = object_get_query(pszObject);
 
-      return object_get_script(pszObject) + ::str::has_char(query_set(strQuery, pszKey, var), "?");
+      return object_get_script(pszObject) + ::str::has_char(query_set(strQuery, pszKey, payload), "?");
 
    }
 
@@ -345,47 +345,47 @@ namespace url
    }
 
 
-   var & department::var_set(var & varUrl, const char * pszKey, var var)
+   payload & department::var_set(payload & varUrl, const char * pszKey, payload payload)
    {
 
-      return varUrl = set_key(varUrl, pszKey, var);
+      return varUrl = set_key(varUrl, pszKey, payload);
 
    }
 
 
-   property & department::property_set(property & propUrl, const char * pszKey, var var)
+   property & department::property_set(property & propUrl, const char * pszKey, payload payload)
    {
 
-      propUrl = set_key(propUrl, pszKey, var);
+      propUrl = set_key(propUrl, pszKey, payload);
 
       return propUrl;
 
    }
 
 
-   string department::string_set(string & strUrl, const char * pszKey, var var)
+   string department::string_set(string & strUrl, const char * pszKey, payload payload)
    {
 
-      return strUrl = set_key(strUrl, pszKey, var);
+      return strUrl = set_key(strUrl, pszKey, payload);
 
    }
 
 
-   string department::string_set_if_not_empty(string& strUrl, const char* pszKey, var var)
+   string department::string_set_if_not_empty(string& strUrl, const char* pszKey, payload payload)
    {
 
-      if (var.is_empty())
+      if (payload.is_empty())
       {
 
          return strUrl;
 
       }
 
-      return string_set(strUrl, pszKey, var);
+      return string_set(strUrl, pszKey, payload);
 
    }
 
-   string department::set_key(const char * pszUrl, const char * pszKey, var var)
+   string department::set_key(const char * pszUrl, const char * pszKey, payload payload)
    {
 
       string strUrl(pszUrl);
@@ -397,11 +397,11 @@ namespace url
 
       return strUrl.Left(iPos)
              + "?" +
-             query_set(strUrl.Mid(iPos + 1), pszKey, var);
+             query_set(strUrl.Mid(iPos + 1), pszKey, payload);
 
    }
 
-   void department::set_key(string & strUrl, const char * pszUrl, const char * pszKey, var var)
+   void department::set_key(string & strUrl, const char * pszUrl, const char * pszKey, payload payload)
    {
 
       strUrl = pszUrl;
@@ -411,7 +411,7 @@ namespace url
       if(iPos < 0)
          iPos = strUrl.get_length();
 
-      strUrl = strUrl.Left(iPos) + "?" + query_set(strUrl.Mid(iPos + 1), pszKey, var);
+      strUrl = strUrl.Left(iPos) + "?" + query_set(strUrl.Mid(iPos + 1), pszKey, payload);
 
    }
 
@@ -538,7 +538,7 @@ namespace url
 
    }
 
-   var & department::var_remove(var & varUrl, const char * pszKey)
+   payload & department::var_remove(payload & varUrl, const char * pszKey)
    {
 
       return varUrl = remove_key(varUrl, pszKey);
@@ -575,7 +575,7 @@ namespace url
 
    }
 
-   var department::get_var(const char * pszUrl, const char * pszKey)
+   payload department::get_var(const char * pszUrl, const char * pszKey)
    {
 
       string strUrl(pszUrl);
@@ -583,7 +583,7 @@ namespace url
       strsize iPos = strUrl.find('?');
 
       if(iPos < 0)
-         return var(::type_empty);
+         return payload(::type_empty);
       else
          return query_get_var(strUrl.Mid(iPos + 1), pszKey);
 
@@ -597,7 +597,7 @@ namespace url
       strsize iPos = strUrl.find('?');
 
       if(iPos < 0)
-         return var(::type_empty);
+         return payload(::type_empty);
       else
          return url_decode(query_get_param(strUrl.Mid(iPos + 1), pszKey));
 
@@ -659,7 +659,7 @@ namespace url
       }
    }
 
-   string department::query_set(const char * pszQuery, const char * pszKey, var var)
+   string department::query_set(const char * pszQuery, const char * pszKey, payload payload)
    {
 
       string strQuery(pszQuery);
@@ -676,7 +676,7 @@ namespace url
 
       string strAndKeyEqual2 = "&" + strKeyEqual;
 
-      string strValue = url_encode(var.get_string());
+      string strValue = url_encode(payload.get_string());
 
       if(::str::begins(strQuery, strKeyEqual))
       {
@@ -850,7 +850,7 @@ namespace url
    }
 
 
-   var department::query_get_var(const char * pszQuery, const char * pszKey)
+   payload department::query_get_var(const char * pszQuery, const char * pszKey)
    {
 
       string strQuery(pszQuery);
@@ -861,7 +861,7 @@ namespace url
 
       string strAndKeyEqual = "&" + strKeyEqual;
 
-      var varValue;
+      payload varValue;
 
       strsize iPos = 0;
 

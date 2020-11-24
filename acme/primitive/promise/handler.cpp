@@ -9,7 +9,7 @@ namespace promise
 #undef new
 
 
-   company::company(const ::id &id)
+   handler::handler(const ::id &id)
    {
 
       m_id = id;
@@ -19,8 +19,8 @@ namespace promise
    }
 
 
-   company::company(::source *psource, const ::id &id) :
-           m_psource(psource)
+   handler::handler(::promise::backing * pbacking, const ::id &id) :
+           m_pbacking(pbacking)
    {
 
       m_id = id;
@@ -30,7 +30,7 @@ namespace promise
    }
 
 
-   company::~company()
+   handler::~handler()
    {
 
    }
@@ -66,38 +66,42 @@ namespace promise
 #endif
 
 
-   ::estatus company::run()
+   ::estatus handler::run()
    {
 
       auto ptask = ::get_task();
 
-      while (!::source::g_bDestroyAll && ptask->thread_get_run())
+      auto psubject = __new(subject(this));
+
+      while (!::promise::backing::g_bDestroyAll && ptask->thread_get_run())
       {
 
-         if (m_iUpdateSerial < 0)
-         {
+         process(psubject);
 
-            m_psource->apply_update(m_id);
+         //if (m_iUpdateSerial < 0)
+//         {
+//
+//            m_pbacking->process_subject(m_id);
+//
+//         }
 
-         }
-
-         if (m_bModified)
-         {
-
-            m_bModified = false;
-
-            try
-            {
-
-               notify();
-
-            }
-            catch (...)
-            {
-
-            }
-
-         }
+//         if (m_bModified)
+//         {
+//
+//            m_bModified = false;
+//
+//            try
+//            {
+//
+//               notify();
+//
+//            }
+//            catch (...)
+//            {
+//
+//            }
+//
+//         }
 
          // fetch updated polling time
          int iPollMillis = poll_millis();
@@ -116,14 +120,14 @@ namespace promise
 
          }
 
-         m_psource->apply_update(m_id);
+         //m_psource->apply_update(m_id);
 
-         if (m_bModified)
-         {
+         //if (m_bModified)
+         //{
 
-            continue;
+//            continue;
 
-         }
+  //       }
 
          ::millis_sleep(iPollMillis);
 
@@ -134,58 +138,58 @@ namespace promise
    }
 
 
-   ::machine *company::change(::matter *pmatter)
+   ::promise::context * handler::context(::matter *pmatter)
    {
 
       sync_lock sl(mutex());
 
-      auto &pchange = m_matterchange[pmatter];
+      auto & pcontext = m_mattercontext[pmatter];
 
-      if (!pchange)
+      if (!pcontext)
       {
 
-         pchange = ＿＿new(::change);
+         pcontext = __new(::promise::context);
 
       }
 
-      return pchange;
+      return pcontext;
 
    }
 
 
-   void company::notify()
+   void handler::deliver()
    {
 
       sync_lock sl(mutex());
 
-      for (auto &pair : m_matterchange)
+      for (auto &pair : m_mattercontext)
       {
 
          auto &pmatter = pair.m_element1;
 
-         auto &pchange = pair.m_element2;
+         auto &pcontext = pair.m_element2;
 
-         if (!pchange)
+         if (!pcontext)
          {
 
-            pchange = ＿＿new(::change);
+            pcontext = __new(::promise::context);
 
          }
 
-         if (pchange->m_bFork)
+         if (pcontext->m_bFork)
          {
 
-            ::task::launch(＿＿new(subject(this, pchange, pmatter)));
+            ::task::launch(__new(subject(this, pcontext, pmatter)));
 
          }
          else
          {
 
-            ::subject action(this, pchange, pmatter);
+            ::promise::subject subject(this, pcontext, pmatter);
 
             e_id eid = (e_id) m_id.i64();
 
-            pmatter->process(&action);
+            m_pbacking->process(&subject);
 
          }
 
@@ -194,34 +198,34 @@ namespace promise
    }
 
 
-   void company::apply(const ::action_context &actioncontext)
+   void handler::process(const ::action_context &actioncontext)
    {
 
-      ::subject action(m_id, actioncontext);
+      ::promise::subject subject(m_id, actioncontext);
 
-      m_psource->process(&action);
+      m_pbacking->process(&subject);
 
    }
 
 
-   void company::apply()
+//   void handler::deliver()
+//   {
+//
+//      ::promise::subject subject(this);
+//
+//      m_pbacking->process(&subject);
+//
+//   }
+
+
+   void handler::process(const ::payload &payload)
    {
 
-      ::subject action(this);
+      ::promise::subject subject(this);
 
-      m_psource->process(&action);
+      subject.m_var = payload;
 
-   }
-
-
-   void company::apply(const ::var &var)
-   {
-
-      ::subject action(this);
-
-      action.m_var = var;
-
-      m_psource->process(&action);
+      m_pbacking->process(&subject);
 
 
       //for (auto& matterchange : m_matterchange)
@@ -240,28 +244,28 @@ namespace promise
    }
 
 
-   void company::notify(const ::action_context &actioncontext)
+   void handler::deliver(const ::action_context &actioncontext)
    {
 
-      for (auto &matterchange : m_matterchange)
+      for (auto &mattercontext : m_mattercontext)
       {
 
-         auto &pmatter = matterchange.m_element1;
+         auto &pmatter = mattercontext.m_element1;
 
-         auto &pchange = matterchange.m_element2;
+         auto &pcontext = mattercontext.m_element2;
 
-         ::subject action(this, pchange, pmatter);
+         ::promise::subject subject(this, pcontext, pmatter);
 
-         action.m_actioncontext = actioncontext;
+         subject.m_actioncontext = actioncontext;
 
-         pmatter->process(&action);
+         m_pbacking->process(&subject);
 
       }
 
    }
 
 
-   void company::add(::matter *pmatter, bool bForkWhenNotify)
+   void handler::add(::matter *pmatter, bool bForkWhenNotify)
    {
 
       sync_lock sl(mutex());
@@ -287,12 +291,12 @@ namespace promise
 
       //}
 
-      auto &pchange = m_matterchange[pmatter];
+      auto &pchange = m_mattercontext[pmatter];
 
       if (!pchange)
       {
 
-         pchange = ＿＿new(::change);
+         pchange = __new(::promise::context);
 
       }
 
@@ -310,17 +314,17 @@ namespace promise
    }
 
 
-   void company::remove(::matter *pmatter)
+   void handler::remove(::matter *pmatter)
    {
 
       sync_lock sl(mutex());
 
-      m_matterchange.remove_key(pmatter);
+      m_mattercontext.remove_key(pmatter);
 
    }
 
 
-   void company::set_modified()
+   void handler::set_modified()
    {
 
       sync_lock sl(mutex());
@@ -339,12 +343,12 @@ namespace promise
    }
 
 
-   void company::post_destroy_all()
+   void handler::post_destroy_all()
    {
 
       sync_lock sl(mutex());
 
-      m_matterchange.remove_all();
+      m_mattercontext.remove_all();
 
    }
 

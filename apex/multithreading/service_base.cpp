@@ -121,7 +121,7 @@ u32 Win32FromHResult(HRESULT value)
 //
 //      Name:           UpdateState
 //      Description:    Updates the current state and exit code of the service
-//                      and notifies the service control manager of the change.
+//                      and notifies the service control manager of the machine.
 //
 //*****************************************************************************
 #ifdef WINDOWS

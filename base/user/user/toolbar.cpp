@@ -1144,7 +1144,7 @@ return { 0,0 };
       }
 
 
-      // change the toolbar button description
+      // machine the toolbar button description
 
       //   TBBUTTONINFOW button;
       //   __memset(&button, 0, sizeof(button));
@@ -1284,7 +1284,7 @@ return { 0,0 };
 
       if (((dwOldStyle & CBRS_BORDER_ANY) != (dwNewStyle & CBRS_BORDER_ANY)))
       {
-         // recalc non-client area when border styles change
+         // recalc non-client area when border styles machine
          //set_window_pos(zorder_none, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE | SWP_DRAWFRAME);
       }
       m_bDelayedButtonLayout = TRUE;

@@ -18,11 +18,14 @@ bool hyperlink::open_link(string strLink, string strProfile, string strTarget)
 {
 
    auto plink = __new(hyperlink);
+
    plink->m_strLink = strLink;
    plink->m_strProfile = strProfile;
    plink->m_strTarget = strTarget;
 
-   System.apply_update(id_open_hyperlink, plink);
+   System.process_subject(id_open_hyperlink, plink);
+
+
    //if (is_system())
    {
 
@@ -53,13 +56,15 @@ bool hyperlink::open_link(string strLink, string strProfile, string strTarget)
 void hyperlink::open_profile_link(string strUrl, string strProfile, string strTarget)
 {
 
+
    auto plink = __new(hyperlink);
+
    plink->m_strLink = strUrl;
    plink->m_strProfile = strProfile;
    plink->m_strTarget = strTarget;
    plink->m_bProfile = true;
 
-   System.apply_update(id_open_hyperlink, plink);
+   System.process_subject(id_open_hyperlink, plink);
 
    //__throw(todo("hyperlink"));
    //System.open_profile_link(strUrl, strProfile, strTarget);

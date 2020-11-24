@@ -633,7 +633,7 @@ namespace user
    }
 
 
-   void check_box::on_apply(::action * paction)
+   void check_box::on_apply(::subject * paction)
    {
 
       interaction::on_apply(paction);

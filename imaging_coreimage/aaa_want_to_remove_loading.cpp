@@ -234,7 +234,7 @@ namespace coreimage_imaging
 
 
 
-   ::estatus imaging::_load_image(::context * pcontext, ::image * pimage, const var & varFile, bool bSync, bool bCreateHelperMaps)
+   ::estatus imaging::_load_image(::context * pcontext, ::image * pimage, const payload & varFile, bool bSync, bool bCreateHelperMaps)
    {
 
       auto pmemory = create_memory();

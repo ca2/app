@@ -111,7 +111,7 @@ void Serial::SerialImpl::reconfigurePort ()
 
    DCB dcbSerialParams = {0};
 
-   ·zero(dcbSerialParams);
+   xxf_zero(dcbSerialParams);
 
    dcbSerialParams.DCBlength=sizeof(dcbSerialParams);
 

@@ -419,7 +419,7 @@ namespace user
    }
 
 
-   void impact_system::on_apply(::action * paction)
+   void impact_system::on_apply(::subject * paction)
    {
 
       update_all_views(paction);
@@ -427,7 +427,7 @@ namespace user
    }
 
 
-   void impact_system::update_all_views(::action * paction)
+   void impact_system::update_all_views(::subject * paction)
    {
 
       ::count count = get_document_count();

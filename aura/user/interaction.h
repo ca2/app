@@ -212,10 +212,10 @@ namespace user
       //virtual void task_on_term(::task* pthread) override;
 
 
-      virtual ::estatus main_async(const ::procedure & procedure, e_priority epriority = priority_normal);
+      virtual ::estatus main_async(const ::routine & procedure, e_priority epriority = priority_normal);
 
 
-      virtual ::estatus main_sync(const ::procedure & procedure, const ::duration & duration = one_minute(), e_priority epriority = priority_normal);
+      virtual ::estatus main_sync(const ::routine & procedure, const ::duration & duration = one_minute(), e_priority epriority = priority_normal);
 
 
       inline void auto_prodevian_on_show() { m_ewindowflag |= window_flag_auto_prodevian_on_show; }
@@ -1098,7 +1098,7 @@ namespace user
 
 
       //virtual bool track_popup_menu(::user::menu_item* pitem, i32 iFlags, const ::point& point) override;
-      //virtual __pointer(::user::menu) track_popup_xml_menu(const var & varXml, i32 iFlags, const ::point& pointScreen = nullptr, const ::size& sizeMinimum = nullptr) override;
+      //virtual __pointer(::user::menu) track_popup_xml_menu(const payload & varXml, i32 iFlags, const ::point& pointScreen = nullptr, const ::size& sizeMinimum = nullptr) override;
 
 
       virtual void _001OnExitIconic() override;
@@ -1240,7 +1240,7 @@ namespace user
       virtual void layout_scroll_bar(::draw2d::graphics_pointer & pgraphics);
 
 
-      virtual void on_apply(::action * paction) override;
+      virtual void on_apply(::subject * paction) override;
 
 
       virtual void keyboard_focus_OnKeyDown(::message::message* pmessage) override;
@@ -1405,7 +1405,7 @@ namespace user
       //virtual bool _001IsPointInside(::point point) override;
       //control null() { return control(); }
       //bool Validate(string& str);
-      bool get_data(__pointer(::user::interaction) pwnd, var& var);
+      bool get_data(__pointer(::user::interaction) pwnd, payload& payload);
       void SetEditItem(index iItem);
       void SetEditSubItem(index iItem);
       index GetEditSubItem();
@@ -1469,11 +1469,11 @@ namespace user
       virtual e_stock_icon get_stock_icon();
 
 
-      virtual void post_procedure(const ::procedure & procedure);
-      virtual void prodevian_post_procedure(const ::procedure & procedure);
+      virtual void post_procedure(const ::routine & procedure);
+      virtual void prodevian_post_procedure(const ::routine & procedure);
 
 
-      virtual void send_procedure(const ::procedure & procedure, ::duration durationTimeout = ::duration::infinite());
+      virtual void send_procedure(const ::routine & procedure, ::duration durationTimeout = ::duration::infinite());
 
 
    /*   template < typename PRED >

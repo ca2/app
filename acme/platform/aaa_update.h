@@ -45,7 +45,7 @@ public:
    //__pointer(::u)                        m_pupdatetask;
    ::i64                                           m_iUpdateSerial;
    ::user::e_key                                   m_ekey;
-   ::var                                           m_var;
+   ::payload                                           m_var;
    bool                                            m_bModified;
    int                                             m_iMillisSleep;
    //::i64                                        m_iUpdate;
@@ -94,7 +94,7 @@ public:
 };
 
 
-using update_pointer = __pointer(::update);
+using manager_pointer = __pointer(::update);
 
 
 inline auto new_update(const ::id & id) { return __new(::update(id)); }

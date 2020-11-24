@@ -35,8 +35,8 @@
 
       virtual int get_pid();
 
-      virtual var connection_settings_get_auto_detect();
-      virtual var connection_settings_get_auto_config_url();
+      virtual payload connection_settings_get_auto_detect();
+      virtual payload connection_settings_get_auto_config_url();
 
       virtual ::estatus     link_open(string strUrl);
 
@@ -134,7 +134,7 @@
 
       ::file::patha list_process_path();
 
-      virtual ::icon_result load_icon(const ::var & varFile);
+      virtual ::icon_result load_icon(const ::payload & varFile);
 
       virtual void enum_draw2d_fonts(::draw2d::font_enum_item_array& itema);
 

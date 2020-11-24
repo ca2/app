@@ -52,7 +52,7 @@ namespace user
 
       void install_message_routing(::channel * pchannel) override;
 
-      virtual void on_apply(::action * paction) override;
+      virtual void on_apply(::subject * paction) override;
 
       virtual bool on_click(const ::user::item & item) override;
 

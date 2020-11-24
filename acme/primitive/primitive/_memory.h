@@ -2,19 +2,19 @@
 
 
 template < typename TYPE >
-inline TYPE & ·zero_pointer(TYPE * p) { ::zero(p, sizeof(TYPE)); return *p; }
+inline TYPE & xxf_zero_pointer(TYPE * p) { ::zero(p, sizeof(TYPE)); return *p; }
 
 template < typename TYPE >
-inline TYPE & ·zero(TYPE & t) { ::zero(&t, sizeof(TYPE)); return t; }
+inline TYPE & xxf_zero(TYPE & t) { ::zero(&t, sizeof(TYPE)); return t; }
 
 template < typename TYPE >
-inline bool ·is_zero_pointer(TYPE * p) { return ::is_zero(p, sizeof(TYPE)); }
+inline bool xxf_is_zero_pointer(TYPE * p) { return ::is_zero(p, sizeof(TYPE)); }
 
 template < typename TYPE >
-inline bool ·is_zero(TYPE & t) { return ::is_zero(&t, sizeof(TYPE)); }
+inline bool xxf_is_zero(TYPE & t) { return ::is_zero(&t, sizeof(TYPE)); }
 
 
-// ·is_zero
+// xxf_is_zero
 
 
 //template < typename TYPE1, typename TYPE2 >

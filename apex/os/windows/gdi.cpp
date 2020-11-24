@@ -9,7 +9,7 @@ CLASS_DECL_APEX HFONT wingdi_CreatePointFont(int nPointSize, const char* pszFace
    if (plf == nullptr)
    {
       plf = &lF;
-      ·zero(plf);
+      xxf_zero(plf);
       plf->lfCharSet = DEFAULT_CHARSET;
 
    }

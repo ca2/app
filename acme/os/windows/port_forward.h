@@ -83,7 +83,7 @@ namespace windows
 	   virtual ~port_forward();
 	
 	   virtual HRESULT ListenForUpnpChanges(::net::port_forward_change_callbacks *pCallbacks = nullptr);  // nullptr==default matter; if you provide your own pointer to a port_forward_change_callbacks-derived matter it is deleted for you automatically
-	   virtual HRESULT StopListeningForUpnpChanges( );  // Stops listenting for UPnP change events on the router and deletes any port_forward_change_callbacks-derived objects
+	   virtual HRESULT StopListeningForUpnpChanges( );  // Stops listenting for UPnP machine events on the router and deletes any port_forward_change_callbacks-derived objects
 	
 	   virtual bool GetDeviceInformationUsingThread( oswindow oswindow );  // starts a thread that will get IGD (router) device information; the thread posts a UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION message to oswindow when it's done
 	   virtual bool GetMappingsUsingThread( oswindow oswindow );  // starts a thread that will get all mappings; the thread posts a UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION message to oswindow when it's done

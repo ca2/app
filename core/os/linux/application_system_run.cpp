@@ -174,7 +174,7 @@ void sn_start_context()
 
    }
 
-   //::multithreading::post_quit_and_wait(get_context_system(), one_minute());
+   //::parallelization::post_quit_and_wait(get_context_system(), one_minute());
 
    return ::success;
 

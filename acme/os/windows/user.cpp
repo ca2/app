@@ -147,7 +147,7 @@ namespace user
 //
 //   MONITORINFO mi;
 //
-//   ·zero(mi);
+//   xxf_zero(mi);
 //
 //   mi.cbSize = sizeof(MONITORINFO);
 //

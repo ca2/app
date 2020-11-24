@@ -14,7 +14,7 @@ multi_lock::multi_lock(const sync_array & synca,bool bInitialLock)
    if(synca.sync_count() <= 0)
    {
 
-      ＿＿throw(invalid_argument_exception());
+      __throw(invalid_argument_exception());
 
    }
 
@@ -45,13 +45,13 @@ multi_lock::multi_lock(::count c, const sync_array & synca, bool bInitialLock)
    if (synca.m_hsyncaCache.is_empty() || c <= 0 || c > synca.m_hsyncaCache.get_size())
    {
 
-      ＿＿throw(invalid_argument_exception());
+      __throw(invalid_argument_exception());
 
    }
 
    m_synca.add(synca);
 
-   ·zero(m_byteaLocked);
+   xxf_zero(m_byteaLocked);
 
    if (bInitialLock)
    {

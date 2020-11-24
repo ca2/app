@@ -58,12 +58,12 @@ class multi_lock;
 
 
 
-//class λholder_base :
+//class pred_holder_base :
 //   virtual public matter
 //{
 //public:
 //
-//   λholder_base(::matter * pobject) :
+//   pred_holder_base(::matter * pobject) :
 //      ::matter(pobject),
 //      m_pholdref(pholdref)
 //   {
@@ -75,16 +75,16 @@ class multi_lock;
 //};
 
 //template < typename PRED >
-//class λholder :
-//   virtual public λholder_base
+//class pred_holder :
+//   virtual public pred_holder_base
 //{
 //public:
 //
 //   PRED m_pred;
 //
-//   λholder(::matter * pobject, PRED pred) :
+//   pred_holder(::matter * pobject, PRED pred) :
 //      ::matter(pobject),
-//      λholder_base(pobject),
+//      pred_holder_base(pobject),
 //      m_pred(pred)
 //   {
 //
@@ -118,4 +118,4 @@ namespace exception
 
 
 
-//CLASS_DECL_ACME thread* ＿＿begin_thread(::matter * pobject, ＿＿THREADPROC pfnThreadProc, LPVOID pParam, i32 epriority = ::priority_normal, ::u32 nStackSize = 0, u32 dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = nullptr, ithread_t * puiId = nullptr, error * perror = nullptr);
+//CLASS_DECL_ACME thread* __begin_thread(::matter * pobject, __THREADPROC pfnThreadProc, LPVOID pParam, i32 epriority = ::priority_normal, ::u32 nStackSize = 0, u32 dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = nullptr, ithread_t * puiId = nullptr, error * perror = nullptr);

@@ -613,7 +613,7 @@ namespace acme
 
       //__wait_threading_count(::millis((5000) * 8));
 
-      //::multithreading::wait_threads(40_s);
+      //::parallelization::wait_threads(40_s);
 
 //#ifdef LINUX
 //

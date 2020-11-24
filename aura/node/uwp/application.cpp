@@ -34,7 +34,7 @@ namespace aura
    //   m_pimpl->_001OnFileNew(nullptr);
    //}
 
-   //::user::document * application::_001OpenDocumentFile(var varFile)
+   //::user::document * application::_001OpenDocumentFile(payload varFile)
    //{
    //   return m_pimpl->_001OpenDocumentFile(varFile);
    //}
@@ -280,29 +280,29 @@ namespace aura
 //   }
 
 //
-//   void application::set_env_var(const string & var,const string & value)
+//   void application::set_env_var(const string & payload,const string & value)
 //   {
 //#if (defined(SOLARIS8) || defined(SOLARIS))
 //      {
 //         static std::map<string, char *> vmap;
-//         if (vmap.find(var) != vmap.end())
+//         if (vmap.find(payload) != vmap.end())
 //         {
-//            delete[] vmap[var];
+//            delete[] vmap[payload];
 //         }
-//         vmap[var] = new char[var.get_length() + 1 + value.get_length() + 1];
-//         sprintf(vmap[var], "%s=%s", var, value);
-//         putenv( vmap[var] );
+//         vmap[payload] = new char[payload.get_length() + 1 + value.get_length() + 1];
+//         sprintf(vmap[payload], "%s=%s", payload, value);
+//         putenv( vmap[payload] );
 //      }
 //#elif defined WINDOWS_DESKTOP
 //      {
-//         string slask = var + "=" + value;
+//         string slask = payload + "=" + value;
 //         _putenv( (const char *)slask);
 //      }
 //#elif defined _UWP
 //
 //
 //#else
-//      setenv(var, value, 1);
+//      setenv(payload, value, 1);
 //#endif
 //   }
 

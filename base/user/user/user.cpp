@@ -180,7 +180,7 @@ namespace base
       //string strLicense = Application.get_license_id();
 
 
-      //var & varTopicQuey = System.commnam_varTopicQuery;
+      //payload & varTopicQuey = System.commnam_varTopicQuery;
 
       bool bHasInstall = System.is_true("install");
 
@@ -1043,7 +1043,7 @@ namespace base
    }
 
 
-   __pointer(::user::menu) user::track_popup_xml_menu(::user::interaction* pinteraction, const var & varXml, i32 iFlags, const ::point & point, const ::size & sizeMinimum)
+   __pointer(::user::menu) user::track_popup_xml_menu(::user::interaction* pinteraction, const payload & varXml, i32 iFlags, const ::point & point, const ::size & sizeMinimum)
    {
 
       __pointer(::user::menu) pmenu = __create <  ::user::menu  > ();
@@ -1125,7 +1125,7 @@ namespace base
    }
 
 
-   __pointer(::user::menu) user::track_popup_xml_menu_file(::user::interaction * pinteraction, var varXmlFile, i32 iFlags, const ::point & point, const ::size & sizeMinimum)
+   __pointer(::user::menu) user::track_popup_xml_menu_file(::user::interaction * pinteraction, payload varXmlFile, i32 iFlags, const ::point & point, const ::size & sizeMinimum)
    {
 
       string strXml = Context.file().as_string(varXmlFile);

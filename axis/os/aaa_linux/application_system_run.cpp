@@ -215,7 +215,7 @@ i32 _c_XErrorHandler(Display * display, XErrorEvent * perrorevent);
 
    }
 
-   //::multithreading::post_quit_and_wait(get_context_system(), one_minute());
+   //::parallelization::post_quit_and_wait(get_context_system(), one_minute());
 
    return ::success;
 

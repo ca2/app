@@ -190,7 +190,7 @@
 //   }
 //
 //
-//   bool control::get_data(__pointer(::user::interaction)pwnd, var& var)
+//   bool control::get_data(__pointer(::user::interaction)pwnd, payload& payload)
 //   {
 //
 //      string str;
@@ -226,12 +226,12 @@
 //      {
 //      case control_data_type_string:
 //      {
-//         var = str;
+//         payload = str;
 //      }
 //      return true;
 //      case control_data_type_natural:
 //      {
-//         var = atoi(str);
+//         payload = atoi(str);
 //         return true;
 //      }
 //      break;

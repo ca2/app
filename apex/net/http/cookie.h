@@ -16,7 +16,7 @@ namespace http
 
       string         m_strName;
       string         m_strNameLow;
-      var            m_varValue;
+      payload            m_varValue;
       string         m_strExpire;
       string         m_strPath;
       string         m_strDomain;
@@ -30,9 +30,9 @@ namespace http
 
       string get_cookie_string();
 
-      cookie & operator = (var var)
+      cookie & operator = (payload payload)
       {
-         m_varValue = var;
+         m_varValue = payload;
          return *this;
       }
 
@@ -94,7 +94,7 @@ namespace http
       strsize get_length(const char * name);
       bool set_cookie(
          const char * pszKey,
-         const ::var & var,
+         const ::payload & payload,
          const ::duration & duration = 0,
          const char * pszDomain = nullptr,
          const char * pszPath = nullptr,

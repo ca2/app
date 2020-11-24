@@ -88,8 +88,8 @@ namespace base
 //
 //      void *                                             m_ftlibrary;
 //
-//      var                                                m_varFile;
-////      var                                                m_
+//      payload                                                m_varFile;
+////      payload                                                m_
 //
 //      __pointer(::mutex)                                 m_spmutexUserAppData;
 //      __pointer(::mutex)                                 m_spmutexSystemAppData;
@@ -100,7 +100,7 @@ namespace base
 //
 //      __composite(::process::department)                 m_pprocess;
 //
-//      __composite(::multithreading::threading)           m_pthreading;
+//      __composite(::parallelization::threading)           m_pthreading;
 //      ::edisplay                                         m_edisplay;
 //      size_t                                             m_nSafetyPoolSize; // ideal size
 //
@@ -414,7 +414,7 @@ namespace base
 //      class ::str::base64                          &  base64();
 //      class ::aura::log                            &  log();
 //      class ::machine_event_central                &  machine_event_central();
-//      inline ::multithreading::threading           *  threading() { return m_pthreading; }
+//      inline ::parallelization::threading           *  threading() { return m_pthreading; }
 //
 //      geometry::geometry                           &  geometry()
 //      {
@@ -528,10 +528,10 @@ namespace base
 //
 //      virtual ::estatus initialize_sockets();
 //
-//      ::image_pointer get_cache_image(::layered * pobjectContext, const ::var & varFile);
+//      ::image_pointer get_cache_image(::layered * pobjectContext, const ::payload & varFile);
 //      ::image_pointer matter_cache_image(::layered * pobjectContext, const ::string & strMatter);
 //
-//      ::image_pointer get_image(::layered * pobjectContext, const ::var & varFile, bool bCache = true, bool bSync = false);
+//      ::image_pointer get_image(::layered * pobjectContext, const ::payload & varFile, bool bCache = true, bool bSync = false);
 //      ::image_pointer matter_image(::layered * pobjectContext, const string & strMatter, bool bCache = true, bool bSync = false);
 //
 //      virtual bool on_get_thread_name(string& strThreadName) override;
@@ -599,7 +599,7 @@ namespace base
 //      static inline ::id id(const string & str);
 //      static inline ::id id(i64 i);
 //      static inline ::id_space & id();
-//      inline ::id id(const var & var);
+//      inline ::id id(const payload & payload);
 //      inline ::id id(const property & prop);
 //
 //
@@ -709,7 +709,7 @@ namespace base
 //
 //      virtual bool merge_accumulated_on_open_file(::create * pcreate);
 //
-//      virtual bool on_open_file(var varFile, string strExtra);
+//      virtual bool on_open_file(payload varFile, string strExtra);
 //
 //      virtual LPWAVEOUT waveout_open(int iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback);
 //

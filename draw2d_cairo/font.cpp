@@ -52,7 +52,7 @@ namespace draw2d_cairo
       m_pfont = nullptr;
       m_ft = nullptr;
       m_pfontface = nullptr;
-      ·zero(m_keyDone);
+      xxf_zero(m_keyDone);
 
 #endif
 

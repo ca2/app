@@ -61,7 +61,7 @@ namespace hellobase
 
       pmessage->previous();
 
-      var v;
+      payload v;
 
       data_get("cur_fps", v);
 
@@ -74,7 +74,7 @@ auto m_millisRoll = ::millis::now();
    void impact_base::_001OnDestroy(::message::message * pmessage)
    {
 
-      ::multithreading::post_quit_and_wait(m_prender, seconds(15));
+      ::parallelization::post_quit_and_wait(m_prender, seconds(15));
 
 
    }

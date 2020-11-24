@@ -2,7 +2,7 @@
 
 #define CA2_PALACE_SAFE_ZONE_BORDER_SIZE 32
 
-struct CLASS_DECL_ACME plex     // warning var length structure
+struct CLASS_DECL_ACME plex     // warning payload length structure
 {
    plex*                            pNext;
    // byte data[maxNum*elementSize];

@@ -24,7 +24,7 @@ CLASS_DECL_CORE int_bool is_windows_native_unicode();
 //
 
 
-#include "multithreading.h"
+#include "parallelization.h"
 
 
 

@@ -7,13 +7,13 @@ var_array::var_array()
 }
 
 
-var_array::var_array(const std::initializer_list < var > & varlist)
+var_array::var_array(const std::initializer_list < payload > & varlist)
 {
 
-   for (auto & var : varlist)
+   for (auto & payload : varlist)
    {
 
-      add(var);
+      add(payload);
 
    }
 
@@ -45,17 +45,17 @@ var_array::~var_array()
 }
 
 
-index var_array::add(const var & var)
+index var_array::add(const payload & payload)
 {
 
-   if(var.is_empty())
+   if(payload.is_empty())
    {
 
       return -1;
 
    }
 
-   return ::array < class var >::add(var);
+   return ::array < class payload >::add(payload);
 
 }
 
@@ -135,7 +135,7 @@ index var_array::find_first_ci(const char * psz, index find, index last) const
 }
 
 
-index var_array::find_first(const var & var, index find, index last) const
+index var_array::find_first(const payload & payload, index find, index last) const
 {
    if(find < 0)
       find += this->get_count();
@@ -143,7 +143,7 @@ index var_array::find_first(const var & var, index find, index last) const
       last += this->get_count();
    for(; find < this->get_count(); find++)
    {
-      if(this->element_at(find) == var)
+      if(this->element_at(find) == payload)
          return find;
    }
    return -1;
@@ -171,11 +171,11 @@ bool var_array::contains(const char * pcsz, index find, index last, ::count coun
    return count >= countMin && conditional(countMax >= 0, count <= countMax);
 }
 
-bool var_array::contains(const var & var, index find, index last, ::count countMin, ::count countMax) const
+bool var_array::contains(const payload & payload, index find, index last, ::count countMin, ::count countMax) const
 {
    ::count count = 0;
    while((count < countMin || (countMax >= 0 && count <= countMax))
-         && (find = find_first(var, find, last)) >= 0)
+         && (find = find_first(payload, find, last)) >= 0)
       count++;
    return count >= countMin && conditional(countMax >= 0, count <= countMax);
 }
@@ -198,9 +198,9 @@ bool var_array::contains(const var & var, index find, index last, ::count countM
    return find;
 }
 
-::count var_array::remove_first(const var & var, index find, index last)
+::count var_array::remove_first(const payload & payload, index find, index last)
 {
-   if((find = find_first(var, find, last)) >= 0)
+   if((find = find_first(payload, find, last)) >= 0)
       remove_at(find);
    return find;
 }
@@ -234,12 +234,12 @@ bool var_array::contains(const var & var, index find, index last, ::count countM
 }
 
 
-::count var_array::remove(const var & var, index find, index last, ::count countMin, ::count countMax)
+::count var_array::remove(const payload & payload, index find, index last, ::count countMin, ::count countMax)
 {
    ::count count = 0;
-   if(contains(var, find, last, countMin, countMax))
+   if(contains(payload, find, last, countMin, countMax))
       while(conditional(countMax >= 0, count < countMax)
-            && (find = remove_first(var, find, last)) >= 0)
+            && (find = remove_first(payload, find, last)) >= 0)
          count++;
    return count;
 }
@@ -261,9 +261,9 @@ bool var_array::contains(const var & var, index find, index last, ::count countM
    }
 }
 
-var_array & var_array::operator -=(var var)
+var_array & var_array::operator -=(payload payload)
 {
-   remove(var);
+   remove(payload);
    return *this;
 }
 
@@ -273,10 +273,10 @@ var_array & var_array::operator -=(var_array vara)
    return *this;
 }
 
-var_array var_array::operator -(var var) const
+var_array var_array::operator -(payload payload) const
 {
    var_array vara(*this);
-   vara.remove(var);
+   vara.remove(payload);
    return vara;
 }
 
@@ -287,9 +287,9 @@ var_array var_array::operator -(var_array varaParam) const
    return vara;
 }
 
-var_array & var_array::operator +=(var var)
+var_array & var_array::operator +=(payload payload)
 {
-   add(var);
+   add(payload);
    return *this;
 }
 
@@ -299,10 +299,10 @@ var_array & var_array::operator +=(var_array vara)
    return *this;
 }
 
-var_array var_array::operator +(var var) const
+var_array var_array::operator +(payload payload) const
 {
    var_array vara(*this);
-   vara.add(var);
+   vara.add(payload);
    return vara;
 }
 
@@ -426,9 +426,9 @@ void var_array::parse_json(const char * & pszJson, const char * pszEnd)
 
       }*/
 
-      ::var & var = add_new();
+      ::payload & payload = add_new();
 
-      var.parse_json(pszJson, pszEnd);
+      payload.parse_json(pszJson, pszEnd);
 
       ::str::consume_spaces(pszJson, 0, pszEnd);
 

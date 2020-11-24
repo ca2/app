@@ -1,8 +1,6 @@
 #pragma once
 
 
-
-
 class simple_ui_display :
    virtual public ::x11_hook
 {
@@ -89,7 +87,7 @@ public:
 
    void call_expose(Display * pdisplay);
 
-   virtual void on_apply(::action * paction) override;
+   virtual void on_subject_deliver(::promise::subject * psubject) override;
 
    void on_layout(Display * pdisplay);
 

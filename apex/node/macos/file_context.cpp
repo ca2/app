@@ -37,10 +37,10 @@ namespace macos
 
    }
 
-   var file_context::length(const ::file::path & pszPath)
+   payload file_context::length(const ::file::path & pszPath)
    {
 
-      var varRet;
+      payload varRet;
 
 
       struct stat stat;
@@ -131,7 +131,7 @@ namespace macos
    }
 
 
-   file_result file_context::get_file(const var & varFile, const efileopen & eopenFlags)
+   file_result file_context::get_file(const payload & varFile, const efileopen & eopenFlags)
    {
 
       return ::file_context::get_file(varFile, eopenFlags);

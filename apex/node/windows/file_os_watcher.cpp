@@ -83,7 +83,7 @@ namespace file
 
       wstring wstrFolder(pathFolder);
 
-      ·zero(m_overlapped);
+      xxf_zero(m_overlapped);
 
       m_bRefresh = true;
 

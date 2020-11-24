@@ -7,7 +7,7 @@ class CLASS_DECL_ACME single_lock :
 public:
 
 
-   ＿＿pointer(sync)         m_psync;
+   __pointer(sync)         m_psync;
    //HANDLE                  m_hobject;
    bool                    m_bAcquired;
 

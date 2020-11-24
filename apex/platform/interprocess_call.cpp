@@ -21,10 +21,10 @@ interprocess_call::~interprocess_call()
 }
 
 
-void interprocess_call::add_arg(const var& var)
+void interprocess_call::add_arg(const payload& payload)
 {
 
-   m_varaArgs.add(var);
+   m_varaArgs.add(payload);
 
 }
 

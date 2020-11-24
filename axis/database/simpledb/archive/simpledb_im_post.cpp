@@ -40,7 +40,7 @@ im_post::~im_post()
 {
 }
 
-bool im_post::write(var rec)
+bool im_post::write(payload rec)
 {
 
    __pointer(::sqlite::database) pdb = db()->get_database();
@@ -84,7 +84,7 @@ bool im_post::write(var rec)
 }
 
 
-var im_post::get_since(var rec)
+payload im_post::get_since(payload rec)
 {
 
    __pointer(::sqlite::database) pdb = db()->get_database();
@@ -123,22 +123,22 @@ var im_post::get_since(var rec)
    if(iNumRows <= 0)
       return false;
 
-   class var var;
+   class payload payload;
 
    while(!m_pdataset->eof())
    {
 
-      var.vara().add(current());
+      payload.vara().add(current());
 
       m_pdataset->next();
 
    }
 
-   return var;
+   return payload;
 
 }
 
-var im_post::last(var user1, var user2)
+payload im_post::last(payload user1, payload user2)
 {
 
    if(m_pdataserver == nullptr)
@@ -182,10 +182,10 @@ var im_post::last(var user1, var user2)
 }
 
 
-var im_post::current()
+payload im_post::current()
 {
 
-   var ret;
+   payload ret;
 
    ret.set_type(::type_propset);
    ret["sender"]     = m_pdataset->fv("sender");

@@ -671,71 +671,71 @@ namespace papaya // or ace, when I am going to introduce ace, on in the minimum 
 
 
    template <typename T>
-   T & set_maximum(T & var)
+   T & set_maximum(T & payload)
    {
 
-      return var = ::numeric_info < T >::maximum();
+      return payload = ::numeric_info < T >::maximum();
 
    }
 
    template <typename T>
-   T & set_minimum(T & var)
+   T & set_minimum(T & payload)
    {
 
-      return var = ::numeric_info < T >::minimum();
-
-   }
-
-
-   template <typename T>
-   T & set_null(T & var)
-   {
-
-      return var = ::numeric_info < T >::null();
+      return payload = ::numeric_info < T >::minimum();
 
    }
 
 
    template <typename T>
-   T & set_unitary(T & var)
+   T & set_null(T & payload)
    {
 
-      return var = ::numeric_info < T >::unitary();
+      return payload = ::numeric_info < T >::null();
 
    }
 
 
    template <typename T>
-   bool is_maximum(const T & var)
+   T & set_unitary(T & payload)
    {
 
-      return var == ::numeric_info < T >::maximum();
-
-   }
-
-   template <typename T>
-   bool is_minimum(const T & var)
-   {
-
-      return var == ::numeric_info < T >::minimum();
+      return payload = ::numeric_info < T >::unitary();
 
    }
 
 
    template <typename T>
-   bool is_null(const T & var)
+   bool is_maximum(const T & payload)
    {
 
-      return var == ::numeric_info < T >::null();
+      return payload == ::numeric_info < T >::maximum();
+
+   }
+
+   template <typename T>
+   bool is_minimum(const T & payload)
+   {
+
+      return payload == ::numeric_info < T >::minimum();
 
    }
 
 
    template <typename T>
-   bool is_unitary(const T & var)
+   bool is_null(const T & payload)
    {
 
-      return var == ::numeric_info < T >::unitary();
+      return payload == ::numeric_info < T >::null();
+
+   }
+
+
+   template <typename T>
+   bool is_unitary(const T & payload)
+   {
+
+      return payload == ::numeric_info < T >::unitary();
 
    }
 

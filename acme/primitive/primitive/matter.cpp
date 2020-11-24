@@ -200,7 +200,7 @@ void matter::set_mutex(sync* psync)
 void matter::remove_from_any_source()
 {
 
-   ::source::__remove(this);
+   ::promise::backing::__remove(this);
 
 }
 
@@ -334,13 +334,13 @@ void matter::kick_idle()
 }
 
 
-void matter::operator()(const ::var & var)
+void matter::operator()(const ::payload & payload)
 {
 
 }
 
 
-void matter::on_future(const ::var& var)
+void matter::on_future(const ::payload& payload)
 {
 
 }
@@ -354,7 +354,7 @@ void matter::on_future(const ::var& var)
 }
 
 
-::var matter::realize()
+::payload matter::realize()
 {
 
    return ::success;
@@ -436,7 +436,7 @@ void matter::on_future(const ::var& var)
 }
 
 
-::task* matter::defer_start_task(const ::id& id, const ::procedure & procedure)
+::task* matter::defer_start_task(const ::id& id, const ::promise::routine & procedure)
 {
 
    auto ptasktool = __task_pool(taskpool());
@@ -549,25 +549,59 @@ void matter::sync_wait(const ::duration & duration)
 }
 
 
-
-void matter::apply(::action * paction)
-{
-
-   if (!paction->is_up_to_date())
-   {
-
-      on_apply(paction);
-
-   }
-
-}
+//void matter::process(const ::id & id, const ::payload & payload)
+//{
+//
+//
+//}
 
 
-void matter::on_apply(::action * paction)
-{
+//void matter::process(::promise::update * psubject)
+//{
+//
+//   if (!psubject->is_up_to_date())
+//   {
+//
+//      on_subject_prepare(psubject);
+//
+//      if(!psubject->m_bitProcessed)
+//      {
+//
+//         on_subject_process(psubject);
+//
+//      }
+//
+//      if(psubject->m_bitProcessed)
+//      {
+//
+//         on_subject_deliver(psubject);
+//
+//      }
+//
+//   }
+//
+//}
 
 
-}
+//void matter::on_subject_prepare(::promise::update *psubject)
+//{
+//
+//
+//}
+
+
+//void matter::on_subject_process(::promise::update *psubject)
+//{
+//
+//
+//}
+
+
+//void matter::on_subject_deliver(::promise::update *psubject)
+//{
+//
+//
+//}
 
 
 strsize matter::sz_len() const
@@ -735,10 +769,10 @@ void matter::to_string(const class string_exchange & str) const
 }
 
 
-CLASS_DECL_ACME ::estatus __call(const ::procedure & procedure)
+CLASS_DECL_ACME ::estatus __call(const ::promise::routine & routine)
 {
 
-   return procedure();
+   return routine();
 
 }
 

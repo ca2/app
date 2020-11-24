@@ -625,7 +625,7 @@ public:
 
       auto pModified = __new(typename TYPE_IS_PTR::TYPE(*p));
 
-      pModified->apply(pobject, attribute);
+      pModified->process(pobject, attribute);
 
       return this->get_existing(pModified);
 
@@ -714,7 +714,7 @@ public:
    }
 
    template < typename VAR >
-   inline array_base & operator = (const class ::var_type < VAR > & a);
+   inline array_base & operator = (const class ::payload_type < VAR > & a);
 
 
    template < typename PRED >

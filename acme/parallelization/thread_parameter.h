@@ -5,7 +5,7 @@
 //{
 //public:
 //
-//   ＿＿pointer(matter)    m_psimpleobject;
+//   __pointer(matter)    m_psimpleobject;
 //
 //
 //   thread_parameter() {}

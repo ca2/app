@@ -49,7 +49,7 @@ namespace filemanager
 
    }
 
-   bool document::do_prompt_file_name(var & varFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocumentOther)
+   bool document::do_prompt_file_name(payload & varFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocumentOther)
    {
 
       UNREFERENCED_PARAMETER(nIDSTitle);
@@ -239,9 +239,9 @@ namespace filemanager
       else if (filemanager_data()->m_pcallback != nullptr)
       {
 
-         var varFile;
+         payload varFile;
 
-         var varQuery;
+         payload varQuery;
 
          if (itema.get_count() == 2 && m_id == "filemanager::main::left")
          {
@@ -585,7 +585,7 @@ namespace filemanager
 
 
 
-   bool document::on_open_document(const var & varFile)
+   bool document::on_open_document(const payload & varFile)
    {
 
       ::file::path path = varFile.get_file_path();

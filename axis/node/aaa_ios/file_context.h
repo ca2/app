@@ -22,9 +22,9 @@ namespace ios
       
       virtual ::estatus update_module_path() override;
 
-      virtual var length(const ::file::path & path, var * pvarQuery) override;
+      virtual payload length(const ::file::path & path, payload * pvarQuery) override;
       
-      virtual ::file_result get_file(const var & varFile, const efileopen & eopen) override;
+      virtual ::file_result get_file(const payload & varFile, const efileopen & eopen) override;
 
 
    };

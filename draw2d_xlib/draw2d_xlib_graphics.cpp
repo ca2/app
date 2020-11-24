@@ -4677,7 +4677,7 @@ namespace draw2d_xlib
 
       XGlyphInfo extents;
 
-      ·zero(extents);
+      xxf_zero(extents);
 
 //      wstring wstr(lpszString, nCount);
 

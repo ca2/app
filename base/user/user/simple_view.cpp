@@ -44,7 +44,7 @@ namespace user
    }
 
 
-   void simple_view::on_apply(::action * paction)
+   void simple_view::on_apply(::subject * paction)
    {
 
       ::user::impact::on_apply(paction);

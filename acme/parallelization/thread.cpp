@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-CLASS_DECL_ACME bool ＿＿simple_task_sleep()
+CLASS_DECL_ACME bool __simple_task_sleep()
 {
 
    while (thread_get_run())
@@ -16,7 +16,7 @@ CLASS_DECL_ACME bool ＿＿simple_task_sleep()
 }
 
 
-CLASS_DECL_ACME bool ＿＿simple_task_sleep(millis millis)
+CLASS_DECL_ACME bool __simple_task_sleep(millis millis)
 {
 
    auto i = millis.m_iMilliseconds;
@@ -51,7 +51,7 @@ CLASS_DECL_ACME bool ＿＿simple_task_sleep(millis millis)
 }
 
 
-CLASS_DECL_ACME bool ＿＿simple_task_sleep(sync* psync)
+CLASS_DECL_ACME bool __simple_task_sleep(sync* psync)
 {
 
    while (thread_get_run())
@@ -71,7 +71,7 @@ CLASS_DECL_ACME bool ＿＿simple_task_sleep(sync* psync)
 }
 
 
-CLASS_DECL_ACME bool ＿＿simple_task_sleep(millis millis, sync* psync)
+CLASS_DECL_ACME bool __simple_task_sleep(millis millis, sync* psync)
 {
 
    auto i = millis.m_iMilliseconds;
@@ -122,16 +122,16 @@ CLASS_DECL_ACME bool acme_task_sleep(millis millis, sync* psync)
    if (::is_null(psync))
    {
 
-      if (＿＿os(millis) == U32_INFINITE_TIMEOUT)
+      if (__os(millis) == U32_INFINITE_TIMEOUT)
       {
 
-         return ＿＿simple_task_sleep();
+         return __simple_task_sleep();
 
       }
       else
       {
 
-         return ＿＿simple_task_sleep(millis);
+         return __simple_task_sleep(millis);
 
       }
 
@@ -139,16 +139,16 @@ CLASS_DECL_ACME bool acme_task_sleep(millis millis, sync* psync)
    else
    {
 
-      if (＿＿os(millis) == U32_INFINITE_TIMEOUT)
+      if (__os(millis) == U32_INFINITE_TIMEOUT)
       {
 
-         return ＿＿simple_task_sleep(psync);
+         return __simple_task_sleep(psync);
 
       }
       else
       {
 
-         return ＿＿simple_task_sleep(millis, psync);
+         return __simple_task_sleep(millis, psync);
 
       }
 

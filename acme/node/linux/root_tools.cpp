@@ -262,7 +262,7 @@ namespace VistaTools
    HANDLE   hVE_Process               = nullptr;
 
 //////////////////////////////////e
-// the hook callback procedure, it is called in the context of th shell proces
+// the hook callback routine, it is called in the context of th shell proces
 
    LRESULT CALLBACK
    VistaEelevator_HookProc_MsgRet( int code, WPARAM wParam, LPARAM lParam )
@@ -362,10 +362,10 @@ namespace VistaTools
       // running without its shell?), we will try to inject our code into the shell process.
       //
       // To inject the code, we will install a global hook, and send a message to
-      // a ::ca::user::interaction_impl created by the shell. This will cause our hook callback procedure to be executed
+      // a ::ca::user::interaction_impl created by the shell. This will cause our hook callback routine to be executed
       // in the context of the shell proces.
       //
-      // Because this trick uses a global hook, the hook procedure must be in a DLL.
+      // Because this trick uses a global hook, the hook routine must be in a DLL.
       //
 
       /////////////////////
@@ -427,7 +427,7 @@ namespace VistaTools
 
       //////////////////////////////////
       // Prepare the parameters for launching the non-elevated process
-      // from the hook callback procedure (they are placed into the shared data section)
+      // from the hook callback routine (they are placed into the shared data section)
 
       if (!( ansi_count_copy(
              szVE_Path,
@@ -459,14 +459,14 @@ namespace VistaTools
       bVE_NeedProcessHandle = (phProcess != nullptr);
 
       /////////////////////////////////////////
-      // Activate our hook callback procedure:
+      // Activate our hook callback routine:
 
       bVESuccess = FALSE; // assume failure
 
       ::SendMessage( hwndShell, uVEMsg, 0, 0 );
 
       ////////////////////////////////////////////////////////
-      // At this point our hook procedure has been executed!
+      // At this point our hook routine has been executed!
 
       if ( phProcess )
          *phProcess = hVE_Process;

@@ -188,7 +188,7 @@ namespace user
    }
 
 
-   void frame_window::update_active_document(::action * paction)
+   void frame_window::update_active_document(::subject * paction)
    {
 
       auto pdocument = GetActiveDocument();
@@ -1981,7 +1981,7 @@ namespace user
       }
 
       // if the OnActivateView moves the active interaction_impl,
-      //    that will veto this change
+      //    that will veto this machine
       if (m_pviewActive != nullptr)
          return;     // already set
       m_pviewActive = pViewNew;

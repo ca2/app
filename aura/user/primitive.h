@@ -144,22 +144,22 @@ namespace user
 
       virtual string get_title();
 
-      //virtual i32 sync_message_box(var var);
+      //virtual i32 sync_message_box(payload payload);
 
       //template < typename PRED >
-      //void pred_message_box(PRED pred, var var)
+      //void pred_message_box(PRED pred, payload payload)
       //{
 
       //   fork([=]()
       //      {
 
-      //         pred(sync_message_box(var));
+      //         pred(sync_message_box(payload));
 
       //      });
 
       //}
 
-      //virtual ::estatus message_box(const var & var) override;
+      //virtual ::estatus message_box(const payload & payload) override;
 
       virtual void install_message_routing(::channel * pchannel) override;
 
@@ -575,8 +575,8 @@ namespace user
 
       //virtual bool track_popup_menu(::user::menu_item * pitem,i32 iFlags, const ::point & point = nullptr);
       //virtual __pointer(::user::menu) track_popup_xml_matter_menu(const char * pszMatter,i32 iFlags, const ::point & point);
-      //virtual __pointer(::user::menu) track_popup_xml_menu(const var & varXml, i32 iFlags, const ::point & pointScreen = nullptr, const ::size& sizeMinimum = size(0, 0));
-      //virtual __pointer(::user::menu) track_popup_xml_menu_file(var varFile, i32 iFlags, const ::point & point = nullptr, const ::size & sizeMinimum = size(0, 0));
+      //virtual __pointer(::user::menu) track_popup_xml_menu(const payload & varXml, i32 iFlags, const ::point & pointScreen = nullptr, const ::size& sizeMinimum = size(0, 0));
+      //virtual __pointer(::user::menu) track_popup_xml_menu_file(payload varFile, i32 iFlags, const ::point & point = nullptr, const ::size & sizeMinimum = size(0, 0));
 
       //virtual bool track_popup_menu(::user::menu_item * pitem,i32 iFlags,::message::message * pmessage);
       //virtual __pointer(::user::menu) track_popup_xml_matter_menu(const char * pszMatter,i32 iFlags,::message::message * pmessage);
@@ -737,7 +737,7 @@ namespace user
 
       //virtual bool SetPlacement(const ::rect & rect, ::u32 nFlags = SWP_SHOWWINDOW);
 
-      virtual i32 get_total_page_count(::change * pchange);
+      virtual i32 get_total_page_count(::machine * pchange);
 
       virtual void edit_on_text(string str);
       virtual void edit_on_sel(strsize iBeg, strsize iEnd);

@@ -307,13 +307,13 @@ void enum_display_monitors(::acme::system * psystem)
 
          GdkRectangle rect;
 
-         ·zero(rect);
+         xxf_zero(rect);
 
          gdk_monitor_get_workarea(pmonitor, &rect);
 
          __copy(rectWork, rect);
 
-         ·zero(rect);
+         xxf_zero(rect);
 
          gdk_monitor_get_geometry(pmonitor, &rect);
 

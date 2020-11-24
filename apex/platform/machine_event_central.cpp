@@ -39,7 +39,7 @@ machine_event_central::~machine_event_central()
    }
 
 
-   // todo (camilo) instead of sleeping (at machine_event_central::run) , wait for change messages pooling in the machine event data file.
+   // todo (camilo) instead of sleeping (at machine_event_central::run) , wait for machine messages pooling in the machine event data file.
 
    // meanwhile, not being used, so exit... It is a problem for Instrumentation Profiling, as function timing (and not cpu usage), counts.
 #if 0
@@ -59,7 +59,7 @@ machine_event_central::~machine_event_central()
 ::estatus     machine_event_central::run()
 {
 
-   // todo (camilo) instead of sleeping, wait for change messages pooling in the machine event data file.
+   // todo (camilo) instead of sleeping, wait for machine messages pooling in the machine event data file.
 
    // meanwhile, not being used, so exit... It is a problem for Instrumentation Profiling, as function timing (and not cpu usage), counts.
 

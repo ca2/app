@@ -159,7 +159,7 @@ namespace filemanager
          if(Context.file().exists(strDst) || Context.dir().is(strDst))
          {
 
-            //auto function = function_arg([](::var& varRet, const ::var& varVal)
+            //auto function = function_arg([](::payload& varRet, const ::payload& varVal)
             //   {
 
             //      if (varVal == "no")
@@ -470,7 +470,7 @@ namespace filemanager
 
       m_dSize = 0.0;
 
-      var varLen;
+      payload varLen;
 
       for(i32 i = 0; i < m_stra.get_size(); i++)
       {

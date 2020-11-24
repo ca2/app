@@ -62,7 +62,7 @@ HBITMAP pixmap::update_windows_dib(const ::size& size)
 
    BITMAPINFO bitmapinfo;
 
-   ·zero(bitmapinfo);
+   xxf_zero(bitmapinfo);
 
    auto iScan = size.cx * 4;
 

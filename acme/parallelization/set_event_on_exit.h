@@ -23,7 +23,7 @@ public:
 
 
 template < typename PRED >
-class  λon_exit
+class  pred_on_exit
 {
 public:
    
@@ -31,8 +31,8 @@ public:
    PRED m_pred;
    
    
-   λon_exit(PRED pred) : m_pred(pred) { }
-   ~λon_exit() { m_pred(); }
+   pred_on_exit(PRED pred) : m_pred(pred) { }
+   ~pred_on_exit() { m_pred(); }
    
    
 };

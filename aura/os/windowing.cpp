@@ -4,7 +4,7 @@
 #endif
 #include "_os.h"
 #include <stdio.h>
-#include "acme/multithreading/mq.h"
+#include "acme/parallelization/mq.h"
 
 
 #undef ALOG_CONTEXT

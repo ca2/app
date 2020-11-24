@@ -132,10 +132,10 @@ namespace xml
    }
 
 
-   node * input_tree::import_node(const char * pcszName, var & var)
+   node * input_tree::import_node(const char * pcszName, payload & payload)
    {
 
-      m_varexchange.m_pvar = &var;
+      m_varexchange.m_pvar = &payload;
 
       return import_node(pcszName, m_varexchange);
 

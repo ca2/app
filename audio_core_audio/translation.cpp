@@ -12,7 +12,7 @@ namespace multimedia
       void translate(AudioStreamBasicDescription & waveformatex, ::wave::format * pwaveformat)
       {
 
-         ·zero(waveformatex);
+         xxf_zero(waveformatex);
          waveformatex.mReserved         = 0;
          FillOutASBDForLPCM (
          waveformatex,

@@ -75,7 +75,7 @@ CLASS_DECL_APEX bool do_events();
 
 
 //
-//namespace multithreading
+//namespace parallelization
 //{
 //
 //
@@ -100,7 +100,7 @@ CLASS_DECL_APEX bool do_events();
 //   }
 //
 //
-//} // namespace multithreading
+//} // namespace parallelization
 //
 //
 //

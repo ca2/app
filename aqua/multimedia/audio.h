@@ -25,7 +25,7 @@ namespace aqua
       virtual ~audio();
 
 
-      virtual void play_audio(const var & varFile, bool bSynch = false);
+      virtual void play_audio(const payload & varFile, bool bSynch = false);
 
 
       virtual __pointer(::tts::speaker) create_tts_speaker();
@@ -36,7 +36,7 @@ namespace aqua
       virtual void google_speak(const string & strLang, const string & strText, bool bSynch);
 
 
-      virtual ::file_pointer get_rtp_file(const ::var & varFile);
+      virtual ::file_pointer get_rtp_file(const ::payload & varFile);
 
 
       virtual LPFN_NEW_MULTIMEDIA_DECODER get_multimedia_decoder_factory(const char * pszTitle);

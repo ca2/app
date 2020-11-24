@@ -222,7 +222,7 @@ namespace user
 
       virtual void install_message_routing(::channel * pchannel) override;
       virtual void OnDraw(::image * pimage);      // overridden to draw this ::user::impact
-      virtual void on_apply(::action * paction) override;
+      virtual void on_apply(::subject * paction) override;
 
 
 
@@ -338,7 +338,7 @@ namespace user
 
       virtual ::sized get_total_size() override;
 
-      virtual var get_ex_value();
+      virtual payload get_ex_value();
 
 
       virtual void on_before_change_text();

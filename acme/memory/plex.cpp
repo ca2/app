@@ -17,7 +17,7 @@ plex* plex::create(plex*& pHead, uptr nMax, uptr cbElement)
    plex* point = (plex*) memory_alloc(size);
    // may __throw( exception
    point->pNext = pHead;
-   pHead = point;  // change head (adds in reverse order for simplicity)
+   pHead = point;  // machine head (adds in reverse order for simplicity)
    return point;
 }
 

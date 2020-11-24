@@ -74,7 +74,7 @@ class multi_lock;
 
 
 
-namespace multithreading
+namespace parallelization
 {
 
 
@@ -119,7 +119,7 @@ namespace multithreading
    }
 
 
-} // namespace multithreading
+} // namespace parallelization
 
 
 
@@ -156,7 +156,7 @@ using user_interaction_ptr_array = address_array < ::user::interaction * >;
 class thread_startup;
 
 
-namespace multithreading
+namespace parallelization
 {
 
 
@@ -181,7 +181,7 @@ namespace multithreading
    //}
 
 
-} // namespace multithreading
+} // namespace parallelization
 
 
 class sync_interface;
@@ -272,7 +272,7 @@ public:
 
 
 
-// namespace multithreading
+// namespace parallelization
 // {
 
 
@@ -285,7 +285,7 @@ public:
 //    CLASS_DECL_APEX void * os_tls_get();
 
 
-// } // namespace multithreading
+// } // namespace parallelization
 
 
 //CLASS_DECL_APEX ::thread* get_task();

@@ -29,12 +29,12 @@ namespace xml
 
       virtual node * import_node(const char * pcszName, property_set & set, importable & importable);
 
-      virtual node * import_node(const char * pcszName, var & var);
+      virtual node * import_node(const char * pcszName, payload & payload);
 
 
 
       template < typename TYPE >
-      bool load_attribute(const ::id & id, TYPE & t, const var & var = type_new)
+      bool load_attribute(const ::id & id, TYPE & t, const payload & payload = type_new)
       {
 
          if (m_pnode->find_attribute(id, t))
@@ -44,7 +44,7 @@ namespace xml
 
          }
 
-         t = var;
+         t = payload;
 
          return false;
 

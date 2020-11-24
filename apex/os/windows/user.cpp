@@ -29,7 +29,7 @@ CLASS_DECL_APEX bool GetPrimaryMonitorRect(LPRECT32 lprect)
 
    MONITORINFO mi;
 
-   ·zero(mi);
+   xxf_zero(mi);
 
    mi.cbSize = sizeof(MONITORINFO);
 

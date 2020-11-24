@@ -71,7 +71,7 @@ namespace prompt
       UNREFERENCED_PARAMETER(pmessage);
    }
 
-   bool document::on_open_document(const var & varFile)
+   bool document::on_open_document(const payload & varFile)
    {
       string str = Context.file().as_string(varFile);
       //  m_document.load(str);

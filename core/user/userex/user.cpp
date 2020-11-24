@@ -372,7 +372,7 @@ namespace core
       //string strLicense = Application.get_license_id();
 
 
-      //var & varTopicQuey = System.m_varTopicQuery;
+      //payload & varTopicQuey = System.m_varTopicQuery;
 
 //      bool bHasInstall = System.has_property("install");
 //
@@ -499,7 +499,7 @@ namespace core
 
 
 
-   __pointer(::form_document) user::create_form(::object * pobject, ::type type, __pointer(::user::interaction) pwndParent, var var, ::var varArgs)
+   __pointer(::form_document) user::create_form(::object * pobject, ::type type, __pointer(::user::interaction) pwndParent, payload payload, ::payload varArgs)
    {
 
       if (!type)
@@ -554,12 +554,12 @@ namespace core
 
       pcreate->m_varArgs = varArgs;
 
-      if (var.get_file_path().has_char())
+      if (payload.get_file_path().has_char())
       {
 
          pcreate->m_pcommandline.create(this);
 
-         pcreate->m_pcommandline->m_varFile = var.get_file_path();
+         pcreate->m_pcommandline->m_varFile = payload.get_file_path();
 
       }
 
@@ -976,7 +976,7 @@ namespace core
    }
 
 
-   __pointer(::form_document) user::create_form(::object * pobject, __pointer(::user::form) pview, ::user::form_callback * pcallback, __pointer(::user::interaction) pwndParent, var var, ::var varArgs)
+   __pointer(::form_document) user::create_form(::object * pobject, __pointer(::user::form) pview, ::user::form_callback * pcallback, __pointer(::user::interaction) pwndParent, payload payload, ::payload varArgs)
    {
 
       if (m_ptemplateForm == nullptr)
@@ -998,16 +998,16 @@ namespace core
 
       pcreate->m_varArgs["form_callback"] = pcallback;
 
-      if (var.get_file_path().has_char())
+      if (payload.get_file_path().has_char())
       {
 
          pcreate->m_pcommandline.create(this);
 
-         pcreate->m_pcommandline->m_varFile = var.get_file_path();
+         pcreate->m_pcommandline->m_varFile = payload.get_file_path();
 
       }
 
-      if (var.get_type() == ::type_propset && var.has_property("hold") && !(bool)var["hold"])
+      if (payload.get_type() == ::type_propset && payload.has_property("hold") && !(bool)payload["hold"])
       {
 
          pcreate->m_bHold = false;
@@ -1039,7 +1039,7 @@ namespace core
    }
 
 
-   __pointer(::form_document) user::create_form(::object * pobject, ::user::form_callback * pcallback, __pointer(::user::interaction) pwndParent, var var, ::var varArgs)
+   __pointer(::form_document) user::create_form(::object * pobject, ::user::form_callback * pcallback, __pointer(::user::interaction) pwndParent, payload payload, ::payload varArgs)
    {
 
       auto ptemplateForm = m_ptemplateForm;
@@ -1080,18 +1080,18 @@ namespace core
 
       pcreate->m_varArgs["form_callback"] = pcallback;
 
-      if (var.get_file_path().has_char())
+      if (payload.get_file_path().has_char())
       {
 
          pcreate->m_pcommandline.create(this);
 
-         pcreate->m_pcommandline->m_varFile = var.get_file_path();
+         pcreate->m_pcommandline->m_varFile = payload.get_file_path();
 
-         string strPath = var.get_file_path();
+         string strPath = payload.get_file_path();
 
       }
 
-      if (var.get_type() == ::type_propset && var.has_property("hold") && !(bool)var["hold"])
+      if (payload.get_type() == ::type_propset && payload.has_property("hold") && !(bool)payload["hold"])
       {
 
          pcreate->m_bHold = false;
@@ -1123,7 +1123,7 @@ namespace core
    }
 
 
-   __pointer(::form_document) user::create_child_form(::object * pobject, __pointer(::user::form) pview, ::user::form_callback * pcallback, __pointer(::user::interaction) pwndParent, var var, ::var varArgs)
+   __pointer(::form_document) user::create_child_form(::object * pobject, __pointer(::user::form) pview, ::user::form_callback * pcallback, __pointer(::user::interaction) pwndParent, payload payload, ::payload varArgs)
    {
 
       if (m_ptemplateChildForm == nullptr)
@@ -1171,16 +1171,16 @@ namespace core
 
       pcreate->m_varArgs["form_callback"] = pcallback;
 
-      if (var.get_file_path().has_char())
+      if (payload.get_file_path().has_char())
       {
 
          pcreate->m_pcommandline.defer_create(this);
 
-         pcreate->m_pcommandline->m_varFile = var.get_file_path();
+         pcreate->m_pcommandline->m_varFile = payload.get_file_path();
 
       }
 
-      if (var.get_type() == ::type_propset && var.has_property("hold") && !(bool)var["hold"])
+      if (payload.get_type() == ::type_propset && payload.has_property("hold") && !(bool)payload["hold"])
       {
 
          pcreate->m_bHold = false;
@@ -1214,7 +1214,7 @@ namespace core
    }
 
 
-   __pointer(::form_document) user::create_child_form(::object * pobject, ::user::form_callback * pcallback, __pointer(::user::interaction) pwndParent, var var, ::var varArgs)
+   __pointer(::form_document) user::create_child_form(::object * pobject, ::user::form_callback * pcallback, __pointer(::user::interaction) pwndParent, payload payload, ::payload varArgs)
    {
 
       ::apex::application * papp = ::get_context_application(pobject);
@@ -1253,12 +1253,12 @@ namespace core
 
       pcreate->m_varArgs["form_callback"] = pcallback;
 
-      if (var.get_file_path().has_char())
+      if (payload.get_file_path().has_char())
       {
 
          pcreate->m_pcommandline.create(this);
 
-         ::file::path path = var.get_file_path();
+         ::file::path path = payload.get_file_path();
 
          pcreate->m_pcommandline->m_varFile = path;
 
@@ -1296,7 +1296,7 @@ namespace core
       return file_extension_dup(strFilePath).contains_ci("htm");
    }
 
-   __pointer(::form_document) user::create_child_form(::object * pobject, ::type type, __pointer(::user::interaction) pwndParent, var var, ::var varArgs)
+   __pointer(::form_document) user::create_child_form(::object * pobject, ::type type, __pointer(::user::interaction) pwndParent, payload payload, ::payload varArgs)
    {
 
       if (!type)
@@ -1313,7 +1313,7 @@ namespace core
 
          ::type typeDocument = m_ptemplateChildForm->m_typeDocument;
 
-         if (is_html_file(var.get_file_path()))
+         if (is_html_file(payload.get_file_path()))
          {
 
             typeDocument = get_html_document_type();
@@ -1362,12 +1362,12 @@ namespace core
 
       pcreate->m_varArgs = varArgs;
 
-      if (var.get_file_path().has_char())
+      if (payload.get_file_path().has_char())
       {
 
          pcreate->m_pcommandline.create(this);
 
-         pcreate->m_pcommandline->m_varFile = var.get_file_path();
+         pcreate->m_pcommandline->m_varFile = payload.get_file_path();
 
       }
 
@@ -2038,20 +2038,20 @@ namespace core
    //}
 
 
-   //i32 application::sync_message_box_timeout(::user::primitive * pwndOwner, var var, ::duration durationTimeOut, ::u32 fuStyle)
+   //i32 application::sync_message_box_timeout(::user::primitive * pwndOwner, payload payload, ::duration durationTimeOut, ::u32 fuStyle)
    //{
 
    //   if (psession->user() == nullptr)
    //   {
 
-   //      return ::base::application::sync_message_box_timeout(pwndOwner, var, durationTimeOut, fuStyle);
+   //      return ::base::application::sync_message_box_timeout(pwndOwner, payload, durationTimeOut, fuStyle);
 
    //   }
 
    //   try
    //   {
 
-   //      return puser->message_box_timeout(pwndOwner, var, durationTimeOut, fuStyle, this);
+   //      return puser->message_box_timeout(pwndOwner, payload, durationTimeOut, fuStyle, this);
 
    //   }
    //   catch (...)
@@ -2059,7 +2059,7 @@ namespace core
 
    //   }
 
-   //   return ::base::application::sync_message_box_timeout(pwndOwner, var, durationTimeOut, fuStyle);
+   //   return ::base::application::sync_message_box_timeout(pwndOwner, payload, durationTimeOut, fuStyle);
 
    //}
 

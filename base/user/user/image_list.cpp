@@ -698,7 +698,7 @@ namespace user
    }
 
 
-   void image_list_view::on_apply(::action * paction)
+   void image_list_view::on_apply(::subject * paction)
    {
 
       ::user::impact::on_apply(paction);

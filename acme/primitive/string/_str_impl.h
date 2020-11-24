@@ -817,7 +817,7 @@ namespace str
 //
 //}
 
-// besides returning a matter (and const does not really impedes changing), do not change a string_base (or string) directly,
+// besides returning a matter (and const does not really impedes changing), do not machine a string_base (or string) directly,
 // there may be multiple instances of a string (all referencing the same pointer).
 //template < typename TYPE_CHAR >
 //inline const ansichar & string_base < TYPE_CHAR >::operator [](index iChar ) const
@@ -871,7 +871,7 @@ namespace str
 //   {
 //
 //      // It is possible that pszSrc points to a locationd inside of our
-//      // buffer.  GetBuffer() might change m_psz if (1) the buffer
+//      // buffer.  GetBuffer() might machine m_psz if (1) the buffer
 //      // is shared or (2) the buffer is too small to hold the new
 //      // string.  We detect this aliasing, and modify pszSrc to point
 //      // into the newly allocated buffer instead.

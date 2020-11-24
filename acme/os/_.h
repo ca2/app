@@ -99,7 +99,7 @@ CLASS_DECL_ACME locale_t get_c_locale();
 #include "time.h"
 
 
-#include "thread.h"
+#include "parallelization.h"
 
 
 //#ifdef

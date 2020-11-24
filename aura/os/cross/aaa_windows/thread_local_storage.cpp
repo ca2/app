@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-static ::u32 nextTlsIndex = ::multithreading::slot_user_begin;
+static ::u32 nextTlsIndex = ::parallelization::slot_user_begin;
 
 
 
@@ -105,7 +105,7 @@ void __node_term_cross_windows_threading()
 //int_bool thread_data_free(thread_data_index dwIndex)
 //{
 //
-//   if (dwIndex < ::multithreading::slot_user_begin || dwIndex >= nextTlsIndex)
+//   if (dwIndex < ::parallelization::slot_user_begin || dwIndex >= nextTlsIndex)
 //   {
 //
 //      return false;

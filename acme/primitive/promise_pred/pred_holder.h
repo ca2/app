@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_ACME λholder_base :
+class CLASS_DECL_ACME pred_holder_base :
    virtual public matter
 {
 public:
@@ -10,7 +10,7 @@ public:
    ::tool_thread *         m_ptoolthread;
 
 
-   λholder_base()
+   pred_holder_base()
    {
 
       m_ptoolthread = nullptr;
@@ -25,8 +25,8 @@ public:
 
 
 template < typename PRED >
-class λholder :
-   virtual public λholder_base
+class pred_holder :
+   virtual public pred_holder_base
 {
 public:
 
@@ -34,7 +34,7 @@ public:
    PRED m_pred;
 
    
-   λholder(PRED pred) :
+   pred_holder(PRED pred) :
       m_pred(pred)
    {
 
@@ -55,21 +55,21 @@ public:
 
 
 
-class CLASS_DECL_ACME λarray :
-   virtual public array < ＿＿pointer(λholder_base) >
+class CLASS_DECL_ACME pred_array :
+   virtual public array < __pointer(pred_holder_base) >
 {
 public:
 
 
-   λarray();
-   virtual ~λarray();
+   pred_array();
+   virtual ~pred_array();
 
 
    template < typename PRED >
-   void λadd(PRED pred)
+   void pred_add(PRED pred)
    {
 
-      add(＿＿new(λholder < PRED >(pred)));
+      add(__new(pred_holder < PRED >(pred)));
 
    }
 

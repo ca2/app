@@ -12,7 +12,7 @@
 //extern locale_t ::acme::g_localeC;
 #endif
 
-var::var(const char * psz)
+payload::payload(const char * psz)
 {
 
    m_etype = type_new;
@@ -22,7 +22,7 @@ var::var(const char * psz)
 }
 
 
-var::var(::matter * pmatter)
+payload::payload(::matter * pmatter)
 {
 
    m_etype = type_new;
@@ -32,7 +32,7 @@ var::var(::matter * pmatter)
 }
 
 
-var::var(const ::matter & matter)
+payload::payload(const ::matter & matter)
 {
 
    m_etype = type_new;
@@ -42,7 +42,7 @@ var::var(const ::matter & matter)
 }
 
 
-var::var(const string & str)
+payload::payload(const string & str)
 {
 
    m_etype = type_new;
@@ -52,7 +52,7 @@ var::var(const string & str)
 }
 
 
-var::var(const type & type)
+payload::payload(const type & type)
 {
 
    m_etype = type_new;
@@ -62,7 +62,7 @@ var::var(const type & type)
 }
 
 
-var::var(string * pstr)
+payload::payload(string * pstr)
 {
 
    m_etype = type_new;
@@ -72,7 +72,7 @@ var::var(string * pstr)
 }
 
 
-var::var(bool b)
+payload::payload(bool b)
 {
 
    m_etype = type_new;
@@ -82,7 +82,7 @@ var::var(bool b)
 }
 
 
-var::var(bool * pb)
+payload::payload(bool * pb)
 {
 
    m_etype = type_new;
@@ -92,7 +92,7 @@ var::var(bool * pb)
 }
 
 
-var::var(::i32 i)
+payload::payload(::i32 i)
 {
 
    m_etype = type_new;
@@ -102,7 +102,7 @@ var::var(::i32 i)
 }
 
 
-var::var(::u32 u )
+payload::payload(::u32 u )
 {
 
    m_etype = type_u32;
@@ -112,7 +112,7 @@ var::var(::u32 u )
 }
 
 
-var::var(::i64 i)
+payload::payload(::i64 i)
 {
 
    m_etype = type_new;
@@ -122,7 +122,7 @@ var::var(::i64 i)
 }
 
 
-var::var(::u64 u )
+payload::payload(::u64 u )
 {
 
    m_etype = type_u64;
@@ -135,7 +135,7 @@ var::var(::u64 u )
 #ifdef __APPLE__
 #ifdef OS64BIT
 
-var::var(long l)
+payload::payload(long l)
 {
 
    m_etype = type_i64;
@@ -147,7 +147,7 @@ var::var(long l)
 #endif
 
 
-var::var(::i32 * pi)
+payload::payload(::i32 * pi)
 {
 
    m_etype = type_new;
@@ -156,7 +156,7 @@ var::var(::i32 * pi)
 }
 
 
-var::var(::u32 * pinteraction)
+payload::payload(::u32 * pinteraction)
 {
 
    m_etype = type_new;
@@ -165,7 +165,7 @@ var::var(::u32 * pinteraction)
 }
 
 
-var::var(::i64 * pi)
+payload::payload(::i64 * pi)
 {
 
    m_etype = type_new;
@@ -174,7 +174,7 @@ var::var(::i64 * pi)
 }
 
 
-var::var(::u64 * pinteraction)
+payload::payload(::u64 * pinteraction)
 {
 
    m_etype = type_new;
@@ -183,7 +183,7 @@ var::var(::u64 * pinteraction)
 }
 
 
-var::var(float f)
+payload::payload(float f)
 {
 
    m_etype = type_new;
@@ -192,7 +192,7 @@ var::var(float f)
 }
 
 
-var::var(double d)
+payload::payload(double d)
 {
 
    m_etype = type_new;
@@ -201,7 +201,7 @@ var::var(double d)
 }
 
 
-var::var(const ::file::path & path)
+payload::payload(const ::file::path & path)
 {
 
    m_etype = type_new;
@@ -210,16 +210,16 @@ var::var(const ::file::path & path)
 }
 
 
-var::var(const string_array & var)
+payload::payload(const string_array & payload)
 {
 
    m_etype  = type_new;
-   operator = (var);
+   operator = (payload);
 
 }
 
 
-var::var(const int_array & ia)
+payload::payload(const int_array & ia)
 {
 
    m_etype  = type_new;
@@ -228,16 +228,16 @@ var::var(const int_array & ia)
 }
 
 
-var::var(const var_array & var)
+payload::payload(const var_array & payload)
 {
 
    m_etype  = type_new;
-   operator = (var);
+   operator = (payload);
 
 }
 
 
-var::var(const property_set & set)
+payload::payload(const property_set & set)
 {
 
    m_etype  = type_new;
@@ -246,17 +246,17 @@ var::var(const property_set & set)
 }
 
 
-var::var(const class var & var)
+payload::payload(const class payload & payload)
 {
 
    m_i64 = 0;
    m_etype = type_new;
-   operator = (var);
+   operator = (payload);
 
 }
 
 
-var::var(class var * pvar)
+payload::payload(class payload * pvar)
 {
 
    m_etype = type_new;
@@ -268,13 +268,13 @@ var::var(class var * pvar)
 pack::pack(const ::std::initializer_list < pack >& list)
 {
 
-   for (auto& var : list)
+   for (auto& payload : list)
    {
 
-      if (var.get_type() == type_propset)
+      if (payload.get_type() == type_propset)
       {
 
-         propset().merge(var.propset());
+         propset().merge(payload.propset());
 
       }
 
@@ -283,7 +283,7 @@ pack::pack(const ::std::initializer_list < pack >& list)
 
 }
 
-var::var(const class var * pvar)
+payload::payload(const class payload * pvar)
 {
 
    m_etype = type_new;
@@ -292,60 +292,39 @@ var::var(const class var * pvar)
 }
 
 
-var::var(const property & prop)
+payload::payload(const property & prop)
 {
 
    m_etype = type_new;
-   ·zero(m_all);
+   xxf_zero(m_all);
    operator = (prop);
 
 }
 
 
-var::var(const procedure & procedure)
+payload::payload(const ::promise::routine & routine)
 {
 
     m_etype = type_new;
-    ·zero(m_all);
-    set_type(type_procedure);
-    m_procedure = procedure;
+    xxf_zero(m_all);
+    set_type(type_routine);
+    m_routine = routine;
 
 }
 
 
-var::var(const ::futurevar & futurevar)
+payload::payload(const ::promise::process & process)
 {
 
    m_etype = type_new;
-   ·zero(m_all);
-   set_type(type_futurevar);
-   m_futurevar = futurevar;
+   xxf_zero(m_all);
+   set_type(type_process);
+   m_process = process;
 
 }
 
 
-var::var(property * pproperty)
-{
-
-   m_etype = type_new;
-
-   if (::is_set(pproperty))
-   {
-
-      operator = (pproperty);
-
-   }
-   else
-   {
-
-      clear_data();
-
-   }
-
-}
-
-
-var::var(const property * pproperty)
+payload::payload(property * pproperty)
 {
 
    m_etype = type_new;
@@ -366,7 +345,28 @@ var::var(const property * pproperty)
 }
 
 
-var::var(const id & id)
+payload::payload(const property * pproperty)
+{
+
+   m_etype = type_new;
+
+   if (::is_set(pproperty))
+   {
+
+      operator = (pproperty);
+
+   }
+   else
+   {
+
+      clear_data();
+
+   }
+
+}
+
+
+payload::payload(const id & id)
 {
 
    m_etype = type_new;
@@ -375,7 +375,7 @@ var::var(const id & id)
 }
 
 
-var::var(const ::duration & duration)
+payload::payload(const ::duration & duration)
 {
 
    m_etype = type_duration;
@@ -384,7 +384,7 @@ var::var(const ::duration & duration)
 }
 
 
-var::var(::duration * pduration)
+payload::payload(::duration * pduration)
 {
 
    m_etype = type_pduration;
@@ -393,7 +393,7 @@ var::var(::duration * pduration)
 }
 
 
-var::var(const ::datetime::time & time)
+payload::payload(const ::datetime::time & time)
 {
    m_etype = type_time;
    m_time = time.m_time;
@@ -403,7 +403,7 @@ var::var(const ::datetime::time & time)
 #ifdef WINDOWS
 
 
-var::var(const FILETIME & filetime)
+payload::payload(const FILETIME & filetime)
 {
 
    m_etype = type_filetime;
@@ -412,7 +412,7 @@ var::var(const FILETIME & filetime)
 }
 
 
-var::var(const SYSTEMTIME & systemtime)
+payload::payload(const SYSTEMTIME & systemtime)
 {
    m_etype = type_time;
    m_time = ::datetime::time(systemtime).m_time;
@@ -422,39 +422,39 @@ var::var(const SYSTEMTIME & systemtime)
 #endif
 
 
-var::~var()
+payload::~payload()
 {
 
 }
 
 
-bool var::convert(const var& var)
+bool payload::convert(const payload& payload)
 {
 
-   if (m_etype == var.m_etype)
+   if (m_etype == payload.m_etype)
    {
 
-      memcpy(&m_all, &var.m_all, sizeof(m_all));
+      memcpy(&m_all, &payload.m_all, sizeof(m_all));
 
-      m_str = var.m_str;
+      m_str = payload.m_str;
 
    }
    else if(m_etype == type_i8)
    {
 
-      m_i8 = var;
+      m_i8 = payload;
 
    }
    else if(m_etype == type_enum_check)
    {
 
-      m_echeck = (::enum_check)(::i32) var;
+      m_echeck = (::enum_check)(::i32) payload;
 
    }
    else if(m_etype == type_string)
    {
 
-      m_str = var.get_string();
+      m_str = payload.get_string();
 
    }
    else
@@ -469,7 +469,7 @@ bool var::convert(const var& var)
 }
 
 
-strsize var::get_length() const
+strsize payload::get_length() const
 {
 
    return get_string().get_length();
@@ -477,7 +477,7 @@ strsize var::get_length() const
 }
 
 
-void var::get_string(char * psz) const
+void payload::get_string(char * psz) const
 {
 
    strcpy(psz, get_string());
@@ -485,7 +485,7 @@ void var::get_string(char * psz) const
 }
 
 
-::enum_type var::get_type() const
+::enum_type payload::get_type() const
 {
 
    return m_etype;
@@ -493,7 +493,7 @@ void var::get_string(char * psz) const
 }
 
 
-class var & var::operator ++(::i32)
+class payload & payload::operator ++(::i32)
 {
 
    switch(get_type())
@@ -542,7 +542,7 @@ class var & var::operator ++(::i32)
 }
 
 
-void var::set_type(const ::type & type)
+void payload::set_type(const ::type & type)
 {
 
    set_type(type_type, false);
@@ -556,7 +556,7 @@ void var::set_type(const ::type & type)
 
 
 
-bool var::get_type(::type & type) const
+bool payload::get_type(::type & type) const
 {
 
    if (m_etype != type_type)
@@ -573,7 +573,7 @@ bool var::get_type(::type & type) const
 }
 
 
-void var::set_type(enum_type etype, bool bConvert)
+void payload::set_type(enum_type etype, bool bConvert)
 {
 
    if (m_etype == type_pvar)
@@ -634,13 +634,13 @@ void var::set_type(enum_type etype, bool bConvert)
 }
 
 
-void var::unset()
+void payload::unset()
 {
    set_type(type_new, false);
 }
 
 
-void var::unset(const string & strPropertySetKey)
+void payload::unset(const string & strPropertySetKey)
 {
 
    if (get_type() == type_propset)
@@ -653,18 +653,18 @@ void var::unset(const string & strPropertySetKey)
 }
 
 
-bool var::ok() const
+bool payload::ok() const
 {
    return get_type() != type_parareturn || ::is_return_ok(m_parareturn);
 }
 
-bool var::failed() const
+bool payload::failed() const
 {
    return get_type() == type_parareturn && !::is_return_ok(m_parareturn);
 }
 
 
-void var::set_id(const id & id)
+void payload::set_id(const id & id)
 {
    if(get_type() == type_pid)
    {
@@ -685,14 +685,14 @@ void var::set_id(const id & id)
    }
 }
 
-class var & var::operator = (para_return & eret)
+class payload & payload::operator = (para_return & eret)
 {
    set_type(type_parareturn, false);
    m_parareturn = eret;
    return *this;
 }
 
-class var & var::operator = (bool b)
+class payload & payload::operator = (bool b)
 {
    if(get_type() == type_pbool)
    {
@@ -714,7 +714,7 @@ class var & var::operator = (bool b)
    return *this;
 }
 
-class var & var::operator = (bool * pb)
+class payload & payload::operator = (bool * pb)
 {
    set_type(type_pbool, false);
    m_pb = pb;
@@ -722,7 +722,7 @@ class var & var::operator = (bool * pb)
 }
 
 
-class var & var::operator = (::i32 i)
+class payload & payload::operator = (::i32 i)
 {
 
     if(get_type() == type_pi32)
@@ -757,7 +757,7 @@ class var & var::operator = (::i32 i)
 }
 
 
-class var & var::operator = (::i32 * pi)
+class payload & payload::operator = (::i32 * pi)
 {
 
    set_type(type_pi32, false);
@@ -769,7 +769,7 @@ class var & var::operator = (::i32 * pi)
 }
 
 
-class var & var::operator = (::u32 * pinteraction)
+class payload & payload::operator = (::u32 * pinteraction)
 {
 
     set_type(type_pu32, false);
@@ -781,7 +781,7 @@ class var & var::operator = (::u32 * pinteraction)
 }
 
 
-class var & var::operator = (::i64 * pi)
+class payload & payload::operator = (::i64 * pi)
 {
 
     set_type(type_pi64, false);
@@ -793,7 +793,7 @@ class var & var::operator = (::i64 * pi)
 }
 
 
-class var & var::operator = (::u64 * pinteraction)
+class payload & payload::operator = (::u64 * pinteraction)
 {
 
     set_type(type_pu64, false);
@@ -805,7 +805,7 @@ class var & var::operator = (::u64 * pinteraction)
 }
 
 
-class var & var::operator = (const ::datetime::time & time)
+class payload & payload::operator = (const ::datetime::time & time)
 {
 
     set_type(type_time, false);
@@ -820,7 +820,7 @@ class var & var::operator = (const ::datetime::time & time)
 #ifdef WINDOWS
 
 
-class var & var::operator = (const FILETIME & filetime)
+class payload & payload::operator = (const FILETIME & filetime)
 {
 
    set_type(type_filetime, false);
@@ -835,7 +835,7 @@ class var & var::operator = (const FILETIME & filetime)
 #endif
 
 
-class var & var::operator = (::i64 i)
+class payload & payload::operator = (::i64 i)
 {
    if(get_type() == type_pi64)
    {
@@ -857,7 +857,7 @@ class var & var::operator = (::i64 i)
    return *this;
 }
 
-class var & var::operator = (::u64 u)
+class payload & payload::operator = (::u64 u)
 {
    if(get_type() == type_pu64)
    {
@@ -880,7 +880,7 @@ class var & var::operator = (::u64 u)
 }
 
 
-class var & var::operator = (::u32 u)
+class payload & payload::operator = (::u32 u)
 {
    set_type(type_u32, false);
    m_u32 = u;
@@ -891,7 +891,7 @@ class var & var::operator = (::u32 u)
 #if !defined(LINUX) && !defined(MACOS) && !defined(ANDROID) && !defined(APPLE_IOS)
 
 
-class var & var::operator = (long l)
+class payload & payload::operator = (long l)
 {
 
    set_type(type_i32,false);
@@ -903,7 +903,7 @@ class var & var::operator = (long l)
 }
 
 
-class var & var::operator = (DWORD dw)
+class payload & payload::operator = (DWORD dw)
 {
 
    set_type(type_u32,false);
@@ -918,7 +918,7 @@ class var & var::operator = (DWORD dw)
 
 
 #if defined(__APPLE__)
-   class var & var::operator = (long l)
+   class payload & payload::operator = (long l)
    {
       set_type(type_i64,false);
       m_i64 = l;
@@ -927,7 +927,7 @@ class var & var::operator = (DWORD dw)
 #endif
 
 #if defined(ANDROID)
-   class var & var::operator = (long l)
+   class payload & payload::operator = (long l)
    {
       set_type(type_i32,false);
       m_i32 = l;
@@ -935,14 +935,14 @@ class var & var::operator = (DWORD dw)
    }
 #endif
 
-class var & var::operator = (float f)
+class payload & payload::operator = (float f)
 {
    set_type(type_float, false);
    m_f = f;
    return *this;
 }
 
-class var & var::operator = (double d)
+class payload & payload::operator = (double d)
 {
    set_type(type_double, false);
    m_d = d;
@@ -950,7 +950,7 @@ class var & var::operator = (double d)
 }
 
 
-//class var & var::operator = (enum_command ecommand)
+//class payload & payload::operator = (enum_command ecommand)
 //{
 //   set_type(type_enum_command, false);
 //   m_ecommand = ecommand;
@@ -960,7 +960,7 @@ class var & var::operator = (double d)
 //}
 
 
-class var & var::operator = (string * pstr)
+class payload & payload::operator = (string * pstr)
 {
 
    set_type(type_pstring, false);
@@ -972,21 +972,21 @@ class var & var::operator = (string * pstr)
 }
 
 
-class var & var::operator = (id * pid)
+class payload & payload::operator = (id * pid)
 {
    set_type(type_pid, false);
    m_pid = pid;
    return *this;
 }
 
-//class var & var::operator = (const char * psz)
+//class payload & payload::operator = (const char * psz)
 //{
 //   set_string(psz);
 //   return *this;
 //}
 
 
-class var & var::operator = (const widechar * pcsz)
+class payload & payload::operator = (const widechar * pcsz)
 {
 
    set_string(::str::international::unicode_to_utf8(pcsz));
@@ -996,17 +996,17 @@ class var & var::operator = (const widechar * pcsz)
 }
 
 
-class var & var::operator = (const property & prop)
+class payload & payload::operator = (const property & prop)
 {
 
-   operator = ((const var &)prop);
+   operator = ((const payload &)prop);
 
    return *this;
 
 }
 
 
-class var & var::operator = (const property * pproperty)
+class payload & payload::operator = (const property * pproperty)
 {
 
    if (::is_null(pproperty))
@@ -1029,124 +1029,124 @@ class var & var::operator = (const property * pproperty)
 }
 
 
-class var & var::operator = (const class var & var)
+class payload & payload::operator = (const class payload & payload)
 {
    if(m_etype == type_pvar)
    {
-      if(m_pvar == &var)
+      if(m_pvar == &payload)
          return *this;
-      m_pvar->operator = (var);
+      m_pvar->operator = (payload);
       return *this;
    }
    if (m_etype == type_prop)
    {
-      m_pprop->operator = (var);
+      m_pprop->operator = (payload);
       return *this;
    }
-   if(&var != this)
+   if(&payload != this)
    {
-      switch(((class var &)var).get_type())
+      switch(((class payload &)payload).get_type())
       {
       case type_pvar:
          // should dereference (this operator here means a content copy)
-         *this  = *((class var &)var).m_pvar;
+         *this  = *((class payload &)payload).m_pvar;
          return *this;
       case type_prop:
          // should dereference (this operator here means a content copy)
-         *this = *((class property&)var).m_pprop;
+         *this = *((class property&)payload).m_pprop;
          return *this;
       case type_pi32:
          // should dereference (this operator here means a content copy)
-         *this  = *((class var &)var).m_pi32;
+         *this  = *((class payload &)payload).m_pi32;
          return *this;
       case type_pstring:
          // should dereference (this operator here means a content copy)
-         *this  = *((class var &)var).m_pstr;
+         *this  = *((class payload &)payload).m_pstr;
          return *this;
       default:
          break;
       }
 
-      set_type(var.get_type(), false);
-      if (var.is_element())
+      set_type(payload.get_type(), false);
+      if (payload.is_element())
       {
 
-         m_p = var.m_p; // raw copy, doesn't care for the right member
+         m_p = payload.m_p; // raw copy, doesn't care for the right member
 
       }
       else
       {
-         switch (var.get_type())
+         switch (payload.get_type())
          {
          case type_bool:
-            m_b = var.m_b;
+            m_b = payload.m_b;
             break;
          case type_i8:
-            m_i8 = var.m_i8;
+            m_i8 = payload.m_i8;
             break;
          case type_u8:
-            m_u8 = var.m_u8;
+            m_u8 = payload.m_u8;
             break;
          case type_i16:
-            m_i16 = var.m_i16;
+            m_i16 = payload.m_i16;
             break;
          case type_u16:
-            m_u16 = var.m_u16;
+            m_u16 = payload.m_u16;
             break;
          case type_i32:
-            m_i32 = var.m_i32;
+            m_i32 = payload.m_i32;
             break;
          case type_u32:
-            m_u32 = var.m_u32;
+            m_u32 = payload.m_u32;
             break;
          case type_i64:
-            m_i64 = var.m_i64;
+            m_i64 = payload.m_i64;
             break;
          case type_u64:
-            m_u64 = var.m_u64;
+            m_u64 = payload.m_u64;
             break;
          case type_pi8:
-            m_pi8 = var.m_pi8;
+            m_pi8 = payload.m_pi8;
             break;
          case type_pu8:
-            m_pu8 = var.m_pu8;
+            m_pu8 = payload.m_pu8;
             break;
          case type_pi16:
-            m_pi16 = var.m_pi16;
+            m_pi16 = payload.m_pi16;
             break;
          case type_pu16:
-            m_pu16 = var.m_pu16;
+            m_pu16 = payload.m_pu16;
             break;
          case type_pi32:
-            m_pi32 = var.m_pi32;
+            m_pi32 = payload.m_pi32;
             break;
          case type_pu32:
-            m_pu32 = var.m_pu32;
+            m_pu32 = payload.m_pu32;
             break;
          case type_pi64:
-            m_pi64 = var.m_pi64;
+            m_pi64 = payload.m_pi64;
             break;
          case type_pu64:
-            m_pu64 = var.m_pu64;
+            m_pu64 = payload.m_pu64;
             break;
          case type_float:
-            m_f = var.m_f;
+            m_f = payload.m_f;
             break;
          case type_double:
-            m_d = var.m_d;
+            m_d = payload.m_d;
             break;
          case type_string:
-            m_str = var.m_str;
+            m_str = payload.m_str;
             break;
          case type_prop:
-            m_pprop=var.m_pprop;
+            m_pprop=payload.m_pprop;
             break;
          case type_id:
-            m_id = var.m_id;
+            m_id = payload.m_id;
             break;
          default:
-            memcpy(m_all, var.m_all, sizeof(m_all));
-            m_str = var.m_str;
+            memcpy(m_all, payload.m_all, sizeof(m_all));
+            m_str = payload.m_str;
             break;
          }
       }
@@ -1154,14 +1154,14 @@ class var & var::operator = (const class var & var)
    return *this;
 }
 
-class var & var::operator = (const int_array & ia)
+class payload & payload::operator = (const int_array & ia)
 {
    inta() = ia;
    return *this;
 }
 
 
-class var & var::operator = (const class memory & memoryParam)
+class payload & payload::operator = (const class memory & memoryParam)
 {
 
    memory() = memoryParam;
@@ -1171,37 +1171,37 @@ class var & var::operator = (const class memory & memoryParam)
 }
 
 
-class var & var::operator = (const string_array & straParam)
+class payload & payload::operator = (const string_array & straParam)
 {
    stra() = straParam;
    return *this;
 }
 
-class var & var::operator = (const var_array & varaParam)
+class payload & payload::operator = (const var_array & varaParam)
 {
    vara() = varaParam;
    return *this;
 }
 
-class var & var::operator = (const property_set & propsetParam)
+class payload & payload::operator = (const property_set & propsetParam)
 {
    propset() = propsetParam;
    return *this;
 }
 
-//class var & var::operator = (const pair_set_interface & propsetParam)
+//class payload & payload::operator = (const pair_set_interface & propsetParam)
 //{
 //   propset() = propsetParam;
 //   return *this;
 //}
 //
-//class var & var::operator = (const str_str_interface & propsetParam)
+//class payload & payload::operator = (const str_str_interface & propsetParam)
 //{
 //   propset() = propsetParam;
 //   return *this;
 //}
 //
-//var & var::operator = (const string_composite & reference)
+//payload & payload::operator = (const string_composite & reference)
 //{
 //
 //   string str;
@@ -1215,7 +1215,7 @@ class var & var::operator = (const property_set & propsetParam)
 //
 //}
 
-class var & var::operator = (const id & id)
+class payload & payload::operator = (const id & id)
 {
 
    set_id(id);
@@ -1223,7 +1223,7 @@ class var & var::operator = (const id & id)
 
 }
 
-/*var::operator id &()
+/*payload::operator id &()
 {
    if(get_type() == type_pvar)
       return m_pvar->operator id &();
@@ -1236,7 +1236,7 @@ class var & var::operator = (const id & id)
 }
 
 
-var::operator string & ()
+payload::operator string & ()
 {
    if(get_type() == type_pvar)
       return m_pvar->operator string &();
@@ -1249,7 +1249,7 @@ var::operator string & ()
 }*/
 
 
-class var & var::operator = (const ::secs & secs)
+class payload & payload::operator = (const ::secs & secs)
 {
 
    set_type(type_secs);
@@ -1261,7 +1261,7 @@ class var & var::operator = (const ::secs & secs)
 }
 
 
-class var & var::operator = (::secs * psecs)
+class payload & payload::operator = (::secs * psecs)
 {
 
    set_type(type_psecs);
@@ -1273,7 +1273,7 @@ class var & var::operator = (::secs * psecs)
 }
 
 
-class var & var::operator = (const ::millis & millis)
+class payload & payload::operator = (const ::millis & millis)
 {
 
    set_type(type_millis);
@@ -1285,7 +1285,7 @@ class var & var::operator = (const ::millis & millis)
 }
 
 
-class var & var::operator = (::millis * pmillis)
+class payload & payload::operator = (::millis * pmillis)
 {
 
    set_type(type_pmillis);
@@ -1297,7 +1297,7 @@ class var & var::operator = (::millis * pmillis)
 }
 
 
-class var & var::operator = (const ::micros & micros)
+class payload & payload::operator = (const ::micros & micros)
 {
 
    set_type(type_micros);
@@ -1309,7 +1309,7 @@ class var & var::operator = (const ::micros & micros)
 }
 
 
-class var & var::operator = (::micros * pmicros)
+class payload & payload::operator = (::micros * pmicros)
 {
 
    set_type(type_pmicros);
@@ -1321,7 +1321,7 @@ class var & var::operator = (::micros * pmicros)
 }
 
 
-class var & var::operator = (const ::nanos & nanos)
+class payload & payload::operator = (const ::nanos & nanos)
 {
 
    set_type(type_nanos);
@@ -1333,7 +1333,7 @@ class var & var::operator = (const ::nanos & nanos)
 }
 
 
-class var & var::operator = (::nanos * pnanos)
+class payload & payload::operator = (::nanos * pnanos)
 {
 
    set_type(type_pnanos);
@@ -1345,7 +1345,7 @@ class var & var::operator = (::nanos * pnanos)
 }
 
 
-class var & var::operator = (const ::duration & duration)
+class payload & payload::operator = (const ::duration & duration)
 {
 
    set_type(type_duration);
@@ -1357,7 +1357,7 @@ class var & var::operator = (const ::duration & duration)
 }
 
 
-class var & var::operator = (::duration * pduration)
+class payload & payload::operator = (::duration * pduration)
 {
 
    set_type(type_pduration);
@@ -1369,7 +1369,7 @@ class var & var::operator = (::duration * pduration)
 }
 
 
-var & var::operator = (const block & block)
+payload & payload::operator = (const block & block)
 {
 
    set_element(__new(class ::memory(block)));
@@ -1379,7 +1379,7 @@ var & var::operator = (const block & block)
 }
 
 
-var::operator const char *() const
+payload::operator const char *() const
 {
 
    return get_ref_string();
@@ -1387,7 +1387,7 @@ var::operator const char *() const
 }
 
 
-bool var::casts_to(::enum_type etype) const
+bool payload::casts_to(::enum_type etype) const
 {
 
    if (m_etype == etype)
@@ -1415,15 +1415,15 @@ bool var::casts_to(::enum_type etype) const
 }
 
 
-bool var::is_true(const ::var & var, bool bDefault) const
+bool payload::is_true(const ::payload & payload, bool bDefault) const
 {
 
-   if (var.get_type() == type_bool)
+   if (payload.get_type() == type_bool)
    {
 
       ASSERT(!bDefault);
 
-      bool bDefault = var.m_b;
+      bool bDefault = payload.m_b;
 
       if (is_element_set())
       {
@@ -1476,11 +1476,11 @@ bool var::is_true(const ::var & var, bool bDefault) const
       switch (m_etype)
       {
       case type_propset:
-         return m_pset->is_true(var, bDefault);
+         return m_pset->is_true(payload, bDefault);
       case type_pvar:
-         return m_pvar->is_true(var, bDefault);
+         return m_pvar->is_true(payload, bDefault);
       case type_prop:
-         return m_pprop->is_true(var, bDefault);
+         return m_pprop->is_true(payload, bDefault);
       default:
          return bDefault;
       }
@@ -1491,7 +1491,7 @@ bool var::is_true(const ::var & var, bool bDefault) const
 
 
 
-bool var::is_empty() const
+bool payload::is_empty() const
 {
 
    switch(m_etype)
@@ -1552,7 +1552,7 @@ bool var::is_empty() const
 }
 
 
-bool var::has_char() const
+bool payload::has_char() const
 {
 
    return get_string().has_char();
@@ -1560,7 +1560,7 @@ bool var::has_char() const
 }
 
 
-bool var::is_set() const
+bool payload::is_set() const
 {
 
    if (get_type() != type_new)
@@ -1579,7 +1579,7 @@ bool var::is_set() const
 }
 
 
-bool var::is_new() const
+bool payload::is_new() const
 {
    if(m_etype == type_new)
       return true;
@@ -1588,7 +1588,7 @@ bool var::is_new() const
 }
 
 
-bool var::is_null() const
+bool payload::is_null() const
 {
    if(m_etype == e_type_null)
       return true;
@@ -1597,7 +1597,7 @@ bool var::is_null() const
 }
 
 
-bool var::is_new_or_null() const
+bool payload::is_new_or_null() const
 {
 
    return is_new() || is_null();
@@ -1607,47 +1607,47 @@ bool var::is_new_or_null() const
 
 
 
-::i32 var::compare_ci(const class var & var) const
+::i32 payload::compare_ci(const class payload & payload) const
 {
    if(m_etype == ::type_inta)
    {
-      if(var.m_etype == ::type_inta)
+      if(payload.m_etype == ::type_inta)
       {
-         //var = var1.inta() - var2.inta();
+         //payload = var1.inta() - var2.inta();
       }
       else
       {
-         //var = var1;
-         //var.inta().remove(var2.i32());
+         //payload = var1;
+         //payload.inta().remove(var2.i32());
       }
    }
    else if(m_etype == ::type_stra)
    {
-      if(var.m_etype == ::type_stra)
+      if(payload.m_etype == ::type_stra)
       {
-         //var = var1.stra() - var2.stra();
+         //payload = var1.stra() - var2.stra();
       }
       else
       {
-         //var = var1;
-         //var.stra().remove(var2.get_string());
+         //payload = var1;
+         //payload.stra().remove(var2.get_string());
       }
    }
    else if(m_etype == ::type_vara)
    {
-      if(var.m_etype == ::type_vara)
+      if(payload.m_etype == ::type_vara)
       {
-         //   var = var1.vara() - var2.vara();
+         //   payload = var1.vara() - var2.vara();
       }
       else
       {
-         // var = var1;
-         //var.vara().remove(var2);
+         // payload = var1;
+         //payload.vara().remove(var2);
       }
    }
-   else if(is_double() || var.is_double())
+   else if(is_double() || payload.is_double())
    {
-      double d = get_double() - var.get_double();
+      double d = get_double() - payload.get_double();
       if(d == 0.0)
          return 0;
       else if(d > 0.0)
@@ -1655,69 +1655,69 @@ bool var::is_new_or_null() const
       else if(d < 0.0)
          return -1;
    }
-   else if(is_integer() || var.is_integer())
+   else if(is_integer() || payload.is_integer())
    {
-      return i32() - var.i32();
+      return i32() - payload.i32();
    }
-   else if(is_natural() || var.is_natural())
+   else if(is_natural() || payload.is_natural())
    {
-      return (::i32) (u32() - var.u32());
+      return (::i32) (u32() - payload.u32());
    }
    else
    {
-      return get_string().compare_ci(var.get_string());
+      return get_string().compare_ci(payload.get_string());
    }
    return -2;
 }
 
-::i32 var::compare_ci(const char * psz) const
+::i32 payload::compare_ci(const char * psz) const
 {
-   var var(psz);
-   return compare_ci(var);
+   payload payload(psz);
+   return compare_ci(payload);
 }
 
 
-::i32 var::compare(const class var & var) const
+::i32 payload::compare(const class payload & payload) const
 {
    if(m_etype == ::type_inta)
    {
-      if(var.m_etype == ::type_inta)
+      if(payload.m_etype == ::type_inta)
       {
-         //var = var1.inta() - var2.inta();
+         //payload = var1.inta() - var2.inta();
       }
       else
       {
-         //var = var1;
-         //var.inta().remove(var2.i32());
+         //payload = var1;
+         //payload.inta().remove(var2.i32());
       }
    }
    else if(m_etype == ::type_stra)
    {
-      if(var.m_etype == ::type_stra)
+      if(payload.m_etype == ::type_stra)
       {
-         //var = var1.stra() - var2.stra();
+         //payload = var1.stra() - var2.stra();
       }
       else
       {
-         //var = var1;
-         //var.stra().remove(var2.get_string());
+         //payload = var1;
+         //payload.stra().remove(var2.get_string());
       }
    }
    else if(m_etype == ::type_vara)
    {
-      if(var.m_etype == ::type_vara)
+      if(payload.m_etype == ::type_vara)
       {
-         //   var = var1.vara() - var2.vara();
+         //   payload = var1.vara() - var2.vara();
       }
       else
       {
-         // var = var1;
-         //var.vara().remove(var2);
+         // payload = var1;
+         //payload.vara().remove(var2);
       }
    }
-   else if(is_double() || var.is_double())
+   else if(is_double() || payload.is_double())
    {
-      double d = get_double() - var.get_double();
+      double d = get_double() - payload.get_double();
       if(d == 0.0)
          return 0;
       else if(d > 0.0)
@@ -1725,145 +1725,145 @@ bool var::is_new_or_null() const
       else if(d < 0.0)
          return -1;
    }
-   else if(is_integer() || var.is_integer())
+   else if(is_integer() || payload.is_integer())
    {
-      return i32() - var.i32();
+      return i32() - payload.i32();
    }
-   else if(is_natural() || var.is_natural())
+   else if(is_natural() || payload.is_natural())
    {
-      return (::i32) (u32() - var.u32());
+      return (::i32) (u32() - payload.u32());
    }
    else
    {
-      return get_string().compare(var.get_string());
+      return get_string().compare(payload.get_string());
    }
    return -2;
 }
 
-::i32 var::compare(const char * psz) const
+::i32 payload::compare(const char * psz) const
 {
-   var var(psz);
-   return compare(var);
+   payload payload(psz);
+   return compare(payload);
 }
 
-bool var::operator == (const class var & var) const
+bool payload::operator == (const class payload & payload) const
 {
    // if variables are equal:
    // all values of both variables should be equal
-   return compare(var) == 0;
+   return compare(payload) == 0;
 }
 
-bool var::operator > (const class var & var) const
+bool payload::operator > (const class payload & payload) const
 {
-   return compare(var) > 0;
+   return compare(payload) > 0;
 }
 
-bool var::operator < (const class var & var) const
+bool payload::operator < (const class payload & payload) const
 {
-   return compare(var) < 0;
+   return compare(payload) < 0;
 }
 
-bool var::operator >= (const class var & var) const
+bool payload::operator >= (const class payload & payload) const
 {
-   return compare(var) >= 0;
+   return compare(payload) >= 0;
 }
 
-bool var::operator <= (const class var & var) const
+bool payload::operator <= (const class payload & payload) const
 {
-   return compare(var) <= 0;
+   return compare(payload) <= 0;
 }
 
-bool var::operator != (const class var & var) const
+bool payload::operator != (const class payload & payload) const
 {
-   return compare(var) != 0;
+   return compare(payload) != 0;
 }
 
-bool var::operator == (const char * psz) const
+bool payload::operator == (const char * psz) const
 {
    return get_string() == psz;
 }
 
-bool var::operator < (const char * psz) const
+bool payload::operator < (const char * psz) const
 {
    return get_string() < psz;
 }
 
-bool var::operator <= (const char * psz) const
+bool payload::operator <= (const char * psz) const
 {
    return get_string() <= psz;
 }
 
-bool var::operator >= (const char * psz) const
+bool payload::operator >= (const char * psz) const
 {
    return get_string() >= psz;
 }
 
-bool var::operator > (const char * psz) const
+bool payload::operator > (const char * psz) const
 {
    return get_string() > psz;
 }
 
-bool var::operator != (const char * psz) const
+bool payload::operator != (const char * psz) const
 {
    return get_string() != psz;
 }
 
-bool var::operator == (const string & str) const
+bool payload::operator == (const string & str) const
 {
    return get_string() == str;
 }
 
-bool var::operator != (const string & str) const
+bool payload::operator != (const string & str) const
 {
    return get_string() != str;
 }
 
-bool var::operator < (const string & str) const
+bool payload::operator < (const string & str) const
 {
    return get_string() < str;
 }
 
-bool var::operator <= (const string & str) const
+bool payload::operator <= (const string & str) const
 {
    return get_string() <= str;
 }
 
-bool var::operator >= (const string & str) const
+bool payload::operator >= (const string & str) const
 {
    return get_string() >= str;
 }
 
-bool var::operator > (const string & str) const
+bool payload::operator > (const string & str) const
 {
    return get_string() > str;
 }
 
-bool var::operator == (::i32 i) const
+bool payload::operator == (::i32 i) const
 {
    return i32() == i;
 }
 
-bool var::operator != (::i32 i) const
+bool payload::operator != (::i32 i) const
 {
    return i32() != i;
 }
 
-bool var::operator < (::i32 i) const
+bool payload::operator < (::i32 i) const
 {
    return i64() < i;
 }
 
-bool var::operator <= (::i32 i) const
+bool payload::operator <= (::i32 i) const
 {
    return i64() <= i;
 }
 
-bool var::operator >= (::i32 i) const
+bool payload::operator >= (::i32 i) const
 {
    return i64() >= i;
 }
 
-bool var::operator > (::i32 i) const
+bool payload::operator > (::i32 i) const
 {
    return i64() > i;
 }
@@ -1878,32 +1878,32 @@ bool var::operator > (::i32 i) const
 
 
 
-bool var::operator == (::i64 i) const
+bool payload::operator == (::i64 i) const
 {
    return i64() == i;
 }
 
-bool var::operator != (::i64 i) const
+bool payload::operator != (::i64 i) const
 {
    return i64() != i;
 }
 
-bool var::operator < (::i64 i) const
+bool payload::operator < (::i64 i) const
 {
    return i64() < i;
 }
 
-bool var::operator <= (::i64 i) const
+bool payload::operator <= (::i64 i) const
 {
    return i64() <= i;
 }
 
-bool var::operator >= (::i64 i) const
+bool payload::operator >= (::i64 i) const
 {
    return i64() >= i;
 }
 
-bool var::operator > (::i64 i) const
+bool payload::operator > (::i64 i) const
 {
    return i32() > i;
 }
@@ -1933,147 +1933,147 @@ bool var::operator > (::i64 i) const
 
 
 
-bool var::operator == (bool b) const
+bool payload::operator == (bool b) const
 {
    return is_equivalent(get_bool(), b);
 }
 
-bool var::operator != (bool b) const
+bool payload::operator != (bool b) const
 {
    return is_different(get_bool(), b);
 }
 
-bool var::operator < (bool b) const
+bool payload::operator < (bool b) const
 {
    return is_lesser(get_bool(), b);
 }
 
-bool var::operator <= (bool b) const
+bool payload::operator <= (bool b) const
 {
    return is_lesser_or_equal(get_bool(), b);
 }
 
-bool var::operator >= (bool b) const
+bool payload::operator >= (bool b) const
 {
    return is_greater_or_equal(get_bool(), b);
 }
 
-bool var::operator > (bool b) const
+bool payload::operator > (bool b) const
 {
    return is_greater(get_bool(), b);
 }
 
-bool var::strict_equal(const class var & var) const
+bool payload::strict_equal(const class payload & payload) const
 {
-   return m_etype == var.m_etype && operator == (var);
+   return m_etype == payload.m_etype && operator == (payload);
 }
 
-bool var::strict_equal(const char * psz) const
+bool payload::strict_equal(const char * psz) const
 {
    return m_etype == type_string && m_str == psz;
 }
 
-bool var::strict_equal(const string & str) const
+bool payload::strict_equal(const string & str) const
 {
    return m_etype == type_string && m_str == str;
 }
 
-bool var::strict_equal(double d) const
+bool payload::strict_equal(double d) const
 {
    return m_etype == type_double && m_d == d;
 }
 
-bool var::strict_equal(::i32 i) const
+bool payload::strict_equal(::i32 i) const
 {
    return m_etype == type_i32 && m_i32 == i;
 }
 
-bool var::strict_equal(bool b) const
+bool payload::strict_equal(bool b) const
 {
    return m_etype == type_bool && is_equivalent(m_b, b);
 }
 
-bool var::strict_different(const class var & var) const
+bool payload::strict_different(const class payload & payload) const
 {
-   return m_etype != var.m_etype || operator != (var);
+   return m_etype != payload.m_etype || operator != (payload);
 }
 
-bool var::strict_different(const char * psz) const
+bool payload::strict_different(const char * psz) const
 {
    return m_etype != type_string || m_str != psz;
 }
 
-bool var::strict_different(const string & str) const
+bool payload::strict_different(const string & str) const
 {
    return m_etype != type_string || m_str != str;
 }
 
-bool var::strict_different(double d) const
+bool payload::strict_different(double d) const
 {
    return m_etype != type_double || m_d != d;
 }
 
-bool var::strict_different(::i32 i) const
+bool payload::strict_different(::i32 i) const
 {
    return m_etype != type_i32 || m_i32 != i;
 }
 
-bool var::strict_different(bool b) const
+bool payload::strict_different(bool b) const
 {
    return m_etype != type_bool || is_different(m_b, b);
 }
 
-bool strict_equal(const char * psz, const class var & var)
+bool strict_equal(const char * psz, const class payload & payload)
 {
-   return var.m_etype == ::type_string && psz == var.m_str;
+   return payload.m_etype == ::type_string && psz == payload.m_str;
 }
 
-bool strict_equal(const string & str, const class var & var)
+bool strict_equal(const string & str, const class payload & payload)
 {
-   return var.m_etype == ::type_string && str == var.m_str;
+   return payload.m_etype == ::type_string && str == payload.m_str;
 }
 
-bool strict_equal(double d, const class var & var)
+bool strict_equal(double d, const class payload & payload)
 {
-   return var.m_etype == ::type_double && d == var.m_d;
+   return payload.m_etype == ::type_double && d == payload.m_d;
 }
 
-bool strict_equal(::i32 i, const class var & var)
+bool strict_equal(::i32 i, const class payload & payload)
 {
-   return var.m_etype == ::type_i32 && i == var.m_i32;
+   return payload.m_etype == ::type_i32 && i == payload.m_i32;
 }
 
-bool strict_equal(bool b, const class var & var)
+bool strict_equal(bool b, const class payload & payload)
 {
-   return var.m_etype == ::type_bool && is_equivalent(b, var.m_b);
+   return payload.m_etype == ::type_bool && is_equivalent(b, payload.m_b);
 }
 
-bool strict_different(const char * psz, const class var & var)
+bool strict_different(const char * psz, const class payload & payload)
 {
-   return var.m_etype != ::type_string || psz != var.m_str;
+   return payload.m_etype != ::type_string || psz != payload.m_str;
 }
 
-bool strict_different(const string & str, const class var & var)
+bool strict_different(const string & str, const class payload & payload)
 {
-   return var.m_etype != ::type_string || str != var.m_str;
+   return payload.m_etype != ::type_string || str != payload.m_str;
 }
 
-bool strict_different(double d, const class var & var)
+bool strict_different(double d, const class payload & payload)
 {
-   return var.m_etype != ::type_double || d != var.m_d;
+   return payload.m_etype != ::type_double || d != payload.m_d;
 }
 
-bool strict_different(::i32 i, const class var & var)
+bool strict_different(::i32 i, const class payload & payload)
 {
-   return var.m_etype != ::type_i32 || i != var.m_i32;
+   return payload.m_etype != ::type_i32 || i != payload.m_i32;
 }
 
-bool strict_different(bool b, const class var & var)
+bool strict_different(bool b, const class payload & payload)
 {
-   return var.m_etype != ::type_bool || is_different(b, var.m_b);
+   return payload.m_etype != ::type_bool || is_different(b, payload.m_b);
 }
 
-string var::to_r_string() const
+string payload::to_r_string() const
 {
    if(is_array())
    {
@@ -2097,7 +2097,7 @@ string var::to_r_string() const
    }
 }
 
-string var::get_string(const char * pszOnNull) const
+string payload::get_string(const char * pszOnNull) const
 {
 
    if(m_etype == type_pvar)
@@ -2173,7 +2173,7 @@ string var::get_string(const char * pszOnNull) const
 
 }
 
-string & var::get_ref_string(const char * pszOnNull)
+string & payload::get_ref_string(const char * pszOnNull)
 {
 
    if(m_etype == type_string)
@@ -2213,15 +2213,15 @@ string & var::get_ref_string(const char * pszOnNull)
 
 }
 
-const string & var::get_ref_string(const char * pszOnNull) const
+const string & payload::get_ref_string(const char * pszOnNull) const
 {
 
-   return ((var *)this)->get_ref_string(pszOnNull);
+   return ((payload *)this)->get_ref_string(pszOnNull);
 
 }
 
 
-id var::get_id(const char * pszOnNull) const
+id payload::get_id(const char * pszOnNull) const
 {
    if(m_etype == type_pvar)
    {
@@ -2282,7 +2282,7 @@ id var::get_id(const char * pszOnNull) const
 
 
 
-id & var::get_ref_id(const char * pszOnNull)
+id & payload::get_ref_id(const char * pszOnNull)
 {
    if(m_etype == type_pvar)
    {
@@ -2309,7 +2309,7 @@ id & var::get_ref_id(const char * pszOnNull)
 
 
 
-::i32 var::i32(::i32 iDefault) const
+::i32 payload::i32(::i32 iDefault) const
 {
    switch(m_etype)
    {
@@ -2365,13 +2365,13 @@ id & var::get_ref_id(const char * pszOnNull)
    case type_id:
    {
       if(!is_i32(m_id))
-         __throw(overflow_error("var contains id that does not fit 32 bit integer"));
+         __throw(overflow_error("payload contains id that does not fit 32 bit integer"));
       return (::i32) (::i64) m_id;
    }
    case type_pid:
    {
       if(!is_i32((::i64) *m_pid))
-         __throw(overflow_error("var contains id that does not fit 32 bit integer"));
+         __throw(overflow_error("payload contains id that does not fit 32 bit integer"));
       return (::i32) (::i64) *m_pid;
    }
    default:
@@ -2379,7 +2379,7 @@ id & var::get_ref_id(const char * pszOnNull)
    }
 }
 
-::u32 var::u32(::u32 uiDefault) const
+::u32 payload::u32(::u32 uiDefault) const
 {
    switch(m_etype)
    {
@@ -2409,7 +2409,7 @@ id & var::get_ref_id(const char * pszOnNull)
    }
 }
 
-::i64 var::i64(::i64 iDefault) const
+::i64 payload::i64(::i64 iDefault) const
 {
 
    try
@@ -2485,7 +2485,7 @@ id & var::get_ref_id(const char * pszOnNull)
 }
 
 
-::u64 var::u64(::u64 uiDefault) const
+::u64 payload::u64(::u64 uiDefault) const
 {
    switch(m_etype)
    {
@@ -2521,37 +2521,37 @@ id & var::get_ref_id(const char * pszOnNull)
 }
 
 
-procedure var::get_procedure() const
+::promise::routine payload::get_routine() const
 {
 
-   if (get_type() != ::type_procedure)
+   if (get_type() != ::type_routine)
    {
 
-      return procedure();
+      return ::promise::routine();
 
    }
 
-   return m_procedure;
+   return m_routine;
 
 }
 
 
-futurevar var::get_futurevar() const
+::promise::process payload::get_process() const
 {
 
-   if (get_type() != ::type_futurevar)
+   if (get_type() != ::type_process)
    {
 
-      return futurevar();
+      return ::promise::process();
 
    }
 
-   return m_futurevar;
+   return m_process;
 
 }
 
 
-float var::get_float(float fDefault) const
+float payload::get_float(float fDefault) const
 {
    switch(m_etype)
    {
@@ -2588,7 +2588,7 @@ float var::get_float(float fDefault) const
 }
 
 
-//image * var::image() const
+//image * payload::image() const
 //{
 //
 //   if (m_etype != ::type_element)
@@ -2603,7 +2603,7 @@ float var::get_float(float fDefault) const
 //}
 
 
-double var::get_double(double dDefault) const
+double payload::get_double(double dDefault) const
 {
    double d;
    if(m_etype == e_type_null)
@@ -2686,7 +2686,7 @@ double var::get_double(double dDefault) const
 }
 
 
-class ::memory & var::memory()
+class ::memory & payload::memory()
 {
 
    if(get_type() != type_memory)
@@ -2701,7 +2701,7 @@ class ::memory & var::memory()
 }
 
 
-::memory var::memory() const
+::memory payload::memory() const
 {
 
    if (m_etype != type_memory)
@@ -2716,7 +2716,7 @@ class ::memory & var::memory()
 }
 
 
-var::operator ::file::path & ()
+payload::operator ::file::path & ()
 {
 
    if (m_etype == ::type_pvar)
@@ -2747,7 +2747,7 @@ var::operator ::file::path & ()
 }
 
 
-var::operator ::file::path() const
+payload::operator ::file::path() const
 {
 
    return get_file_path();
@@ -2755,7 +2755,7 @@ var::operator ::file::path() const
 }
 
 
-string_array & var::stra()
+string_array & payload::stra()
 {
 
    if(m_etype != type_stra)
@@ -2782,7 +2782,7 @@ string_array & var::stra()
 }
 
 
-int_array & var::inta()
+int_array & payload::inta()
 {
 
    if(m_etype != type_inta)
@@ -2816,7 +2816,7 @@ int_array & var::inta()
 }
 
 
-i64_array & var::int64a()
+i64_array & payload::int64a()
 {
 
    if(m_etype != type_i64a)
@@ -2850,7 +2850,7 @@ i64_array & var::int64a()
 }
 
 
-duration & var::duration()
+duration & payload::duration()
 {
 
    if (m_etype == type_duration)
@@ -2879,31 +2879,31 @@ duration & var::duration()
 }
 
 
-const string_array & var::stra() const
+const string_array & payload::stra() const
 {
 
-   return ((var *)this)->stra();
+   return ((payload *)this)->stra();
 
 }
 
 
-const int_array & var::inta() const
+const int_array & payload::inta() const
 {
 
-   return ((var *)this)->inta();
+   return ((payload *)this)->inta();
 
 }
 
 
-const i64_array & var::int64a() const
+const i64_array & payload::int64a() const
 {
 
-   return ((var *)this)->int64a();
+   return ((payload *)this)->int64a();
 
 }
 
 
-class var & var::operator = (var * pvar)
+class payload & payload::operator = (payload * pvar)
 {
 
    if (m_pvar == pvar)
@@ -2922,15 +2922,15 @@ class var & var::operator = (var * pvar)
 }
 
 
-class var & var::operator = (const var * pvar)
+class payload & payload::operator = (const payload * pvar)
 {
 
-   return operator =((var*)pvar);
+   return operator =((payload*)pvar);
 
 }
 
 
-var_array & var::vara()
+var_array & payload::vara()
 {
 
    if(m_etype == type_pvar)
@@ -2981,7 +2981,7 @@ var_array & var::vara()
 }
 
 
-property_set & var::propset()
+property_set & payload::propset()
 {
 
 
@@ -3033,37 +3033,37 @@ property_set & var::propset()
 }
 
 
-const var_array & var::vara() const
+const var_array & payload::vara() const
 {
 
-   return ((var *)this)->vara();
+   return ((payload *)this)->vara();
 
 }
 
 
-const ::duration & var::duration() const
+const ::duration & payload::duration() const
 {
 
-   return ((var *)this)->duration();
+   return ((payload *)this)->duration();
 
 }
 
 
-const property_set & var::propset() const
+const property_set & payload::propset() const
 {
 
-   return ((var *)this)->propset();
+   return ((payload *)this)->propset();
 
 }
 
 
-property & var::prop()
+property & payload::prop()
 {
 
    if(m_etype != type_prop)
    {
 
-      __throw(exception::exception("var is not a property (1)"));
+      __throw(exception::exception("payload is not a property (1)"));
 
    }
 
@@ -3072,15 +3072,15 @@ property & var::prop()
 }
 
 
-const property & var::prop() const
+const property & payload::prop() const
 {
 
-   return ((var *)this)->prop();
+   return ((payload *)this)->prop();
 
 }
 
 
-string var::implode(const char * pszGlue) const
+string payload::implode(const char * pszGlue) const
 {
    if(get_type() == type_propset)
    {
@@ -3098,21 +3098,21 @@ string var::implode(const char * pszGlue) const
 }
 
 
-var var::explode(const char * pszGlue, bool bAddEmpty) const
+payload payload::explode(const char * pszGlue, bool bAddEmpty) const
 {
 
-   class var var;
+   class payload payload;
 
-   var.stra().add_tokens(get_string(), pszGlue, bAddEmpty);
+   payload.stra().add_tokens(get_string(), pszGlue, bAddEmpty);
 
-   return var;
+   return payload;
 
 }
 
 
 
 
-::comparison::var_strict var::strict_compare() const
+::comparison::var_strict payload::strict_compare() const
 {
 
    return *this;
@@ -3120,7 +3120,7 @@ var var::explode(const char * pszGlue, bool bAddEmpty) const
 }
 
 
-var var::dereference()
+payload payload::dereference()
 {
    if(get_type() == type_pvar)
       return m_pvar->dereference();
@@ -3137,7 +3137,7 @@ var var::dereference()
 }
 
 
-//var var::at(index i) const
+//payload payload::at(index i) const
 //{
 //
 //   switch(m_etype)
@@ -3155,7 +3155,7 @@ var var::dereference()
 //   default:
 //      if(i == 0)
 //      {
-//         return (var *) this;
+//         return (payload *) this;
 //      }
 //      else
 //      {
@@ -3165,7 +3165,7 @@ var var::dereference()
 //}
 
 
-var var::at(index i)
+payload payload::at(index i)
 {
    switch(m_etype)
    {
@@ -3193,7 +3193,7 @@ var var::at(index i)
    }
 }
 
-bool var::array_contains(const char * psz, index find, ::count count) const
+bool payload::array_contains(const char * psz, index find, ::count count) const
 {
    switch(m_etype)
    {
@@ -3220,7 +3220,7 @@ bool var::array_contains(const char * psz, index find, ::count count) const
    return false;
 }
 
-bool var::array_contains_ci(const char * psz, index find, index last) const
+bool payload::array_contains_ci(const char * psz, index find, index last) const
 {
    switch(m_etype)
    {
@@ -3250,7 +3250,7 @@ bool var::array_contains_ci(const char * psz, index find, index last) const
 }
 
 
-var var::equals_ci_get(const char * pszCompare, var varOnEqual, var varOnDifferent) const
+payload payload::equals_ci_get(const char * pszCompare, payload varOnEqual, payload varOnDifferent) const
 {
    if(compare_ci(pszCompare) == 0)
    {
@@ -3262,7 +3262,7 @@ var var::equals_ci_get(const char * pszCompare, var varOnEqual, var varOnDiffere
    }
 }
 
-var var::equals_ci_get(const char * pszCompare, var varOnEqual) const
+payload payload::equals_ci_get(const char * pszCompare, payload varOnEqual) const
 {
    if(compare_ci(pszCompare) == 0)
    {
@@ -3270,148 +3270,148 @@ var var::equals_ci_get(const char * pszCompare, var varOnEqual) const
    }
    else
    {
-      return var();
+      return payload();
    }
 }
 
 
-var var::operator - (::i32 i) const
+payload payload::operator - (::i32 i) const
 {
    return i32() - i;
 }
 
-var var::operator - (::u32 user) const
+payload payload::operator - (::u32 user) const
 {
    return u32() - user;
 }
 
-var var::operator - (::i64 l) const
+payload payload::operator - (::i64 l) const
 {
    return i64() - l;
 }
 
-var var::operator - (::u64 ul) const
+payload payload::operator - (::u64 ul) const
 {
    return (::i64) (u64() - ul);
 }
 
-var var::operator - (double d) const
+payload payload::operator - (double d) const
 {
    return get_double() - d;
 }
 
-var operator - (::i32 i, const class var & var)
+payload operator - (::i32 i, const class payload & payload)
 {
-   return i - var.i32();
+   return i - payload.i32();
 }
 
-var operator - (::u32 user, const class var & var)
+payload operator - (::u32 user, const class payload & payload)
 {
-   return user - var.u32();
+   return user - payload.u32();
 }
 
-var operator - (::i64 l, const class var & var)
+payload operator - (::i64 l, const class payload & payload)
 {
-   return l - var.i64();
+   return l - payload.i64();
 }
 
-var operator - (::u64 ul, const class var & var)
+payload operator - (::u64 ul, const class payload & payload)
 {
-   return (::i64) (ul - var.u64());
+   return (::i64) (ul - payload.u64());
 }
 
-var operator - (double d, const class var & var)
+payload operator - (double d, const class payload & payload)
 {
-   return d - var.get_double();
+   return d - payload.get_double();
 }
 
-var operator - (const class var & var1, const class var & var2)
+payload operator - (const class payload & var1, const class payload & var2)
 {
-   var var;
+   payload payload;
    if(var1.m_etype == ::type_inta)
    {
       if(var2.m_etype == ::type_inta)
       {
-         var = var1.inta() - var2.inta();
+         payload = var1.inta() - var2.inta();
       }
       else
       {
-         var = var1;
-         var.inta().remove(var2.i32());
+         payload = var1;
+         payload.inta().remove(var2.i32());
       }
    }
    else if(var1.m_etype == ::type_stra)
    {
       if(var2.m_etype == ::type_stra)
       {
-         var = var1.stra() - var2.stra();
+         payload = var1.stra() - var2.stra();
       }
       else if(var2.is_array())
       {
-         var = var1.stra() - const_cast < class var & > (var2).stra();
+         payload = var1.stra() - const_cast < class payload & > (var2).stra();
       }
       else
       {
-         var = var1;
-         var.stra().remove(var2.get_string());
+         payload = var1;
+         payload.stra().remove(var2.get_string());
       }
    }
    else if(var1.m_etype == ::type_vara)
    {
       if(var2.m_etype == ::type_vara)
       {
-         var = var1.vara() - var2.vara();
+         payload = var1.vara() - var2.vara();
       }
       else
       {
-         var = var1;
-         var.vara().remove(var2);
+         payload = var1;
+         payload.vara().remove(var2);
       }
    }
    else if(var1.is_double() || var2.is_double())
    {
-      var = var1.get_double() - var2.get_double();
+      payload = var1.get_double() - var2.get_double();
    }
    else if(var1.is_integer() || var2.is_integer())
    {
-      var = var1.i32() - var2.i32();
+      payload = var1.i32() - var2.i32();
    }
    else if(var1.is_natural() || var2.is_natural())
    {
-      var = var1.u32() - var2.u32();
+      payload = var1.u32() - var2.u32();
    }
    else
    {
-      var = atoi(var1.get_string()) - atoi(var2.get_string());
+      payload = atoi(var1.get_string()) - atoi(var2.get_string());
    }
-   return var;
+   return payload;
 }
 
 
-var var::operator + (::i32 i) const
+payload payload::operator + (::i32 i) const
 {
    return i32() + i;
 }
 
-var var::operator + (::u32 user) const
+payload payload::operator + (::u32 user) const
 {
    return u32() + user;
 }
 
-var var::operator + (::i64 l) const
+payload payload::operator + (::i64 l) const
 {
    return i64() + l;
 }
 
-var var::operator + (::u64 ul) const
+payload payload::operator + (::u64 ul) const
 {
    return (::u32) (u64() + ul);
 }
 
-var var::operator + (const string & str) const
+payload payload::operator + (const string & str) const
 {
 
-   var varRet(*this);
+   payload varRet(*this);
 
    if (varRet.is_real())
    {
@@ -3458,39 +3458,39 @@ var var::operator + (const string & str) const
 
 }
 
-var var::operator + (double d) const
+payload payload::operator + (double d) const
 {
    return get_double() + d;
 }
 
-var operator + (::i32 i, const class var & var)
+payload operator + (::i32 i, const class payload & payload)
 {
-   return i + var.i32();
+   return i + payload.i32();
 }
 
-var operator + (::u32 user, const class var & var)
+payload operator + (::u32 user, const class payload & payload)
 {
-   return user + var.u32();
+   return user + payload.u32();
 }
 
-var operator + (::i64 l, const class var & var)
+payload operator + (::i64 l, const class payload & payload)
 {
-   return l + var.i64();
+   return l + payload.i64();
 }
 
-var operator + (::u64 ul, const class var & var)
+payload operator + (::u64 ul, const class payload & payload)
 {
-   return (::u32) (ul + var.u64());
+   return (::u32) (ul + payload.u64());
 }
 
-var operator + (double d, const class var & var)
+payload operator + (double d, const class payload & payload)
 {
-   return d + var.get_double();
+   return d + payload.get_double();
 }
 
-var operator + (const class var & var1, const class var & var2)
+payload operator + (const class payload & var1, const class payload & var2)
 {
-   var var;
+   payload payload;
    if(var1.m_etype == ::type_inta
          || var1.m_etype == ::type_inta)
    {
@@ -3498,18 +3498,18 @@ var operator + (const class var & var1, const class var & var2)
       {
          if(var2.m_etype == ::type_inta)
          {
-            var = var1.inta() + var2.inta();
+            payload = var1.inta() + var2.inta();
          }
          else
          {
-            var = var1;
-            var.inta().add(var2.i32());
+            payload = var1;
+            payload.inta().add(var2.i32());
          }
       }
       else
       {
-         var = var2;
-         var.inta().add(var1.i32());
+         payload = var2;
+         payload.inta().add(var1.i32());
       }
    }
    else if(var1.m_etype == ::type_stra
@@ -3519,18 +3519,18 @@ var operator + (const class var & var1, const class var & var2)
       {
          if(var2.m_etype == ::type_stra)
          {
-            var = var1.stra() + var2.stra();
+            payload = var1.stra() + var2.stra();
          }
          else
          {
-            var = var1;
-            var.stra().add(var2.get_string());
+            payload = var1;
+            payload.stra().add(var2.get_string());
          }
       }
       else
       {
-         var = var2;
-         var.stra().add(var1.get_string());
+         payload = var2;
+         payload.stra().add(var1.get_string());
       }
    }
    else if(var1.m_etype == ::type_vara
@@ -3540,37 +3540,37 @@ var operator + (const class var & var1, const class var & var2)
       {
          if(var2.m_etype == ::type_vara)
          {
-            var = var1.vara() + var2.vara();
+            payload = var1.vara() + var2.vara();
          }
          else
          {
-            var = var1;
-            var.vara().add(var2);
+            payload = var1;
+            payload.vara().add(var2);
          }
       }
       else
       {
-         var = var2;
-         var.vara().add(var1);
+         payload = var2;
+         payload.vara().add(var1);
       }
    }
    else if(var1.is_double() && var2.is_double())
    {
-      var = var1.get_double() + var2.get_double();
+      payload = var1.get_double() + var2.get_double();
    }
    else if(var1.is_integer() && var2.is_integer())
    {
-      var = var1.i32() + var2.i32();
+      payload = var1.i32() + var2.i32();
    }
    else if(var1.is_natural() && var2.is_natural())
    {
-      var = var1.u32() + var2.u32();
+      payload = var1.u32() + var2.u32();
    }
    else
    {
-      var = var1.get_string() + var2.get_string();
+      payload = var1.get_string() + var2.get_string();
    }
-   return var;
+   return payload;
 }
 
 
@@ -3594,28 +3594,28 @@ var operator + (const class var & var1, const class var & var2)
 
 
 
-var var::operator / (::i32 i) const
+payload payload::operator / (::i32 i) const
 {
    return i32() / i;
 }
 
-var var::operator / (::u32 user) const
+payload payload::operator / (::u32 user) const
 {
    return u32() / user;
 }
 
-var var::operator / (::i64 l) const
+payload payload::operator / (::i64 l) const
 {
    return i64() / l;
 }
 
-var var::operator / (::u64 ul) const
+payload payload::operator / (::u64 ul) const
 {
 
    switch(m_etype)
    {
    case ::e_type_null:
-      return var(e_type_null);
+      return payload(e_type_null);
    case ::type_empty:
       return 0.0 / ul; // throws division by zero exception if ul stream zero
    case ::type_i32:
@@ -3646,57 +3646,57 @@ var var::operator / (::u64 ul) const
 
 }
 
-var var::operator / (double d) const
+payload payload::operator / (double d) const
 {
    return get_double() / d;
 }
 
-var operator / (::i32 i, const class var & var)
+payload operator / (::i32 i, const class payload & payload)
 {
-   return i / var.i32();
+   return i / payload.i32();
 }
 
-var operator / (::u32 user, const class var & var)
+payload operator / (::u32 user, const class payload & payload)
 {
-   return user / var.u32();
+   return user / payload.u32();
 }
 
-var operator / (::i64 l, const class var & var)
+payload operator / (::i64 l, const class payload & payload)
 {
-   return l / var.i64();
+   return l / payload.i64();
 }
 
 
-var operator / (::u64 ul, const class var & var)
+payload operator / (::u64 ul, const class payload & payload)
 {
-   switch(var.m_etype)
+   switch(payload.m_etype)
    {
    case ::e_type_null:
       __throw(::exception::exception("division by zero"));
    case ::type_empty:
       __throw(::exception::exception("division by zero"));
    case ::type_i32:
-      return (iptr) ul / var.m_i32;
+      return (iptr) ul / payload.m_i32;
    case ::type_u32:
-      return (uptr) ul / var.m_u32;
+      return (uptr) ul / payload.m_u32;
    case ::type_i64:
-      return (::i64) ul / var.m_i64;
+      return (::i64) ul / payload.m_i64;
    case ::type_u64:
-      return (::u64) ul / var.m_u64;
+      return (::u64) ul / payload.m_u64;
    case ::type_float:
-      return (float) ul / var.m_f;
+      return (float) ul / payload.m_f;
    case ::type_double:
-      return (double) ul / var.m_d;
+      return (double) ul / payload.m_d;
    case ::type_string:
 #if defined(LINUX) || defined(ANDROID)
-      return (double) ul / atof(var.m_str);
+      return (double) ul / atof(payload.m_str);
 #else
-      return (double) ul / _atof_l(var.m_str, ::acme::g_localeC);
+      return (double) ul / _atof_l(payload.m_str, ::acme::g_localeC);
 #endif
    case ::type_pvar:
-      return operator / (ul, *var.m_pvar);
+      return operator / (ul, *payload.m_pvar);
    case ::type_prop:
-      return operator / (ul, *var.m_pprop);
+      return operator / (ul, *payload.m_pprop);
    default:
       __throw(::exception::exception("division by zero"));
    }
@@ -3706,92 +3706,92 @@ var operator / (::u64 ul, const class var & var)
 
 
 
-var operator / (double d, const class var & var)
+payload operator / (double d, const class payload & payload)
 {
-   return d / var.get_double();
+   return d / payload.get_double();
 }
 
-var operator / (const class var & var1, const class var & var2)
+payload operator / (const class payload & var1, const class payload & var2)
 {
-   var var;
+   payload payload;
    if(var1.m_etype == ::type_inta)
    {
       if(var2.m_etype == ::type_inta)
       {
-         var = var1;
-         var.inta().intersect(var2.inta());
+         payload = var1;
+         payload.inta().intersect(var2.inta());
       }
       else
       {
-         var = var1;
-         var.inta().divide(var2.i32());
+         payload = var1;
+         payload.inta().divide(var2.i32());
       }
    }
    else if(var1.m_etype == ::type_stra)
    {
       if(var2.m_etype == ::type_stra)
       {
-         //var = var1.stra().intersect(var2.stra());
+         //payload = var1.stra().intersect(var2.stra());
       }
       else
       {
-         var = var1;
-         var.stra().remove(var2.get_string());
+         payload = var1;
+         payload.stra().remove(var2.get_string());
       }
    }
    else if(var1.m_etype == ::type_vara)
    {
       if(var2.m_etype == ::type_vara)
       {
-         //var = var1.vara() / var2.vara();
+         //payload = var1.vara() / var2.vara();
       }
       else
       {
-         var = var1;
-         var.vara().remove(var2);
+         payload = var1;
+         payload.vara().remove(var2);
       }
    }
    else if(var1.is_double() || var2.is_double())
    {
-      var = var1.get_double() / var2.get_double();
+      payload = var1.get_double() / var2.get_double();
    }
    else if(var1.is_integer() || var2.is_integer())
    {
-      var = var1.i32() / var2.i32();
+      payload = var1.i32() / var2.i32();
    }
    else if(var1.is_natural() || var2.is_natural())
    {
-      var = var1.u32() / var2.u32();
+      payload = var1.u32() / var2.u32();
    }
    else
    {
-      var = atoi(var1.get_string()) / atoi(var2.get_string());
+      payload = atoi(var1.get_string()) / atoi(var2.get_string());
    }
-   return var;
+   return payload;
 }
 
 
-var var::operator * (::i32 i) const
+payload payload::operator * (::i32 i) const
 {
    return i32() * i;
 }
 
-var var::operator * (::u32 user) const
+payload payload::operator * (::u32 user) const
 {
    return u32() * user;
 }
 
-var var::operator * (::i64 l) const
+payload payload::operator * (::i64 l) const
 {
    return i64() * l;
 }
 
-var var::operator * (::u64 ul) const
+payload payload::operator * (::u64 ul) const
 {
    switch(m_etype)
    {
    case ::e_type_null:
-      return var(e_type_null);
+      return payload(e_type_null);
    case ::type_empty:
       return 0.0;
    case ::type_i32:
@@ -3823,57 +3823,57 @@ var var::operator * (::u64 ul) const
 
 }
 
-var var::operator * (double d) const
+payload payload::operator * (double d) const
 {
    return get_double() * d;
 }
 
-var operator * (::i32 i, const class var & var)
+payload operator * (::i32 i, const class payload & payload)
 {
-   return i * var.i32();
+   return i * payload.i32();
 }
 
-var operator * (::u32 user, const class var & var)
+payload operator * (::u32 user, const class payload & payload)
 {
-   return user * var.u32();
+   return user * payload.u32();
 }
 
-var operator * (::i64 l, const class var & var)
+payload operator * (::i64 l, const class payload & payload)
 {
-   return l * var.i64();
+   return l * payload.i64();
 }
 
-var operator * (::u64 ul, const class var & var)
+payload operator * (::u64 ul, const class payload & payload)
 {
 
-   switch(var.m_etype)
+   switch(payload.m_etype)
    {
    case ::e_type_null:
-      return ::var(::e_type_null);
+      return ::payload(::e_type_null);
    case ::type_empty:
       return 0;
    case ::type_i32:
-      return (iptr) ul * var.m_i32;
+      return (iptr) ul * payload.m_i32;
    case ::type_u32:
-      return (uptr) ul * var.m_u32;
+      return (uptr) ul * payload.m_u32;
    case ::type_i64:
-      return (::i64) ul * var.m_i64;
+      return (::i64) ul * payload.m_i64;
    case ::type_u64:
-      return (::u64) ul * var.m_u64;
+      return (::u64) ul * payload.m_u64;
    case ::type_float:
-      return (float) ul * var.m_f;
+      return (float) ul * payload.m_f;
    case ::type_double:
-      return (double) ul * var.m_d;
+      return (double) ul * payload.m_d;
    case ::type_string:
 #if defined(LINUX) || defined(ANDROID)
-      return (double) ul * atof(var.m_str);
+      return (double) ul * atof(payload.m_str);
 #else
-      return (double) ul * _atof_l(var.m_str, ::acme::g_localeC);
+      return (double) ul * _atof_l(payload.m_str, ::acme::g_localeC);
 #endif
    case ::type_pvar:
-      return operator * (ul, *var.m_pvar);
+      return operator * (ul, *payload.m_pvar);
    case ::type_prop:
-      return operator * (ul, *var.m_pprop);
+      return operator * (ul, *payload.m_pprop);
    default:
       return 0;
    }
@@ -3881,60 +3881,60 @@ var operator * (::u64 ul, const class var & var)
 }
 
 
-var operator * (double d, const class var & var)
+payload operator * (double d, const class payload & payload)
 {
-   return d * var.get_double();
+   return d * payload.get_double();
 }
 
-var operator * (const class var & var1, const class var & var2)
+payload operator * (const class payload & var1, const class payload & var2)
 {
 
-   var var;
+   payload payload;
 
    if(var1.m_etype == ::type_inta || var1.m_etype == ::type_inta)
    {
 
-      ::papaya::array::intersection(var.inta(), var1.inta(), var2.inta());
+      ::papaya::array::intersection(payload.inta(), var1.inta(), var2.inta());
 
    }
    else if(var1.m_etype == ::type_stra || var2.m_etype == ::type_stra)
    {
 
-      ::papaya::array::intersection(var.stra(), var1.stra(), var2.stra());
+      ::papaya::array::intersection(payload.stra(), var1.stra(), var2.stra());
 
    }
    else if(var1.m_etype == ::type_vara || var2.m_etype == ::type_vara)
    {
 
-      ::papaya::array::intersection(var.vara(), var1.vara(), var2.vara());
+      ::papaya::array::intersection(payload.vara(), var1.vara(), var2.vara());
 
    }
    else if(var1.is_double() || var2.is_double())
    {
 
-      var = var1.get_double() * var2.get_double();
+      payload = var1.get_double() * var2.get_double();
 
    }
    else if(var1.is_integer() || var2.is_integer())
    {
 
-      var = var1.i32() * var2.i32();
+      payload = var1.i32() * var2.i32();
 
    }
    else if(var1.is_natural() || var2.is_natural())
    {
 
-      var = var1.u32() * var2.u32();
+      payload = var1.u32() * var2.u32();
 
    }
    else
    {
 
-      var = var1.to_string().intersection(var2.to_string());
+      payload = var1.to_string().intersection(var2.to_string());
 
    }
 
-   return var;
+   return payload;
 
 }
 
@@ -3962,39 +3962,39 @@ var operator * (const class var & var1, const class var & var2)
 
 
 
-class var & var::operator -= (::i32 i)
+class payload & payload::operator -= (::i32 i)
 {
    operator =(*this - i);
    return *this;
 }
 
-class var & var::operator -= (::u32 user)
+class payload & payload::operator -= (::u32 user)
 {
    operator =(*this - user);
    return *this;
 }
 
-class var & var::operator -= (::i64 i)
+class payload & payload::operator -= (::i64 i)
 {
    operator =(*this - i);
    return *this;
 }
 
-class var & var::operator -= (::u64 user)
+class payload & payload::operator -= (::u64 user)
 {
    operator =(*this - user);
    return *this;
 }
 
-class var & var::operator -= (double d)
+class payload & payload::operator -= (double d)
 {
    operator =(*this - d);
    return *this;
 }
 
-class var & var::operator -= (const class var & var)
+class payload & payload::operator -= (const class payload & payload)
 {
-   operator =(*this - var);
+   operator =(*this - payload);
    return *this;
 }
 
@@ -4021,39 +4021,39 @@ class var & var::operator -= (const class var & var)
 
 
 
-class var & var::operator += (::i32 i)
-{
-   operator =(*this + i);
-   return *this;
-}
-
-class var & var::operator += (::u32 user)
-{
-   operator =(*this + user);
-   return *this;
-}
-
-class var & var::operator += (::i64 i)
+class payload & payload::operator += (::i32 i)
 {
    operator =(*this + i);
    return *this;
 }
 
-class var & var::operator += (::u64 user)
+class payload & payload::operator += (::u32 user)
 {
    operator =(*this + user);
    return *this;
 }
 
-class var & var::operator += (double d)
+class payload & payload::operator += (::i64 i)
+{
+   operator =(*this + i);
+   return *this;
+}
+
+class payload & payload::operator += (::u64 user)
+{
+   operator =(*this + user);
+   return *this;
+}
+
+class payload & payload::operator += (double d)
 {
    operator =(*this + d);
    return *this;
 }
 
-class var & var::operator += (const class var & var)
+class payload & payload::operator += (const class payload & payload)
 {
-   operator =(*this + var);
+   operator =(*this + payload);
    return *this;
 }
 
@@ -4080,39 +4080,39 @@ class var & var::operator += (const class var & var)
 
 
 
-class var & var::operator /= (::i32 i)
-{
-   operator =(*this / i);
-   return *this;
-}
-
-class var & var::operator /= (::u32 user)
-{
-   operator =(*this / user);
-   return *this;
-}
-
-class var & var::operator /= (::i64 i)
+class payload & payload::operator /= (::i32 i)
 {
    operator =(*this / i);
    return *this;
 }
 
-class var & var::operator /= (::u64 user)
+class payload & payload::operator /= (::u32 user)
 {
    operator =(*this / user);
    return *this;
 }
 
-class var & var::operator /= (double d)
+class payload & payload::operator /= (::i64 i)
+{
+   operator =(*this / i);
+   return *this;
+}
+
+class payload & payload::operator /= (::u64 user)
+{
+   operator =(*this / user);
+   return *this;
+}
+
+class payload & payload::operator /= (double d)
 {
    operator =(*this / d);
    return *this;
 }
 
-class var & var::operator /= (const class var & var)
+class payload & payload::operator /= (const class payload & payload)
 {
-   operator =(*this / var);
+   operator =(*this / payload);
    return *this;
 }
 
@@ -4139,41 +4139,41 @@ class var & var::operator /= (const class var & var)
 
 
 
-class var & var::operator *= (::i32 i)
-{
-   operator =(*this * i);
-   return *this;
-}
-
-class var & var::operator *= (::u32 user)
-{
-   operator =(*this * user);
-   return *this;
-}
-
-class var & var::operator *= (::i64 i)
+class payload & payload::operator *= (::i32 i)
 {
    operator =(*this * i);
    return *this;
 }
 
-class var & var::operator *= (::u64 user)
+class payload & payload::operator *= (::u32 user)
 {
    operator =(*this * user);
    return *this;
 }
 
-class var & var::operator *= (double d)
+class payload & payload::operator *= (::i64 i)
+{
+   operator =(*this * i);
+   return *this;
+}
+
+class payload & payload::operator *= (::u64 user)
+{
+   operator =(*this * user);
+   return *this;
+}
+
+class payload & payload::operator *= (double d)
 {
    operator =(*this * d);
    return *this;
 }
 
 
-class var & var::operator *= (const class var & var)
+class payload & payload::operator *= (const class payload & payload)
 {
 
-   operator =(*this * var);
+   operator =(*this * payload);
 
    return *this;
 
@@ -4204,7 +4204,7 @@ class var & var::operator *= (const class var & var)
 
 
 
-bool var::is_scalar() const
+bool payload::is_scalar() const
 {
    if(m_etype == type_new
          || m_etype == e_type_null
@@ -4246,7 +4246,7 @@ bool var::is_scalar() const
    }
 }
 
-bool var::is_real() const
+bool payload::is_real() const
 {
    if(m_etype == type_double || m_etype == type_float)
    {
@@ -4365,7 +4365,7 @@ dot2:
 }
 
 
-bool var::is_boolean() const
+bool payload::is_boolean() const
 {
    if (m_etype == type_double)
    {
@@ -4374,7 +4374,7 @@ bool var::is_boolean() const
    return false;
 }
 
-bool var::is_double() const
+bool payload::is_double() const
 {
    if(m_etype == type_double)
    {
@@ -4492,7 +4492,7 @@ dot2:
 
 }
 
-bool var::is_integer() const
+bool payload::is_integer() const
 {
    if(m_etype == type_i32 || m_etype == type_i64)
    {
@@ -4538,7 +4538,7 @@ bool var::is_integer() const
    }
 }
 
-bool var::is_natural() const
+bool payload::is_natural() const
 {
    if(m_etype == type_u32 || m_etype == type_u64)
    {
@@ -4583,7 +4583,7 @@ bool var::is_natural() const
    }
 }
 
-var::operator bool() const
+payload::operator bool() const
 {
 
    if (m_etype == type_enum_status)
@@ -4771,7 +4771,7 @@ var::operator bool() const
 }
 
 
-bool var::is_property_true(const ::id & id) const
+bool payload::is_property_true(const ::id & id) const
 {
 
    auto pproperty = find_property(id);
@@ -4795,21 +4795,21 @@ bool var::is_property_true(const ::id & id) const
 }
 
 
-bool var::is_property_false(const ::id & id) const
+bool payload::is_property_false(const ::id & id) const
 {
 
    return !is_property_true(id);
 
 }
 
-var::operator block () const
+payload::operator block () const
 {
 
-   return ((var *)this)->operator block ();
+   return ((payload *)this)->operator block ();
 
 }
 
-var::operator block ()
+payload::operator block ()
 {
 
    if (get_type() != type_memory)
@@ -4825,7 +4825,7 @@ var::operator block ()
 
 
 
-var var::get_topic(const ::id & id) const
+payload payload::get_topic(const ::id & id) const
 {
 
    auto pproperty = find_property(id);
@@ -4842,7 +4842,7 @@ var var::get_topic(const ::id & id) const
 }
 
 
-//var var::defer_get(const ::id & id) const
+//payload payload::defer_get(const ::id & id) const
 //{
 //
 //   auto pproperty = defer_get_property(id);
@@ -4859,7 +4859,7 @@ var var::get_topic(const ::id & id) const
 //}
 
 
-//property * var::defer_get_property(const ::id & id) const
+//property * payload::defer_get_property(const ::id & id) const
 //{
 //   if(get_type() == type_propset)
 //   {
@@ -4891,7 +4891,7 @@ var var::get_topic(const ::id & id) const
 //}
 
 
-bool var::has_property(const ::id & id) const
+bool payload::has_property(const ::id & id) const
 {
 
    return __found(property_index(id));
@@ -4899,7 +4899,7 @@ bool var::has_property(const ::id & id) const
 }
 
 
-void var::consume_identifier(const char * & psz)
+void payload::consume_identifier(const char * & psz)
 {
 
    consume_number(psz, psz + strlen(psz) - 1);
@@ -4907,7 +4907,7 @@ void var::consume_identifier(const char * & psz)
 }
 
 
-void var::consume_identifier(const char * & psz, const char * pszEnd)
+void payload::consume_identifier(const char * & psz, const char * pszEnd)
 {
 
    const char * pszParse = psz;
@@ -4947,12 +4947,12 @@ void var::consume_identifier(const char * & psz, const char * pszEnd)
    psz = pszParse;
 }
 
-void var::consume_number(const char * & psz)
+void payload::consume_number(const char * & psz)
 {
    consume_number(psz, psz + strlen(psz) - 1);
 }
 
-void var::consume_number(const char * & psz, const char * pszEnd)
+void payload::consume_number(const char * & psz, const char * pszEnd)
 {
    const char * pszParse = psz;
    bool bSigned = false;
@@ -5065,7 +5065,7 @@ end:
 
 
 
-void var::parse_json(const char * & pszJson)
+void payload::parse_json(const char * & pszJson)
 {
    parse_json(pszJson, pszJson + strlen(pszJson) - 1);
 }
@@ -5254,7 +5254,7 @@ void var_skip_json(const char *& pszJson)
 
 
 
-const char * var::parse_json(const string & strJson)
+const char * payload::parse_json(const string & strJson)
 {
 
    const char * pszJson = strJson;
@@ -5265,7 +5265,7 @@ const char * var::parse_json(const string & strJson)
 
 }
 
-void var::parse_json(const char *& pszJson, const char * pszEnd)
+void payload::parse_json(const char *& pszJson, const char * pszEnd)
 {
    ::str::consume_spaces(pszJson, 0, pszEnd);
    if (*pszJson == '{')
@@ -5301,7 +5301,7 @@ void var::parse_json(const char *& pszJson, const char * pszEnd)
    }
 }
 
-::enum_type var::find_json_child(const char *& pszJson, const char * pszEnd, const var & varChild)
+::enum_type payload::find_json_child(const char *& pszJson, const char * pszEnd, const payload & varChild)
 {
 
    ::str::consume_spaces(pszJson, 0, pszEnd);
@@ -5452,7 +5452,7 @@ void var::parse_json(const char *& pszJson, const char * pszEnd)
 }
 
 
-::enum_type var::find_json_id(const char * & pszJson, const char * pszEnd, const var & varChild)
+::enum_type payload::find_json_id(const char * & pszJson, const char * pszEnd, const payload & varChild)
 {
 
    ::str::consume_spaces(pszJson, 0, pszEnd);
@@ -5517,7 +5517,7 @@ void var::parse_json(const char *& pszJson, const char * pszEnd)
 }
 
 
-bool var::is_numeric() const
+bool payload::is_numeric() const
 {
 
    switch(get_type())
@@ -5589,9 +5589,9 @@ bool var::is_numeric() const
 
    case type_i64a:
       return false;
-   case type_procedure:
+   case type_routine:
       return false;
-   case type_futurevar:
+   case type_process:
       return false;
    default:
       __throw(not_implemented());
@@ -5608,7 +5608,7 @@ bool is_return_ok(para_return eret)
 }
 
 
-var str_ends_get(const char * pcsz, const char * pcszSuffix)
+payload str_ends_get(const char * pcsz, const char * pcszSuffix)
 {
 
    string str(pcsz);
@@ -5630,7 +5630,7 @@ var str_ends_get(const char * pcsz, const char * pcszSuffix)
 }
 
 
-string var::get_json(bool bNewLine) const
+string payload::get_json(bool bNewLine) const
 {
 
    string str;
@@ -5640,7 +5640,7 @@ string var::get_json(bool bNewLine) const
 }
 
 
-string & var::get_json(string & str, bool bNewLine) const
+string & payload::get_json(string & str, bool bNewLine) const
 {
 
    if (is_null())
@@ -5708,7 +5708,7 @@ string & var::get_json(string & str, bool bNewLine) const
 
 
 
-void var::null()
+void payload::null()
 {
 
    set_type(::e_type_null);
@@ -5718,7 +5718,7 @@ void var::null()
 
 
 
-::file::path var::get_file_path() const
+::file::path payload::get_file_path() const
 {
 
    if(m_etype == type_element)
@@ -5791,7 +5791,7 @@ void var::null()
 }
 
 
-var & var::operator |= (cflag < ::file::e_flag > eflag)
+payload & payload::operator |= (cflag < ::file::e_flag > eflag)
 {
 
    auto pfile = cast < ::file::file > ();
@@ -5851,7 +5851,7 @@ var & var::operator |= (cflag < ::file::e_flag > eflag)
 }
 
 
-bool var::is_false() const
+bool payload::is_false() const
 {
 
    switch(m_etype)
@@ -5939,10 +5939,10 @@ bool var::is_false() const
       return m_pvar || !*m_pvar;
    case type_prop:
       return m_pprop || !*m_pprop;
-   case type_procedure:
-         return !m_procedure;
-   case type_futurevar:
-         return !m_futurevar;
+   case type_routine:
+         return !m_routine;
+   case type_process:
+         return !m_process;
 
    // matter classes
    case type_element:
@@ -5979,7 +5979,7 @@ bool var::is_false() const
 }
 
 
-bool var::is_set_false() const
+bool payload::is_set_false() const
 {
 
    switch(m_etype)
@@ -6064,10 +6064,10 @@ bool var::is_set_false() const
       return m_pvar || !*m_pvar;
    case type_prop:
       return m_pprop || !*m_pprop;
-   case type_procedure:
-      return !m_procedure;
-   case type_futurevar:
-      return !m_futurevar;
+   case type_routine:
+      return !m_routine;
+   case type_process:
+      return !m_process;
 
       // matter classes
    case type_element:
@@ -6104,7 +6104,7 @@ bool var::is_set_false() const
 }
 
 
-bool var::is_bool_false() const
+bool payload::is_bool_false() const
 {
 
    if (m_etype == type_pbool)
@@ -6130,9 +6130,9 @@ bool var::is_bool_false() const
 
 
 // try to set string scalar if suitable.
-// no change if source string array stream empty
+// no machine if source string array stream empty
 // and avoid duplicate
-void var::_001Add(const string_array & straParam)
+void payload::_001Add(const string_array & straParam)
 {
 
    if(straParam.get_count() <= 0)
@@ -6167,7 +6167,7 @@ void var::_001Add(const string_array & straParam)
 }
 
 
-var & var::operator = (const ::matter & o)
+payload & payload::operator = (const ::matter & o)
 {
 
    set_element((::matter *) &o);
@@ -6203,7 +6203,7 @@ namespace user
 } // namespace user
 
 
-void unit_test_primitive_var_acme_block_arg(var var)
+void unit_test_primitive_var_acme_block_arg(payload payload)
 {
 
 
@@ -6215,9 +6215,9 @@ void unit_test_primitive_var_acme_block()
 
    ::user::window_rect2 r2;
 
-   var var1(r2);
+   payload var1(r2);
 
-   var var2;
+   payload var2;
 
    var2 = r2;
 
@@ -6229,7 +6229,7 @@ void unit_test_primitive_var_acme_block()
 #endif //UNIT_TEST
 
 
-var::operator ::datetime::time() const
+payload::operator ::datetime::time() const
 {
 
    return i64();
@@ -6239,7 +6239,7 @@ var::operator ::datetime::time() const
 
 
 
-//::image * & var::image()
+//::image * & payload::image()
 //{
 //
 //   if (m_etype == ::type_pvar)
@@ -6264,7 +6264,7 @@ var::operator ::datetime::time() const
 //}
 
 
-//var::operator ::image * & ()
+//payload::operator ::image * & ()
 //{
 //
 //   return image();
@@ -6279,7 +6279,7 @@ var::operator ::datetime::time() const
 
 
 #define IMPL_VAR_ENUM(ENUMTYPE) \
-::enum_ ## ENUMTYPE & var::e ## ENUMTYPE()         \
+::enum_ ## ENUMTYPE & payload::e ## ENUMTYPE()         \
 {                                                  \
                                                    \
    if(m_etype == ::type_pvar)                      \
@@ -6299,7 +6299,7 @@ var::operator ::datetime::time() const
    {                                               \
                                                    \
       m_etype = ::type_enum_ ## ENUMTYPE;              \
-      ·zero(m_all);   \
+      xxf_zero(m_all);   \
                                                    \
    }                                               \
                                                    \
@@ -6312,7 +6312,7 @@ IMPL_VAR_ENUM(check);
 #undef IMPL_VAR_ENUM
 
 
-::status::result var::run()
+::status::result payload::run()
 {
 
    if (get_type() == type_pvar)
@@ -6327,10 +6327,10 @@ IMPL_VAR_ENUM(check);
       return m_pprop->run();
 
    }
-   else if (get_type() == type_procedure)
+   else if (get_type() == type_routine)
    {
 
-      return m_procedure();
+      return m_routine();
 
    }
    else if (get_type() == type_vara)
@@ -6341,10 +6341,10 @@ IMPL_VAR_ENUM(check);
       for (auto & varFunction : vara())
       {
 
-         if (varFunction.get_type() == type_procedure)
+         if (varFunction.get_type() == type_routine)
          {
 
-            result.add(varFunction.m_procedure());
+            result.add(varFunction.m_routine());
 
          }
 
@@ -6363,25 +6363,25 @@ IMPL_VAR_ENUM(check);
 }
 
 
-void var::receive_response(const ::var & var)
+void payload::receive_response(const ::payload & payload)
 {
 
    if (get_type() == type_pvar)
    {
 
-      m_pvar->receive_response(var);
+      m_pvar->receive_response(payload);
 
    }
    else if (get_type() == type_prop)
    {
 
-      m_pprop->receive_response(var);
+      m_pprop->receive_response(payload);
 
    }
-   else if (get_type() == type_futurevar)
+   else if (get_type() == type_process)
    {
 
-      m_futurevar(var);
+      m_process(payload);
 
    }
    else if (get_type() == type_vara)
@@ -6390,10 +6390,10 @@ void var::receive_response(const ::var & var)
       for (auto& varFunction : this->vara())
       {
 
-         if (varFunction.get_type() == type_futurevar)
+         if (varFunction.get_type() == type_process)
          {
             
-            varFunction.m_futurevar(var);
+            varFunction.m_process(payload);
 
          }
 
@@ -6404,24 +6404,24 @@ void var::receive_response(const ::var & var)
 }
 
 
-var& var::operator = (const ::procedure & procedure)
+payload& payload::operator = (const ::promise::routine & routine)
 {
 
-   set_type(type_procedure);
+   set_type(type_routine);
 
-   m_procedure = procedure;
+   m_routine = routine;
 
    return *this;
 
 }
 
 
-var& var::operator = (const ::futurevar & futurevar)
+payload& payload::operator = (const ::promise::process & process)
 {
 
-   set_type(type_futurevar);
+   set_type(type_process);
 
-   m_futurevar = futurevar;
+   m_process = process;
 
    return *this;
 

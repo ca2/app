@@ -7,7 +7,7 @@
 //   if (bAsync)
 //   {
 //
-//      ＿＿defer_construct_new(m_pevTaskCompleted);
+//      __defer_construct_new(m_pevTaskCompleted);
 //
 //
 //   }
@@ -32,10 +32,10 @@
 //}
 
 //
-//void function::operator()(const var& var)
+//void function::operator()(const payload& payload)
 //{
 //
-//   (*m_pmatterFunction)(var);
+//   (*m_pmatterFunction)(payload);
 //
 //}
 //
@@ -53,10 +53,10 @@
 //}
 //
 //
-//void sync_function::operator()(const var& var)
+//void sync_function::operator()(const payload& payload)
 //{
 //   
-//   (*m_pmatterFunction)(var);
+//   (*m_pmatterFunction)(payload);
 //
 //   m_pevFunctionCompleted->SetEvent();
 //

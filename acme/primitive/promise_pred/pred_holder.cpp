@@ -1,19 +1,19 @@
 #include "framework.h"
 
 
-λarray::λarray()
+pred_array::pred_array()
 {
 
 }
 
 
-λarray::~λarray()
+pred_array::~pred_array()
 {
 
 }
 
 
-void λarray::run_all()
+void pred_array::run_all()
 {
 
    for(auto & pred : *this)

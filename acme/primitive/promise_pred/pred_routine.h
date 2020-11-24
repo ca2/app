@@ -9,7 +9,7 @@
 //
 //
 //template < typename PRED >
-//class λmethod :
+//class pred_method :
 //   virtual public ::matter
 //{
 //public:
@@ -18,14 +18,14 @@
 //   PRED   m_pred;
 //
 //
-//   λmethod(PRED pred) :
+//   pred_method(PRED pred) :
 //      m_pred(pred)
 //   {
 //
 //   }
 //
 //
-//   virtual ~λmethod()
+//   virtual ~pred_method()
 //   {
 //
 //
@@ -42,10 +42,10 @@
 //   }
 //
 //
-//   void receive_response(const ::var&) override
+//   void receive_response(const ::payload&) override
 //   {
 //
-//      ＿＿throw(interface_only_exception());
+//      __throw(interface_only_exception());
 //
 //   }
 //
@@ -57,7 +57,7 @@
 
 
 template < typename PRED >
-class λprocedure :
+class pred_procedure :
    virtual public ::matter
 {
 public:
@@ -66,8 +66,8 @@ public:
    PRED m_pred;
 
 
-   λprocedure(PRED pred) : m_pred(pred) { }
-   virtual ~λprocedure() {}
+   pred_procedure(PRED pred) : m_pred(pred) { }
+   virtual ~pred_procedure() {}
    //method(const ::matter_pointer & pmatter) : matter_pointer(pmatter) { }
    //method(const ::method & method) : matter_pointer(method) { }
 
@@ -87,7 +87,7 @@ public:
    //void pred(PRED pred);
 
    //inline method & operator = (const ::method & method) { m_pmatter = method.m_pmatter; return *this; }
-   //method & operator = (const ::var & var);
+   //method & operator = (const ::payload & payload);
 
 
 };
@@ -96,10 +96,10 @@ public:
 
 
 template < typename PRED >
-procedure ＿＿procedure(PRED pred)
+::promise::routine __procedure(PRED pred)
 {
 
-   return ＿＿new(λprocedure<PRED>(pred));
+   return __new(pred_procedure<PRED>(pred));
 
 }
 
@@ -154,10 +154,10 @@ inline auto schedule(processor * pprocessor, PRED pred, e_priority epriority = p
 
 
 template < typename TYPE >
-inline auto ＿＿runnable_method(TYPE * p, void (TYPE:: * pmethod)())
+inline auto __runnable_method(TYPE * p, void (TYPE:: * pmethod)())
 {
 
-   return ＿＿runnable([p, pmethod]
+   return __runnable([p, pmethod]
    {
 
       (p->*pmethod)();

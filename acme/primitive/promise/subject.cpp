@@ -6,7 +6,7 @@ namespace promise
 {
 
 
-   update::update()
+   subject::subject()
    {
 
       action_common_construct();
@@ -14,7 +14,7 @@ namespace promise
    }
 
 
-   update::update(const ::id &id, const ::action_context &actioncontext)
+   subject::subject(const ::id &id, const ::action_context &actioncontext)
    {
 
       action_common_construct();
@@ -26,7 +26,7 @@ namespace promise
    }
 
 
-   update::update(const ::id &id, ::matter *pmatter) :
+   subject::subject(const ::id &id, ::matter *pmatter) :
            m_pmatter(pmatter)
    {
 
@@ -37,8 +37,8 @@ namespace promise
    }
 
 
-   update::update(::manager *pupdate, const ::action_context &actioncontext) :
-           m_pupdate(pupdate)
+   subject::subject(::promise::handler * phandler, const ::action_context & actioncontext) :
+      m_phandler(phandler)
    {
 
       action_common_construct();
@@ -48,45 +48,45 @@ namespace promise
    }
 
 
-   update::update(::manager *pupdate, ::matter *pmatter) :
-           m_pupdate(pupdate),
-           m_pchange(pmatter ? pupdate->machine(pmatter) : nullptr)
+   subject::subject(::promise::handler * phandler, ::matter *pmatter) :
+           m_phandler(phandler),
+           m_pcontext(pmatter ? phandler->context(pmatter) : nullptr)
    {
 
       m_pmatter.reset(pmatter OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
 
       action_common_construct();
 
-      if (m_pupdate)
+      if (m_phandler)
       {
 
-         m_id = m_pupdate->m_id;
+         m_id = m_phandler->m_id;
 
       }
 
    }
 
 
-   update::update(::manager *pupdate, ::machine *pchange, ::matter *pmatter) :
-           m_pupdate(pupdate),
-           m_pchange(pchange)
+   subject::subject(::promise::handler * phandler, ::promise::context * pcontext, ::matter * pmatter) :
+      m_phandler(phandler),
+      m_pcontext(pcontext)
    {
 
       m_pmatter.reset(pmatter OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
 
       action_common_construct();
 
-      if (m_pupdate)
+      if (m_phandler)
       {
 
-         m_id = m_pupdate->m_id;
+         m_id = m_phandler->m_id;
 
       }
 
    }
 
 
-   update::~update()
+   subject::~subject()
    {
 
       m_pmatter.release(OBJ_REF_DBG_THIS_FUNCTION_LINE);
@@ -94,7 +94,7 @@ namespace promise
    }
 
 
-   void update::action_common_construct()
+   void subject::action_common_construct()
    {
 
       m_bRet = false;
@@ -107,7 +107,7 @@ namespace promise
    }
 
 
-   ::estatus update::start_task()
+   ::estatus subject::start_task()
    {
 
       return ::success_none;
@@ -115,21 +115,21 @@ namespace promise
    }
 
 
-   void update::reset_update(const ::id &id)
+   void subject::reset_update(const ::id &id)
    {
 
-      m_pupdate = ::source::fork_update(id);
+      //m_phandler = ::promise::backing::fork_handler(id);
 
    }
 
 
-   ::estatus update::on_task()
+   ::estatus subject::on_task()
    {
 
-      if (m_pupdate)
+      if (m_phandler)
       {
 
-         m_pmatter->process(this);
+         m_phandler->process(this);
 
          return ::success;
 
@@ -144,39 +144,39 @@ namespace promise
    }
 
 
-   bool update::is_up_to_date() const
+   bool subject::is_up_to_date() const
    {
 
-      if (::is_null(m_pchange))
+      if (::is_null(m_pcontext))
       {
 
          return false;
 
       }
 
-      if (m_pchange->m_iUpdateSerial < 0)
+      if (m_pcontext->m_iUpdateSerial < 0)
       {
 
          return false;
 
       }
 
-      if (m_pupdate->m_iUpdateSerial < 0)
+      if (m_phandler->m_iUpdateSerial < 0)
       {
 
          return false;
 
       }
 
-      return m_pchange->is_up_to_date(m_pupdate);
+      return m_pcontext->is_up_to_date(m_phandler);
 
    }
 
 
-   void update::set_up_to_date()
+   void subject::set_up_to_date()
    {
 
-      m_pchange->set_up_to_date(m_pupdate);
+      m_pcontext->set_up_to_date(m_phandler);
 
    }
 

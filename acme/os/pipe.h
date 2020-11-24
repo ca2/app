@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace process
+namespace os
 {
 
 
@@ -44,38 +44,7 @@ namespace process
    };
 
 
-} // namespace process
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+} // namespace os
 
 
 

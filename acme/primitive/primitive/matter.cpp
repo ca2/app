@@ -769,6 +769,14 @@ void matter::to_string(const class string_exchange & str) const
 }
 
 
+void matter::on_subject_deliver(promise::subject * psubject) 
+{
+
+
+
+}
+
+
 CLASS_DECL_ACME ::estatus __call(const ::promise::routine & routine)
 {
 

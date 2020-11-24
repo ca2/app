@@ -74,6 +74,18 @@ namespace acme
    }
 
 
+   void system::on_subject_process(::promise::subject * psubject)
+   {
+
+      if (psubject->id() == id_dark_mode)
+      {
+
+      }
+
+
+   }
+
+
    ::estatus system::main_user_async(const ::promise::routine & procedure, ::e_priority epriority)
    {
 

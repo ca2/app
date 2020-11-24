@@ -360,7 +360,7 @@ CLASS_DECL_ACME string message_box_result_to_string(int iResult);
 //
 
 
-CLASS_DECL_ACME ::estatus _os_message_box(oswindow oswindow, const char* pszMessage, const char* pszTitle, ::emessagebox emessagebox, const ::futurevar & futurevar)
+CLASS_DECL_ACME ::estatus _os_message_box(oswindow oswindow, const char* pszMessage, const char* pszTitle, ::emessagebox emessagebox, const ::promise::process & process)
 {
 
    string strMessage(pszMessage);
@@ -375,14 +375,14 @@ CLASS_DECL_ACME ::estatus _os_message_box(oswindow oswindow, const char* pszMess
 
    string strResult = message_box_result_to_string(iResult);
 
-   futurevar(strResult);
+   process(strResult);
 
    return ::success;
 
 }
 //
 //
-CLASS_DECL_ACME ::estatus os_message_box(oswindow oswindow, const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox, const ::futurevar & futurevar)
+CLASS_DECL_ACME ::estatus os_message_box(oswindow oswindow, const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox, const ::promise::process & process)
 {
 
    //if (System.is_dedicated_thread())
@@ -399,7 +399,7 @@ CLASS_DECL_ACME ::estatus os_message_box(oswindow oswindow, const char * pszMess
 
    //}
 
-   return _os_message_box(oswindow, pszMessage, pszTitle, emessagebox, futurevar);
+   return _os_message_box(oswindow, pszMessage, pszTitle, emessagebox, process);
 
 }
 //

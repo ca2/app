@@ -118,6 +118,38 @@ namespace promise
 
    }
 
+   
+   void backing::process(::promise::subject * psubject)
+   {
+
+      on_subject_prepare(psubject);
+
+      if (!psubject->m_bitProcessed)
+      {
+
+         on_subject_process(psubject);
+
+      }
+
+   }
+
+
+
+   void backing::on_subject_prepare(::promise::subject * psubject)
+   {
+
+
+   }
+
+
+   void backing::on_subject_process(::promise::subject * psubject)
+   {
+   
+   
+   }
+
+
+
 
    void backing::process_subject(const ::id &id, const ::payload &payload)
    {

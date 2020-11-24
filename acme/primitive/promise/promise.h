@@ -8,7 +8,7 @@ namespace promise
 {
 
 
-   class promise :
+   class CLASS_DECL_ACME promise :
            virtual public ::matter
    {
    public:

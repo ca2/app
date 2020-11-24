@@ -192,7 +192,7 @@ void duration::sleep() const
    else if (m_iNanoseconds > 20'000)
    {
 
-      micro_sleep(micros());
+      micros_sleep(micros());
 
    }
    else

@@ -39,7 +39,7 @@ namespace promise
 #ifdef DEBUG
 
 
-   i64 update::add_ref(OBJ_REF_DBG_PARAMS_DEF)
+   i64 handler::add_ref(OBJ_REF_DBG_PARAMS_DEF)
    {
 
       return ::context_object::add_ref(OBJ_REF_DBG_ARGS);
@@ -47,7 +47,7 @@ namespace promise
    }
 
 
-   i64 update::dec_ref(OBJ_REF_DBG_PARAMS_DEF)
+   i64 handler::dec_ref(OBJ_REF_DBG_PARAMS_DEF)
    {
 
       return ::context_object::dec_ref(OBJ_REF_DBG_ARGS);
@@ -55,7 +55,7 @@ namespace promise
    }
 
 
-   i64 update::release(OBJ_REF_DBG_PARAMS_DEF)
+   i64 handler::release(OBJ_REF_DBG_PARAMS_DEF)
    {
 
       return ::context_object::release(OBJ_REF_DBG_ARGS);

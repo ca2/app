@@ -36,6 +36,7 @@ namespace promise
       virtual void process(::promise::subject * psubject);
       virtual void on_subject_prepare(::promise::subject * psubject);
       virtual void on_subject_process(::promise::subject * psubject);
+      //virtual void on_subject_process(::promise::subject * psubject);
 
       virtual void deliver(const ::id &id);
       virtual void deliver(const ::id &id, const ::action_context &actioncontext);

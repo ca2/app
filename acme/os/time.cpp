@@ -59,7 +59,7 @@ CLASS_DECL_ACME void secs_sleep(const ::secs & secs)
 CLASS_DECL_ACME void millis_sleep(const millis & millis)
 {
 
-   ::Sleep(millis.m_iMiliseconds);
+   ::Sleep(millis.m_iMilliseconds);
 
 }
 

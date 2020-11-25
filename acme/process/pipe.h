@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace os
+namespace process
 {
 
 
@@ -11,7 +11,7 @@ namespace os
    public:
 
 
-            char *               m_pchBuf;
+      char *               m_pchBuf;
       string               m_strRead;
 
       bool                 m_bInherit;
@@ -44,7 +44,7 @@ namespace os
    };
 
 
-} // namespace os
+} // namespace process
 
 
 

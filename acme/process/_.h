@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "exit_status.h"
+
+
 #if !defined(_UWP)
 
 CLASS_DECL_ACME i32 call_async(const char * pszPath, const char * pszParam, const char * pszDir, ::edisplay edisplay, bool bPrivileged, unsigned int * puiPid = nullptr);
@@ -118,6 +121,10 @@ CLASS_DECL_ACME int * process_get_pargc();
 CLASS_DECL_ACME int process_get_argc();
 CLASS_DECL_ACME TCHAR*** process_get_pargv();
 CLASS_DECL_ACME TCHAR** process_get_argv();
+
+
+#include "pipe.h"
+#include "bidirectional_pipe.h"
 
 
 

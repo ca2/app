@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace parallelization
+namespace process
 {
 
 
@@ -15,7 +15,7 @@ namespace parallelization
    }
 
 
-} // namespace parallelization
+} // namespace process
 
 
 

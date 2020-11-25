@@ -1,7 +1,8 @@
 #pragma once
 
 
-namespace parallelization
+
+namespace process
 {
 
 
@@ -24,11 +25,7 @@ namespace parallelization
    //CLASS_DECL_ACME string app_id_to_app_name(string strId);
 
 
-} // namespace parallelization
+} // namespace process
 
 
-#include "os/pipe.h"
-#include "os/bidirectional_pipe.h"
-//#include "process_process.h"
-//#include "process_department.h"
 

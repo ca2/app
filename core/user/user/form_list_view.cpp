@@ -73,7 +73,7 @@ namespace user
 
          psubject->value(id_form) = this;
 
-         m_pcallback->apply(psubject);
+         m_pcallback->process(psubject);
 
       }
 

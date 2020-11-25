@@ -734,7 +734,7 @@ namespace core
 
       pbox->value("message") = pszMessage;
 
-      pbox->add_futurevar(DIALOG_RESULT_PROCESS, futurevar);
+      pbox->add_process(DIALOG_RESULT_PROCESS, process);
 
       string strTitle = App(__object(pobjectContext)).get_title();
 

@@ -889,7 +889,7 @@ break_click:;
 
          auto psubject = fork_subject(id_control_saved);
 
-         apply(psubject);
+         process(psubject);
 
          return true;
 
@@ -961,7 +961,7 @@ break_click:;
 
          auto psubject = fork_subject(id_control_saved);
 
-         apply(psubject);
+         process(psubject);
 
          if (pinteraction->descriptor().has_function(::user::control_function_duplicate_on_check_box))
          {

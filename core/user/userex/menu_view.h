@@ -10,7 +10,7 @@ public:
    menu_view();
 
 
-   void on_apply(::action * paction);
+   void on_subject(::promise::subject * psubject, ::promise::context * pcontext);
    virtual void on_control_event(::user::control_event * pevent);
    DECL_GEN_SIGNAL(_001OnCreate);
    void _001OnTimer(::timer * ptimer);

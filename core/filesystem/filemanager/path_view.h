@@ -21,7 +21,7 @@ namespace filemanager
 
       virtual void _001OnAfterChangeText(const ::action_context & action_context);
 
-      void on_apply(::action * paction);
+      void on_subject(::promise::subject * psubject, ::promise::context * pcontext);
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
 

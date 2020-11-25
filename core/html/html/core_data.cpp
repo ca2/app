@@ -193,10 +193,10 @@ namespace html
    }
 
 
-   void core_data::on_apply(::action * paction)
+   void core_data::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
    {
 
-      html_data::on_apply(paction);
+      html_data::on_subject(psubject, pcontext);
 
    }
 

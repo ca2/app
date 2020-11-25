@@ -25,7 +25,7 @@
 #include "xf_client.h"
 #include "xfreerdp.h"
 
-#define XF_ACTION_SCRIPT "~/.config/freerdp/action.sh"
+#define XF_ACTION_SCRIPT "~/.config/freerdp/psubject->sh"
 
 struct _XF_MODIFIER_KEYS
 {

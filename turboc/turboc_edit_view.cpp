@@ -27,7 +27,7 @@ namespace turboc
    void edit_view::on_update(::aura::impact * pSender,e_update eupdate,object* pupdate)
    {
 
-      ::user::edit_plain_text_view::on_apply(paction);
+      ::user::edit_plain_text_view::on_subject(psubject, pcontext);
 
    }
 

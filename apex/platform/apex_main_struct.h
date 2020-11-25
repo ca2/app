@@ -25,18 +25,18 @@ typedef NEW_APEX_APPLICATION* PFN_NEW_APEX_APPLICATION;
 struct CLASS_DECL_APEX apex_main_struct
 {
 
-   ::set                         m_bLocalization;
-   ::set                         m_bConsole;
-   ::set                         m_bDraw2d;
-   ::set                         m_bUser;
-   ::set                         m_bUserEx;
-   ::set                         m_bImaging;
+   ::logic::bit                  m_bLocalization;
+   ::logic::bit                  m_bConsole;
+   ::logic::bit                  m_bDraw2d;
+   ::logic::bit                  m_bUser;
+   ::logic::bit                  m_bUserEx;
+   ::logic::bit                  m_bImaging;
 #ifdef WINDOWS_DESKTOP
-   ::set                         m_bGdiplus;
+   ::logic::bit                  m_bGdiplus;
 #elif defined(LINUX)
-   ::set                         m_bGtkApp;
+   ::logic::bit                  m_bGtkApp;
 #endif
-   ::set                         m_bShowApplicationInformation;
+   ::logic::bit                         m_bShowApplicationInformation;
    INT_STRING *                  m_pintstringLanguageResourceMap;
    int                           m_iMatterFromHttpCache;
 

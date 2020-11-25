@@ -291,41 +291,41 @@
 //   }
 //
 //
-//   void os_file_watcher::handle_action(action * paction)
+//   void os_file_watcher::handle_action(action * psubject)
 //   {
 //
-//      if (!paction->m_pwatch)
+//      if (!psubject->m_pwatch)
 //      {
 //
 //         return;
 //
 //      }
 //
-//      if (!paction->m_pwatch->m_plistener)
+//      if (!psubject->m_pwatch->m_plistener)
 //      {
 //
 //         return;
 //
 //      }
 //
-//      if (IN_CLOSE_WRITE & paction->m_ulOsAction)
+//      if (IN_CLOSE_WRITE & psubject->m_ulOsAction)
 //      {
 //
-//         paction->m_pwatch->m_plistener->handle_file_action(::file::action * paction);
+//         psubject->m_pwatch->m_plistener->handle_file_action(::file::action * paction);
 //
 //      }
 //
-//      if (IN_MOVED_TO & paction->m_ulOsAction || IN_CREATE & paction->m_ulOsAction)
+//      if (IN_MOVED_TO & psubject->m_ulOsAction || IN_CREATE & psubject->m_ulOsAction)
 //      {
 //
-//         paction->m_pwatch->m_plistener->handle_file_action(::file::action * paction);
+//         psubject->m_pwatch->m_plistener->handle_file_action(::file::action * paction);
 //
 //      }
 //
-//      if (IN_MOVED_FROM & paction->m_ulOsAction || IN_DELETE & paction->m_ulOsAction)
+//      if (IN_MOVED_FROM & psubject->m_ulOsAction || IN_DELETE & psubject->m_ulOsAction)
 //      {
 //
-//         paction->m_pwatch->m_plistener->handle_file_action(::file::action * paction);
+//         psubject->m_pwatch->m_plistener->handle_file_action(::file::action * paction);
 //
 //      }
 //

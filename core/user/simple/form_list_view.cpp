@@ -43,9 +43,9 @@ bool simple_form_list_view::pre_create_window(::user::create_struct& cs)
    return ::user::impact::pre_create_window(cs);
 }
 
-void simple_form_list_view::on_apply(::action * paction)
+void simple_form_list_view::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
 {
 
-   BASE::on_apply(paction);
+   BASE::on_subject(psubject, pcontext);
 
 }

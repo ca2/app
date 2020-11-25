@@ -102,7 +102,7 @@ namespace user
       virtual ::user::impact_data * get_impact_data(const id& id, bool bCallOnCreateView = true);
 
 
-      virtual void on_apply(::subject * paction) override;
+      virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
 
 
       virtual ::count get_view_count();

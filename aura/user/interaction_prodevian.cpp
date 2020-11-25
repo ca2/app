@@ -81,7 +81,7 @@ namespace user
 
       }
 
-      m_routineUpdateScreen = __procedure([this]()
+      m_routineUpdateScreen = __routine([this]()
          {
 
             if (!m_bitFinishing && !m_bitSetFinish)
@@ -95,7 +95,7 @@ namespace user
 
          });
 
-      m_routineWindowShow = __procedure([this]()
+      m_routineWindowShow = __routine([this]()
          {
 
             if (m_pimpl)
@@ -720,7 +720,7 @@ bool prodevian::prodevian_iteration()
             if(m_puserinteraction)
             {
 
-               m_puserinteraction->post_procedure(m_routineUpdateScreen);
+               m_puserinteraction->post_routine(m_routineUpdateScreen);
 
             }
 
@@ -743,7 +743,7 @@ bool prodevian::prodevian_iteration()
       if (bStartWindowVisual)
       {
 
-         m_puserinteraction->post_procedure(m_routineWindowShow);
+         m_puserinteraction->post_routine(m_routineWindowShow);
 
       }
       // ENDIF WINDOWS
@@ -1134,13 +1134,13 @@ bool prodevian::prodevian_iteration()
    }
 
 
-   void interaction::prodevian_post_procedure(const ::routine & procedure)
+   void interaction::prodevian_post_routine(const ::promise::routine & routine)
    {
 
       if (is_graphical())
       {
 
-         m_pimpl2->m_pprodevian->post_task(procedure);
+         m_pimpl2->m_pprodevian->post_task(routine);
 
       }
 

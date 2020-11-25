@@ -3795,10 +3795,10 @@ m_millisHeartBeat.Now();
    //   }
 
 
-      //void application::on_apply(::action * paction)
+      //void application::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
       //{
 
-      //   ::aura::application::on_apply(paction);
+      //   ::aura::application::on_subject(psubject, pcontext);
 
       //   if (pupdate->m_bRet)
       //   {
@@ -3807,7 +3807,7 @@ m_millisHeartBeat.Now();
 
       //   }
       //
-      //   ::user::form_callback::on_apply(paction);
+      //   ::user::form_callback::on_subject(psubject, pcontext);
 
       //   if (pupdate->m_bRet)
       //   {

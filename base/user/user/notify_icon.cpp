@@ -163,7 +163,7 @@ namespace user
 
          pathFolder = path.folder();
 
-         gdk_sync(5_s, __procedure([&]()
+         gdk_sync(5_s, __routine([&]()
          {
 
             m_pindicator = ::linux::allocate_appindicator();

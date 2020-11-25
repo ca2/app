@@ -720,15 +720,15 @@ bool html_form::load_html(const string & str)
 
 
 
-void html_form::on_apply(::action * paction)
+void html_form::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
 {
 
-   ::user::form_view::on_apply(paction);
+   ::user::form_view::on_subject(psubject, pcontext);
 
    ////__update(::update)
    {
 
-      if (paction->id() == id_document_complete)
+      if (psubject->id() == id_document_complete)
       {
 
          m_phtmldata = get_document()->get_html_data();
@@ -737,7 +737,7 @@ void html_form::on_apply(::action * paction)
 
    }
 
-   if (paction->id() == id_open_document)
+   if (psubject->id() == id_open_document)
    {
 
       if (m_strOpenOnCreate.has_char())
@@ -755,15 +755,15 @@ void html_form::on_apply(::action * paction)
 
 
 
-void html_form_view::on_apply(::action * paction)
+void html_form_view::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
 {
 
-   ::html_form::on_apply(paction);
+   ::html_form::on_subject(psubject, pcontext);
 
    ////__update(::update)
    {
 
-      if (paction->id() == id_document_complete)
+      if (psubject->id() == id_document_complete)
       {
 
          ASSERT(get_html_data() != nullptr);
@@ -790,7 +790,7 @@ void html_form_view::on_apply(::action * paction)
 
          defer_html_layout();
 
-         on_document_complete(paction->value(id_url));
+         on_document_complete(psubject->value(id_url));
 
          GetParentFrame()->SetActiveView(this);
 
@@ -803,28 +803,28 @@ void html_form_view::on_apply(::action * paction)
    ////__update(::update)
    {
 
-      if (paction->id() == id_browse)
+      if (psubject->id() == id_browse)
       {
 
-         if (!paction->value(id_form).is_empty())
+         if (!psubject->value(id_form).is_empty())
          {
 
             ::file::path matter;
 
-            matter = Context.dir().matter(paction->value(id_form));
+            matter = Context.dir().matter(psubject->value(id_form));
 
             if (get_document()->on_open_document(matter))
             {
 
-               m_strPath = paction->value(id_form);
+               m_strPath = psubject->value(id_form);
 
             }
 
          }
-         else if (paction->id() == id_get_form_view)
+         else if (psubject->id() == id_get_form_view)
          {
 
-            paction->value(id_form) = this;
+            psubject->value(id_form) = this;
 
          }
 
@@ -833,9 +833,9 @@ void html_form_view::on_apply(::action * paction)
       if (m_pcallback != nullptr)
       {
 
-         paction->value(id_form) = this;
+         psubject->value(id_form) = this;
 
-         m_pcallback->apply(paction);
+         m_pcallback->process(psubject);
 
       }
 
@@ -845,15 +845,15 @@ void html_form_view::on_apply(::action * paction)
 
 
 
-void html_view::on_apply(::action * paction)
+void html_view::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
 {
 
-   ::html_form::on_apply(paction);
+   ::html_form::on_subject(psubject, pcontext);
 
    ////__update(::update)
    {
 
-      if (paction->id() == id_document_complete)
+      if (psubject->id() == id_document_complete)
       {
 
          {
@@ -871,7 +871,7 @@ void html_view::on_apply(::action * paction)
 
          }
 
-         on_document_complete(paction->value(id_url));
+         on_document_complete(psubject->value(id_url));
 
          set_need_layout();
 

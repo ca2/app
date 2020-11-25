@@ -188,8 +188,8 @@ CLASS_DECL_APEX void thread_alloc_ready(bool bReady);
 
 
 
-typedef void SIMPLE_PROCEDURE(void);
-typedef SIMPLE_PROCEDURE * PPROC_SIMPLE;
+typedef void SIMPLE_ROUTINE(void);
+typedef SIMPLE_ROUTINE * PPROC_SIMPLE;
 
 //CLASS_DECL_APEX extern PPROC_SIMPLE g_axisoninitthread;
 //CLASS_DECL_APEX extern PPROC_SIMPLE g_axisontermthread;

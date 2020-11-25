@@ -96,17 +96,17 @@ namespace filemanager
    }
 
 
-   void view::on_apply(::action * paction)
+   void view::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
    {
 
-      ::filemanager::impact::on_apply(paction);
+      ::filemanager::impact::on_subject(psubject, pcontext);
 
-      ::user::split_view::on_apply(paction);
+      ::user::split_view::on_subject(psubject, pcontext);
 
-      if (filemanager_document() == paction->cast < ::user::document >(id_document))
+      if (filemanager_document() == psubject->cast < ::user::document >(id_document))
       {
 
-         //if (paction->id() == id_initialize)
+         //if (psubject->id() == id_initialize)
          //{
 
          //   string str;
@@ -124,7 +124,7 @@ namespace filemanager
 
          //}
          //else
-         if (paction->id() == id_pop)
+         if (psubject->id() == id_pop)
          {
 
             OnActivateFrame(e_activate_inactive, GetParentFrame());
@@ -143,7 +143,7 @@ namespace filemanager
             set_need_redraw();
 
          }
-         else if (paction->id() == id_create_bars)
+         else if (psubject->id() == id_create_bars)
          {
 
             __pointer(simple_frame_window) pframe = GetParentFrame();
@@ -156,7 +156,7 @@ namespace filemanager
             }
 
          }
-         else if (paction->id() == id_topic_start)
+         else if (psubject->id() == id_topic_start)
          {
 
             if (filemanager_document()->m_emode != ::userfs::mode_import && get_pane_count() == 2)
@@ -214,7 +214,7 @@ namespace filemanager
 
                strName.replace(":", "-");
 
-               ptopview->m_pedit->_001SetText(strName, paction->m_actioncontext);
+               ptopview->m_pedit->_001SetText(strName, psubject->m_actioncontext);
 
                filemanager_data()->m_pdocument->m_strTopic = strName;
 
@@ -233,7 +233,7 @@ namespace filemanager
             }
 
          }
-         else if (paction->id() == id_topic_cancel)
+         else if (psubject->id() == id_topic_cancel)
          {
 
             if (base_class < ::filemanager::save_as_view >::bases(get_pane_window(0)))
@@ -244,13 +244,13 @@ namespace filemanager
             }
 
          }
-         else if (paction->id() == id_topic_ok)
+         else if (psubject->id() == id_topic_ok)
          {
 
             if (filemanager_document()->m_emode == ::userfs::mode_import)
             {
 
-               paction->m_bRet = filemanager_data()->m_pdocumentTopic->on_filemanager_open(filemanager_document(), paction->m_pfileitem->m_filepathUser);
+               psubject->m_bRet = filemanager_data()->m_pdocumentTopic->on_filemanager_open(filemanager_document(), psubject->m_pfileitem->m_filepathUser);
 
             }
 

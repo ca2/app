@@ -29,7 +29,7 @@ namespace filemanager
       virtual ::user::impact *                        this_view();
       virtual __pointer(::fs::data)                          fs_data();
 
-      void on_apply(::action * paction);
+      void on_subject(::promise::subject * psubject, ::promise::context * pcontext);
 
       virtual void browse_sync(const ::action_context & action_context);
       virtual void knowledge(const string & pathUser, const ::action_context & action_context);

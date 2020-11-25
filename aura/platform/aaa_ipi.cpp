@@ -263,7 +263,7 @@ namespace aura
 
       run_property("on_create");
 
-      runall(CREATE_PROCEDURE);
+      runall(CREATE_ROUTINE);
 
       estatus = __construct_new(m_prx);
 

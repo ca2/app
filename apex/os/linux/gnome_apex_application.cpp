@@ -63,7 +63,7 @@ void apex_application_set_application_menu(::apex::application_menu * papplicati
 
       string strName = papplicationmenu->element_at(i).m_strName;
 
-      auto paction = g_simple_action_new (strId, NULL);
+      auto psubject = g_simple_action_new (strId, NULL);
 
       g_signal_connect (
          papplication,
@@ -71,7 +71,7 @@ void apex_application_set_application_menu(::apex::application_menu * papplicati
          G_CALLBACK (apex_application_application_menu_activate_callback),
          papp);
 
-      g_action_map_add_action(G_ACTION_MAP(papplication), G_ACTION (paction));
+      g_action_map_add_action(G_ACTION_MAP(papplication), G_ACTION (psubject));
 
       g_menu_append (pmenu, strName, strId);
 

@@ -56,10 +56,10 @@ namespace prompt
    }
 
 
-   void pane_view::on_apply(::action * paction)
+   void pane_view::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
    {
 
-      ::user::tab_view::on_apply(paction);
+      ::user::tab_view::on_subject(psubject, pcontext);
 
    }
 
@@ -247,14 +247,14 @@ namespace prompt
          __pointer(::user::impact) pview = pdocument->get_typed_view < ::user::impact > ();
          auto pupdate = new_update();
          pupdate->m_actioncontext = ::source_system;
-         paction->id() = id_browse;
-         paction->value(id_form) = "filemanager\\replace_name_in_file_system.xhtml";
+         psubject->id() = id_browse;
+         psubject->value(id_form) = "filemanager\\replace_name_in_file_system.xhtml";
          pdocument->update_all_views(pupdate);
 
-         paction->id() = id_get_form_view;
+         psubject->id() = id_get_form_view;
          pdocument->update_all_views(pupdate);
 
-         paction->id() = id_after_browse;
+         psubject->id() = id_after_browse;
          pdocument->update_all_views(pupdate);
 
 

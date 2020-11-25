@@ -96,7 +96,7 @@ public:
 
 
 template < typename PRED >
-::promise::routine __procedure(PRED pred)
+::promise::routine __routine(PRED pred)
 {
 
    return __new(pred_procedure<PRED>(pred));

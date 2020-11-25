@@ -353,6 +353,8 @@ class CLASS_DECL_ACME time_array :
 
 #include "stack.h"
 
+#include "set_element.h"
+
 #include "set.h"
 
 //#include "runnable_array.h"

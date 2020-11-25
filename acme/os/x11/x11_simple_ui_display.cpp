@@ -219,7 +219,7 @@ void simple_ui_display::call_expose(Display * pdisplay)
 }
 
 
-void simple_ui_display::on_subject_deliver(::promise::subject * psubject)
+void simple_ui_display::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
 {
 
    if(psubject->id() == id_dark_mode)
@@ -520,7 +520,7 @@ int simple_ui_display::show()
 
          m_pdraw = XftDrawCreate(pdisplay, m_window, m_pvisual, m_colormap);
 
-         System.add_subject(id_dark_mode, this);
+         System.delivery_for(id_dark_mode, this);
 
          //System.(id_dark_mode);
 

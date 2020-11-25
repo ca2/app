@@ -62,11 +62,11 @@ namespace file
 
          action action;
 
-         action.m_pwatch = m_pwatch;
+         psubject->m_pwatch = m_pwatch;
 
-         action.m_pathFolder = m_pwatch->m_pathFolder;
+         psubject->m_pathFolder = m_pwatch->m_pathFolder;
 
-         //action.m_ulOsAction = -1;
+         //psubject->m_ulOsAction = -1;
 
          //m_pwatch->handle_action(m_pwatch->m_id, m_pwatch->m_strFolder,
            //    "", (::file_watcher::e_action) -1);
@@ -356,7 +356,7 @@ namespace file
    //}
 
 
-   //void os_file_watcher::handle_action(action * paction)
+   //void os_file_watcher::handle_action(action * psubject)
    //{
    //   /*Action fwAction;
 

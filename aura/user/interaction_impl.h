@@ -156,7 +156,7 @@ namespace user
       virtual ::estatus update_graphics_resources();
 
 
-      virtual ::estatus main_async(const routine & procedure, e_priority epriority = priority_normal);
+      virtual ::estatus main_async(const ::promise::routine & routine, e_priority epriority = priority_normal);
       
 
 

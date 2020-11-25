@@ -12,10 +12,10 @@ namespace process
 
 
       
-      bidi_pipe               m_pipe;
-      bool                    m_bPiped;
-      int                     m_iPid;
-      exit_status             m_exitstatus;
+      ::process::bidirectional_pipe       m_pipe;
+      bool                                m_bPiped;
+      int                                 m_iPid;
+      ::process::exit_status              m_exitstatus;
 
 
       process();

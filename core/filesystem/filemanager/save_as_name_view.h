@@ -25,7 +25,7 @@ namespace filemanager
 
       virtual void _001OnAfterChangeText(const ::action_context & action_context);
 
-      void on_apply(::action * paction);
+      void on_subject(::promise::subject * psubject, ::promise::context * pcontext);
 
       virtual void browse_sync(const ::action_context & action_context);
 
@@ -49,7 +49,7 @@ namespace filemanager
 
 
       virtual bool on_click(const ::user::item & item) override;
-      virtual void on_apply(::action * paction) override;
+      virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
 
 
       virtual void save_document(::file::path path);
@@ -76,7 +76,7 @@ namespace filemanager
 
       virtual void install_message_routing(::channel * pchannel) override;
 
-      virtual void on_apply(::action * paction) override;
+      virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
 
       virtual void on_create_split_impact() override;
 

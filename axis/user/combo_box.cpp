@@ -938,13 +938,13 @@ namespace user
    }
 
 
-   void combo_box::on_apply(::subject * paction)
+   void combo_box::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
    {
 
       if(m_bEdit)
       {
 
-         ::user::plain_edit::process(paction);
+         ::user::plain_edit::process(psubject);
 
       }
 

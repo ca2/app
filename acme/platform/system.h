@@ -6,7 +6,7 @@ namespace acme
 
 
    class CLASS_DECL_ACME system :
-      virtual public ::promise::backing,
+      virtual public ::promise::handler,
       virtual public ::task
    {
    public:
@@ -35,8 +35,7 @@ namespace acme
       virtual void defer_calc_os_dark_mode();
 
 
-      virtual void on_subject_prepare(::promise::subject * psubject) override;
-      virtual void on_subject_process(::promise::subject * psubject) override;
+      virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
 
 
       virtual ::estatus main_user_async(const ::promise::routine & routine, ::e_priority epriority = priority_normal);

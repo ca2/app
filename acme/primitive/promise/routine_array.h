@@ -1,13 +1,13 @@
 ﻿#pragma once
 
 
-//class procedure_array :
+//class ::promise::routine_array :
 //   virtual public array < object_procedure >
 //{
 //public:
 //
 //
-//   procedure_array(::matter * pobject) :
+//   ::promise::routine_array(::matter * pobject) :
 //      ::matter(pobject)
 //   {
 //
@@ -21,13 +21,13 @@
 //
 //      auto & a = *this;
 //
-//      for(auto & pprocedure : a)
+//      for(auto & proutine : a)
 //      {
 //
 //         threadptra.add(fork([=]()
 //         {
 //
-//            (get_object()->*pprocedure)();
+//            (get_object()->*proutine)();
 //
 //         }));
 //
@@ -43,7 +43,7 @@
 //
 //      auto & a = *this;
 //
-//      for(auto & pprocedure : a)
+//      for(auto & proutine : a)
 //      {
 //
 //         try
@@ -65,7 +65,7 @@
 //         try
 //         {
 //
-//            (get_object()->*pprocedure)();
+//            (get_object()->*proutine)();
 //
 //         }
 //         catch(...)
@@ -85,7 +85,7 @@
 //
 //      auto & a = *this;
 //
-//      for(auto & pprocedure : a)
+//      for(auto & proutine : a)
 //      {
 //
 //         try
@@ -115,7 +115,7 @@
 //         try
 //         {
 //
-//            (get_object()->*pprocedure)();
+//            (get_object()->*proutine)();
 //
 //         }
 //         catch(::exception_pointer e)
@@ -141,4 +141,4 @@
 //};
 //
 //
-//typedef __pointer(procedure_array) procedure_array_pointer;
+//typedef __pointer(::promise::routine_array) procedure_array_pointer;

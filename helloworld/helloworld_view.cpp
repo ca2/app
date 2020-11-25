@@ -183,10 +183,10 @@ namespace helloworld
    }
 
 
-   void view::on_apply(::action * paction)
+   void view::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
    {
 
-      impact_base::on_apply(paction);
+      impact_base::on_subject(psubject, pcontext);
 
       ::update * pupdate = dynamic_cast < ::update *> (pupdate);
 
@@ -198,7 +198,7 @@ namespace helloworld
          if (peditview != nullptr)
          {
 
-            if (pupdate->m_ehint == id_after_change_text && paction->m_puserinteraction == peditview)
+            if (pupdate->m_ehint == id_after_change_text && psubject->m_puserinteraction == peditview)
             {
 
                string strText;

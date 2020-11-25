@@ -14,11 +14,11 @@
 //{
 //
 //   m_spdata->edit(this);
-//   on_apply();
+//   on_subject();
 //
 //}
 //
-//void base_edit::on_apply()
+//void base_edit::on_subject()
 //{
 //}
 //

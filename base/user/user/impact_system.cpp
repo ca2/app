@@ -419,15 +419,15 @@ namespace user
    }
 
 
-   void impact_system::on_apply(::subject * paction)
+   void impact_system::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
    {
 
-      update_all_views(paction);
+      update_all_views(psubject);
 
    }
 
 
-   void impact_system::update_all_views(::subject * paction)
+   void impact_system::update_all_views(::promise::subject * psubject)
    {
 
       ::count count = get_document_count();
@@ -437,7 +437,7 @@ namespace user
 
          ::user::document * pdocument = get_document(index);
 
-         pdocument->update_all_views(paction);
+         pdocument->update_all_views(psubject);
 
       }
 

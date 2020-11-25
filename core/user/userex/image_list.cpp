@@ -315,17 +315,17 @@ namespace userex
    }
 
 
-   void image_list_view::on_apply(::action * paction)
+   void image_list_view::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
    {
 
-      ::user::image_list_view::on_apply(paction);
+      ::user::image_list_view::on_subject(psubject, pcontext);
 
-      if (paction->id() == id_after_change_text)
+      if (psubject->id() == id_after_change_text)
       {
 
          auto * peditview = _001TypedWindow < ::userex::top_edit_view >();
 
-         if (peditview != nullptr && paction->m_puserinteraction == peditview)
+         if (peditview != nullptr && psubject->m_puserinteraction == peditview)
          {
 
             string strText;

@@ -550,10 +550,10 @@ namespace user
    }
 
 
-   void button::on_apply(::action * paction)
+   void button::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
    {
 
-      interaction::on_apply(paction);
+      interaction::on_subject(psubject, pcontext);
 
    }
 

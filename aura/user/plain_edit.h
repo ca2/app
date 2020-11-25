@@ -222,7 +222,7 @@ namespace user
 
       virtual void install_message_routing(::channel * pchannel) override;
       virtual void OnDraw(::image * pimage);      // overridden to draw this ::user::impact
-      virtual void on_apply(::subject * paction) override;
+      virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
 
 
 

@@ -2376,7 +2376,7 @@
 //
 // MessageText:
 //
-// IndiCAtes a process has too many threads to perform the requested action. For example, assignment of a primary token may only be performed when a process has zero or one threads.
+// IndiCAtes a process has too many threads to perform the requested psubject-> For example, assignment of a primary token may only be performed when a process has zero or one threads.
 //
 #define ERROR_TOO_MANY_THREADS           565L
 
@@ -13579,7 +13579,7 @@
 //
 // MessageText:
 //
-// Log service encountered an invalid container state when attempting a requested action.
+// Log service encountered an invalid container state when attempting a requested psubject->
 //
 #define ERROR_LOG_CONTAINER_STATE_INVALID 6642L
 
@@ -13588,7 +13588,7 @@
 //
 // MessageText:
 //
-// Log service is not in the correct state to perform a requested action.
+// Log service is not in the correct state to perform a requested psubject->
 //
 #define ERROR_LOG_STATE_INVALID          6643L
 
@@ -32076,7 +32076,7 @@
 //
 // MessageText:
 //
-// The subject is not trusted for the specified action.
+// The subject is not trusted for the specified psubject->
 //
 #define TRUST_E_SUBJECT_NOT_TRUSTED      _HRESULT_TYPEDEF_(0x800B0004L)
 
@@ -37225,7 +37225,7 @@
 //
 // MessageText:
 //
-// The TPM has insufficient internal resources to perform the requested action.
+// The TPM has insufficient internal resources to perform the requested psubject->
 //
 #define TPM_E_RESOURCES                  _HRESULT_TYPEDEF_(0x80280015L)
 
@@ -39053,7 +39053,7 @@
 //
 // MessageText:
 //
-// BitLocker Drive Encryption Cannot perform the requested action. This condition may occur when two requests are issued at the same time. Wait a few moments and then try the action again.
+// BitLocker Drive Encryption Cannot perform the requested psubject-> This condition may occur when two requests are issued at the same time. Wait a few moments and then try the action again.
 //
 #define FVE_E_ACTION_NOT_ALLOWED         _HRESULT_TYPEDEF_(0x80310009L)
 

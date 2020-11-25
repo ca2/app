@@ -887,7 +887,7 @@ namespace user
    }
 
 
-   void document_manager::on_apply(::subject * paction)
+   void document_manager::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
    {
 
       auto templateptra = m_templateptra;
@@ -895,7 +895,7 @@ namespace user
       for(auto & ptemplate : templateptra.ptra())
       {
 
-         ptemplate->process(paction);
+         ptemplate->process(psubject);
 
       }
 

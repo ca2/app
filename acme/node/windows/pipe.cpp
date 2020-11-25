@@ -36,7 +36,7 @@ namespace windows
    bool pipe::create(bool bBlock, bool bInherit)
    {
 
-      if (!::os::pipe::create(bBlock, bInherit))
+      if (!::process::pipe::create(bBlock, bInherit))
       {
 
          return false;

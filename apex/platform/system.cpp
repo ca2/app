@@ -4540,14 +4540,14 @@ namespace apex
    }
 
 
-   __pointer(::subject) system::new_action(const MESSAGE& message)
+   __pointer(::promise::subject) system::new_subject(const MESSAGE& message)
    {
 
-      auto paction = action((::iptr) message.wParam);
+      auto psubject = subject((::iptr) message.wParam);
 
-      paction->m_pobjectTopic = (::object*) message.lParam;
+      psubject->m_pobjectTopic = (::object*) message.lParam;
 
-      return paction;
+      return psubject;
 
    }
 
@@ -5453,13 +5453,13 @@ namespace apex
    }
 
 
-   void system::on_apply(::subject * paction)
+   void system::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
    {
 
-      if (paction->id() == id_open_hyperlink)
+      if (psubject->id() == id_open_hyperlink)
       {
 
-         auto plink = paction->m_var.cast < ::hyperlink >();
+         auto plink = psubject->m_payload.cast < ::hyperlink >();
 
          if (plink)
          {
@@ -5481,8 +5481,7 @@ namespace apex
 
       }
 
-      acme::system::on_apply(paction);
-
+      acme::system::on_subject(psubject, pcontext);
 
       //::update updateSetting(pupdate);
 
@@ -5510,15 +5509,13 @@ namespace apex
 
       //           iFrame++;
 
-      //           pinteraction->apply(paction);
+      //           pinteraction->apply(psubject);
 
       //        }
 
       //     });
 
    }
-
-
 
 
    void system::finalize()
@@ -5693,7 +5690,7 @@ namespace apex
 void apex_system_update(const ::id & id, const ::payload& payload)
 {
 
-   System.apply_update(id, payload);
+   System.process_subject(id, payload);
 
 }
 

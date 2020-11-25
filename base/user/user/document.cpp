@@ -348,7 +348,7 @@ namespace user
 
       run_property("on_create");
 
-      call_procedure(CREATE_PROCEDURE);
+      call_routine(CREATE_ROUTINE);
 
       //::database::client::initialize_data_client(Application.dataserver());
 
@@ -358,11 +358,11 @@ namespace user
    ::id document::get_topic_view_id()
    {
 
-      auto paction = subject(id_get_topic_view_id);
+      auto psubject = subject(id_get_topic_view_id);
 
-      update_all_views(paction);
+      update_all_views(psubject);
 
-      return paction->value(id_id);
+      return psubject->value(id_id);
 
    }
 
@@ -370,13 +370,13 @@ namespace user
    bool document::set_topic_view_by_id(::id id)
    {
 
-      auto paction = subject(id_get_topic_view_id);
+      auto psubject = subject(id_get_topic_view_id);
 
-      paction->value(id_id) = id;
+      psubject->value(id_id) = id;
 
-      update_all_views(paction);
+      update_all_views(psubject);
 
-      return paction->m_bRet;
+      return psubject->m_bRet;
 
    }
 
@@ -1837,22 +1837,22 @@ namespace user
    }
 
 
-   void document::update_all_views(::subject * paction)
+   void document::update_all_views(::promise::subject * psubject)
    {
 
-      ASSERT(paction->m_psender == nullptr || !m_viewa.is_empty());
+      ASSERT(psubject->m_psender == nullptr || !m_viewa.is_empty());
 
       for (auto & pview : m_viewa.ptra())
       {
 
          ASSERT_VALID(pview);
 
-         if (pview != paction->m_psender)
+         if (pview != psubject->m_psender)
          {
 
-            pview->process(paction);
+            pview->process(psubject);
 
-            if(paction->m_bRet)
+            if(psubject->m_bRet)
             {
 
                break;
@@ -1866,10 +1866,10 @@ namespace user
    }
 
 
-   void document::on_apply(::subject * paction)
+   void document::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
    {
 
-      update_all_views(paction);
+      update_all_views(psubject);
 
    }
 
@@ -1877,11 +1877,11 @@ namespace user
    void document::update_all_views(impact * pimpact, const ::id & id)
    {
 
-      ::subject action(id);
+      auto psubject = subject(id);
 
-      action.m_psender = pimpact;
+      psubject->m_psender = pimpact;
 
-      update_all_views(action);
+      update_all_views(psubject);
 
    }
 

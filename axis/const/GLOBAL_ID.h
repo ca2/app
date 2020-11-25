@@ -25,7 +25,7 @@ enum
    COUNT_ID,
 
    // routine
-   CREATE_PROCEDURE,
+   CREATE_ROUTINE,
    DESTROY_PROCEDURE,
 
    // callback

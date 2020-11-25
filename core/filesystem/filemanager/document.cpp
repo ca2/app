@@ -225,13 +225,13 @@ namespace filemanager
 
          __pointer(document) pdocument = this;
 
-         auto paction = action(TOPIC_OK_ID);
+         auto psubject = subject(TOPIC_OK_ID);
 
-         paction->value(DOCUMENT_ID) = pdocument;
+         psubject->value(DOCUMENT_ID) = pdocument;
 
-         paction->m_pfileitem = itema.get_first_pointer();
+         psubject->m_pfileitem = itema.get_first_pointer();
 
-         pdocument->update_all_views(paction);
+         pdocument->update_all_views(psubject);
 
          filemanager_data()->m_pdocumentTopic = nullptr;
 
@@ -629,18 +629,18 @@ namespace filemanager
       if (!fs_data()->is_zero_latency(pitem->m_filepathFinal))
       {
 
-         auto paction = fork_action(SYNCHRONIZE_PATH_ID);
+         auto psubject = subject(SYNCHRONIZE_PATH_ID);
 
-         paction->m_actioncontext = context + ::source_sync + ::source_system;
+         psubject->m_actioncontext = context + ::source_sync + ::source_system;
 
-         paction->m_pfileitem = pitem;
+         psubject->m_pfileitem = pitem;
 
-         update_all_views(paction);
+         update_all_views(psubject);
 
       }
 
 
-      opt_fork(__procedure([=]()
+      opt_fork(__routine([=]()
       {
 
          full_browse(pitem, context);
@@ -664,15 +664,13 @@ namespace filemanager
 
       }
 
-      auto pupdate = update(SYNCHRONIZE_PATH_ID);
+      auto psubject = subject(SYNCHRONIZE_PATH_ID);
 
-      auto paction = new_action(pupdate);
+      psubject->m_actioncontext = context + ::source_sync;
 
-      paction->m_actioncontext = context + ::source_sync;
+      psubject->m_pfileitem = pitem;
 
-      paction->m_pfileitem = pitem;
-
-      update_all_views(paction);
+      update_all_views(psubject);
 
    }
 
@@ -710,11 +708,9 @@ namespace filemanager
    void document::OpenSelectionProperties()
    {
 
-      auto pupdate = update(id_open_selection_properties);
+      auto psubject = subject(id_open_selection_properties);
 
-      auto paction = new_action(pupdate);
-
-      update_all_views(paction);
+      update_all_views(psubject);
 
    }
 
@@ -969,13 +965,11 @@ namespace filemanager
       if (m_emode == ::userfs::mode_saving || m_emode == ::userfs::mode_export)
       {
 
-         auto pupdate = update(id_topic_ok);
+         auto psubject = subject(id_topic_ok);
 
-         auto paction = new_action(pupdate);
+         psubject->value(id_document) = this;
 
-         paction->value(id_document) = this;
-
-         update_all_views(paction);
+         update_all_views(psubject);
 
       }
 
@@ -992,13 +986,11 @@ namespace filemanager
       if (m_emode == ::userfs::mode_import)
       {
 
-         auto pupdate = update(id_topic_ok);
+         auto psubject = subject(id_topic_ok);
 
-         auto paction = new_action(pupdate);
+         psubject->value(id_document) = this;
 
-         paction->value(id_document) = this;
-
-         update_all_views(paction);
+         update_all_views(psubject);
 
       }
 
@@ -1013,13 +1005,11 @@ namespace filemanager
       if (m_emode == ::userfs::mode_saving)
       {
 
-         auto pupdate = update(id_topic_ok);
+         auto psubject = subject(id_topic_ok);
 
-         auto paction = new_action(pupdate);
+         psubject->value(id_document) = this;
 
-         paction->value(id_document) = this;
-
-         update_all_views(paction);
+         update_all_views(psubject);
 
       }
 
@@ -1033,22 +1023,20 @@ namespace filemanager
 
       CreateViews();
 
-      auto pupdate = update(id_create_bars);
+      auto psubject = subject(id_create_bars);
 
-      auto paction = new_action(pupdate);
-
-      paction->value(id_document) = this;
+      psubject->value(id_document) = this;
 
       browse(path, ::source_database);
 
-      update_all_views(paction);
+      update_all_views(psubject);
 
       if (bMakeVisible)
       {
 
-         paction->m_pupdate = update(id_pop);
+         auto psubject = subject(id_pop);
 
-         update_all_views(paction);
+         update_all_views(psubject);
 
       }
 
@@ -1060,9 +1048,9 @@ namespace filemanager
 
       CreateViews();
 
-      ::action action(id_create_bars);
+      auto psubject = subject(id_create_bars);
 
-      action.value(id_document) = this;
+      psubject->value(id_document) = this;
 
       if (bInitialBrowsePath)
       {
@@ -1130,7 +1118,7 @@ namespace filemanager
 
       }
 
-      //paction->id() = ;
+      //psubject->id() = ;
 
       //update_all_views(pupdate);
 
@@ -1150,21 +1138,23 @@ namespace filemanager
 
       {
 
-         ::action action(id_initialize);
+         auto psubject = subject(id_initialize);
 
-         action.value(id_document) = this;
+         psubject->value(id_document) = this;
 
-         update_all_views(action);
+         update_all_views(psubject);
 
       }
 
       {
 
-         ::action action(id_synchronize_locations, ::source_sync);
+         auto psubject = subject(id_synchronize_locations);
 
-         action.value(id_document) = this;
+         psubject->m_actioncontext = ::source_sync;
 
-         update_all_views(action);
+         psubject->value(id_document) = this;
+
+         update_all_views(psubject);
 
       }
 
@@ -1174,15 +1164,23 @@ namespace filemanager
    void document::PopViews()
    {
 
-      auto paction = fork_action(id_create_bars);
+      {
 
-      paction->value(id_document) = this;
+         auto psubject = fork_subject(id_create_bars);
 
-      update_all_views(paction);
+         psubject->value(id_document) = this;
 
-      paction->reset_update(id_pop);
+         update_all_views(psubject);
 
-      update_all_views(paction);
+      }
+
+      {
+
+         auto psubject = subject(id_pop);
+
+         update_all_views(psubject);
+
+      }
 
    }
 
@@ -1286,11 +1284,11 @@ namespace filemanager
    void document::GetActiveViewSelection(::file::item_array & itema)
    {
 
-      auto paction = fork_action(id_get_active_view_selection);
+      auto psubject = fork_subject(id_get_active_view_selection);
 
-      update_all_views(paction);
+      update_all_views(psubject);
 
-      itema = *paction->cast < ::file::item_array>(id_selected);
+      itema = *psubject->cast < ::file::item_array>(id_selected);
 
    }
 
@@ -1302,15 +1300,23 @@ namespace filemanager
 
       m_emode = ::userfs::mode_saving;
 
-      auto paction = fork_action(id_topic_start);
+      {
 
-      paction->value(id_document) = this;
+         auto psubject = fork_subject(id_topic_start);
 
-      update_all_views(paction);
+         psubject->value(id_document) = this;
 
-      paction->reset_update(id_create_bars);
+         update_all_views(psubject);
 
-      update_all_views(paction);
+      }
+
+      {
+
+         auto psubject = subject(id_create_bars);
+
+         update_all_views(psubject);
+
+      }
 
    }
 
@@ -1322,15 +1328,23 @@ namespace filemanager
 
       m_emode = ::userfs::mode_import;
 
-      auto paction = fork_action(id_topic_start);
+      {
 
-      paction->value(id_document) = this;
-      
-      update_all_views(paction);
+         auto psubject = fork_subject(id_topic_start);
 
-      paction->reset_update(id_create_bars);
+         psubject->value(id_document) = this;
 
-      update_all_views(paction);
+         update_all_views(psubject);
+
+      }
+
+      {
+
+         auto psubject = subject(id_create_bars);
+
+         update_all_views(psubject);
+
+      }
 
    }
 
@@ -1342,15 +1356,23 @@ namespace filemanager
 
       m_emode = ::userfs::mode_export;
 
-      auto paction = fork_action(id_topic_start);
+      {
 
-      paction->value(id_document) = this;
+         auto psubject = fork_subject(id_topic_start);
 
-      update_all_views(paction);
+         psubject->value(id_document) = this;
 
-      paction->reset_update(id_create_bars);
+         update_all_views(psubject);
 
-      update_all_views(paction);
+      }
+
+      {
+
+         auto psubject = subject(id_create_bars);
+
+         update_all_views(psubject);
+
+      }
 
    }
 

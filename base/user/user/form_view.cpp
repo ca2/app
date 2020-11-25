@@ -22,40 +22,40 @@ namespace user
    }
 
 
-   void form_view::on_apply(::subject * paction)
+   void form_view::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
    {
 
-      ::user::impact::on_apply(paction);
+      ::user::impact::on_subject(psubject, pcontext);
 
-      if (paction->id() == id_browse)
+      if (psubject->id() == id_browse)
       {
 
-         if (!paction->value(id_form).is_empty())
+         if (!psubject->value(id_form).is_empty())
          {
 
-            if (get_document()->on_open_document(paction->value(id_form)))
+            if (get_document()->on_open_document(psubject->value(id_form)))
             {
 
-               m_strPath = paction->value(id_form);
+               m_strPath = psubject->value(id_form);
 
             }
 
          }
 
       }
-      else if (paction->id() == id_get_form_view)
+      else if (psubject->id() == id_get_form_view)
       {
 
-         paction->value(id_form) = this;
+         psubject->value(id_form) = this;
 
       }
 
       if(m_pcallback != nullptr)
       {
 
-         paction->value(id_form) = this;
+         psubject->value(id_form) = this;
 
-         m_pcallback->process(paction);
+         m_pcallback->process(psubject);
 
       }
 
@@ -296,7 +296,7 @@ namespace user
          {
 
             //call_sync(get_document()->m_mapMethod["load"]);
-            get_document()->call_procedure("load");
+            get_document()->call_routine("load");
 
          }
 

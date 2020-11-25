@@ -346,7 +346,7 @@ namespace user
    }
 
 
-   void form_control::on_apply(::subject * paction)
+   void form_control::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
    {
 
       for(auto & pdescriptor : m_controldescriptorset.ptra())
@@ -806,7 +806,7 @@ namespace user
    }
 
 
-   void form_control::data_on_after_change(::database::client* pclient, const ::database::key& key, const payload& payload, ::subject * paction)
+   void form_control::data_on_after_change(::database::client* pclient, const ::database::key& key, const payload& payload, ::promise::subject * psubject)
    {
 
       for(auto & pdescriptor : m_controldescriptorset.ptra())

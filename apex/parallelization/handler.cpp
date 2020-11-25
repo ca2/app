@@ -22,36 +22,36 @@ handler_manager::~handler_manager()
 }
 
 
-::estatus handler_manager::handle(const ::routine & procedure, bool bSync)
+::estatus handler_manager::handle(const ::promise::routine & routine, bool bSync)
 {
 
    if (bSync)
    {
 
-      return sync(procedure);
+      return sync(routine);
 
    }
    else
    {
 
-      return async(procedure);
+      return async(routine);
 
    }
 
 }
 
 
-::estatus handler_manager::sync(const ::routine & procedure)
+::estatus handler_manager::sync(const ::promise::routine & routine)
 {
 
    if (m_bUseDedicatedThread)
    {
 
-      auto pprocedure = ___sync_procedure(procedure);
+      auto proutine = ___sync_routine(routine);
 
-      async(pprocedure);
+      async(proutine);
 
-      pprocedure->wait(one_minute());
+      proutine->wait(one_minute());
 
       return ::success;
 
@@ -59,7 +59,7 @@ handler_manager::~handler_manager()
    else
    {
 
-      return procedure();
+      return routine();
 
    }
 
@@ -75,14 +75,14 @@ handler_manager::~handler_manager()
 
 
 
-::estatus handler_manager::async(const ::routine & procedure)
+::estatus handler_manager::async(const ::promise::routine & routine)
 {
 
    {
 
       sync_lock sl(mutex());
 
-      m_routinea.add(procedure);
+      m_routinea.add(routine);
 
       m_pevTaskOnQueue->SetEvent();
 
@@ -109,7 +109,7 @@ handler_manager::~handler_manager()
 }
 
 
-routine handler_manager::pick_new_task()
+::promise::routine handler_manager::pick_new_task()
 {
 
    sync_lock sl(mutex());

@@ -1645,6 +1645,9 @@
     <ClCompile Include="os\windows\imm_client.cpp">
       <Filter>Source Files\os\windows</Filter>
     </ClCompile>
+    <ClCompile Include="user_frame.cpp">
+      <Filter>Source Files\node\windows</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="graphics\draw2d\_impl.h">

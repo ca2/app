@@ -633,10 +633,10 @@ namespace user
    }
 
 
-   void check_box::on_apply(::subject * paction)
+   void check_box::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
    {
 
-      interaction::on_apply(paction);
+      interaction::on_subject(psubject, pcontext);
 
    }
 

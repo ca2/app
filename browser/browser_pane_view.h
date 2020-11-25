@@ -42,7 +42,7 @@ namespace browser
 
       virtual ::file::path prepare_menu_view();
 
-      virtual void on_apply(::action * paction) override;
+      virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
 
 
       virtual void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics);

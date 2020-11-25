@@ -51,7 +51,7 @@ bool os_usleep::sleep(unsigned long usec)
 CLASS_DECL_ACME void secs_sleep(const ::secs & secs)
 {
 
-   ::Sleep(secs.m_iSeconds * 1'000);
+   ::Sleep((DWORD) (secs.m_iSeconds * 1'000));
 
 }
 
@@ -59,7 +59,7 @@ CLASS_DECL_ACME void secs_sleep(const ::secs & secs)
 CLASS_DECL_ACME void millis_sleep(const millis & millis)
 {
 
-   ::Sleep(millis.m_iMilliseconds);
+   ::Sleep((DWORD) millis.m_iMilliseconds);
 
 }
 

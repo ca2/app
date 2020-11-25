@@ -2453,7 +2453,7 @@ namespace primitive
 //using echeck = ::enumeration < enum_check >;
 //
 
-typedef ::estatus THREAD_PROCEDURE(thread_parameter parameter);
+typedef ::estatus THREAD_ROUTINE(thread_parameter parameter);
 
 
 //inline bool succeeded(const ::payload & payload);
@@ -2594,8 +2594,6 @@ using generic_pointer = __pointer(::matter);
 //
 //#endif
 
-class routine;
-class callback;
 
 
 namespace core
@@ -2968,7 +2966,7 @@ class mq;
 //#include "apex/parallelization/simple_thread.h"
 //#include "apex/parallelization/go_thread.h"
 //#include "apex/parallelization/signal_thread.h"
-//#include "apex/parallelization/procedure_array.h"
+//#include "apex/parallelization/::promise::routine_array.h"
 
 
 ///#include "apex/primitive/primitive/job.h"

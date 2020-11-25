@@ -250,7 +250,7 @@ public:
    virtual void sync_wait(const ::duration & duration);
 
 
-   virtual void on_subject_deliver(::promise::subject * psubject);
+   virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext);
 
 
    virtual ::estatus operator()();

@@ -710,10 +710,16 @@ namespace data
    }
 
 
-   void tree::on_apply(::subject * paction)
+   void tree::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
    {
 
    }
+
+
+   //void tree::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+   //{
+
+   //}
 
 
 

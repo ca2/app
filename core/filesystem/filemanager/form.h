@@ -17,7 +17,7 @@ namespace filemanager
       virtual void install_message_routing(::channel * pchannel) override;
 
 
-      virtual void on_apply(::action * paction) override;
+      virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
       virtual void on_control_event(::user::control_event * pevent) override;
 
 

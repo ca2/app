@@ -2407,7 +2407,7 @@ namespace promise
 {
 
 
-   inline bool context::is_up_to_date(::promise::handler * phandler) const
+   inline bool context::is_up_to_date(const ::promise::subject * phandler) const
    {
 
       if (m_iUpdateSerial < 0)
@@ -2429,20 +2429,20 @@ namespace promise
    }
 
 
-   inline ::id & handler::id()
-   {
+   //inline ::id & handler::id()
+   //{
 
-      return m_pbacking->m_id;
+   //   return m_pbacking->m_id;
 
-   }
+   //}
 
 
-   inline const ::id & handler::id() const
-   {
+   //inline const ::id & handler::id() const
+   //{
 
-      return m_pbacking->m_id;
+   //   return m_pbacking->m_id;
 
-   }
+   //}
 
 
 } // namespace promise

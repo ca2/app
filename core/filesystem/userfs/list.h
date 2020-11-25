@@ -83,7 +83,7 @@ namespace userfs
       virtual bool on_click(const ::user::item & item) override;
 
 
-      virtual void on_apply(::action * paction) override;
+      virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
       virtual bool pre_create_window(::user::create_struct& cs) override;
 
       DECL_GEN_SIGNAL(_001OnHScroll);

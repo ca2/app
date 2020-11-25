@@ -1283,7 +1283,7 @@ namespace axis
          if (papp.is_set())
          {
 
-            papp->apply_update(id_change_user);
+            papp->process_subject(id_change_user);
 
          }
 

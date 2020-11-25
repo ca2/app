@@ -698,18 +698,18 @@ namespace user
    }
 
 
-   void image_list_view::on_apply(::subject * paction)
+   void image_list_view::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
    {
 
-      ::user::impact::on_apply(paction);
+      ::user::impact::on_subject(psubject, pcontext);
 
-      if (paction->id() == id_after_change_text)
+      if (psubject->id() == id_after_change_text)
       {
 
          __throw(todo("core"));
          //auto * peditview = _001TypedWindow < ::userex::top_edit_view >();
 
-         //if (peditview != nullptr && paction->m_puserinteraction == peditview)
+         //if (peditview != nullptr && psubject->m_puserinteraction == peditview)
          //{
 
          //   string strText;

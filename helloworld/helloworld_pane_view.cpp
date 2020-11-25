@@ -504,7 +504,7 @@ namespace helloworld
    }
 
 
-   void pane_view::on_apply(::action * paction)
+   void pane_view::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
    {
 
       ::update * pupdate = dynamic_cast <::update *> (pupdate);
@@ -513,7 +513,7 @@ namespace helloworld
       {
 
          if (pupdate->m_ehint == CONTROL_EVENT_UPDATE
-               && paction->m_puserinteraction == m_pfontview
+               && psubject->m_puserinteraction == m_pfontview
                && m_pviewLast != nullptr)
          {
 
@@ -554,7 +554,7 @@ namespace helloworld
 
       }
 
-      ::userex::pane_tab_view::on_apply(paction);
+      ::userex::pane_tab_view::on_subject(psubject, pcontext);
 
    }
 

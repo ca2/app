@@ -30,7 +30,7 @@ namespace user
       bool                                m_bAutoSaveModified;
 
       string                              m_strSaveFileExtension;
-      id_map < procedure_array >          m_mapProcedure;
+      id_map < ::promise::routine_array > m_mapRoutine;
 
 
       document();
@@ -249,10 +249,10 @@ namespace user
       // Update Views (simple update - DAG only)
       void id_update_all_views(const ::id & id);
       void update_all_views(impact * pimpact, const ::id & id);
-      virtual void update_all_views(::subject * paction);
+      virtual void update_all_views(::promise::subject * psubject);
 
 
-      virtual void on_apply(::subject * paction) override;
+      virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
 
       //void send_update(__pointer(::user::impact) pSender, LPARAM lHint = 0L,
       //                 ::object* pHint = nullptr);

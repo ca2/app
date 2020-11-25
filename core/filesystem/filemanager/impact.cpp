@@ -205,15 +205,15 @@ namespace filemanager
 
 
 
-   void impact::on_apply(::action * paction)
+   void impact::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
    {
 
-      ::user::impact::on_apply(paction);
+      ::user::impact::on_subject(psubject, pcontext);
 
-      if (paction->id() == INITIALIZE_ID)
+      if (psubject->id() == INITIALIZE_ID)
       {
 
-         if (filemanager_document() == paction->cast < ::user::document >(DOCUMENT_ID))
+         if (filemanager_document() == psubject->cast < ::user::document >(DOCUMENT_ID))
          {
 
             __pointer(::database::client) pclient = GetParentFrame();
@@ -232,19 +232,19 @@ namespace filemanager
          }
 
       }
-      else if (paction->id() == SYNCHRONIZE_PATH_ID)
+      else if (psubject->id() == SYNCHRONIZE_PATH_ID)
       {
 
-         if (paction->m_pfileitem &&
+         if (psubject->m_pfileitem &&
             (::is_set(filemanager_item())
-               && Application.is_equal_file_path(paction->m_pfileitem->m_filepathFinal, filemanager_item()->m_filepathFinal)))
+               && Application.is_equal_file_path(psubject->m_pfileitem->m_filepathFinal, filemanager_item()->m_filepathFinal)))
          {
 
 #define DBG_LOOP  1
             for (index i = 0; i < DBG_LOOP; i++)
             {
 
-               browse_sync(paction->m_actioncontext + ::source_sync);
+               browse_sync(psubject->m_actioncontext + ::source_sync);
 
             }
 
@@ -252,7 +252,7 @@ namespace filemanager
          else
          {
 
-            knowledge(paction->m_pfileitem->m_filepathUser, paction->m_actioncontext + ::source_sync);
+            knowledge(psubject->m_pfileitem->m_filepathUser, psubject->m_actioncontext + ::source_sync);
 
          }
 

@@ -107,7 +107,7 @@ namespace draw2d
       virtual ::estatus initialize(::layered* pobjectContext) override;
 
 
-      virtual void on_apply(::subject * paction) override;
+      virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
 
 
       //virtual void defer_update();

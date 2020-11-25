@@ -242,11 +242,11 @@ bool html_document::on_open_document(const payload & varFile)
 
    set_path_name(get_html_data()->m_pcoredata->m_strPathName);
 
-   auto paction = fork_action(id_document_complete);
+   auto psubject = fork_subject(id_document_complete);
 
-   paction->value(id_url) = varFile;
+   psubject->value(id_url) = varFile;
 
-   update_all_views(paction);
+   update_all_views(psubject);
 
    //data_set({ "LastOpenedFile", true }, get_file_path());
 
@@ -282,9 +282,9 @@ void html_document::soft_reload()
 
 //   auto pupdate = new_update();
 //
-//   paction->id() = id_document_complete;
+//   psubject->id() = id_document_complete;
 //
-//   paction->value(id_url) = get_file_path();
+//   psubject->value(id_url) = get_file_path();
 //
 //   update_all_views(pupdate);
 

@@ -261,7 +261,7 @@ Window osdisplay_data::default_root_window()
 void enum_display_monitors(::aura::session * psession)
 {
 
-   main_async(__procedure([psession]
+   main_async(__routine([psession]
    {
 
       sync_lock sl(x11_mutex());

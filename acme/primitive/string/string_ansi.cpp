@@ -689,7 +689,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 ////string::operator class string_composite()
 ////{
 ////   class string_composite reference;
-////   reference.set_string(*this,::action::source::op(::source_cast));
+////   reference.set_string(*this,::promise::subject::source::op(::source_cast));
 ////   return reference;
 ////}
 ////

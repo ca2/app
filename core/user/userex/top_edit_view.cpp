@@ -77,13 +77,13 @@ namespace userex
 
       SCAST_PTR(::message::key, pkey, pmessage);
 
-      ::action action(id_key_down);
+      auto psubject = subject(id_key_down);
 
-      action.m_puserinteraction = this;
+      psubject->m_puserinteraction = this;
 
-      action.m_ekey = pkey->m_ekey;
+      psubject->m_ekey = pkey->m_ekey;
 
-      get_document()->update_all_views(action);
+      get_document()->update_all_views(psubject);
 
       if (pkey->m_ekey == ::user::key_return)
       {
@@ -122,13 +122,13 @@ namespace userex
          if (::is_set(pdocument))
          {
 
-            ::action action(id_after_change_text_delayed);
+            auto psubject = subject(id_after_change_text_delayed);
 
-            action.m_puserinteraction = this;
+            psubject->m_puserinteraction = this;
 
-            action.value(id_enter_key_pressed) = bEnterKeyPressed;
+            psubject->value(id_enter_key_pressed) = bEnterKeyPressed;
 
-            pdocument->update_all_views(action);
+            pdocument->update_all_views(psubject);
 
          }
 
@@ -138,7 +138,7 @@ namespace userex
    }
 
 
-   void top_edit_view::on_apply(::action * paction)
+   void top_edit_view::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
    {
 
    }
@@ -151,13 +151,13 @@ namespace userex
       if (context.is_user_source())
       {
 
-         ::action action(id_after_change_text);
+         auto psubject = subject(id_after_change_text);
 
-         action.m_psender = this;
+         psubject->m_psender = this;
 
-         action.m_puserinteraction = this;
+         psubject->m_puserinteraction = this;
 
-         get_document()->update_all_views(action);
+         get_document()->update_all_views(psubject);
 
          SetTimer(5544, m_dwDelayedAfterChange, nullptr);
 

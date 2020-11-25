@@ -73,7 +73,7 @@ namespace data
 
       //run_property("on_create");
 
-      call_procedure(CREATE_PROCEDURE);
+      call_routine(CREATE_ROUTINE);
 
       return ::success;
 
@@ -104,13 +104,13 @@ namespace data
    }
 
 
-   void data::on_apply(::subject * paction)
+   void data::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
    {
 
       if (m_pdatacontainerbase)
       {
 
-         m_pdatacontainerbase->process(paction);
+         m_pdatacontainerbase->process(psubject);
 
       }
 

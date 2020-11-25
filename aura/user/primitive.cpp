@@ -3518,7 +3518,7 @@ namespace user
 //   }
 
 
-   i32 primitive::get_total_page_count(::machine * pchange)
+   i32 primitive::get_total_page_count(::promise::context * pcontext)
    {
 
       return 1;
@@ -3848,6 +3848,14 @@ namespace user
 
    void primitive::mouse_focus_OnLButtonUp(::message::message * pmessage)
    {
+   }
+
+
+   bool primitive::_001CanEnterScreenSaver()
+   {
+   
+      return false;
+   
    }
 
 

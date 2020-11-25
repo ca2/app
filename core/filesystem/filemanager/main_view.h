@@ -40,7 +40,7 @@ namespace filemanager
 
       virtual void OpenSelectionProperties();
 
-      virtual void on_apply(::action * paction) override;
+      virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
 
 
    };

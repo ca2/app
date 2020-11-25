@@ -255,10 +255,10 @@ namespace user
    }
 
 
-   void font_list::on_apply(::action * paction)
+   void font_list::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
    {
 
-      combo_list::on_apply(paction);
+      combo_list::on_subject(psubject, pcontext);
 
    }
 

@@ -636,7 +636,7 @@ namespace base
 //
 //      virtual string get_app_user_friendly_task_bar_name();
 //
-//      virtual void on_apply(::action * paction) override;
+//      virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
 //
 //      //virtual bool compress_ungz(::file::file * pfileUncompressed, ::file::file * pfileCompressed);
 //
@@ -1230,7 +1230,7 @@ virtual void on_change_cur_sel(::user::tab* ptab);
 //
 ////virtual void install_message_routing(::channel * pchannel) override;
 //
-////virtual void on_apply(::action * paction) override;
+////virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
 //
 ////virtual ::estatus process_init() override;
 //

@@ -142,25 +142,25 @@ namespace apex
 //}
 
 
-CLASS_DECL_APEX void main_async_runnable(const ::procedure & procedure)
+CLASS_DECL_APEX void main_async_runnable(const ::promise::routine & routine)
 {
 
    //__pointer(::object) pobjectTask = pobjectTaskParam;
    
-   System.post_pred([procedure]()
+   System.post_pred([routine]()
    {
 
-      procedure();
+      routine();
 
    });
 
 }
 
 
-CLASS_DECL_APEX void main_sync_runnable(const ::procedure & procedure, ::duration durationTimeout)
+CLASS_DECL_APEX void main_sync_runnable(const ::promise::routine & routine, ::duration durationTimeout)
 {
    
-   System.send_procedure(procedure, durationTimeout);
+   System.send_routine(routine, durationTimeout);
 
 }
 

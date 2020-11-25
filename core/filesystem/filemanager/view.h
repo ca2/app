@@ -28,7 +28,7 @@ namespace filemanager
       void FileManagerBrowse(const char * pcwstr, const ::action_context & action_context);
 
 
-      virtual void on_apply(::action * paction) override;
+      virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
 
 
    };

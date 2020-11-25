@@ -200,7 +200,7 @@ void matter::set_mutex(sync* psync)
 void matter::remove_from_any_source()
 {
 
-   ::promise::backing::__remove(this);
+   ::promise::handler::__remove(this);
 
 }
 
@@ -436,7 +436,7 @@ void matter::on_future(const ::payload& payload)
 }
 
 
-::task* matter::defer_start_task(const ::id& id, const ::promise::routine & procedure)
+::task* matter::defer_start_task(const ::id& id, const ::promise::routine & routine)
 {
 
    auto ptasktool = __task_pool(taskpool());
@@ -444,7 +444,7 @@ void matter::on_future(const ::payload& payload)
    if (ptasktool)
    {
 
-      return ptasktool->defer_start(id, procedure);
+      return ptasktool->defer_start(id, routine);
 
    }
 
@@ -549,32 +549,32 @@ void matter::sync_wait(const ::duration & duration)
 }
 
 
-//void matter::process(const ::id & id, const ::payload & payload)
+//void matter::promise::process(const ::id & id, const ::payload & payload)
 //{
 //
 //
 //}
 
 
-//void matter::process(::promise::update * psubject)
+//void matter::promise::process(::promise::update * psubject)
 //{
 //
 //   if (!psubject->is_up_to_date())
 //   {
 //
-//      on_subject_prepare(psubject);
+//      on_subject(psubject, pcontext);
 //
 //      if(!psubject->m_bitProcessed)
 //      {
 //
-//         on_subject_process(psubject);
+//         on_subject(psubject, pcontext);
 //
 //      }
 //
 //      if(psubject->m_bitProcessed)
 //      {
 //
-//         on_subject_deliver(psubject);
+//         on_subject(psubject, pcontext);
 //
 //      }
 //
@@ -583,21 +583,21 @@ void matter::sync_wait(const ::duration & duration)
 //}
 
 
-//void matter::on_subject_prepare(::promise::update *psubject)
+//void matter::on_subject(::promise::update *psubject)
 //{
 //
 //
 //}
 
 
-//void matter::on_subject_process(::promise::update *psubject)
+//void matter::on_subject(::promise::update *psubject)
 //{
 //
 //
 //}
 
 
-//void matter::on_subject_deliver(::promise::update *psubject)
+//void matter::on_subject(::promise::update *psubject)
 //{
 //
 //
@@ -769,7 +769,7 @@ void matter::to_string(const class string_exchange & str) const
 }
 
 
-void matter::on_subject_deliver(promise::subject * psubject) 
+void matter::on_subject(::promise::subject * psubject, ::promise::context * pcontext) 
 {
 
 

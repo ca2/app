@@ -1954,16 +1954,16 @@ inline ::thread_pointer object::__start_thread(const ::id & id, void(TYPE:: * pf
 
 
 template < typename PRED >
-inline void add_procedure(procedure_array & procedurea, PRED pred)
+inline void add_routine(::promise::routine_array & procedurea, PRED pred)
 {
    
-   procedurea.add(__procedure(pred));
+   procedurea.add(__routine(pred));
 
 }
 
 
 template < typename PRED >
-inline void add_futurevar(futurevar_array & futurevara, PRED pred)
+inline void add_process(::promise::process_array & futurevara, PRED pred)
 {
 
    futurevara.add(__future(pred));
@@ -2395,7 +2395,7 @@ inline ::estatus context_object::__construct_new(__pointer(TYPE)& pbase)
 
 
 
-inline ::estatus object::defer_start(::thread_pointer& pthread, const ::routine & procedure)
+inline ::estatus object::defer_start(::thread_pointer& pthread, const ::promise::routine & routine)
 {
 
    auto estatus = __defer_construct(pthread);
@@ -2407,7 +2407,7 @@ inline ::estatus object::defer_start(::thread_pointer& pthread, const ::routine 
 
    }
 
-   pthread->m_pmatter = procedure;
+   pthread->m_pmatter = routine;
 
    return pthread->begin_task();
 

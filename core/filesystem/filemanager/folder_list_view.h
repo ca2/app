@@ -38,7 +38,7 @@ namespace filemanager
 
       virtual void GetSel(string_array & stra);
 
-      virtual void on_apply(::action * paction) override;
+      virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
 
 
    };

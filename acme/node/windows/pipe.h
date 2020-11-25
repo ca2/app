@@ -6,7 +6,7 @@ namespace windows
 
 
    class CLASS_DECL_ACME pipe :
-      virtual public ::os::pipe
+      virtual public ::process::pipe
    {
    public:
 

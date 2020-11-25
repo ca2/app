@@ -318,7 +318,7 @@ void channel::finalize()
 
    m_idrouteNew.remove_all();
 
-   for (auto& procedurea : m_mapProcedure.values())
+   for (auto& procedurea : m_mapRoutine.values())
    {
 
       procedurea.finalize();
@@ -327,7 +327,7 @@ void channel::finalize()
 
    }
 
-   m_mapProcedure.remove_all();
+   m_mapRoutine.remove_all();
 
    ::object::finalize();
 
@@ -383,7 +383,7 @@ void channel::default_toggle_check_handling(const ::id & id)
 
          }
 
-         this->update(pproperty->m_id)->notify(pcommand->m_actioncontext);
+         this->process_subject(pproperty->m_id, pcommand->m_actioncontext);
 
    });
 

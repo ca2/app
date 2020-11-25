@@ -299,13 +299,13 @@ void object::dev_log(string strMessage) const
 }
 
 
-array < ::routine >* object::procedures(const ::id & id)
+array < ::promise::routine >* object::routinea(const ::id & id)
 {
 
    if (m_pmeta)
    {
 
-      auto p = m_pmeta->m_mapProcedure.plookup(id);
+      auto p = m_pmeta->m_mapRoutine.plookup(id);
 
       if (p)
       {
@@ -321,13 +321,13 @@ array < ::routine >* object::procedures(const ::id & id)
 }
 
 
-array < ::futurevar >* object::futurevars(const ::id & idFuture)
+array < ::promise::process >* object::processa(const ::id & idProcess)
 {
 
    if (m_pmeta)
    {
 
-      auto p = m_pmeta->m_mapFuturevar.plookup(idFuture);
+      auto p = m_pmeta->m_mapProcess.plookup(idProcess);
 
       if (p)
       {
@@ -343,64 +343,64 @@ array < ::futurevar >* object::futurevars(const ::id & idFuture)
 }
 
 
-void object::call_procedure(const ::id & id)
+void object::call_routine(const ::id & id)
 {
 
-   auto pprocedurea = procedures(id);
+   auto proutinea = routinea(id);
 
-   if(pprocedurea)
+   if(proutinea)
    {
 
-      pprocedurea->pred_each([](auto& procedure) { procedure(); });
+      proutinea->pred_each([](auto& procedure) { procedure(); });
 
    }
 
 }
 
 
-void object::send_futurevar(const ::id & idFuture, const ::payload& payload)
+void object::send_payload(const ::id & idProcess, const ::payload& payload)
 {
 
-   auto pfuturevars = futurevars(idFuture);
+   auto pprocessa = processa(idProcess);
 
-   if(pfuturevars)
+   if(pprocessa)
    {
 
-      pfuturevars->pred_each([&payload](auto & futurevar) { futurevar(payload); });
+      pprocessa->pred_each([&payload](auto & process) { process(payload); });
 
    }
 
 }
 
 
-void object::add_procedure(const ::id & id, const ::routine & procedure)
+void object::add_routine(const ::id & id, const ::promise::routine & routine)
 {
 
-   meta()->m_mapProcedure[id].add(procedure);
+   meta()->m_mapRoutine[id].add(routine);
 
 }
 
 
-void object::add_futurevar(const ::id & id, const ::futurevar & futurevar)
+void object::add_process(const ::id & id, const ::promise::process & process)
 {
 
-   meta()->m_mapFuturevar[id].add(futurevar);
+   meta()->m_mapProcess[id].add(process);
 
 }
 
 
-void object::add_procedures_from(const ::id &id, ::object* pobjectSource)
+void object::add_each_routine_from(const ::id &id, ::object* pobjectSource)
 {
 
    if (pobjectSource)
    {
 
-      auto pprocedures = pobjectSource->procedures(id);
+      auto proutinea = pobjectSource->routinea(id);
 
-      if (pprocedures)
+      if (proutinea)
       {
 
-         meta()->m_mapProcedure[id].add(*pprocedures);
+         meta()->m_mapRoutine[id].add(*proutinea);
 
       }
 
@@ -409,18 +409,18 @@ void object::add_procedures_from(const ::id &id, ::object* pobjectSource)
 }
 
 
-void object::add_futurevars_from(const ::id & id, ::object * pobjectSource)
+void object::add_each_process_from(const ::id & id, ::object * pobjectSource)
 {
 
    if (pobjectSource)
    {
 
-      auto pcallbacks = pobjectSource->futurevars(id);
+      auto pprocessa = pobjectSource->processa(id);
 
-      if (pcallbacks)
+      if (pprocessa)
       {
 
-         meta()->m_mapFuturevar[id].add(*pcallbacks);
+         meta()->m_mapProcess[id].add(*pprocessa);
 
       }
 
@@ -895,7 +895,7 @@ void object::finalize()
 
    //}
 
-   source::finalize();
+   handler::finalize();
 
 #if OBJ_TYP_CTR
 
@@ -944,7 +944,7 @@ void object::finalize()
 void object::on_finish()
 {
 
-   source::on_finish();
+   handler::on_finish();
 
    finalize();
 
@@ -1589,7 +1589,7 @@ void object::start()
 }
 
 
-void object::single_fork(const procedure_array & procedurea)
+void object::single_fork(const ::promise::routine_array & procedurea)
 {
 
    fork([procedurea]()
@@ -1616,7 +1616,7 @@ void object::single_fork(const procedure_array & procedurea)
 }
 
 
-void object::multiple_fork(const procedure_array & procedurea)
+void object::multiple_fork(const ::promise::routine_array & procedurea)
 {
 
    for (auto & procedure : procedurea)
@@ -1889,11 +1889,11 @@ void object::message_receiver_destruct()
 void object::_001OnUpdate(::message::message * pmessage)
 {
 
-  ::subject action((::iptr)pmessage->m_wparam);
+   ::promise::subject subject(this, (::iptr)pmessage->m_wparam);
 
-  action.m_var = (::matter*) (::iptr) pmessage->m_lparam;
+   subject.m_payload = (::matter*) (::iptr) pmessage->m_lparam;
 
-   process(action);
+   process(&subject);
 
 }
 
@@ -2114,7 +2114,7 @@ bool __no_continue(::estatus estatus)
 }
 
 
-::estatus call_sync(const procedure_array & methoda)
+::estatus call_sync(const ::promise::routine_array & methoda)
 {
 
    try
@@ -2205,14 +2205,14 @@ string object::get_text(const payload& payload, const ::id& id)
 }
 
 
-::estatus object::message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, ::emessagebox emessagebox, const ::futurevar & futurevar)
+::estatus object::message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, ::emessagebox emessagebox, const ::promise::process & process)
 {
 
    ::estatus estatus = error_failed;
 
    auto psession = get_context_session();
 
-   //future.m_id = DIALOG_RESULT_FUTURE;
+   //future.m_id = DIALOG_RESULT_PROCESS;
 
    if (::is_set(psession))
    {
@@ -2249,7 +2249,7 @@ string object::get_text(const payload& payload, const ::id& id)
 
       }
 
-      estatus = ::os_message_box(strMessage, strTitle, emessagebox, futurevar);
+      estatus = ::os_message_box(strMessage, strTitle, emessagebox, process);
 
    }
 
@@ -2258,7 +2258,7 @@ string object::get_text(const payload& payload, const ::id& id)
 }
 
 
-::estatus object::message_box_timeout(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, const ::duration& durationTimeout, ::emessagebox emessagebox, const ::futurevar & futurevar)
+::estatus object::message_box_timeout(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, const ::duration& durationTimeout, ::emessagebox emessagebox, const ::promise::process & process)
 {
 
    ::estatus estatus = error_failed;
@@ -2273,7 +2273,7 @@ string object::get_text(const payload& payload, const ::id& id)
    if (!estatus)
    {
 
-      estatus = ::os_message_box(pszMessage, pszTitle, emessagebox, futurevar);
+      estatus = ::os_message_box(pszMessage, pszTitle, emessagebox, process);
 
    }
 

@@ -20,7 +20,7 @@ namespace colorertake5
       /**
        * Creates outliner object, that searches stream for
        * the specified type of region. Outliner is deattached
-       * on its explicit destruction action.
+       * on its explicit destruction psubject->
        *
        * @param baseEditor Editor to attach this Outliner to.
        * @param searchRegion region type to search in parser's stream

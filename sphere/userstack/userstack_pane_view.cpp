@@ -83,10 +83,10 @@ namespace userstack
    }
 
 
-   void pane_view::on_apply(::action * paction)
+   void pane_view::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
    {
 
-      ::user::tab_view::on_apply(paction);
+      ::user::tab_view::on_subject(psubject, pcontext);
       
    }
 

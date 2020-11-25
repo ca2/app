@@ -1,12 +1,8 @@
 #include "framework.h"
 
 
-//void prepare_argc_argv(int & argc, char ** argv, char * cmd_line);
-
-
 namespace process
 {
-
 
 
    process::process()

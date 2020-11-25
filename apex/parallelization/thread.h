@@ -13,7 +13,7 @@ namespace user { class frame;  }
 class CLASS_DECL_APEX thread :
    virtual public task,
    virtual public channel
-   , virtual public machine
+   , virtual public promise::context
 #ifdef WINDOWS
    ,virtual public ::exception::translator
 #endif
@@ -85,7 +85,7 @@ public:
    bool                                               m_bThreadClosed;
 
 
-   procedure_array                                    m_routinea;
+   ::promise::routine_array                                    m_routinea;
 
 
    __pointer(manual_reset_event)                      m_pevent1;
@@ -240,8 +240,8 @@ public:
 
    virtual bool send_object(const ::id & id, WPARAM wParam, lparam lParam, ::duration durationTimeout = ::duration::infinite());
 
-   virtual bool post_task(const ::procedure & procedure);
-   virtual bool send_task(const ::procedure & procedure, ::duration durationTimeout = ::duration::infinite());
+   virtual bool post_task(const ::promise::routine & routine);
+   virtual bool send_task(const ::promise::routine & routine, ::duration durationTimeout = ::duration::infinite());
 
    template < typename PRED >
    bool pred(PRED pred)
@@ -252,14 +252,14 @@ public:
    template < typename PRED >
    bool post_pred(PRED pred)
    {
-      return post_object(e_message_system, system_message_method, __procedure(pred));
+      return post_object(e_message_system, system_message_method, __routine(pred));
    }
 
 
-   bool send_procedure(const ::procedure & procedure, ::duration durationTimeout = ::duration::infinite())
+   bool send_routine(const ::promise::routine & routine, ::duration durationTimeout = ::duration::infinite())
    {
 
-      return send_object(e_message_system, system_message_method, procedure, durationTimeout);
+      return send_object(e_message_system, system_message_method, routine, durationTimeout);
 
    }
 
@@ -273,19 +273,19 @@ public:
    }
 
 
-   bool sync_procedure(const ::procedure & procedure, ::duration durationTimeout = ::duration::infinite())
+   bool sync_procedure(const ::promise::routine & routine, ::duration durationTimeout = ::duration::infinite())
    {
 
       if (this == ::get_task())
       {
 
-         procedure();
+         routine();
 
          return true;
 
       }
 
-      return send_procedure(procedure, durationTimeout);
+      return send_routine(routine, durationTimeout);
 
    }
 

@@ -165,7 +165,7 @@ namespace turboc
 
    void view::on_update(::aura::impact * pSender, e_update eupdate, object* pupdate)
    {
-      UNREFERENCED_PARAMETER(paction);
+      UNREFERENCED_PARAMETER(psubject);
    }
 
    bool view::in_anime()

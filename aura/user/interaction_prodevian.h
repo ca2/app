@@ -11,48 +11,48 @@ namespace user
    public:
 
 
-      bool                                   m_bExclusiveMode;
+      bool                                      m_bExclusiveMode;
 
-      sync_array                             m_synca;
+      sync_array                                m_synca;
 
-      manual_reset_event                     m_evUpdateScreen;
-
-
-      __pointer(::user::interaction)         m_puserinteraction;
-      __pointer(::user::interaction_impl)    m_pimpl;
-
-      __composite(::user::thread)            m_puserthread;
-      nano_timer                             m_nanotimer;
-
-      i64                                    m_nanosNow;
-
-      i64                                    m_nanosFrame;
-      i64                                    m_nanosPostRedraw;
-
-      i64                                    m_iFrameId;
-      i64                                    m_nanosLastFrame;
-      i64                                    m_iLastFrameId;
-      i64                                    m_nanosNextFrame;
-      i64                                    m_nanosNextScreenUpdate;
-      ::count                                m_cLost;
-      u64_array                              m_iaFrame;
-      bool                                   m_bVisualUpdated;
-
-      millis                                   m_millisBeforeUpdateScreen;
-      millis                                   m_millisAfterUpdateScreen;
-      millis                                   m_millisDuringUpdateScreen;
-      millis                                   m_millisOufOfUpdateScreen;
+      manual_reset_event                        m_evUpdateScreen;
 
 
-      millis                                   m_millisBeforeDrawing;
-      millis                                   m_millisAfterDrawing;
-      millis                                   m_millisDuringDrawing;
-      millis                                   m_millisOutOfDrawing;
+      __pointer(::user::interaction)            m_puserinteraction;
+      __pointer(::user::interaction_impl)       m_pimpl;
 
-      bool                                   m_bUpdatingScreen;
-      millis                                   m_millisLastScreenUpdate;
-      ::routine                            m_routineUpdateScreen;
-      ::routine                            m_routineWindowShow;
+      __composite(::user::thread)               m_puserthread;
+      nano_timer                                m_nanotimer;
+
+      i64                                       m_nanosNow;
+
+      i64                                       m_nanosFrame;
+      i64                                       m_nanosPostRedraw;
+
+      i64                                       m_iFrameId;
+      i64                                       m_nanosLastFrame;
+      i64                                       m_iLastFrameId;
+      i64                                       m_nanosNextFrame;
+      i64                                       m_nanosNextScreenUpdate;
+      ::count                                   m_cLost;
+      u64_array                                 m_iaFrame;
+      bool                                      m_bVisualUpdated;
+
+      millis                                    m_millisBeforeUpdateScreen;
+      millis                                    m_millisAfterUpdateScreen;
+      millis                                    m_millisDuringUpdateScreen;
+      millis                                    m_millisOufOfUpdateScreen;
+
+
+      millis                                    m_millisBeforeDrawing;
+      millis                                    m_millisAfterDrawing;
+      millis                                    m_millisDuringDrawing;
+      millis                                    m_millisOutOfDrawing;
+
+      bool                                      m_bUpdatingScreen;
+      millis                                    m_millisLastScreenUpdate;
+      ::promise::routine                        m_routineUpdateScreen;
+      ::promise::routine                        m_routineWindowShow;
 
 
       prodevian();

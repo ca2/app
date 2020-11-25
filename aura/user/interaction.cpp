@@ -755,11 +755,11 @@ namespace user
 
       //      auto pupdate = new_update();
 
-      //      paction->id() = id_place_child_title_change;
+      //      psubject->id() = id_place_child_title_change;
 
-      //      paction->m_puserinteraction = pholder;
+      //      psubject->m_puserinteraction = pholder;
 
-      //      pparent->apply(paction);
+      //      pparent->apply(psubject);
 
       //   }
 
@@ -1335,7 +1335,7 @@ namespace user
 
       //   post_redraw();
 
-      //   post_method(__procedure([this]() { finish(); }));
+      //   post_method(__routine([this]() { finish(); }));
 
       //   return error_pending;
 
@@ -1547,7 +1547,7 @@ namespace user
          else
          {
 
-            post_procedure(__procedure([this]()
+            post_routine(__routine([this]()
                {
 
                   if (get_context_application() != nullptr && get_context_application()->get_context_session() != nullptr && has_focus())
@@ -3366,22 +3366,22 @@ namespace user
    }
 
    
-   ::estatus interaction::main_async(const ::routine & procedure, e_priority epriority)
+   ::estatus interaction::main_async(const ::promise::routine & routine, e_priority epriority)
    {
 
-      return m_pimpl->main_async(procedure, epriority);
+      return m_pimpl->main_async(routine, epriority);
 
    }
 
 
-   ::estatus interaction::main_sync(const routine & procedure, const ::duration & duration, e_priority epriority)
+   ::estatus interaction::main_sync(const ::promise::routine & routine, const ::duration & duration, e_priority epriority)
    {
 
-      auto pprocedure = ___sync_procedure(procedure);
+      auto proutine = ___sync_routine(routine);
 
-      main_async(pprocedure, epriority);
+      main_async(proutine, epriority);
 
-      auto waitresult = pprocedure->wait(duration);
+      auto waitresult = proutine->wait(duration);
 
       if (!waitresult.succeeded())
       {
@@ -3390,7 +3390,7 @@ namespace user
 
       }
 
-      return pprocedure->m_estatus;
+      return proutine->m_estatus;
 
    }
 
@@ -3400,13 +3400,13 @@ namespace user
 
       UNREFERENCED_PARAMETER(pmessage);
 
-      System.add_update(id_dark_mode, this);
+      System.delivery_for(id_dark_mode, this);
 
       on_create_user_interaction();
 
       run_property("on_create");
 
-      call_procedure(CREATE_PROCEDURE);
+      call_routine(CREATE_ROUTINE);
 
       sync_style();
 
@@ -7630,7 +7630,7 @@ namespace user
       // make sure a message goes through to exit the modal loop
       m_bModal = false;
 
-      send_futurevar(DIALOG_RESULT_FUTURE, idResult);
+      send_payload(DIALOG_RESULT_PROCESS, idResult);
 
       post_message(e_message_close);
 
@@ -9698,7 +9698,7 @@ restart:
          {
 
             defer_start_task("transparent_mouse_event_thread",
-               __procedure([this]()
+               __routine([this]()
                   {
 
                      _task_transparent_mouse_event();
@@ -12533,13 +12533,13 @@ restart:
    }
 
 
-   void interaction::post_procedure(const ::routine & procedure)
+   void interaction::post_routine(const ::promise::routine & routine)
    {
 
       if (::is_set(m_pthreadUserInteraction))
       {
 
-         m_pthreadUserInteraction->post_task(procedure);
+         m_pthreadUserInteraction->post_task(routine);
 
       }
 
@@ -12600,7 +12600,7 @@ restart:
 #endif
 
 
-   void interaction::send_procedure(const ::routine & procedure, ::duration durationTimeout)
+   void interaction::send_routine(const ::promise::routine & routine, ::duration durationTimeout)
    {
 
       ::thread * pthread = get_wnd() == nullptr ? (::thread *) nullptr : get_wnd()->m_pthreadUserInteraction;
@@ -12610,13 +12610,13 @@ restart:
       if (pthread == nullptr || pthread == pthreadCurrent)
       {
 
-         procedure();
+         routine();
 
       }
       else
       {
 
-         pthread->send_procedure(procedure, durationTimeout);
+         pthread->send_routine(routine, durationTimeout);
 
       }
 
@@ -13455,10 +13455,10 @@ restart:
    }
 
 
-   void interaction::on_apply(::subject * paction)
+   void interaction::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
    {
 
-      if (paction->id() == REDRAW_ID || paction->id() == m_id)
+      if (psubject->id() == REDRAW_ID || psubject->id() == m_id)
       {
 
          set_need_redraw();
@@ -13466,7 +13466,7 @@ restart:
          post_redraw();
 
       }
-      else if (paction->id() == id_dark_mode)
+      else if (psubject->id() == id_dark_mode)
       {
 
          set_need_redraw();

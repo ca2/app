@@ -95,6 +95,7 @@ namespace user
    public:
 
 
+      e_display                                    m_edisplayRestore;
       bool                                         m_bDefaultNotifyIcon;
       string                                       m_strFrameTitle;
       ::size                                       m_sizeMinimum;
@@ -125,6 +126,10 @@ namespace user
       virtual string get_frame_title() const;
 
 
+      virtual void display_previous_restore();
+      virtual void display_system_minimize();
+
+
       virtual bool on_create_bars();
 
       virtual ::color get_border_main_body_color();
@@ -150,6 +155,12 @@ namespace user
       virtual ::size get_window_minimum_size() override;
 
       DECL_GEN_SIGNAL(_001OnAppExit);
+
+#ifdef WINDOWS_DESKTOP
+      DECL_GEN_SIGNAL(_001OnSysCommand);
+#endif
+
+
 
 
    };

@@ -62,7 +62,7 @@ namespace file_watcher
 		void update();
 
 		/// Handles the action
-		void handle_action(::file_watcher::file_watcher_impl::action * paction);
+		void handle_action(::file_watcher::file_watcher_impl::action * psubject);
 
 	private:
 		/// Map of id to watch_struct pointers

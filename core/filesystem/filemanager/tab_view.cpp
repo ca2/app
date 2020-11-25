@@ -78,34 +78,34 @@ namespace filemanager
 
          form * pformview = pdocument->get_typed_view < form >();
 
-         auto paction = action(BROWSE_ID);
+         auto psubject = subject(BROWSE_ID);
 
          if (pimpactdata->m_id == "new_folder")
          {
 
-            paction->value(FORM_ID) = "matter://filemanager/new_folder.html";
+            psubject->value(FORM_ID) = "matter://filemanager/new_folder.html";
 
          }
          if (pimpactdata->m_id == "replace_name")
          {
 
-            paction->value(FORM_ID) = "matter://filemanager/replace_name_in_file_system.html";
+            psubject->value(FORM_ID) = "matter://filemanager/replace_name_in_file_system.html";
 
          }
          else if (pimpactdata->m_id == "add_location")
          {
 
-            paction->value(FORM_ID) = "matter://filemanager/add_location_1.html";
+            psubject->value(FORM_ID) = "matter://filemanager/add_location_1.html";
 
          }
 
          pformview->m_idCreator = pimpactdata->m_id;
 
-         pdocument->update_all_views(paction);
+         pdocument->update_all_views(psubject);
 
-         paction->m_pupdate = action(id_after_browse);
+         //psubject->m_pcontext = psubject->context(id_after_browse);
 
-         pdocument->update_all_views(paction);
+         pdocument->update_all_views(psubject);
 
          pimpactdata->m_pdocument = pdocument;
 
@@ -264,17 +264,17 @@ namespace filemanager
 
 
 
-   void tab_view::on_apply(::action * paction)
+   void tab_view::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
    {
 
-      impact::on_apply(paction);
+      impact::on_subject(psubject, pcontext);
 
-      ::user::tab_view::on_apply(paction);
+      ::user::tab_view::on_subject(psubject, pcontext);
 
       ////__update(::update)
       {
 
-         if (paction->id() == id_open_document)
+         if (psubject->id() == id_open_document)
          {
 
             //if (m_viewmap.get_count() == 0)
@@ -291,7 +291,7 @@ namespace filemanager
       ////__update(::update)
       {
 
-         if (paction->id() == id_initialize)
+         if (psubject->id() == id_initialize)
          {
 
             //               string str;
@@ -308,7 +308,7 @@ namespace filemanager
             //               }
 
          }
-         else if (paction->id() == id_pop)
+         else if (psubject->id() == id_pop)
          {
 
             __pointer(::user::frame_window) pframe = GetParentFrame();
@@ -328,19 +328,19 @@ namespace filemanager
 
       }
 
-      if (paction->id() == id_add_location)
+      if (psubject->id() == id_add_location)
       {
 
          set_cur_tab_by_id("add_location");
 
       }
-      else if (paction->id() == id_replace_name)
+      else if (psubject->id() == id_replace_name)
       {
 
          set_cur_tab_by_id("replace_name");
 
       }
-      else if (paction->id() == id_new_folder)
+      else if (psubject->id() == id_new_folder)
       {
 
          set_cur_tab_by_id("new_folder");

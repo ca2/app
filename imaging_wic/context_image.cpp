@@ -83,7 +83,7 @@ namespace imaging_wic
 
       bool bOk = true;
 
-      System.main_user_sync(__procedure([&]()
+      System.main_user_sync(__routine([&]()
          {
 
             auto dataPackage = ::Windows::ApplicationModel::DataTransfer::Clipboard::GetContent();
@@ -202,7 +202,7 @@ namespace imaging_wic
 
       bool bOk = false;
 
-      System.main_user_sync(__procedure([&bOk]()
+      System.main_user_sync(__routine([&bOk]()
          {
 
 

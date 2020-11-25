@@ -1759,7 +1759,7 @@ namespace acme
 
 
 
-   void system::on_apply(::action * paction)
+   void system::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
    {
 
       //::update updateSetting(pupdate);
@@ -1788,7 +1788,7 @@ namespace acme
 
       //           iFrame++;
 
-      //           pinteraction->apply(paction);
+      //           pinteraction->apply(psubject);
 
       //        }
 

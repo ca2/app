@@ -209,17 +209,17 @@ namespace user
    }
 
 
-   void menu_view::on_apply(::subject * paction)
+   void menu_view::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
    {
 
-      ::user::impact::process(paction);
+      ::user::impact::process(psubject);
 
-      if (paction->id() == id_after_change_text)
+      if (psubject->id() == id_after_change_text)
       {
 
          auto peditview = _001TypedWindow < ::user::plain_edit_view >();
 
-         if (peditview != nullptr && paction->m_puserinteraction == peditview)
+         if (peditview != nullptr && psubject->m_puserinteraction == peditview)
          {
 
             string strText;

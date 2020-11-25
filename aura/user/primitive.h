@@ -706,6 +706,7 @@ namespace user
       virtual void mouse_focus_OnLButtonUp(::message::message * pmessage);
 
 
+      virtual bool _001CanEnterScreenSaver();
 
 
       //virtual void _001OnTimer(::timer * ptimer);
@@ -737,7 +738,9 @@ namespace user
 
       //virtual bool SetPlacement(const ::rect & rect, ::u32 nFlags = SWP_SHOWWINDOW);
 
-      virtual i32 get_total_page_count(::machine * pchange);
+      
+      virtual i32 get_total_page_count(::promise::context * pcontext);
+
 
       virtual void edit_on_text(string str);
       virtual void edit_on_sel(strsize iBeg, strsize iEnd);

@@ -1562,7 +1562,7 @@ namespace experience
          if (edisplay == display_iconic)
          {
 
-            if (m_setMinimizeToTray)
+            if (m_bitMinimizeToTray)
             {
 
                layout().sketch() = display_notify_icon;
@@ -2161,10 +2161,10 @@ namespace experience
 
 
 
-   void frame_window::on_apply(::subject * paction)
+   void frame_window::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
    {
 
-      if(paction->id() == id_app_activated)
+      if(psubject->id() == id_app_activated)
       {
 
          toggle_restore();

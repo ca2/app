@@ -581,7 +581,7 @@ namespace core
    }
 
 
-   ::estatus user::dialog_box(::layered * pobjectContext, const char * pszMatter, property_set & propertyset, const ::futurevar & futurevar)
+   ::estatus user::dialog_box(::layered * pobjectContext, const char * pszMatter, property_set & propertyset, const ::promise::process & process)
    {
 
       auto pbox = __object(pobjectContext)->__create_new < class ::userex::message_box >();
@@ -595,14 +595,14 @@ namespace core
 
       }
 
-      futurevar(pbox->m_idResponse);
+      process_subject(pbox->m_idResponse);
 
       return ::success;
 
    }
 
 
-   ::estatus user::ui_message_box(::layered* pobjectContext, ::user::primitive * puiOwner, const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox, const ::futurevar & futurevar)
+   ::estatus user::ui_message_box(::layered* pobjectContext, ::user::primitive * puiOwner, const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox, const ::promise::process & process)
    {
 
       auto pbox = __object(pobjectContext)->__create_new < ::userex::message_box >();
@@ -611,7 +611,7 @@ namespace core
 
       propertyset["message"] = pszMessage;
 
-      pbox->add_futurevar(DIALOG_RESULT_FUTURE, futurevar);
+      pbox->add_process(DIALOG_RESULT_PROCESS, process);
 
       auto psession = Session;
 
@@ -725,7 +725,7 @@ namespace core
    }
 
 
-   ::estatus user::ui_message_box_timeout(::layered * pobjectContext, ::user::primitive * puiOwner, const char* pszMessage, const char* pszTitle, const ::duration & durationTimeout, ::emessagebox emessagebox, const ::futurevar & futurevar)
+   ::estatus user::ui_message_box_timeout(::layered * pobjectContext, ::user::primitive * puiOwner, const char* pszMessage, const char* pszTitle, const ::duration & durationTimeout, ::emessagebox emessagebox, const ::promise::process & process)
    {
 
       UNREFERENCED_PARAMETER(puiOwner);
@@ -734,7 +734,7 @@ namespace core
 
       pbox->value("message") = pszMessage;
 
-      pbox->add_futurevar(DIALOG_RESULT_FUTURE, futurevar);
+      pbox->add_futurevar(DIALOG_RESULT_PROCESS, futurevar);
 
       string strTitle = App(__object(pobjectContext)).get_title();
 

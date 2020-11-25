@@ -100,17 +100,17 @@ namespace app_shader
    }
 
 
-   void window::on_apply(::subject * paction)
+   void window::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
    {
 
-      if (paction->id() == id_simple_checkbox || paction->id() == id_no_client_frame)
+      if (psubject->id() == id_simple_checkbox || psubject->id() == id_no_client_frame)
       {
 
          set_need_redraw();
 
       }
 
-      ::user::interaction::on_apply(paction);
+      ::user::interaction::on_subject(psubject, pcontext);
 
    }
 

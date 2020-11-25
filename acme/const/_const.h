@@ -348,20 +348,20 @@ enum e_thread
 
 enum enum_timer : i64;
 
-enum e_set
+enum enum_bit
 {
 
    // negative state... bad/failure states
 
-   set_no = -1, // 0xffffffff......
-   set_false = -1,
+   e_bit_no = -1, // 0xffffffff......
+   e_bit_false = -1,
 
-   set_none = 0,
-   set_empty = 0, // 0x00000000......
-   set_undefined = 0,
+   e_bit_none = 0,
+   e_bit_empty = 0, // 0x00000000......
+   e_bit_undefined = 0,
 
-   set_yes = 1, // <3tbs
-   set_true = 1, // 0x00000001......
+   e_bit_yes = 1, // <3tbs
+   e_bit_true = 1, // 0x00000001......
 
    // positive state... good/success states
 

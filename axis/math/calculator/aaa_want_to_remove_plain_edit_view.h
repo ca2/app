@@ -27,7 +27,7 @@ namespace calculator
 
       virtual void plain_edit_on_after_change_text(::draw2d::graphics_pointer & pgraphics, const ::action_context & action_context) override;
 
-      void on_apply(::action * paction) override;
+      void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
 
       bool keyboard_focus_is_focusable() override;
 

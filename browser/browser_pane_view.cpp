@@ -603,12 +603,12 @@ namespace browser
    }
 
 
-   void pane_view::on_apply(::action * paction)
+   void pane_view::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
    {
 
 
 
-      ::userex::pane_tab_view::on_apply(paction);
+      ::userex::pane_tab_view::on_subject(psubject, pcontext);
 
    }
 

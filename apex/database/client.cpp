@@ -31,7 +31,7 @@ namespace database
 
       auto idProcedure = translate_property_id(id);
 
-      ::add_procedure(Application.m_mapProcedure[idProcedure], [this, id]()
+      ::add_routine(Application.m_mapRoutine[idProcedure], [this, id]()
          {
 
             auto pproperty = fetch_property(id);
@@ -125,7 +125,7 @@ namespace database
    //}
 
 
-   bool client::_data_set(const key & key, const payload & payload, ::subject * paction)
+   bool client::_data_set(const key & key, const payload & payload, ::promise::subject * psubject)
    {
 
       if(::is_null(m_pdataserver))
@@ -139,12 +139,12 @@ namespace database
 
       os << payload;
 
-      return m_pdataserver->_data_server_save(this, key, os->memory(), paction);
+      return m_pdataserver->_data_server_save(this, key, os->memory(), psubject);
 
    }
 
 
-   bool client::_data_set(const selection & selection, const payload & payload, ::subject * paction)
+   bool client::_data_set(const selection & selection, const payload & payload, ::promise::subject * psubject)
    {
 
       if (::is_null(m_pdataserver))
@@ -167,7 +167,7 @@ namespace database
 
          auto & item = selection.get_item(iItem);
 
-         if (!m_pdataserver->_data_server_save(this, item.m_datakey, os->memory(), paction))
+         if (!m_pdataserver->_data_server_save(this, item.m_datakey, os->memory(), psubject))
          {
 
             bOk = false;
@@ -232,13 +232,13 @@ namespace database
    }
 
 
-   bool client::data_pulse_change(const key & key, ::subject * paction)
+   bool client::data_pulse_change(const key & key, ::promise::subject * psubject)
    {
 
       if(m_pdataserver != nullptr)
       {
 
-         if (!m_pdataserver->data_pulse_change(this, key, paction))
+         if (!m_pdataserver->data_pulse_change(this, key, psubject))
          {
 
             return false;
@@ -399,14 +399,14 @@ namespace database
    }
 
 
-   bool client::data_on_before_change(client* pclient, const key& id, payload& payload, ::subject * paction)
+   bool client::data_on_before_change(client* pclient, const key& id, payload& payload, ::promise::subject * psubject)
    {
 
       return true;
 
    }
 
-   void client::data_on_after_change(client* pclient, const key& id, const payload& payload, ::subject * paction)
+   void client::data_on_after_change(client* pclient, const key& id, const payload& payload, ::promise::subject * psubject)
    {
 
    }

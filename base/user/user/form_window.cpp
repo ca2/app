@@ -384,11 +384,11 @@ namespace user
    }
 
 
-   void form_window::on_apply(::subject * paction)
+   void form_window::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
    {
       
       
-      UNREFERENCED_PARAMETER(paction);
+      UNREFERENCED_PARAMETER(psubject);
 
 
       //for(i32 i = 0; i < m_controldescriptorset.get_size(); i++)
@@ -757,15 +757,15 @@ namespace user
    }
 
 
-   void form_window::data_on_after_change(::database::client* pclient, const ::database::key& key, const payload& payload, ::subject * paction)
+   void form_window::data_on_after_change(::database::client* pclient, const ::database::key& key, const payload& payload, ::promise::subject * psubject)
    {
 
       sync_lock sl(mutex());
 
-      if(paction != nullptr)
+      if(psubject != nullptr)
       {
 
-         if(!paction->is_modified())
+         if(!psubject->is_modified())
          {
 
             return;

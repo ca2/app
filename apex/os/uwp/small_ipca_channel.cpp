@@ -97,7 +97,7 @@
 
          ::Windows::Foundation::Uri ^uri = ref new ::Windows::Foundation::Uri(anotherappURI);
 
-         System.main_user_sync(__procedure([uri, durationTimeout]()
+         System.main_user_sync(__routine([uri, durationTimeout]()
             {
 
                ::wait(Launcher::LaunchUriAsync(uri), durationTimeout);

@@ -267,7 +267,7 @@ message_box_w::message_box_w()
 
    auto psystem = ::get_context_system();
 
-   //psystem->main_user_async(__procedure([wstrMessage, wstrTitle, emessagebox, future]()
+   //psystem->main_user_async(__routine([wstrMessage, wstrTitle, emessagebox, future]()
      // {
 
          message_box_w ^ pmessageboxw = ref new message_box_w;

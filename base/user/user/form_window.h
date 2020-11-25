@@ -27,8 +27,8 @@ namespace user
 
       virtual void control_get_client_rect(interaction * pinteraction, RECT32 * prect) override;
 
-      using form_callback::update;
-      using form_control::update;
+      //using form_callback::update;
+      //using form_control::update;
 
       virtual bool _001Initialize() override;
 
@@ -58,7 +58,7 @@ namespace user
 
       virtual void install_message_routing(::channel * pchannel) override;
       virtual void _001InitializeFormPreData() override;
-      virtual void on_apply(::subject * paction)  override;
+      virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext)  override;
       virtual void _001Update(interaction * pinteraction) override;
       virtual void _001UpdateCheckBox(interaction * pinteraction) override;
       virtual void _001UpdateComboBox(interaction * pinteraction) override;
@@ -82,7 +82,7 @@ namespace user
 
 
 
-      virtual void data_on_after_change(::database::client* pclient, const ::database::key& key, const payload& payload, ::subject * paction = nullptr) override;
+      virtual void data_on_after_change(::database::client* pclient, const ::database::key& key, const payload& payload, ::promise::subject * psubject = nullptr) override;
 
 
       virtual bool create_control(class control_descriptor * pdescriptor, index iIndex) override;

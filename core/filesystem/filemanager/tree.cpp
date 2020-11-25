@@ -738,10 +738,10 @@ namespace filemanager
    }
 
 
-   void tree::on_apply(::action * paction)
+   void tree::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
    {
 
-      ::filemanager::impact::on_apply(paction);
+      ::filemanager::impact::on_subject(psubject, pcontext);
 
    }
 

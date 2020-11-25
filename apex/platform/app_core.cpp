@@ -624,7 +624,7 @@ void app_core::set_command_line(const char * psz)
 //      if (!bInApp)
 //      {
 //
-//         string strLibrary = ::process::app_id_to_app_name(strAppId);
+//         string strLibrary = ::promise::process::app_id_to_app_name(strAppId);
 //
 //         m_plibrary = __new(::apex::library);
 //

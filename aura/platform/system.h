@@ -362,7 +362,7 @@ namespace aura
 
       //virtual bool verb();
 
-      virtual ::estatus main_user_async(const ::routine & procedure, ::e_priority epriority = priority_normal) override;
+      virtual ::estatus main_user_async(const ::promise::routine & routine, ::e_priority epriority = priority_normal) override;
 
 
       //virtual bool process_initialize();
@@ -969,7 +969,7 @@ namespace aura
       //virtual ::user::interaction_impl * impl_from_handle(void * pdata) override;
       //virtual ::user::interaction * ui_from_handle(void * pdata) override;
 
-      virtual void on_apply(::subject * paction) override;
+      virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
 
       virtual ::estatus initialize_estamira();
 

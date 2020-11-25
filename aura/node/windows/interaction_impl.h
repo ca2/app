@@ -524,8 +524,6 @@ namespace windows
       //virtual void WinHelpInternal(uptr dwData, ::u32 nCmd = HELP_CONTEXT);
 
 
-      virtual void _001OnSysCommand(::message::message * pmessage);
-
       // dialog support
       //void UpdateDialogControls(channel* pTarget, bool bDisableIfNoHndler);
       //void CenterWindow(::user::interaction * pAlternateOwner = nullptr);

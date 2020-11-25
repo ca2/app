@@ -136,7 +136,7 @@ namespace user
 
       // TODO: could return a kind of - also TODO - JOB object in case of assynchronous call
       //virtual void collaborate(::job * pjob);
-      virtual i32  get_total_page_count(::change * pchange) override;
+      virtual i32  get_total_page_count(::promise::context * psubject) override;
 
 
       virtual ::user::interaction::enum_type get_window_type() override;
@@ -174,7 +174,7 @@ namespace user
       //virtual void OnActivateView(bool bActivate, __pointer(::user::impact) pActivateView, __pointer(::user::impact) pDeactiveView);
       //virtual void OnActivateFrame(::u32 nState, __pointer(::user::frame_window) pFrameWnd);
 
-      //virtual void on_apply(::action * paction) override;
+      //virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
 
       //      virtual void dump(dump_context &) const;
       //    virtual void assert_valid() const;
@@ -300,13 +300,13 @@ namespace user
 
       }
 
-      using ::user::impact::update;
-      void on_apply(::subject * paction) override
+      //using ::user::impact::update;
+      void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override
       {
 
-         ::user::impact::on_apply(paction);
+         ::user::impact::on_subject(psubject, pcontext);
 
-         VIEW::on_apply(paction);
+         VIEW::on_subject(psubject, pcontext);
 
       }
 

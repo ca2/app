@@ -161,7 +161,7 @@ namespace userex
       SCAST_PTR(::message::create, pcreate, pmessage);
 
 
-      m_spcreate = (::create *) pcreate->m_lpcreatestruct->CREATE_STRUCT_P_CREATE_PARAMS;
+      m_pcreate = (::create *) pcreate->m_lpcreatestruct->CREATE_STRUCT_P_CREATE_PARAMS;
 
 
       //if (Application.m_pmainpane == nullptr)
@@ -736,10 +736,10 @@ namespace userex
    }
 
 
-   void pane_tab_view::on_apply(::action * paction)
+   void pane_tab_view::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
    {
 
-      ::user::tab_view::on_apply(paction);
+      ::user::tab_view::on_subject(psubject, pcontext);
 
    }
 

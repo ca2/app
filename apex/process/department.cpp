@@ -104,7 +104,7 @@ namespace process
 
       m_strCmdLine = strCmdLine;
       
-      m_spprocess.create();
+      m_pprocess.create();
 
       m_pstrRead = pstrRead;
 
@@ -153,7 +153,7 @@ namespace process
    void department::process_thread::run_normal()
    {
 
-      if(!m_spprocess->create_child_process(m_strCmdLine,true))
+      if(!m_pprocess->create_child_process(m_strCmdLine,true))
       {
 
          if(m_pbInitFailure != nullptr)
@@ -180,10 +180,10 @@ namespace process
 
       string strRead;
 
-      while(!m_spprocess->has_exited())
+      while(!m_pprocess->has_exited())
       {
 
-         strRead = m_spprocess->m_pipe.m_sppipeOut->read();
+         strRead = m_pprocess->m_pipe.m_sppipeOut->read();
 
          if(m_pstrRead != nullptr)
          {
@@ -206,14 +206,14 @@ namespace process
       if(m_pexitstatus)
       {
 
-         *m_pexitstatus = m_spprocess->m_exitstatus;
+         *m_pexitstatus = m_pprocess->m_exitstatus;
 
       }
 
       while(thread_get_run())
       {
 
-         strRead = m_spprocess->m_pipe.m_sppipeOut->read();
+         strRead = m_pprocess->m_pipe.m_sppipeOut->read();
 
          if(strRead.is_empty())
          {
@@ -248,14 +248,14 @@ namespace process
    void department::process_thread::run_elevated()
    {
 
-      m_spprocess->synch_elevated(m_strCmdLine,display_none,m_millisTimeout,m_pbPotentialTimeout);
+      m_pprocess->synch_elevated(m_strCmdLine,display_none,m_millisTimeout,m_pbPotentialTimeout);
 
-      m_result.add((::estatus    ) m_spprocess->m_exitstatus.m_iExitCode);
+      m_result.add((::estatus    ) m_pprocess->m_exitstatus.m_iExitCode);
 
       if(m_pexitstatus != nullptr)
       {
 
-         *m_pexitstatus = m_spprocess->m_exitstatus;
+         *m_pexitstatus = m_pprocess->m_exitstatus;
 
       }
 

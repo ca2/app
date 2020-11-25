@@ -62,7 +62,7 @@
 //   //   virtual ::estatus     run() override;
 //
 //   //   /// Handles the action
-//   //   virtual void handle_action(action * paction);
+//   //   virtual void handle_action(action * psubject);
 //
 //   ////private:
 //   //   /// Map of id to watch_struct pointers

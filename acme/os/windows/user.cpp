@@ -90,9 +90,9 @@ namespace user
 
 
 
-   ::set g_bLastDarkModeApp;
+   ::logic::bit      g_bLastDarkModeApp;
 
-   ::set g_bLastDarkModeSystem;
+   ::logic::bit      g_bLastDarkModeSystem;
 
 
    void os_calc_dark_mode()

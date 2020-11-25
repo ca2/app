@@ -363,13 +363,13 @@ template < typename PRED >
 auto sync_pred(void (* pfnBranch )(::matter * pobjectTask, e_priority), PRED pred, ::duration durationTimeout, e_priority epriority)
 {
 
-   auto pprocedure = __sync_procedure(pred);
+   auto proutine = __sync_procedure(pred);
 
-   pfnBranch(pprocedure, epriority);
+   pfnBranch(proutine, epriority);
 
-   pprocedure->sync_wait(durationTimeout);
+   proutine->sync_wait(durationTimeout);
 
-   return pprocedure;
+   return proutine;
 
 }
 
@@ -521,7 +521,7 @@ template < typename PRED >
 inline ::thread_pointer object::fork(PRED pred)
 {
 
-   auto pmethod = __procedure(pred);
+   auto pmethod = __routine(pred);
 
    auto pthread = __create_new < ::thread >();
 
@@ -536,12 +536,12 @@ inline ::thread_pointer object::fork(PRED pred)
 }
 
 
-inline ::thread_pointer object::launch(const ::procedure & procedure)
+inline ::thread_pointer object::launch(const ::promise::routine & routine)
 {
 
    auto pthread = __create_new < ::thread >();
 
-   pthread->m_pmatter = procedure;
+   pthread->m_pmatter = routine;
 
    pthread->m_id = pthread->m_pmatter->type_name();
 

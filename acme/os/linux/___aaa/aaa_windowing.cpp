@@ -3159,7 +3159,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 
             }
 
-            paction->id() = eid;
+            psubject->id() = eid;
 
             pupdate->value("return") = is_return_key((XIRawEvent*)cookie->data);
 
@@ -3168,7 +3168,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
             for(auto & p : *g_pobjectaExtendedEventListener)
             {
 
-               p->apply(paction);
+               p->apply(psubject);
 
             }
 

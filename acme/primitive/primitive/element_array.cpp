@@ -23,7 +23,7 @@
 //   for (auto& pmatter : *this)
 //   {
 //
-//      pmatter->apply(paction);
+//      pmatter->apply(psubject);
 //
 //   }
 //

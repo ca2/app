@@ -16,16 +16,16 @@ namespace process
       {
       public:
 
-         string                           m_strCmdLine;
-         __pointer(process)                      m_spprocess;
-         string *                         m_pstrRead;
-         manual_reset_event *             m_pevReady;
-         millis m_millisTimeout;
-         millis m_millisStart;
-         bool *                           m_pbInitFailure;
-         bool *                           m_pbPotentialTimeout;
-         exit_status *                    m_pexitstatus;
-         bool                             m_bElevated;
+         string                                    m_strCmdLine;
+         __pointer(::process::process)             m_pprocess;
+         string *                                  m_pstrRead;
+         manual_reset_event *                      m_pevReady;
+         millis                                    m_millisTimeout;
+         millis                                    m_millisStart;
+         bool *                                    m_pbInitFailure;
+         bool *                                    m_pbPotentialTimeout;
+         ::process::exit_status *                  m_pexitstatus;
+         bool                                      m_bElevated;
 
 
          process_thread();

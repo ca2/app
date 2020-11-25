@@ -17,14 +17,13 @@ namespace experience
       __composite(::experience::frame)             m_pframe;
       ::rect                                       m_rectPending;
       bool                                         m_bEnableFrameExperience;
-      e_display                                    m_edisplayRestore;
 
       bool                                         m_bFullScreenReturn;
       bool                                         m_bFullScreenAlt;
       bool                                         m_bFullScreenCtrl;
 
 
-      class set                                    m_setMinimizeToTray;
+      ::logic::bit                                 m_bitMinimizeToTray;
       bool                                         m_bFullScreenOnMaximize;
 
 
@@ -75,9 +74,9 @@ namespace experience
       virtual bool sketch_on_display() override;
 
 
-      virtual void display_previous_restore();
+      virtual void display_previous_restore() override;
 
-      virtual void display_system_minimize();
+      virtual void display_system_minimize() override;
 
       virtual void toggle_restore();
 
@@ -135,7 +134,7 @@ namespace experience
       virtual void install_message_routing(::channel * pchannel) override;
 
       
-      virtual void on_apply(::action * paction) override;
+      virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
       
 
       DECL_GEN_SIGNAL(_001OnLButtonDown);

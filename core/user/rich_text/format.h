@@ -15,18 +15,18 @@ namespace user
       public:
 
 
-         __pointer_array(format) *    m_pcontainer;
-         index                   m_iIndex;
+         __pointer_array(format) *     m_pcontainer;
+         index                         m_iIndex;
 
-         bool                    m_bBold;
-         bool                    m_bItalic;
-         bool                    m_bUnderline;
-         string                  m_strFontFamily;
-         double                  m_dFontSize;
-         color32_t                m_crForeground;
-         color32_t                m_crBackground;
-         e_script                m_escript;
-         e_line_height           m_elineheight;
+         bool                          m_bBold;
+         bool                          m_bItalic;
+         bool                          m_bUnderline;
+         string                        m_strFontFamily;
+         double                        m_dFontSize;
+         color32_t                     m_crForeground;
+         color32_t                     m_crBackground;
+         e_script                      m_escript;
+         e_line_height                 m_elineheight;
 
 
          // cache or transport (not serialized)

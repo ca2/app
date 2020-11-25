@@ -14,12 +14,13 @@ namespace database
    public:
 
 
-      server *          m_pserver;
-      client *          m_pclient;
-      key               m_datakey;
-      ::manager *        m_pupdate;
-      bool              m_bOk;
-      payload *             m_pvar;
+      server *                m_pserver;
+      client *                m_pclient;
+      key                     m_datakey;
+      ::promise::subject *    m_pupdate;
+      bool                    m_bOk;
+      payload *               m_pvar;
+
 
       change_event();
       change_event(payload & payload);

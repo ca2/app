@@ -57,12 +57,12 @@ namespace user
    }
 
 
-   void tab_view::on_apply(::subject * paction)
+   void tab_view::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
    {
 
-      tab::on_apply(paction);
+      tab::on_subject(psubject, pcontext);
 
-      impact::on_apply(paction);
+      impact::on_subject(psubject, pcontext);
 
    }
 

@@ -3631,7 +3631,7 @@ retry_license:
 //   }
 //
 //
-//   void application::on_apply(::action * paction)
+//   void application::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
 //   {
 //
 //
@@ -6060,7 +6060,7 @@ namespace aura
          if(pinteraction)
          {
 
-            pinteraction->post_procedure(__procedure([pinteraction, idCommand]()
+            pinteraction->post_routine(__routine([pinteraction, idCommand]()
             {
 
                ::user::command command;
@@ -8519,7 +8519,7 @@ namespace aura
 
 
 
-   void application::data_on_after_change(::database::client* pclient, const ::database::key& key, const payload& payload, ::subject * paction)
+   void application::data_on_after_change(::database::client* pclient, const ::database::key& key, const payload& payload, ::promise::subject * psubject)
    {
 
    }
@@ -8853,10 +8853,10 @@ namespace aura
    //   }
 
 
-      //void application::on_apply(::action * paction)
+      //void application::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
       //{
 
-      //   ::aura::application::on_apply(paction);
+      //   ::aura::application::on_subject(psubject, pcontext);
 
       //   if (pupdate->m_bRet)
       //   {
@@ -8865,7 +8865,7 @@ namespace aura
 
       //   }
       //
-      //   ::user::form_callback::on_apply(paction);
+      //   ::user::form_callback::on_subject(psubject, pcontext);
 
       //   if (pupdate->m_bRet)
       //   {

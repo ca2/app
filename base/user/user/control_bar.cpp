@@ -669,7 +669,7 @@ namespace user
 //    }
 
 
-   void control_bar::on_apply(::subject * paction)
+   void control_bar::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
    {
 
       // // update the indicators before becoming visible

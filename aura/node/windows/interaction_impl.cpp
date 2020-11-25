@@ -744,17 +744,6 @@ namespace windows
       MESSAGE_LINK(e_message_kill_focus, pchannel, this, &interaction_impl::_001OnKillFocus);
 
 
-#ifdef WINDOWS_DESKTOP
-
-      if(is_frame_window())
-      {
-
-         MESSAGE_LINK(WM_SYSCOMMNAND, pchannel, this, &interaction_impl::_001OnSysCommand);
-
-      }
-
-#endif
-
 
    }
 
@@ -3412,7 +3401,7 @@ namespace windows
 
       }
 
-      m_puserinteraction->post_procedure(__procedure([this]()
+      m_puserinteraction->post_routine(__routine([this]()
       {
 
          HWND hwnd = ::SetFocus(get_handle());
@@ -6149,87 +6138,6 @@ namespace windows
    }
 
 
-   void interaction_impl::_001OnSysCommand(::message::message * pmessage)
-   {
-
-      SCAST_PTR(::message::base, pbase, pmessage);
-
-      if (pbase->m_wparam == SC_SCREENSAVE)
-      {
-
-         if (!m_pinteraction->_001CanEnterScreenSaver())
-         {
-
-            pbase->m_bRet = true;
-
-            pbase->m_lresult = 0;
-
-            return;
-
-         }
-
-      }
-
-      //if (m_bWindowFrame)
-      {
-
-         if (pbase->m_wparam == SC_MAXIMIZE)
-         {
-
-            INFO("SC_MAXIMIZE");
-
-            m_pinteraction->display(display_zoomed);
-
-            m_pinteraction->set_need_redraw();
-
-            pbase->m_bRet = true;
-
-            pbase->m_lresult = 0;
-
-         }
-         else if (pbase->m_wparam == SC_RESTORE)
-         {
-
-            INFO("SC_RESTORE");
-
-            if (m_pinteraction->m_edisplayRestore == display_default)
-            {
-
-               m_pinteraction->display_previous_restore();
-
-            }
-            else
-            {
-
-               m_pinteraction->display(m_edisplayRestore);
-
-            }
-
-            m_pinteraction->set_need_redraw();
-
-            pbase->m_bRet = true;
-
-            pbase->m_lresult = 0;
-
-         }
-         else if (pbase->m_wparam == SC_MINIMIZE)
-         {
-
-            INFO("SC_MINIMIZE");
-
-            m_pinteraction->display_system_minimize();
-
-            m_pinteraction->set_need_redraw();
-
-            pbase->m_bRet = true;
-
-            pbase->m_lresult = 0;
-
-         }
-
-      }
-
-   }
 
 
    ::estatus interaction_impl::set_tool_window(bool bSet)
@@ -6247,6 +6155,8 @@ namespace windows
          ModifyStyleEx(WS_EX_TOOLWINDOW, 0);
 
       }
+
+      return ::success;
 
    }
 

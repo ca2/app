@@ -703,7 +703,7 @@ namespace user
    }
 
 
-   void impact_host::on_apply(::subject * paction)
+   void impact_host::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
    {
 
    }

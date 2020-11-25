@@ -222,6 +222,21 @@
     <Filter Include="Header Files\primitive\promise">
       <UniqueIdentifier>{c4748186-680d-41a0-ae59-396a54f55895}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\primitive\promise_pred">
+      <UniqueIdentifier>{37db675b-0a8c-4517-ba8c-5336318f1c14}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\process">
+      <UniqueIdentifier>{0c4f9178-4c9b-4b9f-993c-d99fda73a182}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\process">
+      <UniqueIdentifier>{e6ab6d3c-a0cd-454c-9787-8cf79460e0fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\primitive\logic">
+      <UniqueIdentifier>{e97a5ec9-2fa7-4178-8eec-69ba27417691}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\primitive\logic\NewFilter1">
+      <UniqueIdentifier>{a438e428-fa53-4435-9ffd-70a76c03e239}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -2288,13 +2303,7 @@
     <ClInclude Include="parallelization\zaa_update_task_item_array.h">
       <Filter>Header Files\parallelization</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\promise\backing.h">
-      <Filter>Header Files\primitive\promise</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\promise\context.h">
-      <Filter>Header Files\primitive\promise</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\promise\handler.h">
       <Filter>Header Files\primitive\promise</Filter>
     </ClInclude>
     <ClInclude Include="primitive\promise\process.h">
@@ -2314,6 +2323,27 @@
     </ClInclude>
     <ClInclude Include="primitive\promise\subject.h">
       <Filter>Header Files\primitive\promise</Filter>
+    </ClInclude>
+    <ClInclude Include="process\bidirectional_pipe.h">
+      <Filter>Header Files\process</Filter>
+    </ClInclude>
+    <ClInclude Include="process\pipe.h">
+      <Filter>Header Files\process</Filter>
+    </ClInclude>
+    <ClInclude Include="process\_.h">
+      <Filter>Header Files\process</Filter>
+    </ClInclude>
+    <ClInclude Include="process\exit_status.h">
+      <Filter>Header Files\process</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\promise\handler.h">
+      <Filter>Header Files\primitive\promise</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\logic\bit.h">
+      <Filter>Header Files\primitive\logic</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\collection\set_element.h">
+      <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -2842,9 +2872,6 @@
     <ClCompile Include="os\http.cpp">
       <Filter>Source Files\os</Filter>
     </ClCompile>
-    <ClCompile Include="os\process.cpp">
-      <Filter>Source Files\os</Filter>
-    </ClCompile>
     <ClCompile Include="os\time.cpp">
       <Filter>Source Files\os</Filter>
     </ClCompile>
@@ -3202,9 +3229,6 @@
     <ClCompile Include="primitive\primitive\match.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
-    <ClCompile Include="multithreading\sync.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\primitive\layered.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
@@ -3322,9 +3346,6 @@
     <ClCompile Include="parallelization\event.cpp">
       <Filter>Source Files\parallelization</Filter>
     </ClCompile>
-    <ClCompile Include="parallelization\exit_status.cpp">
-      <Filter>Source Files\parallelization</Filter>
-    </ClCompile>
     <ClCompile Include="parallelization\file_change_event.cpp">
       <Filter>Source Files\parallelization</Filter>
     </ClCompile>
@@ -3388,13 +3409,7 @@
     <ClCompile Include="os\windows\parallelization.cpp">
       <Filter>Source Files\os\windows</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\promise\backing.cpp">
-      <Filter>Source Files\primitive\promise</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\promise\context.cpp">
-      <Filter>Source Files\primitive\promise</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\promise\handler.cpp">
       <Filter>Source Files\primitive\promise</Filter>
     </ClCompile>
     <ClCompile Include="primitive\promise\process.cpp">
@@ -3415,14 +3430,29 @@
     <ClCompile Include="primitive\primitive\payload.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
-    <ClCompile Include="os\bidirectional_pipe.cpp">
-      <Filter>Source Files\os</Filter>
-    </ClCompile>
-    <ClCompile Include="os\pipe.cpp">
-      <Filter>Source Files\os</Filter>
-    </ClCompile>
     <ClCompile Include="os\windows_common\parallelization.cpp">
       <Filter>Source Files\os\windows_common</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\promise_pred\pred_function.cpp">
+      <Filter>Source Files\primitive\promise_pred</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\promise_pred\pred_holder.cpp">
+      <Filter>Source Files\primitive\promise_pred</Filter>
+    </ClCompile>
+    <ClCompile Include="process\bidirectional_pipe.cpp">
+      <Filter>Source Files\process</Filter>
+    </ClCompile>
+    <ClCompile Include="process\pipe.cpp">
+      <Filter>Source Files\process</Filter>
+    </ClCompile>
+    <ClCompile Include="process\_.cpp">
+      <Filter>Source Files\process</Filter>
+    </ClCompile>
+    <ClCompile Include="process\exit_status.cpp">
+      <Filter>Source Files\process</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\promise\handler.cpp">
+      <Filter>Source Files\primitive\promise</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -41,10 +41,10 @@ namespace userex
    }
 
 
-   void group_image_list_view::on_apply(::action * paction)
+   void group_image_list_view::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
    {
 
-      ::user::impact::on_apply(paction);
+      ::user::impact::on_subject(psubject, pcontext);
 
    }
 

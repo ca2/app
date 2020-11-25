@@ -299,7 +299,7 @@ namespace user
       friend class BaseDockBar;
 
 
-      virtual void on_apply(::subject * paction) override;
+      virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
 
 
 

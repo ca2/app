@@ -1500,7 +1500,7 @@ void thread::task_remove(::task * ptask)
 void thread::finalize()
 {
 
-   call_procedure(DESTROY_PROCEDURE);
+   call_routine(DESTROY_ROUTINE);
 
    string strType = type_name();
 
@@ -2798,10 +2798,10 @@ void thread::post_to_all_threads(const ::id & id, WPARAM wparam, LPARAM lparam)
 }
 
 
-bool thread::post_task(const ::routine & procedure)
+bool thread::post_task(const ::promise::routine & routine)
 {
 
-   if (!procedure)
+   if (!routine)
    {
 
       return false;
@@ -2810,7 +2810,7 @@ bool thread::post_task(const ::routine & procedure)
 
    sync_lock sl(mutex());
 
-   m_routinea.add(procedure);
+   m_routinea.add(routine);
 
    kick_idle();
 
@@ -2819,10 +2819,10 @@ bool thread::post_task(const ::routine & procedure)
 }
 
 
-bool thread::send_task(const ::routine & procedure, ::duration durationTimeout)
+bool thread::send_task(const ::promise::routine & routine, ::duration durationTimeout)
 {
 
-   return send_object(e_message_system, system_message_method, procedure, durationTimeout);
+   return send_object(e_message_system, system_message_method, routine, durationTimeout);
 
 }
 
@@ -3928,9 +3928,9 @@ void thread::message_handler(::message::base * pbase)
          //if(msg.lParam)
          {
 
-            auto paction = System.new_action(msg);
+            auto psubject = System.new_subject(msg);
 
-            process(paction);
+            process(psubject);
 
          }
          //else
@@ -3960,9 +3960,9 @@ void thread::message_handler(::message::base * pbase)
          else if (msg.wParam == system_message_method)
          {
 
-            ::routine procedure(msg.lParam);
+            ::promise::routine routine(msg.lParam);
 
-            procedure();
+            routine();
 
          }
          //else if (msg.wParam == system_message_runnable)

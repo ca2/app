@@ -6310,10 +6310,10 @@ namespace aura
    }
 
 
-   void system::on_apply(::subject * paction)
+   void system::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
    {
 
-      ::aqua::system::on_apply(paction);
+      ::aqua::system::on_subject(psubject, pcontext);
 
    }
 
@@ -6653,7 +6653,7 @@ namespace aura
    //}
 
 
-   ::estatus system::main_user_async(const ::routine & procedure, ::e_priority epriority)
+   ::estatus system::main_user_async(const ::promise::routine & routine, ::e_priority epriority)
    {
 
 #ifdef _UWP

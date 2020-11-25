@@ -25,7 +25,7 @@ namespace simple_shader
 
       void on_create_split_impact() override;
 
-      virtual void on_apply(::action * paction) override;
+      virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
 
       virtual bool BaseOnControlEvent(::user::control_event * pevent);
 

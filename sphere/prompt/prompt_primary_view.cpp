@@ -25,10 +25,10 @@ namespace prompt
    }
 
 
-   void primary_view::on_apply(::action * paction)
+   void primary_view::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
    {
 
-      UNREFERENCED_PARAMETER(paction);
+      UNREFERENCED_PARAMETER(psubject);
 
    }
 

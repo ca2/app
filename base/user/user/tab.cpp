@@ -82,7 +82,7 @@ namespace user
 
       m_iRestoredTabCount = 0;
 
-      m_spdata = __new(data);
+      m_pdata = __new(data);
 
       get_data()->m_iHeightAddUp = 0;
       get_data()->m_pcallback    = nullptr;
@@ -1531,10 +1531,10 @@ namespace user
 
       layout_pane(_001GetSel(), is_window_visible());
 
-      if(m_spdata->m_bVertical)
+      if(m_pdata->m_bVertical)
       {
 
-         m_iTabSize = (int) m_spdata->m_panea.get_count() * m_spdata->m_iTabHeight;
+         m_iTabSize = (int) m_pdata->m_panea.get_count() * m_pdata->m_iTabHeight;
 
          m_iTabScrollMax = m_iTabSize - rectClient.height();
 
@@ -1542,8 +1542,8 @@ namespace user
       else
       {
 
-         m_iTabSize = m_spdata->m_panea.last()->m_point.x +
-         m_spdata->m_panea.last()->m_size.cx;
+         m_iTabSize = m_pdata->m_panea.last()->m_point.x +
+         m_pdata->m_panea.last()->m_size.cx;
 
          m_iTabScrollMax = m_iTabSize - rectClient.width();
 
@@ -3238,7 +3238,7 @@ namespace user
          if (::is_set(pcreate))
          {
 
-            m_spcreate = pcreate;
+            m_pcreate = pcreate;
 
          }
 
@@ -3282,10 +3282,10 @@ namespace user
 
       }
 
-      if (::is_set(pcreate) && pcreate == m_spcreate)
+      if (::is_set(pcreate) && pcreate == m_pcreate)
       {
 
-         m_spcreate = nullptr;
+         m_pcreate = nullptr;
 
       }
 
@@ -3441,34 +3441,34 @@ namespace user
    }
 
 
-   void tab::on_apply(::subject * paction)
+   void tab::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
    {
 
-      ::user::interaction::on_apply(paction);
+      ::user::interaction::on_subject(psubject, pcontext);
 
-      if (paction->id() == id_get_topic_view_id)
+      if (psubject->id() == id_get_topic_view_id)
       {
 
-         paction->value(id_id) = get_cur_tab_id();
+         psubject->value(id_id) = get_cur_tab_id();
 
-         paction->m_bRet = true;
+         psubject->m_bRet = true;
 
       }
-      else if (paction->id() == id_set_topic_view_by_id)
+      else if (psubject->id() == id_set_topic_view_by_id)
       {
 
-         set_cur_tab_by_id(paction->value(id_id));
+         set_cur_tab_by_id(psubject->value(id_id));
 
-         paction->m_bRet = true;
+         psubject->m_bRet = true;
 
       }
-      else if(paction->id() == id_place_child_title_change)
+      else if(psubject->id() == id_place_child_title_change)
       {
 
          for (auto& ppane : get_data()->m_panea)
          {
 
-            if (ppane->m_pplaceholder == paction->m_puserinteraction)
+            if (ppane->m_pplaceholder == psubject->m_puserinteraction)
             {
 
                auto puiptraChild = ppane->m_pplaceholder->m_puiptraChild;
@@ -3679,7 +3679,7 @@ namespace user
    tab::data * tab::get_data()
    {
 
-      return m_spdata;
+      return m_pdata;
 
    }
 

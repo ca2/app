@@ -36,6 +36,18 @@ namespace user
 
       MESSAGE_LINK(WM_APPEXIT, pchannel, this, &frame::_001OnAppExit);
 
+#ifdef WINDOWS_DESKTOP
+
+      if (m_puserinteraction->is_frame_window())
+      {
+
+         MESSAGE_LINK((::enum_message)WM_SYSCOMMAND, pchannel, this, &frame::_001OnSysCommand);
+
+      }
+
+#endif
+
+
    }
 
 
@@ -151,6 +163,21 @@ namespace user
       return m_strFrameTitle;
 
    }
+
+
+   void frame::display_previous_restore()
+   {
+
+
+   }
+
+
+   void frame::display_system_minimize()
+   {
+
+
+   }
+
 
    
    bool frame::on_create_bars()

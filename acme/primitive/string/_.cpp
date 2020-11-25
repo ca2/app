@@ -48,3 +48,12 @@ string read_resource_as_string(HINSTANCE hinst, ::u32 nID, const char * pcszType
 
 
 
+CLASS_DECL_ACME string __str(const estatus & estatus)
+{
+
+   return __str((::i64) estatus.m_estatus);
+
+}
+
+
+

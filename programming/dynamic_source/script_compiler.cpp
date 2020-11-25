@@ -1614,7 +1614,7 @@ namespace dynamic_source
 
       sync_lock sl(&m_mutex);
 
-      ::file::path path = paction->m_pathFolder / paction->m_pathFile;
+      ::file::path path = psubject->m_pathFolder / psubject->m_pathFile;
 
       string strTransfer = path;
 

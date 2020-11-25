@@ -25,12 +25,12 @@
 //   COUNT_ID,
 //
 //   // procedure
-//   CREATE_PROCEDURE,
+//   CREATE_ROUTINE,
 //   DESTROY_PROCEDURE,
 //
 //   // callback
 //   FINISH_CALLBACK,
-//   DIALOG_RESULT_FUTURE,
+//   DIALOG_RESULT_PROCESS,
 //   COMPLETE_CALLBACK,
 //
 //

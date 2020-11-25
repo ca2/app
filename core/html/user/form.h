@@ -28,7 +28,7 @@ public:
    //virtual void on_layout(::html_data * phtmldata);
    virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
-   virtual void on_apply(::action * paction) override;
+   virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
 
    virtual void install_message_routing(::channel * pchannel) override;
 

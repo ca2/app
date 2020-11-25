@@ -31,38 +31,38 @@ namespace user
    }
 
 
-   void form_list_view::on_apply(::action * paction)
+   void form_list_view::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
    {
 
-      ::user::form_view::on_apply(paction);
+      ::user::form_view::on_subject(psubject, pcontext);
 
-      ::user::list_view::on_apply(paction);
+      ::user::list_view::on_subject(psubject, pcontext);
 
       ////__update(::update)
       {
 
-         if(paction->id() == id_browse)
+         if(psubject->id() == id_browse)
          {
 
-            if(!paction->value(id_form).is_empty())
+            if(!psubject->value(id_form).is_empty())
             {
 
-               string strMatter = Context.dir().matter(paction->value(id_form));
+               string strMatter = Context.dir().matter(psubject->value(id_form));
 
                if(get_document()->on_open_document(strMatter))
                {
 
-                  m_strPath = paction->value(id_form);
+                  m_strPath = psubject->value(id_form);
 
                }
 
             }
 
          }
-         else if(paction->id() == id_get_form_view)
+         else if(psubject->id() == id_get_form_view)
          {
 
-            paction->value(id_form) = this;
+            psubject->value(id_form) = this;
 
          }
 
@@ -71,9 +71,9 @@ namespace user
       if(m_pcallback != nullptr)
       {
 
-         paction->value(id_form) = this;
+         psubject->value(id_form) = this;
 
-         m_pcallback->apply(paction);
+         m_pcallback->apply(psubject);
 
       }
 

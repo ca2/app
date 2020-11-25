@@ -2146,13 +2146,13 @@ namespace user
    }
 
 
-   void tree::on_apply(::action * paction)
+   void tree::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
    {
 
       if (m_ptree)
       {
 
-         m_ptree->apply(paction);
+         m_ptree->apply(psubject);
 
       }
 

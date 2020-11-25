@@ -276,7 +276,7 @@ namespace dynamic_source
 
       pmain->run_property("on_create");
 
-      pmain->call_procedure(CREATE_PROCEDURE);
+      pmain->call_routine(CREATE_ROUTINE);
 
       pmain->m_pmain = pmain;
       
@@ -292,7 +292,7 @@ namespace dynamic_source
 
       pinstance->run_property("on_create");
 
-      pinstance->call_procedure(CREATE_PROCEDURE);
+      pinstance->call_routine(CREATE_ROUTINE);
 
       auto pthread = pdssocket->get_context_thread();
 
@@ -527,7 +527,7 @@ namespace dynamic_source
 
             pimpl->run_property("on_create");
             
-            pimpl->call_procedure(CREATE_PROCEDURE);
+            pimpl->call_routine(CREATE_ROUTINE);
 
             pimpl->init1();
 
@@ -537,7 +537,7 @@ namespace dynamic_source
 
             pinstance->run_property("on_create");
             
-            pinstance->call_procedure(CREATE_PROCEDURE);
+            pinstance->call_routine(CREATE_ROUTINE);
 
             if (pinstanceParent->m_pmain->m_iDebug > 0)
             {
@@ -947,9 +947,9 @@ namespace dynamic_source
 
       ::file::path path;
 
-      path = paction->m_pathFolder;
+      path = psubject->m_pathFolder;
 
-      path /= paction->m_pathFile;
+      path /= psubject->m_pathFile;
 
       if (path.contains_ci("\\.git\\") || path.contains_ci("/.git/"))
       {

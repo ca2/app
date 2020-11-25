@@ -313,10 +313,10 @@ CLASS_DECL_APEX void __post_quit_message(i32 nExitCode);
 
 
 
-inline void main_async(const ::procedure & procedure, e_priority epriority = priority_normal)
+inline void main_async(const ::promise::routine & routine, e_priority epriority = priority_normal)
 {
 
-   main_branch(procedure, epriority);
+   main_branch(routine, epriority);
 
 }
 

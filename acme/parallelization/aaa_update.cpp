@@ -86,7 +86,7 @@ update::~update()
 void update::notify()
 {
 
-   auto paction = new_action(m_iUpdate);
+   auto psubject = new_action(m_iUpdate);
 
    pupdate->m_pupdatenotificationtask = this;
 

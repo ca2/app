@@ -297,7 +297,7 @@ void simple_frame_window::defer_save_window_placement()
 
    m_millisLastSaveWindowRectRequest.Now();
 
-   defer_start_task("save_window_rect", __procedure([this]()
+   defer_start_task("save_window_rect", __routine([this]()
       {
 
          _task_save_window_rect();
@@ -2799,7 +2799,7 @@ void simple_frame_window::defer_create_notification_icon()
 
    }
 
-   m_setMinimizeToTray.defer(set_true);
+   m_bitMinimizeToTray.defer(e_bit_true);
 
 }
 
@@ -4067,7 +4067,7 @@ void simple_frame_window::call_notification_area_action(const char * pszId)
 
    string strId(pszId);
 
-   post_procedure(__procedure([this, strId]()
+   post_routine(__routine([this, strId]()
    {
 
       notification_area_action(strId);

@@ -114,11 +114,11 @@ namespace file
 
       ::file::action action;
 
-      action.m_pwatch = pwatch;
+      psubject->m_pwatch = pwatch;
 
-      action.m_id = pwatch->m_id;
+      psubject->m_id = pwatch->m_id;
 
-      action.m_pathFolder = pwatch->m_pathFolder;
+      psubject->m_pathFolder = pwatch->m_pathFolder;
 
       for (i = 0; i < numEvents; i++)
       {
@@ -128,7 +128,7 @@ namespace file
          if(!pwatch->m_bRecursive)
          {
 
-            if(path.folder().get_length() > action.m_pathFolder.get_length())
+            if(path.folder().get_length() > psubject->m_pathFolder.get_length())
             {
 
                continue;
@@ -137,35 +137,35 @@ namespace file
 
          }
 
-         ::str::begins_eat(path, action.m_pathFolder);
+         ::str::begins_eat(path, psubject->m_pathFolder);
 
-         action.m_pathFile = path;
+         psubject->m_pathFile = path;
 
          if(eventFlags[i] & kFSEventStreamEventFlagItemRemoved)
          {
 
-            action.m_eaction = ::file::action_delete;
+            psubject->m_eaction = ::file::action_delete;
 
          }
 
          if(eventFlags[i] & kFSEventStreamEventFlagItemRenamed)
          {
 
-            action.m_eaction = ::file::action_modify;
+            psubject->m_eaction = ::file::action_modify;
 
          }
 
          if(eventFlags[i] & kFSEventStreamEventFlagItemModified)
          {
 
-            action.m_eaction = ::file::action_modify;
+            psubject->m_eaction = ::file::action_modify;
 
          }
 
          if(eventFlags[i] & kFSEventStreamEventFlagItemCreated)
          {
 
-            action.m_eaction = ::file::action_add;
+            psubject->m_eaction = ::file::action_add;
 
          }
 

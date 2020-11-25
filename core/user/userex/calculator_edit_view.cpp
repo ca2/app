@@ -69,10 +69,10 @@ namespace calculator
    }
 
 
-   void plain_edit_view::on_apply(::action * paction)
+   void plain_edit_view::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
    {
 
-      if (paction->id() == id_after_change_text)
+      if (psubject->id() == id_after_change_text)
       {
 
          {
@@ -347,7 +347,7 @@ namespace calculator
       if (context.is_user_source())
       {
 
-         apply_update(id_after_change_text);
+         process_subject(id_after_change_text);
 
       }
 

@@ -378,12 +378,12 @@ namespace filemanager
 
 
 
-   void folder_list::on_apply(::action * paction)
+   void folder_list::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
    {
 
-      ::filemanager::impact::on_apply(paction);
+      ::filemanager::impact::on_subject(psubject, pcontext);
 
-      if (paction->id() == INITIALIZE_ID)
+      if (psubject->id() == INITIALIZE_ID)
       {
 
          if (filemanager_data()->m_bPassBk)

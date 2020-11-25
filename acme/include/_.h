@@ -1260,7 +1260,6 @@ namespace promise
 {
 
 
-   using backing_pointer = __pointer(backing);
    using handler_pointer = __pointer(handler);
    using subject_pointer = __pointer(subject);
    using context_pointer = __pointer(context);
@@ -1912,139 +1911,7 @@ enum e_no_init
 };
 
 
-class CLASS_DECL_ACME set
-{
-public:
-
-   e_set m_eset;
-
-
-   inline set(e_optional) { m_eset = set_none; }
-
-
-   inline set() { m_eset = set_none; }
-
-
-   inline set(int i) { operator=(i); }
-
-
-   inline set(bool b) { operator=(b); }
-
-
-   inline set(const ::set &set) : m_eset(set_none) { if (!set.undefined()) { m_eset = set.m_eset; }}
-
-
-   inline bool isFalse() const { return is_false(); }
-
-
-   inline bool is_false() const { return m_eset < set_empty; }
-
-
-   inline bool undefined() const { return is_empty(); }
-
-
-   inline bool is_empty() const { return m_eset == set_empty; }
-
-
-   inline bool is_none() const { return is_empty(); }
-
-
-   inline bool is_true() const { return m_eset > set_empty; }
-
-
-   inline bool is_true(bool bDefault) const { return m_eset ? isTrue() : bDefault; }
-
-
-   inline bool isTrue() const { return is_true(); }
-
-
-   inline bool is_optional() const { return !m_eset; }
-
-
-   inline bool isOptional() const { return is_optional(); }
-
-
-   inline operator bool() const { return isTrue(); }
-
-
-   inline bool operator!() const { return isFalse(); }
-
-
-   inline bool operator<(int i) const { return (int) m_eset < i; }
-
-
-   inline bool operator<=(int i) const { return (int) m_eset <= i; }
-
-
-   inline bool operator>(int i) const { return (int) m_eset > i; }
-
-
-   inline bool operator>=(int i) const { return (int) m_eset >= i; }
-
-
-   inline bool operator==(int i) const { return (int) m_eset == i; }
-
-
-   inline bool operator!=(int i) const { return !operator==(i); }
-
-
-   inline set &operator=(int i)
-   {
-      m_eset = (e_set) i;
-      return *this;
-   }
-
-
-   inline set &operator=(bool b)
-   {
-      m_eset = (b ? set_true : set_false);
-      return *this;
-   }
-
-
-   inline bool operator==(bool b) const { return (m_eset == set_true && b) || (m_eset == set_false && !b); }
-
-
-   inline bool operator!=(bool b) const { return !operator==(b); }
-
-
-   inline set &operator=(const ::set &set)
-   {
-      if (this != &set && !set.undefined()) { m_eset = set.m_eset; };
-      return *this;
-   }
-
-
-   inline void defer(int i) { if (is_empty()) { operator=(i); }}
-
-
-   inline set deferred(int i) const { if (is_empty()) { return i; } else { return m_eset; }}
-
-
-   inline set operator()(int i) const { return deferred(i); }
-
-};
-
-
-inline bool __is_true(bool b) { return b; }
-
-
-inline bool __is_true(const ::set &set) { return set; }
-
-
-inline bool __is_false(bool b) { return !b; }
-
-
-inline bool __is_false(const ::set &set) { return !set; }
-
-
-inline bool __is_optional(bool b) { return false; }
-
-
-inline bool __is_optional(const ::set &set) { return set.isOptional(); }
-
-
-#define __optional_is_true(flag, option) ((bool)(flag) || (__is_optional(flag) && (option)))
+#include "primitive/logic/bit.h"
 
 
 #include "acme/platform/auto.h"
@@ -2939,7 +2806,7 @@ using ecommand = ::enumeration<enum_command>;
 using echeck = ::enumeration<enum_check>;
 
 
-typedef ::estatus THREAD_PROCEDURE(thread_parameter parameter);
+typedef ::estatus THREAD_ROUTINE(thread_parameter parameter);
 
 
 inline bool succeeded(const ::payload &payload);
@@ -3688,7 +3555,7 @@ namespace zip
 
 #include "acme/platform/regex.h"
 
-#include "parallelization/process.h"
+#include "process/_.h"
 
 //#include "acme/filesystem/filesystem/file_watcher.h"
 
@@ -3718,7 +3585,7 @@ namespace zip
 #include "acme/platform/exclusive.h"
 
 
-#include "acme/os/process.h"
+#include "acme/process/_.h"
 
 
 #include "acme/platform/hyperlink.h"

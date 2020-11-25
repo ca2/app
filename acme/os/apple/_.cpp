@@ -125,7 +125,7 @@ i32 defer_run_system()
 //void apple_on_app_activate()
 //{
 //
-//   System.call_update(id_app_activated);
+//   System.call_subject(id_app_activated);
 //
 //}
 

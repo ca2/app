@@ -76,10 +76,10 @@ namespace browser
    }
 
 
-   void gcom::on_apply(::action * paction)
+   void gcom::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
    {
 
-      UNREFERENCED_PARAMETER(paction);
+      UNREFERENCED_PARAMETER(psubject);
 
    }
 

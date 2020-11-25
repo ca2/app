@@ -90,7 +90,7 @@ namespace user
          {
 
 
-            System.apply_update(id_os_font_change);
+            System.process_subject(id_os_font_change);
 
             //fork([this]()
               // {
@@ -106,7 +106,7 @@ namespace user
             strLparamString == "ImmersiveColorSet")
       {
 
-         System.apply_update(id_dark_mode);
+         System.process_subject(id_dark_mode);
 
       }
          else if (pbase->m_id == e_message_display_change ||

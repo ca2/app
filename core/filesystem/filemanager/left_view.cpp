@@ -81,12 +81,12 @@ namespace filemanager
    }
 
 
-   void left_view::on_apply(::action * paction)
+   void left_view::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
    {
 
-      ::filemanager::impact::on_apply(paction);
+      ::filemanager::impact::on_subject(psubject, pcontext);
 
-      ::user::split_view::on_apply(paction);
+      ::user::split_view::on_subject(psubject, pcontext);
 
 //      //__update(::update)
 //      {
@@ -94,7 +94,7 @@ namespace filemanager
 //         if (filemanager_document() == pupdate->m_pdocument)
 //         {
 //
-//            //if (paction->id() == id_initialize)
+//            //if (psubject->id() == id_initialize)
 //            //{
 //
 //            //   string str;

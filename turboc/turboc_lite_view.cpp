@@ -74,7 +74,7 @@ namespace turboc
 
    void lite_view::on_update(::aura::impact * pSender,e_update eupdate,object* pupdate)
    {
-      UNREFERENCED_PARAMETER(paction);
+      UNREFERENCED_PARAMETER(psubject);
    }
 
 

@@ -38,13 +38,13 @@ namespace database
 //      DECL_GEN_SIGNAL(data_on_before_change);
       DECL_GEN_SIGNAL(data_on_after_change);
 
-      virtual bool data_on_before_change(client* pclient, const key& id, payload& payload, ::subject * paction);
-      virtual void data_on_after_change(client* pclient, const key& id, const ::payload & payload, ::subject * paction);
+      virtual bool data_on_before_change(client* pclient, const key& id, payload& payload, ::promise::subject * psubject);
+      virtual void data_on_after_change(client* pclient, const key& id, const ::payload & payload, ::promise::subject * psubject);
 
 
 
-      virtual bool _data_set(const key& key, const payload & payload, ::subject * paction = nullptr);
-      virtual bool _data_set(const selection & selection, const payload & payload, ::subject * paction = nullptr);
+      virtual bool _data_set(const key& key, const payload & payload, ::promise::subject * psubject = nullptr);
+      virtual bool _data_set(const selection & selection, const payload & payload, ::promise::subject * psubject = nullptr);
 
 
       template < typename TYPE >
@@ -150,7 +150,7 @@ namespace database
 
       virtual void default_data_save_handling(const ::id & id);
 
-      virtual bool data_pulse_change(const key & key, ::subject * paction);
+      virtual bool data_pulse_change(const key & key, ::promise::subject * psubject);
 
 
       virtual void set_data_key_modifier(const key & key);

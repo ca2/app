@@ -754,7 +754,7 @@ namespace linux
          if(m_bMoveEvent || m_bSizeEvent)
          {
 
-            defer_start_task("delayed_placement", __procedure([this]()
+            defer_start_task("delayed_placement", __routine([this]()
             {
 
                _thread_delayed_placement();

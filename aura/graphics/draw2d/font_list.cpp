@@ -627,10 +627,10 @@ namespace draw2d
    }
 
 
-   void font_list::on_apply(::subject * paction)
+   void font_list::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
    {
 
-      e_id eid = (e_id) paction->id().i64();
+      e_id eid = (e_id)psubject->id().i64();
 
       if (eid == id_font_enumeration)
       {
@@ -683,13 +683,13 @@ namespace draw2d
 
          m_bUpdatesHooked = true;
 
-         System.add_update(id_font_enumeration, this, true);
+         System.delivery_for(id_font_enumeration, this, true);
 
-         add_update(id_font_extents, this, true);
+         delivery_for(id_font_extents, this, true);
 
-         add_update(id_font_list_layout, this, true);
+         delivery_for(id_font_list_layout, this, true);
 
-         add_update(id_font_list_total_size, this, true);
+         delivery_for(id_font_list_total_size, this, true);
 
       }
       else

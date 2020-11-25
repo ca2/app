@@ -1292,6 +1292,7 @@
     <ClCompile Include="user\window_state.cpp" />
     <ClCompile Include="user\window_util.cpp" />
     <ClCompile Include="user\_.cpp" />
+    <ClCompile Include="user_frame.cpp" />
     <ClCompile Include="_.cpp" />
     <ClCompile Include="__matter_ca2.cpp" />
     <ClInclude Include="astr.h" />

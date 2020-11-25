@@ -150,7 +150,7 @@ namespace file
       virtual void add_listener(listener * plistener);
       virtual void remove_listener(listener * plistener);
 
-      virtual void handle_action(action * paction);
+      virtual void handle_action(action * psubject);
 
       virtual bool step();
 

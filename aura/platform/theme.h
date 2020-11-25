@@ -106,7 +106,7 @@ namespace aura
       inline color32_t get_theme_icon_glow_color() { return m_pcolors->m_crIconGlow; }
 
 
-      virtual void handle_file_action(::file::action* paction) override;
+      virtual void handle_file_action(::file::action* psubject) override;
 
    };
 

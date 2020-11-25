@@ -113,7 +113,7 @@ namespace user
    }
 
 
-   void split_view::on_apply(::subject * paction)
+   void split_view::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
    {
 
    }

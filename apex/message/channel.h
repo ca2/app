@@ -13,7 +13,7 @@ public:
    ::message::id_route                             m_idroute;
    ::message::id_route                             m_idrouteNew;
    bool                                            m_bNewChannel;
-   id_map < procedure_array >                      m_mapProcedure;
+   id_map < ::promise::routine_array >                      m_mapRoutine;
 
 
    channel();
@@ -131,7 +131,7 @@ public:
       add_update_route_pred(preceiver, id, [this, preceiver, id](::message::message * pmessage)
       {
 
-         preceiver->process(action((const ::__id &) id, preceiver));
+         preceiver->process_subject(id, preceiver);
 
       });
 

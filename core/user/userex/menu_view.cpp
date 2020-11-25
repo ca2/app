@@ -10,9 +10,9 @@ menu_view::menu_view()
 }
 
 
-void menu_view::on_apply(::action * paction)
+void menu_view::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
 {
-   ::user::form_view::on_apply(paction);
+   ::user::form_view::on_subject(psubject, pcontext);
 }
 
 

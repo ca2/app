@@ -59,7 +59,7 @@ void ___release(TYPE *& p OBJ_REF_DBG_COMMA_PARAMS);
 //   hthread_t* phthread = nullptr);
 
 
-//CLASS_DECL_ACME void launch_action(action* paction);
+//CLASS_DECL_ACME void launch_action(action* psubject);
 
 
 #include "primitive/promise/subject.h"
@@ -69,9 +69,6 @@ void ___release(TYPE *& p OBJ_REF_DBG_COMMA_PARAMS);
 
 
 #include "primitive/promise/handler.h"
-
-
-#include "primitive/promise/backing.h"
 
 
 #include "primitive/promise/promise.h"

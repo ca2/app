@@ -570,27 +570,27 @@ namespace userfs
 
 
 
-   void tree::on_apply(::action * paction)
+   void tree::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
    {
 
       ////__update(::update)
       {
 
-         if (paction->id() == id_initialize)
+         if (psubject->id() == id_initialize)
          {
 
          }
-         if (paction->id() == id_filter)
+         if (psubject->id() == id_filter)
          {
 
-            if (paction->value(id_filter).is_empty())
+            if (psubject->value(id_filter).is_empty())
             {
                //               FilterClose();
             }
             else
             {
                //             FilterBegin();
-               //           Filter1(paction->value(id_filter));
+               //           Filter1(psubject->value(id_filter));
                //         FilterApply();
             }
 

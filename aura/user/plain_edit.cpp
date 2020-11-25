@@ -291,10 +291,10 @@ namespace user
    }
 
 
-   void plain_edit::on_apply(::subject * paction)
+   void plain_edit::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
    {
 
-      if(paction->id() == id_current_text_changed)
+      if(psubject->id() == id_current_text_changed)
       {
 
          ::draw2d::graphics_pointer pgraphics = ::draw2d::create_memory_graphics();
@@ -309,7 +309,7 @@ namespace user
       else
       {
 
-         ::user::interaction::on_apply(paction);
+         ::user::interaction::on_subject(psubject, pcontext);
 
       }
 
@@ -5747,7 +5747,7 @@ finished_update:
 
             plain_edit_get_text(strtext());
 
-            get_context_application()->apply_update(m_ppropertyText->m_id, context);
+            get_context_application()->process_subject(m_ppropertyText->m_id, context);
 
          }
 

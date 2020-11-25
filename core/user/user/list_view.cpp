@@ -29,12 +29,12 @@ namespace user
    }
 
 
-   void list_view::on_apply(::action * paction)
+   void list_view::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
    {
 
-      BASE_VIEW::on_apply(paction);
+      BASE_VIEW::on_subject(psubject, pcontext);
 
-      if (paction->id() == id_initial)
+      if (psubject->id() == id_initial)
       {
 
          _001OnUpdateItemCount();

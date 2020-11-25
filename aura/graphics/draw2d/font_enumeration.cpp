@@ -35,17 +35,17 @@ namespace draw2d
 
       }
 
-      System.add_update(id_os_font_change, this);
+      System.add_process(id_os_font_change, this);
 
       return estatus;
 
    }
 
 
-   void font_enumeration::on_apply(::subject * paction)
+   void font_enumeration::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
    {
 
-      if (paction->id() == id_os_font_change)
+      if (psubject->id() == id_os_font_change)
       {
 
          update();

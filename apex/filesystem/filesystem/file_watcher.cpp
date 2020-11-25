@@ -101,13 +101,13 @@ namespace file
    }
 
 
-   void watch::handle_action(action * paction)
+   void watch::handle_action(action * psubject)
    {
 
       for (auto & plistener : m_listenera.ptra())
       {
 
-         plistener->handle_file_action(paction);
+         plistener->handle_file_action(psubject);
 
       }
 
@@ -166,6 +166,7 @@ namespace file
       UNREFERENCED_PARAMETER(paction);
 
    }
+
 
    watcher::watcher()
    {

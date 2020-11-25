@@ -4990,13 +4990,11 @@ retry_license:
    }
 
 
-   void application::on_apply(::subject * paction)
+   void application::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
    {
 
 
    }
-
-
 
 
    //bool application::compress_ungz(::file::file * pfileUncompressed, ::file::file * pfileCompressed)
@@ -10066,7 +10064,7 @@ namespace apex
 
 
 
-   void application::data_on_after_change(::database::client* pclient, const ::database::key& key, const payload& payload, ::subject * paction)
+   void application::data_on_after_change(::database::client* pclient, const ::database::key& key, const payload& payload, ::promise::subject * psubject)
    {
 
 

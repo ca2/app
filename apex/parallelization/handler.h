@@ -11,7 +11,7 @@ public:
    bool                             m_bSingleThread;
    bool                             m_bUseDedicatedThread;
    __pointer(::thread)              m_pthread;
-   procedure_array                  m_routinea;
+   ::promise::routine_array                  m_routinea;
    __pointer(manual_reset_event)    m_pevTaskOnQueue;
    int                              m_iAliveCount;
    int                              m_iAlive;
@@ -25,14 +25,14 @@ public:
    virtual ::estatus set_finish_composites(::context_object * pcontextobjectFinish) override;
 
 
-   ::estatus async(const ::procedure & procedure);
-   ::estatus sync(const ::procedure & procedure);
+   ::estatus async(const ::promise::routine & routine);
+   ::estatus sync(const ::promise::routine & routine);
 
 
-   ::estatus handle(const ::procedure & procedure, bool bSync);
+   ::estatus handle(const ::promise::routine & routine, bool bSync);
 
 
-   procedure pick_new_task();
+   ::promise::routine pick_new_task();
 
    
    void loop();

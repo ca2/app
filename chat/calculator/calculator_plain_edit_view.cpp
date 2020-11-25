@@ -24,7 +24,7 @@ namespace calculator
    }
 
 
-   void plain_edit_view::on_apply(::action * paction)
+   void plain_edit_view::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
    {
 
       if(eupdate == 2000)

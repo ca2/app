@@ -61,32 +61,27 @@ namespace acme
    }
 
 
-   void system::on_subject_prepare(::promise::subject * psubject)
+   void system::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
    {
 
-      if(psubject->id() == id_dark_mode)
+      if (psubject->m_esubject <= e_subject_process)
       {
 
-         defer_calc_os_dark_mode();
+         if (psubject->id() == id_dark_mode)
+         {
+
+            defer_calc_os_dark_mode();
+
+         }
 
       }
 
    }
 
 
-   void system::on_subject_process(::promise::subject * psubject)
-   {
-
-      if (psubject->id() == id_dark_mode)
-      {
-
-      }
 
 
-   }
-
-
-   ::estatus system::main_user_async(const ::promise::routine & procedure, ::e_priority epriority)
+   ::estatus system::main_user_async(const ::promise::routine & routine, ::e_priority epriority)
    {
 
       return ::error_interface_only;

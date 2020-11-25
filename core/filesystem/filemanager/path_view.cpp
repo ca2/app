@@ -174,12 +174,12 @@ namespace filemanager
    }
 
 
-   void path_view::on_apply(::action * paction)
+   void path_view::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
    {
 
-      ::filemanager::impact::on_apply(paction);
+      ::filemanager::impact::on_subject(psubject, pcontext);
 
-      if (paction->id() == INITIALIZE_ID)
+      if (psubject->id() == INITIALIZE_ID)
       {
 
          //            filemanager_document() = pupdate->filemanager_document();
@@ -196,16 +196,16 @@ namespace filemanager
                      DISetSection(str);
                      _001UpdateColumns();*/
       }
-      else if (paction->id() == FILTER_ID)
+      else if (psubject->id() == FILTER_ID)
       {
-         /*if(paction->value(id_filter).is_empty())
+         /*if(psubject->value(id_filter).is_empty())
          {
          FilterClose();
          }
          else
          {
          FilterBegin();
-         Filter1(paction->value(id_filter));
+         Filter1(psubject->value(id_filter));
          FilterApply();
          }*/
       }

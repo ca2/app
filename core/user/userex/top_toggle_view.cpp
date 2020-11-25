@@ -32,10 +32,10 @@ namespace userex
    }
 
 
-   void top_toggle_view::on_apply(::action * paction)
+   void top_toggle_view::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
    {
 
-      ::user::impact::on_apply(paction);
+      ::user::impact::on_subject(psubject, pcontext);
 
    }
 

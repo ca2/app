@@ -118,10 +118,10 @@ namespace filemanager
    }
 
 
-   void folder_selection_list_view::on_apply(::action * paction)
+   void folder_selection_list_view::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
    {
 
-      ::filemanager::impact::on_apply(paction);
+      ::filemanager::impact::on_subject(psubject, pcontext);
 
    }
 
@@ -165,11 +165,11 @@ namespace filemanager
    void folder_selection_list_view::browse_sync(const ::action_context & context)
    {
 
-      auto paction = fork_action(id_synchronize_folder_selection);
+      auto psubject = fork_subject(id_synchronize_folder_selection);
 
-      paction->m_actioncontext = context + ::source_selection;
+      psubject->m_actioncontext = context + ::source_selection;
 
-      get_document()->update_all_views(paction);
+      get_document()->update_all_views(psubject);
 
    }
 

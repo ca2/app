@@ -20,8 +20,8 @@ public:
 
 
    void call_update(::u64 uId);
-   virtual void apply(::action * paction);
-   virtual void on_apply(::action * paction);
+   virtual void apply(::action * psubject);
+   virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext);
    virtual bool update((::update * pupdate);
 
 
@@ -47,19 +47,19 @@ public:
 
 
    template < typename TYPE >
-   inline void add_handler(::u64 uId, TYPE * p, void (TYPE::* pprocedure)())
+   inline void add_handler(::u64 uId, TYPE * p, void (TYPE::* proutine)())
    {
 
-      return add_handler(uId, __runnable_procedure(p, pprocedure));
+      return add_handler(uId, __runnable_procedure(p, proutine));
 
    }
 
 
    template < typename TYPE >
-   inline void add_handler(::u64 uId, void (TYPE::* pprocedure)())
+   inline void add_handler(::u64 uId, void (TYPE::* proutine)())
    {
 
-      return add_handler(uId, dynamic_cast < TYPE * > (this), pprocedure);
+      return add_handler(uId, dynamic_cast < TYPE * > (this), proutine);
 
    }
 

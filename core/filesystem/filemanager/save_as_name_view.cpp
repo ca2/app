@@ -111,12 +111,12 @@ namespace filemanager
    }
 
 
-   void save_as_edit_view::on_apply(::action * paction)
+   void save_as_edit_view::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
    {
 
-      ::user::impact::on_apply(paction);
+      ::user::impact::on_subject(psubject, pcontext);
 
-      if (paction->id() == INITIALIZE_ID && paction->m_puserinteraction == this)
+      if (psubject->id() == INITIALIZE_ID && psubject->m_puserinteraction == this)
       {
          //            filemanager_document() = pupdate->filemanager_document();
          /*            m_pserverNext = simpledb::AppGet()->GetDataServer();
@@ -132,16 +132,16 @@ namespace filemanager
          DISetSection(str);
          _001UpdateColumns();*/
       }
-      else if (paction->id() == FILTER_ID)
+      else if (psubject->id() == FILTER_ID)
       {
-         /*if(paction->value(id_filter).is_empty())
+         /*if(psubject->value(id_filter).is_empty())
          {
          FilterClose();
          }
          else
          {
          FilterBegin();
-         Filter1(paction->value(id_filter));
+         Filter1(psubject->value(id_filter));
          FilterApply();
          }*/
       }
@@ -163,10 +163,10 @@ namespace filemanager
    }
 
 
-   void save_as_button::on_apply(::action * paction)
+   void save_as_button::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
    {
 
-      ::filemanager::impact::on_apply(paction);
+      ::filemanager::impact::on_subject(psubject, pcontext);
 
    }
 
@@ -276,7 +276,7 @@ namespace filemanager
       if (filemanager_data()->m_pdocumentTopic->on_filemanager_save(filemanager_document(), path))
       {
 
-         //paction->id() = id_topic_saved;
+         //psubject->id() = id_topic_saved;
 
          //pupdate->m_pfileitem = __new(::file::item(path, path));
 
@@ -286,7 +286,7 @@ namespace filemanager
 
          //message_box("Failed to save document");
 
-         //paction->id() = id_topic_save_failed;
+         //psubject->id() = id_topic_save_failed;
 
       }
 
@@ -296,9 +296,11 @@ namespace filemanager
    void save_as_button::cancel_save_document()
    {
 
-      auto paction = new_action(update(id_topic_cancel));
+      __throw(todo("new_action?? (->new_subject)"));
 
-      get_document()->update_all_views(paction);
+      //auto psubject = new_action(subject(id_topic_cancel));
+
+      //get_document()->update_all_views(psubject);
 
    }
 
@@ -320,15 +322,15 @@ namespace filemanager
    }
 
 
-   void save_as_view::on_apply(::action * paction)
+   void save_as_view::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
    {
 
-      ::user::impact::on_apply(paction);
+      ::user::impact::on_subject(psubject, pcontext);
 
       ////__update(::update)
       {
 
-         if (paction->id() == id_topic_saved)
+         if (psubject->id() == id_topic_saved)
          {
 
             if (GetTopLevelFrame()->m_bModal)
@@ -339,7 +341,7 @@ namespace filemanager
             }
 
          }
-         else if (paction->id() == id_topic_save_failed)
+         else if (psubject->id() == id_topic_save_failed)
          {
 
             if (GetTopLevelFrame()->m_bModal)
@@ -350,7 +352,7 @@ namespace filemanager
             }
 
          }
-         else if (paction->m_puserinteraction == this && paction->id() == id_initialize)
+         else if (psubject->m_puserinteraction == this && psubject->id() == id_initialize)
          {
             //            filemanager_document() = pupdate->filemanager_document();
             /*            m_pserverNext = simpledb::AppGet()->GetDataServer();
@@ -366,16 +368,16 @@ namespace filemanager
                         DISetSection(str);
                         _001UpdateColumns();*/
          }
-         else if (paction->id() == id_filter)
+         else if (psubject->id() == id_filter)
          {
-            /*if(paction->value(id_filter).is_empty())
+            /*if(psubject->value(id_filter).is_empty())
             {
             FilterClose();
             }
             else
             {
             FilterBegin();
-            Filter1(paction->value(id_filter));
+            Filter1(psubject->value(id_filter));
             FilterApply();
             }*/
          }

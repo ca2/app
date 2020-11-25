@@ -3686,7 +3686,7 @@ namespace user
    }
 
    
-   ::estatus interaction_impl::main_async(const routine & procedure, e_priority epriority)
+   ::estatus interaction_impl::main_async(const ::promise::routine & routine, e_priority epriority)
    {
 
       return ::error_interface_only;
@@ -4221,7 +4221,7 @@ namespace user
 
       }
 
-      m_puserinteraction->post_procedure(__procedure([this, pbase]()
+      m_puserinteraction->post_routine(__routine([this, pbase]()
       {
 
          return m_puserinteraction->message_handler(pbase);

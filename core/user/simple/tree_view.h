@@ -15,7 +15,7 @@ public:
 
    DECL_GEN_SIGNAL(_001OnCreate);
 
-   virtual void on_apply(::action * paction) override;
+   virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
 
 
    virtual void assert_valid() const override;

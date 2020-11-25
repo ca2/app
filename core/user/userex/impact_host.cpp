@@ -158,10 +158,10 @@ namespace userex
    }
 
 
-   void impact_host::on_apply(::action * paction)
+   void impact_host::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
    {
 
-      ::user::impact::on_apply(paction);
+      ::user::impact::on_subject(psubject, pcontext);
 
    }
 
@@ -222,7 +222,7 @@ namespace userex
 
 
 
-      post_procedure(__procedure([pupdown, this]
+      post_routine(__routine([pupdown, this]
       {
 
          __pointer(::simple_frame_window) pframewindow = pupdown;
@@ -755,7 +755,7 @@ namespace userex
    void impact_host::toggle_view(::id idView)
    {
 
-      post_procedure(__procedure([this, idView]()
+      post_routine(__routine([this, idView]()
          {
 
             bool bShow = false;

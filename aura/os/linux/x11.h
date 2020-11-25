@@ -26,7 +26,7 @@ void x11_fork(PRED pred)
 
    }
 
-   auto prunnable = __procedure(pred);
+   auto prunnable = __routine(pred);
 
    x11_async_runnable(prunnable);
 

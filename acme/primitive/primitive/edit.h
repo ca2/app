@@ -26,7 +26,7 @@
 //
 //
 //   virtual void apply();
-//   virtual void on_apply();
+//   virtual void on_subject();
 //
 //
 //};

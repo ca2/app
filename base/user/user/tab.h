@@ -162,23 +162,23 @@ namespace user
       };
 
 
-      enum_state                          m_estate;
-      __pointer(data)                         m_spdata;
+      enum_state                       m_estate;
+      __pointer(data)                  m_pdata;
       ::draw2d::graphics_extension     m_dcextension;
       bool                             m_bDisableSavingRestorableTabs;
       bool                             m_bShowTabs;
       bool                             m_bNoTabs;
       item                             m_itemClick;
       ::draw2d::font_pointer           m_pfontTab;
-      __pointer(::create)                     m_spcreate;
+      __pointer(::create)              m_pcreate;
       ::count                          m_iRestoredTabCount;
       bool                             m_bDrawTabAtBackground;
-      class set                        m_setLastShowTabs;
+      ::logic::bit                     m_bitLastShowTabs;
       e_display                        m_edisplayParentFrameAutoHide;
-      int      m_iTabScroll;
-      int      m_iTabScrollMax;
-      int      m_iTabSize;
-      bool     m_bMouseDown;
+      int                              m_iTabScroll;
+      int                              m_iTabScrollMax;
+      int                              m_iTabSize;
+      bool                             m_bMouseDown;
 
 
       tab();
@@ -211,7 +211,7 @@ namespace user
       virtual void _001CloseTab(::index iTab);
 
 
-      virtual void on_apply(::subject * paction) override;
+      virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
 
       virtual void rotate();
 

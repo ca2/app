@@ -143,7 +143,7 @@ namespace user
       virtual color32_t get_button_text_color();
 
 
-      virtual void on_apply(::subject * paction) override;
+      virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
 
 
    };

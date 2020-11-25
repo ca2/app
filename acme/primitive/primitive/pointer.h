@@ -368,7 +368,7 @@ public:
 
       auto pModified = __new(TYPE(*m_p));
 
-      pModified->process(pobject, attribute);
+      pModified->apply(pobject, attribute);
 
       return operator =(pcontainer->get_existing(pModified));
 

@@ -43,10 +43,10 @@ namespace browser
    }
 
 
-   void main_view::on_apply(::action * paction)
+   void main_view::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
    {
 
-      ::user::split_view::on_apply(paction);
+      ::user::split_view::on_subject(psubject, pcontext);
 
    }
 

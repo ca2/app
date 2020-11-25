@@ -28,7 +28,7 @@ namespace promise
    }
 
 
-   void context::set_up_to_date(::promise::handler *phandler)
+   void context::set_up_to_date(const ::promise::subject *phandler)
    {
 
       m_iUpdateSerial = phandler->m_iUpdateSerial;

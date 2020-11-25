@@ -887,9 +887,9 @@ break_click:;
 
          _001SetItemText(&item);
 
-         auto paction = fork_action(id_control_saved);
+         auto psubject = fork_subject(id_control_saved);
 
-         apply(paction);
+         apply(psubject);
 
          return true;
 
@@ -959,9 +959,9 @@ break_click:;
 
          _001SetItemText(&item);
 
-         auto paction = fork_action(id_control_saved);
+         auto psubject = fork_subject(id_control_saved);
 
-         apply(paction);
+         apply(psubject);
 
          if (pinteraction->descriptor().has_function(::user::control_function_duplicate_on_check_box))
          {

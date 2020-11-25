@@ -49,7 +49,7 @@ task_pointer & task_pool::defer_start(const ::id& id, const ::promise::routine &
 void task_pool::start_clock(enum_clock eclock, const duration & duration)
 {
 
-   defer_start(eclock, __procedure([&, eclock, duration]()
+   defer_start(eclock, __routine([&, eclock, duration]()
       {
 
          _task_clock(eclock, duration);

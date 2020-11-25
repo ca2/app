@@ -7,8 +7,8 @@ public:
 
 
    string                              m_strTopicText;
-   id_map < procedure_array >          m_mapProcedure;
-   id_map < futurevar_array >          m_mapFuturevar;
+   id_map < promise::routine_array >   m_mapRoutine;
+   id_map < promise::process_array >   m_mapProcess;
    //__pointer_array(::task)           m_taska;
 
 

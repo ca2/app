@@ -42,7 +42,7 @@ void debug_object_event_promisse_pred()
 //void system_call_update_wallpaper_changed()
 //{
 //
-//   System.call_update(id_wallpaper_changed);
+//   System.call_subject(id_wallpaper_changed);
 //
 //}
 //
@@ -50,7 +50,7 @@ void debug_object_event_promisse_pred()
 //void system_call_update_app_activated()
 //{
 //
-//   System.call_update(id_app_activated);
+//   System.call_subject(id_app_activated);
 //
 //}
 //
@@ -58,7 +58,7 @@ void debug_object_event_promisse_pred()
 //void system_call_update_app_changed_occlusion_state()
 //{
 //
-//   System.call_update(id_app_changed_occlusion_state);
+//   System.call_subject(id_app_changed_occlusion_state);
 //
 //}
 
@@ -73,7 +73,7 @@ void debug_object_event_promisse_pred()
 //
 //   auto pupdate = new_update();
 //
-//   paction->value(id_filter) = "*.jpg";
+//   psubject->value(id_filter) = "*.jpg";
 //
 //}
 

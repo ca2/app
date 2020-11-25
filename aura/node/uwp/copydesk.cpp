@@ -114,7 +114,7 @@ namespace uwp
 
       }
 
-      System.main_user_async(__procedure([this]()
+      System.main_user_async(__routine([this]()
          {
 
             on_content_changed();

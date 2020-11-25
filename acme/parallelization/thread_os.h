@@ -185,8 +185,8 @@ CLASS_DECL_ACME ::mutex & message_dispatch_mutex();
 
 
 
-typedef void SIMPLE_PROCEDURE(void);
-typedef SIMPLE_PROCEDURE * PPROC_SIMPLE;
+typedef void SIMPLE_ROUTINE(void);
+typedef SIMPLE_ROUTINE * PPROC_SIMPLE;
 
 //CLASS_DECL_ACME extern PPROC_SIMPLE g_axisoninitthread;
 //CLASS_DECL_ACME extern PPROC_SIMPLE g_axisontermthread;

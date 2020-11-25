@@ -1392,7 +1392,9 @@ CLASS_DECL_ACME string get_environment_variable(const char * pszEnvironmentVaria
 
    acme::memory_alloc < LPWSTR > lpwsz(dwSize + 1);
 
-   dwSize = GetEnvironmentVariableW(wstrEnvironmentVariable, lpwsz, lpwsz.get_size());
+   dwSize = (DWORD) lpwsz.get_size();
+
+   dwSize = GetEnvironmentVariableW(wstrEnvironmentVariable, lpwsz, dwSize);
 
    str = lpwsz;
 

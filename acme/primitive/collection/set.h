@@ -166,8 +166,8 @@ public:
       {
          this->m_pelement = iterator.m_pelement;
          this->m_pcontainer = iterator.m_pcontainer;
-         this->m_passocBeg = (SET_ELEMENT_ITEM *)iterator.m_passocBeg;
-         this->m_passocEnd = (SET_ELEMENT_ITEM *)iterator.m_passocEnd;
+         this->m_pelementBeg = (SET_ELEMENT_ITEM *)iterator.m_pelementBeg;
+         this->m_pelementEnd = (SET_ELEMENT_ITEM *)iterator.m_pelementEnd;
       }
 
 

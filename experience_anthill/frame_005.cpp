@@ -229,10 +229,18 @@ SizingNone:;
                }
                else
                {
-                  crMoveableBorder = crButtonFace;
-                  crMoveableBorderHilight = crButtonHilite;
-                  crMoveableBorderShadow = crButtonShadow;
-               }
+
+                  auto psession = Session;
+
+                  auto pstyle = pframewindow->get_style(pgraphics);
+
+                  crMoveableBorder = pframewindow->get_color(pstyle, ::user::element_button_background);
+
+                  crMoveableBorderHilight = pframewindow->get_color(pstyle, ::user::element_button_hilite);
+
+                  crMoveableBorderShadow = pframewindow->get_color(pstyle, ::user::element_button_shadow);
+
+}
 
                e_dock edock = m_pframewindow->dock_manager()->get_dock_mask();
                ::rect rectA(rectClient);

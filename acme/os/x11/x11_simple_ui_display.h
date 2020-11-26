@@ -7,7 +7,7 @@ class simple_ui_display :
 public:
 
 
-   bool                             m_bDarkModeModified;
+   bool                             m_bOsUserThemeColorModified;
    bool                             m_bInvalidated;
    string_array                     m_stra;
    string                           m_strTitle;

@@ -66,61 +66,61 @@ void windowing_output_debug_string(const char * pszDebugString)
 
 
 
-CLASS_DECL_ACME string message_box_result_to_string(int iResult)
+CLASS_DECL_ACME string message_box_result_to_string(enum_dialog_result edialogresult)
 {
 
    string strResult;
 
-   if (iResult == IDNO)
+   if (edialogresult == e_dialog_result_no)
    {
 
       strResult = "no";
 
    }
-   else if (iResult == IDYES)
+   else if (edialogresult == e_dialog_result_yes)
    {
 
       strResult = "yes";
 
    }
-   else if (iResult == IDCANCEL)
+   else if (edialogresult == e_dialog_result_cancel)
    {
 
       strResult = "cancel";
 
    }
-   else if (iResult == IDOK)
+   else if (edialogresult == e_dialog_result_ok)
    {
 
       strResult = "ok";
 
    }
-   else if (iResult == IDTRYAGAIN)
+   else if (edialogresult == e_dialog_result_try_again)
    {
 
       strResult = "tryagain";
 
    }
-   else if (iResult == IDABORT)
+   else if (edialogresult == e_dialog_result_abort)
    {
 
       strResult = "abort";
 
    }
-   else if (iResult == IDRETRY)
+   else if (edialogresult == e_dialog_result_retry)
    {
 
       strResult = "retry";
 
    }
-   else if (iResult == IDCONTINUE)
+   else if (edialogresult == e_dialog_result_continue)
    {
 
       strResult = "continue";
 
    }
 
-   else if (iResult == IDIGNORE)
+   else if (edialogresult == e_dialog_result_ignore)
    {
 
       strResult = "retry";
@@ -128,10 +128,8 @@ CLASS_DECL_ACME string message_box_result_to_string(int iResult)
    }
 
    return strResult;
+
 }
-
-
-
 
 
 CLASS_DECL_ACME color get_simple_ui_color(::user::e_element eelement, ::user::estate estate)

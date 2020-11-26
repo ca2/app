@@ -213,13 +213,18 @@ SizingNone:;
                else
                {
 
-                  crMoveableBorder = crButtonFace;
 
-                  crMoveableBorderHilight = crButtonHilite;
+                  auto psession = Session;
 
-                  crMoveableBorderShadow = crButtonShadow;
+                  auto pstyle = pframewindow->get_style(pgraphics);
 
-               }
+                  crMoveableBorder = pframewindow->get_color(pstyle, ::user::element_button_background);
+
+                  crMoveableBorderHilight = pframewindow->get_color(pstyle, ::user::element_button_hilite);
+
+                  crMoveableBorderShadow = pframewindow->get_color(pstyle, ::user::element_button_shadow);
+
+}
 
 
 
@@ -1146,6 +1151,18 @@ SizingNone:;
             {
 
                auto psession = Session;
+
+               auto pframewindow = m_pframewindow;
+
+               auto pstyle = pframewindow->get_style(pgraphics);
+
+               auto crButtonHilite = pframewindow->get_color(pstyle, ::user::element_button_hilite);
+
+               auto crButtonDarkShadow = pframewindow->get_color(pstyle, ::user::element_button_dark_shadow);
+
+               auto crButtonFace = pframewindow->get_color(pstyle, ::user::element_button_background);
+
+               auto crButtonShadow = pframewindow->get_color(pstyle, ::user::element_button_shadow);
 
                ::rect rect(rectParam);
 

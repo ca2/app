@@ -1072,6 +1072,16 @@ void color::set(int R, int G, int B, int A)
 
 }
 
+void color::set(double R, double G, double B, double A)
+{
+
+   m_iR = (int)(R * 255.);
+   m_iG = (int)(G * 255.);
+   m_iB = (int)(B * 255.);
+   m_iA = (int)(A * 255.);
+
+}
+
 
 void color::set(int R, int G, int B)
 {

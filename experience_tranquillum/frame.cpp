@@ -369,6 +369,20 @@ namespace experience
 
          auto psession = Session;
 
+         auto pframewindow = m_pframewindow;
+
+         auto pgraphics = pframewindow->create_memory_graphics();
+
+         auto pstyle = pframewindow->get_style(pgraphics);
+
+         auto crButtonHilite = pframewindow->get_color(pstyle, ::user::element_button_hilite);
+
+         auto crButtonDarkShadow = pframewindow->get_color(pstyle, ::user::element_button_dark_shadow);
+
+         auto crButtonFace = pframewindow->get_color(pstyle, ::user::element_button_background);
+
+         auto crButtonShadow = pframewindow->get_color(pstyle, ::user::element_button_shadow);
+
          m_penText1->create_solid(1, ARGB(255, 255, 255, 255));
          m_penFace1->create_solid(1, crButtonFace | 0xff000000);
          m_penHilight1->create_solid(1, crButtonHilite | 0xff000000);
@@ -735,14 +749,17 @@ namespace experience
             }
             else
             {
+                  auto psession = Session;
 
-               crMoveableBorder = crButtonFace;
+                  auto pstyle = pframewindow->get_style(pgraphics);
 
-               crMoveableBorderHilight = crButtonHilite;
+                  crMoveableBorder = pframewindow->get_color(pstyle, ::user::element_button_background);
 
-               crMoveableBorderShadow = crButtonShadow;
+                  crMoveableBorderHilight = pframewindow->get_color(pstyle, ::user::element_button_hilite);
 
-            }
+                  crMoveableBorderShadow = pframewindow->get_color(pstyle, ::user::element_button_shadow);
+
+}
 
             //printf("E. frame::on_draw_frame %d\n", tick3.elapsed().m_i);
 

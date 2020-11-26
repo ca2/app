@@ -497,8 +497,4 @@ namespace user
 
 
 
-//#include "_ewindowflag.h"
-
-
-
 

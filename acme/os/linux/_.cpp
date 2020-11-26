@@ -145,18 +145,25 @@ int get_proc_cpuinfo_core_count()
 // }
 
 
-
-
 int os_get_system_update_poll_time(const ::id & id)
 {
 
-   if(id == id_dark_mode)
+   if(id == id_os_dark_mode)
+   {
+
+      return 300;
+
+   }
+   else if(id == id_os_user_theme)
    {
 
       return 300;
 
    }
 
-   return 500;
+   return 0;
 
 }
+
+
+

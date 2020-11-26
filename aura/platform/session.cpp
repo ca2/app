@@ -322,7 +322,6 @@ namespace aura
    //}
 
 
-
    ::estatus session::process_init()
    {
 

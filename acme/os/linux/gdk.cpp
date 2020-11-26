@@ -6,6 +6,27 @@
 #include <gtk/gtk.h>
 
 
+void __copy(::color & color, const GdkRGBA & rgba)
+{
+
+   color.set(rgba.red, rgba.green, rgba.blue, rgba.alpha);
+
+}
+
+void __gtk_style_context_get_color(GtkStyleContext *context, GtkStateFlags state, const char * pszProperty, ::color & color)
+{
+
+   GdkRGBA * prgba = nullptr;
+
+   gtk_style_context_get (context, state, pszProperty, &prgba, NULL);
+
+   __copy(color, *prgba);
+
+   gdk_rgba_free (prgba);
+
+}
+
+
 namespace user
 {
 
@@ -367,50 +388,50 @@ namespace user
 
 
 
-   bool _os_calc_dark_mode()
-   {
 
-      string strTheme = ::os::get_os_desktop_theme();
-
-      return strTheme.contains_ci("dark");
-
-   }
+   ::logic::bit g_bitLastDarkMode;
 
 
-   ::set g_bLastDarkMode;
 
+   //void os_calc_user_theme()
+   //{
 
-   void os_calc_dark_mode()
-   {
-
-      bool bDarkMode = _os_calc_dark_mode();
-
-      if(g_bLastDarkMode != bDarkMode)
-      {
-
-         ::user::set_app_dark_mode(bDarkMode);
-
-         ::user::set_system_dark_mode(bDarkMode);
-
-         g_bLastDarkMode = bDarkMode;
-
-         System.set_modified(id_dark_mode);
-
-         x11_kick_idle();
-
-      }
-
-   }
+//      string strTheme = _os_calc_user_theme();
+//
+//      if(System.m_strOsUserTheme != strTheme)
+//      {
+//
+//         System.m_strOsUserTheme = strTheme;
+//
+//         System.set_modified(id_os_user_theme);
+//
+//         x11_kick_idle();
+//
+//      }
+//
+//   }
 
 
 } // namespace user
 
 
-namespace os
+namespace user
 {
 
-   string get_os_desktop_theme()
+
+   bool g_bInitializedUserTheme = false;
+
+   string _os_get_user_theme()
    {
+
+      if(!g_bInitializedUserTheme)
+      {
+
+         g_bInitializedUserTheme = true;
+
+         System.start_subject_handling(id_os_user_theme);
+
+      }
 
       // https://ubuntuforums.org/showthread.php?t=2140488
       // gsettings set org.gnome.desktop.interface gtk-theme your_theme
@@ -563,6 +584,255 @@ bool g_bInitGtk = false;
 }
 
 
+namespace user
+{
+
+
+   ::user::os_theme_colors * new_os_theme_colors(string strTheme)
+   {
+
+      auto pthemecolors = new ::user::os_theme_colors;
+
+      GtkStyleContext *pstylecontext = gtk_style_context_new();
+
+      GtkCssProvider *pprovider = gtk_css_provider_get_named(strTheme, nullptr);
+
+      gtk_style_context_add_provider(pstylecontext, GTK_STYLE_PROVIDER(pprovider), GTK_STYLE_PROVIDER_PRIORITY_USER);
+
+      {
+
+         GtkWidget *pdialog = gtk_dialog_new();
+
+         GtkWidgetPath *ppath = gtk_widget_get_path(pdialog);
+
+         gtk_style_context_set_path(pstylecontext, ppath);
+
+         __gtk_style_context_get_color(
+                 pstylecontext,
+                 GTK_STATE_FLAG_NORMAL,
+                 GTK_STYLE_PROPERTY_BACKGROUND_COLOR,
+                 pthemecolors->m_colorBack);
+
+         __gtk_style_context_get_color(
+                 pstylecontext,
+                 GTK_STATE_FLAG_NORMAL,
+                 GTK_STYLE_PROPERTY_COLOR,
+                 pthemecolors->m_colorFore);
+
+         gtk_widget_destroy(pdialog);
+
+      }
+
+      {
+
+         GtkWidget *pbutton = gtk_button_new();
+
+         GtkWidgetPath *ppath = gtk_widget_get_path(pbutton);
+
+         gtk_style_context_set_path(pstylecontext, ppath);
+
+         __gtk_style_context_get_color(
+                 pstylecontext,
+                 GTK_STATE_FLAG_NORMAL,
+                 GTK_STYLE_PROPERTY_BACKGROUND_COLOR,
+                 pthemecolors->m_colorFace);
+
+         double dAlpha = pthemecolors->m_colorFace.get_a_rate();
+
+         if(dAlpha < 0.95)
+         {
+
+            pthemecolors->m_colorFace.blend(pthemecolors->m_colorBack, 1.0 - dAlpha);
+
+         }
+
+         __gtk_style_context_get_color(
+                 pstylecontext,
+                 GTK_STATE_FLAG_PRELIGHT,
+                 GTK_STYLE_PROPERTY_BACKGROUND_COLOR,
+                 pthemecolors->m_colorFaceHover);
+
+         dAlpha = pthemecolors->m_colorFaceHover.get_a_rate();
+
+         if(dAlpha < 0.95)
+         {
+
+            pthemecolors->m_colorFaceHover.blend(pthemecolors->m_colorBack, 1.0 - dAlpha);
+
+         }
+
+         __gtk_style_context_get_color(
+                 pstylecontext,
+                 GTK_STATE_FLAG_ACTIVE,
+                 GTK_STYLE_PROPERTY_BACKGROUND_COLOR,
+                 pthemecolors->m_colorFacePress);
+
+         dAlpha = pthemecolors->m_colorFacePress.get_a_rate();
+
+         if(dAlpha < 0.95)
+         {
+
+            pthemecolors->m_colorFacePress.blend(pthemecolors->m_colorBack, 1.0 - dAlpha);
+
+         }
+
+         __gtk_style_context_get_color(
+                 pstylecontext,
+                 GTK_STATE_FLAG_NORMAL,
+                 GTK_STYLE_PROPERTY_COLOR,
+                 pthemecolors->m_colorButton);
+
+         __gtk_style_context_get_color(
+                 pstylecontext,
+                 GTK_STATE_FLAG_PRELIGHT,
+                 GTK_STYLE_PROPERTY_COLOR,
+                 pthemecolors->m_colorButtonHover);
+
+         __gtk_style_context_get_color(
+                 pstylecontext,
+                 GTK_STATE_FLAG_NORMAL,
+                 GTK_STYLE_PROPERTY_BORDER_COLOR,
+                 pthemecolors->m_colorBorder);
+
+
+//         pthemecolors->m_colorBorderHover4 = pthemecolors->m_colorBorderHover;
+//
+//         pthemecolors->m_colorBorderHover4.blend(pthemecolors->m_colorBack, 0.8);
+
+
+         gtk_widget_destroy(pbutton);
+
+      }
+
+      {
+
+         GtkWidget *pwidget = gtk_list_box_row_new();
+
+         GtkWidgetPath *ppath = gtk_widget_get_path(pwidget);
+
+         gtk_style_context_set_path(pstylecontext, ppath);
+
+         __gtk_style_context_get_color(
+                 pstylecontext,
+                 GTK_STATE_FLAG_SELECTED,
+                 GTK_STYLE_PROPERTY_BACKGROUND_COLOR,
+                 pthemecolors->m_colorBorderHover);
+
+         pthemecolors->m_colorBorderPress = pthemecolors->m_colorBorderHover;
+
+         pthemecolors->m_colorBorderHover1 = pthemecolors->m_colorBorderHover;
+
+         pthemecolors->m_colorBorderHover1.blend(pthemecolors->m_colorBack, 0.3);
+
+         pthemecolors->m_colorBorderHover2 = pthemecolors->m_colorBorderHover;
+
+         pthemecolors->m_colorBorderHover2.blend(pthemecolors->m_colorBack, 0.6);
+
+         pthemecolors->m_colorBorderHover3 = pthemecolors->m_colorBorderHover;
+
+         pthemecolors->m_colorBorderHover3.blend(pthemecolors->m_colorBack, 0.9);
+
+         __gtk_style_context_get_color(
+                 pstylecontext,
+                 GTK_STATE_FLAG_SELECTED,
+                 GTK_STYLE_PROPERTY_COLOR,
+                 pthemecolors->m_colorButtonPress);
+
+         gtk_widget_destroy(pwidget);
+
+      }
+
+      return pthemecolors;
+
+   }
+
+
+   CLASS_DECL_ACME void _os_process_user_theme(string strTheme)
+   {
+
+      os_calc_dark_mode();
+
+      _os_process_user_theme_color(strTheme);
+
+   }
+
+
+   CLASS_DECL_ACME void _os_process_user_theme_color(string strTheme)
+   {
+
+      auto pthemecolors = new_os_theme_colors(strTheme);
+
+      auto pthemecolorsOld = ::user::os_get_theme_colors();
+
+      if(!pthemecolorsOld || memcmp(pthemecolors, pthemecolorsOld, sizeof(::user::os_theme_colors)))
+      {
+
+         ::user::os_set_theme_colors(pthemecolors);
+
+//         auto psubject = System.subject(id_os_user_theme);
+//
+//         psubject->m_esubject = e_subject_deliver;
+//
+//         System.process(psubject);
+
+      }
+      else
+      {
+
+         ::acme::del(pthemecolors);
+
+      }
+
+   }
+
+
+
+   bool _os_calc_dark_mode()
+   {
+
+      auto pthemecolors = ::user::os_get_theme_colors();
+
+      if(!pthemecolors)
+      {
+
+         string strTheme = _os_get_user_theme();
+
+         pthemecolors = new_os_theme_colors(strTheme);
+
+         ::user::os_set_theme_colors(pthemecolors);
+
+      }
+
+      auto dLuminance = pthemecolors->m_colorBack.get_luminance();
+
+      return dLuminance < 0.5;
+
+   }
+
+
+   void os_calc_dark_mode()
+   {
+
+      bool bDarkMode = _os_calc_dark_mode();
+
+      if(g_bitLastDarkMode != bDarkMode)
+      {
+
+         ::user::set_app_dark_mode(bDarkMode);
+
+         ::user::set_system_dark_mode(bDarkMode);
+
+         g_bitLastDarkMode = bDarkMode;
+
+         System.deliver(id_os_dark_mode);
+
+         x11_kick_idle();
+
+      }
+
+   }
+
+} // namespace user
 
 
 

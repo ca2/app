@@ -1,20 +1,9 @@
 #pragma once
 
 
-enum enum_subject
-{
-
-   e_subject_prepare,
-   e_subject_process,
-   e_subject_deliver,
-
-};
-
 namespace promise
 {
    using matter_context = isomap<__pointer(::matter), __pointer(::promise::context)>;
-
-   CLASS_DECL_ACME int os_get_system_update_poll_time(const ::id & id);
 
    class CLASS_DECL_ACME subject :
       virtual public context_object
@@ -85,9 +74,11 @@ namespace promise
       inline bool is_ending()
       {
 
-         sync_lock sl(mutex());
+         return false;
 
-         return m_mattercontext.is_empty();
+//         sync_lock sl(mutex());
+//
+//         return m_mattercontext.is_empty();
 
       }
 

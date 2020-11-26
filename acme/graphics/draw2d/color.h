@@ -165,6 +165,7 @@ public:
 
    void set(int R, int G, int B);
    void set(int R, int G, int B, int A);
+   void set(double R, double G, double B, double A);
 
    operator color32_t() const;
 
@@ -200,6 +201,45 @@ public:
    bool operator != (const hls& hls) const { return !operator == (hls); }
 
 
+   string _hex_color()
+   {
+
+      return "#" + hex_color();
+
+   }
+
+
+   string hex_color()
+   {
+
+      string str;
+
+      str.Format("%02x%02x%02x", m_iR, m_iG, m_iB);
+
+      return str;
+
+   }
+
+   void blend(const ::color & color, double dRate)
+   {
+
+      double dComplement = 1.0 - dRate;
+
+      m_iR = m_iR * dComplement + color.m_iR * dRate;
+      m_iG = m_iG * dComplement + color.m_iG * dRate;
+      m_iB = m_iB * dComplement + color.m_iB * dRate;
+      m_iA = m_iA * dComplement + color.m_iA * dRate;
+
+   }
+
+   double get_a_rate() const { return m_iA / 255.0; }
+   double get_r_rate() const { return m_iR / 255.0; }
+   double get_g_rate() const { return m_iG / 255.0; }
+   double get_b_rate() const { return m_iB / 255.0; }
+
+   double get_luminance() const { return get_hls().m_dL;}
+   double get_saturation() const { return get_hls().m_dS;}
+   double get_hue() const { return get_hls().m_dH;}
 
 };
 

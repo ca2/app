@@ -144,6 +144,7 @@ CLASS_DECL_ACME ::acme::system *get_context_system();
 
 //#include "acme/message/global.h"
 
+
 template<typename TYPE>
 inline TYPE & xxf_zero_pointer(TYPE * p);
 
@@ -1903,6 +1904,7 @@ enum e_optional
 
 };
 
+
 enum e_no_init
 {
 
@@ -1911,7 +1913,7 @@ enum e_no_init
 };
 
 
-#include "primitive/logic/bit.h"
+#include "acme/primitive/logic/bit.h"
 
 
 #include "acme/platform/auto.h"
@@ -3002,9 +3004,12 @@ namespace promise
 
 #include "acme/primitive/collection/_.h"
 
-#include "primitive/promise_pred/pred_routine.h"
+#include "acme/primitive/promise_pred/pred_routine.h"
 
-#include "primitive/promise_pred/pred_process.h"
+#include "acme/primitive/promise_pred/pred_process.h"
+
+
+CLASS_DECL_ACME void add_release_on_end(::matter * pmatter);
 
 #include "acme/parallelization/pool.h"
 
@@ -3395,7 +3400,7 @@ class mq_base;
 //#include "acme/parallelization/simple_thread.h"
 //#include "acme/parallelization/go_thread.h"
 //#include "acme/parallelization/signal_thread.h"
-#include "primitive/promise/routine_array.h"
+#include "acme/primitive/promise/routine_array.h"
 
 
 ///#include "acme/primitive/primitive/job.h"
@@ -3555,7 +3560,7 @@ namespace zip
 
 #include "acme/platform/regex.h"
 
-#include "process/_.h"
+#include "acme/process/_.h"
 
 //#include "acme/filesystem/filesystem/file_watcher.h"
 

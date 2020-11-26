@@ -3400,7 +3400,7 @@ namespace user
 
       UNREFERENCED_PARAMETER(pmessage);
 
-      System.delivery_for(id_dark_mode, this);
+      System.delivery_for(id_os_dark_mode, this);
 
       on_create_user_interaction();
 
@@ -13466,7 +13466,7 @@ restart:
          post_redraw();
 
       }
-      else if (psubject->id() == id_dark_mode)
+      else if (psubject->id() == id_os_dark_mode)
       {
 
          set_need_redraw();

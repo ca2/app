@@ -42,9 +42,7 @@ namespace promise
 
          psubject = __new(::promise::subject(this, id));
 
-         psubject->defer_create_mutex();
-
-         psubject->m_iMillisSleep = os_get_system_update_poll_time(id);
+         start_subject_handling(id);
 
       }
 
@@ -68,7 +66,18 @@ namespace promise
 
       auto psubject = this->subject(id);
 
-      return psubject;
+      psubject->defer_create_mutex();
+
+      psubject->m_iMillisSleep = os_get_system_update_poll_time(id);
+
+      process(psubject);
+
+      if (psubject->should_poll(psubject->poll_millis()))
+      {
+
+         ::task::launch(psubject);
+
+      }
 
    }
 
@@ -114,17 +123,27 @@ namespace promise
    void handler::process(::promise::subject * psubject)
    {
 
+      psubject->m_esubject = e_subject_prepare;
+
+      on_subject(psubject);
+
+   }
+
+
+   void handler::on_subject(::promise::subject * psubject)
+   {
+
       if (psubject->m_esubject == e_subject_prepare)
       {
 
-         on_subject(psubject);
+         //on_subject(psubject);
 
       }
 
       if (psubject->m_esubject == e_subject_process)
       {
 
-         on_subject(psubject);
+         //on_subject(psubject);
 
       }
 
@@ -134,14 +153,6 @@ namespace promise
          psubject->deliver();
 
       }
-
-   }
-
-
-
-   void handler::on_subject(::promise::subject * psubject)
-   {
-
 
    }
 

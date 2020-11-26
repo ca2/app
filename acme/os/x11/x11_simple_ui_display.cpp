@@ -11,7 +11,7 @@ simple_ui_display::simple_ui_display(const string & strMessageParam, const strin
    m_strTitle(strTitle),
    m_strFontName("serif"),
    m_size(100, 40),
-   m_bDarkModeModified(false),
+   m_bOsUserThemeColorModified(false),
    m_bInvalidated(false)
 {
 
@@ -30,34 +30,34 @@ simple_ui_display::simple_ui_display(const string & strMessageParam, const strin
    switch(uType)
    {
       case MB_OKCANCEL:
-         m_buttona.add(__new(x11_button("OK", IDOK)));
-         m_buttona.add(__new(x11_button("Cancel", IDCANCEL)));
+         m_buttona.add(__new(x11_button("OK", e_dialog_result_ok)));
+         m_buttona.add(__new(x11_button("Cancel", e_dialog_result_cancel)));
          break;
       case MB_ABORTRETRYIGNORE:
-         m_buttona.add(__new(x11_button("Abort", IDABORT)));
-         m_buttona.add(__new(x11_button("Retry", IDRETRY)));
-         m_buttona.add(__new(x11_button("Ignore", IDIGNORE)));
+         m_buttona.add(__new(x11_button("Abort", e_dialog_result_abort)));
+         m_buttona.add(__new(x11_button("Retry", e_dialog_result_retry)));
+         m_buttona.add(__new(x11_button("Ignore", e_dialog_result_ignore)));
          break;
       case MB_YESNOCANCEL:
-         m_buttona.add(__new(x11_button("Yes", IDYES)));
-         m_buttona.add(__new(x11_button("No", IDNO)));
-         m_buttona.add(__new(x11_button("Cancel", IDCANCEL)));
+         m_buttona.add(__new(x11_button("Yes", e_dialog_result_yes)));
+         m_buttona.add(__new(x11_button("No", e_dialog_result_no)));
+         m_buttona.add(__new(x11_button("Cancel", e_dialog_result_cancel)));
          break;
       case MB_YESNO:
-         m_buttona.add(__new(x11_button("Yes", IDYES)));
-         m_buttona.add(__new(x11_button("No", IDNO)));
+         m_buttona.add(__new(x11_button("Yes", e_dialog_result_yes)));
+         m_buttona.add(__new(x11_button("No", e_dialog_result_no)));
          break;
       case MB_RETRYCANCEL:
-         m_buttona.add(__new(x11_button("Retry", IDRETRY)));
-         m_buttona.add(__new(x11_button("Cancel", IDCANCEL)));
+         m_buttona.add(__new(x11_button("Retry", e_dialog_result_retry)));
+         m_buttona.add(__new(x11_button("Cancel", e_dialog_result_cancel)));
          break;
       case MB_CANCELTRYCONTINUE:
-         m_buttona.add(__new(x11_button("Cancel", IDCANCEL)));
-         m_buttona.add(__new(x11_button("Try", IDRETRY)));
-         m_buttona.add(__new(x11_button("Continue", IDCONTINUE)));
+         m_buttona.add(__new(x11_button("Cancel", e_dialog_result_cancel)));
+         m_buttona.add(__new(x11_button("Try", e_dialog_result_retry)));
+         m_buttona.add(__new(x11_button("Continue", e_dialog_result_continue)));
          break;
       default:
-         m_buttona.add(__new(x11_button("OK", IDOK)));
+         m_buttona.add(__new(x11_button("OK", e_dialog_result_ok)));
          break;
    }
 
@@ -129,7 +129,29 @@ simple_ui_display::~ simple_ui_display()
 void simple_ui_display::on_alloc_colors(Display * pdisplay)
 {
 
-   if(::user::is_app_dark_mode())
+   auto pthemecolors = ::user::os_get_theme_colors();
+
+   if(pthemecolors && pthemecolors->is_ok())
+   {
+
+      XftColorAllocName(pdisplay, m_pvisual, m_colormap, pthemecolors->m_colorBack._hex_color(), &m_colorBack);
+      XftColorAllocName(pdisplay, m_pvisual, m_colormap, pthemecolors->m_colorFace._hex_color(), &m_colorFace);
+      XftColorAllocName(pdisplay, m_pvisual, m_colormap, pthemecolors->m_colorFore._hex_color(), &m_colorFore);
+
+      XftColorAllocName(pdisplay, m_pvisual, m_colormap, pthemecolors->m_colorFaceHover._hex_color(), &m_colorFaceHover);
+      XftColorAllocName(pdisplay, m_pvisual, m_colormap, pthemecolors->m_colorFacePress._hex_color(), &m_colorFacePress);
+      XftColorAllocName(pdisplay, m_pvisual, m_colormap, pthemecolors->m_colorButton._hex_color(), &m_colorButton);
+      XftColorAllocName(pdisplay, m_pvisual, m_colormap, pthemecolors->m_colorButtonHover._hex_color(), &m_colorButtonHover);
+      XftColorAllocName(pdisplay, m_pvisual, m_colormap, pthemecolors->m_colorButtonPress._hex_color(), &m_colorButtonPress);
+      XftColorAllocName(pdisplay, m_pvisual, m_colormap, pthemecolors->m_colorBorder._hex_color(), &m_colorBorder);
+      XftColorAllocName(pdisplay, m_pvisual, m_colormap, pthemecolors->m_colorBorderHover._hex_color(), &m_colorBorderHover);
+      XftColorAllocName(pdisplay, m_pvisual, m_colormap, pthemecolors->m_colorBorderHover1._hex_color(), &m_colorBorderHover1);
+      XftColorAllocName(pdisplay, m_pvisual, m_colormap, pthemecolors->m_colorBorderHover2._hex_color(), &m_colorBorderHover2);
+      XftColorAllocName(pdisplay, m_pvisual, m_colormap, pthemecolors->m_colorBorderHover3._hex_color(), &m_colorBorderHover3);
+      XftColorAllocName(pdisplay, m_pvisual, m_colormap, pthemecolors->m_colorBorderPress._hex_color(), &m_colorBorderPress);
+
+   }
+   else if(::user::is_app_dark_mode())
    {
 
       XftColorAllocName(pdisplay, m_pvisual, m_colormap, "#555555", &m_colorBack);
@@ -151,6 +173,7 @@ void simple_ui_display::on_alloc_colors(Display * pdisplay)
    }
    else
    {
+
 
       XftColorAllocName(pdisplay, m_pvisual, m_colormap, "#CCCCCC", &m_colorBack);
       XftColorAllocName(pdisplay, m_pvisual, m_colormap, "#AAAAAA", &m_colorFace);
@@ -184,6 +207,12 @@ void simple_ui_display::on_free_colors(Display * pdisplay)
    XftColorFree(pdisplay, m_pvisual, m_colormap, &m_colorButton);
    XftColorFree(pdisplay, m_pvisual, m_colormap, &m_colorButtonHover);
    XftColorFree(pdisplay, m_pvisual, m_colormap, &m_colorButtonPress);
+   XftColorFree(pdisplay, m_pvisual, m_colormap, &m_colorBorder);
+   XftColorFree(pdisplay, m_pvisual, m_colormap, &m_colorBorderHover);
+   XftColorFree(pdisplay, m_pvisual, m_colormap, &m_colorBorderHover1);
+   XftColorFree(pdisplay, m_pvisual, m_colormap, &m_colorBorderHover2);
+   XftColorFree(pdisplay, m_pvisual, m_colormap, &m_colorBorderHover3);
+   XftColorFree(pdisplay, m_pvisual, m_colormap, &m_colorBorderPress);
 
 }
 
@@ -222,10 +251,10 @@ void simple_ui_display::call_expose(Display * pdisplay)
 void simple_ui_display::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
 {
 
-   if(psubject->id() == id_dark_mode)
+   if(psubject->id() == id_os_user_theme)
    {
 
-      m_bDarkModeModified = true;
+      m_bOsUserThemeColorModified = true;
 
       invalidate();
 
@@ -262,7 +291,7 @@ void simple_ui_display::on_idle(Display * pdisplay)
 void simple_ui_display::on_expose(Display * pdisplay)
 {
 
-   if(m_bDarkModeModified)
+   if(m_bOsUserThemeColorModified)
    {
 
       on_colors(pdisplay);
@@ -520,11 +549,11 @@ int simple_ui_display::show()
 
          m_pdraw = XftDrawCreate(pdisplay, m_window, m_pvisual, m_colormap);
 
-         System.delivery_for(id_dark_mode, this);
+         System.delivery_for(id_os_user_theme, this);
 
          //System.(id_dark_mode);
 
-         on_alloc_colors(pdisplay);
+         //on_alloc_colors(pdisplay);
 
          on_layout(pdisplay);
 
@@ -777,7 +806,7 @@ bool simple_ui_display::process_event(Display * pdisplay, XEvent & e, XGenericEv
                if(pbutton->m_rect.contains(point))
                {
 
-                  if(on_click(pbutton->m_iResult))
+                  if(on_click(pbutton->m_edialogresult))
                   {
 
                      break;

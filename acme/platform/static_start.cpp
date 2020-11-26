@@ -13,6 +13,7 @@ os_local * g_poslocal;
 
 #endif
 
+::array < ::promise::routine > * g_proutineaOsTerm;
 
 extern natural_meta_data < string_meta_data < ansichar > > * g_pansistringNil;
 
@@ -23,7 +24,7 @@ extern natural_meta_data < string_meta_data < wd32char > > * g_pwd32stringNil;
 
 static void delete_all_release_on_end();
 
-
+void os_term_run_routinea();
 
 
 enum_platform_level g_eplatformlevel = ::e_platform_level_acme;
@@ -530,8 +531,6 @@ namespace acme
 
       //::update::g_pcs = new critical_section();
 
-      g_pelementaddraReleaseOnEnd = new element_address_array();
-
 #ifndef __MCRTDBG
 
       g_pheap = new plex_heap_alloc_array();
@@ -692,6 +691,8 @@ namespace acme
 
    acme::~acme()
    {
+
+      ::user::os_term_theme_colors();
 
 #ifdef LINUX
 
@@ -935,8 +936,6 @@ namespace acme
 #endif
 
       delete_all_release_on_end();
-
-      ::acme::del(g_pelementaddraReleaseOnEnd);
 
       ::acme::del(g_pcsGlobal);
 
@@ -1338,18 +1337,43 @@ CLASS_DECL_ACME void release_on_end(::matter* pmatter)
 }
 
 
-static void delete_all_release_on_end()
+void delete_all_release_on_end()
 {
 
    cslock l(::acme::g_pcsGlobal);
 
-   for (auto pmatter : *::acme::g_pelementaddraReleaseOnEnd)
+   if (is_set(::acme::g_pelementaddraReleaseOnEnd))
    {
 
-      ::acme::del(pmatter);
+      for (auto pmatter : *::acme::g_pelementaddraReleaseOnEnd)
+      {
+
+         ::acme::del(pmatter);
+
+      }
+
+      ::acme::del(::acme::g_pelementaddraReleaseOnEnd);
 
    }
 
 }
+
+
+void add_release_on_end(::matter * pmatter)
+{
+
+   cslock l(::acme::g_pcsGlobal);
+
+   if (::is_null(::acme::g_pelementaddraReleaseOnEnd))
+   {
+
+      ::acme::g_pelementaddraReleaseOnEnd = new element_address_array();
+
+   }
+
+   ::acme::g_pelementaddraReleaseOnEnd->add(pmatter);
+
+}
+
 
 

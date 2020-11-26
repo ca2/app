@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.17)
 project(acme CXX)
 
+
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
@@ -118,31 +119,31 @@ list(APPEND acme_source
         memory/new.cpp
         memory/plex.cpp
         memory/plex_heap1.cpp
-   parallelization/_.cpp
-   parallelization/condition.cpp
-   parallelization/critical_section.cpp
-   parallelization/event.cpp
-   parallelization/file_change_event.cpp
-   parallelization/manual_reset_event.cpp
-   parallelization/mq.cpp
-   parallelization/multi_lock.cpp
-   parallelization/mutex.cpp
-   parallelization/pool.cpp
-   primitive/promise_pred/pred_holder.cpp
-   primitive/promise/routine_array.cpp
-   parallelization/semaphore.cpp
-   parallelization/single_lock.cpp
-   parallelization/socket_event.cpp
-   parallelization/sync.cpp
-   parallelization/sync_array.cpp
-   parallelization/sync_process.cpp
-   parallelization/sync_routine.cpp
-   parallelization/sync_result.cpp
-   parallelization/sync_task.cpp
-   parallelization/task.cpp
-   parallelization/thread.cpp
-   parallelization/thread_os.cpp
-   parallelization/waitable.cpp
+        parallelization/_.cpp
+        parallelization/condition.cpp
+        parallelization/critical_section.cpp
+        parallelization/event.cpp
+        parallelization/file_change_event.cpp
+        parallelization/manual_reset_event.cpp
+        parallelization/mq.cpp
+        parallelization/multi_lock.cpp
+        parallelization/mutex.cpp
+        parallelization/pool.cpp
+        primitive/promise_pred/pred_holder.cpp
+        primitive/promise/routine_array.cpp
+        parallelization/semaphore.cpp
+        parallelization/single_lock.cpp
+        parallelization/socket_event.cpp
+        parallelization/sync.cpp
+        parallelization/sync_array.cpp
+        parallelization/sync_process.cpp
+        parallelization/sync_routine.cpp
+        parallelization/sync_result.cpp
+        parallelization/sync_task.cpp
+        parallelization/task.cpp
+        parallelization/thread.cpp
+        parallelization/thread_os.cpp
+        parallelization/waitable.cpp
         os/ansios/base.cpp
         os/ansios/datetime.cpp
         os/ansios/exception_engine.cpp
@@ -161,8 +162,15 @@ list(APPEND acme_source
         os/debug.cpp
         os/file.cpp
         os/http.cpp
-        os/process.cpp
-   os/parallelization.cpp
+        process/_.cpp
+        process/_.h
+        process/bidirectional_pipe.cpp
+        process/bidirectional_pipe.h
+        process/exit_status.cpp
+        process/exit_status.h
+        process/pipe.cpp
+        process/pipe.h
+        os/parallelization.cpp
         os/time.cpp
         os/windowing.cpp
         platform/_.cpp
@@ -183,6 +191,8 @@ list(APPEND acme_source
         platform/math.cpp
         platform/message_box.cpp
         platform/muldiv64.cpp
+        platform/nano_timer.cpp
+        platform/nano_timer.h
         platform/net.cpp
         platform/obj_ref_dbg.cpp
         platform/obj_typ_ctr.cpp
@@ -300,7 +310,6 @@ list(APPEND acme_source
         primitive/primitive/property_set_papaya.cpp
         primitive/primitive/runnable.cpp
         primitive/primitive/shared_memory.cpp
-        primitive/promise/backing.cpp
         primitive/primitive/traits.cpp
         primitive/primitive/type.cpp
         primitive/promise/handler.cpp
@@ -339,9 +348,6 @@ list(APPEND acme_source
         primitive/string/to_integer.cpp
         primitive/string/tokenizer.cpp
         primitive/string/x.cpp
-        os/bidirectional_pipe.cpp
-        parallelization/exit_status.cpp
-        os/pipe.cpp
         user/os_colors.cpp
         _.cpp
         __matter_ca2.cpp
@@ -668,7 +674,6 @@ list(APPEND acme_source
     os/ios/_mm.h
     os/os_windowing2.h
     os/posix/mq_base.h
-    os/process.h
     os/solaris/linux_internal.h
     os/solaris/solaris.h
     os/solaris/solaris_cairo_keep.h
@@ -1053,7 +1058,6 @@ list(APPEND acme_source
     primitive/primitive/runnable.h
     primitive/primitive/shared_memory.h
     primitive/primitive/simple_object.h
-    primitive/promise/backing.h
     primitive/primitive/stick.h
     primitive/primitive/str.h
     primitive/primitive/trait.h
@@ -1160,9 +1164,6 @@ list(APPEND acme_source
     primitive/string/__c_wide_impl.h
     primitive/string/___ch_impl.h
     procedure.h
-    parallelization/process.h
-    os/bidirectional_pipe.h
-    os/pipe.h
     template/list.h
     update.h
     user/os_colors.h
@@ -1714,7 +1715,7 @@ else()
 endif()
 
 
-add_library(acme SHARED ${acme_source} os/cross/_cross.h)
+add_library(acme SHARED ${acme_source} os/cross/_cross.h primitive/promise/_.h user/os_theme_colors.h user/os_theme_colors.cpp)
 
 target_precompile_headers(acme PRIVATE framework.h)
 
@@ -1738,6 +1739,7 @@ elseif(LINUX)
     target_link_options(acme PRIVATE -Wl,-z,defs)
     message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
 endif()
+
 
 target_link_directories(acme PRIVATE ${LIBRARY_OUTPUT_PATH})
 target_link_directories(acme PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/storage-${PLATFORM_NAME}/library/x64/basis)
@@ -1780,5 +1782,6 @@ file(GLOB storage_binaries
 
 
 file(COPY ${storage_binaries} DESTINATION ${EXECUTABLE_OUTPUT_PATH})
+
 
 

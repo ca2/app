@@ -45,6 +45,8 @@ namespace promise
       virtual void process_subject(const ::id & id, const ::payload & payload);
       virtual void process_subject(const ::id & id, const ::action_context &actioncontext);
       virtual void process(::promise::subject * psubject);
+
+      using ::context_object::on_subject;
       virtual void on_subject(::promise::subject * psubject);
       //virtual void on_subject(::promise::subject * psubject);
 

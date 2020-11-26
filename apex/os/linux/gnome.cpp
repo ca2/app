@@ -21,7 +21,7 @@
 namespace os
 {
 
-   string get_os_desktop_theme()
+   string os_get_user_theme()
    {
 
       // https://ubuntuforums.org/showthread.php?t=2140488

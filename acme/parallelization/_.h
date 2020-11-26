@@ -193,7 +193,7 @@ class sync_lock;
 //};
 
 
-#include "primitive/promise_pred/pred_holder.h"
+#include "acme/primitive/promise_pred/pred_holder.h"
 
 
 #include "sync.h"
@@ -375,7 +375,7 @@ CLASS_DECL_ACME bool task_sleep(millis millis, sync* psync);
 #include "sync_process.h"
 
 
-#include "primitive/promise_pred/pred_sync_routine.h"
+#include "acme/primitive/promise_pred/pred_sync_routine.h"
 
 
 

@@ -2,9 +2,9 @@
 #include "_x11.h"
 
 
-x11_button::x11_button(const char * psz, int iResult) :
+x11_button::x11_button(const char * psz, enum_dialog_result edialogresult) :
    m_strLabel(psz),
-   m_iResult(iResult)
+   m_edialogresult(edialogresult)
 {
 
    m_bTextRect = false;

@@ -62,16 +62,7 @@ void ___release(TYPE *& p OBJ_REF_DBG_COMMA_PARAMS);
 //CLASS_DECL_ACME void launch_action(action* psubject);
 
 
-#include "primitive/promise/subject.h"
-
-
-#include "primitive/promise/context.h"
-
-
-#include "primitive/promise/handler.h"
-
-
-#include "primitive/promise/promise.h"
+#include "acme/primitive/promise/_.h"
 
 
 // class CLASS_DECL_ACME parents :

@@ -199,37 +199,37 @@ list(APPEND apex_source
         message/sender.cpp
         message/simple_command.cpp
         message/simple_command.h
-        multithreading/service/plain_service.cpp
-        multithreading/service/plain_service.h
-        multithreading/service/pool.h
-        multithreading/_.cpp
-        multithreading/_.h
-        multithreading/_impl.h
-        multithreading/common.h
-        multithreading/create_thread.h
-        multithreading/data.h
-        multithreading/delay_thread.h
-        multithreading/fork.h
-        multithreading/handler.cpp
-        multithreading/handler.h
-        multithreading/retry.h
-        multithreading/retry_multi_lock.cpp
-        multithreading/retry_multi_lock.h
-        multithreading/retry_single_lock.cpp
-        multithreading/retry_single_lock.h
-        multithreading/service_base.cpp
-        multithreading/service_base.h
-        multithreading/service_status.h
-        multithreading/thread.cpp
-        multithreading/thread.h
-        multithreading/thread_impl.h
-        multithreading/thread_os.cpp
-        multithreading/thread_os.h
-        multithreading/thread_pool.cpp
-        multithreading/threading.cpp
-        multithreading/threading.h
-        multithreading/tools.cpp
-        multithreading/tools.h
+        parallelization/service/plain_service.cpp
+        parallelization/service/plain_service.h
+        parallelization/service/pool.h
+        parallelization/_.cpp
+        parallelization/_.h
+        parallelization/_impl.h
+        parallelization/common.h
+        parallelization/create_thread.h
+        parallelization/data.h
+        parallelization/delay_thread.h
+        parallelization/fork.h
+        parallelization/handler.cpp
+        parallelization/handler.h
+        parallelization/retry.h
+        parallelization/retry_multi_lock.cpp
+        parallelization/retry_multi_lock.h
+        parallelization/retry_single_lock.cpp
+        parallelization/retry_single_lock.h
+        parallelization/service_base.cpp
+        parallelization/service_base.h
+        parallelization/service_status.h
+        parallelization/thread.cpp
+        parallelization/thread.h
+        parallelization/thread_impl.h
+        parallelization/thread_os.cpp
+        parallelization/thread_os.h
+        parallelization/thread_pool.cpp
+        parallelization/threading.cpp
+        parallelization/threading.h
+        parallelization/tools.cpp
+        parallelization/tools.h
         net/http/_.cpp
         net/http/_.h
         net/http/context.cpp
@@ -821,8 +821,8 @@ if(UWP)
         os/uwp/main.cpp
         os/uwp/menu.cpp
         os/uwp/metrowin_metrowin.h
-        os/uwp/multithreading.cpp
-        os/uwp/multithreading.h
+        os/uwp/parallelization.cpp
+        os/uwp/parallelization.h
         os/uwp/process.cpp
         os/uwp/process.h
         os/uwp/simple_app.cpp
@@ -1011,8 +1011,8 @@ if(MACOS)
             os/macos/mm.mm
             os/macos/mm_graphics.mm
             os/macos/mm_oswindow.h
-            os/macos/multithreading.cpp
-            os/macos/multithreading.h
+            os/macos/parallelization.cpp
+            os/macos/parallelization.h
             os/macos/NSPasteboard++.mm
             os/macos/os.cpp
             os/macos/os.h
@@ -1117,8 +1117,8 @@ if(IOS)
         os/ios/mm_oswindow.h
         os/ios/mm_thread.mm
         os/ios/mm_user.mm
-        os/ios/multithreading.cpp
-        os/ios/multithreading.h
+        os/ios/parallelization.cpp
+        os/ios/parallelization.h
         os/ios/oswindow_data.cpp
         os/ios/oswindow_data.h
         os/ios/process.cpp
@@ -1216,7 +1216,7 @@ if(ANDROID)
             os/android/lock.cpp
             os/android/main_android.cpp
             os/android/message_loop.cpp
-            os/android/multithreading.cpp
+            os/android/parallelization.cpp
             os/android/process.cpp
             os/android/process.h
             os/android/process_pid.cpp

@@ -111,6 +111,37 @@ enum e_default_init
 };
 
 
+enum enum_subject
+{
+
+   e_subject_not_modified,
+   e_subject_prepare,
+   e_subject_process,
+   e_subject_deliver,
+
+};
+
+
+enum enum_dialog_result
+{
+
+   e_dialog_result_none = 0,
+   e_dialog_result_ok = 1,
+   e_dialog_result_cancel = 2,
+   e_dialog_result_abort = 3,
+   e_dialog_result_retry = 4,
+   e_dialog_result_ignore = 5,
+   e_dialog_result_yes = 6,
+   e_dialog_result_no = 7,
+   e_dialog_result_close = 8,
+   e_dialog_result_help = 9,
+   e_dialog_result_try_again = 10,
+   e_dialog_result_continue = 11,
+   e_dialog_result_timeout = 32000,
+
+};
+
+
 enum enum_type
 {
    /// special meaning

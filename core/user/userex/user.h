@@ -239,7 +239,7 @@ namespace core
       virtual bool impl_set_wallpaper(index iScreen, string strWallpaper);
 
 
-      virtual string get_os_desktop_theme();
+      virtual string os_get_user_theme();
       virtual bool set_os_desktop_theme(string strTheme);
 
 

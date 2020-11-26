@@ -3018,8 +3018,6 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
          if(g_pobjectaExtendedEventListener && g_pobjectaExtendedEventListener->get_count() > 0)
          {
 
-            ::promise::subject action;
-
             e_id eid;
 
             switch (cookie->evtype)
@@ -3040,16 +3038,18 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 
             }
 
-            psubject->m_id = eid;
+            auto psubject = System.subject(eid);
 
             psubject->value("return") = is_return_key((XIRawEvent*)cookie->data);
 
             psubject->value("space") = is_space_key((XIRawEvent*)cookie->data);
 
+            ::promise::context context;
+
             for(auto & p : *g_pobjectaExtendedEventListener)
             {
 
-               p->process(&action);
+               p->on_subject(psubject, &context);
 
             }
 

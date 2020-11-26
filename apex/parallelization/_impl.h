@@ -363,7 +363,7 @@ template < typename PRED >
 auto sync_pred(void (* pfnBranch )(::matter * pobjectTask, e_priority), PRED pred, ::duration durationTimeout, e_priority epriority)
 {
 
-   auto proutine = __sync_procedure(pred);
+   auto proutine = __sync_routine(pred);
 
    pfnBranch(proutine, epriority);
 

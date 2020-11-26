@@ -900,30 +900,6 @@ oswindow hWnd,
 
 
 
-/*
-* Dialog Box Command IDs
-*/
-#define IDOK                1
-#define IDCANCEL            2
-#define IDABORT             3
-#define IDRETRY             4
-#define IDIGNORE            5
-#define IDYES               6
-#define IDNO                7
-//#if(WINVER >= 0x0400)
-#define IDCLOSE         8
-#define IDHELP          9
-//#endif /* WINVER >= 0x0400 */
-
-//#if(WINVER >= 0x0500)
-#define IDTRYAGAIN      10
-#define IDCONTINUE      11
-//#endif /* WINVER >= 0x0500 */
-
-//#if(WINVER >= 0x0501)
-#ifndef IDTIMEOUT
-#define IDTIMEOUT 32000
-#endif
 //#endif /* WINVER >= 0x0501 */
 
 #ifndef _UWP

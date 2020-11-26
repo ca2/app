@@ -209,14 +209,17 @@ SizingNone:;
                }
                else
                {
+                  auto psession = Session;
 
-                  crMoveableBorder = crButtonFace;
+                  auto pstyle = pframewindow->get_style(pgraphics);
 
-                  crMoveableBorderHilight = crButtonHilite;
+                  crMoveableBorder = pframewindow->get_color(pstyle, ::user::element_button_background);
 
-                  crMoveableBorderShadow = crButtonShadow;
+                  crMoveableBorderHilight = pframewindow->get_color(pstyle, ::user::element_button_hilite);
 
-               }
+                  crMoveableBorderShadow = pframewindow->get_color(pstyle, ::user::element_button_shadow);
+
+}
 
 
 

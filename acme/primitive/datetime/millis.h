@@ -1,5 +1,6 @@
 #pragma once
 
+
 enum e_tick_now
 {
 
@@ -7,11 +8,15 @@ enum e_tick_now
 
 };
 
+
 class duration;
+
 
 class millis;
 
+
 inline double __double(const ::millis & millis);
+
 
 // milliseconds
 //
@@ -22,16 +27,16 @@ class CLASS_DECL_ACME millis
 public:
 
 
-   i64 m_iMilliseconds;
+   ::i64       m_iMilliseconds;
 
 
    millis() { m_iMilliseconds = 0; }
    millis(enum e_tick_now) { m_iMilliseconds = get_tick(); }
    millis(enum e_no_init) {}
-   millis(i32 i) { m_iMilliseconds = i; }
-   millis(u32 u) { m_iMilliseconds = u; }
-   millis(i64 i) { m_iMilliseconds = i; }
-   millis(u64 u) { m_iMilliseconds = u; }
+   millis(::i32 i) { m_iMilliseconds = i; }
+   millis(::u32 u) { m_iMilliseconds = u; }
+   millis(::i64 i) { m_iMilliseconds = i; }
+   millis(::u64 u) { m_iMilliseconds = u; }
 #if defined(LINUX)
    millis(unsigned long long int u) { m_iMilliseconds = u; }
 #endif
@@ -69,6 +74,7 @@ public:
 
    }
 
+
    inline bool done(const ::millis & millis) const;
    inline bool done() const;
 
@@ -80,12 +86,14 @@ public:
 
    }
 
+
    inline double sawtooth(const ::millis & tickPeriod)
    {
 
       return __double(elapsed() % tickPeriod) / __double(tickPeriod);
 
    }
+
 
    inline double period_rate(const ::millis & tickPeriod)
    {
@@ -101,6 +109,7 @@ public:
       return elapsed(now());
 
    }
+
 
    inline ::u32 u32() const
    {
@@ -180,23 +189,25 @@ public:
    //inline millis& operator += (i64 i) { m_iMilliseconds += i; return *this; }
 
 
-   inline millis operator * (double d) const { return (i64)(m_iMilliseconds * d); }
-   inline millis& operator *= (double d) { m_iMilliseconds = (i64)(m_iMilliseconds * d); return *this; }
+   inline millis operator * (double d) const { return (::i64)(m_iMilliseconds * d); }
+   inline millis& operator *= (double d) { m_iMilliseconds = (::i64)(m_iMilliseconds * d); return *this; }
 
-   inline i64 operator / (const millis& millis) const { return m_iMilliseconds / millis.m_iMilliseconds; }
-   inline millis operator / (i64 i) const { return m_iMilliseconds / i; }
-   inline millis& operator /= (i64 i)  { m_iMilliseconds /= i; return *this; }
+   inline ::i64 operator / (const millis& millis) const { return m_iMilliseconds / millis.m_iMilliseconds; }
+   inline millis operator / (::i64 i) const { return m_iMilliseconds / i; }
+   inline millis& operator /= (::i64 i)  { m_iMilliseconds /= i; return *this; }
    inline millis& operator %= (const millis & millis) { m_iMilliseconds %= millis.m_iMilliseconds; return *this; }
 
 
-   inline millis operator % (i32 i) const { return m_iMilliseconds % i; }
-   inline millis operator % (i64 i) const { return m_iMilliseconds % i; }
+   inline millis operator % (::i32 i) const { return m_iMilliseconds % i; }
+   inline millis operator % (::i64 i) const { return m_iMilliseconds % i; }
    inline millis operator % (const ::millis & millis) const { return m_iMilliseconds % millis.m_iMilliseconds; }
 
 
 };
 
-inline millis operator * (double d, const millis & millis) { return (i64)(d * millis.m_iMilliseconds); }
+
+inline millis operator * (double d, const millis & millis) { return (::i64)(d * millis.m_iMilliseconds); }
+
 
 namespace papaya
 {

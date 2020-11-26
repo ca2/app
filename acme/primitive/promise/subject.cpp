@@ -131,21 +131,21 @@ namespace promise
 
       auto ptask = ::get_task();
 
-      int iUpdateSerial;
+//      int iUpdateSerial;
 
       while (!::promise::handler::g_bDestroyAll && ptask->thread_get_run())
       {
 
-         iUpdateSerial = m_iUpdateSerial;
+         //iUpdateSerial = m_iUpdateSerial;
 
          m_phandler->process(this);
 
-         if (iUpdateSerial != m_iUpdateSerial)
-         {
-
-            deliver();
-
-         }
+//         if (iUpdateSerial != m_iUpdateSerial)
+//         {
+//
+//            deliver();
+//
+//         }
 
          //if (m_iUpdateSerial < 0)
 //         {
@@ -253,13 +253,13 @@ namespace promise
          if (pcontext->m_bFork)
          {
 
-            ::task::launch(this);
+            ::task::launch(pmatter);
 
          }
          else
          {
 
-            m_phandler->process(this);
+            pmatter->on_subject(this, pcontext);
 
          }
 
@@ -321,20 +321,7 @@ namespace promise
    ::estatus subject::on_task()
    {
 
-      if (m_phandler)
-      {
-
-         m_phandler->process(this);
-
-         return ::success;
-
-      }
-      else
-      {
-
-         return m_pmatter->run();
-
-      }
+      return run();
 
    }
 
@@ -412,25 +399,20 @@ namespace promise
 
       //}
 
-      auto & pchange = m_mattercontext[pmatter];
+      auto & pcontext = m_mattercontext[pmatter];
 
-      if (!pchange)
+      if (!pcontext)
       {
 
-         pchange = __new(::promise::context);
+         pcontext = __new(::promise::context);
 
       }
 
-      pchange->m_bFork = bForkWhenNotify;
+      pcontext->m_bFork = bForkWhenNotify;
 
-      //if (bShouldFork)
-      //{
+      pmatter->on_subject(this, pcontext);
 
-      m_bModified = !pchange->is_up_to_date(this);
 
-      ::task::launch(this);
-
-      //}
 
    }
 

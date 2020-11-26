@@ -48,36 +48,3 @@ bool os_usleep::sleep(unsigned long usec)
 //}
 
 
-CLASS_DECL_ACME void secs_sleep(const ::secs & secs)
-{
-
-   ::Sleep((DWORD) (secs.m_iSeconds * 1'000));
-
-}
-
-
-CLASS_DECL_ACME void millis_sleep(const millis & millis)
-{
-
-   ::Sleep((DWORD) millis.m_iMilliseconds);
-
-}
-
-
-CLASS_DECL_ACME void micros_sleep(const micros & micros)
-{
-
-   ::Sleep(1);
-
-}
-
-
-CLASS_DECL_ACME void nanos_sleep(const nanos & nanos)
-{
-
-   ::Sleep(1);
-
-}
-
-
-

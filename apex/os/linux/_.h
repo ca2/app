@@ -44,10 +44,10 @@ void copy(RECT32 * prectTarget, const GdkRectangle * prectSource);
 void copy(GdkRectangle * prectTarget, const RECT32 * prectSource);
 
 
-namespace os
+namespace user
 {
 
-  string get_os_desktop_theme();
+  string os_get_user_theme();
   string get_wallpaper(::index iIndex);
 
 } // namespace os

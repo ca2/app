@@ -41,44 +41,82 @@ namespace acme
    }
 
 
-   void system::defer_calc_os_dark_mode()
+   string system::os_get_user_theme()
    {
 
-#ifdef LINUX
-
-      ::user::os_calc_dark_mode();
-
-#elif defined(WINDOWS_DESKTOP)
-
-      ::user::os_calc_dark_mode();
-
-      //::user::set_system_dark_mode(::user::calc_system_dark_mode());
-
-      //::user::set_app_dark_mode(::user::calc_app_dark_mode());
-
-#endif
+      return m_strOsUserTheme;
 
    }
 
 
-   void system::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+   void system::defer_calc_os_dark_mode()
    {
 
-      if (psubject->m_esubject <= e_subject_process)
+      ::user::os_calc_dark_mode();
+
+   }
+
+
+//   void system::defer_calc_os_user_theme()
+//   {
+//
+//      ::user::os_calc_user_theme();
+//
+//   }
+
+
+   void system::on_subject(::promise::subject *psubject)
+   {
+
+      if (psubject->m_esubject == e_subject_prepare)
       {
 
-         if (psubject->id() == id_dark_mode)
+         if (psubject->id() == id_os_dark_mode)
          {
 
             defer_calc_os_dark_mode();
 
          }
+         else if (psubject->id() == id_os_user_theme)
+         {
+
+            string strTheme = ::user::_os_get_user_theme();
+
+            if (strTheme != m_strOsUserTheme)
+            {
+
+               m_strOsUserTheme = strTheme;
+
+               psubject->m_esubject = e_subject_process;
+
+            }
+            else
+            {
+
+               psubject->m_esubject = e_subject_not_modified;
+
+            }
+         }
 
       }
 
+      if (psubject->m_esubject == e_subject_process)
+      {
+
+         if (psubject->id() == id_os_user_theme)
+         {
+
+            ::user::_os_process_user_theme(m_strOsUserTheme);
+
+         }
+
+         psubject->m_esubject = e_subject_deliver;
+
+      }
+
+      ::promise::handler::on_subject(psubject);
+
    }
-
-
 
 
    ::estatus system::main_user_async(const ::promise::routine & routine, ::e_priority epriority)

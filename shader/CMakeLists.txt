@@ -49,11 +49,16 @@ if (MSVC)
     target_link_options(app_shader PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
     target_link_options(app_shader PRIVATE "/SUBSYSTEM:WINDOWS")
     target_link_libraries(app_shader PRIVATE acme apex aqua aura)
+    add_dependencies(app_shader draw2d_gdiplus)
 elseif(LINUX)
     target_link_options(app_shader PRIVATE -Wl,-rpath=\$ORIGIN)
     target_link_libraries(app_shader PRIVATE acme apex aqua aura)
     target_link_options(app_shader PRIVATE -Wl,-z,defs)
+    add_dependencies(app_shader draw2d_cairo)
 endif()
+
+
+add_dependencies(app_shader gpu_opengl)
 
 
 target_link_directories(app_shader PRIVATE ${LIBRARY_OUTPUT_PATH})

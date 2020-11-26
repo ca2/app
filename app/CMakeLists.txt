@@ -51,6 +51,7 @@ if (MSVC)
     target_link_options(app_app PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
     target_link_options(app_app PRIVATE "/SUBSYSTEM:WINDOWS")
     target_link_libraries(app_app PRIVATE acme apex aqua aura)
+    add_dependencies(app_app draw2d_gdiplus)
 elseif(LINUX)
     #pkg_check_modules(PKGCONFIG glib-2.0 gtk+-3.0 gdk-3.0 appindicator-0.1)
     #pkg_check_modules(PKGCONFIG glib-2.0 freetype2 gtk+-3.0 gdk-3.0)
@@ -62,7 +63,10 @@ elseif(LINUX)
     target_link_libraries(app_app PRIVATE acme apex aqua aura)
     target_link_options(app_app PRIVATE -Wl,-z,defs)
     message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
+    add_dependencies(app_app draw2d_cairo)
 endif()
+
+
 
 target_link_directories(app_app PRIVATE ${LIBRARY_OUTPUT_PATH})
 target_link_directories(app_app PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/storage-${PLATFORM_NAME}/library/x64/basis)

@@ -7,16 +7,16 @@ class x11_button :
 public:
 
 
-   string            m_strLabel;
-   bool              m_bTextRect;
-   ::rect            m_rect;
-   XGlyphInfo        m_infoText;
-   bool              m_bPress;
-   bool              m_bHover;
-   int               m_iResult;
+   string               m_strLabel;
+   bool                 m_bTextRect;
+   ::rect               m_rect;
+   XGlyphInfo           m_infoText;
+   bool                 m_bPress;
+   bool                 m_bHover;
+   enum_dialog_result   m_edialogresult;
 
 
-   x11_button(const char * psz, int iResult);
+   x11_button(const char * psz, enum_dialog_result edialogresult);
 
    virtual ~x11_button();
 

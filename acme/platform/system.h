@@ -27,15 +27,24 @@ namespace acme
       ::bred::system *                                   m_pbredsystem;
       ::core::system *                                   m_pcoresystem;
 
+      string                                             m_strOsUserTheme;
 
       system();
       virtual ~system();
 
 
+
+      virtual string os_get_user_theme();
+
+
       virtual void defer_calc_os_dark_mode();
 
 
-      virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
+      //virtual void defer_calc_os_user_theme();
+
+
+      using ::promise::handler::on_subject;
+      virtual void on_subject(::promise::subject * psubject) override;
 
 
       virtual ::estatus main_user_async(const ::promise::routine & routine, ::e_priority epriority = priority_normal);

@@ -1467,7 +1467,7 @@ namespace core
    }
 
 
-   string user::get_os_desktop_theme()
+   string user::os_get_user_theme()
    {
 
       return impl_get_os_desktop_theme();
@@ -1712,7 +1712,7 @@ namespace core
    string user::impl_get_os_desktop_theme()
    {
 
-      return ::os::get_os_desktop_theme();
+      return ::user::os_get_user_theme();
 
    }
 

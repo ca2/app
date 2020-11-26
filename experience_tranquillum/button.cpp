@@ -122,7 +122,7 @@ namespace tranquillum
 
          pgraphics->set_text_color(crText);
 
-         pgraphics->draw_text(str, rectClient, e_align_center | DT_SINGLELINE);
+         pgraphics->draw_text(str, rectClient, e_align_center, e_draw_text_single_line);
 
       }
       else

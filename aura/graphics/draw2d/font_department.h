@@ -73,7 +73,7 @@ public:
 
 
    virtual bool is_initialized();
-   virtual void defer_create_font_enumeration();
+   virtual void defer_create_font_enumeration(::promise::subject * psubject);
 
 
 };

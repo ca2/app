@@ -23,11 +23,12 @@ namespace draw2d
       virtual ::estatus initialize(::layered* pobjectContext) override;
 
 
+      virtual void on_subject(::promise::subject * psubject) override;
       virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
 
 
-      virtual bool check_need_update();
-      virtual bool update();
+      virtual void check_need_update(::promise::subject * psubject);
+      virtual bool update(::promise::subject * psubject);
 
 
       //bool similar_font(char sz[256], const char* psz);

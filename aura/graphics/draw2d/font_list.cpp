@@ -62,7 +62,7 @@ namespace draw2d
    }
 
 
-   void font_list::defer_font_enumeration()
+   void font_list::defer_font_enumeration(::promise::subject * psubject)
    {
 
       try
@@ -73,7 +73,7 @@ namespace draw2d
          if (m_pfontenumeration.is_null())
          {
 
-            System.draw2d().fonts().defer_create_font_enumeration();
+            System.draw2d().fonts().defer_create_font_enumeration(psubject);
 
             m_pfontenumeration = System.draw2d().fonts().m_pfontenumeration;
 
@@ -88,7 +88,7 @@ namespace draw2d
    }
 
 
-   void font_list::update_font_enumeration()
+   void font_list::update_font_enumeration(::promise::subject * psubject)
    {
 
       try
@@ -96,9 +96,9 @@ namespace draw2d
 
          sync_lock sl(mutex());
 
-         defer_font_enumeration();
+         defer_font_enumeration(psubject);
 
-         m_pfontenumeration->update();
+         m_pfontenumeration->update(psubject);
 
       }
       catch (...)
@@ -109,7 +109,7 @@ namespace draw2d
    }
 
 
-   void font_list::sync_font_enumeration()
+   void font_list::sync_font_enumeration(::promise::subject * psubject)
    {
 
       try
@@ -117,7 +117,7 @@ namespace draw2d
 
          sync_lock sl(mutex());
 
-         defer_font_enumeration();
+         defer_font_enumeration(psubject);
 
          m_pitema = m_pfontenumeration->m_pitema;
 
@@ -626,6 +626,44 @@ namespace draw2d
 
    }
 
+   void font_list::on_subject(::promise::subject * psubject)
+   {
+
+      if (psubject->m_esubject == e_subject_prepare)
+      {
+
+         e_id eid = (e_id)psubject->id().i64();
+
+         if (eid == id_font_extents)
+         {
+
+            update_extents();
+
+         }
+         else if (eid == id_font_list_layout)
+         {
+
+            layout();
+
+         }
+         else if (eid == id_font_list_total_size)
+         {
+
+            set_need_layout();
+
+         }
+         else if (eid == id_font_list_redraw)
+         {
+
+            set_need_redraw();
+
+         }
+
+      }
+
+   }
+
+
 
    void font_list::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
    {
@@ -635,40 +673,40 @@ namespace draw2d
       if (eid == id_font_enumeration)
       {
 
-         sync_font_enumeration();
+         sync_font_enumeration(psubject);
 
          if (!m_rectClient.is_empty())
          {
 
-            set_modified(id_font_extents);
+            psubject->set_modified();
 
          }
 
       }
-      else if (eid == id_font_extents)
-      {
+      //else if (eid == id_font_extents)
+      //{
 
-         update_extents();
+      //   update_extents();
 
-      }
-      else if (eid == id_font_list_layout)
-      {
+      //}
+      //else if (eid == id_font_list_layout)
+      //{
 
-         layout();
+      //   layout();
 
-      }
-      else if (eid == id_font_list_total_size)
-      {
+      //}
+      //else if (eid == id_font_list_total_size)
+      //{
 
-         set_need_layout();
+      //   set_need_layout();
 
-      }
-      else if (eid == id_font_list_redraw)
-      {
+      //}
+      //else if (eid == id_font_list_redraw)
+      //{
 
-         set_need_redraw();
+      //   set_need_redraw();
 
-      }
+      //}
 
    }
 

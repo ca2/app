@@ -263,7 +263,7 @@ namespace draw2d
          if (estatus)
          {
 
-            m_pfontdepartment->defer_create_font_enumeration();
+            System.process_subject(id_font_enumeration);
 
          }
 

@@ -107,15 +107,17 @@ namespace draw2d
       virtual ::estatus initialize(::layered* pobjectContext) override;
 
 
+      virtual void on_subject(::promise::subject * psubject) override;
+
       virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
 
 
       //virtual void defer_update();
       //virtual void update();
 
-      virtual void defer_font_enumeration();
-      virtual void update_font_enumeration();
-      virtual void sync_font_enumeration();
+      virtual void defer_font_enumeration(::promise::subject * psubject);
+      virtual void update_font_enumeration(::promise::subject * psubject);
+      virtual void sync_font_enumeration(::promise::subject * psubject);
 
       virtual void update_extents();
       virtual void update_extents(font_list_data * plistdata, font_list_item * pitem, ::draw2d::graphics_pointer & pgraphics, index iBox);

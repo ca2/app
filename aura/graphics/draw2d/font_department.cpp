@@ -102,7 +102,7 @@ void font_department::finalize()
 }
 
 
-void font_department::defer_create_font_enumeration()
+void font_department::defer_create_font_enumeration(::promise::subject * psubject)
 {
 
    if (m_pfontenumeration.is_null())
@@ -110,7 +110,7 @@ void font_department::defer_create_font_enumeration()
 
       m_pfontenumeration = __create_new < ::draw2d::font_enumeration >();
       
-      m_pfontenumeration->check_need_update();
+      m_pfontenumeration->check_need_update(psubject);
 
    }
 

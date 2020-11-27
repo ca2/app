@@ -5,7 +5,7 @@
 #include "acme/const/timer.h"
 
 
-#define DBLCLKMS 500
+#define DBLCLKMS 500_ms
 
 
 CLASS_DECL_CORE index_array array_translate_a_array(index_biunique & ia, index_array iaNew, index_array iaOld);
@@ -3555,7 +3555,13 @@ namespace user
 
       auto tickNow = ::millis::now();
 
-      if(tickNow - m_millisLButtonDownStart2 < DBLCLKMS)
+      auto tick2 = tickNow - m_millisLButtonDownStart2;
+
+      auto tick1 = tickNow - m_millisLButtonDownStart1;
+
+      auto tickDoubleClick = DBLCLKMS;
+
+      if(tick2 < tickDoubleClick)
       {
 
          m_millisLButtonDownStart1 = m_millisLButtonDownStart2;
@@ -3569,7 +3575,7 @@ namespace user
          m_iClick = 2;
 
       }
-      else if(tickNow - m_millisLButtonDownStart1 < DBLCLKMS)
+      else if(tick1 < tickDoubleClick)
       {
 
          m_millisLButtonDownStart2 = tickNow;
@@ -5504,12 +5510,18 @@ namespace user
       _001OnSelectionChange();
    }
 
+   
    void list::_001AddSelection(const item_range & itemrange)
    {
+   
       m_rangeSelection.add_item(itemrange);
-      on_select();
+
+//      on_select();
+
       _001OnSelectionChange();
+
    }
+
 
    void list::_001SetHighlightRange(range & range)
    {

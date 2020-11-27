@@ -42,13 +42,34 @@ namespace draw2d
    }
 
 
+   void font_enumeration::on_subject(::promise::subject * psubject)
+   {
+
+      if (psubject->m_esubject == e_subject_prepare)
+      {
+
+         if (psubject->id() == id_font_enumeration)
+         {
+
+            check_need_update(psubject);
+
+         }
+
+      }
+
+
+   }
+
+
    void font_enumeration::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
    {
 
       if (psubject->id() == id_os_font_change)
       {
 
-         update();
+         auto psubject = System.subject(id_os_font_change);
+
+         update(psubject);
 
       }
 
@@ -139,7 +160,7 @@ namespace draw2d
    }
 
 
-   bool font_enumeration::check_need_update()
+   void font_enumeration::check_need_update(::promise::subject * psubject)
    {
 
       m_bUpdating = true;
@@ -157,7 +178,9 @@ namespace draw2d
 
          m_bUpdating = false;
 
-         return false;
+         psubject->m_esubject = e_subject_not_modified;
+
+         return;
 
       }
 
@@ -167,14 +190,14 @@ namespace draw2d
 
       m_bUpdating = false;
 
-      System.set_modified(id_font_enumeration);
+      psubject->set_modified();
 
-      return true;
+      psubject->m_esubject = e_subject_deliver;
 
    }
 
 
-   bool font_enumeration::update()
+   bool font_enumeration::update(::promise::subject * psubject)
    {
 
       m_bUpdating = true;
@@ -193,7 +216,7 @@ namespace draw2d
 
       m_bUpdating = false;
 
-      System.set_modified(id_font_enumeration);
+      psubject->set_modified();
 
       return true;
 

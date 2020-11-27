@@ -49,12 +49,12 @@ namespace user
 
       BASE_VIEW::_001OnSelectionChange();
 
-      if (GetParentFrame() != nullptr)
-      {
+      //if (GetParentFrame() != nullptr)
+      //{
 
-         GetParentFrame()->SetActiveView(this);
+      //   GetParentFrame()->SetActiveView(this);
 
-      }
+      //}
 
    }
 

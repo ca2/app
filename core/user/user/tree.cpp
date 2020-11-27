@@ -2152,7 +2152,7 @@ namespace user
       if (m_ptree)
       {
 
-         m_ptree->process(psubject);
+         m_ptree->on_subject(psubject, pcontext);
 
       }
 

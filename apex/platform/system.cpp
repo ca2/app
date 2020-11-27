@@ -5453,6 +5453,14 @@ namespace apex
    }
 
 
+   void system::on_subject(::promise::subject * psubject)
+   {
+
+      acme::system::on_subject(psubject);
+
+   }
+
+
    void system::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
    {
 

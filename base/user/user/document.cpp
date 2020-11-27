@@ -1850,7 +1850,7 @@ namespace user
          if (pview != psubject->m_psender)
          {
 
-            pview->process(psubject);
+            pview->on_subject(psubject, nullptr);
 
             if(psubject->m_bRet)
             {

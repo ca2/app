@@ -106,7 +106,7 @@ namespace user
             strLparamString == "ImmersiveColorSet")
       {
 
-         System.process_subject(id_dark_mode);
+         System.process_subject(id_os_dark_mode);
 
       }
          else if (pbase->m_id == e_message_display_change ||

@@ -6310,6 +6310,27 @@ namespace aura
    }
 
 
+   void system::on_subject(::promise::subject * psubject)
+   {
+
+      if (psubject->m_esubject == e_subject_prepare)
+      {
+
+         if (psubject->m_id == id_font_enumeration)
+         {
+
+
+            draw2d().fonts().defer_create_font_enumeration(psubject);
+
+         }
+
+      }
+    
+      ::aqua::system::on_subject(psubject);
+
+   }
+
+
    void system::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
    {
 

@@ -828,7 +828,7 @@ int os_get_system_update_poll_time(const ::id & id)
 
    }
 
-   return 500;
+   return 0;
 
 }
 

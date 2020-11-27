@@ -109,33 +109,33 @@ namespace user
          System.process_subject(id_os_dark_mode);
 
       }
-         else if (pbase->m_id == e_message_display_change ||
-               (pbase->m_id == WM_SETTINGCHANGE &&
-                (pbase->m_wparam == SPI_SETWORKAREA)))
-         {
+      else if (pbase->m_id == e_message_display_change ||
+            (pbase->m_id == WM_SETTINGCHANGE &&
+               (pbase->m_wparam == SPI_SETWORKAREA)))
+      {
 
-            output_debug_string("test");
+         output_debug_string("test");
 
-            //throw_todo();
+         //throw_todo();
 
-            //System.enum_display_monitors();
+         //System.enum_display_monitors();
 
-            //__pointer(::user::interaction) pinteraction;
+         //__pointer(::user::interaction) pinteraction;
 
-            //while(System.get_frame(pinteraction))
-            //{
+         //while(System.get_frame(pinteraction))
+         //{
 
-            //   try
-            //   {
+         //   try
+         //   {
 
-            //      pinteraction->post_message(e_message_display_change);
+         //      pinteraction->post_message(e_message_display_change);
 
-            //   }
-            //   catch(...)
-            //   {
-            //   }
+         //   }
+         //   catch(...)
+         //   {
+         //   }
 
-            //}
+         //}
 
 
          }

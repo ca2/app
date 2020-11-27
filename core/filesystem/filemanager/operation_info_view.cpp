@@ -8,10 +8,10 @@ namespace filemanager
 {
 
 
-   void DoBar(::draw2d::graphics_pointer & pgraphics,i32 ileft,i32 iTop,i32 cx,i32 cy,double dAnime);
+   void DoBar(::draw2d::graphics_pointer & pgraphics,i32 ileft,i32 iTop,i32 cx,i32 cy,double dAnimation);
 
 
-   void DoBar(::draw2d::graphics_pointer & pgraphics,i32 ileft,i32 iTop,i32 cx,i32 cy,double dAnime)
+   void DoBar(::draw2d::graphics_pointer & pgraphics,i32 ileft,i32 iTop,i32 cx,i32 cy,double dAnimation)
    {
       i32 iDeltaDark = 23;
       i32 iDeltaVermelho = 77;
@@ -28,7 +28,7 @@ namespace filemanager
       {
          cr = RGB(
               255 - iDeltaVermelho - iDeltaDark,
-              (255 - (iDeltaV2 / 2.0) + (i32)(sin((double)x / dSoft + dAnime)  *(iDeltaV2 / 2.0))) - iDeltaV1 - iDeltaDark,
+              (255 - (iDeltaV2 / 2.0) + (i32)(sin((double)x / dSoft + dAnimation)  *(iDeltaV2 / 2.0))) - iDeltaV1 - iDeltaDark,
               255 - iDeltaAzul - 23 - iDeltaDark);
          pgraphics->fill_solid_rect_dim(x,iTop,iW,cy,cr);
       }
@@ -36,7 +36,7 @@ namespace filemanager
       {
          cr = RGB(
               255 - iDeltaVermelho - iDeltaDark,
-              (255 - (iDeltaV2 / 2.0) + (i32)(sin((double)x / dSoft + dAnime)  *(iDeltaV2 / 2.0))) - iDeltaV1 - iDeltaDark,
+              (255 - (iDeltaV2 / 2.0) + (i32)(sin((double)x / dSoft + dAnimation)  *(iDeltaV2 / 2.0))) - iDeltaV1 - iDeltaDark,
               255 - iDeltaAzul - 23 - iDeltaDark);
          pgraphics->fill_solid_rect_dim(x,iTop,iRight - x,cy,cr);
       }
@@ -46,7 +46,7 @@ namespace filemanager
    operation_info_view::operation_info_view()
    {
 
-      m_dAnime = 0.0;
+      m_dAnimation = 0.0;
 
    }
 
@@ -94,7 +94,7 @@ namespace filemanager
                rectBar.right = ((i32)((rectProgress.right - rectProgress.left) * (dProgress - dProgressL) * ((double)iLineCount))) + rectProgress.left;
             }
             DoBar(pgraphics,rectBar.left,rectBar.top,
-                  rectBar.right - rectBar.left,rectBar.bottom - rectBar.top,m_dAnime);
+                  rectBar.right - rectBar.left,rectBar.bottom - rectBar.top,m_dAnimation);
          }
          dTop += dBarHeight;
          rectProgress.top = (::i32)dTop;

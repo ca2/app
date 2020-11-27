@@ -603,7 +603,7 @@ namespace experience
                      if(picon != nullptr)
                      {
 
-                        pgraphics->draw(rectIcon.top_left(),picon,rectIcon.size());
+                        pgraphics->draw(rectIcon,picon);
 
                      }
 
@@ -686,7 +686,7 @@ namespace experience
 
                         pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-                        pgraphics->draw(rectIcon.top_left(), picon, rectIcon.size());
+                        pgraphics->draw(rectIcon, picon);
 
                      }
 

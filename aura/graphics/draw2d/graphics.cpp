@@ -1029,10 +1029,10 @@ namespace draw2d
    }
 
 
-   bool graphics::draw(const ::point & pointDst, icon * picon, const ::size & size)
+   bool graphics::draw(const ::rect & rectDst, icon * picon)
    {
 
-      return draw(::rect(pointDst, size), picon->get_image(size));
+      return draw(rectDst, picon->get_image(rectDst.size()));
 
    }
 

@@ -318,7 +318,7 @@ namespace account
 
          pgraphics->draw_ca2_border2((int)(49 * rx), (int)(49 * ry) - 11, (int)((91 + 2 + 2) * ry), 1, 1, crBk, cr, crBorderOut, crBorderIn);
 
-         pgraphics->draw(::point((int)(49 * rx) + 2, (int)(49 * ry) + 2 - 11), m_picon95, ::size((int)((91 + 2 + 2) * ry), (int)((91 + 2 + 2) * ry)));
+         pgraphics->draw(::rect(::point((int)(49 * rx) + 2, (int)(49 * ry) + 2 - 11), ::size((int)((91 + 2 + 2) * ry), (int)((91 + 2 + 2) * ry))), m_picon95);
 
       }
       else

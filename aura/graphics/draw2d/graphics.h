@@ -1038,7 +1038,7 @@ namespace draw2d
       //inline bool draw_dim(i32 x, i32 y, i32 w, i32 h, ::image * pimage, i32 xSrc = 0, i32 ySrc = 0);
       //inline bool BitBlt(i32 x, i32 y, i32 w, i32 h, ::image * pimage, i32 xSrc = 0, i32 ySrc = 0);
       virtual bool draw(const ::point & point, cursor * pcursor);
-      virtual bool draw(const ::point & pointDst, icon * picon, const ::size & size);
+      virtual bool draw(const ::rect & rectDst, icon * picon);
 
    protected:
 

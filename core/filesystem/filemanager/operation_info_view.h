@@ -14,7 +14,7 @@ namespace filemanager
 
       
 
-      double m_dAnime;
+      double m_dAnimation;
 
       operation_info_view();
 

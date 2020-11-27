@@ -5456,14 +5456,6 @@ namespace apex
    void system::on_subject(::promise::subject * psubject)
    {
 
-      acme::system::on_subject(psubject);
-
-   }
-
-
-   void system::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
-   {
-
       if (psubject->id() == id_open_hyperlink)
       {
 
@@ -5481,13 +5473,21 @@ namespace apex
             //else
             {
 
-              // open_link(plink->m_strLink, plink->m_strProfile, plink->m_strTarget);
+               // open_link(plink->m_strLink, plink->m_strProfile, plink->m_strTarget);
 
             }
 
          }
 
       }
+
+      acme::system::on_subject(psubject);
+
+   }
+
+
+   void system::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+   {
 
       acme::system::on_subject(psubject, pcontext);
 

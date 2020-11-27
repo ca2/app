@@ -57,7 +57,7 @@ void simple_static::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
       if (picon != nullptr)
       {
 
-         pgraphics->draw(::point(), picon, ::size(this->get_client_size().get_minimum_dimension()));
+         pgraphics->draw(::rect(::point(), ::size(this->get_client_size().get_minimum_dimension())), picon);
 
       }
 

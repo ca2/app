@@ -7321,7 +7321,7 @@ namespace user
          if (m_pcolumn->m_mapIcon.lookup((i32)m_iImage, picon))
          {
             m_pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
-            return m_pgraphics->draw(m_rectImage.top_left(), picon, m_rectImage.size()) != FALSE;
+            return m_pgraphics->draw(m_rectImage, picon) != FALSE;
          }
       }
       else

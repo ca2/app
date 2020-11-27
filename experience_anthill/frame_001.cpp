@@ -1132,6 +1132,18 @@ SizingNone:;
 
                auto psession = Session;
 
+               auto pframewindow = m_pframewindow;
+
+               auto pstyle = pframewindow->get_style(pgraphics);
+
+               auto crButtonHilite = pframewindow->get_color(pstyle, ::user::element_button_hilite);
+
+               auto crButtonDarkShadow = pframewindow->get_color(pstyle, ::user::element_button_dark_shadow);
+
+               auto crButtonFace = pframewindow->get_color(pstyle, ::user::element_button_background);
+
+               auto crButtonShadow = pframewindow->get_color(pstyle, ::user::element_button_shadow);
+
                pgraphics->draw_3drect(rect, crButtonFace | 0xff000000, crButtonDarkShadow | 0xff000000);
 
                rect.deflate(1, 1);

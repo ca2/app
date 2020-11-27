@@ -1453,7 +1453,7 @@ namespace user
 
       ::channel::on_finish();
 
-      if (!m_bDestroyImplOnly)
+      if (!m_bDestroyImplOnly && m_puserinteraction)
       {
 
          m_puserinteraction->PostNcDestroy();

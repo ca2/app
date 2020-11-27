@@ -83,7 +83,10 @@ namespace experience
                pframewindow->_001ClientToScreen(rectWindow);
                //pimage = create_image({rectClient.width(),  rectClient.height()});
                //bool b = pimage2->get_graphics()->BitBlt(0, 0, rectClient.width() + iInflate * 2, rectClient.height() + iInflate * 2, pgraphics, rectClient.left - iInflate, rectClient.top - iInflate);
-               pimage2->get_graphics()->BitBlt(0, 0, rectClient.width() + iInflate * 2, rectClient.height() + iInflate * 2, pgraphics, rectClient.left - iInflate, rectClient.top - iInflate);
+               pimage2->get_graphics()->draw(
+                  ::rect_dim(0, 0, rectClient.width() + iInflate * 2, rectClient.height() + iInflate * 2),
+                  pgraphics, 
+                  ::point(rectClient.left - iInflate, rectClient.top - iInflate));
                //bool b = ::BitBlt(dc2, 0, 0, rectClient.width() + iInflate * 2, rectClient.height() + iInflate * 2, hdcScreen, rectClient.left - iInflate, rectClient.top - iInflate);
 
                m_blur1.blur(pimage1, 2, ::rect(size(rectClient.width() + iInflate * 2, rectClient.height() + iInflate * 2)));
@@ -111,7 +114,7 @@ namespace experience
                rectWindow.height(),
                bf);*/
 
-               pgraphics->BitBlt(rectClient.left, rectClient.top, rectClient.width(), rectClient.height(), pimage1->g(), iInflate, iInflate);
+               pgraphics->draw(rectClient, pimage1->g(), ::point(iInflate, iInflate));
 
             }
 
@@ -328,6 +331,20 @@ namespace experience
 
                auto psession = Session;
 
+               auto pframewindow = m_pframewindow;
+
+               auto pgraphics = pframewindow->create_memory_graphics();
+
+               auto pstyle = pframewindow->get_style(pgraphics);
+
+               auto crButtonHilite = pframewindow->get_color(pstyle, ::user::element_button_hilite);
+
+               auto crButtonDarkShadow = pframewindow->get_color(pstyle, ::user::element_button_dark_shadow);
+
+               auto crButtonFace = pframewindow->get_color(pstyle, ::user::element_button_background);
+
+               auto crButtonShadow = pframewindow->get_color(pstyle, ::user::element_button_shadow);
+
                m_penText1->create_solid(1, ARGB(255, 255, 255, 255));
                m_penFace1->create_solid(1, crButtonFace | 0xff000000);
                m_penHilight1->create_solid(1, crButtonHilite | 0xff000000);
@@ -536,7 +553,7 @@ namespace experience
                      if (picon != nullptr)
                      {
 
-                        pgraphics->DrawIcon(rectIcon.left, rectIcon.top, picon, rectIcon.width(), rectIcon.height(), 0, nullptr, DI_NORMAL);
+                        pgraphics->draw(rectIcon, picon);
 
                      }
 
@@ -633,7 +650,7 @@ namespace experience
                      if (picon != nullptr)
                      {
 
-                        pgraphics->DrawIcon(rectIcon.left, rectIcon.top, picon, rectIcon.width(), rectIcon.height(), 0, nullptr, DI_NORMAL);
+                        pgraphics->draw(rectIcon, picon);
 
                      }
 

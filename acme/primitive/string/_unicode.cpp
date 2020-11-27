@@ -141,7 +141,7 @@ wd32char* wd16_to_wd32(const wd16char * input, strsize input_size)
 //Communities (5)
 //
 //Stack Overflow 175.2k 175.2k 896198
-//Anime & Manga 178 178 5
+//Animation & Manga 178 178 5
 //Science Fiction & Fantasy 173 173 6
 //Meta Stack Exchange 121 121 5
 //Cryptography 108 108 4

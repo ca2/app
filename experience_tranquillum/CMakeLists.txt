@@ -125,7 +125,7 @@ target_include_directories(experience_tranquillum PRIVATE ${CMAKE_CURRENT_SOURCE
 target_include_directories(experience_tranquillum PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/third/include/include)
 
 
-target_compile_definitions(experience_tranquillum PRIVATE _APP_EXPERIENCE_CORE_LIBRARY)
+target_compile_definitions(experience_tranquillum PRIVATE _APP_EXPERIENCE_TRANQUILLUM_LIBRARY)
 target_compile_definitions(experience_tranquillum PRIVATE UNICODE)
 target_compile_definitions(experience_tranquillum PRIVATE _UNICODE)
 

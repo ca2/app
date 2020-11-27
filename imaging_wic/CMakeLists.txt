@@ -33,12 +33,8 @@ list(APPEND imaging_wic_source
         context_image.h
         factory_exchange.cpp
         factory_exchange.h
-        file_procedure.cpp
-        file_procedure_ex1.cpp
-        fimemory.h
         framework.cpp
         framework.h
-        #imaging_wic.cpp
         loading.cpp
         loading_gif.cpp
         saving.cpp)
@@ -58,7 +54,7 @@ if (MSVC)
     target_link_options(imaging_wic PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
     target_link_options(imaging_wic PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/imaging_wic.lib")
     target_link_options(imaging_wic PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/imaging_wic.def")
-    target_link_libraries(imaging_wic PRIVATE acme apex aqua aura freeimage)
+    target_link_libraries(imaging_wic PRIVATE acme apex aqua aura windowscodecs)
 elseif(LINUX)
     pkg_check_modules(PKGCONFIG glib-2.0 gdk-3.0 gtk+-3.0 appindicator3-0.1)
     #pkg_check_modules(PKGCONFIG freetype2  )
@@ -98,7 +94,7 @@ target_include_directories(imaging_wic PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../..
 target_include_directories(imaging_wic PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/third/include/include)
 
 
-target_compile_definitions(imaging_wic PRIVATE _imaging_wic_LIBRARY)
+target_compile_definitions(imaging_wic PRIVATE _IMAGING_WIC_LIBRARY)
 target_compile_definitions(imaging_wic PRIVATE UNICODE)
 target_compile_definitions(imaging_wic PRIVATE _UNICODE)
 

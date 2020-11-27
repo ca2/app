@@ -3,7 +3,17 @@
 i32 WINAPI _tWinMain(HINSTANCE hinstance, HINSTANCE hPrevInstance, TCHAR * pCmdLine, int nCmdShow)
 {
 
-   string strAppId = executable_get_app_id(hinstance);
+   string strAppId;
+
+#ifdef _APP_ID
+
+   strAppId = _APP_ID;
+
+#else
+
+   strAppId = executable_get_app_id(hinstance);
+
+#endif;
 
    auto psystem = platform_create_system(strAppId);
 

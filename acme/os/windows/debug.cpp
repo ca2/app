@@ -214,7 +214,7 @@ CLASS_DECL_ACME void windows_install_crash_dump_reporting(const string & strModu
 }
 
 
-void TRACELASTERROR()
+CLASS_DECL_ACME void TRACELASTERROR()
 {
 
    auto error = ::GetLastError();

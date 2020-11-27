@@ -4,6 +4,8 @@
 typedef ::u32 thread_data_index;
 
 
+CLASS_DECL_ACME void TRACELASTERROR();
+
 CLASS_DECL_ACME string get_error_string(DWORD dwError);
 
 
@@ -46,6 +48,8 @@ namespace windows
 
 
 #include "api.h"
+
+
 
 
 

@@ -79,6 +79,8 @@ namespace promise
 
       }
 
+      return psubject;
+
    }
 
 

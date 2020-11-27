@@ -805,37 +805,32 @@ CLASS_DECL_ACME string executable_get_app_id(HINSTANCE hinstance)
 
 
 
-namespace promise
+
+int os_get_system_update_poll_time(const ::id & id)
 {
 
-
-   int os_get_system_update_poll_time(const ::id & id)
+   if (id == id_os_dark_mode)
    {
 
-      if (id == id_dark_mode)
-      {
+      return 0;
 
-         return 0;
+   }
+   else if (id == id_os_font_change)
+   {
 
-      }
-      else if (id == id_os_font_change)
-      {
+      return 0;
 
-         return 0;
+   }
+   else if (id == id_font_enumeration)
+   {
 
-      }
-      else if (id == id_font_enumeration)
-      {
-
-         return 0;
-
-      }
-
-      return 500;
+      return 0;
 
    }
 
-} // namespace promise
+   return 500;
+
+}
 
 
 ::estatus os_error_to_status(DWORD dwError)

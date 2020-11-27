@@ -7,6 +7,23 @@ namespace user
 {
 
 
+   string _os_get_user_theme()
+   {
+
+      return "";
+
+   }
+
+
+   void _os_process_user_theme(string strTheme)
+   {
+
+      UNREFERENCED_PARAMETER(strTheme);
+
+   }
+
+
+
    CLASS_DECL_ACME bool _os_calc_system_dark_mode()
    {
 
@@ -114,7 +131,7 @@ namespace user
 
          g_bLastDarkModeSystem = bDarkModeSystem;
 
-         System.set_modified(id_dark_mode);
+         System.set_modified(id_os_dark_mode);
 
       }
 

@@ -2345,6 +2345,12 @@
     <ClInclude Include="primitive\collection\set_element.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
+    <ClInclude Include="user\os_theme_colors.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\os_colors.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\application_bias.cpp">
@@ -3453,6 +3459,12 @@
     </ClCompile>
     <ClCompile Include="primitive\promise\handler.cpp">
       <Filter>Source Files\primitive\promise</Filter>
+    </ClCompile>
+    <ClCompile Include="user\os_theme_colors.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive\estatus.cpp">
+      <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

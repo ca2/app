@@ -1441,6 +1441,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="primitive\geometry2d\shape.cpp" />
     <ClCompile Include="primitive\primitive\block.cpp" />
     <ClCompile Include="primitive\primitive\context_object.cpp" />
+    <ClCompile Include="primitive\primitive\estatus.cpp" />
     <ClCompile Include="primitive\primitive\matter.cpp" />
     <ClCompile Include="primitive\primitive\element_array.cpp" />
     <ClCompile Include="primitive\primitive\layered.cpp" />
@@ -1461,6 +1462,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="process\pipe.cpp" />
     <ClCompile Include="process\_.cpp" />
     <ClCompile Include="user\os_colors.cpp" />
+    <ClCompile Include="user\os_theme_colors.cpp" />
     <ClCompile Include="_.cpp" />
     <ClCompile Include="__matter_ca2.cpp" />
     <ClInclude Include="astr.h" />
@@ -1847,6 +1849,8 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="process\pipe.h" />
     <ClInclude Include="process\_.h" />
     <ClInclude Include="update.h" />
+    <ClInclude Include="user\os_colors.h" />
+    <ClInclude Include="user\os_theme_colors.h" />
     <ClInclude Include="user\_.h" />
     <ClInclude Include="user\_const.h" />
     <ClInclude Include="user\_const_key.h" />

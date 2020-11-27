@@ -355,7 +355,7 @@ CLASS_DECL_ACME int_bool is_window(oswindow oswindow)
 ////}
 //
 //
-CLASS_DECL_ACME string message_box_result_to_string(int iResult);
+CLASS_DECL_ACME string message_box_result_to_string(enum_dialog_result edialogresult);
 //
 //
 
@@ -371,9 +371,11 @@ CLASS_DECL_ACME ::estatus _os_message_box(oswindow oswindow, const char* pszMess
 
    strTitle.replace_ci("<br>", "\n");
 
-   ::i32 iResult = ::MessageBoxW(oswindow, wstring(strMessage), wstring(strTitle), emessagebox);
+   int iResult = ::MessageBoxW(oswindow, wstring(strMessage), wstring(strTitle), emessagebox);
 
-   string strResult = message_box_result_to_string(iResult);
+   enum_dialog_result edialogresult = (enum_dialog_result) iResult;
+
+   string strResult = message_box_result_to_string(edialogresult);
 
    process(strResult);
 

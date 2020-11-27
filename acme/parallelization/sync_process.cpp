@@ -3,7 +3,7 @@
 
 
 //sync_future::sync_future() :
-//   future(__future([this](const payload& payload)
+//   future(__process([this](const payload& payload)
 //      {
 //
 //         m_var = payload;

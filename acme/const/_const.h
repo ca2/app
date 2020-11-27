@@ -672,9 +672,9 @@ enum enum_method
 enum enum_future
 {
 
-   e_future_finish,
-   e_future_dialog_result,
-   e_future_complete,
+   e_process_finish,
+   e_process_dialog_result,
+   e_process_complete,
 
 };
 

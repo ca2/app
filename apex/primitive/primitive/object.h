@@ -116,7 +116,7 @@ public:
    //void add_method(const ::id& id, const ::method& method);
 
 
-   //void add_future(const ::id& id, const ::future& future);
+   //void add_process(const ::id& id, const ::future& future);
 
 
    //template < typename METHOD >
@@ -128,7 +128,7 @@ public:
    //}
 
    //template < typename FUTURE >
-   //inline void add_future(const ::id & id, const ::future & future, ::matter * pobjectHold = nullptr)
+   //inline void add_process(const ::id & id, const ::future & future, ::matter * pobjectHold = nullptr)
    //{
 
    //   add(::future(id, future, pobjectHold));

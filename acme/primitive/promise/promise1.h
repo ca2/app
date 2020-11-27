@@ -28,7 +28,7 @@
 //};
 
 //template < typename TYPE, typename PRED >
-//inline __pointer(::count_runnable) __future(const TYPE & t, PRED pred)
+//inline __pointer(::count_runnable) __process(const TYPE & t, PRED pred)
 //{
 //
 //   return __new(future_pred < TYPE, PRED >(t, pred));

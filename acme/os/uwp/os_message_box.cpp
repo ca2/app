@@ -58,7 +58,7 @@ public:
    void then(PRED pred)
    {
 
-      m_future = __future(pred);
+      m_future = __process(pred);
 
    }
 

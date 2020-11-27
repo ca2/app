@@ -1966,7 +1966,7 @@ template < typename PRED >
 inline void add_process(::promise::process_array & futurevara, PRED pred)
 {
 
-   futurevara.add(__future(pred));
+   futurevara.add(__process(pred));
    
 }
 

@@ -43,7 +43,7 @@ typedef struct _COLORMAP {
 /*
  
 WINCOMMCTRLAPI oswindow WINAPI CreateToolbarEx(oswindow hwnd,::u32 ws,::u32 wID,int nBitmaps,
-   HINSTANCE hBMInst,::u32_PTR wBMID,LPCTBBUTTON lpButtons,
+   HINSTANCE hBMInst,UINT_PTR wBMID,LPCTBBUTTON lpButtons,
    int iNumButtons,int dxButton,int dyButton,
    int dxBitmap,int dyBitmap,::u32 uStructSize);
 
@@ -172,7 +172,7 @@ typedef struct _NMTBCUSTOMDRAW {
 #ifdef _WIN32
 typedef struct tagTBADDBITMAP {
    HINSTANCE       hInst;
-   ::u32_PTR        nID;
+   UINT_PTR        nID;
 } TBADDBITMAP,*LPTBADDBITMAP;
 
 #define HINST_COMMCTRL          ((HINSTANCE)-1)
@@ -350,9 +350,9 @@ typedef struct {
 
 typedef struct {
    HINSTANCE       hInstOld;
-   ::u32_PTR        nIDOld;
+   UINT_PTR        nIDOld;
    HINSTANCE       hInstNew;
-   ::u32_PTR        nIDNew;
+   UINT_PTR        nIDNew;
    int             nButtons;
 } TBREPLACEBITMAP,*LPTBREPLACEBITMAP;
 
@@ -1069,7 +1069,7 @@ typedef struct tagTOOLINFOA {
    ::u32 cbSize;
    ::u32 uFlags;
    oswindow hwnd;
-   ::u32_PTR uId;
+   UINT_PTR uId;
    RECT32 rect;
    HINSTANCE hinst;
    char * lpszText;
@@ -1083,7 +1083,7 @@ typedef struct tagTOOLINFOW {
    ::u32 cbSize;
    ::u32 uFlags;
    oswindow hwnd;
-   ::u32_PTR uId;
+   UINT_PTR uId;
    RECT32 rect;
    HINSTANCE hinst;
    LPWSTR lpszText;
@@ -1430,7 +1430,7 @@ typedef struct tagNMTTDISPINFOW {
 #ifndef NOMENUHELP
 
 //WINCOMMCTRLAPI void WINAPI MenuHelp(::u32 uMsg,WPARAM wParam,LPARAM lParam,HMENU hMainMenu,HINSTANCE hInst,oswindow hwndStatus,_In_reads_(_Inexpressible_(2 + 2n && n >= 1)) ::u32 *lpwIDs);
-//WINCOMMCTRLAPI int_bool WINAPI ShowHideMenuCtl(_In_ oswindow hWnd,_In_ ::u32_PTR uFlags,_In_z_ LPINT lpInfo);
+//WINCOMMCTRLAPI int_bool WINAPI ShowHideMenuCtl(_In_ oswindow hWnd,_In_ UINT_PTR uFlags,_In_z_ LPINT lpInfo);
 //WINCOMMCTRLAPI void WINAPI GetEffectiveClientRect(_In_ oswindow hWnd,_Out_ LPRECT32 lprc,_In_z_ const ::i32 *lpInfo);
 
 #define MINSYSCOMMAND   SC_SIZE

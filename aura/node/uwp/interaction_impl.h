@@ -275,7 +275,7 @@ namespace uwp
 
 
       // Timer Functions
-      virtual bool SetTimer(::u32_PTR uEvent, ::u32 nElapse, PFN_TIMER pfnTimer);
+      virtual bool SetTimer(UINT_PTR uEvent, ::u32 nElapse, PFN_TIMER pfnTimer);
       virtual bool KillTimer(uptr uEvent);
 
       // Window State Functions

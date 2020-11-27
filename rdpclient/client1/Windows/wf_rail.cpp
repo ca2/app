@@ -503,7 +503,7 @@ static void PrintRailIconInfo(WINDOW_ORDER_INFO* orderInfo, ICON_INFO* iconInfo)
 //
 //		SetWindowLongPtr(railWindow->hWnd, GWLP_USERDATA, (LONG_PTR) railWindow);
 //
-//		HashTable_Add(wfc->railWindows, (void*) (::u32_PTR) orderInfo->windowId, (void*) railWindow);
+//		HashTable_Add(wfc->railWindows, (void*) (UINT_PTR) orderInfo->windowId, (void*) railWindow);
 //
 //		free(titleW);
 //
@@ -514,7 +514,7 @@ static void PrintRailIconInfo(WINDOW_ORDER_INFO* orderInfo, ICON_INFO* iconInfo)
 //	else
 //	{
 //		railWindow = (wfRailWindow*) HashTable_GetItemValue(wfc->railWindows,
-//			(void*) (::u32_PTR) orderInfo->windowId);
+//			(void*) (UINT_PTR) orderInfo->windowId);
 //	}
 //
 //	if (!railWindow)
@@ -655,12 +655,12 @@ static BOOL wf_rail_window_delete(rdpContext* context, WINDOW_ORDER_INFO* orderI
 	WLog_DBG(TAG, "RailWindowDelete");
 
 	railWindow = (wfRailWindow*) HashTable_GetItemValue(wfc->railWindows,
-			(void*) (::u32_PTR) orderInfo->windowId);
+			(void*) (UINT_PTR) orderInfo->windowId);
 
 	if (!railWindow)
 		return TRUE;
 
-	HashTable_Remove(wfc->railWindows, (void*) (::u32_PTR) orderInfo->windowId);
+	HashTable_Remove(wfc->railWindows, (void*) (UINT_PTR) orderInfo->windowId);
 
 	DestroyWindow(railWindow->hWnd);
 
@@ -688,7 +688,7 @@ static BOOL wf_rail_window_icon(rdpContext* context, WINDOW_ORDER_INFO* orderInf
 	PrintRailIconInfo(orderInfo, windowIcon->iconInfo);
 
 	railWindow = (wfRailWindow*) HashTable_GetItemValue(wfc->railWindows,
-			(void*) (::u32_PTR) orderInfo->windowId);
+			(void*) (UINT_PTR) orderInfo->windowId);
 
 	if (!railWindow)
 		return TRUE;

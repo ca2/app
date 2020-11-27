@@ -110,7 +110,7 @@ typedef ::u64 DECLSPEC_ALIGN(8) DWORD64, *PDWORD64;
 
 typedef /* [public] */ signed __int3264   INT_PTR, *PINT_PTR;
 typedef /* [public] */ signed __int3264   LONG_PTR, *PLONG_PTR;
-typedef /* [public] */ unsigned __int3264 ::u32_PTR, *P::u32_PTR;
+typedef /* [public] */ unsigned __int3264 UINT_PTR, *PUINT_PTR;
 typedef /* [public] */ unsigned __int3264 ULONG_PTR, *PULONG_PTR;
 typedef ULONG_PTR                   DWORD_PTR, *PDWORD_PTR;
 
@@ -120,7 +120,7 @@ typedef ULONG_PTR                   DWORD_PTR, *PDWORD_PTR;
 
 typedef signed ::i64   INT_PTR, *PINT_PTR;
 typedef signed ::i64   LONG_PTR, *PLONG_PTR;
-typedef ::u64 ::u32_PTR, *P::u32_PTR;
+typedef ::u64 UINT_PTR, *PUINT_PTR;
 typedef ::u64 ULONG_PTR, *PULONG_PTR;
 typedef ULONG_PTR        DWORD_PTR, *PDWORD_PTR;
 
@@ -132,7 +132,7 @@ typedef ULONG_PTR        DWORD_PTR, *PDWORD_PTR;
 #ifndef _UWP
 
 typedef int             INT_PTR, *PINT_PTR;
-typedef unsigned int    ::u32_PTR, *P::u32_PTR;
+typedef unsigned int    UINT_PTR, *PUINT_PTR;
 typedef int             LONG_PTR, *PLONG_PTR;
 typedef unsigned int    ULONG_PTR, *PULONG_PTR;
 typedef ULONG_PTR       DWORD_PTR, *PDWORD_PTR;
@@ -192,9 +192,9 @@ inline LONG_PTR PtrToLong(const void *p)
     return (LONG_PTR)p;
 }
 
-inline ::u32_PTR PtrTo::u32(const void *p)
+inline UINT_PTR PtrTo::u32(const void *p)
 {
-    return (::u32_PTR)p;
+    return (UINT_PTR)p;
 }
 
 inline INT_PTR PtrToInt(const void *p)
@@ -219,7 +219,7 @@ inline void *IntToPtr(INT32 i)
 
 inline void *::u32ToPtr(::u32 u)
 {
-    return (void *)(::u32_PTR)u;
+    return (void *)(UINT_PTR)u;
 }
 
 inline void *LongToPtr(LONG32 l)
@@ -242,12 +242,12 @@ inline void *ULongToPtr(ULONG32 ul)
 #define LongToHandle(l)         ((HANDLE)(LONG_PTR)(l))
 #define PtrToUlong(p)           ((WINULONG)(ULONG_PTR)(p))
 #define PtrToLong(p)            ((::i32)(LONG_PTR)(p))
-#define PtrTo::u32(p)            ((::u32)(::u32_PTR)(p))
+#define PtrTo::u32(p)            ((::u32)(UINT_PTR)(p))
 #define PtrToInt(p)             ((::i32)(INT_PTR)(p))
 #define PtrToUshort(p)          ((WINUSHORT)(ULONG_PTR)(p))
 #define PtrToShort(p)           ((SHORT)(LONG_PTR)(p))
 #define IntToPtr(i)             ((void *)(INT_PTR)((::i32)i))
-#define ::u32ToPtr(u)           ((void *)(::u32_PTR)((::u32)u))
+#define ::u32ToPtr(u)           ((void *)(UINT_PTR)((::u32)u))
 #define LongToPtr(l)            ((void *)(LONG_PTR)((::i32)l))
 #define ULongToPtr(ul)          ((void *)(ULONG_PTR)((WINULONG)ul))
 
@@ -277,12 +277,12 @@ typedef unsigned short UHALF_PTR, *PUHALF_PTR;
 #define LongToHandle(l)         ((HANDLE)(LONG_PTR)(l))
 #define PtrToUlong(p)           ((WINULONG)(ULONG_PTR)(p))
 #define PtrToLong(p)            ((::i32)(LONG_PTR)(p))
-#define PtrTo::u32(p)            ((::u32)(::u32_PTR)(p))
+#define PtrTo::u32(p)            ((::u32)(UINT_PTR)(p))
 #define PtrToInt(p)             ((::i32)(INT_PTR)(p))
 #define PtrToUshort(p)          ((WINUSHORT)(ULONG_PTR)(p))
 #define PtrToShort(p)           ((SHORT)(LONG_PTR)(p))
 #define IntToPtr(i)             ((void *)(INT_PTR)((::i32)i))
-#define ::u32ToPtr(u)           ((void *)(::u32_PTR)((::u32)u))
+#define ::u32ToPtr(u)           ((void *)(UINT_PTR)((::u32)u))
 #define LongToPtr(l)            ((void *)(LONG_PTR)((::i32)l))
 #define ULongToPtr(ul)          ((void *)(ULONG_PTR)((WINULONG)ul))
 #endif

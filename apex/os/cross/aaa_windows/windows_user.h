@@ -1247,7 +1247,7 @@ oswindow hWnd);
 //typedef struct tagNMHDR
 //{
 //   oswindow      hwndFrom;
-//   ::u32_PTR  idFrom;
+//   UINT_PTR  idFrom;
 //   ::u32      code;         // NM_ code
 //}   NMHDR;
 //

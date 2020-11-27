@@ -225,10 +225,10 @@ public:
 
       double dComplement = 1.0 - dRate;
 
-      m_iR = m_iR * dComplement + color.m_iR * dRate;
-      m_iG = m_iG * dComplement + color.m_iG * dRate;
-      m_iB = m_iB * dComplement + color.m_iB * dRate;
-      m_iA = m_iA * dComplement + color.m_iA * dRate;
+      m_iR = (int) (m_iR * dComplement + color.m_iR * dRate);
+      m_iG = (int) (m_iG * dComplement + color.m_iG * dRate);
+      m_iB = (int) (m_iB * dComplement + color.m_iB * dRate);
+      m_iA = (int) (m_iA * dComplement + color.m_iA * dRate);
 
    }
 

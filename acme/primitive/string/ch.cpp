@@ -27,7 +27,7 @@ const char g_trailingBytesForUTF8[256] =
 CLASS_DECL_ACME int trailingBytesForUTF8(char ch)
 {
 
-    return g_trailingBytesForUTF8[ch];
+    return g_trailingBytesForUTF8[*(byte*) &ch];
 
 }
 

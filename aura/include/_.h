@@ -1715,7 +1715,7 @@ class form_document;
 //template < typename T >
 //inline int type_is_null(const T * p)
 //{
-//   return (((::u32_PTR)(void *)p) < max(4096, sizeof(T)));
+//   return (((UINT_PTR)(void *)p) < max(4096, sizeof(T)));
 //}
 //
 //

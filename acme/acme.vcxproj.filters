@@ -2039,9 +2039,6 @@
     <ClInclude Include="const\future.h">
       <Filter>Header Files\const</Filter>
     </ClInclude>
-    <ClInclude Include="const\method.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\primitive\future.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
@@ -2350,6 +2347,9 @@
     </ClInclude>
     <ClInclude Include="user\os_colors.h">
       <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="const\routine.h">
+      <Filter>Header Files\const</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

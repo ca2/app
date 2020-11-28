@@ -12,7 +12,6 @@ namespace aura
    public:
 
 
-      void*                               m_thisa[16];
       __reference(::user::interaction)    m_pinteraction;
 
 

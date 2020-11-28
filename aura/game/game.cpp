@@ -8,7 +8,7 @@ namespace aura
    game::game()
    {
 
-
+      m_thisa[0] = this;
    }
 
 

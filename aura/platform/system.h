@@ -27,7 +27,7 @@ namespace aura
 
       // string_map < string_map < PFN_factory_exchange > > m_mapFactoryExchange;
 
-      __composite(::aura::estamira)                      m_pestamira;
+//      __composite(::aura::estamira)                      m_pestamira;
 
       ::type                                             m_typePaneTabView;
 #ifdef APPLE_IOS

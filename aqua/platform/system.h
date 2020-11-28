@@ -15,6 +15,8 @@ namespace aqua
 
       __composite(::aqua::multimedia)                    m_pmultimedia;
 
+      __composite(::aqua::estamira)                      m_pestamira;
+
 
       system();
       virtual ~system();

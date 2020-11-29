@@ -627,6 +627,7 @@
     <ClInclude Include="net\netserver\socket_handler.h" />
     <ClInclude Include="net\netserver\socket_thread.h" />
     <ClInclude Include="net\netserver\_.h" />
+    <ClInclude Include="net\netserver\_netserver.h" />
     <ClInclude Include="net\sockets\bsd\smtp\smtpd_socket.h" />
     <ClInclude Include="net\sockets\bsd\smtp\smtp_socket.h" />
     <ClInclude Include="net\sockets\_sockets.h" />

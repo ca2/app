@@ -22,6 +22,7 @@ public:
 
    secs & operator = (const secs & secs) { m_iSeconds = secs.m_iSeconds; return *this; }
 
+   void sleep() const;
 
 };
 

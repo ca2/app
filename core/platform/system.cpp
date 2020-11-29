@@ -38,6 +38,7 @@ namespace core
 
       create_factory < ::core::application, ::apex::application >();
       create_factory < ::core::session, ::apex::session >();
+      create_factory < ::core::idpool, ::apex::idpool >();
       create_factory < ::core::user, ::user::user >();
       create_factory < ::core::idpool, ::apex::idpool >();
 

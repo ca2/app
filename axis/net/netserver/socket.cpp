@@ -1,5 +1,5 @@
 ﻿#include "framework.h"
-#include "_.h"
+#include "_netserver.h"
 #include "axis/id.h"
 
 
@@ -39,6 +39,8 @@ namespace netserver
       i32 iStatusCode;
 
       string strStatus;
+
+      auto code123 = ::__spin_namespace::idpool::g_pthis->http_status_code;
 
       if (outattr(__id(http_status_code)).is_new() || outattr(__id(http_status)).is_new())
       {

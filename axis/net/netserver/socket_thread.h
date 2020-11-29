@@ -5,7 +5,7 @@ namespace netserver
 {
 
 
-   class CLASS_DECL_AXIS socket_thread :
+   class CLASS_DECL_AXIS socket_thread_base :
       virtual public ::thread
    {
    public:
@@ -24,8 +24,8 @@ namespace netserver
       __pointer(::sockets::listen_socket_base)     m_plistensocket;
 
 
-      socket_thread();
-      virtual ~socket_thread();
+      socket_thread_base();
+      virtual ~socket_thread_base();
 
 
       virtual ::estatus     run() override;
@@ -39,6 +39,25 @@ namespace netserver
 
 
    };
+
+
+   template < typename SOCKET >
+   class socket_thread :
+      virtual public socket_thread_base
+   {
+   public:
+
+
+      virtual ::sockets::listen_socket_base * new_listen_socket() override
+      {
+
+         return new ::sockets::listen_socket < SOCKET >(*m_psockethandler);
+
+      }
+
+
+   };
+
 
 
 } // namespace netserver

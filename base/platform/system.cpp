@@ -3,6 +3,7 @@
 #include "base/user/user/_user.h"
 #endif
 #include "apex/platform/static_setup.h"
+#include "base/const/idpool.h"
 
 
 void __node_base_factory_exchange();
@@ -101,6 +102,7 @@ namespace base
 
       create_factory < ::base::session, ::apex::session >();
       create_factory < ::base::application, ::apex::application >();
+      create_factory < ::base::idpool, ::apex::idpool >();
       create_factory < ::base::user, ::user::user >();
 
    }

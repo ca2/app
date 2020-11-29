@@ -44,7 +44,7 @@ namespace console
 
 
    class CLASS_DECL_ACME console:
-      virtual public ::matter
+      virtual public ::context_object
    {
    public:
 
@@ -52,6 +52,10 @@ namespace console
 
       ::string_stream   cout;
       int m_iTextColor;
+
+
+      console();
+      virtual ~console();
 
 
       virtual void redirect_io();
@@ -78,6 +82,7 @@ namespace console
 
 
       console_composite();
+      virtual ~console_composite();
 
 
       virtual void set_console(console* pconsole);

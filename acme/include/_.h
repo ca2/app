@@ -2642,6 +2642,7 @@ using wparam = c_number<WPARAM>;
 
 //#include "acme/primitive/string/_.h"
 
+class filetime;
 
 #include "acme/primitive/datetime/date_span.h"
 #include "acme/primitive/datetime/time_span.h"

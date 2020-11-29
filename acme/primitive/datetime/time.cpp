@@ -142,8 +142,29 @@ namespace datetime
    time::time(const SYSTEMTIME& sysTime, i32 nDST)
    {
 
-      __throw(todo("datetime"));
-      //m_time = ::datetime::department::s_gmt_mktime(sysTime.wHour, sysTime.wMinute, sysTime.wSecond, sysTime.wMonth, sysTime.wDay, sysTime.wYear);
+      if (sysTime.wYear < 1900)
+      {
+
+         __throw(::exception::exception("invalid datetime::time"));
+
+      }
+
+      struct tm tm;
+      tm.tm_sec = sysTime.wSecond;
+      tm.tm_min = sysTime.wMinute;
+      tm.tm_hour = sysTime.wHour;
+
+      tm.tm_wday = sysTime.wDayOfWeek;
+      tm.tm_mday = sysTime.wDay;
+      tm.tm_mon = sysTime.wMonth-1;
+      tm.tm_year = sysTime.wYear - 1900;
+      tm.tm_isdst = nDST;
+
+#ifdef WINDOWS
+
+      //__throw(todo("datetime"));
+      m_time = _mkgmtime(&tm);
+#endif
 
 //      tm tm;
   //    GetGmtTm(&tm);
@@ -196,6 +217,33 @@ namespace datetime
 
 #endif
 
+#define INTEL 1
+   time::time(const filetime & filetime)
+#ifdef WINDOWS_DESKTOP && INTEL
+      : time(*(FILETIME*)&filetime)
+#endif
+   {
+
+#ifndef WINDOWS_DESKTOP
+
+      //// then convert that time to system time
+      SYSTEMTIME systemtime;
+      if (!FileTimeToSystemTime(&filetime, &systemtime))
+      {
+         m_time = 0;
+         __throw(invalid_argument_exception());
+         return;
+      }
+
+      m_time = mkgmtime(sysTime.wHour, sysTime.wMinute, sysTime.wSecond, sysTime.wMonth, sysTime.wDay, sysTime.wYear);
+
+
+#endif
+
+   }
+
+
+
 
    ::datetime::time & time::operator=(const time & time) noexcept
    {
@@ -206,6 +254,7 @@ namespace datetime
 
    }
 
+   
 
    ::datetime::time & time::operator+=( time_span span ) noexcept
    {

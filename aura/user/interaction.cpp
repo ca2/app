@@ -11596,7 +11596,14 @@ restart:
 
       auto puiptraChild = m_puiptraChild;
 
-      return puiptraChild->rget_child(pinteraction);
+      if (!puiptraChild)
+      {
+
+         return false;
+
+      }
+
+         return puiptraChild->rget_child(pinteraction);
 
    }
 

@@ -33,6 +33,7 @@ inline __pointer(TYPE) __create_new();
 
 template < typename TYPE >
 inline __pointer(TYPE) __create_new(const TYPE & t);
+template < typename TYPE > inline TYPE *& __defer_new(TYPE *& p) { if(!p) p= new TYPE; return p; }
 
 // template < typename OBJECT, typename BASE_TYPE >
 // inline ::estatus __compose(OBJECT && pobject, __composite(BASE_TYPE) & pownership);

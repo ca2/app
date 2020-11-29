@@ -203,7 +203,7 @@ bool memory_base::allocate_internal(memsize dwNewLength)
       if (!m_memory.m_bOwn)
       {
 
-         ::memcpy_dup(pb, m_memory.m_pbStorage, min(m_memory.m_iSize, dwAllocation));
+         ::memcpy_dup(pb, m_memory.m_pbStorage, (memsize) min(m_memory.m_iSize, dwAllocation));
 
 
       }

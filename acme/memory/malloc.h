@@ -233,7 +233,9 @@ namespace acme
       void free()
       {
 
-         ::acme::free(m_p);
+         ::memory_free(m_p);
+
+         m_p = nullptr;
 
          m_iSize = -1;
 

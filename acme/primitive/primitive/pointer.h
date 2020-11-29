@@ -39,7 +39,7 @@ public:
 
    using TYPE = T;
 
-   using RAW____pointer = TYPE *;
+   using RAW_POINTER = TYPE *;
 
    T * m_p;
 
@@ -54,19 +54,15 @@ public:
 
 
    inline ___pointer(enum_create_new) :
-      m_p(nullptr)
+      m_p(new T)
    {
-
-      create_new();
 
    }
 
 
    inline ___pointer(enum_create_new, ::layered * pobject) :
-      m_p(nullptr)
+      m_p(new T)
    {
-
-      create_new();
 
       m_p->initialize(pobject);
 

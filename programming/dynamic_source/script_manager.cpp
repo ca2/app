@@ -947,9 +947,9 @@ namespace dynamic_source
 
       ::file::path path;
 
-      path = psubject->m_pathFolder;
+      path = paction->m_pathFolder;
 
-      path /= psubject->m_pathFile;
+      path /= paction->m_pathFile;
 
       if (path.contains_ci("\\.git\\") || path.contains_ci("/.git/"))
       {

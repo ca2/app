@@ -75,6 +75,16 @@ void matter::add_ref_history(matter* p, const char* pszObjRefDbg)
       try
       {
 
+         string strType = type_name();
+
+         if (strType == "pacman::game")
+         {
+
+            output_debug_string("pacman::game");
+
+         }
+
+
          if (m_pobjrefdbg == nullptr)
          {
 
@@ -91,9 +101,13 @@ void matter::add_ref_history(matter* p, const char* pszObjRefDbg)
 
          }
 
-         string strType = type_name();
+         if (strType == "pacman::game")
+         {
 
-         if (strType.contains_ci("session"))
+            output_debug_string("pacman::game");
+
+         }
+         else if (strType.contains_ci("session"))
          {
 
             if (m_pobjrefdbg->m_iStep == 39)

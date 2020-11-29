@@ -1332,6 +1332,8 @@ CLASS_DECL_ACME void release_on_end(::matter* pmatter)
 
    cslock l(::acme::g_pcsGlobal);
 
+   __defer_new(::acme::g_pelementaddraReleaseOnEnd);
+
    ::acme::g_pelementaddraReleaseOnEnd->add(pmatter);
 
 }

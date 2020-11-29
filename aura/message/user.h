@@ -88,7 +88,16 @@ namespace message
       {
 
          return m_eactivate == e_activate_active || m_eactivate == e_activate_click_active;
+
       }
+
+      inline bool inactive() const
+      {
+
+         return m_eactivate == e_activate_inactive;
+
+      }
+
 
    };
 

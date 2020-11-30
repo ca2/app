@@ -604,6 +604,13 @@ namespace crypto
       int iKeyLen = EVP_CIPHER_key_length(EVP_aes_256_ecb());
       memsize iShaLen = memSha1.get_size();
 
+      if (iShaLen <= 0)
+      {
+
+         return false;
+
+      }
+
       EVP_DecryptInit(pctx, EVP_aes_256_ecb(), memSha1.get_data(), iv.get_data());
 
       plainlen = (i32)storageEncrypt.get_size() + EVP_CIPHER_CTX_block_size(pctx);

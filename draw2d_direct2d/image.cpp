@@ -197,7 +197,7 @@ namespace draw2d_direct2d
 
       }
 
-      from(pgraphicsParam);
+      copy(pgraphicsParam->m_pimage);
 
       return true;
 
@@ -223,52 +223,52 @@ namespace draw2d_direct2d
    }
 
 
-   bool image::to(::draw2d::graphics* pgraphics, const ::point & point, const ::size & size, const ::point & pointSrc)
-   {
+   //bool image::draw(::draw2d::graphics* pgraphics, const ::point & point, const ::size & size, const ::point & pointSrc)
+   //{
 
-      return pgraphics->BitBlt(point.x, point.y, size.cx, size.cy, get_graphics(), pointSrc.x, pointSrc.y) != FALSE;
+   //   return pgraphics->BitBlt(point.x, point.y, size.cx, size.cy, get_graphics(), pointSrc.x, pointSrc.y) != FALSE;
 
-   }
-
-
-   bool image::from(::draw2d::graphics* pgraphics)
-   {
-
-      bool bOk = false;
-
-      ::draw2d::bitmap_pointer bitmap;
-
-      bitmap->CreateCompatibleBitmap(pgraphics, 1, 1);
-
-      ::size size = bitmap->get_size();
-
-      if (!create(size))
-      {
-
-         return false;
-
-      }
-
-      auto estatus = pgraphics->set(bitmap);
-
-      if (!estatus)
-      {
-
-         return false;
-
-      }
-
-      return bOk;
-
-   }
+   //}
 
 
-   bool image::from(const ::point & pointDest, ::draw2d::graphics* pgraphics, const ::point & point, const ::size & sz)
-   {
+   //bool image::from(::draw2d::graphics* pgraphics)
+   //{
 
-      return m_pgraphics->BitBlt(pointDest.x, pointDest.y, sz.cx, sz.cy, pgraphics, point.x, point.y) != FALSE;
+   //   bool bOk = false;
 
-   }
+   //   ::draw2d::bitmap_pointer bitmap;
+
+   //   bitmap->CreateCompatibleBitmap(pgraphics, 1, 1);
+
+   //   ::size size = bitmap->get_size();
+
+   //   if (!create(size))
+   //   {
+
+   //      return false;
+
+   //   }
+
+   //   auto estatus = pgraphics->set(bitmap);
+
+   //   if (!estatus)
+   //   {
+
+   //      return false;
+
+   //   }
+
+   //   return bOk;
+
+   //}
+
+
+   //bool image::from(const ::point & pointDest, ::draw2d::graphics* pgraphics, const ::point & point, const ::size & sz)
+   //{
+
+   //   return m_pgraphics->BitBlt(pointDest.x, pointDest.y, sz.cx, sz.cy, pgraphics, point.x, point.y) != FALSE;
+
+   //}
 
 
    ::estatus image::SetIconMask(::draw2d::icon * picon, int cx, int cy)
@@ -298,13 +298,9 @@ namespace draw2d_direct2d
 
 #ifdef WINDOWS_DESKTOP
 
-      pimage1->g()->DrawIcon(
-      0, 0,
-      picon,
-      cx, cy,
-      0,
-      nullptr,
-      DI_IMAGE | DI_MASK);
+      pimage1->g()->draw(
+      ::size(cx, cy),
+      picon);
 
 #else
 
@@ -318,13 +314,7 @@ namespace draw2d_direct2d
       pimage2->fill(0, 0, 0, 0);
 
 #ifdef WINDOWS_DESKTOP
-      pimage2->get_graphics()->DrawIcon(
-      0, 0,
-      picon,
-      cx, cy,
-      0,
-      nullptr,
-      DI_IMAGE | DI_MASK);
+      pimage2->get_graphics()->draw(::size(cx, cy),picon);
 #else
       pimage2->get_graphics()->DrawIcon(
       0, 0,
@@ -338,14 +328,7 @@ namespace draw2d_direct2d
       // Mask image
       auto pimageM = create_image({cx,  cy});
 
-      pimageM->g()->DrawIcon(
-      0, 0,
-      picon,
-      cx, cy,
-      0,
-      nullptr,
-      0);
-      //         DI_MASK);
+      pimageM->g()->draw(::size(cx, cy), picon);
 
       byte * r1 = (byte*) pimage1->colorref();
       byte * r2 = (byte*) pimage2->colorref();
@@ -966,8 +949,14 @@ namespace draw2d_direct2d
    //   }
    //}
 
+  bool image::draw(const ::rect & rectDst, ::image * pimage, const ::point & pointSrc)
+   {
 
-   bool image::stretch_image(::image * pimage)
+      return ::image::draw(rectDst, pimage, pointSrc);
+
+   }
+
+   bool image::stretch(const ::image * pimage)
    {
 
       pimage->unmap();

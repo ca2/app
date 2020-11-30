@@ -723,10 +723,17 @@ namespace apex
    }
 
 
-   ::matter* library::new_object(::layered * pobjectContext, const char* pszClassId)
+   ::matter* library::new_object(::layered * pobjectContext, const char * pszClassId)
    {
 
-      return nullptr;
+      if (!m_pca2library)
+      {
+
+         return nullptr;
+
+      }
+
+      return m_pca2library->new_object(pobjectContext, pszClassId);
 
    }
 

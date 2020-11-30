@@ -57,7 +57,7 @@
 
 
 template < typename PRED >
-class pred_procedure :
+class pred_routine :
    virtual public ::matter
 {
 public:
@@ -66,8 +66,8 @@ public:
    PRED m_pred;
 
 
-   pred_procedure(PRED pred) : m_pred(pred) { }
-   virtual ~pred_procedure() {}
+   pred_routine(PRED pred) : m_pred(pred) { }
+   virtual ~pred_routine() {}
    //method(const ::matter_pointer & pmatter) : matter_pointer(pmatter) { }
    //method(const ::method & method) : matter_pointer(method) { }
 
@@ -99,7 +99,7 @@ template < typename PRED >
 ::promise::routine __routine(PRED pred)
 {
 
-   return __new(pred_procedure<PRED>(pred));
+   return __new(pred_routine<PRED>(pred));
 
 }
 

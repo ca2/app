@@ -40,9 +40,10 @@ namespace datetime
 
       time() noexcept;
       inline time(e_now) noexcept { m_time = now().m_time; }
+      time(const time & time);
       time(time_t time) noexcept;
       time(i32 nYear, i32 nMonth, i32 nDay, i32 nHour, i32 nMin, i32 nSec, i32 nDST = -1);
-
+      time(const filetime & ft);
 #ifdef WINDOWS
       time(::u16 wDosDate, ::u16 wDosTime, i32 nDST = -1);
       time(const SYSTEMTIME& st, i32 nDST = -1);
@@ -220,11 +221,17 @@ inline time::time() noexcept :
    m_time(0)
    {
    }
+inline time::time(const time & time) :
+   m_time(time.m_time)
+{
+
+}
 
 inline time::time(time_t time)  noexcept :
    m_time(time)
    {
    }
+
 
 
 } // namespace datetime

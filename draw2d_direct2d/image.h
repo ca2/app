@@ -35,7 +35,7 @@ namespace draw2d_direct2d
       virtual ::draw2d::bitmap_pointer detach_bitmap();
 
 
-      virtual bool stretch_image(::image * pimage) override;
+      virtual bool stretch(const ::image * pimage) override;
 
       bool dc_select(bool bSelect = true);
 
@@ -50,12 +50,12 @@ namespace draw2d_direct2d
       bool destroy();
 
 
-      using ::image::from;
-      virtual bool from(::draw2d::graphics * pgraphics) override;
-      virtual bool from(const ::point & pointDest, ::draw2d::graphics * pgraphics, const ::point & point, const ::size & sz) override;
+      using ::image::draw;
+      //virtual bool draw(::draw2d::graphics * pgraphics) override;
+      virtual bool draw(const ::rect & rectDst, ::image * pimage, const ::point & pointSrc) override;
 
-      using ::image::to;
-      bool to(::draw2d::graphics * pgraphics, const ::point & point, const ::size & size, const ::point & pointSrc) override;
+      //using ::image::to;
+      //bool to(::draw2d::graphics * pgraphics, const ::point & point, const ::size & size, const ::point & pointSrc) override;
 
       virtual ::estatus SetIconMask(::draw2d::icon * picon, i32 cx, i32 cy) override;
 

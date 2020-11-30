@@ -832,7 +832,7 @@ public:
    STDMETHOD_(ULONG,Release)() override;
 
 private:
-   ::i32 cRefCount_;
+   DWORD cRefCount_;
    FLOAT m_pixelsPerDip;   // Number of pixels per DIP.
    ::u32 m_ref;
 };

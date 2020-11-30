@@ -297,28 +297,28 @@ namespace user
    }
 
 
-   ::estatus primitive_impl::main_async(const promise::routine & routine, e_priority epriority)
-   {
+   //::estatus primitive_impl::main_async(const promise::routine & routine, e_priority epriority)
+   //{
 
-      if (!m_puserinteraction)
-      {
+   //   if (!m_puserinteraction)
+   //   {
 
-         return ::error_failed;
+   //      return ::error_failed;
 
-      }
+   //   }
 
-      auto pwnd = m_puserinteraction->get_wnd();
+   //   auto pwnd = m_puserinteraction->get_wnd();
 
-      if (!pwnd)
-      {
+   //   if (!pwnd)
+   //   {
 
-          return ::error_failed;
+   //       return ::error_failed;
 
-      }
+   //   }
 
-      return pwnd->main_async(routine, epriority);
+   //   return pwnd->post_routine(routine, epriority);
 
-   }
+   //}
 
 
    void primitive_impl::_001OnDraw(::draw2d::graphics_pointer & pgraphics)

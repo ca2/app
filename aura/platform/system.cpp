@@ -9,6 +9,7 @@
 #include "acme/node/windows/registry.h"
 #include "apex/platform/history.h"
 #include "aura/gpu/gpu/_.h"
+#include "aura/const/idpool.h"
 
 
 int GetMainScreenRect(LPRECT32 lprect);
@@ -112,6 +113,7 @@ namespace aura
 
       create_factory < ::aura::session, ::apex::session >();
       create_factory < ::aura::application, ::apex::application >();
+      create_factory < ::aura::idpool, ::apex::idpool >();
 
       m_bMessageThread = true;
 

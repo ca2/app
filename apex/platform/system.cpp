@@ -885,20 +885,20 @@ namespace apex
       strLibrary.ends_eat_ci(".dylib");
       strLibrary.begins_eat_ci("lib");
 
-      __pointer(::apex::library) plibrary = System.m_mapLibrary[strLibrary].get();
+      __composite(::apex::library) & plibrary = System.m_mapLibrary[strLibrary];
 
       bool bLibraryOk = true;
 
       if (plibrary.is_null())
       {
 
-         plibrary = on_get_library(strLibrary);
+         __m_own(&System, plibrary, on_get_library(strLibrary));
 
          if (plibrary.is_null())
 
          {
 
-            plibrary.create();
+            System.__compose(plibrary);
 
             if (!plibrary->open(strLibrary))
             {

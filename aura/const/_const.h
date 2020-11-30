@@ -621,8 +621,8 @@
 //enum enum_procedure
 //{
 //
-//   e_procedure_create,
-//   e_procedure_destroy,
+//   e_routine_create,
+//   e_routine_destroy,
 //
 //};
 //

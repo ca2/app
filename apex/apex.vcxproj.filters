@@ -1475,6 +1475,9 @@
     <ClInclude Include="parallelization\service\pool.h">
       <Filter>Header Files\parallelization\service</Filter>
     </ClInclude>
+    <ClInclude Include="net\sockets\_sockets.h">
+      <Filter>Header Files\net\sockets</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\command_line.cpp">

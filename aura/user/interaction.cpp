@@ -3366,33 +3366,33 @@ namespace user
    }
 
    
-   ::estatus interaction::main_async(const ::promise::routine & routine, e_priority epriority)
-   {
+   //::estatus interaction::main_async(const ::promise::routine & routine, e_priority epriority)
+   //{
 
-      return m_pimpl->main_async(routine, epriority);
+   //   return m_pimpl->main_async(routine, epriority);
 
-   }
+   //}
 
 
-   ::estatus interaction::main_sync(const ::promise::routine & routine, const ::duration & duration, e_priority epriority)
-   {
+   //::estatus interaction::main_sync(const ::promise::routine & routine, const ::duration & duration, e_priority epriority)
+   //{
 
-      auto proutine = ___sync_routine(routine);
+   //   auto proutine = ___sync_routine(routine);
 
-      main_async(proutine, epriority);
+   //   main_async(proutine, epriority);
 
-      auto waitresult = proutine->wait(duration);
+   //   auto waitresult = proutine->wait(duration);
 
-      if (!waitresult.succeeded())
-      {
+   //   if (!waitresult.succeeded())
+   //   {
 
-         return error_timeout;
+   //      return error_timeout;
 
-      }
+   //   }
 
-      return proutine->m_estatus;
+   //   return proutine->m_estatus;
 
-   }
+   //}
 
 
    void interaction::_001OnCreate(::message::message * pmessage)
@@ -11596,7 +11596,14 @@ restart:
 
       auto puiptraChild = m_puiptraChild;
 
-      return puiptraChild->rget_child(pinteraction);
+      if (!puiptraChild)
+      {
+
+         return false;
+
+      }
+
+         return puiptraChild->rget_child(pinteraction);
 
    }
 

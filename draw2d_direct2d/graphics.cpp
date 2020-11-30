@@ -284,14 +284,14 @@ namespace draw2d_direct2d
       //return point;
    }
 
-   int graphics::EnumObjects(int nObjectType, int (CALLBACK* lpfn)(LPVOID, LPARAM), LPARAM lpData)
-   {
-      __throw(todo());
-      //ASSERT(get_handle2() != nullptr);
-      //return ::EnumObjects(get_handle2(), nObjectType, (GOBJENUMPROC)lpfn, lpData);
-   }
+   //int graphics::EnumObjects(int nObjectType, int (CALLBACK* lpfn)(LPVOID, LPARAM), LPARAM lpData)
+   //{
+   //   __throw(todo());
+   //   //ASSERT(get_handle2() != nullptr);
+   //   //return ::EnumObjects(get_handle2(), nObjectType, (GOBJENUMPROC)lpfn, lpData);
+   //}
 
-   bool graphics::BitBltAlphaBlend(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc)
+   bool graphics::draw_blend(const ::rect & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::point & pointSrc)
    {
 
       //return ::draw2d::graphics::BitBltAlphaBlend(x, y, nWidth, nHeight, pgraphicsSrc, xSrc, ySrc);
@@ -404,6 +404,13 @@ namespace draw2d_direct2d
       if (m_pimageAlphaBlend->is_set())
       {
 
+         int x = rectDst.left;
+         int y = rectDst.top;
+         int xSrc = pointSrc.x;
+         int ySrc = pointSrc.y;
+         int nWidth = rectDst.width();
+         int nHeight = rectDst.height();
+
          if (x < 0)
          {
 
@@ -468,12 +475,16 @@ namespace draw2d_direct2d
 
                pimage1->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
 
-               if (!pimage1->from(::point(), pgraphicsSrc, ::point(xSrc, ySrc), rectBlt.size()))
+               if (!pimage1->g()->draw(rectBlt.size(), pgraphicsSrc, ::point(xSrc, ySrc)))
+               {
+
                   return false;
+
+               }
 
                pimage1->blend2(::point(), m_pimageAlphaBlend, point(x - m_pointAlphaBlend.x, y - m_pointAlphaBlend.y), rectBlt.size(), 255);
 
-               BitBltRaw(x, y, nWidth, nHeight, pimage1->get_graphics(), 0, 0);
+               draw_raw(rectDst, pimage1->get_graphics());
 
             }
 
@@ -532,7 +543,7 @@ namespace draw2d_direct2d
 
          pimage2->get_graphics()->fill_rect(rectDib1, ARGB(255, 0, 0, 0));
 
-         if (!pimage2->from(::point(), m_pimageAlphaBlend, __point(point - m_pointAlphaBlend), rectIntersect.size()))
+         if (!pimage2->draw(rectIntersect.size(), m_pimageAlphaBlend, __point(point - m_pointAlphaBlend)))
          {
 
             return false;
@@ -561,7 +572,7 @@ namespace draw2d_direct2d
 
          set_alpha_mode(::draw2d::alpha_mode_blend);
 
-         BitBltRaw((int)x, (int)y, rectText.width(), rectText.height(), pimage1->get_graphics(), 0, 0);
+         draw_raw(::rect({ (int)x, (int)y }, rectText.size()), pimage1->get_graphics());
 
          return true;
 
@@ -1013,31 +1024,31 @@ namespace draw2d_direct2d
    }
 
 
-   bool graphics::DrawIcon(int x, int y, ::draw2d::icon * picon)
-   {
-      __throw(todo());
-      //ASSERT(get_handle1() != nullptr);
+   //bool graphics::DrawIcon(int x, int y, ::draw2d::icon * picon)
+   //{
+   //   __throw(todo());
+   //   //ASSERT(get_handle1() != nullptr);
 
-      //if(picon == nullptr)
-      //   return false;
+   //   //if(picon == nullptr)
+   //   //   return false;
 
-      //return ::DrawIcon(get_handle1(), x, y, picon->m_hicon) != FALSE;
+   //   //return ::DrawIcon(get_handle1(), x, y, picon->m_hicon) != FALSE;
 
-   }
+   //}
 
-   bool graphics::DrawIcon(const ::point & point, ::draw2d::icon * picon)
-   {
-      __throw(todo());
-      //ASSERT(get_handle1() != nullptr);
+   //bool graphics::DrawIcon(const ::point & point, ::draw2d::icon * picon)
+   //{
+   //   __throw(todo());
+   //   //ASSERT(get_handle1() != nullptr);
 
-      //if(picon == nullptr)
-      //   return false;
+   //   //if(picon == nullptr)
+   //   //   return false;
 
-      //return ::DrawIcon(get_handle1(), point.x, point.y, picon->m_hicon) != FALSE;
+   //   //return ::DrawIcon(get_handle1(), point.x, point.y, picon->m_hicon) != FALSE;
 
-   }
+   //}
 
-   bool graphics::DrawIcon(int x, int y, ::draw2d::icon * picon, int cx, int cy, ::u32 istepIfAniCur, HBRUSH hbrFlickerFreeDraw, ::u32 diFlags)
+   bool graphics::draw(const ::rect & rectDst, ::draw2d::icon * picon)
    {
 
 #ifdef _UWP
@@ -1064,12 +1075,12 @@ namespace draw2d_direct2d
          ZeroMemory(&info, sizeof (BITMAPINFO));
 
          info.bmiHeader.biSize          = sizeof (BITMAPINFOHEADER);
-         info.bmiHeader.biWidth         = cx;
-         info.bmiHeader.biHeight        = - cy;
+         info.bmiHeader.biWidth         = rectDst.width();
+         info.bmiHeader.biHeight        = - rectDst.height();
          info.bmiHeader.biPlanes        = 1;
          info.bmiHeader.biBitCount      = 32;
          info.bmiHeader.biCompression   = BI_RGB;
-         info.bmiHeader.biSizeImage     = cx * cy * 4;
+         info.bmiHeader.biSizeImage     = rectDst.area() * 4;
 
          HBITMAP hbitmap = ::CreateDIBSection(nullptr, &info, DIB_RGB_COLORS, (void **) &pcolorref, nullptr, 0);
 
@@ -1077,7 +1088,8 @@ namespace draw2d_direct2d
 
          HBITMAP hbitmapOld = (HBITMAP) ::SelectObject(hdc, hbitmap);
 
-         if(::DrawIconEx(hdc, 0, 0, (HICON) picon->m_picon, cx, cy, istepIfAniCur, nullptr, DI_IMAGE | DI_MASK))
+         int istepIfAniCur = 0;
+         if(::DrawIconEx(hdc, 0, 0, (HICON) picon->m_picon, rectDst.width(), rectDst.height(), istepIfAniCur, nullptr, DI_IMAGE | DI_MASK))
          {
 
             ::SelectObject(hdc, hbitmapOld);
@@ -1089,14 +1101,15 @@ namespace draw2d_direct2d
 
                ::draw2d::bitmap_pointer b(e_create);
 
-               b->CreateBitmap(this, ::size(cx, cy), 1, 32, pcolorref, cx * sizeof(color32_t));
+               b->CreateBitmap(this, rectDst.size(), 1, 32, pcolorref, rectDst.width() * sizeof(color32_t));
 
                D2D1_RECT_F rect;
 
-               rect.left   = (FLOAT) x;
-               rect.top    = (FLOAT) y;
-               rect.right  = rect.left    + cx;
-               rect.bottom = rect.top     + cy;
+               __copy(rect, rectDst);
+               //rect.left   = (FLOAT) rect;
+               //rect.top    = (FLOAT) y;
+               //rect.right  = rect.left    + cx;
+               //rect.bottom = rect.top     + cy;
 
                m_prendertarget->DrawBitmap((ID2D1Bitmap *) b->get_os_data(), rect);
 
@@ -1527,15 +1540,15 @@ namespace draw2d_direct2d
    }
 
 
-   bool graphics::PatBlt(int x, int y, int nWidth, int nHeight)
-   {
+   //bool graphics::PatBlt(int x, int y, int nWidth, int nHeight)
+   //{
 
-      __throw(todo());
+   //   __throw(todo());
 
-   }
+   //}
 
 
-   bool graphics::BitBltRaw(int x, int y, int nWidth, int nHeight, ::draw2d::graphics * pgraphicsSrc, int xSrc, int ySrc)
+   bool graphics::draw_raw(const ::rect & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::point & pointSrc)
    {
 
       ::draw2d::lock draw2dlock;
@@ -1563,6 +1576,13 @@ namespace draw2d_direct2d
             return false;
 
          }
+
+         int x = rectDst.left;
+         int y = rectDst.top;
+         int nWidth = rectDst.width();
+         int nHeight = rectDst.height();
+         int xSrc = pointSrc.x;
+         int ySrc = pointSrc.y;
 
          if (x < 0)
          {
@@ -1657,11 +1677,20 @@ namespace draw2d_direct2d
    }
 
 
-   bool graphics::StretchBltRaw(double xDst, double yDst, double nDstWidth, double nDstHeight, ::draw2d::graphics * pgraphicsSrc, int xSrc, int ySrc, int nSrcWidth, int nSrcHeight)
+   bool graphics::stretch_raw(const ::rect & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rect & rectSrc)
    {
 
       try
       {
+
+         double xDst = rectDst.left;
+         double yDst = rectDst.top;
+         double nDstWidth = rectDst.width();
+         double nDstHeight = rectDst.height();
+         int xSrc = rectSrc.left;
+         int ySrc = rectSrc.top;
+         int nSrcWidth = rectSrc.width();
+         int nSrcHeight = rectSrc.height();
 
          if (pgraphicsSrc == nullptr)
          {
@@ -1859,12 +1888,12 @@ namespace draw2d_direct2d
    }
 
 
-   bool graphics::GrayString(::draw2d::brush* pBrush, bool (CALLBACK* lpfnOutput)(HDC, LPARAM, int), LPARAM lpData, int nCount,int x, int y, int nWidth, int nHeight)
-   {
+   //bool graphics::GrayString(::draw2d::brush* pBrush, bool (CALLBACK* lpfnOutput)(HDC, LPARAM, int), LPARAM lpData, int nCount,int x, int y, int nWidth, int nHeight)
+   //{
 
-      __throw(todo());
+   //   __throw(todo());
 
-   }
+   //}
 
 
    ::u32 graphics::GetTextAlign()
@@ -2254,16 +2283,16 @@ namespace draw2d_direct2d
    }
 
 
-   int graphics::SetAbortProc(bool (CALLBACK* lpfn)(HDC, int))
-   {
+   //int graphics::SetAbortProc(bool (CALLBACK* lpfn)(HDC, int))
+   //{
 
-      __throw(todo());
+   //   __throw(todo());
 
-      //ASSERT(get_handle1() != nullptr);
+   //   //ASSERT(get_handle1() != nullptr);
 
-      //return ::SetAbortProc(get_handle1(), (ABORTPROC)lpfn);
+   //   //return ::SetAbortProc(get_handle1(), (ABORTPROC)lpfn);
 
-   }
+   //}
 
 
    int graphics::AbortDoc()
@@ -3385,14 +3414,14 @@ namespace draw2d_direct2d
       //return nRetVal;
    }
 
-   int graphics::set_interpolation_mode(int nStretchMode)
+   bool graphics::set_interpolation_mode(::draw2d::enum_interpolation_mode einterpolationmode)
    {
-      if(nStretchMode == 0)
+      if(einterpolationmode == ::draw2d::e_interpolation_mode_nearest_neighbor)
       {
          m_bitmapinterpolationmode     = D2D1_BITMAP_INTERPOLATION_MODE_NEAREST_NEIGHBOR;
          m_interpolationmode           = D2D1_INTERPOLATION_MODE_NEAREST_NEIGHBOR;;
       }
-      else if(nStretchMode == e_interpolation_mode_high_quality_bicubic)
+      else if(einterpolationmode == ::draw2d::e_interpolation_mode_high_quality_bicubic)
       {
          m_bitmapinterpolationmode     = D2D1_BITMAP_INTERPOLATION_MODE_LINEAR;
          m_interpolationmode           = D2D1_INTERPOLATION_MODE_HIGH_QUALITY_CUBIC;
@@ -3781,7 +3810,7 @@ namespace draw2d_direct2d
 
          ::draw2d::region_pointer pregion(e_create);
 
-         pregion->create_polygon(polygon.get_data(), polygon.get_count(), ::draw2d::fill_mode_winding);
+         pregion->create_polygon(polygon.get_data(), (::i32) polygon.get_count(), ::draw2d::fill_mode_winding);
 
          D2D1::Matrix3x2F m = {};
 
@@ -3812,7 +3841,7 @@ namespace draw2d_direct2d
 
          ::draw2d::region_pointer pregion(e_create);
 
-         pregion->create_polygon(polygon.get_data(), polygon.get_count(), ::draw2d::fill_mode_winding);
+         pregion->create_polygon(polygon.get_data(), (::i32) polygon.get_count(), ::draw2d::fill_mode_winding);
 
          D2D1::Matrix3x2F m = {};
 

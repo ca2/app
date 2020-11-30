@@ -53,6 +53,9 @@ namespace console
       int m_iTextColor;
 
 
+      console();
+      virtual ~console();
+
       virtual void redirect_io();
       virtual void SetWindowSize(int iHeight,int iWidth) = 0;
       virtual void SetCursorVisibility(bool show) = 0;
@@ -77,6 +80,7 @@ namespace console
 
 
       console_composite();
+      virtual ~console_composite();
 
 
       virtual void set_console(console* pconsole);

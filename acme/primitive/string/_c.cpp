@@ -1016,7 +1016,13 @@ const char* wildcard_next_stop(const char* pszCriteria)
             pszStop = wildcard_next_stop(pszFind + 1);
 
             if (pszStop == nullptr)
-               pszStop = pszFind + ansi_length(pszFind);
+            {
+
+               return true;
+
+               //pszStop = pszFind + ansi_length(pszFind);
+
+            }
 
             iLen = pszStop - (pszFind + 1);
 

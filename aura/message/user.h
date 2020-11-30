@@ -84,6 +84,20 @@ namespace message
 
       virtual void set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, WPARAM wparam, ::lparam lparam) override;
 
+      inline bool is_active() const
+      {
+
+         return m_eactivate == e_activate_active || m_eactivate == e_activate_click_active;
+
+      }
+
+      inline bool inactive() const
+      {
+
+         return m_eactivate == e_activate_inactive;
+
+      }
+
 
    };
 

@@ -65,7 +65,8 @@ namespace draw2d_direct2d
       virtual ~graphics();
 
       virtual bool TextOutAlphaBlend(double x, double y, const string & str) override;
-      virtual bool BitBltAlphaBlend(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc) override;
+      virtual bool draw_blend(const ::rect & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::point & pointSrc = ::point()) override;
+
 
       bool IsPrinting() override;            // TRUE if being used for printing
 
@@ -137,8 +138,8 @@ namespace draw2d_direct2d
       point GetBrushOrg() override;
       point SetBrushOrg(int x, int y) override;
       point SetBrushOrg(const ::point & point) override;
-      int EnumObjects(int nObjectType,
-                      int (CALLBACK* lpfn)(LPVOID, LPARAM), LPARAM lpData) override;
+//      int EnumObjects(int nObjectType,
+  //                    int (CALLBACK* lpfn)(LPVOID, LPARAM), LPARAM lpData) override;
 
       //virtual ::draw2d::object* set_stock_object(int nIndex) override;
       //virtual ::estatus set(::draw2d::font * pfont) override;
@@ -162,7 +163,7 @@ namespace draw2d_direct2d
 
       int SetPolyFillMode(int nPolyFillMode) override;
       int SetROP2(int nDrawMode) override;
-      int set_interpolation_mode(int nStretchMode) override;
+      virtual bool set_interpolation_mode(::draw2d::enum_interpolation_mode einterpolationmode) override;
 
 
 //#if (_WIN32_WINNT >= 0x0500)
@@ -303,9 +304,11 @@ namespace draw2d_direct2d
 
       virtual void invert_rect(const ::rect & rect) override;
 
-      bool DrawIcon(int x, int y, ::draw2d::icon * picon) override;
-      bool DrawIcon(const ::point & point, ::draw2d::icon * picon) override;
-      bool DrawIcon(int x, int y, ::draw2d::icon * picon, int cx, int cy, ::u32 istepIfAniCur, HBRUSH hbrFlickerFreeDraw, ::u32 diFlags) override;
+      virtual bool draw(const ::rect & rectDst, ::draw2d::icon * picon) override;
+
+      //bool DrawIcon(int x, int y, ::draw2d::icon * picon) override;
+      //bool DrawIcon(const ::point & point, ::draw2d::icon * picon) override;
+      //bool DrawIcon(int x, int y, ::draw2d::icon * picon, int cx, int cy, ::u32 istepIfAniCur, HBRUSH hbrFlickerFreeDraw, ::u32 diFlags) override;
 //      bool DrawState(const ::point & point, const ::size & size, HBITMAP hBitmap, ::u32 nFlags,
 //                     HBRUSH hBrush = nullptr) override;
 //      bool DrawState(const ::point & point, const ::size & size, ::draw2d::bitmap* pBitmap, ::u32 nFlags,
@@ -357,11 +360,10 @@ namespace draw2d_direct2d
 
 
       // Bitmap Functions
-      bool PatBlt(int x, int y, int nWidth, int nHeight) override;
-      bool BitBltRaw(int x, int y, int nWidth, int nHeight, ::draw2d::graphics * pgraphicsSrc,
-                     int xSrc, int ySrc) override;
-      bool StretchBltRaw(double x, double y, double nWidth, double nHeight, ::draw2d::graphics * pgraphicsSrc,
-                         int xSrc, int ySrc, int nSrcWidth, int nSrcHeight) override;
+      //bool PatBlt(int x, int y, int nWidth, int nHeight) override;
+      virtual bool draw_raw(const ::rect & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::point & pointSrc = ::point());
+      virtual bool stretch_raw(const ::rect & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rect & rectSrc = ::rect());
+
       ::color GetPixel(int x, int y) override;
       ::color GetPixel(const ::point & point) override;
       ::color SetPixel(int x, int y, const ::color & color) override;
@@ -415,7 +417,7 @@ namespace draw2d_direct2d
       virtual size GetTabbedTextExtent(const string & str, count nTabPositions, LPINT lpnTabStopPositions) override;
       virtual size GetOutputTabbedTextExtent(const char * lpszString, strsize nCount, count nTabPositions, LPINT lpnTabStopPositions) override;
       virtual size GetOutputTabbedTextExtent(const string & str, count  nTabPositions, LPINT lpnTabStopPositions) override;
-      virtual bool GrayString(::draw2d::brush* pBrush, bool (CALLBACK* lpfnOutput)(HDC, LPARAM, int), LPARAM lpData, int nCount, int x, int y, int nWidth, int nHeight) override;
+      //virtual bool GrayString(::draw2d::brush* pBrush, bool (CALLBACK* lpfnOutput)(HDC, LPARAM, int), LPARAM lpData, int nCount, int x, int y, int nWidth, int nHeight) override;
       virtual ::u32 GetTextAlign() override;
       virtual ::u32 SetTextAlign(::u32 nFlags) override;
       virtual int GetTextFace(count nCount, char * lpszFacename) override;
@@ -483,7 +485,7 @@ namespace draw2d_direct2d
 //      int StartDoc(LPDOCINFO lpDocInfo) override;
       int StartPage() override;
       int EndPage() override;
-      int SetAbortProc(bool (CALLBACK* lpfn)(HDC, int)) override;
+      //int SetAbortProc(bool (CALLBACK* lpfn)(HDC, int)) override;
       int AbortDoc() override;
       int EndDoc() override;
 

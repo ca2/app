@@ -1338,6 +1338,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="message\_impl.h" />
     <ClInclude Include="message\_message.h" />
     <ClInclude Include="net\sockets\http\http_base_socket.h" />
+    <ClInclude Include="net\sockets\_sockets.h" />
     <ClInclude Include="net\_net_impl.h" />
     <ClInclude Include="node\opengl\buffer.h" />
     <ClInclude Include="node\opengl\context.h" />

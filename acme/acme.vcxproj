@@ -1438,6 +1438,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="platform\static_start_aura.cpp" />
     <ClCompile Include="primitive\datetime\filetime.cpp" />
     <ClCompile Include="primitive\datetime\filetime_span.cpp" />
+    <ClCompile Include="primitive\datetime\secs.cpp" />
     <ClCompile Include="primitive\geometry2d\shape.cpp" />
     <ClCompile Include="primitive\primitive\block.cpp" />
     <ClCompile Include="primitive\primitive\context_object.cpp" />
@@ -1491,7 +1492,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="const\idpool.h" />
     <ClInclude Include="const\impact.h" />
     <ClInclude Include="const\message.h" />
-    <ClInclude Include="const\method.h" />
+    <ClInclude Include="const\routine.h" />
     <ClInclude Include="const\simple_command.h" />
     <ClInclude Include="const\source.h" />
     <ClInclude Include="const\status.h" />

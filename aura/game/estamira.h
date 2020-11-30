@@ -11,7 +11,7 @@ namespace aura
    public:
 
       
-      void *      m_thisa[16];
+      //void *      m_thisa[16];
 
 
       estamira();

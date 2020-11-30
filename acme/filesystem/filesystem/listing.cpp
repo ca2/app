@@ -91,6 +91,13 @@ CLASS_DECL_ACME bool matches_wildcard_criteria_ci(const string_array & straCrite
    for (auto & strCriteria : straCriteria)
    {
 
+      if (strValue.begins_ci("resident"))
+      {
+
+         output_debug_string("resident*");
+
+      }
+
       if (matches_wildcard_criteria_ci(strCriteria, strValue))
       {
 

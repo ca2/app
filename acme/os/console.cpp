@@ -28,6 +28,20 @@ namespace console
 {
 
 
+   console::console()
+   {
+
+
+   }
+
+
+   console::~console()
+   {
+
+
+   }
+
+
    void console::redirect_io()
    {
 
@@ -35,6 +49,12 @@ namespace console
 
 
    console_composite::console_composite()
+   {
+
+   }
+
+
+   console_composite::~console_composite()
    {
 
    }

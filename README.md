@@ -1,11 +1,16 @@
 # https://ca2.io/
 
-ca2 is an all-purpose multi-platform framework and set of libraries written in
-C++ language to help developers create awesome apps for users.
+ca2 is an all-purpose multi-platform framework and set of libraries written in C++ language to help developers create awesome apps for users.
 
-https://ca2.software/
+# Features
 
-support@ca2.email
+## Networking (Public and Local Webserver, Websockets, Sockets)
+## Graphics
+## Image Loading/Saving
+## User Interface and Theming
+## Audio Decoding
+## Audio Playback
+## MIDI Playback
 
 ## How to build for Windows
 

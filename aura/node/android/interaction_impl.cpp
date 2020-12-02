@@ -285,7 +285,7 @@ namespace android
 
          m_puserinteraction->place(rectCreate);
 
-         m_puserinteraction->display(display_full_screen);
+         m_puserinteraction->display(e_display_full_screen);
 
          //::estatus estatus = __compose(m_pgraphics);
 
@@ -2454,7 +2454,7 @@ namespace android
 //
 //            /*XMapWindow(m_oswindow->display(), m_oswindow->window());*/
 //
-//            ::show_window(get_handle(), display_normal);
+//            ::show_window(get_handle(), e_display_normal);
 //
 //         }
 //
@@ -2731,7 +2731,7 @@ namespace android
    //   if (m_puserinteraction != nullptr)
    //   {
 
-   //      m_puserinteraction->m_edisplay = ::display_normal;
+   //      m_puserinteraction->m_edisplay = ::e_display_normal;
 
    //   }
 
@@ -2763,7 +2763,7 @@ namespace android
    //   if (GetExStyle() & WS_EX_LAYERED)
    //   {
 
-   //      return m_puserinteraction->m_edisplay == ::display_iconic;
+   //      return m_puserinteraction->m_edisplay == ::e_display_iconic;
 
    //   }
    //   else

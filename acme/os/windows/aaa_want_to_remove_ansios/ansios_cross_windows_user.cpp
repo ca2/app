@@ -30,7 +30,7 @@ int_bool MessageBoxAForConsole(oswindow interaction_impl, const char * psz, cons
 
    strLine += psz;
 
-   int iDefaultButton = IDOK;
+   int iDefaultButton = e_dialog_result_ok;
 
 
    string str;
@@ -49,19 +49,19 @@ int_bool MessageBoxAForConsole(oswindow interaction_impl, const char * psz, cons
    if((uFlags & MB_DEFBUTTON1) == MB_DEFBUTTON1 && str.get_length() >= 1)
    {
       str.set_at(0, char_to_upper(str[0]));
-      iDefaultButton = IDYES;
+      iDefaultButton = e_dialog_result_yes;
       bDefault = true;
    }
    else if((uFlags & MB_DEFBUTTON2) == MB_DEFBUTTON2 && str.get_length() >= 3)
    {
       str.set_at(2, char_to_upper(str[2]));
-      iDefaultButton = IDNO;
+      iDefaultButton = e_dialog_result_no;
       bDefault = true;
    }
    else if((uFlags & MB_DEFBUTTON3) == MB_DEFBUTTON3 && str.get_length() >= 5)
    {
       str.set_at(4, char_to_upper(str[4]));
-      iDefaultButton = IDCANCEL;
+      iDefaultButton = e_dialog_result_cancel;
       bDefault = true;
    }
 
@@ -106,17 +106,17 @@ repeat:
       {
       case 'y':
       case 'Y':
-         iRet = IDYES;
+         iRet = e_dialog_result_yes;
          bAnswer = true;
          break;
       case 'n':
       case 'N':
-         iRet = IDNO;
+         iRet = e_dialog_result_no;
          bAnswer = true;
          break;
       case 'c':
       case 'C':
-         iRet = IDCANCEL;
+         iRet = e_dialog_result_cancel;
          bAnswer = true;
          break;
       default:
@@ -135,12 +135,12 @@ repeat:
       {
       case 'y':
       case 'Y':
-         iRet = IDYES;
+         iRet = e_dialog_result_yes;
          bAnswer = true;
          break;
       case 'n':
       case 'N':
-         iRet = IDNO;
+         iRet = e_dialog_result_no;
          bAnswer = true;
          break;
       default:

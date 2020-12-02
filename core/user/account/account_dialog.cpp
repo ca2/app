@@ -216,7 +216,7 @@ namespace account
 
             m_plogin->m_peditUser->SetFocus();
 
-            display(display_restore, activation_set_foreground);
+            display(e_display_restore, e_activation_set_foreground);
 
             set_need_redraw();
 
@@ -495,7 +495,7 @@ namespace account
 
       m_plogin->place(rectClient);
 
-      m_plogin->display(::display_normal);
+      m_plogin->display(::e_display_normal);
 
    }
 

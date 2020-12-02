@@ -865,7 +865,7 @@ bool oswindow_data::show_window(::edisplay edisplay)
 
    }
 
-   if(edisplay == display_zoomed)
+   if(edisplay == e_display_zoomed)
    {
 
       if(attr.map_state == IsUnmapped)
@@ -880,7 +880,7 @@ bool oswindow_data::show_window(::edisplay edisplay)
                            intern_atom(net_wm_state_maximized_vert, false));
 
    }
-   else if(edisplay == display_iconic)
+   else if(edisplay == e_display_iconic)
    {
 
       wm_iconify_window(this);

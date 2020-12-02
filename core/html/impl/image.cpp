@@ -25,7 +25,7 @@ namespace html
 
                m_pimage->defer_realize(pgraphics);
 
-               pgraphics->draw({::point((LONG)left(), (LONG)top()), m_pimage->size()},m_pimage->get_graphics());
+               pgraphics->draw({::point((::i32)left(), (::i32)top()), m_pimage->size()},m_pimage->get_graphics());
                
             }
 

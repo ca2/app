@@ -109,7 +109,7 @@ namespace userstack
          /*            __pointer(::simple_frame_window) pframeApp = dynamic_cast < __pointer(::simple_frame_window) > (m_pimpactdata->m_puserinteraction);
                   if(pframeApp != nullptr)
                   {
-                     pframeApp->display(display_full_screen);
+                     pframeApp->display(e_display_full_screen);
                   }*/
       }
       //   else if(get_view_id() == CONTEXT_MENU_IMPACT)

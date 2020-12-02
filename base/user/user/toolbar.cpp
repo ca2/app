@@ -338,7 +338,7 @@ namespace user
 //
 //      //VERIFY(pBar->default_window_procedure(TB_GETBUTTON, (WPARAM) nIndex, (LPARAM)pButton));
 //
-//      //// TBSTATE_ENABLED == TBBS_DISABLED so invert it
+//      //// TBSTATE_ENABLED == e_toolbar_button_style_disabled so invert it
 //
 //      //pButton->fsState ^= TBSTATE_ENABLED;
 //
@@ -357,7 +357,7 @@ namespace user
 ////      // prepare for old/new button comparsion
 ////      button.bReserved[0] = 0;
 ////      button.bReserved[1] = 0;
-////      // TBSTATE_ENABLED == TBBS_DISABLED so invert it
+////      // TBSTATE_ENABLED == e_toolbar_button_style_disabled so invert it
 ////      pButton->fsState ^= TBSTATE_ENABLED;
 ////      pButton->bReserved[0] = 0;
 ////      pButton->bReserved[1] = 0;
@@ -468,7 +468,7 @@ namespace user
       //   ((toolbar*)this)->CalcDynamicLayout(0, LM_VERTDOCK | LM_COMMIT);
    }
 
-   ::u32 toolbar::GetButtonStyle(index nIndex)
+   cflag < ::enum_toolbar_button_style > toolbar::GetButtonStyle(index nIndex)
    {
 
 //      ::u32 nStyle = 0;
@@ -482,7 +482,7 @@ namespace user
 //      if (!command.m_bEnable && command.m_bEnableChanged)
 //      {
 //
-//         nStyle |= TBBS_DISABLED;
+//         nStyle |= e_toolbar_button_style_disabled;
 //
 //      }
 //
@@ -494,7 +494,7 @@ namespace user
 
 
 
-   void toolbar::SetButtonStyle(index nIndex, ::u32 nStyle)
+   void toolbar::SetButtonStyle(index nIndex, cflag < ::enum_toolbar_button_style > etoolbarbuttonstyle)
    {
 //      ASSERT_VALID(this);
 //      ASSERT(is_window());
@@ -523,14 +523,14 @@ namespace user
 
       ::user::estate estate = e_state_none;
 
-      int nStyle = GetButtonStyle(iItem);
+      auto etoolbarbuttonstyle = GetButtonStyle(iItem);
 
       bool bHover = m_itemHover == (::index) iItem;
 
-      if ((nStyle & TBBS_SEPARATOR) == 0)
+      if (!(etoolbarbuttonstyle & e_toolbar_button_style_separator))
       {
 
-         if ((nStyle & TBBS_DISABLED) == 0)
+         if ((etoolbarbuttonstyle & e_toolbar_button_style_disabled))
          {
 
             estate |= e_state_disabled;
@@ -589,7 +589,7 @@ namespace user
 //      //   if (!(GetStyle() & TBSTYLE_FLAT))
 //      //      cySep = cySep * 2 / 3;
 //
-//      //   if (pData[i].fsState & TBSTATE_HIDDEN)
+//      //   if (pData[i].fsState & e_toolbar_button_hidden)
 //      //      continue;
 //
 //      //   index cx = m_sizeButton.cx;
@@ -645,7 +645,7 @@ namespace user
 //   //   {
 //   //      pData[i].fsState &= ~TBSTATE_WRAP;
 //
-//   //      if (pData[i].fsState & TBSTATE_HIDDEN)
+//   //      if (pData[i].fsState & e_toolbar_button_hidden)
 //   //         continue;
 //   //      GetButtonText(i, str);
 //   //      index dx, dxNext;
@@ -685,7 +685,7 @@ namespace user
 //   //            // a separator, but a custom control.
 //   //            if ((pData[j].fsStyle & TBSTYLE_SEP) &&
 //   //                  (pData[j].idCommand == 0) &&
-//   //                  !(pData[j].fsState & TBSTATE_HIDDEN))
+//   //                  !(pData[j].fsState & e_toolbar_button_hidden))
 //   //            {
 //   //               bFound = TRUE; i = j; x = 0;
 //   //               pData[j].fsState |= TBSTATE_WRAP;
@@ -699,7 +699,7 @@ namespace user
 //   //            {
 //   //               // Never wrap anything that is hidden,
 //   //               // or any custom controls
-//   //               if ((pData[j].fsState & TBSTATE_HIDDEN) ||
+//   //               if ((pData[j].fsState & e_toolbar_button_hidden) ||
 //   //                     ((pData[j].fsStyle & TBSTYLE_SEP) &&
 //   //                      (pData[j].idCommand != 0)))
 //   //                  continue;
@@ -1762,7 +1762,7 @@ return { 0,0 };
 
             }
 
-            item->m_fsStyle &= ~TBBS_SEPARATOR;
+            item->m_etoolbarbuttonstyle -= e_toolbar_button_style_separator;
 
             m_itema.add(item);
 
@@ -1776,7 +1776,7 @@ return { 0,0 };
 
             item->m_str = "";
 
-            item->m_fsStyle |= TBBS_SEPARATOR;
+            item->m_etoolbarbuttonstyle |= e_toolbar_button_style_separator;
 
             m_itema.add(item);
 
@@ -1795,8 +1795,8 @@ return { 0,0 };
 
       m_iIndex                      = -1;
       m_iImage                      = -1;
-      m_fsState                     = 0;
-      m_fsStyle                     = 0;
+      m_etoolbarbutton              = e_toolbar_button_none;
+      m_etoolbarbuttonstyle         = e_toolbar_button_style;
       m_bEnableIfHasCommandHandler  = true;
 
 

@@ -229,7 +229,7 @@ namespace user
          return m_sizeMinimum;
 
       }
-      else if (layout().sketch().display() == ::display_minimal)
+      else if (layout().sketch().display() == ::e_display_minimal)
       {
 
          return ::size(8, 8);

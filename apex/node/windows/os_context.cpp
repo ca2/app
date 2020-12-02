@@ -758,7 +758,7 @@ namespace windows
 
                strCommand.replace("%1", pcsz);
 
-               WinExec(strCommand,display_normal);
+               WinExec(strCommand,e_display_normal);
 
             }
 
@@ -775,7 +775,7 @@ namespace windows
                      
                strCommand.replace("%1", pcsz);
 
-               WinExec(strCommand,display_normal);
+               WinExec(strCommand,e_display_normal);
 
             }
 
@@ -3170,7 +3170,7 @@ repeat:
 
       //      pinteraction->order_top();
 
-      //      pinteraction->display(display_normal, activation_set_foreground);
+      //      pinteraction->display(e_display_normal, e_activation_set_foreground);
 
       //      pinteraction->set_need_redraw();
 
@@ -3344,7 +3344,7 @@ repeat:
 
       //   pinteraction->order_top();
 
-      //   pinteraction->display(display_normal, activation_set_foreground);
+      //   pinteraction->display(e_display_normal, e_activation_set_foreground);
 
       //   pinteraction->set_need_redraw();
 
@@ -3461,7 +3461,7 @@ repeat:
 
       //   pinteraction->order_top();
 
-      //   pinteraction->display(display_normal, activation_set_foreground);
+      //   pinteraction->display(e_display_normal, e_activation_set_foreground);
 
       //   pinteraction->set_need_redraw();
 
@@ -3578,7 +3578,7 @@ repeat:
 
       //   pinteraction->order_top();
 
-      //   pinteraction->display(display_normal, activation_set_foreground);
+      //   pinteraction->display(e_display_normal, e_activation_set_foreground);
 
       //   pinteraction->set_need_redraw();
 

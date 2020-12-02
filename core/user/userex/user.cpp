@@ -687,32 +687,32 @@ namespace core
       //if(pbox->m_idResponse == "ok")
       //{
 
-      //   return IDOK;
+      //   return e_dialog_result_ok;
 
       //}
       //else if(pbox->m_idResponse == "yes")
       //{
 
-      //   return IDYES;
+      //   return e_dialog_result_yes;
 
       //}
       //else if(pbox->m_idResponse == "no")
       //{
 
-      //   return IDNO;
+      //   return e_dialog_result_no;
 
       //}
       //else if(pbox->m_idResponse == "cancel")
       //{
 
-      //   return IDCANCEL;
+      //   return e_dialog_result_cancel;
 
       //}
 
       //if(fuStyle & MB_YESNOCANCEL)
       //{
 
-      //   return IDCANCEL;
+      //   return e_dialog_result_cancel;
 
       //}
       //else
@@ -1681,7 +1681,7 @@ namespace core
 
       case ::user::desktop_lxde:
 
-         //call_async("pcmanfm", "-w " + strLocalImagePath, nullptr, display_none, false);
+         //call_async("pcmanfm", "-w " + strLocalImagePath, nullptr, e_display_none, false);
 
          break;
 
@@ -1737,7 +1737,7 @@ namespace core
 
       case ::user::desktop_lxde:
 
-         call_async("pcmanfm", "-w " + strLocalImagePath, nullptr, display_none, false);
+         call_async("pcmanfm", "-w " + strLocalImagePath, nullptr, e_display_none, false);
 
          break;
 
@@ -1795,7 +1795,7 @@ namespace core
 
       case ::user::desktop_lxde:
 
-         //call_async("pcmanfm", "-w " + strLocalImagePath, nullptr, display_none, false);
+         //call_async("pcmanfm", "-w " + strLocalImagePath, nullptr, e_display_none, false);
 
          break;
 

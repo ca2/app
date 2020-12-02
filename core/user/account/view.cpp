@@ -375,7 +375,7 @@ namespace account
       else if (!strcmp(pszId, "escape"))
       {
 
-         GetParent()->display(display_none);
+         GetParent()->display(e_display_none);
          m_ppassword->_001SetText("", ::source_database);
          GetParent()->EndModalLoop("cancel");
 

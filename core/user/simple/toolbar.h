@@ -76,10 +76,10 @@ public:
    //virtual void OnUpdateHover();
    void SetItemImage(index iItem, index iImage);
    void GetButtonText(index i, string & str);
-   void SetButtonStyle(index nIndex, ::u32 nStyle);
-   ::u32 GetButtonStyle(index iButton);
-   bool SetItemStyle(index iItem, byte bStyle);
-   index GetItemStyle(index iItem);
+   void SetButtonStyle(index nIndex, cflag < ::enum_toolbar_button_style > nStyle);
+   cflag < ::enum_toolbar_button_style > GetButtonStyle(index iButton);
+   bool SetItemStyle(index iItem, cflag < ::enum_toolbar_button_style > bStyle);
+   cflag < ::enum_toolbar_button_style > GetItemStyle(index iItem);
    void _001SetImageList(__pointer(::image_list) imagelist);
    void _001DiscardImageList();
    virtual bool on_click(const ::user::item & item) override;

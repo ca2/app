@@ -2460,10 +2460,10 @@ void wm_iconify_window(oswindow oswindow)
       else
       {
 
-         if(oswindow->m_pimpl->m_puserinteraction->layout().design().display() !=::display_iconic)
+         if(oswindow->m_pimpl->m_puserinteraction->layout().design().display() !=::e_display_iconic)
          {
 
-            oswindow->m_pimpl->m_puserinteraction->layout().design() = ::display_iconic;
+            oswindow->m_pimpl->m_puserinteraction->layout().design() = ::e_display_iconic;
 
          }
 
@@ -3404,7 +3404,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
                   if(iIconic == 0)
                   {
 
-                     if(pinteraction->layout().design().display() == ::display_iconic)
+                     if(pinteraction->layout().design().display() == ::e_display_iconic)
                      {
 
                         //file_put_contents("/home/camilo/xxx.txt", "");
@@ -3418,10 +3418,10 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 
                            auto edisplayPrevious = pinteraction->window_previous_display();
 
-                           if(edisplayPrevious == ::display_iconic)
+                           if(edisplayPrevious == ::e_display_iconic)
                            {
 
-                              pinteraction->_001OnDeiconify(::display_normal);
+                              pinteraction->_001OnDeiconify(::e_display_normal);
 
                            }
                            else
@@ -3436,11 +3436,11 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
                         bHandled = true;
 
                      }
-                     else if(pinteraction->layout().sketch().display() == ::display_full_screen
-                           && pinteraction->layout().design().display() != ::display_full_screen)
+                     else if(pinteraction->layout().sketch().display() == ::e_display_full_screen
+                           && pinteraction->layout().design().display() != ::e_display_full_screen)
                      {
 
-                        pinteraction->layout().sketch() = ::display_full_screen;
+                        pinteraction->layout().sketch() = ::e_display_full_screen;
 
                      }
 
@@ -3448,11 +3448,11 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
                   else
                   {
 
-                     if(pinteraction->layout().design().display() != ::display_iconic
-                     && pinteraction->layout().design().display() != ::display_none)
+                     if(pinteraction->layout().design().display() != ::e_display_iconic
+                     && pinteraction->layout().design().display() != ::e_display_none)
                      {
 
-                        pinteraction->layout().sketch() = ::display_iconic;
+                        pinteraction->layout().sketch() = ::e_display_iconic;
 
                      }
 
@@ -3493,10 +3493,10 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
          if(pinteraction != nullptr)
          {
 
-            if(pinteraction->layout().design().display() == ::display_iconic && !msg.hwnd->is_iconic())
+            if(pinteraction->layout().design().display() == ::e_display_iconic && !msg.hwnd->is_iconic())
             {
 
-//               ::e_display edisplayPrevious = pinteraction->window_previous_display();
+//               ::enum_display edisplayPrevious = pinteraction->window_previous_display();
 //
 //               pinteraction->layout().sketch() = edisplayPrevious;
 //
@@ -3513,10 +3513,10 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 
                      auto edisplayPrevious = pinteraction->window_previous_display();
 
-                     if(edisplayPrevious == ::display_iconic)
+                     if(edisplayPrevious == ::e_display_iconic)
                      {
 
-                        pinteraction->_001OnDeiconify(::display_normal);
+                        pinteraction->_001OnDeiconify(::e_display_normal);
 
                      }
                      else

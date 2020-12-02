@@ -40,8 +40,8 @@ public:
    void system_construct(int argc, char** argv);
    void system_construct(int argc, wchar_t** argv);
 
-   void system_construct(const char* pszCommandLine, const ::edisplay& edisplay = ::display_none);
-   void system_construct(os_local* poslocal, const ::edisplay& edisplay = ::display_none);
+   void system_construct(const char* pszCommandLine, const ::edisplay& edisplay = ::e_display_none);
+   void system_construct(os_local* poslocal, const ::edisplay& edisplay = ::e_display_none);
 
 #ifdef WINDOWS_DESKTOP
 

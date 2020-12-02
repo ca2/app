@@ -156,7 +156,7 @@ INT_PTR CALLBACK About(HWND hDlg, const ::id & id, WPARAM wParam, LPARAM lParam)
       return (INT_PTR)TRUE;
 
    case e_message_command:
-      if (LOWORD(wParam) == IDOK || LOWORD(wParam) == IDCANCEL)
+      if (LOWORD(wParam) == e_dialog_result_ok || LOWORD(wParam) == e_dialog_result_cancel)
       {
          EndDialog(hDlg, LOWORD(wParam));
          return (INT_PTR)TRUE;

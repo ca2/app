@@ -199,7 +199,7 @@ namespace account
          puiParent->get_window_rect(rectDesktop);
 
       }
-      else if (IsRectEmpty(&rectParam))
+      else if (is_empty(&rectParam))
       {
 
          psession->get_main_monitor(rectDesktop);
@@ -278,7 +278,7 @@ namespace account
 
       //BringWindowToTop();
 
-      display(display_normal);
+      display(e_display_normal);
 
       SetTimer(2000, 300,nullptr);
 

@@ -420,14 +420,18 @@ namespace user
 
       sync_lock sl(m_pfontlist->mutex());
 
+      auto pstyle = get_style(pgraphics);
+
+      int iScrollBarWidth = get_int(pstyle, e_int_scroll_bar_width);
+
       if (m_pfontlist->get_font_list_type() != ::draw2d::font_list::type_wide)
       {
 
-         rectFontList.right -= GetSystemMetrics(SM_CXVSCROLL);
+         rectFontList.right -= iScrollBarWidth;
 
       }
 
-      rectFontList.bottom -= GetSystemMetrics(SM_CYHSCROLL);
+      rectFontList.bottom -= iScrollBarWidth;
 
       m_pfontlist->set_client_rect(rectFontList);
 
@@ -572,7 +576,7 @@ namespace user
 
       pmessage->m_bRet = true;
 
-      display(display_none);
+      display(e_display_none);
 
    }
 

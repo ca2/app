@@ -2,6 +2,7 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/user/user/_user.h"
 #endif
+#include "acme/os/cross/windows/_windows.h"
 #include "acme/const/timer.h"
 
 
@@ -1027,19 +1028,28 @@ namespace user
 
             draw_mesh_item itemFirst(this);
 
-            itemFirst.m_iItem          = 0;
-            itemFirst.m_iDisplayItem   = 0;
+            itemFirst.m_iItem = 0;
+            itemFirst.m_iDisplayItem = 0;
 
             _001GetItemRect(&itemFirst);
 
 
-            if(m_iItemHeight <= 0)
+            if (m_iItemHeight <= 0)
+            {
+
                sizeTotal.cx = rectClient.right;
+
+            }
             else
-               sizeTotal.cx  = (::i32)min(
-                               m_nItemCount * itemFirst.m_rectItem.width() * m_iItemHeight /
-                               rectClient.height()
-                               + itemFirst.m_rectItem.width(),MAXLONG);
+            {
+
+               sizeTotal.cx = (::i32) min(
+                       m_nItemCount * itemFirst.m_rectItem.width() * m_iItemHeight /
+                       rectClient.height()
+                       + itemFirst.m_rectItem.width(), MAXI32);
+
+            }
+
          }
       }
       else if(m_eview == impact_report)
@@ -3105,20 +3115,18 @@ namespace user
 
       on_click(item);
 
-
       //   on_click(item);
       set_need_redraw();
-
 
       /* trans window_id wndidNotify = pwnd->GetOwner()->GetSafeoswindow_();
       if(wndidNotify == nullptr)
       wndidNotify = pwnd->GetParent()->GetSafeoswindow_();*/
 
-
       LRESULT lresult = 0;
 
       /* trans if(wndidNotify)
       {
+
       NMLISTVIEW nm;
       nm.hdr.idFrom = pwnd->GetDlgCtrlId();
       nm.hdr.code =   NM_DBLCLK;
@@ -3134,14 +3142,21 @@ namespace user
 
       if(lresult == 0)
       {
+
          pmouse->m_bRet = false;
+
          return;
+
       }
       else
       {
+
          pmouse->m_bRet = true;
+
          return;
+
       }
+
    }
 
 
@@ -3169,7 +3184,8 @@ namespace user
       if(is_window_visible())
       {
 
-         RedrawWindow(nullptr,nullptr,RDW_INVALIDATE);
+         //RedrawWindow(nullptr,nullptr,RDW_INVALIDATE);
+         RedrawWindow(nullptr,nullptr,0);
 
       }
 

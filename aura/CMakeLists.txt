@@ -263,7 +263,6 @@ list(APPEND aura_source
    os/binreloc.cpp
    os/binreloc.h
    os/chronometer.h
-   os/console.h
    os/cross.h
    os/file.h
    os/graphics.h

@@ -2020,7 +2020,7 @@ namespace user
 
          place(rectWindow);
 
-         display(display_normal);
+         display(e_display_normal);
 
          set_need_layout();
 

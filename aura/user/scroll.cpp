@@ -86,7 +86,7 @@ namespace user
          else
          {
 
-            m_pscrollbarHorz->display(display_none);
+            m_pscrollbarHorz->display(e_display_none);
 
          }
 
@@ -400,7 +400,7 @@ namespace user
          else
          {
 
-            m_pscrollbarVert->display(display_none);
+            m_pscrollbarVert->display(e_display_none);
 
          }
 

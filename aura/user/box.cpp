@@ -18,7 +18,7 @@ namespace user
 
       m_databasekey.m_bLocalData = true;
 
-      m_windowrectStore.m_edisplay = ::display_undefined;
+      m_windowrectStore.m_edisplay = ::e_display_undefined;
 
 
 
@@ -136,7 +136,7 @@ namespace user
          m_windowrect.m_rectSnapped = m_windowrect.m_rectWindow;
 
       }
-      else if (is_equivalent(edisplay, display_normal))
+      else if (is_equivalent(edisplay, e_display_normal))
       {
 
          calculate_broad_and_compact_restore();
@@ -212,7 +212,7 @@ namespace user
       if (should_save_window_rect())
       {
 
-         if (layout().sketch().display() == ::display_none)
+         if (layout().sketch().display() == ::e_display_none)
          {
 
             return false;
@@ -268,7 +268,7 @@ namespace user
          //main_async([this]()
          //           {
 
-         bool bRestore = good_restore(nullptr, nullptr, true, activation_none, zorder_top, initial_restore_display()) >= 0;
+         bool bRestore = good_restore(nullptr, nullptr, true, e_activation_default, zorder_top, initial_restore_display()) >= 0;
 
          if (!bRestore)
          {
@@ -320,11 +320,11 @@ namespace user
 
          m_windowrect = m_windowrectStore;
 
-         e_display edisplay = windowrect.m_edisplay;
+         enum_display edisplay = windowrect.m_edisplay;
 
          layout().sketch().appearance() = windowrect.m_eappearance;
 
-         if (edisplay == display_iconic && bInitialFramePosition)
+         if (edisplay == e_display_iconic && bInitialFramePosition)
          {
 
             edisplay = windowrect.m_edisplayPrevious;
@@ -339,16 +339,16 @@ namespace user
             if (is_docking_appearance(edisplay))
             {
 
-               edisplay = display_normal;
+               edisplay = e_display_normal;
 
             }
 
          }
 
          if(!bForceRestore
-            && (edisplay == display_zoomed
-            || edisplay == display_full_screen
-            || (edisplay == display_iconic && !bInitialFramePosition)))
+            && (edisplay == e_display_zoomed
+            || edisplay == e_display_full_screen
+            || (edisplay == e_display_iconic && !bInitialFramePosition)))
          {
 
             if(bInitialFramePosition)
@@ -388,7 +388,7 @@ namespace user
             send_routine(__routine([this, windowrect]()
             {
 
-               good_restore(nullptr, windowrect.m_rectRestored, true, activation_none, zorder_top, windowrect.m_edisplay);
+               good_restore(nullptr, windowrect.m_rectRestored, true, e_activation_default, zorder_top, windowrect.m_edisplay);
                
             }));
 
@@ -423,14 +423,14 @@ namespace user
 
       }
 
-      if (layout().sketch().display() == ::display_none)
+      if (layout().sketch().display() == ::e_display_none)
       {
 
          return false;
 
       }
 
-      if (m_windowrectStore.m_edisplay == display_undefined)
+      if (m_windowrectStore.m_edisplay == e_display_undefined)
       {
 
          Application.data_get(key, m_windowrectStore);
@@ -439,7 +439,7 @@ namespace user
 
       auto windowrect = m_windowrectStore;
 
-      bool bGot = m_windowrectStore.m_edisplay != display_undefined;
+      bool bGot = m_windowrectStore.m_edisplay != e_display_undefined;
 
       windowrect.m_edisplay = layout().sketch().display();
 
@@ -450,9 +450,9 @@ namespace user
       auto edisplay = windowrect.m_edisplay;
 
       if (bGot &&
-            (edisplay == ::display_zoomed
-             || edisplay == ::display_full_screen
-             || edisplay == ::display_iconic))
+            (edisplay == ::e_display_zoomed
+             || edisplay == ::e_display_full_screen
+             || edisplay == ::e_display_iconic))
       {
 
       }
@@ -465,13 +465,13 @@ namespace user
       else if (windowrect.m_rectWindow.size() == m_sizeRestoreCompact)
       {
 
-         windowrect.m_edisplay = display_compact;
+         windowrect.m_edisplay = e_display_compact;
 
       }
       else if (windowrect.m_rectWindow.size() == m_sizeRestoreBroad)
       {
 
-         windowrect.m_edisplay = display_broad;
+         windowrect.m_edisplay = e_display_broad;
 
       }
       else

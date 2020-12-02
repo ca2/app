@@ -461,7 +461,7 @@ namespace user
 
       case ::user::desktop_lxde:
 
-         //call_async("pcmanfm", "-w " + strLocalImagePath, nullptr, display_none, false);
+         //call_async("pcmanfm", "-w " + strLocalImagePath, nullptr, e_display_none, false);
 
          break;
 
@@ -517,7 +517,7 @@ namespace user
 
       case ::user::desktop_lxde:
 
-         //call_async("pcmanfm", "-w " + strLocalImagePath, nullptr, display_none, false);
+         //call_async("pcmanfm", "-w " + strLocalImagePath, nullptr, e_display_none, false);
 
          break;
 

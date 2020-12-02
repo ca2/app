@@ -389,7 +389,7 @@ list(APPEND acme_source
         const/idpool.h
         const/impact.h
         const/message.h
-        const/method.h
+        const/routine.h
         const/simple_command.h
         const/source.h
         const/status.h
@@ -648,7 +648,6 @@ list(APPEND acme_source
         os/apple/_mm.h
         os/apple/_mm_common.h
         os/chronometer.h
-        os/console.h
         os/file.h
         os/graphics.h
         os/ios/base_internal.h

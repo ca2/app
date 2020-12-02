@@ -116,7 +116,7 @@ namespace user
          unichar sTip[1024] = {0};
          unichar* pTip = (unichar*)tb.iString;
 
-         if(!(tb.fsState&TBSTATE_HIDDEN))
+         if(!(tb.fsState&e_toolbar_button_hidden))
          {
             i32 x = 0;
             do
@@ -139,7 +139,7 @@ namespace user
          info.uCallbackMessage = tray.uCallbackMessage;
          info.uID = tray.uID;
 
-         info.bVisible = !(tb.fsState & TBSTATE_HIDDEN);
+         info.bVisible = !(tb.fsState & e_toolbar_button_hidden);
 
          i32 iconindex = 0;
          ICONINFO  iinfo;

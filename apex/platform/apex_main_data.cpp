@@ -186,7 +186,7 @@ void apex_main_data::system_construct(Array < String^ >^ refstra)
 
    //m_poslocal = nullptr;
 
-   m_edisplay = display_default;
+   m_edisplay = e_display_default;
 
    xxf_zero(m_mainrunnera);
 

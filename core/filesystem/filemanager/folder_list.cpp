@@ -28,7 +28,9 @@ namespace filemanager
 
       MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &folder_list::_001OnLButtonDblClk);
 
+#ifdef WINDOWS_DESKTOP
       MESSAGE_LINK(WM_CANCELMODE, pchannel, this, &folder_list::_001OnCancelMode);
+#endif
 
    }
 
@@ -80,10 +82,14 @@ namespace filemanager
    bool folder_list::pre_create_window(::user::create_struct& cs)
    {
 
+#ifdef WINDOWS_DESKTOP
       cs.style |= WS_CLIPCHILDREN;
+#endif
 
       return ::user::impact::pre_create_window(cs);
+
    }
+
 
    void folder_list::_001InsertColumns()
    {

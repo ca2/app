@@ -57,7 +57,7 @@ WINCOMMCTRLAPI HBITMAP WINAPI CreateMappedBitmap(HINSTANCE hInstance,INT_PTR idB
 #define TBSTATE_CHECKED         0x01
 #define TBSTATE_PRESSED         0x02
 #define TBSTATE_ENABLED         0x04
-#define TBSTATE_HIDDEN          0x08
+#define e_toolbar_button_hidden          0x08
 #define TBSTATE_INDETERMINATE   0x10
 #define TBSTATE_WRAP            0x20
 #define TBSTATE_ELLIPSES        0x40
@@ -1446,7 +1446,7 @@ typedef struct tagNMTTDISPINFOW {
 #define TBSTATE_CHECKED         0x01
 #define TBSTATE_PRESSED         0x02
 #define TBSTATE_ENABLED         0x04
-#define TBSTATE_HIDDEN          0x08
+#define e_toolbar_button_hidden          0x08
 #define TBSTATE_INDETERMINATE   0x10
 #define TBSTATE_WRAP            0x20
 #define TBSTATE_ELLIPSES        0x40

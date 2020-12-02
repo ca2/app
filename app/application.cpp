@@ -68,7 +68,7 @@ namespace app_app
 
          m_pwindow->start_layout();
 
-         m_pwindow->display(display_normal);
+         m_pwindow->display(e_display_normal);
 
     //     m_pwindow->place(rectWindow);
 

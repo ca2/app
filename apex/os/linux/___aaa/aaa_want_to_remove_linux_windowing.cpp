@@ -1922,10 +1922,10 @@ void wm_iconify_window(oswindow oswindow)
    else
    {
 
-      if(oswindow->m_pimpl->m_puserinteraction->display_state() !=::display_iconic)
+      if(oswindow->m_pimpl->m_puserinteraction->display_state() !=::e_display_iconic)
       {
 
-         oswindow->m_pimpl->m_puserinteraction->set_appearance(::display_iconic);
+         oswindow->m_pimpl->m_puserinteraction->set_appearance(::e_display_iconic);
 
       }
 
@@ -2605,7 +2605,7 @@ bool x11_process_message(Display * pdisplay)
             if(pimpl != nullptr)
             {
 
-               if(pinteraction->display_state() == ::display_iconic && !msg.hwnd->is_iconic())
+               if(pinteraction->display_state() == ::e_display_iconic && !msg.hwnd->is_iconic())
                {
 
                   //file_put_contents("/home/camilo/xxx.txt", "");
@@ -2617,10 +2617,10 @@ bool x11_process_message(Display * pdisplay)
                   pinteraction->fork([=]()
                   {
 
-                     if(pinteraction->m_windowrect.m_edisplayPrevious == ::display_iconic)
+                     if(pinteraction->m_windowrect.m_edisplayPrevious == ::e_display_iconic)
                      {
 
-                        pinteraction->_001OnDeiconify(::display_normal);
+                        pinteraction->_001OnDeiconify(::e_display_normal);
 
                      }
                      else
@@ -2636,21 +2636,21 @@ bool x11_process_message(Display * pdisplay)
 
                }
 
-               if(pinteraction->display_state() != ::display_iconic
-                     && pinteraction->display_state() != ::display_none
+               if(pinteraction->display_state() != ::e_display_iconic
+                     && pinteraction->display_state() != ::e_display_none
                      && msg.hwnd->is_iconic())
                {
 
-                  pinteraction->set_appearance(::display_iconic);
+                  pinteraction->set_appearance(::e_display_iconic);
 
                }
 
-               if(pinteraction->display_request() == ::display_full_screen
-                     && pinteraction->display_state() != ::display_full_screen
+               if(pinteraction->display_request() == ::e_display_full_screen
+                     && pinteraction->display_state() != ::e_display_full_screen
                      && !msg.hwnd->is_iconic())
                {
 
-                  pinteraction->set_appearance(::display_full_screen);
+                  pinteraction->set_appearance(::e_display_full_screen);
 
                }
 
@@ -2687,10 +2687,10 @@ bool x11_process_message(Display * pdisplay)
          if(pinteraction != nullptr)
          {
 
-            if(pinteraction->display_state() == ::display_iconic && !msg.hwnd->is_iconic())
+            if(pinteraction->display_state() == ::e_display_iconic && !msg.hwnd->is_iconic())
             {
 
-               ::e_display edisplayPrevious = pinteraction->m_windowrect.m_edisplayPrevious;
+               ::enum_display edisplayPrevious = pinteraction->m_windowrect.m_edisplayPrevious;
 
                pinteraction->request_state().m_edisplay3 = edisplayPrevious;
 

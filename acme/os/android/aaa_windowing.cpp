@@ -1548,29 +1548,29 @@ CLASS_DECL_ACME ::estatus os_message_box(oswindow oswindow, const char * pText, 
    if (iResult == 1)
    {
 
-      return IDOK;
+      return e_dialog_result_ok;
 
    }
    else if (iResult == 2)
    {
 
-      return IDCANCEL;
+      return e_dialog_result_cancel;
 
    }
    else if (iResult == 4)
    {
 
-      return IDYES;
+      return e_dialog_result_yes;
 
    }
    else if (iResult == 8)
    {
 
-      return IDNO;
+      return e_dialog_result_no;
 
    }
 
-   return IDOK;
+   return e_dialog_result_ok;
 
 }
 

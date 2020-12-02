@@ -75,10 +75,10 @@ namespace windows
       __memset(&pi, 0, sizeof(pi));
       si.cb = sizeof(si);
       si.dwFlags = STARTF_USESHOWWINDOW;
-      si.wShowWindow = display_none; */
+      si.wShowWindow = e_display_none; */
       //         if(!::CreateProcess(nullptr, (char *) (const char *) Context.dir().appdata("production\\build.bat"), nullptr, nullptr, FALSE, CREATE_NEW_CONSOLE, nullptr, nullptr, &si, &pi))
       m_si.dwFlags |= STARTF_USESHOWWINDOW;
-      m_si.wShowWindow = display_none;
+      m_si.wShowWindow = e_display_none;
 
 
       ::u32 dwPriorityClass = ::get_os_priority_class(epriority);

@@ -191,7 +191,7 @@ namespace plugin
 
             //else
             //{
-            // pinteraction->display(display_normal);
+            // pinteraction->display(e_display_normal);
             //pinteraction->on_layout(::draw2d::graphics_pointer & pgraphics);
             //}
          }

@@ -85,14 +85,14 @@ namespace ftp
    client_socket::client_socket(::sockets::base_socket_handler & handler,
                                 unsigned int uiTimeout/*=10*/,
                                 unsigned int uiBufferSize/*=2048*/, unsigned int uiResponseWait/*=0*/,
-                                const string& strRemoteDirectorySeparator/*=_T("/")*/) :
+                                const string& strRemoteDirectorySeparator/*="/"*/) :
       ::sockets::base_socket(handler),
       ::sockets::socket(handler),
       ::sockets::stream_socket(handler),
       ::sockets::tcp_socket(handler),
       mc_uiTimeout(uiTimeout),
       mc_uiResponseWait(uiResponseWait),
-      mc_strEolCharacterSequence(_T("\r\n")),
+      mc_strEolCharacterSequence("\r\n"),
       mc_strRemoteDirectorySeparator(strRemoteDirectorySeparator),//+# documentation missing
       m_apFileListParser(__new(file_list_parser())),
       m_fTransferInProgress(false),
@@ -403,7 +403,7 @@ namespace ftp
          {
          case ER: // ER means somewhat has gone wrong
          {
-            ReportError(_T("Logon failed."), __FILE__, __LINE__);
+            ReportError("Logon failed.", __FILE__, __LINE__);
          }
          return false;
          case LO: // LO means we're fully logged on
@@ -1381,14 +1381,14 @@ auto tickStart = ::millis::now();
       if (!GetSingleResponseLine(strResponse))
          return false;
 
-      if (strResponse.length() > 3 && strResponse[3] == _T('-'))
+      if (strResponse.length() > 3 && strResponse[3] == '-')
       {
          string strSingleLine(strResponse);
          const int iRetCode = atoi(strResponse);
          // handle multi-line server responses
          while (!(strSingleLine.length() > 3 &&
-                  strSingleLine[3] == _T(' ') &&
-                  ansi_to_i32(strSingleLine) == iRetCode))
+                  strSingleLine[3] == ' ') &&
+                  ansi_to_i32(strSingleLine) == iRetCode)
          {
             if (!GetSingleResponseLine(strSingleLine))
                return false;
@@ -1613,11 +1613,11 @@ auto tickStart = ::millis::now();
          switch (enState)
          {
          case state0:
-            if (it == _T('('))
+            if (it == '(')
                enState = state1;
             break;
          case state1:
-            if (it == _T(','))
+            if (it == ',')
             {
                if (--iCommaCnt == 0)
                {
@@ -1638,7 +1638,7 @@ auto tickStart = ::millis::now();
             }
             break;
          case state2:
-            if (it == _T(','))
+            if (it == ',')
             {
                ushTempPort = static_cast<WINUSHORT>(atoi(strPort) << 8);
                strPort.clear();
@@ -1652,7 +1652,7 @@ auto tickStart = ::millis::now();
             }
             break;
          case state3:
-            if (it == _T(')'))
+            if (it == ')')
             {
                // compiler warning if using +=operator
                ushTempPort = ushTempPort + static_cast<WINUSHORT>(atoi(strPort));
@@ -1896,7 +1896,7 @@ auto tickStart = ::millis::now();
    /// Executes the FTP command DELE (DELETE)
    /// This command causes the file specified in the pathname to be deleted at the
    /// server site.  If an extra level of protection is desired (such as the query,
-   /// "Do you really wish to delete?"), it should be provided by the user-FTP process.
+   /// "Do you really wish to delete?", it should be provided by the user-FTP process.
    /// @lparam[in] strFile Pathname of the file to delete.
    /// @return see return values of client_socket::SimpleErrorCheck
    int client_socket::Delete(const string& strFile)
@@ -1996,7 +1996,7 @@ auto tickStart = ::millis::now();
       string_array Arguments({ __str(iReserveBytes) });
       if (piMaxPageOrRecordSize != nullptr)
       {
-         Arguments.push_back(_T("R"));
+         Arguments.push_back("R");
          Arguments.push_back(__str(*piMaxPageOrRecordSize));
       }
 
@@ -2098,7 +2098,7 @@ auto tickStart = ::millis::now();
       if (Reply.Value().length() >= 18)
       {
          string strTemp(Reply.Value().substr(4));
-         strsize iPos = strTemp.find(_T('.'));
+         strsize iPos = strTemp.find('.');
          if (iPos >= 0)
             strTemp = strTemp.substr(0, iPos);
          if (strTemp.length() == 14)

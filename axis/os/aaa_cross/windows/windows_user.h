@@ -950,13 +950,13 @@ oswindow hWnd,
 /*
 * Dialog Box Command IDs
 */
-#define IDOK                1
-#define IDCANCEL            2
+#define e_dialog_result_ok                1
+#define e_dialog_result_cancel            2
 #define IDABORT             3
 #define IDRETRY             4
 #define IDIGNORE            5
-#define IDYES               6
-#define IDNO                7
+#define e_dialog_result_yes               6
+#define e_dialog_result_no                7
 //#if(WINVER >= 0x0400)
 #define IDCLOSE         8
 #define IDHELP          9
@@ -1718,7 +1718,7 @@ typedef struct tagMDINEXTMENU
 #define NF_QUERY                             3
 #define NF_REQUERY                           4
 
-#define WM_CONTEXTMENU                  0x007B
+#define e_message_context_menu                  0x007B
 #define WM_STYLECHANGING                0x007C
 #define WM_STYLECHANGED                 0x007D
 #define e_message_display_change                0x007E

@@ -520,7 +520,7 @@ size simple_toolbar::CalcSize(::draw2d::graphics_pointer & pgraphics, index nCou
 
       //index cySep = item.m_iImage;
 
-      if (m_itema[i]->m_fsStyle & TBSTYLE_SEP)
+      if (m_itema[i]->m_etoolbarbuttonstyle & e_toolbar_button_style_separator)
       {
 
          buttonx = sSeparator.cx;
@@ -560,7 +560,7 @@ size simple_toolbar::CalcSize(::draw2d::graphics_pointer & pgraphics, index nCou
 
       }
 
-      if (m_itema[i]->m_fsState & TBSTATE_HIDDEN)
+      if (m_itema[i]->m_etoolbarbutton & e_toolbar_button_hidden)
       {
 
          continue;
@@ -577,7 +577,7 @@ size simple_toolbar::CalcSize(::draw2d::graphics_pointer & pgraphics, index nCou
 
       cur.y = (::i32) max(cur.y, buttony);
 
-      if (m_itema[i]->m_fsState & TBSTATE_WRAP)
+      if (m_itema[i]->m_etoolbarbutton & e_toolbar_button_wrap)
       {
 
 
@@ -607,7 +607,7 @@ size simple_toolbar::CalcSize(::draw2d::graphics_pointer & pgraphics, index nCou
 
          cur.y = 0;
 
-         if (m_itema[i]->m_fsStyle & TBSTYLE_SEP)
+         if (m_itema[i]->m_etoolbarbuttonstyle & e_toolbar_button_style_separator)
          {
 
             sizeResult.cy += sSeparator.cy;
@@ -698,10 +698,10 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 //
 //   e_element eelementText = element_text;
 //
-//   if ((nStyle & TBBS_SEPARATOR) == 0)
+//   if ((nStyle & e_toolbar_button_style_separator) == 0)
 //   {
 //
-//      if ((nStyle & TBBS_DISABLED) == 0)
+//      if ((nStyle & e_toolbar_button_style_disabled) == 0)
 //      {
 //
 //         // item is enabled
@@ -780,7 +780,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
    _001GetElementRect(iItem, rectImage, ::user::element_image, estate);
 
-   if ((nStyle & TBBS_SEPARATOR) != 0)
+   if ((nStyle & e_toolbar_button_style_separator) != 0)
    {
 
       ::rect rectSeparator;
@@ -1055,7 +1055,7 @@ bool simple_toolbar::_001GetElementRect(index iItem, RECT32 * prect, ::user::e_e
 
    ::user::toolbar_item & item = m_itema(iItem);
 
-   if ((item.m_fsStyle & TBSTYLE_SEP) != 0)
+   if ((item.m_etoolbarbuttonstyle & e_toolbar_button_style_separator) != 0)
    {
 
       rect = item.m_rect;
@@ -1276,7 +1276,7 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
          for (index i = 0; i < m_itema.get_count(); i++)
          {
 
-            if (m_itema[i]->m_fsStyle & TBSTATE_WRAP || i == m_itema.get_upper_bound())
+            if (m_itema[i]->m_etoolbarbutton & e_toolbar_button_wrap || i == m_itema.get_upper_bound())
             {
 
                int iTotalX = 0;
@@ -1703,24 +1703,24 @@ void simple_tool_command::enable(bool bOn, const ::action_context & context)
 
    ASSERT(m_iIndex < m_iCount);
 
-   ::u32 nNewStyle = pToolBar->GetButtonStyle((index)m_iIndex) & ~TBBS_DISABLED;
+   auto etoolbarbuttonstyleNew = pToolBar->GetButtonStyle((index)m_iIndex) & ~e_toolbar_button_style_disabled;
 
    if (!bOn)
    {
 
-      nNewStyle |= TBBS_DISABLED;
+      etoolbarbuttonstyleNew |= e_toolbar_button_style_disabled;
 
       // WINBUG: If a button is currently pressed and then is disabled
       // COMCTL32.DLL does not unpress the button, even after the mouse
       // button goes up!  We work around this bug by forcing TBBS_PRESSED
       // off when a button is disabled.
-      nNewStyle &= ~TBBS_PRESSED;
+      etoolbarbuttonstyleNew -= e_toolbar_button_style_pressed;
 
    }
 
-   ASSERT(!(nNewStyle & TBBS_SEPARATOR));
+   ASSERT(!(etoolbarbuttonstyleNew & e_toolbar_button_style_separator));
 
-   pToolBar->SetButtonStyle((index)m_iIndex, nNewStyle);
+   pToolBar->SetButtonStyle((index)m_iIndex, etoolbarbuttonstyleNew);
 
 }
 
@@ -1740,24 +1740,28 @@ void simple_tool_command::_001SetCheck(enum_check echeck, const ::action_context
 
    ASSERT(m_iIndex < m_iCount);
 
-   ::u32 nNewStyle = pToolBar->GetButtonStyle((index)m_iIndex) & ~(TBBS_CHECKED | TBBS_INDETERMINATE);
+   auto etoolbarbuttonstyleNew = pToolBar->GetButtonStyle((index)m_iIndex);
+
+   etoolbarbuttonstyleNew -= e_toolbar_button_style_checked;
+
+   etoolbarbuttonstyleNew -= e_toolbar_button_style_indeterminate;
 
    if (echeck == check_checked)
    {
 
-      nNewStyle |= TBBS_CHECKED;
+      etoolbarbuttonstyleNew |= e_toolbar_button_style_checked;
 
    }
    else if (echeck == check_tristate)
    {
 
-      nNewStyle |= TBBS_INDETERMINATE;
+      etoolbarbuttonstyleNew  |= e_toolbar_button_style_indeterminate;
 
    }
 
-   ASSERT(!(nNewStyle & TBBS_SEPARATOR));
+   ASSERT(!(etoolbarbuttonstyleNew  & e_toolbar_button_style_separator));
 
-   pToolBar->SetButtonStyle((index)m_iIndex, nNewStyle | TBBS_CHECKBOX);
+   pToolBar->SetButtonStyle((index)m_iIndex, etoolbarbuttonstyleNew | e_toolbar_button_style_checkbox);
 
 }
 
@@ -1770,10 +1774,10 @@ void simple_tool_command::SetText(const char *, const ::action_context & context
 }
 
 
-index simple_toolbar::GetItemStyle(index iItem)
+cflag < ::enum_toolbar_button_style > simple_toolbar::GetItemStyle(index iItem)
 {
 
-   return m_itema[iItem]->m_fsStyle;
+   return m_itema[iItem]->m_etoolbarbuttonstyle;
 
 }
 
@@ -1918,7 +1922,7 @@ index simple_toolbar::WrapToolBar(::draw2d::graphics_pointer & pgraphics, index 
 
       m_itema[i]->m_fsState &= ~TBSTATE_WRAP;
 
-      if (m_itema[i]->m_fsState & TBSTATE_HIDDEN)
+      if (m_itema[i]->m_fsState & e_toolbar_button_hidden)
          continue;
 
       GetButtonText(i, str);
@@ -1980,7 +1984,7 @@ index simple_toolbar::WrapToolBar(::draw2d::graphics_pointer & pgraphics, index 
             // a separator, but a custom control.
             if ((m_itema[j]->m_fsStyle & TBSTYLE_SEP) &&
                   (m_itema[j]->m_id == "separator") &&
-                  !(m_itema[j]->m_fsState & TBSTATE_HIDDEN))
+                  !(m_itema[j]->m_fsState & e_toolbar_button_hidden))
             {
 
                bFound = TRUE;
@@ -2009,7 +2013,7 @@ index simple_toolbar::WrapToolBar(::draw2d::graphics_pointer & pgraphics, index 
 
                // Never wrap anything that is hidden,
                // or any custom controls
-               if ((m_itema[j]->m_fsState & TBSTATE_HIDDEN) ||
+               if ((m_itema[j]->m_fsState & e_toolbar_button_hidden) ||
                      ((m_itema[j]->m_fsStyle & TBSTYLE_SEP) &&
                       (m_itema[j]->m_id != "separator")))
                {

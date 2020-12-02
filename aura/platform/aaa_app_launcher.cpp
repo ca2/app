@@ -137,7 +137,7 @@ namespace aura
 
       string strParams = get_params();
 
-      if (call_async(strPath, strParams, strDir, display_none, false) == 0)
+      if (call_async(strPath, strParams, strDir, e_display_none, false) == 0)
          return true;
 
 #endif

@@ -134,7 +134,7 @@ namespace filemanager
             if (spframewindow.is_set())
             {
 
-               spframewindow->ActivateFrame(display_normal);
+               spframewindow->ActivateFrame(e_display_normal);
 
             }
 

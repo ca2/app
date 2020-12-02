@@ -613,7 +613,7 @@ namespace macos
 //
 //         m_puserinteraction->move_to(pmove->m_point);
 //
-//         if (m_puserinteraction->layout().design().display() != display_normal)
+//         if (m_puserinteraction->layout().design().display() != e_display_normal)
 //         {
 //
 //            m_puserinteraction->display();
@@ -655,7 +655,7 @@ namespace macos
 //
 //         m_puserinteraction->set_size(psize->m_size);
 //
-//         if (m_puserinteraction->layout().design().display() != display_normal)
+//         if (m_puserinteraction->layout().design().display() != e_display_normal)
 //         {
 //
 //            m_puserinteraction->display();
@@ -2540,12 +2540,12 @@ namespace macos
 //   void interaction_impl::_001WindowRestore()
 //   {
 //
-//      m_puserinteraction->m_edisplay = user::display_normal;
+//      m_puserinteraction->m_edisplay = user::e_display_normal;
 //
 //      if (m_puserinteraction != nullptr)
 //      {
 //
-//         m_puserinteraction->m_edisplay = user::display_normal;
+//         m_puserinteraction->m_edisplay = user::e_display_normal;
 //
 //      }
 //
@@ -5024,7 +5024,7 @@ namespace macos
 //
 //         m_puserinteraction->place(rectSize);
 //
-//         if (m_puserinteraction->layout().design().display() != display_normal)
+//         if (m_puserinteraction->layout().design().display() != e_display_normal)
 //         {
 //
 //            m_puserinteraction->display();
@@ -5091,7 +5091,7 @@ namespace macos
 //
 //         m_puserinteraction->move_to(pointMove);
 //
-//         if (m_puserinteraction->layout().design().display() != display_normal)
+//         if (m_puserinteraction->layout().design().display() != e_display_normal)
 //         {
 //
 //            m_puserinteraction->display();
@@ -5213,7 +5213,7 @@ namespace macos
          
       }
 
-      m_puserinteraction->layout().window() = ::display_iconic;
+      m_puserinteraction->layout().window() = ::e_display_iconic;
 
    }
 
@@ -5238,10 +5238,10 @@ namespace macos
       if(m_puserbox)
       {
 
-         if(m_puserbox->m_windowrect.m_edisplayPrevious == ::display_iconic)
+         if(m_puserbox->m_windowrect.m_edisplayPrevious == ::e_display_iconic)
          {
 
-            m_puserbox->m_windowrect.m_edisplayPrevious = ::display_normal;
+            m_puserbox->m_windowrect.m_edisplayPrevious = ::e_display_normal;
 
          }
          
@@ -5280,7 +5280,7 @@ namespace macos
 //      if(!(m_puserinteraction->m_ewindowflag & window_flag_miniaturizable))
 //      {
 //
-//         if(m_puserinteraction->layout().sketch().display() == display_iconic)
+//         if(m_puserinteraction->layout().sketch().display() == e_display_iconic)
 //         {
 //
 //            m_puserinteraction->m_windowState3
@@ -5639,13 +5639,13 @@ namespace macos
          round_window_hide();
 
       }
-      else if(edisplay == display_iconic)
+      else if(edisplay == e_display_iconic)
       {
 
          round_window_miniaturize();
 
       }
-      else if(m_puserinteraction->layout().design().activation() & activation_no_activate)
+      else if(m_puserinteraction->layout().design().activation() & e_activation_no_activate)
       {
 
          round_window_order_front();

@@ -28,7 +28,7 @@ namespace calculator
       MESSAGE_LINK(e_message_size, pchannel, this, &view::_001OnSize);
       MESSAGE_LINK(e_message_paint, pchannel, this, &view::_001OnPaint);
       MESSAGE_LINK(e_message_create, pchannel, this, &view::_001OnCreate);
-      MESSAGE_LINK(WM_CONTEXTMENU, pchannel, this, &view::_001OnContextMenu);
+      MESSAGE_LINK(e_message_context_menu, pchannel, this, &view::_001OnContextMenu);
       MESSAGE_LINK(e_message_set_cursor, pchannel, this, &view::_001OnSetCursor);
 
 

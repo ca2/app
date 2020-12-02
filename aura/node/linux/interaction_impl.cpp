@@ -540,7 +540,7 @@ namespace linux
                wm_desktopwindow(m_oswindow, true);
 
             }
-            else if(m_puserinteraction->layout().sketch().activation() & activation_on_center_of_screen)
+            else if(m_puserinteraction->layout().sketch().activation() & e_activation_on_center_of_screen)
             {
 
                wm_centerwindow(m_oswindow, true);
@@ -613,7 +613,7 @@ namespace linux
             else
             {
 
-               m_puserinteraction->layout().window() = display_none;
+               m_puserinteraction->layout().window() = e_display_none;
 
             }
 
@@ -659,7 +659,7 @@ namespace linux
                      // (Hinting for monitor placement, if no stored information
                      // available).
 
-                     if(m_puserinteraction->layout().sketch().display() == display_undefined)
+                     if(m_puserinteraction->layout().sketch().display() == e_display_undefined)
                      {
 
                         m_puserinteraction->move_to(get_context_session()->get_cursor_pos());
@@ -929,15 +929,15 @@ namespace linux
 
          m_puserinteraction->ModifyStyle(0, WS_VISIBLE);
 
-         if(m_puserinteraction->layout().design().display() == ::display_iconic && !m_oswindow->is_iconic())
+         if(m_puserinteraction->layout().design().display() == ::e_display_iconic && !m_oswindow->is_iconic())
          {
 
             m_puserinteraction->hide();
 
-            if(m_puserinteraction->window_previous_display() == ::display_iconic)
+            if(m_puserinteraction->window_previous_display() == ::e_display_iconic)
             {
 
-               m_puserinteraction->_001OnDeiconify(::display_normal);
+               m_puserinteraction->_001OnDeiconify(::e_display_normal);
 
             }
             else
@@ -3021,11 +3021,11 @@ namespace linux
 //      if(m_puserinteraction != nullptr)
 //      {
 //
-//         m_puserinteraction->dis = ::display_normal;
+//         m_puserinteraction->dis = ::e_display_normal;
 //
 //      }
 //
-//      ::show_window(m_oswindow, display_normal);
+//      ::show_window(m_oswindow, e_display_normal);
 //
 //   }
 
@@ -3033,7 +3033,7 @@ namespace linux
 //   void interaction_impl::WfiOnMinimize(bool bNoActivate)
 //   {
 //
-//      m_puserinteraction->display(display_iconic);
+//      m_puserinteraction->display(e_display_iconic);
 //
 //   }
 
@@ -3082,14 +3082,14 @@ namespace linux
 
 #ifdef LINUX
 
-      return m_puserinteraction->layout().design().display() == ::display_iconic;
+      return m_puserinteraction->layout().design().display() == ::e_display_iconic;
 
 #else
 
       if(GetExStyle() & WS_EX_LAYERED)
       {
 
-         return m_puserinteraction->m_edisplay == ::display_iconic;
+         return m_puserinteraction->m_edisplay == ::e_display_iconic;
 
       }
       else
@@ -4803,13 +4803,13 @@ namespace linux
 //
 //      }
 //
-      if (edisplay == display_full_screen)
+      if (edisplay == e_display_full_screen)
       {
 
          if(m_puserinteraction->m_bWorkspaceFullScreen)
          {
 
-            ::show_window(m_oswindow, display_zoomed);
+            ::show_window(m_oswindow, e_display_zoomed);
 
          }
          else

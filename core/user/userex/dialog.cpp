@@ -152,7 +152,7 @@ void dialog::EndModalLoop(id idResult)
 
    }
 
-   m_pframe->display(display_none);
+   m_pframe->display(e_display_none);
 
    m_pframe->set_need_redraw();
 

@@ -1625,7 +1625,7 @@ typedef struct tagMDINEXTMENU
 #define NF_QUERY                             3
 #define NF_REQUERY                           4
 
-#define WM_CONTEXTMENU                  0x007B
+#define e_message_context_menu                  0x007B
 #define WM_STYLECHANGING                0x007C
 #define WM_STYLECHANGED                 0x007D
 #define e_message_display_change                0x007E

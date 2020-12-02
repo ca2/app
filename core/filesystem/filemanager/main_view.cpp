@@ -115,7 +115,7 @@ namespace filemanager
 
       m_ppreview = create_view < preview >();
 
-      m_ppreview->display(display_none);
+      m_ppreview->display(e_display_none);
 
    }
 
@@ -157,7 +157,7 @@ namespace filemanager
 
             set_need_layout();
 
-            m_ppreview->display(display_none);
+            m_ppreview->display(e_display_none);
 
 
          }
@@ -168,7 +168,7 @@ namespace filemanager
 
             set_need_layout();
 
-            m_pfilelist->display(display_none);
+            m_pfilelist->display(e_display_none);
 
          }
 
@@ -207,7 +207,7 @@ namespace filemanager
 
             OnActivateFrame(e_activate_inactive, ((GetParentFrame())));
 
-            GetParentFrame()->ActivateFrame(display_normal);
+            GetParentFrame()->ActivateFrame(e_display_normal);
 
             OnActivateView(TRUE, this, this);
 

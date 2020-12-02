@@ -145,7 +145,7 @@ CLASS_DECL_ACME int __cpp_assert_failed_line(const char * pszFileName, int iLine
 
    os_message_box(szMessage, szTitle, MB_CANCELTRYCONTINUE | MB_ICONERROR);
 
-   //if(iResult == IDCANCEL)
+   //if(iResult == e_dialog_result_cancel)
    //{
 
    //   exit(0);

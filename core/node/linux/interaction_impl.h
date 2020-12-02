@@ -5,10 +5,10 @@ namespace linux
 {
 
 
-   LRESULT CALLBACK __send_message_hook(i32, WPARAM, LPARAM);
+   //LRESULT CALLBACK __send_message_hook(i32, WPARAM, LPARAM);
    // void _::ca2::StandardSubclass(oswindow);
-   LRESULT CALLBACK __cbt_filter_hook(i32, WPARAM, LPARAM);
-   LRESULT __call_window_procedure(::user::interaction * pWnd, oswindow hWnd, ::u32 nMsg, WPARAM wParam, LPARAM lParam);
+   //LRESULT CALLBACK __cbt_filter_hook(i32, WPARAM, LPARAM);
+   //LRESULT __call_window_procedure(::user::interaction * pWnd, oswindow hWnd, ::u32 nMsg, WPARAM wParam, LPARAM lParam);
 
 
    class x11data;
@@ -51,7 +51,7 @@ namespace linux
 
       //virtual void on_delete(::object * poc);
 
-      static const MESSAGE* PASCAL GetCurrentMessage();
+      //static const MESSAGE* PASCAL GetCurrentMessage();
 
       virtual void install_message_routing(::channel * pchannel) override;
 
@@ -255,10 +255,13 @@ namespace linux
 //      virtual bool _001ScreenToClient(POINT64 * ppoint);
 
 
+#ifdef WINDOWS_DESKTOP
+
       virtual bool GetWindowPlacement(WINDOWPLACEMENT* pwndpl);
 
       virtual bool SetWindowPlacement(const WINDOWPLACEMENT* pwndpl);
 
+#endif
 
       // Coordinate Mapping Fufnctions
 //      virtual void MapWindowPoints(::user::interaction * pwndTo, POINT32 * pPoint, ::u32 nCount);
@@ -377,7 +380,11 @@ namespace linux
       virtual ::user::interaction * GetFocus() override;
       virtual bool SetFocus() override;
 
+#ifdef WINDOWS_DESKTOP
+
       static::user::interaction * PASCAL get_desktop_window();
+
+#endif
 
       // Obsolete and non-portable APIs - not recommended for new code
 //      virtual void CloseWindow();
@@ -489,8 +496,8 @@ namespace linux
 
       //static void get_app_wnda(user::oswindow_array & wnda);
 
-      virtual LONG_PTR get_window_long_ptr(i32 nIndex) const override;
-      virtual LONG_PTR set_window_long_ptr(i32 nIndex, LONG_PTR lValue) override;
+      virtual iptr get_window_long_ptr(i32 nIndex) const override;
+      virtual iptr set_window_long_ptr(i32 nIndex, iptr lValue) override;
 
       //void _001OnTriggerMouseInside();
 

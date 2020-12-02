@@ -2920,9 +2920,9 @@ namespace ios
 
 //   void interaction_impl::_001WindowRestore()
 //   {
-//      m_puserinteraction->m_edisplay = user::display_normal;
+//      m_puserinteraction->m_edisplay = user::e_display_normal;
 //      if(m_puserinteraction != nullptr)
-//         m_puserinteraction->m_edisplay = user::display_normal;
+//         m_puserinteraction->m_edisplay = user::e_display_normal;
 //      //      ::ShowWindow(get_handle(), SW_RESTORE);
 //   }
 
@@ -2949,7 +2949,7 @@ namespace ios
 //      ASSERT(::is_window(get_handle()));
 //      if(GetExStyle() & WS_EX_LAYERED)
 //      {
-//         return m_puserinteraction->m_edisplay == user::display_iconic;
+//         return m_puserinteraction->m_edisplay == user::e_display_iconic;
 //      }
 //      else
 //      {

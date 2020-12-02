@@ -43,7 +43,9 @@ namespace filemanager
 
       simple_frame_window::install_message_routing(pchannel);
 
+#ifdef WINDOWS_DESKTOP
       MESSAGE_LINK(WM_SETTEXT, pchannel, this, &frame::_001OnSetText);
+#endif
 
       MESSAGE_LINK(e_message_create, pchannel, this, &frame::_001OnCreate);
 

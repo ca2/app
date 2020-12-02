@@ -725,7 +725,7 @@ namespace html
          id idDisplay = strDisplay;
 
          if(idDisplay == __id(html_none))
-            return display_none;
+            return e_display_none;
 
          if(idDisplay == __id(html_block))
             return display_block;
@@ -747,7 +747,7 @@ namespace html
       if(tag_visible(e_tag))
          return display_inline;
 
-      return display_none;
+      return e_display_none;
 
    }
 
@@ -779,7 +779,7 @@ namespace html
       if(tag_visible(etag))
          return display_inline;
 
-      return display_none;
+      return e_display_none;
 
    }
 

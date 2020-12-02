@@ -248,7 +248,7 @@ namespace process
    void department::process_thread::run_elevated()
    {
 
-      m_pprocess->synch_elevated(m_strCmdLine,display_none,m_millisTimeout,m_pbPotentialTimeout);
+      m_pprocess->synch_elevated(m_strCmdLine,e_display_none,m_millisTimeout,m_pbPotentialTimeout);
 
       m_result.add((::estatus    ) m_pprocess->m_exitstatus.m_iExitCode);
 

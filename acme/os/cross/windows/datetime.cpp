@@ -56,6 +56,8 @@ extern "C" int settimeofday (const struct timeval *__tv, const struct timezone *
 #define __WINESRC__
 //#define __CA__DLL
 
+//#include <time.h>
+
 
 ::i32 TIME_GetBias(void);
 
@@ -1059,6 +1061,35 @@ CLASS_DECL_ACME void GetSystemTime(LPSYSTEMTIME systime)
 
 #endif // !defined(_UWP)
 
+
+::estatus mkgmtime_from_filetime(time_t & time, const ::filetime_t & filetime)
+{
+
+   SYSTEMTIME systemtime;
+
+   if (!FileTimeToSystemTime((FILETIME *) &filetime, &systemtime))
+   {
+
+      time = 0;
+
+      return ::error_failed;
+
+   }
+
+   struct tm tm = {};
+
+   tm.tm_hour = systemtime.wHour;
+   tm.tm_min = systemtime.wMinute;
+   tm.tm_sec = systemtime.wSecond;
+   tm.tm_mon = systemtime.wMonth;
+   tm.tm_mday = systemtime.wDay;
+   tm.tm_year = systemtime.wYear;
+
+   time = timegm(&tm);
+
+   return ::success;
+
+}
 
 
 

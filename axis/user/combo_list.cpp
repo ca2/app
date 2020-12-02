@@ -907,7 +907,7 @@ namespace user
 
       pmessage->m_bRet = true;
 
-      display(display_none);
+      display(e_display_none);
 
       set_need_redraw();
 
@@ -1110,7 +1110,7 @@ namespace user
 
       order_top_most();
 
-      display(display_normal);
+      display(e_display_normal);
 
       set_need_redraw();
 

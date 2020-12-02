@@ -82,26 +82,35 @@ xfplayer_view_line::~xfplayer_view_line()
 
 
 bool xfplayer_view_line::PrepareLine(::draw2d::graphics_pointer & pgraphics, string str, i32 flags, const ::rect & rect)
-
 {
 
    single_lock sl(m_pContainer->mutex());
 
    UNREFERENCED_PARAMETER(flags);
+
    m_straLink.remove_all();
    m_iaLinkStart.remove_all();
    m_iaLinkEnd.remove_all();
+
    strsize               iChars;
    strsize               iStr;
    strsize               iStrLen;
+
    ASSERT(pgraphics != nullptr);
+
    iStrLen = str.get_length();
+
    iChars = -1;
+
    m_str.Empty();
+
    m_iIndent = 0;
+
    for (iStr = 0; iStr < iStrLen; iStr++)
    {
-      AddChar(str[iStr], iChars);
+
+      add_char(str[iStr], iChars);
+
    }
 
    CalcCharsPositions(pgraphics, rect);
@@ -112,7 +121,7 @@ bool xfplayer_view_line::PrepareLine(::draw2d::graphics_pointer & pgraphics, str
 }
 
 
-void xfplayer_view_line::AddChar(WCHAR wch, strsize & index)
+void xfplayer_view_line::add_char(widechar wch, strsize & index)
 {
 
    single_lock sl(m_pContainer->mutex());
@@ -131,7 +140,7 @@ void xfplayer_view_line::AddChar(WCHAR wch, strsize & index)
 }
 
 
-void xfplayer_view_line::AddChar(WCHAR wch, strsize & index, draw2d::font * pFont)
+void xfplayer_view_line::add_char(widechar wch, strsize & index, draw2d::font * pFont)
 {
 
    single_lock sl(m_pContainer->mutex());
@@ -1215,7 +1224,7 @@ void xfplayer_view_line::Invalidate(const rect & rectParam)
 
    ::rect rectInvalidate;
 
-   if (IsRectEmpty(&rectParam))
+   if (is_empty(&rectParam))
    {
 
       rectInvalidate = rectPlacement;
@@ -1246,7 +1255,7 @@ void xfplayer_view_line::Validate(const rect & rectParam)
 
    ::rect rectValidate;
 
-   if (IsRectEmpty(&rectParam))
+   if (is_empty(&rectParam))
    {
 
       rectValidate = rectPlacement;
@@ -1422,6 +1431,7 @@ void xfplayer_view_line::SetColors(color32_t cr, color32_t crOutline)
 }
 
 
+#ifdef WINDOWS_DESKTOP
 
 
 void xfplayer_view_line::GetLogFont(LOGFONTW &lf)
@@ -1431,6 +1441,9 @@ void xfplayer_view_line::GetLogFont(LOGFONTW &lf)
 
    //lf = m_logfont;
 }
+
+
+#endif
 
 
 void xfplayer_view_line::CacheEmboss(::draw2d::graphics_pointer & pgraphics, const char * pcsz, strsize iLen, ::image_pointer & pimageCache)

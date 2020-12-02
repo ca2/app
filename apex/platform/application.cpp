@@ -4966,11 +4966,11 @@ retry_license:
 //
 //#elif defined(WINDOWS)
 //
-//      call_async("C:\\Program Files (x86)\\Notepad++\\Notepad++.exe", "\"" + strFile + "\"", "", display_normal, false);
+//      call_async("C:\\Program Files (x86)\\Notepad++\\Notepad++.exe", "\"" + strFile + "\"", "", e_display_normal, false);
 //
 //#elif defined(LINUX)
 //
-//      call_async("gedit", "\"" + strFile + "\"", "", display_normal, false);
+//      call_async("gedit", "\"" + strFile + "\"", "", e_display_normal, false);
 //
 //#else
 //
@@ -5888,7 +5888,7 @@ retry_license:
       //   if (m_puiMain1)
       //   {
 
-      //      m_puiMain1->display(::display_hide);
+      //      m_puiMain1->display(::e_display_hide);
 
       //      m_puiMain1->set_need_redraw();
 
@@ -7209,7 +7209,7 @@ retry_license:
 
          ::property_set set;
 
-         return ::call_sync(::path::app_app(process_platform_dir_name2(), process_configuration_dir_name()), pszCommandLine, ::path::app_app(process_platform_dir_name2(), process_configuration_dir_name()), display_normal, 2_min, set);
+         return ::call_sync(::path::app_app(process_platform_dir_name2(), process_configuration_dir_name()), pszCommandLine, ::path::app_app(process_platform_dir_name2(), process_configuration_dir_name()), e_display_normal, 2_min, set);
 
 #endif
 
@@ -8642,7 +8642,7 @@ namespace apex
    //      }
 
    //      // hide the application's windows before closing all the documents
-   //      m_puiMain1->m_puiThis->display(display_none);
+   //      m_puiMain1->m_puiThis->display(e_display_none);
    //      // trans    m_puiMain->ShowOwnedPopups(FALSE);
 
 
@@ -8653,7 +8653,7 @@ namespace apex
 
    //      //m_puiMain->m_puiThis->wait_redraw();
 
-   //      m_puiMain1->m_puiThis->display(display_none);
+   //      m_puiMain1->m_puiThis->display(e_display_none);
 
 
    //   }
@@ -9216,7 +9216,7 @@ namespace apex
    //      }
 
    //      // hide the application's windows before closing all the documents
-   //      m_puiMain1->m_puiThis->display(display_none);
+   //      m_puiMain1->m_puiThis->display(e_display_none);
    //      // trans    m_puiMain->ShowOwnedPopups(FALSE);
 
 
@@ -9227,7 +9227,7 @@ namespace apex
 
    //      //m_puiMain->m_puiThis->wait_redraw();
 
-   //      m_puiMain1->m_puiThis->display(display_none);
+   //      m_puiMain1->m_puiThis->display(e_display_none);
 
 
    //   }

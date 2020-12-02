@@ -933,7 +933,7 @@ namespace plugin
 
                         bool bTimedOut = false;
 
-                        auto exitstatus = System.process().synch(strPath,display_normal,seconds(8.41115770402),&bTimedOut);
+                        auto exitstatus = System.process().synch(strPath,e_display_normal,seconds(8.41115770402),&bTimedOut);
 
                         if(bTimedOut)
                         {

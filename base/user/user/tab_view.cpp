@@ -206,7 +206,7 @@ namespace user
          if (puiChild.is_set())
          {
 
-            puiChild->display(display_none);
+            puiChild->display(e_display_none);
 
             //puiChild->post_pred([puiChild]()
             //{
@@ -384,7 +384,7 @@ namespace user
 
       m_pdroptargetwindow->place(rect);
 
-      m_pdroptargetwindow->display(display_normal);
+      m_pdroptargetwindow->display(e_display_normal);
 
       m_pdroptargetwindow->SetCapture();
 
@@ -1139,7 +1139,7 @@ namespace user
 
       m_ptab->_001OnDropTab(m_iTab, eposition);
 
-      display(display_none);
+      display(e_display_none);
 
       DestroyWindow();
 

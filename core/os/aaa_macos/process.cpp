@@ -239,7 +239,7 @@ bool shell_execute_sync(const char * pszFile, const char * pszParams, ::duration
    
    property_set set;
 
-   return call_sync(pszFile, pszParams, ::file::path(pszFile).folder(), display_none, durationTimeout, set);
+   return call_sync(pszFile, pszParams, ::file::path(pszFile).folder(), e_display_none, durationTimeout, set);
 
 }
 
@@ -342,7 +342,7 @@ bool launch_command(const char * const pszCommand)
    
    strParams.Format("-c \"screen -d -m %s\"", strCommand.c_str());
    
-   if (call_async("/bin/bash", strParams, ::dir::home(), display_none, false) != 0)
+   if (call_async("/bin/bash", strParams, ::dir::home(), e_display_none, false) != 0)
    {
       
       return false;

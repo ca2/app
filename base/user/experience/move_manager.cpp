@@ -44,7 +44,7 @@ namespace experience
 
          m_pframewindow->get_window_rect(rectWindow);
 
-         //if(m_pframewindow->layout().design().display() != ::display_normal && m_pframewindow->layout().design().display() != ::display_minimal)
+         //if(m_pframewindow->layout().design().display() != ::e_display_normal && m_pframewindow->layout().design().display() != ::e_display_minimal)
          //{
 
          //   auto pointRate = rectWindow.to_point_rate(pointCursor);
@@ -60,7 +60,7 @@ namespace experience
 
          //   m_pframewindow->set_size(m_pframewindow->m_windowrect.m_rectRestored.size());
 
-         //   m_pframewindow->display(::display_normal);
+         //   m_pframewindow->display(::e_display_normal);
 
          //}
 

@@ -453,7 +453,7 @@ namespace install
 
       bool bTimedOut = false;
 
-      u32 dwExitCode = System.process().synch(strPath,display_normal,2_s),&bTimedOut);
+      u32 dwExitCode = System.process().synch(strPath,e_display_normal,2_s),&bTimedOut);
 
       if(bTimedOut)
       {

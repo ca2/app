@@ -158,25 +158,25 @@ CLASS_DECL_ACME mq * get_mq(ithread_t idthread, bool bCreate);
 //
 //   string strResult;
 //
-//   if (iResult == IDNO)
+//   if (iResult == e_dialog_result_no)
 //   {
 //
 //      strResult = "no";
 //
 //   }
-//   else if (iResult == IDYES)
+//   else if (iResult == e_dialog_result_yes)
 //   {
 //
 //      strResult = "yes";
 //
 //   }
-//   else if (iResult == IDCANCEL)
+//   else if (iResult == e_dialog_result_cancel)
 //   {
 //
 //      strResult = "cancel";
 //
 //   }
-//   else if (iResult == IDOK)
+//   else if (iResult == e_dialog_result_ok)
 //   {
 //
 //      strResult = "ok";

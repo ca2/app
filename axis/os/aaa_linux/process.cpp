@@ -645,7 +645,7 @@ bool shell_execute_sync(const char * pszFile, const char * pszParams, ::duration
 
    property_set set;
 
-   return call_sync(pszFile, pszParams, ::file::path(pszFile).folder(), display_none, durationTimeout, set);
+   return call_sync(pszFile, pszParams, ::file::path(pszFile).folder(), e_display_none, durationTimeout, set);
 
 }
 

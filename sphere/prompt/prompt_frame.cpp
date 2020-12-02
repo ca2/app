@@ -157,7 +157,7 @@ namespace prompt
       ::u32 nShow;
       if(bShow)
       {
-         nShow = display_normal;
+         nShow = e_display_normal;
       }
       else
       {
@@ -339,7 +339,7 @@ namespace prompt
 
       get_window_rect(rectWindow);
       
-      display(display_restore);
+      display(e_display_restore);
       
       bool bChanged = false;
       if(rectWindow.width() < 400)

@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "core/user/user/_user.h"
+#endif
 //#include "aura/node/ansios/ansios.h"
 #include "_linux.h"
 #include "aura/os/linux/_linux.h"

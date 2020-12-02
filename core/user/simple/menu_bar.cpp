@@ -42,7 +42,13 @@ void simple_menu_bar::install_message_routing(::channel * pchannel)
    MESSAGE_LINK(e_message_create, pchannel, this, &simple_menu_bar::_001OnCreate);
    MESSAGE_LINK(e_message_key_down, pchannel, this, &simple_menu_bar::_001OnKeyDown);
    MESSAGE_LINK(e_message_destroy, pchannel, this, &simple_menu_bar::_001OnDestroy);
+
+#ifdef WINDOWS_DESKTOP
+
    MESSAGE_LINK(WM_MENUCHAR, pchannel, this, &simple_menu_bar::_001OnMenuChar);
+
+#endif
+
    //MESSAGE_LINK(e_message_left_button_down, pchannel, this, &simple_menu_bar::_001OnLButtonDown);
    //MESSAGE_LINK(e_message_language, pchannel, this, &simple_menu_bar::_001OnAppLanguage);
 
@@ -250,6 +256,9 @@ void simple_menu_bar::_001OnCreate(::message::message * pmessage)
 }
 
 
+#ifdef WINDOWS_DESKTOP
+
+
 LRESULT CALLBACK simple_menu_bar::MessageProc(index code, WPARAM wParam, LPARAM lParam)
 {
 
@@ -283,6 +292,9 @@ LRESULT CALLBACK simple_menu_bar::MessageProc(index code, WPARAM wParam, LPARAM 
    return 0;
 
 }
+
+
+#endif
 
 
 bool simple_menu_bar::_track_popup_menu(const ::point & point)
@@ -461,7 +473,11 @@ void simple_menu_bar::OnUpdateCmdUI(__pointer(::user::frame_window)pTarget, bool
 bool simple_menu_bar::ReloadMenuBar()
 {
 
+#ifdef WINDOWS_DESKTOP
+
    send_message(WM_CANCELMODE);
+
+#endif
 
    if (!LoadMenuBar(m_uResourceId))
       return false;

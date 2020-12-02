@@ -39,7 +39,9 @@ namespace userfs
       MESSAGE_LINK(e_message_show_window, pchannel, this, &list::_001OnShowWindow);
       MESSAGE_LINK(e_message_create, pchannel, this, &list::_001OnCreate);
       MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &list::_001OnLButtonDblClk);
+#ifdef WINDOWS_DESKTOP
       MESSAGE_LINK(WM_CANCELMODE, pchannel, this, &list::_001OnCancelMode);
+#endif
 
    }
 
@@ -180,13 +182,19 @@ namespace userfs
 
    }
 
+   
    bool list::pre_create_window(::user::create_struct& cs)
    {
 
+
+#ifdef WINDOWS_DESKTOP
       cs.style |= WS_CLIPCHILDREN;
+#endif
 
       return ::user::form_list_view::pre_create_window(cs);
+
    }
+
 
    void list::_001InsertColumns()
    {

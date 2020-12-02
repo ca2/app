@@ -853,7 +853,7 @@ inline ::i64 i32muldiv(::i64 i, i32 iNum, i32 iDen)
 }
 
 
-inline string __str(const ::edisplay & edisplay) { return __str((::e_display) edisplay); }
+inline string __str(const ::edisplay & edisplay) { return __str((::enum_display) edisplay); }
 
 
 namespace aura

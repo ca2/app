@@ -3271,9 +3271,9 @@ ExitModal:
 
       __throw(todo());
 
-      /*      m_edisplay = display_normal;
+      /*      m_edisplay = e_display_normal;
             if(m_puserinteraction != nullptr)
-            m_puserinteraction->m_edisplay = display_normal;
+            m_puserinteraction->m_edisplay = e_display_normal;
             ::ShowWindow(get_handle(), SW_RESTORE);*/
    }
 

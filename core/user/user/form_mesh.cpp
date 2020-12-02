@@ -256,7 +256,7 @@ namespace user
       {
       //             //  case VK_RETURN:
       _001SaveEdit(pinteraction);
-      pinteraction->display(display_none);
+      pinteraction->display(e_display_none);
       lresult &= ~user::NotifyRetContinue;
       return true;
       }
@@ -327,7 +327,7 @@ namespace user
                if(pair.element2().is_set())
                {
 
-                  pair.element2()->display(display_none);
+                  pair.element2()->display(e_display_none);
 
                }
 
@@ -342,7 +342,7 @@ namespace user
 
    void form_mesh::_001HideControl(::user::interaction * pinteraction)
    {
-      pinteraction->display(display_none);
+      pinteraction->display(e_display_none);
    }
 
 
@@ -590,8 +590,7 @@ namespace user
       if(pinteraction == nullptr)
       {
 
-         SetRectEmpty(prect);
-
+         ::null(prect);
 
          return;
 

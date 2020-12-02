@@ -13,7 +13,7 @@ bool os_history::hist(const char * psz)
 
 #if !defined(_UWP)
 
-   ::apex::shell_launcher launcher(nullptr, "open", psz, "", "", display_normal);
+   ::apex::shell_launcher launcher(nullptr, "open", psz, "", "", e_display_normal);
 
    launcher.execute();
 

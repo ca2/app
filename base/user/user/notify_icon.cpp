@@ -431,13 +431,13 @@ namespace user
                if (pframe != nullptr)
                {
 
-                  pframe->display(display_normal);
+                  pframe->display(e_display_normal);
 
                }
                else
                {
 
-                  m_wndptraHidden.element_at(0)->display(display_normal);
+                  m_wndptraHidden.element_at(0)->display(e_display_normal);
 
                }
 

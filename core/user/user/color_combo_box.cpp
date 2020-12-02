@@ -86,7 +86,7 @@ namespace user
          if(m_pframe != nullptr && m_pframe->is_window_visible())
          {
 
-            m_pframe->display(display_none);
+            m_pframe->display(e_display_none);
 
          }
          else
@@ -227,7 +227,7 @@ namespace user
          if(m_pframe && m_pframe->is_window_visible())
          {
 
-            m_pframe->display(display_none);
+            m_pframe->display(e_display_none);
 
          }
 

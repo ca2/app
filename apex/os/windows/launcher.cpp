@@ -15,7 +15,7 @@ bool launcher::start()
 
 
 
-   call_async(strPath, strParams, strDir, display_none, m_bPrivileged);
+   call_async(strPath, strParams, strDir, e_display_none, m_bPrivileged);
 
    return true;
 

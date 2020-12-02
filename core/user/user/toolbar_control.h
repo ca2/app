@@ -64,14 +64,24 @@ namespace user
       ::image_list* SetDisabledImageList(::image_list* pImageList);
       ::image_list* SetHotImageList(::image_list* pImageList);
       ::image_list* SetImageList(::image_list* pImageList);
+
+
+#ifdef WINDOWS_DESKTOP
       HRESULT GetDropTarget(IDropTarget** ppDropTarget);
+#endif
+
+
       bool SetIndent(i32 iIndent);
       bool SetMaxTextRows(i32 iMaxRows);
       void SetStyle(u32 dwStyle);
+
+
 #ifdef WINDOWS_DESKTOP
       bool GetButtonInfo(i32 nID, TBBUTTONINFOW* ptbbi);
       bool SetButtonInfo(i32 nID, TBBUTTONINFOW* ptbbi);
 #endif
+
+
       u32 SetDrawTextFlags(u32 dwMask, u32 dwDTFlags);
       bool GetAnchorHighlight();
       bool SetAnchorHighlight(bool fAnchor = TRUE);
@@ -98,21 +108,30 @@ namespace user
       bool HideButton(i32 nID, bool bHide = TRUE);
       bool Indeterminate(i32 nID, bool bIndeterminate = TRUE);
       i32 AddBitmap(i32 nNumButtons, ::draw2d::bitmap* pBitmap);
+
+
 #ifdef WINDOWS_DESKTOP
+
       bool AddButtons(i32 nNumButtons, LPTBBUTTON pButtons);
 
       bool InsertButton(i32 nIndex, LPTBBUTTON pButton);
 
 #endif
+
+
       bool DeleteButton(i32 nIndex);
       ::u32 CommandToIndex(::u32 nID);
-#ifdef WINDOWS_DESKTOP
-      void SaveState(HKEY hKeyRoot, const char * pszSubKey, const char * pszValueName);
 
+
+#ifdef WINDOWS_DESKTOP
+
+      void SaveState(HKEY hKeyRoot, const char * pszSubKey, const char * pszValueName);
       void RestoreState(HKEY hKeyRoot, const char * pszSubKey, const char * pszValueName);
+      void LoadImages(i32 iBitmapID, HINSTANCE hinst);
 
 #endif
-      void LoadImages(i32 iBitmapID, HINSTANCE hinst);
+
+
       bool MapAccelerator(char chAccel, ::u32* pIDBtn);
       bool MarkButton(i32 nID, bool fHighlight = TRUE);
       bool MoveButton(::u32 nOldPos, ::u32 nNewPos);

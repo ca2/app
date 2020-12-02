@@ -1,4 +1,4 @@
-# Please check https://github.ca2.io/
+# https://github.ca2.io/
 
 (c)st<3t(b)s
 

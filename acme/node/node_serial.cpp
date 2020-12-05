@@ -122,7 +122,7 @@ bool
 Serial::waitReadable()
 {
    serial::Timeout timeout(pimpl_->getTimeout());
-   return pimpl_->waitReadable(timeout.read_timeout_constant);
+   return pimpl_->waitReadable(timeout.m_millisReadTimeoutConstant);
 }
 
 void

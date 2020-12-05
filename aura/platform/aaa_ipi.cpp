@@ -7,7 +7,7 @@ namespace aura
 
 
 
-   ipi::task::task(class call * pcall, const ::id & idPid, i64 iTask) :
+   interprocess_communication::task::task(class call * pcall, const ::id & idPid, i64 iTask) :
          ::object(pcall),
          m_pcall(pcall),
          m_idPid(idPid),
@@ -18,13 +18,13 @@ namespace aura
    }
 
 
-   ipi::task::~task()
+   interprocess_communication::task::~task()
    {
 
    }
 
 
-   void ipi::task::do_task(const string & strObject, const string & strMember, const var_array & vara)
+   void interprocess_communication::task::do_task(const string & strObject, const string & strMember, const var_array & vara)
    {
 
       ::aura::ipc::tx & txc = m_pcall->m_pinterprocessintercommunication->tx(m_pcall->m_strApp, m_idPid);
@@ -63,7 +63,7 @@ namespace aura
    }
 
 
-   ipi::call::call(ipi * pipi, const string & strApp, const string & strObject, const string & strMember) :
+   interprocess_communication::call::call(interprocess_communication * pipi, const string & strApp, const string & strObject, const string & strMember) :
       ::object(pipi),
       m_pinterprocessintercommunication(pipi),
       m_strApp(strApp),
@@ -77,13 +77,13 @@ namespace aura
    }
 
 
-   ipi::call::~call()
+   interprocess_communication::call::~call()
    {
 
    }
 
 
-   void ipi::call::add_arg(const payload & payload)
+   void interprocess_communication::call::add_arg(const payload & payload)
    {
 
       m_varaArgs.add(payload);
@@ -91,7 +91,7 @@ namespace aura
    }
 
 
-   void ipi::call::add_args(const var_array & vara)
+   void interprocess_communication::call::add_args(const var_array & vara)
    {
 
       ::papaya::array::add(m_varaArgs, vara);
@@ -99,7 +99,7 @@ namespace aura
    }
 
 
-   void ipi::call::set_timeout(const duration & duration)
+   void interprocess_communication::call::set_timeout(const duration & duration)
    {
 
       m_duration = duration;
@@ -107,7 +107,7 @@ namespace aura
    }
 
 
-   void ipi::call::set_auto_launch(bool bSet)
+   void interprocess_communication::call::set_auto_launch(bool bSet)
    {
 
       m_bAutoLaunch = bSet;
@@ -115,7 +115,7 @@ namespace aura
    }
 
 
-   bool ipi::call::is_auto_launch() const
+   bool interprocess_communication::call::is_auto_launch() const
    {
 
       return m_bAutoLaunch;
@@ -123,7 +123,7 @@ namespace aura
    }
 
 
-   void ipi::call::exclude_this_app()
+   void interprocess_communication::call::exclude_this_app()
    {
 
       m_iaExclude.add(Context.os().get_pid());
@@ -131,7 +131,7 @@ namespace aura
    }
 
 
-   void ipi::call::post(const ::id & idPid)
+   void interprocess_communication::call::post(const ::id & idPid)
    {
 
       fork([this, idPid]()
@@ -155,7 +155,7 @@ namespace aura
    }
 
 
-   __pointer(sync_array) ipi::call::synca()
+   __pointer(sync_array) interprocess_communication::call::synca()
    {
 
       auto psynca = __new(sync_array);
@@ -172,7 +172,7 @@ namespace aura
    }
 
 
-   ::sync_result ipi::call::wait()
+   ::sync_result interprocess_communication::call::wait()
    {
 
       auto psynca = synca();
@@ -184,7 +184,7 @@ namespace aura
    }
 
 
-   void ipi::call::announce()
+   void interprocess_communication::call::announce()
    {
 
       exclude_this_app();
@@ -219,7 +219,7 @@ namespace aura
    }
 
 
-   ipi::ipi(const string & strApp) :
+   interprocess_communication::interprocess_communication(const string & strApp) :
       m_strApp(strApp)
    {
 
@@ -242,14 +242,14 @@ namespace aura
    }
 
 
-   ipi::~ipi()
+   interprocess_communication::~interprocess_communication()
    {
 
 
    }
 
 
-   ::estatus ipi::initialize(::layered * pobjectContext)
+   ::estatus interprocess_communication::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::object::initialize(pobjectContext);
@@ -306,7 +306,7 @@ namespace aura
    }
 
 
-   void ipi::finalize()
+   void interprocess_communication::finalize()
    {
 
       ::object::finalize();
@@ -317,7 +317,7 @@ namespace aura
 
 
 
-   bool ipi::start(const string & strApp)
+   bool interprocess_communication::start(const string & strApp)
    {
 
       sync_lock sl1(mutex());
@@ -408,7 +408,7 @@ started:
    }
 
 
-   bool ipi::connect(const string & strApp, const ::id & idPid)
+   bool interprocess_communication::connect(const string & strApp, const ::id & idPid)
    {
 
       string strKey = strApp + ":" + __str(idPid);
@@ -436,7 +436,7 @@ started:
    }
 
 
-   ::aura::ipc::tx & ipi::tx(const string & strApp, const ::id & iPid)
+   ::aura::ipc::tx & interprocess_communication::tx(const string & strApp, const ::id & iPid)
    {
 
       string strKey = strApp + ":" + __str(iPid);
@@ -460,7 +460,7 @@ started:
    }
 
 
-   string ipi::key(const string &strApp, const ::id & idPid)
+   string interprocess_communication::key(const string &strApp, const ::id & idPid)
    {
 
       string strKey;
@@ -489,7 +489,7 @@ started:
 
 #ifdef LINUX
 
-      strKey = ::dir::system() / "ipi" / strApp / __str(idPid);
+      strKey = ::dir::system() / "interprocess_communication" / strApp / __str(idPid);
 
 #elif defined(__APPLE__)
 
@@ -511,7 +511,7 @@ started:
 
 #else
 
-      strKey = ::dir::system() / "ipi" / strApp / __str(idPid);
+      strKey = ::dir::system() / "interprocess_communication" / strApp / __str(idPid);
 
 
 #endif
@@ -523,7 +523,7 @@ started:
    }
 
 
-   string ipi::str_from_va(const var_array & vara)
+   string interprocess_communication::str_from_va(const var_array & vara)
    {
 
       memory_stream stream;
@@ -535,7 +535,7 @@ started:
    }
 
 
-   void ipi::on_ipc_receive(::aura::ipc::rx * prx, const char * pszMessage)
+   void interprocess_communication::on_ipc_receive(::aura::ipc::rx * prx, const char * pszMessage)
    {
 
       string str(pszMessage);
@@ -666,7 +666,7 @@ started:
    }
 
 
-   __pointer(class ipi::task) ipi::create_task(call * pcall, const ::id & idPid)
+   __pointer(class interprocess_communication::task) interprocess_communication::create_task(call * pcall, const ::id & idPid)
    {
 
       auto pobjectTask = __new(class task(pcall, idPid, atomic_increment(&m_iTaskSeed)));
@@ -682,7 +682,7 @@ started:
    }
 
 
-   __pointer(class ipi::task) ipi::get_task(i64 iTask)
+   __pointer(class interprocess_communication::task) interprocess_communication::get_task(i64 iTask)
    {
 
       sync_lock sl(mutex());
@@ -692,7 +692,7 @@ started:
    }
 
 
-   __pointer(class ipi::call) ipi::create_call(const string & strApp, const string & strObject, const string & strMember)
+   __pointer(class interprocess_communication::call) interprocess_communication::create_call(const string & strApp, const string & strObject, const string & strMember)
    {
 
       return __new(class call(this, strApp, strObject, strMember));
@@ -700,7 +700,7 @@ started:
    }
 
 
-   __pointer(class ipi::call) ipi::create_call(const string & strObject, const string & strMember)
+   __pointer(class interprocess_communication::call) interprocess_communication::create_call(const string & strObject, const string & strMember)
    {
 
       return create_call(m_strApp, strObject, strMember);
@@ -708,7 +708,7 @@ started:
    }
 
 
-   void ipi::on_interprocess_call(payload & payload, const string & strObject, const string & strMember, var_array & vara)
+   void interprocess_communication::on_interprocess_call(payload & payload, const string & strObject, const string & strMember, var_array & vara)
    {
 
       if(strObject == "application")
@@ -744,7 +744,7 @@ started:
    }
 
 
-   void ipi::on_new_instance(const string & strModule, const ::id & idPid)
+   void interprocess_communication::on_new_instance(const string & strModule, const ::id & idPid)
    {
 
       defer_add_module(strModule, idPid);
@@ -754,7 +754,7 @@ started:
    }
 
 
-   id_array ipi::get_pid(const string & strApp)
+   id_array interprocess_communication::get_pid(const string & strApp)
    {
 
       id_array idaPid;
@@ -777,7 +777,7 @@ started:
 
       ::file::path pathModule;
 
-      pathModule = ::dir::system() / "ipi";
+      pathModule = ::dir::system() / "interprocess_communication";
 
       pathModule /= strApp + ".module_list";
 
@@ -858,7 +858,7 @@ repeat:
    }
 
 
-   void ipi::defer_add_module(const string & strModule, const ::id & idPid)
+   void interprocess_communication::defer_add_module(const string & strModule, const ::id & idPid)
    {
 
 #ifndef _UWP
@@ -867,7 +867,7 @@ repeat:
 
       m_straModule.remove_all();
 
-      pathModule = ::dir::system() / "ipi";
+      pathModule = ::dir::system() / "interprocess_communication";
 
       pathModule /= m_strApp + ".module_list";
 

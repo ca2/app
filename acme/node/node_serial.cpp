@@ -106,24 +106,32 @@ Serial::close()
    pimpl_->close();
 }
 
-bool
-Serial::isOpen() const
+
+bool Serial::isOpen() const
 {
+
    return pimpl_->isOpen();
+
 }
 
-size_t
-Serial::available()
+
+size_t Serial::available()
 {
+
    return pimpl_->available();
+
 }
 
-bool
-Serial::waitReadable()
+
+bool Serial::waitReadable()
 {
+
    serial::Timeout timeout(pimpl_->getTimeout());
+
    return pimpl_->waitReadable(timeout.m_millisReadTimeoutConstant);
+
 }
+
 
 void
 Serial::waitByteTimes(size_t count)

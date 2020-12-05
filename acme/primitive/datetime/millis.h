@@ -74,6 +74,17 @@ public:
 
    }
 
+   inline ::millis remaining(const millis & millisTimeout)
+   {
+
+      ::millis millisNow = now();
+
+      auto millisRemaining = millisTimeout - millisNow + *this;
+
+      return millisRemaining;
+
+   }
+
 
    inline bool done(const ::millis & millis) const;
    inline bool done() const;
@@ -248,25 +259,32 @@ namespace papaya
 
 #define PRtick PRId64
 
+
 #define __prtick "%" PRtick " ms"
+
 
 inline double __double(const ::millis & millis) { return (double) millis.m_iMilliseconds; }
 
+
 inline auto __pr(const ::millis & millis) { return millis.m_iMilliseconds; }
+
 
 inline u32 __os(const ::millis & millis) { return millis.m_iMilliseconds > (i64) MAXI32 ? U32_INFINITE_TIMEOUT : millis.m_iMilliseconds < 0 ? 0 : (u32) millis.m_iMilliseconds; }
 
+
 inline ::i32 __i32(const ::millis & millis) { return (::i32) millis.m_iMilliseconds; }
+
 
 inline ::i64 __i64(const ::millis & millis) { return (::i64) millis.m_iMilliseconds; }
 
+
 inline byte __byte(const ::millis & millis) { return (byte) __minmax(millis.m_iMilliseconds, 0, 255); }
+
 
 inline millis __tick(double d) { return (::i64) d; }
 
 
 inline millis operator "" _tick(unsigned long long int u) { return u; }
-
 
 
 typedef CLASS_DECL_ACME numeric_array < millis > tick_array;
@@ -278,4 +296,10 @@ inline secs::secs(const millis & millis) { m_iSeconds = millis.m_iMilliseconds /
 inline millis operator "" _ms(unsigned long long int u) { return (::i64) u; }
 
 
-
+inline timespec __timespec(const ::millis & millis)
+{
+   timespec time;
+   time.tv_sec = millis.m_iMilliseconds / 1'000;
+   time.tv_nsec = (millis.m_iMilliseconds % 1'000) * 1'000'000;
+   return time;
+}

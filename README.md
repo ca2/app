@@ -1,81 +1,25 @@
-# app
+# https://ca2.io/
 
-## Windows
-### Install Git Client
+ca2 is an all-purpose multi-platform framework and set of libraries written in C++ language to help developers create awesome apps for users.
 
-Suggestions:
+# Features
 
-SmartGit (for GUI)
-GitSCM (for command line)
+#### User Interface
+#### Graphics
+#### Image Loading/Saving
+#### Theming
+#### Parallelization & Synchronization
+#### Apex Message Queue
+#### Networking (Public and Local Webserver, Websockets, Sockets)
+#### Audio Decoding
+#### Audio Playback
+#### MIDI Playback
 
-### Install Visual Studio 2019 with C++ Desktop Option
+## How to build for Windows
 
-### Set Environment Variable
-
-__archive C:\\__archive
-
- 
-### Setup Folders and Clone Source Code
-Create folder at C named __archive and set it current:
-
-mkdir C:\\__archive
-
-C:
-
-cd \\__archive
-
-git clone https://github.com/ca2/storage-windows
-https://github.com/ca2/storage-windows
-
-git clone https://github.com/ca2/third-windows
-https://github.com/ca2/third-windows
-
-git clone https://github.com/ca2/tool-windows
-https://github.com/ca2/tool-windows
-
- 
-
- 
-
- 
-
-Create folder (prefer no spaces in entire path) and set it current directory:            
-
- 
-
-mkdir C:\\myca2-test
-
-C:
-
-cd \myca2-test
-
-git clone https://github.com/ca2/app/
-https://github.com/ca2/app
-
-git clone https://github.com/ca2/app-simple/
-https://github.com/ca2/app-simple
-
-git clone https://github.com/ca2/include/
-https://github.com/ca2/include
-
-git clone https://github.com/ca2/platform-windows/
-https://github.com/ca2/platform-windows
-
-git clone https://github.com/ca2/third/
-https://github.com/ca2/third
-
- 
-
-Open C:\\myca2-test\\platform-windows\\_seed\\simple.sln at Visual Studio
-
- 
-
- 
-
- 
-
- 
-
- 
+### https://ca2.io/windows/
 
 (c)st<3t(b)s
+
+
+

@@ -1,16 +1,7 @@
 #pragma once
 
 
-
-
-
-
-
-
-
-
-
-
+#include "windows_defs.h"
 
 
 //#if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
@@ -61,11 +52,11 @@ CLASS_DECL_ACME int_bool is_window(oswindow oswindow);
 
 
 
-typedef VOID(* TIMERPROC)(oswindow,::u32,uptr,::u32);
+typedef void(* TIMERPROC)(oswindow,::u32,uptr,::u32);
 typedef int_bool(* GRAYSTRINGPROC)(HDC,LPARAM,i32);
 typedef int_bool(* WNDENUMPROC)(oswindow,LPARAM);
 typedef LRESULT(* HOOKPROC)(i32 code,WPARAM wParam,LPARAM lParam);
-typedef VOID(* SENDASYNCPROC)(oswindow,::u32,ulong_ptr,LRESULT);
+typedef void(* SENDASYNCPROC)(oswindow,::u32,ulong_ptr,LRESULT);
 
 typedef int_bool(* PROPENUMPROca)(oswindow,const char *,HANDLE);
 typedef int_bool(* PROPENUMPROCW)(oswindow,const widechar *,HANDLE);
@@ -949,7 +940,7 @@ typedef struct tagPAINTSTRUCT
 
 typedef struct tagCREATESTRUCTW
 {
-   LPVOID      lpCreateParams;
+   void *      lpCreateParams;
    HINSTANCE   hInstance;
    HMENU       hMenu;
    oswindow    hwndParent;
@@ -1598,7 +1589,7 @@ typedef struct tagCOPYDATASTRUCT
 {
    uptr dwData;
    ::u32 cbData;
-   PVOID lpData;
+   void * lpData;
 } COPYDATASTRUCT, *PCOPYDATASTRUCT;
 
 #if(WINVER >= 0x0400)

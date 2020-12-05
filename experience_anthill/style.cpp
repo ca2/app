@@ -1238,7 +1238,7 @@ namespace experience
 
       ::user::toolbar_item & item = ptoolbar->m_itema(iItem);
 
-      ::u32 nStyle = ptoolbar->GetButtonStyle(iItem);
+      auto estyle = ptoolbar->get_item_style(iItem);
 
       auto puser = User;
 
@@ -1246,7 +1246,7 @@ namespace experience
 
       ::u32 uImage = pmenucentral->command_image(item.m_id);
       
-      ::user::estate estate = ptoolbar->get_button_state((int) iItem);
+      ::user::estate estate = ptoolbar->get_item_user_state(iItem);
 
 //      ::user::toolbar::e_element eelement = ::user::toolbar::element_item;
 //      ::user::toolbar::e_element eelementImage = ::user::toolbar::element_image;
@@ -1304,7 +1304,7 @@ namespace experience
 
       ptoolbar->_001GetElementRect(iItem, rectImage, ::user::element_image, estate);
 
-      if ((nStyle & e_toolbar_item_style_separator) != 0)
+      if ((estyle & e_toolbar_item_style_separator) != 0)
       {
          ::rect rectSeparator;
          rectSeparator.left = (rectImage.left + rectImage.right) / 2 - 1;
@@ -1504,7 +1504,7 @@ namespace experience
 
          ::draw2d::brush_pointer brushText(e_create);
 
-         if ((nStyle & e_toolbar_item_style_disabled) == 0)
+         if (!(estyle & e_toolbar_item_style_disabled))
          {
 
             brushText->create_solid(ARGB(255, 0, 0, 0));
@@ -1545,7 +1545,7 @@ namespace experience
 
       ::user::toolbar_item & item = ptoolbar->m_itema(iItem);
 
-      ::u32 nStyle = ptoolbar->GetButtonStyle(iItem);
+      auto estyle = ptoolbar->get_item_style(iItem);
 
 //      bool bHover = ptoolbar->m_itemHover == iItem;
 
@@ -1555,7 +1555,7 @@ namespace experience
 
       ::u32 uImage = pmenucentral->command_image(item.m_id);
 
-      ::user::estate estate = ptoolbar->get_button_state((int)iItem);
+      ::user::estate estate = ptoolbar->get_item_user_state(iItem);
 
       ptoolbar->_001GetElementRect(iItem, rectItem, ::user::element_item, estate);
 
@@ -1724,14 +1724,10 @@ namespace experience
 
                ::draw2d::pen_pointer pen(e_create);
 
-               pen->create_solid(1, ptoolbar->get_color(pstyle, ::user::element_face, (nStyle & e_toolbar_item_style_disabled) == 0 ?
-               ::user::e_state_none :
-               ::user::e_state_disabled));
+               pen->create_solid(1, ptoolbar->get_color(pstyle, ::user::element_face, estate));
                ::draw2d::brush_pointer brush(e_create);
 
-               brush->create_solid(ptoolbar->get_color(pstyle, ::user::element_face, (nStyle & e_toolbar_item_style_disabled) == 0 ?
-               ::user::e_state_none :
-               ::user::e_state_disabled));
+               brush->create_solid(ptoolbar->get_color(pstyle, ::user::element_face, estate));
                pgraphics->set(pen);
                pgraphics->set(brush);
                pgraphics->rectangle(rectItem);

@@ -1,6 +1,8 @@
 #pragma once
 
 
+#ifndef WINDOWS
+
 typedef struct _SYSTEMTIME {
    ::u16 wYear;
    ::u16 wMonth;
@@ -12,8 +14,9 @@ typedef struct _SYSTEMTIME {
    ::u16 wMilliseconds;
 } SYSTEMTIME, *PSYSTEMTIME, *LPSYSTEMTIME;
 
-
 void GetSystemTime(LPSYSTEMTIME systime);
+
+#endif
 
 
 #include "value.h"

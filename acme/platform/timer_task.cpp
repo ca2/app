@@ -214,9 +214,9 @@ bool timer_task::task_active() const
 
    ::i64 iSleepMs = m_duration.u32_millis();
 
-   ::i64 c100Ms = iSleepMs / 100;
+   ::millis c100Ms = iSleepMs / 100;
 
-   ::i64 r100Ms = iSleepMs % 100;
+   ::millis r100Ms = iSleepMs % 100;
 
    while (true)
    {
@@ -224,7 +224,7 @@ bool timer_task::task_active() const
       for (::index i = 0; i < c100Ms; i++)
       {
 
-         sleep(100);
+         sleep(100_ms);
 
          if (!thread_get_run())
          {
@@ -235,7 +235,7 @@ bool timer_task::task_active() const
 
       }
 
-      sleep((::u32) r100Ms);
+      sleep(r100Ms);
 
       if (!thread_get_run())
       {

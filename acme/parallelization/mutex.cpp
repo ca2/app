@@ -1636,7 +1636,7 @@ void wait_until_mutex_does_not_exist(const char * lpszName)
 
          pmutex.release();
 
-         sleep(200);
+         sleep(200_ms);
 
          pmutex = __new(mutex(e_create_new, false, "Global\\::ca::account::ca2_spa::7807e510-5579-11dd-ae16-0800200c7784"));
 

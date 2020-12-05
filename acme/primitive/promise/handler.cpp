@@ -68,11 +68,11 @@ namespace promise
 
       psubject->defer_create_mutex();
 
-      psubject->m_iMillisSleep = os_get_system_update_poll_time(id);
+      psubject->m_millisSleep = os_get_system_update_poll_time(id);
 
       process(psubject);
 
-      if (psubject->should_poll(psubject->poll_millis()))
+      if (psubject->should_poll(psubject->poll_time()))
       {
 
          ::task::launch(psubject);

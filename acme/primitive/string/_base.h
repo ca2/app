@@ -14,7 +14,6 @@ public:
 
    long operator ++() { m_psz = ::str::char_next(m_psz);}
 
-
    bool operator == (const string_iterator & it) const { return m_psz == it.m_psz;}
 
    bool operator != (const string_iterator & it) const { return !operator==(it);}

@@ -806,7 +806,7 @@ CLASS_DECL_ACME string executable_get_app_id(HINSTANCE hinstance)
 
 
 
-int os_get_system_update_poll_time(const ::id & id)
+::millis os_get_system_update_poll_millis(const ::id & id)
 {
 
    if (id == id_os_dark_mode)

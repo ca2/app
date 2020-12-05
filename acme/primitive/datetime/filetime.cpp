@@ -122,37 +122,37 @@
    }
 
 
-#ifdef WINDOWS
-
-
-   filetime filetime::UTCToLocal() const noexcept
-   {
-
-      FILETIME filetimeLocal;
-
-      auto filetimeThis = get_FILETIME();
-
-      ::FileTimeToLocalFileTime(&filetimeThis, &filetimeLocal);
-
-      return filetimeLocal;
-
-   }
-
-
-   filetime filetime::LocalToUTC() const noexcept
-   {
-
-      FILETIME filetimeUTC;
-
-      auto filetimeThis = get_FILETIME();
-
-      ::LocalFileTimeToFileTime(&filetimeThis, &filetimeUTC);
-
-      return filetimeUTC;
-
-   }
-
-#endif
+//#ifdef WINDOWS
+//
+//
+//   filetime filetime::UTCToLocal() const noexcept
+//   {
+//
+//      FILETIME filetimeLocal;
+//
+//      auto filetimeThis = get_FILETIME();
+//
+//      ::FileTimeToLocalFileTime(&filetimeThis, &filetimeLocal);
+//
+//      return filetimeLocal;
+//
+//   }
+//
+//
+//   filetime filetime::LocalToUTC() const noexcept
+//   {
+//
+//      FILETIME filetimeUTC;
+//
+//      auto filetimeThis = get_FILETIME();
+//
+//      ::LocalFileTimeToFileTime(&filetimeThis, &filetimeUTC);
+//
+//      return filetimeUTC;
+//
+//   }
+//
+//#endif
 
 
    const filetime_t filetime::Millisecond = 10000;

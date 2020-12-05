@@ -4,7 +4,7 @@
 #pragma once
 
 
-CLASS_DECL_ACME int os_get_system_update_poll_time(const ::id & id);
+CLASS_DECL_ACME ::millis os_get_system_update_poll_time(const ::id & id);
 
 
 #include "acme/primitive/promise/subject.h"

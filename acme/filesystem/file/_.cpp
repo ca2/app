@@ -701,7 +701,7 @@ CLASS_DECL_ACME bool file_append_wait(const string & strFile, const block & bloc
 
       }
 
-      sleep(5);
+      sleep(500_ms);
 
    }
 

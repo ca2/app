@@ -173,7 +173,7 @@ namespace promise
 //         }
 
          // fetch updated polling time
-         int iPollMillis = poll_millis();
+         auto iPollMillis = poll_time();
 
          if (!should_poll(iPollMillis))
          {
@@ -436,7 +436,7 @@ namespace promise
 
       m_iUpdateSerial++;
 
-      if (!should_poll(poll_millis()))
+      if (!should_poll(poll_time()))
       {
 
          ::task::launch(this);

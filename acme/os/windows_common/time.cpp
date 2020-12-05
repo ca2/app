@@ -1,17 +1,14 @@
 #include "framework.h"
 
 
-CLASS_DECL_ACME void sleep(const ::duration& duration)
-{
-
-   auto millis = duration.u32_millis();
-
-   ::sleep(millis);
-
-}
-
-
-
+//CLASS_DECL_ACME void sleep(const ::duration& duration)
+//{
+//
+//   auto millis = duration.millis();
+//
+//   ::sleep(millis);
+//
+//}
 
 
 CLASS_DECL_ACME void sleep(const ::secs & secs)

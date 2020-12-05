@@ -49,7 +49,7 @@ namespace file
    file::file()
    {
 
-      m_dwErrorBlockTimeout = 0;
+      m_millisErrorBlockTimeout = 0;
       m_eopen = 0;
 
    }
@@ -65,7 +65,7 @@ namespace file
       m_path(path)
    {
 
-      m_dwErrorBlockTimeout = 0;
+      m_millisErrorBlockTimeout = 0;
       m_eopen = 0;
 
    }

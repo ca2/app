@@ -349,11 +349,11 @@ void Serial::SerialImpl::reconfigurePort ()
 
    // Setup timeouts
    COMMTIMEOUTS timeouts = {0};
-   timeouts.ReadIntervalTimeout = m_timeout.inter_byte_timeout;
-   timeouts.ReadTotalTimeoutConstant = m_timeout.read_timeout_constant;
-   timeouts.ReadTotalTimeoutMultiplier = m_timeout.read_timeout_multiplier;
-   timeouts.WriteTotalTimeoutConstant = m_timeout.write_timeout_constant;
-   timeouts.WriteTotalTimeoutMultiplier = m_timeout.write_timeout_multiplier;
+   timeouts.ReadIntervalTimeout = m_timeout.m_millisInterByteTimeout.m_iMilliseconds;
+   timeouts.ReadTotalTimeoutConstant = m_timeout.m_millisReadTimeoutConstant.m_iMilliseconds;
+   timeouts.ReadTotalTimeoutMultiplier = m_timeout.m_uReadTimeoutMultiplier;
+   timeouts.WriteTotalTimeoutConstant = m_timeout.m_millisWriteTimeoutConstant.m_iMilliseconds;
+   timeouts.WriteTotalTimeoutMultiplier = m_timeout.m_uWriteTimeoutMultiplier;
    if (!SetCommTimeouts(m_hFile, &timeouts))
    {
       THROW (IOException, "Error setting timeouts.");
@@ -442,7 +442,7 @@ Serial::SerialImpl::available ()
 }
 
 bool
-Serial::SerialImpl::waitReadable (u32 /*timeout*/)
+Serial::SerialImpl::waitReadable (::millis /*timeout*/)
 {
    THROW (IOException, "waitReadable is not implemented on Windows.");
    return false;
@@ -453,7 +453,7 @@ Serial::SerialImpl::waitByteTimes (size_t count)
 {
    //THROW (IOException, "waitByteTimes is not implemented on Windows.");
    duration dur;
-   dur.m_iNanoseconds = count * m_uiByteTimeNs;
+   dur.m_nanos = count * m_uiByteTimeNs;
    dur.normalize();
    sleep(dur);
 
@@ -524,12 +524,12 @@ size_t Serial::SerialImpl::readline(string &buffer, size_t size, string eol)
       read_so_far += bytes_read;
       if (bytes_read == 0)
       {
-         if (tickStart.elapsed() > m_timeout.read_timeout_constant)
+         if (tickStart.elapsed() > m_timeout.m_millisReadTimeoutConstant)
          {
             break;
          }
          // Timeout occured on reading 1 byte
-         sleep(max(100u, m_timeout.read_timeout_constant / 10u));
+         sleep(max(100_ms, m_timeout.m_millisReadTimeoutConstant / 10));
          if (!::thread_get_run())
          {
             break;

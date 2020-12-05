@@ -1,8 +1,19 @@
 //
-// Created by camilo on 2020-12-05.
+// Created by camilo on 2020-12-05. <3tbs!!
 //
+#pragma once
 
-#ifndef BASIS_TIME_H
-#define BASIS_TIME_H
 
-#endif //BASIS_TIME_H
+#include <time.h>
+
+
+inline timespec __timespec(const ::millis & millis)
+{
+   timespec time;
+   time.tv_sec = millis.m_iMilliseconds / 1'000;
+   time.tv_nsec = (millis.m_iMilliseconds % 1'000) * 1'000'000;
+   return time;
+}
+
+
+

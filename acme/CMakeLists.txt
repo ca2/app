@@ -1716,7 +1716,7 @@ else ()
 endif ()
 
 
-add_library(acme SHARED ${acme_source} const/code_page.h const/_.h)
+add_library(acme SHARED ${acme_source} const/code_page.h const/_.h os/posix/time.h)
 
 target_precompile_headers(acme PRIVATE framework.h)
 

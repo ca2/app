@@ -296,10 +296,3 @@ inline secs::secs(const millis & millis) { m_iSeconds = millis.m_iMilliseconds /
 inline millis operator "" _ms(unsigned long long int u) { return (::i64) u; }
 
 
-inline timespec __timespec(const ::millis & millis)
-{
-   timespec time;
-   time.tv_sec = millis.m_iMilliseconds / 1'000;
-   time.tv_nsec = (millis.m_iMilliseconds % 1'000) * 1'000'000;
-   return time;
-}

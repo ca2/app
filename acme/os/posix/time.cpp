@@ -54,32 +54,3 @@ CLASS_DECL_ACME void sleep(const nanos & nanos)
 }
 
 
-CLASS_DECL_ACME void sleep(const duration & duration)
-{
-
-   if(duration.secs().m_iSeconds >= 20)
-   {
-
-      sleep(duration);
-
-   }
-   else if(duration.millis().m_iMilliseconds >= 20)
-   {
-
-      sleep(duration);
-
-   }
-   else if(duration.micros().m_iMicroseconds >= 20)
-   {
-
-      sleep(duration);
-
-   }
-   else
-   {
-
-      sleep(duration);
-
-   }
-
-}

@@ -96,47 +96,47 @@ CLASS_DECL_ACME int_bool get_filetime(HANDLE hFile, LPFILETIME pCreationTime, LP
 //}
 //#endif // _WIN32
 
-/* Windows sleep in 100ns units */
-void sleep(const ::nanos & nanos)
-{
-
-   /* Declarations */
-   HANDLE timer;   /* Timer handle */
-
-   LARGE_INTEGER li;   /* Time definition */
-
-   /* Create timer */
-   if (!(timer = CreateWaitableTimer(nullptr, TRUE, nullptr)))
-   {
-
-      sleep((const ::millis &) nanos);
-
-      return;
-
-   }
-
-   /* Set timer properties */
-   li.QuadPart = -(nanos.m_iNanoseconds / 100LL );
-
-   if (!SetWaitableTimer(timer, &li, 0, nullptr, nullptr, FALSE))
-   {
-
-      CloseHandle(timer);
-
-      __throw(::resource_exception());
-
-   }
-
-   /* Start & wait for timer */
-   WaitForSingleObject(timer, U32_INFINITE_TIMEOUT);
-
-   /* Clean resources */
-   CloseHandle(timer);
-
-   /* Slept without problems */
-   //return TRUE;
-
-}
+///* Windows sleep in 100ns units */
+//void sleep(const ::nanos & nanos)
+//{
+//
+//   /* Declarations */
+//   HANDLE timer;   /* Timer handle */
+//
+//   LARGE_INTEGER li;   /* Time definition */
+//
+//   /* Create timer */
+//   if (!(timer = CreateWaitableTimer(nullptr, TRUE, nullptr)))
+//   {
+//
+//      sleep((const ::millis &) nanos);
+//
+//      return;
+//
+//   }
+//
+//   /* Set timer properties */
+//   li.QuadPart = -(nanos.m_iNanoseconds / 100LL );
+//
+//   if (!SetWaitableTimer(timer, &li, 0, nullptr, nullptr, FALSE))
+//   {
+//
+//      CloseHandle(timer);
+//
+//      __throw(::resource_exception());
+//
+//   }
+//
+//   /* Start & wait for timer */
+//   WaitForSingleObject(timer, U32_INFINITE_TIMEOUT);
+//
+//   /* Clean resources */
+//   CloseHandle(timer);
+//
+//   /* Slept without problems */
+//   //return TRUE;
+//
+//}
 
 
 //void sleep(const ::duration & dur)

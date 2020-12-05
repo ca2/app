@@ -44,7 +44,16 @@ namespace experience
                auto psession = Session;
 
                m_brushGrip->create_solid(ARGB(0xff, 0x60, 0x65, 0x55));
-               m_brushTextCaption->create_solid(psession->get_default_color(COLOR_CAPTIONTEXT) | 0xff << 24);
+
+               auto pframewindow = m_pframewindow;
+
+               auto pgraphics = pframewindow->create_memory_graphics();
+
+               auto pstyle = pframewindow->get_style(pgraphics);
+
+               auto colorCaptionText = pframewindow->get_color(pstyle, ::user::element_window_title);
+
+               m_brushTextCaption->create_solid(colorCaptionText);
 
             }
 

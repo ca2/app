@@ -12,7 +12,25 @@ public:
 
    ::index operator *(){return ::str::ch::uni_index(m_psz); }
 
-   long operator ++() { m_psz = ::str::char_next(m_psz);}
+   string_iterator &  operator ++()
+   {
+
+      m_psz = ::str::char_next(m_psz);
+
+      return *this;
+
+   }
+
+   string_iterator operator ++(int)
+   {
+
+      auto psz = m_psz;
+
+      m_psz = ::str::char_next(m_psz);
+
+      return psz;
+
+   }
 
    bool operator == (const string_iterator & it) const { return m_psz == it.m_psz;}
 

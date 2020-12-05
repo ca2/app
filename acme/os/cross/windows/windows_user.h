@@ -61,20 +61,20 @@ CLASS_DECL_ACME int_bool is_window(oswindow oswindow);
 
 
 
-typedef VOID(CALLBACK* TIMERPROC)(oswindow,::u32,uptr,::u32);
-typedef int_bool(CALLBACK* GRAYSTRINGPROC)(HDC,LPARAM,i32);
-typedef int_bool(CALLBACK* WNDENUMPROC)(oswindow,LPARAM);
-typedef LRESULT(CALLBACK* HOOKPROC)(i32 code,WPARAM wParam,LPARAM lParam);
-typedef VOID(CALLBACK* SENDASYNCPROC)(oswindow,::u32,ulong_ptr,LRESULT);
+typedef VOID(* TIMERPROC)(oswindow,::u32,uptr,::u32);
+typedef int_bool(* GRAYSTRINGPROC)(HDC,LPARAM,i32);
+typedef int_bool(* WNDENUMPROC)(oswindow,LPARAM);
+typedef LRESULT(* HOOKPROC)(i32 code,WPARAM wParam,LPARAM lParam);
+typedef VOID(* SENDASYNCPROC)(oswindow,::u32,ulong_ptr,LRESULT);
 
-typedef int_bool(CALLBACK* PROPENUMPROca)(oswindow,const char *,HANDLE);
-typedef int_bool(CALLBACK* PROPENUMPROCW)(oswindow,const widechar *,HANDLE);
+typedef int_bool(* PROPENUMPROca)(oswindow,const char *,HANDLE);
+typedef int_bool(* PROPENUMPROCW)(oswindow,const widechar *,HANDLE);
 
-typedef int_bool(CALLBACK* PROPENUMPROCEXA)(oswindow,char *,HANDLE,ulong_ptr);
-typedef int_bool(CALLBACK* PROPENUMPROCEXW)(oswindow,LPWSTR,HANDLE,ulong_ptr);
+typedef int_bool(* PROPENUMPROCEXA)(oswindow,char *,HANDLE,ulong_ptr);
+typedef int_bool(* PROPENUMPROCEXW)(oswindow,LPWSTR,HANDLE,ulong_ptr);
 
-typedef i32(CALLBACK* EDITWORDBREAKPROca)(char * lpch,i32 ichCurrent,i32 cch,i32 code);
-typedef i32(CALLBACK* EDITWORDBREAKPROCW)(LPWSTR lpch,i32 ichCurrent,i32 cch,i32 code);
+typedef i32(* EDITWORDBREAKPROca)(char * lpch,i32 ichCurrent,i32 cch,i32 code);
+typedef i32(* EDITWORDBREAKPROCW)(LPWSTR lpch,i32 ichCurrent,i32 cch,i32 code);
 
 
 #endif

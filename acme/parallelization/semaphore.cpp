@@ -161,8 +161,8 @@ sync_result semaphore::wait(const duration & durationTimeout)
 
       ((duration &)durationTimeout).normalize();
 
-      ts.tv_nsec = durationTimeout.m_iNanoseconds;
-      ts.tv_sec = durationTimeout.m_iSeconds;
+      ts.tv_nsec = durationTimeout.m_nanos.m_iNanoseconds;
+      ts.tv_sec = durationTimeout.m_secs.m_iSeconds;
 
       iRet = semtimedop(static_cast < i32 > (m_hsync), &sb, 1, &ts);
 
@@ -280,7 +280,7 @@ sync_result semaphore::wait(const duration & durationTimeout)
 
          //task_sleep(100);
 
-         millis_sleep(100);
+         sleep(100);
 
          millis tRemaining = durationTimeout - tStart.elapsed();
 

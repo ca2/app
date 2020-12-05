@@ -353,7 +353,7 @@ namespace aura
                   {
                      if(!on_idle())
                      {
-                        millis_sleep(100);
+                        sleep(100);
                      }
                   }
                   else

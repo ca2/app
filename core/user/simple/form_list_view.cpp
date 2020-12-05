@@ -44,7 +44,7 @@ bool simple_form_list_view::pre_create_window(::user::create_struct& cs)
 
 #ifdef WINDOWS_DESKTOP
    
-   cs.style |= WS_CLIPCHILDREN;
+
 
 #endif
    

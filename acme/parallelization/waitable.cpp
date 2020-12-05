@@ -95,12 +95,12 @@
 /////  \lparam		duration sleeping time of matter
 ///*CLASS_DECL_ACME void sleep(const duration & duration)
 //{
-//   millis_sleep((u32)duration.total_milliseconds());
+//   sleep((u32)duration.total_milliseconds());
 //}*/
 //
 //CLASS_DECL_ACME void sleep(const duration & duration)
 //{
-//   ::millis_sleep(static_cast<u32>(duration.total_milliseconds()));
+//   ::sleep(static_cast<u32>(duration.total_milliseconds()));
 //}
 //
 //

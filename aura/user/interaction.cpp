@@ -9614,7 +9614,7 @@ restart:
          if (pimpl->m_pointCursor == pointCursor)
          {
 
-            millis_sleep(30);
+            sleep(30);
 
             continue;
 
@@ -9633,7 +9633,7 @@ restart:
          if (!PtInRect(&rectClient, pointCursor))
          {
 
-            millis_sleep(100);
+            sleep(100);
 
             continue;
 
@@ -12389,7 +12389,7 @@ restart:
 
          do_events();
 
-         millis_sleep(5);
+         sleep(5);
 
       }
 
@@ -13976,7 +13976,7 @@ restart:
           nNewStyle |= TBBS_CHECKED;
       else if (nCheck == 2)
           nNewStyle |= TBBS_INDETERMINATE;
-      ASSERT(!(nNewStyle & e_toolbar_button_style_separator));
+      ASSERT(!(nNewStyle & e_toolbar_item_style_separator));
       pToolBar->SetButtonStyle(m_nIndex, nNewStyle | TBBS_CHECKBOX);*/
    }
 

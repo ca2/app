@@ -678,7 +678,7 @@ namespace android
 
    }
    ATOM shell::_RegisterClass(
-      CONST WNDCLASSW *lpWndClass)
+      const WNDCLASSW *lpWndClass)
    {
       WNDCLASS wndclass;
 

@@ -235,7 +235,7 @@ void simple_frame_window::_task_save_window_rect()
          if (m_millisLastSaveWindowRectRequest.elapsed() < 300_ms)
          {
 
-            millis_sleep(150_ms);
+            sleep(150_ms);
 
          }
          else if (m_bPendingSaveWindowRect)
@@ -264,7 +264,7 @@ void simple_frame_window::_task_save_window_rect()
          else
          {
 
-            millis_sleep(1_s);
+            sleep(1_s);
 
          }
 
@@ -1178,7 +1178,7 @@ void simple_frame_window::_001OnGetMinMaxInfo(::message::message * pmessage)
 {
 #ifdef WINDOWS_DESKTOP
    SCAST_PTR(::message::base, pbase, pmessage);
-   MINMAXINFO FAR * pMMI = (MINMAXINFO FAR*) pbase->m_lparam.m_lparam;
+   MINMAXINFO * pMMI = (MINMAXINFO *) pbase->m_lparam.m_lparam;
 
    if (layout().is_full_screen())
    {
@@ -1741,7 +1741,7 @@ void simple_frame_window::_001OnClose(::message::message * pmessage)
 
 //#ifdef WINDOWS_DESKTOP
 //
-//void simple_frame_window::OnNcCalcSize(bool bCalcValidRects, NCCALCSIZE_PARAMS FAR* pncsp)
+//void simple_frame_window::OnNcCalcSize(bool bCalcValidRects, NCCALCSIZE_PARAMS * pncsp)
 //
 //{
 //   UNREFERENCED_PARAMETER(bCalcValidRects);

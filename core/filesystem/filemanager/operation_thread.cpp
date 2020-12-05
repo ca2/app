@@ -188,7 +188,7 @@ namespace filemanager
 
          m_pview->post_message(operation_view::MessageMainPost, operation_view::MessageMainPostFileOperation);
 
-         millis_sleep(iStepSetSleep);
+         sleep(iStepSetSleep);
 
       }
 

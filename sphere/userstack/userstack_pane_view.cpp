@@ -158,7 +158,7 @@ namespace userstack
 
    bool pane_view::pre_create_window(::user::create_struct& cs)
    {
-      cs.dwExStyle &= ~WS_EX_CLIENTEDGE;
+
 
       return ::user::impact::pre_create_window(cs);
    }

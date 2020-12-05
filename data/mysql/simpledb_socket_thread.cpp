@@ -66,7 +66,7 @@ namespace simpledb
 
 
       /*   m_plistensocket = new netnodeListenSocket(this);
-      //millis_sleep(15000);
+      //sleep(15000);
       if(!m_plistensocket->create(80, SOCK_STREAM))
       {
       u32 dw = ::get_last_error();

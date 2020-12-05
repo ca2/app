@@ -1605,7 +1605,7 @@ WINAPI
 GetTimeFormatA(
 LCID             Locale,
 ::u32            dwFlags,
-CONST SYSTEMTIME *lpTime,
+const SYSTEMTIME *lpTime,
 const char *          lpFormat,
 char *          lpTimeStr,
 i32              cchTime);
@@ -1616,7 +1616,7 @@ WINAPI
 GetTimeFormatW(
 LCID             Locale,
 ::u32            dwFlags,
-CONST SYSTEMTIME *lpTime,
+const SYSTEMTIME *lpTime,
 const widechar *          lpFormat,
 LPWSTR          lpTimeStr,
 i32              cchTime);
@@ -1635,7 +1635,7 @@ WINAPI
 GetDurationFormat(
 LCID             Locale,
 ::u32            dwFlags,
-CONST SYSTEMTIME *lpDuration,
+const SYSTEMTIME *lpDuration,
 ULONGLONG ullDuration,
 const widechar *          lpFormat,
 __out_ecount_opt(cchDuration) LPWSTR          lpDurationStr,
@@ -1649,7 +1649,7 @@ WINAPI
 GetDateFormatA(
 LCID             Locale,
 ::u32            dwFlags,
-CONST SYSTEMTIME *lpDate,
+const SYSTEMTIME *lpDate,
 const char *          lpFormat,
 char *          lpDateStr,
 i32              cchDate);
@@ -1660,7 +1660,7 @@ WINAPI
 GetDateFormatW(
 LCID             Locale,
 ::u32            dwFlags,
-CONST SYSTEMTIME *lpDate,
+const SYSTEMTIME *lpDate,
 const widechar *          lpFormat,
 LPWSTR          lpDateStr,
 i32              cchDate);
@@ -1678,7 +1678,7 @@ GetNumberFormatA(
 LCID             Locale,
 ::u32            dwFlags,
 const char *          lpValue,
-CONST NUMBERFMTA *lpFormat,
+const NUMBERFMTA *lpFormat,
 char *          lpNumberStr,
 i32              cchNumber);
 // For Windows Vista and above GetNumberFormatEx is preferred
@@ -1689,7 +1689,7 @@ GetNumberFormatW(
 LCID             Locale,
 ::u32            dwFlags,
 const widechar *          lpValue,
-CONST NUMBERFMTW *lpFormat,
+const NUMBERFMTW *lpFormat,
 LPWSTR          lpNumberStr,
 i32              cchNumber);
 #ifdef UNICODE
@@ -1706,7 +1706,7 @@ GetCurrencyFormatA(
 LCID               Locale,
 ::u32              dwFlags,
 const char *            lpValue,
-CONST CURRENCYFMTA *lpFormat,
+const CURRENCYFMTA *lpFormat,
 char *            lpCurrencyStr,
 i32                cchCurrency);
 // For Windows Vista and above GetCurrencyFormatEx is preferred
@@ -1717,7 +1717,7 @@ GetCurrencyFormatW(
 LCID               Locale,
 ::u32              dwFlags,
 const widechar *            lpValue,
-CONST CURRENCYFMTW *lpFormat,
+const CURRENCYFMTW *lpFormat,
 LPWSTR            lpCurrencyStr,
 i32                cchCurrency);
 #ifdef UNICODE
@@ -2390,7 +2390,7 @@ WINAPI
 GetTimeFormatEx(
 const widechar * lpLocaleName,
 ::u32 dwFlags,
-CONST SYSTEMTIME *lpTime,
+const SYSTEMTIME *lpTime,
 const widechar * lpFormat,
 LPWSTR lpTimeStr,
 i32 cchTime
@@ -2402,7 +2402,7 @@ WINAPI
 GetDateFormatEx(
 const widechar * lpLocaleName,
 ::u32 dwFlags,
-CONST SYSTEMTIME *lpDate,
+const SYSTEMTIME *lpDate,
 const widechar * lpFormat,
 LPWSTR lpDateStr,
 i32 cchDate,
@@ -2415,7 +2415,7 @@ WINAPI
 GetDurationFormatEx(
 const widechar * lpLocaleName,
 ::u32 dwFlags,
-CONST SYSTEMTIME *lpDuration,
+const SYSTEMTIME *lpDuration,
 ULONGLONG ullDuration,
 const widechar * lpFormat,
 __out_ecount_opt(cchDuration) LPWSTR lpDurationStr,
@@ -2429,7 +2429,7 @@ GetNumberFormatEx(
 const widechar * lpLocaleName,
 ::u32 dwFlags,
 const widechar * lpValue,
-CONST NUMBERFMTW *lpFormat,
+const NUMBERFMTW *lpFormat,
 LPWSTR lpNumberStr,
 i32 cchNumber
 );
@@ -2441,7 +2441,7 @@ GetCurrencyFormatEx(
 const widechar * lpLocaleName,
 ::u32 dwFlags,
 const widechar * lpValue,
-CONST CURRENCYFMTW *lpFormat,
+const CURRENCYFMTW *lpFormat,
 LPWSTR lpCurrencyStr,
 i32 cchCurrency
 );

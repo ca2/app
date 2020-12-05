@@ -12,7 +12,7 @@
 
 //#ifndef _UWP
 //
-//CLASS_DECL_AXIS void WINAPI millis_sleep(::u32 dwMilliseconds);
+//CLASS_DECL_AXIS void WINAPI sleep(::u32 dwMilliseconds);
 //
 //#endif
 

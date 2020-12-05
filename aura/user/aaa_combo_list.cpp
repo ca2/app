@@ -479,10 +479,9 @@ namespace user
 
       if (cs.style & WS_BORDER)
       {
-#ifdef WINDOWS_DESKTOP
-         cs.dwExStyle |= WS_EX_CLIENTEDGE;
-#endif
+
          cs.style &= ~WS_BORDER;
+
       }
 
       cs.dwExStyle |= WS_EX_LAYERED;

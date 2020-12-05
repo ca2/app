@@ -118,8 +118,8 @@ public:
    get_memory(memory_base * pmemory) : m_pmemory(pmemory) { }
    // block is const, its memory not!!!!
    get_memory(const block & block) : m_block(block), m_pmemory(nullptr) { }
-   // VOID * NOT CONST!!
-   get_memory(/* NOTTTT CONST!!!!! */ void * p, memsize s) : m_block(p, s), m_pmemory(nullptr) { }
+   // VOID * NOT const!!
+   get_memory(/* NOTTTT const!!!!! */ void * p, memsize s) : m_block(p, s), m_pmemory(nullptr) { }
 
    ~get_memory() {}
 

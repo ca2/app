@@ -1252,7 +1252,7 @@ namespace user
 //
 //            m_puserinteraction->defer_notify_mouse_move();
 //
-//            millis_sleep(100);
+//            sleep(100);
 //
 //         }
 //

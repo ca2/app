@@ -1,5 +1,7 @@
 #include "framework.h"
 #include "os/cross/windows/_windows.h"
+#include "filetime.h"
+
 
 //namespace datetime
 //{
@@ -159,11 +161,6 @@
    const filetime_t filetime::Hour = Minute * static_cast<filetime_t>(60);
    const filetime_t filetime::Day = Hour * static_cast<filetime_t>(24);
    const filetime_t filetime::Week = Day * static_cast<filetime_t>(7);
-
-//
-//}
-//
-//
 
 
 CLASS_DECL_ACME bool file_modified_timeout(const char * path, int iSeconds)

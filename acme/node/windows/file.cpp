@@ -192,7 +192,7 @@ namespace windows
             if (dwLastError == ERROR_SHARING_VIOLATION && ::thread_get_run() && (tickStart.elapsed()) < m_dwErrorBlockTimeout)
             {
 
-               millis_sleep(max(m_dwErrorBlockTimeout / 10u, 50u));
+               sleep(max(m_dwErrorBlockTimeout / 10u, 50u));
 
                goto retry;
 

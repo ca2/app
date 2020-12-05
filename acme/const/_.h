@@ -1,8 +1,10 @@
 //
-// Created by camilo on 04/12/2020.
+// Created by camilo on 04/12/2020. <3Tbs, Mummi and bilbo!!
 //
+#pragma once
 
-#ifndef BASIS___H
-#define BASIS___H
 
-#endif //BASIS___H
+#include "code_page.h"
+
+
+

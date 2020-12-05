@@ -186,7 +186,7 @@ namespace filemanager
 
 #ifdef WINDOWS_DESKTOP
 
-      cs.style |= WS_CLIPCHILDREN;
+
 
 #endif
 
@@ -265,11 +265,11 @@ namespace filemanager
 
    //         i++;
 
-   //         millis_sleep(23);
+   //         sleep(23);
 
    //      }
 
-   //      millis_sleep(100);
+   //      sleep(100);
 
    //   }
 

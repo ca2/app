@@ -813,13 +813,13 @@ namespace linux
 
             }
 
-            pimage->get_graphics()->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
+            pimage->get_graphics()->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
-            pimage->get_graphics()->StretchBlt(0, 0, 16, 16, pimage1->get_graphics(), 0, 0, pimage1->width(), pimage1->height());
+            pimage->get_graphics()->stretch(::size(16, 16), pimage1->get_graphics(), pimage1->rect());
 
-            pimage->get_graphics()->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
+            pimage->get_graphics()->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
-            pimage->get_graphics()->StretchBlt(0, 0, 48, 48, pimage->get_graphics(), 0, 0, pimage->width(), pimage->height());
+            pimage->get_graphics()->stretch(::size(48, 48), pimage->get_graphics(), pimage->rect());
 
             sync_lock sl1(m_pilHover[48]->mutex());
 
@@ -901,7 +901,7 @@ namespace linux
 //
 //               sl.unlock();
 //
-//               millis_sleep(100);
+//               sleep(100);
 //
 //            }
 //            else

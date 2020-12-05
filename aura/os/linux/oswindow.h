@@ -9,13 +9,6 @@ typedef unsigned int u32;
 //typedef i32 ::i32;
 
 
-#undef FAR
-#undef  NEAR
-#define FAR
-#define NEAR
-#ifndef CONST
-#define CONST               const
-#endif
 
 
 struct hthread;

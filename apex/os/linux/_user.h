@@ -11,7 +11,7 @@
 //#include <X11/Xatom.h>
 // // Ubuntu apt-get install libcairo2-dev
 
-#include <glib.h> // gtk3-devel
+#include <glib.h> // gtk3-devel libglib2.0-dev gtk-3-dev
 
 
 enum e_net_wm_state

@@ -199,7 +199,7 @@ namespace file
          if(errno == EINTR)
          {
 
-            millis_sleep(200);
+            sleep(200);
 
          }
          else

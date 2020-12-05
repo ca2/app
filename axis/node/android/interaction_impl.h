@@ -197,7 +197,7 @@ namespace android
           //                      ::u32 flags = RDW_INVALIDATE | RDW_ERASE);
       //virtual bool EnableScrollBar(i32 nSBFlags,::u32 nArrowFlags = 0);
 
-      //virtual bool DrawAnimatedRects(i32 idAni,CONST RECT32 *lprcFrom,CONST RECT32 *lprcTo);
+      //virtual bool DrawAnimatedRects(i32 idAni,const RECT32 *lprcFrom,const RECT32 *lprcTo);
       //virtual bool DrawCaption(::draw2d::graphics_pointer & pgraphics,LPCRECT32 lprc,::u32 uFlags);
 
 

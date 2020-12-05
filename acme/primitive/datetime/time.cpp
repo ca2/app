@@ -221,15 +221,20 @@ namespace datetime
 #endif
 
 #define INTEL 1
-   time::time(const filetime & filetime)
-#ifdef WINDOWS_DESKTOP && INTEL
+
+time::time(const filetime & filetime)
+
+#if defined(WINDOWS_DESKTOP) && defined(INTEL)
+
       : time(*(FILETIME*)&filetime)
+
 #endif
+
    {
 
 #ifndef WINDOWS_DESKTOP
 
-      auto estatus = mkgmtime_from_filetime(m_time, filetime);
+      auto estatus = mkgmtime_from_filetime(m_time, filetime.m_filetime);
 
       if(!estatus)
       {

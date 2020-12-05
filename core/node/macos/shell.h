@@ -70,7 +70,7 @@
 //       // xxx        const unichar * lpClassName,
 //       // xxx        LPWNDCLASSW lpWndClass);
 //       // xxx    static ATOM WINAPI _RegisterClass(
-//       // xxx CONST WNDCLASSW *lpWndClass);
+//       // xxx const WNDCLASSW *lpWndClass);
 //       
 //       static oswindow WINAPI _CreateWindowEx(
 //       ::u32 dwExStyle,
@@ -148,7 +148,7 @@
 //       // xxx        LPWNDCLASSW lpWndClass);
 //       
 //       // xxx ATOM (WINAPI * m_pfnRegisterClass)(
-//       // xxx CONST WNDCLASSW *lpWndClass);
+//       // xxx const WNDCLASSW *lpWndClass);
 //       
 //       oswindow (WINAPI * m_pfnCreateWindowEx)(
 //       ::u32 dwExStyle,
@@ -233,7 +233,7 @@
 //       // xxx        LPWNDCLASSW lpWndClass);
 //       
 //       // xxx    static ATOM WINAPI RegisterClass(
-//       // xxx          CONST WNDCLASSW *lpWndClass);
+//       // xxx          const WNDCLASSW *lpWndClass);
 //       
 //       static oswindow WINAPI CreateWindowEx(
 //       ::u32 dwExStyle,
@@ -424,7 +424,7 @@
 //    }
 //    
 //    inline ATOM shell::RegisterClass(
-//    CONST WNDCLASSW *lpWndClass)
+//    const WNDCLASSW *lpWndClass)
 //    {
 //    return (*theLinuxShell.m_pfnRegisterClass)(
 //    lpWndClass);

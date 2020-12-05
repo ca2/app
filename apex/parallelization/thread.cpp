@@ -1929,7 +1929,7 @@ sync_result thread::wait(const duration & duration)
          while(is_thread_on(ithread))
          {
 
-            millis_sleep(100);
+            sleep(100);
 
          }
 
@@ -1944,7 +1944,7 @@ sync_result thread::wait(const duration & duration)
          while(is_thread_on(ithread))
          {
 
-            millis_sleep(dwStep);
+            sleep(dwStep);
 
          }
 
@@ -4469,7 +4469,7 @@ CLASS_DECL_APEX bool thread_pump_sleep(::u32 dwMillis, sync * psync)
       if (cMessage <= 0)
       {
 
-         millis_sleep(100);
+         sleep(100);
 
       }
 
@@ -4491,7 +4491,7 @@ CLASS_DECL_APEX bool thread_pump_sleep(::u32 dwMillis, sync * psync)
 
    }
 
-   millis_sleep(iMillis);
+   sleep(iMillis);
 
    return ::thread_get_run();
 
@@ -4569,11 +4569,11 @@ CLASS_DECL_APEX bool app_sleep(millis millis)
 
       iTenths--;
 
-      millis_sleep(100);
+      sleep(100);
 
    }
 
-   millis_sleep((u32) iMillis);
+   sleep((u32) iMillis);
 
    return !get_context_application() || !get_context_application()->finish_bit();
 

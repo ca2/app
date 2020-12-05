@@ -43,6 +43,9 @@ namespace acme
       //virtual void defer_calc_os_user_theme();
 
 
+      virtual ::estatus os_application_system_run();
+
+
       using ::promise::handler::on_subject;
       virtual void on_subject(::promise::subject * psubject) override;
 

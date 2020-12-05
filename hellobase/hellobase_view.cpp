@@ -275,7 +275,7 @@ namespace hellobase
                }
                else
                {
-                  millis_sleep(1000);
+                  sleep(1000);
                }
 
                if(m_strImage != strImage)

@@ -2421,7 +2421,7 @@ void x11_thread(osdisplay_data * pdisplaydata)
       if(!x11_step())
       {
 
-         millis_sleep(5);
+         sleep(5);
 
       }
 
@@ -3148,7 +3148,7 @@ bool x11_process_message(Display * pdisplay)
 ////      else
 ////      {
 ////
-////         millis_sleep(25);
+////         sleep(25);
 ////
 ////      }
 ////

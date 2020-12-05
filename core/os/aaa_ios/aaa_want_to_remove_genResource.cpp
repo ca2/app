@@ -48,7 +48,7 @@ namespace gen
 
       if(hres != nullptr)
        {
-         ::u32 FAR* lpnRes = (::u32 FAR*)::LockResource(hres);
+         ::u32 * lpnRes = (::u32 *)::LockResource(hres);
            try
            {
               // create the .mdb file

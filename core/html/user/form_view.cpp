@@ -77,7 +77,7 @@ bool html_form_view::pre_create_window(::user::create_struct& cs)
 
 #ifdef WINDOWS_DESKTOP
 
-   cs.style &= ~WS_EX_CLIENTEDGE;
+
 
 #endif
 

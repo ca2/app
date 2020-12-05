@@ -403,7 +403,7 @@ namespace introjection
    void compiler::prepare1(const char * lpcszSource,const char * lpcszDest)
    {
 #ifdef WINDOWS
-      //millis_sleep(15000);
+      //sleep(15000);
 
       string strBuildCmd = m_strEnv;
 
@@ -441,7 +441,7 @@ namespace introjection
 
       stra.add_lines(strLog);
 
-      //millis_sleep(10000);
+      //sleep(10000);
 
 #ifdef WINDOWS_DESKTOP
 
@@ -1119,7 +1119,7 @@ auto tickStart = ::millis::now();
 
          }
 
-         millis_sleep(100);
+         sleep(100);
 
          if(tickStart.elapsed() > 840 * 1000) // 14 minutes
          {
@@ -1154,7 +1154,7 @@ auto tickStart = ::millis::now();
 
 #ifdef LINUX
 
-         //millis_sleep(2000);
+         //sleep(2000);
 
 #endif
 
@@ -1324,7 +1324,7 @@ auto tickStart = ::millis::now();
             if(process->has_exited())
                break;
 
-            millis_sleep(100);
+            sleep(100);
 
             if(tickStart.elapsed() > 840 * 1000) // 14 minutes
             {
@@ -1346,7 +1346,7 @@ auto tickStart = ::millis::now();
 
 #ifdef LINUX
 
-            //millis_sleep(2000);
+            //sleep(2000);
 
 #endif
 

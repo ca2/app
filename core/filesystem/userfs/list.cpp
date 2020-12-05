@@ -188,7 +188,7 @@ namespace userfs
 
 
 #ifdef WINDOWS_DESKTOP
-      cs.style |= WS_CLIPCHILDREN;
+
 #endif
 
       return ::user::form_list_view::pre_create_window(cs);

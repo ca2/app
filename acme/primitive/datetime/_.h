@@ -1,10 +1,19 @@
 #pragma once
 
 
+typedef struct _SYSTEMTIME {
+   ::u16 wYear;
+   ::u16 wMonth;
+   ::u16 wDayOfWeek;
+   ::u16 wDay;
+   ::u16 wHour;
+   ::u16 wMinute;
+   ::u16 wSecond;
+   ::u16 wMilliseconds;
+} SYSTEMTIME, *PSYSTEMTIME, *LPSYSTEMTIME;
 
 
-
-
+void GetSystemTime(LPSYSTEMTIME systime);
 
 
 #include "value.h"

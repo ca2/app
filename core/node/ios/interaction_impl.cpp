@@ -2088,7 +2088,7 @@ namespace ios
 ////                                            if (dwSpan < 50)
 ////                                            {
 ////
-////                                               millis_sleep(50 - dwSpan);
+////                                               sleep(50 - dwSpan);
 ////
 ////                                            }
 ////
@@ -2178,7 +2178,7 @@ namespace ios
 ////                                                if (dwSpan < 20)
 ////                                                {
 ////
-////                                                   millis_sleep(20 - dwSpan);
+////                                                   sleep(20 - dwSpan);
 ////
 ////                                                }
 ////
@@ -3544,7 +3544,7 @@ namespace ios
     }
     */
 
-//   bool interaction_impl::DrawAnimatedRects(i32 idAni, CONST RECT32 *lprcFrom, CONST RECT32 *lprcTo)
+//   bool interaction_impl::DrawAnimatedRects(i32 idAni, const RECT32 *lprcFrom, const RECT32 *lprcTo)
 //   {
 //
 //      __throw(not_implemented());
@@ -5323,13 +5323,13 @@ namespace ios
 
             on_host_message_handler(spbase);
 
-            millis_sleep(100);
+            sleep(100);
 
             pkey->m_ekey = (::user::e_key)(::user::key_a + strText[0] - 'A');
 
             on_host_message_handler(spbase);
 
-            millis_sleep(100);
+            sleep(100);
 
             pkey->m_id = e_message_key_up;
 
@@ -5351,7 +5351,7 @@ namespace ios
 
          on_host_message_handler(spbase);
 
-         millis_sleep(100);
+         sleep(100);
 
          pkey->m_id = e_message_key_up;
 

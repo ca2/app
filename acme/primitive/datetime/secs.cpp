@@ -5,7 +5,7 @@
 void secs::sleep() const
 {
 
-   ::secs_sleep(*this);
+   ::sleep(*this);
 
 }
 

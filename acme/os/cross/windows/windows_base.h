@@ -52,16 +52,6 @@ typedef struct _FILETIME {
 #endif
 
 
-typedef struct _SYSTEMTIME {
-    ::u16 wYear;
-    ::u16 wMonth;
-    ::u16 wDayOfWeek;
-    ::u16 wDay;
-    ::u16 wHour;
-    ::u16 wMinute;
-    ::u16 wSecond;
-    ::u16 wMilliseconds;
-} SYSTEMTIME, *PSYSTEMTIME, *LPSYSTEMTIME;
 
 
 typedef ::u32 (WINAPI *PTHREAD_START_ROUTINE)(LPVOID lpThreadParameter);
@@ -72,6 +62,6 @@ typedef PTHREAD_START_ROUTINE LPTHREAD_START_ROUTINE;
 
 
 
-//void millis_sleep(::u32 dwMilliseconds);
+//void sleep(::u32 dwMilliseconds);
 
 

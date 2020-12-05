@@ -4,8 +4,7 @@ project(acme CXX)
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_EXTENSIONS OFF)
-
-
+add_compile_options("$<$<CONFIG:DEBUG>:-DDEBUG>")
 message(STATUS "CMAKE_SYSTEM_NAME is ${CMAKE_SYSTEM_NAME}")
 
 
@@ -131,6 +130,7 @@ list(APPEND acme_source
         parallelization/pool.cpp
         primitive/promise_pred/pred_holder.cpp
         primitive/promise/routine_array.cpp
+        primitive/promise/_.h
         parallelization/semaphore.cpp
         parallelization/single_lock.cpp
         parallelization/socket_event.cpp
@@ -162,6 +162,7 @@ list(APPEND acme_source
         os/debug.cpp
         os/file.cpp
         os/http.cpp
+        os/process.h
         process/_.cpp
         process/_.h
         process/bidirectional_pipe.cpp
@@ -349,6 +350,8 @@ list(APPEND acme_source
         primitive/string/tokenizer.cpp
         primitive/string/x.cpp
         user/os_colors.cpp
+        user/os_theme_colors.h
+        user/os_theme_colors.cpp
         _.cpp
         __matter_ca2.cpp
         context_glx.cpp
@@ -1337,6 +1340,7 @@ else ()
             #os/cross/windows/_.h
             #os/cross/_.h
             #os/cross.h
+            os/cross/_cross.h
             )
 
 endif ()
@@ -1377,6 +1381,7 @@ if (LINUX)
             node/linux/thread.cpp
             node/linux/trace.cpp
             node/linux/util.cpp
+            os/linux/application_system_run.cpp
             os/linux/_.cpp
             os/linux/callstack.cpp
             os/linux/cross_win_file.cpp
@@ -1712,7 +1717,7 @@ else ()
 endif ()
 
 
-add_library(acme SHARED ${acme_source} os/cross/_cross.h primitive/promise/_.h user/os_theme_colors.h user/os_theme_colors.cpp)
+add_library(acme SHARED ${acme_source} const/code_page.h const/_.h)
 
 target_precompile_headers(acme PRIVATE framework.h)
 
@@ -1726,6 +1731,7 @@ if (MSVC)
     target_link_libraries(acme PRIVATE zlib dbghelp imagehlp dwmapi Setupapi Windowscodecs Winmm ws2_32 Crypt32 Normaliz version Secur32 gdiplus Shlwapi Imm32.lib)
 elseif (LINUX)
     #pkg_check_modules(PKGCONFIG glib-2.0 gtk+-3.0 gdk-3.0 appindicator-0.1)
+    # sudo apt install libgtk-3-dev
     pkg_check_modules(PKGCONFIG glib-2.0 freetype2 gtk+-3.0 gdk-3.0)
     target_compile_options(acme PRIVATE -fpermissive)
     target_compile_options(acme PRIVATE ${PKGCONFIG_CFLAGS})

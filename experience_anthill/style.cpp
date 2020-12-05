@@ -1251,9 +1251,9 @@ namespace experience
 //      ::user::toolbar::e_element eelement = ::user::toolbar::element_item;
 //      ::user::toolbar::e_element eelementImage = ::user::toolbar::element_image;
 //      ::user::toolbar::e_element eelementText = ::user::toolbar::element_text;
-//      if ((nStyle & e_toolbar_button_style_separator) == 0)
+//      if ((nStyle & e_toolbar_item_style_separator) == 0)
 //      {
-//         if ((nStyle & e_toolbar_button_style_disabled) == 0)
+//         if ((nStyle & e_toolbar_item_style_disabled) == 0)
 //         {
 //            // item is enabled
 //            if (ptoolbar->m_iButtonPressItem >= 0)
@@ -1304,7 +1304,7 @@ namespace experience
 
       ptoolbar->_001GetElementRect(iItem, rectImage, ::user::element_image, estate);
 
-      if ((nStyle & e_toolbar_button_style_separator) != 0)
+      if ((nStyle & e_toolbar_item_style_separator) != 0)
       {
          ::rect rectSeparator;
          rectSeparator.left = (rectImage.left + rectImage.right) / 2 - 1;
@@ -1504,7 +1504,7 @@ namespace experience
 
          ::draw2d::brush_pointer brushText(e_create);
 
-         if ((nStyle & e_toolbar_button_style_disabled) == 0)
+         if ((nStyle & e_toolbar_item_style_disabled) == 0)
          {
 
             brushText->create_solid(ARGB(255, 0, 0, 0));
@@ -1724,12 +1724,12 @@ namespace experience
 
                ::draw2d::pen_pointer pen(e_create);
 
-               pen->create_solid(1, ptoolbar->get_color(pstyle, ::user::element_face, (nStyle & e_toolbar_button_style_disabled) == 0 ?
+               pen->create_solid(1, ptoolbar->get_color(pstyle, ::user::element_face, (nStyle & e_toolbar_item_style_disabled) == 0 ?
                ::user::e_state_none :
                ::user::e_state_disabled));
                ::draw2d::brush_pointer brush(e_create);
 
-               brush->create_solid(ptoolbar->get_color(pstyle, ::user::element_face, (nStyle & e_toolbar_button_style_disabled) == 0 ?
+               brush->create_solid(ptoolbar->get_color(pstyle, ::user::element_face, (nStyle & e_toolbar_item_style_disabled) == 0 ?
                ::user::e_state_none :
                ::user::e_state_disabled));
                pgraphics->set(pen);

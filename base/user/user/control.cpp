@@ -604,7 +604,7 @@
 //          nNewStyle |= TBBS_CHECKED;
 //      else if (nCheck == 2)
 //          nNewStyle |= TBBS_INDETERMINATE;
-//      ASSERT(!(nNewStyle & e_toolbar_button_style_separator));
+//      ASSERT(!(nNewStyle & e_toolbar_item_style_separator));
 //      pToolBar->SetButtonStyle(m_nIndex, nNewStyle | TBBS_CHECKBOX);*/
 //   }
 //

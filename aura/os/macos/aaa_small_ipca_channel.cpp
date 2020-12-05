@@ -426,9 +426,9 @@ namespace aura
 //                  {
 ////                     if(!on_idle())
 //  //                   {
-//    //                    millis_sleep(84 * 1000);
+//    //                    sleep(84 * 1000);
 //      //               }
-//                     millis_sleep(100);
+//                     sleep(100);
 //                  }
 //                  else
 //                  {

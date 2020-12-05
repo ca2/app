@@ -60,7 +60,7 @@ CLASS_DECL_ACME int_bool get_filetime(HANDLE hFile, LPFILETIME pCreationTime, LP
 ///**********************************=> win *************************************/
 //#ifdef _WIN32
 //void SleepInMs(u32 ms) {
-//   ::millis_sleep(ms);
+//   ::sleep(ms);
 //}
 //
 //void SleepInUs(u32 us) {
@@ -105,7 +105,7 @@ BOOLEAN nanosleep(::i64 ns)
    /* Create timer */
    if (!(timer = CreateWaitableTimer(nullptr, TRUE, nullptr)))
    {
-      millis_sleep((::u32) (ns / (1000 * 1000)));
+      sleep((::u32) (ns / (1000 * 1000)));
       return TRUE;
    }
    /* Set timer properties */

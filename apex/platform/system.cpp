@@ -1179,6 +1179,8 @@ namespace apex
 
       set_main_struct(*m_papplicationStartup);
 
+      m_strAppId = m_papplicationStartup->m_strAppId;
+
       estatus = system_init();
 
       if (!estatus)
@@ -3222,7 +3224,7 @@ namespace apex
 
          }
 
-         millis_sleep(50);
+         sleep(50);
 
       }
 

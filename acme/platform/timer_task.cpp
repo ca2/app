@@ -224,7 +224,7 @@ bool timer_task::task_active() const
       for (::index i = 0; i < c100Ms; i++)
       {
 
-         millis_sleep(100);
+         sleep(100);
 
          if (!thread_get_run())
          {
@@ -235,7 +235,7 @@ bool timer_task::task_active() const
 
       }
 
-      millis_sleep((::u32) r100Ms);
+      sleep((::u32) r100Ms);
 
       if (!thread_get_run())
       {

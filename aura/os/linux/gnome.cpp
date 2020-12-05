@@ -66,7 +66,7 @@ namespace linux
 #endif
 
 
-namespace os
+namespace user
 {
 
    string os_get_user_theme()
@@ -186,9 +186,7 @@ namespace os
    }
 
 
-
-} // namespace os
-
+} // namespace user
 
 
 

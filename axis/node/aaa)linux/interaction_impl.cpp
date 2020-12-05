@@ -494,7 +494,7 @@ namespace linux
 
                strPrgName.replace("_", "-");
 
-               strPrgName = "cc.ca2." + strPrgName;
+               strPrgName = "com." + strPrgName;
 
                pupdate->res_class = (char *) (const char *) strPrgName;
 
@@ -2343,11 +2343,11 @@ namespace linux
 ////               if (dwDiff < 20)
 ////               {
 ////
-////                  millis_sleep(20 - dwDiff);
+////                  sleep(20 - dwDiff);
 ////
 ////               }
 ////
-////               //millis_sleep(500);
+////               //sleep(500);
 ////
 ////            }
 ////
@@ -3689,7 +3689,7 @@ namespace linux
       }
    */
 
-//   bool interaction_impl::DrawAnimatedRects(i32 idAni, CONST LPRECTprcFrom, CONST LPRECTlprcTo)
+//   bool interaction_impl::DrawAnimatedRects(i32 idAni, const LPRECTprcFrom, const LPRECTlprcTo)
 //
 //   {
 //

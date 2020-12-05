@@ -2479,7 +2479,7 @@ repeat:
 
       SHChangeNotify(SHCNE_ASSOCCHANGED, SHCNF_DWORD | SHCNF_FLUSH, nullptr, nullptr);
 
-      millis_sleep(1000);
+      sleep(1000);
 
       return true;
 
@@ -2919,7 +2919,7 @@ repeat:
 
                SHChangeNotify(SHCNE_ASSOCCHANGED, SHCNF_DWORD | SHCNF_FLUSH, nullptr, nullptr);
 
-               millis_sleep(3000);
+               sleep(3000);
 
             }
 

@@ -203,6 +203,9 @@ public:
    inline millis operator % (const ::millis & millis) const { return m_iMilliseconds % millis.m_iMilliseconds; }
 
 
+   void sleep() const;
+
+
 };
 
 

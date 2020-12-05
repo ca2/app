@@ -316,7 +316,7 @@ namespace account
 
             hyperlink.open_link("ca2account:this", "", "");
 
-            millis_sleep(5000);
+            sleep(5000);
 
          }
          else

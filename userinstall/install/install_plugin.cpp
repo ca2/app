@@ -395,7 +395,7 @@ namespace install
 
          m_pplugin->thread_start_ca2_on_idle();
 
-         millis_sleep(500);
+         sleep(500);
 
       }
 
@@ -1414,7 +1414,7 @@ retry_get_prompt:
                if (iTry < 9)
                {
 
-                  millis_sleep(iTry * 84);
+                  sleep(iTry * 84);
 
                   iTry++;
 
@@ -1532,7 +1532,7 @@ restart:
          iAttemptStream++;
          if(iAttemptStream > 49)
             return "";
-         millis_sleep(iAttemptStream * 84);
+         sleep(iAttemptStream * 84);
       }
 
       while(m_phost->m_pbasecomposer->m_strPluginUrl.is_empty())
@@ -1545,7 +1545,7 @@ restart:
          iAttemptUrl++;
          if(iAttemptUrl > 49)
             return "";
-         millis_sleep(iAttemptUrl * 84);
+         sleep(iAttemptUrl * 84);
       }
 
       property_set set;
@@ -1560,7 +1560,7 @@ restart:
          iAttempt++;
          if(iAttempt > 7)
             return "";
-         millis_sleep(iAttempt * 840);
+         sleep(iAttempt * 840);
       }
 
       return str;

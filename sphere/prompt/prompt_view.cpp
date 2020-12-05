@@ -87,7 +87,7 @@ namespace prompt
    bool view::pre_create_window(::user::create_struct& cs)
    {
 
-      cs.style &= ~WS_EX_CLIENTEDGE;
+
 
       return ::user::impact::pre_create_window(cs);
 

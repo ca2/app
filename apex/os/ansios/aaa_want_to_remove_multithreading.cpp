@@ -924,7 +924,7 @@
 ////
 ////      }
 ////
-////      millis_sleep(184);
+////      sleep(184);
 ////
 ////   }
 ////
@@ -1292,7 +1292,7 @@
 ////         if(m_bRun && !on_idle())
 ////         {
 ////
-////            millis_sleep(m_iSleepiness);
+////            sleep(m_iSleepiness);
 ////
 ////         }
 ////

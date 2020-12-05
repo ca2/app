@@ -45,14 +45,19 @@ i32 create_process(const char * pszCommandLine, i32 * pprocessId)
 
    pid_t pid = 0;
 
+   string strExe = argv[0];
+
    int status = posix_spawn(&pid, argv[0], nullptr, nullptr, argv.get_data(), environ);
-
-   int iError = errno;
-
-   char * pszError = strerror(iError);
 
    if (status == 0)
    {
+
+      if(strExe.ends_ci("_app_core_clockverse"))
+      {
+
+         ::output_debug_string("app-core/clockverse");
+
+      }
 
       if(pprocessId != nullptr)
       {
@@ -66,6 +71,13 @@ i32 create_process(const char * pszCommandLine, i32 * pprocessId)
    }
    else
    {
+
+      if(strExe.ends_ci("_app_core_clockverse"))
+      {
+
+         ::output_debug_string("app-core/clockverse");
+
+      }
 
       return 0;
 
@@ -521,6 +533,10 @@ id_array app_get_pid(const char * psz)
 
    strApp.replace("/", "_");
 
+   string strApp2;
+
+   strApp2 = "_" + strApp;
+
    for(auto & strPid : stra)
    {
 
@@ -546,7 +562,8 @@ id_array app_get_pid(const char * psz)
 
          ::str::ends_eat_ci(strTitle, " (deleted)");
 
-         if(strTitle == strApp)
+         if(strTitle == strApp ||
+            strTitle == strApp2)
          {
 
             ia.add(iPid);

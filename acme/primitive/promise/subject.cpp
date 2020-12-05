@@ -198,7 +198,7 @@ namespace promise
 
   //       }
 
-         ::millis_sleep(iPollMillis);
+         ::sleep(iPollMillis);
 
       }
 

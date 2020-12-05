@@ -144,7 +144,7 @@ CLASS_DECL_APEX void __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_
 //      ::apex::system * psystem = new ::apex::system();
 //
 //
-//      //millis_sleep(30 * 1000);
+//      //sleep(30 * 1000);
 //
 //
 //      ASSERT(hPrevInstance == nullptr);
@@ -254,7 +254,7 @@ string ca2_command_line()
 
    }
 
-   if (!::str::begins_eat_ci(strAppId, "cc.ca2."))
+   if (!::str::begins_eat_ci(strAppId, "com."))
    {
 
       ::str::begins_eat_ci(strAppId, "com.ca2.");

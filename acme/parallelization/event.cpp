@@ -635,9 +635,9 @@ sync_result event::wait (const duration & durationTimeout)
 
          clock_getrealtime(&abstime);
 
-         abstime.tv_sec += durationTimeout.m_iSeconds;
+         abstime.tv_sec += durationTimeout.m_secs.m_iSeconds;
 
-         abstime.tv_nsec += durationTimeout.m_iNanoseconds;
+         abstime.tv_nsec += durationTimeout.m_nanos.m_iNanoseconds;
 
          while(abstime.tv_nsec > 1000 * 1000 * 1000)
          {

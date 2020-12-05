@@ -486,7 +486,7 @@ namespace http
       //         if(iAttempt > 11)
       //            return "";
       //
-      //         millis_sleep(iAttempt * 840);
+      //         sleep(iAttempt * 840);
       //
       //      }
 
@@ -2621,7 +2621,7 @@ namespace http
 
             sl.unlock();
 
-            millis_sleep(100);
+            sleep(100);
 
             sl.lock();
 

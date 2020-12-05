@@ -28,7 +28,7 @@ bool simple_child_frame::pre_create_window(::user::create_struct& cs)
 
 #ifdef WINDOWS_DESKTOP
 
-   cs.style |= WS_CLIPCHILDREN;
+
    cs.style &= ~WS_BORDER;
    cs.style &= ~WS_THICKFRAME;
 

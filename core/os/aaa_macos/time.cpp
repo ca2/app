@@ -36,7 +36,7 @@ void ns_Sleep(unsigned int uiMillis);
 //}
 
 
-CLASS_DECL_CORE void millis_sleep(unsigned int dwMillis)
+CLASS_DECL_CORE void sleep(unsigned int dwMillis)
 {
 
    usleep(dwMillis * 1000);

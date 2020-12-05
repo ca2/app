@@ -30,17 +30,17 @@ namespace user
       ASSERT(pToolBar != nullptr);
       ASSERT_KINDOF(toolbar, pToolBar);
       ASSERT(m_iIndex < m_iCount);
-      ::u32 nNewStyle = pToolBar->GetButtonStyle((i32) m_iIndex) & ~e_toolbar_button_style_disabled;
+      ::u32 nNewStyle = pToolBar->GetButtonStyle((i32) m_iIndex) & ~e_toolbar_item_style_disabled;
       if (!bOn)
       {
-         nNewStyle |= e_toolbar_button_style_disabled;
+         nNewStyle |= e_toolbar_item_style_disabled;
          // WINBUG: If a button is currently pressed and then is disabled
          // COMCTL32.DLL does not unpress the button, even after the mouse
          // button goes up!  We work around this bug by forcing TBBS_PRESSED
          // off when a button is disabled.
          nNewStyle &= ~TBBS_PRESSED;
       }
-      ASSERT(!(nNewStyle & e_toolbar_button_style_separator));
+      ASSERT(!(nNewStyle & e_toolbar_item_style_separator));
       pToolBar->SetButtonStyle((i32) m_iIndex, nNewStyle);
 #else
       __throw(todo());
@@ -61,7 +61,7 @@ namespace user
          nNewStyle |= TBBS_CHECKED;
       else if (nCheck == 2)
          nNewStyle |= TBBS_INDETERMINATE;
-      ASSERT(!(nNewStyle & e_toolbar_button_style_separator));
+      ASSERT(!(nNewStyle & e_toolbar_item_style_separator));
       pToolBar->SetButtonStyle((i32) m_iIndex, nNewStyle | TBBS_CHECKBOX);
 #else
       __throw(todo());

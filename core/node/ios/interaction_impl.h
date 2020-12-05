@@ -225,7 +225,7 @@ namespace ios
 //      virtual bool RedrawWindow(const ::rect& rectUpdate = nullptr, ::draw2d::region* prgnUpdate = nullptr, ::u32 flags = RDW_INVALIDATE | RDW_ERASE) override;
       // xxx      virtual bool EnableScrollBar(i32 nSBFlags, ::u32 nArrowFlags = ESB_ENABLE_BOTH);
 
-      //virtual bool DrawAnimatedRects(i32 idAni, CONST RECT32 *lprcFrom, CONST RECT32 *lprcTo) override;
+      //virtual bool DrawAnimatedRects(i32 idAni, const RECT32 *lprcFrom, const RECT32 *lprcTo) override;
       //virtual bool DrawCaption(::draw2d::graphics_pointer & pgraphics, LPCRECT32 lprc, ::u32 uFlags) override;
 
 #if(WINVER >= 0x0500)

@@ -24,7 +24,7 @@
 
 extern "C" {
 #define XMD_H
-#undef FAR
+#undef
 #include <setjmp.h>
 
 #include "jinclude.h"

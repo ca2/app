@@ -3902,7 +3902,7 @@ ExitModal:
 
 #endif
 
-   bool interaction_impl::DrawAnimatedRects(int idAni,CONST RECT32 *lprcFrom,CONST RECT32 *lprcTo)
+   bool interaction_impl::DrawAnimatedRects(int idAni,const RECT32 *lprcFrom,const RECT32 *lprcTo)
    {
 
       __throw(todo());

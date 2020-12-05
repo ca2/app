@@ -2,7 +2,7 @@
 #include <time.h>
 
 
-//CLASS_DECL_ACME void millis_sleep(const millis & millis)
+//CLASS_DECL_ACME void sleep(const millis & millis)
 //{
 //
 //   struct timespec ts;
@@ -16,7 +16,7 @@
 
 
 
-CLASS_DECL_ACME void secs_sleep(const ::secs & secs)
+CLASS_DECL_ACME void sleep(const ::secs & secs)
 {
 
    ::sleep((unsigned int) (secs.m_iSeconds * 1'000));
@@ -24,7 +24,7 @@ CLASS_DECL_ACME void secs_sleep(const ::secs & secs)
 }
 
 
-CLASS_DECL_ACME void millis_sleep(const millis & millis)
+CLASS_DECL_ACME void sleep(const millis & millis)
 {
 
    ::usleep((useconds_t) millis.m_iMilliseconds * 1'000);
@@ -32,7 +32,7 @@ CLASS_DECL_ACME void millis_sleep(const millis & millis)
 }
 
 
-CLASS_DECL_ACME void micros_sleep(const micros & micros)
+CLASS_DECL_ACME void sleep(const micros & micros)
 {
 
    ::usleep(micros.m_iMicroseconds);
@@ -40,7 +40,7 @@ CLASS_DECL_ACME void micros_sleep(const micros & micros)
 }
 
 
-CLASS_DECL_ACME void nanos_sleep(const nanos & nanos)
+CLASS_DECL_ACME void sleep(const nanos & nanos)
 {
 
    struct timespec timespec;
@@ -60,25 +60,25 @@ CLASS_DECL_ACME void sleep(const duration & duration)
    if(duration.secs().m_iSeconds >= 20)
    {
 
-      secs_sleep(duration);
+      sleep(duration);
 
    }
    else if(duration.millis().m_iMilliseconds >= 20)
    {
 
-      millis_sleep(duration);
+      sleep(duration);
 
    }
    else if(duration.micros().m_iMicroseconds >= 20)
    {
 
-      micros_sleep(duration);
+      sleep(duration);
 
    }
    else
    {
 
-      nanos_sleep(duration);
+      sleep(duration);
 
    }
 

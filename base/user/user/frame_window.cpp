@@ -431,7 +431,7 @@ namespace user
    {
 
 
-      ASSERT(m_hAccelTable == nullptr);  // only do once
+      //ASSERT(m_hAccelTable == nullptr);  // only do once
       ASSERT(pszResourceName != nullptr);
 
       /*   HINSTANCE hInst = ::aura::FindResourceHandle(pszResourceName, RT_ACCELERATOR);

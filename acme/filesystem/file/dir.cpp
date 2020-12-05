@@ -840,6 +840,8 @@ namespace dir
          if (!file_delete(path))
          {
 
+            set_last_status(error_already_exists);
+
             return false;
 
          }
@@ -880,6 +882,8 @@ namespace dir
          return false;
 
       }
+
+      set_last_status(success);
 
    #endif
 

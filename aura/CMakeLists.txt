@@ -4,9 +4,9 @@ project(aura CXX)
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_EXTENSIONS OFF)
-
-
+add_compile_options("$<$<CONFIG:DEBUG>:-DDEBUG>")
 message(STATUS "CMAKE_SYSTEM_NAME is ${CMAKE_SYSTEM_NAME}")
+
 
 
 if (${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
@@ -269,7 +269,7 @@ list(APPEND aura_source
    os/http.cpp
    os/os.h
    os/os_windowing2.h
-   os/process.h
+   #os/process.h
    os/text.h
    os/thread.cpp
    os/time.h
@@ -586,7 +586,7 @@ if (UWP)
       os/uwp/multithreading.h
       os/uwp/multithreading_winrt.h
       os/uwp/oswindow.h
-      os/uwp/process.h
+      #os/uwp/process.h
       os/uwp/simple_hold_handle.h
       os/uwp/simple_ui.h
       os/uwp/sockets.h
@@ -675,9 +675,9 @@ if (LINUX)
       os/linux/osdisplay.h
       os/linux/oswindow.cpp
       os/linux/oswindow.h
-      os/linux/process.cpp
-      os/linux/process.h
-      os/linux/process_pid.cpp
+      #os/linux/process.cpp
+      #os/linux/process.h
+      #os/linux/process_pid.cpp
       os/linux/simple_app.cpp
       os/linux/time.cpp
       os/linux/user.cpp
@@ -778,9 +778,9 @@ if (MACOS)
       os/macos/os.h
       os/macos/oswindow_data.cpp
       os/macos/oswindow_data.h
-      os/macos/process.cpp
-      os/macos/process_c.h
-      os/macos/process_pid.cpp
+#      os/macos/process.cpp
+#      os/macos/process_c.h
+#      os/macos/process_pid.cpp
       os/macos/simple_app.cpp
       os/macos/time.cpp
       os/macos/user.cpp
@@ -882,9 +882,9 @@ if (IOS)
       os/ios/multithreading.h
       os/ios/oswindow_data.cpp
       os/ios/oswindow_data.h
-      os/ios/process.cpp
-      os/ios/process.h
-      os/ios/process_pid.cpp
+#      os/ios/process.cpp
+#      os/ios/process.h
+#      os/ios/process_pid.cpp
       os/ios/time.cpp
       os/ios/user.cpp
       os/ios/win_base.cpp
@@ -926,9 +926,9 @@ if (SOLARIS)
       os/solaris/solaris_library.cpp
       os/solaris/solaris_lock.cpp
       os/solaris/solaris_message_loop.cpp
-      os/solaris/solaris_process.cpp
-      os/solaris/solaris_process.h
-      os/solaris/solaris_process_pid.cpp
+#      os/solaris/solaris_process.cpp
+#      os/solaris/solaris_process.h
+#      os/solaris/solaris_process_pid.cpp
       os/solaris/solaris_simple_ui.cpp
       os/solaris/solaris_simple_ui.h
       os/solaris/solaris_solaris.h
@@ -978,7 +978,7 @@ if (ANDROID)
       node/android/main.cpp
       node/android/os_context.cpp
       node/android/os_context.h
-      node/android/process.cpp
+#      node/android/process.cpp
       node/android/thread.cpp
       node/android/thread.h
       node/android/trace.cpp
@@ -1020,9 +1020,9 @@ if (ANDROID)
       os/android/main_android.cpp
       os/android/message_loop.cpp
       os/android/multithreading.cpp
-      os/android/process.cpp
-      os/android/process.h
-      os/android/process_pid.cpp
+#      os/android/process.cpp
+#      os/android/process.h
+#      os/android/process_pid.cpp
       os/android/view_bitmap.h
       os/android/win_base.cpp
       os/android/window_android.cpp
@@ -1039,8 +1039,8 @@ if (APPLE)
    list(APPEND aura_source
       timer.mm
       node/apple/apple_timer.cpp
-      node/apple/process.cpp
-      node/apple/process.h
+#      node/apple/process.cpp
+#      node/apple/process.h
       os/apple/_.cpp
       os/apple/_.h
       os/apple/_apple.h
@@ -1059,7 +1059,7 @@ if (APPLE)
       os/apple/multihreading.cpp
       os/apple/ns_exception.cpp
       os/apple/ns_exception.h
-      os/apple/process.cpp
+#      os/apple/process.cpp
       os/apple/time.h
       os/apple/windowing.cpp
       os/apple/windowing.h

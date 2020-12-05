@@ -795,7 +795,7 @@ Opened:
        }
        else
        {
-       millis_sleep(8);
+       sleep(8);
        }
 
        }

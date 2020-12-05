@@ -2099,7 +2099,7 @@ retry_session:
 
             sl.unlock();
 
-            millis_sleep(100);
+            sleep(100);
 
             sl.lock();
 

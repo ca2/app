@@ -95,7 +95,7 @@ namespace interprocess_communication
 
          data_struct * pdata  = (data_struct *)m.get_data();
 
-         pdata->mtype         = 15111984;
+         pdata->mtype         = 20170101;
 
          pdata->request       = 1024;
 
@@ -144,7 +144,7 @@ namespace interprocess_communication
          m.set_size(sizeof(data_struct) + iLen);
 
          data_struct * pdata = (data_struct *)m.get_data();
-         pdata->mtype        = 15111984;
+         pdata->mtype        = 20170101;
          pdata->request      = 1024;
          pdata->size         = iLen;
          //if(data.size > 512)
@@ -171,7 +171,9 @@ namespace interprocess_communication
 
          if((result = msgsnd(m_iQueue,pdata,m.get_size() - sizeof(long),0)) == -1)
          {
+
             return false;
+
          }
 
          return true;
@@ -389,13 +391,13 @@ namespace interprocess_communication
 
             length = m.get_size() - sizeof(long);
 
-            if((result = msgrcv(m_iQueue, pdata, length, 15111984, IPC_NOWAIT)) == -1)
+            if((result = msgrcv(m_iQueue, pdata, length, 20170101, IPC_NOWAIT)) == -1)
             {
 
                if(errno == ENOMSG)
                {
 
-                  millis_sleep(100);
+                  sleep(100);
 
                   continue;
 

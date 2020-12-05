@@ -632,13 +632,15 @@ namespace core
 
       string strMatter;
 
-      if((emessagebox & MB_YESNOCANCEL) == MB_YESNOCANCEL)
+      auto emessageboxType = emessagebox & e_message_box_type_mask;
+
+      if(emessageboxType == e_message_box_yes_no_cancel)
       {
 
          strMatter = "system\\user\\message_box\\yesnocancel.xhtml";
 
       }
-      else if ((emessagebox & MB_YESNO) == MB_YESNO)
+      else if (emessageboxType == e_message_box_yes_no)
       {
 
          strMatter = "system\\user\\message_box\\yesno.xhtml";
@@ -744,7 +746,9 @@ namespace core
 
       string strMatter;
 
-      if ((emessagebox & MB_YESNOCANCEL) == MB_YESNOCANCEL)
+      auto emessageboxType = emessagebox & e_message_box_type_mask;
+
+      if (emessageboxType == e_message_box_yes_no_cancel)
       {
 
          strMatter = "system\\user\\message_box_timeout\\yesnocancel.xhtml";
@@ -1665,11 +1669,11 @@ namespace core
 
          }
 
-         millis_sleep(300);
+         sleep(300);
 
          ::user::gsettings_sync();
 
-         millis_sleep(300);
+         sleep(300);
 
          return bOk1 && bOk2;
 

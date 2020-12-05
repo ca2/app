@@ -389,7 +389,7 @@ namespace user
 #endif
 
 
-      //virtual bool DrawAnimatedRects(i32 idAni,CONST LPRECTprcFrom,CONST LPRECTlprcTo);
+      //virtual bool DrawAnimatedRects(i32 idAni,const LPRECTprcFrom,const LPRECTlprcTo);
 
 
       virtual bool DrawCaption(::draw2d::graphics_pointer & pgraphics,const rect & prc,::u32 uFlags);

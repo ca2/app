@@ -360,7 +360,7 @@ namespace macos
 
                sl.unlock();
 
-               millis_sleep(100);
+               sleep(100);
 
             }
             else

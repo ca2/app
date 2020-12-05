@@ -4,9 +4,9 @@ project(core CXX)
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_EXTENSIONS OFF)
-
-
+add_compile_options("$<$<CONFIG:DEBUG>:-DDEBUG>")
 message(STATUS "CMAKE_SYSTEM_NAME is ${CMAKE_SYSTEM_NAME}")
+
 
 
 if (${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
@@ -318,7 +318,7 @@ list(APPEND core_source
    os/file.h
    os/graphics.h
    os/os_windowing2.h
-   os/process.h
+#   os/process.h
    os/text.h
    os/threading.h
    os/time.h
@@ -624,7 +624,7 @@ list(APPEND core_source
    library.h
    message.h
    procedure.h
-   timer.mm
+   #timer.mm
    update.h
    user.h
    xml.h)
@@ -721,102 +721,94 @@ if (LINUX)
    list(APPEND core_source
       node/linux/_.h
       node/linux/_linux.h
-      node/linux/application.cpp
-      node/linux/application.h
-      node/linux/console_window.cpp
-      node/linux/console_window.h
-      node/linux/copydesk.cpp
-      node/linux/copydesk.h
-      node/linux/dir_context.cpp
-      node/linux/dir_context.h
-      node/linux/dir_system.cpp
-      node/linux/dir_system.h
-      node/linux/dumpinit.cpp
-      node/linux/error.cpp
-      node/linux/exception.cpp
+      #node/linux/application.cpp
+           #node/linux/application.h
+           #node/linux/console_window.cpp
+           #node/linux/console_window.h
+           #node/linux/copydesk.cpp
+           #node/linux/copydesk.h
+           #node/linux/dir_context.cpp
+           #node/linux/dir_context.h
+           #node/linux/dir_system.cpp
+           #node/linux/dir_system.h
+      #node/linux/dumpinit.cpp
+      #node/linux/error.cpp
+           #node/linux/exception.cpp
       node/linux/factory_exchange.cpp
       node/linux/factory_exchange.h
-      node/linux/file.cpp
-      node/linux/file.h
-      node/linux/file_context.cpp
-      node/linux/file_context.h
-      node/linux/file_system.cpp
-      node/linux/file_system.h
-      node/linux/frame_window.cpp
-      node/linux/interaction_impl.cpp
-      node/linux/interaction_impl.h
+           #node/linux/file.cpp
+           #node/linux/file.h
+           #node/linux/file_context.cpp
+           #node/linux/file_context.h
+           #node/linux/file_system.cpp
+           #node/linux/file_system.h
+      #node/linux/frame_window.cpp
+           #node/linux/interaction_impl.cpp
+           #node/linux/interaction_impl.h
       node/linux/internal.h
       node/linux/linux.cpp
-      node/linux/os_context.cpp
-      node/linux/os_context.h
-      node/linux/process.cpp
-      node/linux/process.h
-      node/linux/root_tools.cpp
+           #node/linux/os_context.cpp
+           #node/linux/os_context.h
+           #node/linux/process.cpp
+           #node/linux/process.h
+           node/linux/root_tools.cpp
       node/linux/root_tools.h
       node/linux/shell.cpp
       node/linux/shell.h
       node/linux/shell_linux.cpp
       node/linux/shell_linux.h
-      node/linux/stdio_file.cpp
-      node/linux/stdio_file.h
-      node/linux/thread.cpp
-      node/linux/thread.h
-      node/linux/trace.cpp
-      node/linux/util.cpp
-      os/cairo/_.h
-      os/cairo/_impl.h
-      os/cross/uwp/cross_metrowin_user.cpp
-      os/cross/uwp/metrowin_user.cpp
-      os/cross/windows/_.h
-      os/cross/cross.h
-      os/gdk/aura_gdk.cpp
-      os/gdk/aura_gdk.h
-      os/linux/_.h
-      os/linux/_c.h
-      os/linux/_linux.h
-      os/linux/_user.h
-      os/linux/appindicator.h
-      os/linux/application_system_run.cpp
-      os/linux/aura.cpp
-      os/linux/bloat_pad.h
-      os/linux/callstack.cpp
-      os/linux/cross_win_file.cpp
-      os/linux/cross_win_file.h
-      os/linux/cross_win_gdi.cpp
-      os/linux/cross_win_gdi.h
-      os/linux/cross_win_gdi_internal.h
-      os/linux/debug.cpp
-      os/linux/debug.h
-      os/linux/desktop_file.cpp
-      os/linux/desktop_file.h
-      os/linux/exception_engine.cpp
-      os/linux/exception_engine.h
-      os/linux/file.cpp
-      os/linux/file.h
-      os/linux/gnome.cpp
-      os/linux/gnome.h
-      os/linux/gnome_bloat_pad.cpp
-      os/linux/gnome_direct.cpp
-      os/linux/gnome_gnome.h
-      os/linux/gnome_internal_glue.h
-      os/linux/gnome_shared.h
-      os/linux/gnu_source.cpp
-      os/linux/graphics.cpp
-      os/linux/graphics.h
-      os/linux/graphics2.h
-      os/linux/language.cpp
-      os/linux/linux.inl
-      os/linux/linux_linux.h
-      os/linux/user.h
-      os/linux/user_private.h
-      os/linux/x11.h
-      os/x11/debug.cpp
-      os/x11/x11.h
-      os/x11/x11_exception.h
-      os/x11/x11_keyboard.cpp
-      os/x11/x11_keyboard.h
-      os/x11/x11_windowing.cpp
-      os/x11/x11_xrender.cpp
+           #node/linux/stdio_file.cpp
+           #node/linux/stdio_file.h
+           #node/linux/thread.cpp
+           #node/linux/thread.h
+           #node/linux/trace.cpp
+           #node/linux/util.cpp
+#      os/cairo/_.h
+#      os/cairo/_impl.h
+#      #os/cross/uwp/cross_metrowin_user.cpp
+#      #os/cross/uwp/metrowin_user.cpp
+#      os/cross/windows/_.h
+#      os/cross/cross.h
+#      #os/gdk/aura_gdk.cpp
+#      #os/gdk/aura_gdk.h
+#      os/linux/_.h
+#      os/linux/_c.h
+#      os/linux/_linux.h
+#      os/linux/_user.h
+#      os/linux/appindicator.h
+#      #os/linux/application_system_run.cpp
+#      os/linux/aura.cpp
+#      os/linux/bloat_pad.h
+#      #os/linux/callstack.cpp
+#      os/linux/cross_win_file.cpp
+#      os/linux/cross_win_file.h
+#      os/linux/cross_win_gdi.cpp
+#      os/linux/cross_win_gdi.h
+#      os/linux/cross_win_gdi_internal.h
+#      os/linux/debug.cpp
+#      os/linux/debug.h
+#      os/linux/desktop_file.cpp
+#      os/linux/desktop_file.h
+#      os/linux/exception_engine.cpp
+#      os/linux/exception_engine.h
+#      os/linux/file.cpp
+#      os/linux/file.h
+#      os/linux/graphics.cpp
+#      os/linux/graphics.h
+#      os/linux/graphics2.h
+#      os/linux/language.cpp
+#      os/linux/linux.inl
+#      os/linux/linux_linux.h
+#      os/linux/user.h
+#      os/linux/user_private.h
+#      os/linux/x11.h
+#      #os/x11/debug.cpp
+#      #os/x11/x11.h
+#      #os/x11/x11_exception.h
+#      #os/x11/x11_keyboard.cpp
+#      #os/x11/x11_keyboard.h
+#      #os/x11/x11_windowing.cpp
+#      #/x11/x11_xrender.cpp
 
       )
 endif ()
@@ -947,7 +939,7 @@ if (ANDROID)
       node/android/main.cpp
       node/android/os_context.cpp
       node/android/os_context.h
-      node/android/process.cpp
+#      node/android/process.cpp
       node/android/shell.cpp
       node/android/shell.h
       node/android/thread.cpp
@@ -991,9 +983,9 @@ if (ANDROID)
       os/android/main_android.cpp
       os/android/message_loop.cpp
       os/android/multithreading.cpp
-      os/android/process.cpp
-      os/android/process.h
-      os/android/process_pid.cpp
+#      os/android/process.cpp
+#      os/android/process.h
+#      os/android/process_pid.cpp
       os/android/simple_shell_launcher.cpp
       os/android/small_ipca_channel.cpp
       os/android/view_bitmap.h
@@ -1070,9 +1062,9 @@ if (SOLARIS)
       os/solaris/solaris_library.cpp
       os/solaris/solaris_lock.cpp
       os/solaris/solaris_message_loop.cpp
-      os/solaris/solaris_process.cpp
-      os/solaris/solaris_process.h
-      os/solaris/solaris_process_pid.cpp
+#      os/solaris/solaris_process.cpp
+#      os/solaris/solaris_process.h
+#      os/solaris/solaris_process_pid.cpp
       os/solaris/solaris_simple_shell_launcher.cpp
       os/solaris/solaris_simple_ui.cpp
       os/solaris/solaris_simple_ui.h

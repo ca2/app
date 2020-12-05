@@ -3224,7 +3224,7 @@ namespace windows
 
    }
 
-   //bool interaction_impl::DrawAnimatedRects(i32 idAni, CONST LPRECTprcFrom, CONST LPRECTlprcTo)
+   //bool interaction_impl::DrawAnimatedRects(i32 idAni, const LPRECTprcFrom, const LPRECTlprcTo)
 
    //{
 

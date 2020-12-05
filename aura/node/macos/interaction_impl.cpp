@@ -1949,7 +1949,7 @@ namespace macos
 //            if (dwSpan < 50)
 //            {
 //
-//               millis_sleep(50 - dwSpan);
+//               sleep(50 - dwSpan);
 //
 //            }
 //
@@ -3188,7 +3188,7 @@ namespace macos
    }
 
 
-//   bool interaction_impl::DrawAnimatedRects(i32 idAni, CONST RECT32 *lprcFrom, CONST RECT32 * lprcTo)
+//   bool interaction_impl::DrawAnimatedRects(i32 idAni, const RECT32 *lprcFrom, const RECT32 * lprcTo)
 //   {
 //
 //      __throw(not_implemented());

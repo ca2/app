@@ -79,7 +79,7 @@ namespace user
 
       }
 
-      m_strId.Format("user::notify_icon - %d", uId);
+      m_strId.Format("notify_icon_%d", uId);
 
       m_strId = "ca2-" + pvisualicon->m_strAppTrayIcon + "-" + m_strId;
 
@@ -163,7 +163,7 @@ namespace user
 
          pathFolder = path.folder();
 
-         gdk_sync(5_s, __routine([&]()
+         gdk_sync(5_s, __routine([=]()
          {
 
             m_pindicator = ::linux::allocate_appindicator();

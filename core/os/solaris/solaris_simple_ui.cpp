@@ -485,7 +485,7 @@ namespace os
 
                }
 
-               millis_sleep(5);
+               sleep(5);
 
             }
 

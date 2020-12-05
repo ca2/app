@@ -167,7 +167,7 @@ void* load_lib(const char* l)
 }
 
 
-::estatus os_application_system_run(::aura::system* psystem);
+//::estatus os_application_system_run(::aura::system* psystem);
 
 
 int SetMainScreenRect(LPCRECT32 lpcrect);

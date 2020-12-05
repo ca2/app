@@ -1859,7 +1859,7 @@ namespace android
          //      if (tickStart.elapsed() < 5)
          //      {
 
-         //         millis_sleep(5);
+         //         sleep(5);
 
          //      }
 
@@ -3353,7 +3353,7 @@ namespace android
    }
    */
 
-   //bool interaction_impl::DrawAnimatedRects(i32 idAni, CONST RECT32 *lprcFrom, CONST RECT32 *lprcTo)
+   //bool interaction_impl::DrawAnimatedRects(i32 idAni, const RECT32 *lprcFrom, const RECT32 *lprcTo)
    //{
 
    //   __throw(not_implemented());

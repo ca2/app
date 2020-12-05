@@ -280,7 +280,7 @@ namespace windows
 
          }
 
-         millis_sleep(100);
+         sleep(100);
 
       }
 

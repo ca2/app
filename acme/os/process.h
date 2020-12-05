@@ -1,8 +1,15 @@
 //
-// Created by camilo on 03/12/2020.
+// Created by camilo on 03/12/2020. <3tbs!!
 //
+#pragma once
 
-#ifndef BASIS_PROCESS_H
-#define BASIS_PROCESS_H
 
-#endif //BASIS_PROCESS_H
+CLASS_DECL_ACME bool os_init_application();
+CLASS_DECL_ACME void os_term_application();
+
+
+#ifdef WINDOWS_DESKTOP
+CLASS_DECL_ACME string ca2_command_line(HINSTANCE hinstance);
+#else
+CLASS_DECL_ACME string ca2_command_line();
+#endif

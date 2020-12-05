@@ -638,7 +638,7 @@ typedef struct tagDRAWTEXTPARAMS
    i32     iLeftMargin;
    i32     iRightMargin;
    ::u32    uiLengthDrawn;
-} DRAWTEXTPARAMS,FAR *LPDRAWTEXTPARAMS;
+} DRAWTEXTPARAMS,*LPDRAWTEXTPARAMS;
 
 #endif
 
@@ -1125,7 +1125,7 @@ int_bool WINAPI IsIconic(oswindow hWnd);
 //
 //#endif
 
-//int_bool RedrawWindow(oswindow hWnd, CONST RECT32 *lprcUpdate, HRGN hrgnUpdate, ::u32 flags);
+//int_bool RedrawWindow(oswindow hWnd, const RECT32 *lprcUpdate, HRGN hrgnUpdate, ::u32 flags);
 
 
 /*
@@ -1246,7 +1246,7 @@ typedef struct tagNMHDR
 }   NMHDR;
 
 
-typedef NMHDR FAR * LPNMHDR;
+typedef NMHDR * LPNMHDR;
 
 
 typedef struct tagSTYLESTRUCT
@@ -1696,7 +1696,7 @@ typedef struct tagMDINEXTMENU
    HMENU   hmenuIn;
    HMENU   hmenuNext;
    oswindow    hwndNext;
-} MDINEXTMENU, * PMDINEXTMENU, FAR * LPMDINEXTMENU;
+} MDINEXTMENU, * PMDINEXTMENU, * LPMDINEXTMENU;
 #endif /* WINVER >= 0x0400 */
 
 
@@ -2771,7 +2771,7 @@ typedef struct tagMESSAGE
 #ifdef _MAC
    ::u32       lPrivate;
 #endif
-} MESSAGE, *PMESSAGE, NEAR *NPMESSAGE, FAR *LPMESSAGE;
+} MESSAGE, *PMESSAGE, *NPMESSAGE, *LPMESSAGE;
 
 CLASS_DECL_AURA int_bool TranslateMessage(const MESSAGE * pmsg);
 CLASS_DECL_AURA LRESULT DispatchMessage(const MESSAGE * pmsg);

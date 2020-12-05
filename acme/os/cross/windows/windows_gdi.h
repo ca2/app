@@ -91,8 +91,8 @@ typedef ::i32    LCSGAMUTMATCH;
 
 #define CMYK(c,m,y,k)       ((color32_t)((((byte)(k)|((::u16)((byte)(y))<<8))|(((::u32)(byte)(m))<<16))|(((::u32)(byte)(c))<<24)))
 
-typedef long            FXPT16DOT16,FAR *LPFXPT16DOT16;
-typedef long            FXPT2DOT30,FAR *LPFXPT2DOT30;
+typedef long            FXPT16DOT16,*LPFXPT16DOT16;
+typedef long            FXPT2DOT30,*LPFXPT2DOT30;
 
 
 
@@ -114,7 +114,7 @@ typedef struct  tagXFORM
    FLOAT   eM22;
    FLOAT   eDx;
    FLOAT   eDy;
-} XFORM,*PXFORM,FAR *LPXFORM;
+} XFORM,*PXFORM,*LPXFORM;
 
 /* Bitmap Header Definition */
 typedef struct tagBITMAP
@@ -126,14 +126,14 @@ typedef struct tagBITMAP
    ::u16        bmPlanes;
    ::u16        bmBitsPixel;
    LPVOID      bmBits;
-} BITMAP,*PBITMAP,NEAR *NPBITMAP,FAR *LPBITMAP;
+} BITMAP,*PBITMAP,*NPBITMAP,*LPBITMAP;
 
 ////#include <pshpack1.h>
 //typedef struct tagRGBTRIPLE {
 //   byte    rgbtBlue;
 //   byte    rgbtGreen;
 //   byte    rgbtRed;
-//} RGBTRIPLE,*PRGBTRIPLE,NEAR *NPRGBTRIPLE,FAR *LPRGBTRIPLE;
+//} RGBTRIPLE,*PRGBTRIPLE,*NPRGBTRIPLE,*LPRGBTRIPLE;
 ////#include "poppack.h"
 
 
@@ -146,7 +146,7 @@ typedef struct tagCIEXYZ
    FXPT2DOT30 ciexyzY;
    FXPT2DOT30 ciexyzZ;
 } CIEXYZ;
-typedef CIEXYZ  FAR *LPCIEXYZ;
+typedef CIEXYZ  *LPCIEXYZ;
 
 typedef struct tagICEXYZTRIPLE
 {
@@ -154,7 +154,7 @@ typedef struct tagICEXYZTRIPLE
    CIEXYZ  ciexyzGreen;
    CIEXYZ  ciexyzBlue;
 } CIEXYZTRIPLE;
-typedef CIEXYZTRIPLE    FAR *LPCIEXYZTRIPLE;
+typedef CIEXYZTRIPLE    *LPCIEXYZTRIPLE;
 
 //#ifdef LINUX
 //#define BOOL int
@@ -168,21 +168,21 @@ typedef struct tagRGBQUAD {
    byte    rgbGreen;
    byte    rgbRed;
    byte    rgbReserved;
-} RGBQUAD, FAR* LPRGBQUAD;
+} RGBQUAD, * LPRGBQUAD;
 
 typedef struct tagPALETTEENTRY {
    byte        peRed;
    byte        peGreen;
    byte        peBlue;
    byte        peFlags;
-} PALETTEENTRY,*PPALETTEENTRY,FAR *LPPALETTEENTRY;
+} PALETTEENTRY,*PPALETTEENTRY,*LPPALETTEENTRY;
 
 /* Logical Palette */
 typedef struct tagLOGPALETTE {
    ::u16                palVersion;
    ::u16                palNumEntries;
    PALETTEENTRY        palPalEntry[1];
-} LOGPALETTE,*PLOGPALETTE,NEAR *NPLOGPALETTE,FAR *LPLOGPALETTE;
+} LOGPALETTE,*PLOGPALETTE,*NPLOGPALETTE,*LPLOGPALETTE;
 
 
 /* Logical Font */
@@ -227,10 +227,10 @@ struct  tagLOGFONTA
 //};
 
 
-typedef struct tagLOGFONTA LOGFONTA,*PLOGFONTA,NEAR *NPLOGFONTA,FAR *LPLOGFONTA;
+typedef struct tagLOGFONTA LOGFONTA,*PLOGFONTA,*NPLOGFONTA,*LPLOGFONTA;
 
 
-typedef struct tagLOGFONTW LOGFONTW,*PLOGFONTW,NEAR *NPLOGFONTW,FAR *LPLOGFONTW;
+typedef struct tagLOGFONTW LOGFONTW,*PLOGFONTW,*NPLOGFONTW,*LPLOGFONTW;
 
 
 struct tagFONTA;
@@ -239,10 +239,10 @@ struct tagFONTA;
 struct tagFONTW;
 
 
-typedef struct tagFONTA FONTA,* PFONTA,NEAR * NPFONTA,FAR * LPFONTA;
+typedef struct tagFONTA FONTA,* PFONTA,* NPFONTA,* LPFONTA;
 
 
-typedef struct tagFONTW FONTW,* PFONTW,NEAR * NPFONTW,FAR * LPFONTW;
+typedef struct tagFONTW FONTW,* PFONTW,* NPFONTW,* LPFONTW;
 
 
 #ifdef UNICODE
@@ -335,7 +335,7 @@ typedef struct tagTEXTMETRIca
    byte        tmStruckOut;
    byte        tmPitchAndFamily;
    byte        tmCharSet;
-} TEXTMETRIca,*PTEXTMETRIca,NEAR *NPTEXTMETRIca,FAR *LPTEXTMETRIca;
+} TEXTMETRIca,*PTEXTMETRIca,*NPTEXTMETRIca,*LPTEXTMETRIca;
 typedef struct tagTEXTMETRICW
 {
    ::i32        tmHeight;
@@ -358,7 +358,7 @@ typedef struct tagTEXTMETRICW
    byte        tmStruckOut;
    byte        tmPitchAndFamily;
    byte        tmCharSet;
-} TEXTMETRICW,*PTEXTMETRICW,NEAR *NPTEXTMETRICW,FAR *LPTEXTMETRICW;
+} TEXTMETRICW,*PTEXTMETRICW,*NPTEXTMETRICW,*LPTEXTMETRICW;
 #ifdef UNICODE
 typedef TEXTMETRICW TEXTMETRIC;
 typedef PTEXTMETRICW PTEXTMETRIC;
@@ -381,7 +381,7 @@ typedef struct tagPELARRAY
    ::i32        paXExt;
    ::i32        paYExt;
    byte        paRGBs;
-} PELARRAY,*PPELARRAY,NEAR *NPPELARRAY,FAR *LPPELARRAY;
+} PELARRAY,*PPELARRAY,*NPPELARRAY,*LPPELARRAY;
 
 /* Logical Brush (or Pattern) */
 typedef struct tagLOGBRUSH
@@ -389,20 +389,20 @@ typedef struct tagLOGBRUSH
    ::u32        lbStyle;
    color32_t    lbColor;
    ulong_ptr   lbHatch;
-} LOGBRUSH,*PLOGBRUSH,NEAR *NPLOGBRUSH,FAR *LPLOGBRUSH;
+} LOGBRUSH,*PLOGBRUSH,*NPLOGBRUSH,*LPLOGBRUSH;
 
 typedef struct tagLOGBRUSH32
 {
    ::u32        lbStyle;
    color32_t    lbColor;
    WINULONG       lbHatch;
-} LOGBRUSH32,*PLOGBRUSH32,NEAR *NPLOGBRUSH32,FAR *LPLOGBRUSH32;
+} LOGBRUSH32,*PLOGBRUSH32,*NPLOGBRUSH32,*LPLOGBRUSH32;
 
 
 typedef LOGBRUSH            PATTERN;
 typedef PATTERN             *PPATTERN;
-typedef PATTERN NEAR        *NPPATTERN;
-typedef PATTERN FAR         *LPPATTERN;
+typedef PATTERN         *NPPATTERN;
+typedef PATTERN          *LPPATTERN;
 
 
 /* Logical Pen */
@@ -411,13 +411,13 @@ typedef struct tagLOGPEN
    ::u32        lopnStyle;
    POINT32       lopnWidth;
    color32_t    lopnColor;
-} LOGPEN,*PLOGPEN,NEAR *NPLOGPEN,FAR *LPLOGPEN;
+} LOGPEN,*PLOGPEN,*NPLOGPEN,*LPLOGPEN;
 
 
 
 struct tagEXTLOGPEN;
 
-typedef struct tagEXTLOGPEN  EXTLOGPEN,*PEXTLOGPEN,NEAR *NPEXTLOGPEN,FAR *LPEXTLOGPEN;
+typedef struct tagEXTLOGPEN  EXTLOGPEN,*PEXTLOGPEN,*NPEXTLOGPEN,*LPEXTLOGPEN;
 
 typedef LPEXTLOGPEN HPEN;
 
@@ -465,7 +465,7 @@ typedef LPEXTLOGPEN HPEN;
 
 struct tagEXTLOGBRUSH;
 
-typedef struct tagEXTLOGBRUSH  EXTLOGBRUSH,*PEXTLOGBRUSH,NEAR *NPEXTLOGBRUSH,FAR *LPEXTLOGBRUSH;
+typedef struct tagEXTLOGBRUSH  EXTLOGBRUSH,*PEXTLOGBRUSH,*NPEXTLOGBRUSH,*LPEXTLOGBRUSH;
 
 typedef LPEXTLOGBRUSH HBRUSH;
 
@@ -515,7 +515,7 @@ typedef struct tagBITMAPCOREHEADER {
    ::u16    bcHeight;
    ::u16    bcPlanes;
    ::u16    bcBitCount;
-} BITMAPCOREHEADER,FAR *LPBITMAPCOREHEADER,*PBITMAPCOREHEADER;
+} BITMAPCOREHEADER,*LPBITMAPCOREHEADER,*PBITMAPCOREHEADER;
 
 typedef struct tagBITMAPINFOHEADER{
    ::u32      biSize;
@@ -529,7 +529,7 @@ typedef struct tagBITMAPINFOHEADER{
    ::i32       biYPelsPerMeter;
    ::u32      biClrUsed;
    ::u32      biClrImportant;
-} BITMAPINFOHEADER,FAR *LPBITMAPINFOHEADER,*PBITMAPINFOHEADER;
+} BITMAPINFOHEADER,*LPBITMAPINFOHEADER,*PBITMAPINFOHEADER;
 
 typedef struct tagBITMAPINFO {
    BITMAPINFOHEADER bmiHeader;
@@ -559,7 +559,7 @@ typedef struct {
    ::u32        bV4GammaRed;
    ::u32        bV4GammaGreen;
    ::u32        bV4GammaBlue;
-} BITMAPV4HEADER,FAR *LPBITMAPV4HEADER,*PBITMAPV4HEADER;
+} BITMAPV4HEADER,*LPBITMAPV4HEADER,*PBITMAPV4HEADER;
 #endif /* WINVER >= 0x0400 */
 
 #if (WINVER >= 0x0500)
@@ -588,7 +588,7 @@ typedef struct {
    ::u32        bV5ProfileData;
    ::u32        bV5ProfileSize;
    ::u32        bV5Reserved;
-} BITMAPV5HEADER,FAR *LPBITMAPV5HEADER,*PBITMAPV5HEADER;
+} BITMAPV5HEADER,*LPBITMAPV5HEADER,*PBITMAPV5HEADER;
 
 
 
@@ -632,7 +632,7 @@ typedef struct tagBITMAPINFO {
 struct tagBITMAPINFO;
 
 
-typedef struct tagBITMAPINFO  FAR *LPBITMAPINFO;
+typedef struct tagBITMAPINFO  *LPBITMAPINFO;
 
 
 typedef LPBITMAPINFO HBITMAP;
@@ -701,7 +701,7 @@ typedef struct _BLENDFUNCTION
 struct tagLOGRGN;
 
 
-typedef struct tagLOGRGN  LOGRGN,*PLOGRGN,NEAR *NPLOGRGN,FAR *LPLOGRGN;
+typedef struct tagLOGRGN  LOGRGN,*PLOGRGN,*NPLOGRGN,*LPLOGRGN;
 
 
 typedef LPLOGRGN HRGN;

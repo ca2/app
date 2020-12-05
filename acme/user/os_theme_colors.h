@@ -46,6 +46,8 @@ namespace user
 
    CLASS_DECL_ACME void _os_process_user_theme_color(string strTheme);
 
+   CLASS_DECL_ACME string os_get_user_theme();
+
 
 } // namespace user
 

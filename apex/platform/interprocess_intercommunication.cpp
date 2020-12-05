@@ -132,6 +132,13 @@ bool interprocess_intercommunication::start(const string & strApp)
 
    }
 
+   if(strApp == "app-core/clockverse")
+   {
+
+      ::output_debug_string("app-core/clockverse");
+
+   }
+
    ::apex::app_launcher launcher(process_platform_dir_name2(), strApp);
 
    id idPid = -1;
@@ -152,6 +159,13 @@ bool interprocess_intercommunication::start(const string & strApp)
          while(iStep < 8 && ::thread_get_run())
          {
 
+            for(iSubStep = 0; (iSubStep < (iStep + 1) * 10) && ::thread_get_run(); iSubStep++)
+            {
+
+               sleep(100);
+
+            }
+
             iStep++;
 
             ida = get_pid(strApp);
@@ -163,12 +177,6 @@ bool interprocess_intercommunication::start(const string & strApp)
 
             }
 
-            for(iSubStep = 0; (iSubStep < (iStep + 1) * 10) && ::thread_get_run(); iSubStep++)
-            {
-
-               millis_sleep(100);
-
-            }
 
          }
 

@@ -351,7 +351,7 @@ void service_base::call_server()
    while (get_run_service())
    {
 
-      millis_sleep(100);
+      sleep(100);
 
    }
 

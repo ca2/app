@@ -1986,13 +1986,13 @@ namespace apex
 
 //#endif //!__DEBUG
 
-            payload payload;
+            string strMessage;
 
-            payload["message"] = "Another instance of \"" + m_strAppName + "\" is already running (and some exclusivity policy is active).";
+            strMessage = "Another instance of \"" + m_strAppName + "\" is already running (and some exclusivity policy is active).";
 
 //          payload["prefix_html"] = "<img src=\"matter://system/exclusive.png\" width=80 height=80 style=\"display:block;\"><br/><br/>";
 
-            message_box_timeout(payload, m_strAppName, durationTimeout, e_message_box_icon_asterisk);
+            message_box_timeout(strMessage, m_strAppName, durationTimeout, e_message_box_icon_asterisk);
 
             INFO("apex::application::init_application exit");
 
@@ -5180,7 +5180,7 @@ retry_license:
 
          iRetry--;
 
-         millis_sleep(100);
+         sleep(100);
 
       }
 
@@ -6805,7 +6805,7 @@ retry_license:
 
             }
 
-            millis_sleep(200);
+            sleep(200);
 
          }
 

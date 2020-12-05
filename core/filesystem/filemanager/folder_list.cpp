@@ -83,7 +83,7 @@ namespace filemanager
    {
 
 #ifdef WINDOWS_DESKTOP
-      cs.style |= WS_CLIPCHILDREN;
+
 #endif
 
       return ::user::impact::pre_create_window(cs);

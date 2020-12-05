@@ -4,9 +4,9 @@ project(apex CXX)
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_EXTENSIONS OFF)
-
-
+add_compile_options("$<$<CONFIG:DEBUG>:-DDEBUG>")
 message(STATUS "CMAKE_SYSTEM_NAME is ${CMAKE_SYSTEM_NAME}")
+
 
 
 if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
@@ -381,7 +381,7 @@ list(APPEND apex_source
         os/ansios/file_c.h
         os/ansios/language.cpp
    os/ansios/parallelization.h
-        os/ansios/process.cpp
+        #os/ansios/process.cpp
         os/ansios/win.cpp
         os/_.h
         os/_application.cpp
@@ -403,7 +403,7 @@ list(APPEND apex_source
         os/os.h
         os/os_os.cpp
         os/os_windowing2.h
-        os/process.h
+        #os/process.h
         os/text.h
         os/thread.cpp
         os/thread.h
@@ -634,8 +634,8 @@ if(WIN32)
         node/windows/ip_enum.h
         node/windows/os_context.cpp
         node/windows/os_context.h
-        node/windows/process.cpp
-        node/windows/process.h
+        #node/windows/process.cpp
+        #node/windows/process.h
         node/windows/thread.cpp
         node/windows/thread.h
         node/windows/timer.cpp
@@ -823,8 +823,8 @@ if(UWP)
         os/uwp/metrowin_metrowin.h
         os/uwp/parallelization.cpp
         os/uwp/parallelization.h
-        os/uwp/process.cpp
-        os/uwp/process.h
+        #os/uwp/process.cpp
+        #os/uwp/process.h
         os/uwp/simple_app.cpp
         os/uwp/simple_hold_handle.h
         os/uwp/simple_shell_launcher.cpp
@@ -919,9 +919,9 @@ if(LINUX)
         os/linux/message_loop.cpp
        os/linux/parallelization.cpp
         os/linux/os.cpp
-        os/linux/process.cpp
-        os/linux/process.h
-        os/linux/process_pid.cpp
+        #os/linux/process.cpp
+        #os/linux/process.h
+        #os/linux/process_pid.cpp
         os/linux/simple_app.cpp
         os/linux/simple_shell_launcher.cpp
         os/linux/interprocess_communication.cpp
@@ -1016,9 +1016,9 @@ if(MACOS)
             os/macos/NSPasteboard++.mm
             os/macos/os.cpp
             os/macos/os.h
-            os/macos/process.cpp
-            os/macos/process_c.h
-            os/macos/process_pid.cpp
+            #os/macos/process.cpp
+            #os/macos/process_c.h
+            #os/macos/process_pid.cpp
             os/macos/simple_app.cpp
             os/macos/simple_shell_launcher.cpp
             os/macos/small_ipca_channel.cpp
@@ -1121,9 +1121,9 @@ if(IOS)
         os/ios/parallelization.h
         os/ios/oswindow_data.cpp
         os/ios/oswindow_data.h
-        os/ios/process.cpp
-        os/ios/process.h
-        os/ios/process_pid.cpp
+        #os/ios/process.cpp
+        #os/ios/process.h
+        #os/ios/process_pid.cpp
         os/ios/simple_shell_launcher.cpp
         os/ios/small_ipca_channel.cpp
         os/ios/time.cpp
@@ -1217,9 +1217,9 @@ if(ANDROID)
             os/android/main_android.cpp
             os/android/message_loop.cpp
             os/android/parallelization.cpp
-            os/android/process.cpp
-            os/android/process.h
-            os/android/process_pid.cpp
+            #os/android/process.cpp
+            #os/android/process.h
+            #os/android/process_pid.cpp
             os/android/simple_shell_launcher.cpp
             os/android/small_ipca_channel.cpp
             os/android/view_bitmap.h
@@ -1258,7 +1258,7 @@ if(APPLE)
             os/apple/multihreading.cpp
             os/apple/ns_exception.cpp
             os/apple/ns_exception.h
-            os/apple/process.cpp
+            #os/apple/process.cpp
             os/apple/time.cpp
             os/apple/time.h
             )
@@ -1309,9 +1309,9 @@ if(SOLARIS)
             os/solaris/solaris_library.cpp
             os/solaris/solaris_lock.cpp
             os/solaris/solaris_message_loop.cpp
-            os/solaris/solaris_process.cpp
-            os/solaris/solaris_process.h
-            os/solaris/solaris_process_pid.cpp
+            #os/solaris/solaris_process.cpp
+            #os/solaris/solaris_process.h
+            #os/solaris/solaris_process_pid.cpp
             os/solaris/solaris_simple_shell_launcher.cpp
             os/solaris/solaris_simple_ui.cpp
             os/solaris/solaris_simple_ui.h
@@ -1358,6 +1358,9 @@ if (MSVC)
     target_link_options(apex PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/apex.def")
     target_link_libraries(apex PRIVATE acme zlib libcrypto libssl dwrite d2d1 d3d11 dxgi Dxva2 dbghelp imagehlp dwmapi Setupapi Windowscodecs Winmm ws2_32 Crypt32 Normaliz version Secur32 gdiplus Shlwapi Imm32)
 elseif(LINUX)
+
+    # Ubuntu libappindicator3-dev
+
     pkg_check_modules(PKGCONFIG glib-2.0 gtk+-3.0 libcrypto libssl appindicator3-0.1)
     #pkg_check_modules(PKGCONFIG glib-2.0 freetype2 gtk+-3.0 gdk-3.0)
     target_compile_options(apex PRIVATE -fpermissive)

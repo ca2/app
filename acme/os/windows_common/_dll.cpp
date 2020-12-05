@@ -208,10 +208,10 @@ int_bool CLASS_DECL_ACME _001DefaultDllMain(HINSTANCE hinstance, ::u32 dwReason,
          module_debug_box_w(MB_ICONINFORMATION, hinstance, L"_001DefaultDllMain process attach");
 
       }
-      else if (intDelayMs.m_iProcessAttach)
+      else if (intDelayMs.m_millisProcessAttach)
       {
 
-         ::sleep(intDelayMs.m_iProcessAttach);
+         ::sleep(intDelayMs.m_millisProcessAttach);
 
       }
 

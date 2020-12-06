@@ -4,6 +4,7 @@
  */
 
 #include "framework.h"
+#include "acme/os/posix/time.h"
 
  //#include <sstream>
 

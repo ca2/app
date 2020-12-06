@@ -5180,7 +5180,7 @@ retry_license:
 
          iRetry--;
 
-         sleep(100);
+         sleep(100_ms);
 
       }
 
@@ -6805,7 +6805,7 @@ retry_license:
 
             }
 
-            sleep(200);
+            sleep(200_ms);
 
          }
 

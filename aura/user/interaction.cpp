@@ -9633,7 +9633,7 @@ restart:
          if (!PtInRect(&rectClient, pointCursor))
          {
 
-            sleep(100);
+            sleep(100_ms);
 
             continue;
 

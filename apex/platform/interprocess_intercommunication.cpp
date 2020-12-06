@@ -162,7 +162,7 @@ bool interprocess_intercommunication::start(const string & strApp)
             for(iSubStep = 0; (iSubStep < (iStep + 1) * 10) && ::thread_get_run(); iSubStep++)
             {
 
-               sleep(100);
+               sleep(100_ms);
 
             }
 

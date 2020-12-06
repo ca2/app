@@ -1157,7 +1157,7 @@ bool mutex::lock()
 
          }
 
-         sleep(100);
+         sleep(100_ms);
 
          rc = pthread_mutex_lock(&m_mutex);
 

@@ -812,7 +812,7 @@ namespace dynamic_source
          if(process->has_exited())
             break;
 
-         sleep(100);
+         sleep(100_ms);
 
          if(tickStart.elapsed() > 840 * 1000) // 14 minutes
          {
@@ -991,7 +991,7 @@ namespace dynamic_source
             if(process->has_exited())
                break;
 
-            sleep(100);
+            sleep(100_ms);
 
             if(tickStart.elapsed() > 840 * 1000) // 14 minutes
             {
@@ -1132,7 +1132,7 @@ namespace dynamic_source
       while ((strSource = Context.file().as_string(pscript->m_strSourcePath)).trimmed().is_empty() && ::thread_get_run())
       {
 
-         sleep(100);
+         sleep(100_ms);
 
          iTry++;
 
@@ -1502,7 +1502,7 @@ namespace dynamic_source
 //      if(process->has_exited(&dwExitCode))
 //         break;
 //
-//      sleep(100);
+//      sleep(100_ms);
 //
 //      if(tickStart.elapsed() > 840 * 1000) // 14 minutes
 //      {
@@ -1910,7 +1910,7 @@ auto tickStart = ::millis::now();
             if(process->has_exited())
                break;
 
-            sleep(100);
+            sleep(100_ms);
 
             if(tickStart.elapsed() > 840 * 1000) // 14 minutes
             {
@@ -2057,7 +2057,7 @@ auto tickStart = ::millis::now();
          if(process->has_exited())
             break;
 
-         sleep(100);
+         sleep(100_ms);
 
          if(tickStart.elapsed() > 840 * 1000) // 14 minutes
          {

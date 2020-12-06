@@ -278,9 +278,9 @@ sync_result semaphore::wait(const duration & durationTimeout)
       if(errno == EAGAIN)
       {
 
-         //task_sleep(100);
+         //task_sleep(100_ms);
 
-         sleep(100);
+         sleep(100_ms);
 
          millis tRemaining = durationTimeout - tStart.elapsed();
 

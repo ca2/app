@@ -353,7 +353,7 @@ namespace apex
                   {
                      if(!on_idle())
                      {
-                        sleep(100);
+                        sleep(100_ms);
                      }
                   }
                   else

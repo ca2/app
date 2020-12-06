@@ -1104,7 +1104,7 @@ namespace android
    //      if (!do_call())
    //      {
 
-   //         sleep(100);
+   //         sleep(100_ms);
 
    //      }
 
@@ -1464,7 +1464,7 @@ namespace android
 
             sl.unlock();
 
-            sleep(100);
+            sleep(100_ms);
 
          }
          else

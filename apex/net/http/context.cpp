@@ -2282,7 +2282,7 @@ namespace http
          if (iTry < iTryCount && tickElapse < tickTotalTimeout)
          {
 
-            task_sleep(300);
+            task_sleep(300_ms);
 
             if (::thread_get_run())
             {
@@ -2621,7 +2621,7 @@ namespace http
 
             sl.unlock();
 
-            sleep(100);
+            sleep(100_ms);
 
             sl.lock();
 

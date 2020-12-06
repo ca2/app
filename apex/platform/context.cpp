@@ -64,7 +64,7 @@ RetryBuildNumber:
    if (strBuild.length() != 19)
    {
 
-      sleep(100 * iRetry);
+      sleep(100_ms * iRetry);
 
       goto RetryBuildNumber;
 

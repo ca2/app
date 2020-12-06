@@ -1929,7 +1929,7 @@ sync_result thread::wait(const duration & duration)
          while(is_thread_on(ithread))
          {
 
-            sleep(100);
+            sleep(100_ms);
 
          }
 
@@ -4429,12 +4429,12 @@ thread_ptra::~thread_ptra()
 
 }
 
-CLASS_DECL_APEX bool thread_pump_sleep(::u32 dwMillis, sync * psync)
+CLASS_DECL_APEX bool thread_pump_sleep(millis millis, sync * psync)
 {
 
-   int iTenths = dwMillis / 100;
+   auto iTenths = millis / 100_ms;
 
-   int iMillis = dwMillis % 100;
+   auto millisRemaining = millis % 100_ms;
 
    while (true)
    {
@@ -4469,7 +4469,7 @@ CLASS_DECL_APEX bool thread_pump_sleep(::u32 dwMillis, sync * psync)
       if (cMessage <= 0)
       {
 
-         sleep(100);
+         sleep(100_ms);
 
       }
 
@@ -4478,7 +4478,7 @@ CLASS_DECL_APEX bool thread_pump_sleep(::u32 dwMillis, sync * psync)
 
          sync_lock sl(psync);
 
-         if (sl.wait(millis(0)).succeeded())
+         if (sl.wait(::millis()).succeeded())
          {
 
             break;
@@ -4491,7 +4491,7 @@ CLASS_DECL_APEX bool thread_pump_sleep(::u32 dwMillis, sync * psync)
 
    }
 
-   sleep(iMillis);
+   sleep(millisRemaining);
 
    return ::thread_get_run();
 
@@ -4553,9 +4553,9 @@ CLASS_DECL_APEX bool app_sleep(millis millis)
 
    }
 
-   auto iTenths = __i64(millis) / 100;
+   auto iTenths = millis / 100_ms;
 
-   auto iMillis = __i64(millis) % 100;
+   auto millisRemaining = millis % 100_ms;
 
    while(iTenths > 0)
    {
@@ -4569,11 +4569,11 @@ CLASS_DECL_APEX bool app_sleep(millis millis)
 
       iTenths--;
 
-      sleep(100);
+      sleep(100_ms);
 
    }
 
-   sleep((u32) iMillis);
+   sleep(millisRemaining);
 
    return !get_context_application() || !get_context_application()->finish_bit();
 

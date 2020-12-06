@@ -5324,13 +5324,13 @@ namespace ios
 
             on_host_message_handler(spbase);
 
-            sleep(100);
+            sleep(100_ms);
 
             pkey->m_ekey = (::user::e_key)(::user::key_a + strText[0] - 'A');
 
             on_host_message_handler(spbase);
 
-            sleep(100);
+            sleep(100_ms);
 
             pkey->m_id = e_message_key_up;
 
@@ -5352,7 +5352,7 @@ namespace ios
 
          on_host_message_handler(spbase);
 
-         sleep(100);
+         sleep(100_ms);
 
          pkey->m_id = e_message_key_up;
 

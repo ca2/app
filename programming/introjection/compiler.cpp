@@ -1119,7 +1119,7 @@ auto tickStart = ::millis::now();
 
          }
 
-         sleep(100);
+         sleep(100_ms);
 
          if(tickStart.elapsed() > 840 * 1000) // 14 minutes
          {
@@ -1324,7 +1324,7 @@ auto tickStart = ::millis::now();
             if(process->has_exited())
                break;
 
-            sleep(100);
+            sleep(100_ms);
 
             if(tickStart.elapsed() > 840 * 1000) // 14 minutes
             {

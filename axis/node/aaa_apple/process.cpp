@@ -609,7 +609,7 @@ auto tickStart = ::millis::now();
 
       while(!has_exited() && tickStart.elapsed() < durationTimeOut.get_total_milliseconds())
       {
-         sleep(100);
+         sleep(100_ms);
       }
       ::u32 dwExitCode = 0;
       if(!has_exited(&dwExitCode))
@@ -725,7 +725,7 @@ auto tickStart = ::millis::now();
          {
          }
 
-         sleep(100);
+         sleep(100_ms);
       }
       if(!has_exited())
       {
@@ -846,7 +846,7 @@ auto tickStart = ::millis::now();
       while(!has_exited() && tickStart.elapsed() < durationTimeOut.get_total_milliseconds())
       {
 
-         sleep(100);
+         sleep(100_ms);
 
       }
 

@@ -387,7 +387,7 @@ namespace ftp
 
                   plogon->m_bFailedBecauseOfSecurityLevelCanUpgrade = true;
 
-                  sleep(1000);
+                  sleep(1_s);
 
                }
 

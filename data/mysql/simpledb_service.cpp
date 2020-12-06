@@ -61,7 +61,7 @@ namespace simpledb
 
       while (thread_get_run())
       {
-         sleep(1000);
+         sleep(1_s);
       }
       sleep(10000);
 

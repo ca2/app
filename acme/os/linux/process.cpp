@@ -396,7 +396,7 @@ CLASS_DECL_ACME u32 call_sync(const char * pszPath, const char * pszParam, const
 
       }
 
-      sleep(1);
+      sleep(1_ms);
 
    }
 

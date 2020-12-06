@@ -127,7 +127,7 @@ repeat:;
 
           if(m_itema.get_size() <= 0)
           {
-             sleep(2000);
+             sleep(2000_ms);
              goto repeat;
           }
 
@@ -162,7 +162,7 @@ repeat:;
 
           if(m_phttpsession == nullptr || ::http::status_failed(set["get_status"]))
           {
-             sleep(2000);
+             sleep(2000_ms);
              goto repeat;
           }
 

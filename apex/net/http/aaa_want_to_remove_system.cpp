@@ -1771,7 +1771,7 @@ retry_session:
          if (iTry < iTryCount && tickElapse < tickTotalTimeout)
          {
 
-            task_sleep(300);
+            task_sleep(300_ms);
 
             if (::thread_get_run())
             {

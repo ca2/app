@@ -839,7 +839,7 @@ namespace dynamic_source
 
 #ifdef LINUX
 
-         //sleep(2000);
+         //sleep(2000_ms);
 
 #endif
 
@@ -1013,7 +1013,7 @@ namespace dynamic_source
 
 #ifdef LINUX
 
-            //sleep(2000);
+            //sleep(2000_ms);
 
 #endif
 
@@ -1322,7 +1322,7 @@ namespace dynamic_source
 
 
 #ifdef WINDOWS
-      //sleep(15000);
+      //sleep(15000_ms);
 
       string strBuildCmd = m_strEnv;
 
@@ -1361,7 +1361,7 @@ namespace dynamic_source
 
       stra.add_lines(strLog);
 
-      //sleep(10000);
+      //sleep(10000_ms);
 
 #ifdef WINDOWS_DESKTOP
 
@@ -1529,7 +1529,7 @@ namespace dynamic_source
 //   }
 //   #endif
 //
-//   //sleep(10000);
+//   //sleep(10000_ms);
 //
 //#if defined(WINDOWS_DESKTOP)
 //   EnvVarValArray arrEnvVarVal;
@@ -1942,7 +1942,7 @@ auto tickStart = ::millis::now();
 
 #ifdef LINUX
 
-            //sleep(2000);
+            //sleep(2000_ms);
 
 #endif
 
@@ -2031,7 +2031,7 @@ auto tickStart = ::millis::now();
       str.replace("%TARGET_NAME%", strTargetName);
       Context.dir().mk(Context.dir().install()/ m_strDynamicSourceStage / m_strStagePlatform /"library");
 //#ifdef LINUX
-//      //sleep(2000);
+//      //sleep(2000_ms);
 //      strCmd = Context.dir().install()/m_strDynamicSourceStage/ "front\\libl1.bash";
 //#else
 //      strCmd = Context.dir().install()/ m_strDynamicSourceStage / "front\\libl1.bat";
@@ -2088,7 +2088,7 @@ auto tickStart = ::millis::now();
 
 #ifdef LINUX
 
-         //sleep(2000);
+         //sleep(2000_ms);
 
 #endif
 

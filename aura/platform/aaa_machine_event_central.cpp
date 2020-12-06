@@ -78,7 +78,7 @@ machine_event_central::~machine_event_central()
          //System.process_machine_event_data(&data);
       }
 
-      sleep(500);
+      sleep(500_ms);
 
    }
 
@@ -134,6 +134,6 @@ bool machine_event_central::is_close_application()
 //
 //   //m_machineevent.write(&data);
 //
-//   sleep(500);
+//   sleep(500_ms);
 //
 //}

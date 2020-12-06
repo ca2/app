@@ -49,7 +49,7 @@ namespace simpledb
                if (Application.interactive_get_user() == nullptr)
                {
 
-                  sleep(5000);
+                  sleep(5000_ms);
 
                   continue;
 
@@ -70,7 +70,7 @@ namespace simpledb
 
                sl.unlock();
 
-               sleep(300);
+               sleep(300_ms);
 
                continue;
 
@@ -139,7 +139,7 @@ namespace simpledb
                if (::failed(set["get_status"]))
                {
 
-                  sleep(500);
+                  sleep(500_ms);
 
                   System.m_pdirsystem->m_strApiCc = "";
 

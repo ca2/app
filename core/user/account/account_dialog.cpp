@@ -316,7 +316,7 @@ namespace account
 
             hyperlink.open_link("ca2account:this", "", "");
 
-            sleep(5000);
+            sleep(5000_ms);
 
          }
          else
@@ -355,7 +355,7 @@ namespace account
       if (bWasWaiting)
       {
 
-         if (!task_sleep(5000))
+         if (!task_sleep(5000_ms))
          {
 
             return;

@@ -3912,7 +3912,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 //                xv_pause = (xv_pause)?0:1;
 //                while(xv_pause) {
 //                    dv_display_event(dv_dpy);
-//                    usleep(10000);
+//                    usleep(10000_ms);
 //                }
 //
 //            default:

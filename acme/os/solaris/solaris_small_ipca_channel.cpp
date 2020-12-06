@@ -192,7 +192,7 @@ namespace acme
          while(m_bRunning && iRetry > 0)
          {
             m_bRun = false;
-            sleep(1);
+            sleep(1_ms);
             iRetry--;
          }
 

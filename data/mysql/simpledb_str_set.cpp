@@ -148,14 +148,14 @@ repeat:;
           if(m_itema.get_size() <= 0)
           {
              sl.unlock();
-             sleep(2000);
+             sleep(2000_ms);
              goto repeat;
           }
 
           if(psession->account()->m_puser == nullptr)
           {
              sl.unlock();
-             sleep(5000);
+             sleep(5000_ms);
              goto repeat;
           }
 
@@ -197,7 +197,7 @@ repeat:;
 
              if(m_phttpsession == nullptr || ::http::status_failed(set["get_status"]))
              {
-                sleep(2000);
+                sleep(2000_ms);
                 Context.dir().m_strApiCc = "";
                 goto repeat;
              }

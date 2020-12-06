@@ -2421,7 +2421,7 @@ void x11_thread(osdisplay_data * pdisplaydata)
       if(!x11_step())
       {
 
-         sleep(5);
+         sleep(5_ms);
 
       }
 

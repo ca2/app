@@ -395,7 +395,7 @@ namespace install
 
          m_pplugin->thread_start_ca2_on_idle();
 
-         sleep(500);
+         sleep(500_ms);
 
       }
 

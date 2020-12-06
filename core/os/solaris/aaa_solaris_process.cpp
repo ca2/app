@@ -109,7 +109,7 @@ CLASS_DECL_CORE u32 call_sync(const char * pszPath, const char * pszParam, const
 
       if(kill(processId, 0) == -1 && errno == ESRCH) // No process can be found corresponding to processId
          break;
-      sleep(1);
+      sleep(1_ms);
    }
 
    return 0;

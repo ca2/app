@@ -475,7 +475,7 @@ Seq_Open_File_Cleanup:
                SetState(::music::midi::sequence::state_reset);
                midiOutReset((HMIDIOUT) m_hstream);
                while (m_uBuffersInMMSYSTEM)
-                  sleep(0);
+                  sleep(0_ms);
             }
             else
             {

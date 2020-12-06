@@ -1142,7 +1142,7 @@ namespace android
    //         //while (thread_get_run() && i >= 0)
    //         //{
 
-   //         //   sleep(500);
+   //         //   sleep(500_ms);
 
    //         //   i--;
 

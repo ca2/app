@@ -895,11 +895,11 @@ int SendCtrlShiftQToChrome(oswindow w, int iSleep, ::aura::application * papp)
 //
 //   send_ctrl_t(iSleep);
 //
-//   sleep(500);
+//   sleep(500_ms);
 //
 //   send_f6(iSleep);
 //
-//   sleep(500);
+//   sleep(500_ms);
 //
 //   send_input_string(strUrl, iSleep);
 //

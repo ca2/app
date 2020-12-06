@@ -383,7 +383,7 @@ CLASS_DECL_APEX u32 call_sync(const char * pszPath, const char * pszParam, const
 
       }
 
-      sleep(1);
+      sleep(1_ms);
 
    }
 

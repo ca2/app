@@ -129,7 +129,7 @@ CLASS_DECL_ACME u32 call_sync(const char * pszPath, const char * pszParam, const
 
       if(kill(processId, 0) == -1 && errno == ESRCH) // No process can be found corresponding to processId
          break;
-      sleep(1);
+      sleep(1_ms);
    }
 
    return 0;
@@ -257,7 +257,7 @@ CLASS_DECL_ACME bool shell_execute_sync(const char * pszPath, const char * pszPa
       if (kill(processId, 0) == -1 && errno == ESRCH) // No process can be found corresponding to processId
          return true;
 
-      sleep(1);
+      sleep(1_ms);
 
    }
 

@@ -9614,7 +9614,7 @@ restart:
          if (pimpl->m_pointCursor == pointCursor)
          {
 
-            sleep(30);
+            sleep(30_ms);
 
             continue;
 
@@ -12389,7 +12389,7 @@ restart:
 
          do_events();
 
-         sleep(5);
+         sleep(5_ms);
 
       }
 

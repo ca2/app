@@ -63,7 +63,7 @@ namespace simpledb
       {
          sleep(1_s);
       }
-      sleep(10000);
+      sleep(10000_ms);
 
    }
 

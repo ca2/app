@@ -403,7 +403,7 @@ namespace introjection
    void compiler::prepare1(const char * lpcszSource,const char * lpcszDest)
    {
 #ifdef WINDOWS
-      //sleep(15000);
+      //sleep(15000_ms);
 
       string strBuildCmd = m_strEnv;
 
@@ -441,7 +441,7 @@ namespace introjection
 
       stra.add_lines(strLog);
 
-      //sleep(10000);
+      //sleep(10000_ms);
 
 #ifdef WINDOWS_DESKTOP
 
@@ -1154,7 +1154,7 @@ auto tickStart = ::millis::now();
 
 #ifdef LINUX
 
-         //sleep(2000);
+         //sleep(2000_ms);
 
 #endif
 
@@ -1346,7 +1346,7 @@ auto tickStart = ::millis::now();
 
 #ifdef LINUX
 
-            //sleep(2000);
+            //sleep(2000_ms);
 
 #endif
 

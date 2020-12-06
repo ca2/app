@@ -1669,11 +1669,11 @@ namespace core
 
          }
 
-         sleep(300);
+         sleep(300_ms);
 
          ::user::gsettings_sync();
 
-         sleep(300);
+         sleep(300_ms);
 
          return bOk1 && bOk2;
 

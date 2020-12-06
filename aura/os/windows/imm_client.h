@@ -4,7 +4,9 @@
 #define TEXT_COMPOSITION_MESSAGE_UPDATE_CANDIDATE_WINDOW_POSITION 256
 #define TEXT_COMPOSITION_MESSAGE_UPDATE_CARET 512
 
+
 #ifdef WINDOWS_DESKTOP
+
 
 class CLASS_DECL_AURA imm_client :
    virtual public ::user::interaction

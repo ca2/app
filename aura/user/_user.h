@@ -295,6 +295,9 @@ namespace user
 #endif
 
 
+#include "aura/os/_user.h"
+
+
 //#include "keyboard_layout.h"
 #include "keyboard.h"
 

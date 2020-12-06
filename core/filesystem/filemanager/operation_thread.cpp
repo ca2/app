@@ -159,9 +159,9 @@ namespace filemanager
    ::estatus     operation_thread::run()
    {
 
-      i32 iStepSetCount = 84;
+      i32 iStepSetCount = 100;
 
-      i32 iStepSetSleep = 23;
+      ::millis millisStepSetSleep = 20;
 
       while(thread_get_run())
       {
@@ -188,7 +188,7 @@ namespace filemanager
 
          m_pview->post_message(operation_view::MessageMainPost, operation_view::MessageMainPostFileOperation);
 
-         sleep(iStepSetSleep);
+         sleep(millisStepSetSleep);
 
       }
 

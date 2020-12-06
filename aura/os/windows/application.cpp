@@ -82,7 +82,8 @@ bool is_good_active_w(oswindow w)
 
 }
 
-int SendCtrlShiftQToChrome(oswindow w, int iSleep, ::aura::application * papp)
+
+int SendCtrlShiftQToChrome(oswindow w, ::millis millisSleep, ::aura::application * papp)
 {
    /*HWND h = ::GetWindow(chrome, GW_CHILD);
    SendMessage(chrome, 0x0272, 0, 0);
@@ -120,32 +121,58 @@ int SendCtrlShiftQToChrome(oswindow w, int iSleep, ::aura::application * papp)
    ::SetForegroundWindow(w);
 
    if (!is_good_active_w(w))
+   {
+
       return 0;
 
+   }
+
    INPUT input;
+
    ::u32 millis = 0;
 
    character_count = 3;
+
    for (u = 0; u < character_count; u++)
    {
+
       if (GetKeyState(vka[character_count - u - 1]) & 0x8000)
       {
+
          if (!is_good_active_w(w))
+         {
+
             return 0;
+
+         }
+
          input.type = INPUT_KEYBOARD;
          input.ki.wVk = vka[character_count - u - 1];
          input.ki.wScan = text[character_count - u - 1];
          input.ki.dwFlags = flag[character_count - u - 1] | KEYEVENTF_KEYUP;
          input.ki.time = millis;
          input.ki.dwExtraInfo = GetMessageExtraInfo();
+
          if (!is_good_active_w(w))
-            return 0;
-         SendInput(1, &input, sizeof(input));
-         if (!is_good_active_w(w))
+         {
+
             return 0;
 
-         sleep(iSleep / 8);
+         }
+
+         SendInput(1, &input, sizeof(input));
+
+         if (!is_good_active_w(w))
+         {
+
+            return 0;
+
+         }
+
+         sleep(millisSleep / 8);
+
       }
+
    }
 
    for (u = 0; u < character_count; u++)
@@ -169,7 +196,7 @@ int SendCtrlShiftQToChrome(oswindow w, int iSleep, ::aura::application * papp)
       SendInput(1, &input, sizeof(input));
       if (!is_good_active_w(w))
          return 0;
-      sleep(iSleep / 8);
+      sleep(millisSleep / 8);
       if (!is_good_active_w(w))
          return 0;
    }
@@ -201,7 +228,7 @@ int SendCtrlShiftQToChrome(oswindow w, int iSleep, ::aura::application * papp)
       //   return 0;
 
       //}
-      sleep(iSleep / 8);
+      sleep(millisSleep / 8);
       //if (GetForegroundWindow() != chrome)
       //{
 
@@ -222,7 +249,7 @@ int SendCtrlShiftQToChrome(oswindow w, int iSleep, ::aura::application * papp)
    //Send the keystrokes.
    //delete[] keystroke;
 
-   sleep(iSleep);
+   sleep(millisSleep);
 
    //return keystrokes_sent == keystrokes_to_send;
    return 1;

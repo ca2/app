@@ -4,8 +4,6 @@
 #pragma once
 
 
-
-
 #include PLATFORM_INCLUDE(_user.h)
 
 

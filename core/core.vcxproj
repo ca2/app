@@ -1613,7 +1613,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="os\ansios\file_std.cpp" />
     <ClCompile Include="os\ansios\language.cpp" />
     <ClCompile Include="os\ansios\memory.cpp" />
-    <ClCompile Include="os\ansios\process.cpp" />
     <ClCompile Include="os\ansios\user.cpp" />
     <ClCompile Include="os\ansios\win.cpp" />
     <ClCompile Include="platform\application.cpp" />

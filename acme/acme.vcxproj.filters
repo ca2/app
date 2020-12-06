@@ -3469,6 +3469,9 @@
     <ClCompile Include="primitive\datetime\secs.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
+    <ClCompile Include="os\windows\application_system_run.cpp">
+      <Filter>Source Files\os\windows</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="primitive\primitive\papaya.inl">

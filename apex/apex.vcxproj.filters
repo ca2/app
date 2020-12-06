@@ -1828,9 +1828,6 @@
     <ClCompile Include="os\ansios\language.cpp">
       <Filter>Source Files\os\ansios</Filter>
     </ClCompile>
-    <ClCompile Include="os\ansios\process.cpp">
-      <Filter>Source Files\os\ansios</Filter>
-    </ClCompile>
     <ClCompile Include="os\ansios\win.cpp">
       <Filter>Source Files\os\ansios</Filter>
     </ClCompile>
@@ -2190,6 +2187,9 @@
     </ClCompile>
     <ClCompile Include="parallelization\service\plain_service.cpp">
       <Filter>Source Files\parallelization\service</Filter>
+    </ClCompile>
+    <ClCompile Include="os\windows\application_system_run.cpp">
+      <Filter>Source Files\os\windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -3,7 +3,7 @@
 
 
 
-CLASS_DECL_APEX string ca2_command_line(HINSTANCE hinstance);
+//CLASS_DECL_APEX string ca2_command_line(HINSTANCE hinstance);
 
 //CLASS_DECL_APEX HRESULT os_create_link(::file::path pathObj, ::file::path pathLink, string strDesc, ::file::path pathIcon = nullptr, int iIcon = 0);
 

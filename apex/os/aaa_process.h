@@ -86,8 +86,8 @@
 //CLASS_DECL_APEX bool root_execute_sync(const char * pszFile, const char * pszParams, ::duration durationTimeout = one_minute());
 //
 //
-CLASS_DECL_APEX bool os_init_application();
-CLASS_DECL_APEX void os_term_application();
+//CLASS_DECL_APEX bool os_init_application();
+//CLASS_DECL_APEX void os_term_application();
 //
 //
 //

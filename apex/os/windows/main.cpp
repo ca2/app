@@ -51,45 +51,45 @@ CLASS_DECL_APEX i32 ca2_main();
 
 
 
-CLASS_DECL_APEX bool os_init_application()
-{
+//CLASS_DECL_APEX bool os_init_application()
+//{
+//
+//   return true;
+//
+//}
+//
+//
+//CLASS_DECL_APEX void os_term_application()
+//{
+//
+//
+//
+//}
 
-   return true;
 
-}
-
-
-CLASS_DECL_APEX void os_term_application()
-{
-
-
-
-}
-
-
-string ca2_command_line(HINSTANCE hinstance)
-{
-
-#ifdef CUBE
-
-   string strAppId = get_cube_app_id();
-
-#else
-
-   string strAppId = read_resource_as_string(hinstance, 1, "APPID");
-
-#endif
-
-   if (strAppId.is_empty())
-   {
-
-      return "";
-
-   }
-
-   return "app.exe : app=" + strAppId;
-
-}
+//string ca2_command_line(HINSTANCE hinstance)
+//{
+//
+//#ifdef CUBE
+//
+//   string strAppId = get_cube_app_id();
+//
+//#else
+//
+//   string strAppId = read_resource_as_string(hinstance, 1, "APPID");
+//
+//#endif
+//
+//   if (strAppId.is_empty())
+//   {
+//
+//      return "";
+//
+//   }
+//
+//   return "app.exe : app=" + strAppId;
+//
+//}
 
 
 namespace apex

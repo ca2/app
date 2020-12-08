@@ -493,7 +493,7 @@ namespace music
                estatus = midiOutOpen(&hmidiout, uDeviceID,  0, 0, CALLBACK_NULL);
                if(estatus != MMSYSERR_NOERROR)
                   return;
-               millis_sleep(300);
+               sleep(300_ms);
                const uchar gmModeOn[] =
                {
                   //        0x00, 0x00, 0x00, 0x00,
@@ -524,7 +524,7 @@ namespace music
                if(estatus != MMSYSERR_NOERROR)
                   goto End;
                estatus = midiOutLongMsg( hmidiout, lpmh, sizeof(MIDIHDR));
-               millis_sleep(300);
+               sleep(300_ms);
                estatus = midiOutUnprepareHeader( hmidiout, lpmh, sizeof(MIDIHDR));
                if(estatus != MMSYSERR_NOERROR)
                   goto End;

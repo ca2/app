@@ -224,7 +224,7 @@ bool app_core::on_result(const ::estatus & estatus)
    if (file_exists(::file::path(APP_CORE_BASE_DIR) / "wait_on_beg.txt"))
    {
 
-      millis_sleep(10000);
+      sleep(10_s);
 
    }
 
@@ -430,7 +430,7 @@ CLASS_DECL_APEX void set_debug_pointer(void * p);
 
       strPrgName.replace("_", "-");
 
-      m_strProgName = "cc.ca2." + strPrgName;
+      m_strProgName = "com." + strPrgName;
 
    }
 

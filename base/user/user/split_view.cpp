@@ -132,7 +132,7 @@ namespace user
 
 #ifdef WINDOWS_DESKTOP
 
-      cs.dwExStyle &= ~WS_EX_CLIENTEDGE;
+
 
 #endif
 

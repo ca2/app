@@ -322,7 +322,7 @@ namespace windows
 
       virtual bool EnableScrollBar(i32 nSBFlags, ::u32 nArrowFlags = ESB_ENABLE_BOTH);
 
-      //virtual bool DrawAnimatedRects(i32 idAni, CONST LPRECTprcFrom, CONST LPRECTlprcTo);
+      //virtual bool DrawAnimatedRects(i32 idAni, const LPRECTprcFrom, const LPRECTlprcTo);
 
       virtual bool DrawCaption(::draw2d::graphics_pointer & pgraphics, const rect & prc, ::u32 uFlags);
 

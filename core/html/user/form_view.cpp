@@ -74,11 +74,16 @@ void html_form_view::dump(dump_context & dumpcontext) const
 
 bool html_form_view::pre_create_window(::user::create_struct& cs)
 {
-   cs.style &= ~WS_EX_CLIENTEDGE;
+
+#ifdef WINDOWS_DESKTOP
+
+
+
+#endif
+
    return ::user::form_view::pre_create_window(cs);
+
 }
-
-
 
 
 string html_form_view::GetLocationURL()

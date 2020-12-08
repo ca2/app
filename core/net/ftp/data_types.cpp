@@ -24,12 +24,12 @@ namespace ftp
    {
       switch (m_enStructure)
       {
-      case type_file:   return _T("F");
-      case type_record: return _T("R");
-      case type_page:   return _T("P");
+      case type_file:   return "F";
+      case type_record: return "R";
+      case type_page:   return "P";
       }
       ASSERT(false);
-      return _T("");
+      return "";
    }
 
    string transfer_mode::AsString() const
@@ -37,38 +37,38 @@ namespace ftp
       string strMode;
       switch (m_etransfermode)
       {
-      case transfer_mode_stream:      return _T("S");
-      case transfer_mode_block:       return _T("B");
-      case transfer_mode_compressed:  return _T("C");
+      case transfer_mode_stream:      return "S";
+      case transfer_mode_block:       return "B";
+      case transfer_mode_compressed:  return "C";
       }
       ASSERT(false);
-      return _T("");
+      return "";
    }
 
    string type::AsString() const
    {
       switch (m_etype)
       {
-      case tyASCII:     return _T("A");
-      case tyEBCDIC:    return _T("E");
-      case tyImage:     return _T("I");
-      case tyLocalByte: return _T("L");
+      case tyASCII:     return "A";
+      case tyEBCDIC:    return "E";
+      case tyImage:     return "I";
+      case tyLocalByte: return "L";
       }
       ASSERT(false);
-      return _T("");
+      return "";
    }
 
    string format::AsString() const
    {
       switch (m_eformat)
       {
-      case format_non_print:        return _T("N");
-      case format_telnet:    return _T("T");
-      case format_carriage_control: return _T("C");
-      case format_invalid:         break;
+      case format_non_print:           return "N";
+      case format_telnet:              return "T";
+      case format_carriage_control:    return "C";
+      case format_invalid:             break;
       }
       ASSERT(false);
-      return _T("");
+      return "";
    }
 
    /// returns the string which is used for display
@@ -76,18 +76,18 @@ namespace ftp
    {
       switch (m_etype)
       {
-      case type_none:                              return _T("no firewall");
-      case type_host_name:                      return _T("SITE hostname");
-      case type_user_after_logon:                    return _T("USER after logon");
-      case type_proxy_open:                         return _T("proxy OPEN");
-      case type_transparent:                       return _T("Transparent");
-      case type_user_with_no_logon:                   return _T("USER with no logon");
-      case type_user_fire_id_at_remote_host:            return _T("USER fireID@remotehost");
-      case type_user_remote_id_at_remote_host_fire_id:    return _T("USER remoteID@remotehost fireID");
-      case type_user_remote_id_at_fire_id_at_remote_host:  return _T("USER remoteID@fireID@remotehost");
+      case type_none:                              return "no firewall";
+      case type_host_name:                      return "SITE hostname";
+      case type_user_after_logon:                    return "USER after logon";
+      case type_proxy_open:                         return "proxy OPEN";
+      case type_transparent:                       return "Transparent";
+      case type_user_with_no_logon:                   return "USER with no logon";
+      case type_user_fire_id_at_remote_host:            return "USER fireID@remotehost";
+      case type_user_remote_id_at_remote_host_fire_id:    return "USER remoteID@remotehost fireID";
+      case type_user_remote_id_at_fire_id_at_remote_host:  return "USER remoteID@fireID@remotehost";
       }
       ASSERT(false);
-      return _T("");
+      return "";
    }
 
    /// return the string which is used for storage (e.g. in an XML- or INI-file)
@@ -95,18 +95,18 @@ namespace ftp
    {
       switch (m_etype)
       {
-      case type_none:                              return _T("NO_FIREWALL");
-      case type_host_name:                      return _T("SITE_HOSTNAME");
-      case type_user_after_logon:                    return _T("USER_AFTER_LOGON");
-      case type_proxy_open:                         return _T("PROXY_OPEN");
-      case type_transparent:                       return _T("TRANSPARENT");
-      case type_user_with_no_logon:                   return _T("USER_WITH_NO_LOGON");
-      case type_user_fire_id_at_remote_host:            return _T("USER_FIREID@REMOTEHOST");
-      case type_user_remote_id_at_remote_host_fire_id:    return _T("USER_REMOTEID@REMOTEHOST_FIREID");
-      case type_user_remote_id_at_fire_id_at_remote_host:  return _T("USER_REMOTEID@FIREID@REMOTEHOST");
+      case type_none:                              return "NO_FIREWALL";
+      case type_host_name:                      return "SITE_HOSTNAME";
+      case type_user_after_logon:                    return "USER_AFTER_LOGON";
+      case type_proxy_open:                         return "PROXY_OPEN";
+      case type_transparent:                       return "TRANSPARENT";
+      case type_user_with_no_logon:                   return "USER_WITH_NO_LOGON";
+      case type_user_fire_id_at_remote_host:            return "USER_FIREID@REMOTEHOST";
+      case type_user_remote_id_at_remote_host_fire_id:    return "USER_REMOTEID@REMOTEHOST_FIREID";
+      case type_user_remote_id_at_fire_id_at_remote_host:  return "USER_REMOTEID@FIREID@REMOTEHOST";
       }
       ASSERT(false);
-      return _T("");
+      return "";
    }
 
    /// returns all available firewall types
@@ -201,43 +201,43 @@ namespace ftp
 
    command::info2::info2()
    {
-      insert(cmdABOR, _T("ABOR"), _T("ABOR <CRLF>"), 0, 0, RFC959, NonDatachannel);
-      insert(cmdACCT, _T("ACCT"), _T("ACCT <SP> <account-information> <CRLF>"), 1, 0, RFC959, NonDatachannel);
-      insert(cmdALLO, _T("ALLO"), _T("ALLO <SP> <decimal-integer> [<SP> R <SP> <decimal-integer>] <CRLF>"), 3, 2, RFC959, NonDatachannel);
-      insert(cmdAPPE, _T("APPE"), _T("APPE <SP> <pathname> <CRLF>"), 1, 0, RFC959, DatachannelWrite);
-      insert(cmdCDUP, _T("CDUP"), _T("CDUP <CRLF>"), 0, 0, RFC959, NonDatachannel);
-      insert(cmdCWD, _T("CWD"), _T("CWD <SP> <pathname> <CRLF>"), 1, 0, RFC959, NonDatachannel);
-      insert(cmdDELE, _T("DELE"), _T("DELE <SP> <pathname> <CRLF>"), 1, 0, RFC959, NonDatachannel);
-      insert(cmdHELP, _T("HELP"), _T("HELP [<SP> <string>] <CRLF>"), 1, 1, RFC959, NonDatachannel);
-      insert(cmdLIST, _T("LIST"), _T("LIST [<SP> <pathname>] <CRLF>"), 1, 1, RFC959, DatachannelRead);
-      insert(cmdMDTM, _T("MDTM"), _T("MDTM <SP> <pathname> <CRLF>"), 1, 0, RFC3659, NonDatachannel);
-      insert(cmdMKD, _T("MKD"), _T("MKD <SP> <pathname> <CRLF>"), 1, 0, RFC959, NonDatachannel);
-      insert(cmdMODE, _T("MODE"), _T("MODE <SP> <mode-code> <CRLF>"), 1, 0, RFC959, NonDatachannel);
-      insert(cmdNLST, _T("NLST"), _T("NLST [<SP> <pathname>] <CRLF>"), 1, 1, RFC959, DatachannelRead);
-      insert(cmdNOOP, _T("NOOP"), _T("NOOP <CRLF>"), 0, 0, RFC959, NonDatachannel);
-      insert(cmdOPEN, _T("OPEN"), _T("OPEN <SP> <string> <CRLF>"), 1, 0, Unknown, NonDatachannel);
-      insert(cmdPASS, _T("PASS"), _T("PASS <SP> <password> <CRLF>"), 1, 0, RFC959, NonDatachannel);
-      insert(cmdPASV, _T("PASV"), _T("PASV <CRLF>"), 0, 0, RFC959, NonDatachannel);
-      insert(cmdPORT, _T("PORT"), _T("PORT <SP> <host-port> <CRLF>"), 1, 0, RFC959, NonDatachannel);
-      insert(cmdPWD, _T("PWD"), _T("PWD <CRLF>"), 0, 0, RFC959, NonDatachannel);
-      insert(cmdQUIT, _T("QUIT"), _T("QUIT <CRLF>"), 0, 0, RFC959, NonDatachannel);
-      insert(cmdREIN, _T("REIN"), _T("REIN <CRLF>"), 0, 0, RFC959, NonDatachannel);
-      insert(cmdREST, _T("REST"), _T("REST <SP> <marker> <CRLF>"), 1, 0, RFC959, NonDatachannel);
-      insert(cmdRETR, _T("RETR"), _T("RETR <SP> <pathname> <CRLF>"), 1, 0, RFC959, DatachannelRead);
-      insert(cmdRMD, _T("RMD"), _T("RMD <SP> <pathname> <CRLF>"), 1, 0, RFC959, NonDatachannel);
-      insert(cmdRNFR, _T("RNFR"), _T("RNFR <SP> <pathname> <CRLF>"), 1, 0, RFC959, NonDatachannel);
-      insert(cmdRNTO, _T("RNTO"), _T("RNTO <SP> <pathname> <CRLF>"), 1, 0, RFC959, NonDatachannel);
-      insert(cmdSITE, _T("SITE"), _T("SITE <SP> <string> <CRLF>"), 1, 0, RFC959, NonDatachannel);
-      insert(cmdSIZE, _T("const size &"), _T("const size & <SP> <pathname> <CRLF>"), 1, 0, RFC3659, NonDatachannel);
-      insert(cmdSMNT, _T("SMNT"), _T("SMNT <SP> <pathname> <CRLF>"), 1, 0, RFC959, NonDatachannel);
-      insert(cmdSTAT, _T("STAT"), _T("STAT [<SP> <pathname>] <CRLF>"), 1, 1, RFC959, NonDatachannel);
-      insert(cmdSTOR, _T("STOR"), _T("STOR <SP> <pathname> <CRLF>"), 1, 0, RFC959, DatachannelWrite);
-      insert(cmdSTOU, _T("STOU"), _T("STOU <CRLF>"), 0, 0, RFC959, DatachannelWrite);
-      insert(cmdSTRU, _T("STRU"), _T("STRU <SP> <structure-code> <CRLF>"), 1, 0, RFC959, NonDatachannel);
-      insert(cmdSYST, _T("SYST"), _T("SYST <CRLF>"), 0, 0, RFC959, NonDatachannel);
-      insert(cmdTYPE, _T("TYPE"), _T("TYPE <SP> <type-code> <CRLF>"), 1, 0, RFC959, NonDatachannel);
-      insert(cmdUSER, _T("USER"), _T("USER <SP> <username> <CRLF>"), 1, 0, RFC959, NonDatachannel);
-      insert(cmdPROT, _T("PROT"), _T("PROT <SP> <prot level> <CRLF>"), 1, 0, RFC959, NonDatachannel);
+      insert(cmdABOR, "ABOR", "ABOR <CRLF>", 0, 0, RFC959, NonDatachannel);
+      insert(cmdACCT, "ACCT", "ACCT <SP> <account-information> <CRLF>", 1, 0, RFC959, NonDatachannel);
+      insert(cmdALLO, "ALLO", "ALLO <SP> <decimal-integer> [<SP> R <SP> <decimal-integer>] <CRLF>", 3, 2, RFC959, NonDatachannel);
+      insert(cmdAPPE, "APPE", "APPE <SP> <pathname> <CRLF>", 1, 0, RFC959, DatachannelWrite);
+      insert(cmdCDUP, "CDUP", "CDUP <CRLF>", 0, 0, RFC959, NonDatachannel);
+      insert(cmdCWD, "CWD", "CWD <SP> <pathname> <CRLF>", 1, 0, RFC959, NonDatachannel);
+      insert(cmdDELE, "DELE", "DELE <SP> <pathname> <CRLF>", 1, 0, RFC959, NonDatachannel);
+      insert(cmdHELP, "HELP", "HELP [<SP> <string>] <CRLF>", 1, 1, RFC959, NonDatachannel);
+      insert(cmdLIST, "LIST", "LIST [<SP> <pathname>] <CRLF>", 1, 1, RFC959, DatachannelRead);
+      insert(cmdMDTM, "MDTM", "MDTM <SP> <pathname> <CRLF>", 1, 0, RFC3659, NonDatachannel);
+      insert(cmdMKD, "MKD", "MKD <SP> <pathname> <CRLF>", 1, 0, RFC959, NonDatachannel);
+      insert(cmdMODE, "MODE", "MODE <SP> <mode-code> <CRLF>", 1, 0, RFC959, NonDatachannel);
+      insert(cmdNLST, "NLST", "NLST [<SP> <pathname>] <CRLF>", 1, 1, RFC959, DatachannelRead);
+      insert(cmdNOOP, "NOOP", "NOOP <CRLF>", 0, 0, RFC959, NonDatachannel);
+      insert(cmdOPEN, "OPEN", "OPEN <SP> <string> <CRLF>", 1, 0, Unknown, NonDatachannel);
+      insert(cmdPASS, "PASS", "PASS <SP> <password> <CRLF>", 1, 0, RFC959, NonDatachannel);
+      insert(cmdPASV, "PASV", "PASV <CRLF>", 0, 0, RFC959, NonDatachannel);
+      insert(cmdPORT, "PORT", "PORT <SP> <host-port> <CRLF>", 1, 0, RFC959, NonDatachannel);
+      insert(cmdPWD, "PWD", "PWD <CRLF>", 0, 0, RFC959, NonDatachannel);
+      insert(cmdQUIT, "QUIT", "QUIT <CRLF>", 0, 0, RFC959, NonDatachannel);
+      insert(cmdREIN, "REIN", "REIN <CRLF>", 0, 0, RFC959, NonDatachannel);
+      insert(cmdREST, "REST", "REST <SP> <marker> <CRLF>", 1, 0, RFC959, NonDatachannel);
+      insert(cmdRETR, "RETR", "RETR <SP> <pathname> <CRLF>", 1, 0, RFC959, DatachannelRead);
+      insert(cmdRMD, "RMD", "RMD <SP> <pathname> <CRLF>", 1, 0, RFC959, NonDatachannel);
+      insert(cmdRNFR, "RNFR", "RNFR <SP> <pathname> <CRLF>", 1, 0, RFC959, NonDatachannel);
+      insert(cmdRNTO, "RNTO", "RNTO <SP> <pathname> <CRLF>", 1, 0, RFC959, NonDatachannel);
+      insert(cmdSITE, "SITE", "SITE <SP> <string> <CRLF>", 1, 0, RFC959, NonDatachannel);
+      insert(cmdSIZE, "const size &", "const size & <SP> <pathname> <CRLF>", 1, 0, RFC3659, NonDatachannel);
+      insert(cmdSMNT, "SMNT", "SMNT <SP> <pathname> <CRLF>", 1, 0, RFC959, NonDatachannel);
+      insert(cmdSTAT, "STAT", "STAT [<SP> <pathname>] <CRLF>", 1, 1, RFC959, NonDatachannel);
+      insert(cmdSTOR, "STOR", "STOR <SP> <pathname> <CRLF>", 1, 0, RFC959, DatachannelWrite);
+      insert(cmdSTOU, "STOU", "STOU <CRLF>", 0, 0, RFC959, DatachannelWrite);
+      insert(cmdSTRU, "STRU", "STRU <SP> <structure-code> <CRLF>", 1, 0, RFC959, NonDatachannel);
+      insert(cmdSYST, "SYST", "SYST <CRLF>", 0, 0, RFC959, NonDatachannel);
+      insert(cmdTYPE, "TYPE", "TYPE <SP> <type-code> <CRLF>", 1, 0, RFC959, NonDatachannel);
+      insert(cmdUSER, "USER", "USER <SP> <username> <CRLF>", 1, 0, RFC959, NonDatachannel);
+      insert(cmdPROT, "PROT", "PROT <SP> <prot level> <CRLF>", 1, 0, RFC959, NonDatachannel);
    }
 
    const command::iextended_info& command::info2::Get(enum_command enCommand)

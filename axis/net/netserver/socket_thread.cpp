@@ -1,12 +1,12 @@
 #include "framework.h"
-#include "_.h"
+#include "_netserver.h"
 
 
 namespace netserver
 {
 
 
-   socket_thread::socket_thread()
+   socket_thread_base::socket_thread_base()
    {
 
       m_iPort = 80;
@@ -16,30 +16,15 @@ namespace netserver
    }
 
 
-   socket_thread::~socket_thread()
+   socket_thread_base::~socket_thread_base()
    {
 
    }
 
 
-   ::netserver::socket_handler * socket_thread::new_socket_handler()
-   {
-
-      return new netserver::socket_handler(get_context_object());
 
 
-   }
-
-
-   ::sockets::listen_socket_base * socket_thread::new_listen_socket()
-   {
-
-      return new ::sockets::listen_socket < socket > (*m_psockethandler);
-
-   }
-
-
-   bool socket_thread::initialize_listen_socket()
+   bool socket_thread_base::initialize_listen_socket()
    {
 
       m_plistensocket->m_strCat = m_strCat;
@@ -61,7 +46,23 @@ namespace netserver
    }
 
 
-   ::estatus socket_thread::run()
+   ::netserver::socket_handler * socket_thread_base::new_socket_handler()
+   {
+
+      return new netserver::socket_handler(get_context_object());
+
+   }
+
+   
+   ::sockets::listen_socket_base * socket_thread_base::new_listen_socket()
+   {
+
+      return nullptr;
+
+   }
+
+
+   ::estatus socket_thread_base::run()
    {
 
       if (m_strIp.is_empty() || m_iPort <= 0)
@@ -105,11 +106,11 @@ namespace netserver
 
                   string strMessage;
 
-                  strMessage.Format("\n\netserver::socket_thread::run Couldn't bind to address %s:%d!!\n\n", m_strIp.c_str(), m_iPort);
+                  strMessage.Format("\n\netserver::socket_thread_base::run Couldn't bind to address %s:%d!!\n\n", m_strIp.c_str(), m_iPort);
 
                   TRACE(strMessage);
 
-                  millis_sleep(5000);
+                  sleep(5000_ms);
 
                   continue;
 

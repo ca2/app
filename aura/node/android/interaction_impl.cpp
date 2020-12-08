@@ -285,7 +285,7 @@ namespace android
 
          m_puserinteraction->place(rectCreate);
 
-         m_puserinteraction->display(display_full_screen);
+         m_puserinteraction->display(e_display_full_screen);
 
          //::estatus estatus = __compose(m_pgraphics);
 
@@ -1859,7 +1859,7 @@ namespace android
          //      if (tickStart.elapsed() < 5)
          //      {
 
-         //         millis_sleep(5);
+         //         sleep(5_ms);
 
          //      }
 
@@ -2454,7 +2454,7 @@ namespace android
 //
 //            /*XMapWindow(m_oswindow->display(), m_oswindow->window());*/
 //
-//            ::show_window(get_handle(), display_normal);
+//            ::show_window(get_handle(), e_display_normal);
 //
 //         }
 //
@@ -2731,7 +2731,7 @@ namespace android
    //   if (m_puserinteraction != nullptr)
    //   {
 
-   //      m_puserinteraction->m_edisplay = ::display_normal;
+   //      m_puserinteraction->m_edisplay = ::e_display_normal;
 
    //   }
 
@@ -2763,7 +2763,7 @@ namespace android
    //   if (GetExStyle() & WS_EX_LAYERED)
    //   {
 
-   //      return m_puserinteraction->m_edisplay == ::display_iconic;
+   //      return m_puserinteraction->m_edisplay == ::e_display_iconic;
 
    //   }
    //   else
@@ -3353,7 +3353,7 @@ namespace android
    }
    */
 
-   //bool interaction_impl::DrawAnimatedRects(i32 idAni, CONST RECT32 *lprcFrom, CONST RECT32 *lprcTo)
+   //bool interaction_impl::DrawAnimatedRects(i32 idAni, const RECT32 *lprcFrom, const RECT32 *lprcTo)
    //{
 
    //   __throw(not_implemented());

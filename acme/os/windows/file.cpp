@@ -17,7 +17,7 @@ int_bool read_resource_as_file(const char * pszFile, HINSTANCE hinstance, DWORD 
    HGLOBAL hglobalResource;
    u32 dwResourseSize;
    int_bool bOk;
-   DWORD FAR* pResource;
+   DWORD * pResource;
    FILE * file;
 
    if(hrsrc == nullptr)
@@ -35,7 +35,7 @@ int_bool read_resource_as_file(const char * pszFile, HINSTANCE hinstance, DWORD 
 
       bOk = FALSE;
 
-      pResource = (DWORD FAR*) LockResource(hglobalResource);
+      pResource = (DWORD *) LockResource(hglobalResource);
 
       dir::mk(dir::name(pszFile));
 
@@ -1442,7 +1442,7 @@ CLASS_DECL_ACME bool read_resource_as_memory(memory & m, HINSTANCE hinstance, DW
    HGLOBAL hglobalResource;
    strsize dwResourceSize;
    int_bool bOk;
-   DWORD FAR* pResource;
+   DWORD * pResource;
 
    if (hrsrc == nullptr)
       return FALSE;
@@ -1459,7 +1459,7 @@ CLASS_DECL_ACME bool read_resource_as_memory(memory & m, HINSTANCE hinstance, DW
 
       bOk = TRUE;
 
-      pResource = (DWORD FAR*) LockResource(hglobalResource);
+      pResource = (DWORD *) LockResource(hglobalResource);
 
       auto iSize = min_non_neg(dwResourceSize, iReadAtMostByteCount);
 

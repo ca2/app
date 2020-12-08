@@ -212,10 +212,10 @@ namespace user
       //virtual void task_on_term(::task* pthread) override;
 
 
-      virtual ::estatus main_async(const ::promise::routine & routine, e_priority epriority = priority_normal);
+      //virtual ::estatus main_async(const ::promise::routine & routine, e_priority epriority = priority_normal);
 
 
-      virtual ::estatus main_sync(const ::promise::routine & routine, const ::duration & duration = one_minute(), e_priority epriority = priority_normal);
+      //virtual ::estatus main_sync(const ::promise::routine & routine, const ::duration & duration = one_minute(), e_priority epriority = priority_normal);
 
 
       inline void auto_prodevian_on_show() { m_ewindowflag |= window_flag_auto_prodevian_on_show; }
@@ -401,7 +401,7 @@ namespace user
       virtual bool is_layout_ready() const;
 
 
-      virtual bool display(::edisplay edisplay = display_default, ::eactivation eactivation = ::activation_none) override;
+      virtual bool display(::edisplay edisplay = e_display_default, ::eactivation eactivation = ::e_activation_default) override;
 
       virtual ::zorder zorder(e_layout elayout = layout_design) const;
       virtual void order(::zorder zorder);
@@ -1150,16 +1150,16 @@ namespace user
 
        //virtual void reset_window_state();
 
-      virtual index make_zoneing(RECT32* prect, const ::rect& rect = nullptr, bool bSet = false, ::edisplay* pedisplay = nullptr, ::eactivation eactivation = activation_none, ::zorder zorder = zorder_top);
-      virtual index best_zoneing(RECT32* prect, const ::rect& rect = nullptr, bool bSet = false, ::edisplay* pedisplay = nullptr, ::eactivation eactivation = activation_none, ::zorder zorder = zorder_top);
-      virtual index best_monitor(RECT32* prect, const ::rect& rect = nullptr, bool bSet = false, ::eactivation eeactivation = activation_none, ::zorder zorder = zorder_top);
-      virtual index best_wkspace(RECT32* prect, const ::rect& rect = nullptr, bool bSet = false, ::eactivation eeactivation = activation_none, ::zorder zorder = zorder_top);
-      virtual index good_restore(RECT32* prect, const ::rect& rect = nullptr, bool bSet = false, ::eactivation eeactivation = activation_none, ::zorder zorder = zorder_top, edisplay edisplay = display_restore);
-      virtual index good_iconify(RECT32* prect, const ::rect& rect = nullptr, bool bSet = false, ::eactivation eeactivation = activation_none, ::zorder zorder = zorder_top);
+      virtual index make_zoneing(RECT32* prect, const ::rect& rect = nullptr, bool bSet = false, ::edisplay* pedisplay = nullptr, ::eactivation eactivation = e_activation_default, ::zorder zorder = zorder_top);
+      virtual index best_zoneing(RECT32* prect, const ::rect& rect = nullptr, bool bSet = false, ::edisplay* pedisplay = nullptr, ::eactivation eactivation = e_activation_default, ::zorder zorder = zorder_top);
+      virtual index best_monitor(RECT32* prect, const ::rect& rect = nullptr, bool bSet = false, ::eactivation eeactivation = e_activation_default, ::zorder zorder = zorder_top);
+      virtual index best_wkspace(RECT32* prect, const ::rect& rect = nullptr, bool bSet = false, ::eactivation eeactivation = e_activation_default, ::zorder zorder = zorder_top);
+      virtual index good_restore(RECT32* prect, const ::rect& rect = nullptr, bool bSet = false, ::eactivation eeactivation = e_activation_default, ::zorder zorder = zorder_top, edisplay edisplay = e_display_restore);
+      virtual index good_iconify(RECT32* prect, const ::rect& rect = nullptr, bool bSet = false, ::eactivation eeactivation = e_activation_default, ::zorder zorder = zorder_top);
 
-      virtual index good_move(RECT32* prect, const ::rect& rect = nullptr, ::eactivation eeactivation = activation_none, ::zorder zorder = zorder_top);
+      virtual index good_move(RECT32* prect, const ::rect& rect = nullptr, ::eactivation eeactivation = e_activation_default, ::zorder zorder = zorder_top);
       virtual index get_best_zoneing(edisplay& edisplay, ::rect* prect, const ::rect& rectRequest = ::rect(), bool bPreserveSize = false);
-      virtual index get_best_wkspace(::rect* prect, const ::rect& rect, ::eactivation eactivation = activation_none);
+      virtual index get_best_wkspace(::rect* prect, const ::rect& rect, ::eactivation eactivation = e_activation_default);
 
       virtual bool get_rect_normal(RECT32* prect);
 

@@ -1086,7 +1086,7 @@ namespace user
          if (pframe.is_set())
          {
 
-            pframe->display(display_none);
+            pframe->display(e_display_none);
 
             pframe->child_post_quit("prodevian");
 
@@ -1102,7 +1102,7 @@ namespace user
          if (pframe.is_set())
          {
 
-            pframe->display(display_none);
+            pframe->display(e_display_none);
 
             pframe->child_post_quit_and_wait("prodevian", seconds(5));
 
@@ -1357,14 +1357,14 @@ namespace user
 
       //switch (Application.message_box(nullptr, prompt, MB_YESNOCANCEL))
       //{
-      //case IDCANCEL:
+      //case e_dialog_result_cancel:
       //{
 
       //   return false;       // don't continue
 
       //}
 
-      //case IDYES:
+      //case e_dialog_result_yes:
       //{
 
 
@@ -1373,7 +1373,7 @@ namespace user
 
       //}
 
-      //case IDNO:
+      //case e_dialog_result_no:
       //{
 
       //   // If not saving changes, revert the document_interface

@@ -109,7 +109,7 @@ namespace userstack
          /*            __pointer(::simple_frame_window) pframeApp = dynamic_cast < __pointer(::simple_frame_window) > (m_pimpactdata->m_puserinteraction);
                   if(pframeApp != nullptr)
                   {
-                     pframeApp->display(display_full_screen);
+                     pframeApp->display(e_display_full_screen);
                   }*/
       }
       //   else if(get_view_id() == CONTEXT_MENU_IMPACT)
@@ -158,7 +158,7 @@ namespace userstack
 
    bool pane_view::pre_create_window(::user::create_struct& cs)
    {
-      cs.dwExStyle &= ~WS_EX_CLIENTEDGE;
+
 
       return ::user::impact::pre_create_window(cs);
    }

@@ -96,7 +96,7 @@
 //         LPWNDCLASSW pwndclass);
 //
 //      static ATOM WINAPI _RegisterClass(
-//         CONST WNDCLASSW *pwndclass);
+//         const WNDCLASSW *pwndclass);
 //
 //
 //      static oswindow WINAPI _CreateWindowEx(
@@ -199,7 +199,7 @@
 //
 //
 //      ATOM (WINAPI * m_pfnRegisterClass)(
-//         CONST WNDCLASSW *pwndclass);
+//         const WNDCLASSW *pwndclass);
 //
 //
 //      oswindow (WINAPI * m_pfnCreateWindowEx)(
@@ -309,7 +309,7 @@
 //
 //
 //      static ATOM WINAPI RegisterClass(
-//         CONST WNDCLASSW *pwndclass);
+//         const WNDCLASSW *pwndclass);
 //
 //
 //      static oswindow WINAPI CreateWindowEx(
@@ -532,7 +532,7 @@
 //   }
 //
 //   inline ATOM shell::RegisterClass(
-//      CONST WNDCLASSW *pwndclass)
+//      const WNDCLASSW *pwndclass)
 //
 //   {
 //      return (*theWindowsShell.m_pfnRegisterClass)(

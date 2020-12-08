@@ -250,7 +250,7 @@ namespace apex
             strCaption = "Assertion Failed";
 
             output_debug_string(wstring(str));
-            /*if(message_box(nullptr, str, strCaption, MB_ICONINFORMATION | MB_OKCANCEL | MB_DEFBUTTON1) == IDCANCEL)
+            /*if(message_box(nullptr, str, strCaption, MB_ICONINFORMATION | MB_OKCANCEL | MB_DEFBUTTON1) == e_dialog_result_cancel)
             {
                string strCmdLine = "\"C:\\Program Files (x86)\\Microsoft Visual Studio 11.0\\Common7\\IDE\\devenv.exe\" /edit \""+string(pszFileName)+ "\" /command \"edit.goto "+__str(iLine)+"\"";
                ::system(strCmdLine);
@@ -549,12 +549,12 @@ namespace apex
             fork([this]()
                {
 
-                  millis_sleep(1_s);
+                  sleep(1_s);
 
                   if (!::file::app_module().contains_ci("logviewer") && file_exists(::dir::system() / "logviewer.txt"))
                   {
 
-                     call_async("C:\\apex\\time\\x64\\basis\\app_core_logviewer.exe", "\"" + m_strLogPath + "\"", "C:\\apex\\time\\x64\\basis", display_normal, false);
+                     call_async("C:\\apex\\time\\x64\\basis\\app_core_logviewer.exe", "\"" + m_strLogPath + "\"", "C:\\apex\\time\\x64\\basis", e_display_normal, false);
 
                   }
 

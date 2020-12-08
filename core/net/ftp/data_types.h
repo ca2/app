@@ -27,10 +27,8 @@ namespace ftp
 
    };
 
-
-
    // constants
-   const TCHAR ANONYMOUS_USER[] = _T("anonymous");
+   const char ANONYMOUS_USER[] = "anonymous";
    enum T_enConstants
    {
       DEFAULT_FTP_PORT = 21, ///< The default port that an FTP service listens to on a remote host
@@ -391,13 +389,13 @@ namespace ftp
    public:
       logon();
       logon(const string& strHostname, WINUSHORT ushHostport=DEFAULT_FTP_PORT, const string& strUsername=ANONYMOUS_USER,
-            const string& strPassword=_T("anonymous@user.com"), const string& strAccount=_T(""));
+            const string& strPassword="anonymous@user.com", const string& strAccount="");
       logon(const string& strHostname, WINUSHORT ushHostport, const string& strUsername, const string& strPassword,
             const string& strAccount, const string& strFwHostname, const string& strFwUsername, const string& strFwPassword,
             WINUSHORT ushFwPort, const firewall_type& crFwType);
 
       void SetHost(const string& strHostname, WINUSHORT ushHostport=DEFAULT_FTP_PORT, const string& strUsername=ANONYMOUS_USER,
-                   const string& strPassword=_T("anonymous@user.com"), const string& strAccount=_T(""));
+                   const string& strPassword="anonymous@user.com", const string& strAccount="");
 
       void SetFirewall(const string& strFwHostname, const string& strFwUsername, const string& strFwPassword,
                        WINUSHORT ushFwPort, const firewall_type& crFwType);
@@ -446,8 +444,8 @@ namespace ftp
          bool Set(const string& strCode)
          {
             if( strCode.length()!=3 ||
-                  strCode[0]<_T('1') || strCode[0]>_T('5') ||
-                  strCode[1]<_T('0') || strCode[1]>_T('5') )
+                  strCode[0]<'1' || strCode[0]>'5' ||
+                  strCode[1]<'0' || strCode[1]>'5' )
             {
                xxf_zero(m_szCode);
                return false;
@@ -459,18 +457,18 @@ namespace ftp
          bool IsPositiveReply() const { return IsPositivePreliminaryReply() || IsPositiveCompletionReply() || IsPositiveIntermediateReply(); }
          bool IsNegativeReply() const { return IsTransientNegativeCompletionReply() || IsPermanentNegativeCompletionReply(); }
 
-         bool IsPositivePreliminaryReply() const         { return m_szCode[0] == _T('1'); }
-         bool IsPositiveCompletionReply() const          { return m_szCode[0] == _T('2'); }
-         bool IsPositiveIntermediateReply() const        { return m_szCode[0] == _T('3'); }
-         bool IsTransientNegativeCompletionReply() const { return m_szCode[0] == _T('4'); }
-         bool IsPermanentNegativeCompletionReply() const { return m_szCode[0] == _T('5'); }
+         bool IsPositivePreliminaryReply() const         { return m_szCode[0] == '1'; }
+         bool IsPositiveCompletionReply() const          { return m_szCode[0] == '2'; }
+         bool IsPositiveIntermediateReply() const        { return m_szCode[0] == '3'; }
+         bool IsTransientNegativeCompletionReply() const { return m_szCode[0] == '4'; }
+         bool IsPermanentNegativeCompletionReply() const { return m_szCode[0] == '5'; }
 
-         bool IsRefferingToSyntax() const                      { return m_szCode[1] == _T('0'); }
-         bool IsRefferingToInformation() const                 { return m_szCode[1] == _T('1'); }
-         bool IsRefferingToConnections() const                 { return m_szCode[1] == _T('2'); }
-         bool IsRefferingToAuthenticationAndAccounting() const { return m_szCode[1] == _T('3'); }
-         bool IsRefferingToUnspecified() const                 { return m_szCode[1] == _T('4'); }
-         bool IsRefferingToFileSystem() const                  { return m_szCode[1] == _T('5'); }
+         bool IsRefferingToSyntax() const                      { return m_szCode[1] == '0'; }
+         bool IsRefferingToInformation() const                 { return m_szCode[1] == '1'; }
+         bool IsRefferingToConnections() const                 { return m_szCode[1] == '2'; }
+         bool IsRefferingToAuthenticationAndAccounting() const { return m_szCode[1] == '3'; }
+         bool IsRefferingToUnspecified() const                 { return m_szCode[1] == '4'; }
+         bool IsRefferingToFileSystem() const                  { return m_szCode[1] == '5'; }
       } m_Code;
    public:
       bool Set(const string& strResponse)

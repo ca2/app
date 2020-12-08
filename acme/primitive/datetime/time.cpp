@@ -2,6 +2,9 @@
 #include <time.h>
 
 
+::estatus mkgmtime_from_filetime(time_t & time, const ::filetime_t & filetime);
+
+
 namespace datetime
 {
 
@@ -218,25 +221,27 @@ namespace datetime
 #endif
 
 #define INTEL 1
-   time::time(const filetime & filetime)
-#ifdef WINDOWS_DESKTOP && INTEL
+
+time::time(const filetime & filetime)
+
+#if defined(WINDOWS_DESKTOP) && defined(INTEL)
+
       : time(*(FILETIME*)&filetime)
+
 #endif
+
    {
 
 #ifndef WINDOWS_DESKTOP
 
-      //// then convert that time to system time
-      SYSTEMTIME systemtime;
-      if (!FileTimeToSystemTime(&filetime, &systemtime))
+      auto estatus = mkgmtime_from_filetime(m_time, filetime.m_filetime);
+
+      if(!estatus)
       {
-         m_time = 0;
-         __throw(invalid_argument_exception());
-         return;
+
+         __throw(exception::exception(estatus));
+
       }
-
-      m_time = mkgmtime(sysTime.wHour, sysTime.wMinute, sysTime.wSecond, sysTime.wMonth, sysTime.wDay, sysTime.wYear);
-
 
 #endif
 

@@ -8527,6 +8527,13 @@ bool image::hue_offset(double dRadians)
 }
 
 
+void image::fast_copy(color32_t * p)
+{
+
+   ::copy_colorref(get_data(), rect(), scan_size(), p);
+
+}
+
 bool image::on_load_image()
 {
 

@@ -483,10 +483,7 @@ namespace user
 
       if (cs.style & WS_BORDER)
       {
-#ifdef WINDOWS_DESKTOP
-         cs.dwExStyle |= WS_EX_CLIENTEDGE;
-#endif
-         cs.style &= ~WS_BORDER;
+cs.style &= ~WS_BORDER;
       }
       cs.dwExStyle |= WS_EX_TOOLWINDOW;
       cs.dwExStyle |= WS_EX_TOPMOST;
@@ -907,7 +904,7 @@ namespace user
 
       pmessage->m_bRet = true;
 
-      display(display_none);
+      display(e_display_none);
 
       set_need_redraw();
 
@@ -1110,7 +1107,7 @@ namespace user
 
       order_top_most();
 
-      display(display_normal);
+      display(e_display_normal);
 
       set_need_redraw();
 

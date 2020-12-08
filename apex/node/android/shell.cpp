@@ -1104,7 +1104,7 @@ namespace android
    //      if (!do_call())
    //      {
 
-   //         millis_sleep(100);
+   //         sleep(100_ms);
 
    //      }
 
@@ -1142,7 +1142,7 @@ namespace android
    //         //while (thread_get_run() && i >= 0)
    //         //{
 
-   //         //   millis_sleep(500);
+   //         //   sleep(500_ms);
 
    //         //   i--;
 
@@ -1464,7 +1464,7 @@ namespace android
 
             sl.unlock();
 
-            millis_sleep(100);
+            sleep(100_ms);
 
          }
          else

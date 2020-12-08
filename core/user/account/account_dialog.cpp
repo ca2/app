@@ -216,7 +216,7 @@ namespace account
 
             m_plogin->m_peditUser->SetFocus();
 
-            display(display_restore, activation_set_foreground);
+            display(e_display_restore, e_activation_set_foreground);
 
             set_need_redraw();
 
@@ -316,7 +316,7 @@ namespace account
 
             hyperlink.open_link("ca2account:this", "", "");
 
-            millis_sleep(5000);
+            sleep(5000_ms);
 
          }
          else
@@ -355,7 +355,7 @@ namespace account
       if (bWasWaiting)
       {
 
-         if (!task_sleep(5000))
+         if (!task_sleep(5000_ms))
          {
 
             return;
@@ -495,7 +495,7 @@ namespace account
 
       m_plogin->place(rectClient);
 
-      m_plogin->display(::display_normal);
+      m_plogin->display(::e_display_normal);
 
    }
 

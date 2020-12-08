@@ -199,7 +199,7 @@ namespace user
    //   }
    //   else
    //   {
-   //      m_pmeshheader->display(display_none);
+   //      m_pmeshheader->display(e_display_none);
    //   }
    //}
 

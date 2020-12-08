@@ -314,6 +314,8 @@ namespace apex
       virtual string crypto_md5_text(const string & str);
 
 
+      virtual ::estatus os_application_system_run() override;
+
       //virtual ::estatus create_html();
 
       //virtual __pointer(::apex::session) on_create_session() override;

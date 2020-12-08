@@ -11,16 +11,16 @@ namespace user
    public:
 
 
-      index                      m_iIndex;
-      index                      m_iImage;
-      ::image_pointer            m_pimage;
-      id                         m_id;
-      byte                       m_fsState;
-      byte                       m_fsStyle;
-      string                     m_str;
-      ::rect                     m_rect;
-      bool                       m_bEnableIfHasCommandHandler;
-      ::draw2d::font_pointer     m_font;
+      index                               m_iIndex;
+      index                               m_iImage;
+      ::image_pointer                     m_pimage;
+      id                                  m_id;
+      etoolbar_item_state                 m_estate;
+      etoolbar_item_style                 m_estyle;
+      string                              m_str;
+      ::rect                              m_rect;
+      bool                                m_bEnableIfHasCommandHandler;
+      ::draw2d::font_pointer              m_font;
 
 
       toolbar_item();
@@ -92,15 +92,20 @@ namespace user
 
       // pIDArray can be nullptr to allocate is_empty buttons
 
-      virtual ::user::estate get_button_state(int iItem);
+      //virtual ::user::estate get_button_state(int iItem);
 
       // standard control bar things
       index CommandToIndex(::u32 nIDFind);
       ::u32 GetItemID(index nIndex);
       virtual void GetItemRect(index nIndex, RECT32 * prect);
 
-      ::u32 GetButtonStyle(index nIndex);
-      void SetButtonStyle(index nIndex, ::u32 nStyle);
+      etoolbar_item_style get_item_style(index iIndex);
+      void set_item_style(index iIndex, const etoolbar_item_style & estyle);
+
+      etoolbar_item_state get_item_state(index iIndex);
+      void set_item_state(index iIndex, const etoolbar_item_state & estate);
+
+      ::user::enum_state get_item_user_state(index iIndex);
 
       // for changing button info
       void GetButtonInfo(index nIndex, ::u32& nID, ::u32& nStyle, index& iImage);
@@ -181,26 +186,26 @@ namespace user
 
 } // namespace user
 
-
-
-// Styles for toolbar buttons
-#define TBBS_BUTTON     MAKELONG(TBSTYLE_BUTTON, 0) // this entry is button
-#define TBBS_SEPARATOR  MAKELONG(TBSTYLE_SEP, 0)    // this entry is a separator
-#define TBBS_CHECKBOX   MAKELONG(TBSTYLE_CHECK, 0)  // this is an auto check button
-#define TBBS_GROUP      MAKELONG(TBSTYLE_GROUP, 0)  // marks the start of a group
-#define TBBS_CHECKGROUP (TBBS_GROUP|TBBS_CHECKBOX)  // normal use of TBBS_GROUP
-#define TBBS_DROPDOWN   MAKELONG(TBSTYLE_DROPDOWN, 0) // drop down style
-#define TBBS_AUTOSIZE   MAKELONG(TBSTYLE_AUTOSIZE, 0) // autocalc button width
-#define TBBS_NOPREFIX   MAKELONG(TBSTYLE_NOPREFIX, 0) // no accel prefix for this button
-
-// styles for display states
-#define TBBS_CHECKED    MAKELONG(0, TBSTATE_CHECKED)    // button is checked/down
-#define TBBS_PRESSED    MAKELONG(0, TBSTATE_PRESSED)    // button is being depressed
-#define TBBS_DISABLED   MAKELONG(0, TBSTATE_ENABLED)    // button is disabled
-#define TBBS_INDETERMINATE  MAKELONG(0, TBSTATE_INDETERMINATE)  // third state
-#define TBBS_HIDDEN     MAKELONG(0, TBSTATE_HIDDEN) // button is hidden
-#define TBBS_WRAPPED    MAKELONG(0, TBSTATE_WRAP)   // button is wrapped at this point
-#define TBBS_ELLIPSES   MAKELONG(0, TBSTATE_ELIPSES)
-#define TBBS_MARKED      MAKELONG(0, TBSTATE_MARKED)
-
+//
+//
+//// Styles for toolbar buttons
+//#define TBBS_BUTTON     MAKELONG(TBSTYLE_BUTTON, 0) // this entry is button
+//#define e_toolbar_item_style_separator  MAKELONG(TBSTYLE_SEP, 0)    // this entry is a separator
+//#define TBBS_CHECKBOX   MAKELONG(TBSTYLE_CHECK, 0)  // this is an auto check button
+//#define TBBS_GROUP      MAKELONG(TBSTYLE_GROUP, 0)  // marks the start of a group
+//#define TBBS_CHECKGROUP (TBBS_GROUP|TBBS_CHECKBOX)  // normal use of TBBS_GROUP
+//#define TBBS_DROPDOWN   MAKELONG(TBSTYLE_DROPDOWN, 0) // drop down style
+//#define TBBS_AUTOSIZE   MAKELONG(TBSTYLE_AUTOSIZE, 0) // autocalc button width
+//#define TBBS_NOPREFIX   MAKELONG(TBSTYLE_NOPREFIX, 0) // no accel prefix for this button
+//
+//// styles for display states
+//#define TBBS_CHECKED    MAKELONG(0, TBSTATE_CHECKED)    // button is checked/down
+//#define TBBS_PRESSED    MAKELONG(0, TBSTATE_PRESSED)    // button is being depressed
+//#define e_toolbar_item_style_disabled   MAKELONG(0, TBSTATE_ENABLED)    // button is disabled
+//#define TBBS_INDETERMINATE  MAKELONG(0, TBSTATE_INDETERMINATE)  // third state
+//#define TBBS_HIDDEN     MAKELONG(0, e_toolbar_button_hidden) // button is hidden
+//#define TBBS_WRAPPED    MAKELONG(0, TBSTATE_WRAP)   // button is wrapped at this point
+//#define TBBS_ELLIPSES   MAKELONG(0, TBSTATE_ELIPSES)
+//#define TBBS_MARKED      MAKELONG(0, TBSTATE_MARKED)
+//
 

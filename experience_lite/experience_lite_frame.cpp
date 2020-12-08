@@ -253,7 +253,7 @@
 
                case ElementMoveGripMinimal:
 
-                  if (m_pframewindow == nullptr || m_pframewindow->get_appearance() != ::display_minimal)
+                  if (m_pframewindow == nullptr || m_pframewindow->get_appearance() != ::e_display_minimal)
                      return false;
 
                   lprect->left = m_pointMoveGripMinimal.x + 2;

@@ -495,6 +495,77 @@ namespace user
 } // namespace user
 
 
+enum enum_toolbar_style
+{
+
+   e_toolbar_style_none = 0,
+   e_toolbar_style_button = 0,
+   e_toolbar_style_separator = 1,
+   e_toolbar_style_check = 2,
+   e_toolbar_style_group = 4,
+   e_toolbar_style_check_group = e_toolbar_style_check | e_toolbar_style_group,
+   e_toolbar_style_dropdown = 8,
+   e_toolbar_style_autosize = 16,
+   e_toolbar_style_noprefix = 32,
+   e_toolbar_style_tooltips = 256,
+   e_toolbar_style_wrapable = 512,
+   e_toolbar_style_alt_drag = 1024,
+   e_toolbar_style_flat = 2048,
+   e_toolbar_style_list = 4096,
+   e_toolbar_style_custom_erase = 8192,
+   e_toolbar_style_register_drop = 16384,
+   e_toolbar_style_transparent = 32768,
+
+};
+
+
+enum enum_toolbar_style_ex
+{
+   e_toolbar_style_ex_none = 0,
+   e_toolbar_style_ex_drawddarrows = 1,
+
+};
+
+
+enum enum_toolbar_item_state
+{
+
+   e_toolbar_item_state_none            = 0,
+   e_toolbar_item_state_checked         = 0x01,
+   e_toolbar_item_state_pressed         = 0x02,
+   e_toolbar_item_state_enabled         = 0x04,
+   e_toolbar_item_state_hidden          = 0x08,
+   e_toolbar_item_state_indeterminate   = 0x10,
+   e_toolbar_item_state_wrap            = 0x20,
+   e_toolbar_item_state_ellipses        = 0x40,
+   e_toolbar_item_state_marked          = 0x80,
+   e_toolbar_item_state_hover           = 0x100,
+
+};
+
+
+enum enum_toolbar_item_style
+{
+
+   e_toolbar_item_style_none = e_toolbar_style_none,
+   e_toolbar_item_style_separator = e_toolbar_style_separator,
+   e_toolbar_item_style_checkbox = e_toolbar_style_check,
+   e_toolbar_item_style_group = e_toolbar_style_group,
+   e_toolbar_item_style_check_group = e_toolbar_item_style_group | e_toolbar_item_style_checkbox,
+   e_toolbar_item_style_dropdown = e_toolbar_style_dropdown,
+   e_toolbar_item_style_autosize = e_toolbar_style_autosize,
+   e_toolbar_item_style_noprefix = e_toolbar_style_noprefix,
+//#define TBBS_AUTOSIZE   MAKELONG(TBSTYLE_AUTOSIZE, 0) // autocalc button width
+//#define TBBS_NOPREFIX   MAKELONG(TBSTYLE_NOPREFIX, 0) // no accel prefix for this button
+   e_toolbar_item_style_checked = MAKELONG(0, e_toolbar_item_state_checked),
+   e_toolbar_item_style_pressed = MAKELONG(0, e_toolbar_item_state_pressed),
+   e_toolbar_item_style_disabled = MAKELONG(0, e_toolbar_item_state_enabled),
+   e_toolbar_item_style_indeterminate = MAKELONG(0, e_toolbar_item_state_indeterminate),
+   e_toolbar_item_style_hidden = MAKELONG(0, e_toolbar_item_state_hidden),
+   e_toolbar_item_style_wrapped = MAKELONG(0, e_toolbar_item_state_wrap),
+   e_toolbar_item_style_ellipses = MAKELONG(0, e_toolbar_item_state_ellipses),
+   e_toolbar_item_style_marked = MAKELONG(0, e_toolbar_item_state_marked),
+};
 
 
 

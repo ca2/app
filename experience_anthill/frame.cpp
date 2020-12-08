@@ -227,7 +227,7 @@ namespace experience
 
                case ElementMoveGripMinimal:
 
-                  if (m_pframewindow == nullptr || m_pframewindow->layout().design().display() != ::display_minimal)
+                  if (m_pframewindow == nullptr || m_pframewindow->layout().design().display() != ::e_display_minimal)
                      return false;
 
                   lprect->left = m_pointMoveGripMinimal.x + 2;

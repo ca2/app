@@ -812,7 +812,7 @@ namespace dynamic_source
          if(process->has_exited())
             break;
 
-         millis_sleep(100);
+         sleep(100_ms);
 
          if(tickStart.elapsed() > 840 * 1000) // 14 minutes
          {
@@ -839,7 +839,7 @@ namespace dynamic_source
 
 #ifdef LINUX
 
-         //millis_sleep(2000);
+         //sleep(2000_ms);
 
 #endif
 
@@ -991,7 +991,7 @@ namespace dynamic_source
             if(process->has_exited())
                break;
 
-            millis_sleep(100);
+            sleep(100_ms);
 
             if(tickStart.elapsed() > 840 * 1000) // 14 minutes
             {
@@ -1013,7 +1013,7 @@ namespace dynamic_source
 
 #ifdef LINUX
 
-            //millis_sleep(2000);
+            //sleep(2000_ms);
 
 #endif
 
@@ -1132,7 +1132,7 @@ namespace dynamic_source
       while ((strSource = Context.file().as_string(pscript->m_strSourcePath)).trimmed().is_empty() && ::thread_get_run())
       {
 
-         millis_sleep(100);
+         sleep(100_ms);
 
          iTry++;
 
@@ -1322,7 +1322,7 @@ namespace dynamic_source
 
 
 #ifdef WINDOWS
-      //millis_sleep(15000);
+      //sleep(15000_ms);
 
       string strBuildCmd = m_strEnv;
 
@@ -1361,7 +1361,7 @@ namespace dynamic_source
 
       stra.add_lines(strLog);
 
-      //millis_sleep(10000);
+      //sleep(10000_ms);
 
 #ifdef WINDOWS_DESKTOP
 
@@ -1502,7 +1502,7 @@ namespace dynamic_source
 //      if(process->has_exited(&dwExitCode))
 //         break;
 //
-//      millis_sleep(100);
+//      sleep(100_ms);
 //
 //      if(tickStart.elapsed() > 840 * 1000) // 14 minutes
 //      {
@@ -1529,7 +1529,7 @@ namespace dynamic_source
 //   }
 //   #endif
 //
-//   //millis_sleep(10000);
+//   //sleep(10000_ms);
 //
 //#if defined(WINDOWS_DESKTOP)
 //   EnvVarValArray arrEnvVarVal;
@@ -1910,7 +1910,7 @@ auto tickStart = ::millis::now();
             if(process->has_exited())
                break;
 
-            millis_sleep(100);
+            sleep(100_ms);
 
             if(tickStart.elapsed() > 840 * 1000) // 14 minutes
             {
@@ -1942,7 +1942,7 @@ auto tickStart = ::millis::now();
 
 #ifdef LINUX
 
-            //millis_sleep(2000);
+            //sleep(2000_ms);
 
 #endif
 
@@ -2031,7 +2031,7 @@ auto tickStart = ::millis::now();
       str.replace("%TARGET_NAME%", strTargetName);
       Context.dir().mk(Context.dir().install()/ m_strDynamicSourceStage / m_strStagePlatform /"library");
 //#ifdef LINUX
-//      //millis_sleep(2000);
+//      //sleep(2000_ms);
 //      strCmd = Context.dir().install()/m_strDynamicSourceStage/ "front\\libl1.bash";
 //#else
 //      strCmd = Context.dir().install()/ m_strDynamicSourceStage / "front\\libl1.bat";
@@ -2057,7 +2057,7 @@ auto tickStart = ::millis::now();
          if(process->has_exited())
             break;
 
-         millis_sleep(100);
+         sleep(100_ms);
 
          if(tickStart.elapsed() > 840 * 1000) // 14 minutes
          {
@@ -2088,7 +2088,7 @@ auto tickStart = ::millis::now();
 
 #ifdef LINUX
 
-         //millis_sleep(2000);
+         //sleep(2000_ms);
 
 #endif
 

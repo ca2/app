@@ -260,7 +260,7 @@ namespace experience
                         if(m_millisShow.elapsed() > 1000)
                         {
 
-                           display(display_none);
+                           display(e_display_none);
 
                         }
 
@@ -590,7 +590,7 @@ namespace experience
       //if(!has_button(button_close))
       //{
 
-      //   get_box_button(button_close)->display(display_none);
+      //   get_box_button(button_close)->display(e_display_none);
 
       //}
       //else
@@ -616,7 +616,7 @@ namespace experience
 //            if(!has_button(button_up))
 //            {
 //
-//               get_box_button(button_up)->display(display_none);
+//               get_box_button(button_up)->display(e_display_none);
 //
 //            }
 //            else if(pframewindow->updown_get_up_enable())
@@ -648,7 +648,7 @@ namespace experience
 //            else
 //            {
 //
-//               get_box_button(button_up)->display(display_none);
+//               get_box_button(button_up)->display(e_display_none);
 //
 //            }
 //
@@ -658,7 +658,7 @@ namespace experience
 //            if(!has_button(button_down))
 //            {
 //
-//               get_box_button(button_down)->display(display_none);
+//               get_box_button(button_down)->display(e_display_none);
 //
 //            }
 //            else if(pframewindow->updown_get_down_enable())
@@ -688,18 +688,18 @@ namespace experience
 //            }
 //            else
 //            {
-//               get_box_button(button_down)->display(display_none);
+//               get_box_button(button_down)->display(e_display_none);
 //            }
 
       _layout_button(button_maximize, rect);
 
 //            if(!has_button(button_maximize))
 //            {
-//               get_box_button(button_maximize)->display(display_none);
+//               get_box_button(button_maximize)->display(e_display_none);
 //            }
 //            else if (is_zoomed(edisplay))
 //            {
-//               get_box_button(button_maximize)->display(display_none);
+//               get_box_button(button_maximize)->display(e_display_none);
 //            }
 //            else
 //            {
@@ -830,7 +830,7 @@ namespace experience
 
       //if(!has_button(button_notify_icon))
       //{
-      //   get_box_button(button_notify_icon)->display(display_none);
+      //   get_box_button(button_notify_icon)->display(e_display_none);
       //}
       //else if(m_pframewindow->window_is_notify_icon_enabled())
       //{
@@ -851,14 +851,14 @@ namespace experience
       //}
       //else
       //{
-      //   get_box_button(button_notify_icon)->display(display_none);
+      //   get_box_button(button_notify_icon)->display(e_display_none);
       //}
 
       _layout_button(button_transparent_frame, rect);
 
       //if(!has_button(button_transparent_frame))
       //{
-      //   get_box_button(button_transparent_frame)->display(display_none);
+      //   get_box_button(button_transparent_frame)->display(e_display_none);
       //}
       //else
       //{
@@ -892,7 +892,7 @@ namespace experience
 
       //if(!has_button(button_dock))
       //{
-      //   get_box_button(button_dock)->display(display_none);
+      //   get_box_button(button_dock)->display(e_display_none);
       //}
       //else
       //{

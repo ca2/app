@@ -541,7 +541,7 @@ CLASS_DECL_ACME bool __task_sleep(task* task)
    while (task->thread_get_run())
    {
 
-      millis_sleep(100);
+      sleep(100_ms);
 
    }
 
@@ -563,7 +563,7 @@ CLASS_DECL_ACME bool __task_sleep(task* pthread, millis millis)
 
       }
 
-      millis_sleep(millis);
+      sleep(millis);
 
       return pthread->thread_get_run();
 
@@ -728,7 +728,7 @@ CLASS_DECL_ACME bool task_sleep(millis millis, sync* psync)
          else
          {
 
-            ::millis_sleep(millis);
+            ::sleep(millis);
 
          }
 

@@ -673,7 +673,7 @@ namespace linux
                         string strCommand(str2);
                         strCommand.replace("%1", pcsz);
 
-                        WinExec(strCommand,display_normal);
+                        WinExec(strCommand,e_display_normal);
                      }
                   }
                   else
@@ -688,7 +688,7 @@ namespace linux
                               string strCommand(str2);
                               strCommand.replace("%1", pcsz);
 
-                              WinExec(strCommand,display_normal);
+                              WinExec(strCommand,e_display_normal);
                            }
                         }
                      }
@@ -1030,7 +1030,7 @@ namespace linux
 
          // 2018-01-29 call_async("/bin/bash", "-c \"" + strTarget + "\"", strFolder, SW_SHOWDEFAULT, false);
 
-         call_async(strTarget, strParams, strFolder, display_default, false);
+         call_async(strTarget, strParams, strFolder, e_display_default, false);
 
 //         char * pszCommandLine = strdup(strTarget + " " + strParams);
 

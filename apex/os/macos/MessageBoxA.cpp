@@ -112,9 +112,9 @@ int _os_message_box(const char * pszMessage, const char * pszTitle, ::emessagebo
    {
    case MB_OKCANCEL:
       if( result == kCFUserNotificationDefaultResponse)
-         return IDOK;
+         return e_dialog_result_ok;
       else if( result == kCFUserNotificationAlternateResponse)
-         return IDCANCEL;
+         return e_dialog_result_cancel;
       break;
    case MB_ABORTRETRYIGNORE:
       if( result == kCFUserNotificationDefaultResponse)
@@ -126,27 +126,27 @@ int _os_message_box(const char * pszMessage, const char * pszTitle, ::emessagebo
       break;
    case MB_YESNOCANCEL:
       if( result == kCFUserNotificationDefaultResponse)
-         return IDYES;
+         return e_dialog_result_yes;
       else if(result == kCFUserNotificationAlternateResponse)
-         return IDNO;
+         return e_dialog_result_no;
       else if(result == kCFUserNotificationOtherResponse)
-         return IDCANCEL;
+         return e_dialog_result_cancel;
       break;
    case MB_YESNO:
       if( result == kCFUserNotificationDefaultResponse)
-         return IDYES;
+         return e_dialog_result_yes;
       else if(result == kCFUserNotificationAlternateResponse)
-         return IDNO;
+         return e_dialog_result_no;
       break;
    case MB_RETRYCANCEL:
       if( result == kCFUserNotificationDefaultResponse)
          return IDRETRY;
       else if(result == kCFUserNotificationAlternateResponse)
-         return IDCANCEL;
+         return e_dialog_result_cancel;
       break;
    case MB_CANCELTRYCONTINUE:
       if( result == kCFUserNotificationDefaultResponse)
-         return IDCANCEL;
+         return e_dialog_result_cancel;
       else if(result == kCFUserNotificationAlternateResponse)
          return IDTRYAGAIN;
       else if(result == kCFUserNotificationOtherResponse)
@@ -154,12 +154,12 @@ int _os_message_box(const char * pszMessage, const char * pszTitle, ::emessagebo
       break;
    default:
       if( result == kCFUserNotificationDefaultResponse)
-         return IDOK;
+         return e_dialog_result_ok;
       break;
    }
 
 
-   return IDCANCEL;
+   return e_dialog_result_cancel;
 
 
 }

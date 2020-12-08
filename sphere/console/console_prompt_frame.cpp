@@ -149,7 +149,7 @@ namespace console
       ::u32 nShow;
       if(bShow)
       {
-         nShow = display_normal;
+         nShow = e_display_normal;
       }
       else
       {
@@ -500,7 +500,7 @@ namespace console
 
       System.get_monitor_rect(0,rect);
 
-      int iHeight = m_pframe->calc_caption_height(::display_normal) + m_pframe->m_rectMarginNormal.top;
+      int iHeight = m_pframe->calc_caption_height(::e_display_normal) + m_pframe->m_rectMarginNormal.top;
 
       rect.left += 100;
 
@@ -510,11 +510,11 @@ namespace console
 
       rect.right -= 400;
 
-      set_appearance(::display_minimal);
+      set_appearance(::e_display_minimal);
 
       set_window_pos(zorder_top,rect,SWP_SHOWWINDOW);
 
-      display(display_normal);
+      display(e_display_normal);
 
       SetActiveWindow();
 

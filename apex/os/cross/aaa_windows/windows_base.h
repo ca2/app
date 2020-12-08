@@ -72,6 +72,6 @@ typedef PTHREAD_START_ROUTINE LPTHREAD_START_ROUTINE;
 
 
 
-//void millis_sleep(::u32 dwMilliseconds);
+//void sleep(::u32 dwMilliseconds);
 
 

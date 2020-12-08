@@ -46,7 +46,9 @@ namespace filemanager
             MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &list_view::_001OnLButtonDblClk);
 //            //MESSAGE_LINK(e_message_timer, pchannel, this, &list_view::_001OnTimer);
             MESSAGE_LINK(e_message_size, pchannel, this, &list_view::_001OnSize);
-            MESSAGE_LINK(WM_CONTEXTMENU, pchannel, this, &list_view::_001OnContextMenu);
+#ifdef WINDOWS_DESKTOP
+            MESSAGE_LINK(e_message_context_menu, pchannel, this, &list_view::_001OnContextMenu);
+#endif
             MESSAGE_LINK(e_message_erase_background, pchannel, this, &list_view::_001OnEraseBkgnd);
             MESSAGE_LINK(WM_USER + 1217, pchannel, this, &list_view::_001OnFillTaskResponse);
 
@@ -344,10 +346,11 @@ namespace filemanager
 
          }
 
-         ::u32 c_cdecl list_view::ThreadProcFillTask(LPVOID pParameter)
 
+         void list_view::fill_task()
          {
-            UNREFERENCED_PARAMETER(pParameter);
+
+            //UNREFERENCED_PARAMETER(pParameter);
 
             ASSERT(FALSE);
 
@@ -388,7 +391,7 @@ namespace filemanager
 
 
 
-            return 0;
+//            return 0;
          }
 
          void list_view::_001OnTimer(::timer * ptimer)

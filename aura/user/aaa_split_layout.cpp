@@ -73,13 +73,13 @@ namespace user
       //   if (!bIsWindowVisible)
       //   {
 
-      //      pwnd->display(display_none);
+      //      pwnd->display(e_display_none);
 
       //   }
       //   else
       //   {
 
-      //      pwnd->display(display_normal);
+      //      pwnd->display(e_display_normal);
 
       //   }
 
@@ -117,13 +117,13 @@ namespace user
       //   if (rectPane.area() <= 0 || !bIsWindowVisible)
       //   {
 
-      //      pwnd->display(display_none);
+      //      pwnd->display(e_display_none);
 
       //   }
       //   else
       //   {
 
-      //      pwnd->display(display_normal);
+      //      pwnd->display(e_display_normal);
 
       //   }
 

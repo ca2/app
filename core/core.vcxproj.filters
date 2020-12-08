@@ -2041,9 +2041,6 @@
     <ClCompile Include="os\ansios\language.cpp">
       <Filter>Source Files\os\ansios</Filter>
     </ClCompile>
-    <ClCompile Include="os\ansios\process.cpp">
-      <Filter>Source Files\os\ansios</Filter>
-    </ClCompile>
     <ClCompile Include="os\ansios\user.cpp">
       <Filter>Source Files\os\ansios</Filter>
     </ClCompile>

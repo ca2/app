@@ -25,7 +25,7 @@ string read_resource_as_string(HINSTANCE hinst, ::u32 nID, const char * pcszType
    if (hres != nullptr)
    {
 
-      ::u32 FAR * pnRes = (::u32 FAR *)::LockResource(hres);
+      ::u32 * pnRes = (::u32 *)::LockResource(hres);
 
       iReadAtMostByteCount = iReadAtMostByteCount < 0 ? dwResSize : min(iReadAtMostByteCount, (strsize) dwResSize);
 
@@ -56,4 +56,38 @@ string read_resource_as_string(HINSTANCE hinst, ::u32 nID, const char * pcszType
 //}
 
 
+int debug_string_iterator()
+{
 
+   string str = "This is a phrase this is a link http://test.com/test_file?test_parameter=test_value";
+
+   int iLinkLen = 0;
+
+   int iColon = 0;
+
+   for(auto character : str)
+   {
+
+      if (wide_char_is_alphabetic(character)
+          || character == L'.'
+          || character == L'/'
+          || character == L'?'
+          || character == L'&'
+          || (character == L':' && iColon++ == 0))
+      {
+
+         iLinkLen++;
+
+      }
+      else
+      {
+
+         break;
+
+      }
+
+   }
+
+   return iLinkLen;
+
+}

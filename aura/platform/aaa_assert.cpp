@@ -42,7 +42,7 @@ CLASS_DECL_AURA int __assert_failed_line(const char * pszFileName, int iLineNumb
 //
 //   os_message_box(szMessage,szTitle,MB_CANCELTRYCONTINUE | MB_ICONERROR, callback());
 //
-//   //if(iResult == IDCANCEL)
+//   //if(iResult == e_dialog_result_cancel)
 //   //{
 //
 //   //   exit(0);

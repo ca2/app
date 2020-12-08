@@ -79,7 +79,7 @@ namespace user
 
       }
 
-      m_strId.Format("user::notify_icon - %d", uId);
+      m_strId.Format("notify_icon_%d", uId);
 
       m_strId = "ca2-" + pvisualicon->m_strAppTrayIcon + "-" + m_strId;
 
@@ -163,7 +163,7 @@ namespace user
 
          pathFolder = path.folder();
 
-         gdk_sync(5_s, __routine([&]()
+         gdk_sync(5_s, __routine([=]()
          {
 
             m_pindicator = ::linux::allocate_appindicator();
@@ -431,13 +431,13 @@ namespace user
                if (pframe != nullptr)
                {
 
-                  pframe->display(display_normal);
+                  pframe->display(e_display_normal);
 
                }
                else
                {
 
-                  m_wndptraHidden.element_at(0)->display(display_normal);
+                  m_wndptraHidden.element_at(0)->display(e_display_normal);
 
                }
 

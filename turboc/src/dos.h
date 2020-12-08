@@ -72,7 +72,7 @@ __END_DECLS
 // Variables.
 // (This section contributed by Igor Bujna, modified by RSB ----------------
 /*
- * millis_sleep, delay ....
+ * sleep, delay ....
  */
 // RSB:  I prefer handling the delay function differently, because I
 // have no way to insure that ncurses is initialized.

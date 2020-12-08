@@ -77,7 +77,7 @@ namespace html
    enum edisplay
    {
 
-      display_none,
+      e_display_none,
       display_block,
       display_table,
       display_table_cell,

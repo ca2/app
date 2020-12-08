@@ -20,7 +20,7 @@
 
 //
 //
-//void millis_sleep(::u32 dwMillis)
+//void sleep(::u32 dwMillis)
 //{
 //    
 //    timespec ts;

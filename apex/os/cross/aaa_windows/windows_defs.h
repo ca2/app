@@ -132,12 +132,12 @@ typedef WINUCHAR *PWINUCHAR;
 #define WINAPI_INLINE  WINAPI
 #endif
 
-#undef FAR
-#undef  NEAR
-#define FAR                 far
-#define NEAR                near
-#ifndef CONST
-#define CONST               const
+#undef
+#undef
+                 far
+                near
+#ifndef const
+#define const               const
 #endif
 
 typedef u32       ::u32;
@@ -158,7 +158,7 @@ typedef i32 far            *LPLONG;
 typedef ::u32 near          *PDWORD;
 typedef ::u32 far           *LPDWORD;
 typedef void far            *LPVOID;
-typedef CONST void far      *const void *;
+typedef const void far      *const void *;
 
 typedef i32                 ::i32;
 typedef u32        ::u32;
@@ -200,8 +200,8 @@ typedef iptr            LRESULT;
 
 typedef ::u16                ATOM;
 
-/*typedef HANDLE NEAR         *SPHANDLE;
-typedef HANDLE FAR          *LPHANDLE;
+/*typedef HANDLE          *SPHANDLE;
+typedef HANDLE           *LPHANDLE;
 typedef HANDLE              HGLOBAL;
 typedef HANDLE              HLOcaL;
 typedef HANDLE              GLOBALHANDLE;
@@ -209,12 +209,12 @@ typedef HANDLE              LOcaLHANDLE;*/
 #ifndef _MANAGED
 #ifndef _MAC
 #ifdef OS64BIT
-typedef iptr (FAR WINAPI *FARPROC)(void);
-typedef iptr (NEAR WINAPI *NEARPROC)(void);
+typedef iptr (WINAPI *FARPROC)(void);
+typedef iptr (WINAPI *NEARPROC)(void);
 typedef iptr (WINAPI *PROC)(void);
 #else
-typedef i32 (FAR WINAPI *FARPROC)(void);
-typedef i32 (NEAR WINAPI *NEARPROC)(void);
+typedef i32 (WINAPI *FARPROC)(void);
+typedef i32 (WINAPI *NEARPROC)(void);
 typedef i32 (WINAPI *PROC)(void);
 #endif  // OS64BIT
 #else
@@ -243,9 +243,9 @@ typedef struct tagRECT
    ::i32    top;
    ::i32    right;
    ::i32    bottom;
-} RECT32, *PRECT, NEAR *NPRECT, FAR *LPRECT32;
+} RECT32, *PRECT, *NPRECT, *LPRECT32;
 
-typedef const RECT32 FAR* LPCRECT32;
+typedef const RECT32 * LPCRECT32;
 
 typedef struct _RECTL       /* rcl */
 {
@@ -255,13 +255,13 @@ typedef struct _RECTL       /* rcl */
    ::i32    bottom;
 } RECTL, *PRECTL, *LPRECTL;
 
-typedef const RECTL FAR* LPCRECTL;
+typedef const RECTL * LPCRECTL;
 
 /*typedef struct tagPOINT
 {
     ::i32  x;
     ::i32  y;
-} POINT32, *PPOINT, NEAR *NPPOINT, FAR *POINT32 *;*/
+} POINT32, *PPOINT, *NPPOINT, *POINT32 *;*/
 
 typedef struct _POINTL      /* ptl  */
 {
@@ -349,7 +349,7 @@ typedef struct _FILETIME
 
 #define near
 #define far
-#define CONST const
+#define const const
 
 
 
@@ -381,7 +381,7 @@ struct tagHandle
 //typedef ::u32 near          *PDWORD;
 //typedef ::u32 far           *LPDWORD;
 //typedef void far            *LPVOID;
-//typedef CONST void far      *const void *;
+//typedef const void far      *const void *;
 
 //typedef i32                 ::i32;
 //typedef u32        ::u32;
@@ -427,55 +427,55 @@ typedef unsigned short WCHAR;    // wc,   16-bit UNICODE character
 #endif
 
 
-#undef FAR
-#undef  NEAR
-#define FAR
-#define NEAR
-#ifndef CONST
-#define CONST               const
+#undef
+#undef
+
+
+#ifndef const
+#define const               const
 #endif
 
 
 //////typedef WCHAR *PWCHAR, *LPWCH, *PWCH;
-//typedef CONST WCHAR *LPCWCH, *PCWCH;
+//typedef const WCHAR *LPCWCH, *PCWCH;
 
 // null terminated
 //typedef  WCHAR *NWPSTR, *LPWSTR, *PWSTR;
 typedef  PWSTR *PZPWSTR;
-typedef  CONST PWSTR *PCZPWSTR;
+typedef  const PWSTR *PCZPWSTR;
 typedef  WCHAR UNALIGNED *LPUWSTR, *PUWSTR;
-//typedef  CONST WCHAR *const widechar *, *PCWSTR;
+//typedef  const WCHAR *const widechar *, *PCWSTR;
 typedef  PCWSTR *PZPCWSTR;
-typedef  CONST WCHAR UNALIGNED *LPCUWSTR, *PCUWSTR;
+typedef  const WCHAR UNALIGNED *LPCUWSTR, *PCUWSTR;
 
 // null null terminated
 typedef  WCHAR *PZZWSTR;
-typedef  CONST WCHAR *PCZZWSTR;
+typedef  const WCHAR *PCZZWSTR;
 typedef  WCHAR UNALIGNED *PUZZWSTR;
-typedef  CONST WCHAR UNALIGNED *PCUZZWSTR;
+typedef  const WCHAR UNALIGNED *PCUZZWSTR;
 
 // __possibly_notnullterminated
 typedef  WCHAR *PNZWCH;
-typedef  CONST WCHAR *PCNZWCH;
+typedef  const WCHAR *PCNZWCH;
 typedef  WCHAR UNALIGNED *PUNZWCH;
-typedef  CONST WCHAR UNALIGNED *PCUNZWCH;
+typedef  const WCHAR UNALIGNED *PCUNZWCH;
 //
 // ANSI (Multi-byte Character) types
 //
 //typedef char *PCHAR, *LPCH, *PCH;
-//typedef CONST char *LPCCH, *PCCH;
+//typedef const char *LPCCH, *PCCH;
 
 //typedef  char *NPSTR, *char *, *PSTR;
 typedef  PSTR *PZPSTR;
-typedef  CONST PSTR *PCZPSTR;
-//typedef  CONST char *const char *, *PCSTR;
+typedef  const PSTR *PCZPSTR;
+//typedef  const char *const char *, *PCSTR;
 typedef  PCSTR *PZPCSTR;
 
 typedef  char *PZZSTR;
-typedef  CONST char *PCZZSTR;
+typedef  const char *PCZZSTR;
 
 typedef  char *PNZCH;
-typedef  CONST char *PCNZCH;
+typedef  const char *PCNZCH;
 
 
 
@@ -529,9 +529,9 @@ typedef struct _GUID
 
 #define WINAPI
 
-#define NEAR
 
-#define FAR
+
+
 
 #define DECLSPEC_NO_RETURN
 void RaiseException(::u32 dwExceptionCode, ::u32 dwExceptionFlags, ::u32 nNumberOfArguments, const ulong_ptr *lpArguments);

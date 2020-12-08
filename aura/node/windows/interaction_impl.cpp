@@ -838,10 +838,10 @@ namespace windows
 
          m_puserinteraction->layout().sketch().origin()= pmove->m_point;
 
-         if (m_puserinteraction->layout().sketch().display() != display_normal)
+         if (m_puserinteraction->layout().sketch().display() != e_display_normal)
          {
 
-            m_puserinteraction->display(display_normal);
+            m_puserinteraction->display(e_display_normal);
 
          }
 
@@ -878,10 +878,10 @@ namespace windows
 
          m_puserinteraction->layout().sketch().size() = psize->m_size;
 
-         if (m_puserinteraction->layout().sketch().display() != display_normal)
+         if (m_puserinteraction->layout().sketch().display() != e_display_normal)
          {
 
-            m_puserinteraction->display(display_normal);
+            m_puserinteraction->display(e_display_normal);
 
          }
 
@@ -2888,7 +2888,7 @@ namespace windows
    //      // place the interaction_impl on top except for certain nCmdShow
 
    //      if (is_visible(edisplay)
-   //         && edisplay_command(edisplay) != display_iconic &&
+   //         && edisplay_command(edisplay) != e_display_iconic &&
    //         !no_activate(edisplay))
    //      {
 
@@ -3187,7 +3187,7 @@ namespace windows
          //      if (m_iShowFlags & SWP_SHOWWINDOW)
          //      {
 
-         //         display(display_normal);
+         //         display(e_display_normal);
 
          //      }
 
@@ -3224,7 +3224,7 @@ namespace windows
 
    }
 
-   //bool interaction_impl::DrawAnimatedRects(i32 idAni, CONST LPRECTprcFrom, CONST LPRECTlprcTo)
+   //bool interaction_impl::DrawAnimatedRects(i32 idAni, const LPRECTprcFrom, const LPRECTlprcTo)
 
    //{
 
@@ -4055,7 +4055,7 @@ namespace windows
       if (::IsIconic(get_handle()))
       {
 
-         if (m_puserinteraction->layout().sketch().display() != ::display_iconic)
+         if (m_puserinteraction->layout().sketch().display() != ::e_display_iconic)
          {
 
             output_debug_string(" IsIconic or not IsIconic, thats the question interaction_impl::_001OnWindowPosChanged");
@@ -4066,7 +4066,7 @@ namespace windows
       else if (::IsZoomed(get_handle()))
       {
 
-         if (m_puserinteraction->layout().window().display() != ::display_zoomed)
+         if (m_puserinteraction->layout().window().display() != ::e_display_zoomed)
          {
 
             output_debug_string(" IsZoomed or not IsZoomed, thats the question interaction_impl::_001OnWindowPosChanged");

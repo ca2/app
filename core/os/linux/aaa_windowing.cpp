@@ -2456,10 +2456,10 @@ void wm_iconify_window(oswindow oswindow)
       else
       {
 
-         if(oswindow->m_pimpl->m_puserinteraction->layout().design().display() !=::display_iconic)
+         if(oswindow->m_pimpl->m_puserinteraction->layout().design().display() !=::e_display_iconic)
          {
 
-            oswindow->m_pimpl->m_puserinteraction->set_appearance(::display_iconic);
+            oswindow->m_pimpl->m_puserinteraction->set_appearance(::e_display_iconic);
 
          }
 
@@ -3362,7 +3362,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e, XGenericEventC
                   if(iIconic == 0)
                   {
 
-                     if(pinteraction->layout().design().display() == ::display_iconic)
+                     if(pinteraction->layout().design().display() == ::e_display_iconic)
                      {
 
                         //file_put_contents("/home/camilo/xxx.txt", "");
@@ -3374,10 +3374,10 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e, XGenericEventC
                         pinteraction->fork([=]()
                         {
 
-                           if(pinteraction->m_windowrect.m_edisplayPrevious == ::display_iconic)
+                           if(pinteraction->m_windowrect.m_edisplayPrevious == ::e_display_iconic)
                            {
 
-                              pinteraction->_001OnDeiconify(::display_normal);
+                              pinteraction->_001OnDeiconify(::e_display_normal);
 
                            }
                            else
@@ -3392,11 +3392,11 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e, XGenericEventC
                         bHandled = true;
 
                      }
-                     else if(pinteraction->layout().sketch().display() == ::display_full_screen
-                           && pinteraction->layout().design().display() != ::display_full_screen)
+                     else if(pinteraction->layout().sketch().display() == ::e_display_full_screen
+                           && pinteraction->layout().design().display() != ::e_display_full_screen)
                      {
 
-                        pinteraction->set_appearance(::display_full_screen);
+                        pinteraction->set_appearance(::e_display_full_screen);
 
                      }
 
@@ -3404,11 +3404,11 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e, XGenericEventC
                   else
                   {
 
-                     if(pinteraction->layout().design().display() != ::display_iconic
-                     && pinteraction->layout().design().display() != ::display_none)
+                     if(pinteraction->layout().design().display() != ::e_display_iconic
+                     && pinteraction->layout().design().display() != ::e_display_none)
                      {
 
-                        pinteraction->set_appearance(::display_iconic);
+                        pinteraction->set_appearance(::e_display_iconic);
 
                      }
 
@@ -3449,10 +3449,10 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e, XGenericEventC
          if(pinteraction != nullptr)
          {
 
-            if(pinteraction->layout().design().display() == ::display_iconic && !msg.hwnd->is_iconic())
+            if(pinteraction->layout().design().display() == ::e_display_iconic && !msg.hwnd->is_iconic())
             {
 
-               ::e_display edisplayPrevious = pinteraction->m_windowrect.m_edisplayPrevious;
+               ::enum_display edisplayPrevious = pinteraction->m_windowrect.m_edisplayPrevious;
 
                pinteraction->layout().sketch().m_edisplay3 = edisplayPrevious;
 
@@ -3873,7 +3873,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e, XGenericEventC
 //                xv_pause = (xv_pause)?0:1;
 //                while(xv_pause) {
 //                    dv_display_event(dv_dpy);
-//                    usleep(10000);
+//                    usleep(10000_ms);
 //                }
 //
 //            default:

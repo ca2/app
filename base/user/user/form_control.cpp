@@ -1519,7 +1519,7 @@ namespace user
 //
 //         KillTimer(24);
 //
-//         GetTopLevelFrame()->EndModalLoop(IDOK);
+//         GetTopLevelFrame()->EndModalLoop(e_dialog_result_ok);
 //
 //      }
 
@@ -1536,7 +1536,7 @@ namespace user
       {
          if(GetTopLevel() != nullptr)
          {
-            GetTopLevel()->EndModalLoop(IDOK);
+            GetTopLevel()->EndModalLoop(e_dialog_result_ok);
          }
          return;
       }

@@ -1,15 +1,18 @@
 #pragma once
 
 
-
-//struct matter;
 class element_2d;
+
 
 namespace colorertake5
 {
+
+
    class base_editor;
    class text_lines;
    class file_type;
+
+
 } // namespace colorertake5
 
 

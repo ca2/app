@@ -144,7 +144,7 @@ CLASS_DECL_ACME void __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_
 //      ::acme::system * psystem = new ::acme::system();
 //
 //
-//      //millis_sleep(30 * 1000);
+//      //sleep(30 * 1000);
 //
 //
 //      ASSERT(hPrevInstance == nullptr);
@@ -261,10 +261,10 @@ string ca2_command_line()
 
    }
 
-   if (!::str::begins_eat_ci(strAppId, "cc.ca2."))
+   if (!::str::begins_eat_ci(strAppId, "com."))
    {
 
-      ::str::begins_eat_ci(strAppId, "com.ca2.");
+      ::str::begins_eat_ci(strAppId, "com.");
 
    }
 

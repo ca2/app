@@ -91,7 +91,7 @@ namespace plugin
 
       bool bNew = false;
 
-      //millis_sleep(15 * 1000);
+      //sleep(15 * 1000);
 
       sync_lock mlSystem(&m_phost->m_mutexSystem);
 
@@ -378,7 +378,7 @@ namespace plugin
 
       //::account::user * puser = nullptr;
 
-      //millis_sleep(15 * 1000);
+      //sleep(15 * 1000);
 
 
       throw todo();
@@ -531,7 +531,7 @@ namespace plugin
       try
       {
 
-         //millis_sleep(15 * 1000);
+         //sleep(15 * 1000);
 
          char * pszAlloc = (char *) (void *) psz;
 
@@ -556,7 +556,7 @@ namespace plugin
 
          }
 
-         //millis_sleep(15 * 1000);
+         //sleep(15 * 1000);
 
          string strPluginUrl;
 
@@ -669,7 +669,7 @@ namespace plugin
 
             }
 
-            //millis_sleep(15 * 1000);
+            //sleep(15 * 1000);
             if(str1 == "ca2login")
             {
                // graphical - 2 - user interface for login - account - through the plugin
@@ -933,7 +933,7 @@ namespace plugin
 
                         bool bTimedOut = false;
 
-                        auto exitstatus = System.process().synch(strPath,display_normal,seconds(8.41115770402),&bTimedOut);
+                        auto exitstatus = System.process().synch(strPath,e_display_normal,seconds(8.41115770402),&bTimedOut);
 
                         if(bTimedOut)
                         {
@@ -959,7 +959,7 @@ namespace plugin
                      {
 
                         m_puiHost->KillTimer(19841115);
-                        //millis_sleep(15 * 1000);
+                        //sleep(15 * 1000);
                         //                     System.m_puiInitialPlaceHolderContainer = m_puiHost;
                         xxdebug_box("plugin", "open_ca2_string", 0);
                         auto pcreate = __new(::create);
@@ -1027,7 +1027,7 @@ namespace plugin
 
       }
 
-      millis_sleep(2000);
+      sleep(2000_ms);
 
       try
       {

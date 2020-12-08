@@ -5962,7 +5962,7 @@ finished_update:
 
       }
 
-      display(display_none);
+      display(e_display_none);
 
       m_bMultiLine = pdescriptor->has_function(control_function_edit_multi_line);
 
@@ -6302,7 +6302,7 @@ finished_update:
    //bool plain_edit::display(edisplay edisplay)
    //{
 
-   //   if (nCmdShow != display_none)
+   //   if (nCmdShow != e_display_none)
    //   {
 
    //      TRACE("Going to Show plain_edit");

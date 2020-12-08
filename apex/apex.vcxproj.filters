@@ -1475,6 +1475,9 @@
     <ClInclude Include="parallelization\service\pool.h">
       <Filter>Header Files\parallelization\service</Filter>
     </ClInclude>
+    <ClInclude Include="net\sockets\_sockets.h">
+      <Filter>Header Files\net\sockets</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\command_line.cpp">
@@ -1823,9 +1826,6 @@
       <Filter>Source Files\os\ansios</Filter>
     </ClCompile>
     <ClCompile Include="os\ansios\language.cpp">
-      <Filter>Source Files\os\ansios</Filter>
-    </ClCompile>
-    <ClCompile Include="os\ansios\process.cpp">
       <Filter>Source Files\os\ansios</Filter>
     </ClCompile>
     <ClCompile Include="os\ansios\win.cpp">
@@ -2187,6 +2187,9 @@
     </ClCompile>
     <ClCompile Include="parallelization\service\plain_service.cpp">
       <Filter>Source Files\parallelization\service</Filter>
+    </ClCompile>
+    <ClCompile Include="os\windows\application_system_run.cpp">
+      <Filter>Source Files\os\windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

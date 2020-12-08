@@ -178,10 +178,10 @@ namespace filemanager
 
             //Application.sync_message_box("Do you want to overwrite?\n\nThere is already a existing file with the same name: " + strDst.name() + e_message_box_icon_question + e_message_box_yes_no_cancel + parent(m_oswindowCallback));
 
-            //if(iResult == IDYES)
+            //if(iResult == e_dialog_result_yes)
             //{
             //}
-            //else if(iResult == IDNO)
+            //else if(iResult == e_dialog_result_no)
             //{
 
 

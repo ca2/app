@@ -131,14 +131,25 @@ namespace apex
 
 #else
 
+      if(m_strApp == "app-core/clockverse")
+      {
+
+         ::output_debug_string("app-core/clockverse");
+
+      }
+
       string strPath = get_executable_path();
 
       string strDir = dir::name(strPath);
 
       string strParams = get_params();
 
-      if (call_async(strPath, strParams, strDir, display_none, false) == 0)
+      if (call_async(strPath, strParams, strDir, e_display_none, false) == 0)
+      {
+
          return true;
+
+      }
 
 #endif
 
@@ -148,5 +159,6 @@ namespace apex
 
 
 } // namespace apex
+
 
 

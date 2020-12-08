@@ -577,7 +577,7 @@ namespace userex
 
       m_mapframe[idView] = dynamic_cast < simple_frame_window * > (pview->GetParentFrame());
 
-      m_mapframe[idView]->display(display_none);
+      m_mapframe[idView]->display(e_display_none);
 
       _001DefaultLayoutView(idView);
 

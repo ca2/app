@@ -24,6 +24,9 @@ public:
    micros & operator = (const micros & micros) { m_iMicroseconds = micros.m_iMicroseconds; return *this; }
 
 
+   void sleep() const;
+
+
 };
 
 

@@ -187,7 +187,7 @@ namespace turboc
 
       }
 
-      //pcreate->m_pcommandline->m_varQuery["document"].cast < document >()->get_typed_view < pane_view >()->GetParentFrame()->display(display_restore);
+      //pcreate->m_pcommandline->m_varQuery["document"].cast < document >()->get_typed_view < pane_view >()->GetParentFrame()->display(e_display_restore);
 
    }
 

@@ -71,7 +71,7 @@ namespace aura
       {
 
          data_struct data;
-         data.mtype        = 15111984;
+         data.mtype        = 20170101;
          data.request      = 0;
          data.size         = ansi_length(pszMessage);
          if(data.size > 512)
@@ -108,7 +108,7 @@ namespace aura
          ::count cSend;
 
          data_struct data;
-         data.mtype        = 15111984;
+         data.mtype        = 20170101;
          data.request      = 0x80000000;
          data.size         = (i32)ansi_length(pszMessage);
 
@@ -195,7 +195,7 @@ namespace aura
          while(m_bRunning && iRetry > 0)
          {
             m_bRun = false;
-            sleep(1);
+            sleep(1_ms);
             iRetry--;
          }
 
@@ -346,14 +346,14 @@ namespace aura
             do
             {
                /*
-               if((result = msgrcv(m_iQueue, &data, length, 15111984, IPC_NOWAIT)) == -1)
+               if((result = msgrcv(m_iQueue, &data, length, 20170101, IPC_NOWAIT)) == -1)
                {
 
                if(errno == ENOMSG)
                {
                if(!on_idle())
                {
-               millis_sleep(100);
+               sleep(100_ms);
                }
                }
                else

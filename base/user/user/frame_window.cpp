@@ -431,7 +431,7 @@ namespace user
    {
 
 
-      ASSERT(m_hAccelTable == nullptr);  // only do once
+      //ASSERT(m_hAccelTable == nullptr);  // only do once
       ASSERT(pszResourceName != nullptr);
 
       /*   HINSTANCE hInst = ::aura::FindResourceHandle(pszResourceName, RT_ACCELERATOR);
@@ -765,7 +765,7 @@ namespace user
       u32 uStyle = ::GetWindowLong(oswindow, GWL_STYLE);
       if (!bShow && (uStyle & (WS_VISIBLE|WS_DISABLED)) == WS_VISIBLE)
       {
-      ::display(oswindow, display_none);
+      ::display(oswindow, e_display_none);
       pwindow->m_nFlags |= WF_TEMPHIDE;
       }
       // don't show temporarily hidden windows if we're in print preview mode
@@ -1187,7 +1187,7 @@ namespace user
 
          // finally, activate the frame
          // (send the default show command unless the main desktop interaction_impl)
-         ActivateFrame(display_default);
+         ActivateFrame(e_display_default);
 
          if (pview != nullptr)
          {
@@ -1224,7 +1224,7 @@ namespace user
       if (m_bFrameMoveEnable)
       {
 
-         display(display_restore);
+         display(e_display_restore);
 
       }
 
@@ -2356,7 +2356,7 @@ namespace user
 
          set_size(rect.size());
 
-         display(display_normal, activation_no_activate);
+         display(e_display_normal, e_activation_no_activate);
 
       }
       else
@@ -2496,19 +2496,19 @@ namespace user
    // nCmdShow is the normal show mode this frame should be in
    {
       // translate default nCmdShow (-1)
-      if (edisplay == display_default)
+      if (edisplay == e_display_default)
       {
 
          if (!::is_visible(layout().sketch().display()))
          {
 
-            edisplay = display_normal;
+            edisplay = e_display_normal;
 
          }
          else if (layout().is_iconic())
          {
 
-            edisplay = display_restore;
+            edisplay = e_display_restore;
 
          }
          else
@@ -2528,9 +2528,9 @@ namespace user
       }
 
       // =set_window_pos(TOP)
-      //BringToTop(display_normal);
+      //BringToTop(e_display_normal);
 
-      if (edisplay != display_default)
+      if (edisplay != e_display_default)
       {
          // show the interaction_impl as specified
          display(edisplay);
@@ -2615,7 +2615,7 @@ namespace user
          if (pbase->m_wparam == SC_RESTORE)
          {
 
-            display(display_restore);
+            display(e_display_restore);
 
             pbase->m_bRet = true;
 

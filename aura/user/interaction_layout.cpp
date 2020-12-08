@@ -27,9 +27,9 @@ namespace user
 
       m_elayoutexperience = layout_experience_none;
 
-      sketch() = display_none;
-      window() = display_none;
-      design() = display_none;
+      sketch() = e_display_none;
+      window() = e_display_none;
+      design() = e_display_none;
 
    }
 
@@ -72,9 +72,9 @@ namespace user
 
       }
 
-      design() = display_none;
+      design() = e_display_none;
 
-      sketch() = display_none;
+      sketch() = e_display_none;
 
    }
 
@@ -224,66 +224,66 @@ namespace user
 //
 //      bool bToggle = false;
 //
-//      if (edisplay == display_normal)
+//      if (edisplay == e_display_normal)
 //      {
 //
 //         #ifdef INFO_LAYOUT_DISPLAY
 //
-//         INFO("interaction_layout::display display_normal");
+//         INFO("interaction_layout::display e_display_normal");
 //
 //         #endif
 //
 //      }
-//      else if (edisplay == display_hide)
+//      else if (edisplay == e_display_hide)
 //      {
 //
 //         #ifdef INFO_LAYOUT_DISPLAY
 //
-//         INFO("interaction_layout::display display_hide");
+//         INFO("interaction_layout::display e_display_hide");
 //
 //         #endif
 //
 //      }
-//      else if (edisplay == display_default)
+//      else if (edisplay == e_display_default)
 //      {
 //
 //         #ifdef INFO_LAYOUT_DISPLAY
 //
-//         INFO("interaction_layout::display display_default");
+//         INFO("interaction_layout::display e_display_default");
 //
 //         #endif
 //
 //      }
-//      else if (edisplay == display_zoomed)
+//      else if (edisplay == e_display_zoomed)
 //      {
 //
-//         output_debug_string("display_zoomed");
+//         output_debug_string("e_display_zoomed");
 //
 //         #ifdef INFO_LAYOUT_DISPLAY
 //
-//         INFO("interaction_layout::display display_zoomed");
+//         INFO("interaction_layout::display e_display_zoomed");
 //
 //         #endif
 //
 //      }
-//      else if (edisplay == display_iconic)
+//      else if (edisplay == e_display_iconic)
 //      {
 //
 //         #ifdef INFO_LAYOUT_DISPLAY
 //
-//         INFO("interaction_layout::display display_iconic");
+//         INFO("interaction_layout::display e_display_iconic");
 //
 //         #endif
 //
 //      }
-//      else if (edisplay == display_full_screen)
+//      else if (edisplay == e_display_full_screen)
 //      {
 //
-//         output_debug_string("display_full_screen");
+//         output_debug_string("e_display_full_screen");
 //
 //         #ifdef INFO_LAYOUT_DISPLAY
 //
-//         INFO("interaction_layout::display display_full_screen");
+//         INFO("interaction_layout::display e_display_full_screen");
 //
 //         #endif
 //
@@ -301,7 +301,7 @@ namespace user
 //
 //#if DEBUG_LEVEL > 0
 //
-//      if (edisplay == display_normal)
+//      if (edisplay == e_display_normal)
 //      {
 //
 //         if (m_pdescriptor.is_set() && m_pdescriptor->m_puserinteractionParent == nullptr)
@@ -312,7 +312,7 @@ namespace user
 //         }
 //
 //      }
-//      else if (edisplay == display_hide)
+//      else if (edisplay == e_display_hide)
 //      {
 //
 //         if (m_pdescriptor.is_set() && m_pdescriptor->m_puserinteractionParent == nullptr)
@@ -326,7 +326,7 @@ namespace user
 //
 //#endif
 //
-//      if (edisplay == display_default)
+//      if (edisplay == e_display_default)
 //      {
 //
 //         auto edisplayCurrent = m_stateRequest2.m_edisplay3;
@@ -335,10 +335,10 @@ namespace user
 //
 //         auto edisplayPrevious = m_windowrect.m_edisplayPrevious;
 //
-//         if (edisplayCurrent == display_undefined)
+//         if (edisplayCurrent == e_display_undefined)
 //         {
 //
-//            edisplay = display_normal;
+//            edisplay = e_display_normal;
 //
 //         }
 //         else if (::is_screen_visible(edisplayCurrent))
@@ -362,7 +362,7 @@ namespace user
 //         else
 //         {
 //
-//            edisplay = ::display_normal;
+//            edisplay = ::e_display_normal;
 //
 //         }
 //
@@ -462,7 +462,7 @@ namespace user
    //bool interaction_layout::is_this_screen_visible() const
    //{
 
-   //   if(layout().sketch().display() == display_iconic)
+   //   if(layout().sketch().display() == e_display_iconic)
    //   {
 
    //      return ::is_screen_visible(window_display());

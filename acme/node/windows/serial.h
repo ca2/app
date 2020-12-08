@@ -79,7 +79,7 @@ namespace serial
       available ();
 
       bool
-      waitReadable (u32 timeout);
+      waitReadable (::millis timeout);
 
       void
       waitByteTimes (size_t count);

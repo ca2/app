@@ -1659,7 +1659,7 @@ namespace user
 
       }
 
-      display(display_none);
+      display(e_display_none);
 
       m_bMultiLine = false;
 

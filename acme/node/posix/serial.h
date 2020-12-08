@@ -47,21 +47,21 @@
    using serial::SerialException;
    using serial::IOException;
 
-namespace serial
-{
-
-   class MillisecondTimer
-   {
-   public:
-      MillisecondTimer(const u32 millis);
-      i64 remaining();
-
-   private:
-      static timespec timespec_now();
-      timespec expiry;
-   };
-
-}
+//namespace serial
+//{
+//
+////   class MillisecondTimer
+////   {
+////   public:
+////      MillisecondTimer(const u32 millis);
+////      ::millis remaining();
+////
+////   private:
+////      static timespec timespec_now();
+////      timespec expiry;
+////   };
+//
+//}
 
 class serial::Serial::SerialImpl :
   virtual public matter
@@ -89,7 +89,7 @@ public:
   available ();
 
   bool
-  waitReadable (u32 timeout);
+  waitReadable (::millis timeout);
 
   void
   waitByteTimes (size_t count);

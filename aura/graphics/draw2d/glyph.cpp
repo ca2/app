@@ -49,7 +49,7 @@ namespace draw2d
    *  FUNCTION   : IntFromFixed
    *  RETURNS    : i32 value approximating the FIXED value.
    ****************************************************************************/
-   i32 NEAR IntFromFixed(FIXED f)
+   i32 IntFromFixed(FIXED f)
    {
       if (f.fract >= 0x8000)
          return(f.value + 1);
@@ -63,7 +63,7 @@ namespace draw2d
    *  FUNCTION   : fxDiv2
    *  RETURNS    : (val1 + val2)/2 for FIXED values
    ****************************************************************************/
-   FIXED NEAR fxDiv2(FIXED fxVal1, FIXED fxVal2)
+   FIXED fxDiv2(FIXED fxVal1, FIXED fxVal2)
    {
       long l;
 

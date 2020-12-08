@@ -1130,7 +1130,7 @@ break_click:;
       {
       //             //  case VK_RETURN:
       _001SaveEdit(pinteraction);
-      pinteraction->display(display_none);
+      pinteraction->display(e_display_none);
       lresult &= ~user::NotifyRetContinue;
       return true;
       }
@@ -1204,7 +1204,7 @@ break_click:;
       //   {
       //      if(control.m_pcontrol != nullptr)
       //      {
-      //         control.m_pcontrol->display(display_none);
+      //         control.m_pcontrol->display(e_display_none);
       //      }
       //   }
       //}
@@ -1214,7 +1214,7 @@ break_click:;
    void form_list::_001HideControl(::user::interaction * pinteraction)
    {
 
-      pinteraction->display(display_none);
+      pinteraction->display(e_display_none);
 
    }
 
@@ -1584,8 +1584,7 @@ break_click:;
       if(pinteraction == nullptr)
       {
 
-         SetRectEmpty(prect);
-
+         ::null(prect);
 
          return;
 

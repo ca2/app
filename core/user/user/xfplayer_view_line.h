@@ -115,7 +115,10 @@ public:
    void update_hover(point & pointCursor);
    void PrepareURLLinks();
    void SetFont(::draw2d::font * pfont);
+
+#ifdef WINDOWS_DESKTOP
    void GetLogFont(LOGFONTW & lf);
+#endif
 
    user::e_line_hit hit_test(const point &pointCursorParam, strsize &iChar);
 
@@ -195,14 +198,9 @@ public:
    bool PrepareLine(::draw2d::graphics_pointer & pgraphics, string str, i32 flags, const ::rect & rect);
 
 
-   void AddChar(
-   WCHAR wch,
-   strsize &index);
+   void add_char(widechar wch, strsize &index);
 
-   void AddChar(
-   WCHAR wch,
-   strsize &index,
-   draw2d::font * pFont);
+   void add_char(widechar wch, strsize &index, draw2d::font * pFont);
 
    bool _001OnDraw(::draw2d::graphics_pointer & pgraphics, bool bDraw, const ::rect & rect, rect_array & rectaModified, bool bRecalcLayout);
 

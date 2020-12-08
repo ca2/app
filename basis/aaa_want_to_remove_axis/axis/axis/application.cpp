@@ -1058,7 +1058,7 @@ m_millisHeartBeat.Now();
 
             }
 
-            millis_sleep(200);
+            sleep(200_ms);
 
          }
 
@@ -1488,7 +1488,7 @@ m_millisHeartBeat.Now();
 
          ::property_set set;
 
-         return ::call_sync(::path::app_app(process_platform_dir_name2(), process_configuration_dir_name()),pszCommandLine,::path::app_app(process_platform_dir_name2(), process_configuration_dir_name()),display_normal, 2_min, set);
+         return ::call_sync(::path::app_app(process_platform_dir_name2(), process_configuration_dir_name()),pszCommandLine,::path::app_app(process_platform_dir_name2(), process_configuration_dir_name()),e_display_normal, 2_min, set);
 
 #endif
 

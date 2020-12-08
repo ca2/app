@@ -18,7 +18,7 @@ typedef struct tWAVEFORMATEX
     ::u16        wBitsPerSample;     /* number of bits per sample of mono data */
     ::u16        cbSize;             /* the count in bytes of the size of */
                                     /* extra information (after cbSize) */
-} WAVEFORMATEX, *PWAVEFORMATEX, NEAR *NPWAVEFORMATEX, FAR *LPWAVEFORMATEX;
+} WAVEFORMATEX, *PWAVEFORMATEX, *NPWAVEFORMATEX, *LPWAVEFORMATEX;
 
 #endif /* _WAVEFORMATEX_ */
 
@@ -28,8 +28,8 @@ typedef struct tWAVEFORMATEX
 
 typedef struct tag_WAVEHDR
 {
-   LPBYTE   lpbyte;
-   ::u32     uiCount;
+   byte *      lpbyte;
+   ::u32       uiCount;
 } WAVEHDR, * LPWAVEHDR;
 
 

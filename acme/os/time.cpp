@@ -43,8 +43,40 @@ bool os_usleep::sleep(unsigned long usec)
 //CLASS_DECL_ACME void sleep(const ::duration& dur)
 //{
 //
-//   millis_sleep((::u32)dur.total_milliseconds());
+//   sleep((::u32)dur.total_milliseconds());
 //
 //}
+
+
+CLASS_DECL_ACME void sleep(const duration & duration)
+{
+
+   if(duration.secs().m_iSeconds >= 20)
+   {
+
+      sleep(duration);
+
+   }
+   else if(duration.millis().m_iMilliseconds >= 20)
+   {
+
+      sleep(duration);
+
+   }
+   else if(duration.micros().m_iMicroseconds >= 20)
+   {
+
+      sleep(duration);
+
+   }
+   else
+   {
+
+      sleep(duration);
+
+   }
+
+}
+
 
 

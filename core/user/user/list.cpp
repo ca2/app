@@ -1168,7 +1168,7 @@ namespace user
                             rectClient.left +
                             m_nItemCount * itemFirst.m_rectItem.width() * m_iItemHeight /
                             rectClient.height()
-                            + itemFirst.m_rectItem.width(), MAXLONG);
+                            + itemFirst.m_rectItem.width(), MAXI32);
 
             }
 
@@ -3223,7 +3223,7 @@ namespace user
       else
       {
 
-         m_plistheader->display(display_none);
+         m_plistheader->display(e_display_none);
 
       }
 

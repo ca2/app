@@ -301,7 +301,7 @@ bool gnome_appindicator::init(user_notify_icon_bridge * pbridge)
 
          string strInfo;
 
-         strInfo += "<u>";
+         strInfo += "<ui>";
 
          strInfo += "  <popup name='IndicatorPopup'>";
 
@@ -354,7 +354,7 @@ bool gnome_appindicator::init(user_notify_icon_bridge * pbridge)
          }
 
          strInfo += "  </popup>";
-         strInfo += "</u>";
+         strInfo += "</ui>";
 
          gtk_action_group_add_actions (action_group, entries, iEntry, pbridge);
 
@@ -402,7 +402,7 @@ bool gnome_appindicator::init(user_notify_icon_bridge * pbridge)
          if(bOk)
          {
 
-            indicator_menu = gtk_ui_manager_get_widget (uim, "/u/IndicatorPopup");
+            indicator_menu = gtk_ui_manager_get_widget (uim, "/ui/IndicatorPopup");
 
             app_indicator_set_menu(m_pindicator, GTK_MENU (indicator_menu));
 

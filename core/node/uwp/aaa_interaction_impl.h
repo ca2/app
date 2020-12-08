@@ -249,7 +249,7 @@ namespace uwp
                                 ::u32 flags = RDW_INVALIDATE | RDW_ERASE);
       //      virtual bool EnableScrollBar(int nSBFlags, ::u32 nArrowFlags = ESB_ENABLE_BOTH);
 
-      virtual bool DrawAnimatedRects(int idAni, CONST RECT32 *lprcFrom, CONST RECT32 *lprcTo);
+      virtual bool DrawAnimatedRects(int idAni, const RECT32 *lprcFrom, const RECT32 *lprcTo);
       virtual bool DrawCaption(::draw2d::graphics_pointer & pgraphics, LPCRECT32 lprc, ::u32 uFlags);
 
 #if(WINVER >= 0x0500)

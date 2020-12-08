@@ -52,7 +52,7 @@ namespace apex
 
          }
 
-         millis_sleep(m_durationCheckPeriod);
+         sleep(m_durationCheckPeriod);
 
       }
 

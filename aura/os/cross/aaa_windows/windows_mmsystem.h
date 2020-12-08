@@ -49,7 +49,7 @@ typedef struct midihdr_tag
    ::u32       dwOffset;             /* CALLBACK offset into buffer */
    dword_ptr   dwReserved[8];        /* Reserved for MMSYSTEM */
 #endif
-} MIDIHDR, *PMIDIHDR, NEAR *NPMIDIHDR, FAR *LPMIDIHDR;
+} MIDIHDR, *PMIDIHDR, *NPMIDIHDR, *LPMIDIHDR;
 
 
 //typedef struct music_midi_stream *       HMIDISTRM;
@@ -61,7 +61,7 @@ typedef struct midihdr_tag
 
 //struct audio_mixer;
 
-//typedef struct audio_mixer FAR * LPAUDIOMIXER;
+//typedef struct audio_mixer * LPAUDIOMIXER;
 
 
 //typedef LPAUDIOMIXER HMIXER;

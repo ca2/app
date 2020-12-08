@@ -1995,8 +1995,7 @@ namespace draw2d
 
          rect.bottom = rectParam.bottom;
 
-
-         add_arc(rect,90,180);
+         add_arc(rect,90_degree,180_degree);
 
       }
 
@@ -2009,7 +2008,6 @@ namespace draw2d
          r2.right = rect.right - rect.height() / 2.0;
 
          r2.bottom = rect.bottom;
-
 
          add_line(r2.right, r2.top);
 
@@ -2025,8 +2023,7 @@ namespace draw2d
 
          rect.bottom = rectParam.bottom;
 
-
-         add_arc(rect,-90,180);
+         add_arc(rect,-90_degree,180_degree);
 
       }
 

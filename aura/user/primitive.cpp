@@ -2959,7 +2959,7 @@ namespace user
    //edisplay primitive::get_display()
    //{
 
-   //   return display_none;
+   //   return e_display_none;
 
    //}
 
@@ -2967,7 +2967,7 @@ namespace user
    //edisplay primitive::get_previous_display()
    //{
 
-   //   return display_none;
+   //   return e_display_none;
 
    //}
 
@@ -3234,7 +3234,7 @@ namespace user
       if (psimplecommand->m_esimplecommand == simple_command_full_screen)
       {
 
-         get_wnd()->display(display_full_screen);
+         get_wnd()->display(e_display_full_screen);
 
          psimplecommand->m_bRet = true;
 

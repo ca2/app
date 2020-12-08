@@ -12,6 +12,8 @@ namespace linux
 
 
    class x11data;
+
+
    class interaction_impl :
       virtual public ::user::interaction_impl
    {
@@ -306,7 +308,7 @@ namespace linux
       virtual void set_viewport_org(::draw2d::graphics_pointer & pgraphics) override;
 
 //
-//      //virtual bool DrawAnimatedRects(i32 idAni, CONST LPRECTprcFrom, CONST LPRECTlprcTo);
+//      //virtual bool DrawAnimatedRects(i32 idAni, const LPRECTprcFrom, const LPRECTlprcTo);
 //
 //      virtual bool DrawCaption(::draw2d::graphics_pointer & pgraphics, const rect & prc, ::u32 uFlags);
 //

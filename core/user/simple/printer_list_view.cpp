@@ -36,16 +36,22 @@ void simple_printer_list_view::_001OnCreate(::message::message * pmessage)
 
    pmessage->previous();
 
-   DWORD cbNeeded = 0;
 #ifdef WINDOWS_DESKTOP
+
+   DWORD cbNeeded = 0;
+
    DWORD cbReturned = 0;
+
    ::EnumPrinters(PRINTER_ENUM_LOCAL | PRINTER_ENUM_CONNECTIONS, nullptr, 1, nullptr, 0, &cbNeeded, &cbReturned);
-#else
-   //__throw(todo());
-#endif
 
    if(cbNeeded <= 0)
       return;
+
+#else
+
+   //__throw(todo());
+
+#endif
 
 #ifdef WINDOWS_DESKTOP
    PRINTER_INFO_1  * infoa = (PRINTER_INFO_1 * ) malloc(cbNeeded);

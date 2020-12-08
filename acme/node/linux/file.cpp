@@ -123,7 +123,7 @@ namespace linux
       m_path     = pszFileName;
 
 
-      ASSERT(sizeof(HANDLE) == sizeof(uptr));
+      //ASSERT(sizeof(HANDLE) == sizeof(uptr));
       ASSERT(::file::share_compat == 0);
 
       // ::collection::map read/write mode

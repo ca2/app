@@ -51,45 +51,45 @@ void __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers)
 
 
 
-//CLASS_DECL_ACME bool os_init_application()
-//{
-//
-//   return true;
-//
-//}
-//
-//
-//CLASS_DECL_ACME void os_term_application()
-//{
-//
-//
-//
-//}
+CLASS_DECL_ACME bool os_init_application()
+{
 
-//
-//string ca2_command_line(HINSTANCE hinstance)
-//{
-//
-//#ifdef CUBE
-//
-//   string strAppId = get_cube_app_id();
-//
-//#else
-//
-//   string strAppId = read_resource_as_string(hinstance, 1, "APPID");
-//
-//#endif
-//
-//   if (strAppId.is_empty())
-//   {
-//
-//      return "";
-//
-//   }
-//
-//   return "app.exe : app=" + strAppId;
-//
-//}
+   return true;
+
+}
+
+
+CLASS_DECL_ACME void os_term_application()
+{
+
+
+
+}
+
+
+string ca2_command_line(HINSTANCE hinstance)
+{
+
+#ifdef CUBE
+
+   string strAppId = get_cube_app_id();
+
+#else
+
+   string strAppId = read_resource_as_string(hinstance, 1, "APPID");
+
+#endif
+
+   if (strAppId.is_empty())
+   {
+
+      return "";
+
+   }
+
+   return "app.exe : app=" + strAppId;
+
+}
 
 
 //

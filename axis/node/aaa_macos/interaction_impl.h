@@ -274,7 +274,7 @@ namespace macos
       //virtual votru8id _001UpdateWindow(bool bUpdateBuffer = false) override;
       // xxx      virtual bool EnableScrollBar(i32 nSBFlags, ::u32 nArrowFlags = ESB_ENABLE_BOTH);
 
-      //virtual bool DrawAnimatedRects(i32 idAni, CONST RECT32 *lprcFrom, CONST RECT32 *lprcTo) override;
+      //virtual bool DrawAnimatedRects(i32 idAni, const RECT32 *lprcFrom, const RECT32 *lprcTo) override;
       virtual bool DrawCaption(::draw2d::graphics_pointer & pgraphics, const ::rect & rect, ::u32 uFlags) override;
 
 #if(WINVER >= 0x0500)

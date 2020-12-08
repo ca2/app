@@ -167,7 +167,7 @@ void* load_lib(const char* l)
 }
 
 
-::estatus os_application_system_run(::apex::system* psystem);
+//::estatus os_application_system_run(::apex::system* psystem);
 
 
 int SetMainScreenRect(LPCRECT32 lpcrect);
@@ -183,7 +183,7 @@ void android_apex_main()
 
    psystem->m_pathCacheDir = premote->getCacheDir();
 
-   psystem->system_construct(plocal, display_default);
+   psystem->system_construct(plocal, e_display_default);
 
    ::estatus estatus = os_application_system_run(psystem);
    

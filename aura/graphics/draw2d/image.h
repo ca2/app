@@ -52,7 +52,7 @@ public:
 
    virtual bool on_load_image();
    virtual bool on_exif_orientation();
-
+   virtual void fast_copy(color32_t * pcolor32FullImage);
 
    inline ::size get_size() const;
    //inline ::size size() const;

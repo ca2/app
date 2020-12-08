@@ -35,7 +35,7 @@ namespace user
 
             INFO("SC_MAXIMIZE");
 
-            display(display_zoomed);
+            display(e_display_zoomed);
 
             set_need_redraw();
 
@@ -49,7 +49,7 @@ namespace user
 
             INFO("SC_RESTORE");
 
-            if (layout().sketch().display() == display_default)
+            if (layout().sketch().display() == e_display_default)
             {
 
                display_previous_restore();

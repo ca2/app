@@ -20,13 +20,13 @@ public:
    };
 
 
-   //e_duration     m_eduration;
-   ::i64          m_iNanoseconds;
-   ::i64          m_iSeconds;
+   //e_duration      m_eduration;
+   ::nanos           m_nanos;
+   ::secs            m_secs;
 
 
    explicit duration(long double dSeconds);
-   duration(i64 iSeconds = 0, i64 iNanoseconds = 0) : m_iSeconds(iSeconds), m_iNanoseconds(iNanoseconds) {}
+   duration(i64 iSeconds = 0, i64 iNanoseconds = 0) : m_secs(iSeconds), m_nanos(iNanoseconds) {}
    duration(enum_normalize, i64 iSeconds, i64 iNanoseconds);
    duration(u64 uSeconds, i64 iNanoseconds = 0) : duration((::i64) uSeconds, iNanoseconds) {}
    duration(i32 iSeconds, i64 iNanoseconds = 0) : duration((::i64) iSeconds, iNanoseconds) {}
@@ -82,10 +82,10 @@ public:
    inline operator bool() const;
 
 
-   inline duration operator - (const ::duration & duration) const { return { e_normalize, m_iSeconds - duration.m_iSeconds, m_iNanoseconds - duration.m_iNanoseconds }; }
-   inline duration operator + (const ::duration & duration) const { return { e_normalize, m_iSeconds + duration.m_iSeconds, m_iNanoseconds + duration.m_iNanoseconds }; }
-   inline duration & operator -= (const ::duration & duration) { m_iSeconds -= duration.m_iSeconds; m_iNanoseconds -= duration.m_iNanoseconds; normalize();  return *this; }
-   inline duration & operator += (const ::duration & duration) { m_iSeconds += duration.m_iSeconds; m_iNanoseconds += duration.m_iNanoseconds; normalize();  return *this; }
+   inline duration operator - (const ::duration & duration) const { return { e_normalize, m_secs.m_iSeconds - duration.m_secs.m_iSeconds, m_nanos.m_iNanoseconds - duration.m_nanos.m_iNanoseconds }; }
+   inline duration operator + (const ::duration & duration) const { return { e_normalize, m_secs.m_iSeconds + duration.m_secs.m_iSeconds, m_nanos.m_iNanoseconds + duration.m_nanos.m_iNanoseconds }; }
+   inline duration & operator -= (const ::duration & duration) { m_secs.m_iSeconds -= duration.m_secs.m_iSeconds; m_nanos.m_iNanoseconds -= duration.m_nanos.m_iNanoseconds; normalize();  return *this; }
+   inline duration & operator += (const ::duration & duration) { m_secs.m_iSeconds += duration.m_secs.m_iSeconds; m_nanos.m_iNanoseconds += duration.m_nanos.m_iNanoseconds; normalize();  return *this; }
 
 
    inline duration & operator = (const ::datetime::time_span & span);
@@ -109,9 +109,9 @@ public:
 inline duration::duration(enum_normalize, ::i64 iSeconds, ::i64 iNanoseconds)
 {
 
-   m_iSeconds = iSeconds;
+   m_secs.m_iSeconds = iSeconds;
 
-   m_iNanoseconds = iNanoseconds;
+   m_nanos.m_iNanoseconds = iNanoseconds;
 
    normalize();
 
@@ -127,8 +127,8 @@ inline duration::duration(long double dSeconds)
 
 
 inline duration::duration(const ::duration& duration) :
-   m_iNanoseconds(duration.m_iNanoseconds),
-   m_iSeconds(duration.m_iSeconds)
+   m_nanos(duration.m_nanos),
+   m_secs(duration.m_secs)
 {
 
 }
@@ -137,9 +137,9 @@ inline duration::duration(const ::duration& duration) :
 inline void duration::raw_set(i64 iSeconds, i64 iNanoseconds)
 {
 
-   m_iSeconds = iSeconds;
+   m_secs.m_iSeconds = iSeconds;
 
-   m_iNanoseconds = iNanoseconds;
+   m_nanos.m_iNanoseconds = iNanoseconds;
 
 }
 
@@ -213,7 +213,7 @@ inline duration duration::create_null()
 inline ::millis duration::millis() const
 {
 
-   return m_iSeconds * 1000 + m_iNanoseconds / 1000000;
+   return m_secs.m_iSeconds * 1000 + m_nanos.m_iNanoseconds / 1000000;
 
 }
 
@@ -229,7 +229,7 @@ inline ::u32 duration::u32_millis() const
 inline ::micros duration::micros() const
 {
 
-   return m_iSeconds * 1000000 + m_iNanoseconds / 1000;
+   return m_secs.m_iSeconds * 1000000 + m_nanos.m_iNanoseconds / 1000;
 
 }
 
@@ -237,7 +237,7 @@ inline ::micros duration::micros() const
 inline nanos duration::nanos() const
 {
 
-   return m_iNanoseconds + m_iSeconds * 1'000'000'000;
+   return m_nanos.m_iNanoseconds + m_secs.m_iSeconds * 1'000'000'000;
 
 }
 
@@ -245,7 +245,7 @@ inline nanos duration::nanos() const
 inline bool duration::is_pos_infinity() const
 {
 
-   return m_iSeconds < 0;
+   return m_secs.m_iSeconds < 0;
 
 }
 
@@ -253,7 +253,7 @@ inline bool duration::is_pos_infinity() const
 inline bool duration::is_infinite() const
 {
 
-   return m_iSeconds < 0;
+   return m_secs.m_iSeconds < 0;
 
 }
 
@@ -261,7 +261,7 @@ inline bool duration::is_infinite() const
 bool duration::is_null() const
 {
 
-   return m_iSeconds == 0 && m_iNanoseconds == 0;
+   return m_secs.m_iSeconds == 0 && m_nanos.m_iNanoseconds == 0;
 
 }
 
@@ -293,7 +293,7 @@ inline duration duration::zero()
 //inline bool duration::operator == (const duration & duration) const
 //{
 //
-//   return m_iSeconds == duration.m_iSeconds && m_iNanoseconds == duration.m_iNanoseconds;
+//   return m_secs.m_iSeconds == duration.m_secs.m_iSeconds && m_nanos.m_iNanoseconds == duration.m_nanos.m_iNanoseconds;
 //
 //}
 
@@ -368,9 +368,9 @@ public:
 inline duration::duration(const ::millis & millis)
 {
 
-    m_iSeconds = millis.m_iMilliseconds / 1'000;
+    m_secs.m_iSeconds = millis.m_iMilliseconds / 1'000;
 
-    m_iNanoseconds = (millis.m_iMilliseconds % 1'000) * 1'000'000;
+    m_nanos.m_iNanoseconds = (millis.m_iMilliseconds % 1'000) * 1'000'000;
 
 }
 
@@ -378,9 +378,9 @@ inline duration::duration(const ::millis & millis)
 inline duration::duration(const ::secs & secs)
 {
 
-   m_iSeconds = secs.m_iSeconds;
+   m_secs = secs;
 
-   m_iNanoseconds = 0;
+   m_nanos = 0;
 
 }
 
@@ -388,9 +388,9 @@ inline duration::duration(const ::secs & secs)
 inline  duration::duration(const ::micros & micros)
 {
 
-    m_iSeconds = micros.m_iMicroseconds / 1'000'000;
+    m_secs.m_iSeconds = micros.m_iMicroseconds / 1'000'000;
 
-    m_iNanoseconds = (micros.m_iMicroseconds % 1'000'000) * 1'000;
+    m_nanos.m_iNanoseconds = (micros.m_iMicroseconds % 1'000'000) * 1'000;
 
 }
 
@@ -398,9 +398,9 @@ inline  duration::duration(const ::micros & micros)
 inline  duration::duration(const ::nanos & nanos)
 {
 
-    m_iSeconds = nanos.m_iNanoseconds / 1'000'000'000;
+    m_secs = nanos.m_iNanoseconds / 1'000'000'000;
 
-    m_iNanoseconds = nanos.m_iNanoseconds % 1'000'000'000;
+    m_nanos = nanos.m_iNanoseconds % 1'000'000'000;
 
 }
 
@@ -709,7 +709,7 @@ inline days::days(long double d) :
 inline time_t duration::GetTimeSpan() const
 {
 
-   return m_iSeconds;
+   return m_secs.m_iSeconds;
 
 }
 
@@ -717,7 +717,7 @@ inline time_t duration::GetTimeSpan() const
 inline ::secs duration::secs() const
 {
 
-   return m_iSeconds;
+   return m_secs.m_iSeconds;
 
 }
 
@@ -725,18 +725,18 @@ inline ::secs duration::secs() const
 inline duration::operator bool() const
 {
 
-   return m_iSeconds != 0 || m_iNanoseconds != 0;
+   return m_secs.m_iSeconds != 0 || m_nanos.m_iNanoseconds != 0;
 
 }
 
 
-//CLASS_DECL_ACME void millis_sleep(const duration & duration);
+//CLASS_DECL_ACME void sleep(const duration & duration);
 
 
-inline bool operator == (const duration & duration1, const ::duration & duration2) { return duration1.m_iSeconds == duration2.m_iSeconds && duration1.m_iNanoseconds == duration2.m_iSeconds; }
+inline bool operator == (const duration & duration1, const ::duration & duration2) { return duration1.m_secs.m_iSeconds == duration2.m_secs.m_iSeconds && duration1.m_nanos.m_iNanoseconds == duration2.m_secs.m_iSeconds; }
 inline bool operator != (const duration & duration1, const ::duration & duration2) { return !(duration1 == duration2); }
-inline bool operator < (const duration & duration1, const ::duration & duration2) { return duration1.m_iSeconds < duration2.m_iSeconds || (duration1.m_iSeconds == duration2.m_iSeconds && duration1.m_iNanoseconds < duration2.m_iNanoseconds); }
-inline bool operator <= (const duration & duration1, const ::duration & duration2) { return duration1.m_iSeconds < duration2.m_iSeconds || (duration1.m_iSeconds == duration2.m_iSeconds && duration1.m_iNanoseconds <= duration2.m_iNanoseconds); }
+inline bool operator < (const duration & duration1, const ::duration & duration2) { return duration1.m_secs.m_iSeconds < duration2.m_secs.m_iSeconds || (duration1.m_secs.m_iSeconds == duration2.m_secs.m_iSeconds && duration1.m_nanos.m_iNanoseconds < duration2.m_nanos.m_iNanoseconds); }
+inline bool operator <= (const duration & duration1, const ::duration & duration2) { return duration1.m_secs.m_iSeconds < duration2.m_secs.m_iSeconds || (duration1.m_secs.m_iSeconds == duration2.m_secs.m_iSeconds && duration1.m_nanos.m_iNanoseconds <= duration2.m_nanos.m_iNanoseconds); }
 inline bool operator > (const duration & duration1, const ::duration & duration2) { return !(duration1 <= duration2); }
 inline bool operator >= (const duration & duration1, const ::duration & duration2) { return !(duration1 <= duration2); }
 
@@ -744,7 +744,7 @@ inline bool operator >= (const duration & duration1, const ::duration & duration
 //inline bool CLASS_DECL_ACME operator >(const duration & duration1, const duration & duration2)
 //{
 //
-//   auto iCompare = duration1.m_iSeconds - duration2.m_iSeconds;
+//   auto iCompare = duration1.m_secs.m_iSeconds - duration2.m_secs.m_iSeconds;
 //
 //   if(iCompare > 0)
 //   {
@@ -755,7 +755,7 @@ inline bool operator >= (const duration & duration1, const ::duration & duration
 //   else if(iCompare == 0)
 //   {
 //
-//      return duration1.m_iSeconds > duration2.m_iSeconds;
+//      return duration1.m_secs.m_iSeconds > duration2.m_secs.m_iSeconds;
 //
 //   }
 //   else
@@ -771,7 +771,7 @@ inline bool operator >= (const duration & duration1, const ::duration & duration
 //inline bool CLASS_DECL_ACME operator < (const duration & duration1, const duration & duration2)
 //{
 //
-//   auto iCompare = duration1.m_iSeconds - duration2.m_iSeconds;
+//   auto iCompare = duration1.m_secs.m_iSeconds - duration2.m_secs.m_iSeconds;
 //
 //   if(iCompare < 0)
 //   {
@@ -782,7 +782,7 @@ inline bool operator >= (const duration & duration1, const ::duration & duration
 //   else if(iCompare == 0)
 //   {
 //
-//      return duration1.m_iSeconds < duration2.m_iSeconds;
+//      return duration1.m_secs.m_iSeconds < duration2.m_secs.m_iSeconds;
 //
 //   }
 //   else
@@ -810,16 +810,16 @@ inline bool operator >= (const duration & duration1, const ::duration & duration
 inline duration __random(const duration & d1, const duration & d2)
 {
 
-   auto iSeconds = __random(d1.m_iSeconds, d2.m_iSeconds);
+   auto iSeconds = __random(d1.m_secs.m_iSeconds, d2.m_secs.m_iSeconds);
 
    return duration(iSeconds, __random(
-         (iSeconds > d1.m_iSeconds) ? 0 : d1.m_iNanoseconds,
-         (iSeconds < d2.m_iSeconds) ? 999'999'999 : d2.m_iNanoseconds));
+         (iSeconds > d1.m_secs.m_iSeconds) ? 0 : d1.m_nanos.m_iNanoseconds,
+         (iSeconds < d2.m_secs.m_iSeconds) ? 999'999'999 : d2.m_nanos.m_iNanoseconds));
 
 }
 
 
-inline secs::secs(const duration & duration) { m_iSeconds = duration.m_iSeconds; }
+inline secs::secs(const duration & duration) { m_iSeconds = duration.m_secs.m_iSeconds; }
 inline millis::millis(const duration & duration) { m_iMilliseconds = duration.millis().m_iMilliseconds; }
 inline micros::micros(const duration & duration) { m_iMicroseconds = duration.micros().m_iMicroseconds; }
 inline nanos::nanos(const duration & duration) { m_iNanoseconds = duration.nanos().m_iNanoseconds;  }

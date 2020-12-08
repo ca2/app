@@ -134,10 +134,10 @@ namespace user
          ptool->BaseToolTipGetWnd()->_001ClientToScreen(rectToolScreen);
          CalcRect(pgraphics, rect, rectToolScreen, m_strTip);
 
-
+         ::rect rectScreen;
+         Session->get_main_monitor(rect);
          ::size sizeScreen;
-         sizeScreen.cx = ::GetSystemMetrics(SM_CXSCREEN);
-         sizeScreen.cy = ::GetSystemMetrics(SM_CYSCREEN);
+         sizeScreen = rectScreen.size();
 
          if(rect.right > sizeScreen.cx && !bHRetry)
          {
@@ -167,11 +167,11 @@ namespace user
       
       place(rect);
       
-      activation(activation_no_activate);
+      activation(e_activation_no_activate);
 
       update_drawing_objects();
 
-      display(SW_SHOWNOACTIVATE);
+      display(e_display_normal, e_activation_no_activate);
    }
 
    ///////////////////////////////////////////////////////////
@@ -314,7 +314,7 @@ namespace user
       {
       case e_timer_hide_window:
       {
-         display(display_none);
+         display(e_display_none);
          KillTimer(uEvent);
       }
       break;
@@ -338,8 +338,16 @@ namespace user
       m_puserinteraction = puserinteraction;
 
       m_font->create_point_font(FONT_SANS, 10.0);
+
+#ifdef WINDOWS_DESKTOP
       
       ::user::create_struct createstruct(WS_EX_TOOLWINDOW, nullptr, nullptr, WS_POPUP, nullptr);
+
+#else
+
+      ::user::create_struct createstruct(0, nullptr, nullptr, 0, nullptr);
+
+#endif
       
       return create_window_ex(createstruct, nullptr, id) != 0;
 
@@ -378,7 +386,7 @@ namespace user
    {
       if(is_window_visible())
       {
-         display(display_none);
+         display(e_display_none);
       }
       return true;
    }

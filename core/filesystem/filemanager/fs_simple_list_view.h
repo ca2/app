@@ -128,7 +128,8 @@ namespace filemanager
             void install_message_routing(::channel * pchannel) override;
 
 
-            static ::u32 c_cdecl ThreadProcFillTask(LPVOID pParameter);
+
+            void fill_task();
 
 
 

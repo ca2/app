@@ -41,7 +41,7 @@ namespace userstack
       MESSAGE_LINK(e_message_destroy, pchannel, this, &view::_001OnDestroy);
       MESSAGE_LINK(e_message_paint, pchannel, this, &view::_001OnPaint);
       MESSAGE_LINK(e_message_create, pchannel, this, &view::_001OnCreate);
-      MESSAGE_LINK(WM_CONTEXTMENU, pchannel, this, &view::_001OnContextMenu);
+      MESSAGE_LINK(e_message_context_menu, pchannel, this, &view::_001OnContextMenu);
       MESSAGE_LINK(e_message_set_cursor, pchannel, this, &view::_001OnSetCursor);
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &view::_001OnLButtonUp);
 
@@ -86,7 +86,7 @@ namespace userstack
 
    bool view::pre_create_window(::user::create_struct& cs)
    {
-      cs.style &= ~WS_EX_CLIENTEDGE;
+
       return ::user::impact::pre_create_window(cs);
    }
 

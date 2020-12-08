@@ -125,103 +125,111 @@ i32 _c_XErrorHandler(Display * display, XErrorEvent * perrorevent);
 #endif
 
 
-::estatus os_application_system_run(::apex::system * psystem)
+namespace apex
 {
 
 
-//   ::estatus estatus = psystem->begin_synch();
-//
-//   if(!estatus)
-//   {
-//
-//      return estatus;
-//
-//   }
-//
+   ::estatus system::os_application_system_run()
+   {
 
-   const char * pszName = psystem->m_strAppId;
 
-   g_set_application_name(pszName);
+      //   ::estatus estatus = psystem->begin_synch();
+      //
+      //   if(!estatus)
+      //   {
+      //
+      //      return estatus;
+      //
+      //   }
+      //
 
-   const char * pszPrgName = psystem->m_strProgName;
+      const char *pszName = m_strAppId;
 
-   g_set_prgname(pszPrgName);
+      g_set_application_name(pszName);
 
-   //auto idle_source = g_idle_source_new();
+      const char *pszPrgName = m_strProgName;
 
-   //g_source_set_callback(idle_source, &linux_start_system, (::apex::system *) m_psystem, nullptr);
+      g_set_prgname(pszPrgName);
 
-   //g_source_attach(idle_source, g_main_context_default());
+      //auto idle_source = g_idle_source_new();
 
-   //int c = 2;
+      //g_source_set_callback(idle_source, &linux_start_system, (::apex::system *) m_psystem, nullptr);
 
-   //const char * argv[]={"app", "--g-fatal-warnings"};
+      //g_source_attach(idle_source, g_main_context_default());
+
+      //int c = 2;
+
+      //const char * argv[]={"app", "--g-fatal-warnings"};
 
 #if !defined(__SANITIZE_ADDRESS__)
 
-   if(!gtk_init_check(&psystem->m_argc, &psystem->m_argv))
-   {
+      if (!gtk_init_check(&m_argc, &m_argv))
+      {
 
-      return ::error_failed;
+         return ::error_failed;
 
-   }
+      }
 
 #endif
 
-   if(!psystem->begin_synch())
-   {
+      if (m_bUser)
+      {
 
-      output_debug_string("Failed to begin_synch the system (::apex::system or ::apex::system derived)");
+         init_x11();
 
-      return error_failed;
+      }
+
+      if (!begin_synch())
+      {
+
+         output_debug_string("Failed to begin_synch the system (::apex::system or ::apex::system derived)");
+
+         return error_failed;
+
+      }
+
+
+      //if(psystem->m_bGtkApp)
+      {
+
+         apex_application_run(m_strAppId, m_strProgName);
+
+      }
+      //   else
+      //   {
+      //
+      ////      g_set_application_name(psystem->m_strAppId);
+      ////
+      ////      g_set_prgname(psystem->m_strProgName);
+      ////
+      ////      //auto idle_source = g_idle_source_new();
+      ////
+      ////      //g_source_set_callback(idle_source, &linux_start_system, (::apex::system *) m_psystem, nullptr);
+      ////
+      ////      //g_source_attach(idle_source, g_main_context_default());
+      ////
+      ////      //int c = 2;
+      ////
+      ////      //const char * argv[]={"app", "--g-fatal-warnings"};
+      ////
+      ////#if !defined(__SANITIZE_ADDRESS__)
+      ////
+      ////      gtk_init_check(&psystem->m_argc, &psystem->m_argv);
+      ////
+      ////#endif
+      //
+      //      gtk_main();
+      //
+      //   }
+      //
+      //::parallelization::post_quit_and_wait(get_context_system(), one_minute());
+
+      return ::success;
 
    }
 
-   if(psystem->m_bUser)
-   {
 
-      psystem->init_x11();
-
-   }
-
-   //if(psystem->m_bGtkApp)
-   {
-
-      apex_application_run(psystem->m_strAppId, psystem->m_strProgName);
-
-   }
-//   else
-//   {
-//
-////      g_set_application_name(psystem->m_strAppId);
-////
-////      g_set_prgname(psystem->m_strProgName);
-////
-////      //auto idle_source = g_idle_source_new();
-////
-////      //g_source_set_callback(idle_source, &linux_start_system, (::apex::system *) m_psystem, nullptr);
-////
-////      //g_source_attach(idle_source, g_main_context_default());
-////
-////      //int c = 2;
-////
-////      //const char * argv[]={"app", "--g-fatal-warnings"};
-////
-////#if !defined(__SANITIZE_ADDRESS__)
-////
-////      gtk_init_check(&psystem->m_argc, &psystem->m_argv);
-////
-////#endif
-//
-//      gtk_main();
-//
-//   }
-//
-   //::parallelization::post_quit_and_wait(get_context_system(), one_minute());
-
-   return ::success;
-
-}
+} // namespace apex
 
 
 void sn_start_context();

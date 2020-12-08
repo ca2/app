@@ -521,14 +521,14 @@ namespace experience
    i32 frame::calc_caption_height(edisplay edisplay)
    {
 
-      if (edisplay == display_full_screen)
+      if (edisplay == e_display_full_screen)
       {
 
          return 0;
 
       }
 
-      if (edisplay == display_minimal)
+      if (edisplay == e_display_minimal)
       {
 
          return 0;
@@ -1101,11 +1101,11 @@ namespace experience
          if(get_element_rect(rectIcon,ElementTopLeftIcon))
          {
 
-            iRightDeflate += calc_caption_height(::display_normal);
+            iRightDeflate += calc_caption_height(::e_display_normal);
 
          }
 
-         iRightDeflate += calc_caption_height(::display_normal); // for the ElementMoveGripMinimal
+         iRightDeflate += calc_caption_height(::e_display_normal); // for the ElementMoveGripMinimal
 
       }
       else
@@ -1189,8 +1189,8 @@ namespace experience
                //&& !m_pframewindow->layout().is_sizing()
                && !m_pframewindow->layout().is_docking()
                //&& !::is_docking_appearance(m_pframewindow->layout().sketch().display())
-               && m_pframewindow->layout().sketch().display() != display_zoomed
-               && m_pframewindow->layout().sketch().display() != display_full_screen)
+               && m_pframewindow->layout().sketch().display() != e_display_zoomed
+               && m_pframewindow->layout().sketch().display() != e_display_full_screen)
             {
 
                defer_frame_placement_snapping();
@@ -1298,7 +1298,7 @@ namespace experience
 
          }
 
-         if (edisplay == display_normal)
+         if (edisplay == e_display_normal)
          {
 
             if (m_pframewindow->move_manager()->window_is_moving())
@@ -1399,14 +1399,14 @@ namespace experience
       else if (is_docking_appearance(edisplay))
       {
 
-         if (!(edisplay & display_bottom))
+         if (!(edisplay & e_display_bottom))
          {
 
             egrip |= grip_bottom;
             eborder |= border_bottom;
             edock |= dock_bottom;
 
-            if (!(edisplay & display_left))
+            if (!(edisplay & e_display_left))
             {
 
                egrip |= grip_bottom_left;
@@ -1415,14 +1415,14 @@ namespace experience
 
          }
 
-         if (!(edisplay & display_top))
+         if (!(edisplay & e_display_top))
          {
 
             egrip |= grip_top;
             eborder |= border_top;
             edock |= dock_top;
 
-            if (!(edisplay & display_right))
+            if (!(edisplay & e_display_right))
             {
 
                egrip |= grip_top_right;
@@ -1431,14 +1431,14 @@ namespace experience
 
          }
 
-         if (!(edisplay & display_left))
+         if (!(edisplay & e_display_left))
          {
 
             egrip |= grip_left;
             eborder |= border_left;
             edock |= dock_left;
 
-            if (!(edisplay & display_top))
+            if (!(edisplay & e_display_top))
             {
 
                egrip |= grip_top_left;
@@ -1447,14 +1447,14 @@ namespace experience
 
          }
 
-         if (!(edisplay & display_right))
+         if (!(edisplay & e_display_right))
          {
 
             egrip |= grip_right;
             eborder |= border_right;
             edock |= dock_right;
 
-            if (!(edisplay & display_bottom))
+            if (!(edisplay & e_display_bottom))
             {
 
                egrip |= grip_bottom_right;
@@ -1463,7 +1463,7 @@ namespace experience
 
          }
 
-         if (edisplay & display_top)
+         if (edisplay & e_display_top)
          {
 
             rectMargin.top = 0;
@@ -1471,14 +1471,14 @@ namespace experience
 
          }
 
-         if(edisplay & display_bottom)
+         if(edisplay & e_display_bottom)
          {
 
             rectMargin.bottom = 0;
 
          }
 
-         if (edisplay & display_right)
+         if (edisplay & e_display_right)
          {
 
             rectMargin.right = 0;
@@ -1486,7 +1486,7 @@ namespace experience
 
          }
 
-         if (edisplay & display_left)
+         if (edisplay & e_display_left)
          {
 
             rectMargin.left = 0;

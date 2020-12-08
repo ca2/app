@@ -42,10 +42,10 @@ namespace user
       MESSAGE_LINK(e_message_nccalcsize, pchannel, this, &status_bar::_001OnNcCalcSize);
       MESSAGE_LINK(e_message_size, pchannel, this, &status_bar::_001OnSize);
       MESSAGE_LINK(e_message_window_position_changing, pchannel, this, &status_bar::_001OnWindowPosChanging);
+#ifdef WINDOWS_DESKTOP
       MESSAGE_LINK(WM_SETTEXT, pchannel, this, &status_bar::_001OnSetText);
       MESSAGE_LINK(WM_GETTEXT, pchannel, this, &status_bar::_001OnGetText);
       MESSAGE_LINK(WM_GETTEXTLENGTH, pchannel, this, &status_bar::_001OnGetTextLength);
-#ifdef WINDOWS_DESKTOP
       MESSAGE_LINK(SB_SETMINHEIGHT, pchannel, this, &status_bar::_001OnSetMinHeight);
 #endif
    }
@@ -63,14 +63,17 @@ namespace user
 
       ASSERT_VALID(puiParent);   // must have a parent
 
+
       // save the style (some of these style bits are aura API specific)
       m_dwStyle = (uStyle & CBRS_ALL);
 
       // translate aura API style bits to windows style bits
       uStyle &= ~CBRS_ALL;
       uStyle |= CCS_NOPARENTALIGN|CCS_NOMOVEY|CCS_NODIVIDER|CCS_NORESIZE;
+#ifdef WINDOWS_DESKTOP
       if (puiParent->GetStyle() & WS_THICKFRAME)
          uStyle |= SBARS_SIZEGRIP;
+#endif
 
       //return ::user::interaction::create_window(STATUSCLASSNAMEA, nullptr, uStyle, rect, puiParent, strId);
       return ::user::interaction::create_window("msctls_statusbar32",nullptr,uStyle,puiParent,strId);
@@ -602,14 +605,16 @@ namespace user
    bool status_bar::OnChildNotify(::message::base * pbase)
    {
 
+
+
+#ifdef WINDOWS_DESKTOP
+
       if (pbase->m_id != WM_DRAWITEM)
       {
 
          return ::user::interaction::OnChildNotify(pbase);
 
       }
-
-#ifdef WINDOWS_DESKTOP
 
       DrawItem(pbase->m_lparam.cast < DRAWITEMSTRUCT >());
 

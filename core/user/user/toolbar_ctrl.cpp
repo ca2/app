@@ -85,6 +85,9 @@ namespace user
    }
 
 
+#ifdef WINDOWS_DESKTOP
+
+
    HRESULT toolbar_control::GetDropTarget(IDropTarget** ppDropTarget)
    {
       ASSERT(is_window());
@@ -95,6 +98,10 @@ namespace user
       __throw(todo());
 #endif
    }
+
+
+#endif
+
 
    struct CToolBarCtrlData
    {
@@ -859,6 +866,9 @@ namespace user
    }
 
 
+#ifdef WINDOWS_DESKTOP
+
+
    void toolbar_control::LoadImages(i32 iBitmapID, HINSTANCE hinst)
    {
 
@@ -873,6 +883,9 @@ namespace user
 #endif
 
    }
+
+
+#endif
 
 
    bool toolbar_control::SetButtonWidth(i32 cxMin, i32 cxMax)

@@ -32,8 +32,8 @@ public:
 
 #endif
 
-   operator filetime_t &() { return m_filetime; }
-   operator filetime_t () const { return m_filetime; }
+   explicit operator filetime_t &() { return m_filetime; }
+   explicit operator filetime_t () const { return m_filetime; }
 
 
    filetime& operator+=(filetime_span span) noexcept;
@@ -53,8 +53,8 @@ public:
    filetime_t get_time() const noexcept;
    void SetTime(filetime_t nTime) noexcept;
 
-   filetime UTCToLocal() const noexcept;
-   filetime LocalToUTC() const noexcept;
+   //filetime UTCToLocal() const noexcept;
+   //filetime LocalToUTC() const noexcept;
 
    static const filetime_t Millisecond;
    static const filetime_t Second;

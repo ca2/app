@@ -922,7 +922,7 @@ while (is_open_ == true) {
         }
     }
 
-    usleep(1000);
+    usleep(1000_ms);
   }
 
   return false;

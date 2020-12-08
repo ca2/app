@@ -164,7 +164,7 @@ namespace user
 
       // Operations
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
-      virtual void ActivateFrame(::edisplay edisplay = display_undefined) override;
+      virtual void ActivateFrame(::edisplay edisplay = e_display_undefined) override;
       virtual void InitialUpdateFrame(::user::document * pDoc, bool bMakeVisible);
       virtual void InitialFramePosition(bool bForceRestore = false) override;
 

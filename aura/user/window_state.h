@@ -92,17 +92,17 @@ namespace user
       inline void set_modified(bool bSet = true) { m_bModified = bSet; }
 
       ::edisplay display() const { return m_edisplay3; }
-      visual_state& operator = (const e_display& edisplay) { set_modified(); m_edisplay3 = edisplay; return *this; }
+      visual_state& operator = (const enum_display& edisplay) { set_modified(); m_edisplay3 = edisplay; return *this; }
 
       bool is_visible() const { return ::is_visible(display()); }
       bool is_screen_visible() const { return ::is_screen_visible(display()); }
 
 
       ::eappearance appearance() const;
-      visual_state& operator = (const e_appearance& eappearance);
-      visual_state& operator |= (const e_appearance& eappearance);
-      visual_state& operator -= (const e_appearance& eappearance);
-      visual_state& operator ^= (const e_appearance& eappearance);
+      visual_state& operator = (const enum_appearance& eappearance);
+      visual_state& operator |= (const enum_appearance& eappearance);
+      visual_state& operator -= (const enum_appearance& eappearance);
+      visual_state& operator ^= (const enum_appearance& eappearance);
 
 
       ::point origin() const { return m_point; }
@@ -167,7 +167,7 @@ namespace user
       {
 
          m_zorder.clear_request();
-         m_eactivation = activation_none;
+         m_eactivation = e_activation_default;
 
       }
 
@@ -186,8 +186,8 @@ namespace user
 
 
       ::eactivation activation() const { return m_eactivation; }
-      window_state& operator = (const e_activation& eactivation) { m_eactivation = eactivation; if(m_eactivation) set_modified(); return *this; }
-      window_state& operator += (const e_activation& eactivation) { m_eactivation |= eactivation; if (m_eactivation) set_modified(); return *this; }
+      window_state& operator = (const enum_activation& eactivation) { m_eactivation = eactivation; if(m_eactivation) set_modified(); return *this; }
+      window_state& operator += (const enum_activation& eactivation) { m_eactivation |= eactivation; if (m_eactivation) set_modified(); return *this; }
 
 
       bool operator == (const window_state & windowstate) const { return !memcmp(this, &windowstate, sizeof(window_state)); }
@@ -221,9 +221,9 @@ namespace user
    __memory(window_rect)
    {
 
-      edisplay                   m_edisplayPrevious = display_none;
-      edisplay                   m_edisplay = display_none;
-      eappearance                m_eappearance = appearance_none;
+      edisplay                   m_edisplayPrevious = e_display_none;
+      edisplay                   m_edisplay = e_display_none;
+      eappearance                m_eappearance = e_appearance_none;
       rect                       m_rectSnapped = nullptr;
       rect                       m_rectRestored = nullptr;
       rect                       m_rectWindow = nullptr;

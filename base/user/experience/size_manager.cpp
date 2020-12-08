@@ -536,7 +536,7 @@ namespace experience
       if(m_pframewindow->layout().is_zoomed())
       {
 
-         m_pframewindow->display(display_restore);
+         m_pframewindow->display(e_display_restore);
 
       }
 

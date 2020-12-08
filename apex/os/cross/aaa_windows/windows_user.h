@@ -644,7 +644,7 @@ oswindow hWnd);
 //   i32     iLeftMargin;
 //   i32     iRightMargin;
 //   ::u32    uiLengthDrawn;
-//} DRAWTEXTPARAMS,FAR *LPDRAWTEXTPARAMS;
+//} DRAWTEXTPARAMS,*LPDRAWTEXTPARAMS;
 //
 //#endif
 //
@@ -952,13 +952,13 @@ oswindow hWnd);
 ///*
 //* Dialog Box Command IDs
 //*/
-//#define IDOK                1
-//#define IDCANCEL            2
+//#define e_dialog_result_ok                1
+//#define e_dialog_result_cancel            2
 //#define IDABORT             3
 //#define IDRETRY             4
 //#define IDIGNORE            5
-//#define IDYES               6
-//#define IDNO                7
+//#define e_dialog_result_yes               6
+//#define e_dialog_result_no                7
 ////#if(WINVER >= 0x0400)
 //#define IDCLOSE         8
 //#define IDHELP          9
@@ -1131,7 +1131,7 @@ oswindow hWnd);
 ////
 ////#endif
 //
-////int_bool RedrawWindow(oswindow hWnd, CONST RECT32 *lprcUpdate, HRGN hrgnUpdate, ::u32 flags);
+////int_bool RedrawWindow(oswindow hWnd, const RECT32 *lprcUpdate, HRGN hrgnUpdate, ::u32 flags);
 //
 //
 ///*
@@ -1252,7 +1252,7 @@ oswindow hWnd);
 //}   NMHDR;
 //
 //
-//typedef NMHDR FAR * LPNMHDR;
+//typedef NMHDR * LPNMHDR;
 //
 //
 //typedef struct tagSTYLESTRUCT
@@ -1702,7 +1702,7 @@ oswindow hWnd);
 //   HMENU   hmenuIn;
 //   HMENU   hmenuNext;
 //   oswindow    hwndNext;
-//} MDINEXTMENU, * PMDINEXTMENU, FAR * LPMDINEXTMENU;
+//} MDINEXTMENU, * PMDINEXTMENU, * LPMDINEXTMENU;
 //#endif /* WINVER >= 0x0400 */
 //
 //
@@ -1720,7 +1720,7 @@ oswindow hWnd);
 //#define NF_QUERY                             3
 //#define NF_REQUERY                           4
 //
-//#define WM_CONTEXTMENU                  0x007B
+//#define e_message_context_menu                  0x007B
 //#define WM_STYLECHANGING                0x007C
 //#define WM_STYLECHANGED                 0x007D
 //#define e_message_display_change                0x007E
@@ -2777,7 +2777,7 @@ oswindow hWnd);
 //#ifdef _MAC
 //   ::u32       lPrivate;
 //#endif
-//} MESSAGE, *PMESSAGE, NEAR *NPMESSAGE, FAR *LPMESSAGE;
+//} MESSAGE, *PMESSAGE, *NPMESSAGE, *LPMESSAGE;
 //
 //CLASS_DECL_APEX int_bool TranslateMessage(const MESSAGE * pmsg);
 //CLASS_DECL_APEX LRESULT DispatchMessage(const MESSAGE * pmsg);

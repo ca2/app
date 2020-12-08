@@ -1179,6 +1179,8 @@ namespace apex
 
       set_main_struct(*m_papplicationStartup);
 
+      m_strAppId = m_papplicationStartup->m_strAppId;
+
       estatus = system_init();
 
       if (!estatus)
@@ -2607,7 +2609,7 @@ namespace apex
 
 #if defined(WINDOWS_DESKTOP) || defined(LINUX) || defined(__APPLE__)
 
-            ::apex::shell_launcher launcher(nullptr,nullptr, Context.dir().module()/strApp,strParameters,nullptr,display_normal);
+            ::apex::shell_launcher launcher(nullptr,nullptr, Context.dir().module()/strApp,strParameters,nullptr,e_display_normal);
 
             launcher.execute();
 
@@ -2640,7 +2642,7 @@ namespace apex
 
 #else
 
-            ::apex::shell_launcher launcher(nullptr,nullptr,Context.dir().module()/strApp,nullptr,nullptr, display_normal);
+            ::apex::shell_launcher launcher(nullptr,nullptr,Context.dir().module()/strApp,nullptr,nullptr, e_display_normal);
 
             launcher.execute();
 
@@ -2678,7 +2680,7 @@ namespace apex
 
 #else
 
-            ::apex::shell_launcher launcher(nullptr,nullptr, Context.dir().ca2module() / strApp,strParameters,nullptr, display_normal);
+            ::apex::shell_launcher launcher(nullptr,nullptr, Context.dir().ca2module() / strApp,strParameters,nullptr, e_display_normal);
 
             launcher.execute();
 
@@ -2710,7 +2712,7 @@ namespace apex
 
 #else
 
-            ::apex::shell_launcher launcher(nullptr,nullptr, Context.dir().ca2module() / strApp,strParameters,nullptr, display_normal);
+            ::apex::shell_launcher launcher(nullptr,nullptr, Context.dir().ca2module() / strApp,strParameters,nullptr, e_display_normal);
 
             launcher.execute();
 
@@ -3222,7 +3224,7 @@ namespace apex
 
          }
 
-         millis_sleep(50);
+         sleep(50_ms);
 
       }
 
@@ -3645,7 +3647,7 @@ namespace apex
          strParams.Format("\"openvsproject://%s\"", strProj);
 
 
-         //int iRet = call_sync("C:\\bergedge\\time\\stage\\visual_studio_automation_2017.exe",strParams, "C:\\bergedge\\time\\stage\\", display_none, 30, 1000, nullptr, 0);
+         //int iRet = call_sync("C:\\bergedge\\time\\stage\\visual_studio_automation_2017.exe",strParams, "C:\\bergedge\\time\\stage\\", e_display_none, 30, 1000, nullptr, 0);
 
       }
 #elif defined MACOS
@@ -3661,7 +3663,7 @@ namespace apex
          if(strBase == "scheme")
          {
 
-//         int iRet = call_sync("C:\\bergedge\\time\\stage\\visual_studio_automation_2017.exe",strParams, "C:\\bergedge\\time\\stage\\", display_none, 30, 1000, nullptr, 0);
+//         int iRet = call_sync("C:\\bergedge\\time\\stage\\visual_studio_automation_2017.exe",strParams, "C:\\bergedge\\time\\stage\\", e_display_none, 30, 1000, nullptr, 0);
 
             ::file::path pathScript = ::dir::tool() / "papaya/script/xcode_set_active_scheme.scpt";
 
@@ -4031,7 +4033,7 @@ namespace apex
 
             pathProfile = pathHome / "ca2/Vivaldi/Profile" / strProfile;
 
-            call_async(shell, " -c \"" + path + " --user-data-dir=\\\"" + pathProfile + "\\\" " + strParam, pathHome, display_default, false);
+            call_async(shell, " -c \"" + path + " --user-data-dir=\\\"" + pathProfile + "\\\" " + strParam, pathHome, e_display_default, false);
 
          }
          else if (strBrowser == "chrome")
@@ -4051,7 +4053,7 @@ namespace apex
 
             //MessageBox(nullptr, strParam, path, e_message_box_ok);
 
-            call_async(shell, strParam, pathHome, display_default, false);
+            call_async(shell, strParam, pathHome, e_display_default, false);
 
          }
          else if (strBrowser == "firefox")
@@ -4063,7 +4065,7 @@ namespace apex
 
             pathProfile = pathHome / "ca2/Firefox/Profile" / strProfile;
 
-            call_async(shell, "-c \"" + path + " -profile=\\\"" + pathProfile + "\\\" " + strParam + "\"", pathHome, display_default, false);
+            call_async(shell, "-c \"" + path + " -profile=\\\"" + pathProfile + "\\\" " + strParam + "\"", pathHome, e_display_default, false);
 
          }
          else
@@ -4184,7 +4186,7 @@ namespace apex
 
             strParam += " " + file_as_string(dir::localconfig() / "app-core/commander/chrome.txt");
 
-            call_async(path, strParam, pathDir, display_default, false);
+            call_async(path, strParam, pathDir, e_display_default, false);
 
          }
 
@@ -4231,7 +4233,7 @@ namespace apex
 
          output_debug_string(strParam);
 
-         call_async(shell, strParam, pathDir, display_default, false);
+         call_async(shell, strParam, pathDir, e_display_default, false);
 
 #endif
 
@@ -4274,7 +4276,7 @@ namespace apex
 
       ::property_set set;
 
-      call_sync(pathFirefox, strParam, pathDir, display_default, 3_min, set);
+      call_sync(pathFirefox, strParam, pathDir, e_display_default, 3_min, set);
 
 #endif
 
@@ -4376,9 +4378,9 @@ namespace apex
       if (!bFound)
       {
 
-         call_async(strBrowserPath, strParam, strBrowserDir, display_normal, false);
+         call_async(strBrowserPath, strParam, strBrowserDir, e_display_normal, false);
 
-         call_async(strBrowserHelperPath, "/SetAsDefaultAppUser", strBrowserHelperDir, display_none, false);
+         call_async(strBrowserHelperPath, "/SetAsDefaultAppUser", strBrowserHelperDir, e_display_none, false);
 
       }
 

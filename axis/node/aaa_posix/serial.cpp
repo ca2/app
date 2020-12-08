@@ -1005,7 +1005,7 @@ Serial::SerialImpl::waitForChange()
          }
       }
 
-      usleep(1000);
+      usleep(1000_ms);
    }
 
    return false;

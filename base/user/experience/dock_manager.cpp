@@ -144,7 +144,7 @@ namespace experience
 
       rectCenter.bottom = pointScreenCenter.y + cyCenterArea / 2;
 
-      if (m_pframewindow->layout().design().display() & display_bottom)
+      if (m_pframewindow->layout().design().display() & e_display_bottom)
       {
 
          rectCenter.bottom -= cyCenterArea / 4;
@@ -161,7 +161,7 @@ namespace experience
 
       }
 
-      if (m_pframewindow->layout().design().display() & display_top)
+      if (m_pframewindow->layout().design().display() & e_display_top)
       {
 
          rectCenter.top += cyCenterArea / 4;
@@ -178,7 +178,7 @@ namespace experience
 
       }
 
-      if (m_pframewindow->layout().design().display() & display_right)
+      if (m_pframewindow->layout().design().display() & e_display_right)
       {
 
          rectCenter.right -= cxCenterArea / 4;
@@ -195,7 +195,7 @@ namespace experience
 
       }
 
-      if (m_pframewindow->layout().design().display() & display_left)
+      if (m_pframewindow->layout().design().display() & e_display_left)
       {
 
          rectCenter.left += cxCenterArea / 4;
@@ -214,7 +214,7 @@ namespace experience
 
       ::rect rectDock;
 
-      e_display edisplayDock = display_none;
+      enum_display edisplayDock = e_display_none;
 
       if (rectCenter.contains_x(pointCursor.x))
       {
@@ -222,13 +222,13 @@ namespace experience
          if (rectCenter.contains_y(pointCursor.y))
          {
 
-            edisplayDock = ::display_normal;
+            edisplayDock = ::e_display_normal;
 
          }
          else if (pointCursor.y < rectCenter.top)
          {
 
-            edisplayDock = ::display_full_top;
+            edisplayDock = ::e_display_full_top;
 
             rectDock = rect_dim(rectWork.left, rectWork.top, rectWork.width(), rectWork.height() / 2);
 
@@ -236,7 +236,7 @@ namespace experience
          else if (pointCursor.y > rectCenter.bottom)
          {
 
-            edisplayDock = ::display_full_bottom;
+            edisplayDock = ::e_display_full_bottom;
 
             rectDock = rect_dim(rectWork.left, rectWork.top + rectWork.height() / 2, rectWork.width(), rectWork.height() / 2);
 
@@ -249,7 +249,7 @@ namespace experience
          if (pointCursor.x < rectCenter.left)
          {
 
-            edisplayDock = ::display_full_left;
+            edisplayDock = ::e_display_full_left;
 
             rectDock = rect_dim(rectWork.left, rectWork.top, rectWork.width() / 2, rectWork.height());
 
@@ -257,7 +257,7 @@ namespace experience
          else if (pointCursor.x > rectCenter.right)
          {
 
-            edisplayDock = ::display_full_right;
+            edisplayDock = ::e_display_full_right;
 
             rectDock = rect_dim(rectWork.left + rectWork.width() / 2, rectWork.top, rectWork.width() / 2, rectWork.height());
 
@@ -270,7 +270,7 @@ namespace experience
          if (pointCursor.y < rectCenter.top)
          {
 
-            edisplayDock = ::display_top_left;
+            edisplayDock = ::e_display_top_left;
 
             rectDock = rect_dim(rectWork.left, rectWork.top, rectWork.width() / 2, rectWork.height() / 2);
 
@@ -278,7 +278,7 @@ namespace experience
          else if (pointCursor.y > rectCenter.bottom)
          {
 
-            edisplayDock = ::display_bottom_left;
+            edisplayDock = ::e_display_bottom_left;
 
             rectDock = rect_dim(rectWork.left, rectWork.top + rectWork.height() / 2, rectWork.width() / 2, rectWork.height() / 2);
 
@@ -291,7 +291,7 @@ namespace experience
          if (pointCursor.y < rectCenter.top)
          {
 
-            edisplayDock = ::display_top_right;
+            edisplayDock = ::e_display_top_right;
 
             rectDock = rect_dim(rectWork.left + rectWork.width() / 2, rectWork.top, rectWork.width() / 2, rectWork.height() / 2);
 
@@ -299,7 +299,7 @@ namespace experience
          else if (pointCursor.y > rectCenter.bottom)
          {
 
-            edisplayDock = ::display_bottom_right;
+            edisplayDock = ::e_display_bottom_right;
 
             rectDock = rect_dim(rectWork.left + rectWork.width() / 2, rectWork.top + rectWork.height() / 2, rectWork.width() / 2, rectWork.height() / 2);
 
@@ -307,10 +307,10 @@ namespace experience
 
       }
 
-      if (edisplayDock == ::display_normal)
+      if (edisplayDock == ::e_display_normal)
       {
 
-         if (m_pframewindow->layout().sketch().display() != display_normal)
+         if (m_pframewindow->layout().sketch().display() != e_display_normal)
          {
 
             m_pframewindow->set_size(m_pframewindow->m_windowrect.m_rectRestored.size());
@@ -319,7 +319,7 @@ namespace experience
 
          m_pframewindow->move_to(pointMove);
 
-         m_pframewindow->display(display_normal);
+         m_pframewindow->display(e_display_normal);
 
          m_pframewindow->set_need_redraw();
 
@@ -338,7 +338,7 @@ namespace experience
 
          //m_pframewindow->set_size(m_pframewindow->m_windowrect.m_rectRestored.size());
 
-         //m_pframewindow->display(display_normal);
+         //m_pframewindow->display(e_display_normal);
 
          //m_pframewindow->set_need_redraw();
 

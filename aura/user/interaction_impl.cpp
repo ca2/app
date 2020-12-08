@@ -1252,7 +1252,7 @@ namespace user
 //
 //            m_puserinteraction->defer_notify_mouse_move();
 //
-//            millis_sleep(100);
+//            sleep(100_ms);
 //
 //         }
 //
@@ -2080,7 +2080,7 @@ namespace user
    // void interaction_impl::SetWindowDisplayChanged()
    // {
 
-   //    if (m_puserinteraction->is_this_visible() && m_puserinteraction->window_state3().m_edisplay3 != ::display_iconic)
+   //    if (m_puserinteraction->is_this_visible() && m_puserinteraction->window_state3().m_edisplay3 != ::e_display_iconic)
    //    {
 
    //       if (m_puserinteraction->GetParent() == nullptr)
@@ -2467,7 +2467,7 @@ namespace user
 
       }
 
-      return m_puserinteraction->layout().sketch().display() == ::display_iconic;
+      return m_puserinteraction->layout().sketch().display() == ::e_display_iconic;
 
    }
 
@@ -2482,7 +2482,7 @@ namespace user
 
       }
 
-      return m_puserinteraction->layout().sketch().display() == ::display_zoomed;
+      return m_puserinteraction->layout().sketch().display() == ::e_display_zoomed;
 
    }
 
@@ -3219,7 +3219,7 @@ namespace user
 
          INFO("user::interaction_impl::_001OnShowWindow bShow = true");
 
-         if (m_puserinteraction->layout().design().display() != ::display_iconic)
+         if (m_puserinteraction->layout().design().display() != ::e_display_iconic)
          {
 
             if (m_puserinteraction->GetParent() == nullptr)
@@ -3735,7 +3735,7 @@ namespace user
 
       pinteraction->place(rect);
 
-      pinteraction->display(display_normal, activation_no_activate);
+      pinteraction->display(e_display_normal, e_activation_no_activate);
 
    }
 
@@ -4394,7 +4394,7 @@ namespace user
 
       //}
 
-      if (eactivationOutput & activation_no_activate)
+      if (eactivationOutput & e_activation_no_activate)
       {
 
          uFlags |= SWP_NOACTIVATE;
@@ -4493,10 +4493,10 @@ namespace user
 
       oswindow oswindowInsertAfter = (bZ ? zOutput.get_os_data() : 0);
 
-      if (edisplayWindow == display_zoomed)
+      if (edisplayWindow == e_display_zoomed)
       {
 
-         if (edisplayOutput != display_zoomed)
+         if (edisplayOutput != e_display_zoomed)
          {
 
             _001OnExitZoomed();
@@ -4599,14 +4599,14 @@ namespace user
 
       }
 
-      if (eactivationOutput & activation_set_foreground)
+      if (eactivationOutput & e_activation_set_foreground)
       {
 
          m_puserinteraction->SetForegroundWindow();
 
       }
 
-      if (eactivationOutput & activation_set_active)
+      if (eactivationOutput & e_activation_set_active)
       {
 
          m_puserinteraction->SetActiveWindow();
@@ -4699,10 +4699,10 @@ namespace user
 
             __keep_flag_on(m_puserinteraction->layout().m_eflag, ::user::interaction_layout::flag_show_window);
 
-            if (edisplay == display_iconic)
+            if (edisplay == e_display_iconic)
             {
 
-               if (eactivation == activation_no_activate)
+               if (eactivation == e_activation_no_activate)
                {
 
                   ::show_window(m_oswindow, SW_SHOWMINNOACTIVE);
@@ -4746,7 +4746,7 @@ namespace user
             if (m_puserinteraction)
             {
 
-               m_puserinteraction->layout().design() = activation_none;
+               m_puserinteraction->layout().design() = e_activation_default;
 
             }
 
@@ -4871,10 +4871,10 @@ namespace user
 
          m_puserinteraction->layout().sketch().origin() = pmove->m_point;
 
-         if (m_puserinteraction->layout().sketch().display() != display_normal)
+         if (m_puserinteraction->layout().sketch().display() != e_display_normal)
          {
 
-            m_puserinteraction->display(display_normal);
+            m_puserinteraction->display(e_display_normal);
 
          }
 
@@ -4937,10 +4937,10 @@ namespace user
 
          m_puserinteraction->layout().sketch() = psize->m_size;
 
-         if (m_puserinteraction->layout().sketch().display() != display_normal)
+         if (m_puserinteraction->layout().sketch().display() != e_display_normal)
          {
 
-            m_puserinteraction->display(display_normal);
+            m_puserinteraction->display(e_display_normal);
 
          }
 

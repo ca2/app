@@ -238,7 +238,7 @@ mutex::mutex(enum_create_new, bool bInitiallyOwn, const char * pstrName, LPSECUR
 
 #else
 
-         path = ::file::path("/payload/tmp/ca2/lock/mutex") / pstrName;
+         path = ::file::path("/var/tmp/ca2/lock/mutex") / pstrName;
 
 #endif
 
@@ -260,7 +260,7 @@ mutex::mutex(enum_create_new, bool bInitiallyOwn, const char * pstrName, LPSECUR
 
          path = getenv("HOME");
 
-         path /= ".config/Library/ca2/lock/mutex/named";
+         path /= ".config/ca2/lock/mutex/named";
 
 #endif
 
@@ -780,7 +780,7 @@ sync_result mutex::wait(const duration & duration)
 
             }
 
-            millis_sleep(min_max((tickTimeout - tickElapsed) / 50, 1, 1000));
+            sleep(min_max((tickTimeout - tickElapsed) / 50, 1, 1000));
 
             rc = pthread_mutex_lock(&m_mutex);
 
@@ -915,15 +915,15 @@ sync_result mutex::wait(const duration & duration)
 
             ::duration d;
 
-            d.m_iSeconds = abs_time.tv_sec + duration.m_iSeconds;
+            d.m_secs = abs_time.tv_sec + duration.m_secs.m_iSeconds;
 
-            d.m_iNanoseconds = abs_time.tv_nsec + duration.m_iNanoseconds;
+            d.m_nanos = abs_time.tv_nsec + duration.m_nanos.m_iNanoseconds;
 
             d.normalize();
 
-            abs_time.tv_sec = d.m_iSeconds;
+            abs_time.tv_sec = d.m_secs.m_iSeconds;
 
-            abs_time.tv_nsec = d.m_iNanoseconds;
+            abs_time.tv_nsec = d.m_nanos.m_iNanoseconds;
 
             bFirst = false;
 
@@ -1157,7 +1157,7 @@ bool mutex::lock()
 
          }
 
-         millis_sleep(100);
+         sleep(100_ms);
 
          rc = pthread_mutex_lock(&m_mutex);
 
@@ -1636,7 +1636,7 @@ void wait_until_mutex_does_not_exist(const char * lpszName)
 
          pmutex.release();
 
-         millis_sleep(200);
+         sleep(200_ms);
 
          pmutex = __new(mutex(e_create_new, false, "Global\\::ca::account::ca2_spa::7807e510-5579-11dd-ae16-0800200c7784"));
 

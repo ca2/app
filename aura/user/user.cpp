@@ -554,12 +554,12 @@ namespace aura
 //         //__pointer(::simple_frame_window) pframeApp = get_document()->get_typed_view < ::bergedge::pane_view >()->get_view_uie();
 //         //if(pframeApp != nullptr)
 //         //{
-//         //   pframeApp->display(display_full_screen);
+//         //   pframeApp->display(e_display_full_screen);
 //         //}
 //         //__pointer(::simple_frame_window) pframe = get_document()->get_typed_view < ::bergedge::pane_view >()->GetParentFrame();
 //         //if(pframe != nullptr)
 //         //{
-//         //   pframe->display(display_normal);
+//         //   pframe->display(e_display_normal);
 //         //}
 //      }
 //      else
@@ -569,7 +569,7 @@ namespace aura
 //         //   __pointer(::simple_frame_window) pframe = get_document()->get_typed_view < ::bergedge::view >()->GetParentFrame();
 //         //   if(pframe != nullptr)
 //         //   {
-//         //      pframe->display(display_normal);
+//         //      pframe->display(e_display_normal);
 //         //      if(pframe->GetTypedParent < ::plugin::host_interaction > () != nullptr)
 //         //      {
 //         //         pframe->GetTypedParent < ::plugin::host_interaction > ()->on_layout(::draw2d::graphics_pointer & pgraphics);

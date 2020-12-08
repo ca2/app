@@ -321,9 +321,9 @@ namespace aura
 
       virtual index _get_best_zoneing(edisplay * pedisplay, ::rect * prect, const ::rect & rect, bool bPreserveSize = false) override;
 
-      virtual index get_best_monitor(RECT32 * prect, const ::rect & rect, ::eactivation eactivation = activation_none) override;
+      virtual index get_best_monitor(RECT32 * prect, const ::rect & rect, ::eactivation eactivation = e_activation_default) override;
 
-      virtual index get_best_wkspace(::rect * prect, const ::rect& rect, ::eactivation eactivation = activation_none) override;
+      virtual index get_best_wkspace(::rect * prect, const ::rect& rect, ::eactivation eactivation = e_activation_default) override;
 
       virtual index get_good_iconify(RECT32 * prect, const ::rect & rect) override;
 

@@ -71,9 +71,9 @@ namespace macos
  ::i32    top;
  ::i32    right;
  ::i32    bottom;
- } const rect &, *PRECT, NEAR *NPRECT, FAR *RECT32 *;
+ } const rect &, *PRECT, *NPRECT, *RECT32 *;
  
- typedef const rect & FAR* const rect &;
+ typedef const rect & * const rect &;
  
  
  

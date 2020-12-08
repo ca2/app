@@ -367,7 +367,7 @@ void CProcessEnvReader::SeparateVariablesAndValues(const string_array& EnvStrArr
 //   {
 //      static TCHAR szFilter[] = _T("Text File(*.txt)|*.txt||");
 //      CFileDialog fileDlg(FALSE,_T("*.txt"),nullptr,nullptr,szFilter,nullptr);
-//      if(IDOK == fileDlg.DoModal())
+//      if(e_dialog_result_ok == fileDlg.DoModal())
 //      {
 //         string csFilePath = fileDlg.GetPathName();
 //         CStdioFile file(csFilePath,CFile::modeCreate | CFile::modeWrite);

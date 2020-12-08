@@ -1986,13 +1986,13 @@ namespace apex
 
 //#endif //!__DEBUG
 
-            payload payload;
+            string strMessage;
 
-            payload["message"] = "Another instance of \"" + m_strAppName + "\" is already running (and some exclusivity policy is active).";
+            strMessage = "Another instance of \"" + m_strAppName + "\" is already running (and some exclusivity policy is active).";
 
 //          payload["prefix_html"] = "<img src=\"matter://system/exclusive.png\" width=80 height=80 style=\"display:block;\"><br/><br/>";
 
-            message_box_timeout(payload, m_strAppName, durationTimeout, e_message_box_icon_asterisk);
+            message_box_timeout(strMessage, m_strAppName, durationTimeout, e_message_box_icon_asterisk);
 
             INFO("apex::application::init_application exit");
 
@@ -4966,11 +4966,11 @@ retry_license:
 //
 //#elif defined(WINDOWS)
 //
-//      call_async("C:\\Program Files (x86)\\Notepad++\\Notepad++.exe", "\"" + strFile + "\"", "", display_normal, false);
+//      call_async("C:\\Program Files (x86)\\Notepad++\\Notepad++.exe", "\"" + strFile + "\"", "", e_display_normal, false);
 //
 //#elif defined(LINUX)
 //
-//      call_async("gedit", "\"" + strFile + "\"", "", display_normal, false);
+//      call_async("gedit", "\"" + strFile + "\"", "", e_display_normal, false);
 //
 //#else
 //
@@ -5180,7 +5180,7 @@ retry_license:
 
          iRetry--;
 
-         millis_sleep(100);
+         sleep(100_ms);
 
       }
 
@@ -5888,7 +5888,7 @@ retry_license:
       //   if (m_puiMain1)
       //   {
 
-      //      m_puiMain1->display(::display_hide);
+      //      m_puiMain1->display(::e_display_hide);
 
       //      m_puiMain1->set_need_redraw();
 
@@ -6805,7 +6805,7 @@ retry_license:
 
             }
 
-            millis_sleep(200);
+            sleep(200_ms);
 
          }
 
@@ -7209,7 +7209,7 @@ retry_license:
 
          ::property_set set;
 
-         return ::call_sync(::path::app_app(process_platform_dir_name2(), process_configuration_dir_name()), pszCommandLine, ::path::app_app(process_platform_dir_name2(), process_configuration_dir_name()), display_normal, 2_min, set);
+         return ::call_sync(::path::app_app(process_platform_dir_name2(), process_configuration_dir_name()), pszCommandLine, ::path::app_app(process_platform_dir_name2(), process_configuration_dir_name()), e_display_normal, 2_min, set);
 
 #endif
 
@@ -8642,7 +8642,7 @@ namespace apex
    //      }
 
    //      // hide the application's windows before closing all the documents
-   //      m_puiMain1->m_puiThis->display(display_none);
+   //      m_puiMain1->m_puiThis->display(e_display_none);
    //      // trans    m_puiMain->ShowOwnedPopups(FALSE);
 
 
@@ -8653,7 +8653,7 @@ namespace apex
 
    //      //m_puiMain->m_puiThis->wait_redraw();
 
-   //      m_puiMain1->m_puiThis->display(display_none);
+   //      m_puiMain1->m_puiThis->display(e_display_none);
 
 
    //   }
@@ -9216,7 +9216,7 @@ namespace apex
    //      }
 
    //      // hide the application's windows before closing all the documents
-   //      m_puiMain1->m_puiThis->display(display_none);
+   //      m_puiMain1->m_puiThis->display(e_display_none);
    //      // trans    m_puiMain->ShowOwnedPopups(FALSE);
 
 
@@ -9227,7 +9227,7 @@ namespace apex
 
    //      //m_puiMain->m_puiThis->wait_redraw();
 
-   //      m_puiMain1->m_puiThis->display(display_none);
+   //      m_puiMain1->m_puiThis->display(e_display_none);
 
 
    //   }

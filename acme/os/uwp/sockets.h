@@ -101,7 +101,7 @@ static inline ULONG __wine_ulong_swap(ULONG l)
 //        UCHAR       Byte[16];
 //        USHORT      Word[8];
 //    } u;
-//} IN6_ADDR, *PIN6_ADDR, FAR *LPIN6_ADDR;
+//} IN6_ADDR, *PIN6_ADDR, *LPIN6_ADDR;
 //
 //#define in_addr6 in6_addr
 //

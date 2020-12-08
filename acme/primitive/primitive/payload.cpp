@@ -6193,8 +6193,8 @@ namespace user
       rect                       m_rectRestored = nullptr;
       rect                       m_rectWindow = nullptr;
       int                        m_iControlBoxRightToLeft = 0;
-      edisplay                   m_edisplay = display_default;
-      edisplay                   m_edisplayPrevious = display_none;
+      edisplay                   m_edisplay = e_display_default;
+      edisplay                   m_edisplayPrevious = e_display_none;
 
 
    };

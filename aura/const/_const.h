@@ -422,61 +422,61 @@
 //};
 //
 //
-//enum e_display
+//enum enum_display
 //{
 //
-//   display_undefined = MINI32,
-//   display_notify_icon,
-//   display_default,
+//   e_display_undefined = MINI32,
+//   e_display_notify_icon,
+//   e_display_default,
 //   //display_close,
-//   display_hide,
+//   e_display_hide,
 //
-//   display_none = 0,
-//   display_current,
-//   display_normal,
-//   display_restore,
-//   display_compact,
-//   display_broad,
-//   display_iconic,
-//   display_zoomed,
-//   display_full_screen,
-//   display_up,
-//   display_down,
-//   display_minimal,
-//   display_fixed_size,
-//   display_center,
+//   e_display_none = 0,
+//   e_display_current,
+//   e_display_normal,
+//   e_display_restore,
+//   e_display_compact,
+//   e_display_broad,
+//   e_display_iconic,
+//   e_display_zoomed,
+//   e_display_full_screen,
+//   e_display_up,
+//   e_display_down,
+//   e_display_minimal,
+//   e_display_fixed_size,
+//   e_display_center,
 //
 //
-//   display_left = 0x1000,
-//   display_top = 0x2000,
-//   display_right = 0x4000,
-//   display_bottom = 0x8000,
-//   display_top_left = display_top | display_left,
-//   display_top_right = display_top | display_right,
-//   display_bottom_left = display_bottom | display_left,
-//   display_bottom_right = display_bottom | display_right,
-//   display_full_left = display_left | display_top | display_bottom,
-//   display_full_top = display_top | display_left | display_right,
-//   display_full_right = display_right | display_top | display_bottom,
-//   display_full_bottom = display_bottom | display_left | display_right,
+//   e_display_left = 0x1000,
+//   e_display_top = 0x2000,
+//   e_display_right = 0x4000,
+//   e_display_bottom = 0x8000,
+//   e_display_top_left = e_display_top | e_display_left,
+//   e_display_top_right = e_display_top | e_display_right,
+//   e_display_bottom_left = e_display_bottom | e_display_left,
+//   e_display_bottom_right = e_display_bottom | e_display_right,
+//   e_display_full_left = e_display_left | e_display_top | e_display_bottom,
+//   e_display_full_top = e_display_top | e_display_left | e_display_right,
+//   e_display_full_right = e_display_right | e_display_top | e_display_bottom,
+//   e_display_full_bottom = e_display_bottom | e_display_left | e_display_right,
 //
-//   display_docking_mask = 0xff00,
+//   e_display_docking_mask = 0xff00,
 //
-//   display_command_mask = 0xffff,
+//   e_display_command_mask = 0xffff,
 //
 //};
 //
 //
-//enum e_activation
+//enum enum_activation
 //{
 //
-//   activation_none = 0,
-//   activation_no_activate = 1 << 0,
-//   activation_set_active = 1 << 1,
-//   activation_set_foreground = 1 << 2,
-//   activation_under_mouse_cursor = 1 << 3,
-//   activation_on_center_of_screen = 1 << 4,
-//   activation_display_change = 1 << 5,
+//   e_activation_default = 0,
+//   e_activation_no_activate = 1 << 0,
+//   e_activation_set_active = 1 << 1,
+//   e_activation_set_foreground = 1 << 2,
+//   e_activation_under_mouse_cursor = 1 << 3,
+//   e_activation_on_center_of_screen = 1 << 4,
+//   e_activation_display_change = 1 << 5,
 //
 //};
 //
@@ -492,11 +492,11 @@
 //};
 //
 //
-//enum e_appearance
+//enum enum_appearance
 //{
 //
-//   appearance_none = 0,
-//   appearance_transparent_frame = 1 << 0,
+//   e_appearance_none = 0,
+//   e_appearance_transparent_frame = 1 << 0,
 //
 //};
 //

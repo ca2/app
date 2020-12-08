@@ -43,14 +43,21 @@ public:
    bool create_window_ex(::user::interaction * puiParent, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP, ::id id = __IDW_TOOLBAR);
 
 
+#ifdef WINDOWS_DESKTOP
+
    LRESULT CALLBACK MessageProc(
    index code,  // hook code
    WPARAM wParam,  // undefined
    LPARAM lParam   // address of structure with message data
    );
 
+#endif
+
+
    virtual void route_command_message(::user::command * pcommand) override;
    virtual void pre_translate_message(::message::message * pmessage) override;
+
+
 protected:
    virtual bool pre_create_window(::user::create_struct& cs) override;
 

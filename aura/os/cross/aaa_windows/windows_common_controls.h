@@ -31,7 +31,7 @@ typedef struct _TBBUTTON {
 #endif
    DWORD_PTR dwData;
    INT_PTR iString;
-} TBBUTTON,NEAR* PTBBUTTON,*LPTBBUTTON;
+} TBBUTTON,* PTBBUTTON,*LPTBBUTTON;
 typedef const TBBUTTON *LPCTBBUTTON;
 
 
@@ -57,7 +57,7 @@ WINCOMMCTRLAPI HBITMAP WINAPI CreateMappedBitmap(HINSTANCE hInstance,INT_PTR idB
 #define TBSTATE_CHECKED         0x01
 #define TBSTATE_PRESSED         0x02
 #define TBSTATE_ENABLED         0x04
-#define TBSTATE_HIDDEN          0x08
+#define e_toolbar_button_hidden          0x08
 #define TBSTATE_INDETERMINATE   0x10
 #define TBSTATE_WRAP            0x20
 #define TBSTATE_ELLIPSES        0x40
@@ -785,7 +785,7 @@ typedef struct tagREBARBANDINFOA
    ::u32        uChevronState;      // STATE_SYSTEM_*
 #endif
 }   REBARBANDINFOA,*LPREBARBANDINFOA;
-typedef REBARBANDINFOA CONST *LPCREBARBANDINFOA;
+typedef REBARBANDINFOA const *LPCREBARBANDINFOA;
 
 #define REBARBANDINFOA_V3_SIZE CCSIZEOF_STRUCT(REBARBANDINFOA, wID)
 #define REBARBANDINFOW_V3_SIZE CCSIZEOF_STRUCT(REBARBANDINFOW, wID)
@@ -820,7 +820,7 @@ typedef struct tagREBARBANDINFOW
    ::u32        uChevronState; // STATE_SYSTEM_*
 #endif
 }   REBARBANDINFOW,*LPREBARBANDINFOW;
-typedef REBARBANDINFOW CONST *LPCREBARBANDINFOW;
+typedef REBARBANDINFOW const *LPCREBARBANDINFOW;
 
 #ifdef UNICODE
 #define REBARBANDINFO       REBARBANDINFOW
@@ -1077,7 +1077,7 @@ typedef struct tagTOOLINFOA {
 #if (NTDDI_VERSION >= NTDDI_WINXP)
    void *lpReserved;
 #endif
-} TTTOOLINFOA,NEAR *PTOOLINFOA,*LPTTTOOLINFOA;
+} TTTOOLINFOA,*PTOOLINFOA,*LPTTTOOLINFOA;
 
 typedef struct tagTOOLINFOW {
    ::u32 cbSize;
@@ -1091,7 +1091,7 @@ typedef struct tagTOOLINFOW {
 #if (NTDDI_VERSION >= NTDDI_WINXP)
    void *lpReserved;
 #endif
-} TTTOOLINFOW,NEAR *PTOOLINFOW,*LPTTTOOLINFOW;
+} TTTOOLINFOW,*PTOOLINFOW,*LPTTTOOLINFOW;
 
 #ifdef UNICODE
 #define TTTOOLINFO              TTTOOLINFOW
@@ -1443,7 +1443,7 @@ typedef struct tagNMTTDISPINFOW {
 #define TBSTATE_CHECKED         0x01
 #define TBSTATE_PRESSED         0x02
 #define TBSTATE_ENABLED         0x04
-#define TBSTATE_HIDDEN          0x08
+#define e_toolbar_button_hidden          0x08
 #define TBSTATE_INDETERMINATE   0x10
 #define TBSTATE_WRAP            0x20
 #define TBSTATE_ELLIPSES        0x40

@@ -37,7 +37,7 @@
 
 extern "C" {
 #define XMD_H
-#undef FAR
+#undef
 #include <setjmp.h>
 
 //#include "jinclude.h"
@@ -626,7 +626,7 @@ jpeg_read_icc_profile(j_decompress_ptr cinfo, JOCTET **icc_data_ptr, unsigned *i
    {
       if (marker_is_icc(marker))
       {
-         JOCTET FAR *src_ptr;
+         JOCTET *src_ptr;
          JOCTET *dst_ptr;
          unsigned length;
          seq_no = GETJOCTET(marker->data[12]);

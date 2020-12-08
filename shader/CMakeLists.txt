@@ -4,6 +4,7 @@ project(app_shader CXX)
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_EXTENSIONS OFF)
+add_compile_options("$<$<CONFIG:DEBUG>:-DDEBUG>")
 
 
 if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")

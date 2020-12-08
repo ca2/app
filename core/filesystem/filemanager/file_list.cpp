@@ -184,7 +184,11 @@ namespace filemanager
    bool file_list::pre_create_window(::user::create_struct& cs)
    {
 
-      cs.style |= WS_CLIPCHILDREN;
+#ifdef WINDOWS_DESKTOP
+
+
+
+#endif
 
       return ::user::impact::pre_create_window(cs);
 
@@ -261,11 +265,11 @@ namespace filemanager
 
    //         i++;
 
-   //         millis_sleep(23);
+   //         sleep(23_ms);
 
    //      }
 
-   //      millis_sleep(100);
+   //      sleep(100_ms);
 
    //   }
 
@@ -2004,7 +2008,7 @@ namespace filemanager
                if (filemanager_data()->m_pholderFileList->m_puiptraChild->has_interaction())
                {
 
-                  filemanager_data()->m_pholderFileList->m_puiptraChild->interaction_at(0)->display(display_none);
+                  filemanager_data()->m_pholderFileList->m_puiptraChild->interaction_at(0)->display(e_display_none);
 
                }
 

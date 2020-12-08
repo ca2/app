@@ -814,7 +814,7 @@ namespace user
 
       place(rectWindow);
 
-      display(display_normal, activation_no_activate);
+      display(e_display_normal, e_activation_no_activate);
 
       set_need_redraw();
 

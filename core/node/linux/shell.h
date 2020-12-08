@@ -95,7 +95,7 @@
 //// xxx        LPWNDCLASSW pwndclass);
 //
 //// xxx    static ATOM WINAPI _RegisterClass(
-//         // xxx CONST WNDCLASSW *pwndclass);
+//         // xxx const WNDCLASSW *pwndclass);
 //
 //
 //   static oswindow WINAPI _CreateWindowEx(
@@ -198,7 +198,7 @@
 //
 //
 //   // xxx ATOM (WINAPI * m_pfnRegisterClass)(
-//         // xxx CONST WNDCLASSW *pwndclass);
+//         // xxx const WNDCLASSW *pwndclass);
 //
 //
 //   oswindow (WINAPI * m_pfnCreateWindowEx)(
@@ -308,7 +308,7 @@
 //
 //
 //// xxx    static ATOM WINAPI RegisterClass(
-//// xxx          CONST WNDCLASSW *pwndclass);
+//// xxx          const WNDCLASSW *pwndclass);
 //
 //
 //   static oswindow WINAPI CreateWindowEx(
@@ -550,7 +550,7 @@
 //}
 //
 //inline ATOM shell::RegisterClass(
-//   CONST WNDCLASSW *pwndclass)
+//   const WNDCLASSW *pwndclass)
 //
 //{
 //   return (*theLinuxShell.m_pfnRegisterClass)(

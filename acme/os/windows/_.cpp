@@ -21,7 +21,7 @@ void __term_windowing();
 CLASS_DECL_ACME bool is_verbose();
 
 
-//::acme::system * app_common_prelude(int & iError, ::create * & pmaininitdata, app_core & appcore,  HINSTANCE hinstance = nullptr, HINSTANCE hinstancePrev = nullptr, const char * pszCmdLine = nullptr, int nShowCmd = display_normal);
+//::acme::system * app_common_prelude(int & iError, ::create * & pmaininitdata, app_core & appcore,  HINSTANCE hinstance = nullptr, HINSTANCE hinstancePrev = nullptr, const char * pszCmdLine = nullptr, int nShowCmd = e_display_normal);
 //int app_common_term(int iError, ::acme::system * psystem, app_core & appcore);
 
 
@@ -801,12 +801,7 @@ CLASS_DECL_ACME string executable_get_app_id(HINSTANCE hinstance)
 }
 
 
-
-
-
-
-
-int os_get_system_update_poll_time(const ::id & id)
+::millis os_get_system_update_poll_time(const ::id & id)
 {
 
    if (id == id_os_dark_mode)

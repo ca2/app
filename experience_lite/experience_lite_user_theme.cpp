@@ -868,9 +868,9 @@ namespace lite
       ::user::toolbar::e_element eelement = ::user::toolbar::element_item;
 /*      ::user::toolbar::e_element eelementImage = ::user::toolbar::element_image;
       ::user::toolbar::e_element eelementText = ::user::toolbar::element_text;
-      if ((nStyle & TBBS_SEPARATOR) == 0)
+      if ((nStyle & e_toolbar_item_style_separator) == 0)
       {
-         if ((nStyle & TBBS_DISABLED) == 0)
+         if ((nStyle & e_toolbar_item_style_disabled) == 0)
          {
             // item is enabled
             if (ptoolbar->m_iButtonPressItem >= 0)
@@ -921,7 +921,7 @@ namespace lite
 
       ptoolbar->_001GetElementRect(iItem, rectImage, eelementImage);
 
-      if ((nStyle & TBBS_SEPARATOR) != 0)
+      if ((nStyle & e_toolbar_item_style_separator) != 0)
       {
          ::rect rectSeparator;
          rectSeparator.left = (rectImage.left + rectImage.right) / 2 - 1;
@@ -957,7 +957,7 @@ namespace lite
                if (uImage != 0xffffffffu)
                {
 
-                  if ((nStyle & TBBS_DISABLED) == 0)
+                  if ((nStyle & e_toolbar_item_style_disabled) == 0)
                   {
 
                      // button is enabled
@@ -1065,7 +1065,7 @@ namespace lite
          else
          {
 
-            if ((nStyle & TBBS_DISABLED) == 0)
+            if ((nStyle & e_toolbar_item_style_disabled) == 0)
             {
 
                ptoolbar->_001GetElementRect(iItem, rectItem, ::user::toolbar::element_item);
@@ -1094,7 +1094,7 @@ namespace lite
             else if (uImage != 0xffffffff)
             {
 
-               if ((nStyle & TBBS_DISABLED) == 0)
+               if ((nStyle & e_toolbar_item_style_disabled) == 0)
                {
 
                   pmenucentral->MenuV033GetImageListBlend()->draw(pgraphics, uImage, rectImage.top_left(), 0);
@@ -1122,7 +1122,7 @@ namespace lite
 
          ::draw2d::brush_pointer brushText(e_create);
 
-         if ((nStyle & TBBS_DISABLED) == 0)
+         if ((nStyle & e_toolbar_item_style_disabled) == 0)
          {
 
             brushText->create_solid(ARGB(255, 0, 0, 0));
@@ -1173,10 +1173,10 @@ namespace lite
 /*      ::user::toolbar::e_element eelementImage = ::user::toolbar::element_image;
       ::user::toolbar::e_element eelementText = ::user::toolbar::element_text;
 
-      if ((nStyle & TBBS_SEPARATOR) == 0)
+      if ((nStyle & e_toolbar_item_style_separator) == 0)
       {
 
-         if ((nStyle & TBBS_DISABLED) == 0)
+         if ((nStyle & e_toolbar_item_style_disabled) == 0)
          {
 
             // item is enabled
@@ -1264,7 +1264,7 @@ namespace lite
                if (uImage != 0xffffffffu)
                {
 
-                  if ((nStyle & TBBS_DISABLED) == 0)
+                  if ((nStyle & e_toolbar_item_style_disabled) == 0)
                   {
 
                      // button is enabled
@@ -1372,7 +1372,7 @@ namespace lite
          else
          {
 
-            if ((nStyle & TBBS_DISABLED) == 0)
+            if ((nStyle & e_toolbar_item_style_disabled) == 0)
             {
 
                ptoolbar->_001GetElementRect(iItem, rectItem, ::user::toolbar::element_item);
@@ -1394,13 +1394,13 @@ namespace lite
                ::draw2d::pen_pointer pen(e_create);
 
                pen->create_solid(1, ptoolbar->_001GetColor(
-                                 (nStyle & TBBS_DISABLED) == 0 ?
+                                 (nStyle & e_toolbar_item_style_disabled) == 0 ?
                                  ::user::color_button_background :
                                  ::user::color_button_background_disabled));
                ::draw2d::brush_pointer brush(e_create);
 
                brush->create_solid(ptoolbar->_001GetColor(
-                                   (nStyle & TBBS_DISABLED) == 0 ?
+                                   (nStyle & e_toolbar_item_style_disabled) == 0 ?
                                    ::user::color_button_background :
                                    ::user::color_button_background_disabled));
                ::draw2d::pen * ppenOld = pgraphics->SelectObject(pen);
@@ -1424,7 +1424,7 @@ namespace lite
             else if (uImage != 0xffffffff)
             {
 
-               if ((nStyle & TBBS_DISABLED) == 0)
+               if ((nStyle & e_toolbar_item_style_disabled) == 0)
                {
 
                   pmenucentral->MenuV033GetImageListBlend()->draw(pgraphics, uImage, rectImage.top_left(), 0);
@@ -1452,7 +1452,7 @@ namespace lite
 
          ::draw2d::brush_pointer brushText(e_create);
 
-         if ((nStyle & TBBS_DISABLED) == 0)
+         if ((nStyle & e_toolbar_item_style_disabled) == 0)
          {
 
             brushText->create_solid(ARGB(255, 255, 255, 255));

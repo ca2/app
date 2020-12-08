@@ -309,7 +309,7 @@ namespace uwp
 
          }
 
-         m_pimpl->m_puserinteraction->display(display_normal);
+         m_pimpl->m_puserinteraction->display(e_display_normal);
 
          m_pimpl->m_puserinteraction->set_dim(0, 0, m_size.cx, m_size.cy);
 

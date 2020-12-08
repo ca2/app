@@ -174,7 +174,7 @@ namespace user
       ::count                          m_iRestoredTabCount;
       bool                             m_bDrawTabAtBackground;
       ::logic::bit                     m_bitLastShowTabs;
-      e_display                        m_edisplayParentFrameAutoHide;
+      enum_display                        m_edisplayParentFrameAutoHide;
       int                              m_iTabScroll;
       int                              m_iTabScrollMax;
       int                              m_iTabSize;

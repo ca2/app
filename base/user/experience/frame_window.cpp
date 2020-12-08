@@ -13,7 +13,7 @@ namespace experience
    frame_window::frame_window()
    {
 
-      m_edisplayRestore = display_default;
+      m_edisplayRestore = e_display_default;
 
       m_ewindowflag += window_flag_load_window_rect_on_impl;
 
@@ -120,7 +120,7 @@ namespace experience
                         if (!layout().is_full_screen())
                         {
 
-                           display(display_full_screen);
+                           display(e_display_full_screen);
 
                            set_need_redraw();
 
@@ -156,7 +156,7 @@ namespace experience
 
                      defer_restore(m_windowrect.m_rectRestored);
 
-                     display(display_restore);
+                     display(e_display_restore);
 
                      set_reposition();
 
@@ -185,7 +185,7 @@ namespace experience
 
                      defer_restore(m_windowrect.m_rectRestored);
 
-                     display(display_restore);
+                     display(e_display_restore);
 
                      set_reposition();
 
@@ -270,7 +270,7 @@ namespace experience
 
             order(::zorder_top);
 
-            display(display_default, activation_set_foreground);
+            display(e_display_default, e_activation_set_foreground);
 
          }
          else if(m_pimpl2 && m_pimpl2->m_millisLastExposureAddUp.elapsed() < 300)
@@ -282,7 +282,7 @@ namespace experience
          else
          {
 
-            display(display_iconic, activation_no_activate);
+            display(e_display_iconic, e_activation_no_activate);
 
          }
 
@@ -312,7 +312,7 @@ namespace experience
 
             order_top();
 
-            display(display_normal, activation_set_foreground);
+            display(e_display_normal, e_activation_set_foreground);
 
          }
 
@@ -519,7 +519,7 @@ namespace experience
    bool frame_window::is_sizing_enabled()
    {
 
-      return is_frame_experience_enabled() && m_bSizeEnable && layout().design().display() != display_fixed_size;
+      return is_frame_experience_enabled() && m_bSizeEnable && layout().design().display() != e_display_fixed_size;
 
    }
 
@@ -668,7 +668,7 @@ namespace experience
 
             TRACE("button_clicked : button_minimize");
 
-            display(display_iconic, activation_no_activate);
+            display(e_display_iconic, e_activation_no_activate);
 
             set_need_redraw();
 
@@ -680,7 +680,7 @@ namespace experience
 
             TRACE("button_clicked : button_maximize");
 
-            display(display_zoomed);
+            display(e_display_zoomed);
 
             set_need_redraw();
 
@@ -704,7 +704,7 @@ namespace experience
 
             TRACE("button_clicked : button_up");
 
-            display(display_up);
+            display(e_display_up);
 
             set_need_redraw();
 
@@ -716,7 +716,7 @@ namespace experience
 
             TRACE("button_clicked : button_down");
 
-            display(display_down);
+            display(e_display_down);
 
             set_need_redraw();
 
@@ -728,7 +728,7 @@ namespace experience
 
             TRACE("button_clicked : button_transparent_frame");
 
-            layout().toggle_appearance(appearance_transparent_frame);
+            layout().toggle_appearance(e_appearance_transparent_frame);
 
             display();
 
@@ -748,7 +748,7 @@ namespace experience
 
             TRACE("button_clicked : button_notify_icon");
 
-            display(display_notify_icon);
+            display(e_display_notify_icon);
 
             set_need_redraw();
 
@@ -789,7 +789,7 @@ namespace experience
 
          case ::experience::button_minimize:
 
-            display(display_iconic, activation_no_activate);
+            display(e_display_iconic, e_activation_no_activate);
 
             set_need_redraw();
 
@@ -799,7 +799,7 @@ namespace experience
 
          case ::experience::button_maximize:
 
-            display(display_zoomed);
+            display(e_display_zoomed);
 
             set_need_redraw();
 
@@ -819,7 +819,7 @@ namespace experience
 
          case ::experience::button_up:
 
-            display(display_up);
+            display(e_display_up);
 
             set_need_redraw();
 
@@ -829,7 +829,7 @@ namespace experience
 
          case ::experience::button_down:
 
-            display(display_down);
+            display(e_display_down);
 
             set_need_redraw();
 
@@ -839,7 +839,7 @@ namespace experience
 
          case ::experience::button_transparent_frame:
 
-            layout().toggle_appearance(appearance_transparent_frame);
+            layout().toggle_appearance(e_appearance_transparent_frame);
 
             display();
 
@@ -905,7 +905,7 @@ namespace experience
    void frame_window::display_system_minimize()
    {
 
-      display(display_iconic, activation_no_activate);
+      display(e_display_iconic, e_activation_no_activate);
 
    }
 
@@ -922,7 +922,7 @@ namespace experience
       else
       {
 
-         display(display_restore);
+         display(e_display_restore);
 
       }
 
@@ -1559,42 +1559,42 @@ namespace experience
 
          //auto eactivation = layout().sketch().activation();
 
-         if (edisplay == display_iconic)
+         if (edisplay == e_display_iconic)
          {
 
             if (m_bitMinimizeToTray)
             {
 
-               layout().sketch() = display_notify_icon;
+               layout().sketch() = e_display_notify_icon;
 
             }
 
          }
-         else if (edisplay == display_zoomed)
+         else if (edisplay == e_display_zoomed)
          {
 
             if (m_bFullScreenOnMaximize)
             {
 
-               layout().sketch() = display_full_screen;
+               layout().sketch() = e_display_full_screen;
 
             }
 
          }
-         else if (edisplay == ::display_up)
+         else if (edisplay == ::e_display_up)
          {
 
             m_eupdown = updown_up;
 
          }
-         else if (edisplay == ::display_down)
+         else if (edisplay == ::e_display_down)
          {
 
             m_eupdown = updown_down;
 
          }
 
-         if (layout().sketch().display() != display_iconic)
+         if (layout().sketch().display() != e_display_iconic)
          {
 
             m_windowrect.m_edisplayPrevious = layout().sketch().display();
@@ -1677,11 +1677,11 @@ namespace experience
          if (!is_docking_appearance(edisplay))
          {
 
-            edisplay = display_none;
+            edisplay = e_display_none;
 
          }
 
-         ::edisplay edisplayPrevious = edisplay != display_none ? edisplay : layout().design().display();
+         ::edisplay edisplayPrevious = edisplay != e_display_none ? edisplay : layout().design().display();
 
          bool bCursorPosition = layout().is_moving();
 
@@ -1698,10 +1698,10 @@ namespace experience
 
          double dMargin = System.m_dpi * 0.75 * (1.0 - sqrt((double) rect.area() / (double) rectWkspace.area()));
 
-         if (ZONEING_COMPARE::is_equal(rect.top, rectWkspace.top, dMargin, !(edisplayPrevious & display_top)))
+         if (ZONEING_COMPARE::is_equal(rect.top, rectWkspace.top, dMargin, !(edisplayPrevious & e_display_top)))
          {
 
-            edisplay |= display_top;
+            edisplay |= e_display_top;
 
             if (bPreserveSize)
             {
@@ -1720,14 +1720,14 @@ namespace experience
          else
          {
 
-            edisplay -= display_top;
+            edisplay -= e_display_top;
 
          }
 
-         if (ZONEING_COMPARE::is_equal(rectWkspace.bottom, rect.bottom, dMargin, !(edisplayPrevious & display_bottom)))
+         if (ZONEING_COMPARE::is_equal(rectWkspace.bottom, rect.bottom, dMargin, !(edisplayPrevious & e_display_bottom)))
          {
 
-            edisplay |= display_bottom;
+            edisplay |= e_display_bottom;
 
             if (bPreserveSize)
             {
@@ -1746,14 +1746,14 @@ namespace experience
          else
          {
 
-            edisplay -= display_bottom;
+            edisplay -= e_display_bottom;
 
          }
 
-         if (ZONEING_COMPARE::is_equal(rect.left, rectWkspace.left, dMargin, !(edisplayPrevious & display_left)))
+         if (ZONEING_COMPARE::is_equal(rect.left, rectWkspace.left, dMargin, !(edisplayPrevious & e_display_left)))
          {
 
-            edisplay |= display_left;
+            edisplay |= e_display_left;
 
             if (bPreserveSize)
             {
@@ -1772,14 +1772,14 @@ namespace experience
          else
          {
 
-            edisplay -= display_left;
+            edisplay -= e_display_left;
 
          }
 
-         if (ZONEING_COMPARE::is_equal(rectWkspace.right, rect.right, dMargin, !(edisplayPrevious & display_right)))
+         if (ZONEING_COMPARE::is_equal(rectWkspace.right, rect.right, dMargin, !(edisplayPrevious & e_display_right)))
          {
 
-            edisplay |= display_right;
+            edisplay |= e_display_right;
 
             if (bPreserveSize)
             {
@@ -1798,12 +1798,12 @@ namespace experience
          else
          {
 
-            edisplay -= display_right;
+            edisplay -= e_display_right;
 
          }
 
-         if (!(edisplay & display_top || edisplay & display_bottom)
-            && is_different(edisplay & display_left, edisplay & display_right))
+         if (!(edisplay & e_display_top || edisplay & e_display_bottom)
+            && is_different(edisplay & e_display_left, edisplay & e_display_right))
          {
 
             if (ZONEING_COMPARE::is_centered(rectWkspace.top, rect.top, rect.bottom, rectWkspace.bottom))
@@ -1812,9 +1812,9 @@ namespace experience
                if (dock_manager()->window_is_docking())
                {
 
-                  edisplay |= display_bottom;
+                  edisplay |= e_display_bottom;
 
-                  edisplay |= display_top;
+                  edisplay |= e_display_top;
 
                   rect.bottom = rectWkspace.bottom;
 
@@ -1823,18 +1823,18 @@ namespace experience
                }
 
             }
-            else if((edisplayPrevious & (display_left | display_right))
-               != (edisplay & (display_left | display_right)))
+            else if((edisplayPrevious & (e_display_left | e_display_right))
+               != (edisplay & (e_display_left | e_display_right)))
             {
 
-               edisplay = display_none;
+               edisplay = e_display_none;
 
             }
 
          }
 
-         if (!(edisplay & display_left || edisplay & display_right)
-            && is_different(edisplay & display_top, edisplay & display_bottom))
+         if (!(edisplay & e_display_left || edisplay & e_display_right)
+            && is_different(edisplay & e_display_top, edisplay & e_display_bottom))
          {
 
             if (ZONEING_COMPARE::is_centered(rectWkspace.left, rect.left, rect.right, rectWkspace.right))
@@ -1843,9 +1843,9 @@ namespace experience
                if (dock_manager()->window_is_docking())
                {
 
-                  edisplay |= display_left;
+                  edisplay |= e_display_left;
 
-                  edisplay |= display_right;
+                  edisplay |= e_display_right;
 
                   rect.left = rectWkspace.left;
 
@@ -1854,23 +1854,23 @@ namespace experience
                }
 
             }
-            else if ((edisplayPrevious & (display_top | display_bottom))
-               != (edisplay & (display_top | display_bottom)))
+            else if ((edisplayPrevious & (e_display_top | e_display_bottom))
+               != (edisplay & (e_display_top | e_display_bottom)))
             {
 
-               edisplay = display_none;
+               edisplay = e_display_none;
 
             }
 
          }
 
-         bool bLeftXorRight = is_different(edisplay & display_left, edisplay & display_right);
+         bool bLeftXorRight = is_different(edisplay & e_display_left, edisplay & e_display_right);
 
-         bool bTopXorBottom = is_different(edisplay & display_top, edisplay & display_bottom);
+         bool bTopXorBottom = is_different(edisplay & e_display_top, edisplay & e_display_bottom);
 
-         bool bTopAndBottom = edisplay & display_top && edisplay & display_bottom;
+         bool bTopAndBottom = edisplay & e_display_top && edisplay & e_display_bottom;
 
-         bool bLeftAndRight = edisplay & display_left && edisplay & display_right;
+         bool bLeftAndRight = edisplay & e_display_left && edisplay & e_display_right;
 
          if (bLeftXorRight && bTopXorBottom)
          {
@@ -1879,25 +1879,25 @@ namespace experience
          else if (bTopAndBottom && bLeftAndRight && !bPreserveSize)
          {
 
-            if (layout().sketch().display() == display_full_screen)
+            if (layout().sketch().display() == e_display_full_screen)
             {
 
-               edisplay = display_full_screen;
+               edisplay = e_display_full_screen;
 
             }
             else
             {
 
-               edisplay = display_zoomed;
+               edisplay = e_display_zoomed;
 
             }
 
          }
 
-         if (edisplay == display_none)
+         if (edisplay == e_display_none)
          {
 
-            edisplay = display_normal;
+            edisplay = e_display_normal;
 
          }
 
@@ -1907,7 +1907,7 @@ namespace experience
             *prect = rect;
 
          }
-         else if (edisplay == display_zoomed)
+         else if (edisplay == e_display_zoomed)
          {
 
             *prect = rectWkspace;
@@ -1962,7 +1962,7 @@ namespace experience
 
          auto edisplay = layout().sketch().display();
 
-         if (edisplay == display_notify_icon)
+         if (edisplay == e_display_notify_icon)
          {
 
             if(!window_is_notify_icon_enabled())
@@ -2121,7 +2121,7 @@ namespace experience
 
       edisplay edisplay = layout().sketch().display();
 
-      if (!::is_equivalent(edisplay, display_normal))
+      if (!::is_equivalent(edisplay, e_display_normal))
       {
 
          defer_restore(m_windowrect.m_rectRestored);
@@ -2133,7 +2133,7 @@ namespace experience
          if (m_windowrect.m_rectRestored.size() == m_sizeRestoreBroad)
          {
 
-            display(display_compact);
+            display(e_display_compact);
 
          }
          else
@@ -2147,13 +2147,13 @@ namespace experience
       else if (rectRequest.size() == m_sizeRestoreCompact)
       {
 
-         display(display_broad);
+         display(e_display_broad);
 
       }
       else
       {
 
-         display(display_compact);
+         display(e_display_compact);
 
       }
 

@@ -1,6 +1,5 @@
 #include "framework.h"
-#include "apex/net/sockets/_.h"
-//#include "apex/xml/_.h"
+#include "apex/net/sockets/_sockets.h"
 #include "apex/const/idpool.h"
 #include "apex/astr.h"
 #include <time.h>
@@ -487,7 +486,7 @@ namespace http
       //         if(iAttempt > 11)
       //            return "";
       //
-      //         millis_sleep(iAttempt * 840);
+      //         sleep(iAttempt * 840);
       //
       //      }
 
@@ -2283,7 +2282,7 @@ namespace http
          if (iTry < iTryCount && tickElapse < tickTotalTimeout)
          {
 
-            task_sleep(300);
+            task_sleep(300_ms);
 
             if (::thread_get_run())
             {
@@ -2622,7 +2621,7 @@ namespace http
 
             sl.unlock();
 
-            millis_sleep(100);
+            sleep(100_ms);
 
             sl.lock();
 

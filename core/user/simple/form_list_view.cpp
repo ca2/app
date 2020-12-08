@@ -30,18 +30,28 @@ void simple_form_list_view::assert_valid() const
    ::user::impact::assert_valid();
 }
 
+
 void simple_form_list_view::dump(dump_context & dumpcontext) const
 {
+
    ::user::impact::dump(dumpcontext);
+
 }
+
 
 bool simple_form_list_view::pre_create_window(::user::create_struct& cs) 
 {
+
+#ifdef WINDOWS_DESKTOP
    
-   cs.style |= WS_CLIPCHILDREN;
+
+
+#endif
    
    return ::user::impact::pre_create_window(cs);
+
 }
+
 
 void simple_form_list_view::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
 {

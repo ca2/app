@@ -805,7 +805,7 @@ int sock_srv_lookup(const char *service, const char *proto, const char *domain, 
 				{
 					if (sock_error() == WSAEWOULDBLOCK)
 					{
-						millis_sleep(100);
+						millis_sleep(100_ms);
 					}
 					else
 					{

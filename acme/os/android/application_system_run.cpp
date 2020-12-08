@@ -66,7 +66,7 @@ string ca2_command_line()
 
    strPrgName.replace("_", "-");
 
-   psystem->m_strProgName = "cc.ca2." + strPrgName;
+   psystem->m_strProgName = "com." + strPrgName;
 
    ::set_main_hthread(psystem->m_hthread);
 

@@ -77,7 +77,7 @@ namespace user
       m_iTabScroll = 0;
       m_iTabScrollMax = 0;
       m_iTabSize = 0;
-      m_edisplayParentFrameAutoHide = ::display_none;
+      m_edisplayParentFrameAutoHide = ::e_display_none;
       m_estate = state_initial;
 
       m_iRestoredTabCount = 0;
@@ -1605,7 +1605,7 @@ namespace user
       if (bDisplay)
       {
 
-         pholder->display(::display_normal);
+         pholder->display(::e_display_normal);
 
       }
       else if(::is_set(ppaneSel) && ppaneSel->m_eflag & flag_hide_all_others_on_show)
@@ -2991,12 +2991,12 @@ namespace user
    {
 //      if(get_tab_holder(_001GetSel()) != nullptr)
       //    {
-      //     get_tab_holder(_001GetSel())->display(display_none);
+      //     get_tab_holder(_001GetSel())->display(e_display_none);
       // }
       _001SetSel(iPane);
       // if(get_tab_holder(_001GetSel()) != nullptr)
       //{
-      // get_tab_holder(_001GetSel())->display(display_normal);
+      // get_tab_holder(_001GetSel())->display(e_display_normal);
       // }
 
       //on_layout(::draw2d::graphics_pointer & pgraphics);
@@ -4045,13 +4045,13 @@ namespace user
 //         if (pshowwindow->m_bShow)
 //         {
 //
-//            pholder->display(display_normal);
+//            pholder->display(e_display_normal);
 //
 //         }
 //         else
 //         {
 //
-//            pholder->display(display_none);
+//            pholder->display(e_display_none);
 //
 //         }
 //

@@ -1225,7 +1225,7 @@ namespace dynamic_source
          if(has_link_out_link(pszServer, pinsocket, nullptr))
             break;
 
-         millis_sleep(100);
+         sleep(100_ms);
 
       }
 

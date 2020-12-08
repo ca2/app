@@ -9,12 +9,12 @@ typedef u32 ::u32;
 //typedef i32 ::i32;
 
 
-#undef FAR
-#undef  NEAR
-#define FAR
-#define NEAR
-#ifndef CONST
-#define CONST               const
+#undef
+#undef
+
+
+#ifndef const
+#define const               const
 #endif
 
 

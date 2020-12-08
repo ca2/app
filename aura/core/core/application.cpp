@@ -1865,7 +1865,7 @@ namespace aura
          }
 
          // hide the application's windows before closing all the documents
-         m_puiMain1->m_puiThis->display(display_none);
+         m_puiMain1->m_puiThis->display(e_display_none);
          // trans    m_puiMain->ShowOwnedPopups(FALSE);
 
 
@@ -1876,7 +1876,7 @@ namespace aura
 
          //m_puiMain->m_puiThis->wait_redraw();
 
-         m_puiMain1->m_puiThis->display(display_none);
+         m_puiMain1->m_puiThis->display(e_display_none);
 
 
       }

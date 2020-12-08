@@ -235,7 +235,7 @@ void simple_frame_window::_task_save_window_rect()
          if (m_millisLastSaveWindowRectRequest.elapsed() < 300_ms)
          {
 
-            millis_sleep(150_ms);
+            sleep(150_ms);
 
          }
          else if (m_bPendingSaveWindowRect)
@@ -264,7 +264,7 @@ void simple_frame_window::_task_save_window_rect()
          else
          {
 
-            millis_sleep(1_s);
+            sleep(1_s);
 
          }
 
@@ -396,7 +396,7 @@ bool simple_frame_window::_001OnBeforeAppearance()
 
    edisplay edisplay = layout().sketch().display();
 
-   if (edisplay == ::display_up || edisplay == ::display_down)
+   if (edisplay == ::e_display_up || edisplay == ::e_display_down)
    {
 
       if (!initialize_frame_window_experience())
@@ -433,7 +433,7 @@ void simple_frame_window::_thread_save_window_placement()
    while (::thread_get_run())
    {
 
-      if (!task_sleep(300))
+      if (!task_sleep(300_ms))
       {
 
          break;
@@ -816,7 +816,7 @@ void simple_frame_window::_001OnCreate(::message::message * pmessage)
       if (m_ebuttonaHide.contains(::experience::button_transparent_frame))
       {
 
-         layout().remove_appearance(appearance_transparent_frame);
+         layout().remove_appearance(e_appearance_transparent_frame);
 
       }
 
@@ -990,7 +990,7 @@ void simple_frame_window::_001OnDisplayChange(::message::message * pmessage)
 
       ::edisplay edisplay = layout().sketch().display();
 
-      display(edisplay, activation_display_change);
+      display(edisplay, e_activation_display_change);
 
       set_need_layout();
 
@@ -1099,7 +1099,7 @@ bool simple_frame_window::pre_create_window(::user::create_struct& cs)
       if (pdocument->get_document_template()->m_bHiddenOnNotifyIcon)
       {
 
-         //display(::display_hide);
+         //display(::e_display_hide);
 
          //set_need_redraw();
 
@@ -1178,7 +1178,7 @@ void simple_frame_window::_001OnGetMinMaxInfo(::message::message * pmessage)
 {
 #ifdef WINDOWS_DESKTOP
    SCAST_PTR(::message::base, pbase, pmessage);
-   MINMAXINFO FAR * pMMI = (MINMAXINFO FAR*) pbase->m_lparam.m_lparam;
+   MINMAXINFO * pMMI = (MINMAXINFO *) pbase->m_lparam.m_lparam;
 
    if (layout().is_full_screen())
    {
@@ -1205,13 +1205,13 @@ void simple_frame_window::ShowControlBars(bool bShow, bool bLeaveFullScreenBarsO
    if (bShow)
    {
 
-      nShow = display_normal;
+      nShow = e_display_normal;
 
    }
    else
    {
 
-      nShow = display_none;
+      nShow = e_display_none;
 
    }
 
@@ -1288,7 +1288,7 @@ bool simple_frame_window::frame_is_transparent()
    
    auto eappearance = layout().design().appearance();
 
-   if(eappearance & ::appearance_transparent_frame)
+   if(eappearance & ::e_appearance_transparent_frame)
    {
       
       return true;
@@ -1375,13 +1375,13 @@ void simple_frame_window::ToggleFullScreen()
    if (layout().is_full_screen())
    {
 
-      display(display_normal);
+      display(e_display_normal);
 
    }
    else
    {
 
-      display(display_full_screen);
+      display(e_display_full_screen);
 
    }
 
@@ -1415,7 +1415,7 @@ void simple_frame_window::_001OnUpdateToggleCustomFrame(::message::message * pme
 void simple_frame_window::_001OnToggleTransparentFrame(::message::message * pmessage)
 {
 
-   layout().toggle_appearance(appearance_transparent_frame);
+   layout().toggle_appearance(e_appearance_transparent_frame);
 
    display();
 
@@ -1577,7 +1577,7 @@ void simple_frame_window::_001OnClose(::message::message * pmessage)
    if ((bool)m_varFrame["hide_on_close"])
    {
 
-      display(display_none);
+      display(e_display_none);
 
       if (pmessage != nullptr)
       {
@@ -1606,13 +1606,13 @@ void simple_frame_window::_001OnClose(::message::message * pmessage)
             || ::user::get_edesktop() == ::user::desktop_ubuntu_gnome)
       {
 
-         display(display_none);
+         display(e_display_none);
 
       }
       else
       {
 
-         display(display_iconic);
+         display(e_display_iconic);
 
       }
 #else
@@ -1732,7 +1732,7 @@ void simple_frame_window::_001OnClose(::message::message * pmessage)
    if(bHideWindow)
    {
 
-      display(display_none);
+      display(e_display_none);
 
    }
 
@@ -1741,7 +1741,7 @@ void simple_frame_window::_001OnClose(::message::message * pmessage)
 
 //#ifdef WINDOWS_DESKTOP
 //
-//void simple_frame_window::OnNcCalcSize(bool bCalcValidRects, NCCALCSIZE_PARAMS FAR* pncsp)
+//void simple_frame_window::OnNcCalcSize(bool bCalcValidRects, NCCALCSIZE_PARAMS * pncsp)
 //
 //{
 //   UNREFERENCED_PARAMETER(bCalcValidRects);
@@ -1778,7 +1778,7 @@ void simple_frame_window::_001OnActivateApp(::message::message * pmessage)
       //   if (layout().is_iconic())
       //   {
 
-      //      display(display_normal);
+      //      display(e_display_normal);
 
       //   }
       //   SetActiveWindow();
@@ -1825,7 +1825,7 @@ void simple_frame_window::_001OnActivate(::message::message * pmessage)
       else
       {
 
-         display(display_default, activation_set_foreground);
+         display(e_display_default, e_activation_set_foreground);
 
          set_need_redraw();
 
@@ -1838,13 +1838,13 @@ void simple_frame_window::_001OnActivate(::message::message * pmessage)
                //   if (bMinimized || layout().is_iconic())
                //   {
 
-               //      display(display_normal);
+               //      display(e_display_normal);
 
                //   }
                //   else
                //   {
 
-               //      display(display_iconic);
+               //      display(e_display_iconic);
 
                //   }
 
@@ -1854,7 +1854,7 @@ void simple_frame_window::_001OnActivate(::message::message * pmessage)
 
 
 
-               //   display(display_normal);
+               //   display(e_display_normal);
 
 
             }
@@ -1880,7 +1880,7 @@ void simple_frame_window::_001OnActivate(::message::message * pmessage)
       //      if (!layout().is_iconic())
       //      {
 
-      //         display(display_iconic | display_no_activate);
+      //         display(e_display_iconic | display_no_activate);
 
       //      }
 
@@ -1896,7 +1896,7 @@ void simple_frame_window::_001OnActivate(::message::message * pmessage)
 //         if (!bMinimized && !layout().is_iconic())
 //         {
 //
-////            display(display_iconic);
+////            display(e_display_iconic);
 //
 //         }
 
@@ -2032,7 +2032,7 @@ bool simple_frame_window::LoadFrame(const char * pszMatter, u32 dwDefaultStyle, 
          if(m_ewindowflag & window_flag_main_frame)
          {
 
-            display(display_zoomed);
+            display(e_display_zoomed);
 
           //  psession->get_main_wkspace(rectFrame);
 
@@ -2050,7 +2050,7 @@ bool simple_frame_window::LoadFrame(const char * pszMatter, u32 dwDefaultStyle, 
       if (pcreate->m_bMakeVisible)
       {
 
-         layout().sketch() = activation_set_foreground;
+         layout().sketch() = e_activation_set_foreground;
 
          dwDefaultStyle |= WS_VISIBLE;
 
@@ -2060,7 +2060,7 @@ bool simple_frame_window::LoadFrame(const char * pszMatter, u32 dwDefaultStyle, 
 
          set_need_layout();
 
-         layout().sketch() = display_none;
+         layout().sketch() = e_display_none;
 
          INFO("simple_frame_window::LoadFrame DISPLAY_NONE");
 
@@ -2150,17 +2150,17 @@ void simple_frame_window::pre_translate_message(::message::message * pmessage)
 void simple_frame_window::on_frame_position()
 {
 
-   display(display_default, activation_set_active);
+   display(e_display_default, e_activation_set_active);
 
    order_top();
 
    if (is_frame_experience_enabled())
    {
 
-      if (layout().design().display() == ::display_iconic)
+      if (layout().design().display() == ::e_display_iconic)
       {
 
-         display(display_normal);
+         display(e_display_normal);
 
       }
 
@@ -2194,7 +2194,7 @@ void simple_frame_window::InitialFramePosition(bool bForceRestore)
          if(Application.has_property("wfi_maximize") && is_top_level_window())
          {
 
-            display(display_zoomed);
+            display(e_display_zoomed);
 
          }
          else if(bHostTopLevel
@@ -2205,7 +2205,7 @@ void simple_frame_window::InitialFramePosition(bool bForceRestore)
             if(is_frame_experience_enabled())
             {
 
-               display(display_full_screen);
+               display(e_display_full_screen);
 
             }
             else
@@ -2213,7 +2213,7 @@ void simple_frame_window::InitialFramePosition(bool bForceRestore)
 
                //best_monitor(nullptr,nullptr,true);
 
-               display(display_zoomed);
+               display(e_display_zoomed);
 
             }
 
@@ -3246,18 +3246,18 @@ string simple_frame_window::get_window_default_matter()
 //
 //         // finally, activate the frame
 //         // (send the default show command unless the main desktop u)
-//         edisplay edisplay = display_default;      // default
+//         edisplay edisplay = e_display_default;      // default
 //         ::aura::application* pApp = &System;
 //         if (pApp != nullptr && pApp->m_puiMain == pframe)
 //         {
 //            edisplay = System.m_edisplay; // use the parameter from WinMain
-//            System.m_edisplay = display_undefined; // set to default after first time
+//            System.m_edisplay = e_display_undefined; // set to default after first time
 //         }
 //         bool bFullScreen;
 //         data_get("FullScreen", bFullScreen);
 //         if (bFullScreen)
 //         {
-//            display(display_full_screen);
+//            display(e_display_full_screen);
 //         }
 //         else
 //         {
@@ -3540,7 +3540,7 @@ void simple_frame_window::draw_frame(::draw2d::graphics_pointer & pgraphics)
 //   if (m_bFullScreenOnMaximize)
 //   {
 //
-//      display(display_full_screen);
+//      display(e_display_full_screen);
 //
 //   }
 //   else
@@ -3586,7 +3586,7 @@ void simple_frame_window::draw_frame(::draw2d::graphics_pointer & pgraphics)
 //      {
 //         if (!layout().is_full_screen())
 //         {
-//            display(display_full_screen);
+//            display(e_display_full_screen);
 //            return true;
 //         }
 //         else
@@ -3599,7 +3599,7 @@ void simple_frame_window::draw_frame(::draw2d::graphics_pointer & pgraphics)
 //      {
 //         if (!layout().is_full_screen())
 //         {
-//            display(display_full_screen);
+//            display(e_display_full_screen);
 //            return true;
 //         }
 //         else
@@ -3613,7 +3613,7 @@ void simple_frame_window::draw_frame(::draw2d::graphics_pointer & pgraphics)
 //
 //      if (!layout().is_full_screen())
 //      {
-//         display(display_full_screen);
+//         display(e_display_full_screen);
 //         return true;
 //      }
 //      else
@@ -3625,7 +3625,7 @@ void simple_frame_window::draw_frame(::draw2d::graphics_pointer & pgraphics)
 //   {
 //      if (layout().is_full_screen())
 //      {
-//         display(display_normal);
+//         display(e_display_normal);
 //         return true;
 //      }
 //      __pointer(::user::interaction) pwndParentFrame = GetParentFrame();
@@ -3725,13 +3725,13 @@ class ::mini_dock_frame_window* simple_frame_window::CreateFloatingFrame(u32 uSt
 //
 //   bool bOk1 = ::user::frame_window::display(edisplay);
 //
-//   if (edisplay == ::display_up)
+//   if (edisplay == ::e_display_up)
 //   {
 //
 //      m_eupdown = updown_up;
 //
 //   }
-//   else if (edisplay == ::display_down)
+//   else if (edisplay == ::e_display_down)
 //   {
 //
 //      m_eupdown = updown_down;
@@ -3740,7 +3740,7 @@ class ::mini_dock_frame_window* simple_frame_window::CreateFloatingFrame(u32 uSt
 //
 //   //display(edisplay);
 //
-//   if(edisplay == ::display_full_screen)
+//   if(edisplay == ::e_display_full_screen)
 //   {
 //
 //      WfiOnAfterFullScreen();

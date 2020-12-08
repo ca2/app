@@ -190,7 +190,7 @@ namespace hi5
 
          m_pviewAuth->GetParentFrame()->SetForegroundWindow();
 
-         m_ptabview->GetTopLevelFrame()->display(display_normal, activation_set_foreground);
+         m_ptabview->GetTopLevelFrame()->display(e_display_normal, e_activation_set_foreground);
 
       }
 
@@ -207,7 +207,7 @@ namespace hi5
 
          m_ptabview->get_wnd()->RunModalLoop();
 
-         m_ptabview->get_wnd()->EndModalLoop(IDOK);
+         m_ptabview->get_wnd()->EndModalLoop(e_dialog_result_ok);
 
       }
 
@@ -266,9 +266,9 @@ namespace hi5
 
                pinteraction->_001GetText(m_strPin);
 
-               m_ptabview->get_wnd()->EndModalLoop(IDOK);
+               m_ptabview->get_wnd()->EndModalLoop(e_dialog_result_ok);
 
-               m_ptabview->GetParentFrame()->display(display_none);
+               m_ptabview->GetParentFrame()->display(e_display_none);
 
             }
 

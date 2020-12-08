@@ -168,7 +168,7 @@ namespace windows
       HANDLE handleFile = INVALID_HANDLE_VALUE;
 
       ::u32 dwWaitSharingViolation = 84;
-      auto tickStart = ::millis::now();
+      auto millisStart = ::millis::now();
 
       //::u32 dwFileSharingViolationRetryTimeout = ::get_task() != nullptr ? ::get_task()->get_file_sharing_violation_timeout_total_milliseconds() : 0;
 
@@ -189,10 +189,10 @@ namespace windows
          if (!(eopen & ::file::no_share_violation_wait))
          {
 
-            if (dwLastError == ERROR_SHARING_VIOLATION && ::thread_get_run() && (tickStart.elapsed()) < m_dwErrorBlockTimeout)
+            if (dwLastError == ERROR_SHARING_VIOLATION && ::thread_get_run() && millisStart.elapsed() < m_millisErrorBlockTimeout)
             {
 
-               millis_sleep(max(m_dwErrorBlockTimeout / 10u, 50u));
+               sleep(max(m_millisErrorBlockTimeout / 10, 50_ms));
 
                goto retry;
 

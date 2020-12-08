@@ -3359,9 +3359,9 @@ return TRUE;
 
       __throw(todo());
 
-      /*      m_edisplay = display_normal;
+      /*      m_edisplay = e_display_normal;
             if(m_puserinteraction != nullptr)
-            m_puserinteraction->m_edisplay = display_normal;
+            m_puserinteraction->m_edisplay = e_display_normal;
             ::ShowWindow(get_handle(), SW_RESTORE);*/
    }
 
@@ -3980,7 +3980,7 @@ return TRUE;
 
 #endif
 
-   bool interaction_impl::DrawAnimatedRects(int idAni,CONST RECT32 *lprcFrom,CONST RECT32 *lprcTo)
+   bool interaction_impl::DrawAnimatedRects(int idAni,const RECT32 *lprcFrom,const RECT32 *lprcTo)
    {
 
       __throw(todo());

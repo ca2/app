@@ -31,7 +31,7 @@
 #pragma once
 
 
-#include "apex/net/sockets/_.h"
+#include "apex/net/sockets/_sockets.h"
 
 #include "acme/primitive/primitive/util.h"
 
@@ -114,7 +114,7 @@ namespace ftp
 
       client_socket(::sockets::base_socket_handler & handler,
                     unsigned int uiTimeout = 10, unsigned int uiBufferSize = 2048,
-                    unsigned int uiResponseWait = 0, const string& strRemoteDirectorySeparator = _T("/"));
+                    unsigned int uiResponseWait = 0, const string& strRemoteDirectorySeparator = "/");
       virtual ~client_socket();
 
       virtual long cert_common_name_check(const char * common_name) override;

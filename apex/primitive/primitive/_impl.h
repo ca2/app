@@ -1272,7 +1272,7 @@ inline ::estatus object::__compose_new(__composite(TYPE) & p)
 
   p = ptypeNew;
 
-  estatus = add_composite(p);
+  estatus = add_composite(p OBJ_REF_DBG_COMMA_P_FUNCTION_LINE(this));
 
   if (!estatus)
   {

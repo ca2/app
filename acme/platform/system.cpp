@@ -182,7 +182,7 @@ namespace acme
 
       sync_lock sl(&m_mutexTask);
 
-      m_taskmap[ithread].reset(ptask OBJ_REF_DBG_COMMA_P_NOTE(this, "thread::thread_set"));
+      m_taskmap[ithread].reset(ptask OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
 
       m_taskidmap[ptask] = ithread;
 
@@ -196,7 +196,7 @@ namespace acme
 
 #if OBJ_REF_DBG
 
-      m_taskmap[ithread].release(this);
+      m_taskmap[ithread].release(OBJ_REF_DBG_THIS_FUNCTION_LINE);
 
 #endif
 

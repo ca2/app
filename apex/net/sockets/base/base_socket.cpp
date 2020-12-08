@@ -119,7 +119,10 @@ namespace sockets
    void base_socket::on_finalize()
    {
 
-      __release(m_psocketthread);
+      //__release(m_psocketthread);
+
+      ::object::on_finalize();
+
 
    }
 
@@ -982,11 +985,11 @@ namespace sockets
 
       __refer(m_psocket, psocket);
 
-      m_psocket->set_context_thread(this);
+      m_psocket->set_context_thread(this OBJ_REF_DBG_COMMA_P_FUNCTION_LINE(m_psocket));
          
       __compose(m_phandler, __new(socket_handler(get_context_object())));
 
-      m_phandler->set_context_thread(this);
+      m_phandler->set_context_thread(this OBJ_REF_DBG_COMMA_P_FUNCTION_LINE(m_phandler));
 
       begin_synch();
 
@@ -1024,6 +1027,14 @@ namespace sockets
       m_psocket->OnDetached();
    
       return true;
+
+   }
+
+
+   void base_socket::socket_thread::term_thread()
+   {
+
+      ::thread::term_thread();
 
    }
 

@@ -212,6 +212,12 @@ enum e_id : u64
    id_font_list_total_size,
    id_font_list_redraw,
 
+
+   id_application,
+   id_session,
+   id_system,
+   id_thread,
+
    // procedures:
 
    // callbacks:

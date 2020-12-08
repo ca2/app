@@ -143,7 +143,7 @@ void* task::s_os_task(void* p)
 
       ::set_task(pthread OBJ_REF_DBG_COMMA_P_FUNCTION_LINE(pthread));
 
-      pthread->release();
+      pthread->release(OBJ_REF_DBG_P_FUNCTION_LINE(pthread));
 
       pthread->do_task();
 

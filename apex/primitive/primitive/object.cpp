@@ -123,7 +123,7 @@ void object::to_string(const class string_exchange & str) const
 
    m_pcompositea.defer_create_new();
 
-   if (m_pcompositea->add_unique(pmatter))
+   if (m_pcompositea->add_unique(pmatter OBJ_REF_DBG_COMMA_ARGS))
    {
 
 #ifdef DEBUG
@@ -146,7 +146,7 @@ void object::to_string(const class string_exchange & str) const
 
    m_preferencea.defer_create_new();
 
-   m_preferencea->add_unique(pmatter);
+   m_preferencea->add_unique(pmatter OBJ_REF_DBG_COMMA_ARGS);
 
    if (m_preferencea->get_upper_bound() == 8)
    {
@@ -1348,7 +1348,9 @@ void object::release_references()
    while(m_pcompositea && m_pcompositea->has_element())
    {
 
-      auto composite = m_pcompositea->pop();
+      auto & composite = m_pcompositea->last();
+
+      m_pcompositea->remove_last();
 
       sl.unlock();
 

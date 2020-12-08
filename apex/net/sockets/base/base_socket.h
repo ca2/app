@@ -51,6 +51,8 @@ namespace sockets
 
          virtual ::estatus init_thread() override;
 
+         virtual void term_thread() override;
+
          base_socket * get_socket() const { return m_psocket; }
 
          virtual ::estatus     run() override;

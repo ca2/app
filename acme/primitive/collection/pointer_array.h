@@ -159,7 +159,7 @@ public:
 
       this->allocate(nIndex + 1);
 
-      this->last().reset(p OBJ_REF_DBG_COMMA_THIS);
+      this->last().reset(p OBJ_REF_DBG_COMMA_ARGS);
 
       return nIndex;
 
@@ -182,7 +182,7 @@ public:
    }
 
 
-   bool add_unique(T * p)
+   bool add_unique(T * p OBJ_REF_DBG_COMMA_PARAMS)
    {
 
       if (contains(p))
@@ -192,7 +192,7 @@ public:
 
       }
 
-      this->add_item(p);
+      this->add_item(p OBJ_REF_DBG_COMMA_ARGS);
 
       return true;
 

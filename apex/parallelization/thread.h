@@ -59,6 +59,8 @@ public:
    __pointer(manual_reset_event)                      m_pevSync;
    __pointer(manual_reset_event)                      m_pevReady;
 
+   e_id                                               m_idContextReference;
+
    bool                                               m_bAuraMessageQueue;
    ::millis                                           m_millisHeartBeat;
    bool                                               m_bReady;

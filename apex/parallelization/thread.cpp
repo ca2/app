@@ -177,6 +177,8 @@ thread::thread()
 void thread::thread_common_construct()
 {
 
+   m_idContextReference = id_none;
+
    m_bDedicated = false;
 
    if (get_context_application() != nullptr && get_context_application()->get_context_session() != nullptr)
@@ -263,6 +265,25 @@ void thread::term_thread()
 
    }
 
+   switch (m_idContextReference)
+   {
+   case id_application:
+      get_context_application()->release_reference(this OBJ_REF_DBG_COMMA_P_FUNCTION_LINE(get_context_application()));
+      break;
+   case id_session:
+      get_context_session()->release_reference(this OBJ_REF_DBG_COMMA_P_FUNCTION_LINE(get_context_session()));
+      break;
+   case id_system:
+      get_context_system()->release_reference(this OBJ_REF_DBG_COMMA_P_FUNCTION_LINE(get_context_system()));
+      break;
+   case id_thread:
+      get_context_thread()->release_reference(this OBJ_REF_DBG_COMMA_P_FUNCTION_LINE(get_context_thread()));
+      break;
+   default:
+      break;
+
+   }
+
    channel::on_finish();
 
    term_task();
@@ -274,33 +295,27 @@ void thread::term_thread()
 
    //}
 
-   if (get_context_application())
-   {
-
-      get_context_application()->release_reference(this OBJ_REF_DBG_COMMA_THIS);
-
-   }
 
    if (get_context_session())
    {
 
-      get_context_session()->release_reference(this OBJ_REF_DBG_COMMA_THIS);
+      
 
    }
 
-   if (get_context_system())
-   {
+   //if (get_context_system())
+   //{
 
-      System.release_reference(this OBJ_REF_DBG_COMMA_THIS);
+   //   System.release_reference(this OBJ_REF_DBG_COMMA_THIS);
 
-   }
+   //}
 
-   if (get_context_thread())
-   {
+   //if (get_context_thread())
+   //{
 
-      get_context_thread()->release_reference(this OBJ_REF_DBG_COMMA_THIS);
+   //   get_context_thread()->release_reference(this OBJ_REF_DBG_COMMA_THIS);
 
-   }
+   //}
 
 
    {
@@ -1813,35 +1828,15 @@ u32 __thread_entry(void * p);
 ::estatus thread::init_thread()
 {
 
-   bool bAddReference = false;
-
    if (get_context_application() && get_context_application() != this)
    {
 
       try
       {
 
-         get_context_application()->add_reference(this);
+         get_context_application()->add_reference(this OBJ_REF_DBG_COMMA_P_FUNCTION_LINE(get_context_application()));
 
-         bAddReference = true;
-
-      }
-      catch (...)
-      {
-
-      }
-
-   }
-
-   if(!bAddReference && get_context_session() && get_context_session() != this)
-   {
-
-      try
-      {
-
-         get_context_session()->add_reference(this);
-
-         bAddReference = true;
+         m_idContextReference = id_application;
 
       }
       catch (...)
@@ -1851,15 +1846,51 @@ u32 __thread_entry(void * p);
 
    }
 
-   if (!bAddReference && get_context_system() && &System != this)
+   if(m_idContextReference == id_none && get_context_session() && get_context_session() != this)
    {
 
       try
       {
 
-         System.add_reference(this);
+         get_context_session()->add_reference(this OBJ_REF_DBG_COMMA_P_FUNCTION_LINE(get_context_session()));
 
-         bAddReference = true;
+         m_idContextReference = id_session;
+
+      }
+      catch (...)
+      {
+
+      }
+
+   }
+
+   if (m_idContextReference == id_none && get_context_system() && &System != this)
+   {
+
+      try
+      {
+
+         get_context_system()->add_reference(this OBJ_REF_DBG_COMMA_P_FUNCTION_LINE(get_context_system()));
+
+         m_idContextReference = id_system;
+
+      }
+      catch (...)
+      {
+
+      }
+
+   }
+
+   if (m_idContextReference == id_none && get_context_thread() && get_context_thread() != this)
+   {
+
+      try
+      {
+
+         get_context_thread()->add_reference(this OBJ_REF_DBG_COMMA_P_FUNCTION_LINE(get_context_thread()));
+
+         m_idContextReference = id_thread;
 
       }
       catch (...)

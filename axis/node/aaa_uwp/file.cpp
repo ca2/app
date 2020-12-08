@@ -187,7 +187,7 @@ namespace uwp
             {*/
 
 
-            return ::file::os_error_to_status(dwLastError);
+            return ::os_error_to_status(dwLastError);
 
             //}
 
@@ -225,7 +225,7 @@ namespace uwp
 
 
             ::u32 dwLastError = ::get_last_error();
-            return ::file::os_error_to_status(dwLastError);
+            return ::os_error_to_status(dwLastError);
 
 
             //}

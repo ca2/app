@@ -11,7 +11,7 @@ namespace gen
    // Throw a atl_exception corresponding to the result of ::get_last_error
    NOINLINE DECLSPEC_NO_RETURN inline void WINAPI gen_ThrowLastWin32()
    {
-      ::u32 dwError = ::get_last_error();
+      ::u32 dwError = ::GetLastError();
       __throw(hresult_exception(HRESULT_FROM_WIN32( dwError ) ));
    }
 

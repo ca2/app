@@ -321,7 +321,7 @@ namespace android
 
 
             //return __new(::file::exception(::error_os_error_to_exception(dwLastError), dwLastError, m_strFileName, nOpenFlags));
-            return ::file::os_error_to_status(dwLastError);
+            return ::os_error_to_status(dwLastError);
 
             //}
 
@@ -359,8 +359,8 @@ namespace android
 
 
             ::u32 dwLastError = ::get_last_error();
-            //return __new(::file::exception(::file::os_error_to_status(dwLastError), dwLastError, m_strFileName, nOpenFlags));
-            return ::file::os_error_to_status(dwLastError);
+            //return __new(::file::exception(::os_error_to_status(dwLastError), dwLastError, m_strFileName, nOpenFlags));
+            return ::os_error_to_status(dwLastError);
 
             //}
 
@@ -462,7 +462,7 @@ namespace android
       filesize posNew = ::lseek64(m_iFile, lLoOffset, (::u32)nFrom);
 //      posNew |= ((filesize) lHiOffset) << 32;
       if(posNew  == (filesize)-1)
-         ::file::throw_os_error(::file::os_error_to_status((::i32)::get_last_error()));
+         ::file::throw_os_error(::os_error_to_status((::i32)::get_last_error()));
 
       return posNew;
    }

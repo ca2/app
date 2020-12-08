@@ -965,9 +965,7 @@ namespace dir
       else
       {
 
-
-
-         ::u32 dwLastError = ::get_last_error();
+         ::u32 dwLastError = ::GetLastError();
 
          string strPrefix;
 

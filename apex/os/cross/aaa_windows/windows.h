@@ -1,15 +1,10 @@
 #pragma once
 
 
-
 #ifndef _UWP
 
 
-
-
 ::u32 get_current_process_id(void);
-
-
 
 
 #include "windows_guid_def.h"

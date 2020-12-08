@@ -139,51 +139,51 @@
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\platform-uwp\Common.props" />
+    <Import Project="..\..\..\archive\platform-uwp\Common.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\platform-uwp\Common.props" />
+    <Import Project="..\..\..\archive\platform-uwp\Common.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='cover|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\platform-uwp\Common.props" />
+    <Import Project="..\..\..\archive\platform-uwp\Common.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\platform-uwp\Common.props" />
+    <Import Project="..\..\..\archive\platform-uwp\Common.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\platform-uwp\Common.props" />
+    <Import Project="..\..\..\archive\platform-uwp\Common.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='cover|ARM'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\platform-uwp\Common.props" />
+    <Import Project="..\..\..\archive\platform-uwp\Common.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='basis|ARM64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\platform-uwp\Common.props" />
+    <Import Project="..\..\..\archive\platform-uwp\Common.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='stage|ARM64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\platform-uwp\Common.props" />
+    <Import Project="..\..\..\archive\platform-uwp\Common.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='cover|ARM64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\platform-uwp\Common.props" />
+    <Import Project="..\..\..\archive\platform-uwp\Common.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\platform-uwp\Common.props" />
+    <Import Project="..\..\..\archive\platform-uwp\Common.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='stage|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\platform-uwp\Common.props" />
+    <Import Project="..\..\..\archive\platform-uwp\Common.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='cover|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\platform-uwp\Common.props" />
+    <Import Project="..\..\..\archive\platform-uwp\Common.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup />
@@ -728,47 +728,6 @@
     <ClInclude Include="memory\plex.h" />
     <ClInclude Include="memory\plex_heap1.h" />
     <ClInclude Include="memory\plex_heap_impl1.h" />
-    <ClInclude Include="multithreading\aaa_want_to_remove_waitable.h" />
-    <ClInclude Include="multithreading\common.h" />
-    <ClInclude Include="multithreading\condition.h" />
-    <ClInclude Include="multithreading\create_thread.h" />
-    <ClInclude Include="multithreading\critical_section.h" />
-    <ClInclude Include="multithreading\data.h" />
-    <ClInclude Include="multithreading\delay_thread.h" />
-    <ClInclude Include="multithreading\event.h" />
-    <ClInclude Include="multithreading\file_change_event.h" />
-    <ClInclude Include="multithreading\fork.h" />
-    <ClInclude Include="multithreading\handler.h" />
-    <ClInclude Include="multithreading\initial_single_lock.h" />
-    <ClInclude Include="multithreading\manual_reset_event.h" />
-    <ClInclude Include="multithreading\procedure_array.h" />
-    <ClInclude Include="multithreading\mq.h" />
-    <ClInclude Include="multithreading\multi_lock.h" />
-    <ClInclude Include="multithreading\mutex.h" />
-    <ClInclude Include="multithreading\pred_holder.h" />
-    <ClInclude Include="multithreading\retry.h" />
-    <ClInclude Include="multithreading\retry_multi_lock.h" />
-    <ClInclude Include="multithreading\retry_single_lock.h" />
-    <ClInclude Include="multithreading\semaphore.h" />
-    <ClInclude Include="multithreading\service_base.h" />
-    <ClInclude Include="multithreading\service_status.h" />
-    <ClInclude Include="multithreading\set_event_on_exit.h" />
-    <ClInclude Include="multithreading\single_lock.h" />
-    <ClInclude Include="multithreading\socket_event.h" />
-    <ClInclude Include="multithreading\sync.h" />
-    <ClInclude Include="multithreading\sync_array.h" />
-    <ClInclude Include="multithreading\sync_lock.h" />
-    <ClInclude Include="multithreading\sync_result.h" />
-    <ClInclude Include="multithreading\sync_task.h" />
-    <ClInclude Include="multithreading\threading.h" />
-    <ClInclude Include="multithreading\thread_impl.h" />
-    <ClInclude Include="multithreading\thread_os.h" />
-    <ClInclude Include="multithreading\thread_parameter.h" />
-    <ClInclude Include="multithreading\tools.h" />
-    <ClInclude Include="multithreading\wait_future.h" />
-    <ClInclude Include="multithreading\_.h" />
-    <ClInclude Include="multithreading\_impl.h" />
-    <ClInclude Include="multithreading\_thread_os_create_impl.h" />
     <ClInclude Include="net\_net_impl.h" />
     <ClInclude Include="node\opengl\opengl.h" />
     <ClInclude Include="node\uwp\exception.h" />
@@ -870,6 +829,41 @@
     <ClInclude Include="os\_c.h" />
     <ClInclude Include="os\_impl.h" />
     <ClInclude Include="os\_os.h" />
+    <ClInclude Include="parallelization\common.h" />
+    <ClInclude Include="parallelization\condition.h" />
+    <ClInclude Include="parallelization\create_thread.h" />
+    <ClInclude Include="parallelization\critical_section.h" />
+    <ClInclude Include="parallelization\data.h" />
+    <ClInclude Include="parallelization\event.h" />
+    <ClInclude Include="parallelization\file_change_event.h" />
+    <ClInclude Include="parallelization\initial_single_lock.h" />
+    <ClInclude Include="parallelization\manual_reset_event.h" />
+    <ClInclude Include="parallelization\mq.h" />
+    <ClInclude Include="parallelization\multi_lock.h" />
+    <ClInclude Include="parallelization\mutex.h" />
+    <ClInclude Include="parallelization\pool.h" />
+    <ClInclude Include="parallelization\semaphore.h" />
+    <ClInclude Include="parallelization\set_event_on_exit.h" />
+    <ClInclude Include="parallelization\single_lock.h" />
+    <ClInclude Include="parallelization\socket_event.h" />
+    <ClInclude Include="parallelization\sync.h" />
+    <ClInclude Include="parallelization\sync_array.h" />
+    <ClInclude Include="parallelization\sync_lock.h" />
+    <ClInclude Include="parallelization\sync_process.h" />
+    <ClInclude Include="parallelization\sync_result.h" />
+    <ClInclude Include="parallelization\sync_routine.h" />
+    <ClInclude Include="parallelization\sync_task.h" />
+    <ClInclude Include="parallelization\task.h" />
+    <ClInclude Include="parallelization\thread_impl.h" />
+    <ClInclude Include="parallelization\thread_os.h" />
+    <ClInclude Include="parallelization\thread_parameter.h" />
+    <ClInclude Include="parallelization\zaa_update_task.h" />
+    <ClInclude Include="parallelization\zaa_update_task_item.h" />
+    <ClInclude Include="parallelization\zaa_update_task_item_array.h" />
+    <ClInclude Include="parallelization\_.h" />
+    <ClInclude Include="parallelization\_impl.h" />
+    <ClInclude Include="parallelization\_thread_os_create_impl.h" />
+    <ClInclude Include="parallelization\_types.h" />
     <ClInclude Include="platform\acme_str_pool.h" />
     <ClInclude Include="platform\all.h" />
     <ClInclude Include="platform\aura_aura.h" />
@@ -1510,31 +1504,6 @@
     </ClCompile>
     <ClCompile Include="memory\plex.cpp" />
     <ClCompile Include="memory\plex_heap1.cpp" />
-    <ClCompile Include="multithreading\condition.cpp" />
-    <ClCompile Include="multithreading\critical_section.cpp" />
-    <ClCompile Include="multithreading\event.cpp" />
-    <ClCompile Include="multithreading\file_change_event.cpp" />
-    <ClCompile Include="multithreading\manual_reset_event.cpp" />
-    <ClCompile Include="multithreading\mq.cpp" />
-    <ClCompile Include="multithreading\multi_lock.cpp" />
-    <ClCompile Include="multithreading\mutex.cpp" />
-    <ClCompile Include="multithreading\pool.cpp" />
-    <ClCompile Include="multithreading\pred_holder.cpp" />
-    <ClCompile Include="multithreading\procedure_array.cpp" />
-    <ClCompile Include="multithreading\semaphore.cpp" />
-    <ClCompile Include="multithreading\single_lock.cpp" />
-    <ClCompile Include="multithreading\socket_event.cpp" />
-    <ClCompile Include="multithreading\sync.cpp" />
-    <ClCompile Include="multithreading\sync_array.cpp" />
-    <ClCompile Include="multithreading\sync_future.cpp" />
-    <ClCompile Include="multithreading\sync_method.cpp" />
-    <ClCompile Include="multithreading\sync_result.cpp" />
-    <ClCompile Include="multithreading\sync_task.cpp" />
-    <ClCompile Include="multithreading\task.cpp" />
-    <ClCompile Include="multithreading\thread.cpp" />
-    <ClCompile Include="multithreading\thread_os.cpp" />
-    <ClCompile Include="multithreading\waitable.cpp" />
-    <ClCompile Include="multithreading\_.cpp" />
     <ClCompile Include="node\uwp\error.cpp" />
     <ClCompile Include="node\uwp\factory_exchange.cpp" />
     <ClCompile Include="node\uwp\file.cpp" />
@@ -2187,6 +2156,30 @@
     <ClCompile Include="os\windows_common\unicode.cpp" />
     <ClCompile Include="os\windows_common\_dll.cpp" />
     <ClCompile Include="os\_.cpp" />
+    <ClCompile Include="parallelization\aaa_update.cpp" />
+    <ClCompile Include="parallelization\condition.cpp" />
+    <ClCompile Include="parallelization\critical_section.cpp" />
+    <ClCompile Include="parallelization\event.cpp" />
+    <ClCompile Include="parallelization\file_change_event.cpp" />
+    <ClCompile Include="parallelization\manual_reset_event.cpp" />
+    <ClCompile Include="parallelization\mq.cpp" />
+    <ClCompile Include="parallelization\multi_lock.cpp" />
+    <ClCompile Include="parallelization\mutex.cpp" />
+    <ClCompile Include="parallelization\pool.cpp" />
+    <ClCompile Include="parallelization\semaphore.cpp" />
+    <ClCompile Include="parallelization\single_lock.cpp" />
+    <ClCompile Include="parallelization\socket_event.cpp" />
+    <ClCompile Include="parallelization\sync.cpp" />
+    <ClCompile Include="parallelization\sync_array.cpp" />
+    <ClCompile Include="parallelization\sync_process.cpp" />
+    <ClCompile Include="parallelization\sync_result.cpp" />
+    <ClCompile Include="parallelization\sync_routine.cpp" />
+    <ClCompile Include="parallelization\sync_task.cpp" />
+    <ClCompile Include="parallelization\task.cpp" />
+    <ClCompile Include="parallelization\thread.cpp" />
+    <ClCompile Include="parallelization\thread_os.cpp" />
+    <ClCompile Include="parallelization\waitable.cpp" />
+    <ClCompile Include="parallelization\_.cpp" />
     <ClCompile Include="platform\assert.cpp" />
     <ClCompile Include="platform\aura_str_pool.cpp" />
     <ClCompile Include="platform\build_debug.cpp" />

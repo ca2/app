@@ -2351,6 +2351,36 @@
     <ClInclude Include="const\routine.h">
       <Filter>Header Files\const</Filter>
     </ClInclude>
+    <ClInclude Include="os\windows_common\aaa_draw2d_direct2d_global.h">
+      <Filter>Header Files\os\windows_common</Filter>
+    </ClInclude>
+    <ClInclude Include="os\windows_common\aaa_want_to_remove_windows_common_c.h">
+      <Filter>Header Files\os\windows_common</Filter>
+    </ClInclude>
+    <ClInclude Include="os\windows_common\aaa_want_to_remove_windows_common_error.h">
+      <Filter>Header Files\os\windows_common</Filter>
+    </ClInclude>
+    <ClInclude Include="os\windows_common\aaa_want_to_remove_windows_common_file.h">
+      <Filter>Header Files\os\windows_common</Filter>
+    </ClInclude>
+    <ClInclude Include="os\windows_common\bstring.h">
+      <Filter>Header Files\os\windows_common</Filter>
+    </ClInclude>
+    <ClInclude Include="os\windows_common\comptr.h">
+      <Filter>Header Files\os\windows_common</Filter>
+    </ClInclude>
+    <ClInclude Include="os\windows_common\cotaskptr.h">
+      <Filter>Header Files\os\windows_common</Filter>
+    </ClInclude>
+    <ClInclude Include="os\windows_common\parallelization.h">
+      <Filter>Header Files\os\windows_common</Filter>
+    </ClInclude>
+    <ClInclude Include="os\windows_common\variant.h">
+      <Filter>Header Files\os\windows_common</Filter>
+    </ClInclude>
+    <ClInclude Include="os\windows_common\prop_variant.h">
+      <Filter>Header Files\os\windows_common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\application_bias.cpp">

@@ -31,13 +31,13 @@ public:
       if (m_p != nullptr)
       {
 
-         m_p = CoTaskMemRealloc(m_p, size);
+         m_p = (POINTER_TYPE) CoTaskMemRealloc(m_p, size);
 
       }
       else
       {
 
-         m_p = CoTaskMemAlloc(size);
+         m_p = (POINTER_TYPE) CoTaskMemAlloc(size);
 
       }
 

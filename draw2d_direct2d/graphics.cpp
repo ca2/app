@@ -4616,7 +4616,6 @@ namespace draw2d_direct2d
 
       }
 
-
       if (text.m_wstr.is_empty())
       {
 
@@ -4656,7 +4655,7 @@ namespace draw2d_direct2d
 
       playout->GetMetrics(&m);
 
-      size.cx = (::i32) (m.width  * m_pfont->m_dFontWidth);
+      size.cx = (::i32) (m.widthIncludingTrailingWhitespace  * m_pfont->m_dFontWidth);
 
       size.cy = (::i32) m.height;
 

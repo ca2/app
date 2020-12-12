@@ -154,7 +154,7 @@ namespace uwp
    };
 
 
-   CLASS_DECL_AXIS directx_application_source ^ new_directx_application_source(::aura::system * psystem, const string & str);
+//   CLASS_DECL_AXIS directx_application_source ^ new_directx_application_source(::aura::system * psystem, const string & str);
 
 
 } // namespace uwp

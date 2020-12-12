@@ -192,64 +192,64 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
     <IgnoreImportLibrary>
     </IgnoreImportLibrary>
-    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\$(ProjectName)</OutDir>
+    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\$(ProjectName)\</OutDir>
     <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">
     <IgnoreImportLibrary>
     </IgnoreImportLibrary>
-    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\$(ProjectName)</OutDir>
+    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\$(ProjectName)\</OutDir>
     <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cover|ARM'">
     <IgnoreImportLibrary />
-    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\$(ProjectName)</OutDir>
+    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\$(ProjectName)\</OutDir>
     <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
     <IgnoreImportLibrary>
     </IgnoreImportLibrary>
-    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\$(ProjectName)</OutDir>
+    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\$(ProjectName)\</OutDir>
     <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">
     <IgnoreImportLibrary>
     </IgnoreImportLibrary>
-    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\$(ProjectName)</OutDir>
+    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\$(ProjectName)\</OutDir>
     <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">
     <IgnoreImportLibrary />
-    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\$(ProjectName)</OutDir>
+    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\$(ProjectName)\</OutDir>
     <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
     <IgnoreImportLibrary>
     </IgnoreImportLibrary>
-    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\$(ProjectName)</OutDir>
+    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\$(ProjectName)\</OutDir>
     <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|x64'">
     <IgnoreImportLibrary>
     </IgnoreImportLibrary>
-    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\$(ProjectName)</OutDir>
+    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\$(ProjectName)\</OutDir>
     <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cover|x64'">
     <IgnoreImportLibrary />
-    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\$(ProjectName)</OutDir>
+    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\$(ProjectName)\</OutDir>
     <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM64'">
-    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\$(ProjectName)</OutDir>
+    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\$(ProjectName)\</OutDir>
     <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cover|ARM64'">
-    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\$(ProjectName)</OutDir>
+    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\$(ProjectName)\</OutDir>
     <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM64'">
-    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\$(ProjectName)</OutDir>
+    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\$(ProjectName)\</OutDir>
     <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
@@ -503,7 +503,7 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\..\__archive\storage-uwp\third\binary\Win32\basis\pcre.dll">
+    <None Include="..\..\..\archive\storage-uwp\third\binary\Win32\basis\pcre.dll">
       <DeploymentContent>false</DeploymentContent>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
@@ -518,7 +518,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</DeploymentContent>
     </None>
-    <None Include="..\..\..\__archive\storage-uwp\third\binary\Win32\basis\zlib.dll">
+    <None Include="..\..\..\archive\storage-uwp\third\binary\Win32\basis\zlib.dll">
       <DeploymentContent>false</DeploymentContent>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
@@ -534,7 +534,7 @@
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</DeploymentContent>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</DeploymentContent>
     </None>
-    <None Include="..\..\..\__archive\storage-uwp\third\binary\x64\basis\pcre.dll">
+    <None Include="..\..\..\archive\storage-uwp\third\binary\x64\basis\pcre.dll">
       <DeploymentContent>false</DeploymentContent>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
@@ -549,7 +549,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</DeploymentContent>
     </None>
-    <None Include="..\..\..\__archive\storage-uwp\third\binary\x64\basis\zlib.dll">
+    <None Include="..\..\..\archive\storage-uwp\third\binary\x64\basis\zlib.dll">
       <DeploymentContent>false</DeploymentContent>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>

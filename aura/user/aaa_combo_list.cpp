@@ -248,7 +248,7 @@ namespace user
    }
 
 
-   ::draw2d::font_pointer combo_list::get_font(style *pstyle, e_element eelement, estate estate) const
+   ::draw2d::font_pointer combo_list::get_font(style *pstyle, enum_element eelement, estate estate) const
    {
 
       if (m_pcombo)
@@ -474,20 +474,20 @@ namespace user
    }
 
 
-   bool combo_list::pre_create_window(::user::create_struct & cs)
+   bool combo_list::pre_create_window(::user::create_struct * pcreatestruct)
    {
 
-      if (cs.style & WS_BORDER)
+      if (pcreatestruct->m_createstruct.style & WS_BORDER)
       {
 
-         cs.style &= ~WS_BORDER;
+         pcreatestruct->m_createstruct.style &= ~WS_BORDER;
 
       }
 
-      cs.dwExStyle |= WS_EX_LAYERED;
-      cs.dwExStyle |= WS_EX_TOOLWINDOW;
-      cs.dwExStyle |= WS_EX_TOPMOST;
-      //cs.dwExStyle |= WS_EX_NOACTIVATE;
+      pcreatestruct->m_createstruct.dwExStyle |= WS_EX_LAYERED;
+      pcreatestruct->m_createstruct.dwExStyle |= WS_EX_TOOLWINDOW;
+      pcreatestruct->m_createstruct.dwExStyle |= WS_EX_TOPMOST;
+      //pcreatestruct->m_createstruct.dwExStyle |= WS_EX_NOACTIVATE;
 
       return TRUE;
    }
@@ -914,7 +914,7 @@ namespace user
       if (m_pcombo == nullptr)
       {
 
-         item = ::user::element_none;
+         item = ::user::e_element_none;
 
          return;
 
@@ -945,7 +945,7 @@ namespace user
          if (rectItem.contains(item.m_pointHitTest))
          {
 
-            item  = {::user::element_item, iItem };
+            item  = {::user::e_element_item, iItem };
 
             return;
 
@@ -1052,7 +1052,7 @@ namespace user
 
          ::user::create_struct createstruct(0, nullptr, "combo_list");
 
-         createstruct.set_rect(::rect(rectList).inflate(m_iBorder));
+         pcreatestruct->m_createstruct.set_rect(::rect(rectList).inflate(m_iBorder));
 
          if (!create_window_ex(createstruct))
          {

@@ -26,7 +26,7 @@ namespace tranquillum
 
       //theme_current_control(::user::control_none);
 
-      //create_translucency(::user::element_none, ::user::translucency_none);
+      //create_translucency(::user::e_element_none, ::user::translucency_none);
 
       //create_point_font(::user::font_default,"Segoe UI", 12.0);
       //create_point_font(::user::font_button, "Segoe UI", 12.0, 800);
@@ -107,7 +107,7 @@ namespace tranquillum
    }
 
 
-   ::color style::get_color(const ::user::interaction* pinteraction, ::user::e_element eelement, ::user::estate estate) const
+   ::color style::get_color(const ::user::interaction* pinteraction, ::user::enum_element eelement, ::user::estate estate) const
    {
 
       if (::is_set(pinteraction))
@@ -118,7 +118,7 @@ namespace tranquillum
          if (econtroltype == ::user::control_type_list)
          {
 
-            if (eelement == ::user::element_background)
+            if (eelement == ::user::e_element_background)
             {
 
                return ::color(0, 0, 0, 0);
@@ -129,13 +129,13 @@ namespace tranquillum
 
       }
 
-      if (eelement == ::user::element_background)
+      if (eelement == ::user::e_element_background)
       {
 
          return ::color(255, 255, 255, 255);
 
       }
-      else if (eelement == ::user::element_text)
+      else if (eelement == ::user::e_element_text)
       {
 
          if (estate & ::user::e_state_new_input)
@@ -177,7 +177,7 @@ namespace tranquillum
 
       auto pstyle = pframe->get_style(pgraphics);
 
-      color32_t crBackground = pframe->get_color(pstyle, ::user::element_background);
+      color32_t crBackground = pframe->get_color(pstyle, ::user::e_element_background);
 
       //crBackground = ARGB(255, 200, 180, 180);
 
@@ -493,11 +493,11 @@ namespace tranquillum
 
       auto pstyle = ptab->get_style(pgraphics);
 
-      color32_t crbk = ptab->get_color(pstyle, ::user::element_tab_layout_background);
+      color32_t crbk = ptab->get_color(pstyle, ::user::e_element_tab_layout_background);
 
       pgraphics->fill_rect(rcTabs, crbk);
 
-      crbk = ptab->get_color(pstyle, ::user::element_tab_client_background);
+      crbk = ptab->get_color(pstyle, ::user::e_element_tab_client_background);
 
       pgraphics->fill_rect(rcClient, crbk);
 
@@ -515,19 +515,19 @@ namespace tranquillum
 
          iTab++;
 
-         if (!ptab->get_element_rect(iTab, rect, ::user::element_tab))
+         if (!ptab->get_element_rect(iTab, rect, ::user::e_element_tab))
             continue;
 
-         if (!ptab->get_element_rect(iTab, rectBorder, ::user::element_border))
+         if (!ptab->get_element_rect(iTab, rectBorder, ::user::e_element_border))
             continue;
 
-         if (!ptab->get_element_rect(iTab, rectClient, ::user::element_client))
+         if (!ptab->get_element_rect(iTab, rectClient, ::user::e_element_client))
             continue;
 
          if (ptab->get_data()->m_bVertical)
          {
 
-            if (ptab->get_element_rect(iTab, rectIcon, ::user::element_icon))
+            if (ptab->get_element_rect(iTab, rectIcon, ::user::e_element_icon))
             {
 
                pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
@@ -562,8 +562,8 @@ namespace tranquillum
                   pgraphics->draw_path(path);
 
                   if (ptab->m_itemHover == iTab
-                     && ptab->m_itemHover != ::user::element_close_tab_button
-                     && !ptab->m_itemHover.in_range(::user::element_split, 100))
+                     && ptab->m_itemHover != ::user::e_element_close_tab_button
+                     && !ptab->m_itemHover.in_range(::user::e_element_split, 100))
                   {
 
                      pgraphics->set_font(ptab, ::user::e_state_selected | ::user::e_state_hover);
@@ -593,8 +593,8 @@ namespace tranquillum
                   path->close_figure();
 
                   if (ptab->m_itemHover == iTab
-                     && ptab->m_itemHover != ::user::element_close_tab_button
-                     && !ptab->m_itemHover.in_range(::user::element_split, 100))
+                     && ptab->m_itemHover != ::user::e_element_close_tab_button
+                     && !ptab->m_itemHover.in_range(::user::e_element_split, 100))
                   {
 
                      pane.m_brushFillHover->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 215, 215, 210), ARGB(250, 235, 235, 230));
@@ -639,7 +639,7 @@ namespace tranquillum
          else
          {
 
-            if (ptab->get_element_rect(iTab, rectIcon, ::user::element_icon))
+            if (ptab->get_element_rect(iTab, rectIcon, ::user::e_element_icon))
             {
 
                pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
@@ -690,8 +690,8 @@ namespace tranquillum
                   pgraphics->draw_path(path);
 
                   if (ptab->m_itemHover == iTab
-                     && ptab->m_itemHover != ::user::element_close_tab_button
-                     && !ptab->m_itemHover.in_range(::user::element_split, 100))
+                     && ptab->m_itemHover != ::user::e_element_close_tab_button
+                     && !ptab->m_itemHover.in_range(::user::e_element_split, 100))
                   {
 
                      pgraphics->set_font(ptab, ::user::e_state_hover);
@@ -712,8 +712,8 @@ namespace tranquillum
                {
 
                   if (ptab->m_itemHover == iTab
-                     && ptab->m_itemHover != ::user::element_close_tab_button
-                     && !ptab->m_itemHover.in_range(::user::element_split, 100))
+                     && ptab->m_itemHover != ::user::e_element_close_tab_button
+                     && !ptab->m_itemHover.in_range(::user::e_element_split, 100))
                   {
 
                      pane.m_brushFillHover->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 215, 215, 210), ARGB(250, 235, 235, 230));
@@ -781,7 +781,7 @@ namespace tranquillum
          if (true)
          {
 
-            if (ptab->get_element_rect(iTab, rectText, ::user::element_text))
+            if (ptab->get_element_rect(iTab, rectText, ::user::e_element_text))
             {
 
                _001OnTabPaneDrawTitle(pane, ptab, pgraphics, rectText, brushText);
@@ -793,13 +793,13 @@ namespace tranquillum
          if (true)
          {
 
-            if (ptab->get_element_rect(iTab, rectClose, ::user::element_close_tab_button))
+            if (ptab->get_element_rect(iTab, rectClose, ::user::e_element_close_tab_button))
             {
 
-               pgraphics->set_font(ptab, ::user::element_close_tab_button);
+               pgraphics->set_font(ptab, ::user::e_element_close_tab_button);
 
                if (ptab->m_itemHover == iTab
-                  && ptab->m_itemHover == ::user::element_close_tab_button)
+                  && ptab->m_itemHover == ::user::e_element_close_tab_button)
                {
 
                   brushText = ptab->get_data()->m_brushCloseHover;
@@ -868,7 +868,7 @@ namespace tranquillum
                rectEmp.deflate(1,1);
                ::draw2d::enum_alpha_mode emode = pgraphics->m_ealphamode;
                pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
-               if(ptab->m_itemHover.m_iItem == ((int) ::user::element_split) + i)
+               if(ptab->m_itemHover.m_iItem == ((int) ::user::e_element_split) + i)
                {
                   pgraphics->fill_rect(rectEmp,ARGB(128,149,184,255));
                   pgraphics->set(ptab->get_data()->m_brushTextHover);
@@ -878,7 +878,7 @@ namespace tranquillum
                   //pgraphics->FillSolidRect(rectEmp,ARGB(128,208,223,233));
                   pgraphics->set(ptab->get_data()->m_brushText);
                }
-               pgraphics->set_font(ptab, ::user::element_close_tab_button);
+               pgraphics->set_font(ptab, ::user::e_element_close_tab_button);
                pgraphics->set_alpha_mode(emode);
                pgraphics->_DrawText(MAGIC_PALACE_TAB_TEXT,rectText, e_align_center, e_draw_text_no_prefix);
                rectText.left += sSep.cx;
@@ -952,9 +952,9 @@ namespace tranquillum
 
    //   ::u32 uImage = psession->userex()->menu()->command_image(item.m_id);
 
-   //   ::user::toolbar::e_element eelement = ::user::toolbar::element_item;
-   //   ::user::toolbar::e_element eelementImage = ::user::toolbar::element_image;
-   //   ::user::toolbar::e_element eelementText = ::user::toolbar::element_text;
+   //   ::user::toolbar::enum_element eelement = ::user::toolbar::element_item;
+   //   ::user::toolbar::enum_element eelementImage = ::user::toolbar::element_image;
+   //   ::user::toolbar::enum_element eelementText = ::user::toolbar::element_text;
    //   if ((nStyle & e_toolbar_item_style_separator) == 0)
    //   {
    //      if ((nStyle & e_toolbar_item_style_disabled) == 0)
@@ -1258,9 +1258,9 @@ namespace tranquillum
 
    //   ::u32 uImage = psession->userex()->menu()->command_image(item.m_id);
 
-   //   ::user::toolbar::e_element eelement = ::user::toolbar::element_item;
-   //   ::user::toolbar::e_element eelementImage = ::user::toolbar::element_image;
-   //   ::user::toolbar::e_element eelementText = ::user::toolbar::element_text;
+   //   ::user::toolbar::enum_element eelement = ::user::toolbar::element_item;
+   //   ::user::toolbar::enum_element eelementImage = ::user::toolbar::element_image;
+   //   ::user::toolbar::enum_element eelementText = ::user::toolbar::element_text;
    //   if ((nStyle & e_toolbar_item_style_separator) == 0)
    //   {
    //      if ((nStyle & e_toolbar_item_style_disabled) == 0)

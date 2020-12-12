@@ -36,7 +36,7 @@ namespace user
 
       using ::user::interaction::create_window;
       bool create_window(split_layout * pparent);
-      virtual bool pre_create_window(::user::create_struct& cs);
+      virtual bool pre_create_window(::user::create_struct * pcreatestruct);
 
 
       DECL_GEN_SIGNAL(_001OnLButtonDown);

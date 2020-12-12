@@ -19,6 +19,7 @@ namespace user
       m_iTool = -1;
       m_iEventTool = -1;
       m_bTipEnable = true;
+      set_tool_window();
 
    }
 
@@ -339,17 +340,9 @@ namespace user
 
       m_font->create_point_font(FONT_SANS, 10.0);
 
-#ifdef WINDOWS_DESKTOP
-      
-      ::user::create_struct createstruct(WS_EX_TOOLWINDOW, nullptr, nullptr, WS_POPUP, nullptr);
+      auto pcreatestruct = __new(::user::create_struct);
 
-#else
-
-      ::user::create_struct createstruct(0, nullptr, nullptr, 0, nullptr);
-
-#endif
-      
-      return create_window_ex(createstruct, nullptr, id) != 0;
+      return create_window_ex(pcreatestruct, nullptr, id) != 0;
 
    }
 

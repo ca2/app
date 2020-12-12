@@ -1,8 +1,8 @@
 #include "framework.h"
-#include "acme/node/uwp/directx.h"
-#include "acme/node/uwp/directx_interaction.h"
-#include "acme/node/uwp/directx_impact.h"
-#include "acme/node/uwp/directx_framework_view.h"
+//#include "acme/node/uwp/directx.h"
+//#include "acme/node/uwp/directx_interaction.h"
+//#include "acme/node/uwp/directx_impact.h"
+//#include "acme/node/uwp/directx_framework_view.h"
 
 namespace acme
 {
@@ -20,9 +20,9 @@ namespace acme
 
       //}
 
-      auto source = ::uwp::new_directx_application_source(get_context_system(), psystem->m_strCommandLine);
+      //auto source = ::uwp::new_directx_application_source(get_context_system(), psystem->m_strCommandLine);
 
-      ::Windows::ApplicationModel::Core::CoreApplication::Run(source);
+      //::Windows::ApplicationModel::Core::CoreApplication::Run(source);
 
       return ::success;
 

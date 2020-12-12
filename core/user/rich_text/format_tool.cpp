@@ -35,7 +35,7 @@ namespace user
    }
 
 
-   ::user::e_translucency format_tool::get_translucency(::user::style* pstyle) const
+   ::user::enum_translucency format_tool::get_translucency(::user::style* pstyle) const
    {
 
       return ::user::translucency_present;

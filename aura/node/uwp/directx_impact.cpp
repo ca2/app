@@ -26,7 +26,6 @@ namespace uwp
    impact::impact()
    {
 
-      m_bNotifyLayoutCompletedPending = false;
       m_bInternalFocus = false;
       m_bExtendingLeft = false;
       m_bTextCompositionActive = false;
@@ -231,8 +230,7 @@ namespace uwp
 
       m_strText = text;
       
-      ::wait(m_pimpl->m_view->Dispatcher->RunAsync(::Windows::UI::Core::CoreDispatcherPriority::Normal,
-         ref new Windows::UI::Core::DispatchedHandler([this, iBeg, iEnd, text]()
+      sync([this, iBeg, iEnd, text]()
       {
             
          CoreTextRange sel;
@@ -243,7 +241,7 @@ namespace uwp
 
          m_editcontext->NotifyTextChanged(m_selection, m_strText.length(), sel);
 
-      })));
+      });
 
    }
 
@@ -341,14 +339,12 @@ namespace uwp
 
       auto pwsz= newText.c_str();
 
-      m_strNewText = newText;
+      string strText = m_strText.Left( range.StartCaretPosition) + newText + m_strText.Mid(range.EndCaretPosition);
+
+      m_strNewText = strText;
 
       // Modify the internal text store.
-      m_strText = newText;
-
-      //m_strText.Left( range.StartCaretPosition) +
-      //newText //+
-      //m_strText.Mid(min(m_strText.length(), range.EndCaretPosition));
+      m_strText = strText;
 
       // You can set the proper font or direction for the updated text based on the language by checking
       // args.InputLanguage.  We will not do that in this sample.

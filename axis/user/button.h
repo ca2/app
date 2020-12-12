@@ -75,8 +75,8 @@ namespace user
       virtual bool create_control(class control_descriptor* pdescriptor) override;
 
 
-      virtual ::draw2d::font_pointer get_font(style* pstyle, e_element eelement = element_none, estate estate = e_state_none) const override;
-      virtual e_translucency get_translucency(style * pstyle) const override;
+      virtual ::draw2d::font_pointer get_font(style* pstyle, enum_element eelement = element_none, estate estate = e_state_none) const override;
+      virtual enum_translucency get_translucency(style * pstyle) const override;
 
 
 

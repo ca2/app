@@ -40,7 +40,7 @@ namespace user
    public:
 
 
-//      enum e_element
+//      enum enum_element
 //      {
 //         element_item,
 //         element_item_hover,
@@ -140,7 +140,7 @@ namespace user
 
       virtual bool _001GetItemRect(index iItem,RECT32 * prect);
 
-      virtual bool _001GetElementRect(index iItem,RECT32 * prect,e_element eelement, estate estate);
+      virtual bool _001GetElementRect(index iItem,RECT32 * prect,enum_element eelement, estate estate);
 
       virtual bool _001SetItem(index iItem, toolbar_item * pitem);
       virtual toolbar_item * _001GetItem(index iItem);

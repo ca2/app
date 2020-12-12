@@ -187,7 +187,7 @@
 //   };
 //
 //
-//   enum e_translucency
+//   enum enum_translucency
 //   {
 //
 //      translucency_undefined,
@@ -198,7 +198,7 @@
 //   };
 //
 //
-//   enum e_control_type
+//   enum enum_control_type
 //   {
 //      control_type_none,
 //      control_type_static,
@@ -227,7 +227,7 @@
 //   };
 //
 //
-//   enum e_element : ::i64
+//   enum enum_element : ::i64
 //   {
 //
 //      element_none,

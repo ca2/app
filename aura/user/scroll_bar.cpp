@@ -108,7 +108,7 @@ namespace user
    }
 
 
-   ::color scroll_bar::scrollbar_color_strong(::user::style* pstyle, ::user::e_element eelement)
+   ::color scroll_bar::scrollbar_color_strong(::user::style* pstyle, ::user::enum_element eelement)
    {
 
       if (m_itemCurrent == eelement || m_itemHover== eelement)
@@ -127,7 +127,7 @@ namespace user
    }
 
 
-   ::color scroll_bar::scrollbar_color(::user::style * pstyle, ::user::e_element eelement)
+   ::color scroll_bar::scrollbar_color(::user::style * pstyle, ::user::enum_element eelement)
    {
 
       if(m_itemCurrent == eelement || m_itemHover== eelement)
@@ -146,7 +146,7 @@ namespace user
    }
 
 
-   ::color scroll_bar::scrollbar_border_color(::user::style* pstyle, ::user::e_element eelement)
+   ::color scroll_bar::scrollbar_border_color(::user::style* pstyle, ::user::enum_element eelement)
    {
 
       if(m_itemCurrent == eelement || m_itemHover== eelement)
@@ -165,7 +165,7 @@ namespace user
    }
 
 
-   ::color scroll_bar::scrollbar_lite_border_color(::user::style* pstyle, ::user::e_element eelement)
+   ::color scroll_bar::scrollbar_lite_border_color(::user::style* pstyle, ::user::enum_element eelement)
    {
 
       if(m_itemCurrent == eelement || m_itemHover== eelement)
@@ -184,7 +184,7 @@ namespace user
    }
 
 
-   ::color scroll_bar::scrollbar_draw_color(::user::style* pstyle, ::user::e_element eelement)
+   ::color scroll_bar::scrollbar_draw_color(::user::style* pstyle, ::user::enum_element eelement)
    {
 
       if (m_itemCurrent == eelement || m_itemHover == eelement)

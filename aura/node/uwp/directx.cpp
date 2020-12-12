@@ -385,18 +385,18 @@ namespace uwp
             for (auto & pinteraction : children)
             {
 
-               if (pinteraction->is_window_visible())
+               //if (pinteraction->is_window_visible())
                {
 
-                  pinteraction->order_top();
+                 // pinteraction->order_top();
 
                   pinteraction->set_dim(0, 0, m_size.cx, m_size.cy);
 
-                  pinteraction->display();
+                  //pinteraction->display();
 
-                  pinteraction->set_need_layout();
+                  //pinteraction->set_need_layout();
 
-                  pinteraction->set_need_redraw();
+                  //pinteraction->set_need_redraw();
 
                }
 
@@ -554,7 +554,7 @@ namespace uwp
 
          // Create a depth stencil view for use with 3D rendering if needed.
          CD3D11_TEXTURE2D_DESC depthStencilDesc(
-         DXGI_FORMAT_D24_UNORM_S8_::u32,
+         DXGI_FORMAT_D24_UNORM_S8_UINT,
          backBufferDesc.Width,
          backBufferDesc.Height,
          1,

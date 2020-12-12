@@ -201,7 +201,7 @@ namespace user
       class control_descriptor& descriptor();
       const class control_descriptor& descriptor() const;
 
-      ::user::interaction* get_host_wnd() override;
+      ::user::interaction* get_host_wnd() const override;
 
       ::user::item* get_user_item(const ::user::item& item);
 
@@ -215,7 +215,9 @@ namespace user
       //virtual ::estatus main_async(const ::promise::routine & routine, e_priority epriority = priority_normal);
 
 
-      //virtual ::estatus main_sync(const ::promise::routine & routine, const ::duration & duration = one_minute(), e_priority epriority = priority_normal);
+      virtual ::estatus main_sync(const ::promise::routine & routine, const ::duration & duration = one_minute(), e_priority epriority = priority_normal);
+
+      virtual ::estatus main_async(const ::promise::routine & routine, e_priority epriority = priority_normal);
 
 
       inline void auto_prodevian_on_show() { m_ewindowflag |= window_flag_auto_prodevian_on_show; }
@@ -254,21 +256,21 @@ namespace user
 
       virtual bool is_full_screen_enabled() const;
 
-      virtual bool get_element_rect(RECT32* prect, e_element eelement);
+      virtual bool get_element_rect(RECT32* prect, enum_element eelement);
 
-      virtual e_element get_default_element() const;
-      virtual ::draw2d::font_pointer get_font(style * pstyle, e_element eelement, estate estate = e_state_none) const;
+      virtual enum_element get_default_element() const;
+      virtual ::draw2d::font_pointer get_font(style * pstyle, enum_element eelement, estate estate = e_state_none) const;
       inline ::draw2d::font_pointer get_font(style* pstyle, estate estate = e_state_none) const { return get_font(pstyle, get_default_element(), estate); }
-      virtual e_translucency get_translucency(style* pstyle) const;
+      virtual enum_translucency get_translucency(style* pstyle) const;
       virtual int get_int(style* pstyle, enum_int eint, int iDefault = 0) const;
       virtual double get_double(style* pstyle, enum_double edouble, double dDefault = 0.) const;
-      virtual ::rect get_border(style* pstyle, e_element eelement, estate estate = e_state_none) const;
+      virtual ::rect get_border(style* pstyle, enum_element eelement, estate estate = e_state_none) const;
       inline ::rect get_border(style* pstyle, estate estate = e_state_none) const { return get_border(pstyle, get_default_element(), estate); }
-      virtual ::rect get_padding(style* pstyle, e_element eelement, estate elayout = e_state_none) const;
+      virtual ::rect get_padding(style* pstyle, enum_element eelement, estate elayout = e_state_none) const;
       inline ::rect get_padding(style* pstyle, estate estate = e_state_none) const { return get_padding(pstyle, get_default_element(), estate); }
-      virtual ::rect get_margin(style* pstyle, e_element eelement, estate elayout = e_state_none) const;
+      virtual ::rect get_margin(style* pstyle, enum_element eelement, estate elayout = e_state_none) const;
       inline ::rect get_margin(style* pstyle, estate estate = e_state_none) const { return get_margin(pstyle, get_default_element(), estate); }
-      virtual ::color get_color(style* pstyle, e_element eelement, estate elayout = e_state_none) const;
+      virtual ::color get_color(style* pstyle, enum_element eelement, estate elayout = e_state_none) const;
       inline ::color get_color(style* pstyle, estate estate = e_state_none) const { return get_color(pstyle, get_default_element(), estate); }
 
       virtual eflag get_draw_flags(style* pstyle) const;
@@ -474,6 +476,9 @@ namespace user
 
       virtual e_cursor get_cursor();
       virtual bool set_cursor(e_cursor ecursor);
+
+
+      virtual ::point get_cursor_pos() const;
 
 
       virtual bool is_left_button_pressed() const;
@@ -700,7 +705,7 @@ namespace user
 #endif
 
 
-      virtual bool pre_create_window(::user::create_struct& cs) override;
+      virtual bool pre_create_window(::user::create_struct * pcreatestruct) override;
 
 
       virtual bool subclass_window(oswindow posdata) override;
@@ -716,7 +721,7 @@ namespace user
       virtual bool create_window(::user::interaction* pparent, const ::id& id) override;
       virtual bool create_window(const char* pszClassName, const char* pszWindowName, u32 uStyle, ::user::interaction* puiParent, const ::id& id, ::create* pcreate = nullptr) override;
 
-      virtual bool create_window_ex(::user::create_struct& cs, ::user::interaction* puiParent = nullptr, const ::id& id = ::id()) override;
+      virtual bool create_window_ex(__pointer(::user::create_struct) pcs, ::user::interaction* puiParent = nullptr, const ::id& id = ::id()) override;
       enum AdjustType { adjustBorder = 0, adjustOutside = 1 };
       virtual void CalcWindowRect(RECT32* pClientRect, ::u32 nAdjustType = adjustBorder) override;
 
@@ -804,9 +809,9 @@ namespace user
       //virtual void SetWindowDisplayChanged() override;
 
 
-      virtual bool call_and_set_timer(uptr uEvent, ::duration durationElapse, PFN_TIMER pfnTimer = nullptr);
-      virtual bool set_timer(uptr uEvent, ::duration durationElapse, PFN_TIMER pfnTimer = nullptr);
-      virtual bool SetTimer(uptr uEvent, ::u32 nElapse, PFN_TIMER pfnTimer = nullptr) override;
+      virtual bool call_and_set_timer(uptr uEvent, ::millis millisElapse, PFN_TIMER pfnTimer = nullptr);
+      virtual bool set_timer(uptr uEvent, ::millis millisElapse, PFN_TIMER pfnTimer = nullptr);
+      virtual bool SetTimer(uptr uEvent, ::millis millisElapse, PFN_TIMER pfnTimer = nullptr) override;
       virtual bool KillTimer(uptr uEvent) override;
 
       virtual bool is_this_enabled() const override;
@@ -1396,7 +1401,7 @@ namespace user
       //virtual void _001OnDraw(::draw2d::graphics_pointer& pgraphics) override;
       virtual void route_command_message(::user::command* pcommand) override;
       virtual bool has_function(e_control_function econtrolfunction) const;
-      virtual e_control_type get_control_type() const;
+      virtual enum_control_type get_control_type() const;
       //virtual void _003CallCustomDraw(::draw2d::graphics_pointer& pgraphics, ::aura::draw_context* pitem);
       //virtual bool _003CallCustomWindowProc(__pointer(::user::interaction) pwnd, const ::id & id, WPARAM wparam, LPARAM lparam, LRESULT& lresult);
       //virtual void _003OnCustomDraw(::draw2d::graphics_pointer& pgraphics, ::aura::draw_context* pitem);
@@ -1433,7 +1438,7 @@ namespace user
       //virtual void on_control_event(::user::control_event* pevent) override;
       //virtual bool simple_on_control_event(::message::message * pmessage, ::user::enum_event eevent) override;
       //virtual void walk_pre_translate_tree(::message::message * pmessage,__pointer(::user::interaction) puiStop);
-      //virtual bool get_element_rect(RECT32* prect, e_element eelement);
+      //virtual bool get_element_rect(RECT32* prect, enum_element eelement);
       virtual void get_simple_drop_down_open_arrow_polygon(point_array& pointa);
       // control member functions END
 
@@ -1446,7 +1451,7 @@ namespace user
       // will affect the return of the utility function.
       // so, it should be very avoided using the m_pstylebase compositor
       // to implement the utility functions
-      // virtual bool _001GetMainFrameTranslucency(::user::e_translucency & etranslucency);
+      // virtual bool _001GetMainFrameTranslucency(::user::enum_translucency & etranslucency);
 
 
       //using style::select_text_color;

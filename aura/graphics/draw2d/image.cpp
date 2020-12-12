@@ -5136,8 +5136,13 @@ bool image::rotate(::image * pimage, double dAngle)
 
 }
 
+
 bool image::rotate(::image * pimage, double dAngle, double dScale)
 {
+
+   map();
+
+   pimage->map();
 
    int wSource = pimage->width();
 
@@ -5154,10 +5159,6 @@ bool image::rotate(::image * pimage, double dAngle, double dScale)
    if (wSource < 2 || hSource < 2 || ::is_null(pdataSource)) return false;
 
    if (wTarget < 2 || hTarget < 2 || ::is_null(pdataTarget)) return false;
-
-   map();
-
-   pimage->map();
 
    i32 l = max(wTarget, hTarget);
 
@@ -5218,6 +5219,9 @@ bool image::rotate(::image * pimage, double dAngle, double dScale)
 
 bool image::Rotate034(::image * pimage, double dAngle, double dScale)
 {
+
+   map();
+   pimage->map();
 
    i32 l = max(width(), height());
 

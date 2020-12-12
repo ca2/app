@@ -48,7 +48,7 @@ namespace user
    //   virtual void route_command_message(::user::command * pcommand) override;
 
    //   virtual bool has_function(e_control_function econtrolfunction) const;
-   //   virtual e_control_type get_control_type() const override;
+   //   virtual enum_control_type get_control_type() const override;
 
    //   virtual void _003CallCustomDraw(::draw2d::graphics_pointer & pgraphics, ::aura::draw_context * pitem);
    //   virtual bool _003CallCustomWindowProc(__pointer(::user::interaction) pwnd, const ::id & id, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
@@ -108,7 +108,7 @@ namespace user
 
 
 
-   //   virtual bool get_element_rect(RECT32 * prect, e_element eelement);
+   //   virtual bool get_element_rect(RECT32 * prect, enum_element eelement);
 
    //   virtual void get_simple_drop_down_open_arrow_polygon(point_array & pointa);
 

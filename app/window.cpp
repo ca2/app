@@ -91,14 +91,27 @@ namespace app_app
 
       pgraphics->set_smooth_mode(::draw2d::smooth_mode_high);
 
-      auto pitem = get_user_item(::user::element_close_button);
+      auto pitem = get_user_item(::user::e_element_close_button);
 
       if (::is_set(pitem))
       {
 
-         bool bHover = m_itemHover == ::user::element_close_button;
+         bool bHover = m_itemHover == ::user::e_element_close_button;
 
-         double dSourcePeriod = bHover ? 0.5 : 5.0;
+         double dSourcePeriod;
+         
+         if (bHover)
+         {
+
+            dSourcePeriod = 0.5;
+
+         }
+         else
+         {
+
+            dSourcePeriod = 5.0;
+
+         }
 
          double time = get_secs() - m_dStartTime;
 
@@ -152,7 +165,7 @@ namespace app_app
 
          auto psession = Session;
 
-         update_hover(psession->get_cursor_pos());
+         update_hover(get_cursor_pos());
 
       }
 
@@ -171,7 +184,7 @@ namespace app_app
 
       }
 
-      if (pitem->m_eelement == ::user::element_close_button)
+      if (pitem->m_eelement == ::user::e_element_close_button)
       {
 
          ::user::draw_close_button(pgraphics, this, pitem);

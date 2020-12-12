@@ -227,13 +227,13 @@
             }
 
 
-            frame::e_element operator++(frame::e_element & eelement, i32 i)
+            frame::enum_element operator++(frame::enum_element & eelement, i32 i)
             {
                UNREFERENCED_PARAMETER(i);
-               return (frame::e_element) (*((i32*)&eelement))++;
+               return (frame::enum_element) (*((i32*)&eelement))++;
             }
 
-            bool frame::get_element_rect(LPRECT32 lprect, e_element eelement)
+            bool frame::get_element_rect(LPRECT32 lprect, enum_element eelement)
             {
                switch (eelement)
                {
@@ -270,10 +270,10 @@
 
             }
 
-            bool frame::hit_test(const POINT32 &point, e_element &eelementParam)
+            bool frame::hit_test(const POINT32 &point, enum_element &eelementParam)
             {
                ::rect rect;
-               for (e_element eelement = (e_element)(ElementNone + 1);
+               for (enum_element eelement = (enum_element)(ElementNone + 1);
                      eelement < ElementEnd;
                      eelement++)
                {
@@ -634,11 +634,11 @@
 
                   auto pstyle = pframewindow->get_style(pgraphics);
 
-                  crMoveableBorder = pframewindow->get_color(pstyle, ::user::element_button_background);
+                  crMoveableBorder = pframewindow->get_color(pstyle, ::user::e_element_button_background);
 
-                  crMoveableBorderHilight = pframewindow->get_color(pstyle, ::user::element_button_hilite);
+                  crMoveableBorderHilight = pframewindow->get_color(pstyle, ::user::e_element_button_hilite);
 
-                  crMoveableBorderShadow = pframewindow->get_color(pstyle, ::user::element_button_shadow);
+                  crMoveableBorderShadow = pframewindow->get_color(pstyle, ::user::e_element_button_shadow);
 
 }
 

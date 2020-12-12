@@ -191,7 +191,7 @@ namespace user
 
          auto pstyle = get_style(pgraphics);
 
-         brushText->create_solid(get_color(pstyle,::user::element_text));
+         brushText->create_solid(get_color(pstyle,::user::e_element_text));
 
 
 
@@ -656,7 +656,7 @@ namespace user
 
       auto pstyle = get_style(pdrawitem->m_pgraphics);
 
-      pdrawitem->m_crText = get_color(pstyle, ::user::element_text);
+      pdrawitem->m_crText = get_color(pstyle, ::user::e_element_text);
 
       pdrawitem->m_crTextBackground = 0;
 
@@ -778,7 +778,7 @@ namespace user
          if (pdrawitem->m_plist->m_bMorePlain)
          {
 
-            auto color = get_color(pstyle, ::user::element_text);
+            auto color = get_color(pstyle, ::user::e_element_text);
 
             if (!color)
             {
@@ -2019,7 +2019,7 @@ namespace user
    }
 
 
-   bool list::_001HitTest_(const ::point & point, index &iItem, index &iSubItem, index&iListItem, ::user::mesh::e_element &eelement)
+   bool list::_001HitTest_(const ::point & point, index &iItem, index &iSubItem, index&iListItem, ::user::mesh::enum_element &eelement)
    {
 
       UNREFERENCED_PARAMETER(point);
@@ -2067,7 +2067,7 @@ namespace user
    }
 
 
-   bool list::_001DisplayHitTest(const ::point & point, index& iItem, index& iSubItem, index& iListItem, ::user::mesh::e_element &eelement)
+   bool list::_001DisplayHitTest(const ::point & point, index& iItem, index& iSubItem, index& iListItem, ::user::mesh::enum_element &eelement)
    {
 
       UNREFERENCED_PARAMETER(point);
@@ -2903,7 +2903,7 @@ namespace user
    }
 
 
-   void list::_001GetElementRect(::user::draw_list_item * pdrawitem, ::user::mesh::e_element eelement)
+   void list::_001GetElementRect(::user::draw_list_item * pdrawitem, ::user::mesh::enum_element eelement)
    {
 
       if (m_bGroup && m_bLateralGroup && (eelement == ::user::list::element_group_image || eelement == ::user::list::element_group_item_text))
@@ -4030,7 +4030,7 @@ namespace user
                   if(m_iClick == 1)
                   {
 
-                     if (!on_click({::user::element_item, _001DisplayToStrict(iDisplayItemLButtonUp)}))
+                     if (!on_click({::user::e_element_item, _001DisplayToStrict(iDisplayItemLButtonUp)}))
                      {
 
                         //index iItem = _001DisplayToStrict(iDisplayItemLButtonUp);
@@ -4383,7 +4383,7 @@ namespace user
                {
 
                   //_001OnItemClick(iItem);
-                  on_click({ ::user::element_item, iItem });
+                  on_click({ ::user::e_element_item, iItem });
 
                }
 
@@ -7496,9 +7496,9 @@ namespace user
 
       auto pstyle = m_plist->get_style(m_pgraphics);
 
-      m_crText = m_plist->get_color(pstyle, ::user::element_item_text, estate);
+      m_crText = m_plist->get_color(pstyle, ::user::e_element_item_text, estate);
 
-      m_crItemBackground = m_plist->get_color(pstyle, ::user::element_item_background, estate);
+      m_crItemBackground = m_plist->get_color(pstyle, ::user::e_element_item_background, estate);
 
    }
 

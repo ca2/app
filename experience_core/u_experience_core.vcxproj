@@ -122,7 +122,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{B2D7833B-9B59-4826-BBDF-C270A2115E86}</ProjectGuid>
     <Keyword>DynamicLibrary</Keyword>
-    <ProjectName>experience_lite</ProjectName>
+    <ProjectName>experience_core</ProjectName>
     <RootNamespace>app</RootNamespace>
     <DefaultLanguage>en-US</DefaultLanguage>
     <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>

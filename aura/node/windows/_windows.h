@@ -7,7 +7,7 @@
 #endif
 #include "aura/os/windows/_windows.h"
 
-CLASS_DECL_AURA::file::path get_known_folder(REFKNOWNFOLDERID kfid);
+//CLASS_DECL_AURA::file::path get_known_folder(REFKNOWNFOLDERID kfid);
 
 #include "buffer.h"
 #include "copydesk.h"

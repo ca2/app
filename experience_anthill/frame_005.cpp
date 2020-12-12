@@ -51,7 +51,7 @@ namespace experience
 
                auto pstyle = pframewindow->get_style(pgraphics);
 
-               auto colorCaptionText = pframewindow->get_color(pstyle, ::user::element_window_title);
+               auto colorCaptionText = pframewindow->get_color(pstyle, ::user::e_element_window_title);
 
                m_brushTextCaption->create_solid(colorCaptionText);
 
@@ -243,11 +243,11 @@ SizingNone:;
 
                   auto pstyle = pframewindow->get_style(pgraphics);
 
-                  crMoveableBorder = pframewindow->get_color(pstyle, ::user::element_button_background);
+                  crMoveableBorder = pframewindow->get_color(pstyle, ::user::e_element_button_background);
 
-                  crMoveableBorderHilight = pframewindow->get_color(pstyle, ::user::element_button_hilite);
+                  crMoveableBorderHilight = pframewindow->get_color(pstyle, ::user::e_element_button_hilite);
 
-                  crMoveableBorderShadow = pframewindow->get_color(pstyle, ::user::element_button_shadow);
+                  crMoveableBorderShadow = pframewindow->get_color(pstyle, ::user::e_element_button_shadow);
 
 }
 
@@ -706,13 +706,13 @@ SizingNone:;
 
                auto pstyle = pframewindow->get_style(pgraphics);
 
-               auto crButtonHilite = pframewindow->get_color(pstyle, ::user::element_button_hilite);
+               auto crButtonHilite = pframewindow->get_color(pstyle, ::user::e_element_button_hilite);
 
-               auto crButtonDarkShadow = pframewindow->get_color(pstyle, ::user::element_button_dark_shadow);
+               auto crButtonDarkShadow = pframewindow->get_color(pstyle, ::user::e_element_button_dark_shadow);
 
-               auto crButtonFace = pframewindow->get_color(pstyle, ::user::element_button_background);
+               auto crButtonFace = pframewindow->get_color(pstyle, ::user::e_element_button_background);
 
-               auto crButtonShadow = pframewindow->get_color(pstyle, ::user::element_button_shadow);
+               auto crButtonShadow = pframewindow->get_color(pstyle, ::user::e_element_button_shadow);
 
                ::rect rect(rectParam);
 

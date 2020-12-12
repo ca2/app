@@ -485,7 +485,7 @@ namespace aura
       inline ::user::user* user() { return m_puser; }
 
 
-      virtual ::color get_color(::user::e_element eelement, ::user::estate estate);
+      virtual ::color get_color(::user::enum_element eelement, ::user::estate estate);
 
 
    };

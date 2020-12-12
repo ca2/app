@@ -975,6 +975,7 @@ namespace aura
 
       virtual ::estatus initialize_estamira();
 
+      virtual ::estatus os_application_system_run() override;
 
    };
 

@@ -21,7 +21,7 @@ namespace lite
       ::user::theme(pobject)
    {
 
-      create_translucency(::user::element_none, ::user::translucency_present);
+      create_translucency(::user::e_element_none, ::user::translucency_present);
 
       create_point_font(::user::font_default,"Segoe UI", 12.0);
 
@@ -139,19 +139,19 @@ namespace lite
 
          iTab++;
 
-         if(!ptab->get_element_rect(iTab,rect,::user::element_tab))
+         if(!ptab->get_element_rect(iTab,rect,::user::e_element_tab))
             continue;
 
-         if(!ptab->get_element_rect(iTab,rectBorder, ::user::element_border))
+         if(!ptab->get_element_rect(iTab,rectBorder, ::user::e_element_border))
             continue;
 
-         if(!ptab->get_element_rect(iTab,rectClient, ::user::element_client))
+         if(!ptab->get_element_rect(iTab,rectClient, ::user::e_element_client))
             continue;
 
          if(ptab->get_data()->m_bVertical)
          {
 
-            if(ptab->get_element_rect(iTab,rectIcon, ::user::element_icon))
+            if(ptab->get_element_rect(iTab,rectIcon, ::user::e_element_icon))
             {
 
                pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
@@ -187,7 +187,7 @@ namespace lite
 
                   pgraphics->draw_path(path);
 
-                  if (iTab == ptab->m_iHover && ptab->m_eelementHover != ::user::element_close_tab_button && (ptab->m_eelementHover < ::user::element_split || ptab->m_eelementHover >(::user::element_split + 100)))
+                  if (iTab == ptab->m_iHover && ptab->m_eelementHover != ::user::e_element_close_tab_button && (ptab->m_eelementHover < ::user::e_element_split || ptab->m_eelementHover >(::user::e_element_split + 100)))
                   {
 
                      pgraphics->set_font(ptab->_001GetFont(::user::font_tab_sel_hover));
@@ -216,7 +216,7 @@ namespace lite
 
                   path->end_figure(true);
 
-                  if(iTab == ptab->m_iHover && ptab->m_eelementHover != ::user::element_close_tab_button && (ptab->m_eelementHover < ::user::element_split || ptab->m_eelementHover >(::user::element_split + 100)))
+                  if(iTab == ptab->m_iHover && ptab->m_eelementHover != ::user::e_element_close_tab_button && (ptab->m_eelementHover < ::user::e_element_split || ptab->m_eelementHover >(::user::e_element_split + 100)))
                   {
 
                      pane.m_brushFillHover->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),ARGB(230,215,215,210),ARGB(250,235,235,230));
@@ -261,7 +261,7 @@ namespace lite
          else
          {
 
-            if(ptab->get_element_rect(iTab,rectIcon, ::user::element_icon))
+            if(ptab->get_element_rect(iTab,rectIcon, ::user::e_element_icon))
             {
 
                pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
@@ -322,7 +322,7 @@ namespace lite
 
                   pgraphics->draw_path(path);
 
-                  if (iTab == ptab->m_iHover && ptab->m_eelementHover != ::user::element_close_tab_button &&( ptab->m_eelementHover < ::user::element_split || ptab->m_eelementHover >(::user::element_split + 100)))
+                  if (iTab == ptab->m_iHover && ptab->m_eelementHover != ::user::e_element_close_tab_button &&( ptab->m_eelementHover < ::user::e_element_split || ptab->m_eelementHover >(::user::e_element_split + 100)))
                   {
 
                      pgraphics->set_font(ptab->_001GetFont(::user::font_tab_sel_hover));
@@ -360,7 +360,7 @@ namespace lite
 
                   path->end_figure(true);
 
-                  if(iTab == ptab->m_iHover && ptab->m_eelementHover != ::user::element_close_tab_button && (ptab->m_eelementHover < ::user::element_split || ptab->m_eelementHover >(::user::element_split + 100)))
+                  if(iTab == ptab->m_iHover && ptab->m_eelementHover != ::user::e_element_close_tab_button && (ptab->m_eelementHover < ::user::e_element_split || ptab->m_eelementHover >(::user::e_element_split + 100)))
                   {
 
                      pane.m_brushFillHover->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),ARGB(230,215,215,210),ARGB(250,235,235,230));
@@ -421,7 +421,7 @@ namespace lite
          if(true)
          {
 
-            if(ptab->get_element_rect(iTab,rectText, ::user::element_text))
+            if(ptab->get_element_rect(iTab,rectText, ::user::e_element_text))
             {
 
                _001OnTabPaneDrawTitle(pane,ptab,pgraphics,rectText,brushText);
@@ -433,12 +433,12 @@ namespace lite
          if(true)
          {
 
-            if(ptab->get_element_rect(iTab,rectClose, ::user::element_close_tab_button))
+            if(ptab->get_element_rect(iTab,rectClose, ::user::e_element_close_tab_button))
             {
 
                pgraphics->set_font(ptab->_001GetFont(::user::font_tab_big_bold));
 
-               if(iTab == ptab->m_iHover && ptab->m_eelementHover == ::user::element_close_tab_button)
+               if(iTab == ptab->m_iHover && ptab->m_eelementHover == ::user::e_element_close_tab_button)
                {
 
                   brushText = ptab->get_data()->m_brushCloseHover;
@@ -502,7 +502,7 @@ namespace lite
                rectEmp.deflate(1,1);
                ::draw2d::enum_alpha_mode emode = pgraphics->m_ealphamode;
                pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
-               if(ptab->m_eelementHover == (int)::user::element_split + i)
+               if(ptab->m_eelementHover == (int)::user::e_element_split + i)
                {
                   pgraphics->fill_rect(rectEmp,ARGB(128,149,184,255));
                   pgraphics->SelectObject(ptab->get_data()->m_brushTextHover);
@@ -865,9 +865,9 @@ namespace lite
 
 /*      ::u32 uImage = pmenucentral->command_image(item.m_id);
 
-      ::user::toolbar::e_element eelement = ::user::toolbar::element_item;
-/*      ::user::toolbar::e_element eelementImage = ::user::toolbar::element_image;
-      ::user::toolbar::e_element eelementText = ::user::toolbar::element_text;
+      ::user::toolbar::enum_element eelement = ::user::toolbar::element_item;
+/*      ::user::toolbar::enum_element eelementImage = ::user::toolbar::element_image;
+      ::user::toolbar::enum_element eelementText = ::user::toolbar::element_text;
       if ((nStyle & e_toolbar_item_style_separator) == 0)
       {
          if ((nStyle & e_toolbar_item_style_disabled) == 0)
@@ -1169,9 +1169,9 @@ namespace lite
 
 /*      ::u32 uImage = pmenucentral->command_image(item.m_id);
 
-      ::user::toolbar::e_element eelement = ::user::toolbar::element_item;
-/*      ::user::toolbar::e_element eelementImage = ::user::toolbar::element_image;
-      ::user::toolbar::e_element eelementText = ::user::toolbar::element_text;
+      ::user::toolbar::enum_element eelement = ::user::toolbar::element_item;
+/*      ::user::toolbar::enum_element eelementImage = ::user::toolbar::element_image;
+      ::user::toolbar::enum_element eelementText = ::user::toolbar::element_text;
 
       if ((nStyle & e_toolbar_item_style_separator) == 0)
       {

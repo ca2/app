@@ -83,7 +83,7 @@ namespace android
       virtual bool create_window(::user::interaction * pinteraction, const char * lpszClassName, const char * lpszWindowName, u32 dwStyle, const ::rect & rect, ::user::interaction * pParentWnd, id id, ::create * pcreate = nullptr) override;
 
       // for top level windows and/or special features
-      virtual bool create_window_ex(::user::interaction * pinteraction, ::user::create_struct & cs, ::user::interaction * puiParent = nullptr, ::id id = ::id()) override;
+      virtual bool create_window_ex(::user::interaction * pinteraction, __pointer(::user::create_struct) pcreatestruct, ::user::interaction * puiParent = nullptr, ::id id = ::id()) override;
 
       // for top level windows and/or special features
       virtual bool _native_create_window_ex(::user::create_struct& cs) override;
@@ -91,7 +91,7 @@ namespace android
       virtual bool DestroyWindow() override;
 
       // special pre-creation and interaction_impl rect adjustment hooks
-      virtual bool pre_create_window(::user::create_struct& cs) override;
+      virtual bool pre_create_window(::user::create_struct * pcreatestruct) override;
 
       // Advanced: virtual AdjustWindowRect
       enum AdjustType { adjustBorder = 0,adjustOutside = 1 };

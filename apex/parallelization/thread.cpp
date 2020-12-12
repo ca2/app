@@ -268,16 +268,61 @@ void thread::term_thread()
    switch (m_idContextReference)
    {
    case id_application:
-      get_context_application()->release_reference(this OBJ_REF_DBG_COMMA_P_FUNCTION_LINE(get_context_application()));
+   {
+
+      auto papplication = get_context_application();
+
+      if (papplication)
+      {
+
+         papplication->release_reference(this OBJ_REF_DBG_COMMA_P_FUNCTION_LINE(papplication));
+
+      }
+
+   }
       break;
+
    case id_session:
-      get_context_session()->release_reference(this OBJ_REF_DBG_COMMA_P_FUNCTION_LINE(get_context_session()));
-      break;
+   {
+
+      auto pcontextsession = get_context_session();
+
+      if (pcontextsession)
+      {
+
+         pcontextsession->release_reference(this OBJ_REF_DBG_COMMA_P_FUNCTION_LINE(pcontextsession));
+
+      }
+
+   }
+   break;
    case id_system:
-      get_context_system()->release_reference(this OBJ_REF_DBG_COMMA_P_FUNCTION_LINE(get_context_system()));
-      break;
+   {
+
+      auto pcontextsystem = get_context_system();
+
+      if (pcontextsystem)
+      {
+
+         pcontextsystem->release_reference(this OBJ_REF_DBG_COMMA_P_FUNCTION_LINE(pcontextsystem));
+
+      }
+
+   }
+   break;
    case id_thread:
-      get_context_thread()->release_reference(this OBJ_REF_DBG_COMMA_P_FUNCTION_LINE(get_context_thread()));
+   {
+
+      auto pcontextthread = get_context_thread();
+      
+      if (pcontextthread)
+      {
+
+         pcontextthread->release_reference(this OBJ_REF_DBG_COMMA_P_FUNCTION_LINE(pcontextthread));
+
+      }
+
+   }
       break;
    default:
       break;

@@ -1124,7 +1124,7 @@ namespace user
 
       auto pstyle = get_style(pgraphics);
 
-      m_colorTreeBackground = get_color(pstyle, ::user::element_background);
+      m_colorTreeBackground = get_color(pstyle, ::user::e_element_background);
 
       __defer_construct(m_brushTextSelectedHighlight);
       __defer_construct(m_brushTextSelected);
@@ -1133,10 +1133,10 @@ namespace user
 
       __defer_construct(m_fontTreeItem);
 
-      m_brushTextSelectedHighlight->create_solid(get_color(pstyle, ::user::element_hilite_text, ::user::e_state_selected));
-      m_brushTextSelected->create_solid(get_color(pstyle, ::user::element_text, ::user::e_state_selected));
-      m_brushTextHighlight->create_solid(get_color(pstyle, ::user::element_text, ::user::e_state_selected));
-      m_brushText->create_solid(get_color(pstyle, ::user::element_text));
+      m_brushTextSelectedHighlight->create_solid(get_color(pstyle, ::user::e_element_hilite_text, ::user::e_state_selected));
+      m_brushTextSelected->create_solid(get_color(pstyle, ::user::e_element_text, ::user::e_state_selected));
+      m_brushTextHighlight->create_solid(get_color(pstyle, ::user::e_element_text, ::user::e_state_selected));
+      m_brushText->create_solid(get_color(pstyle, ::user::e_element_text));
 
       m_fontTreeItem = get_font(pstyle);
 

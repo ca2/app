@@ -191,7 +191,7 @@ namespace user
       if (!m_itemHover.is_set())
       {
 
-         m_itemHover = ::user::element_client;
+         m_itemHover = ::user::e_element_client;
 
          set_need_redraw();
 
@@ -209,7 +209,7 @@ namespace user
 
       UNREFERENCED_PARAMETER(pmessage);
 
-      m_itemHover = ::user::element_none;
+      m_itemHover = ::user::e_element_none;
 
       set_need_redraw();
 
@@ -365,7 +365,7 @@ namespace user
 
          {
 
-            auto colorBackground = get_color(pstyle, ::user::element_background, estate);
+            auto colorBackground = get_color(pstyle, ::user::e_element_background, estate);
 
             if (!colorBackground)
             {

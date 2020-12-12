@@ -1682,7 +1682,7 @@ return { 0,0 };
    }
 
 
-   bool toolbar::_001GetElementRect(index iItem,RECT32 * prect,e_element eelement, estate estate)
+   bool toolbar::_001GetElementRect(index iItem,RECT32 * prect,enum_element eelement, estate estate)
    {
 
       return false;

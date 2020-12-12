@@ -6,13 +6,16 @@ namespace user
 
 
    class CLASS_DECL_AURA create_struct :
-#ifdef WINDOWS
-      public CREATESTRUCTW
-#else
-      public CREATESTRUCTA
-#endif
+      virtual public ::matter
    {
    public:
+
+#ifdef WINDOWS
+      CREATESTRUCTW        m_createstruct;
+#else
+      CREATESTRUCTA        m_createstruct;
+#endif
+
 
 #ifdef WINDOWS
       wstring     m_strClassName;
@@ -21,7 +24,13 @@ namespace user
       string      m_strClassName;
       string      m_strWindowName;
 #endif
-      ::user::interaction * m_puserinteractionOwner;
+
+      ::user::interaction *                  m_puserinteractionOwner;
+      ::promise::routine                     m_routineSuccess;
+      ::promise::routine                     m_routineFailure;
+      __pointer(::user::interaction_impl)    m_pimpl;
+      __pointer(::create)                    m_pcreate;
+
 
       create_struct(const create_struct &);
       
@@ -31,7 +40,7 @@ namespace user
                   const char * pszWindowName = 0,
                   u32 uStyle = 0,
                   ::rect rect = nullptr,
-                  void * pvCreateParams = nullptr);
+                  ::create * pcreate = nullptr);
 
       create_struct(const ::rect & rect);
       

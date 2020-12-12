@@ -111,7 +111,7 @@ simple_frame_window::~simple_frame_window()
 }
 
 
-::user::e_translucency simple_frame_window::get_translucency(::user::style* pstyle) const
+::user::enum_translucency simple_frame_window::get_translucency(::user::style* pstyle) const
 {
 
    if (m_etranslucencyFrame != ::user::translucency_undefined)
@@ -691,7 +691,7 @@ void simple_frame_window::_001OnCreate(::message::message * pmessage)
 
    SCAST_PTR(::message::create, pcreate, pmessage);
 
-   ::create * pcreateContext = (::create *) pcreate->m_lpcreatestruct->CREATE_STRUCT_P_CREATE_PARAMS;
+   ::create * pcreateContext = (::create *) pcreate->get_create();
 
    if (::is_set(pcreateContext))
    {
@@ -1058,43 +1058,42 @@ void simple_frame_window::_001OnMove(::message::message * pmessage)
 
 
 bool simple_frame_window::on_create_client(::user::create_struct * pcs, ::create * pcreate)
-
 {
 
    return ::user::frame_window::on_create_client(pcs, pcreate);
 
-
 }
 
 
-bool simple_frame_window::pre_create_window(::user::create_struct& cs)
+bool simple_frame_window::pre_create_window(::user::create_struct * pcreatestruct)
 {
 
-   if (!::user::frame_window::pre_create_window(cs))
+   if (!::user::frame_window::pre_create_window(pcreatestruct))
    {
 
       return false;
 
    }
 
-
 #ifdef WINDOWS_DESKTOP
 
-   //cs.style = WS_OVERLAPPEDWINDOW & ~WS_THICKFRAME;
-   //cs.style |= WS_OVERLAPPEDWINDOW;
-   //cs.style |= WS_THICKFRAME;
-   cs.style |= WS_POPUP;
-   //cs.style &= ~WS_VISIBLE;
-   cs.style |= WS_SYSMENU | WS_MINIMIZEBOX | WS_MAXIMIZEBOX;
+   //pcreatestruct->m_createstruct.style = WS_OVERLAPPEDWINDOW & ~WS_THICKFRAME;
+   //pcreatestruct->m_createstruct.style |= WS_OVERLAPPEDWINDOW;
+   //pcreatestruct->m_createstruct.style |= WS_THICKFRAME;
+   pcreatestruct->m_createstruct.style |= WS_POPUP;
+   //pcreatestruct->m_createstruct.style &= ~WS_VISIBLE;
+   pcreatestruct->m_createstruct.style |= WS_SYSMENU | WS_MINIMIZEBOX | WS_MAXIMIZEBOX;
 
 #endif
 
-   ::create* pcreateContext = (::create*) cs.CREATE_STRUCT_P_CREATE_PARAMS;
+   ::create * pcreateContext = pcreatestruct->m_pcreate;
 
    if(pcreateContext && would_display_notify_icon())
    {
 
-      __pointer(::user::document) pdocument = __user_create(pcreateContext->m_pusercreate)->m_pdocumentCurrent;
+      auto pusercreate = pcreateContext->get_user_create();
+
+      __pointer(::user::document) pdocument = pusercreate->m_pdocumentCurrent;
 
       if (pdocument->get_document_template()->m_bHiddenOnNotifyIcon)
       {
@@ -1107,7 +1106,7 @@ bool simple_frame_window::pre_create_window(::user::create_struct& cs)
 
          pcreateContext->m_bMakeVisible = false;
 
-         cs.style &= ~WS_VISIBLE;
+         pcreatestruct->m_createstruct.style &= ~WS_VISIBLE;
 
       }
 
@@ -1125,6 +1124,15 @@ void simple_frame_window::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
       output_debug_string("%child_frame%\n");
+
+   }
+
+   if (Application.is_true("client_only"))
+   {
+
+      auto rect = Session->get_host_wnd()->get_client_rect();
+
+      set_dim(rect.left, rect.top, rect.width(), rect.height());
 
    }
 
@@ -1953,9 +1961,9 @@ bool simple_frame_window::LoadFrame(const char * pszMatter, u32 dwDefaultStyle, 
 
    }
 
-   ::user::create_struct createstruct(0L, nullptr, m_strFrameTitle, dwDefaultStyle, rectFrame, pcreate);
+   auto pcreatestruct = __new(::user::create_struct(0L, nullptr, m_strFrameTitle, dwDefaultStyle, rectFrame, pcreate));
 
-   if (!pre_create_window(createstruct))
+   if (!pre_create_window(pcreatestruct))
    {
 
       return false;
@@ -2002,16 +2010,7 @@ bool simple_frame_window::LoadFrame(const char * pszMatter, u32 dwDefaultStyle, 
 
                __pointer(::user::document) pdocument = __user_create(pcreate->m_pusercreate)->m_pdocumentCurrent;
 
-               //__pointer(::userex::impact_host) peximpacthost = puiParent;
-
                __pointer(::user::impact_host) pimpacthost;
-
-          /*     if (peximpacthost)
-               {
-
-                  pimpacthost = peximpacthost->get_pane_tab_view();
-
-               }*/
 
                if (pimpacthost.is_set())
                {
@@ -2042,7 +2041,7 @@ bool simple_frame_window::LoadFrame(const char * pszMatter, u32 dwDefaultStyle, 
 
       rectFrame = layout().sketch().screen_rect();
 
-      createstruct.set_rect(rectFrame);
+      pcreatestruct->set_rect(rectFrame);
 
       INFO("(2) simple_frame_window::LoadFrame rectFrame (l=%d, t=%d) (w=%d, h=%d)", rectFrame.left, rectFrame.top, rectFrame.width(), rectFrame.height());
       INFO("(2) simple_frame_window::LoadFrame edisplay=%s", __cstr(layout().sketch().display().eflag()));
@@ -2073,7 +2072,7 @@ bool simple_frame_window::LoadFrame(const char * pszMatter, u32 dwDefaultStyle, 
    if (puiParent != nullptr)
    {
 
-      createstruct.style |= WS_CHILD;
+      pcreatestruct->m_createstruct.style |= WS_CHILD;
 
    }
 
@@ -2083,7 +2082,7 @@ bool simple_frame_window::LoadFrame(const char * pszMatter, u32 dwDefaultStyle, 
 
    m_ewindowflag -= window_flag_load_window_rect_on_impl;
 
-   bool bCreated = create_window_ex(createstruct, puiParent, m_id);
+   bool bCreated = create_window_ex(pcreatestruct, puiParent, m_id);
 
    if (bLoadImplRect)
    {

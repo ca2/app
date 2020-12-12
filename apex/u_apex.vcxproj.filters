@@ -113,12 +113,6 @@
     <Filter Include="Header Files\compress">
       <UniqueIdentifier>{3667a9aa-0828-4d29-8deb-b24771a43da0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\multithreading">
-      <UniqueIdentifier>{860e6475-85e7-4938-9dbc-8bb13ab30942}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\multithreading\service">
-      <UniqueIdentifier>{153dd6fe-75bf-4b51-a72c-949c9334fd53}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\process">
       <UniqueIdentifier>{aa82454e-fbd1-4e9b-afd9-257e0be5cffc}</UniqueIdentifier>
     </Filter>
@@ -224,12 +218,6 @@
     <Filter Include="Source Files\platform">
       <UniqueIdentifier>{52263240-d997-4d51-91da-6d4f5f75ac5f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\multithreading">
-      <UniqueIdentifier>{62a125df-901a-4496-b617-cffa7b604626}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\multithreading\service">
-      <UniqueIdentifier>{8bd76df4-d7f4-4a48-8fb6-10398c9f9d76}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\node\uwp">
       <UniqueIdentifier>{43418ce0-062f-4ada-91d9-654f94876a08}</UniqueIdentifier>
     </Filter>
@@ -292,6 +280,18 @@
     </Filter>
     <Filter Include="Source Files\net\sockets\winrt\asynch_dns">
       <UniqueIdentifier>{83a08ae0-98ac-4d5d-8310-ba048b2c8172}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\parallelization">
+      <UniqueIdentifier>{62a125df-901a-4496-b617-cffa7b604626}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\parallelization\service">
+      <UniqueIdentifier>{8bd76df4-d7f4-4a48-8fb6-10398c9f9d76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\parallelization">
+      <UniqueIdentifier>{860e6475-85e7-4938-9dbc-8bb13ab30942}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\parallelization\service">
+      <UniqueIdentifier>{153dd6fe-75bf-4b51-a72c-949c9334fd53}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -598,9 +598,6 @@
     <ClCompile Include="os\ansios\language.cpp">
       <Filter>Source Files\os\ansios</Filter>
     </ClCompile>
-    <ClCompile Include="os\ansios\process.cpp">
-      <Filter>Source Files\os\ansios</Filter>
-    </ClCompile>
     <ClCompile Include="os\ansios\win.cpp">
       <Filter>Source Files\os\ansios</Filter>
     </ClCompile>
@@ -868,36 +865,6 @@
     <ClCompile Include="platform\_.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="multithreading\handler.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\retry_multi_lock.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\retry_single_lock.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\service_base.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\thread.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\threading.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\thread_os.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\tools.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\_.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\service\plain_service.cpp">
-      <Filter>Source Files\multithreading\service</Filter>
-    </ClCompile>
     <ClCompile Include="node\uwp\app_core.cpp">
       <Filter>Source Files\node\uwp</Filter>
     </ClCompile>
@@ -953,12 +920,6 @@
       <Filter>Source Files\os\uwp</Filter>
     </ClCompile>
     <ClCompile Include="os\uwp\main.cpp">
-      <Filter>Source Files\os\uwp</Filter>
-    </ClCompile>
-    <ClCompile Include="os\uwp\multithreading.cpp">
-      <Filter>Source Files\os\uwp</Filter>
-    </ClCompile>
-    <ClCompile Include="os\uwp\process.cpp">
       <Filter>Source Files\os\uwp</Filter>
     </ClCompile>
     <ClCompile Include="os\uwp\simple_app.cpp">
@@ -1027,9 +988,6 @@
     <ClCompile Include="crypto\hasher_algorithm.cpp">
       <Filter>Source Files\crypto</Filter>
     </ClCompile>
-    <ClCompile Include="rsa.cpp">
-      <Filter>Source Files\crypto</Filter>
-    </ClCompile>
     <ClCompile Include="crypto\winrt\rsa.cpp">
       <Filter>Source Files\crypto\winrt</Filter>
     </ClCompile>
@@ -1062,6 +1020,45 @@
     </ClCompile>
     <ClCompile Include="net\sockets\http\http_base_socket.cpp">
       <Filter>Source Files\net\http</Filter>
+    </ClCompile>
+    <ClCompile Include="os\uwp\parallelization.cpp">
+      <Filter>Source Files\os\uwp</Filter>
+    </ClCompile>
+    <ClCompile Include="parallelization\service\plain_service.cpp">
+      <Filter>Source Files\parallelization\service</Filter>
+    </ClCompile>
+    <ClCompile Include="parallelization\_.cpp">
+      <Filter>Source Files\parallelization</Filter>
+    </ClCompile>
+    <ClCompile Include="parallelization\handler.cpp">
+      <Filter>Source Files\parallelization</Filter>
+    </ClCompile>
+    <ClCompile Include="parallelization\retry_multi_lock.cpp">
+      <Filter>Source Files\parallelization</Filter>
+    </ClCompile>
+    <ClCompile Include="parallelization\retry_single_lock.cpp">
+      <Filter>Source Files\parallelization</Filter>
+    </ClCompile>
+    <ClCompile Include="parallelization\service_base.cpp">
+      <Filter>Source Files\parallelization</Filter>
+    </ClCompile>
+    <ClCompile Include="parallelization\thread.cpp">
+      <Filter>Source Files\parallelization</Filter>
+    </ClCompile>
+    <ClCompile Include="parallelization\thread_os.cpp">
+      <Filter>Source Files\parallelization</Filter>
+    </ClCompile>
+    <ClCompile Include="parallelization\thread_pool.cpp">
+      <Filter>Source Files\parallelization</Filter>
+    </ClCompile>
+    <ClCompile Include="parallelization\threading.cpp">
+      <Filter>Source Files\parallelization</Filter>
+    </ClCompile>
+    <ClCompile Include="parallelization\tools.cpp">
+      <Filter>Source Files\parallelization</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\rsa.cpp">
+      <Filter>Source Files\crypto</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -2136,84 +2133,6 @@
     <ClInclude Include="compress\zip_is_dir.h">
       <Filter>Header Files\compress</Filter>
     </ClInclude>
-    <ClInclude Include="multithreading\aaa_want_to_remove_waitable.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\common.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\create_thread.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\data.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\delay_thread.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\fork.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\handler.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\aaa_pred_procedure.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\procedure_array.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\retry.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\retry_multi_lock.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\retry_single_lock.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\service_base.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\service_status.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\socket_event.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\thread.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\threading.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\thread_impl.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\thread_os.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\thread_parameter.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\tools.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\_.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\_impl.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\_thread_os_create_impl.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\service\plain_service.h">
-      <Filter>Header Files\multithreading\service</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\service\thread_pool.h">
-      <Filter>Header Files\multithreading\service</Filter>
-    </ClInclude>
     <ClInclude Include="process\_.h">
       <Filter>Header Files\process</Filter>
     </ClInclude>
@@ -2299,9 +2218,6 @@
       <Filter>Header Files\os\uwp</Filter>
     </ClInclude>
     <ClInclude Include="os\uwp\metrowin_metrowin.h">
-      <Filter>Header Files\os\uwp</Filter>
-    </ClInclude>
-    <ClInclude Include="os\uwp\multithreading.h">
       <Filter>Header Files\os\uwp</Filter>
     </ClInclude>
     <ClInclude Include="os\uwp\process.h">
@@ -2453,6 +2369,72 @@
     </ClInclude>
     <ClInclude Include="net\sockets\winrt\webserver\aaa_http_base_socket.h">
       <Filter>Header Files\net\sockets\winrt\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="os\uwp\parallelization.h">
+      <Filter>Header Files\os\uwp</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\_.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\_impl.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\aaa_pred_procedure.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\common.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\create_thread.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\data.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\delay_thread.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\fork.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\handler.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\retry.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\retry_multi_lock.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\retry_single_lock.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\service_base.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\service_status.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\thread.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\thread_impl.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\thread_os.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\threading.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\tools.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\service\plain_service.h">
+      <Filter>Header Files\parallelization\service</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\service\pool.h">
+      <Filter>Header Files\parallelization\service</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -59,7 +59,7 @@ public:
 
 
 protected:
-   virtual bool pre_create_window(::user::create_struct& cs) override;
+   virtual bool pre_create_window(::user::create_struct * pcreatestruct) override;
 
    //virtual index _001GetHoverItem() override;
    //virtual void OnUpdateHover() override;
@@ -71,7 +71,7 @@ protected:
    //void _001DrawItem(::draw2d::graphics_pointer & pgraphics, index iItem);
    //index _001HitTest(const POINT32 * point);
    //bool _001CheckItem(index iItem, bool bCheck);
-   //bool _001GetItemRect(index iItem, RECT32 * prect, e_element eelement);
+   //bool _001GetItemRect(index iItem, RECT32 * prect, enum_element eelement);
 
    //virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
    bool ReloadMenuBar();

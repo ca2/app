@@ -16,17 +16,20 @@ namespace experience
 
    }
 
+
    orto_button::~orto_button()
    {
+
+
    }
 
 
-   bool orto_button::pre_create_window(::user::create_struct& cs)
+   bool orto_button::pre_create_window(::user::create_struct * pcreatestruct)
    {
-      //   cs.style |= BS_OWNERDRAW;
-      return ::user::button::pre_create_window(cs);
-   }
 
+      return ::user::button::pre_create_window(pcreatestruct);
+
+   }
 
 
    void orto_button::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
@@ -245,7 +248,7 @@ namespace experience
       if (m_spregion.is_null())
       {
 
-         item = ::user::element_none;
+         item = ::user::e_element_none;
 
          return;
 
@@ -254,13 +257,13 @@ namespace experience
       if (!m_spregion->contains(item.m_pointHitTest))
       {
 
-         item = ::user::element_none;
+         item = ::user::e_element_none;
 
          return;
 
       }
 
-      item = ::user::element_client;
+      item = ::user::e_element_client;
 
    }
 

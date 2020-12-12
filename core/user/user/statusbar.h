@@ -81,7 +81,7 @@ namespace user
 #endif
 
       virtual ::size CalcFixedLayout(::draw2d::graphics_pointer& pgraphics, bool bStretch, bool bHorz) override;
-      bool pre_create_window(::user::create_struct& cs) override;
+      bool pre_create_window(::user::create_struct * pcreatestruct) override;
       //bool AllocElements(i32 nElements, i32 cbElement);
       void CalcInsideRect(::draw2d::graphics_pointer& pgraphics, ::rect& rect, bool bHorz);
       virtual void OnBarStyleChange(u32 dwOldStyle, u32 dwNewStyle) override;

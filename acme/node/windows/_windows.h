@@ -7,7 +7,7 @@
 #endif
 
 
-CLASS_DECL_ACME::file::path get_known_folder(REFKNOWNFOLDERID kfid);
+CLASS_DECL_ACME ::file::path get_known_folder(REFKNOWNFOLDERID kfid);
 
 //#include "buffer.h"
 //#include "copydesk.h"

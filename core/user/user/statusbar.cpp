@@ -80,14 +80,14 @@ namespace user
 
    }
 
-   bool status_bar::pre_create_window(::user::create_struct& cs)
+   bool status_bar::pre_create_window(::user::create_struct * pcreatestruct)
    {
       // in Win4, status bars do not have a border at all, since it is
       //  provided by the client area.
       if ((m_dwStyle & (CBRS_ALIGN_ANY|CBRS_BORDER_ANY)) == CBRS_BOTTOM)
          m_dwStyle &= ~(CBRS_BORDER_ANY|CBRS_BORDER_3D);
 
-      return ::user::control_bar::pre_create_window(cs);
+      return ::user::control_bar::pre_create_window(pcreatestruct);
    }
 
    bool status_bar::SetIndicators(string_array & stra)

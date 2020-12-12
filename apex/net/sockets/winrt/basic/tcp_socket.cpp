@@ -1,5 +1,6 @@
 #include "framework.h"
-//#include "apex/net/net_sockets.h"
+#include "apex/net/sockets/_sockets.h"
+
 
 //#include <fcntl.h>
 //#include <assert.h>
@@ -151,31 +152,42 @@ namespace sockets
 
       String ^ strService = __str(ad.get_service_number());
 
-      m_streamsocket->ConnectAsync(ad.m_hostname, strService)->Completed =
-      ref new ::Windows::Foundation::AsyncActionCompletedHandler
-      ([this](::Windows::Foundation::IAsyncAction ^ action, ::Windows::Foundation::AsyncStatus status)
+      try
       {
 
-         if(status == ::Windows::Foundation::AsyncStatus::Completed)
-         {
+         m_streamsocket->ConnectAsync(ad.m_hostname, strService)->Completed =
+            ref new ::Windows::Foundation::AsyncActionCompletedHandler
+            ([this](::Windows::Foundation::IAsyncAction ^ action, ::Windows::Foundation::AsyncStatus status)
+               {
 
-            m_bConnected         = true;
+                  if (status == ::Windows::Foundation::AsyncStatus::Completed)
+                  {
 
-            m_bOnConnect         = true;
+                     m_bConnected = true;
 
-         }
-         else
-         {
+                     m_bOnConnect = true;
 
-            SetCloseAndDelete();
+                  }
+                  else
+                  {
 
-         }
+                     SetCloseAndDelete();
 
-         m_bConnecting = false;
+                  }
 
-         m_event.SetEvent();
+                  m_bConnecting = false;
 
-      });
+                  m_event.SetEvent();
+
+               });
+
+      }
+      catch (...)
+      {
+
+         return false;
+
+      }
 
 
       return true;

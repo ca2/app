@@ -24,7 +24,7 @@ __pointer(::user::interaction) simple_list_control::OnDrawInterfaceGetWnd()
 }
 
 
-bool simple_list_control::pre_create_window(::user::create_struct& cs)
+bool simple_list_control::pre_create_window(::user::create_struct * pcreatestruct)
 {
 
 #ifdef WINDOWS_DESKTOP
@@ -33,7 +33,7 @@ bool simple_list_control::pre_create_window(::user::create_struct& cs)
 
 #endif
 
-   return ::user::interaction::pre_create_window(cs);
+   return ::user::interaction::pre_create_window(pcreatestruct);
 
 }
 

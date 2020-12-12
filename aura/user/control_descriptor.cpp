@@ -380,7 +380,7 @@ namespace user
    }
 
 
-   void control_descriptor::set_control_type(e_control_type econtroltype)
+   void control_descriptor::set_control_type(enum_control_type econtroltype)
    {
 
       m_econtroltype = econtroltype;
@@ -409,7 +409,7 @@ namespace user
    }
 
 
-   e_control_type control_descriptor::get_control_type()
+   enum_control_type control_descriptor::get_control_type()
    {
 
       return m_econtroltype;
@@ -422,7 +422,7 @@ namespace user
 
       ASSERT(::is_set(m_puserinteractionParent));
 
-      e_control_type econtroltype = control_type_none;
+      enum_control_type econtroltype = control_type_none;
 
       if (m_type.m_strName.is_empty())
       {

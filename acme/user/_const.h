@@ -1,24 +1,24 @@
 #pragma once
 
 
-enum e_position
+enum enum_position
 {
-   position_none = 0,
-   position_top = 1,
-   position_left = 2,
-   position_top_left = 3,
-   position_right = 4,
-   position_top_right = 5,
-   position_hcenter = 6,
-   position_top_center = 7,
-   position_bottom = 8,
-   position_vcenter = 9,
-   position_bottom_left = 10,
-   position_left_center = 11,
-   position_bottom_right = 12,
-   position_right_center = 13,
-   position_bottom_center = 14,
-   position_center = 15,
+   e_position_none = 0,
+   e_position_top = 1,
+   e_position_left = 2,
+   e_position_top_left = 3,
+   e_position_right = 4,
+   e_position_top_right = 5,
+   e_position_hcenter = 6,
+   e_position_top_center = 7,
+   e_position_bottom = 8,
+   e_position_vcenter = 9,
+   e_position_bottom_left = 10,
+   e_position_left_center = 11,
+   e_position_bottom_right = 12,
+   e_position_right_center = 13,
+   e_position_bottom_center = 14,
+   e_position_center = 15,
 };
 
 
@@ -29,17 +29,17 @@ namespace user
 {
 
 
-   enum e_layout
+   enum enum_layout
    {
 
-      layout_sketch, // layouting request ("staging area")
-      layout_design, // ready to process
+      e_layout_sketch, // layouting request ("staging area")
+      e_layout_design, // ready to process
 //      layout_bitmap, // drawn/ready sketch
-      layout_output, // screen output 
-      layout_window, // event window
+      e_layout_output, // screen output 
+      e_layout_window, // event window
 
-      layout_count_child = layout_design + 1,
-      layout_count_owner = layout_window + 1,
+      e_layout_count_child = e_layout_design + 1,
+      e_layout_count_owner = e_layout_window + 1,
 
    };
 
@@ -169,140 +169,140 @@ namespace user
    };
 
 
-   enum e_object
+   enum enum_object
    {
 
-      object_list,
-      object_tree
+      e_object_list,
+      e_object_tree
 
    };
 
 
-   enum e_theme
+   enum enum_theme
    {
 
-      theme_lite,
-      theme_blue,
-      theme_dark
+      e_theme_lite,
+      e_theme_blue,
+      e_theme_dark
 
    };
 
 
-   enum e_translucency
+   enum enum_translucency
    {
 
-      translucency_undefined,
-      translucency_none,
-      translucency_present,
-      translucency_total
+      e_translucency_undefined,
+      e_translucency_none,
+      e_translucency_present,
+      e_translucency_total
 
    };
    
 
-   enum e_control_type
+   enum enum_control_type
    {
-      control_type_none,
-      control_type_static,
-      control_type_check_box,
-      control_type_edit,
-      control_type_simple_list,
-      control_type_button,
-      control_type_combo_box,
-      control_type_edit_plain_text,
-      control_type_list,
-      control_type_mesh,
-      control_type_tree,
-      control_type_split,
-      control_type_tab,
-      control_type_toolbar,
-      control_type_statusbar,
-      control_type_menu,
-      control_type_menu_popup,
-      control_type_menu_button,
-      control_type_menu_button_close,
-      control_type_system_menu,
-      control_type_system_menu_popup,
-      control_type_system_menu_button,
-      control_type_system_menu_close,
+      e_control_type_none,
+      e_control_type_static,
+      e_control_type_check_box,
+      e_control_type_edit,
+      e_control_type_simple_list,
+      e_control_type_button,
+      e_control_type_combo_box,
+      e_control_type_edit_plain_text,
+      e_control_type_list,
+      e_control_type_mesh,
+      e_control_type_tree,
+      e_control_type_split,
+      e_control_type_tab,
+      e_control_type_toolbar,
+      e_control_type_statusbar,
+      e_control_type_menu,
+      e_control_type_menu_popup,
+      e_control_type_menu_button,
+      e_control_type_menu_button_close,
+      e_control_type_system_menu,
+      e_control_type_system_menu_popup,
+      e_control_type_system_menu_button,
+      e_control_type_system_menu_close,
 
    };
 
 
-   enum e_element : ::i64
+   enum enum_element : ::i64
    {
 
-      element_none,
-      element_frame_window,
-      element_tab,
-      element_tab_layout_background,
-      element_tab_client_background,
-      element_tab_item_background,
-      element_tab_near_scroll,
-      element_tab_far_scroll,
-      element_close_tab_button,
-      element_status_image,
-      element_text,
-      element_list,
-      element_item_text,
-      element_item_background,
-      element_hilite_text,
-      element_icon,
-      element_background,
-      element_separator,
-      element_face,
-      element_border,
-      element_lite_border,
-      element_client,
-      element_area,
-      element_drop_down,
-      element_combo_edit,
-      element_item,
-      element_search_edit,
-      element_search_ok,
-      element_scrollbar,
-      element_scrollbar_draw,
-      element_scrollbar_strong,
-      element_scrollbar_rect,
-      element_scrollbar_rectA,
-      element_scrollbar_rectB,
-      element_scrollbar_pageA,
-      element_scrollbar_pageB,
-      element_margin_top,
-      element_margin_left,
-      element_margin_right,
-      element_margin_bottom,
-      element_window_title,
-      element_image,
-      element_close_button,
-      element_close_icon,
-      element_hilite,
-      element_dark_shadow,
-      element_button_text,
-      element_button_background,
-      element_button_hilite,
-      element_button_shadow,
-      element_button_dark_shadow,
+      e_element_none,
+      e_element_frame_window,
+      e_element_tab,
+      e_element_tab_layout_background,
+      e_element_tab_client_background,
+      e_element_tab_item_background,
+      e_element_tab_near_scroll,
+      e_element_tab_far_scroll,
+      e_element_close_tab_button,
+      e_element_status_image,
+      e_element_text,
+      e_element_list,
+      e_element_item_text,
+      e_element_item_background,
+      e_element_hilite_text,
+      e_element_icon,
+      e_element_background,
+      e_element_separator,
+      e_element_face,
+      e_element_border,
+      e_element_lite_border,
+      e_element_client,
+      e_element_area,
+      e_element_drop_down,
+      e_element_combo_edit,
+      e_element_item,
+      e_element_search_edit,
+      e_element_search_ok,
+      e_element_scrollbar,
+      e_element_scrollbar_draw,
+      e_element_scrollbar_strong,
+      e_element_scrollbar_rect,
+      e_element_scrollbar_rectA,
+      e_element_scrollbar_rectB,
+      e_element_scrollbar_pageA,
+      e_element_scrollbar_pageB,
+      e_element_margin_top,
+      e_element_margin_left,
+      e_element_margin_right,
+      e_element_margin_bottom,
+      e_element_window_title,
+      e_element_image,
+      e_element_close_button,
+      e_element_close_icon,
+      e_element_hilite,
+      e_element_dark_shadow,
+      e_element_button_text,
+      e_element_button_background,
+      e_element_button_hilite,
+      e_element_button_shadow,
+      e_element_button_dark_shadow,
 
 
-      element_split = 10'000,
+      e_element_split = 10'000,
 
-      element_desk_launcher_1,
-      element_desk_launcher_2,
-      element_desk_launcher_3,
-      element_desk_launcher_4,
-      element_desk_launcher_5,
-      element_desk_launcher_6,
-      element_desk_launcher_7,
-      element_desk_launcher_8,
-      element_desk_launcher_last = element_desk_launcher_8,
-      element_desk_close,
-      element_desk_change_view,
-      element_desk_change_theme,
-      element_desk_last,
+      e_element_desk_launcher_1,
+      e_element_desk_launcher_2,
+      e_element_desk_launcher_3,
+      e_element_desk_launcher_4,
+      e_element_desk_launcher_5,
+      e_element_desk_launcher_6,
+      e_element_desk_launcher_7,
+      e_element_desk_launcher_8,
+      e_element_desk_launcher_last = e_element_desk_launcher_8,
+      e_element_desk_close,
+      e_element_desk_change_view,
+      e_element_desk_change_theme,
+      e_element_desk_last,
 
-      element_start,
-      element_reset,
-      element_cancel,
+      e_element_start,
+      e_element_reset,
+      e_element_cancel,
 
    };
 
@@ -310,43 +310,43 @@ namespace user
    enum enum_event
    {
 
-      event_none,
-      event_initialize_control,
-      event_action,
-      event_button_down,
-      event_button_clicked,
-      event_m_button_down,
-      event_m_button_up,
-      event_list_clicked,
-      event_mouse_enter,
-      event_mouse_leave,
-      event_set_check,
-      e_event_timer,
-      event_enter_key,
-      event_escape,
-      event_tab_key,
-      event_key_down,
-      event_after_change_text,
-      event_after_change_text_format,
-      event_after_change_cur_sel,
-      event_after_change_cur_hover,
-      event_timebar_change,
-      event_menu_hover,
-      event_context_menu_close,
-      event_set_focus,
-      event_kill_focus,
-      event_on_create_impact,
-      event_on_create_tab,
-      event_form_initialize,
-      event_create,
-      event_layout,
-      event_calc_item_height,
-      event_change_view_style,
-      event_item_clicked,
-      event_image_list_action,
-      event_load_form_data,
-      event_save_form_data,
-      event_close_app,
+      e_event_none,
+      e_event_initialize_control,
+      e_event_action,
+      e_event_button_down,
+      e_event_button_clicked,
+      e_event_m_button_down,
+      e_event_m_button_up,
+      e_event_list_clicked,
+      e_event_mouse_enter,
+      e_event_mouse_leave,
+      e_event_set_check,
+      e_e_event_timer,
+      e_event_enter_key,
+      e_event_escape,
+      e_event_tab_key,
+      e_event_key_down,
+      e_event_after_change_text,
+      e_event_after_change_text_format,
+      e_event_after_change_cur_sel,
+      e_event_after_change_cur_hover,
+      e_event_timebar_change,
+      e_event_menu_hover,
+      e_event_context_menu_close,
+      e_event_set_focus,
+      e_event_kill_focus,
+      e_event_on_create_impact,
+      e_event_on_create_tab,
+      e_event_form_initialize,
+      e_event_create,
+      e_event_layout,
+      e_event_calc_item_height,
+      e_event_change_view_style,
+      e_event_item_clicked,
+      e_event_image_list_action,
+      e_event_load_form_data,
+      e_event_save_form_data,
+      e_event_close_app,
 
    };
 
@@ -379,15 +379,15 @@ namespace user
    enum enum_flag
    {
 
-      flag_none,
-      flag_border = 1<<0,
-      flag_modifier_impact = 1 << 1,
-      flag_tool_impact = 1 << 2,
-      flag_blur_background = 1 << 3,
-      flag_hide_all_others_on_show = 1 << 4,
-      flag_hide_topic_on_show = 1 << 5,
-      flag_strict_update = 1 << 6,
-      flag_hide_on_kill_focus = 1 << 7,
+      e_flag_none,
+      e_flag_border = 1<<0,
+      e_flag_modifier_impact = 1 << 1,
+      e_flag_tool_impact = 1 << 2,
+      e_flag_blur_background = 1 << 3,
+      e_flag_hide_all_others_on_show = 1 << 4,
+      e_flag_hide_topic_on_show = 1 << 5,
+      e_flag_strict_update = 1 << 6,
+      e_flag_hide_on_kill_focus = 1 << 7,
       e_flag_background_bypass = 1 << 8,
 
    };
@@ -434,61 +434,61 @@ namespace user
    };
 
 
-   enum e_control_function
+   enum enum_control_function
    {
       // Text got from control m_uiId member
-      control_function_static,
+      e_control_function_static,
       // Text got from control m_uiText member
-      control_function_static2,
-      control_function_data_selection,
-      control_function_check_box,
-      control_function_duplicate_on_check_box,
-      control_function_disable_on_check_box,
-      control_function_save_on_change,
-      control_function_vms_data_edit,
-      control_function_action,
-      control_function_edit_multi_line,
+      e_control_function_static2,
+      e_control_function_data_selection,
+      e_control_function_check_box,
+      e_control_function_duplicate_on_check_box,
+      e_control_function_disable_on_check_box,
+      e_control_function_save_on_change,
+      e_control_function_vms_data_edit,
+      e_control_function_action,
+      e_control_function_edit_multi_line,
    };
 
 
-   enum e_control_data_type
+   enum enum_control_data_type
    {
-      control_data_type_string,
-      control_data_type_natural,
+      e_control_data_type_string,
+      e_control_data_type_natural,
    };
 
 
-   enum e_control_ddx
+   enum enum_control_ddx
    {
 
-      control_ddx_none,
-      control_ddx_flags,
-      control_ddx_dbflags,
+      e_control_ddx_none,
+      e_control_ddx_flags,
+      e_control_ddx_dbflags,
 
    };
 
 
-   enum e_mouse
+   enum enum_mouse
    {
 
-      mouse_left_button,
-      mouse_right_button,
-      mouse_middle_button
+      e_mouse_left_button,
+      e_mouse_right_button,
+      e_mouse_middle_button
 
    };
 
-   enum e_line_hit
+   enum enum_line_hit
    {
-      line_hit_none,
-      line_hit_normal,
-      line_hit_link,
+      e_line_hit_none,
+      e_line_hit_normal,
+      e_line_hit_link,
    };
 
-   enum e_tree_element
+   enum enum_tree_element
    {
-      tree_element_expand_box,
-      tree_element_image,
-      tree_element_text,
+      e_tree_element_expand_box,
+      e_tree_element_image,
+      e_tree_element_text,
    };
 
 

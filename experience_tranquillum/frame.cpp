@@ -228,13 +228,13 @@ namespace experience
       }
 
 
-      frame::e_element operator++(frame::e_element & eelement, i32 i)
+      frame::enum_element operator++(frame::enum_element & eelement, i32 i)
       {
          UNREFERENCED_PARAMETER(i);
-         return (frame::e_element) (*((i32*)&eelement))++;
+         return (frame::enum_element) (*((i32*)&eelement))++;
       }
 
-      bool frame::get_element_rect(RECT32 * prect, e_element eelement)
+      bool frame::get_element_rect(RECT32 * prect, enum_element eelement)
 
       {
          switch (eelement)
@@ -282,10 +282,10 @@ namespace experience
 
       }
 
-      bool frame::hit_test(const point &point, e_element &eelementParam)
+      bool frame::hit_test(const point &point, enum_element &eelementParam)
       {
          ::rect rect;
-         for (e_element eelement = (e_element)(ElementNone + 1);
+         for (enum_element eelement = (enum_element)(ElementNone + 1);
                eelement < ElementEnd;
                eelement++)
          {
@@ -375,13 +375,13 @@ namespace experience
 
          auto pstyle = pframewindow->get_style(pgraphics);
 
-         auto crButtonHilite = pframewindow->get_color(pstyle, ::user::element_button_hilite);
+         auto crButtonHilite = pframewindow->get_color(pstyle, ::user::e_element_button_hilite);
 
-         auto crButtonDarkShadow = pframewindow->get_color(pstyle, ::user::element_button_dark_shadow);
+         auto crButtonDarkShadow = pframewindow->get_color(pstyle, ::user::e_element_button_dark_shadow);
 
-         auto crButtonFace = pframewindow->get_color(pstyle, ::user::element_button_background);
+         auto crButtonFace = pframewindow->get_color(pstyle, ::user::e_element_button_background);
 
-         auto crButtonShadow = pframewindow->get_color(pstyle, ::user::element_button_shadow);
+         auto crButtonShadow = pframewindow->get_color(pstyle, ::user::e_element_button_shadow);
 
          m_penText1->create_solid(1, ARGB(255, 255, 255, 255));
          m_penFace1->create_solid(1, crButtonFace | 0xff000000);
@@ -753,11 +753,11 @@ namespace experience
 
                   auto pstyle = pframewindow->get_style(pgraphics);
 
-                  crMoveableBorder = pframewindow->get_color(pstyle, ::user::element_button_background);
+                  crMoveableBorder = pframewindow->get_color(pstyle, ::user::e_element_button_background);
 
-                  crMoveableBorderHilight = pframewindow->get_color(pstyle, ::user::element_button_hilite);
+                  crMoveableBorderHilight = pframewindow->get_color(pstyle, ::user::e_element_button_hilite);
 
-                  crMoveableBorderShadow = pframewindow->get_color(pstyle, ::user::element_button_shadow);
+                  crMoveableBorderShadow = pframewindow->get_color(pstyle, ::user::e_element_button_shadow);
 
 }
 
@@ -805,7 +805,7 @@ namespace experience
 
             pgraphics->set(brushText);
 
-            pgraphics->set_font(pframewindow, ::user::element_window_title);
+            pgraphics->set_font(pframewindow, ::user::e_element_window_title);
 
             pgraphics->draw_text(wstrWindowText, m_rectWindowText, e_align_left_center, e_draw_text_no_prefix);
 

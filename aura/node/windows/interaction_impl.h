@@ -185,9 +185,9 @@ namespace windows
 
 
       // advanced creation (allows access to extended styles)
-      //virtual bool create_window_ex(::user::interaction * pinteraction, ::user::create_struct & cs, ::user::interaction * puiParent, id id) override;
+      //virtual bool create_window_ex(::user::interaction * pinteraction, __pointer(::user::create_struct) pcreatestruct, ::user::interaction * puiParent, id id) override;
 
-      virtual bool _native_create_window_ex(::user::create_struct & cs);
+      virtual bool _native_create_window_ex(__pointer(::user::create_struct) pcreatestruct);
 
       virtual bool destroy_impl_only() override;
       virtual bool DestroyWindow() override;
@@ -195,7 +195,7 @@ namespace windows
       virtual void destroy_window() override;
 
       // special pre-creation and interaction_impl rect adjustment hooks
-      virtual bool pre_create_window(::user::create_struct& cs);
+      virtual bool pre_create_window(::user::create_struct * pcreatestruct);
 
       // Advanced: virtual AdjustWindowRect
       enum AdjustType { adjustBorder = 0, adjustOutside = 1 };

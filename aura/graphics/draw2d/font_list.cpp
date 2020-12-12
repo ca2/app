@@ -352,7 +352,7 @@ namespace draw2d
          if (bCheckHover && rect.contains_y(pointCursor.y))
          {
 
-            pgraphics->m_puserinteraction->m_itemHover = __new(::user::item({ ::user::element_item, i }));
+            pgraphics->m_puserinteraction->m_itemHover = __new(::user::item({ ::user::e_element_item, i }));
 
             m_iHover = i;
 
@@ -368,13 +368,13 @@ namespace draw2d
             if (!bCheckHover && i == m_iHover)
             {
 
-               pgraphics->fill_rect(rect, pgraphics->m_puserinteraction->get_color(pgraphics->m_puserstyle, ::user::element_background, ::user::e_state_selected | ::user::e_state_hover));
+               pgraphics->fill_rect(rect, pgraphics->m_puserinteraction->get_color(pgraphics->m_puserstyle, ::user::e_element_background, ::user::e_state_selected | ::user::e_state_hover));
 
             }
             else
             {
 
-               pgraphics->fill_rect(rect, pgraphics->m_puserinteraction->get_color(pgraphics->m_puserstyle, ::user::element_background, ::user::e_state_selected));
+               pgraphics->fill_rect(rect, pgraphics->m_puserinteraction->get_color(pgraphics->m_puserstyle, ::user::e_element_background, ::user::e_state_selected));
 
             }
 
@@ -382,7 +382,7 @@ namespace draw2d
          else if (!bCheckHover && i == m_iHover)
          {
 
-            color32_t cr = pgraphics->m_puserinteraction->get_color(pgraphics->m_puserstyle, ::user::element_background, ::user::e_state_hover);
+            color32_t cr = pgraphics->m_puserinteraction->get_color(pgraphics->m_puserstyle, ::user::e_element_background, ::user::e_state_hover);
 
             int iA = colorref_get_a_value(cr);
 
@@ -1502,7 +1502,7 @@ namespace draw2d
       if (!plistdata)
       {
 
-         return ::user::element_none;
+         return ::user::e_element_none;
 
       }
 
@@ -1512,7 +1512,7 @@ namespace draw2d
          if (plistdata->element_at(m_iHover)->m_box[BOX_HOVER].m_rect.contains(point))
          {
 
-            return ::user::item(::user::element_item, m_iHover);
+            return ::user::item(::user::e_element_item, m_iHover);
 
          }
 
@@ -1531,13 +1531,13 @@ namespace draw2d
          if (plistdata->element_at(iItem)->m_box[BOX].m_rect.contains(point))
          {
 
-            return ::user::item(::user::element_item, iItem);
+            return ::user::item(::user::e_element_item, iItem);
 
          }
 
       }
 
-      return ::user::element_none;
+      return ::user::e_element_none;
 
    }
 
@@ -1552,7 +1552,7 @@ namespace draw2d
       if (!plistdata)
       {
 
-         return ::user::element_none;
+         return ::user::e_element_none;
 
       }
 
@@ -1573,13 +1573,13 @@ namespace draw2d
          if (rect.contains(point))
          {
 
-            return { ::user::element_item, iItem };
+            return { ::user::e_element_item, iItem };
 
          }
 
       }
 
-      return ::user::element_none;
+      return ::user::e_element_none;
 
    }
 

@@ -381,7 +381,7 @@ namespace base
 //   }
 
 
-   ::type user::controltype_to_typeinfo(::user::e_control_type econtroltype)
+   ::type user::controltype_to_typeinfo(::user::enum_control_type econtroltype)
    {
 
       return ::type();
@@ -1161,7 +1161,7 @@ namespace base
    }
 
 
-   ::type user::user_default_controltype_to_typeinfo(::user::e_control_type econtroltype)
+   ::type user::user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype)
    {
 
       auto psession = Sess(get_context_session());

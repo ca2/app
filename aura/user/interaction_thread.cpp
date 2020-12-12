@@ -66,7 +66,7 @@ namespace user
    }
 
 
-   ::estatus thread::initialize_user_thread(interaction_impl * pimpl, ::user::create_struct & createstruct)
+   ::estatus thread::initialize_user_thread(interaction_impl * pimpl, __pointer(::user::create_struct) pcreatestruct)
    {
 
       auto estatus = initialize(pimpl);
@@ -80,8 +80,8 @@ namespace user
 
       m_pimpl = pimpl;
 
-      //m_pcreatestruct = new ::user::create_struct(createstruct);
-      m_pcreatestruct = &createstruct;
+      //m_pcreatestruct = new ::user::create_struct(pcreatestruct);
+      m_pcreatestruct = pcreatestruct;
 
       string strType = ::str::demangle(m_pimpl->m_puserinteraction->type_name());
 
@@ -204,6 +204,7 @@ namespace user
 
    }
 
+
    ::estatus thread::init_thread()
    {
 
@@ -261,7 +262,7 @@ namespace user
       //if (m_bCreateNativeWindowOnInteractionThread)
       //{
 
-         if (!m_pimpl->_native_create_window_ex(*m_pcreatestruct))
+         if (!m_pimpl->_native_create_window_ex(m_pcreatestruct))
          {
 
             //delete m_pcreatestruct;

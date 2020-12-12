@@ -183,7 +183,7 @@ namespace userfs
    }
 
    
-   bool list::pre_create_window(::user::create_struct& cs)
+   bool list::pre_create_window(::user::create_struct * pcreatestruct)
    {
 
 
@@ -191,7 +191,7 @@ namespace userfs
 
 #endif
 
-      return ::user::form_list_view::pre_create_window(cs);
+      return ::user::form_list_view::pre_create_window(pcreatestruct);
 
    }
 

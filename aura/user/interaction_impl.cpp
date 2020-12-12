@@ -336,11 +336,11 @@ namespace user
       else
       {
 
-         ::user::create_struct createstruct(0, nullptr, lpszName, WS_CHILD, nullptr);
+         auto pcreatestruct=__new(::user::create_struct(0, nullptr, lpszName, WS_CHILD, nullptr));
 
-         createstruct.hwndParent = MESSAGE_WINDOW_PARENT;
+         pcreatestruct->m_createstruct.hwndParent = MESSAGE_WINDOW_PARENT;
 
-         if(!native_create_window_ex(pinteraction, createstruct))
+         if(!native_create_window_ex(pinteraction, pcreatestruct))
          {
 
             return false;
@@ -507,13 +507,13 @@ namespace user
    }
 
 
-   bool interaction_impl::create_window_ex(::user::interaction * pinteraction, ::user::create_struct & createstruct, ::user::interaction * puiParent, id id)
+   bool interaction_impl::create_window_ex(::user::interaction * pinteraction, __pointer(::user::create_struct) pcreatestruct, ::user::interaction * puiParent, id id)
    {
 
       if (puiParent == nullptr)
       {
 
-         if (!native_create_window_ex(pinteraction, createstruct, nullptr, id))
+         if (!native_create_window_ex(pinteraction, pcreatestruct, nullptr, id))
          {
 
             return false;
@@ -524,7 +524,7 @@ namespace user
       else
       {
 
-         if (!native_create_window_ex(pinteraction, createstruct, puiParent->get_safe_handle(), id))
+         if (!native_create_window_ex(pinteraction, pcreatestruct, puiParent->get_safe_handle(), id))
          {
 
             return false;
@@ -539,17 +539,17 @@ namespace user
 
 
    // for child windows
-   bool interaction_impl::pre_create_window(::user::create_struct & createstruct)
+   bool interaction_impl::pre_create_window(::user::create_struct * pcreatestruct)
    {
 
-      UNREFERENCED_PARAMETER(createstruct);
+      UNREFERENCED_PARAMETER(pcreatestruct);
 
       return true;
 
    }
 
 
-   bool interaction_impl::native_create_window_ex(::user::interaction * pinteraction, ::user::create_struct & createstruct, oswindow oswindowParent, id id)
+   bool interaction_impl::native_create_window_ex(::user::interaction * pinteraction, __pointer(::user::create_struct) pcreatestruct, oswindow oswindowParent, id id)
    {
 
       m_puserinteraction = pinteraction;
@@ -568,7 +568,7 @@ namespace user
 
       bool bProdevianThread = true;
 
-      if (createstruct.style & WS_CHILD)
+      if (pcreatestruct->m_createstruct.style & WS_CHILD)
       {
 
          // if child, uses parent window thread,
@@ -579,7 +579,7 @@ namespace user
 
       }
 
-      if (createstruct.hwndParent == (oswindow) HWND_MESSAGE)
+      if (pcreatestruct->m_createstruct.hwndParent == (oswindow) HWND_MESSAGE)
       {
 
          // except if "message"-only-window, in which casen it will have own thread
@@ -593,10 +593,10 @@ namespace user
       if (m_puserinteraction->m_ewindowflag & window_flag_satellite_window)
       {
 
-         if (createstruct.m_puserinteractionOwner)
+         if (pcreatestruct->m_puserinteractionOwner)
          {
 
-            auto pthread = createstruct.m_puserinteractionOwner->m_pthreadUserInteraction;
+            auto pthread = pcreatestruct->m_puserinteractionOwner->m_pthreadUserInteraction;
 
             m_puserinteraction->m_pthreadUserInteraction = pthread;
 
@@ -618,12 +618,12 @@ namespace user
       //m_puserinteraction->create_layout(true);
 
       m_puserinteraction->place(rect_dim(
-                            createstruct.x,
-                            createstruct.y,
-                            createstruct.cx,
-                            createstruct.cy));
+                            pcreatestruct->m_createstruct.x,
+                            pcreatestruct->m_createstruct.y,
+                            pcreatestruct->m_createstruct.cx,
+                            pcreatestruct->m_createstruct.cy));
 
-      sync_array synca;
+      auto psynca = __new(sync_array);
 
       __pointer(manual_reset_event) peventStartedUser;
 
@@ -634,7 +634,7 @@ namespace user
 
          __raw_compose_new(m_puserthread);
 
-         m_puserthread->initialize_user_thread(this, createstruct);
+         m_puserthread->initialize_user_thread(this, pcreatestruct);
 
          __bind(m_puserinteraction, m_pthreadUserInteraction, m_puserthread OBJ_REF_DBG_COMMA_THIS_NOTE(__FUNCTION__));
 
@@ -678,7 +678,7 @@ namespace user
 
             }
 
-            synca.add(peventStartedProdevian);
+            psynca->add(peventStartedProdevian);
 
          }
          else
@@ -706,63 +706,90 @@ namespace user
 
          }
 
-         synca.add(peventStartedUser);
+         psynca->add(peventStartedUser);
 
-         synca.wait();
-
-         if (!m_puserinteraction || 
-            //(m_puserthread->m_bCreateNativeWindowOnInteractionThread
-               //&&
-            !m_puserinteraction->is_window())
-            //)
-         {
-
-            return false;
-
-         }
-
-         if(m_puserthread->m_result.failed())
-         {
-
-            if(m_puserinteraction)
+         auto proutine = __routine([this, psynca]()
             {
 
-               m_puserinteraction->__release(m_puserinteraction->m_pthreadUserInteraction);
-
-            }
-
-            __release(m_pprodevian);
-
-            __release(m_puserthread);
-
-            return false;
-
-         }
-
-         peventStartedUser.release();
-
-         if (::is_set(m_pprodevian))
-         {
-
-            if(m_pprodevian->m_result.failed())
-            {
-
-               if(m_puserinteraction)
+               if (!m_puserinteraction ||
+                  //(m_puserthread->m_bCreateNativeWindowOnInteractionThread
+                     //&&
+                  !m_puserinteraction->is_window())
+                  //)
                {
 
-                  m_puserinteraction->__release(m_puserinteraction->m_pthreadUserInteraction);
+                  return false;
 
                }
 
-               __release(m_pprodevian);
+               if (m_puserthread->m_result.failed())
+               {
 
-               __release(m_puserthread);
+                  if (m_puserinteraction)
+                  {
 
-               return false;
+                     m_puserinteraction->__release(m_puserinteraction->m_pthreadUserInteraction);
 
-            }
+                  }
 
-            peventStartedProdevian.release();
+                  __release(m_pprodevian);
+
+                  __release(m_puserthread);
+
+                  return false;
+
+               }
+
+               //peventStartedUser.release();
+
+               if (::is_set(m_pprodevian))
+               {
+
+                  if (m_pprodevian->m_result.failed())
+                  {
+
+                     if (m_puserinteraction)
+                     {
+
+                        m_puserinteraction->__release(m_puserinteraction->m_pthreadUserInteraction);
+
+                     }
+
+                     __release(m_pprodevian);
+
+                     __release(m_puserthread);
+
+                     return false;
+
+                  }
+
+                 // peventStartedProdevian.release();
+
+               }
+
+            });
+
+         if (pcreatestruct->m_routineSuccess)
+         {
+
+            fork([this, psynca, proutine, pcreatestruct]()
+            {
+
+               psynca->wait();
+
+               (*proutine)();
+
+               pcreatestruct->m_routineSuccess();
+
+            });
+
+         }
+         else
+         {
+
+            psynca->wait();
+
+            (*proutine)();
 
          }
 
@@ -770,7 +797,7 @@ namespace user
       else
       {
 
-         synca.wait(true, one_minute());
+         psynca->wait(true, one_minute());
 
          if (::is_set(m_pprodevian))
          {
@@ -779,7 +806,7 @@ namespace user
 
          }
 
-         if (!_native_create_window_ex(createstruct))
+         if (!_native_create_window_ex(pcreatestruct))
          {
 
             return false;
@@ -791,11 +818,11 @@ namespace user
       //if (m_puserthread && !m_puserthread->m_bCreateNativeWindowOnInteractionThread)
       //{
 
-      //   send_message(e_message_create, 0, (LPARAM)&createstruct);
+      //   send_message(e_message_create, 0, (LPARAM)&pcreatestruct);
 
-      //   //m_puserinteraction->set_dim(createstruct.x, createstruct.cy, createstruct.cx, createstruct.cy);
+      //   //m_puserinteraction->set_dim(pcreatestruct->m_createstruct.x, pcreatestruct->m_createstruct.cy, pcreatestruct->m_createstruct.cx, pcreatestruct->m_createstruct.cy);
 
-      //   send_message(e_message_size, 0, MAKELPARAM(createstruct.cx, createstruct.cy));
+      //   send_message(e_message_size, 0, MAKELPARAM(pcreatestruct->m_createstruct.cx, pcreatestruct->m_createstruct.cy));
 
       //   m_puserinteraction->add_ref(OBJ_REF_DBG_THIS_FUNCTION_LINE);
 
@@ -810,7 +837,7 @@ namespace user
    }
 
 
-   bool interaction_impl::_native_create_window_ex(::user::create_struct & createstruct)
+   bool interaction_impl::_native_create_window_ex(__pointer(::user::create_struct) pcreatestruct)
    {
 
       return false;
@@ -828,38 +855,34 @@ namespace user
       ASSERT(puiParent != nullptr);
       ASSERT((uStyle & WS_POPUP) == 0);
 
-      ::user::create_struct createstruct;
+      auto pcreatestruct = __new(::user::create_struct);
 
-      createstruct.dwExStyle = 0;
+      pcreatestruct->m_createstruct.dwExStyle = 0;
 
 #ifdef WINDOWS
 
       wstring wstrClassName(pszClassName);
-      createstruct.lpszClass = wstrClassName;
+      pcreatestruct->m_createstruct.lpszClass = wstrClassName;
       wstring wstrWindowName(pszWindowName);
-      createstruct.lpszName = wstrWindowName;
+      pcreatestruct->m_createstruct.lpszName = wstrWindowName;
 
 #else
 
-      createstruct.lpszClass = pszClassName;
-      createstruct.lpszName = pszWindowName;
+      pcreatestruct->m_createstruct.lpszClass = pszClassName;
+      pcreatestruct->m_createstruct.lpszName = pszWindowName;
 
 #endif
 
-      createstruct.style = uStyle | WS_CHILD;
-      createstruct.x = rect.left;
-      createstruct.y = rect.top;
-      createstruct.cx = rect.width();
-      createstruct.cy = rect.height();
-      createstruct.hwndParent = puiParent->get_safe_handle();
-#ifdef _UWP
-      createstruct.pCreateParams = (LPVOID)pcreate;
-#else
-      createstruct.lpCreateParams = (LPVOID)pcreate;
-#endif
+      pcreatestruct->m_createstruct.style = uStyle | WS_CHILD;
+      pcreatestruct->m_createstruct.x = rect.left;
+      pcreatestruct->m_createstruct.y = rect.top;
+      pcreatestruct->m_createstruct.cx = rect.width();
+      pcreatestruct->m_createstruct.cy = rect.height();
+      pcreatestruct->m_createstruct.hwndParent = puiParent->get_safe_handle();
+      pcreatestruct->m_createstruct.CREATE_STRUCT_P_CREATE_PARAMS = (LPVOID)pcreate;
 
 
-      return create_window_ex(pinteraction, createstruct, puiParent, id);
+      return create_window_ex(pinteraction, pcreatestruct, puiParent, id);
 
    }
 
@@ -2688,18 +2711,21 @@ namespace user
    }
 
 
-   //bool interaction_impl::DrawAnimatedRects(i32 idAni, const LPRECT32 prcFrom, const ::rect & prcTo)
-   //{
+   ::point interaction_impl::get_cursor_pos() const
+   {
 
-   //   UNREFERENCED_PARAMETER(idAni);
-   //   UNREFERENCED_PARAMETER(prcFrom);
-   //   UNREFERENCED_PARAMETER(prcTo);
+      auto psession = Session;
 
-   //   ::exception::throw_interface_only();
+      if (!psession)
+      {
 
-   //   return false;
+         return ::point();
 
-   //}
+      }
+
+      return psession->get_cursor_pos();
+
+   }
 
 
    bool interaction_impl::DrawCaption(::draw2d::graphics_pointer & pgraphics,const rect & prc,::u32 uFlags)
@@ -3066,7 +3092,7 @@ namespace user
       for(auto & pinteraction : uiptra)
       {
 
-         pinteraction->send_message(e_message_mouse_leave);
+         pinteraction->post_message(e_message_mouse_leave);
 
       }
 
@@ -4560,10 +4586,14 @@ namespace user
 
          output_debug_string("SetWindowPos bottom_right " + __str(pointBottomRight.x) + ", " + __str(pointBottomRight.y) + "\n");
 
+#if !defined(_UWP)
+
          ::SetWindowPos(m_oswindow, oswindowInsertAfter,
             pointOutput.x, pointOutput.y,
             sizeOutput.cx, sizeOutput.cy,
             uFlags);
+
+#endif
 
          if (g_pointLastBottomRight != pointBottomRight)
          {

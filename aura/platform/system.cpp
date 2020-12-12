@@ -10,7 +10,9 @@
 #include "apex/platform/history.h"
 #include "aura/gpu/gpu/_.h"
 #include "aura/const/idpool.h"
-
+#ifdef _UWP
+#include "aura/node/uwp/directx_application.h"
+#endif
 
 int GetMainScreenRect(LPRECT32 lprect);
 
@@ -3835,9 +3837,9 @@ namespace aura
          if (pimpl.is_set())
          {
 
-            auto pdirectxapplication = pimpl->m_frameworkview;
+            auto pframeworkview = pimpl->m_pframeworkview;
 
-            auto directx = pdirectxapplication->m_directx;
+            auto directx = pframeworkview->m_directx;
 
             directx->UpdateForWindowSizeChange();
 
@@ -6321,8 +6323,17 @@ namespace aura
          if (psubject->m_id == id_font_enumeration)
          {
 
-
             draw2d().fonts().defer_create_font_enumeration(psubject);
+
+         }
+         else if (psubject->m_id == id_os_dark_mode)
+         {
+
+#ifdef _UWP
+
+            ::user::os_set_dark_mode_colors();
+
+#endif
 
          }
 

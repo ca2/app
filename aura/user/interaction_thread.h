@@ -42,7 +42,7 @@ namespace user
 #endif
 
       __pointer(interaction_impl)            m_pimpl;
-      ::user::create_struct *                m_pcreatestruct;
+      __pointer(::user::create_struct)       m_pcreatestruct;
       __reference(prodevian)                 m_pprodevian;
       oswindow                               m_oswindow;
 
@@ -63,7 +63,7 @@ namespace user
 #endif
 
 
-      virtual ::estatus     initialize_user_thread(interaction_impl * pimpl, ::user::create_struct & cs);
+      virtual ::estatus     initialize_user_thread(interaction_impl * pimpl, __pointer(::user::create_struct) pcreatestruct);
 
 
 #ifdef ENABLE_TEXT_SERVICES_FRAMEWORK

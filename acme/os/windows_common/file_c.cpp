@@ -218,7 +218,7 @@ int_bool is_file_or_dir_dup(const char * path, ::file::enum_type * petype)
 
 #ifdef _UWP
 
-      DWORD dwLastError = ::get_last_error();
+      DWORD dwLastError = ::GetLastError();
 
       string strPrefix;
 

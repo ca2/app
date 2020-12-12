@@ -162,9 +162,9 @@ namespace simple_ui
 
       rectFontopus.bottom = rectFontopus.top + h;
 
-      ::user::create_struct createstruct(WS_EX_LAYERED, nullptr, nullptr, 0, rectFontopus);
+      auto pcreatestruct = __new(::user::create_struct (WS_EX_LAYERED, nullptr, nullptr, 0, rectFontopus));
 
-      if(!create_window_ex(createstruct, puiParent))
+      if(!create_window_ex(pcreatestruct, puiParent))
       {
 
          __throw(::exception::exception("not excepted! Failing Message box!!"));
@@ -235,7 +235,7 @@ namespace simple_ui
 
       get_client_rect(rectClient);
 
-      color32_t crBk = get_simple_ui_color(::user::element_background);
+      color32_t crBk = get_simple_ui_color(::user::e_element_background);
 
       pgraphics->fill_rect(rectClient,crBk);
 
@@ -249,7 +249,7 @@ namespace simple_ui
 
       pgraphics->get_text_metrics(&tm);
 
-      color32_t crText = get_simple_ui_color(::user::element_text);
+      color32_t crText = get_simple_ui_color(::user::e_element_text);
 
       pgraphics->set_text_color(crText);
 

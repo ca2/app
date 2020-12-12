@@ -72,7 +72,7 @@ void html_form_view::dump(dump_context & dumpcontext) const
 //
 
 
-bool html_form_view::pre_create_window(::user::create_struct& cs)
+bool html_form_view::pre_create_window(::user::create_struct * pcreatestruct)
 {
 
 #ifdef WINDOWS_DESKTOP
@@ -81,7 +81,7 @@ bool html_form_view::pre_create_window(::user::create_struct& cs)
 
 #endif
 
-   return ::user::form_view::pre_create_window(cs);
+   return ::user::form_view::pre_create_window(pcreatestruct);
 
 }
 

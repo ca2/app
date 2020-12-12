@@ -53,7 +53,7 @@ namespace filemanager
 
       virtual void route_command_message(::user::command * pcommand) override;
       virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
-      virtual bool pre_create_window(::user::create_struct& cs) override;
+      virtual bool pre_create_window(::user::create_struct * pcreatestruct) override;
 
       virtual void on_command_probe(::user::command * pcommand) override;
       virtual void on_command(::user::command * pcommand) override;

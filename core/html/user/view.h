@@ -33,7 +33,7 @@ public:
 
 
    virtual void install_message_routing(::channel * pchannel) override;
-   virtual bool pre_create_window(::user::create_struct& cs) override;
+   virtual bool pre_create_window(::user::create_struct * pcreatestruct) override;
    virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
 
    DECL_GEN_SIGNAL(_001OnDestroy);

@@ -217,7 +217,7 @@ namespace android
    }
 
 
-   bool interaction_impl::create_window_ex(::user::interaction * pinteraction, ::user::create_struct & cs, ::user::interaction * puiParent, id id)
+   bool interaction_impl::create_window_ex(::user::interaction * pinteraction, __pointer(::user::create_struct) pcreatestruct, ::user::interaction * puiParent, id id)
    {
 
       auto oswindow = puiParent ? puiParent->get_safe_handle() : nullptr;
@@ -257,9 +257,9 @@ namespace android
 
 //      return false;
 
-      ENSURE_ARG(cs.lpszClass == nullptr || __is_valid_string(cs.lpszClass));
+      ENSURE_ARG(pcreatestruct->m_createstruct.lpszClass == nullptr || __is_valid_string(pcreatestruct->m_createstruct.lpszClass));
 
-      if (cs.hwndParent == HWND_MESSAGE)
+      if (pcreatestruct->m_createstruct.hwndParent == HWND_MESSAGE)
       {
 
          m_puserinteraction->m_bMessageWindow = true;
@@ -281,7 +281,7 @@ namespace android
 
          ::rect rectCreate;
 
-         cs.get_rect(rectCreate);
+         pcreatestruct->m_createstruct.get_rect(rectCreate);
 
          m_puserinteraction->place(rectCreate);
 
@@ -444,7 +444,7 @@ namespace android
 
 
    // for child android
-   bool interaction_impl::pre_create_window(::user::create_struct& cs)
+   bool interaction_impl::pre_create_window(::user::create_struct * pcreatestruct)
    {
 
       return true;
@@ -462,16 +462,16 @@ namespace android
 
       ::user::create_struct createstruct;
 
-      createstruct.dwExStyle = 0;
-      createstruct.lpszClass = lpszClassName;
-      createstruct.lpszName = lpszWindowName;
-      createstruct.style = dwStyle | WS_CHILD;
-      createstruct.x = rect.left;
-      createstruct.y = rect.top;
-      createstruct.cx = width(rect);
-      createstruct.cy = height(rect);
-      createstruct.hwndParent = pParentWnd->get_safe_handle();
-      createstruct.lpCreateParams = (LPVOID)pcreate;
+      pcreatestruct->m_createstruct.dwExStyle = 0;
+      pcreatestruct->m_createstruct.lpszClass = lpszClassName;
+      pcreatestruct->m_createstruct.lpszName = lpszWindowName;
+      pcreatestruct->m_createstruct.style = dwStyle | WS_CHILD;
+      pcreatestruct->m_createstruct.x = rect.left;
+      pcreatestruct->m_createstruct.y = rect.top;
+      pcreatestruct->m_createstruct.cx = width(rect);
+      pcreatestruct->m_createstruct.cy = height(rect);
+      pcreatestruct->m_createstruct.hwndParent = pParentWnd->get_safe_handle();
+      pcreatestruct->m_createstruct.lpCreateParams = (LPVOID)pcreate;
 
       return create_window_ex(pinteraction, createstruct, pParentWnd, id);
    }
@@ -489,7 +489,7 @@ namespace android
 
    //    ::user::create_struct createstruct(0, nullptr, pszName, WS_CHILD, ::rect());
 
-   //    createstruct.hwndParent = HWND_MESSAGE;
+   //    pcreatestruct->m_createstruct.hwndParent = HWND_MESSAGE;
 
    //    if(!native_create_window_ex(pinteraction, createstruct))
    //    {

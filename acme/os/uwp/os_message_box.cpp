@@ -1,114 +1,124 @@
 ﻿#include "framework.h"
 #include <collection.h>
 
-template < typename T >
-ref class promisse_for_Windows_Foundation_IAsyncOperation sealed
+
+//void keep_sealed_object(Object ^ o);
+//void remove_sealed_object(Object ^ o);
+//
+//
+//template < typename T, typename PRED >
+//ref class chain_for_Windows_Foundation_IAsyncOperation sealed
+//{
+//private:
+//
+//
+//   ::Windows::Foundation::IAsyncOperation < T > ^     m_operation;
+//   ::Windows::Foundation::AsyncStatus                 m_status;
+//   T                                                  m_result;
+//   HRESULT                                            m_hresult;
+//   PRED                                               m_pred;
+//
+//
+//private:
+//
+//   
+//   template < typename T, typename PRED >
+//   friend void chain(::Windows::Foundation::IAsyncOperation < T > ^ operation, PRED pred, CallbackContext callbackcontext);
+//
+//
+//   chain_for_Windows_Foundation_IAsyncOperation(::Windows::Foundation::IAsyncOperation < T > ^ operation, PRED pred, CallbackContext callbackcontext = CallbackContext::Any) :
+//      m_pred(pred)
+//   {
+//
+//      m_operation = operation;
+//
+//      m_operation->Completed = ref new ::Windows::Foundation::AsyncOperationCompletedHandler < T >([this](::Windows::Foundation::IAsyncOperation < T > ^ operation, ::Windows::Foundation::AsyncStatus status)
+//      {
+//
+//         m_status = status;
+//
+//         if (m_status == ::Windows::Foundation::AsyncStatus::Completed)
+//         {
+//
+//               m_pred(m_operation->GetResults());
+//
+//         }
+//         else
+//         {
+//
+//            m_pred(nullptr);
+//
+//         }
+//
+//      });
+//
+//   }
+//
+//
+//public:
+//
+//
+//   virtual ~chain_for_Windows_Foundation_IAsyncOperation()
+//   {
+//
+//   }
+//
+//
+//internal:
+//
+//
+//};
+
+
+//mutex g_mutexSealed;
+
+
+//set < Object ^ >  g_setSealed;
+//
+//
+//void keep_sealed_object(Object ^ o)
+//{
+//
+//   sync_lock sl(&g_mutexSealed);
+//
+//   g_setSealed.add(o);
+//
+//}
+//
+//
+//void remove_sealed_object(Object ^ o)
+//{
+//
+//   sync_lock sl(&g_mutexSealed);
+//
+//   g_setSealed.remove(o);
+//
+//}
+
+
+template < typename T, typename PRED >
+void chain(::Windows::Foundation::IAsyncOperation < T > ^ operation, PRED pred, CallbackContext callbackcontext = CallbackContext::Any)
 {
-private:
 
-   //manual_reset_event                                 m_event;
-   ::Windows::Foundation::IAsyncOperation < T > ^ m_operation;
-   ::Windows::Foundation::AsyncStatus                 m_status;
-   T                                                  m_result;
-   HRESULT                                            m_hresult;
-
-
-public:
-
-
-   waiter_for_Windows_Foundation_IAsyncOperation(::Windows::Foundation::IAsyncOperation < T > ^ operation, CallbackContext callbackcontext = CallbackContext::Any)
+   operation->Completed = ref new ::Windows::Foundation::AsyncOperationCompletedHandler < T >([pred](::Windows::Foundation::IAsyncOperation < T > ^ operation, ::Windows::Foundation::AsyncStatus status)
    {
 
-      m_operation = operation;
+      if (status == ::Windows::Foundation::AsyncStatus::Completed)
+      {
 
-      m_operation->Completed = ref new ::Windows::Foundation::AsyncOperationCompletedHandler < T >([this](::Windows::Foundation::IAsyncOperation < T > ^ operation, ::Windows::Foundation::AsyncStatus status)
-         {
+         pred(operation->GetResults());
 
-            m_status = status;
+      }
+      else
+      {
 
-            if (m_status == ::Windows::Foundation::AsyncStatus::Completed)
-            {
+         pred(nullptr);
 
-                m_operation->GetResults();
+      }
 
-            }
-            else
-            {
+   }, callbackcontext);
 
-               T t;
-
-               waiter_null_result(t);
-
-               return t;
-
-            }
-
-
-         });
-
-   }
-
-
-   virtual ~waiter_for_Windows_Foundation_IAsyncOperation()
-   {
-
-   }
-
-   template < typename PRED >
-   void then(PRED pred)
-   {
-
-      m_future = __process(pred);
-
-   }
-
-
-   //T wait(unsigned int dwMillis = U32_INFINITE_TIMEOUT, ::Windows::Foundation::AsyncStatus * pstatus = nullptr)
-   //{
-
-   //   task_sleep(dwMillis, &m_event);
-
-   //   if (pstatus != nullptr)
-   //   {
-
-   //      *pstatus = m_status;
-
-   //   }
-
-   //   m_hresult = m_operation->ErrorCode.Value;
-
-   //   if (m_status == ::Windows::Foundation::AsyncStatus::Completed)
-   //   {
-
-   //      return m_operation->GetResults();
-
-   //   }
-   //   else
-   //   {
-
-   //      T t;
-
-   //      waiter_null_result(t);
-
-   //      return t;
-
-   //   }
-
-   //}
-
-internal:
-
-   template < typename PRED >
-   void wait(PRED pred, unsigned int dwMillis = U32_INFINITE_TIMEOUT, ::Windows::Foundation::AsyncStatus * pstatus = nullptr)
-   {
-
-      pred(wait(dwMillis, pstatus));
-
-   }
-
-
-};
-
+}
 
 
 bool g_bCoreWindowOnceVisible;
@@ -153,13 +163,13 @@ private:
 
 internal:
 
-   int m_iMessageBox;
-   ::future     m_future;
+   int                     m_iMessageBox;
+   ::promise::process      m_process;
 
    message_box_w();
 
 
-   ::estatus init(String ^ text, String ^ caption, ::emessagebox emessagebox, const ::future & future);
+   ::estatus show(String ^ text, String ^ caption, ::emessagebox emessagebox, const ::promise::process & process);
 
 
    void CommandInvokedHandler(IUICommand^ cmd);
@@ -167,9 +177,7 @@ internal:
 };
 
 
-comparable_array < message_box_w^ > g_messageboxa;
-
-
+comparable_array < message_box_w ^ > g_messageboxa;
 
 
 message_box_w::message_box_w()
@@ -182,7 +190,7 @@ message_box_w::message_box_w()
    msg->Commands->Append(ref new UICommand(text,ref new UICommandInvokedHandler(this, &::message_box_w::CommandInvokedHandler),id));
 
 
-::estatus message_box_w::init(String ^ text,String ^ caption, ::emessagebox emessagebox, const ::future & future)
+::estatus message_box_w::show(String ^ text,String ^ caption, ::emessagebox emessagebox, const ::promise::process & process)
 {
 
    if (!is_core_window_once_visible())
@@ -195,8 +203,6 @@ message_box_w::message_box_w()
    }
 
    MessageDialog ^ msg = ref new MessageDialog(text, caption);
-
-   m_msg = msg;
 
    u32 uiType = emessagebox & MB_TYPEMASK;
 
@@ -249,47 +255,36 @@ message_box_w::message_box_w()
 
    }
 
-   m_future = future;
+   m_process = process;
 
+   chain(msg->ShowAsync(), [this](IUICommand ^ i)
+   {
+
+      CommandInvokedHandler(i);
+
+   });
 
    return ::success;
 
 }
 
-::estatus _os_message_box(const char* pszMessage, const char* pszTitle, ::emessagebox emessagebox, const ::future & future)
+
+::estatus _os_message_box(const char* pszMessage, const char* pszTitle, ::emessagebox emessagebox, const ::promise::process & process)
 {
 
    wstring wstrMessage(pszMessage);
 
    wstring wstrTitle(pszTitle);
 
-   //g_messageboxa.add(pmessageboxw);
-
    auto psystem = ::get_context_system();
 
-   //psystem->main_user_async(__routine([wstrMessage, wstrTitle, emessagebox, future]()
-     // {
+   message_box_w ^ pmessageboxw = ref new message_box_w;
 
-         message_box_w ^ pmessageboxw = ref new message_box_w;
-
-         pmessageboxw->init(wstrMessage, wstrTitle, emessagebox, future);
-
-       //  g_messageboxa.add_item(pmessageboxw);
-
-         wait(pmessageboxw->m_msg->ShowAsync())->
-            then([pmessageboxw](IUICommand ^ i)
-               {
-
-                  pmessageboxw->CommandInvokedHandler(i);
-
-               });
-
-      //}));
+   pmessageboxw->show(wstrMessage, wstrTitle, emessagebox, process);
 
    return ::success;
 
 }
-
 
 
 void message_box_w::CommandInvokedHandler(IUICommand^ cmd)
@@ -298,7 +293,7 @@ void message_box_w::CommandInvokedHandler(IUICommand^ cmd)
    if (cmd == nullptr)
    {
 
-      m_future(::error_failed);
+      m_process(::error_failed);
 
    }
    else
@@ -308,18 +303,11 @@ void message_box_w::CommandInvokedHandler(IUICommand^ cmd)
 
       string str(wstr);
 
-      m_future(str);
+      m_process(str);
 
    }
 
-   // Display message showing the label of the command that was invoked
-   //rootPage.NotifyUser("The '" + command.Label + "' command has been selected.",
-      //NotifyType.StatusMessage);
-   //g_messageboxa.remove(this);
-
 }
-
-
 
 
 

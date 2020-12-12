@@ -98,11 +98,11 @@ namespace prompt
    }
 
 
-   bool pane_view::pre_create_window(::user::create_struct& cs)
+   bool pane_view::pre_create_window(::user::create_struct * pcreatestruct)
    {
 
 
-      return ::user::impact::pre_create_window(cs);
+      return ::user::impact::pre_create_window(pcreatestruct);
    }
 
 

@@ -47,7 +47,7 @@ void html_view::dump(dump_context & dumpcontext) const
 }
 
 
-bool html_view::pre_create_window(::user::create_struct& cs)
+bool html_view::pre_create_window(::user::create_struct * pcreatestruct)
 {
 
 #ifdef WINDOWS_DESKTOP
@@ -56,7 +56,7 @@ bool html_view::pre_create_window(::user::create_struct& cs)
 
 #endif
 
-   return ::user::impact::pre_create_window(cs);
+   return ::user::impact::pre_create_window(pcreatestruct);
 
 }
 

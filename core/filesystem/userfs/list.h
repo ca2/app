@@ -84,7 +84,7 @@ namespace userfs
 
 
       virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
-      virtual bool pre_create_window(::user::create_struct& cs) override;
+      virtual bool pre_create_window(::user::create_struct * pcreatestruct) override;
 
       DECL_GEN_SIGNAL(_001OnHScroll);
       DECL_GEN_SIGNAL(_001OnVScroll);

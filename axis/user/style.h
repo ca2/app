@@ -21,8 +21,8 @@ namespace axis
       //::draw2d::font_pointer                 m_pfontStill;
       //::draw2d::font_pointer                 m_pfontEdit;
       //::draw2d::font_pointer                 m_pfontCombo;
-      //e_translucency                         m_etranslucency;
-      //e_translucency                         m_etranslucencyButton;
+      //enum_translucency                         m_etranslucency;
+      //enum_translucency                         m_etranslucencyButton;
       //::color                                m_colorBackground;
       //::color                                m_colorText;
       //__pointer(color_map)                 m_mapColor;
@@ -66,7 +66,7 @@ namespace axis
 
       virtual bool _001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pgraphics,::user::frame * pframe) override;
 
-      virtual bool draw_check(::enum_check echeck, const ::rect & rect, ::draw2d::graphics_pointer & pgraphics) override;
+      virtual bool draw_check(::user::interaction * pinteraction, ::enum_check echeck, const ::rect & rect, ::draw2d::graphics_pointer & pgraphics) override;
 
 
 
@@ -83,7 +83,7 @@ namespace axis
       //virtual void _001OnTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::rect & rect, ::draw2d::brush_pointer & brushText) override;
 
 
-      //      virtual bool _001GetMainFrameTranslucency(::user::e_translucency & etranslucency) override;
+      //      virtual bool _001GetMainFrameTranslucency(::user::enum_translucency & etranslucency) override;
 
       virtual bool _001DrawCheckBox(::draw2d::graphics_pointer & pgraphics, ::user::check_box * pcheckbox);
 
@@ -101,7 +101,7 @@ namespace axis
       // will affect the return of the utility function.
       // so, it should be very avoided using the m_pstylebase compositor
       // to implement the utility functions
-      //virtual bool _001GetMainFrameTranslucency(::user::e_translucency & etranslucency);
+      //virtual bool _001GetMainFrameTranslucency(::user::enum_translucency & etranslucency);
 
       //virtual bool select_text_color(::user::interaction * pinteraction, ::draw2d::graphics_pointer & pgraphics, e_color ecolor = color_text);
       //virtual bool select_solid_brush(::user::interaction * pinteraction, ::draw2d::graphics_pointer & pgraphics, e_color ecolor);
@@ -116,22 +116,22 @@ namespace axis
 
       //virtual color32_t           _001GetColor(e_color ecolor, color32_t crDefault = 0);
       //virtual ::draw2d::font_pointer  _001GetFont(e_font efont, ::draw2d::font * pfont = nullptr);
-      //virtual e_translucency     _001GetTranslucency(e_element eelement = element_none, e_translucency etranslucencyDefault = translucency_undefined);
+      //virtual enum_translucency     _001GetTranslucency(enum_element eelement = element_none, enum_translucency etranslucencyDefault = translucency_undefined);
       //virtual bool               _001GetFlag(::user::e_flag eflag, bool bDefault = false);
       //virtual ::rect             _001GetRect(::user::e_rect erect, ::rect rectDefault = nullptr);
       //virtual int                _001GetInt(::user::e_int eint, int iDefault = 0);
       //virtual double             _001GetDouble(::user::e_double edouble, double dDefault = 0.0);
 
 
-      //virtual bool _001IsBackgroundBypass(e_element eelement = element_none);
-      //virtual bool _001IsTransparent(e_element eelement = element_none);
-      //virtual bool _001IsTranslucent(e_element eelement = element_none);
-      //virtual bool _001HasTranslucency(e_element eelement = element_none);
+      //virtual bool _001IsBackgroundBypass(enum_element eelement = element_none);
+      //virtual bool _001IsTransparent(enum_element eelement = element_none);
+      //virtual bool _001IsTranslucent(enum_element eelement = element_none);
+      //virtual bool _001HasTranslucency(enum_element eelement = element_none);
 
 
-      virtual ::color get_color(const ::user::interaction* pinteraction, ::user::e_element eelement, ::user::estate estate = ::user::e_state_none) const override;
+      virtual ::color get_color(const ::user::interaction* pinteraction, ::user::enum_element eelement, ::user::estate estate = ::user::e_state_none) const override;
       //virtual bool get_font(::draw2d::font_pointer & sp, e_font efont, style_context * pcontext) override;
-      //virtual bool get_translucency(e_translucency & etranslucency, e_element matter, style_context * pcontext) override;
+      //virtual bool get_translucency(enum_translucency & etranslucency, enum_element matter, style_context * pcontext) override;
       //virtual bool get_flag(bool & bSet, e_flag eflag, style_context * pcontext) override;
       //virtual bool get_rect(style_rect & rect, e_rect erect, style_context * pcontext) override;
       //virtual bool get_int(int & i, e_int eint, style_context * pcontext) override;
@@ -140,7 +140,7 @@ namespace axis
 
       virtual void select(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual ::user::e_control_type get_control_type() const override;
+      virtual ::user::enum_control_type get_control_type() const override;
 
       virtual ::draw2d::graphics * style_get_graphics() override;
 

@@ -127,7 +127,7 @@ namespace experience
          return false;
 
       }
-      /*xxx client::e_element eelement;
+      /*xxx client::enum_element eelement;
       if(m_pframewindow->m_pappearance->_001HitTest(point, eelement))
       {
       if(eelement == client::ElementTopLeftIcon)

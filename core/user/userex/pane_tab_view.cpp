@@ -160,9 +160,7 @@ namespace userex
 
       SCAST_PTR(::message::create, pcreate, pmessage);
 
-
-      m_pcreate = (::create *) pcreate->m_lpcreatestruct->CREATE_STRUCT_P_CREATE_PARAMS;
-
+      m_pcreate = (::create *) pcreate->get_create();
 
       //if (Application.m_pmainpane == nullptr)
       //{

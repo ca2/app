@@ -53,7 +53,7 @@ namespace user
    }
 
 
-   ::draw2d::font_pointer button::get_font(style * pstyle, e_element eelement, estate estate) const
+   ::draw2d::font_pointer button::get_font(style * pstyle, enum_element eelement, estate estate) const
    {
 
       if (pstyle)
@@ -80,7 +80,7 @@ namespace user
    }
 
 
-   e_translucency button::get_translucency(style * pstyle) const
+   enum_translucency button::get_translucency(style * pstyle) const
    {
 
       if (pstyle)

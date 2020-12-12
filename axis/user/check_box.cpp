@@ -187,7 +187,7 @@ namespace user
             if (pstyle)
             {
 
-               pstyle->draw_check(echeck, rectCheckBox, pgraphics);
+               pstyle->draw_check(this, echeck, rectCheckBox, pgraphics);
 
             }
 

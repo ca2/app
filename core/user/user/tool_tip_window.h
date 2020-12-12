@@ -71,6 +71,9 @@ namespace user
       virtual ~tool_tip_window();
 
 
+      //virtual bool pre_create_window(::user::create_struct * pcreatestruct) override;
+
+
       void RemoveAllTools();
       tool_tip_tool * GetTool(i32 iTool);
       bool GetToolText(i32 iTool, string & str);

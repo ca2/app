@@ -105,7 +105,7 @@ namespace user
 
       virtual void on_control_event(::user::control_event * pevent) override;
 
-      bool pre_create_window(::user::create_struct& cs) override;
+      bool pre_create_window(::user::create_struct * pcreatestruct) override;
 
       virtual void install_message_routing(::channel * pchannel) override;
 

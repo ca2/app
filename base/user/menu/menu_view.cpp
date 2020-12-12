@@ -313,7 +313,7 @@ namespace user
          if (rect.contains(item.m_pointHitTest))
          {
 
-            item = { ::user::element_item, iPos, iMenu, -1 };
+            item = { ::user::e_element_item, iPos, iMenu, -1 };
 
             return;
 
@@ -329,7 +329,7 @@ namespace user
             if (rect.contains(item.m_pointHitTest))
             {
 
-               item = { ::user::element_item, iPos, iMenu, iCommand };
+               item = { ::user::e_element_item, iPos, iMenu, iCommand };
 
                return;
 
@@ -341,7 +341,7 @@ namespace user
 
       }
 
-      item = ::user::element_none;
+      item = ::user::e_element_none;
 
    }
 
@@ -448,7 +448,7 @@ namespace user
 
                pgraphics->set(m_pen);
 
-               ::user::item item(::user::element_item, iPos, i, j);
+               ::user::item item(::user::e_element_item, iPos, i, j);
 
                if (m_itemHover == item)
                {

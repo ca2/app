@@ -40,9 +40,9 @@ namespace user
 
       }
 
-      auto color = puserinteraction->get_color(pstyle, ::user::element_background);
+      auto color = puserinteraction->get_color(pstyle, ::user::e_element_background);
 
-      if (puserinteraction->m_itemHover == ::user::element_close_icon)
+      if (puserinteraction->m_itemHover == ::user::e_element_close_icon)
       {
 
          color.m_iA = 180;

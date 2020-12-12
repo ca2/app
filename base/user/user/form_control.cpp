@@ -923,7 +923,7 @@ namespace user
 
       SCAST_PTR(::message::create, pmessagecreate, pmessage);
 
-      auto pcreate = (::create *) pmessagecreate->m_lpcreatestruct->CREATE_STRUCT_P_CREATE_PARAMS;
+      auto pcreate = (::create *) pmessagecreate->get_create();
 
       if(::is_set(pcreate))
       {
@@ -1549,7 +1549,7 @@ namespace user
       //}
    }
 
-   //::type form_control::controltype_to_typeinfo(::user::e_control_type econtroltype)
+   //::type form_control::controltype_to_typeinfo(::user::enum_control_type econtroltype)
    //{
 
    //   return Application.user_default_controltype_to_typeinfo(econtroltype);

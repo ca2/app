@@ -171,10 +171,6 @@ namespace user
 
       ASSERT(m_strMatter.has_char());
 
-      //::user::create usercreate;
-
-      //__set_restore(pcreate->m_pusercreate, &usercreate);
-
       if (pcreate->m_pusercreate.is_null())
       {
 

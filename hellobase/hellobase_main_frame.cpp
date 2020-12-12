@@ -64,7 +64,7 @@ namespace hellobase
    }
 
 
-   bool main_frame::get_translucency(::user::e_translucency & etranslucency, ::user::e_element eelement, ::user::interaction * pinteraction)
+   bool main_frame::get_translucency(::user::enum_translucency & etranslucency, ::user::enum_element eelement, ::user::interaction * pinteraction)
    {
 
       if (m_bExplicitTranslucency)

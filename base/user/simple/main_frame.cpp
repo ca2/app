@@ -94,7 +94,7 @@ void simple_main_frame::_001OnCreate(::message::message * pmessage)
 }
 
 
-//bool simple_main_frame::get_translucency(::user::e_translucency & etranslucency, ::user::e_element eelement, ::user::style_context * pcontext)
+//bool simple_main_frame::get_translucency(::user::enum_translucency & etranslucency, ::user::enum_element eelement, ::user::style_context * pcontext)
 //{
 //
 //   if (m_bExplicitTranslucency)

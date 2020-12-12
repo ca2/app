@@ -66,14 +66,19 @@ namespace uwp
 
                ::Windows::Foundation::Collections::IVectorView < ::Windows::Storage::IStorageItem ^ > ^ items = ::wait(view->GetStorageItemsAsync());
 
-               for (uptr u = 0; u < items->Size; u++)
+               if (items)
                {
 
-                  patha.add(items->GetAt(u)->Path->Begin());
+                  for (uptr u = 0; u < items->Size; u++)
+                  {
+
+                     patha.add(items->GetAt(u)->Path->Begin());
+
+                  }
+
+                  m_bHasFile = true;
 
                }
-
-               m_bHasFile = true;
 
             }
 
@@ -114,7 +119,7 @@ namespace uwp
 
       }
 
-      System.main_user_async(__routine([this]()
+      System.main_user_sync(__routine([this]()
          {
 
             on_content_changed();
@@ -242,7 +247,7 @@ namespace uwp
    bool copydesk::_has_image()
    {
 
-      return Application.image()._desk_has_image();
+      return m_bHasImage;
 
    }
 

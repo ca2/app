@@ -1,4 +1,5 @@
 ﻿#include "framework.h"
+#include "id.h"
 #include "_winrt.h"
 #include "acme/node/uwp/_uwp.h"
 //#include "acme/os/windows_common/draw2d_direct2d_global.h"
@@ -411,6 +412,10 @@ uptr virtualkey_to_char(::Windows::System::VirtualKey e)
       return ::user::key_slash2;
    case ::Windows::System::VirtualKey::Space:
       return ::user::key_space;
+   case ::Windows::System::VirtualKey::LeftWindows:
+      return ::user::key_lcommand;
+   case ::Windows::System::VirtualKey::RightWindows:
+      return ::user::key_rcommand;
    default:
       ;
       {
@@ -629,17 +634,19 @@ namespace user
 namespace user
 {
 
-
-   CLASS_DECL_ACME void os_calc_dark_mode()
+   CLASS_DECL_ACME bool _os_calc_app_dark_mode()
    {
 
       double dLuminance = get_system_app_luminance();
 
       bool bDarkMode = dLuminance < 0.5;
 
-      set_system_dark_mode(bDarkMode);
+      //set_system_dark_mode(bDarkMode);
 
-      set_app_dark_mode(bDarkMode);
+      //set_app_dark_mode(bDarkMode);
+
+
+      return bDarkMode;
 
    }
 
@@ -672,3 +679,189 @@ namespace user
 //   return 0;
 //
 //}
+
+
+
+
+
+namespace user
+{
+
+
+   string _os_get_user_theme()
+   {
+
+      return "";
+
+   }
+
+
+   void _os_process_user_theme(string strTheme)
+   {
+
+      UNREFERENCED_PARAMETER(strTheme);
+
+   }
+
+
+
+   //CLASS_DECL_ACME bool _os_calc_system_dark_mode()
+   //{
+
+   //   try
+   //   {
+
+   //      ::windows::registry::key key;
+
+   //      key.open(HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize");
+
+   //      ::u32 dw;
+
+   //      auto estatus = key._get("SystemUseLightTheme", dw);
+
+   //      if (::failed(estatus))
+   //      {
+
+   //         estatus = key._get("AppsUseLightTheme", dw);
+
+   //         if (::failed(estatus))
+   //         {
+
+   //            return false;
+
+   //         }
+
+   //      }
+
+   //      return dw == 0;
+
+   //   }
+   //   catch (...)
+   //   {
+
+   //      return false;
+
+   //   }
+
+   //}
+
+
+   //CLASS_DECL_ACME bool _os_calc_app_dark_mode()
+   //{
+
+   //   try
+   //   {
+
+   //      ::windows::registry::key key;
+
+   //      key.open(HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize");
+
+   //      ::u32 dw;
+
+   //      auto estatus = key._get("AppsUseLightTheme", dw);
+
+   //      if (::failed(estatus))
+   //      {
+
+   //         estatus = key._get("SystemUseLightTheme", dw);
+
+   //         if (::failed(estatus))
+   //         {
+
+   //            return false;
+
+   //         }
+
+   //      }
+
+   //      return dw == 0;
+
+   //   }
+   //   catch (...)
+   //   {
+
+   //      return false;
+
+   //   }
+
+   //}
+
+
+
+   ::logic::bit      g_bLastDarkModeApp;
+
+
+   void os_calc_dark_mode()
+   {
+
+      bool bDarkModeApp = _os_calc_app_dark_mode();
+
+      if (g_bLastDarkModeApp != bDarkModeApp)
+      {
+
+         ::user::set_app_dark_mode(bDarkModeApp);
+
+         ::user::set_system_dark_mode(bDarkModeApp);
+
+         g_bLastDarkModeApp = bDarkModeApp;
+
+         get_context_system()->set_modified(id_os_dark_mode);
+
+      }
+
+   }
+
+
+} // namespace user
+
+
+//CLASS_DECL_ACME HMONITOR GetUiMonitorHandle(HWND hwnd)
+//{
+//
+//   return MonitorFromWindow(hwnd, MONITOR_DEFAULTTOPRIMARY);
+//
+//}
+
+
+//CLASS_DECL_ACME HMONITOR GetPrimaryMonitorHandle()
+//{
+//
+//   const POINT32 pointZero = { 0,0 };
+//
+//   return MonitorFromPoint(pointZero, MONITOR_DEFAULTTOPRIMARY);
+//
+//}
+
+
+//CLASS_DECL_ACME bool GetPrimaryMonitorRect(LPRECT32 lprect)
+//{
+//
+//   MONITORINFO mi;
+//
+//   xxf_zero(mi);
+//
+//   mi.cbSize = sizeof(MONITORINFO);
+//
+//   if (GetMonitorInfo(GetPrimaryMonitorHandle(), &mi))
+//   {
+//
+//      *lprect = mi.rcMonitor;
+//
+//   }
+//   else
+//   {
+//
+//      if (!::GetWindowRect(::get_desktop_window(), lprect))
+//      {
+//
+//         return false;
+//
+//      }
+//
+//   }
+//
+//   return true;
+//
+//}
+//
+

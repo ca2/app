@@ -4,9 +4,9 @@
 //#include "interaction_impl.h"
 
 
-CLASS_DECL_ACME const unichar * __register_window_class(::matter * pobject, ::u32 nClassStyle, HCURSOR hCursor = 0, HBRUSH hbrBackground = 0, HICON hIcon = 0);
+//CLASS_DECL_ACME const unichar * __register_window_class(::matter * pobject, ::u32 nClassStyle, HCURSOR hCursor = 0, HBRUSH hbrBackground = 0, HICON hIcon = 0);
 
-CLASS_DECL_ACME bool windows_register_class(WNDCLASSW * pwndclass);
+//CLASS_DECL_ACME bool windows_register_class(WNDCLASSW * pwndclass);
 
 
 

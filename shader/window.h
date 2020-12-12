@@ -37,7 +37,7 @@ namespace app_shader
 
       virtual bool keyboard_focus_is_focusable() override;
 
-      virtual ::user::e_translucency get_translucency(::user::style* pstyle) const override;
+      virtual ::user::enum_translucency get_translucency(::user::style* pstyle) const override;
 
 
       void update_shader();

@@ -101,10 +101,10 @@
 
                virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-               virtual bool get_element_rect(RECT32 * prect, e_element eelement) override;
+               virtual bool get_element_rect(RECT32 * prect, enum_element eelement) override;
 
 
-               virtual bool hit_test(const point &point, e_element &eelementParam);
+               virtual bool hit_test(const point &point, enum_element &eelementParam);
 
                virtual void Glass(::draw2d::graphics_pointer & pgraphics, const ::rect & rect);
 
@@ -129,7 +129,7 @@
             };
 
 
-            frame::e_element operator++(frame::e_element & eelement, i32 i);
+            frame::enum_element operator++(frame::enum_element & eelement, i32 i);
 
 
       } // namespace tranquillum

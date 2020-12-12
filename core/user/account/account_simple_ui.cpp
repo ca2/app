@@ -257,10 +257,14 @@ namespace account
 
       }
 
-      ::user::create_struct createstruct(0, nullptr, nullptr, 0, rectFontopus);
+      auto pcreatestruct = __new(::user::create_struct (0, nullptr, nullptr, 0, rectFontopus));
 
-      if(!create_window_ex(createstruct, puiParent))
+      if (!create_window_ex(pcreatestruct, puiParent))
+      {
+
          return "";
+
+      }
 
       set_window_text( "account Auth Windows");
 

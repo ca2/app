@@ -21,11 +21,7 @@ CLASS_DECL_AURA bool GetTextExtentPoint32U(HDC hdc, const char * pString, i32 ca
 
 CLASS_DECL_AURA i32  DrawTextU(HDC hdc, const char * pchText, i32 cchText, RECT32 * lprc, ::u32 format);
 
-
-//CLASS_DECL_AURA bool draw2d_gif_load_frame(::image * pimageCanvas, image_frame_array * pframea, image_frame * pframe, int uFrameIndex, u8 * ba, int iScan, colorref_array & cra, int transparentIndex);
-#ifdef WINDOWS_DESKTOP
 CLASS_DECL_AURA void cra_from_quada(colorref_array & colorrefa, RGBQUAD * prgbquad, int iCount);
-#endif
 
 
 namespace draw2d

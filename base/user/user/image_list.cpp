@@ -199,7 +199,7 @@ namespace user
    bool image_list::get_rect(::user::item & item)
    {
 
-      if (item == ::user::element_item)
+      if (item == ::user::e_element_item)
       {
 
          if (!item.is_valid_item(m_imagea.get_count()))
@@ -277,7 +277,7 @@ namespace user
          return true;
 
       }
-      else if (item == ::user::element_icon)
+      else if (item == ::user::e_element_icon)
       {
 
          {
@@ -303,7 +303,7 @@ namespace user
          return true;
 
       }
-      else if (item == ::user::element_text)
+      else if (item == ::user::e_element_text)
       {
 
          if (m_bNoName)
@@ -363,7 +363,7 @@ namespace user
 
       item = -1;
 
-      item = ::user::element_none;
+      item = ::user::e_element_none;
 
    }
 

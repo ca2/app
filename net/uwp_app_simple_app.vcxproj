@@ -252,22 +252,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <None Include="..\..\..\..\__archive\storage-uwp\binary\Win32\basis\libeay32.dll">
+    <None Include="..\..\..\archive\storage-uwp\binary\Win32\basis\libeay32.dll">
       <DeploymentContent>true</DeploymentContent>
     </None>
-    <None Include="..\..\..\..\__archive\storage-uwp\binary\Win32\basis\ssleay32.dll">
+    <None Include="..\..\..\archive\storage-uwp\binary\Win32\basis\ssleay32.dll">
       <DeploymentContent>true</DeploymentContent>
     </None>
-    <None Include="..\..\..\..\__archive\storage-uwp\third\binary\Win32\basis\bzip2.dll">
+    <None Include="..\..\..\archive\storage-uwp\third\binary\Win32\basis\bzip2.dll">
       <DeploymentContent>true</DeploymentContent>
     </None>
-    <None Include="..\..\..\..\__archive\storage-uwp\third\binary\Win32\basis\pcre.dll">
+    <None Include="..\..\..\archive\storage-uwp\third\binary\Win32\basis\pcre.dll">
       <DeploymentContent>true</DeploymentContent>
     </None>
-    <None Include="..\..\..\..\__archive\storage-uwp\third\binary\Win32\basis\sqlite.dll">
+    <None Include="..\..\..\archive\storage-uwp\third\binary\Win32\basis\sqlite.dll">
       <DeploymentContent>true</DeploymentContent>
     </None>
-    <None Include="..\..\..\..\__archive\storage-uwp\third\binary\Win32\basis\zlib.dll">
+    <None Include="..\..\..\archive\storage-uwp\third\binary\Win32\basis\zlib.dll">
       <DeploymentContent>true</DeploymentContent>
     </None>
     <None Include="uwp_app_simple_application_TemporaryKey.pfx" />

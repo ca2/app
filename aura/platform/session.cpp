@@ -3347,11 +3347,11 @@ ret:
 //
 //      }
 
-      ::user::create_struct cs(0, nullptr, nullptr, WS_VISIBLE, rectScreen);
+      auto pcs = __new(::user::create_struct(0, nullptr, nullptr, WS_VISIBLE, rectScreen));
 
       auto puiHost = __user_interaction(m_puiHost);
 
-      if (!puiHost->create_window_ex(cs))
+      if (!puiHost->create_window_ex(pcs))
       {
 
          return ::error_failed;
@@ -3872,10 +3872,10 @@ namespace aura
    }
 
 
-   ::color session::get_color(::user::e_element eelement, ::user::estate estate)
+   ::color session::get_color(::user::enum_element eelement, ::user::estate estate)
    {
 
-      if (eelement == ::user::element_background)
+      if (eelement == ::user::e_element_background)
       {
 
          color32_t crBk;
@@ -3896,7 +3896,7 @@ namespace aura
          return crBk;
 
       }
-      else if (eelement == ::user::element_face)
+      else if (eelement == ::user::e_element_face)
       {
 
          color32_t crBk;
@@ -3917,7 +3917,7 @@ namespace aura
          return crBk;
 
       }
-      else if (eelement == ::user::element_text)
+      else if (eelement == ::user::e_element_text)
       {
 
          color32_t crText;

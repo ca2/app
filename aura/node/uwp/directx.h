@@ -44,6 +44,7 @@ namespace uwp
       bool                             m_bInit;
       ::image_pointer                  m_pimage;
       bool                             m_bCreated;
+      Windows::Foundation::Rect        m_windowBounds;
 
 
       directx_base();
@@ -101,7 +102,6 @@ namespace uwp
       // Cached renderer properties.
       D3D_FEATURE_LEVEL                               m_featureLevel;
       Windows::Foundation::Size                       m_renderTargetSize;
-      Windows::Foundation::Rect                       m_windowBounds;
       float                                           m_dpi;
       float                                           m_dpiIni;
       //bool                                            m_windowSizeChangeInProgress;

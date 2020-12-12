@@ -1648,6 +1648,9 @@
     <ClCompile Include="node\windows\user_frame.cpp">
       <Filter>Source Files\node\windows</Filter>
     </ClCompile>
+    <ClCompile Include="os\windows\application_system_run.cpp">
+      <Filter>Source Files\os\windows</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="graphics\draw2d\_impl.h">

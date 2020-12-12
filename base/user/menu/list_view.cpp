@@ -44,10 +44,10 @@ namespace user
 
 
 
-   bool menu_list_view::pre_create_window(::user::create_struct & cs)
+   bool menu_list_view::pre_create_window(::user::create_struct * pcreatestruct)
    {
 
-      return ::user::impact::pre_create_window(cs);
+      return ::user::impact::pre_create_window(pcreatestruct);
 
    }
 

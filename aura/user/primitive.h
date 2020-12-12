@@ -98,7 +98,7 @@ namespace user
       __pointer(::message::base) get_message_base(oswindow oswindow, const ::id & id, WPARAM wparam, lparam lparam) override;
 
 
-      virtual ::user::interaction* get_host_wnd();
+      virtual ::user::interaction* get_host_wnd() const;
 
 
       virtual bool enable_window(bool bEnable = true);
@@ -185,9 +185,11 @@ namespace user
 
       virtual double _001GetTopLeftWeightedOccludedOpaqueRate();
 
-      e_cursor get_cursor();
+      virtual e_cursor get_cursor();
 
-      void set_cursor(e_cursor ecursor);
+      virtual bool set_cursor(e_cursor ecursor);
+
+      virtual ::point get_cursor_pos() const;
 
       virtual bool _is_window() const;
 
@@ -292,7 +294,7 @@ namespace user
       //virtual bool SendChildNotifyLastMsg(LRESULT* pResult = nullptr);
 
 
-      virtual bool pre_create_window(::user::create_struct& cs);
+      virtual bool pre_create_window(::user::create_struct * pcreatestruct);
 
 
       virtual bool subclass_window(oswindow posdata);
@@ -302,7 +304,7 @@ namespace user
       virtual bool create_window(::user::interaction * pparent, const ::id & id);
       virtual bool create_window(const char * pszClassName, const char * pszWindowName,u32 uStyle, ::user::interaction * puiParent, const ::id & id, ::create * pcreate = nullptr);
 
-      virtual bool create_window_ex(::user::create_struct & cs, ::user::interaction * puiParent, const ::id & id);
+      virtual bool create_window_ex(__pointer(::user::create_struct) pcs, ::user::interaction * puiParent, const ::id & id);
       virtual void CalcWindowRect(RECT32 * pClientRect,::u32 nAdjustType = adjustBorder);
 
 
@@ -343,6 +345,10 @@ namespace user
       virtual u32 GetStyle() const;
       virtual u32 GetExStyle() const;
 
+
+      virtual ::estatus main_async(const ::promise::routine & routine, e_priority epriority = priority_normal);
+
+
       //using ::channel::send;
       virtual LRESULT send(::message::base * pbase);
       virtual bool post(::message::base * pbase);
@@ -370,7 +376,7 @@ namespace user
       //virtual void SetWindowDisplayChanged();
 
       // timer Functions
-      virtual bool SetTimer(uptr uEvent,::u32 nElapse,PFN_TIMER pfnTimer);
+      virtual bool SetTimer(uptr uEvent, ::millis millisElapse, PFN_TIMER pfnTimer);
       virtual bool KillTimer(uptr uEvent);
 
       virtual void _001PrintBuffer(::draw2d::graphics_pointer & pgraphics);
@@ -425,7 +431,7 @@ namespace user
 
 
       //virtual bool _is_window_visible();
-      virtual bool is_this_visible(e_layout elayout);
+      virtual bool is_this_visible(enum_layout elayout);
       virtual bool is_window_enabled() const;
       virtual bool is_this_enabled() const;
 

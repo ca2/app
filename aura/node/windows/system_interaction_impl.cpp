@@ -155,9 +155,9 @@ CLASS_DECL_AURA ::user::interaction * create_system_message_window(::layered * p
 
     pimpl->initialize(pobjectContext);
 
-    ::user::create_struct createstruct;
+    auto pcreatestruct = __new(::user::create_struct);
 
-    if (!pimpl->create_window_ex(createstruct, nullptr, "::user::system_interaction_impl"))
+    if (!pimpl->create_window_ex(pcreatestruct, nullptr, "::user::system_interaction_impl"))
     {
 
        return false;

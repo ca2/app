@@ -2168,7 +2168,7 @@ break_click:;
 
             auto pstyle = get_style(pdrawitem->m_pgraphics);
 
-            auto crBackHover = get_color(pstyle, ::user::element_background, ::user::e_state_hover);
+            auto crBackHover = get_color(pstyle, ::user::e_element_background, ::user::e_state_hover);
 
             if (!crBackHover)
             {

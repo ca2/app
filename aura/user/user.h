@@ -76,7 +76,7 @@ namespace user
 
       virtual void term() override;
 
-      virtual ::type controltype_to_typeinfo(::user::e_control_type econtroltype);
+      virtual ::type controltype_to_typeinfo(::user::enum_control_type econtroltype);
 
       //virtual __pointer(::user::menu_interaction) create_menu_button(::user::style * pstyle, menu_item * pitem);
 

@@ -239,9 +239,9 @@
     <ClInclude Include="net\sockets\bsd\basic\sockets_tcp_socket.h" />
     <ClInclude Include="net\sockets\bsd\basic\sockets_tls_socket.h" />
     <ClInclude Include="net\sockets\bsd\basic\sockets_udp_socket.h" />
+    <ClInclude Include="node\uwp\directx_application.h" />
     <ClInclude Include="node\uwp\buffer.h" />
     <ClInclude Include="node\uwp\directx.h" />
-    <ClInclude Include="node\uwp\directx_framework_view.h" />
     <ClInclude Include="node\uwp\directx_impact.h" />
     <ClInclude Include="node\uwp\directx_interaction.h" />
     <ClInclude Include="node\uwp\factory_exchange.h" />
@@ -279,14 +279,15 @@
     <ClInclude Include="os\uwp\gdi_winrt.h" />
     <ClInclude Include="os\uwp\host_interaction.h" />
     <ClInclude Include="os\uwp\metrowin_metrowin.h" />
-    <ClInclude Include="os\uwp\multithreading.h" />
-    <ClInclude Include="os\uwp\multithreading_winrt.h" />
+    <ClInclude Include="os\uwp\parallelization.h" />
+    <ClInclude Include="os\uwp\parallelization_winrt.h" />
     <ClInclude Include="os\uwp\oswindow.h" />
     <ClInclude Include="os\uwp\process.h" />
     <ClInclude Include="os\uwp\simple_hold_handle.h" />
     <ClInclude Include="os\uwp\simple_ui.h" />
     <ClInclude Include="os\uwp\sockets.h" />
     <ClInclude Include="os\uwp\_.h" />
+    <ClInclude Include="os\uwp\_user.h" />
     <ClInclude Include="os\uwp\_uwp.h" />
     <ClInclude Include="os\uwp\_winrt.h" />
     <ClInclude Include="os\windowing.h" />
@@ -660,7 +661,7 @@
     <ClCompile Include="message\user.cpp" />
     <ClCompile Include="node\uwp\application.cpp" />
     <ClCompile Include="node\uwp\directx.cpp" />
-    <ClCompile Include="node\uwp\directx_framework_view.cpp" />
+    <ClCompile Include="node\uwp\directx_application.cpp" />
     <ClCompile Include="node\uwp\directx_impact.cpp" />
     <ClCompile Include="node\uwp\directx_interaction.cpp" />
     <ClCompile Include="node\uwp\error.cpp" />
@@ -683,12 +684,11 @@
     <ClCompile Include="os\uwp\graphics.cpp" />
     <ClCompile Include="os\uwp\lock.cpp" />
     <ClCompile Include="os\uwp\main.cpp" />
+    <ClCompile Include="os\uwp\monitor.cpp" />
     <ClCompile Include="os\uwp\user.cpp" />
     <ClCompile Include="os\uwp\windowing.cpp" />
     <ClCompile Include="os\windowing.cpp" />
     <ClCompile Include="os\windows_common\draw2d_direct2d_global.cpp" />
-    <ClCompile Include="os\winpr_keycode.cpp" />
-    <ClCompile Include="os\winpr_scancode.cpp" />
     <ClCompile Include="os\_application.cpp" />
     <ClCompile Include="platform\application.cpp" />
     <ClCompile Include="platform\aura_mq.cpp" />
@@ -702,7 +702,6 @@
     <ClCompile Include="platform\theme.cpp" />
     <ClCompile Include="user\box.cpp" />
     <ClCompile Include="user\callback.cpp" />
-    <ClCompile Include="user\composition_imm_client.cpp" />
     <ClCompile Include="user\control_descriptor.cpp" />
     <ClCompile Include="user\control_event.cpp" />
     <ClCompile Include="user\copydesk.cpp" />
@@ -711,7 +710,6 @@
     <ClCompile Include="user\form.cpp" />
     <ClCompile Include="user\form_callback.cpp" />
     <ClCompile Include="user\frame.cpp" />
-    <ClCompile Include="user\imm_client.cpp" />
     <ClCompile Include="user\interaction.cpp" />
     <ClCompile Include="user\interaction_child.cpp" />
     <ClCompile Include="user\interaction_impl.cpp" />

@@ -34,7 +34,7 @@ namespace user
    struct CLASS_DECL_AURA ITEM
    {
 
-      e_element          m_eelement;
+      enum_element          m_eelement;
       ::index            m_iItem;
       ::index            m_iSubItem;
       ::index            m_iListItem;
@@ -90,26 +90,26 @@ namespace user
       ::draw2d::path_pointer        m_ppath;
       //::user::mouse *      m_pmouse;
 
-      //item(e_element eelement, ::index iItem = -1, ::index iSubItem = -1, ::index iListItem = -1, const ::u64 uFlags = flag_none) :
+      //item(enum_element eelement, ::index iItem = -1, ::index iSubItem = -1, ::index iListItem = -1, const ::u64 uFlags = flag_none) :
       //   item(eelement, iItem, iSubItem, iListItem, uFlags) {}
 
-      item(const ::u64 uFlags, e_element eelement, ::index iItem = -1, ::index iSubItem = -1, ::index iListItem = -1, ::user::enum_event eevent = ::user::event_none) :
+      item(const ::u64 uFlags, enum_element eelement, ::index iItem = -1, ::index iSubItem = -1, ::index iListItem = -1, ::user::enum_event eevent = ::user::event_none) :
          item(eelement, iItem, iSubItem, iListItem, eevent, uFlags) {}
 
-      item(e_element eelement, ::user::enum_event eevent)
+      item(enum_element eelement, ::user::enum_event eevent)
          : item(eelement, -1, -1, -1, eevent)
       {
 
       }
 
-      item(e_element eelement = ::user::element_none, ::index iItem = -1, ::index iSubItem = -1, ::index iListItem = -1, ::user::enum_event eevent = event_none, const ::u64 uFlags = flag_none)
+      item(enum_element eelement = ::user::e_element_none, ::index iItem = -1, ::index iSubItem = -1, ::index iListItem = -1, ::user::enum_event eevent = event_none, const ::u64 uFlags = flag_none)
       {
 
          m_eevent = eevent;
 
          m_eelement = eelement;
 
-         m_iItem = iItem >= 0 ? iItem : m_eelement != ::user::element_none ? 0 : iItem;
+         m_iItem = iItem >= 0 ? iItem : m_eelement != ::user::e_element_none ? 0 : iItem;
 
          m_iSubItem = iSubItem;
 
@@ -124,7 +124,7 @@ namespace user
 
          m_eevent = ::user::event_none;
 
-         m_eelement = ::user::element_none;
+         m_eelement = ::user::e_element_none;
 
          m_iItem = -1;
 
@@ -158,11 +158,11 @@ namespace user
 
       void set_drawn() { m_uFlags |= ITEM_DRAWN; }
 
-      bool is_set() const { return m_eelement != ::user::element_none; }
+      bool is_set() const { return m_eelement != ::user::e_element_none; }
 
       operator bool() const { return is_set(); }
 
-      operator e_element() const { return m_eelement; }
+      operator enum_element() const { return m_eelement; }
 
       operator i32() const { return (::i32) m_iItem; }
 
@@ -173,10 +173,10 @@ namespace user
       bool operator == (const item & item)  const { return ITEM::operator==(item); }
       bool operator != (const item & item)  const { return ITEM::operator!=(item); }
 
-      item & operator = (e_element eelement);
+      item & operator = (enum_element eelement);
 
-      bool operator == (e_element eelement)  const { return m_eelement == eelement; }
-      bool operator != (e_element eelement)  const { return !operator==(eelement); }
+      bool operator == (enum_element eelement)  const { return m_eelement == eelement; }
+      bool operator != (enum_element eelement)  const { return !operator==(eelement); }
 
       item & operator = (::index iItem);
 
@@ -196,7 +196,7 @@ namespace user
       ::index operator - (::i64 iItemSub) { return (::index) (m_iItem - iItemSub); }
 
 
-      bool in_range(e_element eelement, int iCount) const { return m_eelement >= eelement && m_eelement < eelement + iCount; }
+      bool in_range(enum_element eelement, int iCount) const { return m_eelement >= eelement && m_eelement < eelement + iCount; }
 
       bool is_valid_item(::count c) const { return m_iItem >= 0 && m_iItem < c; }
 

@@ -302,7 +302,7 @@
 //   }
 //
 //
-//   e_control_type control::get_control_type() const
+//   enum_control_type control::get_control_type() const
 //   {
 //
 //      if (m_pdescriptor.is_null())
@@ -759,7 +759,7 @@
 //   //   ::point pointCursor;
 //   //   psession->get_cursor_pos(&pointCursor);
 //
-//   //   e_element eelement;
+//   //   enum_element eelement;
 //
 //   //   index iHover = hit_test(pointCursor, eelement);
 //
@@ -807,7 +807,7 @@
 //
 //   //      auto point = screen_to_client(pmouse->m_point);
 //
-//   //      ::user::e_element eelementHover = hit_test(pmouse);
+//   //      ::user::enum_element eelementHover = hit_test(pmouse);
 //
 //   //      if (m_eelementHover != eelementHover)
 //   //      {
@@ -976,7 +976,7 @@
 //   }
 //
 //
-//   bool control::get_element_rect(RECT32 * prect, e_element eelement)
+//   bool control::get_element_rect(RECT32 * prect, enum_element eelement)
 //
 //   {
 //

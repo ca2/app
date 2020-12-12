@@ -41151,12 +41151,15 @@ copy protection errors.
 // NDIS error codes (ndis.sys)
 //
 
+#ifndef _UWP
 
 #ifdef RC_INVOKED
 #define _NDIS_ERROR_TYPEDEF_(_sc)  _sc
 #else // RC_INVOKED
 #define _NDIS_ERROR_TYPEDEF_(_sc)  (::u32)(_sc)
 #endif // RC_INVOKED
+
+#endif
 
 //
 // MessageId: ERROR_NDIS_INTERFACE_CLOSING

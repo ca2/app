@@ -265,7 +265,7 @@ CLASS_DECL_ACME bool set_modified_filetime(const char* psz, const filetime & fil
 #elif defined(_UWP)
 
 
-bool get_filetime_set(const char * psz,FILETIME & creation,FILETIME & modified)
+bool get_filetime_set(const char * psz,filetime & creation,filetime & modified)
 {
 
    hfile hfile = hfile_create(psz, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, nullptr, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr);
@@ -278,7 +278,7 @@ bool get_filetime_set(const char * psz,FILETIME & creation,FILETIME & modified)
       xxf_zero(creation);
       xxf_zero(modified);
 
-      if (::GetFileTime(hfile, &creation, nullptr, &modified))
+      if (::GetFileTime(hfile, (FILETIME *) &creation, nullptr, (FILETIME *)&modified))
       {
 
          bOk = true;

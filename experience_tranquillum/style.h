@@ -37,11 +37,11 @@ namespace experience
          //}
 
 
-         virtual ::color get_color(const ::user::interaction * pinteraction, ::user::e_element eelement, ::user::estate estate) const override;
+         virtual ::color get_color(const ::user::interaction * pinteraction, ::user::enum_element eelement, ::user::estate estate) const override;
       
       
          //    virtual bool get_font(::draw2d::font_pointer & font, ::user::e_font efont, ::user::interaction * pframewindow) override;
-         //  virtual bool get_translucency(::user::e_translucency & etranslucency, ::user::e_element eelement, ::user::interaction * pframewindow) override;
+         //  virtual bool get_translucency(::user::enum_translucency & etranslucency, ::user::enum_element eelement, ::user::interaction * pframewindow) override;
 
 
          //      virtual bool on_ui_event(::user::enum_event eevent, ::user::e_object eobject, ::user::interaction * pframewindow) override;

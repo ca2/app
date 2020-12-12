@@ -7,7 +7,7 @@
 void set_defer_process_x_message(bool (* pfn)(hthread_t hthread, MESSAGE * pmessage,oswindow oswindow,bool bPeek));
 
 
-#ifdef __cplusplus
+//#ifdef __cplusplus
 
 //#undef sync
 //class sync;
@@ -22,9 +22,9 @@ void set_defer_process_x_message(bool (* pfn)(hthread_t hthread, MESSAGE * pmess
 
 #pragma warning (disable:4273)
 
-CLASS_DECL_ACME ::u32 WINAPI MsgWaitForMultipleObjects(::u32 nCount, const HANDLE * pHandles, BOOL fWaitAll, ::u32 dwMilliseconds, ::u32 dwWakeMask);
+CLASS_DECL_ACME DWORD WINAPI MsgWaitForMultipleObjects(DWORD nCount, const HANDLE * pHandles, BOOL fWaitAll, DWORD dwMilliseconds, DWORD dwWakeMask);
 
-CLASS_DECL_ACME ::u32 WINAPI MsgWaitForMultipleObjectsEx(::u32 nCount, const HANDLE* pHandles, ::u32 dwMilliseconds, ::u32 dwWakeMask, ::u32 dwFlags);
+CLASS_DECL_ACME DWORD WINAPI MsgWaitForMultipleObjectsEx(DWORD nCount, const HANDLE* pHandles, DWORD dwMilliseconds, DWORD dwWakeMask, DWORD dwFlags);
 
 #else
 
@@ -36,19 +36,10 @@ CLASS_DECL_ACME ::u32 WINAPI MsgWaitForMultipleObjectsEx(::u32 nCount, const HAN
 
 ::u32 MsgWaitForMultipleObjectsEx(::u32 dwSize, HSYNC * synca, ::u32 tickTimeout, ::u32 dwWakeMask, ::u32 dwFlags);
 
-#endif
-
-
-#ifndef _UWP
 
 ::u32 WaitForSingleObject(HSYNC hsync, ::u32 dwMilliseconds);
 
 ::u32 WaitForSingleObjectEx(HSYNC hsync, ::u32 dwMilliseconds, int_bool bAlertable);
-
-#endif
-
-
-#endif
 
 
 
@@ -58,7 +49,6 @@ CLASS_DECL_ACME ::u32 WINAPI MsgWaitForMultipleObjectsEx(::u32 nCount, const HAN
 #define STATUS_TIMEOUT           ((::u32   ) 0x00000102L)
 
 
-#ifndef _UWP
 
 #define WAIT_FAILED             ((::u32   ) 0xFFFFFFFFL)
 #define WAIT_OBJECT_0           ((::u32   ) STATUS_WAIT_0 + 0)

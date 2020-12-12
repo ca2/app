@@ -366,9 +366,9 @@ namespace account
 
 #endif
 
-      ::user::create_struct createstruct(rectFontopus);
+      auto pcreatestruct = __new(::user::create_struct (rectFontopus));
 
-      if(!create_window_ex(createstruct, puiParent))
+      if(!create_window_ex(pcreatestruct, puiParent))
       {
 
          return;

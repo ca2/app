@@ -325,7 +325,7 @@ namespace user
    }
 
 
-   ::draw2d::font_pointer combo_box::get_font(style * pstyle, e_element eelement, estate estate) const
+   ::draw2d::font_pointer combo_box::get_font(style * pstyle, enum_element eelement, estate estate) const
    {
 
       //if (pstyle)
@@ -441,7 +441,7 @@ namespace user
    }
 
 
-   bool combo_box::get_element_rect(RECT32 * prect, e_element eelement)
+   bool combo_box::get_element_rect(RECT32 * prect, enum_element eelement)
 
    {
 

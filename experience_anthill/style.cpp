@@ -18,7 +18,7 @@ namespace experience
       {
 
 
-   //      create_translucency(::user::element_none, ::user::translucency_present);
+   //      create_translucency(::user::e_element_none, ::user::translucency_present);
    //
    //      create_point_font(::user::font_default,"Segoe UI", 12.0);
    //
@@ -74,7 +74,7 @@ namespace experience
       }
 
    
-      ::color style::get_color(const ::user::interaction* pinteraction, ::user::e_element eelement, ::user::estate estate) const
+      ::color style::get_color(const ::user::interaction* pinteraction, ::user::enum_element eelement, ::user::estate estate) const
       {
 
          if (::is_set(pinteraction))
@@ -85,7 +85,7 @@ namespace experience
             if (econtroltype == ::user::control_type_list)
             {
 
-               if (eelement == ::user::element_background)
+               if (eelement == ::user::e_element_background)
                {
 
                   if (::user::is_app_dark_mode())
@@ -107,7 +107,7 @@ namespace experience
             else if (econtroltype == ::user::control_type_button)
             {
 
-               if (eelement == ::user::element_background)
+               if (eelement == ::user::e_element_background)
                {
 
                   if (::user::is_app_dark_mode())
@@ -132,13 +132,13 @@ namespace experience
             else if (econtroltype == ::user::control_type_toolbar)
             {
 
-               if (eelement == ::user::element_background)
+               if (eelement == ::user::e_element_background)
                {
 
                   return __acolor(255, 255, 255, 255);
 
                }
-               else if (eelement == ::user::element_face)
+               else if (eelement == ::user::e_element_face)
                {
                   
                   if(estate & ::user::e_state_disabled)
@@ -170,7 +170,7 @@ namespace experience
 
          }
 
-         if (eelement == ::user::element_tab_item_background)
+         if (eelement == ::user::e_element_tab_item_background)
          {
 
             if (estate & ::user::e_state_selected)
@@ -211,9 +211,9 @@ namespace experience
             }
 
          }
-         else if (eelement == ::user::element_background
-            || eelement == ::user::element_tab_client_background
-            || eelement == ::user::element_tab_layout_background)
+         else if (eelement == ::user::e_element_background
+            || eelement == ::user::e_element_tab_client_background
+            || eelement == ::user::e_element_tab_layout_background)
          {
 
             if (::user::is_app_dark_mode())
@@ -230,7 +230,7 @@ namespace experience
             }
 
          }
-         else if (eelement == ::user::element_text)
+         else if (eelement == ::user::e_element_text)
          {
             
             if (::user::is_app_dark_mode())
@@ -270,13 +270,13 @@ namespace experience
             }
 
          }
-         else if (eelement == ::user::element_border)
+         else if (eelement == ::user::e_element_border)
          {
 
             return __acolor(255, 127, 127, 127);
          
          }
-         else if (eelement == ::user::element_item_text)
+         else if (eelement == ::user::e_element_item_text)
          {
 
             if (estate & ::user::e_state_hover)
@@ -315,7 +315,7 @@ namespace experience
             }
 
          }
-         else if (eelement == ::user::element_item_background)
+         else if (eelement == ::user::e_element_item_background)
          {
 
             if (estate & ::user::e_state_selected)
@@ -425,7 +425,7 @@ namespace experience
 
       {
 
-         color colorBack = ptab->get_color(pstyle, ::user::element_background);
+         color colorBack = ptab->get_color(pstyle, ::user::e_element_background);
 
          pgraphics->fill_rect(r1, colorBack);
 
@@ -455,7 +455,7 @@ namespace experience
 
       rcClient.top = rcTabs.bottom;
       
-      color colorBack = ptab->get_color(pstyle, ::user::element_tab_layout_background);
+      color colorBack = ptab->get_color(pstyle, ::user::e_element_tab_layout_background);
       
       if(colorBack.is_set())
       {
@@ -464,7 +464,7 @@ namespace experience
          
       }
 
-      colorBack = ptab->get_color(pstyle, ::user::element_tab_client_background);
+      colorBack = ptab->get_color(pstyle, ::user::e_element_tab_client_background);
       
       if(colorBack.is_set())
       {
@@ -473,7 +473,7 @@ namespace experience
          
       }
 
-      ::color color1 = ptab->get_color(pstyle, ::user::element_tab_item_background);
+      ::color color1 = ptab->get_color(pstyle, ::user::e_element_tab_item_background);
 
       ::color color2(color1);
 
@@ -493,19 +493,19 @@ namespace experience
 
          iTab++;
 
-         if(!ptab->get_element_rect(iTab,rect,::user::element_tab))
+         if(!ptab->get_element_rect(iTab,rect,::user::e_element_tab))
             continue;
 
-         if(!ptab->get_element_rect(iTab,rectBorder, ::user::element_border))
+         if(!ptab->get_element_rect(iTab,rectBorder, ::user::e_element_border))
             continue;
 
-         if(!ptab->get_element_rect(iTab,rectClient, ::user::element_client))
+         if(!ptab->get_element_rect(iTab,rectClient, ::user::e_element_client))
             continue;
 
          if(ptab->get_data()->m_bVertical)
          {
 
-            if(ptab->get_element_rect(iTab,rectIcon, ::user::element_icon))
+            if(ptab->get_element_rect(iTab,rectIcon, ::user::e_element_icon))
             {
 
                pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
@@ -531,7 +531,7 @@ namespace experience
 
                   path->close_figure();
 
-                  ::color colorSel1 = ptab->get_color(pstyle, ::user::element_tab_item_background, ::user::e_state_selected);
+                  ::color colorSel1 = ptab->get_color(pstyle, ::user::e_element_tab_item_background, ::user::e_state_selected);
 
                   ::color colorSel2(colorSel1);
 
@@ -548,8 +548,8 @@ namespace experience
                   pgraphics->draw_path(path);
 
                   if (ptab->m_itemHover == iTab
-                     && ptab->m_itemHover != ::user::element_close_tab_button
-                     && !ptab->m_itemHover.in_range(::user::element_split, 100))
+                     && ptab->m_itemHover != ::user::e_element_close_tab_button
+                     && !ptab->m_itemHover.in_range(::user::e_element_split, 100))
                   {
 
                      pgraphics->set(ptab->get_font(pstyle, ::user::e_state_selected | ::user::e_state_hover));
@@ -579,8 +579,8 @@ namespace experience
                   path->close_figure();
 
                   if (ptab->m_itemHover == iTab
-                     && ptab->m_itemHover != ::user::element_close_tab_button
-                     && !ptab->m_itemHover.in_range(::user::element_split, 100))
+                     && ptab->m_itemHover != ::user::e_element_close_tab_button
+                     && !ptab->m_itemHover.in_range(::user::e_element_split, 100))
                   {
 
                      pane.m_brushFillHover->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),ARGB(230,215,215,210),ARGB(250,235,235,230));
@@ -629,7 +629,7 @@ namespace experience
          else
          {
 
-            if(ptab->get_element_rect(iTab,rectIcon, ::user::element_icon))
+            if(ptab->get_element_rect(iTab,rectIcon, ::user::e_element_icon))
             {
 
                pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
@@ -676,7 +676,7 @@ namespace experience
 
                   path->close_figure();
 
-                  ::color colorSel1 = ptab->get_color(pstyle, ::user::element_tab_item_background, ::user::e_state_selected);
+                  ::color colorSel1 = ptab->get_color(pstyle, ::user::e_element_tab_item_background, ::user::e_state_selected);
 
                   ::color colorSel2(colorSel1);
 
@@ -697,8 +697,8 @@ namespace experience
                   auto pstyle = ptab->get_style(pgraphics);
 
                   if (ptab->m_itemHover == iTab
-                     && ptab->m_itemHover != ::user::element_close_tab_button
-                     && !ptab->m_itemHover.in_range(::user::element_split, 100))
+                     && ptab->m_itemHover != ::user::e_element_close_tab_button
+                     && !ptab->m_itemHover.in_range(::user::e_element_split, 100))
                   {
 
                      pgraphics->set(ptab->get_font(pstyle, ::user::e_state_selected | ::user::e_state_hover));
@@ -711,7 +711,7 @@ namespace experience
 
                   }
 
-                  ::color colorText = ptab->get_color(pstyle, ::user::element_text);
+                  ::color colorText = ptab->get_color(pstyle, ::user::e_element_text);
 
                   ptab->get_data()->m_brushTextSel->create_solid(colorText);
 
@@ -741,8 +741,8 @@ namespace experience
                   path->close_figure();
 
                   if (ptab->m_itemHover == iTab
-                     && ptab->m_itemHover != ::user::element_close_tab_button
-                     && !ptab->m_itemHover.in_range(::user::element_split, 100))
+                     && ptab->m_itemHover != ::user::e_element_close_tab_button
+                     && !ptab->m_itemHover.in_range(::user::e_element_split, 100))
                   {
 
                      pane.m_brushFillHover->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),ARGB(230,215,215,210),ARGB(250,235,235,230));
@@ -803,7 +803,7 @@ namespace experience
          if(true)
          {
 
-            if(ptab->get_element_rect(iTab,rectText, ::user::element_text))
+            if(ptab->get_element_rect(iTab,rectText, ::user::e_element_text))
             {
 
                _001OnTabPaneDrawTitle(pane,ptab,pgraphics,rectText,brushText);
@@ -815,13 +815,13 @@ namespace experience
          if(true)
          {
 
-            if(ptab->get_element_rect(iTab,rectClose, ::user::element_close_tab_button))
+            if(ptab->get_element_rect(iTab,rectClose, ::user::e_element_close_tab_button))
             {
 
-               pgraphics->set(ptab->get_font(pstyle, ::user::element_close_tab_button));
+               pgraphics->set(ptab->get_font(pstyle, ::user::e_element_close_tab_button));
 
                if (ptab->m_itemHover == iTab
-                  && ptab->m_itemHover == ::user::element_close_tab_button)
+                  && ptab->m_itemHover == ::user::e_element_close_tab_button)
                {
 
                   brushText = ptab->get_data()->m_brushCloseHover;
@@ -887,7 +887,7 @@ namespace experience
                rectEmp.deflate(1,1);
                ::draw2d::enum_alpha_mode emode = pgraphics->m_ealphamode;
                pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
-               if(ptab->m_itemHover == (::user::e_element)(::user::element_split + i))
+               if(ptab->m_itemHover == (::user::enum_element)(::user::e_element_split + i))
                {
                   pgraphics->fill_rect(rectEmp,ARGB(128, 150, 184, 255));
                   pgraphics->set(ptab->get_data()->m_brushTextHover);
@@ -897,7 +897,7 @@ namespace experience
                   //pgraphics->FillSolidRect(rectEmp,ARGB(128,208,223,233));
                   pgraphics->set(ptab->get_data()->m_brushText);
                }
-               pgraphics->set(ptab->get_font(pstyle, ::user::element_close_tab_button));
+               pgraphics->set(ptab->get_font(pstyle, ::user::e_element_close_tab_button));
                pgraphics->set_alpha_mode(emode);
                pgraphics->_DrawText(MAGIC_PALACE_TAB_TEXT,rectText, e_align_center, e_draw_text_no_prefix);
                rectText.left += sSep.cx;
@@ -1248,9 +1248,9 @@ namespace experience
       
       ::user::estate estate = ptoolbar->get_item_user_state(iItem);
 
-//      ::user::toolbar::e_element eelement = ::user::toolbar::element_item;
-//      ::user::toolbar::e_element eelementImage = ::user::toolbar::element_image;
-//      ::user::toolbar::e_element eelementText = ::user::toolbar::element_text;
+//      ::user::toolbar::enum_element eelement = ::user::toolbar::element_item;
+//      ::user::toolbar::enum_element eelementImage = ::user::toolbar::element_image;
+//      ::user::toolbar::enum_element eelementText = ::user::toolbar::element_text;
 //      if ((nStyle & e_toolbar_item_style_separator) == 0)
 //      {
 //         if ((nStyle & e_toolbar_item_style_disabled) == 0)
@@ -1300,9 +1300,9 @@ namespace experience
       //int iOffsetX = 0;
       //int iOffsetY = 0;
 
-      ptoolbar->_001GetElementRect(iItem, rectItem, ::user::element_item, estate);
+      ptoolbar->_001GetElementRect(iItem, rectItem, ::user::e_element_item, estate);
 
-      ptoolbar->_001GetElementRect(iItem, rectImage, ::user::element_image, estate);
+      ptoolbar->_001GetElementRect(iItem, rectImage, ::user::e_element_image, estate);
 
       if ((estyle & e_toolbar_item_style_separator) != 0)
       {
@@ -1322,9 +1322,9 @@ namespace experience
             if (estate & ::user::e_state_checked)
             {
 
-               ptoolbar->_001GetElementRect(iItem, rectItem, ::user::element_item, estate);
+               ptoolbar->_001GetElementRect(iItem, rectItem, ::user::e_element_item, estate);
 
-               ptoolbar->_001GetElementRect(iItem, rectImage, ::user::element_image, estate);
+               ptoolbar->_001GetElementRect(iItem, rectImage, ::user::e_element_image, estate);
 
                if ((ptoolbar->m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
                {
@@ -1366,7 +1366,7 @@ namespace experience
 
                ::rect rectShadow;
 
-               ptoolbar->_001GetElementRect(iItem, rectShadow, ::user::element_item, estate);
+               ptoolbar->_001GetElementRect(iItem, rectShadow, ::user::e_element_item, estate);
 
                if ((ptoolbar->m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
                {
@@ -1388,7 +1388,7 @@ namespace experience
 
                   ::rect rect;
 
-                  ptoolbar->_001GetElementRect(iItem, rect, ::user::element_image, ::user::e_state_hover);
+                  ptoolbar->_001GetElementRect(iItem, rect, ::user::e_element_image, ::user::e_state_hover);
 
                   System.imaging().color_blend(pgraphics, rect.top_left(), rect.size(), item.m_pimage->g(), ::point(), 0.9);
 
@@ -1398,7 +1398,7 @@ namespace experience
 
                   ::rect rect;
 
-                  ptoolbar->_001GetElementRect(iItem, rect, ::user::element_item, ::user::e_state_hover);
+                  ptoolbar->_001GetElementRect(iItem, rect, ::user::e_element_item, ::user::e_state_hover);
 
                   pmenucentral->MenuV033GetImageListHue()->draw(pgraphics, uImage, rect.top_left(), 0);
 
@@ -1431,7 +1431,7 @@ namespace experience
 
                ::rect rect;
 
-               ptoolbar->_001GetElementRect(iItem, rect, ::user::element_image, ::user::e_state_pressed);
+               ptoolbar->_001GetElementRect(iItem, rect, ::user::e_element_image, ::user::e_state_pressed);
 
                System.imaging().color_blend(pgraphics, rect.top_left(), rect.size(), item.m_pimage->g(), ::point(), 1.0);
 
@@ -1450,7 +1450,7 @@ namespace experience
             if (!(estate & ::user::e_state_disabled))
             {
 
-               ptoolbar->_001GetElementRect(iItem, rectItem, ::user::element_item, ::user::e_state_none);
+               ptoolbar->_001GetElementRect(iItem, rectItem, ::user::e_element_item, ::user::e_state_none);
 
                pgraphics->fill_rect(rectItem, ARGB(190, 255, 255, 255));
 
@@ -1468,7 +1468,7 @@ namespace experience
 
                ::rect rect;
 
-               ptoolbar->_001GetElementRect(iItem, rect, ::user::element_image, ::user::e_state_none);
+               ptoolbar->_001GetElementRect(iItem, rect, ::user::e_element_image, ::user::e_state_none);
 
                System.imaging().color_blend(pgraphics, rect.top_left(), rect.size(), item.m_pimage->g(), ::point(), 0.2);
 
@@ -1519,7 +1519,7 @@ namespace experience
 
          pgraphics->set(brushText);
 
-         if (ptoolbar->_001GetElementRect(iItem, rectText, ::user::element_text, ::user::e_state_none) && rectText.right > 0)
+         if (ptoolbar->_001GetElementRect(iItem, rectText, ::user::e_element_text, ::user::e_state_none) && rectText.right > 0)
          {
 
             pgraphics->_DrawText(item.m_str, rectText, e_align_bottom_left, e_draw_text_no_prefix);
@@ -1557,9 +1557,9 @@ namespace experience
 
       ::user::estate estate = ptoolbar->get_item_user_state(iItem);
 
-      ptoolbar->_001GetElementRect(iItem, rectItem, ::user::element_item, estate);
+      ptoolbar->_001GetElementRect(iItem, rectItem, ::user::e_element_item, estate);
 
-      ptoolbar->_001GetElementRect(iItem, rectImage, ::user::element_image, estate);
+      ptoolbar->_001GetElementRect(iItem, rectImage, ::user::e_element_image, estate);
 
       if (item.m_id.compare_ci("separator") == 0)
       {
@@ -1579,9 +1579,9 @@ namespace experience
             if (estate & ::user::e_state_checked)
             {
 
-               ptoolbar->_001GetElementRect(iItem, rectItem, ::user::element_item, estate);
+               ptoolbar->_001GetElementRect(iItem, rectItem, ::user::e_element_item, estate);
 
-               ptoolbar->_001GetElementRect(iItem, rectImage, ::user::element_image, estate);
+               ptoolbar->_001GetElementRect(iItem, rectImage, ::user::e_element_image, estate);
 
                if ((ptoolbar->m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
                {
@@ -1622,17 +1622,17 @@ namespace experience
 
                ::rect rectShadow;
 
-               ptoolbar->_001GetElementRect(iItem, rectShadow, ::user::element_item, estate);
+               ptoolbar->_001GetElementRect(iItem, rectShadow, ::user::e_element_item, estate);
 
                if ((ptoolbar->m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
                {
 
                   ::draw2d::pen_pointer pen(e_create);
 
-                  pen->create_solid(1, ptoolbar->get_color(pstyle, ::user::element_face, ::user::e_state_hover));
+                  pen->create_solid(1, ptoolbar->get_color(pstyle, ::user::e_element_face, ::user::e_state_hover));
                   ::draw2d::brush_pointer brush(e_create);
 
-                  brush->create_solid(ptoolbar->get_color(pstyle, ::user::element_face, ::user::e_state_hover));
+                  brush->create_solid(ptoolbar->get_color(pstyle, ::user::e_element_face, ::user::e_state_hover));
                   pgraphics->set(pen);
                   pgraphics->set(brush);
                   pgraphics->rectangle(rectItem);
@@ -1644,7 +1644,7 @@ namespace experience
 
                   ::rect rect;
 
-                  ptoolbar->_001GetElementRect(iItem, rect, ::user::element_image, ::user::e_state_hover);
+                  ptoolbar->_001GetElementRect(iItem, rect, ::user::e_element_image, ::user::e_state_hover);
 
                   System.imaging().color_blend(pgraphics, rect.top_left(), rect.size(), item.m_pimage->g(), ::point(), 0.8);
 
@@ -1654,7 +1654,7 @@ namespace experience
 
                   ::rect rect;
 
-                  ptoolbar->_001GetElementRect(iItem, rect, ::user::element_item, ::user::e_state_hover);
+                  ptoolbar->_001GetElementRect(iItem, rect, ::user::e_element_item, ::user::e_state_hover);
 
                   pmenucentral->MenuV033GetImageListHue()->draw(pgraphics, uImage, rect.top_left(), 0);
 
@@ -1672,10 +1672,10 @@ namespace experience
 
                ::draw2d::pen_pointer pen(e_create);
 
-               pen->create_solid(1, ptoolbar->get_color(pstyle, ::user::element_face, ::user::e_state_pressed));
+               pen->create_solid(1, ptoolbar->get_color(pstyle, ::user::e_element_face, ::user::e_state_pressed));
                ::draw2d::brush_pointer brush(e_create);
 
-               brush->create_solid(ptoolbar->get_color(pstyle, ::user::element_face, ::user::e_state_pressed));
+               brush->create_solid(ptoolbar->get_color(pstyle, ::user::e_element_face, ::user::e_state_pressed));
                pgraphics->set(pen);
                pgraphics->set(brush);
                pgraphics->rectangle(rectItem);
@@ -1687,7 +1687,7 @@ namespace experience
 
                ::rect rect;
 
-               ptoolbar->_001GetElementRect(iItem, rect, ::user::element_image, ::user::e_state_pressed);
+               ptoolbar->_001GetElementRect(iItem, rect, ::user::e_element_image, ::user::e_state_pressed);
 
                System.imaging().color_blend(pgraphics, rect.top_left(), rect.size(), item.m_pimage->g(), ::point(), 1.0);
 
@@ -1706,9 +1706,9 @@ namespace experience
             if (!(estate & ::user::e_state_disabled))
             {
 
-               ptoolbar->_001GetElementRect(iItem, rectItem, ::user::element_item, ::user::e_state_none);
+               ptoolbar->_001GetElementRect(iItem, rectItem, ::user::e_element_item, ::user::e_state_none);
 
-               pgraphics->fill_rect(rectItem, ptoolbar->get_color(pstyle, ::user::element_background));
+               pgraphics->fill_rect(rectItem, ptoolbar->get_color(pstyle, ::user::e_element_background));
 
             }
 
@@ -1724,10 +1724,10 @@ namespace experience
 
                ::draw2d::pen_pointer pen(e_create);
 
-               pen->create_solid(1, ptoolbar->get_color(pstyle, ::user::element_face, estate));
+               pen->create_solid(1, ptoolbar->get_color(pstyle, ::user::e_element_face, estate));
                ::draw2d::brush_pointer brush(e_create);
 
-               brush->create_solid(ptoolbar->get_color(pstyle, ::user::element_face, estate));
+               brush->create_solid(ptoolbar->get_color(pstyle, ::user::e_element_face, estate));
                pgraphics->set(pen);
                pgraphics->set(brush);
                pgraphics->rectangle(rectItem);
@@ -1739,7 +1739,7 @@ namespace experience
 
                ::rect rect;
 
-               ptoolbar->_001GetElementRect(iItem, rect, ::user::element_image, estate);
+               ptoolbar->_001GetElementRect(iItem, rect, ::user::e_element_image, estate);
 
                System.imaging().color_blend(pgraphics, rect.top_left(), rect.size(), item.m_pimage->g(), ::point(), 0.20);
 
@@ -1786,15 +1786,15 @@ namespace experience
          else
          {
 
-            brushText->create_solid(ptoolbar->get_color(pstyle, ::user::element_background,
+            brushText->create_solid(ptoolbar->get_color(pstyle, ::user::e_element_background,
             ::user::e_state_disabled));
 
-            pgraphics->set_text_color(ptoolbar->get_color(pstyle, ::user::element_text,
+            pgraphics->set_text_color(ptoolbar->get_color(pstyle, ::user::e_element_text,
             ::user::e_state_disabled));
 
          }
 
-         if (ptoolbar->_001GetElementRect(iItem, rectText, ::user::element_text, estate) && rectText.right > 0)
+         if (ptoolbar->_001GetElementRect(iItem, rectText, ::user::e_element_text, estate) && rectText.right > 0)
          {
 
             pgraphics->set(brushText);

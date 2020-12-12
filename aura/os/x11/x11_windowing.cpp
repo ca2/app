@@ -308,7 +308,7 @@ public:
 //
 //   GC gc = create_gc();
 //
-//   color32_t crBk = get_simple_ui_color(::user::element_background);
+//   color32_t crBk = get_simple_ui_color(::user::e_element_background);
 //
 //   crBk = argb_swap_rb(crBk);
 //
@@ -320,7 +320,7 @@ public:
 //
 //   auto gcontext = XGContextFromGC(gc);
 //
-//   color32_t crText = get_simple_ui_color(::user::element_text);
+//   color32_t crText = get_simple_ui_color(::user::e_element_text);
 //
 //   crText = argb_swap_rb(crText);
 //

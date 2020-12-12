@@ -28,9 +28,8 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 #include "framework.h"
-//#include "apex/net/net_sockets.h"
-////
-////#include <errno.h>
+#include "apex/net/sockets/_sockets.h"
+
 
 namespace sockets
 {

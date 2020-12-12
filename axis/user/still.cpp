@@ -225,7 +225,7 @@ namespace user
 
    //   pmessage->previous();
 
-   //   e_element eelement;
+   //   enum_element eelement;
 
    //   ::point point = pmouse->m_point;
 
@@ -255,7 +255,7 @@ namespace user
 
    //   pmessage->previous();
 
-   //   e_element eelement;
+   //   enum_element eelement;
 
    //   ::point point = pmouse->m_point;
 
@@ -289,7 +289,7 @@ namespace user
 
    //   //SCAST_PTR(::message::mouse, pmouse, pmessage);
 
-   //   //e_element eelement;
+   //   //enum_element eelement;
 
    //   //::point point = pmouse->m_point;
 
@@ -355,7 +355,7 @@ namespace user
 
    //   //SCAST_PTR(::message::mouse, pmouse, pmessage);
 
-   //   //e_element eelement;
+   //   //enum_element eelement;
 
    //   //index iHover = hit_test(pmouse->m_point, eelement);
    //   //if (iHover != m_iHover)
@@ -608,7 +608,7 @@ namespace user
    }
 
 
-   ::draw2d::font_pointer still::get_font(style * pstyle, e_element eelement, estate estate) const
+   ::draw2d::font_pointer still::get_font(style * pstyle, enum_element eelement, estate estate) const
    {
 
       //if (pstyle)

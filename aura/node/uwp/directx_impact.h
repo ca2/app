@@ -14,6 +14,36 @@ namespace uwp
       __pointer(::user::interaction)                           m_puserinteraction;
       __pointer(::uwp::interaction_impl)                       m_pimpl;
 
+      template < typename PRED >
+      void sync(PRED pred)
+      {
+
+         Windows::UI::Core::CoreDispatcher ^ pdispatcher = nullptr;
+
+         if (m_pimpl->m_view.Get())
+         {
+
+            pdispatcher = m_pimpl->m_view->Dispatcher;
+
+         }
+         else
+         {
+
+            pdispatcher = m_pimpl->m_window->Dispatcher;
+
+         }
+
+         ::wait(pdispatcher->RunAsync(::Windows::UI::Core::CoreDispatcherPriority::Normal,
+            ref new Windows::UI::Core::DispatchedHandler([pred]()
+               {
+
+                  pred();
+
+               })));
+
+
+      }
+
 
    public:
 
@@ -36,13 +66,12 @@ namespace uwp
    internal:
 
 
-      bool                                                     m_bNotifyLayoutCompletedPending;
       bool                                                     m_bTextCompositionActive;
       widestring                                               m_strText;
       widestring                                               m_strNewText;
       ::aura::system *                                         m_psystem;
 
-      ::Windows::UI::Core::CoreWindowResizeManager ^           m_resizemanager;
+      Agile < ::Windows::UI::Core::CoreWindowResizeManager >   m_resizemanager;
 
 
       Agile < Windows::UI::Core::CoreWindow >                  m_window;

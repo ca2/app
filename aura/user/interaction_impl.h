@@ -256,12 +256,12 @@ namespace user
 
 
       // advanced creation (allows access to extended styles)
-      virtual bool create_window_ex(::user::interaction * pinteraction, ::user::create_struct & cs, ::user::interaction * puiParent, id id) override;
+      virtual bool create_window_ex(::user::interaction * pinteraction, __pointer(::user::create_struct) pcs, ::user::interaction * puiParent, id id) override;
 
 
-      virtual bool native_create_window_ex(::user::interaction * pinteraction, ::user::create_struct & cs, oswindow oswindowParent = nullptr, id id = ::id());
+      virtual bool native_create_window_ex(::user::interaction * pinteraction, __pointer(::user::create_struct) pcreatestruct, oswindow oswindowParent = nullptr, id id = ::id());
 
-      virtual bool _native_create_window_ex(::user::create_struct & cs);
+      virtual bool _native_create_window_ex(__pointer(::user::create_struct) pcreatestruct);
 
 
       virtual bool destroy_impl_only() override;
@@ -269,7 +269,7 @@ namespace user
       virtual void destroy_window() override;
 
       // special pre-creation and interaction_impl rect adjustment hooks
-      virtual bool pre_create_window(::user::create_struct& cs) override;
+      virtual bool pre_create_window(::user::create_struct * pcreatestruct) override;
 
       // Advanced: virtual AdjustWindowRect
 //      enum AdjustType { adjustBorder = 0,adjustOutside = 1 };
@@ -387,6 +387,9 @@ namespace user
       virtual bool EnableScrollBar(i32 nSBFlags,::u32 nArrowFlags = 3);
 
 #endif
+
+
+      virtual ::point get_cursor_pos() const;
 
 
       //virtual bool DrawAnimatedRects(i32 idAni,const LPRECTprcFrom,const LPRECTlprcTo);

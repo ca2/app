@@ -58,7 +58,7 @@ namespace app_net
 
       auto pstyle = get_style(pgraphics);
 
-      auto colorText = get_color(pstyle, ::user::element_text);
+      auto colorText = get_color(pstyle, ::user::e_element_text);
 
       pgraphics->set_text_color(colorText);
 
@@ -86,9 +86,9 @@ namespace app_net
 
          auto elapsed = m_millisStartGettingUrl.elapsed();
 
-         auto millis = duration(elapsed).get_total_milliseconds();
+         auto millis = duration(elapsed).millis();
 
-         strGet = "Getting Url " + strDots.Left((millis / 300) % 4);
+         strGet = "Getting Url " + strDots.Left((millis.m_iMilliseconds / 300) % 4);
 
       }
       else
@@ -113,7 +113,7 @@ namespace app_net
 
       }
 
-      if (pitem->m_eelement == ::user::element_close_button)
+      if (pitem->m_eelement == ::user::e_element_close_button)
       {
 
          ::user::draw_close_button(pgraphics, this, pitem);

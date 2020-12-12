@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "acme/os/cross/windows/e.h"
+#include "acme/os/cross/windows/windows_internals.h"
 
 #undef WINAXISAPI
 #define WINAXISAPI CLASS_DECL_ACME

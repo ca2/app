@@ -2,6 +2,7 @@
 #include "_winrt.h"
 #include "aura/node/uwp/_uwp.h"
 #include "aura/os/windows_common/draw2d_direct2d_global.h"
+#include "aura/node/uwp/directx_application.h"
 
 
 CLASS_DECL_AURA int g_iMouse = -1;
@@ -584,7 +585,41 @@ namespace user
 
       auto psystem = ::get_context_system()->m_paurasystem;
 
-      auto color = psystem->m_pimplMain->m_frameworkview->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
+      if (!psystem)
+      {
+
+         return ARGB(255, 255, 255, 255);
+
+      }
+
+      auto pimplMain = psystem->m_pimplMain;
+
+      if(!pimplMain)
+      {
+
+         return ARGB(255, 255, 255, 255);
+
+      }
+
+      auto pframeworkview = pimplMain->m_pframeworkview;
+
+      if (!pframeworkview)
+      {
+
+         return ARGB(255, 255, 255, 255);
+
+      }
+
+      auto puisettings = pframeworkview->m_puisettings;
+
+      if (!puisettings)
+      {
+
+         return ARGB(255, 255, 255, 255);
+
+      }
+
+      auto color = puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
 
       auto r = color.R;
 
@@ -597,26 +632,27 @@ namespace user
    }
 
 
-   CLASS_DECL_AURA double calc_system_app_luminance()
+   CLASS_DECL_AURA void os_set_dark_mode_colors()
    {
 
-      auto psystem = ::get_context_system()->m_paurasystem;
+      set_system_app_background_color(calc_system_app_background_color());
 
-      auto color = psystem->m_pimplMain->m_frameworkview->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
-
-      double r = color.R;
-
-      double g = color.G;
-
-      double b = color.B;
-
-      return (r + g + b) / (255.0 * 3.0);
+      ::user::set_system_app_luminance(::user::calc_system_app_luminance());
 
    }
 
 
+   CLASS_DECL_AURA double calc_system_app_luminance()
+   {
 
+      auto color = get_system_app_background_color();
 
+      int iLuminance3 = color.m_iR + color.m_iG + color.m_iB;
+
+      return (double) iLuminance3 / (255.0 * 3.0);
+
+   }
+   
 
 } // namespace user
 

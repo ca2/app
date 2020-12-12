@@ -18,7 +18,7 @@ namespace user
 
       ::rectd rectd(pitem->m_rect);
 
-      auto color = puserinteraction->get_color(pstyle, ::user::element_background);
+      auto color = puserinteraction->get_color(pstyle, ::user::e_element_background);
 
       ppen->create_solid(rectd.minimum_dimension() / 10.0, color);
 
@@ -26,7 +26,7 @@ namespace user
 
       pgraphics->set(pbrush);
 
-      if (puserinteraction->m_itemHover == ::user::element_close_button)
+      if (puserinteraction->m_itemHover == ::user::e_element_close_button)
       {
 
          color.m_iA = 180;

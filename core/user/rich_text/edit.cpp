@@ -267,11 +267,11 @@ namespace user
       }
 
 
-      bool edit::get_element_rect(RECT32 * prect, index i, e_element eelement)
+      bool edit::get_element_rect(RECT32 * prect, index i, enum_element eelement)
 
       {
 
-         if (eelement == ::user::element_icon)
+         if (eelement == ::user::e_element_icon)
          {
 
             if (!get_item_rect(prect, i))
@@ -285,7 +285,7 @@ namespace user
             return true;
 
          }
-         else if (eelement == ::user::element_text)
+         else if (eelement == ::user::e_element_text)
          {
 
             if (!get_item_rect(prect, i))

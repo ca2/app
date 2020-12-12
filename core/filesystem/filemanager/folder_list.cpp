@@ -79,14 +79,14 @@ namespace filemanager
 
    }
 
-   bool folder_list::pre_create_window(::user::create_struct& cs)
+   bool folder_list::pre_create_window(::user::create_struct * pcreatestruct)
    {
 
 #ifdef WINDOWS_DESKTOP
 
 #endif
 
-      return ::user::impact::pre_create_window(cs);
+      return ::user::impact::pre_create_window(pcreatestruct);
 
    }
 

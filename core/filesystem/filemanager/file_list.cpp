@@ -181,7 +181,7 @@ namespace filemanager
    }
 
 
-   bool file_list::pre_create_window(::user::create_struct& cs)
+   bool file_list::pre_create_window(::user::create_struct * pcreatestruct)
    {
 
 #ifdef WINDOWS_DESKTOP
@@ -190,7 +190,7 @@ namespace filemanager
 
 #endif
 
-      return ::user::impact::pre_create_window(cs);
+      return ::user::impact::pre_create_window(pcreatestruct);
 
    }
 

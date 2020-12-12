@@ -594,12 +594,12 @@ bool __node_apex_pos_term()
 
 }
 
-void os_term_application()
-{
+// void os_term_application()
+// {
 
-   ::Windows::ApplicationModel::Core::CoreApplication::Exit();
+//    ::Windows::ApplicationModel::Core::CoreApplication::Exit();
 
-}
+// }
 
 
 

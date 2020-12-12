@@ -221,7 +221,7 @@ namespace user
 
       void UpdateFrameTitleForDocument(const char * pszDocName);
 
-      virtual bool pre_create_window(::user::create_struct& cs) override;
+      virtual bool pre_create_window(::user::create_struct * pcreatestruct) override;
       //virtual bool OnCommand(WPARAM wParam, LPARAM lParam);
       virtual void PostNcDestroy() override;   // default to delete this.
       i32 OnCreateHelper(::user::create_struct * pcs, ::create * pcreate);

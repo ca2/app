@@ -10,7 +10,9 @@ namespace uwp
    CLASS_DECL_AURA LRESULT CALLBACK __cbt_filter_hook(int, WPARAM, LPARAM);
    CLASS_DECL_AURA LRESULT __call_window_procedure(::user::interaction * pWnd, oswindow hWnd, ::u32 nMsg, WPARAM wParam, LPARAM lParam);
 
+   
    ref class directx_framework_view;
+
 
    class CLASS_DECL_AURA interaction_impl :
       virtual public ::user::interaction_impl
@@ -18,10 +20,12 @@ namespace uwp
    public:
 
 
-      directx_framework_view ^                                          m_frameworkview;
+      directx_framework_view ^                                          m_pframeworkview;
       ::user::message_queue_listener *                                  m_plistener;
+      bool                                                              m_bNotifyLayoutCompletedPending;
       string                                                            m_strWindowText;
       pointd                                                            m_pointLastMouseMove;
+      //pointd                                                            m_pointCursor;
       double                                                            m_dAccumulatedMouseMoveDistance;
       millis                                                              m_millisLastMouseMove;
       Agile < Windows::ApplicationModel::Core::CoreApplicationView >    m_view;
@@ -63,8 +67,8 @@ namespace uwp
       //virtual bool create_native_window(::user::native_window_initialize * pinitialize) override;
 
 
-      LONG_PTR get_window_long_ptr(i32 nIndex) const;
-      LONG_PTR set_window_long_ptr(i32 nIndex, LONG_PTR lValue);
+      virtual iptr get_window_long_ptr(i32 nIndex) const override;
+      virtual iptr set_window_long_ptr(i32 nIndex, iptr lValue) override;
 
       static const MSG* GetCurrentMessage();
 
@@ -87,7 +91,7 @@ namespace uwp
 
       virtual void on_control_event(::user::control_event * pevent) override;
 
-      virtual ::estatus main_async(const method & method, e_priority epriority = priority_normal);
+      virtual ::estatus main_async(const ::promise::routine & routine, e_priority epriority = priority_normal);
 
       void _002OnDraw(::image * pimage);
 
@@ -137,7 +141,10 @@ namespace uwp
       // for child windows, views, panes etc
       //virtual bool create_window(::user::interaction * pinteraction, const char * lpszClassName,const char * lpszWindowName,u32 dwStyle,const RECT32 & rect,::user::interaction * pParentWnd,id id, ::create * pcreate = nullptr) override;
 
-      virtual bool _native_create_window_ex(::user::create_struct& cs);
+      virtual bool _native_create_window_ex(__pointer(::user::create_struct) pcs);
+
+
+      virtual ::point get_cursor_pos() const;
 
 
       //virtual bool CreateEx(u32 dwExStyle, const char * lpszClassName,
@@ -154,7 +161,7 @@ namespace uwp
       virtual bool DestroyWindow();
 
       // special pre-creation and ::user::interaction_impl rect adjustment hooks
-      virtual bool pre_create_window(::user::create_struct& cs);
+      virtual bool pre_create_window(::user::create_struct * pcreatestruct);
 
       // Advanced: virtual AdjustWindowRect
       enum AdjustType { adjustBorder = 0, adjustOutside = 1 };
@@ -704,5 +711,13 @@ namespace uwp
 
 } // namespace uwp
 
+
+
+inline ::uwp::interaction_impl * __uwp_user_interaction_impl(::layered * playered)
+{
+
+   return (::uwp::interaction_impl *)playered->layer(LAYERED_OS_USER_INTERACTION_IMPL);
+
+}
 
 

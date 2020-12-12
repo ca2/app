@@ -41,7 +41,7 @@ namespace user
       
       virtual void install_message_routing(::channel * psender) override;
 
-      virtual ::user::e_translucency get_translucency(::user::style* pstyle) const override;
+      virtual ::user::enum_translucency get_translucency(::user::style* pstyle) const override;
 
       DECL_GEN_SIGNAL(_001OnCreate);
 

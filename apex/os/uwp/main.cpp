@@ -242,41 +242,41 @@ void CLASS_DECL_APEX __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_
 }
 
 
-string ca2_command_line()
-{
+// string ca2_command_line()
+// {
 
-   string strAppId = Windows::ApplicationModel::Package::Current->Id->Name;
+//    string strAppId = Windows::ApplicationModel::Package::Current->Id->Name;
 
-   if (strAppId.is_empty())
-   {
+//    if (strAppId.is_empty())
+//    {
 
-      return "";
+//       return "";
 
-   }
+//    }
 
-   if (!::str::begins_eat_ci(strAppId, "com."))
-   {
+//    if (!::str::begins_eat_ci(strAppId, "com."))
+//    {
 
-      ::str::begins_eat_ci(strAppId, "com.ca2.");
+//       ::str::begins_eat_ci(strAppId, "com.ca2.");
 
-   }
+//    }
 
-   string_array stra;
+//    string_array stra;
 
-   stra.explode(".", strAppId);
+//    stra.explode(".", strAppId);
 
-   stra.pred_each([](auto & str)
-   {
+//    stra.pred_each([](auto & str)
+//    {
 
-      str.replace("-", "_");
+//       str.replace("-", "_");
 
-   }, 1);
+//    }, 1);
 
-   strAppId = stra.implode("/");
+//    strAppId = stra.implode("/");
 
-   return "app.exe : app=" + strAppId + " client_only";
+//    return "app.exe : app=" + strAppId + " client_only";
 
-}
+// }
 
 
 

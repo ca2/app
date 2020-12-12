@@ -105,7 +105,7 @@ public:
 
 //  virtual bool _001GetItemRect(index iItem,RECT32 * prect)
 
-   virtual bool _001GetElementRect(index iItem,RECT32 * prect, ::user::e_element eelement,
+   virtual bool _001GetElementRect(index iItem,RECT32 * prect, ::user::enum_element eelement,
                                    ::user::estate estate) override;
 
 

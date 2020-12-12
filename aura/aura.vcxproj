@@ -1125,6 +1125,7 @@
     <ClCompile Include="node\windows\trace.cpp" />
     <ClCompile Include="node\windows_common\application.cpp" />
     <ClCompile Include="os\windowing.cpp" />
+    <ClCompile Include="os\windows\application_system_run.cpp" />
     <ClCompile Include="os\windows\aura.cpp" />
     <ClCompile Include="os\windows\gdi.cpp" />
     <ClCompile Include="os\windows\graphics.cpp" />

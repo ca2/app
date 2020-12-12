@@ -2190,7 +2190,7 @@ namespace axis
    }
 
 
-   ::type application::control_type_from_id(const ::id& id, ::user::e_control_type& econtroltype)
+   ::type application::control_type_from_id(const ::id& id, ::user::enum_control_type& econtroltype)
    {
 
       string str(id);

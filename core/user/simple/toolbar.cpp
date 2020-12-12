@@ -242,7 +242,7 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
    auto pstyle = get_style(pgraphics);
 
-   pgraphics->fill_rect(rectClient, get_color(pstyle, ::user::element_background));
+   pgraphics->fill_rect(rectClient, get_color(pstyle, ::user::e_element_background));
 
    //::user::interaction::_001OnDraw(pgraphics);
 
@@ -689,9 +689,9 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
    
    auto estate = get_item_user_state(iItem);
 
-   _001GetElementRect(iItem, rectItem, ::user::element_item, estate);
+   _001GetElementRect(iItem, rectItem, ::user::e_element_item, estate);
 
-   _001GetElementRect(iItem, rectImage, ::user::element_image, estate);
+   _001GetElementRect(iItem, rectImage, ::user::e_element_image, estate);
 
    if (estyle & e_toolbar_item_style_separator)
    {
@@ -718,9 +718,9 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
          if (estate & ::user::e_state_checked)
          {
 
-            _001GetElementRect(iItem, rectItem, ::user::element_item, estate);
+            _001GetElementRect(iItem, rectItem, ::user::e_element_item, estate);
 
-            _001GetElementRect(iItem, rectImage,::user::element_image, estate);
+            _001GetElementRect(iItem, rectImage,::user::e_element_image, estate);
 
             if ((m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
             {
@@ -762,7 +762,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
             ::rect rectShadow;
 
-            _001GetElementRect(iItem, rectShadow, ::user::element_item, estate);
+            _001GetElementRect(iItem, rectShadow, ::user::e_element_item, estate);
 
             if ((m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
             {
@@ -788,7 +788,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
                ::rect rect;
 
-               _001GetElementRect(iItem, rect, ::user::element_image, estate);
+               _001GetElementRect(iItem, rect, ::user::e_element_image, estate);
 
                System.imaging().color_blend(pgraphics, rect.top_left(), rect.size(), item.m_pimage->g(), nullptr, 0.85);
 
@@ -798,7 +798,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
                ::rect rect;
 
-               _001GetElementRect(iItem, rect, ::user::element_image, estate);
+               _001GetElementRect(iItem, rect, ::user::e_element_image, estate);
 
                pmenucentral->MenuV033GetImageListHue()->draw(pgraphics, uImage, rect.top_left(), 0);
 
@@ -836,7 +836,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
             ::rect rect;
 
-            _001GetElementRect(iItem, rect, ::user::element_image, estate);
+            _001GetElementRect(iItem, rect, ::user::e_element_image, estate);
 
             System.imaging().color_blend(pgraphics, rect.top_left(), rect.size(), item.m_pimage->g(), nullptr, 1.0);
 
@@ -855,7 +855,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
          if (!(estate & ::user::e_state_disabled))
          {
 
-            _001GetElementRect(iItem, rectItem, ::user::element_item, estate);
+            _001GetElementRect(iItem, rectItem, ::user::e_element_item, estate);
 
             pgraphics->fill_rect(rectItem, ARGB(190, 255, 255, 255));
 
@@ -873,7 +873,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
             ::rect rect;
 
-            if(_001GetElementRect(iItem, rect, ::user::element_image, estate))
+            if(_001GetElementRect(iItem, rect, ::user::e_element_image, estate))
             {
 
 //            if(rect.width() > 10000)
@@ -938,7 +938,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
       pgraphics->set(brushText);
 
-      if (_001GetElementRect(iItem, rectText, ::user::element_text, estate) && rectText.right > 0)
+      if (_001GetElementRect(iItem, rectText, ::user::e_element_text, estate) && rectText.right > 0)
       {
 
          pgraphics->_DrawText(item.m_str, rectText, e_align_bottom_left, e_draw_text_no_prefix);
@@ -950,7 +950,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 }
 
 
-bool simple_toolbar::_001GetElementRect(index iItem, RECT32 * prect, ::user::e_element eelement, ::user::estate estate)
+bool simple_toolbar::_001GetElementRect(index iItem, RECT32 * prect, ::user::enum_element eelement, ::user::estate estate)
 {
 
    if (iItem < 0 || iItem >= m_itema.get_size())
@@ -979,12 +979,12 @@ bool simple_toolbar::_001GetElementRect(index iItem, RECT32 * prect, ::user::e_e
 
       switch (eelement)
       {
-         case ::user::element_item:
+         case ::user::e_element_item:
 
          rect = item.m_rect;
 
          break;
-      case ::user::element_image:
+      case ::user::e_element_image:
 
          if (item.m_pimage->is_null() || item.m_pimage->area() <= 0)
          {
@@ -1001,7 +1001,7 @@ bool simple_toolbar::_001GetElementRect(index iItem, RECT32 * prect, ::user::e_e
          rect.right = rect.left + item.m_pimage->width();
 
          break;
-      case ::user::element_text:
+      case ::user::e_element_text:
       {
 
          rect = item.m_rect;
@@ -1358,7 +1358,7 @@ void simple_toolbar::on_hit_test(::user::item & item)
       if (m_itema[iItem]->m_rect.contains(item.m_pointHitTest))
       {
 
-         item = {::user::element_item, iItem};
+         item = {::user::e_element_item, iItem};
 
          return;
 
@@ -1371,7 +1371,7 @@ void simple_toolbar::on_hit_test(::user::item & item)
    if (psession->GetCapture() == this)
    {
 
-      item = ::user::element_none;
+      item = ::user::e_element_none;
 
       return;
 
@@ -1386,7 +1386,7 @@ void simple_toolbar::on_hit_test(::user::item & item)
    if (rectWindow.contains(item.m_pointHitTest))
    {
 
-      item = ::user::element_none;
+      item = ::user::e_element_none;
 
       return;
 
@@ -1394,7 +1394,7 @@ void simple_toolbar::on_hit_test(::user::item & item)
    else
    {
 
-      item = ::user::element_none;
+      item = ::user::e_element_none;
 
       return;
 
@@ -2459,7 +2459,7 @@ size simple_toolbar::CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics, in
 //
 //   SCAST_PTR(::message::base, pbase, pmessage);
 //
-//   m_itemHover = ::user::element_none;
+//   m_itemHover = ::user::e_element_none;
 //
 //   OnUpdateHover();
 //

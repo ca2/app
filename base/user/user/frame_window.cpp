@@ -829,28 +829,28 @@ namespace user
    }
 
 
-   bool frame_window::pre_create_window(::user::create_struct& cs)
+   bool frame_window::pre_create_window(::user::create_struct * pcreatestruct)
    {
 
-      if (cs.style & FWS_ADDTOTITLE)
+      if (pcreatestruct->m_createstruct.style & FWS_ADDTOTITLE)
       {
 
-         cs.style |= FWS_PREFIXTITLE;
+         pcreatestruct->m_createstruct.style |= FWS_PREFIXTITLE;
 
       }
 
-      if(cs.hwndParent != nullptr)
+      if(pcreatestruct->m_createstruct.hwndParent != nullptr)
       {
 
-         cs.style |= WS_CHILD;
+         pcreatestruct->m_createstruct.style |= WS_CHILD;
 
       }
 
-      //cs.style &= ~WS_VISIBLE;
+      //pcreatestruct->m_createstruct.style &= ~WS_VISIBLE;
 
 #ifdef WINDOWS_DESKTOP
 
-      cs.style &= ~WS_CAPTION;
+      pcreatestruct->m_createstruct.style &= ~WS_CAPTION;
 
 #endif
 
@@ -866,9 +866,9 @@ namespace user
 
       m_strFrameTitle = pszWindowName;    // save title for later
 
-      ::user::create_struct createstruct(dwExStyle, pszClassName, pszWindowName, uStyle, rect, pcreate);
+      auto pcreatestruct = __new(::user::create_struct (dwExStyle, pszClassName, pszWindowName, uStyle, rect, pcreate));
 
-      if (!::user::interaction::create_window_ex(createstruct, puiParent, pcreate->m_id))
+      if (!::user::interaction::create_window_ex(pcreatestruct, puiParent, pcreate->m_id))
       {
 
          TRACE(trace_category_appmsg, trace_level_warning, "Warning: failed to create frame_window.\n");
@@ -948,11 +948,9 @@ namespace user
       if (!(m_ewindowflag & window_flag_window_created))
       {
 
-         ENSURE_ARG(pcreatemessage->m_lpcreatestruct != nullptr);
+         __pointer(::create) pcreate((::create*) pcreatemessage->get_create());
 
-         __pointer(::create) pcreate((::create*) pcreatemessage->m_lpcreatestruct->CREATE_STRUCT_P_CREATE_PARAMS);
-
-         pcreatemessage->m_lresult = OnCreateHelper(pcreatemessage->m_lpcreatestruct, pcreate);
+         pcreatemessage->m_lresult = OnCreateHelper(pcreatemessage->get_create_struct(), pcreate);
 
          pcreatemessage->m_bRet = pcreatemessage->m_lresult == -1;
 
@@ -970,13 +968,10 @@ namespace user
    }
 
 
-   i32 frame_window::OnCreateHelper(::user::create_struct * pcs, ::create * pcreate)
-
+   i32 frame_window::OnCreateHelper(::user::create_struct * pcreatestruct, ::create * pcreate)
    {
 
-      // create special children first
-      if (!on_create_client(pcs, pcreate))
-
+      if (!on_create_client(pcreatestruct, pcreate))
       {
 
          TRACE(trace_category_appmsg, trace_level_error, "Failed to create client pane/::user::impact for frame.\n");
@@ -985,13 +980,7 @@ namespace user
 
       }
 
-      // post message for initial message string
-      // trans   PostMessage(WM_SETMESSAGESTRING, __IDS_IDLEMESSAGE);
-
-      // make sure the child windows have been properly sized
-      //   on_layout(::draw2d::graphics_pointer & pgraphics);
-
-      return 0;   // create ok
+      return 0;
 
    }
 
@@ -1057,9 +1046,9 @@ namespace user
 
       output_debug_string("\nm_bLayoutEnable FALSE");
 
-      ::user::create_struct createstruct(0L, nullptr, m_strFrameTitle, dwDefaultStyle, rectFrame, pcreate);
+      auto pcreatestruct = __new(::user::create_struct (0L, nullptr, m_strFrameTitle, dwDefaultStyle, rectFrame, pcreate));
 
-      if (!create_window_ex(createstruct, puiParent, pcreate->m_id))
+      if (!create_window_ex(pcreatestruct, puiParent, pcreate->m_id))
       {
 
          return false;   // will self destruct on failure normally

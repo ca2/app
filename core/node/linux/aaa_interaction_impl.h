@@ -128,23 +128,23 @@ namespace linux
 //      // advanced creation (allows access to extended styles)
 //      virtual bool create_window_ex(
 //      ::user::interaction * pinteraction,
-//      ::user::create_struct & cs,
+//      __pointer(::user::create_struct) pcreatestruct,
 //      ::user::interaction * pParentWnd = nullptr,
 //      id id = ::id()) override;
 
-    virtual bool _native_create_window_ex(::user::create_struct & cs) override;
+    virtual bool _native_create_window_ex(__pointer(::user::create_struct) pcreatestruct) override;
 
 
 //      virtual bool native_create_window_ex(
 //      ::user::interaction * pinteraction,
-//      ::user::create_struct & cs,
+//      __pointer(::user::create_struct) pcreatestruct,
 //      ::user::interaction * pParentWnd = nullptr,
 //      id id = ::id());
 
       virtual bool DestroyWindow() override;
 
       // special pre-creation and ::user::interaction_impl rect adjustment hooks
-      virtual bool pre_create_window(::user::create_struct & cs) override;
+      virtual bool pre_create_window(::user::create_struct * pcreatestruct) override;
 
       // Advanced: virtual AdjustWindowRect
 //      enum AdjustType { adjustBorder = 0, adjustOutside = 1 };

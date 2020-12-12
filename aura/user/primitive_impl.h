@@ -97,7 +97,7 @@ virtual bool setWMClass(const char * psz);
       virtual bool create_window(::user::interaction * pinteraction, const ::rect & rect, ::user::interaction *pparent, id id);
       virtual bool create_window(::user::interaction * pinteraction, const char * pszClassName, const char * pszWindowName, u32 uStyle, const ::rect & rect, ::user::interaction * puiParent, id id, ::create * pcreate = nullptr);
 
-      virtual bool create_window_ex(::user::interaction * pinteraction, ::user::create_struct & cs, ::user::interaction * puiParent = nullptr, id id = ::id());
+      virtual bool create_window_ex(::user::interaction * pinteraction,__pointer(::user::create_struct) pcs, ::user::interaction * puiParent = nullptr, id id = ::id());
 
 
 
@@ -267,7 +267,7 @@ virtual bool setWMClass(const char * psz);
       virtual bool get_rect_normal(RECT32 * prect);
 
 
-      virtual bool SetTimer(uptr uEvent, ::u32 nElapse, PFN_TIMER pfnTimer = nullptr) override;
+      virtual bool SetTimer(uptr uEvent, ::millis millisElapse, PFN_TIMER pfnTimer = nullptr) override;
       virtual bool KillTimer(uptr uEvent) override;
 
       virtual void _001OnTimer(::timer * ptimer) override;

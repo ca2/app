@@ -76,7 +76,7 @@ namespace user
       virtual bool create_window(::user::interaction * pinteraction, const ::rect & rect, ::user::interaction * pparent, id id) override;
       virtual bool create_window(::user::interaction * pinteraction, const char * pszClassName, const char * pszWindowName, u32 uStyle, const ::rect & rect, ::user::interaction * puiParent, id id, ::create * pContext = nullptr) override;
 
-      virtual bool create_window_ex(::user::interaction * pinteraction, ::user::create_struct & cs, ::user::interaction * puiParent, id id) override;
+      virtual bool create_window_ex(::user::interaction * pinteraction, __pointer(::user::create_struct) pcs, ::user::interaction * puiParent, id id) override;
 
       virtual iptr get_window_long_ptr(i32 nIndex) const override;
       virtual iptr set_window_long_ptr(i32 nIndex, iptr lValue) override;

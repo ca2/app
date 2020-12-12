@@ -112,9 +112,9 @@ void simple_menu_bar::SetMenuID(::u32 uResourceId)
    m_uResourceId = uResourceId;
 }
 
-bool simple_menu_bar::pre_create_window(::user::create_struct& cs)
+bool simple_menu_bar::pre_create_window(::user::create_struct * pcreatestruct)
 {
-   return simple_toolbar::pre_create_window(cs);
+   return simple_toolbar::pre_create_window(pcreatestruct);
 }
 
 
@@ -167,7 +167,7 @@ bool simple_menu_bar::_track_popup_menu(index iItem)
    m_iButtonPressItem = iItem;
    set_need_redraw();
    ::rect rect;
-   _001GetElementRect(iItem, rect, ::user::element_item, ::user::e_state_none);
+   _001GetElementRect(iItem, rect, ::user::e_element_item, ::user::e_state_none);
    _001ClientToScreen(rect);
 
    /*#ifdef WINDOWS_DESKTOP
@@ -526,7 +526,7 @@ bool simple_menu_bar::ReloadMenuBar()
 
 }
 */
-/*bool simple_menu_bar::_001GetItemRect(index iItem, RECT32 * prect, e_element eelement)
+/*bool simple_menu_bar::_001GetItemRect(index iItem, RECT32 * prect, enum_element eelement)
 
 {
    if(iItem < 0 ||
@@ -748,8 +748,8 @@ size simple_menu_bar::CalcFixedLayout(bool bStretch, bool bHorz)
    SimpleMenuBarButton & button = m_buttona[iItem];
 
 
-   e_element eelement = element_item;
-   e_element eelementText = element_text;
+   enum_element eelement = element_item;
+   enum_element eelementText = element_text;
    if(m_iTracking >= 0)
    {
       if(iItem == m_iTracking)

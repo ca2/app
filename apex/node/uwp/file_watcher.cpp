@@ -62,9 +62,9 @@ namespace file
 
          action action;
 
-         psubject->m_pwatch = m_pwatch;
+         action.m_pwatch = m_pwatch;
 
-         psubject->m_pathFolder = m_pwatch->m_pathFolder;
+         action.m_pathFolder = m_pwatch->m_pathFolder;
 
          //psubject->m_ulOsAction = -1;
 

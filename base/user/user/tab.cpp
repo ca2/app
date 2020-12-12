@@ -21,27 +21,28 @@ namespace user
 
    tab::data::data() :
       m_pen(e_create),
-      m_brushTextHover(e_create),
-      m_brushTextSel(e_create),
-      m_brushText(e_create),
+      //m_brushTextHover(e_create),
+      //m_brushTextSel(e_create),
+      //m_brushText(e_create),
       m_brushCloseHover(e_create),
       m_brushCloseSel(e_create),
-      m_brushClose(e_create),
-      m_penBorder(e_create),
-      m_penBorderSel(e_create),
-      m_penBorderHover(e_create)
+      m_brushClose(e_create)
+      //,
+      //m_penBorder(e_create),
+      //m_penBorderSel(e_create),
+      //m_penBorderHover(e_create)
    {
 
       m_bNoClient = false;
-      m_brushTextHover->create_solid(ARGB(255, 0, 127, 255));
-      m_brushTextSel->create_solid(ARGB(255, 0, 0, 0));
-      m_brushText->create_solid(ARGB(163, 0, 0, 0));
+      //m_brushTextHover->create_solid(ARGB(255, 0, 127, 255));
+      //m_brushTextSel->create_solid(ARGB(255, 0, 0, 0));
+      //m_brushText->create_solid(ARGB(163, 0, 0, 0));
       m_brushCloseHover->create_solid(ARGB(255, 255, 127, 0));
       m_brushCloseSel->create_solid(ARGB(255, 0, 0, 0));
       m_brushClose->create_solid(ARGB(163, 0, 0, 0));
-      m_penBorderHover->create_solid(1.0, ARGB(255, 0, 0, 0));
-      m_penBorderSel->create_solid(1.0, ARGB(255, 0, 0, 0));
-      m_penBorder->create_solid(1.0, ARGB(163, 90, 90, 80));
+      //m_penBorderHover->create_solid(1.0, ARGB(255, 0, 0, 0));
+      //m_penBorderSel->create_solid(1.0, ARGB(255, 0, 0, 0));
+      //m_penBorder->create_solid(1.0, ARGB(163, 90, 90, 80));
 
       m_bEnableCloseAll = false;
       m_rectTabClient.set(0,0,0,0);
@@ -128,7 +129,7 @@ namespace user
    }*/
 
 
-   e_element tab::get_default_element() const
+   enum_element tab::get_default_element() const
    {
 
       return element_tab;
@@ -664,7 +665,9 @@ namespace user
 
       ::index iTab = -1;
 
-      ::draw2d::brush_pointer brushText;
+      ::draw2d::brush_pointer brushText(e_create);
+
+      ::draw2d::pen_pointer penBorder(e_create);
 
       for (i32 iPane = 0; iPane < get_data()->m_panea.get_size(); iPane++)
       {
@@ -676,19 +679,19 @@ namespace user
 
          iTab++;
 
-         if (!get_element_rect(iTab, rect, ::user::element_tab))
+         if (!get_element_rect(iTab, rect, ::user::e_element_tab))
             continue;
 
-         if (!get_element_rect(iTab, rectBorder, ::user::element_border))
+         if (!get_element_rect(iTab, rectBorder, ::user::e_element_border))
             continue;
 
-         if (!get_element_rect(iTab, rectClient, ::user::element_client))
+         if (!get_element_rect(iTab, rectClient, ::user::e_element_client))
             continue;
 
          if (get_data()->m_bVertical)
          {
 
-            if (get_element_rect(iTab, rectIcon, ::user::element_icon))
+            if (get_element_rect(iTab, rectIcon, ::user::e_element_icon))
             {
 
                pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
@@ -705,10 +708,8 @@ namespace user
                if (get_data()->m_idaSel.contains(pane.m_id))
                {
 
-                  //path->start_figure();
-
                   path->add_line(rectBorder.right, rectBorder.bottom, rectBorder.left + 1, rectBorder.bottom);
-                  //path->add_line(rectClient.right, rectBorder.top);
+
                   path->add_line(rectBorder.left, rectBorder.top - (rectBorder.left - rectClient.left));
                   path->add_line(rectClient.left, rectBorder.top);
                   path->add_line(rectBorder.right, rectBorder.top);
@@ -721,19 +722,17 @@ namespace user
 
                   pgraphics->fill_path(path);
 
-                  pgraphics->set(get_data()->m_penBorderSel);
+                  penBorder->create_solid(1.0, get_color(pstyle, ::user::e_element_border, ::user::e_state_selected));
 
                   pgraphics->draw_path(path);
 
                   pgraphics->set(get_font(pstyle));
 
-                  brushText = get_data()->m_brushTextSel;
+                  brushText->create_solid(get_color(pstyle, ::user::e_element_item_text, ::user::e_state_selected));
 
                }
                else
                {
-
-                  //path->start_figure();
 
                   path->add_line(rectBorder.right, rectBorder.bottom, rectBorder.left + 1, rectBorder.bottom);
                   path->add_line(rectBorder.left, rectBorder.top - (rectBorder.left - rectClient.left));
@@ -743,7 +742,7 @@ namespace user
 
                   path->close_figure();
 
-                  if (m_itemHover == iTab && m_itemHover != ::user::element_close_tab_button && !m_itemHover.in_range(::user::element_split, 100))
+                  if (m_itemHover == iTab && m_itemHover != ::user::e_element_close_tab_button && !m_itemHover.in_range(::user::e_element_split, 100))
                   {
 
                      pane.m_brushFillHover->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 215, 215, 210), ARGB(250, 235, 235, 230));
@@ -752,13 +751,15 @@ namespace user
 
                      pgraphics->fill_path(path);
 
-                     pgraphics->set(get_data()->m_penBorderHover);
+                     penBorder->create_solid(1.0, get_color(pstyle, ::user::e_element_border, ::user::e_state_hover));
+
+                     pgraphics->set(penBorder);
 
                      pgraphics->draw_path(path);
 
                      pgraphics->set(get_font(pstyle, e_state_hover));
 
-                     brushText = get_data()->m_brushTextHover;
+                     brushText->create_solid(get_color(pstyle, ::user::e_element_item_text, ::user::e_state_hover));
 
                   }
                   else
@@ -770,13 +771,15 @@ namespace user
 
                      pgraphics->fill_path(path);
 
-                     pgraphics->set(get_data()->m_penBorder);
+                     penBorder->create_solid(1.0, get_color(pstyle, ::user::e_element_border));
+
+                     pgraphics->set(penBorder);
 
                      pgraphics->draw_path(path);
 
                      pgraphics->set(get_font(pstyle));
 
-                     brushText = get_data()->m_brushText;
+                     brushText->create_solid(get_color(pstyle, ::user::e_element_item_text));
 
                   }
 
@@ -788,7 +791,7 @@ namespace user
          else
          {
 
-            if (get_element_rect(iTab, rectIcon, ::user::element_icon))
+            if (get_element_rect(iTab, rectIcon, ::user::e_element_icon))
             {
 
                pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
@@ -821,21 +824,19 @@ namespace user
 
                   pgraphics->fill_path(path);
 
-                  get_data()->m_penBorderSel->create_solid(1.0, ARGB(255, 0, 0, 0));
+                  penBorder->create_solid(1.0, get_color(pstyle, ::user::e_element_border, ::user::e_state_selected));
 
-                  pgraphics->set(get_data()->m_penBorderSel);
+                  pgraphics->set(penBorder);
 
                   pgraphics->draw_path(path);
 
                   pgraphics->set(get_font(pstyle));
 
-                  brushText = get_data()->m_brushTextSel;
+                  brushText->create_solid(get_color(pstyle, ::user::e_element_item_text, ::user::e_state_selected));
 
                }
                else
                {
-
-                  //path->begin_figure(true, ::draw2d::fill_mode_winding);
 
                   path->add_line(rectBorder.left, rectClient.bottom, rectBorder.left, rectBorder.top);
 
@@ -847,7 +848,7 @@ namespace user
 
                   path->close_figure();
 
-                  if (m_itemHover == iTab  && m_itemHover != ::user::element_close_tab_button && !m_itemHover.in_range(::user::element_split, 100))
+                  if (m_itemHover == iTab  && m_itemHover != ::user::e_element_close_tab_button && !m_itemHover.in_range(::user::e_element_split, 100))
                   {
 
                      pane.m_brushFillHover->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 215, 215, 210), ARGB(250, 235, 235, 230));
@@ -856,13 +857,13 @@ namespace user
 
                      pgraphics->fill_path(path);
 
-                     pgraphics->set(get_data()->m_penBorderHover);
+                     pgraphics->set(penBorder);
 
                      pgraphics->draw_path(path);
 
                      pgraphics->set(get_font(pstyle, e_state_hover));
 
-                     brushText = get_data()->m_brushTextHover;
+                     brushText->create_solid(get_color(pstyle, ::user::e_element_item_text, ::user::e_state_hover));
 
                   }
                   else
@@ -874,13 +875,15 @@ namespace user
 
                      pgraphics->fill_path(path);
 
-                     pgraphics->set(get_data()->m_penBorder);
+                     penBorder->create_solid(1.0, get_color(pstyle, ::user::e_element_border, ::user::e_state_selected));
+
+                     pgraphics->set(penBorder);
 
                      pgraphics->draw_path(path);
 
                      pgraphics->set(get_font(pstyle));
 
-                     brushText = get_data()->m_brushTextSel;
+                     brushText->create_solid(get_color(pstyle, ::user::e_element_item_text, ::user::e_state_selected));
 
                   }
 
@@ -895,7 +898,7 @@ namespace user
 
             __pointer(::base::style) pbasestyle = pstyle;
 
-            if (pbasestyle && get_element_rect(iTab, rectText, ::user::element_text))
+            if (pbasestyle && get_element_rect(iTab, rectText, ::user::e_element_text))
             {
 
                pbasestyle->_001OnTabPaneDrawTitle(pane, this, pgraphics, rectText, brushText);
@@ -907,12 +910,12 @@ namespace user
          if (true)
          {
 
-            if (get_element_rect(iTab, rectClose, ::user::element_close_tab_button))
+            if (get_element_rect(iTab, rectClose, ::user::e_element_close_tab_button))
             {
 
                pgraphics->set(get_font(pstyle, element_close_tab_button));
 
-               if (m_itemHover == iTab && m_itemHover == ::user::element_close_tab_button)
+               if (m_itemHover == iTab && m_itemHover == ::user::e_element_close_tab_button)
                {
 
                   brushText = get_data()->m_brushCloseHover;
@@ -1022,7 +1025,7 @@ namespace user
 
                pgraphics->set(get_font(pstyle, e_state_selected));
 
-               brushText = get_data()->m_brushTextSel;
+               brushText->create_solid(get_color(pstyle, ::user::e_element_item_text, ::user::e_state_selected));
 
             }
             else
@@ -1058,7 +1061,8 @@ namespace user
 
                   pgraphics->set(get_font(pstyle, e_state_hover));
 
-                  brushText = get_data()->m_brushText;
+                  brushText->create_solid(get_color(pstyle, ::user::e_element_item_text, ::user::e_state_hover));
+
 
                }
 
@@ -1120,7 +1124,7 @@ namespace user
 
                   pgraphics->set(get_font(pstyle, e_state_hover));
 
-                  brushText->create_solid(ARGB(255, 0, 127, 255));
+                  brushText->create_solid(get_color(pstyle, ::user::e_element_item_text, ::user::e_state_hover));
 
                }
                else
@@ -1128,7 +1132,7 @@ namespace user
 
                   pgraphics->set(get_font(pstyle));
 
-                  brushText = get_data()->m_brushText;
+                  brushText->create_solid(get_color(pstyle, ::user::e_element_item_text));
 
                }
 
@@ -1863,7 +1867,7 @@ namespace user
    }
 
 
-   bool tab::get_element_rect(::index iTab, RECT32 * prect, e_element eelement)
+   bool tab::get_element_rect(::index iTab, RECT32 * prect, enum_element eelement)
    {
 
       point ptOffset(0,0);
@@ -2294,13 +2298,13 @@ namespace user
       if(bScroll)
       {
 
-         if(get_element_rect(-1,rectScroll, ::user::element_tab_near_scroll))
+         if(get_element_rect(-1,rectScroll, ::user::e_element_tab_near_scroll))
          {
 
             if(rectScroll.contains(item.m_pointHitTest))
             {
 
-               item = { ::user::element_tab_near_scroll, -1 };
+               item = { ::user::e_element_tab_near_scroll, -1 };
 
                return;
 
@@ -2308,13 +2312,13 @@ namespace user
 
          }
 
-         if(get_element_rect(-1,rectScroll, ::user::element_tab_far_scroll))
+         if(get_element_rect(-1,rectScroll, ::user::e_element_tab_far_scroll))
          {
 
             if(rectScroll.contains(item.m_pointHitTest))
             {
 
-               item = { ::user::element_tab_far_scroll, -1 };
+               item = { ::user::e_element_tab_far_scroll, -1 };
 
                return;
 
@@ -2353,7 +2357,7 @@ namespace user
                      if(rectText.contains(item.m_pointHitTest))
                      {
 
-                        item = { (e_element)((int)element_split + iTitle), iPane };
+                        item = { (enum_element)((int)element_split + iTitle), iPane };
 
                         return;
 

@@ -97,9 +97,9 @@
 
                virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-               virtual bool get_element_rect(LPRECT32 lprect, e_element eelement) override;
+               virtual bool get_element_rect(LPRECT32 lprect, enum_element eelement) override;
 
-               virtual bool hit_test(const POINT32 &point, e_element &eelementParam);
+               virtual bool hit_test(const POINT32 &point, enum_element &eelementParam);
 
                virtual void Glass(::draw2d::graphics_pointer & pgraphics, const RECT32 & lprect);
 
@@ -121,7 +121,7 @@
             };
 
 
-            frame::e_element operator++(frame::e_element & eelement, i32 i);
+            frame::enum_element operator++(frame::enum_element & eelement, i32 i);
 
 
          } // namespace lite

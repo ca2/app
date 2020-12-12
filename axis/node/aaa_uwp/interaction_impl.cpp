@@ -163,22 +163,22 @@ namespace uwp
 
       //m_strDebug += ::str::demangle(m_puserinteraction->type_name()) + ";";
 
-      if(!m_puserinteraction->pre_create_window(cs))
+      if(!m_puserinteraction->pre_create_window(pcreatestruct))
       {
       
          return false;
          
       }
 
-      set_window_long(GWL_STYLE, cs.style);
+      set_window_long(GWL_STYLE, pcreatestruct->m_createstruct.style);
 
-      set_window_long(GWL_EXSTYLE, cs.dwExStyle);
+      set_window_long(GWL_EXSTYLE, pcreatestruct->m_createstruct.dwExStyle);
 
       install_message_routing(m_puserinteraction);
 
       send_message(e_message_create,0,(LPARAM)&cs);
 
-      m_puserinteraction->set_window_pos(0,cs.x,cs.cy,cs.cx,cs.cy,0);
+      m_puserinteraction->set_window_pos(0,pcreatestruct->m_createstruct.x,pcreatestruct->m_createstruct.cy,pcreatestruct->m_createstruct.cx,pcreatestruct->m_createstruct.cy,0);
 
       send_message(e_message_size);
 
@@ -196,17 +196,17 @@ namespace uwp
 
 
    // for child windows
-   bool interaction_impl::pre_create_window(::user::create_struct& cs)
+   bool interaction_impl::pre_create_window(::user::create_struct * pcreatestruct)
    {
 
 #ifdef WINDOWS_DESKTOP
-      if (cs.lpszClass == nullptr)
+      if (pcreatestruct->m_createstruct.lpszClass == nullptr)
       {
          // make sure the default interaction_impl class is registered
-         VERIFY(__end_defer_register_class(__WND_REG, &cs.lpszClass));
+         VERIFY(__end_defer_register_class(__WND_REG, &pcreatestruct->m_createstruct.lpszClass));
 
          // no WNDCLASS provided - use child interaction_impl default
-         ASSERT(cs.style & WS_CHILD);
+         ASSERT(pcreatestruct->m_createstruct.style & WS_CHILD);
       }
 #else
       __throw(todo());

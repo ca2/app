@@ -1539,7 +1539,7 @@ namespace experience
    }
 
 
-   bool frame::get_element_rect(RECT32 * prect,e_element eelement)
+   bool frame::get_element_rect(RECT32 * prect,enum_element eelement)
    {
 
       return false;

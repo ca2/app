@@ -230,11 +230,11 @@ SizingNone:;
 
                   auto pstyle = pframewindow->get_style(pgraphics);
 
-                  crMoveableBorder = pframewindow->get_color(pstyle, ::user::element_button_background);
+                  crMoveableBorder = pframewindow->get_color(pstyle, ::user::e_element_button_background);
 
-                  crMoveableBorderHilight = pframewindow->get_color(pstyle, ::user::element_button_hilite);
+                  crMoveableBorderHilight = pframewindow->get_color(pstyle, ::user::e_element_button_hilite);
 
-                  crMoveableBorderShadow = pframewindow->get_color(pstyle, ::user::element_button_shadow);
+                  crMoveableBorderShadow = pframewindow->get_color(pstyle, ::user::e_element_button_shadow);
 
 }
 

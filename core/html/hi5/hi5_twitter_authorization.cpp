@@ -277,7 +277,7 @@ namespace hi5
       }
 
 
-      bool authorization::style_translucency(::user::e_translucency & etranslucency, ::user::e_element)
+      bool authorization::style_translucency(::user::enum_translucency & etranslucency, ::user::enum_element)
       {
 
          etranslucency = ::user::translucency_present;

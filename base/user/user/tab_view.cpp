@@ -129,7 +129,7 @@ namespace user
    }
 
 
-   bool tab_view::pre_create_window(::user::create_struct& cs)
+   bool tab_view::pre_create_window(::user::create_struct * pcreatestruct)
    {
 
 #ifdef WINDOWS_DESKTOP
@@ -138,7 +138,7 @@ namespace user
 
 #endif
 
-      return impact::pre_create_window(cs);
+      return impact::pre_create_window(pcreatestruct);
 
    }
 
@@ -376,9 +376,9 @@ namespace user
 
       pchannel->_001ClientToScreen(&rect);
 
-      ::user::create_struct createstruct(WS_EX_LAYERED, nullptr, nullptr, 0, rect);
+      auto pcreatestruct = __new(::user::create_struct (WS_EX_LAYERED, nullptr, nullptr, 0, rect));
 
-      m_pdroptargetwindow->create_window_ex(createstruct);
+      m_pdroptargetwindow->create_window_ex(pcreatestruct);
 
       m_pdroptargetwindow->order(zorder_top_most);
 
@@ -1115,7 +1115,7 @@ namespace user
    }
 
 
-   //bool tab_drop_target_window::get_translucency(::user::e_translucency & etranslucency, ::user::e_element eelement, ::user::interaction * pinteraction)
+   //bool tab_drop_target_window::get_translucency(::user::enum_translucency & etranslucency, ::user::enum_element eelement, ::user::interaction * pinteraction)
    //{
 
    //   etranslucency = translucency_present;

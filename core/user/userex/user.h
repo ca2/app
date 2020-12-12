@@ -732,7 +732,7 @@ namespace core
 
       virtual void term() override;
 
-      virtual ::type controltype_to_typeinfo(::user::e_control_type econtroltype) override;
+      virtual ::type controltype_to_typeinfo(::user::enum_control_type econtroltype) override;
 
 
 

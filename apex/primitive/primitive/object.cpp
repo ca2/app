@@ -280,6 +280,21 @@ void object::to_string(const class string_exchange & str) const
 }
 
 
+::user::interaction * object::get_host_wnd()
+{
+
+   if (m_psessionContext.is_null())
+   {
+
+      return nullptr;
+
+   }
+
+   return __user_interaction(m_psessionContext->m_puiHost);
+
+}
+
+
 void object::dev_log(string strMessage) const
 {
 

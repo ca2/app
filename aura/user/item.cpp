@@ -8,7 +8,7 @@ namespace user
 {
 
 
-   item & item::operator = (e_element eelement)
+   item & item::operator = (enum_element eelement)
    {
 
       m_eelement = eelement;

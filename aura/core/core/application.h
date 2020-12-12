@@ -116,7 +116,7 @@ namespace aura
       virtual void on_create_split_view(::user::split_view * pview);
 
 
-      virtual ::type control_type_from_id(const ::id & id, ::user::e_control_type & econtroltype) override;
+      virtual ::type control_type_from_id(const ::id & id, ::user::enum_control_type & econtroltype) override;
 
 
       virtual bool base_support();
@@ -521,7 +521,7 @@ namespace aura
 
       virtual void on_create_keyboard() override;
 
-      virtual ::type user_default_controltype_to_typeinfo(::user::e_control_type econtroltype) override;
+      virtual ::type user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype) override;
 
       //virtual void set_form_impact_system(::user::impact_system * pdoctemplate,::user::impact_system * pdoctemplateChild,::user::impact_system * pdoctemplatePlaceHolder);
 
@@ -573,8 +573,8 @@ namespace aura
 
       virtual ::estatus     create_impact_system();
 
-      //virtual ::type user_default_controltype_to_typeinfo(::user::e_control_type econtroltype) override;
-      //virtual ::type control_type_from_id(const ::id& id, ::user::e_control_type& econtroltype) override;
+      //virtual ::type user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype) override;
+      //virtual ::type control_type_from_id(const ::id& id, ::user::enum_control_type& econtroltype) override;
 
 
       virtual void on_create_impact(::user::impact_data* pimpactdata) override;

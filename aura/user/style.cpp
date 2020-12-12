@@ -114,8 +114,7 @@ namespace user
    }
 
 
-   bool style::draw_check(::enum_check echeck, const ::rect & rect, ::draw2d::graphics_pointer & pgraphics)
-
+   bool style::draw_check(::user::interaction * pinteraction, ::enum_check echeck, const ::rect & rect, ::draw2d::graphics_pointer & pgraphics)
    {
 
       if (echeck == ::check_tristate || echeck == ::check_checked)
@@ -507,7 +506,7 @@ namespace user
    //}
 
 
-   //   bool style::_001GetMainFrameTranslucency(::user::e_translucency & etranslucency)
+   //   bool style::_001GetMainFrameTranslucency(::user::enum_translucency & etranslucency)
    //   {
    //
    //      return false;
@@ -693,7 +692,7 @@ namespace user
    //}
 
 
-   //bool style::create_translucency(e_element eelement, e_translucency etranslucency)
+   //bool style::create_translucency(enum_element eelement, enum_translucency etranslucency)
    //{
 
    //   if (userstyle()->m_mapTranslucency.is_null())
@@ -841,7 +840,7 @@ namespace user
 
    //}
 
-   e_control_type style::get_control_type() const
+   enum_control_type style::get_control_type() const
    {
 
       return control_type_none;
@@ -849,7 +848,7 @@ namespace user
    }
 
 
-   ::color style::get_color(const ::user::interaction* pinteraction, ::user::e_element eelement, ::user::estate estate) const
+   ::color style::get_color(const ::user::interaction* pinteraction, ::user::enum_element eelement, ::user::estate estate) const
    {
 
       if (::is_set(pinteraction))
@@ -860,7 +859,7 @@ namespace user
          if (econtroltype == ::user::control_type_list)
          {
 
-            if (eelement == ::user::element_background)
+            if (eelement == ::user::e_element_background)
             {
 
                return ::color(0, 0, 0, 0);

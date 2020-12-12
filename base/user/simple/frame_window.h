@@ -22,7 +22,7 @@ public:
    ::rect                                          m_FullScreenWindowRect;
    draw2d::fastblur                                m_blur;
    ::image_pointer                                 m_pimageBlur;
-   ::user::e_translucency                          m_etranslucencyFrame;
+   ::user::enum_translucency                          m_etranslucencyFrame;
    map < ::id, const ::id &, __composite(::user::toolbar) >
                                                    m_toolbarmap;
    ::image_pointer                                 m_pimageAlpha;
@@ -43,7 +43,7 @@ public:
    virtual ::estatus initialize(::layered * pobjectContext) override;
 
 
-   virtual ::user::e_translucency get_translucency(::user::style* pstyle) const override;
+   virtual ::user::enum_translucency get_translucency(::user::style* pstyle) const override;
 
 
    virtual void _task_save_window_rect();
@@ -134,7 +134,7 @@ public:
    virtual void ActivateFrame(::edisplay edisplay = e_display_undefined) override;
    virtual bool on_create_client(::user::create_struct * pcs, ::create * pcreate) override;
 
-   virtual bool pre_create_window(::user::create_struct& cs) override;
+   virtual bool pre_create_window(::user::create_struct * pcreatestruct) override;
    virtual void pre_translate_message(::message::message * pmessage) override;
 
    virtual void _000OnDraw(::draw2d::graphics_pointer & pgraphics) override;

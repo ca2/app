@@ -298,7 +298,7 @@ namespace user
 //   }
 
 
-   ::type user::controltype_to_typeinfo(::user::e_control_type econtroltype)
+   ::type user::controltype_to_typeinfo(::user::enum_control_type econtroltype)
    {
 
       return ::type();

@@ -388,7 +388,7 @@ namespace user
 
       }
 
-      void * pvoid = nullptr;
+      ::create * pcreate = nullptr;
 
       auto pgraphics = ::draw2d::create_memory_graphics();
 
@@ -454,9 +454,9 @@ namespace user
 
          }
 
-         ::user::create_struct createstruct(iStyleEx, nullptr, nullptr, 0, nullptr, pvoid);
+         auto pcreatestruct = __new(::user::create_struct (iStyleEx, nullptr, nullptr, 0, nullptr, pcreate));
 
-         if (!create_window_ex(createstruct, puiParent))
+         if (!create_window_ex(pcreatestruct, puiParent))
          {
 
             return false;
@@ -1350,14 +1350,14 @@ namespace user
    }
 
 
-   bool menu::pre_create_window(::user::create_struct& cs)
+   bool menu::pre_create_window(::user::create_struct * pcreatestruct)
    {
 
 #ifdef WINDOWS_DESKTOP
 
-      cs.dwExStyle = WS_EX_LAYERED | WS_EX_TOPMOST | WS_EX_TOOLWINDOW;
+      pcreatestruct->m_createstruct.dwExStyle = WS_EX_LAYERED | WS_EX_TOPMOST | WS_EX_TOOLWINDOW;
 
-      cs.style &= ~WS_VISIBLE;
+      pcreatestruct->m_createstruct.style &= ~WS_VISIBLE;
 
 #endif
 

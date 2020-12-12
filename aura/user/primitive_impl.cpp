@@ -66,7 +66,7 @@ namespace user
    }
 
 
-   bool primitive_impl::create_window_ex(::user::interaction * pinteraction, ::user::create_struct & cs, ::user::interaction * puiParent, id id)
+   bool primitive_impl::create_window_ex(::user::interaction * pinteraction, __pointer(::user::create_struct) pcs, ::user::interaction * puiParent, id id)
    {
 
       ::exception::throw_interface_only();
@@ -1159,10 +1159,10 @@ namespace user
    }
 
 
-   bool primitive_impl::SetTimer(uptr uEvent, ::u32 nEllapse, PFN_TIMER pfnTimer)
+   bool primitive_impl::SetTimer(uptr uEvent, ::millis millisEllapse, PFN_TIMER pfnTimer)
    {
 
-      if (nEllapse < 500)
+      if (millisEllapse < 500_ms)
       {
 
          //         string str;
@@ -1184,7 +1184,7 @@ namespace user
 
       }
 
-      return m_ptimerarray->create_timer(uEvent, nEllapse, pfnTimer, true);
+      return m_ptimerarray->create_timer(uEvent, millisEllapse, pfnTimer, true);
 
    }
 
@@ -1421,6 +1421,13 @@ namespace user
 
    bool primitive_impl::post_message(const ::id & id, WPARAM wparam, lparam lparam)
    {
+
+      if (::is_null(m_puserinteraction))
+      {
+
+         return false;
+
+      }
 
       m_puserinteraction->post_routine(__routine(call_message_handler_task(m_puserinteraction, id, wparam, lparam)));
 

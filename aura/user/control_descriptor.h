@@ -25,7 +25,7 @@ namespace user
       ::type                                    m_type;
       id                                        m_idPrivateDataSection;
       bool                                      m_bTransparent;
-      e_control_type                            m_econtroltype;
+      enum_control_type                            m_econtroltype;
       bool                                      m_bCreated;
       bool                                      m_bSubclassed;
       e_control_ddx                             m_eddx;
@@ -57,8 +57,8 @@ namespace user
       void control_descriptor_common_construct();
       bool operator == (const control_descriptor & control_descriptor) const;
       //control_descriptor & operator = (const control_descriptor & control_descriptor);
-      e_control_type get_control_type();
-      void set_control_type(e_control_type e_control);
+      enum_control_type get_control_type();
+      void set_control_type(enum_control_type e_control);
       void add_function(e_control_function e_control_function);
       void remove_function(e_control_function e_control_function);
       bool has_function(e_control_function e_control_function);

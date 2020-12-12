@@ -8,7 +8,7 @@
 
 //CLASS_DECL_THREAD thread_local_data* t_pthreadlocaldata;
 
-u32_array* g_puaThreadLocalDataFreeIndexes = nullptr;
+//u32_array* g_puaThreadLocalDataFreeIndexes = nullptr;
 
 //::mutex* g_pmutexThreadLocalData = nullptr;
 

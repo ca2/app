@@ -1,7 +1,7 @@
 #pragma once
 
 
-#ifndef _UWP
+#ifndef WINDOWS
 
 
 #include "windows_defs.h"

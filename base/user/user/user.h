@@ -56,7 +56,7 @@ namespace base
       inline ::type get_html_document_type() { return m_typeHtmlDocument; }
       inline ::type get_html_view_type() { return m_typeHtmlView; }
 
-      virtual ::type user_default_controltype_to_typeinfo(::user::e_control_type econtroltype);
+      virtual ::type user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype);
 
 
       virtual ::user::primitive * get_mouse_focus_LButtonDown() override;
@@ -73,7 +73,7 @@ namespace base
 
       virtual void term() override;
 
-      virtual ::type controltype_to_typeinfo(::user::e_control_type econtroltype) override;
+      virtual ::type controltype_to_typeinfo(::user::enum_control_type econtroltype) override;
 
 
       virtual __pointer(::user::menu_interaction) create_menu_button(::user::style * pstyle, ::user::menu_item * pitem);

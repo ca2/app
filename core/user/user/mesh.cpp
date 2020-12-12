@@ -180,7 +180,7 @@ namespace user
 
          ::draw2d::brush_pointer brushText(e_create);
 
-         brushText->create_solid(get_color(pstyle, ::user::element_text));
+         brushText->create_solid(get_color(pstyle, ::user::e_element_text));
 
          const ::point & pointViewportOrg = pgraphics->GetViewportOrg();
 
@@ -781,12 +781,12 @@ namespace user
 
 
 
-   /*bool mesh::pre_create_window(::user::create_struct& cs)
+   /*bool mesh::pre_create_window(::user::create_struct * pcreatestruct)
    {
 
-   //cs.style |= LVS_NOSCROLL;
+   //pcreatestruct->m_createstruct.style |= LVS_NOSCROLL;
 
-   return window::pre_create_window(cs);
+   return window::pre_create_window(pcreatestruct);
    }*/
 
    /*void mesh::OnSize(::u32 nType, index cx, index cy)
@@ -1495,7 +1495,7 @@ namespace user
    }
 
 
-   bool mesh::_001HitTest_(const ::point & point,index &iItem, index&iSubItem, index&iListItem,::user::mesh::e_element &eelement)
+   bool mesh::_001HitTest_(const ::point & point,index &iItem, index&iSubItem, index&iListItem,::user::mesh::enum_element &eelement)
    {
       UNREFERENCED_PARAMETER(point);
       UNREFERENCED_PARAMETER(iItem);
@@ -1540,7 +1540,7 @@ namespace user
    }
 
 
-   bool mesh::_001DisplayHitTest(const ::point & point, index& iItem, index& iSubItem, index& iListItem,::user::mesh::e_element &eelement)
+   bool mesh::_001DisplayHitTest(const ::point & point, index& iItem, index& iSubItem, index& iListItem,::user::mesh::enum_element &eelement)
    {
 
       UNREFERENCED_PARAMETER(point);
@@ -2193,7 +2193,7 @@ namespace user
 
    }
 
-   void mesh::_001GetElementRect(::user::draw_mesh_item * pdrawitem,::user::mesh::e_element eelement)
+   void mesh::_001GetElementRect(::user::draw_mesh_item * pdrawitem,::user::mesh::enum_element eelement)
    {
 
       if(m_bGroup && m_bLateralGroup &&
@@ -5461,7 +5461,7 @@ namespace user
 
          auto estate = get_user_state();
 
-         m_crText = m_pmesh->get_color(pstyle, ::user::element_text, estate);
+         m_crText = m_pmesh->get_color(pstyle, ::user::e_element_text, estate);
 
       }
 

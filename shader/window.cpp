@@ -30,7 +30,7 @@ namespace app_shader
    }
 
 
-   ::user::e_translucency window::get_translucency(::user::style* pstyle) const
+   ::user::enum_translucency window::get_translucency(::user::style* pstyle) const
    {
 
       return ::user::translucency_present;
@@ -65,9 +65,9 @@ namespace app_shader
 
       }
 
-      auto pitem = get_user_item(::user::element_close_button);
+      auto pitem = get_user_item(::user::e_element_close_button);
 
-      *pitem = ::user::element_close_icon;
+      *pitem = ::user::e_element_close_icon;
 
       ModifyStyleEx(0, WS_EX_LAYERED);
 
@@ -264,7 +264,7 @@ namespace app_shader
 
       }
 
-      if (pitem->m_eelement == ::user::element_close_icon)
+      if (pitem->m_eelement == ::user::e_element_close_icon)
       {
 
          ::user::draw_close_icon(pgraphics, this, pitem);

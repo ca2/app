@@ -281,9 +281,9 @@ namespace user
 
                auto pstyle = get_style(pgraphics);
 
-               auto colorDarkShadow = pstyle->get_color(this, ::user::element_dark_shadow);
+               auto colorDarkShadow = pstyle->get_color(this, ::user::e_element_dark_shadow);
 
-               auto colorHilite = pstyle->get_color(this, ::user::element_hilite);
+               auto colorHilite = pstyle->get_color(this, ::user::e_element_hilite);
 
                pgraphics->draw_3drect(rectImageBorder, colorDarkShadow, colorHilite);
 
@@ -302,7 +302,7 @@ namespace user
          if (pstyle)
          {
 
-            pstyle->draw_check(get_echeck(), m_rectCheckBox, pgraphics);
+            pstyle->draw_check(this, get_echeck(), m_rectCheckBox, pgraphics);
 
          }
 

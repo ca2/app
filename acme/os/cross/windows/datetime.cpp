@@ -25,6 +25,7 @@
 
 #include "framework.h"
 #include "os/cross/windows/_windows.h"
+#include "windows_internals.h"
 
 
 #if !defined(WINDOWS)
@@ -1085,7 +1086,15 @@ CLASS_DECL_ACME void GetSystemTime(LPSYSTEMTIME systime)
    tm.tm_mday = systemtime.wDay;
    tm.tm_year = systemtime.wYear;
 
+#ifdef WINDOWS
+   
+   time = _mkgmtime64(&tm);
+
+#else
+
    time = timegm(&tm);
+
+#endif
 
    return ::success;
 

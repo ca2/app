@@ -1009,6 +1009,7 @@ class machine_event_central;
 template<typename ARG_KEY>
 inline uptr uptr_hash(ARG_KEY key) { return (uptr) ((uptr) key); }
 
+
 //#if OSBIT == 64
 
 template<typename ARG_KEY>
@@ -2727,7 +2728,7 @@ namespace user
 {
 //
 //   using estate = cflag < enum_state >;
-//   using eelement = cflag < e_element >;
+//   using eelement = cflag < enum_element >;
 //
 
    class primitive;

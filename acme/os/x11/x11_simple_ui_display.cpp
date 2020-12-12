@@ -316,7 +316,7 @@ void simple_ui_display::on_expose(Display * pdisplay)
 
       {
 
-         color32_t crBk = get_simple_ui_color(::user::element_background);
+         color32_t crBk = get_simple_ui_color(::user::e_element_background);
 
          int iY = m_iMarginTop;
 

@@ -410,22 +410,30 @@ Serial::SerialImpl::close ()
       }
       m_bOpened = false;
    }
+
 }
 
-bool
-Serial::SerialImpl::isOpen () const
+
+bool Serial::SerialImpl::isOpen() const
 {
+   
    return m_bOpened;
+
 }
 
-size_t
-Serial::SerialImpl::available ()
+
+size_t Serial::SerialImpl::available()
 {
+   
    if (!m_bOpened)
    {
+      
       return 0;
+
    }
+   
    COMSTAT cs;
+
    if (!ClearCommError(m_hFile, nullptr, &cs))
    {
       
@@ -438,19 +446,25 @@ Serial::SerialImpl::available ()
       THROW (IOException, str);
 
    }
+   
    return static_cast<size_t>(cs.cbInQue);
+
 }
 
-bool
-Serial::SerialImpl::waitReadable (::millis /*timeout*/)
+
+bool Serial::SerialImpl::waitReadable (::millis /*timeout*/)
 {
+
    THROW (IOException, "waitReadable is not implemented on Windows.");
+
    return false;
+
 }
 
-void
-Serial::SerialImpl::waitByteTimes (size_t count)
+
+void Serial::SerialImpl::waitByteTimes (size_t count)
 {
+
    //THROW (IOException, "waitByteTimes is not implemented on Windows.");
    duration dur;
    dur.m_nanos = count * m_uiByteTimeNs;
@@ -459,12 +473,15 @@ Serial::SerialImpl::waitByteTimes (size_t count)
 
 }
 
-size_t
-Serial::SerialImpl::read (u8 *buf, size_t size)
+
+size_t Serial::SerialImpl::read (u8 *buf, size_t size)
 {
+
    if (!m_bOpened)
    {
+
       __throw(PortNotOpenedException ("Serial::read"));
+
    }
 
    DWORD bytes_read;
@@ -481,15 +498,20 @@ Serial::SerialImpl::read (u8 *buf, size_t size)
       THROW (IOException, ss);
 
    }
+
    return (size_t) (bytes_read);
+
 }
 
-size_t
-Serial::SerialImpl::write (const u8 *data, size_t length)
+
+size_t Serial::SerialImpl::write (const u8 *data, size_t length)
 {
+
    if (m_bOpened == false)
    {
+
       __throw(PortNotOpenedException ("Serial::write"));
+
    }
    
    DWORD bytes_written;
@@ -506,65 +528,98 @@ Serial::SerialImpl::write (const u8 *data, size_t length)
       THROW (IOException, str);
 
    }
+
    return (size_t) (bytes_written);
+
 }
+
 
 size_t Serial::SerialImpl::readline(string &buffer, size_t size, string eol)
 {
+
    ScopedReadLock lock(this);
+
    size_t eol_len = (size_t)eol.length();
-   u8 *buffer_ = static_cast<u8*>
-                      (alloca(size * sizeof(u8)));
+
+   u8 *buffer_ = static_cast < u8 * > (alloca(size * sizeof(u8)));
 
    auto tickStart = ::millis::now();
+
    size_t read_so_far = 0;
+
    while (true)
    {
+
       size_t bytes_read = read(buffer_ + read_so_far, 1);
+
       read_so_far += bytes_read;
+
       if (bytes_read == 0)
       {
+
          if (tickStart.elapsed() > m_timeout.m_millisReadTimeoutConstant)
          {
+
             break;
+
          }
+
          // Timeout occured on reading 1 byte
          sleep(max(100_ms, m_timeout.m_millisReadTimeoutConstant / 10));
+
          if (!::thread_get_run())
          {
+
             break;
+
          }
+
          continue;
+
       }
-auto tickStart = ::millis::now();
-      if (string(reinterpret_cast<const char*>
-                 (buffer_ + read_so_far - eol_len), eol_len) == eol)
+
+      auto tickStart = ::millis::now();
+
+      if (string(reinterpret_cast<const char*> (buffer_ + read_so_far - eol_len), eol_len) == eol)
       {
+
          break; // EOL found
+
       }
+
       if (read_so_far == size)
       {
+
          break; // Reached the maximum read length
+
       }
+
    }
+
    buffer.append(reinterpret_cast<const char*> (buffer_), read_so_far);
+
    return read_so_far;
+
 }
 
-void
-Serial::SerialImpl::setPort (const string &port)
+
+void Serial::SerialImpl::setPort (const string &port)
 {
+
    m_wstrPort = wstring(port);
+
 }
 
-string
-Serial::SerialImpl::getPort () const
+
+string Serial::SerialImpl::getPort () const
 {
+
    return string(m_wstrPort);
+
 }
 
-void
-Serial::SerialImpl::setTimeout (serial::Timeout &timeout)
+
+void Serial::SerialImpl::setTimeout (serial::Timeout &timeout)
 {
    m_timeout = timeout;
    if (m_bOpened)

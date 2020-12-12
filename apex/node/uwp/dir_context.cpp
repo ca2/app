@@ -472,7 +472,7 @@ namespace uwp
          if (!::dir::mkdir(pathDir))
          {
 
-            u32 dwError = ::get_last_error();
+            u32 dwError = ::GetLastError();
 
             if (dwError == ERROR_ALREADY_EXISTS)
             {
@@ -520,7 +520,7 @@ namespace uwp
                else
                {
 
-                  dwError = ::get_last_error();
+                  dwError = ::GetLastError();
 
                }
 

@@ -49,7 +49,7 @@ namespace console
       virtual void on_command_probe(::user::command * pcommand) override;
 
 
-      virtual ::user::e_translucency get_translucency(::user::style * pstyle) const override;
+      virtual ::user::enum_translucency get_translucency(::user::style * pstyle) const override;
 
 
       DECL_GEN_SIGNAL(_001OnCreate);

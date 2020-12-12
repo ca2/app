@@ -18,32 +18,31 @@ namespace user
    {
 
 #ifdef WINDOWS
-      CREATESTRUCTW::operator = (createstruct);
-      set_class_name(string(createstruct.lpszClass));
-      set_window_name(string(createstruct.lpszName));
+      m_createstruct = createstruct.m_createstruct;
+      set_class_name(string(createstruct.m_createstruct.lpszClass));
+      set_window_name(string(createstruct.m_createstruct.lpszName));
 #else
-      CREATESTRUCTA::operator = (createstruct);
-      set_class_name(createstruct.lpszClass);
-      set_window_name(createstruct.lpszName);
+      m_createstruct = createstruct.m_createstruct;
+      set_class_name(createstruct.m_createstruct.lpszClass);
+      set_window_name(createstruct.m_createstruct.lpszName);
 #endif
       m_puserinteractionOwner = nullptr;
-
+      m_routineFailure = createstruct.m_routineFailure;
+      m_routineSuccess = createstruct.m_routineSuccess;
+      m_createstruct.CREATE_STRUCT_P_CREATE_PARAMS = (::user::create_struct *) this;
    }
 
 
-   create_struct::create_struct(u32 uiExStyle, const char * pszClassName, const char * pszWindowName, u32 uStyle, ::rect rect, void * pvCreateParams) :
+   create_struct::create_struct(u32 uiExStyle, const char * pszClassName, const char * pszWindowName, u32 uStyle, ::rect rect, ::create * pcreate) :
    create_struct(rect)
    {
 
-      dwExStyle = uiExStyle;
+      m_createstruct.dwExStyle = uiExStyle;
       set_class_name(pszClassName);
       set_window_name(pszWindowName);
-      style = uStyle;
-#ifdef _UWP
-      pCreateParams = pvCreateParams;
-#else
-      lpCreateParams = pvCreateParams;
-#endif
+      m_createstruct.style = uStyle;
+      //m_createstruct.CREATE_STRUCT_P_CREATE_PARAMS = pvCreateParams;
+      m_pcreate = pcreate;
       m_puserinteractionOwner = nullptr;
 
    }
@@ -52,13 +51,11 @@ namespace user
    create_struct::create_struct(const ::rect & rect)
    {
 
-#ifdef WINDOWS_DESKTOP
-      xxf_zero_pointer((CREATESTRUCTW *) this);
-#else
-      xxf_zero_pointer((CREATESTRUCTA *) this);
-#endif
+      xxf_zero(m_createstruct);
 
       set_rect(rect);
+
+      m_createstruct.CREATE_STRUCT_P_CREATE_PARAMS = (::user::create_struct *)this;
 
    }
 
@@ -68,7 +65,7 @@ namespace user
 
       m_strClassName = pszClassName;
 
-      lpszClass = m_strClassName;
+      m_createstruct.lpszClass = m_strClassName;
 
    }
 
@@ -78,7 +75,7 @@ namespace user
 
       m_strWindowName = pszWindowName;
 
-      lpszName = m_strWindowName;
+      m_createstruct.lpszName = m_strWindowName;
 
    }
 
@@ -86,10 +83,10 @@ namespace user
    void create_struct::set_rect(const ::rect & rect)
    {
 
-      x = rect.left;
-      y = rect.top;
-      cx = rect.width();
-      cy = rect.height();
+      m_createstruct.x = rect.left;
+      m_createstruct.y = rect.top;
+      m_createstruct.cx = rect.width();
+      m_createstruct.cy = rect.height();
 
    }
 
@@ -103,10 +100,10 @@ namespace user
 
       }
 
-      if (!(style & WS_VISIBLE))
+      if (!(m_createstruct.style & WS_VISIBLE))
       {
 
-          style |= WS_VISIBLE;
+         m_createstruct.style |= WS_VISIBLE;
 
       }
 
@@ -115,10 +112,10 @@ namespace user
    void create_struct::get_rect(LPRECT32 lprect)
    {
 
-      lprect->left = x;
-      lprect->top = y;
-      lprect->right = x + cx;
-      lprect->bottom = y + cy;
+      lprect->left = m_createstruct.x;
+      lprect->top = m_createstruct.y;
+      lprect->right = m_createstruct.x + m_createstruct.cx;
+      lprect->bottom = m_createstruct.y + m_createstruct.cy;
 
    }
 

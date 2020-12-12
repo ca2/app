@@ -1,6 +1,11 @@
 #pragma once
 
 
+#ifndef WINDOWS_DESKTOP
+#error "This file is designed to be used only as Windows Desktop Source"
+#endif
+
+
 class FileException;
 struct FileStatus;
 

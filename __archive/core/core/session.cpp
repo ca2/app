@@ -1171,7 +1171,7 @@ namespace acme
                rectEmp.deflate(1, 1);
                ::draw2d::enum_alpha_mode emode = pgraphics->m_ealphamode;
                pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
-               if (ptab->m_itemHover == (::user::e_element)(::user::element_split + i))
+               if (ptab->m_itemHover == (::user::enum_element)(::user::e_element_split + i))
                {
                   pgraphics->fill_rect(rectEmp, ARGB(128, 150, 184, 255));
                   pgraphics->SelectObject(ptab->get_data()->m_brushTextHover);

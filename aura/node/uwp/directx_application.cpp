@@ -1,8 +1,10 @@
 ﻿#include "framework.h"
-#include "apex/os/windows_common/draw2d_direct2d_global.h"
-#include "apex/os/uwp/_winrt.h"
+#include "aura/os/windows_common/draw2d_direct2d_global.h"
+#include "aura/os/uwp/_winrt.h"
+#include "aura/node/uwp/_uwp.h"
+#include "aura/os/windows_common/draw2d_direct2d_global.h"
+#include "aura/node/uwp/buffer.h"
 #include "_uwp.h"
-#include "buffer.h"
 
 
 extern int g_iMouse;
@@ -30,13 +32,13 @@ namespace uwp
 {
 
 
-   directx_framework_view::directx_framework_view(::apex::system * psystem, ::String ^ strId)
+   directx_framework_view::directx_framework_view(::aura::system * psystem, ::String ^ strId)
    {
 
-      draw2d_direct2d::direct2d_initialize();
+      draw2d_direct2d::defer_direct2d_initialize();
 
       m_puisettings = ref new ::Windows::UI::ViewManagement::UISettings;
-         
+
       create_factory < ::uwp::buffer, ::graphics::graphics >();
 
       m_dwMouseMoveThrottle = 10;
@@ -46,9 +48,9 @@ namespace uwp
       m_pointLastCursor.X = 0;
       m_pointLastCursor.Y = 0;
 
-      m_bLeftButton        = false;
-      m_bMiddleButton      = false;
-      m_bRightButton       = false;
+      m_bLeftButton = false;
+      m_bMiddleButton = false;
+      m_bRightButton = false;
 
       m_strId = strId;
 
@@ -61,7 +63,7 @@ namespace uwp
 
       m_psystem = psystem;
 
-//      psystem->get_context_session()->m_frameworkview = this;
+      //      psystem->get_context_session()->m_frameworkview = this;
 
       m_pdxi = __new(directx_interaction);
 
@@ -81,10 +83,15 @@ namespace uwp
 
       int nReturnCode = 0;
 
-      if (!m_psystem->begin_synch())
+      if (!m_psystem->m_hthread)
       {
 
-         __throw(::exception::exception("failed to begin_synch the system"));
+         if (!m_psystem->begin_synch())
+         {
+
+            __throw(::exception::exception("failed to begin_synch the system"));
+
+         }
 
       }
 
@@ -97,17 +104,80 @@ namespace uwp
 
       }
 
-      m_psystem->get_context_session()->m_frameworkview = this;
+      //m_psystem->get_context_session()->m_pframeworkview = this;
 
       m_psystem->get_context_session()->m_puiHost = m_pdxi;
 
       m_directx->defer_init();
 
-      ::user::os_update_dark_mode();
+      ::user::os_calc_dark_mode();
 
-      ::user::create_struct cs;
+      auto pcs = __new(::user::create_struct);
 
-      if (!m_psystem->get_context_session()->m_puiHost->create_window_ex(cs))
+      auto puiHost = __user_interaction(m_psystem->get_context_session()->m_puiHost);
+
+      auto routine = [this]()
+      {
+
+         manual_reset_event ev;
+
+         m_window->Dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::Normal, ref new Windows::UI::Core::DispatchedHandler(
+            [this, &ev]()
+            {
+
+               //m_directx->m_windowBounds = m_window->Bounds;
+
+               //auto pchanged = ref new Windows::UI::Core::WindowSizeChangedEventArgs();
+
+               ::size size(m_window->Bounds.Width, m_window->Bounds.Height);
+
+               //pchanged->Size.Height = m_window->Bounds.Height;
+
+               on_window_size_changed(m_window.Get(), size);
+
+               ev.set_event();
+
+            }));
+
+         ev.wait(15_s);
+
+         auto puiHost = __user_interaction(m_psystem->get_context_session()->m_puiHost);
+
+         auto puserinteraction = m_pdxi;
+
+         puserinteraction->display(e_display_normal);
+
+         puserinteraction->set_need_layout();
+
+         puserinteraction->set_need_redraw();
+
+         puserinteraction->post_redraw();
+
+
+      };
+
+      pcs->m_routineSuccess = __routine(routine);
+
+      m_pimpl = __create < ::user::interaction_impl >();
+
+      m_pimpl->m_rect.left = m_window->Bounds.X;
+      m_pimpl->m_rect.top = m_window->Bounds.Y;
+      m_pimpl->m_rect.right = m_window->Bounds.X + m_window->Bounds.Width;
+      m_pimpl->m_rect.top = m_window->Bounds.Y + m_window->Bounds.Height;
+
+      m_pimpl->m_window = m_window;
+
+      m_directx->m_pimpl = m_pimpl;
+
+      m_pimpl->m_pframeworkview = this;
+
+      pcs->m_pimpl = m_pimpl;
+
+      get_context_system()->m_paurasystem->m_pimplMain = m_pimpl;
+
+      m_pimpl->m_bNotifyLayoutCompletedPending = true;
+
+      if (!puiHost->create_window_ex(pcs))
       {
 
          __throw(resource_exception("Couldn't create Main Window"));
@@ -116,29 +186,6 @@ namespace uwp
 
       }
 
-      auto puserinteraction = m_pdxi;
-
-      auto pimpl = m_psystem->get_context_session()->m_puiHost->m_pimpl;
-
-      auto puwpui = pimpl->cast < ::uwp::interaction_impl >();
-
-      puwpui->m_frameworkview = this;
-
-      puwpui->m_window = m_window;
-
-      m_pimpl = puwpui;
-
-      m_directx->m_pimpl = puwpui;
-
-
-
-      puserinteraction->display(e_display_normal);
-
-      puserinteraction->set_need_layout();
-
-      puserinteraction->set_need_redraw();
-
-      puserinteraction->post_redraw();
 
 
    }
@@ -149,39 +196,39 @@ namespace uwp
 
       impact::Initialize(applicationView);
 
-      applicationView->Activated += ref new TypedEventHandler<CoreApplicationView^, IActivatedEventArgs^>(this, &directx_framework_view::OnActivated);
+      applicationView->Activated += ref new TypedEventHandler<CoreApplicationView ^, IActivatedEventArgs ^>(this, &directx_framework_view::OnActivated);
 
-      CoreApplication::Suspending += ref new EventHandler<SuspendingEventArgs^>(this, &directx_framework_view::OnSuspending);
+      CoreApplication::Suspending += ref new EventHandler<SuspendingEventArgs ^>(this, &directx_framework_view::OnSuspending);
 
-      CoreApplication::Resuming += ref new EventHandler<Object^>(this, &directx_framework_view::OnResuming);
+      CoreApplication::Resuming += ref new EventHandler<Object ^>(this, &directx_framework_view::OnResuming);
 
    }
 
 
    void directx_framework_view::install_directx_application_message_routing()
    {
-      
-      m_puisettings->ColorValuesChanged += ref new TypedEventHandler<Windows::UI::ViewManagement::UISettings^, Platform::Object^> (this, &directx_framework_view::OnUISettingsColorValuesChange);
+
+      m_puisettings->ColorValuesChanged += ref new TypedEventHandler<Windows::UI::ViewManagement::UISettings ^, Platform::Object ^>(this, &directx_framework_view::OnUISettingsColorValuesChange);
 
       CoreWindow ^ window = m_window.Get();
 
-      window->VisibilityChanged += ref new TypedEventHandler<CoreWindow^, VisibilityChangedEventArgs^>(this, &directx_framework_view::OnWindowVisibilityChanged);
+      window->VisibilityChanged += ref new TypedEventHandler<CoreWindow ^, VisibilityChangedEventArgs ^>(this, &directx_framework_view::OnWindowVisibilityChanged);
 
       window->PointerCursor = ref new CoreCursor(CoreCursorType::Arrow, 0);
 
-      window->SizeChanged += ref new TypedEventHandler<CoreWindow^, WindowSizeChangedEventArgs^>(this, &directx_framework_view::OnWindowSizeChanged);
+      window->SizeChanged += ref new TypedEventHandler<CoreWindow ^, WindowSizeChangedEventArgs ^>(this, &directx_framework_view::OnWindowSizeChanged);
 
-      window->PointerMoved += ref new TypedEventHandler < CoreWindow^, PointerEventArgs^>(this, &directx_framework_view::OnPointerMoved);
+      window->PointerMoved += ref new TypedEventHandler < CoreWindow ^, PointerEventArgs ^>(this, &directx_framework_view::OnPointerMoved);
 
-      window->CharacterReceived += ref new TypedEventHandler<CoreWindow^, CharacterReceivedEventArgs^>(this, &directx_framework_view::OnCharacterReceived);
+      window->CharacterReceived += ref new TypedEventHandler<CoreWindow ^, CharacterReceivedEventArgs ^>(this, &directx_framework_view::OnCharacterReceived);
 
-      window->KeyDown += ref new TypedEventHandler < CoreWindow^, KeyEventArgs^>(this, &directx_framework_view::OnKeyDown);
+      window->KeyDown += ref new TypedEventHandler < CoreWindow ^, KeyEventArgs ^>(this, &directx_framework_view::OnKeyDown);
 
-      window->KeyUp += ref new TypedEventHandler < CoreWindow^, KeyEventArgs^>( this, &directx_framework_view::OnKeyUp);
+      window->KeyUp += ref new TypedEventHandler < CoreWindow ^, KeyEventArgs ^>(this, &directx_framework_view::OnKeyUp);
 
-      window->PointerPressed += ref new TypedEventHandler<CoreWindow^, PointerEventArgs^>(this, &directx_framework_view::OnPointerPressed);
+      window->PointerPressed += ref new TypedEventHandler<CoreWindow ^, PointerEventArgs ^>(this, &directx_framework_view::OnPointerPressed);
 
-      window->PointerReleased += ref new TypedEventHandler<CoreWindow^, PointerEventArgs^>(this, &directx_framework_view::OnPointerReleased);
+      window->PointerReleased += ref new TypedEventHandler<CoreWindow ^, PointerEventArgs ^>(this, &directx_framework_view::OnPointerReleased);
 
       ::Windows::Graphics::Display::DisplayInformation ^ displayinformation = ::Windows::Graphics::Display::DisplayInformation::GetForCurrentView();
 
@@ -192,7 +239,7 @@ namespace uwp
    }
 
 
-   void directx_framework_view::SetWindow(CoreWindow^ window)
+   void directx_framework_view::SetWindow(CoreWindow ^ window)
    {
 
       impact::SetWindow(window);
@@ -209,12 +256,11 @@ namespace uwp
 
       initialize_directx_application();
 
-      m_rectLastWindowRect = m_window->Bounds;
 
    }
 
 
-   void directx_framework_view::Load(String^ entryPoint)
+   void directx_framework_view::Load(String ^ entryPoint)
    {
 
    }
@@ -234,10 +280,10 @@ namespace uwp
    }
 
 
-   void directx_framework_view::OnUISettingsColorValuesChange(Windows::UI::ViewManagement::UISettings^ uisettings, Platform::Object^)
+   void directx_framework_view::OnUISettingsColorValuesChange(Windows::UI::ViewManagement::UISettings ^ uisettings, Platform::Object ^)
    {
 
-      ::user::os_update_dark_mode();
+      ::user::os_calc_dark_mode();
 
    }
 
@@ -245,17 +291,29 @@ namespace uwp
    void directx_framework_view::OnWindowSizeChanged(CoreWindow ^ sender, WindowSizeChangedEventArgs ^ args)
    {
 
-      m_directx->m_size.set_size((i32) args->Size.Width, (i32)args->Size.Height);
+      ::size size(args->Size.Width, args->Size.Height);
 
-      m_rectLastWindowRect.Width = (float) m_directx->m_size.cx;
+      on_window_size_changed(sender, size);
 
-      m_rectLastWindowRect.Height = (float) m_directx->m_size.cy;
+   }
+
+
+   void directx_framework_view::on_window_size_changed(CoreWindow ^ sender, const ::size & size)
+   {
+
+      m_pimpl->m_bNotifyLayoutCompletedPending = true;
+
+      m_directx->m_size = size;
+
+      m_rectLastWindowRect.Width = (float)m_directx->m_size.cx;
+
+      m_rectLastWindowRect.Height = (float)m_directx->m_size.cy;
 
       m_directx->OnWindowSizeChange();
 
    }
 
-
+ 
    void directx_framework_view::DpiChanged(::Windows::Graphics::Display::DisplayInformation ^ sender, Object ^ obj)
    {
 
@@ -292,7 +350,7 @@ namespace uwp
 
             string str = eventArgs->Uri->AbsoluteUri;
 
-            auto pcreate = __new(::create(m_psystem));
+            auto pcreate = m_psystem->__create_new < ::create >();
 
             pcreate->m_ecommand = ::command_protocol;
 
@@ -337,23 +395,25 @@ namespace uwp
       if(m_psystem->get_context_session() == nullptr)
          return;
 
-      if (m_psystem->get_context_session()->m_puiHost == nullptr)
+      auto puiHost = __user_interaction(m_psystem->get_context_session()->m_puiHost);
+
+      if (puiHost == nullptr)
          return;
 
-      if (m_psystem->get_context_session()->m_puiHost->m_pimpl == nullptr)
+      if (puiHost->m_pimpl == nullptr)
          return;
 
-      pointer < ::message::base > spbase;
+      __pointer(::message::base) pbase;
 
       auto pkey  = __new(::message::key);
 
-      spbase = pkey;
+      pbase = pkey;
 
       pkey->m_id = e_message_char;
-      pkey->m_puserinteraction = m_psystem->get_context_session()->m_puiHost;
+      pkey->m_playeredUserPrimitive = puiHost;
       pkey->m_nChar = keycode_to_char(args->KeyCode);
 
-      m_psystem->get_context_session()->m_puiHost->m_pimpl->queue_message_handler(spbase);
+      puiHost->m_pimpl->queue_message_handler(pbase);
 
    }
 
@@ -368,19 +428,21 @@ namespace uwp
       if(m_psystem == nullptr)
          return;
 
-      if (m_psystem->get_context_session()->m_puiHost == nullptr)
+      auto puiHost = __user_interaction(m_psystem->get_context_session()->m_puiHost);
+
+      if (puiHost == nullptr)
          return;
 
-      if (m_psystem->get_context_session()->m_puiHost->m_pimpl == nullptr)
+      if (puiHost->m_pimpl == nullptr)
          return;
 
-      pointer < ::message::base > spbase;
+      __pointer(::message::base) pbase;
 
       auto pkey  = __new(::message::key);
 
-      spbase = pkey;
+      pbase = pkey;
 
-      bool bTextFocus = m_psystem->get_context_session()->get_focus_ui() != nullptr;
+      bool bTextFocus = m_psystem->get_context_session()->m_paurasession->get_focus_ui() != nullptr;
 
       bool bSpecialKey = false;
 
@@ -391,7 +453,7 @@ namespace uwp
       {
 
          pkey->m_id                 = e_message_key_down;
-         pkey->m_puserinteraction       = m_psystem->get_context_session()->m_puiHost;
+         pkey->m_playeredUserPrimitive       = m_psystem->get_context_session()->m_puiHost;
          pkey->m_nChar              = virtualkey_to_char(args->VirtualKey);
          pkey->m_ekey               = ekey;
          pkey->m_wparam             = pkey->m_nChar;
@@ -405,7 +467,7 @@ namespace uwp
    //      pkey->m_key = args;
 
 
-         m_psystem->get_context_session()->m_puiHost->m_pimpl->queue_message_handler(spbase);
+         puiHost->m_pimpl->queue_message_handler(pbase);
 
       }
 
@@ -417,17 +479,19 @@ namespace uwp
       if(m_psystem == nullptr)
          return;
 
-      if (m_psystem->get_context_session()->m_puiHost == nullptr)
+      auto puiHost = __user_interaction(m_psystem->get_context_session()->m_puiHost);
+
+      if (puiHost == nullptr)
          return;
 
-      if (m_psystem->get_context_session()->m_puiHost->m_pimpl == nullptr)
+      if (puiHost->m_pimpl == nullptr)
          return;
 
-      pointer < ::message::base > spbase;
+      __pointer(::message::base) pbase;
 
       ::message::key * pkey = new  ::message::key;
 
-      spbase = pkey;
+      pbase = pkey;
 
 
       if (args->VirtualKey == ::Windows::System::VirtualKey::Shift)
@@ -435,7 +499,7 @@ namespace uwp
          m_bFontopusShift = false;
       }
       
-      bool bTextFocus = m_psystem->get_context_session()->get_focus_ui() != nullptr;
+      bool bTextFocus = m_psystem->get_context_session()->m_paurasession->get_focus_ui() != nullptr;
 
       bool bSpecialKey = false;
 
@@ -445,7 +509,7 @@ namespace uwp
       {
 
          pkey->m_id = e_message_key_up;
-         pkey->m_puserinteraction = m_psystem->get_context_session()->m_puiHost;
+         pkey->m_playeredUserPrimitive = m_psystem->get_context_session()->m_puiHost;
          pkey->m_nChar = virtualkey_to_char(args->VirtualKey);
          pkey->m_ekey = ekey;
          pkey->m_wparam = pkey->m_nChar;
@@ -483,7 +547,7 @@ namespace uwp
                //}
                //else
                //{
-         m_psystem->get_context_session()->m_puiHost->m_pimpl->queue_message_handler(spbase);
+         puiHost->m_pimpl->queue_message_handler(pbase);
          //}
 
       }
@@ -512,40 +576,46 @@ namespace uwp
    void directx_framework_view::OnPointerMoved(Windows::UI::Core::CoreWindow ^, Windows::UI::Core::PointerEventArgs ^ args)
    {
 
-      if (m_dwMouseMoveThrottle && m_millisLastMouseMove.elapsed() < m_dwMouseMoveThrottle)
-      {
+      //if (m_dwMouseMoveThrottle && m_millisLastMouseMove.elapsed() < m_dwMouseMoveThrottle)
+      //{
 
-         return;
+        // return;
 
-      }
+      //}
 
       if(m_psystem == nullptr)
          return;
 
-      if(m_psystem->get_context_session()->m_puiHost == nullptr)
+      auto puiHost = __user_interaction(m_psystem->get_context_session()->m_puiHost);
+
+      if (puiHost == nullptr)
          return;
 
-      if(m_psystem->get_context_session()->m_puiHost->m_pimpl == nullptr)
+      if (puiHost->m_pimpl == nullptr)
          return;
+
+      __pointer(::message::base) pbase;
 
       Windows::UI::Input::PointerPoint^ pointerPoint = args->CurrentPoint;
 
       ::g_iMouse = pointerPoint->PointerId;
 
-      pointer < ::message::base > spbase;
-
       ::message::mouse * pmouse = new ::message::mouse;
 
-      spbase = pmouse;
+      pbase = pmouse;
 
       pmouse->m_point.x       = (::i32) pointerPoint->RawPosition.X;
       pmouse->m_point.y       = (::i32) pointerPoint->RawPosition.Y;
       pmouse->m_id            = e_message_mouse_move;
-      pmouse->m_puserinteraction  = m_psystem->get_context_session()->m_puiHost;
+      pmouse->m_playeredUserPrimitive  = m_psystem->get_context_session()->m_puiHost;
 
       m_pointLastCursor = pointerPoint->RawPosition;
 
-      m_psystem->get_context_session()->m_puiHost->m_pimpl->queue_message_handler(spbase);
+      auto pimpl = __uwp_user_interaction_impl(puiHost->m_pimpl);
+
+      pimpl->m_pointCursor.set(pointerPoint->RawPosition.X, pointerPoint->RawPosition.Y);
+
+      puiHost->m_pimpl->queue_message_handler(pbase);
 
       m_millisLastMouseMove= ::millis::now();
 
@@ -558,21 +628,23 @@ namespace uwp
       if(m_psystem == nullptr)
          return;
 
-      if(m_psystem->get_context_session()->m_puiHost == nullptr)
+      auto puiHost = __user_interaction(m_psystem->get_context_session()->m_puiHost);
+
+      if (puiHost == nullptr)
          return;
 
-      if(m_psystem->get_context_session()->m_puiHost->m_pimpl == nullptr)
+      if (puiHost->m_pimpl == nullptr)
          return;
+
+      __pointer(::message::base) pbase;
 
       Windows::UI::Input::PointerPoint^ pointerPoint = args->CurrentPoint;
 
       ::g_iMouse = pointerPoint->PointerId;
 
-      pointer < ::message::base > spbase;
-
       ::message::mouse * pmouse = new  ::message::mouse;
 
-      spbase = pmouse;
+      pbase = pmouse;
 
       pmouse->m_point.x = (::i32) pointerPoint->RawPosition.X;
 
@@ -609,11 +681,11 @@ namespace uwp
 
       }
 
-      pmouse->m_puserinteraction = m_psystem->get_context_session()->m_puiHost;
+      pmouse->m_playeredUserPrimitive = m_psystem->get_context_session()->m_puiHost;
 
       m_pointLastCursor = pointerPoint->RawPosition;
 
-      m_psystem->get_context_session()->m_puiHost->m_pimpl->queue_message_handler(spbase);
+      puiHost->m_pimpl->queue_message_handler(pbase);
 
    }
 
@@ -632,11 +704,19 @@ namespace uwp
 
       ::g_iMouse = pointerPoint->PointerId;
 
-      pointer < ::message::base > spbase;
+      auto puiHost = __user_interaction(m_psystem->get_context_session()->m_puiHost);
+
+      if (puiHost == nullptr)
+         return;
+
+      if (puiHost->m_pimpl == nullptr)
+         return;
+
+      __pointer(::message::base) pbase;
 
       ::message::mouse * pmouse = new  ::message::mouse;
 
-      spbase = pmouse;
+      pbase = pmouse;
 
       pmouse->m_point.x = (::i32) pointerPoint->RawPosition.X;
 
@@ -664,30 +744,16 @@ namespace uwp
 
       }
 
-      if (m_psystem->get_context_session()->m_puiHost == nullptr)
-      {
-
-         return;
-
-      }
-
-      if (m_psystem->get_context_session()->m_puiHost->m_pimpl == nullptr)
-      {
-
-         return;
-
-      }
-
-      pmouse->m_puserinteraction = m_psystem->get_context_session()->m_puiHost;
+      pmouse->m_playeredUserPrimitive = m_psystem->get_context_session()->m_puiHost;
 
       m_pointLastCursor = pointerPoint->RawPosition;
 
-      m_psystem->get_context_session()->m_puiHost->m_pimpl->queue_message_handler(spbase);
+      puiHost->m_pimpl->queue_message_handler(pbase);
 
    }
 
 
-   directx_application_source::directx_application_source(::apex::system * paxissystem, const string & strId)
+   directx_application_source::directx_application_source(::aura::system * paxissystem, const string & strId)
    {
 
       m_psystem     = paxissystem;
@@ -705,7 +771,7 @@ namespace uwp
    }
 
 
-   directx_application_source ^ new_directx_application_source(::apex::system * papexsystem, const string & strId)
+   directx_application_source ^ new_directx_application_source(::aura::system * papexsystem, const string & strId)
    {
 
       string str = strId;

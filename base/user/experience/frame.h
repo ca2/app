@@ -11,7 +11,7 @@ namespace experience
    public:
 
 
-      enum e_element
+      enum enum_element
       {
 
          ElementNone,
@@ -103,7 +103,7 @@ namespace experience
       virtual void calc_window_client_rect(RECT32 * prect, const rect & lprectWindow);
 
 
-      virtual bool get_element_rect(RECT32 * prect, e_element eelement);
+      virtual bool get_element_rect(RECT32 * prect, enum_element eelement);
 
 
       virtual void get_parent_rect(RECT32 * prect);

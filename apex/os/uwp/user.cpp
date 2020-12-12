@@ -575,97 +575,97 @@ uptr virtualkey_to_code(::Windows::System::VirtualKey e)
 //}
 
 
-namespace user
-{
+// namespace user
+// {
 
-   /*::color g_colorSystemAppBackground;
+//    /*::color g_colorSystemAppBackground;
 
-   CLASS_DECL_APEX color32_t set_system_app_background_color()
+//    CLASS_DECL_APEX color32_t set_system_app_background_color()
 
-   CLASS_DECL_APEX color32_t get_system_app_background_color()
-   {
+//    CLASS_DECL_APEX color32_t get_system_app_background_color()
+//    {
 
-      auto color = System.get_context_session()->m_frameworkview->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
+//       auto color = System.get_context_session()->m_frameworkview->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
 
-      auto r = color.R;
+//       auto r = color.R;
 
-      auto g = color.G;
+//       auto g = color.G;
 
-      auto b = color.B;
+//       auto b = color.B;
 
-      return ARGB(255, r, g, b);
+//       return ARGB(255, r, g, b);
 
-   }*/
+//    }*/
 
-   //CLASS_DECL_APEX double get_system_app_luminance()
-   //{
+//    //CLASS_DECL_APEX double get_system_app_luminance()
+//    //{
 
-   //   auto color = System.get_context_session()->m_frameworkview->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
+//    //   auto color = System.get_context_session()->m_frameworkview->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
 
-   //   double r = color.R;
+//    //   double r = color.R;
 
-   //   double g = color.G;
+//    //   double g = color.G;
 
-   //   double b = color.B;
+//    //   double b = color.B;
 
-   //   return (r + g + b) / (255.0 * 3.0);
+//    //   return (r + g + b) / (255.0 * 3.0);
 
-   //}
-
-
-   //CLASS_DECL_APEX void os_update_colors()
-   //{
-
-   //   // App Background Color
-   //   {
+//    //}
 
 
-   //      auto color = System.get_context_session()->m_frameworkview->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
+//    //CLASS_DECL_APEX void os_update_colors()
+//    //{
 
-   //      auto r = color.R;
-
-   //      auto g = color.G;
-
-   //      auto b = color.B;
-
-   //      set_system_app_background_color(::color(r, g, b));
-
-   //   }
+//    //   // App Background Color
+//    //   {
 
 
-   //   // Luminance
-   //   {
+//    //      auto color = System.get_context_session()->m_frameworkview->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
+
+//    //      auto r = color.R;
+
+//    //      auto g = color.G;
+
+//    //      auto b = color.B;
+
+//    //      set_system_app_background_color(::color(r, g, b));
+
+//    //   }
 
 
-   //      auto color = System.get_context_session()->m_frameworkview->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
-
-   //      double r = color.R;
-
-   //      double g = color.G;
-
-   //      double b = color.B;
-
-   //      set_system_app_luminance((r + g + b) / (255.0 * 3.0));
-
-   //   }
-
-   //}
-
-   CLASS_DECL_APEX void os_update_dark_mode()
-   {
-
-      double dLuminance = get_system_app_luminance();
-
-      bool bDarkMode = dLuminance < 0.5;
-
-      set_system_dark_mode(bDarkMode);
-
-      set_app_dark_mode(bDarkMode);
-
-   }
+//    //   // Luminance
+//    //   {
 
 
-} // namespace user
+//    //      auto color = System.get_context_session()->m_frameworkview->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
+
+//    //      double r = color.R;
+
+//    //      double g = color.G;
+
+//    //      double b = color.B;
+
+//    //      set_system_app_luminance((r + g + b) / (255.0 * 3.0));
+
+//    //   }
+
+//    //}
+
+//    CLASS_DECL_APEX void os_update_dark_mode()
+//    {
+
+//       double dLuminance = get_system_app_luminance();
+
+//       bool bDarkMode = dLuminance < 0.5;
+
+//       set_system_dark_mode(bDarkMode);
+
+//       set_app_dark_mode(bDarkMode);
+
+//    }
+
+
+// } // namespace user
 
 
 

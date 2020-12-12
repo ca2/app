@@ -16,7 +16,7 @@
 //#else
 
 #ifdef _UWP
-::estatus _os_message_box(const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox, const ::future & future); 
+::estatus _os_message_box(const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox, const ::promise::process & process); 
 #else
 int _os_message_box(const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox);
 #endif

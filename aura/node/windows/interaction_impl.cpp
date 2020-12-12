@@ -426,7 +426,7 @@ namespace windows
    }
 
 
-   bool interaction_impl::_native_create_window_ex(::user::create_struct & cs)
+   bool interaction_impl::_native_create_window_ex(__pointer(::user::create_struct) pcreatestruct)
    {
 
       //__refer(m_puserinteraction->m_pthreadUserInteraction, ::get_task() OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
@@ -437,11 +437,11 @@ namespace windows
 
       m_strDebug += ::str::demangle(m_puserinteraction->type_name()) +  ";";
 
-      ASSERT(cs.lpszClass == nullptr || __is_valid_string(cs.lpszClass) || __is_valid_atom(cs.lpszClass));
+      ASSERT(pcreatestruct->m_createstruct.lpszClass == nullptr || __is_valid_string(pcreatestruct->m_createstruct.lpszClass) || __is_valid_atom(pcreatestruct->m_createstruct.lpszClass));
 
-      ENSURE_ARG(cs.lpszName == nullptr || __is_valid_string(cs.lpszName));
+      ENSURE_ARG(pcreatestruct->m_createstruct.lpszName == nullptr || __is_valid_string(pcreatestruct->m_createstruct.lpszName));
 
-      wstring wstrClassName(cs.lpszClass);
+      wstring wstrClassName(pcreatestruct->m_createstruct.lpszClass);
 
       if (wstrClassName.is_empty())
       {
@@ -450,9 +450,9 @@ namespace windows
 
       }
 
-      cs.lpszClass = wstrClassName;
+      pcreatestruct->m_createstruct.lpszClass = wstrClassName;
 
-      if (!m_puserinteraction->pre_create_window(cs))
+      if (!m_puserinteraction->pre_create_window(pcreatestruct))
       {
 
          return false;
@@ -476,7 +476,7 @@ namespace windows
 
       //::aura::application * papp = &Application;
 
-      wstring wstrWindowName(cs.lpszName);
+      wstring wstrWindowName(pcreatestruct->m_createstruct.lpszName);
 
       //string char
 
@@ -497,10 +497,10 @@ namespace windows
       wcscpy(szTitle, L"123");
       wcscpy(szWindowClass, L"WindowsDestkop1");
 
-      //oswindow oswindow = CreateWindowExW(cs.dwExStyle, szWindowClass, wstrWindowName, cs.style,
-        // cs.x, cs.y, cs.cx, cs.cy, cs.hwndParent, cs.hMenu, cs.hInstance, cs.lpCreateParams);
+      //oswindow oswindow = CreateWindowExW(pcreatestruct->m_createstruct.dwExStyle, szWindowClass, wstrWindowName, pcreatestruct->m_createstruct.style,
+        // pcreatestruct->m_createstruct.x, pcreatestruct->m_createstruct.y, pcreatestruct->m_createstruct.cx, pcreatestruct->m_createstruct.cy, pcreatestruct->m_createstruct.hwndParent, pcreatestruct->m_createstruct.hMenu, pcreatestruct->m_createstruct.hInstance, pcreatestruct->m_createstruct.lpCreateParams);
       oswindow oswindow = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPED,
-         CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, cs.hInstance, nullptr);
+         CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, pcreatestruct->m_createstruct.hInstance, nullptr);
       //if (!oswindow)
       //{
          //return false;
@@ -533,20 +533,24 @@ namespace windows
 
 #else
 
-
       oswindow oswindow = ::CreateWindowExW(
-                          cs.dwExStyle,
-                          wstrClassName,
-                          wstrWindowName,
-                          cs.style,
-                          cs.x, cs.y, cs.cx, cs.cy,
-                          //cs.hwndParent, cs.hMenu, cs.hInstance, cs.lpCreateParams);
-         cs.hwndParent, cs.hMenu, cs.hInstance, cs.lpCreateParams);
+         pcreatestruct->m_createstruct.dwExStyle,
+         wstrClassName,
+         wstrWindowName,
+         pcreatestruct->m_createstruct.style,
+         pcreatestruct->m_createstruct.x, 
+         pcreatestruct->m_createstruct.y, 
+         pcreatestruct->m_createstruct.cx,
+         pcreatestruct->m_createstruct.cy,
+         pcreatestruct->m_createstruct.hwndParent, 
+         pcreatestruct->m_createstruct.hMenu, 
+         pcreatestruct->m_createstruct.hInstance,
+         pcreatestruct->m_createstruct.lpCreateParams);
 
 #endif
 
       //HWND oswindow = CreateWindowW(wstrClassName, wstrWindowName, WS_OVERLAPPED,
-      //   CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, cs.hInstance, nullptr);
+      //   CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, pcreatestruct->m_createstruct.hInstance, nullptr);
 
       //::ShowWindow(oswindow,SW_SHOWNORMAL);
       //::UpdateWindow(oswindow);
@@ -562,7 +566,7 @@ namespace windows
 
       //}
 
-      if (cs.hwndParent == HWND_MESSAGE)
+      if (pcreatestruct->m_createstruct.hwndParent == HWND_MESSAGE)
       {
 
          m_puserinteraction->m_ewindowflag -= window_flag_graphical;
@@ -620,11 +624,11 @@ namespace windows
 
       }
 
-      m_puserinteraction->layout().sketch() = ::point(cs.x, cs.y);
-      m_puserinteraction->layout().sketch() = ::size(cs.cx, cs.cy);
+      m_puserinteraction->layout().sketch() = ::point(pcreatestruct->m_createstruct.x, pcreatestruct->m_createstruct.y);
+      m_puserinteraction->layout().sketch() = ::size(pcreatestruct->m_createstruct.cx, pcreatestruct->m_createstruct.cy);
 
-      m_puserinteraction->layout().window() = ::point(cs.x, cs.y);
-      m_puserinteraction->layout().window() = ::size(cs.cx, cs.cy);
+      m_puserinteraction->layout().window() = ::point(pcreatestruct->m_createstruct.x, pcreatestruct->m_createstruct.y);
+      m_puserinteraction->layout().window() = ::size(pcreatestruct->m_createstruct.cx, pcreatestruct->m_createstruct.cy);
 
       bool bUnicode = ::IsWindowUnicode(oswindow) != FALSE;
 
@@ -671,7 +675,7 @@ namespace windows
    }
 
 
-   bool interaction_impl::pre_create_window(::user::create_struct& cs)
+   bool interaction_impl::pre_create_window(::user::create_struct * pcreatestruct)
    {
 
       return true;
@@ -691,7 +695,7 @@ namespace windows
 
    //    ::user::create_struct createstruct(0, nullptr, lpszName, WS_CHILD, nullptr);
 
-   //    createstruct.hwndParent = HWND_MESSAGE;
+   //    pcreatestruct->m_createstruct.hwndParent = HWND_MESSAGE;
 
    //    if (!native_create_window_ex(pinteraction, createstruct, HWND_MESSAGE))
    //    {

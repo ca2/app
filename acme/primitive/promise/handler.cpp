@@ -262,10 +262,10 @@ namespace promise
 
       cslock sl(&g_cs);
 
-      for (auto &phandler : g_handlerset)
+      for (auto & handler : g_handlerset)
       {
 
-         phandler->remove(pmatter);
+         handler.element()->remove(pmatter);
 
       }
 

@@ -107,15 +107,15 @@ namespace user
          ::size                           m_sizeSep;
          i32                              m_iHeightAddUp;
          ::draw2d::pen_pointer                 m_pen;
-         ::draw2d::brush_pointer               m_brushTextHover;
-         ::draw2d::brush_pointer               m_brushTextSel;
-         ::draw2d::brush_pointer               m_brushText;
+         //::draw2d::brush_pointer               m_brushTextHover;
+         //::draw2d::brush_pointer               m_brushTextSel;
+         //::draw2d::brush_pointer               m_brushText;
          ::draw2d::brush_pointer               m_brushCloseHover;
          ::draw2d::brush_pointer               m_brushCloseSel;
          ::draw2d::brush_pointer               m_brushClose;
-         ::draw2d::pen_pointer                 m_penBorder;
-         ::draw2d::pen_pointer                 m_penBorderSel;
-         ::draw2d::pen_pointer                 m_penBorderHover;
+         //::draw2d::pen_pointer                 m_penBorder;
+         //::draw2d::pen_pointer                 m_penBorderSel;
+         //::draw2d::pen_pointer                 m_penBorderHover;
          bool                             m_bCreated;
          i32                          m_iTabHeight;
          i32                          m_iTabWidth;
@@ -188,7 +188,7 @@ namespace user
       virtual void install_message_routing(::channel * pchannel) override;
 
 
-      virtual e_element get_default_element() const override;
+      virtual enum_element get_default_element() const override;
 
       DECL_GEN_SIGNAL(_001OnLButtonDown);
       DECL_GEN_SIGNAL(_001OnLButtonUp);
@@ -251,7 +251,7 @@ namespace user
       virtual e_position DragHitTest(const ::point & point);
       virtual void GetDragRect(RECT32 * prect, e_position eposition);
 
-      virtual bool get_element_rect(::index iTab, RECT32 * prect, e_element eelement);
+      virtual bool get_element_rect(::index iTab, RECT32 * prect, enum_element eelement);
 
 
       virtual void get_title(int iPane,string_array & stra);

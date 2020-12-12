@@ -19,7 +19,7 @@ namespace browser
       virtual void dump(dump_context & dumpcontext) const;
 
 
-      virtual ::user::e_translucency get_translucency(::user::style * pstyle) const override;
+      virtual ::user::enum_translucency get_translucency(::user::style * pstyle) const override;
 
 
    };

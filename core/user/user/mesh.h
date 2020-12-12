@@ -40,7 +40,7 @@ namespace user
       };
 
 
-      enum e_element
+      enum enum_element
       {
          element_item,
          element_image,
@@ -398,7 +398,7 @@ namespace user
       virtual void _001GetGroupRect(draw_mesh_item * pitem);
       virtual void _001GetItemRect(draw_mesh_item * pitem);
       virtual void _001GetSubItemRect(draw_mesh_item * pitem);
-      virtual void _001GetElementRect(draw_mesh_item * pitem,::user::mesh::e_element eelement);
+      virtual void _001GetElementRect(draw_mesh_item * pitem,::user::mesh::enum_element eelement);
 
       //virtual void _001OnColumnChange();
 
@@ -423,12 +423,12 @@ namespace user
       virtual ::count _001GetGroupCount();
 
 
-      virtual bool _001HitTest_(const ::point & point, index &iItem, index&iSubItem, index&iListItem,::user::mesh::e_element &eelement);
+      virtual bool _001HitTest_(const ::point & point, index &iItem, index&iSubItem, index&iListItem,::user::mesh::enum_element &eelement);
       virtual bool _001HitTest_(const ::point & point, index&iItem, index&iSubItem);
       virtual bool _001HitTest_(const ::point & point, index&iItemParam);
 
 
-      virtual bool _001DisplayHitTest(const ::point & point, index&iItem, index&iSubItem, index&iListItem,::user::mesh::e_element &eelement);
+      virtual bool _001DisplayHitTest(const ::point & point, index&iItem, index&iSubItem, index&iListItem,::user::mesh::enum_element &eelement);
       virtual bool _001DisplayHitTest(const ::point & point, index&iItem, index&iSubItem);
       virtual bool _001DisplayHitTest(const ::point & point, index&iItemParam);
 

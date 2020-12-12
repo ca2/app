@@ -17,9 +17,9 @@ public:
    string                                                      m_strDescription;
    enum_command                                                m_ecommand;
    string                                                      m_strAppId;
-   payload                                                         m_varFile;
-   payload                                                         m_varArgs;
-   payload                                                         m_varOptions;
+   payload                                                     m_varFile;
+   payload                                                     m_varArgs;
+   payload                                                     m_varOptions;
    string                                                      m_strExtra;
    ::estatus                                                   m_estatus;
 
@@ -62,6 +62,7 @@ public:
    //create & operator = (const create & create);
 
 
+   inline ::user::create * get_user_create() { return __user_create(m_pusercreate); }
 
 
 };

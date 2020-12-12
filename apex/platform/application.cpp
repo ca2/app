@@ -5731,7 +5731,7 @@ retry_license:
 //   }
 
 
-   //::type application::user_default_controltype_to_typeinfo(::user::e_control_type econtroltype)
+   //::type application::user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype)
    //{
 
    //   return __type(::user::interaction);
@@ -5739,7 +5739,7 @@ retry_license:
    //}
 
 
-   //::type application::control_type_from_id(const ::id & id, ::user::e_control_type & econtroltype)
+   //::type application::control_type_from_id(const ::id & id, ::user::enum_control_type & econtroltype)
    //{
 
    //   econtroltype = ::user::control_type_none;
@@ -10172,7 +10172,7 @@ namespace apex
    }
 
 
-   //::type application::control_type_from_id(const ::id& id, ::user::e_control_type& econtroltype)
+   //::type application::control_type_from_id(const ::id& id, ::user::enum_control_type& econtroltype)
    //{
 
    //   string str(id);
@@ -10795,7 +10795,7 @@ namespace apex
    }
 
 
-   //::type application::control_type_from_id(const ::id& id, ::user::e_control_type& econtroltype)
+   //::type application::control_type_from_id(const ::id& id, ::user::enum_control_type& econtroltype)
    //{
 
    //

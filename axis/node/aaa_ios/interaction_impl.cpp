@@ -401,7 +401,7 @@ namespace ios
 
    bool interaction_impl::create_window_ex(
    ::user::interaction * pinteraction,
-   ::user::create_struct & cs,
+   __pointer(::user::create_struct) pcreatestruct,
    ::user::interaction * puiParent,
    id id)
    {
@@ -420,7 +420,7 @@ namespace ios
    }
 
 
-   bool interaction_impl::_native_create_window_ex(::user::create_struct & cs)
+   bool interaction_impl::_native_create_window_ex(__pointer(::user::create_struct) pcreatestruct)
    {
 
       if(::is_window(get_handle()))
@@ -432,12 +432,12 @@ namespace ios
 
       //m_puserinteraction = pinteraction;
 
-      ENSURE_ARG(cs.lpszName == nullptr || __is_valid_string(cs.lpszName));
+      ENSURE_ARG(pcreatestruct->m_createstruct.lpszName == nullptr || __is_valid_string(pcreatestruct->m_createstruct.lpszName));
 
       if(m_puserinteraction != nullptr)
       {
 
-         if(!m_puserinteraction->pre_create_window(cs))
+         if(!m_puserinteraction->pre_create_window(pcreatestruct))
          {
 
             PostNcDestroy();
@@ -450,7 +450,7 @@ namespace ios
       else
       {
 
-         if (!pre_create_window(cs))
+         if (!pre_create_window(pcreatestruct))
          {
 
             PostNcDestroy();
@@ -461,16 +461,16 @@ namespace ios
 
       }
 
-      if(cs.hwndParent == nullptr)
+      if(pcreatestruct->m_createstruct.hwndParent == nullptr)
       {
 
-         cs.style &= ~WS_CHILD;
+         pcreatestruct->m_createstruct.style &= ~WS_CHILD;
 
       }
 
       ::rect rectCreate;
 
-      cs.get_rect(rectCreate);
+      pcreatestruct->m_createstruct.get_rect(rectCreate);
 
       CGRect rect;
 
@@ -478,7 +478,7 @@ namespace ios
       
       install_message_routing(m_puserinteraction);
 
-      if(cs.hwndParent != HWND_MESSAGE)
+      if(pcreatestruct->m_createstruct.hwndParent != HWND_MESSAGE)
       {
 
          m_oswindow = oswindow_get(new_round_window(this, rect));
@@ -505,15 +505,15 @@ namespace ios
 
 
    // for child windows
-   bool interaction_impl::pre_create_window(::user::create_struct& cs)
+   bool interaction_impl::pre_create_window(::user::create_struct * pcreatestruct)
    {
-      /*      if (cs.lpszClass == nullptr)
+      /*      if (pcreatestruct->m_createstruct.lpszClass == nullptr)
        {
        // make sure the default user::interaction class is registered
-       VERIFY(__end_defer_register_class(__WND_REG, &cs.lpszClass));
+       VERIFY(__end_defer_register_class(__WND_REG, &pcreatestruct->m_createstruct.lpszClass));
 
        // no WNDCLASS provided - use child user::interaction default
-       ASSERT(cs.style & WS_CHILD);
+       ASSERT(pcreatestruct->m_createstruct.style & WS_CHILD);
        }*/
       return true;
    }

@@ -23,7 +23,7 @@ namespace simple_ui
 //   {
 //
 //      m_iIndex = -1;
-//      //m_eelementHover = ::user::element_none;
+//      //m_eelementHover = ::user::e_element_none;
 //
 //   }
 //
@@ -356,7 +356,7 @@ namespace simple_ui
 //
 //      auto itemOldHover = m_itemHover;
 //
-//      m_itemHover = ::user::element_none;
+//      m_itemHover = ::user::e_element_none;
 //
 //      if (itemOldHover)
 //      {
@@ -393,16 +393,16 @@ namespace simple_ui
 //   void interaction::on_hit_test(::user::item & item)
 //   {
 //
-//      auto rect = this->rect(::user::element_client);
+//      auto rect = this->rect(::user::e_element_client);
 //
 //      if (!rect.contains(point))
 //      {
 //
-//         return ::user::element_none;
+//         return ::user::e_element_none;
 //
 //      }
 //
-//      return ::user::element_client;
+//      return ::user::e_element_client;
 //
 //   }
 //
@@ -941,11 +941,11 @@ namespace simple_ui
 //   //   if (!rectClient.contains(point))
 //   //   {
 //
-//   //      return ::user::element_none;
+//   //      return ::user::e_element_none;
 //
 //   //   }
 //
-//   //   return ::user::element_client;
+//   //   return ::user::e_element_client;
 //
 //   //}
 //

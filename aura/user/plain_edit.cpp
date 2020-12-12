@@ -474,10 +474,8 @@ namespace user
       pgraphics->set_font(this);
 
       pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
-      //size size3;
-      //size3 = pgraphics->GetTextExtent(unitext("gGYIﾍ"));
+
       i32 iLineHeight = m_iLineHeight;
-//      string_array & straLines = m_plines->lines;
       string_array & straLines = m_straLines;
       string str1;
       string str2;
@@ -485,11 +483,9 @@ namespace user
       string strExtent1;
       string strExtent2;
       string strExtent3;
-      //index iLineStart = should_load_full_file() ? m_iLineStart : 0;
-      //index iLineEnd = should_load_full_file() ?  iLineStart + m_iLineCount - 1 : straLines.get_size();
-      //iLineEnd = min(iLineEnd,straLines.get_upper_bound());
-      //index iLine = m_iLineStart;
+
       index i = 0;
+
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
       pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
@@ -509,8 +505,6 @@ namespace user
          }
 
       }
-
-      //::colorertake5::base_editor * pcolorer = colorertake5();
 
       for (index iLine = m_iLineStart; iLine < m_iLineEnd; i++, iLine++)
       {

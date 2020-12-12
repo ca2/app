@@ -209,7 +209,7 @@ namespace user
    }
 
 
-   ::user::interaction* interaction::get_host_wnd()
+   ::user::interaction* interaction::get_host_wnd() const
    {
 
       if (get_context_session() == nullptr
@@ -236,7 +236,7 @@ namespace user
    }
 
 
-   e_element interaction::get_default_element() const
+   enum_element interaction::get_default_element() const
    {
 
       return element_none;
@@ -244,7 +244,7 @@ namespace user
    }
 
 
-   ::draw2d::font_pointer interaction::get_font(style * pstyle, e_element eelement, estate estate) const
+   ::draw2d::font_pointer interaction::get_font(style * pstyle, enum_element eelement, estate estate) const
    {
 
       if (pstyle)
@@ -264,7 +264,7 @@ namespace user
    }
 
 
-   e_translucency interaction::get_translucency(style * pstyle) const
+   enum_translucency interaction::get_translucency(style * pstyle) const
    {
 
       if (pstyle)
@@ -295,7 +295,7 @@ namespace user
    }
 
 
-   ::rect interaction::get_border(style * pstyle, e_element eelement, estate estate) const
+   ::rect interaction::get_border(style * pstyle, enum_element eelement, estate estate) const
    {
 
       return ::rect();
@@ -303,7 +303,7 @@ namespace user
    }
 
 
-   ::rect interaction::get_padding(style * pstyle, e_element eelement, estate estate) const
+   ::rect interaction::get_padding(style * pstyle, enum_element eelement, estate estate) const
    {
 
       return ::rect();
@@ -311,7 +311,7 @@ namespace user
    }
 
 
-   ::rect interaction::get_margin(style * pstyle, e_element eelement, estate estate) const
+   ::rect interaction::get_margin(style * pstyle, enum_element eelement, estate estate) const
    {
 
       return ::rect();
@@ -319,35 +319,35 @@ namespace user
    }
 
 
-   ::color interaction::get_color(style * pstyle, e_element eelement, estate estate) const
+   ::color interaction::get_color(style * pstyle, enum_element eelement, estate estate) const
    {
 
-      if (pstyle)
-      {
+      //if (pstyle)
+      //{
 
-         switch (eelement)
-         {
-         case element_background:
-            if (pstyle->m_colorBackground.is_set())
-            {
+      //   switch (eelement)
+      //   {
+      //   case element_background:
+      //      if (pstyle->m_colorBackground.is_set())
+      //      {
 
-               return pstyle->m_colorBackground;
+      //         return pstyle->m_colorBackground;
 
-            }
-            break;
-         case element_text:
-            if (pstyle->m_colorText.is_set())
-            {
+      //      }
+      //      break;
+      //   case element_text:
+      //      if (pstyle->m_colorText.is_set())
+      //      {
 
-               return pstyle->m_colorText;
+      //         return pstyle->m_colorText;
 
-            }
-            break;
-         default:
-            break;
-         }
+      //      }
+      //      break;
+      //   default:
+      //      break;
+      //   }
 
-      }
+      //}
 
       if (::is_set(pstyle))
       {
@@ -970,11 +970,11 @@ namespace user
 
          auto rectRequest = layout().sketch().screen_rect();
 
-         ::user::create_struct createstruct(get_window_long(GWL_EXSTYLE), pszClassName, strName, get_window_long(GWL_STYLE), rectRequest);
+         auto pcreatestruct = __new(::user::create_struct(get_window_long(GWL_EXSTYLE), pszClassName, strName, get_window_long(GWL_STYLE), rectRequest));
 
-         createstruct.style &= ~WS_CHILD;
+         pcreatestruct->m_createstruct.style &= ~WS_CHILD;
 
-         createstruct.add_visible(is_visible(layout().sketch().display()));
+         pcreatestruct->add_visible(is_visible(layout().sketch().display()));
 
          if (pimplOld.is_set())
          {
@@ -983,7 +983,7 @@ namespace user
 
          }
 
-         if (!pimplNew->create_window_ex(this, createstruct, nullptr, GetDlgCtrlId()))
+         if (!pimplNew->create_window_ex(this, pcreatestruct, nullptr, GetDlgCtrlId()))
          {
 
             __throw(::exception::exception("could not impl interaction"));
@@ -3366,33 +3366,42 @@ namespace user
    }
 
    
-   //::estatus interaction::main_async(const ::promise::routine & routine, e_priority epriority)
-   //{
+   ::estatus interaction::main_async(const ::promise::routine & routine, e_priority epriority)
+   {
 
-   //   return m_pimpl->main_async(routine, epriority);
+      auto pwndHost = get_host_wnd();
 
-   //}
+      if (!pwndHost || pwndHost == this)
+      {
+
+         return m_pimpl->main_async(routine, epriority);
+
+      }
+
+      return pwndHost->main_async(routine, epriority);
+
+   }
 
 
-   //::estatus interaction::main_sync(const ::promise::routine & routine, const ::duration & duration, e_priority epriority)
-   //{
+   ::estatus interaction::main_sync(const ::promise::routine & routine, const ::duration & duration, e_priority epriority)
+   {
 
-   //   auto proutine = ___sync_routine(routine);
+      auto proutine = ___sync_routine(routine);
 
-   //   main_async(proutine, epriority);
+      main_async(proutine, epriority);
 
-   //   auto waitresult = proutine->wait(duration);
+      auto waitresult = proutine->wait(duration);
 
-   //   if (!waitresult.succeeded())
-   //   {
+      if (!waitresult.succeeded())
+      {
 
-   //      return error_timeout;
+         return error_timeout;
 
-   //   }
+      }
 
-   //   return proutine->m_estatus;
+      return proutine->m_estatus;
 
-   //}
+   }
 
 
    void interaction::_001OnCreate(::message::message * pmessage)
@@ -4718,17 +4727,17 @@ namespace user
 //
 //            wstring wstrWindowName(pszWindowName);
 //
-//            ::user::create_struct createstruct(0, wstrClassName, wstrWindowName, uStyle, rect, pcreate);
+//            ::user::create_struct pcreatestruct(0, wstrClassName, wstrWindowName, uStyle, rect, pcreate);
 //
 //#else
 
-            ::user::create_struct createstruct(0, pszClassName, pszWindowName, uStyle, rect, pcreate);
+            auto pcreatestruct = __new(::user::create_struct(0, pszClassName, pszWindowName, uStyle, rect, pcreate));
 
 //#endif
 
-            createstruct.hwndParent = ::is_set(puiParent) ? puiParent->get_safe_handle() : nullptr;
+            pcreatestruct->m_createstruct.hwndParent = ::is_set(puiParent) ? puiParent->get_safe_handle() : nullptr;
 
-            if (!pimplNew->create_window_ex(this, createstruct, puiParent, m_id))
+            if (!pimplNew->create_window_ex(this, pcreatestruct, puiParent, m_id))
             {
 
                m_pimpl.release();
@@ -4801,21 +4810,21 @@ namespace user
    }
 
 
-   bool interaction::create_window_ex(::user::create_struct & createstruct, ::user::interaction * puiParent, const ::id & id)
+   bool interaction::create_window_ex(__pointer(::user::create_struct) pcreatestruct, ::user::interaction * puiParent, const ::id & id)
    {
 
-      createstruct.hMenu = nullptr;
+      pcreatestruct->m_createstruct.hMenu = nullptr;
 
       if(puiParent != nullptr)
       {
 
-         createstruct.hwndParent = puiParent->get_safe_handle();
+         pcreatestruct->m_createstruct.hwndParent = puiParent->get_safe_handle();
 
       }
 
 #ifdef WINDOWS_DESKTOP
 
-      createstruct.hInstance = System.m_hinstance;
+      pcreatestruct->m_createstruct.hInstance = System.m_hinstance;
 
 #endif
 
@@ -4845,15 +4854,28 @@ namespace user
 
          }
 
-         if ((WS_CHILD & createstruct.style) == 0 && (!puiParent || puiParent != psession->m_puiHost))
+         if ((WS_CHILD & pcreatestruct->m_createstruct.style) == 0 && (!puiParent || puiParent != psession->m_puiHost))
          {
 
-            if (psession->m_pimplLastSeed)
+            if (psession->m_pimplLastSeed || pcreatestruct->m_pimpl)
             {
 
-               m_pimpl = psession->m_pimplLastSeed;
+               if (pcreatestruct->m_pimpl)
+               {
 
-               psession->m_pimplLastSeed.release();
+                  m_pimpl = pcreatestruct->m_pimpl;
+
+                  pcreatestruct->m_pimpl.release();
+
+               }
+               else
+               {
+
+                  m_pimpl = psession->m_pimplLastSeed;
+
+                  psession->m_pimplLastSeed.release();
+
+               }
 
                if (!m_pimpl->get_context_object())
                {
@@ -4869,10 +4891,10 @@ namespace user
 
                }
 
-               createstruct.x = m_pimpl->m_rect.left;
-               createstruct.y = m_pimpl->m_rect.top;
-               createstruct.cx = m_pimpl->m_rect.width();
-               createstruct.cy = m_pimpl->m_rect.height();
+               pcreatestruct->m_createstruct.x = m_pimpl->m_rect.left;
+               pcreatestruct->m_createstruct.y = m_pimpl->m_rect.top;
+               pcreatestruct->m_createstruct.cx = m_pimpl->m_rect.width();
+               pcreatestruct->m_createstruct.cy = m_pimpl->m_rect.height();
 
             }
             else
@@ -4886,7 +4908,7 @@ namespace user
 
             m_pdescriptor.defer_create(this);
 
-            if (!m_pimpl->create_window_ex(this, createstruct, puiParent, id))
+            if (!m_pimpl->create_window_ex(this, pcreatestruct, puiParent, id))
             {
 
                m_bUserPrimitiveOk = false;
@@ -4926,7 +4948,7 @@ namespace user
 
             ::rect rect;
 
-            createstruct.get_rect(rect);
+            pcreatestruct->get_rect(rect);
 
             ::rect rectFrame(0, 0, 0, 0);
 
@@ -4956,7 +4978,7 @@ namespace user
 
             m_pdescriptor.defer_create(this);
 
-            if (!m_pimpl->create_window_ex(this, createstruct, puiParent, id))
+            if (!m_pimpl->create_window_ex(this, pcreatestruct, puiParent, id))
             {
 
                m_bUserPrimitiveOk = false;
@@ -6966,8 +6988,19 @@ namespace user
 #endif
 
 
-   bool interaction::pre_create_window(::user::create_struct& createstruct)
+   bool interaction::pre_create_window(::user::create_struct * pcreatestruct)
    {
+
+#ifdef WINDOWS_DESKTOP
+
+      if (m_bitToolWindow)
+      {
+
+         pcreatestruct->m_createstruct.dwExStyle |= WS_EX_TOOLWINDOW;
+
+      }
+
+#endif
 
       return true;
 
@@ -7219,7 +7252,7 @@ namespace user
 
       {
 
-         auto pitem = get_user_item(::user::element_close_button);
+         auto pitem = get_user_item(::user::e_element_close_button);
 
          if (pitem)
          {
@@ -7241,7 +7274,7 @@ namespace user
 
       {
 
-         auto pitem = get_user_item(::user::element_close_icon);
+         auto pitem = get_user_item(::user::e_element_close_icon);
 
          if (pitem)
          {
@@ -7810,7 +7843,7 @@ namespace user
    }
 
 
-   bool interaction::call_and_set_timer(uptr uEvent, ::duration durationElapse, PFN_TIMER pfnTimer)
+   bool interaction::call_and_set_timer(uptr uEvent, ::millis millisElapse, PFN_TIMER pfnTimer)
    {
 
       if (m_bitFinishing)
@@ -7824,12 +7857,12 @@ namespace user
 
       _001OnTimer(&timer);
 
-      return SetTimer(uEvent, (::u32) durationElapse.u32_millis(), pfnTimer);
+      return SetTimer(uEvent, millisElapse, pfnTimer);
 
    }
 
 
-   bool interaction::set_timer(uptr uEvent, ::duration durationElapse, PFN_TIMER pfnTimer)
+   bool interaction::set_timer(uptr uEvent, ::millis millisElapse, PFN_TIMER pfnTimer)
    {
 
       if (m_bitFinishing)
@@ -7839,12 +7872,12 @@ namespace user
 
       }
 
-      return SetTimer(uEvent, (::u32) durationElapse.u32_millis(), pfnTimer);
+      return SetTimer(uEvent, millisElapse, pfnTimer);
 
    }
 
 
-   bool interaction::SetTimer(uptr uEvent, ::u32 nElapse, PFN_TIMER pfnTimer)
+   bool interaction::SetTimer(uptr uEvent, ::millis millisElapse, PFN_TIMER pfnTimer)
    {
 
       if (m_pimpl == nullptr)
@@ -7861,7 +7894,7 @@ namespace user
 
       }
 
-      return m_pimpl->SetTimer(uEvent, nElapse, pfnTimer);
+      return m_pimpl->SetTimer(uEvent, millisElapse, pfnTimer);
 
    }
 
@@ -8844,6 +8877,30 @@ namespace user
    }
 
 
+   ::point interaction::get_cursor_pos() const
+   {
+
+      auto pwnd = get_host_wnd();
+
+      if (pwnd == this)
+      {
+
+         return m_pimpl->get_cursor_pos();
+
+      }
+
+      if (!pwnd)
+      {
+
+         return ::point();
+
+      }
+
+      return pwnd->get_cursor_pos();
+
+   }
+
+
    void interaction::_001OnMouseEnter(::message::message * pmessage)
    {
 
@@ -9448,8 +9505,8 @@ restart:
       for (auto& pitem : m_itema)
       {
 
-         if (pitem->m_eelement == ::user::element_close_button
-            || pitem->m_eelement == ::user::element_close_icon)
+         if (pitem->m_eelement == ::user::e_element_close_button
+            || pitem->m_eelement == ::user::e_element_close_icon)
          {
 
             if (pitem->m_eevent == ::user::event_close_app)
@@ -11584,6 +11641,13 @@ restart:
 
       auto puiptraChild = m_puiptraChild;
 
+      if (!puiptraChild)
+      {
+
+         return false;
+
+      }
+
       return puiptraChild->get_child(pinteraction);
 
    }
@@ -11768,15 +11832,15 @@ restart:
 //
 ////#ifdef WINDOWS_DESKTOP
 ////
-////         ::user::create_struct createstruct(WS_EX_LAYERED | WS_EX_TOOLWINDOW, nullptr, L"tooltip", 0, nullptr);
+////         ::user::create_struct pcreatestruct(WS_EX_LAYERED | WS_EX_TOOLWINDOW, nullptr, L"tooltip", 0, nullptr);
 ////
 ////#else
 //
-//         ::user::create_struct createstruct(WS_EX_LAYERED | WS_EX_TOOLWINDOW, nullptr, "tooltip", 0, nullptr);
+//         ::user::create_struct pcreatestruct(WS_EX_LAYERED | WS_EX_TOOLWINDOW, nullptr, "tooltip", 0, nullptr);
 //
 ////#endif
 //
-//         m_ptooltip->create_window_ex(createstruct);
+//         m_ptooltip->create_window_ex(pcreatestruct);
 //
 //      }
 //
@@ -12273,8 +12337,8 @@ restart:
    bool interaction::on_click(const ::user::item & item)
    {
 
-      if (item == ::user::element_close_button
-         || item == ::user::element_close_icon)
+      if (item == ::user::e_element_close_button
+         || item == ::user::e_element_close_icon)
       {
 
          post_message(e_message_close);
@@ -12459,16 +12523,16 @@ restart:
    //::user::item interaction::on_hit_test(const ::point& point)
    //{
 
-   //   auto rect = this->rect(::user::element_client);
+   //   auto rect = this->rect(::user::e_element_client);
 
    //   if (!rect.contains(point))
    //   {
 
-   //      return ::user::element_none;
+   //      return ::user::e_element_none;
 
    //   }
 
-   //   return ::user::element_client;
+   //   return ::user::e_element_client;
 
    //}
 
@@ -12499,7 +12563,7 @@ restart:
    }
 
 
-   e_control_type interaction::get_control_type() const
+   enum_control_type interaction::get_control_type() const
    {
 
       return m_pdescriptor->get_control_type();
@@ -13151,9 +13215,9 @@ restart:
 
       auto itemOldHoverMouse = m_itemHoverMouse;
 
-      m_itemHover = ::user::element_none;
+      m_itemHover = ::user::e_element_none;
 
-      m_itemHoverMouse = ::user::element_none;
+      m_itemHoverMouse = ::user::e_element_none;
 
       m_bTrackMouseLeave = false;
 
@@ -13222,7 +13286,7 @@ restart:
 
       }
 
-      auto rect = this->rect(::user::element_client);
+      auto rect = this->rect(::user::e_element_client);
 
       if (!rect.contains(item.m_pointHitTest))
       {
@@ -14212,7 +14276,7 @@ restart:
    }
 
 
-   bool interaction::get_element_rect(RECT32* prect, e_element eelement)
+   bool interaction::get_element_rect(RECT32* prect, enum_element eelement)
    {
 
       if (eelement == element_drop_down)

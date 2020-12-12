@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-static ::u32 nextTlsIndex = ::parallelization::slot_user_begin;
+//static ::u32 nextTlsIndex = ::parallelization::slot_user_begin;
 
 
 

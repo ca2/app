@@ -30725,7 +30725,7 @@ copy protection errors.
 //
 // OSS ASN.1 Error: Signed integer is encoded as a unsigned integer.
 //
-#define OSS_NEGATIVE_::u32EGER            _HRESULT_TYPEDEF_(0x80093002L)
+#define OSS_NEGATIVE_UINTEGER            _HRESULT_TYPEDEF_(0x80093002L)
 
 //
 // MessageId: OSS_PDU_RANGE

@@ -691,12 +691,6 @@
     <ClCompile Include="os\http.cpp">
       <Filter>Source Files\os</Filter>
     </ClCompile>
-    <ClCompile Include="os\process.cpp">
-      <Filter>Source Files\os</Filter>
-    </ClCompile>
-    <ClCompile Include="os\thread.cpp">
-      <Filter>Source Files\os</Filter>
-    </ClCompile>
     <ClCompile Include="os\time.cpp">
       <Filter>Source Files\os</Filter>
     </ClCompile>

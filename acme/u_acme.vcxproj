@@ -1716,8 +1716,6 @@
     <ClCompile Include="os\debug.cpp" />
     <ClCompile Include="os\file.cpp" />
     <ClCompile Include="os\http.cpp" />
-    <ClCompile Include="os\process.cpp" />
-    <ClCompile Include="os\thread.cpp" />
     <ClCompile Include="os\time.cpp" />
     <ClCompile Include="os\uwp\aura.cpp" />
     <ClCompile Include="os\uwp\debug.cpp" />

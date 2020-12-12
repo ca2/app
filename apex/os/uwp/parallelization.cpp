@@ -7,6 +7,7 @@
 #include "framework.h"
 #include "_.h"
 #include "acme/parallelization/mq.h"
+#include "acme/os/cross/windows/windows_thread_impl.h"
 
 
 #undef System
@@ -158,7 +159,7 @@ bool __os_term_thread()
 
 #pragma warning (disable : 4273)
 
-CLASS_DECL_APEX ::u32 WINAPI MsgWaitForMultipleObjects(::u32 nCount, const HANDLE* pHandles, BOOL fWaitAll, ::u32 dwMilliseconds, ::u32 dwWakeMask)
+CLASS_DECL_APEX DWORD WINAPI MsgWaitForMultipleObjects(DWORD nCount, const HANDLE* pHandles, BOOL fWaitAll, DWORD dwMilliseconds, DWORD dwWakeMask)
 {
 
    return MsgWaitForMultipleObjectsEx(nCount, pHandles, dwMilliseconds, dwWakeMask | (fWaitAll ? MWMO_WAITALL: 0), 0);

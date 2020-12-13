@@ -913,7 +913,7 @@ namespace user
             if (get_element_rect(iTab, rectClose, ::user::e_element_close_tab_button))
             {
 
-               pgraphics->set(get_font(pstyle, element_close_tab_button));
+               pgraphics->set(get_font(pstyle, ::user::e_element_close_tab_button));
 
                if (m_itemHover == iTab && m_itemHover == ::user::e_element_close_tab_button)
                {
@@ -980,7 +980,7 @@ namespace user
          if(!get_element_rect(iVisiblePane, rect, element_tab))
             continue;
 
-         if (!get_element_rect(iVisiblePane, rectBorder, element_border))
+         if (!get_element_rect(iVisiblePane, rectBorder, e_element_border))
          {
 
             continue;
@@ -997,7 +997,7 @@ namespace user
          if(get_data()->m_bVertical)
          {
 
-            if(get_element_rect(iVisiblePane, rectIcon, element_icon))
+            if(get_element_rect(iVisiblePane, rectIcon, e_element_icon))
             {
 
                pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
@@ -1072,7 +1072,7 @@ namespace user
          else
          {
 
-            if(get_element_rect(iVisiblePane, rectIcon, element_icon))
+            if(get_element_rect(iVisiblePane, rectIcon, e_element_icon))
             {
 
                pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
@@ -1140,7 +1140,7 @@ namespace user
 
          }
 
-         if (get_element_rect(iVisiblePane, rectText, element_text))
+         if (get_element_rect(iVisiblePane, rectText, e_element_text))
          {
 
             pgraphics->set(brushText);
@@ -1152,7 +1152,7 @@ namespace user
          if (get_element_rect(iVisiblePane, rectClose, element_close_tab_button))
          {
 
-            pgraphics->set(get_font(pstyle, element_close_tab_button));
+            pgraphics->set(get_font(pstyle, ::user::e_element_close_tab_button));
 
             if (m_itemHover == iVisiblePane  && m_itemHover == element_close_tab_button)
             {
@@ -1283,7 +1283,7 @@ namespace user
 
       defer_handle_auto_hide_tabs(false);
 
-      pgraphics->set(get_font(pstyle, element_close_tab_button));
+      pgraphics->set(get_font(pstyle, ::user::e_element_close_tab_button));
 
       m_dcextension.GetTextExtent(pgraphics,MAGIC_PALACE_TAB_SIZE,get_data()->m_sizeSep);
 
@@ -2001,7 +2001,7 @@ namespace user
 
       index iPane = tab_pane(iTab);
 
-      if(eelement == element_border)
+      if(eelement == e_element_border)
       {
 
          if (!get_element_rect(iTab, prect, element_tab))
@@ -2023,7 +2023,7 @@ namespace user
       if(eelement == element_client)
       {
 
-         if (!get_element_rect(iTab, prect, element_border))
+         if (!get_element_rect(iTab, prect, e_element_border))
          {
 
             return false;
@@ -2038,7 +2038,7 @@ namespace user
 
       }
 
-      if(eelement == element_icon)
+      if(eelement == e_element_icon)
       {
 
          if (::not_ok(get_data()->m_panea[iPane]->m_pimage))
@@ -2064,7 +2064,7 @@ namespace user
          return true;
 
       }
-      else if(eelement == element_text)
+      else if(eelement == e_element_text)
       {
 
          if (!get_element_rect(iTab, prect, element_client))
@@ -2341,7 +2341,7 @@ namespace user
 
             ::rect rectText;
 
-            if(get_element_rect(iPane, rectText, element_text))
+            if(get_element_rect(iPane, rectText, e_element_text))
             {
 
                if(rectText.contains(item.m_pointHitTest))
@@ -2403,7 +2403,7 @@ namespace user
 
       }
 
-      item = element_none;
+      item = e_element_none;
 
    }
 
@@ -2487,7 +2487,7 @@ namespace user
 
       ev.m_ptab      = this;
 
-      ev.m_eevent    = ::user::event_on_create_tab;
+      ev.m_eevent    = ::user::e_event_on_create_tab;
 
       on_control_event(&ev);
 
@@ -3299,7 +3299,7 @@ namespace user
 
 
 
-   e_position tab::DragHitTest(const ::point & point)
+   enum_position tab::DragHitTest(const ::point & point)
    {
       ::rect rect;
       GetDragRect(rect, position_top);
@@ -3339,7 +3339,7 @@ namespace user
    }
 
 
-   void tab::GetDragRect(RECT32 * prect, e_position eposition)
+   void tab::GetDragRect(RECT32 * prect, enum_position eposition)
 
    {
       switch(eposition)
@@ -3399,7 +3399,7 @@ namespace user
 
 
 
-   void tab::_001OnDropTab(::index iPane, e_position eposition)
+   void tab::_001OnDropTab(::index iPane, enum_position eposition)
    {
 
       if(get_data()->m_pcallback != nullptr)

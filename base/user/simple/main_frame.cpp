@@ -7,8 +7,8 @@
 simple_main_frame::simple_main_frame()
 {
 
-   m_ewindowflag              |= window_flag_auto_store_window_rect;
-   m_ewindowflag              |= window_flag_main_frame;
+   m_ewindowflag              |= e_window_flag_auto_store_window_rect;
+   m_ewindowflag              |= e_window_flag_main_frame;
    m_bAutoWindowFrame         = false;
    m_bWindowFrame             = true;
    m_bPlacing                 = false;
@@ -74,7 +74,7 @@ void simple_main_frame::_001OnCreate(::message::message * pmessage)
 
       m_bExplicitTranslucency = true;
 
-      m_etranslucencyFrame = ::user::translucency_none;
+      m_etranslucencyFrame = ::user::e_translucency_none;
 
    }
    else

@@ -223,9 +223,9 @@ namespace uwp
 
       m_puserinteraction->add_ref(OBJ_REF_DBG_THIS_FUNCTION_LINE);
 
-      m_puserinteraction->m_ewindowflag |= ::window_flag_is_window;
+      m_puserinteraction->m_ewindowflag |= ::e_window_flag_is_window;
 
-      m_puserinteraction->m_ewindowflag |= ::window_flag_window_created;
+      m_puserinteraction->m_ewindowflag |= ::e_window_flag_window_created;
 
       m_puserinteraction->m_layout.sketch().set_modified();
 

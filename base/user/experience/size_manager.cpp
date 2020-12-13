@@ -23,7 +23,7 @@ namespace experience
 
       SetSWPFlags(0);
 
-      m_egripMask = grip_all;
+      m_egripMask = e_grip_all;
 
    }
 
@@ -141,7 +141,7 @@ namespace experience
       else
       {
 
-         m_pframewindow->on_start_layout_experience(layout_experience_sizing);
+         m_pframewindow->on_start_layout_experience(e_layout_experience_sizing);
 
          m_iPaintCount = 0;
 
@@ -263,7 +263,7 @@ namespace experience
 
       }
 
-      m_pframewindow->on_end_layout_experience(layout_experience_sizing);
+      m_pframewindow->on_end_layout_experience(e_layout_experience_sizing);
 
       return true;
 
@@ -590,7 +590,7 @@ namespace experience
    }
 
 
-   void size_manager::SetGripMask(e_grip egrip)
+   void size_manager::SetGripMask(enum_grip egrip)
    {
 
       m_egripMask = egrip;
@@ -598,7 +598,7 @@ namespace experience
    }
 
 
-   e_grip size_manager::GetGripMask()
+   enum_grip size_manager::GetGripMask()
    {
 
       return m_egripMask;
@@ -606,29 +606,29 @@ namespace experience
    }
 
 
-   e_grip size_manager::hittest_mode_grip(e_hittest emode)
+   enum_grip size_manager::hittest_mode_grip(e_hittest emode)
    {
 
-      e_grip egrip;
+      enum_grip egrip;
 
       if(emode == hittest_sizing_top)
-         egrip = grip_top;
+         egrip = e_grip_top;
       else if(emode == hittest_sizing_top_left)
-         egrip = grip_top_left;
+         egrip = e_grip_top_left;
       else if(emode == hittest_sizing_left)
-         egrip = grip_left;
+         egrip = e_grip_left;
       else if(emode == hittest_sizing_bottom_left)
-         egrip = grip_bottom_left;
+         egrip = e_grip_bottom_left;
       else if(emode == hittest_sizing_bottom)
-         egrip = grip_bottom;
+         egrip = e_grip_bottom;
       else if(emode == hittest_sizing_bottom_right)
-         egrip = grip_bottom_right;
+         egrip = e_grip_bottom_right;
       else if(emode == hittest_sizing_right)
-         egrip = grip_right;
+         egrip = e_grip_right;
       else if(emode == hittest_sizing_top_right)
-         egrip = grip_top_right;
+         egrip = e_grip_top_right;
       else
-         egrip = grip_none;
+         egrip = e_grip_none;
       return egrip;
 
    }

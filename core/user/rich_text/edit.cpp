@@ -507,7 +507,7 @@ namespace user
 
             ev.m_puie = this;
 
-            ev.m_eevent = ::user::event_key_down;
+            ev.m_eevent = ::user::e_event_key_down;
 
             ev.m_pmessage = pmessage;
 
@@ -569,7 +569,7 @@ namespace user
 
             ev.m_puie = this;
 
-            ev.m_eevent = ::user::event_escape;
+            ev.m_eevent = ::user::e_event_escape;
 
             ev.m_actioncontext = ::source_user;
 

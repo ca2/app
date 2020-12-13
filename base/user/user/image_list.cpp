@@ -156,7 +156,7 @@ namespace user
 
       ::user::control_event event;
 
-      event.m_eevent    = ::user::event_image_list_action;
+      event.m_eevent    = ::user::e_event_image_list_action;
 
       event.m_item      = item;
 
@@ -282,7 +282,7 @@ namespace user
 
          {
 
-            __stack(item.m_eelement, element_item);
+            __stack(item.m_eelement, e_element_item);
 
             if (!get_rect(item))
             {
@@ -315,7 +315,7 @@ namespace user
 
          {
 
-            __stack(item.m_eelement, element_item);
+            __stack(item.m_eelement, e_element_item);
 
             if (!get_rect(item))
             {
@@ -381,7 +381,7 @@ namespace user
 
       rectClient.offset(m_pointScroll);
 
-      pgraphics->fill_rect(rectClient, get_color(pstyle, element_background));
+      pgraphics->fill_rect(rectClient, get_color(pstyle, ::user::e_element_background));
 
       pgraphics->draw_rect(rectClient, ARGB(255, 192, 192, 192));
 
@@ -396,11 +396,11 @@ namespace user
 
          ::rect rectSel;
 
-         itemText = element_text;
+         itemText = e_element_text;
 
          bool bRectText = get_rect(itemText);
 
-         item = element_icon;
+         item = e_element_icon;
 
          if (get_rect(item))
          {
@@ -564,7 +564,7 @@ namespace user
             if (_001GetItemText(str, item))
             {
 
-               pgraphics->set_text_color(get_color(pstyle, element_text));
+               pgraphics->set_text_color(get_color(pstyle, ::user::e_element_text));
 
                pgraphics->draw_text(str, itemText.m_rect, e_align_center);
 
@@ -597,7 +597,7 @@ namespace user
       for (index i = 0; i < m_imagea.get_count(); i++)
       {
 
-         ::user::item item(element_item, i);
+         ::user::item item(e_element_item, i);
 
          if (get_rect(item))
          {
@@ -780,7 +780,7 @@ namespace user
 
          ev.m_item = current_item();
 
-         ev.m_eevent = ::user::event_after_change_cur_sel;
+         ev.m_eevent = ::user::e_event_after_change_cur_sel;
 
          on_control_event(&ev);
 

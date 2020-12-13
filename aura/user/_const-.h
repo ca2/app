@@ -6,7 +6,7 @@
 
 //
 //
-//enum e_position
+//enum enum_position
 //{
 //   position_none = 0,
 //   position_top = 1,
@@ -34,17 +34,17 @@
 //{
 //
 //
-//   enum e_layout
+//   enum enum_layout
 //   {
 //
 //      layout_sketch, // layouting request ("staging area")
 //      layout_design, // ready to process
 ////      layout_bitmap, // drawn/ready sketch
-//      layout_output, // screen output
-//      layout_window, // event window
+//      e_layout_output, // screen output
+//      e_layout_window, // event window
 //
 //      layout_count_child = layout_design + 1,
-//      layout_count_owner = layout_window + 1,
+//      e_layout_count_owner = e_layout_window + 1,
 //
 //   };
 //
@@ -190,9 +190,9 @@
 //   enum enum_translucency
 //   {
 //
-//      translucency_undefined,
+//      e_translucency_undefined,
 //      translucency_none,
-//      translucency_present,
+//      e_translucency_present,
 //      translucency_total
 //
 //   };
@@ -200,14 +200,14 @@
 //
 //   enum enum_control_type
 //   {
-//      control_type_none,
-//      control_type_static,
-//      control_type_check_box,
-//      control_type_edit,
-//      control_type_simple_list,
-//      control_type_button,
-//      control_type_combo_box,
-//      control_type_edit_plain_text,
+//      e_control_type_none,
+//      e_control_type_static,
+//      e_control_type_check_box,
+//      e_control_type_edit,
+//      e_control_type_simple_list,
+//      e_control_type_button,
+//      e_control_type_combo_box,
+//      e_control_type_edit_plain_text,
 //      control_type_list,
 //      control_type_mesh,
 //      control_type_tree,
@@ -217,7 +217,7 @@
 //      control_type_statusbar,
 //      control_type_menu,
 //      control_type_menu_popup,
-//      control_type_menu_button,
+//      e_control_type_menu_button,
 //      control_type_menu_button_close,
 //      control_type_system_menu,
 //      control_type_system_menu_popup,
@@ -230,7 +230,7 @@
 //   enum enum_element : ::i64
 //   {
 //
-//      element_none,
+//      e_element_none,
 //      element_frame_window,
 //      element_tab,
 //      element_tab_layout_background,
@@ -239,23 +239,23 @@
 //      element_tab_far_scroll,
 //      element_close_tab_button,
 //      element_status_image,
-//      element_text,
+//      e_element_text,
 //      element_list,
 //      element_item_text,
 //      element_item_background,
 //      element_hilite_text,
-//      element_icon,
+//      e_element_icon,
 //      element_background,
 //      element_separator,
 //      element_face,
-//      element_border,
+//      e_element_border,
 //      element_lite_border,
 //      element_client,
 //      element_area,
-//      element_drop_down,
-//      element_combo_edit,
-//      element_item,
-//      element_search_edit,
+//      e_element_drop_down,
+//      e_element_combo_edit,
+//      e_element_item,
+//      e_element_search_edit,
 //      element_search_ok,
 //      element_scrollbar,
 //      element_scrollbar_draw,
@@ -370,7 +370,7 @@
 //   enum enum_flag
 //   {
 //
-//      flag_none,
+//      e_flag_none,
 //      flag_border = 1<<0,
 //      flag_modifier_impact = 1 << 1,
 //      flag_tool_impact = 1 << 2,
@@ -425,7 +425,7 @@
 //   };
 //
 //
-//   enum e_control_function
+//   enum enum_control_function
 //   {
 //      // Text got from control m_uiId member
 //      control_function_static,
@@ -435,26 +435,26 @@
 //      control_function_check_box,
 //      control_function_duplicate_on_check_box,
 //      control_function_disable_on_check_box,
-//      control_function_save_on_change,
-//      control_function_vms_data_edit,
-//      control_function_action,
+//      e_control_function_save_on_change,
+//      e_control_function_vms_data_edit,
+//      e_control_function_action,
 //      control_function_edit_multi_line,
 //   };
 //
 //
-//   enum e_control_data_type
+//   enum enum_control_data_type
 //   {
-//      control_data_type_string,
-//      control_data_type_natural,
+//      e_control_data_type_string,
+//      e_control_data_type_natural,
 //   };
 //
 //
-//   enum e_control_ddx
+//   enum enum_control_ddx
 //   {
 //
 //      control_ddx_none,
 //      control_ddx_flags,
-//      control_ddx_dbflags,
+//      e_control_ddx_dbflags,
 //
 //   };
 //
@@ -468,7 +468,7 @@
 //
 //   };
 //
-//   enum e_line_hit
+//   enum enum_line_hit
 //   {
 //      line_hit_none,
 //      line_hit_normal,

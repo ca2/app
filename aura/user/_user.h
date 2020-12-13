@@ -521,7 +521,7 @@ namespace user
 //class simple_mesh_data;
 
 //
-//enum e_position
+//enum enum_position
 //{
 //   position_none = 0,
 //   position_top = 1,
@@ -544,7 +544,7 @@ namespace user
 //
 //namespace user
 //{
-//   enum e_line_hit
+//   enum enum_line_hit
 //   {
 //      line_hit_none,
 //      line_hit_normal,

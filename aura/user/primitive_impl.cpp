@@ -1711,7 +1711,7 @@ namespace user
 
       }
 
-      return m_puserinteraction->m_ewindowflag & window_flag_enable;
+      return m_puserinteraction->m_ewindowflag & e_window_flag_enable;
 
    }
 
@@ -1739,9 +1739,9 @@ namespace user
    bool primitive_impl::enable_window(bool bEnable)
    {
 
-      bool bWasDisabled = !(m_puserinteraction->m_ewindowflag & window_flag_enable);
+      bool bWasDisabled = !(m_puserinteraction->m_ewindowflag & e_window_flag_enable);
 
-      m_puserinteraction->m_ewindowflag.set(window_flag_enable, bEnable);
+      m_puserinteraction->m_ewindowflag.set(e_window_flag_enable, bEnable);
 
       return bWasDisabled;
 

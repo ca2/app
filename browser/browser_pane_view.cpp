@@ -341,7 +341,7 @@ namespace browser
       if(m_pdocMenu != nullptr && dynamic_cast < ::user::impact * > (pevent->get_form()) == m_pdocMenu->get_view(0) && pevent->m_puie != nullptr)
       {
 
-         if(pevent->m_eevent == ::user::event_after_change_text)
+         if(pevent->m_eevent == ::user::e_event_after_change_text)
          {
 
             if(m_prollfps != nullptr && pevent->m_puie->m_id == "roll_fps" && !pevent->m_context.is(::source_initialize)
@@ -423,7 +423,7 @@ namespace browser
 
 
          }
-         else if (pevent->m_eevent == ::user::event_set_check && pevent->m_puie != nullptr)
+         else if (pevent->m_eevent == ::user::e_event_set_check && pevent->m_puie != nullptr)
          {
 
             string strCheck = pevent->m_puie->m_id;
@@ -469,7 +469,7 @@ namespace browser
          if (m_pfontview != nullptr && pevent->m_puie == m_pfontview->m_pview)
          {
 
-            if (pevent->m_eevent == ::user::event_after_change_cur_sel)
+            if (pevent->m_eevent == ::user::e_event_after_change_cur_sel)
             {
 
                string strFont = m_pfontview->m_pview->get_cur_sel_face_name();
@@ -488,7 +488,7 @@ namespace browser
                }
 
             }
-            else if (pevent->m_eevent == ::user::event_after_change_cur_hover)
+            else if (pevent->m_eevent == ::user::e_event_after_change_cur_hover)
             {
 
                string strFont = m_pfontview->m_pview->get_cur_hover_face_name();
@@ -509,13 +509,13 @@ namespace browser
          {
 
 
-            if (pevent->m_eevent == ::user::event_after_change_cur_sel
-                  || pevent->m_eevent == ::user::event_after_change_cur_hover)
+            if (pevent->m_eevent == ::user::e_event_after_change_cur_sel
+                  || pevent->m_eevent == ::user::e_event_after_change_cur_hover)
             {
 
                m_pcolorview->get_color().get_hls(m_pviewLastBilbo->m_prender->m_hlsForeground);
 
-               if (pevent->m_eevent == ::user::event_after_change_cur_sel)
+               if (pevent->m_eevent == ::user::e_event_after_change_cur_sel)
                {
 
                   m_pviewLastBilbo->data_set("cur_color", m_pviewLastBilbo->m_prender->m_hlsForeground);

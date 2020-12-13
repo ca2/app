@@ -116,17 +116,17 @@ namespace user
 
       //virtual color32_t           _001GetColor(e_color ecolor, color32_t crDefault = 0);
       //virtual ::draw2d::font_pointer  _001GetFont(e_font efont, ::draw2d::font * pfont = nullptr);
-      //virtual enum_translucency     _001GetTranslucency(enum_element eelement = element_none, enum_translucency etranslucencyDefault = translucency_undefined);
+      //virtual enum_translucency     _001GetTranslucency(enum_element eelement = e_element_none, enum_translucency etranslucencyDefault = e_translucency_undefined);
       //virtual bool               _001GetFlag(::user::e_flag eflag, bool bDefault = false);
       //virtual ::rect             _001GetRect(::user::e_rect erect, ::rect rectDefault = nullptr);
       //virtual int                _001GetInt(::user::e_int eint, int iDefault = 0);
       //virtual double             _001GetDouble(::user::e_double edouble, double dDefault = 0.0);
 
 
-      //virtual bool _001IsBackgroundBypass(enum_element eelement = element_none);
-      //virtual bool _001IsTransparent(enum_element eelement = element_none);
-      //virtual bool _001IsTranslucent(enum_element eelement = element_none);
-      //virtual bool _001HasTranslucency(enum_element eelement = element_none);
+      //virtual bool _001IsBackgroundBypass(enum_element eelement = e_element_none);
+      //virtual bool _001IsTransparent(enum_element eelement = e_element_none);
+      //virtual bool _001IsTranslucent(enum_element eelement = e_element_none);
+      //virtual bool _001HasTranslucency(enum_element eelement = e_element_none);
 
 
       virtual ::color get_color(const ::user::interaction* pinteraction, ::user::eelement eelement, ::user::estate estate = ::user::e_state_none) const override;

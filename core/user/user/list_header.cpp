@@ -159,7 +159,7 @@ namespace user
       rect.left = xLast;
       rect.right = x;
 
-      if(eelement == element_item)
+      if(eelement == e_element_item)
       {
          *prect = rect;
 
@@ -477,7 +477,7 @@ namespace user
             else if(m_eelementLButtonDown == ElementDivider)
             {
                ::rect rect;
-               GetItemRect(rect, element_item, m_iItemLButtonDown);
+               GetItemRect(rect, e_element_item, m_iItemLButtonDown);
                rect.right = pointCursor.x;
                i32 iNewWidth = rect.width();
                plist->_001SetColumnWidth(m_iItemLButtonDown, max(0, iNewWidth));
@@ -533,7 +533,7 @@ namespace user
          if(m_eelementLButtonDown == ElementDivider)
          {
             ::rect rect;
-            GetItemRect(rect, element_item, m_iItemLButtonDown);
+            GetItemRect(rect, e_element_item, m_iItemLButtonDown);
             rect.right = pointCursor.x;
             i32 iNewWidth = rect.width();
             plist->_001SetColumnWidth(m_iItemLButtonDown, max(0, iNewWidth));

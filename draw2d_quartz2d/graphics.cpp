@@ -3110,16 +3110,16 @@ namespace draw2d_quartz2d
       ::i32 y = rect.top;
       ::i32 cx = width(rect);
       ::i32 cy = height(rect);
-      if(eborder & border_top)
+      if(eborder & e_border_top)
       fill_solid_rect_dim(x, y, cx - 1, 1, colorTopLeft);
       
-      if(eborder & border_left)
+      if(eborder & e_border_left)
       fill_solid_rect_dim(x, y, 1, cy - 1, colorTopLeft);
       
-      if(eborder &border_right)
+      if(eborder &e_border_right)
       fill_solid_rect_dim(x + cx - 1, y, 1, cy, colorBottomRight);
       
-      if(eborder & border_bottom)
+      if(eborder & e_border_bottom)
       fill_solid_rect_dim(x, y + cy - 1, cx, 1, colorBottomRight);
    }
 

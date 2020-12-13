@@ -108,7 +108,7 @@ namespace user
 
       SCAST_PTR(::message::create, pmessagecreate, pmessage);
 
-      if (!(m_ewindowflag & window_flag_window_created))
+      if (!(m_ewindowflag & e_window_flag_window_created))
       {
 
          ASSERT(::user::impact::get_document() == nullptr);
@@ -158,7 +158,7 @@ namespace user
 
          ev.m_puie      = this;
 
-         ev.m_eevent    = ::user::event_on_create_impact;
+         ev.m_eevent    = ::user::e_event_on_create_impact;
 
          ev.m_pmessage  = pmessage;
 

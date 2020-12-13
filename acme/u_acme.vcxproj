@@ -1723,10 +1723,7 @@
     <ClCompile Include="os\debug.cpp" />
     <ClCompile Include="os\file.cpp" />
     <ClCompile Include="os\http.cpp" />
-<<<<<<< HEAD
-=======
     <ClCompile Include="os\parallelization.cpp" />
->>>>>>> origin/basis
     <ClCompile Include="os\time.cpp" />
     <ClCompile Include="os\uwp\application_system_run.cpp" />
     <ClCompile Include="os\uwp\aura.cpp" />

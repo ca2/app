@@ -61,7 +61,7 @@ namespace user
 
       virtual void _000OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual void _001OnDropTab(index iPane, e_position eposition) override;
+      virtual void _001OnDropTab(index iPane, enum_position eposition) override;
 
       virtual ::user::interaction * _001GetTabWnd(::index iTab) override;
 

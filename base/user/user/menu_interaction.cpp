@@ -133,7 +133,7 @@ namespace user
    void menu_interaction::_001OnCreate(::message::message * pmessage)
    {
 
-      descriptor().set_control_type(control_type_menu_button);
+      descriptor().set_control_type(e_control_type_menu_button);
 
       pmessage->previous();
 

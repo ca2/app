@@ -227,7 +227,7 @@ namespace user
 
       virtual void _001SetTabCallback(tab_callback * pcallback);
       virtual bool _001IsAddTab(::index iTab);
-      virtual void _001OnDropTab(::index iTab, e_position eposition);
+      virtual void _001OnDropTab(::index iTab, enum_position eposition);
       virtual bool set_cur_tab_by_id(id id, ::create * pcreate = nullptr);
 
       virtual id get_cur_tab_id();
@@ -248,8 +248,8 @@ namespace user
       virtual void _001OnTabClose(::index iTab);
       virtual ::user::interaction * GetNotifyWnd();
       virtual void on_hit_test(::user::item & item) override;
-      virtual e_position DragHitTest(const ::point & point);
-      virtual void GetDragRect(RECT32 * prect, e_position eposition);
+      virtual enum_position DragHitTest(const ::point & point);
+      virtual void GetDragRect(RECT32 * prect, enum_position eposition);
 
       virtual bool get_element_rect(::index iTab, RECT32 * prect, enum_element eelement);
 

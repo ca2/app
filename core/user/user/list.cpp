@@ -855,7 +855,7 @@ namespace user
 
       pdrawitem->m_iListItem = -1;
 
-      _001GetElementRect(pdrawitem, ::user::mesh::element_text);
+      _001GetElementRect(pdrawitem, ::user::mesh::e_element_text);
 
       if (pdrawitem->m_bOk)
       {
@@ -3011,7 +3011,7 @@ namespace user
 
          }
 
-         if (eelement == ::user::list::element_item)
+         if (eelement == ::user::list::e_element_item)
          {
 
             return_(pdrawitem->m_bOk, true);
@@ -3034,7 +3034,7 @@ namespace user
                return_(pdrawitem->m_bOk, true);
 
             }
-            else if (eelement == ::user::mesh::element_text)
+            else if (eelement == ::user::mesh::e_element_text)
             {
 
                i32 iIconSize = m_columna[0]->m_sizeIcon.cy;
@@ -3173,7 +3173,7 @@ namespace user
 
             }
 
-            if (eelement == ::user::mesh::element_text)
+            if (eelement == ::user::mesh::e_element_text)
             {
 
                pdrawitem->m_rectText.left = x;
@@ -4148,7 +4148,7 @@ namespace user
 
       ev.m_puie = this;
 
-      ev.m_eevent = ::user::event_list_clicked;
+      ev.m_eevent = ::user::e_event_list_clicked;
 
       route_control_event(&ev);
 
@@ -7146,7 +7146,7 @@ namespace user
       ::user::control_event ev;
 
       ev.m_puie = this;
-      ev.m_eevent = ::user::event_after_change_cur_sel;
+      ev.m_eevent = ::user::e_event_after_change_cur_sel;
 
       on_control_event(&ev);
 

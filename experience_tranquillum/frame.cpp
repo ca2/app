@@ -469,7 +469,7 @@ namespace experience
       }
 
 
-      void frame::Draw3dRectSide(::draw2d::graphics_pointer & pgraphics, const rect & rectParam, e_border eborder, color32_t crTopLeft, color32_t crBottomRight)
+      void frame::Draw3dRectSide(::draw2d::graphics_pointer & pgraphics, const rect & rectParam, enum_border eborder, color32_t crTopLeft, color32_t crBottomRight)
       {
 
          ::rect rect(rectParam);
@@ -484,7 +484,7 @@ namespace experience
 
          ::draw2d::pen_pointer pen;
 
-         if (eborder & border_top || eborder & border_left)
+         if (eborder & e_border_top || eborder & e_border_left)
          {
 
             pen.create(this);
@@ -495,7 +495,7 @@ namespace experience
 
          }
 
-         if (eborder & border_top)
+         if (eborder & e_border_top)
          {
 
             pgraphics->move_to(x, y);
@@ -504,7 +504,7 @@ namespace experience
 
          }
 
-         if (eborder & border_left)
+         if (eborder & e_border_left)
          {
 
             pgraphics->move_to(x, y);
@@ -513,7 +513,7 @@ namespace experience
 
          }
 
-         if ((eborder & border_right || eborder & border_bottom) && (pen.is_null() || pen->m_color != crBottomRight))
+         if ((eborder & e_border_right || eborder & e_border_bottom) && (pen.is_null() || pen->m_color != crBottomRight))
          {
 
             pen.create(this);
@@ -524,7 +524,7 @@ namespace experience
 
          }
 
-         if (eborder & border_right)
+         if (eborder & e_border_right)
          {
 
             pgraphics->move_to(x + cx, y);
@@ -533,7 +533,7 @@ namespace experience
 
          }
 
-         if (eborder & border_bottom)
+         if (eborder & e_border_bottom)
          {
 
             pgraphics->move_to(x, y + cy);

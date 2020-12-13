@@ -309,7 +309,7 @@ bool prodevian::prodevian_iteration()
 
       }
 
-      if (m_puserinteraction->m_ewindowflag & window_flag_embedded_prodevian)
+      if (m_puserinteraction->m_ewindowflag & e_window_flag_embedded_prodevian)
       {
 
          bHasProdevian = false;
@@ -336,13 +336,13 @@ bool prodevian::prodevian_iteration()
 
    }
 
-   if (!(m_puserinteraction->m_ewindowflag & window_flag_embedded_prodevian))
+   if (!(m_puserinteraction->m_ewindowflag & e_window_flag_embedded_prodevian))
    {
 
       if (m_puserinteraction->m_pimpl2.is_null() || !bHasProdevian)
       {
 
-         m_puserinteraction->m_ewindowflag -= window_flag_redraw_in_queue;
+         m_puserinteraction->m_ewindowflag -= e_window_flag_redraw_in_queue;
 
          if (!get_message(&m_message, NULL, 0, 0))
          {
@@ -445,7 +445,7 @@ bool prodevian::prodevian_iteration()
 
    }
 
-   if(m_puserinteraction->m_ewindowflag & window_flag_postpone_visual_update)
+   if(m_puserinteraction->m_ewindowflag & e_window_flag_postpone_visual_update)
    {
 
       if(m_pimpl->m_bPendingRedraw && m_pimpl->m_millisLastRedraw.elapsed() < 100_ms)
@@ -506,7 +506,7 @@ bool prodevian::prodevian_iteration()
 
          m_puserinteraction->m_bUpdateVisual = false;
 
-         if (m_puserinteraction->m_ewindowflag & window_flag_postpone_visual_update)
+         if (m_puserinteraction->m_ewindowflag & e_window_flag_postpone_visual_update)
          {
 
             bStartWindowVisual = true;
@@ -662,7 +662,7 @@ bool prodevian::prodevian_iteration()
 
    }
 
-   if (!(m_puserinteraction->m_ewindowflag & window_flag_postpone_visual_update))
+   if (!(m_puserinteraction->m_ewindowflag & e_window_flag_postpone_visual_update))
    {
       //#ifdef LINUX
       if (bStartWindowVisual)
@@ -737,7 +737,7 @@ bool prodevian::prodevian_iteration()
 
    }
 
-   if ((m_puserinteraction->m_ewindowflag & window_flag_postpone_visual_update))
+   if ((m_puserinteraction->m_ewindowflag & e_window_flag_postpone_visual_update))
    {
       // IFDEF WINDOWS
       if (bStartWindowVisual)
@@ -1053,15 +1053,15 @@ bool prodevian::prodevian_iteration()
 
          }
 
-         if (is_different(m_puserinteraction->m_ewindowflag & window_flag_on_show_window_visible,
+         if (is_different(m_puserinteraction->m_ewindowflag & e_window_flag_on_show_window_visible,
             m_puserinteraction->is_this_visible())
-            || is_different(m_puserinteraction->m_ewindowflag & window_flag_on_show_window_screen_visible,
+            || is_different(m_puserinteraction->m_ewindowflag & e_window_flag_on_show_window_screen_visible,
                m_puserinteraction->is_window_screen_visible()))
          {
 
-            m_puserinteraction->m_ewindowflag.set(window_flag_on_show_window_visible, m_puserinteraction->is_this_visible());
+            m_puserinteraction->m_ewindowflag.set(e_window_flag_on_show_window_visible, m_puserinteraction->is_this_visible());
 
-            m_puserinteraction->m_ewindowflag.set(window_flag_on_show_window_screen_visible, m_puserinteraction->is_window_screen_visible());
+            m_puserinteraction->m_ewindowflag.set(e_window_flag_on_show_window_screen_visible, m_puserinteraction->is_window_screen_visible());
 
             m_puserinteraction->_on_show_window();
 

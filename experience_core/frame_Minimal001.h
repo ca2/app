@@ -25,10 +25,10 @@
 
                void on_draw_frame(::draw2d::graphics_pointer & pgraphics);
                void DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::rect & rectClient);
-               void draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::rect & rectClient, e_border eside);
-               void GetBorderRect(const ::rect & rectClient, LPRECT32 lprect, e_border eside);
+               void draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::rect & rectClient, enum_border eside);
+               void GetBorderRect(const ::rect & rectClient, LPRECT32 lprect, enum_border eside);
                void DrawGripSet(::draw2d::graphics_pointer & pgraphics, const ::rect & rectClient);
-               void DrawGrip(::draw2d::graphics_pointer & pgraphics, const ::rect & rectClient, e_grip egrip);
+               void DrawGrip(::draw2d::graphics_pointer & pgraphics, const ::rect & rectClient, enum_grip egrip);
                void DrawRectGrip(::draw2d::graphics_pointer & pgraphics, const ::rect & rect);
 
                virtual e_hittest _001HitTest(const ::point & point);

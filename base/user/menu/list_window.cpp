@@ -57,7 +57,7 @@ namespace user
    void menu_list_window::_001OnCreate(::message::message * pmessage)
    {
 
-      descriptor().set_control_type(control_type_menu);
+      descriptor().set_control_type(e_control_type_menu);
 
       UNREFERENCED_PARAMETER(pmessage);
 

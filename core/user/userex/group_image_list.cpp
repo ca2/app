@@ -312,12 +312,12 @@ namespace userex
    void group_image_list_view::on_control_event(::user::control_event * pevent)
    {
 
-      if (pevent->m_eevent == ::user::event_item_clicked)
+      if (pevent->m_eevent == ::user::e_event_item_clicked)
       {
 
 
       }
-      else if (pevent->m_eevent == ::user::event_button_clicked)
+      else if (pevent->m_eevent == ::user::e_event_button_clicked)
       {
 
          if (pevent->m_puie->m_id == m_id)

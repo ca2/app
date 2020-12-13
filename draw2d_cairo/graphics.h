@@ -480,7 +480,7 @@ namespace draw2d_cairo
       void fill_rect(const ::rect & rect, const ::color & color) override;
       void fill_rect(const ::rectd & rect, const ::color & color) override;
       //void fill_rect(i32 x, i32 y, i32 cx, i32 cy, color32_t clr) override;
-      void draw_3drect(const ::rect & rect, const ::color & colorTopLeft, const ::color & colorBottomRight, eborder eborder = border_all) override;
+      void draw_3drect(const ::rect & rect, const ::color & colorTopLeft, const ::color & colorBottomRight, eborder eborder = e_border_all) override;
       //void draw3d_rect(i32 x, i32 y, i32 cx, i32 cy,
       //              color32_t clrTopLeft, color32_t clrBottomRight) override;
 

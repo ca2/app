@@ -2198,7 +2198,7 @@ namespace axis
       if (str.begins_ci("still_"))
       {
 
-         econtroltype = ::user::control_type_static;
+         econtroltype = ::user::e_control_type_static;
 
          return __type(::user::still);
 
@@ -2206,7 +2206,7 @@ namespace axis
       else if (str.begins_ci("label_"))
       {
 
-         econtroltype = ::user::control_type_static;
+         econtroltype = ::user::e_control_type_static;
 
          return __type(::user::still);
 
@@ -2214,7 +2214,7 @@ namespace axis
       else if (str.begins_ci("combo_"))
       {
 
-         econtroltype = ::user::control_type_combo_box;
+         econtroltype = ::user::e_control_type_combo_box;
 
          return __type(::user::combo_box);
 
@@ -2222,7 +2222,7 @@ namespace axis
       else if (str.begins_ci("check_") || str.begins_ci("checkbox_"))
       {
 
-         econtroltype = ::user::control_type_check_box;
+         econtroltype = ::user::e_control_type_check_box;
 
          return __type(::user::check_box);
 
@@ -2230,7 +2230,7 @@ namespace axis
       if (str.begins_ci("button_"))
       {
 
-         econtroltype = ::user::control_type_button;
+         econtroltype = ::user::e_control_type_button;
 
          return __type(::user::button);
 

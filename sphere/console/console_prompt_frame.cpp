@@ -527,7 +527,7 @@ namespace console
    bool prompt_frame::get_translucency(::user::enum_translucency & etranslucency, ::user::enum_element eelement, ::user::style_context * pinteraction)
    {
 
-      etranslucency = ::user::translucency_present;
+      etranslucency = ::user::e_translucency_present;
 
       return true;
 

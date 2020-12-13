@@ -20,7 +20,7 @@ namespace user
       // and visibility/order problems.
 
 
-      enum e_layout
+      enum enum_layout
       {
 
          layout_creating = 1 << 0,
@@ -41,7 +41,7 @@ namespace user
       struct window_rect                        m_windowrect;
       struct window_rect                        m_windowrectStore;
 
-      cflag < e_layout >                        m_eflagLayouting;
+      cflag < enum_layout >                        m_eflagLayouting;
       bool                                      m_bUpdatingVisual;
       bool                                      m_bUpdateVisual;
       bool                                      m_bFillParent;
@@ -54,7 +54,7 @@ namespace user
       __pointer(control_descriptor)             m_pdescriptor;
 
       millis                                      m_millisLastDisplayChange;
-      e_layout_experience                       m_elayoutexperience;
+      enum_layout_experience                       m_elayoutexperience;
 
 
       //mutable size                            m_sizeClient;
@@ -151,13 +151,13 @@ namespace user
       inline bool window_is_minimal() { return ::window_is_minimal(display_state()); }
 
 
-      inline void auto_prodevian_on_show() { m_ewindowflag |= window_flag_auto_prodevian_on_show; }
-      inline void clear_auto_prodevian_on_show() { m_ewindowflag -= window_flag_auto_prodevian_on_show; }
-      inline bool is_auto_prodevian_on_show() { return m_ewindowflag & window_flag_auto_prodevian_on_show; }
+      inline void auto_prodevian_on_show() { m_ewindowflag |= e_window_flag_auto_prodevian_on_show; }
+      inline void clear_auto_prodevian_on_show() { m_ewindowflag -= e_window_flag_auto_prodevian_on_show; }
+      inline bool is_auto_prodevian_on_show() { return m_ewindowflag & e_window_flag_auto_prodevian_on_show; }
 
-      inline void visual_changed() { m_ewindowflag |= window_flag_visual_changed; }
-      inline void clear_visual_changed() { m_ewindowflag -= window_flag_visual_changed; }
-      inline bool is_visual_changed()const { return m_ewindowflag& window_flag_visual_changed; }
+      inline void visual_changed() { m_ewindowflag |= e_window_flag_visual_changed; }
+      inline void clear_visual_changed() { m_ewindowflag -= e_window_flag_visual_changed; }
+      inline bool is_visual_changed()const { return m_ewindowflag& e_window_flag_visual_changed; }
 
       inline const struct window_state & ui_state() const { return m_state2; }
       inline struct window_state & ui_state() { return m_state2; }
@@ -185,15 +185,15 @@ namespace user
       inline const ::edisplay & process_display() const noexcept { return process_state().m_edisplay3; }
 
 
-      inline e_layout_experience layout_experience() const { return m_elayoutexperience; }
+      inline enum_layout_experience layout_experience() const { return m_elayoutexperience; }
 
 
-      inline bool is_layout_experience_active() const { return m_elayoutexperience != layout_experience_none; }
+      inline bool is_layout_experience_active() const { return m_elayoutexperience != e_layout_experience_none; }
 
 
-      inline bool window_is_moving() const { return m_elayoutexperience == layout_experience_moving; }
-      inline bool window_is_sizing() const { return m_elayoutexperience == layout_experience_sizing; }
-      inline bool window_is_docking() const { return m_elayoutexperience == layout_experience_docking; }
+      inline bool window_is_moving() const { return m_elayoutexperience == e_layout_experience_moving; }
+      inline bool window_is_sizing() const { return m_elayoutexperience == e_layout_experience_sizing; }
+      inline bool window_is_docking() const { return m_elayoutexperience == e_layout_experience_docking; }
 
 
       inline bool is_this_visible() const noexcept

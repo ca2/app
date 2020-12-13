@@ -535,7 +535,7 @@ bool simple_menu_bar::ReloadMenuBar()
 
    switch(eelement)
    {
-   case element_item:
+   case e_element_item:
       prect->left   = m_buttona[iItem].m_rect.left + ITEMCHECKEDCX;
 
       prect->right  = m_buttona[iItem].m_rect.right + ITEMCHECKEDPADRIGHT;
@@ -555,7 +555,7 @@ bool simple_menu_bar::ReloadMenuBar()
       prect->bottom = m_buttona[iItem].m_rect.bottom - ITEMCHECKEDCY;
 
       break;
-   case element_text:
+   case e_element_text:
       prect->left   = m_buttona[iItem].m_rect.left + ITEMCHECKEDCX;
 
       prect->right  = m_buttona[iItem].m_rect.right;
@@ -748,8 +748,8 @@ size simple_menu_bar::CalcFixedLayout(bool bStretch, bool bHorz)
    SimpleMenuBarButton & button = m_buttona[iItem];
 
 
-   enum_element eelement = element_item;
-   enum_element eelementText = element_text;
+   enum_element eelement = e_element_item;
+   enum_element eelementText = e_element_text;
    if(m_iTracking >= 0)
    {
       if(iItem == m_iTracking)
@@ -773,7 +773,7 @@ size simple_menu_bar::CalcFixedLayout(bool bStretch, bool bHorz)
    if(eelement == element_item_hover)
    {
       ::rect rectShadow;
-      _001GetItemRect(iItem, rectShadow, element_item);
+      _001GetItemRect(iItem, rectShadow, e_element_item);
 
       ::draw2d::pen_pointer penShadow(get_context_application(), PS_SOLID, 1, RGB(127, 127, 127));
       ::draw2d::brush_pointer brushShadow(get_context_application(), RGB(127, 127, 127));
@@ -790,7 +790,7 @@ size simple_menu_bar::CalcFixedLayout(bool bStretch, bool bHorz)
       pgraphics->set(pbrushOld);
 
       ::rect rect;
-      _001GetItemRect(iItem, rect, element_text);
+      _001GetItemRect(iItem, rect, e_element_text);
       pgraphics->set_text_color(RGB(192, 192, 192));
       draw2d::graphics_extension::_DrawText(pgraphics,
          button.m_wstr,

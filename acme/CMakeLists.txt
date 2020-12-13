@@ -212,7 +212,7 @@ list(APPEND acme_source
    platform/timer_item.cpp
    platform/timer_task.cpp
    platform/trace_category.cpp
-   platform/update.cpp
+   #platform/update.cpp
    platform/version.cpp
    primitive/collection/2d_array.cpp
    primitive/collection/array.cpp

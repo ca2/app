@@ -2,9 +2,9 @@
 
 
 
-using edock = cflag < e_dock >;
-using eborder = cflag < e_border >;
-using egrip = cflag < e_grip >;
+using edock = cflag < enum_dock >;
+using eborder = cflag < enum_border >;
+using egrip = cflag < enum_grip >;
 
 
 class image_frame_array;

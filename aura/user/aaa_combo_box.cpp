@@ -148,7 +148,7 @@ namespace user
 
       ::rect rectText;
 
-      get_element_rect(rectText, element_text);
+      get_element_rect(rectText, e_element_text);
 
       pgraphics->set_font(this);
 
@@ -164,7 +164,7 @@ namespace user
 
       ::rect rectDropDown;
 
-      get_element_rect(rectDropDown, element_drop_down);
+      get_element_rect(rectDropDown, e_element_drop_down);
 
       i32 cx = rectDropDown.width() / 3;
 
@@ -209,7 +209,7 @@ namespace user
 
       ::rect rectDropDown;
 
-      get_element_rect(rectDropDown, element_drop_down);
+      get_element_rect(rectDropDown, e_element_drop_down);
 
       ::rect rectDropIn(rectDropDown);
 
@@ -440,10 +440,10 @@ namespace user
 
    {
 
-      if(eelement == element_text)
+      if(eelement == e_element_text)
       {
 
-         eelement = element_combo_edit;
+         eelement = e_element_combo_edit;
 
       }
 
@@ -458,13 +458,13 @@ namespace user
 
       ::rect rectElement;
 
-      if(get_element_rect(rectElement, element_drop_down))
+      if(get_element_rect(rectElement, e_element_drop_down))
       {
 
          if (rectElement.contains(item.m_pointHitTest))
          {
 
-            item = element_drop_down;
+            item = e_element_drop_down;
 
             return;
 
@@ -477,13 +477,13 @@ namespace user
       if (rectClient.contains(item.m_pointHitTest))
       {
 
-         item = element_text;
+         item = e_element_text;
 
          return;
 
       }
 
-      item = element_none;
+      item = e_element_none;
 
    }
 
@@ -571,7 +571,7 @@ namespace user
       if (is_window_enabled())
       {
 
-         if (!m_bEdit || m_itemHover == element_drop_down)
+         if (!m_bEdit || m_itemHover == e_element_drop_down)
          {
 
             pmouse->m_ecursor = cursor_arrow;
@@ -590,7 +590,7 @@ namespace user
 
       UNREFERENCED_PARAMETER(pmessage);
 
-      m_itemHover = element_none;
+      m_itemHover = e_element_none;
 
       set_need_redraw();
 
@@ -609,7 +609,7 @@ namespace user
 
          auto eelementHit = hit_test(pmouse);
 
-         if (eelementHit && (!m_bEdit || eelementHit == element_drop_down))
+         if (eelementHit && (!m_bEdit || eelementHit == e_element_drop_down))
          {
 
             millis tickLastVisibilityChangeElapsed;
@@ -655,7 +655,7 @@ namespace user
 
          auto eelementHit = hit_test(pmouse);
 
-         if (eelementHit && (!m_bEdit || eelementHit == element_drop_down))
+         if (eelementHit && (!m_bEdit || eelementHit == e_element_drop_down))
          {
 
             pmouse->m_bRet = true;
@@ -817,7 +817,7 @@ namespace user
 
          ev.m_id = m_id;
 
-         ev.m_eevent = ::user::event_after_change_cur_sel;
+         ev.m_eevent = ::user::e_event_after_change_cur_sel;
 
          ev.m_item = item;
 
@@ -1636,7 +1636,7 @@ namespace user
    bool combo_box::create_control(class control_descriptor * pdescriptor)
    {
 
-      ASSERT(pdescriptor->get_control_type() == control_type_combo_box);
+      ASSERT(pdescriptor->get_control_type() == e_control_type_combo_box);
 
       if (!::user::interaction::create_control(pdescriptor))
       {
@@ -1671,13 +1671,13 @@ namespace user
    void combo_box::on_control_event(::user::control_event * pevent)
    {
 
-      if(pevent->m_eevent == ::user::event_after_change_cur_sel)
+      if(pevent->m_eevent == ::user::e_event_after_change_cur_sel)
       {
 
          if(pevent->m_puie == m_plist)
          {
 
-            if (pevent->m_item == element_item)
+            if (pevent->m_item == e_element_item)
             {
 
                set_current_item((::index) pevent->m_item.m_iItem, ::source_user);

@@ -35,7 +35,7 @@ namespace user
 
       set_prodevian();
 
-      add_user_item({ ::user::e_element_close_button, ::user::event_close_app });
+      add_user_item({ ::user::e_element_close_button, ::user::e_event_close_app });
 
    }
 

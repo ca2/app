@@ -15,10 +15,10 @@ namespace user
    menu::menu()
    {
 
-      m_ewindowflag += window_flag_arbitrary_positioning;
+      m_ewindowflag += e_window_flag_arbitrary_positioning;
 
       m_bCloseButton = true;
-            m_ewindowflag += window_flag_arbitrary_positioning;
+            m_ewindowflag += e_window_flag_arbitrary_positioning;
 
       //m_econtroltype = control_type_menu;
       m_bCloseButton = true;
@@ -48,7 +48,7 @@ namespace user
 
       m_pmenuitem = pitem;
 
-      m_ewindowflag += window_flag_arbitrary_positioning;
+      m_ewindowflag += e_window_flag_arbitrary_positioning;
 
       //m_econtroltype = control_type_menu;
 
@@ -830,7 +830,7 @@ namespace user
 
       auto pstyle = get_style(pgraphics);
 
-      color32_t crBackground = get_color(pstyle, element_background);
+      color32_t crBackground = get_color(pstyle, ::user::e_element_background);
 
       if ((crBackground & ARGB(255, 0, 0, 0)) != 0)
       {
@@ -864,7 +864,7 @@ namespace user
 
       ::user::control_event ev;
 
-      ev.m_eevent = ::user::event_context_menu_close;
+      ev.m_eevent = ::user::e_event_context_menu_close;
 
       ::user::interaction * puiTarget = get_target_window();
 
@@ -888,7 +888,7 @@ namespace user
    void menu::on_control_event(::user::control_event * pevent)
    {
 
-      if (pevent->m_eevent == ::user::event_button_clicked)
+      if (pevent->m_eevent == ::user::e_event_button_clicked)
       {
 
          if (m_pitemClose.is_set()
@@ -952,7 +952,7 @@ namespace user
          }
 
       }
-      else if (pevent->m_eevent == ::user::event_mouse_enter)
+      else if (pevent->m_eevent == ::user::e_event_mouse_enter)
       {
 
          if (m_pitemClose.is_set()
@@ -1008,7 +1008,7 @@ namespace user
 
                            ::user::control_event ev;
 
-                           ev.m_eevent = ::user::event_menu_hover;
+                           ev.m_eevent = ::user::e_event_menu_hover;
 
                            ev.m_id = pitem->m_id;
 
@@ -1040,7 +1040,7 @@ namespace user
          return;
 
       }
-      else if (pevent->m_eevent == ::user::event_mouse_leave)
+      else if (pevent->m_eevent == ::user::e_event_mouse_leave)
       {
          if (pevent->m_puie->m_id == m_idTimerMenu)
          {
@@ -1159,7 +1159,7 @@ namespace user
       UNREFERENCED_PARAMETER(pmessage);
 
       //create_color(color_background, ARGB(84 + 77, 185, 184, 177));
-      //create_translucency(::user::translucency_present;
+      //create_translucency(::user::e_translucency_present;
 
 
 

@@ -43,7 +43,7 @@ namespace userex
       if(pevent->m_puie == m_pform)
       {
       
-         if(pevent->m_eevent == ::user::event_create)
+         if(pevent->m_eevent == ::user::e_event_create)
          {
             
             if(m_millisDelay > 0)
@@ -71,7 +71,7 @@ namespace userex
          }
          
       }
-      else if(pevent->m_eevent == ::user::event_button_clicked)
+      else if(pevent->m_eevent == ::user::e_event_button_clicked)
       {
 
          m_idResponse = pevent->m_puie->m_id;

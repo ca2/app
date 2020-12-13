@@ -128,7 +128,7 @@ namespace user
 
       auto edisplay = layout().design().display();
 
-      get_window_rect(m_windowrect.m_rectWindow, layout_design);
+      get_window_rect(m_windowrect.m_rectWindow, e_layout_design);
 
       if (is_docking_appearance(edisplay))
       {
@@ -263,7 +263,7 @@ namespace user
       if (!bLoad)
       {
 
-         m_ewindowflag |= window_flag_loading_window_rect;
+         m_ewindowflag |= e_window_flag_loading_window_rect;
 
          //main_async([this]()
          //           {
@@ -295,7 +295,7 @@ namespace user
    bool box::LoadWindowRect_(const ::database::key & key, bool bForceRestore, bool bInitialFramePosition)
    {
 
-      if (!(m_ewindowflag & window_flag_auto_store_window_rect))
+      if (!(m_ewindowflag & e_window_flag_auto_store_window_rect))
       {
 
          return false;
@@ -314,7 +314,7 @@ namespace user
 
          }
 
-         m_ewindowflag |= window_flag_loading_window_rect;
+         m_ewindowflag |= e_window_flag_loading_window_rect;
 
          m_windowrectStore = windowrect;
 
@@ -333,7 +333,7 @@ namespace user
 
          order(zorder_top);
 
-         if (m_ewindowflag & window_flag_disable_window_placement_snapping)
+         if (m_ewindowflag & e_window_flag_disable_window_placement_snapping)
          {
 
             if (is_docking_appearance(edisplay))
@@ -416,7 +416,7 @@ namespace user
    bool box::SaveWindowRect_(const ::database::key & key)
    {
 
-      if (!(m_ewindowflag & window_flag_auto_store_window_rect))
+      if (!(m_ewindowflag & e_window_flag_auto_store_window_rect))
       {
 
          return false;
@@ -445,7 +445,7 @@ namespace user
 
       windowrect.m_eappearance = layout().sketch().appearance();
 
-      get_window_rect(windowrect.m_rectWindow, layout_sketch);
+      get_window_rect(windowrect.m_rectWindow, e_layout_sketch);
 
       auto edisplay = windowrect.m_edisplay;
 

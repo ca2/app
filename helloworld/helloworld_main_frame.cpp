@@ -23,7 +23,7 @@ namespace helloworld
 
          m_bExplicitTranslucency = true;
 
-         m_etranslucency = ::user::translucency_none;
+         m_etranslucency = ::user::e_translucency_none;
 
       }
       else
@@ -104,9 +104,9 @@ namespace helloworld
       //      return true;
 
       //}
-      //etranslucency = ::user::translucency_present;
+      //etranslucency = ::user::e_translucency_present;
 
-      ////      etranslucency = ::user::translucency_none;
+      ////      etranslucency = ::user::e_translucency_none;
 
       //return true;
 

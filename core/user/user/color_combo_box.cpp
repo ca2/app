@@ -361,7 +361,7 @@ namespace user
 
          ::rect rEdit;
 
-         get_element_rect(rEdit, element_combo_edit);
+         get_element_rect(rEdit, e_element_combo_edit);
 
          {
 
@@ -408,7 +408,7 @@ namespace user
 
       ::rect rectDropDown;
 
-      get_element_rect(rectDropDown, element_drop_down);
+      get_element_rect(rectDropDown, e_element_drop_down);
 
       ::rect rectDropIn(rectDropDown);
 

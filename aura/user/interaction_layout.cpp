@@ -25,7 +25,7 @@ namespace user
 
       m_sizeWeight.cy = 1.0;
 
-      m_elayoutexperience = layout_experience_none;
+      m_elayoutexperience = e_layout_experience_none;
 
       sketch() = e_display_none;
       window() = e_display_none;
@@ -56,7 +56,7 @@ namespace user
 
       destroy_state();
 
-      if (iStateCount == layout_count_child || iStateCount == layout_count_owner)
+      if (iStateCount == e_layout_count_child || iStateCount == e_layout_count_owner)
       {
 
          m_iStateCount = iStateCount;
@@ -119,7 +119,7 @@ namespace user
    //}
 
 
-   ::point interaction_layout::get_parent_accumulated_scroll(e_layout elayout) const
+   ::point interaction_layout::get_parent_accumulated_scroll(enum_layout elayout) const
    {
 
       return ::point();
@@ -197,7 +197,7 @@ namespace user
    //}
 
 
-   //zorder interaction_layout::order(e_layout elayout)
+   //zorder interaction_layout::order(enum_layout elayout)
    //{
    //
    //   return state(elayout).zorder();
@@ -441,7 +441,7 @@ namespace user
    //bool interaction_layout::is_this_visible()
    //{
 
-   //   return m_ewindowflag & window_flag_is_window && ::is_visible(layout().design().display());
+   //   return m_ewindowflag & e_window_flag_is_window && ::is_visible(layout().design().display());
 
    //}
 

@@ -13,7 +13,7 @@ namespace user
 
       m_eelement = eelement;
 
-      if (m_eelement != element_none)
+      if (m_eelement != e_element_none)
       {
 
          if (m_iItem < 0)
@@ -48,16 +48,16 @@ namespace user
       if (m_iItem < 0)
       {
 
-         m_eelement = element_none;
+         m_eelement = e_element_none;
 
       }
       else
       {
 
-         if (m_eelement == element_none)
+         if (m_eelement == e_element_none)
          {
 
-            m_eelement = element_item;
+            m_eelement = e_element_item;
 
          }
 

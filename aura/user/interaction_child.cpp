@@ -95,7 +95,7 @@ namespace user
 
          install_message_routing(m_puserinteraction);
 
-         if (m_puserinteraction->m_ewindowflag & window_flag_load_window_rect_on_impl)
+         if (m_puserinteraction->m_ewindowflag & e_window_flag_load_window_rect_on_impl)
          {
 
             INFO("-------------------------------------------------------------------");
@@ -109,7 +109,7 @@ namespace user
 
          }
 
-         m_puserinteraction->m_ewindowflag |= window_flag_is_window;
+         m_puserinteraction->m_ewindowflag |= e_window_flag_is_window;
 
          m_puserinteraction->set_window_long_ptr(GWL_STYLE, pcreatestruct->m_createstruct.style);
 
@@ -175,7 +175,7 @@ namespace user
       catch (...)
       {
 
-         m_puserinteraction->m_ewindowflag -= window_flag_is_window;
+         m_puserinteraction->m_ewindowflag -= e_window_flag_is_window;
 
          m_bCreate = false;
 
@@ -183,7 +183,7 @@ namespace user
 
       }
 
-      m_puserinteraction->m_ewindowflag |= window_flag_window_created;
+      m_puserinteraction->m_ewindowflag |= e_window_flag_window_created;
 
       return true;
 
@@ -430,7 +430,7 @@ namespace user
    }
 
 
-   bool interaction_child::is_this_visible(e_layout elayout)
+   bool interaction_child::is_this_visible(enum_layout elayout)
    {
 
       if (!m_puserinteraction)
@@ -440,7 +440,7 @@ namespace user
 
       }
 
-      if (!(m_puserinteraction->m_ewindowflag & window_flag_is_window))
+      if (!(m_puserinteraction->m_ewindowflag & e_window_flag_is_window))
       {
 
          return false;
@@ -615,7 +615,7 @@ namespace user
 
          ::rect rectWindow;
 
-         m_puserinteraction->get_window_rect(rectWindow, ::user::layout_design);
+         m_puserinteraction->get_window_rect(rectWindow, ::user::e_layout_design);
 
          auto pwnd = get_wnd();
 

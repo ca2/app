@@ -24,7 +24,7 @@ namespace html
          ::rectf                 m_margin;
 
 
-         e_position              m_eposition;
+         enum_position              m_eposition;
          flags < e_flag >        m_flags;
          float                   m_cxMax;
          float                   m_cxMin;

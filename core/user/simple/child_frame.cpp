@@ -7,8 +7,8 @@
 simple_child_frame::simple_child_frame()
 {
    
-   m_ewindowflag += window_flag_satellite_window;
-   m_ewindowflag += window_flag_embedded_prodevian;
+   m_ewindowflag += e_window_flag_satellite_window;
+   m_ewindowflag += e_window_flag_embedded_prodevian;
 
    m_bWindowFrame       = false;
    m_bAutoWindowFrame = false;
@@ -88,10 +88,10 @@ void simple_child_frame::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 //bool simple_child_frame::get_translucency(::user::enum_translucency & etranslucency, ::user::enum_element eelement, ::user::style_context * pinteraction)
 //{
 //
-//   // etranslucency = ::user::translucency_present for children that may ask the translucency guideline for this as parent,
+//   // etranslucency = ::user::e_translucency_present for children that may ask the translucency guideline for this as parent,
 //   // but simple_child_frame, at the moment of this remark writing, itself draw transparently.
 //
-//   etranslucency = ::user::translucency_present;
+//   etranslucency = ::user::e_translucency_present;
 //
 //   return true;
 //

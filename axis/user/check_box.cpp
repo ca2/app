@@ -60,7 +60,7 @@ namespace user
 
          ev.m_id = m_id;
 
-         ev.m_eevent = ::user::event_set_check;
+         ev.m_eevent = ::user::e_event_set_check;
 
          ev.m_actioncontext = context;
 

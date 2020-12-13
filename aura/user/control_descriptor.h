@@ -28,11 +28,11 @@ namespace user
       enum_control_type                            m_econtroltype;
       bool                                      m_bCreated;
       bool                                      m_bSubclassed;
-      e_control_ddx                             m_eddx;
+      enum_control_ddx                             m_eddx;
       ::database::key                           m_datakey;
       int                                       m_iDataValue;
-      flags < e_control_function >              m_flagsfunction;
-      e_control_data_type                       m_edatatype;
+      flags < enum_control_function >              m_flagsfunction;
+      enum_control_data_type                       m_edatatype;
       ::rect                                    m_rect;
       property_set                              m_setValue;
       int                                       m_iSubItemDisableCheckBox;
@@ -59,11 +59,11 @@ namespace user
       //control_descriptor & operator = (const control_descriptor & control_descriptor);
       enum_control_type get_control_type();
       void set_control_type(enum_control_type e_control);
-      void add_function(e_control_function e_control_function);
-      void remove_function(e_control_function e_control_function);
-      bool has_function(e_control_function e_control_function);
-      e_control_data_type get_data_type();
-      void set_data_type(e_control_data_type e_control_data_type);
+      void add_function(enum_control_function enum_control_function);
+      void remove_function(enum_control_function enum_control_function);
+      bool has_function(enum_control_function enum_control_function);
+      enum_control_data_type get_data_type();
+      void set_data_type(enum_control_data_type enum_control_data_type);
       void set_ddx_dbflags(::database::key datakey, iptr value);
 
       index find_control(::user::interaction * pinteraction);

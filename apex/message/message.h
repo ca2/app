@@ -8,7 +8,7 @@ namespace message
    enum e_flag
    {
 
-      flag_none,
+      e_flag_none,
       flag_synthesized = 1 << 0,
 
    };

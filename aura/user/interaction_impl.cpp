@@ -560,7 +560,7 @@ namespace user
 
       #if !defined(_UWP)
 
-            m_puserinteraction->m_ewindowflag |= window_flag_postpone_visual_update;
+            m_puserinteraction->m_ewindowflag |= e_window_flag_postpone_visual_update;
 
       #endif
 
@@ -590,7 +590,7 @@ namespace user
 
       }
 
-      if (m_puserinteraction->m_ewindowflag & window_flag_satellite_window)
+      if (m_puserinteraction->m_ewindowflag & e_window_flag_satellite_window)
       {
 
          if (pcreatestruct->m_puserinteractionOwner)
@@ -658,7 +658,7 @@ namespace user
 
          }
 
-         if (!(m_puserinteraction->m_ewindowflag & window_flag_embedded_prodevian))
+         if (!(m_puserinteraction->m_ewindowflag & e_window_flag_embedded_prodevian))
          {
 
             peventStartedProdevian = __new(manual_reset_event());
@@ -826,9 +826,9 @@ namespace user
 
       //   m_puserinteraction->add_ref(OBJ_REF_DBG_THIS_FUNCTION_LINE);
 
-      //   m_puserinteraction->m_ewindowflag |= ::window_flag_is_window;
+      //   m_puserinteraction->m_ewindowflag |= ::e_window_flag_is_window;
 
-      //   m_puserinteraction->m_ewindowflag |= ::window_flag_window_created;
+      //   m_puserinteraction->m_ewindowflag |= ::e_window_flag_window_created;
 
       //}
 
@@ -2745,7 +2745,7 @@ namespace user
    bool interaction_impl::is_window_enabled() const
    {
 
-      return m_puserinteraction->m_ewindowflag & window_flag_enable;
+      return m_puserinteraction->m_ewindowflag & e_window_flag_enable;
 
    }
 
@@ -2753,7 +2753,7 @@ namespace user
    bool interaction_impl::enable_window(bool bEnable)
    {
 
-      m_puserinteraction->m_ewindowflag.set(window_flag_enable, bEnable);
+      m_puserinteraction->m_ewindowflag.set(e_window_flag_enable, bEnable);
 
       return true;
 
@@ -3776,7 +3776,7 @@ namespace user
 
       }
 
-      if (m_puserinteraction->m_ewindowflag & window_flag_embedded_prodevian)
+      if (m_puserinteraction->m_ewindowflag & e_window_flag_embedded_prodevian)
       {
 
          m_pprodevian->m_message.wParam |= 1;
@@ -4565,7 +4565,7 @@ namespace user
          }
 
          // Commented on Windows
-         //if(m_puserinteraction->m_ewindowflag & window_flag_postpone_visual_update)
+         //if(m_puserinteraction->m_ewindowflag & e_window_flag_postpone_visual_update)
          //{
 
          //   m_bEatMoveEvent = !(uFlags & SWP_NOMOVE) || !(uFlags & SWP_NOSIZE);
@@ -4574,7 +4574,7 @@ namespace user
 
          //}
 
-         //if(m_puserinteraction->m_ewindowflag & window_flag_postpone_visual_update)
+         //if(m_puserinteraction->m_ewindowflag & e_window_flag_postpone_visual_update)
          //{
 
          //   m_bPendingRedraw = true;
@@ -4865,7 +4865,7 @@ namespace user
 
       SCAST_PTR(::message::move, pmove, pmessage);
 
-      if(m_puserinteraction->m_ewindowflag & window_flag_postpone_visual_update)
+      if(m_puserinteraction->m_ewindowflag & e_window_flag_postpone_visual_update)
       {
 
          return;
@@ -5328,7 +5328,7 @@ namespace user
    }
 
 
-   bool interaction_impl::is_this_visible(e_layout elayout)
+   bool interaction_impl::is_this_visible(enum_layout elayout)
    {
 
       if (!m_puserinteraction)
@@ -5338,14 +5338,14 @@ namespace user
 
       }
 
-      if (!(m_puserinteraction->m_ewindowflag & window_flag_is_window))
+      if (!(m_puserinteraction->m_ewindowflag & e_window_flag_is_window))
       {
 
          return false;
 
       }
 
-      if (m_puserinteraction->m_ewindowflag & window_flag_not_visible)
+      if (m_puserinteraction->m_ewindowflag & e_window_flag_not_visible)
       {
 
          return false;

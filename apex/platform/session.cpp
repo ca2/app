@@ -2779,18 +2779,18 @@ namespace apex
    }
 
 
-   //bool session::is_mouse_button_pressed(::user::e_mouse emouse)
+   //bool session::is_mouse_button_pressed(::user::enum_mouse emouse)
    //{
 
-   //   if (emouse == ::user::mouse_left_button)
+   //   if (emouse == ::user::e_mouse_left_button)
    //   {
    //      return psession->is_key_pressed(::user::key_lbutton);
    //   }
-   //   else if (emouse == ::user::mouse_right_button)
+   //   else if (emouse == ::user::e_mouse_right_button)
    //   {
    //      return psession->is_key_pressed(::user::key_rbutton);
    //   }
-   //   else if (emouse == ::user::mouse_middle_button)
+   //   else if (emouse == ::user::e_mouse_middle_button)
    //   {
    //      return psession->is_key_pressed(::user::key_mbutton);
    //   }

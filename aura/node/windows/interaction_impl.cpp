@@ -569,7 +569,7 @@ namespace windows
       if (pcreatestruct->m_createstruct.hwndParent == HWND_MESSAGE)
       {
 
-         m_puserinteraction->m_ewindowflag -= window_flag_graphical;
+         m_puserinteraction->m_ewindowflag -= e_window_flag_graphical;
 
       }
 
@@ -668,7 +668,7 @@ namespace windows
       /// wrapping object.
       m_puserinteraction->add_ref(OBJ_REF_DBG_THIS);
 
-      m_puserinteraction->m_ewindowflag |= window_flag_window_created;
+      m_puserinteraction->m_ewindowflag |= e_window_flag_window_created;
 
       return true;
 
@@ -2110,7 +2110,7 @@ namespace windows
 
          rectPaint = rectWindow;
 
-         m_puserinteraction->_001ScreenToClient(rectPaint, ::user::layout_design);
+         m_puserinteraction->_001ScreenToClient(rectPaint, ::user::e_layout_design);
 
       }
       else
@@ -3150,7 +3150,7 @@ namespace windows
 
       }
 
-      if (!m_puserinteraction->is_window_visible(::user::layout_sketch))
+      if (!m_puserinteraction->is_window_visible(::user::e_layout_sketch))
       {
 
          return true;
@@ -3372,7 +3372,7 @@ namespace windows
          if (pinteraction->m_pthreadUserInteraction == m_puserinteraction->m_pthreadUserInteraction)
          {
 
-            if (pinteraction->m_ewindowflag & window_flag_satellite_window)
+            if (pinteraction->m_ewindowflag & e_window_flag_satellite_window)
             {
 
                return true;

@@ -371,7 +371,7 @@ namespace linux
 
             attr.border_pixel = 0;
 
-            attr.override_redirect = m_puserinteraction->m_ewindowflag & window_flag_arbitrary_positioning ? True : False;
+            attr.override_redirect = m_puserinteraction->m_ewindowflag & e_window_flag_arbitrary_positioning ? True : False;
 
             //attr.override_redirect = True;
 
@@ -479,7 +479,7 @@ namespace linux
 
             auto papp = get_context_application();
 
-            if(!(m_puserinteraction->m_ewindowflag & window_flag_satellite_window))
+            if(!(m_puserinteraction->m_ewindowflag & e_window_flag_satellite_window))
             {
 
                XClassHint * pupdate = XAllocClassHint();
@@ -534,7 +534,7 @@ namespace linux
 
             }
 
-            if(m_puserinteraction->m_ewindowflag & window_flag_satellite_window)
+            if(m_puserinteraction->m_ewindowflag & e_window_flag_satellite_window)
             {
 
                wm_toolwindow(m_oswindow, true);
@@ -667,7 +667,7 @@ namespace linux
 
          m_puserinteraction->send_message(e_message_create, 0, (LPARAM) &cs);
 
-         m_puserinteraction->m_ewindowflag |= window_flag_window_created;
+         m_puserinteraction->m_ewindowflag |= e_window_flag_window_created;
 
       }
 
@@ -952,7 +952,7 @@ namespace linux
    }
 
 
-   void interaction_impl::on_start_layout_experience(e_layout_experience elayout)
+   void interaction_impl::on_start_layout_experience(enum_layout_experience elayout)
    {
 
       child_post_quit("delayed_placement");
@@ -960,7 +960,7 @@ namespace linux
    }
 
 
-   void interaction_impl::on_end_layout_experience(e_layout_experience elayout)
+   void interaction_impl::on_end_layout_experience(enum_layout_experience elayout)
    {
 
       defer_delayed_placement();
@@ -4872,7 +4872,7 @@ namespace linux
 
       }
 
-      if(m_puserinteraction->m_ewindowflag & window_flag_embedded_prodevian)
+      if(m_puserinteraction->m_ewindowflag & e_window_flag_embedded_prodevian)
       {
 
          _001UpdateScreen();

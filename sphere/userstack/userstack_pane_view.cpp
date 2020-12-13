@@ -552,28 +552,28 @@ namespace userstack
 
       auto pinteraction = pform->new_form_control();;
       pinteraction->m_bTransparent = true;
-      pinteraction->set_control_type(user::control_type_check_box);
+      pinteraction->set_control_type(user::e_control_type_check_box);
       pinteraction->m_id = "save_display_bandwidth";
       pinteraction->set_ddx_dbflags("ca2.savings", ::e_resource_display_bandwidth);
       //pform->_001AddControl(pinteraction);
 
       pinteraction = pform->new_form_control();;
       pinteraction->m_bTransparent = true;
-      pinteraction->set_control_type(user::control_type_check_box);
+      pinteraction->set_control_type(user::e_control_type_check_box);
       pinteraction->m_id = "save_processing";
       pinteraction->set_ddx_dbflags("ca2.savings", ::e_resource_processing);
       //pform->_001AddControl(pinteraction);
 
       pinteraction = pform->new_form_control();;
       pinteraction->m_bTransparent = true;
-      pinteraction->set_control_type(user::control_type_check_box);
+      pinteraction->set_control_type(user::e_control_type_check_box);
       pinteraction->m_id = "save_memory";
       pinteraction->set_ddx_dbflags("ca2.savings", ::e_resource_memory);
       //pform->_001AddControl(pinteraction);
 
       pinteraction = pform->new_form_control();;
       pinteraction->m_bTransparent = true;
-      pinteraction->set_control_type(user::control_type_check_box);
+      pinteraction->set_control_type(user::e_control_type_check_box);
       pinteraction->m_id = "enable_wallpaper";
       pinteraction->set_ddx_dbflags("ca2.bergedge", 0);
       //pform->_001AddControl(pinteraction);

@@ -47,7 +47,7 @@ namespace user
 
    //   virtual void route_command_message(::user::command * pcommand) override;
 
-   //   virtual bool has_function(e_control_function econtrolfunction) const;
+   //   virtual bool has_function(enum_control_function econtrolfunction) const;
    //   virtual enum_control_type get_control_type() const override;
 
    //   virtual void _003CallCustomDraw(::draw2d::graphics_pointer & pgraphics, ::aura::draw_context * pitem);

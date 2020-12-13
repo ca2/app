@@ -596,7 +596,7 @@ namespace user
    }
 
 
-   void tool_tip_window::SetPositionHint(::user::interaction * puserinteraction, e_position eposition)
+   void tool_tip_window::SetPositionHint(::user::interaction * puserinteraction, enum_position eposition)
    {
 
       ::rect rect;

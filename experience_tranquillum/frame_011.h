@@ -25,13 +25,13 @@ namespace experience
                void on_draw_frame(::draw2d::graphics_pointer & pgraphics);
                void DrawBorder(::draw2d::graphics_pointer & pgraphics,const ::rect & rectClient);
 
-               void draw_border_side(::draw2d::graphics_pointer & pgraphics,const ::rect & rectClient,e_border eside);
+               void draw_border_side(::draw2d::graphics_pointer & pgraphics,const ::rect & rectClient,enum_border eside);
 
-               void GetBorderRect(const ::rect & rectClient,RECT32 * prect,e_border eside);
+               void GetBorderRect(const ::rect & rectClient,RECT32 * prect,enum_border eside);
 
                void DrawGripSet(::draw2d::graphics_pointer & pgraphics,const ::rect & rectClient);
 
-               void DrawGrip(::draw2d::graphics_pointer & pgraphics,const ::rect & rectClient,e_grip egrip);
+               void DrawGrip(::draw2d::graphics_pointer & pgraphics,const ::rect & rectClient,enum_grip egrip);
 
                void DrawRectGrip(::draw2d::graphics_pointer & pgraphics,const ::rect & rect);
 

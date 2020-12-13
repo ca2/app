@@ -2029,13 +2029,13 @@ namespace user
    }
 
 
-   void primitive::on_start_layout_experience(e_layout_experience elayoutexperience)
+   void primitive::on_start_layout_experience(enum_layout_experience elayoutexperience)
    {
 
    }
 
 
-   void primitive::on_end_layout_experience(e_layout_experience elayoutexperience)
+   void primitive::on_end_layout_experience(enum_layout_experience elayoutexperience)
    {
 
    }
@@ -2057,7 +2057,7 @@ namespace user
    }
 
 
-   bool primitive::is_this_visible(e_layout elayout)
+   bool primitive::is_this_visible(enum_layout elayout)
    {
 
       return true;

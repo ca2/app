@@ -108,7 +108,7 @@ public:
    index GetCharLink(strsize iChar);
    bool GetCharLink(string & str, strsize iChar);
    bool CharHasLink(strsize iChar);
-   user::e_line_hit get_link(string & strUrl, const ::point & point);
+   user::enum_line_hit get_link(string & strUrl, const ::point & point);
    index GetLinkIndex(index iLine, strsize iChar);
    bool has_link();
    bool is_hover();
@@ -120,7 +120,7 @@ public:
    void GetLogFont(LOGFONTW & lf);
 #endif
 
-   user::e_line_hit hit_test(const point &pointCursorParam, strsize &iChar);
+   user::enum_line_hit hit_test(const point &pointCursorParam, strsize &iChar);
 
    void CalcCharsPositions(::draw2d::graphics_pointer & pgraphics, const ::rect & rect);
 

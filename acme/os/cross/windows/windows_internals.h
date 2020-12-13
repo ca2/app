@@ -32,17 +32,12 @@ extern "C" {
 /**********************************************************************
  * Fundamental types and data structures
  */
-<<<<<<< HEAD
 
 #ifndef _UWP
 
-=======
-#ifndef _UWP 
->>>>>>> origin/basis
 #ifndef WINE_NTSTATUS_DECLARED
 #define WINE_NTSTATUS_DECLARED
 typedef ::i32 NTSTATUS;
-#endif
 #endif
 
 #endif

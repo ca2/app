@@ -14,7 +14,7 @@ namespace user
    system_interaction_impl::system_interaction_impl()
    {
 
-      m_ewindowflag -= window_flag_graphical;
+      m_ewindowflag -= e_window_flag_graphical;
       m_bMessageWindow = true;
 
    }

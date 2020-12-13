@@ -1446,7 +1446,7 @@ bool oswindow_data::_set_window_pos(class ::zorder zorder, i32 x, i32 y, i32 cx,
 //      if(attrs.override_redirect)
 //      {
 //
-//         if(!(m_pimpl->m_puserinteraction->m_ewindowflag & window_flag_arbitrary_positioning))
+//         if(!(m_pimpl->m_puserinteraction->m_ewindowflag & e_window_flag_arbitrary_positioning))
 //         {
 //
 //            XSetWindowAttributes set;

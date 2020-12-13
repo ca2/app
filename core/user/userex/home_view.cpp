@@ -211,7 +211,7 @@ namespace userex
 
       ::user::control_event ev;
 
-      ev.m_eevent = ::user::event_after_change_cur_sel;
+      ev.m_eevent = ::user::e_event_after_change_cur_sel;
 
       ev.m_id = m_idView;
 

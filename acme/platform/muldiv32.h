@@ -108,25 +108,25 @@
 
         INLINE ::i32 MulDiv32( ::i32 a, ::i32 b, ::i32 ca )
         {
-            return (::i32)( Int32x32To64(a,b) / ca );
+           return (i32)(((i64)a * (i64)b) / (i64)ca);
         }
 
 
         INLINE u32 MulDivRD( u32 a, u32 b, u32 ca )
         {
-            return (u32)( ::u32x32To64(a,b) / ca );
+           return (i32)(((u64)a * (u64)b) / (u64)ca);
         }
 
 
         INLINE u32 MulDivRN( u32 a, u32 b, u32 ca )
         {
-            return (u32)( (::u32x32To64(a,b)+ca/2) / ca );
+           return (u32)(((u64)a * (u64)b) / (u64)ca);
         }
 
 
         INLINE u32 MulDivRU( u32 a, u32 b, u32 ca )
         {
-            return (u32)( (::u32x32To64(a,b)+ca-1) / ca );
+           return (i32)((((u64) a * (i64)b) + ca -1) / (i64)ca);
         }
 
     #endif

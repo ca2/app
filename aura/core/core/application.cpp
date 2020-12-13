@@ -3612,7 +3612,7 @@ m_millisHeartBeat.Now();
       if (str.begins_ci("combo_"))
       {
 
-         econtroltype = ::user::control_type_combo_box;
+         econtroltype = ::user::e_control_type_combo_box;
 
          return __type(::user::combo_box);
 
@@ -3620,7 +3620,7 @@ m_millisHeartBeat.Now();
       else if (str.begins_ci("check_") || str.begins_ci("checkbox_"))
       {
 
-         econtroltype = ::user::control_type_check_box;
+         econtroltype = ::user::e_control_type_check_box;
 
          return __type(::user::check_box);
 
@@ -3628,7 +3628,7 @@ m_millisHeartBeat.Now();
       else if (str.begins_ci("still_"))
       {
 
-         econtroltype = ::user::control_type_static;
+         econtroltype = ::user::e_control_type_static;
 
          return __type(::user::still);
 
@@ -3636,7 +3636,7 @@ m_millisHeartBeat.Now();
       else if (str.begins_ci("label_"))
       {
 
-         econtroltype = ::user::control_type_static;
+         econtroltype = ::user::e_control_type_static;
 
          return __type(::user::still);
 
@@ -3644,7 +3644,7 @@ m_millisHeartBeat.Now();
       else if (str.begins_ci("edit_"))
       {
 
-         econtroltype = ::user::control_type_edit_plain_text;
+         econtroltype = ::user::e_control_type_edit_plain_text;
 
          return __type(::user::plain_edit);
 
@@ -3652,7 +3652,7 @@ m_millisHeartBeat.Now();
       else if (str.begins_ci("button_"))
       {
 
-         econtroltype = ::user::control_type_button;
+         econtroltype = ::user::e_control_type_button;
 
          return __type(::user::button);
 
@@ -4158,7 +4158,7 @@ m_millisHeartBeat.Now();
    void application::on_control_event(::user::control_event* pevent)
    {
 
-      if (pevent->m_eevent == ::user::event_initialize_control)
+      if (pevent->m_eevent == ::user::e_event_initialize_control)
       {
 
          if (pevent->m_puie->m_id == __id(system_startup_checkbox))
@@ -4185,7 +4185,7 @@ m_millisHeartBeat.Now();
          }
 
       }
-      else if (pevent->m_eevent == ::user::event_set_check)
+      else if (pevent->m_eevent == ::user::e_event_set_check)
       {
 
          if (pevent->m_puie->m_id == __id(system_startup_checkbox)

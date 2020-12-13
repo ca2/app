@@ -303,7 +303,7 @@ namespace helloworld
       if(m_pdocMenu != nullptr && dynamic_cast < ::user::impact * > (pview) == m_pdocMenu->get_view(0) && pevent->m_puie != nullptr)
       {
 
-         if(pevent->m_eevent == ::user::event_after_change_text)
+         if(pevent->m_eevent == ::user::e_event_after_change_text)
          {
 
             if(m_prollfps != nullptr && pevent->m_puie->m_id == "roll_fps" && !pevent->m_context.is_source(::source_initialize)
@@ -381,7 +381,7 @@ namespace helloworld
 
 
          }
-         else if (pevent->m_eevent == ::user::event_set_check && pevent->m_puie != nullptr)
+         else if (pevent->m_eevent == ::user::e_event_set_check && pevent->m_puie != nullptr)
          {
 
             string strCheck = pevent->m_puie->m_id;
@@ -517,7 +517,7 @@ namespace helloworld
                && m_pviewLast != nullptr)
          {
 
-            if(pupdate->m_pusercontrolevent->m_eevent == ::user::event_after_change_cur_sel)
+            if(pupdate->m_pusercontrolevent->m_eevent == ::user::e_event_after_change_cur_sel)
             {
 
                string strFont = m_pfontview->m_pview->get_cur_sel_face_name();
@@ -534,7 +534,7 @@ namespace helloworld
                }
 
             }
-            else if (pupdate->m_pusercontrolevent->m_eevent == ::user::event_after_change_cur_hover)
+            else if (pupdate->m_pusercontrolevent->m_eevent == ::user::e_event_after_change_cur_hover)
             {
 
                string strFont = m_pfontview->m_pview->get_cur_hover_face_name();

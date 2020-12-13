@@ -186,9 +186,9 @@ namespace uwp
 
       m_puserinteraction->add_ref(this);
 
-      m_puserinteraction->m_ewindowflag |= ::window_flag_is_window;
+      m_puserinteraction->m_ewindowflag |= ::e_window_flag_is_window;
 
-      m_puserinteraction->m_ewindowflag |= ::window_flag_window_created;
+      m_puserinteraction->m_ewindowflag |= ::e_window_flag_window_created;
 
       return true;
 

@@ -78,7 +78,7 @@ namespace user
 
       enum enum_element
       {
-         element_item,
+         e_element_item,
          element_item_Box,
          ElementDivider,
       };

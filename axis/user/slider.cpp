@@ -142,7 +142,7 @@ namespace user
 
       auto point = psession->get_cursor_pos();
 
-      _001ScreenToClient(point, layout_design);
+      _001ScreenToClient(point, e_layout_design);
 
       ::rect rect;
 

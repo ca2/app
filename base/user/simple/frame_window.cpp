@@ -37,7 +37,7 @@ simple_frame_window::simple_frame_window()
 
    m_bProdevianFrame = true;
 
-   m_etranslucencyFrame = ::user::translucency_present;
+   m_etranslucencyFrame = ::user::e_translucency_present;
 
    m_bDefaultCreateToolbar = true;
 
@@ -114,7 +114,7 @@ simple_frame_window::~simple_frame_window()
 ::user::enum_translucency simple_frame_window::get_translucency(::user::style* pstyle) const
 {
 
-   if (m_etranslucencyFrame != ::user::translucency_undefined)
+   if (m_etranslucencyFrame != ::user::e_translucency_undefined)
    {
 
       return m_etranslucencyFrame;
@@ -205,7 +205,7 @@ void simple_frame_window::_task_save_window_rect()
 
          }
 
-         bool bIsWindow = (m_ewindowflag & window_flag_is_window);
+         bool bIsWindow = (m_ewindowflag & e_window_flag_is_window);
 
          if (!bIsWindow)
          {
@@ -335,7 +335,7 @@ bool simple_frame_window::WindowDataLoadWindowRect(bool bForceRestore, bool bIni
 
             design_up();
 
-            if (m_ewindowflag & window_flag_window_created)
+            if (m_ewindowflag & e_window_flag_window_created)
             {
 
                return true;
@@ -754,7 +754,7 @@ void simple_frame_window::_001OnCreate(::message::message * pmessage)
    if (m_bWindowFrame || m_bFramePayloadFlags)
    {
 
-      if (!(m_ewindowflag & window_flag_window_created))
+      if (!(m_ewindowflag & e_window_flag_window_created))
       {
 
 //#if !defined(APPLE_IOS) && !defined(ANDROID)
@@ -875,7 +875,7 @@ void simple_frame_window::_001OnCreate(::message::message * pmessage)
 
    }
 
-   if (!(m_ewindowflag & window_flag_window_created))
+   if (!(m_ewindowflag & e_window_flag_window_created))
    {
 
       if (m_bDefaultNotifyIcon)
@@ -2028,7 +2028,7 @@ bool simple_frame_window::LoadFrame(const char * pszMatter, u32 dwDefaultStyle, 
       if(is_host_top_level())
       {
 
-         if(m_ewindowflag & window_flag_main_frame)
+         if(m_ewindowflag & e_window_flag_main_frame)
          {
 
             display(e_display_zoomed);
@@ -2078,16 +2078,16 @@ bool simple_frame_window::LoadFrame(const char * pszMatter, u32 dwDefaultStyle, 
 
    m_bEnableSaveWindowRect2 = false;
 
-   bool bLoadImplRect = m_ewindowflag & window_flag_load_window_rect_on_impl;
+   bool bLoadImplRect = m_ewindowflag & e_window_flag_load_window_rect_on_impl;
 
-   m_ewindowflag -= window_flag_load_window_rect_on_impl;
+   m_ewindowflag -= e_window_flag_load_window_rect_on_impl;
 
    bool bCreated = create_window_ex(pcreatestruct, puiParent, m_id);
 
    if (bLoadImplRect)
    {
 
-      m_ewindowflag += window_flag_load_window_rect_on_impl;
+      m_ewindowflag += e_window_flag_load_window_rect_on_impl;
 
    }
 
@@ -2410,7 +2410,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
       if(dAlpha > 0.0)
       {
 
-         bool bBlurBackground = get_draw_flags(pstyle) & ::user::flag_blur_background;
+         bool bBlurBackground = get_draw_flags(pstyle) & ::user::e_flag_blur_background;
 
          int iDrawingOrder = DRAWING_ORDER_CLIENT_OVER;
 
@@ -2513,7 +2513,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
    auto pstyle = get_style(pgraphics);
 
-   bool bBlurBackground = get_draw_flags(pstyle) & ::user::flag_blur_background;
+   bool bBlurBackground = get_draw_flags(pstyle) & ::user::e_flag_blur_background;
 
    if(bBlurBackground)
    {
@@ -3651,7 +3651,7 @@ bool simple_frame_window::calc_layered()
 
    auto psession = Session;
 
-   if (m_bLayered && get_translucency(pstyle) != ::user::translucency_none)
+   if (m_bLayered && get_translucency(pstyle) != ::user::e_translucency_none)
    {
       return !psession->savings().is_trying_to_save(::e_resource_processing)
              && !psession->savings().is_trying_to_save(::e_resource_display_bandwidth);
@@ -4126,10 +4126,10 @@ void simple_frame_window::on_visual_applied()
    if (GetParent() == nullptr)
    {
 
-      if (m_ewindowflag & window_flag_auto_store_window_rect)
+      if (m_ewindowflag & e_window_flag_auto_store_window_rect)
       {
 
-         if (m_ewindowflag & window_flag_pending_save_window_rect)
+         if (m_ewindowflag & e_window_flag_pending_save_window_rect)
          {
 
             defer_save_window_placement();
@@ -4138,7 +4138,7 @@ void simple_frame_window::on_visual_applied()
 
       }
 
-      m_ewindowflag -= window_flag_loading_window_rect;
+      m_ewindowflag -= e_window_flag_loading_window_rect;
 
    }
 

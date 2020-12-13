@@ -46,7 +46,7 @@ namespace user
       virtual void query_full_size(::draw2d::graphics_pointer& pgraphics, LPSIZE32 psize);
 
 
-      virtual ::draw2d::font_pointer get_font(style* pstyle, enum_element eelement = element_none, estate estate = e_state_none) const override;
+      virtual ::draw2d::font_pointer get_font(style* pstyle, enum_element eelement = e_element_none, estate estate = e_state_none) const override;
 
 
       virtual i32 _001GetItemHeight() const;

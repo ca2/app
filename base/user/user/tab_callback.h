@@ -24,7 +24,7 @@ namespace user
 
       virtual void _001OnShowTab(tab * ptab);
 
-      virtual void _001OnDropTab(::index iTab, e_position eposition);
+      virtual void _001OnDropTab(::index iTab, enum_position eposition);
 
       virtual void _001DropTargetWindowInitialize(tab * pinterface);
       virtual void _001DropTargetWindowRelay(tab * pinterface);

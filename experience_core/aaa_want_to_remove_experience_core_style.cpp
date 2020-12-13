@@ -16,7 +16,7 @@ namespace experience_lite
    user_style::user_style()
    {
 
-      m_etranslucency      = ::user::translucency_present;
+      m_etranslucency      = ::user::e_translucency_present;
       m_pfont.create(this);
 
 

@@ -626,9 +626,9 @@ public:
    //virtual void to_string(string & str) const override;
 
 
-   virtual ::file_result get_file(const payload& varFile, efileopen eopen);
-   inline ::file_result get_reader(const payload& varFile, efileopen eopen = ::file::type_binary);
-   inline ::file_result get_writer(const payload& varFile, efileopen eopen = ::file::type_binary | ::file::defer_create_directory | ::file::mode_create);
+   virtual ::file_result get_file(const payload& varFile, const ::file::eopen & eopen);
+   inline ::file_result get_reader(const payload& varFile, const ::file::eopen & eopen = ::file::type_binary);
+   inline ::file_result get_writer(const payload& varFile, const ::file::eopen & eopen = ::file::type_binary | ::file::defer_create_directory | ::file::mode_create);
 
 
 

@@ -144,7 +144,7 @@ namespace experience
                      && !ptab->m_itemHover.in_range(::user::e_element_split, 100))
                   {
 
-                     pgraphics->set_font(ptab, ::user::e_state_selected | ::user::e_state_hover);
+                     pgraphics->set_font(ptab, ::user::e_element_none, (::user::e_state_selected | ::user::e_state_hover));
 
                   }
                   else

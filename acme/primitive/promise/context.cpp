@@ -36,6 +36,28 @@ namespace promise
    }
 
 
+   bool context::is_up_to_date(const ::promise::subject * phandler) const
+   {
+
+      if (m_iUpdateSerial < 0)
+      {
+
+         return false;
+
+      }
+
+      if (phandler->m_iUpdateSerial < 0)
+      {
+
+         return false;
+
+      }
+
+      return m_iUpdateSerial == phandler->m_iUpdateSerial;
+
+   }
+
+
 } // namespace promise
 
 

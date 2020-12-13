@@ -31,7 +31,7 @@ namespace uwp
       StorageFile ^                       m_file;
       StorageFolder ^                     m_folder;
       Streams::IRandomAccessStream ^      m_stream;
-      efileopen                           m_efileopen;
+      ::file::eopen                       m_eopen;
 
 
       native_buffer();
@@ -50,8 +50,8 @@ namespace uwp
       virtual ::file::path get_file_path() const override;
       virtual void set_file_path(const ::file::path & pathNewName) override;
 
-      virtual ::status::result open(::Windows::Storage::StorageFolder ^ folder, const ::file::path & lpszfileName, const ::efileopen& efileopen);
-      virtual ::status::result open(const ::file::path & lpszfileName, const :: efileopen & efileopen) override;
+      virtual ::status::result open(::Windows::Storage::StorageFolder ^ folder, const ::file::path & lpszfileName, const ::file::eopen & eopen);
+      virtual ::status::result open(const ::file::path & lpszfileName, const ::file::eopen & eopen) override;
 
       //virtual bool GetStatus(const ::file::path & lpszfileName,::file::file_status& rStatus);
 

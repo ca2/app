@@ -863,11 +863,7 @@ namespace draw2d
       virtual void draw_rect(const ::rect & rect, const ::color& color, eborder eborder = e_border_all);
       virtual void draw_rect(const rectd & rectd, const ::color& color, eborder eborder = e_border_all);
 
-      virtual bool set_font(::user::interaction* pinteraction, ::user::eelement eelement, ::user::estate estate = ::user::e_state_none);
-      inline bool set_font(::user::interaction* pinteraction, ::user::estate estate = ::user::e_state_none)
-      {
-         return set_font(pinteraction, ::user::e_element_none, estate);
-      }
+      virtual bool set_font(::user::interaction* pinteraction, ::user::eelement eelement = ::user::e_element_none, ::user::estate estate = ::user::e_state_none);
 
 
       virtual bool get(matrix & matrix);

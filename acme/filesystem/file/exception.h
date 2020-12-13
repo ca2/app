@@ -11,14 +11,14 @@ namespace file
    public:
 
 
-      ::i32              m_lOsError;
-      int               m_iErrNo;
-      ::file::path      m_path;
-      string            m_strAdd;
-      ::efileopen       m_efileopen;
+      ::i32                m_lOsError;
+      int                  m_iErrNo;
+      ::file::path         m_path;
+      string               m_strAdd;
+      ::file::eopen        m_eopen;
 
 
-      exception(const ::estatus & estatus = error_file, ::i32 lOsError = -1, int iErrNo = -1, const ::file::path & path = nullptr, const ::efileopen & efileopen = 0);
+      exception(const ::estatus & estatus = error_file, ::i32 lOsError = -1, int iErrNo = -1, const ::file::path & path = nullptr, const ::file::eopen & eopen = e_null);
 
       virtual ~exception();
 
@@ -41,7 +41,7 @@ namespace file
 
    CLASS_DECL_ACME bool should_ignore_file_exception_callstack(const ::estatus & estatus);
 
-   CLASS_DECL_ACME void throw_exception(const ::estatus& estatus, ::i32 lOsError, int iErrNo, const ::file::path& path, const ::efileopen& efileopen);
+   CLASS_DECL_ACME void throw_exception(const ::estatus& estatus, ::i32 lOsError, int iErrNo, const ::file::path& path, const ::file::eopen & efileopen);
 
    CLASS_DECL_ACME void throw_status(const ::estatus& estatus, ::i32 lOsError, const ::file::path& path = nullptr);
 

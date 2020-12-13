@@ -2803,7 +2803,29 @@ class manual_reset_event;
 #include "acme/primitive/primitive/enumeration.h"
 
 
-using efileopen = cflag<::file::e_open>;
+enum enum_null
+{
+
+   e_null,
+
+};
+
+
+#define DECLARE_C_FLAG(CFLAG, ENUM) \
+inline ENUM operator | (ENUM e1, ENUM e2) { return (ENUM) (e1 | e2); } \
+using CFLAG = cflag < ENUM >;
+
+
+namespace file
+{
+
+
+   DECLARE_C_FLAG(eopen, enum_open);
+   DECLARE_C_FLAG(estate, enum_state);
+
+
+} // namespace file
+
 
 using eiostate = ::cflag<::file::e_iostate>;
 
@@ -4200,6 +4222,7 @@ namespace draw2d
 #include "acme/primitive/primitive/_defer.h"
 
 
+
 #include "acme/parallelization/_impl.h"
 
 
@@ -4261,7 +4284,6 @@ namespace draw2d
 
 #include "acme/primitive/primitive/_impl.h"
 
-
 #include "acme/primitive/primitive/_papaya_impl.h"
 
 
@@ -4281,6 +4303,8 @@ namespace draw2d
 
 
 #include "acme/filesystem/file/_text_stream_impl.h"
+
+
 
 
 //#include "acme/net/_impl.h"
@@ -4320,6 +4344,7 @@ namespace draw2d
 
 
 #include "acme/filesystem/filesystem/_impl.h"
+
 
 
 //#include "acme/database/_impl.h"

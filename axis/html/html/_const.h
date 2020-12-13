@@ -5,7 +5,7 @@ namespace html
 {
 
 
-   enum e_position
+   enum enum_position
    {
 
       PositionRelative,

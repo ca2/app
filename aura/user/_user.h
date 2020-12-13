@@ -521,17 +521,17 @@ namespace user
 //class simple_mesh_data;
 
 //
-//enum e_position
+//enum enum_position
 //{
-//   position_none = 0,
-//   position_top = 1,
-//   position_left = 2,
+//   e_position_none = 0,
+//   e_position_top = 1,
+//   e_position_left = 2,
 //   position_top_left = 3,
-//   position_right = 4,
+//   e_position_right = 4,
 //   position_top_right = 5,
 //   position_hcenter = 6,
 //   position_top_center = 7,
-//   position_bottom = 8,
+//   e_position_bottom = 8,
 //   position_vcenter = 9,
 //   position_bottom_left = 10,
 //   position_left_center = 11,
@@ -544,7 +544,7 @@ namespace user
 //
 //namespace user
 //{
-//   enum e_line_hit
+//   enum enum_line_hit
 //   {
 //      line_hit_none,
 //      line_hit_normal,

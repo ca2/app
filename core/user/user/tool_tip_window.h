@@ -19,7 +19,7 @@ namespace user
          MessageBaseToolTipText = WM_USER + 110
       };
 
-      enum e_position
+      enum enum_position
       {
          PositionCenter,
          PositionRandomTopRight
@@ -89,7 +89,7 @@ namespace user
       bool CalcRect(::draw2d::graphics_pointer & pgraphics, RECT32 * prect, const ::rect & lprectToolScreen, const char * pcsz);
 
       void ShowTip(i32 iTool, bool bForce = false);
-      void SetPositionHint(::user::interaction * puserinteraction, e_position eposition);
+      void SetPositionHint(::user::interaction * puserinteraction, enum_position eposition);
       void relay_event(tool_tip_tool * pwnd, ::message::message * pmessage);
 
       void OnPaint();

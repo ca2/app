@@ -5328,7 +5328,7 @@ namespace user
    }
 
 
-   bool interaction_impl::is_this_visible(e_layout elayout)
+   bool interaction_impl::is_this_visible(enum_layout elayout)
    {
 
       if (!m_puserinteraction)

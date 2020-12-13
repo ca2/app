@@ -38,7 +38,7 @@ namespace user
    ::user::enum_translucency format_tool::get_translucency(::user::style* pstyle) const
    {
 
-      return ::user::translucency_present;
+      return ::user::e_translucency_present;
 
    }
 
@@ -271,7 +271,7 @@ namespace user
       if (pevent->m_actioncontext.is_user_source())
       {
 
-         if (pevent->m_eevent == ::user::event_button_clicked)
+         if (pevent->m_eevent == ::user::e_event_button_clicked)
          {
 
             if (pevent->m_puie->m_id == "font_bold")
@@ -467,7 +467,7 @@ namespace user
             }
 
          }
-         else if (pevent->m_eevent == ::user::event_after_change_text)
+         else if (pevent->m_eevent == ::user::e_event_after_change_text)
          {
 
             if (pevent->m_puie->m_id == "combo_size")
@@ -482,7 +482,7 @@ namespace user
             }
 
          }
-         else if (pevent->m_eevent == ::user::event_enter_key)
+         else if (pevent->m_eevent == ::user::e_event_enter_key)
          {
 
             if (pevent->m_puie->m_id == "combo_size")
@@ -497,7 +497,7 @@ namespace user
             }
 
          }
-         else if (pevent->m_eevent == ::user::event_after_change_cur_sel)
+         else if (pevent->m_eevent == ::user::e_event_after_change_cur_sel)
          {
 
             if (pevent->m_puie->m_id == "combo_family")
@@ -661,7 +661,7 @@ namespace user
 
          ::user::control_event ev;
 
-         ev.m_eevent = ::user::event_after_change_cur_sel;
+         ev.m_eevent = ::user::e_event_after_change_cur_sel;
 
          ev.m_puie = this;
 

@@ -171,10 +171,10 @@ namespace user
 
       m_id.is_empty();
       m_iItem = 0;
-      m_econtroltype = control_type_none;
+      m_econtroltype = e_control_type_none;
       m_bTransparent = false;
       m_bCreated = false;
-      m_edatatype = control_data_type_string;
+      m_edatatype = e_control_data_type_string;
       m_flagsfunction.clear();
       m_controlmap.remove_all();
       m_bSubclassed = false;
@@ -192,10 +192,10 @@ namespace user
 //   m_playout = nullptr;
 //   m_id.is_empty();
 //   m_iItem = 0;
-//   m_econtroltype = control_type_none;
+//   m_econtroltype = e_control_type_none;
 //   m_bTransparent = false;
 //   m_bCreated = false;
-//   m_edatatype = control_data_type_string;
+//   m_edatatype = e_control_data_type_string;
 //   m_flagsfunction.clear();
 //   m_controlmap.remove_all();
 //   m_bSubclassed = false;
@@ -277,31 +277,31 @@ namespace user
    }
 
 
-   void control_descriptor::add_function(e_control_function e_control_function)
+   void control_descriptor::add_function(enum_control_function enum_control_function)
    {
 
-      m_flagsfunction.add(e_control_function);
+      m_flagsfunction.add(enum_control_function);
 
    }
 
 
-   void control_descriptor::remove_function(e_control_function e_control_function)
+   void control_descriptor::remove_function(enum_control_function enum_control_function)
    {
 
-      m_flagsfunction.remove(e_control_function);
+      m_flagsfunction.remove(enum_control_function);
 
    }
 
 
-   bool control_descriptor::has_function(e_control_function e_control_function)
+   bool control_descriptor::has_function(enum_control_function enum_control_function)
    {
 
-      return m_flagsfunction.has(e_control_function);
+      return m_flagsfunction.has(enum_control_function);
 
    }
 
 
-   void control_descriptor::set_data_type(e_control_data_type edatatype)
+   void control_descriptor::set_data_type(enum_control_data_type edatatype)
    {
 
       m_edatatype = edatatype;
@@ -309,7 +309,7 @@ namespace user
    }
 
 
-   e_control_data_type control_descriptor::get_data_type()
+   enum_control_data_type control_descriptor::get_data_type()
    {
 
       return m_edatatype;
@@ -320,7 +320,7 @@ namespace user
    void control_descriptor::set_ddx_dbflags(::database::key datakey, iptr value)
    {
 
-      m_eddx = ::user::control_ddx_dbflags;
+      m_eddx = ::user::e_control_ddx_dbflags;
 
       m_datakey = datakey;
 
@@ -387,13 +387,13 @@ namespace user
 
       switch (m_econtroltype)
       {
-      case control_type_edit:
+      case e_control_type_edit:
 
          //         m_type = __type(CSimpleFormListEdit);
 
          break;
 
-      case control_type_combo_box:
+      case e_control_type_combo_box:
       {
 
          //__throw(todo());
@@ -422,7 +422,7 @@ namespace user
 
       ASSERT(::is_set(m_puserinteractionParent));
 
-      enum_control_type econtroltype = control_type_none;
+      enum_control_type econtroltype = e_control_type_none;
 
       if (m_type.m_strName.is_empty())
       {
@@ -433,7 +433,7 @@ namespace user
             m_type = App(m_puserinteractionParent).control_type_from_id(m_id, econtroltype);
 
          }
-         //else if(m_econtroltype != control_type_none)
+         //else if(m_econtroltype != e_control_type_none)
          //{
 
          //   m_type = App(m_puserinteractionParent).user_default_controltype_to_typeinfo(m_econtroltype);
@@ -442,7 +442,7 @@ namespace user
 
       }
 
-      if (m_econtroltype == control_type_none)
+      if (m_econtroltype == e_control_type_none)
       {
 
          m_econtroltype = econtroltype;

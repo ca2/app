@@ -252,7 +252,7 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
    //auto iHover = _001GetHoverItem();
 
-   //descriptor().set_control_type(::user::control_type_button);
+   //descriptor().set_control_type(::user::e_control_type_button);
 
 //   select_user_schema();
 
@@ -392,7 +392,7 @@ void simple_toolbar::_001OnCreate(::message::message * pmessage)
    if (pmessage->previous())
       return;
    
-   descriptor().m_econtroltype = ::user::control_type_toolbar;
+   descriptor().m_econtroltype = ::user::e_control_type_toolbar;
 
    m_pimageDraft = create_image({20,  20 });
 

@@ -187,7 +187,7 @@ namespace axis
    bool style::simple_ui_draw_focus_rect(::user::interaction * pinteraction, ::draw2d::graphics_pointer & pgraphics)
    {
 
-      bool bError = pinteraction->m_ptooltip.is_set() && pinteraction->m_ptooltip->is_window_visible(::user::layout_sketch);
+      bool bError = pinteraction->m_ptooltip.is_set() && pinteraction->m_ptooltip->is_window_visible(::user::e_layout_sketch);
 
       ::draw2d::savedc savedc(pgraphics);
 
@@ -861,12 +861,12 @@ namespace axis
    ::user::enum_control_type style::get_control_type() const
    {
 
-      return ::user::control_type_none;
+      return ::user::e_control_type_none;
 
    }
 
 
-   ::color style::get_color(const ::user::interaction* pinteraction, ::user::enum_element eelement, ::user::estate estate) const
+   ::color style::get_color(const ::user::interaction* pinteraction, ::user::eelement eelement, ::user::estate estate) const
    {
 
       if (::is_set(pinteraction))
@@ -874,7 +874,7 @@ namespace axis
 
          auto econtroltype = pinteraction->get_control_type();
 
-         if (econtroltype == ::user::control_type_list)
+         if (econtroltype == ::user::e_control_type_list)
          {
 
             if (eelement == ::user::e_element_background)

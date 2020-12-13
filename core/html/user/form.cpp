@@ -197,7 +197,7 @@ void html_form::on_layout(::draw2d::graphics_pointer & pgraphics)
 
    ::user::control_event ev;
 
-   ev.m_eevent = ::user::event_layout;
+   ev.m_eevent = ::user::e_event_layout;
 
    ev.m_puie = this;
 

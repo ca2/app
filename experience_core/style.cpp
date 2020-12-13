@@ -793,7 +793,7 @@ namespace experience
 
             auto econtroltype = pinteraction->get_control_type();
 
-            if (econtroltype == ::user::control_type_list)
+            if (econtroltype == ::user::e_control_type_list)
             {
 
                if (eelement == ::user::e_element_background)
@@ -827,7 +827,7 @@ namespace experience
                }
 
             }
-            else if (econtroltype == ::user::control_type_tab)
+            else if (econtroltype == ::user::e_control_type_tab)
             {
 
                if (eelement == ::user::e_element_item_text)

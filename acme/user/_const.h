@@ -321,7 +321,7 @@ namespace user
       e_event_mouse_enter,
       e_event_mouse_leave,
       e_event_set_check,
-      e_e_event_timer,
+      e_event_timer,
       e_event_enter_key,
       e_event_escape,
       e_event_tab_key,

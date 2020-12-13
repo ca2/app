@@ -2955,7 +2955,7 @@ namespace user
 
       }
 
-      bool bBlurBackground = get_draw_flags(pstyle) & ::user::flag_blur_background;
+      bool bBlurBackground = get_draw_flags(pstyle) & ::user::e_flag_blur_background;
 
       auto psession = Session;
 

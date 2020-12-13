@@ -20,7 +20,7 @@ namespace user
       // and visibility/order problems.
 
 
-      enum e_layout
+      enum enum_layout
       {
 
          layout_creating = 1 << 0,
@@ -41,7 +41,7 @@ namespace user
       struct window_rect                        m_windowrect;
       struct window_rect                        m_windowrectStore;
 
-      cflag < e_layout >                        m_eflagLayouting;
+      cflag < enum_layout >                        m_eflagLayouting;
       bool                                      m_bUpdatingVisual;
       bool                                      m_bUpdateVisual;
       bool                                      m_bFillParent;

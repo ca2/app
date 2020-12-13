@@ -352,7 +352,7 @@ namespace html
       {
          ::user::control_event ev;
          ev.m_puie = m_puserinteraction;
-         ev.m_eevent = ::user::event_form_initialize;
+         ev.m_eevent = ::user::e_event_form_initialize;
          m_puserinteraction->on_control_event(&ev);
 
       }

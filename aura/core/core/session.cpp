@@ -726,24 +726,24 @@ namespace aura
    }
 
 
-   bool session::is_mouse_button_pressed(::user::e_mouse emouse)
+   bool session::is_mouse_button_pressed(::user::enum_mouse emouse)
    {
 
-      if(emouse == ::user::mouse_left_button)
+      if(emouse == ::user::e_mouse_left_button)
       {
          return psession->is_key_pressed(::user::key_lbutton);
       }
-      else if(emouse == ::user::mouse_right_button)
+      else if(emouse == ::user::e_mouse_right_button)
       {
          return psession->is_key_pressed(::user::key_rbutton);
       }
-      else if(emouse == ::user::mouse_middle_button)
+      else if(emouse == ::user::e_mouse_middle_button)
       {
          return psession->is_key_pressed(::user::key_mbutton);
       }
       else
       {
-         __throw(::exception::exception("not expected e_mouse value"));
+         __throw(::exception::exception("not expected enum_mouse value"));
       }
 
 
@@ -1506,7 +1506,7 @@ namespace aura
        if (pbutton->m_id == "close_menu")
        {
 
-          pbutton->m_econtroltype = ::user::control_type_menu_button_close;
+          pbutton->m_econtroltype = ::user::e_control_type_menu_button_close;
 
           pbutton->set_stock_icon(stock_icon_close);
 
@@ -1518,7 +1518,7 @@ namespace aura
        else
        {
 
-          pbutton->m_econtroltype = ::user::control_type_menu_button;
+          pbutton->m_econtroltype = ::user::e_control_type_menu_button;
 
           int cx = pbutton->width();
 

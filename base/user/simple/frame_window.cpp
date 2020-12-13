@@ -37,7 +37,7 @@ simple_frame_window::simple_frame_window()
 
    m_bProdevianFrame = true;
 
-   m_etranslucencyFrame = ::user::translucency_present;
+   m_etranslucencyFrame = ::user::e_translucency_present;
 
    m_bDefaultCreateToolbar = true;
 
@@ -114,7 +114,7 @@ simple_frame_window::~simple_frame_window()
 ::user::enum_translucency simple_frame_window::get_translucency(::user::style* pstyle) const
 {
 
-   if (m_etranslucencyFrame != ::user::translucency_undefined)
+   if (m_etranslucencyFrame != ::user::e_translucency_undefined)
    {
 
       return m_etranslucencyFrame;
@@ -2410,7 +2410,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
       if(dAlpha > 0.0)
       {
 
-         bool bBlurBackground = get_draw_flags(pstyle) & ::user::flag_blur_background;
+         bool bBlurBackground = get_draw_flags(pstyle) & ::user::e_flag_blur_background;
 
          int iDrawingOrder = DRAWING_ORDER_CLIENT_OVER;
 
@@ -2513,7 +2513,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
    auto pstyle = get_style(pgraphics);
 
-   bool bBlurBackground = get_draw_flags(pstyle) & ::user::flag_blur_background;
+   bool bBlurBackground = get_draw_flags(pstyle) & ::user::e_flag_blur_background;
 
    if(bBlurBackground)
    {
@@ -3651,7 +3651,7 @@ bool simple_frame_window::calc_layered()
 
    auto psession = Session;
 
-   if (m_bLayered && get_translucency(pstyle) != ::user::translucency_none)
+   if (m_bLayered && get_translucency(pstyle) != ::user::e_translucency_none)
    {
       return !psession->savings().is_trying_to_save(::e_resource_processing)
              && !psession->savings().is_trying_to_save(::e_resource_display_bandwidth);

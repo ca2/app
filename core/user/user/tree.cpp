@@ -57,7 +57,7 @@ namespace user
 
       SCAST_PTR(::message::create, pcreate, pmessage);
 
-      descriptor().set_control_type(::user::control_type_tree);
+      descriptor().set_control_type(::user::e_control_type_tree);
 
       if (pmessage->previous())
       {

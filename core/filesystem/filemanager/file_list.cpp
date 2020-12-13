@@ -1229,10 +1229,10 @@ namespace filemanager
 
             auto pinteraction = __new( user::control_descriptor);
             pinteraction->m_bTransparent = true;
-            pinteraction->set_control_type(user::control_type_button);
+            pinteraction->set_control_type(user::e_control_type_button);
             pinteraction->m_type = __type(::user::button);
             pinteraction->m_id = 1000 + i;
-            pinteraction->add_function(user::control_function_action);
+            pinteraction->add_function(user::e_control_function_action);
             iControl = _001AddControl(pinteraction);
 
          }
@@ -1290,11 +1290,11 @@ namespace filemanager
          {
 
             auto pinteraction = __new( user::control_descriptor);
-            pinteraction->set_control_type(user::control_type_edit_plain_text);
+            pinteraction->set_control_type(user::e_control_type_edit_plain_text);
             pinteraction->m_datakey = "FILE_MANAGER_ID_FILE_NAME";
             //pinteraction->descriptor().m_id = _vms::FILE_MANAGER_ID_FILE_NAME;
-            pinteraction->set_data_type(user::control_data_type_string);
-            pinteraction->add_function(user::control_function_vms_data_edit);
+            pinteraction->set_data_type(user::e_control_data_type_string);
+            pinteraction->add_function(user::e_control_function_vms_data_edit);
             pinteraction->m_type = __type(::user::plain_edit);
             pinteraction->m_iSubItem = i;
             pinteraction->m_id = 1000 + i;

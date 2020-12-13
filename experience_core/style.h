@@ -39,7 +39,7 @@ namespace experience
       void _001OnTabPaneDrawTitle(::user::tab_pane & pane,::user::tab * ptab,::draw2d::graphics_pointer & pgraphics, const ::rect & rect, ::draw2d::brush_pointer & brushText) override;
       bool _001OnTabLayout(::draw2d::graphics_pointer& pgraphics, ::user::tab * ptab) override;
 
-      virtual ::color get_color(const ::user::interaction * pinteraction, ::user::enum_element eelement, ::user::estate estate = ::user::e_state_none) const override;
+      virtual ::color get_color(const ::user::interaction * pinteraction, ::user::eelement eelement, ::user::estate estate = ::user::e_state_none) const override;
 
       virtual bool _001DrawSimpleScrollBar(::draw2d::graphics_pointer & pgraphics, ::user::scroll_bar * pbar) override;
 

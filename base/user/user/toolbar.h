@@ -42,13 +42,13 @@ namespace user
 
 //      enum enum_element
 //      {
-//         element_item,
+//         e_element_item,
 //         element_item_hover,
 //         element_item_press,
 //         element_image,
 //         element_image_hover,
 //         element_image_press,
-//         element_text,
+//         e_element_text,
 //         element_text_hover,
 //         element_text_press,
 //      };

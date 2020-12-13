@@ -430,7 +430,7 @@ namespace user
    }
 
 
-   bool interaction_child::is_this_visible(e_layout elayout)
+   bool interaction_child::is_this_visible(enum_layout elayout)
    {
 
       if (!m_puserinteraction)
@@ -615,7 +615,7 @@ namespace user
 
          ::rect rectWindow;
 
-         m_puserinteraction->get_window_rect(rectWindow, ::user::layout_design);
+         m_puserinteraction->get_window_rect(rectWindow, ::user::e_layout_design);
 
          auto pwnd = get_wnd();
 

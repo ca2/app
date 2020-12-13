@@ -18,7 +18,7 @@ namespace file
       i64
    {
 
-      flag_none = 0,
+      e_flag_none = 0,
       flag_required = 1 << 0,
       flag_bypass_cache = 1 << 1,
       flag_dont_resolve_alias = 1 << 2,

@@ -60,15 +60,15 @@ namespace user
 
       if(pinteraction != nullptr)
       {
-         if(pinteraction->descriptor().has_function(::user::control_function_action))
+         if(pinteraction->descriptor().has_function(::user::e_control_function_action))
          {
-            if(pinteraction->descriptor().get_control_type() == ::user::control_type_button)
+            if(pinteraction->descriptor().get_control_type() == ::user::e_control_type_button)
             {
 
 
                ::user::control_event ev;
                ev.m_puie                  = pinteraction;
-               ev.m_eevent                = ::user::event_button_clicked;
+               ev.m_eevent                = ::user::e_event_button_clicked;
 
                m_itemControl              = item;
 
@@ -114,7 +114,7 @@ namespace user
       item.m_iSubItem = pinteraction->descriptor().m_iSubItem;
       item.m_iOrder = _001MapSubItemToOrder(item.m_iSubItem);
       item.m_iListItem = -1;
-      _001GetElementRect(&item,::user::mesh::element_text);
+      _001GetElementRect(&item,::user::mesh::e_element_text);
       if(item.m_bOk)
       {
          
@@ -246,7 +246,7 @@ namespace user
 
       switch(pinteraction->descriptor().get_type())
       {
-      case control_type_edit:
+      case e_control_type_edit:
       switch(pnotify->m_uiCode)
       {
       case user::NotifyKeyDown:
@@ -318,7 +318,7 @@ namespace user
 
          class ::user::control_descriptor & descriptor = m_controldescriptorset(i);
 
-         if(descriptor.m_econtroltype == control_type_edit  || descriptor.m_econtroltype == control_type_edit_plain_text)
+         if(descriptor.m_econtroltype == e_control_type_edit  || descriptor.m_econtroltype == e_control_type_edit_plain_text)
          {
 
             for(auto pair : descriptor.m_controlmap)
@@ -392,8 +392,8 @@ namespace user
       if(pinteraction->m_pdescriptor != nullptr)
       {
 
-         if(pinteraction->m_pdescriptor->m_econtroltype == control_type_edit
-               || pinteraction->m_pdescriptor->m_econtroltype == control_type_edit_plain_text)
+         if(pinteraction->m_pdescriptor->m_econtroltype == e_control_type_edit
+               || pinteraction->m_pdescriptor->m_econtroltype == e_control_type_edit_plain_text)
          {
 
             if(pinteraction == _001GetEditControl())

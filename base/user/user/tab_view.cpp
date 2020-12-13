@@ -246,10 +246,10 @@ namespace user
    }
 
 
-   void tab_view::_001OnDropTab(index iTab, e_position eposition)
+   void tab_view::_001OnDropTab(index iTab, enum_position eposition)
    {
 
-      if (eposition != position_none)
+      if (eposition != e_position_none)
       {
 
          id id1 = ::user::tab::tab_id(::user::tab::_001GetSel());
@@ -274,7 +274,7 @@ namespace user
 
          pimpactdata->m_puserinteraction = psplitview;
 
-         if (eposition == position_top || eposition == position_bottom)
+         if (eposition == e_position_top || eposition == e_position_bottom)
          {
 
             psplitview->SetSplitOrientation(orientation_horizontal);
@@ -301,7 +301,7 @@ namespace user
 
          ppane2->m_pplaceholder->get_child(pwnd2);
 
-         if (eposition == position_top || eposition == position_left)
+         if (eposition == e_position_top || eposition == e_position_left)
          {
 
             psplitview->SetPane(0, pwnd2, false);
@@ -546,10 +546,10 @@ namespace user
       }
 
       if (m_pimpactdataOld
-         && m_pimpactdataOld->m_eflag & ::user::flag_hide_on_kill_focus)
+         && m_pimpactdataOld->m_eflag & ::user::e_flag_hide_on_kill_focus)
       {
 
-         output_debug_string("::user::flag_hide_on_kill_focus");
+         output_debug_string("::user::e_flag_hide_on_kill_focus");
          m_pimpactdataOld->m_pplaceholder->hide();
 
       }
@@ -557,8 +557,8 @@ namespace user
       if (m_pimpactdata != nullptr)
       {
 
-         if (m_pimpactdata->m_eflag & ::user::flag_hide_all_others_on_show
-            || m_pimpactdata->m_eflag & ::user::flag_hide_topic_on_show)
+         if (m_pimpactdata->m_eflag & ::user::e_flag_hide_all_others_on_show
+            || m_pimpactdata->m_eflag & ::user::e_flag_hide_topic_on_show)
          {
 
             ::user::tab_pane_array & panea = get_data()->m_panea;
@@ -575,15 +575,15 @@ namespace user
 
                }
 
-               else if (m_pimpactdata->m_eflag & ::user::flag_hide_topic_on_show)
+               else if (m_pimpactdata->m_eflag & ::user::e_flag_hide_topic_on_show)
                {
 
-                  if ((m_pimpactdata->m_eflag & ::user::flag_modifier_impact)
-                     || (m_pimpactdata->m_eflag & ::user::flag_tool_impact))
+                  if ((m_pimpactdata->m_eflag & ::user::e_flag_modifier_impact)
+                     || (m_pimpactdata->m_eflag & ::user::e_flag_tool_impact))
                   {
 
-                     if (!(pimpactdataPane->m_eflag & ::user::flag_modifier_impact)
-                        && !(pimpactdataPane->m_eflag & ::user::flag_tool_impact))
+                     if (!(pimpactdataPane->m_eflag & ::user::e_flag_modifier_impact)
+                        && !(pimpactdataPane->m_eflag & ::user::e_flag_tool_impact))
                      {
 
                         continue;
@@ -1028,13 +1028,13 @@ namespace user
       ::object(ptab->get_context_application())
    {
 
-      m_positiona.add(position_top);
+      m_positiona.add(e_position_top);
 
-      m_positiona.add(position_right);
+      m_positiona.add(e_position_right);
 
-      m_positiona.add(position_bottom);
+      m_positiona.add(e_position_bottom);
 
-      m_positiona.add(position_left);
+      m_positiona.add(e_position_left);
 
       m_ptab         = ptab;
 
@@ -1080,7 +1080,7 @@ namespace user
 
       _001ScreenToClient(&pointCursor);
 
-      e_position epositionDrag = m_ptab->DragHitTest(pointCursor);
+      enum_position epositionDrag = m_ptab->DragHitTest(pointCursor);
 
       for (auto eposition : m_positiona)
       {
@@ -1118,7 +1118,7 @@ namespace user
    //bool tab_drop_target_window::get_translucency(::user::enum_translucency & etranslucency, ::user::enum_element eelement, ::user::interaction * pinteraction)
    //{
 
-   //   etranslucency = translucency_present;
+   //   etranslucency = e_translucency_present;
 
    //   return true;
 
@@ -1135,7 +1135,7 @@ namespace user
 
       _001ScreenToClient(point);
 
-      e_position eposition = m_ptab->DragHitTest(point);
+      enum_position eposition = m_ptab->DragHitTest(point);
 
       m_ptab->_001OnDropTab(m_iTab, eposition);
 

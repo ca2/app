@@ -158,7 +158,7 @@ namespace user
 
          ev.m_puie      = this;
 
-         ev.m_eevent    = ::user::event_on_create_impact;
+         ev.m_eevent    = ::user::e_event_on_create_impact;
 
          ev.m_pmessage  = pmessage;
 

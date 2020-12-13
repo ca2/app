@@ -107,7 +107,7 @@ namespace user
 
       ::rect rectClient;
 
-      layout().get_client_rect(rectClient, ::user::layout_design);
+      layout().get_client_rect(rectClient, ::user::e_layout_design);
 
       ::draw2d::brush_pointer brBk(e_create);
 
@@ -134,7 +134,7 @@ namespace user
 
       auto pointCursor = psession->get_cursor_pos();
 
-      _001ScreenToClient(&pointCursor, ::user::layout_design);
+      _001ScreenToClient(&pointCursor, ::user::e_layout_design);
 
       pgraphics->set_font(this);
 
@@ -451,7 +451,7 @@ namespace user
    bool combo_list::keyboard_focus_OnKillFocus(oswindow oswindowNew)
    {
 
-      if (is_window_visible(::user::layout_sketch))
+      if (is_window_visible(::user::e_layout_sketch))
       {
 
          display(false);
@@ -460,7 +460,7 @@ namespace user
 
          post_redraw();
 
-         if (m_pcombo != nullptr && m_pcombo->is_window_visible(::user::layout_sketch))
+         if (m_pcombo != nullptr && m_pcombo->is_window_visible(::user::e_layout_sketch))
          {
 
             m_pcombo->SetFocus();
@@ -601,9 +601,9 @@ namespace user
 
          auto pointCursor = psession->get_cursor_pos();
 
-         m_pcombo->_001ScreenToClient(&pointCursor, ::user::layout_sketch);
+         m_pcombo->_001ScreenToClient(&pointCursor, ::user::e_layout_sketch);
 
-         //if(m_pcombo->hit_test(pointCursor) != element_drop_down)
+         //if(m_pcombo->hit_test(pointCursor) != e_element_drop_down)
          //{
 
          //   m_pcombo->_001ShowDropDown(false);
@@ -727,7 +727,7 @@ namespace user
 
       SCAST_PTR(::message::mouse, pmouse, pmessage);
 
-      auto point = screen_to_client(pmouse->m_point, layout_sketch);
+      auto point = screen_to_client(pmouse->m_point, e_layout_sketch);
 
       auto rectClient = get_client_rect();
 
@@ -754,7 +754,7 @@ namespace user
 
       SCAST_PTR(::message::mouse, pmouse, pmessage);
 
-      auto point = screen_to_client(pmouse->m_point, layout_sketch);
+      auto point = screen_to_client(pmouse->m_point, e_layout_sketch);
 
       auto rectClient = get_client_rect();
 
@@ -783,7 +783,7 @@ namespace user
 
             ev.m_id = m_id;
 
-            ev.m_eevent = ::user::event_after_change_cur_sel;
+            ev.m_eevent = ::user::e_event_after_change_cur_sel;
 
             ev.m_actioncontext = ::source_user;
 
@@ -809,7 +809,7 @@ namespace user
 
       auto point = pmouse->m_point;
 
-      _001ScreenToClient(point, layout_sketch);
+      _001ScreenToClient(point, e_layout_sketch);
 
       auto rectClient = get_client_rect();
 
@@ -836,7 +836,7 @@ namespace user
 
       auto point = pmouse->m_point;
 
-      _001ScreenToClient(point, layout_sketch);
+      _001ScreenToClient(point, e_layout_sketch);
 
       auto rectClient = get_client_rect();
 
@@ -967,7 +967,7 @@ namespace user
 
       }
 
-      item = element_none;
+      item = e_element_none;
 
    }
 

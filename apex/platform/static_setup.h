@@ -21,7 +21,7 @@ public:
    enum e_flag
    {
 
-      flag_none,
+      e_flag_none,
       flag_system = 1,
       flag_session = 2,
       flag_application = 4,

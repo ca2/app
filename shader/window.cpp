@@ -33,7 +33,7 @@ namespace app_shader
    ::user::enum_translucency window::get_translucency(::user::style* pstyle) const
    {
 
-      return ::user::translucency_present;
+      return ::user::e_translucency_present;
 
    }
 

@@ -26,7 +26,7 @@ namespace browser
 
          m_bExplicitTranslucency = true;
 
-         m_etranslucency = ::user::translucency_none;
+         m_etranslucency = ::user::e_translucency_none;
 
       }
       else

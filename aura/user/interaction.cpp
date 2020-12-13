@@ -239,7 +239,7 @@ namespace user
    enum_element interaction::get_default_element() const
    {
 
-      return element_none;
+      return e_element_none;
 
    }
 
@@ -274,7 +274,7 @@ namespace user
 
       }
 
-      return translucency_undefined;
+      return e_translucency_undefined;
 
    }
 
@@ -327,7 +327,7 @@ namespace user
 
       //   switch (eelement)
       //   {
-      //   case element_background:
+      //   case e_element_background:
       //      if (pstyle->m_colorBackground.is_set())
       //      {
 
@@ -335,7 +335,7 @@ namespace user
 
       //      }
       //      break;
-      //   case element_text:
+      //   case e_element_text:
       //      if (pstyle->m_colorText.is_set())
       //      {
 
@@ -366,7 +366,7 @@ namespace user
    eflag interaction::get_draw_flags(style * pstyle) const
    {
 
-      return flag_none;
+      return e_flag_none;
 
    }
 
@@ -1553,7 +1553,7 @@ namespace user
                   if (get_context_application() != nullptr && get_context_application()->get_context_session() != nullptr && has_focus())
                   {
 
-                     if (GetParent() == nullptr || !is_window_visible(layout_sketch))
+                     if (GetParent() == nullptr || !is_window_visible(e_layout_sketch))
                      {
 
                         auto psession = Session;
@@ -2063,7 +2063,7 @@ namespace user
    }
 
 
-   ::point interaction::get_parent_accumulated_scroll(e_layout elayout) const
+   ::point interaction::get_parent_accumulated_scroll(enum_layout elayout) const
    {
 
       ::point pointScroll;
@@ -2123,7 +2123,7 @@ namespace user
 
             rectClient = pdrawcontext->m_rectWindow;
 
-            _001ScreenToClient(rectClient, layout_design);
+            _001ScreenToClient(rectClient, e_layout_design);
 
             rectClient.bottom++;
             rectClient.right++;
@@ -2658,7 +2658,7 @@ namespace user
 
       ::rect rectWindow;
 
-      get_window_rect(rectWindow, layout_design);
+      get_window_rect(rectWindow, e_layout_design);
 
       ::rect rect(rectWindow);
 
@@ -2815,7 +2815,7 @@ namespace user
 
                psession->get_cursor_pos(pointCursor);
 
-               _001ScreenToClient(pointCursor, layout_design);
+               _001ScreenToClient(pointCursor, e_layout_design);
 
                ::draw2d::cursor * pcursor = psession->get_cursor();
 
@@ -2921,7 +2921,7 @@ namespace user
 
       sketch_to_design(pgraphics, bUpdateBuffer, bUpdateWindow);
 
-      if (!is_this_visible(layout_design) || m_bLockWindowUpdate)
+      if (!is_this_visible(e_layout_design) || m_bLockWindowUpdate)
       {
 
          if(strType.contains_ci("experience"))
@@ -3176,16 +3176,16 @@ namespace user
       {
 
       }
-      else if (get_translucency(pstyle) >= translucency_total)
+      else if (get_translucency(pstyle) >= e_translucency_total)
       {
 
       }
-      else if (get_translucency(pstyle) >= translucency_present)
+      else if (get_translucency(pstyle) >= e_translucency_present)
       {
 
          pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-         auto colorBackground = get_color(pstyle, element_background);
+         auto colorBackground = get_color(pstyle, e_element_background);
 
          //if (colorref_get_r_value(crBackground) != 255)
          //{
@@ -3207,7 +3207,7 @@ namespace user
 
          pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-         auto colorBackground = get_color(pstyle, element_background);
+         auto colorBackground = get_color(pstyle, e_element_background);
 
          //if (colorref_get_r_value(crBackground) != 255)
          //{
@@ -3429,7 +3429,7 @@ namespace user
 
       ev.m_puie = this;
 
-      ev.m_eevent = ::user::event_create;
+      ev.m_eevent = ::user::e_event_create;
 
       on_control_event(&ev);
 
@@ -3533,7 +3533,7 @@ namespace user
          try
          {
 
-            if (!is_window_visible(layout_sketch))
+            if (!is_window_visible(e_layout_sketch))
             {
 
                return;
@@ -3571,7 +3571,7 @@ namespace user
             try
             {
 
-               if (pinteraction->is_window_visible(layout_sketch) && (pdrag->m_id == MESSAGE_OLE_DRAGLEAVE || pinteraction->_001IsPointInside(point(pdrag->point.x, pdrag->point.y))))
+               if (pinteraction->is_window_visible(e_layout_sketch) && (pdrag->m_id == MESSAGE_OLE_DRAGLEAVE || pinteraction->_001IsPointInside(point(pdrag->point.x, pdrag->point.y))))
                {
 
                   try
@@ -3666,7 +3666,7 @@ namespace user
       try
       {
 
-         if (!is_window_visible(layout_sketch))
+         if (!is_window_visible(e_layout_sketch))
          {
 
             return;
@@ -3782,7 +3782,7 @@ namespace user
                   {
                      continue;
                   }
-                  if (pinteraction->is_window_visible(layout_sketch) && pinteraction->_001IsPointInside(pmouse->m_point))
+                  if (pinteraction->is_window_visible(e_layout_sketch) && pinteraction->_001IsPointInside(pmouse->m_point))
                   {
                      try
                      {
@@ -3855,7 +3855,7 @@ namespace user
                try
                {
 
-                  if (pinteraction->is_window_visible(layout_sketch))
+                  if (pinteraction->is_window_visible(e_layout_sketch))
                   {
 
                      try
@@ -3923,7 +3923,7 @@ namespace user
       if (bTestedIfParentVisible)
       {
 
-         if (!is_this_visible(layout_sketch) || !_001IsPointInside(point)) // inline version - do not need pointer to the function
+         if (!is_this_visible(e_layout_sketch) || !_001IsPointInside(point)) // inline version - do not need pointer to the function
          {
 
             return nullptr;
@@ -3934,7 +3934,7 @@ namespace user
       else
       {
 
-         if (!is_window_visible(layout_sketch) || !_001IsPointInside(point)) // inline version - do not need pointer to the function
+         if (!is_window_visible(e_layout_sketch) || !_001IsPointInside(point)) // inline version - do not need pointer to the function
          {
 
             return nullptr;
@@ -3985,7 +3985,7 @@ namespace user
 
       ::rect rectWindow;
 
-      get_window_rect(rectWindow, layout_sketch);
+      get_window_rect(rectWindow, e_layout_sketch);
 
       return rectWindow.contains(point);
 
@@ -4447,7 +4447,7 @@ namespace user
 
    //   //      ev.m_puie         = this;
 
-   //   //      ev.m_eevent       = ::user::event_tab_key;
+   //   //      ev.m_eevent       = ::user::e_event_tab_key;
 
    //   //      ev.m_context        = ::source_user;
 
@@ -6307,7 +6307,7 @@ namespace user
    //}
 
 
-   zorder interaction::zorder(e_layout elayout) const
+   zorder interaction::zorder(enum_layout elayout) const
    {
 
       return layout().state(elayout).zorder();
@@ -7333,7 +7333,7 @@ namespace user
    }
 
 
-   bool interaction::is_this_visible(e_layout elayout)
+   bool interaction::is_this_visible(enum_layout elayout)
    {
 
       if (!m_pimpl)
@@ -9509,7 +9509,7 @@ restart:
             || pitem->m_eelement == ::user::e_element_close_icon)
          {
 
-            if (pitem->m_eevent == ::user::event_close_app)
+            if (pitem->m_eevent == ::user::e_event_close_app)
             {
 
                display(e_display_hide);
@@ -10314,7 +10314,7 @@ restart:
    }
 
 
-   ::rect interaction::get_window_rect(e_layout elayout) const
+   ::rect interaction::get_window_rect(enum_layout elayout) const
    {
 
       auto rect = layout().get_window_rect(elayout);
@@ -11450,7 +11450,7 @@ restart:
 
       ev.m_id = m_id;
 
-      ev.m_eevent = ::user::event_kill_focus;
+      ev.m_eevent = ::user::e_event_kill_focus;
 
       on_control_event(&ev);
 
@@ -11486,7 +11486,7 @@ restart:
 
       ev.m_puie = this;
 
-      ev.m_eevent = ::user::event_set_focus;
+      ev.m_eevent = ::user::e_event_set_focus;
 
       on_control_event(&ev);
 
@@ -11625,7 +11625,7 @@ restart:
          control_event ev;
 
          ev.m_puie = dynamic_cast <::user::interaction *> (this);
-         ev.m_eevent = ::user::event_tab_key;
+         ev.m_eevent = ::user::e_event_tab_key;
          ev.m_actioncontext = ::source_user;
 
          route_control_event(&ev);
@@ -12789,7 +12789,7 @@ restart:
 
       SCAST_PTR(::message::base, pbase, pmessage);
 
-      if (eevent == event_mouse_leave)
+      if (eevent == e_event_mouse_leave)
       {
 
          __pointer(interaction) pinteraction = top_child();
@@ -12909,7 +12909,7 @@ restart:
 
             psession->m_puiLastLButtonDown = this;
 
-            simple_on_control_event(pmessage, ::user::event_button_down);
+            simple_on_control_event(pmessage, ::user::e_event_button_down);
 
          }
 
@@ -12969,7 +12969,7 @@ restart:
 
                ev.m_id = m_id;
 
-               ev.m_eevent = ::user::event_button_clicked;
+               ev.m_eevent = ::user::e_event_button_clicked;
 
                ev.m_pmessage = pmouse;
 
@@ -13020,7 +13020,7 @@ restart:
 
             psession->m_puiLastLButtonDown = nullptr;
 
-            simple_on_control_event(pmessage, ::user::event_button_down);
+            simple_on_control_event(pmessage, ::user::e_event_button_down);
 
          }
 
@@ -13044,7 +13044,7 @@ restart:
          if (item.is_set())
          {
 
-            simple_on_control_event(pmessage, ::user::event_m_button_down);
+            simple_on_control_event(pmessage, ::user::e_event_m_button_down);
 
          }
 
@@ -13068,7 +13068,7 @@ restart:
          if (item.is_set())
          {
 
-            simple_on_control_event(pmessage, ::user::event_m_button_up);
+            simple_on_control_event(pmessage, ::user::e_event_m_button_up);
 
          }
 
@@ -13169,13 +13169,13 @@ restart:
 
                track_mouse_hover();
 
-               simple_on_control_event(pmouse, event_mouse_enter);
+               simple_on_control_event(pmouse, e_event_mouse_enter);
 
             }
             else if (!m_itemHoverMouse.is_set() && itemOldMouseHover.is_set())
             {
 
-               simple_on_control_event(pmouse, event_mouse_leave);
+               simple_on_control_event(pmouse, e_event_mouse_leave);
 
             }
 
@@ -13226,7 +13226,7 @@ restart:
 
          set_need_redraw();
 
-         simple_on_control_event(pmessage, event_mouse_leave);
+         simple_on_control_event(pmessage, e_event_mouse_leave);
 
          post_redraw();
 
@@ -13291,13 +13291,13 @@ restart:
       if (!rect.contains(item.m_pointHitTest))
       {
 
-         item = element_none;
+         item = e_element_none;
 
       }
       else
       {
 
-         item = element_client;
+         item = e_element_client;
 
       }
 
@@ -13750,7 +13750,7 @@ restart:
 
       string str;
 
-      if (control_descriptor().get_control_type() == control_type_edit)
+      if (control_descriptor().get_control_type() == e_control_type_edit)
       {
 
          __pointer(::user::text) pedit = pwnd.m_p;
@@ -13779,12 +13779,12 @@ restart:
 
       switch (control_descriptor().get_data_type())
       {
-      case control_data_type_string:
+      case e_control_data_type_string:
       {
          payload = str;
       }
       return true;
-      case control_data_type_natural:
+      case e_control_data_type_natural:
       {
          payload = atoi(str);
          return true;
@@ -13799,7 +13799,7 @@ restart:
 
 
 
-   bool interaction::has_function(e_control_function econtrolfunction) const
+   bool interaction::has_function(enum_control_function econtrolfunction) const
    {
 
       if (m_pdescriptor.is_null())
@@ -14279,7 +14279,7 @@ restart:
    bool interaction::get_element_rect(RECT32* prect, enum_element eelement)
    {
 
-      if (eelement == element_drop_down)
+      if (eelement == e_element_drop_down)
       {
 
          ::rect rectClient;
@@ -14306,7 +14306,7 @@ restart:
          return true;
 
       }
-      else if (eelement == element_combo_edit)
+      else if (eelement == e_element_combo_edit)
       {
 
          ::rect rectClient;
@@ -14315,7 +14315,7 @@ restart:
 
          ::rect rectDropDown;
 
-         get_element_rect(rectDropDown, element_drop_down);
+         get_element_rect(rectDropDown, e_element_drop_down);
 
          ::rect rectEdit = rectClient;
 
@@ -14342,7 +14342,7 @@ restart:
 
       ::rect rectDropDown;
 
-      get_element_rect(rectDropDown, element_drop_down);
+      get_element_rect(rectDropDown, e_element_drop_down);
 
       i32 cx = rectDropDown.width() / 3;
 

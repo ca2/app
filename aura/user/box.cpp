@@ -128,7 +128,7 @@ namespace user
 
       auto edisplay = layout().design().display();
 
-      get_window_rect(m_windowrect.m_rectWindow, layout_design);
+      get_window_rect(m_windowrect.m_rectWindow, e_layout_design);
 
       if (is_docking_appearance(edisplay))
       {
@@ -445,7 +445,7 @@ namespace user
 
       windowrect.m_eappearance = layout().sketch().appearance();
 
-      get_window_rect(windowrect.m_rectWindow, layout_sketch);
+      get_window_rect(windowrect.m_rectWindow, e_layout_sketch);
 
       auto edisplay = windowrect.m_edisplay;
 

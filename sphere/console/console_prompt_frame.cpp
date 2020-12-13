@@ -230,7 +230,7 @@ namespace console
       if(!data_get("&data_source=local&DockPosition", (i32 &) m_eposition))
       {
 
-         m_eposition = position_left;
+         m_eposition = e_position_left;
 
       }
 
@@ -283,17 +283,17 @@ namespace console
             if(rectWindow.top < rectWindow.left * a)
             {
                // top
-               m_eposition = position_top;
+               m_eposition = e_position_top;
             }
             else if(rectWindow.top > (rectDesktop.height() - rectWindow.left * a))
             {
                // bottom
-               m_eposition = position_bottom;
+               m_eposition = e_position_bottom;
             }
             else
             {
                // left
-               m_eposition = position_left;
+               m_eposition = e_position_left;
             }
          }
          else
@@ -303,17 +303,17 @@ namespace console
             if(rectWindow.top > rectWindow.left * a)
             {
                // bottom
-               m_eposition = position_bottom;
+               m_eposition = e_position_bottom;
             }
             else if(rectWindow.top < (rectDesktop.height() - rectWindow.left * a))
             {
                // top
-               m_eposition = position_top;
+               m_eposition = e_position_top;
             }
             else
             {
                // right
-               m_eposition = position_right;
+               m_eposition = e_position_right;
             }
          }
          data_set("DockPosition", (i32) m_eposition);
@@ -527,7 +527,7 @@ namespace console
    bool prompt_frame::get_translucency(::user::enum_translucency & etranslucency, ::user::enum_element eelement, ::user::style_context * pinteraction)
    {
 
-      etranslucency = ::user::translucency_present;
+      etranslucency = ::user::e_translucency_present;
 
       return true;
 

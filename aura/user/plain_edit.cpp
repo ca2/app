@@ -367,14 +367,14 @@ namespace user
 
       auto rectClient = get_client_rect();
 
-      color32_t crEditBackground = get_color(pstyle, element_background);
+      color32_t crEditBackground = get_color(pstyle, e_element_background);
 
       pgraphics->fill_rect(rectClient, crEditBackground);
 
-      cr = get_color(pstyle, element_text);
-      crBk = get_color(pstyle, element_background);
-      crSel = get_color(pstyle, element_text, e_state_selected);
-      crBkSel = get_color(pstyle, element_background, e_state_selected);
+      cr = get_color(pstyle, e_element_text);
+      crBk = get_color(pstyle, e_element_background);
+      crSel = get_color(pstyle, e_element_text, e_state_selected);
+      crBkSel = get_color(pstyle, e_element_background, e_state_selected);
 
       m_pinternal->update(pgraphics, this);
 
@@ -1092,7 +1092,7 @@ namespace user
 
          ev.m_puie = this;
 
-         ev.m_eevent = ::user::event_key_down;
+         ev.m_eevent = ::user::e_event_key_down;
 
          ev.m_pmessage = pmessage;
 
@@ -1134,7 +1134,7 @@ namespace user
 
             ev.m_puie = this;
 
-            ev.m_eevent = ::user::event_enter_key;
+            ev.m_eevent = ::user::e_event_enter_key;
 
             ev.m_actioncontext = ::source_user;
 
@@ -1177,7 +1177,7 @@ namespace user
 
             ev.m_puie = this;
 
-            ev.m_eevent = ::user::event_tab_key;
+            ev.m_eevent = ::user::e_event_tab_key;
 
             ev.m_actioncontext = ::source_user;
 
@@ -1212,7 +1212,7 @@ namespace user
 
          ev.m_puie = this;
 
-         ev.m_eevent = ::user::event_escape;
+         ev.m_eevent = ::user::e_event_escape;
 
          ev.m_actioncontext = ::source_user;
 
@@ -1817,7 +1817,7 @@ namespace user
 
             }
 
-            m_itemHover = element_client;
+            m_itemHover = e_element_client;
 
          }
 
@@ -1829,7 +1829,7 @@ namespace user
    void plain_edit::_001OnMouseLeave(::message::message * pmessage)
    {
 
-      m_itemHover = element_none;
+      m_itemHover = e_element_none;
 
       set_need_redraw();
 
@@ -5753,7 +5753,7 @@ finished_update:
 
       ev.m_id = m_id;
 
-      ev.m_eevent = ::user::event_after_change_text;
+      ev.m_eevent = ::user::e_event_after_change_text;
 
       ev.m_actioncontext = context;
 
@@ -5816,7 +5816,7 @@ finished_update:
 
          ev.m_puie = this;
 
-         ev.m_eevent = ::user::event_enter_key;
+         ev.m_eevent = ::user::e_event_enter_key;
 
          ev.m_actioncontext = ::source_paste;
 
@@ -5945,7 +5945,7 @@ finished_update:
    bool plain_edit::create_control(class control_descriptor * pdescriptor)
    {
 
-      ASSERT(pdescriptor->get_control_type() == control_type_edit_plain_text);
+      ASSERT(pdescriptor->get_control_type() == e_control_type_edit_plain_text);
 
       if (!::user::interaction::create_control(pdescriptor))
       {
@@ -5958,7 +5958,7 @@ finished_update:
 
       display(e_display_none);
 
-      m_bMultiLine = pdescriptor->has_function(control_function_edit_multi_line);
+      m_bMultiLine = pdescriptor->has_function(e_control_function_edit_multi_line);
 
       return true;
 
@@ -6635,17 +6635,17 @@ finished_update:
 
       auto pstyle = pedit->get_style(pgraphics);
 
-      auto color = pedit->get_color(pstyle, element_text);
+      auto color = pedit->get_color(pstyle, e_element_text);
 
       m_penCaret->create_solid(1.0, color);
 
       m_brushTextCr->create_solid(color);
 
-      color = pedit->get_color(pstyle, element_text, e_state_selected);
+      color = pedit->get_color(pstyle, e_element_text, e_state_selected);
 
       m_brushTextSel->create_solid(color);
 
-      color = pedit->get_color(pstyle, element_text, e_state_new_input);
+      color = pedit->get_color(pstyle, e_element_text, e_state_new_input);
 
       m_brushTextEmpty->create_solid(color);
 

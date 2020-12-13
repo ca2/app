@@ -289,7 +289,7 @@ namespace user
 
       form_window::on_control_event(pevent);
 
-      if (pevent->m_eevent == ::user::event_form_initialize && pevent->m_puie == this)
+      if (pevent->m_eevent == ::user::e_event_form_initialize && pevent->m_puie == this)
       {
 
          if (get_document())

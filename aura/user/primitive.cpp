@@ -2057,7 +2057,7 @@ namespace user
    }
 
 
-   bool primitive::is_this_visible(e_layout elayout)
+   bool primitive::is_this_visible(enum_layout elayout)
    {
 
       return true;

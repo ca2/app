@@ -8549,7 +8549,7 @@ namespace aura
 
          if (pwnd != nullptr
             && pwnd->is_window()
-            && pwnd->is_window_visible(::user::layout_sketch))
+            && pwnd->is_window_visible(::user::e_layout_sketch))
          {
             iCount++;
          }
@@ -8710,7 +8710,7 @@ namespace aura
       if (str.begins_ci("edit_"))
       {
 
-         econtroltype = ::user::control_type_edit_plain_text;
+         econtroltype = ::user::e_control_type_edit_plain_text;
 
          return __type(::user::plain_edit);
 
@@ -9074,7 +9074,7 @@ namespace aura
            try
            {
 
-              bOk = pinteraction != nullptr && pinteraction->is_window_visible(::user::layout_sketch);
+              bOk = pinteraction != nullptr && pinteraction->is_window_visible(::user::e_layout_sketch);
            }
            catch (...)
            {
@@ -9217,7 +9217,7 @@ namespace aura
    void application::on_control_event(::user::control_event* pevent)
    {
 
-      if (pevent->m_eevent == ::user::event_initialize_control)
+      if (pevent->m_eevent == ::user::e_event_initialize_control)
       {
 
          if (pevent->m_puie->m_id == __id(system_startup_checkbox))
@@ -9244,7 +9244,7 @@ namespace aura
          }
 
       }
-      else if (pevent->m_eevent == ::user::event_set_check)
+      else if (pevent->m_eevent == ::user::e_event_set_check)
       {
 
          if (pevent->m_puie->m_id == __id(system_startup_checkbox)

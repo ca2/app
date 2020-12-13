@@ -42,9 +42,9 @@ namespace user
 
       enum enum_element
       {
-         element_item,
+         e_element_item,
          element_image,
-         element_text,
+         e_element_text,
          element_sub_item,
          element_group_image,
          element_group_item_text,

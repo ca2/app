@@ -21,7 +21,7 @@ namespace lite
       ::user::theme(pobject)
    {
 
-      create_translucency(::user::e_element_none, ::user::translucency_present);
+      create_translucency(::user::e_element_none, ::user::e_translucency_present);
 
       create_point_font(::user::font_default,"Segoe UI", 12.0);
 
@@ -820,7 +820,7 @@ namespace lite
    bool theme::on_ui_event(::user::e_event eevent, ::user::e_object eobject, ::user::interaction * pframewindow)
    {
 
-      if (eevent == ::user::event_calc_item_height)
+      if (eevent == ::user::e_event_calc_item_height)
       {
 
          pframewindow->m_iItemHeight += 8;
@@ -865,9 +865,9 @@ namespace lite
 
 /*      ::u32 uImage = pmenucentral->command_image(item.m_id);
 
-      ::user::toolbar::enum_element eelement = ::user::toolbar::element_item;
+      ::user::toolbar::enum_element eelement = ::user::toolbar::e_element_item;
 /*      ::user::toolbar::enum_element eelementImage = ::user::toolbar::element_image;
-      ::user::toolbar::enum_element eelementText = ::user::toolbar::element_text;
+      ::user::toolbar::enum_element eelementText = ::user::toolbar::e_element_text;
       if ((nStyle & e_toolbar_item_style_separator) == 0)
       {
          if ((nStyle & e_toolbar_item_style_disabled) == 0)
@@ -901,16 +901,16 @@ namespace lite
          else
          {
             // item is disabled
-            eelement = ::user::toolbar::element_item;
+            eelement = ::user::toolbar::e_element_item;
 /*            eelementImage = ::user::toolbar::element_image;
-            eelementText = ::user::toolbar::element_text;
+            eelementText = ::user::toolbar::e_element_text;
          }
       }
       else
       {
-         eelement = ::user::toolbar::element_item;
+         eelement = ::user::toolbar::e_element_item;
 /*         eelementImage = ::user::toolbar::element_image;
-         eelementText = ::user::toolbar::element_text;
+         eelementText = ::user::toolbar::e_element_text;
       }
 
 
@@ -937,7 +937,7 @@ namespace lite
             if ((nStyle & TBBS_CHECKED) != 0)
             {
 
-               ptoolbar->_001GetElementRect(iItem, rectItem, ::user::toolbar::element_item);
+               ptoolbar->_001GetElementRect(iItem, rectItem, ::user::toolbar::e_element_item);
 
 /*               ptoolbar->_001GetElementRect(iItem, rectImage, ::user::toolbar::element_image);
 
@@ -1068,7 +1068,7 @@ namespace lite
             if ((nStyle & e_toolbar_item_style_disabled) == 0)
             {
 
-               ptoolbar->_001GetElementRect(iItem, rectItem, ::user::toolbar::element_item);
+               ptoolbar->_001GetElementRect(iItem, rectItem, ::user::toolbar::e_element_item);
 
                pgraphics->fill_rect(rectItem, ARGB(184, 255, 255, 255));
 
@@ -1169,9 +1169,9 @@ namespace lite
 
 /*      ::u32 uImage = pmenucentral->command_image(item.m_id);
 
-      ::user::toolbar::enum_element eelement = ::user::toolbar::element_item;
+      ::user::toolbar::enum_element eelement = ::user::toolbar::e_element_item;
 /*      ::user::toolbar::enum_element eelementImage = ::user::toolbar::element_image;
-      ::user::toolbar::enum_element eelementText = ::user::toolbar::element_text;
+      ::user::toolbar::enum_element eelementText = ::user::toolbar::e_element_text;
 
       if ((nStyle & e_toolbar_item_style_separator) == 0)
       {
@@ -1208,16 +1208,16 @@ namespace lite
          else
          {
             // item is disabled
-            eelement = ::user::toolbar::element_item;
+            eelement = ::user::toolbar::e_element_item;
 /*            eelementImage = ::user::toolbar::element_image;
-            eelementText = ::user::toolbar::element_text;
+            eelementText = ::user::toolbar::e_element_text;
          }
       }
       else
       {
-         eelement = ::user::toolbar::element_item;
+         eelement = ::user::toolbar::e_element_item;
 /*         eelementImage = ::user::toolbar::element_image;
-         eelementText = ::user::toolbar::element_text;
+         eelementText = ::user::toolbar::e_element_text;
       }
 
 
@@ -1244,7 +1244,7 @@ namespace lite
             if ((nStyle & TBBS_CHECKED) != 0)
             {
 
-               ptoolbar->_001GetElementRect(iItem, rectItem, ::user::toolbar::element_item);
+               ptoolbar->_001GetElementRect(iItem, rectItem, ::user::toolbar::e_element_item);
 
 /*               ptoolbar->_001GetElementRect(iItem, rectImage, ::user::toolbar::element_image);
 
@@ -1375,7 +1375,7 @@ namespace lite
             if ((nStyle & e_toolbar_item_style_disabled) == 0)
             {
 
-               ptoolbar->_001GetElementRect(iItem, rectItem, ::user::toolbar::element_item);
+               ptoolbar->_001GetElementRect(iItem, rectItem, ::user::toolbar::e_element_item);
 
                pgraphics->fill_rect(rectItem, _001GetColor(::user::color_button_background));
 

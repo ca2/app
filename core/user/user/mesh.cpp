@@ -702,7 +702,7 @@ namespace user
          pdrawitem->draw_image();
       }
       pdrawitem->m_iListItem = -1;
-      _001GetElementRect(pdrawitem,::user::mesh::element_text);
+      _001GetElementRect(pdrawitem,::user::mesh::e_element_text);
       if(pdrawitem->m_bOk)
       {
          try
@@ -2263,7 +2263,7 @@ namespace user
             if(!pdrawitem->m_bOk)
                return;
          }
-         if(eelement == ::user::mesh::element_item)
+         if(eelement == ::user::mesh::e_element_item)
          {
             return_(pdrawitem->m_bOk,true);
          }
@@ -2278,7 +2278,7 @@ namespace user
                pdrawitem->m_rectImage.bottom    = pdrawitem->m_rectImage.top + iIconSize;
                return_(pdrawitem->m_bOk,true);
             }
-            else if(eelement == ::user::mesh::element_text)
+            else if(eelement == ::user::mesh::e_element_text)
             {
                i32 iIconSize               = 32;
                pdrawitem->m_rectText.left    = pdrawitem->m_rectItem.left;
@@ -2360,7 +2360,7 @@ namespace user
             {
                return_(pdrawitem->m_bOk,false);
             }
-            if(eelement == ::user::mesh::element_text)
+            if(eelement == ::user::mesh::e_element_text)
             {
                pdrawitem->m_rectText.left      = x;
                pdrawitem->m_rectText.right     = pdrawitem->m_rectSubItem.right;
@@ -2987,7 +2987,7 @@ namespace user
 
       ev.m_puie = this;
 
-      ev.m_eevent = ::user::event_list_clicked;
+      ev.m_eevent = ::user::e_event_list_clicked;
 
       on_control_event(&ev);
 
@@ -3201,7 +3201,7 @@ namespace user
 
       on_enable_hover_select();
 
-      descriptor().set_control_type(::user::control_type_mesh);
+      descriptor().set_control_type(::user::e_control_type_mesh);
 
       m_dcextension.initialize(this);
 

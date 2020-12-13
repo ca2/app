@@ -74,7 +74,7 @@ void simple_main_frame::_001OnCreate(::message::message * pmessage)
 
       m_bExplicitTranslucency = true;
 
-      m_etranslucencyFrame = ::user::translucency_none;
+      m_etranslucencyFrame = ::user::e_translucency_none;
 
    }
    else

@@ -112,7 +112,7 @@ namespace user
       virtual ~interaction_layout();
 
 
-      bool is_top_level() const { return m_iStateCount == layout_count_owner; }
+      bool is_top_level() const { return m_iStateCount == e_layout_count_owner; }
 
       void create_state(int iStateCount);
       void destroy_state();
@@ -163,38 +163,38 @@ namespace user
       //virtual void set_placement(const ::rect & rect);
 
 
-      inline bool is_iconic(e_layout elayout = layout_design) const { return ::is_iconic(state(elayout).display()); }
-      inline bool is_zoomed(e_layout elayout = layout_design) const { return ::is_zoomed(state(elayout).display()); }
-      inline bool is_full_screen(e_layout elayout = layout_design) const { return ::is_full_screen(state(elayout).display()); }
-      inline bool is_docked(e_layout elayout = layout_design) const { return ::is_docking_appearance(state(elayout).display()); }
-      inline bool is_minimal(e_layout elayout = layout_design) const { return ::window_is_minimal(state(elayout).display()); }
+      inline bool is_iconic(enum_layout elayout = e_layout_design) const { return ::is_iconic(state(elayout).display()); }
+      inline bool is_zoomed(enum_layout elayout = e_layout_design) const { return ::is_zoomed(state(elayout).display()); }
+      inline bool is_full_screen(enum_layout elayout = e_layout_design) const { return ::is_full_screen(state(elayout).display()); }
+      inline bool is_docked(enum_layout elayout = e_layout_design) const { return ::is_docking_appearance(state(elayout).display()); }
+      inline bool is_minimal(enum_layout elayout = e_layout_design) const { return ::window_is_minimal(state(elayout).display()); }
 
 
 
 
 
-      inline const class window_state& state(e_layout elayout) const { ASSERT(elayout >= 0 && elayout < m_iStateCount); return m_statea[elayout]; }
-      inline class window_state& state(e_layout elayout) { ASSERT(elayout >= 0 && elayout < m_iStateCount); return m_statea[elayout]; }
+      inline const class window_state& state(enum_layout elayout) const { ASSERT(elayout >= 0 && elayout < m_iStateCount); return m_statea[elayout]; }
+      inline class window_state& state(enum_layout elayout) { ASSERT(elayout >= 0 && elayout < m_iStateCount); return m_statea[elayout]; }
 
 
-      inline const class window_state& sketch() const { return state(layout_sketch); }
-      inline class window_state& sketch() { return state(layout_sketch); }
+      inline const class window_state& sketch() const { return state(e_layout_sketch); }
+      inline class window_state& sketch() { return state(e_layout_sketch); }
 
 
-      inline const class window_state& design() const { return state(layout_design); }
-      inline class window_state& design() { return state(layout_design); }
+      inline const class window_state& design() const { return state(e_layout_design); }
+      inline class window_state& design() { return state(e_layout_design); }
 
 
       //inline const class window_state& bitmap() const { return state(layout_bitmap); }
       //inline class window_state& bitmap() { return state(layout_bitmap); }
 
 
-      inline const class window_state& output() const { return state(layout_output); }
-      inline class window_state& output() { return state(layout_output); }
+      inline const class window_state& output() const { return state(e_layout_output); }
+      inline class window_state& output() { return state(e_layout_output); }
 
 
-      inline const class window_state & window() const { return state(layout_window); }
-      inline class window_state & window() { return state(layout_window); }
+      inline const class window_state & window() const { return state(e_layout_window); }
+      inline class window_state & window() { return state(e_layout_window); }
 
 
       inline e_layout_experience layout_experience() const { return m_elayoutexperience; }
@@ -206,12 +206,12 @@ namespace user
       inline bool is_docking() const { return m_elayoutexperience == layout_experience_docking; }
 
 
-      inline bool is_this_visible(e_layout elayout = layout_design) const
+      inline bool is_this_visible(enum_layout elayout = e_layout_design) const
       {
          return ::is_visible(state(elayout).display());
       }
 
-      inline bool is_this_screen_visible(e_layout elayout = layout_design) const
+      inline bool is_this_screen_visible(enum_layout elayout = e_layout_design) const
       {
          return ::is_screen_visible(state(elayout).display());
       }
@@ -220,7 +220,7 @@ namespace user
 
       virtual void set_initial_dim(const ::point & p, const ::size & s);
 
-//      virtual zorder order(e_layout elayout) const;
+//      virtual zorder order(enum_layout elayout) const;
 
 
       //inline void request_ready() { m_bPendingRequest = true; }
@@ -245,7 +245,7 @@ namespace user
       //virtual bool display(::edisplay edisplay = e_display_default, ::eactivation eactivation = e_activation_default) ;
 
 
-//      virtual void set_ready(e_layout);
+//      virtual void set_ready(enum_layout);
       //virtual void set_need_redraw(bool bAscendants = true);
       virtual void post_redraw(bool bAscendants = true);
       virtual void set_reposition(bool bSetThis = true);
@@ -300,27 +300,27 @@ namespace user
 
       //virtual bool place(const ::rect & rect);
 
-      virtual ::point get_parent_accumulated_scroll(e_layout elayout = layout_design) const;
+      virtual ::point get_parent_accumulated_scroll(enum_layout elayout = e_layout_design) const;
 
       virtual void on_add_layout(::user::interaction_layout * playout);
 
 
-      inline ::size size(e_layout elayout = layout_design) const { return state(elayout).size(); }
+      inline ::size size(enum_layout elayout = e_layout_design) const { return state(elayout).size(); }
 
-      inline ::point origin(e_layout elayout = layout_design) const { return state(elayout).origin();; }
-      inline ::point screen_origin(e_layout elayout = layout_design) const { return state(elayout).screen_origin(); }
+      inline ::point origin(enum_layout elayout = e_layout_design) const { return state(elayout).origin();; }
+      inline ::point screen_origin(enum_layout elayout = e_layout_design) const { return state(elayout).screen_origin(); }
 
-      inline ::i32 area(e_layout elayout = layout_design) const { return size(elayout).area(); }
-
-
-      inline void get_client_rect(RECT32* prect, e_layout elayout = layout_design) const { state(elayout).client_rect(prect); }
-      inline void get_window_rect(RECT32* prect, e_layout elayout = layout_design) const { state(elayout).screen_rect(prect); }
-      inline void parent_client_rect(RECT32* prect, e_layout elayout = layout_design) const { state(elayout).parent_client_rect(prect); }
+      inline ::i32 area(enum_layout elayout = e_layout_design) const { return size(elayout).area(); }
 
 
-      inline ::rect get_client_rect(e_layout elayout = layout_design) const { ::rect rect; get_client_rect(rect, elayout); return rect; }
-      inline ::rect get_window_rect(e_layout elayout = layout_design) const { ::rect rect; get_window_rect(rect, elayout); return rect; }
-      inline ::rect parent_client_rect(e_layout elayout = layout_design) const { ::rect rect; parent_client_rect(rect, elayout); return rect; }
+      inline void get_client_rect(RECT32* prect, enum_layout elayout = e_layout_design) const { state(elayout).client_rect(prect); }
+      inline void get_window_rect(RECT32* prect, enum_layout elayout = e_layout_design) const { state(elayout).screen_rect(prect); }
+      inline void parent_client_rect(RECT32* prect, enum_layout elayout = e_layout_design) const { state(elayout).parent_client_rect(prect); }
+
+
+      inline ::rect get_client_rect(enum_layout elayout = e_layout_design) const { ::rect rect; get_client_rect(rect, elayout); return rect; }
+      inline ::rect get_window_rect(enum_layout elayout = e_layout_design) const { ::rect rect; get_window_rect(rect, elayout); return rect; }
+      inline ::rect parent_client_rect(enum_layout elayout = e_layout_design) const { ::rect rect; parent_client_rect(rect, elayout); return rect; }
 
 
    };

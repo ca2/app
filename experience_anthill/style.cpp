@@ -18,7 +18,7 @@ namespace experience
       {
 
 
-   //      create_translucency(::user::e_element_none, ::user::translucency_present);
+   //      create_translucency(::user::e_element_none, ::user::e_translucency_present);
    //
    //      create_point_font(::user::font_default,"Segoe UI", 12.0);
    //
@@ -82,7 +82,7 @@ namespace experience
 
             auto econtroltype = pinteraction->get_control_type();
 
-            if (econtroltype == ::user::control_type_list)
+            if (econtroltype == ::user::e_control_type_list)
             {
 
                if (eelement == ::user::e_element_background)
@@ -104,7 +104,7 @@ namespace experience
                }
 
             }
-            else if (econtroltype == ::user::control_type_button)
+            else if (econtroltype == ::user::e_control_type_button)
             {
 
                if (eelement == ::user::e_element_background)
@@ -129,7 +129,7 @@ namespace experience
                }
 
             }
-            else if (econtroltype == ::user::control_type_toolbar)
+            else if (econtroltype == ::user::e_control_type_toolbar)
             {
 
                if (eelement == ::user::e_element_background)
@@ -1201,7 +1201,7 @@ namespace experience
 //   bool style::on_ui_event(::user::e_event eevent, ::user::e_object eobject, ::user::interaction * pframewindow)
 //   {
 //
-//      if (eevent == ::user::event_calc_item_height)
+//      if (eevent == ::user::e_event_calc_item_height)
 //      {
 //
 //         pframewindow->m_iItemHeight += 8;
@@ -1248,9 +1248,9 @@ namespace experience
       
       ::user::estate estate = ptoolbar->get_item_user_state(iItem);
 
-//      ::user::toolbar::enum_element eelement = ::user::toolbar::element_item;
+//      ::user::toolbar::enum_element eelement = ::user::toolbar::e_element_item;
 //      ::user::toolbar::enum_element eelementImage = ::user::toolbar::element_image;
-//      ::user::toolbar::enum_element eelementText = ::user::toolbar::element_text;
+//      ::user::toolbar::enum_element eelementText = ::user::toolbar::e_element_text;
 //      if ((nStyle & e_toolbar_item_style_separator) == 0)
 //      {
 //         if ((nStyle & e_toolbar_item_style_disabled) == 0)
@@ -1284,16 +1284,16 @@ namespace experience
 //         else
 //         {
 //            // item is disabled
-//            eelement = ::user::toolbar::element_item;
+//            eelement = ::user::toolbar::e_element_item;
 //            eelementImage = ::user::toolbar::element_image;
-//            eelementText = ::user::toolbar::element_text;
+//            eelementText = ::user::toolbar::e_element_text;
 //         }
 //      }
 //      else
 //      {
-//         eelement = ::user::toolbar::element_item;
+//         eelement = ::user::toolbar::e_element_item;
 //         eelementImage = ::user::toolbar::element_image;
-//         eelementText = ::user::toolbar::element_text;
+//         eelementText = ::user::toolbar::e_element_text;
 //      }
 
 

@@ -90,10 +90,10 @@ namespace user
       ::draw2d::path_pointer        m_ppath;
       //::user::mouse *      m_pmouse;
 
-      //item(enum_element eelement, ::index iItem = -1, ::index iSubItem = -1, ::index iListItem = -1, const ::u64 uFlags = flag_none) :
+      //item(enum_element eelement, ::index iItem = -1, ::index iSubItem = -1, ::index iListItem = -1, const ::u64 uFlags = e_flag_none) :
       //   item(eelement, iItem, iSubItem, iListItem, uFlags) {}
 
-      item(const ::u64 uFlags, enum_element eelement, ::index iItem = -1, ::index iSubItem = -1, ::index iListItem = -1, ::user::enum_event eevent = ::user::event_none) :
+      item(const ::u64 uFlags, enum_element eelement, ::index iItem = -1, ::index iSubItem = -1, ::index iListItem = -1, ::user::enum_event eevent = ::user::e_event_none) :
          item(eelement, iItem, iSubItem, iListItem, eevent, uFlags) {}
 
       item(enum_element eelement, ::user::enum_event eevent)
@@ -102,7 +102,7 @@ namespace user
 
       }
 
-      item(enum_element eelement = ::user::e_element_none, ::index iItem = -1, ::index iSubItem = -1, ::index iListItem = -1, ::user::enum_event eevent = event_none, const ::u64 uFlags = flag_none)
+      item(enum_element eelement = ::user::e_element_none, ::index iItem = -1, ::index iSubItem = -1, ::index iListItem = -1, ::user::enum_event eevent = e_event_none, const ::u64 uFlags = e_flag_none)
       {
 
          m_eevent = eevent;
@@ -122,7 +122,7 @@ namespace user
       item(::index iItem)
       {
 
-         m_eevent = ::user::event_none;
+         m_eevent = ::user::e_event_none;
 
          m_eelement = ::user::e_element_none;
 

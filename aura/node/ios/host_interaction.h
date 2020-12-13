@@ -28,7 +28,7 @@ namespace ios
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
 
-      virtual bool is_this_visible(::user::e_layout elayout = ::user::layout_design) const override;
+      virtual bool is_this_visible(::user::enum_layout elayout = ::user::e_layout_design) const override;
 
 
    };

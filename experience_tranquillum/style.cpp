@@ -26,7 +26,7 @@ namespace tranquillum
 
       //theme_current_control(::user::control_none);
 
-      //create_translucency(::user::e_element_none, ::user::translucency_none);
+      //create_translucency(::user::e_element_none, ::user::e_translucency_none);
 
       //create_point_font(::user::font_default,"Segoe UI", 12.0);
       //create_point_font(::user::font_button, "Segoe UI", 12.0, 800);
@@ -115,7 +115,7 @@ namespace tranquillum
 
          auto econtroltype = pinteraction->get_control_type();
 
-         if (econtroltype == ::user::control_type_list)
+         if (econtroltype == ::user::e_control_type_list)
          {
 
             if (eelement == ::user::e_element_background)
@@ -898,7 +898,7 @@ namespace tranquillum
 //   bool style::on_ui_event(::user::enum_event eevent, ::user::e_object eobject, ::user::interaction * pframewindow)
 //   {
 //
-//      if (eevent == ::user::event_calc_item_height)
+//      if (eevent == ::user::e_event_calc_item_height)
 //      {
 //
 //         pframewindow->m_iItemHeight += 8;
@@ -952,9 +952,9 @@ namespace tranquillum
 
    //   ::u32 uImage = psession->userex()->menu()->command_image(item.m_id);
 
-   //   ::user::toolbar::enum_element eelement = ::user::toolbar::element_item;
+   //   ::user::toolbar::enum_element eelement = ::user::toolbar::e_element_item;
    //   ::user::toolbar::enum_element eelementImage = ::user::toolbar::element_image;
-   //   ::user::toolbar::enum_element eelementText = ::user::toolbar::element_text;
+   //   ::user::toolbar::enum_element eelementText = ::user::toolbar::e_element_text;
    //   if ((nStyle & e_toolbar_item_style_separator) == 0)
    //   {
    //      if ((nStyle & e_toolbar_item_style_disabled) == 0)
@@ -988,16 +988,16 @@ namespace tranquillum
    //      else
    //      {
    //         // item is disabled
-   //         eelement = ::user::toolbar::element_item;
+   //         eelement = ::user::toolbar::e_element_item;
    //         eelementImage = ::user::toolbar::element_image;
-   //         eelementText = ::user::toolbar::element_text;
+   //         eelementText = ::user::toolbar::e_element_text;
    //      }
    //   }
    //   else
    //   {
-   //      eelement = ::user::toolbar::element_item;
+   //      eelement = ::user::toolbar::e_element_item;
    //      eelementImage = ::user::toolbar::element_image;
-   //      eelementText = ::user::toolbar::element_text;
+   //      eelementText = ::user::toolbar::e_element_text;
    //   }
 
 
@@ -1024,7 +1024,7 @@ namespace tranquillum
    //         if ((nStyle & TBBS_CHECKED) != 0)
    //         {
 
-   //            ptoolbar->_001GetElementRect(iItem, rectItem, ::user::toolbar::element_item);
+   //            ptoolbar->_001GetElementRect(iItem, rectItem, ::user::toolbar::e_element_item);
 
    //            ptoolbar->_001GetElementRect(iItem, rectImage, ::user::toolbar::element_image);
 
@@ -1158,7 +1158,7 @@ namespace tranquillum
    //         if ((nStyle & e_toolbar_item_style_disabled) == 0)
    //         {
 
-   //            ptoolbar->_001GetElementRect(iItem, rectItem, ::user::toolbar::element_item);
+   //            ptoolbar->_001GetElementRect(iItem, rectItem, ::user::toolbar::e_element_item);
 
    //            pgraphics->fill_rect(rectItem, ARGB(184, 255, 255, 255));
 
@@ -1258,9 +1258,9 @@ namespace tranquillum
 
    //   ::u32 uImage = psession->userex()->menu()->command_image(item.m_id);
 
-   //   ::user::toolbar::enum_element eelement = ::user::toolbar::element_item;
+   //   ::user::toolbar::enum_element eelement = ::user::toolbar::e_element_item;
    //   ::user::toolbar::enum_element eelementImage = ::user::toolbar::element_image;
-   //   ::user::toolbar::enum_element eelementText = ::user::toolbar::element_text;
+   //   ::user::toolbar::enum_element eelementText = ::user::toolbar::e_element_text;
    //   if ((nStyle & e_toolbar_item_style_separator) == 0)
    //   {
    //      if ((nStyle & e_toolbar_item_style_disabled) == 0)
@@ -1294,16 +1294,16 @@ namespace tranquillum
    //      else
    //      {
    //         // item is disabled
-   //         eelement = ::user::toolbar::element_item;
+   //         eelement = ::user::toolbar::e_element_item;
    //         eelementImage = ::user::toolbar::element_image;
-   //         eelementText = ::user::toolbar::element_text;
+   //         eelementText = ::user::toolbar::e_element_text;
    //      }
    //   }
    //   else
    //   {
-   //      eelement = ::user::toolbar::element_item;
+   //      eelement = ::user::toolbar::e_element_item;
    //      eelementImage = ::user::toolbar::element_image;
-   //      eelementText = ::user::toolbar::element_text;
+   //      eelementText = ::user::toolbar::e_element_text;
    //   }
 
 
@@ -1330,7 +1330,7 @@ namespace tranquillum
    //         if ((nStyle & TBBS_CHECKED) != 0)
    //         {
 
-   //            ptoolbar->_001GetElementRect(iItem, rectItem, ::user::toolbar::element_item);
+   //            ptoolbar->_001GetElementRect(iItem, rectItem, ::user::toolbar::e_element_item);
 
    //            ptoolbar->_001GetElementRect(iItem, rectImage, ::user::toolbar::element_image);
 
@@ -1462,7 +1462,7 @@ namespace tranquillum
    //         if ((nStyle & e_toolbar_item_style_disabled) == 0)
    //         {
 
-   //            ptoolbar->_001GetElementRect(iItem, rectItem, ::user::toolbar::element_item);
+   //            ptoolbar->_001GetElementRect(iItem, rectItem, ::user::toolbar::e_element_item);
 
    //            pgraphics->fill_rect(rectItem, ARGB(184, 255, 255, 255));
 

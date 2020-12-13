@@ -62,16 +62,16 @@ namespace base
 
       //virtual color32_t           _001GetColor(::user::interaction * pinteraction, e_color ecolor, color32_t crDefault = 0);
       //virtual ::draw2d::font_pointer  _001GetFont(::user::interaction * pinteraction, e_font efont, ::draw2d::font * pfont = nullptr);
-      //virtual enum_translucency     _001GetTranslucency(::user::interaction * pinteraction, enum_element eelement = element_none, enum_translucency etranslucencyDefault = translucency_undefined);
+      //virtual enum_translucency     _001GetTranslucency(::user::interaction * pinteraction, enum_element eelement = e_element_none, enum_translucency etranslucencyDefault = e_translucency_undefined);
       //virtual bool               _001GetFlag(::user::interaction * pinteraction, ::user::e_flag eflag, bool bDefault = false);
       //virtual const rect &               _001GetRect(::user::interaction * pinteraction, ::user::e_rect erect, ::rect rectDefault = nullptr);
       //virtual int                _001GetInt(::user::interaction * pinteraction, ::user::e_int eint, int iDefault = 0);
       //virtual double             _001GetDouble(::user::interaction * pinteraction, ::user::e_double edouble, double dDefault = 0.0);
 
-      //virtual bool _001IsBackgroundBypass(::user::interaction * pinteraction, enum_element eelement = element_none);
-      //virtual bool _001IsTransparent(::user::interaction * pinteraction, enum_element eelement = element_none);
-      //virtual bool _001IsTranslucent(::user::interaction * pinteraction, enum_element eelement = element_none);
-      //virtual bool _001HasTranslucency(::user::interaction * pinteraction, enum_element eelement = element_none);
+      //virtual bool _001IsBackgroundBypass(::user::interaction * pinteraction, enum_element eelement = e_element_none);
+      //virtual bool _001IsTransparent(::user::interaction * pinteraction, enum_element eelement = e_element_none);
+      //virtual bool _001IsTranslucent(::user::interaction * pinteraction, enum_element eelement = e_element_none);
+      //virtual bool _001HasTranslucency(::user::interaction * pinteraction, enum_element eelement = e_element_none);
 
 
 

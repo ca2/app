@@ -2110,7 +2110,7 @@ namespace windows
 
          rectPaint = rectWindow;
 
-         m_puserinteraction->_001ScreenToClient(rectPaint, ::user::layout_design);
+         m_puserinteraction->_001ScreenToClient(rectPaint, ::user::e_layout_design);
 
       }
       else
@@ -3150,7 +3150,7 @@ namespace windows
 
       }
 
-      if (!m_puserinteraction->is_window_visible(::user::layout_sketch))
+      if (!m_puserinteraction->is_window_visible(::user::e_layout_sketch))
       {
 
          return true;

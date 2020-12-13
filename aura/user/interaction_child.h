@@ -81,7 +81,7 @@ namespace user
       virtual iptr get_window_long_ptr(i32 nIndex) const override;
       virtual iptr set_window_long_ptr(i32 nIndex, iptr lValue) override;
 
-      virtual bool is_this_visible(e_layout elayout) override;
+      virtual bool is_this_visible(enum_layout elayout) override;
 
       virtual void window_show_change_visibility(::edisplay edisplay, ::eactivation eactivation) override;
 

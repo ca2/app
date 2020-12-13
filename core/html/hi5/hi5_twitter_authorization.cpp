@@ -235,7 +235,7 @@ namespace hi5
          }
          if(pimpactdata->m_puserinteraction != nullptr)
          {
-            pimpactdata->m_eflag.add(::user::flag_hide_all_others_on_show);
+            pimpactdata->m_eflag.add(::user::e_flag_hide_all_others_on_show);
          }
 
       }
@@ -256,10 +256,10 @@ namespace hi5
       void authorization::on_control_event( ::user::control_event * pevent)
       {
 
-         if(pevent->m_eevent == ::user::event_button_clicked || pevent->m_eevent == ::user::event_enter_key)
+         if(pevent->m_eevent == ::user::e_event_button_clicked || pevent->m_eevent == ::user::e_event_enter_key)
          {
 
-            if(pevent->m_puie->m_id == "submit" || pevent->m_eevent == ::user::event_enter_key)
+            if(pevent->m_puie->m_id == "submit" || pevent->m_eevent == ::user::e_event_enter_key)
             {
 
                auto pinteraction = m_pviewAuth->get_child_by_name("pin");
@@ -280,7 +280,7 @@ namespace hi5
       bool authorization::style_translucency(::user::enum_translucency & etranslucency, ::user::enum_element)
       {
 
-         etranslucency = ::user::translucency_present;
+         etranslucency = ::user::e_translucency_present;
 
          return true;
 

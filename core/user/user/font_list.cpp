@@ -60,7 +60,7 @@ namespace user
 
       SCAST_PTR(::message::create, pcreate, pmessage);
 
-      descriptor().set_control_type(::user::control_type_list);
+      descriptor().set_control_type(::user::e_control_type_list);
 
       pcreate->previous();
 
@@ -196,7 +196,7 @@ namespace user
 
          ev.m_puie = this;
 
-         ev.m_eevent = ::user::event_after_change_cur_sel;
+         ev.m_eevent = ::user::e_event_after_change_cur_sel;
 
          ev.m_actioncontext = ::source_user;
 
@@ -240,7 +240,7 @@ namespace user
 
          ev.m_puie = this;
 
-         ev.m_eevent = ::user::event_after_change_cur_hover;
+         ev.m_eevent = ::user::e_event_after_change_cur_hover;
 
          ev.m_actioncontext = ::source_user;
 

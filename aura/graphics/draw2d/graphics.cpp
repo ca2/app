@@ -5105,7 +5105,7 @@ namespace draw2d
    bool graphics::draw_round_rect(const ::rect & rect, ::draw2d::pen * ppen, i32 radius, eborder eborder)
    {
 
-      if (eborder & border_all)
+      if (eborder & e_border_all)
       {
 
          ::draw2d::path_pointer path(e_create);
@@ -6896,10 +6896,10 @@ namespace draw2d
 
    }
 
-   void graphics::draw_rect_side(const ::rect& rect, e_border eborder)
+   void graphics::draw_rect_side(const ::rect& rect, enum_border eborder)
    {
 
-      if (eborder & border_top)
+      if (eborder & e_border_top)
       {
 
          move_to(rect.top_left());
@@ -6908,7 +6908,7 @@ namespace draw2d
 
       }
 
-      if (eborder & border_right)
+      if (eborder & e_border_right)
       {
 
          move_to(rect.top_right());
@@ -6917,7 +6917,7 @@ namespace draw2d
 
       }
 
-      if (eborder & border_bottom)
+      if (eborder & e_border_bottom)
       {
 
          move_to(rect.bottom_right());
@@ -6926,7 +6926,7 @@ namespace draw2d
 
       }
 
-      if (eborder & border_left)
+      if (eborder & e_border_left)
       {
 
          move_to(rect.bottom_left());

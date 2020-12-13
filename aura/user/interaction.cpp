@@ -62,11 +62,11 @@ namespace user
 
       m_bLayoutModified = false;
 
-      m_ewindowflag += window_flag_enable | window_flag_graphical;
+      m_ewindowflag += e_window_flag_enable | e_window_flag_graphical;
 
       //#ifdef __APPLE__
 
-      //m_puserinteraction->m_ewindowflag |= window_flag_postpone_visual_update;
+      //m_puserinteraction->m_ewindowflag |= e_window_flag_postpone_visual_update;
 
       //#endif
 
@@ -88,7 +88,7 @@ namespace user
 
       m_iIndex = -1;
 
-      m_ewindowflag |= window_flag_enable;
+      m_ewindowflag |= e_window_flag_enable;
 
       m_iMouseMoveSkipCount = 0;
 
@@ -961,7 +961,7 @@ namespace user
 
          on_set_parent(nullptr);
 
-         if (m_ewindowflag & window_flag_load_window_rect_on_impl)
+         if (m_ewindowflag & e_window_flag_load_window_rect_on_impl)
          {
 
             WindowDataLoadWindowRect();
@@ -1357,7 +1357,7 @@ namespace user
    void interaction::_001OnDestroy(::message::message * pmessage)
    {
 
-      m_ewindowflag += window_flag_destroying;
+      m_ewindowflag += e_window_flag_destroying;
 
       try
       {
@@ -1895,7 +1895,7 @@ namespace user
 
       m_bUserPrimitiveOk = false;
 
-      m_ewindowflag -= window_flag_is_window;
+      m_ewindowflag -= e_window_flag_is_window;
 
       string strType = type_name();
 
@@ -2877,7 +2877,7 @@ namespace user
    void interaction::_000CallOnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      if (!(m_ewindowflag & window_flag_window_created))
+      if (!(m_ewindowflag & e_window_flag_window_created))
       {
 
          set_need_redraw();
@@ -3421,7 +3421,7 @@ namespace user
 
       m_bUserPrimitiveOk = true;
 
-      m_ewindowflag |= window_flag_is_window;
+      m_ewindowflag |= e_window_flag_is_window;
 
       m_bReposition = true;
 
@@ -5879,7 +5879,7 @@ namespace user
 
       }
 
-      if (!m_bUserPrimitiveOk && !(m_ewindowflag & window_flag_is_window))
+      if (!m_bUserPrimitiveOk && !(m_ewindowflag & e_window_flag_is_window))
       {
 
          return true;
@@ -5888,7 +5888,7 @@ namespace user
 
       m_bUserPrimitiveOk = false;
 
-      m_ewindowflag -= window_flag_is_window;
+      m_ewindowflag -= e_window_flag_is_window;
 
       if (m_pimpl == nullptr)
       {
@@ -6061,7 +6061,7 @@ namespace user
 
       ::user::interaction * puiRet = m_pimpl->SetOwner(pinteraction);
 
-      if (m_ewindowflag & window_flag_satellite_window)
+      if (m_ewindowflag & e_window_flag_satellite_window)
       {
 
          __bind(this, m_pthreadUserInteraction, m_puiOwner->m_pthreadUserInteraction OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
@@ -6926,7 +6926,7 @@ namespace user
 
       pimpl->message_handler(pbase);
 
-      if (!bDestroying && m_ewindowflag & window_flag_window_created)
+      if (!bDestroying && m_ewindowflag & e_window_flag_window_created)
       {
 
          if (m_bNeedRedraw || m_bReposition)
@@ -7202,7 +7202,7 @@ namespace user
    }
 
 
-   void interaction::on_start_layout_experience(e_layout_experience elayoutexperience)
+   void interaction::on_start_layout_experience(enum_layout_experience elayoutexperience)
    {
 
       layout().m_elayoutexperience = elayoutexperience;
@@ -7219,12 +7219,12 @@ namespace user
    }
 
 
-   void interaction::on_end_layout_experience(e_layout_experience elayoutexperience)
+   void interaction::on_end_layout_experience(enum_layout_experience elayoutexperience)
    {
 
       ASSERT(layout().m_elayoutexperience == elayoutexperience);
 
-      layout().m_elayoutexperience = layout_experience_none;
+      layout().m_elayoutexperience = e_layout_experience_none;
 
       if(m_pimpl.is_null())
       {
@@ -8279,14 +8279,14 @@ namespace user
          // moving and sizing changes are handled at
          // on_end_layout_experience
          // only changes to display and appearance
-         // will set window_flag_loading_window_rect here
+         // will set e_window_flag_loading_window_rect here
          // (because they are "rare" and it seems
          // good location to manage the machine*)
-         // (*instead of flagging window_flag_loading_window_rect
+         // (*instead of flagging e_window_flag_loading_window_rect
          // at every location display or appearance is changed)
          // (so while this is still applicable)
 
-         if (m_ewindowflag & window_flag_loading_window_rect)
+         if (m_ewindowflag & e_window_flag_loading_window_rect)
          {
 
             INFO("window visual changed: not setting pending save rect cause loading window rect");
@@ -8295,7 +8295,7 @@ namespace user
          else
          {
 
-            m_ewindowflag |= window_flag_pending_save_window_rect;
+            m_ewindowflag |= e_window_flag_pending_save_window_rect;
 
          }
 
@@ -8364,10 +8364,10 @@ namespace user
       if (bDeferDisplay || bPosition)
       {
 
-         if (!(m_ewindowflag & window_flag_embedded_prodevian))
+         if (!(m_ewindowflag & e_window_flag_embedded_prodevian))
          {
 
-            if (!(m_ewindowflag & window_flag_postpone_visual_update))
+            if (!(m_ewindowflag & e_window_flag_postpone_visual_update))
             {
 
                if (m_pimpl)
@@ -8400,13 +8400,13 @@ namespace user
       if (!layout().design().is_screen_visible())
       {
 
-         if (m_ewindowflag & window_flag_on_show_window_visible
-            || m_ewindowflag & window_flag_on_show_window_screen_visible)
+         if (m_ewindowflag & e_window_flag_on_show_window_visible
+            || m_ewindowflag & e_window_flag_on_show_window_screen_visible)
          {
 
-            m_ewindowflag -= window_flag_on_show_window_visible;
+            m_ewindowflag -= e_window_flag_on_show_window_visible;
 
-            m_ewindowflag -= window_flag_on_show_window_screen_visible;
+            m_ewindowflag -= e_window_flag_on_show_window_screen_visible;
 
             _on_show_window();
 
@@ -8416,9 +8416,9 @@ namespace user
       else if(GetParent() != nullptr)
       {
 
-         m_ewindowflag += window_flag_on_show_window_visible;
+         m_ewindowflag += e_window_flag_on_show_window_visible;
 
-         m_ewindowflag += window_flag_on_show_window_screen_visible;
+         m_ewindowflag += e_window_flag_on_show_window_screen_visible;
 
          _on_show_window();
 
@@ -8427,10 +8427,10 @@ namespace user
       if (m_bUpdateVisual || m_bReposition)
       {
 
-         if(!(m_ewindowflag & window_flag_postpone_visual_update))
+         if(!(m_ewindowflag & e_window_flag_postpone_visual_update))
          {
 
-            if (m_ewindowflag & window_flag_embedded_prodevian)
+            if (m_ewindowflag & e_window_flag_embedded_prodevian)
             {
 
                auto psession = Session;
@@ -13706,7 +13706,7 @@ restart:
    bool interaction::wfi_is_up_down()
    {
 
-      return m_ewindowflag & window_flag_updown;
+      return m_ewindowflag & e_window_flag_updown;
 
    }
    // updown end

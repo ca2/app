@@ -385,7 +385,7 @@ namespace user
          {
 
             if (m_pimpl 
-               && m_pimpl->m_puserinteraction->m_ewindowflag & window_flag_is_window
+               && m_pimpl->m_puserinteraction->m_ewindowflag & e_window_flag_is_window
                && ::thread::finish_bit())
             {
 

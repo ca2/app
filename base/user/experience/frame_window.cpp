@@ -15,7 +15,7 @@ namespace experience
 
       m_edisplayRestore = e_display_default;
 
-      m_ewindowflag += window_flag_load_window_rect_on_impl;
+      m_ewindowflag += e_window_flag_load_window_rect_on_impl;
 
       m_bUseNc = false;
       m_bEnableMouse = true;
@@ -2090,7 +2090,7 @@ namespace experience
    }
 
 
-   void frame_window::on_start_layout_experience(e_layout_experience elayoutexperience)
+   void frame_window::on_start_layout_experience(enum_layout_experience elayoutexperience)
    {
 
       ::user::frame_window::on_start_layout_experience(elayoutexperience);
@@ -2100,7 +2100,7 @@ namespace experience
    }
 
 
-   void frame_window::on_end_layout_experience(e_layout_experience elayoutexperience)
+   void frame_window::on_end_layout_experience(enum_layout_experience elayoutexperience)
    {
 
       ::user::frame_window::on_end_layout_experience(elayoutexperience);

@@ -54,7 +54,7 @@ namespace user
 
 
       millis                                      m_millisLastSketchToDesign;
-      e_layout_experience                       m_elayoutexperience;
+      enum_layout_experience                       m_elayoutexperience;
 
 
       //mutable size                            m_sizeClient;
@@ -185,8 +185,8 @@ namespace user
       inline class window_state& design() { return state(e_layout_design); }
 
 
-      //inline const class window_state& bitmap() const { return state(layout_bitmap); }
-      //inline class window_state& bitmap() { return state(layout_bitmap); }
+      //inline const class window_state& bitmap() const { return state(e_layout_bitmap); }
+      //inline class window_state& bitmap() { return state(e_layout_bitmap); }
 
 
       inline const class window_state& output() const { return state(e_layout_output); }
@@ -197,13 +197,13 @@ namespace user
       inline class window_state & window() { return state(e_layout_window); }
 
 
-      inline e_layout_experience layout_experience() const { return m_elayoutexperience; }
+      inline enum_layout_experience layout_experience() const { return m_elayoutexperience; }
 
 
-      inline bool is_changing() const { return m_elayoutexperience != layout_experience_none; }
-      inline bool is_moving() const { return m_elayoutexperience == layout_experience_moving; }
-      inline bool is_sizing() const { return m_elayoutexperience == layout_experience_sizing; }
-      inline bool is_docking() const { return m_elayoutexperience == layout_experience_docking; }
+      inline bool is_changing() const { return m_elayoutexperience != e_layout_experience_none; }
+      inline bool is_moving() const { return m_elayoutexperience == e_layout_experience_moving; }
+      inline bool is_sizing() const { return m_elayoutexperience == e_layout_experience_sizing; }
+      inline bool is_docking() const { return m_elayoutexperience == e_layout_experience_docking; }
 
 
       inline bool is_this_visible(enum_layout elayout = e_layout_design) const

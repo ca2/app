@@ -3322,7 +3322,7 @@ namespace apex
 
          merge_accumulated_on_open_file(pcreate);
 
-         papp->post_object(e_message_system, system_message_create, pcreate);
+         papp->post_object(e_message_system, e_system_message_create, pcreate);
 
       }
 

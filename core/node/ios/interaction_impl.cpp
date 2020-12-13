@@ -496,7 +496,7 @@ namespace ios
 
       m_puserinteraction->send_message(e_message_create, 0, (LPARAM) &cs);
 
-      m_puserinteraction->m_ewindowflag |= window_flag_window_created;
+      m_puserinteraction->m_ewindowflag |= e_window_flag_window_created;
       
       return true;
 
@@ -538,8 +538,8 @@ namespace ios
    bool interaction_impl::_is_window() const
    {
    
-      return m_oswindow && m_puserinteraction && m_puserinteraction->m_ewindowflag & window_flag_is_window
-      && m_puserinteraction->m_ewindowflag & window_flag_window_created;
+      return m_oswindow && m_puserinteraction && m_puserinteraction->m_ewindowflag & e_window_flag_is_window
+      && m_puserinteraction->m_ewindowflag & e_window_flag_window_created;
    
    }
 

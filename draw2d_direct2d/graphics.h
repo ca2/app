@@ -519,8 +519,8 @@ namespace draw2d_direct2d
       void fill_rect(const ::rect & rect, const ::color & color) override;
       void fill_rect(const ::rectd & rect, const ::color & color) override;
 
-      void draw_3drect(const ::rect & rect, const ::color & colorTopLeft, const ::color & colorBottomRight, eborder eborder = border_all) override;
-      void draw_3drect(const ::rectd & rect, const ::color & colorTopLeft, const ::color & colorBottomRight, eborder eborder = border_all) override;
+      void draw_3drect(const ::rect & rect, const ::color & colorTopLeft, const ::color & colorBottomRight, eborder eborder = e_border_all) override;
+      void draw_3drect(const ::rectd & rect, const ::color & colorTopLeft, const ::color & colorBottomRight, eborder eborder = e_border_all) override;
 
 
       virtual void assert_valid() const override;

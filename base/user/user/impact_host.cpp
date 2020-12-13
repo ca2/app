@@ -597,7 +597,7 @@ namespace user
 
       }
 
-      if (pinteraction->m_ewindowflag & window_flag_window_created)
+      if (pinteraction->m_ewindowflag & e_window_flag_window_created)
       {
 
 

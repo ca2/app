@@ -54,7 +54,7 @@ namespace user
 
       pcreate->previous();
 
-      if (!(m_ewindowflag & window_flag_window_created))
+      if (!(m_ewindowflag & e_window_flag_window_created))
       {
 
          create_split_impact();

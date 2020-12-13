@@ -254,14 +254,14 @@ public:
    template < typename PRED >
    bool post_pred(PRED pred)
    {
-      return post_object(e_message_system, system_message_method, __routine(pred));
+      return post_object(e_message_system, e_system_message_method, __routine(pred));
    }
 
 
    bool send_routine(const ::promise::routine & routine, ::duration durationTimeout = ::duration::infinite())
    {
 
-      return send_object(e_message_system, system_message_method, routine, durationTimeout);
+      return send_object(e_message_system, e_system_message_method, routine, durationTimeout);
 
    }
 

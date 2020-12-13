@@ -242,10 +242,10 @@ namespace user
 
       }
 
-      if (pcreate->m_ewindowflag & window_flag_updown)
+      if (pcreate->m_ewindowflag & e_window_flag_updown)
       {
 
-         pframe->m_ewindowflag += window_flag_updown;
+         pframe->m_ewindowflag += e_window_flag_updown;
 
       }
 

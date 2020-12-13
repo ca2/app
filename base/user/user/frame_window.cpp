@@ -945,7 +945,7 @@ namespace user
 
       SCAST_PTR(::message::create, pcreatemessage, pmessage);
 
-      if (!(m_ewindowflag & window_flag_window_created))
+      if (!(m_ewindowflag & e_window_flag_window_created))
       {
 
          __pointer(::create) pcreate((::create*) pcreatemessage->get_create());

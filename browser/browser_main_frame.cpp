@@ -11,7 +11,7 @@ namespace browser
       simple_main_frame(pobject)
    {
 
-      //m_ewindowflag += window_flag_disable_window_placement_snapping;
+      //m_ewindowflag += e_window_flag_disable_window_placement_snapping;
 
       m_bDefaultCreateToolbar = false;
 

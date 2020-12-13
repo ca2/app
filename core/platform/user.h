@@ -1402,7 +1402,7 @@
 //
 //      virtual ::user::interaction* create_menu_interaction();
 //
-////      virtual __pointer(::user::document) defer_create_view(string strView, ::user::interaction* puiParent, ewindowflag ewindowflag = window_flag_none, const ::id& id = nullptr) override;
+////      virtual __pointer(::user::document) defer_create_view(string strView, ::user::interaction* puiParent, ewindowflag ewindowflag = e_window_flag_none, const ::id& id = nullptr) override;
 //
 //      // multimedia
 //

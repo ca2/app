@@ -2898,7 +2898,7 @@ bool thread::post_task(const ::promise::routine & routine)
 bool thread::send_task(const ::promise::routine & routine, ::duration durationTimeout)
 {
 
-   return send_object(e_message_system, system_message_method, routine, durationTimeout);
+   return send_object(e_message_system, e_system_message_method, routine, durationTimeout);
 
 }
 
@@ -3068,7 +3068,7 @@ bool thread::send_message(const ::id & id, WPARAM wParam, lparam lParam, ::durat
    pmessage->m_message.wParam = wParam;
    pmessage->m_message.lParam = lParam;
 
-   post_message(e_message_system, system_message_meta, pmessage);
+   post_message(e_message_system, e_system_message_meta, pmessage);
 
    pmessage->m_ev.wait(durWaitStep);
 
@@ -4020,7 +4020,7 @@ void thread::message_handler(::message::base * pbase)
       else if (msg.message == e_message_system)
       {
 
-         if (msg.wParam == system_message_create)
+         if (msg.wParam == e_system_message_create)
          {
 
             __pointer(::create) pcreate((lparam)msg.lParam);
@@ -4033,7 +4033,7 @@ void thread::message_handler(::message::base * pbase)
             }
 
          }
-         else if (msg.wParam == system_message_method)
+         else if (msg.wParam == e_system_message_method)
          {
 
             ::promise::routine routine(msg.lParam);
@@ -4049,7 +4049,7 @@ void thread::message_handler(::message::base * pbase)
          //   pobjectTask->call();
 
          //}
-         else if (msg.wParam == system_message_meta)
+         else if (msg.wParam == e_system_message_meta)
          {
 
             __pointer(::send_thread_message) pmessage(msg.lParam);
@@ -4379,7 +4379,7 @@ bool thread::kick_thread()
 ::estatus thread::do_request(::create * pcreate)
 {
 
-   post_object(e_message_system, system_message_create, pcreate);
+   post_object(e_message_system, e_system_message_create, pcreate);
 
    return ::success;
 

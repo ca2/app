@@ -220,13 +220,13 @@ namespace user
       virtual ::estatus main_async(const ::promise::routine & routine, e_priority epriority = priority_normal);
 
 
-      inline void auto_prodevian_on_show() { m_ewindowflag |= window_flag_auto_prodevian_on_show; }
-      inline void clear_auto_prodevian_on_show() { m_ewindowflag -= window_flag_auto_prodevian_on_show; }
-      inline bool is_auto_prodevian_on_show() { return m_ewindowflag & window_flag_auto_prodevian_on_show; }
+      inline void auto_prodevian_on_show() { m_ewindowflag |= e_window_flag_auto_prodevian_on_show; }
+      inline void clear_auto_prodevian_on_show() { m_ewindowflag -= e_window_flag_auto_prodevian_on_show; }
+      inline bool is_auto_prodevian_on_show() { return m_ewindowflag & e_window_flag_auto_prodevian_on_show; }
 
-      inline void visual_changed() { m_ewindowflag |= window_flag_visual_changed; }
-      inline void clear_visual_changed() { m_ewindowflag -= window_flag_visual_changed; }
-      inline bool is_visual_changed()const { return m_ewindowflag & window_flag_visual_changed; }
+      inline void visual_changed() { m_ewindowflag |= e_window_flag_visual_changed; }
+      inline void clear_visual_changed() { m_ewindowflag -= e_window_flag_visual_changed; }
+      inline bool is_visual_changed()const { return m_ewindowflag & e_window_flag_visual_changed; }
 
 
       bool is_ok()
@@ -234,7 +234,7 @@ namespace user
 
          return ::is_set(this)
             && m_pimpl.is_set()
-            && (m_ewindowflag & window_flag_is_window)
+            && (m_ewindowflag & e_window_flag_is_window)
             && !m_pimpl->m_bDestroying;
 
       }
@@ -305,7 +305,7 @@ namespace user
       virtual bool add_control(arguments arguments);
 
 
-      inline bool is_graphical() const { return !m_bMessageWindow && m_ewindowflag & window_flag_graphical; }
+      inline bool is_graphical() const { return !m_bMessageWindow && m_ewindowflag & e_window_flag_graphical; }
 
 
       virtual ::sync * mutex_draw();
@@ -492,7 +492,7 @@ namespace user
 
 
       virtual bool _is_window() const override;
-      inline bool is_window() const { return m_ewindowflag & window_flag_is_window; }
+      inline bool is_window() const { return m_ewindowflag & e_window_flag_is_window; }
 
       virtual void ExitHelpMode();
 
@@ -1114,8 +1114,8 @@ namespace user
       virtual bool _001OnExitAppearance();
 
 
-      virtual void on_start_layout_experience(e_layout_experience elayoutexperience) override;
-      virtual void on_end_layout_experience(e_layout_experience elayoutexperience) override;
+      virtual void on_start_layout_experience(enum_layout_experience elayoutexperience) override;
+      virtual void on_end_layout_experience(enum_layout_experience elayoutexperience) override;
 
 
       virtual void show_keyboard(bool bShow = true) override;

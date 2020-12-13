@@ -30,9 +30,9 @@ namespace user
 
       m_bPendingKillFocusHiding = false;
 
-      m_ewindowflag += window_flag_satellite_window;
+      m_ewindowflag += e_window_flag_satellite_window;
 
-      m_ewindowflag += window_flag_arbitrary_positioning;
+      m_ewindowflag += e_window_flag_arbitrary_positioning;
 
       m_bComboList = true;
 
@@ -961,7 +961,7 @@ namespace user
       if (rectItem.contains(item.m_pointHitTest))
       {
 
-         item = element_search_edit;
+         item = e_element_search_edit;
 
          return;
 

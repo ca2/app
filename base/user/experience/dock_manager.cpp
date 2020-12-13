@@ -17,7 +17,7 @@ namespace experience
       ASSERT(pframewindow != nullptr);
       m_pframewindow = pframewindow;
       m_bDocking = false;
-      m_eborder = border_all;
+      m_eborder = e_border_all;
 
    }
 
@@ -62,7 +62,7 @@ namespace experience
 
       m_bDocking = true;
 
-      m_pframewindow->on_start_layout_experience(layout_experience_docking);
+      m_pframewindow->on_start_layout_experience(e_layout_experience_docking);
 
       pmouse->m_bRet = true;
 
@@ -503,7 +503,7 @@ namespace experience
 
       psession->ReleaseCapture();
 
-      m_pframewindow->on_end_layout_experience(layout_experience_docking);
+      m_pframewindow->on_end_layout_experience(e_layout_experience_docking);
 
       return true;
 

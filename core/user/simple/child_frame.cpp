@@ -7,8 +7,8 @@
 simple_child_frame::simple_child_frame()
 {
    
-   m_ewindowflag += window_flag_satellite_window;
-   m_ewindowflag += window_flag_embedded_prodevian;
+   m_ewindowflag += e_window_flag_satellite_window;
+   m_ewindowflag += e_window_flag_embedded_prodevian;
 
    m_bWindowFrame       = false;
    m_bAutoWindowFrame = false;

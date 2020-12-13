@@ -444,7 +444,7 @@ namespace macos
 
       m_puserinteraction->add_ref(OBJ_REF_DBG_P_NOTE(this, "native_create_window"));
 
-      m_puserinteraction->m_ewindowflag |= window_flag_window_created;
+      m_puserinteraction->m_ewindowflag |= e_window_flag_window_created;
       
       return bOk;
 

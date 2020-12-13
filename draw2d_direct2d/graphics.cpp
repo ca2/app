@@ -3268,28 +3268,28 @@ namespace draw2d_direct2d
       double cx = ::width(rect);
       double cy = ::height(rect);
 
-      if (eborder & border_top)
+      if (eborder & e_border_top)
       {
 
          fill_solid_rect_dim(x, y, cx - 1.0, 1.0, colorTopLeft);
 
       }
 
-      if (eborder & border_left)
+      if (eborder & e_border_left)
       {
 
          fill_solid_rect_dim(x, y, 1.0, cy - 1.0, colorTopLeft);
 
       }
 
-      if (eborder & border_right)
+      if (eborder & e_border_right)
       {
 
          fill_solid_rect_dim(x + cx, y, -1.0, cy, colorBottomRight);
 
       }
 
-      if (eborder & border_bottom)
+      if (eborder & e_border_bottom)
       {
 
          fill_solid_rect_dim(x, y + cy, cx, -1.0, colorBottomRight);

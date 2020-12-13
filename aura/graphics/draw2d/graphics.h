@@ -112,7 +112,7 @@ namespace draw2d
 
 
       void draw_border(const ::rect & rect, const ::color & color, int iWidth);
-      void draw_rect_side(const ::rect& rect, e_border eborder);
+      void draw_rect_side(const ::rect& rect, enum_border eborder);
 
       virtual bool is_set();
 
@@ -857,11 +857,11 @@ namespace draw2d
       virtual void fill_rect(const ::rect & rect, const ::color & color);
       virtual void fill_rect(const rectd & rectd, const ::color & color);
 
-      virtual void draw_3drect(const ::rect & rect, const ::color& colorTopLeft, const ::color& colorBottomRight, eborder eborder = border_all);
-      virtual void draw_3drect(const rectd & rectd, const ::color& colorTopLeft, const ::color& colorBottomRight, eborder eborder = border_all);
+      virtual void draw_3drect(const ::rect & rect, const ::color& colorTopLeft, const ::color& colorBottomRight, eborder eborder = e_border_all);
+      virtual void draw_3drect(const rectd & rectd, const ::color& colorTopLeft, const ::color& colorBottomRight, eborder eborder = e_border_all);
 
-      virtual void draw_rect(const ::rect & rect, const ::color& color, eborder eborder = border_all);
-      virtual void draw_rect(const rectd & rectd, const ::color& color, eborder eborder = border_all);
+      virtual void draw_rect(const ::rect & rect, const ::color& color, eborder eborder = e_border_all);
+      virtual void draw_rect(const rectd & rectd, const ::color& color, eborder eborder = e_border_all);
 
       virtual bool set_font(::user::interaction* pinteraction, ::user::eelement eelement, ::user::estate estate = ::user::e_state_none);
       inline bool set_font(::user::interaction* pinteraction, ::user::estate estate = ::user::e_state_none)
@@ -894,13 +894,13 @@ namespace draw2d
       //
       // Returns:     None
       //
-      bool draw_round_rect(const ::rect & rect, ::draw2d::pen * ppen, i32 radius, eborder eborder = border_all);
-      //bool draw_round_top_left(const ::rect & rect, ::draw2d::pen * ppen, i32 radius, eborder eborder = border_all);
-      //bool draw_round_bottom_right(const ::rect & rect, ::draw2d::pen * ppen, i32 radius, eborder eborder = border_all);
+      bool draw_round_rect(const ::rect & rect, ::draw2d::pen * ppen, i32 radius, eborder eborder = e_border_all);
+      //bool draw_round_top_left(const ::rect & rect, ::draw2d::pen * ppen, i32 radius, eborder eborder = e_border_all);
+      //bool draw_round_bottom_right(const ::rect & rect, ::draw2d::pen * ppen, i32 radius, eborder eborder = e_border_all);
 
-      bool draw_round_rect(const ::rect & rect, const ::color & color, i32 radius, i32 width, eborder eborder = border_all);
-      //bool draw_round_top_left(const ::rect & rect, const ::color & color, i32 radius, i32 width, eborder eborder = border_all);
-      //bool draw_round_bottom_right(const ::rect & rect, const ::color & color, i32 radius, i32 width, eborder eborder = border_all);
+      bool draw_round_rect(const ::rect & rect, const ::color & color, i32 radius, i32 width, eborder eborder = e_border_all);
+      //bool draw_round_top_left(const ::rect & rect, const ::color & color, i32 radius, i32 width, eborder eborder = e_border_all);
+      //bool draw_round_bottom_right(const ::rect & rect, const ::color & color, i32 radius, i32 width, eborder eborder = e_border_all);
 
 
       bool draw_stock_icon(const ::rectd & rect, e_stock_icon eicon);

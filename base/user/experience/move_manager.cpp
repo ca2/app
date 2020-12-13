@@ -17,7 +17,7 @@ namespace experience
          m_pframewindow = pframewindow;
          m_bMoving = false;
          SetSWPFlags(0);
-         m_eborderMask = border_all;
+         m_eborderMask = e_border_all;
       }
 
       move_manager::~move_manager()
@@ -76,7 +76,7 @@ namespace experience
 
          m_bMoving = true;
 
-         m_pframewindow->on_start_layout_experience(layout_experience_moving);
+         m_pframewindow->on_start_layout_experience(e_layout_experience_moving);
 
          pmouse->m_bRet = true;
 
@@ -230,7 +230,7 @@ namespace experience
 
          }
 
-         m_pframewindow->on_end_layout_experience(layout_experience_moving);
+         m_pframewindow->on_end_layout_experience(e_layout_experience_moving);
 
          return true;
 

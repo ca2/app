@@ -756,8 +756,8 @@ namespace user
 //
 //      sl.unlock();
 //
-//      //pfontformattool->m_ewindowflag |= window_flag_embedded_prodevian;
-//      //pfontformattool->m_ewindowflag |= window_flag_satellite_window;
+//      //pfontformattool->m_ewindowflag |= e_window_flag_embedded_prodevian;
+//      //pfontformattool->m_ewindowflag |= e_window_flag_satellite_window;
 //
 //      ::user::create_struct createstruct(WS_EX_NOACTIVATE | WS_EX_TOPMOST | WS_EX_TOOLWINDOW | WS_EX_LAYERED);
 //      //::user::create_struct createstruct;

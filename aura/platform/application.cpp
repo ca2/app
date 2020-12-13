@@ -4044,7 +4044,7 @@ retry_license:
 
          TRACE("::base::application::add_frame ::user::interaction = 0x%" PRIxPTR " (%s) app=%s", pwnd, typeid(*pwnd).name(), typeid(*this).name());
 
-         if (!(pwnd->m_ewindowflag & window_flag_satellite_window))
+         if (!(pwnd->m_ewindowflag & e_window_flag_satellite_window))
          {
 
             psession->on_create_frame_window();

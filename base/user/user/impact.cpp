@@ -108,7 +108,7 @@ namespace user
 
       SCAST_PTR(::message::create, pmessagecreate, pmessage);
 
-      if (!(m_ewindowflag & window_flag_window_created))
+      if (!(m_ewindowflag & e_window_flag_window_created))
       {
 
          ASSERT(::user::impact::get_document() == nullptr);

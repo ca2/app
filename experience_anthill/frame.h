@@ -101,7 +101,7 @@ namespace experience
 
                //virtual ::user::front_end_schema * get_user_front_end_schema();
 
-               virtual void Draw3dRectSide(::draw2d::graphics_pointer & pgraphics, const ::rect & rect, e_border eborder, color32_t crTopLeft, color32_t crBottomRight);
+               virtual void Draw3dRectSide(::draw2d::graphics_pointer & pgraphics, const ::rect & rect, enum_border eborder, color32_t crTopLeft, color32_t crBottomRight);
 
                virtual void on_draw_frame(::draw2d::graphics_pointer & pgraphics);
 

@@ -25,7 +25,7 @@ namespace user
 
       m_sizeWeight.cy = 1.0;
 
-      m_elayoutexperience = layout_experience_none;
+      m_elayoutexperience = e_layout_experience_none;
 
       sketch() = e_display_none;
       window() = e_display_none;
@@ -441,7 +441,7 @@ namespace user
    //bool interaction_layout::is_this_visible()
    //{
 
-   //   return m_ewindowflag & window_flag_is_window && ::is_visible(layout().design().display());
+   //   return m_ewindowflag & e_window_flag_is_window && ::is_visible(layout().design().display());
 
    //}
 

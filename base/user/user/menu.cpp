@@ -15,10 +15,10 @@ namespace user
    menu::menu()
    {
 
-      m_ewindowflag += window_flag_arbitrary_positioning;
+      m_ewindowflag += e_window_flag_arbitrary_positioning;
 
       m_bCloseButton = true;
-            m_ewindowflag += window_flag_arbitrary_positioning;
+            m_ewindowflag += e_window_flag_arbitrary_positioning;
 
       //m_econtroltype = e_control_type_menu;
       m_bCloseButton = true;
@@ -48,7 +48,7 @@ namespace user
 
       m_pmenuitem = pitem;
 
-      m_ewindowflag += window_flag_arbitrary_positioning;
+      m_ewindowflag += e_window_flag_arbitrary_positioning;
 
       //m_econtroltype = e_control_type_menu;
 

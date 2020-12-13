@@ -470,7 +470,7 @@ public:
    //virtual ::user::document* open_new_document(::apex::application* pappOnBehalfOf);
    virtual void on_request(::create* pcreate);
    //virtual ::user::document* open_document_file(::apex::application* pappOnBehalfOf);
-   //virtual ::user::document* open_document_file(::apex::application* pappOnBehalfOf, const payload& varFile, const payload & varOptions, ::user::interaction* puiParent = nullptr, ewindowflag eflag = window_flag_none, ::id id = ::id());
+   //virtual ::user::document* open_document_file(::apex::application* pappOnBehalfOf, const payload& varFile, const payload & varOptions, ::user::interaction* puiParent = nullptr, ewindowflag eflag = e_window_flag_none, ::id id = ::id());
    //virtual ::user::document* open_document_file(::apex::application* pappOnBehalfOf, const payload& varFile);
    //virtual ::user::document* create_subdocument(::user::impact_data* pimpactdata);
 

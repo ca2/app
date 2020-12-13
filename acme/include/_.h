@@ -137,6 +137,13 @@ CLASS_DECL_ACME ::acme::system *get_context_system();
 //CLASS_DECL_ACME inline ::acme::system * get_context_system(::acme::system * psystem);
 
 
+enum enum_null
+{
+
+   e_null,
+
+};
+
 
 //#include "acme/platform/cpu_architecture.h"
 
@@ -2801,14 +2808,6 @@ class manual_reset_event;
 
 #include "acme/platform/status.h"
 #include "acme/primitive/primitive/enumeration.h"
-
-
-enum enum_null
-{
-
-   e_null,
-
-};
 
 
 #define DECLARE_C_FLAG(CFLAG, ENUM) \

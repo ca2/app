@@ -6123,6 +6123,8 @@ namespace draw2d
          double dCircleX;
          double dCircleY;
 
+         pimage->map();
+
          auto colorref = pimage->colorref();
 
          auto scan = pimage->scan_size();

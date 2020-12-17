@@ -136,6 +136,13 @@ handler_manager::~handler_manager()
 
    m_routinea.remove_at(0);
 
+   if (m_routinea.isEmpty())
+   {
+
+      m_pevTaskOnQueue->ResetEvent();
+
+   }
+
    return method;
 
 }

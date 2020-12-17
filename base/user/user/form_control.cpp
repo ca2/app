@@ -682,7 +682,7 @@ namespace user
    void form_control::install_message_routing(::channel *pchannel)
    {
 
-      ::user::interaction::install_message_routing(pchannel);
+      form::install_message_routing(pchannel);
 
       MESSAGE_LINK(e_message_create, pchannel,this,&form_control::_001OnCreate);
       MESSAGE_LINK(e_message_pos_create, pchannel,this,&form_control::_000OnPosCreate);
@@ -845,7 +845,7 @@ namespace user
       for(auto & pdescriptor : m_controldescriptorset.ptra())
       {
 
-         if(pdescriptor->has_function(control_function_static))
+         if(pdescriptor->has_function(e_control_function_static))
          {
 
             string str;
@@ -855,7 +855,7 @@ namespace user
             pdescriptor->m_pinteraction->set_window_text(str);
 
          }
-         else if(pdescriptor->has_function(control_function_static2))
+         else if(pdescriptor->has_function(e_control_function_static2))
          {
 
             string str;

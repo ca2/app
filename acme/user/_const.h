@@ -224,6 +224,7 @@ namespace user
       e_control_type_system_menu_popup,
       e_control_type_system_menu_button,
       e_control_type_system_menu_close,
+      e_control_type_form
 
    };
 
@@ -282,6 +283,7 @@ namespace user
       e_element_button_hilite,
       e_element_button_shadow,
       e_element_button_dark_shadow,
+      e_element_check,
 
 
       e_element_split = 10'000,
@@ -321,7 +323,7 @@ namespace user
       e_event_mouse_enter,
       e_event_mouse_leave,
       e_event_set_check,
-      e_e_event_timer,
+      e_event_timer,
       e_event_enter_key,
       e_event_escape,
       e_event_tab_key,

@@ -4749,6 +4749,34 @@ namespace aura
    }
 
 
+   void system::open_url(string strUrl, string strProfile, string strTarget)
+   {
+
+      fork([=]()
+         {
+
+            browser(strUrl, "", strProfile, strTarget);
+
+         });
+
+   }
+
+
+
+   void system::open_link(string strUrl, string strProfile, string strTarget)
+   {
+
+      fork([=]()
+         {
+
+            browser(strUrl, "", strProfile, strTarget);
+
+         });
+
+   }
+
+
+
    ::estatus system::verb() // ambigous inheritance from ::aura::system/::axis::application
    {
 

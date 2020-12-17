@@ -27,6 +27,12 @@ namespace user
       virtual ~form();
 
 
+      virtual ::estatus initialize(::layered * pobjectContext);
+
+      virtual void install_message_routing(::channel * pchannel) override;
+
+      DECL_GEN_SIGNAL(_001OnCreate);
+
       ::estatus set_form_callback(::user::form_callback* pcallback);
       ::estatus set_parent_form(::user::form* pform);
 
@@ -35,6 +41,8 @@ namespace user
       virtual ::user::callback* get_user_callback() override;
       virtual ::user::form * get_parent_form() override;
 
+
+      //virtual enum_control_type get_control_type() const override;
 
 
       virtual bool create_control(class control_descriptor * pdescriptor, index iItem);

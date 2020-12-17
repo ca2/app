@@ -5,7 +5,7 @@
    {
 
 
-      namespace aura
+      namespace core
       {
 
 
@@ -38,7 +38,7 @@
 
 
 
-      } // namespace aura
+      } // namespace core
 
 
    } // namespace experience

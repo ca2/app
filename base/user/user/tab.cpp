@@ -132,7 +132,7 @@ namespace user
    enum_element tab::get_default_element() const
    {
 
-      return element_tab;
+      return e_element_tab;
 
    }
 
@@ -977,7 +977,7 @@ namespace user
 
 
 
-         if(!get_element_rect(iVisiblePane, rect, element_tab))
+         if(!get_element_rect(iVisiblePane, rect, e_element_tab))
             continue;
 
          if (!get_element_rect(iVisiblePane, rectBorder, e_element_border))
@@ -987,7 +987,7 @@ namespace user
 
          }
 
-         if (!get_element_rect(iVisiblePane, rectClient, element_client))
+         if (!get_element_rect(iVisiblePane, rectClient, e_element_client))
          {
 
             continue;
@@ -1044,7 +1044,7 @@ namespace user
                pgraphics->line_to(rectBorder.right, rectBorder.top);
                pgraphics->line_to(rectBorder.right, rectBorder.bottom);
 
-               if(m_itemHover == iVisiblePane && m_itemHover != element_close_tab_button)
+               if(m_itemHover == iVisiblePane && m_itemHover != e_element_close_tab_button)
                {
 
                   auto pstyle = get_style(pgraphics);
@@ -1119,7 +1119,7 @@ namespace user
                pgraphics->line_to(rectBorder.right - 1, rectClient.bottom);
                pgraphics->line_to(rectBorder.left, rectClient.bottom);
 
-               if (m_itemHover == iVisiblePane && m_itemHover != element_close_tab_button)
+               if (m_itemHover == iVisiblePane && m_itemHover != e_element_close_tab_button)
                {
 
                   pgraphics->set(get_font(pstyle, e_state_hover));
@@ -1149,12 +1149,12 @@ namespace user
 
          }
 
-         if (get_element_rect(iVisiblePane, rectClose, element_close_tab_button))
+         if (get_element_rect(iVisiblePane, rectClose, e_element_close_tab_button))
          {
 
             pgraphics->set(get_font(pstyle, ::user::e_element_close_tab_button));
 
-            if (m_itemHover == iVisiblePane  && m_itemHover == element_close_tab_button)
+            if (m_itemHover == iVisiblePane  && m_itemHover == e_element_close_tab_button)
             {
 
                brushText = get_data()->m_brushCloseSel;
@@ -1612,7 +1612,7 @@ namespace user
          pholder->display(::e_display_normal);
 
       }
-      else if(::is_set(ppaneSel) && ppaneSel->m_eflag & flag_hide_all_others_on_show)
+      else if(::is_set(ppaneSel) && ppaneSel->m_eflag & e_flag_hide_all_others_on_show)
       {
 
          pholder->hide();
@@ -1635,7 +1635,7 @@ namespace user
 
       get_data()->m_iClickTab = -1;
 
-      if(m_itemClick.m_eelement == element_tab_near_scroll)
+      if(m_itemClick.m_eelement == e_element_tab_near_scroll)
       {
 
          if(m_iTabScroll > 0)
@@ -1658,7 +1658,7 @@ namespace user
          }
 
       }
-      else if(m_itemClick.m_eelement == element_tab_far_scroll
+      else if(m_itemClick.m_eelement == e_element_tab_far_scroll
          )
       {
 
@@ -1688,7 +1688,7 @@ namespace user
 
          index iSel = _001GetSel();
 
-         if(m_itemClick == element_close_tab_button)
+         if(m_itemClick == e_element_close_tab_button)
          {
 
             get_data()->m_iClickTab = m_itemClick.m_iItem;
@@ -1756,7 +1756,7 @@ namespace user
       if(item.m_iItem >= 0 && iClickTab == item.m_iItem && m_itemClick == item)
       {
 
-         if (item == element_close_tab_button)
+         if (item == e_element_close_tab_button)
          {
 
             _001OnTabClose(item.m_iItem);
@@ -1794,7 +1794,7 @@ namespace user
       if(m_bMouseDown)
       {
 
-         if(m_itemClick.m_eelement == element_tab_far_scroll)
+         if(m_itemClick.m_eelement == e_element_tab_far_scroll)
          {
 
             if(m_iTabScroll < m_iTabScrollMax)
@@ -1813,7 +1813,7 @@ namespace user
             }
 
          }
-         else if(m_itemClick.m_eelement == element_tab_near_scroll)
+         else if(m_itemClick.m_eelement == e_element_tab_near_scroll)
          {
 
             if(m_iTabScroll > 0)
@@ -1877,7 +1877,7 @@ namespace user
 
          float fDensity = 1.0f;
 
-         if(eelement == element_tab_near_scroll)
+         if(eelement == e_element_tab_near_scroll)
          {
 
             if(get_data()->m_bVertical)
@@ -1925,7 +1925,7 @@ namespace user
             return true;
 
          }
-         else if(eelement == element_tab_far_scroll)
+         else if(eelement == e_element_tab_far_scroll)
          {
 
             if(get_data()->m_bVertical)
@@ -2004,7 +2004,7 @@ namespace user
       if(eelement == e_element_border)
       {
 
-         if (!get_element_rect(iTab, prect, element_tab))
+         if (!get_element_rect(iTab, prect, e_element_tab))
 
          {
 
@@ -2020,7 +2020,7 @@ namespace user
 
       }
 
-      if(eelement == element_client)
+      if(eelement == e_element_client)
       {
 
          if (!get_element_rect(iTab, prect, e_element_border))
@@ -2048,7 +2048,7 @@ namespace user
 
          }
 
-         if (!get_element_rect(iTab, prect, element_client))
+         if (!get_element_rect(iTab, prect, e_element_client))
          {
 
             return false;
@@ -2067,7 +2067,7 @@ namespace user
       else if(eelement == e_element_text)
       {
 
-         if (!get_element_rect(iTab, prect, element_client))
+         if (!get_element_rect(iTab, prect, e_element_client))
          {
 
             return false;
@@ -2096,7 +2096,7 @@ namespace user
          return true;
 
       }
-      else if(eelement == element_close_tab_button)
+      else if(eelement == e_element_close_tab_button)
       {
 
          if (iPane < 0)
@@ -2120,7 +2120,7 @@ namespace user
 
          }
 
-         if (!get_element_rect(iTab, prect, element_client))
+         if (!get_element_rect(iTab, prect, e_element_client))
          {
 
             return false;
@@ -2143,7 +2143,7 @@ namespace user
 
       }
 
-      if (eelement != element_tab)
+      if (eelement != e_element_tab)
       {
 
          return false;
@@ -2357,7 +2357,7 @@ namespace user
                      if(rectText.contains(item.m_pointHitTest))
                      {
 
-                        item = { (enum_element)((int)element_split + iTitle), iPane };
+                        item = { (enum_element)((int)e_element_split + iTitle), iPane };
 
                         return;
 
@@ -2373,13 +2373,13 @@ namespace user
 
          }
 
-         if(get_element_rect(iPane, rect, element_close_tab_button) )
+         if(get_element_rect(iPane, rect, e_element_close_tab_button) )
          {
 
             if(rect.contains(item.m_pointHitTest))
             {
 
-               item = { element_close_tab_button, iPane };
+               item = { e_element_close_tab_button, iPane };
 
                return;
 
@@ -2387,13 +2387,13 @@ namespace user
 
          }
 
-         if(get_element_rect(iPane, rect, element_tab))
+         if(get_element_rect(iPane, rect, e_element_tab))
          {
 
             if(rect.contains(item.m_pointHitTest))
             {
 
-               item = { element_tab, iPane };
+               item = { e_element_tab, iPane };
 
                return;
 
@@ -3302,39 +3302,39 @@ namespace user
    enum_position tab::DragHitTest(const ::point & point)
    {
       ::rect rect;
-      GetDragRect(rect, position_top);
+      GetDragRect(rect, e_position_top);
       if(rect.contains(point))
       {
-         return position_top;
+         return e_position_top;
       }
-      GetDragRect(rect, position_bottom);
-
-      if(rect.contains(point))
-      {
-
-         return position_bottom;
-
-      }
-
-      GetDragRect(rect, position_left);
+      GetDragRect(rect, e_position_bottom);
 
       if(rect.contains(point))
       {
 
-         return position_left;
+         return e_position_bottom;
 
       }
 
-      GetDragRect(rect, position_right);
+      GetDragRect(rect, e_position_left);
 
       if(rect.contains(point))
       {
 
-         return position_right;
+         return e_position_left;
 
       }
 
-      return position_none;
+      GetDragRect(rect, e_position_right);
+
+      if(rect.contains(point))
+      {
+
+         return e_position_right;
+
+      }
+
+      return e_position_none;
 
    }
 
@@ -3344,7 +3344,7 @@ namespace user
    {
       switch(eposition)
       {
-      case position_top:
+      case e_position_top:
       {
          prect->top = get_data()->m_rectTabClient.top;
 
@@ -3356,7 +3356,7 @@ namespace user
 
       }
       break;
-      case position_left:
+      case e_position_left:
       {
          prect->top = get_data()->m_rectTabClient.top + get_data()->m_rectTabClient.height() / 3;
 
@@ -3368,7 +3368,7 @@ namespace user
 
       }
       break;
-      case position_right:
+      case e_position_right:
       {
          prect->top = get_data()->m_rectTabClient.top + get_data()->m_rectTabClient.height() / 3;
 
@@ -3380,7 +3380,7 @@ namespace user
 
       }
       break;
-      case position_bottom:
+      case e_position_bottom:
       {
          prect->top = get_data()->m_rectTabClient.top + get_data()->m_rectTabClient.height() * 2 / 3;
 

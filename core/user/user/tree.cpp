@@ -386,7 +386,7 @@ namespace user
          if(ptree != nullptr && pimagelistTree.is_set() && data.m_pitem->m_dwState & ::data::tree_item_state_expandable)
          {
 
-            _001GetItemElementRect(rect, data, tree_element_expand_box);
+            _001GetItemElementRect(rect, data, e_tree_element_expand_box);
 
             i32 iImage;
 
@@ -444,14 +444,14 @@ namespace user
 
          //   ::rect rectUnion;
 
-         //   if (_001GetItemElementRect(rect, data, tree_element_image))
+         //   if (_001GetItemElementRect(rect, data, e_tree_element_image))
          //   {
 
          //      rectUnion = rect;
 
          //   }
 
-         //   if (_001GetItemElementRect(rect, data, tree_element_text))
+         //   if (_001GetItemElementRect(rect, data, e_tree_element_text))
          //   {
 
          //      rectUnion.unite(rect, rectUnion);
@@ -478,7 +478,7 @@ namespace user
          if(iImage >= 0)
          {
 
-            if (_001GetItemElementRect(rect, data, tree_element_image))
+            if (_001GetItemElementRect(rect, data, e_tree_element_image))
             {
 
                pimagelistItem->draw(data.m_pdc, iImage, rect.top_left(), 0);
@@ -493,7 +493,7 @@ namespace user
 
       string strItem = pitemData->get_text();
 
-      if(strItem.has_char() && _001GetItemElementRect(rect, data, tree_element_text))
+      if(strItem.has_char() && _001GetItemElementRect(rect, data, e_tree_element_text))
       {
 
          ::draw2d::brush_pointer brushText;
@@ -587,14 +587,14 @@ namespace user
 
       __pointer(::data::tree_item) pitem;
 
-      ::user::e_tree_element eelement;
+      ::user::enum_tree_element eelement;
 
       pitem = _001HitTest(pmouse->m_point, eelement);
 
       if(pitem != nullptr)
       {
 
-         if(eelement == tree_element_expand_box || eelement == tree_element_image || eelement == tree_element_text)
+         if(eelement == e_tree_element_expand_box || eelement == e_tree_element_image || eelement == e_tree_element_text)
          {
 
             _001ExpandItem(pitem, ::source_user, !(pitem->m_dwState & ::data::tree_item_state_expanded));
@@ -617,7 +617,7 @@ namespace user
 
       __pointer(::data::tree_item) pitem;
 
-      ::user::e_tree_element eelement;
+      ::user::enum_tree_element eelement;
 
       _001ScreenToClient(point);
 
@@ -656,7 +656,7 @@ namespace user
 
       __pointer(::data::tree_item) pitem;
 
-      ::user::e_tree_element eelement;
+      ::user::enum_tree_element eelement;
 
       _001ScreenToClient(point);
 
@@ -665,7 +665,7 @@ namespace user
       if(pitem != nullptr)
       {
 
-         if (eelement == tree_element_expand_box)
+         if (eelement == e_tree_element_expand_box)
          {
 
             sync_lock sl(mutex());
@@ -675,7 +675,7 @@ namespace user
             m_evExpand.set_event();
 
          }
-         else if (eelement == tree_element_image || eelement == tree_element_text)
+         else if (eelement == e_tree_element_image || eelement == e_tree_element_text)
          {
 
             sync_lock sl(mutex());
@@ -701,7 +701,7 @@ namespace user
 
       __pointer(::data::tree_item) pitem;
 
-      ::user::e_tree_element eelement;
+      ::user::enum_tree_element eelement;
 
       _001ScreenToClient(point);
 
@@ -710,7 +710,7 @@ namespace user
       if (pitem != nullptr)
       {
 
-         if (eelement == tree_element_image || eelement == tree_element_text)
+         if (eelement == e_tree_element_image || eelement == e_tree_element_text)
          {
 
             _001OnItemContextMenu(pitem, ::source_user, this, pointCursor);
@@ -774,7 +774,7 @@ namespace user
    }
 
 
-   __pointer(::data::tree_item) tree::_001HitTest(const ::point & point, ::user::e_tree_element & eelement)
+   __pointer(::data::tree_item) tree::_001HitTest(const ::point & point, ::user::enum_tree_element & eelement)
    {
 
       index iy = point.y;
@@ -814,11 +814,11 @@ namespace user
 
       index x = (i32) (point. x - _001GetIndentation() * (iLevel) + pointOffset.x);
       if(x >= 0 && x < 16)
-         eelement = tree_element_expand_box;
+         eelement = e_tree_element_expand_box;
       if(x >= 18 && x < 34)
-         eelement = tree_element_image;
+         eelement = e_tree_element_image;
       if(x >= 36)
-         eelement = tree_element_text;
+         eelement = e_tree_element_text;
 
       return pitem;
 
@@ -871,11 +871,11 @@ namespace user
    RECT32 * prect,
 
    ::user::tree_draw_item &drawitem,
-   ::user::e_tree_element eelement)
+   ::user::enum_tree_element eelement)
    {
       switch(eelement)
       {
-      case tree_element_expand_box:
+      case e_tree_element_expand_box:
       {
          prect->left   = drawitem.m_rect.left;
 
@@ -887,7 +887,7 @@ namespace user
 
       }
       break;
-      case tree_element_image:
+      case e_tree_element_image:
       {
          prect->left   = drawitem.m_rect.left + 18;
 
@@ -908,7 +908,7 @@ namespace user
 
       }
       break;
-      case tree_element_text:
+      case e_tree_element_text:
       {
          prect->left   = drawitem.m_rect.left + 38;
 
@@ -1261,11 +1261,11 @@ namespace user
 
       _001ScreenToClient(point);
 
-      ::user::e_tree_element eelement;
+      ::user::enum_tree_element eelement;
 
       __pointer(::data::tree_item) pitem = _001HitTest(point, eelement);
 
-      //if(eelement != tree_element_image && eelement != tree_element_text)
+      //if(eelement != e_tree_element_image && eelement != e_tree_element_text)
       //{
 
       //   pitem = nullptr;
@@ -1480,7 +1480,7 @@ namespace user
       //font->set_bold();
       //g->set_font(font);
 
-      g->set_font(this);
+      g->set_font(this, ::user::e_element_none);
 
 
       ::size size;

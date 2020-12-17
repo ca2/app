@@ -341,7 +341,7 @@ namespace user
 
       virtual ::sized get_total_size() override;
 
-      virtual payload get_ex_value();
+      virtual payload get_payload();
 
 
       virtual void on_before_change_text();

@@ -1369,6 +1369,7 @@
     <ClInclude Include="node\windows\_windows.h" />
     <ClInclude Include="os\os.h" />
     <ClInclude Include="os\windowing.h" />
+    <ClInclude Include="os\windows\imm_client.h" />
     <ClInclude Include="os\windows\imm_context.h" />
     <ClInclude Include="os\windows\windowing.h" />
     <ClInclude Include="os\windows\_.h" />

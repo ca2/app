@@ -74,7 +74,7 @@ namespace experience
       }
 
    
-      ::color style::get_color(const ::user::interaction* pinteraction, ::user::enum_element eelement, ::user::estate estate) const
+      ::color style::get_color(const ::user::interaction* pinteraction, ::user::eelement eelement, ::user::estate estate) const
       {
 
          if (::is_set(pinteraction))
@@ -483,6 +483,8 @@ namespace experience
 
       ::draw2d::brush_pointer brushText;
 
+      ::draw2d::pen_pointer penBorder(e_create);
+
       for(i32 iPane = 0; iPane < ptab->get_data()->m_panea.get_size(); iPane++)
       {
 
@@ -543,7 +545,9 @@ namespace experience
 
                   pgraphics->fill_path(path);
 
-                  pgraphics->set(ptab->get_data()->m_penBorderSel);
+                  penBorder->create_solid(1.0, ptab->get_color(pstyle, ::user::e_element_border, ::user::e_state_selected));
+
+                  pgraphics->set(penBorder);
 
                   pgraphics->draw_path(path);
 
@@ -562,7 +566,7 @@ namespace experience
 
                   }
 
-                  brushText = ptab->get_data()->m_brushTextSel;
+                  brushText->create_solid(ptab->get_color(pstyle, ::user::e_element_item_text, ::user::e_state_selected));
 
                }
                else
@@ -589,15 +593,15 @@ namespace experience
 
                      pgraphics->fill_path(path);
 
-                     pgraphics->set(ptab->get_data()->m_penBorderHover);
+                     penBorder->create_solid(1.0, ptab->get_color(pstyle, ::user::e_element_border, ::user::e_state_hover));
 
-                     pgraphics->draw_path(path);
+                     pgraphics->set(penBorder);
                      
                      auto pstyle = ptab->get_style(pgraphics);
 
                      pgraphics->set(ptab->get_font(pstyle, ::user::e_state_hover));
 
-                     brushText = ptab->get_data()->m_brushTextHover;
+                     brushText->create_solid(ptab->get_color(pstyle, ::user::e_element_border, ::user::e_state_selected));
 
                   }
                   else
@@ -609,15 +613,17 @@ namespace experience
 
                      pgraphics->fill_path(path);
 
-                     pgraphics->set(ptab->get_data()->m_penBorder);
+                     penBorder->create_solid(1.0, ptab->get_color(pstyle, ::user::e_element_border));
 
+                     pgraphics->set(penBorder);
+                     
                      pgraphics->draw_path(path);
 
                      auto pstyle = ptab->get_style(pgraphics);
 
                      pgraphics->set(ptab->get_font(pstyle));
 
-                     brushText = ptab->get_data()->m_brushText;
+                     brushText->create_solid(ptab->get_color(pstyle, ::user::e_element_item_text));
 
                   }
 
@@ -643,7 +649,9 @@ namespace experience
                if (rcTab.left < rectBorder.left)
                {
 
-                  pgraphics->set(ptab->get_data()->m_penBorder);
+                  penBorder->create_solid(1.0, ptab->get_color(pstyle, ::user::e_element_border));
+
+                  pgraphics->set(penBorder);
 
                   pgraphics->draw_line(rcTab.left, rectClient.bottom, rectBorder.left, rectClient.bottom);
 
@@ -688,9 +696,9 @@ namespace experience
 
                   pgraphics->fill_path(path);
 
-                  ptab->get_data()->m_penBorderSel->create_solid(1.0,ARGB(255,0,0,0));
+                  penBorder->create_solid(1.0, ptab->get_color(pstyle, ::user::e_element_border, ::user::e_state_selected));
 
-                  pgraphics->set(ptab->get_data()->m_penBorderSel);
+                  pgraphics->set(penBorder);
 
                   pgraphics->draw_path(path);
                   
@@ -713,9 +721,7 @@ namespace experience
 
                   ::color colorText = ptab->get_color(pstyle, ::user::e_element_text);
 
-                  ptab->get_data()->m_brushTextSel->create_solid(colorText);
-
-                  brushText = ptab->get_data()->m_brushTextSel;
+                  brushText->create_solid(colorText);
 
                }
                else
@@ -751,13 +757,15 @@ namespace experience
 
                      pgraphics->fill_path(path);
 
-                     pgraphics->set(ptab->get_data()->m_penBorderHover);
+                     penBorder->create_solid(1.0, ptab->get_color(pstyle, ::user::e_element_border, ::user::e_state_hover));
+
+                     pgraphics->set(penBorder);
 
                      pgraphics->draw_path(path);
 
                      pgraphics->set(ptab->get_font(pstyle, ::user::e_state_hover));
 
-                     brushText = ptab->get_data()->m_brushTextHover;
+                     brushText->create_solid(ptab->get_color(pstyle, ::user::e_element_item_text, ::user::e_state_hover));
 
                   }
                   else
@@ -769,13 +777,15 @@ namespace experience
 
                      pgraphics->fill_path(path);
 
-                     pgraphics->set(ptab->get_data()->m_penBorder);
+                     penBorder->create_solid(1.0, ptab->get_color(pstyle, ::user::e_element_border));
+
+                     pgraphics->set(penBorder);
 
                      pgraphics->draw_path(path);
 
                      pgraphics->set(ptab->get_font(pstyle));
 
-                     brushText = ptab->get_data()->m_brushTextSel;
+                     brushText->create_solid(ptab->get_color(pstyle, ::user::e_element_item, ::user::e_state_hover));
 
                   }
 
@@ -789,7 +799,9 @@ namespace experience
                if (rectBorder.right - 1 < rcTab.right)
                {
 
-                  pgraphics->set(ptab->get_data()->m_penBorder);
+                  penBorder->create_solid(1.0, ptab->get_color(pstyle, ::user::e_element_border));
+
+                  pgraphics->set(penBorder);
 
                   pgraphics->draw_line(rectBorder.right - 1, rectClient.bottom, rcTab.right, rectClient.bottom);
 
@@ -889,19 +901,33 @@ namespace experience
                pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
                if(ptab->m_itemHover == (::user::enum_element)(::user::e_element_split + i))
                {
+
                   pgraphics->fill_rect(rectEmp,ARGB(128, 150, 184, 255));
-                  pgraphics->set(ptab->get_data()->m_brushTextHover);
+
+                  brushText->create_solid(ptab->get_color(pstyle, ::user::e_element_item_text, ::user::e_state_hover));
+
+                  pgraphics->set(brushText);
+
                }
                else
                {
-                  //pgraphics->FillSolidRect(rectEmp,ARGB(128,208,223,233));
-                  pgraphics->set(ptab->get_data()->m_brushText);
+                  
+                  brushText->create_solid(ptab->get_color(pstyle, ::user::e_element_item_text));
+
+                  pgraphics->set(brushText);
+
                }
+
                pgraphics->set(ptab->get_font(pstyle, ::user::e_element_close_tab_button));
+
                pgraphics->set_alpha_mode(emode);
+
                pgraphics->_DrawText(MAGIC_PALACE_TAB_TEXT,rectText, e_align_center, e_draw_text_no_prefix);
+
                rectText.left += sSep.cx;
+
             }
+
          }
 
       }
@@ -1234,7 +1260,7 @@ namespace experience
 
       ::rect rectImage;
 
-      pgraphics->set_font(ptoolbar);
+      pgraphics->set_font(ptoolbar, ::user::e_element_none);
 
       ::user::toolbar_item & item = ptoolbar->m_itema(iItem);
 
@@ -1498,7 +1524,7 @@ namespace experience
       if (item.m_str.has_char())
       {
 
-         pgraphics->set_font(ptoolbar);
+         pgraphics->set_font(ptoolbar, ::user::e_element_none);
 
          ::rect rectText;
 
@@ -1541,7 +1567,7 @@ namespace experience
 
       ::rect rectImage;
 
-      pgraphics->set_font(ptoolbar);
+      pgraphics->set_font(ptoolbar, ::user::e_element_none);
 
       ::user::toolbar_item & item = ptoolbar->m_itema(iItem);
 
@@ -1769,7 +1795,7 @@ namespace experience
       if (item.m_str.has_char())
       {
 
-         pgraphics->set_font(ptoolbar);
+         pgraphics->set_font(ptoolbar, ::user::e_element_none);
 
          ::rect rectText;
 

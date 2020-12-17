@@ -11,7 +11,7 @@ namespace simple_ui
    style::style()
    {
 
-      m_etheme = ::user::theme_dark;
+      m_etheme = ::user::e_theme_dark;
 
    }
 
@@ -144,13 +144,13 @@ namespace simple_ui
          || ansi_begins_ci(m_strSchema, "darker%3B") || ansi_ends_ci(m_strSchema, "%3Bdarker") || ansi_find_string_ci(m_strSchema, "%3Bdarker%3B"))
       {
 
-         m_etheme = ::user::theme_dark;
+         m_etheme = ::user::e_theme_dark;
 
       }
       else
       {
 
-         m_etheme = ::user::theme_lite;
+         m_etheme = ::user::e_theme_lite;
 
       }
 

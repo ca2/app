@@ -1596,7 +1596,7 @@ bool xfplayer_view_line::GetCharLink(string & str, strsize iChar)
 
    strsize iChar;
    ::user::enum_line_hit etest = hit_test(pointCursor, iChar);
-   if (etest == ::user::line_hit_link)
+   if (etest == ::user::e_line_hit_link)
    {
       GetCharLink(strUrl, iChar);
    }
@@ -1632,7 +1632,7 @@ index xfplayer_view_line::GetCharLink(strsize iChar)
    if (!bInside)
    {
       iChar = -1;
-      return ::user::line_hit_none;
+      return ::user::e_line_hit_none;
    }
    else
    {
@@ -1640,17 +1640,17 @@ index xfplayer_view_line::GetCharLink(strsize iChar)
       {
          if (CharHasLink(iChar))
          {
-            return ::user::line_hit_link;
+            return ::user::e_line_hit_link;
          }
          else
          {
-            return ::user::line_hit_normal;
+            return ::user::e_line_hit_normal;
          }
       }
       else
       {
          iChar = -1;
-         return ::user::line_hit_none;
+         return ::user::e_line_hit_none;
       }
    }
 
@@ -1930,7 +1930,7 @@ void xfplayer_view_line::update_hover(point &pointCursor)
 
    ::user::enum_line_hit etest = hit_test(pointCursor, iChar);
 
-   if (etest == ::user::line_hit_link)
+   if (etest == ::user::e_line_hit_link)
    {
 
       if (m_iLinkHoverIndex != GetLinkIndex(iLine, iChar))

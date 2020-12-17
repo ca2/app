@@ -472,7 +472,7 @@ size simple_toolbar::CalcSize(::draw2d::graphics_pointer & pgraphics, index nCou
 
    ASSERT(nCount > 0);
 
-   pgraphics->set_font(this);
+   pgraphics->set_font(this, ::user::e_element_none);
 
    m_dFontSize = pgraphics->m_pfont->m_dFontSize;
 
@@ -673,7 +673,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
    ::rect rectImage;
 
-   pgraphics->set_font(this);
+   pgraphics->set_font(this, ::user::e_element_none);
 
    m_dFontSize = pgraphics->m_pfont->m_dFontSize;
 
@@ -915,7 +915,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
    if (item.m_str.has_char())
    {
 
-      pgraphics->set_font(this);
+      pgraphics->set_font(this, ::user::e_element_none);
 
       m_dFontSize = pgraphics->m_pfont->m_dFontSize;
 
@@ -1795,7 +1795,7 @@ index simple_toolbar::WrapToolBar(::draw2d::graphics_pointer & pgraphics, index 
 
    ASSERT(nCount > 0);
 
-   pgraphics->set_font(this);
+   pgraphics->set_font(this, ::user::e_element_none);
 
    m_dFontSize = pgraphics->m_pfont->m_dFontSize;
 

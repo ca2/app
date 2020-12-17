@@ -376,7 +376,7 @@ namespace user
 
       bool bHoverFont = false;
 
-      pdrawitem->m_pgraphics->set_font(this);
+      pdrawitem->m_pgraphics->set_font(this, ::user::e_element_none);
       //pdrawitem->m_pgraphics->set(pfont);
 
       m_pdrawlistitem->m_pfont = pdrawitem->m_pgraphics->m_pfont;
@@ -408,7 +408,7 @@ namespace user
             {
                //m_pdrawlistitem->m_pfont = pfont;
                //pdrawitem->m_pgraphics->set(pfont);
-               pdrawitem->m_pgraphics->set_font(this);
+               pdrawitem->m_pgraphics->set_font(this, ::user::e_element_none);
             }
          }
 
@@ -486,7 +486,7 @@ namespace user
 
       bool bHoverFont = false;
 
-      pdrawitem->m_pgraphics->set_font(this);
+      pdrawitem->m_pgraphics->set_font(this, ::user::e_element_none);
 
       pdrawitem->m_pfont = pdrawitem->m_pgraphics->m_pfont;
 
@@ -558,7 +558,7 @@ namespace user
 
                bHoverFont = false;
 
-               pdrawitem->m_pgraphics->set_font(this);
+               pdrawitem->m_pgraphics->set_font(this, ::user::e_element_none);
 
             }
 
@@ -823,7 +823,7 @@ namespace user
       else
       {
 
-         pdrawitem->m_pgraphics->set_font(this);
+         pdrawitem->m_pgraphics->set_font(this, ::user::e_element_none);
 
       }
 
@@ -1550,7 +1550,7 @@ namespace user
 
       //draw_select ds(this, pgraphics);
 
-      pgraphics->set_font(this);
+      pgraphics->set_font(this, ::user::e_element_none);
 
       auto pfont = pgraphics->get_current_font();
 
@@ -5356,7 +5356,7 @@ namespace user
 
       pmessage->previous();
 
-      descriptor().set_control_type(control_type_list);
+      descriptor().set_control_type(e_control_type_list);
 
       if (pcreate->m_lresult == -1)
       {
@@ -5559,7 +5559,7 @@ namespace user
    void list::_001LayoutTopText(::draw2d::graphics_pointer& pgraphics)
    {
 
-      pgraphics->set_font(this);
+      pgraphics->set_font(this, ::user::e_element_none);
 
       ::size_array sizea;
 
@@ -5672,7 +5672,7 @@ namespace user
    //i32 list::_001CalcItemWidth(::draw2d::graphics_pointer & pgraphics, index iItem, index iSubItem)
    //{
 
-   //   pgraphics->set_font(this);
+   //   pgraphics->set_font(this, ::user::e_element_none);
 
    //   index cx = _001CalcItemWidth(pgraphics, iItem, iSubItem);
 
@@ -5737,7 +5737,7 @@ namespace user
       if (item.m_bOk)
       {
 
-         pgraphics->set_font(this);
+         pgraphics->set_font(this, ::user::e_element_none);
 
          m_dcextension.GetTextExtent(pgraphics, item.m_strText, size);
 
@@ -6491,7 +6491,7 @@ namespace user
 
       UNREFERENCED_PARAMETER(iColumn);
 
-      pgraphics->set_font(this);
+      pgraphics->set_font(this, ::user::e_element_none);
 
       i32 iMaxWidth = 0;
 

@@ -8,6 +8,13 @@
 #ifdef WINDOWS_DESKTOP
 
 
+enum enum_composition_state
+{
+   e_composition_state_none,
+   e_composition_state_composing,
+   e_composition_state_selected,
+};
+
 class CLASS_DECL_AURA imm_client :
    virtual public ::user::interaction
 {
@@ -35,6 +42,8 @@ public:
    virtual int on_text_composition_message(int iMessage) override;
 
    virtual void on_text_composition_done() override;
+
+   virtual void on_text_composition(string strMessage);
 
    virtual void insert_text(string str, bool bForceNewStep) override;
 

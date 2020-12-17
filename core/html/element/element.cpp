@@ -1679,7 +1679,7 @@ namespace html
    //}
 
 
-   ::color element::get_color(::css::enum_color ecolor)
+   ::color element::get_color(::user::style * pstyle, ::css::enum_color ecolor)
    {
 
       color32_t cr;
@@ -1693,6 +1693,8 @@ namespace html
             return cr;
 
          }
+
+         return m_pdata->m_pcoredata->m_pform->get_color(pstyle, ::user::e_element_text);
 
       }
       else if(ecolor == ::css::color_background)
@@ -1710,7 +1712,7 @@ namespace html
       if (m_pparent != nullptr)
       {
 
-         return m_pparent->get_color(ecolor);
+         return m_pparent->get_color(pstyle, ecolor);
 
       }
 

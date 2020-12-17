@@ -182,7 +182,7 @@ namespace user
 
       pgraphics->set_text_color(crText);
 
-      pgraphics->set_font(this);
+      pgraphics->set_font(this, ::user::e_element_none);
 
       pgraphics->text_out(0, 0, get_window_text());
 

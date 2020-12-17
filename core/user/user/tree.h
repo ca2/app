@@ -94,14 +94,14 @@ namespace user
       void _001ExpandItem(::data::tree_item * pitem, const ::action_context & action_context, bool bExpand = true, bool bRedraw = true, bool bLayout = true);
       virtual void _001OnItemExpand(::data::tree_item * pitem, const ::action_context & action_context);
       virtual void _001OnItemCollapse(::data::tree_item * pitem, const ::action_context & action_context);
-      virtual bool _001GetItemElementRect(RECT32 * prect, tree_draw_item & drawitem, ::user::e_tree_element eelement);
+      virtual bool _001GetItemElementRect(RECT32 * prect, tree_draw_item & drawitem, ::user::enum_tree_element eelement);
 
       virtual void install_message_routing(::channel * pchannel) override;
       i32 _001GetItemHeight();
       virtual index _001GetIndentation();
 
 
-      __pointer(::data::tree_item) _001HitTest(const ::point & point, ::user::e_tree_element & eelement);
+      __pointer(::data::tree_item) _001HitTest(const ::point & point, ::user::enum_tree_element & eelement);
 
       virtual bool on_click(const ::user::item & item) override;
 

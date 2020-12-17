@@ -157,7 +157,7 @@ namespace user
 
       get_window_text(strText);
 
-      pcalcsize->m_pgraphics->set_font(this);
+      pcalcsize->m_pgraphics->set_font(this, ::user::e_element_none);
 
       auto size = pcalcsize->m_pgraphics->GetTextExtent(strText);
 

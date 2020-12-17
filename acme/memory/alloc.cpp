@@ -6,7 +6,7 @@
 #endif
 
 
-#if defined(WINDOWS_DESKTOP) && !defined(__VLD) && !defined(__MCRTDBG)
+#if defined(WINDOWS) && !defined(__VLD) && !defined(__MCRTDBG)
 
 
 HANDLE g_system_heap()
@@ -25,7 +25,7 @@ HANDLE g_system_heap()
 critical_section * g_pmutexSystemHeap = nullptr;
 
 
-#if defined(WINDOWS_DESKTOP) && !PREFER_MALLOC  && !(defined(__VLD) || defined(__MCRTDBG))
+#if defined(WINDOWS) && !PREFER_MALLOC  && !(defined(__VLD) || defined(__MCRTDBG))
 
 
 #include "os_alloc/WindowsHeapAlloc.cpp"

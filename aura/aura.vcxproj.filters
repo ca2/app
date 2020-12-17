@@ -1175,6 +1175,9 @@
     <ClInclude Include="graphics\draw2d\_const.h">
       <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
+    <ClInclude Include="os\windows\imm_client.h">
+      <Filter>Header Files\os\windows</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="graphics\draw2d\apple\image_gif.cpp">

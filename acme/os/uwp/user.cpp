@@ -416,6 +416,8 @@ uptr virtualkey_to_char(::Windows::System::VirtualKey e)
       return ::user::key_lcommand;
    case ::Windows::System::VirtualKey::RightWindows:
       return ::user::key_rcommand;
+   case ::Windows::System::VirtualKey::CapitalLock:
+      return ::user::key_capslock;
    default:
       ;
       {

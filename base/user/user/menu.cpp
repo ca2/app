@@ -20,7 +20,7 @@ namespace user
       m_bCloseButton = true;
             m_ewindowflag += e_window_flag_arbitrary_positioning;
 
-      //m_econtroltype = control_type_menu;
+      //m_econtroltype = e_control_type_menu;
       m_bCloseButton = true;
 
       m_iFlags = 0;
@@ -50,7 +50,7 @@ namespace user
 
       m_ewindowflag += e_window_flag_arbitrary_positioning;
 
-      //m_econtroltype = control_type_menu;
+      //m_econtroltype = e_control_type_menu;
 
       m_iFlags = 0;
       m_bPositionHint = false;
@@ -1152,7 +1152,7 @@ namespace user
    void menu::_001OnCreate(::message::message * pmessage)
    {
 
-      descriptor().set_control_type(control_type_menu);
+      descriptor().set_control_type(e_control_type_menu);
 
       pmessage->previous();
 

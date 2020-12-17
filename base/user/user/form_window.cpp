@@ -823,7 +823,7 @@ namespace user
 
          class control_descriptor & descriptor = m_controldescriptorset(i);
 
-         if(descriptor.has_function(control_function_static))
+         if(descriptor.has_function(e_control_function_static))
          {
 
             string str;
@@ -833,7 +833,7 @@ namespace user
             descriptor.m_pinteraction->set_window_text(str);
 
          }
-         else if(descriptor.has_function(control_function_static2))
+         else if(descriptor.has_function(e_control_function_static2))
          {
 
             string str;

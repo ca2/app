@@ -53,7 +53,7 @@ namespace tranquillum
 
       //create_int(::user::int_element_padding, 4);
 
-      m_colorBackground = ARGB(255, 255, 255, 255);
+      //m_colorBackground = ARGB(255, 255, 255, 255);
       //m_colorText = ARGB(255, 0, 0, 0);
 
 
@@ -107,7 +107,7 @@ namespace tranquillum
    }
 
 
-   ::color style::get_color(const ::user::interaction* pinteraction, ::user::enum_element eelement, ::user::estate estate) const
+   ::color style::get_color(const ::user::interaction* pinteraction, ::user::eelement eelement, ::user::estate estate) const
    {
 
       if (::is_set(pinteraction))
@@ -503,7 +503,9 @@ namespace tranquillum
 
       ::index iTab = -1;
 
-      ::draw2d::brush_pointer brushText;
+      ::draw2d::brush_pointer brushText(e_create);
+
+      ::draw2d::pen_pointer penBorder(e_create);
 
       for (i32 iPane = 0; iPane < ptab->get_data()->m_panea.get_size(); iPane++)
       {
@@ -557,7 +559,9 @@ namespace tranquillum
 
                   pgraphics->fill_path(path);
 
-                  pgraphics->set(ptab->get_data()->m_penBorderSel);
+                  penBorder->create_solid(1.0, ptab->get_color(pstyle, ::user::e_element_border, ::user::e_state_selected));
+
+                  pgraphics->set(penBorder);
 
                   pgraphics->draw_path(path);
 
@@ -576,7 +580,9 @@ namespace tranquillum
 
                   }
 
-                  brushText = ptab->get_data()->m_brushTextSel;
+                  brushText->create_solid(ptab->get_color(pstyle, ::user::e_element_item_text, ::user::e_state_selected));
+
+                  pgraphics->set(brushText);
 
                }
                else
@@ -603,13 +609,17 @@ namespace tranquillum
 
                      pgraphics->fill_path(path);
 
-                     pgraphics->set(ptab->get_data()->m_penBorderHover);
+                     penBorder->create_solid(1.0, ptab->get_color(pstyle, ::user::e_element_border, ::user::e_state_hover));
+
+                     pgraphics->set(penBorder);
 
                      pgraphics->draw_path(path);
 
                      pgraphics->set_font(ptab, ::user::e_state_hover);
 
-                     brushText = ptab->get_data()->m_brushTextHover;
+                     brushText->create_solid(ptab->get_color(pstyle, ::user::e_element_item_text, ::user::e_state_hover));
+
+                     pgraphics->set(brushText);
 
                   }
                   else
@@ -621,13 +631,15 @@ namespace tranquillum
 
                      pgraphics->fill_path(path);
 
-                     pgraphics->set(ptab->get_data()->m_penBorder);
+                     penBorder->create_solid(1.0, ptab->get_color(pstyle, ::user::e_element_border));
+
+                     pgraphics->set(penBorder);
 
                      pgraphics->draw_path(path);
 
-                     pgraphics->set_font(ptab);
+                     pgraphics->set_font(ptab, ::user::e_element_none);
 
-                     brushText = ptab->get_data()->m_brushText;
+                     brushText->create_solid(ptab->get_color(pstyle, ::user::e_element_item_text));
 
                   }
 
@@ -683,9 +695,9 @@ namespace tranquillum
 
                   pgraphics->fill_path(path);
 
-                  ptab->get_data()->m_penBorderSel->create_solid(1.0, ARGB(255, 0, 0, 0));
+                  penBorder->create_solid(1.0, ptab->get_color(pstyle, ::user::e_element_border, ::user::e_state_selected));
 
-                  pgraphics->set(ptab->get_data()->m_penBorderSel);
+                  pgraphics->set(penBorder);
 
                   pgraphics->draw_path(path);
 
@@ -705,7 +717,7 @@ namespace tranquillum
 
                   }
 
-                  brushText = ptab->get_data()->m_brushTextSel;
+                  brushText->create_solid(ptab->get_color(pstyle, ::user::e_element_border, ::user::e_state_selected));
 
                }
                else
@@ -722,13 +734,13 @@ namespace tranquillum
 
                      pgraphics->fill_path(path);
 
-                     pgraphics->set(ptab->get_data()->m_penBorderHover);
-
+                     penBorder->create_solid(1.0, ptab->get_color(pstyle, ::user::e_element_border, ::user::e_state_hover));
+                     
                      pgraphics->draw_path(path);
 
                      pgraphics->set_font(ptab, ::user::e_state_hover);
 
-                     brushText = ptab->get_data()->m_brushTextHover;
+                     brushText->create_solid(ptab->get_color(pstyle, ::user::e_element_border, ::user::e_state_selected));
 
                   }
                   else
@@ -740,13 +752,15 @@ namespace tranquillum
 
                      pgraphics->fill_path(path);
 
-                     pgraphics->set(ptab->get_data()->m_penBorder);
+                     penBorder->create_solid(1.0, ptab->get_color(pstyle, ::user::e_element_border));
+
+                     pgraphics->set(penBorder);
 
                      pgraphics->draw_path(path);
 
-                     pgraphics->set_font(ptab);
+                     pgraphics->set_font(ptab, ::user::e_element_none);
 
-                     brushText = ptab->get_data()->m_brushTextSel;
+                     brushText->create_solid(ptab->get_color(pstyle, ::user::e_element_item_text));
 
                   }
 
@@ -852,6 +866,8 @@ namespace tranquillum
 
          size sSep = ptab->get_data()->m_sizeSep;
 
+         auto pstyle = ptab->get_style(pgraphics);
+
          ::rect rectEmp;
 
          for(index i = 0; i < straTitle.get_size(); i++)
@@ -870,14 +886,23 @@ namespace tranquillum
                pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
                if(ptab->m_itemHover.m_iItem == ((int) ::user::e_element_split) + i)
                {
+                  
                   pgraphics->fill_rect(rectEmp,ARGB(128,149,184,255));
-                  pgraphics->set(ptab->get_data()->m_brushTextHover);
+                  
+                  brushText->create_solid(ptab->get_color(pstyle, ::user::e_element_item_text, ::user::e_state_hover));
+                  
+                  pgraphics->set(brushText);
+
                }
                else
                {
-                  //pgraphics->FillSolidRect(rectEmp,ARGB(128,208,223,233));
-                  pgraphics->set(ptab->get_data()->m_brushText);
+
+                  brushText->create_solid(ptab->get_color(pstyle, ::user::e_element_item_text));
+                  
+                  pgraphics->set(brushText);
+
                }
+
                pgraphics->set_font(ptab, ::user::e_element_close_tab_button);
                pgraphics->set_alpha_mode(emode);
                pgraphics->_DrawText(MAGIC_PALACE_TAB_TEXT,rectText, e_align_center, e_draw_text_no_prefix);

@@ -118,7 +118,7 @@ namespace tranquillum
 
          get_window_text(str);
 
-         pgraphics->set_font(this);
+         pgraphics->set_font(this, ::user::e_element_none);
 
          pgraphics->set_text_color(crText);
 

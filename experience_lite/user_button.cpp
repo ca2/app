@@ -229,7 +229,7 @@ namespace user
 
       }
 
-      eelement = element_client;
+      eelement = e_element_client;
 
       return 0;
 

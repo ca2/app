@@ -203,7 +203,7 @@ namespace user
 
          int iDrawParams = e_align_left_center | DT_SINGLELINE;
 
-         pgraphics->set_font(this);
+         pgraphics->set_font(this, ::user::e_element_none);
 
          color32_t crText;
 

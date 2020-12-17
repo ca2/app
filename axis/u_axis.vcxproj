@@ -147,7 +147,7 @@
     <ClInclude Include="math\calculator\parser_exception.h" />
     <ClInclude Include="math\calculator\scanner.h" />
     <ClInclude Include="math\calculator\token.h" />
-    <ClInclude Include="math\calculator\value.h" />
+    <ClInclude Include="math\calculator\payload.h" />
     <ClInclude Include="math\calculator\_.h" />
     <ClInclude Include="math\kissfft\fft.h" />
     <ClInclude Include="math\kissfft\fftd.h" />
@@ -255,7 +255,7 @@
     <ClCompile Include="math\calculator\parser.cpp" />
     <ClCompile Include="math\calculator\parser_exception.cpp" />
     <ClCompile Include="math\calculator\scanner.cpp" />
-    <ClCompile Include="math\calculator\value.cpp" />
+    <ClCompile Include="math\calculator\payload.cpp" />
     <ClCompile Include="math\kissfft\fft.cpp" />
     <ClCompile Include="math\kissfft\fftd.cpp" />
     <ClCompile Include="math\kissfft\fft_shared.cpp" />

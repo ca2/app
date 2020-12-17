@@ -5,7 +5,7 @@ namespace experience
 {
 
 
-   namespace aura
+   namespace core
    {
 
 
@@ -74,43 +74,43 @@ namespace experience
          if(strSchema == "001")
          {
                
-            return new ::experience::aura::frame_001;
+            return new ::experience::core::frame_001;
 
          }
          else if(strSchema == "002")
          {
                
-            return new ::experience::aura::frame_002;
+            return new ::experience::core::frame_002;
 
          }
          else if(strSchema == "005")
          {
                
-            return new ::experience::aura::frame_005;
+            return new ::experience::core::frame_005;
 
          }
          else if(strSchema == "008")
          {
                
-            return new ::experience::aura::frame_008;
+            return new ::experience::core::frame_008;
 
          }
          else if(strSchema == "011")
          {
                
-            return new ::experience::aura::frame_011;
+            return new ::experience::core::frame_011;
 
          }
          else if(strSchema == "013")
          {
                
-            return new ::experience::aura::frame_013;
+            return new ::experience::core::frame_013;
 
          }
          else if(strSchema == "Minimal001")
          {
 
-            return new ::experience::aura::frame_Minimal001;
+            return new ::experience::core::frame_Minimal001;
 
          }
 
@@ -121,7 +121,7 @@ namespace experience
 
 
 
-   } // namespace aura
+   } // namespace core
 
 
 } // namespace experience

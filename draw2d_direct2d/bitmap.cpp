@@ -112,7 +112,23 @@ namespace draw2d_direct2d
 
       draw2d_direct2d::graphics * pgraphics2d = dynamic_cast < ::draw2d_direct2d::graphics * > (pgraphics);
 
-      pgraphics2d->m_prendertarget->GetDpi(&props.dpiX, &props.dpiY); // Thank you again https://repo.anl-external.org/repos/BlueTBB/tbb41_20130314oss/examples/common/gui/d2dvideo.cpp      props.bitmapOptions = D2D1_BITMAP_OPTIONS_CPU_READ | D2D1_BITMAP_OPTIONS_CANNOT_DRAW;
+      if (!::is_set(pgraphics2d))
+      {
+
+         return false;
+
+      }
+
+      auto prendertarget = pgraphics2d->m_prendertarget;
+
+      if (!prendertarget)
+      {
+
+         return false;
+
+      }
+
+      prendertarget->GetDpi(&props.dpiX, &props.dpiY); // Thank you again https://repo.anl-external.org/repos/BlueTBB/tbb41_20130314oss/examples/common/gui/d2dvideo.cpp      props.bitmapOptions = D2D1_BITMAP_OPTIONS_CPU_READ | D2D1_BITMAP_OPTIONS_CANNOT_DRAW;
 
       props.colorContext = nullptr;
 

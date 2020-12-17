@@ -1127,7 +1127,7 @@ void simple_frame_window::on_layout(::draw2d::graphics_pointer & pgraphics)
 
    }
 
-   if (Application.is_true("client_only"))
+   if (Application.is_true("client_only") && GetParent() == nullptr)
    {
 
       auto rect = Session->get_host_wnd()->get_client_rect();

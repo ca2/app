@@ -150,7 +150,7 @@ namespace user
 
       get_element_rect(rectText, e_element_text);
 
-      pgraphics->set_font(this);
+      pgraphics->set_font(this, ::user::e_element_none);
 
       int iDrawTextFlags = e_align_left_center;
 

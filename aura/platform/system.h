@@ -506,6 +506,8 @@ namespace aura
 
       virtual void browser(string strUrl, string strBrowser, string strProfile, string strTarget) override;
       virtual void open_profile_link(string strUrl, string strProfile, string strTarget) override;
+      virtual void open_link(string strUrl, string strProfile, string strTarget) override;
+      virtual void open_url(string strUrl, string strProfile, string strTarget) override;
 
 
       virtual void __set_thread_on() override;

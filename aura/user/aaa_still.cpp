@@ -151,7 +151,7 @@ namespace user
             else
             {
 
-               pgraphics->set_font(this);
+               pgraphics->set_font(this, ::user::e_element_none);
 
             }
 
@@ -446,7 +446,7 @@ namespace user
 
       }
 
-      pgraphics->set_font(this);
+      pgraphics->set_font(this, ::user::e_element_none);
 
       string strText(m_strWindowText);
 
@@ -473,7 +473,7 @@ namespace user
       if (m_estyle == style_text)
       {
 
-         pgraphics->set_font(this);
+         pgraphics->set_font(this, ::user::e_element_none);
 
          string str;
 
@@ -760,7 +760,7 @@ namespace user
 
       string strText(get_window_text());
 
-      pgraphics->set_font(this);
+      pgraphics->set_font(this, ::user::e_element_none);
 
       pgraphics->draw_text(strText, rectText, e_align_top_left);
 

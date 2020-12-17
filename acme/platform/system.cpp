@@ -119,6 +119,29 @@ namespace acme
    }
 
 
+   void system::open_profile_link(string strUrl, string strProfile, string strTarget)
+   {
+
+
+   }
+
+
+   void system::open_link(string strUrl, string strProfile, string strTarget)
+   {
+
+
+
+   }
+
+
+   void system::open_url(string strUrl, string strProfile, string strTarget)
+   {
+
+
+   }
+
+
+
    ::estatus system::main_user_async(const ::promise::routine & routine, ::e_priority epriority)
    {
 

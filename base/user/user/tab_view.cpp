@@ -274,7 +274,7 @@ namespace user
 
          pimpactdata->m_puserinteraction = psplitview;
 
-         if (eposition == position_top || eposition == position_bottom)
+         if (eposition == e_position_top || eposition == e_position_bottom)
          {
 
             psplitview->SetSplitOrientation(orientation_horizontal);
@@ -301,7 +301,7 @@ namespace user
 
          ppane2->m_pplaceholder->get_child(pwnd2);
 
-         if (eposition == position_top || eposition == position_left)
+         if (eposition == e_position_top || eposition == e_position_left)
          {
 
             psplitview->SetPane(0, pwnd2, false);
@@ -1028,13 +1028,13 @@ namespace user
       ::object(ptab->get_context_application())
    {
 
-      m_positiona.add(position_top);
+      m_positiona.add(e_position_top);
 
-      m_positiona.add(position_right);
+      m_positiona.add(e_position_right);
 
-      m_positiona.add(position_bottom);
+      m_positiona.add(e_position_bottom);
 
-      m_positiona.add(position_left);
+      m_positiona.add(e_position_left);
 
       m_ptab         = ptab;
 

@@ -26,7 +26,7 @@ namespace user
       m_bFirstShown = false;
       m_idView = FONTSEL_IMPACT;
       //m_puserstyle = this;
-      //m_econtroltype = control_type_list;
+      //m_econtroltype = e_control_type_list;
       m_scrolldataVert.m_bScrollEnable = true;
       m_bEnsureVisible = false;
 

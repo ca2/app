@@ -737,23 +737,23 @@ namespace user
       {
 
          //         pgraphics->set_text_color(pstyle->m_crTextDisabled);
-         brushText->create_solid(get_color(pstyle, ::user::e_element_text, e_state_disabled));
+         brushText->create_solid(get_color(pstyle, e_element_text, e_state_disabled));
 
       }
       else if (is_left_button_pressed())
       {
          //         pgraphics->set_text_color(pstyle->m_crTextPress);
-         brushText->create_solid(get_color(pstyle, ::user::e_element_text, e_state_pressed));
+         brushText->create_solid(get_color(pstyle, e_element_text, e_state_pressed));
       }
       else if (m_itemHover.is_set())
       {
          //         pgraphics->set_text_color(pstyle->m_crTextHover);
-         brushText->create_solid(get_color(pstyle, ::user::e_element_text, e_state_hover));
+         brushText->create_solid(get_color(pstyle, e_element_text, e_state_hover));
       }
       else
       {
          //         pgraphics->set_text_color(pstyle->m_crTextNormal);
-         brushText->create_solid(get_color(pstyle, ::user::e_element_text));
+         brushText->create_solid(get_color(pstyle, e_element_text));
       }
 
       pgraphics->set(brushText);
@@ -840,7 +840,7 @@ namespace user
          if (!is_window_enabled())
          {
 
-            pgraphics->fill_rect(rectClient, get_color(pstyle, ::user::e_element_background, e_state_disabled));
+            pgraphics->fill_rect(rectClient, get_color(pstyle, e_element_background, e_state_disabled));
 
          }
          else if (m_itemHover.is_set() || is_left_button_pressed())
@@ -850,13 +850,13 @@ namespace user
 
             //rectClient.deflate(1,1);
 
-            pgraphics->fill_rect(rectClient, get_color(pstyle, ::user::e_element_background, e_state_pressed));
+            pgraphics->fill_rect(rectClient, get_color(pstyle, e_element_background, e_state_pressed));
 
          }
          else
          {
 
-            pgraphics->fill_rect(rectClient, get_color(pstyle, ::user::e_element_background));
+            pgraphics->fill_rect(rectClient, get_color(pstyle, e_element_background));
 
          }
 

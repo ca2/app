@@ -1353,7 +1353,7 @@ namespace user
 
       auto pstyle = get_style(pgraphics);
 
-      auto colorBackground = get_color(pstyle, ::user::e_element_background);
+      auto colorBackground = get_color(pstyle, e_element_background);
 
       if (colorBackground.m_iA > 0)
       {

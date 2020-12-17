@@ -194,21 +194,21 @@ public:
    //virtual void write_gen_string(::file::file * pfile, void * pmd5ctx, string & str);
    //virtual void read_gen_string(::file::file * pfile, void * pmd5ctx, string & str);
 
-   virtual ::file_result file_get_file(::file::path path, const efileopen & eopen);
+   virtual ::file_result file_get_file(::file::path path, const ::file::eopen & eopen);
 
-   virtual ::file_result data_get_file(string strData, const efileopen & eopen = ::file::mode_read | ::file::type_binary);
+   virtual ::file_result data_get_file(string strData, const ::file::eopen & eopen = ::file::mode_read | ::file::type_binary);
 
-   virtual ::file_result zip_get_file(::file::file * pfile, const efileopen & eopen = ::file::mode_read | ::file::type_binary);
+   virtual ::file_result zip_get_file(::file::file * pfile, const ::file::eopen & eopen = ::file::mode_read | ::file::type_binary);
 
-   virtual ::file_result http_get_file(const payload & varFile, const efileopen & eopen = ::file::mode_read | ::file::type_binary);
+   virtual ::file_result http_get_file(const payload & varFile, const ::file::eopen & eopen = ::file::mode_read | ::file::type_binary);
 
-   virtual ::file_result get_file(const payload & varFile, const efileopen & eopen);
+   virtual ::file_result get_file(const payload & varFile, const ::file::eopen & eopen);
 
-   virtual ::file_result get_reader(const payload & varFile, const efileopen & eopen = ::file::mode_read | ::file::type_binary);
+   virtual ::file_result get_reader(const payload & varFile, const ::file::eopen & eopen = ::file::mode_read | ::file::type_binary);
 
-   virtual ::file_result shared_reader(const payload & varFile, const efileopen & eopen = ::file::mode_read | ::file::type_binary);
+   virtual ::file_result shared_reader(const payload & varFile, const ::file::eopen & eopen = ::file::mode_read | ::file::type_binary);
 
-   virtual ::file_result get_writer(const payload & varFile, const efileopen & eopen = ::file::mode_write | ::file::mode_create | ::file::mode_no_truncate | ::file::defer_create_directory | ::file::type_binary);
+   virtual ::file_result get_writer(const payload & varFile, const ::file::eopen & eopen = ::file::mode_write | ::file::mode_create | ::file::mode_no_truncate | ::file::defer_create_directory | ::file::type_binary);
 
    virtual bool post_output(::file::path pathOut, ::file::path pathDownloading);
 
@@ -316,17 +316,17 @@ public:
 
    //virtual bool is_read_only(const ::file::path & psz);
 
-   inline auto open_for_reading(const payload & varFile, ::u32 nOpenFlags = ::file::type_binary)
+   inline auto open_for_reading(const payload & varFile, const ::file::eopen & eopen = ::file::type_binary)
    {
 
-      return get_file(varFile, nOpenFlags | ::file::mode_read);
+      return get_file(varFile, eopen | ::file::mode_read);
 
    }
 
-   inline auto create_for_writing(const payload & varFile, ::u32 nOpenFlags = ::file::type_binary | ::file::defer_create_directory)
+   inline auto create_for_writing(const payload & varFile, const ::file::eopen & eopen = ::file::type_binary | ::file::defer_create_directory)
    {
 
-      return get_file(varFile, nOpenFlags | ::file::mode_create | ::file::mode_write);
+      return get_file(varFile, eopen | ::file::mode_create | ::file::mode_write);
 
    }
 

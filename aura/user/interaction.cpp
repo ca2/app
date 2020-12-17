@@ -327,7 +327,7 @@ namespace user
 
       //   switch (eelement)
       //   {
-      //   case element_background:
+      //   case e_element_background:
       //      if (pstyle->m_colorBackground.is_set())
       //      {
 
@@ -3185,7 +3185,7 @@ namespace user
 
          pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-         auto colorBackground = get_color(pstyle, ::user::e_element_background);
+         auto colorBackground = get_color(pstyle, e_element_background);
 
          //if (colorref_get_r_value(crBackground) != 255)
          //{
@@ -3207,7 +3207,7 @@ namespace user
 
          pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-         auto colorBackground = get_color(pstyle, ::user::e_element_background);
+         auto colorBackground = get_color(pstyle, e_element_background);
 
          //if (colorref_get_r_value(crBackground) != 255)
          //{

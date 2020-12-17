@@ -848,7 +848,7 @@
 //
 //   //   ev.m_puie = this;
 //
-//   //   ev.m_eevent = event_mouse_leave;
+//   //   ev.m_eevent = e_event_mouse_leave;
 //
 //   //   ev.m_pmessage = pmessage;
 //

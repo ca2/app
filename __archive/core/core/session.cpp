@@ -743,7 +743,7 @@ namespace acme
       }
       else
       {
-         __throw(::exception::exception("not expected e_mouse value"));
+         __throw(::exception::exception("not expected enum_mouse value"));
       }
 
 

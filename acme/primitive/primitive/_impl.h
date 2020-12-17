@@ -49,62 +49,6 @@ inline string ___pointer < T >::type_str()
    return __type_str(T);
 
 }
-//
-//
-//inline bool matter::has_property(const id & id) const { return m_pset && m_pset->has_property(id); }
-//inline property * matter::lookup_property(const id& id) const { return m_pset ? m_pset->find(id) : nullptr; }
-//inline bool matter::remove_key(const id & id) { return m_pset && m_pset->remove_by_name(id); }
-//inline property_set & matter::get_property_set() { defer_propset(); return *m_pset; }
-//inline const property_set & matter::get_property_set() const { ((matter *)this)->defer_propset(); return *m_pset; }
-
-//
-//inline ::i64_array& matter::idarray() const { if (!m_pia) ((matter*)this)->m_pia.create_new(); return *m_pia; }
-//
-//inline bool matter::contains(const property_set & set) const
-//{
-//
-//   if (set.isEmpty())
-//   {
-//
-//      return true;
-//
-//   }
-//
-//   if (m_pset.is_null())
-//   {
-//
-//      return false;
-//
-//   }
-//
-//   return m_pset->contains(set);
-//
-//}
-//
-//inline void matter::defer_propset() { if (!m_pset) ::__construct_new(m_pset); }
-//
-//
-//inline payload & payload::operator = (::image * pimage)
-//{
-//
-//   set_type(type_image, false);
-//
-//   ::add_ref(m_pimage, pimage);
-//
-//   return *this;
-//
-//}
-
-//
-//inline payload::payload(::image * pimage)
-//{
-//
-//   m_etype = type_new;
-//
-//   operator =(pimage);
-//
-//}
-//
 
 
 namespace promise
@@ -2348,40 +2292,6 @@ inline payload __visible(payload varOptions, bool bVisible)
 //future::future(PRED pred) : function(__new(pred_future < PRED >(pred))) { }
 
 
-inline message_box::message_box(const payload& payload)
-{
-
-   if (payload.get_type() == type_string)
-   {
-
-      m_strMessage = payload;
-
-   }
-   else if (payload.has_property("message") && payload["message"].has_char())
-   {
-
-      m_strMessage = payload["message"];
-
-   }
-   else if (payload.has_property("format") && payload["format"].has_char())
-   {
-
-      m_strMessage = payload.propset().format(payload["format"]);
-
-   }
-
-   m_puserprimitive = payload["parent"].cast < ::layered >();
-   m_strTitle = payload["title"];
-   m_emessagebox = (::emessagebox) payload["flags"].i64();
-
-   //if (m_puserprimitive)
-   //{
-
-   //   //m_oswindow = m_puserinteractionParent->get_safe_handle();
-
-   //}
-
-}
 
 
 inline bool property_set::get_string(string& strResult, const id& idKey) const
@@ -2403,49 +2313,6 @@ inline bool property_set::get_string(string& strResult, const id& idKey) const
 }
 
 
-namespace promise
-{
-
-
-   inline bool context::is_up_to_date(const ::promise::subject * phandler) const
-   {
-
-      if (m_iUpdateSerial < 0)
-      {
-
-         return false;
-
-      }
-
-      if (phandler->m_iUpdateSerial < 0)
-      {
-
-         return false;
-
-      }
-
-      return m_iUpdateSerial == phandler->m_iUpdateSerial;
-
-   }
-
-
-   //inline ::id & handler::id()
-   //{
-
-   //   return m_pbacking->m_id;
-
-   //}
-
-
-   //inline const ::id & handler::id() const
-   //{
-
-   //   return m_pbacking->m_id;
-
-   //}
-
-
-} // namespace promise
 
 
 //inline ::estatus method::operator()() const

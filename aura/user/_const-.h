@@ -37,13 +37,13 @@
 //   enum enum_layout
 //   {
 //
-//      layout_sketch, // layouting request ("staging area")
-//      layout_design, // ready to process
+//      e_layout_sketch, // layouting request ("staging area")
+//      e_layout_design, // ready to process
 ////      layout_bitmap, // drawn/ready sketch
 //      e_layout_output, // screen output
 //      e_layout_window, // event window
 //
-//      layout_count_child = layout_design + 1,
+//      e_layout_count_child = e_layout_design + 1,
 //      e_layout_count_owner = e_layout_window + 1,
 //
 //   };
@@ -193,7 +193,7 @@
 //      e_translucency_undefined,
 //      translucency_none,
 //      e_translucency_present,
-//      translucency_total
+//      e_translucency_total
 //
 //   };
 //
@@ -245,7 +245,7 @@
 //      element_item_background,
 //      element_hilite_text,
 //      e_element_icon,
-//      element_background,
+//      e_element_background,
 //      element_separator,
 //      element_face,
 //      e_element_border,
@@ -255,7 +255,7 @@
 //      e_element_drop_down,
 //      e_element_combo_edit,
 //      e_element_item,
-//      e_element_search_edit,
+//      element_search_edit,
 //      element_search_ok,
 //      element_scrollbar,
 //      element_scrollbar_draw,
@@ -301,7 +301,7 @@
 //   enum e_event
 //   {
 //
-//      event_none,
+//      e_event_none,
 //      event_initialize_control,
 //      event_action,
 //      event_button_down,
@@ -309,8 +309,8 @@
 //      event_m_button_down,
 //      event_m_button_up,
 //      event_list_clicked,
-//      event_mouse_enter,
-//      event_mouse_leave,
+//      e_event_mouse_enter,
+//      e_event_mouse_leave,
 //      event_set_check,
 //      event_timer,
 //      event_enter_key,
@@ -438,7 +438,7 @@
 //      e_control_function_save_on_change,
 //      e_control_function_vms_data_edit,
 //      e_control_function_action,
-//      control_function_edit_multi_line,
+//      e_control_function_edit_multi_line,
 //   };
 //
 //
@@ -459,7 +459,7 @@
 //   };
 //
 //
-//   enum e_mouse
+//   enum enum_mouse
 //   {
 //
 //      mouse_left_button,

@@ -249,7 +249,7 @@ namespace user
    void tab_view::_001OnDropTab(index iTab, enum_position eposition)
    {
 
-      if (eposition != e_element_icon)
+      if (eposition != e_position_none)
       {
 
          id id1 = ::user::tab::tab_id(::user::tab::_001GetSel());

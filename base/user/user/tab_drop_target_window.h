@@ -11,8 +11,8 @@ namespace user
    public:
 
 
-      array < enum_position >                m_positiona;
-      ::user::tab *                          m_ptab;
+      array < enum_position >                   m_positiona;
+      ::user::tab* m_ptab;
       index                                  m_iTab;
 
 

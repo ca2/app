@@ -367,14 +367,14 @@ namespace user
 
       auto rectClient = get_client_rect();
 
-      color32_t crEditBackground = get_color(pstyle, ::user::e_element_background);
+      color32_t crEditBackground = get_color(pstyle, e_element_background);
 
       pgraphics->fill_rect(rectClient, crEditBackground);
 
-      cr = get_color(pstyle, ::user::e_element_text);
-      crBk = get_color(pstyle, ::user::e_element_background);
-      crSel = get_color(pstyle, ::user::e_element_text, e_state_selected);
-      crBkSel = get_color(pstyle, ::user::e_element_background, e_state_selected);
+      cr = get_color(pstyle, e_element_text);
+      crBk = get_color(pstyle, e_element_background);
+      crSel = get_color(pstyle, e_element_text, e_state_selected);
+      crBkSel = get_color(pstyle, e_element_background, e_state_selected);
 
       m_pinternal->update(pgraphics, this);
 
@@ -6553,17 +6553,17 @@ finished_update:
 
       auto pstyle = pedit->get_style(pgraphics);
 
-      auto color = pedit->get_color(pstyle, ::user::e_element_text);
+      auto color = pedit->get_color(pstyle, e_element_text);
 
       m_penCaret->create_solid(1.0, color);
 
       m_brushTextCr->create_solid(color);
 
-      color = pedit->get_color(pstyle, ::user::e_element_text, e_state_selected);
+      color = pedit->get_color(pstyle, e_element_text, e_state_selected);
 
       m_brushTextSel->create_solid(color);
 
-      color = pedit->get_color(pstyle, ::user::e_element_text, e_state_new_input);
+      color = pedit->get_color(pstyle, e_element_text, e_state_new_input);
 
       m_brushTextEmpty->create_solid(color);
 

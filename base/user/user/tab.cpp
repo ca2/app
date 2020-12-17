@@ -913,7 +913,7 @@ namespace user
             if (get_element_rect(iTab, rectClose, ::user::e_element_close_tab_button))
             {
 
-               pgraphics->set(get_font(pstyle, ::user::e_element_close_tab_button));
+               pgraphics->set(get_font(pstyle, e_element_close_tab_button));
 
                if (m_itemHover == iTab && m_itemHover == ::user::e_element_close_tab_button)
                {
@@ -1152,7 +1152,7 @@ namespace user
          if (get_element_rect(iVisiblePane, rectClose, e_element_close_tab_button))
          {
 
-            pgraphics->set(get_font(pstyle, ::user::e_element_close_tab_button));
+            pgraphics->set(get_font(pstyle, e_element_close_tab_button));
 
             if (m_itemHover == iVisiblePane  && m_itemHover == e_element_close_tab_button)
             {
@@ -1283,7 +1283,7 @@ namespace user
 
       defer_handle_auto_hide_tabs(false);
 
-      pgraphics->set(get_font(pstyle, ::user::e_element_close_tab_button));
+      pgraphics->set(get_font(pstyle, e_element_close_tab_button));
 
       m_dcextension.GetTextExtent(pgraphics,MAGIC_PALACE_TAB_SIZE,get_data()->m_sizeSep);
 

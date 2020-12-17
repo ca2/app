@@ -5,10 +5,10 @@ namespace file
 {
 
 
-   enum e_filestate
+   enum enum_state
    {
 
-      filestate_read_line_truncated = 1,
+      e_state_read_line_truncated = 1,
 
    };
 
@@ -54,7 +54,7 @@ namespace file
    };
 
 
-   enum e_open
+   enum enum_open
    {
       mode_read = (i32)0x000001,
       mode_write = (i32)0x000002,

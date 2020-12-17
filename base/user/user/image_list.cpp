@@ -381,7 +381,7 @@ namespace user
 
       rectClient.offset(m_pointScroll);
 
-      pgraphics->fill_rect(rectClient, get_color(pstyle, ::user::e_element_background));
+      pgraphics->fill_rect(rectClient, get_color(pstyle, e_element_background));
 
       pgraphics->draw_rect(rectClient, ARGB(255, 192, 192, 192));
 
@@ -564,7 +564,7 @@ namespace user
             if (_001GetItemText(str, item))
             {
 
-               pgraphics->set_text_color(get_color(pstyle, ::user::e_element_text));
+               pgraphics->set_text_color(get_color(pstyle, e_element_text));
 
                pgraphics->draw_text(str, itemText.m_rect, e_align_center);
 

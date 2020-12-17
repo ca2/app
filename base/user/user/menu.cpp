@@ -830,7 +830,7 @@ namespace user
 
       auto pstyle = get_style(pgraphics);
 
-      color32_t crBackground = get_color(pstyle, ::user::e_element_background);
+      color32_t crBackground = get_color(pstyle, e_element_background);
 
       if ((crBackground & ARGB(255, 0, 0, 0)) != 0)
       {

@@ -874,7 +874,7 @@ namespace user
 
       get_client_rect(rectClient);
 
-      auto color = get_color(pstyle, ::user::e_element_background);
+      auto color = get_color(pstyle, e_element_background);
 
       color32_t cr;
 

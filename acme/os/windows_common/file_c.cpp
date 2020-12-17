@@ -253,7 +253,7 @@ int_bool is_file_or_dir_dup(const char * path, ::file::enum_type * petype)
                   if (is_set(petype))
                   {
 
-                     *petype = ::file::type_folder;
+                     *petype = ::file::e_type_folder;
 
                   }
 
@@ -266,7 +266,7 @@ int_bool is_file_or_dir_dup(const char * path, ::file::enum_type * petype)
                   if (is_set(petype))
                   {
 
-                     *petype = ::file::type_file;
+                     *petype = ::file::e_type_file;
 
                   }
 
@@ -291,7 +291,7 @@ int_bool is_file_or_dir_dup(const char * path, ::file::enum_type * petype)
       if (is_set(petype))
       {
 
-         *petype = ::file::type_none;
+         *petype = ::file::e_type_none;
 
       }
 
@@ -305,13 +305,13 @@ int_bool is_file_or_dir_dup(const char * path, ::file::enum_type * petype)
       if (dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
       {
 
-         *petype = ::file::type_folder;
+         *petype = ::file::e_type_folder;
 
       }
       else
       {
 
-         *petype = ::file::type_file;
+         *petype = ::file::e_type_file;
 
       }
 

@@ -75,7 +75,7 @@ namespace android
       virtual ::file::path get_file_path() const override;
       virtual void set_file_path(const ::file::path & path) override;
 
-      virtual ::status::result open(const ::file::path & lpszFileName, const ::efileopen & efileopen) override;
+      virtual ::status::result open(const ::file::path & lpszFileName, const ::file::e_open & eopen) override;
 
       //virtual bool PASCAL GetStatus(const char * lpszFileName, ::file::file_status& rStatus);
 

@@ -89,18 +89,11 @@
     <AppxManifest Include="Package10.appxmanifest" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\..\__archive\storage-uwp\third\binary\Win32\basis\pcre.dll">
-      <Filter>Libraries\x86\basis</Filter>
-    </None>
-    <None Include="..\..\..\__archive\storage-uwp\third\binary\Win32\basis\zlib.dll">
-      <Filter>Libraries\x86\basis</Filter>
-    </None>
     <None Include="uwp_app_net_TemporaryKey.pfx" />
-    <None Include="..\..\..\__archive\storage-uwp\third\binary\x64\basis\pcre.dll">
-      <Filter>Libraries\x64\basis</Filter>
-    </None>
-    <None Include="..\..\..\__archive\storage-uwp\third\binary\x64\basis\zlib.dll">
-      <Filter>Libraries\x64\basis</Filter>
-    </None>
+    <None Include="..\..\..\archive\storage-uwp\third\binary\Win32\basis\pcre.dll" />
+    <None Include="..\..\..\archive\storage-uwp\third\binary\Win32\basis\zlib.dll" />
+    <None Include="..\..\..\archive\storage-uwp\third\binary\x64\basis\pcre.dll" />
+    <None Include="..\..\..\archive\storage-uwp\third\binary\x64\basis\zlib.dll" />
+    <None Include="uwp_app_simple_app_TemporaryKey.pfx" />
   </ItemGroup>
 </Project>

@@ -2674,7 +2674,7 @@ namespace aura
 //      if(has_property("install"))
 //         return true;
 //
-//      file_pointer pfile = Context.file().get_file(Context.dir().appdata() / "applibcache.bin",::file::type_binary | ::file::mode_read);
+//      file_pointer pfile = Context.file().get_file(Context.dir().appdata() / "applibcache.bin",::file::e_open_binary | ::file::e_open_read);
 //
 //      if(!pfile)
 //         return false;
@@ -2750,7 +2750,7 @@ namespace aura
 //      try
 //      {
 //
-//         file = psession->file().get_file(Context.dir().appdata() / "applibcache.bin",::file::defer_create_directory | ::file::type_binary | ::file::mode_create | ::file::mode_write);
+//         file = psession->file().get_file(Context.dir().appdata() / "applibcache.bin",::file::e_open_defer_create_directory | ::file::e_open_binary | ::file::e_open_create | ::file::e_open_write);
 //
 //      }
 //      catch(::exception::exception &)

@@ -68,18 +68,18 @@ bool file_context::exists(const ::file::path &pathParam)
 
    ::file::path path = Context.defer_process_matter_path(pathParam);
 
-   if (!(path & ::file::flag_required) && path.is_empty())
+   if (!(path & ::file::e_flag_required) && path.is_empty())
    {
 
       return false;
 
    }
 
-   ::file::enum_type etype = ::file::type_none;
+   ::file::enum_type etype = ::file::e_type_none;
 
    bool bExists = is_file_or_dir(path, nullptr, &etype);
 
-   return bExists && (etype == ::file::type_file || etype == ::file::type_element);
+   return bExists && (etype == ::file::e_type_file || etype == ::file::e_type_element);
 
 }
 
@@ -109,14 +109,14 @@ bool file_context::is_file_or_dir(const ::file::path &path, payload *pvarQuery, 
 
       property_set set;
 
-      if (path & ::file::flag_required)
+      if (path & ::file::e_flag_required)
       {
 
          set["required"] = true;
 
       }
 
-      if (path & ::file::flag_bypass_cache)
+      if (path & ::file::e_flag_bypass_cache)
       {
 
          set["nocache"] = true;
@@ -530,7 +530,7 @@ bool file_context::try_create_file(const ::file::path &path, bool bTryDelete)
    try
    {
 
-      if (pfile->open(path, ::file::mode_create | ::file::type_binary).failed())
+      if (pfile->open(path, ::file::e_open_create | ::file::e_open_binary).failed())
       {
 
          return false;
@@ -618,7 +618,7 @@ string file_context::as_string(const payload &varFile)
 bool file_context::as_memory(const payload &varFile, memory_base &mem)
 {
 
-   auto pfile = get_file(varFile, ::file::share_deny_none | ::file::mode_read | ::file::type_binary);
+   auto pfile = get_file(varFile, ::file::e_open_share_deny_none | ::file::e_open_read | ::file::e_open_binary);
 
    if (!pfile)
    {
@@ -658,8 +658,8 @@ void file_context::put_lines(const payload &varFile, const string_array &stra)
    try
    {
 
-      spfile = get_file(varFile, ::file::mode_write | ::file::mode_truncate | ::file::mode_create |
-                                 ::file::defer_create_directory);
+      spfile = get_file(varFile, ::file::e_open_write | ::file::e_open_truncate | ::file::e_open_create |
+                                 ::file::e_open_defer_create_directory);
 
    }
    catch (...)
@@ -682,8 +682,8 @@ void file_context::put_lines_utf8(const payload &varFile, const string_array &st
    try
    {
 
-      spfile = get_file(varFile, ::file::type_text | ::file::mode_write | ::file::mode_truncate | ::file::mode_create |
-                                 ::file::defer_create_directory);
+      spfile = get_file(varFile, ::file::e_open_text | ::file::e_open_write | ::file::e_open_truncate | ::file::e_open_create |
+                                 ::file::e_open_defer_create_directory);
 
    }
    catch (...)
@@ -736,7 +736,7 @@ void file_context::lines(string_array &stra, const payload &varFile)
    try
    {
 
-      pfile = get_file(varFile, ::file::type_text | ::file::mode_read);
+      pfile = get_file(varFile, ::file::e_open_text | ::file::e_open_read);
 
    }
    catch (...)
@@ -779,8 +779,8 @@ bool file_context::put_contents(const payload &varFile, const void *pvoidContent
       {
 
          pfile = get_file(varFile,
-                          ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::share_deny_write |
-                          ::file::defer_create_directory);
+                          ::file::e_open_binary | ::file::e_open_write | ::file::e_open_create | ::file::e_open_share_deny_write |
+                          ::file::e_open_defer_create_directory);
 
       }
       catch (::exception_pointer e)
@@ -839,8 +839,8 @@ bool file_context::add_contents(const payload &varFile, const void *pvoidContent
    {
 
       spfile = get_file(varFile,
-                        ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::mode_no_truncate |
-                        ::file::share_exclusive | ::file::defer_create_directory);
+                        ::file::e_open_binary | ::file::e_open_write | ::file::e_open_create | ::file::e_open_no_truncate |
+                        ::file::e_open_share_exclusive | ::file::e_open_defer_create_directory);
 
    }
    catch (...)
@@ -908,8 +908,8 @@ bool file_context::put_contents(const payload &varFile, ::file::file *pfile)
    file_pointer spfile;
 
    spfile = get_file(varFile,
-                     ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::share_deny_write |
-                     ::file::defer_create_directory);
+                     ::file::e_open_binary | ::file::e_open_write | ::file::e_open_create | ::file::e_open_share_deny_write |
+                     ::file::e_open_defer_create_directory);
 
    if (spfile.is_null())
    {
@@ -950,8 +950,8 @@ bool file_context::put_contents_utf8(const payload &varFile, const char *pcszCon
    file_pointer spfile;
 
    spfile = get_file(varFile,
-                     ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::share_deny_write |
-                     ::file::defer_create_directory);
+                     ::file::e_open_binary | ::file::e_open_write | ::file::e_open_create | ::file::e_open_share_deny_write |
+                     ::file::e_open_defer_create_directory);
 
    if (spfile.is_null())
    {
@@ -1077,8 +1077,8 @@ bool file_context::put_contents_utf8(const payload &varFile, const char *pcszCon
       file_pointer ofile;
 
       ofile = get_file(varNew,
-                       ::file::mode_write | ::file::type_binary | ::file::mode_create | ::file::defer_create_directory |
-                       ::file::share_deny_write);
+                       ::file::e_open_write | ::file::e_open_binary | ::file::e_open_create | ::file::e_open_defer_create_directory |
+                       ::file::e_open_share_deny_write);
 
       if (ofile.is_null())
       {
@@ -1095,7 +1095,7 @@ bool file_context::put_contents_utf8(const payload &varFile, const char *pcszCon
       try
       {
 
-         auto ifile = get_reader(varSource, ::file::mode_read | ::file::type_binary | ::file::share_deny_none);
+         auto ifile = get_reader(varSource, ::file::e_open_read | ::file::e_open_binary | ::file::e_open_share_deny_none);
 
          if (!ifile)
          {
@@ -1673,7 +1673,7 @@ file_pointer file_context::get(const ::file::path &name)
 
    Context.dir().mk(name.name());
 
-   file_pointer fileOut = get_file(name, ::file::mode_create | ::file::type_binary | ::file::mode_write);
+   file_pointer fileOut = get_file(name, ::file::e_open_create | ::file::e_open_binary | ::file::e_open_write);
 
    if (fileOut.is_null())
    {
@@ -1787,7 +1787,7 @@ i32 file_context::cmp(const ::file::path &psz1, const ::file::path &psz2)
 //void file_context::dtf(const ::file::path & pszFile, ::file::patha & stra)
 //{
 //
-//   file_pointer spfile = get_file(pszFile, ::file::mode_create | ::file::mode_write | ::file::type_binary);
+//   file_pointer spfile = get_file(pszFile, ::file::e_open_create | ::file::e_open_write | ::file::e_open_binary);
 //
 //   if (spfile.is_null())
 //   {
@@ -1833,7 +1833,7 @@ i32 file_context::cmp(const ::file::path &psz1, const ::file::path &psz2)
 //      MD5_Init(&ctx);
 //      string strRelative = stra[i].relative();
 //      write_gen_string(spfile, &ctx, strRelative);
-//      if (pfile2->open(stra[i], ::file::mode_read | ::file::type_binary).failed())
+//      if (pfile2->open(stra[i], ::file::e_open_read | ::file::e_open_binary).failed())
 //         __throw(::exception::exception("failed"));
 //      write_n_number(spfile, &ctx, (i32)pfile2->get_size());
 //      while ((uRead = pfile2->read(buf, iBufSize)) > 0)
@@ -1858,7 +1858,7 @@ i32 file_context::cmp(const ::file::path &psz1, const ::file::path &psz2)
 //
 //   string strVersion;
 //
-//   file_pointer spfile = get_file(pszFile, ::file::mode_read | ::file::type_binary);
+//   file_pointer spfile = get_file(pszFile, ::file::e_open_read | ::file::e_open_binary);
 //
 //   if (spfile.is_null())
 //      __throw(::exception::exception("failed"));
@@ -1892,7 +1892,7 @@ i32 file_context::cmp(const ::file::path &psz1, const ::file::path &psz2)
 //         read_gen_string(spfile, &ctx, strRelative);
 //         ::file::path strPath = ::file::path(pszDir) / strRelative;
 //         Context.dir().mk(strPath.folder());
-//         if (pfile2->open(strPath, ::file::mode_create | ::file::type_binary | ::file::mode_write).failed())
+//         if (pfile2->open(strPath, ::file::e_open_create | ::file::e_open_binary | ::file::e_open_write).failed())
 //            __throw(::exception::exception("failed"));
 //         read_n_number(spfile, &ctx, iLen);
 //         while (iLen > 0)
@@ -2019,7 +2019,7 @@ file_context::resolve_link(::file::path &pathTarget, const string &strSource, st
 string file_context::get_hash(const payload &varFile, enum_hash ehash)
 {
 
-   auto pfile = get_file(varFile, ::file::type_binary | ::file::mode_read);
+   auto pfile = get_file(varFile, ::file::e_open_binary | ::file::e_open_read);
 
    if (!pfile)
    {
@@ -2063,7 +2063,7 @@ string file_context::nessie(const payload &varFile)
 
    return "";
 
-   //auto pfile = get_file(varFile, ::file::type_binary | ::file::mode_read);
+   //auto pfile = get_file(varFile, ::file::e_open_binary | ::file::e_open_read);
 
    //if (!pfile)
    //{
@@ -2143,7 +2143,7 @@ bool file_context::get_last_write_time(filetime_t *pfiletime, const string &strF
 
 //      pathDownloading = pathOut + ".downloading." + ::str::zero_pad(__str(iTry), 20);
 
-//      fileOut = papp->file().get_file(pathDownloading, ::file::defer_create_directory | ::file::mode_create | ::file::type_binary | ::file::mode_write);
+//      fileOut = papp->file().get_file(pathDownloading, ::file::e_open_defer_create_directory | ::file::e_open_create | ::file::e_open_binary | ::file::e_open_write);
 
 //      if (fileOut.is_set())
 //      {
@@ -2172,7 +2172,7 @@ bool file_context::get_last_write_time(filetime_t *pfiletime, const string &strF
 //bool file_context::prepare_input(::stream & is, const path & pathIn)
 //{
 
-//   file_pointer fileIn = Sess(pobject).file().get_file(pathIn, ::file::type_binary | ::file::mode_read);
+//   file_pointer fileIn = Sess(pobject).file().get_file(pathIn, ::file::e_open_binary | ::file::e_open_read);
 
 //   if (fileIn.is_null())
 //   {
@@ -2247,7 +2247,7 @@ bool file_context::post_output(::file::path pathOut, ::file::path pathDownloadin
 }
 
 
-file_result file_context::file_get_file(::file::path path, const efileopen &eopenFlags)
+file_result file_context::file_get_file(::file::path path, const ::file::e_open &eopenFlags)
 {
 
    file_pointer pfile;
@@ -2289,7 +2289,7 @@ file_result file_context::file_get_file(::file::path path, const efileopen &eope
 }
 
 
-file_result file_context::data_get_file(string strData, const efileopen &eopenFlags)
+file_result file_context::data_get_file(string strData, const ::file::e_open &eopenFlags)
 {
 
    ASSERT(strData.begins_ci("data:"));
@@ -2341,7 +2341,7 @@ file_result file_context::data_get_file(string strData, const efileopen &eopenFl
 }
 
 
-file_result file_context::zip_get_file(::file::file *pfile, const efileopen &eopenFlags)
+file_result file_context::zip_get_file(::file::file *pfile, const ::file::e_open &eopenFlags)
 {
 
    auto pinfile = __new(zip::in_file);
@@ -2367,10 +2367,10 @@ file_result file_context::zip_get_file(::file::file *pfile, const efileopen &eop
 }
 
 
-file_result file_context::http_get_file(const payload &varFile, const efileopen &eopenFlags)
+file_result file_context::http_get_file(const payload &varFile, const ::file::e_open &eopenFlags)
 {
 
-   if (eopenFlags & (::file::mode_write | ::file::mode_truncate | ::file::mode_create))
+   if (eopenFlags & (::file::e_open_write | ::file::e_open_truncate | ::file::e_open_create))
    {
 
       return ::error_invalid_argument;
@@ -2437,7 +2437,7 @@ file_result file_context::http_get_file(const payload &varFile, const efileopen 
 
       sync_lock sl(Context.http().m_pmutexDownload);
 
-      if (!(path & ::file::flag_bypass_cache) && ::file_exists(pathCache))
+      if (!(path & ::file::e_flag_bypass_cache) && ::file_exists(pathCache))
       {
 
          sl.unlock();
@@ -2514,15 +2514,15 @@ file_result file_context::http_get_file(const payload &varFile, const efileopen 
 
 }
 
-::file_result file_context::shared_reader(const payload &varFile, const efileopen &eopenFlags)
+::file_result file_context::shared_reader(const payload &varFile, const ::file::e_open &eopenFlags)
 {
 
-   return get_reader(varFile, eopenFlags | ::file::share_deny_none);
+   return get_reader(varFile, eopenFlags | ::file::e_open_share_deny_none);
 
 }
 
 
-::file_result file_context::get_reader(const payload &varFile, const efileopen &eopenFlags)
+::file_result file_context::get_reader(const payload &varFile, const ::file::e_open &eopenFlags)
 {
 
    ::file_result preader;
@@ -2537,7 +2537,7 @@ file_result file_context::http_get_file(const payload &varFile, const efileopen 
    if (!preader)
    {
 
-      preader = get_file(varFile, eopenFlags | ::file::mode_read);
+      preader = get_file(varFile, eopenFlags | ::file::e_open_read);
 
    }
 
@@ -2546,7 +2546,7 @@ file_result file_context::http_get_file(const payload &varFile, const efileopen 
 }
 
 
-::file_result file_context::get_writer(const payload &varFile, const efileopen &eopenFlags)
+::file_result file_context::get_writer(const payload &varFile, const ::file::e_open &eopenFlags)
 {
 
    ::file_result pwriter;
@@ -2570,7 +2570,7 @@ file_result file_context::http_get_file(const payload &varFile, const efileopen 
 }
 
 
-file_result file_context::get_file(const payload &varFile, const efileopen &eopenFlags)
+file_result file_context::get_file(const payload &varFile, const ::file::e_open &eopenFlags)
 {
 
    try
@@ -2626,19 +2626,19 @@ file_result file_context::get_file(const payload &varFile, const efileopen &eope
 
       }
 
-      if (!(path & ::file::flag_required) &&
+      if (!(path & ::file::e_flag_required) &&
           varFile.is_property_true("required"))
       {
 
-         path |= ::file::flag_required;
+         path |= ::file::e_flag_required;
 
       }
 
-      if (!(path & ::file::flag_bypass_cache)
-          && ((eopenFlags & ::file::no_cache) || varFile.is_property_true("nocache")))
+      if (!(path & ::file::e_flag_bypass_cache)
+          && ((eopenFlags & ::file::e_open_no_cache) || varFile.is_property_true("nocache")))
       {
 
-         path |= ::file::flag_bypass_cache;
+         path |= ::file::e_flag_bypass_cache;
 
       }
 
@@ -2750,14 +2750,14 @@ file_result file_context::get_file(const payload &varFile, const efileopen &eope
 
 
 
-         //   /*            if((nOpenFlags & ::file::mode_create) == 0 && !exists(strPath))
+         //   /*            if((nOpenFlags & ::file::e_open_create) == 0 && !exists(strPath))
          //   {
          //   TRACE("::application::file does not exist!! : \"%s\"",strPath);
          //   return spfile;
          //   }
          //   */
 
-         //if (nOpenFlags & ::file::type_text)
+         //if (nOpenFlags & ::file::e_open_text)
          //{
 
          //   pfile = __new(::file::stdio_file(pobject));
@@ -2765,7 +2765,7 @@ file_result file_context::get_file(const payload &varFile, const efileopen &eope
          //}
          //else
 
-         if (eopenFlags & ::file::type_text)
+         if (eopenFlags & ::file::e_open_text)
          {
 
             pfile = __create_new<::stdio_file>();
@@ -2777,17 +2777,17 @@ file_result file_context::get_file(const payload &varFile, const efileopen &eope
          if (!pfile)
          {
 
-            if (eopen & ::file::type_text)
+            if (eopen & ::file::e_open_text)
             {
 
-               eopen -= ::file::type_text;
+               eopen -= ::file::e_open_text;
 
             }
 
-            if (!(eopen & ::file::type_binary))
+            if (!(eopen & ::file::e_open_binary))
             {
 
-               eopen += ::file::type_binary;
+               eopen += ::file::e_open_binary;
 
             }
 
@@ -3201,13 +3201,13 @@ bool file_context::is_file_or_dir(const ::file::path &pszPath, ::file::enum_type
 //}
 
 
-rp(::file::file) file_context::friendly_get_file(const payload &varFile, ::u32 nOpenFlags)
+rp(::file::file) file_context::friendly_get_file(const payload &varFile, const ::file::e_open & eopenFlags)
 {
 
    try
    {
 
-      return get_file(varFile, nOpenFlags);
+      return get_file(varFile, eopenFlags);
 
    }
    catch (const ::exception_pointer &pe)
@@ -3224,6 +3224,8 @@ rp(::file::file) file_context::friendly_get_file(const payload &varFile, ::u32 n
    }
 
 }
+
+
 //
 //
 //::file_result file_context::get_file(const payload & varFile, ::u32 nOpenFlags)

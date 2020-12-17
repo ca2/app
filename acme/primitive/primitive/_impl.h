@@ -1663,18 +1663,18 @@ inline stream & operator >> (stream & is, ___pointer < T > & sp)
 //
 
 //
-//inline ::file_result matter::get_reader(const payload & varFile, efileopen eopen)
+//inline ::file_result matter::get_reader(const payload & varFile, const ::file::e_open & eopen)
 //{
 //
-//   return get_file(varFile, eopen | ::file::mode_read) ;
+//   return get_file(varFile, eopen | ::file::e_open_read) ;
 //
 //}
 //
 //
-//inline ::file_result matter::get_writer(const payload & varFile, efileopen eopen)
+//inline ::file_result matter::get_writer(const payload & varFile, const ::file::e_open & eopen)
 //{
 //
-//   return get_file(varFile, eopen | ::file::mode_write);
+//   return get_file(varFile, eopen | ::file::e_open_write);
 //
 //}
 

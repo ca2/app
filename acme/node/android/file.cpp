@@ -149,23 +149,23 @@ namespace android
    //   return pFile;
    //}
 
-   ::status::result file::open(const ::file::path & lpszFileName, const ::efileopen & efileopenParam)
+   ::status::result file::open(const ::file::path & lpszFileName, const ::file::e_open & efileopenParam)
    {
 
-      ::efileopen efileopen(efileopenParam);
+      ::file::e_open eopen(efileopenParam);
 
       if (m_iFile != hFileNull)
          close();
 
       ASSERT_VALID(this);
       ASSERT(__is_valid_string(lpszFileName));
-      ASSERT(!(efileopen & ::file::type_text));   // text mode not supported
+      ASSERT(!(eopen & ::file::e_open_text));   // text mode not supported
 
       // file objects are always binary and CreateFile does not need flag
-      efileopen -= ::file::type_binary;
+      eopen -= ::file::e_open_binary;
 
 
-      if((efileopen & ::file::defer_create_directory) && (efileopen & ::file::mode_write))
+      if((eopen & ::file::e_open_defer_create_directory) && (eopen & ::file::e_open_write))
       {
 
          Context.dir().mk(lpszFileName.folder());
@@ -178,20 +178,20 @@ namespace android
       m_strFileName     = lpszFileName;
 
       ASSERT(sizeof(HANDLE) == sizeof(uptr));
-      ASSERT(::file::share_compat == 0);
+      ASSERT(::file::e_open_share_compat == 0);
 
       // ::collection::map read/write mode
-      ASSERT((::file::mode_read | ::file::mode_write | ::file::mode_read_write) == 3);
+      ASSERT((::file::e_open_read | ::file::e_open_write | ::file::e_open_read_write) == 3);
       ::u32 dwFlags =  0;
-      switch (efileopen & 3)
+      switch (eopen & 3)
       {
-      case ::file::mode_read:
+      case ::file::e_open_read:
          dwFlags |=  O_RDONLY;
          break;
-      case ::file::mode_write:
+      case ::file::e_open_write:
          dwFlags |=  O_WRONLY ;
          break;
-      case ::file::mode_read_write:
+      case ::file::e_open_read_write:
          dwFlags |=  O_RDWR;
          break;
       default:
@@ -201,29 +201,29 @@ namespace android
 
       // ::collection::map share mode
       //::u32 dwShareMode = 0;
-      switch (efileopen & 0x70)    // ::collection::map compatibility mode to exclusive
+      switch (eopen & 0x70)    // ::collection::map compatibility mode to exclusive
       {
       default:
          ASSERT(FALSE);  // invalid share mode?
-      case ::file::share_compat:
-      case ::file::share_exclusive:
+      case ::file::e_open_share_compat:
+      case ::file::e_open_share_exclusive:
          //dwShareMode = 0;
          break;
-      case ::file::share_deny_write:
+      case ::file::e_open_share_deny_write:
          //dwFlags |= O_SHLOCK;
          break;
-      case ::file::share_deny_read:
+      case ::file::e_open_share_deny_read:
 //         dwFlags |= O_EXLOCK;
          break;
-      case ::file::share_deny_none:
+      case ::file::e_open_share_deny_none:
          //dwFlags = FILE_SHARE_WRITE|FILE_SHARE_READ;
          break;
       }
 
-      if(efileopen & ::file::mode_create)
+      if(eopen & ::file::e_open_create)
       {
          dwFlags |= O_CREAT;
-         if(!(efileopen & ::file::mode_no_truncate))
+         if(!(eopen & ::file::e_open_no_truncate))
             dwFlags |= O_TRUNC;
       }
 

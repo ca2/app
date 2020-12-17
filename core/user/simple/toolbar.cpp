@@ -1610,16 +1610,26 @@ void simple_tool_command::enable(bool bEnable, const ::action_context & context)
 
    __pointer(simple_toolbar) pToolBar = m_puiOther;
 
-   auto estateNew = pToolBar->get_item_state(m_iIndex) & ~e_toolbar_item_style_disabled;
+   auto estateNew = pToolBar->get_item_state(m_iIndex) - e_toolbar_item_state_enabled;
 
-   if (!bEnable)
+   auto estyleNew = pToolBar->get_item_style(m_iIndex) - e_toolbar_item_style_disabled;
+
+   if (bEnable)
    {
 
-      estateNew |= e_toolbar_item_style_disabled;
+      estateNew |= e_toolbar_item_state_enabled;
+
+   }
+   else
+   {
+
+      estyleNew |= e_toolbar_item_style_disabled;
 
    }
 
    pToolBar->set_item_state((index)m_iIndex, estateNew);
+
+   pToolBar->set_item_style((index)m_iIndex, estyleNew);
 
 }
 
@@ -1667,7 +1677,9 @@ void simple_tool_command::_001SetCheck(enum_check echeck, const ::action_context
 
    }
 
-   pToolBar->set_item_state((index)m_iIndex, estateNew | e_toolbar_item_style_checkbox);
+   pToolBar->set_item_state((index)m_iIndex, estateNew);
+
+   pToolBar->set_item_style((index)m_iIndex, estyle | e_toolbar_item_style_checkbox);
 
 }
 

@@ -12,6 +12,7 @@ class cflag :
 {
 public:
 
+   using ENUM_TYPE = ENUM;
 
    ENUM  m_eenum;
 
@@ -131,7 +132,9 @@ public:
 };
 
 
-
+#define DECLARE_C_FLAG(CFLAG, ENUM) \
+inline ENUM operator | (ENUM e1, ENUM e2) { return (ENUM) ((::u64)e1 | (::u64)e2); } \
+using CFLAG = cflag < ENUM >;
 
 
 

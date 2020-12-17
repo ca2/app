@@ -2060,7 +2060,7 @@ __pointer(::matter) object::running(const char * pszTag) const
 //}
 
 
-::file_result object::get_file(const payload & varFile, efileopen eopen)
+::file_result object::get_file(const payload & varFile, const ::file::e_open & eopen)
 {
 
    return Context.file().get_file(varFile, eopen);
@@ -2222,7 +2222,7 @@ string object::get_text(const payload& payload, const ::id& id)
 }
 
 
-::estatus object::message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, ::emessagebox emessagebox, const ::promise::process & process)
+::estatus object::message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox, const ::promise::process & process)
 {
 
    ::estatus estatus = error_failed;
@@ -2275,7 +2275,7 @@ string object::get_text(const payload& payload, const ::id& id)
 }
 
 
-::estatus object::message_box_timeout(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, const ::duration& durationTimeout, ::emessagebox emessagebox, const ::promise::process & process)
+::estatus object::message_box_timeout(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, const ::duration& durationTimeout, const ::e_message_box & emessagebox, const ::promise::process & process)
 {
 
    ::estatus estatus = error_failed;

@@ -872,7 +872,7 @@ namespace aura
 
       {
 
-         file_pointer file = this->file().get_file(Context.dir().appdata() / "gudo" / strPath, ::file::mode_read);
+         file_pointer file = this->file().get_file(Context.dir().appdata() / "gudo" / strPath, ::file::e_open_read);
 
          if (file.is_null())
          {
@@ -915,7 +915,7 @@ namespace aura
 
       {
 
-         file_pointer file = this->file().get_file(Context.dir().appdata() / "gudo" / strPath, ::file::mode_write | ::file::mode_create | ::file::defer_create_directory);
+         file_pointer file = this->file().get_file(Context.dir().appdata() / "gudo" / strPath, ::file::e_open_write | ::file::e_open_create | ::file::e_open_defer_create_directory);
 
          if (file.is_null())
          {

@@ -51,7 +51,7 @@ namespace file
    }
 
 
-   ::status::result reference::open(const ::file::path & path, const ::file::eopen & eopen)
+   ::status::result reference::open(const ::file::path & path, const ::file::e_open & eopen)
    {
 
       return m_pfile->open(path, eopen);

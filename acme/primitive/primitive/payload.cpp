@@ -5758,14 +5758,14 @@ void payload::null()
       if (propset().is_true("required"))
       {
 
-         path |= ::file::flag_required;
+         path |= ::file::e_flag_required;
 
       }
 
       if (propset().is_true("nocache"))
       {
 
-         path |= ::file::flag_bypass_cache;
+         path |= ::file::e_flag_bypass_cache;
 
       }
 
@@ -5807,14 +5807,14 @@ payload & payload::operator |= (cflag < ::file::e_flag > eflag)
    if (m_etype == type_propset)
    {
 
-      if (eflag & ::file::flag_required)
+      if (eflag & ::file::e_flag_required)
       {
 
          propset()["required"] = true;
 
       }
 
-      if (eflag & ::file::flag_bypass_cache)
+      if (eflag & ::file::e_flag_bypass_cache)
       {
 
          propset()["nocache"] = true;

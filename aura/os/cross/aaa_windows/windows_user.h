@@ -827,11 +827,11 @@ oswindow hWnd,
 
 //#if(WINVER >= 0x0400)
 #define MB_USERICON                 0x00000080L
-#define MB_ICONWARNING              e_message_box_icon_exclamation
+#define e_message_box_icon_warning              e_message_box_icon_exclamation
 #define MB_ICONERROR                MB_ICONHAND
 //#endif /* WINVER >= 0x0400 */
 
-#define MB_ICONINFORMATION          MB_ICONASTERISK
+#define e_message_box_icon_information          MB_ICONASTERISK
 #define e_message_box_icon_stop                 MB_ICONHAND
 
 #define MB_DEFBUTTON1               0x00000000L

@@ -1117,7 +1117,7 @@ namespace dynamic_source
    void script_compiler::cppize1(ds_script * pscript)
    {
       /*file_pointer spfile(e_create);
-      if(spfile->open(pscript->m_strSourcePath, ::file::type_binary | ::file::mode_read | ::file::share_deny_none).failed())
+      if(spfile->open(pscript->m_strSourcePath, ::file::e_open_binary | ::file::e_open_read | ::file::e_open_share_deny_none).failed())
       return;
 
       memory memstorage;

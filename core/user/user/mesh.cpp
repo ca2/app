@@ -348,7 +348,7 @@ namespace user
             if(!bHoverFont)
             {
                
-               pdrawitem->m_pgraphics->set_font(this, ::user::e_state_hover);
+               pdrawitem->m_pgraphics->set_font(this, ::user::e_element_none, ::user::e_state_hover);
 
             }
 
@@ -525,7 +525,7 @@ namespace user
 
                bHoverFont = true;
 
-               pdrawitem->m_pgraphics->set_font(this, ::user::e_state_hover);
+               pdrawitem->m_pgraphics->set_font(this, ::user::e_element_none, ::user::e_state_hover);
 
             }
 
@@ -573,7 +573,7 @@ namespace user
       if(pdrawitem->m_bListItemHover)
       {
          pdrawitem->m_pgraphics->fill_rect(pdrawitem->m_rectItem,ARGB(128,255,255,255));
-         pdrawitem->m_pgraphics->set_font(this, ::user::e_state_hover);
+         pdrawitem->m_pgraphics->set_font(this, ::user::e_element_none, ::user::e_state_hover);
       }
       else
       {

@@ -157,32 +157,32 @@ namespace account
       i32 y = (int) ((49 + 86) * ry);
 
       m_plabelUser->set_dim(x1,y,w2,h1);
-      m_plabelUser->display(::e_display_normal, false);
+      m_plabelUser->display(::e_display_normal, e_activation_no_activate);
 
       y += h1 + pad;
 
       m_peditUser->set_dim(x1,y,w2, h1);
-      m_peditUser->display(::e_display_normal, false);
+      m_peditUser->display(::e_display_normal, e_activation_no_activate);
 
       y += h1 + pad;
 
       m_plabelPassword->set_dim(x1,y,w2, h1);
-      m_plabelPassword->display(::e_display_normal, false);
+      m_plabelPassword->display(::e_display_normal, e_activation_no_activate);
 
       y += h1 + pad;
 
       m_ppassword->set_dim(x1,y,w2,h1);
-      m_ppassword->display(::e_display_normal, false);
+      m_ppassword->display(::e_display_normal, e_activation_no_activate);
 
       y += h1 + pad;
 
       y += pad + h1 + pad;
 
       m_ptap->set_dim(x1,y,w2,h1 * 3);
-      m_ptap->display(::e_display_normal, false);
+      m_ptap->display(::e_display_normal, e_activation_no_activate);
 
       m_ptapClose->set_dim(w - 36,12,24,24);
-      m_ptapClose->display(::e_display_normal, false);
+      m_ptapClose->display(::e_display_normal, e_activation_no_activate);
 
    }
 
@@ -480,7 +480,7 @@ namespace account
 
       m_peditUser->keyboard_set_focus();
 
-      display(::e_display_normal, false);
+      display(::e_display_normal, e_activation_no_activate);
 
    }
 

@@ -502,43 +502,43 @@ public:
  }
 
 
- void Align(::e_align e_align, const rect_type & rect)
+ void Align(::e_align ealign, const rect_type & rect)
  {
 
     POINT_TYPE point;
 
-    if ((e_align & e_align_horizontal) == e_align_horizontal_center)
+    if ((ealign & e_align_horizontal) == e_align_horizontal_center)
     {
 
        point.x = rect.left + (rect.right - rect.left) / 2 - width() / 2 - this->left;
 
     }
-    else if ((e_align & e_align_horizontal) == e_align_left)
+    else if ((ealign & e_align_horizontal) == e_align_left)
     {
 
        point.x = rect.left - this->left;
 
     }
-    else if ((e_align & e_align_horizontal) == e_align_right)
+    else if ((ealign & e_align_horizontal) == e_align_right)
     {
 
        point.x = rect.right - this->right;
 
     }
 
-    if ((e_align & e_align_vertical) == e_align_vertical_center)
+    if ((ealign & e_align_vertical) == e_align_vertical_center)
     {
        
        point.y = rect.top + (rect.bottom - rect.top) / 2 - height() / 2 - this->top;
 
     }
-    else if ((e_align & e_align_vertical) == e_align_top)
+    else if ((ealign & e_align_vertical) == e_align_top)
     {
        
        point.y = rect.top - this->top;
 
     }
-    else if ((e_align & e_align_vertical) == e_align_bottom)
+    else if ((ealign & e_align_vertical) == e_align_bottom)
     {
 
        point.y = rect.bottom - this->bottom;

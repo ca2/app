@@ -776,16 +776,16 @@ oswindow hWnd,
 
 #define MB_ICONHAND                 0x00000010L
 #define MB_ICONQUESTION             0x00000020L
-#define MB_ICONEXCLAMATION          0x00000030L
+#define e_message_box_icon_exclamation          0x00000030L
 #define MB_ICONASTERISK             0x00000040L
 
 //#if(WINVER >= 0x0400)
 #define MB_USERICON                 0x00000080L
-#define MB_ICONWARNING              MB_ICONEXCLAMATION
+#define e_message_box_icon_warning              e_message_box_icon_exclamation
 #define MB_ICONERROR                MB_ICONHAND
 //#endif /* WINVER >= 0x0400 */
 
-#define MB_ICONINFORMATION          MB_ICONASTERISK
+#define e_message_box_icon_information          MB_ICONASTERISK
 #define e_message_box_icon_stop                 MB_ICONHAND
 
 #define MB_DEFBUTTON1               0x00000000L

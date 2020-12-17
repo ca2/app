@@ -8,7 +8,7 @@ public:
    __pointer(::user::primitive)     m_puserprimitive;
    string                           m_strMessage;
    string                           m_strTitle;
-   ::emessagebox                    m_emessagebox;
+   const ::e_message_box &                    m_emessagebox;
    ::duration                       m_durationTimeout;
    callback                         m_callback;
 
@@ -64,11 +64,11 @@ inline payload operator + (const char* psz, const ::enum_message_box& emessagebo
 
 
 
-CLASS_DECL_AURA ::estatus os_message_box(oswindow oswindow, const char* pszText, const char* pszTitle = nullptr, ::emessagebox emessagebox = e_message_box_ok, ::callback callback = ::callback());
-CLASS_DECL_AURA ::estatus message_box(::user::primitive * puiOwner, const char* pszText, const char* pszTitle = nullptr, ::emessagebox emessagebox = e_message_box_ok, ::callback callback = ::callback());
+CLASS_DECL_AURA ::estatus os_message_box(oswindow oswindow, const char* pszText, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+CLASS_DECL_AURA ::estatus message_box(::user::primitive * puiOwner, const char* pszText, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
 
 
-inline ::estatus os_message_box(const char* pszText, const char* pszTitle = nullptr, ::emessagebox emessagebox = e_message_box_ok, ::callback callback = ::callback())
+inline ::estatus os_message_box(const char* pszText, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback())
 {
 
    return os_message_box(nullptr, pszText, pszTitle, emessagebox, callback);
@@ -76,7 +76,7 @@ inline ::estatus os_message_box(const char* pszText, const char* pszTitle = null
 }
 
 
-inline ::estatus message_box(const char* pszText, const char* pszTitle = nullptr, ::emessagebox emessagebox = e_message_box_ok, ::callback callback = ::callback())
+inline ::estatus message_box(const char* pszText, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback())
 {
 
    return message_box(nullptr, pszText, pszTitle, emessagebox, callback);

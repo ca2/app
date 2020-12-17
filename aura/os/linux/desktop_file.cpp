@@ -271,7 +271,7 @@ namespace linux
 
       {
 
-         Context.file().get_file(pathIcon, ::file::mode_read);
+         Context.file().get_file(pathIcon, ::file::e_open_read);
 
       }
 

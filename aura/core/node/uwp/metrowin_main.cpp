@@ -14,7 +14,7 @@ CLASS_DECL_AURA int app_core_main(const char * pszCmdLine)
 
    if(file_exists(::dir::system() / "config\\system\\beg_debug_box.txt"))
    {
-      debug_box("zzzAPPzzz app","zzzAPPzzz app",MB_ICONINFORMATION);
+      debug_box("zzzAPPzzz app","zzzAPPzzz app",e_message_box_icon_information);
    }
 
    ::aura::system * psystem                     = new ::aura::system;

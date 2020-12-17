@@ -604,7 +604,7 @@ bool file_context::output(::file::file * pfileOut, T * p, bool (T:: * pfnOuput)(
 
 //      }
 
-//      file_pointer pfile = App(papp).file().get_file(path, ::file::mode_create | ::file::mode_write | ::file::type_binary | ::file::defer_create_directory);
+//      file_pointer pfile = App(papp).file().get_file(path, ::file::e_open_create | ::file::e_open_write | ::file::e_open_binary | ::file::e_open_defer_create_directory);
 
 //      if (pfile.is_null())
 //      {
@@ -660,7 +660,7 @@ bool file_context::output(::file::file * pfileOut, T * p, bool (T:: * pfnOuput)(
 
 //      }
 
-//      file_pointer pfile = App(papp).file().get_file(path, ::file::mode_read | ::file::type_binary);
+//      file_pointer pfile = App(papp).file().get_file(path, ::file::e_open_read | ::file::e_open_binary);
 
 //      if (pfile.is_null())
 //      {

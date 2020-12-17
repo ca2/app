@@ -1232,7 +1232,11 @@ void simple_frame_window::ShowControlBars(bool bShow, bool bLeaveFullScreenBarsO
          if(pbar != nullptr && (bShow || (!pbar->m_bFullScreenBar || !bLeaveFullScreenBarsOnHide)))
          {
 
-            pbar->display(nShow);
+            enum_activation eactivation = e_activation_default;
+
+            auto edisplay = windows_show_window_to_edisplay(nShow, eactivation);
+
+            pbar->display(edisplay, eactivation);
 
          }
 

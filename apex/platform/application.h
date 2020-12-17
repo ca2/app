@@ -472,16 +472,16 @@ namespace apex
       //// os_* functions generally
       //// reserves a lot of surprises from each
       //// operating system specific behavior
-      //virtual ::estatus os_message_box(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, ::emessagebox emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual ::estatus os_message_box(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
 
 
-      //virtual ::estatus ui_message_box(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, ::emessagebox emessagebox = e_message_box_ok, ::callback callback = ::callback());
-      //virtual ::estatus ui_message_box_timeout(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, const ::duration& durationTimeOut = duration::infinite(), ::emessagebox emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual ::estatus ui_message_box(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual ::estatus ui_message_box_timeout(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, const ::duration& durationTimeOut = duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
 
 
       //using ::apex::context_thread::message_box;
-      //virtual ::estatus message_box(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, ::emessagebox emessagebox = e_message_box_ok, ::callback callback = ::callback());
-      //virtual ::estatus message_box_timeout(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, const ::duration& durationTimeOut = duration::infinite(), ::emessagebox emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual ::estatus message_box(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual ::estatus message_box_timeout(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, const ::duration& durationTimeOut = duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
 
 
       virtual void on_file_new();

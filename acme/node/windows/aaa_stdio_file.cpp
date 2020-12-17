@@ -28,7 +28,7 @@ namespace windows
    }
 
 
-   ::status::result stdio_file::open(const ::file::path & pszFileName, const efileopen & eopen)
+   ::status::result stdio_file::open(const ::file::path & pszFileName, const ::file::e_open & eopen)
 
    {
 
@@ -38,14 +38,14 @@ namespace windows
       ASSERT(__is_valid_string(pszFileName));
 
 
-      if ((eopen & ::file::defer_create_directory) && (eopen & ::file::mode_write))
+      if ((eopen & ::file::e_open_defer_create_directory) && (eopen & ::file::e_open_write))
       {
          ::dir::mk(::dir::name(pszFileName));
 
       }
 
       m_pStream = nullptr;
-//      if(!::windows::file::open(pszFileName,(eopen & ~::file::type_text)))
+//      if(!::windows::file::open(pszFileName,(eopen & ~::file::e_open_text)))
 
       //    {
 
@@ -59,21 +59,21 @@ namespace windows
       i32 nMode = 0;
 
       // determine read/write mode depending on file_pointer mode
-      if (eopen & ::file::mode_create)
+      if (eopen & ::file::e_open_create)
       {
-         if (eopen & ::file::mode_no_truncate)
+         if (eopen & ::file::e_open_no_truncate)
             szMode[nMode++] = 'a';
          else
             szMode[nMode++] = 'w';
       }
-      else if (eopen & ::file::mode_write)
+      else if (eopen & ::file::e_open_write)
          szMode[nMode++] = 'a';
       else
          szMode[nMode++] = 'r';
 
       // add '+' if necessary (when read/write modes mismatched)
-      if (szMode[0] == 'r' && (eopen & ::file::mode_read_write) ||
-            szMode[0] != 'r' && !(eopen & ::file::mode_write))
+      if (szMode[0] == 'r' && (eopen & ::file::e_open_read_write) ||
+            szMode[0] != 'r' && !(eopen & ::file::e_open_write))
       {
          // ::file::seek_current szMode mismatched, need to add '+' to fix
          szMode[nMode++] = '+';
@@ -81,10 +81,10 @@ namespace windows
 
       // will be inverted if not necessary
       i32 nFlags = _O_RDONLY|_O_TEXT;
-      if (eopen & (::file::mode_write|::file::mode_read_write))
+      if (eopen & (::file::e_open_write|::file::e_open_read_write))
          nFlags ^= _O_RDONLY;
 
-      if (eopen & ::file::type_binary)
+      if (eopen & ::file::e_open_binary)
          szMode[nMode++] = 'b', nFlags ^= _O_TEXT;
       else
          szMode[nMode++] = 't';

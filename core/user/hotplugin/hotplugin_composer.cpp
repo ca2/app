@@ -452,7 +452,7 @@ namespace hotplugin
 //
 //#endif
 //
-//         xxdebug_box("box1","box1",MB_ICONINFORMATION);
+//         xxdebug_box("box1","box1",e_message_box_icon_information);
 //
 //         paxissystem->m_bReady = false;
 //

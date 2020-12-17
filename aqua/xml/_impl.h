@@ -13,7 +13,7 @@
 //
 //      Context.dir().mk(Context.dir().name(pszOutput),papp);
 //
-//      file_pointer fileOut = papp->get_context_session()->file_get_file(pszOutput,::file::mode_create | ::file::type_binary | ::file::mode_write);
+//      file_pointer fileOut = papp->get_context_session()->file_get_file(pszOutput,::file::e_open_create | ::file::e_open_binary | ::file::e_open_write);
 //
 //      if(fileOut.is_null())
 //         return false;
@@ -31,12 +31,12 @@
 //
 //      Context.dir().mk(Context.dir().name(pszOutput),papp);
 //
-//      file_pointer fileOut = papp->get_context_session()->file_get_file(pszOutput,::file::mode_create | ::file::type_binary | ::file::mode_write);
+//      file_pointer fileOut = papp->get_context_session()->file_get_file(pszOutput,::file::e_open_create | ::file::e_open_binary | ::file::e_open_write);
 //
 //      if(fileOut.is_null())
 //         return false;
 //
-//      file_pointer fileIn = papp->get_context_session()->file_get_file(lpszInput,::file::type_binary | ::file::mode_read);
+//      file_pointer fileIn = papp->get_context_session()->file_get_file(lpszInput,::file::e_open_binary | ::file::e_open_read);
 //
 //      if(fileIn.is_null())
 //         return false;

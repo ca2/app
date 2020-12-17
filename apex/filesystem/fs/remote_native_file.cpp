@@ -42,7 +42,7 @@ namespace fs
 
    filesize remote_native_file::get_size() const
    {
-      if((m_nOpenFlags & ::file::mode_read) != 0)
+      if((m_nOpenFlags & ::file::e_open_read) != 0)
       {
          return m_httpfile.get_size();
       }
@@ -54,7 +54,7 @@ namespace fs
 
    filesize remote_native_file::seek(filesize lOff, ::file::e_seek nFrom)
    {
-      if((m_nOpenFlags & ::file::mode_read) != 0)
+      if((m_nOpenFlags & ::file::e_open_read) != 0)
       {
          return m_httpfile.seek(lOff, nFrom);
       }
@@ -67,7 +67,7 @@ namespace fs
 
    void remote_native_file::get_file_data()
    {
-      /*if(m_nOpenFlags & ::file::mode_write)
+      /*if(m_nOpenFlags & ::file::e_open_write)
       {
       __throw(::exception::exception("Cannot open remote_native_file for reading and writing simultaneously due the characteristic of possibility of extreme delayed streaming. The way it is implemented would also not work.\n It is build with this premisse."));
       return;
@@ -78,14 +78,16 @@ namespace fs
       strUrl = "http://fs.veriwell.net/fs/get?path=" + System.url().url_encode(System.url().get_script(m_strPath))
                + "&server=" + System.url().url_encode(System.url().get_server(m_strPath));
 
-      u32 dwAdd = 0;
+      ::file::e_open eopenAdd;
 
-      if(m_nOpenFlags & ::file::update_unknown_length_supported)
+      if(m_nOpenFlags & ::file::e_open_update_unknown_length_supported)
       {
-         dwAdd |= ::file::update_unknown_length_supported;
+
+         eopenAdd |= ::file::e_open_update_unknown_length_supported;
+
       }
 
-      m_httpfile.open(strUrl, ::file::type_binary | ::file::mode_read | dwAdd);
+      m_httpfile.open(strUrl, ::file::e_open_binary | ::file::e_open_read | eopenAdd);
 
    }
 

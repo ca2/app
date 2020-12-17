@@ -24,7 +24,7 @@ public:
    virtual ::file::path get_file_path() const override;
 
 
-   virtual ::status::result open(const ::file::path & pszFileName, const ::file::eopen & eopen) override;
+   virtual ::status::result open(const ::file::path & pszFileName, const ::file::e_open & eopen) override;
 
 
    virtual filesize seek(filesize lOff,::file::e_seek  nFrom) override;

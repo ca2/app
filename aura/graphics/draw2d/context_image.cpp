@@ -484,7 +484,7 @@ context_image::~context_image()
 
       pimage->set_nok();
 
-      auto pfile = Context.file().get_file(pathDib, ::file::mode_read | ::file::share_deny_write | ::file::type_binary);
+      auto pfile = Context.file().get_file(pathDib, ::file::e_open_read | ::file::e_open_share_deny_write | ::file::e_open_binary);
 
       if (!pfile)
       {
@@ -565,7 +565,7 @@ context_image::~context_image()
    try
    {
 
-      auto pfile = Context.file().get_file(pathDib, ::file::mode_create | ::file::mode_write | ::file::type_binary | ::file::defer_create_directory);
+      auto pfile = Context.file().get_file(pathDib, ::file::e_open_create | ::file::e_open_write | ::file::e_open_binary | ::file::e_open_defer_create_directory);
 
       if (pfile)
       {

@@ -285,7 +285,7 @@ LRESULT CTSFMainWnd::_OnCommand(::u16 wID, ::u16 wCmd, HWND hWnd)
         break;
     
     case IDM_ABOUT:
-        MessageBox(m_hWnd, TEXT(""), g_szTSFAppTitle, e_message_box_ok | MB_ICONINFORMATION);
+        MessageBox(m_hWnd, TEXT(""), g_szTSFAppTitle, e_message_box_ok | e_message_box_icon_information);
         break;
     
     case IDM_GETPRESERVEDKEY:

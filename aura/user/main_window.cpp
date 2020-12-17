@@ -11,6 +11,8 @@ namespace user
    main_window::main_window()
    {
 
+      m_bitExtendOnParentIfClientOnly = true;
+
    }
 
 

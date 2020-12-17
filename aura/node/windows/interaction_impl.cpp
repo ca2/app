@@ -1499,7 +1499,7 @@ namespace windows
    }
 
 
-   //void interaction_impl::message_box(const char * pszText, const char * pszCaption, ::emessagebox emessagebox, ::callback const function_arg & function)
+   //void interaction_impl::message_box(const char * pszText, const char * pszCaption, const ::e_message_box & emessagebox, ::callback const function_arg & function)
    //{
    //   
    //   if (pszCaption == nullptr)

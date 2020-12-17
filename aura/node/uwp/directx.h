@@ -39,7 +39,7 @@ namespace uwp
       ::mutex                          m_mutexDc;
       size                             m_size;
       ::size                           m_sizeBuffer;
-      ::user::interaction_impl *       m_pimpl;
+      ::uwp::interaction_impl *        m_pimpl;
       bool                             m_bInitialized;
       bool                             m_bInit;
       ::image_pointer                  m_pimage;
@@ -74,7 +74,7 @@ namespace uwp
 
       virtual void OnWindowSizeChange();
 
-      virtual void defer_resize_top_level_windows();
+      //virtual void defer_resize_top_level_windows();
 
       ID2D1DeviceContext* get_device_context();
 

@@ -40,7 +40,7 @@ CLASS_DECL_ACME mutex * x11_mutex();
 void defer_init_x11();
 void x11_handle_just_hooks();
 void x11_defer_handle_just_hooks();
-int x11_message_box(const string & str, const string & strTitle, ::emessagebox emessagebox);
+int x11_message_box(const string & str, const string & strTitle, const ::e_message_box & emessagebox);
 bool __x11_hook_process_event(Display * pdisplay, XEvent & e, XGenericEventCookie * cookie);
 
 

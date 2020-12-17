@@ -15,7 +15,7 @@ enum enum_draw_text
 };
 
 
-using e_draw_text = cflag < enum_draw_text >;
+DECLARE_C_FLAG(e_draw_text, enum_draw_text);
 
 
 #include "text.h"

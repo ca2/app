@@ -371,7 +371,7 @@ namespace uwp
       }
       MESSAGE_LINK(e_message_create, pchannel, this,&interaction_impl::_001OnCreate);
       MESSAGE_LINK(e_message_set_cursor, pchannel, this,&interaction_impl::_001OnSetCursor);
-      MESSAGE_LINK(e_message_erase_background, pchannel, this,&interaction_impl::_001OnEraseBkgnd);
+      //MESSAGE_LINK(e_message_erase_background, pchannel, this,&interaction_impl::_001OnEraseBkgnd);
       MESSAGE_LINK(e_message_move, pchannel, this,&interaction_impl::_001OnMove);
       MESSAGE_LINK(e_message_size, pchannel, this,&interaction_impl::_001OnSize);
       MESSAGE_LINK(e_message_set_focus, pchannel, this, &interaction_impl::_001OnSetFocus);
@@ -5436,12 +5436,12 @@ lCallNextHook:
 #endif
 
 
-   void interaction_impl::_001OnEraseBkgnd(::message::message * pmessage)
-   {
-      SCAST_PTR(::message::erase_bkgnd,perasebkgnd,pmessage);
-      perasebkgnd->m_bRet = true;
-      perasebkgnd->set_result(TRUE);
-   }
+   //void interaction_impl::_001OnEraseBkgnd(::message::message * pmessage)
+   //{
+   //   SCAST_PTR(::message::erase_bkgnd,perasebkgnd,pmessage);
+   //   perasebkgnd->m_bRet = true;
+   //   perasebkgnd->set_result(TRUE);
+   //}
 
 
    void interaction_impl::_001BaseWndInterfaceMap()
@@ -6310,6 +6310,26 @@ namespace uwp
 
    }
 
+
+   void interaction_impl::on_layout(::draw2d::graphics_pointer & pgraphics)
+   {
+
+      ::user::interaction_impl::on_layout(pgraphics);
+
+      rect rectClient;
+
+      m_puserinteraction->get_client_rect(rectClient);
+
+      if (rectClient.is_empty())
+      {
+
+         return;
+
+      }
+
+      m_bNotifyLayoutCompletedPending = true;
+
+   }
 
 
 } // namespace uwp

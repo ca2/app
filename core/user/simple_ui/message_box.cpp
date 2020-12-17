@@ -30,7 +30,7 @@ namespace simple_ui
 {
 
 
-   message_box::message_box(::object * pobject,const char * pszMessage,const char * pszTitle, ::emessagebox emessagebox, ::duration durationTimeout):
+   message_box::message_box(::object * pobject,const char * pszMessage,const char * pszTitle, const ::e_message_box & emessagebox, ::duration durationTimeout):
       ::object(pobject)
    {
 

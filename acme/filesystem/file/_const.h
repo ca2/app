@@ -19,17 +19,17 @@ namespace file
    {
 
       e_flag_none = 0,
-      flag_required = 1 << 0,
-      flag_bypass_cache = 1 << 1,
-      flag_dont_resolve_alias = 1 << 2,
-      flag_resolve_alias = 1 << 3,
-      flag_get_local_path = 1 << 4,
-      FlagInZip = 1 << 5,
-      FlagFolder = 1 << 6,
-      FlagFolderEx001 = 1 << 7,
-      FlagFolderEx001Calc = 1 << 8,
-      FlagHasSubFolder = 1 << 9,
-      FlagHasSubFolderUnknown = 1 << 10
+      e_flag_required = 1 << 0,
+      e_flag_bypass_cache = 1 << 1,
+      e_flag_dont_resolve_alias = 1 << 2,
+      e_flag_resolve_alias = 1 << 3,
+      e_flag_get_local_path = 1 << 4,
+      e_flag_in_zip = 1 << 5,
+      e_flag_folder = 1 << 6,
+      e_flag_folder_ex001 = 1 << 7,
+      e_flag_folder_ex001_calc = 1 << 8,
+      e_flag_has_subfolder = 1 << 9,
+      e_flag_has_subfolder_unknown = 1 << 10
 
    };
 
@@ -56,30 +56,30 @@ namespace file
 
    enum enum_open
    {
-      mode_read = (i32)0x000001,
-      mode_write = (i32)0x000002,
-      mode_read_write = (i32)0x000003,
-      share_compat = (i32)0x000000,
-      share_exclusive = (i32)0x000010,
-      share_deny_write = (i32)0x000020,
-      share_deny_read = (i32)0x000030,
-      share_deny_none = (i32)0x000040,
-      share_mask = share_deny_none|share_deny_read|share_deny_write|share_exclusive,
-      mode_no_inherit = (i32)0x000080,
-      mode_create = (i32)0x001000,
-      mode_no_truncate = (i32)0x002000,
-      type_text = (i32)0x004000, // type_text and type_binary are used in
-      type_binary = (i32)0x008000, // derived classes only
-      defer_create_directory = (i32)0x010000,
-      update_unknown_length_supported = (i32)0x020000,
-      mode_truncate = (i32)0x040000,
-      no_callstack = (i32)0x080000,
-      no_cache = (i32)0x100000,
-      no_share_violation_wait = (i32)0x200000,
-      binary = type_binary,
-      out = mode_write,
-      in = mode_read,
-      trunc = mode_truncate
+      e_open_read = (i32)0x000001,
+      e_open_write = (i32)0x000002,
+      e_open_read_write = (i32)0x000003,
+      e_open_share_compat = (i32)0x000000,
+      e_open_share_exclusive = (i32)0x000010,
+      e_open_share_deny_write = (i32)0x000020,
+      e_open_share_deny_read = (i32)0x000030,
+      e_open_share_deny_none = (i32)0x000040,
+      e_open_share_mask = e_open_share_deny_none | e_open_share_deny_read | e_open_share_deny_write | e_open_share_exclusive,
+      e_open_no_inherit = (i32)0x000080,
+      e_open_create = (i32)0x001000,
+      e_open_no_truncate = (i32)0x002000,
+      e_open_text = (i32)0x004000, // type_text and type_binary are used in
+      e_open_binary = (i32)0x008000, // derived classes only
+      e_open_defer_create_directory = (i32)0x010000,
+      e_open_update_unknown_length_supported = (i32)0x020000,
+      e_open_truncate = (i32)0x040000,
+      e_open_no_callstack = (i32)0x080000,
+      e_open_no_cache = (i32)0x100000,
+      e_open_no_share_violation_wait = (i32)0x200000,
+      //binary = type_binary,
+      //out = mode_write,
+      //in = mode_read,
+      //trunc = mode_truncate
    };
 
 

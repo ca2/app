@@ -58,6 +58,10 @@ namespace user
 
       //m_puserinteractionParent = nullptr;
 
+      m_bitExtendOnParentIfClientOnly = false;
+
+      m_bitExtendOnParent = false;
+
       m_bDerivedHeight = false;
 
       m_bLayoutModified = false;
@@ -6773,6 +6777,34 @@ namespace user
       m_pimpl->on_layout(pgraphics);
 
       on_layout(pgraphics);
+
+      auto puiptraChild = m_puiptraChild;
+
+      if (puiptraChild)
+      {
+
+         ::rect rectClient;
+
+         get_client_rect(rectClient);
+
+         auto children = puiptraChild->m_interactiona;
+
+         for (auto & pinteraction : children)
+         {
+
+            if (pinteraction->m_bitExtendOnParent ||
+               (pinteraction->m_bitExtendOnParentIfClientOnly
+                  && Application.is_true("client_only")))
+            {
+
+               pinteraction->place(rectClient);
+
+            }
+
+         }
+
+      }
+
 
       //if (::is_set(m_playout))
       //{

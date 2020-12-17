@@ -769,18 +769,18 @@ inline ::estatus context::save_to_file(const ::payload& varFile, const ::matter*
 }
 
 
-inline ::file_result object::get_reader(const payload & varFile, const ::file::eopen & eopen)
+inline ::file_result object::get_reader(const payload & varFile, const ::file::e_open & eopen)
 {
 
-   return get_file(varFile, eopen | ::file::mode_read) ;
+   return get_file(varFile, eopen | ::file::e_open_read) ;
 
 }
 
 
-inline ::file_result object::get_writer(const payload & varFile, const ::file::eopen & eopen)
+inline ::file_result object::get_writer(const payload & varFile, const ::file::e_open & eopen)
 {
 
-  return get_file(varFile, eopen | ::file::mode_write);
+  return get_file(varFile, eopen | ::file::e_open_write);
 
 }
 
@@ -1421,7 +1421,7 @@ inline ::estatus context_object::__construct_new(__pointer(TYPE)& pbase)
 //
 //     m_puserprimitive = __user_primitive(payload["parent"].cast < ::layered >());
 //     m_strTitle = payload["title"];
-//     m_emessagebox = (::emessagebox) payload["flags"].i64();
+//     m_emessagebox = (const ::e_message_box &) payload["flags"].i64();
 //
 //     //if (m_puserprimitive)
 //     //{

@@ -55,7 +55,7 @@ CLASS_DECL_ACME void __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_
 //
 //   psystem->startup_command(pcommand);
 //
-//   //MessageBox(nullptr, "box1", "box1", MB_ICONINFORMATION);
+//   //MessageBox(nullptr, "box1", "box1", e_message_box_icon_information);
 //
 //   psystem->main();
 //

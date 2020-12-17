@@ -8,9 +8,9 @@ class CLASS_DECL_AURA draw_text :
 public:
 
 
-   ::rect                        m_rect;
-   ::e_align                     m_ealign;
-   ::e_draw_text                 m_edrawtext;
+   ::rect                     m_rect;
+   ::e_align                  m_ealign;
+   ::e_draw_text              m_edrawtext;
 
 
    draw_text() {  }

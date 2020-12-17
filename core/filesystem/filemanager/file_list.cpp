@@ -983,7 +983,7 @@ namespace filemanager
             if (Context.dir().is(pathItem))
             {
 
-               item.m_flags.add(::file::FlagFolder);
+               item.m_flags.add(::file::e_flag_folder);
 
             }
 
@@ -1089,7 +1089,7 @@ namespace filemanager
             if (pathFinal.m_iDir == 1)
             {
 
-               spitem->m_flags.add(::file::FlagFolder);
+               spitem->m_flags.add(::file::e_flag_folder);
 
             }
 
@@ -1715,7 +1715,7 @@ namespace filemanager
       if (Context.dir().is(pathFinal))
       {
 
-         item.m_flags.add(::file::FlagFolder);
+         item.m_flags.add(::file::e_flag_folder);
 
       }
 

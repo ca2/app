@@ -280,7 +280,7 @@ namespace http
 
                      }
 
-                     file_pointer spfile(Context.file().get_file(strTempFile, ::file::defer_create_directory | ::file::type_binary | ::file::mode_create | ::file::mode_write));
+                     file_pointer spfile(Context.file().get_file(strTempFile, ::file::e_open_defer_create_directory | ::file::e_open_binary | ::file::e_open_create | ::file::e_open_write));
 
                      //sl.unlock();
 

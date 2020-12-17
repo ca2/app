@@ -212,7 +212,7 @@ namespace experience
 
             auto rectRequest = m_pframewindow->layout().sketch().screen_rect();
 
-            index iMatchingMonitor = m_pframewindow->good_move(rectRequest, nullptr, true);
+            index iMatchingMonitor = m_pframewindow->good_move(rectRequest, nullptr);
 
             if (iMatchingMonitor >= 0)
             {

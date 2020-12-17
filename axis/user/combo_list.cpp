@@ -229,7 +229,7 @@ namespace user
 
 #endif
 
-         pgraphics->draw_text(strItem, rectText, 0);
+         pgraphics->draw_text(strItem, rectText);
 
       }
 
@@ -456,7 +456,7 @@ namespace user
       if (is_window_visible(::user::e_layout_sketch))
       {
 
-         display(false);
+         display(e_display_hide);
 
          set_need_redraw();
 

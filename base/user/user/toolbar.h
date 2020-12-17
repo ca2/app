@@ -15,8 +15,8 @@ namespace user
       index                               m_iImage;
       ::image_pointer                     m_pimage;
       id                                  m_id;
-      etoolbar_item_state                 m_estate;
-      etoolbar_item_style                 m_estyle;
+      e_toolbar_item_state                m_estate;
+      e_toolbar_item_style                m_estyle;
       string                              m_str;
       ::rect                              m_rect;
       bool                                m_bEnableIfHasCommandHandler;
@@ -99,11 +99,11 @@ namespace user
       ::u32 GetItemID(index nIndex);
       virtual void GetItemRect(index nIndex, RECT32 * prect);
 
-      etoolbar_item_style get_item_style(index iIndex);
-      void set_item_style(index iIndex, const etoolbar_item_style & estyle);
+      e_toolbar_item_style get_item_style(index iIndex);
+      void set_item_style(index iIndex, const e_toolbar_item_style & estyle);
 
-      etoolbar_item_state get_item_state(index iIndex);
-      void set_item_state(index iIndex, const etoolbar_item_state & estate);
+      e_toolbar_item_state get_item_state(index iIndex);
+      void set_item_state(index iIndex, const e_toolbar_item_state & estate);
 
       ::user::enum_state get_item_user_state(index iIndex);
 

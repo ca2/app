@@ -95,7 +95,10 @@ namespace uwp
 
       void _002OnDraw(::image * pimage);
 
-      DECL_GEN_SIGNAL(_001OnEraseBkgnd);
+      void on_layout(::draw2d::graphics_pointer & pgraphics);
+
+
+      //DECL_GEN_SIGNAL(_001OnEraseBkgnd);
       DECL_GEN_SIGNAL(_001OnMove);
       DECL_GEN_SIGNAL(_001OnSize);
       // DECL_GEN_SIGNAL(_001OnShowWindow);

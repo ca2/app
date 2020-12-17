@@ -658,7 +658,7 @@ namespace userfs
       if (fs_data()->is_dir(item.get_final_path()))
       {
 
-         item.m_flags.add(::file::FlagFolder);
+         item.m_flags.add(::file::e_flag_folder);
 
       }
 

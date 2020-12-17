@@ -2971,7 +2971,7 @@ namespace apex
 //      if(has_property("install"))
 //         return true;
 //
-//      file_pointer pfile = Context.file().get_file(Context.dir().appdata() / "applibcache.bin",::file::type_binary | ::file::mode_read);
+//      file_pointer pfile = Context.file().get_file(Context.dir().appdata() / "applibcache.bin",::file::e_open_binary | ::file::e_open_read);
 //
 //      if(!pfile)
 //         return false;
@@ -3047,7 +3047,7 @@ namespace apex
 //      try
 //      {
 //
-//         file = psession->file().get_file(Context.dir().appdata() / "applibcache.bin",::file::defer_create_directory | ::file::type_binary | ::file::mode_create | ::file::mode_write);
+//         file = psession->file().get_file(Context.dir().appdata() / "applibcache.bin",::file::e_open_defer_create_directory | ::file::e_open_binary | ::file::e_open_create | ::file::e_open_write);
 //
 //      }
 //      catch(::exception::exception &)
@@ -5601,7 +5601,7 @@ string get_bundle_app_library_name();
 
             auto pfuture = __sync_future();
 
-            os_message_box(strMessage, "Could not open required library. Want to give an yes/no answer insted of pression cancel?", e_message_box_icon_exclamation | MB_YESNOCANCEL, pfuture);
+            os_message_box(strMessage, "Could not open required library. Want to give an yes/no answer insted of pression cancel?", e_message_box_icon_exclamation | e_message_box_yes_no_cancel, pfuture);
 
             pfuture->wait(10_s);
 

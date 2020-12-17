@@ -19,7 +19,7 @@ int ui_MessageBoxA(void * oswindow, const char * pszMessageParam, const char * p
 CLASS_DECL_AXIS string message_box_result_to_string(int iResult);
 
 
-::estatus os_message_box(oswindow oswindow, const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox, ::callback callback )
+::estatus os_message_box(oswindow oswindow, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, ::callback callback )
 {
 
    string strMessage(pszMessage); // string "absorbs" nullptr pointers into ""

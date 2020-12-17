@@ -398,7 +398,7 @@ namespace user
          {
             if (!bHoverFont)
             {
-               pdrawitem->m_pgraphics->set_font(this, e_state_hover);
+               pdrawitem->m_pgraphics->set_font(this, ::user::e_element_none, e_state_hover);
                //pdrawitem->m_pgraphics->set(m_pdrawlistitem->m_pfont);
             }
          }
@@ -545,7 +545,7 @@ namespace user
 
                bHoverFont = true;
 
-               pdrawitem->m_pgraphics->set_font(this, ::user::e_state_hover);
+               pdrawitem->m_pgraphics->set_font(this, ::user::e_element_none, ::user::e_state_hover);
 
             }
 
@@ -817,7 +817,7 @@ namespace user
       if (pdrawitem->m_bListItemHover)
       {
 
-         pdrawitem->m_pgraphics->set_font(this, ::user::e_state_hover);
+         pdrawitem->m_pgraphics->set_font(this, ::user::e_element_none, ::user::e_state_hover);
 
       }
       else
@@ -5876,18 +5876,18 @@ namespace user
    //}
 
 
-   void list::_001EnsureVisible(index iItem, ::e_align e_align, bool bRedraw)
+   void list::_001EnsureVisible(index iItem, ::e_align ealign, bool bRedraw)
    {
 
       auto pointOffset = get_viewport_offset();
 
-      if (e_align & e_align_vertical_center)
+      if (ealign & e_align_vertical_center)
       {
 
          iItem = iItem - (max(0, m_nDisplayCount - 2) / 2);
 
       }
-      else if (e_align & e_align_bottom)
+      else if (ealign & e_align_bottom)
       {
 
          iItem = min(iItem + m_nDisplayCount - 1, _001GetItemCount() - 1);
@@ -7587,9 +7587,11 @@ namespace user
 
             auto pstyle = m_plist->get_style(m_pgraphics);
 
-            int iDrawTextFlags = m_plist->get_int(pstyle, e_int_list_item_draw_text_flags);
+            auto ealign = (::enum_align) m_plist->get_int(pstyle, e_int_list_item_text_align);
 
-            m_pgraphics->draw_text(m_strText, m_rectText, iDrawTextFlags);
+            auto edrawtext = (::enum_draw_text) m_plist->get_int(pstyle, e_int_list_item_draw_text_flags);
+
+            m_pgraphics->draw_text(m_strText, m_rectText, ealign, edrawtext);
 
             //m_pgraphics->fill_rect(m_rectText.left, m_rectText.top, 100, 100, ARGB(128, 100, 125, 255));
 
@@ -7729,7 +7731,7 @@ namespace user
    }
 
 
-   e_align list::get_draw_text_align(EView eview)
+   ::e_align list::get_draw_text_align(EView eview)
    {
 
       return m_pdrawmeshitem->m_ealign;
@@ -7737,7 +7739,7 @@ namespace user
    }
 
 
-   e_draw_text list::get_draw_text_flags(EView eview)
+   ::e_draw_text list::get_draw_text_flags(EView eview)
    {
 
       return m_pdrawmeshitem->m_edrawtext;

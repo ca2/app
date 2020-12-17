@@ -481,7 +481,7 @@ namespace sockets
          try
          {
 
-            if (spfile->open(strFile, ::file::type_binary | ::file::mode_read | ::file::share_deny_none).failed())
+            if (spfile->open(strFile, ::file::e_open_binary | ::file::e_open_read | ::file::e_open_share_deny_none).failed())
             {
 
                __throw(io_exception(::error_io, "http_socket::SendResponseBody(1) file=" + strFile + "\n"));

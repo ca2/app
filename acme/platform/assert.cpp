@@ -7,18 +7,18 @@
 
 //#if defined(__APPLE__)
 
-//void _os_message_box(const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox, ::future future);
+//void _os_message_box(const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, ::future future);
 
 //#elif defined(_UWP)
 
-//::estatus _os_message_box(const char* pszMessage, const char* pszTitle, ::emessagebox emessagebox, ::future future);
+//::estatus _os_message_box(const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox, ::future future);
 
 //#else
 
 #ifdef _UWP
-::estatus _os_message_box(const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox, const ::promise::process & process); 
+::estatus _os_message_box(const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, const ::promise::process & process); 
 #else
-int _os_message_box(const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox);
+int _os_message_box(const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox);
 #endif
 
 
@@ -46,10 +46,10 @@ namespace acme
 
       string            m_strText;
       string            m_strTitle;
-      ::emessagebox     m_emessagebox;
+      const ::e_message_box &     m_emessagebox;
 
 
-      os_message_box(const string & strText, const string & strTitle, ::emessagebox emessagebox) :
+      os_message_box(const string & strText, const string & strTitle, const ::e_message_box & emessagebox) :
          m_strText(strText),
          m_strTitle(strTitle),
          m_emessagebox(emessagebox)
@@ -88,7 +88,7 @@ namespace acme
 #ifdef _UWP
 
 
-::estatus os_message_box(const char * pszText, const char * pszTitle, ::emessagebox emessagebox, const ::promise::process & process)
+::estatus os_message_box(const char * pszText, const char * pszTitle, const ::e_message_box & emessagebox, const ::promise::process & process)
 {
 
    return _os_message_box(pszText, pszTitle, emessagebox, process);
@@ -99,7 +99,7 @@ namespace acme
 #else
 
 
-::estatus os_message_box(const char * pszText, const char * pszTitle, ::emessagebox emessagebox, const ::promise::process & process)
+::estatus os_message_box(const char * pszText, const char * pszTitle, const ::e_message_box & emessagebox, const ::promise::process & process)
 {
 
    auto posmessagebox = __new(::acme::os_message_box(pszText, pszTitle, emessagebox));

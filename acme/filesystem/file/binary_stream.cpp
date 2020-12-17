@@ -491,9 +491,9 @@ void binary_stream::read(id & id)
 //
 //   ::stream stream(e_create_new, get_object(), FIRST_VERSION);
 //
-//   ::efileopen nOpenFlags;
+//   ::file::e_open nOpenFlags;
 //
-//   nOpenFlags = ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::mode_truncate | ::file::defer_create_directory | ::file::share_exclusive;
+//   nOpenFlags = ::file::e_open_binary | ::file::e_open_write | ::file::e_open_create | ::file::e_open_truncate | ::file::e_open_defer_create_directory | ::file::e_open_share_exclusive;
 //
 //   stream.m_pfile = Context.file().get_file(path, nOpenFlags);
 //
@@ -516,7 +516,7 @@ void binary_stream::read(id & id)
 //
 //   ::stream stream(e_create_new, get_object(), FIRST_VERSION);
 //
-//   stream.m_pfile = Context.file().get_reader(path, ::file::share_deny_write);
+//   stream.m_pfile = Context.file().get_reader(path, ::file::e_open_share_deny_write);
 //
 //   matter.read(*this);
 //
@@ -1180,7 +1180,7 @@ filesize binary_stream::seek_from_begin(filesize position)
 bool binary_stream::is_reader_null()
 {
 
-   return m_p.is_null() || !(m_p->m_eopen & ::file::mode_read);
+   return m_p.is_null() || !(m_p->m_eopen & ::file::e_open_read);
 
 }
 
@@ -1190,7 +1190,7 @@ bool binary_stream::is_reader_null()
 bool binary_stream::is_reader_set()
 {
 
-   return m_p.is_set() && (m_p->m_eopen & ::file::mode_read);
+   return m_p.is_set() && (m_p->m_eopen & ::file::e_open_read);
 
 }
 

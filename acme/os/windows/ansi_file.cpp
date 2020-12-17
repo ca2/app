@@ -28,17 +28,17 @@ int ansi_file_flag(int iFlag)
 
    int i = 0;
 
-   if(iFlag & ::file::type_binary)
+   if(iFlag & ::file::e_open_binary)
    {
 
       i |= _O_BINARY;
 
    }
 
-   if(iFlag & ::file::mode_read)
+   if(iFlag & ::file::e_open_read)
    {
 
-      if(iFlag & ::file::mode_write)
+      if(iFlag & ::file::e_open_write)
       {
 
          i |= _O_RDWR;
@@ -52,7 +52,7 @@ int ansi_file_flag(int iFlag)
       }
 
    }
-   else if(iFlag & ::file::mode_write)
+   else if(iFlag & ::file::e_open_write)
    {
 
       i |= _O_WRONLY;

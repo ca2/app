@@ -14,30 +14,31 @@ public:
    virtual ::estatus initialize(::layered * pobjectContext) override;
 
 
-
-
    virtual ::estatus init_system();
    virtual ::estatus init_context();
+
    
    virtual ::estatus update_module_path();
 
 
    virtual ::status::result copy(payload varTarget, payload varSource, bool bFailIfExists = false, e_extract eextract = extract_first);
-   virtual ::status::result move(const ::file::path & pszNew, const ::file::path & psz);
-   virtual ::status::result del(const ::file::path & psz);
-   virtual ::file::path duplicate(const ::file::path & psz);
-   virtual ::file::path paste(const ::file::path & pszLocation, const ::file::path & path);
-   virtual ::status::result rename(const ::file::path & pszNew, const ::file::path & psz);
+   virtual ::status::result move(const ::file::path & pathNew, const ::file::path & path);
+   virtual ::status::result del(const ::file::path & path);
+   virtual ::file::path duplicate(const ::file::path & path);
+   virtual ::file::path paste(const ::file::path & pathLocation, const ::file::path & path);
+   virtual ::status::result rename(const ::file::path & pathNew, const ::file::path & path);
 
-   virtual void trash_that_is_not_trash(const ::file::path & psz);
-   virtual void trash_that_is_not_trash(::file::patha & stra);
+
+   virtual void trash_that_is_not_trash(const ::file::path & path);
+   virtual void trash_that_is_not_trash(::file::patha & patha);
+
 
    virtual bool get_status(const ::file::path & path, ::file::file_status & status);
    virtual ::status::result set_status(const ::file::path & path, const ::file::file_status & status);
 
+
    virtual ::status::result replace(const ::file::path & pszContext, const string & pszFind, const string & pszReplace);
 
-   //virtual bool exists(::file::path path);
 
    virtual bool is_file_or_dir(const ::file::path & path, payload * pvarQuery, ::file::enum_type * petype);
    virtual bool is_file_or_dir(const ::file::path & pszPath, ::file::enum_type * petype = nullptr);
@@ -45,15 +46,19 @@ public:
 
    virtual payload length(const ::file::path & path);
 
+
    virtual payload length(const ::file::path & path, payload * pvarQuery);
+
 
    virtual ::file::path module();
 
    virtual ::file::path ca2module();
 
-   ::file::path time(const ::file::path & pszBasePath, i32 iDepth = 0, const string & pszPrefix = nullptr, const string & pszSuffix = nullptr, bool bTryDelete = false);
-   ::file::path time_square(const string & pszPrefix = nullptr, const string & pszSuffix = nullptr);
-   ::file::path time_log(const string & pszId);
+   
+   ::file::path time(const ::file::path & pathBasePath, i32 iDepth = 0, const string & strPrefix = nullptr, const string & strSuffix = nullptr, bool bTryDelete = false);
+   ::file::path time_square(const string & strPrefix = nullptr, const string & strSuffix = nullptr);
+   ::file::path time_log(const string & str);
+
 
    virtual file_pointer time_square_file(const string & pszPrefix = nullptr, const string & pszSuffix = nullptr);
    virtual file_pointer get(const ::file::path & name);
@@ -105,6 +110,7 @@ public:
 
    }
 
+
    template < typename TYPE >
    inline ::estatus binary_set(const ::payload & varFile, const TYPE & t)
    {
@@ -132,9 +138,11 @@ public:
    virtual i32 filterex_time_square(const char * pszPrefix, ::file::patha & stra);
    virtual bool try_create_file(const ::file::path & path, bool bTryDelete);
 
+
    virtual payload as_json(const payload & varFile);
    virtual string as_string(const payload & varFile);
    virtual bool as_memory(const payload & varFile, memory_base & mem);
+
 
    virtual void lines(string_array & stra, const payload & varFile);
    virtual void put_lines(const payload & varFile, const string_array & stra);
@@ -194,21 +202,21 @@ public:
    //virtual void write_gen_string(::file::file * pfile, void * pmd5ctx, string & str);
    //virtual void read_gen_string(::file::file * pfile, void * pmd5ctx, string & str);
 
-   virtual ::file_result file_get_file(::file::path path, const ::file::eopen & eopen);
+   virtual ::file_result file_get_file(::file::path path, const ::file::e_open & eopen);
 
-   virtual ::file_result data_get_file(string strData, const ::file::eopen & eopen = ::file::mode_read | ::file::type_binary);
+   virtual ::file_result data_get_file(string strData, const ::file::e_open & eopen = ::file::e_open_read | ::file::e_open_binary);
 
-   virtual ::file_result zip_get_file(::file::file * pfile, const ::file::eopen & eopen = ::file::mode_read | ::file::type_binary);
+   virtual ::file_result zip_get_file(::file::file * pfile, const ::file::e_open & eopen = ::file::e_open_read | ::file::e_open_binary);
 
-   virtual ::file_result http_get_file(const payload & varFile, const ::file::eopen & eopen = ::file::mode_read | ::file::type_binary);
+   virtual ::file_result http_get_file(const payload & varFile, const ::file::e_open & eopen = ::file::e_open_read | ::file::e_open_binary);
 
-   virtual ::file_result get_file(const payload & varFile, const ::file::eopen & eopen);
+   virtual ::file_result get_file(const payload & varFile, const ::file::e_open & eopen);
 
-   virtual ::file_result get_reader(const payload & varFile, const ::file::eopen & eopen = ::file::mode_read | ::file::type_binary);
+   virtual ::file_result get_reader(const payload & varFile, const ::file::e_open & eopen = ::file::e_open_read | ::file::e_open_binary);
 
-   virtual ::file_result shared_reader(const payload & varFile, const ::file::eopen & eopen = ::file::mode_read | ::file::type_binary);
+   virtual ::file_result shared_reader(const payload & varFile, const ::file::e_open & eopen = ::file::e_open_read | ::file::e_open_binary);
 
-   virtual ::file_result get_writer(const payload & varFile, const ::file::eopen & eopen = ::file::mode_write | ::file::mode_create | ::file::mode_no_truncate | ::file::defer_create_directory | ::file::type_binary);
+   virtual ::file_result get_writer(const payload & varFile, const ::file::e_open & eopen = ::file::e_open_write | ::file::e_open_create | ::file::e_open_no_truncate | ::file::e_open_defer_create_directory | ::file::e_open_binary);
 
    virtual bool post_output(::file::path pathOut, ::file::path pathDownloading);
 
@@ -316,23 +324,23 @@ public:
 
    //virtual bool is_read_only(const ::file::path & psz);
 
-   inline auto open_for_reading(const payload & varFile, const ::file::eopen & eopen = ::file::type_binary)
+   inline auto open_for_reading(const payload & varFile, const ::file::e_open & eopen = ::file::e_open_binary)
    {
 
-      return get_file(varFile, eopen | ::file::mode_read);
+      return get_file(varFile, eopen | ::file::e_open_read);
 
    }
 
-   inline auto create_for_writing(const payload & varFile, const ::file::eopen & eopen = ::file::type_binary | ::file::defer_create_directory)
+   inline auto create_for_writing(const payload & varFile, const ::file::e_open & eopen = ::file::e_open_binary | ::file::e_open_defer_create_directory)
    {
 
-      return get_file(varFile, eopen | ::file::mode_create | ::file::mode_write);
+      return get_file(varFile, eopen | ::file::e_open_create | ::file::e_open_write);
 
    }
 
 
    // get a file and if there are exceptions, should show end user friendly messages
-   virtual rp(::file::file) friendly_get_file(const payload & varFile, ::u32 nOpenFlags);
+   virtual rp(::file::file) friendly_get_file(const payload & varFile, const ::file::e_open & eopen);
 
 
    //void dtf(const ::file::path & pszFile, const ::file::path & pszDir);

@@ -192,7 +192,7 @@ namespace user
 //
 
 
-int _os_message_box(const char* pszMessage, const char* pszTitle, ::emessagebox emessagebox)
+int _os_message_box(const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox)
 {
 
    int iMessageBox = emessagebox.m_eenum & 0x7f;

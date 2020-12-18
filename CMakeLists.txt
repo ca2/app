@@ -9251,7 +9251,7 @@ add_executable(app
         imaging_coreimage/factory_exchange.h
         imaging_coreimage/framework.cpp
         imaging_coreimage/framework.h
-        imaging_coreimage/freeimage_imaging.cpp
+        imaging_coreimage/imaging_freeimage.cpp
         imaging_coreimage/image.cpp
         imaging_coreimage/image_gif.cpp
         imaging_coreimage/mm_ios_image.mm

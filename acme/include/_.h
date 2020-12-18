@@ -227,6 +227,11 @@ enum enum_normalize
    e_normalize
 };
 
+enum enum_null
+{
+   e_null
+};
+
 
 struct INT_STRING
 {
@@ -2803,12 +2808,6 @@ class manual_reset_event;
 #include "acme/primitive/primitive/enumeration.h"
 
 
-enum enum_null
-{
-
-   e_null,
-
-};
 
 
 #define DECLARE_C_FLAG(CFLAG, ENUM) \

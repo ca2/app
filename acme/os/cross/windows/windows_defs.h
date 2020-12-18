@@ -159,10 +159,6 @@ typedef HANDLE * LPHANDLE, * PHANDLE;
 
 // xxx #include <specstrings.h>
 
-/* Types use for passing & returning polymorphic values */
-typedef uptr            WPARAM;
-typedef iptr            LPARAM;
-typedef iptr            LRESULT;
 
 
 

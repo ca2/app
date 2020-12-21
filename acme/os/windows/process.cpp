@@ -252,7 +252,7 @@ bool root_execute_sync(const char * pszFile, const char * pszParams, ::duration 
 #include "framework.h"
 
 
-i32 call_async(const char * pszPath, const char * pszParam, const char * pszDir, ::edisplay edisplay, bool bPrivileged, unsigned int *puiPid)
+i32 call_async(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, bool bPrivileged, unsigned int *puiPid)
 {
 
    SHELLEXECUTEINFOW info = {};
@@ -311,7 +311,7 @@ i32 call_async(const char * pszPath, const char * pszParam, const char * pszDir,
 }
 
 
-u32 call_sync(const char * pszPath, const char * pszParam, const char * pszDir, ::edisplay edisplay, const ::duration & durationTimeout, ::property_set & set)
+u32 call_sync(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set)
 {
 
    SHELLEXECUTEINFOW infoa;

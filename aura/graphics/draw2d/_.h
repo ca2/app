@@ -1,15 +1,15 @@
 #pragma once
 
 
-
-using edock = cflag < enum_dock >;
-using eborder = cflag < enum_border >;
-using egrip = cflag < enum_grip >;
+DECLARE_C_FLAG(e_dock, enum_dock);
+DECLARE_C_FLAG(e_border, enum_border);
+DECLARE_C_FLAG(e_grip, enum_grip);
 
 
 class image_frame_array;
 class image_frame;
 class colorref_array;
+
 
 
 #define byte_clip(i)  ((byte) (((i) < 0) ? 0 : (((i)> 255) ? 255 : i)))

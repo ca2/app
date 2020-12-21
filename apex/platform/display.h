@@ -30,7 +30,7 @@ using eappearance = cflag < enum_appearance >;
 
 
 //CLASS_DECL_APEX string __str(enum_display edisplay);
-//inline string __str(const ::edisplay & edisplay);
+//inline string __str(const ::e_display & edisplay);
 
 
 

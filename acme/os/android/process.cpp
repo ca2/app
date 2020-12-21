@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-void get_os_priority(i32 * piPolicy, sched_param * pparam, i32 nCa2Priority);
+void get_os_priority(i32 * piPolicy, sched_param * pparam, ::e_priority epriority);
 
 
 i32 create_process(const char * _cmd_line, i32 * pprocessId)
@@ -78,7 +78,7 @@ CLASS_DECL_ACME i32 call_async(
 const char * pszPath,
 const char * pszParam,
 const char * pszDir,
-::edisplay edisplay,
+::e_display edisplay,
 bool bPrivileged,
 unsigned int * puiPid)
 {
@@ -107,7 +107,7 @@ unsigned int * puiPid)
 
 }
 
-CLASS_DECL_ACME u32 call_sync(const char * pszPath, const char * pszParam, const char * pszDir, ::edisplay edisplay, const ::duration & durationTimeout, ::property_set & set)
+CLASS_DECL_ACME u32 call_sync(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set)
 {
    string strCmdLine;
 
@@ -138,6 +138,14 @@ CLASS_DECL_ACME u32 call_sync(const char * pszPath, const char * pszParam, const
 
 
 
+
+//
+void os_term_application()
+{
+   //
+      //ui_app_terminate();
+   //
+}
 
 
 

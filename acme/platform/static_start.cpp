@@ -7,12 +7,6 @@
 #include "acme/os/_os.h"
 
 
-#ifdef ANDROID
-
-os_local * g_poslocal;
-
-#endif
-
 ::array < ::promise::routine > * g_proutineaOsTerm;
 
 extern natural_meta_data < string_meta_data < ansichar > > * g_pansistringNil;

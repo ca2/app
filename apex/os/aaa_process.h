@@ -3,13 +3,13 @@
 //
 //#if !defined(_UWP)
 //
-//CLASS_DECL_APEX i32 call_async(const char * pszPath, const char * pszParam, const char * pszDir, ::edisplay edisplay, bool bPrivileged, unsigned int * puiPid = nullptr);
+//CLASS_DECL_APEX i32 call_async(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid = nullptr);
 //
 //typedef i32 CALLSYNCONRETRY(i32 iTry,uptr dwParam);
 //
 //typedef CALLSYNCONRETRY * PFNCALLSYNCONRETRY;
 //
-//CLASS_DECL_APEX u32 call_sync(const char * pszPath, const char * pszParam, const char * pszDir, ::edisplay edisplay, const ::duration & durationTimeout, ::property_set & set);
+//CLASS_DECL_APEX u32 call_sync(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set);
 //
 //#endif
 //

@@ -40,8 +40,8 @@ namespace android
       bool operator==(const ::user::interaction_impl& wnd) const;
       bool operator!=(const ::user::interaction_impl& wnd) const;
 
-      virtual bool ModifyStyle(u32 dwRemove,u32 dwAdd,::u32 nFlags = 0) override;
-      virtual bool ModifyStyleEx(u32 dwRemove,u32 dwAdd,::u32 nFlags = 0) override;
+      //virtual bool ModifyStyle(u32 dwRemove,u32 dwAdd,::u32 nFlags = 0) override;
+      //virtual bool ModifyStyleEx(u32 dwRemove,u32 dwAdd,::u32 nFlags = 0) override;
 
       virtual void route_command_message(::user::command * pcommand) override;
 
@@ -51,8 +51,8 @@ namespace android
       DECL_GEN_SIGNAL(_001OnShowWindow);
       DECL_GEN_SIGNAL(_001OnProdevianSynch);
 
-      void OnWindowPosChanging(WINDOWPOS* lpwndpos);
-      void OnWindowPosChanged(WINDOWPOS* lpwndpos);
+      //void OnWindowPosChanging(WINDOWPOS* lpwndpos);
+      //void OnWindowPosChanged(WINDOWPOS* lpwndpos);
 
       virtual void win_update_graphics();
 
@@ -86,7 +86,7 @@ namespace android
       virtual bool create_window_ex(::user::interaction * pinteraction, __pointer(::user::create_struct) pcreatestruct, ::user::interaction * puiParent = nullptr, ::id id = ::id()) override;
 
       // for top level windows and/or special features
-      virtual bool _native_create_window_ex(::user::create_struct& cs) override;
+      virtual bool _native_create_window_ex(__pointer(::user::create_struct) pcreatestruct) override;
 
       virtual bool DestroyWindow() override;
 
@@ -120,7 +120,7 @@ namespace android
       LRESULT send_message(const ::id & id,WPARAM wParam = 0,lparam lParam = 0) override;
       bool post_message(const ::id & id,WPARAM wParam = 0,lparam lParam = 0) override;
 
-      bool SendNotifyMessage(const ::id & id,WPARAM wParam,lparam lParam) override;
+      //bool SendNotifyMessage(const ::id & id,WPARAM wParam,lparam lParam) override;
       //bool SendChildNotifyLastMsg(LRESULT* pResult = nullptr);
 
       //bool DragDetect(POINT32 pt) const;
@@ -177,7 +177,7 @@ namespace android
       //virtual void InvalidateRgn(::draw2d::region* pRgn,bool bErase = TRUE);
       //virtual void ValidateRect(LPCRECT32 lpRect);
       //virtual void ValidateRgn(::draw2d::region* pRgn);
-      virtual bool ShowWindow(i32 nCmdShow) override;
+      virtual bool ShowWindow(const ::e_display & edisplay) override;
 //      virtual void _001WindowMinimize();
       //virtual void _001WindowMaximize();
       //    virtual void _001WindowFullScreen();
@@ -248,14 +248,14 @@ namespace android
       //virtual ::user::interaction * GetNextDlgGroupItem(::user::interaction * pWndCtl, bool bPrevious = FALSE) const;
       //virtual ::user::interaction * GetNextDlgTabItem(::user::interaction * pWndCtl, bool bPrevious = FALSE) const;
       virtual ::u32 IsDlgButtonChecked(i32 nIDButton) const override;
-      virtual LRESULT SendDlgItemMessage(i32 nID, const ::id & id, WPARAM wParam = 0, LPARAM lParam = 0) override;
+      //virtual LRESULT SendDlgItemMessage(i32 nID, const ::id & id, WPARAM wParam = 0, LPARAM lParam = 0) override;
       virtual void SetDlgItemInt(i32 nID, ::u32 nValue, bool bSigned = TRUE) override;
       virtual void SetDlgItemText(i32 nID, const char * lpszString) override;
 
 
       // Scrolling Functions
       virtual i32 GetScrollPos(i32 nBar) const override;
-      virtual void GetScrollRange(i32 nBar,LPINT lpMinPos,LPINT lpMaxPos) const override;
+      //virtual void GetScrollRange(i32 nBar,LPINT lpMinPos,LPINT lpMaxPos) const override;
       virtual void ScrollWindow(i32 xAmount,i32 yAmount, LPCRECT32 lpRect = nullptr, LPCRECT32 lpClipRect = nullptr) override;
       virtual i32 SetScrollPos(i32 nBar,i32 nPos,bool bRedraw = TRUE) override;
       virtual void SetScrollRange(i32 nBar,i32 nMinPos,i32 nMaxPos, bool bRedraw = TRUE) override;
@@ -282,8 +282,8 @@ namespace android
       static ::user::interaction * FindWindow(const char * lpszClassName,const char * lpszWindowName);
       static ::user::interaction * FindWindowEx(oswindow oswindowParent,oswindow oswindowChildAfter,const char * lpszClass,const char * lpszWindow);
 
-      virtual ::user::interaction * GetNextWindow(::u32 nFlag = GW_HWNDNEXT);
-      virtual ::user::interaction * GetTopWindow() const override;
+      //virtual ::user::interaction * GetNextWindow(::u32 nFlag = GW_HWNDNEXT);
+      //virtual ::user::interaction * GetTopWindow() const override;
 
       //virtual ::user::interaction * GetWindow(::u32 nCmd);
       virtual ::user::interaction * GetLastActivePopup() override;
@@ -359,17 +359,17 @@ namespace android
       DECL_GEN_SIGNAL(_001OnCreate);
 
       virtual bool SubclassWindow(oswindow hWnd);
-      HBRUSH OnCtlColor(::draw2d::graphics_pointer & pgraphics,::user::interaction * pwindow,::u32 nCtlColor);
+      //HBRUSH OnCtlColor(::draw2d::graphics_pointer & pgraphics,::user::interaction * pwindow,::u32 nCtlColor);
 
       DECL_GEN_SIGNAL(_001OnDestroy);
       void OnEnable(bool bEnable);
       void OnEndSession(bool bEnding);
       bool OnEraseBkgnd(::draw2d::graphics_pointer & pgraphics);
-      void OnGetMinMaxInfo(MINMAXINFO* lpMMI);
+      //void OnGetMinMaxInfo(MINMAXINFO* lpMMI);
       void OnIconEraseBkgnd(::draw2d::graphics_pointer & pgraphics);
       void OnKillFocus(::user::interaction * pNewWnd);
-      LRESULT OnMenuChar(::u32 nChar,::u32 nFlags,::user::menu* pMenu);
-      void OnMenuSelect(::u32 nItemID,::u32 nFlags,HMENU hSysMenu);
+      //LRESULT OnMenuChar(::u32 nChar,::u32 nFlags,::user::menu* pMenu);
+      //void OnMenuSelect(::u32 nItemID,::u32 nFlags,HMENU hSysMenu);
       void OnMove(i32 x,i32 y);
       DECL_GEN_SIGNAL(_001OnPaint);
       DECL_GEN_SIGNAL(_001OnPrint);
@@ -389,7 +389,7 @@ namespace android
 
       // Nonclient-Area message handler member functions
       bool OnNcActivate(bool bActive);
-      void OnNcCalcSize(bool bCalcValidRects,NCCALCSIZE_PARAMS* lpncsp);
+      //void OnNcCalcSize(bool bCalcValidRects,NCCALCSIZE_PARAMS* lpncsp);
       bool OnNcCreate(::user::create_struct * lpCreateStruct);
 
       DECL_GEN_SIGNAL(_001OnNcCalcSize);
@@ -407,7 +407,7 @@ namespace android
       void OnNcRButtonUp(::u32 nHitTest, const ::point & point);
 
       // System message handler member functions
-      void OnDropFiles(HDROP hDropInfo);
+      //void OnDropFiles(HDROP hDropInfo);
       void OnPaletteIsChanging(::user::interaction * pRealizeWnd);
       void OnSysChar(::u32 nChar,::u32 nRepCnt,::u32 nFlags);
       void OnSysCommand(::u32 nID,LPARAM lParam);
@@ -448,8 +448,8 @@ namespace android
       void OnTimer(uptr uEvent);
 
       // Initialization message handler member functions
-      void OnInitMenu(::user::menu* pMenu);
-      void OnInitMenuPopup(::user::menu* pPopupMenu,::u32 nIndex,bool bSysMenu);
+      //void OnInitMenu(::user::menu* pMenu);
+      //void OnInitMenuPopup(::user::menu* pPopupMenu,::u32 nIndex,bool bSysMenu);
 
       // Clipboard message handler member functions
       void OnAskCbFormatName(::u32 nMaxCount,char * lpszString);
@@ -457,10 +457,10 @@ namespace android
       void OnDestroyClipboard();
       void OnDrawClipboard();
       void OnHScrollClipboard(::user::interaction * pClipAppWnd,::u32 nSBCode,::u32 nPos);
-      void OnPaintClipboard(::user::interaction * pClipAppWnd,HGLOBAL hPaintStruct);
+      //void OnPaintClipboard(::user::interaction * pClipAppWnd,HGLOBAL hPaintStruct);
       void OnRenderAllFormats();
       void OnRenderFormat(::u32 nFormat);
-      void OnSizeClipboard(::user::interaction * pClipAppWnd,HGLOBAL hRect);
+      //void OnSizeClipboard(::user::interaction * pClipAppWnd,HGLOBAL hRect);
       void OnVScrollClipboard(::user::interaction * pClipAppWnd,::u32 nSBCode,::u32 nPos);
 
       // control message handler member functions
@@ -479,8 +479,8 @@ namespace android
       void OnExitMenuLoop(bool bIstrack_popup_menu);
 
       // Win4 messages
-      void OnStyleChanged(i32 nStyleType,LPSTYLESTRUCT lpStyleStruct);
-      void OnStyleChanging(i32 nStyleType,LPSTYLESTRUCT lpStyleStruct);
+      //void OnStyleChanged(i32 nStyleType,LPSTYLESTRUCT lpStyleStruct);
+      //void OnStyleChanging(i32 nStyleType,LPSTYLESTRUCT lpStyleStruct);
       void OnSizing(::u32 nSide,LPRECT32 lpRect);
       void OnMoving(::u32 nSide,LPRECT32 lpRect);
       void OnCaptureChanged(::user::interaction * pwindow);
@@ -530,8 +530,8 @@ namespace android
       //virtual void WalkPreTranslateTree(::user::interaction * puiStop, ::message::message * pmessage);
       virtual bool is_frame_window(); // is_kind_of(__type(frame_window)))
       virtual void on_final_release() override;
-      static bool ModifyStyle(oswindow hWnd, ::u32 dwRemove, ::u32 dwAdd, ::u32 nFlags);
-      static bool ModifyStyleEx(oswindow hWnd, ::u32 dwRemove, ::u32 dwAdd, ::u32 nFlags);
+      //static bool ModifyStyle(oswindow hWnd, ::u32 dwRemove, ::u32 dwAdd, ::u32 nFlags);
+      //static bool ModifyStyleEx(oswindow hWnd, ::u32 dwRemove, ::u32 dwAdd, ::u32 nFlags);
       //static void PASCAL _FilterToolTipMessage(MESSAGE* pMsg, ::user::interaction * pWnd);
       bool _EnableToolTips(bool bEnable, ::u32 nFlag) override;
       //static oswindow PASCAL GetSafeOwner_(oswindow hWnd, oswindow* pWndTop);
@@ -551,7 +551,7 @@ namespace android
       LRESULT OnDisplayChange(WPARAM,LPARAM);
       LRESULT OnDragList(WPARAM,LPARAM);
 
-      bool CALLBACK GetAppsEnumWindowsProc(oswindow hwnd, LPARAM lparam);
+      //bool CALLBACK GetAppsEnumWindowsProc(oswindow hwnd, LPARAM lparam);
 
 
       static void get_app_wnda(user::oswindow_array & wnda);
@@ -595,8 +595,8 @@ namespace android
       virtual id GetDlgCtrlId();
 
 
-      virtual ::i32 GetWindowLong(i32 nIndex);
-      virtual ::i32 SetWindowLong(i32 nIndex, ::i32 lValue);
+      //virtual ::i32 GetWindowLong(i32 nIndex);
+      //virtual ::i32 SetWindowLong(i32 nIndex, ::i32 lValue);
 
 
       virtual void SetFont(::draw2d::font* pfont, bool bRedraw);
@@ -610,7 +610,7 @@ namespace android
       void _001OnTriggerMouseInside() override;
 
 
-      ::user::interaction * get_next(bool bIgnoreChildren, i32 * piLevel) override;
+      //::user::interaction * get_next(bool bIgnoreChildren, i32 * piLevel) override;
       virtual bool on_keyboard_focus(::user::primitive * pfocus) override;
       virtual bool keyboard_focus_OnKillFocus(oswindow oswindowNew) override;
       virtual bool keyboard_focus_OnChildKillFocus() override;

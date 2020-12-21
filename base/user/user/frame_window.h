@@ -164,7 +164,7 @@ namespace user
 
       // Operations
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
-      virtual void ActivateFrame(::edisplay edisplay = e_display_undefined) override;
+      virtual void ActivateFrame(::e_display edisplay = e_display_undefined) override;
       virtual void InitialUpdateFrame(::user::document * pDoc, bool bMakeVisible);
       virtual void InitialFramePosition(bool bForceRestore = false) override;
 
@@ -226,7 +226,7 @@ namespace user
       virtual void PostNcDestroy() override;   // default to delete this.
       i32 OnCreateHelper(::user::create_struct * pcs, ::create * pcreate);
 
-      //void BringToTop(::edisplay edisplay) override;
+      //void BringToTop(::e_display edisplay) override;
       // bring interaction_impl to top for SW_ commands which affect z-order
 
       // implementation helpers for Shift+F1 help mode

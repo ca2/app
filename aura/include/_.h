@@ -912,6 +912,24 @@ CLASS_DECL_AURA void aura_ref();
 //#include "aura/graphics/draw2d/_const.h"
 
 
+class image;
+namespace draw2d { class icon; }
+//
+using image_pointer = __pointer(::image);
+using icon_pointer = __pointer(::draw2d::icon);
+//
+//
+using image_result = __result(::image);
+using icon_result = __result(::draw2d::icon);
+//
+//
+//class command_line;
+using image_pointer_array = __pointer_array(::image);
+
+
+#include "aura/graphics/draw2d/_.h"
+
+
 //
 //
 //
@@ -1255,19 +1273,6 @@ CLASS_DECL_AURA void aura_ref();
 //inline bool is_impact_subgroup(::u64 u, ::u64 uGroup) { return u >= uGroup && u < uGroup + 100; }
 //
 //
-class image;
-namespace draw2d{class icon;}
-//
-using image_pointer = __pointer(::image);
-using icon_pointer = __pointer(::draw2d::icon);
-//
-//
-using image_result = __result(::image);
-using icon_result=__result(::draw2d::icon);
-//
-//
-//class command_line;
-using image_pointer_array = __pointer_array(::image);
 //
 //
 //using command_line_pointer = __pointer(command_line);

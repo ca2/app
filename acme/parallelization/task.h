@@ -114,7 +114,7 @@ public:
    virtual ::object * thread_parent();
 
 
-   virtual bool is_thread() const;
+   virtual bool is_thread() const override;
    virtual bool thread_get_run() const;
 
    virtual bool task_active() const;
@@ -128,7 +128,7 @@ public:
 
    //virtual void finish() override;
 
-   virtual void kick_idle();
+   virtual void kick_idle() override;
 
 
 };

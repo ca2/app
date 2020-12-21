@@ -1681,7 +1681,7 @@ namespace experience
 
          }
 
-         ::edisplay edisplayPrevious = edisplay != e_display_none ? edisplay : layout().design().display();
+         ::e_display edisplayPrevious = edisplay != e_display_none ? edisplay : layout().design().display();
 
          bool bCursorPosition = layout().is_moving();
 

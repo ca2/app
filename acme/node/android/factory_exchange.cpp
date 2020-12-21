@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "_android.h"
-#include "buffer.h"
+//#include "buffer.h"
 #include "acme/node/posix/pipe.h"
 
 
@@ -38,26 +38,26 @@
 //} // namespace android
 
 
-void __node_aura_factory_exchange()
+void __node_acme_factory_exchange()
 {
 
 
-   create_factory < ::android::buffer              , ::graphics::graphics        > ();
+   //create_factory < ::android::buffer              , ::graphics::graphics        > ();
 
 
-   create_factory < ::android::file_system         , ::file_system               > ();
-   create_factory < ::android::dir_system          , ::dir_system                > ();
-   create_factory < ::android::file_context        , ::file_context              > ();
-   create_factory < ::android::dir_context         , ::dir_context               > ();
+   //create_factory < ::android::file_system         , ::file_system               > ();
+   //create_factory < ::android::dir_system          , ::dir_system                > ();
+   //create_factory < ::android::file_context        , ::file_context              > ();
+   //create_factory < ::android::dir_context         , ::dir_context               > ();
    create_factory < ::android::file                , ::file::file                > ();
-   create_factory < ::android::os_context          , ::os_context                > ();
+   //create_factory < ::android::os_context          , ::os_context                > ();
    create_factory < ::posix::pipe                  , ::process::pipe             > ();
 
-   create_factory < ::android::shell               , ::user::shell               > ();
+   //create_factory < ::android::shell               , ::user::shell               > ();
 
-   create_factory < ::android::interaction_impl    , ::user::interaction_impl    > ();
+   //create_factory < ::android::interaction_impl    , ::user::interaction_impl    > ();
 
-   create_factory < ::file::os_watcher             , ::file::watcher             > ();
+   //create_factory < ::file::os_watcher             , ::file::watcher             > ();
 
 }
 

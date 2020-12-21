@@ -42,7 +42,15 @@ typedef ::i32 NTSTATUS;
 
 #endif
 
-typedef const char * PCSZ;
+typedef char CHAR;
+
+//typedef wchar_t WCHAR;
+
+typedef const CHAR * PCSZ;
+
+typedef CHAR * PCHAR;
+
+typedef WCHAR * PWSTR;
 
 typedef short CSHORT;
 typedef CSHORT *PCSHORT;

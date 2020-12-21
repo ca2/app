@@ -25,7 +25,7 @@ namespace message
 {
 
 
-   void create::set(oswindow oswindow, ::layered * playeredUserPrimitive,const ::id & id,WPARAM wparam,::lparam lparam)
+   void create::set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, WPARAM wparam, ::lparam lparam)
    {
 
       base::set(oswindow, playeredUserPrimitive, id,wparam,lparam);

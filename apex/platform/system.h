@@ -107,7 +107,7 @@ namespace apex
       __composite(::process::department)                 m_pprocess;
 
       __composite(::parallelization::threading)           m_pthreading;
-      ::edisplay                                         m_edisplay;
+      ::e_display                                         m_edisplay;
       size_t                                             m_nSafetyPoolSize; // ideal size
 
       bool                                               m_bFinalizeIfNoSessionSetting;
@@ -493,7 +493,7 @@ namespace apex
 
 
       virtual void browser(string strUrl, string strBrowser, string strProfile, string strTarget);
-      virtual void open_profile_link(string strUrl, string strProfile, string strTarget);
+      virtual void open_profile_link(string strUrl, string strProfile, string strTarget) override;
 
 
       virtual void __set_thread_on() override;
@@ -896,7 +896,7 @@ namespace apex
 
       //virtual void get_cursor_pos(POINT32 * ppoint);
 
-      virtual bool is_thread() const;
+      virtual bool is_thread() const override;
 
       //virtual ::estatus do_request(::create* pcommand) override;
 

@@ -165,21 +165,21 @@ public:
    //virtual void notify_on_finish(::context_object * pcontextobject) override;
    
 
-   template < typename THREAD >
-   inline __pointer(THREAD) start(
-      ::matter* pmatter,
-      ::e_priority epriority = priority_normal,
-      u32 nStackSize = 0,
-      u32 dwCreateFlags = 0)
-   {
+   //template < typename THREAD >
+   //inline __pointer(THREAD) start(
+   //   ::matter* pmatter,
+   //   ::e_priority epriority = priority_normal,
+   //   u32 nStackSize = 0,
+   //   u32 dwCreateFlags = 0)
+   //{
 
-      auto pthread = __create_new < THREAD >();
+   //   auto pthread = __create_new < THREAD >();
 
-      ::task::start(pthread);
+   //   ::task::start(pthread);
 
-      return pthread;
+   //   return pthread;
 
-   }
+   //}
 
 
    template < typename BASE_TYPE >
@@ -405,7 +405,7 @@ public:
 
 
    virtual string get_tag() const;
-   virtual bool is_thread() const;
+   virtual bool is_thread() const override;
    virtual bool thread_get_run() const;
    virtual bool is_running() const;
    virtual void child_post_quit(const char * pszTag);

@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "_windows.h"
 
 
 #ifndef WINDOWS

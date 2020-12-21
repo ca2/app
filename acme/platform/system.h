@@ -66,6 +66,9 @@ namespace acme
       void unset_task(ithread_t ithread, ::task * ptask);
 
 
+      virtual string __get_text(const string & str);
+
+
    };
 
 

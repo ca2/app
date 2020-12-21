@@ -26,9 +26,6 @@
 //
 //}
 
-#ifndef ANDROID
-
-
 
 
 CLASS_DECL_ACME e_trace_level trace_level_constraint(e_trace_level elevel)
@@ -59,6 +56,11 @@ CLASS_DECL_ACME char trace_level_char(e_trace_level elevel)
    return g_chaTraceLevel[trace_level_constraint(elevel)];
 
 }
+
+
+#ifndef ANDROID
+
+
 
 void os_trace(e_trace_level elevel, const char* pszTag, const char* psz)
 {

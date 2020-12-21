@@ -131,7 +131,7 @@ public:
    __pointer(::user::interaction) WindowDataGetWnd();
    virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
    virtual void on_reposition() override;
-   virtual void ActivateFrame(::edisplay edisplay = e_display_undefined) override;
+   virtual void ActivateFrame(::e_display edisplay = e_display_undefined) override;
    virtual bool on_create_client(::user::create_struct * pcs, ::create * pcreate) override;
 
    virtual bool pre_create_window(::user::create_struct * pcreatestruct) override;

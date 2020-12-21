@@ -23,9 +23,9 @@ namespace apex
 
    //extern CLASS_DECL_APEX critical_section* g_pcsGlobal;
 
-   extern CLASS_DECL_APEX string_to_string* g_pmapFontFaceName;
+   //extern CLASS_DECL_APEX string_to_string* g_pmapFontFaceName;
 
-   extern CLASS_DECL_APEX critical_section* g_pcsFont;
+   //extern CLASS_DECL_APEX critical_section* g_pcsFont;
 
    //extern critical_section* g_pcsRefDbg;
 

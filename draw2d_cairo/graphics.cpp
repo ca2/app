@@ -3160,7 +3160,7 @@ void graphics::HIMETRICtoLP(LPSIZE32 LPSIZE32)
 //   }
 
 
-void graphics::draw_3drect(const ::rect & rect, const ::color & colorTopLeft, const ::color & colorBottomRight, eborder eborder)
+void graphics::draw_3drect(const ::rect & rect, const ::color & colorTopLeft, const ::color & colorBottomRight, const ::e_border & eborder)
 {
 
     sync_lock ml(cairo_mutex());
@@ -3934,15 +3934,15 @@ bool graphics::internal_draw_text_pango(const block & block, const ::rectd & rec
 bool graphics::draw_text(const string & strParam, const ::rect & rect, const ::e_align & ealign, const ::e_draw_text & edrawtext)
 {
 
-    return internal_draw_text(strParam, strParam.get_length(), rect, nFormat, &cairo_show_text);
+    return internal_draw_text(strParam, rect, ealign, edrawtext, &cairo_show_text);
 
 }
 
 
-bool graphics::internal_draw_text(const char * lpszString, strsize nCount, const ::rectd & rect, const ::e_align & ealign, const ::e_draw_text & edrawtext, PFN_CAIRO_TEXT ftext)
+bool graphics::internal_draw_text(const ::block & block, const ::rectd & rect, const ::e_align & ealign, const ::e_draw_text & edrawtext, PFN_CAIRO_TEXT ftext)
 {
 
-    string str(lpszString, nCount);
+    string str((const char *) block.get_data(), block.get_size());
 
     str = ::str::q_valid(str);
 
@@ -3985,13 +3985,13 @@ bool graphics::internal_draw_text(const char * lpszString, strsize nCount, const
 
     double dy;
 
-    if (nFormat & e_align_right)
+    if (ealign & e_align_right)
     {
 
         dx = rect.right - rect.left - sz.cx;
 
     }
-    else if (nFormat & e_align_horizontal_center)
+    else if (ealign & e_align_horizontal_center)
     {
 
         dx = ((rect.right - rect.left) - (sz.cx)) / 2.0;
@@ -4004,13 +4004,13 @@ bool graphics::internal_draw_text(const char * lpszString, strsize nCount, const
 
     }
 
-    if (nFormat & e_align_bottom)
+    if (ealign & e_align_bottom)
     {
 
         dy = rect.bottom - rect.top - e.ascent;
 
     }
-    else if (nFormat & e_align_vertical_center)
+    else if (ealign & e_align_vertical_center)
     {
 
         dy = ((rect.bottom - rect.top) - (e.ascent)) / 2.0;
@@ -4043,7 +4043,7 @@ bool graphics::internal_draw_text(const char * lpszString, strsize nCount, const
 
     //}
 
-    if (nFormat & DT_EXPANDTABS)
+    if (edrawtext & e_draw_text_expand_tabs)
     {
 
         str.replace("\t", "        ");
@@ -4056,7 +4056,7 @@ bool graphics::internal_draw_text(const char * lpszString, strsize nCount, const
 
     }
 
-    if (nFormat & DT_SINGLELINE)
+    if (edrawtext & e_draw_text_single_line)
     {
 
         str.replace("\n", "");
@@ -4502,7 +4502,7 @@ bool graphics::TextOutRaw(double x, double y, const string & str)
                       65535
                   );
 
-    internal_draw_text(str, rect, 0, &cairo_show_text);
+    internal_draw_text(str, rect, e_null, e_null, &cairo_show_text);
 
     return true;
 
@@ -4955,7 +4955,7 @@ bool graphics::_set(::draw2d::pen * ppen)
 #if !defined(USE_PANGO)
 
 
-bool graphics::_set(const ::draw2d::font * pfontParam)
+bool graphics::_set(::draw2d::font * pfontParam)
 {
 
    sync_lock ml(cairo_mutex());
@@ -5103,9 +5103,9 @@ bool graphics::_set(const ::draw2d::font * pfontParam)
 
 #ifdef ANDROID
 
-   float fDpi = max(System.oslocal().m_fDpiX, System.oslocal().m_fDpiY);
+   float fDpi = max(::oslocal()->m_fDpiX, ::oslocal()->m_fDpiY);
 
-   float fDensity = System.oslocal().m_fDensity;
+   float fDensity = ::oslocal()->m_fDensity;
 
 #endif
 
@@ -6243,6 +6243,8 @@ void graphics::enum_fonts(::draw2d::font_enum_item_array & itema)
    ::draw2d::wingdi_enum_fonts(itema, false, true, false);
 
 #elif defined(ANDROID)
+
+   auto psession = Session;
 
    itema.add(psession->m_fontenumitema);
 

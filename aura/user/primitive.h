@@ -134,7 +134,7 @@ namespace user
       virtual bool add_prodevian(::context_object * pobject);
       virtual bool remove_prodevian(::context_object * pobject);
 
-      virtual bool display(::edisplay edisplay = e_display_default, ::eactivation eactivation = e_activation_default);
+      virtual bool display(::e_display edisplay = e_display_default, ::e_activation eactivation = e_activation_default);
 
 
       //virtual bool defer_set_window_pos(iptr z,i32 x,i32 y,i32 cx,i32 cy,::u32 nFlags); // only set_windows_pos if GetParent()->_001ScreenToClient(get_window_rect) different of rect(x, y, cx, cy)      virtual bool set_placement(RECT32 * prect);
@@ -265,7 +265,7 @@ namespace user
 
       virtual void prodevian_stop();
 
-      virtual void sketch_prepare_window_minimize(::eactivation eactivation);
+      virtual void sketch_prepare_window_minimize(::e_activation eactivation);
       virtual void sketch_prepare_window_maximize();
       virtual void sketch_prepare_window_full_screen(const ::rect & rectHint = nullptr);
       virtual void sketch_prepare_window_restore(edisplay edisplay);

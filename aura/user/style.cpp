@@ -207,7 +207,7 @@ namespace user
 
       rectClient.top--;
 
-      if (get_context_application() != nullptr && pinteraction->hover_item().is_set() || pinteraction->has_focus())
+      if (get_context_application() != nullptr && (pinteraction->hover_item().is_set() || pinteraction->has_focus()))
       {
 
          ::draw2d::brush_pointer brush(e_create);

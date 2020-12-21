@@ -3980,15 +3980,29 @@ retry_license:
 
 #ifdef ANDROID
 
+      auto psession = Session;
+
       if (psession->m_puiHost != nullptr)
       {
 
          if (psession->m_puiHost != nullptr)
          {
 
-            sync_lock sl(::user::mutex_children());
+            auto puserinteraction = __user_interaction(psession->m_puiHost);
 
-            return psession->m_puiHost->m_uiptraChild.get_child(pinteraction);
+            if (puserinteraction)
+            {
+
+               auto puiptraChild = puserinteraction->m_puiptraChild;
+
+               if (puiptraChild)
+               {
+
+                  return puiptraChild->get_child(pinteraction);
+
+               }
+
+            }
 
          }
 

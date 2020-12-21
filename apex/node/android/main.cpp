@@ -9,7 +9,7 @@ void CLASS_DECL_APEX __cdecl _ca2_purecall()
 }
 
 
-void __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers);
+//void __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers);
 
 
 
@@ -123,13 +123,13 @@ void __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers);
 //}
 
 
-void __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers)
-{
-
-   UNREFERENCED_PARAMETER(uiCode);
-   UNREFERENCED_PARAMETER(ppointers);
-
-}
+//void __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers)
+//{
+//
+//   UNREFERENCED_PARAMETER(uiCode);
+//   UNREFERENCED_PARAMETER(ppointers);
+//
+//}
 
 
 

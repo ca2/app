@@ -127,8 +127,8 @@ sync_result semaphore::wait(const duration & durationTimeout)
 
    ((duration &)durationTimeout).normalize();
 
-   ts.tv_nsec = durationTimeout.m_iNanoseconds;
-   ts.tv_sec = durationTimeout.m_iSeconds;
+   ts.tv_nsec = durationTimeout.m_nanos.m_iNanoseconds;
+   ts.tv_sec = durationTimeout.m_secs.m_iSeconds;
 
    sem_timedwait(m_psem, &ts);
 

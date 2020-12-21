@@ -8,6 +8,7 @@ public:
 
 
    string         m_strCommandLine;
+   ::file::path   m_pathCacheDir;
    int            m_iWidth;
    int            m_iHeight;
    float          m_fDpiX;
@@ -36,6 +37,8 @@ public:
    int            m_iEditFocusSelBeg;
    int            m_iEditFocusSelEnd;
    bool           m_bEditFocusKill;
+   
+   bool           m_bRedraw;
 
 
 };

@@ -75,12 +75,12 @@ namespace android
    }
 
 
-   bool host_interaction::is_this_visible()
-   {
+   //bool host_interaction::is_this_visible()
+   //{
 
-      return true;
+   //   return true;
 
-   }
+   //}
 
 
    ::user::interaction * create_host_window()

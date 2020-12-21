@@ -221,7 +221,7 @@ namespace user
 
       virtual ::estatus main_sync(const ::promise::routine & routine, const ::duration & duration = one_minute(), e_priority epriority = priority_normal);
 
-      virtual ::estatus main_async(const ::promise::routine & routine, e_priority epriority = priority_normal);
+      virtual ::estatus main_async(const ::promise::routine & routine, e_priority epriority = priority_normal) override;
 
 
       inline void auto_prodevian_on_show() { m_ewindowflag |= e_window_flag_auto_prodevian_on_show; }
@@ -250,8 +250,8 @@ namespace user
       virtual void load_style(string strStyle);
 
 
-      virtual::edisplay window_stored_display() const;
-      virtual::edisplay window_previous_display() const;
+      virtual::e_display window_stored_display() const;
+      virtual::e_display window_previous_display() const;
 
 
       virtual int get_derived_height(int iWidth);
@@ -331,7 +331,7 @@ namespace user
 
       interaction * get_tooltip();
 
-      virtual ::estatus set_tool_window(bool bSet = true);
+      virtual ::estatus set_tool_window(bool bSet = true) override;
 
       virtual double get_rotate();
       virtual ::user::form * get_form();
@@ -407,7 +407,7 @@ namespace user
       virtual bool is_layout_ready() const;
 
 
-      virtual bool display(::edisplay edisplay = e_display_default, ::eactivation eactivation = ::e_activation_default) override;
+      virtual bool display(::e_display edisplay = e_display_default, ::e_activation eactivation = ::e_activation_default) override;
 
       virtual ::zorder zorder(enum_layout elayout = e_layout_design) const;
       virtual void order(::zorder zorder);
@@ -423,7 +423,7 @@ namespace user
       //virtual void window_apply_visual(const class window_state& windowstate) override;
 
 
-      virtual void sketch_prepare_window_minimize(::eactivation eactivation) override;
+      virtual void sketch_prepare_window_minimize(::e_activation eactivation) override;
       virtual void sketch_prepare_window_maximize() override;
       virtual void sketch_prepare_window_full_screen(const ::rect& rectHint = nullptr) override;
       virtual void sketch_prepare_window_restore(edisplay edisplay) override;
@@ -478,11 +478,14 @@ namespace user
 
       virtual bool is_place_holder() override;
 
-      virtual e_cursor get_cursor();
-      virtual bool set_cursor(e_cursor ecursor);
+      
+      virtual e_cursor get_cursor() override;
 
 
-      virtual ::point get_cursor_pos() const;
+      virtual bool set_cursor(e_cursor ecursor) override;
+
+
+      virtual ::point get_cursor_pos() const override;
 
 
       virtual bool is_left_button_pressed() const;
@@ -1137,7 +1140,7 @@ namespace user
       virtual interaction& operator =(const ::rect& rect);
 
 
-      virtual void activation(::eactivation eactivation);
+      virtual void activation(::e_activation eactivation);
 
 
       virtual void display_child(const ::rect & rect);
@@ -1159,16 +1162,16 @@ namespace user
 
        //virtual void reset_window_state();
 
-      virtual index make_zoneing(RECT32* prect, const ::rect& rect = nullptr, bool bSet = false, ::edisplay* pedisplay = nullptr, ::eactivation eactivation = e_activation_default, ::zorder zorder = zorder_top);
-      virtual index best_zoneing(RECT32* prect, const ::rect& rect = nullptr, bool bSet = false, ::edisplay* pedisplay = nullptr, ::eactivation eactivation = e_activation_default, ::zorder zorder = zorder_top);
-      virtual index best_monitor(RECT32* prect, const ::rect& rect = nullptr, bool bSet = false, ::eactivation eeactivation = e_activation_default, ::zorder zorder = zorder_top);
-      virtual index best_wkspace(RECT32* prect, const ::rect& rect = nullptr, bool bSet = false, ::eactivation eeactivation = e_activation_default, ::zorder zorder = zorder_top);
-      virtual index good_restore(RECT32* prect, const ::rect& rect = nullptr, bool bSet = false, ::eactivation eeactivation = e_activation_default, ::zorder zorder = zorder_top, edisplay edisplay = e_display_restore);
-      virtual index good_iconify(RECT32* prect, const ::rect& rect = nullptr, bool bSet = false, ::eactivation eeactivation = e_activation_default, ::zorder zorder = zorder_top);
+      virtual index make_zoneing(RECT32* prect, const ::rect& rect = nullptr, bool bSet = false, ::e_display* pedisplay = nullptr, ::e_activation eactivation = e_activation_default, ::zorder zorder = zorder_top);
+      virtual index best_zoneing(RECT32* prect, const ::rect& rect = nullptr, bool bSet = false, ::e_display* pedisplay = nullptr, ::e_activation eactivation = e_activation_default, ::zorder zorder = zorder_top);
+      virtual index best_monitor(RECT32* prect, const ::rect& rect = nullptr, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = zorder_top);
+      virtual index best_wkspace(RECT32* prect, const ::rect& rect = nullptr, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = zorder_top);
+      virtual index good_restore(RECT32* prect, const ::rect& rect = nullptr, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = zorder_top, edisplay edisplay = e_display_restore);
+      virtual index good_iconify(RECT32* prect, const ::rect& rect = nullptr, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = zorder_top);
 
-      virtual index good_move(RECT32* prect, const ::rect& rect = nullptr, ::eactivation eeactivation = e_activation_default, ::zorder zorder = zorder_top);
+      virtual index good_move(RECT32* prect, const ::rect& rect = nullptr, ::e_activation eeactivation = e_activation_default, ::zorder zorder = zorder_top);
       virtual index get_best_zoneing(edisplay& edisplay, ::rect* prect, const ::rect& rectRequest = ::rect(), bool bPreserveSize = false);
-      virtual index get_best_wkspace(::rect* prect, const ::rect& rect, ::eactivation eactivation = e_activation_default);
+      virtual index get_best_wkspace(::rect* prect, const ::rect& rect, ::e_activation eactivation = e_activation_default);
 
       virtual bool get_rect_normal(RECT32* prect);
 

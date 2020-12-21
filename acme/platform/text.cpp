@@ -9,21 +9,21 @@ CLASS_DECL_ACME string null_get_text(string str)
 }
 
 
-__PFN_GET_TEXT g_pgettext = null_get_text;
+//__PFN_GET_TEXT g_pgettext = null_get_text;
+//
+//CLASS_DECL_ACME void __set_get_text(__PFN_GET_TEXT pgettext)
+//{
+//
+//   g_pgettext = pgettext;
+//
+//}
 
-CLASS_DECL_ACME void __set_get_text(__PFN_GET_TEXT pgettext)
-{
-
-   g_pgettext = pgettext;
-
-}
-
-CLASS_DECL_ACME string __get_text(string str)
-{
-
-   return g_pgettext(str);
-
-}
+//CLASS_DECL_ACME string __get_text(const string & str)
+//{
+//
+//   return g_pgettext(str);
+//
+//}
 
 
 CLASS_DECL_ACME int __c_get_text_length(const char * psz)

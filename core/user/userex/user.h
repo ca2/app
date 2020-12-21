@@ -492,9 +492,9 @@ namespace core
 
       //virtual index _get_best_zoneing(edisplay * pedisplay, ::rect * prect, const ::rect & rect, bool bPreserveSize = false);
 
-      //virtual index get_best_monitor(RECT32 * prect, const ::rect & rect, ::eactivation eactivation = e_activation_default);
+      //virtual index get_best_monitor(RECT32 * prect, const ::rect & rect, ::e_activation eactivation = e_activation_default);
 
-      //virtual index get_best_wkspace(::rect * prect, const ::rect& rect, ::eactivation eactivation = e_activation_default);
+      //virtual index get_best_wkspace(::rect * prect, const ::rect& rect, ::e_activation eactivation = e_activation_default);
 
       //virtual index get_good_iconify(RECT32 * prect, const ::rect & rect);
 

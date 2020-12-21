@@ -1152,7 +1152,7 @@ namespace user
    }
 
 
-   bool interaction::display(::edisplay edisplay, ::eactivation eactivation)
+   bool interaction::display(::e_display edisplay, ::e_activation eactivation)
    {
 
       bool bToggle = false;
@@ -6279,7 +6279,7 @@ namespace user
    //}
 
 
-   ::edisplay interaction::window_stored_display() const
+   ::e_display interaction::window_stored_display() const
    {
 
       return e_display_none;
@@ -6287,7 +6287,7 @@ namespace user
    }
 
 
-   ::edisplay interaction::window_previous_display() const
+   ::e_display interaction::window_previous_display() const
    {
 
       return e_display_none;
@@ -6797,7 +6797,11 @@ namespace user
                   && Application.is_true("client_only")))
             {
 
+               bool bThisVisible = pinteraction->is_this_visible();
+
                pinteraction->place(rectClient);
+
+               pinteraction->set_need_layout();
 
             }
 
@@ -8293,7 +8297,35 @@ namespace user
       // (it may leave sketch machine requests not considered)
       // (so all changes should be recorded to
       // local variables above (at sketch_to_design function preparation))
-      layout().design() = layout().sketch();
+      //layout().design() = layout().sketch();
+
+      if (bLayout)
+      {
+         
+         layout().design().copy_layout(layout().sketch());
+
+      }
+
+      if (bPosition)
+      {
+
+         layout().design().copy_position(layout().sketch());
+
+      }
+
+      if (bDisplay)
+      {
+
+         layout().design().copy_display(layout().sketch());
+
+      }
+
+      if (bDisplay)
+      {
+
+         layout().design().copy_display(layout().sketch());
+
+      }
 
       layout().sketch().clear_ephemeral();
 
@@ -10289,7 +10321,7 @@ restart:
    }
 
 
-   void interaction::activation(::eactivation eactivation)
+   void interaction::activation(::e_activation eactivation)
    {
 
       layout().sketch() = eactivation;
@@ -10360,7 +10392,7 @@ restart:
    }
 
 
-   void interaction::sketch_prepare_window_minimize(::eactivation eactivation)
+   void interaction::sketch_prepare_window_minimize(::e_activation eactivation)
    {
 
       auto rectRequest = layout().sketch().screen_rect();
@@ -10430,7 +10462,7 @@ restart:
    }
 
 
-   index interaction::best_monitor(RECT32 * prect, const ::rect & rect, bool bSet, ::eactivation eactivation, ::zorder zorderParam)
+   index interaction::best_monitor(RECT32 * prect, const ::rect & rect, bool bSet, ::e_activation eactivation, ::zorder zorderParam)
    {
 
       ::rect rectSample;
@@ -10514,7 +10546,7 @@ restart:
    }
 
 
-   index interaction::best_wkspace(RECT32 * prect, const ::rect & rect, bool bSet, ::eactivation eactivation, ::zorder zorderParam)
+   index interaction::best_wkspace(RECT32 * prect, const ::rect & rect, bool bSet, ::e_activation eactivation, ::zorder zorderParam)
    {
 
       ::rect rectWindow;
@@ -10766,7 +10798,7 @@ restart:
    //}
 
 
-   index interaction::make_zoneing(RECT32 * prect, const ::rect & rect, bool bSet, edisplay * pedisplay, ::eactivation eactivation, ::zorder zorderParam)
+   index interaction::make_zoneing(RECT32 * prect, const ::rect & rect, bool bSet, edisplay * pedisplay, ::e_activation eactivation, ::zorder zorderParam)
    {
 
       if (pedisplay == nullptr || !is_docking_appearance(*pedisplay))
@@ -10846,7 +10878,7 @@ restart:
    }
 
 
-   index interaction::get_best_wkspace(::rect * prect, const ::rect& rect, ::eactivation eactivation)
+   index interaction::get_best_wkspace(::rect * prect, const ::rect& rect, ::e_activation eactivation)
    {
 
       auto psession = Session;
@@ -10856,7 +10888,7 @@ restart:
    }
 
 
-   index interaction::best_zoneing(RECT32 * prect, const ::rect & rect, bool bSet, edisplay * pedisplay, ::eactivation eactivation, ::zorder zorderParam)
+   index interaction::best_zoneing(RECT32 * prect, const ::rect & rect, bool bSet, edisplay * pedisplay, ::e_activation eactivation, ::zorder zorderParam)
    {
 
       edisplay edisplay;
@@ -10916,7 +10948,7 @@ restart:
    }
 
 
-   index interaction::good_restore(RECT32 * prect, const ::rect & rect, bool bSet, ::eactivation eactivation, ::zorder zorderParam, edisplay edisplay)
+   index interaction::good_restore(RECT32 * prect, const ::rect & rect, bool bSet, ::e_activation eactivation, ::zorder zorderParam, edisplay edisplay)
    {
 
       ::rect rectWindow;
@@ -10986,7 +11018,7 @@ restart:
    }
 
 
-   index interaction::good_iconify(RECT32 * prect, const ::rect & rect, bool bSet, ::eactivation eactivation, ::zorder zorderParam)
+   index interaction::good_iconify(RECT32 * prect, const ::rect & rect, bool bSet, ::e_activation eactivation, ::zorder zorderParam)
    {
 
       ::rect rectWindow;
@@ -11031,7 +11063,7 @@ restart:
    }
 
 
-   index interaction::good_move(RECT32 * prect, const ::rect & rect, ::eactivation eactivation, ::zorder zorderParam)
+   index interaction::good_move(RECT32 * prect, const ::rect & rect, ::e_activation eactivation, ::zorder zorderParam)
    {
 
       ::rect rectWindow;
@@ -13616,10 +13648,34 @@ restart:
 
       ::rect rectWindow;
 
-      if (!_001InitialFramePosition(rectWindow, { 0.05, 0.05, 0.4, 0.4 }))
+      bool bSet = false;
+
+      if (m_bitExtendOnParent ||
+         (m_bitExtendOnParentIfClientOnly && Application.is_true("client_only")))
       {
 
-         return false;
+         auto puserinteractionParent = GetParent();
+
+         if (puserinteractionParent)
+         {
+
+            puserinteractionParent->get_client_rect(rectWindow);
+
+            bSet = true;
+
+         }
+
+      }
+
+      if (!bSet)
+      {
+
+         if (!_001InitialFramePosition(rectWindow, { 0.05, 0.05, 0.4, 0.4 }))
+         {
+
+            return false;
+
+         }
 
       }
 

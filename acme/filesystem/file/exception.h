@@ -55,8 +55,6 @@ namespace file
 
    CLASS_DECL_ACME void throw_errno(int iErrNo, const ::file::path& path = nullptr);
 
-   CLASS_DECL_ACME ::estatus errno_to_status(i32 nErrno);
-
    CLASS_DECL_ACME int dos_to_os_error(int lDosErr);
 
    const char* status_message(const ::estatus& estatus);

@@ -2,10 +2,6 @@
 #include "_os_impl.h"
 
 
-__pointer(os_local) g_poslocal;
-__pointer(os_remote) g_posremote;
-
-
 void android_edit_on_set_focus(int l, int t, int r, int b, const char* pszText, int iBeg, int iEnd);
 void android_edit_on_kill_focus();
 
@@ -34,13 +30,14 @@ int get_mem_free_available_kb()
 
 typedef int32_t  Fixed;
 
+
 int g_iScreenW = 0;
 int g_iScreenH = 0;
 const char* g_pszCommandLine = NULL;
 const char* g_pszCacheDir = NULL;
 
 
-void android_fill_plasma(AndroidBitmapInfo * info, void * pixels, double  t)
+void android_fill_plasma(AndroidBitmapInfo * info, color32_t * pixels, double  t)
 {
 
    if (::get_context_system() == nullptr)
@@ -52,7 +49,9 @@ void android_fill_plasma(AndroidBitmapInfo * info, void * pixels, double  t)
 
    }
 
-   if (System.get_context_session() == nullptr)
+   auto psession = System.get_context_session();
+
+   if (psession == nullptr)
    {
 
       output_debug_string("android_fill_plasma : context_session is null");
@@ -61,7 +60,9 @@ void android_fill_plasma(AndroidBitmapInfo * info, void * pixels, double  t)
 
    }
 
-   if (System.get_context_session()->m_puiHost == nullptr)
+   auto puserinteraction = __user_interaction(psession->m_puiHost);
+
+   if (puserinteraction == nullptr)
    {
 
       output_debug_string("android_fill_plasma : Host Window is null");
@@ -70,7 +71,7 @@ void android_fill_plasma(AndroidBitmapInfo * info, void * pixels, double  t)
 
    }
 
-   if (System.get_context_session()->m_puiHost->m_pimpl == nullptr)
+   if (puserinteraction->m_pimpl == nullptr)
    {
 
       output_debug_string("android_fill_plasma : Host Window impl is null");
@@ -79,16 +80,14 @@ void android_fill_plasma(AndroidBitmapInfo * info, void * pixels, double  t)
 
    }
 
-   if (System.get_context_session()->m_puiHost->get_window_graphics() == nullptr)
+   if (puserinteraction->get_window_graphics() == nullptr)
    {
-
-      //   output_debug_string("android_fill_plasma : get_window_graphics returned null");
 
       return;
 
    }
 
-   auto pbuffer = dynamic_cast <::graphics::double_buffer *> (System.get_context_session()->m_puiHost->get_window_graphics());
+   auto pbuffer = dynamic_cast <::graphics::double_buffer *> (puserinteraction->get_window_graphics());
 
    if(pbuffer == nullptr)
    {
@@ -103,8 +102,6 @@ void android_fill_plasma(AndroidBitmapInfo * info, void * pixels, double  t)
 
    auto pimage = pbuffer->get_screen_image();
 
-   pimage->map();
-
    if (!::is_ok(pimage))
    {
 
@@ -114,13 +111,17 @@ void android_fill_plasma(AndroidBitmapInfo * info, void * pixels, double  t)
 
    }
 
-   auto pdata = pimage->get_data();
+   pimage->map();
 
-   auto image_width = pimage->width();
+   auto buffer_data = pimage->get_data();
 
-   auto image_height = pimage->height();
+   auto buffer_width = pimage->width();
 
-   auto image_stride = pimage->m_iScan;
+   auto buffer_height = pimage->height();
+
+   auto buffer_stride = pimage->m_iScan;
+
+   auto window_data = (color32_t *)pixels;
 
    auto window_width = info->width;
 
@@ -128,18 +129,17 @@ void android_fill_plasma(AndroidBitmapInfo * info, void * pixels, double  t)
 
    auto window_stride = info->stride;
 
-   auto transfer_width = min(image_width, window_width);
+   auto transfer_width = min(buffer_width, window_width);
 
-   auto transfer_height = min(image_height, window_height);
+   auto transfer_height = min(buffer_height, window_height);
 
-   ::copy_colorref_swap_red_blue((color32_t *) pixels,
-   transfer_width,
-   transfer_height,
-   window_stride,
-   pdata,
-   image_stride);
-
-   //output_debug_string("android_fill_plasma OK (area="+__str(pbuffer->m_spimageBuffer.area())+")");
+   ::copy_colorref_swap_red_blue(
+      window_data,
+      transfer_width,
+      transfer_height,
+      window_stride,
+      buffer_data,
+      buffer_stride);
 
 }
 
@@ -170,7 +170,7 @@ void* load_lib(const char* l)
 ::estatus os_application_system_run(::aura::system* psystem);
 
 
-int SetMainScreenRect(LPCRECT32 lpcrect);
+
 
 void android_aura_main()
 {
@@ -185,7 +185,7 @@ void android_aura_main()
 
    psystem->system_construct(plocal, e_display_default);
 
-   ::estatus estatus = os_application_system_run(psystem);
+   ::estatus estatus = psystem->os_application_system_run();
    
    if (!estatus)
    {
@@ -203,9 +203,33 @@ void android_aura_main()
    rect.right = premote->getWidth();
    rect.bottom = premote->getHeight();
 
-   System.get_context_session()->defer_initialize_host_window(rect);
+   auto psession = System.get_context_session();
+
+   psession->defer_initialize_host_window(rect);
 
    SetMainScreenRect(rect);
+
+   //auto puserinteraction = __user_interaction(System.get_context_session()->m_puiHost);
+
+   //puserinteraction->place(rect);
+
+   //puserinteraction->display(e_display_normal);
+
+   //puserinteraction->set_need_layout();
+
+   ////puserinteraction->post_redraw();
+
+   //auto pimpl = puserinteraction->m_pimpl.cast < ::user::interaction_impl >();
+
+   //if (pimpl)
+   //{
+
+   //   pimpl->m_pprodevian->prodevian_update_buffer(true);
+
+   //   //oslocal()->m_bRedraw = true;
+
+   //}
+
 
 }
 
@@ -378,6 +402,15 @@ void android_exchange()
       plocal->m_bEditFocusKill = false;
 
       premote->setEditFocusKill(true);
+
+   }
+
+   if (plocal->m_bRedraw)
+   {
+
+      plocal->m_bRedraw = false;
+
+      premote->setRedraw(true);
 
    }
 

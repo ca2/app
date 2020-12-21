@@ -60,4 +60,7 @@
 #endif
 
 
+CLASS_DECL_ACME int windows_error_to_errno(int iWindowsError);
+CLASS_DECL_ACME int errno_to_windows_error(int iErrorNumber);
+
 

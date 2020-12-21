@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "aura/graphics/snippet/close_button.h"
 
+#define STEPPY_DEBUG 1
 
 namespace app_app
 {
@@ -25,7 +26,11 @@ namespace app_app
 
       main_window::on_create_user_interaction();
 
+#if !STEPPY_DEBUG
+
       set_prodevian();
+
+#endif
 
 #ifdef WINDOWS_DESKTOP
 

@@ -2,6 +2,7 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "aura/user/_user.h"
 #endif
+#include "acme/os/cross.h"
 #include "aura/message.h"
 #include "interaction_thread.h"
 #include "interaction_prodevian.h"
@@ -718,7 +719,7 @@ namespace user
                   //)
                {
 
-                  return false;
+                  return;
 
                }
 
@@ -736,7 +737,7 @@ namespace user
 
                   __release(m_puserthread);
 
-                  return false;
+                  return;
 
                }
 
@@ -759,7 +760,7 @@ namespace user
 
                      __release(m_puserthread);
 
-                     return false;
+                     return;
 
                   }
 
@@ -772,7 +773,7 @@ namespace user
          if (pcreatestruct->m_routineSuccess)
          {
 
-            fork([this, psynca, proutine, pcreatestruct]()
+            fork([psynca, proutine, pcreatestruct]()
             {
 
                psynca->wait();
@@ -2156,7 +2157,15 @@ namespace user
    ::i32 interaction_impl::get_window_long(i32 nIndex) const
    {
 
-      return (::i32) ::get_window_long_ptr(m_oswindow, nIndex);
+#ifdef WINDOWS_DESKTOP
+
+      return (::i32) ::GetWindowLongPtr(m_oswindow, nIndex);
+
+#else
+
+      return (::i32) ::user::primitive_impl::get_window_long(nIndex);
+
+#endif
 
    }
 
@@ -2164,7 +2173,15 @@ namespace user
    ::i32 interaction_impl::set_window_long(i32 nIndex,::i32 lValue)
    {
 
-      return  (::i32) ::set_window_long_ptr(m_oswindow, nIndex, lValue);
+#ifdef WINDOWS_DESKTOP
+
+      return (::i32) ::SetWindowLongPtr(m_oswindow, nIndex, lValue);
+
+#else
+
+      return (::i32) ::user::primitive_impl::set_window_long(nIndex, lValue);
+
+#endif
 
    }
 
@@ -2172,15 +2189,30 @@ namespace user
    iptr interaction_impl::get_window_long_ptr(i32 nIndex) const
    {
 
-      return ::get_window_long_ptr(m_oswindow, nIndex);
+#ifdef WINDOWS_DESKTOP
 
+      return ::GetWindowLongPtr(m_oswindow, nIndex);
+
+#else
+
+      return ::user::primitive_impl::get_window_long_ptr(nIndex);
+
+#endif
    }
 
 
    iptr interaction_impl::set_window_long_ptr(i32 nIndex, iptr lValue)
    {
 
-      return ::set_window_long_ptr(m_oswindow, nIndex, lValue);
+#ifdef WINDOWS_DESKTOP
+
+      return ::SetWindowLongPtr(m_oswindow, nIndex, lValue);
+
+#else
+
+      return ::user::primitive_impl::set_window_long_ptr(nIndex, lValue);
+
+#endif
 
    }
 
@@ -3485,7 +3517,7 @@ namespace user
 
          sync_lock slGraphics(m_pgraphics->mutex());
 
-         ::sync * psync = m_pgraphics->get_draw_lock();
+         ::sync * psync = m_pgraphics->get_buffer_sync();
 
          sync_lock sl(psync);
 
@@ -3566,12 +3598,12 @@ namespace user
 
          }
 
-      }
+         if (m_pgraphics)
+         {
 
-      if(m_pgraphics && m_pprodevian)
-      {
+            m_pgraphics->on_end_draw();
 
-         m_pgraphics->on_end_draw();
+         }
 
       }
 
@@ -4329,16 +4361,13 @@ namespace user
    void interaction_impl::on_after_graphical_update()
    {
 
-//      windowing_output_debug_string("\non_after_graphical_update before psession->get_cursor_pos");
 
-      // if(is_set(m_puserinteraction))
-      // {
+#ifdef ANDROID
 
-      //    update_session_cursor(this);
+      oslocal()->m_bRedraw = true;
 
-      // }
+#endif
 
-//      windowing_output_debug_string("\non_after_graphical_update after psession->get_cursor_pos");
 
    }
 
@@ -4586,7 +4615,7 @@ namespace user
 
          output_debug_string("SetWindowPos bottom_right " + __str(pointBottomRight.x) + ", " + __str(pointBottomRight.y) + "\n");
 
-#if !defined(_UWP)
+#if !defined(_UWP) && !defined(ANDROID)
 
          ::SetWindowPos(m_oswindow, oswindowInsertAfter,
             pointOutput.x, pointOutput.y,
@@ -4705,7 +4734,7 @@ namespace user
    }
 
 
-   bool interaction_impl::ShowWindow(int iShow)
+   bool interaction_impl::ShowWindow(const ::e_display & edisplay)
    {
 
       return false;
@@ -4719,7 +4748,7 @@ namespace user
 
    }
 
-   void interaction_impl::window_show_change_visibility(::edisplay edisplay, ::eactivation eactivation)
+   void interaction_impl::window_show_change_visibility(::e_display edisplay, ::e_activation eactivation)
    {
 
       m_puserinteraction->m_pthreadUserInteraction->post_pred([this, edisplay, eactivation]()
@@ -4740,13 +4769,13 @@ namespace user
                if (eactivation == e_activation_no_activate)
                {
 
-                  ::show_window(m_oswindow, SW_SHOWMINNOACTIVE);
+                  ::show_window(m_oswindow, edisplay, eactivation);
 
                }
                else
                {
 
-                  ::show_window(m_oswindow, SW_MINIMIZE);
+                  ::show_window(m_oswindow, edisplay);
 
                }
 
@@ -4768,13 +4797,13 @@ namespace user
 
                }
 
-               ::show_window(m_oswindow, iShow);
+               ::show_window(m_oswindow, edisplay);
 
             }
             else
             {
 
-               ::show_window(m_oswindow, SW_HIDE);
+               ::show_window(m_oswindow, edisplay);
 
             }
 

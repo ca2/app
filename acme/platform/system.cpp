@@ -2,6 +2,8 @@
 #include "acme/id.h"
 
 
+
+
 ::acme::system * g_psystem = nullptr;
 
 namespace acme
@@ -230,10 +232,23 @@ namespace acme
    }
 
 
+   string system::__get_text(const string & str)
+   {
+
+      return str;
+
+   }
+
+
 } // namespace acme
 
 
+   string __get_text(const string & str)
+   {
 
+      return ::g_psystem->__get_text(str);
+
+   }
 
 
 CLASS_DECL_ACME ::acme::system * get_context_system()

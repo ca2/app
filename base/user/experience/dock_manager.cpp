@@ -576,7 +576,7 @@ namespace experience
    }
 
 
-   void dock_manager::set_border_mask(eborder eborder)
+   void dock_manager::set_border_mask(const ::e_border & eborder)
    {
 
       m_eborder = eborder;

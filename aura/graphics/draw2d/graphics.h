@@ -857,11 +857,11 @@ namespace draw2d
       virtual void fill_rect(const ::rect & rect, const ::color & color);
       virtual void fill_rect(const rectd & rectd, const ::color & color);
 
-      virtual void draw_3drect(const ::rect & rect, const ::color& colorTopLeft, const ::color& colorBottomRight, eborder eborder = e_border_all);
-      virtual void draw_3drect(const rectd & rectd, const ::color& colorTopLeft, const ::color& colorBottomRight, eborder eborder = e_border_all);
+      virtual void draw_3drect(const ::rect & rect, const ::color& colorTopLeft, const ::color& colorBottomRight, const ::e_border & eborder = e_border_all);
+      virtual void draw_3drect(const rectd & rectd, const ::color& colorTopLeft, const ::color& colorBottomRight, const ::e_border & eborder = e_border_all);
 
-      virtual void draw_rect(const ::rect & rect, const ::color& color, eborder eborder = e_border_all);
-      virtual void draw_rect(const rectd & rectd, const ::color& color, eborder eborder = e_border_all);
+      virtual void draw_rect(const ::rect & rect, const ::color& color, const ::e_border & eborder = e_border_all);
+      virtual void draw_rect(const rectd & rectd, const ::color& color, const ::e_border & eborder = e_border_all);
 
       virtual bool set_font(::user::interaction* pinteraction, ::user::eelement eelement = ::user::e_element_none, ::user::estate estate = ::user::e_state_none);
 
@@ -890,13 +890,13 @@ namespace draw2d
       //
       // Returns:     None
       //
-      bool draw_round_rect(const ::rect & rect, ::draw2d::pen * ppen, i32 radius, eborder eborder = e_border_all);
-      //bool draw_round_top_left(const ::rect & rect, ::draw2d::pen * ppen, i32 radius, eborder eborder = e_border_all);
-      //bool draw_round_bottom_right(const ::rect & rect, ::draw2d::pen * ppen, i32 radius, eborder eborder = e_border_all);
+      bool draw_round_rect(const ::rect & rect, ::draw2d::pen * ppen, i32 radius, const ::e_border & eborder = e_border_all);
+      //bool draw_round_top_left(const ::rect & rect, ::draw2d::pen * ppen, i32 radius, const ::e_border & eborder = e_border_all);
+      //bool draw_round_bottom_right(const ::rect & rect, ::draw2d::pen * ppen, i32 radius, const ::e_border & eborder = e_border_all);
 
-      bool draw_round_rect(const ::rect & rect, const ::color & color, i32 radius, i32 width, eborder eborder = e_border_all);
-      //bool draw_round_top_left(const ::rect & rect, const ::color & color, i32 radius, i32 width, eborder eborder = e_border_all);
-      //bool draw_round_bottom_right(const ::rect & rect, const ::color & color, i32 radius, i32 width, eborder eborder = e_border_all);
+      bool draw_round_rect(const ::rect & rect, const ::color & color, i32 radius, i32 width, const ::e_border & eborder = e_border_all);
+      //bool draw_round_top_left(const ::rect & rect, const ::color & color, i32 radius, i32 width, const ::e_border & eborder = e_border_all);
+      //bool draw_round_bottom_right(const ::rect & rect, const ::color & color, i32 radius, i32 width, const ::e_border & eborder = e_border_all);
 
 
       bool draw_stock_icon(const ::rectd & rect, e_stock_icon eicon);

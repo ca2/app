@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "_windows.h"
 
 
 //static ::u32 nextTlsIndex = ::parallelization::slot_user_begin;

@@ -2782,7 +2782,7 @@ namespace macos
    }
 
 
-//   void interaction_impl::bring_to_top(::edisplay edisplay)
+//   void interaction_impl::bring_to_top(::e_display edisplay)
 //   {
 //
 //      ::user::interaction_impl::bring_to_top(edisplay);

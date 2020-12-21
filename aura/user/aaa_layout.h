@@ -175,14 +175,14 @@ namespace user
       inline struct window_state & window_state3() { return m_stateWindow3; }
       inline void set_window_state3(const struct window_state & state) { m_stateWindow3 = state; }
 
-      inline const ::edisplay & display_state() const noexcept { return ui_state().m_edisplay3; }
-      inline void set_display_state(const ::edisplay & edisplay) noexcept { ui_state().m_edisplay3 = edisplay; }
+      inline const ::e_display & display_state() const noexcept { return ui_state().m_edisplay3; }
+      inline void set_display_state(const ::e_display & edisplay) noexcept { ui_state().m_edisplay3 = edisplay; }
 
-      inline const ::edisplay & display_request() const noexcept { return request_state().m_edisplay3; }
-      inline void set_display_request(const ::edisplay & edisplay) noexcept { request_state().m_edisplay3 = edisplay; }
+      inline const ::e_display & display_request() const noexcept { return request_state().m_edisplay3; }
+      inline void set_display_request(const ::e_display & edisplay) noexcept { request_state().m_edisplay3 = edisplay; }
 
-      inline const ::edisplay & window_display() const noexcept { return window_state3().m_edisplay3; }
-      inline const ::edisplay & process_display() const noexcept { return process_state().m_edisplay3; }
+      inline const ::e_display & window_display() const noexcept { return window_state3().m_edisplay3; }
+      inline const ::e_display & process_display() const noexcept { return process_state().m_edisplay3; }
 
 
       inline enum_layout_experience layout_experience() const { return m_elayoutexperience; }
@@ -249,7 +249,7 @@ namespace user
       inline eappearance appearance() const { return ui_state().m_eappearance; }
 
       virtual bool is_request_visible() const { return ::is_visible(display_request()); }
-      virtual bool display(::edisplay edisplay = e_display_default, ::eactivation eactivation = e_activation_default) override;
+      virtual bool display(::e_display edisplay = e_display_default, ::e_activation eactivation = e_activation_default) override;
       virtual bool window_do_display();
       inline bool hide() { return display(e_display_hide); }
 

@@ -27,7 +27,7 @@ namespace user
       virtual ~form();
 
 
-      virtual ::estatus initialize(::layered * pobjectContext);
+      virtual ::estatus initialize(::layered * pobjectContext) override;
 
       virtual void install_message_routing(::channel * pchannel) override;
 

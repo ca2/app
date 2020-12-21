@@ -3364,7 +3364,7 @@ namespace draw2d
    }
 
 
-   void graphics::draw_3drect(const ::rect & rect, const ::color & colorTopLeft, const ::color & colorBottomRight, eborder eborder)
+   void graphics::draw_3drect(const ::rect & rect, const ::color & colorTopLeft, const ::color & colorBottomRight, const ::e_border & eborder)
    {
 
       draw_3drect(rectd(rect), colorTopLeft, colorBottomRight, eborder);
@@ -3373,7 +3373,7 @@ namespace draw2d
    }
 
 
-   void graphics::draw_3drect(const rectd & rect, const ::color & colorTopLeft, const ::color & colorBottomRight, eborder eborder)
+   void graphics::draw_3drect(const rectd & rect, const ::color & colorTopLeft, const ::color & colorBottomRight, const ::e_border & eborder)
    {
 
       draw_3drect(::rect(rect), colorTopLeft, colorBottomRight, eborder);
@@ -3381,7 +3381,7 @@ namespace draw2d
    }
 
 
-   void graphics::draw_rect(const ::rect & rect, const ::color & color, eborder eborder)
+   void graphics::draw_rect(const ::rect & rect, const ::color & color, const ::e_border & eborder)
    {
 
       return draw_3drect(rect, color, color, eborder);
@@ -3389,7 +3389,7 @@ namespace draw2d
    }
 
 
-   void graphics::draw_rect(const rectd & rect, const ::color & color, eborder eborder)
+   void graphics::draw_rect(const rectd & rect, const ::color & color, const ::e_border & eborder)
    {
 
       return draw_3drect(rect, color, color, eborder);
@@ -4440,8 +4440,17 @@ namespace draw2d
 
    sized graphics::GetTextExtent(const string & str)
    {
+      
+      ::sized size;
 
-      return GetTextExtent(str);
+      if (!GetTextExtent(size, str, str.get_length()))
+      {
+
+         return nullptr;
+
+      }
+
+      return size;
 
    }
 
@@ -5102,7 +5111,7 @@ namespace draw2d
    //
    // Returns:     None
    //
-   bool graphics::draw_round_rect(const ::rect & rect, ::draw2d::pen * ppen, i32 radius, eborder eborder)
+   bool graphics::draw_round_rect(const ::rect & rect, ::draw2d::pen * ppen, i32 radius, const ::e_border & eborder)
    {
 
       if (eborder & e_border_all)
@@ -5138,7 +5147,7 @@ namespace draw2d
    //
    // Returns:     None
    //
-   bool graphics::draw_round_rect(const ::rect & rectParam, const ::color & color, i32 radius, i32 width, eborder eborder)
+   bool graphics::draw_round_rect(const ::rect & rectParam, const ::color & color, i32 radius, i32 width, const ::e_border & eborder)
    {
 
       ::rect rect(rectParam);
@@ -5167,7 +5176,7 @@ namespace draw2d
    }
 
 
-   //bool graphics::draw_round_top_left(const ::rect & rect, ::draw2d::pen  * ppen, i32 radius, eborder eborder)
+   //bool graphics::draw_round_top_left(const ::rect & rect, ::draw2d::pen  * ppen, i32 radius, const ::e_border & eborder)
    //{
 
    //   ::draw2d::path_pointer path(e_create);
@@ -5187,7 +5196,7 @@ namespace draw2d
    //}
 
 
-   //bool graphics::draw_round_top_left(const ::rect & rectParam, const ::color & color, i32 radius, i32 width, eborder eborder)
+   //bool graphics::draw_round_top_left(const ::rect & rectParam, const ::color & color, i32 radius, i32 width, const ::e_border & eborder)
    //{
 
    //   ::rect rect(rectParam);
@@ -5222,7 +5231,7 @@ namespace draw2d
    //}
 
 
-   //bool graphics::draw_round_bottom_right(const ::rect & rect, ::draw2d::pen  * ppen, i32 radius, eborder eborder)
+   //bool graphics::draw_round_bottom_right(const ::rect & rect, ::draw2d::pen  * ppen, i32 radius, const ::e_border & eborder)
    //{
 
    //   ::draw2d::path_pointer path(e_create);
@@ -5244,7 +5253,7 @@ namespace draw2d
    //}
 
 
-   //bool graphics::draw_round_bottom_right(const ::rect & rectParam, const ::color & color, i32 radius, i32 width, eborder eborder)
+   //bool graphics::draw_round_bottom_right(const ::rect & rectParam, const ::color & color, i32 radius, i32 width, const ::e_border & eborder)
    //{
 
    //   ::rect rect(rectParam);

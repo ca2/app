@@ -4,9 +4,9 @@
 #ifdef __cplusplus
 
 
-using edisplay = cflag < enum_display >;
-using eactivation = cflag < enum_activation >;
-using eappearance = cflag < enum_appearance >;
+DECLARE_C_FLAG(e_display, enum_display);
+DECLARE_C_FLAG(e_activation, enum_activation);
+DECLARE_C_FLAG(e_appearance, enum_appearance);
 
 
 #endif
@@ -30,7 +30,7 @@ CLASS_DECL_ACME enum_display windows_show_window_to_edisplay(int iShowWindow, en
 
 
 CLASS_DECL_ACME string __str(enum_display edisplay);
-inline string __str(const ::edisplay & edisplay);
+inline string __str(const ::e_display & edisplay);
 
 
 

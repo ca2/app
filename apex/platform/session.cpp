@@ -1366,7 +1366,7 @@ namespace apex
 
       edisplay edisplay;
 
-      ::edisplay edisplayPrevious = *pedisplay;
+      ::e_display edisplayPrevious = *pedisplay;
 
       double dMargin = System.m_dpi;
 
@@ -1631,7 +1631,7 @@ namespace apex
    }
 
 
-   index session::get_best_monitor(RECT32 * prect, const rect & rectParam, ::eactivation eactivation)
+   index session::get_best_monitor(RECT32 * prect, const rect & rectParam, ::e_activation eactivation)
    {
 
       index iMatchingMonitor = -1;
@@ -1710,7 +1710,7 @@ namespace apex
    }
 
 
-   index session::get_best_wkspace(::rect * prect, const rect & rectParam, ::eactivation eactivation)
+   index session::get_best_wkspace(::rect * prect, const rect & rectParam, ::e_activation eactivation)
    {
 
       index iMatchingWkspace = -1;

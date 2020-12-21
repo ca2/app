@@ -39,7 +39,7 @@ namespace factory
 
       }
 
-      virtual void return_back(::matter* pmatter)
+      virtual void return_back(::matter* pmatter) override
       {
 
          delete pmatter;

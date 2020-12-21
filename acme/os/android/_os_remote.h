@@ -64,6 +64,8 @@ public:
    JX(i, EditFocusSelEnd);
    //boolean m_bEditFocusKill;
    JX(b, EditFocusKill);
+   //boolean m_bRedraw;
+   JX(b, Redraw);
 
 
 };

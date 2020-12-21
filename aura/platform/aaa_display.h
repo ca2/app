@@ -30,7 +30,7 @@ CLASS_DECL_AURA enum_display windows_show_window_to_edisplay(int iShowWindow, en
 
 
 CLASS_DECL_AURA string __str(enum_display edisplay);
-inline string __str(const ::edisplay & edisplay);
+inline string __str(const ::e_display & edisplay);
 
 
 

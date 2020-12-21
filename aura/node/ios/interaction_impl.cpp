@@ -3191,7 +3191,7 @@ namespace ios
    }
 
 //
-//   void interaction_impl::bring_to_top(::edisplay edisplay)
+//   void interaction_impl::bring_to_top(::e_display edisplay)
 //   {
 //
 //      if(nCmdShow > SW_HIDE && nCmdShow != SW_MINIMIZE)

@@ -24,7 +24,7 @@
  */
 
 #include "framework.h"
-#include "os/cross/windows/_windows.h"
+#include "_windows.h"
 #include "windows_internals.h"
 
 
@@ -1009,9 +1009,13 @@ int_bool WINAPI SystemTimeToFileTime( const SYSTEMTIME *syst, LPFILETIME ft )
 
    if( !RtlTimeFieldsToTime(&tf, &t))
    {
-      set_last_status( ERROR_INVALID_PARAMETER);
+   
+      set_last_status(error_invalid_argument);
+
       return FALSE;
+
    }
+
    ft->dwLowDateTime = t.u.LowPart;
    ft->dwHighDateTime = t.u.HighPart;
    return TRUE;

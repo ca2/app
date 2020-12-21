@@ -514,39 +514,55 @@ namespace file
 
 
 
-   ::estatus errno_to_status(i32 nErrno)
-   {
 
-      switch (nErrno)
-      {
-      case EPERM:
-      case EACCES:
-         return error_file_access_denied;
-      case EBADF:
-         return error_invalid_file;
-         //      case EDEADLOCK:
-         //       return ::file::exception::sharingViolation;
-      case EMFILE:
-         return error_too_many_open_files;
-      case ENOENT:
-      case ENFILE:
-         return error_file_not_found;
-      case ENOSPC:
-         return error_disk_full;
-      case EINVAL:
-      case EIO:
-         return error_hard_io;
-      default:
-         return error_file;
-      }
-
-   }
 
 
 
 
 } // namespace file
 
+
+::estatus errno_to_status(int iErrorNumber)
+{
+
+   switch (iErrorNumber)
+   {
+   case 0:
+      return ::success;
+   case EPERM:
+   case EACCES:
+      return error_file_access_denied;
+   case EBADF:
+      return error_invalid_file;
+      //      case EDEADLOCK:
+      //       return ::file::exception::sharingViolation;
+   case EMFILE:
+      return error_too_many_open_files;
+   case ENOENT:
+   case ENFILE:
+      return error_file_not_found;
+   case ENOSPC:
+      return error_disk_full;
+   case EINVAL:
+   case EIO:
+      return error_hard_io;
+   default:
+      return ::error_failed;
+   }
+
+}
+
+
+void set_last_errno_status()
+{
+
+   int iErrorNumber = errno;
+
+   auto estatus = errno_to_status(iErrorNumber);
+
+   set_last_status(estatus);
+
+}
 
 
 

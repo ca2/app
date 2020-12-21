@@ -74,7 +74,7 @@ namespace aura
 //
 //#endif
 
-   CLASS_DECL_AURA critical_section* g_pcsFont = nullptr;
+   CLASS_DECL_AURA critical_section * g_pcsFont = nullptr;
 
    CLASS_DECL_AURA string_to_string * g_pmapFontFaceName = nullptr;
 
@@ -103,7 +103,7 @@ namespace aura
 //
 //#else
 
-   DWORD_PTR g_tlsindexLastError;
+   //DWORD_PTR g_tlsindexLastError;
    char* g_pszDemangle;
    critical_section* g_pcsDemangle;
 
@@ -271,7 +271,7 @@ namespace aura
 
 #if !defined(WINDOWS)
 
-      g_tlsindexLastError = 0;
+      //g_tlsindexLastError = 0;
 
       g_pszDemangle = nullptr;
 
@@ -491,11 +491,11 @@ namespace aura
 
       //init_id_pool();
 
-#ifdef ANDROID
-
-      g_pmutexOutputDebugStringA = new ::mutex();
-
-#endif
+//#ifdef ANDROID
+//
+//      g_pmutexOutputDebugStringA = new ::mutex();
+//
+//#endif
 
 #if OBJ_TYP_CTR
 
@@ -828,11 +828,11 @@ namespace aura
 
       trace_category_static_term();
 
-#ifdef ANDROID
-
-      del(g_pmutexOutputDebugStringA);
-
-#endif
+//#ifdef ANDROID
+//
+//      del(g_pmutexOutputDebugStringA);
+//
+//#endif
 
       //term_id_pool();
 

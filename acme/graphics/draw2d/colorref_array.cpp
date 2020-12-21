@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "acme/os/cross.h"
 
 
 colorref_array::colorref_array()
@@ -33,9 +34,13 @@ void colorref_array::create_web_palette()
              (byte) STANDARD_PALETTE[nGreenIdx],
                (byte) STANDARD_PALETTE[nBlueIdx]);
             ++nColorMapIdx;
+
          }
+
       }
+
    }
+
 }
 
 

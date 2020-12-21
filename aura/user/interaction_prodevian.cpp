@@ -20,6 +20,12 @@ namespace user
    prodevian::prodevian()
    {
 
+      m_bUpdateBufferUpdateWindowPending = false;
+
+      m_bRedraw = false;
+      m_bUpdateBuffer = false;
+      m_bUpdateWindow = false;
+
       m_bAuraMessageQueue = true;
 
       m_bUpdatingScreen = false;
@@ -472,11 +478,14 @@ bool prodevian::prodevian_iteration()
 
    m_message.wParam &= ~1;
 
-   bool bUpdateBuffer = false;
+   if (!m_bUpdateBufferUpdateWindowPending)
+   {
 
-   bool bUpdateWindow = false;
+      prodevian_update_buffer(bRedraw);
 
-   update_buffer(bUpdateBuffer, bUpdateWindow, bRedraw);
+   }
+
+   m_bUpdateBufferUpdateWindowPending = false;
 
    m_nanosNow = get_nanos();
 
@@ -487,12 +496,10 @@ bool prodevian::prodevian_iteration()
 
    }
 
-   bool bUpdateScreen = bUpdateBuffer;
-
    if (m_puserinteraction && m_puserinteraction->GetExStyle() & WS_EX_LAYERED)
    {
 
-      bUpdateScreen |= bUpdateWindow;
+      m_bUpdateWindow |= m_bUpdateBuffer;
 
    }
 
@@ -501,7 +508,7 @@ bool prodevian::prodevian_iteration()
    if (m_puserinteraction)
    {
 
-      if (bUpdateWindow || m_puserinteraction->m_bUpdateVisual)
+      if (m_bUpdateWindow || m_puserinteraction->m_bUpdateVisual)
       {
 
          m_puserinteraction->m_bUpdateVisual = false;
@@ -517,7 +524,7 @@ bool prodevian::prodevian_iteration()
 
    }
 
-   bool bWait = (bUpdateScreen && !bStartWindowVisual) || bRedraw;
+   bool bWait = (m_bUpdateWindow && !bStartWindowVisual) || bRedraw;
 
    if (bHasProdevian || (bWait && ((m_nanosNow - m_nanosLastFrame) < m_nanosPostRedraw / 2)))
    {
@@ -664,15 +671,19 @@ bool prodevian::prodevian_iteration()
 
    if (!(m_puserinteraction->m_ewindowflag & e_window_flag_postpone_visual_update))
    {
+
       //#ifdef LINUX
+
       if (bStartWindowVisual)
       {
 
          m_pimpl->window_show();
 
       }
+
       //#endif
       ////END IFDEF LINUX
+
    }
 
    if (m_bVisualUpdated)
@@ -698,35 +709,10 @@ bool prodevian::prodevian_iteration()
 
    bool bWindowsApplyVisual = true;
 
-   if (bUpdateScreen && (bWindowsApplyVisual || !bStartWindowVisual))
+   if (m_bUpdateWindow && (bWindowsApplyVisual || !bStartWindowVisual))
    {
 
-      if (m_bExclusiveMode)
-      {
-
-         update_screen();
-
-      }
-      else
-      {
-
-         //if (!m_bUpdatingScreen || m_millisLastScreenUpdate.elapsed() > 200_ms)
-         {
-
-            m_millisLastScreenUpdate.Now();
-
-            m_bUpdatingScreen = true;
-
-            if(m_puserinteraction)
-            {
-
-               m_puserinteraction->post_routine(m_routineUpdateScreen);
-
-            }
-
-         }
-
-      }
+      prodevian_update_screen();
 
    }
    
@@ -785,6 +771,59 @@ bool prodevian::prodevian_iteration()
    return true;
 
 }
+
+
+   bool prodevian::prodevian_update_buffer(bool bRedraw)
+   {
+
+      m_bRedraw = bRedraw;
+
+      m_bUpdateBuffer = false;
+
+      m_bUpdateWindow = false;
+
+      update_buffer(m_bUpdateBuffer, m_bUpdateWindow, bRedraw);
+
+      m_bUpdateBufferUpdateWindowPending = m_bUpdateWindow;
+
+      return true;
+
+   }
+
+
+   bool prodevian::prodevian_update_screen()
+   {
+
+      if (m_bExclusiveMode)
+      {
+
+         update_screen();
+
+      }
+      else
+      {
+
+         //if (!m_bUpdatingScreen || m_millisLastScreenUpdate.elapsed() > 200_ms)
+         {
+
+            m_millisLastScreenUpdate.Now();
+
+            m_bUpdatingScreen = true;
+
+            if (m_puserinteraction)
+            {
+
+               m_puserinteraction->post_routine(m_routineUpdateScreen);
+
+            }
+
+         }
+
+      }
+
+      return true;
+
+   }
 
 
    void prodevian::update_buffer(bool & bUpdateBuffer, bool & bUpdateWindow, bool bForce)
@@ -994,7 +1033,6 @@ bool prodevian::prodevian_iteration()
                m_puserinteraction->on_after_graphical_update();
 
             }
-
 
             if (m_puserinteraction)
             {

@@ -132,7 +132,7 @@ namespace user
 
    }
 
-   void frame::ActivateFrame(::edisplay edisplay)
+   void frame::ActivateFrame(::e_display edisplay)
    {
 
 

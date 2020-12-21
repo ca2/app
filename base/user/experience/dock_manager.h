@@ -39,7 +39,7 @@ namespace experience
 
       bool dock_window(::message::mouse* pmouse);
 
-      void set_border_mask(eborder eborder);
+      void set_border_mask(const ::e_border & eborder);
       eborder get_border_mask();
 
       void set_dock_mask(edock edock);

@@ -284,7 +284,7 @@ namespace linux
 //      virtual void ValidateRect(const ::rect & rect);
 //
 //      virtual void ValidateRgn(::draw2d::region* pRgn);
-      //virtual bool display(::edisplay edisplay) override;
+      //virtual bool display(::e_display edisplay) override;
 
 //      virtual bool WfiOnStartDock();
 //      virtual void WfiOnDock(edisplay edisplay);

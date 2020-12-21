@@ -2907,7 +2907,7 @@ namespace aura
    bool system::android_set_user_wallpaper(string strUrl)
    {
 
-      oslocal().m_strSetUserWallpaper = strUrl;
+      oslocal()->m_strSetUserWallpaper = strUrl;
 
       return true;
 
@@ -2916,12 +2916,12 @@ namespace aura
    bool system::android_get_user_wallpaper(string & strUrl)
    {
 
-      oslocal().m_bGetUserWallpaper = true;
+      ::oslocal()->m_bGetUserWallpaper = true;
 
       for(int i = 0; i < 10; i++)
       {
 
-         if (!oslocal().m_bGetUserWallpaper)
+         if (!::oslocal()->m_bGetUserWallpaper)
          {
 
 
@@ -2931,7 +2931,7 @@ namespace aura
 
       }
 
-      strUrl = oslocal().m_strGetUserWallpaper;
+      strUrl = ::oslocal()->m_strGetUserWallpaper;
 
       return true;
 
@@ -4051,15 +4051,15 @@ namespace aura
 
          string strOpenUrl;
 
-         if (System.oslocal().m_pszOpenUrl != nullptr)
+         if (::oslocal()->m_pszOpenUrl != nullptr)
          {
 
-            strOpenUrl = System.oslocal().m_pszOpenUrl;
+            strOpenUrl = ::oslocal()->m_pszOpenUrl;
 
             try
             {
 
-               ::free((void *)System.oslocal().m_pszOpenUrl);
+               ::free((void *)::oslocal()->m_pszOpenUrl);
 
             }
             catch (...)
@@ -4068,7 +4068,7 @@ namespace aura
 
             }
 
-            System.oslocal().m_pszOpenUrl = nullptr;
+            ::oslocal()->m_pszOpenUrl = nullptr;
 
          }
 
@@ -4080,7 +4080,7 @@ namespace aura
 
             // System.m_pandroidinitdata->m_pszOpenUrl = strdup(strLink);
 
-            System.oslocal().m_pszOpenUrl = strdup(strUrl);
+            ::oslocal()->m_pszOpenUrl = strdup(strUrl);
 
          }
 

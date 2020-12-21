@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
-    <ProjectConfiguration Include="basis|ARM">
-      <Configuration>basis</Configuration>
+    <ProjectConfiguration Include="Debug|ARM">
+      <Configuration>Debug</Configuration>
       <Platform>ARM</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="basis|x86">
-      <Configuration>basis</Configuration>
+    <ProjectConfiguration Include="Debug|x86">
+      <Configuration>Debug</Configuration>
       <Platform>x86</Platform>
     </ProjectConfiguration>
     <ProjectConfiguration Include="stage|ARM">
@@ -28,14 +28,14 @@
     <MinimumVisualStudioVersion>15.0</MinimumVisualStudioVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x86'" Label="Configuration">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>Clang_5_0</PlatformToolset>
     <AndroidAPILevel>android-19</AndroidAPILevel>
     <UseOfStl>c++_shared</UseOfStl>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'" Label="Configuration">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>Clang_5_0</PlatformToolset>
@@ -60,7 +60,7 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings" />
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <Import Project="..\..\..\archive\platform-android\Common.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">
@@ -69,35 +69,35 @@
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='stage|x86'">
     <Import Project="..\..\..\archive\platform-android\Common.props" />
   </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='basis|x86'">
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
     <Import Project="..\..\..\archive\platform-android\Common.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x86'">
-    <OutDir>$(SolutionDir)..\..\time-android\$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)..\..\time-android\intermediate\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+    <OutDir>$(SolutionDir)..\..\..\time-android\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time-android\intermediate\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
     <UseMultiToolTask>true</UseMultiToolTask>
     <TargetName>lib$(ProjectName)</TargetName>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
-    <OutDir>$(SolutionDir)..\..\time-android\$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)..\..\time-android\intermediate\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+    <OutDir>$(SolutionDir)..\..\..\time-android\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time-android\intermediate\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
     <UseMultiToolTask>true</UseMultiToolTask>
     <TargetName>lib$(ProjectName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">
-    <OutDir>$(SolutionDir)..\..\time-android\$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)..\..\time-android\intermediate\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)..\..\..\time-android\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time-android\intermediate\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
     <UseMultiToolTask>true</UseMultiToolTask>
     <TargetName>lib$(ProjectName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|x86'">
-    <OutDir>$(SolutionDir)..\..\time-android\$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)..\..\time-android\intermediate\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)..\..\..\time-android\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time-android\intermediate\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
     <UseMultiToolTask>true</UseMultiToolTask>
     <TargetName>lib$(ProjectName)</TargetName>
   </PropertyGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|x86'">
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
     <ClCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-android/$(PlatformName)/$(Configuration)/include;$(__archive)third-android/include;$(__archive)third-android/third/include;$(__archive)third-android/third/include/include;$(SolutionDir)../../platform-android/_include;$(SolutionDir)../../platform-android;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>DEBUG;__ANDROID_API__=19;_ACME_LIBRARY</PreprocessorDefinitions>
@@ -113,7 +113,7 @@
     <Link>
       <AdditionalDependencies>
       </AdditionalDependencies>
-      <LibraryDependencies>aurasqlite;ssl;crypto;auraidn;aurabzip2;aurazlib;aurapcre;auraiconv;jnigraphics;android;log;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
+      <LibraryDependencies>aurasqlite;auraidn;aurabzip2;aurazlib;auraiconv;jnigraphics;android;log;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
       <UnresolvedSymbolReferences>true</UnresolvedSymbolReferences>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-android\third\library\$(Platform)\$(Configuration)\;$(__archive)storage-android\library\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
     </Link>
@@ -122,12 +122,12 @@
       </Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <ClCompile>
       <ExceptionHandling>Enabled</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-variable -Wno-unused-value -Wno-reorder -Wno-overloaded-virtual -Wno-char-subscripts</AdditionalOptions>
-      <AdditionalIncludeDirectories>$(__archive)platform-android\include;$(__archive)platform-android\third\include\include;$(__archive)platform-android\third\include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(SolutionDir)../../platform-android/;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(__archive)third-android\include;$(__archive)third-android\third\include\include;$(__archive)third-android\third\include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(SolutionDir)../../platform-android/;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>DEBUG;__ANDROID_API__=19;_ACME_LIBRARY</PreprocessorDefinitions>
       <CLanguageStandard>c11</CLanguageStandard>
       <CppLanguageStandard>c++1z</CppLanguageStandard>
@@ -144,7 +144,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">
     <ClCompile>
       <DebugInformationFormat>FullDebug</DebugInformationFormat>
-      <AdditionalIncludeDirectories>$(__archive)platform-android\include;$(__archive)platform-android\third\include\include;$(__archive)platform-android\third\include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(SolutionDir)../../platform-android/;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(__archive)third-android\include;$(__archive)third-android\third\include\include;$(__archive)third-android\third\include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(SolutionDir)../../platform-android/;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>__ANDROID_API__=19;_ACME_LIBRARY</PreprocessorDefinitions>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <CLanguageStandard>c11</CLanguageStandard>
@@ -230,6 +230,7 @@
     <ClCompile Include="exception\os.cpp" />
     <ClCompile Include="exception\parsing.cpp" />
     <ClCompile Include="exception\resource.cpp" />
+    <ClCompile Include="exception\result.cpp" />
     <ClCompile Include="exception\simple.cpp" />
     <ClCompile Include="exception\standard_translator.cpp" />
     <ClCompile Include="exception\temporary.cpp" />
@@ -278,86 +279,67 @@
     <ClCompile Include="memory\allocation.cpp" />
     <ClCompile Include="memory\heap.cpp" />
     <ClCompile Include="memory\inline\heap_bare.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="memory\inline\heap_mcheck.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="memory\inline\heap_mcrtdbg.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="memory\inline\heap_memdleak.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="memory\inline\heap_std.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="memory\inline\heap_vld.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="memory\os_alloc\bounds_check.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="memory\os_alloc\malloc.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="memory\os_alloc\no_bounds_check.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="memory\os_alloc\WindowsHeapAlloc.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="memory\plex.cpp" />
-    <ClCompile Include="memory\plex_heap1.cpp" />
-    <ClCompile Include="multithreading\condition.cpp" />
-    <ClCompile Include="multithreading\critical_section.cpp" />
-    <ClCompile Include="multithreading\event.cpp" />
-    <ClCompile Include="multithreading\file_change_event.cpp" />
-    <ClCompile Include="multithreading\sync_array.cpp" />
-    <ClCompile Include="multithreading\manual_reset_event.cpp" />
-    <ClCompile Include="multithreading\multi_lock.cpp" />
-    <ClCompile Include="multithreading\mutex.cpp" />
-    <ClCompile Include="multithreading\pred_holder.cpp" />
-    <ClCompile Include="multithreading\procedure_array.cpp" />
-    <ClCompile Include="multithreading\semaphore.cpp" />
-    <ClCompile Include="multithreading\single_lock.cpp" />
-    <ClCompile Include="multithreading\socket_event.cpp" />
-    <ClCompile Include="multithreading\sync_task.cpp" />
-    <ClCompile Include="multithreading\thread_os.cpp" />
-    <ClCompile Include="multithreading\sync.cpp" />
-    <ClCompile Include="multithreading\sync_result.cpp" />
-    <ClCompile Include="multithreading\waitable.cpp" />
-    <ClCompile Include="multithreading\_.cpp" />
+    <ClCompile Include="memory\plex_heap.cpp" />
     <ClCompile Include="node\android\android.cpp" />
     <ClCompile Include="node\android\android1.cpp" />
     <ClCompile Include="node\android\error.cpp" />
@@ -367,7 +349,6 @@
     <ClCompile Include="node\android\main.cpp" />
     <ClCompile Include="node\android\process.cpp" />
     <ClCompile Include="node\android\thread.cpp" />
-    <ClCompile Include="node\android\trace.cpp" />
     <ClCompile Include="node\android\util.cpp" />
     <ClCompile Include="node\posix\pipe.cpp" />
     <ClCompile Include="os\android\c.cpp" />
@@ -382,23 +363,23 @@
     <ClCompile Include="os\android\locale.cpp" />
     <ClCompile Include="os\android\lock.cpp" />
     <ClCompile Include="os\android\application_system_run.cpp" />
-    <ClCompile Include="os\android\main_android.cpp" />
-    <ClCompile Include="os\android\message_loop.cpp" />
+    <ClCompile Include="os\android\parallelization.cpp" />
     <ClCompile Include="os\android\process.cpp" />
     <ClCompile Include="os\android\process_pid.cpp" />
-    <ClCompile Include="os\android\_bind_app.cpp" />
-    <ClCompile Include="os\android\_bind_impact.cpp" />
-    <ClCompile Include="os\android\_os_impl.cpp" />
+    <ClCompile Include="os\android\user.cpp" />
     <ClCompile Include="os\android\win_base.cpp" />
-    <ClCompile Include="os\android\_os_object.cpp" />
+    <ClCompile Include="os\android\_.cpp" />
     <ClCompile Include="os\ansios\base.cpp" />
+    <ClCompile Include="os\ansios\binreloc.cpp" />
     <ClCompile Include="os\ansios\datetime.cpp" />
+    <ClCompile Include="os\ansios\debug.cpp" />
     <ClCompile Include="os\ansios\exception_engine.cpp" />
     <ClCompile Include="os\ansios\file.cpp" />
     <ClCompile Include="os\ansios\file_raw.cpp" />
     <ClCompile Include="os\ansios\file_std.cpp" />
     <ClCompile Include="os\ansios\language.cpp" />
     <ClCompile Include="os\ansios\memory.cpp" />
+    <ClCompile Include="os\ansios\process.cpp" />
     <ClCompile Include="os\ansios\user.cpp" />
     <ClCompile Include="os\ansios\win.cpp" />
     <ClCompile Include="os\argcargv.cpp" />
@@ -416,18 +397,40 @@
     <ClCompile Include="os\debug.cpp" />
     <ClCompile Include="os\file.cpp" />
     <ClCompile Include="os\http.cpp" />
+    <ClCompile Include="os\parallelization.cpp" />
     <ClCompile Include="os\posix\base_file.cpp" />
     <ClCompile Include="os\posix\local_memory_map.cpp" />
+    <ClCompile Include="os\posix\parallelization.cpp" />
     <ClCompile Include="os\posix\pthread.cpp" />
-    <ClCompile Include="os\posix\thread.cpp" />
     <ClCompile Include="os\posix\time.cpp" />
     <ClCompile Include="os\posix\timer.cpp" />
-    <ClCompile Include="os\process.cpp" />
-    <ClCompile Include="os\thread.cpp" />
     <ClCompile Include="os\time.cpp" />
     <ClCompile Include="os\windowing.cpp" />
     <ClCompile Include="os\winpr_keycode.cpp" />
     <ClCompile Include="os\winpr_scancode.cpp" />
+    <ClCompile Include="parallelization\condition.cpp" />
+    <ClCompile Include="parallelization\critical_section.cpp" />
+    <ClCompile Include="parallelization\event.cpp" />
+    <ClCompile Include="parallelization\file_change_event.cpp" />
+    <ClCompile Include="parallelization\manual_reset_event.cpp" />
+    <ClCompile Include="parallelization\mq.cpp" />
+    <ClCompile Include="parallelization\multi_lock.cpp" />
+    <ClCompile Include="parallelization\mutex.cpp" />
+    <ClCompile Include="parallelization\pool.cpp" />
+    <ClCompile Include="parallelization\semaphore.cpp" />
+    <ClCompile Include="parallelization\single_lock.cpp" />
+    <ClCompile Include="parallelization\socket_event.cpp" />
+    <ClCompile Include="parallelization\sync.cpp" />
+    <ClCompile Include="parallelization\sync_array.cpp" />
+    <ClCompile Include="parallelization\sync_process.cpp" />
+    <ClCompile Include="parallelization\sync_result.cpp" />
+    <ClCompile Include="parallelization\sync_routine.cpp" />
+    <ClCompile Include="parallelization\sync_task.cpp" />
+    <ClCompile Include="parallelization\task.cpp" />
+    <ClCompile Include="parallelization\thread.cpp" />
+    <ClCompile Include="parallelization\thread_os.cpp" />
+    <ClCompile Include="parallelization\waitable.cpp" />
+    <ClCompile Include="parallelization\_.cpp" />
     <ClCompile Include="platform\assert.cpp" />
     <ClCompile Include="platform\aura_str_pool.cpp" />
     <ClCompile Include="platform\build_debug.cpp" />
@@ -443,8 +446,11 @@
     <ClCompile Include="platform\logic.cpp" />
     <ClCompile Include="platform\lparam.cpp" />
     <ClCompile Include="platform\math.cpp" />
+    <ClCompile Include="platform\message_box.cpp" />
     <ClCompile Include="platform\muldiv64.cpp" />
+    <ClCompile Include="platform\nano_timer.cpp" />
     <ClCompile Include="platform\net.cpp" />
+    <ClCompile Include="platform\obj_ref_dbg.cpp" />
     <ClCompile Include="platform\obj_typ_ctr.cpp" />
     <ClCompile Include="platform\printf.cpp" />
     <ClCompile Include="platform\profiler.cpp" />
@@ -452,6 +458,14 @@
     <ClCompile Include="platform\sprintf.cpp" />
     <ClCompile Include="platform\static_start.cpp" />
     <ClCompile Include="platform\static_start_aura.cpp" />
+    <ClCompile Include="platform\system.cpp" />
+    <ClCompile Include="platform\text.cpp" />
+    <ClCompile Include="platform\timer.cpp" />
+    <ClCompile Include="platform\timer_array.cpp" />
+    <ClCompile Include="platform\timer_callback.cpp" />
+    <ClCompile Include="platform\timer_event.cpp" />
+    <ClCompile Include="platform\timer_item.cpp" />
+    <ClCompile Include="platform\timer_task.cpp" />
     <ClCompile Include="platform\trace_category.cpp" />
     <ClCompile Include="platform\version.cpp" />
     <ClCompile Include="platform\_.cpp" />
@@ -490,6 +504,7 @@
     <ClCompile Include="primitive\geometry2d\geometry.cpp" />
     <ClCompile Include="primitive\geometry2d\point.cpp" />
     <ClCompile Include="primitive\geometry2d\rect.cpp" />
+    <ClCompile Include="primitive\geometry2d\shape.cpp" />
     <ClCompile Include="primitive\geometry2d\size.cpp" />
     <ClCompile Include="primitive\geometry2d\types.cpp" />
     <ClCompile Include="primitive\geometry2d\_.cpp" />
@@ -512,9 +527,13 @@
     <ClCompile Include="primitive\primitive\application_bias.cpp" />
     <ClCompile Include="primitive\primitive\bit.cpp" />
     <ClCompile Include="primitive\primitive\block.cpp" />
-    <ClCompile Include="primitive\primitive\command_line.cpp" />
+    <ClCompile Include="primitive\primitive\command.cpp" />
+    <ClCompile Include="primitive\primitive\context_object.cpp" />
+    <ClCompile Include="primitive\primitive\context_object_traits.cpp" />
+    <ClCompile Include="primitive\primitive\element_array.cpp" />
+    <ClCompile Include="primitive\primitive\estatus.cpp" />
+    <ClCompile Include="primitive\primitive\id_array.cpp" />
     <ClCompile Include="primitive\primitive\matter.cpp" />
-    <ClCompile Include="primitive\primitive\future.cpp" />
     <ClCompile Include="primitive\primitive\edit.cpp" />
     <ClCompile Include="primitive\primitive\factory.cpp" />
     <ClCompile Include="primitive\primitive\handler.cpp" />
@@ -528,26 +547,32 @@
     <ClCompile Include="primitive\primitive\memory_base.cpp" />
     <ClCompile Include="primitive\primitive\memory_c.cpp" />
     <ClCompile Include="primitive\primitive\memory_container.cpp" />
-    <ClCompile Include="primitive\primitive\method.cpp" />
+    <ClCompile Include="primitive\primitive\payload.cpp" />
     <ClCompile Include="primitive\primitive\property.cpp" />
     <ClCompile Include="primitive\primitive\property_set.cpp" />
     <ClCompile Include="primitive\primitive\property_set_composite.cpp" />
     <ClCompile Include="primitive\primitive\property_set_papaya.cpp" />
     <ClCompile Include="primitive\primitive\runnable.cpp" />
     <ClCompile Include="primitive\primitive\shared_memory.cpp" />
-    <ClCompile Include="primitive\primitive\task.cpp" />
     <ClCompile Include="primitive\primitive\traits.cpp" />
     <ClCompile Include="primitive\primitive\type.cpp" />
-    <ClCompile Include="primitive\primitive\var.cpp" />
     <ClCompile Include="primitive\primitive\var_element.cpp" />
     <ClCompile Include="primitive\primitive\virtual_memory.cpp" />
+    <ClCompile Include="primitive\primitive\work.cpp" />
     <ClCompile Include="primitive\primitive\_.cpp" />
-    <ClCompile Include="primitive\string\aaa_want_to_remove_verisimple_wstring.cpp" />
+    <ClCompile Include="primitive\promise\context.cpp" />
+    <ClCompile Include="primitive\promise\handler.cpp" />
+    <ClCompile Include="primitive\promise\process.cpp" />
+    <ClCompile Include="primitive\promise\promise.cpp" />
+    <ClCompile Include="primitive\promise\routine.cpp" />
+    <ClCompile Include="primitive\promise\routine_array.cpp" />
+    <ClCompile Include="primitive\promise\subject.cpp" />
     <ClCompile Include="primitive\string\base64.cpp" />
     <ClCompile Include="primitive\string\bstring.cpp" />
     <ClCompile Include="primitive\string\ch.cpp" />
     <ClCompile Include="primitive\string\ch_class.cpp" />
     <ClCompile Include="primitive\string\dup.cpp" />
+    <ClCompile Include="primitive\string\from_integer.cpp" />
     <ClCompile Include="primitive\string\hex.cpp" />
     <ClCompile Include="primitive\string\international.cpp" />
     <ClCompile Include="primitive\string\manager.cpp" />
@@ -573,7 +598,12 @@
     <ClCompile Include="primitive\string\_unicode16.cpp" />
     <ClCompile Include="primitive\string\_unicode16_32.cpp" />
     <ClCompile Include="primitive\string\_unicode32.cpp" />
+    <ClCompile Include="process\bidirectional_pipe.cpp" />
+    <ClCompile Include="process\exit_status.cpp" />
+    <ClCompile Include="process\pipe.cpp" />
+    <ClCompile Include="process\_.cpp" />
     <ClCompile Include="user\os_colors.cpp" />
+    <ClCompile Include="user\os_theme_colors.cpp" />
     <ClCompile Include="_.cpp" />
     <ClCompile Include="__matter_ca2.cpp" />
   </ItemGroup>
@@ -1030,7 +1060,6 @@
     <ClInclude Include="filesystem\file\___serialization_draft001.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="framework_c.h" />
-    <ClInclude Include="geometry_quaternions.h" />
     <ClInclude Include="graphics\draw2d\color.h" />
     <ClInclude Include="graphics\draw2d\colorref_array.h" />
     <ClInclude Include="graphics\draw2d\_.h" />
@@ -1135,13 +1164,14 @@
     <ClInclude Include="os\android\_os_object.h" />
     <ClInclude Include="os\android\_os_local.h" />
     <ClInclude Include="os\android\_os_remote.h" />
+    <ClInclude Include="os\android\_user.h" />
     <ClInclude Include="os\chronometer.h" />
     <ClInclude Include="os\console.h" />
     <ClInclude Include="os\cross.h" />
-    <ClInclude Include="os\cross\cross.h" />
+    <ClInclude Include="os\cross\windows\aaa_windows.h" />
     <ClInclude Include="os\cross\windows\e.h" />
     <ClInclude Include="os\cross\windows\message_box.h" />
-    <ClInclude Include="os\cross\windows\windows.h" />
+    <ClInclude Include="os\cross\windows\parallelization.h" />
     <ClInclude Include="os\cross\windows\windows_base.h" />
     <ClInclude Include="os\cross\windows\windows_base_tsd.h" />
     <ClInclude Include="os\cross\windows\windows_common_controls.h" />
@@ -1161,7 +1191,6 @@
     <ClInclude Include="os\cross\windows\windows_ntstatus.h" />
     <ClInclude Include="os\cross\windows\windows_ole_automation.h" />
     <ClInclude Include="os\cross\windows\windows_shared_memory.h" />
-    <ClInclude Include="os\cross\windows\windows_thread.h" />
     <ClInclude Include="os\cross\windows\windows_thread_impl.h" />
     <ClInclude Include="os\cross\windows\windows_time.h" />
     <ClInclude Include="os\cross\windows\windows_types.h" />
@@ -1169,6 +1198,9 @@
     <ClInclude Include="os\cross\windows\windows_wincon.h" />
     <ClInclude Include="os\cross\windows\windows_winnt.h" />
     <ClInclude Include="os\cross\windows\_.h" />
+    <ClInclude Include="os\cross\windows\_windows.h" />
+    <ClInclude Include="os\cross\_.h" />
+    <ClInclude Include="os\cross\_cross.h" />
     <ClInclude Include="os\file.h" />
     <ClInclude Include="os\graphics.h" />
     <ClInclude Include="os\os_windowing2.h" />
@@ -1302,22 +1334,13 @@
     <ClInclude Include="platform\static_setup.h" />
     <ClInclude Include="platform\static_start.h" />
     <ClInclude Include="platform\status.h" />
-    <ClInclude Include="platform\std_pair.h" />
-    <ClInclude Include="platform\strn.h" />
-    <ClInclude Include="platform\struct.h" />
-    <ClInclude Include="platform\str_context.h" />
     <ClInclude Include="platform\system.h" />
-    <ClInclude Include="platform\system_heap.h" />
-    <ClInclude Include="platform\system_str.h" />
-    <ClInclude Include="platform\theme.h" />
-    <ClInclude Include="platform\this_build_number.h" />
     <ClInclude Include="platform\millis.h" />
     <ClInclude Include="platform\timer.h" />
     <ClInclude Include="platform\timer_array.h" />
     <ClInclude Include="platform\timer_callback.h" />
     <ClInclude Include="platform\timer_event.h" />
     <ClInclude Include="platform\timer_item.h" />
-    <ClInclude Include="platform\trace.h" />
     <ClInclude Include="platform\trace_category.h" />
     <ClInclude Include="platform\types.h" />
     <ClInclude Include="platform\update (2).h" />
@@ -1458,14 +1481,35 @@
     <ClInclude Include="primitive\datetime\datetime_time_span.h" />
     <ClInclude Include="primitive\datetime\datetime_value.h" />
     <ClInclude Include="primitive\datetime\datetime_zonetime.h" />
-    <ClInclude Include="primitive\geometry\geometry.h" />
-    <ClInclude Include="primitive\geometry\geometry_align.h" />
-    <ClInclude Include="primitive\geometry\geometry_box.h" />
-    <ClInclude Include="primitive\geometry\geometry_geometry.h" />
-    <ClInclude Include="primitive\geometry\geometry_point.h" />
-    <ClInclude Include="primitive\geometry\geometry_rect.h" />
-    <ClInclude Include="primitive\geometry\geometry_size.h" />
-    <ClInclude Include="primitive\geometry\geometry_types.h" />
+    <ClInclude Include="primitive\geometry2d\align.h" />
+    <ClInclude Include="primitive\geometry2d\angle.h" />
+    <ClInclude Include="primitive\geometry2d\arc.h" />
+    <ClInclude Include="primitive\geometry2d\bounding_rect.h" />
+    <ClInclude Include="primitive\geometry2d\collection.h" />
+    <ClInclude Include="primitive\geometry2d\contains.h" />
+    <ClInclude Include="primitive\geometry2d\geometry.h" />
+    <ClInclude Include="primitive\geometry2d\line.h" />
+    <ClInclude Include="primitive\geometry2d\lines.h" />
+    <ClInclude Include="primitive\geometry2d\oval.h" />
+    <ClInclude Include="primitive\geometry2d\point.h" />
+    <ClInclude Include="primitive\geometry2d\point_array.h" />
+    <ClInclude Include="primitive\geometry2d\polygon.h" />
+    <ClInclude Include="primitive\geometry2d\rect.h" />
+    <ClInclude Include="primitive\geometry2d\rect_array.h" />
+    <ClInclude Include="primitive\geometry2d\shape.h" />
+    <ClInclude Include="primitive\geometry2d\shape_array.h" />
+    <ClInclude Include="primitive\geometry2d\size.h" />
+    <ClInclude Include="primitive\geometry2d\size_array.h" />
+    <ClInclude Include="primitive\geometry2d\types.h" />
+    <ClInclude Include="primitive\geometry2d\_.h" />
+    <ClInclude Include="primitive\geometry2d\_collection.h" />
+    <ClInclude Include="primitive\geometry2d\_collection_bounding_rect.h" />
+    <ClInclude Include="primitive\geometry2d\_collection_contains.h" />
+    <ClInclude Include="primitive\geometry2d\_defer.h" />
+    <ClInclude Include="primitive\geometry2d\_impl.h" />
+    <ClInclude Include="primitive\geometry2d\_rect_impl.h" />
+    <ClInclude Include="primitive\geometry2d\_size_impl.h" />
+    <ClInclude Include="primitive\geometry2d\_struct.h" />
     <ClInclude Include="primitive\math\math_binary_operation.h" />
     <ClInclude Include="primitive\math\math_classes.h" />
     <ClInclude Include="primitive\math\math_clip.h" />
@@ -1699,7 +1743,6 @@
     <None Include="platform\aura1.inl" />
     <None Include="platform\aura2.inl" />
     <None Include="platform\gudo_application2.inl" />
-    <None Include="primitive\geometry\geometry_size.inl" />
     <None Include="primitive\primitive.inl" />
     <None Include="primitive\factory_impl.inl" />
     <None Include="primitive\primitive\block.inl" />

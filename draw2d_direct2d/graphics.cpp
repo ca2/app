@@ -3327,7 +3327,7 @@ namespace draw2d_direct2d
    }
 
 
-   void graphics::draw_3drect(const ::rect & rect, const ::color & colorTopLeft, const ::color & colorBottomRight, eborder eborder)
+   void graphics::draw_3drect(const ::rect & rect, const ::color & colorTopLeft, const ::color & colorBottomRight, const ::e_border & eborder)
    {
 
       draw_3drect(rectd(rect), colorTopLeft, colorBottomRight, eborder);
@@ -3335,7 +3335,7 @@ namespace draw2d_direct2d
    }
 
 
-   void graphics::draw_3drect(const ::rectd & rect,  const ::color & colorTopLeft, const ::color & colorBottomRight, eborder eborder)
+   void graphics::draw_3drect(const ::rectd & rect,  const ::color & colorTopLeft, const ::color & colorBottomRight, const ::e_border & eborder)
    {
 
       double x = rect.left;

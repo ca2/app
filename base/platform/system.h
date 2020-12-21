@@ -101,7 +101,7 @@ namespace base
 //      __composite(::process::department)                 m_pprocess;
 //
 //      __composite(::parallelization::threading)           m_pthreading;
-//      ::edisplay                                         m_edisplay;
+//      ::e_display                                         m_edisplay;
 //      size_t                                             m_nSafetyPoolSize; // ideal size
 //
 //      bool                                               m_bFinalizeIfNoSessionSetting;

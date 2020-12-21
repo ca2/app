@@ -138,7 +138,7 @@ struct CLASS_DECL_ACME oswindow_data
    long get_state();
    bool is_iconic();
    bool is_window_visible();
-   bool show_window(::edisplay edisplay);
+   bool show_window(::e_display edisplay);
    LONG_PTR get_window_long_ptr(i32 nIndex);
    LONG_PTR set_window_long_ptr(i32 nIndex, LONG_PTR l);
    bool _001ClientToScreen(POINT32 * lppoint);

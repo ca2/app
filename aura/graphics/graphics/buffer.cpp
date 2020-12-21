@@ -157,7 +157,7 @@ namespace graphics
    }
 
 
-   bool buffer::round_swap_key_buffers()
+   bool buffer::buffer_lock_round_swap_key_buffers()
    {
 
       return true;

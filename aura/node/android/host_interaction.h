@@ -28,7 +28,7 @@ namespace android
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
 
-      virtual bool is_this_visible() override;
+      //virtual bool is_this_visible() override;
 
 
    };

@@ -3104,7 +3104,7 @@ namespace draw2d_quartz2d
     }*/
 
 
-   void graphics::draw_3drect(const ::rectd & rect, const ::color & colorTopLeft, const ::color & colorBottomRight, eborder eborder)
+   void graphics::draw_3drect(const ::rectd & rect, const ::color & colorTopLeft, const ::color & colorBottomRight, const ::e_border & eborder)
    {
       ::i32 x = rect.left;
       ::i32 y = rect.top;

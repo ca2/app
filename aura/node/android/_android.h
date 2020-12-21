@@ -15,18 +15,18 @@ string get_error_message(::u32 dwError);
 #include "android1.h"
 #include "implementation.h"
 #include "factory_exchange.h"
-#include "thread.h"
-#include "os_context.h"
+//#include "thread.h"
+//#include "os_context.h"
 
-#include "dir_system.h"
-#include "file_system.h"
+//#include "dir_system.h"
+//#include "file_system.h"
 
-#include "dir_context.h"
-#include "file_context.h"
+//#include "dir_context.h"
+//#include "file_context.h"
 
 //#define ANDROID_THREAD(pthread) (dynamic_cast < ::android::thread * > (dynamic_cast < ::thread * >(pthread)))
 
-#include "shell.h"
+//#include "shell.h"
 
 #include "host_interaction.h"
 

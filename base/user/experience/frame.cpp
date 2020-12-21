@@ -1382,7 +1382,7 @@ namespace experience
       auto rectControlBoxMargin = m_rectControlBoxMarginNormal;
 
       egrip egrip;
-      eborder eborder;
+      const ::e_border & eborder;
       edock edock;
 
       if (!m_pframewindow->is_this_screen_visible() || is_zoomed(edisplay) || is_full_screen(edisplay))

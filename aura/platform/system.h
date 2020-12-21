@@ -109,7 +109,7 @@ namespace aura
 //      __composite(::process::department)                 m_pprocess;
 //
 //      __composite(::parallelization::threading)           m_pthreading;
-//      ::edisplay                                         m_edisplay;
+//      ::e_display                                         m_edisplay;
 //      size_t                                             m_nSafetyPoolSize; // ideal size
 //
 //      bool                                               m_bFinalizeIfNoSessionSetting;
@@ -719,8 +719,8 @@ namespace aura
 
 #ifdef ANDROID
 //#pragma message("at macos??")
-      virtual bool android_set_user_wallpaper(string strUrl);
-      virtual bool android_get_user_wallpaper(string & strUrl);
+      virtual bool android_set_user_wallpaper(string strUrl) override;
+      virtual bool android_get_user_wallpaper(string & strUrl) override;
 
 #endif
 

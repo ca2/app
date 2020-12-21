@@ -16,10 +16,6 @@ extern os_local* g_poslocal;
 
 // } // namespace windows
 
-#elif defined(ANDROID)
-
-#include "acme/os/android/_os_local.h"
-
 #endif
 
 
@@ -107,28 +103,6 @@ extern os_local* g_poslocal;
 ::file::path dir::roaming()
 {
 
-   //if (::get_context_system() != nullptr)
-   //{
-
-   //   sync_lock sl(System.mutex());
-
-   //   if (System.m_pathConfig.has_char())
-   //   {
-
-   //      return System.m_pathConfig;
-
-   //   }
-
-   //   if (System.m_pathCacheDir.has_char())
-   //   {
-
-   //      return System.m_pathCacheDir;
-
-   //   }
-
-
-   //}
-
    ::file::path path;
 
 #ifdef WINDOWS_DESKTOP
@@ -141,18 +115,7 @@ extern os_local* g_poslocal;
 
 #elif defined(ANDROID)
 
-   if (is_null(g_poslocal, 65535))
-   {
-
-      output_debug_string("dir::config(err1)\n");
-
-   }
-   else if (is_null(g_poslocal, 65535))
-   {
-
-      output_debug_string("dir::config(err3)\n");
-
-   }
+   path = oslocal()->m_pathCacheDir;
 
 #elif defined(__APPLE__)
 

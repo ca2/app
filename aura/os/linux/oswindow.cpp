@@ -836,7 +836,7 @@ void oswindow_data::send_client_event(Atom atom, unsigned int numArgs, ...)
 }
 
 
-bool oswindow_data::show_window(::edisplay edisplay)
+bool oswindow_data::show_window(::e_display edisplay)
 {
 
    windowing_output_debug_string("\n::oswindow_data::show_window 1");

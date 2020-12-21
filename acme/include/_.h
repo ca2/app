@@ -137,12 +137,6 @@ CLASS_DECL_ACME ::acme::system *get_context_system();
 //CLASS_DECL_ACME inline ::acme::system * get_context_system(::acme::system * psystem);
 
 
-enum enum_null
-{
-
-   e_null,
-
-};
 
 
 //#include "acme/platform/cpu_architecture.h"
@@ -1039,15 +1033,15 @@ inline u32 u32_hash(ARG_KEY key) { return (u32) (uptr_hash<ARG_KEY>(key)); }
 
 #define _(str) (__get_text(str))
 
-typedef string __GET_TEXT(string str);
+//typedef string __GET_TEXT(string str);
 
-using __PFN_GET_TEXT = __GET_TEXT *;
+//using __PFN_GET_TEXT = __GET_TEXT *;
 
 
 
-CLASS_DECL_ACME void __set_get_text(__PFN_GET_TEXT pgettext);
+//CLASS_DECL_ACME void __set_get_text(__PFN_GET_TEXT pgettext);
 
-CLASS_DECL_ACME string __get_text(string str);
+CLASS_DECL_ACME string __get_text(const string & str);
 
 
 
@@ -3582,6 +3576,15 @@ namespace zip
 #ifdef ANDROID
 
 #include "acme/os/android/_os_local.h"
+
+class os_local;
+class os_remote;
+
+os_local * oslocal();
+os_remote * osremote();
+
+void set_oslocal(os_local * poslocal);
+void set_osremote(os_remote * posremote);
 
 #endif
 

@@ -32,7 +32,7 @@ void android_on_text(e_os_text etext, const wchar_t* pwch, size_t len);
 
 void android_apex_main();
 
-void android_fill_plasma(AndroidBitmapInfo * info, void* pixels, double  t);
+void android_fill_plasma(AndroidBitmapInfo * info, color32_t * pixels, double  t);
 
 void android_mouse(unsigned int message, float x, float y);
 

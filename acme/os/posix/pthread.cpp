@@ -6,7 +6,11 @@
 
 #endif
 
+#ifdef ANDROID
 
+#include <sys/prctl.h>
+
+#endif
 
 
 
@@ -632,6 +636,23 @@ string thread_get_name()
    }
 
    return szThreadName;
+
+}
+
+#elif defined(ANDROID)
+
+
+
+
+string thread_get_name()
+{
+   /* Try obtaining the thread name.
+    * If this fails, we'll return a pointer to an empty string. */
+    //if (!thread_name_buffer[0])
+   char thread_name_buffer[17] = { 0 };
+   prctl(PR_GET_NAME, thread_name_buffer, 0L, 0L, 0L);
+
+   return thread_name_buffer;
 
 }
 

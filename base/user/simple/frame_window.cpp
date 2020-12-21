@@ -988,7 +988,7 @@ void simple_frame_window::_001OnDisplayChange(::message::message * pmessage)
    if (is_host_top_level())
    {
 
-      ::edisplay edisplay = layout().sketch().display();
+      ::e_display edisplay = layout().sketch().display();
 
       display(edisplay, e_activation_display_change);
 

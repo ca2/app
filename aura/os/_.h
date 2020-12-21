@@ -51,8 +51,8 @@
 #endif
 
 
-CLASS_DECL_AURA iptr get_window_long_ptr(oswindow oswindow, int iIndex);
-CLASS_DECL_AURA iptr set_window_long_ptr(oswindow oswindow, int iIndex, iptr i);
+//CLASS_DECL_AURA iptr get_window_long_ptr(oswindow oswindow, int iIndex);
+//CLASS_DECL_AURA iptr set_window_long_ptr(oswindow oswindow, int iIndex, iptr i);
 
 
 

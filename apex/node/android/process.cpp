@@ -34,7 +34,7 @@ chldstatus_map * g_ppid = nullptr;
 critical_section * get_pid_cs()
 {
 
-   cslock cs(::apex::g_pcsGlobal);
+   cslock cs(::acme::g_pcsGlobal);
 
    if(g_pcsPid2 == nullptr)
    {

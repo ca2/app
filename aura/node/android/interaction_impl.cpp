@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "_android.h"
+#include "acme/os/cross.h"
 #include "aura/os/android/windowing.h"
 
 
@@ -122,38 +123,40 @@ namespace android
 
    // Change a interaction_impl's style
 
-   __STATIC bool CLASS_DECL_AURA __modify_style(oswindow oswindow,i32 nStyleOffset,
-         u32 dwRemove,u32 dwAdd,::u32 nFlags)
-   {
-      ASSERT(oswindow != nullptr);
-      u32 dwStyle = ::GetWindowLong(oswindow,nStyleOffset);
-      u32 dwNewStyle = (dwStyle & ~dwRemove) | dwAdd;
-      if(dwStyle == dwNewStyle)
-         return FALSE;
+   //__STATIC bool CLASS_DECL_AURA __modify_style(oswindow oswindow,i32 nStyleOffset,
+   //      u32 dwRemove,u32 dwAdd,::u32 nFlags)
+   //{
+   //   ASSERT(oswindow != nullptr);
+   //   u32 dwStyle = ::GetWindowLong(oswindow,nStyleOffset);
+   //   u32 dwNewStyle = (dwStyle & ~dwRemove) | dwAdd;
+   //   if(dwStyle == dwNewStyle)
+   //      return FALSE;
 
-      ::SetWindowLong(oswindow,nStyleOffset,dwNewStyle);
-      if(nFlags != 0)
-      {
-         ::SetWindowPos(oswindow,nullptr,0,0,0,0,SWP_NOSIZE | SWP_NOMOVE | SWP_NOZORDER | SWP_NOACTIVATE | nFlags);
-      }
-      return TRUE;
-   }
-
-
-   bool interaction_impl::ModifyStyle(oswindow oswindow,u32 dwRemove,u32 dwAdd,::u32 nFlags)
-   {
-
-      return __modify_style(oswindow,GWL_STYLE,dwRemove,dwAdd,nFlags);
-
-   }
+   //   ::SetWindowLong(oswindow,nStyleOffset,dwNewStyle);
+   //   if(nFlags != 0)
+   //   {
+   //      ::SetWindowPos(oswindow,nullptr,0,0,0,0,SWP_NOSIZE | SWP_NOMOVE | SWP_NOZORDER | SWP_NOACTIVATE | nFlags);
+   //   }
+   //   return TRUE;
+   //}
 
 
-   bool interaction_impl::ModifyStyleEx(oswindow oswindow,u32 dwRemove,u32 dwAdd,::u32 nFlags)
-   {
+   //bool interaction_impl::ModifyStyle(oswindow oswindow,u32 dwRemove,u32 dwAdd,::u32 nFlags)
+   //{
 
-      return __modify_style(oswindow,GWL_EXSTYLE,dwRemove,dwAdd,nFlags);
+   //   //return __modify_style(oswindow,GWL_STYLE,dwRemove,dwAdd,nFlags);
 
-   }
+   //   return ::user
+
+   //}
+
+
+   //bool interaction_impl::ModifyStyleEx(oswindow oswindow,u32 dwRemove,u32 dwAdd,::u32 nFlags)
+   //{
+
+   //   return __modify_style(oswindow,GWL_EXSTYLE,dwRemove,dwAdd,nFlags);
+
+   //}
 
 
    LRESULT interaction_impl::Default()
@@ -225,7 +228,7 @@ namespace android
       if(puiParent == nullptr)
       {
 
-         if(!native_create_window_ex(pinteraction, cs, oswindow, id))
+         if(!native_create_window_ex(pinteraction, pcreatestruct, oswindow, id))
          {
 
             return false;
@@ -236,7 +239,7 @@ namespace android
       else
       {
 
-         if(!native_create_window_ex(pinteraction, cs, oswindow, id))
+         if(!native_create_window_ex(pinteraction, pcreatestruct, oswindow, id))
          {
 
             return false;
@@ -250,7 +253,7 @@ namespace android
    }
 
 
-   bool interaction_impl::_native_create_window_ex(::user::create_struct& cs)
+   bool interaction_impl::_native_create_window_ex(__pointer(::user::create_struct) pcreatestruct)
    {
 
 //      __throw(not_implemented("no multiple native windows per application"));
@@ -281,7 +284,7 @@ namespace android
 
          ::rect rectCreate;
 
-         pcreatestruct->m_createstruct.get_rect(rectCreate);
+         pcreatestruct->get_rect(rectCreate);
 
          m_puserinteraction->place(rectCreate);
 
@@ -318,13 +321,15 @@ namespace android
 
          }
 
-         u32 dwLastError = get_last_error();
+         ::estatus estatusLast = get_last_status();
 
-         string strLastError = FormatMessageFromSystem(dwLastError);
+         //string strLastError = FormatMessageFromSystem(dwLastError);
 
          string strMessage;
 
-         strMessage.Format("%s\n\nSystem Error Code: %d",strLastError.c_str(),dwLastError);
+         strMessage.Format("System Error Code: %d", estatusLast);
+
+         //strMessage.Format("%s\n\nSystem Error Code: %d",strLastError.c_str(),dwLastError);
 
          TRACE("Warning: Window creation failed: get_last_error returned:\n");
 
@@ -333,7 +338,7 @@ namespace android
          try
          {
 
-            if(dwLastError == 0x0000057e)
+         /*   if(estatusLast == 0x0000057e)
             {
 
                TRACE("Cannot create a top-level child interaction_impl.");
@@ -344,7 +349,7 @@ namespace android
 
                TRACE("%s", strMessage.c_str());
 
-            }
+            }*/
 
          }
          catch(...)
@@ -385,7 +390,7 @@ namespace android
 
       output_debug_string("android_interaction_impl send e_message_create");
 
-      m_puserinteraction->send_message(e_message_create, 0, (LPARAM)&cs);
+      m_puserinteraction->send_message(e_message_create, 0, (::lparam)&pcreatestruct->m_createstruct);
 
       m_puserinteraction->send_message(e_message_size);
 
@@ -460,7 +465,7 @@ namespace android
       ASSERT(pParentWnd != nullptr);
       ASSERT((dwStyle & WS_POPUP) == 0);
 
-      ::user::create_struct createstruct;
+      auto pcreatestruct = __new(::user::create_struct);
 
       pcreatestruct->m_createstruct.dwExStyle = 0;
       pcreatestruct->m_createstruct.lpszClass = lpszClassName;
@@ -473,7 +478,8 @@ namespace android
       pcreatestruct->m_createstruct.hwndParent = pParentWnd->get_safe_handle();
       pcreatestruct->m_createstruct.lpCreateParams = (LPVOID)pcreate;
 
-      return create_window_ex(pinteraction, createstruct, pParentWnd, id);
+      return create_window_ex(pinteraction, pcreatestruct, pParentWnd, id);
+
    }
 
 
@@ -619,15 +625,15 @@ namespace android
 
       ::user::interaction_impl * pwindow;
 
-      ::thread* pThread = ::get_task();
+      ::thread* pthread = ::get_thread();
 
-      if (pThread != nullptr)
+      if (pthread != nullptr)
       {
 
-         if (pThread->get_active_ui() == m_puserinteraction)
+         if (pthread->get_active_ui() == m_puserinteraction)
          {
 
-            pThread->set_active_ui(nullptr);
+            pthread->set_active_ui(nullptr);
 
          }
 
@@ -715,7 +721,7 @@ namespace android
    }
 
 
-   LRESULT interaction_impl::DefWindowProc(::u32 nMsg,WPARAM wParam,lparam lParam)
+   LRESULT interaction_impl::DefWindowProc(const ::id & id, WPARAM wParam, lparam lParam)
    {
 
       return 0;
@@ -1073,6 +1079,8 @@ namespace android
 
          SCAST_PTR(::message::key, pkey, pmessage);
 
+         auto psession = Session;
+
          if(pmessage->m_id == e_message_key_down || pmessage->m_id == e_message_sys_key_down)
          {
             try
@@ -1115,6 +1123,8 @@ namespace android
 
          }
       }
+
+      auto psession = Session;
 
       if(pmessage->m_id == e_message_timer)
       {
@@ -1424,10 +1434,10 @@ namespace android
 
    }
 
-   void interaction_impl::GetScrollRange(i32 nBar,LPINT lpMinPos,LPINT lpMaxPos) const
-   {
-      //::GetScrollRange(((::android::interaction_impl *)this)->get_handle(),nBar,lpMinPos,lpMaxPos);
-   }
+   //void interaction_impl::GetScrollRange(i32 nBar,LPINT lpMinPos,LPINT lpMaxPos) const
+   //{
+   //   //::GetScrollRange(((::android::interaction_impl *)this)->get_handle(),nBar,lpMinPos,lpMaxPos);
+   //}
 
    // Turn on/off non-control scrollbars
    //   for WS_?SCROLL scrollbars - show/hide them
@@ -1872,12 +1882,12 @@ namespace android
    }
 
 
-   bool CALLBACK interaction_impl::GetAppsEnumWindowsProc(oswindow hwnd, LPARAM lparam)
-   {
-      user::oswindow_array * phwnda = (user::oswindow_array *) lparam;
-      phwnda->add(hwnd);
-      return TRUE;
-   }
+   //bool CALLBACK interaction_impl::GetAppsEnumWindowsProc(oswindow hwnd, LPARAM lparam)
+   //{
+   //   user::oswindow_array * phwnda = (user::oswindow_array *) lparam;
+   //   phwnda->add(hwnd);
+   //   return TRUE;
+   //}
 
 
    void interaction_impl::get_app_wnda(user::oswindow_array & wnda)
@@ -2070,14 +2080,14 @@ namespace android
    //   Default();
    //}
 
-   HBRUSH interaction_impl::OnCtlColor(::draw2d::graphics *, ::user::interaction * pWnd, ::u32)
-   {
-      ASSERT(pWnd != nullptr && pWnd->get_handle() != nullptr);
-      LRESULT lResult;
-      if (pWnd->m_pimpl.cast < interaction_impl >()->SendChildNotifyLastMsg(&lResult))
-         return (HBRUSH)lResult;     // eat it
-      return (HBRUSH)Default();
-   }
+   //HBRUSH interaction_impl::OnCtlColor(::draw2d::graphics *, ::user::interaction * pWnd, ::u32)
+   //{
+   //   ASSERT(pWnd != nullptr && pWnd->get_handle() != nullptr);
+   //   LRESULT lResult;
+   //   if (pWnd->m_pimpl.cast < interaction_impl >()->SendChildNotifyLastMsg(&lResult))
+   //      return (HBRUSH)lResult;     // eat it
+   //   return (HBRUSH)Default();
+   //}
 
 //// implementation of OnCtlColor for default gray backgrounds
 ////   (works for any interaction_impl containing controls)
@@ -2740,7 +2750,7 @@ namespace android
    //}
 
 
-   bool interaction_impl::ShowWindow(i32 nCmdShow)
+   bool interaction_impl::ShowWindow(const ::e_display & edisplay)
    {
 
       if (!::is_window((oswindow)get_handle()))
@@ -2750,7 +2760,7 @@ namespace android
 
       }
 
-      ::show_window((oswindow)get_handle(), nCmdShow);
+      ::show_window((oswindow)get_handle(), edisplay);
 
       return m_puserinteraction->is_window_visible();
 
@@ -2776,18 +2786,18 @@ namespace android
    //}
 
    
-   ::i32 interaction_impl::GetWindowLong(i32 nIndex)
-   {
+   //::i32 interaction_impl::GetWindowLong(i32 nIndex)
+   //{
 
-      return ::GetWindowLong((oswindow)get_handle(), nIndex);
+   //   return ::GetWindowLong((oswindow)get_handle(), nIndex);
 
-   }
+   //}
 
 
-   ::i32 interaction_impl::SetWindowLong(i32 nIndex, ::i32 lValue)
-   {
-      return ::SetWindowLong((oswindow)get_handle(), nIndex, lValue);
-   }
+   //::i32 interaction_impl::SetWindowLong(i32 nIndex, ::i32 lValue)
+   //{
+   //   return ::SetWindowLong((oswindow)get_handle(), nIndex, lValue);
+   //}
 
 
 
@@ -2818,24 +2828,24 @@ namespace android
 //}
 
 
-   bool interaction_impl::ModifyStyle(::u32 dwRemove, ::u32 dwAdd, ::u32 nFlags)
-   {
-   
-      ASSERT(::is_window((oswindow)get_handle()));
-   
-      return ModifyStyle((oswindow)get_handle(), dwRemove, dwAdd, nFlags);
+   //bool interaction_impl::ModifyStyle(::u32 dwRemove, ::u32 dwAdd, ::u32 nFlags)
+   //{
+   //
+   //   ASSERT(::is_window((oswindow)get_handle()));
+   //
+   //   return ModifyStyle((oswindow)get_handle(), dwRemove, dwAdd, nFlags);
 
-   }
+   //}
 
 
-   bool interaction_impl::ModifyStyleEx(::u32 dwRemove, ::u32 dwAdd, ::u32 nFlags)
-   {
+   //bool interaction_impl::ModifyStyleEx(::u32 dwRemove, ::u32 dwAdd, ::u32 nFlags)
+   //{
 
-      ASSERT(::is_window((oswindow)get_handle()));
+   //   ASSERT(::is_window((oswindow)get_handle()));
 
-      return ModifyStyleEx((oswindow)get_handle(), dwRemove, dwAdd, nFlags);
+   //   return ModifyStyleEx((oswindow)get_handle(), dwRemove, dwAdd, nFlags);
 
-   }
+   //}
 
    
    void interaction_impl::set_owner(::user::interaction * pOwnerWnd)
@@ -2847,14 +2857,14 @@ namespace android
    LRESULT interaction_impl::send_message(const ::id & id, WPARAM wparam, lparam lparam)
    {
 
-      if (::get_task() == nullptr)
-      {
+      //if (::get_task() == nullptr)
+      //{
 
-         ::set_thread(m_puserinteraction->get_context_application());
+      //   ::set_thread(m_puserinteraction->get_context_application());
 
-      }
+      //}
 
-      return ::user::interaction_impl::send_message(message, wparam, lparam);
+      return ::user::interaction_impl::send_message(id, wparam, lparam);
 
    }
 
@@ -2862,7 +2872,7 @@ namespace android
    bool interaction_impl::post_message(const ::id & id, WPARAM wparam, lparam lparam)
    {
 
-      return ::user::interaction_impl::post_message(message, wparam, lparam);
+      return ::user::interaction_impl::post_message(id, wparam, lparam);
       //return ::post_me((oswindow)get_handle(), message, wparam, lparam) != FALSE;
 
    }
@@ -3629,14 +3639,14 @@ namespace android
 
    }
 
-   LPARAM interaction_impl::SendDlgItemMessage(i32 nID, const ::id & id, WPARAM wparam, LPARAM lparam)
-   {
+   //LPARAM interaction_impl::SendDlgItemMessage(i32 nID, const ::id & id, WPARAM wparam, LPARAM lparam)
+   //{
 
-      __throw(not_implemented());
-      //      ASSERT(::is_window((oswindow) get_handle()));
-      //      return ::SendDlgItemMessage(get_handle(), nID, message, wparam, lparam);
+   //   __throw(not_implemented());
+   //   //      ASSERT(::is_window((oswindow) get_handle()));
+   //   //      return ::SendDlgItemMessage(get_handle(), nID, message, wparam, lparam);
 
-   }
+   //}
 
    void interaction_impl::SetDlgItemInt(i32 nID, ::u32 nValue, bool bSigned)
    {
@@ -3698,18 +3708,20 @@ namespace android
 
 
 
-   ::user::interaction * interaction_impl::GetTopWindow() const
-   {
+   //::user::interaction * interaction_impl::GetTopWindow() const
+   //{
 
-      if (m_puserinteraction->m_uiptraChild.get_size() <= 0)
-         return nullptr;
 
-      return m_puserinteraction->m_uiptraChild[0];
-      //  __throw(not_implemented());
-      //      ASSERT(::is_window((oswindow) get_handle()));
-      //      return ::android::interaction_impl::from_handle(::GetTopWindow(get_handle()));
 
-   }
+   //   if (m_puserinteraction->m_uiptraChild.get_size() <= 0)
+   //      return nullptr;
+
+   //   return m_puserinteraction->m_uiptraChild[0];
+   //   //  __throw(not_implemented());
+   //   //      ASSERT(::is_window((oswindow) get_handle()));
+   //   //      return ::android::interaction_impl::from_handle(::GetTopWindow(get_handle()));
+
+   //}
 
    //::user::interaction * interaction_impl::GetWindow(::u32 nCmd)
    //{
@@ -3866,13 +3878,13 @@ namespace android
 
    }
 
-   bool interaction_impl::SendNotifyMessage(const ::id & id, WPARAM wparam, lparam lparam)
-   {
+   //bool interaction_impl::SendNotifyMessage(const ::id & id, WPARAM wparam, lparam lparam)
+   //{
 
-      __throw(not_implemented());
-      //      return ::SendNotifyMessage(get_handle(), message, wparam, lparam) != FALSE;
+   //   __throw(not_implemented());
+   //   //      return ::SendNotifyMessage(get_handle(), message, wparam, lparam) != FALSE;
 
-   }
+   //}
 
    //void interaction_impl::Print(::draw2d::graphics_pointer & pgraphics, ::u32 dwFlags) const
    //{
@@ -3953,33 +3965,33 @@ namespace android
       Default();
    }
 
-   bool interaction_impl::OnEraseBkgnd(::draw2d::graphics *)
-   {
+   //bool interaction_impl::OnEraseBkgnd(::draw2d::graphics *)
+   //{
 
-      return Default() != FALSE;
+   //   return Default() != FALSE;
 
-   }
+   //}
 
-   void interaction_impl::OnGetMinMaxInfo(MINMAXINFO*)
-   {
-      Default();
-   }
-   void interaction_impl::OnIconEraseBkgnd(::draw2d::graphics *)
-   {
-      Default();
-   }
+   //void interaction_impl::OnGetMinMaxInfo(MINMAXINFO*)
+   //{
+   //   Default();
+   //}
+   //void interaction_impl::OnIconEraseBkgnd(::draw2d::graphics *)
+   //{
+   //   Default();
+   //}
    void interaction_impl::OnKillFocus(::user::interaction *)
    {
       Default();
    }
-   LRESULT interaction_impl::OnMenuChar(::u32, ::u32, ::user::menu*)
-   {
-      return Default();
-   }
-   void interaction_impl::OnMenuSelect(::u32, ::u32, HMENU)
-   {
-      Default();
-   }
+   //LRESULT interaction_impl::OnMenuChar(::u32, ::u32, ::user::menu*)
+   //{
+   //   return Default();
+   //}
+   //void interaction_impl::OnMenuSelect(::u32, ::u32, HMENU)
+   //{
+   //   Default();
+   //}
    void interaction_impl::OnMove(i32, i32)
    {
       Default();
@@ -4006,9 +4018,14 @@ namespace android
 
    }
 
+
    void interaction_impl::_001OnSetCursor(::message::message * pmessage)
    {
+
       SCAST_PTR(::message::base, pbase, pmessage);
+
+      auto psession = Session;
+
       if (psession->get_cursor() != nullptr
             && psession->get_cursor()->m_ecursor != ::cursor_system)
       {
@@ -4054,18 +4071,18 @@ namespace android
    {
       Default();
    }
-   void interaction_impl::OnWindowPosChanging(WINDOWPOS*)
-   {
-      Default();
-   }
-   void interaction_impl::OnWindowPosChanged(WINDOWPOS*)
-   {
-      Default();
-   }
-   void interaction_impl::OnDropFiles(HDROP)
-   {
-      Default();
-   }
+   //void interaction_impl::OnWindowPosChanging(WINDOWPOS*)
+   //{
+   //   Default();
+   //}
+   //void interaction_impl::OnWindowPosChanged(WINDOWPOS*)
+   //{
+   //   Default();
+   //}
+   //void interaction_impl::OnDropFiles(HDROP)
+   //{
+   //   Default();
+   //}
    void interaction_impl::OnPaletteIsChanging(::user::interaction *)
    {
       Default();
@@ -4078,10 +4095,10 @@ namespace android
 
    }
 
-   void interaction_impl::OnNcCalcSize(bool, NCCALCSIZE_PARAMS*)
+   /*void interaction_impl::OnNcCalcSize(bool, NCCALCSIZE_PARAMS*)
    {
       Default();
-   }
+   }*/
 
    bool interaction_impl::OnNcCreate(::user::create_struct *)
    {
@@ -4218,10 +4235,10 @@ namespace android
    //{
    //   Default();
    //}
-   i32 interaction_impl::OnMouseActivate(::user::interaction *, ::u32, ::u32)
-   {
-      return (i32)Default();
-   }
+   //i32 interaction_impl::OnMouseActivate(::user::interaction *, ::u32, ::u32)
+   //{
+   //   return (i32)Default();
+   //}
    //void interaction_impl::OnMouseMove(::u32, point)
    //{
    //   Default();
@@ -4254,14 +4271,14 @@ namespace android
    {
       Default();
    }
-   void interaction_impl::OnInitMenu(::user::menu*)
-   {
-      Default();
-   }
-   void interaction_impl::OnInitMenuPopup(::user::menu*, ::u32, bool)
-   {
-      Default();
-   }
+   //void interaction_impl::OnInitMenu(::user::menu*)
+   //{
+   //   Default();
+   //}
+   //void interaction_impl::OnInitMenuPopup(::user::menu*, ::u32, bool)
+   //{
+   //   Default();
+   //}
    void interaction_impl::OnAskCbFormatName(::u32 nMaxCount, char * pszName)
    {
       (nMaxCount);
@@ -4288,10 +4305,10 @@ namespace android
    {
       Default();
    }
-   void interaction_impl::OnPaintClipboard(::user::interaction *, HGLOBAL)
-   {
-      Default();
-   }
+   //void interaction_impl::OnPaintClipboard(::user::interaction *, HGLOBAL)
+   //{
+   //   Default();
+   //}
    void interaction_impl::OnRenderAllFormats()
    {
       Default();
@@ -4300,10 +4317,10 @@ namespace android
    {
       Default();
    }
-   void interaction_impl::OnSizeClipboard(::user::interaction *, HGLOBAL)
-   {
-      Default();
-   }
+   //void interaction_impl::OnSizeClipboard(::user::interaction *, HGLOBAL)
+   //{
+   //   Default();
+   //}
    void interaction_impl::OnVScrollClipboard(::user::interaction *, ::u32, ::u32)
    {
       Default();
@@ -4548,31 +4565,31 @@ namespace android
    }
 
 
-   ::user::interaction * interaction_impl::GetNextWindow(::u32 nFlag)
-   {
+   //::user::interaction * interaction_impl::GetNextWindow(::u32 nFlag)
+   //{
 
-      if (nFlag == GW_HWNDNEXT)
-      {
+   //   if (nFlag == GW_HWNDNEXT)
+   //   {
 
-         return get_next(true, nullptr);
+   //      return get_next(true, nullptr);
 
-      }
-      else
-      {
+   //   }
+   //   else
+   //   {
 
-         __throw(interface_only_exception());
+   //      __throw(interface_only_exception());
 
-      }
+   //   }
 
-   }
+   //}
 
 
-   ::user::interaction * interaction_impl::get_next(bool bIgnoreChildren, i32 * piLevel)
-   {
+   //::user::interaction * interaction_impl::get_next(bool bIgnoreChildren, i32 * piLevel)
+   //{
 
-      return  m_puserinteraction->get_next(bIgnoreChildren, piLevel);
+   //   return  m_puserinteraction->get_next(bIgnoreChildren, piLevel);
 
-   }
+   //}
 
 
    bool interaction_impl::on_keyboard_focus(::user::primitive * pfocus)
@@ -4580,7 +4597,7 @@ namespace android
 
       UNREFERENCED_PARAMETER(pfocus);
 
-      System.oslocal().m_bShowKeyboard = true;
+      ::oslocal()->m_bShowKeyboard = true;
 
       return true;
 
@@ -4592,7 +4609,7 @@ namespace android
 
       output_debug_string("::android::interaction_impl::keyboard_focus_OnKillFocus() (1) \n");
 
-      System.oslocal().m_bHideKeyboard = true;
+      ::oslocal()->m_bHideKeyboard = true;
 
       return true;
 
@@ -4603,7 +4620,7 @@ namespace android
 
       output_debug_string("::android::interaction_impl::keyboard_focus_OnChildKillFocus() (2) \n");
 
-      System.oslocal().m_bHideKeyboard = true;
+      ::oslocal()->m_bHideKeyboard = true;
 
       return true;
 
@@ -4628,20 +4645,26 @@ namespace android
    bool interaction_impl::has_pending_graphical_update()
    {
 
-      sync_lock sl(m_puserinteraction->mutex());
+      //sync_lock sl(m_puserinteraction->mutex());
 
-      for (auto p : m_puserinteraction->m_uiptraChild)
+      auto puiptraChild = m_puserinteraction->m_puiptraChild;
+
+      if (puiptraChild)
       {
 
-         if (p->has_pending_graphical_update())
+         for (auto & p : puiptraChild->interactiona())
          {
 
-            return true;
+            if (p->has_pending_graphical_update())
+            {
+
+               return true;
+
+            }
 
          }
 
       }
-
 
       return false;
 

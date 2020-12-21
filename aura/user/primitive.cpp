@@ -1092,7 +1092,7 @@ namespace user
    }
 
 
-   //bool primitive::display(::edisplay edisplay)
+   //bool primitive::display(::e_display edisplay)
    //{
 
    //   ::exception::throw_interface_only();
@@ -1212,7 +1212,7 @@ namespace user
    }
 
 
-   //void primitive::BringToTop(::edisplay edisplay)
+   //void primitive::BringToTop(::e_display edisplay)
    //{
 
    //}
@@ -2266,7 +2266,7 @@ namespace user
    // }
 
 
-   void primitive::sketch_prepare_window_minimize(::eactivation eactivation)
+   void primitive::sketch_prepare_window_minimize(::e_activation eactivation)
    {
 
       ::exception::throw_interface_only();
@@ -2298,7 +2298,7 @@ namespace user
    }
 
 
-   void primitive::sketch_prepare_window_dock(::edisplay edisplayDock)
+   void primitive::sketch_prepare_window_dock(::e_display edisplayDock)
    {
 
       ::exception::throw_interface_only();
@@ -4074,7 +4074,7 @@ namespace user
    }
 
 
-   bool primitive::display(::edisplay edisplay, ::eactivation eactivation)
+   bool primitive::display(::e_display edisplay, ::e_activation eactivation)
    {
 
       return true;

@@ -129,14 +129,12 @@ namespace graphics
    void graphics::on_end_draw()
    {
 
-      sync_lock sl(mutex());
-
-      round_swap_key_buffers();
+      buffer_lock_round_swap_key_buffers();
 
    }
 
 
-   bool graphics::round_swap_key_buffers()
+   bool graphics::buffer_lock_round_swap_key_buffers()
    {
 
       return true;

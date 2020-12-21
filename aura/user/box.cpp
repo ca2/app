@@ -101,7 +101,7 @@ namespace user
    }
 
 
-   ::edisplay box::window_stored_display() const
+   ::e_display box::window_stored_display() const
    {
 
       auto edisplayStored = m_windowrect.m_edisplay;
@@ -111,7 +111,7 @@ namespace user
    }
 
 
-   ::edisplay box::window_previous_display() const
+   ::e_display box::window_previous_display() const
    {
 
       auto edisplayPrevious = m_windowrect.m_edisplayPrevious;

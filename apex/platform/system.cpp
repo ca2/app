@@ -3204,7 +3204,7 @@ namespace apex
    bool system::android_set_user_wallpaper(string strUrl)
    {
 
-      oslocal().m_strSetUserWallpaper = strUrl;
+      //oslocal().m_strSetUserWallpaper = strUrl;
 
       return true;
 
@@ -3213,22 +3213,22 @@ namespace apex
    bool system::android_get_user_wallpaper(string & strUrl)
    {
 
-      oslocal().m_bGetUserWallpaper = true;
+      //oslocal().m_bGetUserWallpaper = true;
 
-      for(int i = 0; i < 10; i++)
-      {
+      //for(int i = 0; i < 10; i++)
+      //{
 
-         if (!oslocal().m_bGetUserWallpaper)
-         {
+      //   if (!oslocal().m_bGetUserWallpaper)
+      //   {
 
 
-         }
+      //   }
 
-         sleep(50_ms);
+      //   sleep(50_ms);
 
-      }
+      //}
 
-      strUrl = oslocal().m_strGetUserWallpaper;
+      //strUrl = oslocal().m_strGetUserWallpaper;
 
       return true;
 
@@ -3512,7 +3512,7 @@ namespace apex
 //    }
 // #endif
 
-#ifndef ANDROID
+//#ifndef ANDROID
 
    void system::on_os_text(e_os_text etext, string strText)
    {
@@ -3520,7 +3520,7 @@ namespace apex
 
    }
 
-#endif
+//#endif
 
 //#ifdef _UWP
 //
@@ -3948,15 +3948,15 @@ namespace apex
 
          string strOpenUrl;
 
-         if (System.oslocal().m_pszOpenUrl != nullptr)
+         if (::oslocal()->m_pszOpenUrl != nullptr)
          {
 
-            strOpenUrl = System.oslocal().m_pszOpenUrl;
+            strOpenUrl = ::oslocal()->m_pszOpenUrl;
 
             try
             {
 
-               ::free((void *)System.oslocal().m_pszOpenUrl);
+               ::free((void *)::oslocal()->m_pszOpenUrl);
 
             }
             catch (...)
@@ -3965,7 +3965,7 @@ namespace apex
 
             }
 
-            System.oslocal().m_pszOpenUrl = nullptr;
+            ::oslocal()->m_pszOpenUrl = nullptr;
 
          }
 
@@ -3977,7 +3977,7 @@ namespace apex
 
             // System.m_pandroidinitdata->m_pszOpenUrl = strdup(strLink);
 
-            System.oslocal().m_pszOpenUrl = strdup(strUrl);
+            ::oslocal()->m_pszOpenUrl = strdup(strUrl);
 
          }
 

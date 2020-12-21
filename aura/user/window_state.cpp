@@ -7,7 +7,7 @@ namespace user
 {
 
 
-   ::eappearance visual_state::appearance() const
+   ::e_appearance visual_state::appearance() const
    {
    
       return m_eappearance;

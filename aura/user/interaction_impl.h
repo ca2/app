@@ -156,8 +156,7 @@ namespace user
       virtual ::estatus update_graphics_resources();
 
 
-      virtual ::estatus main_async(const ::promise::routine & routine, e_priority epriority = priority_normal);
-      
+      virtual ::estatus main_async(const ::promise::routine & routine, e_priority epriority = priority_normal) override;
 
 
       virtual bool has_pending_focus();
@@ -355,7 +354,7 @@ namespace user
       virtual void ValidateRect(const ::rect & rect) override;
 
       virtual void ValidateRgn(::draw2d::region* pRgn) override;
-      //virtual bool display(::edisplay edisplay) override;
+      //virtual bool display(::e_display edisplay) override;
       //virtual bool _is_window_visible() override;
       virtual void ShowOwnedPopups(bool bShow = TRUE) override;
 
@@ -389,10 +388,7 @@ namespace user
 #endif
 
 
-      virtual ::point get_cursor_pos() const;
-
-
-      //virtual bool DrawAnimatedRects(i32 idAni,const LPRECTprcFrom,const LPRECTlprcTo);
+      virtual ::point get_cursor_pos() const override;
 
 
       virtual bool DrawCaption(::draw2d::graphics_pointer & pgraphics,const rect & prc,::u32 uFlags);
@@ -667,10 +663,10 @@ namespace user
 
       virtual bool is_this_visible(enum_layout elayout) override;
 
-      virtual void window_show_change_visibility(::edisplay edisplay, ::eactivation eactivation) override;
+      virtual void window_show_change_visibility(::e_display edisplay, ::e_activation eactivation) override;
 
 
-      virtual bool ShowWindow(int iShow);
+      virtual bool ShowWindow(const ::e_display & edisplay);
 
       //virtual bool check_need_layout() override;
 //virtual void clear_need_layout() override;

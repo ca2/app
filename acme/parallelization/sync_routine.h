@@ -52,7 +52,7 @@ namespace promise
       }
 
 
-      virtual sync_result wait(const duration &durationTimeout)
+      virtual sync_result wait(const duration &durationTimeout) override
       {
 
          return m_peventCompletion->wait(durationTimeout);

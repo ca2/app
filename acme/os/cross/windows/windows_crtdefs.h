@@ -149,7 +149,7 @@ typedef __msvcrt_long __time32_t;
 #define _TIME32_T_DEFINED
 #endif
 
-#ifndef _TIME64_T_DEFINED
+#if !defined(_TIME64_T_DEFINED) && !defined(ANDROID)
 typedef ::i64 DECLSPEC_ALIGN(8) time_t;
 #define _TIME64_T_DEFINED
 #endif

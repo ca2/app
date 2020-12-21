@@ -163,12 +163,7 @@ typedef CIEXYZTRIPLE    *LPCIEXYZTRIPLE;
 //typedef ::u32   color32_t;
 //typedef ::u32   *LPCOLORREF;
 
-typedef struct tagRGBQUAD {
-   byte    rgbBlue;
-   byte    rgbGreen;
-   byte    rgbRed;
-   byte    rgbReserved;
-} RGBQUAD, * LPRGBQUAD;
+
 
 typedef struct tagPALETTEENTRY {
    byte        peRed;

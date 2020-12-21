@@ -5965,6 +5965,22 @@ bool payload::is_false() const
    //   return !::is_ok(m_pimage);
 
    // enum
+   case type_secs:
+      return !m_secs.m_iSeconds;
+   case type_psecs:
+      return !m_psecs || !m_psecs->m_iSeconds;
+   case type_millis:
+      return !m_millis.m_iMilliseconds;
+   case type_pmillis:
+      return !m_pmillis || !m_pmillis->m_iMilliseconds;
+   case type_micros:
+      return !m_micros.m_iMicroseconds;
+   case type_pmicros:
+      return !m_pmicros || !m_pmicros->m_iMicroseconds;
+   case type_nanos:
+      return !m_nanos.m_iNanoseconds;
+   case type_pnanos:
+      return !m_pnanos || !m_pnanos->m_iNanoseconds;
    case type_enum_command:
    case type_enum_status:
    case type_enum_check:
@@ -6090,6 +6106,22 @@ bool payload::is_set_false() const
    //   return !::is_ok(m_pimage);
 
    // enum
+   case type_secs:
+      return !m_secs.m_iSeconds;
+   case type_psecs:
+      return !m_psecs || !m_psecs->m_iSeconds;
+   case type_millis:
+      return !m_millis.m_iMilliseconds;
+   case type_pmillis:
+      return !m_pmillis || !m_pmillis->m_iMilliseconds;
+   case type_micros:
+      return !m_micros.m_iMicroseconds;
+   case type_pmicros:
+      return !m_pmicros || !m_pmicros->m_iMicroseconds;
+   case type_nanos:
+      return !m_nanos.m_iNanoseconds;
+   case type_pnanos:
+      return !m_pnanos || !m_pnanos->m_iNanoseconds;
    case type_enum_command:
    case type_enum_status:
    case type_enum_check:

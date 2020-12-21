@@ -34,7 +34,7 @@ int_bool is_window(oswindow oswindow);
 int_bool IsChild(oswindow oswindowParent, oswindow oswindowcandidateChildOrDescendant);
 // oswindow GetParent(oswindow oswindow);
 // oswindow SetParent(oswindow oswindowChild, oswindow oswindowNewParent);
-int_bool show_window(oswindow oswindow, i32 iShow);
+int_bool show_window(oswindow oswindow, const ::e_display & edisplay);
 ::i32 GetWindowLongA(oswindow oswindow, int nIndex);
 ::i32 SetWindowLongA(oswindow oswindow, int nIndex, ::i32 l);
 int_bool _001ClientToScreen(oswindow oswindow, POINT32 * lppoint);

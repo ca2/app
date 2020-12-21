@@ -466,7 +466,7 @@ namespace user
    }
 
 
-   void interaction_child::window_show_change_visibility(::edisplay edisplay, ::eactivation eactivation)
+   void interaction_child::window_show_change_visibility(::e_display edisplay, ::e_activation eactivation)
    {
 
       try

@@ -242,7 +242,7 @@ namespace user
 
       //virtual void order(::zorder zorder);
       //virtual bool layout().sketch().is_visible() const;
-      //virtual bool display(::edisplay edisplay = e_display_default, ::eactivation eactivation = e_activation_default) ;
+      //virtual bool display(::e_display edisplay = e_display_default, ::e_activation eactivation = e_activation_default) ;
 
 
 //      virtual void set_ready(enum_layout);

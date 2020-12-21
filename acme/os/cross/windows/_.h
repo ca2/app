@@ -205,7 +205,7 @@ typedef struct tagCREATESTRUCTA
    ::u32          dwExStyle;
 } CREATESTRUCTA,*LPCREATESTRUCTA;
 
-
+#define CREATESTRUCT CREATESTRUCTA
 
 #define WAIT_TIMEOUT                     258L    // dderror
 

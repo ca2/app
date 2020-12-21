@@ -502,8 +502,8 @@ typedef i32 errno_t;
 #endif
 
 
-MY_EXTERN_C ::u32 get_last_error(void);
-MY_EXTERN_C void set_last_error(::u32 dw);
+//MY_EXTERN_C ::u32 get_last_error(void);
+//MY_EXTERN_C void set_last_error(::u32 dw);
 
 
 /*#define MAKEWORD(a, b)      ((::u16)(((byte)(((DWORD_PTR)(a)) & 0xff)) | ((::u16)((byte)(((DWORD_PTR)(b)) & 0xff))) << 8))

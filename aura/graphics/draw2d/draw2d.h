@@ -23,6 +23,8 @@ namespace draw2d
       __pointer(class ::draw2d::api)                            m_papi;
       __pointer(class font_department)                          m_pfontdepartment;
 
+      //__pointer(::mutex)                                        m_pmutexFont;
+
 
 
       draw2d();

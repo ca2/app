@@ -98,7 +98,7 @@ public:
    long get_state();
    bool is_iconic();
    bool is_window_visible();
-   bool show_window(i32 nCmdShow);
+   bool show_window(enum_display edisplay);
    iptr get_window_long_ptr(iptr nIndex);
    iptr set_window_long_ptr(iptr nIndex, iptr l);
    bool _001ClientToScreen(POINT32 * lppoint);

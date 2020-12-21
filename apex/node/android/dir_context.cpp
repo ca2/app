@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "_android.h"
 #include "apex/const/id.h"
-#include "apex/xml/_.h"
+//#include "apex/xml/_.h"
 
 
 namespace android
@@ -98,9 +98,9 @@ namespace android
 
             __restore(listing.m_eextract);
 
-            ::file::listing straDir(get_context());
+            ::file::listing straDir;
 
-            straDir.ls_dir(listing.m_pathFinal);
+            ls_dir(straDir, listing.m_pathFinal);
 
             for (i32 i = 0; i < straDir.get_count(); i++)
             {
@@ -125,7 +125,7 @@ namespace android
 
                listing.m_pathFinal = strDir;
 
-               listing.ls();
+               ls(listing);
 
 
             }
@@ -139,7 +139,7 @@ namespace android
 
             listing.m_bRecursive = false;
 
-            listing.ls_file(listing.m_pathFinal);
+            ls_file(listing, listing.m_pathFinal);
 
          }
 
@@ -886,9 +886,12 @@ namespace android
 
             if (!::dir::_mk(stra[i]))
             {
-               ::u32 dwError = ::get_last_error();
-               if (dwError == ERROR_ALREADY_EXISTS)
+
+               auto estatus = ::get_last_status();
+
+               if (estatus == error_already_exists)
                {
+
                   string str;
                   str = "\\\\?\\" + stra[i];
                   str.trim_right("\\/");
@@ -919,7 +922,7 @@ namespace android
                   else
                   {
 
-                     dwError = ::get_last_error();
+                     estatus = ::get_last_status();
 
                   }
 
@@ -945,14 +948,16 @@ namespace android
    }
 
 
-   bool dir_context::rm(const ::file::path & psz, bool bRecursive)
+   bool dir_context::rm(const ::file::path & path, bool bRecursive)
    {
       if (bRecursive)
       {
 
-         ::file::listing straPath(get_context());
+         ::file::listing straPath;
 
-         straPath.ls(psz);
+         straPath.m_pathFinal = path;
+
+         ls(straPath);
 
          for (i32 i = 0; i < straPath.get_count(); i++)
          {
@@ -960,7 +965,7 @@ namespace android
             if (is(straPath[i]))
             {
 
-               rm(psz / straPath[i].name(), true);
+               rm(path / straPath[i].name(), true);
 
             }
             else
@@ -974,7 +979,7 @@ namespace android
 
       }
 
-      return ::rmdir(psz) != FALSE;
+      return ::rmdir(path) != FALSE;
 
    }
 
@@ -991,9 +996,9 @@ namespace android
 
       }
 
-      xml::document doc;
+      //xml::document doc;
 
-      doc.load(Context.file().as_string(appdata() / "configuration\\directory.xml"));
+      //doc.load(Context.file().as_string(appdata() / "configuration\\directory.xml"));
 
       ::file::path pathInstall = System.m_pathCacheDir;
 
@@ -1008,32 +1013,66 @@ namespace android
       mk(m_pdirsystem->m_strCommonAppData);
 
       if (!is(m_pdirsystem->m_strCommonAppData))
-         return false;
-
-
-      if (doc.get_name() == "directory_configuration")
       {
 
-         m_pdirsystem->m_strTimeFolder = doc.get_child_value("time");
-
-         m_pdirsystem->m_strNetSeedFolder = doc.get_child_value("netseed");
+         return false;
 
       }
 
+      ::file::path pathTimeFolder;
+
+      ::file::path pathNetSeedFolder;
+
+      //if (doc.get_name() == "directory_configuration")
+      //{
+
+      //   pathTimeFolder = doc.get_child_value("time");
+
+      //   pathNetSeedFolder = doc.get_child_value("netseed");
+
+      //}
+
       if (m_pdirsystem->m_strTimeFolder.is_empty())
-         m_pdirsystem->m_strTimeFolder = appdata() / "time";
+      {
+
+         pathTimeFolder = appdata() / "time";
+
+      }
 
       if (m_pdirsystem->m_strNetSeedFolder.is_empty())
-         m_pdirsystem->m_strNetSeedFolder = install() / "net";
+      {
 
-      mk(m_pdirsystem->m_strTimeFolder);
+         pathNetSeedFolder = install() / "net";
 
-      if (!is(m_pdirsystem->m_strTimeFolder))
-         return false;
+      }
 
-      mk(m_pdirsystem->m_strTimeFolder / "time");
+      mk(pathTimeFolder);
 
-      return true;
+      if (!is(pathTimeFolder))
+      {
+
+         return error_failed;
+
+      }
+
+      ::file::path pathTimeFolderTime;
+
+      pathTimeFolderTime = pathTimeFolder / "time";
+
+      mk(pathTimeFolderTime);
+
+      if (!is(pathTimeFolderTime))
+      {
+
+         return error_failed;
+
+      }
+
+      m_pdirsystem->m_strTimeFolder = pathTimeFolder;
+
+      m_pdirsystem->m_strNetSeedFolder = pathNetSeedFolder;
+
+      return success;
 
    }
 
@@ -1088,29 +1127,22 @@ namespace android
       return "";
    }
 
+
    ::file::path dir_context::appdata()
    {
+
       string str;
-      /*SHGetSpecialFolderPath(
-         nullptr,
-         str,
-         CSIDL_COMMON_APPDATA,
-         FALSE);*/
 
       str = ::dir::system() / ".ca2/app/appdata";
+      
       string strRelative;
-      strRelative = install();
-      //index iFind = strRelative.find(':');
-      //if(iFind >= 0)
-      {
-         // strsize iFind1 = strRelative.reverse_find("\\", iFind);
-         //strsize iFind2 = strRelative.reverse_find("/", iFind);
-         //strsize iStart = max(iFind1 + 1, iFind2 + 1);
 
-         //strRelative = strRelative.Left(iFind - 1) + "_" + strRelative.Mid(iStart, iFind - iStart) + strRelative.Mid(iFind + 1);
-      }
+      strRelative = install();
+
       return str / "ca2";
+
    }
+
 
    ::file::path dir_context::commonappdata()
    {
@@ -1293,9 +1325,9 @@ namespace android
    bool dir_context::has_subdir(const ::file::path & pszDir)
    {
 
-      ::file::listing ls(get_context());
+      ::file::listing ls;
 
-      ls.ls_dir(pszDir);
+      ls_dir(ls, pszDir);
 
       return ls.get_size() > 0;
 

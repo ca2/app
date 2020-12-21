@@ -30,33 +30,7 @@ void android_on_text(e_os_text etext, const wchar_t* pwch, size_t len);
 #define  LOGE(...)  __android_log_print(ANDROID_LOG_ERROR,LOG_TAG,__VA_ARGS__)
 
 
-void android_aura_main();
-
-void android_fill_plasma(AndroidBitmapInfo * info, void* pixels, double  t);
-
-void android_mouse(unsigned int message, float x, float y);
-
-void android_key(unsigned int message, int keyCode, int iUni);
-
-extern int g_iScreenW;
-
-extern int g_iScreenH;
-
-extern const char * g_pszCommandLine;
-
-extern const char * g_pszCacheDir;
-
-extern __pointer(os_remote) g_posremote;
-
-extern __pointer(os_local) g_poslocal;
-
 CLASS_DECL_ACME string get_string(jstring jstring);
-
-
-CLASS_DECL_ACME void set_context(JNIEnv* penv);
-CLASS_DECL_ACME JNIEnv* get_jni_env();
-
-CLASS_DECL_ACME void android_exchange();
 
 
 

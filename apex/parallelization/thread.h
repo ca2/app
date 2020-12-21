@@ -163,9 +163,7 @@ public:
    ::u32 get_file_sharing_violation_timeout_total_milliseconds();
    ::duration set_file_sharing_violation_timeout(::duration duration);
 
-   virtual bool is_running() const;
-   //virtual void dependant_add(::layered * pobjectContext) override;
-
+   virtual bool is_running() const override;
 
 
    virtual ::estatus start(
@@ -179,7 +177,7 @@ public:
    virtual ithread_t get_ithread() const;
 
 
-   virtual bool task_active() const;
+   virtual bool task_active() const override;
 
 
    virtual void set_current_handles();

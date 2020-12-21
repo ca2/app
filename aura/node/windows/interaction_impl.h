@@ -257,7 +257,7 @@ namespace windows
       //i32 GetWindowRgn(HRGN hRgn);
 
       virtual ::u32 ArrangeIconicWindows();
-      //virtual void BringToTop(::edisplay edisplay);
+      //virtual void BringToTop(::e_display edisplay);
       //virtual bool BringWindowToTop();
       //using ::user::interaction_impl::get_window_rect;
       //virtual bool get_window_rect(RECT64 * prect);
@@ -300,10 +300,10 @@ namespace windows
       virtual void ValidateRect(LPCRECT32 rect);
 
       virtual void ValidateRgn(::draw2d::region* pRgn);
-      virtual bool display(::edisplay edisplay);
+      virtual bool display(::e_display edisplay);
 
 
-      virtual void sketch_prepare_window_minimize(::eactivation eactivation) override;
+      virtual void sketch_prepare_window_minimize(::e_activation eactivation) override;
       virtual void sketch_prepare_window_maximize() override;
       virtual void sketch_prepare_window_full_screen(const ::rect & rectHint = nullptr) override;
       virtual void sketch_prepare_window_restore(edisplay edisplay) override;
@@ -774,7 +774,7 @@ namespace windows
       virtual bool get_rect_normal(RECT32 * prect);
       virtual void register_drop_target();
       virtual void show_task(bool bShow);
-      virtual void window_show_change_visibility(::edisplay edisplay, ::eactivation eactivation) override;
+      virtual void window_show_change_visibility(::e_display edisplay, ::e_activation eactivation) override;
 
 
       virtual void non_top_most_upper_window_rects(::rect_array& recta) override;

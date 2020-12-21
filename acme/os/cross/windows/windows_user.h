@@ -31,7 +31,7 @@ int_bool is_window(oswindow oswindow);
 int_bool IsChild(oswindow oswindowParent, oswindow oswindowcandidateChildOrDescendant);
 // oswindow GetParent(oswindow oswindow);
 // oswindow SetParent(oswindow oswindowChild, oswindow oswindowNewParent);
-int_bool show_window(oswindow oswindow, i32 iShow);
+//int_bool show_window(oswindow oswindow, const ::e_display & edisplay, const ::e_activation & eactivation = e_activation_default);
 //::i32 GetWindowLongA(oswindow oswindow, int nIndex);
 //::i32 SetWindowLongA(oswindow oswindow, int nIndex, ::i32 l);
 int_bool _001ClientToScreen(oswindow oswindow, POINT32 * lppoint);
@@ -763,7 +763,7 @@ oswindow hWnd,
 /*
 * MessageBox() Flags
 */
-#define e_message_box_ok                       0x00000000L
+//#define e_message_box_ok                       0x00000000L
 #define MB_OKCANCEL                 0x00000001L
 #define MB_ABORTRETRYIGNORE         0x00000002L
 #define MB_YESNOCANCEL              0x00000003L
@@ -776,17 +776,17 @@ oswindow hWnd,
 
 #define MB_ICONHAND                 0x00000010L
 #define MB_ICONQUESTION             0x00000020L
-#define e_message_box_icon_exclamation          0x00000030L
+//#define e_message_box_icon_exclamation          0x00000030L
 #define MB_ICONASTERISK             0x00000040L
 
 //#if(WINVER >= 0x0400)
 #define MB_USERICON                 0x00000080L
-#define e_message_box_icon_warning              e_message_box_icon_exclamation
+//#define e_message_box_icon_warning              e_message_box_icon_exclamation
 #define MB_ICONERROR                MB_ICONHAND
 //#endif /* WINVER >= 0x0400 */
 
-#define e_message_box_icon_information          MB_ICONASTERISK
-#define e_message_box_icon_stop                 MB_ICONHAND
+//#define e_message_box_icon_information          MB_ICONASTERISK
+//#define e_message_box_icon_stop                 MB_ICONHAND
 
 #define MB_DEFBUTTON1               0x00000000L
 #define MB_DEFBUTTON2               0x00000100L
@@ -796,7 +796,7 @@ oswindow hWnd,
 //#endif /* WINVER >= 0x0400 */
 
 #define MB_APPLMODAL                0x00000000L
-#define e_message_box_system_modal              0x00001000L
+//#define e_message_box_system_modal              0x00001000L
 #define MB_TASKMODAL                0x00002000L
 #if(WINVER >= 0x0400)
 #define MB_HELP                     0x00004000L // Help Button

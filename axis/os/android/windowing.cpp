@@ -526,7 +526,7 @@ oswindow oswindow_data::set_parent(oswindow oswindow)
 }
 
 
-bool oswindow_data::show_window(::edisplay edisplay)
+bool oswindow_data::show_window(::e_display edisplay)
 {
 
    sync_lock sl(m_pimpl == nullptr || m_pimpl->m_puserinteraction ? nullptr : m_pimpl->m_puserinteraction->mutex());

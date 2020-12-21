@@ -1722,7 +1722,7 @@ namespace user
    // }
 
 
-   void primitive_impl::window_show_change_visibility(::edisplay edisplay, ::eactivation eactivation)
+   void primitive_impl::window_show_change_visibility(::e_display edisplay, ::e_activation eactivation)
    {
 
    }

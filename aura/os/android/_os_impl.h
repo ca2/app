@@ -17,9 +17,13 @@
 #include <stdlib.h>
 #include <math.h>
 
-#include "_os_object.h"
-#include "_os_local.h"
-#include "_os_remote.h"
+//#include "_os_object.h"
+//#include "_os_local.h"
+//#include "_os_remote.h"
+
+#include "acme/os/android/_os_object.h"
+#include "acme/os/android/_os_local.h"
+#include "acme/os/android/_os_remote.h"
 
 
 void android_on_text(e_os_text etext, const wchar_t* pwch, size_t len);
@@ -29,10 +33,11 @@ void android_on_text(e_os_text etext, const wchar_t* pwch, size_t len);
 #define  LOGI(...)  __android_log_print(ANDROID_LOG_INFO,LOG_TAG,__VA_ARGS__)
 #define  LOGE(...)  __android_log_print(ANDROID_LOG_ERROR,LOG_TAG,__VA_ARGS__)
 
+int SetMainScreenRect(LPCRECT32 lpcrect);
 
 void android_aura_main();
 
-void android_fill_plasma(AndroidBitmapInfo * info, void* pixels, double  t);
+void android_fill_plasma(AndroidBitmapInfo * info, color32_t * pixels, double  t);
 
 void android_mouse(unsigned int message, float x, float y);
 

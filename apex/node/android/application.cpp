@@ -5,10 +5,26 @@ namespace apex
 {
 
 
-   void application::_001EnableShellOpen()
+
+   ::estatus application::_001InitializeShellOpen()
    {
+      // xxx       ASSERT(m_atomApp == nullptr && m_atomSystemTopic == nullptr); // do once
+
+      // xxx       m_atomApp            = ::GlobalAddAtomW(::str::international::utf8_to_unicode(m_strAppName));
+      // xxx       m_atomSystemTopic    = ::GlobalAddAtomW(L"system");
+
+      return ::success;
 
    }
+
+
+   void application::get_time(struct timeval * ptimeval)
+   {
+
+      gettimeofday(ptimeval, nullptr);
+
+   }
+
 
 
    string application::get_version()

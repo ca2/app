@@ -2524,7 +2524,7 @@ namespace windows
    }
 
 
-   void interaction_impl::sketch_prepare_window_minimize(::eactivation eactivation)
+   void interaction_impl::sketch_prepare_window_minimize(::e_activation eactivation)
    {
 
       primitive_impl::sketch_prepare_window_minimize(eactivation);
@@ -2556,7 +2556,7 @@ namespace windows
    }
 
 
-   bool interaction_impl::display(::edisplay edisplay)
+   bool interaction_impl::display(::e_display edisplay)
    {
 
       if (!::is_window(get_handle()))
@@ -2883,7 +2883,7 @@ namespace windows
 //}
 
 
-   //void interaction_impl::bring_to_top(::edisplay edisplay)
+   //void interaction_impl::bring_to_top(::e_display edisplay)
    //{
 
    //   if (GetParent() == nullptr)
@@ -4868,7 +4868,7 @@ namespace windows
 */
 
 
-   void interaction_impl::window_show_change_visibility(::edisplay edisplay, ::eactivation eactivation)
+   void interaction_impl::window_show_change_visibility(::e_display edisplay, ::e_activation eactivation)
    {
 
       ::user::interaction_impl::window_show_change_visibility(edisplay, eactivation);

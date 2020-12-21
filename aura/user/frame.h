@@ -144,7 +144,7 @@ namespace user
 
       virtual ::user::tool_window * tool_window(enum_tool etool, bool bCreate = false);
 
-      virtual void ActivateFrame(::edisplay edisplay = e_display_undefined);
+      virtual void ActivateFrame(::e_display edisplay = e_display_undefined);
 
       virtual bool LoadToolBar(id idToolBar, const char * pszToolBar, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP);
 

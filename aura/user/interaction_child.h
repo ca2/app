@@ -83,7 +83,7 @@ namespace user
 
       virtual bool is_this_visible(enum_layout elayout) override;
 
-      virtual void window_show_change_visibility(::edisplay edisplay, ::eactivation eactivation) override;
+      virtual void window_show_change_visibility(::e_display edisplay, ::e_activation eactivation) override;
 
       virtual bool _is_window() const override;
 

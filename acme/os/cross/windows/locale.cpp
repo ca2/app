@@ -1,6 +1,6 @@
 #include "framework.h"
-#include "acme/os/cross/windows/e.h"
-#include "acme/os/cross/windows/windows_internals.h"
+#include "_windows.h"
+
 
 #undef WINAXISAPI
 #define WINAXISAPI CLASS_DECL_ACME
@@ -18,7 +18,7 @@ static LANGID system_ui_language;
 int_bool is_genitive_name_supported( LCTYPE lctype );
 LCID convert_default_lcid( LCID lcid, LCTYPE lctype );
 const WCHAR *get_locale_value_name( ::u32 lctype );
-::i32 get_registry_locale_info( const widechar * value, LPWSTR buffer, ::i32 len );
+::i32 get_registry_locale_info( const WCHAR * value, LPWSTR buffer, ::i32 len );
 
 /******************************************************************************
  *		GetLocaleInfoW (KERNEL32.@)
@@ -41,13 +41,13 @@ i32 WINAPI GetLocaleInfoW( LCID lcid, LCTYPE lctype, LPWSTR buffer, i32 len )
 
    if (len < 0 || (len && !buffer))
    {
-      set_last_error( ERROR_INVALID_PARAMETER );
+      set_last_status( error_invalid_parameter );
       return 0;
    }
    if (lctype & LOCALE_RETURN_GENITIVE_NAMES &&
          !is_genitive_name_supported( lctype ))
    {
-      set_last_error( ERROR_INVALID_FLAGS );
+      set_last_status( error_invalid_flags );
       return 0;
    }
 
@@ -79,14 +79,14 @@ i32 WINAPI GetLocaleInfoW( LCID lcid, LCTYPE lctype, LPWSTR buffer, i32 len )
                u32 number = (u32) wd16_to_i64(tmp, &end, 10 );
                if (*end)  /* invalid number */
                {
-                  set_last_error( ERROR_INVALID_FLAGS );
+                  set_last_status( error_invalid_flags );
                   return 0;
                }
                ret = sizeof(u32)/sizeof(WCHAR);
                if (!buffer) return ret;
                if (ret > len)
                {
-                  set_last_error( ERROR_INSUFFICIENT_BUFFER );
+                  set_last_status( error_insufficient_buffer );
                   return 0;
                }
                ::memcpy_dup( buffer, &number, sizeof(number) );
@@ -129,7 +129,7 @@ i32 WINAPI GetLocaleInfoW( LCID lcid, LCTYPE lctype, LPWSTR buffer, i32 len )
 
    if (ret > len)
    {
-      set_last_error( ERROR_INSUFFICIENT_BUFFER );
+      set_last_status( error_insufficient_buffer );
       return 0;
    }
 
@@ -147,7 +147,7 @@ i32 WINAPI GetLocaleInfoW( LCID lcid, LCTYPE lctype, LPWSTR buffer, i32 len )
          ::memcpy_dup( buffer, &number, sizeof(number) );
       else  /* invalid number */
       {
-         set_last_error( ERROR_INVALID_FLAGS );
+         set_last_status( error_invalid_flags );
          ret = 0;
       }
 //        HeapFree( GetProcessHeap(), 0, tmp );
@@ -496,7 +496,7 @@ const WCHAR *get_locale_value_name( ::u32 lctype )
  */
 
 //::i32 get_registry_locale_info( const widechar * value, LPWSTR buffer, ::i32 len )
-::i32 get_registry_locale_info(const widechar *, LPWSTR, ::i32)
+::i32 get_registry_locale_info(const WCHAR *, LPWSTR, ::i32)
 {
 
    return 0;

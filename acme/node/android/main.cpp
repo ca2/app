@@ -9,9 +9,11 @@ void CLASS_DECL_ACME __cdecl _ca2_purecall()
 }
 
 
+#ifdef WINDOWS
+
 void __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers);
 
-
+#endif
 
 
 
@@ -123,6 +125,9 @@ void __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers);
 //}
 
 
+#ifdef WINDOWS
+
+
 void __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers)
 {
 
@@ -132,7 +137,7 @@ void __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers)
 }
 
 
-
+#endif
 
 
 

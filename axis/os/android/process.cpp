@@ -78,7 +78,7 @@ CLASS_DECL_AXIS i32 call_async(
 const char * pszPath,
 const char * pszParam,
 const char * pszDir,
-::edisplay edisplay,
+::e_display edisplay,
 bool bPrivileged,
 unsigned int * puiPid)
 {
@@ -107,7 +107,7 @@ unsigned int * puiPid)
 
 }
 
-CLASS_DECL_AXIS u32 call_sync(const char * pszPath, const char * pszParam, const char * pszDir, ::edisplay edisplay, const ::duration & durationTimeout, ::property_set & set)
+CLASS_DECL_AXIS u32 call_sync(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set)
 {
    string strCmdLine;
 

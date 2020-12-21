@@ -71,7 +71,7 @@ namespace user
 virtual bool setWMClass(const char * psz);
       virtual void finalize() override;
 
-      virtual void window_show_change_visibility(::edisplay edisplay, ::eactivation eactivation);
+      virtual void window_show_change_visibility(::e_display edisplay, ::e_activation eactivation);
 
       //virtual bool check_need_translation();
       //virtual void clear_need_translation();

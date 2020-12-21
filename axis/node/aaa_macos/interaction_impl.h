@@ -181,7 +181,7 @@ namespace macos
 
       //virtual bool set_window_pos(iptr z, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags);
       virtual ::u32 ArrangeIconicWindows() override;
-      //virtual void BringToTop(::edisplay edisplay) override;
+      //virtual void BringToTop(::e_display edisplay) override;
       //virtual bool BringWindowToTop() override;
 //      using ::user::interaction_impl::get_window_rect;
 //      virtual bool get_window_rect(RECT64 * lpRect) override;
@@ -219,7 +219,7 @@ namespace macos
       virtual void InvalidateRgn(::draw2d::region* pRgn, bool bErase = TRUE) override;
       virtual void ValidateRect(const ::rect & rect) override;
       virtual void ValidateRgn(::draw2d::region* pRgn) override;
-      //virtual bool display(::edisplay edisplay) override;
+      //virtual bool display(::e_display edisplay) override;
 //      virtual void window_impl_maximize();
 //      virtual void window_impl_restore();
       //virtual bool window_impl_is_visible();

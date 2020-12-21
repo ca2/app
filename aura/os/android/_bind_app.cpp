@@ -46,6 +46,10 @@ JNIEXPORT void JNICALL Java_com_android_1app_app_aura_1init(JNIEnv * penv, jobje
 
    auto plocal = g_poslocal;
 
+   plocal->m_strCommandLine = premote->getCommandLine();
+
+   plocal->m_pathCacheDir = premote->getCacheDir();
+
    plocal->m_iWidth = premote->getWidth();
 
    plocal->m_iHeight = premote->getHeight();

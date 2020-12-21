@@ -25,6 +25,9 @@ void get_os_priority(i32 * piPolicy, sched_param * pparam, ::e_priority epriorit
 ::i64 get_tick();
 
 
+CLASS_DECL_ACME void * __node_library_touch(const char * pszPath, string & strMessage);
+CLASS_DECL_ACME void * __node_library_open(const char * pszPath, string & strMessage);
+
 
 
 #define _fileno   fileno

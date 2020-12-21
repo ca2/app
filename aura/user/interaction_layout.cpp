@@ -219,7 +219,7 @@ namespace user
    //}
 
 
-//   bool interaction_layout::display(::edisplay edisplay, ::eactivation eactivation)
+//   bool interaction_layout::display(::e_display edisplay, ::e_activation eactivation)
 //   {
 //
 //      bool bToggle = false;

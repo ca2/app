@@ -23,7 +23,7 @@ public:
    void channel_common_construct();
 
    
-   virtual void install_message_routing(::channel* pchannel);
+   virtual void install_message_routing(::channel* pchannel) override;
 
 
    static inline ::mutex* channel_mutex() { return s_pmutexChannel; }
@@ -128,7 +128,7 @@ public:
    void add_update_route(RECEIVER * preceiver, const ::id & id)
    {
 
-      add_update_route_pred(preceiver, id, [this, preceiver, id](::message::message * pmessage)
+      add_update_route_pred(preceiver, id, [preceiver, id](::message::message * pmessage)
       {
 
          preceiver->process_subject(id, preceiver);

@@ -152,7 +152,7 @@ CLASS_DECL_ACME HINSTANCE __find_string_resource_handle(::u32 nID);
 
 
 
-//CLASS_DECL_ACME i32 app_main(::acme::system * psystem, HINSTANCE hInstance, HINSTANCE hPrevInstance, char * pCmdLine, ::edisplay edisplay);
+//CLASS_DECL_ACME i32 app_main(::acme::system * psystem, HINSTANCE hInstance, HINSTANCE hPrevInstance, char * pCmdLine, ::e_display edisplay);
 
 
 

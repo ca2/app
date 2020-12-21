@@ -24,16 +24,16 @@ public:
 
 
    memory_file();
-   memory_file(const ::file::eopen & eopen);
+   memory_file(const ::file::e_open & eopen);
    memory_file(memsize iSize);
    memory_file(const memory_file & file);
    memory_file(memory_file && file);
    memory_file(void * pMemory, memsize dwSize);
-   memory_file(payload & payload, ::u32 nFlags = 0);
-   memory_file(memory_base & memory, const ::file::eopen & eopen = e_null);
-   memory_file(memory_base * pmemory, const ::file::eopen & eopen = e_null);
+   memory_file(payload & payload, const ::file::e_open & eopen = e_null);
+   memory_file(memory_base & memory, const ::file::e_open & eopen = e_null);
+   memory_file(memory_base * pmemory, const ::file::e_open & eopen = e_null);
    template < typename MEMORY>
-   memory_file(const __pointer(MEMORY) & pmemory, const ::file::eopen & eopen = e_null) : memory_file((MEMORY *) pmemory.get(), eopen) {}
+   memory_file(const __pointer(MEMORY) & pmemory, const ::file::e_open & eopen = e_null) : memory_file((MEMORY *) pmemory.get(), eopen) {}
    virtual ~memory_file();
 
 

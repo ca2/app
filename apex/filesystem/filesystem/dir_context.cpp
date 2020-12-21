@@ -816,7 +816,7 @@ bool dir_context::is(const ::file::path & pathParam)
 
    bool bIs = false;
 
-   if (!(pathParam & ::file::flag_bypass_cache) && is_cached(bIs, path))
+   if (!(pathParam & ::file::e_flag_bypass_cache) && is_cached(bIs, path))
    {
 
       return bIs;
@@ -843,7 +843,7 @@ bool dir_context::is_impl(const ::file::path & path)
 
       property_set set;
 
-      if (path & ::file::flag_bypass_cache)
+      if (path & ::file::e_flag_bypass_cache)
       {
 
          set["nocache"] = true;
@@ -1692,7 +1692,7 @@ void dir_context::matter_ls_file(const ::file::path & str, ::file::listing & str
 
       }
 
-      if (!(patha[0] & ::file::flag_bypass_cache) && path.has_char())
+      if (!(patha[0] & ::file::e_flag_bypass_cache) && path.has_char())
       {
 
          string strFinal(path);
@@ -1767,14 +1767,14 @@ void dir_context::matter_ls_file(const ::file::path & str, ::file::listing & str
 
       set["disable_common_name_cert_check"] = true;
 
-      if (patha[0] & ::file::flag_required)
+      if (patha[0] & ::file::e_flag_required)
       {
 
          set["required"] = true;
 
       }
 
-      if (patha[0] & ::file::flag_bypass_cache)
+      if (patha[0] & ::file::e_flag_bypass_cache)
       {
 
          set["nocache"] = true;
@@ -1872,8 +1872,8 @@ ret:
 
       //::file::path pathCache2 = System.m_pdirsystem->m_pathLocalAppMatterFolder / path;
 
-      //if ((path & ::file::flag_get_local_path)
-      //   || (!(path & ::file::flag_bypass_cache) && is_file_or_dir_dup(pathCache, nullptr)))
+      //if ((path & ::file::e_flag_get_local_path)
+      //   || (!(path & ::file::e_flag_bypass_cache) && is_file_or_dir_dup(pathCache, nullptr)))
       //{
 
       //   return pathCache;

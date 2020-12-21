@@ -25,25 +25,25 @@ stdio_file::~stdio_file()
 }
 
 
-::status::result stdio_file::open(const ::file::path & pszFileName, const efileopen & eopen)
+::status::result stdio_file::open(const ::file::path & pszFileName, const ::file::e_open & eopen)
 {
 
    string str;
 
-   if ((eopen & ::file::defer_create_directory) && (eopen & ::file::mode_write))
+   if ((eopen & ::file::e_open_defer_create_directory) && (eopen & ::file::e_open_write))
    {
 
       ::dir::mk(::file::path(pszFileName).folder());
 
    }
 
-   if (eopen & ::file::mode_no_truncate && file_exists(pszFileName))
+   if (eopen & ::file::e_open_no_truncate && file_exists(pszFileName))
    {
 
       str += "r";
 
    }
-   else if (eopen & ::file::mode_create)
+   else if (eopen & ::file::e_open_create)
    {
 
       str += "w";
@@ -58,31 +58,31 @@ stdio_file::~stdio_file()
 
 
 
-   //if (eopen & ::file::mode_write)
+   //if (eopen & ::file::e_open_write)
    //{
 
    //   str += "w";
 
    //}
-   //else if(eopen & ::file::mode_read)
+   //else if(eopen & ::file::e_open_read)
    //{
 
    //   
 
    //}
 
-   if(eopen & ::file::type_binary)
+   if(eopen & ::file::e_open_binary)
    {
 
       str += "b";
 
    }
-   else if(eopen & ::file::type_text)
+   else if(eopen & ::file::e_open_text)
    {
 
    }
 
-   if (eopen & ::file::mode_write && eopen & ::file::mode_read)
+   if (eopen & ::file::e_open_write && eopen & ::file::e_open_read)
    {
 
       str += "+";

@@ -190,7 +190,7 @@ namespace http
                if (::is_set(petype))
                {
 
-                  *petype = ::file::type_file;
+                  *petype = ::file::e_type_file;
 
                }
 
@@ -203,7 +203,7 @@ namespace http
                if (::is_set(petype))
                {
 
-                  *petype = ::file::type_folder;
+                  *petype = ::file::e_type_folder;
 
                }
 
@@ -216,7 +216,7 @@ namespace http
                if (::is_set(petype))
                {
 
-                  *petype = ::file::type_element;
+                  *petype = ::file::e_type_element;
 
                }
 
@@ -229,7 +229,7 @@ namespace http
                if (::is_set(petype))
                {
 
-                  *petype = ::file::type_none;
+                  *petype = ::file::e_type_none;
 
                }
 
@@ -248,26 +248,26 @@ namespace http
 
       }
 
-      ::file::enum_type etype = ::file::type_none;
+      ::file::enum_type etype = ::file::e_type_none;
 
       bool bExists = is_file_or_dir(strUrl, process_set(set, pszUrl), &etype);
 
       if (bExists)
       {
 
-         if (etype == ::file::type_folder)
+         if (etype == ::file::e_type_folder)
          {
 
             strCache = "folder";
 
          }
-         else if (etype == ::file::type_file)
+         else if (etype == ::file::e_type_file)
          {
 
             strCache = "file";
 
          }
-         else if (etype == ::file::type_element)
+         else if (etype == ::file::e_type_element)
          {
 
             strCache = "matter";
@@ -2540,7 +2540,7 @@ namespace http
    {
 
       file_pointer spfile = Context.file().get_file(varFile,
-         ::file::type_binary | ::file::mode_create | ::file::mode_read_write | ::file::defer_create_directory);
+         ::file::e_open_binary | ::file::e_open_create | ::file::e_open_read_write | ::file::e_open_defer_create_directory);
 
       set["file"] = spfile;
 
@@ -2565,7 +2565,7 @@ namespace http
       {
 
          auto rfile = Context.file().get_file(varFile,
-            ::file::type_binary | ::file::mode_create | ::file::mode_read_write | ::file::defer_create_directory);
+            ::file::e_open_binary | ::file::e_open_create | ::file::e_open_read_write | ::file::e_open_defer_create_directory);
 
          if (!rfile)
          {
@@ -2597,11 +2597,11 @@ namespace http
    bool context::exists(const char * pszUrl, ::property_set & set)
    {
 
-      ::file::enum_type etype = ::file::type_none;
+      ::file::enum_type etype = ::file::e_type_none;
 
       bool bExists = is_file_or_dir(pszUrl, set, &etype);
 
-      return bExists && etype != ::file::type_none;
+      return bExists && etype != ::file::e_type_none;
 
    }
 
@@ -2658,7 +2658,7 @@ namespace http
             if (::is_set(petype))
             {
 
-               *petype = ::file::type_none;
+               *petype = ::file::e_type_none;
 
             }
 
@@ -2686,13 +2686,13 @@ namespace http
          if (bExists)
          {
 
-            *petype = ::file::type_element;
+            *petype = ::file::e_type_element;
 
          }
          else
          {
 
-            *petype = ::file::type_none;
+            *petype = ::file::e_type_none;
 
          }
 

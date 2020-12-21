@@ -145,13 +145,13 @@ namespace uwp
 
          auto puserinteraction = m_pdxi;
 
-         puserinteraction->display(e_display_normal);
+         //puserinteraction->display(e_display_normal);
 
-         puserinteraction->set_need_layout();
+         //puserinteraction->set_need_layout();
 
-         puserinteraction->set_need_redraw();
+         //puserinteraction->set_need_redraw();
 
-         puserinteraction->post_redraw();
+         //puserinteraction->post_redraw();
 
 
       };
@@ -175,7 +175,7 @@ namespace uwp
 
       get_context_system()->m_paurasystem->m_pimplMain = m_pimpl;
 
-      m_pimpl->m_bNotifyLayoutCompletedPending = true;
+      //m_pimpl->m_bNotifyLayoutCompletedPending = true;
 
       if (!puiHost->create_window_ex(pcs))
       {
@@ -256,7 +256,6 @@ namespace uwp
 
       initialize_directx_application();
 
-
    }
 
 
@@ -300,8 +299,6 @@ namespace uwp
 
    void directx_framework_view::on_window_size_changed(CoreWindow ^ sender, const ::size & size)
    {
-
-      m_pimpl->m_bNotifyLayoutCompletedPending = true;
 
       m_directx->m_size = size;
 

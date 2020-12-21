@@ -415,6 +415,7 @@ namespace apex
       ::apex::str                                  &  str();
       ::process::department                        &  process();
 
+      using acme::system::process;
 
       ::xml::department                            &  xml();
       class ::str::base64                          &  base64();

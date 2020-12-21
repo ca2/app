@@ -33,7 +33,7 @@ namespace uwp
 
       ASSERT(__is_valid_string(lpszFileName));
 
-      if ((nOpenFlags & ::file::defer_create_directory) && (nOpenFlags & ::file::mode_write))
+      if ((nOpenFlags & ::file::e_open_defer_create_directory) && (nOpenFlags & ::file::e_open_write))
       {
 
          Context.dir().mk(lpszFileName.folder());
@@ -42,7 +42,7 @@ namespace uwp
 
       m_pFile = nullptr;
 
-      m_pFile(!file::open(lpszFileName, (nOpenFlags & ~::file::type_text)))
+      m_pFile(!file::open(lpszFileName, (nOpenFlags & ~::file::e_open_text)))
       {
 
          return error_failed;
@@ -56,21 +56,21 @@ namespace uwp
       int nMode = 0;
 
       // determine read/write mode depending on file_pointer mode
-      if (nOpenFlags & ::file::mode_create)
+      if (nOpenFlags & ::file::e_open_create)
       {
-         if (nOpenFlags & ::file::mode_no_truncate)
+         if (nOpenFlags & ::file::e_open_no_truncate)
             szMode[nMode++] = 'a';
          else
             szMode[nMode++] = 'w';
       }
-      else if (nOpenFlags & ::file::mode_write)
+      else if (nOpenFlags & ::file::e_open_write)
          szMode[nMode++] = 'a';
       else
          szMode[nMode++] = 'r';
 
       // add '+' if necessary (when read/write modes mismatched)
-      if (szMode[0] == 'r' && (nOpenFlags & ::file::mode_read_write) ||
-            szMode[0] != 'r' && !(nOpenFlags & ::file::mode_write))
+      if (szMode[0] == 'r' && (nOpenFlags & ::file::e_open_read_write) ||
+            szMode[0] != 'r' && !(nOpenFlags & ::file::e_open_write))
       {
          // ::file::seek_current szMode mismatched, need to add '+' to fix
          szMode[nMode++] = '+';
@@ -78,10 +78,10 @@ namespace uwp
 
       // will be inverted if not necessary
       int nFlags = _O_RDONLY|_O_TEXT;
-      if (nOpenFlags & (::file::mode_write|::file::mode_read_write))
+      if (nOpenFlags & (::file::e_open_write|::file::e_open_read_write))
          nFlags ^= _O_RDONLY;
 
-      if (nOpenFlags & ::file::type_binary)
+      if (nOpenFlags & ::file::e_open_binary)
          szMode[nMode++] = 'b', nFlags ^= _O_TEXT;
       else
          szMode[nMode++] = 't';

@@ -32,6 +32,10 @@ namespace user
 
       };
 
+
+      int                                       m_bitExtendOnParent : 1;
+      int                                       m_bitExtendOnParentIfClientOnly : 1;
+
       int                                       m_bitToolWindow:1;
 
       ewindowflag                               m_ewindowflag;

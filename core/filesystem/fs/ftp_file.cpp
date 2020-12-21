@@ -94,12 +94,12 @@ ftpfs_file::~ftpfs_file()
 }
 
 
-::status::result ftpfs_file::open(const ::file::path & filepath, const efileopen & eopen)
+::status::result ftpfs_file::open(const ::file::path & filepath, const ::file::e_open & eopen)
 {
 
    m_filepath = filepath;
 
-   return m_pfile->open(m_varFile, ::file::mode_create | ::file::type_binary | ::file::mode_read_write | ::file::defer_create_directory);
+   return m_pfile->open(m_varFile, ::file::e_open_create | ::file::e_open_binary | ::file::e_open_read_write | ::file::e_open_defer_create_directory);
 
 }
 

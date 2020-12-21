@@ -212,11 +212,11 @@ namespace filemanager
 
                   pitemChild->m_strName = strName;
 
-                  pitemChild->m_flags.add(::file::FlagFolder);
+                  pitemChild->m_flags.add(::file::e_flag_folder);
 
                   ptreeitemChild = insert_item(pitemChild, ::data::RelativeLastChild, ptreeitemParent);
 
-                  if (pitemChild->m_flags.has(::file::FlagHasSubFolder))
+                  if (pitemChild->m_flags.has(::file::e_flag_has_subfolder))
                   {
 
                      ptreeitemChild->m_dwState |= ::data::tree_item_state_expandable;
@@ -308,9 +308,9 @@ namespace filemanager
 
             pitemChild->m_strName = strName;
 
-            pitemChild->m_flags.add(::file::FlagFolder);
+            pitemChild->m_flags.add(::file::e_flag_folder);
 
-            if (pitemChild->m_flags.has(::file::FlagHasSubFolder))
+            if (pitemChild->m_flags.has(::file::e_flag_has_subfolder))
             {
 
                ptreeitemChild->m_dwState |= ::data::tree_item_state_expandable;

@@ -107,10 +107,10 @@ namespace linux
 
 
       // file objects are always binary and CreateFile does not need flag
-      eopen -= ::file::type_binary;
+      eopen -= ::file::e_open_binary;
 
 
-      if ((eopen & ::file::defer_create_directory) && (eopen & ::file::mode_write))
+      if ((eopen & ::file::e_open_defer_create_directory) && (eopen & ::file::e_open_write))
       {
 
          ::dir::mk(pszFileName.folder());
@@ -124,20 +124,20 @@ namespace linux
 
 
       //ASSERT(sizeof(HANDLE) == sizeof(uptr));
-      ASSERT(::file::share_compat == 0);
+      ASSERT(::file::e_open_share_compat == 0);
 
       // ::collection::map read/write mode
-      ASSERT((::file::mode_read|::file::mode_write|::file::mode_read_write) == 3);
+      ASSERT((::file::e_open_read|::file::e_open_write|::file::e_open_read_write) == 3);
       ::u32 dwFlags =  0;
-      switch (eopen & ::file::mode_read_write)
+      switch (eopen & ::file::e_open_read_write)
       {
-      case ::file::mode_read:
+      case ::file::e_open_read:
          dwFlags |=  O_RDONLY;
          break;
-      case ::file::mode_write:
+      case ::file::e_open_write:
          dwFlags |=  O_WRONLY ;
          break;
-      case ::file::mode_read_write:
+      case ::file::e_open_read_write:
          dwFlags |=  O_RDWR;
          break;
       default:
@@ -147,32 +147,32 @@ namespace linux
 
       // ::collection::map share mode
       ::u32 dwShareMode = 0;
-      switch (eopen & ::file::share_mask)    // ::collection::map compatibility mode to exclusive
+      switch (eopen & ::file::e_open_share_mask)    // ::collection::map compatibility mode to exclusive
       {
       default:
          ASSERT(FALSE);  // invalid share mode?
-      case ::file::share_compat:
-      case ::file::share_exclusive:
+      case ::file::e_open_share_compat:
+      case ::file::e_open_share_exclusive:
          //dwShareMode = 0;
          break;
-      case ::file::share_deny_write:
+      case ::file::e_open_share_deny_write:
          //dwFlags |= O_SHLOCK;
          break;
-      case ::file::share_deny_read:
+      case ::file::e_open_share_deny_read:
 //         dwFlags |= O_EXLOCK;
          break;
-      case ::file::share_deny_none:
+      case ::file::e_open_share_deny_none:
          //dwFlags = FILE_SHARE_WRITE|FILE_SHARE_READ;
          break;
       }
 
-      if(eopen & ::file::mode_create)
+      if(eopen & ::file::e_open_create)
       {
          dwFlags |= O_CREAT;
-         if(!(eopen & ::file::mode_no_truncate))
+         if(!(eopen & ::file::e_open_no_truncate))
             dwFlags |= O_TRUNC;
       }
-      else if(eopen & ::file::mode_truncate)
+      else if(eopen & ::file::e_open_truncate)
       {
          dwFlags |= O_TRUNC;
       }

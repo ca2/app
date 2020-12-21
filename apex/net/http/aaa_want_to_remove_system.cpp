@@ -2018,7 +2018,7 @@ retry_session:
    {
 
       file_pointer spfile = set.cast < ::apex::application >("app",get_context_application())->get_context_session()->file().get_file(varFile,
-                       ::file::type_binary | ::file::mode_create | ::file::mode_read_write | ::file::defer_create_directory);
+                       ::file::e_open_binary | ::file::e_open_create | ::file::e_open_read_write | ::file::e_open_defer_create_directory);
 
       set["file"] = spfile;
 
@@ -2043,7 +2043,7 @@ retry_session:
       {
 
          auto rfile = set.cast < ::apex::application >("app", get_context_application())->get_context_session()->file().get_file(varFile,
-                          ::file::type_binary | ::file::mode_create | ::file::mode_read_write | ::file::defer_create_directory);
+                          ::file::e_open_binary | ::file::e_open_create | ::file::e_open_read_write | ::file::e_open_defer_create_directory);
 
          if(!rfile)
          {
@@ -2075,11 +2075,11 @@ retry_session:
    bool system::exists(const char * pszUrl, ::property_set & set)
    {
 
-      ::file::enum_type etype = ::file::type_none;
+      ::file::enum_type etype = ::file::e_type_none;
 
       bool bExists = is_file_or_dir(pszUrl, set, &etype);
 
-      return bExists && etype != ::file::type_none;
+      return bExists && etype != ::file::e_type_none;
 
    }
 
@@ -2136,7 +2136,7 @@ retry_session:
             if (::is_set(petype))
             {
 
-               *petype = ::file::type_none;
+               *petype = ::file::e_type_none;
 
             }
 
@@ -2164,13 +2164,13 @@ retry_session:
          if (bExists)
          {
 
-            *petype = ::file::type_element;
+            *petype = ::file::e_type_element;
 
          }
          else
          {
 
-            *petype = ::file::type_none;
+            *petype = ::file::e_type_none;
 
          }
 

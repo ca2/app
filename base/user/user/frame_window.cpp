@@ -2841,8 +2841,8 @@ namespace user
 
       }
 
-
    }
+
 
    void frame_window::_001OnSize(::message::message * pmessage)
    {

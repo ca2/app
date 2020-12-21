@@ -4504,7 +4504,7 @@ namespace draw2d
    }
 
 
-   bool graphics::draw_text(const string & str, const rect & rectParam, const ::e_align& ealign, const ::e_draw_text& edrawtext)
+   bool graphics::draw_text(const string & str, const rect & rectParam, const ::e_align & ealign, const ::e_draw_text & edrawtext)
    {
 
       ::rectd rect(rectParam);
@@ -4515,7 +4515,7 @@ namespace draw2d
 
 
 
-   bool graphics::draw_text(const string & strParam, const ::rectd & rectParam, const ::e_align& ealign, const ::e_draw_text& edrawtext)
+   bool graphics::draw_text(const string & strParam, const ::rectd & rectParam, const ::e_align & ealign, const ::e_draw_text & edrawtext)
    {
 
       ::rectd rect(rectParam);
@@ -4525,7 +4525,7 @@ namespace draw2d
    }
 
 
-   bool graphics::_001DrawText(const string & strParam, rectd & rectParam, const ::e_align& ealign, const ::e_draw_text& edrawtext, bool bMeasure)
+   bool graphics::_001DrawText(const string & strParam, rectd & rectParam, const ::e_align & ealign, const ::e_draw_text & edrawtext, bool bMeasure)
    {
 
       string str(strParam);
@@ -4629,7 +4629,7 @@ namespace draw2d
 #ifndef _UWP
 
 
-   bool graphics::draw_text_ex(const string & str, const rect & rect, const ::e_align& ealign, const ::e_draw_text& edrawtext)
+   bool graphics::draw_text_ex(const string & str, const rect & rect, const ::e_align & ealign, const ::e_draw_text & edrawtext)
    {
 
       UNREFERENCED_PARAMETER(str);
@@ -4643,7 +4643,7 @@ namespace draw2d
    }
 
 
-   bool graphics::draw_text_ex(const string & str, const rectd & rect, const ::e_align& ealign, const ::e_draw_text& edrawtext)
+   bool graphics::draw_text_ex(const string & str, const rectd & rect, const ::e_align & ealign, const ::e_draw_text & edrawtext)
    {
 
       UNREFERENCED_PARAMETER(str);
@@ -5353,7 +5353,7 @@ namespace draw2d
    }
 
 
-   i32 graphics::_DrawText(const string& strArg, const rect & rectParam, const ::e_align & e_align, const ::e_draw_text & edrawtext, ::draw2d::font * pfontUnderline)
+   i32 graphics::_DrawText(const string& strArg, const rect & rectParam, const ::e_align & ealign, const ::e_draw_text & edrawtext, ::draw2d::font * pfontUnderline)
    {
 
       string strParam(strArg);
@@ -5552,47 +5552,47 @@ namespace draw2d
       rect.right = (::i32) sz.cx;
       rect.bottom = iLineSpacing;
 
-      //::e_align e_align;
+      //::e_align ealign;
 
       //if (ealig & e_align_bottom)
       //{
       //   
-      //   e_align |= ::e_align_bottom;
+      //   ealign |= ::e_align_bottom;
 
       //}
       //else if (uiFormat & e_align_vertical_center)
       //{
       //   
-      //   e_align |= ::e_align_vertical_center;
+      //   ealign |= ::e_align_vertical_center;
 
       //}
       //else
       //{
       //   
-      //   e_align |= ::e_align_top;
+      //   ealign |= ::e_align_top;
 
       //}
 
       //if (uiFormat & e_align_right)
       //{
       //   
-      //   e_align |= ::e_align_right;
+      //   ealign |= ::e_align_right;
 
       //}
       //else if (uiFormat & e_align_horizontal_center)
       //{
 
-      //   e_align |= ::e_align_horizontal_center;
+      //   ealign |= ::e_align_horizontal_center;
 
       //}
       //else
       //{
 
-      //   e_align |= ::e_align_left;
+      //   ealign |= ::e_align_left;
 
       //}
 
-      rect.Align(e_align, rectParam);
+      rect.Align(ealign, rectParam);
 
       if (iUnderline >= 0 && iUnderline < str.get_length())
       {
@@ -5654,7 +5654,7 @@ namespace draw2d
 
          rectClip.top += iLineSpacing;
 
-         _DrawText(str2, rectClip, e_align, edrawtext);
+         _DrawText(str2, rectClip, ealign, edrawtext);
 
       }
 
@@ -6122,6 +6122,8 @@ namespace draw2d
          double dBaseTint = 2.0;
          double dCircleX;
          double dCircleY;
+
+         pimage->map();
 
          auto colorref = pimage->colorref();
 

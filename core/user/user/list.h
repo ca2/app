@@ -125,7 +125,7 @@ namespace user
       virtual void _001RemoveSelection() override;
       virtual bool _001OnRemoveItem(index iItem) override;
       virtual bool _001RemoveItem(index iItem, bool bRedraw = true) override;
-      virtual void _001EnsureVisible(index iItem, ::e_align e_align = e_align_vertical_center, bool bRedraw = true);
+      virtual void _001EnsureVisible(index iItem, ::e_align ealign = e_align_vertical_center, bool bRedraw = true);
       virtual void _001EnsureVisible(index iItem, range & rangeRedraw) override;
       virtual void _001ItemScroll(index iItem, bool bRedraw = true) override;
       virtual index config_id_index(const ::database::key & key);

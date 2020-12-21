@@ -106,7 +106,7 @@ int_bool is_file_or_dir_dup(const char * path1, ::file::enum_type * petype)
       if (is_set(petype))
       {
 
-         *petype = ::file::type_none;
+         *petype = ::file::e_type_none;
 
       }
 
@@ -120,13 +120,13 @@ int_bool is_file_or_dir_dup(const char * path1, ::file::enum_type * petype)
       if ((st.st_mode & S_IFDIR))
       {
 
-         *petype = ::file::type_folder;
+         *petype = ::file::e_type_folder;
 
       }
       else
       {
 
-         *petype = ::file::type_file;
+         *petype = ::file::e_type_file;
 
       }
 
@@ -582,17 +582,17 @@ int ansi_file_flag(int iFlag)
 
    int i = 0;
 
-   if (iFlag & ::file::type_binary)
+   if (iFlag & ::file::e_open_binary)
    {
 
       i |= O_BINARY;
 
    }
 
-   if (iFlag & ::file::mode_read)
+   if (iFlag & ::file::e_open_read)
    {
 
-      if (iFlag & ::file::mode_write)
+      if (iFlag & ::file::e_open_write)
       {
 
          i |= O_RDWR;
@@ -606,7 +606,7 @@ int ansi_file_flag(int iFlag)
       }
 
    }
-   else if (iFlag & ::file::mode_write)
+   else if (iFlag & ::file::e_open_write)
    {
 
       i |= O_WRONLY;

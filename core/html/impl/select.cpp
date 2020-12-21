@@ -187,7 +187,7 @@ namespace html
 
          m_pcombo->place(m_box);
 
-         m_pcombo->display(::e_display_normal, false);
+         m_pcombo->display(::e_display_normal, e_activation_no_activate);
 
       }
 

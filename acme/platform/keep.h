@@ -536,7 +536,7 @@ public:
    cflag < FLAG >          m_eflag;
 
 
-   ___keep_flag_on(cflag < FLAG > & eflagVariable, i64 iFlag) :
+   ___keep_flag_on(cflag < FLAG > & eflagVariable, FLAG iFlag) :
       m_eflagVariable(eflagVariable),
       m_eflag(iFlag)
    {
@@ -564,10 +564,10 @@ public:
 };
 
 template < typename FLAG >
-inline ___keep_flag_on < FLAG > keep_flag_on(cflag < FLAG > & eflagVariable, i64 iFlag)
+inline ___keep_flag_on < FLAG > keep_flag_on(cflag < FLAG > & eflagVariable, FLAG eflag)
 {
 
-   return ___keep_flag_on < FLAG >(eflagVariable, iFlag);
+   return ___keep_flag_on < FLAG >(eflagVariable, eflag);
 
 }
 

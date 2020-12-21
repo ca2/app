@@ -352,7 +352,7 @@ namespace user
    void plain_edit::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      m_millisLastDraw= ::millis::now();
+      m_millisLastDraw = ::millis::now();
 
       millis t1 = millis::now();
 
@@ -378,32 +378,16 @@ namespace user
 
       m_pinternal->update(pgraphics, this);
 
-      //::machine * pchange = pgraphics->m_ptask;
-
-      //::user::print_task * pprinttask = nullptr;
-
-      //if (ptask != nullptr)
-      //   pprinttask = dynamic_cast <::user::print_task *> (ptask);
-      //else
-      //   pprinttask = nullptr;
-
-      ////::rect rectClient;
-
-      ////GetFocusRect(rectClient);
-
-      //if (pprinttask != nullptr)
-      //{
-
-      //   TRACE("Print Job Is Printing page %d", pprinttask->m_iPrintingPage);
-
-      //}
-
       bool bCaretOn = is_caret_on();
 
       bool bFocus = has_focus();
 
       if (m_ptree == nullptr)
+      {
+
          return;
+
+      }
 
       ::draw2d::region_pointer rgn(e_create);
 
@@ -412,20 +396,6 @@ namespace user
       rgn->create_rect(rectClient);
 
       double left = rectClient.left;
-
-      //if(keyboard_focus_is_focusable() && has_focus())
-      //{
-
-      //   m_bFocus = true;
-
-      //}
-      //else
-      //{
-
-      //   m_bFocus = false;
-
-      //}
-
 
       strsize iSelBeg;
       strsize iSelEnd;
@@ -471,7 +441,7 @@ namespace user
 
       __sort(iSelBeg, iSelEnd);
 
-      pgraphics->set_font(this);
+      pgraphics->set_font(this, ::user::e_element_none);
 
       pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
 
@@ -526,59 +496,6 @@ namespace user
 
          strLineGraphics = strLine;
 
-         //colorertake5::LineRegion * pregion = nullptr;
-
-         //if (m_bColorerTake5)
-         //{
-
-         //   pregion = pcolorer->getLineRegions(i);
-
-         //}
-
-         //if (pregion != nullptr)
-         //{
-
-         //   for (; pregion != nullptr; pregion = pregion->next)
-         //   {
-         //      if (pregion->special || pregion->rdef == nullptr)
-         //         continue;
-         //      index end = pregion->end;
-         //      if (end == -1)
-         //         end = strLine.get_length();
-         //      strsize x = pregion->start;
-         //      strsize len = end - pregion->start;
-         //      if (x < 0)
-         //      {
-         //         len += x;
-         //         x = 0;
-         //      }
-         //      if (len < 0)
-         //         continue;
-         //      string strExtent1;
-         //      strExtent1 = strLine.Left(x);
-         //      string strExtent2;
-         //      strExtent2 = strLine.Mid(x, len);
-         //      int x1;
-         //      x1 = (int)(get_line_extent(iLine, x));
-         //      if (pregion->styled()->bback)
-         //      {
-         //         pgraphics->fill_rect((i32)(left + x1), (i32)y, x1, m_iLineHeight, pregion->styled()->back);
-         //      }
-         //      ::draw2d::brush_pointer brushText(e_create);
-         //      if (pregion->styled()->bfore)
-         //      {
-         //         brushText->create_solid(pregion->styled()->fore);
-         //         pgraphics->set(brushText);
-         //      }
-         //      else
-         //      {
-         //         pgraphics->set(brushTextCr);
-         //      }
-         //      pgraphics->text_out(left + x1, y, strExtent2);
-
-         //   }
-         //}
-         //else
          {
 
             color32_t crOverride = ARGB(255, 0, 0, 0);
@@ -820,7 +737,6 @@ namespace user
 
       }
 
-
       millis d1 = t1.elapsed();
 
       if (d1 > 50)
@@ -842,6 +758,8 @@ namespace user
 
 
       pcreate->previous();
+
+      m_pdescriptor->m_econtroltype = e_control_type_edit;
 
 #if !defined(APPLE_IOS) && !defined(ANDROID)
 
@@ -1984,7 +1902,7 @@ namespace user
 
       }
 
-      pgraphics->set_font(this);
+      pgraphics->set_font(this, ::user::e_element_none);
 
       sized sizeUniText;
 
@@ -2418,7 +2336,7 @@ namespace user
 
       ::index iLine;
 
-      pgraphics->set_font(this);
+      pgraphics->set_font(this, ::user::e_element_none);
 
       sized sizeUniText;
 
@@ -2944,7 +2862,7 @@ namespace user
 
       }
 
-      pgraphics->set_font(this);
+      pgraphics->set_font(this, ::user::e_element_none);
 
       pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
 
@@ -3087,7 +3005,7 @@ namespace user
 
       pgraphics.defer_create();
 
-      pgraphics->set_font(this);
+      pgraphics->set_font(this, ::user::e_element_none);
 
       ::rect rectClient;
 
@@ -6332,7 +6250,7 @@ finished_update:
    }
 
 
-   payload plain_edit::get_ex_value()
+   payload plain_edit::get_payload()
    {
 
       string str;

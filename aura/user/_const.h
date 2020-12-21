@@ -174,9 +174,9 @@
 //   enum e_theme
 //   {
 //
-//      theme_lite,
+//      e_theme_lite,
 //      theme_blue,
-//      theme_dark
+//      e_theme_dark
 //
 //   };
 //
@@ -202,7 +202,7 @@
 //      e_control_type_button,
 //      e_control_type_combo_box,
 //      e_control_type_edit_plain_text,
-//      control_type_list,
+//      e_control_type_list,
 //      control_type_mesh,
 //      control_type_tree,
 //      control_type_split,
@@ -425,10 +425,10 @@
 //      e_control_function_static,
 //      // Text got from control m_uiText member
 //      e_control_function_static2,
-//      control_function_data_selection,
-//      control_function_check_box,
-//      control_function_duplicate_on_check_box,
-//      control_function_disable_on_check_box,
+//      e_control_function_data_selection,
+//      e_control_function_check_box,
+//      e_control_function_duplicate_on_check_box,
+//      e_control_function_disable_on_check_box,
 //      e_control_function_save_on_change,
 //      e_control_function_vms_data_edit,
 //      e_control_function_action,
@@ -464,16 +464,16 @@
 //
 //   enum enum_line_hit
 //   {
-//      line_hit_none,
-//      line_hit_normal,
-//      line_hit_link,
+//      e_line_hit_none,
+//      e_line_hit_normal,
+//      e_line_hit_link,
 //   };
 //
-//   enum e_tree_element
+//   enum enum_tree_element
 //   {
-//      tree_element_expand_box,
-//      tree_element_image,
-//      tree_element_text,
+//      e_tree_element_expand_box,
+//      e_tree_element_image,
+//      e_tree_element_text,
 //   };
 //
 //

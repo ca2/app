@@ -546,9 +546,9 @@ namespace user
 //{
 //   enum enum_line_hit
 //   {
-//      line_hit_none,
-//      line_hit_normal,
-//      line_hit_link,
+//      e_line_hit_none,
+//      e_line_hit_normal,
+//      e_line_hit_link,
 //   };
 //}
 //

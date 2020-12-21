@@ -122,7 +122,7 @@ WCHAR* module_debug_wcsdup(HINSTANCE hinstance, WCHAR* pwszPrefix = nullptr, WCH
 }
 
 
-void module_debug_box_w(::i32 iFlags, HINSTANCE hinstance, WCHAR* pwszCaption, WCHAR* pwszSuffix = nullptr)
+void module_debug_box_w(const ::e_message_box & emessagebox, HINSTANCE hinstance, WCHAR* pwszCaption, WCHAR* pwszSuffix = nullptr)
 {
 
    WCHAR* pwsz = nullptr;
@@ -137,7 +137,7 @@ void module_debug_box_w(::i32 iFlags, HINSTANCE hinstance, WCHAR* pwszCaption, W
       try
       {
 
-         os_message_box(string(pwsz), string(pwszCaption), iFlags);
+         os_message_box(string(pwsz), string(pwszCaption), emessagebox);
          //FUNCTION_DEBUGBOXW(pwsz, pwszCaption, iFlags);
 
       }
@@ -195,7 +195,7 @@ int_bool CLASS_DECL_ACME _001DefaultDllMain(HINSTANCE hinstance, ::u32 dwReason,
    if (iLibMainDebugBox & lib_main_any)
    {
 
-      module_debug_box_w(MB_ICONINFORMATION, hinstance, L"_001DefaultDllMain");
+      module_debug_box_w(e_message_box_icon_information, hinstance, L"_001DefaultDllMain");
 
    }
 
@@ -205,7 +205,7 @@ int_bool CLASS_DECL_ACME _001DefaultDllMain(HINSTANCE hinstance, ::u32 dwReason,
       if (iLibMainDebugBox & lib_main_process_attach)
       {
 
-         module_debug_box_w(MB_ICONINFORMATION, hinstance, L"_001DefaultDllMain process attach");
+         module_debug_box_w(e_message_box_icon_information, hinstance, L"_001DefaultDllMain process attach");
 
       }
       else if (intDelayMs.m_millisProcessAttach.m_iMilliseconds)
@@ -223,7 +223,7 @@ int_bool CLASS_DECL_ACME _001DefaultDllMain(HINSTANCE hinstance, ::u32 dwReason,
       if (iLibMainDebugBox & lib_main_process_detach)
       {
 
-         module_debug_box_w(MB_ICONINFORMATION, hinstance, L"_001DefaultDllMain process detach");
+         module_debug_box_w(e_message_box_icon_information, hinstance, L"_001DefaultDllMain process detach");
 
       }
       else if (intDelayMs.m_millisProcessDetach.m_iMilliseconds)
@@ -241,7 +241,7 @@ int_bool CLASS_DECL_ACME _001DefaultDllMain(HINSTANCE hinstance, ::u32 dwReason,
       if (iLibMainDebugBox & lib_main_thread_attach)
       {
 
-         module_debug_box_w(MB_ICONINFORMATION, hinstance, L"_001DefaultDllMain thread attach");
+         module_debug_box_w(e_message_box_icon_information, hinstance, L"_001DefaultDllMain thread attach");
 
       }
       else if (intDelayMs.m_millisThreadAttach.m_iMilliseconds)
@@ -259,7 +259,7 @@ int_bool CLASS_DECL_ACME _001DefaultDllMain(HINSTANCE hinstance, ::u32 dwReason,
       if (iLibMainDebugBox & lib_main_thread_detach)
       {
 
-         module_debug_box_w(MB_ICONINFORMATION, hinstance, L"_001DefaultDllMain thread detach");
+         module_debug_box_w(e_message_box_icon_information, hinstance, L"_001DefaultDllMain thread detach");
 
       }
       else if (intDelayMs.m_millisThreadDetach.m_iMilliseconds)

@@ -376,7 +376,7 @@ namespace user
 
       bool bHoverFont = false;
 
-      pdrawitem->m_pgraphics->set_font(this);
+      pdrawitem->m_pgraphics->set_font(this, ::user::e_element_none);
       //pdrawitem->m_pgraphics->set(pfont);
 
       m_pdrawlistitem->m_pfont = pdrawitem->m_pgraphics->m_pfont;
@@ -398,7 +398,7 @@ namespace user
          {
             if (!bHoverFont)
             {
-               pdrawitem->m_pgraphics->set_font(this, e_state_hover);
+               pdrawitem->m_pgraphics->set_font(this, ::user::e_element_none, e_state_hover);
                //pdrawitem->m_pgraphics->set(m_pdrawlistitem->m_pfont);
             }
          }
@@ -408,7 +408,7 @@ namespace user
             {
                //m_pdrawlistitem->m_pfont = pfont;
                //pdrawitem->m_pgraphics->set(pfont);
-               pdrawitem->m_pgraphics->set_font(this);
+               pdrawitem->m_pgraphics->set_font(this, ::user::e_element_none);
             }
          }
 
@@ -486,7 +486,7 @@ namespace user
 
       bool bHoverFont = false;
 
-      pdrawitem->m_pgraphics->set_font(this);
+      pdrawitem->m_pgraphics->set_font(this, ::user::e_element_none);
 
       pdrawitem->m_pfont = pdrawitem->m_pgraphics->m_pfont;
 
@@ -545,7 +545,7 @@ namespace user
 
                bHoverFont = true;
 
-               pdrawitem->m_pgraphics->set_font(this, ::user::e_state_hover);
+               pdrawitem->m_pgraphics->set_font(this, ::user::e_element_none, ::user::e_state_hover);
 
             }
 
@@ -558,7 +558,7 @@ namespace user
 
                bHoverFont = false;
 
-               pdrawitem->m_pgraphics->set_font(this);
+               pdrawitem->m_pgraphics->set_font(this, ::user::e_element_none);
 
             }
 
@@ -817,13 +817,13 @@ namespace user
       if (pdrawitem->m_bListItemHover)
       {
 
-         pdrawitem->m_pgraphics->set_font(this, ::user::e_state_hover);
+         pdrawitem->m_pgraphics->set_font(this, ::user::e_element_none, ::user::e_state_hover);
 
       }
       else
       {
 
-         pdrawitem->m_pgraphics->set_font(this);
+         pdrawitem->m_pgraphics->set_font(this, ::user::e_element_none);
 
       }
 
@@ -1550,7 +1550,7 @@ namespace user
 
       //draw_select ds(this, pgraphics);
 
-      pgraphics->set_font(this);
+      pgraphics->set_font(this, ::user::e_element_none);
 
       auto pfont = pgraphics->get_current_font();
 
@@ -5356,7 +5356,7 @@ namespace user
 
       pmessage->previous();
 
-      descriptor().set_control_type(control_type_list);
+      descriptor().set_control_type(e_control_type_list);
 
       if (pcreate->m_lresult == -1)
       {
@@ -5559,7 +5559,7 @@ namespace user
    void list::_001LayoutTopText(::draw2d::graphics_pointer& pgraphics)
    {
 
-      pgraphics->set_font(this);
+      pgraphics->set_font(this, ::user::e_element_none);
 
       ::size_array sizea;
 
@@ -5672,7 +5672,7 @@ namespace user
    //i32 list::_001CalcItemWidth(::draw2d::graphics_pointer & pgraphics, index iItem, index iSubItem)
    //{
 
-   //   pgraphics->set_font(this);
+   //   pgraphics->set_font(this, ::user::e_element_none);
 
    //   index cx = _001CalcItemWidth(pgraphics, iItem, iSubItem);
 
@@ -5737,7 +5737,7 @@ namespace user
       if (item.m_bOk)
       {
 
-         pgraphics->set_font(this);
+         pgraphics->set_font(this, ::user::e_element_none);
 
          m_dcextension.GetTextExtent(pgraphics, item.m_strText, size);
 
@@ -5876,18 +5876,18 @@ namespace user
    //}
 
 
-   void list::_001EnsureVisible(index iItem, ::e_align e_align, bool bRedraw)
+   void list::_001EnsureVisible(index iItem, ::e_align ealign, bool bRedraw)
    {
 
       auto pointOffset = get_viewport_offset();
 
-      if (e_align & e_align_vertical_center)
+      if (ealign & e_align_vertical_center)
       {
 
          iItem = iItem - (max(0, m_nDisplayCount - 2) / 2);
 
       }
-      else if (e_align & e_align_bottom)
+      else if (ealign & e_align_bottom)
       {
 
          iItem = min(iItem + m_nDisplayCount - 1, _001GetItemCount() - 1);
@@ -6491,7 +6491,7 @@ namespace user
 
       UNREFERENCED_PARAMETER(iColumn);
 
-      pgraphics->set_font(this);
+      pgraphics->set_font(this, ::user::e_element_none);
 
       i32 iMaxWidth = 0;
 
@@ -7587,9 +7587,11 @@ namespace user
 
             auto pstyle = m_plist->get_style(m_pgraphics);
 
-            int iDrawTextFlags = m_plist->get_int(pstyle, e_int_list_item_draw_text_flags);
+            auto ealign = (::enum_align) m_plist->get_int(pstyle, e_int_list_item_text_align);
 
-            m_pgraphics->draw_text(m_strText, m_rectText, iDrawTextFlags);
+            auto edrawtext = (::enum_draw_text) m_plist->get_int(pstyle, e_int_list_item_draw_text_flags);
+
+            m_pgraphics->draw_text(m_strText, m_rectText, ealign, edrawtext);
 
             //m_pgraphics->fill_rect(m_rectText.left, m_rectText.top, 100, 100, ARGB(128, 100, 125, 255));
 
@@ -7729,7 +7731,7 @@ namespace user
    }
 
 
-   e_align list::get_draw_text_align(EView eview)
+   ::e_align list::get_draw_text_align(EView eview)
    {
 
       return m_pdrawmeshitem->m_ealign;
@@ -7737,7 +7739,7 @@ namespace user
    }
 
 
-   e_draw_text list::get_draw_text_flags(EView eview)
+   ::e_draw_text list::get_draw_text_flags(EView eview)
    {
 
       return m_pdrawmeshitem->m_edrawtext;

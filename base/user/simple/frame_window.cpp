@@ -1127,7 +1127,7 @@ void simple_frame_window::on_layout(::draw2d::graphics_pointer & pgraphics)
 
    }
 
-   if (Application.is_true("client_only"))
+   if (Application.is_true("client_only") && GetParent() == nullptr)
    {
 
       auto rect = Session->get_host_wnd()->get_client_rect();
@@ -1232,7 +1232,11 @@ void simple_frame_window::ShowControlBars(bool bShow, bool bLeaveFullScreenBarsO
          if(pbar != nullptr && (bShow || (!pbar->m_bFullScreenBar || !bLeaveFullScreenBarsOnHide)))
          {
 
-            pbar->display(nShow);
+            enum_activation eactivation = e_activation_default;
+
+            auto edisplay = windows_show_window_to_edisplay(nShow, eactivation);
+
+            pbar->display(edisplay, eactivation);
 
          }
 

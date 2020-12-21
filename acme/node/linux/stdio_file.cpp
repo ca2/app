@@ -29,7 +29,7 @@ namespace linux
 
       ASSERT(pszFileName.has_char());
 
-//      if ((eopen & ::file::defer_create_directory) && (eopen & ::file::mode_write))
+//      if ((eopen & ::file::e_open_defer_create_directory) && (eopen & ::file::e_open_write))
 //      {
 //
 //         Context.dir().mk(pszFileName.folder());
@@ -38,7 +38,7 @@ namespace linux
 //      }
 
       m_pStream = nullptr;
-      //if (!::linux::file::open(pszFileName, (nOpenFlags & ~::file::type_text)))
+      //if (!::linux::file::open(pszFileName, (nOpenFlags & ~::file::e_open_text)))
 
       // return FALSE;
 
@@ -49,21 +49,21 @@ namespace linux
       i32 nMode = 0;
 
       // determine read/write mode depending on ::ca2::filesp mode
-      if (eopen & ::file::mode_create)
+      if (eopen & ::file::e_open_create)
       {
-         if (eopen & ::file::mode_no_truncate)
+         if (eopen & ::file::e_open_no_truncate)
             szMode[nMode++] = 'a';
          else
             szMode[nMode++] = 'w';
       }
-      else if (eopen & ::file::mode_write)
+      else if (eopen & ::file::e_open_write)
          szMode[nMode++] = 'a';
       else
          szMode[nMode++] = 'r';
 
       // add '+' if necessary (when read/write modes mismatched)
-      if ((szMode[0] == 'r' && (eopen & ::file::mode_read_write)) ||
-            (szMode[0] != 'r' && !(eopen & ::file::mode_write)))
+      if ((szMode[0] == 'r' && (eopen & ::file::e_open_read_write)) ||
+            (szMode[0] != 'r' && !(eopen & ::file::e_open_write)))
       {
          // current szMode mismatched, need to add '+' to fix
          szMode[nMode++] = '+';
@@ -71,10 +71,10 @@ namespace linux
 
       // will be inverted if not necessary
       i32 nFlags = O_RDONLY;
-      if (eopen & (::file::mode_write | ::file::mode_read_write))
+      if (eopen & (::file::e_open_write | ::file::e_open_read_write))
          nFlags ^= O_RDONLY;
 
-      if (eopen & ::file::type_binary)
+      if (eopen & ::file::e_open_binary)
          szMode[nMode++] = 'b'; // , nFlags ^= _O_TEXT;
       else
          szMode[nMode++] = 't';

@@ -37,7 +37,7 @@ void ifs_file::write(const void * pdata, memsize nCount)
 filesize ifs_file::get_size() const
 {
 
-   if((m_nOpenFlags & ::file::mode_read) != 0)
+   if((m_nOpenFlags & ::file::e_open_read) != 0)
    {
 
       return m_httpfile.get_size();
@@ -56,7 +56,7 @@ filesize ifs_file::get_size() const
 filesize ifs_file::seek(filesize lOff, ::file::e_seek nFrom)
 {
 
-   if((m_nOpenFlags & ::file::mode_read) != 0)
+   if((m_nOpenFlags & ::file::e_open_read) != 0)
    {
 
       return m_httpfile.seek(lOff, nFrom);
@@ -79,16 +79,16 @@ void ifs_file::get_file_data()
 
    strUrl = "http://file.ca2.cc/ifs/get?path=" + System.url().url_encode(m_strPath);
 
-   u32 dwAdd = 0;
+   ::file::e_open eopenAdd;
 
-   if(m_nOpenFlags & ::file::update_unknown_length_supported)
+   if(m_nOpenFlags & ::file::e_open_update_unknown_length_supported)
    {
 
-      dwAdd |= ::file::update_unknown_length_supported;
+      eopenAdd |= ::file::e_open_update_unknown_length_supported;
 
    }
 
-   m_httpfile.open(strUrl, ::file::type_binary | ::file::mode_read | dwAdd);
+   m_httpfile.open(strUrl, ::file::e_open_binary | ::file::e_open_read | eopenAdd);
 
 }
 

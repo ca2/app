@@ -30,7 +30,7 @@ message_box::~message_box()
 
 }
 
-CLASS_DECL_AURA ::estatus message_box(oswindow oswindow, const char* pszText, const char* pszTitle, ::emessagebox emessagebox, ::callback callback)
+CLASS_DECL_AURA ::estatus message_box(oswindow oswindow, const char* pszText, const char* pszTitle, const ::e_message_box & emessagebox, ::callback callback)
 {
 
    ::user::primitive* primitive = System.ui_from_handle(oswindow);

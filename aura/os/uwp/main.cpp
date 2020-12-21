@@ -55,7 +55,7 @@
 ////
 ////   psystem->startup_command(pcommand);
 ////
-////   //MessageBox(nullptr, "box1", "box1", MB_ICONINFORMATION);
+////   //MessageBox(nullptr, "box1", "box1", e_message_box_icon_information);
 ////
 ////   psystem->main();
 ////

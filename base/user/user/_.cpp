@@ -4,7 +4,7 @@
 #endif
 
 
-//CLASS_DECL_BASE::estatus message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, ::emessagebox emessagebox, ::callback callback)
+//CLASS_DECL_BASE::estatus message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox, ::callback callback)
 //{
 //
 //   ::estatus estatus = ::error_failed;

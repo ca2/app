@@ -100,6 +100,14 @@ namespace user
    }
 
 
+   enum_element check_box::get_default_element() const
+   {
+
+      return e_element_check;
+
+   }
+
+
    void check_box::_001OnDrawNormal(::draw2d::graphics_pointer & pgraphics)
    {
 
@@ -205,7 +213,7 @@ namespace user
          
          ::e_draw_text edrawtext = e_draw_text_single_line;
 
-         pgraphics->set_font(this);
+         pgraphics->set_font(this, ::user::e_element_none);
 
          color32_t crText;
 
@@ -661,6 +669,8 @@ namespace user
       m_ppropertyCheck = fetch_property(m_id, true);
 
       bind_update(m_ppropertyCheck);
+
+      m_pdescriptor->m_econtroltype = e_control_type_edit;
 
    }
 

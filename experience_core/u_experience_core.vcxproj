@@ -64,6 +64,7 @@
     <ClInclude Include="frame_013.h" />
     <ClInclude Include="frame_Minimal001.h" />
     <ClInclude Include="library.h" />
+    <ClInclude Include="style.h" />
     <ClInclude Include="theme.h" />
     <ClInclude Include="user_button.h" />
     <ClInclude Include="user_control_box.h" />

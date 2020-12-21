@@ -133,7 +133,7 @@ namespace filemanager
 
       }
 
-      m_fileSrc = Context.file().get_file(pszSrc,::file::mode_read | ::file::type_binary | ::file::share_deny_write);
+      m_fileSrc = Context.file().get_file(pszSrc,::file::e_open_read | ::file::e_open_binary | ::file::e_open_share_deny_write);
 
       if(m_fileSrc.is_null())
       {
@@ -203,7 +203,7 @@ namespace filemanager
 
       Context.dir().mk(strDst.folder());
 
-      m_fileDst = Context.file().get_file(strDst,::file::mode_write | ::file::type_binary | ::file::mode_create);
+      m_fileDst = Context.file().get_file(strDst,::file::e_open_write | ::file::e_open_binary | ::file::e_open_create);
 
       if(m_fileDst.is_null())
       {

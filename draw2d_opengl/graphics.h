@@ -366,13 +366,13 @@ namespace draw2d_opengl
 
       virtual bool text_out(double x, double y, const char* lpszString, strsize nCount) override;
 
-      virtual bool draw_text(const string & str,const ::rect & rect, const e_align & ealign = e_align_top_left, const e_draw_text & edrawtext = e_draw_text_none);
+      virtual bool draw_text(const string & str,const ::rect & rect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none);
 
-      virtual bool draw_text_ex(const string & str,const ::rect & rect, const e_align & ealign = e_align_top_left, const e_draw_text & edrawtext = e_draw_text_none,LPDRAWTEXTPARAMS lpDTParams = nullptr);
+      virtual bool draw_text_ex(const string & str,const ::rect & rect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none,LPDRAWTEXTPARAMS lpDTParams = nullptr);
 
-      virtual bool draw_text(const string & str,const ::rectd & rect, const e_align & ealign = e_align_top_left, const e_draw_text & edrawtext = e_draw_text_none);
+      virtual bool draw_text(const string & str,const ::rectd & rect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none);
 
-      virtual bool draw_text_ex(const string & str,const ::rectd & rect, const e_align & ealign = e_align_top_left, const e_draw_text & edrawtext = e_draw_text_none,LPDRAWTEXTPARAMS lpDTParams = nullptr);
+      virtual bool draw_text_ex(const string & str,const ::rectd & rect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none,LPDRAWTEXTPARAMS lpDTParams = nullptr);
 
       virtual sized GetTextExtent(const char * lpszString, strsize nCount, strsize iIndex) override;
       virtual sized GetTextExtent(const char * lpszString, strsize nCount) override;

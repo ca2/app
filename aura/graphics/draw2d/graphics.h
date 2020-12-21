@@ -648,23 +648,23 @@ namespace draw2d
       virtual bool TextOutAlphaBlend(double x, double y, const string & str);
 
 
-      virtual bool _001DrawText(const string & str, rectd & prect, const e_align & ealign = e_align_top_left, const e_draw_text & edrawtext = e_draw_text_none, bool bMeasure = false);
+      virtual bool _001DrawText(const string & str, rectd & prect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, bool bMeasure = false);
 
 
-      virtual bool draw_text(const string & str, const ::rect & prect, const e_align & ealign = e_align_top_left, const e_draw_text & edrawtext = e_draw_text_none);
+      virtual bool draw_text(const string & str, const ::rect & prect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none);
 
-      virtual bool draw_text(const string & str,const rectd & prect, const e_align & ealign = e_align_top_left, const e_draw_text & edrawtext = e_draw_text_none);
+      virtual bool draw_text(const string & str,const rectd & prect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none);
 
 
 #ifndef _UWP
 
-//      virtual bool draw_text_ex(const string & str,const ::rect & prect, const e_align & ealign = e_align_top_left, const e_draw_text & edrawtext = e_draw_text_none,LPDRAWTEXTPARAMS lpDTParams = nullptr);
+//      virtual bool draw_text_ex(const string & str,const ::rect & prect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none,LPDRAWTEXTPARAMS lpDTParams = nullptr);
 
-//      virtual bool draw_text_ex(const string & str,const rectd & prect, const e_align & ealign = e_align_top_left, const e_draw_text & edrawtext = e_draw_text_none,LPDRAWTEXTPARAMS lpDTParams = nullptr);
+//      virtual bool draw_text_ex(const string & str,const rectd & prect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none,LPDRAWTEXTPARAMS lpDTParams = nullptr);
 
-      virtual bool draw_text_ex(const string & str,const ::rect & prect, const e_align & ealign = e_align_top_left, const e_draw_text & edrawtext = e_draw_text_none);
+      virtual bool draw_text_ex(const string & str,const ::rect & prect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none);
 
-      virtual bool draw_text_ex(const string & str,const rectd & prect, const e_align & ealign = e_align_top_left, const e_draw_text & edrawtext = e_draw_text_none);
+      virtual bool draw_text_ex(const string & str,const rectd & prect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none);
 
 #endif
 
@@ -939,7 +939,7 @@ namespace draw2d
 
       bool round_rect(const ::rect & rect, i32 radius);
 
-      virtual i32 _DrawText(const string & str, const ::rect & rect, const ::e_align& e_align = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, ::draw2d::font * pfontUnderline = nullptr);
+      virtual i32 _DrawText(const string & str, const ::rect & rect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, ::draw2d::font * pfontUnderline = nullptr);
 
       virtual void debug();
 

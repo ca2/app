@@ -580,8 +580,8 @@ namespace ftp
 
       ::ftp::file file;
 
-      if (!file.Open(strLocalFile, (m_fResumeIfPossible ? ::file::mode_no_truncate : ::file::mode_create) | ::file::mode_write
-                     | ::file::type_binary | ::file::defer_create_directory))
+      if (!file.Open(strLocalFile, (m_fResumeIfPossible ? ::file::e_open_no_truncate : ::file::e_open_create) | ::file::e_open_write
+                     | ::file::e_open_binary | ::file::e_open_defer_create_directory))
       {
          ReportError(sys_error::GetErrorDescription(), __FILE__, __LINE__);
          return false;
@@ -640,7 +640,7 @@ namespace ftp
    bool client_socket::UploadFile(const string& strLocalFile, const string& strRemoteFile, bool fStoreUnique, const representation& repType, bool fPasv)
    {
       ::ftp::file file;
-      if (!file.Open(strLocalFile, ::file::mode_read | ::file::type_binary))
+      if (!file.Open(strLocalFile, ::file::e_open_read | ::file::e_open_binary))
       {
          ReportError(sys_error::GetErrorDescription(), __FILE__, __LINE__);
          return false;

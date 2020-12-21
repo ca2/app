@@ -232,7 +232,7 @@ namespace user
             if (pdescriptor.is_set())
             {
 
-               if (pdescriptor->has_function(::user::control_function_check_box))
+               if (pdescriptor->has_function(::user::e_control_function_check_box))
                {
 
                   ::enum_check echeck = _001GetSubItemCheck(item.item_index(), item.subitem_index());
@@ -258,7 +258,7 @@ namespace user
                      for (auto& pitem : m_controldescriptorset.ptra())
                      {
 
-                        if (pitem->has_function(::user::control_function_duplicate_on_check_box))
+                        if (pitem->has_function(::user::e_control_function_duplicate_on_check_box))
                         {
 
                            if (pitem->m_iSubItemDuplicateCheckBox == item.subitem_index())
@@ -636,7 +636,7 @@ break_click:;
       for (auto & pitem : m_controldescriptorset.ptra())
       {
 
-         if (pitem->has_function(::user::control_function_duplicate_on_check_box))
+         if (pitem->has_function(::user::e_control_function_duplicate_on_check_box))
          {
 
             ::count iItemCount = _001GetItemCount();
@@ -783,7 +783,7 @@ break_click:;
 
       __pointer(::user::combo_box) pcombo = pinteraction;
 
-      if (pinteraction->descriptor().has_function(control_function_data_selection))
+      if (pinteraction->descriptor().has_function(e_control_function_data_selection))
       {
 
          draw_list_item item(this);
@@ -946,7 +946,7 @@ break_click:;
       }
 
       if (pinteraction->descriptor().has_function(e_control_function_vms_data_edit)
-            || pinteraction->descriptor().has_function(control_function_data_selection))
+            || pinteraction->descriptor().has_function(e_control_function_data_selection))
       {
 
          draw_list_item item(this);
@@ -963,7 +963,7 @@ break_click:;
 
          process(psubject);
 
-         if (pinteraction->descriptor().has_function(::user::control_function_duplicate_on_check_box))
+         if (pinteraction->descriptor().has_function(::user::e_control_function_duplicate_on_check_box))
          {
 
             if (_001GetSubItemCheck(item.item_index(), pinteraction->descriptor().m_iSubItemDuplicateCheckBox) == ::check_checked)
@@ -1921,7 +1921,7 @@ break_click:;
          if (m_pcontrolEdit == pevent->m_puie)
          {
 
-            if (m_pcontrolEdit->descriptor().has_function(::user::control_function_data_selection))
+            if (m_pcontrolEdit->descriptor().has_function(::user::e_control_function_data_selection))
             {
 
                _001SaveEdit(m_pcontrolEdit);
@@ -2189,7 +2189,7 @@ break_click:;
          //   if (pdescriptor.is_set())
          //   {
 
-         //      if (pdescriptor->has_function(::user::control_function_check_box))
+         //      if (pdescriptor->has_function(::user::e_control_function_check_box))
          //      {
 
          //         _001GetElementRect(pdrawitem, ::user::mesh::e_element_text);
@@ -2367,7 +2367,7 @@ ok_control:;
          if (pdescriptor.is_set())
          {
 
-            if (pdescriptor->has_function(::user::control_function_check_box))
+            if (pdescriptor->has_function(::user::e_control_function_check_box))
             {
 
                ::user::mesh_item item(this);
@@ -2425,7 +2425,7 @@ ok_control:;
          if (pdescriptor.is_set())
          {
 
-            if (pdescriptor->has_function(::user::control_function_check_box))
+            if (pdescriptor->has_function(::user::e_control_function_check_box))
             {
 
                ::user::mesh_item item(this);
@@ -2469,7 +2469,7 @@ ok_control:;
          if (pdescriptor.is_set())
          {
 
-            if (pdescriptor->has_function(::user::control_function_disable_on_check_box))
+            if (pdescriptor->has_function(::user::e_control_function_disable_on_check_box))
             {
 
                if(_001GetSubItemCheck(iItem, pdescriptor->m_iSubItemDisableCheckBox) == ::check_checked)

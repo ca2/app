@@ -84,7 +84,7 @@ namespace file
 
       }
 
-      exception::exception(const ::estatus& estatus, ::i32 lOsError, int iErrNo, const ::file::path & path, const efileopen & efileopen) :
+      exception::exception(const ::estatus& estatus, ::i32 lOsError, int iErrNo, const ::file::path & path, const ::file::e_open & eopen) :
          ::io_exception(::error_io, nullptr, should_ignore_file_exception_callstack(estatus) ? SKIP_callstack : callstack_DEFAULT_SKIP)
       {
 
@@ -94,11 +94,11 @@ namespace file
 
          m_iErrNo = iErrNo;
 
-         m_efileopen = efileopen;
+         m_eopen = eopen;
 
          m_path = path;
 
-         m_bDumpBackTrace = DUMP_FILE_EXCEPTION_BACK_TRACE != 0 && !(m_efileopen & ::file::no_callstack);
+         m_bDumpBackTrace = DUMP_FILE_EXCEPTION_BACK_TRACE != 0 && !(m_eopen & ::file::e_open_no_callstack);
 
          const char* psz = ::file::status_message(estatus);
 
@@ -409,10 +409,10 @@ namespace file
 #define EDEADLOCK       EDEADLK
 #endif
 
-      void throw_exception(const ::estatus& estatus, ::i32 lOsError, int iErrNo, const ::file::path& path, const ::efileopen& efileopen)
+      void throw_exception(const ::estatus& estatus, ::i32 lOsError, int iErrNo, const ::file::path& path, const ::file::e_open & eopen)
       {
 
-         __throw(exception(estatus, lOsError, iErrNo, path, efileopen));
+         __throw(exception(estatus, lOsError, iErrNo, path, eopen));
 
       }
 
@@ -420,7 +420,7 @@ namespace file
       void throw_status(const ::estatus& estatus, ::i32 lOsError, const ::file::path& path)
       {
 
-         throw_exception(estatus, lOsError, -1, path, 0);
+         throw_exception(estatus, lOsError, -1, path, e_null);
 
       }
 
@@ -450,7 +450,7 @@ namespace file
       void  throw_errno(int iErrNo, const ::file::path& path)
       {
 
-         throw_exception(errno_to_status(iErrNo), -1, iErrNo, path, 0);
+         throw_exception(errno_to_status(iErrNo), -1, iErrNo, path, e_null);
 
       }
 
@@ -467,10 +467,10 @@ namespace file
       }
 
 
-   //void throw_exception(::estatus estatus, ::i32 lOsError, int iErrNo, const ::file::path & path, const ::efileopen & efileopen)
+   //void throw_exception(::estatus estatus, ::i32 lOsError, int iErrNo, const ::file::path & path, const ::file::e_open & eopen)
    //{
 
-   //   __throw(::file::exception(estatus, lOsError, iErrNo, path, efileopen));
+   //   __throw(::file::exception(estatus, lOsError, iErrNo, path, eopen));
 
    //}
 

@@ -190,6 +190,9 @@ namespace draw2d_direct2d
       virtual bool fill_path(::draw2d::path * ppath) override;
       virtual bool path(::draw2d::path * ppath) override;
 
+      virtual bool draw_path(ID2D1PathGeometry * pgeometry, ::draw2d::pen * ppen);
+      virtual bool fill_path(ID2D1PathGeometry * pgeometry, ::draw2d::brush * pbrush);
+
       virtual bool draw_path(::draw2d::path * ppath, ::draw2d::pen * ppen) override;
       virtual bool fill_path(::draw2d::path * ppath, ::draw2d::brush * pbrush) override;
 

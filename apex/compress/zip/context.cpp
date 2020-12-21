@@ -338,7 +338,7 @@ namespace str
    bool zip_context::extract_all(const char * pszDir,payload varFile, ::file::patha * ppatha, string_array * pstraFilter, bool_array * pbaBeginsFilterEat)
    {
 
-      auto pfile = Context.file().get_file(varFile,::file::type_binary | ::file::mode_read);
+      auto pfile = Context.file().get_file(varFile,::file::e_open_binary | ::file::e_open_read);
 
       if (!pfile)
       {
@@ -397,7 +397,7 @@ namespace str
 
                file_pointer spfile = Context.file().get_file(
                                 path,
-                                ::file::mode_create | ::file::mode_write | ::file::defer_create_directory);
+                                ::file::e_open_create | ::file::e_open_write | ::file::e_open_defer_create_directory);
 
 
                if(spfile.is_set())

@@ -2765,11 +2765,11 @@ namespace aura
 
       }
 
-      xxdebug_box("::aura::application::initialize ok", "::aura::application::initialize ok", MB_ICONINFORMATION);
+      xxdebug_box("::aura::application::initialize ok", "::aura::application::initialize ok", e_message_box_icon_information);
 
-      xxdebug_box("m_pcalculator::initialize ok", "m_pcalculator::initialize ok", MB_ICONINFORMATION);
+      xxdebug_box("m_pcalculator::initialize ok", "m_pcalculator::initialize ok", e_message_box_icon_information);
 
-      xxdebug_box("m_pcolorertake5::initialize ok", "m_pcolorertake5::initialize ok", MB_ICONINFORMATION);
+      xxdebug_box("m_pcolorertake5::initialize ok", "m_pcolorertake5::initialize ok", e_message_box_icon_information);
 m_millisHeartBeat.Now();
 
       if (!initialize_userex())
@@ -2779,17 +2779,17 @@ m_millisHeartBeat.Now();
 
       }
 
-      xxdebug_box("m_pfilemanager::initialize ok", "m_pfilemanager::initialize ok", MB_ICONINFORMATION);
+      xxdebug_box("m_pfilemanager::initialize ok", "m_pfilemanager::initialize ok", e_message_box_icon_information);
 
-      xxdebug_box("m_pusermail::initialize ok", "m_pusermail::initialize ok", MB_ICONINFORMATION);
+      xxdebug_box("m_pusermail::initialize ok", "m_pusermail::initialize ok", e_message_box_icon_information);
 m_millisHeartBeat.Now();
 
-      xxdebug_box("register_bergedge_application ok", "register_bergedge_application ok", MB_ICONINFORMATION);
+      xxdebug_box("register_bergedge_application ok", "register_bergedge_application ok", e_message_box_icon_information);
 m_millisHeartBeat.Now();
 
       ensure_app_interest();
 
-      xxdebug_box("ensure_app_interest ok", "ensure_app_interest ok", MB_ICONINFORMATION);
+      xxdebug_box("ensure_app_interest ok", "ensure_app_interest ok", e_message_box_icon_information);
 
       return true;
 

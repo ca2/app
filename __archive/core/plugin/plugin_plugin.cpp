@@ -938,19 +938,19 @@ namespace plugin
                         if(bTimedOut)
                         {
 
-                           ::message_box(nullptr, " - " + set["app"].get_string() + "\nhas timed out while trying to run.\n\nFor developers it is recommended to\nfix this installation timeout problem.\n\nYou may kill it manually :\n - \"" + strPath + "\"\nif it it does not come up.","Error Message",MB_ICONINFORMATION | e_message_box_ok);
+                           ::message_box(nullptr, " - " + set["app"].get_string() + "\nhas timed out while trying to run.\n\nFor developers it is recommended to\nfix this installation timeout problem.\n\nYou may kill it manually :\n - \"" + strPath + "\"\nif it it does not come up.","Error Message",e_message_box_icon_information | e_message_box_ok);
 
                         }
                         else if(exitstatus.m_iExitCode == 0)
                         {
 
-                           //  ::message_box(nullptr,"Successfully run : " + strPath,"Debug only message, please install.",MB_ICONINFORMATION | e_message_box_ok);
+                           //  ::message_box(nullptr,"Successfully run : " + strPath,"Debug only message, please install.",e_message_box_icon_information | e_message_box_ok);
 
                         }
                         else
                         {
 
-                           ::message_box(nullptr,strPath + "\n\nFailed return code : " + __str(exitstatus.m_iExitCode),"Error Message",MB_ICONINFORMATION | e_message_box_ok);
+                           ::message_box(nullptr,strPath + "\n\nFailed return code : " + __str(exitstatus.m_iExitCode),"Error Message",e_message_box_icon_information | e_message_box_ok);
 
                         }
 

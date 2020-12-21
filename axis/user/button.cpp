@@ -163,7 +163,7 @@ namespace user
 
       }
 
-      pgraphics->set_font(this);
+      pgraphics->set_font(this, ::user::e_element_none);
 
       string strText(m_strWindowText);
 
@@ -190,7 +190,7 @@ namespace user
       if (m_estyle == style_simple)
       {
 
-         pgraphics->set_font(this);
+         pgraphics->set_font(this, ::user::e_element_none);
 
          string str;
          get_window_text(str);
@@ -419,7 +419,7 @@ namespace user
 
       string strText(get_window_text());
 
-      pgraphics->set_font(this);
+      pgraphics->set_font(this, ::user::e_element_none);
 
       pgraphics->draw_text(strText, rectText, e_align_top_left);
 
@@ -693,7 +693,7 @@ namespace user
 
       get_client_rect(rectClient);
 
-      pgraphics->set_font(this);
+      pgraphics->set_font(this, ::user::e_element_none);
 
       ::rect rectMargin(2, 2,2, 2);
 

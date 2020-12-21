@@ -183,11 +183,11 @@ namespace http
    bool application::exists(const char * pszUrl, property_set & set)
    {
 
-      ::file::enum_type etype = ::file::type_none;
+      ::file::enum_type etype = ::file::e_type_none;
 
       bool bExists = is_file_or_dir(pszUrl, nullptr, &etype, set);
 
-      return bExists && etype != ::file::type_none;
+      return bExists && etype != ::file::e_type_none;
 
    }
 
@@ -220,7 +220,7 @@ namespace http
                if (::is_set(petype))
                {
 
-                  *petype = ::file::type_file;
+                  *petype = ::file::e_type_file;
 
                }
 
@@ -233,7 +233,7 @@ namespace http
                if (::is_set(petype))
                {
 
-                  *petype = ::file::type_folder;
+                  *petype = ::file::e_type_folder;
 
                }
 
@@ -246,7 +246,7 @@ namespace http
                if (::is_set(petype))
                {
 
-                  *petype = ::file::type_element;
+                  *petype = ::file::e_type_element;
 
                }
 
@@ -259,7 +259,7 @@ namespace http
                if (::is_set(petype))
                {
 
-                  *petype = ::file::type_none;
+                  *petype = ::file::e_type_none;
 
                }
 
@@ -278,26 +278,26 @@ namespace http
 
       }
 
-      ::file::enum_type etype = ::file::type_none;
+      ::file::enum_type etype = ::file::e_type_none;
 
       bool bExists = Context.http().is_file_or_dir(strUrl, process_set(set, pszUrl), &etype);
 
       if (bExists)
       {
 
-         if (etype == ::file::type_folder)
+         if (etype == ::file::e_type_folder)
          {
 
             strCache = "folder";
 
          }
-         else if (etype == ::file::type_file)
+         else if (etype == ::file::e_type_file)
          {
 
             strCache = "file";
 
          }
-         else if (etype == ::file::type_element)
+         else if (etype == ::file::e_type_element)
          {
 
             strCache = "matter";

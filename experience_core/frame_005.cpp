@@ -17,7 +17,7 @@
    {
 
 
-         namespace aura
+         namespace core
          {
 
 
@@ -799,7 +799,7 @@ SizingNone:;
 
 
 
-   } // namespace aura
+   } // namespace core
 
 
 } // namespace experience

@@ -131,7 +131,7 @@ namespace macos
    }
 
 
-   file_result file_context::get_file(const payload & varFile, const efileopen & eopenFlags)
+   file_result file_context::get_file(const payload & varFile, const ::file::e_open & eopenFlags)
    {
 
       return ::file_context::get_file(varFile, eopenFlags);

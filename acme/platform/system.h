@@ -50,6 +50,11 @@ namespace acme
       virtual void on_subject(::promise::subject * psubject) override;
 
 
+      virtual void open_profile_link(string strUrl, string strProfile, string strTarget);
+      virtual void open_link(string strUrl, string strProfile, string strTarget);
+      virtual void open_url(string strUrl, string strProfile, string strTarget);
+
+
       virtual ::estatus main_user_async(const ::promise::routine & routine, ::e_priority epriority = priority_normal);
 
       virtual ::estatus main_user_sync(const ::promise::routine & routine, const ::duration & duration = one_minute(), e_priority epriority = priority_normal);

@@ -12,7 +12,7 @@ namespace experience
 {
 
 
-   namespace aura
+   namespace core
    {
 
 
@@ -150,7 +150,7 @@ namespace experience
                   else
                   {
 
-                     pgraphics->set_font(ptab, ::user::e_state_selected);
+                     pgraphics->set_font(ptab, ::user::e_element_none, ::user::e_state_selected);
 
                   }
 
@@ -185,7 +185,7 @@ namespace experience
 
                      pgraphics->draw_path(path);
 
-                     pgraphics->set_font(ptab, ::user::e_state_hover);
+                     pgraphics->set_font(ptab, ::user::e_element_none, ::user::e_state_hover);
 
                      brushText->create_solid(ptab->get_color(pstyle, ::user::e_element_item_text, ::user::e_state_hover));
 
@@ -205,7 +205,7 @@ namespace experience
 
                      pgraphics->draw_path(path);
 
-                     pgraphics->set_font(ptab);
+                     pgraphics->set_font(ptab, ::user::e_element_none);
 
                      brushText->create_solid(ptab->get_color(pstyle, ::user::e_element_item_text));
 
@@ -267,13 +267,13 @@ namespace experience
                      && !ptab->m_itemHover.in_range(::user::e_element_split, 100))
                   {
 
-                     pgraphics->set_font(ptab, ::user::e_state_selected | ::user::e_state_hover);
+                     pgraphics->set_font(ptab, ::user::e_element_none, ::user::e_state_selected | ::user::e_state_hover);
 
                   }
                   else
                   {
 
-                     pgraphics->set_font(ptab, ::user::e_state_selected);
+                     pgraphics->set_font(ptab, ::user::e_element_none, ::user::e_state_selected);
 
                   }
 
@@ -312,7 +312,7 @@ namespace experience
 
                      pgraphics->draw_path(path);
 
-                     pgraphics->set_font(ptab, ::user::e_state_hover);
+                     pgraphics->set_font(ptab, ::user::e_element_none, ::user::e_state_hover);
 
                      brushText->create_solid(ptab->get_color(pstyle, ::user::e_element_item_text, ::user::e_state_hover));
 
@@ -332,7 +332,7 @@ namespace experience
 
                      pgraphics->draw_path(path);
 
-                     pgraphics->set_font(ptab);
+                     pgraphics->set_font(ptab, ::user::e_element_none);
 
                      brushText->create_solid(ptab->get_color(pstyle, ::user::e_element_item_text));
 
@@ -525,7 +525,7 @@ namespace experience
 
          ptab->defer_handle_auto_hide_tabs(false);
 
-         pgraphics->set_font(ptab, ::user::e_state_selected);
+         pgraphics->set_font(ptab, ::user::e_element_none, ::user::e_state_selected);
 
          ptab->m_dcextension.GetTextExtent(pgraphics,MAGIC_PALACE_TAB_SIZE,ptab->get_data()->m_sizeSep);
 
@@ -623,7 +623,7 @@ namespace experience
 
             i32 cy;
 
-            pgraphics->set_font(ptab, ::user::e_state_selected);
+            pgraphics->set_font(ptab, ::user::e_element_none, ::user::e_state_selected);
 
             ::rect rectClient = ptab->get_client_rect();
             //ptab->get_client_rect(rectClient);
@@ -785,22 +785,146 @@ namespace experience
       }
 
 
-      ::color style::get_color(const ::user::interaction* pinteraction, ::user::enum_element eelement, ::user::estate estate) const
+      ::color style::get_color(const ::user::interaction* pinteraction, ::user::eelement eelement, ::user::estate estate) const
       {
 
          if (::is_set(pinteraction))
          {
 
+            string strType = pinteraction->type_c_str();
+
+            if (strType.contains("form"))
+            {
+
+               output_debug_string("form");
+
+            }
+
             auto econtroltype = pinteraction->get_control_type();
 
-            if (econtroltype == ::user::e_control_type_list)
+            if (econtroltype == ::user::e_control_type_form)
             {
 
                if (eelement == ::user::e_element_background)
                {
 
-                  return ::color(0, 0, 0, 0);
+                  if (::user::is_app_dark_mode())
+                  {
 
+                     return ::color(80, 80, 80, 127);
+
+                  }
+                  else
+                  {
+
+                     return ::color(255, 255, 255, 127);
+
+                  }
+
+               }
+
+            }
+            else if (econtroltype == ::user::e_control_type_edit)
+            {
+
+               if (estate & ::user::e_state_selected)
+               {
+
+                  if (eelement == ::user::e_element_background)
+                  {
+
+                     if (::user::is_app_dark_mode())
+                     {
+
+                        return ::color(255, 255, 255, 127);
+
+                     }
+                     else
+                     {
+
+                        return ::color(80, 80, 80, 127);
+
+                     }
+
+                  }
+                  else if (eelement == ::user::e_element_text)
+                  {
+
+                     if (::user::is_app_dark_mode())
+                     {
+
+                        return ::color(80, 80, 80, 255);
+
+                     }
+                     else
+                     {
+
+                        return ::color(255, 255, 255, 255);
+
+                     }
+
+                  }
+
+               }
+               else
+               {
+
+                  if (eelement == ::user::e_element_background)
+                  {
+
+                     if (::user::is_app_dark_mode())
+                     {
+
+                        return ::color(80, 80, 80, 127);
+
+                     }
+                     else
+                     {
+
+                        return ::color(255, 255, 255, 127);
+
+                     }
+
+                  }
+                  else if (eelement == ::user::e_element_text)
+                  {
+
+                     if (::user::is_app_dark_mode())
+                     {
+
+                        return ::color(255, 255, 255, 255);
+
+                     }
+                     else
+                     {
+
+                        return ::color(80, 80, 80, 255);
+
+                     }
+
+                  }
+
+               }
+
+            }
+            else if (econtroltype == ::user::e_control_type_list)
+            {
+
+               if (eelement == ::user::e_element_background)
+               {
+
+                  if (::user::is_app_dark_mode())
+                  {
+
+                     return ::color(80, 80, 80, 127);
+
+                  }
+                  else
+                  {
+
+                     return ::color(255, 255, 255, 127);
+
+                  }
                }
                else if (eelement == ::user::e_element_item_background)
                {
@@ -868,8 +992,31 @@ namespace experience
             }
 
          }
+         
+         if (eelement == ::user::e_element_check)
+         {
 
-         if (eelement == ::user::e_element_border)
+            //if (estate & ::user::e_state_hover)
+            {
+
+               if (::user::is_app_dark_mode())
+               {
+
+                  return __acolor(255, 255, 255, 255);
+
+               }
+               else
+               {
+
+                  return __acolor(255, 0, 0, 0);
+
+               }
+
+
+            }
+
+         }
+         else if (eelement == ::user::e_element_border)
          {
 
             if (estate & ::user::e_state_hover)
@@ -1344,7 +1491,7 @@ namespace experience
       }
 
 
-   } // namespace aura
+   } // namespace core
 
 
 } // namespace experience

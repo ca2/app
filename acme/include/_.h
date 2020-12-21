@@ -137,6 +137,13 @@ CLASS_DECL_ACME ::acme::system *get_context_system();
 //CLASS_DECL_ACME inline ::acme::system * get_context_system(::acme::system * psystem);
 
 
+enum enum_null
+{
+
+   e_null,
+
+};
+
 
 //#include "acme/platform/cpu_architecture.h"
 
@@ -1856,10 +1863,10 @@ namespace file
    enum enum_type
    {
 
-      type_none,
-      type_folder,
-      type_file,
-      type_element,
+      e_type_none,
+      e_type_folder,
+      e_type_file,
+      e_type_element,
 
    };
 
@@ -2727,6 +2734,8 @@ using size = size_type<SIZE32, POINT32, RECT32>;
 #include "acme/primitive/primitive/cflag.h"
 
 
+
+
 class thread;
 
 namespace user
@@ -2756,9 +2765,7 @@ class action_context;
 #include "acme/primitive/primitive/eobject.h"
 
 
-using emessagebox = cflag<enum_message_box>;
-
-
+DECLARE_C_FLAG(e_message_box, enum_message_box);
 
 
 namespace user
@@ -2810,17 +2817,12 @@ class manual_reset_event;
 
 
 
-#define DECLARE_C_FLAG(CFLAG, ENUM) \
-inline ENUM operator | (ENUM e1, ENUM e2) { return (ENUM) (e1 | e2); } \
-using CFLAG = cflag < ENUM >;
-
-
 namespace file
 {
 
 
-   DECLARE_C_FLAG(eopen, enum_open);
-   DECLARE_C_FLAG(estate, enum_state);
+   DECLARE_C_FLAG(e_open, enum_open);
+   DECLARE_C_FLAG(e_state, enum_state);
 
 
 } // namespace file

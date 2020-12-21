@@ -682,7 +682,7 @@ namespace user
    void form_control::install_message_routing(::channel *pchannel)
    {
 
-      ::user::interaction::install_message_routing(pchannel);
+      form::install_message_routing(pchannel);
 
       MESSAGE_LINK(e_message_create, pchannel,this,&form_control::_001OnCreate);
       MESSAGE_LINK(e_message_pos_create, pchannel,this,&form_control::_000OnPosCreate);

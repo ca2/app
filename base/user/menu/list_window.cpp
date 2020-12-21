@@ -174,7 +174,7 @@ namespace user
 
       GetParent()->get_client_rect(rectClient);
 
-      pgraphics->set_font(this);
+      pgraphics->set_font(this, ::user::e_element_none);
 
       const ::size & size = pgraphics->GetTextExtent("XXXMMM");
 

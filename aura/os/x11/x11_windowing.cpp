@@ -105,7 +105,7 @@ public:
 //   ::callback                       m_callback;
 //
 //
-//   simple_ui_display(const string & strMessage, const string & strTitle, ::emessagebox emessagebox, ::callback callback);
+//   simple_ui_display(const string & strMessage, const string & strTitle, const ::e_message_box & emessagebox, ::callback callback);
 //
 //   ~simple_ui_display();
 //
@@ -126,7 +126,7 @@ public:
 //};
 //
 
-//simple_ui_display::simple_ui_display(const string & strMessageParam, const string & strTitle, ::emessagebox emessagebox, ::callback callback):
+//simple_ui_display::simple_ui_display(const string & strMessageParam, const string & strTitle, const ::e_message_box & emessagebox, ::callback callback):
 //   m_strTitle(strTitle),
 //   m_strFontName("serif"),
 //   m_size(300, 200),
@@ -221,7 +221,7 @@ public:
 //}
 //
 //
-//void x11_message_box(const string & str, const string & strTitle, ::emessagebox emessagebox, ::callback callback)
+//void x11_message_box(const string & str, const string & strTitle, const ::e_message_box & emessagebox, ::callback callback)
 //{
 //
 //   auto pdisplay = __new(simple_ui_display(str, strTitle, emessagebox, callback));
@@ -729,9 +729,9 @@ public:
 //
 //CLASS_DECL_AURA string message_box_result_to_string(int iResult);
 //
-//CLASS_DECL_AURA void x11_message_box(const string & strMessage, const string & strTitle, ::emessagebox emessagebox, ::callback callback);
+//CLASS_DECL_AURA void x11_message_box(const string & strMessage, const string & strTitle, const ::e_message_box & emessagebox, ::callback callback);
 //
-//::estatus os_message_box(oswindow oswindow, const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox, ::callback callback)
+//::estatus os_message_box(oswindow oswindow, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, ::callback callback)
 //{
 //
 //   x11_message_box(pszMessage, pszTitle, emessagebox, callback);

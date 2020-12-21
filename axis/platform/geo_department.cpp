@@ -574,7 +574,7 @@ namespace geo
 
                ::file::path path = ::dir::system() / "datetime_departament_cityTimeZone.bin";
 
-               auto file = Context.file().friendly_get_file(path, ::file::type_binary | ::file::mode_read);
+               auto file = Context.file().friendly_get_file(path, ::file::e_open_binary | ::file::e_open_read);
 
                if (file.is_set())
                {
@@ -811,7 +811,7 @@ namespace geo
       //
       //         ::file::path path = ::dir::public_system() / "datetime_departament_m_countryLocalityTimeZone.bin";
       //
-      //         auto & file = Context.file().friendly_get_file(path, ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::defer_create_directory);
+      //         auto & file = Context.file().friendly_get_file(path, ::file::e_open_binary | ::file::e_open_write | ::file::e_open_create | ::file::e_open_defer_create_directory);
       //
       //         stream os(file);
       //

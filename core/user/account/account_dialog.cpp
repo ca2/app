@@ -12,7 +12,7 @@ namespace account
    dialog::dialog()
    {
 
-      m_etheme = ::user::theme_lite;
+      m_etheme = ::user::e_theme_lite;
 
       m_bLButtonDown = false;
 

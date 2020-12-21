@@ -2520,13 +2520,17 @@ CLASS_DECL_AURA bool __node_aura_pos_term();
 //
 //#include "aura/primitive/primitive/cflag.h"
 
+
 namespace user
 {
 
-   using estate = cflag < enum_state >;
+
+   DECLARE_C_FLAG(e_state, enum_state);
    using eelement = cflag < enum_element >;
 
+
 } // namespace user
+
 
 
 //

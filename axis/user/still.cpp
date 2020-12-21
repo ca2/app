@@ -142,9 +142,9 @@ namespace user
          if (m_estockicon == stock_icon_none)
          {
 
-            ::e_align ealign = get_int(pstyle, ::user::e_int_edit_text_align, ::e_align(e_align_left_center));
+            ::e_align ealign = (enum_align) get_int(pstyle, ::user::e_int_edit_text_align, ::e_align(e_align_left_center));
             
-            ::e_draw_text edrawtext = get_int(pstyle, ::user::e_int_edit_draw_text_flags, e_draw_text_single_line);
+            ::e_draw_text edrawtext = (enum_draw_text) get_int(pstyle, ::user::e_int_edit_draw_text_flags, e_draw_text_single_line);
 
             if(m_pfont)
             {
@@ -155,7 +155,7 @@ namespace user
             else
             {
 
-               pgraphics->set_font(this);
+               pgraphics->set_font(this, ::user::e_element_none);
 
             }
 
@@ -450,7 +450,7 @@ namespace user
 
       }
 
-      pgraphics->set_font(this);
+      pgraphics->set_font(this, ::user::e_element_none);
 
       string strText(m_strWindowText);
 
@@ -477,7 +477,7 @@ namespace user
       if (m_estyle == style_text)
       {
 
-         pgraphics->set_font(this);
+         pgraphics->set_font(this, ::user::e_element_none);
 
          string str;
 
@@ -764,7 +764,7 @@ namespace user
 
       string strText(get_window_text());
 
-      pgraphics->set_font(this);
+      pgraphics->set_font(this, ::user::e_element_none);
 
       pgraphics->draw_text(strText, rectText, e_align_top_left);
 

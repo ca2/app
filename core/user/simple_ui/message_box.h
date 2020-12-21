@@ -17,13 +17,13 @@ namespace simple_ui
       i32                              m_iResult;
       string                           m_strMessage;
       string                           m_strTitle;
-      ::emessagebox                    m_emessagebox;
+      ::e_message_box                  m_emessagebox;
       ::duration                       m_durationTimeout;
       callback                         m_callback;
       manual_reset_event               m_evReady;
 
 
-      message_box(::object * pobject,const char * pszMessage,const char * pszTitle, ::emessagebox emessagebox, ::duration durationTimeout);
+      message_box(::object * pobject,const char * pszMessage,const char * pszTitle, const ::e_message_box & emessagebox, ::duration durationTimeout);
       virtual ~message_box();
 
 

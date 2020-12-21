@@ -88,7 +88,7 @@ namespace sockets
             m_pmultipart = __new(multipart(get_context_object()));
 
          }
-         m_pmultipart->m_map[name].m_spfile = Context.file().get_file(filename, ::file::type_binary | ::file::mode_read | ::file::share_deny_none);
+         m_pmultipart->m_map[name].m_spfile = Context.file().get_file(filename, ::file::e_open_binary | ::file::e_open_read | ::file::e_open_share_deny_none);
          //m_mapFiles[name]              = filename;
          m_pmultipart->m_map[name].m_uiContentLength = m_pmultipart->m_map[name].m_spfile->get_size();
          m_pmultipart->m_map[name].m_strContentType = type;
@@ -422,7 +422,7 @@ namespace sockets
             print( tmp );
             //{
             //file_pointer spfile(e_create);
-            //if(spfile->open(filename, ::file::type_binary | ::file::mode_read).succeeded())
+            //if(spfile->open(filename, ::file::e_open_binary | ::file::e_open_read).succeeded())
             //{
 
             memory m;
@@ -452,7 +452,7 @@ namespace sockets
          //   write(tmp);
          //   {
          //      file_pointer spfile(e_create);
-         //      if (spfile->open(filename, ::file::type_binary | ::file::mode_read).succeeded())
+         //      if (spfile->open(filename, ::file::e_open_binary | ::file::e_open_read).succeeded())
          //      {
          //         transfer_from(*spfile);
          //      }

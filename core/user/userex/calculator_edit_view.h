@@ -11,8 +11,8 @@ namespace calculator
    public:
 
 
-      ::calculator::value        m_val;
-      callback* m_pcallback;
+      ::calculator::payload      m_payload;
+      callback *                 m_pcallback;
 
       string                     m_strFormat;
 
@@ -20,6 +20,8 @@ namespace calculator
       plain_edit_view();
       virtual ~plain_edit_view();
 
+
+      virtual void install_message_routing(::channel * pchannel) override;
 
       virtual void set_format(const string& strFormat) override;
       virtual void set_callback(callback* pcallback) override;
@@ -31,11 +33,9 @@ namespace calculator
 
       bool keyboard_focus_is_focusable() override;
 
-      //virtual i64 add_ref(OBJ_REF_DBG_PARAMS) override;
+      virtual ::payload get_payload() override;
 
-      //virtual i64 dec_ref(OBJ_REF_DBG_PARAMS) override;
-
-      virtual payload get_ex_value() override;
+      DECL_GEN_SIGNAL(_001OnCreate);
 
    };
 

@@ -7,20 +7,20 @@ namespace calculator
 {
 
 
-   value pow(const value & val1, double ca);
+   payload pow(const payload & val1, double ca);
 
 
-   value::value()
+   payload::payload()
    {
       m_dR = 0.0;
       m_dI = 0.0;
    }
 
-   value::~value()
+   payload::~payload()
    {
    }
 
-   double value::arg() const
+   double payload::arg() const
    {
       if(m_dR == 0.0)
       {
@@ -31,7 +31,7 @@ namespace calculator
          else if(m_dI == 0.0)
          {
             return 0.0;
-            //__throw(::exception::exception("<h1>undefined</h1>: <strong>could</strong> be any <strong>well defined</strong> value:<br> <strong>specif details</strong>: seems to be too small modulus"));
+            //__throw(::exception::exception("<h1>undefined</h1>: <strong>could</strong> be any <strong>well defined</strong> payload:<br> <strong>specif details</strong>: seems to be too small modulus"));
          }
          else
          {
@@ -47,7 +47,7 @@ namespace calculator
          else if(m_dR == 0.0)
          {
             return 0.0;
-            //__throw(::exception::exception("<h1>undefined</h1>: <strong>could</strong> be any <strong>well defined</strong> value:<br> <strong>specif details</strong>: seems to be too small modulus"));
+            //__throw(::exception::exception("<h1>undefined</h1>: <strong>could</strong> be any <strong>well defined</strong> payload:<br> <strong>specif details</strong>: seems to be too small modulus"));
          }
          else
          {
@@ -60,12 +60,12 @@ namespace calculator
       }
    }
 
-   double value::mod() const
+   double payload::mod() const
    {
       return ::sqrt(m_dR * m_dR + m_dI * m_dI);
    }
 
-   string value::to_string(e_mode emode) const
+   string payload::to_string(e_mode emode) const
    {
       string str;
       if(emode == mode_rectangular)
@@ -113,42 +113,42 @@ namespace calculator
    }
 
 
-   value operator + (const value & val1, const value & val2)
+   payload operator + (const payload & val1, const payload & val2)
    {
-      value val;
+      payload val;
       val.m_dR = val1.m_dR + val2.m_dR;
       val.m_dI = val1.m_dI + val2.m_dI;
       return val;
    }
 
-   value operator - (const value & val1, const value & val2)
+   payload operator - (const payload & val1, const payload & val2)
    {
-      value val;
+      payload val;
       val.m_dR = val1.m_dR - val2.m_dR;
       val.m_dI = val1.m_dI - val2.m_dI;
       return val;
    }
 
-   value operator * (const value & val1, const value & val2)
+   payload operator * (const payload & val1, const payload & val2)
    {
-      value val;
+      payload val;
       val.m_dR = val1.m_dR * val2.m_dR - val1.m_dI * val2.m_dI;
       val.m_dI = val1.m_dR * val2.m_dI + val2.m_dR * val1.m_dI;
       return val;
    }
 
-   value operator / (const value & val1, const value & val2)
+   payload operator / (const payload & val1, const payload & val2)
    {
-      value val;
+      payload val;
       double dDiv = val2.m_dR * val2.m_dR + val2.m_dI * val2.m_dI;
       val.m_dR = (val1.m_dR * val2.m_dR + val1.m_dI * val2.m_dI) / dDiv;
       val.m_dI = (val1.m_dI * val2.m_dR - val1.m_dR * val2.m_dI) / dDiv;
       return val;
    }
 
-   value pow(const value & val1, double ca)
+   payload pow(const payload & val1, double ca)
    {
-      value val;
+      payload val;
       double dMod = val1.mod();
       double dArg = val1.arg();
       dMod = ::pow(dMod, ca);
@@ -159,9 +159,9 @@ namespace calculator
       return val;
    }
 
-   value pow(const value & val1, const value & val2)
+   payload pow(const payload & val1, const payload & val2)
    {
-      value val;
+      payload val;
       double dMod1 = val1.mod();
       double dArg1 = val1.arg();
       double dArg = val2.m_dR * dArg1 + val2.m_dI * ::log(dMod1);
@@ -171,19 +171,19 @@ namespace calculator
       return val;
    }
 
-   value sqr(const value & val)
+   payload sqr(const payload & val)
    {
       return val * val;
    }
 
-   value sqrt(const value & val)
+   payload sqrt(const payload & val)
    {
       return pow(val, 0.5);
    }
 
-   value exp(const value & val1)
+   payload exp(const payload & val1)
    {
-      value val;
+      payload val;
       double dMod = ::exp(val1.m_dR);
       double dArg = val1.arg();
       val.m_dR = dMod * ::cos(dArg);
@@ -191,70 +191,70 @@ namespace calculator
       return val;
    }
 
-   // main calculator::value
-   value log(const value & val1)
+   // main calculator::payload
+   payload log(const payload & val1)
    {
-      value val;
+      payload val;
       val.m_dR = ::log(val1.mod());
       val.m_dI = val1.arg();
       return val;
    }
 
 
-   value atan(const value & val1)
+   payload atan(const payload & val1)
    {
       // TODO imaginary
-      value val;
+      payload val;
       double dMod = val1.mod();
       val.m_dR = ::atan(dMod);
       val.m_dI = 0;
       return val;
    }
 
-   value acos(const value & val1)
+   payload acos(const payload & val1)
    {
       // TODO imaginary
-      value val;
+      payload val;
       double dMod = val1.mod();
       val.m_dR = ::acos(dMod);
       val.m_dI = 0;
       return val;
    }
 
-   value asin(const value & val1)
+   payload asin(const payload & val1)
    {
       // TODO imaginary
-      value val;
+      payload val;
       double dMod = val1.mod();
       val.m_dR = ::asin(dMod);
       val.m_dI = 0;
       return val;
    }
 
-   value tan(const value & val1)
+   payload tan(const payload & val1)
    {
       // TODO imaginary
-      value val;
+      payload val;
       double dMod = val1.mod();
       val.m_dR = ::tan(dMod);
       val.m_dI = 0;
       return val;
    }
 
-   value cos(const value & val1)
+   payload cos(const payload & val1)
    {
       // TODO imaginary
-      value val;
+      payload val;
       double dMod = val1.mod();
       val.m_dR = ::cos(dMod);
       val.m_dI = 0;
       return val;
    }
 
-   value sin(const value & val1)
+   payload sin(const payload & val1)
    {
       // TODO imaginary
-      value val;
+      payload val;
       double dMod = val1.mod();
       val.m_dR = ::sin(dMod);
       val.m_dI = 0;
@@ -274,7 +274,7 @@ namespace calculator
 //{
 //
 //   template < >
-//   void format_type(string_format * pformat,const calculator::value  & cval)
+//   void format_type(string_format * pformat,const calculator::payload  & cval)
 //   {
 //
 //      pformat->append(cval.to_string());

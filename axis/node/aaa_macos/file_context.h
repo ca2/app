@@ -32,7 +32,7 @@ namespace macos
 
       virtual ::estatus update_module_path() override;
 
-      virtual file_result get_file(const payload & varFile, const efileopen & eopen) override;
+      virtual file_result get_file(const payload & varFile, const ::file::e_open & eopen) override;
 
 
    };

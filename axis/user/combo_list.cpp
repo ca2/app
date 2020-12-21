@@ -138,7 +138,7 @@ namespace user
 
       _001ScreenToClient(&pointCursor, ::user::e_layout_design);
 
-      pgraphics->set_font(this);
+      pgraphics->set_font(this, ::user::e_element_none);
 
       auto itemHover = hover_item();
 
@@ -229,7 +229,7 @@ namespace user
 
 #endif
 
-         pgraphics->draw_text(strItem, rectText, 0);
+         pgraphics->draw_text(strItem, rectText);
 
       }
 
@@ -297,7 +297,7 @@ namespace user
 
       sync_lock sl(mutex());
 
-      pgraphics->set_font(this);
+      pgraphics->set_font(this, ::user::e_element_none);
 
       pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
 
@@ -456,7 +456,7 @@ namespace user
       if (is_window_visible(::user::e_layout_sketch))
       {
 
-         display(false);
+         display(e_display_hide);
 
          set_need_redraw();
 

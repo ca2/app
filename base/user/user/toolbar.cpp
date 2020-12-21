@@ -471,7 +471,7 @@ namespace user
    }
 
 
-   etoolbar_item_style toolbar::get_item_style(index iIndex)
+   e_toolbar_item_style toolbar::get_item_style(index iIndex)
    {
 
       return m_itema[iIndex]->m_estyle;
@@ -479,7 +479,7 @@ namespace user
    }
 
 
-   void toolbar::set_item_style(index iIndex, const etoolbar_item_style &estyle)
+   void toolbar::set_item_style(index iIndex, const e_toolbar_item_style &estyle)
    {
 
       m_itema[iIndex]->m_estyle = estyle;
@@ -490,7 +490,7 @@ namespace user
 #define CX_OVERLAP  0
 
 
-   ::etoolbar_item_state toolbar::get_item_state(::index iItem)
+   ::e_toolbar_item_state toolbar::get_item_state(::index iItem)
    {
 
       auto estate = m_itema[iItem]->m_estate;
@@ -1803,7 +1803,7 @@ return { 0,0 };
    }
 
 
-   void toolbar::set_item_state(index iIndex, const etoolbar_item_state &estate)
+   void toolbar::set_item_state(index iIndex, const e_toolbar_item_state &estate)
    {
 
       m_itema[iIndex]->m_estate = estate;

@@ -19,25 +19,25 @@ namespace fs
       virtual ~set();
 
 
-      strsp(data) &                 fsmap();
-      __pointer_array(data) &                   fsa();
+      strsp(data) & fsmap();
+      __pointer_array(data) & fsa();
 
 
-      virtual __pointer(data) path_data(const ::file::path & psz);
-      virtual __pointer(data) node_path_data(const ::file::path & psz);
-      virtual ::file::listing & root_ones(::file::listing & listing);
-      virtual ::file::listing & ls(::file::listing & listing);
-      virtual ::file::listing & ls_relative_name(::file::listing & listing);
-      virtual int is_dir(const ::file::path & psz);
-      virtual bool file_move(const ::file::path & pszDst,const ::file::path & pszSrc);
-      virtual bool has_subdir(const ::file::path & psz);
-      virtual bool tree_show_subdir(const ::file::path & psz);
-      virtual bool fast_has_subdir(const ::file::path & psz);
-      virtual bool is_link(const ::file::path & psz);
+      virtual __pointer(data) path_data(const ::file::path & psz)override;
+      virtual __pointer(data) node_path_data(const ::file::path & psz)override;
+      virtual ::file::listing & root_ones(::file::listing & listing)override;
+      virtual ::file::listing & ls(::file::listing & listing)override;
+      virtual ::file::listing & ls_relative_name(::file::listing & listing)override;
+      virtual int is_dir(const ::file::path & psz)override;
+      virtual bool file_move(const ::file::path & pszDst,const ::file::path & pszSrc)override;
+      virtual bool has_subdir(const ::file::path & psz)override;
+      virtual bool tree_show_subdir(const ::file::path & psz)override;
+      virtual bool fast_has_subdir(const ::file::path & psz)override;
+      virtual bool is_link(const ::file::path & psz)override;
 
-      virtual file_result get_file(const ::file::path & path, ::u32 nOpenFlags);
+      virtual file_result get_file(const ::file::path & path, const ::file::e_open & eopen) override;
 
-      virtual bool is_zero_latency(const ::file::path & psz);
+      virtual bool is_zero_latency(const ::file::path & psz)override;
 
       virtual void finalize() override;
 

@@ -121,7 +121,7 @@ namespace uwp
    }
 
 
-   file_result file_context::get_file(const payload& varFile, const ::efileopen & efileopen)
+   file_result file_context::get_file(const payload& varFile, const ::file::e_open & eopen)
    {
 
       file_pointer spfile;
@@ -139,7 +139,7 @@ namespace uwp
 
          //::status::result ::status::result = spfile->open(folder, strPath,nOpenFlags);
 
-         auto result = pbuffer->open(folder, path, efileopen);
+         auto result = pbuffer->open(folder, path, eopen);
 
          spfile = pbuffer;
 
@@ -152,7 +152,7 @@ namespace uwp
 
       }
 
-      spfile = ::file_context::get_file(varFile, efileopen);
+      spfile = ::file_context::get_file(varFile, eopen);
 
       return spfile;
 

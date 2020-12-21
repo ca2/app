@@ -34,7 +34,7 @@ namespace windows
 
 
       virtual filesize get_position() const;
-      virtual ::status::result open(const ::file::path & pszFileName, const efileopen & eopen) override;
+      virtual ::status::result open(const ::file::path & pszFileName, const ::file::e_open & eopen) override;
 
       virtual memsize read(void * pdata, memsize nCount);
 

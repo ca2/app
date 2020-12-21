@@ -112,7 +112,7 @@ namespace filemanager
 
             bool bIsDir = false;
 
-            ::file::path path = Context.defer_process_path(pathAddress | ::file::flag_resolve_alias);
+            ::file::path path = Context.defer_process_path(pathAddress | ::file::e_flag_resolve_alias);
 
             bIsDir = filemanager_document()->fs_data()->is_dir(path);
 

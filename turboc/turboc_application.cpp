@@ -167,7 +167,7 @@ namespace turboc
       set["abc"] = 0;
       set["ebc"] = 0;
 
-      ::MessageBox(NULL,"stop oh yes!!","stop oh yes!!",MB_ICONINFORMATION);
+      ::MessageBox(NULL,"stop oh yes!!","stop oh yes!!",e_message_box_icon_information);
 
       */
 

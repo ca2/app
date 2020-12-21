@@ -9,7 +9,7 @@
 #include "framework.h"
 
 
-int _os_message_box(const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox)
+int _os_message_box(const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox)
 {
 
    //convert the strings from char* to CFStringRef
@@ -168,7 +168,7 @@ int _os_message_box(const char * pszMessage, const char * pszTitle, ::emessagebo
 CLASS_DECL_APEX string message_box_result_to_string(int iResult);
 
 
-::estatus os_message_box(oswindow window, const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox, ::future future)
+::estatus os_message_box(oswindow window, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, ::future future)
 {
    
    

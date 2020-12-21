@@ -130,13 +130,13 @@ index xfplayer_view_linea::FindLine(xfplayer_view_line * pline)
    for (index i = 0; i < this->line_count(); i++)
    {
       ::user::enum_line_hit etest = this->line_at(i)->hit_test(pointCursor, iChar);
-      if (etest != ::user::line_hit_none)
+      if (etest != ::user::e_line_hit_none)
       {
          iLine = i;
          return  etest;
       }
    }
-   return ::user::line_hit_none;
+   return ::user::e_line_hit_none;
 
 }
 

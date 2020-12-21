@@ -1,18 +1,18 @@
 #pragma once
 
 
-//inline ::file_result matter::get_reader(const ::payload & varFile, const ::efileopen & efileopen)
+//inline ::file_result matter::get_reader(const ::payload & varFile, const ::file::e_open & eopen)
 //{
 //
-//   return Context.file().get_reader(varFile, efileopen);
+//   return Context.file().get_reader(varFile, eopen);
 //
 //}
 //
 //
-//inline ::file_result matter::get_writer(const ::payload & varFile, const ::efileopen & efileopen)
+//inline ::file_result matter::get_writer(const ::payload & varFile, const ::file::e_open & eopen)
 //{
 //
-//   return Context.file().get_writer(varFile, efileopen);
+//   return Context.file().get_writer(varFile, eopen);
 //
 //}
 

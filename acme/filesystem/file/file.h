@@ -42,9 +42,9 @@ namespace file
    public:
 
 
-      ::file::eopen              m_eopen;
+      ::file::e_open             m_eopen;
       ::file::path               m_path;
-      ::file::estate             m_estate;
+      ::file::e_state            m_estate;
       ::millis                   m_millisErrorBlockTimeout;
 
 
@@ -138,17 +138,17 @@ namespace file
       virtual ::file::path get_file_path() const;
       virtual void set_file_path(const ::file::path & path);
 
-      virtual ::status::result open(const ::file::path& pszFileName, const ::file::eopen & eopen);
-      inline ::status::result open_for_reading(const ::file::path& pszFileName, const ::file::eopen & eopen =
-         ::file::type_binary)
+      virtual ::status::result open(const ::file::path& pszFileName, const ::file::e_open & eopen);
+      inline ::status::result open_for_reading(const ::file::path& pszFileName, const ::file::e_open & eopen =
+         ::file::e_open_binary)
       {
-         return open(pszFileName, eopen | ::file::mode_read);
+         return open(pszFileName, eopen | ::file::e_open_read);
 
       }
-      virtual ::status::result open_for_writing(const ::file::path& pszFileName, const ::file::eopen & eopen =
-         ::file::type_binary | ::file::defer_create_directory)
+      virtual ::status::result open_for_writing(const ::file::path& pszFileName, const ::file::e_open & eopen =
+         ::file::e_open_binary | ::file::e_open_defer_create_directory)
       {
-         return open(pszFileName, eopen | ::file::mode_write);
+         return open(pszFileName, eopen | ::file::e_open_write);
 
       }
 

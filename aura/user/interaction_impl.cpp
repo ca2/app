@@ -4713,6 +4713,11 @@ namespace user
 
    }
 
+   void interaction_impl::on_layout(::draw2d::graphics_pointer & pgraphics)
+   {
+
+
+   }
 
    void interaction_impl::window_show_change_visibility(::edisplay edisplay, ::eactivation eactivation)
    {

@@ -22,7 +22,7 @@ namespace simpledb
 
       strMetaPath = Context.dir().install() / "database" / m_pdatabase->getDatabase() / m_strName/ "meta.xml";
 
-      if(!m_spfileMeta->open(strMetaPath, ::file::type_binary | ::file::mode_read_write | ::file::share_exclusive))
+      if(!m_spfileMeta->open(strMetaPath, ::file::e_open_binary | ::file::e_open_read_write | ::file::e_open_share_exclusive))
          __throw(::exception::exception("integer_exception 1"));
 
       reader is(m_spfileMeta);
@@ -46,8 +46,8 @@ namespace simpledb
       if(strFixedPath.is_empty())
          strFixedPath = strMetaPath = Context.dir().install() / "database" / m_pdatabase->getDatabase() /  m_strName/"fixed.txt";
 
-      if(!m_spfileFixed->open(strMetaPath, ::file::mode_create | ::file::mode_no_truncate | ::file::type_binary | ::file::mode_read_write | ::file::share_exclusive |
-                              ::file::defer_create_directory))
+      if(!m_spfileFixed->open(strMetaPath, ::file::e_open_create | ::file::e_open_no_truncate | ::file::e_open_binary | ::file::e_open_read_write | ::file::e_open_share_exclusive |
+                              ::file::e_open_defer_create_directory))
          __throw(::exception::exception("integer_exception 1"));
 
    }

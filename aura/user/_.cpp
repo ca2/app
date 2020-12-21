@@ -4,7 +4,7 @@
 #endif
 
 
-CLASS_DECL_AURA::estatus message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, ::emessagebox emessagebox, const ::promise::process & process)
+CLASS_DECL_AURA::estatus message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox, const ::promise::process & process)
 {
 
    ::estatus estatus = ::error_failed;

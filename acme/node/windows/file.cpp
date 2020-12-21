@@ -28,7 +28,7 @@ namespace windows
    }
 
 
-   file::file(const char* pszFileName, efileopen eopen) 
+   file::file(const char* pszFileName, const ::file::e_open & eopen) 
    {
 
       ASSERT(__is_valid_string(pszFileName));
@@ -56,7 +56,7 @@ namespace windows
    }
 
 
-   ::status::result file::open(const ::file::path& pszFileName, const efileopen & eopenParam)
+   ::status::result file::open(const ::file::path& pszFileName, const ::file::e_open & eopenParam)
    {
 
       auto eopen = eopenParam;
@@ -80,9 +80,9 @@ namespace windows
       ASSERT_VALID(this);
       ASSERT(__is_valid_string(pszFileName));
 
-      eopen -= ::file::type_binary;
+      eopen -= ::file::e_open_binary;
 
-      if ((eopen & ::file::defer_create_directory) && (eopen & ::file::mode_write))
+      if ((eopen & ::file::e_open_defer_create_directory) && (eopen & ::file::e_open_write))
       {
 
          ::dir::mk(pszFileName.folder());
@@ -96,20 +96,20 @@ namespace windows
 
 
       ASSERT(sizeof(HANDLE) == sizeof(uptr));
-      ASSERT(::file::share_compat == 0);
+      ASSERT(::file::e_open_share_compat == 0);
 
       // map read/write mode
-      ASSERT((::file::mode_read | ::file::mode_write | ::file::mode_read_write) == 3);
+      ASSERT((::file::e_open_read | ::file::e_open_write | ::file::e_open_read_write) == 3);
       ::u32 dwAccess = 0;
       switch (eopen & 3)
       {
-      case ::file::mode_read:
+      case ::file::e_open_read:
          dwAccess = GENERIC_READ;
          break;
-      case ::file::mode_write:
+      case ::file::e_open_write:
          dwAccess = GENERIC_WRITE;
          break;
-      case ::file::mode_read_write:
+      case ::file::e_open_read_write:
          dwAccess = GENERIC_READ | GENERIC_WRITE;
          break;
       default:
@@ -123,17 +123,17 @@ namespace windows
       {
       default:
          ASSERT(FALSE);  // invalid share mode?
-      case ::file::share_compat:
-      case ::file::share_exclusive:
+      case ::file::e_open_share_compat:
+      case ::file::e_open_share_exclusive:
          dwShareMode = 0;
          break;
-      case ::file::share_deny_write:
+      case ::file::e_open_share_deny_write:
          dwShareMode = FILE_SHARE_READ;
          break;
-      case ::file::share_deny_read:
+      case ::file::e_open_share_deny_read:
          dwShareMode = FILE_SHARE_WRITE;
          break;
-      case ::file::share_deny_none:
+      case ::file::e_open_share_deny_none:
          dwShareMode = FILE_SHARE_WRITE | FILE_SHARE_READ;
          break;
       }
@@ -143,7 +143,7 @@ namespace windows
       // map modeNoInherit flag
       SECURITY_ATTRIBUTES sa;
       SECURITY_ATTRIBUTES* psa = nullptr;
-      if ((eopen & ::file::mode_no_inherit) != FALSE)
+      if ((eopen & ::file::e_open_no_inherit) != FALSE)
       {
          psa = &sa;
          xxf_zero(sa);
@@ -155,9 +155,9 @@ namespace windows
 
       // map creation flags
       ::u32 dwCreateFlag;
-      if (eopen & ::file::mode_create)
+      if (eopen & ::file::e_open_create)
       {
-         if (eopen & ::file::mode_no_truncate)
+         if (eopen & ::file::e_open_no_truncate)
             dwCreateFlag = OPEN_ALWAYS;
          else
             dwCreateFlag = CREATE_ALWAYS;

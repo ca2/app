@@ -48,7 +48,7 @@ namespace zip
 //      try
 //      {
 //
-//         if(!spfile->open(pcwsz, ::file::mode_read | ::file::type_binary))
+//         if(!spfile->open(pcwsz, ::file::e_open_read | ::file::e_open_binary))
 //
 //         {
 //
@@ -126,7 +126,7 @@ namespace zip
       try
       {
 
-         if(!pfile->open(pcwsz, ::file::mode_read_write | ::file::type_binary | ::file::mode_create | ::file::defer_create_directory))
+         if(!pfile->open(pcwsz, ::file::e_open_read_write | ::file::e_open_binary | ::file::e_open_create | ::file::e_open_defer_create_directory))
          {
 
             return false;

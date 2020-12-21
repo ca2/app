@@ -1058,7 +1058,7 @@ namespace axis
 //
 //      System.install_progress_add_up(); // 2
 //
-//      //xxdebug_box("init1 ok", "init1 ok", MB_ICONINFORMATION);
+//      //xxdebug_box("init1 ok", "init1 ok", e_message_box_icon_information);
 //
 //      m_millisHeartBeat.Now();
 //
@@ -1073,7 +1073,7 @@ namespace axis
 //
 //      System.install_progress_add_up(); // 3
 //
-//      //xxdebug_box("init2 ok", "init2 ok", MB_ICONINFORMATION);
+//      //xxdebug_box("init2 ok", "init2 ok", e_message_box_icon_information);
 //
 //      m_millisHeartBeat.Now();
 //
@@ -1088,7 +1088,7 @@ namespace axis
 //
 //      System.install_progress_add_up(); // 4
 //
-//      //xxdebug_box("init3 ok", "init3 ok", MB_ICONINFORMATION);
+//      //xxdebug_box("init3 ok", "init3 ok", e_message_box_icon_information);
 //
 //      m_millisHeartBeat.Now();
 //

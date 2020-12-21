@@ -68,7 +68,7 @@ message_box::~message_box()
 //}
 
 
-CLASS_DECL_ACME ::estatus message_box(oswindow oswindow, const char* pszText, const char* pszTitle, ::emessagebox emessagebox, const ::promise::process & process)
+CLASS_DECL_ACME ::estatus message_box(oswindow oswindow, const char* pszText, const char* pszTitle, const ::e_message_box & emessagebox, const ::promise::process & process)
 {
 
    __throw(todo("message_box"));

@@ -23,7 +23,7 @@ internal:
    message_box_w();
 
 
-   ::estatus show(String ^ text, String ^ caption, ::emessagebox emessagebox, ::callback callback);
+   ::estatus show(String ^ text, String ^ caption, const ::e_message_box & emessagebox, ::callback callback);
 
 
    void CommandInvokedHandler(IUICommand^ cmd)
@@ -66,7 +66,7 @@ message_box_w::message_box_w()
    msg->Commands->Append(ref new UICommand(text,ref new UICommandInvokedHandler(this, &::message_box_w::CommandInvokedHandler),id));
 
 
-::estatus message_box_w::show(String ^ text,String ^ caption, ::emessagebox emessagebox, ::future future)
+::estatus message_box_w::show(String ^ text,String ^ caption, const ::e_message_box & emessagebox, ::future future)
 {
 
    if (!g_bCoreWindowOnceVisible)

@@ -526,7 +526,7 @@ namespace aura
    }
 
 
-   //::estatus application::os_message_box(::user::primitive * puiOwner, const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox, ::callback callback)
+   //::estatus application::os_message_box(::user::primitive * puiOwner, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   return ::os_message_box(puiOwner->get_safe_handle(), pszMessage, pszTitle, emessagebox, callback);
@@ -534,7 +534,7 @@ namespace aura
    //}
 
 
-   //::estatus application::ui_message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, ::emessagebox emessagebox, ::callback callback)
+   //::estatus application::ui_message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   if (!Session || !psession->userex())
@@ -549,7 +549,7 @@ namespace aura
    //}
 
 
-   //::estatus application::ui_message_box_timeout(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, const ::duration& durationTimeout, ::emessagebox emessagebox, ::callback callback)
+   //::estatus application::ui_message_box_timeout(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, const ::duration& durationTimeout, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   if (!Session || !psession->userex())
@@ -564,7 +564,7 @@ namespace aura
    //}
 
 
-   //::estatus application::message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, ::emessagebox emessagebox, ::callback callback)
+   //::estatus application::message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   auto estatus = ui_message_box(puiOwner, pszMessage, pszTitle, emessagebox, callback);
@@ -581,7 +581,7 @@ namespace aura
    //}
 
 
-   //::estatus application::message_box_timeout(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, const ::duration & durationTimeout, ::emessagebox emessagebox, ::callback callback)
+   //::estatus application::message_box_timeout(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   auto estatus = ui_message_box_timeout(puiOwner, pszMessage, pszTitle, durationTimeout, emessagebox, callback);
@@ -1005,10 +1005,10 @@ namespace aura
    //::file::path application::full_process_path(::file::path path)
    //{
 
-   //   if (!(path & ::file::flag_dont_resolve_alias))
+   //   if (!(path & ::file::e_flag_dont_resolve_alias))
    //   {
 
-   //      path |= ::file::flag_resolve_alias;
+   //      path |= ::file::e_flag_resolve_alias;
 
    //   }
 
@@ -1304,7 +1304,7 @@ namespace aura
 ////
 ////         }
 //
-//         //xxdebug_box("pre_run 1 ok", "pre_run 1 ok", MB_ICONINFORMATION);
+//         //xxdebug_box("pre_run 1 ok", "pre_run 1 ok", e_message_box_icon_information);
 //
 //         if (!initial_check_directrix())
 //         {
@@ -1492,7 +1492,7 @@ namespace aura
 
          application_pos_run();
 
-         //xxdebug_box("pre_run 1 ok", "pre_run 1 ok", MB_ICONINFORMATION);
+         //xxdebug_box("pre_run 1 ok", "pre_run 1 ok", e_message_box_icon_information);
 
       }
       catch (...)
@@ -2205,7 +2205,7 @@ retry_license:
 //
 //      System.install_progress_add_up(); // 2
 //
-//      //xxdebug_box("init1 ok", "init1 ok", MB_ICONINFORMATION);
+//      //xxdebug_box("init1 ok", "init1 ok", e_message_box_icon_information);
 //
 //      m_millisHeartBeat.Now();
 //
@@ -2220,7 +2220,7 @@ retry_license:
 //
 //      System.install_progress_add_up(); // 3
 //
-//      //xxdebug_box("init2 ok", "init2 ok", MB_ICONINFORMATION);
+//      //xxdebug_box("init2 ok", "init2 ok", e_message_box_icon_information);
 //
 //      m_millisHeartBeat.Now();
 //
@@ -2235,7 +2235,7 @@ retry_license:
 //
 //      System.install_progress_add_up(); // 4
 //
-//      //xxdebug_box("init3 ok", "init3 ok", MB_ICONINFORMATION);
+//      //xxdebug_box("init3 ok", "init3 ok", e_message_box_icon_information);
 //
 //      m_millisHeartBeat.Now();
 //

@@ -88,7 +88,7 @@ namespace file
       if (_tempFileCreated)
       {
          file_pointer inFile(get_object());
-         if (!inFile->open(_tempFileName, ::file::mode_read | ::file::type_binary))
+         if (!inFile->open(_tempFileName, ::file::e_open_read | ::file::e_open_binary))
             return E_FAIL;
          while (size < _size)
          {

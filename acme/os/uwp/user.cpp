@@ -416,6 +416,8 @@ uptr virtualkey_to_char(::Windows::System::VirtualKey e)
       return ::user::key_lcommand;
    case ::Windows::System::VirtualKey::RightWindows:
       return ::user::key_rcommand;
+   case ::Windows::System::VirtualKey::CapitalLock:
+      return ::user::key_capslock;
    default:
       ;
       {
@@ -673,7 +675,7 @@ namespace user
 
 
 
-//int _os_message_box(const char* pszMessage, const char* pszTitle, ::emessagebox emessagebox)
+//int _os_message_box(const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox)
 //{
 //
 //   return 0;

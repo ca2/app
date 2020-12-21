@@ -9,7 +9,7 @@
 #include "framework.h"
 #include "_android.h"
 #include "apex/compress/zip/context.h"
-#include "shell.h"
+//#include "shell.h"
 
 
 bool android_get_file_image(::image * pimage, const char * psz);

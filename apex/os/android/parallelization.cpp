@@ -499,6 +499,46 @@ bool __os_term_thread()
 }
 
 
+//int get_processor_count()
+//{
+//
+//   return sysconf(_SC_NPROCESSORS_ONLN);
+//
+//   //int c = 0;
+//
+//   //int s, j;
+//
+//   //cpu_set_t cpuset;
+//
+//   //pthread_t thread = pthread_self();
+//
+//   //s = pthread_getaffinity_np(thread, sizeof(cpu_set_t), &cpuset);
+//
+//   //if (s != 0)
+//   //{
+//
+//   //   return -1;
+//
+//   //}
+//
+//   //for (j = 0; j < CPU_SETSIZE; j++)
+//   //{
+//
+//   //   if (CPU_ISSET(j, &cpuset))
+//   //   {
+//
+//   //      c++;
+//
+//   //   }
+//
+//   //}
+//
+//   //return c;
+//
+//}
+
+int get_processor_count();
+
 int get_current_process_affinity_order()
 {
 
@@ -508,27 +548,4 @@ int get_current_process_affinity_order()
 
 
 
-
-
-bool set_thread_name(const char * psz)
-{
-
-   string strName(psz);
-
-   thread_name_abbreviate(strName, 15);
-
-   bool bOk = !pthread_setname_np(pthread_self(), strName);
-
-   thread_value("name") = psz;
-
-   return bOk;
-
-}
-
-string thread_get_name()
-{
-
-   return thread_value("name").to_string();
-
-}
 

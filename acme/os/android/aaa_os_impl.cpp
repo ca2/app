@@ -172,42 +172,42 @@ void* load_lib(const char* l)
 
 int SetMainScreenRect(LPCRECT32 lpcrect);
 
-void android_aura_main()
-{
-
-   auto premote = g_posremote;
-
-   auto plocal = g_poslocal;
-
-   auto psystem = __new(::acme::system());
-
-   psystem->m_pathCacheDir = premote->getCacheDir();
-
-   psystem->system_construct(plocal, e_display_default);
-
-   ::estatus estatus = psystem->os_application_system_run();
-   
-   if (!estatus)
-   {
-
-      printf("os_application_system_run failed\n");
-
-      return;
-
-   }
-
-   ::rect rect;
-
-   rect.left = 0;
-   rect.top = 0;
-   rect.right = premote->getWidth();
-   rect.bottom = premote->getHeight();
-
-   System.get_context_session()->defer_initialize_host_window(rect);
-
-   SetMainScreenRect(rect);
-
-}
+//void android_aura_main()
+//{
+//
+//   auto premote = g_posremote;
+//
+//   auto plocal = g_poslocal;
+//
+//   auto psystem = __new(::acme::system());
+//
+//   psystem->m_pathCacheDir = premote->getCacheDir();
+//
+//   psystem->system_construct(plocal, e_display_default);
+//
+//   ::estatus estatus = psystem->os_application_system_run();
+//   
+//   if (!estatus)
+//   {
+//
+//      printf("os_application_system_run failed\n");
+//
+//      return;
+//
+//   }
+//
+//   ::rect rect;
+//
+//   rect.left = 0;
+//   rect.top = 0;
+//   rect.right = premote->getWidth();
+//   rect.bottom = premote->getHeight();
+//
+//   System.get_context_session()->defer_initialize_host_window(rect);
+//
+//   SetMainScreenRect(rect);
+//
+//}
 
 
 

@@ -37,11 +37,11 @@ CLASS_DECL_APEX bool _istlead(i32 ch)
 }
 
 
-void sleep(::u32 dwMillis)
+void sleep(const ::millis & millis)
 {
    timespec t;
-   t.tv_sec = dwMillis / 1000;
-   t.tv_nsec = (dwMillis % 1000) * 1000 * 1000;
+   t.tv_sec = millis.m_iMilliseconds / 1000;
+   t.tv_nsec = (millis.m_iMilliseconds % 1000) * 1000 * 1000;
    nanosleep(&t, nullptr);
 }
 
@@ -288,8 +288,8 @@ CLASS_DECL_APEX int __node_is_debugger_attached()
 
 
 
-int get_processor_count()
-{
-   return 1;
-}
+//int get_processor_count()
+//{
+//   return 1;
+//}
 

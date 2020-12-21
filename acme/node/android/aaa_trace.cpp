@@ -1,3 +1,6 @@
+#include "framework.h"
+#include "_android.h"
+#include "acme/os/cross.h"
 
 
 void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg)
@@ -7,6 +10,7 @@ void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg)
 
    if (lpmsg->message == e_message_mouse_move || lpmsg->message == e_message_non_client_mouse_move ||
          lpmsg->message == e_message_nchittest || lpmsg->message == e_message_set_cursor ||
+#ifdef WINDOWS_DESKTOP
          lpmsg->message == WM_CTLCOLORBTN ||
          lpmsg->message == WM_CTLCOLORDLG ||
          lpmsg->message == WM_CTLCOLOREDIT ||
@@ -15,6 +19,7 @@ void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg)
          lpmsg->message == WM_CTLCOLORSCROLLBAR ||
          lpmsg->message == WM_CTLCOLORSTATIC ||
          lpmsg->message == WM_ENTERIDLE || lpmsg->message == WM_CANCELMODE ||
+#endif
          lpmsg->message == 0x0118)    // WM_SYSTIMER (caret blink)
    {
       // don't report very frequently sent messages

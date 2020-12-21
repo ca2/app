@@ -441,6 +441,7 @@ namespace android
       //vfxThrowFileexception(::error_disk_full, -1, m_strFileName);
    }
 
+
    filesize file::seek(filesize lOff, ::file::e_seek nFrom)
    {
 

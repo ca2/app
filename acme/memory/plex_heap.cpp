@@ -579,7 +579,9 @@ plex_heap_alloc * plex_heap_alloc_array::find(memsize nAllocSize)
    for (index i = 0; i < m_nSize; i++)
    {
 
-      if (nAllocSize <= m_pData[i]->m_iAllocSize)
+      auto palloc = m_pData[i];
+
+      if (nAllocSize <= palloc->m_iAllocSize)
       {
 
          return m_pData[i];

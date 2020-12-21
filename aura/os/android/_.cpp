@@ -37,13 +37,13 @@ CLASS_DECL_AURA bool _istlead(i32 ch)
 }
 
 
-void sleep(::u32 dwMillis)
-{
-   timespec t;
-   t.tv_sec = dwMillis / 1000;
-   t.tv_nsec = (dwMillis % 1000) * 1000 * 1000;
-   nanosleep(&t, nullptr);
-}
+//void sleep(::u32 dwMillis)
+//{
+//   timespec t;
+//   t.tv_sec = dwMillis / 1000;
+//   t.tv_nsec = (dwMillis % 1000) * 1000 * 1000;
+//   nanosleep(&t, nullptr);
+//}
 
 
 
@@ -280,10 +280,6 @@ bool __node_aura_pos_term()
 
 
 
-CLASS_DECL_AURA int __node_is_debugger_attached()
-{
-   return 0;
-}
 
 
 

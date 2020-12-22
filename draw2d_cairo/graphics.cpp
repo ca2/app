@@ -2045,19 +2045,15 @@ bool graphics::get_text_metrics(::draw2d::text_metric * lpMetrics)
 
     PangoFontMetrics * pfontmetrics = pango_font_get_metrics(pfont, nullptr);
 
-    lpMetrics->tmAscent = (::i32) pango_font_metrics_get_ascent(pfontmetrics) / PANGO_SCALE;
+    lpMetrics->m_dAscent = pango_font_metrics_get_ascent(pfontmetrics) / PANGO_SCALE;
 
-    lpMetrics->tmDescent = (::i32) pango_font_metrics_get_descent(pfontmetrics) / PANGO_SCALE;
+    lpMetrics->m_dDescent = pango_font_metrics_get_descent(pfontmetrics) / PANGO_SCALE;
 
-    lpMetrics->tmHeight = (::i32) iHeight;
+    lpMetrics->m_dHeight = (::i32) iHeight;
 
-    lpMetrics->tmExternalLeading = (::i32)(lpMetrics->tmHeight - (lpMetrics->tmAscent + lpMetrics->tmDescent));
+    lpMetrics->m_dExternalLeading = (lpMetrics->tmHeight - (lpMetrics->tmAscent + lpMetrics->tmDescent));
 
-    lpMetrics->tmInternalLeading = (::i32)0;
-
-    lpMetrics->tmExternalLeading = (::i32)0;
-
-    //lpMetrics->tmAveCharWidth = (::i32)pango_font_metrics_get_approximate_char_width (pfontmetrics);
+    lpMetrics->m_dInternalLeading = (::i32)0;
 
     pango_font_metrics_unref(pfontmetrics);
 
@@ -2065,29 +2061,22 @@ bool graphics::get_text_metrics(::draw2d::text_metric * lpMetrics)
 
 #else
 
-   ((::draw2d_cairo::graphics *) this)->_set(m_pfont);
+   //((::draw2d_cairo::graphics *) this)->_set(m_pfont);
 
-   cairo_font_extents_t e;
+   cairo_font_extents_t fontextents;
 
-   cairo_font_extents(m_pdc, &e);
+   cairo_font_extents(m_pdc, &fontextents);
 
-   lpMetrics->tmAscent = (::i32)e.ascent;
+   lpMetrics->m_dAscent = fontextents.ascent;
 
-   lpMetrics->tmDescent = (::i32)e.descent;
+   lpMetrics->m_dDescent = fontextents.descent;
 
-   lpMetrics->tmHeight = (::i32)e.height;
+   lpMetrics->m_dHeight = fontextents.height;
 
-   lpMetrics->tmExternalLeading = (::i32)(e.height - (e.ascent + e.descent));
+   lpMetrics->m_dInternalLeading = fontextents.ascent * 0.33333333;
 
-   lpMetrics->tmInternalLeading = (::i32)0;
+   lpMetrics->m_dExternalLeading = fontextents.ascent * 0.66666666;
 
-   lpMetrics->tmExternalLeading = (::i32)0;
-
-   string str(L"123AWZwmc123AWZwmcpQçg");
-
-   ::size size = GetTextExtent(str);
-
-   // lpMetrics->tmAveCharWidth = (::i32)(size.cx * m_pfont->m_dFontWidth / (double)str.get_length());
 
 #endif
 
@@ -4249,13 +4238,17 @@ bool graphics::GetTextExtent(sized & size, const char * lpszString, strsize nCou
 
       _set(m_pfont);
 
-      cairo_text_extents_t extents;
+      cairo_text_extents_t textextents;
 
-      cairo_text_extents(m_pdc, str, &extents);
+      cairo_text_extents(m_pdc, str, &textextents);
 
-      size.cx = extents.width;
+      cairo_font_extents_t fontextents;
 
-      size.cy = extents.height - extents.y_bearing;
+      cairo_font_extents(m_pdc, &fontextents);
+
+      size.cx = textextents.x_advance;
+
+      size.cy = textextents.height - fontextents.descent;
 
 #endif
 

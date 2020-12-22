@@ -434,23 +434,23 @@ public:
 
    virtual ::estatus do_request(::create * pcreate);
 
-   inline ::estatus message_box(const char* pszMessage, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::promise::process & process = ::promise::process())
-   {
-   
-      return message_box(nullptr, pszMessage, pszTitle, emessagebox, process);
+   virtual ::estatus message_box(const char * pszMessage, const char * pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::promise::process & process = ::promise::process());
+   //{
+   //
+   //   return message_box(nullptr, pszMessage, pszTitle, emessagebox, process);
 
-   }
+   //}
 
 
-   inline ::estatus message_box_timeout(const char* pszMessage, const char* pszTitle = nullptr, const ::duration& durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::promise::process & process = ::promise::process())
-   {
+   virtual ::estatus message_box_timeout(const char * pszMessage, const char * pszTitle = nullptr, const ::duration & durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::promise::process & process = ::promise::process());
+   //{
 
-      return message_box_timeout(nullptr, pszMessage, pszTitle, durationTimeout, emessagebox, process);
+   //   return message_box_timeout(nullptr, pszMessage, pszTitle, durationTimeout, emessagebox, process);
 
-   }
+   //}
 
-   virtual ::estatus message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::promise::process & process = ::promise::process());
-   virtual ::estatus message_box_timeout(::user::primitive* pwndOwner, const char* pszMessage, const char* pszTitle = nullptr, const ::duration& durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::promise::process & process = ::promise::process());
+   //virtual ::estatus message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::promise::process & process = ::promise::process());
+   //virtual ::estatus message_box_timeout(::user::primitive* pwndOwner, const char* pszMessage, const char* pszTitle = nullptr, const ::duration& durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::promise::process & process = ::promise::process());
 
    virtual void release_references();
 

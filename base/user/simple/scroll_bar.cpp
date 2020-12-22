@@ -3,6 +3,7 @@
 #include "base/user/simple/_simple.h"
 #endif
 #include "acme/os/_os.h"
+#include "acme/os/cross.h"
 
 
 simple_scroll_bar::simple_scroll_bar() :

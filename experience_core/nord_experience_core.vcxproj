@@ -23,8 +23,8 @@
     <Keyword>Android</Keyword>
     <ApplicationType>Android</ApplicationType>
     <ApplicationTypeRevision>3.0</ApplicationTypeRevision>
-    <ProjectName>experience_lite</ProjectName>
-    <RootNamespace>experience_lite</RootNamespace>
+    <ProjectName>experience_core</ProjectName>
+    <RootNamespace>app</RootNamespace>
     <MinimumVisualStudioVersion>15.0</MinimumVisualStudioVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -98,7 +98,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(__archive)third-android\include;$(__archive)third-android\third\include\include;$(__archive)third-android\third\include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(SolutionDir)../../platform-android/;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-android/$(PlatformName)/$(Configuration)/include;$(__archive)third-android/include;$(__archive)third-android/third/include;$(__archive)third-android/third/include/include;$(SolutionDir)../../platform-android/_include;$(SolutionDir)../../platform-android;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>DEBUG;__ANDROID_API__=19;_APP_CORE_EXPERIENCE_CORE_LIBRARY</PreprocessorDefinitions>
       <ExceptionHandling>Enabled</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -112,7 +112,7 @@
     </ClCompile>
     <Link>
       <AdditionalOptions>-fexceptions %(AdditionalOptions)</AdditionalOptions>
-      <LibraryDependencies>aura;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
+      <LibraryDependencies>$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-android\third\library\$(Platform)\$(Configuration)\;$(__archive)storage-android\library\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(OutDir);$(__archive)storage-android\third\library\$(Platform)\$(Configuration)\;$(__archive)storage-android\library\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -172,8 +172,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ProjectReference Include="..\acme\nord_acme.vcxproj">
+      <Project>{ecb0620d-bfa8-4f9b-b2ad-9d9c20a44fe9}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\apex\nord_apex.vcxproj">
+      <Project>{9d102bb4-2054-4d90-a3e7-dd63bdf83982}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\aqua\nord_aqua.vcxproj">
+      <Project>{576b7916-147f-49f2-84b8-360d703894b5}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\aura\nord_aura.vcxproj">
       <Project>{02207bc4-c08b-4a2d-b754-f3bd46ad3098}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\axis\nord_axis.vcxproj">
+      <Project>{6f5c86b4-07bb-45a5-9fb9-b7921bcbbf36}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\base\nord_base.vcxproj">
+      <Project>{15ccba90-45f6-46fa-a1fd-af4c40595697}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -190,7 +205,7 @@
     <ClCompile Include="frame_013.cpp" />
     <ClCompile Include="frame_Minimal001.cpp" />
     <ClCompile Include="library.cpp" />
-    <ClCompile Include="theme.cpp" />
+    <ClCompile Include="style.cpp" />
     <ClCompile Include="_.cpp" />
   </ItemGroup>
   <ItemGroup>

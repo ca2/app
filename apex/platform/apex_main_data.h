@@ -17,10 +17,10 @@ public:
    string                           m_strCommandLine;
    string                           m_strStandalone;
    LPFN_MAIN_RUNNER                 m_mainrunnera[64];
-   ::e_display                       m_edisplay;
-   ::e_activation                    m_eactivation;
+   ::e_display                      m_edisplay;
+   ::e_activation                   m_eactivation;
    string                           m_strAppId;
-   ::file::path                     m_pathCacheDir;
+   ::file::path                     m_pathCacheDirectory;
 
 #ifdef WINDOWS
 

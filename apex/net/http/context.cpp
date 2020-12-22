@@ -439,7 +439,7 @@ namespace http
    string context::get_locale_schema(const char * pszUrl, const char * pszLocale, const char * pszSchema)
    {
 
-      Application.message_box("What?!" + e_message_box_ok);
+      message_box("What?!", nullptr, e_message_box_ok);
 
       string strUrl = locale_schema_url(pszUrl, pszLocale, pszSchema);
 

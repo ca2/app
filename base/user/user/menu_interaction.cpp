@@ -171,7 +171,7 @@ namespace user
 
       size.cx += rectMargin.left + rectBorder.left + rectPadding.left;
 
-      size.cx += m_pmenuitem->m_pmenu->m_iCheckBoxSize;
+      size.cx += m_pmenuitem->m_pmenu->m_dCheckBoxSize;
 
       size.cx += rectPadding.left;
 
@@ -180,7 +180,7 @@ namespace user
 
          size.cx += rectPadding.left;
 
-         size.cx += m_pmenuitem->m_pmenu->m_iCheckBoxSize;
+         size.cx += m_pmenuitem->m_pmenu->m_dCheckBoxSize;
 
       }
 

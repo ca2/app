@@ -2443,6 +2443,32 @@ namespace user
 
    }
 
+   
+   ::sized primitive::_001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics)
+   {
+
+      return { 0.0, 0.0 };
+
+   }
+
+
+   ::sized primitive::_001CalculateAdjustedFittingSize(::draw2d::graphics_pointer & pgraphics)
+   {
+
+      ::rectd rectPadding(2.0, 2.0, 2.0, 2.0);
+
+      auto sizeFitting = _001CalculateFittingSize(pgraphics);
+
+      ::sized sizePaddedFitting;
+
+      sizePaddedFitting.cx = rectPadding.left + sizeFitting.cx + rectPadding.right;
+
+      sizePaddedFitting.cy = rectPadding.top + sizeFitting.cy + rectPadding.bottom;
+
+      return sizePaddedFitting;
+
+   }
+
 
    bool primitive::can_merge(::user::interaction * pinteraction)
    {
@@ -4020,6 +4046,12 @@ namespace user
 
 
    void primitive::on_text_composition(string str)
+   {
+
+   }
+
+
+   void primitive::on_text_commit(string str)
    {
 
    }

@@ -568,7 +568,7 @@ namespace experience
    }
 
 
-   eborder dock_manager::get_border_mask()
+   e_border dock_manager::get_border_mask()
    {
 
       return m_eborder;
@@ -584,7 +584,7 @@ namespace experience
    }
 
 
-   edock dock_manager::get_dock_mask()
+   e_dock dock_manager::get_dock_mask()
    {
 
       return m_edock;
@@ -592,7 +592,7 @@ namespace experience
    }
 
 
-   void dock_manager::set_dock_mask(edock edock)
+   void dock_manager::set_dock_mask(e_dock edock)
    {
 
       m_edock = edock;

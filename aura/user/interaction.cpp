@@ -114,7 +114,7 @@ namespace user
 
       m_puiThis = this;
 
-      m_iItemHeight = -1;
+      m_dItemHeight = -1;
 
       m_flagNonClient.add(non_client_background);
 
@@ -181,7 +181,7 @@ namespace user
       // Control Member Variables BEGIN
       m_puiLabel = nullptr;
       m_pdrawcontext = nullptr;
-//      m_pdescriptor = nullptr;
+      //      m_pdescriptor = nullptr;
       m_bControlExCommandEnabled = true;
       m_pform = nullptr;
       m_bDefaultWalkPreTranslateParentTree = true;
@@ -197,7 +197,7 @@ namespace user
    }
 
 
-   class control_descriptor& interaction::descriptor()
+   class control_descriptor & interaction::descriptor()
    {
 
       return *m_pdescriptor;
@@ -205,7 +205,7 @@ namespace user
    }
 
 
-   const class control_descriptor& interaction::descriptor() const
+   const class control_descriptor & interaction::descriptor() const
    {
 
       return *m_pdescriptor;
@@ -213,7 +213,7 @@ namespace user
    }
 
 
-   ::user::interaction* interaction::get_host_wnd() const
+   ::user::interaction * interaction::get_host_wnd() const
    {
 
       if (get_context_session() == nullptr
@@ -283,7 +283,7 @@ namespace user
    }
 
 
-   int interaction::get_int(style* pstyle, enum_int eint, int iDefault) const
+   int interaction::get_int(style * pstyle, enum_int eint, int iDefault) const
    {
 
       return iDefault;
@@ -291,7 +291,7 @@ namespace user
    }
 
 
-   double interaction::get_double(style* pstyle, enum_double edouble, double dDefault) const
+   double interaction::get_double(style * pstyle, enum_double edouble, double dDefault) const
    {
 
       return dDefault;
@@ -299,26 +299,30 @@ namespace user
    }
 
 
-   ::rect interaction::get_border(style * pstyle, enum_element eelement, estate estate) const
+   ::rectd interaction::get_border(style * pstyle, enum_element eelement, estate estate) const
    {
 
-      return ::rect();
+      return nullptr;
+
+   }
+
+   
+   ::rectd interaction::get_padding(style * pstyle, enum_element eelement, estate estate) const
+   {
+
+      ::rectd rectDefaultPadding(2.0, 2.0, 2.0, 2.0);
+
+      return rectDefaultPadding;
 
    }
 
 
-   ::rect interaction::get_padding(style * pstyle, enum_element eelement, estate estate) const
+   ::rectd interaction::get_margin(style * pstyle, enum_element eelement, estate estate) const
    {
 
-      return ::rect();
+      ::rectd rectDefaultMargin(2.0, 2.0, 2.0, 2.0);
 
-   }
-
-
-   ::rect interaction::get_margin(style * pstyle, enum_element eelement, estate estate) const
-   {
-
-      return ::rect();
+      return rectDefaultMargin;
 
    }
 
@@ -7270,6 +7274,46 @@ namespace user
       }
 
       m_pimpl->on_end_layout_experience(elayoutexperience);
+
+   }
+
+
+   ::sized interaction::_001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics)
+   {
+
+      pgraphics->set_font(this, ::user::e_element_none);
+
+      ::draw2d::text_metric metric;
+
+      pgraphics->get_text_metrics(&metric);
+
+      ::sized setFittingFontHeight;
+
+      setFittingFontHeight.cx = 1.0; // symbolic, just not empty
+
+      setFittingFontHeight.cy = metric.get_line_spacing();
+
+      return setFittingFontHeight;
+
+   }
+
+
+   ::sized interaction::_001CalculateAdjustedFittingSize(::draw2d::graphics_pointer & pgraphics)
+   {
+
+      auto pstyle = get_style(pgraphics);
+
+      ::rectd rectPadding = get_padding(pstyle);
+
+      auto sizeFitting = _001CalculateFittingSize(pgraphics);
+
+      ::sized sizePaddedFitting;
+
+      sizePaddedFitting.cx = rectPadding.left + sizeFitting.cx + rectPadding.right;
+
+      sizePaddedFitting.cy = rectPadding.top + sizeFitting.cy + rectPadding.bottom;
+
+      return sizePaddedFitting;
 
    }
 

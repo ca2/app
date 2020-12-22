@@ -971,6 +971,8 @@ namespace apex
       virtual void route_command_message(::user::command* pcommand) override;
 
 
+      virtual ::estatus message_box(const char * pszMessage, const char * pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::promise::process & process = ::promise::process()) override;
+      virtual ::estatus message_box_timeout(const char * pszMessage, const char * pszTitle = nullptr, const ::duration & durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::promise::process & process = ::promise::process()) override;
 
 
       void EnableHtmlHelp();

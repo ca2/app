@@ -2772,18 +2772,6 @@
     <ClInclude Include="acme\os\android\node_data_exchange.h">
       <Filter>Header Files\acme\os\android</Filter>
     </ClInclude>
-    <ClInclude Include="inline\application\linux.h">
-      <Filter>Header Files\inline\application</Filter>
-    </ClInclude>
-    <ClInclude Include="inline\application\macos.h">
-      <Filter>Header Files\inline\application</Filter>
-    </ClInclude>
-    <ClInclude Include="inline\application\uwp.h">
-      <Filter>Header Files\inline\application</Filter>
-    </ClInclude>
-    <ClInclude Include="inline\application\windows.h">
-      <Filter>Header Files\inline\application</Filter>
-    </ClInclude>
     <ClInclude Include="inline\__debug_box_clear_impl.h">
       <Filter>Header Files\inline</Filter>
     </ClInclude>
@@ -2816,9 +2804,6 @@
     </ClInclude>
     <ClInclude Include="inline\library.h">
       <Filter>Header Files\inline</Filter>
-    </ClInclude>
-    <ClInclude Include="inline\application\android.h">
-      <Filter>Header Files\inline\application</Filter>
     </ClInclude>
     <ClInclude Include="node\android\_.h">
       <Filter>Header Files\node\android</Filter>

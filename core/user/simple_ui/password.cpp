@@ -185,7 +185,7 @@ namespace simple_ui
       //size size3;
       ::draw2d::text_metric metric;
        pgraphics->get_text_metrics(&metric);
-      i32 iLineHeight = metric.tmHeight;
+      i32 iLineHeight = metric.get_line_spacing();
 //      string_array & straLines = m_plines->lines;
       string_array & straLines = m_straLines;
       string_array straLineFeed;

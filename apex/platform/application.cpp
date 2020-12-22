@@ -10967,4 +10967,26 @@ namespace apex
    }
 
 
+   ::estatus application::message_box(const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, const ::promise::process & process)
+   {
+
+      auto estatus = System.message_box(pszMessage, pszTitle, emessagebox, process);
+
+      return estatus;
+
+   }
+
+
+   ::estatus application::message_box_timeout(const char * pszMessage, const char * pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox, const ::promise::process & process)
+   {
+
+      auto estatus = System.message_box_timeout(pszMessage, pszTitle, durationTimeout, emessagebox, process);
+
+      return estatus;
+
+   }
+
+
+
+
 } // namespace apex

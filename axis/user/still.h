@@ -71,7 +71,7 @@ namespace user
       DECL_GEN_SIGNAL(_001OnCreate);
 
 
-      ::size calc_text_size();
+      virtual ::sized _001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics) override;
 
       virtual bool keyboard_focus_is_focusable() override;
 

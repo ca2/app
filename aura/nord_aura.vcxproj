@@ -113,7 +113,7 @@
     <Link>
       <AdditionalDependencies>
       </AdditionalDependencies>
-      <LibraryDependencies>aqua;apex;acme;jnigraphics;android;log;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
+      <LibraryDependencies>jnigraphics;android;log;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
       <UnresolvedSymbolReferences>true</UnresolvedSymbolReferences>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-android\third\library\$(Platform)\$(Configuration)\;$(__archive)storage-android\library\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
     </Link>
@@ -260,9 +260,9 @@
     <ClCompile Include="node\android\factory_exchange.cpp" />
     <ClCompile Include="node\android\host_interaction.cpp" />
     <ClCompile Include="node\android\interaction_impl.cpp" />
+    <ClCompile Include="node\android\system.cpp" />
     <ClCompile Include="node\android\util.cpp" />
     <ClCompile Include="node\posix\application.cpp" />
-    <ClCompile Include="os\android\application_system_run.cpp" />
     <ClCompile Include="os\android\monitor.cpp" />
     <ClCompile Include="os\android\windowing.cpp" />
     <ClCompile Include="os\android\_.cpp" />

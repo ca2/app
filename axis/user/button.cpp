@@ -151,15 +151,13 @@ namespace user
    }
 
 
-   ::size button::calc_text_size()
+   ::sized button::_001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics)
    {
-
-      auto pgraphics = ::draw2d::create_memory_graphics();
 
       if (pgraphics.is_null())
       {
 
-         return nullptr;
+         pgraphics = ::draw2d::create_memory_graphics();
 
       }
 
@@ -177,7 +175,7 @@ namespace user
 
       sizeTotal.cx = size.cx;
 
-      sizeTotal.cy = tm.tmHeight;
+      sizeTotal.cy = tm.get_line_spacing();
 
       return sizeTotal;
 
@@ -214,11 +212,7 @@ namespace user
       else
       {
 
-         ::size sizeTotal = calc_text_size();
-
-         sizeTotal.cx = (::i32)(sizeTotal.cx * 1.6);
-
-         sizeTotal.cy = (::i32)(sizeTotal.cy * 1.4);
+         auto sizeTotal = _001CalculateAdjustedFittingSize(pgraphics);
 
          set_size(sizeTotal);
 
@@ -275,7 +269,7 @@ namespace user
 
       get_client_rect(rectClient, ::user::e_layout_design);
 
-      ::size sizeText = calc_text_size();
+      auto sizeText = _001CalculateAdjustedFittingSize(pgraphics);
 
       ::rect rect;
 

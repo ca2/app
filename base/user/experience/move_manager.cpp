@@ -361,7 +361,7 @@ namespace experience
       }
 
 
-      eborder move_manager::GetBorderMask()
+      e_border move_manager::GetBorderMask()
       {
 
          return m_eborderMask;
@@ -369,7 +369,7 @@ namespace experience
       }
 
 
-      void move_manager::SetBorderMask(const eborder & emask)
+      void move_manager::SetBorderMask(const e_border & emask)
       {
 
          m_eborderMask = emask;

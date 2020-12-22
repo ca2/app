@@ -42,7 +42,7 @@ namespace user
       virtual ~check_box();
 
 
-      virtual enum_element get_default_element() const;
+      virtual enum_element get_default_element() const override;
 
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;

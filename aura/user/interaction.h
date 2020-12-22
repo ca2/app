@@ -135,17 +135,17 @@ namespace user
       //bool                                    m_bFreeHandMouseMove; this is the default
       // if high frequency mouse move notification is required
       // create a fast path/low latency callback system
-      ::millis                                    m_millisMouseMove;
-      ::millis                                    m_millisMouseMoveIgnore;
-      __pointer(alpha_source)                   m_palphasource;
-      i32                                       m_iItemHeight;
-      point                                     m_pointMoveCursor;
-      bool                                      m_bDefaultWalkPreTranslateParentTree;
-      __pointer(::aura::drawable)               m_pdrawableBackground;
-      bool                                      m_bBackgroundBypass;
-      millis                                      m_millisLastFullUpdate;
-      bool                                      m_bSizeMove;
-      millis                                      m_millisLastVisualChange;
+      ::millis                                     m_millisMouseMove;
+      ::millis                                     m_millisMouseMoveIgnore;
+      __pointer(alpha_source)                      m_palphasource;
+      double                                       m_dItemHeight;
+      point                                        m_pointMoveCursor;
+      bool                                         m_bDefaultWalkPreTranslateParentTree;
+      __pointer(::aura::drawable)                  m_pdrawableBackground;
+      bool                                         m_bBackgroundBypass;
+      millis                                       m_millisLastFullUpdate;
+      bool                                         m_bSizeMove;
+      millis                                       m_millisLastVisualChange;
       __reference(::file::insert_item)          m_pitemComposing;
       __pointer(primitive_impl)                 m_pimpl;
       __pointer(interaction_impl)               m_pimpl2;
@@ -268,12 +268,12 @@ namespace user
       virtual enum_translucency get_translucency(style* pstyle) const;
       virtual int get_int(style* pstyle, enum_int eint, int iDefault = 0) const;
       virtual double get_double(style* pstyle, enum_double edouble, double dDefault = 0.) const;
-      virtual ::rect get_border(style* pstyle, enum_element eelement, estate estate = e_state_none) const;
-      inline ::rect get_border(style* pstyle, estate estate = e_state_none) const { return get_border(pstyle, get_default_element(), estate); }
-      virtual ::rect get_padding(style* pstyle, enum_element eelement, estate elayout = e_state_none) const;
-      inline ::rect get_padding(style* pstyle, estate estate = e_state_none) const { return get_padding(pstyle, get_default_element(), estate); }
-      virtual ::rect get_margin(style* pstyle, enum_element eelement, estate elayout = e_state_none) const;
-      inline ::rect get_margin(style* pstyle, estate estate = e_state_none) const { return get_margin(pstyle, get_default_element(), estate); }
+      virtual ::rectd get_border(style* pstyle, enum_element eelement, estate estate = e_state_none) const;
+      inline ::rectd get_border(style* pstyle, estate estate = e_state_none) const { return get_border(pstyle, get_default_element(), estate); }
+      virtual ::rectd get_padding(style* pstyle, enum_element eelement, estate elayout = e_state_none) const;
+      inline ::rectd get_padding(style* pstyle, estate estate = e_state_none) const { return get_padding(pstyle, get_default_element(), estate); }
+      virtual ::rectd get_margin(style* pstyle, enum_element eelement, estate elayout = e_state_none) const;
+      inline ::rectd get_margin(style* pstyle, estate estate = e_state_none) const { return get_margin(pstyle, get_default_element(), estate); }
       virtual ::color get_color(style* pstyle, enum_element eelement, estate elayout = e_state_none) const;
       inline ::color get_color(style* pstyle, estate estate = e_state_none) const { return get_color(pstyle, get_default_element(), estate); }
 
@@ -693,6 +693,9 @@ namespace user
       virtual bool scroll_bar_get_client_rect(RECT32* prect);
 
       virtual void on_visual_applied();
+
+      virtual ::sized _001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics) override;
+      virtual ::sized _001CalculateAdjustedFittingSize(::draw2d::graphics_pointer & pgraphics) override;
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
       virtual void on_reposition() override;

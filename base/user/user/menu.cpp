@@ -623,13 +623,13 @@ namespace user
 
       auto metrics = pgraphics->get_text_metrics();
 
-      i32 iMaxHeight = metrics.tmHeight;
+      auto dMaxHeight = metrics.get_line_spacing();
 
-      m_iItemHeight = iMaxHeight;
+      m_dItemHeight = dMaxHeight;
 
-      m_iCheckBoxSize = m_iItemHeight;
+      m_dCheckBoxSize = dMaxHeight;
 
-      m_iHeaderHeight = metrics.tmHeight;
+      m_dHeaderHeight = dMaxHeight;
 
       __pointer(::user::menu_item) pitem = get_menu_item();
 

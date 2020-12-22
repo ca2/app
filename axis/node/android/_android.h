@@ -16,19 +16,19 @@ string get_error_message(::u32 dwError);
 #include "implementation.h"
 #include "factory_exchange.h"
 #include "thread.h"
-#include "os_context.h"
+//#include "os_context.h"
 
-#include "dir_system.h"
-#include "file_system.h"
+//#include "dir_system.h"
+//#include "file_system.h"
 
-#include "dir_context.h"
-#include "file_context.h"
+//#include "dir_context.h"
+//#include "file_context.h"
 
 //#define ANDROID_THREAD(pthread) (dynamic_cast < ::android::thread * > (dynamic_cast < ::thread * >(pthread)))
 
-#include "shell.h"
+//#include "shell.h"
 
-#include "host_interaction.h"
+//#include "host_interaction.h"
 
 //CLASS_DECL_AXIS void __trace_message(const char * lpszPrefix, ::message::message * pmessage);
 //CLASS_DECL_AXIS void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg);
@@ -64,7 +64,7 @@ CLASS_DECL_AXIS void vfxThrowFileException(::object* pobject, const ::estatus& e
 #include "internal.h"
 
 
-#include "interaction_impl.h"
+//#include "interaction_impl.h"
 
 
 

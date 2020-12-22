@@ -27,7 +27,7 @@ namespace user
       ::draw2d::graphics_extension              m_dcextension;
       index                                     m_dwFirstVisibleItem;
       index                                     m_iItemCount;
-      ::u32                                      m_uiLButtonUpFlags;
+      ::u32                                     m_uiLButtonUpFlags;
       point                                     m_pointLButtonUp;
       ::data::tree_item *                       m_pitemFirstVisible;
       index                                     m_iFirstVisibleItemProperIndex;
@@ -97,7 +97,7 @@ namespace user
       virtual bool _001GetItemElementRect(RECT32 * prect, tree_draw_item & drawitem, ::user::enum_tree_element eelement);
 
       virtual void install_message_routing(::channel * pchannel) override;
-      i32 _001GetItemHeight();
+      virtual double _001GetItemHeight();
       virtual index _001GetIndentation();
 
 

@@ -1,7 +1,7 @@
 #include "framework.h"
 //#include "aura/platform/app_core.h"
 //#include "windowing.h"
-
+CLASS_DECL_AURA::estatus android_os_message_box(const char * pText, const char * lpCaption, const ::e_message_box & emessagebox, const ::promise::process & process);
 
 //bool os_init_application()
 //{
@@ -79,6 +79,26 @@ namespace aura
       }
 
       return ::success;
+
+   }
+
+
+   ::estatus system::message_box(const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, const ::promise::process & process)
+   {
+
+      android_os_message_box(pszMessage, pszTitle, emessagebox, process);
+
+      return success;
+
+   }
+
+
+   ::estatus system::message_box_timeout(const char * pszMessage, const char * pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox, const ::promise::process & process)
+   {
+
+      auto estatus = System.message_box_timeout(pszMessage, pszTitle, durationTimeout, emessagebox, process);
+
+      return estatus;
 
    }
 

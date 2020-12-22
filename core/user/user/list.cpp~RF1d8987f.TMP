@@ -1887,16 +1887,23 @@ namespace user
          else
          {
 
-            double dHeight = rectView.height();
+            int iHeight = rectView.height();
 
             if (m_bTopText)
             {
 
-               dHeight -= m_rectTopText.height();
+               iHeight -= m_rectTopText.height();
 
             }
 
-            ::count iItemCount = ceil(dHeight / m_dItemHeight);
+            ::count iItemCount = iHeight / m_dItemHeight;
+
+            if (fmod(iHeight, m_dItemHeight) > 0.)
+            {
+
+               iItemCount++;
+
+            }
 
             return iItemCount;
 
@@ -2610,9 +2617,9 @@ namespace user
 
                      pdrawitem->m_iGroup--;
 
-                     i32 dHeight = _001GetGroupHeight(pdrawitem->m_iGroup);
+                     i32 iHeight = _001GetGroupHeight(pdrawitem->m_iGroup);
 
-                     pdrawitem->m_rectItem.top -= dHeight;
+                     pdrawitem->m_rectItem.top -= iHeight;
 
                      pdrawitem->m_rectItem.bottom = pdrawitem->m_rectItem.top + m_dItemHeight;
 
@@ -2715,7 +2722,7 @@ namespace user
 
             pdrawitem->m_rectItem.left = (::i32)(((pdrawitem->m_iItem * m_dItemHeight) / dHeight) * m_iItemWidth);
 
-            pdrawitem->m_rectItem.top = (::i32)fmod(pdrawitem->m_iItem * m_dItemHeight, dHeight);
+            pdrawitem->m_rectItem.top = (::i32)((pdrawitem->m_iItem * m_dItemHeight) % dHeight);
 
          }
 

@@ -113,7 +113,7 @@
     <Link>
       <AdditionalDependencies>
       </AdditionalDependencies>
-      <LibraryDependencies>apex;acme;jnigraphics;android;log;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
+      <LibraryDependencies>jnigraphics;android;log;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
       <UnresolvedSymbolReferences>true</UnresolvedSymbolReferences>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-android\third\library\$(Platform)\$(Configuration)\;$(__archive)storage-android\library\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
     </Link>
@@ -1229,6 +1229,14 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="apex\compress\zip\zip_algorithm.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\acme\nord_acme.vcxproj">
+      <Project>{ecb0620d-bfa8-4f9b-b2ad-9d9c20a44fe9}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\apex\nord_apex.vcxproj">
+      <Project>{9d102bb4-2054-4d90-a3e7-dd63bdf83982}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

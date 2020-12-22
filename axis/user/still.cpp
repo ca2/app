@@ -438,15 +438,13 @@ namespace user
    //}
 
 
-   ::size still::calc_text_size()
+   ::sized still::_001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics)
    {
-
-      auto pgraphics = ::draw2d::create_memory_graphics();
 
       if (pgraphics.is_null())
       {
 
-         return nullptr;
+         pgraphics = ::draw2d::create_memory_graphics();
 
       }
 
@@ -454,21 +452,23 @@ namespace user
 
       string strText(m_strWindowText);
 
-      const ::size & size = pgraphics->GetTextExtent(strText);
+      auto size = pgraphics->GetTextExtent(strText);
 
       ::draw2d::text_metric tm;
 
       pgraphics->get_text_metrics(&tm);
 
-      ::size sizeTotal;
+      ::sized sizeTotal;
 
       sizeTotal.cx = size.cx;
 
-      sizeTotal.cy = tm.tmHeight;
+      sizeTotal.cy = tm.get_line_spacing();
 
       return sizeTotal;
 
    }
+
+   
 
 
    void still::resize_to_fit(::draw2d::graphics_pointer& pgraphics)
@@ -504,11 +504,7 @@ namespace user
       else
       {
 
-         auto sizeTotal = calc_text_size();
-
-         sizeTotal.cx = (::i32)(sizeTotal.cx * 1.6);
-
-         sizeTotal.cy = (::i32)(sizeTotal.cy * 1.4);
+         auto sizeTotal = _001CalculateAdjustedFittingSize(pgraphics);
 
          layout().sketch() = sizeTotal;
 
@@ -582,8 +578,7 @@ namespace user
 
       get_client_rect(rectClient);
 
-
-      ::size sizeText = calc_text_size();
+      ::sized sizeText = _001CalculateFittingSize(pgraphics);
 
       ::rect rect;
 

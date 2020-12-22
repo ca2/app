@@ -68,9 +68,8 @@ namespace user
          string                           m_strMessage;
       };
 
-      //::rect                              m_rectPadding;
       int                                 m_iDrawTextFlags;
-      millis                                m_millisLastDraw;
+      millis                              m_millisLastDraw;
       array < error >                     m_errora;
       __pointer(::message::key)           m_pmessagekeyLast;
 
@@ -84,8 +83,8 @@ namespace user
 
       int                                 m_iTabWidth;
       bool                                m_bColorerTake5;
-      index                               m_iLineStart;
-      index                               m_iLineEnd;
+      ::index                             m_iLineStart;
+      ::index                             m_iLineEnd;
       count                               m_iLineCount;
       bool                                m_bCustomFrameBefore;
       ::rect                              m_FullScreenWindowRect;
@@ -97,16 +96,16 @@ namespace user
       bool                                m_bLMouseDown;
       bool                                m_bRMouseDown;
       point                               m_pointSelStart;
-      millis                                m_millisCaretPeriod;
-      index                               m_iLineOffset;
-      string_array                             m_straLines;
-      i32                                 m_y;
+      millis                              m_millisCaretPeriod;
+      ::index                             m_iLineOffset;
+      string_array                        m_straLines;
+      double                              m_dy;
       bool                                m_bGetTextNeedUpdate;
       bool                                m_bNeedScrollUpdate;
       bool                                m_bTabInsertSpaces;
       strsize                             m_iViewOffset; // in bytes
       strsize                             m_iViewSize; // in bytes
-      i32                                 m_iLineHeight;
+      double                              m_dLineHeight;
       index                               m_iColumn;
       i32                                 m_iColumnX;
       bool                                m_bMultiLine;
@@ -153,6 +152,7 @@ namespace user
       virtual void edit_on_text(string str) override;
       virtual void edit_on_sel(strsize iSelBeg, strsize iSelEnd) override;
       virtual void on_text_composition(string str) override;
+      virtual void on_text_commit(string str) override;
       virtual void on_text_composition_done() override;
 
 

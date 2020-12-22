@@ -179,9 +179,11 @@ void android_aura_main()
 
    auto plocal = g_poslocal;
 
-   auto psystem = __new(::aura::system());
+   string strApplicationIdentifier = plocal->m_strApplicationIdentifier;
 
-   psystem->m_pathCacheDir = premote->getCacheDir();
+   auto psystem = platform_create_system(strApplicationIdentifier);
+
+   psystem->m_pathCacheDirectory = premote->getCacheDirectory();
 
    psystem->system_construct(plocal, e_display_default);
 
@@ -346,6 +348,8 @@ void android_exchange()
          premote->setMessageBoxButton(plocal->m_iMessageBoxButton);
 
          plocal->m_iMessageBoxButton = 0;
+
+         premote->setShowMessageBox(1);
 
          plocal->m_bMessageBoxOn = true;
 

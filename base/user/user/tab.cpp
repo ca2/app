@@ -1894,7 +1894,7 @@ namespace user
 
 #ifdef ANDROID
 
-               fDensity = System.oslocal().m_fDensity;
+               fDensity = oslocal()->m_fDensity;
 
 #endif
 
@@ -1912,7 +1912,7 @@ namespace user
 
 #ifdef ANDROID
 
-               fDensity = System.oslocal().m_fDensity;
+               fDensity = oslocal()->m_fDensity;
 
 #endif
 
@@ -1937,7 +1937,7 @@ namespace user
 
 #ifdef ANDROID
 
-               fDensity = System.oslocal().m_fDensity;
+               fDensity = oslocal()->m_fDensity;
 
 #endif
 
@@ -1955,7 +1955,7 @@ namespace user
 
 #ifdef ANDROID
 
-               fDensity = System.oslocal().m_fDensity;
+               fDensity = oslocal()->m_fDensity;
 
 #endif
 

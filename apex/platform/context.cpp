@@ -342,7 +342,8 @@ string context::defer_get_file_title(string strParam)
 
             __keep_thread_flag(id_thread_resolve_alias);
 
-            if (!os_resolve_alias(path, path,::is_set(get_context_application())? Application.m_puiCurrent.get(): nullptr))
+            //if (!os_resolve_alias(path, path,::is_set(get_context_application())? Application.m_puiCurrent.get(): nullptr))
+            if (!os_resolve_alias(path, path))
             {
 
                break;

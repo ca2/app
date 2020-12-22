@@ -524,7 +524,7 @@ strsize lite_html_reader::read_html_file(i32 fd)
 
    strsize   nRetVal;
 
-   strsize dwBufLen;
+   strsize dwBufLen = 0;
 
    try
    {

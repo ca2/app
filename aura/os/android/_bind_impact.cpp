@@ -190,6 +190,48 @@ JNIEXPORT jboolean JNICALL Java_com_android_1app_impact_aura_1on_1text_1composit
 
 }
 
+
+extern "C"
+JNIEXPORT jboolean JNICALL Java_com_android_1app_impact_aura_1on_1text_1commit(JNIEnv * env, jobject  obj, jstring str, jint i)
+{
+
+   set_context(env);
+
+   const wd16char * utf16 = (wd16char *)env->GetStringChars(str, NULL);
+
+   if (utf16 == NULL)
+   {
+
+      return false;
+
+   }
+
+   size_t length = (size_t)env->GetStringLength(str);
+
+   auto psession = Session;
+
+   if (psession->get_focus_ui())
+   {
+
+      wd16string wstr(utf16, length);
+
+      psession->get_focus_ui()->on_text_commit(wstr);
+
+   }
+   else
+   {
+
+      //android_on_text(os_text_keyboard, utf16, length);
+
+   }
+
+   env->ReleaseStringChars(str, (jchar *)utf16);
+
+   return TRUE;
+
+}
+
+
 extern "C"
 JNIEXPORT void JNICALL Java_com_android_1app_impact_mouseMove(JNIEnv * env, jobject  obj, jfloat x, jfloat y)
 {

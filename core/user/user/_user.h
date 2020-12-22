@@ -70,13 +70,13 @@ namespace user
    //#elif defined(APPLE_IOS) || defined(ANDROID)
 #if defined(APPLE_IOS) || defined(ANDROID)
 
-   class CLASS_DECL_CORE native_window_initialize
-   {
-   public:
+   //class CLASS_DECL_CORE native_window_initialize
+   //{
+   //public:
 
-      RECT32   m_rect;
+   //   RECT32   m_rect;
 
-   };
+   //};
 
 #else
 

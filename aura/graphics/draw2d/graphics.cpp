@@ -5387,7 +5387,7 @@ namespace draw2d
 
       get_text_metrics(&tm2);
 
-      int iLineSpacing = tm2.tmHeight;
+      int iLineSpacing = tm2.get_line_spacing();
 
       ::draw2d::graphics * pgraphics = this;
 

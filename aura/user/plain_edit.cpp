@@ -190,7 +190,7 @@ namespace user
 
       m_bTabInsertSpaces = false;
 
-      m_iLineHeight = 0;
+      m_dLineHeight = 0.;
 
       m_bPassword = false;
 
@@ -413,10 +413,10 @@ namespace user
 
       auto pointOffset = get_viewport_offset();
 
-      if (m_iLineHeight > 0)
+      if (m_dLineHeight > 0.)
       {
 
-         int iVerticalOffsetModule = pointOffset.y % m_iLineHeight;
+         int iVerticalOffsetModule = fmod(pointOffset.y, m_dLineHeight);
 
          if (iVerticalOffsetModule > 0)
          {
@@ -445,7 +445,7 @@ namespace user
 
       pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
 
-      i32 iLineHeight = m_iLineHeight;
+      double dLineHeight = m_dLineHeight;
       string_array & straLines = m_straLines;
       string str1;
       string str2;
@@ -610,7 +610,7 @@ namespace user
                (double)((double)left + x1),
                (double)y,
                (double)min(x2-x1, (double)rectClient.right - ((double)left + x1)),
-               (double)min((double)m_iLineHeight, (double)rectClient.bottom - y),
+               (double)min((double)m_dLineHeight, (double)rectClient.bottom - y),
                crBkSel);
 
                pgraphics->set(brushTextSel);
@@ -680,7 +680,7 @@ namespace user
 
                pgraphics->set(point);
 
-               pgraphics->draw_error_line((int)xA, m_iLineHeight, (int)xB, 1);
+               pgraphics->draw_error_line((double)xA, m_dLineHeight, (int)xB, 1);
 
             }
 
@@ -731,7 +731,7 @@ namespace user
 
          }
 
-         y += m_iLineHeight;
+         y += m_dLineHeight;
 
          lim += m_iaLineLen[iLine];
 
@@ -1640,7 +1640,7 @@ namespace user
 
          int iCurrentPageOffsetEnd = (int) (get_viewport_offset().y + rectClient.height());
 
-         index iCandidateCursorOffset = (::index) (min((double) max(0, iLine)* m_iLineHeight, m_sizeTotal.cy));
+         index iCandidateCursorOffset = (::index) (min((double) max(0, iLine)* m_dLineHeight, m_sizeTotal.cy));
 
          if (iCandidateCursorOffset < iCurrentPageOffsetStart)
          {
@@ -1912,20 +1912,20 @@ namespace user
 
       pgraphics->get_text_metrics(&metric);
 
-      m_iLineHeight = (int)metric.tmHeight;
+      m_dLineHeight = metric.get_line_spacing();
 
-      if (m_iLineHeight <= 0)
+      if (m_dLineHeight <= 0.0)
       {
 
-         m_iLineHeight = 18;
+         m_dLineHeight = 18.0;
 
       }
 
       auto pointOffset = get_viewport_offset();
 
-      m_iLineCount = ((rectClient.height() + m_iLineHeight - 1) / m_iLineHeight) + 2;
+      m_iLineCount = ceil((double)rectClient.height() / m_dLineHeight);
 
-      m_iLineOffset = min(max(0, pointOffset.y / m_iLineHeight), m_iaLineBeg.get_upper_bound());
+      m_iLineOffset = min(max(0, pointOffset.y / m_dLineHeight), m_iaLineBeg.get_upper_bound());
 
       bool bLoadFullFile = should_load_full_file();
 
@@ -2228,6 +2228,8 @@ namespace user
 
    }
 
+   
+
 
    void plain_edit::plain_edit_on_calc_layout(::draw2d::graphics_pointer& pgraphics, index iLineUpdate)
    {
@@ -2353,26 +2355,22 @@ namespace user
 
       pgraphics->get_text_metrics(&metric);
 
-      //int iChW = sizeUniText.cy / wstr.length();
+      m_dLineHeight = metric.get_line_spacing();
 
-      m_iLineHeight = (int)metric.tmHeight;
+      m_scrolldataVert.m_iLine = m_dLineHeight;
 
-      m_scrolldataVert.m_iLine = m_iLineHeight;
-
-      //m_scrolldataHorz.m_iLine = metric.tmAveCharWidth;
-
-      if (m_iLineHeight <= 0)
+      if (m_dLineHeight <= 0)
       {
 
-         m_iLineHeight = 18;
+         m_dLineHeight = 18;
 
       }
 
       auto pointOffset = get_viewport_offset();
 
-      m_iLineCount = ((rectClient.height() + m_iLineHeight - 1) / m_iLineHeight) + 2;
+      m_iLineCount = ((rectClient.height() + m_dLineHeight - 1) / m_dLineHeight) + 2;
 
-      m_iLineOffset = min(max(0, pointOffset.y / m_iLineHeight), m_iaLineBeg.get_upper_bound());
+      m_iLineOffset = min(max(0, pointOffset.y / m_dLineHeight), m_iaLineBeg.get_upper_bound());
 
       bool bLoadFullFile = should_load_full_file();
 
@@ -2538,7 +2536,7 @@ namespace user
 
       }
 
-      m_y = pointOffset.y;
+      m_dy = pointOffset.y;
 
       //::colorertake5::base_editor * pcolorer = colorertake5();
 
@@ -2690,7 +2688,7 @@ namespace user
       if (iLineUpdate < 0)
       {
 
-         m_sizeTotal.cy = (::i32) ((((i32)m_iaLineLen.get_count() + (m_bMultiLine ? max(5, m_iLineCount) : 0)) * m_iLineHeight));
+         m_sizeTotal.cy = (::i32) ((((i32)m_iaLineLen.get_count() + (m_bMultiLine ? max(5, m_iLineCount) : 0)) * m_dLineHeight));
 
          ::sized sizePage;
 
@@ -2809,9 +2807,9 @@ namespace user
 
       }
 
-      lprect->top = (::i32) (iLine * m_iItemHeight);
+      lprect->top = (::i32) (iLine * m_dItemHeight);
 
-      lprect->bottom = (::i32) (lprect->top + m_iItemHeight);
+      lprect->bottom = (::i32) (lprect->top + m_dItemHeight);
 
       return true;
 
@@ -3107,10 +3105,10 @@ namespace user
 
       auto pointOffset = get_viewport_offset();
 
-      if (m_iLineHeight > 0)
+      if (m_dLineHeight > 0)
       {
 
-         int iVerticalOffsetModule = pointOffset.y % m_iLineHeight;
+         int iVerticalOffsetModule = fmod(pointOffset.y, m_dLineHeight);
 
          if (iVerticalOffsetModule > 0)
          {
@@ -3121,13 +3119,13 @@ namespace user
 
       }
 
-      i32 iLineHeight;
+      double dLineHeight;
 
-      i32 y = 0;
+      double dy = 0;
 
       bool bFound = false;
 
-      iLineHeight = m_iLineHeight;
+      dLineHeight = m_dLineHeight;
 
       strsize iOffset = 0;
 
@@ -3138,7 +3136,7 @@ namespace user
       for (iLine = m_iLineStart; iLine < m_iLineEnd; iLine++)
       {
 
-         if (py < y + iLineHeight)
+         if (py < dy + dLineHeight)
          {
 
             bFound = true;
@@ -3147,7 +3145,7 @@ namespace user
 
          }
 
-         y += iLineHeight;
+         dy += dLineHeight;
 
          iOffset += m_iaLineLen[iLine];
 
@@ -3372,7 +3370,7 @@ end:
 
       plain_edit_create_line_index(pgraphics);
 
-      m_y = -1;
+      m_dy = -1;
 
    }
 
@@ -4221,7 +4219,7 @@ finished_update:
 
                GetFocusRect(rectClient);
 
-               iLine -= rectClient.height() / m_iLineHeight;
+               iLine -= rectClient.height() / m_dLineHeight;
 
                if (iLine < 0)
                {
@@ -4265,7 +4263,7 @@ finished_update:
 
                GetFocusRect(rectClient);
 
-               iLine += rectClient.height() / m_iLineHeight;
+               iLine += rectClient.height() / m_dLineHeight;
 
                if (iLine >= m_iaLineBeg.get_size())
                {
@@ -4822,8 +4820,8 @@ finished_update:
 
       auto iLine = plain_edit_sel_to_line_x(pgraphics, iEnd, x);
 
-      index y = (index) ((iLine)* m_iLineHeight - get_viewport_offset().y);
-      index y2 = y + m_iLineHeight;
+      double y = iLine* m_dLineHeight - get_viewport_offset().y;
+      double y2 = y + m_dLineHeight;
       ::point point((::i32)x,(::i32) y);
       get_client_rect(rect);
       rect.left =(::i32) x;
@@ -4852,8 +4850,8 @@ finished_update:
 
 
 
-   //               int y = (iLine)* m_iLineHeight - get_viewport_offset().y;
-   //               int y2 = y + m_iLineHeight;
+   //               int y = (iLine)* m_dLineHeight - get_viewport_offset().y;
+   //               int y2 = y + m_dLineHeight;
    //               const ::point & ::point(x, y);
    //               ::rect r;
    //               get_client_rect(rect);
@@ -4896,7 +4894,7 @@ finished_update:
 
 
 
-   //      //int y = (iLine)* m_iLineHeight - get_viewport_offset().y;
+   //      //int y = (iLine)* m_dLineHeight - get_viewport_offset().y;
    //      //int y2 = y + m_iLineHeight;
    //      //const ::point & ::point(x, y);
    //      //rect r;
@@ -5065,6 +5063,62 @@ finished_update:
    }
 
 
+   void plain_edit::on_text_commit(string strText)
+   {
+
+      if (m_pitemComposing
+         && !strText.contains('\r')
+         && !strText.contains('\n'))
+      {
+
+         m_ptree->m_peditfile->append_insert_item_data(m_pitemComposing.get(), strText);
+
+         index i1 = (index)(m_pitemComposing->m_position + m_pitemComposing->get_extent());
+
+         auto pgraphics = ::draw2d::create_memory_graphics();
+
+         int iLineUpdate = (int)plain_edit_sel_to_line(pgraphics, i1);
+
+         m_ptree->m_iSelEnd = i1;
+         m_ptree->m_iSelBeg = m_ptree->m_iSelEnd;
+         m_psetsel->m_iSelEnd = m_ptree->m_iSelEnd;
+         m_psetsel->m_iSelBeg = m_ptree->m_iSelEnd;
+
+         bool bFullUpdate = false;
+
+         plain_edit_update(pgraphics, bFullUpdate, iLineUpdate);
+
+         if (iLineUpdate < 0)
+         {
+
+            iLineUpdate = (int)plain_edit_sel_to_line(pgraphics, m_ptree->m_iSelEnd);
+
+         }
+
+         if (iLineUpdate >= 0)
+         {
+
+            _001EnsureVisibleLine(iLineUpdate + 1);
+
+         }
+
+         set_need_redraw();
+
+         post_redraw();
+
+         string strText;
+
+         _001GetText(strText);
+
+         ::output_debug_string("Current Text: " + strText + "\n");
+
+         __release(m_pitemComposing);
+
+      }
+
+   }
+
+
    void plain_edit::on_text_composition_done()
    {
 
@@ -5164,20 +5218,20 @@ finished_update:
 
       ::point pointOffset = get_viewport_offset();
 
-      set_viewport_offset_y(pointOffset.y - m_iLineHeight);
+      set_viewport_offset_y(pointOffset.y - m_dLineHeight);
 
       //      if(m_scrolldata.m_pointScroll.y < 0)
       //       m_scrolldata.m_pointScroll.y = 0;
-      i32 iHeight = 0;
+      double dHeight = 0.;
       //char flag;
       m_iViewOffset = 0;
       ::count iLineSize;
       ::index i = 0;
       __copy(pointOffset, get_viewport_offset());
-      while (pointOffset.y > iHeight && i < m_iaLineLen.get_size())
+      while (pointOffset.y > dHeight && i < m_iaLineLen.get_size())
       {
          iLineSize = m_iaLineLen[i];
-         iHeight += m_iLineHeight;
+         dHeight += m_dLineHeight;
          m_iViewOffset += iLineSize;
          i++;
       }
@@ -5288,7 +5342,7 @@ finished_update:
 
          plain_edit_create_line_index(pgraphics);
 
-         m_y = -1;
+         m_dy = -1;
 
          m_bCalcLayoutHintNoTextChange = false;
 
@@ -5359,7 +5413,7 @@ finished_update:
 
          m_bGetTextNeedUpdate = 1;
          plain_edit_update_line_index(pgraphics, iLine);
-         m_y = -1;
+         m_dy = -1;
 
          m_bCalcLayoutHintNoTextChange = false;
 
@@ -5762,7 +5816,7 @@ finished_update:
    i32 plain_edit::get_wheel_scroll_delta()
    {
 
-      return m_iLineHeight * 3;
+      return m_dLineHeight * 3.0;
 
    }
 
@@ -5935,7 +5989,7 @@ finished_update:
 
          HWND hwnd = get_handle();
 
-         ::CreateCaret(hwnd, 0, 1, m_iLineHeight);
+         ::CreateCaret(hwnd, 0, 1, m_dLineHeight);
 
          ::point pointCaret = layout().design().origin();
 
@@ -6032,7 +6086,9 @@ finished_update:
 
    __pointer(::data::item) plain_edit::on_allocate_item()
    {
+      
       return __new(plain_text_command);
+
    }
 
 

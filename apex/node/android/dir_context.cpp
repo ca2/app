@@ -1000,7 +1000,7 @@ namespace android
 
       //doc.load(Context.file().as_string(appdata() / "configuration\\directory.xml"));
 
-      ::file::path pathInstall = System.m_pathCacheDir;
+      ::file::path pathInstall = System.m_pathCacheDirectory;
 
       m_pdirsystem->m_pathInstall = pathInstall;
 

@@ -37,9 +37,9 @@ namespace user
       m_flagNonClient += ::user::interaction::non_client_hover_rect;
 
       m_pitemFirstVisible        = nullptr;
-      m_itemHover               = nullptr;
+      m_itemHover                = nullptr;
       m_iItemCount               = 0;
-      m_iItemHeight              = 18;
+      m_dItemHeight              = 18.0;
       m_iImageExpand             = -1;
       m_iImageCollapse           = -1;
       m_pimagelist               = nullptr;
@@ -279,9 +279,9 @@ namespace user
 
          drawitemdata.m_iIndentation = _001GetIndentation();
 
-         drawitemdata.m_iItemHeight = _001GetItemHeight();
+         drawitemdata.m_dItemHeight = _001GetItemHeight();
 
-         get_client_rect(drawitemdata.m_rectClient);
+         drawitemdata.m_rectClient = get_client_rect();
 
          auto pitem = m_pitemFirstVisible;
 
@@ -304,9 +304,9 @@ namespace user
 
             drawitemdata.m_rect.left = (::i32) (drawitemdata.m_iIndentation * pitem->m_iLevel);
 
-            drawitemdata.m_rect.top = (::i32) (iItem * drawitemdata.m_iItemHeight);
+            drawitemdata.m_rect.top = (::i32) (iItem * drawitemdata.m_dItemHeight);
 
-            drawitemdata.m_rect.bottom = (::i32) (drawitemdata.m_rect.top + drawitemdata.m_iItemHeight);
+            drawitemdata.m_rect.bottom = (::i32) (drawitemdata.m_rect.top + drawitemdata.m_dItemHeight);
 
             drawitemdata.m_rect.right = m_iCurrentViewWidth;
 
@@ -825,10 +825,14 @@ namespace user
 
    }
 
-   i32 tree::_001GetItemHeight()
+
+   double tree::_001GetItemHeight()
    {
-      return m_iItemHeight;
+
+      return m_dItemHeight;
+
    }
+
 
    void tree::install_message_routing(::channel * pchannel)
    {
@@ -1495,7 +1499,7 @@ namespace user
 
       auto pstyle = get_style(g);
 
-      m_iItemHeight = (i32) (iItemHeight * get_double(pstyle, ::user::e_double_tree_item_height_rate, 1.0));
+      m_dItemHeight = (i32) (iItemHeight * get_double(pstyle, ::user::e_double_tree_item_height_rate, 1.0));
 
       //on_ui_event(event_calc_item_height, object_tree, this);
 
@@ -1624,7 +1628,7 @@ namespace user
    i32 tree::get_wheel_scroll_delta()
    {
 
-      return 3 * m_iItemHeight;
+      return 3.0 * m_dItemHeight;
 
    }
 
@@ -2119,14 +2123,14 @@ namespace user
 
       auto pointOffset = get_viewport_offset();
 
-      if (m_iItemHeight <= 0)
+      if (m_dItemHeight <= 0.)
       {
 
-         m_iItemHeight = 18;
+         m_dItemHeight = 18.0;
 
       }
 
-      index iMinVisibleIndex = (index)(pointOffset.y / m_iItemHeight);
+      index iMinVisibleIndex = (index)(pointOffset.y / m_dItemHeight);
 
       index iMaxVisibleIndex = (index)(iMinVisibleIndex + _001GetVisibleItemCount());
 
@@ -2135,7 +2139,7 @@ namespace user
 
          index iNewScrollIndex = iIndex;
 
-         set_viewport_offset_y((int) max(iNewScrollIndex,0) * m_iItemHeight);
+         set_viewport_offset_y((int) max(iNewScrollIndex,0) * m_dItemHeight);
 
          set_need_layout();
 

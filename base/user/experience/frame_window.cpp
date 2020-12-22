@@ -1089,7 +1089,7 @@ namespace experience
    }
 
 
-   void frame_window::set_dock_mask(edock emask)
+   void frame_window::set_dock_mask(e_dock emask)
    {
 
       ASSERT(m_pdockmanager != nullptr);

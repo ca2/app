@@ -115,7 +115,7 @@ extern os_local* g_poslocal;
 
 #elif defined(ANDROID)
 
-   path = oslocal()->m_pathCacheDir;
+   path = oslocal()->m_pathCacheDirectory;
 
 #elif defined(__APPLE__)
 

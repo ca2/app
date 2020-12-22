@@ -517,7 +517,7 @@ void set_global_application(::apex::application* papp)
    if (pthread == nullptr)
    {
 
-      return nullptr;
+      return System.get_context_session();
 
    }
 

@@ -303,11 +303,11 @@ namespace user
 
       string strItem;
 
-      ::size size;
+      ::sized size;
 
       psize->cx = 0;
 
-      m_iItemHeight = 0;
+      m_dItemHeight = 0.;
 
       ::count cListCount = m_pcombo->_001GetListCount();
 
@@ -327,10 +327,10 @@ namespace user
 
          }
 
-         if (size.cy > m_iItemHeight)
+         if (size.cy > m_dItemHeight)
          {
 
-            m_iItemHeight = size.cy;
+            m_dItemHeight = size.cy;
 
             if (size.cy != 18)
             {
@@ -343,7 +343,7 @@ namespace user
 
       }
 
-      m_iItemHeight += 4;
+      m_dItemHeight += 4.0;
 
       int iAddUp = 0;
 
@@ -388,7 +388,7 @@ namespace user
    i32 combo_list::_001GetItemHeight() const
    {
 
-      return m_iItemHeight + m_iPadding * 2;
+      return m_dItemHeight + m_iPadding * 2;
 
    }
 

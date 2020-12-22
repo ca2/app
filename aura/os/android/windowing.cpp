@@ -1566,7 +1566,7 @@ i64 oswindow_id(oswindow w)
 }
 
 
-CLASS_DECL_AURA ::estatus os_message_box(oswindow oswindow, const char * pText, const char * lpCaption, const ::e_message_box & emessagebox, const ::promise::process & process)
+CLASS_DECL_AURA::estatus _android_os_message_box(const char * pText, const char * lpCaption, const ::e_message_box & emessagebox)
 {
 
    while (::oslocal()->m_iMessageBoxResult > 0)
@@ -1583,7 +1583,7 @@ CLASS_DECL_AURA ::estatus os_message_box(oswindow oswindow, const char * pText, 
 
    int iButton = 0;
 
-   switch(emessagebox & 7)
+   switch (emessagebox & 7)
    {
    case e_message_box_ok:
       iButton = 1;
@@ -1627,6 +1627,8 @@ CLASS_DECL_AURA ::estatus os_message_box(oswindow oswindow, const char * pText, 
 
    ::oslocal()->m_iMessageBoxButton = iButton;
 
+   ::oslocal()->m_bMessageBox = true;
+
    while (::oslocal()->m_iMessageBoxResult <= 0)
    {
 
@@ -1669,6 +1671,31 @@ CLASS_DECL_AURA ::estatus os_message_box(oswindow oswindow, const char * pText, 
    }
 
    return e_dialog_result_ok;
+
+}
+
+
+CLASS_DECL_AURA ::estatus android_os_message_box(const char * pText, const char * lpCaption, const ::e_message_box & emessageboxParam, const ::promise::process & processParam)
+{
+
+   string strText(pText);
+
+   string strCaption(lpCaption);
+
+   e_message_box emessagebox(emessageboxParam);
+
+   ::promise::process process = processParam;
+
+   System.fork([=]()
+      {
+
+         auto result = _android_os_message_box(strText, strCaption, emessagebox);
+
+         process(result);
+
+      });
+
+   return ::success;
 
 }
 

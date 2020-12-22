@@ -532,6 +532,10 @@ namespace user
       virtual bool attach(oswindow oswindow_New);
       virtual oswindow detach();
 
+      
+      virtual ::sized _001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics);
+      virtual ::sized _001CalculateAdjustedFittingSize(::draw2d::graphics_pointer & pgraphics);
+
 
       virtual bool can_merge(::user::interaction * pinteraction);
       virtual bool merge(::user::interaction * pinteraction);
@@ -752,6 +756,7 @@ namespace user
       virtual void edit_on_sel(strsize iBeg, strsize iEnd);
 
       virtual void on_text_composition(string str);
+      virtual void on_text_commit(string str);
       virtual void on_text_composition_done();
       virtual bool is_text_composition_active();
 

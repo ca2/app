@@ -409,8 +409,8 @@
     <ClCompile Include="os\android\monitor.cpp">
       <Filter>Source Files\os\android</Filter>
     </ClCompile>
-    <ClCompile Include="os\android\application_system_run.cpp">
-      <Filter>Source Files\os\android</Filter>
+    <ClCompile Include="node\android\system.cpp">
+      <Filter>Source Files\node\android</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

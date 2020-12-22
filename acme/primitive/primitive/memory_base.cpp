@@ -1270,6 +1270,51 @@ void memory_base::from_string(const payload & payload)
 }
 
 
+void memory_base::append_from_string(const widechar * pwsz)
+{
+
+   append_from_string(::str::international::unicode_to_utf8(pwsz));
+
+}
+
+
+void memory_base::append_from_string(const char * psz)
+{
+
+   auto sizeOld = get_size();
+
+   auto lenExtra = strlen(psz);
+
+   allocate_add_up(lenExtra);
+
+   ::memcpy_dup(get_data() + sizeOld, psz, lenExtra);
+
+}
+
+
+void memory_base::append_from_string(const string & str)
+{
+
+
+   auto sizeOld = get_size();
+
+   auto lenExtra = str.get_length();
+
+   allocate_add_up(lenExtra);
+
+   ::memcpy_dup(get_data() + sizeOld, str.c_str(), lenExtra);
+   
+}
+
+
+void memory_base::append_from_string(const payload & payload)
+{
+
+   append_from_string((const string &)payload.get_string());
+
+}
+
+
 void memory_base::to_string(const class string_exchange & str) const
 {
 
@@ -1598,6 +1643,14 @@ void memory_base::assign(const char * psz)
 {
 
    return from_string(psz);
+
+}
+
+
+void memory_base::append(const char * psz)
+{
+
+   return append_from_string(psz);
 
 }
 

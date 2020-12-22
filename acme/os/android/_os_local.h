@@ -7,8 +7,9 @@ class os_local :
 public:
 
 
-   string         m_strCommandLine;
-   ::file::path   m_pathCacheDir;
+   string         m_strApplicationIdentifier;
+   string         m_strCommandLineParameters;
+   ::file::path   m_pathCacheDirectory;
    int            m_iWidth;
    int            m_iHeight;
    float          m_fDpiX;

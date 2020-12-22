@@ -122,7 +122,7 @@ void apex_main_data::system_construct(os_local* poslocal, const ::e_display& edi
 
 #ifdef ANDROID
 
-   m_strCommandLine = poslocal->m_strCommandLine;
+   m_strCommandLine = "app.exe : app=" + poslocal->m_strApplicationIdentifier + " " + poslocal->m_strCommandLineParameters;
 
 #endif
 

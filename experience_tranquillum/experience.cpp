@@ -36,7 +36,7 @@ namespace experience
             }
 
 #if !defined(CUBE)
-            fork([this]()
+            fork([]()
                {
 
                   System.draw2d().set_cursor_set_from_matter("cursor/tranquillum");

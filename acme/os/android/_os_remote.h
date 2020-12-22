@@ -12,10 +12,12 @@ public:
    using os_object::os_object;
 
 
-   //String m_strCommandLine;
-   JX(str, CommandLine);
+   //String m_strAppId;
+   JX(str, ApplicationIdentifier);
+   //String m_strParameters;
+   JX(str, CommandLineParameters);
    //String m_strCacheDir;
-   JX(str, CacheDir);
+   JX(str, CacheDirectory);
    //int m_iWidth;
    JX(i, Width);
    //int m_iHeight;

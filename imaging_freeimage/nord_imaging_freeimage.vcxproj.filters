@@ -13,9 +13,6 @@
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="imaging.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="loading.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -23,6 +20,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="saving.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="_.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="context_image.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

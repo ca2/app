@@ -198,7 +198,7 @@ namespace tranquillum
 
       ptab->defer_handle_auto_hide_tabs(false);
 
-      pgraphics->set_font(ptab, ::user::e_state_selected);
+      pgraphics->set_font(ptab, ::user::e_element_none, ::user::e_state_selected);
 
       ptab->m_dcextension.GetTextExtent(pgraphics, MAGIC_PALACE_TAB_SIZE, ptab->get_data()->m_sizeSep);
 
@@ -294,7 +294,7 @@ namespace tranquillum
       {
          i32 iTabHeight = 16;
          i32 cy;
-         pgraphics->set_font(ptab, ::user::e_state_selected);
+         pgraphics->set_font(ptab, ::user::e_element_none, ::user::e_state_selected);
 
          ::rect rectClient;
          ptab->get_client_rect(rectClient);
@@ -570,13 +570,13 @@ namespace tranquillum
                      && !ptab->m_itemHover.in_range(::user::e_element_split, 100))
                   {
 
-                     pgraphics->set_font(ptab, ::user::e_state_selected | ::user::e_state_hover);
+                     pgraphics->set_font(ptab, ::user::e_element_none, ::user::e_state_selected | ::user::e_state_hover);
 
                   }
                   else
                   {
 
-                     pgraphics->set_font(ptab, ::user::e_state_selected);
+                     pgraphics->set_font(ptab, ::user::e_element_none, ::user::e_state_selected);
 
                   }
 
@@ -615,7 +615,7 @@ namespace tranquillum
 
                      pgraphics->draw_path(path);
 
-                     pgraphics->set_font(ptab, ::user::e_state_hover);
+                     pgraphics->set_font(ptab, ::user::e_element_none, ::user::e_state_hover);
 
                      brushText->create_solid(ptab->get_color(pstyle, ::user::e_element_item_text, ::user::e_state_hover));
 
@@ -706,13 +706,13 @@ namespace tranquillum
                      && !ptab->m_itemHover.in_range(::user::e_element_split, 100))
                   {
 
-                     pgraphics->set_font(ptab, ::user::e_state_hover);
+                     pgraphics->set_font(ptab, ::user::e_element_none, ::user::e_state_hover);
 
                   }
                   else
                   {
 
-                     pgraphics->set_font(ptab, ::user::e_state_selected);
+                     pgraphics->set_font(ptab, ::user::e_element_none, ::user::e_state_selected);
 
 
                   }
@@ -738,7 +738,7 @@ namespace tranquillum
                      
                      pgraphics->draw_path(path);
 
-                     pgraphics->set_font(ptab, ::user::e_state_hover);
+                     pgraphics->set_font(ptab, ::user::e_element_none, ::user::e_state_hover);
 
                      brushText->create_solid(ptab->get_color(pstyle, ::user::e_element_border, ::user::e_state_selected));
 

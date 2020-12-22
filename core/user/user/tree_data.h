@@ -11,13 +11,13 @@ namespace user
    class CLASS_DECL_CORE tree_draw_item
    {
    public:
-      __pointer(::data::tree_item)      m_pitem;
-      ::draw2d::graphics* m_pdc;
-      index                      m_iItem;
-      index                      m_iIndentation;
-      index                      m_iItemHeight;
-      ::rect                     m_rectClient;
-      ::rect                     m_rect;
+      __pointer(::data::tree_item)     m_pitem;
+      ::draw2d::graphics *             m_pdc;
+      index                            m_iItem;
+      index                            m_iIndentation;
+      double                           m_dItemHeight;
+      ::rectd                          m_rectClient;
+      ::rectd                          m_rect;
    };
 
 

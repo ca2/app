@@ -4,6 +4,7 @@
 #endif
 #include "aqua/xml.h"
 #include "acme/os/_os.h"
+#include "acme/os/cross.h"
 #include "toolbar.h"
 
 #define CLR_TO_RGBQUAD(clr)     (RGB(::blue(clr), ::green(clr), ::red(clr)))

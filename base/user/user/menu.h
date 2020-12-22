@@ -27,10 +27,10 @@ namespace user
 #endif
       bool                                   m_bOwnItem;
       ::size                                 m_size;
-      i32                                    m_iCheckBoxSize;
+      double                                 m_dCheckBoxSize;
       bool                                   m_bAutoDelete;
-      i32                                    m_iHeaderHeight;
-      __pointer(::user::menu_item)     m_pitemClose;
+      double                                 m_dHeaderHeight;
+      __pointer(::user::menu_item)           m_pitemClose;
       id                                     m_idSubMenu;
       i32                                    m_iHoverSubMenu;
       u32                                    m_dwOut;

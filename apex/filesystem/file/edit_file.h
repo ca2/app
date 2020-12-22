@@ -204,6 +204,8 @@ namespace file
 
       virtual void change_insert_item_data(class insert_item * pinsertitem, string & str);
 
+      virtual void append_insert_item_data(class insert_item * pinsertitem, string & str);
+
       virtual delete_item * Delete(memsize uiCount);
 
 

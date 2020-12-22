@@ -191,6 +191,10 @@ public:
    void from_string(const char * psz);
    void from_string(const string & str);
    void from_string(const payload & payload);
+   void append_from_string(const widechar * pwsz);
+   void append_from_string(const char * psz);
+   void append_from_string(const string & str);
+   void append_from_string(const payload & payload);
    //void to_string(string & str, memsize iStart = 0, memsize uiSize = -1) const;
    virtual void to_string(const string_exchange & str) const override;
    string to_string(memsize iStart, memsize uiSize = -1) const;
@@ -221,6 +225,8 @@ public:
    void move(memsize offset, bool bGrow = false);
 
    void assign(const char * psz);
+   void append(const char * psz);
+
 
 
 

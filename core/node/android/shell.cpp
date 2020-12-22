@@ -8,7 +8,7 @@
 
 #include "framework.h"
 #include "_android.h"
-#include "aura/compress/zip/context.h"
+#include "apex/compress/zip/context.h"
 #include "shell.h"
 
 
@@ -38,7 +38,7 @@ namespace android
       for (index i = 0; i < iThreadCount; i++)
       {
 
-         m_threadaGetImage.add(::fork(get_context_application(),
+         m_threadaGetImage.add(Application.fork(
                                        [&]()
          {
 
@@ -1330,7 +1330,7 @@ namespace android
          output_debug_string("test");
       }
 
-      auto pimage48 = __create_image({48,  48});
+      auto pimage48 = create_image({48,  48});
 
       pimage48->fill(0);
 
@@ -1339,7 +1339,7 @@ namespace android
       if (android_get_file_image(pimage48, strPath))
       {
             
-         auto pimage16 = __create_image({16,  16});
+         auto pimage16 = create_image({16,  16});
 
          pimage16->fill(0);
 
@@ -1361,9 +1361,9 @@ namespace android
             else
             {
                   
-               pimage48->get_graphics()->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
+               pimage48->get_graphics()->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
-               pimage48->get_graphics()->StretchBlt(0, 0, 48, 48, pimage16->get_graphics(), 0, 0, pimage16->width(), pimage16->height());
+               pimage48->get_graphics()->stretch({ 0, 0, 48, 48 }, pimage16->get_graphics(), pimage16->rect());
 
                iImage = m_pil[16]->add_image(pimage16, 0, 0);
 
@@ -1703,3 +1703,45 @@ bool android_get_file_image(::image * pimage, const char * psz)
    return false;
 
 }
+
+
+
+namespace core
+{
+
+
+   ::estatus user::create_user_shell()
+   {
+
+      ::estatus estatus = ::success;
+
+      if (!m_pshell)
+      {
+
+         estatus = __compose(m_pshell, __new(::android::shell));
+
+         if (!estatus)
+         {
+
+            return estatus;
+
+         }
+
+      }
+
+      if (!m_pshell)
+      {
+
+         return ::error_failed;
+
+      }
+
+      return ::success;
+
+   }
+
+
+} // namespace core
+
+
+

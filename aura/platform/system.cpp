@@ -4894,6 +4894,8 @@ namespace aura
    }
 
 
+
+
    //__pointer(::aura::session) system::on_create_session()
    //{
 

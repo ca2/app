@@ -4085,9 +4085,11 @@ retry_license:
 
             puiHost->m_puiptraChild = puiptraChild;
 
-            //pwnd->set_need_redraw();
+            puiHost->set_need_layout();
 
-            //pwnd->post_redraw();
+            pwnd->set_need_redraw();
+
+            pwnd->post_redraw();
 
          }
 

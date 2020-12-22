@@ -2222,60 +2222,60 @@ string object::get_text(const payload& payload, const ::id& id)
 }
 
 
-::estatus object::message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox, const ::promise::process & process)
+::estatus object::message_box(const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox, const ::promise::process & process)
 {
 
-   ::estatus estatus = error_failed;
+   ::estatus estatus = Application.message_box(pszMessage, pszTitle, emessagebox, process);
 
-   auto psession = get_context_session();
+   //auto psession = get_context_session();
 
-   //future.m_id = DIALOG_RESULT_PROCESS;
+   ////future.m_id = DIALOG_RESULT_PROCESS;
 
-   if (::is_set(psession))
-   {
+   //if (::is_set(psession))
+   //{
 
-      //auto puserex = psession->userex();
+   //   //auto puserex = psession->userex();
 
-      //if (::is_set(puserex))
-      //{
+   //   //if (::is_set(puserex))
+   //   //{
 
-      //   estatus = puserex->ui_message_box(this, puiOwner, pszMessage, pszTitle, emessagebox, callback);
+   //   //   estatus = puserex->ui_message_box(this, puiOwner, pszMessage, pszTitle, emessagebox, callback);
 
-      //}
+   //   //}
 
-   }
+   //}
 
-   if (!estatus)
-   {
+   //if (!estatus)
+   //{
 
-      string strMessage(pszMessage);
+   //   string strMessage(pszMessage);
 
-      string strTitle(pszTitle);
+   //   string strTitle(pszTitle);
 
-      if(strTitle.is_empty())
-      {
+   //   if(strTitle.is_empty())
+   //   {
 
-         auto papp = get_context_application();
+   //      auto papp = get_context_application();
 
-         if(papp)
-         {
+   //      if(papp)
+   //      {
 
-            strTitle = papp->get_app_user_friendly_task_bar_name();
+   //         strTitle = papp->get_app_user_friendly_task_bar_name();
 
-         }
+   //      }
 
-      }
+   //   }
 
-      estatus = ::os_message_box(strMessage, strTitle, emessagebox, process);
+   //   estatus = ::os_message_box(strMessage, strTitle, emessagebox, process);
 
-   }
+   //}
 
    return estatus;
 
 }
 
 
-::estatus object::message_box_timeout(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, const ::duration& durationTimeout, const ::e_message_box & emessagebox, const ::promise::process & process)
+::estatus object::message_box_timeout(const char* pszMessage, const char* pszTitle, const ::duration& durationTimeout, const ::e_message_box & emessagebox, const ::promise::process & process)
 {
 
    ::estatus estatus = error_failed;

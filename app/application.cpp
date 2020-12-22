@@ -54,6 +54,8 @@ namespace app_app
    void application::on_request(::create * pcreate)
    {
 
+      //sleep(0.5_s);
+
       __compose_new(m_pwindow);
 
       //::rect rectWindow;

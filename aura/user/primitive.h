@@ -703,7 +703,7 @@ namespace user
       virtual ::user::interaction * get_first_child_window() const;
 
 
-      virtual bool keyboard_focus_is_focusable();
+      virtual bool keyboard_focus_is_focusable() const;
       virtual bool keyboard_focus_OnKillFocus(oswindow oswindowNew);
       virtual bool keyboard_focus_OnChildKillFocus();
       virtual primitive * keyboard_get_next_focusable(primitive * pfocus = nullptr, bool bSkipChild = false, bool bSkipSiblings = false, bool bSkipParent = false);

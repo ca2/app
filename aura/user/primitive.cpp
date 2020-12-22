@@ -3719,12 +3719,12 @@ namespace user
    }
 
 
-   bool primitive::keyboard_focus_is_focusable()
+   bool primitive::keyboard_focus_is_focusable() const
    {
 
       return Application.keyboard_focus_is_focusable(this);
-   }
 
+   }
 
 
    bool primitive::keyboard_focus_OnKillFocus(oswindow oswindowNew)

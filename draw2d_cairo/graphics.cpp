@@ -2061,7 +2061,12 @@ bool graphics::get_text_metrics(::draw2d::text_metric * lpMetrics)
 
 #else
 
-   //((::draw2d_cairo::graphics *) this)->_set(m_pfont);
+    if (m_pfontDevice != m_pfont)
+    {
+
+       _set(m_pfont);
+
+    }
 
    cairo_font_extents_t fontextents;
 
@@ -2073,9 +2078,9 @@ bool graphics::get_text_metrics(::draw2d::text_metric * lpMetrics)
 
    lpMetrics->m_dHeight = fontextents.height;
 
-   lpMetrics->m_dInternalLeading = fontextents.ascent * 0.33333333;
+   lpMetrics->m_dInternalLeading = 0.;
 
-   lpMetrics->m_dExternalLeading = fontextents.ascent * 0.66666666;
+   lpMetrics->m_dExternalLeading = 0.;
 
 
 #endif
@@ -4418,7 +4423,7 @@ bool graphics::GetTextExtent(sized & size, const char * lpszString, strsize nCou
 bool graphics::GetTextExtent(sized & size, const string & str)
 {
 
-    return GetTextExtent(size, str);
+    return GetTextExtent(size, str, str.get_length());
 
 }
 
@@ -4953,42 +4958,12 @@ bool graphics::_set(::draw2d::font * pfontParam)
 
    sync_lock ml(cairo_mutex());
 
-   // cairo_select_font_face(m_pdc, pfont->m_strFontFamilyName, pfont->m_bItalic ? CAIRO_FONT_SLANT_ITALIC : CAIRO_FONT_SLANT_NORMAL, pfont->m_iFontWeight > 650 ? CAIRO_FONT_WEIGHT_BOLD : CAIRO_FONT_WEIGHT_NORMAL);
-
    if (::is_null(pfontParam))
    {
 
       return false;
 
    }
-
-   // ::draw2d_cairo::font * pfont = dynamic_cast <::draw2d_cairo::font *> ((::draw2d::font *) pfontParam);
-
-   //if (pfont == nullptr)
-   //{
-
-   //    return false;
-
-   //}
-   //
-   ///*if(pfont->m_ft != nullptr)
-   //{
-   //
-   //    return true;
-   //
-   //}
-   //
-   //    //sync_lock sl(&user_mutex());
-   //
-   //    pfont->destroy();
-   //
-   ////  int status;
-   //
-   //    int iError = 0;
-   //
-   //    string strPath;
-   //
-   //
 
    auto pcairodraw2dfont = __font(pfontParam);
 
@@ -5016,83 +4991,6 @@ bool graphics::_set(::draw2d::font * pfontParam)
       cairo_set_font_face(m_pdc, pfontface);
 
    }
-   //else
-   //{
-
-   //    string  strPath = get_font_path(pcairodraw2dfont->m_strFontFamilyName);
-
-   //    int iError = 0;
-
-   //    if (g_pmapFontError->lookup(strPath, iError))
-   //    {
-
-   //       g_pmapFontFace->lookup(strPath, pcairodraw2dfont->m_ft);
-
-   //    }
-   //    else
-   //    {
-
-   //       pcairodraw2dfont->m_ft = nullptr;
-
-   //       iError = FT_New_Face(__ftlibrary(), strPath, 0, &pcairodraw2dfont->m_ft);
-
-   //       if (iError == 0)
-   //       {
-
-   //          iError = FT_Select_Charmap(pcairodraw2dfont->m_ft, /* target face object */ FT_ENCODING_UNICODE); /* encoding */
-
-   //       }
-
-   //       g_pmapFontError->set_at(strPath, iError);
-
-   //       g_pmapFontFace->set_at(strPath, pcairodraw2dfont->m_ft);
-
-   //    }
-
-   //    if (iError != 0 || pcairodraw2dfont->m_ft == nullptr)
-   //    {
-
-   //       string strFont = pcairodraw2dfont->m_strFontFamilyName;
-
-   //       cairo_select_font_face(m_pdc, strFont, pcairodraw2dfont->m_bItalic ? CAIRO_FONT_SLANT_ITALIC : CAIRO_FONT_SLANT_NORMAL, pcairodraw2dfont->m_iFontWeight > 650 ? CAIRO_FONT_WEIGHT_BOLD : CAIRO_FONT_WEIGHT_NORMAL);
-
-   //    }
-   //    else
-   //    {
-
-   //       if (!g_pmapCairoFontFace->lookup(strPath, pcairodraw2dfont->m_pfontface))
-   //       {
-
-   //          pcairodraw2dfont->m_pfontface = cairo_ft_font_face_create_for_ft_face(pcairodraw2dfont->m_ft, 0);
-
-   //          g_pmapCairoFontFace->set_at(strPath, pcairodraw2dfont->m_pfontface);
-
-   //          cairo_font_face_reference(pcairodraw2dfont->m_pfontface);
-
-   //       }
-
-   //       //  cairo_font_options_t * poptions = cairo_font_options_create ();
-   //       //
-   //       //  cairo_matrix_t m;
-   //       //
-   //       //  cairo_matrix_init_identity(&m);
-   //       //
-   //       //  cairo_matrix_t m2;
-   //       //
-   //       //  cairo_matrix_init_identity(&m2);
-   //       //
-   //       //  pfont->m_pfont = cairo_scaled_font_create(pfont->m_pface, &m, &m2, poptions);
-   //       //
-   //       //  cairo_set_scaled_font(m_pdc, pfont->m_pfont);
-   //       //
-   //       //  cairo_font_options_destroy(poptions);
-   //       //  */
-   //       //
-   //       cairo_set_font_face(m_pdc, pcairodraw2dfont->m_pfontface);
-
-   //    }
-
-   // }
 
 #ifdef ANDROID
 
@@ -5130,6 +5028,8 @@ bool graphics::_set(::draw2d::font * pfontParam)
 #endif
 
    }
+
+   m_pfontDevice = m_pfont;
 
    return true;
 

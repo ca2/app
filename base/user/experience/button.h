@@ -29,7 +29,7 @@ namespace experience
 
       DECL_GEN_SIGNAL(_001OnLButtonDown);
 
-      virtual bool keyboard_focus_is_focusable() override;
+      virtual bool keyboard_focus_is_focusable() const override;
 
 
    };

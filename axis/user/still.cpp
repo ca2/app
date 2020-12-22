@@ -49,6 +49,12 @@ namespace user
    }
 
 
+   //::e_state still::get_user_state()
+   //{
+
+
+   //}
+
    void still::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
@@ -69,107 +75,47 @@ namespace user
 
          get_window_text(strText);
 
-         ::rect rectClient;
+         ::rectd rectClient;
 
-         get_client_rect(rectClient);
+         rectClient = get_client_rect();
 
-         //::rect rectMargin(2, 2,2, 2);
+         auto estate = get_user_state();
 
-//         ::rect rectBorder(2, 2,2, 2);
+         auto color = get_color(pstyle, ::user::e_element_text, estate);
 
-  //       rectClient.deflate(rectMargin);
+         pgraphics->set_text_color(color);
 
-    //     rectClient.deflate(rectBorder);
-
-         //if(pstyle == nullptr)
+         //if (!is_window_enabled())
          //{
 
-         //   if(m_iHover == 0 || psession->m_puiLastLButtonDown == this)
-         //   {
+         //   pgraphics->fill_rect(rectClient, ARGB(255, 192, 192, 192));
 
-         //      pgraphics->fill_rect(rectClient,ARGB(255,127,127,127));
+         //   pgraphics->set_text_color(ARGB(255, 160, 160, 160));
 
-         //      pgraphics->set_text_color(ARGB(255,0,100,255));
+         //}
+         //else if (should_hover() && (m_itemHover.is_set() || psession->m_puiLastLButtonDown == this))
+         //{
 
-         //   }
-         //   else
-         //   {
+         //   pgraphics->fill_rect(rectClient, ARGB(255, 200, 200, 230));
 
-         //      pgraphics->fill_rect(rectClient,ARGB(255,127,127,127));
-
-         //      pgraphics->set_text_color(ARGB(255,0,0,0));
-
-         //   }
+         //   pgraphics->set_text_color(ARGB(255, 80, 80, 180));
 
          //}
          //else
-         {
-            if (!is_window_enabled())
-            {
+         //{
 
-               pgraphics->fill_rect(rectClient, ARGB(255, 192, 192, 192));
+         //   pgraphics->fill_rect(rectClient, ARGB(255, 255, 255, 255));
 
-               pgraphics->set_text_color(ARGB(255, 160, 160, 160));
+         //   pgraphics->set_text_color(ARGB(255, 0, 0, 0));
 
-            }
-            else if (should_hover() && (m_itemHover.is_set() || psession->m_puiLastLButtonDown == this))
-            {
+         //}
 
-               pgraphics->fill_rect(rectClient, ARGB(255, 200, 200, 230));
-
-               pgraphics->set_text_color(ARGB(255, 80, 80, 180));
-
-            }
-            else
-            {
-
-               //pgraphics->draw3d_rect(rectClient,pstyle->_001GetColor(color_border),pstyle->_001GetColor(color_border));
-
-               //rectClient.deflate(1,1);
-
-               pgraphics->fill_rect(rectClient, ARGB(255, 255, 255, 255));
-
-               pgraphics->set_text_color(ARGB(255, 0, 0, 0));
-
-            }
-
-         }
-
-         ::rect rectPadding(0, 0, 0, 0);
+         auto rectPadding = get_padding(pstyle);
 
          rectClient.deflate(rectPadding);
 
-         if (m_estockicon == stock_icon_none)
+         if (m_estockicon != stock_icon_none)
          {
-
-            ::e_align ealign = (enum_align) get_int(pstyle, ::user::e_int_edit_text_align, ::e_align(e_align_left_center));
-            
-            ::e_draw_text edrawtext = (enum_draw_text) get_int(pstyle, ::user::e_int_edit_draw_text_flags, e_draw_text_single_line);
-
-            if(m_pfont)
-            {
-
-               pgraphics->set(m_pfont);
-
-            }
-            else
-            {
-
-               pgraphics->set_font(this, ::user::e_element_none);
-
-            }
-
-            pgraphics->draw_text(strText, rectClient, ealign, edrawtext);
-
-         }
-         else
-         {
-
-            //::draw2d::brush_pointer brush(e_create);
-
-            //brush->create_solid(pgraphics->get_current_pen()->m_cr);
-
-            //pgraphics->set(brush);
 
             ::draw2d::pen_pointer pen(e_create);
 
@@ -184,6 +130,18 @@ namespace user
             rectIcon.deflate(rectIcon.width() / 4, rectIcon.height() / 4);
 
             pgraphics->draw_stock_icon(rectIcon, m_estockicon);
+
+         }
+         else
+         {
+
+            ::e_align ealign = (enum_align)get_int(pstyle, ::user::e_int_edit_text_align, ::e_align(e_align_left_center));
+
+            ::e_draw_text edrawtext = (enum_draw_text)get_int(pstyle, ::user::e_int_edit_draw_text_flags, e_draw_text_single_line);
+
+            pgraphics->set_font(this, ::user::e_element_none);
+
+            pgraphics->draw_text(strText, rectClient, ealign, edrawtext);
 
          }
 
@@ -766,7 +724,7 @@ namespace user
    }
 
 
-   bool still::keyboard_focus_is_focusable()
+   bool still::keyboard_focus_is_focusable() const
    {
 
       //return is_window_enabled() && is_window_visible();
@@ -1042,15 +1000,7 @@ namespace user
    }
 
 
-   bool still::should_hover()
-   {
-
-      return has_link();
-
-   }
-
-
-   bool still::has_link()
+   bool still::has_link() const
    {
 
       return m_strLink.has_char();

@@ -115,7 +115,7 @@ namespace user
 
       virtual ::sized _001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual bool keyboard_focus_is_focusable() override;
+      virtual bool keyboard_focus_is_focusable() const override;
 
       //virtual bool has_action_hover() override;
 

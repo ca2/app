@@ -214,7 +214,7 @@ namespace user
 
 
 
-      virtual bool keyboard_focus_is_focusable() override;
+      virtual bool keyboard_focus_is_focusable() const override;
 
 
       virtual void on_control_event(::user::control_event * pevent) override;

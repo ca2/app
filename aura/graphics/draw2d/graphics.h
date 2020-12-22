@@ -32,12 +32,13 @@ namespace draw2d
       ::draw2d::pen_pointer               m_ppen;
       ::draw2d::brush_pointer             m_pbrush;
       ::draw2d::font_pointer              m_pfont;
+      ::draw2d::font_pointer              m_pfontDevice;
       ::draw2d::region_pointer            m_pregion;
       bool                                m_bStoreThumbnails;
 
       pointd                              m_point;
 
-      enum_alpha_mode                        m_ealphamode;
+      enum_alpha_mode                     m_ealphamode;
       e_smooth_mode                       m_esmoothmode;
       enum_interpolation_mode             m_einterpolationmode;
       e_compositing_quality               m_ecompositingquality;

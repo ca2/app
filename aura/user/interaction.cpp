@@ -294,6 +294,18 @@ namespace user
    double interaction::get_double(style * pstyle, enum_double edouble, double dDefault) const
    {
 
+      if (edouble == ::user::e_double_focus_height_width)
+      {
+
+         if (m_flagNonClient.has(non_client_focus_rect) && keyboard_focus_is_focusable())
+         {
+
+            return 8.0;
+
+         }
+
+      }
+
       return dDefault;
 
    }
@@ -320,7 +332,18 @@ namespace user
    ::rectd interaction::get_margin(style * pstyle, enum_element eelement, estate estate) const
    {
 
-      ::rectd rectDefaultMargin(2.0, 2.0, 2.0, 2.0);
+      if (m_flagNonClient.has(non_client_focus_rect) && keyboard_focus_is_focusable())
+      {
+
+         double dFocusHeightWidth = get_double(pstyle, ::user::e_double_focus_height_width, 2.0);
+
+         ::rectd rectDefaultMargin(dFocusHeightWidth, dFocusHeightWidth, dFocusHeightWidth, dFocusHeightWidth);
+
+         return rectDefaultMargin;
+
+      }
+
+      ::rectd rectDefaultMargin(0.0, 0.0, 0.0, 0.0);
 
       return rectDefaultMargin;
 
@@ -7318,6 +7341,54 @@ namespace user
    }
 
 
+   ::user::e_state interaction::get_user_state() const
+   {
+
+      if (!is_window_enabled())
+      {
+
+         return ::user::e_state_disabled;
+
+      }
+      else
+      {
+
+         auto psession = Session;
+
+         if (has_hover() && (m_itemHover.is_set() || psession->m_puiLastLButtonDown == this))
+         {
+
+            return ::user::e_state_hover;
+
+         }
+         else
+         {
+
+            return ::user::e_state_none;
+
+         }
+
+      }
+
+   }
+
+
+   bool interaction::has_hover() const
+   {
+
+      return has_link();
+
+   }
+
+
+   bool interaction::has_link() const
+   {
+
+      return false;
+
+   }
+
+
    void interaction::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
@@ -13462,15 +13533,12 @@ restart:
    }
 
 
-
-   bool interaction::keyboard_focus_is_focusable()
+   bool interaction::keyboard_focus_is_focusable() const
    {
 
       return false;
 
    }
-
-
 
 
    void interaction::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)

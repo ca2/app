@@ -802,7 +802,7 @@ namespace apex
 
 
 
-      virtual bool keyboard_focus_is_focusable(::user::primitive * pue);
+      virtual bool keyboard_focus_is_focusable(const ::user::primitive * pue);
       virtual bool keyboard_focus_OnSetFocus(::user::primitive * pue);
 
       //virtual ::user::interaction * main_window();

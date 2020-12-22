@@ -209,6 +209,13 @@ namespace user
 
       ::user::item* get_user_item(const ::user::item& item);
 
+      virtual ::user::e_state get_user_state() const;
+
+      virtual bool has_hover() const;
+
+      virtual bool has_link() const;
+
+
       const class ::user::interaction_layout& layout() const { return m_layout; }
       class ::user::interaction_layout& layout() { return m_layout; }
 
@@ -1368,10 +1375,9 @@ namespace user
       virtual void simple_ui_draw_focus_rect(::draw2d::graphics_pointer & pgraphics);
 
 
-
       virtual bool on_action(const char* pszId);
 
-      virtual bool keyboard_focus_is_focusable() override;
+      virtual bool keyboard_focus_is_focusable() const override;
 
       virtual bool simple_on_control_event(::message::message* pmessage, ::user::enum_event eevent);
 

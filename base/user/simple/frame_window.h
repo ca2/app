@@ -61,7 +61,7 @@ public:
    virtual bool create_window(const char * pszClassName, const char * pszWindowName, u32 uStyle = WS_OVERLAPPEDWINDOW,const ::rect & rect = nullptr, ::user::interaction * puiParent = nullptr, const char * pszMenuName = nullptr, u32 dwExStyle = 0, ::create * pcreate = nullptr) override;
 
 
-   virtual bool keyboard_focus_is_focusable() override;
+   virtual bool keyboard_focus_is_focusable() const override;
 
    virtual bool create_bars();
    virtual bool on_create_bars() override;

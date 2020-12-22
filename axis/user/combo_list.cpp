@@ -442,7 +442,8 @@ namespace user
    
    }
 
-   bool combo_list::keyboard_focus_is_focusable()
+
+   bool combo_list::keyboard_focus_is_focusable() const
    {
 
       return true;

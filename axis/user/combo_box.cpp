@@ -1629,7 +1629,7 @@ namespace user
    }
 
 
-   bool combo_box::keyboard_focus_is_focusable()
+   bool combo_box::keyboard_focus_is_focusable() const
    {
 
       return is_window_enabled() && is_window_visible(e_layout_sketch);

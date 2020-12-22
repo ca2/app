@@ -29,16 +29,16 @@ namespace user
 
       ::rect                              m_rectCheckBox;
       string                              m_strLink;
-      ::draw2d::font_pointer              m_pfont;
+      //::draw2d::font_pointer              m_pfont;
       
 
       still();
       virtual ~still();
 
 
-      virtual bool should_hover();
+      //virtual bool should_hover();
 
-      virtual bool has_link();
+      virtual bool has_link() const override;
 
       virtual bool create_control(class control_descriptor * pdescriptor) override;
 
@@ -73,7 +73,7 @@ namespace user
 
       virtual ::sized _001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual bool keyboard_focus_is_focusable() override;
+      virtual bool keyboard_focus_is_focusable() const override;
 
       // virtual bool has_action_hover() override;
 
@@ -97,6 +97,9 @@ namespace user
 
       virtual void set_stock_icon(e_stock_icon eicon) override;
       virtual e_stock_icon get_stock_icon() override;
+
+
+      
 
    };
 

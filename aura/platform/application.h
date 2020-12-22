@@ -784,7 +784,7 @@ namespace aura
 
 
 
-      virtual bool keyboard_focus_is_focusable(::user::primitive * pue) override;
+      virtual bool keyboard_focus_is_focusable(const ::user::primitive * pue) override;
       virtual bool keyboard_focus_OnSetFocus(::user::primitive * pue) override;
 
       virtual ::user::interaction * main_window();

@@ -36,10 +36,6 @@ namespace user
       virtual ~still();
 
 
-      virtual bool should_hover();
-
-      virtual bool has_link();
-
       virtual bool create_control(class control_descriptor * pdescriptor) override;
 
       virtual ::draw2d::font_pointer get_font(style * pstyle, enum_element eelement = e_element_none, estate estate = e_state_none) const override;

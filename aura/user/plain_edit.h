@@ -174,6 +174,9 @@ namespace user
       void _001OnTimer(::timer * ptimer) override;
 
 
+      virtual ::rectd get_margin(style * pstyle, enum_element eelement, estate estate) const override;
+  
+
       DECL_GEN_SIGNAL(_001OnLButtonDown);
       DECL_GEN_SIGNAL(_001OnLButtonUp);
       DECL_GEN_SIGNAL(_001OnRButtonDown);
@@ -209,7 +212,7 @@ namespace user
       DECL_GEN_SIGNAL(keyboard_focus_OnKeyUp) override;
       DECL_GEN_SIGNAL(keyboard_focus_OnChar) override;
 
-      virtual bool keyboard_focus_is_focusable() override;
+      virtual bool keyboard_focus_is_focusable() const override;
 
 
       virtual i32 get_wheel_scroll_delta() override;

@@ -5324,7 +5324,7 @@ retry_license:
    }
 
 
-   bool application::keyboard_focus_is_focusable(::user::primitive * pue)
+   bool application::keyboard_focus_is_focusable(const ::user::primitive * pue)
    {
 
       return false;

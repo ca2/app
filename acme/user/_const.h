@@ -432,6 +432,7 @@ namespace user
       e_double_list_item_height_rate,
       e_double_tree_item_height_rate,
       e_double_default_one_max,
+      e_double_focus_height_width,
 
    };
 

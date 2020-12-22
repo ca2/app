@@ -365,7 +365,7 @@ namespace user
       color32_t crSel;
       color32_t cr;
 
-      auto rectClient = get_client_rect();
+      ::rectd rectClient = get_client_rect();
 
       color32_t crEditBackground = get_color(pstyle, e_element_background);
 
@@ -389,11 +389,9 @@ namespace user
 
       }
 
-      ::draw2d::region_pointer rgn(e_create);
+      auto rectPadding = get_padding(pstyle);
 
-      rectClient.deflate(0, 0, 0, 0);
-
-      rgn->create_rect(rectClient);
+      rectClient.deflate(rectPadding);
 
       double left = rectClient.left;
 
@@ -446,7 +444,9 @@ namespace user
       pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
 
       double dLineHeight = m_dLineHeight;
+
       string_array & straLines = m_straLines;
+
       string str1;
       string str2;
       string str3;
@@ -991,6 +991,14 @@ namespace user
          key_to_char(m_pmessagekeyLast);
 
       }
+
+   }
+
+
+   ::rectd plain_edit::get_margin(style * pstyle, enum_element eelement, estate estate) const
+   {
+
+
 
    }
 
@@ -2368,7 +2376,7 @@ namespace user
 
       auto pointOffset = get_viewport_offset();
 
-      m_iLineCount = ((rectClient.height() + m_dLineHeight - 1) / m_dLineHeight) + 2;
+      m_iLineCount = ceil((double) rectClient.height() / m_dLineHeight);
 
       m_iLineOffset = min(max(0, pointOffset.y / m_dLineHeight), m_iaLineBeg.get_upper_bound());
 
@@ -4820,8 +4828,10 @@ finished_update:
 
       auto iLine = plain_edit_sel_to_line_x(pgraphics, iEnd, x);
 
-      double y = iLine* m_dLineHeight - get_viewport_offset().y;
+      double y = iLine * m_dLineHeight - get_viewport_offset().y;
+      
       double y2 = y + m_dLineHeight;
+
       ::point point((::i32)x,(::i32) y);
       get_client_rect(rect);
       rect.left =(::i32) x;
@@ -4831,150 +4841,6 @@ finished_update:
       get_wnd()->_001ScreenToClient(rect);
 
    }
-
-
-   //int plain_edit::on_draft_message(int iMessage)
-   //{
-
-   //   if (iMessage == IME_MESSAGE_UPDATE_CARET)
-   //   {
-   //      /*
-   //               strsize iBeg;
-   //               strsize iEnd;
-
-   //               _001GetSel(iBeg, iEnd);
-
-   //               i32 x;
-   //               i32 iLine = plain_edit_sel_to_line_x(iEnd, x);
-
-
-
-
-   //               int y = (iLine)* m_dLineHeight - get_viewport_offset().y;
-   //               int y2 = y + m_dLineHeight;
-   //               const ::point & ::point(x, y);
-   //               ::rect r;
-   //               get_client_rect(rect);
-   //               rect.left = x;
-   //               rect.top = y;
-   //               rect.bottom = y2;
-   //               _001ClientToScreen(rect);
-   //               get_wnd()->_001ScreenToClient(rect);
-   //      */
-
-   //      //SetCaretPos(rect.left, rect.top);
-   //      //ShowCaret(get_handle());
-   //   }
-   //   else if (iMessage == IME_MESSAGE_UPDATE_CANDIDATE_WINDOW_POSITION)
-   //   {
-
-   //      //simple_imm imm(this);
-
-   //      //if (!imm)
-   //      //{
-
-   //      //   return 0;
-
-   //      //}
-
-
-   //      //if()
-
-
-   //      // HWND hwndIme = ImmGetDefaultIMEWnd(get_handle());
-
-   //      //strsize iBeg;
-   //      //strsize iEnd;
-
-   //      //_001GetSel(iBeg, iEnd);
-
-   //      //i32 x;
-   //      //i32 iLine = plain_edit_sel_to_line_x(iEnd, x);
-
-
-
-
-   //      //int y = (iLine)* m_dLineHeight - get_viewport_offset().y;
-   //      //int y2 = y + m_iLineHeight;
-   //      //const ::point & ::point(x, y);
-   //      //rect r;
-   //      //get_client_rect(rect);
-   //      //rect.left = x;
-   //      //rect.top = y;
-   //      //rect.bottom = y2;
-   //      //_001ClientToScreen(rect);
-   //      //get_wnd()->_001ScreenToClient(rect);
-
-   //      //POINTS point;
-
-   //      //point.x = point.x;
-   //      //point.y = point.y;
-
-   //      //::set_window_pos(hwndIme, HWND_TOP, point.x, point.y, 0, 0, SWP_NOSIZE);
-   //      //SendMessage(hwndIme, WM_IME_CONTROL, IMC_SETSTATUSWINDOWPOS,(LPARAM) &point);
-   //      //if (::ImmSetStatusWindowPos(imm, point))
-   //      //{
-   //      //   output_debug_string("set ime status window pos");
-   //      //}
-
-
-   //      //COMPOSITIONFORM com = {};
-
-   //      //com.uStyle = CFS_FORCE_POSITION;
-   //      //com.ptCurrentPos = rect.top_left();
-   //      //com.ptCurrentPos.y -= 100;
-   //      //::rect rect2(rect);
-   //      //rect2.offset_y(-100);
-   //      //com.uStyle = CFS_RECT;
-   //      //com.rcArea = rect2;
-
-   //      //ShowCaret(get_handle());
-
-   //      //::draw2d::font_pointer pfont = _001GetFont(::user::font_plain_edit);
-   //      //if (pfont.is_set())
-   //      //{
-
-   //      //   LOGFONTW lf = {};
-   //      //   if (pfont->GetLogFont(&lf))
-   //      //   {
-
-   //      //      if (ImmSetCompositionFontW(imm, &lf))
-   //      //      {
-
-   //      //         output_debug_string("set ime composition font (Unicode) pos");
-
-   //      //      }
-
-
-
-   //      //   }
-
-   //      //}
-
-   //      //if (::ImmSetCompositionWindow(imm, &com))
-   //      //{
-   //      //   output_debug_string("set ime composition window pos");
-   //      //}
-   //      //CANDIDATEFORM can = {};
-
-   //      //can.uStyle = CFS_CANDIDATEPOS;
-
-   //      //can.ptCurrentPos = rect.bottom_left();
-
-   //      //if (::ImmSetCandidateWindow(imm, &can))
-   //      //{
-
-   //      //   output_debug_string("set ime candidate window pos");
-
-   //      //}
-
-   //      //return 1;
-
-   //   }
-
-   //   return 0;
-
-   //}
 
 
    void plain_edit::edit_on_text(string str)
@@ -5220,20 +5086,27 @@ finished_update:
 
       set_viewport_offset_y(pointOffset.y - m_dLineHeight);
 
-      //      if(m_scrolldata.m_pointScroll.y < 0)
-      //       m_scrolldata.m_pointScroll.y = 0;
       double dHeight = 0.;
-      //char flag;
+
       m_iViewOffset = 0;
+
       ::count iLineSize;
+
       ::index i = 0;
+
       __copy(pointOffset, get_viewport_offset());
+
       while (pointOffset.y > dHeight && i < m_iaLineLen.get_size())
       {
+
          iLineSize = m_iaLineLen[i];
+
          dHeight += m_dLineHeight;
+
          m_iViewOffset += iLineSize;
+
          i++;
+
       }
 
    }
@@ -5844,73 +5717,13 @@ finished_update:
       return m_bColorerTake5;
    }
 
-   //colorertake5::file_type *plain_edit::colorer_select_type()
-   //{
-
-   //   if (!m_bColorerTake5)
-   //   {
-
-   //      return nullptr;
-
-   //   }
-
-   //   sync_lock sl(mutex());
-   //   colorertake5::file_type *type = nullptr;
-   //   /*if (typeDescription != nullptr){
-   //     type = hrcParser->getFileType(typeDescription);
-   //     if (type == nullptr){
-   //     for(i32 idx = 0;; idx++){
-   //     type = hrcParser->enumerateFileTypes(idx);
-   //     if (type == nullptr) break;
-   //     if (type->getDescription() != nullptr &&
-   //     type->getDescription()->length() >= typeDescription->length() &&
-   //     DString(type->getDescription(), 0, typeDescription->length()).equalsIgnoreCase(typeDescription))
-   //     break;
-   //     if (type->getName()->length() >= typeDescription->length() &&
-   //     DString(type->getName(), 0, typeDescription->length()).equalsIgnoreCase(typeDescription))
-   //     break;
-   //     type = nullptr;
-   //     }
-   //     }
-   //     }*/
-   //   //  if (typeDescription == nullptr || type == nullptr){
-   //   //__pointer(::user::impact) pview = (this);
-   //   //if (pview != nullptr)
-   //   //{
-   //   //   __pointer(::user::document) pdocument = pview->get_document();
-   //   //   if (type == nullptr)
-   //   //   {
-   //   //      //string textStart;
-   //   //      //strsize totalLength = 0;
-   //   //      //for (i32 i = 0; i < 4 && i < m_plines->getLineCount(); i++)
-   //   //      //{
-   //   //      //   string iLine = m_plines->getLine(i);
-   //   //      //   textStart += iLine;
-   //   //      //   textStart += "\n";
-   //   //      //   totalLength += iLine.get_length();
-   //   //      //   if (totalLength > 500) break;
-   //   //      //}
-   //   //      //type = System.parser_factory().getHRCParser()->chooseFileType(pdocument->get_file_path(), textStart, 0);
-   //   //   }
-   //   //}
-
-   //   //if (type != nullptr)
-   //   //{
-
-   //   //   type->getBaseScheme();
-
-   //   //   colorertake5()->setFileType(type);
-
-   //   //}
-
-   //   return ptype;
-
-   //}
 
 
    void plain_edit::_009OnChar(::message::message * pmessage)
    {
+      
       UNREFERENCED_PARAMETER(pmessage);
+
    }
 
 
@@ -5937,7 +5750,7 @@ finished_update:
    }
 
 
-   bool plain_edit::keyboard_focus_is_focusable()
+   bool plain_edit::keyboard_focus_is_focusable() const
    {
 
       return is_window_visible();
@@ -5966,19 +5779,7 @@ finished_update:
 
       }
 
-      //::image_pointer pimage;
-
       SetTimer(100, 50, nullptr);
-
-      //pimage = create_image({1,  24});
-
-      //::draw2d::brush_pointer br(e_create);
-
-      //br->create_solid(ARGB(255, 255, 0, 0));
-
-      //pimage->g()->set(br);
-
-      //pimage->g()->FillEllipse(pimage->rect());
 
       if (!m_bCaretVisible)
       {
@@ -6004,8 +5805,6 @@ finished_update:
 #endif
 
       }
-
-      //EnableIME();
 
 #ifdef WINDOWS_DESKTOP
 

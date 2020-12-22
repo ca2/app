@@ -210,7 +210,7 @@ namespace user
 
       m_scrolldataVert.m_bScrollEnable = false;
 
-      m_y = -1;
+      m_dy = -1;
       m_iViewOffset = 0;
       m_iViewSize = 0;
       m_bLMouseDown = false;
@@ -703,7 +703,7 @@ namespace user
 
                pgraphics->move_to(left + x1, y);
 
-               pgraphics->line_to(left + x1, y + iLineHeight);
+               pgraphics->line_to(left + x1, y + dLineHeight);
 
             }
             else if (iCurLineSelCur >= 0 && bFocus && bCaretOn && iCurLineSelCur == iCurLineSelEnd)
@@ -725,7 +725,7 @@ namespace user
 
                pgraphics->move_to(left + x2, y);
 
-               pgraphics->line_to(left + x2, y + iLineHeight);
+               pgraphics->line_to(left + x2, y + dLineHeight);
 
             }
 
@@ -2084,7 +2084,7 @@ namespace user
 
       }
 
-      m_y = pointOffset.y;
+      m_dy = pointOffset.y;
 
       //::colorertake5::base_editor * pcolorer = colorertake5();
 

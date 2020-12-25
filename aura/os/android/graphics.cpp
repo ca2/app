@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "aqua/xml.h"
 #include "aura/graphics/draw2d/ttf_util.h"
+#include "aura/platform/static_start.h"
 
 
 //int_bool window_set_mouse_cursor(oswindow window, HCURSOR hcursor)

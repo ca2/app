@@ -1534,9 +1534,6 @@
     <ClCompile Include="net\sockets\bsd\basic\listen_socket.cpp">
       <Filter>Source Files\net\sockets\bsd\basic</Filter>
     </ClCompile>
-    <ClCompile Include="net\sockets\bsd\basic\net.cpp">
-      <Filter>Source Files\net\sockets\bsd\basic</Filter>
-    </ClCompile>
     <ClCompile Include="net\sockets\bsd\basic\sctp_socket.cpp">
       <Filter>Source Files\net\sockets\bsd\basic</Filter>
     </ClCompile>
@@ -2190,6 +2187,9 @@
     </ClCompile>
     <ClCompile Include="os\windows\application_system_run.cpp">
       <Filter>Source Files\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\basic\basic_net.cpp">
+      <Filter>Source Files\net\sockets\bsd\basic</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

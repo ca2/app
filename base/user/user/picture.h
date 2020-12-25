@@ -128,9 +128,9 @@ namespace user
 
       virtual bool set_text_editable(bool bEditable = true);
 
-      virtual bool is_text_editable();
+      virtual bool is_text_editable() const;
 
-      virtual bool is_text_editor();
+      virtual bool is_text_editor() const;
 
       
       virtual ::rectd get_rect_for_picture2();

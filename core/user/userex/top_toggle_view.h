@@ -24,7 +24,7 @@ namespace userex
       virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
 
 
-      virtual bool keyboard_focus_is_focusable() override;
+      virtual bool keyboard_focus_is_focusable() const override;
 
 
    };

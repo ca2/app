@@ -2163,20 +2163,12 @@ namespace user
    }
 
 
-   bool tree::keyboard_focus_is_focusable()
+   bool tree::keyboard_focus_is_focusable() const
    {
 
       return true;
 
    }
-
-
-   //size tree::get_total_size()
-   //{
-
-   //   return m_sizeTotal;
-
-   //}
 
 
    void tree::on_viewport_offset(::draw2d::graphics_pointer & pgraphics)

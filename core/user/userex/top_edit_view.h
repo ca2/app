@@ -34,7 +34,7 @@ namespace userex
 
 
 
-      bool keyboard_focus_is_focusable() override;
+      bool keyboard_focus_is_focusable() const override;
 
       virtual void _001OnTimer(::timer * ptimer) override;
 

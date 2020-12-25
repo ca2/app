@@ -195,6 +195,9 @@
     <Filter Include="Source Files\Resource Files">
       <UniqueIdentifier>{884e337b-3347-4863-8d95-d6b0a4245427}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\os\android">
+      <UniqueIdentifier>{282b6d12-bfe0-4e11-852e-30865588f7e9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="net\sockets\bsd\webserver\http_base_socket.h">
@@ -1651,8 +1654,11 @@
     <ClCompile Include="node\windows\user_frame.cpp">
       <Filter>Source Files\node\windows</Filter>
     </ClCompile>
-    <ClCompile Include="os\windows\application_system_run.cpp">
-      <Filter>Source Files\os\windows</Filter>
+    <ClCompile Include="os\android\graphics.cpp">
+      <Filter>Source Files\os\android</Filter>
+    </ClCompile>
+    <ClCompile Include="node\windows\system.cpp">
+      <Filter>Source Files\node\windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

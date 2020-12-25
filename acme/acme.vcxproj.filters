@@ -2857,9 +2857,6 @@
     <ClCompile Include="memory\plex.cpp">
       <Filter>Source Files\memory</Filter>
     </ClCompile>
-    <ClCompile Include="memory\plex_heap1.cpp">
-      <Filter>Source Files\memory</Filter>
-    </ClCompile>
     <ClCompile Include="memory\allocate_mid_big.cpp">
       <Filter>Source Files\memory</Filter>
     </ClCompile>
@@ -3501,6 +3498,9 @@
     </ClCompile>
     <ClCompile Include="os\windows\application_system_run.cpp">
       <Filter>Source Files\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\plex_heap.cpp">
+      <Filter>Source Files\memory</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

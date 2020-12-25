@@ -124,9 +124,6 @@
     <ClCompile Include="net\sockets\bsd\basic\listen_socket.cpp">
       <Filter>Source Files\net\sockets\bsd\basic</Filter>
     </ClCompile>
-    <ClCompile Include="net\sockets\bsd\basic\net.cpp">
-      <Filter>Source Files\net\sockets\bsd\basic</Filter>
-    </ClCompile>
     <ClCompile Include="net\sockets\bsd\basic\sctp_socket.cpp">
       <Filter>Source Files\net\sockets\bsd\basic</Filter>
     </ClCompile>
@@ -738,6 +735,9 @@
     </ClCompile>
     <ClCompile Include="os\android\menu.cpp">
       <Filter>Source Files\os\android</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\basic\basic_net.cpp">
+      <Filter>Source Files\net\sockets\bsd\basic</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

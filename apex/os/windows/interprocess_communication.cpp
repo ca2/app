@@ -311,8 +311,7 @@
       }
 
 
-
-      void * rx::on_ipc_receive(rx * prx,const char * pszMessage)
+      void * rx::on_interprocess_receive(rx * prx,const char * pszMessage)
       {
 
          string strMessage(pszMessage);
@@ -352,7 +351,7 @@
       }
 
 
-      void * rx::on_ipc_receive(rx * prx,int message,void * pdata,memsize len)
+      void * rx::on_interprocess_receive(rx * prx,int message,void * pdata,memsize len)
       {
 
          if(m_preceiver != nullptr)
@@ -369,7 +368,7 @@
       }
 
 
-      void * rx::on_ipc_post(rx * prx,long long int a,long long int b)
+      void * rx::on_interprocess_post(rx * prx,long long int a,long long int b)
       {
 
          if(m_preceiver != nullptr)
@@ -444,7 +443,7 @@
          if(message == WM_USER + 100)
          {
 
-            on_ipc_post(this,wparam,lparam);
+            on_interprocess_post(this,wparam,lparam);
 
          }
          else if(message == WM_COPYDATA)
@@ -464,13 +463,13 @@
 
                string strMessage((const char *)pcds->lpData,pcds->cbData);
 
-               on_ipc_receive(this,strMessage.c_str());
+               on_interprocess_receive(this,strMessage.c_str());
 
             }
             else
             {
 
-               on_ipc_receive(this,(int)pcds->dwData,pcds->lpData,pcds->cbData);
+               on_interprocess_receive(this,(int)pcds->dwData,pcds->lpData,pcds->cbData);
 
             }
 
@@ -478,7 +477,7 @@
          else if(message >= WM_APP)
          {
 
-            on_ipc_receive(this,message,(void *)wparam,lparam);
+            on_interprocess_receive(this,message,(void *)wparam,lparam);
 
          }
          else

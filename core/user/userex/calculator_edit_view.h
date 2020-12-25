@@ -31,7 +31,7 @@ namespace calculator
 
       void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
 
-      bool keyboard_focus_is_focusable() override;
+      virtual bool keyboard_focus_is_focusable() const override;
 
       virtual ::payload get_payload() override;
 

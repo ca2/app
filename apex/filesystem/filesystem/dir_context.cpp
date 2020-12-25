@@ -1676,7 +1676,7 @@ void dir_context::matter_ls_file(const ::file::path & str, ::file::listing & str
 
          auto elapsed = t.elapsed();
 
-         if (elapsed < 5 * 60 * 1000)
+         if (elapsed < 5_s)
          {
 
             if (false)
@@ -1803,6 +1803,8 @@ void dir_context::matter_ls_file(const ::file::path & str, ::file::listing & str
          strUrl = "https://ca2.cc/api/matter/query_file?candidate=" + strParam;
 
       }
+
+      const char * pszUrl = strUrl;
 
       strMatter = Context.http().get(strUrl, set);
 

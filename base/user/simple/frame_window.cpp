@@ -3755,7 +3755,7 @@ class ::mini_dock_frame_window* simple_frame_window::CreateFloatingFrame(u32 uSt
 //}
 
 
-bool simple_frame_window::keyboard_focus_is_focusable()
+bool simple_frame_window::keyboard_focus_is_focusable() const
 {
 
    return false;

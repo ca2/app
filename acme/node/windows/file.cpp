@@ -186,7 +186,7 @@ namespace windows
 
          DWORD dwLastError = ::GetLastError();
 
-         if (!(eopen & ::file::no_share_violation_wait))
+         if (!(eopen & ::file::e_open_no_share_violation_wait))
          {
 
             if (dwLastError == ERROR_SHARING_VIOLATION && ::thread_get_run() && millisStart.elapsed() < m_millisErrorBlockTimeout)

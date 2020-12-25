@@ -37,7 +37,7 @@ namespace simple_ui
       DECL_GEN_SIGNAL(_001OnMouseLeave);
 
 
-      virtual bool keyboard_focus_is_focusable() override;
+      virtual bool keyboard_focus_is_focusable() const override;
       virtual bool is_hover();
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;

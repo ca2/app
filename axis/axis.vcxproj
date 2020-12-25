@@ -716,8 +716,8 @@
     <ClCompile Include="math\calculator\element.cpp" />
     <ClCompile Include="math\calculator\parser.cpp" />
     <ClCompile Include="math\calculator\parser_exception.cpp" />
+    <ClCompile Include="math\calculator\payload.cpp" />
     <ClCompile Include="math\calculator\scanner.cpp" />
-    <ClCompile Include="math\calculator\value.cpp" />
     <ClCompile Include="math\kissfft\fft.cpp" />
     <ClCompile Include="math\kissfft\fftd.cpp" />
     <ClCompile Include="math\kissfft\fft_shared.cpp" />

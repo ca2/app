@@ -1,6 +1,7 @@
 #include "framework.h"
 
 
+
 HICON load_icon(::object * pobject, string_array & straMatter, string strIcon, int cx, int cy)
 {
 

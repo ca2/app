@@ -42,7 +42,6 @@ namespace user
       //m_erectPadding = rect_button_padding;
       //m_eintTextAlign = int_button_draw_text_flags;
 
-
       m_estockicon = stock_icon_none;
       m_estyle = style_none;
       m_pbitmap = nullptr;
@@ -188,25 +187,17 @@ namespace user
       if (m_estyle == style_simple)
       {
 
-         pgraphics->set_font(this, ::user::e_element_none);
+         auto sizeTotal = _001CalculateAdjustedFittingSize(pgraphics);
 
-         string str;
-         get_window_text(str);
-         const ::size & size = pgraphics->GetTextExtent(str);
-
-         ::rect rect(0, 0, 0, 0);
-         rect.right = ::i32(size.cx * 1.6);
-         rect.bottom = ::i32(size.cy * 1.4);
-
-         set_size(rect.size());
+         set_size(sizeTotal);
 
       }
       else if (m_estyle == style_bitmap)
       {
 
-         ::size size = m_pbitmap->m_pimage->size();
+         ::size sizeTotal = m_pbitmap->m_pimage->size();
 
-         set_size(size);
+         set_size(sizeTotal);
 
       }
       else
@@ -242,6 +233,8 @@ namespace user
    {
 
       UNREFERENCED_PARAMETER(pmessage);
+
+      descriptor().set_control_type(e_control_type_button);
 
       if (m_estyle == style_none)
       {

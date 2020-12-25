@@ -5268,10 +5268,13 @@ namespace user
    }
 
 
-   bool mesh::keyboard_focus_is_focusable()
+   bool mesh::keyboard_focus_is_focusable() const
    {
+
       return true;
+
    }
+
 
    void mesh::_001OnSelectionChange()
    {

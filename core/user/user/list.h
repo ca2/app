@@ -351,7 +351,7 @@ namespace user
 
       virtual void on_change_viewport_offset() override;
 
-      virtual bool keyboard_focus_is_focusable() override;
+      virtual bool keyboard_focus_is_focusable() const override;
 
       DECL_GEN_SIGNAL(_001OnVScroll);
       DECL_GEN_SIGNAL(_001OnHScroll);

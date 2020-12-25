@@ -508,6 +508,12 @@ bool imm_client::is_text_composition_active() const
 }
 
 
+void imm_client::on_text_composition(string strMessage)
+{
+
+
+}
+
 int imm_client::on_text_composition_message(int iMessage)
 {
 

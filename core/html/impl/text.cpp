@@ -312,15 +312,17 @@ namespace html
 
                m_box.set_width(0);
 
-               auto size = pgraphics->GetTextExtent(unitext("MAÚqg"));
+               ::draw2d::text_metric textmetric;
 
-               //auto h = pgraphics->get_current_font()->get_height();
+               pgraphics->get_text_metrics(&textmetric);
 
-               pdata->m_pcoredata->m_layoutstate1.m_cy = (float) size.cy;
+               double dLineSpacing = textmetric.get_line_spacing();
 
-               pdata->m_pcoredata->m_layoutstate1.m_cya.last() = (float) size.cy;
+               pdata->m_pcoredata->m_layoutstate1.m_cy = dLineSpacing;
 
-               m_box.set_height((float) size.cy);
+               pdata->m_pcoredata->m_layoutstate1.m_cya.last() = dLineSpacing;
+
+               m_box.set_height(dLineSpacing);
 
             }
 
@@ -445,6 +447,12 @@ namespace html
 
                   sizeText = pgraphics->GetTextExtent(strLine.Left(iLastSpace));
 
+                  ::draw2d::text_metric textmetric;
+
+                  pgraphics->get_text_metrics(&textmetric);
+
+                  sizeText.cy = textmetric.get_line_spacing();
+
                   m_straLines.add(strLine.Left(iLastSpace));
 
                   strLine = strLine.Mid(iLastSpace);
@@ -473,6 +481,12 @@ namespace html
          {
 
             sizeText = pgraphics->GetTextExtent(strLine);
+
+            ::draw2d::text_metric textmetric;
+
+            pgraphics->get_text_metrics(&textmetric);
+
+            sizeText.cy = textmetric.get_line_spacing();
 
             m_straLines.add(strLine);
 

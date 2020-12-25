@@ -63,7 +63,7 @@ namespace windows
       void destroy_os_buffer();
 
 
-      virtual bool round_swap_key_buffers() override;
+      virtual bool buffer_lock_round_swap_key_buffers() override;
 
 
    };
